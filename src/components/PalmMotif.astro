@@ -1,0 +1,29 @@
+---
+// موتيف السعف المجرّد — خطوط ريشية منتظمة حول محور.
+// أحادي اللون عبر currentColor. يُستخدم بقلّةٍ ودلالة (فواصل، أيقونات، خلفية ٣–٥٪).
+interface Props { size?: number; class?: string; 'aria-hidden'?: boolean; }
+const { size = 96, class: className = '' } = Astro.props;
+---
+<svg
+  class={className}
+  width={size} height={size} viewBox="0 0 120 120"
+  fill="none" xmlns="http://www.w3.org/2000/svg"
+  role="img" aria-label="موتيف سعف النخيل"
+>
+  <!-- المحور (العسيب) -->
+  <path d="M60 112 C60 84 60 56 60 14" stroke="currentColor" stroke-width="3"
+        stroke-linecap="round" />
+  <!-- الوريقات (السعف) — أزواج منتظمة على جانبي المحور -->
+  <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+    <path d="M60 26 C46 22 38 26 30 36" />
+    <path d="M60 26 C74 22 82 26 90 36" />
+    <path d="M60 42 C44 38 34 43 25 55" />
+    <path d="M60 42 C76 38 86 43 95 55" />
+    <path d="M60 58 C43 55 31 61 22 74" />
+    <path d="M60 58 C77 55 89 61 98 74" />
+    <path d="M60 74 C44 72 34 78 27 90" />
+    <path d="M60 74 C76 72 86 78 93 90" />
+  </g>
+  <!-- نواة علوية -->
+  <path d="M60 14 C57 18 57 22 60 26 C63 22 63 18 60 14Z" fill="currentColor" />
+</svg>

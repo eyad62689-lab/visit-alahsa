@@ -1,0 +1,29 @@
+---
+// مكوّن صورة موحّد لنظام .photo.
+// إن وُجد src عرض صورة حقيقية (webp + jpg)، وإلا عنصر نائب بالتسمية.
+// src = المسار الأساسي بلا امتداد، مثل: /img/qasr-ibrahim
+interface Props {
+  src?: string;          // المسار الأساسي بلا امتداد
+  label?: string;        // نص بديل/تسمية العنصر النائب
+  class?: string;        // أصناف إضافية (att-photo, lc-photo, gal-item ...)
+  eager?: boolean;       // تحميل فوري (للهيرو فقط)
+  sizes?: string;        // تلميح للمتصفح
+}
+const { src, label = '', class: cls = '', eager = false, sizes } = Astro.props;
+---
+{src ? (
+  <picture class:list={['photo', 'photo--img', cls]}>
+    <source srcset={`${src}.webp`} type="image/webp" />
+    <img
+      src={`${src}.jpg`}
+      alt={label}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      sizes={sizes}
+    />
+  </picture>
+) : (
+  <div class:list={['photo', 'photo--placeholder', cls]}>
+    <span class="ph-label">{label}</span>
+  </div>
+)}

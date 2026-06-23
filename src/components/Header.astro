@@ -1,0 +1,73 @@
+---
+// الترويسة — ثنائية اللغة: تنقّل مترجم، مبدّل لغة يربط النظير، RTL/LTR تلقائي.
+import Wordmark from './Wordmark.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import type { AltLinks } from '../i18n/utils';
+
+interface Props { lang?: Lang; alt?: AltLinks; }
+const { lang = 'ar', alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const home = ar ? '/' : '/en/';
+const routes = {
+  attractions: ar ? '/معالم/' : '/en/attractions/',
+  map: ar ? '/خريطة/' : '/en/map/',
+  discover: ar ? '/#experiences' : '/en/#experiences',
+  plan: ar ? '/#plan' : '/en/#plan',
+  myTrip: ar ? '/رحلتي/' : '/en/plan/',
+};
+const nav = [
+  { href: routes.attractions, label: t('nav.attractions') },
+  { href: routes.map, label: t('nav.map') },
+  { href: routes.discover, label: t('nav.discover') },
+  { href: routes.plan, label: t('nav.plan') },
+];
+const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
+---
+<header class="site-header" id="top">
+  <div class="container hd-in">
+    <a href={home} class="brand" aria-label={t('site.name')}>
+      <Wordmark variant="turq" size="sm" />
+    </a>
+
+    <input type="checkbox" id="navtoggle" class="nav-toggle" hidden />
+    <label for="navtoggle" class="burger" aria-label="Menu"><span></span><span></span><span></span></label>
+
+    <nav class="nav" aria-label={t('nav.discover')}>
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+
+    <div class="hd-actions">
+      <a href={routes.myTrip} class="plan-link" aria-label={t('nav.myTrip')}>{t('nav.myTrip')} <span class="plan-badge" data-plan-count>0</span></a>
+      <a href={switchHref} class="lang" aria-label={t('lang.switchLabel')}>{t('lang.switch')}</a>
+      <a href={routes.plan} class="btn-gold">{t('nav.planVisit')}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: color-mix(in srgb, var(--c-sand) 86%, transparent); backdrop-filter: blur(10px); border-block-end: 1px solid var(--c-line); }
+  .hd-in { display: flex; align-items: center; gap: var(--s-4); min-block-size: 68px; }
+  .brand { text-decoration: none; }
+  .nav { display: flex; gap: var(--s-4); margin-inline: auto; }
+  .nav a { font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); text-decoration: none; padding-block: var(--s-2); position: relative; transition: color var(--dur) var(--ease); }
+  .nav a::after { content: ''; position: absolute; inset-block-end: 0; inset-inline: 0; block-size: 2px; background: var(--c-gold); transform: scaleX(0); transform-origin: inline-end; transition: transform var(--dur) var(--ease); }
+  .nav a:hover { color: var(--c-turq); }
+  .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
+  .hd-actions { display: flex; align-items: center; gap: var(--s-3); }
+  .lang { font-family: var(--font-latin); letter-spacing: .08em; font-size: .85rem; color: var(--c-turq-deep); text-decoration: none; padding: 6px 11px; border: 1px solid var(--c-line); border-radius: var(--radius-sm); }
+  .lang:hover { background: var(--c-sand-2); }
+  .btn-gold { font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem); background: var(--c-gold); color: var(--c-ink); text-decoration: none; padding: 10px 18px; border-radius: var(--radius-sm); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(201,154,74,.35); }
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-inline-start: auto; padding: 8px; }
+  .burger span { inline-size: 24px; block-size: 2px; background: var(--c-ink); border-radius: 2px; transition: var(--dur); }
+  @media (max-width: 920px) {
+    .hd-actions .btn-gold { display: none; }
+    .burger { display: flex; }
+    .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; transition: max-block-size var(--dur) var(--ease); }
+    .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    .nav-toggle:checked ~ .nav { max-block-size: 360px; }
+  }
+</style>

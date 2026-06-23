@@ -1,0 +1,135 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import { catLabel } from '../../lib/categories';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
+const { entry, lang, alt } = Astro.props;
+const a = entry.data;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const title = ar ? a.title : (a.title_en ?? a.title);
+const summary = ar ? a.summary : (a.summary_en ?? a.summary);
+const bodyEn = a.body_en ?? a.summary_en ?? '';
+const { Content } = ar ? await render(entry) : { Content: null };
+
+const attractionsHref = ar ? '/معالم/' : '/en/attractions/';
+const siteUrl = 'https://visit-alahsa.com';
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'TouristAttraction',
+    name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png'),
+    ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
+    address: { '@type': 'PostalAddress', addressLocality: a.area ?? (ar ? 'الأحساء' : 'Al-Ahsa'), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+    touristType: catLabel(a.category, lang),
+    isPartOf: { '@type': 'TouristDestination', name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(alt[lang], siteUrl).href },
+  },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(alt[lang].split('/').slice(0, ar ? 1 : 2).join('/') + '/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: t('crumb.attractions'), item: new URL(attractionsHref, siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: title, item: pageUrl },
+  ] },
+];
+const homeHref = ar ? '/' : '/en/';
+const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
+---
+<Base title={`${title} — ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main>
+    <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>
+      {a.heroImage && (
+        <picture class="photo-bg" aria-hidden="true">
+          <source srcset={`${a.heroImage}.webp`} type="image/webp" />
+          <img src={`${a.heroImage}.jpg`} alt="" fetchpriority="high" decoding="async" />
+        </picture>
+      )}
+      <PalmMotif size={360} class="ah-wm" aria-hidden="true" />
+      <div class="container ah-in">
+        <nav class="crumbs" aria-label="breadcrumb">
+          <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
+          <a href={attractionsHref}>{t('crumb.attractions')}</a><span>/</span>
+          <span aria-current="page">{title}</span>
+        </nav>
+        <span class="t-caption ah-k">{catLabel(a.category, lang)}</span>
+        <h1 class="ah-title">{title}</h1>
+        <p class="ah-sum">{summary}</p>
+        <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
+          <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="container att-layout">
+      <article class="prose" data-reveal>
+        {ar && Content ? <Content /> : <p>{bodyEn}</p>}
+      </article>
+
+      <aside class="att-aside" data-reveal>
+        <div class="info-card">
+          <h2 class="info-h">{t('det.visitInfo')}</h2>
+          <dl class="info-list">
+            {a.area && (<><dt>{t('det.area')}</dt><dd>{a.area}</dd></>)}
+            {a.bestTime && ar && (<><dt>{t('det.bestTime')}</dt><dd>{a.bestTime}</dd></>)}
+            {a.location && (<><dt>{t('det.coords')}</dt><dd dir="ltr" style="text-align:start">{a.location.lat}, {a.location.lng}</dd></>)}
+          </dl>
+        </div>
+        {a.mapUrl ? (
+          <a class="map-card photo photo--placeholder" href={a.mapUrl} target="_blank" rel="noopener">
+            <span class="ph-label">{t('det.openMaps')}</span>
+          </a>
+        ) : (
+          <div class="map-card photo photo--placeholder"><span class="ph-label">{t('det.mapsSoon')}</span></div>
+        )}
+      </aside>
+    </div>
+
+    <section class="container gallery-sec" data-reveal>
+      <h2 class="gal-h">{t('det.fromPlace')}</h2>
+      <div class="gal-grid">
+        {[1,2,3].map((i) => (<div class="photo gal-item photo--placeholder"><span class="ph-label">{title} — {t('det.photo')} {i}</span></div>))}
+      </div>
+      <a href={attractionsHref} class="btn btn--turq back-btn">{t('det.allSights')}</a>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .att-hero { position: relative; overflow: hidden; color: var(--c-sand); min-block-size: 46vh; display: flex; align-items: flex-end; }
+  .ah-wm { position: absolute; inset-block-start: -6%; inset-inline-end: -4%; color: var(--c-gold); opacity: .12; z-index: 0; }
+  .ah-in { position: relative; z-index: 2; padding-block: var(--s-6); max-inline-size: 60ch; }
+  .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
+  .crumbs a { color: rgba(247,243,234,.8); text-decoration: none; }
+  .crumbs a:hover { color: var(--c-gold); }
+  .crumbs span { color: rgba(247,243,234,.5); }
+  .ah-k { color: var(--c-gold); }
+  .ah-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .ah-sum { font-size: var(--t-lg); color: rgba(247,243,234,.92); max-inline-size: 52ch; }
+  .ah-fav { margin-block-start: var(--s-4); background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
+  .ah-fav:hover { border-color: var(--c-sand); }
+  .ah-fav.is-saved { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
+  .att-layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--s-6); padding-block: var(--s-7); align-items: start; }
+  .prose { font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); max-inline-size: 68ch; }
+  .prose :global(p) { margin-block-end: var(--s-4); }
+  .prose :global(strong) { color: var(--c-turq-deep); font-weight: 600; }
+  .att-aside { position: sticky; inset-block-start: 88px; display: flex; flex-direction: column; gap: var(--s-3); }
+  .info-card { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-4); }
+  .info-h { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
+  .info-list { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-3); margin: 0; }
+  .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
+  .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
+  .map-card { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  .gallery-sec { padding-block: 0 var(--s-8); }
+  .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
+  .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+  .gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  .back-btn { margin-block-start: var(--s-5); }
+  @media (max-width: 860px) { .att-layout { grid-template-columns: 1fr; } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } }
+</style>

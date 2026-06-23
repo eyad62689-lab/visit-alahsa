@@ -1,0 +1,46 @@
+---
+// SEO موحّد ثنائي اللغة: canonical + hreflang + Open Graph + Twitter + JSON-LD.
+import type { Lang } from '../i18n/ui';
+import type { AltLinks } from '../i18n/utils';
+interface Props {
+  title: string; description: string; lang?: Lang; alt?: AltLinks;
+  type?: 'website' | 'article'; image?: string; noindex?: boolean; jsonLd?: object | object[];
+}
+const {
+  title, description, lang = 'ar', alt,
+  type = 'website', image = '/og-default.png', noindex = false, jsonLd,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://visit-alahsa.com');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image, site).href;
+const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const arHref = alt ? new URL(alt.ar, site).href : null;
+const enHref = alt ? new URL(alt.en, site).href : null;
+const ogLocale = lang === 'ar' ? 'ar_SA' : 'en_US';
+const ogLocaleAlt = lang === 'ar' ? 'en_US' : 'ar_SA';
+---
+<link rel="canonical" href={canonical} />
+{noindex ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow" />}
+
+{arHref && <link rel="alternate" hreflang="ar" href={arHref} />}
+{enHref && <link rel="alternate" hreflang="en" href={enHref} />}
+{arHref && <link rel="alternate" hreflang="x-default" href={arHref} />}
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="زوروا الأحساء" />
+<meta property="og:locale" content={ogLocale} />
+{alt && <meta property="og:locale:alternate" content={ogLocaleAlt} />}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{blocks.map((obj) => (<script type="application/ld+json" set:html={JSON.stringify(obj)} />))}

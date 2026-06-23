@@ -1,0 +1,208 @@
+---
+// صفحة دليل الهوية — مرحلة ٠ (المرجع البصري). تُعرض رموز الهوية مطبّقة فعلياً.
+import Base from '../layouts/Base.astro';
+import Wordmark from '../components/Wordmark.astro';
+import PalmMotif from '../components/PalmMotif.astro';
+
+const palette = [
+  { name: 'الرملي',          hex: '#F7F3EA', role: 'الأساس / الخلفية',      var: '--c-sand',      dark: false },
+  { name: 'الفيروزي',        hex: '#006E61', role: 'البنية الرئيسية',       var: '--c-turq',      dark: true  },
+  { name: 'الفيروزي الداكن', hex: '#004F46', role: 'العمق / الأقسام الداكنة', var: '--c-turq-deep', dark: true  },
+  { name: 'الذهبي',          hex: '#C99A4A', role: 'اللمسة والدعوات فقط',    var: '--c-gold',      dark: true  },
+  { name: 'الحبر',           hex: '#15211E', role: 'النصّ',                  var: '--c-ink',       dark: true  },
+];
+
+const typeScale = [
+  { label: 'عنوان رئيسي',  cls: 't3', sample: 'صوت الماء تحت الأرض' },
+  { label: 'عنوان قسم',    cls: 't2', sample: 'امشِ بين الأفلاج' },
+  { label: 'عنوان فرعي',   cls: 't1', sample: 'واحة لها حكاية' },
+  { label: 'نصّ المتن',    cls: 'tb', sample: 'الأحساء أكبر واحة نخيل في العالم، وموقع تراث عالمي مسجّل في اليونسكو منذ ٢٠١٨.' },
+];
+
+const spacing = [
+  { n: '1', px: 4 }, { n: '2', px: 8 }, { n: '3', px: 16 }, { n: '4', px: 24 },
+  { n: '5', px: 32 }, { n: '6', px: 48 }, { n: '7', px: 64 }, { n: '8', px: 96 },
+];
+---
+<Base title="دليل الهوية — زوروا الأحساء">
+  <!-- ===== الترويسة ===== -->
+  <header class="hero">
+    <div class="container hero-in">
+      <PalmMotif size={64} class="hero-palm" />
+      <Wordmark variant="sand" align="center" />
+      <p class="hero-sub">دليل الهوية البصرية — المرجع التأسيسي (مرحلة ٠)</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ===== الوردمارك ===== -->
+    <section class="sec">
+      <h2 class="sec-h">١ — الوردمارك</h2>
+      <p class="sec-lead">الاسم المكتوب هو الشعار، بلا رمزٍ يزاحمه. «زوروا الأحساء» بخط أميري، و«VISIT AL-AHSA» بخط Marcellus بأحرفٍ متباعدة على اللاتيني فقط.</p>
+      <div class="wm-grid">
+        <div class="wm-card light"><Wordmark variant="turq" /></div>
+        <div class="wm-card light"><Wordmark variant="ink" /></div>
+        <div class="wm-card dark"><Wordmark variant="sand" /></div>
+      </div>
+      <p class="rule"><strong>قاعدة حرجة:</strong> لا تباعد بين الحروف في العربية — يكسر التوصيل ويُفسد الكلمة. الرُّقيّ من الخط والوزن واللون.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ===== موتيف السعف ===== -->
+    <section class="sec">
+      <h2 class="sec-h">٢ — موتيف السعف</h2>
+      <p class="sec-lead">السعف مجرّداً هندسياً يمثّل شخصية الأحساء. يُستخدم بقلّةٍ ودلالة: فواصل أقسام، أيقونات فئات، دبابيس خريطة، وخلفية خفيفة جداً (٣–٥٪) خلف الأقسام التراثية فقط — لا حشواً.</p>
+      <div class="palm-row">
+        <div class="palm-chip turq"><PalmMotif size={72} /></div>
+        <div class="palm-chip gold"><PalmMotif size={72} /></div>
+        <div class="palm-chip deep"><PalmMotif size={72} /></div>
+      </div>
+      <div class="palm-divider" aria-hidden="true">
+        <span></span><PalmMotif size={28} class="pd-icon" /><span></span>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ===== الألوان ===== -->
+    <section class="sec">
+      <h2 class="sec-h">٣ — لوحة الألوان</h2>
+      <p class="sec-lead">قاعدة الانضباط ٦٠ / ٣٠ / ١٠. إفراط الذهبي أكبر سببٍ منفردٍ لظهور الموقع «هاوياً».</p>
+      <div class="ratio-bar" role="img" aria-label="نسبة الاستخدام: رملي ٦٠٪، فيروزي ٣٠٪، ذهبي ١٠٪">
+        <span class="r-sand">رملي ٦٠٪</span>
+        <span class="r-turq">فيروزي ٣٠٪</span>
+        <span class="r-gold">ذهبي ١٠٪</span>
+      </div>
+      <div class="swatches">
+        {palette.map((c) => (
+          <div class="swatch">
+            <div class="chip" style={`background:${c.hex};${c.dark ? 'color:var(--c-sand)' : 'color:var(--c-ink)'}`}>{c.hex}</div>
+            <div class="swatch-meta">
+              <strong>{c.name}</strong>
+              <span>{c.role}</span>
+              <code>{c.var}</code>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ===== الخطوط ===== -->
+    <section class="sec">
+      <h2 class="sec-h">٤ — سلّم الخطوط</h2>
+      <p class="sec-lead">العناوين والوردمارك بخط أميري (الهيبة الكلاسيكية)، والنصّ والواجهة بخط IBM Plex Sans Arabic (الوضوح والأداء)، واللاتيني للّمسات بخط Marcellus.</p>
+      <div class="type-stack">
+        {typeScale.map((t) => (
+          <div class="type-row">
+            <span class="type-label">{t.label}</span>
+            <p class={`samp ${t.cls}`}>{t.sample}</p>
+          </div>
+        ))}
+        <div class="type-row">
+          <span class="type-label">لاتيني (Marcellus)</span>
+          <p class="samp latin" lang="en">VISIT AL-AHSA · THE WORLD'S LARGEST OASIS</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ===== التباعد ===== -->
+    <section class="sec">
+      <h2 class="sec-h">٥ — سلّم التباعد</h2>
+      <p class="sec-lead">شبكة ٨ بكسل — لا قيم عشوائية. هذا وحده يصنع الإحساس بـ«النظام».</p>
+      <div class="space-stack">
+        {spacing.map((s) => (
+          <div class="space-row">
+            <code>--s-{s.n}</code>
+            <span class="space-bar" style={`inline-size:${s.px}px`}></span>
+            <span class="space-px">{s.px}px</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <footer class="foot">
+      <PalmMotif size={40} class="foot-palm" />
+      <p>زوروا الأحساء — دليل الهوية، مرحلة ٠. هذا الأساس يُحتذى في كل صفحة لاحقة.</p>
+    </footer>
+  </main>
+</Base>
+
+<style>
+  /* ---- الترويسة ---- */
+  .hero { background: var(--c-turq-deep); color: var(--c-sand); padding-block: var(--s-8) var(--s-7); text-align: center; }
+  .hero-in { display: flex; flex-direction: column; align-items: center; gap: var(--s-3); }
+  .hero-palm { color: var(--c-gold); opacity: .9; }
+  .hero-sub { color: rgba(247,243,234,.72); font-size: var(--t-sm); letter-spacing: .02em; }
+
+  /* ---- أقسام ---- */
+  .sec { padding-block: var(--s-7); }
+  .sec-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-2); }
+  .sec-lead { color: var(--c-ink-60); max-inline-size: 64ch; margin-block-end: var(--s-5); }
+  .divider { border: 0; border-block-start: 1px solid var(--c-line); }
+
+  /* ---- الوردمارك ---- */
+  .wm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: var(--s-3); }
+  .wm-card { display: grid; place-items: center; min-block-size: 120px; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .wm-card.light { background: var(--c-sand); border: 1px solid var(--c-line); }
+  .wm-card.dark { background: var(--c-turq-deep); }
+  .rule { margin-block-start: var(--s-4); padding: var(--s-3) var(--s-4); background: var(--c-sand-2);
+          border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius-sm); font-size: var(--t-sm); }
+
+  /* ---- السعف ---- */
+  .palm-row { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+  .palm-chip { display: grid; place-items: center; inline-size: 132px; block-size: 132px; border-radius: var(--radius); }
+  .palm-chip.turq { background: var(--c-sand); color: var(--c-turq); border: 1px solid var(--c-line); }
+  .palm-chip.gold { background: var(--c-turq-deep); color: var(--c-gold); }
+  .palm-chip.deep { background: var(--c-turq); color: var(--c-sand); }
+  .palm-divider { display: flex; align-items: center; gap: var(--s-3); margin-block-start: var(--s-6); color: var(--c-gold); }
+  .palm-divider span { block-size: 1px; background: var(--c-line); flex: 1; }
+
+  /* ---- نسبة ٦٠/٣٠/١٠ ---- */
+  .ratio-bar { display: flex; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin-block-end: var(--s-5); font-size: var(--t-sm); font-weight: 600; }
+  .ratio-bar span { padding: var(--s-3) var(--s-2); text-align: center; white-space: nowrap; }
+  .r-sand { flex: 60; background: var(--c-sand); color: var(--c-ink); border: 1px solid var(--c-line); }
+  .r-turq { flex: 30; background: var(--c-turq); color: var(--c-sand); }
+  .r-gold { flex: 10; background: var(--c-gold); color: var(--c-ink); }
+
+  /* ---- لوحات الألوان ---- */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: var(--s-3); }
+  .swatch { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #fff; }
+  .chip { display: grid; place-items: center; block-size: 100px; font-family: var(--font-latin); letter-spacing: .08em; font-size: var(--t-sm); }
+  .swatch-meta { padding: var(--s-3); display: flex; flex-direction: column; gap: 2px; }
+  .swatch-meta strong { color: var(--c-ink); }
+  .swatch-meta span { font-size: var(--t-xs); color: var(--c-ink-60); }
+  .swatch-meta code { font-size: var(--t-xs); color: var(--c-turq); direction: ltr; }
+
+  /* ---- الخطوط ---- */
+  .type-stack { display: flex; flex-direction: column; gap: var(--s-4); }
+  .type-row { display: grid; grid-template-columns: 140px 1fr; gap: var(--s-3); align-items: baseline; border-block-end: 1px solid var(--c-line); padding-block-end: var(--s-3); }
+  .type-label { font-size: var(--t-xs); color: var(--c-ink-60); }
+  .samp { color: var(--c-ink); }
+  .samp.t3 { font-family: var(--font-heading); font-size: var(--t-3xl); color: var(--c-turq-deep); }
+  .samp.t2 { font-family: var(--font-heading); font-size: var(--t-2xl); color: var(--c-turq-deep); }
+  .samp.t1 { font-family: var(--font-heading); font-size: var(--t-xl); }
+  .samp.tb { font-size: var(--t-base); line-height: 1.85; }
+  .samp.latin { font-family: var(--font-latin); font-size: var(--t-lg); letter-spacing: .12em; }
+
+  /* ---- التباعد ---- */
+  .space-stack { display: flex; flex-direction: column; gap: var(--s-2); }
+  .space-row { display: grid; grid-template-columns: 80px 1fr 64px; gap: var(--s-3); align-items: center; }
+  .space-row code { font-size: var(--t-xs); color: var(--c-turq); direction: ltr; }
+  .space-bar { display: block; block-size: 16px; background: var(--c-turq); border-radius: 3px; }
+  .space-px { font-size: var(--t-xs); color: var(--c-ink-60); direction: ltr; text-align: start; }
+
+  /* ---- التذييل ---- */
+  .foot { display: flex; align-items: center; gap: var(--s-3); padding-block: var(--s-7); color: var(--c-ink-60); border-block-start: 1px solid var(--c-line); }
+  .foot-palm { color: var(--c-turq); opacity: .6; }
+
+  @media (max-width: 560px) {
+    .type-row, .space-row { grid-template-columns: 1fr; }
+    .samp.t3 { font-size: var(--t-2xl); }
+  }
+</style>

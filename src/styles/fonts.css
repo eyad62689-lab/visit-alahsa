@@ -1,0 +1,61 @@
+/* ════════════════════════════════════════════════════════════════
+   الخطوط مستضافة ذاتياً — بلا اعتماد على Google Fonts CDN.
+   أميري مقتطع للنطاق العربي فقط (Latin يتكفّل به Marcellus).
+   كل الوجوه font-display: swap لحماية LCP. النطاقات unicode-range
+   تضمن تحميل الملف المناسب للسكربت المعروض فقط.
+   ════════════════════════════════════════════════════════════════ */
+
+/* نطاقات مشتركة */
+/* عربي: U+0600–06FF + أشكال العرض + علامات اتجاه */
+/* لاتيني: U+0000–00FF + ترقيم وعلامات شائعة */
+
+/* ---------- Amiri (عناوين/وردمارك) — عربي فقط ---------- */
+@font-face {
+  font-family: 'Amiri'; font-style: normal; font-weight: 400; font-display: swap;
+  src: local('Amiri'), url('/fonts/amiri-400.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D, U+2010-2011, U+060C, U+061B, U+061F;
+}
+@font-face {
+  font-family: 'Amiri'; font-style: normal; font-weight: 700; font-display: swap;
+  src: local('Amiri Bold'), local('Amiri'), url('/fonts/amiri-700.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D, U+2010-2011, U+060C, U+061B, U+061F;
+}
+
+/* ---------- IBM Plex Sans Arabic (النصّ/الواجهة) — عربي + لاتيني ---------- */
+@font-face {
+  font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/plex-ar-400.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/plex-lat-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/plex-ar-500.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/plex-lat-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/plex-ar-600.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/plex-lat-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* ---------- Marcellus (لمسات لاتينية: الوردمارك) — لاتيني فقط ---------- */
+@font-face {
+  font-family: 'Marcellus'; font-style: normal; font-weight: 400; font-display: swap;
+  src: local('Marcellus'), url('/fonts/marcellus-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2212;
+}

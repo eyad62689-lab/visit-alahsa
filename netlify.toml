@@ -1,0 +1,29 @@
+# إعداد نشر «زوروا الأحساء» على Netlify (مشروع Astro).
+# مهم: في لوحة Netlify اضبط «Base directory» = astro-site
+# حتى يقرأ Netlify هذا الملف ويبني داخل مجلد المشروع.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# تخزين مؤقت طويل للأصول المُبصَّمة وغير المتغيّرة (يحسّن السرعة وLCP)
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# رؤوس أمان أساسية
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

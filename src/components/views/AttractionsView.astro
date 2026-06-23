@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import Photo from '../Photo.astro';
+import { getCollection } from 'astro:content';
+import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const items = (await getCollection('attractions')).sort((x, y) => x.data.order - y.data.order);
+const usedCats = CATEGORY_ORDER.filter((c) => items.some((i) => i.data.category === c));
+const detailBase = ar ? '/معالم/' : '/en/attractions/';
+const mapHref = ar ? '/خريطة/' : '/en/map/';
+
+const siteUrl = 'https://visit-alahsa.com';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(alt[lang], siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: t('crumb.attractions'), item: new URL(detailBase, siteUrl).href },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: t('list.title'), numberOfItems: items.length,
+    itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(detailBase + (ar ? i.data.slug_ar : i.data.slug_en), siteUrl).href })) },
+];
+---
+<Base title={`${t('list.title')} — ${t('site.name')}`} description={t('list.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main>
+    <section class="list-hero on-dark">
+      <PalmMotif size={320} class="lh-wm" aria-hidden="true" />
+      <div class="container lh-in">
+        <span class="eyebrow gold-on-dark">{t('list.eyebrow')}</span>
+        <h1 class="lh-title">{t('list.title')}</h1>
+        <p class="lh-sum">{t('list.lead')}</p>
+        <a href={mapHref} class="btn btn--gold lh-map">{t('list.map')}</a>
+      </div>
+    </section>
+
+    <section class="container list-body">
+      <div class="chips" id="map-chips" role="group" aria-label="filter">
+        <button class="chip is-active" data-filter="all" type="button">{t('list.all')}</button>
+        {usedCats.map((c) => (<button class="chip" data-filter={c} type="button">{catLabel(c, lang)}</button>))}
+      </div>
+
+      <div class="list-grid" id="list-grid">
+        {items.map((i, idx) => (
+          <article class="att-card" data-cat={i.data.category} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
+            <a class="lc-link" href={detailBase + (ar ? i.data.slug_ar : i.data.slug_en)}>
+              <Photo src={i.data.heroImage} label={ar ? i.data.title : (i.data.title_en ?? i.data.title)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+              <div class="lc-body">
+                <span class="t-caption lc-k">{catLabel(i.data.category, lang)}</span>
+                <h2 class="lc-t">{ar ? i.data.title : (i.data.title_en ?? i.data.title)}</h2>
+                <p class="lc-d">{ar ? i.data.summary : (i.data.summary_en ?? i.data.summary)}</p>
+              </div>
+            </a>
+            <button class="fav-btn fav-btn--corner" type="button" data-fav={i.data.slug_ar} aria-pressed="false" aria-label={t('fav.add')}><span class="fav-ic"></span></button>
+          </article>
+        ))}
+      </div>
+      <p class="empty" id="empty" hidden>{t('list.empty')}</p>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<script is:inline>
+  function initFilter() {
+    const chips = document.querySelectorAll('.chip'); const cards = document.querySelectorAll('#list-grid .att-card'); const empty = document.getElementById('empty');
+    if (!chips.length) return;
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      const f = chip.getAttribute('data-filter');
+      chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+      let shown = 0;
+      cards.forEach((card) => { const ok = f === 'all' || card.getAttribute('data-cat') === f; card.style.display = ok ? '' : 'none'; if (ok) shown++; });
+      if (empty) empty.hidden = shown !== 0;
+    }));
+  }
+  document.addEventListener('astro:page-load', initFilter);
+  if (document.readyState !== 'loading') initFilter(); else document.addEventListener('DOMContentLoaded', initFilter);
+</script>
+
+<style>
+  .list-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
+  .lh-wm { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
+  .lh-in { position: relative; z-index: 2; max-inline-size: 56ch; }
+  .lh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  .lh-map { margin-block-start: var(--s-4); }
+  .list-body { padding-block: var(--s-6) var(--s-8); }
+  .chips { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-block-end: var(--s-5); }
+  .chip { font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); cursor: pointer; background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); padding: 8px 16px; border-radius: 999px; transition: all var(--dur) var(--ease); }
+  .chip:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+  .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(264px, 1fr)); gap: var(--s-4); }
+  .att-card { position: relative; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform var(--dur) var(--ease); }
+  .lc-link { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+  .att-card:hover { transform: translateY(-4px); }
+  .lc-photo { aspect-ratio: 16 / 10; }
+  .lc-body { padding: var(--s-3) var(--s-4) var(--s-5); }
+  .lc-k { color: var(--c-gold-deep); }
+  .lc-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-2); }
+  .lc-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
+  .empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }
+</style>

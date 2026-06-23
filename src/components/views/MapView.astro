@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import { getCollection } from 'astro:content';
+import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const detailBase = ar ? '/معالم/' : '/en/attractions/';
+
+const items = await getCollection('attractions');
+const points = items.filter((e) => e.data.location).map((e) => ({
+  title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+  cat: e.data.category,
+  catLabel: catLabel(e.data.category, lang),
+  href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+  fav: e.data.slug_ar,
+  summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
+  lat: e.data.location!.lat, lng: e.data.location!.lng,
+}));
+const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
+const catCounts = Object.fromEntries(usedCats.map((c) => [c, points.filter((p) => p.cat === c).length]));
+const labels = { view: t('map.pop.view'), favAdd: t('fav.add'), favAdded: t('fav.added') };
+---
+<Base title={`${t('map.title')} — ${t('site.name')}`} description={`${points.length} ${t('map.lead.a')}`} lang={lang} alt={alt}>
+  <Header lang={lang} alt={alt} />
+  <main class="map-page">
+    <div class="container map-head">
+      <span class="eyebrow">{t('map.eyebrow')}</span>
+      <h1 class="map-title">{t('map.title')}</h1>
+      <p class="map-sum"><bdi>{points.length}</bdi> {t('map.lead.a')}</p>
+      <div class="chips" id="map-chips" role="group" aria-label="filter">
+        <button class="chip is-active" data-filter="all" type="button">{t('list.all')} <bdi>({points.length})</bdi></button>
+        {usedCats.map((c) => (<button class="chip" data-filter={c} type="button">{catLabel(c, lang)} <bdi>({catCounts[c]})</bdi></button>))}
+      </div>
+    </div>
+    <div id="map" role="application" aria-label={t('map.title')}></div>
+  </main>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script is:inline define:vars={{ points, labels }}>
+    function initMap() {
+      const el = document.getElementById('map');
+      if (!el || typeof L === 'undefined' || el._leaflet_id) return;
+      const map = L.map(el, { scrollWheelZoom: false }).setView([25.42, 49.62], 11);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19 }).addTo(map);
+      const pin = () => L.divIcon({ className: 'va-pin', html: '<span></span>', iconSize: [18, 18], iconAnchor: [9, 9] });
+      const markers = points.map((p) => {
+        const m = L.marker([p.lat, p.lng], { icon: pin(), title: p.title });
+        m.bindPopup('<div class="va-pop">' +
+          '<span class="va-pop-k">' + p.catLabel + '</span>' +
+          '<strong class="va-pop-t">' + p.title + '</strong>' +
+          '<p class="va-pop-d">' + p.summary + '</p>' +
+          '<a class="va-pop-a" href="' + p.href + '">' + labels.view + '</a>' +
+          '<button class="fav-btn va-pop-fav" type="button" data-fav="' + p.fav + '" data-tx-on="' + labels.favAdded + '" data-tx-off="' + labels.favAdd + '" aria-pressed="false">' +
+          '<span class="fav-ic">+</span><span data-fav-tx>' + labels.favAdd + '</span></button>' +
+          '</div>');
+        m._cat = p.cat; m.addTo(map); return m;
+      });
+      map.on('popupopen', () => window.VAPlan && window.VAPlan.sync());
+      const group = L.featureGroup(markers);
+      map.fitBounds(group.getBounds().pad(0.12));
+      const chips = document.querySelectorAll('#map-chips .chip');
+      chips.forEach((chip) => chip.addEventListener('click', () => {
+        const f = chip.getAttribute('data-filter');
+        chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+        const shown = [];
+        markers.forEach((m) => { const ok = f === 'all' || m._cat === f; if (ok) { m.addTo(map); shown.push(m); } else { map.removeLayer(m); } });
+        if (shown.length) map.fitBounds(L.featureGroup(shown).getBounds().pad(0.12));
+      }));
+    }
+    document.addEventListener('astro:page-load', initMap);
+    if (document.readyState !== 'loading') initMap(); else document.addEventListener('DOMContentLoaded', initMap);
+  </script>
+</Base>
+
+<style>
+  .map-page { padding-block: var(--s-6) 0; }
+  .map-head { margin-block-end: var(--s-4); }
+  .map-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-2xl); line-height: 1.2; margin-block: var(--s-2); }
+  .map-sum { color: var(--c-ink-soft); margin-block-end: var(--s-4); }
+  .chips { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+  .chip { font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); cursor: pointer; background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); padding: 7px 15px; border-radius: 999px; transition: all var(--dur) var(--ease); }
+  .chip:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+  #map { block-size: clamp(420px, 68vh, 760px); inline-size: 100%; background: var(--c-sand-2); }
+  :global(.va-pin span) { display: block; inline-size: 16px; block-size: 16px; border-radius: 50%; background: var(--c-turq); border: 2.5px solid var(--c-sand); box-shadow: 0 1px 4px rgba(0,42,37,.4); transition: transform .2s var(--ease), background .2s var(--ease); }
+  :global(.va-pin:hover span) { transform: scale(1.35); background: var(--c-gold); }
+  :global(.leaflet-popup-content-wrapper) { border-radius: var(--radius) !important; }
+  :global(.va-pop) { font-family: var(--font-body); text-align: start; min-inline-size: 180px; }
+  :global(.va-pop-k) { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); }
+  :global(.va-pop-t) { display: block; font-family: var(--font-heading); font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: 2px 4px; }
+  :global(.va-pop-d) { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.6; margin-block-end: 8px; }
+  :global(.va-pop-a) { font-weight: 600; color: var(--c-turq); text-decoration: none; }
+  :global(.va-pop-a:hover) { color: var(--c-gold-deep); }
+  :global(.va-pop-fav) { margin-block-start: 8px; padding: 7px 12px; font-size: var(--t-xs); inline-size: 100%; justify-content: center; }
+</style>

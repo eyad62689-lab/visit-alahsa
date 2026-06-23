@@ -1,0 +1,89 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import { dir, htmlLang, type AltLinks } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: Lang;
+  alt?: AltLinks;
+  type?: 'website' | 'article';
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: object | object[];
+}
+const {
+  title,
+  description = 'زوروا الأحساء — أكبر واحة نخيل في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
+  lang = 'ar', alt, type, image, noindex, jsonLd,
+} = Astro.props;
+---
+<!doctype html>
+<html lang={htmlLang(lang)} dir={dir(lang)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLd} />
+
+    {/* خطوط مستضافة ذاتياً (styles/fonts.css). preload للحرج حسب اللغة. */}
+    {lang === 'ar' ? (
+      <>
+        <link rel="preload" href="/fonts/amiri-700.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/plex-ar-400.woff2" as="font" type="font/woff2" crossorigin />
+      </>
+    ) : (
+      <>
+        <link rel="preload" href="/fonts/plex-lat-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/marcellus-400.woff2" as="font" type="font/woff2" crossorigin />
+      </>
+    )}
+
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+    <script is:inline>
+      function initReveal() {
+        const els = document.querySelectorAll('[data-reveal]:not(.in)');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach((e) => e.classList.add('in')); return; }
+        const io = new IntersectionObserver((ents) => {
+          ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach((e) => io.observe(e));
+      }
+      document.addEventListener('astro:page-load', initReveal);
+      if (document.readyState !== 'loading') initReveal();
+      else document.addEventListener('DOMContentLoaded', initReveal);
+    </script>
+    <script is:inline>
+      window.VAPlan = {
+        key: 'va-plan',
+        get() { try { return JSON.parse(localStorage.getItem(this.key) || '[]'); } catch (e) { return []; } },
+        save(a) { try { localStorage.setItem(this.key, JSON.stringify(a)); } catch (e) {} this.sync(); },
+        has(slug) { return this.get().indexOf(slug) !== -1; },
+        toggle(slug) { const a = this.get(); const i = a.indexOf(slug); if (i !== -1) a.splice(i, 1); else a.push(slug); this.save(a); return this.has(slug); },
+        sync() {
+          const favs = this.get();
+          document.querySelectorAll('[data-fav]').forEach((b) => {
+            const on = favs.indexOf(b.getAttribute('data-fav')) !== -1;
+            b.classList.toggle('is-saved', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+            const tx = b.querySelector('[data-fav-tx]');
+            if (tx) tx.textContent = on ? (b.getAttribute('data-tx-on') || '') : (b.getAttribute('data-tx-off') || '');
+          });
+          document.querySelectorAll('[data-plan-count]').forEach((el) => { el.textContent = favs.length; el.classList.toggle('has-items', favs.length > 0); });
+          document.dispatchEvent(new CustomEvent('va-plan-change', { detail: favs }));
+        },
+      };
+      document.addEventListener('click', (e) => { const b = e.target.closest('[data-fav]'); if (!b) return; e.preventDefault(); window.VAPlan.toggle(b.getAttribute('data-fav')); });
+      document.addEventListener('astro:page-load', () => window.VAPlan.sync());
+      if (document.readyState !== 'loading') window.VAPlan.sync();
+      else document.addEventListener('DOMContentLoaded', () => window.VAPlan.sync());
+    </script>
+  </body>
+</html>

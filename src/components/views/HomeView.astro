@@ -1,0 +1,210 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import Photo from '../Photo.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const featuredEntries = (await getCollection('attractions'))
+  .filter((e) => e.data.featured).sort((a, b) => a.data.order - b.data.order);
+
+const catKeys = ['historic', 'nature', 'crafts', 'taste', 'market', 'events'];
+const facts = [
+  { n: ar ? '٢.٥ مليون' : '2.5M', l: t('fact.palms.l') },
+  { n: ar ? '٢٠١٨' : '2018', l: t('fact.unesco.l') },
+  { n: ar ? '+٦٠' : '60+', l: t('fact.sites.l') },
+  { n: ar ? 'آلاف' : 'Thousands', l: t('fact.springs.l') },
+];
+const detailBase = ar ? '/معالم/' : '/en/attractions/';
+const allHref = ar ? '/معالم/' : '/en/attractions/';
+const planHref = ar ? '/رحلتي/' : '/en/plan/';
+
+const siteUrl = 'https://visit-alahsa.com';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: t('site.name'), url: new URL(alt[lang], siteUrl).href, inLanguage: lang },
+  {
+    '@context': 'https://schema.org', '@type': 'TouristDestination',
+    name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(alt[lang], siteUrl).href, image: siteUrl + '/og-default.png',
+    description: t('home.hero.lead'),
+    geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
+    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : 'Saudi Arabia' },
+  },
+];
+const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل في العالم' : 'Visit Al-Ahsa — the world’s largest palm oasis';
+---
+<Base title={title} description={t('home.hero.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="discover">
+    <section class="hero photo">
+      <picture class="photo-bg hero-bg" aria-hidden="true">
+        <source srcset="/img/hero-home.webp" type="image/webp" />
+        <img src="/img/hero-home.jpg" alt="" fetchpriority="high" decoding="async" />
+      </picture>
+      <PalmMotif size={520} class="hero-wm" aria-hidden="true" />
+      <div class="container hero-in">
+        <span class="eyebrow gold-on-dark">{t('home.hero.eyebrow')}</span>
+        <h1 class="hero-title">{t('home.hero.title')}</h1>
+        <p class="hero-lead">{t('home.hero.lead')}</p>
+        <div class="hero-cta">
+          <a href="#name" class="btn btn--gold">{t('home.hero.cta1')}</a>
+          <a href="#attractions" class="btn btn--ghost">{t('home.hero.cta2')}</a>
+        </div>
+      </div>
+      <a href="#name" class="scroll-cue" aria-label="scroll"><span></span></a>
+    </section>
+
+    <section class="name-sec" id="name">
+      <div class="container name-in" data-reveal>
+        <span class="eyebrow">{t('home.name.eyebrow')}</span>
+        <h2 class="name-h">{t('home.name.title')}</h2>
+        <p class="name-body">{t('home.name.body')}</p>
+      </div>
+    </section>
+
+    <section class="sec" id="experiences">
+      <div class="container">
+        <header class="sec-head" data-reveal>
+          <span class="eyebrow">{t('home.cats.eyebrow')}</span>
+          <h2 class="sec-title">{t('home.cats.title')}</h2>
+          <p class="lead">{t('home.cats.lead')}</p>
+        </header>
+        <div class="cat-grid">
+          {catKeys.map((k, i) => (
+            <a class="cat-card" href={allHref} data-reveal style={`transition-delay:${i * 60}ms`}>
+              <span class="cat-icon"><PalmMotif size={34} /></span>
+              <h3 class="cat-t">{t(`cat.${k}.t` as any)}</h3>
+              <p class="cat-d">{t(`cat.${k}.d` as any)}</p>
+              <span class="cat-go" aria-hidden="true">{ar ? '→' : '←'}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec--sand" id="attractions">
+      <div class="container">
+        <header class="sec-head" data-reveal>
+          <span class="eyebrow">{t('home.feat.eyebrow')}</span>
+          <h2 class="sec-title">{t('home.feat.title')}</h2>
+          <p class="lead">{t('home.feat.lead')}</p>
+        </header>
+        <div class="att-grid">
+          {featuredEntries.map((e, i) => (
+            <a class={`att-card ${i === 0 ? 'att-card--lead' : ''}`} href={detailBase + (ar ? e.data.slug_ar : e.data.slug_en)} data-reveal style={`transition-delay:${i * 80}ms`}>
+              <Photo src={e.data.heroImage} label={ar ? e.data.title : (e.data.title_en ?? e.data.title)} class="att-photo" eager={i === 0} sizes="(max-width: 760px) 100vw, 50vw" />
+              <div class="att-body">
+                <span class="t-caption att-k">{ar ? e.data.kicker : ''}</span>
+                <h3 class="att-t">{ar ? e.data.title : (e.data.title_en ?? e.data.title)}</h3>
+                <p class="att-d">{ar ? e.data.summary : (e.data.summary_en ?? e.data.summary)}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="att-more"><a href={allHref} class="btn btn--turq">{t('home.feat.all')}</a></div>
+      </div>
+    </section>
+
+    <section class="why on-dark">
+      <PalmMotif size={360} class="why-wm" aria-hidden="true" />
+      <div class="container why-in">
+        <header class="sec-head why-head" data-reveal>
+          <span class="eyebrow gold-on-dark">{t('home.why.eyebrow')}</span>
+          <h2 class="sec-title">{t('home.why.title')}</h2>
+        </header>
+        <div class="facts">
+          {facts.map((f, i) => (
+            <div class="fact" data-reveal style={`transition-delay:${i * 70}ms`}>
+              <span class="fact-n"><bdi>{f.n}</bdi></span>
+              <span class="fact-l">{f.l}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="plan" id="plan">
+      <div class="container plan-in" data-reveal>
+        <span class="eyebrow">{t('home.plan.eyebrow')}</span>
+        <h2 class="plan-h">{t('home.plan.title')}</h2>
+        <p class="lead plan-lead">{t('home.plan.lead')}</p>
+        <a href={planHref} class="btn btn--gold">{t('home.plan.cta')}</a>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .gold-on-dark { color: var(--c-gold); }
+  .gold-on-dark::before { background: var(--c-gold); }
+  .hero { min-block-size: 92vh; display: flex; align-items: center; color: var(--c-sand); position: relative; overflow: hidden; }
+  .hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(105deg, rgba(0,42,38,.78) 0%, rgba(0,55,49,.5) 45%, rgba(0,79,70,.32) 100%),
+      linear-gradient(0deg, rgba(0,42,38,.45), transparent 55%);
+  }
+  .hero-bg { z-index: 0; }
+  .hero-wm { position: absolute; inset-block-end: -14%; inset-inline-start: -10%; color: var(--c-gold); opacity: .12; z-index: 0; }
+  .hero-in { position: relative; z-index: 2; max-inline-size: 56ch; padding-block: var(--s-8); }
+  .hero-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-display); line-height: 1.12; margin-block: var(--s-4) var(--s-4); text-shadow: 0 2px 30px rgba(0,42,37,.4); }
+  .hero-lead { font-size: var(--t-lg); line-height: 1.7; color: rgba(247,243,234,.92); max-inline-size: 48ch; }
+  .hero-cta { display: flex; gap: var(--s-3); margin-block-start: var(--s-6); flex-wrap: wrap; }
+  .scroll-cue { position: absolute; inset-block-end: var(--s-5); inset-inline-start: 50%; transform: translateX(50%); z-index: 2; }
+  .scroll-cue span { display: block; inline-size: 26px; block-size: 42px; border: 2px solid rgba(247,243,234,.6); border-radius: 14px; position: relative; }
+  .scroll-cue span::after { content: ''; position: absolute; inset-block-start: 7px; inset-inline-start: 50%; transform: translateX(-50%); inline-size: 4px; block-size: 8px; background: var(--c-gold); border-radius: 2px; animation: cue 1.7s var(--ease) infinite; }
+  @keyframes cue { 0%,100% { opacity: 0; transform: translate(-50%, 0); } 50% { opacity: 1; transform: translate(-50%, 10px); } }
+  @media (prefers-reduced-motion: reduce) { .scroll-cue span::after { animation: none; } }
+  .name-sec { background: var(--c-sand); padding-block: var(--s-8); }
+  .name-in { max-inline-size: 60ch; }
+  .name-h { font-size: var(--t-2xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-4); line-height: 1.2; }
+  .name-body { font-size: var(--t-lg); line-height: 1.85; color: var(--c-ink); }
+  .sec { padding-block: var(--s-8); }
+  .sec--sand { background: var(--c-sand-2); }
+  .sec-head { max-inline-size: 60ch; margin-block-end: var(--s-6); }
+  .sec-title { font-size: var(--t-2xl); color: var(--c-ink); margin-block: var(--s-2) var(--s-3); line-height: 1.2; }
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--s-3); }
+  .cat-card { position: relative; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-5) var(--s-4); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); text-decoration: none; color: inherit; }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent; }
+  .cat-icon { display: inline-grid; place-items: center; inline-size: 56px; block-size: 56px; border-radius: 14px; background: color-mix(in srgb, var(--c-turq) 10%, #fff); color: var(--c-turq); margin-block-end: var(--s-3); }
+  .cat-t { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-2); }
+  .cat-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
+  .cat-go { position: absolute; inset-block-start: var(--s-4); inset-inline-end: var(--s-4); color: var(--c-gold); font-size: 1.2rem; opacity: 0; transform: translateX(6px); transition: var(--dur) var(--ease); }
+  .cat-card:hover .cat-go { opacity: 1; transform: none; }
+  .att-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+  .att-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform var(--dur) var(--ease); text-decoration: none; color: inherit; }
+  .att-card:hover { transform: translateY(-4px); }
+  .att-card:hover .att-photo > .ph-label { transform: scale(1.04); }
+  .att-photo { aspect-ratio: 16 / 10; }
+  .att-photo .ph-label { transition: transform var(--dur) var(--ease); }
+  .att-card--lead { grid-column: 1 / -1; }
+  .att-card--lead .att-photo { aspect-ratio: 21 / 8; }
+  .att-body { padding: var(--s-4) var(--s-4) var(--s-5); }
+  .att-k { color: var(--c-gold-deep); }
+  .att-t { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-2); }
+  .att-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; max-inline-size: 60ch; }
+  .att-more { text-align: center; margin-block-start: var(--s-5); }
+  .why { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8); }
+  .why-wm { position: absolute; inset-block-start: -8%; inset-inline-end: -6%; color: var(--c-gold); opacity: .1; }
+  .why-in { position: relative; z-index: 2; }
+  .why-head .sec-title { color: var(--c-sand); }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); }
+  .fact { display: flex; flex-direction: column; gap: var(--s-2); padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.5); }
+  .fact-n { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-2xl); color: var(--c-gold); line-height: 1; }
+  .fact-l { font-size: var(--t-sm); color: rgba(247,243,234,.82); line-height: 1.6; }
+  .plan { background: var(--c-sand); padding-block: var(--s-8); text-align: center; }
+  .plan-in { max-inline-size: 56ch; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--s-3); }
+  .plan-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; }
+  .plan-lead { text-align: center; }
+  .plan .btn { margin-block-start: var(--s-3); }
+  @media (max-width: 760px) { .att-grid { grid-template-columns: 1fr; } .att-card--lead .att-photo { aspect-ratio: 16 / 10; } .facts { grid-template-columns: 1fr 1fr; gap: var(--s-4); } .hero { min-block-size: 86vh; } }
+  @media (max-width: 460px) { .facts { grid-template-columns: 1fr; } }
+</style>

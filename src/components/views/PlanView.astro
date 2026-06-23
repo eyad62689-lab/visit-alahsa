@@ -1,0 +1,128 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import { getCollection } from 'astro:content';
+import { catLabel } from '../../lib/categories';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const detailBase = ar ? '/معالم/' : '/en/attractions/';
+
+const items = await getCollection('attractions');
+const allPoints = items.map((e) => ({
+  slug: e.data.slug_ar, // المفتاح العالمي للحفظ
+  href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+  title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+  cat: catLabel(e.data.category, lang),
+  summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
+  lat: e.data.location?.lat ?? null, lng: e.data.location?.lng ?? null,
+  mapUrl: e.data.mapUrl ?? null,
+}));
+const L = {
+  savedSuffix: t('plan.savedSuffix'), route: t('plan.route'), clear: t('plan.clear'),
+  remove: t('plan.remove'), location: t('plan.location'),
+};
+const browseHref = ar ? '/معالم/' : '/en/attractions/';
+const mapHref = ar ? '/خريطة/' : '/en/map/';
+---
+<Base title={`${t('plan.title')} — ${t('site.name')}`} description={t('plan.lead')} lang={lang} alt={alt} noindex={true}>
+  <Header lang={lang} alt={alt} />
+  <main>
+    <section class="plan-hero on-dark">
+      <PalmMotif size={300} class="ph-wm" aria-hidden="true" />
+      <div class="container ph-in">
+        <span class="eyebrow gold-on-dark">{t('plan.eyebrow')}</span>
+        <h1 class="ph-title">{t('plan.title')}</h1>
+        <p class="ph-sum">{t('plan.lead')}</p>
+      </div>
+    </section>
+
+    <section class="container plan-body">
+      <div class="plan-actions" id="plan-actions" hidden>
+        <span class="plan-count-txt"><bdi data-plan-count>0</bdi> {L.savedSuffix}</span>
+        <div class="plan-act-btns">
+          <a href="#" class="btn btn--gold" id="route-btn" target="_blank" rel="noopener">{L.route}</a>
+          <button class="btn btn--ghost-ink" id="clear-btn" type="button">{L.clear}</button>
+        </div>
+      </div>
+      <div class="plan-grid" id="plan-list"></div>
+      <div class="plan-empty" id="plan-empty">
+        <PalmMotif size={64} class="pe-palm" aria-hidden="true" />
+        <h2 class="pe-h">{t('plan.empty.h')}</h2>
+        <p class="pe-d">{t('plan.empty.d')}</p>
+        <div class="pe-cta">
+          <a href={browseHref} class="btn btn--turq">{t('plan.empty.browse')}</a>
+          <a href={mapHref} class="btn btn--ghost-ink">{t('plan.empty.map')}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+
+  <script is:inline define:vars={{ allPoints, L }}>
+    function renderPlan() {
+      const map = {}; allPoints.forEach((p) => (map[p.slug] = p));
+      const favs = (window.VAPlan ? window.VAPlan.get() : []).filter((s) => map[s]);
+      const list = document.getElementById('plan-list'); const empty = document.getElementById('plan-empty'); const actions = document.getElementById('plan-actions');
+      if (!list) return;
+      if (!favs.length) { list.innerHTML = ''; empty.hidden = false; actions.hidden = true; return; }
+      empty.hidden = true; actions.hidden = false;
+      list.innerHTML = favs.map((slug) => {
+        const p = map[slug];
+        const maps = p.mapUrl ? '<a class="pc-map" href="' + p.mapUrl + '" target="_blank" rel="noopener">' + L.location + '</a>' : '';
+        return '<article class="plan-card">' +
+          '<div class="photo pc-photo photo--placeholder"><span class="ph-label">' + p.title + '</span></div>' +
+          '<div class="pc-body"><span class="t-caption pc-k">' + p.cat + '</span>' +
+          '<h3 class="pc-t"><a href="' + p.href + '">' + p.title + '</a></h3>' +
+          '<p class="pc-d">' + p.summary + '</p>' +
+          '<div class="pc-foot">' + maps + '<button class="pc-remove" type="button" data-fav="' + p.slug + '">' + L.remove + '</button></div>' +
+          '</div></article>';
+      }).join('');
+      const coords = favs.map((s) => map[s]).filter((p) => p.lat && p.lng);
+      const routeBtn = document.getElementById('route-btn');
+      if (routeBtn) { if (coords.length) { routeBtn.href = 'https://www.google.com/maps/dir/' + coords.map((p) => p.lat + ',' + p.lng).join('/'); routeBtn.style.display = ''; } else routeBtn.style.display = 'none'; }
+    }
+    document.addEventListener('va-plan-change', renderPlan);
+    document.addEventListener('astro:page-load', renderPlan);
+    if (document.readyState !== 'loading') renderPlan(); else document.addEventListener('DOMContentLoaded', renderPlan);
+    document.addEventListener('click', (e) => { if (e.target && e.target.id === 'clear-btn') { if (window.VAPlan) window.VAPlan.save([]); } });
+  </script>
+</Base>
+
+<style>
+  .plan-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
+  .ph-wm { position: absolute; inset-block-start: -8%; inset-inline-end: -4%; color: var(--c-gold); opacity: .1; }
+  .ph-in { position: relative; z-index: 2; max-inline-size: 54ch; }
+  .ph-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .ph-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  .plan-body { padding-block: var(--s-6) var(--s-8); }
+  .plan-actions { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); padding-block-end: var(--s-4); border-block-end: 1px solid var(--c-line); }
+  .plan-count-txt { font-weight: 600; color: var(--c-turq-deep); }
+  .plan-act-btns { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+  .btn--ghost-ink { background: transparent; color: var(--c-ink); border: 1.5px solid var(--c-line); }
+  .btn--ghost-ink:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s-4); }
+  .plan-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .pc-photo { aspect-ratio: 16 / 10; }
+  .pc-body { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: var(--s-1); }
+  .pc-k { color: var(--c-gold-deep); }
+  .pc-t { font-size: var(--t-lg); margin-block: 2px; }
+  .pc-t a { color: var(--c-turq-deep); text-decoration: none; }
+  .pc-t a:hover { color: var(--c-gold-deep); }
+  .pc-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.65; }
+  .pc-foot { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-block-start: var(--s-3); padding-block-start: var(--s-3); border-block-start: 1px solid var(--c-line); }
+  .pc-map { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: none; }
+  .pc-remove { background: none; border: 0; cursor: pointer; font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .pc-remove:hover { color: #a3402a; }
+  .plan-empty { text-align: center; max-inline-size: 48ch; margin-inline: auto; padding-block: var(--s-7); }
+  .pe-palm { color: var(--c-turq); opacity: .4; margin-inline: auto; }
+  .pe-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-2); }
+  .pe-d { color: var(--c-ink-soft); margin-block-end: var(--s-4); }
+  .pe-cta { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
+</style>

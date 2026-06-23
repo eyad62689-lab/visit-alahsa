@@ -1,0 +1,33 @@
+---
+// الوردمارك الرسمي: «زوروا الأحساء» بأميري + «VISIT AL-AHSA» بـMarcellus.
+// قاعدة حرجة: لا تباعد حروف في العربية. التباعد على اللاتيني فقط (.42em).
+interface Props { variant?: 'ink' | 'turq' | 'sand'; align?: 'start' | 'center'; size?: 'sm' | 'md' | 'lg'; }
+const { variant = 'turq', align = 'start', size = 'md' } = Astro.props;
+const color = variant === 'sand' ? 'var(--c-sand)' : variant === 'ink' ? 'var(--c-ink)' : 'var(--c-turq)';
+const sub = variant === 'sand' ? 'rgba(247,243,234,.78)' : 'var(--c-gold)';
+// حجم السطر العربي يُضبط على الحاوية، واللاتيني نسبة منه (≈ الثلث)
+const arSize = size === 'lg' ? 'var(--t-display)' : size === 'sm' ? '1.3rem' : 'var(--t-2xl)';
+---
+<span class={`wm wm-${size}`} style={`--wm:${color};--wm-sub:${sub};font-size:${arSize};text-align:${align};`}>
+  <span class="wm-ar">زوروا الأحساء</span>
+  <span class="wm-en" lang="en">VISIT AL-AHSA</span>
+</span>
+
+<style>
+  .wm { display: inline-flex; flex-direction: column; gap: 1px; line-height: 1; }
+  .wm-ar {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1em;             /* = حجم الحاوية */
+    color: var(--wm);
+    letter-spacing: 0;          /* لا تباعد في العربية — قاعدة حرجة */
+  }
+  .wm-en {
+    font-family: var(--font-latin);
+    font-size: .34em;            /* ≈ ثلث السطر العربي */
+    color: var(--wm-sub);
+    letter-spacing: .42em;       /* التباعد على اللاتيني فقط (اصطلاح الموقع) */
+    padding-inline-start: .42em; /* تعويض إزاحة آخر حرف */
+    margin-block-start: .45em;
+  }
+</style>

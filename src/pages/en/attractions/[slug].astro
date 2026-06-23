@@ -1,0 +1,13 @@
+---
+import DetailView from '../../../components/views/DetailView.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const items = await getCollection('attractions');
+  return items.map((entry) => ({
+    params: { slug: entry.data.slug_en },
+    props: { entry, alt: { ar: '/معالم/' + entry.data.slug_ar, en: '/en/attractions/' + entry.data.slug_en } },
+  }));
+}
+const { entry, alt } = Astro.props;
+---
+<DetailView entry={entry} lang="en" alt={alt} />
