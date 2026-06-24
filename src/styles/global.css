@@ -85,6 +85,12 @@ picture.photo { display: block; }
   object-fit: cover; display: block; z-index: 0;
   filter: saturate(.94) contrast(1.03);
 }
+/* نِسَب أبعاد حاويات صور مكوّن Photo — غير محصورة عمداً.
+   القواعد المحصورة في الواجهات (.lc-photo / .att-photo) لا تصل إلى عنصر <picture>
+   الذي يُنتجه مكوّن Photo لأنه لا يحمل سمة نطاق المكوّن الأب، فينهار الارتفاع لصفر. */
+.photo.lc-photo, .photo.att-photo { aspect-ratio: 16 / 10; }
+.att-card--lead .photo.att-photo { aspect-ratio: 21 / 8; }
+@media (max-width: 760px) { .att-card--lead .photo.att-photo { aspect-ratio: 16 / 10; } }
 /* طبقة صورة خلفية لأقسام الهيرو (الصفحة الرئيسية وصفحة المعلم) */
 .photo-bg { position: absolute; inset: 0; z-index: 0; display: block; pointer-events: none; }
 .photo-bg > img {
