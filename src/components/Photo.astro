@@ -2,6 +2,7 @@
 // مكوّن صورة موحّد لنظام .photo.
 // إن وُجد src عرض صورة حقيقية (webp + jpg)، وإلا عنصر نائب بالتسمية.
 // src = المسار الأساسي بلا امتداد، مثل: /img/qasr-ibrahim
+import PalmMotif from './PalmMotif.astro';
 interface Props {
   src?: string;          // المسار الأساسي بلا امتداد
   label?: string;        // نص بديل/تسمية العنصر النائب
@@ -24,6 +25,7 @@ const { src, label = '', class: cls = '', eager = false, sizes } = Astro.props;
   </picture>
 ) : (
   <div class:list={['photo', 'photo--placeholder', cls]}>
+    <PalmMotif size={48} class="ph-icon" aria-hidden="true" />
     <span class="ph-label">{label}</span>
   </div>
 )}
