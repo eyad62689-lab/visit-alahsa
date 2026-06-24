@@ -17,14 +17,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* العناوين بخط أميري */
 h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; font-weight: 700; }
 
 a { color: var(--c-turq); text-underline-offset: 3px; }
 
 img, svg { display: block; max-width: 100%; }
 
+/* لمسات لاتينية بخط Marcellus — يُطبّق على العناصر ذات [lang="en"] فقط */
 :lang(en) { font-family: var(--font-latin); }
 
+/* احترام تفضيل تقليل الحركة */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .001ms !important;
@@ -33,8 +36,15 @@ img, svg { display: block; max-width: 100%; }
   }
 }
 
+/* حاوية محتوى منضبطة */
 .container { width: min(100% - var(--s-5), 1120px); margin-inline: auto; }
 
+/* ========================================================================
+   أدوات مشتركة + نظام الصور الموحّد (يُطبّق المعالجة الذهبية/الفيروزية
+   تلقائياً على أي صورة، فلا تكسر صورةٌ النظام).
+   ======================================================================== */
+
+/* --- التسمية العلوية (eyebrow) --- */
 .eyebrow {
   font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs);
   letter-spacing: .02em; color: var(--c-gold-deep);
@@ -42,8 +52,10 @@ img, svg { display: block; max-width: 100%; }
 }
 .eyebrow::before { content: ''; inline-size: 22px; block-size: 2px; background: var(--c-gold); }
 
+/* --- نصّ بارز --- */
 .lead { font-size: var(--t-lg); line-height: 1.7; color: var(--c-ink-soft); max-inline-size: 60ch; }
 
+/* --- أزرار --- */
 .btn { font-family: var(--font-body); font-weight: 600; font-size: var(--t-base);
   text-decoration: none; display: inline-flex; align-items: center; gap: var(--s-2);
   padding: 13px 26px; border-radius: var(--radius-sm); cursor: pointer; border: 0;
@@ -55,6 +67,7 @@ img, svg { display: block; max-width: 100%; }
 .btn--turq { background: var(--c-turq); color: var(--c-sand); }
 .btn--turq:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,110,97,.3); }
 
+/* --- نظام الصور الموحّد --- */
 .photo {
   position: relative; overflow: hidden; isolation: isolate;
   background:
@@ -63,35 +76,47 @@ img, svg { display: block; max-width: 100%; }
 }
 .photo > img {
   inline-size: 100%; block-size: 100%; object-fit: cover; display: block;
-  filter: saturate(.94) contrast(1.03);
+  filter: saturate(.94) contrast(1.03); /* توحيد بسيط للنبرة */
 }
+/* صورة حقيقية داخل حاوية .photo (عبر <picture>) — تملأ الحاوية تحت الظلّ والنصّ */
 picture.photo { display: block; }
 .photo--img > img {
   position: absolute; inset: 0; inline-size: 100%; block-size: 100%;
   object-fit: cover; display: block; z-index: 0;
   filter: saturate(.94) contrast(1.03);
 }
+/* طبقة صورة خلفية لأقسام الهيرو (الصفحة الرئيسية وصفحة المعلم) */
 .photo-bg { position: absolute; inset: 0; z-index: 0; display: block; pointer-events: none; }
 .photo-bg > img {
   inline-size: 100%; block-size: 100%; object-fit: cover; display: block;
   filter: saturate(.94) contrast(1.03);
 }
+/* ظلّ فيروزي سفلي لتثبيت النصّ + لمسة دفء علوية = معالجة موحّدة */
 .photo::after {
   content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
     linear-gradient(180deg, transparent 40%, rgba(0,79,70,.62)),
     radial-gradient(90% 60% at 80% 0%, rgba(201,154,74,.20), transparent 60%);
 }
-.photo--placeholder { display: grid; place-items: center; color: rgba(247,243,234,.5); }
+/* عنصر نائب: يُظهر السعف + تسمية حتى تتوفّر الصورة الحقيقية */
+.photo--placeholder { display: grid; place-items: center; gap: var(--s-2); padding: var(--s-3); color: rgba(247,243,234,.5); }
+.photo--placeholder .ph-icon {
+  position: relative; z-index: 2; color: var(--c-gold); opacity: .6;
+}
 .photo--placeholder .ph-label {
   position: relative; z-index: 2; font-family: var(--font-body); font-weight: 600;
-  font-size: var(--t-sm); color: rgba(247,243,234,.78); letter-spacing: .01em;
+  font-size: var(--t-sm); color: rgba(247,243,234,.82); letter-spacing: .01em;
+  text-align: center; line-height: 1.4;
 }
 
+/* --- ظهور بالتمرير (يحترم تقليل الحركة) --- */
 [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 [data-reveal].in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1 !important; transform: none !important; } }
 
+/* ========================================================================
+   أزرار «أضف إلى رحلتي» + شارة المخطّط
+   ======================================================================== */
 .fav-btn {
   font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); cursor: pointer;
   display: inline-flex; align-items: center; gap: var(--s-2);
@@ -103,6 +128,7 @@ picture.photo { display: block; }
 .fav-btn .fav-ic { font-size: 1.05em; line-height: 1; }
 .fav-btn.is-saved { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
 
+/* زر زاوية دائري للبطاقات */
 .fav-btn--corner {
   position: absolute; inset-block-start: var(--s-3); inset-inline-end: var(--s-3); z-index: 3;
   inline-size: 38px; block-size: 38px; padding: 0; justify-content: center; gap: 0;
@@ -114,6 +140,7 @@ picture.photo { display: block; }
 .fav-btn--corner.is-saved { background: var(--c-turq); color: var(--c-sand); }
 .fav-btn--corner.is-saved .fav-ic::before { content: '✓'; }
 
+/* رابط «رحلتي» + شارة العدّاد */
 .plan-link {
   position: relative; font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem);
   color: var(--c-turq-deep); text-decoration: none; padding: 8px 12px; border-radius: var(--radius-sm);
