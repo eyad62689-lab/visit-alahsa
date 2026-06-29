@@ -97,7 +97,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
 
 <style>
   .plan-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  .ph-wm { position: absolute; inset-block-start: -8%; inset-inline-end: -4%; color: var(--c-gold); opacity: .1; }
+  :global(.ph-wm) { position: absolute; inset-block-start: -8%; inset-inline-end: -4%; color: var(--c-gold); opacity: .1; }
   .ph-in { position: relative; z-index: 2; max-inline-size: 54ch; }
   .ph-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .ph-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
@@ -125,4 +125,12 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   .pe-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-2); }
   .pe-d { color: var(--c-ink-soft); margin-block-end: var(--s-4); }
   .pe-cta { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
+  @media (max-width: 760px) {
+    .ph-sum { font-size: var(--t-base); }
+    .plan-actions { flex-direction: column; align-items: flex-start; }
+    .plan-act-btns { inline-size: 100%; }
+    .plan-act-btns .btn { flex: 1; justify-content: center; }
+    .pe-cta { flex-direction: column; align-items: stretch; }
+    .pe-cta .btn { justify-content: center; }
+  }
 </style>

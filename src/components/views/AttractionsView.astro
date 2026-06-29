@@ -87,7 +87,7 @@ const jsonLd = [
 
 <style>
   .list-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  .lh-wm { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
+  :global(.lh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
   .lh-in { position: relative; z-index: 2; max-inline-size: 56ch; }
   .lh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
@@ -107,4 +107,12 @@ const jsonLd = [
   .lc-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-2); }
   .lc-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
   .empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }
+  @media (max-width: 760px) {
+    /* الفلاتر تتمرّر أفقياً بدل الالتفاف لتوفير المساحة */
+    .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-block-end: var(--s-2); scrollbar-width: none; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex-shrink: 0; }
+    /* tighten hero text on tablet */
+    .lh-sum { font-size: var(--t-base); }
+  }
 </style>
