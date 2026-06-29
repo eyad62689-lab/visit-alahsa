@@ -12,6 +12,7 @@ featured: false
 order: 61
 location: { lat: 25.382611, lng: 49.605278 }
 mapUrl: "https://maps.app.goo.gl/P24d8Cya5Fg2ChTi6"
+heroImage: /img/hasawi-lemon-farm
 ---
 
 مزرعة للحمضيات يُقصد فيها قطف الليمون الحساوي الشهير في موسمه.

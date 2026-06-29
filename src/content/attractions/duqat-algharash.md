@@ -12,6 +12,7 @@ featured: false
 order: 60
 location: { lat: 25.412022, lng: 49.6836 }
 mapUrl: "https://goo.gl/maps/KUZUqQxHwgfvhGqG9"
+heroImage: /img/dughat-al-garah
 ---
 
 معلم محلي في الهفوف.

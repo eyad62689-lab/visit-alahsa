@@ -12,6 +12,7 @@ featured: false
 order: 35
 location: { lat: 25.288764, lng: 49.716349 }
 mapUrl: "https://maps.app.goo.gl/sE5Pox7xU8VN5Qtx5"
+heroImage: /img/jabal-al-arab
 ---
 
 تكوين جبلي قرب الهفوف.

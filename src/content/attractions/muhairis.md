@@ -12,7 +12,7 @@ featured: false
 order: 13
 location: { lat: 25.448248, lng: 49.582469 }
 mapUrl: "https://goo.gl/maps/XeBaevMX8saoGWyq9"
-heroImage: /img/muhairis
+heroImage: /img/muhairis-01
 ---
 
 حصن تاريخي صغير كان نقطة مراقبة ودفاع على أطراف المبرز.

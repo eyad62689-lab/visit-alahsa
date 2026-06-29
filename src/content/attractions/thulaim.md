@@ -12,6 +12,7 @@ featured: false
 order: 37
 location: { lat: 25.60932, lng: 49.531818 }
 mapUrl: "https://maps.app.goo.gl/MUgsdWiBE6LNA5mY7"
+heroImage: /img/jabal-al-thalim
 ---
 
 تكوين صخري شمال الواحة.

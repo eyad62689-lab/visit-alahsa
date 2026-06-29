@@ -12,6 +12,7 @@ featured: false
 order: 63
 location: { lat: 25.356864, lng: 49.685624 }
 mapUrl: "https://maps.app.goo.gl/qZwEquXBiyLu1y6X7"
+heroImage: /img/strawberry-farm
 ---
 
 مزرعة فراولة أخرى على طريق العقير تتيح القطف الموسمي.

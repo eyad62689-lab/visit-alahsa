@@ -12,7 +12,7 @@ featured: false
 order: 25
 location: { lat: 25.402082, lng: 49.690285 }
 mapUrl: "https://maps.app.goo.gl/4Ubt8aZJsY6AtGLj7"
-heroImage: /img/tahimiyah-s
+heroImage: /img/tahimiyah
 ---
 
 مسجد أثري في قرية التهيمية.
