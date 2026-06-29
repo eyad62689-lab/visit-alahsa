@@ -100,4 +100,12 @@ const labels = { view: t('map.pop.view'), favAdd: t('fav.add'), favAdded: t('fav
   :global(.va-pop-a) { font-weight: 600; color: var(--c-turq); text-decoration: none; }
   :global(.va-pop-a:hover) { color: var(--c-gold-deep); }
   :global(.va-pop-fav) { margin-block-start: 8px; padding: 7px 12px; font-size: var(--t-xs); inline-size: 100%; justify-content: center; }
+  @media (max-width: 760px) {
+    /* فلاتر الخريطة تتمرّر أفقياً */
+    .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-block-end: var(--s-2); scrollbar-width: none; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex-shrink: 0; }
+    /* الخريطة أقصر قليلاً على الهاتف لترك مساحة للرأسية */
+    #map { block-size: clamp(340px, 58vh, 560px); }
+  }
 </style>
