@@ -12,6 +12,7 @@ featured: false
 order: 50
 location: { lat: 25.309695, lng: 49.611511 }
 mapUrl: "https://goo.gl/maps/SasB8ksT1gdzCiC99"
+heroImage: /img/stadium-park
 ---
 
 حديقة عامة بجوار الاستاد الرياضي بالهفوف.

@@ -12,6 +12,7 @@ featured: false
 order: 64
 location: { lat: 25.36264, lng: 49.69037 }
 mapUrl: "https://maps.app.goo.gl/jrkvGmKumQ6s9q2k6"
+heroImage: /img/al-sousan-bird-park
 ---
 
 حديقة لعرض الطيور وسط أجواء واحة الأحساء.

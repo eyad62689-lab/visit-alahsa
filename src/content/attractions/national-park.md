@@ -12,6 +12,7 @@ featured: false
 order: 43
 location: { lat: 25.444967, lng: 49.727603 }
 mapUrl: "https://goo.gl/maps/CTMGpNK6HsgvPAva6"
+heroImage: /img/alahsa-national-park
 ---
 
 من أكبر الغابات المزروعة بيد الإنسان؛ مظلّات وممرات وسط أشجار الأثل.

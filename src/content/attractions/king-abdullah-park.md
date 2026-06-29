@@ -12,6 +12,7 @@ featured: false
 order: 42
 location: { lat: 25.321457, lng: 49.558356 }
 mapUrl: "https://goo.gl/maps/XBJEVnW23eQz96db8"
+heroImage: /img/king-abdullah-ecopark
 ---
 
 متنزه بيئي واسع مخصص للمشي والتنزّه العائلي.

@@ -12,6 +12,7 @@ featured: false
 order: 49
 location: { lat: 25.436352, lng: 49.573605 }
 mapUrl: "https://goo.gl/maps/Vp66QYY7itVeeV9n7"
+heroImage: /img/al-mousa-garden
 ---
 
 حديقة عائلية في المبرز.

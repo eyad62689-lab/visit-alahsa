@@ -12,7 +12,7 @@ featured: false
 order: 21
 location: { lat: 25.431233, lng: 49.625652 }
 mapUrl: "https://maps.app.goo.gl/x3Hq8z6hfpoQnBjD7"
-heroImage: /img/jalaniyah
+heroImage: /img/jalaniyah-01
 ---
 
 مسجد أثري قديم في أطراف الهفوف.

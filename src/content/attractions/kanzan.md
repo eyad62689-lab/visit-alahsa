@@ -12,6 +12,7 @@ featured: false
 order: 34
 location: { lat: 25.472262, lng: 49.639016 }
 mapUrl: "https://maps.app.goo.gl/cZW3oLwKQkGJqERQA"
+heroImage: /img/kanzan-mountain
 ---
 
 جبل بارز شمال الأحساء، وجهة للمشي ومشاهدة المناظر.

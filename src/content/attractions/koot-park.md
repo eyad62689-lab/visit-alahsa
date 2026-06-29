@@ -12,6 +12,7 @@ featured: false
 order: 48
 location: { lat: 25.378523, lng: 49.584952 }
 mapUrl: "https://goo.gl/maps/wUgnv5hVGcKYmxAu8"
+heroImage: /img/al-kout-garden
 ---
 
 حديقة عامة في حي الكوت بالهفوف.

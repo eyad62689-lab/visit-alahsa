@@ -12,6 +12,7 @@ featured: false
 order: 47
 location: { lat: 25.476554, lng: 49.641744 }
 mapUrl: "https://maps.app.goo.gl/MAuvnpt8hXJdWbkz9"
+heroImage: /img/kanzan-mountain-park
 ---
 
 منطقة منتزه عند جبل كنزان شمال الأحساء.

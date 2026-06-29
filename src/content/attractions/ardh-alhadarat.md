@@ -12,7 +12,7 @@ featured: false
 order: 59
 location: { lat: 25.41184, lng: 49.6927 }
 mapUrl: "https://maps.app.goo.gl/uCahvRZfgCzKpkxc7"
-heroImage: /img/ardh-alhadarat
+heroImage: /img/earth-of-civilization
 ---
 
 قرية تراثية ومعرض عند جبل القارة تستعرض مراحل الحضارة في المنطقة.
