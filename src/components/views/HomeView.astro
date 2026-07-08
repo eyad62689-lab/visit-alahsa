@@ -16,7 +16,16 @@ const ar = lang === 'ar';
 const featuredEntries = (await getCollection('attractions'))
   .filter((e) => e.data.featured).sort((a, b) => a.data.order - b.data.order);
 
-const catKeys = ['historic', 'nature', 'crafts', 'taste', 'market', 'events'];
+// key = مفتاح النصّ في القاموس؛ cat = فئة حقيقية في المجموعة تُفتح مفلترة،
+// والفئات التي لا معالم لها بعد تقود إلى القائمة الكاملة.
+const catCards = [
+  { key: 'historic', cat: 'historic' },
+  { key: 'nature', cat: 'nature' },
+  { key: 'crafts', cat: null },
+  { key: 'taste', cat: 'farm' },
+  { key: 'market', cat: 'market' },
+  { key: 'events', cat: null },
+];
 const facts = [
   { n: ar ? '٢.٥ مليون' : '2.5M', l: t('fact.palms.l') },
   { n: ar ? '٢٠١٨' : '2018', l: t('fact.unesco.l') },
@@ -25,7 +34,8 @@ const facts = [
 ];
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const allHref = ar ? '/معالم/' : '/en/attractions/';
-const planHref = ar ? '/رحلتي/' : '/en/plan/';
+const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
+const planTripHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
@@ -42,7 +52,7 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
 ---
 <Base title={title} description={t('home.hero.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
-  <main id="discover">
+  <main id="main">
     <section class="hero photo">
       <picture class="photo-bg hero-bg" aria-hidden="true">
         <source srcset="/img/hero-home.webp" type="image/webp" />
@@ -77,11 +87,11 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
           <p class="lead">{t('home.cats.lead')}</p>
         </header>
         <div class="cat-grid">
-          {catKeys.map((k, i) => (
-            <a class="cat-card" href={allHref} data-reveal style={`transition-delay:${i * 60}ms`}>
+          {catCards.map((c, i) => (
+            <a class="cat-card" href={c.cat ? `${allHref}?cat=${c.cat}` : allHref} data-reveal style={`transition-delay:${i * 60}ms`}>
               <span class="cat-icon"><PalmMotif size={34} /></span>
-              <h3 class="cat-t">{t(`cat.${k}.t` as any)}</h3>
-              <p class="cat-d">{t(`cat.${k}.d` as any)}</p>
+              <h3 class="cat-t">{t(`cat.${c.key}.t` as any)}</h3>
+              <p class="cat-d">{t(`cat.${c.key}.d` as any)}</p>
               <span class="cat-go" aria-hidden="true">{ar ? '→' : '←'}</span>
             </a>
           ))}
@@ -135,7 +145,10 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
         <span class="eyebrow">{t('home.plan.eyebrow')}</span>
         <h2 class="plan-h">{t('home.plan.title')}</h2>
         <p class="lead plan-lead">{t('home.plan.lead')}</p>
-        <a href={planHref} class="btn btn--gold">{t('home.plan.cta')}</a>
+        <div class="plan-ctas">
+          <a href={planTripHref} class="btn btn--gold">{t('home.plan.cta')}</a>
+          <a href={myTripHref} class="btn btn--turq">{t('nav.myTrip')}</a>
+        </div>
       </div>
     </section>
   </main>
@@ -206,7 +219,7 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
   .plan-in { max-inline-size: 56ch; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--s-3); }
   .plan-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; }
   .plan-lead { text-align: center; }
-  .plan .btn { margin-block-start: var(--s-3); }
+  .plan-ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; justify-content: center; margin-block-start: var(--s-3); }
   @media (max-width: 760px) {
     .att-grid { grid-template-columns: 1fr; }
     .att-card--lead .att-photo { aspect-ratio: 16 / 10; }

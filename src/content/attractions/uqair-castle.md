@@ -5,6 +5,7 @@ slug_ar: "قلعة-العقير"
 slug_en: "uqair-castle"
 category: historic
 heroImage: /img/uqair-castle-01
+gallery: [/img/uqair-castle-02]
 kicker: "معلم تاريخي"
 summary: "قلعة تاريخية تحرس الميناء، شاهدة على ازدهار العقير التجاري قديماً."
 summary_en: "A historic castle guarding the port, a witness to Al-Uqair's old commercial prosperity."

@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
+import Photo from '../Photo.astro';
 import { catLabel } from '../../lib/categories';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -42,7 +43,7 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
 ---
 <Base title={`${title} — ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
-  <main>
+  <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>
       {a.heroImage && (
         <picture class="photo-bg" aria-hidden="true">
@@ -91,10 +92,16 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
     </div>
 
     <section class="container gallery-sec" data-reveal>
-      <h2 class="gal-h">{t('det.fromPlace')}</h2>
-      <div class="gal-grid">
-        {[1,2,3].map((i) => (<div class="photo gal-item photo--placeholder"><span class="ph-label">{title} — {t('det.photo')} {i}</span></div>))}
-      </div>
+      {a.gallery.length > 0 && (
+        <>
+          <h2 class="gal-h">{t('det.fromPlace')}</h2>
+          <div class="gal-grid">
+            {a.gallery.map((g, i) => (
+              <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class="gal-item" sizes="(max-width: 860px) 50vw, 33vw" />
+            ))}
+          </div>
+        </>
+      )}
       <a href={attractionsHref} class="btn btn--turq back-btn">{t('det.allSights')}</a>
     </section>
   </main>

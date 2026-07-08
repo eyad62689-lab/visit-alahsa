@@ -24,8 +24,23 @@ a { color: var(--c-turq); text-underline-offset: 3px; }
 
 img, svg { display: block; max-width: 100%; }
 
-/* لمسات لاتينية بخط Marcellus — يُطبّق على العناصر ذات [lang="en"] فقط */
-:lang(en) { font-family: var(--font-latin); }
+/* لمسات لاتينية بخط Marcellus — للعناصر المضمّنة الموسومة lang="en" داخل
+   الصفحات العربية فقط (كالوردمارك). لا تُطلق على صفحات EN كاملة، فنصّها
+   وواجهتها بخط IBM Plex (بنطاقه اللاتيني) حفاظاً على المقروئية. */
+[dir='rtl'] :lang(en) { font-family: var(--font-latin); }
+
+/* رابط التخطّي — أول عنصر قابل للتركيز، يظهر عند التركيز فقط */
+.skip-link {
+  position: absolute; inset-block-start: -48px; inset-inline-start: var(--s-3);
+  z-index: 100; background: var(--c-turq-deep); color: var(--c-sand);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm);
+  padding: 10px 18px; border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  text-decoration: none; transition: inset-block-start .2s var(--ease);
+}
+.skip-link:focus-visible { inset-block-start: 0; }
+
+/* حلقة تركيز مرئية موحّدة للوحة المفاتيح */
+:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; }
 
 /* احترام تفضيل تقليل الحركة */
 @media (prefers-reduced-motion: reduce) {
@@ -89,6 +104,7 @@ picture.photo { display: block; }
    القواعد المحصورة في الواجهات (.lc-photo / .att-photo) لا تصل إلى عنصر <picture>
    الذي يُنتجه مكوّن Photo لأنه لا يحمل سمة نطاق المكوّن الأب، فينهار الارتفاع لصفر. */
 .photo.lc-photo, .photo.att-photo { aspect-ratio: 16 / 10; }
+.photo.gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
 .att-card--lead .photo.att-photo { aspect-ratio: 21 / 8; }
 @media (max-width: 760px) { .att-card--lead .photo.att-photo { aspect-ratio: 16 / 10; } }
 /* طبقة صورة خلفية لأقسام الهيرو (الصفحة الرئيسية وصفحة المعلم) */

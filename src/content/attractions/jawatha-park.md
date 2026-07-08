@@ -4,7 +4,6 @@ title_en: "Jawatha Park"
 slug_ar: "منتزه-جواثا-السياحي"
 slug_en: "jawatha-park"
 category: parks
-heroImage: /img/jawatha-park
 kicker: "متنزّه"
 summary: "متنزه أخضر بجوار مسجد جواثا التاريخي، وجهة للنزهات العائلية."
 summary_en: "A tourist park beside the historic Jawatha site."

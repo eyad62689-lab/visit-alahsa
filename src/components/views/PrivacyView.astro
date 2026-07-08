@@ -1,0 +1,61 @@
+---
+// سياسة الخصوصية — صادقة ومختصرة: موقع ثابت، «رحلتي» تُحفظ محلياً فقط.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const C = ar ? {
+  title: 'سياسة الخصوصية',
+  lead: 'باختصار: لا حسابات، لا تتبّع إعلاني، وبياناتك تبقى معك.',
+  sections: [
+    { h: 'ما الذي نجمعه؟', d: 'موقع «زوروا الأحساء» موقعٌ ثابت للتعريف بالوجهة؛ لا يتطلّب تسجيل دخول ولا ينشئ حسابات، ولا نستخدم أدوات تتبّع إعلانية.' },
+    { h: 'قائمة «رحلتي»', d: 'المعالم التي تضيفها إلى «رحلتي» تُحفظ في متصفّحك على جهازك فقط (localStorage)، ولا تُرسل إلينا ولا إلى أي طرف ثالث. حذفها بيدك في أي وقت من صفحة «رحلتي» أو بمسح بيانات المتصفّح.' },
+    { h: 'النشرة البريدية', d: 'إن اشتركت في النشرة، نستخدم بريدك لإرسال رسائل الموقع فقط، ولا نشاركه مع أي جهة. يمكنك طلب الحذف في أي وقت بمراسلتنا.' },
+    { h: 'الاستضافة والخرائط', d: 'يُستضاف الموقع على Netlify التي قد تسجّل سجلّات تقنية قياسية (كعنوان IP) لتشغيل الخدمة. صفحة الخريطة تحمّل بلاطات الخرائط من OpenStreetMap/CARTO ومكتبة Leaflet من شبكة توزيع، وينطبق على ذلك سياسات تلك الخدمات.' },
+    { h: 'تواصل معنا', d: 'لأي سؤال عن الخصوصية راسلنا على info@visit-alahsa.com.' },
+  ],
+  seoTitle: 'سياسة الخصوصية',
+} : {
+  title: 'Privacy Policy',
+  lead: 'In short: no accounts, no ad tracking, and your data stays with you.',
+  sections: [
+    { h: 'What do we collect?', d: 'Visit Al-Ahsa is a static destination guide; it requires no sign-in, creates no accounts, and uses no advertising trackers.' },
+    { h: 'Your “My Trip” list', d: 'Sights you add to “My Trip” are stored in your browser on your device only (localStorage) and are never sent to us or any third party. You can delete them anytime from the My Trip page or by clearing browser data.' },
+    { h: 'Newsletter', d: 'If you subscribe, we use your email only to send site updates and never share it. You can ask us to delete it at any time.' },
+    { h: 'Hosting & maps', d: 'The site is hosted on Netlify, which may keep standard technical logs (such as IP addresses) to run the service. The map page loads tiles from OpenStreetMap/CARTO and the Leaflet library from a CDN; those services’ policies apply.' },
+    { h: 'Contact us', d: 'For any privacy question, email info@visit-alahsa.com.' },
+  ],
+  seoTitle: 'Privacy Policy',
+};
+---
+<Base title={`${C.seoTitle} — ${t('site.name')}`} description={C.lead} lang={lang} alt={alt} noindex={true}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class="container pv-body">
+      <h1 class="pv-title">{C.title}</h1>
+      <p class="lead">{C.lead}</p>
+      {C.sections.map((s) => (
+        <section class="pv-sec">
+          <h2 class="pv-h">{s.h}</h2>
+          <p class="pv-d">{s.d}</p>
+        </section>
+      ))}
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .pv-body { padding-block: var(--s-7) var(--s-8); max-inline-size: 72ch; }
+  .pv-title { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; margin-block-end: var(--s-3); }
+  .pv-sec { margin-block-start: var(--s-5); }
+  .pv-h { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-2); }
+  .pv-d { color: var(--c-ink-soft); line-height: 1.8; }
+</style>

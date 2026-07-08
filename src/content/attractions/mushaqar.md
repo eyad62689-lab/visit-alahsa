@@ -13,6 +13,7 @@ order: 46
 location: { lat: 25.423663, lng: 49.67916 }
 mapUrl: "https://goo.gl/maps/RmGxkW2cm1xvkW4W7"
 heroImage: /img/al-mashqar-park-01
+gallery: [/img/al-mashqar-park-02]
 ---
 
 موقع تاريخي وطبيعي من معالم الأحساء القديمة.

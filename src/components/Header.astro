@@ -15,7 +15,7 @@ const routes = {
   attractions: ar ? '/معالم/' : '/en/attractions/',
   map: ar ? '/خريطة/' : '/en/map/',
   discover: ar ? '/#experiences' : '/en/#experiences',
-  plan: ar ? '/#plan' : '/en/#plan',
+  plan: ar ? '/خطط/' : '/en/plan-your-trip/',
   myTrip: ar ? '/رحلتي/' : '/en/plan/',
 };
 const nav = [
@@ -33,9 +33,9 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
     </a>
 
     <input type="checkbox" id="navtoggle" class="nav-toggle" hidden />
-    <label for="navtoggle" class="burger" aria-label="Menu"><span></span><span></span><span></span></label>
+    <label for="navtoggle" class="burger" role="button" tabindex="0" aria-controls="site-nav" aria-expanded="false" aria-label={ar ? 'القائمة' : 'Menu'}><span></span><span></span><span></span></label>
 
-    <nav class="nav" aria-label={t('nav.discover')}>
+    <nav class="nav" id="site-nav" aria-label={t('nav.discover')}>
       {nav.map((n) => <a href={n.href}>{n.label}</a>)}
     </nav>
 
@@ -46,6 +46,24 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
     </div>
   </div>
 </header>
+
+<script is:inline>
+  // مزامنة aria-expanded لزرّ القائمة + تشغيله بلوحة المفاتيح (Enter/مسافة)
+  function initBurger() {
+    document.querySelectorAll('.site-header').forEach((h) => {
+      const box = h.querySelector('#navtoggle');
+      const burger = h.querySelector('.burger');
+      if (!box || !burger || burger.dataset.wired) return;
+      burger.dataset.wired = '1';
+      box.addEventListener('change', () => burger.setAttribute('aria-expanded', box.checked ? 'true' : 'false'));
+      burger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); box.checked = !box.checked; box.dispatchEvent(new Event('change')); }
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initBurger);
+  if (document.readyState !== 'loading') initBurger(); else document.addEventListener('DOMContentLoaded', initBurger);
+</script>
 
 <style>
   .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: color-mix(in srgb, var(--c-sand) 86%, transparent); backdrop-filter: blur(10px); border-block-end: 1px solid var(--c-line); }

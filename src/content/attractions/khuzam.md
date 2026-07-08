@@ -13,6 +13,7 @@ order: 14
 location: { lat: 25.368042, lng: 49.576862 }
 mapUrl: "https://goo.gl/maps/7s7inf4zYPPC5Gze9"
 heroImage: /img/khuzam-01
+gallery: [/img/khuzam-02]
 ---
 
 قلعة طينية تاريخية من معالم الهفوف القديمة.
