@@ -78,8 +78,14 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
           <dl class="info-list">
             {a.area && (<><dt>{t('det.area')}</dt><dd>{a.area}</dd></>)}
             {a.bestTime && ar && (<><dt>{t('det.bestTime')}</dt><dd>{a.bestTime}</dd></>)}
+            {ar && a.practical.filter((p) => p.verified).map((p) => (
+              <><dt>{p.label}</dt><dd>{p.value}</dd></>
+            ))}
             {a.location && (<><dt>{t('det.coords')}</dt><dd dir="ltr" style="text-align:start">{a.location.lat}, {a.location.lng}</dd></>)}
           </dl>
+          {ar && a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label)) && (
+            <p class="info-note">المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو ٢٠٢٦م.</p>
+          )}
         </div>
         {a.mapUrl ? (
           <a class="map-card photo photo--placeholder" href={a.mapUrl} target="_blank" rel="noopener">
@@ -132,6 +138,7 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
   .info-list { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-3); margin: 0; }
   .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
   .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
+  .info-note { font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-3); }
   .map-card { aspect-ratio: 4 / 3; border-radius: var(--radius); }
   .gallery-sec { padding-block: 0 var(--s-8); }
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }

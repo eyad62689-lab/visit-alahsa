@@ -16,8 +16,6 @@ featured: true
 order: 3
 bestTime: قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء.
 practical:
-  - { label: "الفئة", value: "ميناء تاريخي وشاطئ", verified: true }
-  - { label: "المنطقة", value: "ساحل الخليج، شرق الأحساء", verified: true }
   - { label: "المواعيد والدخول", value: "تُحدَّث قريباً", verified: false }
 tags: ["ساحل", "تاريخ", "بحر"]
 ---

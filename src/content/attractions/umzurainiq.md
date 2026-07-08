@@ -4,6 +4,7 @@ title_en: "Umm Zurainiq Cemetery Mosque"
 slug_ar: "مسجد-مقبرة-أم-زرينيق"
 slug_en: "umzurainiq"
 category: religious
+heroImage: /img/umzurainiq
 kicker: "موقع ديني"
 summary: "مسجد تاريخي مرتبط بمقبرة قديمة في الهفوف."
 summary_en: "A historic mosque tied to an old cemetery in Hofuf."

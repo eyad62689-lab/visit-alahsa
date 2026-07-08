@@ -16,9 +16,8 @@ featured: true
 order: 4
 bestTime: أوقات النهار، مع احترام أوقات الصلاة وخصوصية المكان.
 practical:
-  - { label: "الفئة", value: "مسجد تاريخي", verified: true }
-  - { label: "المنطقة", value: "الكلابية، شمال شرق الأحساء", verified: true }
-  - { label: "المواعيد والدخول", value: "تُحدَّث قريباً", verified: false }
+  - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", verified: true }
+  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 ---
 

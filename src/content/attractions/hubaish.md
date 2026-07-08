@@ -4,6 +4,7 @@ title_en: "Al-Hubaish Mosque"
 slug_ar: "مسجد-الحبيش"
 slug_en: "hubaish"
 category: religious
+heroImage: /img/hubaish
 kicker: "موقع ديني"
 summary: "مسجد تراثي قديم في الرفعة."
 summary_en: "An old heritage mosque in Al-Rifʿah."

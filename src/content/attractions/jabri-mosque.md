@@ -4,6 +4,7 @@ title_en: "Al-Jabri Mosque"
 slug_ar: "جامع-الجبري"
 slug_en: "jabri-mosque"
 category: religious
+heroImage: /img/jabri-mosque
 kicker: "موقع ديني"
 summary: "جامع تاريخي يُنسب إلى الدولة الجبرية التي حكمت الأحساء."
 summary_en: "A historic mosque attributed to the Jabrid state that ruled Al-Ahsa."

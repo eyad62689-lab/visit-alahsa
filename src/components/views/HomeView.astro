@@ -58,6 +58,9 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
         <source srcset="/img/hero-home.webp" type="image/webp" />
         <img src="/img/hero-home.jpg" alt="" fetchpriority="high" decoding="async" />
       </picture>
+      <video class="photo-bg hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+        <source data-src="/video/hero-home.mp4" type="video/mp4" />
+      </video>
       <PalmMotif size={520} class="hero-wm" aria-hidden="true" />
       <div class="container hero-in">
         <span class="eyebrow gold-on-dark">{t('home.hero.eyebrow')}</span>
@@ -155,6 +158,24 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
   <Footer lang={lang} />
 </Base>
 
+<script>
+  // تشغيل فيديو الهيرو فقط عند السماح بالحركة وعدم تفعيل توفير البيانات؛
+  // preload="none" + data-src يمنعان تنزيل الفيديو لمن لا يشمله التشغيل.
+  const v = document.querySelector<HTMLVideoElement>('.hero-video');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = (navigator as any).connection?.saveData === true;
+  if (v && !reduceMotion && !saveData) {
+    const s = v.querySelector('source');
+    if (s?.dataset.src) {
+      v.addEventListener('playing', () => v.classList.add('hero-video--on'), { once: true });
+      s.src = s.dataset.src;
+      v.autoplay = true;
+      v.load();
+      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
+    }
+  }
+</script>
+
 <style>
   .gold-on-dark { color: var(--c-gold); }
   .gold-on-dark::before { background: var(--c-gold); }
@@ -167,6 +188,9 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
       linear-gradient(0deg, rgba(0,42,38,.45), transparent 55%);
   }
   .hero-bg { z-index: 0; }
+  /* فيديو الهيرو فوق الصورة الثابتة؛ يظهر تدريجياً بعد بدء التشغيل، والصورة تبقى احتياطاً */
+  .hero-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
+  .hero-video--on { opacity: 1; }
   /* :global لأن PalmMotif مكوّن منفصل والـ scoped CSS لا تصله */
   :global(.hero-wm) { position: absolute; inset-block-end: -14%; inset-inline-start: -10%; color: var(--c-gold); opacity: .12; z-index: 0; }
   .hero-in { position: relative; z-index: 2; max-inline-size: 56ch; padding-block: var(--s-8); }

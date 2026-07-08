@@ -4,6 +4,7 @@ title_en: "Al-Ahsa Equestrian Arena"
 slug_ar: "ميدان-الفروسية-بالأحساء"
 slug_en: "equestrian"
 category: farm
+heroImage: /img/equestrian
 kicker: "مزرعة ونخيل"
 summary: "ميدان لسباقات الخيل وفعاليات الفروسية."
 summary_en: "An equestrian arena and riding venue in Al-Taraf."

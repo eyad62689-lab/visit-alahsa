@@ -4,6 +4,7 @@ title_en: "Al-Dibs Mosque"
 slug_ar: "مسجد-الدبس"
 slug_en: "dibs"
 category: religious
+heroImage: /img/dibs
 kicker: "موقع ديني"
 summary: "من المساجد التراثية في حي الكوت القديم."
 summary_en: "One of the heritage mosques of old Al-Koot district."

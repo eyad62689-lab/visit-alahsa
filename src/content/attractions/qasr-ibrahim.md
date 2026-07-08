@@ -16,9 +16,9 @@ featured: true
 order: 2
 bestTime: النهار، لرؤية تفاصيل العمارة وضوء الفناء الداخلي.
 practical:
-  - { label: "الفئة", value: "قلعة وتراث معماري", verified: true }
-  - { label: "المنطقة", value: "وسط الهفوف", verified: true }
-  - { label: "المواعيد والدخول", value: "تُحدَّث قريباً", verified: false }
+  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", verified: true }
+  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
 ---
 

@@ -4,6 +4,7 @@ title_en: "Al-Uqair Port Mosque"
 slug_ar: "مسجد-ميناء-العقير"
 slug_en: "uqair-mosque"
 category: religious
+heroImage: /img/uqair-mosque
 kicker: "موقع ديني"
 summary: "مسجد أثري ضمن مجمع ميناء العقير."
 summary_en: "An archaeological mosque within the Al-Uqair port complex."

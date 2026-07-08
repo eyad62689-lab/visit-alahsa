@@ -4,6 +4,7 @@ title_en: "Al-Bubakr Ribat"
 slug_ar: "رباط-البوبكر"
 slug_en: "bubakr-ribat"
 category: religious
+heroImage: /img/bubakr-ribat
 kicker: "موقع ديني"
 summary: "مدرسة ووقف علمي تاريخي لتعليم القرآن والعلوم الشرعية."
 summary_en: "A historic school and scholarly endowment for teaching the Qur'an and Islamic sciences."

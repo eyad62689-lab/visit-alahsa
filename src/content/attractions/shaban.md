@@ -4,6 +4,7 @@ title_en: "Al-Shaban Mountain"
 slug_ar: "جبل-الشبعان"
 slug_en: "shaban"
 category: nature
+heroImage: /img/shaban
 kicker: "معلم طبيعي"
 summary: "جبل صخري يطلّ على واحة الأحساء."
 summary_en: "A rocky mountain overlooking the Al-Ahsa oasis."

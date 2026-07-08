@@ -4,6 +4,7 @@ title_en: "Abu Hsas / Al-Tuwaither Mountain"
 slug_ar: "جبل-أبو-حصيص"
 slug_en: "tuwaither"
 category: nature
+heroImage: /img/tuwaither
 kicker: "معلم طبيعي"
 summary: "جبل في منطقة التويثير."
 summary_en: "A rocky outcrop near the oasis edge."

@@ -4,6 +4,7 @@ title_en: "Al-Qubba Mosque"
 slug_ar: "مسجد-القبة"
 slug_en: "qubba-mosque"
 category: religious
+heroImage: /img/qubba-mosque
 kicker: "موقع ديني"
 summary: "المسجد ذو القبة داخل قصر إبراهيم، من أبرز معالمه المعمارية."
 summary_en: "The domed mosque inside Ibrahim Palace, one of its most striking architectural features."

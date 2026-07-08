@@ -4,6 +4,7 @@ title_en: "Al-Tahimiyah East Mosque"
 slug_ar: "مسجد-التهيمية-الشرقي"
 slug_en: "tahimiyah-e"
 category: religious
+heroImage: /img/tahimiyah-e
 kicker: "موقع ديني"
 summary: "مسجد أثري في قرية التهيمية."
 summary_en: "An archaeological mosque in the village of Al-Tahimiyah."
