@@ -14,7 +14,10 @@ const planTrip = ar ? '/خطط/' : '/en/plan-your-trip/';
 const cols = [
   {
     h: t('foot.col.discover'),
-    links: ['historic', 'nature', 'parks', 'market'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
+    links: [
+      ...['historic', 'nature', 'parks', 'market'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
+      { label: t('nav.fruits'), href: ar ? '/ثمار/' : '/en/fruits/' },
+    ],
   },
   {
     h: t('foot.col.plan'),
