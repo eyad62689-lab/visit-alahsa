@@ -39,8 +39,12 @@ img, svg { display: block; max-width: 100%; }
 }
 .skip-link:focus-visible { inset-block-start: 0; }
 
-/* حلقة تركيز مرئية موحّدة للوحة المفاتيح */
-:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; }
+/* حلقة تركيز مزدوجة للوحة المفاتيح: فيروزي خارجي يظهر على الفاتح، وحلقة
+   رملية داخلية تظهر على الداكن (الفوتر والهيرو) — تباين ≥3:1 في الحالتين */
+:focus-visible {
+  outline: 2px solid var(--c-turq); outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--c-sand);
+}
 
 /* احترام تفضيل تقليل الحركة */
 @media (prefers-reduced-motion: reduce) {
@@ -66,6 +70,9 @@ img, svg { display: block; max-width: 100%; }
   display: inline-flex; align-items: center; gap: var(--s-2);
 }
 .eyebrow::before { content: ''; inline-size: 22px; block-size: 2px; background: var(--c-gold); }
+/* على الخلفيات الداكنة: النصّ رملي (الذهبي دون 4.5:1)، والشرطة تبقى ذهبية */
+.eyebrow.gold-on-dark { color: var(--c-sand); }
+.eyebrow.gold-on-dark::before { background: var(--c-gold); }
 
 /* --- نصّ بارز --- */
 .lead { font-size: var(--t-lg); line-height: 1.7; color: var(--c-ink-soft); max-inline-size: 60ch; }
@@ -158,6 +165,8 @@ picture.photo { display: block; }
   backdrop-filter: blur(4px); border-color: transparent; color: var(--c-turq-deep); font-size: 1.2rem;
   box-shadow: var(--shadow);
 }
+/* ظلّ الزر يَغلِب حلقة التركيز الرملية العامّة (يليها في التسلسل) — نجمعهما */
+.fav-btn--corner:focus-visible { box-shadow: 0 0 0 2px var(--c-sand), var(--shadow); }
 .fav-btn--corner .fav-ic::before { content: '+'; }
 .fav-btn--corner.is-saved { background: var(--c-turq); color: var(--c-sand); }
 .fav-btn--corner.is-saved .fav-ic::before { content: '✓'; }
