@@ -8,11 +8,18 @@ heroImage: /img/baiah
 kicker: "معلم تاريخي"
 summary: "الموقع الذي تمت فيه مبايعة الملك عبدالعزيز عند ضمّ الأحساء عام 1331هـ، رمز تاريخي لتأسيس الدولة."
 summary_en: "The site where King Abdulaziz received allegiance upon the annexation of Al-Ahsa in 1331 AH — a symbol of the state's founding."
-body_en: "The site where King Abdulaziz received allegiance upon the annexation of Al-Ahsa in 1331 AH — a symbol of the state's founding."
+body_en: "In the Kut district at the heart of Hofuf, steps away from Qasr Ibrahim and the Qaisariyah Souq, stands Bayt Al-Bay'ah — the House of Allegiance, known as Bayt Al-Mulla — a residence built in 1203 AH / 1788 CE by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla. It was here that King Abdulaziz stayed as a guest upon entering Al-Ahsa in 1331 AH / 1913 CE, and here that the people pledged him their allegiance, making the house a symbol of Al-Ahsa joining the modern Saudi state. Later acquired by the state and carefully restored, it is now a museum telling the story of that allegiance and displaying historic manuscripts and artefacts."
+area: حي الكوت — وسط الهفوف
 featured: false
 order: 15
 location: { lat: 25.376665, lng: 49.584965 }
 mapUrl: "https://goo.gl/maps/XzXFU7h4d6eSFcHB9"
 ---
 
-الموقع الذي تمت فيه مبايعة الملك عبدالعزيز عند ضمّ الأحساء عام 1331هـ، رمز تاريخي لتأسيس الدولة.
+في حي الكوت وسط الهفوف، وعلى خطوات من قصر إبراهيم وسوق القيصرية، يقع بيت
+البيعة المعروف بـ**بيت الملا**، وهو دار بناها قاضي الأحساء الشيخ عبدالرحمن بن
+عمر الملا عام ١٢٠٣هـ/١٧٨٨م. وفي هذه الدار نزل **الملك عبدالعزيز** ضيفاً عند
+دخوله الأحساء عام ١٣٣١هـ/١٩١٣م، وفيها بايعه الأهالي، فغدا البيت رمزاً
+لانضمام الأحساء إلى الدولة السعودية الحديثة. آلت ملكيته لاحقاً إلى الدولة
+ورُمّم بعناية، وتحوّل متحفاً يروي قصة المبايعة ويعرض مخطوطات ومقتنيات
+تاريخية.
