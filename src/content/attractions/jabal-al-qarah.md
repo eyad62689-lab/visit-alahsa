@@ -5,7 +5,7 @@ slug_ar: جبل-القارة
 slug_en: jabal-al-qarah
 category: nature
 heroImage: /img/jabal-al-qarah
-kicker: معلمٌ بطل
+kicker: أعجوبة جيولوجية
 summary: كهوفٌ تبرد في الصيف وتدفأ في الشتاء، نحتها الزمن في قلب الواحة.
 summary_en: "Caves that stay cool in summer and warm in winter, carved by time at the heart of the oasis."
 body_en: "Jabal Al-Qarah rises from the middle of the oasis like an ancient guardian, but its secret lies not in its height — in its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth when night falls — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity. Walk its narrow corridors, where the stone almost brushes your shoulders, then suddenly opens onto a high chamber pierced by a thread of light. From the summit the oasis unfolds like a sea of palms — a view that sums up why Al-Ahsa became the largest palm oasis on earth."

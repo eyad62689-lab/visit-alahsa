@@ -19,12 +19,12 @@ const featuredEntries = (await getCollection('attractions'))
 // key = مفتاح النصّ في القاموس؛ cat = فئة حقيقية في المجموعة تُفتح مفلترة،
 // والفئات التي لا معالم لها بعد تقود إلى القائمة الكاملة.
 const catCards = [
-  { key: 'historic', cat: 'historic' },
-  { key: 'nature', cat: 'nature' },
-  { key: 'crafts', cat: null },
-  { key: 'taste', cat: 'farm' },
-  { key: 'market', cat: 'market' },
-  { key: 'events', cat: null },
+  { key: 'historic', cat: 'historic', href: null },
+  { key: 'nature', cat: 'nature', href: null },
+  { key: 'crafts', cat: null, href: null },
+  { key: 'taste', cat: 'farm', href: null },
+  { key: 'market', cat: 'market', href: null },
+  { key: 'events', cat: null, href: ar ? '/فعاليات/' : '/en/events/' },
 ];
 const facts = [
   { n: ar ? '٢.٥ مليون' : '2.5M', l: t('fact.palms.l') },
@@ -34,7 +34,6 @@ const facts = [
 ];
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const allHref = ar ? '/معالم/' : '/en/attractions/';
-const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
 const planTripHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 
 const siteUrl = 'https://visit-alahsa.com';
@@ -91,7 +90,7 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
         </header>
         <div class="cat-grid">
           {catCards.map((c, i) => (
-            <a class="cat-card" href={c.cat ? `${allHref}?cat=${c.cat}` : allHref} data-reveal style={`transition-delay:${i * 60}ms`}>
+            <a class="cat-card" href={c.href ?? (c.cat ? `${allHref}?cat=${c.cat}` : allHref)} data-reveal style={`transition-delay:${i * 60}ms`}>
               <span class="cat-icon"><PalmMotif size={34} /></span>
               <h3 class="cat-t">{t(`cat.${c.key}.t` as any)}</h3>
               <p class="cat-d">{t(`cat.${c.key}.d` as any)}</p>
@@ -150,7 +149,6 @@ const title = ar ? 'زوروا الأحساء — أكبر واحة نخيل ف�
         <p class="lead plan-lead">{t('home.plan.lead')}</p>
         <div class="plan-ctas">
           <a href={planTripHref} class="btn btn--gold">{t('home.plan.cta')}</a>
-          <a href={myTripHref} class="btn btn--turq">{t('nav.myTrip')}</a>
         </div>
       </div>
     </section>

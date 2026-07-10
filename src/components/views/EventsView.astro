@@ -1,0 +1,314 @@
+---
+// صفحة «المهرجانات والفعاليات» — المواسم الثقافية المتكررة في الأحساء.
+// المصدر: ملف «الفعاليات الموسمية السنوية في الأحساء» المعتمد من إياد (2026-07-08).
+// قاعدة ملزمة: لا تُذكر أشهر ولا تواريخ ولا مُدد محددة بالأيام — مواسم عامة فقط،
+// مع تنبيه ظاهر بأن المواعيد تتغيّر سنوياً ويُتأكّد منها عبر القنوات الرسمية.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+type Ev = {
+  name: string; place: string; season: string;
+  span: string; org: string; acts: string[];
+};
+
+const C = ar ? {
+  eyebrow: 'مواسم الواحة',
+  title: 'المهرجانات والفعاليات',
+  lead: 'من سوق القيصرية إلى مزارع النخيل، تنبض الأحساء بمواسمَ تُحيي تراثها على مدار العام — احتفالاتٌ ومهرجاناتٌ تعود كلَّ سنةٍ في موسمها.',
+  notice: 'تتكرّر هذه الفعاليات سنوياً في مواسمها التقريبية، وقد تختلف مواعيدها وتفاصيلها من عامٍ لآخر بحسب تنظيم كل نسخة. يُرجى التأكد من إعلانات الجهات المنظّمة والقنوات الرسمية قبل الزيارة.',
+  placeK: 'الموقع',
+  orgK: 'الجهات المنظّمة',
+  spanK: 'المدة التقريبية',
+  actsK: 'أبرز الأنشطة',
+  events: [
+    {
+      name: 'مهرجان البشت الحساوي', place: 'قصر إبراهيم التاريخي، الهفوف',
+      season: 'الشتاء', span: 'أيامٌ معدودة',
+      org: 'هيئة التراث (وزارة الثقافة)',
+      acts: ['معرض البشت', 'ورش تعليم الحياكة', 'سوق البشوت التفاعلي', 'عروض فولكلورية'],
+    },
+    {
+      name: 'ليالي القيصرية', place: 'سوق القيصرية التاريخي، الهفوف',
+      season: 'أواخر الشتاء', span: 'عدة أسابيع',
+      org: 'أمانة الأحساء، هيئة تطوير الأحساء، هيئة التراث',
+      acts: ['عروض فنون شعبية', 'جلسات مجتمعية', 'ألعاب تراثية', 'ورش حرفية'],
+    },
+    {
+      name: 'ليالي كفو', place: 'منتزه الملك عبدالله البيئي، الهفوف',
+      season: 'شهر رمضان المبارك', span: 'ليالٍ رمضانية ممتدة',
+      org: 'جامعة الملك فيصل',
+      acts: ['عروض مسرحية', 'منطقة الطفل', 'مطبخ كفو التفاعلي', 'حفلات موسيقية', 'عشاء «الغُبقة»'],
+    },
+    {
+      name: 'مهرجان التمور المصنّعة', place: 'قلعة أمانة الأحساء، الهفوف',
+      season: 'الشتاء', span: 'عدة أسابيع',
+      org: 'أمانة الأحساء، هيئة تطوير الأحساء',
+      acts: ['جناح التذوق والتسوق', 'أجنحة المنتجات التحويلية', 'ورش ثقافية', 'مسابقات', 'عروض موسيقية'],
+    },
+    {
+      name: 'قرية النخيل', place: 'واحة الأحساء',
+      season: 'الشتاء والربيع', span: 'موسم ممتد',
+      org: 'المركز الوطني للنخيل والتمور',
+      acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
+    },
+    {
+      name: 'معرض اللومي الحساوي', place: 'مركز الأحساء للمعارض',
+      season: 'الصيف', span: 'نحو أسبوعين',
+      org: 'غرفة الأحساء',
+      acts: ['معارض منتجات اللومي', 'الطهي الحي', 'ورش عمل زراعية', 'ركن الطفل', 'جلسات عائلية'],
+    },
+    {
+      name: 'شتاء العقير', place: 'منتزه شاطئ العقير',
+      season: 'الشتاء', span: 'عدة أسابيع',
+      org: 'هيئة تطوير الأحساء، أمانة الأحساء',
+      acts: ['فعاليات بحرية ورياضية عائلية', 'ورش فنية حرفية', 'حفلات موسيقية', 'ألعاب ترفيهية'],
+    },
+    {
+      name: 'موسم سباقات الخيل', place: 'ميدان الفروسية، الطرف',
+      season: 'الشتاء', span: 'موسم ممتد',
+      org: 'ميدان الفروسية بالأحساء',
+      acts: ['سباقات الخيل', 'فعاليات الفروسية'],
+    },
+    {
+      name: 'مهرجان الأحساء المبدعة', place: 'الفريج التراثي، قلعة الأمانة',
+      season: 'الربيع', span: 'نحو أسبوع',
+      org: 'أمانة الأحساء',
+      acts: ['صناعة الفخار', 'الخوصيات', 'النجارة التقليدية', 'فنون تشكيلية', 'عروض شعبية'],
+    },
+  ] as Ev[],
+  notesH: 'قبل أن تحضر',
+  notes: [
+    { h: 'التوقيت', d: 'تتبع الفعاليات التقويمين الهجري والميلادي وتعود سنوياً في مواسمها التقريبية، وقد تختلف المواعيد الرسمية من عامٍ لآخر — تابع إعلانات كل نسخة.' },
+    { h: 'التراث والإبداع', d: 'تسلّط المهرجانات الضوء على هوية الأحساء وتراثها عبر الموسيقى التقليدية والملابس الشعبية والحرف اليدوية والمنتجات المحلية الأصيلة.' },
+    { h: 'الأجواء العائلية', d: 'برامج تناسب جميع أفراد العائلة، بتركيزٍ على الترفيه والإبداع والتسوق والتذوق لكل الأعمار.' },
+  ],
+  srcNote: 'للمزيد من المعلومات والتحديثات، يُرجى متابعة أمانة الأحساء وهيئة تطوير الأحساء والقنوات الرسمية للفعاليات.',
+  ctaH: 'اجعل موسمك رحلةً كاملة',
+  ctaD: 'اربط زيارة المهرجان بمعالم الواحة القريبة منه، وجهّز مسارك في «رحلتي».',
+  ctaBrowse: 'تصفّح المعالم',
+  ctaPlan: 'خطّط لرحلتك',
+  seoTitle: 'مهرجانات وفعاليات الأحساء — مواسم الواحة على مدار العام',
+  seoDesc: 'دليل المهرجانات والفعاليات الموسمية في الأحساء: البشت الحساوي، ليالي القيصرية، ليالي كفو، مهرجان التمور، قرية النخيل، اللومي الحساوي، شتاء العقير، سباقات الخيل، والأحساء المبدعة — بمواسمها وأنشطتها وجهاتها المنظّمة.',
+} : {
+  eyebrow: 'Seasons of the oasis',
+  title: 'Festivals & Events',
+  lead: 'From Qaisariyah Souq to the palm groves, Al-Ahsa pulses with seasons that revive its heritage all year round — celebrations and festivals that return each year in their season.',
+  notice: 'These events recur annually in their approximate seasons; official dates and details may vary from year to year with each edition. Please confirm via the organisers’ announcements and official channels before visiting.',
+  placeK: 'Location',
+  orgK: 'Organisers',
+  spanK: 'Approximate length',
+  actsK: 'Highlights',
+  events: [
+    {
+      name: 'Hassawi Bisht Festival', place: 'Historic Ibrahim Palace, Hofuf',
+      season: 'Winter', span: 'A few days',
+      org: 'Heritage Commission (Ministry of Culture)',
+      acts: ['Bisht exhibition', 'Weaving workshops', 'Interactive bisht souq', 'Folklore performances'],
+    },
+    {
+      name: 'Qaisariyah Nights', place: 'Historic Qaisariyah Souq, Hofuf',
+      season: 'Late winter', span: 'Several weeks',
+      org: 'Al-Ahsa Municipality, Al-Ahsa Development Authority, Heritage Commission',
+      acts: ['Folk arts shows', 'Community gatherings', 'Heritage games', 'Craft workshops'],
+    },
+    {
+      name: 'Kafu Nights', place: 'King Abdullah Environmental Park, Hofuf',
+      season: 'The holy month of Ramadan', span: 'Extended Ramadan nights',
+      org: 'King Faisal University',
+      acts: ['Theatre shows', 'Kids’ zone', 'Interactive Kafu kitchen', 'Concerts', '“Ghabqa” dinner'],
+    },
+    {
+      name: 'Processed Dates Festival', place: 'Al-Ahsa Municipality Fort, Hofuf',
+      season: 'Winter', span: 'Several weeks',
+      org: 'Al-Ahsa Municipality, Al-Ahsa Development Authority',
+      acts: ['Tasting & shopping pavilion', 'Dates-product pavilions', 'Cultural workshops', 'Competitions', 'Live music'],
+    },
+    {
+      name: 'Palm Village', place: 'Al-Ahsa Oasis',
+      season: 'Winter & spring', span: 'An extended season',
+      org: 'National Center for Palms and Dates',
+      acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
+    },
+    {
+      name: 'Hassawi Lomi Exhibition', place: 'Al-Ahsa Expo Center',
+      season: 'Summer', span: 'Around two weeks',
+      org: 'Al-Ahsa Chamber',
+      acts: ['Lomi (dried lime) product shows', 'Live cooking', 'Agricultural workshops', 'Kids’ corner', 'Family sessions'],
+    },
+    {
+      name: 'Al-Uqair Winter', place: 'Al-Uqair Beach Park',
+      season: 'Winter', span: 'Several weeks',
+      org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
+      acts: ['Family sea & sports activities', 'Art & craft workshops', 'Concerts', 'Fun games'],
+    },
+    {
+      name: 'Horse Racing Season', place: 'Al-Ahsa Equestrian Arena, Al-Taraf',
+      season: 'Winter', span: 'An extended season',
+      org: 'Al-Ahsa Equestrian Arena',
+      acts: ['Horse races', 'Equestrian events'],
+    },
+    {
+      name: 'Creative Al-Ahsa Festival', place: 'Heritage Freej, the Municipality Fort',
+      season: 'Spring', span: 'About a week',
+      org: 'Al-Ahsa Municipality',
+      acts: ['Pottery making', 'Palm-frond crafts', 'Traditional carpentry', 'Fine arts', 'Folk performances'],
+    },
+  ] as Ev[],
+  notesH: 'Before you go',
+  notes: [
+    { h: 'Timing', d: 'The events follow both the Hijri and Gregorian calendars and return annually in their approximate seasons; official dates can shift from year to year — follow each edition’s announcements.' },
+    { h: 'Heritage & creativity', d: 'The festivals spotlight Al-Ahsa’s identity and heritage through traditional music, folk dress, handicrafts and authentic local products.' },
+    { h: 'Family atmosphere', d: 'Programmes suit the whole family, focused on entertainment, creativity, shopping and tasting for all ages.' },
+  ],
+  srcNote: 'For more information and updates, follow Al-Ahsa Municipality, the Al-Ahsa Development Authority and the events’ official channels.',
+  ctaH: 'Turn your season into a full trip',
+  ctaD: 'Pair the festival with the oasis sights around it, and build your route in “My Trip”.',
+  ctaBrowse: 'Browse attractions',
+  ctaPlan: 'Plan your trip',
+  seoTitle: 'Al-Ahsa festivals & events — seasons of the oasis all year round',
+  seoDesc: 'A guide to Al-Ahsa’s seasonal festivals and events: the Hassawi Bisht Festival, Qaisariyah Nights, Kafu Nights, the dates festivals, Palm Village, the Hassawi Lomi Exhibition, Al-Uqair Winter, the horse racing season and Creative Al-Ahsa — with their seasons, highlights and organisers.',
+};
+
+const browseHref = ar ? '/معالم/' : '/en/attractions/';
+const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
+const siteUrl = 'https://visit-alahsa.com';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(alt[lang], siteUrl).href },
+  ] },
+];
+---
+<Base title={`${C.seoTitle} — ${t('site.name')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class="ev-hero on-dark">
+      <PalmMotif size={320} class="evh-wm" aria-hidden="true" />
+      <div class="container evh-in">
+        <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
+        <h1 class="evh-title">{C.title}</h1>
+        <p class="evh-sum">{C.lead}</p>
+      </div>
+    </section>
+
+    <section class="sec" id="events">
+      <div class="container">
+        <p class="ev-notice" data-reveal>{C.notice}</p>
+
+        <div class="ev-grid">
+          {C.events.map((e, i) => (
+            <article class="ev-card" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}>
+              <div class="ev-top">
+                <span class="ev-season">{e.season}</span>
+                <span class="ev-span">{e.span}</span>
+              </div>
+              <h2 class="ev-name">{e.name}</h2>
+              <dl class="ev-meta">
+                <div class="evm-row">
+                  <dt class="evm-k">{C.placeK}</dt>
+                  <dd class="evm-v">{e.place}</dd>
+                </div>
+                <div class="evm-row">
+                  <dt class="evm-k">{C.orgK}</dt>
+                  <dd class="evm-v">{e.org}</dd>
+                </div>
+              </dl>
+              <h3 class="ev-acts-h">{C.actsK}</h3>
+              <ul class="ev-acts">
+                {e.acts.map((a) => <li class="ev-act">{a}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec--sand" id="notes">
+      <div class="container">
+        <h2 class="sec-h" data-reveal>{C.notesH}</h2>
+        <div class="nt-grid">
+          {C.notes.map((n, i) => (
+            <article class="nt-item" data-reveal style={`transition-delay:${i * 70}ms`}>
+              <h3 class="nt-h">{n.h}</h3>
+              <p class="nt-d">{n.d}</p>
+            </article>
+          ))}
+        </div>
+        <p class="nt-src" data-reveal>{C.srcNote}</p>
+      </div>
+    </section>
+
+    <section class="ev-cta">
+      <div class="container ev-cta-in" data-reveal>
+        <h2 class="evc-h">{C.ctaH}</h2>
+        <p class="lead evc-d">{C.ctaD}</p>
+        <div class="evc-btns">
+          <a href={browseHref} class="btn btn--gold">{C.ctaBrowse}</a>
+          <a href={planHref} class="btn btn--turq">{C.ctaPlan}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .ev-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
+  :global(.evh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
+  .evh-in { position: relative; z-index: 2; max-inline-size: 60ch; }
+  .evh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .evh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+
+  .sec { padding-block: var(--s-7); }
+  .sec--sand { background: var(--c-sand-2); }
+  .sec-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; margin-block-end: var(--s-5); }
+
+  .ev-notice { max-inline-size: 78ch; font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8;
+    background: #fff; border: 1px solid var(--c-line); border-inline-start: 3px solid var(--c-gold);
+    border-radius: var(--radius); padding: var(--s-3) var(--s-4); margin-block-end: var(--s-5); }
+
+  .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-4); }
+  .ev-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--c-line);
+    border-radius: var(--radius); padding: var(--s-4); box-shadow: var(--shadow); }
+  .ev-top { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); margin-block-end: var(--s-3); }
+  .ev-season { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep);
+    background: color-mix(in srgb, var(--c-turq) 10%, #fff); border-radius: 999px; padding: 4px 12px; }
+  .ev-span { font-size: var(--t-xs); color: var(--c-ink-60); }
+  .ev-name { font-size: var(--t-xl); color: var(--c-ink); line-height: 1.25; margin-block-end: var(--s-3); }
+  .ev-meta { margin: 0 0 var(--s-3); display: flex; flex-direction: column; gap: var(--s-2); }
+  .evm-row { padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.55); }
+  .evm-k { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-gold-deep); }
+  .evm-v { margin: 0; font-size: var(--t-sm); color: var(--c-ink); line-height: 1.7; }
+  .ev-acts-h { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-ink-60);
+    letter-spacing: .02em; margin-block-end: var(--s-2); }
+  .ev-acts { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .ev-act { font-size: var(--t-xs); color: var(--c-ink-soft); background: var(--c-sand);
+    border: 1px solid var(--c-line); border-radius: 999px; padding: 4px 12px; line-height: 1.6; }
+
+  .nt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--s-4); }
+  .nt-item { padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.55); }
+  .nt-h { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-1); }
+  .nt-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+  .nt-src { margin-block-start: var(--s-5); font-size: var(--t-sm); color: var(--c-ink-60); max-inline-size: 70ch; }
+
+  .ev-cta { background: var(--c-sand); padding-block: var(--s-8); text-align: center; }
+  .ev-cta-in { max-inline-size: 56ch; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--s-3); }
+  .evc-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; }
+  .evc-d { text-align: center; }
+  .evc-btns { display: flex; gap: var(--s-3); flex-wrap: wrap; justify-content: center; margin-block-start: var(--s-2); }
+
+  @media (max-width: 760px) {
+    .evh-sum { font-size: var(--t-base); }
+    .evc-btns { flex-direction: column; align-items: stretch; inline-size: 100%; }
+    .evc-btns .btn { justify-content: center; }
+  }
+</style>

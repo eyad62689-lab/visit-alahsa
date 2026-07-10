@@ -4,6 +4,7 @@ title_en: "Al-Khalifa Heritage Museum"
 slug_ar: "متحف-الخليفة-التراثي"
 slug_en: "khalifa-museum"
 category: historic
+heroImage: /img/khalifa-museum
 kicker: "متحف خاص"
 summary: "متحف خاص على هيئة سوق شعبي يحاكي القيصرية، بأكثر من عشرة آلاف قطعة تراثية."
 summary_en: "A private museum built like a folk souq echoing the Qaisariyah, holding over ten thousand heritage pieces."

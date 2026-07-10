@@ -1,0 +1,422 @@
+---
+// السياسات والشروط القانونية — النص العربي منقول حرفياً من وثيقة اعتمدها إياد
+// (docx، آخر تحديث 10 يوليو 2026م)، والإنجليزية ترجمة أمينة لها. القرارات (2026-07-10):
+// تُبقى أقسام Google Analytics كما هي لأن إياد يستخدمه فعلاً؛ استُبدلت بها صفحة الخصوصية
+// المختصرة القديمة. تكيّف وحيد: مرجع «صفحة اتصل بنا» غير الموجودة → البريد الرسمي.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+type Sub = { h: string; before?: string[]; list?: string[]; after?: string[] };
+type Section = { n: string; h: string; lead?: string; subs: Sub[] };
+
+const C = ar ? {
+  title: 'السياسات والشروط القانونية',
+  updated: 'آخر تحديث: 10 يوليو 2026م',
+  chips: ['سياسة الخصوصية', 'شروط الاستخدام', 'إخلاء المسؤولية', 'ملفات تعريف الارتباط', 'حقوق الملكية الفكرية', 'الروابط الخارجية'],
+  introH: 'مقدمة عامة',
+  intro: [
+    'مرحبًا بكم في موقع «زوروا الأحساء» (visit-alahsa.com)، البوابة الرقمية المستقلة للتعريف بواحة الأحساء، تراثًا وطبيعةً وثقافةً وفعاليات. تحدد هذه الوثيقة مجموعة السياسات والشروط القانونية التي تنظم استخدامكم للموقع وما يقدمه من محتوى وخدمات، وذلك بما يتوافق مع الأنظمة المعمول بها في المملكة العربية السعودية، ومنها نظام حماية البيانات الشخصية الصادر بالمرسوم الملكي رقم (م/19) وتاريخ 1443/2/9هـ ولائحته التنفيذية.',
+    'باستخدامكم هذا الموقع أو تصفحكم لأي من صفحاته، فإنكم تقرون بأنكم قد اطلعتم على هذه السياسات والشروط وفهمتموها ووافقتم على الالتزام بها. فإن لم توافقوا على أي بند منها، فنرجو منكم التوقف عن استخدام الموقع.',
+    'يحتفظ الموقع بحقه في تعديل هذه السياسات أو تحديثها في أي وقت دون إشعار مسبق، ويُعد استمراركم في استخدام الموقع بعد نشر أي تعديل موافقةً ضمنيةً عليه. لذا ننصح بمراجعة هذه الصفحة دوريًا، وسيُشار دائمًا إلى تاريخ آخر تحديث في أعلى الوثيقة.',
+  ],
+  sections: [
+    {
+      n: 'أولًا', h: 'سياسة الخصوصية',
+      lead: 'نولي في «زوروا الأحساء» خصوصية زوارنا أهمية قصوى، ونلتزم بحماية بياناتهم الشخصية وفق أفضل الممارسات وبما يتفق مع نظام حماية البيانات الشخصية في المملكة العربية السعودية. توضح هذه السياسة طبيعة البيانات التي نجمعها، وكيفية استخدامها وحمايتها، وحقوقكم المتعلقة بها.',
+      subs: [
+        { h: '1. البيانات التي نجمعها',
+          before: ['موقع «زوروا الأحساء» موقع معلوماتي في المقام الأول، ولا يشترط التسجيل أو إنشاء حساب لتصفح محتواه. ومع ذلك، قد نجمع الفئات التالية من البيانات:'],
+          list: [
+            'بيانات تقنية تُجمع تلقائيًا عند تصفح الموقع، مثل: عنوان بروتوكول الإنترنت (IP)، ونوع المتصفح ونظام التشغيل، والصفحات التي تمت زيارتها ومدة الزيارة، ومصدر الوصول إلى الموقع.',
+            'بيانات الاستخدام والتحليلات المجمعة عبر خدمة Google Analytics وما يماثلها من أدوات تحليلية، وهي بيانات إحصائية مجهولة الهوية في الغالب تُستخدم لفهم أنماط التصفح.',
+            'بيانات تقدمونها طوعًا عند التواصل معنا عبر البريد الإلكتروني أو نماذج الاتصال، مثل: الاسم، وعنوان البريد الإلكتروني، ومحتوى الرسالة.',
+          ] },
+        { h: '2. أغراض جمع البيانات واستخدامها',
+          before: ['نستخدم البيانات المشار إليها أعلاه للأغراض المشروعة التالية حصرًا:'],
+          list: [
+            'تحسين محتوى الموقع وتجربة المستخدم بناءً على أنماط التصفح والاهتمامات العامة للزوار.',
+            'قياس أداء الموقع وتحليل حركة الزيارات إحصائيًا لأغراض التطوير المستمر.',
+            'الرد على الاستفسارات والرسائل الواردة من الزوار.',
+            'حماية الموقع من إساءة الاستخدام والأنشطة الاحتيالية أو الضارة.',
+          ],
+          after: ['لا نبيع بياناتكم الشخصية ولا نؤجرها ولا نتاجر بها مع أي طرف ثالث بأي حال من الأحوال، ولا نشاركها إلا في الحدود اللازمة لتشغيل الأدوات التحليلية المذكورة، أو حين يُلزمنا النظام بالإفصاح عنها لجهة مختصة.'] },
+        { h: '3. خدمة Google Analytics وملفات التتبع',
+          before: ['يستخدم الموقع خدمة Google Analytics (بما في ذلك إصدار GA4) المقدمة من شركة Google لتحليل استخدام الموقع. تعتمد هذه الخدمة على ملفات تعريف الارتباط (Cookies) ووسائل تتبع مشابهة لجمع معلومات إحصائية عن الزيارات، وقد تُنقل هذه المعلومات إلى خوادم Google وتُخزن فيها. وتخضع معالجة Google لهذه البيانات لسياسة الخصوصية الخاصة بها. ويمكنكم الاطلاع على تفاصيل إدارة ملفات التتبع وخيارات التعطيل في «سياسة ملفات تعريف الارتباط» الواردة في القسم الرابع من هذه الوثيقة.'] },
+        { h: '4. حقوق المستخدمين',
+          before: ['وفقًا لنظام حماية البيانات الشخصية السعودي، تتمتعون بالحقوق التالية فيما يخص بياناتكم الشخصية:'],
+          list: [
+            'حق العلم: أن تعرفوا طبيعة البيانات التي نجمعها عنكم والغرض من جمعها وطريقة معالجتها.',
+            'حق الوصول: طلب الاطلاع على بياناتكم الشخصية المتوفرة لدينا والحصول على نسخة منها.',
+            'حق التصحيح: طلب تصحيح أي بيانات غير دقيقة أو غير مكتملة.',
+            'حق الحذف (الإتلاف): طلب حذف بياناتكم الشخصية متى زالت الحاجة إليها أو سحبتم موافقتكم، ما لم يوجد مسوغ نظامي للاحتفاظ بها.',
+            'حق سحب الموافقة: التراجع عن موافقتكم على معالجة بياناتكم في أي وقت، دون أن يؤثر ذلك على مشروعية المعالجة السابقة للسحب.',
+          ],
+          after: ['لممارسة أي من هذه الحقوق، يمكنكم التواصل معنا عبر قنوات الاتصال الرسمية للموقع، وسنستجيب لطلبكم خلال مدة معقولة وبما يتفق مع المتطلبات النظامية.'] },
+        { h: '5. حماية البيانات ومدة الاحتفاظ بها',
+          before: ['نطبق تدابير تقنية وتنظيمية مناسبة لحماية البيانات من الوصول غير المصرح به أو الإفصاح أو التعديل أو الإتلاف، ومن ذلك: تشفير الاتصال بالموقع عبر بروتوكول HTTPS، وتفعيل رؤوس الحماية الأمنية (Security Headers)، وتقييد الوصول إلى البيانات على من يحتاج إليها فقط. ولا نحتفظ بالبيانات الشخصية إلا للمدة اللازمة لتحقيق الأغراض التي جُمعت من أجلها، أو للمدة التي تقتضيها الأنظمة المعمول بها.'] },
+        { h: '6. خصوصية القاصرين',
+          before: ['لا يستهدف الموقع جمع بيانات شخصية ممن هم دون الثامنة عشرة عن قصد. وإذا تبين لنا أننا جمعنا بيانات من قاصر دون موافقة ولي أمره، فسنبادر إلى حذفها فور العلم بذلك.'] },
+      ],
+    },
+    {
+      n: 'ثانيًا', h: 'شروط الاستخدام',
+      lead: 'تنظم هذه الشروط استخدامكم لموقع «زوروا الأحساء» وما يتضمنه من محتوى وخدمات. ويُعد دخولكم إلى الموقع واستخدامه قبولًا صريحًا بهذه الشروط والتزامًا بها.',
+      subs: [
+        { h: '1. طبيعة الموقع والغرض منه',
+          before: ['«زوروا الأحساء» موقع معلوماتي مستقل يهدف إلى التعريف بواحة الأحساء ومعالمها التراثية والطبيعية وفعالياتها الموسمية، وتقديم محتوى إرشادي وثقافي للزوار والمهتمين. والموقع ليس جهة حكومية، ولا يمثل أي هيئة رسمية، ولا يقدم خدمات حجز أو بيع مباشرة.'] },
+        { h: '2. حقوق الملكية الفكرية',
+          before: ['جميع محتويات الموقع — من نصوص ومقالات وسرود أدبية وصور وتصاميم وشعارات وخرائط تفاعلية وهوية بصرية وشيفرة برمجية — مملوكة لموقع «زوروا الأحساء» أو مرخصة له، ومحمية بموجب نظام حماية حقوق المؤلف السعودي والاتفاقيات الدولية ذات الصلة. ولا يجوز نسخها أو إعادة نشرها أو توزيعها أو تعديلها أو استغلالها تجاريًا دون إذن كتابي مسبق.'] },
+        { h: '3. الاستخدام المسموح به',
+          list: [
+            'تصفح الموقع والاطلاع على محتواه للأغراض الشخصية وغير التجارية.',
+            'مشاركة روابط صفحات الموقع عبر وسائل التواصل الاجتماعي أو غيرها، مع الإشارة إلى المصدر.',
+            'الاقتباس المحدود من المحتوى لأغراض التعليم أو البحث أو النقد، وفق ما تجيزه الأنظمة، مع نسبة المحتوى إلى الموقع بوضوح.',
+          ] },
+        { h: '4. الاستخدام المحظور',
+          before: ['يُحظر عليكم عند استخدام الموقع القيام بأي مما يلي:'],
+          list: [
+            'نسخ المحتوى أو الصور أو إعادة نشرها كليًا أو جزئيًا لأغراض تجارية دون إذن كتابي مسبق.',
+            'استخدام الموقع في أي نشاط مخالف للأنظمة المعمول بها في المملكة العربية السعودية، ومنها نظام مكافحة الجرائم المعلوماتية.',
+            'محاولة اختراق الموقع أو تعطيله أو الوصول غير المصرح به إلى أنظمته أو بياناته.',
+            'استخدام برامج آلية (مثل Bots أو Scrapers) لاستخلاص المحتوى أو جمع البيانات بشكل ممنهج دون موافقة.',
+            'انتحال صفة الموقع أو الإيحاء بوجود شراكة أو رعاية أو تأييد منه دون اتفاق موثق.',
+            'نشر أو إرسال أي محتوى مسيء أو تشهيري أو مخالف للآداب العامة والقيم الإسلامية عبر أي من قنوات التواصل المرتبطة بالموقع.',
+          ] },
+        { h: '5. التعديلات وإيقاف الخدمة',
+          before: ['يحتفظ الموقع بحقه في تعديل محتواه أو خدماته أو تعليقها أو إيقافها كليًا أو جزئيًا في أي وقت ودون إشعار مسبق، ولا يترتب على ذلك أي مسؤولية تجاه المستخدمين.'] },
+        { h: '6. النظام الواجب التطبيق',
+          before: ['تخضع هذه الشروط وتُفسر وفقًا للأنظمة المعمول بها في المملكة العربية السعودية، ويكون الاختصاص في أي نزاع ينشأ عنها للمحاكم والجهات القضائية المختصة في المملكة.'] },
+      ],
+    },
+    {
+      n: 'ثالثًا', h: 'إخلاء المسؤولية',
+      lead: 'نبذل في «زوروا الأحساء» جهدًا كبيرًا لضمان دقة المعلومات المنشورة وحداثتها، غير أن طبيعة المحتوى السياحي والمعلوماتي تقتضي التنبيه إلى ما يلي:',
+      subs: [
+        { h: '1. دقة المعلومات وتحديثها',
+          before: ['تُقدم المعلومات الواردة في الموقع — ومنها أوقات فتح المعالم والمواقع، وأسعار الدخول والخدمات، ومواعيد الفعاليات والمهرجانات الموسمية، وتفاصيل المطاعم والمقاهي وأماكن الإقامة — على سبيل الإرشاد العام، وهي عرضة للتغيير في أي وقت من قبل الجهات المشغلة لها دون علمنا. لذا فإن الموقع لا يضمن دقة هذه المعلومات أو اكتمالها أو حداثتها في كل حين، وننصح الزوار دائمًا بالتحقق منها مباشرة من الجهات الرسمية أو مشغلي المواقع والفعاليات قبل التخطيط للزيارة.'] },
+        { h: '2. حدود المسؤولية',
+          before: ['لا يتحمل موقع «زوروا الأحساء» ولا القائمون عليه أي مسؤولية عن:'],
+          list: [
+            'أي أضرار مباشرة أو غير مباشرة أو تبعية تنشأ عن استخدام الموقع أو الاعتماد على معلوماته.',
+            'أي خسائر مالية أو تكاليف أو التزامات تترتب على قرارات اتُخذت بناءً على محتوى الموقع، كتغير الأسعار أو إلغاء الفعاليات أو إغلاق المعالم.',
+            'جودة الخدمات المقدمة من الجهات والمنشآت المذكورة في الموقع، إذ إن ذكرها لا يُعد توصية ملزمة ولا ضمانًا لمستوى خدماتها.',
+            'أي انقطاع في الوصول إلى الموقع أو أعطال تقنية أو أخطاء برمجية خارجة عن السيطرة المعقولة.',
+          ] },
+        { h: '3. المحتوى الإرشادي لا الاستشاري',
+          before: ['المحتوى المنشور في الموقع محتوى تعريفي وإرشادي عام، ولا يُعد استشارة متخصصة من أي نوع. وعلى المستخدم بذل العناية الشخصية اللازمة والتحقق المستقل قبل اتخاذ أي قرار يستند إلى محتوى الموقع.'] },
+      ],
+    },
+    {
+      n: 'رابعًا', h: 'سياسة ملفات تعريف الارتباط (Cookies)',
+      lead: 'توضح هذه السياسة ماهية ملفات تعريف الارتباط المستخدمة في موقع «زوروا الأحساء»، والغرض منها، وكيفية التحكم بها.',
+      subs: [
+        { h: '1. ما ملفات تعريف الارتباط؟',
+          before: ['ملفات تعريف الارتباط (Cookies) ملفات نصية صغيرة تُخزن على جهازكم عند زيارة المواقع الإلكترونية، وتساعد الموقع على التعرف على جهازكم وتذكر بعض المعلومات عن زيارتكم، بما يحسن تجربة التصفح ويتيح تحليل أداء الموقع.'] },
+        { h: '2. أنواع الملفات المستخدمة في الموقع',
+          list: [
+            'ملفات ضرورية للتشغيل: تلزم لعمل الموقع الأساسي وعرض صفحاته بشكل صحيح، ولا يمكن تعطيلها من خلال الموقع.',
+            'ملفات تحليلية: تُستخدم عبر خدمة Google Analytics (GA4) لجمع إحصاءات مجهولة الهوية عن الزيارات، مثل عدد الزوار والصفحات الأكثر مشاهدة ومدة التصفح ومصادر الوصول، بهدف تطوير المحتوى وتحسين التجربة.',
+            'ملفات الأداء والقياس التابعة لأدوات تحليلية مشابهة قد تُضاف مستقبلًا، وستُحدَّث هذه السياسة عند اعتمادها.',
+          ],
+          after: ['لا يستخدم الموقع حاليًا ملفات تعريف ارتباط إعلانية أو تسويقية لاستهداف الزوار.'] },
+        { h: '3. خيارات التحكم والتعطيل',
+          before: ['تملكون كامل الحرية في إدارة ملفات تعريف الارتباط أو تعطيلها من خلال الخيارات التالية:'],
+          list: [
+            'إعدادات المتصفح: تتيح جميع المتصفحات الحديثة (Chrome، Safari، Firefox، Edge) حذف ملفات تعريف الارتباط أو حظرها كليًا أو جزئيًا من خلال إعدادات الخصوصية.',
+            'أداة إلغاء الاشتراك من Google Analytics: يمكنكم تثبيت الإضافة الرسمية Google Analytics Opt-out Browser Add-on لمنع مشاركة بيانات تصفحكم مع الخدمة.',
+            'وضع التصفح الخاص: يحد استخدام وضع التصفح الخفي أو الخاص من تخزين ملفات التتبع على جهازكم.',
+          ],
+          after: ['يرجى العلم أن تعطيل بعض الملفات قد يؤثر على أداء بعض خصائص الموقع، دون أن يمنع الوصول إلى محتواه الأساسي.'] },
+      ],
+    },
+    {
+      n: 'خامسًا', h: 'سياسة حقوق الملكية الفكرية',
+      subs: [
+        { h: '1. بيان الملكية',
+          before: ['جميع الحقوق محفوظة © لموقع «زوروا الأحساء» (visit-alahsa.com). يشمل ذلك — على سبيل المثال لا الحصر — النصوص والمقالات والسرود الأدبية والتاريخية، والصور الفوتوغرافية والمعالجة، والرسوم والتصاميم، والشعار والهوية البصرية (بما فيها شخصية البلبل أبيض الأذنين)، والخرائط التفاعلية، وبنية الموقع وشيفرته البرمجية. وكل ما ورد في الموقع من محتوى مرخص من أطراف أخرى يبقى ملكًا لأصحابه ويُستخدم وفق تراخيصه.'] },
+        { h: '2. نطاق الحماية',
+          before: ['يتمتع محتوى الموقع بالحماية المقررة بموجب نظام حماية حقوق المؤلف في المملكة العربية السعودية والاتفاقيات الدولية التي تكون المملكة طرفًا فيها، ومنها اتفاقية برن لحماية المصنفات الأدبية والفنية. ويُعد أي استخدام غير مصرح به تعديًا يوجب المساءلة النظامية.'] },
+        { h: '3. آلية الإبلاغ عن انتهاك الحقوق',
+          before: ['إذا كنتم تعتقدون أن أي محتوى منشور في الموقع ينتهك حقوق ملكية فكرية تعود لكم أو لمن تمثلونهم، فنرجو إشعارنا عبر قنوات التواصل الرسمية للموقع، على أن يتضمن البلاغ ما يلي:'],
+          list: [
+            'تحديد المصنف محل الحق المدعى انتهاكه وصفة مقدم البلاغ (صاحب الحق أو وكيله).',
+            'رابط المحتوى محل الاعتراض في الموقع ووصفه بدقة.',
+            'ما يثبت ملكية الحق أو التفويض بالتصرف نيابة عن مالكه.',
+            'بيانات التواصل مع مقدم البلاغ (الاسم، والبريد الإلكتروني).',
+          ],
+          after: ['سننظر في كل بلاغ جدي خلال مدة معقولة، وسنتخذ الإجراء المناسب — من تصحيح النسبة أو إزالة المحتوى — متى ثبتت صحة الادعاء، مع إشعار مقدم البلاغ بالنتيجة.'] },
+        { h: '4. طلبات الترخيص والاستخدام',
+          before: ['للراغبين في استخدام محتوى الموقع أو صوره لأغراض إعلامية أو تعليمية أو تجارية، يمكن التقدم بطلب ترخيص عبر قنوات التواصل الرسمية، وسيُنظر في كل طلب وفق طبيعته والغرض منه.'] },
+      ],
+    },
+    {
+      n: 'سادسًا', h: 'سياسة الروابط الخارجية',
+      lead: 'قد يتضمن موقع «زوروا الأحساء» روابط تؤدي إلى مواقع إلكترونية أو تطبيقات أو منصات تديرها أطراف أخرى، مثل: مواقع الجهات الرسمية، ومنصات الحجز، وخرائط Google، وحسابات التواصل الاجتماعي، ومواقع الفعاليات والمنشآت السياحية. وتُدرج هذه الروابط تسهيلًا على الزوار وإثراءً للمحتوى فحسب.',
+      subs: [
+        { h: '1. حدود المسؤولية عن الروابط',
+          list: [
+            'إدراج أي رابط خارجي لا يعني بالضرورة تأييد الموقع لمحتوى الجهة المرتبطة أو ضمانه لخدماتها.',
+            'لا يتحمل الموقع أي مسؤولية عن محتوى المواقع والتطبيقات الخارجية أو دقته أو مشروعيته أو تحديثه.',
+            'لا يتحمل الموقع مسؤولية سياسات الخصوصية أو شروط الاستخدام أو ممارسات جمع البيانات لدى تلك الجهات، وننصح بمراجعة سياساتها قبل التعامل معها.',
+            'أي تعامل مالي أو تعاقدي تجرونه مع جهة خارجية عبر رابط في الموقع يقع على مسؤوليتكم الكاملة وبينكم وبين تلك الجهة مباشرة.',
+          ] },
+        { h: '2. الإبلاغ عن الروابط المعطلة أو المخالفة',
+          before: ['نحرص على مراجعة الروابط الخارجية دوريًا، ونرحب بإبلاغنا عن أي رابط معطل أو يؤدي إلى محتوى غير لائق أو مخالف، عبر قنوات التواصل الرسمية، وسنبادر إلى معالجته في أقرب وقت.'] },
+      ],
+    },
+  ] as Section[],
+  closingH: 'أحكام ختامية والتواصل',
+  closing: [
+    'تُشكل هذه الوثيقة بأقسامها الستة كامل السياسات والشروط المنظمة لاستخدام موقع «زوروا الأحساء». وإذا قضت جهة مختصة ببطلان أي بند منها أو عدم قابليته للتنفيذ، فلا يؤثر ذلك على صحة بقية البنود ونفاذها.',
+  ],
+  contactPre: 'لأي استفسار يتعلق بهذه السياسات، أو لممارسة حقوقكم المتعلقة بالبيانات الشخصية، أو للإبلاغ عن انتهاك للحقوق أو رابط مخالف، يسعدنا تواصلكم عبر البريد الرسمي للموقع: ',
+  copyright: 'جميع الحقوق محفوظة © 2026 — زوروا الأحساء | visit-alahsa.com',
+} : {
+  title: 'Policies & Legal Terms',
+  updated: 'Last updated: 10 July 2026',
+  chips: ['Privacy Policy', 'Terms of Use', 'Disclaimer', 'Cookies', 'Intellectual Property', 'External Links'],
+  introH: 'General introduction',
+  intro: [
+    'Welcome to Visit Al-Ahsa (visit-alahsa.com), the independent digital gateway introducing the Al-Ahsa Oasis — its heritage, nature, culture and events. This document sets out the policies and legal terms that govern your use of the site and the content and services it offers, in accordance with the regulations in force in the Kingdom of Saudi Arabia, including the Personal Data Protection Law issued by Royal Decree No. (M/19) dated 9/2/1443 AH and its Implementing Regulation.',
+    'By using this site or browsing any of its pages, you acknowledge that you have read, understood and agreed to be bound by these policies and terms. If you do not agree to any provision of them, please stop using the site.',
+    'The site reserves the right to amend or update these policies at any time without prior notice, and your continued use of the site after any amendment is published constitutes implicit acceptance of it. We therefore advise reviewing this page periodically; the date of the latest update is always shown at the top of the document.',
+  ],
+  sections: [
+    {
+      n: 'One', h: 'Privacy Policy',
+      lead: "At Visit Al-Ahsa we place the utmost importance on our visitors' privacy, and we are committed to protecting their personal data according to best practices and in line with the Personal Data Protection Law of the Kingdom of Saudi Arabia. This policy explains the nature of the data we collect, how we use and protect it, and your rights regarding it.",
+      subs: [
+        { h: '1. Data we collect',
+          before: ['Visit Al-Ahsa is primarily an informational site, and browsing its content requires no registration or account. Nevertheless, we may collect the following categories of data:'],
+          list: [
+            'Technical data collected automatically when you browse the site, such as: the Internet Protocol (IP) address, the browser and operating-system type, the pages visited and duration of the visit, and the source of access to the site.',
+            'Usage and analytics data aggregated through Google Analytics and similar analytical tools — statistical data that is largely anonymous, used to understand browsing patterns.',
+            'Data you provide voluntarily when contacting us by email or contact forms, such as: your name, email address and the content of your message.',
+          ] },
+        { h: '2. Purposes of collecting and using data',
+          before: ['We use the data referred to above solely for the following legitimate purposes:'],
+          list: [
+            "Improving the site's content and the user experience based on browsing patterns and visitors' general interests.",
+            "Measuring the site's performance and analysing visit traffic statistically for ongoing development.",
+            'Responding to enquiries and messages received from visitors.',
+            'Protecting the site from misuse and fraudulent or harmful activity.',
+          ],
+          after: ['We do not sell, rent or trade your personal data with any third party under any circumstances, and we share it only to the extent necessary to operate the analytical tools mentioned, or where the law requires us to disclose it to a competent authority.'] },
+        { h: '3. Google Analytics and tracking files',
+          before: ["The site uses Google Analytics (including the GA4 version) provided by Google to analyse use of the site. This service relies on cookies and similar tracking means to collect statistical information about visits, and this information may be transferred to and stored on Google's servers. Google's processing of this data is subject to its own privacy policy. You can find details on managing tracking files and opt-out options in the “Cookie Policy” set out in Section Four of this document."] },
+        { h: '4. User rights',
+          before: ['In accordance with the Saudi Personal Data Protection Law, you enjoy the following rights regarding your personal data:'],
+          list: [
+            'Right to be informed: to know the nature of the data we collect about you, the purpose of collecting it, and how it is processed.',
+            'Right of access: to request access to your personal data held by us and to obtain a copy of it.',
+            'Right to rectification: to request correction of any inaccurate or incomplete data.',
+            'Right to erasure (destruction): to request deletion of your personal data once it is no longer needed or you withdraw your consent, unless there is a legal ground to retain it.',
+            'Right to withdraw consent: to withdraw your consent to the processing of your data at any time, without affecting the lawfulness of processing prior to withdrawal.',
+          ],
+          after: ["To exercise any of these rights, you may contact us through the site's official channels, and we will respond to your request within a reasonable period and in line with regulatory requirements."] },
+        { h: '5. Data protection and retention period',
+          before: ['We apply appropriate technical and organisational measures to protect data from unauthorised access, disclosure, alteration or destruction, including: encrypting the connection to the site via the HTTPS protocol, enabling security headers, and restricting access to data to those who need it only. We retain personal data only for the period necessary to achieve the purposes for which it was collected, or for the period required by the applicable regulations.'] },
+        { h: '6. Minors’ privacy',
+          before: ["The site does not intentionally target the collection of personal data from those under eighteen. If we become aware that we have collected data from a minor without their guardian's consent, we will move to delete it as soon as we learn of it."] },
+      ],
+    },
+    {
+      n: 'Two', h: 'Terms of Use',
+      lead: 'These terms govern your use of Visit Al-Ahsa and the content and services it includes. Your access to and use of the site constitutes express acceptance of and commitment to these terms.',
+      subs: [
+        { h: '1. Nature and purpose of the site',
+          before: ['Visit Al-Ahsa is an independent informational site that aims to introduce the Al-Ahsa Oasis, its heritage and natural landmarks and its seasonal events, and to provide guidance and cultural content for visitors and those interested. The site is not a government body, does not represent any official authority, and does not provide direct booking or sales services.'] },
+        { h: '2. Intellectual property rights',
+          before: ['All the site’s contents — text, articles, literary narratives, images, designs, logos, interactive maps, visual identity and source code — are owned by or licensed to Visit Al-Ahsa, and are protected under the Saudi Copyright Law and the relevant international conventions. They may not be copied, republished, distributed, modified or exploited commercially without prior written permission.'] },
+        { h: '3. Permitted use',
+          list: [
+            'Browsing the site and viewing its content for personal, non-commercial purposes.',
+            'Sharing links to the site’s pages via social media or otherwise, with attribution to the source.',
+            'Limited quotation of the content for education, research or criticism, as permitted by the regulations, with clear attribution of the content to the site.',
+          ] },
+        { h: '4. Prohibited use',
+          before: ['When using the site, you are prohibited from doing any of the following:'],
+          list: [
+            'Copying content or images, or republishing them in whole or in part for commercial purposes without prior written permission.',
+            'Using the site in any activity that violates the regulations in force in the Kingdom of Saudi Arabia, including the Anti-Cyber Crime Law.',
+            'Attempting to hack or disrupt the site, or gain unauthorised access to its systems or data.',
+            'Using automated programs (such as bots or scrapers) to extract content or collect data systematically without consent.',
+            'Impersonating the site or implying the existence of a partnership, sponsorship or endorsement from it without a documented agreement.',
+            'Publishing or sending any offensive or defamatory content, or content that violates public morals and Islamic values, through any of the communication channels associated with the site.',
+          ] },
+        { h: '5. Amendments and service suspension',
+          before: ['The site reserves the right to amend, suspend or discontinue its content or services, in whole or in part, at any time and without prior notice, with no resulting liability towards users.'] },
+        { h: '6. Governing law',
+          before: ['These terms are governed by and construed in accordance with the regulations in force in the Kingdom of Saudi Arabia, and jurisdiction over any dispute arising from them lies with the competent courts and judicial authorities in the Kingdom.'] },
+      ],
+    },
+    {
+      n: 'Three', h: 'Disclaimer',
+      lead: 'At Visit Al-Ahsa we make considerable effort to ensure the accuracy and currency of the information published; however, the nature of tourism and informational content calls for noting the following:',
+      subs: [
+        { h: '1. Accuracy and updating of information',
+          before: ['The information provided on the site — including opening hours of landmarks and sites, entry and service prices, dates of events and seasonal festivals, and details of restaurants, cafés and accommodation — is offered as general guidance and is subject to change at any time by the operating parties without our knowledge. The site therefore does not guarantee the accuracy, completeness or currency of this information at all times, and we always advise visitors to verify it directly with the official bodies or the operators of the sites and events before planning a visit.'] },
+        { h: '2. Limits of liability',
+          before: ['Neither Visit Al-Ahsa nor those running it bear any liability for:'],
+          list: [
+            'Any direct, indirect or consequential damages arising from use of the site or reliance on its information.',
+            'Any financial losses, costs or obligations resulting from decisions taken based on the site’s content, such as price changes, event cancellations or landmark closures.',
+            'The quality of services provided by the bodies and establishments mentioned on the site, as their mention is not a binding recommendation nor a guarantee of the level of their services.',
+            'Any interruption in access to the site, technical failures or software errors beyond reasonable control.',
+          ] },
+        { h: '3. Guidance, not specialised advice',
+          before: ['The content published on the site is general introductory and guidance content and does not constitute specialised advice of any kind. The user must exercise the necessary personal care and independent verification before taking any decision based on the site’s content.'] },
+      ],
+    },
+    {
+      n: 'Four', h: 'Cookie Policy',
+      lead: 'This policy explains the nature of the cookies used on Visit Al-Ahsa, their purpose, and how to control them.',
+      subs: [
+        { h: '1. What are cookies?',
+          before: ['Cookies are small text files stored on your device when you visit websites; they help the site recognise your device and remember some information about your visit, improving the browsing experience and enabling analysis of the site’s performance.'] },
+        { h: '2. Types of files used on the site',
+          list: [
+            'Files essential for operation: required for the basic functioning of the site and correct display of its pages; they cannot be disabled through the site.',
+            'Analytical files: used via Google Analytics (GA4) to collect anonymous statistics about visits — such as the number of visitors, the most-viewed pages, browsing duration and sources of access — with the aim of developing content and improving the experience.',
+            'Performance and measurement files belonging to similar analytical tools that may be added in future; this policy will be updated when they are adopted.',
+          ],
+          after: ['The site does not currently use advertising or marketing cookies to target visitors.'] },
+        { h: '3. Control and disabling options',
+          before: ['You have full freedom to manage or disable cookies through the following options:'],
+          list: [
+            'Browser settings: all modern browsers (Chrome, Safari, Firefox, Edge) allow you to delete or block cookies wholly or partly through the privacy settings.',
+            'Google Analytics opt-out tool: you can install the official Google Analytics Opt-out Browser Add-on to prevent your browsing data being shared with the service.',
+            'Private browsing mode: using incognito or private mode limits the storage of tracking files on your device.',
+          ],
+          after: ['Please note that disabling some files may affect the performance of certain site features, without preventing access to its basic content.'] },
+      ],
+    },
+    {
+      n: 'Five', h: 'Intellectual Property Policy',
+      subs: [
+        { h: '1. Ownership statement',
+          before: ['All rights reserved © to Visit Al-Ahsa (visit-alahsa.com). This includes — by way of example, not limitation — texts, articles and literary and historical narratives; photographs and processed images; illustrations and designs; the logo and visual identity (including the white-eared bulbul character); interactive maps; and the site’s structure and source code. Any content on the site licensed from other parties remains the property of its owners and is used according to its licences.'] },
+        { h: '2. Scope of protection',
+          before: ['The site’s content enjoys the protection afforded under the Copyright Law of the Kingdom of Saudi Arabia and the international conventions to which the Kingdom is a party, including the Berne Convention for the Protection of Literary and Artistic Works. Any unauthorised use constitutes an infringement warranting legal accountability.'] },
+        { h: '3. Reporting an infringement of rights',
+          before: ['If you believe that any content published on the site infringes intellectual property rights belonging to you or those you represent, please notify us through the site’s official channels, provided that the report includes the following:'],
+          list: [
+            'Identification of the work in which the allegedly infringed right subsists, and the capacity of the reporter (rights holder or their agent).',
+            'The link to the content objected to on the site and an accurate description of it.',
+            'Proof of ownership of the right, or authorisation to act on behalf of its owner.',
+            'Contact details of the reporter (name and email).',
+          ],
+          after: ['We will consider every serious report within a reasonable period, and take the appropriate action — from correcting the attribution to removing the content — where the claim is proven valid, and notify the reporter of the outcome.'] },
+        { h: '4. Licensing and use requests',
+          before: ['Those wishing to use the site’s content or images for media, educational or commercial purposes may submit a licensing request through the official channels, and each request will be considered according to its nature and purpose.'] },
+      ],
+    },
+    {
+      n: 'Six', h: 'External Links Policy',
+      lead: 'Visit Al-Ahsa may contain links leading to websites, applications or platforms operated by other parties, such as: official bodies’ sites, booking platforms, Google Maps, social media accounts, and the sites of events and tourism establishments. These links are provided merely to facilitate matters for visitors and to enrich the content.',
+      subs: [
+        { h: '1. Limits of liability for links',
+          list: [
+            'The inclusion of any external link does not necessarily mean the site endorses the linked party’s content or guarantees its services.',
+            'The site bears no liability for the content of external sites and applications, or its accuracy, legality or currency.',
+            'The site bears no liability for the privacy policies, terms of use or data-collection practices of those parties, and we advise reviewing their policies before dealing with them.',
+            'Any financial or contractual dealing you conduct with an external party via a link on the site is entirely your responsibility and directly between you and that party.',
+          ] },
+        { h: '2. Reporting broken or non-compliant links',
+          before: ['We are keen to review external links periodically, and we welcome reports of any broken link or one leading to inappropriate or non-compliant content, through the official channels, and we will move to address it as soon as possible.'] },
+      ],
+    },
+  ] as Section[],
+  closingH: 'Final provisions & contact',
+  closing: [
+    'These six sections together constitute the complete policies and terms governing use of Visit Al-Ahsa. If a competent authority rules any provision of them void or unenforceable, this does not affect the validity and effect of the remaining provisions.',
+  ],
+  contactPre: 'For any enquiry regarding these policies, to exercise your rights relating to personal data, or to report an infringement of rights or a non-compliant link, we welcome hearing from you through the site’s official email: ',
+  copyright: '© 2026 Visit Al-Ahsa | visit-alahsa.com',
+};
+
+const email = 'info@visit-alahsa.com';
+const seoDesc = ar
+  ? 'السياسات والشروط القانونية لموقع زوروا الأحساء: سياسة الخصوصية، شروط الاستخدام، إخلاء المسؤولية، ملفات تعريف الارتباط، حقوق الملكية الفكرية، والروابط الخارجية.'
+  : 'Policies and legal terms of Visit Al-Ahsa: privacy policy, terms of use, disclaimer, cookies, intellectual property and external links.';
+---
+<Base title={`${C.title} — ${t('site.name')}`} description={seoDesc} lang={lang} alt={alt} noindex={true}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class="container lg-body">
+      <header class="lg-head">
+        <h1 class="lg-title">{C.title}</h1>
+        <p class="lg-updated">{C.updated}</p>
+        <nav class="lg-chips" aria-label={C.title}>
+          {C.chips.map((c, i) => <a class="lg-chip" href={`#sec-${i}`}>{c}</a>)}
+        </nav>
+      </header>
+
+      <section class="lg-intro">
+        <h2 class="lg-h2">{C.introH}</h2>
+        {C.intro.map((p) => <p class="lg-p">{p}</p>)}
+      </section>
+
+      {C.sections.map((s, i) => (
+        <section class="lg-sec" id={`sec-${i}`}>
+          <h2 class="lg-h2"><span class="lg-n">{s.n}:</span> {s.h}</h2>
+          {s.lead && <p class="lg-p lg-lead">{s.lead}</p>}
+          {s.subs.map((sub) => (
+            <div class="lg-sub">
+              <h3 class="lg-h3">{sub.h}</h3>
+              {sub.before && sub.before.map((p) => <p class="lg-p">{p}</p>)}
+              {sub.list && (
+                <ul class="lg-list">{sub.list.map((li) => <li>{li}</li>)}</ul>
+              )}
+              {sub.after && sub.after.map((p) => <p class="lg-p">{p}</p>)}
+            </div>
+          ))}
+        </section>
+      ))}
+
+      <section class="lg-sec lg-closing">
+        <h2 class="lg-h2">{C.closingH}</h2>
+        {C.closing.map((p) => <p class="lg-p">{p}</p>)}
+        <p class="lg-p">{C.contactPre}<a href={`mailto:${email}`} class="lg-mail">{email}</a></p>
+      </section>
+
+      <p class="lg-copy">{C.copyright}</p>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .lg-body { padding-block: var(--s-7) var(--s-8); max-inline-size: 80ch; }
+  .lg-head { border-block-end: 1px solid var(--c-line); padding-block-end: var(--s-4); margin-block-end: var(--s-5); }
+  .lg-title { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-3xl); color: var(--c-turq-deep); line-height: 1.15; }
+  .lg-updated { color: var(--c-gold-deep); font-size: var(--t-sm); font-weight: 600; margin-block-start: var(--s-2); }
+  .lg-chips { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-block-start: var(--s-4); }
+  .lg-chip { font-size: var(--t-xs); font-weight: 600; color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: 999px; padding: 5px 14px; text-decoration: none; transition: all var(--dur) var(--ease); }
+  .lg-chip:hover { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+
+  .lg-intro { margin-block-end: var(--s-6); }
+  .lg-sec { margin-block-start: var(--s-7); scroll-margin-block-start: 90px; }
+  .lg-h2 { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.25; margin-block-end: var(--s-3); }
+  .lg-n { color: var(--c-gold-deep); margin-inline-end: var(--s-2); }
+  .lg-lead { color: var(--c-ink); }
+  .lg-sub { margin-block-start: var(--s-5); }
+  .lg-h3 { font-size: var(--t-lg); font-weight: 600; color: var(--c-ink); margin-block-end: var(--s-2); }
+  .lg-p { color: var(--c-ink-soft); line-height: 1.9; }
+  .lg-p + .lg-p { margin-block-start: var(--s-2); }
+  .lg-list { margin-block-start: var(--s-2); padding-inline-start: var(--s-4); display: flex; flex-direction: column; gap: var(--s-2); }
+  .lg-list li { color: var(--c-ink-soft); line-height: 1.85; padding-inline-start: var(--s-2); position: relative; list-style: none; }
+  .lg-list li::before { content: ''; position: absolute; inset-inline-start: calc(-1 * var(--s-3)); inset-block-start: .7em; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--c-gold); }
+
+  .lg-closing { border-block-start: 1px solid var(--c-line); padding-block-start: var(--s-5); }
+  .lg-mail { font-family: var(--font-latin); letter-spacing: .02em; color: var(--c-turq-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .lg-copy { margin-block-start: var(--s-6); padding-block-start: var(--s-4); border-block-start: 1px solid var(--c-line); font-size: var(--t-sm); color: var(--c-ink-soft); text-align: center; }
+</style>

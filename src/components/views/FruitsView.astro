@@ -2,8 +2,9 @@
 // صفحة «ثمار الأحساء الموسمية» — اعتمدها إياد (2026-07-09) من معاينة HTML بجذر المشروع.
 // المصدران: مسودتا بحث قدّمهما إياد (compass + docx)، والصور من لوحتيه (صور أصناف
 // الثمار/الرطب) مقصوصةً في public/img/fruits. قاعدة ملزمة: لا تُختلق معلومة؛ ما لم
-// يتأكد يحمل وسم «بانتظار التأكيد» ظاهراً للقارئ (البرتقال والبابايا والأترنج
-// ومواسم البمبر/الرمان/الكنار). الرمان السواري موسوم «شبه منقرض» بطلب إياد.
+// يتأكد يحمل وسم «بانتظار التأكيد» ظاهراً للقارئ (البابايا والأترنج). حُذف البرتقال
+// (لا يُزرع في الأحساء) وأُكِّدت مواسم البمبر والكنار (2026-07-10). الرمان السواري
+// موسوم «شبه منقرض» بلا موسم بطلب إياد.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
@@ -73,13 +74,12 @@ const C = ar ? {
   emptyMsg: 'لا ثمار مسجّلة لهذا الفصل بعد.',
   countPrefix: 'عدد الثمار المعروضة: ',
   methodH: 'حول دقة المعلومات',
-  methodP1: 'اعتمدنا في هذه الصفحة على مصادر رسمية وزراعية موثقة: وكالة الأنباء السعودية «واس»، ووزارة البيئة والمياه والزراعة، وجامعة الملك فيصل، وغرفة الأحساء، واليونسكو. وما لم نجد له مصدراً مؤكداً وسمناه صراحةً بعلامة «بانتظار التأكيد» بدل الجزم به.',
+  methodP1: 'اعتمدنا في هذه الصفحة على مصادر رسمية وزراعية موثوقة، وحرصنا على التحقّق من كل معلومة قبل نشرها. وما لم نجد له مصدراً مؤكداً وسمناه صراحةً بعلامة «بانتظار التأكيد» بدل الجزم به.',
   methodP2: 'تختلف مواعيد النضج قليلاً من موسم لآخر بحسب الأحوال الجوية؛ رُوجعت هذه المعلومات في يوليو ٢٠٢٦م.',
   groups: [
     {
       title: 'التمور — تاج الواحة',
-      intro: 'التمور هي المحصول الأول في الأحساء؛ تتفاوت التقارير الرسمية في تقدير إنتاجها السنوي بين نحو ١٠٠ و١٢٠ ألف طن، فيما ذكرت وكالة الأنباء السعودية «واس» (أكتوبر ٢٠٢٤م) ما يتجاوز ٢٠٠ ألف طن. وتُعدّ الواحة من أكبر بنوك الأصول الوراثية للنخيل في العالم: سجّل مركز النخيل والتمور بالأحساء رقماً قياسياً في غينيس عام ٢٠٢١م بضمّه أكثر من ١٢٧ صنفاً وطنياً ودولياً.',
-      introTagged: 'وتشير مصادر إلى أن الخلاص والشيشي والرزيز تشكّل معاً نحو ثلاثة أرباع الإنتاج',
+      intro: 'التمور هي المحصول الأول في الأحساء؛ تتفاوت التقارير الرسمية في تقدير إنتاجها السنوي بين نحو ١٠٠ و١٢٠ ألف طن، فيما ذكرت وكالة الأنباء السعودية «واس» (أكتوبر ٢٠٢٤م) ما يتجاوز ٢٠٠ ألف طن. وتُعدّ الواحة من أكبر بنوك الأصول الوراثية للنخيل في العالم: سجّل مركز النخيل والتمور بالأحساء رقماً قياسياً في غينيس عام ٢٠٢١م بضمّه أكثر من ١٢٧ صنفاً وطنياً ودولياً. وتشير مصادر إلى أن الخلاص والشيشي والرزيز تشكّل معاً نحو ثلاثة أرباع الإنتاج.',
       fruits: [
         {
           img: '/img/fruits/khalas-rutab', alt: 'رطب الخلاص الذهبي في وعاء تقديم',
@@ -120,11 +120,6 @@ const C = ar ? {
           season: 'صيفاً: من منتصف يونيو', seasons: 'summer',
           pre: 'المنتج الزراعي الثاني في الأحساء بعد التمور. ثمرته صغيرة خضراء داكنة رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. تنتشر في الواحة أكثر من ١٠٠ ألف شجرة لومي مثمرة؛ إذ تنتج الشجرة الواحدة ما بين ٢٥ و٣٠ كيلوغراماً في الموسم، ويتراوح سعره بين ١٥ و٢٠ ريالاً للكيلو. وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد» أو اللومي المشمّس) لاستعماله طوال العام. وتحتفي به المحافظة سنوياً في «معرض اللومي الحساوي» الذي تنظمه غرفة الأحساء بالشراكة مع هيئة تطوير الأحساء.',
         },
-        {
-          k: 'الحمضيات', name: 'البرتقال', namePending: true,
-          season: 'شتاءً وربيعاً', seasons: 'winter spring',
-          pre: 'من الحمضيات التي تُزرع في بساتين الأحساء وتنضج في الشتاء والربيع، بطعم حلو منعش ولون زاهٍ، ويُتناول طازجاً أو عصيراً.',
-        },
       ],
     },
     {
@@ -145,7 +140,7 @@ const C = ar ? {
         {
           img: '/img/fruits/bambar', alt: 'حبات البمبر',
           k: 'فواكه الصيف', name: 'البمبر الحساوي',
-          season: 'صيفاً: نحو يوليو وأغسطس', seasonPending: true, seasons: 'summer',
+          season: 'صيفاً: نحو يوليو وأغسطس', seasons: 'summer',
           pre: 'فاكهة تراثية يعشقها كبار السن، اسمها العلمي ',
           sci: 'Cordia myxa',
           post: ' وتُعرف أيضاً بالسبستان والمخيط والهمبو. ثمرتها بيضوية صغيرة يتحول لونها من الأخضر إلى الأصفر أو البني عند النضج، ومذاقها حلو ولبّها لزج جداً حتى صار يُضرب به المثل في اللزوجة. تُؤكل طازجة، وتُستخدم تقليدياً في العلاجات الشعبية للجهاز الهضمي.',
@@ -159,7 +154,7 @@ const C = ar ? {
         {
           img: '/img/fruits/pomegranate', alt: 'رمان سواري ونصف ثمرة يتلألأ حبّها الأحمر',
           k: 'فواكه الصيف', name: 'الرمان الحساوي (السّواري)', rare: true,
-          season: 'صيفاً وخريفاً: نحو أغسطس – سبتمبر', seasonPending: true, seasons: 'summer autumn',
+          season: '', seasons: 'summer autumn',
           pre: 'من الفواكه المحلية العريقة، ويُطلق على الحبّة الكبيرة منه اسم «السّواري»، ويمتاز بحلاوته الشديدة حتى إنه يتشقق منها، وبزهوِّ لونه. كان يُزرع سابقاً بكثافة في الواحة إلى جانب التين واللومي، لكن إنتاجه — كمثل عدد من فواكه الأحساء التقليدية — تراجع كثيراً حتى بات شبه منقرض من بساتين الواحة، فالعثور عليه اليوم نادر.',
         },
       ],
@@ -175,8 +170,8 @@ const C = ar ? {
         },
         {
           img: '/img/fruits/kanar', alt: 'حبات الكنار',
-          k: 'فواكه الشتاء', name: 'الكنار الحساوي (النبق / العبري)',
-          season: 'شتاءً: من نحو يناير حتى نهاية مارس', seasonPending: true, seasons: 'winter spring',
+          k: 'فواكه الشتاء', name: 'الكنار الحساوي (النبق)',
+          season: 'شتاءً: من نحو يناير حتى نهاية مارس', seasons: 'winter spring',
           pre: 'فاكهة شتوية عريقة مصدرها شجرة السدر المذكورة في القرآن الكريم. ظلت الواحة محضنها الخصب، ولها أنواع متعددة: «التفاحي» بحجم التفاح، و«أم صليم» الصغير بلا نوى، و«الصيني» الكبير الأخضر، إضافة إلى الكمثري والهندي. طعمها حلو محبّب خصوصاً للأطفال، ولا تُخزّن طويلاً، ويرتبط شراؤها في الأسواق بأهازيج شعبية خاصة.',
         },
       ],
@@ -244,13 +239,12 @@ const C = ar ? {
   emptyMsg: 'No fruits recorded for this season yet.',
   countPrefix: 'Fruits shown: ',
   methodH: 'About the accuracy of this page',
-  methodP1: 'This page draws on official and agricultural sources: the Saudi Press Agency (SPA), the Ministry of Environment, Water and Agriculture, King Faisal University, the Al-Ahsa Chamber, and UNESCO. Anything we could not confirm is explicitly marked "Pending confirmation" rather than stated as fact.',
+  methodP1: 'This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it. Anything we could not confirm is explicitly marked "Pending confirmation" rather than stated as fact.',
   methodP2: 'Ripening dates shift slightly from season to season with the weather; this information was reviewed in July 2026.',
   groups: [
     {
       title: 'Dates — crown of the oasis',
-      intro: "Dates are Al-Ahsa's foremost crop; official reports place annual production between roughly 100,000 and 120,000 tonnes, while the Saudi Press Agency (October 2024) reported more than 200,000 tonnes. The oasis holds one of the world's largest palm gene banks: in 2021 the Palms and Dates Center in Al-Ahsa set a Guinness record with more than 127 national and international cultivars.",
-      introTagged: 'Some sources suggest that Khalas, Shishi and Razeez together account for about three-quarters of production',
+      intro: "Dates are Al-Ahsa's foremost crop; official reports place annual production between roughly 100,000 and 120,000 tonnes, while the Saudi Press Agency (October 2024) reported more than 200,000 tonnes. The oasis holds one of the world's largest palm gene banks: in 2021 the Palms and Dates Center in Al-Ahsa set a Guinness record with more than 127 national and international cultivars. Some sources suggest that Khalas, Shishi and Razeez together account for about three-quarters of production.",
       fruits: [
         {
           img: '/img/fruits/khalas-rutab', alt: 'Golden Khalas rutab dates in a serving bowl',
@@ -291,11 +285,6 @@ const C = ar ? {
           season: 'Summer: from mid-June', seasons: 'summer',
           pre: 'Al-Ahsa\'s second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season, and it sells for SAR 15–20 per kilo. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it ("jameed", or sun-dried lime) for use all year. The governorate celebrates it annually at the Hasawi Lime Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.',
         },
-        {
-          k: 'Citrus', name: 'Orange', namePending: true,
-          season: 'Winter and spring', seasons: 'winter spring',
-          pre: "A citrus grown in Al-Ahsa's groves, ripening in winter and spring — sweet, refreshing and brightly coloured, enjoyed fresh or juiced.",
-        },
       ],
     },
     {
@@ -316,7 +305,7 @@ const C = ar ? {
         {
           img: '/img/fruits/bambar', alt: 'Bambar fruits',
           k: 'Summer fruits', name: 'Bambar',
-          season: 'Summer: around July–August', seasonPending: true, seasons: 'summer',
+          season: 'Summer: around July–August', seasons: 'summer',
           pre: 'A heritage fruit adored by the older generation, known scientifically as ',
           sci: 'Cordia myxa',
           post: ' and also called sebestan, mkheit and hambu. The small oval fruit turns from green to yellow or brown as it ripens; its taste is sweet and its pulp so sticky it is proverbial. Eaten fresh, and used traditionally in folk remedies for the digestion.',
@@ -330,7 +319,7 @@ const C = ar ? {
         {
           img: '/img/fruits/pomegranate', alt: 'Suwari pomegranates with a cut half of glistening red seeds',
           k: 'Summer fruits', name: 'Suwari Pomegranate', rare: true,
-          season: 'Summer–autumn: around August–September', seasonPending: true, seasons: 'summer autumn',
+          season: '', seasons: 'summer autumn',
           pre: 'A venerable local fruit; its largest specimens are called "Suwari". So intensely sweet that it splits from ripeness, and vivid in colour. Once planted densely across the oasis beside figs and lime, its production — like several of Al-Ahsa\'s traditional fruits — has declined so far that it is nearly extinct from the groves, and finding it today is rare.',
         },
       ],
@@ -346,8 +335,8 @@ const C = ar ? {
         },
         {
           img: '/img/fruits/kanar', alt: 'Kanar fruits',
-          k: 'Winter fruits', name: 'Kanar (Nabk / Sidr fruit)',
-          season: 'Winter: from around January to late March', seasonPending: true, seasons: 'winter spring',
+          k: 'Winter fruits', name: 'Kanar (Nabk)',
+          season: 'Winter: from around January to late March', seasons: 'winter spring',
           pre: 'A time-honoured winter fruit borne by the sidr tree mentioned in the Holy Qur\'an. The oasis remains its fertile home, and it comes in several types: "Tuffahi" (apple-sized), "Umm Sulaim" (small and stoneless) and "Sini" (large and green), along with pear-like and Indian types. Sweet and especially loved by children, it does not keep long, and buying it in the souqs comes with folk chants of its own.',
         },
       ],
@@ -455,7 +444,7 @@ const jsonLd = [
                 <div class="fc-body">
                   <span class="t-caption fc-k">{f.k}</span>
                   <h4>{f.name} {f.rare && <span class="tag-rare">{C.rare}</span>} {f.namePending && <span class="tag-pending">{C.pending}</span>}</h4>
-                  <span class="fc-season">{f.season} {f.seasonPending && <span class="tag-pending">{C.pending}</span>}</span>
+                  {f.season && <span class="fc-season">{f.season} {f.seasonPending && <span class="tag-pending">{C.pending}</span>}</span>}
                   <p>{f.pre}{f.sci && <span class="sci" lang="en">{f.sci}</span>}{f.post}</p>
                 </div>
               </article>

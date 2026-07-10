@@ -4,6 +4,7 @@ title_en: "Abdulrazaq Al-Arab Museum"
 slug_ar: "متحف-عبد-الرزاق-العرب"
 slug_en: "abdulrazaq-museum"
 category: historic
+heroImage: /img/abdulrazaq-museum
 kicker: "متحف خاص"
 summary: "متحف خاص في الهفوف يشتهر بمجموعته النادرة من المناهج الدراسية السعودية القديمة."
 summary_en: "A private museum in Hofuf famed for its rare collection of old Saudi school curricula."

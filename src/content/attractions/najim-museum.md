@@ -4,6 +4,7 @@ title_en: "Walid Al-Najim Museum"
 slug_ar: "متحف-وليد-الناجم"
 slug_en: "najim-museum"
 category: historic
+heroImage: /img/najim-museum
 kicker: "متحف خاص"
 summary: "متحف خاص في الجفر يضم أكثر من سبعين ألف قطعة في ستة وعشرين ركناً متخصصاً."
 summary_en: "A private museum in Al-Jafr holding over seventy thousand pieces across twenty-six themed corners."

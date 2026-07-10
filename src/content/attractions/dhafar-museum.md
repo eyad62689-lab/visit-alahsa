@@ -4,6 +4,7 @@ title_en: "Saleh Aldhafar Museum"
 slug_ar: "متحف-صالح-عبد-اللطيف-الظفر"
 slug_en: "dhafar-museum"
 category: historic
+heroImage: /img/dhafar-museum
 kicker: "متحف خاص"
 summary: "متحف تراثي جنوب الهفوف يشتهر بمجموعته الكشفية الفريدة — الأولى من نوعها في المملكة."
 summary_en: "A heritage museum south of Hofuf famed for its unique scouting collection — the first of its kind in the Kingdom."

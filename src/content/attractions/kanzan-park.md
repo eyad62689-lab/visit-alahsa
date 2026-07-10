@@ -1,6 +1,6 @@
 ---
-title: "منتزه جبل كنزان"
-title_en: "Kanzan Adventure Park"
+title: "منتزه جبل كنزان (جبل الشعبة)"
+title_en: "Kanzan Adventure Park (Al-Shuʿbah)"
 slug_ar: "منتزه-جبل-كنزان"
 slug_en: "kanzan-park"
 category: parks

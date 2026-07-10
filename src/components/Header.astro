@@ -14,7 +14,9 @@ const home = ar ? '/' : '/en/';
 const routes = {
   attractions: ar ? '/معالم/' : '/en/attractions/',
   map: ar ? '/خريطة/' : '/en/map/',
+  events: ar ? '/فعاليات/' : '/en/events/',
   fruits: ar ? '/ثمار/' : '/en/fruits/',
+  food: ar ? '/أكلات/' : '/en/food/',
   discover: ar ? '/#experiences' : '/en/#experiences',
   plan: ar ? '/خطط/' : '/en/plan-your-trip/',
   myTrip: ar ? '/رحلتي/' : '/en/plan/',
@@ -22,8 +24,9 @@ const routes = {
 const nav = [
   { href: routes.attractions, label: t('nav.attractions') },
   { href: routes.map, label: t('nav.map') },
+  { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },
-  { href: routes.discover, label: t('nav.discover') },
+  { href: routes.food, label: t('nav.food') },
   { href: routes.plan, label: t('nav.plan') },
 ];
 const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');

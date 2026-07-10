@@ -4,6 +4,7 @@ title_en: "Dar Al-Turath (Heritage House)"
 slug_ar: "دار-التراث"
 slug_en: "dar-alturath"
 category: historic
+heroImage: /img/dar-alturath
 kicker: "متحف خاص"
 summary: "دار على الطراز الأحسائي القديم وسط مزارع المنصورة، تضم أكثر من خمسة آلاف قطعة نادرة."
 summary_en: "A house in the old Ahsaai style amid Al-Mansurah's farms, holding over five thousand rare pieces."

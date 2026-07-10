@@ -3,8 +3,8 @@ title: "أرض الحضارات"
 title_en: "Land of Civilizations"
 slug_ar: "أرض-الحضارات"
 slug_en: "ardh-alhadarat"
-category: market
-kicker: "سوق تراثي"
+category: parks
+kicker: "قرية تراثية"
 summary: "قرية تراثية ومعرض عند جبل القارة تستعرض مراحل الحضارة في المنطقة."
 summary_en: "A heritage village and exhibition at Al-Qarah Mountain showcasing the region's stages of civilization."
 body_en: "A heritage village and exhibition at Al-Qarah Mountain showcasing the region's stages of civilization."

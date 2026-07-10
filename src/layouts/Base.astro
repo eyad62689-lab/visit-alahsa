@@ -35,17 +35,18 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
     <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLd} />
 
-    {/* خطوط مستضافة ذاتياً (styles/fonts.css). preload للحرج حسب اللغة. */}
+    {/* الخطوط الفاخرة (مهارة alahsa-typography): Playfair + Lora + Cairo + Cormorant
+        من Google Fonts للعناوين واللاتيني. متن العربية (IBM Plex) مستضاف ذاتياً في
+        styles/fonts.css ويبقى بديلاً آمناً إن تعذّر التحميل الخارجي. */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+
+    {/* preload لخطّ المتن الحرج المستضاف ذاتياً حسب اللغة (يحمي LCP). */}
     {lang === 'ar' ? (
-      <>
-        <link rel="preload" href="/fonts/amiri-700.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/fonts/plex-ar-400.woff2" as="font" type="font/woff2" crossorigin />
-      </>
+      <link rel="preload" href="/fonts/plex-ar-400.woff2" as="font" type="font/woff2" crossorigin />
     ) : (
-      <>
-        <link rel="preload" href="/fonts/plex-lat-400.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/fonts/marcellus-400.woff2" as="font" type="font/woff2" crossorigin />
-      </>
+      <link rel="preload" href="/fonts/plex-lat-400.woff2" as="font" type="font/woff2" crossorigin />
     )}
 
     <ClientRouter />

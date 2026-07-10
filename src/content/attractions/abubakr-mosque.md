@@ -4,6 +4,7 @@ title_en: "Sheikh Abu Bakr Mosque"
 slug_ar: "مسجد-الشيخ-أبو-بكر"
 slug_en: "abubakr-mosque"
 category: religious
+heroImage: /img/abubakr-mosque
 kicker: "موقع ديني"
 summary: "مسجد تراثي عمره نحو ثلاثة قرون في قلب حي الكوت، ارتبط بأسرة آل أبي بكر الملا العلمية."
 summary_en: "A heritage mosque of some three centuries in the heart of the Kut district, tied to the scholarly Al-Mulla family."

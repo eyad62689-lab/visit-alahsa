@@ -5,7 +5,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import { getCollection } from 'astro:content';
-import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
+import { catLabel } from '../../lib/categories';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -15,9 +15,28 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 
 const items = (await getCollection('attractions')).sort((x, y) => x.data.order - y.data.order);
-const usedCats = CATEGORY_ORDER.filter((c) => items.some((i) => i.data.category === c));
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : '/en/map/';
+
+// ترتيب عرض المجموعات — الأكثر شهرةً أولاً (قصر إبراهيم، جبل القارة، جواثا، القيصرية…).
+// المعالم داخل كل مجموعة مرتّبة أصلاً بحقل order (الأشهر أولاً). كل مجموعة قسمٌ
+// بمرساة #cat-<الفئة> تنقل إليها أيقونتها في شريط المجموعات.
+const DISPLAY_ORDER = ['historic', 'nature', 'religious', 'market', 'parks', 'farm'];
+const groups = DISPLAY_ORDER
+  .map((cat) => ({ cat, list: items.filter((i) => i.data.category === cat) }))
+  .filter((g) => g.list.length > 0);
+
+// أيقونات المجموعات (خطّية، currentColor) — بديلة لخيارات الفلترة المحذوفة.
+const CAT_ICONS: Record<string, string> = {
+  historic: '<polygon points="12 2 20 7 4 7"/><line x1="6" y1="10" x2="6" y2="17"/><line x1="10" y1="10" x2="10" y2="17"/><line x1="14" y1="10" x2="14" y2="17"/><line x1="18" y1="10" x2="18" y2="17"/><line x1="4" y1="17" x2="20" y2="17"/><line x1="3" y1="21" x2="21" y2="21"/>',
+  nature: '<path d="m8 3 4 8 5-5 5 15H2L8 3z"/>',
+  religious: '<path d="M3 21h18"/><path d="M6 21v-6"/><path d="M18 21v-6"/><path d="M5 15a7 7 0 0 1 14 0"/><path d="M12 3.5c1.1 1.1 1.6 2 1.6 2.9a1.6 1.6 0 0 1-3.2 0c0-.9.5-1.8 1.6-2.9z"/><path d="M9 21v-4a3 3 0 0 1 6 0v4"/>',
+  market: '<path d="M4 9h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 9l1.6-4h14.8L21 9z"/><path d="M3 9h18"/><path d="M9 21v-6h6v6"/>',
+  parks: '<path d="M12 22v-5"/><path d="M12 17a5.5 5.5 0 0 0 5.5-5.5c0-1.5-.6-2.6-.6-2.6A5 5 0 0 0 12 4a5 5 0 0 0-4.9 4.9s-.6 1.1-.6 2.6A5.5 5.5 0 0 0 12 17z"/>',
+  farm: '<path d="M12 21v-8"/><path d="M12 13c-.5-3-3-5-7-4 3-1.5 5.5-1 7 1 .5-3 3-5 7-4-3-1.5-5.5-1-7 1z"/>',
+};
+const groupsHint = ar ? 'ابحث بالاسم، أو تصفّح المجموعات أدناه.' : 'Search by name, or browse the groups below.';
+const groupsNavAria = ar ? 'مجموعات المعالم' : 'Attraction groups';
 
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
@@ -44,26 +63,44 @@ const jsonLd = [
 
     <section class="container list-body">
       <div class="list-tools">
-        <div class="chips" id="map-chips" role="group" aria-label="filter">
-          <button class="chip is-active" data-filter="all" type="button">{t('list.all')}</button>
-          {usedCats.map((c) => (<button class="chip" data-filter={c} type="button">{catLabel(c, lang)}</button>))}
-        </div>
+        <p class="list-hint">{groupsHint}</p>
         <input class="list-search" id="list-search" type="search" placeholder={t('list.search')} aria-label={t('list.searchLabel')} />
       </div>
 
-      <div class="list-grid" id="list-grid">
-        {items.map((i, idx) => (
-          <article class="att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
-            <a class="lc-link" href={detailBase + (ar ? i.data.slug_ar : i.data.slug_en)}>
-              <Photo src={i.data.heroImage} label={ar ? i.data.title : (i.data.title_en ?? i.data.title)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
-              <div class="lc-body">
-                <span class="t-caption lc-k">{catLabel(i.data.category, lang)}</span>
-                <h2 class="lc-t">{ar ? i.data.title : (i.data.title_en ?? i.data.title)}</h2>
-                <p class="lc-d">{ar ? i.data.summary : (i.data.summary_en ?? i.data.summary)}</p>
-              </div>
-            </a>
-            <button class="fav-btn fav-btn--corner" type="button" data-fav={i.data.slug_ar} aria-pressed="false" aria-label={t('fav.add')}><span class="fav-ic"></span></button>
-          </article>
+      <nav class="cat-nav" aria-label={groupsNavAria}>
+        {groups.map((g) => (
+          <a class="cat-nav-item" href={`#cat-${g.cat}`}>
+            <span class="cat-nav-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={CAT_ICONS[g.cat]} /></span>
+            <span class="cat-nav-l">{catLabel(g.cat, lang)}</span>
+            <span class="cat-nav-n">{g.list.length}</span>
+          </a>
+        ))}
+      </nav>
+
+      <div id="list-grid">
+        {groups.map((g) => (
+          <section class="cat-sec" id={`cat-${g.cat}`} aria-labelledby={`h-${g.cat}`}>
+            <header class="cat-sec-head">
+              <span class="cat-sec-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={CAT_ICONS[g.cat]} /></span>
+              <h2 class="cat-sec-t" id={`h-${g.cat}`}>{catLabel(g.cat, lang)}</h2>
+              <span class="cat-sec-count">{g.list.length}</span>
+            </header>
+            <div class="list-grid">
+              {g.list.map((i, idx) => (
+                <article class="att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
+                  <a class="lc-link" href={detailBase + (ar ? i.data.slug_ar : i.data.slug_en)}>
+                    <Photo src={i.data.heroImage} label={ar ? i.data.title : (i.data.title_en ?? i.data.title)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                    <div class="lc-body">
+                      <span class="t-caption lc-k">{catLabel(i.data.category, lang)}</span>
+                      <h3 class="lc-t">{ar ? i.data.title : (i.data.title_en ?? i.data.title)}</h3>
+                      <p class="lc-d">{ar ? i.data.summary : (i.data.summary_en ?? i.data.summary)}</p>
+                    </div>
+                  </a>
+                  <button class="fav-btn fav-btn--corner" type="button" data-fav={i.data.slug_ar} aria-pressed="false" aria-label={t('fav.add')}><span class="fav-ic"></span></button>
+                </article>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
       <p class="empty" id="empty" hidden>{t('list.empty')}</p>
@@ -74,32 +111,29 @@ const jsonLd = [
 
 <script is:inline>
   function initFilter() {
-    const chips = document.querySelectorAll('.chip'); const cards = document.querySelectorAll('#list-grid .att-card'); const empty = document.getElementById('empty');
     const search = document.getElementById('list-search');
-    if (!chips.length) return;
-    let cat = 'all';
+    const cards = document.querySelectorAll('#list-grid .att-card');
+    const sections = document.querySelectorAll('#list-grid .cat-sec');
+    const empty = document.getElementById('empty');
+    if (!search || search.dataset.wired) return;
+    // بحثٌ حرّ بالاسم عبر كل المجموعات؛ تُخفى المجموعة التي لا نتيجة فيها.
     function apply() {
-      const q = (search && search.value ? search.value : '').trim().toLowerCase();
+      const q = (search.value || '').trim().toLowerCase();
       let shown = 0;
       cards.forEach((card) => {
-        const okCat = cat === 'all' || card.getAttribute('data-cat') === cat;
-        const okQ = !q || (card.getAttribute('data-title') || '').toLowerCase().includes(q);
-        const ok = okCat && okQ;
+        const ok = !q || (card.getAttribute('data-title') || '').toLowerCase().includes(q);
         card.style.display = ok ? '' : 'none'; if (ok) shown++;
       });
+      sections.forEach((sec) => { sec.hidden = !sec.querySelector('.att-card:not([style*="display: none"])'); });
       if (empty) empty.hidden = shown !== 0;
     }
-    chips.forEach((chip) => chip.addEventListener('click', () => {
-      cat = chip.getAttribute('data-filter');
-      chips.forEach((c) => c.classList.toggle('is-active', c === chip));
-      apply();
-    }));
-    if (search && !search.dataset.wired) { search.dataset.wired = '1'; search.addEventListener('input', apply); }
-    // فتح القائمة مفلترة مسبقاً عبر ?cat= (روابط الرئيسية والتذييل)
+    search.dataset.wired = '1';
+    search.addEventListener('input', apply);
+    // روابط ?cat= القديمة (الرئيسية/التذييل) تنقل إلى قسم المجموعة المطابق.
     const want = new URLSearchParams(location.search).get('cat');
     if (want) {
-      const target = Array.from(chips).find((c) => c.getAttribute('data-filter') === want);
-      if (target) { cat = want; chips.forEach((c) => c.classList.toggle('is-active', c === target)); apply(); }
+      const sec = document.getElementById('cat-' + want);
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
   document.addEventListener('astro:page-load', initFilter);
@@ -114,15 +148,32 @@ const jsonLd = [
   .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
   .lh-map { margin-block-start: var(--s-4); }
   .list-body { padding-block: var(--s-6) var(--s-8); }
-  .list-tools { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); }
-  .list-tools .chips { margin-block-end: 0; flex: 1; }
+  .list-tools { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); }
+  .list-hint { font-size: var(--t-sm); color: var(--c-ink-soft); }
   .list-search { font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink);
     background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 9px 18px; min-inline-size: 220px; }
   .list-search::placeholder { color: var(--c-ink-60); }
-  .chips { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-block-end: var(--s-5); }
-  .chip { font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); cursor: pointer; background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); padding: 8px 16px; border-radius: 999px; transition: all var(--dur) var(--ease); }
-  .chip:hover { border-color: var(--c-turq); color: var(--c-turq); }
-  .chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+
+  /* شريط المجموعات — أيقونات تنقل إلى أقسامها (بديل خيارات الفلترة) */
+  .cat-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s-3); margin-block-end: var(--s-7); }
+  .cat-nav-item { display: flex; align-items: center; gap: var(--s-3); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-3) var(--s-4); text-decoration: none; color: var(--c-ink); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .cat-nav-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: transparent; }
+  .cat-nav-ic { display: inline-grid; place-items: center; inline-size: 42px; block-size: 42px; flex: 0 0 auto; border-radius: 11px; background: color-mix(in srgb, var(--c-turq) 10%, #fff); color: var(--c-turq); }
+  .cat-nav-ic svg { inline-size: 22px; block-size: 22px; }
+  .cat-nav-l { font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); line-height: 1.3; }
+  .cat-nav-n { margin-inline-start: auto; font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-radius: 999px; padding: 1px 9px; }
+
+  /* أقسام المجموعات */
+  .cat-sec { scroll-margin-block-start: 84px; margin-block-end: var(--s-7); }
+  .cat-sec:last-of-type { margin-block-end: 0; }
+  .cat-sec[hidden] { display: none; }
+  .cat-sec-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); }
+  .cat-sec-ic { display: inline-grid; place-items: center; inline-size: 40px; block-size: 40px; flex: 0 0 auto; border-radius: 11px; background: color-mix(in srgb, var(--c-turq) 12%, #fff); color: var(--c-turq-deep); }
+  .cat-sec-ic svg { inline-size: 22px; block-size: 22px; }
+  .cat-sec-t { font-size: var(--t-xl); color: var(--c-turq-deep); }
+  .cat-sec-count { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-radius: 999px; padding: 2px 10px; }
+  .cat-sec-head::after { content: ''; flex: 1; block-size: 1px; background: var(--c-line); }
+
   .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(264px, 1fr)); gap: var(--s-4); }
   .att-card { position: relative; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform var(--dur) var(--ease); }
   .lc-link { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
@@ -134,10 +185,8 @@ const jsonLd = [
   .lc-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
   .empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }
   @media (max-width: 760px) {
-    /* الفلاتر تتمرّر أفقياً بدل الالتفاف لتوفير المساحة */
-    .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-block-end: var(--s-2); scrollbar-width: none; }
-    .chips::-webkit-scrollbar { display: none; }
-    .chip { flex-shrink: 0; }
+    .list-tools { flex-direction: column; align-items: stretch; }
+    .list-search { inline-size: 100%; }
     /* tighten hero text on tablet */
     .lh-sum { font-size: var(--t-base); }
   }

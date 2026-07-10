@@ -4,6 +4,7 @@ title_en: "Salwa Beach"
 slug_ar: "شاطئ-سلوى"
 slug_en: "salwa-beach"
 category: nature
+heroImage: /img/salwa-beach
 kicker: "معلم طبيعي"
 summary: "شاطئ هادئ عند بلدة سلوى في أقصى جنوب شرق الأحساء، قرب الحدود مع قطر."
 summary_en: "A quiet beach at Salwa town in Al-Ahsa's far south-east, near the Qatar border."

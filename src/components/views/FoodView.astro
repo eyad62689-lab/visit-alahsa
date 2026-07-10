@@ -1,0 +1,215 @@
+---
+// صفحة «الأكلات الشعبية في الأحساء» — صور الأطباق الثمانية مقصوصة من لوحة قدّمها إياد
+// (2026-07-10) في public/img/food. قاعدة ملزمة: لا تُختلق معلومة؛ الأوصاف تعريفية عامة
+// بمكوّنات الأطباق المعروفة، بلا مواعيد ولا رسوم ولا ادّعاءات تاريخية غير موثقة.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import Photo from '../Photo.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+type Dish = { img: string; alt: string; k: string; name: string; pre: string; };
+type Group = { title: string; dishes: Dish[] };
+
+const C = ar ? {
+  heroEyebrow: 'من موائد الواحة',
+  title: 'الأكلات الشعبية في الأحساء',
+  heroSum: 'يقوم المطبخ الأحسائي على خيرات الواحة: الأرز الحساوي المحلي، ودبس التمر، واللومي، والقمح المجروش — فتولد أطباقٌ دافئة توارثتها الموائد جيلاً بعد جيل.',
+  introEyebrow: 'مذاق الواحة',
+  introH: 'أرزٌّ أحمر ودبسٌ وتمر',
+  introP1: 'من الأرز الحساوي طويل الحبة إلى دبس التمر (عسل التمر) واللومي الحساوي والقمح المجروش، تتشكّل نكهةٌ أحسائيةٌ خاصة: أطباقٌ رئيسيةٌ تجمع اللحوم والأرز والبهارات، وحلوياتٌ يتوّجها التمر بحلاوته.',
+  introP2: 'في هذه الصفحة جولةٌ على ثمانيةٍ من أبرز الأكلات الشعبية في الأحساء — ما هي، وبمَ تتميّز، وأين تلقى مذاقها.',
+  listEyebrow: 'جولة المذاق',
+  listH: 'ثمانية أطباق من قلب الواحة',
+  methodH: 'حول هذه الصفحة',
+  methodP1: 'الأوصاف هنا للتعريف بالأطباق الشعبية ومكوّناتها المعروفة، لا وصفاتٍ دقيقة؛ إذ تتفاوت المقادير والمسمّيات من بيتٍ لآخر ومن منطقةٍ لأخرى.',
+  groups: [
+    {
+      title: 'أطباق رئيسية',
+      dishes: [
+        { img: '/img/food/hasawi-rice', alt: 'الرز الحساوي باللحم والليمون في طبق تقديم', k: 'طبق رئيسي', name: 'الرز الحساوي',
+          pre: 'طبق الأحساء الأشهر: أرزٌ حساوي محلي طويل الحبة يُطهى مع اللحم أو الدجاج وصلصة الطماطم والبهارات (لومي وقرفة وهيل) حتى يكتسب لونه البني المحمّر ونكهته الغنية. يُقدَّم في المناسبات وموائد الضيافة.' },
+        { img: '/img/food/mandi', alt: 'المندي بالأرز والدجاج والخضار', k: 'طبق رئيسي', name: 'المندي',
+          pre: 'أرزٌ مبهّر مع دجاجٍ أو لحمٍ يُطهى ببطءٍ على طريقة المندي حتى يتشرّب النكهة ويصير طرياً، ويُزيَّن بالخضار والبهارات. من أحبّ الأطباق على الموائد الأحسائية.' },
+        { img: '/img/food/harees', alt: 'الهريس بالسمن في طبق', k: 'طبق رئيسي', name: 'الهريس',
+          pre: 'قمحٌ مجروش يُطبخ مع اللحم ساعاتٍ طويلة حتى يمتزجا في قوامٍ كريميٍّ ناعم، ثم يُقدَّم ساخناً بالسمن. طبقٌ مبارك يكثر في رمضان والولائم.' },
+        { img: '/img/food/mufallaq', alt: 'المفلق بالجريش والتمر والبيض المسلوق', k: 'طبق رئيسي', name: 'المفلق',
+          pre: 'من الأطباق التراثية الأحسائية: قمحٌ مجروش (جريش) يُطهى بالبهارات ويُنكَّه باللومي، ثم يُزيَّن بالتمر والبيض المسلوق. طبقٌ دسمٌ يجمع نكهات الواحة.' },
+      ],
+    },
+    {
+      title: 'حلويات ومعجنات بالتمر',
+      dishes: [
+        { img: '/img/food/balaleet', alt: 'البلاليط بالدبس مع عجّة البيض واللوز', k: 'حلى', name: 'البلاليط بالدبس',
+          pre: 'شعيريّةٌ رفيعة تُقلى وتُحلّى وتُعطَّر بالهيل والزعفران، تُقدَّم مع عجّة البيض واللوز — وهنا بدبس التمر الأحسائي. طبق فطورٍ تراثي يجمع الحلو والمالح.' },
+        { img: '/img/food/date-asida', alt: 'عصيدة التمر وحفرة الدبس في وسطها', k: 'حلى', name: 'عصيدة التمر',
+          pre: 'عجينةُ دقيقٍ مطبوخةٌ كثيفةُ القوام، تُسكب في وسطها حفرةٌ من دبس التمر (عسل التمر) والسمن. حلوى شتويةٌ دافئةٌ تُؤكل باليد.' },
+        { img: '/img/food/sago', alt: 'الساقو مزيّناً بالجوز والفستق', k: 'حلى', name: 'الساقو',
+          pre: 'حلوى أحسائيةٌ شهيرة من نشا الساقو تُطهى مع دبس التمر والهيل والزعفران حتى تصير هلاميةً لمّاعة، وتُزيَّن بالجوز والفستق.' },
+        { img: '/img/food/date-bread', alt: 'خبز التمر مرشوشاً بحبة البركة', k: 'خبز', name: 'خبز التمر',
+          pre: 'خبزٌ محليٌّ يُعجن أو يُحشى بمعجون التمر ويُرشُّ بحبّة البركة (الحبّة السوداء)، فيجمع بين طيّبِ الخبز وحلاوةِ التمر. يُقدَّم مع القهوة العربية.' },
+      ],
+    },
+  ] as Group[],
+} : {
+  heroEyebrow: 'From the oasis table',
+  title: 'Traditional Dishes of Al-Ahsa',
+  heroSum: "Al-Ahsa's kitchen rests on the bounty of the oasis: local Hasawi rice, date syrup, lime and cracked wheat — giving rise to warm dishes handed down the tables generation after generation.",
+  introEyebrow: 'Taste of the oasis',
+  introH: 'Red rice, date syrup and dates',
+  introP1: 'From long-grain Hasawi rice to date syrup (dibs), Hasawi lime and cracked wheat, a distinct Hasawi flavour takes shape: main dishes gathering meat, rice and spices, and sweets crowned by the sweetness of the date.',
+  introP2: "This page tours eight of Al-Ahsa's most notable traditional dishes — what they are, what makes each special, and where to taste them.",
+  listEyebrow: 'A taste tour',
+  listH: 'Eight dishes from the heart of the oasis',
+  methodH: 'About this page',
+  methodP1: 'The descriptions here introduce the traditional dishes and their well-known ingredients rather than exact recipes; measures and names vary from one household and region to the next.',
+  groups: [
+    {
+      title: 'Main dishes',
+      dishes: [
+        { img: '/img/food/hasawi-rice', alt: 'Hasawi rice with meat and lime in a serving dish', k: 'Main dish', name: 'Hasawi Rice',
+          pre: "Al-Ahsa's most famous dish: local long-grain Hasawi rice cooked with meat or chicken, tomato and spices (dried lime, cinnamon, cardamom) until it takes on its reddish-brown colour and rich flavour. A staple of celebrations and hospitality." },
+        { img: '/img/food/mandi', alt: 'Mandi with rice, chicken and vegetables', k: 'Main dish', name: 'Mandi',
+          pre: 'Spiced rice with slow-cooked chicken or meat prepared in the mandi style until tender and infused with flavour, garnished with vegetables — a beloved dish on Hasawi tables.' },
+        { img: '/img/food/harees', alt: 'Harees with ghee in a dish', k: 'Main dish', name: 'Harees',
+          pre: 'Cracked wheat simmered with meat for long hours until the two blend into a smooth, creamy texture, served hot with ghee. A blessed dish, especially common in Ramadan and at feasts.' },
+        { img: '/img/food/mufallaq', alt: 'Mufallaq of cracked wheat with dates and boiled eggs', k: 'Main dish', name: 'Mufallaq',
+          pre: 'A traditional Hasawi dish of cracked wheat (jareesh) cooked with spices and dried lime, then garnished with dates and boiled eggs — a hearty plate gathering the flavours of the oasis.' },
+      ],
+    },
+    {
+      title: 'Sweets & date pastries',
+      dishes: [
+        { img: '/img/food/balaleet', alt: 'Balaleet with date syrup, egg omelette and almonds', k: 'Sweet', name: 'Balaleet with Date Syrup',
+          pre: 'Fine vermicelli fried and sweetened, scented with cardamom and saffron, served with an egg omelette and almonds — here with Hasawi date syrup. A heritage breakfast marrying sweet and savoury.' },
+        { img: '/img/food/date-asida', alt: 'Date asida with a well of syrup in its centre', k: 'Sweet', name: 'Date Asida',
+          pre: 'A thick cooked flour paste with a well of date syrup (dibs) and ghee poured into its centre. A warm winter sweet eaten by hand.' },
+        { img: '/img/food/sago', alt: 'Sago garnished with walnuts and pistachios', k: 'Sweet', name: 'Sago',
+          pre: 'A famous Hasawi sweet of sago starch cooked with date syrup, cardamom and saffron into a glossy, jelly-like texture, garnished with walnuts and pistachios.' },
+        { img: '/img/food/date-bread', alt: 'Date bread sprinkled with black seed', k: 'Bread', name: 'Date Bread',
+          pre: 'A local bread kneaded or filled with date paste and sprinkled with black seed (nigella), uniting good bread with the sweetness of dates. Served with Arabic coffee.' },
+      ],
+    },
+  ] as Group[],
+};
+
+const pageTitle = `${C.title} — ${t('site.name')}`;
+const description = ar
+  ? 'جولة على الأكلات الشعبية في الأحساء: الرز الحساوي، المندي، الهريس، المفلق، البلاليط بالدبس، عصيدة التمر، الساقو، وخبز التمر.'
+  : 'A tour of Al-Ahsa traditional dishes: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
+
+const siteUrl = 'https://visit-alahsa.com';
+const selfPath = ar ? '/أكلات/' : '/en/food/';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
+  ] },
+];
+---
+<Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+
+    <section class="fd-hero on-dark">
+      <PalmMotif size={320} class="fdh-wm" aria-hidden="true" />
+      <div class="container fdh-in">
+        <span class="eyebrow gold-on-dark">{C.heroEyebrow}</span>
+        <h1 class="fdh-title">{C.title}</h1>
+        <p class="fdh-sum">{C.heroSum}</p>
+      </div>
+    </section>
+
+    <section class="container fd-intro">
+      <span class="eyebrow">{C.introEyebrow}</span>
+      <h2>{C.introH}</h2>
+      <p>{C.introP1}</p>
+      <p>{C.introP2}</p>
+    </section>
+
+    <section class="container fd-list">
+      <div class="fd-head">
+        <span class="eyebrow">{C.listEyebrow}</span>
+        <h2>{C.listH}</h2>
+      </div>
+
+      {C.groups.map((g) => (
+        <div class="fgroup">
+          <div class="fgroup-head"><h3>{g.title}</h3></div>
+          <div class="fgrid">
+            {g.dishes.map((d, idx) => (
+              <article class="dish-card" data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
+                <Photo src={d.img} label={d.alt} class="fd-photo" sizes="(max-width: 760px) 100vw, 25vw" />
+                <div class="dc-body">
+                  <span class="t-caption dc-k">{d.k}</span>
+                  <h4>{d.name}</h4>
+                  <p>{d.pre}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section class="container fd-method">
+      <div class="method-box">
+        <h2>{C.methodH}</h2>
+        <p>{C.methodP1}</p>
+      </div>
+    </section>
+
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  /* ═══ الهيرو ═══ */
+  .fd-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
+  :global(.fdh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
+  .fdh-in { position: relative; z-index: 2; max-inline-size: 62ch; }
+  .fdh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .fdh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+
+  /* ═══ المقدمة ═══ */
+  .fd-intro { padding-block: var(--s-7) var(--s-6); }
+  .fd-intro h2 { font-size: var(--t-2xl); margin-block: var(--s-2) var(--s-3); }
+  .fd-intro p { max-inline-size: 72ch; }
+  .fd-intro p + p { margin-block-start: var(--s-3); }
+
+  /* ═══ قسم الأطباق ═══ */
+  .fd-list { padding-block: var(--s-6) var(--s-8); }
+  .fd-head { margin-block-end: var(--s-6); }
+  .fd-head h2 { font-size: var(--t-2xl); margin-block-start: var(--s-2); }
+
+  .fgroup { margin-block-end: var(--s-7); }
+  .fgroup:last-of-type { margin-block-end: 0; }
+  .fgroup-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); }
+  .fgroup-head h3 { font-size: var(--t-xl); color: var(--c-turq-deep); }
+  .fgroup-head::after { content: ''; flex: 1; block-size: 1px; background: var(--c-line); }
+  .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--s-4); }
+
+  .dish-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  .dc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
+  .dc-k { color: var(--c-gold-deep); }
+  .dish-card h4 { font-size: var(--t-lg); color: var(--c-turq-deep); }
+  .dish-card p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+
+  /* صور الأطباق: أطباق مقصوصة على خلفية كريمية، مربّعة — بلا طبقة الظل الفيروزية */
+  :global(.fd-photo) { aspect-ratio: 1 / 1; }
+  :global(picture.fd-photo) { background: var(--c-sand); }
+  :global(picture.fd-photo)::after { content: none; }
+
+  /* ═══ الملاحظة ═══ */
+  .fd-method { padding-block: 0 var(--s-7); }
+  .method-box { background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); max-inline-size: 78ch; }
+  .method-box h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
+  .method-box p { font-size: var(--t-sm); color: var(--c-ink-soft); }
+</style>

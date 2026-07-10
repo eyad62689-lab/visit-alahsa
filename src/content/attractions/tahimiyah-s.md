@@ -1,8 +1,8 @@
 ---
-title: "مسجد التهيمية الجنوبي"
-title_en: "Al-Tahimiyah South Mosque"
-slug_ar: "مسجد-التهيمية-الجنوبي"
-slug_en: "tahimiyah-s"
+title: "مسجد التهيمية الغربي"
+title_en: "Al-Tahimiyah West Mosque"
+slug_ar: "مسجد-التهيمية-الغربي"
+slug_en: "tahimiyah-w"
 category: religious
 kicker: "موقع ديني"
 summary: "من مساجد قرية التهيمية الأثرية الطينية — تفاصيل تاريخه بانتظار التأكيد."
