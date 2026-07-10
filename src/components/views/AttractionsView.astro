@@ -52,6 +52,9 @@ const jsonLd = [
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="list-hero on-dark">
+      <video class="photo-bg lh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+        <source data-src="/video/hero-attractions.mp4" type="video/mp4" />
+      </video>
       <PalmMotif size={320} class="lh-wm" aria-hidden="true" />
       <div class="container lh-in">
         <span class="eyebrow gold-on-dark">{t('list.eyebrow')}</span>
@@ -109,6 +112,24 @@ const jsonLd = [
   <Footer lang={lang} />
 </Base>
 
+<script>
+  // تشغيل فيديو الهيرو فقط عند السماح بالحركة وعدم تفعيل توفير البيانات؛
+  // preload="none" + data-src يمنعان تنزيل الفيديو لمن لا يشمله التشغيل.
+  const v = document.querySelector<HTMLVideoElement>('.lh-video');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = (navigator as any).connection?.saveData === true;
+  if (v && !reduceMotion && !saveData) {
+    const s = v.querySelector('source');
+    if (s?.dataset.src) {
+      v.addEventListener('playing', () => v.classList.add('lh-video--on'), { once: true });
+      s.src = s.dataset.src;
+      v.autoplay = true;
+      v.load();
+      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
+    }
+  }
+</script>
+
 <script is:inline>
   function initFilter() {
     const search = document.getElementById('list-search');
@@ -142,7 +163,16 @@ const jsonLd = [
 
 <style>
   .list-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  :global(.lh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
+  /* فيديو الهيرو فوق الخلفية الفيروزية؛ يظهر تدريجياً بعد بدء التشغيل، والخلفية تبقى احتياطاً
+     لمن يُفعّل «تقليل الحركة» أو «توفير البيانات». */
+  .lh-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
+  .lh-video--on { opacity: 1; }
+  /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
+  .list-hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
+  }
+  :global(.lh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   .lh-in { position: relative; z-index: 2; max-inline-size: 56ch; }
   .lh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
