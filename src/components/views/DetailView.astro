@@ -81,7 +81,6 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
             {ar && a.practical.filter((p) => p.verified).map((p) => (
               <><dt>{p.label}</dt><dd>{p.value}</dd></>
             ))}
-            {a.location && (<><dt>{t('det.coords')}</dt><dd dir="ltr" style="text-align:start">{a.location.lat}, {a.location.lng}</dd></>)}
           </dl>
           {ar && a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label)) && (
             <p class="info-note">المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو ٢٠٢٦م.</p>

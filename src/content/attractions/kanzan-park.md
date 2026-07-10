@@ -3,7 +3,7 @@ title: "منتزه جبل كنزان (جبل الشعبة)"
 title_en: "Kanzan Adventure Park (Al-Shuʿbah)"
 slug_ar: "منتزه-جبل-كنزان"
 slug_en: "kanzan-park"
-category: parks
+category: nature
 kicker: "متنزّه"
 summary: "المنتزه الجبلي الذي تنفذه أمانة الأحساء فوق كتلة الشعبة/كنزان — تزلج جبلي وجسور معلقة وشلالات."
 summary_en: "The mountain park Al-Ahsa Municipality is building on the Shu'bah/Kanzan massif — mountain slides, suspended bridges and waterfalls."

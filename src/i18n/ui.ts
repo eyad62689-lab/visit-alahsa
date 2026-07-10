@@ -5,7 +5,7 @@ export type Lang = 'ar' | 'en';
 export const ui = {
   ar: {
     // عام / تنقّل
-    'site.name': 'زوروا الأحساء',
+    'site.name': 'الأحساء',
     'nav.attractions': 'المعالم',
     'nav.map': 'الخريطة',
     'nav.events': 'الفعاليات',
@@ -121,7 +121,7 @@ export const ui = {
     'news.err': 'تعذّر الاشتراك الآن. راسلنا على info@visit-alahsa.com.',
   },
   en: {
-    'site.name': 'Visit Al-Ahsa',
+    'site.name': 'Al-Ahsa',
     'nav.attractions': 'Attractions',
     'nav.map': 'Map',
     'nav.events': 'Events',

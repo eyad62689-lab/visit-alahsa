@@ -17,9 +17,12 @@ interface Props {
 }
 const {
   title,
-  description = 'زوروا الأحساء — أكبر واحة نخيل في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
+  description = 'الأحساء — أكبر واحة نخيل في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
   lang = 'ar', alt, type, image, noindex, jsonLd,
 } = Astro.props;
+
+// Google Analytics 4 (GA4). معرّف القياس ثابت للموقع كله.
+const GA_ID = 'G-QB084SK5XJ';
 ---
 <!doctype html>
 <html lang={htmlLang(lang)} dir={dir(lang)}>
@@ -48,6 +51,24 @@ const {
     ) : (
       <link rel="preload" href="/fonts/plex-lat-400.woff2" as="font" type="font/woff2" crossorigin />
     )}
+
+    {/* Google Analytics 4 — يُحمّل بالكود بدل حقن Netlify. مع ClientRouter (تحولات
+        العرض) نُعطّل page_view التلقائي ونرسله يدوياً في كل astro:page-load
+        (يقع عند التحميل الأول وبعد كل تنقّل) فنحصل على زيارةٍ واحدة لكل صفحة. */}
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script is:inline define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_ID, { send_page_view: false });
+      document.addEventListener('astro:page-load', () => {
+        gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: location.href,
+          page_path: location.pathname + location.search,
+        });
+      });
+    </script>
 
     <ClientRouter />
   </head>
