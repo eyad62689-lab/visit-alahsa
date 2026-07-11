@@ -14,6 +14,9 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
+// أرقام العدّادات بالأرقام العربية‑الهندية في النسخة العربية اتّساقاً مع سائر الموقع.
+const num = (n: number) => (ar ? String(n).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : String(n));
+
 const items = (await getCollection('attractions')).sort((x, y) => x.data.order - y.data.order);
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : '/en/map/';
@@ -52,6 +55,10 @@ const jsonLd = [
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="list-hero on-dark">
+      <picture class="photo-bg lh-poster" aria-hidden="true">
+        <source srcset="/img/hero-attractions.webp" type="image/webp" />
+        <img src="/img/hero-attractions.jpg" alt="" fetchpriority="high" decoding="async" />
+      </picture>
       <video class="photo-bg lh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
         <source data-src="/video/hero-attractions.mp4" type="video/mp4" />
       </video>
@@ -75,7 +82,7 @@ const jsonLd = [
           <a class="cat-nav-item" href={`#cat-${g.cat}`}>
             <span class="cat-nav-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={CAT_ICONS[g.cat]} /></span>
             <span class="cat-nav-l">{catLabel(g.cat, lang)}</span>
-            <span class="cat-nav-n">{g.list.length}</span>
+            <span class="cat-nav-n">{num(g.list.length)}</span>
           </a>
         ))}
       </nav>
@@ -86,7 +93,7 @@ const jsonLd = [
             <header class="cat-sec-head">
               <span class="cat-sec-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={CAT_ICONS[g.cat]} /></span>
               <h2 class="cat-sec-t" id={`h-${g.cat}`}>{catLabel(g.cat, lang)}</h2>
-              <span class="cat-sec-count">{g.list.length}</span>
+              <span class="cat-sec-count">{num(g.list.length)}</span>
             </header>
             <div class="list-grid">
               {g.list.map((i, idx) => (
