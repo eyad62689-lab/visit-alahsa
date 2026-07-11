@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
+import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
@@ -12,16 +13,25 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 
+// أرقام العرض في النسخة العربية تكون عربية-هندية (قاعدة الموقع العامة)
+const num = (n: number) => (ar ? String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : String(n));
+
 const items = await getCollection('attractions');
-const points = items.filter((e) => e.data.location).map((e) => ({
-  title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
-  cat: e.data.category,
-  catLabel: catLabel(e.data.category, lang),
-  href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
-  fav: e.data.slug_ar,
-  summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
-  lat: e.data.location!.lat, lng: e.data.location!.lng,
-}));
+const points = items
+  .filter((e) => e.data.location)
+  .map((e) => ({
+    title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+    cat: e.data.category,
+    catLabel: catLabel(e.data.category, lang),
+    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+    fav: e.data.slug_ar,
+    summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
+    img: e.data.heroImage ?? null,
+    // نصّ البحث: الاسمان معاً + المنطقة، فيجد الزائر المعلم بأي لغة
+    q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.area ?? ''}`,
+    lat: e.data.location!.lat, lng: e.data.location!.lng,
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : 'en'));
 const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
 const catCounts = Object.fromEntries(usedCats.map((c) => [c, points.filter((p) => p.cat === c).length]));
 const labels = { view: t('map.pop.view'), favAdd: t('fav.add'), favAdded: t('fav.added') };
@@ -40,28 +50,68 @@ const jsonLd = [
     <div class="container map-head">
       <span class="eyebrow">{t('map.eyebrow')}</span>
       <h1 class="map-title">{t('map.title')}</h1>
-      <p class="map-sum"><bdi>{points.length}</bdi> {t('map.lead.a')}</p>
-      <div class="chips" id="map-chips" role="group" aria-label="filter">
-        <button class="chip is-active" data-filter="all" type="button">{t('list.all')} <bdi>({points.length})</bdi></button>
-        {usedCats.map((c) => (<button class="chip" data-filter={c} type="button">{catLabel(c, lang)} <bdi>({catCounts[c]})</bdi></button>))}
+      <p class="map-sum"><bdi>{num(points.length)}</bdi> {t('map.lead.a')}</p>
+      <div class="map-tools">
+        <input id="map-search" class="map-search" type="search" placeholder={t('map.search.ph')} aria-label={t('map.search.ph')} autocomplete="off" />
+        <div class="chips" id="map-chips" role="group" aria-label="filter">
+          <button class="chip is-active" data-filter="all" type="button">{t('list.all')} <bdi>({num(points.length)})</bdi></button>
+          {usedCats.map((c) => (
+            <button class="chip" data-filter={c} type="button">
+              <span class={`dot dot--${c}`} aria-hidden="true"></span>{catLabel(c, lang)} <bdi>({num(catCounts[c])})</bdi>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
-    <div id="map" role="application" aria-label={t('map.title')}></div>
+    <div class="container map-layout">
+      <div id="map" role="application" aria-label={t('map.title')}></div>
+      <aside class="map-side" aria-label={t('map.list.aria')}>
+        <p class="ms-count">{t('map.count')}: <bdi id="map-count">{num(points.length)}</bdi></p>
+        <ul class="ms-list" id="map-list">
+          {points.map((p) => (
+            <li>
+              <button type="button" class="ms-item">
+                {p.img ? (
+                  <img class="ms-thumb" src={`${p.img}.webp`} alt="" loading="lazy" decoding="async" width="72" height="54" />
+                ) : (
+                  <span class="ms-thumb ms-thumb--ph" aria-hidden="true"><PalmMotif size={22} /></span>
+                )}
+                <span class="ms-tx">
+                  <strong class="ms-t">{p.title}</strong>
+                  <span class="ms-k"><span class={`dot dot--${p.cat}`} aria-hidden="true"></span>{p.catLabel}</span>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <p class="ms-empty" id="map-empty" hidden>{t('map.empty')}</p>
+      </aside>
+    </div>
   </main>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-  <script is:inline define:vars={{ points, labels }}>
+  <script is:inline define:vars={{ points, labels, isAr: ar }}>
     function initMap() {
       const el = document.getElementById('map');
       if (!el || typeof L === 'undefined' || el._leaflet_id) return;
       const map = L.map(el, { scrollWheelZoom: false }).setView([25.42, 49.62], 11);
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19 }).addTo(map);
-      const pin = () => L.divIcon({ className: 'va-pin', html: '<span></span>', iconSize: [18, 18], iconAnchor: [9, 9] });
-      const markers = points.map((p) => {
-        const m = L.marker([p.lat, p.lng], { icon: pin(), title: p.title });
-        m.bindPopup('<div class="va-pop">' +
+      const pin = (cat) => L.divIcon({ className: 'va-pin va-pin--' + cat, html: '<span></span>', iconSize: [18, 18], iconAnchor: [9, 9] });
+
+      const listEl = document.getElementById('map-list');
+      const lis = listEl ? Array.from(listEl.children) : [];
+      // تطبيع البحث: بلا تشكيل، وتوحيد الهمزات والألف المقصورة (جواثى=جواثا) والتاء المربوطة
+      const norm = (s) => (s || '').toLowerCase()
+        .replace(/[ً-ْـ]/g, '')
+        .replace(/[أإآى]/g, 'ا').replace(/ة/g, 'ه');
+      const fmt = (n) => isAr ? String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : String(n);
+
+      const entries = points.map((p, i) => {
+        const m = L.marker([p.lat, p.lng], { icon: pin(p.cat), title: p.title });
+        const img = p.img ? '<img class="va-pop-img" src="' + p.img + '.webp" alt="" loading="lazy" decoding="async">' : '';
+        m.bindPopup('<div class="va-pop">' + img +
           '<span class="va-pop-k">' + p.catLabel + '</span>' +
           '<strong class="va-pop-t">' + p.title + '</strong>' +
           '<p class="va-pop-d">' + p.summary + '</p>' +
@@ -69,19 +119,49 @@ const jsonLd = [
           '<button class="fav-btn va-pop-fav" type="button" data-fav="' + p.fav + '" data-tx-on="' + labels.favAdded + '" data-tx-off="' + labels.favAdd + '" aria-pressed="false">' +
           '<span class="fav-ic">+</span><span data-fav-tx>' + labels.favAdd + '</span></button>' +
           '</div>');
-        m._cat = p.cat; m.addTo(map); return m;
+        m.addTo(map);
+        const li = lis[i] || null;
+        if (li) {
+          li.querySelector('.ms-item').addEventListener('click', () => {
+            map.flyTo([p.lat, p.lng], Math.max(map.getZoom(), 14), { duration: 0.8 });
+            m.openPopup();
+            if (window.matchMedia('(max-width: 900px)').matches) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+          m.on('popupopen', () => {
+            lis.forEach((x) => x.classList.remove('is-here'));
+            li.classList.add('is-here');
+            li.scrollIntoView({ block: 'nearest' });
+          });
+          m.on('popupclose', () => li.classList.remove('is-here'));
+        }
+        return { p, m, li };
       });
+
       map.on('popupopen', () => window.VAPlan && window.VAPlan.sync());
-      const group = L.featureGroup(markers);
-      map.fitBounds(group.getBounds().pad(0.12));
+      map.fitBounds(L.featureGroup(entries.map((e) => e.m)).getBounds().pad(0.12));
+
       const chips = document.querySelectorAll('#map-chips .chip');
-      chips.forEach((chip) => chip.addEventListener('click', () => {
-        const f = chip.getAttribute('data-filter');
-        chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+      const search = document.getElementById('map-search');
+      const countEl = document.getElementById('map-count');
+      const emptyEl = document.getElementById('map-empty');
+      const state = { cat: 'all', q: '' };
+      function apply() {
         const shown = [];
-        markers.forEach((m) => { const ok = f === 'all' || m._cat === f; if (ok) { m.addTo(map); shown.push(m); } else { map.removeLayer(m); } });
-        if (shown.length) map.fitBounds(L.featureGroup(shown).getBounds().pad(0.12));
+        entries.forEach(({ p, m, li }) => {
+          const ok = (state.cat === 'all' || p.cat === state.cat) && (!state.q || norm(p.q).indexOf(state.q) !== -1);
+          if (li) li.hidden = !ok;
+          if (ok) { m.addTo(map); shown.push(m); } else { map.removeLayer(m); }
+        });
+        if (countEl) countEl.textContent = fmt(shown.length);
+        if (emptyEl) emptyEl.hidden = shown.length > 0;
+        if (shown.length) map.fitBounds(L.featureGroup(shown).getBounds().pad(0.12), { maxZoom: 14 });
+      }
+      chips.forEach((chip) => chip.addEventListener('click', () => {
+        state.cat = chip.getAttribute('data-filter');
+        chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+        apply();
       }));
+      if (search) search.addEventListener('input', () => { state.q = norm(search.value.trim()); apply(); });
     }
     document.addEventListener('astro:page-load', initMap);
     if (document.readyState !== 'loading') initMap(); else document.addEventListener('DOMContentLoaded', initMap);
@@ -89,31 +169,82 @@ const jsonLd = [
 </Base>
 
 <style>
-  .map-page { padding-block: var(--s-6) 0; }
+  /* ألوان الفئات — أدوار مشتقة من رموز الهوية حصراً */
+  .map-page {
+    --pin-historic: var(--c-gold-deep);
+    --pin-religious: var(--c-turq-deep);
+    --pin-nature: var(--c-turq);
+    --pin-parks: var(--c-turq-tint);
+    --pin-farm: var(--c-gold);
+    --pin-market: var(--c-ink);
+    padding-block: var(--s-6) 0;
+  }
   .map-head { margin-block-end: var(--s-4); }
   .map-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-2xl); line-height: 1.2; margin-block: var(--s-2); }
   .map-sum { color: var(--c-ink-soft); margin-block-end: var(--s-4); }
+  .map-tools { display: flex; gap: var(--s-3); align-items: center; flex-wrap: wrap; }
+  .map-search { font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink); background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 8px 16px; min-inline-size: 230px; }
+  .map-search::placeholder { color: var(--c-ink-60); }
   .chips { display: flex; gap: var(--s-2); flex-wrap: wrap; }
-  .chip { font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); cursor: pointer; background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); padding: 7px 15px; border-radius: 999px; transition: all var(--dur) var(--ease); }
+  .chip { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); cursor: pointer; background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); padding: 7px 15px; border-radius: 999px; transition: all var(--dur) var(--ease); }
   .chip:hover { border-color: var(--c-turq); color: var(--c-turq); }
   .chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
-  #map { block-size: clamp(420px, 68vh, 760px); inline-size: 100%; background: var(--c-sand-2); }
-  :global(.va-pin span) { display: block; inline-size: 16px; block-size: 16px; border-radius: 50%; background: var(--c-turq); border: 2.5px solid var(--c-sand); box-shadow: 0 1px 4px rgba(0,42,37,.4); transition: transform .2s var(--ease), background .2s var(--ease); }
-  :global(.va-pin:hover span) { transform: scale(1.35); background: var(--c-gold); }
+  .dot { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--c-turq); flex-shrink: 0; }
+  .dot--historic { background: var(--pin-historic); }
+  .dot--religious { background: var(--pin-religious); }
+  .dot--nature { background: var(--pin-nature); }
+  .dot--parks { background: var(--pin-parks); }
+  .dot--farm { background: var(--pin-farm); }
+  .dot--market { background: var(--pin-market); }
+  .chip.is-active .dot { box-shadow: 0 0 0 2px rgba(247,243,234,.85); }
+
+  /* الخريطة + القائمة الجانبية المتزامنة */
+  .map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: var(--s-4); align-items: stretch; padding-block-end: var(--s-6); }
+  #map { block-size: clamp(420px, 66vh, 720px); inline-size: 100%; background: var(--c-sand-2); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+  .map-side { display: flex; flex-direction: column; block-size: clamp(420px, 66vh, 720px); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); overflow: hidden; }
+  .ms-count { margin: 0; padding: var(--s-3); font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); border-block-end: 1px solid var(--c-line); }
+  .ms-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; overscroll-behavior: contain; }
+  .ms-item { display: flex; gap: var(--s-3); align-items: center; inline-size: 100%; padding: 10px var(--s-3); background: none; border: 0; border-block-end: 1px solid var(--c-line); cursor: pointer; text-align: start; font-family: var(--font-body); transition: background var(--dur) var(--ease); }
+  .ms-item:hover { background: var(--c-sand); }
+  .ms-list li.is-here .ms-item { background: var(--c-sand-2); border-inline-start: 3px solid var(--c-turq); padding-inline-start: calc(var(--s-3) - 3px); }
+  .ms-thumb { inline-size: 72px; block-size: 54px; object-fit: cover; border-radius: var(--radius-sm); flex-shrink: 0; }
+  .ms-thumb--ph { display: grid; place-items: center; background: var(--c-sand-2); color: var(--c-turq); }
+  .ms-tx { min-inline-size: 0; }
+  .ms-t { display: block; font-size: var(--t-sm); font-weight: 600; color: var(--c-ink); line-height: 1.35; }
+  .ms-k { display: flex; align-items: center; gap: 6px; font-size: var(--t-xs); color: var(--c-ink-soft); margin-block-start: 2px; }
+  .ms-empty { padding: var(--s-4); margin: 0; color: var(--c-ink-soft); font-size: var(--t-sm); }
+
+  /* الدبابيس الملوّنة حسب الفئة */
+  :global(.va-pin span) { display: block; inline-size: 16px; block-size: 16px; border-radius: 50%; background: var(--pin, var(--c-turq)); border: 2.5px solid var(--c-sand); box-shadow: 0 1px 4px rgba(0,42,37,.4); transition: transform .2s var(--ease); }
+  :global(.va-pin:hover span) { transform: scale(1.35); }
+  :global(.va-pin--historic span) { --pin: var(--pin-historic); }
+  :global(.va-pin--religious span) { --pin: var(--pin-religious); }
+  :global(.va-pin--nature span) { --pin: var(--pin-nature); }
+  :global(.va-pin--parks span) { --pin: var(--pin-parks); }
+  :global(.va-pin--farm span) { --pin: var(--pin-farm); }
+  :global(.va-pin--market span) { --pin: var(--pin-market); }
+
   :global(.leaflet-popup-content-wrapper) { border-radius: var(--radius) !important; }
-  :global(.va-pop) { font-family: var(--font-body); text-align: start; min-inline-size: 180px; }
+  :global(.va-pop) { font-family: var(--font-body); text-align: start; min-inline-size: 200px; max-inline-size: 240px; }
+  :global(.va-pop-img) { inline-size: 100%; block-size: 110px; object-fit: cover; border-radius: 8px; margin-block-end: 8px; display: block; }
   :global(.va-pop-k) { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); }
   :global(.va-pop-t) { display: block; font-family: var(--font-heading); font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: 2px 4px; }
   :global(.va-pop-d) { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.6; margin-block-end: 8px; }
   :global(.va-pop-a) { font-weight: 600; color: var(--c-turq); text-decoration: none; }
   :global(.va-pop-a:hover) { color: var(--c-gold-deep); }
   :global(.va-pop-fav) { margin-block-start: 8px; padding: 7px 12px; font-size: var(--t-xs); inline-size: 100%; justify-content: center; }
+
+  @media (max-width: 900px) {
+    /* عمود واحد: الخريطة أولاً ثم القائمة بارتفاع محدود */
+    .map-layout { grid-template-columns: 1fr; }
+    #map { block-size: clamp(340px, 52vh, 560px); }
+    .map-side { block-size: auto; max-block-size: 46vh; }
+  }
   @media (max-width: 760px) {
-    /* فلاتر الخريطة تتمرّر أفقياً */
+    /* فلاتر الخريطة تتمرّر أفقياً، والبحث بعرض كامل */
+    .map-search { inline-size: 100%; }
     .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-block-end: var(--s-2); scrollbar-width: none; }
     .chips::-webkit-scrollbar { display: none; }
     .chip { flex-shrink: 0; }
-    /* الخريطة أقصر قليلاً على الهاتف لترك مساحة للرأسية */
-    #map { block-size: clamp(340px, 58vh, 560px); }
   }
 </style>
