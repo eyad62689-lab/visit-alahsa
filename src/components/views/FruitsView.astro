@@ -375,11 +375,18 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-fruits">
   <Header lang={lang} alt={alt} />
   <main id="main">
 
     <section class="fr-hero on-dark">
+      <picture class="photo-bg frh-poster" aria-hidden="true">
+        <source srcset="/img/hero-fruits.webp" type="image/webp" />
+        <img src="/img/hero-fruits.jpg" alt="" fetchpriority="high" decoding="async" />
+      </picture>
+      <video class="photo-bg frh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+        <source data-src="/video/hero-fruits.mp4" type="video/mp4" />
+      </video>
       <PalmMotif size={320} class="frh-wm" aria-hidden="true" />
       <div class="container frh-in">
         <span class="eyebrow gold-on-dark">{C.heroEyebrow}</span>
@@ -504,10 +511,39 @@ const jsonLd = [
   if (document.readyState !== 'loading') initFruitFilter(); else document.addEventListener('DOMContentLoaded', initFruitFilter);
 </script>
 
+<script is:inline>
+  /* تفعيل فيديو الهيرو كسولاً — يحترم تفضيل تقليل الحركة وتوفير البيانات */
+  function initFruitsHeroVideo() {
+    const v = document.querySelector('.frh-video');
+    if (!v || v.dataset.wired) return;
+    v.dataset.wired = '1';
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection && navigator.connection.saveData === true;
+    if (reduceMotion || saveData) return;
+    const s = v.querySelector('source');
+    if (s && s.dataset.src) {
+      v.addEventListener('playing', () => v.classList.add('frh-video--on'), { once: true });
+      s.src = s.dataset.src;
+      v.autoplay = true;
+      v.load();
+      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
+    }
+  }
+  document.addEventListener('astro:page-load', initFruitsHeroVideo);
+  if (document.readyState !== 'loading') initFruitsHeroVideo(); else document.addEventListener('DOMContentLoaded', initFruitsHeroVideo);
+</script>
+
 <style>
   /* ═══ الهيرو وشريط الأرقام ═══ */
   .fr-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  :global(.frh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
+  .frh-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
+  .frh-video--on { opacity: 1; }
+  /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
+  .fr-hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
+  }
+  :global(.frh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   .frh-in { position: relative; z-index: 2; max-inline-size: 62ch; }
   .frh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .frh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
