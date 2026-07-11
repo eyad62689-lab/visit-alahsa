@@ -14,11 +14,13 @@ interface Props {
   image?: string;
   noindex?: boolean;
   jsonLd?: object | object[];
+  /* المسار الأساسي لصورة الهيرو (بلا امتداد) — تُحمَّل مسبقاً لتحسين LCP */
+  preloadImage?: string;
 }
 const {
   title,
   description = 'الأحساء — أكبر واحة نخيل في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
-  lang = 'ar', alt, type, image, noindex, jsonLd,
+  lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage,
 } = Astro.props;
 
 // Google Analytics 4 (GA4). معرّف القياس ثابت للموقع كله.
@@ -51,6 +53,9 @@ const GA_ID = 'G-QB084SK5XJ';
     ) : (
       <link rel="preload" href="/fonts/plex-lat-400.woff2" as="font" type="font/woff2" crossorigin />
     )}
+
+    {/* التحميل المسبق لصورة الهيرو (أكبر عنصر مرئي LCP) في الصفحات ذات الهيرو المصوّر */}
+    {preloadImage && <link rel="preload" as="image" href={`${preloadImage}.webp`} type="image/webp" fetchpriority="high" />}
 
     {/* Google Analytics 4 — يُحمّل بالكود بدل حقن Netlify. مع ClientRouter (تحولات
         العرض) نُعطّل page_view التلقائي ونرسله يدوياً في كل astro:page-load

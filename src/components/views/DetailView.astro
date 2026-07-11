@@ -41,7 +41,7 @@ const jsonLd = [
 const homeHref = ar ? '/' : '/en/';
 const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
 ---
-<Base title={`${title} — ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd}>
+<Base title={`${title} — ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>

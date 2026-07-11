@@ -51,7 +51,7 @@ const jsonLd = [
     itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(detailBase + (ar ? i.data.slug_ar : i.data.slug_en), siteUrl).href })) },
 ];
 ---
-<Base title={`${t('list.title')} — ${t('site.name')}`} description={t('list.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${t('list.title')} — ${t('site.name')}`} description={t('list.lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-attractions">
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="list-hero on-dark">

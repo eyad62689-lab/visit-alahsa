@@ -14,7 +14,7 @@ order: 39
 area: "قرب العمران — شرق الأحساء"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 practical:
-  - { label: "الرسوم", value: "الدخول مجاني", verified: true }
+  - { label: "الرسوم", value: "بانتظار التأكيد", verified: false }
 location: { lat: 25.525252, lng: 49.808672 }
 mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
 ---

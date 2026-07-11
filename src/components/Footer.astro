@@ -113,11 +113,13 @@ const year = new Date().getFullYear();
   .ftn-in { font-family: var(--font-body); font-size: var(--t-sm); min-inline-size: 240px;
     background: rgba(247,243,234,.08); color: var(--c-sand); border: 1px solid rgba(247,243,234,.3);
     border-radius: var(--radius-sm); padding: 11px 14px; }
-  .ftn-in::placeholder { color: rgba(247,243,234,.5); }
+  .ftn-in::placeholder { color: rgba(247,243,234,.65); }
   .ftn-in:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; border-color: transparent; }
   .ftn-btn { padding: 11px 22px; }
-  .ftn-msg { inline-size: 100%; color: var(--c-gold); font-size: var(--t-sm); margin-block-start: var(--s-2); }
-  .ft-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-block-start: var(--s-6); padding-block-start: var(--s-4); border-block-start: 1px solid rgba(247,243,234,.14); font-size: var(--t-sm); color: rgba(247,243,234,.62); flex-wrap: wrap; }
-  .ft-mail { font-family: var(--font-latin); letter-spacing: .04em; color: var(--c-gold); text-decoration: none; }
+  .ftn-msg { inline-size: 100%; color: var(--c-sand); font-size: var(--t-sm); margin-block-start: var(--s-2); }
+  .ft-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-block-start: var(--s-6); padding-block-start: var(--s-4); border-block-start: 1px solid rgba(247,243,234,.14); font-size: var(--t-sm); color: rgba(247,243,234,.72); flex-wrap: wrap; }
+  /* تباين AA: الذهبي على الفيروزي الداكن ≈ 3.7:1 فلا يصلح للنص الصغير — رملي أساساً وذهبي عند التحويم */
+  .ft-mail { font-family: var(--font-latin); letter-spacing: .04em; color: var(--c-sand); text-decoration: none; }
+  .ft-mail:hover { color: var(--c-gold); }
   @media (max-width: 760px) { .ft-grid { grid-template-columns: 1fr 1fr; } .ft-brand { grid-column: 1 / -1; } .ftn-form { inline-size: 100%; } .ftn-in { flex: 1; } }
 </style>

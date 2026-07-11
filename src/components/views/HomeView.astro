@@ -38,7 +38,8 @@ const planTripHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
-  { '@context': 'https://schema.org', '@type': 'WebSite', name: t('site.name'), url: new URL(alt[lang], siteUrl).href, inLanguage: lang },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: t('site.name'), url: siteUrl + '/', logo: siteUrl + '/icon-512.png' },
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: t('site.name'), url: new URL(alt[lang], siteUrl).href, inLanguage: lang, publisher: { '@type': 'Organization', name: t('site.name'), url: siteUrl + '/' } },
   {
     '@context': 'https://schema.org', '@type': 'TouristDestination',
     name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(alt[lang], siteUrl).href, image: siteUrl + '/og-default.png',
@@ -49,7 +50,7 @@ const jsonLd = [
 ];
 const title = ar ? 'الأحساء — أكبر واحة نخيل في العالم' : 'Al-Ahsa — the world’s largest palm oasis';
 ---
-<Base title={title} description={t('home.hero.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={title} description={t('home.hero.lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="hero photo">

@@ -16,8 +16,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/أكلات/', en: '/en/food/' },
     { ar: '/فعاليات/', en: '/en/events/' },
     { ar: '/خطط/', en: '/en/plan-your-trip/' },
-    { ar: '/brand/' },
-    ...items.map((e) => ({ ar: '/معالم/' + e.data.slug_ar, en: '/en/attractions/' + e.data.slug_en })),
+    ...items.map((e) => ({ ar: '/معالم/' + e.data.slug_ar + '/', en: '/en/attractions/' + e.data.slug_en + '/' })),
   ];
 
   const alts = (p: { ar: string; en?: string }) => {
