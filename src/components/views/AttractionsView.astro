@@ -81,8 +81,10 @@ const jsonLd = [
         {groups.map((g) => (
           <a class="cat-nav-item" href={`#cat-${g.cat}`}>
             <span class="cat-nav-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={CAT_ICONS[g.cat]} /></span>
-            <span class="cat-nav-l">{catLabel(g.cat, lang)}</span>
-            <span class="cat-nav-n">{num(g.list.length)}</span>
+            <span class="cat-nav-tx">
+              <span class="cat-nav-l">{catLabel(g.cat, lang)}</span>
+              <span class="cat-nav-n">{num(g.list.length)}</span>
+            </span>
           </a>
         ))}
       </nav>
@@ -197,8 +199,11 @@ const jsonLd = [
   .cat-nav-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: transparent; }
   .cat-nav-ic { display: inline-grid; place-items: center; inline-size: 42px; block-size: 42px; flex: 0 0 auto; border-radius: 11px; background: color-mix(in srgb, var(--c-turq) 10%, #fff); color: var(--c-turq); }
   .cat-nav-ic svg { inline-size: 22px; block-size: 22px; }
+  /* التسمية فوق شارة العدد في عمود واحد — الصفّ الأفقي القديم كان يفيض بالشارة
+     خارج حدّ البطاقة عندما يضيق عمود الشبكة عن حدّه الأدنى (الحاسوب والجوال معاً). */
+  .cat-nav-tx { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-inline-size: 0; }
   .cat-nav-l { font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); line-height: 1.3; }
-  .cat-nav-n { margin-inline-start: auto; font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-radius: 999px; padding: 1px 9px; }
+  .cat-nav-n { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-radius: 999px; padding: 1px 9px; }
 
   /* أقسام المجموعات */
   .cat-sec { scroll-margin-block-start: 84px; margin-block-end: var(--s-7); }
