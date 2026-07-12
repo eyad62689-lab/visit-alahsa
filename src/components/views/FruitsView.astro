@@ -2,9 +2,9 @@
 // صفحة «ثمار الأحساء الموسمية» — اعتمدها إياد (2026-07-09) من معاينة HTML بجذر المشروع.
 // المصدران: مسودتا بحث قدّمهما إياد (compass + docx)، والصور من لوحتيه (صور أصناف
 // الثمار/الرطب) مقصوصةً في public/img/fruits. قاعدة ملزمة: لا تُختلق معلومة؛ ما لم
-// يتأكد يحمل وسم «بانتظار التأكيد» ظاهراً للقارئ (البابايا والأترنج). حُذف البرتقال
-// (لا يُزرع في الأحساء) وأُكِّدت مواسم البمبر والكنار (2026-07-10). الرمان السواري
-// موسوم «شبه منقرض» بلا موسم بطلب إياد.
+// يتأكد يحمل وسم «بانتظار التأكيد» ظاهراً للقارئ. حُذف البرتقال (لا يُزرع في الأحساء)
+// وأُكِّدت مواسم البمبر والكنار (2026-07-10) ثم البابايا (يونيو–أغسطس) والأترنج
+// (يناير–بداية مارس) من إياد (2026-07-12). الرمان السواري موسوم «شبه منقرض» بلا موسم بطلب إياد.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
@@ -181,15 +181,15 @@ const C = ar ? {
       fruits: [
         {
           img: '/img/fruits/papaya', alt: 'ثمرة بابايا ونصف ثمرة يظهر لبّها البرتقالي',
-          k: 'ثمار أخرى', name: 'البابايا', namePending: true,
-          season: 'الموسم بانتظار التوثيق',
-          pre: 'فاكهة استوائية برتقالية اللب حلوة المذاق. تفاصيل زراعتها ومواسمها في الأحساء لم توثَّق بعد من مصادر رسمية.',
+          k: 'ثمار أخرى', name: 'البابايا',
+          season: 'صيفاً: من يونيو إلى أغسطس', seasons: 'summer',
+          pre: 'فاكهة استوائية برتقالية اللب حلوة المذاق، تثمر في بساتين الواحة صيفاً.',
         },
         {
           img: '/img/fruits/atranj', alt: 'ثمار الأترنج الخضراء المجعّدة القشرة',
-          k: 'ثمار أخرى', name: 'الأترنج (الأترج)', namePending: true,
-          season: 'الموسم بانتظار التوثيق',
-          pre: 'من الحمضيات العريقة، ثمرته كبيرة معطّرة، سميكة القشرة مجعّدة السطح. تفاصيل زراعته ومواسمه في الأحساء لم توثَّق بعد من مصادر رسمية.',
+          k: 'ثمار أخرى', name: 'الأترنج (الأترج)',
+          season: 'شتاءً: من يناير إلى بداية مارس', seasons: 'winter',
+          pre: 'من الحمضيات العريقة، ثمرته كبيرة معطّرة، سميكة القشرة مجعّدة السطح.',
         },
       ],
     },
@@ -346,15 +346,15 @@ const C = ar ? {
       fruits: [
         {
           img: '/img/fruits/papaya', alt: 'A papaya and a cut half showing the orange flesh',
-          k: 'Other fruits', name: 'Papaya', namePending: true,
-          season: 'Season pending documentation',
-          pre: 'A tropical fruit with sweet orange flesh. Details of its cultivation and seasons in Al-Ahsa have not yet been documented from official sources.',
+          k: 'Other fruits', name: 'Papaya',
+          season: 'Summer: from June to August', seasons: 'summer',
+          pre: "A tropical fruit with sweet orange flesh, ripening in the oasis's groves in summer.",
         },
         {
           img: '/img/fruits/atranj', alt: 'Green wrinkle-skinned atranj (citron) fruits',
-          k: 'Other fruits', name: 'Atranj (Citron)', namePending: true,
-          season: 'Season pending documentation',
-          pre: 'An ancient citrus with large, fragrant fruit and a thick, wrinkled rind. Details of its cultivation and seasons in Al-Ahsa have not yet been documented from official sources.',
+          k: 'Other fruits', name: 'Atranj (Citron)',
+          season: 'Winter: from January to early March', seasons: 'winter',
+          pre: 'An ancient citrus with large, fragrant fruit and a thick, wrinkled rind.',
         },
       ],
     },
