@@ -9,25 +9,38 @@ import { catLabel } from '../../lib/categories';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
-interface Props { lang: Lang; alt: AltLinks; }
-const { lang, alt } = Astro.props;
+// النطاق: 'sights' صفحة المعالم (تاريخ/طبيعة/دين)، و'leisure' صفحة الأسواق
+// والمنتزهات والمزارع المستقلة (فُصلت بطلب إياد 2026-07-13).
+interface Props { lang: Lang; alt: AltLinks; scope?: 'sights' | 'leisure'; }
+const { lang, alt, scope = 'sights' } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const leisure = scope === 'leisure';
 
 // أرقام العدّادات بالأرقام العربية‑الهندية في النسخة العربية اتّساقاً مع سائر الموقع.
 const num = (n: number) => (ar ? String(n).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : String(n));
 
-const items = (await getCollection('attractions')).sort((x, y) => x.data.order - y.data.order);
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : '/en/map/';
 
-// ترتيب عرض المجموعات — الأكثر شهرةً أولاً (قصر إبراهيم، جبل القارة، جواثا، القيصرية…).
-// المعالم داخل كل مجموعة مرتّبة أصلاً بحقل order (الأشهر أولاً). كل مجموعة قسمٌ
-// بمرساة #cat-<الفئة> تنقل إليها أيقونتها في شريط المجموعات.
-const DISPLAY_ORDER = ['historic', 'nature', 'religious', 'market', 'parks', 'farm'];
+// نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
+const K = leisure ? 'list2' : 'list';
+const tx = (suffix: string) => t(`${K}.${suffix}` as any);
+
+// ترتيب عرض المجموعات — الأكثر شهرةً أولاً. كل مجموعة قسمٌ بمرساة #cat-<الفئة>
+// تنقل إليها أيقونتها في شريط المجموعات. المعالم داخل كل مجموعة مرتّبة بحقل order.
+const DISPLAY_ORDER = leisure ? ['market', 'parks', 'farm'] : ['historic', 'nature', 'religious'];
+const items = (await getCollection('attractions'))
+  .filter((i) => DISPLAY_ORDER.includes(i.data.category))
+  .sort((x, y) => x.data.order - y.data.order);
 const groups = DISPLAY_ORDER
   .map((cat) => ({ cat, list: items.filter((i) => i.data.category === cat) }))
   .filter((g) => g.list.length > 0);
+
+// هيرو الصفحة: للمعالم صورة وفيديو hero-attractions؛ لصفحة الأسواق صورة القيصرية بلا فيديو.
+const heroImg = leisure ? '/img/qaisariyah' : '/img/hero-attractions';
+const heroVideo = leisure ? null : '/video/hero-attractions.mp4';
+const selfPath = leisure ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/') : detailBase;
 
 // أيقونات المجموعات (خطّية، currentColor) — بديلة لخيارات الفلترة المحذوفة.
 const CAT_ICONS: Record<string, string> = {
@@ -44,29 +57,31 @@ const groupsNavAria = ar ? 'مجموعات المعالم' : 'Attraction groups'
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(alt[lang], siteUrl).href },
-    { '@type': 'ListItem', position: 2, name: t('crumb.attractions'), item: new URL(detailBase, siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: tx('title'), item: new URL(selfPath, siteUrl).href },
   ] },
-  { '@context': 'https://schema.org', '@type': 'ItemList', name: t('list.title'), numberOfItems: items.length,
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: tx('title'), numberOfItems: items.length,
     itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(detailBase + (ar ? i.data.slug_ar : i.data.slug_en), siteUrl).href })) },
 ];
 ---
-<Base title={`${t('list.title')} — ${t('site.name')}`} description={t('list.lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-attractions">
+<Base title={`${tx('title')} — ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="list-hero on-dark">
       <picture class="photo-bg lh-poster" aria-hidden="true">
-        <source srcset="/img/hero-attractions.webp" type="image/webp" />
-        <img src="/img/hero-attractions.jpg" alt="" fetchpriority="high" decoding="async" />
+        <source srcset={`${heroImg}.webp`} type="image/webp" />
+        <img src={`${heroImg}.jpg`} alt="" fetchpriority="high" decoding="async" />
       </picture>
-      <video class="photo-bg lh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-        <source data-src="/video/hero-attractions.mp4" type="video/mp4" />
-      </video>
+      {heroVideo && (
+        <video class="photo-bg lh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+          <source data-src={heroVideo} type="video/mp4" />
+        </video>
+      )}
       <PalmMotif size={320} class="lh-wm" aria-hidden="true" />
       <div class="container lh-in">
-        <span class="eyebrow gold-on-dark">{t('list.eyebrow')}</span>
-        <h1 class="lh-title">{t('list.title')}</h1>
-        <p class="lh-sum">{t('list.lead')}</p>
+        <span class="eyebrow gold-on-dark">{tx('eyebrow')}</span>
+        <h1 class="lh-title">{tx('title')}</h1>
+        <p class="lh-sum">{tx('lead')}</p>
         <a href={mapHref} class="btn btn--gold lh-map">{t('list.map')}</a>
       </div>
     </section>
@@ -182,9 +197,10 @@ const jsonLd = [
     background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
   }
   :global(.lh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
-  .lh-in { position: relative; z-index: 2; max-inline-size: 56ch; }
+  /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
+  .lh-in { position: relative; z-index: 2; }
   .lh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 56ch; }
   .lh-map { margin-block-start: var(--s-4); }
   .list-body { padding-block: var(--s-6) var(--s-8); }
   .list-tools { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); }

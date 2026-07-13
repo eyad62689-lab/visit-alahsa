@@ -213,9 +213,10 @@ const jsonLd = [
 <style>
   .pt-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
   :global(.pth-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
-  .pth-in { position: relative; z-index: 2; max-inline-size: 56ch; }
+  /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
+  .pth-in { position: relative; z-index: 2; }
   .pth-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .pth-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  .pth-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 56ch; }
   .sec { padding-block: var(--s-7); }
   .sec--sand { background: var(--c-sand-2); }
   .sec-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; margin-block-end: var(--s-5); }

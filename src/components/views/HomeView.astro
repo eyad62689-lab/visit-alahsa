@@ -18,12 +18,14 @@ const featuredEntries = (await getCollection('attractions'))
 
 // key = مفتاح النصّ في القاموس؛ cat = فئة حقيقية في المجموعة تُفتح مفلترة،
 // والفئات التي لا معالم لها بعد تقود إلى القائمة الكاملة.
+// فئتا farm وmarket تقودان إلى صفحة الأسواق والمنتزهات المستقلة (2026-07-13).
+const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/';
 const catCards = [
   { key: 'historic', cat: 'historic', href: null },
   { key: 'nature', cat: 'nature', href: null },
   { key: 'crafts', cat: null, href: null },
-  { key: 'taste', cat: 'farm', href: null },
-  { key: 'market', cat: 'market', href: null },
+  { key: 'taste', cat: null, href: `${leisureBase}?cat=farm` },
+  { key: 'market', cat: null, href: `${leisureBase}?cat=market` },
   { key: 'events', cat: null, href: ar ? '/فعاليات/' : '/en/events/' },
 ];
 const facts = [
@@ -190,8 +192,9 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .hero-video--on { opacity: 1; }
   /* :global لأن PalmMotif مكوّن منفصل والـ scoped CSS لا تصله */
   :global(.hero-wm) { position: absolute; inset-block-end: -14%; inset-inline-start: -10%; color: var(--c-gold); opacity: .12; z-index: 0; }
-  .hero-in { position: relative; z-index: 2; max-inline-size: 56ch; padding-block: var(--s-8); }
-  .hero-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-display); line-height: 1.12; margin-block: var(--s-4) var(--s-4); text-shadow: 0 2px 30px rgba(0,42,37,.4); }
+  /* التحديد على العناصر الداخلية لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
+  .hero-in { position: relative; z-index: 2; padding-block: var(--s-8); }
+  .hero-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-display); line-height: 1.12; margin-block: var(--s-4) var(--s-4); text-shadow: 0 2px 30px rgba(0,42,37,.4); max-inline-size: 56ch; }
   .hero-lead { font-size: var(--t-lg); line-height: 1.7; color: rgba(247,243,234,.92); max-inline-size: 48ch; }
   .hero-cta { display: flex; gap: var(--s-3); margin-block-start: var(--s-6); flex-wrap: wrap; }
   .scroll-cue { position: absolute; inset-block-end: var(--s-5); inset-inline-start: 50%; transform: translateX(50%); z-index: 2; }
@@ -200,9 +203,8 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   @keyframes cue { 0%,100% { opacity: 0; transform: translate(-50%, 0); } 50% { opacity: 1; transform: translate(-50%, 10px); } }
   @media (prefers-reduced-motion: reduce) { .scroll-cue span::after { animation: none; } }
   .name-sec { background: var(--c-sand); padding-block: var(--s-8); }
-  .name-in { max-inline-size: 60ch; }
-  .name-h { font-size: var(--t-2xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-4); line-height: 1.2; }
-  .name-body { font-size: var(--t-lg); line-height: 1.85; color: var(--c-ink); }
+  .name-h { font-size: var(--t-2xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-4); line-height: 1.2; max-inline-size: 60ch; }
+  .name-body { font-size: var(--t-lg); line-height: 1.85; color: var(--c-ink); max-inline-size: 60ch; }
   .sec { padding-block: var(--s-8); }
   .sec--sand { background: var(--c-sand-2); }
   .sec-head { max-inline-size: 60ch; margin-block-end: var(--s-6); }
@@ -229,7 +231,8 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .att-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; max-inline-size: 60ch; }
   .att-more { text-align: center; margin-block-start: var(--s-5); }
   .why { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8); }
-  .why-wm { position: absolute; inset-block-start: -8%; inset-inline-end: -6%; color: var(--c-gold); opacity: .1; }
+  /* :global لأن PalmMotif مكوّن منفصل — بدونها تبقى السعفة عنصراً في التدفق يزيح المحتوى */
+  :global(.why-wm) { position: absolute; inset-block-start: -8%; inset-inline-end: -6%; color: var(--c-gold); opacity: .1; }
   .why-in { position: relative; z-index: 2; }
   .why-head .sec-title { color: var(--c-sand); }
   .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); }

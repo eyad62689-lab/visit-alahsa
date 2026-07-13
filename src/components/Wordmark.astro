@@ -29,5 +29,13 @@ const arSize = size === 'lg' ? 'var(--t-display)' : size === 'sm' ? '1.3rem' : '
     letter-spacing: .34em;       /* التباعد على اللاتيني فقط (اصطلاح الموقع) */
     padding-inline-start: .34em; /* تعويض إزاحة آخر حرف */
     margin-block-start: .45em;
+    white-space: nowrap;         /* لا يلتف السطر اللاتيني على الشاشات الضيقة */
+  }
+  /* المقاس الصغير (الترويسة): تباعد أخف كي يتناسق عرض اللاتيني تحت «الأحساء»
+     بدل أن يفيض عنها — أوضح ما يكون على شاشة الجوال */
+  .wm-sm .wm-en {
+    font-size: .36em;
+    letter-spacing: .18em;
+    padding-inline-start: .18em;
   }
 </style>

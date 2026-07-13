@@ -11,6 +11,7 @@ export const GET: APIRoute = async ({ site }) => {
   const pairs: { ar: string; en?: string }[] = [
     { ar: '/', en: '/en/' },
     { ar: '/معالم/', en: '/en/attractions/' },
+    { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/' },
     { ar: '/خريطة/', en: '/en/map/' },
     { ar: '/ثمار/', en: '/en/fruits/' },
     { ar: '/أكلات/', en: '/en/food/' },

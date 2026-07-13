@@ -98,9 +98,10 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
 <style>
   .plan-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
   :global(.ph-wm) { position: absolute; inset-block-start: -8%; inset-inline-end: -4%; color: var(--c-gold); opacity: .1; }
-  .ph-in { position: relative; z-index: 2; max-inline-size: 54ch; }
+  /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
+  .ph-in { position: relative; z-index: 2; }
   .ph-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .ph-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  .ph-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 54ch; }
   .plan-body { padding-block: var(--s-6) var(--s-8); }
   .plan-actions { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); padding-block-end: var(--s-4); border-block-end: 1px solid var(--c-line); }
   .plan-count-txt { font-weight: 600; color: var(--c-turq-deep); }
@@ -121,7 +122,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   .pc-remove { background: none; border: 0; cursor: pointer; font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink-soft); }
   .pc-remove:hover { color: #a3402a; }
   .plan-empty { text-align: center; max-inline-size: 48ch; margin-inline: auto; padding-block: var(--s-7); }
-  .pe-palm { color: var(--c-turq); opacity: .4; margin-inline: auto; }
+  :global(.pe-palm) { color: var(--c-turq); opacity: .4; margin-inline: auto; }
   .pe-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-2); }
   .pe-d { color: var(--c-ink-soft); margin-block-end: var(--s-4); }
   .pe-cta { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }

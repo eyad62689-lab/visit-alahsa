@@ -10,12 +10,15 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 
 const listBase = ar ? '/معالم/' : '/en/attractions/';
+const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/';
 const planTrip = ar ? '/خطط/' : '/en/plan-your-trip/';
 const cols = [
   {
     h: t('foot.col.discover'),
     links: [
-      ...['historic', 'nature', 'parks', 'market'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
+      // الأسواق والمنتزهات والمزارع في صفحتها المستقلة (فُصلت 2026-07-13)
+      ...['historic', 'nature'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
+      ...['market', 'parks', 'farm'].map((c) => ({ label: catLabel(c, lang), href: `${leisureBase}?cat=${c}` })),
       { label: t('nav.fruits'), href: ar ? '/ثمار/' : '/en/fruits/' },
       { label: t('nav.food'), href: ar ? '/أكلات/' : '/en/food/' },
       { label: t('foot.l.events'), href: ar ? '/فعاليات/' : '/en/events/' },
@@ -57,44 +60,12 @@ const year = new Date().getFullYear();
     ))}
   </div>
 
-  <div class="container ft-news">
-    <div class="ftn-copy">
-      <h3 class="ftn-h">{t('news.h')}</h3>
-      <p class="ftn-d">{t('news.d')}</p>
-    </div>
-    <form class="ftn-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-news data-ok={t('news.ok')} data-err={t('news.err')}>
-      <input type="hidden" name="form-name" value="newsletter" />
-      <p class="ftn-trap" aria-hidden="true"><label>لا تملأ هذا الحقل: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-      <input class="ftn-in" type="email" name="email" required placeholder={t('news.ph')} aria-label={t('news.ph')} />
-      <button class="btn btn--gold ftn-btn" type="submit">{t('news.btn')}</button>
-    </form>
-    <p class="ftn-msg" data-news-msg hidden></p>
-  </div>
-
+  {/* أُزيل نموذج «النشرة البريدية» بطلب إياد (2026-07-13) — لا تجميع للإيميلات */}
   <div class="container ft-bar">
     <span>© {year} {t('site.name')} — {t('foot.rights')}</span>
     <a href="mailto:info@visit-alahsa.com" class="ft-mail">info@visit-alahsa.com</a>
   </div>
 </footer>
-
-<script is:inline>
-  // إرسال النشرة عبر Netlify Forms دون مغادرة الصفحة، مع رسالة نجاح/تعذّر
-  function initNews() {
-    document.querySelectorAll('form[data-news]:not([data-wired])').forEach((f) => {
-      f.dataset.wired = '1';
-      f.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const msg = f.parentElement.querySelector('[data-news-msg]');
-        const data = new URLSearchParams(new FormData(f));
-        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data.toString() })
-          .then((r) => { if (!r.ok) throw 0; if (msg) { msg.textContent = f.dataset.ok || ''; msg.hidden = false; } f.reset(); })
-          .catch(() => { if (msg) { msg.textContent = f.dataset.err || ''; msg.hidden = false; } });
-      });
-    });
-  }
-  document.addEventListener('astro:page-load', initNews);
-  if (document.readyState !== 'loading') initNews(); else document.addEventListener('DOMContentLoaded', initNews);
-</script>
 
 <style>
   .site-footer { background: var(--c-turq-deep); color: var(--c-sand); padding-block: var(--s-8) var(--s-5); margin-block-start: var(--s-8); }
@@ -105,21 +76,9 @@ const year = new Date().getFullYear();
   .ft-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--s-2); }
   .ft-col a { color: rgba(247,243,234,.74); text-decoration: none; font-size: var(--t-sm); transition: color var(--dur) var(--ease); }
   .ft-col a:hover { color: var(--c-gold); }
-  .ft-news { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; margin-block-start: var(--s-7); padding-block-start: var(--s-5); border-block-start: 1px solid rgba(247,243,234,.14); }
-  .ftn-h { font-size: var(--t-lg); color: var(--c-sand); margin-block-end: var(--s-1); }
-  .ftn-d { color: rgba(247,243,234,.7); font-size: var(--t-sm); max-inline-size: 44ch; }
-  .ftn-form { display: flex; gap: var(--s-2); flex-wrap: wrap; }
-  .ftn-trap { position: absolute; inset-inline-start: -9999px; }
-  .ftn-in { font-family: var(--font-body); font-size: var(--t-sm); min-inline-size: 240px;
-    background: rgba(247,243,234,.08); color: var(--c-sand); border: 1px solid rgba(247,243,234,.3);
-    border-radius: var(--radius-sm); padding: 11px 14px; }
-  .ftn-in::placeholder { color: rgba(247,243,234,.65); }
-  .ftn-in:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; border-color: transparent; }
-  .ftn-btn { padding: 11px 22px; }
-  .ftn-msg { inline-size: 100%; color: var(--c-sand); font-size: var(--t-sm); margin-block-start: var(--s-2); }
   .ft-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-block-start: var(--s-6); padding-block-start: var(--s-4); border-block-start: 1px solid rgba(247,243,234,.14); font-size: var(--t-sm); color: rgba(247,243,234,.72); flex-wrap: wrap; }
   /* تباين AA: الذهبي على الفيروزي الداكن ≈ 3.7:1 فلا يصلح للنص الصغير — رملي أساساً وذهبي عند التحويم */
   .ft-mail { font-family: var(--font-latin); letter-spacing: .04em; color: var(--c-sand); text-decoration: none; }
   .ft-mail:hover { color: var(--c-gold); }
-  @media (max-width: 760px) { .ft-grid { grid-template-columns: 1fr 1fr; } .ft-brand { grid-column: 1 / -1; } .ftn-form { inline-size: 100%; } .ftn-in { flex: 1; } }
+  @media (max-width: 760px) { .ft-grid { grid-template-columns: 1fr 1fr; } .ft-brand { grid-column: 1 / -1; } }
 </style>

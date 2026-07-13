@@ -19,6 +19,7 @@ const ar = lang === 'ar';
 type Ev = {
   name: string; place: string; season: string; time: string;
   span: string; org: string; acts: string[]; img: string; start: number;
+  map?: string; // رابط خرائط جوجل (اختياري)
 };
 
 const C = ar ? {
@@ -27,6 +28,7 @@ const C = ar ? {
   lead: 'من سوق القيصرية إلى مزارع النخيل، تنبض الأحساء بمواسمَ تُحيي تراثها على مدار العام — احتفالاتٌ ومهرجاناتٌ تعود كلَّ سنةٍ في موسمها.',
   notice: 'تتكرّر هذه الفعاليات سنوياً في مواسمها التقريبية، وقد تختلف مواعيدها وتفاصيلها من عامٍ لآخر بحسب تنظيم كل نسخة. يُرجى التأكد من إعلانات الجهات المنظّمة والقنوات الرسمية قبل الزيارة.',
   placeK: 'الموقع',
+  mapK: 'الخريطة ↗',
   orgK: 'الجهات المنظّمة',
   spanK: 'المدة التقريبية',
   actsK: 'أبرز الأنشطة',
@@ -74,6 +76,15 @@ const C = ar ? {
       acts: ['فعاليات بحرية ورياضية عائلية', 'ورش فنية حرفية', 'ألعاب ترفيهية'],
     },
     {
+      // شتاء الوفرة: تجمع شتوي موسمي لعربات الطعام بإشراف أمانة الأحساء
+      // (صحيفة اليوم 2024-11-22 وجريدة الوطن 2025-11-08) — أُضيف بطلب إياد 2026-07-13.
+      name: 'شتاء الوفرة', place: 'حي الوفرة، جنوب الهفوف',
+      season: 'الشتاء', time: 'من نوفمبر تقريباً', span: 'موسم شتوي ممتد', img: '', start: 11,
+      org: 'ملاك ومستثمرون بإشراف أمانة الأحساء',
+      acts: ['أكثر من ١٥٠ عربة طعام (فود ترك)', 'أكلات شعبية حساوية', 'جلسات شتوية مفتوحة'],
+      map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8',
+    },
+    {
       name: 'موسم سباقات الخيل', place: 'ميدان الفروسية، الطرف',
       season: 'الشتاء', time: 'نوفمبر – فبراير', span: 'موسم ممتد', img: '/img/event-horse-racing', start: 11,
       org: 'ميدان الفروسية بالأحساء',
@@ -98,13 +109,14 @@ const C = ar ? {
   ctaBrowse: 'تصفّح المعالم',
   ctaPlan: 'خطّط لرحلتك',
   seoTitle: 'مهرجانات وفعاليات الأحساء — مواسم الواحة على مدار العام',
-  seoDesc: 'دليل المهرجانات والفعاليات الموسمية في الأحساء: البشت الحساوي، ليالي القيصرية، ليالي كفو، مهرجان التمور، قرية النخيل، اللومي الحساوي، شتاء العقير، سباقات الخيل، والأحساء المبدعة — بمواسمها وأنشطتها وجهاتها المنظّمة.',
+  seoDesc: 'دليل المهرجانات والفعاليات الموسمية في الأحساء: البشت الحساوي، ليالي القيصرية، ليالي كفو، مهرجان التمور، قرية النخيل، اللومي الحساوي، شتاء العقير، شتاء الوفرة، سباقات الخيل، والأحساء المبدعة — بمواسمها وأنشطتها وجهاتها المنظّمة.',
 } : {
   eyebrow: 'Seasons of the oasis',
   title: 'Festivals & Events',
   lead: 'From Qaisariyah Souq to the palm groves, Al-Ahsa pulses with seasons that revive its heritage all year round — celebrations and festivals that return each year in their season.',
   notice: 'These events recur annually in their approximate seasons; official dates and details may vary from year to year with each edition. Please confirm via the organisers’ announcements and official channels before visiting.',
   placeK: 'Location',
+  mapK: 'Map ↗',
   orgK: 'Organisers',
   spanK: 'Approximate length',
   actsK: 'Highlights',
@@ -152,6 +164,13 @@ const C = ar ? {
       acts: ['Family sea & sports activities', 'Art & craft workshops', 'Fun games'],
     },
     {
+      name: 'Al-Wafrah Winter', place: 'Al-Wafrah district, south Hofuf',
+      season: 'Winter', time: 'From around November', span: 'An extended winter season', img: '', start: 11,
+      org: 'Private operators under Al-Ahsa Municipality supervision',
+      acts: ['150+ food trucks', 'Hasawi folk dishes', 'Open-air winter gatherings'],
+      map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8',
+    },
+    {
       name: 'Horse Racing Season', place: 'Al-Ahsa Equestrian Arena, Al-Taraf',
       season: 'Winter', time: 'November – February', span: 'An extended season', img: '/img/event-horse-racing', start: 11,
       org: 'Al-Ahsa Equestrian Arena',
@@ -176,7 +195,7 @@ const C = ar ? {
   ctaBrowse: 'Browse attractions',
   ctaPlan: 'Plan your trip',
   seoTitle: 'Al-Ahsa festivals & events — seasons of the oasis all year round',
-  seoDesc: 'A guide to Al-Ahsa’s seasonal festivals and events: the Hassawi Bisht Festival, Qaisariyah Nights, Kafu Nights, the dates festivals, Palm Village, the Hassawi Lomi Exhibition, Al-Uqair Winter, the horse racing season and Creative Al-Ahsa — with their seasons, highlights and organisers.',
+  seoDesc: 'A guide to Al-Ahsa’s seasonal festivals and events: the Hassawi Bisht Festival, Qaisariyah Nights, Kafu Nights, the dates festivals, Palm Village, the Hassawi Lomi Exhibition, Al-Uqair Winter, Al-Wafrah Winter, the horse racing season and Creative Al-Ahsa — with their seasons, highlights and organisers.',
 };
 
 const browseHref = ar ? '/معالم/' : '/en/attractions/';
@@ -234,7 +253,7 @@ const jsonLd = [
               <dl class="ev-meta">
                 <div class="evm-row">
                   <dt class="evm-k">{C.placeK}</dt>
-                  <dd class="evm-v">{e.place}</dd>
+                  <dd class="evm-v">{e.place}{e.map && <> — <a class="evm-map" href={e.map} target="_blank" rel="noopener">{C.mapK}</a></>}</dd>
                 </div>
                 <div class="evm-row">
                   <dt class="evm-k">{C.orgK}</dt>
@@ -311,9 +330,10 @@ const jsonLd = [
     background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
   }
   :global(.evh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
-  .evh-in { position: relative; z-index: 2; max-inline-size: 60ch; }
+  /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
+  .evh-in { position: relative; z-index: 2; }
   .evh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .evh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  .evh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 60ch; }
 
   .sec { padding-block: var(--s-7); }
   .sec--sand { background: var(--c-sand-2); }
@@ -343,6 +363,8 @@ const jsonLd = [
   .evm-row { padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.55); }
   .evm-k { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-gold-deep); }
   .evm-v { margin: 0; font-size: var(--t-sm); color: var(--c-ink); line-height: 1.7; }
+  .evm-map { font-weight: 600; color: var(--c-turq); text-decoration: none; white-space: nowrap; }
+  .evm-map:hover { color: var(--c-gold-deep); }
   .ev-acts-h { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-ink-60);
     letter-spacing: .02em; margin-block-end: var(--s-2); }
   .ev-acts { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
