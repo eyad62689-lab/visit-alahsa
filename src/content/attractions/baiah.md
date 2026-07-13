@@ -4,7 +4,7 @@ title_en: "Bayt Al-Bay'ah"
 slug_ar: "بيت-البيعة"
 slug_en: "baiah"
 category: historic
-heroImage: /img/baiah
+heroImage: /img/baiah-v2
 kicker: "معلم تاريخي"
 summary: "الموقع الذي تمت فيه مبايعة الملك عبدالعزيز عند ضمّ الأحساء عام 1331هـ، رمز تاريخي لتأسيس الدولة."
 summary_en: "The site where King Abdulaziz received allegiance upon the annexation of Al-Ahsa in 1331 AH — a symbol of the state's founding."

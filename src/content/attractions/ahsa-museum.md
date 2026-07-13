@@ -4,7 +4,7 @@ title_en: "Al-Ahsa Museum"
 slug_ar: "متحف-الأحساء"
 slug_en: "ahsa-museum"
 category: historic
-heroImage: /img/alahsa-museum-01
+heroImage: /img/alahsa-museum-02
 kicker: "معلم تاريخي"
 summary: "المتحف الإقليمي الرسمي؛ يعرض تاريخ الأحساء وآثارها عبر العصور."
 summary_en: "The official regional museum; presents Al-Ahsa's history and antiquities across the ages."

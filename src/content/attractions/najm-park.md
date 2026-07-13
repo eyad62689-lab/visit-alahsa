@@ -4,7 +4,7 @@ title_en: "Ain Najm Park"
 slug_ar: "حديقة-عين-النجم"
 slug_en: "najm-park"
 category: parks
-heroImage: /img/najm-park
+heroImage: /img/najm-park-v2
 kicker: "متنزّه"
 summary: "متنزه حول عين نجم التاريخية غربي المبرز، أشهر عيون الأحساء الكبريتية الاستشفائية."
 summary_en: "A park around the historic Ain Najm west of Al-Mubarraz, the most famous of Al-Ahsa's healing sulphur springs."

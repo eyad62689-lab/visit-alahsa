@@ -4,7 +4,7 @@ title_en: "Amiriah School"
 slug_ar: "المدرسة-الأميرية"
 slug_en: "ameeriah"
 category: historic
-heroImage: /img/ameeriah
+heroImage: /img/ameeriah-v2
 kicker: "معلم تاريخي"
 summary: "أول مدرسة حكومية نظامية في الأحساء، انطلقت عام 1356هـ/1937م، ومبناها التاريخي اليوم بيت للثقافة."
 summary_en: "Al-Ahsa's first formal government school, opened in 1937; its historic building now serves as a house of culture."
