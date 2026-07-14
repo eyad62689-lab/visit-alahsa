@@ -9,6 +9,7 @@ summary: "بحيرات صغيرة موسمية قرب بحيرة الحبيل ت
 summary_en: "Small seasonal pools near Al-Hubail Lake that form in the rainy spells — a favourite spot for desert outings."
 body_en: "Delfoon is a cluster of small seasonal lakes near Al-Hubail Lake, north of Al-Ahsa, forming when the rains gather in the low ground. In the wet spells they make a lovely destination for desert trips and outings. Further details are pending confirmation from reliable sources."
 featured: false
+heroImage: /img/delfoon-lake
 order: 43
 area: "قرب بحيرة الحبيل — شمال الأحساء"
 practical:

@@ -10,6 +10,7 @@ summary_en: "A family zoo in the town of Al-Taraf east of Hofuf — visiting det
 body_en: "In the town of Al-Taraf, east of Hofuf among the oasis villages, lies Al-Taraf Zoo, a family destination where children get to see a variety of animals up close. It is one of the area's simple, unhurried family outings, easily combined with a visit to the nearby Al-Taraf countryside and the southern reaches of the oasis. Documented details of its founding, operator and current visiting arrangements are awaiting confirmation — check locally before planning the trip."
 area: بلدة الطرف — شرق الهفوف
 featured: false
+heroImage: /img/taraf-zoo
 order: 65
 location: { lat: 25.366635, lng: 49.722483 }
 mapUrl: "https://maps.app.goo.gl/LQqCFeu7UHmaMpLn8"

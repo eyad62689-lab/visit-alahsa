@@ -9,6 +9,7 @@ summary: "بحيرة شمال الأحساء تكوّنت من مياه الصر
 summary_en: "A lake north of Al-Ahsa formed by the oasis farms' agricultural drainage water."
 body_en: "Al-Hubail Lake is a body of water north of Al-Ahsa, formed over time by the gathering of agricultural drainage water from the oasis farms. Further details about the lake — its extent and any visitor facilities — are pending confirmation from reliable sources."
 featured: false
+heroImage: /img/hubail-lake
 order: 42
 area: "شمال الأحساء"
 practical:
