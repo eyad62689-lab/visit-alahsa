@@ -8,6 +8,7 @@ kicker: "سوق شعبي"
 summary: "سوق شعبي في وسط الهفوف أُعيد بناؤه ضمن مشاريع تطوير وسط المدينة التاريخي، قرب سوق القيصرية."
 summary_en: "A folk souq in central Hofuf, rebuilt as part of the historic downtown development, near Qaisariyah Souq."
 body_en: "Al-Hamidiyah Souq is a folk market in central Hofuf, in the North Rifaa district on King Abdulaziz Road. It was rebuilt as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq. Further details about the souq are pending confirmation."
+heroImage: /img/hamidiyah-souq
 featured: false
 order: 66
 area: "الهفوف، حي الرفعة الشمالية"
