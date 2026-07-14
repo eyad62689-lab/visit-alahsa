@@ -11,7 +11,7 @@ summary_en: "One of the largest natural lakes in the Arabian Gulf, a reserve dra
 body_en: "One of the largest natural lakes in the Arabian Gulf, a reserve drawing migratory birds and nature lovers."
 featured: false
 order: 39
-area: "قرب العمران — شرق الأحساء"
+area: "شمال شرق الواحة"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 practical:
   - { label: "الرسوم", value: "بانتظار التأكيد", verified: false }
@@ -23,5 +23,5 @@ mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
 ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي. مسطّحٌ مائيٌّ نادر وسط
 الصحراء، صار موئلاً للطيور المهاجرة ووجهةً لمن يطلب الهدوء واتّساع الأفق.
 
-تقع البحيرة قرب العمران شرق الواحة، ودخولها مجاني. وأجمل أوقاتها عند الغروب،
+تقع البحيرة شمال شرق الواحة، ودخولها مجاني. وأجمل أوقاتها عند الغروب،
 حين يتلوّن سطح الماء بالضوء الذهبي — وهو وقت المصوّرين وهواة الطبيعة المفضّل.

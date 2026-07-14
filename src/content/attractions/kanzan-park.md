@@ -1,5 +1,5 @@
 ---
-title: "منتزه جبل كنزان (جبل الشعبة)"
+title: "منتزه جبل كنزان (الشعبة)"
 title_en: "Kanzan Adventure Park (Al-Shuʿbah)"
 slug_ar: "منتزه-جبل-كنزان"
 slug_en: "kanzan-park"

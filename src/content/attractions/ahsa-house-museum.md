@@ -8,7 +8,7 @@ heroImage: /img/ahsa-house-museum
 kicker: "متحف خاص"
 summary: "متحف «النعاثل» — بيت أحسائي قديم بمجالسه ومطبخه وغرفة عروسه، أسسه سليمان الماجد."
 summary_en: "The 'Naathel' museum — an old Ahsaai house with its majlis rooms, kitchen and bridal chamber, founded by Sulaiman Al-Majed."
-body_en: "In Hofuf, the Al-Ahsa House Museum — known as the Naathel Museum — recreates the old Ahsaai home room by room. It was established by Sulaiman bin Mohammed Al-Majed, a professor at the Sharia college in Al-Ahsa, in the outer courtyard of his own house, over an area of some 180 square metres. Its rooms follow the layout of traditional life: a men's majlis with Hasawi coffee pots and roasting tools, a women's majlis with its old furnishings, a kitchen with stone hand-mills and copper dishes, a bridal chamber with dress and jewellery, and a children's room with vintage toys — alongside manuscripts, coins, old photographs and farming tools. The museum also hosts heritage gatherings and workshops, keeping the old house alive rather than merely displayed."
+body_en: "In Hofuf, the Al-Ahsa House Museum — known as the Naathel Museum — recreates the old Ahsaai home room by room. It was established by Sulaiman bin Mohammed Al-Majed in the outer courtyard of his own house, over an area of some 180 square metres. Its rooms follow the layout of traditional life: a men's majlis with Hasawi coffee pots and roasting tools, a women's majlis with its old furnishings, a kitchen with stone hand-mills and copper dishes, a bridal chamber with dress and jewellery, and a children's room with vintage toys — alongside manuscripts, coins, old photographs and farming tools. The museum also hosts heritage gatherings and workshops, keeping the old house alive rather than merely displayed."
 area: الهفوف — الأحساء
 featured: false
 order: 52
@@ -17,8 +17,8 @@ mapUrl: "https://goo.gl/maps/AheTCeTPrZybFnZU8"
 ---
 
 في الهفوف يحاكي متحف البيت الأحسائي — المعروف بمتحف **«النعاثل»** —
-البيت الأحسائي القديم غرفةً غرفة. أسسه **سليمان بن محمد الماجد**،
-الأستاذ بكلية الشريعة بالأحساء، في الفناء الخارجي لمنزله على مساحة تقارب
+البيت الأحسائي القديم غرفةً غرفة. أسسه **سليمان بن محمد الماجد**
+في الفناء الخارجي لمنزله على مساحة تقارب
 ١٨٠ متراً مربعاً. تتوزع أركانه على نسق الحياة التقليدية: مجلس الرجال
 بدلاله الحساوية وأدوات تحميص القهوة وطحنها، ومجلس النساء بأثاثه القديم،
 والمطبخ برحاه الحجرية وصحونه النحاسية، وغرفة العروس بملابسها وحليّها،
