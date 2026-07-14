@@ -76,13 +76,15 @@ const C = ar ? {
       intro: 'التمور هي المحصول الأول في الأحساء؛ تتفاوت التقارير الرسمية في تقدير إنتاجها السنوي بين نحو ١٠٠ و١٢٠ ألف طن، فيما ذكرت وكالة الأنباء السعودية «واس» (أكتوبر ٢٠٢٤م) ما يتجاوز ٢٠٠ ألف طن. وتُعدّ الواحة من أكبر بنوك الأصول الوراثية للنخيل في العالم: سجّل مركز النخيل والتمور بالأحساء رقماً قياسياً في غينيس عام ٢٠٢١م بضمّه أكثر من ١٢٧ صنفاً وطنياً ودولياً. وتشير مصادر إلى أن الخلاص والشيشي والرزيز تشكّل معاً نحو ثلاثة أرباع الإنتاج.',
       fruits: [
         {
-          img: '/img/fruits/khalas-rutab', alt: 'رطب الخلاص الذهبي في وعاء تقديم',
+          img: '/img/fruits/khalas-rutab', alt: 'رطب الخلاص الذهبي في وعاء تقديم', imgTag: 'رطب',
+          img2: '/img/fruits/khalas-tamr', alt2: 'تمر الخلاص في صحن مزخرف تحت ظل سعفة', img2Tag: 'تمر',
           k: 'التمور', name: 'الخلاص',
           season: 'رطباً: منتصف يوليو – أواخر أغسطس • تمراً: نحو ١٥–٢٥ سبتمبر', seasons: 'summer autumn',
           pre: 'أيقونة تمور الأحساء وأشهرها على الإطلاق، وصاحب النسبة الكبرى من المبيعات، ويشكّل ما بين ١٥ و٢٠٪ من نخيل الواحة. ثمرته بيضوية متوسطة الحجم قليلة الألياف، ذات لون ذهبي مائل إلى الكهرماني، وقوام طري ونكهة عطرية حلوة متوازنة. يحتفظ بنكهته حتى بعد التخزين الطويل، ويُقدَّم عادة مع القهوة العربية رمزاً للكرم والضيافة، وهو غني بمعادن كالزنك والمنغنيز والسيلينيوم.',
         },
         {
-          img: '/img/fruits/shishi-rutab', alt: 'رطب الشيشي في وعاء تقديم',
+          img: '/img/fruits/shishi-rutab', alt: 'رطب الشيشي في وعاء تقديم', imgTag: 'رطب',
+          img2: '/img/fruits/shishi-tamr', alt2: 'صحن تمر الشيشي وخلفه نخيل الواحة', img2Tag: 'تمر',
           k: 'التمور', name: 'الشيشي',
           season: 'رطباً: أواخر يونيو • تمراً: منتصف – أواخر أغسطس', seasons: 'summer',
           pre: 'ثاني أشهر أصناف الأحساء وأكثرها طلباً بعد الخلاص. يتميز بحجمه الكبير وقوامه السميك الطري نسبياً، ولونه البني الغالب مع قاعدة صفراء ذهبية، وطعمه شديد الحلاوة. يصمد طويلاً دون أن يفسد، ما يجعله مناسباً للتخزين والتجميد لاستهلاكه على مدار العام، ويدخل في صناعة الدبس (عسل التمر) والمنتجات المشتقة.',
@@ -230,13 +232,15 @@ const C = ar ? {
       intro: "Dates are Al-Ahsa's foremost crop; official reports place annual production between roughly 100,000 and 120,000 tonnes, while the Saudi Press Agency (October 2024) reported more than 200,000 tonnes. The oasis holds one of the world's largest palm gene banks: in 2021 the Palms and Dates Center in Al-Ahsa set a Guinness record with more than 127 national and international cultivars. Some sources suggest that Khalas, Shishi and Razeez together account for about three-quarters of production.",
       fruits: [
         {
-          img: '/img/fruits/khalas-rutab', alt: 'Golden Khalas rutab dates in a serving bowl',
+          img: '/img/fruits/khalas-rutab', alt: 'Golden Khalas rutab dates in a serving bowl', imgTag: 'Rutab',
+          img2: '/img/fruits/khalas-tamr', alt2: 'Khalas tamr dates in an ornate bowl under a palm-frond shadow', img2Tag: 'Tamr',
           k: 'Dates', name: 'Khalas',
           season: 'Rutab: mid-July – late August • Full dates: c. 15–25 September', seasons: 'summer autumn',
           pre: "The icon of Al-Ahsa dates and its most famous variety, the top seller, making up 15–20% of the oasis's palms. The fruit is oval and medium-sized with little fibre, golden to amber in colour, soft in texture, with a balanced, aromatic sweetness. It keeps its flavour even after long storage, is traditionally served with Arabic coffee as a symbol of generosity and hospitality, and is rich in minerals such as zinc, manganese and selenium.",
         },
         {
-          img: '/img/fruits/shishi-rutab', alt: 'Shishi rutab dates in a serving bowl',
+          img: '/img/fruits/shishi-rutab', alt: 'Shishi rutab dates in a serving bowl', imgTag: 'Rutab',
+          img2: '/img/fruits/shishi-tamr', alt2: 'A plate of Shishi tamr dates with oasis palms behind', img2Tag: 'Tamr',
           k: 'Dates', name: 'Shishi',
           season: 'Rutab: late June • Full dates: mid–late August', seasons: 'summer',
           pre: "Al-Ahsa's second most famous variety, the most sought-after after Khalas. Large fruit with a relatively soft, thick texture, mostly brown with a golden-yellow base, and intensely sweet. It keeps for a long time without spoiling, making it well suited to storing and freezing for year-round eating, and it goes into dibs (date molasses) and other date products.",
@@ -418,7 +422,20 @@ const jsonLd = [
           <div class="fgrid">
             {g.fruits.map((f, idx) => (
               <article class="fruit-card" data-season={f.seasons} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
-                <Photo src={f.img} label={f.img ? (f.alt ?? f.name) : f.name} class="fr-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                {f.img2 ? (
+                  <div class="fr-duo">
+                    <span class="duo-half">
+                      <Photo src={f.img} label={f.alt ?? f.name} class="fr-duo-ph" sizes="(max-width: 760px) 50vw, 17vw" />
+                      <span class="duo-tag">{f.imgTag}</span>
+                    </span>
+                    <span class="duo-half">
+                      <Photo src={f.img2} label={f.alt2 ?? f.name} class="fr-duo-ph" sizes="(max-width: 760px) 50vw, 17vw" />
+                      <span class="duo-tag">{f.img2Tag}</span>
+                    </span>
+                  </div>
+                ) : (
+                  <Photo src={f.img} label={f.img ? (f.alt ?? f.name) : f.name} class="fr-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                )}
                 <div class="fc-body">
                   <span class="t-caption fc-k">{f.k}</span>
                   <h4>{f.name} {f.rare && <span class="tag-rare">{C.rare}</span>} {f.namePending && <span class="tag-pending">{C.pending}</span>}</h4>
@@ -571,6 +588,13 @@ const jsonLd = [
   :global(.fr-photo) { aspect-ratio: 16 / 10; }
   :global(picture.fr-photo) { background: var(--c-sand); }
   :global(picture.fr-photo)::after { content: none; }
+
+  /* إطار مزدوج رطب/تمر — صورتان متجاورتان بوسمين (قاعدة إياد: لكلٍّ صورته) */
+  .fr-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; aspect-ratio: 16 / 10; background: #fff; }
+  .duo-half { position: relative; display: block; min-inline-size: 0; }
+  :global(.photo.fr-duo-ph) { block-size: 100%; background: var(--c-sand); }
+  :global(picture.fr-duo-ph)::after { content: none; }
+  .duo-tag { position: absolute; z-index: 2; inset-block-end: 6px; inset-inline-start: 6px; font-size: var(--t-xs); font-weight: 700; color: var(--c-turq-deep); background: rgba(255,255,255,.9); border-radius: 999px; padding: 1px 10px; }
 
   /* الوسوم */
   .tag-pending { display: inline-block; font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); background: var(--c-sand-2); border: 1px solid rgba(138,98,36,.4); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
