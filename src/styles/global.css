@@ -63,24 +63,29 @@ img, svg { display: block; max-width: 100%; }
    تلقائياً على أي صورة، فلا تكسر صورةٌ النظام).
    ======================================================================== */
 
-/* --- التسمية العلوية (eyebrow) --- */
+/* --- التسمية العلوية (eyebrow) — معيّن ذهبي مخطّط بدل الشرطة (لمسة Line Art) --- */
 .eyebrow {
   font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs);
   letter-spacing: .02em; color: var(--c-gold-deep);
   display: inline-flex; align-items: center; gap: var(--s-2);
 }
-.eyebrow::before { content: ''; inline-size: 22px; block-size: 2px; background: var(--c-gold); }
-/* على الخلفيات الداكنة: النصّ رملي (الذهبي دون 4.5:1)، والشرطة تبقى ذهبية */
+.eyebrow::before {
+  content: ''; inline-size: 7px; block-size: 7px; flex-shrink: 0;
+  border: 1.5px solid var(--c-gold); transform: rotate(45deg);
+}
+.eyebrow::after { content: ''; inline-size: 18px; block-size: 1.5px; background: var(--c-gold); order: -1; }
+/* على الخلفيات الداكنة: النصّ رملي (الذهبي دون 4.5:1)، والزخرفة تبقى ذهبية */
 .eyebrow.gold-on-dark { color: var(--c-sand); }
-.eyebrow.gold-on-dark::before { background: var(--c-gold); }
+.eyebrow.gold-on-dark::before { border-color: var(--c-gold); }
+.eyebrow.gold-on-dark::after { background: var(--c-gold); }
 
 /* --- نصّ بارز --- */
 .lead { font-size: var(--t-lg); line-height: 1.7; color: var(--c-ink-soft); max-inline-size: 60ch; }
 
-/* --- أزرار --- */
+/* --- أزرار — حبّية (pill) وفق النماذج المعتمدة 2026-07 --- */
 .btn { font-family: var(--font-body); font-weight: 600; font-size: var(--t-base);
   text-decoration: none; display: inline-flex; align-items: center; gap: var(--s-2);
-  padding: 13px 26px; border-radius: var(--radius-sm); cursor: pointer; border: 0;
+  padding: 13px 28px; border-radius: var(--radius-pill); cursor: pointer; border: 0;
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease); }
 .btn--gold { background: var(--c-gold); color: var(--c-ink); }
 .btn--gold:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(201,154,74,.38); }
@@ -114,6 +119,8 @@ picture.photo { display: block; }
 .photo.gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
 .att-card--lead .photo.att-photo { aspect-ratio: 21 / 8; }
 @media (max-width: 760px) { .att-card--lead .photo.att-photo { aspect-ratio: 16 / 10; } }
+/* صورة بطاقة الفئة في الرئيسية — تملأ البطاقة (scoped لا يصل لـ <picture>) */
+.photo.cat-photo { position: absolute; inset: 0; }
 /* طبقة صورة خلفية لأقسام الهيرو (الصفحة الرئيسية وصفحة المعلم) */
 .photo-bg { position: absolute; inset: 0; z-index: 0; display: block; pointer-events: none; }
 .photo-bg > img {
@@ -150,7 +157,7 @@ picture.photo { display: block; }
   font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); cursor: pointer;
   display: inline-flex; align-items: center; gap: var(--s-2);
   background: #fff; color: var(--c-turq); border: 1.5px solid var(--c-turq);
-  padding: 10px 18px; border-radius: var(--radius-sm);
+  padding: 10px 20px; border-radius: var(--radius-pill);
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 .fav-btn:hover { transform: translateY(-1px); }
@@ -174,7 +181,7 @@ picture.photo { display: block; }
 /* رابط «رحلتي» + شارة العدّاد */
 .plan-link {
   position: relative; font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem);
-  color: var(--c-turq-deep); text-decoration: none; padding: 8px 12px; border-radius: var(--radius-sm);
+  color: var(--c-turq-deep); text-decoration: none; padding: 8px 14px; border-radius: var(--radius-pill);
   display: inline-flex; align-items: center; gap: var(--s-2);
 }
 .plan-link:hover { background: var(--c-sand-2); }

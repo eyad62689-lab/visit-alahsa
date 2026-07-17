@@ -19,14 +19,15 @@ const featuredEntries = (await getCollection('attractions'))
 // key = مفتاح النصّ في القاموس؛ cat = فئة حقيقية في المجموعة تُفتح مفلترة،
 // والفئات التي لا معالم لها بعد تقود إلى القائمة الكاملة.
 // فئتا farm وmarket تقودان إلى صفحة الأسواق والمنتزهات المستقلة (2026-07-13).
+// img = صورة الفئة من المكتبة الجاهزة — بطاقات الفئات صارت photo-first (إعادة تصميم 2026-07).
 const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/';
 const catCards = [
-  { key: 'historic', cat: 'historic', href: null },
-  { key: 'nature', cat: 'nature', href: null },
-  { key: 'crafts', cat: null, href: null },
-  { key: 'taste', cat: null, href: `${leisureBase}?cat=farm` },
-  { key: 'market', cat: null, href: `${leisureBase}?cat=market` },
-  { key: 'events', cat: null, href: ar ? '/فعاليات/' : '/en/events/' },
+  { key: 'historic', cat: 'historic', href: null, img: '/img/qasr-ibrahim' },
+  { key: 'nature', cat: 'nature', href: null, img: '/img/jabal-al-qarah' },
+  { key: 'crafts', cat: null, href: null, img: '/img/craftsmen-souq' },
+  { key: 'taste', cat: null, href: `${leisureBase}?cat=farm`, img: '/img/hasawi-lemon-farm' },
+  { key: 'market', cat: null, href: `${leisureBase}?cat=market`, img: '/img/qaisariyah' },
+  { key: 'events', cat: null, href: ar ? '/فعاليات/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
 const facts = [
   { n: ar ? '٢.٥ مليون' : '2.5M', l: t('fact.palms.l') },
@@ -94,9 +95,11 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
         <div class="cat-grid">
           {catCards.map((c, i) => (
             <a class="cat-card" href={c.href ?? (c.cat ? `${allHref}?cat=${c.cat}` : allHref)} data-reveal style={`transition-delay:${i * 60}ms`}>
-              <span class="cat-icon"><PalmMotif size={34} /></span>
-              <h3 class="cat-t">{t(`cat.${c.key}.t` as any)}</h3>
-              <p class="cat-d">{t(`cat.${c.key}.d` as any)}</p>
+              <Photo src={c.img} label="" class="cat-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+              <div class="cat-body">
+                <h3 class="cat-t">{t(`cat.${c.key}.t` as any)}</h3>
+                <p class="cat-d">{t(`cat.${c.key}.d` as any)}</p>
+              </div>
               <span class="cat-go" aria-hidden="true">{ar ? '→' : '←'}</span>
             </a>
           ))}
@@ -209,17 +212,35 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .sec--sand { background: var(--c-sand-2); }
   .sec-head { max-inline-size: 60ch; margin-block-end: var(--s-6); }
   .sec-title { font-size: var(--t-2xl); color: var(--c-ink); margin-block: var(--s-2) var(--s-3); line-height: 1.2; }
-  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--s-3); }
-  .cat-card { position: relative; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-5) var(--s-4); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); text-decoration: none; color: inherit; }
-  .cat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent; }
-  .cat-icon { display: inline-grid; place-items: center; inline-size: 56px; block-size: 56px; border-radius: 14px; background: color-mix(in srgb, var(--c-turq) 10%, #fff); color: var(--c-turq); margin-block-end: var(--s-3); }
-  .cat-t { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-2); }
-  .cat-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
-  .cat-go { position: absolute; inset-block-start: var(--s-4); inset-inline-end: var(--s-4); color: var(--c-gold); font-size: 1.2rem; opacity: 0; transform: translateX(6px); transition: var(--dur) var(--ease); }
+
+  /* بطاقات الفئات — photo-first: صورة حقيقية تحت تدرّج فيروزي، بلا أيقونات (إعادة تصميم 2026-07) */
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s-3); }
+  .cat-card {
+    position: relative; display: block; aspect-ratio: 4 / 3; border-radius: var(--radius-lg);
+    overflow: hidden; isolation: isolate; text-decoration: none; color: var(--c-sand);
+    box-shadow: var(--shadow);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  /* تدرّج فيروزي شفاف يثبّت النصّ — يعلو ظلّ .photo::after العامّ */
+  .cat-card::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,42,38,.06) 30%, rgba(0,79,70,.52) 68%, rgba(0,55,49,.86) 100%);
+  }
+  /* صورة الفئة تملأ البطاقة (قاعدة عامة مرادفة موجودة في global.css لأن scoped لا يصل لـ <picture>) */
+  .cat-card :global(.photo.cat-photo) { position: absolute; inset: 0; }
+  .cat-card :global(.photo.cat-photo > img) { transition: transform .6s var(--ease); }
+  .cat-card:hover :global(.photo.cat-photo > img) { transform: scale(1.04); }
+  .cat-body { position: absolute; inset-block-end: 0; inset-inline: 0; z-index: 2; padding: var(--s-4); }
+  .cat-t { font-family: var(--font-heading); font-size: var(--t-lg); color: var(--c-sand); margin-block-end: var(--s-1); }
+  .cat-d { font-size: var(--t-sm); color: rgba(247,243,234,.88); line-height: 1.6; max-inline-size: 40ch; }
+  .cat-go { position: absolute; inset-block-start: var(--s-4); inset-inline-end: var(--s-4); z-index: 2; color: var(--c-gold); font-size: 1.2rem; opacity: 0; transform: translateX(6px); transition: var(--dur) var(--ease); }
   .cat-card:hover .cat-go { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .cat-card:hover :global(.photo.cat-photo > img) { transform: none; } }
+
   .att-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
-  .att-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform var(--dur) var(--ease); text-decoration: none; color: inherit; }
-  .att-card:hover { transform: translateY(-4px); }
+  .att-card { background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); text-decoration: none; color: inherit; }
+  .att-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
   .att-card:hover .att-photo > .ph-label { transform: scale(1.04); }
   .att-photo { aspect-ratio: 16 / 10; }
   .att-photo .ph-label { transition: transform var(--dur) var(--ease); }
@@ -255,6 +276,8 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
     /* تقليص نص البطل */
     .hero-in { max-inline-size: 100%; }
     .hero-lead { font-size: var(--t-base); }
+    /* بطاقات الفئات أعرض قليلاً على الهاتف */
+    .cat-card { aspect-ratio: 16 / 10; }
   }
   @media (max-width: 460px) {
     .facts { grid-template-columns: 1fr; }
