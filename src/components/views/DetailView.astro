@@ -1,5 +1,5 @@
 ---
-import { render, type CollectionEntry } from 'astro:content';
+import { render, getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
@@ -46,6 +46,36 @@ const jsonLd = [
 ];
 const homeHref = ar ? '/' : '/en/';
 const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
+
+// «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
+// المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
+const detailBase = ar ? '/معالم/' : '/en/attractions/';
+const arDigits = (s: string) => s.replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
+const kmBetween = (la1: number, lo1: number, la2: number, lo2: number) => {
+  const r = Math.PI / 180, R = 6371;
+  const dLa = (la2 - la1) * r, dLo = (lo2 - lo1) * r;
+  const h = Math.sin(dLa / 2) ** 2 + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin(dLo / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+};
+const nearby = a.location
+  ? (await getCollection('attractions'))
+      .filter((e) => e.data.slug_ar !== a.slug_ar && e.data.location)
+      .map((e) => ({
+        href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+        title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+        cat: catLabel(e.data.category, lang),
+        img: e.data.heroImage,
+        km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
+      }))
+      .sort((x, y) => x.km - y.km)
+      .slice(0, 3)
+      .map((n) => ({
+        ...n,
+        dist: n.km < 1
+          ? (ar ? 'أقل من كيلومتر' : 'under 1 km')
+          : (ar ? `نحو ${arDigits(String(Math.round(n.km)))} كم` : `~${Math.round(n.km)} km`),
+      }))
+  : [];
 ---
 <Base title={`${title} — ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
   <Header lang={lang} alt={alt} />
@@ -91,6 +121,7 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
           {ar && a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label)) && (
             <p class="info-note">المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو ٢٠٢٦م.</p>
           )}
+          <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(Astro.url.pathname)}`}>{t('det.report')}</a>
         </div>
         {a.mapUrl ? (
           <a class="map-card photo photo--placeholder" href={a.mapUrl} target="_blank" rel="noopener">
@@ -113,6 +144,31 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
           </div>
         </>
       )}
+    </section>
+
+    {nearby.length > 0 && (
+      <section class="nearby-sec">
+        <div class="container" data-reveal>
+          <h2 class="nb-h">{t('det.nearby.h')}</h2>
+          <p class="nb-lead">{t('det.nearby.d')}</p>
+          <div class="nb-grid">
+            {nearby.map((n) => (
+              <a class="nb-card" href={n.href}>
+                <Photo src={n.img} label={n.title} class="nb-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                <div class="nb-body">
+                  <span class="t-caption nb-k">{n.cat}</span>
+                  <h3 class="nb-t">{n.title}</h3>
+                  <span class="nb-dist">{n.dist}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+          <p class="nb-note">{t('det.nearby.note')}</p>
+        </div>
+      </section>
+    )}
+
+    <section class="container back-sec">
       <a href={attractionsHref} class="btn btn--turq back-btn">{backLabel}</a>
     </section>
   </main>
@@ -149,11 +205,29 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
   .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
   .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
   .info-note { font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-3); }
+  .report-link { display: inline-block; margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60);
+    text-decoration: underline; text-underline-offset: 3px; }
+  .report-link:hover { color: var(--c-turq); }
   .map-card { aspect-ratio: 4 / 3; border-radius: var(--radius); }
-  .gallery-sec { padding-block: 0 var(--s-8); }
+  .gallery-sec { padding-block: 0 var(--s-6); }
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
   .gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  .nearby-sec { background: var(--c-sand-2); padding-block: var(--s-6); }
+  .nb-h { font-size: var(--t-xl); color: var(--c-turq-deep); }
+  .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-1) var(--s-4); }
+  .nb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+  .nb-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); text-decoration: none; color: inherit;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .nb-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  :global(.nb-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
+  .nb-body { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: 2px; }
+  .nb-k { color: var(--c-gold-deep); }
+  .nb-t { font-size: var(--t-lg); color: var(--c-turq-deep); }
+  .nb-dist { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block-start: var(--s-1); }
+  .nb-note { margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60); }
+  .back-sec { padding-block: 0 var(--s-8); }
   .back-btn { margin-block-start: var(--s-5); }
-  @media (max-width: 860px) { .att-layout { grid-template-columns: 1fr; } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 860px) { .att-layout { grid-template-columns: 1fr; } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } .nb-grid { grid-template-columns: 1fr; } }
 </style>

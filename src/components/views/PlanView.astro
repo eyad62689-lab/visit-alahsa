@@ -27,6 +27,7 @@ const allPoints = items.map((e) => ({
 const L = {
   savedSuffix: t('plan.savedSuffix'), route: t('plan.route'), clear: t('plan.clear'),
   remove: t('plan.remove'), location: t('plan.location'),
+  copy: t('plan.copy'), copied: t('plan.copied'), waText: t('plan.waText'),
 };
 const browseHref = ar ? '/معالم/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : '/en/map/';
@@ -44,13 +45,29 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
     </section>
 
     <section class="container plan-body">
-      <div class="plan-actions" id="plan-actions" hidden>
-        <span class="plan-count-txt"><bdi data-plan-count>0</bdi> {L.savedSuffix}</span>
-        <div class="plan-act-btns">
-          <a href="#" class="btn btn--gold" id="route-btn" target="_blank" rel="noopener">{L.route}</a>
-          <button class="btn btn--ghost-ink" id="clear-btn" type="button">{L.clear}</button>
+      <div class="shared-note" id="shared-note" hidden>
+        <div class="sn-txt">
+          <h2 class="sn-h">{t('plan.shared.h')}</h2>
+          <p class="sn-d">{t('plan.shared.d')}</p>
+        </div>
+        <div class="sn-btns">
+          <button class="btn btn--gold" id="import-btn" type="button">{t('plan.shared.import')}</button>
+          <button class="btn btn--ghost-ink" id="mine-btn" type="button">{t('plan.shared.mine')}</button>
         </div>
       </div>
+      <div class="plan-actions" id="plan-actions" hidden>
+        {/* عدّاد خاص بالصفحة (لا data-plan-count): في وضع القائمة المشارَكة يعرض عدّها
+            لا عدّ الزائر، وsync العالمي لا يصله */}
+        <span class="plan-count-txt"><bdi id="plan-count">0</bdi> {L.savedSuffix}</span>
+        <div class="plan-act-btns">
+          <a href="#" class="btn btn--gold" id="route-btn" target="_blank" rel="noopener">{L.route}</a>
+          <a href="#" class="btn btn--turq" id="wa-btn" target="_blank" rel="noopener" data-own-only>{t('plan.share')}</a>
+          <button class="btn btn--ghost-ink" id="copy-btn" type="button" data-own-only>{L.copy}</button>
+          <button class="btn btn--ghost-ink" id="print-btn" type="button">{t('plan.print')}</button>
+          <button class="btn btn--ghost-ink" id="clear-btn" type="button" data-own-only>{L.clear}</button>
+        </div>
+      </div>
+      <p class="print-note">{t('plan.printNote')}</p>
       <div class="plan-grid" id="plan-list"></div>
       <div class="plan-empty" id="plan-empty">
         <PalmMotif size={64} class="pe-palm" aria-hidden="true" />
@@ -66,32 +83,79 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   <Footer lang={lang} />
 
   <script is:inline define:vars={{ allPoints, L }}>
+    // قياس استخدام الميزات (GA4) — يتجاهل بصمت إن لم يتوفر gtag
+    function planEvent(name) { try { if (typeof gtag === 'function') gtag('event', name); } catch (e) {} }
+    // ?list= يعرض قائمة مُشارَكة للقراءة (بلا حذف) مع زرّ استيرادها إلى «رحلتي»
+    function sharedList(map) {
+      const q = new URLSearchParams(location.search).get('list');
+      if (!q) return null;
+      const valid = q.split(',').filter((s) => map[s]);
+      return valid.length ? valid : null;
+    }
     function renderPlan() {
       const map = {}; allPoints.forEach((p) => (map[p.slug] = p));
-      const favs = (window.VAPlan ? window.VAPlan.get() : []).filter((s) => map[s]);
+      const shared = sharedList(map);
+      const favs = shared || (window.VAPlan ? window.VAPlan.get() : []).filter((s) => map[s]);
       const list = document.getElementById('plan-list'); const empty = document.getElementById('plan-empty'); const actions = document.getElementById('plan-actions');
+      const sharedNote = document.getElementById('shared-note');
       if (!list) return;
+      if (sharedNote) sharedNote.hidden = !shared;
+      document.querySelectorAll('[data-own-only]').forEach((b) => { b.style.display = shared ? 'none' : ''; });
       if (!favs.length) { list.innerHTML = ''; empty.hidden = false; actions.hidden = true; return; }
       empty.hidden = true; actions.hidden = false;
+      const cnt = document.getElementById('plan-count');
+      if (cnt) cnt.textContent = favs.length;
       list.innerHTML = favs.map((slug) => {
         const p = map[slug];
         const maps = p.mapUrl ? '<a class="pc-map" href="' + p.mapUrl + '" target="_blank" rel="noopener">' + L.location + '</a>' : '';
+        const remove = shared ? '' : '<button class="pc-remove" type="button" data-fav="' + p.slug + '">' + L.remove + '</button>';
         return '<article class="plan-card">' +
           '<div class="photo pc-photo photo--placeholder"><span class="ph-label">' + p.title + '</span></div>' +
           '<div class="pc-body"><span class="t-caption pc-k">' + p.cat + '</span>' +
           '<h3 class="pc-t"><a href="' + p.href + '">' + p.title + '</a></h3>' +
           '<p class="pc-d">' + p.summary + '</p>' +
-          '<div class="pc-foot">' + maps + '<button class="pc-remove" type="button" data-fav="' + p.slug + '">' + L.remove + '</button></div>' +
+          '<div class="pc-foot">' + maps + remove + '</div>' +
           '</div></article>';
       }).join('');
       const coords = favs.map((s) => map[s]).filter((p) => p.lat && p.lng);
       const routeBtn = document.getElementById('route-btn');
       if (routeBtn) { if (coords.length) { routeBtn.href = 'https://www.google.com/maps/dir/' + coords.map((p) => p.lat + ',' + p.lng).join('/'); routeBtn.style.display = ''; } else routeBtn.style.display = 'none'; }
+      // رابط المشاركة يحمل معالم القائمة نفسها في ?list=
+      const shareUrl = location.origin + location.pathname + '?list=' + favs.map(encodeURIComponent).join(',');
+      const waBtn = document.getElementById('wa-btn');
+      if (waBtn) waBtn.href = 'https://wa.me/?text=' + encodeURIComponent(L.waText + '\n' + shareUrl);
+      const copyBtn = document.getElementById('copy-btn');
+      if (copyBtn) copyBtn.dataset.url = shareUrl;
     }
     document.addEventListener('va-plan-change', renderPlan);
     document.addEventListener('astro:page-load', renderPlan);
     if (document.readyState !== 'loading') renderPlan(); else document.addEventListener('DOMContentLoaded', renderPlan);
-    document.addEventListener('click', (e) => { if (e.target && e.target.id === 'clear-btn') { if (window.VAPlan) window.VAPlan.save([]); } });
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest ? e.target.closest('button, a') : null;
+      if (!t) return;
+      if (t.id === 'clear-btn') { if (window.VAPlan) window.VAPlan.save([]); }
+      if (t.id === 'print-btn') { planEvent('plan_print'); window.print(); }
+      if (t.id === 'wa-btn') planEvent('plan_share_whatsapp');
+      if (t.id === 'route-btn') planEvent('plan_open_route');
+      if (t.id === 'copy-btn' && t.dataset.url) {
+        planEvent('plan_copy_link');
+        const done = () => { const old = t.textContent; t.textContent = L.copied; setTimeout(() => { t.textContent = old; }, 2000); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t.dataset.url).then(done, () => {});
+        else { window.prompt(L.copy, t.dataset.url); }
+      }
+      if (t.id === 'import-btn') {
+        planEvent('plan_import_shared');
+        const map = {}; allPoints.forEach((p) => (map[p.slug] = p));
+        const shared = sharedList(map) || [];
+        if (window.VAPlan) {
+          const mine = window.VAPlan.get();
+          shared.forEach((s) => { if (mine.indexOf(s) === -1) mine.push(s); });
+          window.VAPlan.save(mine);
+        }
+        history.replaceState({}, '', location.pathname); renderPlan();
+      }
+      if (t.id === 'mine-btn') { history.replaceState({}, '', location.pathname); renderPlan(); }
+    });
   </script>
 </Base>
 
@@ -133,5 +197,36 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
     .plan-act-btns .btn { flex: 1; justify-content: center; }
     .pe-cta { flex-direction: column; align-items: stretch; }
     .pe-cta .btn { justify-content: center; }
+  }
+
+  .shared-note { display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); flex-wrap: wrap;
+    background: var(--c-sand-2); border: 1px solid var(--c-line); border-inline-start: 3px solid var(--c-gold);
+    border-radius: var(--radius); padding: var(--s-4); margin-block-end: var(--s-5); }
+  .sn-h { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-1); }
+  .sn-d { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .sn-btns { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+
+  /* ملاحظة تظهر في الطباعة فقط */
+  .print-note { display: none; }
+
+  /* نسخة الطباعة: قائمة نظيفة بلا ترويسة/تذييل/أزرار — الهيرو يبقى عنواناً للورقة */
+  @media print {
+    :global(.site-header), :global(.site-footer), :global(.skip-link),
+    .plan-actions, .shared-note, .plan-empty, .pc-remove { display: none !important; }
+    .print-note { display: block; font-size: 10pt; color: #444; margin-block-end: 12pt; }
+    .plan-hero { background: none !important; padding-block: 0 8pt; }
+    :global(.ph-wm) { display: none !important; }
+    .plan-hero .eyebrow { display: none; }
+    .ph-title { color: #000 !important; font-size: 20pt; }
+    .ph-sum { display: none; }
+    .plan-body { padding-block: 0; }
+    .plan-grid { display: block; }
+    .plan-card { box-shadow: none; border: 0; border-block-end: 1pt solid #bbb; border-radius: 0;
+      break-inside: avoid; margin-block-end: 8pt; padding-block-end: 8pt; }
+    .pc-photo { display: none !important; }
+    .pc-body { padding: 0; }
+    .pc-t a { color: #000 !important; }
+    .pc-foot { border: 0; padding: 0; margin-block-start: 2pt; }
+    .pc-map { color: #444 !important; }
   }
 </style>

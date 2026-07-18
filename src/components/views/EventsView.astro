@@ -20,6 +20,10 @@ type Ev = {
   name: string; place: string; season: string; time: string;
   span: string; org: string; acts: string[]; img: string; start: number;
   map?: string; // رابط خرائط جوجل (اختياري)
+  // شارة الحالة: 'confirmed' فقط عندما تُعلن الجهة المنظمة موعد النسخة القادمة رسمياً
+  // (ويُحدَّث حقل time بالموعد المعلن)، و'tba' لما توقف أو لم يتأكد تكراره.
+  // الافتراضي 'expected': موسم متوقع قياساً على النسخ السابقة — لا نختلق تأكيداً.
+  status?: 'confirmed' | 'expected' | 'tba';
 };
 
 const C = ar ? {
@@ -32,6 +36,7 @@ const C = ar ? {
   orgK: 'الجهات المنظّمة',
   spanK: 'المدة التقريبية',
   actsK: 'أبرز الأنشطة',
+  statusL: { confirmed: 'مؤكد هذا العام', expected: 'موسم متوقع', tba: 'بانتظار الإعلان' },
   events: [
     {
       name: 'مهرجان البشت الحساوي', place: 'قصر إبراهيم التاريخي، الهفوف',
@@ -120,6 +125,7 @@ const C = ar ? {
   orgK: 'Organisers',
   spanK: 'Approximate length',
   actsK: 'Highlights',
+  statusL: { confirmed: 'Confirmed this year', expected: 'Expected season', tba: 'Awaiting announcement' },
   events: [
     {
       name: 'Hassawi Bisht Festival', place: 'Historic Ibrahim Palace, Hofuf',
@@ -206,6 +212,14 @@ const jsonLd = [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(alt[lang], siteUrl).href },
   ] },
+  // ItemList فقط — لا Event schema عمداً: جوجل يشترط startDate محدداً للأهلية،
+  // ومواسمنا تقريبية بقرار محتوى ملزم (لا تواريخ دقيقة)، فأي startDate سيكون مختلقاً.
+  { '@context': 'https://schema.org', '@type': 'ItemList',
+    name: C.title, url: new URL(alt[lang], siteUrl).href,
+    itemListElement: [...C.events].sort((a, b) => a.start - b.start).map((e, i) => ({
+      '@type': 'ListItem', position: i + 1, name: e.name,
+    })),
+  },
 ];
 ---
 <Base title={`${C.seoTitle} — ${t('site.name')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-events">
@@ -237,6 +251,7 @@ const jsonLd = [
               <div class="ev-media">
                 <Photo src={e.img} label={e.name} class="ev-photo" eager={i < 2} sizes="(max-width: 760px) 100vw, (max-width: 1120px) 50vw, 360px" />
                 <span class="ev-season">{e.season}</span>
+                <span class={`ev-status ev-status--${e.status ?? 'expected'}`}>{C.statusL[e.status ?? 'expected']}</span>
               </div>
               <div class="ev-body">
               <div class="ev-top">
@@ -352,6 +367,13 @@ const jsonLd = [
     font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep);
     background: color-mix(in srgb, var(--c-sand) 92%, transparent); backdrop-filter: blur(4px);
     border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); }
+  /* شارة الحالة — مقابل شارة الموسم على الطرف الآخر من الصورة */
+  .ev-status { position: absolute; inset-block-start: var(--s-3); inset-inline-end: var(--s-3); z-index: 2;
+    font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs);
+    border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); backdrop-filter: blur(4px); }
+  .ev-status--confirmed { color: var(--c-sand); background: color-mix(in srgb, var(--c-turq-deep) 92%, transparent); }
+  .ev-status--expected { color: var(--c-ink); background: color-mix(in srgb, var(--c-gold) 90%, transparent); }
+  .ev-status--tba { color: var(--c-ink-soft); background: color-mix(in srgb, #fff 90%, transparent); border: 1px solid var(--c-line); }
   .ev-body { display: flex; flex-direction: column; flex: 1; padding: var(--s-4); }
   .ev-top { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); margin-block-end: var(--s-2); }
   .ev-time { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-weight: 600;

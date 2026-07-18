@@ -1,0 +1,122 @@
+---
+// صفحة «أبلغ عن خطأ» — نموذج Netlify Forms ثابت (يُلتقط من HTML وقت البناء).
+// دقة المعلومات مبدأ الموقع الأول؛ النموذج يتيح للزائر تصحيحنا بلا حساب ولا backend.
+// لا يُجمع أي بيان إلزامي عن المُبلّغ — البريد اختياري لمن أراد الرد.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const C = ar ? {
+  eyebrow: 'ساعدنا على الدقة',
+  title: 'أبلغ عن خطأ',
+  lead: 'دقة المعلومة أهم ما نحرص عليه. إن لاحظت معلومةً غير دقيقة أو رابطاً لا يعمل أو صورةً في غير مكانها، أخبرنا وسنراجعها.',
+  pageL: 'الصفحة المعنيّة',
+  pagePh: 'رابط الصفحة أو اسم المعلم',
+  msgL: 'ما الخطأ الذي لاحظته؟',
+  msgPh: 'صف الخطأ بإيجاز — وإن عرفت المعلومة الصحيحة ومصدرها فأضفها.',
+  emailL: 'بريدك الإلكتروني (اختياري — إن أحببت أن نردّ عليك)',
+  emailPh: 'name@example.com',
+  submit: 'أرسل البلاغ',
+  note: 'يصل بلاغك إلى فريق الموقع مباشرة، ولا يُنشر منه شيء.',
+} : {
+  eyebrow: 'Help us stay accurate',
+  title: 'Report an error',
+  lead: 'Accuracy is what we care about most. If you spot an inaccurate detail, a broken link or a misplaced photo, tell us and we will review it.',
+  pageL: 'The page concerned',
+  pagePh: 'Page link or attraction name',
+  msgL: 'What error did you notice?',
+  msgPh: 'Describe the error briefly — and if you know the correct information and its source, add it.',
+  emailL: 'Your email (optional — if you would like a reply)',
+  emailPh: 'name@example.com',
+  submit: 'Send the report',
+  note: 'Your report goes straight to the site team; none of it is published.',
+};
+const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
+---
+<Base title={`${C.title} — ${t('site.name')}`} description={C.lead} lang={lang} alt={alt} noindex={true}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class="rp-hero on-dark">
+      <PalmMotif size={260} class="rp-wm" aria-hidden="true" />
+      <div class="container rp-in">
+        <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
+        <h1 class="rp-title">{C.title}</h1>
+        <p class="rp-sum">{C.lead}</p>
+      </div>
+    </section>
+
+    <section class="container rp-body">
+      <form
+        class="rp-form"
+        name="report-error"
+        method="POST"
+        action={thanksHref}
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="report-error" />
+        <input type="hidden" name="lang" value={lang} />
+        <p class="rp-hp" aria-hidden="true">
+          <label>لا تملأ هذا الحقل: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+        </p>
+        <div class="rp-field">
+          <label class="rp-l" for="rp-page">{C.pageL}</label>
+          <input class="rp-i" id="rp-page" name="page" type="text" placeholder={C.pagePh} />
+        </div>
+        <div class="rp-field">
+          <label class="rp-l" for="rp-msg">{C.msgL}</label>
+          <textarea class="rp-i rp-ta" id="rp-msg" name="message" rows="6" required placeholder={C.msgPh}></textarea>
+        </div>
+        <div class="rp-field">
+          <label class="rp-l" for="rp-email">{C.emailL}</label>
+          <input class="rp-i" id="rp-email" name="email" type="email" dir="ltr" placeholder={C.emailPh} />
+        </div>
+        <div class="rp-foot">
+          <button class="btn btn--gold" type="submit">{C.submit}</button>
+          <p class="rp-note">{C.note}</p>
+        </div>
+      </form>
+    </section>
+  </main>
+  <Footer lang={lang} />
+
+  <script is:inline>
+    // تعبئة حقل الصفحة تلقائياً من ?page= (روابط «أبلغنا» في صفحات المعالم)
+    function fillReportPage() {
+      const f = document.getElementById('rp-page');
+      if (!f || f.value) return;
+      const p = new URLSearchParams(location.search).get('page');
+      if (p && p.startsWith('/')) f.value = 'https://visit-alahsa.com' + p;
+    }
+    document.addEventListener('astro:page-load', fillReportPage);
+    if (document.readyState !== 'loading') fillReportPage();
+    else document.addEventListener('DOMContentLoaded', fillReportPage);
+  </script>
+</Base>
+
+<style>
+  .rp-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-7) var(--s-6); }
+  :global(.rp-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -4%; color: var(--c-gold); opacity: .1; }
+  .rp-in { position: relative; z-index: 2; }
+  .rp-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .rp-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 60ch; }
+  .rp-body { padding-block: var(--s-6) var(--s-8); }
+  .rp-form { max-inline-size: 620px; display: flex; flex-direction: column; gap: var(--s-4); }
+  .rp-hp { position: absolute; inset-inline-start: -9999px; }
+  .rp-field { display: flex; flex-direction: column; gap: var(--s-1); }
+  .rp-l { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq-deep); }
+  .rp-i { font-family: var(--font-body); font-size: var(--t-base); color: var(--c-ink);
+    background: #fff; border: 1.5px solid var(--c-line); border-radius: var(--radius); padding: var(--s-2) var(--s-3); }
+  .rp-i:focus { outline: 2px solid var(--c-turq); outline-offset: 1px; border-color: var(--c-turq); }
+  .rp-ta { resize: vertical; line-height: 1.8; }
+  .rp-foot { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+  .rp-note { font-size: var(--t-xs); color: var(--c-ink-60); max-inline-size: 34ch; }
+</style>

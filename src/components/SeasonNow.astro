@@ -1,0 +1,150 @@
+---
+// «ما موسم الأحساء الآن؟» — أربع بطاقات فصلية، وJS يعلّم فصل الزائر الحالي من ساعة جهازه.
+// المحتوى مستمد حصراً من الصفحات المعتمدة: مواسم الثمار (صفحة ثمار، تحقق 2026-07)
+// والمواسم التقريبية للفعاليات (صفحة الفعاليات) وأفضل وقت للزيارة (صفحة خطّط).
+// بلا JS تظهر البطاقات الأربع كدليل فصول صادق — لا شيء يُخفى ولا يُختلق.
+// ليالي كفو الرمضانية غير مدرجة عمداً: موسمها هجري يتنقل عبر فصول السنة الشمسية.
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const ar = lang === 'ar';
+
+type Season = { key: string; name: string; months: string; items: string[] };
+const C = ar ? {
+  eyebrow: 'مواسم الواحة',
+  title: 'ما موسم الأحساء الآن؟',
+  lead: 'لكل فصلٍ في الواحة خيراته وفعالياته — هذا ما يستقبلك في كلٍّ منها.',
+  nowBadge: 'نحن الآن هنا',
+  note: 'المواسم تقريبية، ومواعيد الفعاليات تتغير من عامٍ لآخر — تأكد من القنوات الرسمية قبل الزيارة.',
+  fruitsCta: 'ثمار كل موسم',
+  eventsCta: 'مواسم الفعاليات',
+  seasons: [
+    { key: 'winter', name: 'الشتاء', months: 'ديسمبر – فبراير', items: [
+      'ألطف أجواء السنة — الوقت الأمثل للمعالم والقلاع',
+      'الكنار والأترنج من بساتين الواحة',
+      'ذروة المهرجانات: البشت الحساوي، التمور المصنّعة، قرية النخيل، شتاء العقير',
+    ] },
+    { key: 'spring', name: 'الربيع', months: 'مارس – مايو', items: [
+      'توت الواحة — موسمٌ قصير نحو أبريل',
+      'مهرجان الأحساء المبدعة وختام ليالي القيصرية',
+      'أواخر مايو: أول بواكير الرطب',
+    ] },
+    { key: 'summer', name: 'الصيف', months: 'يونيو – أغسطس', items: [
+      'موسم الرطب والبواكير — الأحساء أول من يقطف في المملكة',
+      'التين الحساوي والبمبر والبابايا في ذروتها',
+      'معرض اللومي الحساوي يختم الصيف',
+    ] },
+    { key: 'autumn', name: 'الخريف', months: 'سبتمبر – نوفمبر', items: [
+      'موسم «الصرام»: التمور الكاملة حتى بداية أكتوبر',
+      'الأجواء تعتدل — تبدأ أشهر الزيارة المثالية',
+      'انطلاق موسم سباقات الخيل وأجواء شتاء الوفرة',
+    ] },
+  ] as Season[],
+} : {
+  eyebrow: 'Seasons of the oasis',
+  title: 'What season is Al-Ahsa in now?',
+  lead: 'Each season in the oasis brings its own bounty and events — here is what welcomes you in each.',
+  nowBadge: 'You are here now',
+  note: 'Seasons are approximate and event dates change from year to year — confirm via official channels before visiting.',
+  fruitsCta: 'Fruits by season',
+  eventsCta: 'Event seasons',
+  seasons: [
+    { key: 'winter', name: 'Winter', months: 'December – February', items: [
+      'The gentlest weather of the year — prime time for the landmarks and forts',
+      'Kanar and citron fresh from the oasis groves',
+      'Festival high season: the Hassawi Bisht, the dates festivals, Palm Village, Al-Uqair Winter',
+    ] },
+    { key: 'spring', name: 'Spring', months: 'March – May', items: [
+      'Oasis mulberries — a short season around April',
+      'Creative Al-Ahsa Festival and the close of Qaisariyah Nights',
+      'Late May: the first early rutab dates',
+    ] },
+    { key: 'summer', name: 'Summer', months: 'June – August', items: [
+      'Rutab season — Al-Ahsa harvests first in Saudi Arabia',
+      'Hasawi figs, bomber plums and papaya at their peak',
+      'The Hassawi Lomi Exhibition closes the summer',
+    ] },
+    { key: 'autumn', name: 'Autumn', months: 'September – November', items: [
+      'The "siram" harvest: full dates until early October',
+      'The weather softens — the ideal visiting months begin',
+      'The horse racing season and Al-Wafrah Winter get under way',
+    ] },
+  ] as Season[],
+};
+const fruitsHref = ar ? '/ثمار/' : '/en/fruits/';
+const eventsHref = ar ? '/فعاليات/' : '/en/events/';
+---
+<section class="sn-sec" id="season-now">
+  <div class="container">
+    <header class="sec-head" data-reveal>
+      <span class="eyebrow">{C.eyebrow}</span>
+      <h2 class="sn-title">{C.title}</h2>
+      <p class="lead">{C.lead}</p>
+    </header>
+    <div class="sn-grid">
+      {C.seasons.map((s, i) => (
+        <article class={`sn-card sn-card--${s.key}`} data-season={s.key} data-reveal style={`transition-delay:${i * 60}ms`}>
+          <span class="sn-now" data-season-badge hidden>{C.nowBadge}</span>
+          <h3 class="sn-name">{s.name}</h3>
+          <span class="sn-months">{s.months}</span>
+          <ul class="sn-list">
+            {s.items.map((it) => <li>{it}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <div class="sn-foot" data-reveal>
+      <p class="sn-note">{C.note}</p>
+      <div class="sn-ctas">
+        <a href={fruitsHref} class="btn btn--turq">{C.fruitsCta}</a>
+        <a href={eventsHref} class="btn btn--ghost-gold">{C.eventsCta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // تمييز فصل الزائر الحالي من ساعة جهازه — عرضٌ فقط، لا معلومة جديدة
+  function markSeason() {
+    const m = new Date().getMonth() + 1;
+    const key = m === 12 || m <= 2 ? 'winter' : m <= 5 ? 'spring' : m <= 8 ? 'summer' : 'autumn';
+    document.querySelectorAll('[data-season]').forEach((c) => {
+      const on = c.getAttribute('data-season') === key;
+      c.classList.toggle('is-now', on);
+      const b = c.querySelector('[data-season-badge]');
+      if (b) b.hidden = !on;
+    });
+  }
+  document.addEventListener('astro:page-load', markSeason);
+  if (document.readyState !== 'loading') markSeason();
+  else document.addEventListener('DOMContentLoaded', markSeason);
+</script>
+
+<style>
+  .sn-sec { padding-block: var(--s-8); background: var(--c-sand); }
+  .sec-head { max-inline-size: 60ch; margin-block-end: var(--s-6); }
+  .sn-title { font-size: var(--t-2xl); color: var(--c-ink); margin-block: var(--s-2) var(--s-3); line-height: 1.2; }
+  .sn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--s-4); }
+  .sn-card { position: relative; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius);
+    padding: var(--s-4); display: flex; flex-direction: column; gap: var(--s-1);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .sn-card.is-now { border-color: var(--c-gold); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 14px 32px rgba(201,154,74,.18); }
+  .sn-now { position: absolute; inset-block-start: calc(var(--s-3) * -1 + 4px); inset-inline-start: var(--s-3);
+    font-family: var(--font-body); font-weight: 700; font-size: var(--t-xs); color: var(--c-ink);
+    background: var(--c-gold); border-radius: 999px; padding: 3px 12px; box-shadow: var(--shadow); }
+  .sn-name { font-size: var(--t-xl); color: var(--c-turq-deep); }
+  .sn-months { font-size: var(--t-xs); color: var(--c-gold-deep); font-weight: 600; }
+  .sn-list { list-style: none; padding: 0; margin-block-start: var(--s-2); display: flex; flex-direction: column; gap: var(--s-2); }
+  .sn-list li { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7;
+    padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.45); }
+  .sn-foot { display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); flex-wrap: wrap; margin-block-start: var(--s-5); }
+  .sn-note { font-size: var(--t-xs); color: var(--c-ink-60); max-inline-size: 60ch; }
+  .sn-ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+  .btn--ghost-gold { background: transparent; color: var(--c-gold-deep); border: 1.5px solid var(--c-gold); }
+  .btn--ghost-gold:hover { background: var(--c-gold); color: var(--c-ink); }
+  @media (max-width: 760px) {
+    .sn-ctas { inline-size: 100%; }
+    .sn-ctas .btn { flex: 1; justify-content: center; }
+  }
+</style>

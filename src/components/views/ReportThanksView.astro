@@ -1,0 +1,44 @@
+---
+// صفحة شكر ما بعد إرسال بلاغ الخطأ (وجهة action في نموذج Netlify).
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const C = ar ? {
+  title: 'وصل بلاغك — شكراً لك',
+  d: 'سيراجع فريق الموقع الملاحظة ويصحح ما يثبت منها. مساهمتك تُبقي دليل الأحساء دقيقاً للجميع.',
+  back: 'عودة إلى الرئيسية',
+} : {
+  title: 'Your report has arrived — thank you',
+  d: 'The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.',
+  back: 'Back to home',
+};
+const homeHref = ar ? '/' : '/en/';
+---
+<Base title={`${C.title} — ${t('site.name')}`} description={C.d} lang={lang} alt={alt} noindex={true}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class="container tk-body">
+      <PalmMotif size={64} class="tk-palm" aria-hidden="true" />
+      <h1 class="tk-h">{C.title}</h1>
+      <p class="tk-d">{C.d}</p>
+      <a href={homeHref} class="btn btn--turq">{C.back}</a>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .tk-body { text-align: center; max-inline-size: 52ch; margin-inline: auto; padding-block: var(--s-8); }
+  :global(.tk-palm) { color: var(--c-turq); opacity: .45; margin-inline: auto; }
+  .tk-h { font-size: var(--t-2xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-2); line-height: 1.2; }
+  .tk-d { color: var(--c-ink-soft); margin-block-end: var(--s-5); line-height: 1.8; }
+</style>
