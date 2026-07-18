@@ -34,7 +34,7 @@ const jsonLd = [
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
     name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png'),
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
-    address: { '@type': 'PostalAddress', addressLocality: a.area ?? (ar ? 'الأحساء' : 'Al-Ahsa'), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+    address: { '@type': 'PostalAddress', addressLocality: (ar ? a.area : a.area_en) ?? (ar ? 'الأحساء' : 'Al-Ahsa'), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
     isPartOf: { '@type': 'TouristDestination', name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(alt[lang], siteUrl).href },
   },
@@ -46,6 +46,18 @@ const jsonLd = [
 ];
 const homeHref = ar ? '/' : '/en/';
 const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
+
+// بطاقة معلومات الزيارة باللغتين: كل حقل يُعرض بلغة الصفحة، والبند الإنجليزي
+// لا يظهر إلا إن وُجدت ترجمته (label_en/value_en) — لا نعرض عربياً داخل صفحة إنجليزية.
+const areaVal = ar ? a.area : (a.area_en ?? null);
+const bestTimeVal = ar ? a.bestTime : (a.bestTime_en ?? null);
+const practicalItems = a.practical
+  .filter((p) => p.verified && (ar || (p.label_en && p.value_en)))
+  .map((p) => ({ label: ar ? p.label : p.label_en!, value: ar ? p.value : p.value_en! }));
+const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label));
+const reviewNote = ar
+  ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو ٢٠٢٦م.'
+  : 'Hours and fees can change in seasons and holidays; reviewed in June 2026.';
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
@@ -112,14 +124,14 @@ const nearby = a.location
         <div class="info-card">
           <h2 class="info-h">{t('det.visitInfo')}</h2>
           <dl class="info-list">
-            {a.area && (<><dt>{t('det.area')}</dt><dd>{a.area}</dd></>)}
-            {a.bestTime && ar && (<><dt>{t('det.bestTime')}</dt><dd>{a.bestTime}</dd></>)}
-            {ar && a.practical.filter((p) => p.verified).map((p) => (
+            {areaVal && (<><dt>{t('det.area')}</dt><dd>{areaVal}</dd></>)}
+            {bestTimeVal && (<><dt>{t('det.bestTime')}</dt><dd>{bestTimeVal}</dd></>)}
+            {practicalItems.map((p) => (
               <><dt>{p.label}</dt><dd>{p.value}</dd></>
             ))}
           </dl>
-          {ar && a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label)) && (
-            <p class="info-note">المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو ٢٠٢٦م.</p>
+          {practicalItems.length > 0 && hasTimeFee && (
+            <p class="info-note">{reviewNote}</p>
           )}
           <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(Astro.url.pathname)}`}>{t('det.report')}</a>
         </div>

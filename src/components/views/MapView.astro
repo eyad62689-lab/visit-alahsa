@@ -28,7 +28,7 @@ const points = items
     summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
     img: e.data.heroImage ?? null,
     // نصّ البحث: الاسمان معاً + المنطقة، فيجد الزائر المعلم بأي لغة
-    q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.area ?? ''}`,
+    q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.area ?? ''} ${e.data.area_en ?? ''}`,
     lat: e.data.location!.lat, lng: e.data.location!.lng,
   }))
   .sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : 'en'));

@@ -9,6 +9,7 @@ summary: "حديقة بلدية وسط الهفوف التاريخي، من حد
 summary_en: "A municipal garden in historic central Hofuf, part of the 'humanising cities' programme, steps from Qasr Ibrahim."
 body_en: "In the heart of the Kut district in historic central Hofuf, steps away from Qasr Ibrahim and the Qaisariyah Souq, lies Al-Koot Park, a municipal garden Al-Ahsa Municipality dedicated in late 2020 as one of eight gardens under its 'humanising cities' programme. The garden offers water fountains, trees and lawns, a shaded children's play area, walking space and public conveniences, with accessibility for people with disabilities taken into account. It also falls within the wider set of projects to develop historic central Hofuf, where the district's gardens are being styled with Ahsaai architectural motifs — making it a natural pause between the quarter's heritage landmarks."
 area: حي الكوت — وسط الهفوف
+area_en: "Al-Koot district — central Hofuf"
 featured: false
 order: 48
 location: { lat: 25.378523, lng: 49.584952 }

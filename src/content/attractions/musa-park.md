@@ -11,6 +11,7 @@ body_en: "In the Faisal district of Al-Mubarraz lies Al-Moosa Park, opened in la
 featured: false
 order: 49
 area: "حي الفيصل — المبرز"
+area_en: "Al-Faisal district — Al-Mubarraz"
 location: { lat: 25.436352, lng: 49.573605 }
 mapUrl: "https://goo.gl/maps/Vp66QYY7itVeeV9n7"
 heroImage: /img/al-mousa-garden

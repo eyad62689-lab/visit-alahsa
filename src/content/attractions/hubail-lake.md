@@ -12,6 +12,7 @@ featured: false
 heroImage: /img/hubail-lake
 order: 42
 area: "شمال الأحساء"
+area_en: "North of Al-Ahsa"
 practical:
   - { label: "الزيارة", value: "بانتظار التأكيد", verified: false }
 location: { lat: 25.7607843, lng: 49.7626523 }

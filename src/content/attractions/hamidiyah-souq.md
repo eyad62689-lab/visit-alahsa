@@ -12,6 +12,7 @@ heroImage: /img/hamidiyah-souq
 featured: false
 order: 66
 area: "الهفوف، حي الرفعة الشمالية"
+area_en: "Hofuf, North Al-Rifaa district"
 practical:
   - { label: "المواعيد", value: "بانتظار التأكيد", verified: false }
 location: { lat: 25.375159, lng: 49.5890072 }

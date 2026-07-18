@@ -9,6 +9,7 @@ summary: "من مساجد قرية التهيمية الأثرية الطيني�
 summary_en: "One of Al-Tahimiyah village's old mud mosques — its history awaiting confirmation."
 body_en: "In the village of Al-Tahimiyah, among Al-Ahsa's eastern villages near Al-Qarah Mountain, this mosque is one of the surviving old mud-built mosques of a village once famed as 'the village of forty mosques', of which only around eleven remain. Al-Tahimiyah's mosques are traditional structures of mud and palm trunks, and two of them — the East and West mosques — are listed in Al-Ahsa's official register of historic mosques. The details of this particular mosque's founding date and builder are awaiting confirmation from documented sources."
 area: قرية التهيمية — القرى الشرقية، الأحساء
+area_en: "Al-Tahimiyah village — the eastern villages, Al-Ahsa"
 featured: false
 order: 25
 location: { lat: 25.402082, lng: 49.690285 }

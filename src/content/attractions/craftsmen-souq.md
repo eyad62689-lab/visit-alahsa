@@ -12,6 +12,7 @@ heroImage: /img/craftsmen-souq
 featured: false
 order: 59
 area: "الهفوف — وسط المدينة التاريخي"
+area_en: "Hofuf — the historic town centre"
 practical:
   - { label: "المواعيد", value: "بانتظار التأكيد", verified: false }
 location: { lat: 25.3763032, lng: 49.5939642 }

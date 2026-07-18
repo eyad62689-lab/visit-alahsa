@@ -10,15 +10,17 @@ summary: كهوفٌ تبرد في الصيف وتدفأ في الشتاء، نح
 summary_en: "Caves that stay cool in summer and warm in winter, carved by time at the heart of the oasis."
 body_en: "Jabal Al-Qarah rises from the middle of the oasis like an ancient guardian, but its secret lies not in its height — in its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth when night falls — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity. Walk its narrow corridors, where the stone almost brushes your shoulders, then suddenly opens onto a high chamber pierced by a thread of light. From the summit the oasis unfolds like a sea of palms — a view that sums up why Al-Ahsa became the largest palm oasis on earth."
 area: شرق الهفوف — الأحساء
+area_en: "East of Hofuf — Al-Ahsa"
 location: { lat: 25.411483, lng: 49.692814 }
 mapUrl: https://goo.gl/maps/bx9DyKazun2bffcP6
 featured: true
 order: 1
 bestTime: الصباح الباكر أو قبيل الغروب، حين يلين الضوء وتعتدل الحرارة.
+bestTime_en: "Early morning or just before sunset, when the light softens and the heat eases."
 practical:
-  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", verified: true }
-  - { label: "الرسوم", value: "50 ريالاً للبالغين — التذاكر عبر «أرض الحضارات»", verified: true }
-  - { label: "مناسب لـ", value: "العائلات · التصوير · الأجواء الحارّة", verified: true }
+  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", verified: true }
+  - { label: "الرسوم", value: "50 ريالاً للبالغين — التذاكر عبر «أرض الحضارات»", label_en: "Fees", value_en: "SAR 50 for adults — tickets via the “Land of Civilisations” centre", verified: true }
+  - { label: "مناسب لـ", value: "العائلات · التصوير · الأجواء الحارّة", label_en: "Good for", value_en: "Families · photography · hot days", verified: true }
 tags: ["كهوف", "طبيعة", "تصوير"]
 ---
 

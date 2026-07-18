@@ -9,6 +9,7 @@ summary: "متنزه واسع قرب قرية القارة يحمل اسم حص�
 summary_en: "A sprawling park near Al-Qarah village bearing the name of the pre-Islamic Mushaqqar fort, with a palace built in its image at its heart."
 body_en: "Near Al-Qarah village on the eastern side of the oasis spreads Al-Mushaqar Park (formerly Al-Shaibani Park), a green retreat of dense plantings with open lawns, a folk souq and family play areas. The place carries the name of the famed pre-Islamic Mushaqqar fortress — known in early Arabic sources as the 'fort of Hajar', mentioned in the accounts of Arabia's celebrated battle-days and neighbour to the Mushaqqar market, one of the pre-Islamic Arab fairs — though scholars still debate the original fort's location between Al-Battaliyah, Jawatha and Al-Qarah. At the park's heart stands the 'Mushaqqar Palace', a modern building raised in homage to that ancient stronghold, now the park's centrepiece and icon."
 area: قرب قرية القارة — شرق الأحساء
+area_en: "Near Al-Qarah village — east of Al-Ahsa"
 featured: false
 order: 46
 location: { lat: 25.423663, lng: 49.67916 }

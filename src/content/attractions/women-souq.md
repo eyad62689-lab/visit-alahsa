@@ -12,6 +12,7 @@ heroImage: /img/women-souq
 featured: false
 order: 67
 area: "الهفوف، حي الرفعة الجنوبية"
+area_en: "Hofuf, South Al-Rifaa district"
 practical:
   - { label: "المواعيد", value: "بانتظار التأكيد", verified: false }
 location: { lat: 25.3713889, lng: 49.5886111 }

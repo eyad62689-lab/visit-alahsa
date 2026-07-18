@@ -10,6 +10,7 @@ summary: "متحف «النعاثل» — بيت أحسائي قديم بمجا�
 summary_en: "The 'Naathel' museum — an old Ahsaai house with its majlis rooms, kitchen and bridal chamber, founded by Sulaiman Al-Majed."
 body_en: "In Hofuf, the Al-Ahsa House Museum — known as the Naathel Museum — recreates the old Ahsaai home room by room. It was established by Sulaiman bin Mohammed Al-Majed in the outer courtyard of his own house, over an area of some 180 square metres. Its rooms follow the layout of traditional life: a men's majlis with Hasawi coffee pots and roasting tools, a women's majlis with its old furnishings, a kitchen with stone hand-mills and copper dishes, a bridal chamber with dress and jewellery, and a children's room with vintage toys — alongside manuscripts, coins, old photographs and farming tools. The museum also hosts heritage gatherings and workshops, keeping the old house alive rather than merely displayed."
 area: الهفوف — الأحساء
+area_en: "Hofuf — Al-Ahsa"
 featured: false
 order: 52
 location: { lat: 25.341541, lng: 49.611248 }

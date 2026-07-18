@@ -18,15 +18,20 @@ const attractions = defineCollection({
     summary_en: z.string().optional(),         // وصف البطاقة (إنجليزي)
     body_en: z.string().optional(),            // نصّ الصفحة (إنجليزي)
     area: z.string().optional(),               // المنطقة/الموقع (حقيقة)
+    area_en: z.string().optional(),            // المنطقة بالإنجليزية (ترجمة نفس الحقيقة)
     featured: z.boolean().default(false),
     order: z.number().default(99),
     bestTime: z.string().optional(),           // أفضل وقت للزيارة (توصية عامة)
+    bestTime_en: z.string().optional(),        // أفضل وقت بالإنجليزية
     location: z.object({ lat: z.number(), lng: z.number() }).optional(), // إحداثيات (للمرحلة ٣)
     mapUrl: z.string().url().optional(),       // رابط خرائط جوجل
-    // معلومات عملية موسومة: verified=false تعني بحاجة لتأكيد قبل النشر
+    // معلومات عملية موسومة: verified=false تعني بحاجة لتأكيد قبل النشر.
+    // label_en/value_en ترجمة البند للإنجليزية — بدونهما لا يظهر البند في الصفحة الإنجليزية.
     practical: z.array(z.object({
       label: z.string(),
       value: z.string(),
+      label_en: z.string().optional(),
+      value_en: z.string().optional(),
       verified: z.boolean().default(false),
     })).default([]),
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)

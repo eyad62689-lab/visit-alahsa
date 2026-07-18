@@ -12,7 +12,9 @@ body_en: "A beach of clear shallow waters and white sand, one of the Gulf's olde
 featured: false
 order: 40
 area: "ساحل العقير — شرق الأحساء"
+area_en: "Al-Uqair coast — east of Al-Ahsa"
 bestTime: "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
+bestTime_en: "Early morning, or late afternoon onwards, away from the peak heat."
 location: { lat: 25.746988, lng: 50.194863 }
 mapUrl: "https://maps.app.goo.gl/nwATsMpiUuzqxwXw7"
 ---

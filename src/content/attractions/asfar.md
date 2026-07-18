@@ -12,7 +12,9 @@ body_en: "One of the largest natural lakes in the Arabian Gulf, a reserve drawin
 featured: false
 order: 39
 area: "شمال شرق الواحة"
+area_en: "Northeast of the oasis"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
+bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 practical:
   - { label: "الرسوم", value: "بانتظار التأكيد", verified: false }
 location: { lat: 25.525252, lng: 49.808672 }

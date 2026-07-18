@@ -12,10 +12,12 @@ body_en: "A heritage souq over two centuries old, one of the oldest folk markets
 featured: false
 order: 58
 area: "الهفوف، حي الرفعة"
+area_en: "Hofuf, Al-Rifaa district"
 bestTime: "الفترة المسائية، حين تفتح المتاجر أبوابها ويشتدّ نبض السوق."
+bestTime_en: "The evening, when the shops open their doors and the souq comes alive."
 practical:
-  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", verified: true }
+  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", verified: true }
 location: { lat: 25.37558, lng: 49.589 }
 mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
 ---

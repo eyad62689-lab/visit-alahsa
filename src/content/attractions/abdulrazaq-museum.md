@@ -10,6 +10,7 @@ summary: "متحف خاص في الهفوف يشتهر بمجموعته النا
 summary_en: "A private museum in Hofuf famed for its rare collection of old Saudi school curricula."
 body_en: "In Hofuf stands the museum of Abdulrazaq Al-Arab, a private museum gathering Al-Ahsa's folk heritage, best known for its documented speciality: the history of education in Saudi Arabia, with a rare collection of the Kingdom's earliest school curricula and teaching materials. Its holdings drew official attention — in 2019 the Al-Ahsa office of the tourism and national heritage authority launched an electronic archiving project inside the museum, digitising more than 150 old curricula over some 750 hours of work. Alongside the education collection, the museum displays pieces of the local folk heritage, making it a distinctive stop for visitors tracing how learning began in the Kingdom."
 area: الهفوف — الأحساء
+area_en: "Hofuf — Al-Ahsa"
 featured: false
 order: 54
 location: { lat: 25.360015, lng: 49.608017 }

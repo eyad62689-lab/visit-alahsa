@@ -11,6 +11,7 @@ body_en: "On Al-Khaleej Road east of the oasis lies Zaki Al-Salem Farm, one of t
 featured: false
 order: 68
 area: "طريق الخليج — الأحساء"
+area_en: "Al-Khaleej Road — Al-Ahsa"
 practical:
   - { label: "الزيارة", value: "بانتظار التأكيد", verified: false }
 location: { lat: 25.2985879, lng: 49.6605849 }

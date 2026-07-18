@@ -9,6 +9,7 @@ summary: "بيت فخار تراثي عند جبل القارة توارثته �
 summary_en: "A heritage pottery house by Al-Qarah Mountain, handed down through the Al-Gharash family — one of the Kingdom's best-known homes of the craft."
 body_en: "At the foot of Al-Qarah Mountain in Al-Qarah village stands Dougha Al-Gharash, a heritage pottery house where vessels are still shaped from clay by hand in the old way and fired in its kilns. The craft has been handed down through the Al-Gharash family generation after generation, and press accounts record that pottery has endured on this spot for more than six hundred years, making it one of the Kingdom's most celebrated homes of the folk craft. Its potters have shown their work at exhibitions in France, the United States and Canada, and the dougha is today a tourist stop where visitors watch the stages of the craft — from kneading the clay to the wheel to the kiln — and take home its wares."
 area: قرية القارة — عند جبل القارة، شرق الأحساء
+area_en: "Al-Qarah village — by Al-Qarah Mountain, east of Al-Ahsa"
 featured: false
 order: 60
 location: { lat: 25.412022, lng: 49.6836 }
