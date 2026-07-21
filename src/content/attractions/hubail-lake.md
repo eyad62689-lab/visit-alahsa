@@ -14,7 +14,7 @@ order: 42
 area: "شمال الأحساء"
 area_en: "North of Al-Ahsa"
 practical:
-  - { label: "الزيارة", value: "بانتظار التأكيد", verified: false }
+  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", verified: false }
 location: { lat: 25.7607843, lng: 49.7626523 }
 mapUrl: "https://maps.app.goo.gl/tepZoP6zNeRqmmCfA"
 ---

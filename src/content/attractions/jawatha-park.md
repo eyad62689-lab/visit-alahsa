@@ -7,8 +7,8 @@ category: parks
 heroImage: /img/jawatha-park
 kicker: "متنزّه"
 summary: "متنزه أخضر بجوار مسجد جواثا التاريخي، وجهة للنزهات العائلية."
-summary_en: "A tourist park beside the historic Jawatha site."
-body_en: "A tourist park beside the historic Jawatha site."
+summary_en: "A green park beside the historic Jawatha Mosque, a destination for family outings."
+body_en: "A broad green park in the town of Al-Kilabiyah, joining nature to history: within its grounds stand the ancient Jawatha Mosque — the second place where Friday prayers were held in Islam — and the Jawatha archaeological site. A fitting destination for family outings, it opens daily from eight in the morning until midnight for a nominal fee, while visiting the mosque inside the park remains free."
 featured: false
 order: 44
 area: "الكلابية — شمال شرق الأحساء"

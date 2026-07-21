@@ -7,8 +7,8 @@ category: religious
 heroImage: /img/jabri-mosque
 kicker: "موقع ديني"
 summary: "جامع من عهد دولة الجبور في حي الكوت، ما يزال عامراً بالمصلين منذ القرن التاسع الهجري."
-summary_en: "A Jabrid-era mosque in the Kut district, alive with worshippers since the fifteenth century."
-body_en: "In the Kut district — the oldest quarter of historic Hofuf, close to Qasr Ibrahim — stands Al-Jabri Mosque, one of Al-Ahsa's oldest and most celebrated mosques. It was built by Saif bin Zamil Al-Jabri in the era of the Jabrid state, around 850 AH / 1446 CE, and endowed with farms and palm groves, serving as a beacon of teaching and scholarship alongside worship. Raised in mud and limestone, it is distinguished by its intersecting vaults, multiple arcades and varied domes, with a cylindrical minaret, and holds around 1,600 worshippers. Restored repeatedly over the centuries — most recently with original materials in 1437 AH / 2016 CE under the historic mosques care programme — it remains a living, working mosque to this day."
+summary_en: "A Jabrid-era mosque in the Al-Koot district, alive with worshippers since the fifteenth century."
+body_en: "In the Al-Koot district — the oldest quarter of historic Hofuf, close to Qasr Ibrahim — stands Al-Jabri Mosque, one of Al-Ahsa's oldest and most celebrated mosques. It was built by Saif bin Zamil Al-Jabri in the era of the Jabrid state, around 850 AH / 1446 CE, and endowed with farms and palm groves, serving as a beacon of teaching and scholarship alongside worship. Raised in mud and limestone, it is distinguished by its intersecting vaults, multiple arcades and varied domes, with a cylindrical minaret, and holds around 1,600 worshippers. Restored repeatedly over the centuries — most recently with original materials in 1437 AH / 2016 CE under the historic mosques care programme — it remains a living, working mosque to this day."
 area: حي الكوت — الهفوف
 area_en: "Al-Koot district — Hofuf"
 featured: false

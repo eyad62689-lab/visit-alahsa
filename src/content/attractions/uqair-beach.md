@@ -8,7 +8,7 @@ heroImage: /img/uqair-beach
 kicker: "معلم طبيعي"
 summary: "شاطئ بمياه ضحلة صافية ورمال بيضاء، من أقدم وجهات الاصطياف على الخليج."
 summary_en: "A beach of clear shallow waters and white sand, one of the Gulf's oldest summer destinations."
-body_en: "A beach of clear shallow waters and white sand, one of the Gulf's oldest summer destinations."
+body_en: "Along the Arabian Gulf coast stretches the historic Al-Uqair Beach, with its calm shallow waters, white sand and dunes — one of the oldest summer destinations on the Gulf, and beside it the historic Al-Uqair port that was Al-Ahsa’s gateway to the sea. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors."
 featured: false
 order: 40
 area: "ساحل العقير — شرق الأحساء"

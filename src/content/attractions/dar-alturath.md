@@ -7,10 +7,10 @@ category: historic
 heroImage: /img/dar-alturath
 kicker: "متحف خاص"
 summary: "دار على الطراز الأحسائي القديم وسط مزارع المنصورة، تضم مقتنيات تراثية وتاريخية نادرة."
-summary_en: "A house in the old Ahsaai style amid Al-Mansurah's farms, holding rare heritage and historical pieces."
-body_en: "Amid the palm farms of Al-Mansurah, east of the oasis, stands Dar Al-Turath — the Heritage House — a private museum built in the old Ahsaai architectural style. Its founder, Jafar Al-Khawaher, gathered its collection over more than twenty-five years from within Al-Ahsa and beyond, carrying on a family legacy of collecting heritage, and the house was inaugurated in its developed form in May 2017. Its holdings include rare heritage and historical pieces: manuscripts, coins, old photographs, cooking vessels and coffee pots, and weapons — swords and military helmets some of which go back more than three hundred years — along with fossilised animals. The building itself, in the old local style amid the greenery, is part of the exhibit."
+summary_en: "A house in the old Hasawi style amid Al-Mansurah's farms, holding rare heritage and historical pieces."
+body_en: "Amid the palm farms of Al-Mansurah, east of the oasis, stands Dar Al-Turath — the Heritage House — a private museum built in the old Hasawi architectural style. Its founder, Jafar Al-Khawaher, gathered its collection over more than twenty-five years from within Al-Ahsa and beyond, carrying on a family legacy of collecting heritage, and the house was inaugurated in its developed form in May 2017. Its holdings include rare heritage and historical pieces: manuscripts, coins, old photographs, cooking vessels and coffee pots, and weapons — swords and military helmets some of which go back more than three hundred years — along with fossilised animals. The building itself, in the old local style amid the greenery, is part of the exhibit."
 area: بلدة المنصورة — شرق الواحة
-area_en: "Al-Mansoura — east of the oasis"
+area_en: "Al-Mansurah — east of the oasis"
 featured: false
 order: 55
 location: { lat: 25.397274, lng: 49.681173 }

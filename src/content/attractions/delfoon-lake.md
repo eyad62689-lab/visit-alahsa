@@ -12,9 +12,9 @@ featured: false
 heroImage: /img/delfoon-lake
 order: 43
 area: "قرب بحيرة الحبيل — شمال الأحساء"
-area_en: "Near Hubail Lake — north of Al-Ahsa"
+area_en: "Near Al-Hubail Lake — north of Al-Ahsa"
 practical:
-  - { label: "الزيارة", value: "بانتظار التأكيد", verified: false }
+  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", verified: false }
 location: { lat: 25.8130215, lng: 49.8498148 }
 mapUrl: "https://maps.app.goo.gl/zN7Z8fyjrrdkYwUk9"
 ---

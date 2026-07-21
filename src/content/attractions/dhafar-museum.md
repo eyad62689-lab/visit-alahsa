@@ -1,6 +1,6 @@
 ---
 title: "متحف صالح عبد اللطيف الظفر"
-title_en: "Saleh Aldhafar Museum"
+title_en: "Saleh Al-Dhafar Museum"
 slug_ar: "متحف-صالح-عبد-اللطيف-الظفر"
 slug_en: "dhafar-museum"
 category: historic

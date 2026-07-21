@@ -6,8 +6,8 @@ slug_en: "sawsan-gardens"
 category: farm
 kicker: "مزرعة ونخيل"
 summary: "حديقة لعرض الطيور وسط أجواء واحة الأحساء."
-summary_en: "Gardens of birds and plants in the Al-Ahsa oasis."
-body_en: "Gardens of birds and plants in the Al-Ahsa oasis."
+summary_en: "A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis."
+body_en: "A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis."
 featured: false
 order: 64
 location: { lat: 25.36264, lng: 49.69037 }

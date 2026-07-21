@@ -7,8 +7,8 @@ category: historic
 heroImage: /img/najim-museum
 kicker: "متحف خاص"
 summary: "متحف خاص في الجفر تتوزع مقتنياته على ستة وعشرين ركناً متخصصاً تستعيد حياة الأحساء القديمة."
-summary_en: "A private museum in Al-Jafr whose collection fills twenty-six themed corners recreating old Ahsaai life."
-body_en: "In the town of Al-Jafr, east of the oasis, sits the museum of Walid Al-Najim, one of the region's most notable private museums, its collection arranged over some 400 square metres in twenty-six themed corners. The museum is licensed by the Ministry of Culture, and its corners recreate whole scenes of old Ahsaai life: a vintage grocery shop, a bridal chamber, a historic classroom, men's and women's majlis rooms, craftsmen's corners for blacksmithing, carpentry and jewellery-making, along with old Saudi coins and stamps, antique furniture, dress and early machines. Officials of the tourism and heritage authority have praised it as a private museum of notable heritage value."
+summary_en: "A private museum in Al-Jafr whose collection fills twenty-six themed corners recreating old Hasawi life."
+body_en: "In the town of Al-Jafr, east of the oasis, sits the museum of Walid Al-Najim, one of the region's most notable private museums, its collection arranged over some 400 square metres in twenty-six themed corners. The museum is licensed by the Ministry of Culture, and its corners recreate whole scenes of old Hasawi life: a vintage grocery shop, a bridal chamber, a historic classroom, men's and women's majlis rooms, craftsmen's corners for blacksmithing, carpentry and jewellery-making, along with old Saudi coins and stamps, antique furniture, dress and early machines. Officials of the tourism and heritage authority have praised it as a private museum of notable heritage value."
 area: بلدة الجفر — شرق الأحساء
 area_en: "Al-Jafr — east of Al-Ahsa"
 featured: false

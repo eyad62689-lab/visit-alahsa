@@ -1,13 +1,13 @@
 ---
 title: "أرض الحضارات"
-title_en: "Land of Civilizations"
+title_en: "Land of Civilisations"
 slug_ar: "أرض-الحضارات"
 slug_en: "ardh-alhadarat"
 category: parks
 kicker: "قرية تراثية"
 summary: "قرية تراثية ومعرض عند جبل القارة تستعرض مراحل الحضارة في المنطقة."
-summary_en: "A heritage village and exhibition at Al-Qarah Mountain showcasing the region's stages of civilization."
-body_en: "A heritage village and exhibition at Al-Qarah Mountain showcasing the region's stages of civilization."
+summary_en: "A heritage village and exhibition at Al-Qarah Mountain showcasing the region's stages of civilisation."
+body_en: "A heritage village and exhibition at the foot of Al-Qarah Mountain, tracing the region’s stages of civilisation, and integrated with the experience of visiting the mountain and its caves through trails, facilities and viewpoints. It opens daily from eight in the morning until ten at night (hours may be extended on holidays and in peak seasons), and tickets include the Al-Qarah Mountain caves experience."
 featured: false
 order: 59
 area: "مدينة العمران، شرق الهفوف — عند جبل القارة"

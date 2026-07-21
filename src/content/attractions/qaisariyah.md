@@ -8,7 +8,7 @@ heroImage: /img/qaisariyah
 kicker: "سوق تراثي"
 summary: "سوق تراثي يعود لأكثر من قرنين، من أعرق الأسواق الشعبية ووجهة للحرف والمنتجات المحلية."
 summary_en: "A heritage souq over two centuries old, one of the oldest folk markets and a destination for crafts and local products."
-body_en: "A heritage souq over two centuries old, one of the oldest folk markets and a destination for crafts and local products."
+body_en: "One of the oldest and most storied souqs in the Gulf, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices, copper and perfume — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices. Visiting the souq is free, and its best hours are in the evening."
 featured: false
 order: 58
 area: "الهفوف، حي الرفعة"

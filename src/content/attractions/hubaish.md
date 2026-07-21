@@ -7,8 +7,8 @@ category: religious
 heroImage: /img/hubaish
 kicker: "موقع ديني"
 summary: "مسجد من القرن الثالث عشر الهجري في الرفعة الجنوبية، احتضن دروس الشيخ عبدالعزيز العلجي."
-summary_en: "A thirteenth-century AH mosque in southern Al-Rif'ah that hosted the lessons of Sheikh Abdulaziz Al-Alji."
-body_en: "In the Rif'ah Al-Janubiyah district in central Hofuf stands Al-Hubaish Mosque, one of Al-Ahsa's oldest historic mosques, dating to the thirteenth century AH (around the nineteenth century CE). It is also known as the Mosque of Sheikh Abdulaziz Al-Alji, after one of Al-Ahsa's leading scholars of fiqh and grammar whose lessons it hosted. Built of limestone and mud and roofed with chandal wood, bamboo and woven mats, it is distinguished by an arcade of rounded arches, a square minaret at its north-eastern corner and a total area of about 318 square metres holding some ninety worshippers. Rehabilitated in 2020 within the first phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques, it regained its life as a working mosque while keeping its original features."
+summary_en: "A thirteenth-century AH mosque in southern Al-Rifaa that hosted the lessons of Sheikh Abdulaziz Al-Alji."
+body_en: "In the Al-Rifaa Al-Janubiyah district in central Hofuf stands Al-Hubaish Mosque, one of Al-Ahsa's oldest historic mosques, dating to the thirteenth century AH (around the nineteenth century CE). It is also known as the Mosque of Sheikh Abdulaziz Al-Alji, after one of Al-Ahsa's leading scholars of fiqh and grammar whose lessons it hosted. Built of limestone and mud and roofed with chandal wood, bamboo and woven mats, it is distinguished by an arcade of rounded arches, a square minaret at its north-eastern corner and a total area of about 318 square metres holding some ninety worshippers. Rehabilitated in 2020 within the first phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques, it regained its life as a working mosque while keeping its original features."
 area: حي الرفعة الجنوبية — وسط الهفوف
 area_en: "South Al-Rifaa district — central Hofuf"
 featured: false

@@ -6,8 +6,8 @@ slug_en: "king-abdullah-park"
 category: parks
 kicker: "متنزّه"
 summary: "متنزه بيئي واسع مخصص للمشي والتنزّه العائلي."
-summary_en: "A vast environmental park south of Hofuf for walking and family outings."
-body_en: "A vast environmental park south of Hofuf for walking and family outings."
+summary_en: "A vast environmental park for walking and family outings."
+body_en: "A vast environmental park for walking and family outings."
 featured: false
 order: 42
 location: { lat: 25.321457, lng: 49.558356 }

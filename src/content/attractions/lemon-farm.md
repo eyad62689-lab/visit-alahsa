@@ -1,13 +1,13 @@
 ---
 title: "مزرعة الليمون الحساوي"
-title_en: "Hassawi Lemon Farm"
+title_en: "Hasawi Lemon Farm"
 slug_ar: "مزرعة-الليمون-الحساوي"
 slug_en: "lemon-farm"
 category: farm
 kicker: "مزرعة ونخيل"
 summary: "مزرعة للحمضيات يُقصد فيها قطف الليمون الحساوي الشهير في موسمه."
-summary_en: "A citrus farm where visitors pick the famous Hassawi lemon in season."
-body_en: "A citrus farm where visitors pick the famous Hassawi lemon in season."
+summary_en: "A citrus farm where visitors pick the famous Hasawi lemon in season."
+body_en: "A citrus farm where visitors pick the famous Hasawi lemon in season."
 featured: false
 order: 61
 location: { lat: 25.382611, lng: 49.605278 }
