@@ -38,20 +38,6 @@ const C = ar ? {
     { n: '٤٠٠ ألف', l: 'شجرة فاكهة إلى جانب النخيل' },
   ],
   statsSrc: 'وفق تسجيل موسوعة غينيس للأرقام القياسية (أكتوبر ٢٠٢٠م) وإحصاءات وزارة البيئة والمياه والزراعة.',
-  calEyebrow: 'موسم الرطب',
-  calH: 'تقويم البواكير: من أول رطبة إلى آخر صرام',
-  calSum: 'تُعدّ الأحساء أول منطقة زراعية في المملكة تبدأ قطف الرطب كل موسم؛ وتُعرف أوائل الرطب محلياً بـ«البواكير»، ويسمى موسم جني التمور «الصرام». وبحسب تقويم وزارة البيئة والمياه والزراعة لموسم رطب ٢٠٢٥م، تتعاقب الأصناف على النحو التالي:',
-  calAria: 'تقويم أصناف الرطب',
-  calItems: [
-    { n: 'الطيار', d: '٢٠–٣٠ مايو' },
-    { n: 'المجناز', d: '٢٥–٣٠ مايو' },
-    { n: 'الغر', d: '١–١٠ يونيو' },
-    { n: 'الخنيزي', d: '١٥–٢٠ يونيو' },
-    { n: 'الشيشي', d: '٢٥–٣٠ يونيو' },
-    { n: 'الخلاص', d: '١٠–٢٠ يوليو' },
-    { n: 'أم رحيم والزاملي والهلالي', d: 'يوليو – منتصف أغسطس' },
-  ],
-  calNote: 'يمتد موسم الرطب من أواخر مايو حتى منتصف أغسطس، ثم يتحول إلى موسم التمر الكامل حتى بداية أكتوبر، وتختلف المواعيد قليلاً من موسم إلى آخر بحسب الأحوال الجوية. ويشرف على مواسم الصرام المركزُ الوطني للنخيل والتمور بالشراكة مع أمانة الأحساء وهيئة تطوير الأحساء.',
   frEyebrow: 'جولة الثمار',
   frH: 'ثمرة لكل فصل',
   frLead: 'اختر فصل زيارتك لعرض ثماره:',
@@ -65,6 +51,8 @@ const C = ar ? {
   ],
   pending: 'بانتظار التأكيد',
   rare: 'شبه منقرض',
+  more: 'اقرأ النبذة',
+  less: 'إخفاء النبذة',
   emptyMsg: 'لا ثمار مسجّلة لهذا الفصل بعد.',
   countPrefix: 'عدد الثمار المعروضة: ',
   methodH: 'حول دقة المعلومات',
@@ -188,26 +176,12 @@ const C = ar ? {
 } : {
   heroEyebrow: 'From the oasis bounty',
   title: 'Seasonal Fruits of Al-Ahsa',
-  heroSum: "In the world's largest natural palm oasis, the seasons take turns over the groves, offering visitors a new fruit and flavour with each one — from golden summer rutab to winter kanar and the oasis's famous lime.",
+  heroSum: "In the world’s largest natural palm oasis, the seasons take turns over the groves, offering visitors a new fruit and flavour with each one — from golden summer rutab to winter kanar and the oasis’s famous lime.",
   stats: [
     { n: '2.5M', l: 'palm trees in the oasis' },
     { n: '400K', l: 'fruit trees alongside the palms' },
   ],
   statsSrc: 'Per the Guinness World Records listing (October 2020) and Ministry of Environment, Water and Agriculture statistics.',
-  calEyebrow: 'Rutab season',
-  calH: 'The early-harvest calendar: from first rutab to last picking',
-  calSum: 'Al-Ahsa is the first agricultural region in Saudi Arabia to begin the rutab (fresh date) harvest each season; the first fresh dates are known locally as the "bawakir", and the harvest season is called the "siram". According to the Ministry of Environment, Water and Agriculture calendar for the 2025 rutab season, the varieties follow one another as below:',
-  calAria: 'Rutab varieties calendar',
-  calItems: [
-    { n: 'Tayyar', d: 'May 20–30' },
-    { n: 'Mignaz', d: 'May 25–30' },
-    { n: 'Ghar', d: 'June 1–10' },
-    { n: 'Khneizi', d: 'June 15–20' },
-    { n: 'Shishi', d: 'June 25–30' },
-    { n: 'Khalas', d: 'July 10–20' },
-    { n: 'Umm Rahim, Zamli & Hilali', d: 'July – mid-August' },
-  ],
-  calNote: 'The rutab season runs from late May to mid-August, then turns into the full-date season until early October; dates shift slightly from one season to the next with the weather. Harvest seasons are overseen by the National Center for Palms & Dates in partnership with Al-Ahsa Municipality and the Al-Ahsa Development Authority.',
   frEyebrow: 'A tour of the fruits',
   frH: 'A fruit for every season',
   frLead: 'Pick the season of your visit to see its fruits:',
@@ -221,33 +195,35 @@ const C = ar ? {
   ],
   pending: 'Pending confirmation',
   rare: 'Nearly extinct',
+  more: 'Read more',
+  less: 'Hide description',
   emptyMsg: 'No fruits recorded for this season yet.',
   countPrefix: 'Fruits shown: ',
   methodH: 'About the accuracy of this page',
-  methodP1: 'This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it. Anything we could not confirm is explicitly marked "Pending confirmation" rather than stated as fact.',
+  methodP1: 'This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it. Anything we could not confirm is explicitly marked “Pending confirmation” rather than stated as fact.',
   methodP2: 'Ripening dates shift slightly from season to season with the weather; this information was reviewed in July 2026.',
   groups: [
     {
       title: 'Dates — crown of the oasis',
-      intro: "Dates are Al-Ahsa's foremost crop; official reports place annual production between roughly 100,000 and 120,000 tonnes, while the Saudi Press Agency (October 2024) reported more than 200,000 tonnes. The oasis holds one of the world's largest palm gene banks: in 2021 the Palms and Dates Center in Al-Ahsa set a Guinness record with more than 127 national and international cultivars. Some sources suggest that Khalas, Shishi and Razeez together account for about three-quarters of production.",
+      intro: "Dates are Al-Ahsa’s foremost crop; official reports place annual production between roughly 100,000 and 120,000 tonnes, while the Saudi Press Agency (October 2024) reported more than 200,000 tonnes. The oasis holds one of the world’s largest palm gene banks: in 2021 the Palms and Dates Center in Al-Ahsa set a Guinness record with more than 127 national and international cultivars. Some sources suggest that Khalas, Shishi and Razeez together account for about three-quarters of production.",
       fruits: [
         {
           img: '/img/fruits/khalas-v2', alt: 'Golden Khalas rutab and amber tamr dates in two bowls on one platter',
           k: 'Dates', name: 'Khalas',
           season: 'Rutab: mid-July – late August • Full dates: c. 15–25 September', seasons: 'summer autumn',
-          pre: "The icon of Al-Ahsa dates and its most famous variety, the top seller, making up 15–20% of the oasis's palms. The fruit is oval and medium-sized with little fibre, golden to amber in colour, soft in texture, with a balanced, aromatic sweetness. It keeps its flavour even after long storage, is traditionally served with Arabic coffee as a symbol of generosity and hospitality, and is rich in minerals such as zinc, manganese and selenium.",
+          pre: "The icon of Al-Ahsa dates and its most famous variety, the top seller, making up 15–20% of the oasis’s palms. The fruit is oval and medium-sized with little fibre, golden to amber in colour, soft in texture, with a balanced, aromatic sweetness. It keeps its flavour even after long storage, is traditionally served with Arabic coffee as a symbol of generosity and hospitality, and is rich in minerals such as zinc, manganese and selenium.",
         },
         {
           img: '/img/fruits/shishi-v2', alt: 'Yellow Shishi rutab and brown tamr dates together on one serving plate',
           k: 'Dates', name: 'Shishi',
           season: 'Rutab: late June • Full dates: mid–late August', seasons: 'summer',
-          pre: "Al-Ahsa's second most famous variety, the most sought-after after Khalas. Large fruit with a relatively soft, thick texture, mostly brown with a golden-yellow base, and intensely sweet. It keeps for a long time without spoiling, making it well suited to storing and freezing for year-round eating, and it goes into dibs (date molasses) and other date products.",
+          pre: "Al-Ahsa’s second most famous variety, the most sought-after after Khalas. Large fruit with a relatively soft, thick texture, mostly brown with a golden-yellow base, and intensely sweet. It keeps for a long time without spoiling, making it well suited to storing and freezing for year-round eating, and it goes into dibs (date molasses) and other date products.",
         },
         {
           img: '/img/fruits/raziz-tamr', alt: 'Sesame-coated sifsif balls of Razeez dates in a brass bowl',
           k: 'Dates', name: 'Razeez',
           season: 'Full dates: late season, around early October', seasons: 'autumn',
-          pre: 'One of the oldest and most storied dates of Al-Ahsa, described as among the finest and most nutritious varieties. It is the base of "sifsif" — a famous winter sweet of Razeez dates with date molasses and sesame, served in guest majlises — as well as of molasses itself. It has become relatively rare today, as most farmers have turned to growing Khalas.',
+          pre: 'One of the oldest and most storied dates of Al-Ahsa, described as among the finest and most nutritious varieties. It is the base of “sifsif” — a famous winter sweet of Razeez dates with date molasses and sesame, served in guest majalis — as well as of molasses itself. It has become relatively rare today, as most farmers have turned to growing Khalas.',
         },
         {
           img: '/img/fruits/barhi', alt: 'A cluster of yellow Barhi dates hanging among the palm fronds',
@@ -270,7 +246,7 @@ const C = ar ? {
           img: '/img/fruits/lomi', alt: 'Green Hasawi limes with a cut half',
           k: 'Citrus', name: 'Hasawi Lime (Bin Zuhairi)',
           season: 'Summer: from mid-June', seasons: 'summer',
-          pre: 'Al-Ahsa\'s second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season, and it sells for SAR 15–20 per kilo. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it ("jameed", or sun-dried lime) for use all year. The governorate celebrates it annually at the Hasawi Lime Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.',
+          pre: 'Al-Ahsa\'s second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season, and it sells for SAR 15–20 per kilo. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it (“jameed”, or sun-dried lime) for use all year. The governorate celebrates it annually at the Hasawi Lomi Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.',
         },
         {
           img: '/img/fruits/atranj', alt: 'Green wrinkle-skinned atranj (citron) fruits',
@@ -287,21 +263,21 @@ const C = ar ? {
           img: '/img/fruits/melon', alt: 'Hasawi melons with a cut slice',
           k: 'Summer fruits', name: 'Hasawi Yellow Melon',
           season: 'Summer: from around late May', seasons: 'summer',
-          pre: "A farming and cultural heirloom handed down through generations; a local strain shaped by selective cultivation and the keeping of superior seed, which gave it its distinctive yellow flesh and its tolerance of Al-Ahsa's heat and scarce water. Sweet and aromatic, rich in water, fibre, vitamin C, potassium and carotenoids, and low in calories — a natural summer hydrator.",
+          pre: "A farming and cultural heirloom handed down through generations; a local strain shaped by selective cultivation and the keeping of superior seed, which gave it its distinctive yellow colour and its tolerance of Al-Ahsa’s heat and scarce water. Sweet and aromatic, rich in water, fibre, vitamin C, potassium and carotenoids, and low in calories — a natural summer hydrator.",
         },
         {
           img: '/img/fruits/fig', alt: 'Hasawi figs with a cut half showing the flesh',
           k: 'Summer fruits', name: 'Hasawi Fig',
           season: 'Summer', seasons: 'summer',
-          pre: "A beloved summer fruit; Al-Ahsa's most famous type is a pale lemony green, each fig about a single bite. Sugary and tender, it stands out for not spoiling quickly, unlike many figs. It is usually planted scattered through the palm groves beside lime and pomegranate rather than in dedicated orchards, so no precise tree count exists. Some farmers preserve it dried; it is a blessed fruit mentioned in the Holy Qur'an.",
+          pre: "A beloved summer fruit; Al-Ahsa’s most famous type is a pale lemony green, each fig about a single bite. Sugary and tender, it stands out for not spoiling quickly, unlike many figs. It is usually planted scattered through the palm groves beside lime and pomegranate rather than in dedicated orchards, so no precise tree count exists. Some farmers preserve it dried; it is a blessed fruit mentioned in the Holy Qur’an.",
         },
         {
           img: '/img/fruits/bambar', alt: 'Bambar fruits',
-          k: 'Summer fruits', name: 'Bambar',
+          k: 'Summer fruits', name: 'Hasawi Bambar',
           season: 'Summer: around July–August', seasons: 'summer',
           pre: 'A heritage fruit adored by the older generation, known scientifically as ',
           sci: 'Cordia myxa',
-          post: ' and also called sebestan, mkheit and hambu. The small oval fruit turns from green to yellow or brown as it ripens; its taste is sweet and its pulp so sticky it is proverbial. Eaten fresh, and used traditionally in folk remedies for the digestion.',
+          post: ' and also called sebestan, mkheit and hambu. The small oval fruit turns from green to yellow or brown as it ripens; its taste is sweet and its pulp so sticky it is proverbial. Eaten fresh, and used traditionally in folk remedies for the digestive system.',
         },
         {
           img: '/img/fruits/grapes', alt: 'A bunch of Hasawi grapes',
@@ -311,15 +287,15 @@ const C = ar ? {
         },
         {
           img: '/img/fruits/pomegranate', alt: 'Suwari pomegranates with a cut half of glistening red seeds',
-          k: 'Summer fruits', name: 'Suwari Pomegranate', rare: true,
+          k: 'Summer fruits', name: 'Hasawi Pomegranate (Suwari)', rare: true,
           season: '', seasons: 'summer autumn',
-          pre: 'A venerable local fruit; its largest specimens are called "Suwari". So intensely sweet that it splits from ripeness, and vivid in colour. Once planted densely across the oasis beside figs and lime, its production — like several of Al-Ahsa\'s traditional fruits — has declined so far that it is nearly extinct from the groves, and finding it today is rare.',
+          pre: 'A venerable local fruit; its largest specimens are called “Suwari”. So intensely sweet that it splits from ripeness, and vivid in colour. Once planted densely across the oasis beside figs and lime, its production — like several of Al-Ahsa\'s traditional fruits — has declined so far that it is nearly extinct from the groves, and finding it today is rare.',
         },
         {
           img: '/img/fruits/papaya', alt: 'A papaya and a cut half showing the orange flesh',
           k: 'Summer fruits', name: 'Papaya',
           season: 'Summer: from June to August', seasons: 'summer',
-          pre: "A tropical fruit with sweet orange flesh, ripening in the oasis's groves in summer.",
+          pre: "A tropical fruit with sweet orange flesh, ripening in the oasis’s groves in summer.",
         },
       ],
     },
@@ -330,13 +306,13 @@ const C = ar ? {
           img: '/img/fruits/mulberry', alt: 'A pile of red and black Hasawi mulberries',
           k: 'Spring fruits', name: 'Hasawi Mulberry',
           season: 'Spring: around April — a season of barely a month', seasons: 'spring',
-          pre: "A short-season spring fruit that arrives as the last cold spells fade, with small, near-round berries in red, black and blue — red and black predominate on Al-Ahsa's farms. Demand runs high precisely because the season is so short. Eaten fresh and used in sweets, ice creams, juices and jams, and frozen once the season ends; its cultivation is considered one of the oasis's promising crops.",
+          pre: "A short-season spring fruit that arrives as the last cold spells fade, with small, near-round berries in red, black and blue — red and black predominate on Al-Ahsa’s farms. Demand runs high precisely because the season is so short. Eaten fresh and used in sweets, ice creams, juices and jams, and frozen once the season ends; its cultivation is considered one of the oasis’s promising crops.",
         },
         {
           img: '/img/fruits/kanar', alt: 'Kanar fruits',
-          k: 'Winter fruits', name: 'Kanar (Nabk)',
+          k: 'Winter fruits', name: 'Hasawi Kanar (Nabk)',
           season: 'Winter: from around January to late March', seasons: 'winter spring',
-          pre: 'A time-honoured winter fruit borne by the sidr tree mentioned in the Holy Qur\'an. The oasis remains its fertile home, and it comes in several types: "Tuffahi" (apple-sized), "Umm Sulaim" (small and stoneless) and "Sini" (large and green), along with pear-like and Indian types. Sweet and especially loved by children, it does not keep long, and buying it in the souqs comes with folk chants of its own.',
+          pre: 'A time-honoured winter fruit borne by the sidr tree mentioned in the Holy Qur\'an. The oasis remains its fertile home, and it comes in several types: “Tuffahi” (apple-sized), “Umm Sulaim” (small and stoneless) and “Sini” (large and green), along with pear-like and Indian types. Sweet and especially loved by children, it does not keep long, and buying it in the souqs comes with folk chants of its own.',
         },
       ],
     },
@@ -385,20 +361,6 @@ const jsonLd = [
       </div>
     </section>
 
-    <section class="fr-cal" aria-label={C.calAria}>
-      <div class="container">
-        <span class="eyebrow">{C.calEyebrow}</span>
-        <h2>{C.calH}</h2>
-        <p class="cal-sum">{C.calSum}</p>
-        <div class="cal-track" tabindex="0" role="region" aria-label={C.calAria}>
-          {C.calItems.map((c) => (
-            <div class="cal-item"><div class="ci-name">{c.n}</div><div class="ci-date">{c.d}</div></div>
-          ))}
-        </div>
-        <p class="cal-note">{C.calNote}</p>
-      </div>
-    </section>
-
     <section class="container fr-list">
       <div class="fr-head">
         <span class="eyebrow">{C.frEyebrow}</span>
@@ -413,7 +375,7 @@ const jsonLd = [
       </div>
       <p id="filter-status" class="sr-only" role="status" data-empty={C.emptyMsg} data-prefix={C.countPrefix}></p>
 
-      {C.groups.map((g) => (
+      {C.groups.map((g, gi) => (
         <div class="fgroup" data-group>
           <div class="fgroup-head"><h3>{g.title}</h3></div>
           {g.intro && (
@@ -440,7 +402,12 @@ const jsonLd = [
                   <span class="t-caption fc-k">{f.k}</span>
                   <h4>{f.name} {f.rare && <span class="tag-rare">{C.rare}</span>} {f.namePending && <span class="tag-pending">{C.pending}</span>}</h4>
                   {f.season && <span class="fc-season">{f.season} {f.seasonPending && <span class="tag-pending">{C.pending}</span>}</span>}
-                  <p>{f.pre}{f.sci && <span class="sci" lang="en">{f.sci}</span>}{f.post}</p>
+                  {/* زر النبذة: يُظهره السكربت — بلا جافاسكربت يبقى النص ظاهراً */}
+                  <button class="disc-toggle" type="button" hidden aria-expanded="false" aria-controls={`fdesc-${gi}-${idx}`} data-more={C.more} data-less={C.less}>
+                    <span class="dt-label">{C.more}</span>
+                    <span class="dt-chev" aria-hidden="true"></span>
+                  </button>
+                  <p class="fc-desc" id={`fdesc-${gi}-${idx}`}>{f.pre}{f.sci && <span class="sci" lang="en">{f.sci}</span>}{f.post}</p>
                 </div>
               </article>
             ))}
@@ -497,6 +464,28 @@ const jsonLd = [
   }
   document.addEventListener('astro:page-load', initFruitFilter);
   if (document.readyState !== 'loading') initFruitFilter(); else document.addEventListener('DOMContentLoaded', initFruitFilter);
+
+  /* نبذة البطاقة مطويّة تُفتح بالضغط — تحسين تدريجي: بلا جافاسكربت يبقى النص ظاهراً */
+  function initDescToggles() {
+    document.querySelectorAll('.disc-toggle').forEach((btn) => {
+      if (btn.dataset.wired) return;
+      btn.dataset.wired = '1';
+      const p = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!p) return;
+      const label = btn.querySelector('.dt-label');
+      btn.hidden = false;
+      p.hidden = true;
+      btn.addEventListener('click', () => {
+        const open = p.hidden;
+        p.hidden = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.classList.toggle('is-open', open);
+        if (label) label.textContent = open ? (btn.dataset.less || '') : (btn.dataset.more || '');
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initDescToggles);
+  if (document.readyState !== 'loading') initDescToggles(); else document.addEventListener('DOMContentLoaded', initDescToggles);
 </script>
 
 <script is:inline>
@@ -543,16 +532,6 @@ const jsonLd = [
   .st-l { font-size: var(--t-sm); color: rgba(247,243,234,.85); margin-block-start: var(--s-1); }
   .src-note { color: rgba(247,243,234,.82); font-size: var(--t-xs); margin-block-start: var(--s-3); }
 
-  /* ═══ تقويم البواكير ═══ */
-  .fr-cal { padding-block: var(--s-6); background: #fff; border-block-end: 1px solid var(--c-line); }
-  .fr-cal h2 { font-size: var(--t-2xl); margin-block: var(--s-2) var(--s-2); }
-  .cal-sum { color: var(--c-ink-soft); max-inline-size: 68ch; margin-block-end: var(--s-5); }
-  .cal-track { display: flex; gap: var(--s-3); overflow-x: auto; padding-block-end: var(--s-3); -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
-  .cal-item { flex: 0 0 auto; min-inline-size: 150px; background: var(--c-sand); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-3) var(--s-4); text-align: center; }
-  .ci-name { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-lg); color: var(--c-turq-deep); }
-  .ci-date { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); margin-block-start: var(--s-1); }
-  .cal-note { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block-start: var(--s-3); max-inline-size: 68ch; }
-
   /* ═══ قسم الثمار ═══ */
   .fr-list { padding-block: var(--s-7) var(--s-8); }
   .fr-head { margin-block-end: var(--s-5); }
@@ -581,6 +560,13 @@ const jsonLd = [
   .fruit-card h4 { font-size: var(--t-lg); color: var(--c-turq-deep); }
   .fc-season { display: inline-flex; align-items: center; gap: var(--s-2); align-self: start; flex-wrap: wrap; font-size: var(--t-xs); font-weight: 600; color: var(--c-turq-deep); background: var(--c-sand-2); border-radius: 999px; padding: 4px 12px; }
   .fruit-card p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+
+  /* زر فتح النبذة المطويّة */
+  .disc-toggle { align-self: start; display: inline-flex; align-items: center; gap: var(--s-2); font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); cursor: pointer; color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: 999px; padding: 6px 14px; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .disc-toggle:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .disc-toggle[hidden] { display: none; }
+  .dt-chev { inline-size: 6px; block-size: 6px; border-inline-end: 2px solid currentColor; border-block-end: 2px solid currentColor; transform: rotate(45deg); transform-origin: 60% 60%; transition: transform var(--dur) var(--ease); }
+  .disc-toggle.is-open .dt-chev { transform: rotate(-135deg); }
   /* الاسم العلمي اللاتيني بخط المتن (يتقدم على قاعدة :lang(en) العامة) */
   .fruit-card p :global(.sci:lang(en)) { font-family: var(--font-body); font-style: normal; }
 
