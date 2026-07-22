@@ -18,7 +18,8 @@ const ar = lang === 'ar';
 const leisure = scope === 'leisure';
 
 // أرقام العدّادات بالأرقام العربية‑الهندية في النسخة العربية اتّساقاً مع سائر الموقع.
-const num = (n: number) => (ar ? String(n).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : String(n));
+// الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
+const num = (n: number) => String(n);
 
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : '/en/map/';

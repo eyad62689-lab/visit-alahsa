@@ -14,7 +14,8 @@ const ar = lang === 'ar';
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 
 // أرقام العرض في النسخة العربية تكون عربية-هندية (قاعدة الموقع العامة)
-const num = (n: number) => (ar ? String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : String(n));
+// الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
+const num = (n: number) => String(n);
 
 const items = await getCollection('attractions');
 const points = items
@@ -106,7 +107,7 @@ const jsonLd = [
       const norm = (s) => (s || '').toLowerCase()
         .replace(/[ً-ْـ]/g, '')
         .replace(/[أإآى]/g, 'ا').replace(/ة/g, 'ه');
-      const fmt = (n) => isAr ? String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : String(n);
+      const fmt = (n) => String(n); // الأرقام لاتينية في اللغتين
 
       const entries = points.map((p, i) => {
         const m = L.marker([p.lat, p.lng], { icon: pin(p.cat), title: p.title });

@@ -56,13 +56,12 @@ const practicalItems = a.practical
   .map((p) => ({ label: ar ? p.label : p.label_en!, value: ar ? p.value : p.value_en! }));
 const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label));
 const reviewNote = ar
-  ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو ٢٠٢٦م.'
+  ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو 2026م.'
   : 'Hours and fees can change in seasons and holidays; reviewed in June 2026.';
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
-const arDigits = (s: string) => s.replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
 const kmBetween = (la1: number, lo1: number, la2: number, lo2: number) => {
   const r = Math.PI / 180, R = 6371;
   const dLa = (la2 - la1) * r, dLo = (lo2 - lo1) * r;
@@ -85,7 +84,7 @@ const nearby = a.location
         ...n,
         dist: n.km < 1
           ? (ar ? 'أقل من كيلومتر' : 'under 1 km')
-          : (ar ? `نحو ${arDigits(String(Math.round(n.km)))} كم` : `~${Math.round(n.km)} km`),
+          : (ar ? `نحو ${Math.round(n.km)} كم` : `~${Math.round(n.km)} km`),
       }))
   : [];
 ---
