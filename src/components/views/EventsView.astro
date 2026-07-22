@@ -1,8 +1,9 @@
 ---
 // صفحة «المهرجانات والفعاليات» — المواسم الثقافية المتكررة في الأحساء.
 // المصدر: ملف «الفعاليات الموسمية السنوية في الأحساء» المعتمد من إياد (2026-07-08).
-// قاعدة ملزمة: لا تُذكر أشهر ولا تواريخ ولا مُدد محددة بالأيام — مواسم عامة فقط،
-// مع تنبيه ظاهر بأن المواعيد تتغيّر سنوياً ويُتأكّد منها عبر القنوات الرسمية.
+// قاعدة ملزمة: الأصل مواسم تقريبية (أشهر عامة) بلا تواريخ ولا مُدد بالأيام، مع تنبيه
+// ظاهر بأن المواعيد تتغيّر سنوياً. الاستثناء الوحيد: نسخة أعلن إياد موعدها الرسمي —
+// عندها يُكتب التاريخ في time مع status: 'confirmed'، ويعود تقريبياً بعد انقضائها.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
@@ -78,8 +79,11 @@ const C = ar ? {
       acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
     },
     {
+      // موعد نسخة 2026 المعلن: 19 أغسطس – 5 سبتمبر (من إياد، 2026-07-22) — لذلك status: 'confirmed'.
+      // عند انقضاء النسخة يعود الحقل إلى الموسم التقريبي «أغسطس – سبتمبر» بحالة 'expected'.
       name: 'معرض اللومي الحساوي', place: 'مركز الأحساء للمعارض',
-      season: 'الصيف', time: 'أغسطس – سبتمبر', span: 'نحو أسبوعين', img: '/img/event-lomi', start: 8, end: 9,
+      season: 'الصيف', time: '19 أغسطس – 5 سبتمبر 2026م', span: 'نحو 18 يوماً', img: '/img/event-lomi', start: 8, end: 9,
+      status: 'confirmed',
       org: 'غرفة الأحساء',
       acts: ['معارض منتجات اللومي', 'الطهي الحي', 'ورش عمل زراعية', 'ركن الطفل', 'جلسات عائلية'],
     },
@@ -171,8 +175,10 @@ const C = ar ? {
       acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
     },
     {
+      // 2026 edition announced: 19 August – 5 September (كما في النسخة العربية).
       name: 'Hasawi Lomi Exhibition', place: 'Al-Ahsa Expo Center',
-      season: 'Summer', time: 'August – September', span: 'Around two weeks', img: '/img/event-lomi', start: 8, end: 9,
+      season: 'Summer', time: '19 August – 5 September 2026', span: 'About 18 days', img: '/img/event-lomi', start: 8, end: 9,
+      status: 'confirmed',
       org: 'Al-Ahsa Chamber',
       acts: ['Lomi (dried lime) product shows', 'Live cooking', 'Agricultural workshops', 'Kids’ corner', 'Family sessions'],
     },

@@ -132,15 +132,19 @@ const nearby = a.location
           {practicalItems.length > 0 && hasTimeFee && (
             <p class="info-note">{reviewNote}</p>
           )}
+          {/* رابط الخريطة: أيقونة صغيرة داخل البطاقة نفسها بدل اللوحة الخضراء الكبيرة
+              التي كانت تحتلّ العمود (تغيير بطلب إياد 2026-07-22) */}
+          {a.mapUrl && (
+            <a class="map-link" href={a.mapUrl} target="_blank" rel="noopener">
+              <svg class="map-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+                <circle cx="12" cy="10" r="2.6" />
+              </svg>
+              {t('det.openMaps')}
+            </a>
+          )}
           <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(Astro.url.pathname)}`}>{t('det.report')}</a>
         </div>
-        {a.mapUrl ? (
-          <a class="map-card photo photo--placeholder" href={a.mapUrl} target="_blank" rel="noopener">
-            <span class="ph-label">{t('det.openMaps')}</span>
-          </a>
-        ) : (
-          <div class="map-card photo photo--placeholder"><span class="ph-label">{t('det.mapsSoon')}</span></div>
-        )}
       </aside>
     </div>
 
@@ -216,10 +220,18 @@ const nearby = a.location
   .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
   .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
   .info-note { font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-3); }
-  .report-link { display: inline-block; margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60);
+  /* رابط الخريطة — سطر صغير بأيقونة دبوس، لا لوحة صورة */
+  .map-link { display: inline-flex; align-items: center; gap: 6px; margin-block-start: var(--s-3);
+    font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq-deep);
+    text-decoration: none; background: #fff; border: 1px solid var(--c-line); border-radius: 999px;
+    padding: 6px 14px; transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .map-link:hover { border-color: var(--c-gold); color: var(--c-gold-deep); }
+  .map-ic { color: var(--c-gold-deep); flex-shrink: 0; }
+  .map-link:hover .map-ic { color: inherit; }
+  /* الإبلاغ يبقى سطراً منفصلاً تحت رابط الخريطة */
+  .report-link { display: block; margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
-  .map-card { aspect-ratio: 4 / 3; border-radius: var(--radius); }
   .gallery-sec { padding-block: 0 var(--s-6); }
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
