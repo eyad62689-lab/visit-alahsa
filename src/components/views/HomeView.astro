@@ -31,14 +31,36 @@ const catCards = [
   { key: 'events', cat: null, href: ar ? '/فعاليات/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
 const facts = [
-  { n: ar ? '٢.٥ مليون' : '2.5M', l: t('fact.palms.l') },
-  { n: ar ? '٢٠١٨' : '2018', l: t('fact.unesco.l') },
-  { n: ar ? '+٦٠' : '60+', l: t('fact.sites.l') },
+  { n: ar ? '2.5 مليون' : '2.5M', l: t('fact.palms.l') },
+  { n: '2018', l: t('fact.unesco.l') },
+  { n: '60+', l: t('fact.sites.l') },
   { n: ar ? 'آلاف' : 'Thousands', l: t('fact.springs.l') },
 ];
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const allHref = ar ? '/معالم/' : '/en/attractions/';
 const planTripHref = ar ? '/خطط/' : '/en/plan-your-trip/';
+const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
+
+// مسار «يومان في الواحة» — النصوص كلّها من القاموس، والوصلات من slug ملفات المعالم
+// الفعلية (لا مسارات مكتوبة يدوياً). time = شارة إيقاع النهار، لا موعد محدَّد.
+const routeDays = [
+  {
+    k: 'd1',
+    stops: [
+      { k: 's1', time: 'morning', ar: 'قصر-إبراهيم', en: 'qasr-ibrahim' },
+      { k: 's2', time: 'noon', ar: 'سوق-القيصرية', en: 'qaisariyah' },
+      { k: 's3', time: 'sunset', ar: 'جبل-القارة', en: 'jabal-al-qarah' },
+    ],
+  },
+  {
+    k: 'd2',
+    stops: [
+      { k: 's4', time: 'morning', ar: 'مسجد-جواثا', en: 'jawatha-mosque' },
+      { k: 's5', time: 'noon', ar: 'مزرعة-الليمون-الحساوي', en: 'lemon-farm' },
+      { k: 's6', time: 'sunset', ar: 'العقير', en: 'al-uqair' },
+    ],
+  },
+];
 
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
@@ -65,6 +87,7 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
       <video class="photo-bg hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
         <source data-src="/video/hero-home.mp4" type="video/mp4" />
       </video>
+      <span class="hero-glow" aria-hidden="true"></span>
       <PalmMotif size={520} class="hero-wm" aria-hidden="true" />
       <div class="container hero-in">
         <span class="eyebrow gold-on-dark">{t('home.hero.eyebrow')}</span>
@@ -131,6 +154,36 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
       </div>
     </section>
 
+    <section class="sec route-sec" id="route">
+      <div class="container">
+        <header class="sec-head" data-reveal>
+          <span class="eyebrow">{t('home.route.eyebrow')}</span>
+          <h2 class="sec-title">{t('home.route.title')}</h2>
+          <p class="lead">{t('home.route.lead')}</p>
+          <a href={myTripHref} class="route-link">{t('home.route.link')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+        </header>
+        <div class="route-grid">
+          {routeDays.map((d, i) => (
+            <article class="route-card" data-reveal style={`transition-delay:${i * 80}ms`}>
+              <span class="route-k">{t(`home.route.${d.k}.k` as any)}</span>
+              <h3 class="route-t">{t(`home.route.${d.k}.t` as any)}</h3>
+              <ol class="route-stops">
+                {d.stops.map((s) => (
+                  <li class="route-stop">
+                    <span class="route-time">{t(`home.route.time.${s.time}` as any)}</span>
+                    <div class="route-stop-b">
+                      <a class="route-n" href={detailBase + (ar ? s.ar : s.en)}>{t(`home.route.${s.k}.n` as any)}</a>
+                      <p class="route-d">{t(`home.route.${s.k}.d` as any)}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <SeasonNow lang={lang} />
 
     <section class="why on-dark">
@@ -193,6 +246,17 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
       linear-gradient(0deg, rgba(0,42,38,.45), transparent 55%);
   }
   .hero-bg { z-index: 0; }
+  /* Ken Burns — تكبير بطيء جداً على الصورة الثابتة يمنح الهيرو حياةً بلا إلهاء */
+  @keyframes kb { 0% { transform: scale(1.04); } 100% { transform: scale(1.14); } }
+  .hero-bg > img { transform: scale(1.04); animation: kb 26s var(--ease) infinite alternate; will-change: transform; }
+  /* توهّج ذهبي ناعم في الزاوية السفلية البعيدة عن كتلة النصّ (يمين في الإنجليزية، يسار في العربية) */
+  .hero-glow {
+    position: absolute; z-index: 2; pointer-events: none;
+    inline-size: 520px; block-size: 520px;
+    inset-block-end: -150px; inset-inline-end: -120px;
+    background: radial-gradient(circle, rgba(201,154,74,.22), transparent 68%);
+  }
+  @media (prefers-reduced-motion: reduce) { .hero-bg > img { animation: none; } }
   /* فيديو الهيرو فوق الصورة الثابتة؛ يظهر تدريجياً بعد بدء التشغيل، والصورة تبقى احتياطاً */
   .hero-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
   .hero-video--on { opacity: 1; }
@@ -254,6 +318,27 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .att-t { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-2); }
   .att-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; max-inline-size: 60ch; }
   .att-more { text-align: center; margin-block-start: var(--s-5); }
+  /* مسار «يومان في الواحة» — بطاقتان بيضاوان على الرملي، كلّ محطّة سطرٌ بشارة وقت */
+  .route-link { display: inline-flex; align-items: center; gap: var(--s-2); margin-block-start: var(--s-3); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: none; border-block-end: 1.5px solid var(--c-gold); padding-block-end: 2px; transition: color var(--dur) var(--ease); }
+  .route-link:hover { color: var(--c-turq-deep); }
+  .route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--s-4); }
+  .route-card { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: var(--s-5); }
+  .route-k { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); letter-spacing: .02em; color: var(--c-gold-deep); }
+  .route-t { font-family: var(--font-heading); font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-4); line-height: 1.2; }
+  .route-stops { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s-4); }
+  /* خطّ رفيع يربط المحطّات بصرياً كمسار متّصل */
+  .route-stop { display: flex; gap: var(--s-3); align-items: flex-start; position: relative; }
+  .route-stop:not(:last-child)::before {
+    content: ''; position: absolute; z-index: 0; inset-block-start: 30px;
+    inset-inline-start: 34px; block-size: calc(100% + var(--s-4) - 30px);
+    border-inline-start: 1px dashed var(--c-line);
+  }
+  .route-time { flex: 0 0 auto; inline-size: 68px; text-align: center; background: var(--c-turq); color: var(--c-sand); font-size: var(--t-xs); font-weight: 600; padding: 5px 0; border-radius: var(--radius-pill); position: relative; z-index: 1; }
+  .route-stop-b { padding-block-start: 2px; }
+  .route-n { font-family: var(--font-heading); font-size: var(--t-lg); color: var(--c-ink); text-decoration: none; line-height: 1.3; transition: color var(--dur) var(--ease); }
+  .route-n:hover { color: var(--c-turq); text-decoration: underline; text-underline-offset: 4px; }
+  .route-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-1); max-inline-size: 46ch; }
+
   .why { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8); }
   /* :global لأن PalmMotif مكوّن منفصل — بدونها تبقى السعفة عنصراً في التدفق يزيح المحتوى */
   :global(.why-wm) { position: absolute; inset-block-start: -8%; inset-inline-end: -6%; color: var(--c-gold); opacity: .1; }
