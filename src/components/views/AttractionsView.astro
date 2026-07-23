@@ -53,7 +53,6 @@ const CAT_ICONS: Record<string, string> = {
   farm: '<path d="M12 21v-8"/><path d="M12 13c-.5-3-3-5-7-4 3-1.5 5.5-1 7 1 .5-3 3-5 7-4-3-1.5-5.5-1-7 1z"/>',
 };
 const groupsHint = ar ? 'ابحث بالاسم، أو تصفّح المجموعات أدناه.' : 'Search by name, or browse the groups below.';
-const groupsNavAria = ar ? 'مجموعات المعالم' : 'Attraction groups';
 
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
@@ -92,18 +91,6 @@ const jsonLd = [
         <p class="list-hint">{groupsHint}</p>
         <input class="list-search" id="list-search" type="search" placeholder={t('list.search')} aria-label={t('list.searchLabel')} />
       </div>
-
-      <nav class="cat-nav" aria-label={groupsNavAria}>
-        {groups.map((g) => (
-          <a class="cat-nav-item" href={`#cat-${g.cat}`}>
-            <span class="cat-nav-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={CAT_ICONS[g.cat]} /></span>
-            <span class="cat-nav-tx">
-              <span class="cat-nav-l">{catLabel(g.cat, lang)}</span>
-              <span class="cat-nav-n">{num(g.list.length)}</span>
-            </span>
-          </a>
-        ))}
-      </nav>
 
       <div id="list-grid">
         {groups.map((g) => (
@@ -209,18 +196,6 @@ const jsonLd = [
   .list-search { font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink);
     background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 9px 18px; min-inline-size: 220px; }
   .list-search::placeholder { color: var(--c-ink-60); }
-
-  /* شريط المجموعات — أيقونات تنقل إلى أقسامها (بديل خيارات الفلترة) */
-  .cat-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s-3); margin-block-end: var(--s-7); }
-  .cat-nav-item { display: flex; align-items: center; gap: var(--s-3); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-3) var(--s-4); text-decoration: none; color: var(--c-ink); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
-  .cat-nav-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: transparent; }
-  .cat-nav-ic { display: inline-grid; place-items: center; inline-size: 42px; block-size: 42px; flex: 0 0 auto; border-radius: 11px; background: color-mix(in srgb, var(--c-turq) 10%, #fff); color: var(--c-turq); }
-  .cat-nav-ic svg { inline-size: 22px; block-size: 22px; }
-  /* التسمية فوق شارة العدد في عمود واحد — الصفّ الأفقي القديم كان يفيض بالشارة
-     خارج حدّ البطاقة عندما يضيق عمود الشبكة عن حدّه الأدنى (الحاسوب والجوال معاً). */
-  .cat-nav-tx { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-inline-size: 0; }
-  .cat-nav-l { font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); line-height: 1.3; }
-  .cat-nav-n { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-radius: 999px; padding: 1px 9px; }
 
   /* أقسام المجموعات */
   .cat-sec { scroll-margin-block-start: 84px; margin-block-end: var(--s-7); }

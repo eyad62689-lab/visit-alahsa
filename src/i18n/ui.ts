@@ -38,6 +38,7 @@ export const ui = {
     'foot.l.brand': 'دليل الهوية',
     'foot.l.privacy': 'السياسات والشروط',
     'foot.l.contact': 'تواصل معنا',
+    'foot.l.whatsapp': 'واتساب',
     // الرئيسية
     'home.hero.eyebrow': 'موقع تراث عالمي · اليونسكو 2018',
     'home.hero.title': 'تجوّل بين الواحات والنخيل',
@@ -198,6 +199,7 @@ export const ui = {
     'foot.l.brand': 'Brand guide',
     'foot.l.privacy': 'Policies & Terms',
     'foot.l.contact': 'Contact us',
+    'foot.l.whatsapp': 'WhatsApp',
     'home.hero.eyebrow': 'UNESCO World Heritage Site · 2018',
     'home.hero.title': 'Wander among the oases and palms',
     'home.hero.lead': 'Al-Ahsa — the largest palm oasis on earth. Where water has run beneath the sand for millennia, and life thrives among more than two million date palms.',
