@@ -1,0 +1,174 @@
+---
+// بحث في الموقع كله — واجهة أنيقة فوق Pagefind (فهرسة ثابتة وقت البناء، بلا خادم).
+// الزرّ في الترويسة يفتح <dialog> في الطبقة العليا (top layer) فيتفادى الـ backdrop-filter
+// في الترويسة الذي يأسر العناصر ثابتة الموضع، ويمنحنا حبس التركيز وإغلاق Esc مجاناً.
+// Pagefind يُحمَّل كسولاً عند أول فتح، ويُفهرس كل لغة على حدة حسب <html lang>.
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang?: Lang; }
+const { lang = 'ar' } = Astro.props;
+const t = useTranslations(lang);
+---
+<button type="button" class="hd-search-btn" id="search-open" aria-label={t('search.open')} aria-haspopup="dialog">
+  <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</button>
+
+<dialog class="search-modal" id="site-search" aria-label={t('search.label')}>
+  <div class="sm-inner">
+    <form class="sm-bar" role="search" id="sm-form">
+      <svg class="sm-ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input id="sm-input" class="sm-input" type="search" autocomplete="off" enterkeyhint="search"
+        placeholder={t('search.placeholder')} aria-label={t('search.placeholder')} aria-controls="sm-results" />
+      <button type="button" class="sm-close" id="sm-close" aria-label={t('search.close')}>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>
+    </form>
+    <div class="sm-results" id="sm-results" role="listbox" aria-label={t('search.label')}>
+      <p class="sm-msg" id="sm-idle">{t('search.idle')}</p>
+    </div>
+    <p class="sm-foot"><kbd>Esc</kbd> {t('search.escHint')}</p>
+  </div>
+</dialog>
+
+<script is:inline define:vars={{ labels: { empty: t('search.empty'), searching: t('search.searching'), idle: t('search.idle'), results: t('search.results') } }}>
+  function initSearch() {
+    const openBtn = document.getElementById('search-open');
+    const dialog = document.getElementById('site-search');
+    if (!openBtn || !dialog || openBtn.dataset.wired) return;
+    openBtn.dataset.wired = '1';
+
+    const input = dialog.querySelector('#sm-input');
+    const results = dialog.querySelector('#sm-results');
+    const closeBtn = dialog.querySelector('#sm-close');
+    const form = dialog.querySelector('#sm-form');
+    let loaded = false, loadFailed = false;
+
+    // تحميل Pagefind كسولاً مرة واحدة، ويُحفظ على window ليبقى عبر تنقّلات ClientRouter
+    async function ensurePagefind() {
+      if (window.__pagefind) return window.__pagefind;
+      const pf = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+      await pf.options({ excerptLength: 22 });
+      pf.init();
+      window.__pagefind = pf;
+      return pf;
+    }
+
+    function setMsg(text) { results.innerHTML = '<p class="sm-msg">' + text + '</p>'; }
+
+    async function run(q) {
+      const query = (q || '').trim();
+      if (!query) { setMsg(labels.idle); return; }
+      let pf;
+      try { pf = await ensurePagefind(); }
+      catch (e) {
+        loadFailed = true;
+        setMsg('⚠︎ ' + labels.empty); // في dev لا يوجد فهرس؛ يعمل في نسخة الإنتاج
+        return;
+      }
+      const search = await pf.debouncedSearch(query, {}, 220);
+      if (search === null) return; // استُبق باستعلام أحدث
+      if (!search.results.length) { setMsg(labels.empty); return; }
+      const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+      results.innerHTML = top.map((d, i) =>
+        '<a class="sm-item" href="' + d.url + '" role="option" tabindex="-1">' +
+          '<span class="sm-t">' + (d.meta && d.meta.title ? d.meta.title : d.url) + '</span>' +
+          '<span class="sm-ex">' + d.excerpt + '</span>' +
+        '</a>'
+      ).join('');
+    }
+
+    // تنقّل لوحة المفاتيح بين النتائج (أسهم) وفتح أول نتيجة بـ Enter
+    function items() { return Array.from(results.querySelectorAll('.sm-item')); }
+    input.addEventListener('input', () => run(input.value));
+    form.addEventListener('submit', (e) => { e.preventDefault(); const f = items()[0]; if (f) f.click(); });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); const f = items()[0]; if (f) f.focus(); }
+    });
+    results.addEventListener('keydown', (e) => {
+      const list = items(); const i = list.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); (list[i + 1] || list[0] || input).focus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); if (i <= 0) input.focus(); else list[i - 1].focus(); }
+    });
+    // الانتقال يُغلق النافذة (يتكفّل ClientRouter بالتحميل)
+    results.addEventListener('click', () => { if (dialog.open) dialog.close(); });
+
+    function open() {
+      if (dialog.open) return;
+      dialog.showModal();
+      input.value = '';
+      setMsg(labels.idle);
+      setTimeout(() => input.focus(), 30);
+    }
+    function close() { if (dialog.open) dialog.close(); }
+
+    openBtn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    // النقر على الخلفية (خارج البطاقة) يُغلق
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); });
+
+    // اختصارات عامة: Ctrl/Cmd+K في أي مكان، و«/» ما لم يكن التركيز داخل حقل إدخال
+    if (!window.__searchHotkeys) {
+      window.__searchHotkeys = true;
+      document.addEventListener('keydown', (e) => {
+        const d = document.getElementById('site-search');
+        const o = document.getElementById('search-open');
+        if (!d || !o) return;
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); if (!d.open) o.click(); }
+        else if (e.key === '/' && !d.open) {
+          const el = document.activeElement, tag = el && el.tagName;
+          if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !(el && el.isContentEditable)) { e.preventDefault(); o.click(); }
+        }
+      });
+    }
+  }
+  document.addEventListener('astro:page-load', initSearch);
+  if (document.readyState !== 'loading') initSearch(); else document.addEventListener('DOMContentLoaded', initSearch);
+</script>
+
+<style>
+  /* زرّ الترويسة */
+  .hd-search-btn { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 7px 12px; cursor: pointer; transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .hd-search-btn:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  /* اختصار لوحة المفاتيح كعنصر زائف — لا يُحسب نصاً مرئياً فلا يتعارض مع aria-label (Label-in-Name) */
+  .hd-search-btn::after { content: "⌘K"; font-family: var(--font-latin); font-size: .72rem; letter-spacing: .04em; color: var(--c-ink-60); border: 1px solid var(--c-line); border-radius: 5px; padding: 1px 5px; line-height: 1.4; }
+
+  /* النافذة الحوارية (top layer) */
+  .search-modal { inline-size: min(620px, 92vw); max-block-size: 78vh; margin: 12vh auto auto; padding: 0; border: 1px solid var(--c-line); border-radius: var(--radius-lg); background: var(--c-sand); box-shadow: 0 24px 60px rgba(0,42,37,.28); overflow: hidden; }
+  .search-modal::backdrop { background: rgba(0,42,37,.42); backdrop-filter: blur(3px); }
+  .sm-inner { display: flex; flex-direction: column; max-block-size: 78vh; }
+
+  .sm-bar { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-3) var(--s-4); border-block-end: 1px solid var(--c-line); background: #fff; }
+  .sm-ic { color: var(--c-turq); flex-shrink: 0; }
+  .sm-input { flex: 1; min-inline-size: 0; font-family: var(--font-body); font-size: var(--t-lg); color: var(--c-ink); background: none; border: 0; outline: none; padding-block: 4px; }
+  .sm-input::placeholder { color: var(--c-ink-60); }
+  .sm-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+  .sm-close { display: grid; place-items: center; inline-size: 34px; block-size: 34px; flex-shrink: 0; color: var(--c-ink-soft); background: var(--c-sand-2); border: 0; border-radius: 50%; cursor: pointer; transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .sm-close:hover { background: var(--c-sand); color: var(--c-ink); }
+
+  .sm-results { overflow-y: auto; overscroll-behavior: contain; flex: 1; }
+  .sm-msg { padding: var(--s-5) var(--s-4); margin: 0; text-align: center; color: var(--c-ink-soft); font-size: var(--t-sm); }
+  .sm-item { display: block; padding: var(--s-3) var(--s-4); text-decoration: none; border-block-end: 1px solid var(--c-line); transition: background var(--dur) var(--ease); }
+  .sm-item:last-child { border-block-end: 0; }
+  .sm-item:hover, .sm-item:focus-visible { background: #fff; outline: none; box-shadow: inset 3px 0 0 var(--c-turq); }
+  :root[dir="rtl"] .sm-item:hover, :root[dir="rtl"] .sm-item:focus-visible { box-shadow: inset -3px 0 0 var(--c-turq); }
+  .sm-t { display: block; font-family: var(--font-heading); font-weight: 700; font-size: var(--t-lg); color: var(--c-turq-deep); line-height: 1.3; }
+  .sm-ex { display: block; margin-block-start: 3px; font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.6; }
+  .sm-ex :global(mark) { background: color-mix(in srgb, var(--c-gold) 42%, transparent); color: inherit; border-radius: 3px; padding: 0 2px; }
+
+  .sm-foot { margin: 0; padding: 10px var(--s-4); border-block-start: 1px solid var(--c-line); background: #fff; font-size: var(--t-xs); color: var(--c-ink-60); text-align: start; }
+  .sm-foot kbd { font-family: var(--font-latin); border: 1px solid var(--c-line); border-radius: 4px; padding: 0 5px; margin-inline-end: 3px; }
+
+  /* على الشاشات الضيقة: نُخفي اختصار لوحة المفاتيح ونُلصق النافذة أعلى */
+  @media (max-width: 620px) {
+    .hd-search-btn::after { display: none; }
+    .search-modal { margin-block-start: 0; max-block-size: 100vh; block-size: 100dvh; inline-size: 100vw; border: 0; border-radius: 0; }
+    .sm-inner { max-block-size: 100dvh; block-size: 100dvh; }
+  }
+</style>

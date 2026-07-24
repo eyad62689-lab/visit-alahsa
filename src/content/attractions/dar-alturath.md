@@ -3,7 +3,7 @@ title: "دار التراث"
 title_en: "Dar Al-Turath (Heritage House)"
 slug_ar: "دار-التراث"
 slug_en: "dar-alturath"
-category: historic
+category: museum
 heroImage: /img/dar-alturath
 kicker: "متحف خاص"
 summary: "دار على الطراز الأحسائي القديم وسط مزارع المنصورة، تضم مقتنيات تراثية وتاريخية نادرة."

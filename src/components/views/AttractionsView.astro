@@ -30,7 +30,7 @@ const tx = (suffix: string) => t(`${K}.${suffix}` as any);
 
 // ترتيب عرض المجموعات — الأكثر شهرةً أولاً. كل مجموعة قسمٌ بمرساة #cat-<الفئة>
 // تنقل إليها أيقونتها في شريط المجموعات. المعالم داخل كل مجموعة مرتّبة بحقل order.
-const DISPLAY_ORDER = leisure ? ['market', 'parks', 'farm'] : ['historic', 'nature', 'religious'];
+const DISPLAY_ORDER = leisure ? ['market', 'parks', 'farm'] : ['historic', 'museum', 'nature', 'religious'];
 const items = (await getCollection('attractions'))
   .filter((i) => DISPLAY_ORDER.includes(i.data.category))
   .sort((x, y) => x.data.order - y.data.order);
@@ -45,7 +45,8 @@ const selfPath = leisure ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : 
 
 // أيقونات المجموعات (خطّية، currentColor) — بديلة لخيارات الفلترة المحذوفة.
 const CAT_ICONS: Record<string, string> = {
-  historic: '<polygon points="12 2 20 7 4 7"/><line x1="6" y1="10" x2="6" y2="17"/><line x1="10" y1="10" x2="10" y2="17"/><line x1="14" y1="10" x2="14" y2="17"/><line x1="18" y1="10" x2="18" y2="17"/><line x1="4" y1="17" x2="20" y2="17"/><line x1="3" y1="21" x2="21" y2="21"/>',
+  historic: '<path d="M3 21h18"/><path d="M5 21V9h2V7h2v2h2V7h2v2h2V7h2v2h2v12"/><path d="M10 21v-5a2 2 0 0 1 4 0v5"/>',
+  museum: '<polygon points="12 2 20 7 4 7"/><line x1="6" y1="10" x2="6" y2="17"/><line x1="10" y1="10" x2="10" y2="17"/><line x1="14" y1="10" x2="14" y2="17"/><line x1="18" y1="10" x2="18" y2="17"/><line x1="4" y1="17" x2="20" y2="17"/><line x1="3" y1="21" x2="21" y2="21"/>',
   nature: '<path d="m8 3 4 8 5-5 5 15H2L8 3z"/>',
   religious: '<path d="M3 21h18"/><path d="M6 21v-6"/><path d="M18 21v-6"/><path d="M5 15a7 7 0 0 1 14 0"/><path d="M12 3.5c1.1 1.1 1.6 2 1.6 2.9a1.6 1.6 0 0 1-3.2 0c0-.9.5-1.8 1.6-2.9z"/><path d="M9 21v-4a3 3 0 0 1 6 0v4"/>',
   market: '<path d="M4 9h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 9l1.6-4h14.8L21 9z"/><path d="M3 9h18"/><path d="M9 21v-6h6v6"/>',
@@ -93,13 +94,14 @@ const jsonLd = [
       </div>
 
       <div id="list-grid">
-        {groups.map((g) => (
-          <section class="cat-sec" id={`cat-${g.cat}`} aria-labelledby={`h-${g.cat}`}>
-            <header class="cat-sec-head">
+        {groups.map((g, gi) => (
+          <details class="cat-sec" id={`cat-${g.cat}`} open={gi === 0}>
+            <summary class="cat-sec-head">
               <span class="cat-sec-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={CAT_ICONS[g.cat]} /></span>
               <h2 class="cat-sec-t" id={`h-${g.cat}`}>{catLabel(g.cat, lang)}</h2>
               <span class="cat-sec-count">{num(g.list.length)}</span>
-            </header>
+              <span class="cat-sec-chev" aria-hidden="true"></span>
+            </summary>
             <div class="list-grid">
               {g.list.map((i, idx) => (
                 <article class="att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
@@ -115,7 +117,7 @@ const jsonLd = [
                 </article>
               ))}
             </div>
-          </section>
+          </details>
         ))}
       </div>
       <p class="empty" id="empty" hidden>{t('list.empty')}</p>
@@ -149,7 +151,9 @@ const jsonLd = [
     const sections = document.querySelectorAll('#list-grid .cat-sec');
     const empty = document.getElementById('empty');
     if (!search || search.dataset.wired) return;
-    // بحثٌ حرّ بالاسم عبر كل المجموعات؛ تُخفى المجموعة التي لا نتيجة فيها.
+    // بحثٌ حرّ بالاسم عبر كل المجموعات؛ تُخفى المجموعة التي لا نتيجة فيها. الأقسام قوائم
+    // منسدلة (<details>): أثناء البحث تُفتح الأقسام المطابقة لتظهر نتائجها، وعند مسح البحث
+    // تعود الحالة الأولى (الأول مفتوح والبقية مطويّة).
     function apply() {
       const q = (search.value || '').trim().toLowerCase();
       let shown = 0;
@@ -157,16 +161,21 @@ const jsonLd = [
         const ok = !q || (card.getAttribute('data-title') || '').toLowerCase().includes(q);
         card.style.display = ok ? '' : 'none'; if (ok) shown++;
       });
-      sections.forEach((sec) => { sec.hidden = !sec.querySelector('.att-card:not([style*="display: none"])'); });
+      sections.forEach((sec, i) => {
+        const hasMatch = !!sec.querySelector('.att-card:not([style*="display: none"])');
+        sec.hidden = !hasMatch;
+        if (q) { if (hasMatch) sec.open = true; }
+        else { sec.open = i === 0; }
+      });
       if (empty) empty.hidden = shown !== 0;
     }
     search.dataset.wired = '1';
     search.addEventListener('input', apply);
-    // روابط ?cat= القديمة (الرئيسية/التذييل) تنقل إلى قسم المجموعة المطابق.
+    // روابط ?cat= القديمة (الرئيسية/التذييل) تفتح قسم المجموعة المطابق وتنقل إليه.
     const want = new URLSearchParams(location.search).get('cat');
     if (want) {
       const sec = document.getElementById('cat-' + want);
-      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (sec) { sec.open = true; sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     }
   }
   document.addEventListener('astro:page-load', initFilter);
@@ -197,16 +206,23 @@ const jsonLd = [
     background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 9px 18px; min-inline-size: 220px; }
   .list-search::placeholder { color: var(--c-ink-60); }
 
-  /* أقسام المجموعات */
+  /* أقسام المجموعات — قوائم منسدلة أصيلة (<details>): تحسين تدريجي، تعمل بلا جافاسكربت */
   .cat-sec { scroll-margin-block-start: 84px; margin-block-end: var(--s-7); }
   .cat-sec:last-of-type { margin-block-end: 0; }
   .cat-sec[hidden] { display: none; }
-  .cat-sec-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); }
+  /* summary هو العنوان القابل للنقر — نُزيل مؤشّر المتصفح الافتراضي ونضبطه شبكةً مرنة */
+  summary.cat-sec-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); cursor: pointer; list-style: none; }
+  summary.cat-sec-head::-webkit-details-marker { display: none; }
+  summary.cat-sec-head:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 4px; border-radius: var(--radius-sm); }
   .cat-sec-ic { display: inline-grid; place-items: center; inline-size: 40px; block-size: 40px; flex: 0 0 auto; border-radius: 11px; background: color-mix(in srgb, var(--c-turq) 12%, #fff); color: var(--c-turq-deep); }
   .cat-sec-ic svg { inline-size: 22px; block-size: 22px; }
   .cat-sec-t { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .cat-sec-count { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-radius: 999px; padding: 2px 10px; }
   .cat-sec-head::after { content: ''; flex: 1; block-size: 1px; background: var(--c-line); }
+  /* شيفرون الطيّ — order:1 يضعه بعد الخطّ الفاصل (::after)؛ يدور للأعلى عند الفتح */
+  .cat-sec-chev { order: 1; flex: 0 0 auto; inline-size: 9px; block-size: 9px; border-inline-end: 2px solid var(--c-turq-deep); border-block-end: 2px solid var(--c-turq-deep); transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
+  .cat-sec[open] > summary .cat-sec-chev { transform: rotate(-135deg); }
+  @media (prefers-reduced-motion: reduce) { .cat-sec-chev { transition: none; } }
 
   .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(264px, 1fr)); gap: var(--s-4); }
   .att-card { position: relative; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform var(--dur) var(--ease); }

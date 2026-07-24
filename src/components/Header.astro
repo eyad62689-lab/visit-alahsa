@@ -1,6 +1,7 @@
 ---
 // الترويسة — ثنائية اللغة: تنقّل مترجم، مبدّل لغة يربط النظير، RTL/LTR تلقائي.
 import Wordmark from './Wordmark.astro';
+import Search from './Search.astro';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
@@ -33,9 +34,9 @@ const nav = [
 ];
 const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
 ---
-<header class="site-header" id="top">
+<header class="site-header" id="top" data-pagefind-ignore>
   <div class="container hd-in">
-    <a href={home} class="brand" aria-label={t('site.name')}>
+    <a href={home} class="brand">
       <Wordmark variant="turq" size="sm" />
     </a>
 
@@ -47,6 +48,7 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
     </nav>
 
     <div class="hd-actions">
+      <Search lang={lang} />
       <a href={routes.myTrip} class="plan-link" aria-label={t('nav.myTrip')}>{t('nav.myTrip')} <span class="plan-badge" data-plan-count>0</span></a>
       <a href={switchHref} class="lang" aria-label={t('lang.switchLabel')}>{t('lang.switch')}</a>
       <a href={routes.plan} class="btn-gold">{t('nav.planVisit')}</a>

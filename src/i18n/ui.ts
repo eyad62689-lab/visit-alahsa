@@ -166,6 +166,16 @@ export const ui = {
     // الإبلاغ عن خطأ
     'det.report': 'لاحظت معلومة غير دقيقة؟ أبلغنا',
     'foot.l.report': 'أبلغ عن خطأ',
+    // البحث في الموقع كله (Pagefind)
+    'search.open': 'ابحث في الموقع',
+    'search.label': 'بحث في الموقع',
+    'search.placeholder': 'ابحث عن معلم أو تجربة أو مكان…',
+    'search.close': 'إغلاق البحث',
+    'search.idle': 'اكتب للبحث في معالم الأحساء وصفحاتها.',
+    'search.escHint': 'للإغلاق · الأسهم للتنقّل · Enter لفتح النتيجة',
+    'search.empty': 'لا نتائج مطابقة — جرّب كلمة أخرى.',
+    'search.searching': 'جارٍ البحث…',
+    'search.results': 'النتائج',
   },
   en: {
     'site.name': 'Al-Ahsa',
@@ -315,5 +325,15 @@ export const ui = {
     'det.nearby.note': 'Distances are approximate, in a straight line.',
     'det.report': 'Spotted something inaccurate? Tell us',
     'foot.l.report': 'Report an error',
+    // Site-wide search (Pagefind)
+    'search.open': 'Search the site',
+    'search.label': 'Site search',
+    'search.placeholder': 'Search sights, experiences, places…',
+    'search.close': 'Close search',
+    'search.idle': 'Type to search Al-Ahsa’s sights and pages.',
+    'search.escHint': 'to close · arrows to move · Enter to open',
+    'search.empty': 'No matches — try another word.',
+    'search.searching': 'Searching…',
+    'search.results': 'Results',
   },
 } as const;

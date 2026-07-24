@@ -3,7 +3,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const CATEGORIES = ['historic', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'] as const;
+const CATEGORIES = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'] as const;
 
 const attractions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/attractions' }),

@@ -20,6 +20,12 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Leaflet المستضاف ذاتياً — المسار مُصدَّر بالإصدار فالتخزين الدائم آمن
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # رؤوس أمان أساسية
 [[headers]]
   for = "/*"

@@ -54,6 +54,37 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
 }
 
+/* ---------- خط احتياطي مضبوط المقاييس لمتن العربية (يمنع CLS) ----------
+   يشغل نفس حيّز IBM Plex Sans Arabic أثناء تحميله فلا يحدث انزياح تخطيط عند
+   التبديل (font-display: swap يبقى، فتظهر خطوط الهوية دائماً). القيمة مقيسة
+   فعلياً في المتصفح: عرض Plex ÷ عرض Segoe UI ≈ 94.4%. ارتفاع السطر في الموقع
+   ثابت (body 1.75، العناوين 1.2) فلا حاجة لتجاوز الصعود/الهبوط. يعتمد خطوط
+   ويندوز العربية (الأغلبية)؛ الأنظمة الأخرى تسقط إلى system-ui كما كانت. */
+@font-face {
+  font-family: 'Plex AR Fallback';
+  src: local('Segoe UI'), local('Tahoma'), local('Arial');
+  size-adjust: 94.4%;
+}
+
+/* ---------- بديل مضبوط لمتن اللاتيني (Lora) — يمنع CLS ----------
+   Georgia (سِريفي مثل Lora) بمقاس Lora ÷ Georgia ≈ 105.5% (مقيس). يظهر أثناء
+   تحميل Lora بلا انزياح. الأنظمة بلا Georgia تسقط إلى Plex-Latin كما كانت. */
+@font-face {
+  font-family: 'Lora Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 105.5%;
+}
+
+/* ---------- بديل مضبوط لعناوين العربية (Cairo) — يمنع CLS ----------
+   Segoe UI (سانس عربي قريب من Cairo أسلوباً وعرضاً) بمقاس Cairo ÷ Segoe ≈ 105.3%
+   (مقيس). يظهر أثناء تحميل Cairo بلا انزياح؛ أخفّ وأقرب أسلوباً من رفع Amiri
+   إلى 132%. الأنظمة بلا Segoe (غير ويندوز) تسقط إلى Amiri الفاخر كما كانت. */
+@font-face {
+  font-family: 'Cairo AR Fallback';
+  src: local('Segoe UI');
+  size-adjust: 105.3%;
+}
+
 /* ---------- Marcellus (لمسات لاتينية: الوردمارك) — لاتيني فقط ---------- */
 @font-face {
   font-family: 'Marcellus'; font-style: normal; font-weight: 400; font-display: swap;

@@ -1,8 +1,9 @@
 ---
-// «ما موسم الأحساء الآن؟» — أربع بطاقات فصلية، وJS يعلّم فصل الزائر الحالي من ساعة جهازه.
+// «ما موسم الأحساء الآن؟» — أربع بطاقات فصلية، وJS يعلّم فصل الزائر الحالي من ساعة جهازه
+// ويعيد ترتيبها فيقدّم الفصل الحالي أولاً ثم توالي الفصول الطبيعي (عرضٌ فقط، بلا معلومة جديدة).
 // المحتوى مستمد حصراً من الصفحات المعتمدة: مواسم الثمار (صفحة ثمار، تحقق 2026-07)
 // والمواسم التقريبية للفعاليات (صفحة الفعاليات) وأفضل وقت للزيارة (صفحة خطّط).
-// بلا JS تظهر البطاقات الأربع كدليل فصول صادق — لا شيء يُخفى ولا يُختلق.
+// بلا JS تظهر البطاقات الأربع بترتيبها الطبيعي (الشتاء أولاً) كدليل فصول صادق — لا شيء يُخفى ولا يُختلق.
 // ليالي كفو الرمضانية غير مدرجة عمداً: موسمها هجري يتنقل عبر فصول السنة الشمسية.
 import type { Lang } from '../i18n/ui';
 
@@ -105,20 +106,30 @@ const eventsHref = ar ? '/فعاليات/' : '/en/events/';
 </section>
 
 <script is:inline>
-  // تمييز فصل الزائر الحالي من ساعة جهازه — عرضٌ فقط، لا معلومة جديدة
+  // تمييز فصل الزائر الحالي من ساعة جهازه وإعادة ترتيب البطاقات (الحالي أولاً) — عرضٌ فقط
   function markSeason() {
+    const grid = document.querySelector('#season-now .sn-grid');
+    if (!grid) return;
+    const cycle = ['winter', 'spring', 'summer', 'autumn'];
     const m = new Date().getMonth() + 1;
     const key = m === 12 || m <= 2 ? 'winter' : m <= 5 ? 'spring' : m <= 8 ? 'summer' : 'autumn';
-    document.querySelectorAll('[data-season]').forEach((c) => {
-      const on = c.getAttribute('data-season') === key;
-      c.classList.toggle('is-now', on);
-      const b = c.querySelector('[data-season-badge]');
-      if (b) b.hidden = !on;
-    });
+    const cur = cycle.indexOf(key);
+    // بُعد كل بطاقة عن الفصل الحالي في الدورة (0 = الحالي، ثم 1 و2 و3 على التوالي الطبيعي)
+    const dist = (el) => (cycle.indexOf(el.getAttribute('data-season')) - cur + 4) % 4;
+    Array.from(grid.querySelectorAll('[data-season]'))
+      .sort((a, b) => dist(a) - dist(b))
+      .forEach((c, i) => {
+        grid.appendChild(c); // إعادة الترتيب فعلياً في DOM (يوافق ترتيب القراءة والعرض)
+        c.style.transitionDelay = i * 60 + 'ms'; // إعادة ضبط تدرّج الظهور بالترتيب الجديد
+        const on = c.getAttribute('data-season') === key;
+        c.classList.toggle('is-now', on);
+        const b = c.querySelector('[data-season-badge]');
+        if (b) b.hidden = !on;
+      });
   }
+  // نداءٌ فوري: البطاقات معرَّفة قبل هذا السطر، فيقع إعادة الترتيب قبل أول رسم بلا وميض.
+  markSeason();
   document.addEventListener('astro:page-load', markSeason);
-  if (document.readyState !== 'loading') markSeason();
-  else document.addEventListener('DOMContentLoaded', markSeason);
 </script>
 
 <style>

@@ -3,7 +3,7 @@ title: "متحف وليد الناجم"
 title_en: "Walid Al-Najim Museum"
 slug_ar: "متحف-وليد-الناجم"
 slug_en: "najim-museum"
-category: historic
+category: museum
 heroImage: /img/najim-museum
 kicker: "متحف خاص"
 summary: "متحف خاص في الجفر تتوزع مقتنياته على ستة وعشرين ركناً متخصصاً تستعيد حياة الأحساء القديمة."

@@ -3,7 +3,8 @@ import type { Lang } from '../i18n/ui';
 
 export const CATEGORY_LABELS: Record<Lang, Record<string, string>> = {
   ar: {
-    historic: 'المعالم والمتاحف',
+    historic: 'المعالم',
+    museum: 'المتاحف',
     religious: 'المساجد والمواقع الدينية',
     nature: 'الطبيعة والمغارات',
     parks: 'المتنزّهات والحدائق',
@@ -14,7 +15,8 @@ export const CATEGORY_LABELS: Record<Lang, Record<string, string>> = {
     events: 'الفعاليات والمواسم',
   },
   en: {
-    historic: 'Landmarks & museums',
+    historic: 'Landmarks',
+    museum: 'Museums',
     religious: 'Mosques & religious sites',
     nature: 'Nature & caves',
     parks: 'Parks & gardens',
@@ -26,7 +28,7 @@ export const CATEGORY_LABELS: Record<Lang, Record<string, string>> = {
   },
 };
 
-export const CATEGORY_ORDER = ['historic', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'];
+export const CATEGORY_ORDER = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'];
 
 export const catLabel = (c: string, lang: Lang = 'ar') =>
   CATEGORY_LABELS[lang]?.[c] ?? CATEGORY_LABELS.ar[c] ?? c;

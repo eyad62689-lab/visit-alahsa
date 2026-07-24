@@ -376,8 +376,8 @@ const jsonLd = [
       <p id="filter-status" class="sr-only" role="status" data-empty={C.emptyMsg} data-prefix={C.countPrefix}></p>
 
       {C.groups.map((g, gi) => (
-        <div class="fgroup" data-group>
-          <div class="fgroup-head"><h3>{g.title}</h3></div>
+        <details class="fgroup" data-group open={gi === 0}>
+          <summary class="fgroup-head"><h3>{g.title}</h3><span class="fgroup-chev" aria-hidden="true"></span></summary>
           {g.intro && (
             <p class="fgroup-intro">{g.intro} {g.introTagged && (<>{g.introTagged} <span class="tag-pending">{C.pending}</span>.</>)}</p>
           )}
@@ -412,7 +412,7 @@ const jsonLd = [
               </article>
             ))}
           </div>
-        </div>
+        </details>
       ))}
 
       <p class="fr-empty" id="fruits-empty" hidden>{C.emptyMsg}</p>
@@ -452,7 +452,14 @@ const jsonLd = [
           const ok = f === 'all' || (card.getAttribute('data-season') || '').split(' ').indexOf(f) !== -1;
           card.hidden = !ok; if (ok) shown++;
         });
-        groups.forEach((g) => { g.hidden = !g.querySelector('.fruit-card:not([hidden])'); });
+        // المجموعات قوائم منسدلة (<details>): عند تصفية فصلٍ تُفتح المجموعات المطابقة لتظهر
+        // ثمارها، وعند «كل الفصول» تعود الحالة الأولى (الأولى مفتوحة والبقية مطويّة).
+        groups.forEach((g, i) => {
+          const hasMatch = !!g.querySelector('.fruit-card:not([hidden])');
+          g.hidden = !hasMatch;
+          if (f === 'all') g.open = i === 0;
+          else if (hasMatch) g.open = true;
+        });
         if (empty) empty.hidden = shown !== 0;
         if (status) status.textContent = shown === 0
           ? (status.dataset.empty || '')
@@ -544,11 +551,18 @@ const jsonLd = [
     .chip { flex-shrink: 0; }
   }
 
+  /* المجموعات — قوائم منسدلة أصيلة (<details>): تحسين تدريجي، تعمل بلا جافاسكربت */
   .fgroup { margin-block-end: var(--s-7); }
   .fgroup:last-of-type { margin-block-end: 0; }
-  .fgroup-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); }
+  summary.fgroup-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); cursor: pointer; list-style: none; }
+  summary.fgroup-head::-webkit-details-marker { display: none; }
+  summary.fgroup-head:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 4px; border-radius: var(--radius-sm); }
   .fgroup-head h3 { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .fgroup-head::after { content: ''; flex: 1; block-size: 1px; background: var(--c-line); }
+  /* شيفرون الطيّ — order:1 يضعه بعد الخطّ الفاصل (::after)؛ يدور للأعلى عند الفتح */
+  .fgroup-chev { order: 1; flex: 0 0 auto; inline-size: 9px; block-size: 9px; border-inline-end: 2px solid var(--c-turq-deep); border-block-end: 2px solid var(--c-turq-deep); transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
+  .fgroup[open] > summary .fgroup-chev { transform: rotate(-135deg); }
+  @media (prefers-reduced-motion: reduce) { .fgroup-chev { transition: none; } }
   .fgroup-intro { color: var(--c-ink-soft); max-inline-size: 72ch; margin-block-end: var(--s-4); }
   .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-4); }
 

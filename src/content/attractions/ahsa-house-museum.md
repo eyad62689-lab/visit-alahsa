@@ -3,7 +3,7 @@ title: "متحف البيت الأحسائي"
 title_en: "Al-Ahsa House Museum"
 slug_ar: "متحف-البيت-الأحسائي"
 slug_en: "ahsa-house-museum"
-category: historic
+category: museum
 heroImage: /img/ahsa-house-museum
 kicker: "متحف خاص"
 summary: "متحف «النعاثل» — بيت أحسائي قديم بمجالسه ومطبخه وغرفة عروسه، أسسه سليمان الماجد."

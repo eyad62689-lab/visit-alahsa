@@ -4,7 +4,9 @@
 interface Props { variant?: 'ink' | 'turq' | 'sand'; align?: 'start' | 'center'; size?: 'sm' | 'md' | 'lg'; }
 const { variant = 'turq', align = 'start', size = 'md' } = Astro.props;
 const color = variant === 'sand' ? 'var(--c-sand)' : variant === 'ink' ? 'var(--c-ink)' : 'var(--c-turq)';
-const sub = variant === 'sand' ? 'rgba(247,243,234,.78)' : 'var(--c-gold)';
+// النص اللاتيني الصغير على خلفية فاتحة: ذهبي داكن (4.9:1 على الرملي — WCAG AA)
+// بدل الذهبي الفاتح الذي يفشل التباين للنص الصغير. على الداكن (sand): رملي شفاف.
+const sub = variant === 'sand' ? 'rgba(247,243,234,.78)' : 'var(--c-gold-deep)';
 // حجم السطر العربي يُضبط على الحاوية، واللاتيني نسبة منه (≈ الثلث)
 const arSize = size === 'lg' ? 'var(--t-display)' : size === 'sm' ? '1.3rem' : 'var(--t-2xl)';
 ---

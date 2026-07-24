@@ -90,8 +90,18 @@ const jsonLd = [
     </div>
   </main>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  {/* Leaflet مستضاف ذاتياً (كان يُحمَّل من unpkg.com وقت التشغيل) — يزيل تبعية خارجية
+      ونقطة فشل، ويُسرّع أول ظهور للخريطة. المسار مُصدَّر بالإصدار فيُكسر الكاش تلقائياً
+      عند أي ترقية. بلاطات الخريطة تبقى من CARTO (مجانية بلا مفتاح) — نُهيّئ اتصالها مبكراً. */}
+  <link rel="preconnect" href="https://a.basemaps.cartocdn.com" />
+  <link rel="preconnect" href="https://b.basemaps.cartocdn.com" />
+  <link rel="preconnect" href="https://c.basemaps.cartocdn.com" />
+  <link rel="stylesheet" href="/vendor/leaflet-1.9.4/leaflet.css" />
+  <script is:inline src="/vendor/leaflet-1.9.4/leaflet.js"></script>
+  {/* تجميع الدبابيس المتقاربة (marker clustering) — مستضاف ذاتياً؛ يمنع تراكب الدبابيس
+      عند التكبير الشامل (يعالج target-size) ويوضّح المناطق المزدحمة. */}
+  <link rel="stylesheet" href="/vendor/leaflet.markercluster-1.5.3/MarkerCluster.css" />
+  <script is:inline src="/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js"></script>
 
   <script is:inline define:vars={{ points, labels, isAr: ar }}>
     function initMap() {
@@ -99,7 +109,21 @@ const jsonLd = [
       if (!el || typeof L === 'undefined' || el._leaflet_id) return;
       const map = L.map(el, { scrollWheelZoom: false }).setView([25.42, 49.62], 11);
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19 }).addTo(map);
-      const pin = (cat) => L.divIcon({ className: 'va-pin va-pin--' + cat, html: '<span></span>', iconSize: [18, 18], iconAnchor: [9, 9] });
+      // مساحة اللمس 24×24 (حدّ WCAG الأدنى) والنقطة المرئية تبقى 16px متمركزة
+      const pin = (cat) => L.divIcon({ className: 'va-pin va-pin--' + cat, html: '<span></span>', iconSize: [24, 24], iconAnchor: [12, 12] });
+
+      // مجموعة العناقيد: تجمّع الدبابيس المتقاربة في شارة (عددها بأرقام لاتينية) تتوسّع بالتكبير
+      const cluster = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 48,
+        spiderfyOnMaxZoom: true,
+        iconCreateFunction: (c) => {
+          const n = c.getChildCount();
+          const size = n < 10 ? 34 : n < 25 ? 40 : 46;
+          return L.divIcon({ html: '<span>' + n + '</span>', className: 'va-cluster', iconSize: [size, size], iconAnchor: [size / 2, size / 2] });
+        },
+      });
+      map.addLayer(cluster);
 
       const listEl = document.getElementById('map-list');
       const lis = listEl ? Array.from(listEl.children) : [];
@@ -120,12 +144,12 @@ const jsonLd = [
           '<button class="fav-btn va-pop-fav" type="button" data-fav="' + p.fav + '" data-tx-on="' + labels.favAdded + '" data-tx-off="' + labels.favAdd + '" aria-pressed="false">' +
           '<span class="fav-ic">+</span><span data-fav-tx>' + labels.favAdd + '</span></button>' +
           '</div>');
-        m.addTo(map);
+        cluster.addLayer(m);
         const li = lis[i] || null;
         if (li) {
           li.querySelector('.ms-item').addEventListener('click', () => {
-            map.flyTo([p.lat, p.lng], Math.max(map.getZoom(), 14), { duration: 0.8 });
-            m.openPopup();
+            // يكبّر ويفكّ العنقود حتى يظهر الدبوس ثم يفتح بطاقته
+            cluster.zoomToShowLayer(m, () => m.openPopup());
             if (window.matchMedia('(max-width: 900px)').matches) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
           m.on('popupopen', () => {
@@ -139,7 +163,7 @@ const jsonLd = [
       });
 
       map.on('popupopen', () => window.VAPlan && window.VAPlan.sync());
-      map.fitBounds(L.featureGroup(entries.map((e) => e.m)).getBounds().pad(0.12));
+      map.fitBounds(cluster.getBounds().pad(0.12));
 
       const chips = document.querySelectorAll('#map-chips .chip');
       const search = document.getElementById('map-search');
@@ -151,11 +175,11 @@ const jsonLd = [
         entries.forEach(({ p, m, li }) => {
           const ok = (state.cat === 'all' || p.cat === state.cat) && (!state.q || norm(p.q).indexOf(state.q) !== -1);
           if (li) li.hidden = !ok;
-          if (ok) { m.addTo(map); shown.push(m); } else { map.removeLayer(m); }
+          if (ok) { cluster.addLayer(m); shown.push(m); } else { cluster.removeLayer(m); }
         });
         if (countEl) countEl.textContent = fmt(shown.length);
         if (emptyEl) emptyEl.hidden = shown.length > 0;
-        if (shown.length) map.fitBounds(L.featureGroup(shown).getBounds().pad(0.12), { maxZoom: 14 });
+        if (shown.length) map.fitBounds(L.latLngBounds(shown.map((m) => m.getLatLng())).pad(0.12), { maxZoom: 14 });
       }
       chips.forEach((chip) => chip.addEventListener('click', () => {
         state.cat = chip.getAttribute('data-filter');
@@ -173,6 +197,7 @@ const jsonLd = [
   /* ألوان الفئات — أدوار مشتقة من رموز الهوية حصراً */
   .map-page {
     --pin-historic: var(--c-gold-deep);
+    --pin-museum: var(--c-ink-soft);
     --pin-religious: var(--c-turq-deep);
     --pin-nature: var(--c-turq);
     --pin-parks: var(--c-turq-tint);
@@ -192,6 +217,7 @@ const jsonLd = [
   .chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
   .dot { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--c-turq); flex-shrink: 0; }
   .dot--historic { background: var(--pin-historic); }
+  .dot--museum { background: var(--pin-museum); }
   .dot--religious { background: var(--pin-religious); }
   .dot--nature { background: var(--pin-nature); }
   .dot--parks { background: var(--pin-parks); }
@@ -215,15 +241,22 @@ const jsonLd = [
   .ms-k { display: flex; align-items: center; gap: 6px; font-size: var(--t-xs); color: var(--c-ink-soft); margin-block-start: 2px; }
   .ms-empty { padding: var(--s-4); margin: 0; color: var(--c-ink-soft); font-size: var(--t-sm); }
 
-  /* الدبابيس الملوّنة حسب الفئة */
+  /* الدبابيس الملوّنة حسب الفئة — الحاوية 24px (لمسة WCAG) والنقطة 16px متمركزة */
+  :global(.va-pin) { display: grid; place-items: center; }
   :global(.va-pin span) { display: block; inline-size: 16px; block-size: 16px; border-radius: 50%; background: var(--pin, var(--c-turq)); border: 2.5px solid var(--c-sand); box-shadow: 0 1px 4px rgba(0,42,37,.4); transition: transform .2s var(--ease); }
   :global(.va-pin:hover span) { transform: scale(1.35); }
   :global(.va-pin--historic span) { --pin: var(--pin-historic); }
+  :global(.va-pin--museum span) { --pin: var(--pin-museum); }
   :global(.va-pin--religious span) { --pin: var(--pin-religious); }
   :global(.va-pin--nature span) { --pin: var(--pin-nature); }
   :global(.va-pin--parks span) { --pin: var(--pin-parks); }
   :global(.va-pin--farm span) { --pin: var(--pin-farm); }
   :global(.va-pin--market span) { --pin: var(--pin-market); }
+
+  /* عناقيد الدبابيس — بألوان الهوية، والعدد بأرقام لاتينية */
+  :global(.va-cluster) { display: grid; place-items: center; background: none; }
+  :global(.va-cluster span) { display: grid; place-items: center; inline-size: 100%; block-size: 100%; border-radius: 50%; background: var(--c-turq); color: var(--c-sand); font-family: var(--font-body); font-weight: 700; font-size: var(--t-sm); border: 2.5px solid var(--c-sand); box-shadow: 0 2px 8px rgba(0,42,37,.35); transition: transform .2s var(--ease); }
+  :global(.va-cluster:hover span) { transform: scale(1.08); background: var(--c-turq-deep); }
 
   :global(.leaflet-popup-content-wrapper) { border-radius: var(--radius) !important; }
   :global(.va-pop) { font-family: var(--font-body); text-align: start; min-inline-size: 200px; max-inline-size: 240px; }

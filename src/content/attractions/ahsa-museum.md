@@ -3,7 +3,7 @@ title: "متحف الأحساء"
 title_en: "Al-Ahsa Museum"
 slug_ar: "متحف-الأحساء"
 slug_en: "ahsa-museum"
-category: historic
+category: museum
 heroImage: /img/alahsa-museum-02
 kicker: "معلم تاريخي"
 summary: "المتحف الإقليمي الرسمي؛ يعرض تاريخ الأحساء وآثارها عبر العصور."

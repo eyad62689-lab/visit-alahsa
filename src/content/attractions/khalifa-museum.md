@@ -3,7 +3,7 @@ title: "متحف الخليفة التراثي"
 title_en: "Al-Khalifa Heritage Museum"
 slug_ar: "متحف-الخليفة-التراثي"
 slug_en: "khalifa-museum"
-category: historic
+category: museum
 heroImage: /img/khalifa-museum
 kicker: "متحف خاص"
 summary: "متحف خاص على هيئة سوق شعبي يحاكي القيصرية، بمعروضات تراثية تغطي مهن الأحساء وحياتها القديمة."
