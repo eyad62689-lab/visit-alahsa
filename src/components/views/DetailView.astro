@@ -148,18 +148,17 @@ const nearby = a.location
       </aside>
     </div>
 
-    <section class="container gallery-sec" data-reveal>
-      {a.gallery.length > 0 && (
-        <>
-          <h2 class="gal-h">{t('det.fromPlace')}</h2>
-          <div class="gal-grid">
-            {a.gallery.map((g, i) => (
-              <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class="gal-item" sizes="(max-width: 860px) 50vw, 33vw" />
-            ))}
-          </div>
-        </>
-      )}
-    </section>
+    {/* الشرط على القسم كله لا على محتواه: القسم الفارغ كان يترك فراغاً 32–48px */}
+    {a.gallery.length > 0 && (
+      <section class="container gallery-sec" data-reveal>
+        <h2 class="gal-h">{t('det.fromPlace')}</h2>
+        <div class="gal-grid">
+          {a.gallery.map((g, i) => (
+            <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class="gal-item" sizes="(max-width: 760px) 50vw, 33vw" />
+          ))}
+        </div>
+      </section>
+    )}
 
     {nearby.length > 0 && (
       <section class="nearby-sec">
@@ -200,7 +199,7 @@ const nearby = a.location
      التحديد على الفقرات الداخلية فقط. */
   .ah-in { position: relative; z-index: 2; padding-block: var(--s-6); }
   .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
-  .crumbs a { color: rgba(247,243,234,.8); text-decoration: none; }
+  .crumbs a { display: inline-block; padding-block: var(--s-1); color: rgba(247,243,234,.8); text-decoration: none; }
   .crumbs a:hover { color: var(--c-gold); }
   .crumbs span { color: rgba(247,243,234,.5); }
   .ah-k { color: var(--c-gold); }
@@ -229,7 +228,7 @@ const nearby = a.location
   .map-ic { color: var(--c-gold-deep); flex-shrink: 0; }
   .map-link:hover .map-ic { color: inherit; }
   /* الإبلاغ يبقى سطراً منفصلاً تحت رابط الخريطة */
-  .report-link { display: block; margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60);
+  .report-link { display: block; padding-block: var(--s-1); margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
   .gallery-sec { padding-block: 0 var(--s-6); }
@@ -252,5 +251,7 @@ const nearby = a.location
   .nb-note { margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60); }
   .back-sec { padding-block: 0 var(--s-8); }
   .back-btn { margin-block-start: var(--s-5); }
-  @media (max-width: 860px) { .att-layout { grid-template-columns: 1fr; } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } .nb-grid { grid-template-columns: 1fr; } }
+  /* 760px هي نقطة كسر الموقع الموحّدة؛ كانت هنا 860px شاذّة فتصير بطاقات
+     «أكمل يومك» عموداً واحداً عملاقاً على التابلت، وتخالف sizes أعلاه */
+  @media (max-width: 760px) { .att-layout { grid-template-columns: 1fr; } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } .nb-grid { grid-template-columns: 1fr; } }
 </style>

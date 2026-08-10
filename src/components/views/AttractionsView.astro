@@ -202,7 +202,8 @@ const jsonLd = [
   .list-body { padding-block: var(--s-6) var(--s-8); }
   .list-tools { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); }
   .list-hint { font-size: var(--t-sm); color: var(--c-ink-soft); }
-  .list-search { font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink);
+  /* 16px حدّ أدنى إلزامي: سفاري iOS يزوّم الصفحة تلقائياً عند لمس أي حقل أصغر */
+  .list-search { font-family: var(--font-body); font-size: 16px; color: var(--c-ink);
     background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 9px 18px; min-inline-size: 220px; }
   .list-search::placeholder { color: var(--c-ink-60); }
 
@@ -239,5 +240,10 @@ const jsonLd = [
     .list-search { inline-size: 100%; }
     /* tighten hero text on tablet */
     .lh-sum { font-size: var(--t-base); }
+    /* عنوان القسم كان يبقى 30px على الجوال فينكسر 3 أسطر («المساجد والمواقع
+       الدينية»)؛ الخطّ الفاصل يزاحمه على العرض فيُخفى هنا ويُضيَّق الفراغ */
+    .cat-sec-t { font-size: var(--t-lg); }
+    summary.cat-sec-head { gap: var(--s-2); }
+    .cat-sec-head::after { display: none; }
   }
 </style>

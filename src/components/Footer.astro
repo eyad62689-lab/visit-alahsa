@@ -89,8 +89,10 @@ const year = new Date().getFullYear();
   .ft-tag { color: rgba(247,243,234,.7); margin-block-start: var(--s-3); max-inline-size: 34ch; font-size: var(--t-sm); }
   :global(.ft-palm) { color: var(--c-gold); opacity: .55; margin-block-start: var(--s-4); }
   .ft-h { font-size: var(--t-lg); color: var(--c-sand); margin-block-end: var(--s-3); }
-  .ft-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--s-2); }
-  .ft-col a { color: rgba(247,243,234,.74); text-decoration: none; font-size: var(--t-sm); transition: color var(--dur) var(--ease); }
+  /* الفراغ نُقل من gap إلى padding داخل الرابط: كان ارتفاع هدف اللمس 19px فقط
+     (دون حدّ 24px)، وبهذا يصير 34px بلا تغيير يُذكر في إيقاع القائمة البصري */
+  .ft-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0; }
+  .ft-col a { display: block; padding-block: var(--s-1); color: rgba(247,243,234,.74); text-decoration: none; font-size: var(--t-sm); transition: color var(--dur) var(--ease); }
   .ft-col a:hover { color: var(--c-gold); }
   .ft-icon-link { display: inline-flex; align-items: center; gap: .4em; }
   .ft-wa { flex: none; opacity: .85; }

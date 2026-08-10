@@ -93,8 +93,13 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
   @media (max-width: 920px) {
     .hd-actions .btn-gold { display: none; }
     .burger { display: flex; }
-    .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; transition: max-block-size var(--dur) var(--ease); }
+    /* visibility:hidden ضرورية لا تجميلية: max-block-size:0 وحدها تُخفي القائمة بصرياً
+       لكن روابطها تبقى في مسار Tab، فيضيع تركيز الكيبورد في قائمة غير مرئية.
+       تأخير visibility بمقدار --dur يُبقي حركة الطيّ مرئية عند الإغلاق. */
+    .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
     .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
-    .nav-toggle:checked ~ .nav { max-block-size: 420px; }
+    /* 70vh بدل 420px الثابتة: المحتوى الحالي 415px أي بهامش 5px فقط، وأي رابط
+       سابع يُقصّ بلا تمرير. مع overflow-y:auto تتمرّر القائمة بدل أن تُبتر. */
+    .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
   }
 </style>
