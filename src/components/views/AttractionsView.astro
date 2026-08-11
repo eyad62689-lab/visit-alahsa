@@ -4,6 +4,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
+import HeroPoster from '../HeroPoster.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
@@ -69,10 +70,7 @@ const jsonLd = [
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="list-hero on-dark">
-      <picture class="photo-bg lh-poster" aria-hidden="true">
-        <source srcset={`${heroImg}.webp`} type="image/webp" />
-        <img src={`${heroImg}.jpg`} alt="" fetchpriority="high" decoding="async" />
-      </picture>
+      <HeroPoster src={heroImg} class="lh-poster" />
       {heroVideo && (
         <video class="photo-bg lh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
           <source data-src={heroVideo} type="video/mp4" />

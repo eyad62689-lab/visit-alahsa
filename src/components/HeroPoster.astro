@@ -1,0 +1,23 @@
+---
+// ملصق الهيرو: صورة خلفية ملء العرض خلف فيديو الهيرو (أو وحدها).
+// كانت ستة <picture> متطابقة مكرّرة في الواجهات، كلها بلا srcset — فالجوال
+// ينزّل صورة بعرض 1600px لشاشة 375px. وُحِّدت هنا لئلا تتفرّق مجدداً.
+import { srcsetFor } from '../lib/images';
+interface Props {
+  src: string;      // المسار الأساسي بلا امتداد، مثل: /img/hero-home
+  class?: string;   // صنف الواجهة (hero-bg, lh-poster, evh-poster ...)
+}
+const { src, class: cls = '' } = Astro.props;
+const set = srcsetFor(src);
+---
+<picture class:list={['photo-bg', cls]} aria-hidden="true">
+  <source srcset={set?.webp ?? `${src}.webp`} type="image/webp" sizes="100vw" />
+  <img
+    src={`${src}.jpg`}
+    srcset={set?.jpg}
+    sizes={set ? '100vw' : undefined}
+    alt=""
+    fetchpriority="high"
+    decoding="async"
+  />
+</picture>

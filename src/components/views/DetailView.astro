@@ -5,6 +5,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
+import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -93,10 +94,7 @@ const nearby = a.location
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>
       {a.heroImage && (
-        <picture class="photo-bg" aria-hidden="true">
-          <source srcset={`${a.heroImage}.webp`} type="image/webp" />
-          <img src={`${a.heroImage}.jpg`} alt="" fetchpriority="high" decoding="async" />
-        </picture>
+        <HeroPoster src={a.heroImage} />
       )}
       <PalmMotif size={360} class="ah-wm" aria-hidden="true" />
       <div class="container ah-in">

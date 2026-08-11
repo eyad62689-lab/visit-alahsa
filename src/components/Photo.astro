@@ -3,20 +3,23 @@
 // إن وُجد src عرض صورة حقيقية (webp + jpg)، وإلا عنصر نائب بالتسمية.
 // src = المسار الأساسي بلا امتداد، مثل: /img/qasr-ibrahim
 import PalmMotif from './PalmMotif.astro';
+import { srcsetFor } from '../lib/images';
 interface Props {
   src?: string;          // المسار الأساسي بلا امتداد
   label?: string;        // نص بديل/تسمية العنصر النائب
   class?: string;        // أصناف إضافية (att-photo, lc-photo, gal-item ...)
   eager?: boolean;       // تحميل فوري (للهيرو فقط)
-  sizes?: string;        // تلميح للمتصفح
+  sizes?: string;        // تلميح للمتصفح — لازم مع srcset وإلا افترض 100vw
 }
 const { src, label = '', class: cls = '', eager = false, sizes } = Astro.props;
+const set = src ? srcsetFor(src) : null;
 ---
 {src ? (
   <picture class:list={['photo', 'photo--img', cls]}>
-    <source srcset={`${src}.webp`} type="image/webp" />
+    <source srcset={set?.webp} type="image/webp" sizes={sizes} />
     <img
       src={`${src}.jpg`}
+      srcset={set?.jpg}
       alt={label}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"

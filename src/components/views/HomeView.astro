@@ -4,6 +4,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
+import HeroPoster from '../HeroPoster.astro';
 import SeasonNow from '../SeasonNow.astro';
 import { getCollection } from 'astro:content';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
@@ -80,10 +81,7 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="hero photo">
-      <picture class="photo-bg hero-bg" aria-hidden="true">
-        <source srcset="/img/hero-home.webp" type="image/webp" />
-        <img src="/img/hero-home.jpg" alt="" fetchpriority="high" decoding="async" />
-      </picture>
+      <HeroPoster src="/img/hero-home" class="hero-bg" />
       <video class="photo-bg hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
         <source data-src="/video/hero-home.mp4" type="video/mp4" />
       </video>
