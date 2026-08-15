@@ -22,6 +22,7 @@ type Ev = {
   name: string; place: string; season: string; time: string;
   span: string; org: string; acts: string[]; img: string; start: number;
   map?: string; // رابط خرائط جوجل (اختياري)
+  ticket?: string; // رابط حجز التذاكر الرسمي (اختياري) — لا يُضاف إلا لفعالية أعلنت الحجز فعلاً
   // شارة الحالة: 'confirmed' فقط عندما تُعلن الجهة المنظمة موعد النسخة القادمة رسمياً
   // (ويُحدَّث حقل time بالموعد المعلن)، و'tba' لما توقف أو لم يتأكد تكراره.
   // الافتراضي 'expected': موسم متوقع قياساً على النسخ السابقة — لا نختلق تأكيداً.
@@ -42,6 +43,7 @@ const C = ar ? {
   notice: 'تتكرّر هذه الفعاليات سنوياً في مواسمها التقريبية، وقد تختلف مواعيدها وتفاصيلها من عامٍ لآخر بحسب تنظيم كل نسخة. يُرجى التأكد من إعلانات الجهات المنظّمة والقنوات الرسمية قبل الزيارة.',
   placeK: 'الموقع',
   mapK: 'الخريطة ↗',
+  ticketK: 'احجز تذكرتك',
   orgK: 'الجهات المنظّمة',
   spanK: 'المدة التقريبية',
   actsK: 'أبرز الأنشطة',
@@ -86,6 +88,7 @@ const C = ar ? {
       season: 'الصيف', time: '19 أغسطس – 5 سبتمبر 2026م', span: 'نحو 18 يوماً', img: '/img/event-lomi', start: 8, end: 9,
       status: 'confirmed',
       org: 'غرفة الأحساء',
+      ticket: 'https://lomi.evento.sa/home',
       acts: ['معارض منتجات اللومي', 'الطهي الحي', 'ورش عمل زراعية', 'ركن الطفل', 'جلسات عائلية'],
     },
     {
@@ -138,6 +141,7 @@ const C = ar ? {
   notice: 'These events recur annually in their approximate seasons; official dates and details may vary from year to year with each edition. Please confirm via the organisers’ announcements and official channels before visiting.',
   placeK: 'Location',
   mapK: 'Map ↗',
+  ticketK: 'Book your ticket',
   orgK: 'Organisers',
   spanK: 'Approximate length',
   actsK: 'Highlights',
@@ -181,6 +185,7 @@ const C = ar ? {
       season: 'Summer', time: '19 August – 5 September 2026', span: 'About 18 days', img: '/img/event-lomi', start: 8, end: 9,
       status: 'confirmed',
       org: 'Al-Ahsa Chamber',
+      ticket: 'https://lomi.evento.sa/home',
       acts: ['Lomi (dried lime) product shows', 'Live cooking', 'Agricultural workshops', 'Kids’ corner', 'Family sessions'],
     },
     {
@@ -301,6 +306,15 @@ const jsonLd = [
               <ul class="ev-acts">
                 {e.acts.map((a) => <li class="ev-act">{a}</li>)}
               </ul>
+              {e.ticket && (
+                <a class="ev-ticket" href={e.ticket} target="_blank" rel="noopener noreferrer">
+                  <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 9.6V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.6a2.4 2.4 0 0 0 0 4.8V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.6a2.4 2.4 0 0 0 0-4.8Z" />
+                    <path d="M14.5 6.6v10.8" stroke-dasharray="2 2.6" />
+                  </svg>
+                  {C.ticketK}
+                </a>
+              )}
               </div>
             </article>
           ))}
@@ -482,6 +496,17 @@ const jsonLd = [
   .ev-acts-h { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-ink-60);
     letter-spacing: .02em; margin-block-end: var(--s-2); }
   .ev-acts { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  /* زر حجز التذاكر — الذهبي لغة الدعوة للفعل في الهوية، بنفس حبّة الأزرار في global.css.
+     align-self:flex-start يمنعه من التمدّد لعرض البطاقة، والارتفاع 44px هدف لمس مريح. */
+  .ev-ticket { align-self: flex-start; margin-block-start: var(--s-3); display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm);
+    background: var(--c-gold); color: var(--c-ink); text-decoration: none;
+    padding: 11px 20px; border-radius: var(--radius-pill);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .ev-ticket:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(201,154,74,.38); }
+  .ev-ticket:focus-visible { outline: 2px solid var(--c-turq-deep); outline-offset: 3px; }
+  .ev-ticket-ic { flex-shrink: 0; }
+  @media (prefers-reduced-motion: reduce) { .ev-ticket:hover { transform: none; } }
   .ev-act { font-size: var(--t-xs); color: var(--c-ink-soft); background: var(--c-sand);
     border: 1px solid var(--c-line); border-radius: 999px; padding: 4px 12px; line-height: 1.6; }
 
