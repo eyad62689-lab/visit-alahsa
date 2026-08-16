@@ -83,7 +83,7 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
     <section class="hero photo">
       <HeroPoster src="/img/hero-home" class="hero-bg" />
       <video class="photo-bg hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-        <source data-src="/video/hero-home.mp4" type="video/mp4" />
+        <source data-src="/video/hero-home-v2.mp4" data-src-mobile="/video/hero-home-v2-portrait.mp4" type="video/mp4" />
       </video>
       <span class="hero-glow" aria-hidden="true"></span>
       <PalmMotif size={520} class="hero-wm" aria-hidden="true" />
@@ -226,7 +226,11 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
     const s = v.querySelector('source');
     if (s?.dataset.src) {
       v.addEventListener('playing', () => v.classList.add('hero-video--on'), { once: true });
-      s.src = s.dataset.src;
+      // نسخة عمودية للجوال: صندوق الهيرو هناك نسبته 0.54 بينما المصدر 16:9، فكان
+      // object-fit:cover يقصّ 70% من العرض ويُظهر شريحة قُطرية تبدو مائلة. النسخة
+      // 9:16 تطابق الصندوق تقريباً فينتفي القصّ، وحجمها نصف الأفقية أيضاً.
+      const mobile = matchMedia('(max-width: 760px)').matches;
+      s.src = (mobile && s.dataset.srcMobile) ? s.dataset.srcMobile : s.dataset.src;
       v.autoplay = true;
       v.load();
       v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
