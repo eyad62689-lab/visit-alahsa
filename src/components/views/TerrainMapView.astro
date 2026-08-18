@@ -124,6 +124,11 @@ const jsonLd = [
     </section>
   </main>
 
+  {/* تهيئة مبكرة لاتصال مصادر البلاطات (نفس اصطلاح صفحة الخريطة مع CARTO).
+      لا CSP في الموقع — لا حاجة لأي توسيع رؤوس، وعمّال blob في MapLibre يعملون. */}
+  <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin />
+  <link rel="preconnect" href="https://s3.amazonaws.com" crossorigin />
+
   <script type="application/json" id="tmap-cfg" set:html={JSON.stringify(cfg).replace(/</g, '\\u003c')} />
   <script>
     import { setupTerrainMap } from '../../scripts/terrain-map';
