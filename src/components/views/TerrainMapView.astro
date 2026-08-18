@@ -1,0 +1,232 @@
+---
+// الخريطة التضاريسية ثلاثية الأبعاد — MapLibre GL فوق ارتفاعات Terrarium.
+// تحسين تدريجي خالص: الصفحة تعمل بلا JS (قائمة SSR كاملة + رابط الخريطة التقليدية)،
+// وMapLibre لا يُحمَّل إلا كسولاً، وLeaflet المستضاف ذاتياً هو التراجع.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import PalmMotif from '../PalmMotif.astro';
+import { getCollection } from 'astro:content';
+import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const detailBase = ar ? '/معالم/' : '/en/attractions/';
+const classicHref = ar ? '/خريطة/' : '/en/map/';
+
+const items = await getCollection('attractions');
+const points = items
+  .filter((e) => e.data.location)
+  .map((e) => ({
+    id: e.id,
+    title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+    cat: e.data.category,
+    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+    lat: e.data.location!.lat,
+    lng: e.data.location!.lng,
+  }));
+
+// المربع المحيط يُحسب من البيانات الفعلية — لا أرقام مكتوبة يدوياً
+const lats = points.map((p) => p.lat);
+const lngs = points.map((p) => p.lng);
+const bbox = [Math.min(...lngs), Math.min(...lats), Math.max(...lngs), Math.max(...lats)];
+
+const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
+const groups = usedCats.map((c) => ({
+  cat: c,
+  label: catLabel(c, lang),
+  items: points.filter((p) => p.cat === c).sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : 'en')),
+}));
+
+const cfg = {
+  lang,
+  bbox,
+  geojsonUrl: '/data/landmarks.geojson',
+  // OpenFreeMap Liberty — مبنية على OpenStreetMap، مجانية بلا مفتاح API
+  styleUrl: 'https://tiles.openfreemap.org/styles/liberty',
+  // ارتفاعات Terrarium من AWS Open Data (Joerd) — مجانية بلا مفتاح ولا سقف
+  demTiles: 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
+  rtlPluginUrl: '/vendor/maplibre/mapbox-gl-rtl-text-0.2.3.min.js',
+  labels: {
+    view: t('map.pop.view'),
+    loading: t('tmap.loading'),
+    d3on: t('tmap.3d.on'),
+    d3off: t('tmap.3d.off'),
+    gestWin: t('tmap.gest.win'),
+    gestMac: t('tmap.gest.mac'),
+    gestTouch: t('tmap.gest.touch'),
+  },
+  catLabels: Object.fromEntries(usedCats.map((c) => [c, catLabel(c, lang)])),
+};
+
+const siteUrl = 'https://visit-alahsa.com';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: t('tmap.title'), item: new URL(alt[lang], siteUrl).href },
+  ] },
+];
+---
+<Base title={`${t('tmap.title')} — ${t('site.name')}`} description={t('tmap.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main class="tmap-page" id="main">
+    <div class="container tmap-head">
+      <span class="eyebrow">{t('map.eyebrow')}</span>
+      <h1 class="tmap-title">{t('tmap.title')}</h1>
+      <p class="tmap-lead">{t('tmap.lead')}</p>
+      <p class="tmap-alt"><a href={classicHref}>{t('tmap.classic')} ←</a></p>
+    </div>
+
+    <div class="container">
+      <div id="tmap" class="tmap">
+        <div class="tmap-canvas" dir="ltr"></div>
+        <div class="tmap-poster">
+          <span class="tmap-poster-motif" aria-hidden="true"><PalmMotif size={44} /></span>
+          <button id="tmap-open" class="btn btn--turq" type="button">{t('tmap.open')}</button>
+          <noscript><p class="tmap-noscript"><a href={classicHref}>{t('tmap.classic')}</a></p></noscript>
+        </div>
+        <button id="tmap-3d" class="tmap-3d" type="button" hidden aria-pressed="false"></button>
+        <p id="tmap-status" class="sr-only" role="status"></p>
+      </div>
+    </div>
+
+    {/* قائمة المعالم — مُصيَّرة من الخادم: بديل الوصول، وما تفهرسه محركات البحث */}
+    <section class="container tmap-list" aria-labelledby="tmap-list-t">
+      <h2 id="tmap-list-t">{t('tmap.list.title')}</h2>
+      {groups.map((g) => (
+        <div class="tl-group">
+          <h3 class="tl-cat"><span class={`tl-dot tl-dot--${g.cat}`} aria-hidden="true"></span>{g.label}</h3>
+          <ul class="tl-items">
+            {g.items.map((p) => (
+              <li class="tl-item">
+                <button
+                  type="button"
+                  class="tl-locate"
+                  data-tmap-locate={p.id}
+                  aria-label={`${t('tmap.locate')}: ${p.title}`}
+                  title={t('tmap.locate')}
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="3.2" />
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                  </svg>
+                </button>
+                <a class="tl-link" href={p.href}>{p.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  </main>
+
+  <script type="application/json" id="tmap-cfg" set:html={JSON.stringify(cfg).replace(/</g, '\\u003c')} />
+  <script>
+    import { setupTerrainMap } from '../../scripts/terrain-map';
+    setupTerrainMap();
+    document.addEventListener('astro:page-load', setupTerrainMap);
+  </script>
+</Base>
+
+<style>
+  /* ألوان الفئات — نفس أدوار خريطة الموقع، مشتقة من رموز الهوية حصراً.
+     النواة تقرأها من هنا بـgetComputedStyle — لا ألوان في الـJS. */
+  .tmap-page {
+    --pin-historic: var(--c-gold-deep);
+    --pin-museum: var(--c-ink-soft);
+    --pin-religious: var(--c-turq-deep);
+    --pin-nature: var(--c-turq);
+    --pin-parks: var(--c-turq-tint);
+    --pin-farm: var(--c-gold);
+    --pin-market: var(--c-ink);
+    padding-block: var(--s-6) 0;
+  }
+  .tmap-head { margin-block-end: var(--s-4); }
+  .tmap-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-2xl); line-height: 1.2; margin-block: var(--s-2); }
+  .tmap-lead { color: var(--c-ink-soft); max-inline-size: 65ch; line-height: 1.7; margin-block-end: var(--s-2); }
+  .tmap-alt a { font-size: var(--t-sm); font-weight: 600; color: var(--c-turq); text-decoration: none; }
+  .tmap-alt a:hover { color: var(--c-gold-deep); }
+
+  /* الحاوية بارتفاع محجوز ثابت — CLS صفر */
+  .tmap { position: relative; block-size: clamp(420px, 66vh, 720px); inline-size: 100%; background: var(--c-sand-2); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
+  .tmap-canvas { position: absolute; inset: 0; }
+
+  /* الملصق: يغطي الحاوية قبل التحميل، ويختفي عند الجاهزية */
+  .tmap-poster {
+    position: absolute; inset: 0; z-index: 5;
+    display: grid; place-content: center; gap: var(--s-3); justify-items: center;
+    text-align: center; padding: var(--s-4);
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(201, 154, 74, 0.16), transparent 55%),
+      linear-gradient(168deg, var(--c-sand) 0%, var(--c-sand-2) 58%, #E3D9BF 100%);
+    transition: opacity 0.45s var(--ease);
+  }
+  .tmap.is-ready .tmap-poster { opacity: 0; pointer-events: none; }
+  .tmap-poster-motif { color: var(--c-turq); opacity: 0.55; }
+  .tmap.is-loading .tmap-poster-motif { animation: tmap-pulse 1.2s ease-in-out infinite; }
+  @keyframes tmap-pulse { 50% { opacity: 0.25; } }
+  @media (prefers-reduced-motion: reduce) {
+    .tmap-poster { transition: none; }
+    .tmap.is-loading .tmap-poster-motif { animation: none; }
+  }
+  .tmap-noscript a { color: var(--c-turq); font-weight: 600; }
+  .sr-only { position: absolute; inline-size: 1px; block-size: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+  /* زر 2D/3D فوق الخريطة */
+  .tmap-3d {
+    position: absolute; z-index: 6; inset-block-start: var(--s-3); inset-inline-start: var(--s-3);
+    font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); cursor: pointer;
+    background: #fff; color: var(--c-turq-deep); border: 1px solid var(--c-line);
+    border-radius: 999px; padding: 8px 16px; box-shadow: 0 2px 8px rgba(0, 42, 37, 0.18);
+    transition: all var(--dur) var(--ease);
+  }
+  .tmap-3d:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .tmap-3d[aria-pressed='true'] { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+
+  /* قائمة المعالم SSR */
+  .tmap-list { padding-block: var(--s-6); }
+  .tmap-list h2 { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); margin-block-end: var(--s-4); }
+  .tl-group { margin-block-end: var(--s-4); }
+  .tl-cat { display: flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 700; font-size: var(--t-md); color: var(--c-ink); margin-block-end: var(--s-2); }
+  .tl-dot { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--c-turq); flex-shrink: 0; }
+  .tl-dot--historic { background: var(--pin-historic); }
+  .tl-dot--museum { background: var(--pin-museum); }
+  .tl-dot--religious { background: var(--pin-religious); }
+  .tl-dot--nature { background: var(--pin-nature); }
+  .tl-dot--parks { background: var(--pin-parks); }
+  .tl-dot--farm { background: var(--pin-farm); }
+  .tl-dot--market { background: var(--pin-market); }
+  .tl-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 4px var(--s-3); }
+  .tl-item { display: flex; align-items: center; gap: 8px; }
+  .tl-locate {
+    display: grid; place-items: center; inline-size: 32px; block-size: 32px; flex-shrink: 0;
+    background: #fff; color: var(--c-turq); border: 1px solid var(--c-line); border-radius: 50%;
+    cursor: pointer; transition: all var(--dur) var(--ease);
+  }
+  .tl-locate:hover { border-color: var(--c-turq); background: var(--c-sand); }
+  .tl-link { font-size: var(--t-sm); font-weight: 500; color: var(--c-ink); text-decoration: none; padding-block: 6px; }
+  .tl-link:hover { color: var(--c-turq); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* بطاقة المعلم (MapLibre popup أو Leaflet popup) ودبوس التراجع — أنماط عامة
+     لأن العناصر تُنشأ في الـJS خارج نطاق Astro */
+  :global(.tmap-pop) { font-family: var(--font-body); text-align: start; min-inline-size: 200px; max-inline-size: 240px; }
+  :global(.tmap-pop-img) { inline-size: 100%; block-size: 110px; object-fit: cover; border-radius: 8px; margin-block-end: 8px; display: block; }
+  :global(.tmap-pop-k) { display: block; font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); }
+  :global(.tmap-pop-t) { display: block; font-family: var(--font-heading); font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: 2px 6px; }
+  :global(.tmap-pop-a) { font-weight: 600; color: var(--c-turq); text-decoration: none; }
+  :global(.tmap-pop-a:hover) { color: var(--c-gold-deep); }
+  :global(.maplibregl-popup-content) { border-radius: var(--radius); padding: 12px; box-shadow: 0 4px 18px rgba(0, 42, 37, 0.22); }
+
+  /* دبوس/عنقود التراجع (Leaflet) — نفس لغة الخريطة التقليدية */
+  :global(.tmap-pin) { display: grid; place-items: center; }
+  :global(.tmap-pin span) { display: block; inline-size: 16px; block-size: 16px; border-radius: 50%; background: var(--pin, var(--c-turq)); border: 2.5px solid var(--c-sand); box-shadow: 0 1px 4px rgba(0, 42, 37, 0.4); }
+  :global(.va-cluster) { display: grid; place-items: center; background: none; }
+  :global(.va-cluster span) { display: grid; place-items: center; inline-size: 100%; block-size: 100%; border-radius: 50%; background: var(--c-turq); color: var(--c-sand); font-family: var(--font-body); font-weight: 700; font-size: var(--t-sm); border: 2.5px solid var(--c-sand); box-shadow: 0 2px 8px rgba(0, 42, 37, 0.35); }
+
+  @media (max-width: 900px) {
+    .tmap { block-size: clamp(340px, 52vh, 560px); }
+  }
+</style>
