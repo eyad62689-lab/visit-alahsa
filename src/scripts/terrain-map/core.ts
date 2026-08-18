@@ -16,6 +16,9 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   const el = host.querySelector<HTMLElement>('.tmap-canvas');
   if (!el) throw new Error('tmap-canvas missing');
 
+  // عامل MapLibre v6 (ESM منفصل): بدون هذا السطر يطلب المتصفح
+  // ‎/_astro/maplibre-gl-worker.mjs غير الموجود وتفشل الخريطة بصمت
+  maplibregl.setWorkerUrl(cfg.workerUrl);
   // ملحق تشكيل النص العربي (مستضاف ذاتياً) — lazy: يُجلب فقط حين تظهر تسميات RTL
   try { maplibregl.setRTLTextPlugin(cfg.rtlPluginUrl, true); } catch { /* مضبوط سابقاً */ }
 
@@ -107,8 +110,14 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   let is3d = saved !== null ? saved === '1' : !opts.small;
 
   const btn = document.getElementById('tmap-3d') as HTMLButtonElement | null;
+  // حدث التحليلات الوحيد المتفق عليه: كم زائراً فتح العرض ثلاثي الأبعاد فعلاً
+  let sent3dEvent = false;
   const apply3d = (on: boolean, animate: boolean) => {
     is3d = on;
+    if (on && !sent3dEvent) {
+      sent3dEvent = true;
+      (window as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'map_3d_opened');
+    }
     // exaggeration 2.0: تضاريس الأحساء منخفضة الحدّة، و1.0 تُخرج جبل القارة باهتاً
     map.setTerrain(on ? { source: 'terrain-dem', exaggeration: 2.0 } : null);
     const cam = on ? { pitch: 62, bearing: -18 } : { pitch: 0, bearing: 0 };
@@ -215,6 +224,9 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   };
   opts.bus.onLocate = locate;
   if (opts.bus.pendingLocate) { locate(opts.bus.pendingLocate); opts.bus.pendingLocate = null; }
+
+  // مقبض تشخيص فقط (لا تعتمد عليه الواجهة) — يستعمله فحص المعاينة الآلي
+  (host as HTMLElement & { __tmapMap?: unknown }).__tmapMap = map;
 
   return map;
 }

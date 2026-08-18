@@ -4,6 +4,7 @@
 // وMapLibre لا يُحمَّل إلا كسولاً، وLeaflet المستضاف ذاتياً هو التراجع.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
+import HeroPoster from '../HeroPoster.astro';
 import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
@@ -50,6 +51,10 @@ const cfg = {
   // ارتفاعات Terrarium من AWS Open Data (Joerd) — مجانية بلا مفتاح ولا سقف
   demTiles: 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
   rtlPluginUrl: '/vendor/maplibre/mapbox-gl-rtl-text-0.2.3.min.js',
+  // عامل MapLibre v6 ملف ESM منفصل (يستورد maplibre-gl-shared.mjs بجواره)
+  // لا يُصدرهما Vite من الحزمة — مستضافان في مجلد مُصدَّر بالإصدار
+  // (انسخهما من dist وحدِّث المسار عند أي ترقية لـmaplibre-gl)
+  workerUrl: '/vendor/maplibre-6.4.1/maplibre-gl-worker.mjs',
   labels: {
     view: t('map.pop.view'),
     loading: t('tmap.loading'),
@@ -84,6 +89,8 @@ const jsonLd = [
       <div id="tmap" class="tmap">
         <div class="tmap-canvas" dir="ltr"></div>
         <div class="tmap-poster">
+          {/* لقطة ساكنة من الخريطة الفعلية — هي LCP الصفحة وبديل ما قبل التحميل */}
+          <HeroPoster src="/img/map-poster" class="tmap-poster-img" />
           <span class="tmap-poster-motif" aria-hidden="true"><PalmMotif size={44} /></span>
           <button id="tmap-open" class="btn btn--turq" type="button">{t('tmap.open')}</button>
           <noscript><p class="tmap-noscript"><a href={classicHref}>{t('tmap.classic')}</a></p></noscript>
@@ -171,6 +178,9 @@ const jsonLd = [
     transition: opacity 0.45s var(--ease);
   }
   .tmap.is-ready .tmap-poster { opacity: 0; pointer-events: none; }
+  /* اللقطة خلف الزر مع تعتيم خفيف يبقي الزر مقروءاً */
+  :global(.tmap-poster-img > img) { opacity: 0.55; }
+  .tmap-poster > :not(.photo-bg) { position: relative; z-index: 1; }
   .tmap-poster-motif { color: var(--c-turq); opacity: 0.55; }
   .tmap.is-loading .tmap-poster-motif { animation: tmap-pulse 1.2s ease-in-out infinite; }
   @keyframes tmap-pulse { 50% { opacity: 0.25; } }

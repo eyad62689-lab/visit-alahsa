@@ -11,6 +11,7 @@ export type TmapCfg = {
   styleUrl: string;
   demTiles: string;
   rtlPluginUrl: string;
+  workerUrl: string;
   labels: Record<string, string>;
   catLabels: Record<string, string>;
 };
