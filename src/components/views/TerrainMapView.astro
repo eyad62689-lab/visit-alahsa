@@ -88,7 +88,8 @@ const jsonLd = [
           <button id="tmap-open" class="btn btn--turq" type="button">{t('tmap.open')}</button>
           <noscript><p class="tmap-noscript"><a href={classicHref}>{t('tmap.classic')}</a></p></noscript>
         </div>
-        <button id="tmap-3d" class="tmap-3d" type="button" hidden aria-pressed="false"></button>
+        {/* نصّه يصف الوضع الذي سيُبدَّل إليه — تضبطه النواة */}
+        <button id="tmap-3d" class="tmap-3d" type="button" hidden></button>
         <p id="tmap-status" class="sr-only" role="status"></p>
       </div>
     </div>
@@ -184,7 +185,6 @@ const jsonLd = [
     transition: all var(--dur) var(--ease);
   }
   .tmap-3d:hover { border-color: var(--c-turq); color: var(--c-turq); }
-  .tmap-3d[aria-pressed='true'] { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
 
   /* قائمة المعالم SSR */
   .tmap-list { padding-block: var(--s-6); }
