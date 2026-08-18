@@ -4,6 +4,7 @@
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { TmapCfg, TmapBus } from './index';
+import { buildPopupNode, catColors, fetchLandmarks, type LandmarkProps } from './shared';
 
 type Opts = { reduceMotion: boolean; small: boolean; bus: TmapBus };
 
@@ -126,6 +127,94 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
     });
   }
   apply3d(is3d, false);
+
+  // ---------- المعالم ----------
+  // مصدر GeoJSON واحد مع تجميع (clustering) — لا Markers DOM:
+  // 58 عنصر DOM فوق تضاريس مائلة تقتل الأداء، والطبقات تُرسم داخل WebGL.
+  const gj = await fetchLandmarks(cfg);
+  const colors = catColors(host);
+  const sand = getComputedStyle(host).getPropertyValue('--c-sand').trim() || '#F7F3EA';
+  // تلوين الرموز حسب الفئة — الألوان مقروءة من CSS الصفحة، لا مخترعة
+  const colorMatch: unknown[] = ['match', ['get', 'category']];
+  for (const [cat, c] of Object.entries(colors)) if (cat !== 'default') colorMatch.push(cat, c);
+  colorMatch.push(colors.default);
+
+  map.addSource('landmarks', {
+    type: 'geojson',
+    data: gj as never,
+    cluster: true,
+    clusterMaxZoom: 13,
+    clusterRadius: 48,
+  });
+  map.addLayer({
+    id: 'va-clusters', type: 'circle', source: 'landmarks', filter: ['has', 'point_count'],
+    paint: {
+      'circle-color': colors.default,
+      'circle-radius': ['step', ['get', 'point_count'], 16, 10, 20, 25, 24],
+      'circle-stroke-width': 2.5,
+      'circle-stroke-color': sand,
+    },
+  });
+  map.addLayer({
+    id: 'va-cluster-count', type: 'symbol', source: 'landmarks', filter: ['has', 'point_count'],
+    layout: {
+      // العدد بأرقام لاتينية (قاعدة الموقع) — point_count يُصيَّر لاتينياً أصلاً
+      'text-field': ['get', 'point_count_abbreviated'],
+      'text-font': ['Noto Sans Bold'],
+      'text-size': 13,
+    },
+    paint: { 'text-color': sand },
+  });
+  map.addLayer({
+    id: 'va-points', type: 'circle', source: 'landmarks', filter: ['!', ['has', 'point_count']],
+    paint: {
+      'circle-color': colorMatch as never,
+      'circle-radius': 8,
+      'circle-stroke-width': 2.5,
+      'circle-stroke-color': sand,
+    },
+  });
+
+  let popup: InstanceType<typeof maplibregl.Popup> | null = null;
+  const openFor = (props: LandmarkProps, lngLat: [number, number]) => {
+    popup?.remove();
+    popup = new maplibregl.Popup({ maxWidth: '260px', offset: 14 })
+      .setLngLat(lngLat)
+      .setDOMContent(buildPopupNode(props, cfg))
+      .addTo(map);
+  };
+
+  map.on('click', 'va-points', (e) => {
+    const f = e.features?.[0];
+    if (!f) return;
+    openFor(f.properties as LandmarkProps, (f.geometry as GeoJSON.Point).coordinates as [number, number]);
+  });
+  map.on('click', 'va-clusters', async (e) => {
+    const f = e.features?.[0];
+    if (!f) return;
+    const src = map.getSource('landmarks') as InstanceType<typeof maplibregl.GeoJSONSource>;
+    const zoom = await src.getClusterExpansionZoom((f.properties as { cluster_id: number }).cluster_id);
+    const center = (f.geometry as GeoJSON.Point).coordinates as [number, number];
+    if (opts.reduceMotion) map.jumpTo({ center, zoom });
+    else map.easeTo({ center, zoom });
+  });
+  for (const id of ['va-points', 'va-clusters']) {
+    map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
+  }
+
+  // «أظهر على الخريطة» من قائمة SSR — تطير الخريطة إلى المعلم وتفتح بطاقته
+  const byId = new Map(gj.features.map((f) => [(f.properties as LandmarkProps).id, f]));
+  const locate = (id: string) => {
+    const f = byId.get(id);
+    if (!f) return;
+    const center = (f.geometry as GeoJSON.Point).coordinates as [number, number];
+    if (opts.reduceMotion) map.jumpTo({ center, zoom: 14.6 });
+    else map.flyTo({ center, zoom: 14.6, speed: 1.4 });
+    openFor(f.properties as LandmarkProps, center);
+  };
+  opts.bus.onLocate = locate;
+  if (opts.bus.pendingLocate) { locate(opts.bus.pendingLocate); opts.bus.pendingLocate = null; }
 
   return map;
 }
