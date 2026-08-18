@@ -61,6 +61,8 @@ const jsonLd = [
               <span class={`dot dot--${c}`} aria-hidden="true"></span>{catLabel(c, lang)} <bdi>({num(catCounts[c])})</bdi>
             </button>
           ))}
+          {/* الخريطة التضاريسية — صفحة مستقلة (تحسين تدريجي)؛ هذه الصفحة تبقى كما هي */}
+          <a class="chip chip--3d" href={ar ? '/خريطة-تضاريس/' : '/en/terrain-map/'}>{t('map.terrain')}</a>
         </div>
       </div>
     </div>
@@ -223,6 +225,8 @@ const jsonLd = [
   .chip { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); cursor: pointer; background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); padding: 7px 15px; border-radius: 999px; transition: all var(--dur) var(--ease); }
   .chip:hover { border-color: var(--c-turq); color: var(--c-turq); }
   .chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+  .chip--3d { text-decoration: none; color: var(--c-gold-deep); border-color: var(--c-gold); }
+  .chip--3d:hover { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
   .dot { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--c-turq); flex-shrink: 0; }
   .dot--historic { background: var(--pin-historic); }
   .dot--museum { background: var(--pin-museum); }
