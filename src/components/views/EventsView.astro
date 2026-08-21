@@ -437,7 +437,7 @@ const jsonLd = [
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .ev-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
+    background: var(--hero-scrim);
   }
   :global(.evh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
@@ -456,7 +456,7 @@ const jsonLd = [
   /* ملاحظة الترتيب التلقائي — يكشفها JS بعد إعادة الترتيب فعلاً */
   .ev-order-note { font-size: var(--t-xs); color: var(--c-ink-60); margin-block-end: var(--s-4); }
 
-  .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-4); }
+  .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
   .ev-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--c-line);
     border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
     transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
@@ -485,7 +485,9 @@ const jsonLd = [
     font-size: var(--t-sm); color: var(--c-turq-deep); }
   .ev-cal { color: var(--c-gold-deep); flex-shrink: 0; }
   .ev-span { font-size: var(--t-xs); color: var(--c-ink-60); white-space: nowrap; }
-  .ev-name { font-size: var(--t-xl); color: var(--c-ink); line-height: 1.25; margin-block-end: var(--s-3); }
+  /* سطران كحدّ أدنى: بلا ذلك تبدأ صفوف «الموقع» و«الجهات» على ارتفاعات مختلفة
+     داخل الصفّ الواحد حسب طول الاسم، فينكسر المسح الأفقي للبطاقات. */
+  .ev-name { font-size: var(--t-xl); color: var(--c-ink); line-height: 1.25; min-block-size: 2.5em; margin-block-end: var(--s-3); }
   .ev-meta { margin: 0 0 var(--s-3); display: flex; flex-direction: column; gap: var(--s-2); }
   .evm-row { padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.55); }
   .evm-k { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-gold-deep); }
@@ -493,9 +495,12 @@ const jsonLd = [
   /* inline-block + padding: كان ارتفاع هدف اللمس 19px فقط (دون حدّ 24px) */
   .evm-map { display: inline-block; padding-block: var(--s-1); font-weight: 600; color: var(--c-turq); text-decoration: none; white-space: nowrap; }
   .evm-map:hover { color: var(--c-gold-deep); }
+  /* الهامش التلقائي على العنوان لا على القائمة: بوضعه على القائمة كان الفراغ
+     المتبقّي في البطاقة (حتى 149px في بطاقة قصيرة داخل صفّ طويل) ينفتح بين
+     العنوان وحبوبه، فيصف العنوانُ شيئاً لا يظهر تحته. الآن ينزل الاثنان معاً. */
   .ev-acts-h { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-ink-60);
-    letter-spacing: .02em; margin-block-end: var(--s-2); }
-  .ev-acts { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+    letter-spacing: .02em; margin-block: auto 0; padding-block-end: var(--s-2); }
+  .ev-acts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
   /* زر حجز التذاكر — الذهبي لغة الدعوة للفعل في الهوية، بنفس حبّة الأزرار في global.css.
      align-self:flex-start يمنعه من التمدّد لعرض البطاقة، والارتفاع 44px هدف لمس مريح. */
   .ev-ticket { align-self: flex-start; margin-block-start: var(--s-3); display: inline-flex; align-items: center; gap: 7px;
@@ -510,7 +515,7 @@ const jsonLd = [
   .ev-act { font-size: var(--t-xs); color: var(--c-ink-soft); background: var(--c-sand);
     border: 1px solid var(--c-line); border-radius: 999px; padding: 4px 12px; line-height: 1.6; }
 
-  .nt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--s-4); }
+  .nt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 248px), 1fr)); gap: var(--s-4); }
   .nt-item { padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.55); }
   .nt-h { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-1); }
   .nt-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }

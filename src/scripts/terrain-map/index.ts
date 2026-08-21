@@ -7,6 +7,8 @@ export type TmapCfg = {
   lang: 'ar' | 'en';
   /** المربع المحيط الفعلي من بيانات المعالم [minLng, minLat, maxLng, maxLat] */
   bbox: [number, number, number, number];
+  /** إطار العرض الافتراضي (مئينات 5–95) — أضيق من bbox الذي يحدّ التجوال */
+  viewBbox: [number, number, number, number];
   geojsonUrl: string;
   styleUrl: string;
   demTiles: string;

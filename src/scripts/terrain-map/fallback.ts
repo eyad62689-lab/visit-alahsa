@@ -43,7 +43,9 @@ export async function initLeafletFallback(host: HTMLElement, cfg: TmapCfg, opts:
   const gj = await fetchLandmarks(cfg);
   const colors = catColors(host);
 
-  const map = L.map(el, { scrollWheelZoom: false });
+  // prefix صريح: بادئة Leaflet الافتراضية تحمل علماً سياسياً — الإسناد يبقى كاملاً
+  const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
+  L.control.attribution({ prefix: '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>' }).addTo(map);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap &copy; CARTO',
     maxZoom: 19,
@@ -78,7 +80,7 @@ export async function initLeafletFallback(host: HTMLElement, cfg: TmapCfg, opts:
     byId.set(p.id, m);
   }
 
-  map.fitBounds([[cfg.bbox[1], cfg.bbox[0]], [cfg.bbox[3], cfg.bbox[2]]], { padding: [40, 40] });
+  map.fitBounds([[cfg.viewBbox[1], cfg.viewBbox[0]], [cfg.viewBbox[3], cfg.viewBbox[2]]], { padding: [40, 40] });
 
   const locate = (id: string) => {
     const m = byId.get(id);

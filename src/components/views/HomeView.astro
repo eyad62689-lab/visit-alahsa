@@ -139,7 +139,7 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
         <div class="att-grid">
           {featuredEntries.map((e, i) => (
             <a class={`att-card ${i === 0 ? 'att-card--lead' : ''}`} href={detailBase + (ar ? e.data.slug_ar : e.data.slug_en)} data-reveal style={`transition-delay:${i * 80}ms`}>
-              <Photo src={e.data.heroImage} label={ar ? e.data.title : (e.data.title_en ?? e.data.title)} class="att-photo" eager={i === 0} sizes="(max-width: 760px) 100vw, 50vw" />
+              <Photo src={e.data.heroImage} label={ar ? e.data.title : (e.data.title_en ?? e.data.title)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 <span class="t-caption att-k">{ar ? e.data.kicker : ''}</span>
                 <h3 class="att-t">{ar ? e.data.title : (e.data.title_en ?? e.data.title)}</h3>
@@ -243,9 +243,7 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   /* طبقة تعتيم أقوى فوق صورة الهيرو لضمان وضوح النصّ (تَغلِب ::after العامّة) */
   .hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background:
-      linear-gradient(105deg, rgba(0,42,38,.78) 0%, rgba(0,55,49,.5) 45%, rgba(0,79,70,.32) 100%),
-      linear-gradient(0deg, rgba(0,42,38,.45), transparent 55%);
+    background: var(--hero-scrim);
   }
   .hero-bg { z-index: 0; }
   /* Ken Burns — تكبير بطيء جداً على الصورة الثابتة يمنح الهيرو حياةً بلا إلهاء */
@@ -283,7 +281,7 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .sec-title { font-size: var(--t-2xl); color: var(--c-ink); margin-block: var(--s-2) var(--s-3); line-height: 1.2; }
 
   /* بطاقات الفئات — photo-first: صورة حقيقية تحت تدرّج فيروزي، بلا أيقونات (إعادة تصميم 2026-07) */
-  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s-3); }
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
   .cat-card {
     position: relative; display: block; aspect-ratio: 4 / 3; border-radius: var(--radius-lg);
     overflow: hidden; isolation: isolate; text-decoration: none; color: var(--c-sand);
@@ -294,7 +292,9 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   /* تدرّج فيروزي شفاف يثبّت النصّ — يعلو ظلّ .photo::after العامّ */
   .cat-card::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(180deg, rgba(0,42,38,.06) 30%, rgba(0,79,70,.52) 68%, rgba(0,55,49,.86) 100%);
+    /* منحنى حادّ: النصف العلوي يبقى شبه صافٍ فتظهر الصورة بألوانها، ثم يهبط
+       الشريط السفلي إلى عتامة كافية لتحقيق تباين النصّ (مقيس ≥4.5:1). */
+    background: linear-gradient(180deg, rgba(0,42,38,0) 16%, rgba(0,45,40,.34) 44%, rgba(0,40,35,.82) 70%, rgba(0,38,33,.93) 100%);
   }
   /* صورة الفئة تملأ البطاقة (قاعدة عامة مرادفة موجودة في global.css لأن scoped لا يصل لـ <picture>) */
   .cat-card :global(.photo.cat-photo) { position: absolute; inset: 0; }
@@ -307,7 +307,9 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .cat-card:hover .cat-go { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .cat-card:hover :global(.photo.cat-photo > img) { transform: none; } }
 
-  .att-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+  /* ثلاثة أعمدة: البطاقة الرئيسية تمتدّ على العرض ثم تملأ الثلاث الباقية صفّاً
+     كاملاً. بعمودين كانت الرابعة تبقى وحيدة ويتخلّف نصف صفّ فارغ. */
+  .att-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
   .att-card { background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); text-decoration: none; color: inherit; }
   .att-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
   .att-card:hover .att-photo > .ph-label { transform: scale(1.04); }
@@ -317,13 +319,15 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .att-card--lead .att-photo { aspect-ratio: 21 / 8; }
   .att-body { padding: var(--s-4) var(--s-4) var(--s-5); }
   .att-k { color: var(--c-gold-deep); }
-  .att-t { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-2); }
+  .att-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-2); }
+  .att-card--lead .att-t { font-size: var(--t-xl); }
+  .att-card--lead .att-d { font-size: var(--t-base); }
   .att-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; max-inline-size: 60ch; }
   .att-more { text-align: center; margin-block-start: var(--s-5); }
   /* مسار «يومان في الواحة» — بطاقتان بيضاوان على الرملي، كلّ محطّة سطرٌ بشارة وقت */
   .route-link { display: inline-flex; align-items: center; gap: var(--s-2); margin-block-start: var(--s-3); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: none; border-block-end: 1.5px solid var(--c-gold); padding-block-end: 2px; transition: color var(--dur) var(--ease); }
   .route-link:hover { color: var(--c-turq-deep); }
-  .route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--s-4); }
+  .route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: var(--s-4); }
   .route-card { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: var(--s-5); }
   .route-k { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); letter-spacing: .02em; color: var(--c-gold-deep); }
   .route-t { font-family: var(--font-heading); font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-4); line-height: 1.2; }
@@ -355,6 +359,29 @@ const title = ar ? 'الأحساء — أكبر واحة نخيل في العا�
   .plan-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; }
   .plan-lead { text-align: center; }
   .plan-ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; justify-content: center; margin-block-start: var(--s-3); }
+  /* البطاقة الرئيسية بعرض 1120px بينما نصّها في ثلثها الأول فقط — كان يتخلّف
+     ~750px من الأبيض الميت في أبرز بطاقة بالصفحة. النصّ ينتقل فوق الصورة على
+     تدرّج (لغة بطاقات الفئات نفسها) فتصير البطاقة ملصقاً وتتضح مرتبتها. */
+  @media (min-width: 1001px) {
+    .att-card--lead { position: relative; }
+    .att-card--lead .att-body {
+      position: absolute; inset-block-end: 0; inset-inline: 0; z-index: 2;
+      padding: var(--s-7) var(--s-5) var(--s-5);
+      background: linear-gradient(0deg, rgba(0,40,35,.90) 0%, rgba(0,44,39,.62) 52%, transparent 100%);
+    }
+    /* على الداكن: الذهبي الداكن غير مقروء — رملي كما في .eyebrow.gold-on-dark */
+    .att-card--lead .att-k { color: rgba(247,243,234,.88); }
+    .att-card--lead .att-t { color: var(--c-sand); }
+    .att-card--lead .att-d { color: rgba(247,243,234,.92); max-inline-size: 54ch; }
+  }
+  @media (max-width: 1000px) {
+    .att-grid { grid-template-columns: repeat(2, 1fr); }
+    /* تعود الرئيسية بطاقةً عادية فتنتظم الأربع في 2×2 بلا فراغ متخلّف */
+    .att-card--lead { grid-column: auto; }
+    .att-card--lead .att-photo { aspect-ratio: 16 / 10; }
+    .att-card--lead .att-t { font-size: var(--t-lg); }
+    .att-card--lead .att-d { font-size: var(--t-sm); }
+  }
   @media (max-width: 760px) {
     .att-grid { grid-template-columns: 1fr; }
     .att-card--lead .att-photo { aspect-ratio: 16 / 10; }

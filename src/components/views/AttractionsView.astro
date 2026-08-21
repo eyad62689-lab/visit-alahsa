@@ -189,13 +189,13 @@ const jsonLd = [
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .list-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
+    background: var(--hero-scrim);
   }
   :global(.lh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
   .lh-in { position: relative; z-index: 2; }
   .lh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 56ch; }
+  .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.96); max-inline-size: 56ch; }
   .lh-map { margin-block-start: var(--s-4); }
   .list-body { padding-block: var(--s-6) var(--s-8); }
   .list-tools { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); }
@@ -207,23 +207,32 @@ const jsonLd = [
 
   /* أقسام المجموعات — قوائم منسدلة أصيلة (<details>): تحسين تدريجي، تعمل بلا جافاسكربت */
   .cat-sec { scroll-margin-block-start: 84px; margin-block-end: var(--s-7); }
+  /* قسم مطويّ ليس تحته شيء يفصله: بـ64px هامش + 24px تحت الرأس كان بين كل رأسين
+     مطويّين 88px فراغ فتُقرأ الأقسام كأنها لم تُحمَّل. المطويّة تلتصق قائمةً. */
+  .cat-sec:not([open]) { margin-block-end: var(--s-4); }
   .cat-sec:last-of-type { margin-block-end: 0; }
   .cat-sec[hidden] { display: none; }
   /* summary هو العنوان القابل للنقر — نُزيل مؤشّر المتصفح الافتراضي ونضبطه شبكةً مرنة */
-  summary.cat-sec-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); cursor: pointer; list-style: none; }
+  summary.cat-sec-head { display: flex; align-items: center; gap: var(--s-3); cursor: pointer; list-style: none; }
+  /* الفراغ تحت الرأس ينتمي إلى الشبكة المفتوحة لا إلى الرأس نفسه */
+  .cat-sec > .list-grid { margin-block-start: var(--s-4); }
   summary.cat-sec-head::-webkit-details-marker { display: none; }
   summary.cat-sec-head:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 4px; border-radius: var(--radius-sm); }
   .cat-sec-ic { display: inline-grid; place-items: center; inline-size: 40px; block-size: 40px; flex: 0 0 auto; border-radius: 11px; background: color-mix(in srgb, var(--c-turq) 12%, #fff); color: var(--c-turq-deep); }
   .cat-sec-ic svg { inline-size: 22px; block-size: 22px; }
   .cat-sec-t { font-size: var(--t-xl); color: var(--c-turq-deep); }
-  .cat-sec-count { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-radius: 999px; padding: 2px 10px; }
+  /* خلفية بيضاء لا رملية-2: الذهبي الداكن عليها 4.46:1 فقط — دون حدّ AA للنصّ
+     الصغير — وعلى الأبيض 5.45:1. */
+  .cat-sec-count { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 2px 10px; }
   .cat-sec-head::after { content: ''; flex: 1; block-size: 1px; background: var(--c-line); }
   /* شيفرون الطيّ — order:1 يضعه بعد الخطّ الفاصل (::after)؛ يدور للأعلى عند الفتح */
-  .cat-sec-chev { order: 1; flex: 0 0 auto; inline-size: 9px; block-size: 9px; border-inline-end: 2px solid var(--c-turq-deep); border-block-end: 2px solid var(--c-turq-deep); transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
+  /* بلا order:1 — كان الشيفرون يقع بعد الخطّ الفاصل أي على بُعد ~940px من
+     العنوان الذي يطويه. الآن يلي العدّاد مباشرةً كما يفعل عرض الهاتف. */
+  .cat-sec-chev { flex: 0 0 auto; inline-size: 9px; block-size: 9px; border-inline-end: 2px solid var(--c-turq-deep); border-block-end: 2px solid var(--c-turq-deep); transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
   .cat-sec[open] > summary .cat-sec-chev { transform: rotate(-135deg); }
   @media (prefers-reduced-motion: reduce) { .cat-sec-chev { transition: none; } }
 
-  .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(264px, 1fr)); gap: var(--s-4); }
+  .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 264px), 1fr)); gap: var(--s-4); }
   .att-card { position: relative; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform var(--dur) var(--ease); }
   .lc-link { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
   .att-card:hover { transform: translateY(-4px); }

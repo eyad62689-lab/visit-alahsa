@@ -4,6 +4,7 @@
 // وMapLibre لا يُحمَّل إلا كسولاً، وLeaflet المستضاف ذاتياً هو التراجع.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
+import Footer from '../Footer.astro';
 import HeroPoster from '../HeroPoster.astro';
 import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
@@ -34,6 +35,14 @@ const points = items
 const lats = points.map((p) => p.lat);
 const lngs = points.map((p) => p.lng);
 const bbox = [Math.min(...lngs), Math.min(...lats), Math.max(...lngs), Math.max(...lats)];
+// إطار العرض الافتراضي — مئينات 5–95 لا المدى الكامل: معلمان ساحليان يمدّان
+// النطاق ~120 كم فتفتح الخريطة على البحرين وقطر وأغلب المعالم في عنقود واحد.
+// bbox الكامل يبقى كما هو لحدود التجوال ولنطاق مصدر الارتفاعات.
+const pct = (arr: number[], q: number) => {
+  const a = [...arr].sort((x, y) => x - y);
+  return a[Math.min(a.length - 1, Math.max(0, Math.round(q * (a.length - 1))))];
+};
+const viewBbox = [pct(lngs, 0.05), pct(lats, 0.05), pct(lngs, 0.95), pct(lats, 0.95)];
 
 const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
 const groups = usedCats.map((c) => ({
@@ -45,6 +54,7 @@ const groups = usedCats.map((c) => ({
 const cfg = {
   lang,
   bbox,
+  viewBbox,
   geojsonUrl: '/data/landmarks.geojson',
   // OpenFreeMap Liberty — مبنية على OpenStreetMap، مجانية بلا مفتاح API
   styleUrl: 'https://tiles.openfreemap.org/styles/liberty',
@@ -131,6 +141,8 @@ const jsonLd = [
     </section>
   </main>
 
+  <Footer lang={lang} />
+
   {/* تهيئة مبكرة لاتصال مصادر البلاطات (نفس اصطلاح صفحة الخريطة مع CARTO).
       لا CSP في الموقع — لا حاجة لأي توسيع رؤوس، وعمّال blob في MapLibre يعملون. */}
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin />
@@ -214,7 +226,7 @@ const jsonLd = [
   .tl-dot--parks { background: var(--pin-parks); }
   .tl-dot--farm { background: var(--pin-farm); }
   .tl-dot--market { background: var(--pin-market); }
-  .tl-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 4px var(--s-3); }
+  .tl-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 4px var(--s-3); }
   .tl-item { display: flex; align-items: center; gap: 8px; }
   .tl-locate {
     display: grid; place-items: center; inline-size: 32px; block-size: 32px; flex-shrink: 0;

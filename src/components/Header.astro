@@ -76,21 +76,31 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
 
 <style>
   .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: color-mix(in srgb, var(--c-sand) 86%, transparent); backdrop-filter: blur(10px); border-block-end: 1px solid var(--c-line); }
-  .hd-in { display: flex; align-items: center; gap: var(--s-4); min-block-size: 68px; }
+  /* الشريط يحمل وردماركاً وسبعة روابط وبحثاً و«رحلتي» ومبدّل لغة وزرّ دعوة —
+     أعرض ممّا يتّسع له عمود المحتوى (1120px)، وكان المحتوى الإنجليزي يفيض عنه
+     بـ59px فيخرج عن الشبكة ويولّد تمريراً أفقياً عند 1200px. الشريط وحده يأخذ
+     عمودًا أوسع، والفجوات أضيق. */
+  .hd-in { inline-size: min(100% - var(--s-3), 1280px); margin-inline: auto; display: flex; align-items: center; gap: var(--s-3); min-block-size: 68px; }
   .brand { text-decoration: none; }
-  .nav { display: flex; gap: var(--s-4); margin-inline: auto; }
-  .nav a { font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); text-decoration: none; padding-block: var(--s-2); position: relative; transition: color var(--dur) var(--ease); }
+  .nav { display: flex; gap: 20px; margin-inline: auto; min-inline-size: 0; }
+  .nav a { font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); text-decoration: none; padding-block: var(--s-2); position: relative; white-space: nowrap; transition: color var(--dur) var(--ease); }
   .nav a::after { content: ''; position: absolute; inset-block-end: 0; inset-inline: 0; block-size: 2px; background: var(--c-gold); transform: scaleX(0); transform-origin: inline-end; transition: transform var(--dur) var(--ease); }
   .nav a:hover { color: var(--c-turq); }
   .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
   .hd-actions { display: flex; align-items: center; gap: var(--s-3); }
-  .lang { font-family: var(--font-latin); letter-spacing: .08em; font-size: .85rem; color: var(--c-turq-deep); text-decoration: none; padding: 6px 13px; border: 1px solid var(--c-line); border-radius: var(--radius-pill); }
-  .lang:hover { background: var(--c-sand-2); }
-  .btn-gold { font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem); background: var(--c-gold); color: var(--c-ink); text-decoration: none; padding: 10px 20px; border-radius: var(--radius-pill); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  /* بوزن حبّة البحث المجاورة: كان الحدّ --c-line (‏1.1:1) غير مرئي عملياً
+     والهدف اللمسي 47×38 دون 44px. */
+  .lang { display: inline-flex; align-items: center; min-block-size: 44px; font-family: var(--font-latin); letter-spacing: .08em; font-size: .85rem; font-weight: 600; color: var(--c-turq-deep); text-decoration: none; padding: 0 14px; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease); }
+  .lang:hover { border-color: var(--c-turq); background: var(--c-sand-2); }
+  .btn-gold { white-space: nowrap; font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem); background: var(--c-gold); color: var(--c-ink); text-decoration: none; padding: 10px 20px; border-radius: var(--radius-pill); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(201,154,74,.35); }
-  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-inline-start: auto; padding: 8px; }
+  /* هدف لمس 44×44: كان 40×32 وهو مفتاح التنقّل كلّه على الهاتف */
+  .burger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; margin-inline-start: auto; inline-size: 44px; block-size: 44px; padding: 0; }
   .burger span { inline-size: 24px; block-size: 2px; background: var(--c-ink); border-radius: 2px; transition: var(--dur); }
-  @media (max-width: 920px) {
+  /* 1199px لا 920px: التنقّل سبعة روابط وبقربها بحثٌ ورابط «رحلتي» ومبدّل لغة
+     وزرّ دعوة، ودونها بقليل تلتفّ تسميات الروابط والزرّ سطرين ويرتفع الشريط.
+     العتبة مقيسة — عند 1200px يستقرّ الشريط على 68px بلا التفاف. */
+  @media (max-width: 1199px) {
     .hd-actions .btn-gold { display: none; }
     .burger { display: flex; }
     /* visibility:hidden ضرورية لا تجميلية: max-block-size:0 وحدها تُخفي القائمة بصرياً
@@ -101,5 +111,14 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
     /* 70vh بدل 420px الثابتة: المحتوى الحالي 415px أي بهامش 5px فقط، وأي رابط
        سابع يُقصّ بلا تمرير. مع overflow-y:auto تتمرّر القائمة بدل أن تُبتر. */
     .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+  }
+  /* هواتف 360px وما دونها: مجموع الوردمارك والبرغر وأدوات الشريط كان يفيض عن
+     الحاوية بـ28px فيُقصّ مبدّل اللغة وينزلق الوردمارك خارج الشاشة. */
+  @media (max-width: 420px) {
+    .hd-in { inline-size: min(100% - var(--s-2), 1280px); gap: var(--s-2); }
+    .hd-actions { gap: var(--s-2); }
+    .plan-link { padding-inline: 6px; }
+    .lang { padding: 6px 9px; }
+    .burger { inline-size: 40px; }
   }
 </style>

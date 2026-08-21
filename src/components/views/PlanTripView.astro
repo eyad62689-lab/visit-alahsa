@@ -13,15 +13,24 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
+/* أيقونات خطّية بلغة أيقونات فئات المعالم نفسها. كانت إيموجي (✈ 🚗 🚆) تُصيَّرها
+   ويندوز ملوّنةً — السيارة حمراء والقطار بنفسجي — فتصير الألوان المشبعة الوحيدة
+   في الموقع، وتختلف من نظام تشغيل لآخر. */
+const TRAVEL_ICONS: Record<string, string> = {
+  air:  '<path d="M12 2.6c.9 0 1.6.9 1.6 2v4l6.9 4v2.1l-6.9-2v3.9l2 1.6v1.6L12 19l-3.6.8v-1.6l2-1.6v-3.9l-6.9 2v-2.1l6.9-4v-4c0-1.1.7-2 1.6-2z"/>',
+  road: '<path d="M4 16.2v-2.6l1.6-3.8A2 2 0 0 1 7.5 8.5h9a2 2 0 0 1 1.9 1.3l1.6 3.8v2.6"/><path d="M3.6 13.6h16.8"/><path d="M8.5 8.5 9.4 5.8h5.2l.9 2.7"/><circle cx="8" cy="17.4" r="1.7"/><circle cx="16" cy="17.4" r="1.7"/>',
+  rail: '<rect x="6" y="3.5" width="12" height="12" rx="3"/><path d="M6 9.5h12"/><path d="M9.6 12.7h.01"/><path d="M14.4 12.7h.01"/><path d="m8.4 15.5-2 4.5"/><path d="m15.6 15.5 2 4.5"/><path d="M5 20h14"/>',
+};
+
 const C = ar ? {
   eyebrow: 'خطّط لرحلتك',
   title: 'كلُّ ما تحتاجه قبل أن تنطلق',
   lead: 'معلومات عملية موجزة تجعل رحلتك سلسة من الوصول إلى الوداع.',
   getThereH: 'كيف تصل؟',
   getThere: [
-    { icon: '✈', h: 'جوّاً', d: 'مطار الأحساء الدولي يستقبل رحلاتٍ داخلية ودولية؛ وتتغيّر الوجهات والجداول فيُنصح بالتأكد قبل الحجز. وبديلاً عنه، مطار الملك فهد الدولي بالدمام يبعد نحو ساعتين بالسيارة ويتيح وجهاتٍ أوسع.' },
-    { icon: '🚗', h: 'برّاً', d: 'تبعد عن الرياض نحو 326 كم (قرابة 3 ساعات و20 دقيقة)، وقريبةٌ من الدمام والخبر عبر شبكة طرقٍ سريعة جيدة.' },
-    { icon: '🚆', h: 'بالقطار', d: 'للهفوف محطةٌ على خط سكة حديد الرياض–الدمام (شركة سار). من الرياض هي الأسرع والأريح (نحو ساعتين وعشر دقائق)، ومن الدمام نحو ساعة إلى ساعة ونصف، ويتوقف القطار أيضاً في بقيق القريبة على المسار نفسه — خيارٌ ممتاز للقادمين من العاصمة والمنطقة الشرقية.' },
+    { icon: 'air', h: 'جوّاً', d: 'مطار الأحساء الدولي يستقبل رحلاتٍ داخلية ودولية؛ وتتغيّر الوجهات والجداول فيُنصح بالتأكد قبل الحجز. وبديلاً عنه، مطار الملك فهد الدولي بالدمام يبعد نحو ساعتين بالسيارة ويتيح وجهاتٍ أوسع.' },
+    { icon: 'road', h: 'برّاً', d: 'تبعد عن الرياض نحو 326 كم (قرابة 3 ساعات و20 دقيقة)، وقريبةٌ من الدمام والخبر عبر شبكة طرقٍ سريعة جيدة.' },
+    { icon: 'rail', h: 'بالقطار', d: 'للهفوف محطةٌ على خط سكة حديد الرياض–الدمام (شركة سار). من الرياض هي الأسرع والأريح (نحو ساعتين وعشر دقائق)، ومن الدمام نحو ساعة إلى ساعة ونصف، ويتوقف القطار أيضاً في بقيق القريبة على المسار نفسه — خيارٌ ممتاز للقادمين من العاصمة والمنطقة الشرقية.' },
   ],
   practicalH: 'معلومات عملية',
   practical: [
@@ -66,9 +75,9 @@ const C = ar ? {
   lead: 'Concise, practical information to make your trip smooth from arrival to departure.',
   getThereH: 'How to get there',
   getThere: [
-    { icon: '✈', h: 'By air', d: 'Al-Ahsa International Airport handles domestic and international flights; routes and schedules change, so confirm before booking. Alternatively, King Fahd International Airport in Dammam is about a two-hour drive away and offers wider connections.' },
-    { icon: '🚗', h: 'By road', d: 'About 326 km from Riyadh (around 3 hours 20 minutes), and close to Dammam and Khobar via a good highway network.' },
-    { icon: '🚆', h: 'By train', d: 'Hofuf has a station on the Riyadh–Dammam railway (SAR). From Riyadh it is the fastest and most comfortable option (around two hours and ten minutes); from Dammam it is roughly one to one and a half hours, and the train also stops at nearby Abqaiq (Buqayq) on the same line — an excellent choice from the capital and the Eastern Province.' },
+    { icon: 'air', h: 'By air', d: 'Al-Ahsa International Airport handles domestic and international flights; routes and schedules change, so confirm before booking. Alternatively, King Fahd International Airport in Dammam is about a two-hour drive away and offers wider connections.' },
+    { icon: 'road', h: 'By road', d: 'About 326 km from Riyadh (around 3 hours 20 minutes), and close to Dammam and Khobar via a good highway network.' },
+    { icon: 'rail', h: 'By train', d: 'Hofuf has a station on the Riyadh–Dammam railway (SAR). From Riyadh it is the fastest and most comfortable option (around two hours and ten minutes); from Dammam it is roughly one to one and a half hours, and the train also stops at nearby Abqaiq (Buqayq) on the same line — an excellent choice from the capital and the Eastern Province.' },
   ],
   practicalH: 'Practical information',
   practical: [
@@ -144,7 +153,7 @@ const jsonLd = [
         <div class="gt-grid">
           {C.getThere.map((g, i) => (
             <article class="gt-card" data-reveal style={`transition-delay:${i * 70}ms`}>
-              <span class="gt-icon" aria-hidden="true">{g.icon}</span>
+              <span class="gt-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={TRAVEL_ICONS[g.icon]} /></span>
               <h3 class="gt-h">{g.h}</h3>
               <p class="gt-d">{g.d}</p>
             </article>
@@ -212,7 +221,10 @@ const jsonLd = [
 
 <style>
   .pt-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  :global(.pth-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; color: var(--c-gold); opacity: .1; }
+  /* نزيف من حافة واحدة فقط: الهيرو هنا نصّي وارتفاعه ~310px والسعفة 300–320px،
+     فقصّها من الأعلى ومن الجانب معاً كان يُبقي شظيةً بأقواسٍ مبتورة تُقرأ خطأً
+     لا زخرفةً. التوسيط الرأسي يُبقي التاج كاملاً ويقصّ الجانب وحده. */
+  :global(.pth-wm) { position: absolute; inset-block-start: 50%; transform: translateY(-50%); inset-inline-end: -7%; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
   .pth-in { position: relative; z-index: 2; }
   .pth-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
@@ -220,16 +232,17 @@ const jsonLd = [
   .sec { padding-block: var(--s-7); }
   .sec--sand { background: var(--c-sand-2); }
   .sec-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; margin-block-end: var(--s-5); }
-  .gt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--s-3); }
+  .gt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 248px), 1fr)); gap: var(--s-3); }
   .gt-card { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-5) var(--s-4); }
-  .gt-icon { display: inline-grid; place-items: center; inline-size: 52px; block-size: 52px; border-radius: 13px; background: color-mix(in srgb, var(--c-turq) 10%, #fff); font-size: 1.4rem; margin-block-end: var(--s-3); }
+  .gt-icon { display: inline-grid; place-items: center; inline-size: 52px; block-size: 52px; border-radius: 13px; background: color-mix(in srgb, var(--c-turq) 12%, #fff); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
+  .gt-icon svg { inline-size: 26px; block-size: 26px; }
   .gt-h { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-2); }
   .gt-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
-  .pr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--s-4); margin: 0; }
+  .pr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 248px), 1fr)); gap: var(--s-4); margin: 0; }
   .pr-item { padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.55); }
   .pr-k { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-gold-deep); margin-block-end: var(--s-1); }
   .pr-v { margin: 0; font-size: var(--t-sm); color: var(--c-ink); line-height: 1.75; }
-  .tip-grid { list-style: none; counter-reset: tip; padding: 0; margin-block-start: var(--s-5); display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--s-4); }
+  .tip-grid { list-style: none; counter-reset: tip; padding: 0; margin-block-start: var(--s-5); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 248px), 1fr)); gap: var(--s-4); }
   .tip-item { counter-increment: tip; position: relative; padding-inline-start: 52px; }
   /* الترقيم لاتيني في اللغتين (قرار إياد 2026-07-21) */
   .tip-item::before { content: counter(tip); position: absolute; inset-inline-start: 0; inset-block-start: 0;
@@ -237,9 +250,20 @@ const jsonLd = [
     background: var(--c-turq); color: var(--c-sand); font-family: var(--font-heading); font-weight: 700; }
   .tip-h { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-1); }
   .tip-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
-  .faq-in { max-inline-size: 72ch; }
+  /* القيد على القائمة لا على الحاوية: بوضعه على .faq-in (وهي نفسها .container
+     ذات margin-inline:auto) كانت الكتلة كلّها تتوسّط الصفحة بينما كل قسم آخر
+     مرتكزٌ على حافة البداية. */
+  .faq-list { max-inline-size: 72ch; }
   .faq { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); overflow: hidden; }
-  .faq-q { cursor: pointer; font-family: var(--font-body); font-weight: 600; font-size: var(--t-base); color: var(--c-turq-deep); padding: var(--s-3) var(--s-4); list-style-position: inside; }
+  /* شيفرون بلغة .cat-sec-chev بدل مؤشّر <details> الافتراضي — كان الرمز الوحيد
+     في الموقع الذي يرسمه المتصفح، ويختلف شكله بين المتصفحات. */
+  .faq-q { cursor: pointer; font-family: var(--font-body); font-weight: 600; font-size: var(--t-base); color: var(--c-turq-deep); padding: var(--s-3) var(--s-4); list-style: none; display: flex; align-items: center; gap: var(--s-3); }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after { content: ''; margin-inline-start: auto; flex: 0 0 auto; inline-size: 9px; block-size: 9px;
+    border-inline-end: 2px solid var(--c-turq-deep); border-block-end: 2px solid var(--c-turq-deep);
+    transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
+  .faq[open] .faq-q::after { transform: rotate(-135deg); }
+  @media (prefers-reduced-motion: reduce) { .faq-q::after { transition: none; } }
   .faq-q:hover { color: var(--c-gold-deep); }
   .faq[open] .faq-q { border-block-end: 1px solid var(--c-line); }
   .faq-a { padding: var(--s-3) var(--s-4) var(--s-4); font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8; max-inline-size: 65ch; }

@@ -103,7 +103,7 @@ const nearby = a.location
           <a href={attractionsHref}>{crumbLabel}</a><span>/</span>
           <span aria-current="page">{title}</span>
         </nav>
-        <span class="t-caption ah-k">{catLabel(a.category, lang)}</span>
+        <span class="eyebrow gold-on-dark ah-k">{catLabel(a.category, lang)}</span>
         <h1 class="ah-title">{title}</h1>
         <p class="ah-sum">{summary}</p>
         <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
@@ -189,6 +189,12 @@ const nearby = a.location
 
 <style>
   .att-hero { position: relative; overflow: hidden; color: var(--c-sand); min-block-size: 46vh; display: flex; align-items: flex-end; }
+  /* تعتيم اتجاهي تحت كتلة النصّ — تدرّج .photo العامّ شفافٌ في أعلى 40% من
+     الحاوية، وهناك تقع الفتات والتسمية، فكانتا تختفيان فوق الصور الساطعة. */
+  .att-hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: var(--hero-scrim-soft);
+  }
   /* :global لأن PalmMotif مكوّن منفصل والـ scoped CSS لا تصله — بدونها تبقى
      السعفة عنصراً في التدفق يدفع نصّ الهيرو عن حافة البداية (سبب انعكاس الاتجاه) */
   :global(.ah-wm) { position: absolute; inset-block-start: -6%; inset-inline-end: -4%; color: var(--c-gold); opacity: .12; z-index: 0; }
@@ -197,10 +203,12 @@ const nearby = a.location
      التحديد على الفقرات الداخلية فقط. */
   .ah-in { position: relative; z-index: 2; padding-block: var(--s-6); }
   .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
-  .crumbs a { display: inline-block; padding-block: var(--s-1); color: rgba(247,243,234,.8); text-decoration: none; }
+  .crumbs a { display: inline-block; padding-block: var(--s-1); color: rgba(247,243,234,.92); text-decoration: none; }
   .crumbs a:hover { color: var(--c-gold); }
-  .crumbs span { color: rgba(247,243,234,.5); }
-  .ah-k { color: var(--c-gold); }
+  .crumbs span { color: rgba(247,243,234,.62); }
+  /* تسمية الفئة صارت eyebrow مثل بقيّة أبطال الموقع: نصٌّ رملي وزخرفة ذهبية.
+     كانت نصّاً ذهبياً صغيراً فوق صورة — دون 4.5:1 المطلوبة للنصّ الصغير. */
+  .ah-k { margin-block-end: var(--s-1); }
   .ah-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .ah-sum { font-size: var(--t-lg); color: rgba(247,243,234,.92); max-inline-size: 52ch; }
   .ah-fav { margin-block-start: var(--s-4); background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }

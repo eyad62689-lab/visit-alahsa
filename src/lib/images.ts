@@ -9,9 +9,10 @@ import manifest from '../data/image-widths.json';
 type Entry = { full: number; fullWebp: number; widths: number[] };
 const widths = manifest as Record<string, Entry>;
 
-/** يحوّل "/img/qasr-ibrahim" إلى مفتاح البيان "qasr-ibrahim" */
+/** يحوّل "/img/qasr-ibrahim" إلى "qasr-ibrahim" و"/img/fruits/khalas-v2" إلى
+ *  "fruits/khalas-v2" — الصور في مجلدات فرعية تحتاج المسار كاملاً كمفتاح. */
 function keyOf(src: string): string {
-  return src.replace(/^.*\//, '');
+  return src.replace(/^.*\/img\//, '');
 }
 
 export function srcsetFor(src: string): { jpg: string; webp: string } | undefined {

@@ -22,6 +22,11 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; font-weight
 
 a { color: var(--c-turq); text-underline-offset: 3px; }
 
+/* سمة hidden تَغلِب أي display في CSS المكوّنات. بدونها كانت `.plan-actions`
+   و`.shared-note` (display:flex) تظهران دائماً في «رحلتي» حتى والقائمة فارغة،
+   لأن display في قاعدة الصنف يتفوّق على display:none في ورقة المتصفح. */
+[hidden] { display: none !important; }
+
 img, svg { display: block; max-width: 100%; }
 
 /* لمسات لاتينية بخط Cormorant Garamond — للعناصر المضمّنة الموسومة lang="en" داخل
@@ -79,6 +84,14 @@ img, svg { display: block; max-width: 100%; }
 .eyebrow.gold-on-dark::before { border-color: var(--c-gold); }
 .eyebrow.gold-on-dark::after { background: var(--c-gold); }
 
+/* --- التسمية الصغيرة فوق العناوين (kicker) ---
+   كانت `.t-caption` مستعملة في سبعة مواضع بلا تعريف أصلاً، فتُعرض بحجم المتن
+   ووزنه فلا تصنع أي تدرّج بينها وبين الوصف تحتها. بلا تباعد حروف (قاعدة العربية). */
+.t-caption {
+  display: block; font-family: var(--font-body);
+  font-size: var(--t-xs); font-weight: 600; line-height: 1.5;
+}
+
 /* --- نصّ بارز --- */
 .lead { font-size: var(--t-lg); line-height: 1.7; color: var(--c-ink-soft); max-inline-size: 60ch; }
 
@@ -118,9 +131,15 @@ picture.photo { display: block; }
 .photo.lc-photo, .photo.att-photo, .photo.ev-photo { aspect-ratio: 16 / 10; }
 .photo.gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
 .att-card--lead .photo.att-photo { aspect-ratio: 21 / 8; }
-@media (max-width: 760px) { .att-card--lead .photo.att-photo { aspect-ratio: 16 / 10; } }
+/* 1000px لا 760px: دون هذا العرض تعود البطاقة الرئيسية بطاقةً عادية في شبكة 2×2
+   (انظر HomeView)، فنسبة 21/8 العريضة لم تعد مناسبة لها. */
+@media (max-width: 1000px) { .att-card--lead .photo.att-photo { aspect-ratio: 16 / 10; } }
 /* صورة بطاقة الفئة في الرئيسية — تملأ البطاقة (scoped لا يصل لـ <picture>) */
 .photo.cat-photo { position: absolute; inset: 0; }
+/* بطاقة الفئة تحمل تدرّجها الخاصّ المصمَّم لتثبيت نصّها (.cat-card::after)، وكان
+   تدرّج .photo العامّ يتراكم فوقه فتبلغ العتامة أسفل البطاقة ~95% — تُطمس الصورة
+   وتتشابه البطاقات الستّ. نُلغي الطبقة العامّة هنا ونكتفي بتدرّج البطاقة. */
+.photo.cat-photo::after { content: none; }
 /* طبقة صورة خلفية لأقسام الهيرو (الصفحة الرئيسية وصفحة المعلم) */
 .photo-bg { position: absolute; inset: 0; z-index: 0; display: block; pointer-events: none; }
 .photo-bg > img {
@@ -167,13 +186,15 @@ picture.photo { display: block; }
 /* زر زاوية دائري للبطاقات */
 .fav-btn--corner {
   position: absolute; inset-block-start: var(--s-3); inset-inline-end: var(--s-3); z-index: 3;
-  inline-size: 38px; block-size: 38px; padding: 0; justify-content: center; gap: 0;
+  /* 44×44 هدف لمس مريح (كان 38)، وحدٌّ رملي يفصله عن الصور الفاتحة التي كان
+     يذوب فيها لأن خلفيته رملية شبه شفافة بلا حدّ. */
+  inline-size: 44px; block-size: 44px; padding: 0; justify-content: center; gap: 0;
   border-radius: 50%; background: color-mix(in srgb, var(--c-sand) 92%, transparent);
-  backdrop-filter: blur(4px); border-color: transparent; color: var(--c-turq-deep); font-size: 1.2rem;
-  box-shadow: var(--shadow);
+  backdrop-filter: blur(4px); border-color: rgba(21,33,30,.14); color: var(--c-turq-deep); font-size: 1.2rem;
+  box-shadow: 0 1px 3px rgba(21,33,30,.18), 0 6px 16px rgba(21,33,30,.14);
 }
 /* ظلّ الزر يَغلِب حلقة التركيز الرملية العامّة (يليها في التسلسل) — نجمعهما */
-.fav-btn--corner:focus-visible { box-shadow: 0 0 0 2px var(--c-sand), var(--shadow); }
+.fav-btn--corner:focus-visible { box-shadow: 0 0 0 2px var(--c-sand), 0 1px 3px rgba(21,33,30,.18), 0 6px 16px rgba(21,33,30,.14); }
 .fav-btn--corner .fav-ic::before { content: '+'; }
 .fav-btn--corner.is-saved { background: var(--c-turq); color: var(--c-sand); }
 .fav-btn--corner.is-saved .fav-ic::before { content: '✓'; }
@@ -191,3 +212,6 @@ picture.photo { display: block; }
   display: inline-grid; place-items: center; transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .plan-badge.has-items { background: var(--c-gold); color: var(--c-ink); }
+/* عند الصفر لا تحمل الشارة معلومة — إخفاؤها يوفّر عرضاً في شريط الهاتف الضيّق
+   ويرفع الضجيج البصري. تظهر فور إضافة أول معلم (الصنف has-items). */
+.plan-badge:not(.has-items) { display: none; }

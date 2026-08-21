@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
+import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
@@ -37,6 +38,18 @@ const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
 const catCounts = Object.fromEntries(usedCats.map((c) => [c, points.filter((p) => p.cat === c).length]));
 const labels = { view: t('map.pop.view'), favAdd: t('fav.add'), favAdded: t('fav.added') };
 
+// إطار العرض الافتراضي — مئينات 5–95 لا المدى الكامل. معلمان ساحليان يمدّان
+// النطاق ~1.2° طولاً (≈120 كم) فيهبط التكبير إلى 9: أغلب المعالم ينهار في
+// عنقود واحد وأكثر من نصف اللوحة بحر وصحراء. مشتقّ من البيانات لا مكتوب يدوياً،
+// والمعالم البعيدة تبقى في القائمة الجانبية وتظهر بالتصغير.
+const pct = (arr: number[], q: number) => {
+  const a = [...arr].sort((x, y) => x - y);
+  return a[Math.min(a.length - 1, Math.max(0, Math.round(q * (a.length - 1))))];
+};
+const lats = points.map((p) => p.lat);
+const lngs = points.map((p) => p.lng);
+const viewBounds = [[pct(lats, 0.05), pct(lngs, 0.05)], [pct(lats, 0.95), pct(lngs, 0.95)]];
+
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -61,9 +74,10 @@ const jsonLd = [
               <span class={`dot dot--${c}`} aria-hidden="true"></span>{catLabel(c, lang)} <bdi>({num(catCounts[c])})</bdi>
             </button>
           ))}
-          {/* الخريطة التضاريسية — صفحة مستقلة (تحسين تدريجي)؛ هذه الصفحة تبقى كما هي */}
-          <a class="chip chip--3d" href={ar ? '/خريطة-تضاريس/' : '/en/terrain-map/'}>{t('map.terrain')}</a>
         </div>
+        {/* الخريطة التضاريسية — صفحة مستقلة (تحسين تدريجي)؛ هذه الصفحة تبقى كما هي.
+            خارج مجموعة الفلاتر: رابط تنقّل لا فلتر، وكان شكله يوهم أنه أحدها. */}
+        <a class="map-terrain-link" href={ar ? '/خريطة-تضاريس/' : '/en/terrain-map/'}>{t('map.terrain')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
       </div>
     </div>
     <div class="container map-layout">
@@ -92,6 +106,8 @@ const jsonLd = [
     </div>
   </main>
 
+  <Footer lang={lang} />
+
   {/* Leaflet مستضاف ذاتياً (كان يُحمَّل من unpkg.com وقت التشغيل) — يزيل تبعية خارجية
       ونقطة فشل، ويُسرّع أول ظهور للخريطة. المسار مُصدَّر بالإصدار فيُكسر الكاش تلقائياً
       عند أي ترقية. بلاطات الخريطة تبقى من CARTO (مجانية بلا مفتاح) — نُهيّئ اتصالها مبكراً. */}
@@ -105,11 +121,14 @@ const jsonLd = [
   <link rel="stylesheet" href="/vendor/leaflet.markercluster-1.5.3/MarkerCluster.css" />
   <script is:inline src="/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js"></script>
 
-  <script is:inline define:vars={{ points, labels, isAr: ar }}>
+  <script is:inline define:vars={{ points, labels, isAr: ar, viewBounds }}>
     function initMap() {
       const el = document.getElementById('map');
       if (!el || typeof L === 'undefined' || el._leaflet_id) return;
-      const map = L.map(el, { scrollWheelZoom: false }).setView([25.42, 49.62], 11);
+      // prefix صريح: بادئة Leaflet الافتراضية تحمل علماً سياسياً لا محلّ له على
+      // موقع سياحي — الإسناد نفسه يبقى كاملاً.
+      const map = L.map(el, { scrollWheelZoom: false, attributionControl: false }).setView([25.42, 49.62], 11);
+      L.control.attribution({ prefix: '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>' }).addTo(map);
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19 }).addTo(map);
       // مساحة اللمس 24×24 (حدّ WCAG الأدنى) والنقطة المرئية تبقى 16px متمركزة
       const pin = (cat) => L.divIcon({ className: 'va-pin va-pin--' + cat, html: '<span></span>', iconSize: [24, 24], iconAnchor: [12, 12] });
@@ -165,7 +184,8 @@ const jsonLd = [
       });
 
       map.on('popupopen', () => window.VAPlan && window.VAPlan.sync());
-      map.fitBounds(cluster.getBounds().pad(0.12));
+      // viewBounds = مئينات 5–95 المحسوبة وقت البناء (انظر التعليق في الترويسة)
+      map.fitBounds(viewBounds, { padding: [24, 24], maxZoom: 13 });
 
       const chips = document.querySelectorAll('#map-chips .chip');
       const search = document.getElementById('map-search');
@@ -225,8 +245,11 @@ const jsonLd = [
   .chip { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); cursor: pointer; background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); padding: 7px 15px; border-radius: 999px; transition: all var(--dur) var(--ease); }
   .chip:hover { border-color: var(--c-turq); color: var(--c-turq); }
   .chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
-  .chip--3d { text-decoration: none; color: var(--c-gold-deep); border-color: var(--c-gold); }
-  .chip--3d:hover { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
+  .map-terrain-link { display: inline-flex; align-items: center; gap: var(--s-2); align-self: flex-start;
+    font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq);
+    text-decoration: none; border-block-end: 1.5px solid var(--c-gold); padding-block-end: 2px;
+    transition: color var(--dur) var(--ease); }
+  .map-terrain-link:hover { color: var(--c-turq-deep); }
   .dot { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--c-turq); flex-shrink: 0; }
   .dot--historic { background: var(--pin-historic); }
   .dot--museum { background: var(--pin-museum); }
@@ -289,7 +312,11 @@ const jsonLd = [
   @media (max-width: 760px) {
     /* فلاتر الخريطة تتمرّر أفقياً، والبحث بعرض كامل */
     .map-search { inline-size: 100%; }
-    .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-block-end: var(--s-2); scrollbar-width: none; }
+    /* الشريط يتمرّر أفقياً بلا شريط تمرير مرئي، فبلا تلاشٍ عند الحافة لا شيء
+       يدلّ الزائر على وجود سبعة فلاتر أخرى خارج الشاشة. */
+    .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-block-end: var(--s-2); scrollbar-width: none;
+      mask-image: linear-gradient(to left, #000 calc(100% - 28px), transparent);
+      -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 28px), transparent); }
     .chips::-webkit-scrollbar { display: none; }
     .chip { flex: 0 0 auto; }
   }

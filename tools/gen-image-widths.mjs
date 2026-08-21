@@ -13,7 +13,7 @@
 import sharp from 'sharp'
 import { readdir, stat, writeFile, mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
-import { join, dirname } from 'node:path'
+import { join, dirname, posix } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -31,8 +31,21 @@ const force = process.argv.includes('--force')
 
 const bytes = (n) => (n < 1024 * 1024 ? `${Math.round(n / 1024)}KB` : `${(n / 1048576).toFixed(1)}MB`)
 
+// مسح تعاودي: صور الثمار والأكلات تقع في public/img/fruits و/food، وكان
+// readdir المسطّح يتخطّاها كلّها — 19 صورة ثمار بلا أي srcset، ينزّلها الجوال
+// بعرض 1400px ليعرضها في فتحة 358px. المفاتيح مسارات نسبية بفاصل / لتوافق
+// srcsetFor في src/lib/images.ts.
+async function collect(dir, prefix = '') {
+  const out = []
+  for (const ent of await readdir(dir, { withFileTypes: true })) {
+    if (ent.isDirectory()) out.push(...(await collect(join(dir, ent.name), prefix + ent.name + '/')))
+    else if (ent.name.toLowerCase().endsWith('.jpg')) out.push(prefix + ent.name)
+  }
+  return out
+}
+
 async function main() {
-  const files = (await readdir(IMG_DIR)).filter((f) => f.toLowerCase().endsWith('.jpg'))
+  const files = await collect(IMG_DIR)
   // الأصل المرجعي هو ملف jpg؛ لكل واحد نظيرٌ webp بنفس الاسم
   const bases = files
     .map((f) => f.replace(/\.jpg$/i, ''))

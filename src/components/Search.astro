@@ -113,6 +113,10 @@ const t = useTranslations(lang);
     // النقر على الخلفية (خارج البطاقة) يُغلق
     dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); });
 
+    // تلميح الاختصار يتبع المنصّة (⌘ على ماك، Ctrl على غيرها)
+    if (/Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent)) {
+      document.documentElement.style.setProperty('--kbd-hint', '"\2318 K"');
+    }
     // اختصارات عامة: Ctrl/Cmd+K في أي مكان، و«/» ما لم يكن التركيز داخل حقل إدخال
     if (!window.__searchHotkeys) {
       window.__searchHotkeys = true;
@@ -136,8 +140,13 @@ const t = useTranslations(lang);
   /* زرّ الترويسة */
   .hd-search-btn { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 7px 12px; cursor: pointer; transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease); }
   .hd-search-btn:hover { border-color: var(--c-turq); color: var(--c-turq); }
-  /* اختصار لوحة المفاتيح كعنصر زائف — لا يُحسب نصاً مرئياً فلا يتعارض مع aria-label (Label-in-Name) */
-  .hd-search-btn::after { content: "⌘K"; font-family: var(--font-latin); font-size: .72rem; letter-spacing: .04em; color: var(--c-ink-60); border: 1px solid var(--c-line); border-radius: 5px; padding: 1px 5px; line-height: 1.4; }
+  /* اختصار لوحة المفاتيح كعنصر زائف — لا يُحسب نصاً مرئياً فلا يتعارض مع aria-label (Label-in-Name).
+     direction:ltr إلزامية: في سياق RTL كان "⌘K" يُصيَّر معكوساً "K⌘".
+     والنصّ الافتراضي Ctrl لأن المعالج يقبل Ctrl وCmd معاً وأغلب الزوّار على
+     ويندوز؛ سكربت المكوّن يبدّله إلى ⌘ على ماك. */
+  .hd-search-btn::after { content: var(--kbd-hint, "Ctrl K"); direction: ltr; unicode-bidi: isolate; font-family: var(--font-latin); font-size: .72rem; letter-spacing: .04em; color: var(--c-ink-60); border: 1px solid var(--c-line); border-radius: 5px; padding: 1px 5px; line-height: 1.4; }
+  /* على الأجهزة اللمسية لا لوحة مفاتيح — التلميح ضجيج يزاحم شريطاً ضيّقاً */
+  @media (hover: none) and (pointer: coarse) { .hd-search-btn::after { display: none; } }
 
   /* النافذة الحوارية (top layer) */
   .search-modal { inline-size: min(620px, 92vw); max-block-size: 78vh; margin: 12vh auto auto; padding: 0; border: 1px solid var(--c-line); border-radius: var(--radius-lg); background: var(--c-sand); box-shadow: 0 24px 60px rgba(0,42,37,.28); overflow: hidden; }

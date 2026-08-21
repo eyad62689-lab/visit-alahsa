@@ -25,7 +25,7 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   const map = new maplibregl.Map({
     container: el,
     style: cfg.styleUrl,
-    bounds: cfg.bbox,
+    bounds: cfg.viewBbox,
     fitBoundsOptions: { padding: 48 },
     // يحصر التجوال في محيط الأحساء — يمنع أيضاً طلب بلاطات لا نحتاجها
     maxBounds: expand(cfg.bbox, 0.6),

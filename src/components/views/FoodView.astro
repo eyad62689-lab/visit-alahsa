@@ -214,7 +214,7 @@ const jsonLd = [
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .fd-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
+    background: var(--hero-scrim);
   }
   :global(.fdh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
@@ -232,7 +232,7 @@ const jsonLd = [
   .fgroup-head { display: flex; align-items: center; gap: var(--s-3); margin-block-end: var(--s-4); }
   .fgroup-head h3 { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .fgroup-head::after { content: ''; flex: 1; block-size: 1px; background: var(--c-line); }
-  .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--s-4); }
+  .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: var(--s-4); }
 
   .dish-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
   .dc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }

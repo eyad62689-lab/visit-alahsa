@@ -521,7 +521,11 @@ const jsonLd = [
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .fr-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(105deg, rgba(0,42,38,.82) 0%, rgba(0,55,49,.55) 50%, rgba(0,79,70,.4) 100%);
+    /* طبقة إضافية فوق التعتيم الموحّد: صورة هذا البطل مبقّعة بفجوات سماءٍ ساطعة
+       بين السعف، وعليها يهبط تباين العنوان دون 3:1 بالتعتيم القياسي (مقيس). */
+    background:
+      linear-gradient(var(--hero-scrim-dir), rgba(0,42,38,.34) 0%, rgba(0,45,40,.20) 55%, transparent 100%),
+      var(--hero-scrim);
   }
   :global(.frh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
@@ -529,7 +533,7 @@ const jsonLd = [
   .frh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .frh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 62ch; }
   .fr-stats { position: relative; z-index: 2; margin-block-start: var(--s-6); }
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--s-3); }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: var(--s-3); }
   .stat { background: rgba(247,243,234,.07); border: 1px solid rgba(247,243,234,.14); border-radius: var(--radius); padding: var(--s-4); text-align: center; }
   .st-n { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-xl); color: var(--c-gold); line-height: 1.2; }
   .st-l { font-size: var(--t-sm); color: rgba(247,243,234,.85); margin-block-start: var(--s-1); }
@@ -562,7 +566,7 @@ const jsonLd = [
   .fgroup[open] > summary .fgroup-chev { transform: rotate(-135deg); }
   @media (prefers-reduced-motion: reduce) { .fgroup-chev { transition: none; } }
   .fgroup-intro { color: var(--c-ink-soft); max-inline-size: 72ch; margin-block-end: var(--s-4); }
-  .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-4); }
+  .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
 
   .fruit-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
   .fc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
@@ -593,8 +597,8 @@ const jsonLd = [
   .duo-tag { position: absolute; z-index: 2; inset-block-end: 6px; inset-inline-start: 6px; font-size: var(--t-xs); font-weight: 700; color: var(--c-turq-deep); background: rgba(255,255,255,.9); border-radius: 999px; padding: 1px 10px; }
 
   /* الوسوم */
-  .tag-pending { display: inline-block; font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); background: var(--c-sand-2); border: 1px solid rgba(138,98,36,.4); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
-  .fc-season .tag-pending { background: #fff; }
+  /* أبيض لا رملي-2 — انظر .cat-sec-count: الذهبي الداكن على الرملي-2 دون AA */
+  .tag-pending { display: inline-block; font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); background: #fff; border: 1px solid rgba(138,98,36,.4); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
   .tag-rare { display: inline-block; font-size: var(--t-xs); font-weight: 600; color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
 
   .fr-empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }

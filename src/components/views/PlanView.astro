@@ -5,6 +5,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
+import { srcsetFor } from '../../lib/images';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -15,15 +16,23 @@ const ar = lang === 'ar';
 const detailBase = ar ? '/معالم/' : '/en/attractions/';
 
 const items = await getCollection('attractions');
-const allPoints = items.map((e) => ({
-  slug: e.data.slug_ar, // المفتاح العالمي للحفظ
-  href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
-  title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
-  cat: catLabel(e.data.category, lang),
-  summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
-  lat: e.data.location?.lat ?? null, lng: e.data.location?.lng ?? null,
-  mapUrl: e.data.mapUrl ?? null,
-}));
+// srcset يُحسب هنا وقت البناء من بيان العروض (كما يفعل مكوّن Photo): بطاقات هذه
+// الصفحة تُبنى بجافاسكربت فلا يمكنها استدعاء المكوّن، وبدون هذه الحقول كانت
+// البطاقات تعرض عنصراً نائباً فارغاً رغم توفّر صورة لكل معلم تقريباً.
+const allPoints = items.map((e) => {
+  const set = e.data.heroImage ? srcsetFor(e.data.heroImage) : undefined;
+  return {
+    slug: e.data.slug_ar, // المفتاح العالمي للحفظ
+    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+    title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+    cat: catLabel(e.data.category, lang),
+    summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
+    lat: e.data.location?.lat ?? null, lng: e.data.location?.lng ?? null,
+    mapUrl: e.data.mapUrl ?? null,
+    img: e.data.heroImage ?? null,
+    setJpg: set?.jpg ?? null, setWebp: set?.webp ?? null,
+  };
+});
 const L = {
   savedSuffix: t('plan.savedSuffix'), route: t('plan.route'), clear: t('plan.clear'),
   remove: t('plan.remove'), location: t('plan.location'),
@@ -84,6 +93,8 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
 
   <script is:inline define:vars={{ allPoints, L }}>
     // قياس استخدام الميزات (GA4) — يتجاهل بصمت إن لم يتوفر gtag
+    // وصفة أحجام مطابقة لشبكة البطاقات (auto-fill بحدّ أدنى 280px)
+    var PC_SIZES = '(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw';
     function planEvent(name) { try { if (typeof gtag === 'function') gtag('event', name); } catch (e) {} }
     // ?list= يعرض قائمة مُشارَكة للقراءة (بلا حذف) مع زرّ استيرادها إلى «رحلتي»
     function sharedList(map) {
@@ -109,8 +120,16 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
         const p = map[slug];
         const maps = p.mapUrl ? '<a class="pc-map" href="' + p.mapUrl + '" target="_blank" rel="noopener">' + L.location + '</a>' : '';
         const remove = shared ? '' : '<button class="pc-remove" type="button" data-fav="' + p.slug + '">' + L.remove + '</button>';
+        const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+        const photo = p.img
+          ? '<picture class="photo photo--img pc-photo">' +
+              (p.setWebp ? '<source srcset="' + esc(p.setWebp) + '" type="image/webp" sizes="' + PC_SIZES + '">' : '') +
+              '<img src="' + esc(p.img) + '.jpg"' + (p.setJpg ? ' srcset="' + esc(p.setJpg) + '"' : '') +
+              ' sizes="' + PC_SIZES + '" alt="' + esc(p.title) + '" loading="lazy" decoding="async">' +
+            '</picture>'
+          : '<div class="photo pc-photo photo--placeholder"><span class="ph-label">' + p.title + '</span></div>';
         return '<article class="plan-card">' +
-          '<div class="photo pc-photo photo--placeholder"><span class="ph-label">' + p.title + '</span></div>' +
+          photo +
           '<div class="pc-body"><span class="t-caption pc-k">' + p.cat + '</span>' +
           '<h3 class="pc-t"><a href="' + p.href + '">' + p.title + '</a></h3>' +
           '<p class="pc-d">' + p.summary + '</p>' +
@@ -160,8 +179,14 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
 </Base>
 
 <style>
+  /* بطاقات «رحلتي» تُبنى بجافاسكربت (innerHTML) فلا تحمل سمة نطاق المكوّن التي
+     تضيفها Astro، وكل قاعدة مُنطَّقة لا تصلها. كانت البطاقات تُعرض بلا أي تنسيق
+     — لذا أصناف البطاقة كلّها ملفوفة بـ:global هنا وفي كتلة الطباعة. */
   .plan-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  :global(.ph-wm) { position: absolute; inset-block-start: -8%; inset-inline-end: -4%; color: var(--c-gold); opacity: .1; }
+  /* نزيف من حافة واحدة فقط: الهيرو هنا نصّي وارتفاعه ~310px والسعفة 300–320px،
+     فقصّها من الأعلى ومن الجانب معاً كان يُبقي شظيةً بأقواسٍ مبتورة تُقرأ خطأً
+     لا زخرفةً. التوسيط الرأسي يُبقي التاج كاملاً ويقصّ الجانب وحده. */
+  :global(.ph-wm) { position: absolute; inset-block-start: 50%; transform: translateY(-50%); inset-inline-end: -7%; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
   .ph-in { position: relative; z-index: 2; }
   .ph-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
@@ -172,19 +197,19 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   .plan-act-btns { display: flex; gap: var(--s-3); flex-wrap: wrap; }
   .btn--ghost-ink { background: transparent; color: var(--c-ink); border: 1.5px solid var(--c-line); }
   .btn--ghost-ink:hover { border-color: var(--c-turq); color: var(--c-turq); }
-  .plan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s-4); }
-  .plan-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-  .pc-photo { aspect-ratio: 16 / 10; }
-  .pc-body { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: var(--s-1); }
-  .pc-k { color: var(--c-gold-deep); }
-  .pc-t { font-size: var(--t-lg); margin-block: 2px; }
-  .pc-t a { color: var(--c-turq-deep); text-decoration: none; }
-  .pc-t a:hover { color: var(--c-gold-deep); }
-  .pc-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.65; }
-  .pc-foot { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-block-start: var(--s-3); padding-block-start: var(--s-3); border-block-start: 1px solid var(--c-line); }
-  .pc-map { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: none; }
-  .pc-remove { background: none; border: 0; cursor: pointer; font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink-soft); }
-  .pc-remove:hover { color: #a3402a; }
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--s-4); }
+  :global(.plan-card) { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  :global(.pc-photo) { aspect-ratio: 16 / 10; }
+  :global(.pc-body) { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: var(--s-1); }
+  :global(.pc-k) { color: var(--c-gold-deep); }
+  :global(.pc-t) { font-size: var(--t-lg); margin-block: 2px; }
+  :global(.pc-t a) { color: var(--c-turq-deep); text-decoration: none; }
+  :global(.pc-t a:hover) { color: var(--c-gold-deep); }
+  :global(.pc-d) { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.65; }
+  :global(.pc-foot) { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-block-start: var(--s-3); padding-block-start: var(--s-3); border-block-start: 1px solid var(--c-line); }
+  :global(.pc-map) { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: none; }
+  :global(.pc-remove) { background: none; border: 0; cursor: pointer; font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink-soft); }
+  :global(.pc-remove:hover) { color: #a3402a; }
   .plan-empty { text-align: center; max-inline-size: 48ch; margin-inline: auto; padding-block: var(--s-7); }
   :global(.pe-palm) { color: var(--c-turq); opacity: .4; margin-inline: auto; }
   .pe-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-3) var(--s-2); }
@@ -212,7 +237,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   /* نسخة الطباعة: قائمة نظيفة بلا ترويسة/تذييل/أزرار — الهيرو يبقى عنواناً للورقة */
   @media print {
     :global(.site-header), :global(.site-footer), :global(.skip-link),
-    .plan-actions, .shared-note, .plan-empty, .pc-remove { display: none !important; }
+    .plan-actions, .shared-note, .plan-empty, :global(.pc-remove) { display: none !important; }
     .print-note { display: block; font-size: 10pt; color: #444; margin-block-end: 12pt; }
     .plan-hero { background: none !important; padding-block: 0 8pt; }
     :global(.ph-wm) { display: none !important; }
@@ -221,12 +246,12 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
     .ph-sum { display: none; }
     .plan-body { padding-block: 0; }
     .plan-grid { display: block; }
-    .plan-card { box-shadow: none; border: 0; border-block-end: 1pt solid #bbb; border-radius: 0;
+    :global(.plan-card) { box-shadow: none; border: 0; border-block-end: 1pt solid #bbb; border-radius: 0;
       break-inside: avoid; margin-block-end: 8pt; padding-block-end: 8pt; }
-    .pc-photo { display: none !important; }
-    .pc-body { padding: 0; }
-    .pc-t a { color: #000 !important; }
-    .pc-foot { border: 0; padding: 0; margin-block-start: 2pt; }
-    .pc-map { color: #444 !important; }
+    :global(.pc-photo) { display: none !important; }
+    :global(.pc-body) { padding: 0; }
+    :global(.pc-t a) { color: #000 !important; }
+    :global(.pc-foot) { border: 0; padding: 0; margin-block-start: 2pt; }
+    :global(.pc-map) { color: #444 !important; }
   }
 </style>
