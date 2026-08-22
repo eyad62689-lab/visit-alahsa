@@ -17,6 +17,19 @@ export type Ev = {
   /** إحداثيات الدبوس حين لا يكون المكان معلماً في الموقع — تُستخرج من رابط خرائط
    *  قدّمه إياد لا بالتقدير، ويبقى رابطه الأصلي في map لزرّ «افتح في خرائط جوجل». */
   coords?: { lat: number; lng: number };
+  /** ساعات العمل اليومية — لا تُذكر إلا منقولةً من مصدر رسمي */
+  hours?: string;
+  /** تاريخا البداية والنهاية ISO — للنسخ المؤكدة فقط؛ يغذّيان Event schema */
+  startISO?: string; endISO?: string;
+  /** مدى أسعار التذاكر — من صفحة الحجز الرسمية حصراً؛ يغذّي offers في السكيما */
+  priceRange?: { low: number; high: number; currency: string };
+  /** محتوى تحريري للصفحة التفصيلية — فقرات موثّقة المصدر، لا تُختلق */
+  intro?: string;
+  sections?: { h: string; ps: string[] }[];
+  faq?: { q: string; a: string }[];
+  related?: { label: string; href: string }[];
+  seoTitle?: string;
+  seoDesc?: string;
   /** مقطع ملف معلم يُقام فيه الحدث — تُسحب منه الإحداثيات ورابط الخريطة الموثّقان.
    *  لا يُوضع إلا حين يكون المكان هو المعلم نفسه؛ وما لا معلم له تبقى صفحته بلا خريطة. */
   venue?: string;
@@ -73,13 +86,50 @@ export const EVENTS_AR: Ev[] = [
     // موعد نسخة 2026 المعلن: 19 أغسطس – 5 سبتمبر (من إياد، 2026-07-22) — لذلك status: 'confirmed'.
     // عند انقضاء النسخة يعود الحقل إلى الموسم التقريبي «أغسطس – سبتمبر» بحالة 'expected'.
     id: 'lomi', slug: 'معرض-اللومي-الحساوي',
-    name: 'معرض اللومي الحساوي', place: 'مركز الأحساء للمعارض',
+    name: 'معرض اللومي الحساوي', place: 'مركز الأحساء للمعارض، شارع السلام (طريق عين النجم)، الهفوف',
     season: 'الصيف', time: '19 أغسطس – 5 سبتمبر 2026م', span: 'نحو 18 يوماً', img: '/img/event-lomi', start: 8, end: 9,
     status: 'confirmed',
     org: 'غرفة الأحساء',
     ticket: 'https://www.evento.sa/event-details/62ccadc9-df5c-4e0c-8d10-90eeb297ef74',
     map: 'https://maps.app.goo.gl/uY5gEBdUJ43pMEFV7',
     coords: { lat: 25.3903836, lng: 49.5619631 },
+    // المصدر: صفحة الحجز الرسمية على إيفينتو (تُحقّق منها 2026-08-22) — المواعيد
+    // والساعات والرسوم منقولة عنها حرفياً. فقرات «ما هو اللومي» من صفحة ثمار
+    // الأحساء المعتمدة (رُوجعت يوليو 2026). لا رقم هنا بلا مصدر.
+    hours: 'يومياً من 5:00 إلى 11:00 مساءً',
+    startISO: '2026-08-19', endISO: '2026-09-05',
+    priceRange: { low: 10, high: 15, currency: 'SAR' },
+    seoTitle: 'معرض اللومي الحساوي 2026: المواعيد والتذاكر والموقع',
+    seoDesc: 'دليل زيارة معرض اللومي الحساوي 2026 في مركز الأحساء للمعارض بالهفوف: من 19 أغسطس إلى 5 سبتمبر، يومياً 5:00-11:00 مساءً، والتذاكر من 10 ريالات عبر منصة إيفينتو، مع فعاليات عائلية وأركان الأسر المنتجة.',
+    intro: 'يُعدّ معرض اللومي الحساوي — ويُعرف أيضاً باسم معرض الليمون الحساوي — أبرز الفعاليات الزراعية الموسمية في الأحساء، تنظّمه غرفة الأحساء احتفاءً بثمرة الواحة الأشهر بعد التمور. يقدّم المعرض تجربةً تفاعلية للتعرّف على خصائص اللومي الحساوي وفوائده وتقنيات زراعته، والتواصل مع المزارعين، وتسوّق منتجات الأسر المنتجة، إلى جانب الفعاليات المصاحبة.',
+    sections: [
+      {
+        h: 'ما هو اللومي الحساوي؟',
+        ps: [
+          'اللومي الحساوي (البن زهيري) — ويسمّيه كثيرون الليمون الحساوي — ثمرة صغيرة خضراء داكنة، رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. وهو المنتج الزراعي الثاني في الأحساء بعد التمور: تنتشر في الواحة أكثر من 100 ألف شجرة لومي مثمرة، تنتج الشجرة الواحدة ما بين 25 و30 كيلوغراماً في الموسم.',
+          'وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد» أو اللومي المشمّس) لاستعماله على مدار العام — طازجاً وعصيراً ومجففاً (اللومي الأسود) في المطبخ الحساوي والخليجي.',
+        ],
+      },
+      {
+        h: 'التذاكر والدخول',
+        ps: [
+          'وفق صفحة الحجز الرسمية على منصة إيفينتو: تذكرة الدخول بـ10 ريالات من الأحد إلى الأربعاء، و15 ريالاً من الخميس إلى السبت (للشراء الإلكتروني)، وتُضاف رسوم خدمة وتشغيل قدرها 5 ريالات على كل تذكرة تُشترى من شباك التذاكر في الموقع — فالحجز الإلكتروني المسبق أوفر.',
+          'الدخول مجاني للأطفال دون 5 سنوات، والتذكرة مخصصة لدخول المعرض فقط وصالحة لليوم المحدد فيها وحده، وتُباع حصراً عبر منصة إيفينتو.',
+        ],
+      },
+    ],
+    faq: [
+      { q: 'متى يقام معرض اللومي الحساوي 2026؟', a: 'من 19 أغسطس إلى 5 سبتمبر 2026م، يومياً من 5:00 إلى 11:00 مساءً.' },
+      { q: 'أين يقام المعرض؟', a: 'في مركز الأحساء للمعارض على شارع السلام (طريق عين النجم) بالهفوف — وتجد الخريطة في هذه الصفحة.' },
+      { q: 'هل الدخول مجاني؟', a: 'الدخول مجاني للأطفال دون 5 سنوات فقط. التذكرة 10 ريالات من الأحد إلى الأربعاء و15 ريالاً من الخميس إلى السبت عند الشراء الإلكتروني، وتُضاف 5 ريالات على تذاكر الشباك.' },
+      { q: 'كيف أحجز التذاكر؟', a: 'عبر منصة إيفينتو حصراً — زر «احجز تذكرتك» أعلى هذه الصفحة يوصلك إلى صفحة الحجز الرسمية.' },
+      { q: 'ما الفرق بين اللومي الحساوي والليمون العادي؟', a: 'اللومي الحساوي أصغر حجماً وأرقّ قشرة وأغزر عصارة وأقوى رائحة، ويُستخدم طازجاً وعصيراً ومجففاً (اللومي الأسود) في المطبخ الحساوي.' },
+      { q: 'هل توجد فعاليات للأطفال؟', a: 'نعم — يضم المعرض ركن الطفل، إلى جانب الطهي الحي وورش العمل الزراعية والجلسات العائلية.' },
+    ],
+    related: [
+      { label: 'اللومي الحساوي في صفحة ثمار الأحساء', href: '/ثمار/' },
+      { label: 'خطّط لرحلتك إلى الأحساء', href: '/خطط/' },
+    ],
     acts: ['معارض منتجات اللومي', 'الطهي الحي', 'ورش عمل زراعية', 'ركن الطفل', 'جلسات عائلية'],
   },
   {
@@ -156,13 +206,50 @@ export const EVENTS_EN: Ev[] = [
   {
     // 2026 edition announced: 19 August – 5 September (كما في النسخة العربية).
     id: 'lomi', slug: 'hasawi-lomi-exhibition',
-    name: 'Hasawi Lomi Exhibition', place: 'Al-Ahsa Expo Center',
+    name: 'Hasawi Lomi Exhibition', place: 'Al-Ahsa Expo Center, Al-Salam St (Ain Najm Rd), Hofuf',
     season: 'Summer', time: '19 August – 5 September 2026', span: 'About 18 days', img: '/img/event-lomi', start: 8, end: 9,
     status: 'confirmed',
     org: 'Al-Ahsa Chamber',
     ticket: 'https://www.evento.sa/event-details/62ccadc9-df5c-4e0c-8d10-90eeb297ef74',
     map: 'https://maps.app.goo.gl/uY5gEBdUJ43pMEFV7',
     coords: { lat: 25.3903836, lng: 49.5619631 },
+    // Source: the official Evento booking page (verified 2026-08-22) — dates, hours
+    // and fees quoted from it. "What is the lomi" paragraphs come from the approved
+    // Fruits page (reviewed July 2026). No number here without a source.
+    hours: 'Daily, 5:00-11:00 PM',
+    startISO: '2026-08-19', endISO: '2026-09-05',
+    priceRange: { low: 10, high: 15, currency: 'SAR' },
+    seoTitle: 'Hasawi Lomi Exhibition 2026: Dates, Tickets & Location',
+    seoDesc: 'Visitor guide to the 2026 Hasawi Lomi (Lemon) Exhibition at the Al-Ahsa Expo Center in Hofuf: 19 August - 5 September, daily 5:00-11:00 PM, tickets from SAR 10 via Evento, with family activities and productive-family stalls.',
+    intro: 'The Hasawi Lomi Exhibition — also known as the Hasawi Lemon Exhibition or the Al-Ahsa Lemon Festival — is Al-Ahsa\u2019s flagship seasonal agricultural event, organised by the Al-Ahsa Chamber to celebrate the oasis\u2019s most famous crop after dates. The exhibition offers an interactive experience of the Hasawi lomi\u2019s qualities, benefits and cultivation, direct contact with the farmers, and shopping from productive-family stalls, alongside the accompanying programme.',
+    sections: [
+      {
+        h: 'What is the Hasawi lomi?',
+        ps: [
+          'The Hasawi lomi — often called the Hasawi lemon or Hasawi lime — is a small, dark-green citrus with a thin skin, abundant juice, a sharp tang and a distinctive aroma that sets it apart from other citrus. It is Al-Ahsa\u2019s second crop after dates: the oasis grows more than 100,000 fruiting lomi trees, each yielding some 25-30 kilograms a season.',
+          'A cherished summer tradition surrounds it: families gather to juice and preserve it for the whole year — fresh, as juice, or dried into black lime (loomi) for Hasawi and Gulf cooking.',
+        ],
+      },
+      {
+        h: 'Tickets & entry',
+        ps: [
+          'According to the official booking page on Evento: entry is SAR 10 from Sunday to Wednesday and SAR 15 from Thursday to Saturday (online purchase), with a SAR 5 service fee added to every ticket bought at the on-site box office — so booking online is cheaper.',
+          'Entry is free for children under 5. A ticket covers exhibition entry only, is valid solely for the day stated on it, and tickets are sold exclusively through Evento.',
+        ],
+      },
+    ],
+    faq: [
+      { q: 'When is the Hasawi Lomi Exhibition 2026?', a: 'From 19 August to 5 September 2026, daily from 5:00 to 11:00 PM.' },
+      { q: 'Where is the exhibition held?', a: 'At the Al-Ahsa Expo Center on Al-Salam Street (Ain Najm Road) in Hofuf — the map is on this page.' },
+      { q: 'Is entry free?', a: 'Entry is free only for children under 5. Tickets are SAR 10 from Sunday to Wednesday and SAR 15 from Thursday to Saturday online, with SAR 5 added at the box office.' },
+      { q: 'How do I book tickets?', a: 'Exclusively through the Evento platform — the "Book your ticket" button on this page takes you to the official booking page.' },
+      { q: 'How does the Hasawi lomi differ from a regular lemon?', a: 'It is smaller, thinner-skinned, juicier and more aromatic, and is used fresh, as juice, and dried into black lime (loomi) in Hasawi cooking.' },
+      { q: 'Are there activities for children?', a: 'Yes — the exhibition has a kids\u2019 corner, alongside live cooking, agricultural workshops and family sessions.' },
+    ],
+    related: [
+      { label: 'The Hasawi lomi on our Fruits of Al-Ahsa page', href: '/en/fruits/' },
+      { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
+    ],
     acts: ['Lomi (dried lime) product shows', 'Live cooking', 'Agricultural workshops', 'Kids’ corner', 'Family sessions'],
   },
   {

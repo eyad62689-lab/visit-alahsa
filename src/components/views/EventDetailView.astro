@@ -29,6 +29,9 @@ const C = ar ? {
   timeK: 'الموعد', spanK: 'المدة التقريبية',
   actsK: 'أبرز الأنشطة',
   ticketK: 'احجز تذكرتك',
+  hoursK: 'ساعات العمل',
+  faqH: 'أسئلة شائعة',
+  relatedH: 'اقرأ أيضاً',
   mapH: 'الموقع على الخريطة',
   mapOpen: 'افتح في خرائط جوجل',
   mapNone: 'لم تُعلن الجهة المنظّمة موقعاً دقيقاً لهذه الفعالية بعد، فلم نضع لها خريطة.',
@@ -45,6 +48,9 @@ const C = ar ? {
   timeK: 'When', spanK: 'Approximate length',
   actsK: 'Highlights',
   ticketK: 'Book your ticket',
+  hoursK: 'Opening hours',
+  faqH: 'FAQ',
+  relatedH: 'See also',
   mapH: 'On the map',
   mapOpen: 'Open in Google Maps',
   mapNone: 'The organisers have not announced a precise location for this event yet, so no map is shown.',
@@ -79,18 +85,37 @@ const others = eventsFor(lang).filter((e) => e.id !== ev.id).slice(0, 3);
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = ev.img ? `${ev.img}.jpg` : '/og-default.png';
-const jsonLd = [
+const jsonLd: object[] = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.crumb, item: new URL(listHref, siteUrl).href },
     { '@type': 'ListItem', position: 3, name: ev.name, item: pageUrl },
   ] },
-  // لا Event schema عمداً: جوجل يشترط startDate محدداً، ومواسمنا تقريبية بقرار
-  // محتوى ملزم — فأي startDate سيكون مختلقاً. نكتفي بـ BreadcrumbList.
 ];
-const desc = `${ev.name} — ${ev.place}. ${ev.season}، ${ev.time}. ${ev.acts.slice(0, 3).join('، ')}.`;
+const desc = ev.seoDesc ?? `${ev.name} — ${ev.place}. ${ev.season}، ${ev.time}. ${ev.acts.slice(0, 3).join('، ')}.`;
+// Event schema للنسخ المؤكدة فقط: جوجل يشترط startDate محدداً، ومواسمنا تقريبية
+// بقرار محتوى ملزم — فلا تُضاف إلا حين يوثّق المصدر الرسمي تاريخين دقيقين (startISO/endISO).
+if (ev.startISO && ev.endISO) {
+  jsonLd.push({
+    '@context': 'https://schema.org', '@type': 'Event',
+    name: ev.name, description: desc,
+    startDate: ev.startISO, endDate: ev.endISO,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    image: new URL(ogImage, siteUrl).href, url: pageUrl,
+    location: { '@type': 'Place', name: ev.place,
+      address: { '@type': 'PostalAddress', addressLocality: ar ? 'الهفوف' : 'Hofuf', addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+      ...(loc ? { geo: { '@type': 'GeoCoordinates', latitude: loc.lat, longitude: loc.lng } } : {}) },
+    organizer: { '@type': 'Organization', name: ev.org },
+    ...(ev.ticket && ev.priceRange ? { offers: { '@type': 'AggregateOffer', url: ev.ticket, priceCurrency: ev.priceRange.currency, lowPrice: ev.priceRange.low, highPrice: ev.priceRange.high, availability: 'https://schema.org/InStock' } } : {}),
+  });
+}
+if (ev.faq?.length) {
+  jsonLd.push({ '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: ev.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
+}
 ---
-<Base title={`${ev.name} — ${t('site.name')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
+<Base title={`${ev.seoTitle ?? ev.name} — ${t('site.name')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`evd-hero on-dark ${ev.img ? '' : 'evd-hero--plain'}`}>
@@ -116,9 +141,11 @@ const desc = `${ev.name} — ${ev.place}. ${ev.season}، ${ev.time}. ${ev.acts.s
 
     <div class="container evd-layout">
       <article class="evd-main" data-reveal>
+        {ev.intro && <p class="evd-intro">{ev.intro}</p>}
         <dl class="evd-facts">
           <div class="evd-row"><dt>{C.seasonK}</dt><dd>{ev.season}</dd></div>
           <div class="evd-row"><dt>{C.timeK}</dt><dd>{ev.time}</dd></div>
+          {ev.hours && <div class="evd-row"><dt>{C.hoursK}</dt><dd>{ev.hours}</dd></div>}
           <div class="evd-row"><dt>{C.spanK}</dt><dd>{ev.span}</dd></div>
           <div class="evd-row">
             <dt>{C.placeK}</dt>
@@ -141,6 +168,13 @@ const desc = `${ev.name} — ${ev.place}. ${ev.season}، ${ev.time}. ${ev.acts.s
             {C.ticketK}
           </a>
         )}
+
+        {ev.sections?.map((s) => (
+          <section>
+            <h2 class="evd-h">{s.h}</h2>
+            {s.ps.map((p) => <p class="evd-p">{p}</p>)}
+          </section>
+        ))}
 
         <section class="evd-map-sec" aria-labelledby="evd-map-h">
           <h2 class="evd-h" id="evd-map-h">{C.mapH}</h2>
@@ -170,10 +204,31 @@ const desc = `${ev.name} — ${ev.place}. ${ev.season}، ${ev.time}. ${ev.acts.s
           )}
         </section>
 
+        {ev.faq?.length ? (
+          <section class="evd-faq" aria-labelledby="evd-faq-h">
+            <h2 class="evd-h" id="evd-faq-h">{C.faqH}</h2>
+            {ev.faq.map((f) => (
+              <div class="evd-faq-item">
+                <h3 class="evd-faq-q">{f.q}</h3>
+                <p class="evd-faq-a">{f.a}</p>
+              </div>
+            ))}
+          </section>
+        ) : null}
+
         <aside class="evd-notice">
           <h2 class="evd-notice-h">{C.noticeH}</h2>
           <p>{C.notice}</p>
         </aside>
+
+        {ev.related?.length ? (
+          <nav class="evd-related" aria-label={C.relatedH}>
+            <h2 class="evd-h">{C.relatedH}</h2>
+            <ul>
+              {ev.related.map((r) => <li><a href={r.href}>{r.label}</a></li>)}
+            </ul>
+          </nav>
+        ) : null}
 
         <a class="btn btn--turq evd-back" href={listHref}>{C.back}</a>
       </article>
@@ -274,6 +329,16 @@ const desc = `${ev.name} — ${ev.place}. ${ev.season}، ${ev.time}. ${ev.acts.s
   .evd-more-k { color: var(--c-gold-deep); }
   .evd-more-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-start: 2px; }
   .evd-more-d { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block-start: var(--s-1); }
+
+  /* المحتوى التحريري */
+  .evd-intro { font-size: var(--t-lg); line-height: 1.8; color: var(--c-ink); margin-block-end: var(--s-5); }
+  .evd-p { font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); margin-block-end: var(--s-3); }
+  .evd-faq-item { margin-block-end: var(--s-4); }
+  .evd-faq-q { font-family: var(--font-body); font-weight: 600; font-size: var(--t-base); color: var(--c-turq-deep); margin-block-end: var(--s-1); }
+  .evd-faq-a { font-size: var(--t-sm); line-height: 1.8; color: var(--c-ink-soft); }
+  .evd-related ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s-2); }
+  .evd-related a { display: inline-block; padding-block: var(--s-1); font-weight: 600; color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .evd-related a:hover { color: var(--c-gold-deep); }
 
   @media (max-width: 760px) {
     .evd-hero { min-block-size: 46vh; }
