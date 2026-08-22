@@ -1,0 +1,290 @@
+---
+// صفحة «المطاعم والمقاهي» — الدفعة الأولى: 10 مطاعم + 10 مقاهٍ من قائمتَي إياد (2026-08-22).
+// قاعدة ملزمة: لا تُختلق معلومة — الأسماء والصور وروابط الخرائط من ملفَي إياد
+// (أفضل مطاعم الأحساء.docx وأفضل مقاهي الأحساء.docx)، والأحياء/العناوين من عناوين
+// خرائط قوقل نفسها (تحقق HTTP فعلي 2026-08-22). لا مواعيد ولا أسعار ولا أوصاف حتى تُوثَّق.
+// تصحيحان مثبتان من خرائط قوقل: «بيت الموت» في الملف = بيت الكوت، و«ريشيو الموت» = ريشيو الكوت.
+// النبذات التسويقية تُضاف لاحقاً بعد اعتماد كلمات السيو ومحتوى إياد.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import Photo from '../Photo.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+type Place = { img: string; alt: string; name: string; area: string; maps: string };
+
+// الحقول المشتركة بين اللغتين (الصورة والرابط) تُعرَّف مرة واحدة
+const P = {
+  darBasma: { img: '/img/dining/dar-basma', maps: 'https://maps.app.goo.gl/CLwUux3kdzc5Z4WE6' },
+  alkoot: { img: '/img/dining/alkoot-hotel', maps: 'https://maps.app.goo.gl/gjwiTHDg83VZEbz76' },
+  alhawi: { img: '/img/dining/alhawi', maps: 'https://maps.app.goo.gl/GZ61EihCSipwJyzJ8' },
+  khunaina: { img: '/img/dining/khunaina', maps: 'https://maps.app.goo.gl/LZWmKXLDNreXhUHL6' },
+  sinyar: { img: '/img/dining/sinyar', maps: 'https://maps.app.goo.gl/kiKK2QEshBwycpDn6' },
+  greasy: { img: '/img/dining/greasy-fingers', maps: 'https://maps.app.goo.gl/AQhfw1PKHnLviEyt6' },
+  lava: { img: '/img/dining/lava', maps: 'https://maps.app.goo.gl/eYZPQBsVxoBjMyvb6' },
+  ammo: { img: '/img/dining/ammo', maps: 'https://maps.app.goo.gl/sj8f9VMZL3LdthJX9' },
+  sharq: { img: '/img/dining/sharq-alqaisariah', maps: 'https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8' },
+  koud: { img: '/img/dining/koud', maps: 'https://maps.app.goo.gl/RVVLPpJCUVfpCdWt7' },
+  // المقاهي
+  baithana: { img: '/img/dining/baithana', maps: 'https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5' },
+  sevenSt: { img: '/img/dining/7st', maps: 'https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6' },
+  baitAlkoot: { img: '/img/dining/bait-alkoot', maps: 'https://maps.app.goo.gl/gkvgXUYMUZsV5BK38' },
+  darHuwaija: { img: '/img/dining/dar-huwaija', maps: 'https://maps.app.goo.gl/EejCz9U79km3VEUL6' },
+  alsayed: { img: '/img/dining/alsayed', maps: 'https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9' },
+  ratio: { img: '/img/dining/ratio-alkoot', maps: 'https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8' },
+  soulaf: { img: '/img/dining/soulaf', maps: 'https://maps.app.goo.gl/S47bGoYznnPUYTrm6' },
+  bakingUp: { img: '/img/dining/baking-up', maps: 'https://maps.app.goo.gl/Vq412YHJLwnKc1SE8' },
+  dot: { img: '/img/dining/dot-bakery', maps: 'https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6' },
+  raslan: { img: '/img/dining/karak-raslan', maps: 'https://maps.app.goo.gl/ctJt3bVV2hDtSYX56' },
+};
+
+const C = ar ? {
+  heroEyebrow: 'من موائد الأحساء',
+  title: 'المطاعم والمقاهي',
+  // مقدمة مُثراة بكلمات السيو المعتمدة (نتائج جيمني 2026-08-22 — مستندات العمل)
+  // دون ادعاءات: التنوّع التراثي/العصري ملحوظ من القائمة نفسها.
+  heroSum: 'دليلك إلى موائد الأحساء: مطاعم ومقاهٍ مختارة في الهفوف والمبرز — من الأجواء التراثية والأكل الشعبي إلى المطاعم العصرية والقهوة المختصة — لكلٍّ منها صورته وموقعه على خرائط قوقل، تصل إليه بضغطة واحدة. والقائمة تنمو تباعاً.',
+  listEyebrow: 'الدفعة الأولى',
+  listH: 'عشرة مطاعم مختارة',
+  cafesEyebrow: 'وللقهوة أهلها',
+  cafesH: 'عشرة مقاهٍ مختارة',
+  openMaps: t('det.openMaps'),
+  faqH: 'أسئلة شائعة عن مطاعم الأحساء',
+  faqs: [
+    { q: 'ما الأكلات الشعبية التي تشتهر بها الأحساء؟',
+      a: 'تشتهر الأحساء بأطباق مثل الأرز الحساوي والمندي والهريس وخبز التمر.',
+      linkText: 'تعرّف عليها في صفحة المطبخ الأحسائي ←', linkHref: '/أكلات/' },
+    { q: 'أين تقع مطاعم ومقاهي هذه القائمة؟',
+      a: 'تتوزع بين الهفوف — حول حي الكوت التراثي ووسط الهفوف التاريخي وحيَّي الخالدية والرفعة الشمالية — والمبرز على طريق عين نجم، وكل بطاقة تحمل رابط موقعها الدقيق على خرائط قوقل.' },
+    { q: 'هل تعرض الصفحة المواعيد والأسعار؟',
+      a: 'لا — لا نعرض مواعيد أو أسعاراً أو تقييمات حتى تُوثَّق من مصادرها الرسمية. افتح رابط خرائط قوقل لكل مطعم للاطلاع على أحدث معلوماته.' },
+  ],
+  methodH: 'حول هذه الصفحة',
+  methodP1: 'هذه قائمة أولية تنمو تباعاً. الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، ولا نعرض مواعيد أو أسعاراً أو تقييمات حتى تُوثَّق من مصادرها الرسمية.',
+  places: [
+    { ...P.darBasma, name: 'دار بسمة', area: 'بجوار حديقة قصر إبراهيم — الهفوف', alt: 'واجهة دار بسمة الزجاجية وجلساتها الخارجية بين النخيل مساءً' },
+    { ...P.alkoot, name: 'مطعم فندق الكوت', area: 'حي الكوت — مقابل قصر إبراهيم', alt: 'الفناء الداخلي لفندق الكوت التراثي بأروقته وسقفه الزجاجي' },
+    { ...P.alhawi, name: 'مطعم الحوي', area: 'حي الخالدية — مقابل جامعة الملك فيصل', alt: 'سفرة فطور شعبي بأطباقها المتنوعة في مطعم الحوي' },
+    { ...P.khunaina, name: 'مطعم خنينة', area: 'حي الخالدية — الهفوف', alt: 'أطباق تراثية تُقدَّم في سلال الخوص على طاولة مطعم خنينة' },
+    { ...P.sinyar, name: 'مطعم سنيار', area: 'طريق الخليج — العويمرية', alt: 'واجهة مطعم سنيار الترابية وشعاره بالخط العربي عند المساء' },
+    { ...P.greasy, name: 'جريسي فنجرز', area: 'شارع الأمير نواف — الهفوف', alt: 'برجر وبطاطس مقلية على صينية تقديم في جريسي فنجرز' },
+    { ...P.lava, name: 'مطعم لافا', area: 'طريق الخليج — حي العليا', alt: 'أطباق متنوعة على طاولة رخامية في مطعم لافا' },
+    { ...P.ammo, name: 'مطعم آمو', area: 'طريق الملك عبدالله — حي المزروع', alt: 'واجهة مطعم آمو الزجاجية بشعاره المضيء ليلاً' },
+    { ...P.sharq, name: 'مطعم شرق القيصرية', area: 'حي الرفعة الشمالية — الهفوف', alt: 'مدخل مطعم شرق القيصرية بقوسه المزخرف وجلساته الخارجية' },
+    { ...P.koud, name: 'مطعم كود', area: 'طريق الملك عبدالله — حي المزروع', alt: 'واجهة كود — مطعم ومقهى — بشعارها المضيء بالخط العربي' },
+  ] as Place[],
+  cafes: [
+    { ...P.baithana, name: 'مقهى بيذانة', area: 'حي الرفعة الشمالية — الهفوف', alt: 'مدخل مقهى بيذانة بجدرانه الطينية وبابه الخشبي في حارة تراثية' },
+    { ...P.sevenSt, name: 'شارع 7', area: 'حي الرفعة الشمالية — الهفوف', alt: 'ركن جلوس بكراسٍ جلدية ونافذة زجاج ملون داخل مقهى شارع 7' },
+    { ...P.baitAlkoot, name: 'بيت الكوت', area: 'وسط الهفوف التاريخي', alt: 'واجهة بيت الكوت بإضاءتها المتدلية عند المساء' },
+    { ...P.darHuwaija, name: 'دار حويجة', area: 'شارع الملك فهد — وسط الهفوف التاريخي', alt: 'جلسات دار حويجة بين الأقواس الجصية والكراسي الخشبية' },
+    { ...P.alsayed, name: 'مقهى السيد', area: 'حي الرفعة الشمالية — الهفوف', alt: 'الجلسة التراثية بسقفها الخشبي داخل مقهى السيد' },
+    { ...P.ratio, name: 'ريشيو الكوت', area: 'طريق الملك عبدالعزيز — وسط الهفوف التاريخي', alt: 'مجلس تراثي بوسائد وسجاد تحت سقف من جذوع النخل في ريشيو الكوت' },
+    { ...P.soulaf, name: 'مقهى سلاف', area: 'طريق الملك عبدالله — الهفوف', alt: 'داخلية مقهى سلاف العصرية بشجرة الزيتون وسقفها الخشبي' },
+    { ...P.bakingUp, name: 'بيكنج آب', area: 'طريق عين نجم — المبرز', alt: 'واجهة بيكنج آب وجلساتها الخارجية بمظلاتها' },
+    { ...P.dot, name: 'مقهى ومخبز دوت', area: 'طريق عين نجم — المبرز', alt: 'ركن الطلب وواجهة عرض المخبوزات في مقهى ومخبز دوت' },
+    { ...P.raslan, name: 'كرك رسلان', area: 'طريق الخليج', alt: 'أكواب الكرك على صينية خشبية مع أطباق فطور في كرك رسلان' },
+  ] as Place[],
+} : {
+  heroEyebrow: 'From the tables of Al-Ahsa',
+  title: 'Restaurants & Cafés',
+  // «Al Ahsa» و«Hofuf» بلا واصلة مقصودتان هنا — تغطية تهجئات البحث الإنجليزية
+  heroSum: 'Your guide to dining in Al Ahsa: hand-picked restaurants and cafés across Hofuf and Al-Mubarraz — from heritage settings and traditional food to modern spots and specialty coffee — each with its photo and its place on Google Maps, one tap away. The list keeps growing.',
+  listEyebrow: 'The first batch',
+  listH: 'Ten hand-picked restaurants',
+  cafesEyebrow: 'For the coffee lovers',
+  cafesH: 'Ten hand-picked cafés',
+  openMaps: t('det.openMaps'),
+  faqH: 'Frequently asked questions about dining in Al Ahsa',
+  faqs: [
+    { q: 'What traditional dishes is Al Ahsa known for?',
+      a: 'Al Ahsa is known for dishes such as Hasawi rice, mandi, harees and date bread.',
+      linkText: 'Explore them on the Hasawi Cuisine page →', linkHref: '/en/food/' },
+    { q: 'Where are these restaurants and cafés located?',
+      a: 'They are spread between Al Hofuf — around the historic Al-Koot district, the historic downtown, Al-Khalidiyah and Al-Raf‘ah North — and Al-Mubarraz along Ain Najm Road; each card links to the exact spot on Google Maps.' },
+    { q: 'Does this page list opening hours and prices?',
+      a: 'No — we only publish opening hours, prices or ratings once they are verified from official sources. Use each restaurant’s Google Maps link for its latest details.' },
+  ],
+  methodH: 'About this page',
+  methodP1: 'This is a first list that will keep growing. Names and locations come straight from Google Maps; we show no opening hours, prices or ratings until they are verified from official sources.',
+  places: [
+    { ...P.darBasma, name: 'Dar Basma', area: 'Next to Qasr Ibrahim park — Al-Hofuf', alt: 'Dar Basma’s glass façade and outdoor seating among the palms at night' },
+    { ...P.alkoot, name: 'Al-Koot Heritage Hotel Restaurant', area: 'Al-Koot district — opposite Qasr Ibrahim', alt: 'The courtyard of Al-Koot Heritage Hotel with its arcades and glass roof' },
+    { ...P.alhawi, name: 'Al-Hawi', area: 'Al-Khalidiyah — opposite King Faisal University', alt: 'A traditional breakfast spread of assorted dishes at Al-Hawi' },
+    { ...P.khunaina, name: 'Khunaina', area: 'Al-Khalidiyah — Al-Hofuf', alt: 'Heritage dishes served in wicker baskets at Khunaina' },
+    { ...P.sinyar, name: 'Sinyar', area: 'Al-Khaleej Road — Al-Uwaimriyah', alt: 'Sinyar’s earthen façade and Arabic calligraphy sign at dusk' },
+    { ...P.greasy, name: 'Greasy Fingers', area: 'Prince Nawwaf Street — Al-Hofuf', alt: 'A burger and fries on a serving tray at Greasy Fingers' },
+    { ...P.lava, name: 'Lava', area: 'Al-Khaleej Road — Al-Olaya', alt: 'Assorted dishes on a marble table at Lava' },
+    { ...P.ammo, name: 'Ammo', area: 'King Abdullah Road — Al-Mazrou‘', alt: 'Ammo’s glass façade with its illuminated sign at night' },
+    { ...P.sharq, name: 'Sharq Al-Qaisariyah', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'The ornate arched entrance and outdoor seating of Sharq Al-Qaisariyah' },
+    { ...P.koud, name: 'Koud', area: 'King Abdullah Road — Al-Mazrou‘', alt: 'Koud’s façade — restaurant and café — with its lit Arabic sign' },
+  ] as Place[],
+  cafes: [
+    { ...P.baithana, name: 'Baithana', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'Baithana’s mud-plastered entrance and wooden door in a heritage lane' },
+    { ...P.sevenSt, name: '7st. Speciality Coffee', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'A sitting corner with leather armchairs and a stained-glass window at 7st' },
+    { ...P.baitAlkoot, name: 'Bait Al-Koot', area: 'Historic downtown Al-Hofuf', alt: 'Bait Al-Koot’s façade with hanging lights at dusk' },
+    { ...P.darHuwaija, name: 'Dar Huwaija', area: 'King Fahd Road — historic downtown Al-Hofuf', alt: 'Dar Huwaija’s seating among plaster arches and wooden chairs' },
+    { ...P.alsayed, name: 'Al-Sayed Café', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'The heritage interior of Al-Sayed Café with its wooden ceiling' },
+    { ...P.ratio, name: 'Ratio Al-Koot', area: 'King Abdulaziz Road — historic downtown Al-Hofuf', alt: 'A traditional majlis with cushions and rugs beneath a palm-trunk ceiling at Ratio Al-Koot' },
+    { ...P.soulaf, name: 'Soulaf Coffee', area: 'King Abdullah Road — Al-Hofuf', alt: 'Soulaf Coffee’s modern interior with an olive tree and slatted ceiling' },
+    { ...P.bakingUp, name: 'Baking Up', area: 'Ain Najm Road — Al-Mubarraz', alt: 'Baking Up’s storefront with umbrellas and outdoor seating' },
+    { ...P.dot, name: 'Dot Bakery & Café', area: 'Ain Najm Road — Al-Mubarraz', alt: 'The order counter and pastry display at Dot Bakery & Café' },
+    { ...P.raslan, name: 'Karak Raslan', area: 'Al-Khaleej Road', alt: 'Cups of karak on a wooden tray with breakfast dishes at Karak Raslan' },
+  ] as Place[],
+};
+
+// عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
+const pageTitle = ar
+  ? 'مطاعم ومقاهي الأحساء — دليلك لتجارب الأكل في الهفوف'
+  : 'Al Ahsa Restaurants & Cafés — Where to Eat in Hofuf';
+const description = ar
+  ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
+  : 'Discover the best restaurants and cafés in Al Ahsa (Hofuf & Al-Mubarraz) — from traditional Hasawi dining to specialty coffee, with photos and direct Google Maps locations.';
+
+const siteUrl = 'https://visit-alahsa.com';
+const selfPath = ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
+    [...C.places.map((p) => ({ p, type: 'Restaurant' })), ...C.cafes.map((p) => ({ p, type: 'CafeOrCoffeeShop' }))]
+      .map(({ p, type }, i) => ({ '@type': 'ListItem', position: i + 1, item: {
+        '@type': type, name: p.name, hasMap: p.maps,
+        image: new URL(`${p.img}.jpg`, siteUrl).href,
+        address: { '@type': 'PostalAddress', addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+      } })),
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity:
+    C.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: {
+      '@type': 'Answer', text: f.linkText ? `${f.a} ${f.linkText.replace(/ [←→]$/, '')}` : f.a,
+    } })),
+  },
+];
+---
+<Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+
+    <section class="dn-hero on-dark">
+      <PalmMotif size={320} class="dnh-wm" aria-hidden="true" />
+      <div class="container dnh-in">
+        <span class="eyebrow gold-on-dark">{C.heroEyebrow}</span>
+        <h1 class="dnh-title">{C.title}</h1>
+        <p class="dnh-sum">{C.heroSum}</p>
+      </div>
+    </section>
+
+    <section class="container dn-list">
+      <div class="dn-head">
+        <span class="eyebrow">{C.listEyebrow}</span>
+        <h2>{C.listH}</h2>
+      </div>
+
+      <div class="dngrid">
+        {C.places.map((p, idx) => (
+          <article class="place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+            <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+            <div class="pc-body">
+              <h3>{p.name}</h3>
+              <p class="pc-area">{p.area}</p>
+              <a class="pc-maps" href={p.maps} target="_blank" rel="noopener">{C.openMaps}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="dn-head dn-head--cafes">
+        <span class="eyebrow">{C.cafesEyebrow}</span>
+        <h2>{C.cafesH}</h2>
+      </div>
+
+      <div class="dngrid">
+        {C.cafes.map((p, idx) => (
+          <article class="place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+            <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+            <div class="pc-body">
+              <h3>{p.name}</h3>
+              <p class="pc-area">{p.area}</p>
+              <a class="pc-maps" href={p.maps} target="_blank" rel="noopener">{C.openMaps}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="container dn-faq">
+      <h2 class="faq-h">{C.faqH}</h2>
+      <div class="faq-list">
+        {C.faqs.map((f) => (
+          <article class="faq-item">
+            <h3>{f.q}</h3>
+            <p>{f.a} {f.linkHref && <a href={f.linkHref}>{f.linkText}</a>}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="container dn-method">
+      <div class="method-box">
+        <h2>{C.methodH}</h2>
+        <p>{C.methodP1}</p>
+      </div>
+    </section>
+
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  /* ═══ الهيرو — لوني بلا صورة (لا أصل هيرو موثّق بعد) ═══ */
+  .dn-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
+  :global(.dnh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
+  .dnh-in { position: relative; z-index: 2; }
+  .dnh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .dnh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 62ch; }
+
+  /* ═══ شبكة المطاعم ═══ */
+  .dn-list { padding-block: var(--s-6) var(--s-8); }
+  .dn-head { margin-block-end: var(--s-6); }
+  .dn-head h2 { font-size: var(--t-2xl); margin-block-start: var(--s-2); }
+  .dn-head--cafes { margin-block-start: var(--s-7); }
+  .dngrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
+
+  .place-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  .pc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
+  .place-card h3 { font-size: var(--t-lg); color: var(--c-turq-deep); }
+  .pc-area { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .pc-maps { align-self: start; margin-block-start: auto; display: inline-flex; align-items: center; min-block-size: 44px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: 999px; padding: 6px 14px; text-decoration: none; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .pc-maps:hover { border-color: var(--c-turq); color: var(--c-turq); }
+
+  /* الصور عمودية في معظمها — قصّ موحّد 4:5 يضبط إيقاع الشبكة */
+  :global(.dn-photo) { aspect-ratio: 4 / 5; }
+  :global(.dn-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
+  /* بلا طبقة الظل الفيروزية العامة — تُغبّش صور الواجهات الليلية */
+  :global(picture.dn-photo)::after { content: none; }
+
+  /* ═══ الأسئلة الشائعة ═══ */
+  .dn-faq { padding-block: 0 var(--s-7); }
+  .faq-h { font-size: var(--t-xl); margin-block-end: var(--s-4); }
+  .faq-list { display: grid; gap: var(--s-3); max-inline-size: 78ch; }
+  .faq-item { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .faq-item h3 { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-2); }
+  .faq-item p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8; }
+  .faq-item a { color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
+  .faq-item a:hover { color: var(--c-turq); }
+
+  /* ═══ الملاحظة ═══ */
+  .dn-method { padding-block: 0 var(--s-7); }
+  .method-box { background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); max-inline-size: 78ch; }
+  .method-box h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
+  .method-box p { font-size: var(--t-sm); color: var(--c-ink-soft); }
+</style>

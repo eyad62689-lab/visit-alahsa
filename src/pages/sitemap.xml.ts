@@ -16,6 +16,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/خريطة/', en: '/en/map/' },
     { ar: '/ثمار/', en: '/en/fruits/' },
     { ar: '/أكلات/', en: '/en/food/' },
+    { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/' },
     { ar: '/فعاليات/', en: '/en/events/' },
     { ar: '/خطط/', en: '/en/plan-your-trip/' },
     ...items.map((e) => ({ ar: '/معالم/' + e.data.slug_ar + '/', en: '/en/attractions/' + e.data.slug_en + '/' })),

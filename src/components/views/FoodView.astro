@@ -30,6 +30,8 @@ const C = ar ? {
   less: 'إخفاء النبذة',
   methodH: 'حول هذه الصفحة',
   methodP1: 'الأوصاف هنا للتعريف بالأطباق الشعبية ومكوّناتها المعروفة، لا وصفاتٍ دقيقة؛ إذ تتفاوت المقادير والمسمّيات من بيتٍ لآخر ومن منطقةٍ لأخرى.',
+  dineCta: 'تبحث عن مكانٍ تجرّب فيه؟ تصفّح المطاعم والمقاهي ←',
+  dineHref: '/مطاعم-ومقاهي/',
   groups: [
     {
       /* أزيلت عناوين المجموعات («أطباق رئيسية» و«حلويات ومعجنات بالتمر») بطلب
@@ -65,6 +67,8 @@ const C = ar ? {
   less: 'Hide description',
   methodH: 'About this page',
   methodP1: 'The descriptions here introduce the traditional dishes and their well-known ingredients rather than exact recipes; measures and names vary from one household and region to the next.',
+  dineCta: 'Looking for somewhere to try it? Browse the restaurants & cafés →',
+  dineHref: '/en/restaurants-cafes/',
   groups: [
     {
       title: '',
@@ -155,6 +159,7 @@ const jsonLd = [
       <div class="method-box">
         <h2>{C.methodH}</h2>
         <p>{C.methodP1}</p>
+        <p class="dine-cta"><a href={C.dineHref}>{C.dineCta}</a></p>
       </div>
     </section>
 
@@ -257,4 +262,7 @@ const jsonLd = [
   .method-box { background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); max-inline-size: 78ch; }
   .method-box h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
   .method-box p { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .dine-cta { margin-block-start: var(--s-2); }
+  .dine-cta a { color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
+  .dine-cta a:hover { color: var(--c-turq); }
 </style>
