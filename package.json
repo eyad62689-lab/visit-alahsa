@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node tools/fetch-places.mjs",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview"
   },

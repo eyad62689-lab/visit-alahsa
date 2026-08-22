@@ -5,6 +5,8 @@
 // خرائط قوقل نفسها (تحقق HTTP فعلي 2026-08-22). لا مواعيد ولا أسعار ولا أوصاف حتى تُوثَّق.
 // تصحيحان مثبتان من خرائط قوقل: «بيت الموت» في الملف = بيت الكوت، و«ريشيو الموت» = ريشيو الكوت.
 // النبذات التسويقية تُضاف لاحقاً بعد اعتماد كلمات السيو ومحتوى إياد.
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
@@ -17,6 +19,22 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+
+// التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
+// قبل البناء إن وُجد المفتاح. غيابها متوقَّع (بناء محلي بلا مفتاح) والصفحة
+// تتدهور رشيقاً: لا صف تقييم ولا أوقات عمل.
+type Live = { rating: number | null; count: number | null; hoursAr: string[]; hoursEn: string[]; status: string | null };
+// process.cwd() لا import.meta.url: الأخير يشير إلى الملف المُجمَّع وقت البناء
+// فيفشل العثور على JSON بصمت. البناء يعمل دائماً من جذر astro-site.
+const livePath = join(process.cwd(), 'src', 'data', 'places-live.json');
+const liveRaw = existsSync(livePath) ? JSON.parse(readFileSync(livePath, 'utf8')) : null;
+const live: Record<string, Live> = liveRaw?.places ?? {};
+// شهر التحديث للعرض (أرقام لاتينية دائماً)
+const fetchedDate = liveRaw ? new Date(liveRaw.fetchedAt) : null;
+const fetchedLabel = fetchedDate
+  ? fetchedDate.toLocaleDateString(ar ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-GB', { month: 'long', year: 'numeric' })
+  : null;
+const liveFor = (img: string): Live | undefined => live[img.replace('/img/dining/', '')];
 
 type Place = { img: string; alt: string; name: string; area: string; maps: string };
 
@@ -56,6 +74,9 @@ const C = ar ? {
   cafesEyebrow: 'وللقهوة أهلها',
   cafesH: 'عشرة مقاهٍ مختارة',
   openMaps: t('det.openMaps'),
+  hoursLabel: 'أوقات العمل',
+  ratingLabel: 'التقييم في خرائط قوقل',
+  srcNote: fetchedLabel ? `التقييمات وأوقات العمل من خرائط قوقل — آخر تحديث ${fetchedLabel}` : null,
   faqH: 'أسئلة شائعة عن مطاعم الأحساء',
   faqs: [
     { q: 'ما الأكلات الشعبية التي تشتهر بها الأحساء؟',
@@ -63,8 +84,11 @@ const C = ar ? {
       linkText: 'تعرّف عليها في صفحة المطبخ الأحسائي ←', linkHref: '/أكلات/' },
     { q: 'أين تقع مطاعم ومقاهي هذه القائمة؟',
       a: 'تتوزع بين الهفوف — حول حي الكوت التراثي ووسط الهفوف التاريخي وحيَّي الخالدية والرفعة الشمالية — والمبرز على طريق عين نجم، وكل بطاقة تحمل رابط موقعها الدقيق على خرائط قوقل.' },
-    { q: 'هل تعرض الصفحة المواعيد والأسعار؟',
-      a: 'لا — لا نعرض مواعيد أو أسعاراً أو تقييمات حتى تُوثَّق من مصادرها الرسمية. افتح رابط خرائط قوقل لكل مطعم للاطلاع على أحدث معلوماته.' },
+    liveRaw
+      ? { q: 'من أين تأتي التقييمات وأوقات العمل؟',
+          a: `التقييمات وأوقات العمل مأخوذة من خرائط قوقل مباشرة (آخر تحديث ${fetchedLabel}) وقد تتغير — للتأكد من أحدث المعلومات افتح رابط خرائط قوقل لكل مكان. الأسعار لا تُعرض.` }
+      : { q: 'هل تعرض الصفحة المواعيد والأسعار؟',
+          a: 'لا — لا نعرض مواعيد أو أسعاراً أو تقييمات حتى تُوثَّق من مصادرها الرسمية. افتح رابط خرائط قوقل لكل مطعم للاطلاع على أحدث معلوماته.' },
   ],
   methodH: 'حول هذه الصفحة',
   methodP1: 'هذه قائمة أولية تنمو تباعاً. الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، ولا نعرض مواعيد أو أسعاراً أو تقييمات حتى تُوثَّق من مصادرها الرسمية.',
@@ -102,6 +126,9 @@ const C = ar ? {
   cafesEyebrow: 'For the coffee lovers',
   cafesH: 'Ten hand-picked cafés',
   openMaps: t('det.openMaps'),
+  hoursLabel: 'Opening hours',
+  ratingLabel: 'Rating on Google Maps',
+  srcNote: fetchedLabel ? `Ratings and opening hours from Google Maps — last updated ${fetchedLabel}` : null,
   faqH: 'Frequently asked questions about dining in Al Ahsa',
   faqs: [
     { q: 'What traditional dishes is Al Ahsa known for?',
@@ -109,8 +136,11 @@ const C = ar ? {
       linkText: 'Explore them on the Hasawi Cuisine page →', linkHref: '/en/food/' },
     { q: 'Where are these restaurants and cafés located?',
       a: 'They are spread between Al Hofuf — around the historic Al-Koot district, the historic downtown, Al-Khalidiyah and Al-Raf‘ah North — and Al-Mubarraz along Ain Najm Road; each card links to the exact spot on Google Maps.' },
-    { q: 'Does this page list opening hours and prices?',
-      a: 'No — we only publish opening hours, prices or ratings once they are verified from official sources. Use each restaurant’s Google Maps link for its latest details.' },
+    liveRaw
+      ? { q: 'Where do the ratings and opening hours come from?',
+          a: `Ratings and opening hours come straight from Google Maps (last updated ${fetchedLabel}) and can change — check each place’s Google Maps link for the very latest details. Prices are not listed.` }
+      : { q: 'Does this page list opening hours and prices?',
+          a: 'No — we only publish opening hours, prices or ratings once they are verified from official sources. Use each restaurant’s Google Maps link for its latest details.' },
   ],
   methodH: 'About this page',
   methodP1: 'This is a first list that will keep growing. Names and locations come straight from Google Maps; we show no opening hours, prices or ratings until they are verified from official sources.',
@@ -187,19 +217,33 @@ const jsonLd = [
       <div class="dn-head">
         <span class="eyebrow">{C.listEyebrow}</span>
         <h2>{C.listH}</h2>
+        {C.srcNote && <p class="dn-src">{C.srcNote}</p>}
       </div>
 
       <div class="dngrid">
-        {C.places.map((p, idx) => (
+        {C.places.map((p, idx) => { const lv = liveFor(p.img); const hours = ar ? lv?.hoursAr : lv?.hoursEn; return (
           <article class="place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
             <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
             <div class="pc-body">
               <h3>{p.name}</h3>
               <p class="pc-area">{p.area}</p>
+              {lv?.rating && (
+                <p class="pc-rating"><span class="pc-star" aria-hidden="true">★</span>
+                  <strong>{lv.rating.toFixed(1)}</strong>
+                  {lv.count && <span class="pc-count">({lv.count.toLocaleString('en-US')})</span>}
+                  <span class="visually-hidden">{C.ratingLabel}</span>
+                </p>
+              )}
+              {hours && hours.length > 0 && (
+                <details class="pc-hours">
+                  <summary>{C.hoursLabel}</summary>
+                  <ul>{hours.map((h) => <li>{h}</li>)}</ul>
+                </details>
+              )}
               <a class="pc-maps" href={p.maps} target="_blank" rel="noopener">{C.openMaps}</a>
             </div>
           </article>
-        ))}
+        ); })}
       </div>
 
       <div class="dn-head dn-head--cafes">
@@ -208,16 +252,29 @@ const jsonLd = [
       </div>
 
       <div class="dngrid">
-        {C.cafes.map((p, idx) => (
+        {C.cafes.map((p, idx) => { const lv = liveFor(p.img); const hours = ar ? lv?.hoursAr : lv?.hoursEn; return (
           <article class="place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
             <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
             <div class="pc-body">
               <h3>{p.name}</h3>
               <p class="pc-area">{p.area}</p>
+              {lv?.rating && (
+                <p class="pc-rating"><span class="pc-star" aria-hidden="true">★</span>
+                  <strong>{lv.rating.toFixed(1)}</strong>
+                  {lv.count && <span class="pc-count">({lv.count.toLocaleString('en-US')})</span>}
+                  <span class="visually-hidden">{C.ratingLabel}</span>
+                </p>
+              )}
+              {hours && hours.length > 0 && (
+                <details class="pc-hours">
+                  <summary>{C.hoursLabel}</summary>
+                  <ul>{hours.map((h) => <li>{h}</li>)}</ul>
+                </details>
+              )}
               <a class="pc-maps" href={p.maps} target="_blank" rel="noopener">{C.openMaps}</a>
             </div>
           </article>
-        ))}
+        ); })}
       </div>
     </section>
 
@@ -259,10 +316,25 @@ const jsonLd = [
   .dn-head--cafes { margin-block-start: var(--s-7); }
   .dngrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
 
+  .dn-src { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
+
   .place-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
   .pc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
   .place-card h3 { font-size: var(--t-lg); color: var(--c-turq-deep); }
   .pc-area { font-size: var(--t-sm); color: var(--c-ink-soft); }
+
+  /* صف التقييم — النجمة ذهبية والأرقام لاتينية دائماً */
+  .pc-rating { display: flex; align-items: center; gap: 6px; font-size: var(--t-sm); color: var(--c-ink); }
+  .pc-star { color: var(--c-gold-deep); }
+  .pc-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
+
+  /* أوقات العمل — مطوية افتراضياً كي لا تُطيل البطاقة */
+  .pc-hours { font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .pc-hours summary { cursor: pointer; font-weight: 600; color: var(--c-turq-deep); padding-block: 2px; }
+  .pc-hours summary:hover { color: var(--c-turq); }
+  .pc-hours ul { list-style: none; padding: var(--s-2) 0 0; display: flex; flex-direction: column; gap: 4px; }
+
+  .visually-hidden { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .pc-maps { align-self: start; margin-block-start: auto; display: inline-flex; align-items: center; min-block-size: 44px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: 999px; padding: 6px 14px; text-decoration: none; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
   .pc-maps:hover { border-color: var(--c-turq); color: var(--c-turq); }
 
