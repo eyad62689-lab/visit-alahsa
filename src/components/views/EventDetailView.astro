@@ -65,7 +65,8 @@ const detailBase = ar ? '/فعاليات/' : '/en/events/';
 const venue = ev.venue
   ? (await getCollection('attractions')).find((a) => a.id.replace(/\.md$/, '') === ev.venue)
   : undefined;
-const loc = venue?.data.location;
+// إحداثيات المعلم أولاً، وإلا إحداثيات الفعالية نفسها إن وُجدت
+const loc = venue?.data.location ?? ev.coords;
 const mapUrl = ev.map ?? venue?.data.mapUrl ?? (loc ? `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}` : undefined);
 // تضمين بلا مفتاح API؛ hl يتبع لغة الصفحة
 const embedSrc = loc ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}&hl=${lang}&z=15&output=embed` : undefined;

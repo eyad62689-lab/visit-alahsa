@@ -14,6 +14,9 @@ export type Ev = {
   span: string; org: string; acts: string[]; img: string; start: number;
   map?: string; // رابط خرائط جوجل (اختياري)
   ticket?: string; // رابط حجز التذاكر الرسمي (اختياري) — لا يُضاف إلا لفعالية أعلنت الحجز فعلاً
+  /** إحداثيات الدبوس حين لا يكون المكان معلماً في الموقع — تُستخرج من رابط خرائط
+   *  قدّمه إياد لا بالتقدير، ويبقى رابطه الأصلي في map لزرّ «افتح في خرائط جوجل». */
+  coords?: { lat: number; lng: number };
   /** مقطع ملف معلم يُقام فيه الحدث — تُسحب منه الإحداثيات ورابط الخريطة الموثّقان.
    *  لا يُوضع إلا حين يكون المكان هو المعلم نفسه؛ وما لا معلم له تبقى صفحته بلا خريطة. */
   venue?: string;
@@ -75,6 +78,8 @@ export const EVENTS_AR: Ev[] = [
     status: 'confirmed',
     org: 'غرفة الأحساء',
     ticket: 'https://lomi.evento.sa/home',
+    map: 'https://maps.app.goo.gl/uY5gEBdUJ43pMEFV7',
+    coords: { lat: 25.3903836, lng: 49.5619631 },
     acts: ['معارض منتجات اللومي', 'الطهي الحي', 'ورش عمل زراعية', 'ركن الطفل', 'جلسات عائلية'],
   },
   {
@@ -156,6 +161,8 @@ export const EVENTS_EN: Ev[] = [
     status: 'confirmed',
     org: 'Al-Ahsa Chamber',
     ticket: 'https://lomi.evento.sa/home',
+    map: 'https://maps.app.goo.gl/uY5gEBdUJ43pMEFV7',
+    coords: { lat: 25.3903836, lng: 49.5619631 },
     acts: ['Lomi (dried lime) product shows', 'Live cooking', 'Agricultural workshops', 'Kids’ corner', 'Family sessions'],
   },
   {
