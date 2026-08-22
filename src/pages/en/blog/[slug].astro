@@ -1,0 +1,21 @@
+---
+// Blog post — English edition. The language switcher targets the article's Arabic
+// counterpart when it exists, falling back to the Arabic blog index.
+import BlogPostView from '../../../components/views/BlogPostView.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const all = await getCollection('blog', ({ data }) => !data.draft);
+  return all
+    .filter((e) => e.data.lang === 'en')
+    .map((entry) => {
+      const arPost = all.find((e) => e.data.key === entry.data.key && e.data.lang === 'ar');
+      return {
+        params: { slug: entry.data.slug },
+        props: { entry, alt: { ar: arPost ? `/مدونة/${arPost.data.slug}/` : '/مدونة/', en: `/en/blog/${entry.data.slug}/` } },
+      };
+    });
+}
+const { entry, alt } = Astro.props;
+---
+<BlogPostView entry={entry} lang="en" alt={alt} />

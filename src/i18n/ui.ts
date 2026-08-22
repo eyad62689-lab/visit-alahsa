@@ -182,6 +182,17 @@ export const ui = {
     // الإبلاغ عن خطأ
     'det.report': 'لاحظت معلومة غير دقيقة؟ أبلغنا',
     'foot.l.report': 'أبلغ عن خطأ',
+    // المدونة
+    'nav.blog': 'المدونة',
+    'crumb.blog': 'المدونة',
+    'blog.eyebrow': 'أدلة ومقالات',
+    'blog.title': 'مدونة الأحساء',
+    'blog.lead': 'أدلة عملية وحكايات من الواحة — خطط زيارة، تجارب، وما يعينك على رحلة أوفى.',
+    'blog.empty': 'المقالات في الطريق — عُد قريباً.',
+    'blog.published': 'نُشر في',
+    'blog.updated': 'حُدّث في',
+    'blog.back': '← كل المقالات',
+    'blog.faq': 'أسئلة شائعة',
     // البحث في الموقع كله (Pagefind)
     'search.open': 'ابحث في الموقع',
     'search.label': 'بحث في الموقع',
@@ -356,6 +367,17 @@ export const ui = {
     'det.nearby.note': 'Distances are approximate, in a straight line.',
     'det.report': 'Spotted something inaccurate? Tell us',
     'foot.l.report': 'Report an error',
+    // Blog
+    'nav.blog': 'Blog',
+    'crumb.blog': 'Blog',
+    'blog.eyebrow': 'Guides & stories',
+    'blog.title': 'The Al-Ahsa Blog',
+    'blog.lead': 'Practical guides and stories from the oasis — trip plans, experiences, and everything that makes for a fuller visit.',
+    'blog.empty': 'Articles are on their way — check back soon.',
+    'blog.published': 'Published',
+    'blog.updated': 'Updated',
+    'blog.back': 'All articles →',
+    'blog.faq': 'Frequently asked questions',
     // Site-wide search (Pagefind)
     'search.open': 'Search the site',
     'search.label': 'Site search',

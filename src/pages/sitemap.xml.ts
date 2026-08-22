@@ -7,6 +7,7 @@ export const GET: APIRoute = async ({ site }) => {
   const base = site ?? new URL('https://visit-alahsa.com');
   const abs = (p: string) => new URL(p, base).href;
   const items = await getCollection('attractions');
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
 
   // أزواج (عربي/إنجليزي) — تُستبعد «رحلتي» الشخصية (noindex)
   const pairs: { ar: string; en?: string }[] = [
@@ -19,6 +20,18 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/' },
     { ar: '/فعاليات/', en: '/en/events/' },
     { ar: '/خطط/', en: '/en/plan-your-trip/' },
+    { ar: '/مدونة/', en: '/en/blog/' },
+    // مقالات المدونة — الاقتران بحقل key المشترك بين الترجمتين
+    ...posts
+      .filter((p) => p.data.lang === 'ar')
+      .map((p) => {
+        const en = posts.find((x) => x.data.key === p.data.key && x.data.lang === 'en');
+        return { ar: '/مدونة/' + p.data.slug + '/', en: en ? '/en/blog/' + en.data.slug + '/' : undefined };
+      }),
+    // مقال إنجليزي بلا نظير عربي: يدخل بحقل ar (الحقل الإلزامي للرابط) بلا hreflang
+    ...posts
+      .filter((p) => p.data.lang === 'en' && !posts.some((x) => x.data.key === p.data.key && x.data.lang === 'ar'))
+      .map((p) => ({ ar: '/en/blog/' + p.data.slug + '/' })),
     ...items.map((e) => ({ ar: '/معالم/' + e.data.slug_ar + '/', en: '/en/attractions/' + e.data.slug_en + '/' })),
     // صفحات الفعاليات المفردة — تُقرن بالمعرّف id لا بالترتيب
     ...EVENTS_AR.map((e) => ({

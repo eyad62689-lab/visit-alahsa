@@ -1,0 +1,152 @@
+---
+// صفحة المقال — ثنائية اللغة. كل لغة ملف Markdown مستقل (اقتران الترجمتين بحقل key).
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import HeroPoster from '../HeroPoster.astro';
+import { formatDate } from '../../lib/dates';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { entry: CollectionEntry<'blog'>; lang: Lang; alt: AltLinks; }
+const { entry, lang, alt } = Astro.props;
+const p = entry.data;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const { Content } = await render(entry);
+
+const homeHref = ar ? '/' : '/en/';
+const blogHref = ar ? '/مدونة/' : '/en/blog/';
+const siteUrl = 'https://visit-alahsa.com';
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = p.heroImage ? `${p.heroImage}.jpg` : '/og-default.png';
+
+const jsonLd: object[] = [
+  {
+    '@context': 'https://schema.org', '@type': 'BlogPosting',
+    headline: p.title, description: p.description, url: pageUrl,
+    inLanguage: ar ? 'ar' : 'en',
+    image: siteUrl + ogImage,
+    datePublished: p.pubDate.toISOString().slice(0, 10),
+    ...(p.updatedDate ? { dateModified: p.updatedDate.toISOString().slice(0, 10) } : {}),
+    mainEntityOfPage: pageUrl,
+    author: { '@type': 'Organization', name: ar ? 'زوروا الأحساء' : 'Visit Al-Ahsa', url: siteUrl },
+    publisher: { '@type': 'Organization', name: ar ? 'زوروا الأحساء' : 'Visit Al-Ahsa', url: siteUrl },
+  },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: t('crumb.blog'), item: new URL(blogHref, siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: p.title, item: pageUrl },
+  ] },
+];
+if (p.faq.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: p.faq.map((f) => ({
+      '@type': 'Question', name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
+---
+<Base title={`${p.title} — ${t('site.name')}`} description={p.description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={p.heroImage}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class={`post-hero ${p.heroImage ? 'photo' : 'post-hero--plain'}`}>
+      {p.heroImage && <HeroPoster src={p.heroImage} />}
+      <PalmMotif size={320} class="ph-wm" aria-hidden="true" />
+      <div class="container ph-in">
+        <nav class="crumbs" aria-label="breadcrumb">
+          <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
+          <a href={blogHref}>{t('crumb.blog')}</a><span>/</span>
+          <span aria-current="page">{p.title}</span>
+        </nav>
+        <span class="eyebrow gold-on-dark">{p.topic}</span>
+        <h1 class="ph-title">{p.title}</h1>
+        <p class="ph-desc">{p.description}</p>
+        <p class="ph-meta">
+          <time datetime={p.pubDate.toISOString().slice(0, 10)}>{t('blog.published')} {formatDate(p.pubDate, lang)}</time>
+          {p.updatedDate && (
+            <> · <time datetime={p.updatedDate.toISOString().slice(0, 10)}>{t('blog.updated')} {formatDate(p.updatedDate, lang)}</time></>
+          )}
+        </p>
+      </div>
+    </section>
+
+    <div class="container post-wrap">
+      <article class="post-prose" data-reveal>
+        <Content />
+      </article>
+
+      {p.faq.length > 0 && (
+        <section class="post-faq" data-reveal>
+          <h2 class="faq-h">{t('blog.faq')}</h2>
+          {p.faq.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )}
+
+      <p class="post-note">{t('plan.printNote')}</p>
+      <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(Astro.url.pathname)}`}>{t('det.report')}</a>
+
+      <div class="post-back">
+        <a href={blogHref} class="btn btn--turq">{t('blog.back')}</a>
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .post-hero { position: relative; overflow: hidden; color: var(--c-sand); min-block-size: 40vh; display: flex; align-items: flex-end; }
+  .post-hero--plain { background: var(--c-turq-deep); min-block-size: 0; }
+  .post-hero.photo::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--hero-scrim-soft); }
+  :global(.ph-wm) { position: absolute; inset-block-start: -8%; inset-inline-end: -3%; color: var(--c-gold); opacity: .13; z-index: 0; }
+  .ph-in { position: relative; z-index: 2; padding-block: var(--s-6); }
+  .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
+  .crumbs a { display: inline-block; padding-block: var(--s-1); color: rgba(247,243,234,.92); text-decoration: none; }
+  .crumbs a:hover { color: var(--c-gold); }
+  .crumbs span { color: rgba(247,243,234,.62); }
+  .ph-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.12; margin-block: var(--s-2) var(--s-3); max-inline-size: 26ch; }
+  .ph-desc { font-size: var(--t-lg); color: rgba(247,243,234,.92); max-inline-size: 56ch; }
+  .ph-meta { margin-block-start: var(--s-3); font-size: var(--t-xs); color: rgba(247,243,234,.75); }
+
+  .post-wrap { padding-block: var(--s-7) var(--s-8); }
+  /* عمود قراءة واحد مريح — المقال طويل ولا شريط جانبي يزاحمه */
+  .post-prose { max-inline-size: 68ch; font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); }
+  .post-prose :global(p) { margin-block-end: var(--s-4); }
+  .post-prose :global(strong) { color: var(--c-turq-deep); font-weight: 600; }
+  .post-prose :global(a) { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .post-prose :global(a:hover) { color: var(--c-gold-deep); }
+  .post-prose :global(h2) { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); line-height: 1.25; margin-block: var(--s-6) var(--s-3); }
+  .post-prose :global(h3) { font-family: var(--font-heading); font-weight: 700; color: var(--c-ink); font-size: var(--t-lg); line-height: 1.3; margin-block: var(--s-5) var(--s-2); }
+  .post-prose :global(ul), .post-prose :global(ol) { margin-block-end: var(--s-4); padding-inline-start: 1.4em; }
+  .post-prose :global(li) { margin-block-end: var(--s-1); }
+  .post-prose :global(li::marker) { color: var(--c-gold-deep); }
+  .post-prose :global(blockquote) { margin: 0 0 var(--s-4); padding-inline-start: var(--s-4); border-inline-start: 3px solid var(--c-gold); color: var(--c-ink-soft); }
+  .post-prose :global(hr) { border: 0; border-block-start: 1px solid var(--c-line); margin-block: var(--s-5); }
+  /* جداول عريضة تتمرّر داخل حاويتها لا تكسر الصفحة */
+  .post-prose :global(table) { display: block; overflow-x: auto; border-collapse: collapse; margin-block-end: var(--s-4); font-size: var(--t-sm); }
+  .post-prose :global(th), .post-prose :global(td) { border: 1px solid var(--c-line); padding: var(--s-2) var(--s-3); text-align: start; }
+  .post-prose :global(th) { background: var(--c-sand-2); color: var(--c-turq-deep); }
+
+  .post-faq { max-inline-size: 68ch; margin-block-start: var(--s-6); }
+  .faq-h { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); margin-block-end: var(--s-3); }
+  .faq-item { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); }
+  .faq-item summary { cursor: pointer; padding: var(--s-3) var(--s-4); font-weight: 600; color: var(--c-ink); }
+  .faq-item summary:hover { color: var(--c-turq); }
+  .faq-item p { padding: 0 var(--s-4) var(--s-3); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
+
+  .post-note { max-inline-size: 68ch; margin-block-start: var(--s-5); font-size: var(--t-xs); color: var(--c-ink-60); line-height: 1.7; }
+  .report-link { display: inline-block; padding-block: var(--s-1); margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-60);
+    text-decoration: underline; text-underline-offset: 3px; }
+  .report-link:hover { color: var(--c-turq); }
+  .post-back { margin-block-start: var(--s-5); }
+  @media (max-width: 760px) { .ph-title { font-size: var(--t-2xl); } }
+</style>

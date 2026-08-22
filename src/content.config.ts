@@ -40,4 +40,25 @@ const attractions = defineCollection({
   }),
 });
 
-export const collections = { attractions };
+// مقالات المدونة — كل لغة ملفها المستقل (المقال طويل فلا يصلح نمط الحقول _en).
+// الترجمتان تُقرنان بحقل key المشترك؛ slug بلغة الملف نفسه (عربي للعربية).
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),                   // وصف الميتا وبطاقة الفهرس
+    lang: z.enum(['ar', 'en']),
+    key: z.string(),                           // معرّف مشترك يقرن الترجمتين
+    slug: z.string(),                          // رابط المقال بلغة الملف
+    topic: z.string(),                         // التسمية العلوية (eyebrow) بلغة الملف
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    heroImage: z.string().optional(),          // نفس اصطلاح صور المعالم (/img/… بلا امتداد)
+    tags: z.array(z.string()).default([]),
+    // أسئلة شائعة تُعرض بعد المقال وتُصدَّر FAQPage في JSON-LD
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    draft: z.boolean().default(false),         // المسودة لا تُبنى صفحتها ولا تظهر في الفهرس وsitemap
+  }),
+});
+
+export const collections = { attractions, blog };

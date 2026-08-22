@@ -1,0 +1,97 @@
+---
+// فهرس المدونة — ثنائي اللغة. يجلب مقالات لغة الصفحة (بلا مسودات) بالأحدث أولاً.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import Photo from '../Photo.astro';
+import { formatDate } from '../../lib/dates';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const base = ar ? '/مدونة/' : '/en/blog/';
+const posts = (await getCollection('blog', ({ data }) => data.lang === lang && !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const siteUrl = 'https://visit-alahsa.com';
+const pageUrl = new URL(base, siteUrl).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'Blog',
+    name: t('blog.title'), description: t('blog.lead'), url: pageUrl, inLanguage: ar ? 'ar' : 'en',
+  },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: t('crumb.blog'), item: pageUrl },
+  ] },
+];
+---
+<Base title={`${t('blog.title')} — ${t('site.name')}`} description={t('blog.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class="blog-hero on-dark">
+      <PalmMotif size={320} class="bh-wm" aria-hidden="true" />
+      <div class="container bh-in">
+        <span class="eyebrow gold-on-dark">{t('blog.eyebrow')}</span>
+        <h1 class="bh-title">{t('blog.title')}</h1>
+        <p class="bh-lead">{t('blog.lead')}</p>
+      </div>
+    </section>
+
+    <section class="container blog-list" data-reveal>
+      {posts.length === 0 ? (
+        <p class="blog-empty">{t('blog.empty')}</p>
+      ) : (
+        <div class="bl-grid">
+          {posts.map((p) => (
+            <a class="bl-card" href={base + p.data.slug + '/'}>
+              {p.data.heroImage ? (
+                <Photo src={p.data.heroImage} label={p.data.title} class="bl-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+              ) : (
+                <div class="bl-ph" aria-hidden="true"><PalmMotif size={72} class="bl-ph-palm" /></div>
+              )}
+              <div class="bl-body">
+                <span class="t-caption bl-k">{p.data.topic}</span>
+                <h2 class="bl-t">{p.data.title}</h2>
+                <p class="bl-d">{p.data.description}</p>
+                <time class="bl-date" datetime={p.data.pubDate.toISOString().slice(0, 10)}>{formatDate(p.data.pubDate, lang)}</time>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .blog-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); color: var(--c-sand); }
+  :global(.bh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -3%; color: var(--c-gold); opacity: .14; }
+  .bh-in { position: relative; padding-block: var(--s-7); }
+  .bh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.12; margin-block: var(--s-2) var(--s-3); }
+  .bh-lead { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 52ch; }
+  .blog-list { padding-block: var(--s-7) var(--s-8); }
+  .blog-empty { color: var(--c-ink-soft); font-size: var(--t-lg); }
+  .bl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+  .bl-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); text-decoration: none; color: inherit;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .bl-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  :global(.bl-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
+  .bl-ph { aspect-ratio: 16 / 10; display: grid; place-items: center; background: var(--c-turq-deep); }
+  :global(.bl-ph-palm) { color: var(--c-gold); opacity: .5; }
+  .bl-body { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: var(--s-1); flex: 1; }
+  .bl-k { color: var(--c-gold-deep); }
+  .bl-t { font-size: var(--t-lg); color: var(--c-turq-deep); line-height: 1.35; }
+  .bl-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
+  .bl-date { margin-block-start: auto; padding-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-60); }
+  @media (max-width: 980px) { .bl-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .bl-grid { grid-template-columns: 1fr; } }
+</style>

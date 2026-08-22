@@ -1,0 +1,20 @@
+---
+// صفحة المقال — النسخة العربية. مبدّل اللغة يقصد نظير المقال إن وُجد وإلا فهرس المدونة.
+import BlogPostView from '../../components/views/BlogPostView.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const all = await getCollection('blog', ({ data }) => !data.draft);
+  return all
+    .filter((e) => e.data.lang === 'ar')
+    .map((entry) => {
+      const en = all.find((e) => e.data.key === entry.data.key && e.data.lang === 'en');
+      return {
+        params: { slug: entry.data.slug },
+        props: { entry, alt: { ar: `/مدونة/${entry.data.slug}/`, en: en ? `/en/blog/${en.data.slug}/` : '/en/blog/' } },
+      };
+    });
+}
+const { entry, alt } = Astro.props;
+---
+<BlogPostView entry={entry} lang="ar" alt={alt} />
