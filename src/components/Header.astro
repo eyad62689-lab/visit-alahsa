@@ -19,6 +19,7 @@ const routes = {
   events: ar ? '/فعاليات/' : '/en/events/',
   fruits: ar ? '/ثمار/' : '/en/fruits/',
   food: ar ? '/أكلات/' : '/en/food/',
+  dine: ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/',
   discover: ar ? '/#experiences' : '/en/#experiences',
   plan: ar ? '/خطط/' : '/en/plan-your-trip/',
   myTrip: ar ? '/رحلتي/' : '/en/plan/',
@@ -29,6 +30,7 @@ const nav = [
   { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },
   { href: routes.food, label: t('nav.food') },
+  { href: routes.dine, label: t('nav.dining') },
   { href: routes.plan, label: t('nav.plan') },
   { href: routes.map, label: t('nav.map') },
 ];
@@ -76,7 +78,11 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
 
 <style>
   .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: color-mix(in srgb, var(--c-sand) 86%, transparent); backdrop-filter: blur(10px); border-block-end: 1px solid var(--c-line); }
-  /* الشريط يحمل وردماركاً وسبعة روابط وبحثاً و«رحلتي» ومبدّل لغة وزرّ دعوة —
+  /* الشريط يحمل وردماركاً وثمانية روابط وبحثاً و«رحلتي» ومبدّل لغة وزرّ دعوة —
+     الرابط الثامن (مطاعم ومقاهي/Dining) أُضيف 2026-08-22 بتسمية قصيرة عمداً،
+     والقياس الفعلي بعده: 68px بلا التفاف ولا تمرير أفقي من 1200px فما فوق
+     باللغتين — عتبة 1199px أدناه ما تزال صحيحة. أي تطويل للتسميات يُعاد قياسه. */
+  /* الشريط يحمل وردماركاً وبقية الأدوات —
      أعرض ممّا يتّسع له عمود المحتوى (1120px)، وكان المحتوى الإنجليزي يفيض عنه
      بـ59px فيخرج عن الشبكة ويولّد تمريراً أفقياً عند 1200px. الشريط وحده يأخذ
      عمودًا أوسع، والفجوات أضيق. */
