@@ -1,6 +1,7 @@
 // خريطة الموقع ثنائية اللغة — كل صفحة بنسختيها مع روابط hreflang البديلة.
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { EVENTS_AR, EVENTS_EN } from '../data/events';
 
 export const GET: APIRoute = async ({ site }) => {
   const base = site ?? new URL('https://visit-alahsa.com');
@@ -18,6 +19,11 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/فعاليات/', en: '/en/events/' },
     { ar: '/خطط/', en: '/en/plan-your-trip/' },
     ...items.map((e) => ({ ar: '/معالم/' + e.data.slug_ar + '/', en: '/en/attractions/' + e.data.slug_en + '/' })),
+    // صفحات الفعاليات المفردة — تُقرن بالمعرّف id لا بالترتيب
+    ...EVENTS_AR.map((e) => ({
+      ar: '/فعاليات/' + e.slug + '/',
+      en: EVENTS_EN.find((x) => x.id === e.id) ? '/en/events/' + EVENTS_EN.find((x) => x.id === e.id)!.slug + '/' : undefined,
+    })),
   ];
 
   const alts = (p: { ar: string; en?: string }) => {

@@ -1,0 +1,287 @@
+---
+// صفحة الفعالية المفردة — /فعاليات/<slug>/ و /en/events/<slug>/
+//
+// الخطوط والألوان من رموز الموقع حصراً (--font-heading = Playfair + Cairo،
+// --font-body = Lora + IBM Plex Sans Arabic) لا من قيم مكتوبة يدوياً، فيبقى
+// الاصطلاح الفاخر مصدره واحداً ولا تتفرّق الهوية بين الصفحات.
+//
+// قاعدة ملزمة: لا تُختلق معلومة. الخريطة لا تظهر إلا بإحداثيات موثّقة مسحوبة من
+// ملف معلم، أو برابط خرائط في بيانات الفعالية — وما لا مصدر له تبقى صفحته بلا خريطة.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PalmMotif from '../PalmMotif.astro';
+import HeroPoster from '../HeroPoster.astro';
+import Photo from '../Photo.astro';
+import { useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { eventsFor, type Ev } from '../../data/events';
+
+interface Props { ev: Ev; lang: Lang; alt: AltLinks; }
+const { ev, lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const C = ar ? {
+  eyebrow: 'من مواسم الواحة',
+  placeK: 'الموقع', orgK: 'الجهات المنظّمة', seasonK: 'الموسم',
+  timeK: 'الموعد', spanK: 'المدة التقريبية',
+  actsK: 'أبرز الأنشطة',
+  ticketK: 'احجز تذكرتك',
+  mapH: 'الموقع على الخريطة',
+  mapOpen: 'افتح في خرائط جوجل',
+  mapNone: 'لم تُعلن الجهة المنظّمة موقعاً دقيقاً لهذه الفعالية بعد، فلم نضع لها خريطة.',
+  mapFrameTitle: 'خريطة موقع الفعالية',
+  noticeH: 'قبل أن تحضر',
+  notice: 'تتكرّر هذه الفعالية سنوياً في موسمها التقريبي، وقد تختلف مواعيدها وتفاصيلها من عامٍ لآخر. يُرجى التأكد من إعلانات الجهة المنظّمة قبل الزيارة.',
+  statusL: { confirmed: 'مؤكد هذا العام', expected: 'موسم متوقع', tba: 'بانتظار الإعلان' },
+  crumb: 'الفعاليات',
+  moreH: 'مواسم أخرى',
+  back: 'كل الفعاليات',
+} : {
+  eyebrow: 'A season of the oasis',
+  placeK: 'Location', orgK: 'Organisers', seasonK: 'Season',
+  timeK: 'When', spanK: 'Approximate length',
+  actsK: 'Highlights',
+  ticketK: 'Book your ticket',
+  mapH: 'On the map',
+  mapOpen: 'Open in Google Maps',
+  mapNone: 'The organisers have not announced a precise location for this event yet, so no map is shown.',
+  mapFrameTitle: 'Event location map',
+  noticeH: 'Before you go',
+  notice: 'This event recurs annually in its approximate season; dates and details may vary from year to year. Please confirm via the organisers’ announcements before visiting.',
+  statusL: { confirmed: 'Confirmed this year', expected: 'Expected season', tba: 'Awaiting announcement' },
+  crumb: 'Festivals & Events',
+  moreH: 'Other seasons',
+  back: 'All events',
+};
+
+const listHref = ar ? '/فعاليات/' : '/en/events/';
+const homeHref = ar ? '/' : '/en/';
+const detailBase = ar ? '/فعاليات/' : '/en/events/';
+
+// الإحداثيات تُسحب من ملف المعلم الموثّق — لا تُقدَّر يدوياً (قاعدة المشروع).
+const venue = ev.venue
+  ? (await getCollection('attractions')).find((a) => a.id.replace(/\.md$/, '') === ev.venue)
+  : undefined;
+const loc = venue?.data.location;
+const mapUrl = ev.map ?? venue?.data.mapUrl ?? (loc ? `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}` : undefined);
+// تضمين بلا مفتاح API؛ hl يتبع لغة الصفحة
+const embedSrc = loc ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}&hl=${lang}&z=15&output=embed` : undefined;
+const venueHref = venue ? (ar ? `/معالم/${venue.data.slug_ar}` : `/en/attractions/${venue.data.slug_en}`) : undefined;
+const venueName = venue ? (ar ? venue.data.title : (venue.data.title_en ?? venue.data.title)) : undefined;
+
+// ثلاث فعاليات أخرى للتصفّح
+const others = eventsFor(lang).filter((e) => e.id !== ev.id).slice(0, 3);
+
+const siteUrl = 'https://visit-alahsa.com';
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = ev.img ? `${ev.img}.jpg` : '/og-default.png';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: C.crumb, item: new URL(listHref, siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: ev.name, item: pageUrl },
+  ] },
+  // لا Event schema عمداً: جوجل يشترط startDate محدداً، ومواسمنا تقريبية بقرار
+  // محتوى ملزم — فأي startDate سيكون مختلقاً. نكتفي بـ BreadcrumbList.
+];
+const desc = `${ev.name} — ${ev.place}. ${ev.season}، ${ev.time}. ${ev.acts.slice(0, 3).join('، ')}.`;
+---
+<Base title={`${ev.name} — ${t('site.name')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class={`evd-hero on-dark ${ev.img ? '' : 'evd-hero--plain'}`}>
+      {ev.img && <HeroPoster src={ev.img} class="evd-poster" />}
+      <PalmMotif size={320} class="evd-wm" aria-hidden="true" />
+      <div class="container evd-in">
+        <nav class="crumbs" aria-label="breadcrumb">
+          <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
+          <a href={listHref}>{C.crumb}</a><span>/</span>
+          <span aria-current="page">{ev.name}</span>
+        </nav>
+        <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
+        <h1 class="evd-title">{ev.name}</h1>
+        <p class="evd-when">
+          <svg class="evd-cal" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4.5" width="18" height="17" rx="2" /><path d="M3 9h18M8 2.5v4M16 2.5v4" />
+          </svg>
+          {ev.time}
+        </p>
+        <span class={`evd-status evd-status--${ev.status ?? 'expected'}`}>{C.statusL[ev.status ?? 'expected']}</span>
+      </div>
+    </section>
+
+    <div class="container evd-layout">
+      <article class="evd-main" data-reveal>
+        <dl class="evd-facts">
+          <div class="evd-row"><dt>{C.seasonK}</dt><dd>{ev.season}</dd></div>
+          <div class="evd-row"><dt>{C.timeK}</dt><dd>{ev.time}</dd></div>
+          <div class="evd-row"><dt>{C.spanK}</dt><dd>{ev.span}</dd></div>
+          <div class="evd-row">
+            <dt>{C.placeK}</dt>
+            <dd>{venueHref ? <a class="evd-venue" href={venueHref}>{ev.place}</a> : ev.place}</dd>
+          </div>
+          <div class="evd-row"><dt>{C.orgK}</dt><dd>{ev.org}</dd></div>
+        </dl>
+
+        <h2 class="evd-h">{C.actsK}</h2>
+        <ul class="evd-acts">
+          {ev.acts.map((a) => <li class="evd-act">{a}</li>)}
+        </ul>
+
+        {ev.ticket && (
+          <a class="ev-ticket evd-ticket" href={ev.ticket} target="_blank" rel="noopener noreferrer">
+            <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9.6V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.6a2.4 2.4 0 0 0 0 4.8V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.6a2.4 2.4 0 0 0 0-4.8Z" />
+              <path d="M14.5 6.6v10.8" stroke-dasharray="2 2.6" />
+            </svg>
+            {C.ticketK}
+          </a>
+        )}
+
+        <section class="evd-map-sec" aria-labelledby="evd-map-h">
+          <h2 class="evd-h" id="evd-map-h">{C.mapH}</h2>
+          {embedSrc ? (
+            <>
+              <div class="evd-map-frame">
+                <iframe
+                  src={embedSrc}
+                  title={C.mapFrameTitle}
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              {venueName && <p class="evd-map-note">{venueName}</p>}
+            </>
+          ) : (
+            !mapUrl && <p class="evd-map-note">{C.mapNone}</p>
+          )}
+          {mapUrl && (
+            <a class="evd-map-btn" href={mapUrl} target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" /><circle cx="12" cy="10" r="2.6" />
+              </svg>
+              {C.mapOpen}
+            </a>
+          )}
+        </section>
+
+        <aside class="evd-notice">
+          <h2 class="evd-notice-h">{C.noticeH}</h2>
+          <p>{C.notice}</p>
+        </aside>
+
+        <a class="btn btn--turq evd-back" href={listHref}>{C.back}</a>
+      </article>
+    </div>
+
+    <section class="evd-more">
+      <div class="container" data-reveal>
+        <h2 class="evd-more-h">{C.moreH}</h2>
+        <div class="evd-more-grid">
+          {others.map((o) => (
+            <a class="evd-more-card" href={`${detailBase}${o.slug}/`}>
+              <Photo src={o.img} label={o.name} class="evd-more-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+              <div class="evd-more-body">
+                <span class="t-caption evd-more-k">{o.season}</span>
+                <h3 class="evd-more-t">{o.name}</h3>
+                <p class="evd-more-d">{o.time}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  /* الهيرو */
+  .evd-hero { position: relative; overflow: hidden; display: flex; align-items: flex-end;
+    min-block-size: 58vh; color: var(--c-sand); background: var(--c-turq-deep); }
+  .evd-hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(21,33,30,.28) 0%, rgba(21,33,30,.62) 55%, rgba(21,33,30,.82) 100%); }
+  .evd-hero--plain { min-block-size: 42vh; }
+  :global(.evd-wm) { position: absolute; inset-block-end: -12%; inset-inline-start: -8%; color: var(--c-gold); opacity: .12; z-index: 0; }
+  .evd-in { position: relative; z-index: 2; padding-block: var(--s-7) var(--s-6); }
+  .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
+  .crumbs a { display: inline-block; padding-block: var(--s-1); color: rgba(247,243,234,.8); text-decoration: none; }
+  .crumbs a:hover { color: var(--c-gold); }
+  .crumbs span { color: rgba(247,243,234,.5); }
+  /* العنوان: --font-heading = Playfair + Cairo (اصطلاح الموقع الفاخر) */
+  .evd-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand);
+    font-size: var(--t-3xl); line-height: 1.12; margin-block: var(--s-2) var(--s-3); }
+  .evd-when { display: inline-flex; align-items: center; gap: 8px; font-size: var(--t-lg);
+    color: rgba(247,243,234,.94); }
+  .evd-cal { flex-shrink: 0; color: var(--c-gold); }
+  .evd-status { display: inline-block; margin-block-start: var(--s-3); font-size: var(--t-xs); font-weight: 600;
+    padding: 5px 14px; border-radius: var(--radius-pill); background: rgba(247,243,234,.14);
+    border: 1px solid rgba(247,243,234,.3); color: var(--c-sand); }
+  .evd-status--confirmed { background: var(--c-gold); border-color: var(--c-gold); color: var(--c-ink); }
+
+  /* المتن */
+  .evd-layout { padding-block: var(--s-7); }
+  .evd-main { max-inline-size: 72ch; }
+  .evd-facts { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3) var(--s-4); margin: 0 0 var(--s-6); }
+  .evd-row { display: contents; }
+  .evd-facts dt { font-size: var(--t-xs); font-weight: 600; color: var(--c-ink-soft); }
+  .evd-facts dd { font-size: var(--t-base); color: var(--c-ink); margin: 0; line-height: 1.7; }
+  .evd-venue { color: var(--c-turq-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .evd-venue:hover { color: var(--c-gold-deep); }
+  .evd-h { font-family: var(--font-heading); font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-6) var(--s-3); }
+  .evd-acts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .evd-act { font-size: var(--t-sm); color: var(--c-ink); background: var(--c-sand-2);
+    border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 7px 15px; }
+  .evd-ticket { margin-block-start: var(--s-5); }
+
+  /* الخريطة */
+  .evd-map-sec { margin-block-start: var(--s-2); }
+  .evd-map-frame { position: relative; aspect-ratio: 16 / 10; border-radius: var(--radius);
+    overflow: hidden; border: 1px solid var(--c-line); background: var(--c-sand-2); }
+  .evd-map-frame iframe { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; border: 0; display: block; }
+  .evd-map-note { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-3); }
+  .evd-map-btn { display: inline-flex; align-items: center; gap: 7px; margin-block-start: var(--s-3);
+    font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm);
+    color: var(--c-turq-deep); text-decoration: none; background: #fff;
+    border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 11px 20px;
+    transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .evd-map-btn:hover { border-color: var(--c-gold); color: var(--c-gold-deep); }
+  .evd-map-btn svg { flex-shrink: 0; color: var(--c-gold-deep); }
+
+  /* تنبيه المواعيد */
+  .evd-notice { margin-block-start: var(--s-7); background: var(--c-sand-2);
+    border-inline-start: 3px solid var(--c-gold); border-radius: var(--radius-sm); padding: var(--s-4); }
+  .evd-notice-h { font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm);
+    color: var(--c-ink); margin-block-end: var(--s-2); }
+  .evd-notice p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+  .evd-back { margin-block-start: var(--s-6); }
+
+  /* مواسم أخرى */
+  .evd-more { background: var(--c-sand-2); padding-block: var(--s-7); }
+  .evd-more-h { font-family: var(--font-heading); font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-4); }
+  .evd-more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+  .evd-more-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow); text-decoration: none; color: inherit;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .evd-more-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  :global(.evd-more-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
+  .evd-more-body { padding: var(--s-3) var(--s-4) var(--s-4); }
+  .evd-more-k { color: var(--c-gold-deep); }
+  .evd-more-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-start: 2px; }
+  .evd-more-d { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block-start: var(--s-1); }
+
+  @media (max-width: 760px) {
+    .evd-hero { min-block-size: 46vh; }
+    .evd-hero--plain { min-block-size: 34vh; }
+    .evd-title { font-size: var(--t-2xl); }
+    .evd-when { font-size: var(--t-base); }
+    .evd-facts { grid-template-columns: 1fr; gap: var(--s-1) 0; }
+    .evd-facts dd { margin-block-end: var(--s-3); }
+    .evd-more-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .evd-more-card:hover { transform: none; } }
+</style>

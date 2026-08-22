@@ -1,0 +1,15 @@
+---
+// Single event page — English
+import EventDetailView from '../../../components/views/EventDetailView.astro';
+import { EVENTS_EN, counterpart } from '../../../data/events';
+
+export function getStaticPaths() {
+  return EVENTS_EN.map((ev) => ({ params: { slug: ev.slug }, props: { ev } }));
+}
+
+const { ev } = Astro.props;
+const arEv = counterpart(ev.id, 'en');
+// The language switch points at the same event, not back at the list
+const alt = { ar: arEv ? `/فعاليات/${arEv.slug}/` : '/فعاليات/', en: `/en/events/${ev.slug}/` };
+---
+<EventDetailView ev={ev} lang="en" alt={alt} />

@@ -215,3 +215,15 @@ picture.photo { display: block; }
 /* عند الصفر لا تحمل الشارة معلومة — إخفاؤها يوفّر عرضاً في شريط الهاتف الضيّق
    ويرفع الضجيج البصري. تظهر فور إضافة أول معلم (الصنف has-items). */
 .plan-badge:not(.has-items) { display: none; }
+
+/* زر حجز التذاكر — نمط موحّد تتشاركه بطاقة الفعالية وصفحتها التفصيلية.
+   الذهبي لغة الدعوة للفعل في الهوية، والارتفاع 44px هدف لمس مريح. */
+.ev-ticket { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm);
+  background: var(--c-gold); color: var(--c-ink); text-decoration: none;
+  padding: 11px 20px; border-radius: var(--radius-pill);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.ev-ticket:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(201,154,74,.38); }
+.ev-ticket:focus-visible { outline: 2px solid var(--c-turq-deep); outline-offset: 3px; }
+.ev-ticket-ic { flex-shrink: 0; }
+@media (prefers-reduced-motion: reduce) { .ev-ticket:hover { transform: none; } }
