@@ -75,9 +75,16 @@ const jsonLd = [
     containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : 'Saudi Arabia' },
   },
 ];
-const title = ar ? 'الأحساء — أكبر واحة نخيل في العالم' : 'Al-Ahsa — the world’s largest palm oasis';
+// عنوان ووصف بكلمة «دليل السياحة» المستهدفة (سيو 2026-08-22) — كل ما يُذكر
+// موجود فعلاً في الموقع (معالم وخرائط ومسارات وفعاليات ومطاعم).
+const title = ar
+  ? 'الأحساء — دليلك السياحي لأكبر واحة نخيل في العالم'
+  : 'Al-Ahsa Travel Guide — the World’s Largest Palm Oasis';
+const description = ar
+  ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
+  : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
-<Base title={title} description={t('home.hero.lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
+<Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="hero photo">

@@ -1,6 +1,18 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
+// الخطوط الفاخرة (مهارة alahsa-typography) مستضافة ذاتياً عبر fontsource
+// (سيو 2026-08-22): استدعاء Google Fonts الخارجي كان يحجب العرض ويرفع LCP
+// عبر الموقع كله (العقوبة المقيسة في Lighthouse). نفس العائلات والأوزان
+// المعتمدة حرفياً — تتغير آلية التحميل فقط، وfont-display: swap مضمّن.
+import '@fontsource/cairo/400.css';
+import '@fontsource/cairo/700.css';
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/lora/400.css';
+import '@fontsource/lora/600.css';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/600.css';
 import Seo from '../components/Seo.astro';
 import { dir, htmlLang, type AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
@@ -40,12 +52,8 @@ const GA_ID = 'G-QB084SK5XJ';
     <link rel="manifest" href="/site.webmanifest" />
     <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLd} />
 
-    {/* الخطوط الفاخرة (مهارة alahsa-typography): Playfair + Lora + Cairo + Cormorant
-        من Google Fonts للعناوين واللاتيني. متن العربية (IBM Plex) مستضاف ذاتياً في
-        styles/fonts.css ويبقى بديلاً آمناً إن تعذّر التحميل الخارجي. */}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+    {/* الخطوط الفاخرة كلها مستضافة ذاتياً الآن (استيرادات fontsource أعلاه) —
+        أُزيل استدعاء Google Fonts المحجِب للعرض (سيو 2026-08-22). */}
 
     {/* preload لخطّ المتن الحرج المستضاف ذاتياً حسب اللغة (يحمي LCP). */}
     {lang === 'ar' ? (
@@ -59,8 +67,10 @@ const GA_ID = 'G-QB084SK5XJ';
 
     {/* Google Analytics 4 — يُحمّل بالكود بدل حقن Netlify. مع ClientRouter (تحولات
         العرض) نُعطّل page_view التلقائي ونرسله يدوياً في كل astro:page-load
-        (يقع عند التحميل الأول وبعد كل تنقّل) فنحصل على زيارةٍ واحدة لكل صفحة. */}
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+        (يقع عند التحميل الأول وبعد كل تنقّل) فنحصل على زيارةٍ واحدة لكل صفحة.
+        تحميل المكتبة مؤجَّل إلى ما بعد load + مهلة خمول (سيو 2026-08-22) كي لا
+        تزاحم العرض الأول — الأحداث قبل وصولها تُصفّ في dataLayer وتُعالج حال
+        وصول المكتبة، فلا تضيع أي زيارة. */}
     <script is:inline define:vars={{ GA_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
@@ -73,6 +83,23 @@ const GA_ID = 'G-QB084SK5XJ';
           page_path: location.pathname + location.search,
         });
       });
+      (function loadGtagLazily() {
+        var injected = false;
+        function inject() {
+          if (injected) return;
+          injected = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          document.head.appendChild(s);
+        }
+        function afterLoad() {
+          if ('requestIdleCallback' in window) requestIdleCallback(inject, { timeout: 4000 });
+          else setTimeout(inject, 2000);
+        }
+        if (document.readyState === 'complete') afterLoad();
+        else window.addEventListener('load', afterLoad, { once: true });
+      })();
     </script>
 
     <ClientRouter />
