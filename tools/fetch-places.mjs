@@ -47,9 +47,20 @@ async function api(path, { body, lang } = {}) {
 
 async function main() {
   if (!KEY) {
-    console.log('fetch-places: لا يوجد GOOGLE_PLACES_API_KEY — تخطٍّ (الصفحة تُبنى بلا تقييمات).');
+    // تحذير صاخب لا سطر عابر: التدقيق (2026-08-28) وجد الإنتاج بلا تقييمات أصلاً
+    // لأن الغياب كان يمرّ بصمت في سجل البناء. البناء يبقى ناجحاً عمداً.
+    console.warn('════════════════════════════════════════════════════════════');
+    console.warn('fetch-places: GOOGLE_PLACES_API_KEY غير موجود!');
+    console.warn('صفحة المطاعم والمقاهي ستُبنى بلا تقييمات ولا أوقات عمل.');
+    console.warn('أضف المفتاح في Netlify ← Site configuration ← Environment variables.');
+    console.warn('════════════════════════════════════════════════════════════');
     return;
   }
+
+  // ملاحظة تشغيلية: place-ids.json يُلتزم في git (شروط قوقل تجيز تخزين المعرّفات
+  // وحدها). إن كان ناقصاً فكل بناء يعيد شراء بحث نصي لكل بذرة — وهو الاستدعاء
+  // الأغلى — مع خطر تبدّل النتيجة الأولى بصمت. الحل: شغّل السكربت محلياً مرة
+  // بالمفتاح والتزم الملف الناتج، فتبقى للبناء تفاصيلُ الأماكن الرخيصة فقط.
 
   const seeds = JSON.parse(await readFile(SEEDS, 'utf8'));
   const ids = existsSync(IDS) ? JSON.parse(await readFile(IDS, 'utf8')) : {};

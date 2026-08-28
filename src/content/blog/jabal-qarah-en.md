@@ -1,6 +1,6 @@
 ---
 title: "Jabal Al-Qarah: A Visitor's Guide to the Oasis's Cool Caves"
-description: "Everything you need for a visit to Jabal Al-Qarah in Al-Ahsa: how its naturally cool caves formed, what to see on and around the mountain, when to climb, and how to fit it into your day."
+description: "Everything you need for a visit to Jabal Al-Qarah in Al-Ahsa: how its naturally cool caves formed, what to see around the mountain, and when to climb."
 lang: en
 key: jabal-qarah-guide
 slug: "jabal-al-qarah-guide"

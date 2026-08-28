@@ -1,9 +1,10 @@
 ---
 title: "48 Hours in Al-Ahsa: A Two-Day Itinerary at the Oasis's Pace"
-description: "A practical two-day plan for Al-Ahsa — one day for Hofuf's heritage heart, one for the oasis, its water and its coast, with stops arranged by the rhythm of the day and links to every landmark."
+description: "A practical two-day plan for Al-Ahsa — one day for Hofuf's heritage heart, one for the oasis, its water and its coast, arranged by the rhythm of the day."
 lang: en
 key: 48-hours-itinerary
 slug: "48-hours-in-al-ahsa"
+heroImage: /img/qaisariyah
 topic: "Itineraries"
 pubDate: 2026-08-22
 tags: ["itinerary", "two days in Al-Ahsa", "trip plan"]

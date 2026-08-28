@@ -1,6 +1,6 @@
 ---
 title: "The Hasawi Lime (Lomi): The Oasis's Second Crop and Its Annual Exhibition"
-description: "Meet the Hasawi lime — the lomi — Al-Ahsa's second crop after dates: what makes it special, its summer season, the jameed (sun-dried lime) tradition, its place in Hasawi cooking, and a guide to the annual Hasawi Lomi Exhibition."
+description: "Meet the Hasawi lime (lomi), Al-Ahsa's second crop after dates: its summer season, the jameed sun-drying tradition, and a guide to the annual Lomi Exhibition."
 lang: en
 key: hasawi-lomi
 slug: "hasawi-lomi-lime"

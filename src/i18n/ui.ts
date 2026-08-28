@@ -136,6 +136,7 @@ export const ui = {
     'map.search.ph': 'ابحث عن معلم…',
     'map.count': 'المعالم الظاهرة',
     'map.list.aria': 'قائمة المعالم الظاهرة على الخريطة',
+    'map.filter.aria': 'تصفية المعالم حسب الفئة',
     'map.empty': 'لا نتائج مطابقة — جرّب كلمة أخرى أو فئة مختلفة.',
     'map.terrain': 'الخريطة التضاريسية 3D',
     // الخريطة التضاريسية (MapLibre — تحسين تدريجي، وLeaflet يبقى التراجع)
@@ -326,6 +327,7 @@ export const ui = {
     'map.search.ph': 'Search attractions…',
     'map.count': 'Showing',
     'map.list.aria': 'List of attractions shown on the map',
+    'map.filter.aria': 'Filter attractions by category',
     'map.empty': 'No matches — try another word or category.',
     'map.terrain': '3D terrain map',
     'tmap.title': 'Terrain Map',

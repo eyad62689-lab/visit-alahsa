@@ -4,6 +4,7 @@ description: "جولة في حرف الأحساء الحية — الحياكة 
 lang: ar
 key: crafts-tour
 slug: "حرف-الأحساء-اليدوية"
+heroImage: /img/craftsmen-souq
 topic: "ثقافة وحرف"
 pubDate: 2026-08-22
 tags: ["البشت الحساوي", "فخار الأحساء", "حرف يدوية"]

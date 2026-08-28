@@ -25,7 +25,7 @@ const points = items
     title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
     cat: e.data.category,
     catLabel: catLabel(e.data.category, lang),
-    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en) + '/',
     fav: e.data.slug_ar,
     summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
     img: e.data.heroImage ?? null,
@@ -67,10 +67,10 @@ const jsonLd = [
       <p class="map-sum"><bdi>{num(points.length)}</bdi> {t('map.lead.a')}</p>
       <div class="map-tools">
         <input id="map-search" class="map-search" type="search" placeholder={t('map.search.ph')} aria-label={t('map.search.ph')} autocomplete="off" />
-        <div class="chips" id="map-chips" role="group" aria-label="filter">
-          <button class="chip is-active" data-filter="all" type="button">{t('list.all')} <bdi>({num(points.length)})</bdi></button>
+        <div class="chips" id="map-chips" role="group" aria-label={t('map.filter.aria')}>
+          <button class="chip is-active" data-filter="all" type="button" aria-pressed="true">{t('list.all')} <bdi>({num(points.length)})</bdi></button>
           {usedCats.map((c) => (
-            <button class="chip" data-filter={c} type="button">
+            <button class="chip" data-filter={c} type="button" aria-pressed="false">
               <span class={`dot dot--${c}`} aria-hidden="true"></span>{catLabel(c, lang)} <bdi>({num(catCounts[c])})</bdi>
             </button>
           ))}
@@ -83,7 +83,7 @@ const jsonLd = [
     <div class="container map-layout">
       <div id="map" role="application" aria-label={t('map.title')}></div>
       <aside class="map-side" aria-label={t('map.list.aria')}>
-        <p class="ms-count">{t('map.count')}: <bdi id="map-count">{num(points.length)}</bdi></p>
+        <p class="ms-count" role="status">{t('map.count')}: <bdi id="map-count">{num(points.length)}</bdi></p>
         <ul class="ms-list" id="map-list">
           {points.map((p) => (
             <li>
@@ -205,10 +205,21 @@ const jsonLd = [
       }
       chips.forEach((chip) => chip.addEventListener('click', () => {
         state.cat = chip.getAttribute('data-filter');
-        chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+        chips.forEach((c) => {
+          c.classList.toggle('is-active', c === chip);
+          c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+        });
         apply();
       }));
-      if (search) search.addEventListener('input', () => { state.q = norm(search.value.trim()); apply(); });
+      // تهدئة 200ms: apply() تعيد fitBounds، وبلاها كانت الخريطة تُرسم مع كل حرف
+      // (8 أحرف = 8 إعادة رسم — تدقيق 2026-08-28). الشرائح فورية كما كانت.
+      if (search) {
+        let deb = 0;
+        search.addEventListener('input', () => {
+          clearTimeout(deb);
+          deb = setTimeout(() => { state.q = norm(search.value.trim()); apply(); }, 200);
+        });
+      }
     }
     document.addEventListener('astro:page-load', initMap);
     if (document.readyState !== 'loading') initMap(); else document.addEventListener('DOMContentLoaded', initMap);

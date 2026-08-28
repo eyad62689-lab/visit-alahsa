@@ -4,6 +4,7 @@ description: "خطة عملية ليومين في الأحساء — يوم لق
 lang: ar
 key: 48-hours-itinerary
 slug: "48-ساعة-في-الأحساء"
+heroImage: /img/qaisariyah
 topic: "خطط وبرامج"
 pubDate: 2026-08-22
 tags: ["جدول سياحي", "يومان في الأحساء", "خطة زيارة"]

@@ -123,7 +123,7 @@ export const EVENTS_AR: Ev[] = [
     after: {
       time: 'أغسطس – سبتمبر تقريباً', span: 'عدة أسابيع', status: 'expected',
       seoTitle: 'معرض اللومي الحساوي: الموسم والموقع والأنشطة',
-      seoDesc: 'دليل معرض اللومي الحساوي في مركز الأحساء للمعارض بالهفوف: موسمه التقريبي في أغسطس وسبتمبر من كل عام، وأنشطته وجهته المنظّمة — تابع إعلان غرفة الأحساء لموعد النسخة القادمة ورسومها.',
+      seoDesc: 'دليل معرض اللومي الحساوي بالهفوف: موسمه التقريبي في أغسطس وسبتمبر من كل عام وأنشطته — تابع إعلان غرفة الأحساء لموعد النسخة القادمة.',
     },
     org: 'غرفة الأحساء',
     ticket: 'https://www.evento.sa/event-details/62ccadc9-df5c-4e0c-8d10-90eeb297ef74',
@@ -137,7 +137,7 @@ export const EVENTS_AR: Ev[] = [
     startISO: '2026-08-19', endISO: '2026-09-13',
     priceRange: { low: 10, high: 15, currency: 'SAR' },
     seoTitle: 'معرض اللومي الحساوي 2026: المواعيد والتذاكر والموقع',
-    seoDesc: 'دليل زيارة معرض اللومي الحساوي 2026 في مركز الأحساء للمعارض بالهفوف: من 19 أغسطس إلى 13 سبتمبر (بعد التمديد)، يومياً 5:00-11:00 مساءً، والتذاكر من 10 ريالات عبر منصة إيفينتو، مع فعاليات عائلية وأركان الأسر المنتجة.',
+    seoDesc: 'دليل معرض اللومي الحساوي 2026 بالهفوف: من 19 أغسطس إلى 13 سبتمبر بعد التمديد، يومياً 5:00-11:00 مساءً، والتذاكر من 10 ريالات عبر منصة إيفينتو.',
     intro: 'يُعدّ معرض اللومي الحساوي — ويُعرف أيضاً باسم معرض الليمون الحساوي — أبرز الفعاليات الزراعية الموسمية في الأحساء، تنظّمه غرفة الأحساء احتفاءً بثمرة الواحة الأشهر بعد التمور. يقدّم المعرض تجربةً تفاعلية للتعرّف على خصائص اللومي الأحسائي وفوائده وتقنيات زراعته، والتواصل مع المزارعين، وتسوّق منتجات الأسر المنتجة، إلى جانب الفعاليات المصاحبة.',
     sections: [
       {
@@ -252,7 +252,7 @@ export const EVENTS_EN: Ev[] = [
     after: {
       time: 'Around August – September', span: 'Several weeks', status: 'expected',
       seoTitle: 'Hasawi Lomi Exhibition: Season, Location & Highlights',
-      seoDesc: 'Guide to the Hasawi Lomi Exhibition at the Al-Ahsa Expo Center in Hofuf: its approximate season around August and September each year, its highlights and organiser — follow the Al-Ahsa Chamber for the next edition’s dates and fees.',
+      seoDesc: 'Guide to the Hasawi Lomi Exhibition in Hofuf: its approximate season in August-September each year — follow the Al-Ahsa Chamber for the next edition’s dates.',
     },
     org: 'Al-Ahsa Chamber',
     ticket: 'https://www.evento.sa/event-details/62ccadc9-df5c-4e0c-8d10-90eeb297ef74',
@@ -265,7 +265,7 @@ export const EVENTS_EN: Ev[] = [
     startISO: '2026-08-19', endISO: '2026-09-13',
     priceRange: { low: 10, high: 15, currency: 'SAR' },
     seoTitle: 'Hasawi Lomi Exhibition 2026: Dates, Tickets & Location',
-    seoDesc: 'Visitor guide to the 2026 Hasawi Lomi (Lemon) Exhibition at the Al-Ahsa Expo Center in Hofuf: 19 August - 13 September after the extension, daily 5:00-11:00 PM, tickets from SAR 10 via Evento, with family activities and productive-family stalls.',
+    seoDesc: 'Guide to the 2026 Hasawi Lomi Exhibition in Hofuf: 19 August - 13 September after the extension, daily 5:00-11:00 PM, tickets from SAR 10 via Evento.',
     intro: 'The Hasawi Lomi Exhibition — also known as the Hasawi Lemon Exhibition or the Al-Ahsa Lemon Festival — is Al-Ahsa\u2019s flagship seasonal agricultural event, organised by the Al-Ahsa Chamber to celebrate the oasis\u2019s most famous crop after dates. The exhibition offers an interactive experience of the Hasawi lomi\u2019s qualities, benefits and cultivation, direct contact with the farmers, and shopping from productive-family stalls, alongside the accompanying programme.',
     sections: [
       {

@@ -4,6 +4,7 @@ description: "دليل تسوق من قلب الواحة — تمر الخلاص
 lang: ar
 key: souvenirs-guide
 slug: "ماذا-تشتري-من-الأحساء"
+heroImage: /img/hamidiyah-souq
 topic: "تسوق وهدايا"
 pubDate: 2026-08-22
 tags: ["هدايا من الأحساء", "تمر الخلاص", "تسوق تراثي"]

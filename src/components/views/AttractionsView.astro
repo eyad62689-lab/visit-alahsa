@@ -138,10 +138,10 @@ const jsonLd = [
       let shown = 0;
       cards.forEach((card) => {
         const ok = !q || (card.getAttribute('data-title') || '').toLowerCase().includes(q);
-        card.style.display = ok ? '' : 'none'; if (ok) shown++;
+        card.hidden = !ok; if (ok) shown++;
       });
       sections.forEach((sec, i) => {
-        const hasMatch = !!sec.querySelector('.att-card:not([style*="display: none"])');
+        const hasMatch = !!sec.querySelector('.att-card:not([hidden])');
         sec.hidden = !hasMatch;
         if (q) { if (hasMatch) sec.open = true; }
         else { sec.open = i === 0; }

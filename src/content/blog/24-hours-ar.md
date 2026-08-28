@@ -4,6 +4,7 @@ description: "جدول مكثف ليوم واحد في الأحساء — قصر
 lang: ar
 key: 24-hours-itinerary
 slug: "يوم-واحد-في-الأحساء"
+heroImage: /img/qasr-ibrahim
 topic: "خطط وبرامج"
 pubDate: 2026-08-22
 tags: ["جدول سياحي", "يوم واحد في الأحساء", "رحلة يوم"]

@@ -4,6 +4,7 @@ description: "إجابة مباشرة لمن يوازن وجهته القادم�
 lang: ar
 key: worth-visiting
 slug: "هل-تستحق-الأحساء-الزيارة"
+heroImage: /img/alahsa-national-park
 topic: "لماذا الأحساء"
 pubDate: 2026-08-22
 tags: ["هل الأحساء تستاهل الزيارة", "لماذا الأحساء", "اليونسكو"]

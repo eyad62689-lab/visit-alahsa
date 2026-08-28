@@ -1,9 +1,10 @@
 ---
 title: "What to Buy in Al-Ahsa: A Souvenir and Gift Guide"
-description: "A shopping guide from the heart of the oasis — Khalas dates, Hasawi lime and date syrup, the bisht, pottery and palm-frond work, and where to find them in Hofuf's heritage souqs."
+description: "A shopping guide from the heart of the oasis — Khalas dates, Hasawi lime, date syrup, the bisht, pottery and palm-frond work in Hofuf's heritage souqs."
 lang: en
 key: souvenirs-guide
 slug: "al-ahsa-souvenirs-guide"
+heroImage: /img/hamidiyah-souq
 topic: "Shopping & Gifts"
 pubDate: 2026-08-22
 tags: ["Al-Ahsa souvenirs", "Khalas dates", "heritage shopping"]

@@ -1,9 +1,10 @@
 ---
 title: "Is Al-Ahsa Worth Visiting? An Honest Guide"
-description: "A straight answer for travellers weighing Al-Ahsa: what makes the world's largest palm oasis unlike anywhere else in Saudi Arabia, how many days it needs, and how to plan the visit."
+description: "A straight answer for travellers weighing Al-Ahsa: what makes the world's largest palm oasis unlike anywhere else in Saudi Arabia, and how many days it needs."
 lang: en
 key: worth-visiting
 slug: "is-al-ahsa-worth-visiting"
+heroImage: /img/alahsa-national-park
 topic: "Why Al-Ahsa"
 pubDate: 2026-08-22
 tags: ["is Al-Ahsa worth visiting", "why visit Al-Ahsa", "UNESCO"]
