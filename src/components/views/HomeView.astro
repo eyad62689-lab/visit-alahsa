@@ -8,6 +8,7 @@ import HeroPoster from '../HeroPoster.astro';
 import HeroVideo from '../HeroVideo.astro';
 import SeasonNow from '../SeasonNow.astro';
 import { getCollection } from 'astro:content';
+import { attractionHref } from '../../lib/routes';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -38,7 +39,6 @@ const facts = [
   { n: '60+', l: t('fact.sites.l') },
   { n: ar ? 'آلاف' : 'Thousands', l: t('fact.springs.l') },
 ];
-const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const allHref = ar ? '/معالم/' : '/en/attractions/';
 const planTripHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
@@ -90,7 +90,7 @@ const description = ar
   <main id="main">
     <section class="hero photo">
       <HeroPoster src="/img/hero-home" class="hero-bg" />
-      <HeroVideo src="/video/hero-home-v2.mp4" srcMobile="/video/hero-home-v2-portrait.mp4" />
+      <HeroVideo src="/video/hero-home-v2.mp4" srcMobile="/video/hero-home-v2-portrait.mp4" lang={lang} />
       <span class="hero-glow" aria-hidden="true"></span>
       <PalmMotif size={520} class="hero-wm" />
       <div class="container hero-in">
@@ -144,7 +144,7 @@ const description = ar
         </header>
         <div class="att-grid">
           {featuredEntries.map((e, i) => (
-            <a class={`att-card ${i === 0 ? 'att-card--lead' : ''}`} href={`${detailBase}${ar ? e.data.slug_ar : e.data.slug_en}/`} data-reveal style={`transition-delay:${i * 80}ms`}>
+            <a class={`att-card ${i === 0 ? 'att-card--lead' : ''}`} href={attractionHref(e.data, lang)} data-reveal style={`transition-delay:${i * 80}ms`}>
               <Photo src={e.data.heroImage} label={ar ? e.data.title : (e.data.title_en ?? e.data.title)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 <span class="t-caption att-k">{ar ? e.data.kicker : ''}</span>
@@ -176,7 +176,7 @@ const description = ar
                   <li class="route-stop">
                     <span class="route-time">{t(`home.route.time.${s.time}` as any)}</span>
                     <div class="route-stop-b">
-                      <a class="route-n" href={`${detailBase}${ar ? s.ar : s.en}/`}>{t(`home.route.${s.k}.n` as any)}</a>
+                      <a class="route-n" href={attractionHref({ slug_ar: s.ar, slug_en: s.en }, lang)}>{t(`home.route.${s.k}.n` as any)}</a>
                       <p class="route-d">{t(`home.route.${s.k}.d` as any)}</p>
                     </div>
                   </li>
@@ -271,7 +271,7 @@ const description = ar
     box-shadow: var(--shadow);
     transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   }
-  .cat-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   /* تدرّج فيروزي شفاف يثبّت النصّ — يعلو ظلّ .photo::after العامّ */
   .cat-card::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -294,7 +294,7 @@ const description = ar
      كاملاً. بعمودين كانت الرابعة تبقى وحيدة ويتخلّف نصف صفّ فارغ. */
   .att-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
   .att-card { background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); text-decoration: none; color: inherit; }
-  .att-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  .att-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   .att-card:hover .att-photo > .ph-label { transform: scale(1.04); }
   .att-photo { aspect-ratio: 16 / 10; }
   .att-photo .ph-label { transition: transform var(--dur) var(--ease); }

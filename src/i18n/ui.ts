@@ -20,6 +20,9 @@ export const ui = {
     'lang.switch': 'EN',
     'lang.switchLabel': 'English',
     // أزرار الحفظ
+    // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
+    'video.pause': 'أوقف فيديو الخلفية',
+    'video.play': 'شغّل فيديو الخلفية',
     'fav.add': 'أضف إلى رحلتي',
     'fav.added': 'في رحلتي ✓',
     // الترويسة/التذييل
@@ -220,6 +223,8 @@ export const ui = {
     'nav.planVisit': 'Plan your visit',
     'lang.switch': 'ع',
     'lang.switchLabel': 'العربية',
+    'video.pause': 'Pause background video',
+    'video.play': 'Play background video',
     'fav.add': 'Add to my trip',
     'fav.added': 'In my trip ✓',
     'foot.tagline': 'An oasis with a story. Wander among its oases and palms.',

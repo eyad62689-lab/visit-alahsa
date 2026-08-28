@@ -7,6 +7,7 @@ import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
+import { attractionHref } from '../../lib/routes';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -64,7 +65,6 @@ const reviewNote = ar
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
-const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const kmBetween = (la1: number, lo1: number, la2: number, lo2: number) => {
   const r = Math.PI / 180, R = 6371;
   const dLa = (la2 - la1) * r, dLo = (lo2 - lo1) * r;
@@ -75,7 +75,7 @@ const nearby = a.location
   ? (await getCollection('attractions'))
       .filter((e) => e.data.slug_ar !== a.slug_ar && e.data.location)
       .map((e) => ({
-        href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en) + '/',
+        href: attractionHref(e.data, lang),
         title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
         cat: catLabel(e.data.category, lang),
         img: e.data.heroImage,
@@ -250,7 +250,7 @@ const nearby = a.location
   .nb-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden;
     box-shadow: var(--shadow); text-decoration: none; color: inherit;
     transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-  .nb-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  .nb-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   :global(.nb-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
   .nb-body { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: 2px; }
   .nb-k { color: var(--c-gold-deep); }

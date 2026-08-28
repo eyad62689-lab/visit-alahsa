@@ -5,6 +5,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
+import { attractionHref } from '../../lib/routes';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -12,7 +13,6 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
-const detailBase = ar ? '/معالم/' : '/en/attractions/';
 
 // أرقام العرض في النسخة العربية تكون عربية-هندية (قاعدة الموقع العامة)
 // الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
@@ -25,7 +25,7 @@ const points = items
     title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
     cat: e.data.category,
     catLabel: catLabel(e.data.category, lang),
-    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en) + '/',
+    href: attractionHref(e.data, lang),
     fav: e.data.slug_ar,
     summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
     img: e.data.heroImage ?? null,

@@ -8,6 +8,7 @@ import HeroPoster from '../HeroPoster.astro';
 import HeroVideo from '../HeroVideo.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
+import { attractionHref } from '../../lib/routes';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -64,7 +65,7 @@ const jsonLd = [
     { '@type': 'ListItem', position: 2, name: tx('title'), item: new URL(selfPath, siteUrl).href },
   ] },
   { '@context': 'https://schema.org', '@type': 'ItemList', name: tx('title'), numberOfItems: items.length,
-    itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(detailBase + (ar ? i.data.slug_ar : i.data.slug_en) + '/', siteUrl).href })) },
+    itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(attractionHref(i.data, lang), siteUrl).href })) },
 ];
 ---
 <Base title={`${tx('title')} — ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
@@ -73,7 +74,7 @@ const jsonLd = [
     <section class="list-hero on-dark">
       <HeroPoster src={heroImg} class="lh-poster" />
       {heroVideo && (
-        <HeroVideo src={heroVideo} />
+        <HeroVideo src={heroVideo} lang={lang} />
       )}
       <PalmMotif size={320} class="lh-wm" />
       <div class="container lh-in">
@@ -102,7 +103,7 @@ const jsonLd = [
             <div class="list-grid">
               {g.list.map((i, idx) => (
                 <article class="att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
-                  <a class="lc-link" href={`${detailBase}${ar ? i.data.slug_ar : i.data.slug_en}/`}>
+                  <a class="lc-link" href={attractionHref(i.data, lang)}>
                     <Photo src={i.data.heroImage} label={ar ? i.data.title : (i.data.title_en ?? i.data.title)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                     <div class="lc-body">
                       <span class="t-caption lc-k">{catLabel(i.data.category, lang)}</span>

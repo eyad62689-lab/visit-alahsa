@@ -27,6 +27,12 @@ a { color: var(--c-turq); text-underline-offset: 3px; }
    لأن display في قاعدة الصنف يتفوّق على display:none في ورقة المتصفح. */
 [hidden] { display: none !important; }
 
+/* عقد .on-dark: قسم داكن نصّه رملي. كان الصنف مطبَّقاً في 12 موضعاً بلا قاعدة
+   إطلاقاً (تدقيق 2026-08-28) — عقد وهمي يخدع أول قسم داكن جديد. الأقسام القائمة
+   تعرّف خلفياتها وألوانها بأنفسها (قواعدها المحصورة أعلى تخصيصاً فتغلب)، فهذه
+   القاعدة شبكة أمان تجعل الوعد حقيقياً لأي استخدام قادم. */
+.on-dark { background: var(--c-turq-deep); color: var(--c-sand); }
+
 img, svg { display: block; max-width: 100%; }
 
 /* لمسات لاتينية بخط Cormorant Garamond — للعناصر المضمّنة الموسومة lang="en" داخل
@@ -154,6 +160,21 @@ picture.photo { display: block; }
   opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03);
 }
 .hero-vid--on { opacity: 1; }
+/* زر إيقاف/تشغيل فيديو الهيرو (WCAG 2.2.2) — ركن سفلي، فوق طبقة التعتيم (z-index 2)،
+   هدف لمس 44px. يكشفه JS فقط حين يكون فيديو فعلاً (hidden في البناء وعند تقليل الحركة). */
+.hero-vid-toggle {
+  position: absolute; inset-block-end: var(--s-3); inset-inline-end: var(--s-3); z-index: 3;
+  display: inline-flex; align-items: center; justify-content: center;
+  inline-size: 44px; block-size: 44px; padding: 0; cursor: pointer;
+  color: var(--c-sand); background: rgba(21, 33, 30, 0.55); border: 1px solid rgba(247, 243, 234, 0.35);
+  border-radius: 999px; backdrop-filter: blur(4px);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.hero-vid-toggle:hover { background: rgba(21, 33, 30, 0.75); border-color: var(--c-gold-bright); }
+.hero-vid-toggle:focus-visible { outline: 2px solid var(--c-gold-bright); outline-offset: 2px; }
+.hero-vid-toggle .hvt-ic--pause { display: none; }
+.hero-vid-toggle.is-playing .hvt-ic--pause { display: block; }
+.hero-vid-toggle.is-playing .hvt-ic--play { display: none; }
 /* ظلّ فيروزي سفلي لتثبيت النصّ + لمسة دفء علوية = معالجة موحّدة */
 .photo::after {
   content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;

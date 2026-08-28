@@ -2,6 +2,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN } from '../data/events';
+import { attractionAlt } from '../lib/routes';
 
 export const GET: APIRoute = async ({ site }) => {
   const base = site ?? new URL('https://visit-alahsa.com');
@@ -33,7 +34,7 @@ export const GET: APIRoute = async ({ site }) => {
     ...posts
       .filter((p) => p.data.lang === 'en' && !posts.some((x) => x.data.key === p.data.key && x.data.lang === 'ar'))
       .map((p) => ({ ar: '/en/blog/' + p.data.slug + '/' })),
-    ...items.map((e) => ({ ar: '/معالم/' + e.data.slug_ar + '/', en: '/en/attractions/' + e.data.slug_en + '/' })),
+    ...items.map((e) => attractionAlt(e.data)),
     // صفحات الفعاليات المفردة — تُقرن بالمعرّف id لا بالترتيب
     ...EVENTS_AR.map((e) => ({
       ar: '/فعاليات/' + e.slug + '/',

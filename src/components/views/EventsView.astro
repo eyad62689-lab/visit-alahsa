@@ -123,7 +123,7 @@ const jsonLd = [
   <main id="main">
     <section class="ev-hero on-dark">
       <HeroPoster src="/img/hero-events" class="evh-poster" />
-      <HeroVideo src="/video/hero-events.mp4" />
+      <HeroVideo src="/video/hero-events.mp4" lang={lang} />
       <PalmMotif size={320} class="evh-wm" />
       <div class="container evh-in">
         <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
@@ -318,7 +318,7 @@ const jsonLd = [
     border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
     transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   /* الفعالية الجارية الآن — بنفس لغة «ما موسم الأحساء الآن؟»: إطار ذهبي وظل ذهبي خافت */
-  .ev-card.is-now { border-color: var(--c-gold); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 14px 32px rgba(201,154,74,.18); }
+  .ev-card.is-now { border-color: var(--c-gold); box-shadow: var(--shadow-gold); }
   /* الشارة أسفل الصورة — الزاويتان العلويتان مشغولتان بشارتَي الموسم والحالة */
   .ev-now { position: absolute; inset-block-end: var(--s-3); inset-inline-start: var(--s-3); z-index: 2;
     font-family: var(--font-body); font-weight: 700; font-size: var(--t-xs); color: var(--c-ink);

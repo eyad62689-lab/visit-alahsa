@@ -9,6 +9,7 @@ import HeroPoster from '../HeroPoster.astro';
 import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
+import { attractionHref } from '../../lib/routes';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -16,7 +17,6 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
-const detailBase = ar ? '/معالم/' : '/en/attractions/';
 const classicHref = ar ? '/خريطة/' : '/en/map/';
 
 const items = await getCollection('attractions');
@@ -26,7 +26,7 @@ const points = items
     id: e.id,
     title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
     cat: e.data.category,
-    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en) + '/',
+    href: attractionHref(e.data, lang),
     lat: e.data.location!.lat,
     lng: e.data.location!.lng,
   }));

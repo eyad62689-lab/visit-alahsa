@@ -3,41 +3,85 @@
 //
 // ثلاث منها (الرئيسية، المعالم، الفعاليات) كانت بسكربت وحدة (module) لا يعيد
 // التنفيذ مع ClientRouter، فيموت الفيديو بعد أول تنقّل داخلي (أُثبت على الإنتاج
-// 2026-08-28: الفيديو بلا src بعد رئيسية ← معالم ← رئيسية). التهيئة هنا معلّقة
-// على astro:page-load — وهو نمط بقية سكربتات الموقع — وتُحرس بـdata-wired.
+// 2026-08-28). التهيئة هنا معلّقة على astro:page-load وتُحرس بـdata-wired.
 //
 // preload="none" + data-src: لا يُنزَّل الفيديو أصلاً لمن يُفعّل «تقليل الحركة»
 // أو «توفير البيانات»، ويبقى ملصق الهيرو (HeroPoster) خلفه هو المشهد.
+//
+// زر الإيقاف (دفعة 3 — 2026-08-29): WCAG 2.2.2 يشترط آلية إيقاف لكل حركة تلقائية
+// تتجاوز 5 ثوانٍ، واحترام reduced-motion وحده لا يغني عن المعيار. الاختيار يُحفظ
+// في localStorage (مفتاح va-video-off) فلا يفاجأ من أوقف الفيديو بعودته في
+// الصفحة التالية. مع «توفير البيانات» لا يُشغَّل تلقائياً لكن الزر يتيح التشغيل
+// بطلب صريح. بلا JS لا فيديو أصلاً فلا يظهر الزر (hidden في البناء).
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 interface Props {
   src: string;         // مسار الفيديو، مثل: /video/hero-events.mp4
   srcMobile?: string;  // نسخة عمودية اختيارية للجوال (≤760px)
+  lang?: Lang;         // لغة تسميتَي الزر (الافتراضي عربي)
   class?: string;      // صنف الواجهة للتموضع إن احتاجته
 }
-const { src, srcMobile, class: cls = '' } = Astro.props;
+const { src, srcMobile, lang = 'ar', class: cls = '' } = Astro.props;
+const t = useTranslations(lang);
 ---
 <video class:list={['photo-bg', 'hero-vid', cls]} muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
   <source data-src={src} data-src-mobile={srcMobile} type="video/mp4" />
 </video>
+<button
+  class="hero-vid-toggle" type="button" hidden
+  data-label-pause={t('video.pause')} data-label-play={t('video.play')}
+  aria-label={t('video.pause')}
+>
+  <svg class="hvt-ic hvt-ic--pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+    <rect x="6.5" y="5" width="4" height="14" rx="1" /><rect x="13.5" y="5" width="4" height="14" rx="1" />
+  </svg>
+  <svg class="hvt-ic hvt-ic--play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+    <path d="M8 5.5v13a1 1 0 0 0 1.52.86l10.2-6.5a1 1 0 0 0 0-1.72L9.52 4.64A1 1 0 0 0 8 5.5Z" />
+  </svg>
+</button>
 
 <script is:inline>
   (function () {
+    var PREF = 'va-video-off';
+    function prefOff() { try { return localStorage.getItem(PREF) === '1'; } catch (e) { return false; } }
+    function setPref(off) { try { off ? localStorage.setItem(PREF, '1') : localStorage.removeItem(PREF); } catch (e) {} }
+
     function initHeroVideos() {
       document.querySelectorAll('video.hero-vid').forEach(function (v) {
         if (v.dataset.wired) return;
         v.dataset.wired = '1';
+        var btn = v.parentElement && v.parentElement.querySelector('.hero-vid-toggle');
         var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var saveData = navigator.connection && navigator.connection.saveData === true;
-        if (reduceMotion || saveData) return;
         var s = v.querySelector('source');
-        if (!s || !s.dataset.src) return;
-        v.addEventListener('playing', function () { v.classList.add('hero-vid--on'); }, { once: true });
-        // نسخة عمودية للجوال حين تتوفر: صندوق الهيرو هناك أقرب إلى 9:16 منه إلى
-        // 16:9، فكان object-fit:cover يقصّ أغلب العرض ويُظهر شريحة تبدو مائلة.
-        var mobile = matchMedia('(max-width: 760px)').matches;
-        s.src = (mobile && s.dataset.srcMobile) ? s.dataset.srcMobile : s.dataset.src;
-        v.autoplay = true;
-        v.load();
-        v.addEventListener('canplay', function () { v.play().catch(function () {}); }, { once: true });
+        if (reduceMotion || !s || !s.dataset.src) return; // بلا زر: لا حركة أصلاً
+
+        var saveData = navigator.connection && navigator.connection.saveData === true;
+
+        function setState(playing) {
+          if (!btn) return;
+          btn.classList.toggle('is-playing', playing);
+          btn.setAttribute('aria-label', playing ? btn.dataset.labelPause : btn.dataset.labelPlay);
+        }
+        function load() {
+          if (s.src) return;
+          v.addEventListener('playing', function () { v.classList.add('hero-vid--on'); }, { once: true });
+          // نسخة عمودية للجوال حين تتوفر: صندوق الهيرو هناك أقرب إلى 9:16 منه إلى
+          // 16:9، فكان object-fit:cover يقصّ أغلب العرض ويُظهر شريحة تبدو مائلة.
+          var mobile = matchMedia('(max-width: 760px)').matches;
+          s.src = (mobile && s.dataset.srcMobile) ? s.dataset.srcMobile : s.dataset.src;
+          v.load();
+          v.addEventListener('canplay', function () { v.play().catch(function () {}); }, { once: true });
+        }
+
+        var auto = !saveData && !prefOff();
+        if (btn) { btn.hidden = false; setState(auto); }
+        if (auto) { v.autoplay = true; load(); }
+
+        if (btn) btn.addEventListener('click', function () {
+          if (!s.src) { setPref(false); setState(true); load(); return; }
+          if (v.paused) { setPref(false); setState(true); v.play().catch(function () {}); }
+          else { setPref(true); setState(false); v.pause(); }
+        });
       });
     }
     document.addEventListener('astro:page-load', initHeroVideos);

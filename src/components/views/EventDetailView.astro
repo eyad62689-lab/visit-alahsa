@@ -18,6 +18,7 @@ import EventEdition from '../EventEdition.astro';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { eventsFor, evView, type Ev } from '../../data/events';
+import { attractionHref } from '../../lib/routes';
 
 interface Props { ev: Ev; lang: Lang; alt: AltLinks; }
 const { ev: raw, lang, alt } = Astro.props;
@@ -94,7 +95,7 @@ const loc = venue?.data.location ?? ev.coords;
 const mapUrl = ev.map ?? venue?.data.mapUrl ?? (loc ? `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}` : undefined);
 // تضمين بلا مفتاح API؛ hl يتبع لغة الصفحة
 const embedSrc = loc ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}&hl=${lang}&z=15&output=embed` : undefined;
-const venueHref = venue ? (ar ? `/معالم/${venue.data.slug_ar}/` : `/en/attractions/${venue.data.slug_en}/`) : undefined;
+const venueHref = venue ? attractionHref(venue.data, lang) : undefined;
 const venueName = venue ? (ar ? venue.data.title : (venue.data.title_en ?? venue.data.title)) : undefined;
 
 // ثلاث فعاليات أخرى للتصفّح
@@ -364,7 +365,7 @@ if (ev.faq?.length) {
   .evd-more-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius);
     overflow: hidden; box-shadow: var(--shadow); text-decoration: none; color: inherit;
     transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-  .evd-more-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(21,33,30,.06), 0 18px 40px rgba(21,33,30,.14); }
+  .evd-more-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   :global(.evd-more-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
   .evd-more-body { padding: var(--s-3) var(--s-4) var(--s-4); }
   .evd-more-k { color: var(--c-gold-deep); }
