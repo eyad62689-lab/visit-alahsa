@@ -23,7 +23,7 @@ const allPoints = items.map((e) => {
   const set = e.data.heroImage ? srcsetFor(e.data.heroImage) : undefined;
   return {
     slug: e.data.slug_ar, // المفتاح العالمي للحفظ
-    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+    href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en) + '/',
     title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
     cat: catLabel(e.data.category, lang),
     summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
@@ -45,7 +45,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="plan-hero on-dark">
-      <PalmMotif size={300} class="ph-wm" aria-hidden="true" />
+      <PalmMotif size={300} class="ph-wm" />
       <div class="container ph-in">
         <span class="eyebrow gold-on-dark">{t('plan.eyebrow')}</span>
         <h1 class="ph-title">{t('plan.title')}</h1>
@@ -79,7 +79,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
       <p class="print-note">{t('plan.printNote')}</p>
       <div class="plan-grid" id="plan-list"></div>
       <div class="plan-empty" id="plan-empty">
-        <PalmMotif size={64} class="pe-palm" aria-hidden="true" />
+        <PalmMotif size={64} class="pe-palm" />
         <h2 class="pe-h">{t('plan.empty.h')}</h2>
         <p class="pe-d">{t('plan.empty.d')}</p>
         <div class="pe-cta">

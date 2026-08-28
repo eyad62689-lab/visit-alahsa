@@ -1,0 +1,47 @@
+---
+// فيديو الهيرو الموحّد — كان مكرّراً في خمس واجهات بخمسة أصناف وخمسة سكربتات.
+//
+// ثلاث منها (الرئيسية، المعالم، الفعاليات) كانت بسكربت وحدة (module) لا يعيد
+// التنفيذ مع ClientRouter، فيموت الفيديو بعد أول تنقّل داخلي (أُثبت على الإنتاج
+// 2026-08-28: الفيديو بلا src بعد رئيسية ← معالم ← رئيسية). التهيئة هنا معلّقة
+// على astro:page-load — وهو نمط بقية سكربتات الموقع — وتُحرس بـdata-wired.
+//
+// preload="none" + data-src: لا يُنزَّل الفيديو أصلاً لمن يُفعّل «تقليل الحركة»
+// أو «توفير البيانات»، ويبقى ملصق الهيرو (HeroPoster) خلفه هو المشهد.
+interface Props {
+  src: string;         // مسار الفيديو، مثل: /video/hero-events.mp4
+  srcMobile?: string;  // نسخة عمودية اختيارية للجوال (≤760px)
+  class?: string;      // صنف الواجهة للتموضع إن احتاجته
+}
+const { src, srcMobile, class: cls = '' } = Astro.props;
+---
+<video class:list={['photo-bg', 'hero-vid', cls]} muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+  <source data-src={src} data-src-mobile={srcMobile} type="video/mp4" />
+</video>
+
+<script is:inline>
+  (function () {
+    function initHeroVideos() {
+      document.querySelectorAll('video.hero-vid').forEach(function (v) {
+        if (v.dataset.wired) return;
+        v.dataset.wired = '1';
+        var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var saveData = navigator.connection && navigator.connection.saveData === true;
+        if (reduceMotion || saveData) return;
+        var s = v.querySelector('source');
+        if (!s || !s.dataset.src) return;
+        v.addEventListener('playing', function () { v.classList.add('hero-vid--on'); }, { once: true });
+        // نسخة عمودية للجوال حين تتوفر: صندوق الهيرو هناك أقرب إلى 9:16 منه إلى
+        // 16:9، فكان object-fit:cover يقصّ أغلب العرض ويُظهر شريحة تبدو مائلة.
+        var mobile = matchMedia('(max-width: 760px)').matches;
+        s.src = (mobile && s.dataset.srcMobile) ? s.dataset.srcMobile : s.dataset.src;
+        v.autoplay = true;
+        v.load();
+        v.addEventListener('canplay', function () { v.play().catch(function () {}); }, { once: true });
+      });
+    }
+    document.addEventListener('astro:page-load', initHeroVideos);
+    if (document.readyState !== 'loading') initHeroVideos();
+    else document.addEventListener('DOMContentLoaded', initHeroVideos);
+  })();
+</script>

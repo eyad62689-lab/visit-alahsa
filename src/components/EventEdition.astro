@@ -1,0 +1,80 @@
+---
+// عدّاد أيام النسخة المؤكدة + التحوّل التلقائي إلى الموسم التقريبي بعد انقضائها.
+//
+// لماذا في المتصفح أيضاً؟ الموقع ثابت (SSG): البناء يطبّق evView بتاريخ النشر، لكن
+// لو لم يُنشر شيء بعد يوم الختام بقيت الصفحة تعرض نسخةً منتهية كـ«مؤكدة» — وهو
+// عكس سياسة الموقع. فهذا السكربت يعيد الحساب بتاريخ جهاز الزائر ويقلب العرض.
+//
+// العدّاد نفسه لا يُصيَّر في البناء إطلاقاً (يبقى hidden) — على نمط شارة «نحن الآن
+// هنا» وملاحظة الترتيب: لا نعرض رقماً محسوباً بتاريخ نشرٍ قديم قد يكون تجاوزه الزمن.
+//
+// العقد مع الواجهات (بالسمات لا بالأصناف):
+//   [data-ev-edition]                جذر النطاق، وعليه:
+//     data-ev-start / data-ev-end    تاريخا النسخة المؤكدة ISO
+//     data-ev-after                  JSON: { time, span, status, label }
+//   داخله:
+//     [data-ev-cd]                   وعاء العدّاد (hidden ابتداءً)
+//     [data-ev-field="time"|"span"]  نصّ يُستبدل بقيمة after عند الانقضاء
+//     [data-ev-status]               شارة الحالة — يُستبدل نصّها ويتحوّل صنفها
+//     [data-ev-dated]                عنصر خاص بهذه النسخة (ساعات/حجز/سؤال) يُخفى
+interface Props { cd: Record<string, unknown>; }
+const { cd } = Astro.props;
+---
+<script is:inline define:vars={{ CD: cd }}>
+  (function () {
+    // رقم اليوم بتوقيت السعودية (UTC+3 ثابت بلا توقيت صيفي) — فيتفق العدّ على
+    // يوم الأحساء لا على يوم جهاز الزائر أينما كان.
+    function ksaDay(ms) { return Math.floor((ms + 3 * 3600000) / 86400000); }
+    function isoDay(s) { var t = Date.parse(s + 'T00:00:00Z'); return isNaN(t) ? null : t / 86400000; }
+
+    function plural(map, n) {
+      if (!map) return '';
+      var cat = 'other';
+      try { cat = new Intl.PluralRules(document.documentElement.lang || 'ar').select(n); } catch (e) {}
+      var s = map[cat] || map.other || map.one || '';
+      return s.replace('{n}', n);
+    }
+
+    function applyOver(root) {
+      var after;
+      try { after = JSON.parse(root.getAttribute('data-ev-after') || 'null'); } catch (e) { after = null; }
+      if (!after) return;
+      root.querySelectorAll('[data-ev-field]').forEach(function (el) {
+        var k = el.getAttribute('data-ev-field');
+        if (after[k]) el.textContent = after[k];
+      });
+      root.querySelectorAll('[data-ev-status]').forEach(function (el) {
+        if (after.label) el.textContent = after.label;
+        el.className = el.className.replace(/--confirmed\b/g, '--' + (after.status || 'expected'));
+      });
+      root.querySelectorAll('[data-ev-dated]').forEach(function (el) { el.hidden = true; });
+      root.setAttribute('data-ev-over', '1');
+    }
+
+    function tick(root) {
+      var start = isoDay(root.getAttribute('data-ev-start') || '');
+      var end = isoDay(root.getAttribute('data-ev-end') || '');
+      var box = root.querySelector('[data-ev-cd]');
+      if (end === null) return;
+      var today = ksaDay(Date.now());
+
+      if (today > end) { if (box) box.hidden = true; applyOver(root); return; }
+      if (!box) return;
+
+      var text = '';
+      if (start !== null && today < start) text = plural(CD.pre, start - today);
+      else if (start !== null && today === start && end !== start) text = CD.today;
+      else if (today === end) text = CD.last;
+      else text = plural(CD.left, end - today);
+
+      if (!text) { box.hidden = true; return; }
+      box.textContent = text;
+      box.hidden = false;
+    }
+
+    function run() { document.querySelectorAll('[data-ev-edition]').forEach(tick); }
+    document.addEventListener('astro:page-load', run);
+    if (document.readyState !== 'loading') run();
+    else document.addEventListener('DOMContentLoaded', run);
+  })();
+</script>

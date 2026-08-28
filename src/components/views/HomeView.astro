@@ -5,6 +5,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
+import HeroVideo from '../HeroVideo.astro';
 import SeasonNow from '../SeasonNow.astro';
 import { getCollection } from 'astro:content';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
@@ -89,11 +90,9 @@ const description = ar
   <main id="main">
     <section class="hero photo">
       <HeroPoster src="/img/hero-home" class="hero-bg" />
-      <video class="photo-bg hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-        <source data-src="/video/hero-home-v2.mp4" data-src-mobile="/video/hero-home-v2-portrait.mp4" type="video/mp4" />
-      </video>
+      <HeroVideo src="/video/hero-home-v2.mp4" srcMobile="/video/hero-home-v2-portrait.mp4" />
       <span class="hero-glow" aria-hidden="true"></span>
-      <PalmMotif size={520} class="hero-wm" aria-hidden="true" />
+      <PalmMotif size={520} class="hero-wm" />
       <div class="container hero-in">
         <span class="eyebrow gold-on-dark">{t('home.hero.eyebrow')}</span>
         <h1 class="hero-title">{t('home.hero.title')}</h1>
@@ -145,7 +144,7 @@ const description = ar
         </header>
         <div class="att-grid">
           {featuredEntries.map((e, i) => (
-            <a class={`att-card ${i === 0 ? 'att-card--lead' : ''}`} href={detailBase + (ar ? e.data.slug_ar : e.data.slug_en)} data-reveal style={`transition-delay:${i * 80}ms`}>
+            <a class={`att-card ${i === 0 ? 'att-card--lead' : ''}`} href={`${detailBase}${ar ? e.data.slug_ar : e.data.slug_en}/`} data-reveal style={`transition-delay:${i * 80}ms`}>
               <Photo src={e.data.heroImage} label={ar ? e.data.title : (e.data.title_en ?? e.data.title)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 <span class="t-caption att-k">{ar ? e.data.kicker : ''}</span>
@@ -192,7 +191,7 @@ const description = ar
     <SeasonNow lang={lang} />
 
     <section class="why on-dark">
-      <PalmMotif size={360} class="why-wm" aria-hidden="true" />
+      <PalmMotif size={360} class="why-wm" />
       <div class="container why-in">
         <header class="sec-head why-head" data-reveal>
           <span class="eyebrow gold-on-dark">{t('home.why.eyebrow')}</span>
@@ -223,28 +222,6 @@ const description = ar
   <Footer lang={lang} />
 </Base>
 
-<script>
-  // تشغيل فيديو الهيرو فقط عند السماح بالحركة وعدم تفعيل توفير البيانات؛
-  // preload="none" + data-src يمنعان تنزيل الفيديو لمن لا يشمله التشغيل.
-  const v = document.querySelector<HTMLVideoElement>('.hero-video');
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const saveData = (navigator as any).connection?.saveData === true;
-  if (v && !reduceMotion && !saveData) {
-    const s = v.querySelector('source');
-    if (s?.dataset.src) {
-      v.addEventListener('playing', () => v.classList.add('hero-video--on'), { once: true });
-      // نسخة عمودية للجوال: صندوق الهيرو هناك نسبته 0.54 بينما المصدر 16:9، فكان
-      // object-fit:cover يقصّ 70% من العرض ويُظهر شريحة قُطرية تبدو مائلة. النسخة
-      // 9:16 تطابق الصندوق تقريباً فينتفي القصّ، وحجمها نصف الأفقية أيضاً.
-      const mobile = matchMedia('(max-width: 760px)').matches;
-      s.src = (mobile && s.dataset.srcMobile) ? s.dataset.srcMobile : s.dataset.src;
-      v.autoplay = true;
-      v.load();
-      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
-    }
-  }
-</script>
-
 <style>
   .hero { min-block-size: 92vh; display: flex; align-items: center; color: var(--c-sand); position: relative; overflow: hidden; }
   /* طبقة تعتيم أقوى فوق صورة الهيرو لضمان وضوح النصّ (تَغلِب ::after العامّة) */
@@ -265,8 +242,7 @@ const description = ar
   }
   @media (prefers-reduced-motion: reduce) { .hero-bg > img { animation: none; } }
   /* فيديو الهيرو فوق الصورة الثابتة؛ يظهر تدريجياً بعد بدء التشغيل، والصورة تبقى احتياطاً */
-  .hero-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
-  .hero-video--on { opacity: 1; }
+  /* فيديو الهيرو ومظهره في global.css (.hero-vid) مع مكوّن HeroVideo */
   /* :global لأن PalmMotif مكوّن منفصل والـ scoped CSS لا تصله */
   :global(.hero-wm) { position: absolute; inset-block-end: -14%; inset-inline-start: -10%; color: var(--c-gold); opacity: .12; z-index: 0; }
   /* التحديد على العناصر الداخلية لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */

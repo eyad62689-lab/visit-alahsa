@@ -5,6 +5,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
+import HeroVideo from '../HeroVideo.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
@@ -63,7 +64,7 @@ const jsonLd = [
     { '@type': 'ListItem', position: 2, name: tx('title'), item: new URL(selfPath, siteUrl).href },
   ] },
   { '@context': 'https://schema.org', '@type': 'ItemList', name: tx('title'), numberOfItems: items.length,
-    itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(detailBase + (ar ? i.data.slug_ar : i.data.slug_en), siteUrl).href })) },
+    itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(detailBase + (ar ? i.data.slug_ar : i.data.slug_en) + '/', siteUrl).href })) },
 ];
 ---
 <Base title={`${tx('title')} — ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
@@ -72,11 +73,9 @@ const jsonLd = [
     <section class="list-hero on-dark">
       <HeroPoster src={heroImg} class="lh-poster" />
       {heroVideo && (
-        <video class="photo-bg lh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-          <source data-src={heroVideo} type="video/mp4" />
-        </video>
+        <HeroVideo src={heroVideo} />
       )}
-      <PalmMotif size={320} class="lh-wm" aria-hidden="true" />
+      <PalmMotif size={320} class="lh-wm" />
       <div class="container lh-in">
         <span class="eyebrow gold-on-dark">{tx('eyebrow')}</span>
         <h1 class="lh-title">{tx('title')}</h1>
@@ -103,7 +102,7 @@ const jsonLd = [
             <div class="list-grid">
               {g.list.map((i, idx) => (
                 <article class="att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
-                  <a class="lc-link" href={detailBase + (ar ? i.data.slug_ar : i.data.slug_en)}>
+                  <a class="lc-link" href={`${detailBase}${ar ? i.data.slug_ar : i.data.slug_en}/`}>
                     <Photo src={i.data.heroImage} label={ar ? i.data.title : (i.data.title_en ?? i.data.title)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                     <div class="lc-body">
                       <span class="t-caption lc-k">{catLabel(i.data.category, lang)}</span>
@@ -123,24 +122,6 @@ const jsonLd = [
   </main>
   <Footer lang={lang} />
 </Base>
-
-<script>
-  // تشغيل فيديو الهيرو فقط عند السماح بالحركة وعدم تفعيل توفير البيانات؛
-  // preload="none" + data-src يمنعان تنزيل الفيديو لمن لا يشمله التشغيل.
-  const v = document.querySelector<HTMLVideoElement>('.lh-video');
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const saveData = (navigator as any).connection?.saveData === true;
-  if (v && !reduceMotion && !saveData) {
-    const s = v.querySelector('source');
-    if (s?.dataset.src) {
-      v.addEventListener('playing', () => v.classList.add('lh-video--on'), { once: true });
-      s.src = s.dataset.src;
-      v.autoplay = true;
-      v.load();
-      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
-    }
-  }
-</script>
 
 <script is:inline>
   function initFilter() {
@@ -184,8 +165,7 @@ const jsonLd = [
   .list-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
   /* فيديو الهيرو فوق الخلفية الفيروزية؛ يظهر تدريجياً بعد بدء التشغيل، والخلفية تبقى احتياطاً
      لمن يُفعّل «تقليل الحركة» أو «توفير البيانات». */
-  .lh-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
-  .lh-video--on { opacity: 1; }
+  /* فيديو الهيرو ومظهره في global.css (.hero-vid) مع مكوّن HeroVideo */
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .list-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;

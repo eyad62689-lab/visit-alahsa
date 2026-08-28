@@ -9,6 +9,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
+import HeroVideo from '../HeroVideo.astro';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -114,10 +115,8 @@ const jsonLd = [
 
     <section class="fd-hero on-dark">
       <HeroPoster src="/img/hero-food" class="fdh-poster" />
-      <video class="photo-bg fdh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-        <source data-src="/video/hero-food.mp4" type="video/mp4" />
-      </video>
-      <PalmMotif size={320} class="fdh-wm" aria-hidden="true" />
+      <HeroVideo src="/video/hero-food.mp4" />
+      <PalmMotif size={320} class="fdh-wm" />
       <div class="container fdh-in">
         <span class="eyebrow gold-on-dark">{C.heroEyebrow}</span>
         <h1 class="fdh-title">{C.title}</h1>
@@ -168,26 +167,6 @@ const jsonLd = [
 </Base>
 
 <script is:inline>
-  /* تفعيل فيديو الهيرو كسولاً — يحترم تفضيل تقليل الحركة وتوفير البيانات */
-  function initFoodHeroVideo() {
-    const v = document.querySelector('.fdh-video');
-    if (!v || v.dataset.wired) return;
-    v.dataset.wired = '1';
-    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const saveData = navigator.connection && navigator.connection.saveData === true;
-    if (reduceMotion || saveData) return;
-    const s = v.querySelector('source');
-    if (s && s.dataset.src) {
-      v.addEventListener('playing', () => v.classList.add('fdh-video--on'), { once: true });
-      s.src = s.dataset.src;
-      v.autoplay = true;
-      v.load();
-      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
-    }
-  }
-  document.addEventListener('astro:page-load', initFoodHeroVideo);
-  if (document.readyState !== 'loading') initFoodHeroVideo(); else document.addEventListener('DOMContentLoaded', initFoodHeroVideo);
-
   /* نبذة البطاقة مطويّة تُفتح بالضغط — تحسين تدريجي: بلا جافاسكربت يبقى النص ظاهراً */
   function initDescToggles() {
     document.querySelectorAll('.disc-toggle').forEach((btn) => {
@@ -214,8 +193,7 @@ const jsonLd = [
 <style>
   /* ═══ الهيرو ═══ */
   .fd-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  .fdh-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
-  .fdh-video--on { opacity: 1; }
+  /* فيديو الهيرو ومظهره في global.css (.hero-vid) مع مكوّن HeroVideo */
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .fd-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;

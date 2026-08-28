@@ -10,9 +10,11 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
+import HeroVideo from '../HeroVideo.astro';
+import EventEdition from '../EventEdition.astro';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { EVENTS_AR, EVENTS_EN, type Ev } from '../../data/events';
+import { EVENTS_AR, EVENTS_EN, evView, type Ev } from '../../data/events';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -33,6 +35,13 @@ const C = ar ? {
   spanK: 'المدة التقريبية',
   actsK: 'أبرز الأنشطة',
   statusL: { confirmed: 'مؤكد هذا العام', expected: 'موسم متوقع', tba: 'بانتظار الإعلان' },
+  // نصوص العدّاد — يملؤها JS من تاريخ جهاز الزائر؛ {n} عدد الأيام
+  cd: {
+    pre: { one: 'يبدأ غداً', other: 'يبدأ بعد {n} يوماً' },
+    today: 'يبدأ اليوم',
+    last: 'آخر يوم اليوم',
+    left: { one: 'يتبقّى يوم واحد', two: 'يتبقّى يومان', few: 'تتبقّى {n} أيام', many: 'يتبقّى {n} يوماً', other: 'يتبقّى {n} يوم' },
+  },
   nowBadge: 'نحن الآن هنا',
   orderNote: 'رُتِّبت البطاقات تلقائياً حسب الأقرب إلى تاريخ جهازك — تبدأ بما هو جارٍ الآن.',
   events: EVENTS_AR,
@@ -61,6 +70,12 @@ const C = ar ? {
   spanK: 'Approximate length',
   actsK: 'Highlights',
   statusL: { confirmed: 'Confirmed this year', expected: 'Expected season', tba: 'Awaiting announcement' },
+  cd: {
+    pre: { one: 'Starts tomorrow', other: 'Starts in {n} days' },
+    today: 'Starts today',
+    last: 'Last day today',
+    left: { one: '1 day left', other: '{n} days left' },
+  },
   nowBadge: 'You are here now',
   orderNote: 'The cards are ordered automatically by what is nearest to your device’s date — starting with whatever is under way now.',
   events: EVENTS_EN,
@@ -78,6 +93,11 @@ const C = ar ? {
   seoTitle: 'Al-Ahsa festivals & events — seasons of the oasis all year round',
   seoDesc: 'A guide to Al-Ahsa’s seasonal festivals and events: the Hasawi Bisht Festival, Qaisariyah Nights, Kafu Nights, the Processed Dates Festival, Palm Village, the Hasawi Lomi Exhibition, Al-Uqair Winter, Al-Wafrah Winter, the horse racing season and Creative Al-Ahsa — with their seasons, highlights and organisers.',
 };
+
+// العرض الفعّال وقت البناء: النسخة المؤكدة ما دامت قائمة، والموسم التقريبي بعدها
+// (evView). ويعيد المتصفّح الحساب بتاريخ الزائر عبر EventEdition تحسّباً لتأخّر
+// النشر بعد يوم الختام — raw يبقى للمواعيد ISO التي يقرأها العدّاد.
+const cards = [...C.events].sort((a, b) => a.start - b.start).map((raw) => ({ raw, e: evView(raw) }));
 
 const browseHref = ar ? '/معالم/' : '/en/attractions/';
 const detailBase = ar ? '/فعاليات/' : '/en/events/';
@@ -103,10 +123,8 @@ const jsonLd = [
   <main id="main">
     <section class="ev-hero on-dark">
       <HeroPoster src="/img/hero-events" class="evh-poster" />
-      <video class="photo-bg evh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-        <source data-src="/video/hero-events.mp4" type="video/mp4" />
-      </video>
-      <PalmMotif size={320} class="evh-wm" aria-hidden="true" />
+      <HeroVideo src="/video/hero-events.mp4" />
+      <PalmMotif size={320} class="evh-wm" />
       <div class="container evh-in">
         <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
         <h1 class="evh-title">{C.title}</h1>
@@ -121,14 +139,22 @@ const jsonLd = [
         <p class="ev-order-note" data-ev-order-note hidden>{C.orderNote}</p>
 
         <div class="ev-grid" data-ev-grid>
-          {[...C.events].sort((a, b) => a.start - b.start).map((e, i) => (
+          {cards.map(({ raw, e }, i) => (
             <article class="ev-card" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}
-              data-start={e.start} data-end={e.end ?? ''} data-ramadan={e.ramadan ? '1' : ''}>
+              data-start={e.start} data-end={e.end ?? ''} data-ramadan={e.ramadan ? '1' : ''}
+              data-ev-edition={raw.after && raw.endISO ? '' : undefined}
+              data-ev-start={raw.after && raw.startISO ? raw.startISO : undefined}
+              data-ev-end={raw.after && raw.endISO ? raw.endISO : undefined}
+              data-ev-after={raw.after && raw.endISO
+                ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
+                : undefined}>
               <div class="ev-media">
                 <Photo src={e.img} label={e.name} class="ev-photo" eager={i < 2} sizes="(max-width: 760px) 100vw, (max-width: 1120px) 50vw, 360px" />
                 <span class="ev-season">{e.season}</span>
-                <span class={`ev-status ev-status--${e.status ?? 'expected'}`}>{C.statusL[e.status ?? 'expected']}</span>
+                <span class={`ev-status ev-status--${e.status ?? 'expected'}`} data-ev-status>{C.statusL[e.status ?? 'expected']}</span>
                 <span class="ev-now" data-ev-now hidden>{C.nowBadge}</span>
+                {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
+                {raw.endISO && <span class="ev-cd" data-ev-cd hidden></span>}
               </div>
               <div class="ev-body">
               <div class="ev-top">
@@ -137,9 +163,9 @@ const jsonLd = [
                     <rect x="3" y="4.5" width="18" height="17" rx="2" />
                     <path d="M3 9h18M8 2.5v4M16 2.5v4" />
                   </svg>
-                  {e.time}
+                  <span data-ev-field="time">{e.time}</span>
                 </span>
-                <span class="ev-span">{e.span}</span>
+                <span class="ev-span" data-ev-field="span">{e.span}</span>
               </div>
               <h2 class="ev-name"><a class="ev-name-link" href={`${detailBase}${e.slug}/`}>{e.name}</a></h2>
               <dl class="ev-meta">
@@ -157,7 +183,7 @@ const jsonLd = [
                 {e.acts.map((a) => <li class="ev-act">{a}</li>)}
               </ul>
               {e.ticket && (
-                <a class="ev-ticket" href={e.ticket} target="_blank" rel="noopener noreferrer">
+                <a class="ev-ticket" href={e.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
                   <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M3 9.6V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.6a2.4 2.4 0 0 0 0 4.8V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.6a2.4 2.4 0 0 0 0-4.8Z" />
                     <path d="M14.5 6.6v10.8" stroke-dasharray="2 2.6" />
@@ -201,23 +227,7 @@ const jsonLd = [
   <Footer lang={lang} />
 </Base>
 
-<script>
-  // تشغيل فيديو الهيرو فقط عند السماح بالحركة وعدم تفعيل توفير البيانات؛
-  // preload="none" + data-src يمنعان تنزيل الفيديو لمن لا يشمله التشغيل.
-  const v = document.querySelector<HTMLVideoElement>('.evh-video');
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const saveData = (navigator as any).connection?.saveData === true;
-  if (v && !reduceMotion && !saveData) {
-    const s = v.querySelector('source');
-    if (s?.dataset.src) {
-      v.addEventListener('playing', () => v.classList.add('evh-video--on'), { once: true });
-      s.src = s.dataset.src;
-      v.autoplay = true;
-      v.load();
-      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
-    }
-  }
-</script>
+<EventEdition cd={C.cd} />
 
 <script is:inline>
   // إعادة ترتيب بطاقات الفعاليات حسب الأقرب إلى تاريخ جهاز الزائر، وتمييز الجارية الآن.
@@ -280,10 +290,7 @@ const jsonLd = [
 
 <style>
   .ev-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  /* فيديو الهيرو فوق الخلفية الفيروزية؛ يظهر تدريجياً بعد بدء التشغيل، والخلفية تبقى احتياطاً
-     لمن يُفعّل «تقليل الحركة» أو «توفير البيانات». */
-  .evh-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
-  .evh-video--on { opacity: 1; }
+  /* فيديو الهيرو ومظهره في global.css (.hero-vid) مع مكوّن HeroVideo */
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .ev-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -316,6 +323,12 @@ const jsonLd = [
   .ev-now { position: absolute; inset-block-end: var(--s-3); inset-inline-start: var(--s-3); z-index: 2;
     font-family: var(--font-body); font-weight: 700; font-size: var(--t-xs); color: var(--c-ink);
     background: var(--c-gold); border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); }
+  /* عدّاد أيام النسخة المؤكدة — مقابل شارة «نحن الآن هنا» على الطرف الآخر.
+     يبقى مخفياً حتى يملأه JS من تاريخ الجهاز (EventEdition). */
+  .ev-cd { position: absolute; inset-block-end: var(--s-3); inset-inline-end: var(--s-3); z-index: 2;
+    font-family: var(--font-body); font-weight: 700; font-size: var(--t-xs); color: var(--c-sand);
+    background: color-mix(in srgb, var(--c-turq-deep) 92%, transparent); backdrop-filter: blur(4px);
+    border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); }
   .ev-media { position: relative; }
   :global(.ev-photo) { border-radius: 0; }
   .ev-season { position: absolute; inset-block-start: var(--s-3); inset-inline-start: var(--s-3); z-index: 2;

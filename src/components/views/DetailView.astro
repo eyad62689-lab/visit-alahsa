@@ -37,7 +37,9 @@ const jsonLd = [
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
     address: { '@type': 'PostalAddress', addressLocality: (ar ? a.area : a.area_en) ?? (ar ? 'الأحساء' : 'Al-Ahsa'), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
-    isPartOf: { '@type': 'TouristDestination', name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(alt[lang], siteUrl).href },
+    // alt[lang] هنا هو رابط صفحة المعلم نفسه — فكانت السكيما تقول إن المعلم جزءٌ
+    // من نفسه في 116 صفحة (تدقيق 2026-08-28). الوجهة هي الرئيسية بلغة الصفحة.
+    isPartOf: { '@type': 'TouristDestination', name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(ar ? '/' : '/en/', siteUrl).href },
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(alt[lang].split('/').slice(0, ar ? 1 : 2).join('/') + '/', siteUrl).href },
@@ -73,7 +75,7 @@ const nearby = a.location
   ? (await getCollection('attractions'))
       .filter((e) => e.data.slug_ar !== a.slug_ar && e.data.location)
       .map((e) => ({
-        href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en),
+        href: detailBase + (ar ? e.data.slug_ar : e.data.slug_en) + '/',
         title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
         cat: catLabel(e.data.category, lang),
         img: e.data.heroImage,
@@ -96,7 +98,7 @@ const nearby = a.location
       {a.heroImage && (
         <HeroPoster src={a.heroImage} />
       )}
-      <PalmMotif size={360} class="ah-wm" aria-hidden="true" />
+      <PalmMotif size={360} class="ah-wm" />
       <div class="container ah-in">
         <nav class="crumbs" aria-label="breadcrumb">
           <a href={homeHref}>{t('crumb.home')}</a><span>/</span>

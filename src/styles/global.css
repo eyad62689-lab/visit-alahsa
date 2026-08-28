@@ -146,6 +146,14 @@ picture.photo { display: block; }
   inline-size: 100%; block-size: 100%; object-fit: cover; display: block;
   filter: saturate(.94) contrast(1.03);
 }
+/* فيديو الهيرو (مكوّن HeroVideo) — كانت هذه القواعد نفسها مكرّرة حرفياً في خمس
+   واجهات بخمسة أصناف مختلفة، فوُحِّدت هنا مع المكوّن. يظهر تدريجياً بعد بدء
+   التشغيل، ويبقى الملصق تحته هو المشهد لمن لا يُشغَّل عنده الفيديو. */
+.hero-vid {
+  object-fit: cover; inline-size: 100%; block-size: 100%;
+  opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03);
+}
+.hero-vid--on { opacity: 1; }
 /* ظلّ فيروزي سفلي لتثبيت النصّ + لمسة دفء علوية = معالجة موحّدة */
 .photo::after {
   content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;

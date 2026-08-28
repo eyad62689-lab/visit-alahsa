@@ -1,14 +1,22 @@
 ---
 // موتيف السعف المجرّد — خطوط ريشية منتظمة حول محور.
 // أحادي اللون عبر currentColor. يُستخدم بقلّةٍ ودلالة (فواصل، أيقونات، خلفية ٣–٥٪).
-interface Props { size?: number; class?: string; 'aria-hidden'?: boolean; }
-const { size = 96, class: className = '' } = Astro.props;
+//
+// زخرفي افتراضاً: كان يُصدِّر role="img" وaria-label عربية ثابتة في 18 موضعاً —
+// فيُعلنها قارئ الشاشة «موتيف سعف النخيل» حتى داخل الصفحات الإنجليزية، متجاهلاً
+// aria-hidden الممرَّرة إليه (تدقيق 2026-08-28). الآن aria-hidden هو الأصل،
+// ولا يُعلَن إلا حين تُمرَّر تسمية صريحة بلغة الصفحة.
+interface Props { size?: number; class?: string; label?: string; }
+const { size = 96, class: className = '', label } = Astro.props;
 ---
 <svg
   class={className}
   width={size} height={size} viewBox="0 0 120 120"
   fill="none" xmlns="http://www.w3.org/2000/svg"
-  role="img" aria-label="موتيف سعف النخيل"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  focusable="false"
 >
   <!-- المحور (العسيب) -->
   <path d="M60 112 C60 84 60 56 60 14" stroke="currentColor" stroke-width="3"

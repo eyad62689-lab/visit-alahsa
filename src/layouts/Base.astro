@@ -14,6 +14,7 @@ import '@fontsource/lora/600.css';
 import '@fontsource/cormorant-garamond/400.css';
 import '@fontsource/cormorant-garamond/600.css';
 import Seo from '../components/Seo.astro';
+import { srcsetFor } from '../lib/images';
 import { dir, htmlLang, type AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
@@ -37,6 +38,13 @@ const {
 
 // Google Analytics 4 (GA4). معرّف القياس ثابت للموقع كله.
 const GA_ID = 'G-QB084SK5XJ';
+
+// وصفة التحميل المسبق لصورة الهيرو بنفس srcset الذي يستعمله HeroPoster.
+// بدونها كان preload يشير إلى الصورة الكاملة فينزّل الجوال نسختين: الكاملة
+// (‏260KB في قصر إبراهيم) ثم ما يختاره srcset (‏80KB) — والزائر العائد أسوأ،
+// إذ يعرض المتصفح الكاملة من الكاش متجاوزاً srcset (تدقيق 2026-08-28).
+// نفس sizes="100vw" الموجودة في HeroPoster وإلا اختار المتصفح مرشّحاً مختلفاً.
+const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
 ---
 <!doctype html>
 <html lang={htmlLang(lang)} dir={dir(lang)}>
@@ -63,7 +71,13 @@ const GA_ID = 'G-QB084SK5XJ';
     )}
 
     {/* التحميل المسبق لصورة الهيرو (أكبر عنصر مرئي LCP) في الصفحات ذات الهيرو المصوّر */}
-    {preloadImage && <link rel="preload" as="image" href={`${preloadImage}.webp`} type="image/webp" fetchpriority="high" />}
+    {preloadImage && (
+      <link
+        rel="preload" as="image" href={`${preloadImage}.webp`} type="image/webp" fetchpriority="high"
+        imagesrcset={preloadSet?.webp}
+        imagesizes={preloadSet ? '100vw' : undefined}
+      />
+    )}
 
     {/* Google Analytics 4 — يُحمّل بالكود بدل حقن Netlify. مع ClientRouter (تحولات
         العرض) نُعطّل page_view التلقائي ونرسله يدوياً في كل astro:page-load
