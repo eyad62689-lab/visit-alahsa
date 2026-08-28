@@ -12,6 +12,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
+import { RESTAURANTS_AR, RESTAURANTS_EN, CAFES_AR, CAFES_EN } from '../../data/dining';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -36,34 +37,6 @@ const fetchedLabel = fetchedDate
   : null;
 const liveFor = (img: string): Live | undefined => live[img.replace('/img/dining/', '')];
 
-// blurb: نبذة تعريفية موجزة — تصف ما تُظهره صورة المكان واسمه الموثق فقط
-// (لا ادعاءات عن الجودة أو الأصناف أو الشهرة — قاعدة «لا تُختلق معلومة»)
-type Place = { img: string; alt: string; name: string; area: string; maps: string; blurb: string };
-
-// الحقول المشتركة بين اللغتين (الصورة والرابط) تُعرَّف مرة واحدة
-const P = {
-  darBasma: { img: '/img/dining/dar-basma', maps: 'https://maps.app.goo.gl/CLwUux3kdzc5Z4WE6' },
-  alkoot: { img: '/img/dining/alkoot-hotel', maps: 'https://maps.app.goo.gl/gjwiTHDg83VZEbz76' },
-  alhawi: { img: '/img/dining/alhawi', maps: 'https://maps.app.goo.gl/GZ61EihCSipwJyzJ8' },
-  khunaina: { img: '/img/dining/khunaina', maps: 'https://maps.app.goo.gl/LZWmKXLDNreXhUHL6' },
-  sinyar: { img: '/img/dining/sinyar', maps: 'https://maps.app.goo.gl/kiKK2QEshBwycpDn6' },
-  greasy: { img: '/img/dining/greasy-fingers', maps: 'https://maps.app.goo.gl/AQhfw1PKHnLviEyt6' },
-  lava: { img: '/img/dining/lava', maps: 'https://maps.app.goo.gl/eYZPQBsVxoBjMyvb6' },
-  ammo: { img: '/img/dining/ammo', maps: 'https://maps.app.goo.gl/sj8f9VMZL3LdthJX9' },
-  sharq: { img: '/img/dining/sharq-alqaisariah', maps: 'https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8' },
-  koud: { img: '/img/dining/koud', maps: 'https://maps.app.goo.gl/RVVLPpJCUVfpCdWt7' },
-  // المقاهي
-  baithana: { img: '/img/dining/baithana', maps: 'https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5' },
-  sevenSt: { img: '/img/dining/7st', maps: 'https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6' },
-  baitAlkoot: { img: '/img/dining/bait-alkoot', maps: 'https://maps.app.goo.gl/gkvgXUYMUZsV5BK38' },
-  darHuwaija: { img: '/img/dining/dar-huwaija', maps: 'https://maps.app.goo.gl/EejCz9U79km3VEUL6' },
-  alsayed: { img: '/img/dining/alsayed', maps: 'https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9' },
-  ratio: { img: '/img/dining/ratio-alkoot', maps: 'https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8' },
-  soulaf: { img: '/img/dining/soulaf', maps: 'https://maps.app.goo.gl/S47bGoYznnPUYTrm6' },
-  bakingUp: { img: '/img/dining/baking-up', maps: 'https://maps.app.goo.gl/Vq412YHJLwnKc1SE8' },
-  dot: { img: '/img/dining/dot-bakery', maps: 'https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6' },
-  raslan: { img: '/img/dining/karak-raslan', maps: 'https://maps.app.goo.gl/ctJt3bVV2hDtSYX56' },
-};
 
 const C = ar ? {
   heroEyebrow: 'من موائد الأحساء',
@@ -94,50 +67,8 @@ const C = ar ? {
   ],
   methodH: 'حول هذه الصفحة',
   methodP1: 'هذه قائمة أولية تنمو تباعاً. الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، والنبذات تعريفية موجزة تصف المكان كما يظهر في صورته — لا تقييماً ولا توصية بأصناف بعينها.',
-  places: [
-    { ...P.darBasma, name: 'دار بسمة', area: 'بجوار حديقة قصر إبراهيم — الهفوف', alt: 'واجهة دار بسمة الزجاجية وجلساتها الخارجية بين النخيل مساءً',
-      blurb: 'جلسات خارجية بين النخيل وواجهة زجاجية على طرف حديقة قصر إبراهيم.' },
-    { ...P.alkoot, name: 'مطعم فندق الكوت', area: 'حي الكوت — مقابل قصر إبراهيم', alt: 'الفناء الداخلي لفندق الكوت التراثي بأروقته وسقفه الزجاجي',
-      blurb: 'مطعم الفندق التراثي — موائد تحت سقف زجاجي في فناءٍ تحيط به الأروقة.' },
-    { ...P.alhawi, name: 'مطعم الحوي', area: 'حي الخالدية — مقابل جامعة الملك فيصل', alt: 'سفرة فطور شعبي بأطباقها المتنوعة في مطعم الحوي',
-      blurb: 'سفرة فطور شعبي تُبسط على الخوص طبقاً إلى جانب طبق.' },
-    { ...P.khunaina, name: 'مطعم خنينة', area: 'حي الخالدية — الهفوف', alt: 'أطباق تراثية تُقدَّم في سلال الخوص على طاولة مطعم خنينة',
-      blurb: 'أطباق تراثية تُقدَّم في سلال الخوص وسط جلسات مخملية داكنة الخضرة.' },
-    { ...P.sinyar, name: 'مطعم سنيار', area: 'طريق الخليج — العويمرية', alt: 'واجهة مطعم سنيار الترابية وشعاره بالخط العربي عند المساء',
-      blurb: 'مبنى ترابي بطابع تراثي حديث يحمل اسمه بالخط العربي.' },
-    { ...P.greasy, name: 'جريسي فنجرز', area: 'شارع الأمير نواف — الهفوف', alt: 'برجر وبطاطس مقلية على صينية تقديم في جريسي فنجرز',
-      blurb: 'برجر وبطاطس على صوانٍ معدنية — الخيار العصري السريع في القائمة.' },
-    { ...P.lava, name: 'مطعم لافا', area: 'طريق الخليج — حي العليا', alt: 'أطباق متنوعة على طاولة رخامية في مطعم لافا',
-      blurb: 'أطباق تصل ساخنة في مقالٍ حديدية على طاولات رخامية.' },
-    { ...P.ammo, name: 'مطعم آمو', area: 'طريق الملك عبدالله — حي المزروع', alt: 'واجهة مطعم آمو الزجاجية بشعاره المضيء ليلاً',
-      blurb: 'واجهة زجاجية حديثة يتوّجها شعاره المضيء.' },
-    { ...P.sharq, name: 'مطعم شرق القيصرية', area: 'حي الرفعة الشمالية — الهفوف', alt: 'مدخل مطعم شرق القيصرية بقوسه المزخرف وجلساته الخارجية',
-      blurb: 'بوابة بقوس مزخرف تفضي إلى جلسات بطابع تراثي.' },
-    { ...P.koud, name: 'مطعم كود', area: 'طريق الملك عبدالله — حي المزروع', alt: 'واجهة كود — مطعم ومقهى — بشعارها المضيء بالخط العربي',
-      blurb: 'مطعم ومقهى معاً — كما تعلن واجهته الداكنة بحروفها المضيئة.' },
-  ] as Place[],
-  cafes: [
-    { ...P.baithana, name: 'مقهى بيذانة', area: 'حي الرفعة الشمالية — الهفوف', alt: 'مدخل مقهى بيذانة بجدرانه الطينية وبابه الخشبي في حارة تراثية',
-      blurb: 'بيت طيني بباب خشبي في حارة من حارات الهفوف القديمة.' },
-    { ...P.sevenSt, name: 'شارع 7', area: 'حي الرفعة الشمالية — الهفوف', alt: 'ركن جلوس بكراسٍ جلدية ونافذة زجاج ملون داخل مقهى شارع 7',
-      blurb: 'قهوة مختصة في جلسة كلاسيكية بكراسٍ جلدية ونوافذ من الزجاج الملون.' },
-    { ...P.baitAlkoot, name: 'بيت الكوت', area: 'وسط الهفوف التاريخي', alt: 'واجهة بيت الكوت بإضاءتها المتدلية عند المساء',
-      blurb: 'بيت بطراز أحسائي تتدلى فوقه الإضاءة في قلب الهفوف التاريخي.' },
-    { ...P.darHuwaija, name: 'دار حويجة', area: 'شارع الملك فهد — وسط الهفوف التاريخي', alt: 'جلسات دار حويجة بين الأقواس الجصية والكراسي الخشبية',
-      blurb: 'جلسات بين أقواس جصية بيضاء وأرفف تحمل عُدَّة القهوة.' },
-    { ...P.alsayed, name: 'مقهى السيد', area: 'حي الرفعة الشمالية — الهفوف', alt: 'الجلسة التراثية بسقفها الخشبي داخل مقهى السيد',
-      blurb: 'جلسة تراثية بسقف خشبي تحفظ ملامح المقاهي الشعبية.' },
-    { ...P.ratio, name: 'ريشيو الكوت', area: 'طريق الملك عبدالعزيز — وسط الهفوف التاريخي', alt: 'مجلس تراثي بوسائد وسجاد تحت سقف من جذوع النخل في ريشيو الكوت',
-      blurb: 'مجلس عربي بوسائد وسجاد تحت سقف من جذوع النخل.' },
-    { ...P.soulaf, name: 'مقهى سلاف', area: 'طريق الملك عبدالله — الهفوف', alt: 'داخلية مقهى سلاف العصرية بشجرة الزيتون وسقفها الخشبي',
-      blurb: 'داخلية عصرية هادئة تتوسطها شجرة زيتون تحت فتحة سماوية.' },
-    { ...P.bakingUp, name: 'بيكنج آب', area: 'طريق عين نجم — المبرز', alt: 'واجهة بيكنج آب وجلساتها الخارجية بمظلاتها',
-      blurb: 'مخبوزات ومقرمشات — كما يعرّف نفسه في خرائط قوقل — بواجهة مبهجة وجلسات خارجية.' },
-    { ...P.dot, name: 'مقهى ومخبز دوت', area: 'طريق عين نجم — المبرز', alt: 'ركن الطلب وواجهة عرض المخبوزات في مقهى ومخبز دوت',
-      blurb: 'مخبز ومقهى معاً: واجهة عرض للمخبوزات وركن طلب بلمسة زرقاء.' },
-    { ...P.raslan, name: 'كرك رسلان', area: 'طريق الخليج', alt: 'أكواب الكرك على صينية خشبية مع أطباق فطور في كرك رسلان',
-      blurb: 'كركٌ يُصبّ في أكواب صغيرة مع أصناف فطور بسيطة.' },
-  ] as Place[],
+  places: RESTAURANTS_AR,
+  cafes: CAFES_AR,
 } : {
   heroEyebrow: 'From the tables of Al-Ahsa',
   title: 'Restaurants & Cafés',
@@ -166,50 +97,8 @@ const C = ar ? {
   ],
   methodH: 'About this page',
   methodP1: 'This is a first list that will keep growing. Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo — not reviews or dish recommendations.',
-  places: [
-    { ...P.darBasma, name: 'Dar Basma', area: 'Next to Qasr Ibrahim park — Al-Hofuf', alt: 'Dar Basma’s glass façade and outdoor seating among the palms at night',
-      blurb: 'Outdoor seating among the palms and a glass façade on the edge of the Qasr Ibrahim park.' },
-    { ...P.alkoot, name: 'Al-Koot Heritage Hotel Restaurant', area: 'Al-Koot district — opposite Qasr Ibrahim', alt: 'The courtyard of Al-Koot Heritage Hotel with its arcades and glass roof',
-      blurb: 'The heritage hotel’s restaurant — tables beneath a glass roof in an arcaded courtyard.' },
-    { ...P.alhawi, name: 'Al-Hawi', area: 'Al-Khalidiyah — opposite King Faisal University', alt: 'A traditional breakfast spread of assorted dishes at Al-Hawi',
-      blurb: 'A traditional breakfast spread laid out on woven mats, plate after plate.' },
-    { ...P.khunaina, name: 'Khunaina', area: 'Al-Khalidiyah — Al-Hofuf', alt: 'Heritage dishes served in wicker baskets at Khunaina',
-      blurb: 'Heritage dishes served in wicker baskets amid deep-green velvet seating.' },
-    { ...P.sinyar, name: 'Sinyar', area: 'Al-Khaleej Road — Al-Uwaimriyah', alt: 'Sinyar’s earthen façade and Arabic calligraphy sign at dusk',
-      blurb: 'A modern earthen building carrying its name in Arabic calligraphy.' },
-    { ...P.greasy, name: 'Greasy Fingers', area: 'Prince Nawwaf Street — Al-Hofuf', alt: 'A burger and fries on a serving tray at Greasy Fingers',
-      blurb: 'Burgers and fries on metal trays — the modern casual pick of the list.' },
-    { ...P.lava, name: 'Lava', area: 'Al-Khaleej Road — Al-Olaya', alt: 'Assorted dishes on a marble table at Lava',
-      blurb: 'Dishes arriving hot in iron skillets on marble tables.' },
-    { ...P.ammo, name: 'Ammo', area: 'King Abdullah Road — Al-Mazrou‘', alt: 'Ammo’s glass façade with its illuminated sign at night',
-      blurb: 'A modern glass façade crowned by its glowing sign.' },
-    { ...P.sharq, name: 'Sharq Al-Qaisariyah', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'The ornate arched entrance and outdoor seating of Sharq Al-Qaisariyah',
-      blurb: 'An ornate arched gateway opening onto heritage-styled seating.' },
-    { ...P.koud, name: 'Koud', area: 'King Abdullah Road — Al-Mazrou‘', alt: 'Koud’s façade — restaurant and café — with its lit Arabic sign',
-      blurb: 'Restaurant and café in one — as its dark façade announces in glowing Arabic letters.' },
-  ] as Place[],
-  cafes: [
-    { ...P.baithana, name: 'Baithana', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'Baithana’s mud-plastered entrance and wooden door in a heritage lane',
-      blurb: 'A mud-plastered house with a wooden door in one of Hofuf’s old lanes.' },
-    { ...P.sevenSt, name: '7st. Speciality Coffee', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'A sitting corner with leather armchairs and a stained-glass window at 7st',
-      blurb: 'Specialty coffee in a classic sitting room of leather chairs and stained glass.' },
-    { ...P.baitAlkoot, name: 'Bait Al-Koot', area: 'Historic downtown Al-Hofuf', alt: 'Bait Al-Koot’s façade with hanging lights at dusk',
-      blurb: 'An Ahsai-style house strung with lights in the historic heart of Hofuf.' },
-    { ...P.darHuwaija, name: 'Dar Huwaija', area: 'King Fahd Road — historic downtown Al-Hofuf', alt: 'Dar Huwaija’s seating among plaster arches and wooden chairs',
-      blurb: 'Seating among white plaster arches and shelves of coffee-making gear.' },
-    { ...P.alsayed, name: 'Al-Sayed Café', area: 'Al-Raf‘ah North — Al-Hofuf', alt: 'The heritage interior of Al-Sayed Café with its wooden ceiling',
-      blurb: 'A heritage interior with a wooden ceiling that keeps the feel of the old coffeehouses.' },
-    { ...P.ratio, name: 'Ratio Al-Koot', area: 'King Abdulaziz Road — historic downtown Al-Hofuf', alt: 'A traditional majlis with cushions and rugs beneath a palm-trunk ceiling at Ratio Al-Koot',
-      blurb: 'An Arabian majlis of cushions and rugs beneath a palm-trunk ceiling.' },
-    { ...P.soulaf, name: 'Soulaf Coffee', area: 'King Abdullah Road — Al-Hofuf', alt: 'Soulaf Coffee’s modern interior with an olive tree and slatted ceiling',
-      blurb: 'A calm, modern interior centred on an olive tree beneath a skylight.' },
-    { ...P.bakingUp, name: 'Baking Up', area: 'Ain Najm Road — Al-Mubarraz', alt: 'Baking Up’s storefront with umbrellas and outdoor seating',
-      blurb: 'Bakes and crunchy treats — as it calls itself on Google Maps — behind a cheerful storefront.' },
-    { ...P.dot, name: 'Dot Bakery & Café', area: 'Ain Najm Road — Al-Mubarraz', alt: 'The order counter and pastry display at Dot Bakery & Café',
-      blurb: 'Bakery and café in one: a fresh-pastry display with a blue-accented order counter.' },
-    { ...P.raslan, name: 'Karak Raslan', area: 'Al-Khaleej Road', alt: 'Cups of karak on a wooden tray with breakfast dishes at Karak Raslan',
-      blurb: 'Karak poured into small cups alongside simple breakfast bites.' },
-  ] as Place[],
+  places: RESTAURANTS_EN,
+  cafes: CAFES_EN,
 };
 
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
