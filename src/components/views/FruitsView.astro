@@ -11,6 +11,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
+import HeroVideo from '../HeroVideo.astro';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -100,8 +101,8 @@ const C = ar ? {
       title: 'الحمضيات',
       fruits: [
         {
-          img: '/img/fruits/lomi-v2', alt: 'حبات اللومي الحساوي الأخضر مع نصف ثمرة',
-          k: 'الحمضيات', name: 'اللومي الحساوي (البن زهيري)',
+          img: '/img/fruits/lomi-v2', alt: 'حبات اللومي الأحسائي الأخضر مع نصف ثمرة',
+          k: 'الحمضيات', name: 'اللومي الأحسائي (البن زهيري)',
           season: 'صيفاً: من منتصف يونيو', seasons: 'summer',
           pre: 'المنتج الزراعي الثاني في الأحساء بعد التمور. ثمرته صغيرة خضراء داكنة رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. تنتشر في الواحة أكثر من 100 ألف شجرة لومي مثمرة؛ إذ تنتج الشجرة الواحدة ما بين 25 و30 كيلوغراماً في الموسم، ويتراوح سعره بين 15 و20 ريالاً للكيلو. وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد» أو اللومي المشمّس) لاستعماله طوال العام. وتحتفي به المحافظة سنوياً في «معرض اللومي الحساوي» الذي تنظمه غرفة الأحساء بالشراكة مع هيئة تطوير الأحساء.',
         },
@@ -117,34 +118,34 @@ const C = ar ? {
       title: 'فواكه الصيف',
       fruits: [
         {
-          img: '/img/fruits/melon-v2', alt: 'ثمار البطيخ الحساوي وشريحة مقطوعة',
-          k: 'فواكه الصيف', name: 'البطيخ الحساوي الأصفر',
+          img: '/img/fruits/melon-v2', alt: 'ثمار البطيخ الأحسائي وشريحة مقطوعة',
+          k: 'فواكه الصيف', name: 'البطيخ الأحسائي الأصفر',
           season: 'صيفاً: من نحو أواخر مايو', seasons: 'summer',
           pre: 'موروث زراعي وثقافي توارثه المزارعون عبر الأجيال؛ سلالة محلية تكوّنت بالانتخاب الزراعي والاحتفاظ بالبذور المتفوقة، فاكتسبت لونها الأصفر المميز وقدرتها على تحمل حرارة الأحساء وشح المياه. طعمه حلو ورائحته عطرية، وهو غني بالماء والألياف وفيتامين C والبوتاسيوم والكاروتينات، منخفض السعرات، ويساعد على ترطيب الجسم صيفاً.',
         },
         {
-          img: '/img/fruits/fig', alt: 'ثمار التين الحساوي ونصف ثمرة يظهر لبّها',
-          k: 'فواكه الصيف', name: 'التين الحساوي',
+          img: '/img/fruits/fig', alt: 'ثمار التين الأحسائي ونصف ثمرة يظهر لبّها',
+          k: 'فواكه الصيف', name: 'التين الأحسائي',
           season: 'صيفاً', seasons: 'summer',
           pre: 'فاكهة صيفية محبّبة، أشهر أنواعها في الأحساء المائل إلى الأخضر الفاتح الليموني، وحجم التينة بقدر اللقمة. طعمها سكري وقوامها طري، وتتميز بأنها — بخلاف كثير من أنواع التين — لا تفسد سريعاً. تُزرع غالباً متفرقةً داخل مزارع النخيل بجانب اللومي والرمان لا في بساتين مستقلة، ولذلك لا تتوفر إحصائية دقيقة بعدد أشجارها. يحفظها بعض المزارعين مجففةً، وهي ثمرة مباركة ذُكرت في القرآن الكريم.',
         },
         {
           img: '/img/fruits/bambar-v2', alt: 'حبات البمبر',
-          k: 'فواكه الصيف', name: 'البمبر الحساوي',
+          k: 'فواكه الصيف', name: 'البمبر الأحسائي',
           season: 'صيفاً: نحو يوليو وأغسطس', seasons: 'summer',
           pre: 'فاكهة تراثية يعشقها كبار السن، اسمها العلمي ',
           sci: 'Cordia myxa',
           post: ' وتُعرف أيضاً بالسبستان والمخيط والهمبو. ثمرتها بيضوية صغيرة يتحول لونها من الأخضر إلى الأصفر أو البني عند النضج، ومذاقها حلو ولبّها لزج جداً حتى صار يُضرب به المثل في اللزوجة. تُؤكل طازجة، وتُستخدم تقليدياً في العلاجات الشعبية للجهاز الهضمي.',
         },
         {
-          img: '/img/fruits/grapes-v2', alt: 'عنقود عنب حساوي',
-          k: 'فواكه الصيف', name: 'العنب الحساوي',
+          img: '/img/fruits/grapes-v2', alt: 'عنقود عنب أحسائي',
+          k: 'فواكه الصيف', name: 'العنب الأحسائي',
           season: 'صيفاً: من مطلع الصيف', seasons: 'summer',
           pre: 'عنب محلي صغير الحبّات يحتوي على البذور، يوصف بطعمه الرائع رغم صغر حجمه، ويأتي بنوعيه الأحمر والأخضر. يبدأ إنتاجه مع موسم الصيف إلى جانب اللومي والتين والرطب. غير أنه — بحسب مزارعين وباعة نقلت عنهم الصحافة المحلية — تراجع إنتاجه كثيراً وبات مهدداً بالانقراض بسبب قلة المياه وتناقص المساحات المزروعة.',
         },
         {
           img: '/img/fruits/pomegranate-v2', alt: 'رمان سواري ونصف ثمرة يتلألأ حبّها الأحمر',
-          k: 'فواكه الصيف', name: 'الرمان الحساوي (السّواري)', rare: true,
+          k: 'فواكه الصيف', name: 'الرمان الأحسائي (السّواري)', rare: true,
           season: '', seasons: 'summer autumn',
           pre: 'من الفواكه المحلية العريقة، ويُطلق على الحبّة الكبيرة منه اسم «السّواري»، ويمتاز بحلاوته الشديدة حتى إنه يتشقق منها، وبزهوِّ لونه. كان يُزرع سابقاً بكثافة في الواحة إلى جانب التين واللومي، لكن إنتاجه — كمثل عدد من فواكه الأحساء التقليدية — تراجع كثيراً حتى بات شبه منقرض من بساتين الواحة، فالعثور عليه اليوم نادر.',
         },
@@ -160,14 +161,14 @@ const C = ar ? {
       title: 'فواكه الربيع والشتاء',
       fruits: [
         {
-          img: '/img/fruits/mulberry-v2', alt: 'كومة توت حساوي أحمر وأسود',
-          k: 'فواكه الربيع', name: 'التوت الحساوي',
+          img: '/img/fruits/mulberry-v2', alt: 'كومة توت أحسائي أحمر وأسود',
+          k: 'فواكه الربيع', name: 'التوت الأحسائي',
           season: 'ربيعاً: نحو أبريل، وموسمه لا يتجاوز شهراً', seasons: 'spring',
           pre: 'فاكهة ربيعية قصيرة الموسم تطل مع نهاية موجات البرد، بحبيباتها الصغيرة شبه الكروية وألوانها الحمراء والسوداء والزرقاء، والأحمر والأسود هما الغالبان في مزارع الأحساء. يكثر الطلب عليها لقصر موسمها، وتُؤكل طازجة وتدخل في الحلويات والمثلجات والعصائر والمربيات، وتُحفظ مجمدة بعد الموسم. وتُعدّ زراعتها من الزراعات الواعدة اقتصادياً في الواحة.',
         },
         {
           img: '/img/fruits/kanar', alt: 'حبات الكنار',
-          k: 'فواكه الشتاء', name: 'الكنار الحساوي (النبق)',
+          k: 'فواكه الشتاء', name: 'الكنار الأحسائي (النبق)',
           season: 'شتاءً: من نحو يناير حتى نهاية مارس', seasons: 'winter spring',
           pre: 'فاكهة شتوية عريقة مصدرها شجرة السدر المذكورة في القرآن الكريم. ظلت الواحة محضنها الخصب، ولها أنواع متعددة: «التفاحي» بحجم التفاح، و«أم صليم» الصغير بلا نوى، و«الصيني» الكبير الأخضر، إضافة إلى الكمثري والهندي. طعمها حلو محبّب خصوصاً للأطفال، ولا تُخزّن طويلاً، ويرتبط شراؤها في الأسواق بأهازيج شعبية خاصة.',
         },
@@ -322,7 +323,7 @@ const C = ar ? {
 
 const pageTitle = `${C.title} — ${t('site.name')}`;
 const description = ar
-  ? 'جولة على ثمار واحة الأحساء بمواسمها: التمور والرطب، اللومي الحساوي، البطيخ الأصفر، التين، الكنار وغيرها — بمعلومات موثقة من مصادر رسمية.'
+  ? 'جولة على ثمار واحة الأحساء بمواسمها: التمور والرطب، اللومي الأحسائي، البطيخ الأصفر، التين، الكنار وغيرها — بمعلومات موثقة من مصادر رسمية.'
   : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — with information verified from official sources.';
 
 const siteUrl = 'https://visit-alahsa.com';
@@ -340,10 +341,8 @@ const jsonLd = [
 
     <section class="fr-hero on-dark">
       <HeroPoster src="/img/hero-fruits" class="frh-poster" />
-      <video class="photo-bg frh-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-        <source data-src="/video/hero-fruits.mp4" type="video/mp4" />
-      </video>
-      <PalmMotif size={320} class="frh-wm" aria-hidden="true" />
+      <HeroVideo src="/video/hero-fruits.mp4" />
+      <PalmMotif size={320} class="frh-wm" />
       <div class="container frh-in">
         <span class="eyebrow gold-on-dark">{C.heroEyebrow}</span>
         <h1 class="frh-title">{C.title}</h1>
@@ -491,33 +490,10 @@ const jsonLd = [
   if (document.readyState !== 'loading') initDescToggles(); else document.addEventListener('DOMContentLoaded', initDescToggles);
 </script>
 
-<script is:inline>
-  /* تفعيل فيديو الهيرو كسولاً — يحترم تفضيل تقليل الحركة وتوفير البيانات */
-  function initFruitsHeroVideo() {
-    const v = document.querySelector('.frh-video');
-    if (!v || v.dataset.wired) return;
-    v.dataset.wired = '1';
-    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const saveData = navigator.connection && navigator.connection.saveData === true;
-    if (reduceMotion || saveData) return;
-    const s = v.querySelector('source');
-    if (s && s.dataset.src) {
-      v.addEventListener('playing', () => v.classList.add('frh-video--on'), { once: true });
-      s.src = s.dataset.src;
-      v.autoplay = true;
-      v.load();
-      v.addEventListener('canplay', () => { v.play().catch(() => {}); }, { once: true });
-    }
-  }
-  document.addEventListener('astro:page-load', initFruitsHeroVideo);
-  if (document.readyState !== 'loading') initFruitsHeroVideo(); else document.addEventListener('DOMContentLoaded', initFruitsHeroVideo);
-</script>
-
 <style>
   /* ═══ الهيرو وشريط الأرقام ═══ */
   .fr-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  .frh-video { object-fit: cover; inline-size: 100%; block-size: 100%; opacity: 0; transition: opacity 1.2s var(--ease); filter: saturate(.94) contrast(1.03); }
-  .frh-video--on { opacity: 1; }
+  /* فيديو الهيرو ومظهره في global.css (.hero-vid) مع مكوّن HeroVideo */
   /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
   .fr-hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;

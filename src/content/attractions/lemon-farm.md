@@ -5,7 +5,7 @@ slug_ar: "مزرعة-الليمون-الحساوي"
 slug_en: "lemon-farm"
 category: farm
 kicker: "مزرعة ونخيل"
-summary: "مزرعة للحمضيات يُقصد فيها قطف الليمون الحساوي الشهير في موسمه."
+summary: "مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه."
 summary_en: "A citrus farm where visitors pick the famous Hasawi lemon in season."
 body_en: "A citrus farm where visitors pick the famous Hasawi lemon in season."
 featured: false
@@ -15,4 +15,4 @@ mapUrl: "https://maps.app.goo.gl/P24d8Cya5Fg2ChTi6"
 heroImage: /img/hasawi-lemon-farm
 ---
 
-مزرعة للحمضيات يُقصد فيها قطف الليمون الحساوي الشهير في موسمه.
+مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه.
