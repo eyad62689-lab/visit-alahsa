@@ -10,8 +10,8 @@ import { join } from 'node:path';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
+import PageHero from '../PageHero.astro';
 import { RESTAURANTS_AR, RESTAURANTS_EN, CAFES_AR, CAFES_EN } from '../../data/dining';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -135,14 +135,7 @@ const jsonLd = [
   <Header lang={lang} alt={alt} />
   <main id="main">
 
-    <section class="dn-hero on-dark">
-      <PalmMotif size={320} class="dnh-wm" />
-      <div class="container dnh-in">
-        <span class="eyebrow gold-on-dark">{C.heroEyebrow}</span>
-        <h1 class="dnh-title">{C.title}</h1>
-        <p class="dnh-sum">{C.heroSum}</p>
-      </div>
-    </section>
+    <PageHero eyebrow={C.heroEyebrow} title={C.title} lead={C.heroSum} leadWidth={62} lang={lang} />
 
     <section class="container dn-list">
       <div class="dn-head">
@@ -236,11 +229,6 @@ const jsonLd = [
 
 <style>
   /* ═══ الهيرو — لوني بلا صورة (لا أصل هيرو موثّق بعد) ═══ */
-  .dn-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  :global(.dnh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
-  .dnh-in { position: relative; z-index: 2; }
-  .dnh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .dnh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 62ch; }
 
   /* ═══ شبكة المطاعم ═══ */
   .dn-list { padding-block: var(--s-6) var(--s-8); }

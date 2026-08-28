@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import { formatDate } from '../../lib/dates';
@@ -35,14 +36,7 @@ const jsonLd = [
 <Base title={`${t('blog.title')} — ${t('site.name')}`} description={t('blog.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
-    <section class="blog-hero on-dark">
-      <PalmMotif size={320} class="bh-wm" />
-      <div class="container bh-in">
-        <span class="eyebrow gold-on-dark">{t('blog.eyebrow')}</span>
-        <h1 class="bh-title">{t('blog.title')}</h1>
-        <p class="bh-lead">{t('blog.lead')}</p>
-      </div>
-    </section>
+    <PageHero eyebrow={t('blog.eyebrow')} title={t('blog.title')} lead={t('blog.lead')} leadWidth={52} lang={lang} />
 
     <section class="container blog-list" data-reveal>
       {posts.length === 0 ? (
@@ -72,11 +66,6 @@ const jsonLd = [
 </Base>
 
 <style>
-  .blog-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); color: var(--c-sand); }
-  :global(.bh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -3%; color: var(--c-gold); opacity: .14; }
-  .bh-in { position: relative; padding-block: var(--s-7); }
-  .bh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.12; margin-block: var(--s-2) var(--s-3); }
-  .bh-lead { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 52ch; }
   .blog-list { padding-block: var(--s-7) var(--s-8); }
   .blog-empty { color: var(--c-ink-soft); font-size: var(--t-lg); }
   .bl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }

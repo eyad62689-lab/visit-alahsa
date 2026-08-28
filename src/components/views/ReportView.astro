@@ -5,7 +5,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import PalmMotif from '../PalmMotif.astro';
+import PageHero from '../PageHero.astro';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -44,14 +44,8 @@ const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
 <Base title={`${C.title} — ${t('site.name')}`} description={C.lead} lang={lang} alt={alt} noindex={true}>
   <Header lang={lang} alt={alt} />
   <main id="main">
-    <section class="rp-hero on-dark">
-      <PalmMotif size={260} class="rp-wm" />
-      <div class="container rp-in">
-        <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
-        <h1 class="rp-title">{C.title}</h1>
-        <p class="rp-sum">{C.lead}</p>
-      </div>
-    </section>
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={60}
+      size="compact" motifSize={260} lang={lang} />
 
     <section class="container rp-body">
       <form
@@ -103,11 +97,6 @@ const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
 </Base>
 
 <style>
-  .rp-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-7) var(--s-6); }
-  :global(.rp-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -4%; color: var(--c-gold); opacity: .1; }
-  .rp-in { position: relative; z-index: 2; }
-  .rp-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .rp-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 60ch; }
   .rp-body { padding-block: var(--s-6) var(--s-8); }
   .rp-form { max-inline-size: 620px; display: flex; flex-direction: column; gap: var(--s-4); }
   .rp-hp { position: absolute; inset-inline-start: -9999px; }

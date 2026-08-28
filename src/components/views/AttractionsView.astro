@@ -2,10 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import PalmMotif from '../PalmMotif.astro';
+import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
-import HeroPoster from '../HeroPoster.astro';
-import HeroVideo from '../HeroVideo.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
@@ -71,19 +69,10 @@ const jsonLd = [
 <Base title={`${tx('title')} — ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
   <Header lang={lang} alt={alt} />
   <main id="main">
-    <section class="list-hero on-dark">
-      <HeroPoster src={heroImg} class="lh-poster" />
-      {heroVideo && (
-        <HeroVideo src={heroVideo} lang={lang} />
-      )}
-      <PalmMotif size={320} class="lh-wm" />
-      <div class="container lh-in">
-        <span class="eyebrow gold-on-dark">{tx('eyebrow')}</span>
-        <h1 class="lh-title">{tx('title')}</h1>
-        <p class="lh-sum">{tx('lead')}</p>
-        <a href={mapHref} class="btn btn--gold lh-map">{t('list.map')}</a>
-      </div>
-    </section>
+    <PageHero eyebrow={tx('eyebrow')} title={tx('title')} lead={tx('lead')} leadWidth={56}
+      poster={heroImg} video={heroVideo ?? undefined} lang={lang}>
+      <a href={mapHref} class="btn btn--gold lh-map">{t('list.map')}</a>
+    </PageHero>
 
     <section class="container list-body">
       <div class="list-tools">
@@ -163,20 +152,7 @@ const jsonLd = [
 </script>
 
 <style>
-  .list-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  /* فيديو الهيرو فوق الخلفية الفيروزية؛ يظهر تدريجياً بعد بدء التشغيل، والخلفية تبقى احتياطاً
-     لمن يُفعّل «تقليل الحركة» أو «توفير البيانات». */
-  /* فيديو الهيرو ومظهره في global.css (.hero-vid) مع مكوّن HeroVideo */
-  /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
-  .list-hero::after {
-    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: var(--hero-scrim);
-  }
-  :global(.lh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
-  .lh-in { position: relative; z-index: 2; }
-  .lh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .lh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.96); max-inline-size: 56ch; }
   .lh-map { margin-block-start: var(--s-4); }
   .list-body { padding-block: var(--s-6) var(--s-8); }
   .list-tools { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); }
@@ -227,7 +203,6 @@ const jsonLd = [
     .list-tools { flex-direction: column; align-items: stretch; }
     .list-search { inline-size: 100%; }
     /* tighten hero text on tablet */
-    .lh-sum { font-size: var(--t-base); }
     /* عنوان القسم كان يبقى 30px على الجوال فينكسر 3 أسطر («المساجد والمواقع
        الدينية»)؛ الخطّ الفاصل يزاحمه على العرض فيُخفى هنا ويُضيَّق الفراغ */
     .cat-sec-t { font-size: var(--t-lg); }

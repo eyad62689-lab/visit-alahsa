@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
 import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
@@ -44,14 +45,8 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
 <Base title={`${t('plan.title')} — ${t('site.name')}`} description={t('plan.lead')} lang={lang} alt={alt} noindex={true}>
   <Header lang={lang} alt={alt} />
   <main id="main">
-    <section class="plan-hero on-dark">
-      <PalmMotif size={300} class="ph-wm" />
-      <div class="container ph-in">
-        <span class="eyebrow gold-on-dark">{t('plan.eyebrow')}</span>
-        <h1 class="ph-title">{t('plan.title')}</h1>
-        <p class="ph-sum">{t('plan.lead')}</p>
-      </div>
-    </section>
+    <PageHero eyebrow={t('plan.eyebrow')} title={t('plan.title')} lead={t('plan.lead')} leadWidth={54}
+      motif="center" motifSize={300} lang={lang} />
 
     <section class="container plan-body">
       <div class="shared-note" id="shared-note" hidden>
@@ -182,15 +177,6 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   /* بطاقات «رحلتي» تُبنى بجافاسكربت (innerHTML) فلا تحمل سمة نطاق المكوّن التي
      تضيفها Astro، وكل قاعدة مُنطَّقة لا تصلها. كانت البطاقات تُعرض بلا أي تنسيق
      — لذا أصناف البطاقة كلّها ملفوفة بـ:global هنا وفي كتلة الطباعة. */
-  .plan-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  /* نزيف من حافة واحدة فقط: الهيرو هنا نصّي وارتفاعه ~310px والسعفة 300–320px،
-     فقصّها من الأعلى ومن الجانب معاً كان يُبقي شظيةً بأقواسٍ مبتورة تُقرأ خطأً
-     لا زخرفةً. التوسيط الرأسي يُبقي التاج كاملاً ويقصّ الجانب وحده. */
-  :global(.ph-wm) { position: absolute; inset-block-start: 50%; transform: translateY(-50%); inset-inline-end: -7%; color: var(--c-gold); opacity: .1; }
-  /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
-  .ph-in { position: relative; z-index: 2; }
-  .ph-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .ph-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 54ch; }
   .plan-body { padding-block: var(--s-6) var(--s-8); }
   .plan-actions { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); padding-block-end: var(--s-4); border-block-end: 1px solid var(--c-line); }
   .plan-count-txt { font-weight: 600; color: var(--c-turq-deep); }
@@ -216,7 +202,6 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   .pe-d { color: var(--c-ink-soft); margin-block-end: var(--s-4); }
   .pe-cta { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
   @media (max-width: 760px) {
-    .ph-sum { font-size: var(--t-base); }
     .plan-actions { flex-direction: column; align-items: flex-start; }
     .plan-act-btns { inline-size: 100%; }
     .plan-act-btns .btn { flex: 1; justify-content: center; }

@@ -1,0 +1,88 @@
+---
+// هيرو الصفحات الموحّد — كانت الكتلة نفسها منسوخة عبر 9 واجهات قوائم
+// (~50 سطر CSS متطابق لكل واحدة، والفروق بدأت تتسلل: عتامات 0.9/0.96،
+// إزاحات سعفة ‎-3%/-4%/-5%، حشوات متباينة — تدقيق 2026-08-28). وُحِّدت هنا:
+// من يبني صفحة قائمة جديدة يستدعي المكوّن ولا ينسخ الكتلة.
+//
+// خارج نطاقه عمداً: هيرو الرئيسية (92vh بدعوتَي إجراء ومؤشر تمرير)، وأبطال
+// صفحات التفاصيل الثلاث (معلم/فعالية/مقال — ملصق بمحتوى سفلي وفتات) — بنيتها
+// مختلفة جوهرياً لا اختلاف قيم.
+//
+// <slot /> بعد حاوية النص لإضافات الواجهة (شريط أرقام الثمار مثلاً) —
+// محتواه يُكتب في الواجهة المستدعية فيحمل نطاق أنماطها.
+import HeroPoster from './HeroPoster.astro';
+import HeroVideo from './HeroVideo.astro';
+import PalmMotif from './PalmMotif.astro';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  /** عرض النبذة الأقصى بالـch — مضبوط في كل واجهة على طول نصّها (52–62) */
+  leadWidth?: number;
+  poster?: string;        // مسار ملصق الهيرو بلا امتداد (HeroPoster)
+  video?: string;         // مسار فيديو الهيرو (HeroVideo)
+  videoMobile?: string;   // نسخته العمودية للجوال
+  lang?: Lang;
+  /** center: هيرو نصّي قصير (~310px) — قصّ السعفة من الأعلى والجانب معاً يُبقي
+   *  شظية بأقواس مبتورة تُقرأ خطأً؛ التوسيط الرأسي يُبقي التاج كاملاً. */
+  motif?: 'top' | 'center';
+  motifSize?: number;
+  /** compact: حشوات أصغر لصفحات الأدوات القصيرة (نموذج الإبلاغ) */
+  size?: 'standard' | 'compact';
+  /** strong: طبقة تعتيم إضافية — لملصقٍ مبقّع بفجوات ساطعة يهبط معها تباين
+   *  العنوان دون 3:1 بالتعتيم القياسي (مقيس على هيرو الثمار). */
+  scrim?: 'default' | 'strong';
+  class?: string;
+}
+const {
+  eyebrow, title, lead, leadWidth,
+  poster, video, videoMobile, lang = 'ar',
+  motif = 'top', motifSize = 320, size = 'standard', scrim = 'default',
+  class: cls = '',
+} = Astro.props;
+const hasMedia = !!(poster || video);
+---
+<section
+  class:list={[
+    'page-hero', 'on-dark', cls,
+    { 'page-hero--compact': size === 'compact', 'page-hero--media': hasMedia, 'page-hero--scrim-strong': scrim === 'strong' },
+  ]}
+>
+  {poster && <HeroPoster src={poster} />}
+  {video && <HeroVideo src={video} srcMobile={videoMobile} lang={lang} />}
+  <PalmMotif size={motifSize} class={motif === 'center' ? 'pgh-wm pgh-wm--center' : 'pgh-wm'} />
+  <div class="container pgh-in">
+    {eyebrow && <span class="eyebrow gold-on-dark">{eyebrow}</span>}
+    <h1 class="pgh-title">{title}</h1>
+    {lead && <p class="pgh-lead" style={leadWidth ? `max-inline-size: ${leadWidth}ch` : undefined}>{lead}</p>}
+    <slot />
+  </div>
+  {/* إضافات خارج حاوية النص (شريط أرقام الثمار مثلاً) */}
+  <slot name="after" />
+</section>
+
+<style>
+  .page-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
+  .page-hero--compact { padding-block: var(--s-7) var(--s-6); }
+  /* طبقة التعتيم فوق الملصق/الفيديو لضمان وضوح النصّ — للأبطال المصوّرة فقط */
+  .page-hero--media::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: var(--hero-scrim);
+  }
+  .page-hero--scrim-strong::after {
+    background:
+      linear-gradient(var(--hero-scrim-dir), rgba(0,42,38,.34) 0%, rgba(0,45,40,.20) 55%, transparent 100%),
+      var(--hero-scrim);
+  }
+  :global(.pgh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
+  :global(.pgh-wm--center) { inset-block-start: 50%; transform: translateY(-50%); inset-inline-end: -7%; }
+  /* التحديد على العناصر لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
+  .pgh-in { position: relative; z-index: 2; }
+  .pgh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
+  .pgh-lead { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  @media (max-width: 760px) {
+    .pgh-lead { font-size: var(--t-base); }
+  }
+</style>

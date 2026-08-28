@@ -8,10 +8,8 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import PalmMotif from '../PalmMotif.astro';
+import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
-import HeroPoster from '../HeroPoster.astro';
-import HeroVideo from '../HeroVideo.astro';
 import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN } from '../../data/fruits';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -102,16 +100,9 @@ const jsonLd = [
   <Header lang={lang} alt={alt} />
   <main id="main">
 
-    <section class="fr-hero on-dark">
-      <HeroPoster src="/img/hero-fruits" class="frh-poster" />
-      <HeroVideo src="/video/hero-fruits.mp4" lang={lang} />
-      <PalmMotif size={320} class="frh-wm" />
-      <div class="container frh-in">
-        <span class="eyebrow gold-on-dark">{C.heroEyebrow}</span>
-        <h1 class="frh-title">{C.title}</h1>
-        <p class="frh-sum">{C.heroSum}</p>
-      </div>
-      <div class="container fr-stats">
+    <PageHero eyebrow={C.heroEyebrow} title={C.title} lead={C.heroSum} leadWidth={62}
+      poster="/img/hero-fruits" video="/video/hero-fruits.mp4" scrim="strong" lang={lang}>
+      <div class="container fr-stats" slot="after">
         <div class="stats-grid">
           {C.stats.map((s) => (
             <div class="stat"><div class="st-n">{s.n}</div><div class="st-l">{s.l}</div></div>
@@ -119,7 +110,7 @@ const jsonLd = [
         </div>
         <p class="src-note">{C.statsSrc}</p>
       </div>
-    </section>
+    </PageHero>
 
     <section class="container fr-list">
       <div class="fr-head">
@@ -255,22 +246,7 @@ const jsonLd = [
 
 <style>
   /* ═══ الهيرو وشريط الأرقام ═══ */
-  .fr-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  /* فيديو الهيرو ومظهره في global.css (.hero-vid) مع مكوّن HeroVideo */
-  /* طبقة تعتيم لضمان وضوح النصّ فوق الفيديو */
-  .fr-hero::after {
-    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    /* طبقة إضافية فوق التعتيم الموحّد: صورة هذا البطل مبقّعة بفجوات سماءٍ ساطعة
-       بين السعف، وعليها يهبط تباين العنوان دون 3:1 بالتعتيم القياسي (مقيس). */
-    background:
-      linear-gradient(var(--hero-scrim-dir), rgba(0,42,38,.34) 0%, rgba(0,45,40,.20) 55%, transparent 100%),
-      var(--hero-scrim);
-  }
-  :global(.frh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   /* التحديد على الفقرة لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
-  .frh-in { position: relative; z-index: 2; }
-  .frh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .frh-sum { font-size: var(--t-lg); color: rgba(247,243,234,.9); max-inline-size: 62ch; }
   .fr-stats { position: relative; z-index: 2; margin-block-start: var(--s-6); }
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: var(--s-3); }
   .stat { background: rgba(247,243,234,.07); border: 1px solid rgba(247,243,234,.14); border-radius: var(--radius); padding: var(--s-4); text-align: center; }
