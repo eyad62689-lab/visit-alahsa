@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "prebuild": "node tools/fetch-places.mjs",
-    "build": "astro build && pagefind --site dist",
-    "preview": "astro preview"
+    "build": "astro check && astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "check": "astro check"
   },
   "dependencies": {
     "@fontsource/amiri": "^5.2.8",
@@ -21,9 +22,12 @@
     "maplibre-gl": "^6.4.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^26.4.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "pagefind": "^1.5.2",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.3",
+    "typescript": "^6.0.3"
   }
 }

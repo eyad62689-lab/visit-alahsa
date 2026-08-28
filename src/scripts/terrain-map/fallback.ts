@@ -1,6 +1,7 @@
 // تراجع الخريطة التضاريسية — Leaflet المستضاف ذاتياً (نفس ملفات vendor
 // المستخدمة في صفحة الخريطة التقليدية، فهي غالباً في كاش الزائر أصلاً).
 // يُستدعى حين يغيب WebGL2 أو يفشل MapLibre — بلا أي رسالة خطأ للمستخدم.
+import type * as GeoJSON from 'geojson';
 import type { TmapCfg, TmapBus } from './index';
 import { buildPopupNode, catColors, fetchLandmarks, type LandmarkProps } from './shared';
 

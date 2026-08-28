@@ -15,7 +15,7 @@ import '@fontsource/cormorant-garamond/400.css';
 import '@fontsource/cormorant-garamond/600.css';
 import Seo from '../components/Seo.astro';
 import { srcsetFor } from '../lib/images';
-import { dir, htmlLang, type AltLinks } from '../i18n/utils';
+import { dir, htmlLang, useTranslations, type AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -35,6 +35,8 @@ const {
   description = 'الأحساء — أكبر واحة نخيل في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
   lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage,
 } = Astro.props;
+
+const t = useTranslations(lang);
 
 // Google Analytics 4 (GA4). معرّف القياس ثابت للموقع كله.
 const GA_ID = 'G-QB084SK5XJ';
@@ -119,7 +121,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <ClientRouter />
   </head>
   <body>
-    <a class="skip-link" href="#main" data-pagefind-ignore>{lang === 'ar' ? 'تخطَّ إلى المحتوى' : 'Skip to content'}</a>
+    <a class="skip-link" href="#main" data-pagefind-ignore>{t('a11y.skip')}</a>
     <slot />
     <script is:inline>
       function initReveal() {

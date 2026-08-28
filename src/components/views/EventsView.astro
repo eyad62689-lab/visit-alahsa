@@ -10,7 +10,7 @@ import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
 import EventEdition from '../EventEdition.astro';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { EVENTS_AR, EVENTS_EN, evView, type Ev } from '../../data/events';
 
@@ -21,7 +21,7 @@ const ar = lang === 'ar';
 
 
 
-const C = ar ? {
+const C = localize(lang, {
   eyebrow: 'مواسم الواحة',
   title: 'المهرجانات والفعاليات',
   lead: 'من سوق القيصرية إلى مزارع النخيل، تنبض الأحساء بمواسمَ تُحيي تراثها على مدار العام — احتفالاتٌ ومهرجاناتٌ تعود كلَّ سنةٍ في موسمها.',
@@ -56,7 +56,7 @@ const C = ar ? {
   ctaPlan: 'خطّط لرحلتك',
   seoTitle: 'مهرجانات وفعاليات الأحساء — مواسم الواحة على مدار العام',
   seoDesc: 'دليل المهرجانات والفعاليات الموسمية في الأحساء — البشت، ليالي القيصرية، معرض اللومي، شتاء العقير وغيرها، بمواسمها وأنشطتها وجهاتها المنظّمة.',
-} : {
+}, {
   eyebrow: 'Seasons of the oasis',
   title: 'Festivals & Events',
   lead: 'From Qaisariyah Souq to the palm groves, Al-Ahsa pulses with seasons that revive its heritage all year round — celebrations and festivals that return each year in their season.',
@@ -90,7 +90,7 @@ const C = ar ? {
   ctaPlan: 'Plan your trip',
   seoTitle: 'Al-Ahsa festivals & events — seasons of the oasis all year round',
   seoDesc: 'A guide to Al-Ahsa’s seasonal festivals and events — the Bisht Festival, Qaisariyah Nights, the Lomi Exhibition and more, with seasons and organisers.',
-};
+});
 
 // العرض الفعّال وقت البناء: النسخة المؤكدة ما دامت قائمة، والموسم التقريبي بعدها
 // (evView). ويعيد المتصفّح الحساب بتاريخ الزائر عبر EventEdition تحسّباً لتأخّر

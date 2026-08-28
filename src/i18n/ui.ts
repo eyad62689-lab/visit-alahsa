@@ -21,6 +21,12 @@ export const ui = {
     'lang.switchLabel': 'English',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
+    // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
+    'a11y.skip': 'تخطَّ إلى المحتوى',
+    'a11y.menu': 'القائمة',
+    'a11y.crumbs': 'مسار الصفحة',
+    'a11y.scrollDown': 'انزل إلى المحتوى',
+    'form.honeypot': 'لا تملأ هذا الحقل: ',
     'video.pause': 'أوقف فيديو الخلفية',
     'video.play': 'شغّل فيديو الخلفية',
     'fav.add': 'أضف إلى رحلتي',
@@ -223,6 +229,11 @@ export const ui = {
     'nav.planVisit': 'Plan your visit',
     'lang.switch': 'ع',
     'lang.switchLabel': 'العربية',
+    'a11y.skip': 'Skip to content',
+    'a11y.menu': 'Menu',
+    'a11y.crumbs': 'Breadcrumb',
+    'a11y.scrollDown': 'Scroll to content',
+    'form.honeypot': 'Do not fill this field: ',
     'video.pause': 'Pause background video',
     'video.play': 'Play background video',
     'fav.add': 'Add to my trip',

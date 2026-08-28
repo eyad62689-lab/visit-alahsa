@@ -1,6 +1,7 @@
 // نواة الخريطة التضاريسية — MapLibre GL. لا يصل هذا الملف إلى المتصفح إلا
 // عبر import() ديناميكي من التمهيد، فلا يدخل في حزمة أي صفحة.
 // v6 يصدّر أسماءً (named exports) فقط — لا default
+import type * as GeoJSON from 'geojson';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { TmapCfg, TmapBus } from './index';

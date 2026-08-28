@@ -43,7 +43,7 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
     </a>
 
     <input type="checkbox" id="navtoggle" class="nav-toggle" hidden />
-    <label for="navtoggle" class="burger" role="button" tabindex="0" aria-controls="site-nav" aria-expanded="false" aria-label={ar ? 'القائمة' : 'Menu'}><span></span><span></span><span></span></label>
+    <label for="navtoggle" class="burger" role="button" tabindex="0" aria-controls="site-nav" aria-expanded="false" aria-label={t('a11y.menu')}><span></span><span></span><span></span></label>
 
     <nav class="nav" id="site-nav" aria-label={t('nav.discover')}>
       {nav.map((n) => <a href={n.href}>{n.label}</a>)}

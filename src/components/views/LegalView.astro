@@ -7,7 +7,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN } from '../../data/legal';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -15,7 +15,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
-const C = ar ? {
+const C = localize(lang, {
   title: 'السياسات والشروط القانونية',
   updated: 'آخر تحديث: 10 يوليو 2026م',
   chips: ['سياسة الخصوصية', 'شروط الاستخدام', 'إخلاء المسؤولية', 'ملفات تعريف الارتباط', 'حقوق الملكية الفكرية', 'الروابط الخارجية'],
@@ -32,7 +32,7 @@ const C = ar ? {
   ],
   contactPre: 'لأي استفسار يتعلق بهذه السياسات، أو لممارسة حقوقكم المتعلقة بالبيانات الشخصية، أو للإبلاغ عن انتهاك للحقوق أو رابط مخالف، يسعدنا تواصلكم عبر البريد الرسمي للموقع: ',
   copyright: 'جميع الحقوق محفوظة © 2026 — زوروا الأحساء | visit-alahsa.com',
-} : {
+}, {
   title: 'Policies & Legal Terms',
   updated: 'Last updated: 10 July 2026',
   chips: ['Privacy Policy', 'Terms of Use', 'Disclaimer', 'Cookies', 'Intellectual Property', 'External Links'],
@@ -49,7 +49,7 @@ const C = ar ? {
   ],
   contactPre: 'For any enquiry regarding these policies, to exercise your rights relating to personal data, or to report an infringement of rights or a non-compliant link, we welcome hearing from you through the site’s official email: ',
   copyright: '© 2026 Visit Al-Ahsa. All rights reserved. | visit-alahsa.com',
-};
+});
 
 const email = 'info@visit-alahsa.com';
 const seoDesc = ar

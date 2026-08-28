@@ -5,7 +5,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -22,7 +22,7 @@ const TRAVEL_ICONS: Record<string, string> = {
   rail: '<rect x="6" y="3.5" width="12" height="12" rx="3"/><path d="M6 9.5h12"/><path d="M9.6 12.7h.01"/><path d="M14.4 12.7h.01"/><path d="m8.4 15.5-2 4.5"/><path d="m15.6 15.5 2 4.5"/><path d="M5 20h14"/>',
 };
 
-const C = ar ? {
+const C = localize(lang, {
   eyebrow: 'خطّط لرحلتك',
   title: 'كلُّ ما تحتاجه قبل أن تنطلق',
   lead: 'معلومات عملية موجزة تجعل رحلتك سلسة من الوصول إلى الوداع.',
@@ -69,7 +69,7 @@ const C = ar ? {
   ctaTrip: 'رحلتي',
   seoTitle: 'خطّط لرحلتك إلى الأحساء — الوصول وأفضل وقت ونصائح',
   seoDesc: 'كل ما تحتاجه لزيارة الأحساء: الوصول جواً وبراً وبالقطار، أفضل وقت للزيارة، معلومات عملية، ونصائح وأسئلة شائعة. خطّط بثقة.',
-} : {
+}, {
   eyebrow: 'Plan your trip',
   title: 'Everything you need before you go',
   lead: 'Concise, practical information to make your trip smooth from arrival to departure.',
@@ -116,7 +116,7 @@ const C = ar ? {
   ctaTrip: 'My Trip',
   seoTitle: 'Plan your trip to Al-Ahsa — getting there, best time and tips',
   seoDesc: 'Everything you need to visit Al-Ahsa: getting there by air, road and train, the best time to visit, practical information, tips and FAQs. Plan with confidence.',
-};
+});
 
 const browseHref = ar ? '/معالم/' : '/en/attractions/';
 const tripHref = ar ? '/رحلتي/' : '/en/plan/';

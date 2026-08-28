@@ -11,6 +11,12 @@ export function useTranslations(lang: Lang) {
   };
 }
 
+/** كتلة نصوص واجهة ثنائية اللغة (نمط C الموحّد — دفعة 3، 2026-08-29).
+ *  النوع يُستنتج من الكتلة العربية ويُفرَض على الإنجليزية، فأي مفتاح يغيب عن
+ *  إحداهما يكسر البناء بدل أن يتباعد الشكلان بصمت — كانت كتل C في 10 واجهات
+ *  ثلاثية الأشكال بلا أي إلزام (تدقيق 2026-08-28). */
+export const localize = <T,>(lang: Lang, arText: T, enText: T): T => (lang === 'ar' ? arText : enText);
+
 export const dir = (lang: Lang) => (lang === 'ar' ? 'rtl' : 'ltr');
 export const htmlLang = (lang: Lang) => (lang === 'ar' ? 'ar' : 'en');
 

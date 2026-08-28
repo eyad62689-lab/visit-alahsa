@@ -15,7 +15,7 @@ import PalmMotif from '../PalmMotif.astro';
 import HeroPoster from '../HeroPoster.astro';
 import Photo from '../Photo.astro';
 import EventEdition from '../EventEdition.astro';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { eventsFor, evView, type Ev } from '../../data/events';
 import { attractionHref } from '../../lib/routes';
@@ -29,7 +29,7 @@ const ev = evView(raw);
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
-const C = ar ? {
+const C = localize(lang, {
   eyebrow: 'من مواسم الواحة',
   placeK: 'الموقع', orgK: 'الجهات المنظّمة', seasonK: 'الموسم',
   timeK: 'الموعد', spanK: 'المدة التقريبية',
@@ -55,7 +55,7 @@ const C = ar ? {
   crumb: 'الفعاليات',
   moreH: 'مواسم أخرى',
   back: 'كل الفعاليات',
-} : {
+}, {
   eyebrow: 'A season of the oasis',
   placeK: 'Location', orgK: 'Organisers', seasonK: 'Season',
   timeK: 'When', spanK: 'Approximate length',
@@ -80,7 +80,7 @@ const C = ar ? {
   crumb: 'Festivals & Events',
   moreH: 'Other seasons',
   back: 'All events',
-};
+});
 
 const listHref = ar ? '/فعاليات/' : '/en/events/';
 const homeHref = ar ? '/' : '/en/';
@@ -150,7 +150,7 @@ if (ev.faq?.length) {
       {ev.img && <HeroPoster src={ev.img} class="evd-poster" />}
       <PalmMotif size={320} class="evd-wm" />
       <div class="container evd-in">
-        <nav class="crumbs" aria-label="breadcrumb">
+        <nav class="crumbs" aria-label={t('a11y.crumbs')}>
           <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
           <a href={listHref}>{C.crumb}</a><span>/</span>
           <span aria-current="page">{ev.name}</span>

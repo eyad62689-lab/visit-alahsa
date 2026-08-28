@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -12,15 +12,15 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
-const C = ar ? {
+const C = localize(lang, {
   title: 'وصل بلاغك — شكراً لك',
   d: 'سيراجع فريق الموقع الملاحظة ويصحح ما يثبت منها. مساهمتك تُبقي دليل الأحساء دقيقاً للجميع.',
   back: 'عودة إلى الرئيسية',
-} : {
+}, {
   title: 'Your report has arrived — thank you',
   d: 'The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.',
   back: 'Back to home',
-};
+});
 const homeHref = ar ? '/' : '/en/';
 ---
 <Base title={`${C.title} — ${t('site.name')}`} description={C.d} lang={lang} alt={alt} noindex={true}>

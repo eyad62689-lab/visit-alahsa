@@ -1,4 +1,5 @@
 // أدوات مشتركة بين نواة MapLibre وتراجع Leaflet — بلا استيراد أي مكتبة خرائط.
+import type * as GeoJSON from 'geojson';
 import type { TmapCfg } from './index';
 
 export type LandmarkProps = {

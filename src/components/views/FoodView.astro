@@ -9,7 +9,7 @@ import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
 import { DISH_GROUPS_AR, DISH_GROUPS_EN } from '../../data/dishes';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -17,7 +17,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
-const C = ar ? {
+const C = localize(lang, {
   heroEyebrow: 'من موائد الواحة',
   title: 'المطبخ الأحسائي',
   heroSum: 'يقوم المطبخ الأحسائي على خيرات الواحة: الأرز الأحسائي المحلي، ودبس التمر، واللومي، والقمح المجروش — فتولد أطباقٌ دافئة توارثتها الموائد جيلاً بعد جيل.',
@@ -30,7 +30,7 @@ const C = ar ? {
   dineCta: 'تبحث عن مكانٍ تجرّب فيه؟ تصفّح المطاعم والمقاهي ←',
   dineHref: '/مطاعم-ومقاهي/',
   groups: DISH_GROUPS_AR,
-} : {
+}, {
   heroEyebrow: 'From the oasis table',
   title: 'Hasawi Cuisine',
   heroSum: 'Al-Ahsa’s kitchen rests on the bounty of the oasis: local Hasawi rice, date syrup, dried lime and cracked wheat — giving rise to warm dishes handed down the tables generation after generation.',
@@ -43,7 +43,7 @@ const C = ar ? {
   dineCta: 'Looking for somewhere to try it? Browse the restaurants & cafés →',
   dineHref: '/en/restaurants-cafes/',
   groups: DISH_GROUPS_EN,
-};
+});
 
 const pageTitle = `${C.title} — ${t('site.name')}`;
 const description = ar

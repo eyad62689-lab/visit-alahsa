@@ -11,7 +11,7 @@ import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN } from '../../data/fruits';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -20,7 +20,7 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 
 
-const C = ar ? {
+const C = localize(lang, {
   heroEyebrow: 'من خيرات الواحة',
   title: 'ثمار الأحساء الموسمية',
   heroSum: 'في أكبر واحة نخيل طبيعية في العالم، تتعاقب المواسم على البساتين فتهدي زائرها في كل فصل ثمرةً ومذاقاً: من رطب الصيف الذهبي إلى كنار الشتاء ولومي الواحة الشهير.',
@@ -50,7 +50,7 @@ const C = ar ? {
   methodP1: 'اعتمدنا في هذه الصفحة على مصادر رسمية وزراعية موثوقة، وحرصنا على التحقّق من كل معلومة قبل نشرها. وما لم نجد له مصدراً مؤكداً وسمناه صراحةً بعلامة «بانتظار التأكيد» بدل الجزم به.',
   methodP2: 'تختلف مواعيد النضج قليلاً من موسم لآخر بحسب الأحوال الجوية؛ رُوجعت هذه المعلومات في يوليو 2026م.',
   groups: FRUIT_GROUPS_AR,
-} : {
+}, {
   heroEyebrow: 'From the oasis bounty',
   title: 'Seasonal Fruits of Al-Ahsa',
   heroSum: "In the world’s largest natural palm oasis, the seasons take turns over the groves, offering visitors a new fruit and flavour with each one — from golden summer rutab to winter kanar and the oasis’s famous lime.",
@@ -80,7 +80,7 @@ const C = ar ? {
   methodP1: 'This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it. Anything we could not confirm is explicitly marked “Pending confirmation” rather than stated as fact.',
   methodP2: 'Ripening dates shift slightly from season to season with the weather; this information was reviewed in July 2026.',
   groups: FRUIT_GROUPS_EN,
-};
+});
 
 const pageTitle = `${C.title} — ${t('site.name')}`;
 const description = ar
@@ -135,20 +135,9 @@ const jsonLd = [
           <div class="fgrid">
             {g.fruits.map((f, idx) => (
               <article class="fruit-card" data-season={f.seasons} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
-                {f.img2 ? (
-                  <div class="fr-duo">
-                    <span class="duo-half">
-                      <Photo src={f.img} label={f.alt ?? f.name} class="fr-duo-ph" sizes="(max-width: 760px) 50vw, 17vw" />
-                      <span class="duo-tag">{f.imgTag}</span>
-                    </span>
-                    <span class="duo-half">
-                      <Photo src={f.img2} label={f.alt2 ?? f.name} class="fr-duo-ph" sizes="(max-width: 760px) 50vw, 17vw" />
-                      <span class="duo-tag">{f.img2Tag}</span>
-                    </span>
-                  </div>
-                ) : (
-                  <Photo src={f.img} label={f.img ? (f.alt ?? f.name) : f.name} class="fr-photo" sizes="(max-width: 760px) 100vw, 33vw" />
-                )}
+                {/* أزيل فرع الصورتين (img2) — فرع ميت: لا ثمرة في البيانات تحمل
+                    الحقل، وكان يكسر astro check (تدقيق 2026-08-28) */}
+                <Photo src={f.img} label={f.img ? (f.alt ?? f.name) : f.name} class="fr-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                 <div class="fc-body">
                   <span class="t-caption fc-k">{f.k}</span>
                   <h4>{f.name} {f.rare && <span class="tag-rare">{C.rare}</span>} {f.namePending && <span class="tag-pending">{C.pending}</span>}</h4>
@@ -305,11 +294,6 @@ const jsonLd = [
   :global(picture.fr-photo)::after { content: none; }
 
   /* إطار مزدوج رطب/تمر — صورتان متجاورتان بوسمين (قاعدة إياد: لكلٍّ صورته) */
-  .fr-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; aspect-ratio: 16 / 10; background: #fff; }
-  .duo-half { position: relative; display: block; min-inline-size: 0; }
-  :global(.photo.fr-duo-ph) { block-size: 100%; background: var(--c-sand); }
-  :global(picture.fr-duo-ph)::after { content: none; }
-  .duo-tag { position: absolute; z-index: 2; inset-block-end: 6px; inset-inline-start: 6px; font-size: var(--t-xs); font-weight: 700; color: var(--c-turq-deep); background: rgba(255,255,255,.9); border-radius: 999px; padding: 1px 10px; }
 
   /* الوسوم */
   /* أبيض لا رملي-2 — انظر .cat-sec-count: الذهبي الداكن على الرملي-2 دون AA */

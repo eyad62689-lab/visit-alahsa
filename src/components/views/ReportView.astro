@@ -6,7 +6,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -14,7 +14,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
-const C = ar ? {
+const C = localize(lang, {
   eyebrow: 'ساعدنا على الدقة',
   title: 'أبلغ عن خطأ',
   lead: 'دقة المعلومة أهم ما نحرص عليه. إن لاحظت معلومةً غير دقيقة أو رابطاً لا يعمل أو صورةً في غير مكانها، أخبرنا وسنراجعها.',
@@ -26,7 +26,7 @@ const C = ar ? {
   emailPh: 'name@example.com',
   submit: 'أرسل البلاغ',
   note: 'يصل بلاغك إلى فريق الموقع مباشرة، ولا يُنشر منه شيء.',
-} : {
+}, {
   eyebrow: 'Help us stay accurate',
   title: 'Report an error',
   lead: 'Accuracy is what we care about most. If you spot an inaccurate detail, a broken link or a misplaced photo, tell us and we will review it.',
@@ -38,7 +38,7 @@ const C = ar ? {
   emailPh: 'name@example.com',
   submit: 'Send the report',
   note: 'Your report goes straight to the site team; none of it is published.',
-};
+});
 const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
 ---
 <Base title={`${C.title} — ${t('site.name')}`} description={C.lead} lang={lang} alt={alt} noindex={true}>
@@ -59,7 +59,7 @@ const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
         <input type="hidden" name="form-name" value="report-error" />
         <input type="hidden" name="lang" value={lang} />
         <p class="rp-hp" aria-hidden="true">
-          <label>{ar ? 'لا تملأ هذا الحقل: ' : 'Do not fill this field: '}<input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          <label>{t('form.honeypot')}<input name="bot-field" tabindex="-1" autocomplete="off" /></label>
         </p>
         <div class="rp-field">
           <label class="rp-l" for="rp-page">{C.pageL}</label>

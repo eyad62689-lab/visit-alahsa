@@ -13,7 +13,7 @@ import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
 import { RESTAURANTS_AR, RESTAURANTS_EN, CAFES_AR, CAFES_EN } from '../../data/dining';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -38,7 +38,7 @@ const fetchedLabel = fetchedDate
 const liveFor = (img: string): Live | undefined => live[img.replace('/img/dining/', '')];
 
 
-const C = ar ? {
+const C = localize(lang, {
   heroEyebrow: 'من موائد الأحساء',
   title: 'المطاعم والمقاهي',
   // مقدمة مُثراة بكلمات السيو المعتمدة (نتائج جيمني 2026-08-22 — مستندات العمل)
@@ -69,7 +69,7 @@ const C = ar ? {
   methodP1: 'هذه قائمة أولية تنمو تباعاً. الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، والنبذات تعريفية موجزة تصف المكان كما يظهر في صورته — لا تقييماً ولا توصية بأصناف بعينها.',
   places: RESTAURANTS_AR,
   cafes: CAFES_AR,
-} : {
+}, {
   heroEyebrow: 'From the tables of Al-Ahsa',
   title: 'Restaurants & Cafés',
   // «Al Ahsa» و«Hofuf» بلا واصلة مقصودتان هنا — تغطية تهجئات البحث الإنجليزية
@@ -99,7 +99,7 @@ const C = ar ? {
   methodP1: 'This is a first list that will keep growing. Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo — not reviews or dish recommendations.',
   places: RESTAURANTS_EN,
   cafes: CAFES_EN,
-};
+});
 
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
 const pageTitle = ar
