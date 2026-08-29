@@ -1,6 +1,12 @@
 ---
 title: "بحيرة الحبيل"
 title_en: "Al-Hubail Lake"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 7 بدرجة 95/100 (2026-08-29)
+title_zh: 胡拜勒湖
+kicker_zh: 湖泊
+summary_zh: 哈萨以北的一片湖泊，由绿洲农田排水汇聚而成。
+body_zh: "胡拜勒湖（Al-Hubail）是哈萨以北的一片水面，由绿洲农田排水日积月累汇聚而成。至于这片湖的范围与相关设施，仍有待可靠来源确认（信息更新中）。"
+area_zh: 哈萨以北
 slug_ar: "بحيرة-الحبيل"
 slug_en: "hubail-lake"
 category: nature
