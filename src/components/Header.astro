@@ -34,7 +34,17 @@ const nav = [
   { href: routes.plan, label: t('nav.plan') },
   { href: routes.map, label: t('nav.map') },
 ];
-const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
+// مبدّل اللغة: روابط اللغات الأخرى المتاحة لهذه الصفحة. الصينية تظهر فقط حين
+// تحمل الصفحة نظيراً صينياً (alt.zh) — لا خيار 中文 يقود إلى 404.
+// التسميات بثقافة اللغة الهدف نفسها (كما كان 'ع'/'EN' في التصميم الثنائي).
+const LANG_META: Record<Lang, { label: string; aria: string }> = {
+  ar: { label: 'ع', aria: 'العربية' },
+  en: { label: 'EN', aria: 'English' },
+  zh: { label: '中文', aria: '中文（简体）' },
+};
+const langLinks = (['ar', 'en', 'zh'] as Lang[])
+  .filter((l) => l !== lang && (alt ? Boolean(alt[l]) : l !== 'zh'))
+  .map((l) => ({ href: alt?.[l] ?? (l === 'ar' ? '/' : '/en/'), ...LANG_META[l] }));
 ---
 <header class="site-header" id="top" data-pagefind-ignore>
   <div class="container hd-in">
@@ -55,7 +65,7 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
     <div class="hd-actions">
       <Search lang={lang} />
       <a href={routes.myTrip} class="plan-link" aria-label={t('nav.myTrip')}>{t('nav.myTrip')} <span class="plan-badge" data-plan-count>0</span></a>
-      <a href={switchHref} class="lang" aria-label={t('lang.switchLabel')}>{t('lang.switch')}</a>
+      {langLinks.map((l) => <a href={l.href} class="lang" aria-label={l.aria}>{l.label}</a>)}
       <a href={routes.plan} class="btn-gold">{t('nav.planVisit')}</a>
     </div>
   </div>

@@ -1,6 +1,9 @@
-// قاموس نصوص الواجهة — عربي/إنجليزي. مصدر الحقيقة لكل نصّ ثابت في الموقع.
+// قاموس نصوص الواجهة — عربي/إنجليزي/صيني. مصدر الحقيقة لكل نصّ ثابت في الموقع.
 // المحتوى (المعالم) في Content Collection؛ هنا نصوص الواجهة فقط.
-export type Lang = 'ar' | 'en';
+// الصينية (zh-CN) قاموس جزئي: يغطي الهيكل المشترك (تنقّل/تذييل/تفصيل/بحث)
+// وما يغيب عنه يتراجع للإنجليزية في useTranslations — كل نص صيني يمرّ بخط
+// إنتاج zh-translation-pipeline حصراً (لا ترجمة عابرة خارج السلسلة).
+export type Lang = 'ar' | 'en' | 'zh';
 
 export const ui = {
   ar: {
@@ -407,4 +410,80 @@ export const ui = {
     'search.searching': 'Searching…',
     'search.results': 'Results',
   },
+  // الصينية المبسّطة — قاموس جزئي (الهيكل المشترك: تنقّل/تذييل/تفصيل/بحث).
+  // معتمد من خط zh-translation-pipeline بدرجة 93/100 (دفعة نصوص الواجهة
+  // 2026-08-29 — السجل في zh-translation/memory/scores.csv). ما يغيب هنا
+  // يتراجع للإنجليزية في useTranslations. لا يُحرَّر يدوياً خارج خط الإنتاج.
+  zh: {
+    'site.name': '哈萨',
+    'nav.attractions': '景点',
+    'nav.map': '地图',
+    'nav.events': '活动',
+    'nav.fruits': '绿洲水果',
+    'nav.food': '哈萨美食',
+    'nav.dine': '餐厅与咖啡馆',
+    'nav.dining': '餐饮',
+    'nav.discover': '探索',
+    'nav.plan': '行程规划',
+    'nav.myTrip': '我的行程',
+    'nav.planVisit': '行前准备',
+    'nav.leisure': '传统市集与公园',
+    'nav.blog': '博客',
+    'a11y.skip': '跳至主要内容',
+    'a11y.menu': '菜单',
+    'a11y.crumbs': '面包屑导航',
+    'a11y.scrollDown': '向下滚动查看更多',
+    'form.honeypot': '请勿填写此字段： ',
+    'video.pause': '暂停背景视频',
+    'video.play': '播放背景视频',
+    'fav.add': '加入我的行程',
+    'fav.added': '已加入行程 ✓',
+    'foot.tagline': '一片有故事的绿洲。漫步在椰枣林间。',
+    'foot.col.discover': '探索',
+    'foot.col.plan': '行程规划',
+    'foot.col.site': '关于本站',
+    'foot.rights': '保留所有权利。',
+    'foot.l.historic': '历史古迹',
+    'foot.l.nature': '自然与农场',
+    'foot.l.crafts': '体验与手工艺',
+    'foot.l.taste': '美食与椰枣',
+    'foot.l.stay': '住宿指南',
+    'foot.l.getThere': '交通指南',
+    'foot.l.routes': '推荐路线',
+    'foot.l.events': '活动',
+    'foot.l.about': '关于哈萨',
+    'foot.l.brand': '品牌指南',
+    'foot.l.privacy': '政策与条款',
+    'foot.l.contact': '联系我们',
+    'foot.l.whatsapp': 'WhatsApp',
+    'foot.l.report': '内容纠错',
+    'det.visitInfo': '游览信息',
+    'det.area': '所在区域',
+    'det.bestTime': '最佳游览时间',
+    'det.coords': '坐标',
+    'det.openMaps': '在谷歌地图中打开 ↗',
+    'det.mapsSoon': '地图位置即将上线',
+    'det.fromPlace': '实地照片',
+    'det.allSights': '全部景点 →',
+    'det.allLeisure': '全部传统市集与公园 →',
+    'det.photo': '照片',
+    'det.verifyNote': '○ 信息待核实，出行前请再次确认。',
+    'det.nearby.h': '让这一天更完整',
+    'det.nearby.d': '附近还有这些景点，方便串联成一条路线。',
+    'det.nearby.note': '距离为直线估算，仅供参考。',
+    'det.report': '发现信息有误？告诉我们',
+    'crumb.home': '首页',
+    'crumb.attractions': '景点',
+    'crumb.leisure': '传统市集与公园',
+    'crumb.blog': '博客',
+    'search.open': '站内搜索',
+    'search.label': '站内搜索',
+    'search.placeholder': '搜索景点、体验或地点…',
+    'search.close': '关闭搜索',
+    'search.idle': '输入关键词，查找哈萨的景点与页面。',
+    'search.escHint': '关闭 · 方向键选择 · Enter 打开',
+    'search.empty': '未找到相关结果，换个关键词试试。',
+    'search.searching': '搜索中…',
+    'search.results': '搜索结果',
+  } as Record<string, string>,
 } as const;

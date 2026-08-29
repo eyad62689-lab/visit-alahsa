@@ -95,3 +95,14 @@ html[dir='ltr'] { --hero-scrim-dir: 105deg; } /* إنجليزي LTR — الظل
     --s-6: 32px; /* 48px → 32px */
   }
 }
+
+/* --- النسخة الصينية (zh-CN) --------------------------------------------- */
+/* خطوط النظام الصينية — لا حزم خطوط مستضافة (خط صيني كامل يتجاوز 3MB ويضرب
+   LCP). الترتيب: Noto Sans SC (أندرويد/لينكس) ثم PingFang SC (آبل) ثم
+   Microsoft YaHei (ويندوز) — نفس حزمة config.json في خط إنتاج الترجمة.
+   الغلوسات اللاتينية تُصيَّر بلاتيني الخط الصيني نفسه (اصطلاح مواقع الوجهات
+   الصينية الرسمية). */
+:root:lang(zh-CN) {
+  --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-body:    'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}

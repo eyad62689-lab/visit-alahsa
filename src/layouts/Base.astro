@@ -74,12 +74,13 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     {/* الخطوط الفاخرة كلها مستضافة ذاتياً الآن (استيرادات fontsource أعلاه) —
         أُزيل استدعاء Google Fonts المحجِب للعرض (سيو 2026-08-22). */}
 
-    {/* preload لخطّ المتن الحرج المستضاف ذاتياً حسب اللغة (يحمي LCP). */}
+    {/* preload لخطّ المتن الحرج المستضاف ذاتياً حسب اللغة (يحمي LCP).
+        الصينية بلا preload: خطوطها خطوط نظام (tokens.css) فلا ملف يُحمَّل. */}
     {lang === 'ar' ? (
       <link rel="preload" href="/fonts/plex-ar-400.woff2" as="font" type="font/woff2" crossorigin />
-    ) : (
+    ) : lang === 'en' ? (
       <link rel="preload" href="/fonts/plex-lat-400.woff2" as="font" type="font/woff2" crossorigin />
-    )}
+    ) : null}
 
     {preconnect?.map((href) => <link rel="preconnect" href={href} crossorigin />)}
 

@@ -1,0 +1,17 @@
+---
+// صفحات المعالم الصينية (zh-CN) — تُولَّد فقط للمعالم التي تحمل ترجمة صينية
+// معتمدة من خط zh-translation-pipeline (وجود title_zh هو المفتاح). البقية
+// لا صفحة لها فلا تظهر في hreflang ولا مبدّل اللغة (منطق attractionAlt).
+import { attractionAlt } from '../../../lib/routes';
+import DetailView from '../../../components/views/DetailView.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const items = await getCollection('attractions', ({ data }) => Boolean(data.title_zh));
+  return items.map((entry) => ({
+    params: { slug: entry.data.slug_en },
+    props: { entry, alt: attractionAlt(entry.data) },
+  }));
+}
+const { entry, alt } = Astro.props;
+---
+<DetailView entry={entry} lang="zh" alt={alt} />

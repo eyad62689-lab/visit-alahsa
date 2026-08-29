@@ -1,4 +1,5 @@
-// تسميات فئات المعالم — ثنائية اللغة. مصدر موحّد للقائمة/الخريطة/التفصيل.
+// تسميات فئات المعالم — ثلاثية اللغة. مصدر موحّد للقائمة/الخريطة/التفصيل.
+// الصينية من خط zh-translation-pipeline (دفعة نصوص الواجهة 2026-08-29).
 import type { Lang } from '../i18n/ui';
 
 export const CATEGORY_LABELS: Record<Lang, Record<string, string>> = {
@@ -25,6 +26,18 @@ export const CATEGORY_LABELS: Record<Lang, Record<string, string>> = {
     experience: 'Experiences & crafts',
     taste: 'Cuisine & dates',
     events: 'Events & seasons',
+  },
+  zh: {
+    historic: '历史古迹',
+    museum: '博物馆',
+    religious: '清真寺与宗教场所',
+    nature: '自然与洞穴',
+    parks: '公园与园林',
+    market: '传统市集',
+    farm: '农场与椰枣林',
+    experience: '体验与手工艺',
+    taste: '美食与椰枣',
+    events: '活动与节庆',
   },
 };
 

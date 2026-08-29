@@ -10,8 +10,9 @@ export const GET: APIRoute = async ({ site }) => {
   const items = await getCollection('attractions');
   const posts = await getCollection('blog', ({ data }) => !data.draft);
 
-  // أزواج (عربي/إنجليزي) — تُستبعد «رحلتي» الشخصية (noindex)
-  const pairs: { ar: string; en?: string }[] = [
+  // أزواج (عربي/إنجليزي/صيني اختياري) — تُستبعد «رحلتي» الشخصية (noindex).
+  // zh يرد من attractionAlt حين يحمل المعلم ترجمة صينية معتمدة (title_zh).
+  const pairs: { ar: string; en?: string; zh?: string }[] = [
     { ar: '/', en: '/en/' },
     { ar: '/معالم/', en: '/en/attractions/' },
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/' },
@@ -42,11 +43,12 @@ export const GET: APIRoute = async ({ site }) => {
     })),
   ];
 
-  const alts = (p: { ar: string; en?: string }) => {
+  const alts = (p: { ar: string; en?: string; zh?: string }) => {
     if (!p.en) return '';
     return (
       `\n    <xhtml:link rel="alternate" hreflang="ar" href="${abs(p.ar)}"/>` +
       `\n    <xhtml:link rel="alternate" hreflang="en" href="${abs(p.en)}"/>` +
+      (p.zh ? `\n    <xhtml:link rel="alternate" hreflang="zh" href="${abs(p.zh)}"/>` : '') +
       `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(p.ar)}"/>`
     );
   };
@@ -55,6 +57,7 @@ export const GET: APIRoute = async ({ site }) => {
   for (const p of pairs) {
     urls.push(`  <url><loc>${abs(p.ar)}</loc>${alts(p)}</url>`);
     if (p.en) urls.push(`  <url><loc>${abs(p.en)}</loc>${alts(p)}</url>`);
+    if (p.zh) urls.push(`  <url><loc>${abs(p.zh)}</loc>${alts(p)}</url>`);
   }
 
   const xml =

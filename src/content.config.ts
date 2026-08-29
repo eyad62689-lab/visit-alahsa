@@ -10,6 +10,15 @@ const attractions = defineCollection({
   schema: z.object({
     title: z.string(),                         // العنوان العربي
     title_en: z.string().optional(),           // العنوان الإنجليزي (لمرحلة الإنجليزية)
+    // الحقول الصينية (zh-CN): تُملأ حصراً من مخرجات خط zh-translation-pipeline
+    // المعتمدة (درجة الحاكم ≥ العتبة). وجود title_zh هو مفتاح توليد صفحة /zh/
+    // وإدراج hreflang وخيار 中文 في مبدّل اللغة.
+    title_zh: z.string().optional(),
+    kicker_zh: z.string().optional(),
+    summary_zh: z.string().optional(),
+    body_zh: z.string().optional(),
+    area_zh: z.string().optional(),
+    bestTime_zh: z.string().optional(),
     slug_ar: z.string(),                       // الرابط العربي (النسخة العربية)
     slug_en: z.string(),                       // الرابط اللاتيني (النسخة الإنجليزية)
     category: z.enum(CATEGORIES),
@@ -32,6 +41,9 @@ const attractions = defineCollection({
       value: z.string(),
       label_en: z.string().optional(),
       value_en: z.string().optional(),
+      // label_zh/value_zh ترجمة البند للصينية — بدونهما لا يظهر البند في صفحة /zh/
+      label_zh: z.string().optional(),
+      value_zh: z.string().optional(),
       verified: z.boolean().default(false),
     })).default([]),
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)

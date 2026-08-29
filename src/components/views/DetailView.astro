@@ -16,13 +16,19 @@ const { entry, lang, alt } = Astro.props;
 const a = entry.data;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 
-const title = ar ? a.title : (a.title_en ?? a.title);
-const summary = ar ? a.summary : (a.summary_en ?? a.summary);
-const bodyEn = a.body_en ?? a.summary_en ?? '';
+// اختيار الحقل بلغة الصفحة — الصينية تتراجع للإنجليزية فالعربية عند الغياب
+const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined): T =>
+  ar ? arV : zh ? (zhV ?? enV ?? arV) : (enV ?? arV);
+
+const title = pick(a.title, a.title_en, a.title_zh);
+const summary = pick(a.summary, a.summary_en, a.summary_zh);
+const bodyText = zh ? (a.body_zh ?? a.body_en ?? '') : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
 
 // فئات الأسواق/المنتزهات/المزارع تتبع صفحتها المستقلة في الفتات وزر العودة (2026-07-13)
+// الصينية مؤقتاً إلى الفهارس الإنجليزية: لا فهرس /zh/ بعد — يتغيّر مع مرحلة «النواة»
 const isLeisure = ['market', 'parks', 'farm'].includes(a.category);
 const attractionsHref = isLeisure
   ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/')
@@ -31,37 +37,45 @@ const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+// الرئيسية بلغة الصفحة — الصينية إلى الرئيسية الإنجليزية مؤقتاً (لا /zh/ رئيسية بعد)
+const homeHref = ar ? '/' : '/en/';
+const regionName = ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa';
 const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
     name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png'),
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
-    address: { '@type': 'PostalAddress', addressLocality: (ar ? a.area : a.area_en) ?? (ar ? 'الأحساء' : 'Al-Ahsa'), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+    address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
     // alt[lang] هنا هو رابط صفحة المعلم نفسه — فكانت السكيما تقول إن المعلم جزءٌ
     // من نفسه في 116 صفحة (تدقيق 2026-08-28). الوجهة هي الرئيسية بلغة الصفحة.
-    isPartOf: { '@type': 'TouristDestination', name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(ar ? '/' : '/en/', siteUrl).href },
+    isPartOf: { '@type': 'TouristDestination', name: regionName, url: new URL(homeHref, siteUrl).href },
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(alt[lang].split('/').slice(0, ar ? 1 : 2).join('/') + '/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
     { '@type': 'ListItem', position: 2, name: crumbLabel, item: new URL(attractionsHref, siteUrl).href },
     { '@type': 'ListItem', position: 3, name: title, item: pageUrl },
   ] },
 ];
-const homeHref = ar ? '/' : '/en/';
 const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
 
-// بطاقة معلومات الزيارة باللغتين: كل حقل يُعرض بلغة الصفحة، والبند الإنجليزي
-// لا يظهر إلا إن وُجدت ترجمته (label_en/value_en) — لا نعرض عربياً داخل صفحة إنجليزية.
-const areaVal = ar ? a.area : (a.area_en ?? null);
-const bestTimeVal = ar ? a.bestTime : (a.bestTime_en ?? null);
+// بطاقة معلومات الزيارة بلغة الصفحة: البند لا يظهر إلا إن وُجدت ترجمته للغة
+// الصفحة (label_en/value_en أو label_zh/value_zh) — لا نعرض لغةً داخل صفحة أخرى.
+const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : (a.area_en ?? null);
+const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : (a.bestTime_en ?? null);
 const practicalItems = a.practical
-  .filter((p) => p.verified && (ar || (p.label_en && p.value_en)))
-  .map((p) => ({ label: ar ? p.label : p.label_en!, value: ar ? p.value : p.value_en! }));
+  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : p.label_en && p.value_en)))
+  .map((p) => ({
+    label: ar ? p.label : zh ? p.label_zh! : p.label_en!,
+    value: ar ? p.value : zh ? p.value_zh! : p.value_en!,
+  }));
 const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label));
+// النص الصيني من خط zh-translation-pipeline (misc.reviewNote — دورة 2026-08-29)
 const reviewNote = ar
   ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو 2026م.'
-  : 'Hours and fees can change in seasons and holidays; reviewed in June 2026.';
+  : zh
+    ? '开放时间与门票价格可能随季节和节假日变动；信息核实于 2026 年 6 月。'
+    : 'Hours and fees can change in seasons and holidays; reviewed in June 2026.';
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
@@ -75,8 +89,11 @@ const nearby = a.location
   ? (await getCollection('attractions'))
       .filter((e) => e.data.slug_ar !== a.slug_ar && e.data.location)
       .map((e) => ({
-        href: attractionHref(e.data, lang),
-        title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+        // البطاقة القريبة بلغة الصفحة، وعنوانها يتراجع للإنجليزية إن غابت
+        // ترجمته الصينية — لكن رابطها يقصد صفحة اللغة الحالية إن وُجدت،
+        // وإلا فالإنجليزية (لا رابط لصفحة /zh/ غير مولّدة).
+        href: attractionHref(e.data, zh && !e.data.title_zh ? 'en' : lang),
+        title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title),
         cat: catLabel(e.data.category, lang),
         img: e.data.heroImage,
         km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
@@ -85,9 +102,10 @@ const nearby = a.location
       .slice(0, 3)
       .map((n) => ({
         ...n,
+        // الصيني من خط الإنتاج (misc.underKm/aboutKm — دورة 2026-08-29)
         dist: n.km < 1
-          ? (ar ? 'أقل من كيلومتر' : 'under 1 km')
-          : (ar ? `نحو ${Math.round(n.km)} كم` : `~${Math.round(n.km)} km`),
+          ? (ar ? 'أقل من كيلومتر' : zh ? '不足 1 公里' : 'under 1 km')
+          : (ar ? `نحو ${Math.round(n.km)} كم` : zh ? `约 ${Math.round(n.km)} 公里` : `~${Math.round(n.km)} km`),
       }))
   : [];
 ---
@@ -116,7 +134,7 @@ const nearby = a.location
 
     <div class="container att-layout">
       <article class="prose" data-reveal>
-        {ar && Content ? <Content /> : <p>{bodyEn}</p>}
+        {ar && Content ? <Content /> : <p>{bodyText}</p>}
       </article>
 
       <aside class="att-aside" data-reveal>

@@ -10,7 +10,7 @@ import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
 import EventEdition from '../EventEdition.astro';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { EVENTS_AR, EVENTS_EN, evView, type Ev } from '../../data/events';
 
@@ -104,12 +104,12 @@ const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
-    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(alt[lang], siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(altHref(alt, lang), siteUrl).href },
   ] },
   // ItemList فقط — لا Event schema عمداً: جوجل يشترط startDate محدداً للأهلية،
   // ومواسمنا تقريبية بقرار محتوى ملزم (لا تواريخ دقيقة)، فأي startDate سيكون مختلقاً.
   { '@context': 'https://schema.org', '@type': 'ItemList',
-    name: C.title, url: new URL(alt[lang], siteUrl).href,
+    name: C.title, url: new URL(altHref(alt, lang), siteUrl).href,
     itemListElement: [...C.events].sort((a, b) => a.start - b.start).map((e, i) => ({
       '@type': 'ListItem', position: i + 1, name: e.name,
     })),

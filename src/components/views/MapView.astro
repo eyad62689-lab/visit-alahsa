@@ -6,7 +6,7 @@ import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -54,7 +54,7 @@ const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
-    { '@type': 'ListItem', position: 2, name: t('map.title'), item: new URL(alt[lang], siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: t('map.title'), item: new URL(altHref(alt, lang), siteUrl).href },
   ] },
 ];
 ---
