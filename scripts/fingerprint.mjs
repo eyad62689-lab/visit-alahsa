@@ -131,6 +131,15 @@ async function main() {
   }
 
   await mkdir(dirname(OUT), { recursive: true })
+  // لا كتابة إن لم تتغير البصمات فعلياً — يعمل السكربت في prebuild مع كل بناء،
+  // وتحديث طابع generated وحده كان يترك الملف متسخاً في git بعد كل بناء
+  try {
+    const prev = JSON.parse(await readFile(OUT, 'utf8'))
+    if (JSON.stringify(prev.fingerprints) === JSON.stringify(fingerprints)) {
+      console.log(`البصمات بلا تغيير (${fingerprints.length}) — الملف لم يُمسّ.`)
+      return
+    }
+  } catch { /* أول توليد أو ملف تالف — نكتب */ }
   const out = { generated: new Date().toISOString(), site: SITE, count: fingerprints.length, fingerprints }
   await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8')
   console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${fingerprints.filter((x) => x.lang === 'ar').length} | إنجليزي: ${fingerprints.filter((x) => x.lang === 'en').length})`)
