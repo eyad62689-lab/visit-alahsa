@@ -35,11 +35,14 @@ interface Props {
   jsonLd?: object | object[];
   /* المسار الأساسي لصورة الهيرو (بلا امتداد) — تُحمَّل مسبقاً لتحسين LCP */
   preloadImage?: string;
+  /* أصول خارجية تفتح اتصالها مبكراً — لصفحات تعتمد LCP فيها على مضيف خارجي
+     (بلاطات خريطة كارتو مثلاً — لايتهاوس 2026-08-29: prioritize-lcp-image) */
+  preconnect?: string[];
 }
 const {
   title,
   description = 'الأحساء — أكبر واحة نخيل في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
-  lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage,
+  lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preconnect,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -77,6 +80,8 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     ) : (
       <link rel="preload" href="/fonts/plex-lat-400.woff2" as="font" type="font/woff2" crossorigin />
     )}
+
+    {preconnect?.map((href) => <link rel="preconnect" href={href} crossorigin />)}
 
     {/* التحميل المسبق لصورة الهيرو (أكبر عنصر مرئي LCP) في الصفحات ذات الهيرو المصوّر */}
     {preloadImage && (

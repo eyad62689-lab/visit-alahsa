@@ -42,8 +42,11 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
       <Wordmark variant="turq" size="sm" />
     </a>
 
-    <input type="checkbox" id="navtoggle" class="nav-toggle" hidden />
-    <label for="navtoggle" class="burger" role="button" tabindex="0" aria-controls="site-nav" aria-expanded="false" aria-label={t('a11y.menu')}><span></span><span></span><span></span></label>
+    {/* الصندوق نفسه هو عنصر الإتاحة (بؤرة + مسافة + حالة محددة أصلية)، والملصق
+        بصري بحت — role="button" على <label> مخالفة aria-allowed-role (لايتهاوس
+        2026-08-29)، وتقليد سلوك الزر بجافاسكربت كان يعيد بناء ما يقدمه الصندوق مجاناً */}
+    <input type="checkbox" id="navtoggle" class="nav-toggle" aria-controls="site-nav" aria-label={t('a11y.menu')} />
+    <label for="navtoggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
 
     <nav class="nav" id="site-nav" aria-label={t('nav.discover')}>
       {nav.map((n) => <a href={n.href}>{n.label}</a>)}
@@ -57,24 +60,6 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
     </div>
   </div>
 </header>
-
-<script is:inline>
-  // مزامنة aria-expanded لزرّ القائمة + تشغيله بلوحة المفاتيح (Enter/مسافة)
-  function initBurger() {
-    document.querySelectorAll('.site-header').forEach((h) => {
-      const box = h.querySelector('#navtoggle');
-      const burger = h.querySelector('.burger');
-      if (!box || !burger || burger.dataset.wired) return;
-      burger.dataset.wired = '1';
-      box.addEventListener('change', () => burger.setAttribute('aria-expanded', box.checked ? 'true' : 'false'));
-      burger.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); box.checked = !box.checked; box.dispatchEvent(new Event('change')); }
-      });
-    });
-  }
-  document.addEventListener('astro:page-load', initBurger);
-  if (document.readyState !== 'loading') initBurger(); else document.addEventListener('DOMContentLoaded', initBurger);
-</script>
 
 <style>
   .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: color-mix(in srgb, var(--c-sand) 86%, transparent); backdrop-filter: blur(10px); border-block-end: 1px solid var(--c-line); }
@@ -101,7 +86,10 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
   .btn-gold { white-space: nowrap; font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem); background: var(--c-gold); color: var(--c-ink); text-decoration: none; padding: 10px 20px; border-radius: var(--radius-pill); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(201,154,74,.35); }
   /* هدف لمس 44×44: كان 40×32 وهو مفتاح التنقّل كلّه على الهاتف */
+  .nav-toggle { display: none; }
   .burger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; margin-inline-start: auto; inline-size: 44px; block-size: 44px; padding: 0; }
+  /* حلقة تركيز الصندوق تُرسم على البرغر المرئي المجاور */
+  .nav-toggle:focus-visible ~ .burger { outline: 2px solid var(--c-turq); outline-offset: 2px; box-shadow: 0 0 0 2px var(--c-sand); border-radius: 6px; }
   .burger span { inline-size: 24px; block-size: 2px; background: var(--c-ink); border-radius: 2px; transition: var(--dur); }
   /* 1199px لا 920px: التنقّل سبعة روابط وبقربها بحثٌ ورابط «رحلتي» ومبدّل لغة
      وزرّ دعوة، ودونها بقليل تلتفّ تسميات الروابط والزرّ سطرين ويرتفع الشريط.
@@ -109,6 +97,8 @@ const switchHref = alt ? (ar ? alt.en : alt.ar) : (ar ? '/en/' : '/');
   @media (max-width: 1199px) {
     .hd-actions .btn-gold { display: none; }
     .burger { display: flex; }
+    /* على الجوال: الصندوق في مسار التبويب، مخفي بصرياً بقصّ لا بـhidden */
+    .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     /* visibility:hidden ضرورية لا تجميلية: max-block-size:0 وحدها تُخفي القائمة بصرياً
        لكن روابطها تبقى في مسار Tab، فيضيع تركيز الكيبورد في قائمة غير مرئية.
        تأخير visibility بمقدار --dur يُبقي حركة الطيّ مرئية عند الإغلاق. */
