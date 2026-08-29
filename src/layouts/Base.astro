@@ -71,11 +71,12 @@ const ownershipLd = {
   '@type': 'WebPage',
   url: pageUrl,
   name: title,
-  inLanguage: lang === 'ar' ? 'ar' : 'en',
+  inLanguage: htmlLang(lang),
   isPartOf: { '@type': 'WebSite', name: 'زوروا الأحساء — Visit Al-Ahsa', url: site.href },
   copyrightHolder: { '@type': 'Organization', name: 'زوروا الأحساء — Visit Al-Ahsa', url: site.href },
   copyrightYear,
   copyrightNotice,
+  // لا صفحة سياسات صينية بعد — الإنجليزية أقرب متاح لقارئ /zh/
   license: new URL(lang === 'ar' ? '/السياسات/' : '/en/legal/', site).href,
 };
 const jsonLdAll = [...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []), ownershipLd];

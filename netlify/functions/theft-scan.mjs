@@ -33,7 +33,7 @@ async function serperSearch(phrase, lang, apiKey) {
     body: JSON.stringify({
       q: `"${phrase}" -site:visit-alahsa.com`,
       gl: 'sa',
-      hl: lang === 'ar' ? 'ar' : 'en',
+      hl: lang === 'ar' ? 'ar' : lang === 'zh' ? 'zh-cn' : 'en',
       num: 10,
     }),
   })

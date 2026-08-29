@@ -76,6 +76,23 @@ function pickPhrase(text, taken, fromMarkdown = false) {
 
 // نفس الاشتقاق في Base.astro (معرّف التعليق المخفي) — تطبيع: فك ترميز النسب
 // المئوية للمسارات العربية + إسقاط الشرطة الختامية، كي يتطابق المعرّفان دوماً.
+// النظير الصيني: الجملة تُفصل على ترقيم CJK (。！？؛)، والنطاق أقصر لأن كثافة
+// المعنى في الحرف الصيني أعلى — 20–80 حرفاً تكافئ بحثياً 60–180 حرفاً لاتينياً.
+// حقول body_zh تُصيَّر خاماً (كالإنجليزية) فلا تحويلات smartypants تُخشى.
+function pickPhraseZh(text, taken) {
+  const sentences = text
+    .split(/(?<=[。！？；])/u)
+    .map((s) => s.trim())
+    .filter((s) => s.length >= 20)
+    .sort((a, b) => b.length - a.length)
+  for (let s of sentences) {
+    if (s.length > 80) s = s.slice(0, 80)
+    s = s.replace(/[。！？；，、\s]+$/u, '').trim()
+    if (s.length >= 20 && !taken.has(s)) { taken.add(s); return s }
+  }
+  return null
+}
+
 const id = (url) => createHash('sha256').update(`visit-alahsa:${decodeURI(url).replace(/\/$/, '')}`).digest('hex').slice(0, 12)
 
 async function main() {
@@ -94,6 +111,12 @@ async function main() {
     push({ id: id(urlAr), type: 'attraction', lang: 'ar', title: fmField(fm, 'title'), url: urlAr, phrase: pickPhrase(smartify(plainText(body)), taken, true) })
     const bodyEn = fmField(fm, 'body_en')
     if (bodyEn) push({ id: id(urlEn), type: 'attraction', lang: 'en', title: fmField(fm, 'title_en') || fmField(fm, 'title'), url: urlEn, phrase: pickPhrase(bodyEn.replace(/\s+/g, ' ').trim(), taken) })
+    // الصينية: صفحة /zh/ تتولد فقط حين يوجد title_zh (نفس شرط [slug].astro)
+    const bodyZh = fmField(fm, 'body_zh')
+    if (bodyZh && fmField(fm, 'title_zh')) {
+      const urlZh = `${SITE}/zh/attractions/${slugEn}/`
+      push({ id: id(urlZh), type: 'attraction', lang: 'zh', title: fmField(fm, 'title_zh'), url: urlZh, phrase: pickPhraseZh(bodyZh.replace(/\s+/g, ' ').trim(), taken) })
+    }
   }
 
   // المدونة: كل لغة ملفها المستقل — المسودات لا تُبصَّم (غير منشورة أصلاً)
