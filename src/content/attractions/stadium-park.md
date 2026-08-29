@@ -1,6 +1,11 @@
 ---
 title: "حديقة الاستاد الرياضي"
 title_en: "Sports Stadium Park"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 9 بدرجة 96/100 (2026-08-29)
+title_zh: 体育场公园
+kicker_zh: 公园
+summary_zh: 胡富夫体育场旁的一座公共公园。
+body_zh: "胡富夫体育场旁的一座公共公园。"
 slug_ar: "حديقة-الاستاد-الرياضي"
 slug_en: "stadium-park"
 category: parks
