@@ -16,13 +16,21 @@ interface Props { lang: Lang; alt: AltLinks; scope?: 'sights' | 'leisure'; }
 const { lang, alt, scope = 'sights' } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 const leisure = scope === 'leisure';
+
+// اختيار الحقل بلغة الصفحة، ورابط البطاقة يتراجع للإنجليزية لمعلم بلا ترجمة صينية
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string }) => (zh && !d.title_zh ? 'en' : lang);
 
 // أرقام العدّادات بالأرقام العربية‑الهندية في النسخة العربية اتّساقاً مع سائر الموقع.
 // الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
 const num = (n: number) => String(n);
 
-const detailBase = ar ? '/معالم/' : '/en/attractions/';
+const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : '/en/map/';
 
 // نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
@@ -54,16 +62,22 @@ const CAT_ICONS: Record<string, string> = {
   parks: '<path d="M12 22v-5"/><path d="M12 17a5.5 5.5 0 0 0 5.5-5.5c0-1.5-.6-2.6-.6-2.6A5 5 0 0 0 12 4a5 5 0 0 0-4.9 4.9s-.6 1.1-.6 2.6A5.5 5.5 0 0 0 12 17z"/>',
   farm: '<path d="M12 21v-8"/><path d="M12 13c-.5-3-3-5-7-4 3-1.5 5.5-1 7 1 .5-3 3-5 7-4-3-1.5-5.5-1-7 1z"/>',
 };
-const groupsHint = ar ? 'ابحث بالاسم، أو تصفّح المجموعات أدناه.' : 'Search by name, or browse the groups below.';
+// النص الصيني من خط zh-translation-pipeline (misc.groupsHint — دفعة 2026-08-29)
+const groupsHint = ar
+  ? 'ابحث بالاسم، أو تصفّح المجموعات أدناه.'
+  : zh
+    ? '可按名称搜索，或浏览下方分类。'
+    : 'Search by name, or browse the groups below.';
 
 const siteUrl = 'https://visit-alahsa.com';
+const homeHref = ar ? '/' : zh ? '/zh/' : '/en/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
     { '@type': 'ListItem', position: 2, name: tx('title'), item: new URL(selfPath, siteUrl).href },
   ] },
   { '@context': 'https://schema.org', '@type': 'ItemList', name: tx('title'), numberOfItems: items.length,
-    itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: ar ? i.data.title : (i.data.title_en ?? i.data.title), url: new URL(attractionHref(i.data, lang), siteUrl).href })) },
+    itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: pickTitle(i.data), url: new URL(attractionHref(i.data, hrefLang(i.data)), siteUrl).href })) },
 ];
 ---
 <Base title={`${tx('title')} — ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
@@ -91,13 +105,13 @@ const jsonLd = [
             </summary>
             <div class="list-grid">
               {g.list.map((i, idx) => (
-                <article class="card card--lift att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
-                  <a class="lc-link" href={attractionHref(i.data, lang)}>
-                    <Photo src={i.data.heroImage} label={ar ? i.data.title : (i.data.title_en ?? i.data.title)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                <article class="card card--lift att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''} ${i.data.title_zh ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
+                  <a class="lc-link" href={attractionHref(i.data, hrefLang(i.data))}>
+                    <Photo src={i.data.heroImage} label={pickTitle(i.data)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                     <div class="lc-body">
                       <span class="t-caption lc-k">{catLabel(i.data.category, lang)}</span>
-                      <h3 class="lc-t">{ar ? i.data.title : (i.data.title_en ?? i.data.title)}</h3>
-                      <p class="lc-d">{ar ? i.data.summary : (i.data.summary_en ?? i.data.summary)}</p>
+                      <h3 class="lc-t">{pickTitle(i.data)}</h3>
+                      <p class="lc-d">{pickSummary(i.data)}</p>
                     </div>
                   </a>
                   <button class="fav-btn fav-btn--corner" type="button" data-fav={i.data.slug_ar} aria-pressed="false" aria-label={t('fav.add')}><span class="fav-ic"></span></button>

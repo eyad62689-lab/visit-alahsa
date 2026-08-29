@@ -28,17 +28,16 @@ const bodyText = zh ? (a.body_zh ?? a.body_en ?? '') : (a.body_en ?? a.summary_e
 const { Content } = ar ? await render(entry) : { Content: null };
 
 // فئات الأسواق/المنتزهات/المزارع تتبع صفحتها المستقلة في الفتات وزر العودة (2026-07-13)
-// الصينية مؤقتاً إلى الفهارس الإنجليزية: لا فهرس /zh/ بعد — يتغيّر مع مرحلة «النواة»
+// الصينية: فهرس المعالم صيني؛ صفحة الأسواق والمنتزهات إلى الإنجليزية مؤقتاً
 const isLeisure = ['market', 'parks', 'farm'].includes(a.category);
 const attractionsHref = isLeisure
   ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/')
-  : (ar ? '/معالم/' : '/en/attractions/');
+  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/');
 const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
-// الرئيسية بلغة الصفحة — الصينية إلى الرئيسية الإنجليزية مؤقتاً (لا /zh/ رئيسية بعد)
-const homeHref = ar ? '/' : '/en/';
+const homeHref = ar ? '/' : zh ? '/zh/' : '/en/';
 const regionName = ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa';
 const jsonLd = [
   {

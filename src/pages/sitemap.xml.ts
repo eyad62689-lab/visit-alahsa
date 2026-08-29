@@ -13,8 +13,8 @@ export const GET: APIRoute = async ({ site }) => {
   // أزواج (عربي/إنجليزي/صيني اختياري) — تُستبعد «رحلتي» الشخصية (noindex).
   // zh يرد من attractionAlt حين يحمل المعلم ترجمة صينية معتمدة (title_zh).
   const pairs: { ar: string; en?: string; zh?: string }[] = [
-    { ar: '/', en: '/en/' },
-    { ar: '/معالم/', en: '/en/attractions/' },
+    { ar: '/', en: '/en/', zh: '/zh/' },
+    { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/' },
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/' },
     { ar: '/خريطة/', en: '/en/map/' },
     { ar: '/خريطة-تضاريس/', en: '/en/terrain-map/' },

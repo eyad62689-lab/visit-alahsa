@@ -11,9 +11,12 @@ const { lang = 'ar', alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
-const home = ar ? '/' : '/en/';
+// الصينية: الرئيسية وفهرس المعالم موجودان بالصينية؛ البقية إلى النظير الإنجليزي
+// مؤقتاً حتى تكتمل صفحاتها في مراحل التعميم.
+const zh = lang === 'zh';
+const home = ar ? '/' : zh ? '/zh/' : '/en/';
 const routes = {
-  attractions: ar ? '/معالم/' : '/en/attractions/',
+  attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/',
   leisure: ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/',
   map: ar ? '/خريطة/' : '/en/map/',
   events: ar ? '/فعاليات/' : '/en/events/',
@@ -34,17 +37,22 @@ const nav = [
   { href: routes.plan, label: t('nav.plan') },
   { href: routes.map, label: t('nav.map') },
 ];
-// مبدّل اللغة: روابط اللغات الأخرى المتاحة لهذه الصفحة. الصينية تظهر فقط حين
-// تحمل الصفحة نظيراً صينياً (alt.zh) — لا خيار 中文 يقود إلى 404.
-// التسميات بثقافة اللغة الهدف نفسها (كما كان 'ع'/'EN' في التصميم الثنائي).
-const LANG_META: Record<Lang, { label: string; aria: string }> = {
-  ar: { label: 'ع', aria: 'العربية' },
-  en: { label: 'EN', aria: 'English' },
-  zh: { label: '中文', aria: '中文（简体）' },
+// مبدّل اللغة: زرّ واحد يفتح قائمةً باللغات المتاحة لهذه الصفحة (قرار إياد
+// 2026-08-29 — قابل للتوسع لأي لغة قادمة بلا إعادة تصميم). اللغة غير العربية
+// والإنجليزية تُدرج فقط حين تحمل الصفحة نظيراً لها في alt — لا خيار يقود إلى 404.
+// القائمة عنصر <details> أصلي: كيبورد وحالة بلا JS، وسكربت صغير للإغلاق خارجها.
+const LANG_META: Record<Lang, { short: string; native: string; code: string; dir: 'rtl' | 'ltr' }> = {
+  ar: { short: 'ع', native: 'العربية', code: 'ar', dir: 'rtl' },
+  en: { short: 'EN', native: 'English', code: 'en', dir: 'ltr' },
+  zh: { short: '中文', native: '中文（简体）', code: 'zh-CN', dir: 'ltr' },
 };
-const langLinks = (['ar', 'en', 'zh'] as Lang[])
-  .filter((l) => l !== lang && (alt ? Boolean(alt[l]) : l !== 'zh'))
-  .map((l) => ({ href: alt?.[l] ?? (l === 'ar' ? '/' : '/en/'), ...LANG_META[l] }));
+const langItems = (['ar', 'en', 'zh'] as Lang[])
+  .filter((l) => l === lang || (alt ? Boolean(alt[l]) : l !== 'zh'))
+  .map((l) => ({
+    current: l === lang,
+    href: l === lang ? null : (alt?.[l] ?? (l === 'ar' ? '/' : '/en/')),
+    ...LANG_META[l],
+  }));
 ---
 <header class="site-header" id="top" data-pagefind-ignore>
   <div class="container hd-in">
@@ -65,11 +73,45 @@ const langLinks = (['ar', 'en', 'zh'] as Lang[])
     <div class="hd-actions">
       <Search lang={lang} />
       <a href={routes.myTrip} class="plan-link" aria-label={t('nav.myTrip')}>{t('nav.myTrip')} <span class="plan-badge" data-plan-count>0</span></a>
-      {langLinks.map((l) => <a href={l.href} class="lang" aria-label={l.aria}>{l.label}</a>)}
+      <details class="lang-menu" data-lang-menu>
+        <summary class="lang" aria-label={t('lang.menu')}>
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15.6 15.6 0 0 1 0 18a15.6 15.6 0 0 1 0-18Z" />
+          </svg>
+          {LANG_META[lang].short}
+          <span class="lang-chev" aria-hidden="true"></span>
+        </summary>
+        <ul class="lang-list">
+          {langItems.map((l) => (
+            <li>
+              {l.current
+                ? <span class="lang-item is-current" aria-current="true" lang={l.code} dir={l.dir}>{l.native}</span>
+                : <a class="lang-item" href={l.href} lang={l.code} dir={l.dir}>{l.native}</a>}
+            </li>
+          ))}
+        </ul>
+      </details>
       <a href={routes.plan} class="btn-gold">{t('nav.planVisit')}</a>
     </div>
   </div>
 </header>
+
+<script is:inline>
+  // إغلاق قائمة اللغات بالنقر خارجها أو بـEsc — مستمعان على document مرة واحدة
+  // (يبقيان عبر تنقّلات ClientRouter، والحارس يمنع التكرار بعد كل تنقّل).
+  if (!window.__vaLangMenu) {
+    window.__vaLangMenu = true;
+    document.addEventListener('click', (e) => {
+      document.querySelectorAll('details[data-lang-menu][open]').forEach((d) => {
+        if (!d.contains(e.target)) d.removeAttribute('open');
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      document.querySelectorAll('details[data-lang-menu][open]').forEach((d) => d.removeAttribute('open'));
+    });
+  }
+</script>
 
 <style>
   .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: color-mix(in srgb, var(--c-sand) 86%, transparent); backdrop-filter: blur(10px); border-block-end: 1px solid var(--c-line); }
@@ -91,8 +133,20 @@ const langLinks = (['ar', 'en', 'zh'] as Lang[])
   .hd-actions { display: flex; align-items: center; gap: var(--s-3); }
   /* بوزن حبّة البحث المجاورة: كان الحدّ --c-line (‏1.1:1) غير مرئي عملياً
      والهدف اللمسي 47×38 دون 44px. */
-  .lang { display: inline-flex; align-items: center; min-block-size: 44px; font-family: var(--font-latin); letter-spacing: .08em; font-size: .85rem; font-weight: 600; color: var(--c-turq-deep); text-decoration: none; padding: 0 14px; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease); }
+  .lang { display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; font-family: var(--font-latin); letter-spacing: .08em; font-size: .85rem; font-weight: 600; color: var(--c-turq-deep); text-decoration: none; padding: 0 14px; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease); }
   .lang:hover { border-color: var(--c-turq); background: var(--c-sand-2); }
+  /* قائمة اللغات المنسدلة — <details> أصلي فوق حبّة .lang نفسها */
+  .lang-menu { position: relative; }
+  .lang-menu > summary { list-style: none; cursor: pointer; }
+  .lang-menu > summary::-webkit-details-marker { display: none; }
+  .lang-menu > summary:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .lang-chev { inline-size: 7px; block-size: 7px; border-inline-end: 1.6px solid currentColor; border-block-end: 1.6px solid currentColor; transform: rotate(45deg); margin-block-start: -4px; transition: transform var(--dur) var(--ease); }
+  .lang-menu[open] .lang-chev { transform: rotate(225deg); margin-block-start: 3px; }
+  .lang-list { position: absolute; inset-inline-end: 0; inset-block-start: calc(100% + 6px); z-index: 60; min-inline-size: 170px; margin: 0; padding: 6px; list-style: none; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); box-shadow: var(--shadow-hover); }
+  .lang-item { display: block; padding: 9px 12px; border-radius: var(--radius-sm); font-family: var(--font-body); font-size: var(--t-sm); font-weight: 500; color: var(--c-ink); text-decoration: none; white-space: nowrap; transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+  a.lang-item:hover { background: var(--c-sand-2); color: var(--c-turq); }
+  .lang-item.is-current { font-weight: 700; color: var(--c-turq-deep); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .lang-item.is-current::after { content: '✓'; color: var(--c-gold-deep); }
   .btn-gold { white-space: nowrap; font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem); background: var(--c-gold); color: var(--c-ink); text-decoration: none; padding: 10px 20px; border-radius: var(--radius-pill); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(201,154,74,.35); }
   /* هدف لمس 44×44: كان 40×32 وهو مفتاح التنقّل كلّه على الهاتف */

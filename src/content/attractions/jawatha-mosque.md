@@ -1,6 +1,14 @@
 ---
 title: مسجد جواثا
 title_en: Jawatha Mosque
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-08-29)
+# 归信 بدل 皈依 بتوصية الحاكم (السجل الديني الإسلامي الأدق بالصينية)
+title_zh: 贾瓦塔清真寺
+kicker_zh: 罕有的传承
+summary_zh: 伊斯兰历史上最古老的清真寺之一，也是继麦地那之后最早举行主麻日聚礼的地方。
+body_zh: "贾瓦塔清真寺的地位鲜有地标能比：它是伊斯兰历史上最古老的清真寺之一；相传继麦地那的主麻清真寺之后，最早的主麻日聚礼就在这里举行，礼拜者是定居这片土地的阿卜杜·盖斯部落。质朴的泥砖建筑只余下一部分，那份庄严却远超它的体量。站在残存的拱券与墙垣前，几百年的礼拜与聚会仿佛就在眼前；这片绿洲的居民，正是最早归信伊斯兰的族群之一。该寺已由“穆罕默德·本·萨勒曼王子历史清真寺发展项目”修复完成，同批修复的还有哈萨的贾拉尼亚清真寺、谢赫穆罕默德·本·阿比·伯克尔·穆拉清真寺与胡拜什清真寺。来这里与其说是看一座建筑，不如说是一次穿越时光的行走，让人真切地贴近这片土地的深远历史。"
+area_zh: 基拉比亚——哈萨东北部
+bestTime_zh: 白天前来最合适，并请尊重礼拜时间与场所的神圣。
 slug_ar: مسجد-جواثا
 slug_en: jawatha-mosque
 category: religious
@@ -18,8 +26,8 @@ order: 4
 bestTime: أوقات النهار، مع احترام أوقات الصلاة وخصوصية المكان.
 bestTime_en: "Daylight hours, respecting prayer times and the sanctity of the place."
 practical:
-  - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", verified: true }
-  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", verified: true }
+  - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", verified: true }
+  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 ---
 

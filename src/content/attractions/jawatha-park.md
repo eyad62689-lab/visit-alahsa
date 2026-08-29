@@ -1,6 +1,12 @@
 ---
 title: "منتزه جواثا السياحي"
 title_en: "Jawatha Park"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-08-29)
+title_zh: 贾瓦塔公园
+kicker_zh: 公园
+summary_zh: 与古老的贾瓦塔清真寺相邻的绿地公园，适合一家人出游。
+body_zh: "基拉比亚的一片开阔绿地，自然与历史在此交叠：园内有古老的贾瓦塔清真寺——伊斯兰历史上第二处举行主麻日聚礼的地方——以及贾瓦塔考古遗址。公园适合全家出游，每日 8:00 至 24:00 开放，门票 10–15 沙特里亚尔（SAR）；园内清真寺免费参观。"
+area_zh: 基拉比亚——哈萨东北部
 slug_ar: "منتزه-جواثا-السياحي"
 slug_en: "jawatha-park"
 category: parks
@@ -14,8 +20,8 @@ order: 44
 area: "الكلابية — شمال شرق الأحساء"
 area_en: "Al-Kilabiyah — northeast of Al-Ahsa"
 practical:
-  - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", verified: true }
-  - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", verified: true }
+  - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_zh: "开放时间", value_zh: "每日 8:00–24:00", verified: true }
+  - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", verified: true }
 location: { lat: 25.471156, lng: 49.677408 }
 mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
 ---

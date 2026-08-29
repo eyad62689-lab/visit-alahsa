@@ -1,6 +1,13 @@
 ---
 title: "سوق القيصرية"
 title_en: "Qaisariyah Souq"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-08-29)
+title_zh: 凯萨利亚市集
+kicker_zh: 遗产市集
+summary_zh: 可上溯 200 多年的老市集，海湾地区最古老的传统集市之一，手工艺与本地物产都在这里挑选。
+body_zh: "这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。逛市集不收费，傍晚最热闹。"
+area_zh: 胡富夫，里法阿区
+bestTime_zh: 傍晚最佳：店铺陆续开门，市集也热闹起来。
 slug_ar: "سوق-القيصرية"
 slug_en: "qaisariyah"
 category: market
@@ -16,8 +23,8 @@ area_en: "Hofuf, Al-Rifaa district"
 bestTime: "الفترة المسائية، حين تفتح المتاجر أبوابها ويشتدّ نبض السوق."
 bestTime_en: "The evening, when the shops open their doors and the souq comes alive."
 practical:
-  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", verified: true }
+  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_zh: "费用", value_zh: "免费", verified: true }
 location: { lat: 25.37558, lng: 49.589 }
 mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
 ---

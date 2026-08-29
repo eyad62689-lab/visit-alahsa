@@ -16,9 +16,21 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 
-const featuredEntries = (await getCollection('attractions'))
+// اختيار حقل المحتوى بلغة الصفحة (الصينية تتراجع للإنجليزية عند الغياب)،
+// ورابط المعلم يقصد صفحة اللغة الحالية إن وُجدت وإلا فالإنجليزية.
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string }) => (zh && !d.title_zh ? 'en' : lang);
+
+const allEntries = await getCollection('attractions');
+const featuredEntries = allEntries
   .filter((e) => e.data.featured).sort((a, b) => a.data.order - b.data.order);
+// خريطة slug_en → بيانات المعلم لمحطات مسار اليومين (لحسم تراجع رابط zh لكل محطة)
+const bySlugEn = new Map(allEntries.map((e) => [e.data.slug_en, e.data]));
 
 // key = مفتاح النصّ في القاموس؛ cat = فئة حقيقية في المجموعة تُفتح مفلترة،
 // والفئات التي لا معالم لها بعد تقود إلى القائمة الكاملة.
@@ -34,12 +46,13 @@ const catCards = [
   { key: 'events', cat: null, href: ar ? '/فعاليات/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
 const facts = [
-  { n: ar ? '2.5 مليون' : '2.5M', l: t('fact.palms.l') },
+  { n: ar ? '2.5 مليون' : zh ? '250 万' : '2.5M', l: t('fact.palms.l') },
   { n: '2018', l: t('fact.unesco.l') },
   { n: '60+', l: t('fact.sites.l') },
-  { n: ar ? 'آلاف' : 'Thousands', l: t('fact.springs.l') },
+  { n: ar ? 'آلاف' : zh ? '数千' : 'Thousands', l: t('fact.springs.l') },
 ];
-const allHref = ar ? '/معالم/' : '/en/attractions/';
+// الصينية: فهرس المعالم موجود بالصينية؛ بقية الصفحات إلى النظير الإنجليزي مؤقتاً
+const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
 const planTripHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
 
@@ -70,20 +83,25 @@ const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: t('site.name'), url: new URL(altHref(alt, lang), siteUrl).href, inLanguage: lang, publisher: { '@type': 'Organization', name: t('site.name'), url: siteUrl + '/' } },
   {
     '@context': 'https://schema.org', '@type': 'TouristDestination',
-    name: ar ? 'الأحساء' : 'Al-Ahsa', url: new URL(altHref(alt, lang), siteUrl).href, image: siteUrl + '/og-default.png',
+    name: ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa', url: new URL(altHref(alt, lang), siteUrl).href, image: siteUrl + '/og-default.png',
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
-    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : 'Saudi Arabia' },
+    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : 'Saudi Arabia' },
   },
 ];
 // عنوان ووصف بكلمة «دليل السياحة» المستهدفة (سيو 2026-08-22) — كل ما يُذكر
 // موجود فعلاً في الموقع (معالم وخرائط ومسارات وفعاليات ومطاعم).
+// النص الصيني من خط zh-translation-pipeline (misc.seo.* — دفعة الرئيسية 2026-08-29)
 const title = ar
   ? 'الأحساء — دليلك السياحي لأكبر واحة نخيل في العالم'
-  : 'Al-Ahsa Travel Guide — the World’s Largest Palm Oasis';
+  : zh
+    ? '哈萨旅游指南——全球最大的椰枣绿洲'
+    : 'Al-Ahsa Travel Guide — the World’s Largest Palm Oasis';
 const description = ar
   ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
-  : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
+  : zh
+    ? '沙特阿拉伯哈萨旅游指南：卡拉山、易卜拉欣宫、凯萨利亚市集、乌盖尔（Al-Uqair）。在这片列入联合国教科文组织世界遗产名录的绿洲，查看地图与行程，了解活动与美食。'
+    : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} />
@@ -144,12 +162,12 @@ const description = ar
         </header>
         <div class="att-grid">
           {featuredEntries.map((e, i) => (
-            <a class={`card card--lift att-card ${i === 0 ? 'att-card--lead' : ''}`} href={attractionHref(e.data, lang)} data-reveal style={`transition-delay:${i * 80}ms`}>
-              <Photo src={e.data.heroImage} label={ar ? e.data.title : (e.data.title_en ?? e.data.title)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
+            <a class={`card card--lift att-card ${i === 0 ? 'att-card--lead' : ''}`} href={attractionHref(e.data, hrefLang(e.data))} data-reveal style={`transition-delay:${i * 80}ms`}>
+              <Photo src={e.data.heroImage} label={pickTitle(e.data)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
-                <span class="t-caption att-k">{ar ? e.data.kicker : ''}</span>
-                <h3 class="att-t">{ar ? e.data.title : (e.data.title_en ?? e.data.title)}</h3>
-                <p class="att-d">{ar ? e.data.summary : (e.data.summary_en ?? e.data.summary)}</p>
+                <span class="t-caption att-k">{ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : ''}</span>
+                <h3 class="att-t">{pickTitle(e.data)}</h3>
+                <p class="att-d">{pickSummary(e.data)}</p>
               </div>
             </a>
           ))}
@@ -176,7 +194,7 @@ const description = ar
                   <li class="route-stop">
                     <span class="route-time">{t(`home.route.time.${s.time}` as any)}</span>
                     <div class="route-stop-b">
-                      <a class="route-n" href={attractionHref({ slug_ar: s.ar, slug_en: s.en }, lang)}>{t(`home.route.${s.k}.n` as any)}</a>
+                      <a class="route-n" href={attractionHref(bySlugEn.get(s.en) ?? { slug_ar: s.ar, slug_en: s.en }, hrefLang(bySlugEn.get(s.en) ?? {}))}>{t(`home.route.${s.k}.n` as any)}</a>
                       <p class="route-d">{t(`home.route.${s.k}.d` as any)}</p>
                     </div>
                   </li>
