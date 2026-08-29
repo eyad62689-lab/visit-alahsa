@@ -167,7 +167,7 @@ const nearby = a.location
           <p class="nb-lead">{t('det.nearby.d')}</p>
           <div class="nb-grid">
             {nearby.map((n) => (
-              <a class="nb-card" href={n.href}>
+              <a class="card card--lift nb-card" href={n.href}>
                 <Photo src={n.img} label={n.title} class="nb-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                 <div class="nb-body">
                   <span class="t-caption nb-k">{n.cat}</span>
@@ -247,10 +247,9 @@ const nearby = a.location
   .nb-h { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-1) var(--s-4); }
   .nb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
-  .nb-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden;
-    box-shadow: var(--shadow); text-decoration: none; color: inherit;
-    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-  .nb-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  /* قاعدة الشبكات الثلاثية الموحّدة: كانت الأعمدة الثلاثة تنضغط حتى 760 (تدقيق 2026-08-28) */
+  @media (max-width: 1000px) { .nb-grid { grid-template-columns: 1fr 1fr; } }
+  /* القشرة والتحويم من card/card--lift الموحّدين في global.css */
   :global(.nb-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
   .nb-body { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: 2px; }
   .nb-k { color: var(--c-gold-deep); }

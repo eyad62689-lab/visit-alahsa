@@ -146,7 +146,7 @@ const jsonLd = [
 
       <div class="dngrid">
         {C.places.map((p, idx) => { const lv = liveFor(p.img); const hours = ar ? lv?.hoursAr : lv?.hoursEn; return (
-          <article class="place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+          <article class="card place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
             <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
             <div class="pc-body">
               <h3>{p.name}</h3>
@@ -178,7 +178,7 @@ const jsonLd = [
 
       <div class="dngrid">
         {C.cafes.map((p, idx) => { const lv = liveFor(p.img); const hours = ar ? lv?.hoursAr : lv?.hoursEn; return (
-          <article class="place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+          <article class="card place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
             <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
             <div class="pc-body">
               <h3>{p.name}</h3>
@@ -239,7 +239,7 @@ const jsonLd = [
 
   .dn-src { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
 
-  .place-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  /* القشرة من صنف card الموحّد في global.css */
   .pc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
   .place-card h3 { font-size: var(--t-lg); color: var(--c-turq-deep); }
   .pc-area { font-size: var(--t-xs); color: var(--c-gold-deep); }

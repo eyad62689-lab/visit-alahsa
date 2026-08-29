@@ -44,7 +44,7 @@ const jsonLd = [
       ) : (
         <div class="bl-grid">
           {posts.map((p) => (
-            <a class="bl-card" href={base + p.data.slug + '/'}>
+            <a class="card card--lift bl-card" href={base + p.data.slug + '/'}>
               {p.data.heroImage ? (
                 <Photo src={p.data.heroImage} label={p.data.title} class="bl-photo" sizes="(max-width: 760px) 100vw, 33vw" />
               ) : (
@@ -69,10 +69,7 @@ const jsonLd = [
   .blog-list { padding-block: var(--s-7) var(--s-8); }
   .blog-empty { color: var(--c-ink-soft); font-size: var(--t-lg); }
   .bl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
-  .bl-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius); overflow: hidden;
-    box-shadow: var(--shadow); text-decoration: none; color: inherit;
-    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-  .bl-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  /* القشرة والتحويم من صنفَي card/card--lift الموحّدين في global.css */
   :global(.bl-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
   .bl-ph { aspect-ratio: 16 / 10; display: grid; place-items: center; background: var(--c-turq-deep); }
   :global(.bl-ph-palm) { color: var(--c-gold); opacity: .5; }
@@ -81,6 +78,8 @@ const jsonLd = [
   .bl-t { font-size: var(--t-lg); color: var(--c-turq-deep); line-height: 1.35; }
   .bl-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
   .bl-date { margin-block-start: auto; padding-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-60); }
-  @media (max-width: 980px) { .bl-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 640px) { .bl-grid { grid-template-columns: 1fr; } }
+  /* قاعدة الشبكات الثلاثية الموحّدة (دفعة 3): عمودان ≤1000، عمود ≤760 —
+     كانت هنا 980/640 وحدها بين شبكات الموقع (تدقيق 2026-08-28) */
+  @media (max-width: 1000px) { .bl-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 760px) { .bl-grid { grid-template-columns: 1fr; } }
 </style>

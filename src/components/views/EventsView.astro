@@ -130,7 +130,7 @@ const jsonLd = [
 
         <div class="ev-grid" data-ev-grid>
           {cards.map(({ raw, e }, i) => (
-            <article class="ev-card" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}
+            <article class="card ev-card" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}
               data-start={e.start} data-end={e.end ?? ''} data-ramadan={e.ramadan ? '1' : ''}
               data-ev-edition={raw.after && raw.endISO ? '' : undefined}
               data-ev-start={raw.after && raw.startISO ? raw.startISO : undefined}
@@ -293,8 +293,8 @@ const jsonLd = [
   .ev-order-note { font-size: var(--t-xs); color: var(--c-ink-60); margin-block-end: var(--s-4); }
 
   .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
-  .ev-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--c-line);
-    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  /* القشرة من card الموحّد؛ يبقى هنا: الحد وانتقاله (لغة «الجاري الآن») والموضع */
+  .ev-card { position: relative; border: 1px solid var(--c-line);
     transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   /* الفعالية الجارية الآن — بنفس لغة «ما موسم الأحساء الآن؟»: إطار ذهبي وظل ذهبي خافت */
   .ev-card.is-now { border-color: var(--c-gold); box-shadow: var(--shadow-gold); }

@@ -134,7 +134,7 @@ const jsonLd = [
           )}
           <div class="fgrid">
             {g.fruits.map((f, idx) => (
-              <article class="fruit-card" data-season={f.seasons} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+              <article class="card fruit-card" data-season={f.seasons} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
                 {/* أزيل فرع الصورتين (img2) — فرع ميت: لا ثمرة في البيانات تحمل
                     الحقل، وكان يكسر astro check (تدقيق 2026-08-28) */}
                 <Photo src={f.img} label={f.img ? (f.alt ?? f.name) : f.name} class="fr-photo" sizes="(max-width: 760px) 100vw, 33vw" />
@@ -272,7 +272,7 @@ const jsonLd = [
   .fgroup-intro { color: var(--c-ink-soft); max-inline-size: 72ch; margin-block-end: var(--s-4); }
   .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
 
-  .fruit-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  /* القشرة من صنف card الموحّد في global.css */
   .fc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
   .fc-k { color: var(--c-gold-deep); }
   .fruit-card h4 { font-size: var(--t-lg); color: var(--c-turq-deep); }

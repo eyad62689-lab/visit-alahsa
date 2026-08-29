@@ -113,6 +113,23 @@ img, svg { display: block; max-width: 100%; }
 .btn--turq { background: var(--c-turq); color: var(--c-sand); }
 .btn--turq:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,110,97,.3); }
 
+/* --- بطاقة الموقع الموحّدة (دفعة 3 — 2026-08-29) ---
+   كانت القشرة نفسها (أبيض + زوايا + ظل + عمود) معرَّفة في 8 مواضع بثلاثة
+   سلوكات hover متباينة (تدقيق 2026-08-28). البطاقة تضيف `card`، وبطاقة
+   الرابط تضيف معها `card--lift`؛ خصوصيات الواجهة (حدود، نصف قطر أكبر،
+   position) تبقى في صنفها المحصور وتغلب هذه القاعدة تخصيصاً. */
+.card {
+  display: flex; flex-direction: column;
+  background: #fff; border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.card--lift {
+  text-decoration: none; color: inherit;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.card--lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+@media (prefers-reduced-motion: reduce) { .card--lift:hover { transform: none; } }
+
 /* --- نظام الصور الموحّد --- */
 .photo {
   position: relative; overflow: hidden; isolation: isolate;

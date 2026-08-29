@@ -272,7 +272,7 @@ if (ev.faq?.length) {
         <h2 class="evd-more-h">{C.moreH}</h2>
         <div class="evd-more-grid">
           {others.map((o) => (
-            <a class="evd-more-card" href={`${detailBase}${o.slug}/`}>
+            <a class="card card--lift evd-more-card" href={`${detailBase}${o.slug}/`}>
               <Photo src={o.img} label={o.name} class="evd-more-photo" sizes="(max-width: 760px) 100vw, 33vw" />
               <div class="evd-more-body">
                 <span class="t-caption evd-more-k">{o.season}</span>
@@ -362,10 +362,9 @@ if (ev.faq?.length) {
   .evd-more { background: var(--c-sand-2); padding-block: var(--s-7); }
   .evd-more-h { font-family: var(--font-heading); font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-4); }
   .evd-more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
-  .evd-more-card { display: flex; flex-direction: column; background: #fff; border-radius: var(--radius);
-    overflow: hidden; box-shadow: var(--shadow); text-decoration: none; color: inherit;
-    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-  .evd-more-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  /* قاعدة الشبكات الثلاثية الموحّدة: كانت الأعمدة الثلاثة تنضغط حتى 760 (تدقيق 2026-08-28) */
+  @media (max-width: 1000px) { .evd-more-grid { grid-template-columns: 1fr 1fr; } }
+  /* القشرة والتحويم من card/card--lift الموحّدين في global.css */
   :global(.evd-more-photo) { aspect-ratio: 16 / 10; border-radius: 0; }
   .evd-more-body { padding: var(--s-3) var(--s-4) var(--s-4); }
   .evd-more-k { color: var(--c-gold-deep); }
@@ -391,5 +390,4 @@ if (ev.faq?.length) {
     .evd-facts dd { margin-block-end: var(--s-3); }
     .evd-more-grid { grid-template-columns: 1fr; }
   }
-  @media (prefers-reduced-motion: reduce) { .evd-more-card:hover { transform: none; } }
 </style>

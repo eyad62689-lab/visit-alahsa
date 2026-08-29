@@ -91,7 +91,7 @@ const jsonLd = [
             </summary>
             <div class="list-grid">
               {g.list.map((i, idx) => (
-                <article class="att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
+                <article class="card card--lift att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
                   <a class="lc-link" href={attractionHref(i.data, lang)}>
                     <Photo src={i.data.heroImage} label={ar ? i.data.title : (i.data.title_en ?? i.data.title)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                     <div class="lc-body">
@@ -190,9 +190,10 @@ const jsonLd = [
   @media (prefers-reduced-motion: reduce) { .cat-sec-chev { transition: none; } }
 
   .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 264px), 1fr)); gap: var(--s-4); }
-  .att-card { position: relative; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform var(--dur) var(--ease); }
+  /* القشرة والتحويم من card/card--lift الموحّدين — كان التحويم هنا يرفع بلا
+     ظل (أحد السلوكات الثلاثة المتباعدة في التدقيق)، فتوحّد مع البقية */
+  .att-card { position: relative; }
   .lc-link { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
-  .att-card:hover { transform: translateY(-4px); }
   .lc-photo { aspect-ratio: 16 / 10; }
   .lc-body { padding: var(--s-3) var(--s-4) var(--s-5); }
   .lc-k { color: var(--c-gold-deep); }

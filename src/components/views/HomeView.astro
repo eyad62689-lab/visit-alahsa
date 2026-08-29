@@ -144,7 +144,7 @@ const description = ar
         </header>
         <div class="att-grid">
           {featuredEntries.map((e, i) => (
-            <a class={`att-card ${i === 0 ? 'att-card--lead' : ''}`} href={attractionHref(e.data, lang)} data-reveal style={`transition-delay:${i * 80}ms`}>
+            <a class={`card card--lift att-card ${i === 0 ? 'att-card--lead' : ''}`} href={attractionHref(e.data, lang)} data-reveal style={`transition-delay:${i * 80}ms`}>
               <Photo src={e.data.heroImage} label={ar ? e.data.title : (e.data.title_en ?? e.data.title)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 <span class="t-caption att-k">{ar ? e.data.kicker : ''}</span>
@@ -293,8 +293,8 @@ const description = ar
   /* ثلاثة أعمدة: البطاقة الرئيسية تمتدّ على العرض ثم تملأ الثلاث الباقية صفّاً
      كاملاً. بعمودين كانت الرابعة تبقى وحيدة ويتخلّف نصف صفّ فارغ. */
   .att-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
-  .att-card { background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); text-decoration: none; color: inherit; }
-  .att-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  /* القشرة والتحويم من card/card--lift الموحّدين؛ نصف القطر الأكبر خصوصية البطاقات المميزة */
+  .att-card { border-radius: var(--radius-lg); }
   .att-card:hover .att-photo > .ph-label { transform: scale(1.04); }
   .att-photo { aspect-ratio: 16 / 10; }
   .att-photo .ph-label { transition: transform var(--dur) var(--ease); }
