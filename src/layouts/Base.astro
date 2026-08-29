@@ -19,7 +19,9 @@ import '@fontsource/lora/latin-400.css';
 import '@fontsource/lora/latin-600.css';
 import '@fontsource/cormorant-garamond/latin-400.css';
 import '@fontsource/cormorant-garamond/latin-600.css';
+import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
+import CopyGuard from '../components/CopyGuard.astro';
 import { srcsetFor } from '../lib/images';
 import { dir, htmlLang, useTranslations, type AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
@@ -50,6 +52,35 @@ const t = useTranslations(lang);
 // Google Analytics 4 (GA4). معرّف القياس ثابت للموقع كله.
 const GA_ID = 'G-QB084SK5XJ';
 
+// بصمة الملكية (حماية المحتوى — طبقة ٢): ميتا + JSON-LD + تعليق HTML بمعرّف
+// الصفحة. المعرّف مشتق من المسار بنفس اشتقاق scripts/fingerprint.mjs فيطابق
+// content-fingerprints.json — يُستعمل دليلَ أسبقية عند التقدم ببلاغ سرقة.
+// كل ذلك غير مرئي ولا يدخل شجرة الوصول (لا أثر على SEO ولا قارئات الشاشة).
+const site = Astro.site ?? new URL('https://visit-alahsa.com');
+const pageUrl = new URL(Astro.url.pathname, site).href;
+// تطبيع مطابق لاشتقاق scripts/fingerprint.mjs: فك ترميز المسارات العربية
+// وإسقاط الشرطة الختامية — وإلا اختلف المعرّفان لنفس الصفحة.
+const pageId = createHash('sha256')
+  .update(`visit-alahsa:${decodeURI(pageUrl).replace(/\/$/, '')}`)
+  .digest('hex')
+  .slice(0, 12);
+const copyrightYear = new Date().getFullYear();
+const copyrightNotice = `© ${copyrightYear} زوروا الأحساء — visit-alahsa.com — جميع الحقوق محفوظة / All rights reserved`;
+const ownershipLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  url: pageUrl,
+  name: title,
+  inLanguage: lang === 'ar' ? 'ar' : 'en',
+  isPartOf: { '@type': 'WebSite', name: 'زوروا الأحساء — Visit Al-Ahsa', url: site.href },
+  copyrightHolder: { '@type': 'Organization', name: 'زوروا الأحساء — Visit Al-Ahsa', url: site.href },
+  copyrightYear,
+  copyrightNotice,
+  license: new URL(lang === 'ar' ? '/السياسات/' : '/en/legal/', site).href,
+};
+const jsonLdAll = [...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []), ownershipLd];
+const ownershipComment = `<!-- va-page:${pageId} lang:${lang} generated:${new Date().toISOString().slice(0, 10)} ${copyrightNotice} — original content: ${pageUrl} -->`;
+
 // وصفة التحميل المسبق لصورة الهيرو بنفس srcset الذي يستعمله HeroPoster.
 // بدونها كان preload يشير إلى الصورة الكاملة فينزّل الجوال نسختين: الكاملة
 // (‏260KB في قصر إبراهيم) ثم ما يختاره srcset (‏80KB) — والزائر العائد أسوأ،
@@ -69,7 +100,10 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLd} />
+    <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
+    <meta name="copyright" content={copyrightNotice} />
+    <meta name="rights" content={copyrightNotice} />
+    <Fragment set:html={ownershipComment} />
 
     {/* الخطوط الفاخرة كلها مستضافة ذاتياً الآن (استيرادات fontsource أعلاه) —
         أُزيل استدعاء Google Fonts المحجِب للعرض (سيو 2026-08-22). */}
@@ -173,5 +207,6 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
       if (document.readyState !== 'loading') window.VAPlan.sync();
       else document.addEventListener('DOMContentLoaded', () => window.VAPlan.sync());
     </script>
+    <CopyGuard />
   </body>
 </html>

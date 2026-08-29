@@ -1,0 +1,91 @@
+---
+// رصد النسخ اللحظي (طبقة الحماية ١) — يلتقط حدث copy فقط.
+// لا يعطّل الزر الأيمن ولا تحديد النص إطلاقاً، ولا يضيف أي عنصر مرئي.
+//
+// - إسناد تلقائي: نسخ أطول من 150 حرفاً يُلحق به سطر المصدر بلغة الصفحة.
+// - تسجيل: يُرسل عبر sendBeacon إلى دالة copy-log (مقتطف 200 حرف، الطول،
+//   المسار، اللغة، طابع ISO، معرّف جلسة عشوائي، user-agent، عدّاد الجلسة).
+// - الخصوصية (PDPL): لا يُرسل ولا يُخزَّن IP من المتصفح — الدالة تهشّره فقط.
+//
+// مستمع واحد على مستوى document بحارس window (نفس نمط سكربتات Base) —
+// يبقى فعّالاً عبر تنقّلات ClientRouter دون إعادة تسجيل.
+---
+<script is:inline>
+  (function () {
+    if (window.__vaCopyGuard) return;
+    window.__vaCopyGuard = true;
+
+    var ATTRIBUTE_MIN = 150; // فوقها يُلحق سطر الإسناد
+    var LOG_ENDPOINT = '/.netlify/functions/copy-log';
+
+    function sessionId() {
+      try {
+        var s = sessionStorage.getItem('va-sid');
+        if (!s) {
+          s = (window.crypto && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : Math.random().toString(36).slice(2) + Date.now().toString(36);
+          sessionStorage.setItem('va-sid', s);
+        }
+        return s;
+      } catch (e) { return 'no-session'; }
+    }
+
+    function bumpCount() {
+      try {
+        var n = (parseInt(sessionStorage.getItem('va-copyn'), 10) || 0) + 1;
+        sessionStorage.setItem('va-copyn', String(n));
+        return n;
+      } catch (e) { return 1; }
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    document.addEventListener('copy', function (e) {
+      var sel = document.getSelection ? String(document.getSelection()) : '';
+      if (!sel) return;
+
+      var isArabic = (document.documentElement.lang || 'ar').indexOf('ar') === 0;
+      var url = location.href.split('#')[0];
+
+      // الإسناد التلقائي — يستبدل محتوى الحافظة بالنص نفسه + سطر المصدر
+      if (sel.length > ATTRIBUTE_MIN && e.clipboardData) {
+        try {
+          var credit = isArabic
+            ? '‏المصدر: زوروا الأحساء — ' + url
+            : 'Source: Visit Al-Ahsa — ' + url;
+          e.clipboardData.setData('text/plain', sel + '\n\n' + credit);
+          e.clipboardData.setData(
+            'text/html',
+            '<div>' + escapeHtml(sel).replace(/\n/g, '<br>') + '</div>' +
+              '<p dir="' + (isArabic ? 'rtl' : 'ltr') + '"><small>' +
+              (isArabic ? 'المصدر: ' : 'Source: ') +
+              '<a href="' + url + '">' +
+              (isArabic ? 'زوروا الأحساء' : 'Visit Al-Ahsa') +
+              '</a></small></p>'
+          );
+          e.preventDefault();
+        } catch (err) { /* فشل الإلحاق لا يمنع النسخ الأصلي */ }
+      }
+
+      // التسجيل — sendBeacon لا يؤخر الصفحة ويكمل الإرسال حتى مع مغادرتها
+      try {
+        var payload = JSON.stringify({
+          excerpt: sel.slice(0, 200),
+          length: sel.length,
+          path: location.pathname,
+          lang: isArabic ? 'ar' : 'en',
+          ts: new Date().toISOString(),
+          session: sessionId(),
+          copies: bumpCount(),
+          ua: navigator.userAgent,
+        });
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(LOG_ENDPOINT, new Blob([payload], { type: 'application/json' }));
+        }
+      } catch (e2) { /* التسجيل لا يمس تجربة الزائر بأي حال */ }
+    });
+  })();
+</script>
