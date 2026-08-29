@@ -9,6 +9,18 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# نظام حماية المحتوى — الدوال في netlify/functions:
+#   copy-log:   تستقبل أحداث النسخ من CopyGuard وتخزّنها في Blobs
+#   theft-scan: مسح أسبوعي مجدول (الجدولة معلنة داخل الدالة نفسها:
+#               export const config = { schedule: "0 3 * * 1" })
+# والـ Edge Function ‏bot-log (netlify/edge-functions) تسجّل عيّنة الزحف —
+# مساراتها واستثناءاتها معلنة داخلها أيضاً.
+# المفاتيح كلها متغيرات بيئة في لوحة Netlify — لا مفتاح داخل الكود:
+#   IP_HASH_SALT, SERPER_API_KEY, RESEND_API_KEY, ALERT_EMAIL_TO, ALERT_EMAIL_FROM
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # تخزين مؤقت طويل للأصول المُبصَّمة وغير المتغيّرة (يحسّن السرعة وLCP)
 [[headers]]
   for = "/fonts/*"

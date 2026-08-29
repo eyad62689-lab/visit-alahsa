@@ -5,10 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node tools/fetch-places.mjs",
+    "prebuild": "node tools/fetch-places.mjs && node scripts/fingerprint.mjs",
     "build": "astro check && astro build && pagefind --site dist",
+    "postbuild": "node scripts/image-rights.mjs",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "fingerprint": "node scripts/fingerprint.mjs",
+    "pull:reports": "node scripts/pull-reports.mjs"
   },
   "dependencies": {
     "@fontsource/amiri": "^5.2.8",
@@ -18,6 +21,7 @@
     "@fontsource/lora": "^5.3.0",
     "@fontsource/marcellus": "^5.2.8",
     "@fontsource/playfair-display": "^5.3.0",
+    "@netlify/blobs": "^10.7.13",
     "astro": "^7.0.0",
     "maplibre-gl": "^6.4.1"
   },
