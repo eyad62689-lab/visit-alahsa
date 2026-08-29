@@ -1,6 +1,11 @@
 ---
 title: "حدائق السوسن للطيور"
 title_en: "Al-Sawsan Bird Gardens"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 11 بدرجة 92/100 (2026-08-29)
+title_zh: 索桑鸟园
+kicker_zh: 农场与椰枣林
+summary_zh: 一座专门展示鸟类的园子，融在哈萨绿洲的氛围之中。
+body_zh: "一座专门展示鸟类的园子，融在哈萨绿洲的氛围之中。"
 slug_ar: "حدائق-السوسن-للطيور"
 slug_en: "sawsan-gardens"
 category: farm
