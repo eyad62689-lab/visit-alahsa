@@ -37,7 +37,7 @@ async function api(path, { body, lang } = {}) {
       'X-Goog-Api-Key': KEY,
       'X-Goog-FieldMask': body
         ? 'places.id,places.displayName'
-        : 'displayName,rating,userRatingCount,regularOpeningHours.weekdayDescriptions,regularOpeningHours.periods,utcOffsetMinutes,businessStatus',
+        : 'displayName,location,rating,userRatingCount,regularOpeningHours.weekdayDescriptions,regularOpeningHours.periods,utcOffsetMinutes,businessStatus',
     },
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -109,6 +109,11 @@ async function main() {
           p.close?.day ?? null, (p.close?.hour ?? 0) * 60 + (p.close?.minute ?? 0),
         ]),
         utcOffset: ar.utcOffsetMinutes ?? null,
+        // الإحداثيات تفتح «المعالم القريبة» وخريطة الموائد. الحقل في شريحة
+        // Place Details Essentials — الأرخص — والاستدعاء يطلب حقول Enterprise
+        // أصلاً (rating وregularOpeningHours) فلا يرتفع عمّا هو عليه.
+        lat: ar.location?.latitude ?? null,
+        lng: ar.location?.longitude ?? null,
       };
       // الاسم الرسمي باللغتين يُطبع ولا يُخزَّن: أسماء dining.ts تُعتمد من قوقل
       // (قرار إياد 2026-08-30)، وهذا السطر هو الطريق لمراجعتها دورياً من سجل البناء.
