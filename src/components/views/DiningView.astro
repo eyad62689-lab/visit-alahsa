@@ -23,7 +23,8 @@ const ar = lang === 'ar';
 // التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
 // قبل البناء إن وُجد المفتاح. غيابها متوقَّع (بناء محلي بلا مفتاح) والصفحة
 // تتدهور رشيقاً: لا صف تقييم ولا أوقات عمل ولا حالة إغلاق.
-type Live = { rating: number | null; count: number | null; hoursAr: string[]; hoursEn: string[]; status: string | null };
+type Live = { rating: number | null; count: number | null; hoursAr: string[]; hoursEn: string[]; status: string | null;
+  periods?: (number | null)[][]; utcOffset?: number | null };
 // process.cwd() لا import.meta.url: الأخير يشير إلى الملف المُجمَّع وقت البناء
 // فيفشل العثور على JSON بصمت. البناء يعمل دائماً من جذر astro-site.
 const livePath = join(process.cwd(), 'src', 'data', 'places-live.json');
@@ -60,9 +61,13 @@ const C = localize(lang, {
   districtAll: 'كل المواقع',
   districtNames: {
     alkoot: 'حي الكوت', downtown: 'وسط الهفوف التاريخي', 'rafah-north': 'الرفعة الشمالية',
-    khalidiyah: 'الخالدية', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
-    olaya: 'العليا', mubarraz: 'المبرز', unspecified: 'مواقع أخرى',
+    khalidiyah: 'الخالدية', rawdah: 'الروضة', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
+    olaya: 'العليا', khaleej: 'طريق الخليج', mubarraz: 'المبرز',
   } as Record<string, string>,
+  openNow: 'مفتوح الآن',
+  closedNow: 'مغلق الآن',
+  openFilter: 'مفتوح الآن',
+  hoursNote: 'المواعيد من خرائط قوقل وقد تتغير — تحقّق من رابط المكان.',
   countPrefix: 'المعروض: ',
   countSuffix: ' من 20',
   emptyMsg: 'لا نتائج مطابقة — جرّب توسيع البحث أو اختيار «كل المواقع».',
@@ -81,7 +86,7 @@ const C = localize(lang, {
     { q: 'أين آكل في المبرز؟',
       a: 'من هذه القائمة مكانان على طريق عين نجم بالمبرز: بيكنج أب، ومخبز ومقهى دوت. وبقية القائمة في الهفوف.' },
     { q: 'أين تقع مطاعم ومقاهي هذه القائمة؟',
-      a: 'تتوزع بين الهفوف — حول حي الكوت التراثي ووسط الهفوف التاريخي وحيَّي الخالدية والرفعة الشمالية — والمبرز على طريق عين نجم، وكل بطاقة تحمل رابط موقعها الدقيق على خرائط قوقل.' },
+      a: 'تتوزع بين الهفوف — حي الكوت التراثي ووسط الهفوف التاريخي والرفعة الشمالية والخالدية والروضة والمزروع والعليا والعويمرية — والمبرز على طريق عين نجم، وكل بطاقة تحمل رابط موقعها الدقيق على خرائط قوقل.' },
     liveRaw
       ? { q: 'من أين تأتي التقييمات وأوقات العمل؟',
           a: `التقييمات وأوقات العمل مأخوذة من خرائط قوقل مباشرة (آخر تحديث ${fetchedLabel}) وقد تتغير — للتأكد من أحدث المعلومات افتح رابط خرائط قوقل لكل مكان. الأسعار لا تُعرض.` }
@@ -114,9 +119,13 @@ const C = localize(lang, {
   districtAll: 'All areas',
   districtNames: {
     alkoot: 'Al-Koot district', downtown: 'Historic downtown Hofuf', 'rafah-north': 'Al-Raf‘ah North',
-    khalidiyah: 'Al-Khalidiyah', mazrou: 'Al-Mazrou‘', uwaimriyah: 'Al-Uwaimriyah',
-    olaya: 'Al-Olaya', mubarraz: 'Al-Mubarraz', unspecified: 'Other areas',
+    khalidiyah: 'Al-Khalidiyah', rawdah: 'Al-Rawdah', mazrou: 'Al-Mazrou‘', uwaimriyah: 'Al-Uwaimriyah',
+    olaya: 'Al-Olaya', khaleej: 'Al-Khaleej Road', mubarraz: 'Al-Mubarraz',
   },
+  openNow: 'Open now',
+  closedNow: 'Closed now',
+  openFilter: 'Open now',
+  hoursNote: 'Hours come from Google Maps and can change — check the place’s link.',
   countPrefix: 'Showing ',
   countSuffix: ' of 20',
   emptyMsg: 'No matches — try a broader search or select “All areas”.',
@@ -135,7 +144,7 @@ const C = localize(lang, {
     { q: 'Where can I eat in Al-Mubarraz?',
       a: 'Two places on this list sit on Ain Najm Road in Al-Mubarraz: Baking Up and Dot Bakery & Café. The rest of the list is in Hofuf.' },
     { q: 'Where are these restaurants and cafés located?',
-      a: 'They are spread between Al Hofuf — around the historic Al-Koot district, the historic downtown, Al-Khalidiyah and Al-Raf‘ah North — and Al-Mubarraz along Ain Najm Road; each card links to the exact spot on Google Maps.' },
+      a: 'They are spread between Al Hofuf — the historic Al-Koot district, the historic downtown, Al-Raf‘ah North, Al-Khalidiyah, Al-Rawdah, Al-Mazrou‘, Al-Olaya and Al-Uwaimriyah — and Al-Mubarraz along Ain Najm Road; each card links to the exact spot on Google Maps.' },
     liveRaw
       ? { q: 'Where do the ratings and opening hours come from?',
           a: `Ratings and opening hours come straight from Google Maps (last updated ${fetchedLabel}) and can change — check each place’s Google Maps link for the very latest details. Prices are not listed.` }
@@ -155,19 +164,31 @@ const SECTIONS = [
 ];
 
 // خيارات فلتر الموقع: تُشتقّ من البيانات لا تُكتب يدوياً، فلا يتقادم الخيار ولا
-// يظهر خيار بلا نتائج. الترتيب مثبَّت (الأقرب إلى قلب الهفوف أولاً) و«مواقع
-// أخرى» آخراً لأنها ليست حيّاً بل غياب حيّ في عنوان قوقل.
-const DISTRICT_ORDER = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'mazrou', 'uwaimriyah', 'olaya', 'mubarraz'];
+// يظهر خيار بلا نتائج. الترتيب مثبَّت (الأقرب إلى قلب الهفوف أولاً)، وطريق الخليج
+// قبل المبرز لأنه محورٌ لا حيّ (منشأة واحدة لا حيَّ لها — إفادة إياد 2026-08-30).
+const DISTRICT_ORDER = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'rawdah', 'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz'];
 const ALL_PLACES = [...C.places, ...C.cafes];
-const districtKey = (d: string | null) => d ?? 'unspecified';
 const districtCounts = ALL_PLACES.reduce<Record<string, number>>((acc, p) => {
-  const k = districtKey(p.district); acc[k] = (acc[k] ?? 0) + 1; return acc;
+  acc[p.district] = (acc[p.district] ?? 0) + 1; return acc;
 }, {});
-const districtOptions = [...DISTRICT_ORDER, 'unspecified']
+const districtOptions = DISTRICT_ORDER
   .filter((k) => districtCounts[k])
   .map((k) => ({ key: k, label: C.districtNames[k], count: districtCounts[k] }));
 // نصّ البحث لكل بطاقة: الاسم والموقع بلغة الصفحة — يُبنى وقت البناء لا وقت التشغيل
 const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area}`.toLowerCase();
+
+// «مفتوح الآن»: تُمرَّر البنية الأسبوعية والإزاحة إلى المتصفح ولا تُصيَّر حالةٌ
+// هنا إطلاقاً — الشارة تخرج hidden ويملؤها سكربت من ساعة الزائر (سابقة عدّاد
+// الفعاليات). المنشأة التي لا تُرجِع periods لا شارة لها: **لا تُعرض «مغلق»**
+// استنتاجاً من غياب بيانات.
+// صيغة مضغوطة بلا علامات اقتباس: «الإزاحة|يوم,دقيقة,يوم,دقيقة;…». JSON هنا كان
+// يكلّف ~42KB في الصفحة لأن كل اقتباس يُهرَّب إلى &quot; في سمة HTML.
+// اليوم الفارغ = null (فترة بلا إغلاق ⇒ 24 ساعة).
+const hoursData = (lv?: Live) =>
+  lv?.periods?.length && typeof lv.utcOffset === 'number'
+    ? `${lv.utcOffset}|${lv.periods.map((x) => x.join(',')).join(';')}`
+    : null;
+const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
 const pageTitle = ar
@@ -217,6 +238,11 @@ const jsonLd = [
           <button class="chip" type="button" data-kind="restaurant" aria-pressed="false">{C.kindRestaurants} <bdi>({C.places.length})</bdi></button>
           <button class="chip" type="button" data-kind="cafe" aria-pressed="false">{C.kindCafes} <bdi>({C.cafes.length})</bdi></button>
         </div>
+        {anyHours && (
+          <button class="chip chip--open" type="button" id="dn-open" aria-pressed="false">
+            <span class="dot-open" aria-hidden="true"></span>{C.openFilter}
+          </button>
+        )}
         {/* الموقع قائمة أصيلة لا شرائح: تسع قيم تفيض عن شريط الشرائح، و<select>
             يعطي دلالة ولوحة مفاتيح وسلوك جوال مجاناً */}
         <div class="dn-selwrap">
@@ -251,7 +277,7 @@ const jsonLd = [
                 : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
               return (
                 <article class="card card--lift place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}
-                  data-kind={sec.kind} data-district={districtKey(p.district)} data-q={searchText(p)}>
+                  data-kind={sec.kind} data-district={p.district} data-q={searchText(p)} data-hours={hoursData(lv)}>
                   {/* البطاقة كلها هدف نقر واحد — رابط خارجي وحيد يغلّف المحتوى
                       غير التفاعلي. أوقات العمل <details> تبقى خارجه (عنصر تفاعلي
                       داخل رابط = تعشيش محظور). */}
@@ -261,6 +287,9 @@ const jsonLd = [
                       <h3>{p.name}</h3>
                       <p class="pc-area">{p.area}</p>
                       {closed && <p class="pc-closed">{closed}</p>}
+                      {!closed && hoursData(lv) && (
+                        <p class="pc-open" hidden data-open={C.openNow} data-shut={C.closedNow}></p>
+                      )}
                       <p class="pc-blurb">{p.blurb}</p>
                       {lv?.rating && (
                         <p class="pc-rating"><span class="pc-star" aria-hidden="true">★</span>
@@ -282,6 +311,7 @@ const jsonLd = [
                     <details class="pc-hours">
                       <summary>{C.hoursLabel}</summary>
                       <ul>{hours.map((h) => <li>{h}</li>)}</ul>
+                      <p class="pc-hnote">{C.hoursNote}</p>
                     </details>
                   )}
                 </article>
@@ -326,6 +356,7 @@ const jsonLd = [
     search.dataset.wired = '1';
 
     const chips = kinds.querySelectorAll('.chip');
+    const openBtn = document.getElementById('dn-open');
     const cards = document.querySelectorAll('.place-card');
     const secs = document.querySelectorAll('[data-sec]');
     const empty = document.getElementById('dn-empty');
@@ -342,21 +373,69 @@ const jsonLd = [
       cards.forEach((c) => c.classList.add('in'));
     }
 
+    // ── «مفتوح الآن»: يُحسب من ساعة الزائر لا من وقت البناء ──────────────
+    // periods من قوقل: [يومُ الفتح، دقيقةُ الفتح، يومُ الإغلاق، دقيقةُ الإغلاق]
+    // واليوم 0=الأحد. نحوّل «الآن» إلى دقيقة داخل الأسبوع بتوقيت المنشأة نفسها
+    // (الإزاحة من البيانات لا مفترَضة)، ثم نطابقها على كل فترة مع لفّ الأسبوع
+    // للفترات التي تعبر منتصف الليل. فترةٌ بلا إغلاق = مفتوح 24 ساعة.
+    var WEEK = 7 * 24 * 60;
+    function isOpen(data) {
+      var now = new Date();
+      var localMin = now.getTime() / 60000 + data.o;            // دقائق منذ الحقبة بتوقيت المنشأة
+      var dow = Math.floor(localMin / 1440 + 4) % 7;            // 1970-01-01 كان خميساً ⇒ +4 ليصير الأحد صفراً
+      var mow = dow * 1440 + (((localMin % 1440) + 1440) % 1440);
+      for (var i = 0; i < data.p.length; i++) {
+        var pr = data.p[i];
+        if (pr[0] === null) continue;
+        if (pr[2] === null) return true;                        // بلا إغلاق ⇒ 24 ساعة
+        var a = pr[0] * 1440 + pr[1];
+        var b = pr[2] * 1440 + pr[3];
+        if (b <= a) b += WEEK;                                  // الفترة تعبر منتصف الليل أو نهاية الأسبوع
+        if ((mow >= a && mow < b) || (mow + WEEK >= a && mow + WEEK < b)) return true;
+      }
+      return false;
+    }
+    function paintOpen() {
+      cards.forEach((card) => {
+        var raw = card.getAttribute('data-hours');
+        var badge = card.querySelector('.pc-open');
+        if (!raw || !badge) return;
+        var open;
+        try {
+          var parts = raw.split('|');
+          var data = {
+            o: +parts[0],
+            p: parts[1].split(';').map(function (x) {
+              return x.split(',').map(function (v) { return v === '' ? null : +v; });
+            }),
+          };
+          if (isNaN(data.o)) return;
+          open = isOpen(data);
+        } catch (e) { return; }                                  // بيانات معطوبة ⇒ لا شارة
+        badge.textContent = open ? badge.dataset.open : badge.dataset.shut;
+        badge.classList.toggle('is-open', open);
+        badge.hidden = false;
+        card.setAttribute('data-openstate', open ? '1' : '0');
+      });
+    }
+
     function apply() {
       revealAll();
       const q = (search.value || '').trim().toLowerCase();
       const d = sel.value;
+      const onlyOpen = openBtn && openBtn.getAttribute('aria-pressed') === 'true';
       let shown = 0;
       cards.forEach((card) => {
         const okKind = kind === 'all' || card.getAttribute('data-kind') === kind;
         const okDist = d === 'all' || card.getAttribute('data-district') === d;
         const okQ = !q || (card.getAttribute('data-q') || '').indexOf(q) !== -1;
-        const ok = okKind && okDist && okQ;
+        const okOpen = !onlyOpen || card.getAttribute('data-openstate') === '1';
+        const ok = okKind && okDist && okQ && okOpen;
         card.hidden = !ok; if (ok) shown++;
       });
       secs.forEach((s) => { s.hidden = !s.querySelector('.place-card:not([hidden])'); });
       if (empty) empty.hidden = shown !== 0;
-      const isAll = kind === 'all' && d === 'all' && !q;
+      const isAll = kind === 'all' && d === 'all' && !q && !onlyOpen;
       if (count) count.textContent = isAll ? '' : (status.dataset.prefix || '') + shown + (status.dataset.suffix || '');
       if (status) status.textContent = shown === 0
         ? (status.dataset.empty || '')
@@ -375,6 +454,18 @@ const jsonLd = [
     });
     search.addEventListener('input', apply);
     sel.addEventListener('change', apply);
+    if (openBtn) {
+      openBtn.addEventListener('click', () => {
+        const on = openBtn.getAttribute('aria-pressed') !== 'true';
+        openBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        openBtn.classList.toggle('is-active', on);
+        apply();
+      });
+    }
+    paintOpen();
+    // إعادة الحساب كل دقيقة: زائرٌ يترك الصفحة مفتوحة عند حدّ الإغلاق يجب ألا
+    // يرى «مفتوح الآن» بعد انقضائه.
+    setInterval(() => { paintOpen(); if (openBtn && openBtn.getAttribute('aria-pressed') === 'true') apply(); }, 60000);
   }
   document.addEventListener('astro:page-load', initDiningFilter);
   if (document.readyState !== 'loading') initDiningFilter(); else document.addEventListener('DOMContentLoaded', initDiningFilter);
@@ -412,6 +503,14 @@ const jsonLd = [
   }
   .dn-select:hover { border-color: var(--c-turq); }
   .dn-select:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  /* شارة «مفتوح الآن» — تخرج hidden ويملؤها السكربت من ساعة الزائر */
+  .pc-open { display: inline-flex; align-items: center; align-self: start; gap: 6px; font-size: var(--t-xs); font-weight: 700; color: var(--c-ink-soft); }
+  .pc-open::before { content: ''; inline-size: 8px; block-size: 8px; border-radius: 50%; background: currentColor; }
+  .pc-open.is-open { color: var(--c-turq); }
+  .chip--open .dot-open { inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--c-turq); }
+  .chip--open.is-active .dot-open { background: var(--c-sand); }
+  .pc-hnote { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-60); line-height: 1.6; }
+
   .dn-count { min-block-size: 1.5em; font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); margin-block-end: var(--s-3); }
   .dn-empty { font-size: var(--t-sm); color: var(--c-ink-soft); padding-block: var(--s-5); }
   /* قسمٌ لا نتيجة فيه يختفي بترويسته — وإلا بقي عنوان فوق شبكة فارغة */

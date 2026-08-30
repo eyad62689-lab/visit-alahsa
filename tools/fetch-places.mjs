@@ -37,7 +37,7 @@ async function api(path, { body, lang } = {}) {
       'X-Goog-Api-Key': KEY,
       'X-Goog-FieldMask': body
         ? 'places.id,places.displayName'
-        : 'displayName,rating,userRatingCount,regularOpeningHours.weekdayDescriptions,businessStatus',
+        : 'displayName,rating,userRatingCount,regularOpeningHours.weekdayDescriptions,regularOpeningHours.periods,utcOffsetMinutes,businessStatus',
     },
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -100,6 +100,15 @@ async function main() {
         hoursAr: (ar.regularOpeningHours?.weekdayDescriptions ?? []).map(latinize),
         hoursEn: en.regularOpeningHours?.weekdayDescriptions ?? [],
         status: ar.businessStatus ?? null,
+        // «مفتوح الآن» يُحسب في متصفح الزائر لا هنا: الصفحة ثابتة تُصيَّر مرة عند
+        // البناء، فأي حالة لحظية تُخزَّن تصير كذباً بعد ساعة (سابقة عدّاد الفعاليات
+        // وشارة «نحن الآن هنا»). لذلك نخزّن البنية الأسبوعية الثابتة وحدها، ولا
+        // نطلب currentOpeningHours إطلاقاً. الإزاحة تؤخذ من البيانات لا تُفترض.
+        periods: (ar.regularOpeningHours?.periods ?? []).map((p) => [
+          p.open?.day ?? null, (p.open?.hour ?? 0) * 60 + (p.open?.minute ?? 0),
+          p.close?.day ?? null, (p.close?.hour ?? 0) * 60 + (p.close?.minute ?? 0),
+        ]),
+        utcOffset: ar.utcOffsetMinutes ?? null,
       };
       // الاسم الرسمي باللغتين يُطبع ولا يُخزَّن: أسماء dining.ts تُعتمد من قوقل
       // (قرار إياد 2026-08-30)، وهذا السطر هو الطريق لمراجعتها دورياً من سجل البناء.
