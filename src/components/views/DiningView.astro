@@ -51,6 +51,21 @@ const C = localize(lang, {
   newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
   hoursLabel: 'أوقات العمل',
   ratingLabel: 'التقييم في خرائط قوقل',
+  searchPh: 'ابحث باسم المكان أو الحي…',
+  searchLabel: 'ابحث في المطاعم والمقاهي',
+  kindAria: 'تصفية بحسب النوع',
+  kindRestaurants: 'مطاعم',
+  kindCafes: 'مقاهٍ',
+  districtLabel: 'الموقع',
+  districtAll: 'كل المواقع',
+  districtNames: {
+    alkoot: 'حي الكوت', downtown: 'وسط الهفوف التاريخي', 'rafah-north': 'الرفعة الشمالية',
+    khalidiyah: 'الخالدية', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
+    olaya: 'العليا', mubarraz: 'المبرز', unspecified: 'مواقع أخرى',
+  } as Record<string, string>,
+  countPrefix: 'المعروض: ',
+  countSuffix: ' من 20',
+  emptyMsg: 'لا نتائج مطابقة — جرّب توسيع البحث أو اختيار «كل المواقع».',
   closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
   closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
   srcNote: fetchedLabel ? `التقييمات وأوقات العمل من خرائط قوقل — آخر تحديث ${fetchedLabel}` : null,
@@ -90,6 +105,21 @@ const C = localize(lang, {
   newWindow: '(opens Google Maps in a new window)',
   hoursLabel: 'Opening hours',
   ratingLabel: 'Rating on Google Maps',
+  searchPh: 'Search by name or area…',
+  searchLabel: 'Search the restaurants and cafés',
+  kindAria: 'Filter by type',
+  kindRestaurants: 'Restaurants',
+  kindCafes: 'Cafés',
+  districtLabel: 'Area',
+  districtAll: 'All areas',
+  districtNames: {
+    alkoot: 'Al-Koot district', downtown: 'Historic downtown Hofuf', 'rafah-north': 'Al-Raf‘ah North',
+    khalidiyah: 'Al-Khalidiyah', mazrou: 'Al-Mazrou‘', uwaimriyah: 'Al-Uwaimriyah',
+    olaya: 'Al-Olaya', mubarraz: 'Al-Mubarraz', unspecified: 'Other areas',
+  },
+  countPrefix: 'Showing ',
+  countSuffix: ' of 20',
+  emptyMsg: 'No matches — try a broader search or select “All areas”.',
   closedPerm: 'Permanently closed — according to Google Maps',
   closedTemp: 'Temporarily closed — according to Google Maps',
   srcNote: fetchedLabel ? `Ratings and opening hours from Google Maps — last updated ${fetchedLabel}` : null,
@@ -120,9 +150,24 @@ const C = localize(lang, {
 
 // قسما الصفحة يُصيَّران بحلقة واحدة — كانت الكتلة نفسها مكرّرة حرفياً مرتين
 const SECTIONS = [
-  { eyebrow: C.listEyebrow, h: C.listH, note: C.srcNote, list: C.places },
-  { eyebrow: C.cafesEyebrow, h: C.cafesH, note: null, list: C.cafes },
+  { kind: 'restaurant', eyebrow: C.listEyebrow, h: C.listH, note: C.srcNote, list: C.places },
+  { kind: 'cafe', eyebrow: C.cafesEyebrow, h: C.cafesH, note: null, list: C.cafes },
 ];
+
+// خيارات فلتر الموقع: تُشتقّ من البيانات لا تُكتب يدوياً، فلا يتقادم الخيار ولا
+// يظهر خيار بلا نتائج. الترتيب مثبَّت (الأقرب إلى قلب الهفوف أولاً) و«مواقع
+// أخرى» آخراً لأنها ليست حيّاً بل غياب حيّ في عنوان قوقل.
+const DISTRICT_ORDER = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'mazrou', 'uwaimriyah', 'olaya', 'mubarraz'];
+const ALL_PLACES = [...C.places, ...C.cafes];
+const districtKey = (d: string | null) => d ?? 'unspecified';
+const districtCounts = ALL_PLACES.reduce<Record<string, number>>((acc, p) => {
+  const k = districtKey(p.district); acc[k] = (acc[k] ?? 0) + 1; return acc;
+}, {});
+const districtOptions = [...DISTRICT_ORDER, 'unspecified']
+  .filter((k) => districtCounts[k])
+  .map((k) => ({ key: k, label: C.districtNames[k], count: districtCounts[k] }));
+// نصّ البحث لكل بطاقة: الاسم والموقع بلغة الصفحة — يُبنى وقت البناء لا وقت التشغيل
+const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area}`.toLowerCase();
 
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
 const pageTitle = ar
@@ -164,8 +209,32 @@ const jsonLd = [
     <PageHero eyebrow={C.heroEyebrow} title={C.title} lead={C.heroSum} leadWidth={62} lang={lang} />
 
     <section class="container dn-list">
+      <div class="dn-tools">
+        <input class="dn-search" id="dn-search" type="search" autocomplete="off"
+          placeholder={C.searchPh} aria-label={C.searchLabel} />
+        <div class="chips" role="group" aria-label={C.kindAria} id="dn-kinds">
+          <button class="chip is-active" type="button" data-kind="all" aria-pressed="true">{t('list.all')} <bdi>({ALL_PLACES.length})</bdi></button>
+          <button class="chip" type="button" data-kind="restaurant" aria-pressed="false">{C.kindRestaurants} <bdi>({C.places.length})</bdi></button>
+          <button class="chip" type="button" data-kind="cafe" aria-pressed="false">{C.kindCafes} <bdi>({C.cafes.length})</bdi></button>
+        </div>
+        {/* الموقع قائمة أصيلة لا شرائح: تسع قيم تفيض عن شريط الشرائح، و<select>
+            يعطي دلالة ولوحة مفاتيح وسلوك جوال مجاناً */}
+        <div class="dn-selwrap">
+          <label class="dn-sel-l" for="dn-district">{C.districtLabel}</label>
+          <select class="dn-select" id="dn-district">
+            <option value="all">{C.districtAll} ({ALL_PLACES.length})</option>
+            {districtOptions.map((o) => <option value={o.key}>{o.label} ({o.count})</option>)}
+          </select>
+        </div>
+      </div>
+      {/* العدّاد المرئي وإعلان قارئ الشاشة منفصلان عمداً: الأول مزخرف بالسياق
+          والثاني نصّ صرف — ولو كانا عنصراً واحداً لتكرّر الإعلان */}
+      <p class="dn-count" id="dn-count" aria-hidden="true"></p>
+      <p class="sr-only" id="dn-status" role="status" data-empty={C.emptyMsg} data-prefix={C.countPrefix} data-suffix={C.countSuffix}></p>
+      <p class="dn-empty" id="dn-empty" hidden>{C.emptyMsg}</p>
+
       {SECTIONS.map((sec, si) => (
-        <>
+        <div class="dn-sec" data-sec>
           <div class:list={['dn-head', { 'dn-head--cafes': si > 0 }]}>
             <span class="eyebrow">{sec.eyebrow}</span>
             <h2>{sec.h}</h2>
@@ -181,7 +250,8 @@ const jsonLd = [
               const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
                 : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
               return (
-                <article class="card card--lift place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+                <article class="card card--lift place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}
+                  data-kind={sec.kind} data-district={districtKey(p.district)} data-q={searchText(p)}>
                   {/* البطاقة كلها هدف نقر واحد — رابط خارجي وحيد يغلّف المحتوى
                       غير التفاعلي. أوقات العمل <details> تبقى خارجه (عنصر تفاعلي
                       داخل رابط = تعشيش محظور). */}
@@ -196,7 +266,7 @@ const jsonLd = [
                         <p class="pc-rating"><span class="pc-star" aria-hidden="true">★</span>
                           <strong>{lv.rating.toFixed(1)}</strong>
                           {lv.count && <span class="pc-count">({lv.count.toLocaleString('en-US')})</span>}
-                          <span class="visually-hidden">{C.ratingLabel}</span>
+                          <span class="sr-only">{C.ratingLabel}</span>
                         </p>
                       )}
                       <span class="pc-maps">
@@ -204,7 +274,7 @@ const jsonLd = [
                         <svg class="pc-ext" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
                         </svg>
-                        <span class="visually-hidden">{C.newWindow}</span>
+                        <span class="sr-only">{C.newWindow}</span>
                       </span>
                     </div>
                   </a>
@@ -218,7 +288,7 @@ const jsonLd = [
               );
             })}
           </div>
-        </>
+        </div>
       ))}
     </section>
 
@@ -245,6 +315,71 @@ const jsonLd = [
   <Footer lang={lang} />
 </Base>
 
+<script is:inline>
+  // تصفية الفهرس — تحسين تدريجي: بلا جافاسكربت تظهر المنشآت العشرون كلها،
+  // وشريط الأدوات وحده يفقد أثره. النمط من FruitsView (شرائح + role="status").
+  function initDiningFilter() {
+    const search = document.getElementById('dn-search');
+    const kinds = document.getElementById('dn-kinds');
+    const sel = document.getElementById('dn-district');
+    if (!search || !kinds || !sel || search.dataset.wired) return;
+    search.dataset.wired = '1';
+
+    const chips = kinds.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.place-card');
+    const secs = document.querySelectorAll('[data-sec]');
+    const empty = document.getElementById('dn-empty');
+    const status = document.getElementById('dn-status');
+    const count = document.getElementById('dn-count');
+    let kind = 'all';
+
+    // سكربت الكشف في Base يستعمل IntersectionObserver ثم unobserve، فبطاقةٌ لم
+    // تدخل الشاشة قطّ تبقى opacity:0 لو أظهرتها التصفية لاحقاً. عند أول تفاعل
+    // نكشفها كلها — الحركة الأولى تكون قد أدّت غرضها.
+    let revealed = false;
+    function revealAll() {
+      if (revealed) return; revealed = true;
+      cards.forEach((c) => c.classList.add('in'));
+    }
+
+    function apply() {
+      revealAll();
+      const q = (search.value || '').trim().toLowerCase();
+      const d = sel.value;
+      let shown = 0;
+      cards.forEach((card) => {
+        const okKind = kind === 'all' || card.getAttribute('data-kind') === kind;
+        const okDist = d === 'all' || card.getAttribute('data-district') === d;
+        const okQ = !q || (card.getAttribute('data-q') || '').indexOf(q) !== -1;
+        const ok = okKind && okDist && okQ;
+        card.hidden = !ok; if (ok) shown++;
+      });
+      secs.forEach((s) => { s.hidden = !s.querySelector('.place-card:not([hidden])'); });
+      if (empty) empty.hidden = shown !== 0;
+      const isAll = kind === 'all' && d === 'all' && !q;
+      if (count) count.textContent = isAll ? '' : (status.dataset.prefix || '') + shown + (status.dataset.suffix || '');
+      if (status) status.textContent = shown === 0
+        ? (status.dataset.empty || '')
+        : (status.dataset.prefix || '') + shown + (status.dataset.suffix || '');
+    }
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        kind = chip.getAttribute('data-kind');
+        chips.forEach((c) => {
+          c.classList.toggle('is-active', c === chip);
+          c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+        });
+        apply();
+      });
+    });
+    search.addEventListener('input', apply);
+    sel.addEventListener('change', apply);
+  }
+  document.addEventListener('astro:page-load', initDiningFilter);
+  if (document.readyState !== 'loading') initDiningFilter(); else document.addEventListener('DOMContentLoaded', initDiningFilter);
+</script>
+
 <style>
   /* ═══ شبكة المطاعم ═══ */
   .dn-list { padding-block: var(--s-6) var(--s-8); }
@@ -256,6 +391,36 @@ const jsonLd = [
   .dngrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
 
   .dn-src { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
+
+  /* ═══ شريط الأدوات ═══ (الشرائح من global.css) */
+  .dn-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); margin-block-end: var(--s-3); }
+  .dn-search {
+    flex: 1 1 260px; min-block-size: 44px; padding: 10px 16px;
+    font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink);
+    background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill);
+    transition: border-color var(--dur) var(--ease);
+  }
+  .dn-search::placeholder { color: var(--c-ink-60); }
+  .dn-search:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; border-color: var(--c-turq); }
+  .dn-selwrap { display: inline-flex; align-items: center; gap: var(--s-2); }
+  .dn-sel-l { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .dn-select {
+    min-block-size: 44px; padding: 8px 16px; max-inline-size: 100%;
+    font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); color: var(--c-ink);
+    background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer;
+    transition: border-color var(--dur) var(--ease);
+  }
+  .dn-select:hover { border-color: var(--c-turq); }
+  .dn-select:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .dn-count { min-block-size: 1.5em; font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); margin-block-end: var(--s-3); }
+  .dn-empty { font-size: var(--t-sm); color: var(--c-ink-soft); padding-block: var(--s-5); }
+  /* قسمٌ لا نتيجة فيه يختفي بترويسته — وإلا بقي عنوان فوق شبكة فارغة */
+  .dn-sec[hidden] { display: none; }
+  @media (max-width: 760px) {
+    .dn-tools { gap: var(--s-2); }
+    .dn-search, .dn-selwrap { flex: 1 1 100%; }
+    .dn-select { flex: 1; }
+  }
 
   /* القشرة والتحويم من card/card--lift الموحّدين في global.css */
   .pc-link { display: flex; flex-direction: column; flex: 1; text-decoration: none; color: inherit; }
@@ -279,7 +444,6 @@ const jsonLd = [
   .pc-hours summary:hover { color: var(--c-turq); }
   .pc-hours ul { list-style: none; padding: var(--s-2) 0 0; display: flex; flex-direction: column; gap: 4px; }
 
-  .visually-hidden { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
   /* لم يعد رابطاً مستقلاً: البطاقة كلها هي الرابط، وهذا ملصقه البصري */
   .pc-maps { align-self: start; margin-block-start: auto; display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 6px 14px; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }

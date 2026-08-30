@@ -18,31 +18,37 @@
 
 // blurb: نبذة تعريفية موجزة — تصف ما تُظهره صورة المكان واسمه الموثق فقط
 // (لا ادعاءات عن الجودة أو الأصناف أو الشهرة — قاعدة «لا تُختلق معلومة»)
-export type Place = { img: string; alt: string; name: string; area: string; maps: string; blurb: string };
+// district: مفتاح الحي المعياري للتصفية — مشتقّ من حقل area النصّي وعناوين قوقل
+// في place-seeds.json، بلا استنتاج. المنشأة التي لا يذكر عنوانُها حيّاً تأخذ null
+// وتظهر تحت «غير محدّد» (أربع منشآت — بانتظار حسم إياد، ولا تُنسب لحيٍّ بالتخمين).
+export type District = 'alkoot' | 'downtown' | 'rafah-north' | 'khalidiyah' | 'mazrou'
+  | 'uwaimriyah' | 'olaya' | 'mubarraz' | null;
+export type Place = { img: string; alt: string; name: string; area: string; maps: string; blurb: string; district: District };
 
-// الحقول المشتركة بين اللغتين (الصورة والرابط) تُعرَّف مرة واحدة
-const P = {
-  darBasma: { img: '/img/dining/dar-basma', maps: 'https://maps.app.goo.gl/CLwUux3kdzc5Z4WE6' },
-  alkoot: { img: '/img/dining/alkoot-hotel', maps: 'https://maps.app.goo.gl/gjwiTHDg83VZEbz76' },
-  alhawi: { img: '/img/dining/alhawi', maps: 'https://maps.app.goo.gl/GZ61EihCSipwJyzJ8' },
-  khunaina: { img: '/img/dining/khunaina', maps: 'https://maps.app.goo.gl/LZWmKXLDNreXhUHL6' },
-  sinyar: { img: '/img/dining/sinyar', maps: 'https://maps.app.goo.gl/kiKK2QEshBwycpDn6' },
-  greasy: { img: '/img/dining/greasy-fingers', maps: 'https://maps.app.goo.gl/AQhfw1PKHnLviEyt6' },
-  lava: { img: '/img/dining/lava', maps: 'https://maps.app.goo.gl/eYZPQBsVxoBjMyvb6' },
-  ammo: { img: '/img/dining/ammo', maps: 'https://maps.app.goo.gl/sj8f9VMZL3LdthJX9' },
-  sharq: { img: '/img/dining/sharq-alqaisariah', maps: 'https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8' },
-  koud: { img: '/img/dining/koud', maps: 'https://maps.app.goo.gl/RVVLPpJCUVfpCdWt7' },
+// الحقول المشتركة بين اللغتين (الصورة والرابط والحي) تُعرَّف مرة واحدة.
+// النوع مُصرَّح لأن TypeScript يوسّع 'alkoot' إلى string بلا تصريح فتنكسر District.
+const P: Record<string, { img: string; maps: string; district: District }> = {
+  darBasma: { img: '/img/dining/dar-basma', maps: 'https://maps.app.goo.gl/CLwUux3kdzc5Z4WE6', district: null },
+  alkoot: { img: '/img/dining/alkoot-hotel', maps: 'https://maps.app.goo.gl/gjwiTHDg83VZEbz76', district: 'alkoot' },
+  alhawi: { img: '/img/dining/alhawi', maps: 'https://maps.app.goo.gl/GZ61EihCSipwJyzJ8', district: 'khalidiyah' },
+  khunaina: { img: '/img/dining/khunaina', maps: 'https://maps.app.goo.gl/LZWmKXLDNreXhUHL6', district: 'khalidiyah' },
+  sinyar: { img: '/img/dining/sinyar', maps: 'https://maps.app.goo.gl/kiKK2QEshBwycpDn6', district: 'uwaimriyah' },
+  greasy: { img: '/img/dining/greasy-fingers', maps: 'https://maps.app.goo.gl/AQhfw1PKHnLviEyt6', district: null },
+  lava: { img: '/img/dining/lava', maps: 'https://maps.app.goo.gl/eYZPQBsVxoBjMyvb6', district: 'olaya' },
+  ammo: { img: '/img/dining/ammo', maps: 'https://maps.app.goo.gl/sj8f9VMZL3LdthJX9', district: 'mazrou' },
+  sharq: { img: '/img/dining/sharq-alqaisariah', maps: 'https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8', district: 'rafah-north' },
+  koud: { img: '/img/dining/koud', maps: 'https://maps.app.goo.gl/RVVLPpJCUVfpCdWt7', district: 'mazrou' },
   // المقاهي
-  baithana: { img: '/img/dining/baithana', maps: 'https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5' },
-  sevenSt: { img: '/img/dining/7st', maps: 'https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6' },
-  baitAlkoot: { img: '/img/dining/bait-alkoot', maps: 'https://maps.app.goo.gl/gkvgXUYMUZsV5BK38' },
-  darHuwaija: { img: '/img/dining/dar-huwaija', maps: 'https://maps.app.goo.gl/EejCz9U79km3VEUL6' },
-  alsayed: { img: '/img/dining/alsayed', maps: 'https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9' },
-  ratio: { img: '/img/dining/ratio-alkoot', maps: 'https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8' },
-  soulaf: { img: '/img/dining/soulaf', maps: 'https://maps.app.goo.gl/S47bGoYznnPUYTrm6' },
-  bakingUp: { img: '/img/dining/baking-up', maps: 'https://maps.app.goo.gl/Vq412YHJLwnKc1SE8' },
-  dot: { img: '/img/dining/dot-bakery', maps: 'https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6' },
-  raslan: { img: '/img/dining/karak-raslan', maps: 'https://maps.app.goo.gl/ctJt3bVV2hDtSYX56' },
+  baithana: { img: '/img/dining/baithana', maps: 'https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5', district: 'rafah-north' },
+  sevenSt: { img: '/img/dining/7st', maps: 'https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6', district: 'rafah-north' },
+  baitAlkoot: { img: '/img/dining/bait-alkoot', maps: 'https://maps.app.goo.gl/gkvgXUYMUZsV5BK38', district: 'downtown' },
+  darHuwaija: { img: '/img/dining/dar-huwaija', maps: 'https://maps.app.goo.gl/EejCz9U79km3VEUL6', district: 'downtown' },
+  alsayed: { img: '/img/dining/alsayed', maps: 'https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9', district: 'rafah-north' },
+  ratio: { img: '/img/dining/ratio-alkoot', maps: 'https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8', district: 'downtown' },
+  soulaf: { img: '/img/dining/soulaf', maps: 'https://maps.app.goo.gl/S47bGoYznnPUYTrm6', district: null },
+  bakingUp: { img: '/img/dining/baking-up', maps: 'https://maps.app.goo.gl/Vq412YHJLwnKc1SE8', district: 'mubarraz' },
+  dot: { img: '/img/dining/dot-bakery', maps: 'https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6', district: 'mubarraz' },
+  raslan: { img: '/img/dining/karak-raslan', maps: 'https://maps.app.goo.gl/ctJt3bVV2hDtSYX56', district: null },
 };
 
 export const RESTAURANTS_AR: Place[] = [

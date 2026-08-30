@@ -229,6 +229,33 @@ picture.photo { display: block; }
 .fav-btn .fav-ic { font-size: 1.05em; line-height: 1; }
 .fav-btn.is-saved { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
 
+/* --- شرائح التصفية (chips) ---
+   كانت معرّفة محلياً مرتين بقيم متباعدة — MapView بحشوة 7px/15px وFruitsView
+   بـ8px/16px — ولا وجود لها هنا، فكل واجهة جديدة كانت تضيف نسخة ثالثة. وُحِّدت
+   هنا (2026-08-30) على القيم الأوسع، وأُضيف هدف لمس 44px (كان ~34–36px).
+   white-space:nowrap إلزامي: داخل شريط التمرير الأفقي على الجوال كانت الشريحة
+   تنكمش تحت عرض نصّها فينكسر السطر. */
+.chips { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  min-block-size: 44px; padding: 8px 16px;
+  font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm);
+  cursor: pointer; background: #fff; color: var(--c-ink);
+  border: 1px solid var(--c-line); border-radius: var(--radius-pill);
+  transition: all var(--dur) var(--ease);
+}
+.chip:hover { border-color: var(--c-turq); color: var(--c-turq); }
+.chip.is-active { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+@media (max-width: 760px) {
+  .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-block-end: var(--s-2); scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex-shrink: 0; }
+}
+
+/* نص لقارئ الشاشة فقط — كان مكرّراً ثلاث مرات (sr-only في FruitsView
+   وTerrainMapView، وvisually-hidden في DiningView) */
+.sr-only { position: absolute; inline-size: 1px; block-size: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
 /* زر زاوية دائري للبطاقات */
 .fav-btn--corner {
   position: absolute; inset-block-start: var(--s-3); inset-inline-end: var(--s-3); z-index: 3;
