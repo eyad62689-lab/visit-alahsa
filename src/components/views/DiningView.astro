@@ -1,10 +1,9 @@
 ---
-// صفحة «المطاعم والمقاهي» — الدفعة الأولى: 10 مطاعم + 10 مقاهٍ من قائمتَي إياد (2026-08-22).
+// صفحة «المطاعم والمقاهي» — 10 مطاعم + 10 مقاهٍ من قائمتَي إياد (2026-08-22).
 // قاعدة ملزمة: لا تُختلق معلومة — الأسماء والصور وروابط الخرائط من ملفَي إياد
 // (أفضل مطاعم الأحساء.docx وأفضل مقاهي الأحساء.docx)، والأحياء/العناوين من عناوين
 // خرائط قوقل نفسها (تحقق HTTP فعلي 2026-08-22). لا مواعيد ولا أسعار ولا أوصاف حتى تُوثَّق.
 // تصحيحان مثبتان من خرائط قوقل: «بيت الموت» في الملف = بيت الكوت، و«ريشيو الموت» = ريشيو الكوت.
-// النبذات التسويقية تُضاف لاحقاً بعد اعتماد كلمات السيو ومحتوى إياد.
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import Base from '../../layouts/Base.astro';
@@ -23,7 +22,7 @@ const ar = lang === 'ar';
 
 // التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
 // قبل البناء إن وُجد المفتاح. غيابها متوقَّع (بناء محلي بلا مفتاح) والصفحة
-// تتدهور رشيقاً: لا صف تقييم ولا أوقات عمل.
+// تتدهور رشيقاً: لا صف تقييم ولا أوقات عمل ولا حالة إغلاق.
 type Live = { rating: number | null; count: number | null; hoursAr: string[]; hoursEn: string[]; status: string | null };
 // process.cwd() لا import.meta.url: الأخير يشير إلى الملف المُجمَّع وقت البناء
 // فيفشل العثور على JSON بصمت. البناء يعمل دائماً من جذر astro-site.
@@ -49,14 +48,23 @@ const C = localize(lang, {
   cafesEyebrow: 'وللقهوة أهلها',
   cafesH: 'عشرة مقاهٍ مختارة',
   openMaps: t('det.openMaps'),
+  newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
   hoursLabel: 'أوقات العمل',
   ratingLabel: 'التقييم في خرائط قوقل',
+  closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
+  closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
   srcNote: fetchedLabel ? `التقييمات وأوقات العمل من خرائط قوقل — آخر تحديث ${fetchedLabel}` : null,
   faqH: 'أسئلة شائعة عن مطاعم الأحساء',
   faqs: [
     { q: 'ما الأكلات الشعبية التي تشتهر بها الأحساء؟',
       a: 'تشتهر الأحساء بأطباق مثل الأرز الأحسائي والمندي والهريس وخبز التمر.',
       linkText: 'تعرّف عليها في صفحة المطبخ الأحسائي ←', linkHref: '/أكلات/' },
+    { q: 'هل توجد مطاعم ومقاهٍ قريبة من قصر إبراهيم؟',
+      a: 'نعم — في هذه القائمة اثنان: دار بسمة بجوار حديقة قصر إبراهيم، ومطعم فندق الكوت التراثي في حي الكوت مقابل القصر مباشرة. وكل بطاقة تحمل رابط موقعها على خرائط قوقل.' },
+    { q: 'أين تقع المقاهي داخل الهفوف القديمة؟',
+      a: 'في وسط الهفوف التاريخي وحي الرفعة الشمالية تجد: مقهى بيذانة، وبيت الكوت، ودار حويجة على شارع الملك فهد، ومقهى السيد، وريشيو الكوت على طريق الملك عبدالعزيز، وشارع 7.' },
+    { q: 'أين آكل في المبرز؟',
+      a: 'من هذه القائمة مكانان على طريق عين نجم بالمبرز: بيكنج آب، ومقهى ومخبز دوت. وبقية القائمة في الهفوف.' },
     { q: 'أين تقع مطاعم ومقاهي هذه القائمة؟',
       a: 'تتوزع بين الهفوف — حول حي الكوت التراثي ووسط الهفوف التاريخي وحيَّي الخالدية والرفعة الشمالية — والمبرز على طريق عين نجم، وكل بطاقة تحمل رابط موقعها الدقيق على خرائط قوقل.' },
     liveRaw
@@ -79,14 +87,23 @@ const C = localize(lang, {
   cafesEyebrow: 'For the coffee lovers',
   cafesH: 'Ten hand-picked cafés',
   openMaps: t('det.openMaps'),
+  newWindow: '(opens Google Maps in a new window)',
   hoursLabel: 'Opening hours',
   ratingLabel: 'Rating on Google Maps',
+  closedPerm: 'Permanently closed — according to Google Maps',
+  closedTemp: 'Temporarily closed — according to Google Maps',
   srcNote: fetchedLabel ? `Ratings and opening hours from Google Maps — last updated ${fetchedLabel}` : null,
   faqH: 'Frequently asked questions about dining in Al Ahsa',
   faqs: [
     { q: 'What traditional dishes is Al Ahsa known for?',
       a: 'Al Ahsa is known for dishes such as Hasawi rice, mandi, harees and date bread.',
       linkText: 'Explore them on the Hasawi Cuisine page →', linkHref: '/en/food/' },
+    { q: 'Are there restaurants or cafés near Qasr Ibrahim?',
+      a: 'Yes — two on this list: Dar Basma, next to the Qasr Ibrahim park, and the Al-Koot Heritage Hotel Restaurant in the Al-Koot district directly opposite the fort. Each card links to its spot on Google Maps.' },
+    { q: 'Where are the cafés inside old Hofuf?',
+      a: 'In the historic downtown and Al-Raf‘ah North you will find: Baithana, Bait Al-Koot, Dar Huwaija on King Fahd Road, Al-Sayed Café, Ratio Al-Koot on King Abdulaziz Road, and 7st. Speciality Coffee.' },
+    { q: 'Where can I eat in Al-Mubarraz?',
+      a: 'Two places on this list sit on Ain Najm Road in Al-Mubarraz: Baking Up and Dot Bakery & Café. The rest of the list is in Hofuf.' },
     { q: 'Where are these restaurants and cafés located?',
       a: 'They are spread between Al Hofuf — around the historic Al-Koot district, the historic downtown, Al-Khalidiyah and Al-Raf‘ah North — and Al-Mubarraz along Ain Najm Road; each card links to the exact spot on Google Maps.' },
     liveRaw
@@ -101,6 +118,12 @@ const C = localize(lang, {
   cafes: CAFES_EN,
 });
 
+// قسما الصفحة يُصيَّران بحلقة واحدة — كانت الكتلة نفسها مكرّرة حرفياً مرتين
+const SECTIONS = [
+  { eyebrow: C.listEyebrow, h: C.listH, note: C.srcNote, list: C.places },
+  { eyebrow: C.cafesEyebrow, h: C.cafesH, note: null, list: C.cafes },
+];
+
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
 const pageTitle = ar
   ? 'مطاعم ومقاهي الأحساء — دليلك لتجارب الأكل في الهفوف'
@@ -111,6 +134,9 @@ const description = ar
 
 const siteUrl = 'https://visit-alahsa.com';
 const selfPath = ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/';
+// ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — بيانات
+// قوقل تُعرض في الواجهة فقط (شروط قوقل + إرشادات المراجعات الذاتية). الحارس
+// الآلي في tools/check-consistency.mjs (فحص C10) يُفشل البناء عند أي تسرّب.
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
@@ -138,70 +164,62 @@ const jsonLd = [
     <PageHero eyebrow={C.heroEyebrow} title={C.title} lead={C.heroSum} leadWidth={62} lang={lang} />
 
     <section class="container dn-list">
-      <div class="dn-head">
-        <span class="eyebrow">{C.listEyebrow}</span>
-        <h2>{C.listH}</h2>
-        {C.srcNote && <p class="dn-src">{C.srcNote}</p>}
-      </div>
+      {SECTIONS.map((sec, si) => (
+        <>
+          <div class:list={['dn-head', { 'dn-head--cafes': si > 0 }]}>
+            <span class="eyebrow">{sec.eyebrow}</span>
+            <h2>{sec.h}</h2>
+            {sec.note && <p class="dn-src">{sec.note}</p>}
+          </div>
 
-      <div class="dngrid">
-        {C.places.map((p, idx) => { const lv = liveFor(p.img); const hours = ar ? lv?.hoursAr : lv?.hoursEn; return (
-          <article class="card place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
-            <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
-            <div class="pc-body">
-              <h3>{p.name}</h3>
-              <p class="pc-area">{p.area}</p>
-              <p class="pc-blurb">{p.blurb}</p>
-              {lv?.rating && (
-                <p class="pc-rating"><span class="pc-star" aria-hidden="true">★</span>
-                  <strong>{lv.rating.toFixed(1)}</strong>
-                  {lv.count && <span class="pc-count">({lv.count.toLocaleString('en-US')})</span>}
-                  <span class="visually-hidden">{C.ratingLabel}</span>
-                </p>
-              )}
-              {hours && hours.length > 0 && (
-                <details class="pc-hours">
-                  <summary>{C.hoursLabel}</summary>
-                  <ul>{hours.map((h) => <li>{h}</li>)}</ul>
-                </details>
-              )}
-              <a class="pc-maps" href={p.maps} target="_blank" rel="noopener">{C.openMaps}</a>
-            </div>
-          </article>
-        ); })}
-      </div>
-
-      <div class="dn-head dn-head--cafes">
-        <span class="eyebrow">{C.cafesEyebrow}</span>
-        <h2>{C.cafesH}</h2>
-      </div>
-
-      <div class="dngrid">
-        {C.cafes.map((p, idx) => { const lv = liveFor(p.img); const hours = ar ? lv?.hoursAr : lv?.hoursEn; return (
-          <article class="card place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
-            <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
-            <div class="pc-body">
-              <h3>{p.name}</h3>
-              <p class="pc-area">{p.area}</p>
-              <p class="pc-blurb">{p.blurb}</p>
-              {lv?.rating && (
-                <p class="pc-rating"><span class="pc-star" aria-hidden="true">★</span>
-                  <strong>{lv.rating.toFixed(1)}</strong>
-                  {lv.count && <span class="pc-count">({lv.count.toLocaleString('en-US')})</span>}
-                  <span class="visually-hidden">{C.ratingLabel}</span>
-                </p>
-              )}
-              {hours && hours.length > 0 && (
-                <details class="pc-hours">
-                  <summary>{C.hoursLabel}</summary>
-                  <ul>{hours.map((h) => <li>{h}</li>)}</ul>
-                </details>
-              )}
-              <a class="pc-maps" href={p.maps} target="_blank" rel="noopener">{C.openMaps}</a>
-            </div>
-          </article>
-        ); })}
-      </div>
+          <div class="dngrid">
+            {sec.list.map((p, idx) => {
+              const lv = liveFor(p.img);
+              const hours = ar ? lv?.hoursAr : lv?.hoursEn;
+              // «مغلق نهائياً» أخطر معلومة خاطئة ممكنة في دليل سياحي — تُعرض
+              // فور ورودها من قوقل، لا تُبتلع كما كان الحقل مهملاً حتى 2026-08-30
+              const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
+                : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
+              return (
+                <article class="card card--lift place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+                  {/* البطاقة كلها هدف نقر واحد — رابط خارجي وحيد يغلّف المحتوى
+                      غير التفاعلي. أوقات العمل <details> تبقى خارجه (عنصر تفاعلي
+                      داخل رابط = تعشيش محظور). */}
+                  <a class="pc-link" href={p.maps} target="_blank" rel="noopener">
+                    <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                    <div class="pc-body">
+                      <h3>{p.name}</h3>
+                      <p class="pc-area">{p.area}</p>
+                      {closed && <p class="pc-closed">{closed}</p>}
+                      <p class="pc-blurb">{p.blurb}</p>
+                      {lv?.rating && (
+                        <p class="pc-rating"><span class="pc-star" aria-hidden="true">★</span>
+                          <strong>{lv.rating.toFixed(1)}</strong>
+                          {lv.count && <span class="pc-count">({lv.count.toLocaleString('en-US')})</span>}
+                          <span class="visually-hidden">{C.ratingLabel}</span>
+                        </p>
+                      )}
+                      <span class="pc-maps">
+                        {C.openMaps}
+                        <svg class="pc-ext" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        <span class="visually-hidden">{C.newWindow}</span>
+                      </span>
+                    </div>
+                  </a>
+                  {hours && hours.length > 0 && (
+                    <details class="pc-hours">
+                      <summary>{C.hoursLabel}</summary>
+                      <ul>{hours.map((h) => <li>{h}</li>)}</ul>
+                    </details>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </>
+      ))}
     </section>
 
     <section class="container dn-faq">
@@ -228,37 +246,45 @@ const jsonLd = [
 </Base>
 
 <style>
-  /* ═══ الهيرو — لوني بلا صورة (لا أصل هيرو موثّق بعد) ═══ */
-
   /* ═══ شبكة المطاعم ═══ */
   .dn-list { padding-block: var(--s-6) var(--s-8); }
   .dn-head { margin-block-end: var(--s-6); }
   .dn-head h2 { font-size: var(--t-2xl); margin-block-start: var(--s-2); }
   .dn-head--cafes { margin-block-start: var(--s-7); }
+  /* حاوية 1120px بحدّ أدنى 300px وفجوة 24px ⇒ ثلاثة أعمدة على سطح المكتب،
+     ولذلك مُعامل التأخير (idx % 3) مطابقٌ للشبكة (قيس 2026-08-30). */
   .dngrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
 
   .dn-src { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
 
-  /* القشرة من صنف card الموحّد في global.css */
-  .pc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
+  /* القشرة والتحويم من card/card--lift الموحّدين في global.css */
+  .pc-link { display: flex; flex-direction: column; flex: 1; text-decoration: none; color: inherit; }
+  .pc-link:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 3px; border-radius: var(--radius); }
+  .pc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; flex: 1; gap: var(--s-2); }
   .place-card h3 { font-size: var(--t-lg); color: var(--c-turq-deep); }
   .pc-area { font-size: var(--t-xs); color: var(--c-gold-deep); }
   .pc-blurb { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+
+  /* حالة الإغلاق من businessStatus — تسبق النبذة لأنها تلغي جدوى قراءتها */
+  .pc-closed { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-inline-start: 3px solid var(--c-gold); border-radius: var(--radius-sm); padding: 6px 10px; }
 
   /* صف التقييم — النجمة ذهبية والأرقام لاتينية دائماً */
   .pc-rating { display: flex; align-items: center; gap: 6px; font-size: var(--t-sm); color: var(--c-ink); }
   .pc-star { color: var(--c-gold-deep); }
   .pc-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
 
-  /* أوقات العمل — مطوية افتراضياً كي لا تُطيل البطاقة */
-  .pc-hours { font-size: var(--t-xs); color: var(--c-ink-soft); }
-  .pc-hours summary { cursor: pointer; font-weight: 600; color: var(--c-turq-deep); padding-block: 2px; }
+  /* أوقات العمل — مطوية افتراضياً، وخارج الرابط الغالف */
+  .pc-hours { font-size: var(--t-xs); color: var(--c-ink-soft); padding: 0 var(--s-4) var(--s-4); }
+  .pc-hours summary { cursor: pointer; font-weight: 600; color: var(--c-turq-deep); padding-block: 4px; min-block-size: 24px; }
   .pc-hours summary:hover { color: var(--c-turq); }
   .pc-hours ul { list-style: none; padding: var(--s-2) 0 0; display: flex; flex-direction: column; gap: 4px; }
 
   .visually-hidden { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .pc-maps { align-self: start; margin-block-start: auto; display: inline-flex; align-items: center; min-block-size: 44px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: 999px; padding: 6px 14px; text-decoration: none; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
-  .pc-maps:hover { border-color: var(--c-turq); color: var(--c-turq); }
+
+  /* لم يعد رابطاً مستقلاً: البطاقة كلها هي الرابط، وهذا ملصقه البصري */
+  .pc-maps { align-self: start; margin-block-start: auto; display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 6px 14px; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .place-card:hover .pc-maps { border-color: var(--c-turq); color: var(--c-turq); }
+  .pc-ext { flex: 0 0 auto; }
 
   /* الصور عمودية في معظمها — قصّ موحّد 4:5 يضبط إيقاع الشبكة */
   :global(.dn-photo) { aspect-ratio: 4 / 5; }

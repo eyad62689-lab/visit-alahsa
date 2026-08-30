@@ -5,6 +5,10 @@
 // قاعدة ملزمة: لا تُختلق معلومة — الأوصاف تعريفية بمكوّنات الأطباق المعروفة،
 // بلا مواعيد ولا رسوم ولا ادّعاءات تاريخية غير موثقة. أزيلت عناوين المجموعات
 // بطلب إياد (2026-07-13) — التصنيف على بطاقة كل طبق (طبق رئيسي/حلى/خبز).
+//
+// «الخبز الأحمر» = خبز التمر نفسه، اسمان لطبقٍ واحد (تأكيد إياد 2026-08-30).
+// أُثبت مرادفاً على بطاقة خبز التمر لا طبقاً تاسعاً، لأن أسئلة «خطط لرحلتك»
+// كانت تذكره فيبدو طبقاً مفقوداً من صفحة الأكلات.
 
 export type Dish = { img: string; alt: string; k: string; name: string; pre: string; };
 export type DishGroup = { title: string; dishes: Dish[] };
@@ -30,7 +34,7 @@ export const DISH_GROUPS_AR: DishGroup[] = [
       { img: '/img/food/sago', alt: 'الساقو مزيّناً بالجوز والفستق', k: 'حلى', name: 'الساقو',
         pre: 'حبيباتٌ صغيرة تذوب على النار حتى تصير جوهرًا شفافًا يتلألأ بالزعفران والهيل. حلوى الأحساء التي تتصدّر موائد رمضان، رقيقةُ القوام، عريقةُ الحضور، لا يعرف سرَّ إتقانها إلا أهل الواحة.' },
       { img: '/img/food/date-bread-v2', alt: 'خبز التمر على الصاج أمام فرن الطين المشتعل', k: 'خبز', name: 'خبز التمر',
-        pre: 'خبزٌ محليٌّ يُعجن أو يُحشى بمعجون التمر ويُرشُّ بحبّة البركة (الحبّة السوداء)، فيجمع بين طيّبِ الخبز وحلاوةِ التمر. يُقدَّم مع القهوة العربية.' },
+        pre: 'خبزٌ محليٌّ يُعجن أو يُحشى بمعجون التمر ويُرشُّ بحبّة البركة (الحبّة السوداء)، فيجمع بين طيّبِ الخبز وحلاوةِ التمر. يُقدَّم مع القهوة العربية. ويُسمّى أيضاً «الخبز الأحمر».' },
     ],
   },
 ];
@@ -54,7 +58,7 @@ export const DISH_GROUPS_EN: DishGroup[] = [
       { img: '/img/food/sago', alt: 'Sago garnished with walnuts and pistachios', k: 'Sweet', name: 'Sago',
         pre: 'Small grains that melt over the flame until they turn into a translucent jewel shimmering with saffron and cardamom. The Al-Ahsa sweet that heads Ramadan tables — delicate in texture, long-established in presence, its secret known only to the people of the oasis.' },
       { img: '/img/food/date-bread-v2', alt: 'Date bread on a griddle before a glowing clay oven', k: 'Bread', name: 'Date Bread',
-        pre: 'A local bread kneaded or filled with date paste and sprinkled with black seed (nigella), uniting good bread with the sweetness of dates. Served with Arabic coffee.' },
+        pre: 'A local bread kneaded or filled with date paste and sprinkled with black seed (nigella), uniting good bread with the sweetness of dates. Served with Arabic coffee. Also known as “red bread” (khubz ahmar).' },
     ],
   },
 ];

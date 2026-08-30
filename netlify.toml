@@ -21,6 +21,14 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# إشعار IndexNow بعد نجاح النشر (Bing وYandex وSeznam وNaver — وهي بوابة
+# ChatGPT Search وCopilot). يدفع الروابط التي تغيّرت منذ آخر نشر ناجح فقط،
+# مستنداً إلى lastmod في sitemap. لا يُفشل النشر مهما كانت النتيجة.
+# التعطيل: احذف هذا القسم، أو اضبط INDEXNOW_DRY_RUN=1 في متغيرات البيئة.
+# البديل عن GitHub Action المقترح في الدراسة — انظر submit.mjs للسبب.
+[[plugins]]
+  package = "./netlify/plugins/indexnow"
+
 # تخزين مؤقت طويل للأصول المُبصَّمة وغير المتغيّرة (يحسّن السرعة وLCP)
 [[headers]]
   for = "/fonts/*"
