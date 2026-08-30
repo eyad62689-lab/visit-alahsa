@@ -37,7 +37,7 @@ async function api(path, { body, lang } = {}) {
       'X-Goog-Api-Key': KEY,
       'X-Goog-FieldMask': body
         ? 'places.id,places.displayName'
-        : 'rating,userRatingCount,regularOpeningHours.weekdayDescriptions,businessStatus',
+        : 'displayName,rating,userRatingCount,regularOpeningHours.weekdayDescriptions,businessStatus',
     },
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -101,7 +101,11 @@ async function main() {
         hoursEn: en.regularOpeningHours?.weekdayDescriptions ?? [],
         status: ar.businessStatus ?? null,
       };
-      console.log(`fetch-places: ${slug} ★${places[slug].rating} (${places[slug].count})`);
+      // الاسم الرسمي باللغتين يُطبع ولا يُخزَّن: أسماء dining.ts تُعتمد من قوقل
+      // (قرار إياد 2026-08-30)، وهذا السطر هو الطريق لمراجعتها دورياً من سجل البناء.
+      const nameAr = ar.displayName?.text ?? '?';
+      const nameEn = en.displayName?.text ?? '?';
+      console.log(`fetch-places: ${slug} ★${places[slug].rating} (${places[slug].count}) | ar=«${nameAr}» | en=«${nameEn}»`);
     } catch (e) {
       console.warn(`fetch-places: فشل جلب ${slug}: ${e.message}`);
     }
