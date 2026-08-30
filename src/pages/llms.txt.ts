@@ -7,7 +7,7 @@
 // قاعدة الموقع: أرقام لاتينية (0-9) دائماً.
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { RESTAURANTS_AR, CAFES_AR } from '../data/dining';
+
 import { EVENTS_AR } from '../data/events';
 
 const SITE = 'https://visit-alahsa.com';
@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
 
   const attractionCount = attractions.length;
   const zhCount = attractions.filter((e) => e.data.title_zh).length;
-  const diningCount = RESTAURANTS_AR.length + CAFES_AR.length;
+  const diningCount = (await getCollection('dining')).length;
   const eventCount = EVENTS_AR.length;
   // المقالات تُعدّ بالموضوع لا بالملف (لكل موضوع ملف عربي وآخر إنجليزي)
   const topicCount = new Set(posts.filter((p) => !p.data.draft).map((p) => p.data.key)).size;

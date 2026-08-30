@@ -1,0 +1,25 @@
+---
+// صفحة المنشأة العربية. الحارس هنا هو بوابة النشر: لا تُولَّد صفحة لمنشأة لم
+// يعبر متنُها العتبة (docs/قرار-بنية-صفحات-المنشآت.md) — فلا صفحة رقيقة تُنشر،
+// والفهرس يوجّه بطاقتها إلى خرائط قوقل بدل رابط داخلي مكسور.
+import { getCollection } from 'astro:content';
+import { diningAlt } from '../../lib/routes';
+import DiningDetailView from '../../components/views/DiningDetailView.astro';
+
+export async function getStaticPaths() {
+  const WORD_MIN_AR = 80;
+  const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+  const items = await getCollection('dining');
+  return items
+    .filter((e) => {
+      const body = (e.body ?? '').trim();
+      return words(body) >= WORD_MIN_AR && body !== e.data.blurb;
+    })
+    .map((entry) => ({
+      params: { slug: entry.data.slug_ar },
+      props: { entry, alt: diningAlt(entry.data) },
+    }));
+}
+const { entry, alt } = Astro.props;
+---
+<DiningDetailView entry={entry} lang="ar" alt={alt} />

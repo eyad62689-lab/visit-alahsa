@@ -73,4 +73,37 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { attractions, blog };
+// المطاعم والمقاهي — مصدر الحقيقة الوحيد للفهرس وللصفحات المفردة معاً
+// (هُجِّرت من src/data/dining.ts في 2026-08-30؛ القرار وحججه في
+// docs/قرار-بنية-صفحات-المنشآت.md). نمط الحقول `_en` كنمط `attractions`.
+//
+// **بوابة توليد الصفحة المفردة هي المتن**: منشأةٌ بمتنٍ دون العتبة (80 كلمة
+// عربية / 100 إنجليزية) لا تُولَّد لها صفحة، وتبقى بطاقةً في الفهرس ترتبط
+// بخرائط قوقل — على سابقة `title_zh` في المعالم. فلا تُنشر صفحة رقيقة أبداً.
+const DINING_KINDS = ['restaurant', 'cafe'] as const;
+const DISTRICTS = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'rawdah',
+  'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz'] as const;
+
+const dining = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/dining' }),
+  schema: z.object({
+    name: z.string(),                          // الاسم العربي (displayName من خرائط قوقل)
+    name_en: z.string(),
+    slug_ar: z.string(),
+    slug_en: z.string(),
+    kind: z.enum(DINING_KINDS),
+    district: z.enum(DISTRICTS),               // الموقع المعياري — مفتاح التصفية
+    area: z.string(),                          // الموقع كما يُعرض
+    area_en: z.string(),
+    blurb: z.string(),                         // نبذة البطاقة — لا ادعاء جودة ولا أصناف
+    blurb_en: z.string(),
+    alt: z.string(),                           // النص البديل للصورة
+    alt_en: z.string(),
+    img: z.string(),                           // المسار الأساسي بلا امتداد
+    maps: z.string().url(),
+    order: z.number().default(99),
+    body_en: z.string().default(''),           // المتن الإنجليزي (المتن العربي في جسم الملف)
+  }),
+});
+
+export const collections = { attractions, blog, dining };

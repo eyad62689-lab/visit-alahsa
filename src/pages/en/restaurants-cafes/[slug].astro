@@ -1,0 +1,25 @@
+---
+// English place page. Same publication gate as the Arabic route, measured on
+// body_en — see docs/قرار-بنية-صفحات-المنشآت.md. A place can qualify in one
+// language before the other; the index links each card per its own language.
+import { getCollection } from 'astro:content';
+import { diningAlt } from '../../../lib/routes';
+import DiningDetailView from '../../../components/views/DiningDetailView.astro';
+
+export async function getStaticPaths() {
+  const WORD_MIN_EN = 100;
+  const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+  const items = await getCollection('dining');
+  return items
+    .filter((e) => {
+      const body = e.data.body_en.trim();
+      return words(body) >= WORD_MIN_EN && body !== e.data.blurb_en;
+    })
+    .map((entry) => ({
+      params: { slug: entry.data.slug_en },
+      props: { entry, alt: diningAlt(entry.data) },
+    }));
+}
+const { entry, alt } = Astro.props;
+---
+<DiningDetailView entry={entry} lang="en" alt={alt} />

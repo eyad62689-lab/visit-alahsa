@@ -96,6 +96,26 @@ async function main() {
     if (bodyEn) push({ id: id(urlEn), type: 'attraction', lang: 'en', title: fmField(fm, 'title_en') || fmField(fm, 'title'), url: urlEn, phrase: pickPhrase(bodyEn.replace(/\s+/g, ' ').trim(), taken) })
   }
 
+  // المنشآت (مطاعم ومقاهٍ): تُبصَّم الصفحة المفردة فقط — أي من عبر متنُها عتبة
+  // النشر. من لم يعبرها لا صفحة له فلا شيء يُسرق (docs/قرار-بنية-صفحات-المنشآت.md).
+  const diningDir = join(ROOT, 'src', 'content', 'dining')
+  const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length
+  for (const f of (await readdir(diningDir)).filter((f) => f.endsWith('.md')).sort()) {
+    const { fm, body } = splitFrontmatter(await readFile(join(diningDir, f), 'utf8'))
+    const blurb = fmField(fm, 'blurb') ?? ''
+    const blurbEn = fmField(fm, 'blurb_en') ?? ''
+    const bodyAr = (body ?? '').trim()
+    const bodyEn = (fmField(fm, 'body_en') ?? '').trim()
+    if (wc(bodyAr) >= 80 && bodyAr !== blurb) {
+      const url = `${SITE}/مطاعم-ومقاهي/${fmField(fm, 'slug_ar')}/`
+      push({ id: id(url), type: 'dining', lang: 'ar', title: fmField(fm, 'name'), url, phrase: pickPhrase(smartify(plainText(bodyAr)), taken, true) })
+    }
+    if (wc(bodyEn) >= 100 && bodyEn !== blurbEn) {
+      const url = `${SITE}/en/restaurants-cafes/${fmField(fm, 'slug_en')}/`
+      push({ id: id(url), type: 'dining', lang: 'en', title: fmField(fm, 'name_en'), url, phrase: pickPhrase(bodyEn.replace(/\s+/g, ' ').trim(), taken) })
+    }
+  }
+
   // المدونة: كل لغة ملفها المستقل — المسودات لا تُبصَّم (غير منشورة أصلاً)
   const blogDir = join(ROOT, 'src', 'content', 'blog')
   for (const f of (await readdir(blogDir)).filter((f) => f.endsWith('.md')).sort()) {

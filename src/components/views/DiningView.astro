@@ -11,7 +11,8 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
-import { RESTAURANTS_AR, RESTAURANTS_EN, CAFES_AR, CAFES_EN } from '../../data/dining';
+import { getCollection } from 'astro:content';
+import { diningHref } from '../../lib/routes';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -37,6 +38,32 @@ const fetchedLabel = fetchedDate
   : null;
 const liveFor = (img: string): Live | undefined => live[img.replace('/img/dining/', '')];
 
+// مصدر الحقيقة الوحيد: مجموعة dining (هُجِّرت من data/dining.ts — 2026-08-30).
+// عتبة الصفحة المفردة: متنٌ يعبر الحد ولا يكون نسخةً من النبذة. من لم يعبرها
+// تبقى بطاقته ترتبط بخرائط قوقل مباشرةً — تدهور رشيق على سابقة title_zh.
+const WORD_MIN_AR = 80;
+const WORD_MIN_EN = 100;
+const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+const diningEntries = (await getCollection('dining')).sort((a, b) => a.data.order - b.data.order);
+const toPlace = (e: (typeof diningEntries)[number]) => {
+  const d = e.data;
+  const bodyAr = (e.body ?? '').trim();
+  const passesAr = words(bodyAr) >= WORD_MIN_AR && bodyAr !== d.blurb;
+  const passesEn = words(d.body_en) >= WORD_MIN_EN && d.body_en.trim() !== d.blurb_en;
+  const hasPage = ar ? passesAr : passesEn;
+  return {
+    img: d.img, maps: d.maps, district: d.district,
+    name: ar ? d.name : d.name_en,
+    area: ar ? d.area : d.area_en,
+    alt: ar ? d.alt : d.alt_en,
+    blurb: ar ? d.blurb : d.blurb_en,
+    href: hasPage ? diningHref(d, lang) : d.maps,
+    internal: hasPage,
+  };
+};
+const RESTAURANTS = diningEntries.filter((e) => e.data.kind === 'restaurant').map(toPlace);
+const CAFES = diningEntries.filter((e) => e.data.kind === 'cafe').map(toPlace);
+
 
 const C = localize(lang, {
   heroEyebrow: 'من موائد الأحساء',
@@ -50,6 +77,7 @@ const C = localize(lang, {
   cafesH: 'عشرة مقاهٍ مختارة',
   openMaps: t('det.openMaps'),
   newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
+  moreLabel: 'تفاصيل المكان',
   hoursLabel: 'أوقات العمل',
   ratingLabel: 'التقييم في خرائط قوقل',
   searchPh: 'ابحث باسم المكان أو الحي…',
@@ -95,8 +123,8 @@ const C = localize(lang, {
   ],
   methodH: 'حول هذه الصفحة',
   methodP1: 'هذه قائمة أولية تنمو تباعاً. الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، والنبذات تعريفية موجزة تصف المكان كما يظهر في صورته — لا تقييماً ولا توصية بأصناف بعينها.',
-  places: RESTAURANTS_AR,
-  cafes: CAFES_AR,
+  places: RESTAURANTS,
+  cafes: CAFES,
 }, {
   heroEyebrow: 'From the tables of Al-Ahsa',
   title: 'Restaurants & Cafés',
@@ -108,6 +136,7 @@ const C = localize(lang, {
   cafesH: 'Ten hand-picked cafés',
   openMaps: t('det.openMaps'),
   newWindow: '(opens Google Maps in a new window)',
+  moreLabel: 'Place details',
   hoursLabel: 'Opening hours',
   ratingLabel: 'Rating on Google Maps',
   searchPh: 'Search by name or area…',
@@ -153,8 +182,8 @@ const C = localize(lang, {
   ],
   methodH: 'About this page',
   methodP1: 'This is a first list that will keep growing. Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo — not reviews or dish recommendations.',
-  places: RESTAURANTS_EN,
-  cafes: CAFES_EN,
+  places: RESTAURANTS,
+  cafes: CAFES,
 });
 
 // قسما الصفحة يُصيَّران بحلقة واحدة — كانت الكتلة نفسها مكرّرة حرفياً مرتين
@@ -212,6 +241,7 @@ const jsonLd = [
     [...C.places.map((p) => ({ p, type: 'Restaurant' })), ...C.cafes.map((p) => ({ p, type: 'CafeOrCoffeeShop' }))]
       .map(({ p, type }, i) => ({ '@type': 'ListItem', position: i + 1, item: {
         '@type': type, name: p.name, hasMap: p.maps,
+        ...(p.internal ? { url: new URL(p.href, siteUrl).href } : {}),
         image: new URL(`${p.img}.jpg`, siteUrl).href,
         address: { '@type': 'PostalAddress', addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
       } })),
@@ -281,7 +311,7 @@ const jsonLd = [
                   {/* البطاقة كلها هدف نقر واحد — رابط خارجي وحيد يغلّف المحتوى
                       غير التفاعلي. أوقات العمل <details> تبقى خارجه (عنصر تفاعلي
                       داخل رابط = تعشيش محظور). */}
-                  <a class="pc-link" href={p.maps} target="_blank" rel="noopener">
+                  <a class="pc-link" href={p.href} {...(p.internal ? {} : { target: '_blank', rel: 'noopener' })}>
                     <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                     <div class="pc-body">
                       <h3>{p.name}</h3>
@@ -299,11 +329,17 @@ const jsonLd = [
                         </p>
                       )}
                       <span class="pc-maps">
-                        {C.openMaps}
-                        <svg class="pc-ext" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        <span class="sr-only">{C.newWindow}</span>
+                        {p.internal ? C.moreLabel : C.openMaps}
+                        {p.internal ? (
+                          <span class="pc-arrow" aria-hidden="true">{ar ? '←' : '→'}</span>
+                        ) : (
+                          <>
+                            <svg class="pc-ext" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                            <span class="sr-only">{C.newWindow}</span>
+                          </>
+                        )}
                       </span>
                     </div>
                   </a>

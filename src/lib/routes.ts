@@ -23,3 +23,16 @@ export const attractionAlt = (d: AttractionSlugs): { ar: string; en: string; zh?
   en: attractionHref(d, 'en'),
   ...(d.title_zh ? { zh: attractionHref(d, 'zh') } : {}),
 });
+
+type DiningSlugs = { slug_ar: string; slug_en: string };
+
+/** رابط صفحة المنشأة (مطعم/مقهى) — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
+export const diningHref = (d: DiningSlugs, lang: Lang): string =>
+  lang === 'ar' ? `/مطاعم-ومقاهي/${d.slug_ar}/` : `/en/restaurants-cafes/${d.slug_en}/`;
+
+/** روابط المنشأة بلغتيها — مصدر hreflang ومبدّل اللغة. لا نسخة صينية بعد،
+ *  فلا يُدرج zh هنا لئلا يقود المبدّل إلى 404. */
+export const diningAlt = (d: DiningSlugs): { ar: string; en: string } => ({
+  ar: diningHref(d, 'ar'),
+  en: diningHref(d, 'en'),
+});

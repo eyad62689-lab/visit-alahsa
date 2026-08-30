@@ -229,6 +229,41 @@ async function main() {
     else pass('C10', `لا تقييمات في JSON-LD عبر ${htmlFiles.length} صفحة`);
   }
 
+  // ── C11: عتبة نشر صفحات المنشآت مصونة على المصدر ─────────────────────────
+  // العتبة (80 كلمة عربية / 100 إنجليزية، وألّا يكون المتن نسخة من النبذة)
+  // مأخوذة من وسيط متون المعالم المقيس — docs/قرار-بنية-صفحات-المنشآت.md.
+  // الفحص هنا على المصدر لا على dist لأن ما يُمنَع هو **توليد** الصفحة أصلاً:
+  // dist لا يحوي دليلاً على منشأةٍ استُبعدت. والحارس يمنع تكرار ثغرة المعالم
+  // الخمسة التي متنُها نسخة حرفية من نبذتها.
+  {
+    const dir = path.join(ROOT, 'src/content/dining');
+    const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
+    const fmOf = (raw) => (raw.match(/^---\r?\n([\s\S]*?)\r?\n---/) ?? ['', ''])[1];
+    const bodyOf = (raw) => raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '').trim();
+    const fld = (fm, n) => {
+      const m = fm.match(new RegExp(`^${n}:\\s*(.+)$`, 'm'));
+      if (!m) return '';
+      const v = m[1].trim();
+      return (v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")) ? v.slice(1, -1) : v;
+    };
+    let files = [];
+    try { files = (await readdir(dir)).filter((f) => f.endsWith('.md')); } catch { /* لا مجموعة بعد */ }
+    const bad = [];
+    let publishedAr = 0, publishedEn = 0;
+    for (const f of files) {
+      const raw = await readFile(path.join(dir, f), 'utf8');
+      const fm = fmOf(raw), body = bodyOf(raw), bodyEn = fld(fm, 'body_en').trim();
+      const blurb = fld(fm, 'blurb'), blurbEn = fld(fm, 'blurb_en');
+      // متنٌ مكتوبٌ لكنه دون العتبة أو مطابقٌ للنبذة = خطأ صريح لا صمت
+      if (body && (wc(body) < 80 || body === blurb)) bad.push(`${f} (ar: ${wc(body)} كلمة${body === blurb ? '، نسخة من النبذة' : ''})`);
+      if (bodyEn && (wc(bodyEn) < 100 || bodyEn === blurbEn)) bad.push(`${f} (en: ${wc(bodyEn)} كلمة${bodyEn === blurbEn ? '، نسخة من النبذة' : ''})`);
+      if (body && wc(body) >= 80 && body !== blurb) publishedAr++;
+      if (bodyEn && wc(bodyEn) >= 100 && bodyEn !== blurbEn) publishedEn++;
+    }
+    if (bad.length) fail('C11', `متونٌ دون عتبة النشر: ${bad.join(' | ')}`);
+    else pass('C11', `${files.length} منشأة — صفحات مفردة منشورة: ${publishedAr} عربية و${publishedEn} إنجليزية`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

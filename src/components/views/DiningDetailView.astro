@@ -1,0 +1,233 @@
+---
+// صفحة المنشأة المفردة (مطعم/مقهى). لا تُولَّد إلا لمن عبر عتبة المتن — الحارس
+// في getStaticPaths لكل من صفحتَي [slug]، وتفصيلُه في
+// docs/قرار-بنية-صفحات-المنشآت.md. فلا تُنشر صفحة رقيقة أبداً.
+//
+// التقييم وأوقات العمل والحالة تُعرض في الواجهة فقط ولا تُصدَّر في أي JSON-LD
+// (شروط قوقل + إرشادات المراجعات الذاتية) — الحارس الآلي هو الفحص C10 في
+// tools/check-consistency.mjs.
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import Photo from '../Photo.astro';
+import { diningHref } from '../../lib/routes';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { entry: CollectionEntry<'dining'>; lang: Lang; alt: AltLinks; }
+const { entry, lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const d = entry.data;
+const { Content } = await render(entry);
+
+const name = ar ? d.name : d.name_en;
+const area = ar ? d.area : d.area_en;
+const blurb = ar ? d.blurb : d.blurb_en;
+const alTxt = ar ? d.alt : d.alt_en;
+
+// بيانات قوقل الحية — نفس آلية الفهرس، وغيابها يتدهور رشيقاً
+type Live = { rating: number | null; count: number | null; hoursAr: string[]; hoursEn: string[];
+  status: string | null; periods?: (number | null)[][]; utcOffset?: number | null };
+const livePath = join(process.cwd(), 'src', 'data', 'places-live.json');
+const liveRaw = existsSync(livePath) ? JSON.parse(readFileSync(livePath, 'utf8')) : null;
+const lv: Live | undefined = liveRaw?.places?.[d.img.replace('/img/dining/', '')];
+const hours = ar ? lv?.hoursAr : lv?.hoursEn;
+const hoursData = lv?.periods?.length && typeof lv.utcOffset === 'number'
+  ? `${lv.utcOffset}|${lv.periods.map((x) => x.join(',')).join(';')}`
+  : null;
+
+const C = localize(lang, {
+  kindLabel: d.kind === 'cafe' ? 'مقهى' : 'مطعم',
+  backLabel: 'كل المطاعم والمقاهي',
+  openMaps: t('det.openMaps'),
+  newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
+  hoursH: 'أوقات العمل',
+  hoursNote: 'المواعيد من خرائط قوقل وقد تتغير — تحقّق من رابط المكان.',
+  ratingLabel: 'التقييم في خرائط قوقل',
+  openNow: 'مفتوح الآن',
+  closedNow: 'مغلق الآن',
+  closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
+  closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
+  areaH: 'الموقع',
+  noteH: 'حول هذه الصفحة',
+  noteP: 'الاسم والموقع من خرائط قوقل مباشرة، والتقييم وأوقات العمل تُجلب منها عند كل تحديث للموقع وقد تتغير. لا تُعرض أسعار ولا توصيات بأصناف بعينها.',
+}, {
+  kindLabel: d.kind === 'cafe' ? 'Café' : 'Restaurant',
+  backLabel: 'All restaurants & cafés',
+  openMaps: t('det.openMaps'),
+  newWindow: '(opens Google Maps in a new window)',
+  hoursH: 'Opening hours',
+  hoursNote: 'Hours come from Google Maps and can change — check the place’s link.',
+  ratingLabel: 'Rating on Google Maps',
+  openNow: 'Open now',
+  closedNow: 'Closed now',
+  closedPerm: 'Permanently closed — according to Google Maps',
+  closedTemp: 'Temporarily closed — according to Google Maps',
+  areaH: 'Location',
+  noteH: 'About this page',
+  noteP: 'The name and location come straight from Google Maps; the rating and opening hours are fetched from it on each site update and can change. No prices or dish recommendations are listed.',
+});
+
+const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
+  : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
+
+const indexHref = ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/';
+const siteUrl = 'https://visit-alahsa.com';
+const selfUrl = new URL(diningHref(d, lang), siteUrl).href;
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés', item: new URL(indexHref, siteUrl).href },
+    { '@type': 'ListItem', position: 3, name, item: selfUrl },
+  ] },
+  { '@context': 'https://schema.org', '@type': d.kind === 'cafe' ? 'CafeOrCoffeeShop' : 'Restaurant',
+    name, url: selfUrl, hasMap: d.maps, image: new URL(`${d.img}.jpg`, siteUrl).href,
+    address: { '@type': 'PostalAddress', addressLocality: area, addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+  },
+];
+---
+<Base title={`${name} — ${ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés'}`} description={blurb}
+  lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <article class="container dd">
+      <nav class="dd-crumbs" aria-label={t('a11y.crumbs')}>
+        <a href={indexHref}>{C.backLabel}</a>
+      </nav>
+
+      <header class="dd-head">
+        <span class="eyebrow">{C.kindLabel}</span>
+        <h1>{name}</h1>
+        <p class="dd-area">{area}</p>
+        {closed && <p class="dd-closed">{closed}</p>}
+        <div class="dd-meta">
+          {lv?.rating && (
+            <p class="dd-rating"><span class="dd-star" aria-hidden="true">★</span>
+              <strong>{lv.rating.toFixed(1)}</strong>
+              {lv.count && <span class="dd-count">({lv.count.toLocaleString('en-US')})</span>}
+              <span class="sr-only">{C.ratingLabel}</span>
+            </p>
+          )}
+          {!closed && hoursData && (
+            <p class="dd-open" hidden data-hours={hoursData} data-open={C.openNow} data-shut={C.closedNow}></p>
+          )}
+        </div>
+      </header>
+
+      <Photo src={d.img} label={alTxt} class="dd-photo" eager sizes="(max-width: 900px) 100vw, 900px" />
+
+      <div class="dd-body prose">
+        {ar ? <Content /> : <p set:html={d.body_en.replace(/\n\n/g, '</p><p>')} />}
+      </div>
+
+      <div class="dd-panels">
+        <section class="dd-panel">
+          <h2>{C.areaH}</h2>
+          <p>{area}</p>
+          <a class="dd-maps" href={d.maps} target="_blank" rel="noopener">
+            {C.openMaps}
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            <span class="sr-only">{C.newWindow}</span>
+          </a>
+        </section>
+
+        {hours && hours.length > 0 && (
+          <section class="dd-panel">
+            <h2>{C.hoursH}</h2>
+            <ul class="dd-hours">{hours.map((h) => <li>{h}</li>)}</ul>
+            <p class="dd-hnote">{C.hoursNote}</p>
+          </section>
+        )}
+      </div>
+
+      <aside class="dd-note">
+        <h2>{C.noteH}</h2>
+        <p>{C.noteP}</p>
+      </aside>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<script is:inline>
+  // «مفتوح الآن» — الخوارزمية نفسها المستعملة في الفهرس، ومختبَرة على 14 حالة
+  // حدّية. تُحسب من ساعة الزائر لا من وقت البناء.
+  function initDetailOpen() {
+    var el = document.querySelector('.dd-open');
+    if (!el || el.dataset.wired) return;
+    el.dataset.wired = '1';
+    var WEEK = 7 * 24 * 60;
+    function paint() {
+      var raw = el.getAttribute('data-hours');
+      try {
+        var parts = raw.split('|');
+        var off = +parts[0];
+        if (isNaN(off)) return;
+        var per = parts[1].split(';').map(function (x) {
+          return x.split(',').map(function (v) { return v === '' ? null : +v; });
+        });
+        var localMin = Date.now() / 60000 + off;
+        var dow = Math.floor(localMin / 1440 + 4) % 7;
+        var mow = dow * 1440 + (((localMin % 1440) + 1440) % 1440);
+        var open = false;
+        for (var i = 0; i < per.length; i++) {
+          var p = per[i];
+          if (p[0] === null) continue;
+          if (p[2] === null) { open = true; break; }
+          var a = p[0] * 1440 + p[1], b = p[2] * 1440 + p[3];
+          if (b <= a) b += WEEK;
+          if ((mow >= a && mow < b) || (mow + WEEK >= a && mow + WEEK < b)) { open = true; break; }
+        }
+        el.textContent = open ? el.dataset.open : el.dataset.shut;
+        el.classList.toggle('is-open', open);
+        el.hidden = false;
+      } catch (e) { /* بيانات معطوبة ⇒ لا شارة */ }
+    }
+    paint();
+    setInterval(paint, 60000);
+  }
+  document.addEventListener('astro:page-load', initDetailOpen);
+  if (document.readyState !== 'loading') initDetailOpen(); else document.addEventListener('DOMContentLoaded', initDetailOpen);
+</script>
+
+<style>
+  .dd { padding-block: var(--s-6) var(--s-8); max-inline-size: 900px; }
+  .dd-crumbs { margin-block-end: var(--s-4); font-size: var(--t-sm); }
+  .dd-crumbs a { color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
+  .dd-crumbs a:hover { color: var(--c-turq); }
+  .dd-head h1 { font-size: var(--t-3xl); margin-block-start: var(--s-2); }
+  .dd-area { margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-deep); font-weight: 600; }
+  .dd-closed { margin-block-start: var(--s-3); font-size: var(--t-sm); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-inline-start: 3px solid var(--c-gold); border-radius: var(--radius-sm); padding: 8px 12px; }
+  .dd-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin-block-start: var(--s-3); }
+  .dd-rating { display: flex; align-items: center; gap: 6px; font-size: var(--t-sm); }
+  .dd-star { color: var(--c-gold-deep); }
+  .dd-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
+  .dd-open { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-sm); font-weight: 700; color: var(--c-ink-soft); }
+  .dd-open::before { content: ''; inline-size: 8px; block-size: 8px; border-radius: 50%; background: currentColor; }
+  .dd-open.is-open { color: var(--c-turq); }
+
+  :global(.dd-photo) { margin-block: var(--s-5); border-radius: var(--radius); aspect-ratio: 3 / 2; }
+  :global(.dd-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
+
+  .dd-body { font-size: var(--t-base); line-height: 1.9; color: var(--c-ink); }
+  .dd-body :global(p) { margin-block-end: var(--s-4); }
+
+  .dd-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--s-4); margin-block-start: var(--s-6); }
+  .dd-panel { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .dd-panel h2 { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-2); }
+  .dd-panel p { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .dd-hours { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .dd-hnote { margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60); line-height: 1.6; }
+  .dd-maps { display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; margin-block-start: var(--s-3); font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 6px 14px; text-decoration: none; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .dd-maps:hover { border-color: var(--c-turq); color: var(--c-turq); }
+
+  .dd-note { margin-block-start: var(--s-6); background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .dd-note h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
+  .dd-note p { font-size: var(--t-sm); color: var(--c-ink-soft); }
+</style>
