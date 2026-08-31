@@ -1,6 +1,6 @@
 ---
-name: "مطعم فندق الكوت التراثي"
-name_en: "Al-Koot Heritage Hotel Restaurant"
+name: "فندق ومطعم الكوت التراثي"
+name_en: "Al-Koot Heritage Hotel & Restaurant"
 slug_ar: "مطعم-فندق-الكوت-التراثي"
 slug_en: "alkoot-hotel"
 kind: restaurant

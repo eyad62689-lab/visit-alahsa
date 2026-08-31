@@ -1,5 +1,5 @@
 ---
-name: "سنيار"
+name: "مطعم سنيار"
 name_en: "Sinyar"
 slug_ar: "سنيار"
 slug_en: "sinyar"

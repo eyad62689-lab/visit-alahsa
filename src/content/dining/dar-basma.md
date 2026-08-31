@@ -1,5 +1,5 @@
 ---
-name: "مطعم دار بسمة"
+name: "دار بسمة"
 name_en: "Dar Basma"
 slug_ar: "مطعم-دار-بسمة"
 slug_en: "dar-basma"
