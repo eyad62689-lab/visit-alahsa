@@ -1,0 +1,25 @@
+---
+// صفحة مكان الإقامة العربية. الحارس هنا هو بوابة النشر نفسها المعتمدة في
+// صفحات المنشآت: لا تُولَّد صفحة لمكانٍ لم يعبر متنُه العتبة
+// (docs/قرار-بنية-صفحات-المنشآت.md)، والفهرس يوجّه بطاقته إلى خرائط قوقل.
+import { getCollection } from 'astro:content';
+import { stayAlt } from '../../lib/routes';
+import StayDetailView from '../../components/views/StayDetailView.astro';
+
+export async function getStaticPaths() {
+  const WORD_MIN_AR = 80;
+  const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+  const items = await getCollection('stay');
+  return items
+    .filter((e) => {
+      const body = (e.body ?? '').trim();
+      return words(body) >= WORD_MIN_AR && body !== e.data.blurb;
+    })
+    .map((entry) => ({
+      params: { slug: entry.data.slug_ar },
+      props: { entry, alt: stayAlt(entry.data) },
+    }));
+}
+const { entry, alt } = Astro.props;
+---
+<StayDetailView entry={entry} lang="ar" alt={alt} />

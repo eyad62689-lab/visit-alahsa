@@ -1,0 +1,155 @@
+---
+// صفحة مكان الإقامة المفردة. لا تُولَّد إلا لمن عبر عتبة المتن — الحارس في
+// getStaticPaths لكل من صفحتَي [slug]، والعتبة نفسها المعتمدة في
+// docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية).
+//
+// التقييم والحالة تُعرضان في الواجهة فقط ولا تُصدَّران في أي JSON-LD (شروط
+// قوقل + إرشادات المراجعات الذاتية) — الحارس الآلي هو الفحص C10.
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import Photo from '../Photo.astro';
+import { stayHref } from '../../lib/routes';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { entry: CollectionEntry<'stay'>; lang: Lang; alt: AltLinks; }
+const { entry, lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const d = entry.data;
+const { Content } = await render(entry);
+
+const name = ar ? d.name : d.name_en;
+const area = ar ? d.area : d.area_en;
+const blurb = ar ? d.blurb : d.blurb_en;
+const alTxt = ar ? d.alt : d.alt_en;
+
+type Live = { rating: number | null; count: number | null; status: string | null };
+const livePath = join(process.cwd(), 'src', 'data', 'places-live.json');
+const liveRaw = existsSync(livePath) ? JSON.parse(readFileSync(livePath, 'utf8')) : null;
+const lv: Live | undefined = liveRaw?.places?.[d.img.replace('/img/stay/', '')];
+
+const C = localize(lang, {
+  kindLabel: d.kind === 'heritage-inn' ? 'نُزل تراثي' : 'فندق',
+  backLabel: 'كل أماكن الإقامة',
+  openMaps: t('det.openMaps'),
+  newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
+  ratingLabel: 'التقييم في خرائط قوقل',
+  closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
+  closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
+  areaH: 'الموقع',
+  noteH: 'حول هذه الصفحة',
+  noteP: 'الاسم والموقع من خرائط قوقل مباشرة، والتقييم يُجلب منها عند كل تحديث للموقع وقد يتغير. لا تُعرض أسعار ولا تصنيفات نجوم، وهذه الصفحة وصفية لا ترشيحية.',
+}, {
+  kindLabel: d.kind === 'heritage-inn' ? 'Heritage inn' : 'Hotel',
+  backLabel: 'All places to stay',
+  openMaps: t('det.openMaps'),
+  newWindow: '(opens Google Maps in a new window)',
+  ratingLabel: 'Rating on Google Maps',
+  closedPerm: 'Permanently closed — according to Google Maps',
+  closedTemp: 'Temporarily closed — according to Google Maps',
+  areaH: 'Location',
+  noteH: 'About this page',
+  noteP: 'The name and location come straight from Google Maps; the rating is fetched from it on each site update and can change. No prices or star ratings are listed, and this page is descriptive rather than a recommendation.',
+});
+
+const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
+  : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
+
+const indexHref = ar ? '/إقامة/' : '/en/stay/';
+const siteUrl = 'https://visit-alahsa.com';
+const selfUrl = new URL(stayHref(d, lang), siteUrl).href;
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: ar ? 'أماكن الإقامة' : 'Places to Stay', item: new URL(indexHref, siteUrl).href },
+    { '@type': 'ListItem', position: 3, name, item: selfUrl },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'LodgingBusiness',
+    name, url: selfUrl, hasMap: d.maps, image: new URL(`${d.img}.jpg`, siteUrl).href,
+    address: { '@type': 'PostalAddress', ...(area ? { addressLocality: area } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+  },
+];
+---
+<Base title={`${name} — ${ar ? 'أماكن الإقامة' : 'Places to Stay'}`} description={blurb}
+  lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <article class="container sd">
+      <nav class="sd-crumbs" aria-label={t('a11y.crumbs')}>
+        <a href={indexHref}>{C.backLabel}</a>
+      </nav>
+
+      <header class="sd-head">
+        <span class="eyebrow">{C.kindLabel}</span>
+        <h1>{name}</h1>
+        {area && <p class="sd-area">{area}</p>}
+        {closed && <p class="sd-closed">{closed}</p>}
+        {lv?.rating && (
+          <p class="sd-rating"><span class="sd-star" aria-hidden="true">★</span>
+            <strong>{lv.rating.toFixed(1)}</strong>
+            {lv.count && <span class="sd-count">({lv.count.toLocaleString('en-US')})</span>}
+            <span class="sr-only">{C.ratingLabel}</span>
+          </p>
+        )}
+      </header>
+
+      <Photo src={d.img} label={alTxt} class="sd-photo" eager sizes="(max-width: 900px) 100vw, 900px" />
+
+      <div class="sd-body prose">
+        {ar ? <Content /> : <p set:html={d.body_en.replace(/\n\n/g, '</p><p>')} />}
+      </div>
+
+      <section class="sd-panel">
+        <h2>{C.areaH}</h2>
+        {area && <p>{area}</p>}
+        <a class="sd-maps" href={d.maps} target="_blank" rel="noopener">
+          {C.openMaps}
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+          <span class="sr-only">{C.newWindow}</span>
+        </a>
+      </section>
+
+      <aside class="sd-note">
+        <h2>{C.noteH}</h2>
+        <p>{C.noteP}</p>
+      </aside>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .sd { padding-block: var(--s-6) var(--s-8); max-inline-size: 900px; }
+  .sd-crumbs { margin-block-end: var(--s-4); font-size: var(--t-sm); }
+  .sd-crumbs a { color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
+  .sd-crumbs a:hover { color: var(--c-turq); }
+  .sd-head h1 { font-size: var(--t-3xl); margin-block-start: var(--s-2); }
+  .sd-area { margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-deep); font-weight: 600; }
+  .sd-closed { margin-block-start: var(--s-3); font-size: var(--t-sm); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-inline-start: 3px solid var(--c-gold); border-radius: var(--radius-sm); padding: 8px 12px; }
+  .sd-rating { display: flex; align-items: center; gap: 6px; margin-block-start: var(--s-3); font-size: var(--t-sm); }
+  .sd-star { color: var(--c-gold-deep); }
+  .sd-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
+
+  :global(.sd-photo) { margin-block: var(--s-5); border-radius: var(--radius); aspect-ratio: 3 / 2; }
+  :global(.sd-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
+
+  .sd-body { font-size: var(--t-base); line-height: 1.9; color: var(--c-ink); }
+  .sd-body :global(p) { margin-block-end: var(--s-4); }
+
+  .sd-panel { margin-block-start: var(--s-6); background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .sd-panel h2 { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-2); }
+  .sd-panel p { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .sd-maps { display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; margin-block-start: var(--s-3); font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 6px 14px; text-decoration: none; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .sd-maps:hover { border-color: var(--c-turq); color: var(--c-turq); }
+
+  .sd-note { margin-block-start: var(--s-6); background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .sd-note h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
+  .sd-note p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.85; }
+</style>

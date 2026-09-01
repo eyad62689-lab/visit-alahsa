@@ -41,7 +41,7 @@ const hoursData = lv?.periods?.length && typeof lv.utcOffset === 'number'
   : null;
 
 const C = localize(lang, {
-  kindLabel: d.kind === 'cafe' ? 'مقهى' : 'مطعم',
+  kindLabel: d.kind === 'cafe' ? 'مقهى' : d.kind === 'bakery' ? 'مخبز' : 'مطعم',
   backLabel: 'كل المطاعم والمقاهي',
   openMaps: t('det.openMaps'),
   newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
@@ -56,7 +56,7 @@ const C = localize(lang, {
   noteH: 'حول هذه الصفحة',
   noteP: 'الاسم والموقع من خرائط قوقل مباشرة، والتقييم وأوقات العمل تُجلب منها عند كل تحديث للموقع وقد تتغير. لا تُعرض أسعار ولا توصيات بأصناف بعينها.',
 }, {
-  kindLabel: d.kind === 'cafe' ? 'Café' : 'Restaurant',
+  kindLabel: d.kind === 'cafe' ? 'Café' : d.kind === 'bakery' ? 'Bakery' : 'Restaurant',
   backLabel: 'All restaurants & cafés',
   openMaps: t('det.openMaps'),
   newWindow: '(opens Google Maps in a new window)',
@@ -84,9 +84,12 @@ const jsonLd = [
     { '@type': 'ListItem', position: 2, name: ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés', item: new URL(indexHref, siteUrl).href },
     { '@type': 'ListItem', position: 3, name, item: selfUrl },
   ] },
-  { '@context': 'https://schema.org', '@type': d.kind === 'cafe' ? 'CafeOrCoffeeShop' : 'Restaurant',
+  { '@context': 'https://schema.org',
+    '@type': d.kind === 'cafe' ? 'CafeOrCoffeeShop' : d.kind === 'bakery' ? 'Bakery' : 'Restaurant',
     name, url: selfUrl, hasMap: d.maps, image: new URL(`${d.img}.jpg`, siteUrl).href,
-    address: { '@type': 'PostalAddress', addressLocality: area, addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+    // addressLocality يسقط حين لا يكون الموقع المعياري متحقَّقاً منه بعد —
+    // عنوانٌ ناقص أصدق من عنوانٍ مخمَّن.
+    address: { '@type': 'PostalAddress', ...(area ? { addressLocality: area } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
   },
 ];
 ---
@@ -102,7 +105,7 @@ const jsonLd = [
       <header class="dd-head">
         <span class="eyebrow">{C.kindLabel}</span>
         <h1>{name}</h1>
-        <p class="dd-area">{area}</p>
+        {area && <p class="dd-area">{area}</p>}
         {closed && <p class="dd-closed">{closed}</p>}
         <div class="dd-meta">
           {lv?.rating && (
@@ -127,7 +130,7 @@ const jsonLd = [
       <div class="dd-panels">
         <section class="dd-panel">
           <h2>{C.areaH}</h2>
-          <p>{area}</p>
+          {area && <p>{area}</p>}
           <a class="dd-maps" href={d.maps} target="_blank" rel="noopener">
             {C.openMaps}
             <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

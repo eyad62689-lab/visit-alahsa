@@ -6,7 +6,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN } from '../data/events';
-import { attractionAlt, diningAlt } from '../lib/routes';
+import { attractionAlt, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 
 type Pair = { ar: string; en?: string; zh?: string; lastmod?: string };
@@ -17,6 +17,7 @@ export const GET: APIRoute = async ({ site }) => {
   const items = await getCollection('attractions');
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   const places = await getCollection('dining');
+  const stays = await getCollection('stay');
 
   // ملفات مصدر كل صفحة قائمة — تاريخها أحدث ما بين قالبها وبيانات محتواها
   const V = 'src/components/views/';
@@ -35,6 +36,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/ثمار/', en: '/en/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
     { ar: '/أكلات/', en: '/en/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
+    { ar: '/إقامة/', en: '/en/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
     { ar: '/مدونة/', en: '/en/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
@@ -69,6 +71,18 @@ export const GET: APIRoute = async ({ site }) => {
       const okEn = w(e.data.body_en) >= 100 && e.data.body_en.trim() !== e.data.blurb_en;
       if (!okAr && !okEn) return [];
       const a = diningAlt(e.data);
+      const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
+      if (okAr && okEn) return [{ ar: a.ar, en: a.en, lastmod }];
+      return [{ ar: okAr ? a.ar : a.en, lastmod }];
+    }),
+    // صفحات أماكن الإقامة المفردة — العتبة نفسها وحارسها نفسه
+    ...stays.flatMap((e) => {
+      const w = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+      const bodyAr = (e.body ?? '').trim();
+      const okAr = w(bodyAr) >= 80 && bodyAr !== e.data.blurb;
+      const okEn = w(e.data.body_en) >= 100 && e.data.body_en.trim() !== e.data.blurb_en;
+      if (!okAr && !okEn) return [];
+      const a = stayAlt(e.data);
       const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
       if (okAr && okEn) return [{ ar: a.ar, en: a.en, lastmod }];
       return [{ ar: okAr ? a.ar : a.en, lastmod }];

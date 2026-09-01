@@ -36,3 +36,16 @@ export const diningAlt = (d: DiningSlugs): { ar: string; en: string } => ({
   ar: diningHref(d, 'ar'),
   en: diningHref(d, 'en'),
 });
+
+type StaySlugs = { slug_ar: string; slug_en: string };
+
+/** رابط صفحة مكان الإقامة — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
+export const stayHref = (d: StaySlugs, lang: Lang): string =>
+  lang === 'ar' ? `/إقامة/${d.slug_ar}/` : `/en/stay/${d.slug_en}/`;
+
+/** روابط مكان الإقامة بلغتيه — مصدر hreflang ومبدّل اللغة. لا نسخة صينية بعد،
+ *  فلا يُدرج zh هنا لئلا يقود المبدّل إلى 404. */
+export const stayAlt = (d: StaySlugs): { ar: string; en: string } => ({
+  ar: stayHref(d, 'ar'),
+  en: stayHref(d, 'en'),
+});

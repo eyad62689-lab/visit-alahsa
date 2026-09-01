@@ -19,6 +19,7 @@ export const GET: APIRoute = async () => {
   const attractionCount = attractions.length;
   const zhCount = attractions.filter((e) => e.data.title_zh).length;
   const diningCount = (await getCollection('dining')).length;
+  const stayCount = (await getCollection('stay')).length;
   const eventCount = EVENTS_AR.length;
   // المقالات تُعدّ بالموضوع لا بالملف (لكل موضوع ملف عربي وآخر إنجليزي)
   const topicCount = new Set(posts.filter((p) => !p.data.draft).map((p) => p.data.key)).size;
@@ -37,6 +38,7 @@ export const GET: APIRoute = async () => {
 - [ثمار الواحة](${SITE}/ثمار/) | [Oasis Fruits](${SITE}/en/fruits/): تمور الخلاص، الليمون الأحسائي، ومواسم القطاف.
 - [المطبخ الأحسائي](${SITE}/أكلات/) | [Hasawi Cuisine](${SITE}/en/food/): الأرز الأحسائي، المندي، الهريس، خبز التمر وحلويات الواحة.
 - [المطاعم والمقاهي (${diningCount} منشأة بمواقع خرائط قوقل)](${SITE}/مطاعم-ومقاهي/) | [Restaurants & Cafés](${SITE}/en/restaurants-cafes/)
+- [أماكن الإقامة (${stayCount} أماكن بمواقع خرائط قوقل)](${SITE}/إقامة/) | [Places to Stay](${SITE}/en/stay/): نُزلٌ تراثي في حي الكوت وفندقٌ على ساحل العقير — بطاقات وصفية لا ترشيحات.
 - [المدونة (${topicCount} مقالات بالعربية والإنجليزية)](${SITE}/مدونة/) | [Blog](${SITE}/en/blog/): مسارات 24 و48 ساعة، الحرف اليدوية، الهدايا، وهل تستحق الأحساء الزيارة.
 - [خطط لرحلتك](${SITE}/خطط/) | [Plan your trip](${SITE}/en/plan-your-trip/): كيفية الوصول ومسارات مقترحة وأسئلة شائعة.
 - [خريطة المعالم](${SITE}/خريطة/) | [Map](${SITE}/en/map/) — و[الخريطة التضاريسية 3D](${SITE}/خريطة-تضاريس/) | [Terrain map](${SITE}/en/terrain-map/)

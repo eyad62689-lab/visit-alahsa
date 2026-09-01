@@ -1,0 +1,21 @@
+---
+name: "مخبز الخدود الشعبي — خالد خليل أجواد"
+name_en: "Al-Khudud Traditional Bakery — Khalid Khalil Ajwad"
+slug_ar: "مخبز-الخدود-الشعبي"
+slug_en: "khudud-bakery"
+kind: bakery
+# الحي من لافتة المخبز نفسها: «مخبز الخدود الشعبي» فوق «مخبز خالد خليل اجواد
+# للخبز» — الاسم يسمّي حيّه.
+district: khudud
+area: "حي الخدود"
+area_en: "Al-Khudud"
+blurb: "واجهةٌ صفراء بقوسٍ مضاء تفتح على صالة المخبز عند المغيب."
+blurb_en: "An ochre façade with a lit arch opening onto the bakery floor at dusk."
+alt: "واجهة مخبز الخدود الشعبي بقوسها المضاء عند المغيب"
+alt_en: "The lit arched façade of Al-Khudud Traditional Bakery at dusk"
+img: /img/dining/khudud-bakery
+maps: "https://maps.app.goo.gl/9WrPbhXHryjb9Ees6"
+order: 2
+# body / body_en: انظر التعليق في abu-fahd-alrabee.md — العتبة نفسها.
+body_en: ""
+---

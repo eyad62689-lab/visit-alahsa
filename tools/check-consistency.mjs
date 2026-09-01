@@ -236,7 +236,9 @@ async function main() {
   // dist لا يحوي دليلاً على منشأةٍ استُبعدت. والحارس يمنع تكرار ثغرة المعالم
   // الخمسة التي متنُها نسخة حرفية من نبذتها.
   {
-    const dir = path.join(ROOT, 'src/content/dining');
+    // المجموعتان (المنشآت وأماكن الإقامة) تتقاسمان النموذج والعتبة، فيفحصهما
+    // الحارس معاً — وإلا نشأ فرعٌ بلا حارس مع أول مجموعة جديدة.
+    const dirs = [['dining', path.join(ROOT, 'src/content/dining')], ['stay', path.join(ROOT, 'src/content/stay')]];
     const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
     const fmOf = (raw) => (raw.match(/^---\r?\n([\s\S]*?)\r?\n---/) ?? ['', ''])[1];
     const bodyOf = (raw) => raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '').trim();
@@ -246,22 +248,25 @@ async function main() {
       const v = m[1].trim();
       return (v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")) ? v.slice(1, -1) : v;
     };
-    let files = [];
-    try { files = (await readdir(dir)).filter((f) => f.endsWith('.md')); } catch { /* لا مجموعة بعد */ }
     const bad = [];
-    let publishedAr = 0, publishedEn = 0;
-    for (const f of files) {
-      const raw = await readFile(path.join(dir, f), 'utf8');
-      const fm = fmOf(raw), body = bodyOf(raw), bodyEn = fld(fm, 'body_en').trim();
-      const blurb = fld(fm, 'blurb'), blurbEn = fld(fm, 'blurb_en');
-      // متنٌ مكتوبٌ لكنه دون العتبة أو مطابقٌ للنبذة = خطأ صريح لا صمت
-      if (body && (wc(body) < 80 || body === blurb)) bad.push(`${f} (ar: ${wc(body)} كلمة${body === blurb ? '، نسخة من النبذة' : ''})`);
-      if (bodyEn && (wc(bodyEn) < 100 || bodyEn === blurbEn)) bad.push(`${f} (en: ${wc(bodyEn)} كلمة${bodyEn === blurbEn ? '، نسخة من النبذة' : ''})`);
-      if (body && wc(body) >= 80 && body !== blurb) publishedAr++;
-      if (bodyEn && wc(bodyEn) >= 100 && bodyEn !== blurbEn) publishedEn++;
+    let total = 0, publishedAr = 0, publishedEn = 0;
+    for (const [label, dir] of dirs) {
+      let files = [];
+      try { files = (await readdir(dir)).filter((f) => f.endsWith('.md')); } catch { /* لا مجموعة بعد */ }
+      total += files.length;
+      for (const f of files) {
+        const raw = await readFile(path.join(dir, f), 'utf8');
+        const fm = fmOf(raw), body = bodyOf(raw), bodyEn = fld(fm, 'body_en').trim();
+        const blurb = fld(fm, 'blurb'), blurbEn = fld(fm, 'blurb_en');
+        // متنٌ مكتوبٌ لكنه دون العتبة أو مطابقٌ للنبذة = خطأ صريح لا صمت
+        if (body && (wc(body) < 80 || body === blurb)) bad.push(`${label}/${f} (ar: ${wc(body)} كلمة${body === blurb ? '، نسخة من النبذة' : ''})`);
+        if (bodyEn && (wc(bodyEn) < 100 || bodyEn === blurbEn)) bad.push(`${label}/${f} (en: ${wc(bodyEn)} كلمة${bodyEn === blurbEn ? '، نسخة من النبذة' : ''})`);
+        if (body && wc(body) >= 80 && body !== blurb) publishedAr++;
+        if (bodyEn && wc(bodyEn) >= 100 && bodyEn !== blurbEn) publishedEn++;
+      }
     }
     if (bad.length) fail('C11', `متونٌ دون عتبة النشر: ${bad.join(' | ')}`);
-    else pass('C11', `${files.length} منشأة — صفحات مفردة منشورة: ${publishedAr} عربية و${publishedEn} إنجليزية`);
+    else pass('C11', `${total} منشأة ومكان إقامة — صفحات مفردة منشورة: ${publishedAr} عربية و${publishedEn} إنجليزية`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

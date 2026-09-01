@@ -80,9 +80,13 @@ const blog = defineCollection({
 // **بوابة توليد الصفحة المفردة هي المتن**: منشأةٌ بمتنٍ دون العتبة (80 كلمة
 // عربية / 100 إنجليزية) لا تُولَّد لها صفحة، وتبقى بطاقةً في الفهرس ترتبط
 // بخرائط قوقل — على سابقة `title_zh` في المعالم. فلا تُنشر صفحة رقيقة أبداً.
-const DINING_KINDS = ['restaurant', 'cafe'] as const;
+// `bakery` أُضيف مع دفعة مخابز الخبز الأحمر (2026-09-01): مخبزٌ تقليدي ليس
+// مطعماً ولا مقهى، وحشره في `cafe` كان يفسد مرشّح النوع ونوع schema.org معاً.
+const DINING_KINDS = ['restaurant', 'cafe', 'bakery'] as const;
+// `khudud` و`qarah` أُضيفا مع الدفعة نفسها — حي الخدود شرق الهفوف، والقارة
+// شرق الواحة عند جبل القارة.
 const DISTRICTS = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'rawdah',
-  'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz'] as const;
+  'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz', 'khudud', 'qarah'] as const;
 
 const dining = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/dining' }),
@@ -92,9 +96,13 @@ const dining = defineCollection({
     slug_ar: z.string(),
     slug_en: z.string(),
     kind: z.enum(DINING_KINDS),
-    district: z.enum(DISTRICTS),               // الموقع المعياري — مفتاح التصفية
-    area: z.string(),                          // الموقع كما يُعرض
-    area_en: z.string(),
+    // الموقع حقيقةٌ مصدرها عنوان خرائط قوقل نفسه (تحقق HTTP فعلي — رأس
+    // DiningView.astro). منشأةٌ لم يُتحقَّق من عنوانها بعد تُترك بلا حقلَي
+    // الموقع بدل تخمين حيّها: البطاقة تظهر تحت «كل المواقع» بلا سطر موقع،
+    // على سابقة التدهور الرشيق في `title_zh`. لا تُملأ هذه الحقول إلا بمصدر.
+    district: z.enum(DISTRICTS).optional(),    // الموقع المعياري — مفتاح التصفية
+    area: z.string().optional(),               // الموقع كما يُعرض
+    area_en: z.string().optional(),
     blurb: z.string(),                         // نبذة البطاقة — لا ادعاء جودة ولا أصناف
     blurb_en: z.string(),
     alt: z.string(),                           // النص البديل للصورة
@@ -106,4 +114,34 @@ const dining = defineCollection({
   }),
 });
 
-export const collections = { attractions, blog, dining };
+// أماكن الإقامة — قسمٌ مستقل أُنشئ في 2026-09-01 (قرار إياد) لأن الفندق ليس
+// منشأة طعام: نُزل تراثي أو فندق شاطئي يُقصد للمبيت لا للوجبة. النموذج نسخة
+// مطابقة لنموذج `dining` عمداً — نفس نمط الحقول `_en`، ونفس بوابة النشر
+// بالمتن (80 كلمة عربية / 100 إنجليزية)، فتنطبق عليه أدوات الفحص نفسها.
+//
+// حياد الترشيح: هذه بطاقاتٌ وصفية بصور ومواقع، لا توصيات ولا تقييمات جودة —
+// وهو ما يبقي نبرة «خطط لرحلتك» (لا نرشّح منشأة بعينها) صحيحةً كما هي.
+const STAY_KINDS = ['heritage-inn', 'hotel'] as const;
+
+const stay = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/stay' }),
+  schema: z.object({
+    name: z.string(),
+    name_en: z.string(),
+    slug_ar: z.string(),
+    slug_en: z.string(),
+    kind: z.enum(STAY_KINDS),
+    area: z.string().optional(),
+    area_en: z.string().optional(),
+    blurb: z.string(),
+    blurb_en: z.string(),
+    alt: z.string(),
+    alt_en: z.string(),
+    img: z.string(),                           // المسار الأساسي بلا امتداد
+    maps: z.string().url(),
+    order: z.number().default(99),
+    body_en: z.string().default(''),           // المتن الإنجليزي (العربي في جسم الملف)
+  }),
+});
+
+export const collections = { attractions, blog, dining, stay };

@@ -63,6 +63,9 @@ const toPlace = (e: (typeof diningEntries)[number]) => {
 };
 const RESTAURANTS = diningEntries.filter((e) => e.data.kind === 'restaurant').map(toPlace);
 const CAFES = diningEntries.filter((e) => e.data.kind === 'cafe').map(toPlace);
+// المخابز التقليدية (دفعة 2026-09-01): نوعٌ ثالث لا مطعمٌ ولا مقهى — مخبز
+// الخبز الأحمر الحساوي (خبز التمر) يُقصد للشراء لا للجلوس.
+const BAKERIES = diningEntries.filter((e) => e.data.kind === 'bakery').map(toPlace);
 
 
 const C = localize(lang, {
@@ -70,11 +73,14 @@ const C = localize(lang, {
   title: 'المطاعم والمقاهي',
   // مقدمة مُثراة بكلمات السيو المعتمدة (نتائج جيمني 2026-08-22 — مستندات العمل)
   // دون ادعاءات: التنوّع التراثي/العصري ملحوظ من القائمة نفسها.
-  heroSum: 'دليلك إلى موائد الأحساء: مطاعم ومقاهٍ مختارة في الهفوف والمبرز — من الأجواء التراثية والأكل الشعبي إلى المطاعم العصرية والقهوة المختصة — لكلٍّ منها صورته وموقعه على خرائط قوقل، تصل إليه بضغطة واحدة. والقائمة تنمو تباعاً.',
+  heroSum: 'دليلك إلى موائد الأحساء: مطاعم ومقاهٍ ومخابزُ للخبز الأحمر في الهفوف والمبرز وما حولهما — من الأجواء التراثية والأكل الشعبي إلى المطاعم العصرية والقهوة المختصة — لكلٍّ منها صورته وموقعه على خرائط قوقل، تصل إليه بضغطة واحدة. والقائمة تنمو تباعاً.',
   listEyebrow: 'الدفعة الأولى',
-  listH: 'عشرة مطاعم مختارة',
+  listH: 'مطاعم مختارة',
   cafesEyebrow: 'وللقهوة أهلها',
-  cafesH: 'عشرة مقاهٍ مختارة',
+  cafesH: 'مقاهٍ مختارة',
+  bakeriesEyebrow: 'من التنّور',
+  bakeriesH: 'مخابز الخبز الأحمر',
+  bakeriesNote: 'الخبز الأحمر هو خبز التمر نفسه، اسمان لطبقٍ واحد — وهذه مخابزُ تُوقد فيها التنانير له.',
   openMaps: t('det.openMaps'),
   newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
   moreLabel: 'تفاصيل المكان',
@@ -85,19 +91,23 @@ const C = localize(lang, {
   kindAria: 'تصفية بحسب النوع',
   kindRestaurants: 'مطاعم',
   kindCafes: 'مقاهٍ',
+  kindBakeries: 'مخابز',
   districtLabel: 'الموقع',
   districtAll: 'كل المواقع',
   districtNames: {
     alkoot: 'حي الكوت', downtown: 'وسط الهفوف التاريخي', 'rafah-north': 'الرفعة الشمالية',
     khalidiyah: 'الخالدية', rawdah: 'الروضة', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
     olaya: 'العليا', khaleej: 'طريق الخليج', mubarraz: 'المبرز',
+    khudud: 'حي الخدود', qarah: 'القارة',
   } as Record<string, string>,
   openNow: 'مفتوح الآن',
   closedNow: 'مغلق الآن',
   openFilter: 'مفتوح الآن',
   hoursNote: 'المواعيد من خرائط قوقل وقد تتغير — تحقّق من رابط المكان.',
   countPrefix: 'المعروض: ',
-  countSuffix: ' من 20',
+  // العدد يُشتقّ من المجموعة لا يُكتب يدوياً — الرقم المكتوب كان يتقادم مع
+  // أول إضافة (سابقة العددين المكتوبين بخط اليد في llms.txt).
+  countSuffix: ` من ${diningEntries.length}`,
   emptyMsg: 'لا نتائج مطابقة — جرّب توسيع البحث أو اختيار «كل المواقع».',
   closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
   closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
@@ -111,10 +121,13 @@ const C = localize(lang, {
       a: 'نعم — في هذه القائمة اثنان: دار بسمة بجوار حديقة قصر إبراهيم، ومطعم فندق الكوت التراثي في حي الكوت مقابل القصر مباشرة. وكل بطاقة تحمل رابط موقعها على خرائط قوقل.' },
     { q: 'أين تقع المقاهي داخل الهفوف القديمة؟',
       a: 'في وسط الهفوف التاريخي وحي الرفعة الشمالية تجد: مقهى بيذانه، وبيت الكوت، ودار حويجة على شارع الملك فهد، ومقهى السيد، وريشيو الكوت على طريق الملك عبدالعزيز، ومقهى شارع 7 بجوار قصر إبراهيم.' },
+    { q: 'أين أشتري الخبز الأحمر الحساوي؟',
+      a: 'في هذه القائمة قسمٌ خاص بمخابز الخبز الأحمر — وهو خبز التمر نفسه — لكلٍّ منها صورته وموقعه على خرائط قوقل.',
+      linkText: 'تعرّف على خبز التمر في صفحة المطبخ الأحسائي ←', linkHref: '/أكلات/' },
     { q: 'أين آكل في المبرز؟',
       a: 'من هذه القائمة مكانان على طريق عين نجم بالمبرز: بيكينق آب، ومخبز ومقهى دوت. وبقية القائمة في الهفوف.' },
     { q: 'أين تقع مطاعم ومقاهي هذه القائمة؟',
-      a: 'تتوزع بين الهفوف — حي الكوت التراثي ووسط الهفوف التاريخي والرفعة الشمالية والخالدية والروضة والمزروع والعليا والعويمرية — والمبرز على طريق عين نجم، وكل بطاقة تحمل رابط موقعها الدقيق على خرائط قوقل.' },
+      a: 'تتوزع بين الهفوف — حي الكوت التراثي ووسط الهفوف التاريخي والرفعة الشمالية والخالدية والروضة والمزروع والعليا والعويمرية وحي الخدود — والمبرز على طريق عين نجم، والقارة شرق الواحة، وكل بطاقة تحمل رابط موقعها الدقيق على خرائط قوقل.' },
     liveRaw
       ? { q: 'من أين تأتي التقييمات وأوقات العمل؟',
           a: `التقييمات وأوقات العمل مأخوذة من خرائط قوقل مباشرة (آخر تحديث ${fetchedLabel}) وقد تتغير — للتأكد من أحدث المعلومات افتح رابط خرائط قوقل لكل مكان. الأسعار لا تُعرض.` }
@@ -125,15 +138,19 @@ const C = localize(lang, {
   methodP1: 'هذه قائمة أولية تنمو تباعاً. الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، والنبذات تعريفية موجزة تصف المكان كما يظهر في صورته — لا تقييماً ولا توصية بأصناف بعينها.',
   places: RESTAURANTS,
   cafes: CAFES,
+  bakeries: BAKERIES,
 }, {
   heroEyebrow: 'From the tables of Al-Ahsa',
   title: 'Restaurants & Cafés',
   // «Al Ahsa» و«Hofuf» بلا واصلة مقصودتان هنا — تغطية تهجئات البحث الإنجليزية
-  heroSum: 'Your guide to dining in Al Ahsa: hand-picked restaurants and cafés across Hofuf and Al-Mubarraz — from heritage settings and traditional food to modern spots and specialty coffee — each with its photo and its place on Google Maps, one tap away. The list keeps growing.',
+  heroSum: 'Your guide to dining in Al Ahsa: hand-picked restaurants, cafés and red-bread bakeries across Hofuf, Al-Mubarraz and beyond — from heritage settings and traditional food to modern spots and specialty coffee — each with its photo and its place on Google Maps, one tap away. The list keeps growing.',
   listEyebrow: 'The first batch',
-  listH: 'Ten hand-picked restaurants',
+  listH: 'Hand-picked restaurants',
   cafesEyebrow: 'For the coffee lovers',
-  cafesH: 'Ten hand-picked cafés',
+  cafesH: 'Hand-picked cafés',
+  bakeriesEyebrow: 'Straight from the tannour',
+  bakeriesH: 'Red-bread bakeries',
+  bakeriesNote: 'Red bread and date bread are one and the same — these are the bakeries whose clay ovens are fired for it.',
   openMaps: t('det.openMaps'),
   newWindow: '(opens Google Maps in a new window)',
   moreLabel: 'Place details',
@@ -144,19 +161,21 @@ const C = localize(lang, {
   kindAria: 'Filter by type',
   kindRestaurants: 'Restaurants',
   kindCafes: 'Cafés',
+  kindBakeries: 'Bakeries',
   districtLabel: 'Area',
   districtAll: 'All areas',
   districtNames: {
     alkoot: 'Al-Koot district', downtown: 'Historic downtown Hofuf', 'rafah-north': 'Al-Raf‘ah North',
     khalidiyah: 'Al-Khalidiyah', rawdah: 'Al-Rawdah', mazrou: 'Al-Mazrou‘', uwaimriyah: 'Al-Uwaimriyah',
     olaya: 'Al-Olaya', khaleej: 'Al-Khaleej Road', mubarraz: 'Al-Mubarraz',
+    khudud: 'Al-Khudud', qarah: 'Al-Qarah',
   },
   openNow: 'Open now',
   closedNow: 'Closed now',
   openFilter: 'Open now',
   hoursNote: 'Hours come from Google Maps and can change — check the place’s link.',
   countPrefix: 'Showing ',
-  countSuffix: ' of 20',
+  countSuffix: ` of ${diningEntries.length}`,
   emptyMsg: 'No matches — try a broader search or select “All areas”.',
   closedPerm: 'Permanently closed — according to Google Maps',
   closedTemp: 'Temporarily closed — according to Google Maps',
@@ -170,10 +189,13 @@ const C = localize(lang, {
       a: 'Yes — two on this list: Dar Basma, next to the Qasr Ibrahim park, and the Al-Koot Heritage Hotel Restaurant in the Al-Koot district directly opposite the fort. Each card links to its spot on Google Maps.' },
     { q: 'Where are the cafés inside old Hofuf?',
       a: 'In the historic downtown and Al-Raf‘ah North you will find: Baithana, Bait Al-Koot, Dar Huwaija on King Fahd Road, Al-Sayed Café, Ratio Al-Koot on King Abdulaziz Road, and 7st beside Qasr Ibrahim.' },
+    { q: 'Where can I buy Hasawi red bread?',
+      a: 'This page has a section of its own for the red-bread bakeries — red bread and date bread being the same thing — each with its photo and its spot on Google Maps.',
+      linkText: 'Read about date bread on the Hasawi Cuisine page →', linkHref: '/en/food/' },
     { q: 'Where can I eat in Al-Mubarraz?',
       a: 'Two places on this list sit on Ain Najm Road in Al-Mubarraz: Baking Up and Dot Bakery & Café. The rest of the list is in Hofuf.' },
     { q: 'Where are these restaurants and cafés located?',
-      a: 'They are spread between Al Hofuf — the historic Al-Koot district, the historic downtown, Al-Raf‘ah North, Al-Khalidiyah, Al-Rawdah, Al-Mazrou‘, Al-Olaya and Al-Uwaimriyah — and Al-Mubarraz along Ain Najm Road; each card links to the exact spot on Google Maps.' },
+      a: 'They are spread between Al Hofuf — the historic Al-Koot district, the historic downtown, Al-Raf‘ah North, Al-Khalidiyah, Al-Rawdah, Al-Mazrou‘, Al-Olaya, Al-Uwaimriyah and Al-Khudud — Al-Mubarraz along Ain Najm Road, and Al-Qarah east of the oasis; each card links to the exact spot on Google Maps.' },
     liveRaw
       ? { q: 'Where do the ratings and opening hours come from?',
           a: `Ratings and opening hours come straight from Google Maps (last updated ${fetchedLabel}) and can change — check each place’s Google Maps link for the very latest details. Prices are not listed.` }
@@ -184,27 +206,32 @@ const C = localize(lang, {
   methodP1: 'This is a first list that will keep growing. Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo — not reviews or dish recommendations.',
   places: RESTAURANTS,
   cafes: CAFES,
+  bakeries: BAKERIES,
 });
 
 // قسما الصفحة يُصيَّران بحلقة واحدة — كانت الكتلة نفسها مكرّرة حرفياً مرتين
 const SECTIONS = [
   { kind: 'restaurant', eyebrow: C.listEyebrow, h: C.listH, note: C.srcNote, list: C.places },
   { kind: 'cafe', eyebrow: C.cafesEyebrow, h: C.cafesH, note: null, list: C.cafes },
+  { kind: 'bakery', eyebrow: C.bakeriesEyebrow, h: C.bakeriesH, note: C.bakeriesNote, list: C.bakeries },
 ];
 
 // خيارات فلتر الموقع: تُشتقّ من البيانات لا تُكتب يدوياً، فلا يتقادم الخيار ولا
 // يظهر خيار بلا نتائج. الترتيب مثبَّت (الأقرب إلى قلب الهفوف أولاً)، وطريق الخليج
 // قبل المبرز لأنه محورٌ لا حيّ (منشأة واحدة لا حيَّ لها — إفادة إياد 2026-08-30).
-const DISTRICT_ORDER = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'rawdah', 'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz'];
-const ALL_PLACES = [...C.places, ...C.cafes];
+const DISTRICT_ORDER = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'rawdah', 'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz', 'khudud', 'qarah'];
+const ALL_PLACES = [...C.places, ...C.cafes, ...C.bakeries];
+// منشأةٌ بلا موقع معياري متحقَّق منه لا تُعدّ في أي خيار — تظهر تحت «كل
+// المواقع» وحدها، فلا يقترح المرشّح حيّاً لم يؤكّده مصدر.
 const districtCounts = ALL_PLACES.reduce<Record<string, number>>((acc, p) => {
-  acc[p.district] = (acc[p.district] ?? 0) + 1; return acc;
+  if (p.district) acc[p.district] = (acc[p.district] ?? 0) + 1;
+  return acc;
 }, {});
 const districtOptions = DISTRICT_ORDER
   .filter((k) => districtCounts[k])
   .map((k) => ({ key: k, label: C.districtNames[k], count: districtCounts[k] }));
 // نصّ البحث لكل بطاقة: الاسم والموقع بلغة الصفحة — يُبنى وقت البناء لا وقت التشغيل
-const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area}`.toLowerCase();
+const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area ?? ''}`.trim().toLowerCase();
 
 // «مفتوح الآن»: تُمرَّر البنية الأسبوعية والإزاحة إلى المتصفح ولا تُصيَّر حالةٌ
 // هنا إطلاقاً — الشارة تخرج hidden ويملؤها سكربت من ساعة الزائر (سابقة عدّاد
@@ -238,7 +265,8 @@ const jsonLd = [
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
-    [...C.places.map((p) => ({ p, type: 'Restaurant' })), ...C.cafes.map((p) => ({ p, type: 'CafeOrCoffeeShop' }))]
+    [...C.places.map((p) => ({ p, type: 'Restaurant' })), ...C.cafes.map((p) => ({ p, type: 'CafeOrCoffeeShop' })),
+     ...C.bakeries.map((p) => ({ p, type: 'Bakery' }))]
       .map(({ p, type }, i) => ({ '@type': 'ListItem', position: i + 1, item: {
         '@type': type, name: p.name, hasMap: p.maps,
         ...(p.internal ? { url: new URL(p.href, siteUrl).href } : {}),
@@ -267,6 +295,7 @@ const jsonLd = [
           <button class="chip is-active" type="button" data-kind="all" aria-pressed="true">{t('list.all')} <bdi>({ALL_PLACES.length})</bdi></button>
           <button class="chip" type="button" data-kind="restaurant" aria-pressed="false">{C.kindRestaurants} <bdi>({C.places.length})</bdi></button>
           <button class="chip" type="button" data-kind="cafe" aria-pressed="false">{C.kindCafes} <bdi>({C.cafes.length})</bdi></button>
+          <button class="chip" type="button" data-kind="bakery" aria-pressed="false">{C.kindBakeries} <bdi>({C.bakeries.length})</bdi></button>
         </div>
         {anyHours && (
           <button class="chip chip--open" type="button" id="dn-open" aria-pressed="false">
@@ -307,7 +336,7 @@ const jsonLd = [
                 : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
               return (
                 <article class="card card--lift place-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}
-                  data-kind={sec.kind} data-district={p.district} data-q={searchText(p)} data-hours={hoursData(lv)}>
+                  data-kind={sec.kind} data-district={p.district ?? ''} data-q={searchText(p)} data-hours={hoursData(lv)}>
                   {/* البطاقة كلها هدف نقر واحد — رابط خارجي وحيد يغلّف المحتوى
                       غير التفاعلي. أوقات العمل <details> تبقى خارجه (عنصر تفاعلي
                       داخل رابط = تعشيش محظور). */}
@@ -315,7 +344,7 @@ const jsonLd = [
                     <Photo src={p.img} label={p.alt} class="dn-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                     <div class="pc-body">
                       <h3>{p.name}</h3>
-                      <p class="pc-area">{p.area}</p>
+                      {p.area && <p class="pc-area">{p.area}</p>}
                       {closed && <p class="pc-closed">{closed}</p>}
                       {!closed && hoursData(lv) && (
                         <p class="pc-open" hidden data-open={C.openNow} data-shut={C.closedNow}></p>

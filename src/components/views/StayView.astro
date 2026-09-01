@@ -1,0 +1,259 @@
+---
+// فهرس «أماكن الإقامة» — قسمٌ مستقل أُنشئ في 2026-09-01 (قرار إياد) لأن الفندق
+// ليس منشأة طعام. النموذج والبوابة نسخة من `dining`: البطاقة تعمل دائماً،
+// والصفحة المفردة لا تُولَّد حتى يعبر المتن العتبة (80 كلمة عربية / 100
+// إنجليزية) — تدهور رشيق على سابقة `title_zh`.
+//
+// قاعدة ملزمة: لا تُختلق معلومة، ولا ادعاء جودة ولا أسعار ولا نجوم تصنيف.
+// النبذة تصف المكان كما يظهر في صورته، والباقي على خرائط قوقل.
+//
+// الحياد: هذه بطاقاتٌ وصفية لا ترشيحات — ولذلك تبقى إجابة «خطط لرحلتك» عن
+// أفضل الفنادق (لا نرشّح منشأة بعينها) صحيحةً كما هي.
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import Photo from '../Photo.astro';
+import PageHero from '../PageHero.astro';
+import { getCollection } from 'astro:content';
+import { stayHref } from '../../lib/routes';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+// التقييمات وأوقات العمل من Google Places API — نفس آلية صفحة المطاعم، ونفس
+// التدهور الرشيق حين يغيب المفتاح. المفتاح في places-live.json هو اسم الصورة.
+type Live = { rating: number | null; count: number | null; status: string | null };
+const livePath = join(process.cwd(), 'src', 'data', 'places-live.json');
+const liveRaw = existsSync(livePath) ? JSON.parse(readFileSync(livePath, 'utf8')) : null;
+const live: Record<string, Live> = liveRaw?.places ?? {};
+const fetchedDate = liveRaw ? new Date(liveRaw.fetchedAt) : null;
+const fetchedLabel = fetchedDate
+  ? fetchedDate.toLocaleDateString(ar ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-GB', { month: 'long', year: 'numeric' })
+  : null;
+const liveFor = (img: string): Live | undefined => live[img.replace('/img/stay/', '')];
+
+const WORD_MIN_AR = 80;
+const WORD_MIN_EN = 100;
+const words = (x: string) => x.trim().split(/\s+/).filter(Boolean).length;
+const entries = (await getCollection('stay')).sort((a, b) => a.data.order - b.data.order);
+const PLACES = entries.map((e) => {
+  const d = e.data;
+  const bodyAr = (e.body ?? '').trim();
+  const passesAr = words(bodyAr) >= WORD_MIN_AR && bodyAr !== d.blurb;
+  const passesEn = words(d.body_en) >= WORD_MIN_EN && d.body_en.trim() !== d.blurb_en;
+  const hasPage = ar ? passesAr : passesEn;
+  return {
+    img: d.img, maps: d.maps, kind: d.kind,
+    name: ar ? d.name : d.name_en,
+    area: ar ? d.area : d.area_en,
+    alt: ar ? d.alt : d.alt_en,
+    blurb: ar ? d.blurb : d.blurb_en,
+    href: hasPage ? stayHref(d, lang) : d.maps,
+    internal: hasPage,
+  };
+});
+
+const C = localize(lang, {
+  heroEyebrow: 'أين تبيت في الواحة',
+  title: 'أماكن الإقامة',
+  heroSum: 'أماكن للمبيت في الأحساء — من نُزلٍ تراثي داخل المدينة القديمة إلى فندقٍ على ساحل العقير، لكلٍّ منها صورته وموقعه على خرائط قوقل. القائمة وصفية لا ترشيحية، وتنمو تباعاً.',
+  listEyebrow: 'الدفعة الأولى',
+  listH: 'أماكن إقامة في الأحساء',
+  kindLabels: { 'heritage-inn': 'نُزل تراثي', hotel: 'فندق' } as Record<string, string>,
+  openMaps: t('det.openMaps'),
+  newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
+  moreLabel: 'تفاصيل المكان',
+  ratingLabel: 'التقييم في خرائط قوقل',
+  closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
+  closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
+  srcNote: fetchedLabel ? `التقييمات من خرائط قوقل — آخر تحديث ${fetchedLabel}` : null,
+  faqH: 'أسئلة شائعة عن الإقامة في الأحساء',
+  faqs: [
+    { q: 'هل توجد نُزل تراثية للمبيت داخل الهفوف القديمة؟',
+      a: 'نعم — فندق الكوت التراثي نُزلٌ في قصرٍ مُرمَّم بحي الكوت مقابل قصر إبراهيم، وهو أول فندق تراثي في المحافظة يُرخَّص من الهيئة العامة للسياحة والتراث الوطني.' },
+    { q: 'هل توجد إقامة قريبة من شاطئ العقير؟',
+      a: 'نعم — فندق كونتننت العقير على ساحل العقير شرق الأحساء. ولأصحاب عربات الكرفان موقفٌ مخصّص بالشاطئ نفسه بحجزٍ إلكتروني عبر أمانة الأحساء.',
+      linkText: 'تفاصيله في صفحة شاطئ العقير ←', linkHref: '/معالم/شاطئ-العقير/' },
+    { q: 'هل هذه القائمة ترشيحٌ لأفضل الفنادق؟',
+      a: 'لا. البطاقات وصفية: اسم المكان وصورته وموقعه على خرائط قوقل. لا نرشّح منشأةً على أخرى ولا نعرض أسعاراً — قارن الخيارات على منصات الحجز الموثوقة.' },
+  ],
+  methodH: 'حول هذه الصفحة',
+  methodP1: 'الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، والنبذات تعريفية موجزة تصف المكان كما يظهر في صورته. لا تُعرض أسعار ولا تصنيفات نجوم ولا ترشيحات.',
+  places: PLACES,
+}, {
+  heroEyebrow: 'Where to stay in the oasis',
+  title: 'Places to Stay',
+  heroSum: 'Places to stay in Al Ahsa — from a heritage inn inside the old city to a hotel on the Al-Uqair coast, each with its photo and its spot on Google Maps. The list is descriptive rather than a set of recommendations, and it keeps growing.',
+  listEyebrow: 'The first batch',
+  listH: 'Places to stay in Al-Ahsa',
+  kindLabels: { 'heritage-inn': 'Heritage inn', hotel: 'Hotel' } as Record<string, string>,
+  openMaps: t('det.openMaps'),
+  newWindow: '(opens Google Maps in a new window)',
+  moreLabel: 'Place details',
+  ratingLabel: 'Rating on Google Maps',
+  closedPerm: 'Permanently closed — according to Google Maps',
+  closedTemp: 'Temporarily closed — according to Google Maps',
+  srcNote: fetchedLabel ? `Ratings from Google Maps — last updated ${fetchedLabel}` : null,
+  faqH: 'Frequently asked questions about staying in Al Ahsa',
+  faqs: [
+    { q: 'Is there a heritage inn to stay in inside old Hofuf?',
+      a: 'Yes — Al-Koot Heritage Hotel occupies a restored palace in the Al-Koot district opposite Qasr Ibrahim, and was the first heritage hotel in the governorate to be licensed by the Saudi Commission for Tourism and National Heritage.' },
+    { q: 'Is there anywhere to stay near Al-Uqair beach?',
+      a: 'Yes — Continent Hotel Al Uqayr sits on the Al-Uqair coast east of Al-Ahsa. Caravan owners also have a dedicated site on the beach itself, bookable online through Al-Ahsa Municipality.',
+      linkText: 'See the details on the Al-Uqair Beach page →', linkHref: '/en/attractions/uqair-beach/' },
+    { q: 'Is this list a recommendation of the best hotels?',
+      a: 'No. The cards are descriptive: each place’s name, photo and location on Google Maps. We do not rank one venue above another and we do not list prices — compare options on trusted booking platforms.' },
+  ],
+  methodH: 'About this page',
+  methodP1: 'Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo. No prices, star ratings or recommendations are listed.',
+  places: PLACES,
+});
+
+const pageTitle = ar
+  ? 'أماكن الإقامة في الأحساء — نُزل تراثية وفنادق'
+  : 'Where to Stay in Al Ahsa — Heritage Inns & Hotels';
+const description = ar
+  ? 'أماكن الإقامة في الأحساء: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
+  : 'Where to stay in Al Ahsa: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
+
+const siteUrl = 'https://visit-alahsa.com';
+const selfPath = ar ? '/إقامة/' : '/en/stay/';
+// ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — الحارس
+// الآلي هو الفحص C10 في tools/check-consistency.mjs.
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
+    C.places.map((p, i) => ({ '@type': 'ListItem', position: i + 1, item: {
+      '@type': 'LodgingBusiness', name: p.name, hasMap: p.maps,
+      ...(p.internal ? { url: new URL(p.href, siteUrl).href } : {}),
+      image: new URL(`${p.img}.jpg`, siteUrl).href,
+      address: { '@type': 'PostalAddress', ...(p.area ? { addressLocality: p.area } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+    } })),
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity:
+    C.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: {
+      '@type': 'Answer', text: f.linkText ? `${f.a} ${f.linkText.replace(/ [←→]$/, '')}` : f.a,
+    } })),
+  },
+];
+---
+<Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+
+    <PageHero eyebrow={C.heroEyebrow} title={C.title} lead={C.heroSum} leadWidth={62} lang={lang} />
+
+    <section class="container st-list">
+      <div class="st-head">
+        <span class="eyebrow">{C.listEyebrow}</span>
+        <h2>{C.listH}</h2>
+        {C.srcNote && <p class="st-src">{C.srcNote}</p>}
+      </div>
+
+      <div class="stgrid">
+        {C.places.map((p, idx) => {
+          const lv = liveFor(p.img);
+          const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
+            : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
+          return (
+            <article class="card card--lift stay-card" data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+              <a class="sc-link" href={p.href} {...(p.internal ? {} : { target: '_blank', rel: 'noopener' })}>
+                <Photo src={p.img} label={p.alt} class="st-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                <div class="sc-body">
+                  <span class="eyebrow">{C.kindLabels[p.kind]}</span>
+                  <h3>{p.name}</h3>
+                  {p.area && <p class="sc-area">{p.area}</p>}
+                  {closed && <p class="sc-closed">{closed}</p>}
+                  <p class="sc-blurb">{p.blurb}</p>
+                  {lv?.rating && (
+                    <p class="sc-rating"><span class="sc-star" aria-hidden="true">★</span>
+                      <strong>{lv.rating.toFixed(1)}</strong>
+                      {lv.count && <span class="sc-count">({lv.count.toLocaleString('en-US')})</span>}
+                      <span class="sr-only">{C.ratingLabel}</span>
+                    </p>
+                  )}
+                  <span class="sc-maps">
+                    {p.internal ? C.moreLabel : C.openMaps}
+                    {p.internal ? (
+                      <span class="sc-arrow" aria-hidden="true">{ar ? '←' : '→'}</span>
+                    ) : (
+                      <>
+                        <svg class="sc-ext" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        <span class="sr-only">{C.newWindow}</span>
+                      </>
+                    )}
+                  </span>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+
+      <section class="st-faq">
+        <h2>{C.faqH}</h2>
+        <dl>
+          {C.faqs.map((f) => (
+            <>
+              <dt>{f.q}</dt>
+              <dd>{f.a}{f.linkText && <> <a href={f.linkHref}>{f.linkText}</a></>}</dd>
+            </>
+          ))}
+        </dl>
+      </section>
+
+      <aside class="st-note">
+        <h2>{C.methodH}</h2>
+        <p>{C.methodP1}</p>
+      </aside>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .st-list { padding-block: var(--s-6) var(--s-8); }
+  .st-head { margin-block-end: var(--s-6); }
+  .st-head h2 { font-size: var(--t-2xl); margin-block-start: var(--s-2); }
+  .st-src { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .stgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
+
+  /* القشرة والتحويم من card/card--lift الموحّدين في global.css */
+  .sc-link { display: flex; flex-direction: column; flex: 1; text-decoration: none; color: inherit; }
+  .sc-link:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 3px; border-radius: var(--radius); }
+  .sc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; flex: 1; gap: var(--s-2); }
+  .stay-card h3 { font-size: var(--t-lg); color: var(--c-turq-deep); }
+  .sc-area { font-size: var(--t-xs); color: var(--c-gold-deep); }
+  .sc-blurb { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+  .sc-closed { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-inline-start: 3px solid var(--c-gold); border-radius: var(--radius-sm); padding: 6px 10px; }
+  .sc-rating { display: flex; align-items: center; gap: 6px; font-size: var(--t-sm); }
+  .sc-star { color: var(--c-gold-deep); }
+  .sc-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
+  .sc-maps { margin-block-start: auto; padding-block-start: var(--s-2); display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); }
+  .stay-card:hover .sc-arrow { transform: translateX(var(--arrow-shift, -3px)); }
+  .sc-arrow { transition: transform var(--dur) var(--ease); }
+
+  :global(.st-photo) { aspect-ratio: 4 / 3; }
+  :global(.st-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
+
+  .st-faq { margin-block-start: var(--s-7); }
+  .st-faq h2 { font-size: var(--t-2xl); margin-block-end: var(--s-4); }
+  .st-faq dt { font-family: var(--font-body); font-weight: 700; font-size: var(--t-base); color: var(--c-turq-deep); margin-block-start: var(--s-4); }
+  .st-faq dd { margin: var(--s-2) 0 0; font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.85; }
+  .st-faq dd a { color: var(--c-turq-deep); font-weight: 600; }
+
+  .st-note { margin-block-start: var(--s-7); background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .st-note h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
+  .st-note p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.85; }
+</style>

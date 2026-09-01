@@ -116,6 +116,25 @@ async function main() {
     }
   }
 
+  // أماكن الإقامة: الفرع نفسه بحرفه — المجموعة نسخة من نموذج dining، فبوابة
+  // النشر واحدة والبصمة تُؤخذ للصفحة المفردة وحدها.
+  const stayDir = join(ROOT, 'src', 'content', 'stay')
+  for (const f of (await readdir(stayDir)).filter((f) => f.endsWith('.md')).sort()) {
+    const { fm, body } = splitFrontmatter(await readFile(join(stayDir, f), 'utf8'))
+    const blurb = fmField(fm, 'blurb') ?? ''
+    const blurbEn = fmField(fm, 'blurb_en') ?? ''
+    const bodyAr = (body ?? '').trim()
+    const bodyEn = (fmField(fm, 'body_en') ?? '').trim()
+    if (wc(bodyAr) >= 80 && bodyAr !== blurb) {
+      const url = `${SITE}/إقامة/${fmField(fm, 'slug_ar')}/`
+      push({ id: id(url), type: 'stay', lang: 'ar', title: fmField(fm, 'name'), url, phrase: pickPhrase(smartify(plainText(bodyAr)), taken, true) })
+    }
+    if (wc(bodyEn) >= 100 && bodyEn !== blurbEn) {
+      const url = `${SITE}/en/stay/${fmField(fm, 'slug_en')}/`
+      push({ id: id(url), type: 'stay', lang: 'en', title: fmField(fm, 'name_en'), url, phrase: pickPhrase(bodyEn.replace(/\s+/g, ' ').trim(), taken) })
+    }
+  }
+
   // المدونة: كل لغة ملفها المستقل — المسودات لا تُبصَّم (غير منشورة أصلاً)
   const blogDir = join(ROOT, 'src', 'content', 'blog')
   for (const f of (await readdir(blogDir)).filter((f) => f.endsWith('.md')).sort()) {
