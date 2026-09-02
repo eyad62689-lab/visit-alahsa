@@ -1,6 +1,12 @@
 ---
 title: "بحيرة الحبيل"
 title_en: "Al-Hubail Lake"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 7 بدرجة 92/100 (2026-09-02)
+title_zh: 胡拜勒湖
+kicker_zh: 湖泊
+summary_zh: "哈萨北部的一座湖泊，由绿洲农田的排水汇聚而成。"
+body_zh: "胡拜勒湖（Al-Hubail）是哈萨北部的一片水域，由绿洲农田的排水长年汇聚而成。湖的面积、游客设施等详情目前待确认（信息更新中），待可靠来源核实后再作补充。"
+area_zh: 哈萨北部
 slug_ar: "بحيرة-الحبيل"
 slug_en: "hubail-lake"
 category: nature
@@ -14,7 +20,7 @@ order: 42
 area: "شمال الأحساء"
 area_en: "North of Al-Ahsa"
 practical:
-  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", verified: false }
+  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", verified: false }
 location: { lat: 25.7607843, lng: 49.7626523 }
 mapUrl: "https://maps.app.goo.gl/tepZoP6zNeRqmmCfA"
 ---
