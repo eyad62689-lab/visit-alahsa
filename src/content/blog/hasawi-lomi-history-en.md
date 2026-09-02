@@ -6,7 +6,7 @@ key: hasawi-lomi-history
 slug: "hasawi-lime-history"
 topic: "From the Oasis's Bounty"
 pubDate: 2026-09-02
-heroImage: /img/hasawi-lemon-farm
+heroImage: /img/event-lomi
 tags: ["Hasawi lime", "Hasawi lomi", "Bin Zuhairi", "Al-Ahsa history", "Al-Ahsa fruits"]
 faq:
   - q: "Is the Hasawi lime a species unique to Al-Ahsa?"

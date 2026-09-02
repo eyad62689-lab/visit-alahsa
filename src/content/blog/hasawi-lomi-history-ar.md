@@ -6,7 +6,7 @@ key: hasawi-lomi-history
 slug: "تاريخ-الليمون-الحساوي"
 topic: "من خيرات الواحة"
 pubDate: 2026-09-02
-heroImage: /img/hasawi-lemon-farm
+heroImage: /img/event-lomi
 tags: ["الليمون الحساوي", "اللومي الأحسائي", "البن زهيري", "تاريخ الأحساء", "ثمار الأحساء"]
 faq:
   - q: "هل الليمون الحساوي نوع نباتي خاص بالأحساء؟"
