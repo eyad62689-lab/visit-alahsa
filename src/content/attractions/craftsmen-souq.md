@@ -1,6 +1,12 @@
 ---
 title: "سوق الحرفيين"
 title_en: "Craftsmen Souq"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 10 بدرجة 94/100 (2026-09-03)
+title_zh: 手工艺人市集
+kicker_zh: 手工艺市集
+summary_zh: "位于胡富夫历史城区中心、由哈萨市政局主管的一座市集，汇聚手工艺人和他们的店铺，并设有一所传授手工艺的学院。"
+body_zh: "手工艺人市集（Craftsmen Souq）位于胡富夫历史城区的中心，2020 年 3 月开放，旨在扶持手工艺与民间艺术。市集占地 12000 多平方米，设有 112 家手工艺人店铺，另有一处露天庭院、一家传统咖啡馆、一家坦努尔泥炉面包坊和一座活动广场。市集里还有一所传授手工艺的学院，由经验丰富的手工艺人主持，把手艺传给新一代，这一使命也与哈萨加入联合国教科文组织创意城市网络一脉相承。市集的兴建是胡富夫历史城区开发项目的一部分，由哈萨市政局主管。"
+area_zh: 胡富夫——历史城区
 slug_ar: "سوق-الحرفيين"
 slug_en: "craftsmen-souq"
 category: market
@@ -14,7 +20,7 @@ order: 59
 area: "الهفوف — وسط المدينة التاريخي"
 area_en: "Hofuf — the historic town centre"
 practical:
-  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", verified: false }
+  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", label_zh: "开放时间", value_zh: "待确认（信息更新中）", verified: false }
 location: { lat: 25.3763032, lng: 49.5939642 }
 mapUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA"
 ---
