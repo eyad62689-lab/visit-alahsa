@@ -160,7 +160,7 @@ const nearby = a.location
               {t('det.openMaps')}
             </a>
           )}
-          <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(Astro.url.pathname)}`}>{t('det.report')}</a>
+          <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
         </div>
       </aside>
     </div>
@@ -253,7 +253,7 @@ const nearby = a.location
   .map-ic { color: var(--c-gold-deep); flex-shrink: 0; }
   .map-link:hover .map-ic { color: inherit; }
   /* الإبلاغ يبقى سطراً منفصلاً تحت رابط الخريطة */
-  .report-link { display: block; padding-block: var(--s-1); margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60);
+  .report-link { display: block; padding-block: var(--s-1); margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-soft);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
   .gallery-sec { padding-block: 0 var(--s-6); }

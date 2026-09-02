@@ -147,6 +147,14 @@ async function main() {
   }
 
   await mkdir(dirname(OUT), { recursive: true })
+  // لا إعادة كتابة إن لم تتغيّر البصمات: كان الطابع generated يتبدّل مع كل
+  // بناء فيتّسخ المستودع بتغيير لا معنى له في كل `npm run build`.
+  let previous = null
+  try { previous = JSON.parse(await readFile(OUT, 'utf8')) } catch { /* أول توليد */ }
+  if (previous && JSON.stringify(previous.fingerprints) === JSON.stringify(fingerprints) && previous.site === SITE) {
+    console.log(`بصمات بلا تغيير: ${fingerprints.length} — لم يُعَد كتابة ${OUT}`)
+    return
+  }
   const out = { generated: new Date().toISOString(), site: SITE, count: fingerprints.length, fingerprints }
   await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8')
   console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${fingerprints.filter((x) => x.lang === 'ar').length} | إنجليزي: ${fingerprints.filter((x) => x.lang === 'en').length})`)

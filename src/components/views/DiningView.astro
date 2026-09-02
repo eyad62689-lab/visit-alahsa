@@ -530,7 +530,9 @@ const jsonLd = [
     paintOpen();
     // إعادة الحساب كل دقيقة: زائرٌ يترك الصفحة مفتوحة عند حدّ الإغلاق يجب ألا
     // يرى «مفتوح الآن» بعد انقضائه.
-    setInterval(() => { paintOpen(); if (openBtn && openBtn.getAttribute('aria-pressed') === 'true') apply(); }, 60000);
+    const tick = setInterval(() => { paintOpen(); if (openBtn && openBtn.getAttribute('aria-pressed') === 'true') apply(); }, 60000);
+    // بلا إلغاء كان كل تنقّل عبر ClientRouter يترك مؤقّتاً يعمل على DOM مفصول
+    document.addEventListener('astro:before-swap', () => clearInterval(tick), { once: true });
   }
   document.addEventListener('astro:page-load', initDiningFilter);
   if (document.readyState !== 'loading') initDiningFilter(); else document.addEventListener('DOMContentLoaded', initDiningFilter);

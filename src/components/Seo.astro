@@ -1,7 +1,7 @@
 ---
 // SEO موحّد ثنائي اللغة: canonical + hreflang + Open Graph + Twitter + JSON-LD.
 import type { Lang } from '../i18n/ui';
-import type { AltLinks } from '../i18n/utils';
+import { useTranslations, type AltLinks } from '../i18n/utils';
 interface Props {
   title: string; description: string; lang?: Lang; alt?: AltLinks;
   type?: 'website' | 'article'; image?: string; noindex?: boolean; jsonLd?: object | object[];
@@ -11,6 +11,7 @@ const {
   type = 'website', image = '/og-default.png', noindex = false, jsonLd,
 } = Astro.props;
 
+const t = useTranslations(lang);
 const site = Astro.site ?? new URL('https://visit-alahsa.com');
 const canonical = new URL(Astro.url.pathname, site).href;
 const ogImage = new URL(image, site).href;
@@ -34,7 +35,7 @@ const ogLocaleAlts = (['ar', 'en', 'zh'] as const)
 {arHref && <link rel="alternate" hreflang="x-default" href={arHref} />}
 
 <meta property="og:type" content={type} />
-<meta property="og:site_name" content="الأحساء" />
+<meta property="og:site_name" content={t('site.name')} />
 <meta property="og:locale" content={ogLocale} />
 {alt && ogLocaleAlts.map((l) => <meta property="og:locale:alternate" content={l} />)}
 <meta property="og:title" content={title} />

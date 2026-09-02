@@ -6,6 +6,7 @@ import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
+import { srcsetFor } from '../../lib/images';
 import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -29,6 +30,10 @@ const points = items
     fav: e.data.slug_ar,
     summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
     img: e.data.heroImage ?? null,
+    // مصغّر القائمة (72px) والبطاقة المنبثقة: أصغر نسخة مولَّدة لا الأصل الكامل.
+    // 400w أول درجة في سلّم gen-image-widths فوجود أي نسخة يضمن وجودها.
+    thumb: e.data.heroImage ? `${e.data.heroImage}${srcsetFor(e.data.heroImage) ? '-400w' : ''}.webp` : null,
+    popImg: e.data.heroImage ? `${e.data.heroImage}${(srcsetFor(e.data.heroImage)?.webp ?? '').includes('-800w') ? '-800w' : ''}.webp` : null,
     // نصّ البحث: الاسمان معاً + المنطقة، فيجد الزائر المعلم بأي لغة
     q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.area ?? ''} ${e.data.area_en ?? ''}`,
     lat: e.data.location!.lat, lng: e.data.location!.lng,
@@ -90,7 +95,7 @@ const jsonLd = [
             <li>
               <button type="button" class="ms-item">
                 {p.img ? (
-                  <img class="ms-thumb" src={`${p.img}.webp`} alt="" loading="lazy" decoding="async" width="72" height="54" />
+                  <img class="ms-thumb" src={p.thumb} alt="" loading="lazy" decoding="async" width="72" height="54" />
                 ) : (
                   <span class="ms-thumb ms-thumb--ph" aria-hidden="true"><PalmMotif size={22} /></span>
                 )}
@@ -157,7 +162,7 @@ const jsonLd = [
 
       const entries = points.map((p, i) => {
         const m = L.marker([p.lat, p.lng], { icon: pin(p.cat), title: p.title });
-        const img = p.img ? '<img class="va-pop-img" src="' + p.img + '.webp" alt="" loading="lazy" decoding="async">' : '';
+        const img = p.popImg ? '<img class="va-pop-img" src="' + p.popImg + '" alt="" loading="lazy" decoding="async">' : '';
         m.bindPopup('<div class="va-pop">' + img +
           '<span class="va-pop-k">' + p.catLabel + '</span>' +
           '<strong class="va-pop-t">' + p.title + '</strong>' +
@@ -301,6 +306,8 @@ const jsonLd = [
   :global(.va-cluster:hover span) { transform: scale(1.08); background: var(--c-turq-deep); }
 
   :global(.leaflet-popup-content-wrapper) { border-radius: var(--radius) !important; }
+  /* روابط الإسناد تُميَّز بخط تحتي لا باللون وحده (axe link-in-text-block) */
+  :global(.leaflet-container .leaflet-control-attribution a) { text-decoration: underline; }
   :global(.va-pop) { font-family: var(--font-body); text-align: start; min-inline-size: 200px; max-inline-size: 240px; }
   :global(.va-pop-img) { inline-size: 100%; block-size: 110px; object-fit: cover; border-radius: 8px; margin-block-end: 8px; display: block; }
   :global(.va-pop-k) { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); }

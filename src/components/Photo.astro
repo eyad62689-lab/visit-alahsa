@@ -16,7 +16,8 @@ const set = src ? srcsetFor(src) : null;
 ---
 {src ? (
   <picture class:list={['photo', 'photo--img', cls]}>
-    <source srcset={set?.webp} type="image/webp" sizes={sizes} />
+    {/* بلا بيان عروض (صورة جديدة قبل تشغيل gen-image-widths) يبقى webp مخدوماً بدل السقوط إلى jpg وحده */}
+    <source srcset={set?.webp ?? `${src}.webp`} type="image/webp" sizes={sizes} />
     <img
       src={`${src}.jpg`}
       srcset={set?.jpg}

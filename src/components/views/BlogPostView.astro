@@ -93,7 +93,7 @@ if (p.faq.length > 0) {
       )}
 
       <p class="post-note">{t('plan.printNote')}</p>
-      <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(Astro.url.pathname)}`}>{t('det.report')}</a>
+      <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
 
       <div class="post-back">
         <a href={blogHref} class="btn btn--turq">{t('blog.back')}</a>

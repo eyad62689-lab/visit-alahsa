@@ -81,7 +81,8 @@ const jsonLd = [
                 <Photo src={d.img} label={d.alt} class="fd-photo" sizes="(max-width: 760px) 100vw, 25vw" />
                 <div class="dc-body">
                   <span class="t-caption dc-k">{d.k}</span>
-                  <h4>{d.name}</h4>
+                  {/* مجموعة بلا عنوان h3: اسم الطبق h3 وإلا قفز الترتيب من h2 إلى h4 (axe heading-order) */}
+                  {g.title ? <h4>{d.name}</h4> : <h3>{d.name}</h3>}
                   {/* زر النبذة: يُظهره السكربت — بلا جافاسكربت يبقى النص ظاهراً */}
                   <button class="disc-toggle" type="button" hidden aria-expanded="false" aria-controls={`ddesc-${gi}-${idx}`} data-more={C.more} data-less={C.less}>
                     <span class="dt-label">{C.more}</span>
@@ -150,7 +151,7 @@ const jsonLd = [
   /* القشرة من صنف card الموحّد في global.css */
   .dc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
   .dc-k { color: var(--c-gold-deep); }
-  .dish-card h4 { font-size: var(--t-lg); color: var(--c-turq-deep); }
+  .dish-card h3, .dish-card h4 { font-size: var(--t-lg); color: var(--c-turq-deep); }
   .dish-card p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
 
   /* زر فتح النبذة المطويّة */

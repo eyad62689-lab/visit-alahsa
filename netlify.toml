@@ -53,6 +53,10 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
+    # HTTPS إلزامي سنةً كاملة (الموقع لا يُخدم إلا عبر Netlify HTTPS)
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    # لا يستخدم الموقع الكاميرا ولا الميكروفون ولا الموقع الجغرافي — نعلن ذلك صراحةً
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
 
 # الصور والفيديو (غير مُبصَّمة): تخزين شهراً — يوازن السرعة مع إمكانية استبدال الملف بنفس الاسم
 [[headers]]

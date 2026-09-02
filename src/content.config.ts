@@ -1,6 +1,8 @@
 // نموذج محتوى «المعلم» — Content Collection عبر طبقة المحتوى (glob loader).
 // مصدر الحقيقة لكل صفحات المعالم. الحقول العملية موسومة وتُملأ بعد التحقق.
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+// z من astro/zod لا astro:content: التصدير القديم مهمل في Astro 7 (38 تحذيراً في astro check)
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const CATEGORIES = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'] as const;
@@ -33,7 +35,7 @@ const attractions = defineCollection({
     bestTime: z.string().optional(),           // أفضل وقت للزيارة (توصية عامة)
     bestTime_en: z.string().optional(),        // أفضل وقت بالإنجليزية
     location: z.object({ lat: z.number(), lng: z.number() }).optional(), // إحداثيات (للمرحلة ٣)
-    mapUrl: z.string().url().optional(),       // رابط خرائط جوجل
+    mapUrl: z.url().optional(),               // رابط خرائط جوجل
     // معلومات عملية موسومة: verified=false تعني بحاجة لتأكيد قبل النشر.
     // label_en/value_en ترجمة البند للإنجليزية — بدونهما لا يظهر البند في الصفحة الإنجليزية.
     practical: z.array(z.object({
@@ -108,7 +110,7 @@ const dining = defineCollection({
     alt: z.string(),                           // النص البديل للصورة
     alt_en: z.string(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
-    maps: z.string().url(),
+    maps: z.url(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (المتن العربي في جسم الملف)
   }),
@@ -138,7 +140,7 @@ const stay = defineCollection({
     alt: z.string(),
     alt_en: z.string(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
-    maps: z.string().url(),
+    maps: z.url(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (العربي في جسم الملف)
   }),

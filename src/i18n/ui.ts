@@ -30,6 +30,7 @@ export const ui = {
     // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
     'a11y.skip': 'تخطَّ إلى المحتوى',
     'a11y.menu': 'القائمة',
+    'a11y.mainNav': 'التنقل الرئيسي',
     'a11y.crumbs': 'مسار الصفحة',
     'a11y.scrollDown': 'انزل إلى المحتوى',
     'form.honeypot': 'لا تملأ هذا الحقل: ',
@@ -241,6 +242,7 @@ export const ui = {
     'lang.menu': 'Language',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
+    'a11y.mainNav': 'Main navigation',
     'a11y.crumbs': 'Breadcrumb',
     'a11y.scrollDown': 'Scroll to content',
     'form.honeypot': 'Do not fill this field: ',
@@ -497,6 +499,7 @@ export const ui = {
     'nav.blog': '博客',
     'a11y.skip': '跳至主要内容',
     'a11y.menu': '菜单',
+    'a11y.mainNav': '主导航',
     'a11y.crumbs': '面包屑导航',
     'a11y.scrollDown': '向下滚动查看更多',
     'form.honeypot': '请勿填写此字段： ',

@@ -193,7 +193,8 @@ const jsonLd = [
       } catch (e) { /* بيانات معطوبة ⇒ لا شارة */ }
     }
     paint();
-    setInterval(paint, 60000);
+    const tick = setInterval(paint, 60000);
+    document.addEventListener('astro:before-swap', () => clearInterval(tick), { once: true });
   }
   document.addEventListener('astro:page-load', initDetailOpen);
   if (document.readyState !== 'loading') initDetailOpen(); else document.addEventListener('DOMContentLoaded', initDetailOpen);

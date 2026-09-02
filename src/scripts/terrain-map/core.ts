@@ -107,7 +107,13 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
 
   // حالة 2D/3D: الخيار المحفوظ يغلب؛ وإلا 3D على الشاشات الواسعة و2D على الجوال
   // (قيد الخطة: لا تضاريس دون 820px إلا بطلب صريح — والخيار المحفوظ طلبٌ صريح سابق)
-  const saved = localStorage.getItem('va-map-3d');
+  // localStorage قد يرمي SecurityError (وضع خاص/حظر تخزين)؛ بلا حماية كان الخطأ
+  // يقع بعد إنشاء الخريطة فيُهيّأ Leaflet فوق canvas MapLibre في الحاوية نفسها.
+  const storage = {
+    get: (k: string): string | null => { try { return localStorage.getItem(k); } catch { return null; } },
+    set: (k: string, v: string): void => { try { localStorage.setItem(k, v); } catch { /* لا تخزين */ } },
+  };
+  const saved = storage.get('va-map-3d');
   let is3d = saved !== null ? saved === '1' : !opts.small;
 
   const btn = document.getElementById('tmap-3d') as HTMLButtonElement | null;
@@ -132,7 +138,7 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
     btn.hidden = false;
     btn.addEventListener('click', () => {
       const next = !is3d;
-      localStorage.setItem('va-map-3d', next ? '1' : '0');
+      storage.set('va-map-3d', next ? '1' : '0');
       apply3d(next, true);
     });
   }
