@@ -26,8 +26,8 @@ order: 4
 bestTime: أوقات النهار، مع احترام أوقات الصلاة وخصوصية المكان.
 bestTime_en: "Daylight hours, respecting prayer times and the sanctity of the place."
 practical:
-  - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", verified: true }
-  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", verified: true }
+  - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 ---
 

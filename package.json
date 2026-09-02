@@ -5,14 +5,15 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node tools/fetch-places.mjs && node scripts/fingerprint.mjs",
+    "prebuild": "node tools/test-ai-detection.mjs && node tools/fetch-places.mjs && node scripts/fingerprint.mjs",
     "build": "astro check && astro build && pagefind --site dist",
     "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "fingerprint": "node scripts/fingerprint.mjs",
     "pull:reports": "node scripts/pull-reports.mjs",
-    "check:consistency": "node tools/check-consistency.mjs"
+    "check:consistency": "node tools/check-consistency.mjs",
+    "test:detect": "node tools/test-ai-detection.mjs"
   },
   "dependencies": {
     "@fontsource/amiri": "^5.2.8",

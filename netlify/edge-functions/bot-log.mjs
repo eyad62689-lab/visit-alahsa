@@ -7,6 +7,7 @@
 // الخصوصية (PDPL): hash SHA-256 مُملَّح للـ IP فقط — لا عنوان خام.
 
 import { getStore } from '@netlify/blobs'
+import { classifyBot } from './lib/bot-kinds.mjs'
 
 const BOT_RE = /bot|crawl|spider|scrape|fetch|slurp|python|curl|wget|httpx|http[-_ ]?client|go-http|node-fetch|axios|scrapy|headless|phantom|selenium|playwright|puppeteer/i
 const SAMPLE_RATE = 0.05
@@ -21,11 +22,14 @@ async function hashIp(ip, salt) {
 async function logRequest(request, context, ua, isBot) {
   const now = new Date()
   const store = getStore('crawl-logs')
+  const { bot, botKind } = classifyBot(ua)
   const entry = {
     ts: now.toISOString(),
     path: new URL(request.url).pathname.slice(0, 300),
     ua: ua.slice(0, 300),
     isBot,
+    bot,
+    botKind,
     ipHash: await hashIp(context.ip, Deno.env.get('IP_HASH_SALT') || ''),
     country: context.geo?.country?.code || null,
   }

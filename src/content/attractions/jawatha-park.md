@@ -20,8 +20,8 @@ order: 44
 area: "الكلابية — شمال شرق الأحساء"
 area_en: "Al-Kilabiyah — northeast of Al-Ahsa"
 practical:
-  - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_zh: "开放时间", value_zh: "每日 8:00–24:00", verified: true }
-  - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", verified: true }
+  - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_zh: "开放时间", value_zh: "每日 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
 location: { lat: 25.471156, lng: 49.677408 }
 mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
 ---

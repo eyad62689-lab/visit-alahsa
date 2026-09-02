@@ -26,9 +26,9 @@ order: 1
 bestTime: الصباح الباكر أو قبيل الغروب، حين يلين الضوء وتعتدل الحرارة.
 bestTime_en: "Early morning or just before sunset, when the light softens and the heat eases."
 practical:
-  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_zh: "开放时间", value_zh: "每日 8:00 至 22:00（节假日可能延长）", verified: true }
-  - { label: "الرسوم", value: "50 ريالاً للبالغين — التذاكر عبر «أرض الحضارات»", label_en: "Fees", value_en: "SAR 50 for adults — tickets via the “Land of Civilisations” centre", label_zh: "门票", value_zh: "成人每位 50 沙特里亚尔（SAR），在“文明之地”（Land of Civilizations）游客中心购票", verified: true }
-  - { label: "مناسب لـ", value: "العائلات · التصوير · الأجواء الحارّة", label_en: "Good for", value_en: "Families · photography · hot days", label_zh: "适合", value_zh: "家庭出游、摄影、酷暑出行", verified: true }
+  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_zh: "开放时间", value_zh: "每日 8:00 至 22:00（节假日可能延长）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "50 ريالاً للبالغين — التذاكر عبر «أرض الحضارات»", label_en: "Fees", value_en: "SAR 50 for adults — tickets via the “Land of Civilisations” centre", label_zh: "门票", value_zh: "成人每位 50 沙特里亚尔（SAR），在“文明之地”（Land of Civilizations）游客中心购票", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مناسب لـ", value: "العائلات · التصوير · الأجواء الحارّة", label_en: "Good for", value_en: "Families · photography · hot days", label_zh: "适合", value_zh: "家庭出游、摄影、酷暑出行", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
 tags: ["كهوف", "طبيعة", "تصوير"]
 ---
 

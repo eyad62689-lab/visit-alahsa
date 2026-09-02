@@ -195,6 +195,54 @@ async function main() {
     }
   }
 
+  // ── C12: كل بند موثّق مقرون بمصدره وتاريخ تحققه في الصفحة المنشورة ───────
+  // المخطط يرفض البناء إن نقص الحقلان، وهذا يتحقق من وصولهما إلى القارئ فعلاً:
+  // بطاقة فيها بنود موثّقة بلا سطر إسناد = توثيقٌ في المصدر لا يراه أحد.
+  {
+    const missing = [];
+    let withSource = 0;
+    for (const f of mdFiles) {
+      const raw = await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8');
+      const slug = raw.match(/^slug_ar:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
+      if (!slug) continue;
+      const verified = raw.split('\n').filter((l) => /^\s*-\s*\{\s*label:/.test(l) && l.includes('verified: true'));
+      if (verified.length === 0) continue;
+      const page = path.join(DIST, AR_ATTRACTIONS_DIR, slug, 'index.html');
+      if (!existsSync(page)) { missing.push(`${slug}: الصفحة غير مبنية`); continue; }
+      const html = await readFile(page, 'utf8');
+      const hasBlock = /class="info-src"/.test(html);
+      const hasTime = /<time datetime="\d{4}-\d{2}-\d{2}"/.test(html);
+      if (!hasBlock || !hasTime) { missing.push(`${slug}: بلا سطر إسناد مقروء`); continue; }
+      withSource++;
+
+      // النظير الإنجليزي: اسم المصدر يجب أن يكون إنجليزياً لا عربياً — وهو
+      // العطب الذي ظهر أول تنفيذ (اسم عربي داخل صفحة إنجليزية، 2026-08-31).
+      const slugEn = raw.match(/^slug_en:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
+      const pageEn = slugEn && path.join(DIST, 'en', 'attractions', slugEn, 'index.html');
+      if (pageEn && existsSync(pageEn)) {
+        const htmlEn = await readFile(pageEn, 'utf8');
+        const block = htmlEn.match(/class="info-src"[^>]*>([\s\S]*?)<\/p>/);
+        if (!block) missing.push(`${slugEn} (en): بلا سطر إسناد`);
+        else if (/[؀-ۿ]/.test(block[1].replace(/<[^>]+>/g, ''))) {
+          missing.push(`${slugEn} (en): اسم المصدر بالعربية داخل الصفحة الإنجليزية`);
+        }
+      }
+    }
+    if (missing.length === 0) pass('C12', `الإسناد بلغة القارئ ظاهر في ${withSource} صفحة موثّقة (عربية + إنجليزية)`);
+    else fail('C12', `${missing.length} إخفاق إسناد: ${missing.slice(0, 3).join(' · ')}`);
+
+    // ── C13: تباين سطر الإسناد يبلغ AA ─────────────────────────────────────
+    // قيس أول مرة في المتصفح فكان --c-ink-60 يعطي 4.36:1 — دون العتبة 4.5.
+    // الفحص يمنع عودة أي رمز لون خافت إلى هذا السطر بلا قياس.
+    const css = (await readFile(path.join(ROOT, 'src/components/views/DetailView.astro'), 'utf8'));
+    const rule = css.match(/\.info-src\s*\{[^}]*\}/);
+    const banned = ['--c-ink-60', '--c-gold-deep', '--c-gold'];
+    const used = rule ? banned.filter((t) => rule[0].includes(t)) : [];
+    if (!rule) fail('C13', 'تعذّر العثور على قاعدة .info-src');
+    else if (used.length) fail('C13', `لون دون AA في سطر الإسناد: ${used.join(', ')} — قِس قبل التغيير`);
+    else pass('C13', 'سطر الإسناد بلون يبلغ AA على خلفية البطاقة (ink-soft ‏8:1)');
+  }
+
   // ── C9: مفتاح IndexNow منشور ومطابق للمفتاح في الإضافة ───────────────────
   // انفصال الاسم عن المحتوى أو عن ثابت الإضافة يجعل كل إشعار يُرفض بصمت.
   {

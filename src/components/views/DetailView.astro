@@ -9,6 +9,7 @@ import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
+import { formatDate } from '../../lib/dates';
 import { useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -63,19 +64,39 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
 // الصفحة (label_en/value_en أو label_zh/value_zh) — لا نعرض لغةً داخل صفحة أخرى.
 const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : (a.area_en ?? null);
 const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : (a.bestTime_en ?? null);
-const practicalItems = a.practical
-  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : p.label_en && p.value_en)))
-  .map((p) => ({
-    label: ar ? p.label : zh ? p.label_zh! : p.label_en!,
-    value: ar ? p.value : zh ? p.value_zh! : p.value_en!,
-  }));
+const shownPractical = a.practical
+  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : p.label_en && p.value_en)));
+const practicalItems = shownPractical.map((p) => ({
+  label: ar ? p.label : zh ? p.label_zh! : p.label_en!,
+  value: ar ? p.value : zh ? p.value_zh! : p.value_en!,
+}));
 const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label));
+
+// ── الإسناد (2026-08-31) ──────────────────────────────────────────────────
+// كانت البطاقة تحمل ملاحظة واحدة «روجعت في يونيو 2026م» تسري على كل البنود
+// بتاريخٍ واحد مكتوبٍ يدوياً — تتقادم بصمت ولا تقول من أين جاءت المعلومة.
+// صارت تُشتقّ من حقلَي source/verifiedAt الإلزاميين لكل بند موثّق (المخطط
+// يرفض البناء بدونهما)، وتُجمَّع البنود المتشاركة في المصدر والتاريخ نفسه
+// فلا يتكرّر السطر تحت كل صف.
+const sourceGroups = [...shownPractical
+  .reduce((m, p) => {
+    // اسم المصدر بلغة الصفحة — الصينية تتراجع للإنجليزية على سلسلة الموقع
+    const name = ar ? p.source! : zh ? (p.source_zh ?? p.source_en!) : p.source_en!;
+    const key = `${name}|${p.verifiedAt}|${p.sourceUrl ?? ''}`;
+    if (!m.has(key)) m.set(key, { source: name, verifiedAt: p.verifiedAt!, sourceUrl: p.sourceUrl, labels: [] as string[] });
+    m.get(key)!.labels.push(ar ? p.label : zh ? p.label_zh! : p.label_en!);
+    return m;
+  }, new Map<string, { source: string; verifiedAt: string; sourceUrl?: string; labels: string[] }>())
+  .values()];
+
+const srcLabel = ar ? 'المصدر' : zh ? '来源' : 'Source';
+const verifiedLabel = ar ? 'تاريخ التحقق' : zh ? '核实日期' : 'Verified';
 // النص الصيني من خط zh-translation-pipeline (misc.reviewNote — دورة 2026-08-29)
 const reviewNote = ar
-  ? `المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في ${reviewedLabel('attractions', 'ar')}.`
+  ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد.'
   : zh
-    ? `开放时间与门票价格可能随季节和节假日变动；信息核实于 ${reviewedLabel('attractions', 'zh')}。`
-    : `Hours and fees can change in seasons and holidays; reviewed in ${reviewedLabel('attractions', 'en')}.`;
+    ? '开放时间与门票价格可能随季节和节假日变动。'
+    : 'Hours and fees can change in seasons and holidays.';
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
@@ -149,6 +170,21 @@ const nearby = a.location
           </dl>
           {practicalItems.length > 0 && hasTimeFee && (
             <p class="info-note">{reviewNote}</p>
+          )}
+          {sourceGroups.length > 0 && (
+            <p class="info-src">
+              {sourceGroups.map((g) => (
+                <span class="src-line">
+                  <span class="src-k">{srcLabel}:</span>{' '}
+                  {g.sourceUrl
+                    ? <a href={g.sourceUrl} target="_blank" rel="noopener">{g.source}</a>
+                    : g.source}
+                  {' · '}
+                  <span class="src-k">{verifiedLabel}:</span>{' '}
+                  <time datetime={g.verifiedAt}>{formatDate(new Date(g.verifiedAt), lang)}</time>
+                </span>
+              ))}
+            </p>
           )}
           {/* رابط الخريطة: أيقونة صغيرة داخل البطاقة نفسها بدل اللوحة الخضراء الكبيرة
               التي كانت تحتلّ العمود (تغيير بطلب إياد 2026-07-22) */}
@@ -245,6 +281,13 @@ const nearby = a.location
   .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
   .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
   .info-note { font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-3); }
+  /* سطر الإسناد: يُفصل بخطٍّ ويصغر حجمه، لكن لونه --c-ink-soft لا --c-ink-60.
+     قيس فعلياً على خلفية البطاقة #EFE8D6 (2026-08-31): ink-60 يعطي 4.36:1
+     ودون AA، وink-soft يعطي 8:1. الإسناد بيان مصداقية يُقرأ لا زخرفة تُلمح. */
+  .info-src { display: grid; gap: 2px; font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-2); padding-block-start: var(--s-2); border-block-start: 1px solid var(--c-line); }
+  .info-src .src-k { font-weight: 600; }
+  .info-src a { color: inherit; text-underline-offset: 2px; }
+  .info-src a:hover { color: var(--c-turq); }
   /* رابط الخريطة — سطر صغير بأيقونة دبوس، لا لوحة صورة */
   .map-link { display: inline-flex; align-items: center; gap: 6px; margin-block-start: var(--s-3);
     font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq-deep);

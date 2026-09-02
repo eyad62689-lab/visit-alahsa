@@ -47,6 +47,21 @@ const attractions = defineCollection({
       label_zh: z.string().optional(),
       value_zh: z.string().optional(),
       verified: z.boolean().default(false),
+      // ── التوثيق (2026-08-31) ───────────────────────────────────────────
+      // بند دراسة التطوير: «لا معلومة تشغيلية دون مصدر وتاريخ تحقق».
+      // الحقول اختيارية في النوع لكن الفحص أدناه يجعلها إلزامية متى verified=true،
+      // فيستحيل نشر موعدٍ أو رسمٍ بلا إسناد — يفشل البناء لا المراجعة البشرية.
+      source: z.string().optional(),                                   // اسم الجهة أو المرجع (عربي)
+      // اسم المصدر بلغة كل نسخة: بدونه يظهر اسمٌ عربي داخل الصفحة الإنجليزية —
+      // وهي المخالفة نفسها التي يحرسها فلتر label_en/value_en أعلاه.
+      // الصينية تتراجع للإنجليزية على سلسلة الموقع (zh ← en ← ar).
+      source_en: z.string().optional(),
+      source_zh: z.string().optional(),
+      sourceUrl: z.string().url().optional(),                          // رابطه إن وُجد
+      verifiedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تاريخ التحقق YYYY-MM-DD
+      nextReview: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تجاوز دورة المراجعة الافتراضية
+    }).refine((p) => !p.verified || (p.source && p.source_en && p.verifiedAt), {
+      message: 'البند الموثّق (verified: true) يلزمه source وsource_en وverifiedAt — لا معلومة تشغيلية بلا إسناد بلغة قارئها',
     })).default([]),
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)
     gallery: z.array(z.string()).default([]),

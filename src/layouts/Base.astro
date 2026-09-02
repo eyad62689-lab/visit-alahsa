@@ -24,6 +24,7 @@ import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
 import { srcsetFor } from '../lib/images';
 import { ORG, WEBSITE } from '../lib/schema';
+import { AI_REFERRER_HOSTS } from '../lib/ai-referrers.mjs';
 import { dir, htmlLang, useTranslations, type AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
@@ -141,18 +142,63 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         تحميل المكتبة مؤجَّل إلى ما بعد load + مهلة خمول (سيو 2026-08-22) كي لا
         تزاحم العرض الأول — الأحداث قبل وصولها تُصفّ في dataLayer وتُعالج حال
         وصول المكتبة، فلا تضيع أي زيارة. */}
-    <script is:inline define:vars={{ GA_ID }}>
+    <script is:inline define:vars={{ GA_ID, AI_HOSTS: AI_REFERRER_HOSTS }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
       gtag('config', GA_ID, { send_page_view: false });
+      // مصدر محرك الإجابة الذي جاء منه الزائر — يُحسب مرة واحدة عند دخول الجلسة.
+      // مع ClientRouter يبقى document.referrer هو المُحيل الخارجي عبر كل تنقّل
+      // داخلي، فحسابه في كل page_load يضخّم العدّ. النسخة المنطقية في
+      // src/lib/ai-referrers.mjs وهي المُختبَرة — وهذه صورتها المصغّرة للمتصفح.
+      var aiSource = (function () {
+        function hostMatches(h, d) {
+          h = h.toLowerCase().replace(/^www\./, '');
+          return h === d || h.endsWith('.' + d);
+        }
+        try {
+          if (document.referrer) {
+            var u = new URL(document.referrer);
+            for (var i = 0; i < AI_HOSTS.length; i++) {
+              var parts = AI_HOSTS[i][0].split('/');
+              if (!hostMatches(u.hostname, parts[0])) continue;
+              if (parts[1] && u.pathname.toLowerCase().indexOf('/' + parts[1]) !== 0) continue;
+              return AI_HOSTS[i][1];
+            }
+          }
+        } catch (e) { /* مُحيل غير صالح */ }
+        try {
+          // ChatGPT يُلحق utm_source=chatgpt.com بروابطه، وقد يصل الزائر بلا مُحيل
+          var utm = new URLSearchParams(location.search).get('utm_source');
+          if (utm) {
+            var v = utm.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+            for (var j = 0; j < AI_HOSTS.length; j++) {
+              var d = AI_HOSTS[j][0].split('/')[0];
+              if (v === d || v.endsWith('.' + d) || v === AI_HOSTS[j][1]) return AI_HOSTS[j][1];
+            }
+          }
+        } catch (e) { /* بحث غير صالح */ }
+        return null;
+      })();
+
       document.addEventListener('astro:page-load', () => {
         gtag('event', 'page_view', {
           page_title: document.title,
           page_location: location.href,
           page_path: location.pathname + location.search,
+          ai_source: aiSource || '(none)',
         });
       });
+
+      // حدث مستقل يُطلق مرة واحدة لكل جلسة قادمة من محرك إجابة — المؤشر
+      // الرئيسي في دراسة التطوير. الحدث المستقل يظهر في تقرير الأحداث بلا
+      // تسجيل بُعد مخصص، بخلاف معاملات page_view.
+      if (aiSource) {
+        gtag('event', 'ai_referral', {
+          ai_source: aiSource,
+          page_location: location.href,
+        });
+      }
       (function loadGtagLazily() {
         var injected = false;
         function inject() {

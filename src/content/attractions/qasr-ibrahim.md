@@ -25,9 +25,9 @@ order: 2
 bestTime: النهار، لرؤية تفاصيل العمارة وضوء الفناء الداخلي.
 bestTime_en: "Daytime, to see the architectural details and the light of the inner courtyard."
 practical:
-  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_zh: "门票", value_zh: "免费入场", verified: true }
-  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_zh: "建议游览时长", value_zh: "1–2 小时", verified: true }
+  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_zh: "门票", value_zh: "免费入场", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_zh: "建议游览时长", value_zh: "1–2 小时", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
 ---
 
