@@ -19,6 +19,7 @@ import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { eventsFor, evView, type Ev } from '../../data/events';
 import { attractionHref } from '../../lib/routes';
+import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 
 interface Props { ev: Ev; lang: Lang; alt: AltLinks; }
 const { ev: raw, lang, alt } = Astro.props;
@@ -97,19 +98,23 @@ const mapUrl = ev.map ?? venue?.data.mapUrl ?? (loc ? `https://www.google.com/ma
 const embedSrc = loc ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}&hl=${lang}&z=15&output=embed` : undefined;
 const venueHref = venue ? attractionHref(venue.data, lang) : undefined;
 const venueName = venue ? (ar ? venue.data.title : (venue.data.title_en ?? venue.data.title)) : undefined;
+// المدينة/الحي في سكيما Event: من حقل area الموثّق في ملف المعلم وحده — وإن غاب
+// المعلم أو حقله سقط addressLocality كلياً (كان «الهفوف» مكتوباً يدوياً لكل فعالية).
+const venueArea = venue ? (ar ? venue.data.area : venue.data.area_en) : undefined;
 
-// ثلاث فعاليات أخرى للتصفّح
-const others = eventsFor(lang).filter((e) => e.id !== ev.id).slice(0, 3);
+// ثلاث فعاليات أخرى للتصفّح — بعرضها الفعّال (evView) لا الخام، وإلا عرضت
+// بطاقة نسخةٍ منتهية موعدَها القديم بينما صفحتها تعرض الموسم التقريبي.
+const others = eventsFor(lang).filter((e) => e.id !== ev.id).slice(0, 3).map((e) => evView(e));
 
-const siteUrl = 'https://visit-alahsa.com';
-const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const siteUrl = SITE;
+const pageUrl = absUrl(Astro.url.pathname);
 const ogImage = ev.img ? `${ev.img}.jpg` : '/og-default.png';
 const jsonLd: object[] = [
-  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
-    { '@type': 'ListItem', position: 2, name: C.crumb, item: new URL(listHref, siteUrl).href },
-    { '@type': 'ListItem', position: 3, name: ev.name, item: pageUrl },
-  ] },
+  breadcrumb([
+    { name: t('crumb.home'), path: homeHref },
+    { name: C.crumb, path: listHref },
+    { name: ev.name, path: Astro.url.pathname },
+  ]),
 ];
 // الفاصلة بلغة الصفحة (كانت العربية «،» تتسرب للوصف الإنجليزي)، ونشاطان
 // يكفيان — ثلاثة كانت تتجاوز 160 حرفاً في بعض الفعاليات (تدقيق 2026-08-28).
@@ -126,7 +131,7 @@ if (ev.startISO && ev.endISO) {
     eventStatus: 'https://schema.org/EventScheduled',
     image: new URL(ogImage, siteUrl).href, url: pageUrl,
     location: { '@type': 'Place', name: ev.place,
-      address: { '@type': 'PostalAddress', addressLocality: ar ? 'الهفوف' : 'Hofuf', addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+      address: { '@type': 'PostalAddress', ...(venueArea ? { addressLocality: venueArea } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
       ...(loc ? { geo: { '@type': 'GeoCoordinates', latitude: loc.lat, longitude: loc.lng } } : {}) },
     organizer: { '@type': 'Organization', name: ev.org },
     ...(ev.ticket && ev.priceRange ? { offers: { '@type': 'AggregateOffer', url: ev.ticket, priceCurrency: ev.priceRange.currency, lowPrice: ev.priceRange.low, highPrice: ev.priceRange.high, availability: 'https://schema.org/InStock' } } : {}),

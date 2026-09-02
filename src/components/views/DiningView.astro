@@ -4,15 +4,16 @@
 // (أفضل مطاعم الأحساء.docx وأفضل مقاهي الأحساء.docx)، والأحياء/العناوين من عناوين
 // خرائط قوقل نفسها (تحقق HTTP فعلي 2026-08-22). لا مواعيد ولا أسعار ولا أوصاف حتى تُوثَّق.
 // تصحيحان مثبتان من خرائط قوقل: «بيت الموت» في الملف = بيت الكوت، و«ريشيو الموت» = ريشيو الكوت.
-import { readFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
+import OpenNowBadge from '../OpenNowBadge.astro';
 import { getCollection } from 'astro:content';
 import { diningHref } from '../../lib/routes';
+import { loadLive, liveFor, hoursData, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
+import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -23,20 +24,11 @@ const ar = lang === 'ar';
 
 // التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
 // قبل البناء إن وُجد المفتاح. غيابها متوقَّع (بناء محلي بلا مفتاح) والصفحة
-// تتدهور رشيقاً: لا صف تقييم ولا أوقات عمل ولا حالة إغلاق.
-type Live = { rating: number | null; count: number | null; hoursAr: string[]; hoursEn: string[]; status: string | null;
-  periods?: (number | null)[][]; utcOffset?: number | null };
-// process.cwd() لا import.meta.url: الأخير يشير إلى الملف المُجمَّع وقت البناء
-// فيفشل العثور على JSON بصمت. البناء يعمل دائماً من جذر astro-site.
-const livePath = join(process.cwd(), 'src', 'data', 'places-live.json');
-const liveRaw = existsSync(livePath) ? JSON.parse(readFileSync(livePath, 'utf8')) : null;
-const live: Record<string, Live> = liveRaw?.places ?? {};
-// شهر التحديث للعرض (أرقام لاتينية دائماً)
-const fetchedDate = liveRaw ? new Date(liveRaw.fetchedAt) : null;
-const fetchedLabel = fetchedDate
-  ? fetchedDate.toLocaleDateString(ar ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-GB', { month: 'long', year: 'numeric' })
-  : null;
-const liveFor = (img: string): Live | undefined => live[img.replace('/img/dining/', '')];
+// تتدهور رشيقاً: لا صف تقييم ولا أوقات عمل ولا حالة إغلاق. القارئ الموحّد في
+// lib/places-live.ts (كان منسوخاً في أربع واجهات).
+const liveRaw = loadLive();
+// تاريخ التحديث للعرض (أرقام لاتينية دائماً)
+const fetchedLabel = fetchedLabelFor(lang);
 
 // مصدر الحقيقة الوحيد: مجموعة dining (هُجِّرت من data/dining.ts — 2026-08-30).
 // عتبة الصفحة المفردة: متنٌ يعبر الحد ولا يكون نسخةً من النبذة. من لم يعبرها
@@ -233,17 +225,10 @@ const districtOptions = DISTRICT_ORDER
 // نصّ البحث لكل بطاقة: الاسم والموقع بلغة الصفحة — يُبنى وقت البناء لا وقت التشغيل
 const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area ?? ''}`.trim().toLowerCase();
 
-// «مفتوح الآن»: تُمرَّر البنية الأسبوعية والإزاحة إلى المتصفح ولا تُصيَّر حالةٌ
-// هنا إطلاقاً — الشارة تخرج hidden ويملؤها سكربت من ساعة الزائر (سابقة عدّاد
-// الفعاليات). المنشأة التي لا تُرجِع periods لا شارة لها: **لا تُعرض «مغلق»**
-// استنتاجاً من غياب بيانات.
-// صيغة مضغوطة بلا علامات اقتباس: «الإزاحة|يوم,دقيقة,يوم,دقيقة;…». JSON هنا كان
-// يكلّف ~42KB في الصفحة لأن كل اقتباس يُهرَّب إلى &quot; في سمة HTML.
-// اليوم الفارغ = null (فترة بلا إغلاق ⇒ 24 ساعة).
-const hoursData = (lv?: Live) =>
-  lv?.periods?.length && typeof lv.utcOffset === 'number'
-    ? `${lv.utcOffset}|${lv.periods.map((x) => x.join(',')).join(';')}`
-    : null;
+// «مفتوح الآن»: تُمرَّر البنية الأسبوعية والإزاحة (hoursData في lib/places-live.ts)
+// إلى المتصفح ولا تُصيَّر حالةٌ هنا إطلاقاً — الشارة تخرج hidden ويملؤها
+// OpenNowBadge من ساعة الزائر (سابقة عدّاد الفعاليات). المنشأة التي لا تُرجِع
+// periods لا شارة لها: **لا تُعرض «مغلق»** استنتاجاً من غياب بيانات.
 const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
@@ -254,23 +239,23 @@ const description = ar
   ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
   : 'Discover the best restaurants and cafés in Al Ahsa — from traditional Hasawi dining to specialty coffee, with photos and direct Google Maps locations.';
 
-const siteUrl = 'https://visit-alahsa.com';
+const siteUrl = SITE;
 const selfPath = ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — بيانات
 // قوقل تُعرض في الواجهة فقط (شروط قوقل + إرشادات المراجعات الذاتية). الحارس
 // الآلي في tools/check-consistency.mjs (فحص C10) يُفشل البناء عند أي تسرّب.
 const jsonLd = [
-  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
-    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
-  ] },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: C.title, path: selfPath },
+  ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
     [...C.places.map((p) => ({ p, type: 'Restaurant' })), ...C.cafes.map((p) => ({ p, type: 'CafeOrCoffeeShop' })),
      ...C.bakeries.map((p) => ({ p, type: 'Bakery' }))]
       .map(({ p, type }, i) => ({ '@type': 'ListItem', position: i + 1, item: {
         '@type': type, name: p.name, hasMap: p.maps,
-        ...(p.internal ? { url: new URL(p.href, siteUrl).href } : {}),
-        image: new URL(`${p.img}.jpg`, siteUrl).href,
+        ...(p.internal ? { url: absUrl(p.href, siteUrl) } : {}),
+        image: absUrl(`${p.img}.jpg`, siteUrl),
         address: { '@type': 'PostalAddress', addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
       } })),
   },
@@ -410,6 +395,9 @@ const jsonLd = [
   <Footer lang={lang} />
 </Base>
 
+{/* شارة «مفتوح الآن» — لا تُضمَّن إلا حين تحمل بطاقةٌ واحدة على الأقل بيانات ساعات */}
+{anyHours && <OpenNowBadge />}
+
 <script is:inline>
   // تصفية الفهرس — تحسين تدريجي: بلا جافاسكربت تظهر المنشآت العشرون كلها،
   // وشريط الأدوات وحده يفقد أثره. النمط من FruitsView (شرائح + role="status").
@@ -438,51 +426,9 @@ const jsonLd = [
       cards.forEach((c) => c.classList.add('in'));
     }
 
-    // ── «مفتوح الآن»: يُحسب من ساعة الزائر لا من وقت البناء ──────────────
-    // periods من قوقل: [يومُ الفتح، دقيقةُ الفتح، يومُ الإغلاق، دقيقةُ الإغلاق]
-    // واليوم 0=الأحد. نحوّل «الآن» إلى دقيقة داخل الأسبوع بتوقيت المنشأة نفسها
-    // (الإزاحة من البيانات لا مفترَضة)، ثم نطابقها على كل فترة مع لفّ الأسبوع
-    // للفترات التي تعبر منتصف الليل. فترةٌ بلا إغلاق = مفتوح 24 ساعة.
-    var WEEK = 7 * 24 * 60;
-    function isOpen(data) {
-      var now = new Date();
-      var localMin = now.getTime() / 60000 + data.o;            // دقائق منذ الحقبة بتوقيت المنشأة
-      var dow = Math.floor(localMin / 1440 + 4) % 7;            // 1970-01-01 كان خميساً ⇒ +4 ليصير الأحد صفراً
-      var mow = dow * 1440 + (((localMin % 1440) + 1440) % 1440);
-      for (var i = 0; i < data.p.length; i++) {
-        var pr = data.p[i];
-        if (pr[0] === null) continue;
-        if (pr[2] === null) return true;                        // بلا إغلاق ⇒ 24 ساعة
-        var a = pr[0] * 1440 + pr[1];
-        var b = pr[2] * 1440 + pr[3];
-        if (b <= a) b += WEEK;                                  // الفترة تعبر منتصف الليل أو نهاية الأسبوع
-        if ((mow >= a && mow < b) || (mow + WEEK >= a && mow + WEEK < b)) return true;
-      }
-      return false;
-    }
-    function paintOpen() {
-      cards.forEach((card) => {
-        var raw = card.getAttribute('data-hours');
-        var badge = card.querySelector('.pc-open');
-        if (!raw || !badge) return;
-        var open;
-        try {
-          var parts = raw.split('|');
-          var data = {
-            o: +parts[0],
-            p: parts[1].split(';').map(function (x) {
-              return x.split(',').map(function (v) { return v === '' ? null : +v; });
-            }),
-          };
-          if (isNaN(data.o)) return;
-          open = isOpen(data);
-        } catch (e) { return; }                                  // بيانات معطوبة ⇒ لا شارة
-        badge.textContent = open ? badge.dataset.open : badge.dataset.shut;
-        badge.classList.toggle('is-open', open);
-        badge.hidden = false;
-        card.setAttribute('data-openstate', open ? '1' : '0');
-      });
-    }
+    // «مفتوح الآن» يرسمها OpenNowBadge (سكربت مشترك مع صفحة المنشأة) ويوسم كل
+    // بطاقة بـdata-openstate — هنا نقرأ الوسم فقط، ونعيد تطبيق الشريحة عند كل
+    // رسم (رأس كل دقيقة) لئلا تبقى منشأة ظاهرة بعد انقضاء ساعاتها.
 
     function apply() {
       revealAll();
@@ -527,12 +473,11 @@ const jsonLd = [
         apply();
       });
     }
-    paintOpen();
-    // إعادة الحساب كل دقيقة: زائرٌ يترك الصفحة مفتوحة عند حدّ الإغلاق يجب ألا
-    // يرى «مفتوح الآن» بعد انقضائه.
-    const tick = setInterval(() => { paintOpen(); if (openBtn && openBtn.getAttribute('aria-pressed') === 'true') apply(); }, 60000);
-    // بلا إلغاء كان كل تنقّل عبر ClientRouter يترك مؤقّتاً يعمل على DOM مفصول
-    document.addEventListener('astro:before-swap', () => clearInterval(tick), { once: true });
+    // مستمع الرسم خاص بهذه الصفحة (يغلق على apply) فيُزال عند مغادرتها، وإلا
+    // تراكم مستمعٌ لكل زيارة عبر ClientRouter على DOM مفصول.
+    const onPainted = () => { if (openBtn && openBtn.getAttribute('aria-pressed') === 'true') apply(); };
+    document.addEventListener('va-open-now-painted', onPainted);
+    document.addEventListener('astro:before-swap', () => document.removeEventListener('va-open-now-painted', onPainted), { once: true });
   }
   document.addEventListener('astro:page-load', initDiningFilter);
   if (document.readyState !== 'loading') initDiningFilter(); else document.addEventListener('DOMContentLoaded', initDiningFilter);

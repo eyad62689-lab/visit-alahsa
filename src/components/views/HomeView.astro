@@ -9,6 +9,7 @@ import HeroVideo from '../HeroVideo.astro';
 import SeasonNow from '../SeasonNow.astro';
 import { getCollection } from 'astro:content';
 import { attractionHref } from '../../lib/routes';
+import { SITE, ORG, WEBSITE, absUrl } from '../../lib/schema';
 import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -79,13 +80,15 @@ const routeDays = [
   },
 ];
 
-const siteUrl = 'https://visit-alahsa.com';
+const siteUrl = SITE;
+// الجهة والموقع من lib/schema.ts بمعرّفَي @id ثابتين — العقدتان نفساهما اللتان
+// تشير إليهما WebPage في Base على كل صفحة، فلا يتفرّق الاسم بين الصفحات.
 const jsonLd = [
-  { '@context': 'https://schema.org', '@type': 'Organization', name: t('site.name'), url: siteUrl + '/', logo: siteUrl + '/icon-512.png' },
-  { '@context': 'https://schema.org', '@type': 'WebSite', name: t('site.name'), url: new URL(altHref(alt, lang), siteUrl).href, inLanguage: lang, publisher: { '@type': 'Organization', name: t('site.name'), url: siteUrl + '/' } },
+  { '@context': 'https://schema.org', ...ORG },
+  { '@context': 'https://schema.org', ...WEBSITE, inLanguage: lang },
   {
     '@context': 'https://schema.org', '@type': 'TouristDestination',
-    name: ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa', url: new URL(altHref(alt, lang), siteUrl).href, image: siteUrl + '/og-default.png',
+    name: ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + '/og-default.png',
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
     containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : 'Saudi Arabia' },
@@ -148,7 +151,8 @@ const description = ar
                 <h3 class="cat-t">{t(`cat.${c.key}.t` as any)}</h3>
                 <p class="cat-d">{t(`cat.${c.key}.d` as any)}</p>
               </div>
-              <span class="cat-go" aria-hidden="true">{ar ? '→' : '←'}</span>
+              {/* اتجاه السهم كرابط المسار أدناه: في العربية يشير إلى جهة التقدّم (يسار) */}
+              <span class="cat-go" aria-hidden="true">{ar ? '←' : '→'}</span>
             </a>
           ))}
         </div>
@@ -167,7 +171,8 @@ const description = ar
             <a class={`card card--lift att-card ${i === 0 ? 'att-card--lead' : ''}`} href={attractionHref(e.data, hrefLang(e.data))} data-reveal style={`transition-delay:${i * 80}ms`}>
               <Photo src={e.data.heroImage} label={pickTitle(e.data)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
-                <span class="t-caption att-k">{ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : ''}</span>
+                {/* التسمية العلوية عربية/صينية فقط — لا عنصر فارغ في الإنجليزية */}
+                {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}
                 <h3 class="att-t">{pickTitle(e.data)}</h3>
                 <p class="att-d">{pickSummary(e.data)}</p>
               </div>

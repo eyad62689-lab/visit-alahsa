@@ -6,14 +6,15 @@
 // التقييم وأوقات العمل والحالة تُعرض في الواجهة فقط ولا تُصدَّر في أي JSON-LD
 // (شروط قوقل + إرشادات المراجعات الذاتية) — الحارس الآلي هو الفحص C10 في
 // tools/check-consistency.mjs.
-import { readFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
 import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
+import OpenNowBadge from '../OpenNowBadge.astro';
 import { diningHref } from '../../lib/routes';
+import { liveFor, hoursData as hoursDataFor } from '../../lib/places-live';
+import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -29,16 +30,13 @@ const area = ar ? d.area : d.area_en;
 const blurb = ar ? d.blurb : d.blurb_en;
 const alTxt = ar ? d.alt : d.alt_en;
 
-// بيانات قوقل الحية — نفس آلية الفهرس، وغيابها يتدهور رشيقاً
-type Live = { rating: number | null; count: number | null; hoursAr: string[]; hoursEn: string[];
-  status: string | null; periods?: (number | null)[][]; utcOffset?: number | null };
-const livePath = join(process.cwd(), 'src', 'data', 'places-live.json');
-const liveRaw = existsSync(livePath) ? JSON.parse(readFileSync(livePath, 'utf8')) : null;
-const lv: Live | undefined = liveRaw?.places?.[d.img.replace('/img/dining/', '')];
+// بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
+const lv = liveFor(d.img);
 const hours = ar ? lv?.hoursAr : lv?.hoursEn;
-const hoursData = lv?.periods?.length && typeof lv.utcOffset === 'number'
-  ? `${lv.utcOffset}|${lv.periods.map((x) => x.join(',')).join(';')}`
-  : null;
+const hoursData = hoursDataFor(lv);
+// المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
+// «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.
+const bodyEnParas = d.body_en.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 const C = localize(lang, {
   kindLabel: d.kind === 'cafe' ? 'مقهى' : d.kind === 'bakery' ? 'مخبز' : 'مطعم',
@@ -76,25 +74,26 @@ const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
 const indexHref = ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/';
-const siteUrl = 'https://visit-alahsa.com';
-const selfUrl = new URL(diningHref(d, lang), siteUrl).href;
+const siteUrl = SITE;
+const selfUrl = absUrl(diningHref(d, lang), siteUrl);
 const jsonLd = [
-  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
-    { '@type': 'ListItem', position: 2, name: ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés', item: new URL(indexHref, siteUrl).href },
-    { '@type': 'ListItem', position: 3, name, item: selfUrl },
-  ] },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés', path: indexHref },
+    { name, path: diningHref(d, lang) },
+  ], siteUrl),
   { '@context': 'https://schema.org',
     '@type': d.kind === 'cafe' ? 'CafeOrCoffeeShop' : d.kind === 'bakery' ? 'Bakery' : 'Restaurant',
-    name, url: selfUrl, hasMap: d.maps, image: new URL(`${d.img}.jpg`, siteUrl).href,
+    name, url: selfUrl, hasMap: d.maps, image: absUrl(`${d.img}.jpg`, siteUrl),
     // addressLocality يسقط حين لا يكون الموقع المعياري متحقَّقاً منه بعد —
     // عنوانٌ ناقص أصدق من عنوانٍ مخمَّن.
     address: { '@type': 'PostalAddress', ...(area ? { addressLocality: area } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
   },
 ];
 ---
-<Base title={`${name} — ${ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés'}`} description={blurb}
-  lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${name} — ${ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés'} — ${t('site.name')}`} description={blurb}
+  lang={lang} alt={alt} jsonLd={jsonLd}
+  preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />
   <main id="main">
     <article class="container dd">
@@ -124,7 +123,7 @@ const jsonLd = [
       <Photo src={d.img} label={alTxt} class="dd-photo" eager sizes="(max-width: 900px) 100vw, 900px" />
 
       <div class="dd-body prose">
-        {ar ? <Content /> : <p set:html={d.body_en.replace(/\n\n/g, '</p><p>')} />}
+        {ar ? <Content /> : bodyEnParas.map((p) => <p>{p}</p>)}
       </div>
 
       <div class="dd-panels">
@@ -158,47 +157,8 @@ const jsonLd = [
   <Footer lang={lang} />
 </Base>
 
-<script is:inline>
-  // «مفتوح الآن» — الخوارزمية نفسها المستعملة في الفهرس، ومختبَرة على 14 حالة
-  // حدّية. تُحسب من ساعة الزائر لا من وقت البناء.
-  function initDetailOpen() {
-    var el = document.querySelector('.dd-open');
-    if (!el || el.dataset.wired) return;
-    el.dataset.wired = '1';
-    var WEEK = 7 * 24 * 60;
-    function paint() {
-      var raw = el.getAttribute('data-hours');
-      try {
-        var parts = raw.split('|');
-        var off = +parts[0];
-        if (isNaN(off)) return;
-        var per = parts[1].split(';').map(function (x) {
-          return x.split(',').map(function (v) { return v === '' ? null : +v; });
-        });
-        var localMin = Date.now() / 60000 + off;
-        var dow = Math.floor(localMin / 1440 + 4) % 7;
-        var mow = dow * 1440 + (((localMin % 1440) + 1440) % 1440);
-        var open = false;
-        for (var i = 0; i < per.length; i++) {
-          var p = per[i];
-          if (p[0] === null) continue;
-          if (p[2] === null) { open = true; break; }
-          var a = p[0] * 1440 + p[1], b = p[2] * 1440 + p[3];
-          if (b <= a) b += WEEK;
-          if ((mow >= a && mow < b) || (mow + WEEK >= a && mow + WEEK < b)) { open = true; break; }
-        }
-        el.textContent = open ? el.dataset.open : el.dataset.shut;
-        el.classList.toggle('is-open', open);
-        el.hidden = false;
-      } catch (e) { /* بيانات معطوبة ⇒ لا شارة */ }
-    }
-    paint();
-    const tick = setInterval(paint, 60000);
-    document.addEventListener('astro:before-swap', () => clearInterval(tick), { once: true });
-  }
-  document.addEventListener('astro:page-load', initDetailOpen);
-  if (document.readyState !== 'loading') initDetailOpen(); else document.addEventListener('DOMContentLoaded', initDetailOpen);
-</script>
+{/* «مفتوح الآن» — السكربت المشترك مع الفهرس، ولا يُضمَّن بلا بيانات ساعات */}
+{hoursData && <OpenNowBadge />}
 
 <style>
   .dd { padding-block: var(--s-6) var(--s-8); max-inline-size: 900px; }

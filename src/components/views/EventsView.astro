@@ -13,6 +13,7 @@ import EventEdition from '../EventEdition.astro';
 import { altHref, localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { EVENTS_AR, EVENTS_EN, evView, type Ev } from '../../data/events';
+import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -97,21 +98,41 @@ const C = localize(lang, {
 // النشر بعد يوم الختام — raw يبقى للمواعيد ISO التي يقرأها العدّاد.
 const cards = [...C.events].sort((a, b) => a.start - b.start).map((raw) => ({ raw, e: evView(raw) }));
 
+// أيّ بطاقتين تُحمَّل صورتاهما فوراً (LCP)؟ المتصفّح يعيد الترتيب فيقدّم الجاري
+// الآن، فالمؤكدة أو الجارية في شهر السعودية وقت البناء أولى من أول اثنتين
+// تقويمياً — وتُكمَّل الحصّة من الترتيب التقويمي عند نقصها.
+const ksaMonth = (calendar?: string): number => {
+  try {
+    const f = new Intl.DateTimeFormat(calendar ? `en-u-ca-${calendar}` : 'en', { timeZone: 'Asia/Riyadh', month: 'numeric' });
+    const m = f.formatToParts(new Date()).find((p) => p.type === 'month');
+    return m ? parseInt(m.value, 10) : 0;
+  } catch { return 0; }
+};
+const gmNow = ksaMonth();
+const hmNow = ksaMonth('islamic-umalqura');
+const runningNow = (e: Ev): boolean => {
+  if (e.ramadan) return hmNow === 9;
+  const end = e.end ?? e.start;
+  return e.start <= end ? (gmNow >= e.start && gmNow <= end) : (gmNow >= e.start || gmNow <= end);
+};
+const eagerIds = new Set(cards.filter(({ e }) => e.status === 'confirmed' || runningNow(e)).slice(0, 2).map(({ raw }) => raw.id));
+for (const { raw } of cards) { if (eagerIds.size >= 2) break; eagerIds.add(raw.id); }
+
 const browseHref = ar ? '/معالم/' : '/en/attractions/';
 const detailBase = ar ? '/فعاليات/' : '/en/events/';
 const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
-const siteUrl = 'https://visit-alahsa.com';
+const siteUrl = SITE;
 const jsonLd = [
-  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
-    { '@type': 'ListItem', position: 2, name: C.title, item: new URL(altHref(alt, lang), siteUrl).href },
-  ] },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: C.title, path: altHref(alt, lang) },
+  ]),
   // ItemList فقط — لا Event schema عمداً: جوجل يشترط startDate محدداً للأهلية،
   // ومواسمنا تقريبية بقرار محتوى ملزم (لا تواريخ دقيقة)، فأي startDate سيكون مختلقاً.
   { '@context': 'https://schema.org', '@type': 'ItemList',
-    name: C.title, url: new URL(altHref(alt, lang), siteUrl).href,
-    itemListElement: [...C.events].sort((a, b) => a.start - b.start).map((e, i) => ({
-      '@type': 'ListItem', position: i + 1, name: e.name,
+    name: C.title, url: absUrl(altHref(alt, lang), siteUrl),
+    itemListElement: cards.map(({ e }, i) => ({
+      '@type': 'ListItem', position: i + 1, name: e.name, url: absUrl(`${detailBase}${e.slug}/`, siteUrl),
     })),
   },
 ];
@@ -139,7 +160,7 @@ const jsonLd = [
                 ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
                 : undefined}>
               <div class="ev-media">
-                <Photo src={e.img} label={e.name} class="ev-photo" eager={i < 2} sizes="(max-width: 760px) 100vw, (max-width: 1120px) 50vw, 360px" />
+                <Photo src={e.img} label={e.name} class="ev-photo" eager={eagerIds.has(raw.id)} sizes="(max-width: 760px) 100vw, (max-width: 1120px) 50vw, 360px" />
                 <span class="ev-season">{e.season}</span>
                 <span class={`ev-status ev-status--${e.status ?? 'expected'}`} data-ev-status>{C.statusL[e.status ?? 'expected']}</span>
                 <span class="ev-now" data-ev-now hidden>{C.nowBadge}</span>
@@ -230,13 +251,19 @@ const jsonLd = [
     if (!cards.length) return;
 
     var now = new Date();
+    // الشهر بتوقيت السعودية لا بجهاز الزائر — نفس يوم الأحساء الذي يعتمده عدّاد
+    // النسخة المؤكدة (EventEdition: UTC+3)، وإلا اختلف الشهر عن العدّاد ليلة رأس
+    // الشهر لزائرٍ في منطقة زمنية بعيدة. عند غياب دعم timeZone نعود لشهر الجهاز.
     var gm = now.getMonth() + 1; // الشهر الميلادي 1-12
+    try {
+      gm = parseInt(new Intl.DateTimeFormat('en', { timeZone: 'Asia/Riyadh', month: 'numeric' }).format(now), 10) || gm;
+    } catch (err) { /* شهر الجهاز */ }
 
-    // الشهر الهجري من تقويم الجهاز — لليالي كفو (رمضان = الشهر 9).
+    // الشهر الهجري (بتوقيت السعودية أيضاً) — لليالي كفو (رمضان = الشهر 9).
     // عند غياب دعم التقويم الهجري نُبقيها في آخر الترتيب بلا ادّعاء.
     var hm = 0;
     try {
-      var parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { month: 'numeric' }).formatToParts(now);
+      var parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { timeZone: 'Asia/Riyadh', month: 'numeric' }).formatToParts(now);
       for (var p = 0; p < parts.length; p++) if (parts[p].type === 'month') hm = parseInt(parts[p].value, 10);
     } catch (err) { hm = 0; }
 

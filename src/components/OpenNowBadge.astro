@@ -1,0 +1,82 @@
+---
+// شارة «مفتوح الآن» — سكربت واحد لفهرس المطاعم وصفحة المنشأة المفردة (كان
+// مكرّراً حرفياً فيهما). يُحسب من ساعة الزائر لا من وقت البناء، ومختبَر على
+// 14 حالة حدّية.
+//
+// العقد مع الواجهات (بالسمات لا بالأصناف):
+//   [data-hours]   حاوية تحمل «الإزاحة|يوم,دقيقة,يوم,دقيقة;…» (صيغة hoursData في
+//                  lib/places-live.ts) — وتُوسم بعد الحساب بـdata-openstate="1|0"
+//   [data-open]    الشارة نفسها (قد تكون الحاوية ذاتها أو عنصراً داخلها) وعليها
+//                  data-open/data-shut نصّا الحالتين؛ تخرج hidden من البناء
+//   حدث va-open-now-painted على document بعد كل رسم — يسمعه مرشّح الفهرس
+//   ليعيد تطبيق شريحة «مفتوح الآن» عند تبدّل الحالة على رأس الدقيقة.
+//
+// periods من قوقل: [يومُ الفتح، دقيقةُ الفتح، يومُ الإغلاق، دقيقةُ الإغلاق] واليوم
+// 0=الأحد. نحوّل «الآن» إلى دقيقة داخل الأسبوع بتوقيت المنشأة نفسها (الإزاحة من
+// البيانات لا مفترَضة)، ثم نطابقها على كل فترة مع لفّ الأسبوع للفترات التي تعبر
+// منتصف الليل. فترةٌ بلا إغلاق = مفتوح 24 ساعة.
+---
+<script is:inline>
+  (function () {
+    // يُسجَّل مرة واحدة لكل جلسة: ClientRouter يبقي document ومستمعيه عبر
+    // التنقّل، وإعادة التشغيل تُعاد لكل صفحة عبر astro:page-load.
+    if (window.__vaOpenNow) return;
+    window.__vaOpenNow = true;
+    var WEEK = 7 * 24 * 60;
+
+    function isOpen(off, per) {
+      var localMin = Date.now() / 60000 + off;            // دقائق منذ الحقبة بتوقيت المنشأة
+      var dow = Math.floor(localMin / 1440 + 4) % 7;      // 1970-01-01 كان خميساً ⇒ +4 ليصير الأحد صفراً
+      var mow = dow * 1440 + (((localMin % 1440) + 1440) % 1440);
+      for (var i = 0; i < per.length; i++) {
+        var p = per[i];
+        if (p[0] === null) continue;
+        if (p[2] === null) return true;                   // بلا إغلاق ⇒ 24 ساعة
+        var a = p[0] * 1440 + p[1], b = p[2] * 1440 + p[3];
+        if (b <= a) b += WEEK;                            // الفترة تعبر منتصف الليل أو نهاية الأسبوع
+        if ((mow >= a && mow < b) || (mow + WEEK >= a && mow + WEEK < b)) return true;
+      }
+      return false;
+    }
+
+    function paint() {
+      var els = document.querySelectorAll('[data-hours]');
+      if (!els.length) return false;
+      els.forEach(function (el) {
+        var raw = el.getAttribute('data-hours');
+        var badge = el.hasAttribute('data-open') ? el : el.querySelector('[data-open]');
+        if (!raw || !badge) return;
+        var open;
+        try {
+          var parts = raw.split('|');
+          var off = +parts[0];
+          if (isNaN(off)) return;
+          var per = parts[1].split(';').map(function (x) {
+            return x.split(',').map(function (v) { return v === '' ? null : +v; });
+          });
+          open = isOpen(off, per);
+        } catch (e) { return; }                           // بيانات معطوبة ⇒ لا شارة
+        badge.textContent = open ? badge.getAttribute('data-open') : badge.getAttribute('data-shut');
+        badge.classList.toggle('is-open', open);
+        badge.hidden = false;
+        el.setAttribute('data-openstate', open ? '1' : '0');
+      });
+      document.dispatchEvent(new CustomEvent('va-open-now-painted'));
+      return true;
+    }
+
+    // إعادة الحساب كل دقيقة: زائرٌ يترك الصفحة مفتوحة عند حدّ الإغلاق يجب ألا
+    // يرى «مفتوح الآن» بعد انقضائه. بلا إلغاء كان كل تنقّل عبر ClientRouter
+    // يترك مؤقّتاً يعمل على DOM مفصول.
+    var tick = null;
+    function stop() { if (tick) { clearInterval(tick); tick = null; } }
+    function run() {
+      stop();
+      if (paint()) tick = setInterval(paint, 60000);
+    }
+    document.addEventListener('astro:page-load', run);
+    document.addEventListener('astro:before-swap', stop);
+    if (document.readyState !== 'loading') run();
+    else document.addEventListener('DOMContentLoaded', run);
+  })();
+</script>

@@ -23,6 +23,7 @@ import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
 import { srcsetFor } from '../lib/images';
+import { ORG, WEBSITE } from '../lib/schema';
 import { dir, htmlLang, useTranslations, type AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
@@ -37,6 +38,10 @@ interface Props {
   jsonLd?: object | object[];
   /* المسار الأساسي لصورة الهيرو (بلا امتداد) — تُحمَّل مسبقاً لتحسين LCP */
   preloadImage?: string;
+  /* sizes الصورة المحمَّلة مسبقاً — يجب أن تطابق sizes العنصر الفعلي وإلا اختار
+     المتصفح مرشّحاً مختلفاً ونزّل نسختين. الافتراضي 100vw (HeroPoster)؛ صور
+     المنشآت المفردة تمرّر "(max-width: 900px) 100vw, 900px" مثل <Photo> عندها. */
+  preloadSizes?: string;
   /* أصول خارجية تفتح اتصالها مبكراً — لصفحات تعتمد LCP فيها على مضيف خارجي
      (بلاطات خريطة كارتو مثلاً — لايتهاوس 2026-08-29: prioritize-lcp-image) */
   preconnect?: string[];
@@ -44,7 +49,7 @@ interface Props {
 const {
   title,
   description = 'الأحساء — أكبر واحة نخيل في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
-  lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preconnect,
+  lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -72,8 +77,10 @@ const ownershipLd = {
   url: pageUrl,
   name: title,
   inLanguage: htmlLang(lang),
-  isPartOf: { '@type': 'WebSite', name: 'زوروا الأحساء — Visit Al-Ahsa', url: site.href },
-  copyrightHolder: { '@type': 'Organization', name: 'زوروا الأحساء — Visit Al-Ahsa', url: site.href },
+  // العقدتان من lib/schema.ts بمعرّفَي @id ثابتين — هما نفس Organization/WebSite
+  // المعلنتين في الرئيسية وناشر المدونة، فتلتقي كل الصفحات على كيان واحد.
+  isPartOf: WEBSITE,
+  copyrightHolder: ORG,
   copyrightYear,
   copyrightNotice,
   license: new URL(lang === 'ar' ? '/السياسات/' : '/en/legal/', site).href,
@@ -85,7 +92,8 @@ const ownershipComment = `<!-- va-page:${pageId} lang:${lang} generated:${new Da
 // بدونها كان preload يشير إلى الصورة الكاملة فينزّل الجوال نسختين: الكاملة
 // (‏260KB في قصر إبراهيم) ثم ما يختاره srcset (‏80KB) — والزائر العائد أسوأ،
 // إذ يعرض المتصفح الكاملة من الكاش متجاوزاً srcset (تدقيق 2026-08-28).
-// نفس sizes="100vw" الموجودة في HeroPoster وإلا اختار المتصفح مرشّحاً مختلفاً.
+// نفس sizes الموجودة في العنصر الفعلي (100vw في HeroPoster، أو ما يمرّره
+// preloadSizes) وإلا اختار المتصفح مرشّحاً مختلفاً.
 const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
 ---
 <!doctype html>
@@ -123,7 +131,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
       <link
         rel="preload" as="image" href={`${preloadImage}.webp`} type="image/webp" fetchpriority="high"
         imagesrcset={preloadSet?.webp}
-        imagesizes={preloadSet ? '100vw' : undefined}
+        imagesizes={preloadSet ? preloadSizes : undefined}
       />
     )}
 
