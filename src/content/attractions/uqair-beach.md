@@ -25,7 +25,7 @@ gallery:
 # الرسمي عن الخدمة؛ والصيغة مقصورة على ما أعلنه: موقعٌ مخصّص بمواقف ونقاط
 # تزويد بالمياه وتصريف وحجز إلكتروني — بلا أعداد ولا رسوم ولا مواعيد.
 practical:
-  - { label: "عربات الكرفان", value: "للشاطئ موقعٌ مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً", label_en: "Caravans", value_en: "The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online", verified: true }
+  - { label: "عربات الكرفان", value: "للشاطئ موقعٌ مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً", label_en: "Caravans", value_en: "The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online", verified: true, source: "إعلان محافظة الأحساء الرسمي عن خدمة موقع الكرفانات", source_en: "Al-Ahsa Governorate's official announcement of the caravan-site service", verifiedAt: "2026-09-01" }
 ---
 
 على ساحل الخليج العربي يمتدّ شاطئ العقير التاريخي بمياهه الهادئة الضحلة ورماله
