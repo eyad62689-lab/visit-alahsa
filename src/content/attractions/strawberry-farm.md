@@ -1,6 +1,11 @@
 ---
 title: "مزرعة الفراولة"
 title_en: "Strawberry Farm"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 11 بدرجة 91.5/100 (2026-09-02)
+title_zh: 草莓农场
+kicker_zh: 农场与椰枣林
+summary_zh: 乌盖尔路上的另一处草莓农场，应季时可以亲手采摘。
+body_zh: "乌盖尔路（Al-Uqair）上的另一处草莓农场，应季时可以亲手采摘。"
 slug_ar: "مزرعة-الفراولة"
 slug_en: "strawberry-farm"
 category: farm
