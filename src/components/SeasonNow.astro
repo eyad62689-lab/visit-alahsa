@@ -6,13 +6,14 @@
 // بلا JS تظهر البطاقات الأربع بترتيبها الطبيعي (الشتاء أولاً) كدليل فصول صادق — لا شيء يُخفى ولا يُختلق.
 // ليالي كفو الرمضانية غير مدرجة عمداً: موسمها هجري يتنقل عبر فصول السنة الشمسية.
 import type { Lang } from '../i18n/ui';
+import { localize } from '../i18n/utils';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const ar = lang === 'ar';
 
 type Season = { key: string; name: string; months: string; items: string[] };
-const C = ar ? {
+const AR = {
   eyebrow: 'مواسم الواحة',
   title: 'ما موسم الأحساء الآن؟',
   lead: 'لكل فصلٍ في الواحة خيراته وفعالياته — هذا ما يستقبلك في كلٍّ منها.',
@@ -42,7 +43,60 @@ const C = ar ? {
       'انطلاق موسم سباقات الخيل وأجواء شتاء الوفرة',
     ] },
   ] as Season[],
-} : {
+};
+// الكتلة الصينية من خط zh-translation-pipeline (دفعة نصوص الواجهة 2026-09-02، الحاكم 94/100)
+const ZH = {
+  "eyebrow": "绿洲的四季",
+  "title": "哈萨现在是什么季节？",
+  "lead": "绿洲四季各有物产与节庆——每一季，都有不一样的风景迎接您。",
+  "nowBadge": "当前季节",
+  "note": "季节划分仅为大致参考，活动日期逐年有所不同——出行前请以官方渠道发布为准。",
+  "fruitsCta": "各季水果",
+  "eventsCta": "节庆日程",
+  "seasons": [
+    {
+      "key": "winter",
+      "name": "冬季",
+      "months": "12 月至次年 2 月",
+      "items": [
+        "一年中最宜人的天气——探访古迹与城堡的黄金时节",
+        "绿洲果园新鲜采摘的卡纳尔枣与香橼",
+        "节庆旺季：哈萨比什特长袍节、椰枣制品节、椰枣村、乌盖尔之冬"
+      ]
+    },
+    {
+      "key": "spring",
+      "name": "春季",
+      "months": "3 月至 5 月",
+      "items": [
+        "绿洲桑葚——4 月前后，短短一季",
+        "创意哈萨节登场，凯萨利亚市集之夜落幕",
+        "5 月下旬：头茬早熟的鲜软椰枣上市"
+      ]
+    },
+    {
+      "key": "summer",
+      "name": "夏季",
+      "months": "6 月至 8 月",
+      "items": [
+        "鲜软椰枣与早收季——哈萨在沙特阿拉伯率先开摘",
+        "哈萨无花果、本地传统的班巴尔果与木瓜正当季",
+        "哈萨青柠展为夏日收官"
+      ]
+    },
+    {
+      "key": "autumn",
+      "name": "秋季",
+      "months": "9 月至 11 月",
+      "items": [
+        "椰枣采收季“西拉姆”：饱满成熟的椰枣，一直持续到 10 月初",
+        "天气转凉——理想的游览月份就此开始",
+        "赛马季与瓦夫拉之冬拉开帷幕"
+      ]
+    }
+  ]
+} as typeof AR;
+const C = localize(lang, AR, {
   eyebrow: 'Seasons of the oasis',
   title: 'What season is Al-Ahsa in now?',
   lead: 'Each season in the oasis brings its own bounty and events — here is what welcomes you in each.',
@@ -72,7 +126,7 @@ const C = ar ? {
       'The horse racing season and Al-Wafrah Winter get under way',
     ] },
   ] as Season[],
-};
+}, ZH);
 const fruitsHref = ar ? '/ثمار/' : '/en/fruits/';
 const eventsHref = ar ? '/فعاليات/' : '/en/events/';
 ---

@@ -63,7 +63,7 @@ export const FRUIT_GROUPS_AR: Group[] = [
         img: '/img/fruits/lomi-v2', alt: 'حبات اللومي الأحسائي الأخضر مع نصف ثمرة',
         k: 'الحمضيات', name: 'اللومي الأحسائي (البن زهيري)',
         season: 'صيفاً: من منتصف يونيو', seasons: 'summer',
-        pre: 'المنتج الزراعي الثاني في الأحساء بعد التمور. ثمرته صغيرة خضراء داكنة رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. تنتشر في الواحة أكثر من 100 ألف شجرة لومي مثمرة؛ إذ تنتج الشجرة الواحدة ما بين 25 و30 كيلوغراماً في الموسم، ويتراوح سعره بين 15 و20 ريالاً للكيلو. وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد» أو اللومي المشمّس) لاستعماله طوال العام. وتحتفي به المحافظة سنوياً في «معرض اللومي الحساوي» الذي تنظمه غرفة الأحساء بالشراكة مع هيئة تطوير الأحساء.',
+        pre: 'المنتج الزراعي الثاني في الأحساء بعد التمور. ثمرته صغيرة خضراء داكنة رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. تنتشر في الواحة أكثر من 100 ألف شجرة لومي مثمرة؛ إذ تنتج الشجرة الواحدة ما بين 25 و30 كيلوغراماً في الموسم. وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد» أو اللومي المشمّس) لاستعماله طوال العام. وتحتفي به المحافظة سنوياً في «معرض اللومي الحساوي» الذي تنظمه غرفة الأحساء بالشراكة مع هيئة تطوير الأحساء.',
       },
       {
         img: '/img/fruits/atranj-v2', alt: 'ثمار الأترنج الخضراء المجعّدة القشرة',
@@ -179,7 +179,7 @@ export const FRUIT_GROUPS_EN: Group[] = [
         img: '/img/fruits/lomi-v2', alt: 'Green Hasawi limes with a cut half',
         k: 'Citrus', name: 'Hasawi Lime (Bin Zuhairi)',
         season: 'Summer: from mid-June', seasons: 'summer',
-        pre: 'Al-Ahsa\'s second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season, and it sells for SAR 15–20 per kilo. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it (“jameed”, or sun-dried lime) for use all year. The governorate celebrates it annually at the Hasawi Lomi Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.',
+        pre: 'Al-Ahsa\'s second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it (“jameed”, or sun-dried lime) for use all year. The governorate celebrates it annually at the Hasawi Lomi Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.',
       },
       {
         img: '/img/fruits/atranj-v2', alt: 'Green wrinkle-skinned atranj (citron) fruits',

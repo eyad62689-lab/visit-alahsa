@@ -6,8 +6,8 @@ slug_en: "shaban"
 category: nature
 heroImage: /img/shaban
 kicker: "معلم طبيعي"
-summary: "جبل صخري مستقل قرب التويثير يُعرف اليوم بالشبعان — وله تسمية أخرى «أبا الكباري» — والاسم في المصادر القديمة أُطلق على جبل القارة."
-summary_en: "A free-standing rocky mountain near Al-Tuwaither known today as Al-Shaban — also called 'Aba Al-Kabari' — a name the old sources applied to Al-Qarah Mountain."
+summary: "جبل صخري مستقل قرب التويثير، يُعرف أيضاً بـ«أبا الكباري»، وكان اسمه قديماً يُطلق على جبل القارة."
+summary_en: "A free-standing rocky mountain near Al-Tuwaither, also called 'Aba Al-Kabari'; the old sources applied its name to Al-Qarah Mountain."
 body_en: "The mountain known today as Al-Shaban is a rocky rise standing apart from Al-Qarah Mountain, near the village of Al-Tuwaither east of Hofuf, and it carries another local name: 'Aba Al-Kabari'. In the old historical sources, however, 'Al-Shaban' was a name of Al-Qarah Mountain itself: the geographer Yaqut al-Hamawi recorded it as 'a mountain in Bahrain [the historic eastern coastlands], in whose caves one seeks the cool', and it is said the name — 'the sated one' — came from the palms and waters that once encircled it. As the name 'Al-Qarah' prevailed for that famous mountain, the name Al-Shaban settled on this neighbouring rise. For the caves and visiting details of the famous mountain, see the Al-Qarah Mountain page."
 area: قرب التويثير — شرق الهفوف
 area_en: "Near Al-Tuwaither — east of Hofuf"

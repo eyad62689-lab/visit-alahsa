@@ -26,7 +26,7 @@ order: 3
 bestTime: قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء.
 bestTime_en: "Just before sunset, when the white sands glow against the blue of the water."
 practical:
-  - { label: "المواعيد والدخول", value: "تُحدَّث قريباً", label_en: "Hours & entry", value_en: "To be updated soon", verified: false }
+  - { label: "المواعيد والدخول", value: "بانتظار التأكيد", label_en: "Hours & entry", value_en: "Pending confirmation", verified: false }
 tags: ["ساحل", "تاريخ", "بحر"]
 ---
 

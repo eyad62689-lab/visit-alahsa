@@ -4,8 +4,8 @@ title_en: "Al-Moosa Park"
 slug_ar: "حديقة-الموسى"
 slug_en: "musa-park"
 category: parks
-kicker: "متنزّه"
-summary: "حديقة عائلية في حي الفيصل بالمبرز نفذها مستشفى الموسى التخصصي ضمن مبادرة «نلعب معاً»، بألعاب تدمج الأطفال ذوي الإعاقة مع أقرانهم."
+kicker: "منتزه"
+summary: "حديقة عائلية في حي الفيصل بالمبرز ضمن مبادرة «نلعب معاً»، بألعاب تدمج الأطفال ذوي الإعاقة مع أقرانهم."
 summary_en: "A family park in Al-Mubarraz built by Almoosa Specialist Hospital, with inclusive play equipment uniting children with disabilities and their peers."
 body_en: "In the Faisal district of Al-Mubarraz lies Al-Moosa Park, opened in late November 2019 as the second park of the 'We Play Together' (Nalaab Ma'an) initiative — a community partnership between Al-Muhaidib for Community Service and Almoosa Specialist Hospital. The park was conceived around a simple idea rare in the Kingdom at the time: play equipment specially designed so that children with disabilities and their peers play side by side, making inclusion something children live rather than are taught. Spread over some 2,200 square metres, it holds more than twelve specialised inclusive play units, following the initiative's first park in Khobar."
 featured: false

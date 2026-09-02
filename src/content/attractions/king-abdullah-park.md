@@ -4,8 +4,8 @@ title_en: "King Abdullah Environmental Park"
 slug_ar: "منتزه-الملك-عبدالله-البيئي"
 slug_en: "king-abdullah-park"
 category: parks
-kicker: "متنزّه"
-summary: "متنزه بيئي واسع مخصص للمشي والتنزّه العائلي."
+kicker: "منتزه"
+summary: "منتزه بيئي واسع مخصص للمشي والتنزّه العائلي."
 summary_en: "A vast environmental park for walking and family outings."
 body_en: "A vast environmental park for walking and family outings."
 featured: false
@@ -16,4 +16,4 @@ heroImage: /img/king-abdullah-ecopark
 gallery: [/img/king-abdullah-ecopark-02]
 ---
 
-متنزه بيئي واسع مخصص للمشي والتنزّه العائلي.
+منتزه بيئي واسع مخصص للمشي والتنزّه العائلي.

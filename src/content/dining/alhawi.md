@@ -10,7 +10,7 @@ area_en: "Al-Khalidiyah — opposite King Faisal University"
 blurb: "سفرة فطور شعبي تُبسط على الخوص طبقاً إلى جانب طبق."
 blurb_en: "A traditional breakfast spread laid out on woven mats, plate after plate."
 alt: "سفرة فطور شعبي بأطباقها المتنوعة في مطعم الحوي"
-alt_en: "A traditional breakfast spread of assorted dishes at Al-Hawi"
+alt_en: "A traditional breakfast spread of assorted dishes at Al Hawy"
 img: /img/dining/alhawi
 maps: "https://maps.app.goo.gl/GZ61EihCSipwJyzJ8"
 order: 3

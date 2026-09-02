@@ -4,7 +4,7 @@ title_en: "Kanzan Adventure Park (Al-Shu'bah)"
 slug_ar: "منتزه-جبل-كنزان"
 slug_en: "kanzan-park"
 category: nature
-kicker: "متنزّه"
+kicker: "منتزه"
 summary: "المنتزه الجبلي الذي تنفذه أمانة الأحساء فوق كتلة الشعبة/كنزان — تزلج جبلي وجسور معلقة وشلالات."
 summary_en: "The mountain park Al-Ahsa Municipality is building on the Shu'bah/Kanzan massif — mountain slides, suspended bridges and waterfalls."
 body_en: "On the massif of Al-Shu'bah Mountain (historically Kanzan) north-east of the oasis, Al-Ahsa Municipality is building a large mountain recreation park in phases — the project is officially known as the Shu'bah Mountain Park. Partial operation of the upper section began in late 2022, with mountain slide arenas, artificial waterfalls running some 1,100 metres, three suspended wooden bridges, a zipline, children's play areas and walking paths. Announced elements of the project also include a 1,500-metre cable car with three stations and two lakes; the remaining construction phases are still under way, and full operation is yet to be confirmed."

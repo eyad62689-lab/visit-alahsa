@@ -6,7 +6,7 @@ slug_en: "7st"
 kind: cafe
 district: rafah-north
 area: "حي الرفعة الشمالية — الهفوف"
-area_en: "Al-Raf‘ah North — Al-Hofuf"
+area_en: "North Al-Rifaa — Hofuf"
 blurb: "قهوة مختصة في جلسة كلاسيكية بكراسٍ جلدية ونوافذ من الزجاج الملون."
 blurb_en: "Specialty coffee in a classic sitting room of leather chairs and stained glass."
 alt: "ركن جلوس بكراسٍ جلدية ونافذة زجاج ملون داخل مقهى 7st"

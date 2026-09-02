@@ -6,7 +6,7 @@ slug_en: "dar-huwaija"
 kind: cafe
 district: downtown
 area: "شارع الملك فهد — وسط الهفوف التاريخي"
-area_en: "King Fahd Road — historic downtown Al-Hofuf"
+area_en: "King Fahd Road — historic downtown Hofuf"
 blurb: "جلسات بين أقواس جصية بيضاء وأرفف تحمل عُدَّة القهوة."
 blurb_en: "Seating among white plaster arches and shelves of coffee-making gear."
 alt: "جلسات دار حويجة بين الأقواس الجصية والكراسي الخشبية"

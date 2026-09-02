@@ -14,8 +14,8 @@ slug_en: "lemon-farm"
 category: farm
 kicker: "مزرعة ونخيل"
 summary: "مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه."
-summary_en: "A citrus farm where visitors pick the famous Hasawi lemon in season."
-body_en: "A citrus farm where visitors pick the famous Hasawi lemon in season."
+summary_en: "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season."
+body_en: "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season."
 featured: false
 order: 61
 location: { lat: 25.382611, lng: 49.605278 }

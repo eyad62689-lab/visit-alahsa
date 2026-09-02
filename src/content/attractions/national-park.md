@@ -4,7 +4,7 @@ title_en: "Al-Ahsa National Park"
 slug_ar: "منتزه-الأحساء-الوطني"
 slug_en: "national-park"
 category: parks
-kicker: "متنزّه"
+kicker: "منتزه"
 summary: "غابة اصطناعية نشأت من مشروع حجز الرمال عام 1962م — ملايين أشجار الأثل ومظلات وممرات."
 summary_en: "A man-made forest born of a 1962 sand-control project — millions of tamarisk trees, shaded seating and trails."
 body_en: "North-east of the oasis at the city of Al-Omran, close to Al-Qarah Mountain, spreads Al-Ahsa National Park — a story that began in 1382 AH / 1962 CE as a Ministry of Agriculture project to hold back the sands creeping over the oasis villages. Millions of trees were planted, most of them tamarisk, over an area of some 4,500 hectares with a belt running twenty kilometres, and over time the sand barriers grew into a lush man-made forest, then a public park with shaded seating, trails and family facilities. Today it is overseen by the National Center for Vegetation Cover Development and Combating Desertification, which continues its rehabilitation projects, and within its bounds the Jawatha Forest was launched with two million trees of salt-tolerant native species."

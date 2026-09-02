@@ -10,7 +10,7 @@ pubDate: 2026-08-22
 tags: ["Al-Ahsa souvenirs", "Khalas dates", "heritage shopping"]
 faq:
   - q: "Which Al-Ahsa dates make the best gift?"
-    a: "Khalas is the crown of the oasis and its most celebrated variety, alongside local varieties such as Shishi, Raziz and Barhi. Each variety's season, fresh and dried, is detailed on the site's Oasis Fruits page."
+    a: "Khalas is the crown of the oasis and its most celebrated variety, alongside local varieties such as Shishi, Razeez and Barhi. Each variety's season, fresh and dried, is detailed on the site's Oasis Fruits page."
   - q: "Where do I find genuinely handmade products rather than imports?"
     a: "Straight from the artisans' workshops: Dougha Al-Gharash pottery is bought from the craft house itself at Jabal Al-Qarah, the Hasawi bisht from Qaisariyah Souq shops carrying the weaving families' work, and the Craftsmen Souq in central Hofuf gathers 112 shops run by the craftspeople themselves."
 ---
@@ -19,7 +19,7 @@ An honest gift from Al-Ahsa comes out of the oasis itself: from its palms, its c
 
 ## Dates: The Crown of the Oasis
 
-In the world's largest palm oasis, dates are the first gift without rival. **Khalas** is the master variety — golden as fresh rutab in summer, amber as dried dates at season's end — alongside storied local varieties: Shishi, Raziz, Barhi and more. Each variety's season, fresh and dried, is documented on the [Oasis Fruits](/en/fruits/) page.
+In the world's largest palm oasis, dates are the first gift without rival. **Khalas** is the master variety — golden as fresh rutab in summer, amber as dried dates at season's end — alongside storied local varieties: Shishi, Razeez, Barhi and more. Each variety's season, fresh and dried, is documented on the [Oasis Fruits](/en/fruits/) page.
 
 ## Hasawi Lime and the Oasis Pantry
 

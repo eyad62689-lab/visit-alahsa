@@ -6,7 +6,7 @@ slug_en: "khunaina"
 kind: restaurant
 district: khalidiyah
 area: "حي الخالدية — الهفوف"
-area_en: "Al-Khalidiyah — Al-Hofuf"
+area_en: "Al-Khalidiyah — Hofuf"
 blurb: "أطباق تراثية تُقدَّم في سلال الخوص وسط جلسات مخملية داكنة الخضرة."
 blurb_en: "Heritage dishes served in wicker baskets amid deep-green velvet seating."
 alt: "أطباق تراثية تُقدَّم في سلال الخوص على طاولة مطعم خنينة"

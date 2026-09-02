@@ -7,7 +7,7 @@ category: religious
 heroImage: /img/qubba-mosque
 kicker: "موقع ديني"
 summary: "المسجد ذو القبة داخل قصر إبراهيم، من أبرز معالمه المعمارية."
-summary_en: "The domed mosque inside Ibrahim Palace, one of its most striking architectural features."
+summary_en: "The domed mosque inside Qasr Ibrahim, one of its most striking architectural features."
 body_en: "Within the walls of Qasr Ibrahim in Hofuf's Al-Koot district stands the Qubba Mosque, the palace's most striking architectural element and one of the defining images of heritage Al-Ahsa. It was founded in 979 AH / 1571 CE, after some five years of construction, as part of a complex that included a school of Islamic sciences and a place for teaching the Quran. It is crowned by a central hemispherical dome about thirteen metres across, flanked by small corner domes, with a free-standing cylindrical minaret rising nineteen metres around a stone spiral staircase. Above its entrance, a gypsum plaque records the founding date in Thuluth script — a witness to an entire era of the oasis's history."
 area: داخل قصر إبراهيم، حي الكوت — الهفوف
 area_en: "Inside Qasr Ibrahim, Al-Koot district — Hofuf"

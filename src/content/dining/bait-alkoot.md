@@ -6,9 +6,9 @@ slug_en: "bait-alkoot"
 kind: cafe
 district: downtown
 area: "وسط الهفوف التاريخي"
-area_en: "Historic downtown Al-Hofuf"
+area_en: "Historic downtown Hofuf"
 blurb: "بيت بطراز أحسائي تتدلى فوقه الإضاءة في قلب الهفوف التاريخي."
-blurb_en: "An Ahsai-style house strung with lights in the historic heart of Hofuf."
+blurb_en: "A Hasawi-style house strung with lights in the historic heart of Hofuf."
 alt: "واجهة بيت الكوت بإضاءتها المتدلية عند المساء"
 alt_en: "Bait Al-Koot’s façade with hanging lights at dusk"
 img: /img/dining/bait-alkoot

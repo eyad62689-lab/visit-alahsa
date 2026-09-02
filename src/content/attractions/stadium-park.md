@@ -4,7 +4,7 @@ title_en: "Sports Stadium Park"
 slug_ar: "حديقة-الاستاد-الرياضي"
 slug_en: "stadium-park"
 category: parks
-kicker: "متنزّه"
+kicker: "منتزه"
 summary: "حديقة عامة بجوار الاستاد الرياضي بالهفوف."
 summary_en: "A public park beside the sports stadium in Hofuf."
 body_en: "A public park beside the sports stadium in Hofuf."

@@ -31,7 +31,7 @@ Nor is the mountain a single connected passage. It holds **twelve caves** of var
 
 **The caves and corridors.** The heart of the experience: walking the narrow passages as light, shadow and temperature shift from one chamber to the next. It suits families and photographers alike — especially on hot days.
 
-**The lookout over a sea of palms.** From the summit the oasis unfolds like a sea of palms your eye can barely reach the end of — more than two million date palms stretching below you. It is the view that explains why Al-Ahsa became the largest palm oasis on earth.
+**The lookout over a sea of palms.** From the summit the oasis unfolds like a sea of palms your eye can barely reach the end of — more than 2.5 million date palms stretching below you. It is the view that explains why Al-Ahsa became the largest palm oasis on earth.
 
 **[Land of Civilisations](/en/attractions/ardh-alhadarat/).** A heritage village and exhibition at the foot of the mountain, tracing the region's stages of civilisation and integrated with the mountain visit through trails, facilities and viewpoints — this is where tickets are issued, and they include the caves experience.
 

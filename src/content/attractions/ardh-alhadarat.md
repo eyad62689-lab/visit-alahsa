@@ -6,7 +6,7 @@ title_en: "Land of Civilisations"
 title_zh: 文明之地
 kicker_zh: 遗产村落
 summary_zh: 卡拉山下的遗产村落与展馆，串起这片土地从古至今的各个文明阶段。
-body_zh: "这是卡拉山脚下的遗产村落与展馆，按时序铺陈本地区的各个文明阶段；步道、观景点与配套设施又把参观、登山与洞穴游览串成一段完整行程。每日 8:00 至 22:00 开放（节假日与旺季可能延长），门票含卡拉山洞穴体验。"
+body_zh: "这是卡拉山脚下的遗产村落与展馆，按时序铺陈本地区的各个文明阶段；步道、观景点与配套设施又把参观、登山与洞穴游览串成一段完整行程。开放时间与门票见下方“游览信息”卡片；门票含卡拉山洞穴体验。"
 area_zh: 欧姆兰，胡富夫以东——毗邻卡拉山
 slug_ar: "أرض-الحضارات"
 slug_en: "ardh-alhadarat"
@@ -14,7 +14,7 @@ category: parks
 kicker: "قرية تراثية"
 summary: "قرية تراثية ومعرض عند جبل القارة تستعرض مراحل الحضارة في المنطقة."
 summary_en: "A heritage village and exhibition at Al-Qarah Mountain showcasing the region's stages of civilisation."
-body_en: "A heritage village and exhibition at the foot of Al-Qarah Mountain, tracing the region’s stages of civilisation, and integrated with the experience of visiting the mountain and its caves through trails, facilities and viewpoints. It opens daily from eight in the morning until ten at night (hours may be extended on holidays and in peak seasons), and tickets include the Al-Qarah Mountain caves experience."
+body_en: "A heritage village and exhibition at the foot of Al-Qarah Mountain, tracing the region’s stages of civilisation, and integrated with the experience of visiting the mountain and its caves through trails, facilities and viewpoints. Opening hours and fees are listed in the visit-information card below, and tickets include the Al-Qarah Mountain caves experience."
 featured: false
 order: 59
 area: "مدينة العمران، شرق الهفوف — عند جبل القارة"
@@ -30,5 +30,4 @@ heroImage: /img/earth-of-civilization
 قرية تراثية ومعرضٌ عند سفح جبل القارة، تستعرض مراحل الحضارة في المنطقة، وتتكامل
 معها تجربة زيارة الجبل وكهوفه بمساراتٍ ومرافق ومطلّات.
 
-تفتح يومياً من الثامنة صباحاً حتى العاشرة مساءً (وقد تُمدّد المواعيد في العطلات
-والمواسم)، والتذاكر تشمل تجربة كهوف جبل القارة.
+المواعيد والرسوم في بطاقة «معلومات الزيارة» أدناه، والتذاكر تشمل تجربة كهوف جبل القارة.
