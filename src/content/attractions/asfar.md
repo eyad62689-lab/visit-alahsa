@@ -1,6 +1,13 @@
 ---
 title: "بحيرة الأصفر"
 title_en: "Al-Asfar Lake"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 6 بدرجة 92/100 (2026-09-02)
+title_zh: 阿斯法湖
+kicker_zh: 自然景观
+summary_zh: "海湾地区最大的天然湖泊之一，也是吸引候鸟与自然爱好者的保护区。"
+body_zh: "阿斯法湖（黄湖）是海湾地区最大的天然湖泊之一。哈萨绿洲列入联合国教科文组织世界遗产名录的十二处组成部分，这片湖也名列其中。这片沙漠中央难得一见的水域，如今成了候鸟的栖息地，也吸引着寻求宁静与开阔视野的人们。湖泊位于绿洲东北部，最美莫过于日落时分：水面染上一层金色，那也是摄影师与自然爱好者最钟爱的时刻。"
+area_zh: 绿洲东北部
+bestTime_zh: "日落时分，水面熠熠生辉，鸟群陆续归来。"
 slug_ar: "بحيرة-الأصفر"
 slug_en: "asfar"
 category: nature
@@ -16,7 +23,7 @@ area_en: "Northeast of the oasis"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 practical:
-  - { label: "الرسوم", value: "بانتظار التأكيد", label_en: "Fees", value_en: "Pending confirmation", verified: false }
+  - { label: "الرسوم", value: "بانتظار التأكيد", label_en: "Fees", value_en: "Pending confirmation", label_zh: "门票", value_zh: "待确认（信息更新中）", verified: false }
 location: { lat: 25.525252, lng: 49.808672 }
 mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
 ---
