@@ -373,6 +373,120 @@ const TEXT_EN: EventTexts = {
   },
 };
 
+// النسخة الصينية — خط zh-translation-pipeline حصراً (دفعة events 2026-09-02،
+// الحاكم 94/100 بعد القارئ الأعمى). المقاطع slug تشارك الإنجليزية (سابقة صفحات
+// المعالم الصينية)، والأسماء من termbase (أسماء الفعاليات السبعة مثبتة من بطاقات
+// المواسم). أعلام dated كما في العربية — عليها تقوم آلية evView/EventEdition.
+const TEXT_ZH: EventTexts = {
+  bisht: {
+    slug: 'hasawi-bisht-festival',
+    name: '哈萨比什特长袍节', place: '胡富夫历史悠久的易卜拉欣宫',
+    season: '冬季', time: '12 月前后', span: '为期数天',
+    org: '沙特遗产委员会（文化部）',
+    acts: ['比什特长袍展', '织造技艺工作坊', '互动比什特市集', '民俗表演'],
+  },
+  'qaisariyah-nights': {
+    slug: 'qaisariyah-nights',
+    name: '凯萨利亚市集之夜', place: '胡富夫历史悠久的凯萨利亚市集',
+    season: '冬末', time: '2 月至 3 月', span: '为期数周',
+    org: '哈萨市政局、哈萨发展管理局、沙特遗产委员会',
+    acts: ['民间艺术表演', '社区聚会', '传统游戏', '手工艺工作坊'],
+  },
+  'kafu-nights': {
+    slug: 'kafu-nights',
+    name: '卡夫之夜', place: '胡富夫阿卜杜拉国王环境公园',
+    season: '斋月（拉马丹）', time: '斋月期间', span: '贯穿斋月（夜间举行）',
+    org: '费萨尔国王大学',
+    acts: ['戏剧演出', '儿童乐园', '卡夫互动厨房', '“盖布加”晚宴（斋月夜间聚餐）'],
+  },
+  'dates-festival': {
+    slug: 'processed-dates-festival',
+    name: '椰枣制品节', place: '胡富夫哈萨市政局城堡',
+    season: '冬季', time: '1 月至 2 月', span: '为期数周',
+    org: '哈萨市政局、哈萨发展管理局',
+    acts: ['品鉴与选购展馆', '椰枣深加工产品展馆', '文化工作坊', '各类竞赛'],
+  },
+  'palm-village': {
+    slug: 'palm-village',
+    name: '椰枣村', place: '哈萨绿洲',
+    season: '冬春两季', time: '1 月至 3 月', span: '持续整季',
+    org: '沙特国家棕榈和椰枣中心',
+    acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品市集'],
+  },
+  lomi: {
+    slug: 'hasawi-lomi-exhibition',
+    name: '哈萨青柠展', place: '胡富夫萨拉姆街（艾因奈杰姆路）哈萨会展中心',
+    season: '夏季', time: '2026 年 8 月 19 日至 9 月 13 日', span: '约 26 天',
+    after: {
+      time: '8 月至 9 月前后', span: '为期数周',
+      seoTitle: '哈萨青柠展：举办时节、地点与亮点',
+      seoDesc: '胡富夫哈萨青柠展指南：每年 8 月至 9 月前后举办——下一届的具体日期，请关注哈萨商会官方公告。',
+    },
+    org: '哈萨商会',
+    hours: '每日 17:00 至 23:00',
+    seoTitle: '2026 年哈萨青柠展：日期、门票与地点',
+    seoDesc: '2026 年胡富夫哈萨青柠展指南：延期后展期为 8 月 19 日至 9 月 13 日，每日 17:00 至 23:00，门票 10 沙特里亚尔起，通过 Evento 平台购票。',
+    intro: '哈萨青柠展（Hasawi Lomi Exhibition）——民间也俗称哈萨柠檬展——由哈萨商会主办，是哈萨最具代表性的季节性农业盛会，为礼赞这片绿洲中名气仅次于椰枣的招牌物产而设。展会主打互动体验：您可以了解哈萨青柠的特色、益处与种植技艺，与果农面对面交流，选购本地家庭工坊的自制产品，并参与丰富多彩的配套活动。',
+    sections: [
+      {
+        h: '什么是哈萨青柠？',
+        ps: [
+          '哈萨青柠（本地品种名 Bin Zuhairi）果实小巧，色泽深绿，皮薄汁多，酸味强劲，香气馥郁独特，在众多柑橘类水果中自成一格。它是哈萨仅次于椰枣的第二大农产品：绿洲里生长着 10 万余棵挂果的青柠树，每棵每季可产 25 至 30 公斤。',
+          '围绕这种果实，还流传着一项地道的哈萨夏日习俗：家家户户齐聚一堂，榨汁封存，或制成晒制青柠干（当地称“贾米德”，jameed），以备全年取用——无论鲜食、榨汁还是晒干入馔，都是哈萨与海湾菜肴中不可或缺的风味。',
+        ],
+      },
+      {
+        h: '门票与入场', dated: true,
+        ps: [
+          '据 Evento 平台官方购票页面显示：周日至周三门票为 10 沙特里亚尔（SAR），周四至周六为 15 里亚尔（均为线上购票价）；在现场售票窗口购票，每张另加收 5 里亚尔服务与运营费——提前在线预订更划算。',
+          '5 岁以下儿童免费入场。门票仅作入场之用，且只在票面所载当日有效，一律通过 Evento 平台发售。',
+        ],
+      },
+    ],
+    faq: [
+      { q: '2026 年哈萨青柠展何时举行？', a: '展期延长后，为 2026 年 8 月 19 日至 9 月 13 日，每日 17:00 至 23:00。', dated: true },
+      { q: '展会在哪里举办？', a: '位于胡富夫萨拉姆街（艾因奈杰姆路）的哈萨会展中心——本页附有地图。' },
+      { q: '入场是否免费？', a: '仅 5 岁以下儿童免费入场。线上购票周日至周三 10 里亚尔、周四至周六 15 里亚尔；现场窗口购票每张另加 5 里亚尔。', dated: true },
+      { q: '如何预订门票？', a: '一律通过 Evento 平台购票——点击本页上方“预订门票”按钮，即可进入官方购票页面。', dated: true },
+      { q: '哈萨青柠与普通柠檬有何不同？', a: '哈萨青柠果形更小、皮更薄、汁水更足、香气更浓，在哈萨菜肴中可鲜食、榨汁或晒干使用。' },
+      { q: '有适合儿童的活动吗？', a: '有——展会设有儿童天地，还有现场烹饪、农业工作坊和亲子家庭活动。' },
+    ],
+    related: [
+      { label: '“哈萨时令水果”页面上的哈萨青柠', href: '/zh/fruits/' },
+      { label: '规划您的哈萨之旅', href: '/zh/plan-your-trip/' },
+    ],
+    acts: ['青柠产品展销', '现场烹饪', '农业工作坊', '儿童天地', '家庭亲子活动'],
+  },
+  'uqair-winter': {
+    slug: 'al-uqair-winter',
+    name: '乌盖尔之冬', place: '乌盖尔海滩公园',
+    season: '冬季', time: '12 月至次年 2 月', span: '为期数周',
+    org: '哈萨发展管理局、哈萨市政局',
+    acts: ['亲子海滨与运动活动', '艺术手工工作坊', '趣味游乐项目'],
+  },
+  'wafrah-winter': {
+    slug: 'al-wafrah-winter',
+    name: '瓦夫拉之冬', place: '胡富夫以南的瓦夫拉区',
+    season: '冬季', time: '一般自 11 月起', span: '贯穿整个冬季',
+    org: '私营商家与投资者（哈萨市政局监管）',
+    acts: ['150 余辆美食餐车', '哈萨风味民间小吃', '露天冬日聚会'],
+  },
+  'horse-racing': {
+    slug: 'horse-racing-season',
+    name: '赛马季', place: '塔拉夫（Al-Taraf）哈萨马术赛场',
+    season: '冬季', time: '11 月至次年 2 月', span: '持续整季',
+    org: '哈萨马术赛场',
+    acts: ['赛马赛事', '马术活动'],
+  },
+  'creative-ahsa': {
+    slug: 'creative-alahsa-festival',
+    name: '创意哈萨节', place: '“弗里季”传统街区（哈萨市政局城堡）',
+    season: '春季', time: '3 月至 4 月', span: '约一周',
+    org: '哈萨市政局',
+    acts: ['陶艺制作', '棕榈叶编织', '传统木工', '造型艺术', '民俗表演'],
+  },
+};
+
 // ── الدمج: Ev واحدة لكل فعالية ولغة — الشكل نفسه الذي يقرؤه كل مستهلك ─────────
 function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
   const m: EventMeta = EVENT_META[id];
@@ -387,10 +501,20 @@ function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
 
 export const EVENTS_AR: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_AR[id]));
 export const EVENTS_EN: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_EN[id]));
+export const EVENTS_ZH: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_ZH[id]));
 
-/** فعاليات لغة الصفحة — الصينية بلا نسخة بعد فتقرأ الإنجليزية (سابقة بقية الصفحات) */
-export const eventsFor = (lang: Lang): Ev[] => (lang === 'ar' ? EVENTS_AR : EVENTS_EN);
+/** فعاليات لغة الصفحة */
+export const eventsFor = (lang: Lang): Ev[] =>
+  lang === 'ar' ? EVENTS_AR : lang === 'zh' ? EVENTS_ZH : EVENTS_EN;
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>
   (lang === 'ar' ? EVENTS_EN : EVENTS_AR).find((e) => e.id === id);
+
+/** روابط الفعالية بلغاتها الثلاث — مصدر alt (hreflang ومبدّل اللغة) لصفحاتها المفردة.
+ *  النسخة الصينية كاملة (الفعاليات العشر) فتُدرج zh دائماً. */
+export const eventAlt = (id: string): { ar: string; en: string; zh: string } => ({
+  ar: `/فعاليات/${EVENTS_AR.find((e) => e.id === id)!.slug}/`,
+  en: `/en/events/${EVENTS_EN.find((e) => e.id === id)!.slug}/`,
+  zh: `/zh/events/${EVENTS_ZH.find((e) => e.id === id)!.slug}/`,
+});

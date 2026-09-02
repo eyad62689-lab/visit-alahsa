@@ -10,7 +10,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
-import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN } from '../../data/fruits';
+import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH } from '../../data/fruits';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { reviewedLabel } from '../../data/meta';
@@ -19,7 +19,40 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 
+// الكتلة الصينية — خط zh-translation-pipeline (دفعة fruits 2026-09-02، الحاكم 94/100)
+const ZH = {
+  heroEyebrow: '绿洲的馈赠',
+  title: '哈萨时令水果',
+  heroSum: '在世界上最大的天然椰枣绿洲，四季在果园间流转，每一季都为到访者献上当令的果香——从盛夏金黄的软熟鲜椰枣、冬日的毛叶枣，到闻名遐迩的哈萨青柠。',
+  stats: [
+    { n: '250 万', l: '绿洲中的椰枣树' },
+    { n: '40 万', l: '与椰枣并植的果树' },
+  ],
+  statsSrc: '依据吉尼斯世界纪录认证（2020 年 10 月）及沙特环境水务与农业部的统计数据。',
+  frEyebrow: '水果之旅',
+  frH: '四季皆有果',
+  frLead: '请选择您到访的季节，查看当季水果：',
+  chipsAria: '按季节筛选水果',
+  chips: [
+    { f: 'all', l: '全部季节' },
+    { f: 'winter', l: '冬季' },
+    { f: 'spring', l: '春季' },
+    { f: 'summer', l: '夏季' },
+    { f: 'autumn', l: '秋季' },
+  ],
+  pending: '待确认（信息更新中）',
+  rare: '濒临绝迹',
+  more: '展开简介',
+  less: '收起简介',
+  emptyMsg: '该季节暂无收录的水果。',
+  countPrefix: '当前显示：',
+  methodH: '关于信息准确性',
+  methodP1: '本页内容取自官方与权威农业来源，每条信息在发布前都经过核实；凡未能找到确凿出处的内容，我们一律明确标注“待确认（信息更新中）”，而不妄下定论。',
+  methodP2: `果实成熟期每年随天气略有变化；本页信息于 ${reviewedLabel('fruits', 'zh')} 完成复核。`,
+  groups: FRUIT_GROUPS_ZH,
+};
 
 const C = localize(lang, {
   heroEyebrow: 'من خيرات الواحة',
@@ -81,18 +114,20 @@ const C = localize(lang, {
   methodP1: 'This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it. Anything we could not confirm is explicitly marked “Pending confirmation” rather than stated as fact.',
   methodP2: `Ripening dates shift slightly from season to season with the weather; this information was reviewed in ${reviewedLabel('fruits', 'en')}.`,
   groups: FRUIT_GROUPS_EN,
-});
+}, ZH);
 
 const pageTitle = `${C.title} — ${t('site.name')}`;
 const description = ar
   ? 'جولة على ثمار واحة الأحساء بمواسمها: التمور والرطب، اللومي الأحسائي، البطيخ الأصفر، التين، الكنار وغيرها — بمعلومات موثقة من مصادر رسمية.'
-  : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
+  : zh
+    ? '按季节了解哈萨绿洲的时令水果：椰枣与软熟鲜枣、哈萨青柠、黄西瓜、无花果、毛叶枣等——所有信息均经官方来源核实。'
+    : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/ثمار/' : '/en/fruits/';
+const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : '/en/fruits/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];

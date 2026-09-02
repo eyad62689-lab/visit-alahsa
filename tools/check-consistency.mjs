@@ -31,9 +31,13 @@ const PENDING_TERMS = [
 // أسماء مرادفة: ورود الاسم الشائع يلزمه ورود الاسم الموثّق في الصفحة نفسها،
 // وإلا بدا طبقاً أو معلماً مفقوداً من صفحته. («الخبز الأحمر» = خبز التمر —
 // تأكيد إياد 2026-08-30.)
+// canonicals مصفوفة: يكفي ورود أحدها. الصفحات الصينية تحمل اسم منشأة رسمياً
+// بالإنجليزية (Hasawi Red Bread — اسم خرائط قوقل لا يُترجم) واقترانها الموثّق
+// بالصينية 椰枣面包 (دفعة indexes 2026-09-02) — فالإنجليزي أو الصيني يفي بالشرط.
 const SYNONYM_PAIRS = [
-  { alias: 'الخبز الأحمر', canonical: 'خبز التمر' },
-  { alias: 'red bread', canonical: 'date bread' },
+  { alias: 'الخبز الأحمر', canonicals: ['خبز التمر'] },
+  { alias: 'red bread', canonicals: ['date bread', '椰枣面包'] },
+  { alias: '红面包', canonicals: ['椰枣面包'] },
 ];
 
 // أسماء أدلة صفحات المعالم في dist (المسارات العربية تُرمَّز بـpercent-encoding)
@@ -130,14 +134,15 @@ async function main() {
   }
 
   // ── C5b: كل اسم شائع مقرون باسمه الموثّق في الصفحة نفسها ─────────────────
-  for (const { alias, canonical } of SYNONYM_PAIRS) {
+  for (const { alias, canonicals } of SYNONYM_PAIRS) {
     const orphans = [];
     for (const f of htmlFiles) {
       const html = await readFile(f, 'utf8');
-      if (html.includes(alias) && !html.includes(canonical)) orphans.push(path.relative(DIST, f));
+      const aliasRe = new RegExp(alias, 'i');
+      if (aliasRe.test(html) && !canonicals.some((c) => html.includes(c))) orphans.push(path.relative(DIST, f));
     }
-    if (orphans.length === 0) pass('C5b', `«${alias}» مقرون دائماً بـ«${canonical}»`);
-    else fail('C5b', `«${alias}» بلا «${canonical}» في ${orphans.length} صفحة: ${orphans.slice(0, 3).join(', ')}`);
+    if (orphans.length === 0) pass('C5b', `«${alias}» مقرون دائماً بأحد: ${canonicals.map((c) => `«${c}»`).join(' / ')}`);
+    else fail('C5b', `«${alias}» بلا اقتران في ${orphans.length} صفحة: ${orphans.slice(0, 3).join(', ')}`);
   }
 
   // ── C6: البنود غير الموثّقة محجوبة عن بطاقة «معلومات الزيارة» ────────────

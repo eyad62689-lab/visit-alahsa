@@ -25,6 +25,7 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 
 // التقييمات من Google Places API — نفس آلية صفحة المطاعم (القارئ الموحّد في
 // lib/places-live.ts)، ونفس التدهور الرشيق حين يغيب المفتاح.
@@ -46,10 +47,42 @@ const PLACES = entries.map((e) => {
     area: ar ? d.area : d.area_en,
     alt: ar ? d.alt : d.alt_en,
     blurb: ar ? d.blurb : d.blurb_en,
-    href: hasPage ? stayHref(d, lang) : d.maps,
+    // الصينية تتراجع للإنجليزية: صفحات المنشآت المفردة بلا نسخة صينية بعد
+    href: hasPage ? stayHref(d, zh ? 'en' : lang) : d.maps,
     internal: hasPage,
   };
 });
+
+// الكتلة الصينية — خط zh-translation-pipeline (دفعة indexes 2026-09-02، الحاكم 94/100).
+// رابط الأسئلة الشائعة يقصد النظير الإنجليزي: صفحة شاطئ العقير بلا نسخة صينية بعد.
+const ZH = {
+  heroEyebrow: '在绿洲下榻',
+  title: '住宿',
+  heroSum: '哈萨的住宿选择：从老城里的传统客栈，到乌盖尔（Al-Uqair）海滨的酒店，每处均附照片及其在谷歌地图上的位置。本列表仅作介绍，不构成推荐，并将持续更新。',
+  listEyebrow: '首批收录',
+  listH: '哈萨住宿一览',
+  kindLabels: { 'heritage-inn': '传统客栈', hotel: '酒店' } as Record<string, string>,
+  openMaps: '在谷歌地图中打开 ↗',
+  newWindow: '（在新窗口中打开谷歌地图）',
+  moreLabel: '查看详情',
+  ratingLabel: '谷歌地图评分',
+  closedPerm: '已永久停业（据谷歌地图）',
+  closedTemp: '已暂停营业（据谷歌地图）',
+  srcNote: fetchedLabel ? `评分来自谷歌地图，最后更新于 ${fetchedLabel}` : null,
+  faqH: '哈萨住宿常见问题',
+  faqs: [
+    { q: '老胡富夫城区内有可入住的传统客栈吗？',
+      a: '有。库特遗产酒店（Al-Koot Heritage Hotel）坐落于库特区一座修复后的宫殿内，正对易卜拉欣宫，是哈萨地区首家获沙特旅游与国家遗产总局许可的遗产酒店。' },
+    { q: '乌盖尔海滩附近有住宿吗？',
+      a: '有。康提嫩特酒店（Continent Hotel Al Uqayr）坐落于哈萨以东的乌盖尔海岸；海滩上另设房车专用营位，可通过哈萨市政局在线预订。',
+      linkText: '详情请见乌盖尔海滩页面 →', linkHref: '/en/attractions/uqair-beach/' },
+    { q: '这份列表是对最佳酒店的推荐吗？',
+      a: '不是。卡片仅作介绍：每处只列出名称、照片及其在谷歌地图上的位置。我们不做排名，也不展示价格，请您在可信的预订平台上自行比较。' },
+  ],
+  methodH: '关于本页',
+  methodP1: '名称与位置均直接取自谷歌地图，简介仅依据照片所见撰写。本页不展示价格、星级或推荐。',
+  places: PLACES,
+};
 
 const C = localize(lang, {
   heroEyebrow: 'أين تبيت في الواحة',
@@ -105,7 +138,7 @@ const C = localize(lang, {
   methodH: 'About this page',
   methodP1: 'Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo. No prices, star ratings or recommendations are listed.',
   places: PLACES,
-});
+}, ZH);
 
 const pageTitle = ar
   ? 'أماكن الإقامة في الأحساء — نُزل تراثية وفنادق'
@@ -115,12 +148,12 @@ const description = ar
   : 'Where to stay in Al Ahsa: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/إقامة/' : '/en/stay/';
+const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : '/en/stay/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — الحارس
 // الآلي هو الفحص C10 في tools/check-consistency.mjs.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:

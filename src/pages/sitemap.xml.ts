@@ -5,7 +5,7 @@
 // يتعذّر git يسقط الحقل من الخريطة كلها بدل تلفيق تاريخ موحَّد (انظر git-dates.ts).
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { EVENTS_AR, EVENTS_EN } from '../data/events';
+import { EVENTS_AR, EVENTS_EN, EVENTS_ZH } from '../data/events';
 import { attractionAlt, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 
@@ -31,15 +31,15 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
-    { ar: '/خريطة/', en: '/en/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
+    { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
     { ar: '/خريطة-تضاريس/', en: '/en/terrain-map/', lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
-    { ar: '/ثمار/', en: '/en/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
-    { ar: '/أكلات/', en: '/en/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
-    { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
-    { ar: '/إقامة/', en: '/en/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
-    { ar: '/فعاليات/', en: '/en/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
-    { ar: '/خطط/', en: '/en/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
-    { ar: '/مدونة/', en: '/en/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
+    { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
+    { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
+    { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
+    { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
+    { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
+    { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
+    { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
     // مقالات المدونة — الاقتران بحقل key المشترك بين الترجمتين.
     // التاريخ من ترويسة المقال نفسه: هو إعلان الكاتب، وأوثق من تاريخ الالتزام.
     ...posts
@@ -87,10 +87,11 @@ export const GET: APIRoute = async ({ site }) => {
       if (okAr && okEn) return [{ ar: a.ar, en: a.en, lastmod }];
       return [{ ar: okAr ? a.ar : a.en, lastmod }];
     }),
-    // صفحات الفعاليات المفردة — تُقرن بالمعرّف id لا بالترتيب
+    // صفحات الفعاليات المفردة — تُقرن بالمعرّف id لا بالترتيب؛ النسخة الصينية كاملة
     ...EVENTS_AR.map((e) => ({
       ar: '/فعاليات/' + e.slug + '/',
       en: EVENTS_EN.find((x) => x.id === e.id) ? '/en/events/' + EVENTS_EN.find((x) => x.id === e.id)!.slug + '/' : undefined,
+      zh: EVENTS_ZH.find((x) => x.id === e.id) ? '/zh/events/' + EVENTS_ZH.find((x) => x.id === e.id)!.slug + '/' : undefined,
       lastmod: dateOf('src/data/events.ts', `${V}EventDetailView.astro`),
     })),
   ];

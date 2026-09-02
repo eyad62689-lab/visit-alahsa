@@ -8,7 +8,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
-import { DISH_GROUPS_AR, DISH_GROUPS_EN } from '../../data/dishes';
+import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH } from '../../data/dishes';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -16,6 +16,24 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
+
+// الكتلة الصينية — خط zh-translation-pipeline (دفعة food-map 2026-09-02، الحاكم 94/100).
+// dineHref يقصد فهرس المطاعم الصيني منذ صدوره (دفعة indexes 2026-09-02).
+const ZH = {
+  heroEyebrow: '来自绿洲的餐桌',
+  title: '哈萨美食',
+  heroSum: '哈萨美食，源自绿洲的慷慨馈赠：本地哈萨大米、椰枣糖浆、青柠与碎麦——在一代代人的餐桌上，化作暖意融融的家常滋味。',
+  listEyebrow: '风味之旅',
+  listH: '绿洲深处的八道佳肴',
+  more: '展开简介',
+  less: '收起简介',
+  methodH: '关于本页',
+  methodP1: '本页旨在介绍各道传统菜肴及其常见食材，并非精确食谱；用料与叫法因家庭与地区而异。',
+  dineCta: '想找地方一饱口福？浏览餐厅与咖啡馆 →',
+  dineHref: '/zh/restaurants-cafes/',
+  groups: DISH_GROUPS_ZH,
+};
 
 const C = localize(lang, {
   heroEyebrow: 'من موائد الواحة',
@@ -43,18 +61,20 @@ const C = localize(lang, {
   dineCta: 'Looking for somewhere to try it? Browse the restaurants & cafés →',
   dineHref: '/en/restaurants-cafes/',
   groups: DISH_GROUPS_EN,
-});
+}, ZH);
 
 const pageTitle = `${C.title} — ${t('site.name')}`;
 const description = ar
   ? 'جولة في المطبخ الأحسائي: الأرز الأحسائي، المندي، الهريس، المفلق، البلاليط بالدبس، عصيدة التمر، الساقو، وخبز التمر.'
-  : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
+  : zh
+    ? '走进哈萨美食：哈萨焖饭、曼迪、哈里斯、穆法拉格、椰枣糖浆巴拉利特、椰枣阿西达、西米羹与椰枣面包。'
+    : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/أكلات/' : '/en/food/';
+const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : '/en/food/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];

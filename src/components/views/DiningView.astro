@@ -21,6 +21,7 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 
 // التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
 // قبل البناء إن وُجد المفتاح. غيابها متوقَّع (بناء محلي بلا مفتاح) والصفحة
@@ -49,7 +50,8 @@ const toPlace = (e: (typeof diningEntries)[number]) => {
     area: ar ? d.area : d.area_en,
     alt: ar ? d.alt : d.alt_en,
     blurb: ar ? d.blurb : d.blurb_en,
-    href: hasPage ? diningHref(d, lang) : d.maps,
+    // الصينية تتراجع للإنجليزية: صفحات المنشآت المفردة بلا نسخة صينية بعد
+    href: hasPage ? diningHref(d, zh ? 'en' : lang) : d.maps,
     internal: hasPage,
   };
 };
@@ -59,6 +61,78 @@ const CAFES = diningEntries.filter((e) => e.data.kind === 'cafe').map(toPlace);
 // الخبز الأحمر الحساوي (خبز التمر) يُقصد للشراء لا للجلوس.
 const BAKERIES = diningEntries.filter((e) => e.data.kind === 'bakery').map(toPlace);
 
+
+// الكتلة الصينية — خط zh-translation-pipeline (دفعة indexes 2026-09-02، الحاكم 94/100).
+// روابط الأسئلة الشائعة تقصد صفحة المطبخ الصينية القائمة /zh/food/؛ والعنصران
+// النائبان ${fetchedLabel} و${diningEntries.length} يُبنيان كما في الكتلة العربية.
+const ZH = {
+  heroEyebrow: '哈萨的餐桌',
+  title: '餐厅与咖啡馆',
+  heroSum: '您的哈萨美食指南：收录胡富夫、穆巴拉兹及周边的餐厅、咖啡馆与“红面包”（椰枣面包）烘焙坊，既有传统氛围与民间风味，也有现代餐厅与精品咖啡。每处均附照片及其谷歌地图位置，轻点即达；列表持续更新。',
+  listEyebrow: '首批收录',
+  listH: '本站收录的餐厅',
+  cafesEyebrow: '致咖啡爱好者',
+  cafesH: '本站收录的咖啡馆',
+  bakeriesEyebrow: '出自坦努尔泥炉',
+  bakeriesH: '“红面包”烘焙坊',
+  bakeriesNote: '“红面包”与椰枣面包本是同一种面点的两个名字；这些烘焙坊至今仍为它生起坦努尔炉火。',
+  openMaps: '在谷歌地图中打开 ↗',
+  newWindow: '（在新窗口中打开谷歌地图）',
+  moreLabel: '查看详情',
+  hoursLabel: '营业时间',
+  ratingLabel: '谷歌地图评分',
+  searchPh: '按名称或区域搜索…',
+  searchLabel: '搜索餐厅与咖啡馆',
+  kindAria: '按类型筛选',
+  kindRestaurants: '餐厅',
+  kindCafes: '咖啡馆',
+  kindBakeries: '烘焙坊',
+  districtLabel: '区域',
+  districtAll: '全部区域',
+  districtNames: {
+    alkoot: '库特区', downtown: '胡富夫历史城区', 'rafah-north': '里法阿北区',
+    khalidiyah: '哈利迪亚区', rawdah: '拉乌达区', mazrou: '马兹鲁阿区', uwaimriyah: '欧韦米里亚区',
+    olaya: '奥拉雅区', khaleej: '海湾路', mubarraz: '穆巴拉兹',
+    khudud: '胡杜德区', qarah: '卡拉',
+  } as Record<string, string>,
+  openNow: '营业中',
+  closedNow: '已打烊',
+  openFilter: '营业中',
+  hoursNote: '营业时间来自谷歌地图，可能随时变动，请以各场所谷歌地图页面的最新信息为准。',
+  countPrefix: '当前显示 ',
+  countSuffix: ` 家（共 ${diningEntries.length} 家）`,
+  emptyMsg: '未找到匹配结果，请尝试放宽搜索条件，或选择“全部区域”。',
+  closedPerm: '已永久停业（据谷歌地图）',
+  closedTemp: '已暂停营业（据谷歌地图）',
+  srcNote: fetchedLabel ? `评分与营业时间来自谷歌地图，最后更新于 ${fetchedLabel}` : null,
+  faqH: '哈萨餐饮常见问题',
+  faqs: [
+    { q: '哈萨有哪些知名的传统美食？',
+      a: '这里的代表菜有哈萨焖饭、曼迪（Mandi）、哈里斯（Harees）和椰枣面包等。',
+      linkText: '前往哈萨美食页面了解更多 →', linkHref: '/zh/food/' },
+    { q: '易卜拉欣宫附近有餐厅或咖啡馆吗？',
+      a: '有。本列表中有两家：紧邻易卜拉欣宫公园的达尔巴斯玛（Dar Basma），以及位于库特区、正对宫殿的库特遗产酒店餐厅；每张卡片均附其谷歌地图位置链接。' },
+    { q: '老胡富夫城区内的咖啡馆都在哪里？',
+      a: '在胡富夫历史城区和里法阿北区，您可以找到：拜扎纳咖啡馆（Baithana）、拜特库特（Bait Al-Koot）、法赫德国王路上的达尔胡维贾（Dar Huwaija）、赛义德咖啡馆（Al-Sayed Café）、阿卜杜勒阿齐兹国王路上的 Ratio Al-Koot，以及易卜拉欣宫旁的 7st 咖啡馆。' },
+    { q: '在哪里可以买到哈萨“红面包”？',
+      a: '本页设有“红面包”烘焙坊专区（“红面包”就是椰枣面包），每家均附照片及其谷歌地图位置。',
+      linkText: '前往哈萨美食页面了解椰枣面包 →', linkHref: '/zh/food/' },
+    { q: '在穆巴拉兹可以去哪里用餐？',
+      a: '本列表中有两家位于穆巴拉兹艾因奈杰姆路：Baking Up 与 Dot 烘焙咖啡馆；其余场所均在胡富夫。' },
+    { q: '本列表中的餐厅与咖啡馆分布在哪些区域？',
+      a: '它们分布于胡富夫、穆巴拉兹和卡拉：在胡富夫，有历史悠久的库特区、胡富夫历史城区、里法阿北区、哈利迪亚区、拉乌达区、马兹鲁阿区、奥拉雅区、欧韦米里亚区和胡杜德区；在穆巴拉兹，位于艾因奈杰姆路沿线；另有绿洲以东的卡拉。每张卡片均附其在谷歌地图上的精确位置链接。' },
+    liveRaw
+      ? { q: '评分与营业时间从何而来？',
+          a: `评分与营业时间均直接取自谷歌地图（最后更新于 ${fetchedLabel}），可能随时变动；如需最新信息，请打开各场所的谷歌地图链接。本页不展示价格。` }
+      : { q: '本页会展示营业时间和价格吗？',
+          a: '不会。营业时间、价格与评分均须经官方来源核实后才会发布。您可通过各餐厅的谷歌地图链接查看其最新信息。' },
+  ],
+  methodH: '关于本页',
+  methodP1: '这是一份持续更新的初步列表。名称与位置均直接取自谷歌地图，简介仅依据照片所见撰写，不含评价，也不推荐特定菜品。',
+  places: RESTAURANTS,
+  cafes: CAFES,
+  bakeries: BAKERIES,
+};
 
 const C = localize(lang, {
   heroEyebrow: 'من موائد الأحساء',
@@ -199,7 +273,7 @@ const C = localize(lang, {
   places: RESTAURANTS,
   cafes: CAFES,
   bakeries: BAKERIES,
-});
+}, ZH);
 
 // قسما الصفحة يُصيَّران بحلقة واحدة — كانت الكتلة نفسها مكرّرة حرفياً مرتين
 const SECTIONS = [
@@ -240,13 +314,13 @@ const description = ar
   : 'Discover the best restaurants and cafés in Al Ahsa — from traditional Hasawi dining to specialty coffee, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/';
+const selfPath = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : '/en/restaurants-cafes/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — بيانات
 // قوقل تُعرض في الواجهة فقط (شروط قوقل + إرشادات المراجعات الذاتية). الحارس
 // الآلي في tools/check-consistency.mjs (فحص C10) يُفشل البناء عند أي تسرّب.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:

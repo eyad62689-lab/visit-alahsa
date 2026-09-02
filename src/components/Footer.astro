@@ -8,10 +8,12 @@ interface Props { lang?: Lang; }
 const { lang = 'ar' } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+// الصينية: ما له نسخة /zh/ يقصدها (توسعة 2026-09-02)؛ والبقية إلى النظير الإنجليزي.
+const zh = lang === 'zh';
 
-const listBase = ar ? '/معالم/' : '/en/attractions/';
+const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
 const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/';
-const planTrip = ar ? '/خطط/' : '/en/plan-your-trip/';
+const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : '/en/plan-your-trip/';
 const cols = [
   {
     h: t('foot.col.discover'),
@@ -19,13 +21,13 @@ const cols = [
       // الأسواق والمنتزهات والمزارع في صفحتها المستقلة (فُصلت 2026-07-13)
       ...['historic', 'nature'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
       ...['market', 'parks', 'farm'].map((c) => ({ label: catLabel(c, lang), href: `${leisureBase}?cat=${c}` })),
-      { label: t('nav.fruits'), href: ar ? '/ثمار/' : '/en/fruits/' },
-      { label: t('nav.food'), href: ar ? '/أكلات/' : '/en/food/' },
-      { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/' },
-      { label: t('nav.stay'), href: ar ? '/إقامة/' : '/en/stay/' },
-      { label: t('foot.l.events'), href: ar ? '/فعاليات/' : '/en/events/' },
+      { label: t('nav.fruits'), href: ar ? '/ثمار/' : zh ? '/zh/fruits/' : '/en/fruits/' },
+      { label: t('nav.food'), href: ar ? '/أكلات/' : zh ? '/zh/food/' : '/en/food/' },
+      { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : '/en/restaurants-cafes/' },
+      { label: t('nav.stay'), href: ar ? '/إقامة/' : zh ? '/zh/stay/' : '/en/stay/' },
+      { label: t('foot.l.events'), href: ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/' },
       // المدونة في التذييل لا الهيدر: الشريط مقيس على ثمانية روابط بلا التفاف (2026-08-22)
-      { label: t('nav.blog'), href: ar ? '/مدونة/' : '/en/blog/' },
+      { label: t('nav.blog'), href: ar ? '/مدونة/' : zh ? '/zh/blog/' : '/en/blog/' },
     ],
   },
   {
@@ -34,13 +36,13 @@ const cols = [
       { label: t('nav.plan'), href: planTrip },
       { label: t('foot.l.getThere'), href: planTrip + '#getting-there' },
       { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : '/en/plan/' },
-      { label: t('nav.map'), href: ar ? '/خريطة/' : '/en/map/' },
+      { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/' },
     ],
   },
   {
     h: t('foot.col.site'),
     links: [
-      { label: t('foot.l.about'), href: ar ? '/#name' : '/en/#name' },
+      { label: t('foot.l.about'), href: ar ? '/#name' : zh ? '/zh/#name' : '/en/#name' },
       { label: t('foot.l.brand'), href: '/brand/' },
       { label: t('foot.l.privacy'), href: ar ? '/السياسات/' : '/en/legal/' },
       { label: t('foot.l.report'), href: ar ? '/أبلغ/' : '/en/report/' },

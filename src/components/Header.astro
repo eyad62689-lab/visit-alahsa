@@ -11,21 +11,21 @@ const { lang = 'ar', alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
-// الصينية: الرئيسية وفهرس المعالم موجودان بالصينية؛ البقية إلى النظير الإنجليزي
-// مؤقتاً حتى تكتمل صفحاتها في مراحل التعميم.
+// الصينية: ما اكتملت صفحته الصينية يقصدها (توسعة 2026-09-02: الفعاليات والثمار
+// والأكلات والخريطة)؛ والبقية إلى النظير الإنجليزي حتى تكتمل في مراحل التعميم.
 const zh = lang === 'zh';
 const home = ar ? '/' : zh ? '/zh/' : '/en/';
 const routes = {
   attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/',
   leisure: ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/',
-  map: ar ? '/خريطة/' : '/en/map/',
-  events: ar ? '/فعاليات/' : '/en/events/',
-  fruits: ar ? '/ثمار/' : '/en/fruits/',
-  food: ar ? '/أكلات/' : '/en/food/',
-  dine: ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/',
-  stay: ar ? '/إقامة/' : '/en/stay/',
+  map: ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/',
+  events: ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/',
+  fruits: ar ? '/ثمار/' : zh ? '/zh/fruits/' : '/en/fruits/',
+  food: ar ? '/أكلات/' : zh ? '/zh/food/' : '/en/food/',
+  dine: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : '/en/restaurants-cafes/',
+  stay: ar ? '/إقامة/' : zh ? '/zh/stay/' : '/en/stay/',
   discover: ar ? '/#experiences' : '/en/#experiences',
-  plan: ar ? '/خطط/' : '/en/plan-your-trip/',
+  plan: ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : '/en/plan-your-trip/',
   myTrip: ar ? '/رحلتي/' : '/en/plan/',
 };
 const nav = [

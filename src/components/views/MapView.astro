@@ -14,6 +14,9 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+// الصينية: العنوان والنبذة يتراجعان للإنجليزية لمعلمٍ بلا ترجمة معتمدة —
+// سابقة فهرس المعالم (AttractionsView)، وattractionHref يقصد /zh/ للمترجم وحده.
+const zh = lang === 'zh';
 
 // أرقام العرض في النسخة العربية تكون عربية-هندية (قاعدة الموقع العامة)
 // الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
@@ -23,22 +26,23 @@ const items = await getCollection('attractions');
 const points = items
   .filter((e) => e.data.location)
   .map((e) => ({
-    title: ar ? e.data.title : (e.data.title_en ?? e.data.title),
+    title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title),
     cat: e.data.category,
     catLabel: catLabel(e.data.category, lang),
-    href: attractionHref(e.data, lang),
+    // معلم بلا ترجمة صينية معتمدة: رابطه يقصد النسخة الإنجليزية (سابقة الفهرس)
+    href: attractionHref(e.data, zh && !e.data.title_zh ? 'en' : lang),
     fav: e.data.slug_ar,
-    summary: ar ? e.data.summary : (e.data.summary_en ?? e.data.summary),
+    summary: ar ? e.data.summary : zh ? (e.data.summary_zh ?? e.data.summary_en ?? e.data.summary) : (e.data.summary_en ?? e.data.summary),
     img: e.data.heroImage ?? null,
     // مصغّر القائمة (72px) والبطاقة المنبثقة: أصغر نسخة مولَّدة لا الأصل الكامل.
     // 400w أول درجة في سلّم gen-image-widths فوجود أي نسخة يضمن وجودها.
     thumb: e.data.heroImage ? `${e.data.heroImage}${srcsetFor(e.data.heroImage) ? '-400w' : ''}.webp` : null,
     popImg: e.data.heroImage ? `${e.data.heroImage}${(srcsetFor(e.data.heroImage)?.webp ?? '').includes('-800w') ? '-800w' : ''}.webp` : null,
     // نصّ البحث: الاسمان معاً + المنطقة، فيجد الزائر المعلم بأي لغة
-    q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.area ?? ''} ${e.data.area_en ?? ''}`,
+    q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.title_zh ?? ''} ${e.data.area ?? ''} ${e.data.area_en ?? ''}`,
     lat: e.data.location!.lat, lng: e.data.location!.lng,
   }))
-  .sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : 'en'));
+  .sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : zh ? 'zh' : 'en'));
 const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
 const catCounts = Object.fromEntries(usedCats.map((c) => [c, points.filter((p) => p.cat === c).length]));
 const labels = { view: t('map.pop.view'), favAdd: t('fav.add'), favAdded: t('fav.added') };
@@ -58,7 +62,7 @@ const viewBounds = [[pct(lats, 0.05), pct(lngs, 0.05)], [pct(lats, 0.95), pct(ln
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: t('map.title'), item: new URL(altHref(alt, lang), siteUrl).href },
   ] },
 ];
@@ -84,6 +88,7 @@ const jsonLd = [
         </div>
         {/* الخريطة التضاريسية — صفحة مستقلة (تحسين تدريجي)؛ هذه الصفحة تبقى كما هي.
             خارج مجموعة الفلاتر: رابط تنقّل لا فلتر، وكان شكله يوهم أنه أحدها. */}
+        {/* لا نسخة صينية للتضاريسية بعد — رابط zh يقصد الإنجليزية */}
         <a class="map-terrain-link" href={ar ? '/خريطة-تضاريس/' : '/en/terrain-map/'}>{t('map.terrain')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
       </div>
     </div>

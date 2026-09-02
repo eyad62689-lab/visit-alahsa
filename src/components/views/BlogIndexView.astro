@@ -16,23 +16,28 @@ interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 
+// الصينية: لا مقالات صينية بعد — تُعرض المقالات الإنجليزية وبطاقاتها تقصد
+// نظائرها الإنجليزية (سابقة فهرس المعالم: التراجع للإنجليزية نصاً ورابطاً).
+const listLang = zh ? 'en' : lang;
 const base = ar ? '/مدونة/' : '/en/blog/';
-const posts = (await getCollection('blog', ({ data }) => data.lang === lang && !data.draft))
+const selfPath = ar ? '/مدونة/' : zh ? '/zh/blog/' : '/en/blog/';
+const posts = (await getCollection('blog', ({ data }) => data.lang === listLang && !data.draft))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const siteUrl = SITE;
-const pageUrl = absUrl(base, siteUrl);
+const pageUrl = absUrl(selfPath, siteUrl);
 const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'Blog',
-    name: t('blog.title'), description: t('blog.lead'), url: pageUrl, inLanguage: ar ? 'ar' : 'en',
+    name: t('blog.title'), description: t('blog.lead'), url: pageUrl, inLanguage: ar ? 'ar' : zh ? 'zh-CN' : 'en',
     // الناشر هو الجهة نفسها (ORG) التي تحمل مقالات المدونة والحقوق في Base
     publisher: ORG,
   },
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
-    { name: t('crumb.blog'), path: base },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
+    { name: t('crumb.blog'), path: selfPath },
   ], siteUrl),
 ];
 ---
@@ -47,7 +52,7 @@ const jsonLd = [
       ) : (
         <div class="bl-grid">
           {posts.map((p) => (
-            <a class="card card--lift bl-card" href={base + p.data.slug + '/'}>
+            <a class="card card--lift bl-card" href={base + p.data.slug + '/'} hreflang={zh ? 'en' : undefined}>
               {p.data.heroImage ? (
                 <Photo src={p.data.heroImage} label={p.data.title} class="bl-photo" sizes="(max-width: 760px) 100vw, 33vw" />
               ) : (

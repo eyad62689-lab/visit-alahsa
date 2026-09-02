@@ -81,11 +81,38 @@ const C = localize(lang, {
   crumb: 'Festivals & Events',
   moreH: 'Other seasons',
   back: 'All events',
+}, {
+  // الكتلة الصينية — خط zh-translation-pipeline (دفعة events 2026-09-02، الحاكم 94/100)
+  eyebrow: '绿洲的节庆时令',
+  placeK: '地点', orgK: '主办单位', seasonK: '时节',
+  timeK: '时间', spanK: '大致时长',
+  actsK: '亮点活动',
+  ticketK: '预订门票',
+  hoursK: '开放时间',
+  faqH: '常见问题',
+  relatedH: '延伸阅读',
+  mapH: '地图位置',
+  mapOpen: '在谷歌地图中打开',
+  mapNone: '主办方尚未公布本活动的确切地点，因此暂不提供地图。',
+  mapFrameTitle: '活动地点地图',
+  noticeH: '出行前须知',
+  notice: '本活动每年在大致相同的季节循环举办，具体日期与内容可能逐年变动。出行前请以主办方公告为准。',
+  statusL: { confirmed: '今年已确认', expected: '预计档期', tba: '待官方公布' },
+  cd: {
+    pre: { one: '明天开幕', other: '还有 {n} 天开幕' },
+    today: '今天开幕',
+    last: '今天是最后一天',
+    left: { one: '还剩 {n} 天', two: '还剩 {n} 天', few: '还剩 {n} 天', many: '还剩 {n} 天', other: '还剩 {n} 天' },
+  },
+  crumb: '节庆与活动',
+  moreH: '更多时令活动',
+  back: '全部活动',
 });
 
-const listHref = ar ? '/فعاليات/' : '/en/events/';
-const homeHref = ar ? '/' : '/en/';
-const detailBase = ar ? '/فعاليات/' : '/en/events/';
+const zh = lang === 'zh';
+const listHref = ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/';
+const homeHref = ar ? '/' : zh ? '/zh/' : '/en/';
+const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/';
 
 // الإحداثيات تُسحب من ملف المعلم الموثّق — لا تُقدَّر يدوياً (قاعدة المشروع).
 const venue = ev.venue
@@ -97,7 +124,9 @@ const mapUrl = ev.map ?? venue?.data.mapUrl ?? (loc ? `https://www.google.com/ma
 // تضمين بلا مفتاح API؛ hl يتبع لغة الصفحة
 const embedSrc = loc ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}&hl=${lang}&z=15&output=embed` : undefined;
 const venueHref = venue ? attractionHref(venue.data, lang) : undefined;
-const venueName = venue ? (ar ? venue.data.title : (venue.data.title_en ?? venue.data.title)) : undefined;
+const venueName = venue
+  ? (ar ? venue.data.title : zh ? (venue.data.title_zh ?? venue.data.title_en ?? venue.data.title) : (venue.data.title_en ?? venue.data.title))
+  : undefined;
 // المدينة/الحي في سكيما Event: من حقل area الموثّق في ملف المعلم وحده — وإن غاب
 // المعلم أو حقله سقط addressLocality كلياً (كان «الهفوف» مكتوباً يدوياً لكل فعالية).
 const venueArea = venue ? (ar ? venue.data.area : venue.data.area_en) : undefined;

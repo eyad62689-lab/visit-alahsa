@@ -1,0 +1,15 @@
+---
+// صفحة الفعالية المفردة — النسخة الصينية (zh-CN): نصوص EVENTS_ZH من خط
+// zh-translation-pipeline حصراً، والمقاطع slug تشارك الإنجليزية.
+import EventDetailView from '../../../components/views/EventDetailView.astro';
+import { EVENTS_ZH, eventAlt } from '../../../data/events';
+
+export function getStaticPaths() {
+  return EVENTS_ZH.map((ev) => ({ params: { slug: ev.slug }, props: { ev } }));
+}
+
+const { ev } = Astro.props;
+// رابط تبديل اللغة يقصد نظير الفعالية نفسه في اللغات الثلاث
+const alt = eventAlt(ev.id);
+---
+<EventDetailView ev={ev} lang="zh" alt={alt} />

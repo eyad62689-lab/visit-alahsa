@@ -1,15 +1,14 @@
 ---
 // صفحة الفعالية المفردة — النسخة العربية
 import EventDetailView from '../../components/views/EventDetailView.astro';
-import { EVENTS_AR, counterpart } from '../../data/events';
+import { EVENTS_AR, eventAlt } from '../../data/events';
 
 export function getStaticPaths() {
   return EVENTS_AR.map((ev) => ({ params: { slug: ev.slug }, props: { ev } }));
 }
 
 const { ev } = Astro.props;
-const en = counterpart(ev.id, 'ar');
-// رابط تبديل اللغة يقصد نظير الفعالية نفسه لا قائمة الفعاليات
-const alt = { ar: `/فعاليات/${ev.slug}/`, en: en ? `/en/events/${en.slug}/` : '/en/events/' };
+// رابط تبديل اللغة يقصد نظير الفعالية نفسه لا قائمة الفعاليات — باللغات الثلاث
+const alt = eventAlt(ev.id);
 ---
 <EventDetailView ev={ev} lang="ar" alt={alt} />

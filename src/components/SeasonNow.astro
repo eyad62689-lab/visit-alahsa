@@ -60,7 +60,7 @@ const ZH = {
       "months": "12 月至次年 2 月",
       "items": [
         "一年中最宜人的天气——探访古迹与城堡的黄金时节",
-        "绿洲果园新鲜采摘的卡纳尔枣与香橼",
+        "绿洲果园新鲜采摘的毛叶枣与香橼",
         "节庆旺季：哈萨比什特长袍节、椰枣制品节、椰枣村、乌盖尔之冬"
       ]
     },
@@ -127,8 +127,9 @@ const C = localize(lang, AR, {
     ] },
   ] as Season[],
 }, ZH);
-const fruitsHref = ar ? '/ثمار/' : '/en/fruits/';
-const eventsHref = ar ? '/فعاليات/' : '/en/events/';
+// بطاقات المواسم الصينية تقصد صفحتي /zh/ منذ توسعة 2026-09-02
+const fruitsHref = ar ? '/ثمار/' : lang === 'zh' ? '/zh/fruits/' : '/en/fruits/';
+const eventsHref = ar ? '/فعاليات/' : lang === 'zh' ? '/zh/events/' : '/en/events/';
 ---
 <section class="sn-sec" id="season-now">
   <div class="container">
