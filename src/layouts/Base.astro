@@ -101,6 +101,9 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
 <html lang={htmlLang(lang)} dir={dir(lang)}>
   <head>
     <meta charset="utf-8" />
+    <!-- حارس الجافاسكربت: إخفاء عناصر [data-reveal] مشروط بوجود JS. بدونه كانت
+         الصفحة تظهر فارغة تماماً إذا تعطّل السكربت أو عُطِّل JS في المتصفح. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -229,7 +232,10 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach((e) => e.classList.add('in')); return; }
         const io = new IntersectionObserver((ents) => {
           ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        // threshold: 0 لا 0.12 — النسبة تُقاس من ارتفاع العنصر نفسه، فمتنُ مقالٍ
+        // طويل (6000px+) يلزمه 700px+ ظاهرة دفعةً واحدة فلا تتحقق أبداً على شاشة
+        // أقصر، فتبقى الصفحة فارغة. الآن يكفي أن تعبر حافته العليا خط الكشف.
+        }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
         els.forEach((e) => io.observe(e));
       }
       document.addEventListener('astro:page-load', initReveal);
