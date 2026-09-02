@@ -18,7 +18,6 @@ const ar = lang === 'ar';
 const C = localize(lang, {
   title: 'السياسات والشروط القانونية',
   updated: 'آخر تحديث: 10 يوليو 2026م',
-  chips: ['سياسة الخصوصية', 'شروط الاستخدام', 'إخلاء المسؤولية', 'ملفات تعريف الارتباط', 'حقوق الملكية الفكرية', 'الروابط الخارجية'],
   introH: 'مقدمة عامة',
   intro: [
     'مرحبًا بكم في موقع «زوروا الأحساء» (visit-alahsa.com)، البوابة الرقمية المستقلة للتعريف بواحة الأحساء، تراثًا وطبيعةً وثقافةً وفعاليات. تحدد هذه الوثيقة مجموعة السياسات والشروط القانونية التي تنظم استخدامكم للموقع وما يقدمه من محتوى وخدمات، وذلك بما يتوافق مع الأنظمة المعمول بها في المملكة العربية السعودية، ومنها نظام حماية البيانات الشخصية الصادر بالمرسوم الملكي رقم (م/19) وتاريخ 1443/2/9هـ ولائحته التنفيذية.',
@@ -35,7 +34,6 @@ const C = localize(lang, {
 }, {
   title: 'Policies & Legal Terms',
   updated: 'Last updated: 10 July 2026',
-  chips: ['Privacy Policy', 'Terms of Use', 'Disclaimer', 'Cookies', 'Intellectual Property', 'External Links'],
   introH: 'General introduction',
   intro: [
     'Welcome to Visit Al-Ahsa (visit-alahsa.com), the independent digital gateway introducing the Al-Ahsa Oasis — its heritage, nature, culture and events. This document sets out the policies and legal terms that govern your use of the site and the content and services it offers, in accordance with the regulations in force in the Kingdom of Saudi Arabia, including the Personal Data Protection Law issued by Royal Decree No. (M/19) dated 9/2/1443 AH and its Implementing Regulation.',
@@ -56,7 +54,7 @@ const seoDesc = ar
   ? 'السياسات والشروط القانونية لموقع زوروا الأحساء: سياسة الخصوصية، شروط الاستخدام، إخلاء المسؤولية، ملفات تعريف الارتباط، حقوق الملكية الفكرية، والروابط الخارجية.'
   : 'Policies and legal terms of Visit Al-Ahsa: privacy policy, terms of use, disclaimer, cookies, intellectual property and external links.';
 ---
-<Base title={`${C.title} — ${t('site.name')}`} description={seoDesc} lang={lang} alt={alt} noindex={true}>
+<Base title={`${C.title} — ${t('site.name')}`} description={seoDesc} lang={lang} alt={alt}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="container lg-body">
@@ -64,7 +62,7 @@ const seoDesc = ar
         <h1 class="lg-title">{C.title}</h1>
         <p class="lg-updated">{C.updated}</p>
         <nav class="lg-chips" aria-label={C.title}>
-          {C.chips.map((c, i) => <a class="lg-chip" href={`#sec-${i}`}>{c}</a>)}
+          {C.sections.map((s, i) => <a class="lg-chip" href={`#sec-${i}`}>{s.h}</a>)}
         </nav>
       </header>
 

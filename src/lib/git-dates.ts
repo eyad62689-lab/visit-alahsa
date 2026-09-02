@@ -16,6 +16,7 @@ function run(args: string[]): string | null {
       cwd: process.cwd(),
       encoding: 'utf8',
       maxBuffer: 32 * 1024 * 1024,
+      timeout: 120_000,
       stdio: ['ignore', 'pipe', 'ignore'],
     });
   } catch {
@@ -30,7 +31,14 @@ export function gitDates(): Map<string, string> {
 
   // الاستنساخ الضحل يجعل `git log -- <file>` يعيد تاريخ الالتزام الوحيد
   // لكل ملف — رقم موحَّد كاذب. يُرفض كلياً.
-  const shallow = run(['rev-parse', '--is-shallow-repository']);
+  let shallow = run(['rev-parse', '--is-shallow-repository']);
+  if (shallow === null) return cache;
+  // Netlify يستنسخ ضحلاً افتراضياً فيضيع lastmod كله (وبه تعمل إضافة IndexNow).
+  // محاولة واحدة لجلب التاريخ الكامل؛ فشلها (لا شبكة/لا remote) يعيدنا إلى «لا تاريخ».
+  if (shallow.trim() === 'true') {
+    run(['fetch', '--unshallow', '--quiet']);
+    shallow = run(['rev-parse', '--is-shallow-repository']);
+  }
   if (shallow === null || shallow.trim() === 'true') return cache;
 
   // مرور واحد على السجل: سطر التاريخ يتبعه أسماء الملفات التي مسّها الالتزام.

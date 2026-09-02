@@ -7,9 +7,11 @@ import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { altHref, localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import { reviewedLabel } from '../../data/meta';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
+const rev = reviewedLabel('attractions', lang);
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
@@ -51,8 +53,8 @@ const C = localize(lang, {
   faq: [
     { q: 'ماذا يوجد في الأحساء سياحة؟', a: 'الأحساء أكبر واحة نخيل طبيعية في العالم (موسوعة غينيس 2020م) وموقع تراث عالمي مسجّل في اليونسكو منذ 2018م. تجمع بين المعالم الطبيعية كجبل القارة بكهوفه وبحيرة الأصفر والعيون، والتراث العمراني في الهفوف كقصر إبراهيم وسوق القيصرية ومسجد جواثى، إضافةً إلى مزارع النخيل وثمار الواحة وأكلاتها الشعبية — وجهة عائلية تجمع التاريخ والطبيعة والضيافة.' },
     { q: 'ما هي أبرز الأماكن السياحية في الأحساء؟', a: 'من أبرزها: جبل القارة وكهوفه ومركز «أرض الحضارات»، وقصر إبراهيم التاريخي، وسوق القيصرية التراثي، ومسجد جواثى (من أقدم مساجد الإسلام)، وبحيرة الأصفر، وقصر صاهود بالمبرّز. تصفّح صفحة «المعالم» لقائمة كاملة يمكنك إضافتها إلى «رحلتي».' },
-    { q: 'ما هي مواعيد وأوقات العمل في جبل القارة؟', a: 'يفتح يومياً من 8:00 صباحاً حتى 10:00 مساءً (وقد تُمدّد المواعيد في العطلات)، ورسوم الدخول 50 ريالاً للبالغين تُحجز تذاكرها عبر مركز «أرض الحضارات». يُفضّل تأكيد المواعيد قبل الزيارة فقد تتغيّر موسمياً. (رُوجعت في يونيو 2026م)' },
-    { q: 'متى يفتح سوق القيصرية في الأحساء؟', a: 'يعمل السوق صباحاً من 8 حتى 12 ظهراً، ومساءً من 3:30 حتى 10 مساءً (الجمعة مساءً فقط)، والدخول مجاني. وأفضل أوقاته الفترة المسائية حين تفتح المتاجر ويشتدّ نبض السوق. (رُوجعت في يونيو 2026م)' },
+    { q: 'ما هي مواعيد وأوقات العمل في جبل القارة؟', a: `يفتح يومياً من 8:00 صباحاً حتى 10:00 مساءً (وقد تُمدّد المواعيد في العطلات)، ورسوم الدخول 50 ريالاً للبالغين تُحجز تذاكرها عبر مركز «أرض الحضارات». يُفضّل تأكيد المواعيد قبل الزيارة فقد تتغيّر موسمياً. (رُوجعت في ${rev})` },
+    { q: 'متى يفتح سوق القيصرية في الأحساء؟', a: `يعمل السوق صباحاً من 8 حتى 12 ظهراً، ومساءً من 3:30 حتى 10 مساءً (الجمعة مساءً فقط)، والدخول مجاني. وأفضل أوقاته الفترة المسائية حين تفتح المتاجر ويشتدّ نبض السوق. (رُوجعت في ${rev})` },
     { q: 'ما هو أفضل وقت لزيارة الأحساء؟', a: 'وجهةٌ على مدار العام؛ الأجواء ألطف من أكتوبر إلى مارس وهي الأنسب لزيارة المعالم والقلاع، أمّا الصيف فموسم الرطب والثمار الطازجة والتجارب المسائية والمنتزهات. ومطلع العام موعد مهرجان التمور.' },
     { q: 'كم تبعد الأحساء عن الرياض؟ وكيف يمكن الذهاب إليها؟', a: 'تبعد عن الرياض نحو 326 كم. أسرع وأريح خيار هو القطار إلى محطة الهفوف (نحو ساعتين وعشر دقائق مع شركة «سار»)، أو القيادة عبر الطريق السريع (نحو 3 ساعات و20 دقيقة)، أو الطيران إلى مطار الأحساء الدولي.' },
     { q: 'كم تبعد الأحساء عن الدمام والبحرين؟', a: 'الأحساء قريبة من الدمام والخبر عبر شبكة طرق سريعة جيدة (الدمام نحو 150 كم / قرابة ساعة ونصف). وتُوصَل مملكة البحرين بالسيارة عبر جسر الملك فهد مروراً بالخبر (نحو ساعتين). ويتوقّف قطار «سار» أيضاً في بقيق القريبة على المسار نفسه.' },
@@ -98,8 +100,8 @@ const C = localize(lang, {
   faq: [
     { q: 'Is Al-Ahsa worth visiting?', a: 'Absolutely. Al-Ahsa is the world’s largest natural palm oasis (Guinness 2020) and a UNESCO World Heritage Site (2018). It pairs natural wonders — Al-Qarah Mountain’s caves, Al-Asfar Lake and the freshwater springs — with living heritage in Hofuf: Qasr Ibrahim, Qaisariyah Souq and Jawatha Mosque, plus palm groves, oasis fruits and distinctive local cuisine. A welcoming, family-friendly destination blending history, nature and hospitality.' },
     { q: 'What are the best places to visit in Al-Ahsa?', a: 'Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” centre, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My Trip”.' },
-    { q: 'What are the opening hours for Al-Qarah Mountain?', a: 'It opens daily from 8:00 am to 10:00 pm (hours may be extended on holidays), and admission is SAR 50 for adults, booked through the “Land of Civilisations” centre. Hours can change seasonally, so confirm before you go. (Reviewed June 2026)' },
-    { q: 'When does Qaisariyah Souq open?', a: 'The souq trades in the morning from 8 am to 12 noon and in the evening from 3:30 pm to 10 pm (Friday evenings only), and entry is free. Evenings are the best time, when the shops open and the market comes alive. (Reviewed June 2026)' },
+    { q: 'What are the opening hours for Al-Qarah Mountain?', a: `It opens daily from 8:00 am to 10:00 pm (hours may be extended on holidays), and admission is SAR 50 for adults, booked through the “Land of Civilisations” centre. Hours can change seasonally, so confirm before you go. (Reviewed ${rev})` },
+    { q: 'When does Qaisariyah Souq open?', a: `The souq trades in the morning from 8 am to 12 noon and in the evening from 3:30 pm to 10 pm (Friday evenings only), and entry is free. Evenings are the best time, when the shops open and the market comes alive. (Reviewed ${rev})` },
     { q: 'When is the best time to visit Al-Ahsa?', a: 'A year-round destination; the weather is gentlest from October to March — ideal for the landmarks and forts — while summer brings fresh dates, evening experiences and the parks. Early in the year is the season of the Dates Festival.' },
     { q: 'How do I travel from Riyadh to Al-Ahsa?', a: 'Al-Ahsa is about 326 km from Riyadh. The fastest and most comfortable option is the train to Hofuf station (around two hours and ten minutes with SAR), or driving via the highway (around 3 hours 20 minutes), or flying into Al-Ahsa International Airport.' },
     { q: 'What is the distance from Al-Ahsa to Bahrain and Dammam?', a: 'Al-Ahsa is close to Dammam and Khobar via a good highway network (Dammam is roughly 150 km, about 1.5 hours). Bahrain is reached by road across the King Fahd Causeway via Khobar (about two hours). SAR trains also stop at nearby Abqaiq (Buqayq) on the same line.' },

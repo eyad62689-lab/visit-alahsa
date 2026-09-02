@@ -45,9 +45,11 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   map.addControl(new maplibregl.ScaleControl({}));
 
   // ننتظر اكتمال النمط؛ فشل تحميل النمط نفسه (لا بلاطة عابرة) يرمي فيتراجع التمهيد إلى Leaflet
+  // مهلة 15 ثانية: بلا load ولا error (بلاطة عالقة) كان الملصق يبقى «جارٍ التحميل» للأبد
   await new Promise<void>((resolve, reject) => {
-    map.once('load', () => resolve());
-    map.once('error', (e) => { if (!map.isStyleLoaded()) reject(e?.error ?? new Error('style load failed')); });
+    const timer = setTimeout(() => reject(new Error('style load timeout')), 15000);
+    map.once('load', () => { clearTimeout(timer); resolve(); });
+    map.once('error', (e) => { if (!map.isStyleLoaded()) { clearTimeout(timer); reject(e?.error ?? new Error('style load failed')); } });
   });
 
   // تسميات الأساس بلغة الصفحة: name:ar (أو name:en) مع تراجع إلى name.
@@ -132,7 +134,7 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
     if (animate && !opts.reduceMotion) map.easeTo({ ...cam, duration: 900 });
     else map.jumpTo(cam);
     // نصّ الزر يصف ما سيحدث عند الضغط (الوضع الآخر)
-    if (btn) btn.textContent = on ? (cfg.labels.d3off ?? '2D') : (cfg.labels.d3on ?? '3D');
+    if (btn) { btn.textContent = on ? (cfg.labels.d3off ?? '2D') : (cfg.labels.d3on ?? '3D'); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
   };
   if (btn) {
     btn.hidden = false;

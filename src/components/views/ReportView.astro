@@ -55,6 +55,7 @@ const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
         action={thanksHref}
         data-netlify="true"
         netlify-honeypot="bot-field"
+        data-astro-reload
       >
         <input type="hidden" name="form-name" value="report-error" />
         <input type="hidden" name="lang" value={lang} />
@@ -63,15 +64,15 @@ const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
         </p>
         <div class="rp-field">
           <label class="rp-l" for="rp-page">{C.pageL}</label>
-          <input class="rp-i" id="rp-page" name="page" type="text" placeholder={C.pagePh} />
+          <input class="rp-i" id="rp-page" name="page" type="text" maxlength="300" placeholder={C.pagePh} />
         </div>
         <div class="rp-field">
           <label class="rp-l" for="rp-msg">{C.msgL}</label>
-          <textarea class="rp-i rp-ta" id="rp-msg" name="message" rows="6" required placeholder={C.msgPh}></textarea>
+          <textarea class="rp-i rp-ta" id="rp-msg" name="message" rows="6" required maxlength="2000" placeholder={C.msgPh}></textarea>
         </div>
         <div class="rp-field">
           <label class="rp-l" for="rp-email">{C.emailL}</label>
-          <input class="rp-i" id="rp-email" name="email" type="email" dir="ltr" autocomplete="email" placeholder={C.emailPh} />
+          <input class="rp-i" id="rp-email" name="email" type="email" dir="ltr" autocomplete="email" maxlength="254" placeholder={C.emailPh} />
         </div>
         <div class="rp-foot">
           <button class="btn btn--gold" type="submit">{C.submit}</button>

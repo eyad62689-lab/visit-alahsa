@@ -85,14 +85,14 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={`${t('tmap.title')} — ${t('site.name')}`} description={t('tmap.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${t('tmap.title')} — ${t('site.name')}`} description={t('tmap.lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/map-poster">
   <Header lang={lang} alt={alt} />
   <main class="tmap-page" id="main">
     <div class="container tmap-head">
       <span class="eyebrow">{t('map.eyebrow')}</span>
       <h1 class="tmap-title">{t('tmap.title')}</h1>
       <p class="tmap-lead">{t('tmap.lead')}</p>
-      <p class="tmap-alt"><a href={classicHref}>{t('tmap.classic')} ←</a></p>
+      <p class="tmap-alt"><a href={classicHref}>{t('tmap.classic')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a></p>
     </div>
 
     <div class="container">

@@ -30,7 +30,7 @@ const t = useTranslations(lang);
         </svg>
       </button>
     </form>
-    <div class="sm-results" id="sm-results" role="listbox" aria-label={t('search.label')}>
+    <div class="sm-results" id="sm-results" role="region" aria-live="polite" aria-label={t('search.label')}>
       <p class="sm-msg" id="sm-idle">{t('search.idle')}</p>
     </div>
     <p class="sm-foot"><kbd>Esc</kbd> {t('search.escHint')}</p>
@@ -77,7 +77,7 @@ const t = useTranslations(lang);
       if (!search.results.length) { setMsg(labels.empty); return; }
       const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
       results.innerHTML = top.map((d, i) =>
-        '<a class="sm-item" href="' + d.url + '" role="option" tabindex="-1">' +
+        '<a class="sm-item" href="' + d.url + '" tabindex="-1">' +
           '<span class="sm-t">' + (d.meta && d.meta.title ? d.meta.title : d.url) + '</span>' +
           '<span class="sm-ex">' + d.excerpt + '</span>' +
         '</a>'

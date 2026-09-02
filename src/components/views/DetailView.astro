@@ -1,5 +1,6 @@
 ---
 import { render, getCollection, type CollectionEntry } from 'astro:content';
+import { reviewedLabel } from '../../data/meta';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
@@ -71,10 +72,10 @@ const practicalItems = a.practical
 const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label));
 // النص الصيني من خط zh-translation-pipeline (misc.reviewNote — دورة 2026-08-29)
 const reviewNote = ar
-  ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في يونيو 2026م.'
+  ? `المواعيد والرسوم قابلة للتغيير في المواسم والأعياد؛ روجعت في ${reviewedLabel('attractions', 'ar')}.`
   : zh
-    ? '开放时间与门票价格可能随季节和节假日变动；信息核实于 2026 年 6 月。'
-    : 'Hours and fees can change in seasons and holidays; reviewed in June 2026.';
+    ? `开放时间与门票价格可能随季节和节假日变动；信息核实于 ${reviewedLabel('attractions', 'zh')}。`
+    : `Hours and fees can change in seasons and holidays; reviewed in ${reviewedLabel('attractions', 'en')}.`;
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.

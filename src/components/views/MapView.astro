@@ -63,8 +63,9 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={`${t('map.title')} — ${t('site.name')}`} description={`${points.length} ${t('map.lead.a')}`} lang={lang} alt={alt} jsonLd={jsonLd}
-  preconnect={['https://a.basemaps.cartocdn.com', 'https://b.basemaps.cartocdn.com', 'https://c.basemaps.cartocdn.com', 'https://d.basemaps.cartocdn.com']}>
+<Base title={`${t('map.title')} — ${t('site.name')}`} description={`${points.length} ${t('map.lead.a')}`} lang={lang} alt={alt} jsonLd={jsonLd}>
+  {/* preconnect لكارتو في أسفل الصفحة بلا crossorigin عمداً: البلاطات تُطلب كـ<img> بلا CORS،
+      فاتصال crossorigin (الذي يضيفه Base) لا يُعاد استعماله ويُهدر */}
   <Header lang={lang} alt={alt} />
   <main class="map-page" id="main">
     <div class="container map-head">
@@ -160,16 +161,17 @@ const jsonLd = [
         .replace(/[أإآى]/g, 'ا').replace(/ة/g, 'ه');
       const fmt = (n) => String(n); // الأرقام لاتينية في اللغتين
 
+      const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       const entries = points.map((p, i) => {
         const m = L.marker([p.lat, p.lng], { icon: pin(p.cat), title: p.title });
-        const img = p.popImg ? '<img class="va-pop-img" src="' + p.popImg + '" alt="" loading="lazy" decoding="async">' : '';
+        const img = p.popImg ? '<img class="va-pop-img" src="' + esc(p.popImg) + '" alt="" loading="lazy" decoding="async">' : '';
         m.bindPopup('<div class="va-pop">' + img +
-          '<span class="va-pop-k">' + p.catLabel + '</span>' +
-          '<strong class="va-pop-t">' + p.title + '</strong>' +
-          '<p class="va-pop-d">' + p.summary + '</p>' +
-          '<a class="va-pop-a" href="' + p.href + '">' + labels.view + '</a>' +
-          '<button class="fav-btn va-pop-fav" type="button" data-fav="' + p.fav + '" data-tx-on="' + labels.favAdded + '" data-tx-off="' + labels.favAdd + '" aria-pressed="false">' +
-          '<span class="fav-ic">+</span><span data-fav-tx>' + labels.favAdd + '</span></button>' +
+          '<span class="va-pop-k">' + esc(p.catLabel) + '</span>' +
+          '<strong class="va-pop-t">' + esc(p.title) + '</strong>' +
+          '<p class="va-pop-d">' + esc(p.summary) + '</p>' +
+          '<a class="va-pop-a" href="' + esc(p.href) + '">' + esc(labels.view) + '</a>' +
+          '<button class="fav-btn va-pop-fav" type="button" data-fav="' + esc(p.fav) + '" data-tx-on="' + esc(labels.favAdded) + '" data-tx-off="' + esc(labels.favAdd) + '" aria-pressed="false">' +
+          '<span class="fav-ic">+</span><span data-fav-tx>' + esc(labels.favAdd) + '</span></button>' +
           '</div>');
         cluster.addLayer(m);
         const li = lis[i] || null;

@@ -35,7 +35,8 @@ const allPoints = items.map((e) => {
   };
 });
 const L = {
-  savedSuffix: t('plan.savedSuffix'), route: t('plan.route'), clear: t('plan.clear'),
+  savedSuffix: t('plan.savedSuffix'), savedOne: t('plan.savedOne'), savedTwo: t('plan.savedTwo'), savedFew: t('plan.savedFew'),
+  route: t('plan.route'), clear: t('plan.clear'), clearConfirm: t('plan.clearConfirm'), routeLimit: t('plan.routeLimit'),
   remove: t('plan.remove'), location: t('plan.location'),
   copy: t('plan.copy'), copied: t('plan.copied'), waText: t('plan.waText'),
 };
@@ -62,7 +63,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
       <div class="plan-actions" id="plan-actions" hidden>
         {/* عدّاد خاص بالصفحة (لا data-plan-count): في وضع القائمة المشارَكة يعرض عدّها
             لا عدّ الزائر، وsync العالمي لا يصله */}
-        <span class="plan-count-txt"><bdi id="plan-count">0</bdi> {L.savedSuffix}</span>
+        <span class="plan-count-txt"><bdi id="plan-count">0</bdi> <span id="plan-count-suffix">{L.savedSuffix}</span></span>
         <div class="plan-act-btns">
           <a href="#" class="btn btn--gold" id="route-btn" target="_blank" rel="noopener">{L.route}</a>
           <a href="#" class="btn btn--turq" id="wa-btn" target="_blank" rel="noopener" data-own-only>{t('plan.share')}</a>
@@ -70,6 +71,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
           <button class="btn btn--ghost-ink" id="print-btn" type="button">{t('plan.print')}</button>
           <button class="btn btn--ghost-ink" id="clear-btn" type="button" data-own-only>{L.clear}</button>
         </div>
+        <p class="route-note" id="route-note" hidden>{L.routeLimit}</p>
       </div>
       <p class="print-note">{t('plan.printNote')}</p>
       <div class="plan-grid" id="plan-list"></div>
@@ -111,29 +113,44 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
       empty.hidden = true; actions.hidden = false;
       const cnt = document.getElementById('plan-count');
       if (cnt) cnt.textContent = favs.length;
+      // صيغة الجمع حسب العدد (كانت «معلماً محفوظاً» لكل الأعداد وهي صحيحة لـ11–99 فقط)
+      const sfx = document.getElementById('plan-count-suffix');
+      if (sfx) {
+        let cat = 'other';
+        try { cat = new Intl.PluralRules(document.documentElement.lang || 'ar').select(favs.length); } catch (e) {}
+        sfx.textContent = cat === 'one' ? L.savedOne : cat === 'two' ? L.savedTwo : cat === 'few' ? L.savedFew : L.savedSuffix;
+      }
+      const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       list.innerHTML = favs.map((slug) => {
         const p = map[slug];
-        const maps = p.mapUrl ? '<a class="pc-map" href="' + p.mapUrl + '" target="_blank" rel="noopener">' + L.location + '</a>' : '';
-        const remove = shared ? '' : '<button class="pc-remove" type="button" data-fav="' + p.slug + '">' + L.remove + '</button>';
-        const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+        const maps = p.mapUrl ? '<a class="pc-map" href="' + esc(p.mapUrl) + '" target="_blank" rel="noopener">' + esc(L.location) + '</a>' : '';
+        const remove = shared ? '' : '<button class="pc-remove" type="button" data-fav="' + esc(p.slug) + '">' + esc(L.remove) + '</button>';
         const photo = p.img
           ? '<picture class="photo photo--img pc-photo">' +
               (p.setWebp ? '<source srcset="' + esc(p.setWebp) + '" type="image/webp" sizes="' + PC_SIZES + '">' : '') +
               '<img src="' + esc(p.img) + '.jpg"' + (p.setJpg ? ' srcset="' + esc(p.setJpg) + '"' : '') +
               ' sizes="' + PC_SIZES + '" alt="' + esc(p.title) + '" loading="lazy" decoding="async">' +
             '</picture>'
-          : '<div class="photo pc-photo photo--placeholder"><span class="ph-label">' + p.title + '</span></div>';
+          : '<div class="photo pc-photo photo--placeholder"><span class="ph-label">' + esc(p.title) + '</span></div>';
         return '<article class="plan-card">' +
           photo +
-          '<div class="pc-body"><span class="t-caption pc-k">' + p.cat + '</span>' +
-          '<h3 class="pc-t"><a href="' + p.href + '">' + p.title + '</a></h3>' +
-          '<p class="pc-d">' + p.summary + '</p>' +
+          '<div class="pc-body"><span class="t-caption pc-k">' + esc(p.cat) + '</span>' +
+          '<h3 class="pc-t"><a href="' + esc(p.href) + '">' + esc(p.title) + '</a></h3>' +
+          '<p class="pc-d">' + esc(p.summary) + '</p>' +
           '<div class="pc-foot">' + maps + remove + '</div>' +
           '</div></article>';
       }).join('');
       const coords = favs.map((s) => map[s]).filter((p) => p.lat && p.lng);
       const routeBtn = document.getElementById('route-btn');
-      if (routeBtn) { if (coords.length) { routeBtn.href = 'https://www.google.com/maps/dir/' + coords.map((p) => p.lat + ',' + p.lng).join('/'); routeBtn.style.display = ''; } else routeBtn.style.display = 'none'; }
+      const routeNote = document.getElementById('route-note');
+      if (routeBtn) {
+        if (coords.length) {
+          // خرائط قوقل تقبل 10 محطات؛ الزائد كان يُسقَط بصمت
+          routeBtn.href = 'https://www.google.com/maps/dir/' + coords.slice(0, 10).map((p) => p.lat + ',' + p.lng).join('/');
+          routeBtn.style.display = '';
+          if (routeNote) routeNote.hidden = coords.length <= 10;
+        } else { routeBtn.style.display = 'none'; if (routeNote) routeNote.hidden = true; }
+      }
       // رابط المشاركة يحمل معالم القائمة نفسها في ?list=
       const shareUrl = location.origin + location.pathname + '?list=' + favs.map(encodeURIComponent).join(',');
       const waBtn = document.getElementById('wa-btn');
@@ -144,7 +161,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
     function onPlanClick(e) {
       const t = e.target.closest ? e.target.closest('button, a') : null;
       if (!t) return;
-      if (t.id === 'clear-btn') { if (window.VAPlan) window.VAPlan.save([]); }
+      if (t.id === 'clear-btn') { if (window.VAPlan && window.confirm(L.clearConfirm)) window.VAPlan.save([]); }
       if (t.id === 'print-btn') { planEvent('plan_print'); window.print(); }
       if (t.id === 'wa-btn') planEvent('plan_share_whatsapp');
       if (t.id === 'route-btn') planEvent('plan_open_route');
@@ -188,6 +205,7 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
   .plan-body { padding-block: var(--s-6) var(--s-8); }
   .plan-actions { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); padding-block-end: var(--s-4); border-block-end: 1px solid var(--c-line); }
   .plan-count-txt { font-weight: 600; color: var(--c-turq-deep); }
+  .route-note { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
   .plan-act-btns { display: flex; gap: var(--s-3); flex-wrap: wrap; }
   .btn--ghost-ink { background: transparent; color: var(--c-ink); border: 1.5px solid var(--c-line); }
   .btn--ghost-ink:hover { border-color: var(--c-turq); color: var(--c-turq); }
@@ -232,11 +250,11 @@ const mapHref = ar ? '/خريطة/' : '/en/map/';
     :global(.site-header), :global(.site-footer), :global(.skip-link),
     .plan-actions, .shared-note, .plan-empty, :global(.pc-remove) { display: none !important; }
     .print-note { display: block; font-size: 10pt; color: #444; margin-block-end: 12pt; }
-    .plan-hero { background: none !important; padding-block: 0 8pt; }
-    :global(.ph-wm) { display: none !important; }
-    .plan-hero .eyebrow { display: none; }
-    .ph-title { color: #000 !important; font-size: 20pt; }
-    .ph-sum { display: none; }
+    :global(.page-hero) { background: none !important; padding-block: 0 8pt; }
+    :global(.pgh-wm) { display: none !important; }
+    :global(.page-hero) .eyebrow { display: none; }
+    :global(.pgh-title) { color: #000 !important; font-size: 20pt; }
+    :global(.pgh-lead) { display: none; }
     .plan-body { padding-block: 0; }
     .plan-grid { display: block; }
     :global(.plan-card) { box-shadow: none; border: 0; border-block-end: 1pt solid #bbb; border-radius: 0;

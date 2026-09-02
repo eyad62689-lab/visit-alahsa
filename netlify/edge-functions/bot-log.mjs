@@ -38,12 +38,11 @@ export default async (request, context) => {
   try {
     const ua = request.headers.get('user-agent') || ''
     const isBot = ua === '' || BOT_RE.test(ua)
-    if (isBot) {
-      // البوت لا يتأثر ببضع ميلي ثانية — ننتظر لضمان عدم ضياع السجل
-      await logRequest(request, context, ua, isBot).catch(() => {})
-    } else if (Math.random() < SAMPLE_RATE) {
-      // زائر بشري: لا نحجب الاستجابة إطلاقاً — إرسال أفضل جهد وفقدُ عيّنةٍ مقبول
-      logRequest(request, context, ua, isBot).catch(() => {})
+    if (isBot || Math.random() < SAMPLE_RATE) {
+      // لا نحجب الاستجابة لأحد — ولا لـGooglebot: الانتظار كان يضيف زمن كتابة Blob
+      // إلى كل طلب زحف. waitUntil يُبقي الكتابة حيّة بعد الردّ حيث يدعمه المضيف.
+      const p = logRequest(request, context, ua, isBot).catch(() => {})
+      if (typeof context.waitUntil === 'function') context.waitUntil(p)
     }
   } catch { /* التسجيل لا يعطّل تقديم الصفحة بأي حال */ }
   return context.next()

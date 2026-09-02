@@ -13,6 +13,9 @@ import { createHash } from 'node:crypto'
 
 const SUSPICIOUS_LENGTH = 400
 const SUSPICIOUS_REPEATS = 5
+// سقف الأحداث المخزّنة لجلسة واحدة: بعده يُحدَّث العدّاد فقط بلا تخزين الحدث
+// (بلا سقف كان سكربت واحد يستطيع إغراق المخزن بكتابتين لكل طلب)
+const SESSION_EVENT_CAP = 200
 const ALLOWED_HOSTS = ['visit-alahsa.com', 'www.visit-alahsa.com']
 
 const clampStr = (v, max) => (typeof v === 'string' ? v.slice(0, max) : '')
@@ -52,6 +55,7 @@ export default async (req, context) => {
   } catch { /* تعذّر العدّاد لا يمنع تسجيل الحدث */ }
 
   const suspicious = length > SUSPICIOUS_LENGTH || serverCopies > SUSPICIOUS_REPEATS
+  if (serverCopies > SESSION_EVENT_CAP) return new Response(null, { status: 204 })
 
   const now = new Date()
   const event = {

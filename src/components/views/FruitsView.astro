@@ -13,6 +13,7 @@ import Photo from '../Photo.astro';
 import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN } from '../../data/fruits';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import { reviewedLabel } from '../../data/meta';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -48,7 +49,7 @@ const C = localize(lang, {
   countPrefix: 'عدد الثمار المعروضة: ',
   methodH: 'حول دقة المعلومات',
   methodP1: 'اعتمدنا في هذه الصفحة على مصادر رسمية وزراعية موثوقة، وحرصنا على التحقّق من كل معلومة قبل نشرها. وما لم نجد له مصدراً مؤكداً وسمناه صراحةً بعلامة «بانتظار التأكيد» بدل الجزم به.',
-  methodP2: 'تختلف مواعيد النضج قليلاً من موسم لآخر بحسب الأحوال الجوية؛ رُوجعت هذه المعلومات في يوليو 2026م.',
+  methodP2: `تختلف مواعيد النضج قليلاً من موسم لآخر بحسب الأحوال الجوية؛ رُوجعت هذه المعلومات في ${reviewedLabel('fruits', 'ar')}.`,
   groups: FRUIT_GROUPS_AR,
 }, {
   heroEyebrow: 'From the oasis bounty',
@@ -78,7 +79,7 @@ const C = localize(lang, {
   countPrefix: 'Fruits shown: ',
   methodH: 'About the accuracy of this page',
   methodP1: 'This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it. Anything we could not confirm is explicitly marked “Pending confirmation” rather than stated as fact.',
-  methodP2: 'Ripening dates shift slightly from season to season with the weather; this information was reviewed in July 2026.',
+  methodP2: `Ripening dates shift slightly from season to season with the weather; this information was reviewed in ${reviewedLabel('fruits', 'en')}.`,
   groups: FRUIT_GROUPS_EN,
 });
 
@@ -91,7 +92,7 @@ const siteUrl = 'https://visit-alahsa.com';
 const selfPath = ar ? '/ثمار/' : '/en/fruits/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(alt[lang] === selfPath ? (ar ? '/' : '/en/') : (ar ? '/' : '/en/'), siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];
