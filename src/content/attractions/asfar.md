@@ -23,7 +23,8 @@ area_en: "Northeast of the oasis"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 practical:
-  - { label: "الرسوم", value: "بانتظار التأكيد", label_en: "Fees", value_en: "Pending confirmation", verified: false }
+  # الرسوم: أكد إياد (2026-09-02) أن الدخول مجاني — يطابق المتن «ودخولها مجاني»؛ الصينية من ذاكرة الترجمة (免费入场)
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free", label_zh: "门票", value_zh: "免费入场", verified: true }
 location: { lat: 25.525252, lng: 49.808672 }
 mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
 ---
