@@ -455,7 +455,7 @@ export const ui = {
     'home.route.s1.n': '易卜拉欣宫',
     'home.route.s1.d': '从这座要塞开始：同一道城墙之内，清真寺、营房与塔楼一应俱全。',
     'home.route.s2.n': '凯萨利亚市集',
-    'home.route.s2.d': '巷子里飘着香水与黄铜的气味，还有当地手工绣制的斗篷。',
+    'home.route.s2.d': '巷子里飘着香水与黄铜的气味，还有当地手工绣制的哈萨比什特长袍。',
     'home.route.s3.n': '卡拉山',
     'home.route.s3.d': '趁天光转柔时登高，脚下椰枣林如海铺展。',
     'home.route.s4.n': '贾瓦塔清真寺',

@@ -10,6 +10,7 @@ import type { Lang } from '../i18n/ui';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const ar = lang === 'ar';
+const zh = lang === 'zh';
 
 type Season = { key: string; name: string; months: string; items: string[] };
 const C = ar ? {
@@ -40,6 +41,36 @@ const C = ar ? {
       'موسم «الصرام»: التمور الكاملة حتى بداية أكتوبر',
       'الأجواء تعتدل — تبدأ أشهر الزيارة المثالية',
       'انطلاق موسم سباقات الخيل وأجواء شتاء الوفرة',
+    ] },
+  ] as Season[],
+} : zh ? {
+  eyebrow: '绿洲的四季',
+  title: '哈萨现在是哪个季节？',
+  lead: '绿洲四季各有果实与节庆——看看每一季为您准备了什么。',
+  nowBadge: '当前季节',
+  note: '季节仅为大致划分，活动日期每年不同——出行前请通过官方渠道确认。',
+  fruitsCta: '按季看水果',
+  eventsCta: '按季看活动',
+  seasons: [
+    { key: 'winter', name: '冬季', months: '12 月 – 次年 2 月', items: [
+      '全年最舒爽的天气——最宜探访地标与城堡',
+      '圣刺枣（kanar）与香橼，刚从绿洲果园摘下',
+      '节庆最盛：哈萨比什特长袍节、椰枣制品节、椰枣村、乌盖尔（Al-Uqair）冬季',
+    ] },
+    { key: 'spring', name: '春季', months: '3 月 – 5 月', items: [
+      '绿洲桑葚——只在 4 月前后，短短一季',
+      '创意哈萨节，以及凯萨利亚之夜的收官',
+      '5 月下旬：第一批鲜熟椰枣（rutab）',
+    ] },
+    { key: 'summer', name: '夏季', months: '6 月 – 8 月', items: [
+      '鲜熟椰枣与早熟水果的季节——在沙特阿拉伯，哈萨率先开摘',
+      '哈萨无花果、毛叶破布木果（bambar）、番木瓜，正当季',
+      '哈萨青柠展，为夏季收尾',
+    ] },
+    { key: 'autumn', name: '秋季', months: '9 月 – 11 月', items: [
+      '“西拉姆”（siram）椰枣收获季：完熟椰枣一直采到 10 月初',
+      '暑气渐退——最适合到访的月份来了',
+      '赛马季与瓦弗拉冬季相继拉开帷幕',
     ] },
   ] as Season[],
 } : {
@@ -73,6 +104,7 @@ const C = ar ? {
     ] },
   ] as Season[],
 };
+// الصينية تسقط إلى الإنجليزية حتى تصدر صفحتا /zh/fruits/ و/zh/events/ (معتمد SeasonNow 2026-09-02)
 const fruitsHref = ar ? '/ثمار/' : '/en/fruits/';
 const eventsHref = ar ? '/فعاليات/' : '/en/events/';
 ---
