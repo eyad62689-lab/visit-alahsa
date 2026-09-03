@@ -21,6 +21,15 @@ const attractions = defineCollection({
     body_zh: z.string().optional(),
     area_zh: z.string().optional(),
     bestTime_zh: z.string().optional(),
+    // الحقول الألمانية (de-DE): تُملأ حصراً من مخرجات خط de-translation-pipeline
+    // المعتمدة (درجة الحاكم ≥ العتبة). وجود title_de هو مفتاح توليد صفحة /de/
+    // وإدراج hreflang وخيار Deutsch في مبدّل اللغة — على سابقة title_zh.
+    title_de: z.string().optional(),
+    kicker_de: z.string().optional(),
+    summary_de: z.string().optional(),
+    body_de: z.string().optional(),
+    area_de: z.string().optional(),
+    bestTime_de: z.string().optional(),
     slug_ar: z.string(),                       // الرابط العربي (النسخة العربية)
     slug_en: z.string(),                       // الرابط اللاتيني (النسخة الإنجليزية)
     category: z.enum(CATEGORIES),
@@ -46,6 +55,9 @@ const attractions = defineCollection({
       // label_zh/value_zh ترجمة البند للصينية — بدونهما لا يظهر البند في صفحة /zh/
       label_zh: z.string().optional(),
       value_zh: z.string().optional(),
+      // label_de/value_de ترجمة البند للألمانية — بدونهما لا يظهر البند في صفحة /de/
+      label_de: z.string().optional(),
+      value_de: z.string().optional(),
       verified: z.boolean().default(false),
       // ── التوثيق (2026-08-31) ───────────────────────────────────────────
       // بند دراسة التطوير: «لا معلومة تشغيلية دون مصدر وتاريخ تحقق».
@@ -54,9 +66,10 @@ const attractions = defineCollection({
       source: z.string().optional(),                                   // اسم الجهة أو المرجع (عربي)
       // اسم المصدر بلغة كل نسخة: بدونه يظهر اسمٌ عربي داخل الصفحة الإنجليزية —
       // وهي المخالفة نفسها التي يحرسها فلتر label_en/value_en أعلاه.
-      // الصينية تتراجع للإنجليزية على سلسلة الموقع (zh ← en ← ar).
+      // الصينية والألمانية تتراجعان للإنجليزية على سلسلة الموقع (zh/de ← en ← ar).
       source_en: z.string().optional(),
       source_zh: z.string().optional(),
+      source_de: z.string().optional(),
       sourceUrl: z.string().url().optional(),                          // رابطه إن وُجد
       verifiedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تاريخ التحقق YYYY-MM-DD
       nextReview: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تجاوز دورة المراجعة الافتراضية

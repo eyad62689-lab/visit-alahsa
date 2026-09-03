@@ -1,0 +1,18 @@
+---
+// صفحات المعالم الألمانية (de-DE) — تُولَّد فقط للمعالم التي تحمل ترجمة ألمانية
+// معتمدة من خط de-translation-pipeline (وجود title_de هو المفتاح، على سابقة
+// title_zh). البقية لا صفحة لها فلا تظهر في hreflang ولا مبدّل اللغة (منطق
+// attractionAlt) — ولا خيار يقود إلى 404.
+import { attractionAlt } from '../../../lib/routes';
+import DetailView from '../../../components/views/DetailView.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const items = await getCollection('attractions', ({ data }) => Boolean(data.title_de));
+  return items.map((entry) => ({
+    params: { slug: entry.data.slug_en },
+    props: { entry, alt: attractionAlt(entry.data) },
+  }));
+}
+const { entry, alt } = Astro.props;
+---
+<DetailView entry={entry} lang="de" alt={alt} />

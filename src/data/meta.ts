@@ -19,5 +19,7 @@ export function reviewedLabel(key: keyof typeof REVIEWED, lang: Lang): string {
   const [y, m] = REVIEWED[key].split('-').map(Number);
   if (lang === 'ar') return `${MONTHS_AR[m - 1]} ${y}م`;
   if (lang === 'zh') return `${y} 年 ${m} 月`;
-  return new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(new Date(Date.UTC(y, m - 1, 1)));
+  // الألمانية صيغة Intl لا نصّاً مؤلَّفاً («Juni 2026») — سابقة formatDate،
+  // فلا تمرّ بخط الترجمة. بلا هذا الفرع كانت de تقع على «June 2026» الإنجليزية.
+  return new Intl.DateTimeFormat(lang === 'de' ? 'de-DE' : 'en-GB', { month: 'long', year: 'numeric' }).format(new Date(Date.UTC(y, m - 1, 1)));
 }

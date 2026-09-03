@@ -246,6 +246,24 @@ async function main() {
     if (!rule) fail('C13', 'تعذّر العثور على قاعدة .info-src');
     else if (used.length) fail('C13', `لون دون AA في سطر الإسناد: ${used.join(', ')} — قِس قبل التغيير`);
     else pass('C13', 'سطر الإسناد بلون يبلغ AA على خلفية البطاقة (ink-soft ‏8:1)');
+
+    // ── C14: تسمية «Beste Tageszeit» الألمانية تطابق ما تحتها ──────────────
+    // حكم خط de-translation-pipeline (2026-09-03) اختار «Tageszeit» (وقت النهار)
+    // لا «Besuchszeit» (وقت الزيارة) بعدّ القيم: سبعُ قيم مصيَّرة كلها أوقات نهار،
+    // والموسمي صفر — والقارئ الألماني يقرأ «Beste Zeit/Besuchszeit» موسماً.
+    // شرط القلب كان مذكرةً في ملف ترجمة، وهو ما لن يقرأه محرّرٌ لا يعرف الألمانية
+    // يوم يضيف قيمةً موسمية؛ فصار حارساً يُفشل البناء بدل أن تكذب التسمية بصمت.
+    const SEASONAL_DE = /\b(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember|Frühling|Sommer|Herbst|Winter|Saison|Monat)\w*/;
+    const deLies = [];
+    for (const f of await listHtml(path.join(DIST, 'de'))) {
+      const html = await readFile(f, 'utf8');
+      const m = html.match(/Beste Tageszeit<\/dt>\s*<dd[^>]*>([\s\S]*?)<\/dd>/);
+      const val = m && m[1].replace(/<[^>]+>/g, '').trim();
+      const hit = val && val.match(SEASONAL_DE);
+      if (hit) deLies.push(`${path.relative(DIST, f)} → «${hit[0]}»`);
+    }
+    if (deLies.length) fail('C14', `قيمة موسمية تحت «Beste Tageszeit» — التسمية صارت كاذبة، حوّلها إلى «Beste Besuchszeit» في ui.de: ${deLies.slice(0, 3).join(' · ')}`);
+    else pass('C14', 'تسمية «Beste Tageszeit» الألمانية تطابق قيمها (صفر قيمة موسمية)');
   }
 
   // ── C9: مفتاح IndexNow منشور ومطابق للمفتاح في الإضافة ───────────────────

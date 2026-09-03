@@ -2,13 +2,14 @@ import { ui, type Lang } from './ui';
 
 export function getLangFromUrl(url: URL): Lang {
   const [, seg] = url.pathname.split('/');
-  return seg === 'en' ? 'en' : seg === 'zh' ? 'zh' : 'ar';
+  return seg === 'en' ? 'en' : seg === 'zh' ? 'zh' : seg === 'de' ? 'de' : 'ar';
 }
 
 export function useTranslations(lang: Lang) {
   return function t(key: keyof typeof ui['ar']): string {
-    // تراجع الصينية إلى الإنجليزية: قاموس zh جزئي عمداً (يُملأ صفحةً بعد صفحة
-    // عبر خط الإنتاج)، والزائر الصيني يقرأ الإنجليزية أينما غابت الترجمة.
+    // تراجع الصينية والألمانية إلى الإنجليزية: قاموسا zh وde جزئيان عمداً
+    // (يُملآن صفحةً بعد صفحة عبر خطَّي الإنتاج)، والزائر يقرأ الإنجليزية أينما
+    // غابت الترجمة بدل أن يرى مفتاحاً خاماً.
     return (
       (ui[lang] as Record<string, string>)[key] ??
       (ui.en as Record<string, string>)[key] ??
@@ -18,23 +19,33 @@ export function useTranslations(lang: Lang) {
   };
 }
 
-/** كتلة نصوص واجهة ثنائية اللغة (نمط C الموحّد — دفعة 3، 2026-08-29).
+/** كتلة نصوص واجهة متعددة اللغات (نمط C الموحّد — دفعة 3، 2026-08-29).
  *  النوع يُستنتج من الكتلة العربية ويُفرَض على الإنجليزية، فأي مفتاح يغيب عن
  *  إحداهما يكسر البناء بدل أن يتباعد الشكلان بصمت — كانت كتل C في 10 واجهات
  *  ثلاثية الأشكال بلا أي إلزام (تدقيق 2026-08-28).
- *  الكتلة الصينية اختيارية: إن غابت تراجعت الصينية للإنجليزية. */
-export const localize = <T,>(lang: Lang, arText: T, enText: T, zhText?: T): T =>
-  lang === 'ar' ? arText : lang === 'zh' ? (zhText ?? enText) : enText;
+ *  الكتلتان الصينية والألمانية اختياريتان: إن غابت إحداهما تراجعت لغتها للإنجليزية.
+ *
+ *  قرار 2026-09-03 (تكامل الألمانية): أُبقيت الوسائط موضعية بدل صيغة السجلّ
+ *  `{ ar, en, zh, de }` — الصيغة الموضعية تُبقي الفرق صغيراً في 10 واجهات
+ *  ومئات المواضع، والكتل مكتوبة سطراً لكل لغة فيبقى الترتيب ظاهراً للعين.
+ *  **عند إضافة لغة خامسة تُحوَّل الدالة إلى صيغة السجلّ** — خمسة وسائط من
+ *  النوع نفسه تتجاوز ما تحتمله القراءة. */
+export const localize = <T,>(lang: Lang, arText: T, enText: T, zhText?: T, deText?: T): T =>
+  lang === 'ar' ? arText
+  : lang === 'zh' ? (zhText ?? enText)
+  : lang === 'de' ? (deText ?? enText)
+  : enText;
 
 export const dir = (lang: Lang) => (lang === 'ar' ? 'rtl' : 'ltr');
-export const htmlLang = (lang: Lang) => (lang === 'ar' ? 'ar' : lang === 'zh' ? 'zh-CN' : 'en');
+export const htmlLang = (lang: Lang) =>
+  lang === 'ar' ? 'ar' : lang === 'zh' ? 'zh-CN' : lang === 'de' ? 'de' : 'en';
 
 // مسارات النظائر باللغات الأخرى (للمبدّل وhreflang). تمرَّر لكل صفحة.
-// zh اختياري: لا يُدرج إلا حين توجد نسخة صينية فعلية للصفحة — hreflang
-// ومبدّل اللغة يظهران الصينية عند وجوده فقط.
-export interface AltLinks { ar: string; en: string; zh?: string; }
+// zh وde اختياريان: لا يُدرج أحدهما إلا حين توجد نسخة فعلية للصفحة بتلك اللغة
+// — hreflang ومبدّل اللغة يظهرانها عند وجودها فقط، فلا خيار يقود إلى 404.
+export interface AltLinks { ar: string; en: string; zh?: string; de?: string; }
 
-/** رابط الصفحة بلغة الطلب من alt — مع تراجع الصينية للإنجليزية إن غاب نظيرها
- *  (zh اختياري في AltLinks، وبدون هذا المساعد يصير alt[lang] قابلاً للغياب
- *  نوعياً في كل موضع استهلاك). */
+/** رابط الصفحة بلغة الطلب من alt — مع تراجع الصينية والألمانية للإنجليزية إن
+ *  غاب نظيرهما (zh وde اختياريان في AltLinks، وبدون هذا المساعد يصير alt[lang]
+ *  قابلاً للغياب نوعياً في كل موضع استهلاك). */
 export const altHref = (alt: AltLinks, lang: Lang): string => alt[lang] ?? alt.en;

@@ -13,6 +13,8 @@ const ar = lang === 'ar';
 
 // الصينية: ما اكتملت صفحته الصينية يقصدها (توسعة 2026-09-02: الفعاليات والثمار
 // والأكلات والخريطة)؛ والبقية إلى النظير الإنجليزي حتى تكتمل في مراحل التعميم.
+// الألمانية: **لا فهرس /de/ بعد** (مرحلة «النواة» لم تبدأ) — كل روابط الترويسة
+// في صفحات /de/ تقصد النظير الإنجليزي مؤقتاً، كما كانت الصينية قبل دفعتها.
 const zh = lang === 'zh';
 const home = ar ? '/' : zh ? '/zh/' : '/en/';
 const routes = {
@@ -47,9 +49,10 @@ const LANG_META: Record<Lang, { short: string; native: string; code: string; dir
   ar: { short: 'ع', native: 'العربية', code: 'ar', dir: 'rtl' },
   en: { short: 'EN', native: 'English', code: 'en', dir: 'ltr' },
   zh: { short: '中文', native: '中文（简体）', code: 'zh-CN', dir: 'ltr' },
+  de: { short: 'DE', native: 'Deutsch', code: 'de', dir: 'ltr' },
 };
-const langItems = (['ar', 'en', 'zh'] as Lang[])
-  .filter((l) => l === lang || (alt ? Boolean(alt[l]) : l !== 'zh'))
+const langItems = (['ar', 'en', 'zh', 'de'] as Lang[])
+  .filter((l) => l === lang || (alt ? Boolean(alt[l]) : l !== 'zh' && l !== 'de'))
   .map((l) => ({
     current: l === lang,
     href: l === lang ? null : (alt?.[l] ?? (l === 'ar' ? '/' : '/en/')),
@@ -157,7 +160,7 @@ const langItems = (['ar', 'en', 'zh'] as Lang[])
   /* حلقة تركيز الصندوق تُرسم على البرغر المرئي المجاور */
   .nav-toggle:focus-visible ~ .burger { outline: 2px solid var(--c-turq); outline-offset: 2px; box-shadow: 0 0 0 2px var(--c-sand); border-radius: 6px; }
   .burger span { inline-size: 24px; block-size: 2px; background: var(--c-ink); border-radius: 2px; transition: var(--dur); }
-  /* 1199px لا 920px: التنقّل سبعة روابط وبقربها بحثٌ ورابط «رحلتي» ومبدّل لغة
+  /* 1199px لا 920px: التنقّل تسعة روابط وبقربها بحثٌ ورابط «رحلتي» ومبدّل لغة
      وزرّ دعوة، ودونها بقليل تلتفّ تسميات الروابط والزرّ سطرين ويرتفع الشريط.
      العتبة مقيسة — عند 1200px يستقرّ الشريط على 68px بلا التفاف. */
   @media (max-width: 1199px) {
