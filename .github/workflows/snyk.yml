@@ -1,0 +1,98 @@
+# ============================================================================
+# Snyk — dependency vulnerability scan (opt-in, never blocking)
+# ----------------------------------------------------------------------------
+# WHY THIS FILE IS SEPARATE FROM security-scans.yml
+#
+# The Snyk job was deliberately deleted on 2026-08-10 (see the header of
+# security-scans.yml) for two concrete reasons:
+#   1. No SNYK_TOKEN existed, so the scan produced no SARIF and the upload step
+#      failed on every run — the repository sat permanently red, which buries
+#      real findings instead of surfacing them.
+#   2. It used snyk/actions/setup@master — a MUTABLE branch reference, with the
+#      token in scope. Whoever controls that branch controls what runs here.
+#
+# Both causes are addressed rather than reintroduced:
+#   * The whole workflow is gated on the SNYK_TOKEN secret existing. Without it
+#     the job is skipped cleanly — no red X, no noise. Nothing to do until the
+#     owner decides to add the token.
+#   * No third-party action at all. The official CLI is installed from npm at a
+#     PINNED version, so nothing mutable is in the execution path.
+#
+# The scan never fails the build: findings go to the Security tab, and triage
+# is a human decision, not a merge blocker. CodeQL and Semgrep already cover
+# this repository's JavaScript in security-scans.yml; Snyk adds the dependency
+# tree, which neither of them scans.
+#
+# TO ENABLE: Settings -> Secrets and variables -> Actions -> New repository
+# secret, named SNYK_TOKEN (from app.snyk.io -> Account settings -> Auth Token).
+# Until then this file is inert by design.
+# ============================================================================
+
+name: Snyk
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "0 3 * * 1" # نفس نافذة security-scans.yml — الاثنين 3 صباحاً
+  workflow_dispatch: {}
+
+concurrency:
+  group: snyk-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  snyk:
+    name: Snyk dependency scan
+    runs-on: ubuntu-latest
+    # يُتخطّى بنظافة ما لم يُضِف المالك السرّ — لا إخفاق ولا مستودع أحمر
+    if: github.actor != 'dependabot[bot]'
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - name: Check for SNYK_TOKEN
+        id: gate
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+          if [ -n "$SNYK_TOKEN" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Snyk::SNYK_TOKEN غير مضبوط — تُخطّي الفحص عمداً. راجع ترويسة .github/workflows/snyk.yml."
+          fi
+
+      - name: Checkout repository
+        if: steps.gate.outputs.enabled == 'true'
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Set up Node
+        if: steps.gate.outputs.enabled == 'true'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.gate.outputs.enabled == 'true'
+        run: npm ci
+
+      # الإصدار مثبّت لا `@latest`: مسار تنفيذ ثابت بدل حزمة متغيّرة
+      - name: Run Snyk (official CLI, pinned)
+        if: steps.gate.outputs.enabled == 'true'
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: npx --yes snyk@1.1307.0 test --all-projects --sarif-file-output=snyk.sarif
+
+      # الرفع يتسامح مع غياب SARIF — الدرس المستفاد من إخفاق 2026-08-10
+      - name: Upload Snyk results
+        if: always() && steps.gate.outputs.enabled == 'true' && hashFiles('snyk.sarif') != ''
+        uses: github/codeql-action/upload-sarif@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
+        with:
+          sarif_file: snyk.sarif
+          category: snyk
