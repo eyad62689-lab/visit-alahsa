@@ -1,6 +1,12 @@
 ---
 title: "سوق الحميدية"
 title_en: "Al-Hamidiyah Souq"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 11 بدرجة 92/100 (2026-09-03)
+title_zh: 哈米迪耶市集
+kicker_zh: 民俗市集
+summary_zh: "胡富夫市中心的一座民俗市集，在历史城区开发项目中重建，邻近凯萨利亚市集。"
+body_zh: "哈米迪耶市集（Al-Hamidiyah Souq）是胡富夫市中心的一座民俗市集，坐落在里法阿北区，就在阿卜杜勒阿齐兹国王路上。市集在胡富夫历史城区开发项目中重建，同一项目还重建了凯萨利亚市集，并新建了手工艺人市集。此后，老城中心的这几座遗产市集彼此相邻，连成一片。市集的历史、特色货品等其他详情目前待确认（信息更新中），须经可靠来源核实后才会补充。"
+area_zh: 胡富夫，里法阿北区
 slug_ar: "سوق-الحميدية"
 slug_en: "hamidiyah-souq"
 category: market
@@ -14,7 +20,7 @@ order: 66
 area: "الهفوف، حي الرفعة الشمالية"
 area_en: "Hofuf, North Al-Rifaa district"
 practical:
-  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", verified: false }
+  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", label_zh: "开放时间", value_zh: "待确认（信息更新中）", verified: false }
 location: { lat: 25.375159, lng: 49.5890072 }
 mapUrl: "https://maps.app.goo.gl/4KEvxVRALRYuCDYA9"
 ---

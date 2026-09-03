@@ -1,6 +1,12 @@
 ---
 title: "سوق النساء الشعبي"
 title_en: "Women's Folk Souq"
+# الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 11 بدرجة 92/100 (2026-09-03)
+title_zh: 妇女民俗市集
+kicker_zh: 民俗市集
+summary_zh: "胡富夫市中心里法阿南区的一座遗产市集，至今仍是城里鲜活的民间商贸一景。"
+body_zh: "妇女民俗市集（Women's Folk Souq）位于胡富夫的里法阿南区，是一座遗产市集，就在老苏韦格市集区的中心。哈萨市政局对这座市集做过改造提升。如今这里的民间商贸依旧鲜活，售卖衣物和日常家用杂货。"
+area_zh: 胡富夫，里法阿南区
 slug_ar: "سوق-النساء-الشعبي"
 slug_en: "women-souq"
 category: market
@@ -14,7 +20,7 @@ order: 67
 area: "الهفوف، حي الرفعة الجنوبية"
 area_en: "Hofuf, South Al-Rifaa district"
 practical:
-  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", verified: false }
+  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", label_zh: "开放时间", value_zh: "待确认（信息更新中）", verified: false }
 location: { lat: 25.3713889, lng: 49.5886111 }
 mapUrl: "https://maps.app.goo.gl/AjLK1nvuFsuJQ3i89"
 ---
