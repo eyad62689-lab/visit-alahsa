@@ -10,14 +10,14 @@ heroImage: /img/jabal-al-qarah
 tags: ["Jabal Al-Qarah", "Al-Ahsa caves", "Land of Civilisations"]
 faq:
   - q: "Is visiting the Jabal Al-Qarah caves a good idea in summer?"
-    a: "Yes — it is one of Al-Ahsa's best stops for hot days. The caves hold a steady temperature of around 20°C all year, staying cool at the height of summer and warm once the night chills."
+    a: "Yes — it is one of Al-Ahsa's best stops for hot days. The caves hold a steady temperature of around 20°C all year, staying cool at the height of summer and warm in the depth of winter."
   - q: "Where is Jabal Al-Qarah and how do I get there?"
     a: "The mountain rises from the middle of the oasis east of Hofuf, by Al-Qarah village. A car is the practical way to reach it, and the site's My Trip tool turns the mountain and its surroundings into a ready route that opens in Google Maps."
   - q: "Do the caves require a ticket?"
     a: "Yes — tickets are issued through the Land of Civilisations centre at the foot of the mountain and include the caves experience. Verified hours and fees live on the landmark's page, and official channels have the final word."
 ---
 
-At the centre of the largest oasis on earth — inscribed on the UNESCO World Heritage list in 2018 — [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) rises from among the groves like an ancient guardian. But the mountain's secret is not its height; it is its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth when night falls — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity, and that makes the mountain the oasis's most famous landmark today.
+At the centre of the largest oasis on earth — inscribed on the UNESCO World Heritage list in 2018 — [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) rises from among the groves like an ancient guardian. But the mountain's secret is not its height; it is its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth in the depth of winter — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity, and that makes the mountain the oasis's most famous landmark today.
 
 This guide gathers what you need before the visit: what you'll see inside the caves, what surrounds the mountain, when to climb, and how to fold it into your day.
 
