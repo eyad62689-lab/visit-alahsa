@@ -652,7 +652,7 @@ export const ui = {
     'site.name': 'Al-Ahsa',
     'home.hero.eyebrow': 'UNESCO-Welterbestätte · 2018',
     'home.hero.title': 'Unterwegs zwischen Oasen und Dattelpalmen',
-    'home.hero.lead': 'Al-Ahsa – die größte Palmenoase der Welt. Hier fließt seit Jahrtausenden Wasser unter dem Sand, und zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert das Leben.',
+    'home.hero.lead': 'Al-Ahsa – die größte Oase der Welt. Hier fließt seit Jahrtausenden Wasser unter dem Sand, und zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert das Leben.',
     'home.hero.cta1': 'Die Geschichte beginnen',
     'home.hero.cta2': 'Zu den Sehenswürdigkeiten',
     'home.name.eyebrow': 'Die Bedeutung des Namens',
