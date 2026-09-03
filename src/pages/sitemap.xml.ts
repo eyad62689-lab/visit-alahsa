@@ -30,7 +30,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/', en: '/en/', zh: '/zh/', lastmod: dateOf(`${V}HomeView.astro`, 'src/i18n/ui.ts', ...attractionFiles) },
     { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
-    { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
+    { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
     { ar: '/خريطة-تضاريس/', en: '/en/terrain-map/', lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
     { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },

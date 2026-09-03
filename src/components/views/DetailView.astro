@@ -29,10 +29,10 @@ const bodyText = zh ? (a.body_zh ?? a.body_en ?? '') : (a.body_en ?? a.summary_e
 const { Content } = ar ? await render(entry) : { Content: null };
 
 // فئات الأسواق/المنتزهات/المزارع تتبع صفحتها المستقلة في الفتات وزر العودة (2026-07-13)
-// الصينية: فهرس المعالم صيني؛ صفحة الأسواق والمنتزهات إلى الإنجليزية مؤقتاً
+// الصينية: الفهرسان صينيان (الأسواق والمنتزهات أُضيفت في الدفعة 12 — 2026-09-03)
 const isLeisure = ['market', 'parks', 'farm'].includes(a.category);
 const attractionsHref = isLeisure
-  ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/')
+  ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : '/en/souqs-parks-farms/')
   : (ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/');
 const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');

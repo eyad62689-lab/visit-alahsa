@@ -493,6 +493,10 @@ export const ui = {
     'list.empty': '暂无符合条件的景点。',
     'list.search': '搜索景点…',
     'list.searchLabel': '搜索景点',
+    // صفحة الأسواق والمنتزهات والمزارع — الدفعة 12 (2026-09-03، درجة الحاكم 95/100)
+    'list2.eyebrow': '游览指南',
+    'list2.title': '传统市集、公园与农场',
+    'list2.lead': '从历史悠久的凯萨利亚市集，到绿洲的园林与农场——购物、漫步，品尝哈萨的馈赠。',
     'nav.attractions': '景点',
     'nav.map': '地图',
     'nav.events': '活动',

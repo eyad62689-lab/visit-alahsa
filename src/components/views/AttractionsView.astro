@@ -31,7 +31,7 @@ const hrefLang = (d: { title_zh?: string }) => (zh && !d.title_zh ? 'en' : lang)
 const num = (n: number) => String(n);
 
 const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
-const mapHref = ar ? '/خريطة/' : '/en/map/';
+const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/';
 
 // نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
 const K = leisure ? 'list2' : 'list';
@@ -50,7 +50,7 @@ const groups = DISPLAY_ORDER
 // هيرو الصفحة: للمعالم صورة وفيديو hero-attractions؛ لصفحة الأسواق صورة القيصرية بلا فيديو.
 const heroImg = leisure ? '/img/qaisariyah' : '/img/hero-attractions';
 const heroVideo = leisure ? null : '/video/hero-attractions.mp4';
-const selfPath = leisure ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/') : detailBase;
+const selfPath = leisure ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : '/en/souqs-parks-farms/') : detailBase;
 
 // أيقونات المجموعات (خطّية، currentColor) — بديلة لخيارات الفلترة المحذوفة.
 const CAT_ICONS: Record<string, string> = {
