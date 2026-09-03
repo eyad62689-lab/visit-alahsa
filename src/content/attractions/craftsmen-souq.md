@@ -20,7 +20,7 @@ order: 59
 area: "الهفوف — وسط المدينة التاريخي"
 area_en: "Hofuf — the historic town centre"
 practical:
-  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", label_zh: "开放时间", value_zh: "待确认（信息更新中）", verified: false }
+  - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", source: "خرائط جوجل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_zh: "谷歌地图（营业时间由商家更新）", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.3763032, lng: 49.5939642 }
 mapUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA"
 ---
