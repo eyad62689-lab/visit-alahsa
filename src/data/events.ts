@@ -387,7 +387,7 @@ const TEXT_ZH: EventTexts = {
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
-    name: '凯萨利亚市集之夜', place: '胡富夫历史悠久的凯萨利亚市集',
+    name: '凯撒利亚集市之夜', place: '胡富夫历史悠久的凯撒利亚集市',
     season: '冬末', time: '2 月至 3 月', span: '为期数周',
     org: '哈萨市政局、哈萨发展管理局、沙特遗产委员会',
     acts: ['民间艺术表演', '社区聚会', '传统游戏', '手工艺工作坊'],

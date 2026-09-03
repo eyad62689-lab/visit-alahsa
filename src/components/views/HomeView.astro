@@ -44,7 +44,7 @@ const catCards = [
   { key: 'crafts', cat: null, href: null, img: '/img/craftsmen-souq' },
   { key: 'taste', cat: null, href: `${leisureBase}?cat=farm`, img: '/img/hasawi-lemon-farm' },
   { key: 'market', cat: null, href: `${leisureBase}?cat=market`, img: '/img/qaisariyah' },
-  { key: 'events', cat: null, href: ar ? '/فعاليات/' : '/en/events/', img: '/img/event-dates-festival' },
+  { key: 'events', cat: null, href: ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
 const facts = [
   { n: ar ? '2.5 مليون' : zh ? '250 万' : '2.5M', l: t('fact.palms.l') },
@@ -54,10 +54,10 @@ const facts = [
   { n: String(allEntries.length), l: t('fact.sites.l') },
   { n: ar ? 'آلاف' : zh ? '数千' : 'Thousands', l: t('fact.springs.l') },
 ];
-// الصينية: فهرس المعالم موجود بالصينية؛ بقية الصفحات إلى النظير الإنجليزي مؤقتاً
+// الصينية: كل هذه الصفحات لها نسخة /zh/ (رحلتي أُضيفت في الدفعة 13 — 2026-09-03)
 const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
-const planTripHref = ar ? '/خطط/' : '/en/plan-your-trip/';
-const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
+const planTripHref = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : '/en/plan-your-trip/';
+const myTripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : '/en/plan/';
 
 // مسار «يومان في الواحة» — النصوص كلّها من القاموس، والوصلات من slug ملفات المعالم
 // الفعلية (لا مسارات مكتوبة يدوياً). time = شارة إيقاع النهار، لا موعد محدَّد.
@@ -105,7 +105,7 @@ const title = ar
 const description = ar
   ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
   : zh
-    ? '沙特阿拉伯哈萨旅游指南：卡拉山、易卜拉欣宫、凯萨利亚市集、乌盖尔（Al-Uqair）。在这片列入联合国教科文组织世界遗产名录的绿洲，查看地图与行程，了解活动与美食。'
+    ? '沙特阿拉伯哈萨旅游指南：卡拉山、易卜拉欣宫、凯撒利亚集市、乌盖尔（Al-Uqair）。在这片列入联合国教科文组织世界遗产名录的绿洲，查看地图与行程，了解活动与美食。'
     : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
