@@ -11,6 +11,9 @@ blurb: "كركٌ يُصبّ في أكواب صغيرة مع أصناف فطور 
 blurb_en: "Karak poured into small cups alongside simple breakfast bites."
 alt: "أكواب الكرك على صينية خشبية مع أطباق فطور في رسلان"
 alt_en: "Cups of karak on a wooden tray with breakfast dishes at Raslan"
+blurb_zh: "“卡拉克”奶茶倒入小杯，配几样简单的早餐小食。"
+area_zh: "海湾路（卡塔尔路）"
+alt_zh: "Raslan 木托盘上的几杯“卡拉克”奶茶与几盘早餐"
 img: /img/dining/karak-raslan
 maps: "https://maps.app.goo.gl/ctJt3bVV2hDtSYX56"
 order: 10

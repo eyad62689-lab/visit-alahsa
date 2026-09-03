@@ -124,6 +124,12 @@ const dining = defineCollection({
     blurb_en: z.string(),
     alt: z.string(),                           // النص البديل للصورة
     alt_en: z.string(),
+    // الصينية (الدفعة 14 — 2026-09-03): نبذة البطاقة وسطر الموقع والنص البديل، على نمط
+    // title_zh الاختياري في المعالم؛ بدونها تتراجع البطاقة للإنجليزية. الاسم لا يُترجم
+    // (يبقى name_en اللاتيني كما تسمّي المنشأة نفسها) — قاعدة الموقع.
+    blurb_zh: z.string().optional(),
+    area_zh: z.string().optional(),
+    alt_zh: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),
@@ -154,6 +160,10 @@ const stay = defineCollection({
     blurb_en: z.string(),
     alt: z.string(),
     alt_en: z.string(),
+    // الصينية (الدفعة 14) — كنموذج dining: اختيارية، والبطاقة تتراجع للإنجليزية بدونها
+    blurb_zh: z.string().optional(),
+    area_zh: z.string().optional(),
+    alt_zh: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),

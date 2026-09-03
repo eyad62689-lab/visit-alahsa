@@ -11,6 +11,9 @@ blurb: "مطعم الفندق التراثي — موائد تحت سقف زجا
 blurb_en: "The heritage hotel’s restaurant — tables beneath a glass roof in an arcaded courtyard."
 alt: "الفناء الداخلي لفندق الكوت التراثي بأروقته وسقفه الزجاجي"
 alt_en: "The courtyard of Al-Koot Heritage Hotel with its arcades and glass roof"
+blurb_zh: "传统客栈的餐厅——拱廊环绕的庭院中，餐桌摆在玻璃顶下。"
+area_zh: "库特区——易卜拉欣宫对面"
+alt_zh: "Al-Koot Heritage Hotel 的内院，拱廊环绕，上覆玻璃顶"
 img: /img/dining/alkoot-hotel
 maps: "https://maps.app.goo.gl/gjwiTHDg83VZEbz76"
 order: 2

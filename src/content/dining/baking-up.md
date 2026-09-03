@@ -11,6 +11,9 @@ blurb: "مخبوزات ومقرمشات — كما يعرّف نفسه في خر
 blurb_en: "Bakes and crunchy treats — as it calls itself on Google Maps — behind a cheerful storefront."
 alt: "واجهة بيكينق آب وجلساتها الخارجية بمظلاتها"
 alt_en: "Baking Up’s storefront with umbrellas and outdoor seating"
+blurb_zh: "明快的店面加上户外座位，店家在谷歌地图上自称“烘焙点心与酥脆小食”。"
+area_zh: "艾因奈杰姆路——穆巴拉兹"
+alt_zh: "Baking Up 的店面与撑着遮阳伞的户外座位"
 img: /img/dining/baking-up
 maps: "https://maps.app.goo.gl/Vq412YHJLwnKc1SE8"
 order: 8

@@ -9,6 +9,8 @@ blurb: "جدارٌ طينيٌّ بشُرفاتٍ وجذوعٍ بارزة، وب�
 blurb_en: "A mud-plaster wall with crenellations and protruding beams, and a double wooden door beneath the palms."
 alt: "واجهة مخبز بومبارك الشعبي الطينية ببابها الخشبي المزدوج تحت النخيل"
 alt_en: "The mud-plaster façade of Bu Mubarak Traditional Bakery, its double wooden door beneath the palms"
+blurb_zh: "泥墙顶部呈锯齿状，原木横梁探出墙外，椰枣树下是一扇双开木门。"
+alt_zh: "Bu Mubarak Traditional Bakery 的泥墙门面，椰枣树下的双开木门"
 img: /img/dining/bu-mubarak-bakery
 maps: "https://maps.app.goo.gl/pBjXyr4HgBWPVN5K8"
 order: 4

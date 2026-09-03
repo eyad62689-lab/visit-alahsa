@@ -11,6 +11,9 @@ blurb: "برجر وبطاطس على صوانٍ معدنية — الخيار ا
 blurb_en: "Burgers and fries on metal trays — the modern casual pick of the list."
 alt: "برجر وبطاطس مقلية على صينية تقديم في قريسي فينقرز"
 alt_en: "A burger and fries on a serving tray at Greasy Fingers"
+blurb_zh: "金属托盘上的汉堡与薯条——本列表里走现代快餐路线的一家。"
+area_zh: "哈利迪亚区——纳瓦夫王子街"
+alt_zh: "Greasy Fingers 托盘上的汉堡与薯条"
 img: /img/dining/greasy-fingers
 maps: "https://maps.app.goo.gl/AQhfw1PKHnLviEyt6"
 order: 6

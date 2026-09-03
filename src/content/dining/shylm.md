@@ -10,6 +10,8 @@ blurb: "تراسٌ مرصوف تتوسطه شجرة زيتون في حوض ما�
 blurb_en: "A paved terrace centred on an olive tree in a water basin, ringed with woven armchairs."
 alt: "تراس مقهى شليم وشجرة الزيتون في حوض الماء وسط الجلسات"
 alt_en: "SHYLM’s terrace, with an olive tree in a water basin at the centre of the seating"
+blurb_zh: "铺砌的露台正中，水池里立着一棵橄榄树，四周围着编织椅。"
+alt_zh: "SHYLM 的露台，座位区中央的橄榄树与水池"
 img: /img/dining/shylm
 maps: "https://maps.app.goo.gl/EkVG5edhp3GSd8vRA"
 order: 14

@@ -11,6 +11,9 @@ blurb: "جلسات خارجية بين النخيل وواجهة زجاجية ع
 blurb_en: "Outdoor seating among the palms and a glass façade on the edge of the Qasr Ibrahim park."
 alt: "واجهة دار بسمة الزجاجية وجلساتها الخارجية بين النخيل مساءً"
 alt_en: "Dar Basma’s glass façade and outdoor seating among the palms at night"
+blurb_zh: "椰枣树间的户外座位与玻璃门面，就在易卜拉欣宫公园边上。"
+area_zh: "库特区——易卜拉欣宫公园旁"
+alt_zh: "傍晚 Dar Basma 的玻璃门面与椰枣树间的户外座位"
 img: /img/dining/dar-basma
 maps: "https://maps.app.goo.gl/CLwUux3kdzc5Z4WE6"
 order: 1

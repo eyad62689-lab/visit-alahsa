@@ -11,6 +11,9 @@ blurb: "أطباق تراثية تُقدَّم في سلال الخوص وسط �
 blurb_en: "Heritage dishes served in wicker baskets amid deep-green velvet seating."
 alt: "أطباق تراثية تُقدَّم في سلال الخوص على طاولة مطعم خنينة"
 alt_en: "Heritage dishes served in wicker baskets at Khunaina"
+blurb_zh: "传统菜肴盛在棕榈叶编织篮里，四周是深绿色天鹅绒座椅。"
+area_zh: "哈利迪亚区——胡富夫"
+alt_zh: "Khunaina 餐桌上盛在棕榈叶编织篮里的传统菜肴"
 img: /img/dining/khunaina
 maps: "https://maps.app.goo.gl/LZWmKXLDNreXhUHL6"
 order: 4

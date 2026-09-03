@@ -11,6 +11,9 @@ blurb: "مخبز ومقهى معاً: واجهة عرض للمخبوزات ور�
 blurb_en: "Bakery and café in one: a fresh-pastry display with a blue-accented order counter."
 alt: "ركن الطلب وواجهة عرض المخبوزات في مخبز ومقهى دوت"
 alt_en: "The order counter and pastry display at Dot Bakery & Café"
+blurb_zh: "烘焙坊与咖啡馆合一：烘焙点心的展示柜，以及带一抹蓝色的点餐台。"
+area_zh: "艾因奈杰姆路——穆巴拉兹"
+alt_zh: "Dot Bakery & Café 的点餐台与烘焙点心展示柜"
 img: /img/dining/dot-bakery
 maps: "https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6"
 order: 9

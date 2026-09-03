@@ -11,6 +11,9 @@ blurb: "بيت بطراز أحسائي تتدلى فوقه الإضاءة في �
 blurb_en: "A Hasawi-style house strung with lights in the historic heart of Hofuf."
 alt: "واجهة بيت الكوت بإضاءتها المتدلية عند المساء"
 alt_en: "Bait Al-Koot’s façade with hanging lights at dusk"
+blurb_zh: "哈萨风格的宅子，上方垂挂着灯饰，坐落在胡富夫历史城区的中心。"
+area_zh: "胡富夫历史城区"
+alt_zh: "傍晚时分 Bait Al-Koot 的门面与垂挂的灯饰"
 img: /img/dining/bait-alkoot
 maps: "https://maps.app.goo.gl/gkvgXUYMUZsV5BK38"
 order: 3

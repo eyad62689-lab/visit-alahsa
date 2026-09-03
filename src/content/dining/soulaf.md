@@ -11,6 +11,9 @@ blurb: "داخلية عصرية هادئة تتوسطها شجرة زيتون ت
 blurb_en: "A calm, modern interior centred on an olive tree beneath a skylight."
 alt: "داخلية مقهى سلاف العصرية بشجرة الزيتون وسقفها الخشبي"
 alt_en: "Soulaf Coffee’s modern interior with an olive tree and slatted ceiling"
+blurb_zh: "静谧的现代室内，正中一棵橄榄树，上方开着天窗。"
+area_zh: "拉乌达区——阿卜杜拉国王路"
+alt_zh: "Soulaf Coffee 的现代室内，橄榄树与木质顶棚"
 img: /img/dining/soulaf
 maps: "https://maps.app.goo.gl/S47bGoYznnPUYTrm6"
 order: 7

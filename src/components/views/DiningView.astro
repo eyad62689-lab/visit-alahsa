@@ -46,10 +46,12 @@ const toPlace = (e: (typeof diningEntries)[number]) => {
   const hasPage = ar ? passesAr : passesEn;
   return {
     img: d.img, maps: d.maps, district: d.district,
+    // الاسم لا يُترجم للصينية (يبقى كما تسمّي المنشأة نفسها)؛ النبذة والموقع والنص البديل
+    // من الحقول *_zh (الدفعة 14 — 2026-09-03) بتراجع للإنجليزية عند غيابها.
     name: ar ? d.name : d.name_en,
-    area: ar ? d.area : d.area_en,
-    alt: ar ? d.alt : d.alt_en,
-    blurb: ar ? d.blurb : d.blurb_en,
+    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : d.area_en,
+    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : d.alt_en,
+    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : d.blurb_en,
     // الصينية تتراجع للإنجليزية: صفحات المنشآت المفردة بلا نسخة صينية بعد
     href: hasPage ? diningHref(d, zh ? 'en' : lang) : d.maps,
     internal: hasPage,

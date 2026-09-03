@@ -11,6 +11,9 @@ blurb: "مجلس عربي بوسائد وسجاد تحت سقف من جذوع ا
 blurb_en: "An Arabian majlis of cushions and rugs beneath a palm-trunk ceiling."
 alt: "مجلس تراثي بوسائد وسجاد تحت سقف من جذوع النخل في ريشيو الكوت"
 alt_en: "A traditional majlis with cushions and rugs beneath a palm-trunk ceiling at Ratio Al-Koot"
+blurb_zh: "椰枣树干顶棚下的阿拉伯式会客厅，铺着坐垫与地毯。"
+area_zh: "阿卜杜勒阿齐兹国王路——胡富夫历史城区"
+alt_zh: "Ratio Al-Koot 的传统会客厅，椰枣树干顶棚下的坐垫与地毯"
 img: /img/dining/ratio-alkoot
 maps: "https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8"
 order: 6

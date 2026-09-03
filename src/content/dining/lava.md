@@ -11,6 +11,9 @@ blurb: "أطباق تصل ساخنة في مقالٍ حديدية على طاو�
 blurb_en: "Dishes arriving hot in iron skillets on marble tables."
 alt: "أطباق متنوعة على طاولة رخامية في مطعم لافا"
 alt_en: "Assorted dishes on a marble table at Lava"
+blurb_zh: "菜肴盛在铁煎锅里热腾腾地端上大理石桌。"
+area_zh: "海湾路——奥拉雅区"
+alt_zh: "Lava 大理石桌上的各式菜肴"
 img: /img/dining/lava
 maps: "https://maps.app.goo.gl/eYZPQBsVxoBjMyvb6"
 order: 7

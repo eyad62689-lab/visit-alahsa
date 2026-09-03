@@ -11,6 +11,9 @@ blurb: "بيت طيني بباب خشبي في حارة من حارات الهف
 blurb_en: "A mud-plastered house with a wooden door in one of Hofuf’s old lanes."
 alt: "مدخل مقهى بيذانه بجدرانه الطينية وبابه الخشبي في حارة تراثية"
 alt_en: "Baithana’s mud-plastered entrance and wooden door in a heritage lane"
+blurb_zh: "泥墙木门的房子，位于胡富夫老城的一条小巷里。"
+area_zh: "里法阿北区——胡富夫"
+alt_zh: "老巷里 Baithana 的入口，泥墙与木门"
 img: /img/dining/baithana
 maps: "https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5"
 order: 1

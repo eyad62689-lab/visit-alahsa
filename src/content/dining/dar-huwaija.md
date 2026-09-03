@@ -11,6 +11,9 @@ blurb: "جلسات بين أقواس جصية بيضاء وأرفف تحمل ع�
 blurb_en: "Seating among white plaster arches and shelves of coffee-making gear."
 alt: "جلسات دار حويجة بين الأقواس الجصية والكراسي الخشبية"
 alt_en: "Dar Huwaija’s seating among plaster arches and wooden chairs"
+blurb_zh: "座位设在白色石膏拱门之间，架子上摆着煮咖啡的器具。"
+area_zh: "法赫德国王路——胡富夫历史城区"
+alt_zh: "Dar Huwaija 石膏拱门之间的木椅座位"
 img: /img/dining/dar-huwaija
 maps: "https://maps.app.goo.gl/EejCz9U79km3VEUL6"
 order: 4

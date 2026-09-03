@@ -11,6 +11,9 @@ blurb: "قهوة مختصة في جلسة كلاسيكية بكراسٍ جلدي
 blurb_en: "Specialty coffee in a classic sitting room of leather chairs and stained glass."
 alt: "ركن جلوس بكراسٍ جلدية ونافذة زجاج ملون داخل مقهى 7st"
 alt_en: "A sitting corner with leather armchairs and a stained-glass window at 7st"
+blurb_zh: "精品咖啡，古典风格的座位区，皮椅配彩色玻璃窗。"
+area_zh: "里法阿北区——胡富夫"
+alt_zh: "7st 咖啡馆内的座位区一角，皮椅与一扇彩色玻璃窗"
 img: /img/dining/7st
 maps: "https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6"
 order: 2

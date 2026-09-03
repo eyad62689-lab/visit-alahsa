@@ -13,6 +13,9 @@ blurb: "بارٌ منحنٍ تحت ثريّا دائرية من شرائح خش�
 blurb_en: "A curved bar beneath a circular chandelier of wooden slats hung with glass bulbs."
 alt: "بار مقهى ڤولك المنحني تحت ثريّاه الدائرية الخشبية"
 alt_en: "VOLK’s curved bar beneath its circular wooden chandelier"
+blurb_zh: "弧形吧台上方，木条拼成的圆形吊灯垂下一盏盏玻璃灯泡。"
+area_zh: "卡拉"
+alt_zh: "VOLK 的弧形吧台与圆形木吊灯"
 img: /img/dining/volk
 maps: "https://maps.app.goo.gl/SaSqaa3tbUCimoLL8"
 order: 13

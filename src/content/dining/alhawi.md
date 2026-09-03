@@ -11,6 +11,9 @@ blurb: "سفرة فطور شعبي تُبسط على الخوص طبقاً إل�
 blurb_en: "A traditional breakfast spread laid out on woven mats, plate after plate."
 alt: "سفرة فطور شعبي بأطباقها المتنوعة في مطعم الحوي"
 alt_en: "A traditional breakfast spread of assorted dishes at Al Hawy"
+blurb_zh: "传统早餐铺在棕榈叶编织席上，一盘挨着一盘。"
+area_zh: "哈利迪亚区——费萨尔国王大学对面"
+alt_zh: "Al Hawy 餐厅里的传统早餐，各式菜肴摆成一席"
 img: /img/dining/alhawi
 maps: "https://maps.app.goo.gl/GZ61EihCSipwJyzJ8"
 order: 3

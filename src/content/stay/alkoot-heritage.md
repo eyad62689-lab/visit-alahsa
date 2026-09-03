@@ -10,6 +10,9 @@ blurb: "غرفٌ تحت أسقفٍ من جذوع النخل وجريده في ق
 blurb_en: "Rooms beneath ceilings of palm trunks and fronds, in a palace restored as a heritage inn."
 alt: "غرفة في فندق الكوت التراثي بسقفها من جذوع النخل وكواها المقوّسة ونسيج السدو"
 alt_en: "A room at Al-Koot Heritage Hotel, with its palm-trunk ceiling, arched niches and sadu weaving"
+blurb_zh: "客房设在一座修复后改作传统客栈的宫殿里，顶棚由椰枣树干与枝叶搭成。"
+area_zh: "库特区——易卜拉欣宫对面"
+alt_zh: "Al-Koot Heritage Hotel 的一间客房，椰枣树干顶棚、拱形壁龛与萨杜织物"
 img: /img/stay/alkoot-heritage
 maps: "https://maps.app.goo.gl/TyMDYkg382DQqFeR8"
 order: 1

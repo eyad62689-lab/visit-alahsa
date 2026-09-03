@@ -11,6 +11,9 @@ blurb: "بوابة بقوس مزخرف تفضي إلى جلسات بطابع ت�
 blurb_en: "An ornate arched gateway opening onto heritage-styled seating."
 alt: "مدخل مطعم شرق القيصرية بقوسه المزخرف وجلساته الخارجية"
 alt_en: "The ornate arched entrance and outdoor seating of Sharq Al-Qaisariyah"
+blurb_zh: "饰有花纹的拱门，通向传统风格的座位区。"
+area_zh: "里法阿北区——胡富夫"
+alt_zh: "Sharq Al-Qaisariyah 餐厅饰有花纹的拱形入口与户外座位"
 img: /img/dining/sharq-alqaisariah
 maps: "https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8"
 order: 9

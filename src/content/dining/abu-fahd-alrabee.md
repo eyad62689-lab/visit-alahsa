@@ -14,6 +14,9 @@ blurb: "خبّازٌ يجلس إلى فوهة تنّورٍ في الأرض، و�
 blurb_en: "A baker seated at the mouth of a floor tannour, loaves spread around him on the tiles."
 alt: "خبّاز مخبز أبو فهد الربيع يرفع رغيفاً بجوار تنّور أرضي والأرغفة مبسوطة حوله"
 alt_en: "A baker at Abu Fahd Al-Rabee Bakery lifting a loaf beside a floor tannour, loaves spread around him"
+blurb_zh: "面包师坐在坦努尔泥炉的炉口旁，炉子嵌在地里，四周的地砖上摊着面饼。"
+area_zh: "胡杜德区——艾因胡杜德泉附近"
+alt_zh: "Abu Fahd Al-Rabee Bakery 的面包师在嵌在地里的坦努尔泥炉旁举起一张面饼，身边还摊着一张张面饼"
 img: /img/dining/abu-fahd-alrabee
 maps: "https://maps.app.goo.gl/u8xKKnydxd1cVinv7"
 order: 1

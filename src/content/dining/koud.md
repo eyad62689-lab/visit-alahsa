@@ -11,6 +11,9 @@ blurb: "مطعم ومقهى معاً — كما تعلن واجهته الداك
 blurb_en: "Restaurant and café in one — as it calls itself, and as its dark façade announces in glowing Arabic letters."
 alt: "واجهة كود — مطعم ومقهى — بشعارها المضيء بالخط العربي"
 alt_en: "Code’s façade — restaurant and café — with its lit Arabic sign"
+blurb_zh: "既是餐厅也是咖啡馆——深色门面上的发光字样就这样写着。"
+area_zh: "阿卜杜拉国王路——马兹鲁阿区"
+alt_zh: "Code（餐厅兼咖啡馆）的门面与阿拉伯文发光招牌"
 img: /img/dining/koud
 maps: "https://maps.app.goo.gl/RVVLPpJCUVfpCdWt7"
 order: 10

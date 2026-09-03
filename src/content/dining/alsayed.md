@@ -11,6 +11,9 @@ blurb: "جلسة تراثية بسقف خشبي تحفظ ملامح المقاه
 blurb_en: "A heritage interior with a wooden ceiling that keeps the feel of the old coffeehouses."
 alt: "الجلسة التراثية بسقفها الخشبي داخل مقهى السيد"
 alt_en: "The heritage interior of Al-Sayed Café with its wooden ceiling"
+blurb_zh: "木质顶棚下的老式座位区，保留着传统咖啡馆的模样。"
+area_zh: "里法阿北区——胡富夫"
+alt_zh: "Al-Sayed Café 内木质顶棚下的老式座位区"
 img: /img/dining/alsayed
 maps: "https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9"
 order: 5
