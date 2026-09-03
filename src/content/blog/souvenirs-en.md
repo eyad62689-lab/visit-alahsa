@@ -19,7 +19,7 @@ An honest gift from Al-Ahsa comes out of the oasis itself: from its palms, its c
 
 ## Dates: The Crown of the Oasis
 
-In the world's largest palm oasis, dates are the first gift without rival. **Khalas** is the master variety — golden as fresh rutab in summer, amber as dried dates at season's end — alongside storied local varieties: Shishi, Razeez, Barhi and more. Each variety's season, fresh and dried, is documented on the [Oasis Fruits](/en/fruits/) page.
+In the world's largest oasis, dates are the first gift without rival. **Khalas** is the master variety — golden as fresh rutab in summer, amber as dried dates at season's end — alongside storied local varieties: Shishi, Razeez, Barhi and more. Each variety's season, fresh and dried, is documented on the [Oasis Fruits](/en/fruits/) page.
 
 ## Hasawi Lime and the Oasis Pantry
 

@@ -322,6 +322,37 @@ async function main() {
     else pass('C11', `${total} منشأة ومكان إقامة — صفحات مفردة منشورة: ${publishedAr} عربية و${publishedEn} إنجليزية`);
   }
 
+  // ── C15: دعوى «أكبر واحة» بلا محدِّد النخيل ───────────────────────────────
+  // السجل الرسمي عند غينيس عنوانه «Largest oasis» ونصّه «largest self-contained
+  // oasis in the world» — فلا «نخيل» ولا «طبيعية». وقرار إياد (2026-09-03) وحّد
+  // الدعوى على «أكبر واحة في العالم» بعد تناقض الرئيسية مع بطاقة الأرقام.
+  // يُفحص المبنيّ لا المصدر: نصٌّ ألمانيٌّ أو صينيٌّ قادم قد يعيد المحدِّد بحسن نيّة.
+  {
+    const PALM_CLAIM = [
+      { lang: 'ar', re: /أكبر\s+واحة[ٍِ]?\s+نخيل/ },
+      { lang: 'en', re: /largest\s+(?:natural\s+)?palm\s+oasis/i },
+      { lang: 'zh', re: /最大的(?:天然)?(?:椰枣|棕榈)绿洲/ },
+      { lang: 'de', re: /größten?\s+Palmenoase/i },
+    ];
+    const OK_CLAIM = /أكبر واحة[ٍ]? (?:في العالم|على وجه الأرض)|largest oasis (?:on earth|in the world)|最大的绿洲|größten Oase der Welt/;
+    const offenders = [];
+    let carriers = 0;
+    for (const f of htmlFiles) {
+      const html = await readFile(f, 'utf8');
+      for (const { lang, re } of PALM_CLAIM) {
+        if (re.test(html)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
+      }
+      if (OK_CLAIM.test(html)) carriers++;
+    }
+    if (offenders.length) {
+      fail('C15', `دعوى «واحة نخيل» عادت في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — غينيس تقول «Largest oasis»`);
+    } else if (carriers === 0) {
+      fail('C15', 'لا صفحة تحمل دعوى «أكبر واحة في العالم» — الحارس صار فارغاً، تحقّق من الصياغة');
+    } else {
+      pass('C15', `دعوى «أكبر واحة في العالم» موحّدة في ${carriers} صفحة — بلا محدِّد نخيل في أي لغة`);
+    }
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

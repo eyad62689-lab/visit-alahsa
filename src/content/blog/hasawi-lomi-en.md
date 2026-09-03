@@ -22,7 +22,7 @@ faq:
     a: "Fees vary from one edition to the next; the current edition's ticket prices and the official booking link are on the exhibition's page on this site."
 ---
 
-Say "Al-Ahsa" and people think of dates — this is, after all, the largest palm oasis in the world. But the oasis's summer has a second fruit with a standing of its own in homes, souqs and kitchens: the **Hasawi lime**, known to its people as the **lomi**. A small green fruit whose fragrance reaches you before you see it, it has become Al-Ahsa's second crop after dates — celebrated so warmly that it has an entire annual exhibition to its name.
+Say "Al-Ahsa" and people think of dates — this is, after all, the largest oasis in the world. But the oasis's summer has a second fruit with a standing of its own in homes, souqs and kitchens: the **Hasawi lime**, known to its people as the **lomi**. A small green fruit whose fragrance reaches you before you see it, it has become Al-Ahsa's second crop after dates — celebrated so warmly that it has an entire annual exhibition to its name.
 
 In this article: what sets the Hasawi lomi apart, when its season falls, how it fills the household pantry and flavours the local kitchen, and your guide to its annual exhibition.
 
