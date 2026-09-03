@@ -20,7 +20,7 @@ order: 43
 area: "قرب بحيرة الحبيل — شمال الأحساء"
 area_en: "Near Al-Hubail Lake — north of Al-Ahsa"
 practical:
-  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", verified: false }
+  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.8130215, lng: 49.8498148 }
 mapUrl: "https://maps.app.goo.gl/zN7Z8fyjrrdkYwUk9"
 ---
