@@ -371,6 +371,35 @@ async function main() {
     }
   }
 
+  // ── C16: دفء كهوف جبل القارة يُعزى للشتاء لا لليل ────────────────────────
+  // الكهوف تحافظ على اعتدال يقارب 20°م طوال العام، فالمقابلة صيفٌ/شتاء لا نهارٌ/ليل.
+  // كان الخطأ في المصدر العربي فورثته الترجمات الثلاث — حكم إياد 2026-09-03.
+  {
+    const NIGHT_WARMTH = [
+      { lang: 'ar', re: /ذروة\s+القيظ[^]{0,80}?الليل/ },
+      { lang: 'en', re: /(?:peak|height)\s+of\s+summer[^]{0,80}?night/i },
+      { lang: 'zh', re: /盛夏[^]{0,60}?(?:入夜|夜间|夜里)/ },
+      { lang: 'de', re: /Hochsommer[^]{0,100}?Nacht/i },
+    ];
+    const OK_WINTER = /قلب الشتاء|depth of winter|隆冬|tiefsten Winter/;
+    const offenders = [];
+    let carriers = 0;
+    for (const f of htmlFiles) {
+      const text = (await readFile(f, 'utf8')).replace(/<[^>]+>/g, ' ');
+      for (const { lang, re } of NIGHT_WARMTH) {
+        if (re.test(text)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
+      }
+      if (OK_WINTER.test(text)) carriers++;
+    }
+    if (offenders.length) {
+      fail('C16', `دفء الكهوف عاد منسوباً لليل في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — الاعتدال طوال العام فالمقابلة شتاء`);
+    } else if (carriers === 0) {
+      fail('C16', 'لا صفحة تقابل قيظ الكهوف بالشتاء — الحارس صار فارغاً، تحقّق من الصياغة');
+    } else {
+      pass('C16', `دفء كهوف جبل القارة منسوب للشتاء في ${carriers} صفحة — لا نسبة لليل في أي لغة`);
+    }
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');
