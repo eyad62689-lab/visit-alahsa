@@ -22,7 +22,9 @@ const BASE = process.env.BASE ?? 'http://localhost:4399';
 const CHROME = process.env.CHROME ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const MARGIN = Number(process.env.MARGIN ?? 24); // هامش أمان يمتصّ فروق تصيير الخط بين المنصّات
 const MODE = process.env.MODE ?? 'verify';
-const PAGES = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/' };
+// اللغات المفحوصة تُشتقّ ممّا هو منشور فعلاً على هذا الفرع: `/de/` غير موجودة
+// على main، ولغةٌ لا صفحة لها تُتخطّى بإعلان صريح لا بفشل غامض.
+const ALL_PAGES = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/' };
 
 // العروض المفحوصة: حدود العتبتين تماماً (‏1227/1228 و1338/1339) وعروض نوافذ
 // الشاشات الشائعة بعد شريط التمرير (‏1265 لشاشة 1280 · 1351 لـ1366 · 1425 لـ1440).
@@ -76,6 +78,16 @@ const probe = () => {
     h: Math.round(R(hd).height),
   };
 };
+
+const head = async (p) => {
+  try { const r = await fetch(BASE + p, { method: 'GET' }); return r.ok; } catch { return false; }
+};
+const PAGES = {};
+for (const [lang, path] of Object.entries(ALL_PAGES)) {
+  if (await head(path)) PAGES[lang] = path;
+  else console.log(`• ${lang}: لا صفحة على هذا الفرع (${path}) — تُتخطّى`);
+}
+if (!Object.keys(PAGES).length) { console.error('لا صفحة واحدة تستجيب على ' + BASE + ' — هل خادم المعاينة يعمل؟'); process.exit(2); }
 
 const browser = await puppeteer.launch({ executablePath: CHROME, headless: true, args: ['--no-sandbox'] });
 const page = await browser.newPage();
