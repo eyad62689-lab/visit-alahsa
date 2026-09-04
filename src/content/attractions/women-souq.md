@@ -20,7 +20,7 @@ order: 67
 area: "الهفوف، حي الرفعة الجنوبية"
 area_en: "Hofuf, South Al-Rifaa district"
 practical:
-  - { label: "المواعيد", value: "بانتظار التأكيد", label_en: "Hours", value_en: "Pending confirmation", label_zh: "开放时间", value_zh: "待确认（信息更新中）", verified: false }
+  - { label: "المواعيد", value: "يومياً 8 ص – 11 م", label_en: "Hours", value_en: "Daily 8:00 am – 11:00 pm", label_zh: "开放时间", value_zh: "每日 8:00–23:00", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-04", verified: true }
 location: { lat: 25.3713889, lng: 49.5886111 }
 mapUrl: "https://maps.app.goo.gl/AjLK1nvuFsuJQ3i89"
 ---
