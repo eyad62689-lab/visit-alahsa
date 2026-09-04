@@ -2,7 +2,7 @@
 
 **التاريخ:** 2026-09-03 · **من ينفّذ:** إياد.
 
-**الحالة 2026-09-04 (محدَّثة ظهراً):** §١–§٧ **منفَّذة كلها**. دُمج #6 (‏`9979bd8`) فصارت workflows الثلاثة على `main`، ثم طُبِّقت قاعدة `main protection` بالـCLI — **ruleset 22260725، enforcement active**. الاختبار الحي: دفعٌ مباشر من فرع مؤقت `git push origin HEAD:main` **رُفض** بـ`GH013: Repository rule violations found for refs/heads/main` («Changes must be made through a pull request» + «Required status check "Build & consistency checks" is expected»)، وحُذف الفرع المؤقت. وحُدِّث #7 و#8 من `main` بـ`gh pr update-branch` فعمل عليهما الفحص الإلزامي ونجح (‏7m29s و5m37s). و§٦ كانت مفعّلة أصلاً (ظهرت معاينة النشر على #6 تلقائياً). **المرحلة (أ) مغلقة**؛ المرحلة (ب) بانتظار تأكيد إياد إعدادات Netlify (‏§٦).
+**الحالة 2026-09-04 (محدَّثة ظهراً):** §١–§٧ **منفَّذة كلها**. دُمج #6 (‏`9979bd8`) فصارت workflows الثلاثة على `main`، ثم طُبِّقت قاعدة `main protection` بالـCLI — **ruleset 22260725، enforcement active**. الاختبار الحي: دفعٌ مباشر من فرع مؤقت `git push origin HEAD:main` **رُفض** بـ`GH013: Repository rule violations found for refs/heads/main` («Changes must be made through a pull request» + «Required status check "Build & consistency checks" is expected»)، وحُذف الفرع المؤقت. وحُدِّث #7 و#8 من `main` بـ`gh pr update-branch` فعمل عليهما الفحص الإلزامي ونجح (‏7m29s و5m37s). و§٦ كانت مفعّلة أصلاً (ظهرت معاينة النشر على #6 تلقائياً). **المرحلة (أ) مغلقة**، ودُمج #7 و#8 بالطريق النظامي (سجل rule-suites: pass بلا التفاف). **المرحلة (ب) مفتوحة** بتأكيد إياد §٦ مساء 2026-09-04 (التفصيل في آخر §٦).
 
 ---
 
@@ -168,6 +168,14 @@ gh api repos/eyad62689-lab/visit-alahsa/rulesets --jq '.[] | {id, name, enforcem
 ### تنبيهان مقيسان
 
 - **الأسرار لا تنتقل تلقائياً إلى المعاينات.** إن كانت متغيرات البيئة محصورة بسياق `production`، فمعاينات النشر ستُبنى بلا `GOOGLE_PLACES_API_KEY` (تقييمات ناقصة — لا يُفشل البناء) وبلا `IP_HASH_SALT` (الحماية تخزّن بلا بصمة IP). راجع نطاق كل متغير في *Environment variables* ← عمود *Scopes*.
+### تأكيد إياد من لوحة التحكم — 2026-09-04 مساءً
+
+- **Deploy Previews**: لكل طلب دمج على `main`. **Branch deploys**: None.
+- **سياسة المتغيرات الحساسة**: *Require approval* — مؤكَّدة بإشعارات deploy request (pending/accepted/rejected).
+- **الأسرار**: `RESEND_API_KEY` و`SERPER_API_KEY` صارا *Secret* بنطاق Functions وقيمة في Production فقط. `GITHUB_TOKEN` حُذفت قيمتاه في Deploy Previews وBranch deploys. `IP_HASH_SALT` صار *Secret* بتوزيعه الحالي.
+- **تصحيح للتنبيه أعلاه**: `GOOGLE_PLACES_API_KEY` **يبقى متاحاً في Deploy Previews** لأنه يُستهلك وقت البناء (‏`prebuild` ← `tools/fetch-places.mjs`)، وحصره في Production الآن يُفشل بناء المعاينات. الحلّ بنداً مستقلاً بطلب دمج مستقل (الطابور في `../خطة-العمل-والتنفيذ.md`): السكربت يتخطّى نداء Places API حين `CONTEXT !== 'production'` **ثم** يُحصر المفتاح. **قيد يصحّح صياغة البند**: `places-live.json` في `.gitignore` بشرط قوقل (لا تخزين للتقييمات والمواعيد)، فليست في المستودع «بيانات مخزّنة» تُستعمل بديلاً — المعاينات ستُبنى **بلا تقييمات** كما يفعل السكربت أصلاً عند غياب المفتاح (يحذّر ولا يُفشل)، و`place-ids.json` وحده المخزَّن.
+- **المتغيرات الفعلية في Netlify ستة** (‏`GOOGLE_PLACES_API_KEY` · `IP_HASH_SALT` · `SERPER_API_KEY` · `RESEND_API_KEY` · `ALERT_EMAIL_TO` · `ALERT_EMAIL_FROM`). **لا `NETLIFY_AUTH_TOKEN` في Netlify** — هو و`NETLIFY_SITE_ID` محليان لسكربت `pull-reports.mjs` فقط، كما تقول `00-current-state.md`، و`.env.example` يدرجهما لهذا الغرض لا لأنهما على المنصة.
+
 - **إضافة IndexNow تعمل عند `onSuccess`** — وهو يشمل معاينات النشر مبدئياً. راقب أول معاينة: إن أُشعِر IndexNow بروابط معاينة فاضبط `INDEXNOW_DRY_RUN=1` **بنطاق Deploy Previews وحده** (الأسماء والأغراض في `../../.env.example`).
 
 ---
