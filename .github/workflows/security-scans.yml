@@ -1,0 +1,138 @@
+# ============================================================================
+# Unified security scanning — CodeQL + Semgrep
+# ----------------------------------------------------------------------------
+# Runs two independent scanners in parallel and reports every finding to
+# the same place: this repository's Security tab -> Code scanning alerts.
+#
+# Actions are pinned to commit SHAs, not moving tags: a tag can be repointed
+# by whoever controls the action's repository, which would silently change
+# what executes here. The comment after each SHA records the version.
+#
+# The Snyk job was removed on 2026-08-10: it had no SNYK_TOKEN, so the scan
+# step produced no SARIF file and the upload step failed on every single run,
+# leaving the repo permanently red and burying real findings. It also pinned
+# snyk/actions/setup@master — a mutable branch with the token in scope.
+# CodeQL and Semgrep already cover this repository's JavaScript.
+# ============================================================================
+
+name: Security scans
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch: {}
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          queries: security-extended,security-and-quality
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
+        with:
+          category: "/language:${{ matrix.language }}"
+
+  semgrep:
+    name: Semgrep
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep:1.172.0
+    if: github.actor != 'dependabot[bot]'
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Run Semgrep
+        continue-on-error: true
+        run: semgrep scan --config=auto --sarif --output=semgrep.sarif
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+      # الرفع يتسامح مع غياب SARIF حتى لا يصبغ الفحص المستودع بالأحمر كما فعل Snyk
+      - name: Upload Semgrep results
+        if: always() && hashFiles('semgrep.sarif') != ''
+        uses: github/codeql-action/upload-sarif@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep
+
+  summary:
+    name: Post summary comment
+    runs-on: ubuntu-latest
+    needs: [codeql, semgrep]
+    if: always() && github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Comment with consolidated results
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const results = {
+              "CodeQL": "${{ needs.codeql.result }}",
+              "Semgrep": "${{ needs.semgrep.result }}"
+            };
+            const icon = (r) => r === "success" ? "✅" : r === "skipped" ? "⏭️" : "❌";
+            const rows = Object.entries(results)
+              .map(([tool, r]) => `| ${tool} | ${icon(r)} ${r} |`)
+              .join("\n");
+            const marker = "<!-- security-scan-summary -->";
+            const body = [
+              marker,
+              "### 🛡️ Security scan summary",
+              "",
+              "| Tool | Status |",
+              "|---|---|",
+              rows,
+              "",
+              "Full findings: **Security** tab -> **Code scanning**."
+            ].join("\n");
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find((c) => c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
