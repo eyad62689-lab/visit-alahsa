@@ -457,7 +457,7 @@ async function main() {
     const offenders = [];
     for (const f of deFiles) {
       const html = await readFile(f, 'utf8');
-      let text = stripUntilStable(html, /<script[\s\S]*?<\/script>/gi);
+      let text = stripUntilStable(html, /<script[\s\S]*?<\/script\s*>/gi);
       text = stripUntilStable(text, /<link[^>]*>/gi);
       text = stripUntilStable(text, /<(\w+)[^>]*\blang="en"[^>]*>[\s\S]*?<\/\1>/gi);
       text = stripTags(text, ' ');
