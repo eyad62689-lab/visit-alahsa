@@ -439,6 +439,24 @@ async function main() {
     }
   }
 
+  // ── C18: التهجئة الألمانية «Souk» لا «Souq» في صفحات /de/ ────────────────
+  // حسم إياد 2026-09-04 بعد أن تنازع المعجم (Souq) ووثيقة المشروع (Souk)
+  // وانقسم المستودع بينهما في تسعة مواضع. الإنجليزية تبقى «Souq» فالفحص
+  // على نصّ صفحات /de/ وحدها بعد نزع الوسوم — لا على المصدر، كي يُمسك
+  // ما يتسرّب من أي ترنري بلا فرع de أو من متن ألماني جديد.
+  {
+    const deFiles = await listHtml(path.join(DIST, 'de'));
+    const offenders = [];
+    for (const f of deFiles) {
+      const html = await readFile(f, 'utf8');
+      const text = stripTags(html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<link[^>]*>/g, '').replace(/<(\w+)[^>]*\blang="en"[^>]*>[\s\S]*?<\/\1>/g, ''), ' ');
+      if (/\bSouqs?\b/.test(text)) offenders.push(path.relative(DIST, f));
+    }
+    if (!deFiles.length) fail('C18', 'لا صفحة /de/ في المخرج — الحارس صار فارغاً');
+    else if (offenders.length) fail('C18', `تهجئة «Souq» في نصّ ألماني — القرار «Souk» (إياد 2026-09-04): ${offenders.slice(0, 3).join(' · ')}`);
+    else pass('C18', `تهجئة «Souk» الألمانية موحّدة في ${deFiles.length} صفحة — لا «Souq»`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');
