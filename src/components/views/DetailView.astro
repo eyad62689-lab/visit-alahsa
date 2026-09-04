@@ -9,7 +9,7 @@ import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
 import { formatDate } from '../../lib/dates';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
@@ -38,12 +38,12 @@ const { Content } = ar ? await render(entry) : { Content: null };
 const isLeisure = ['market', 'parks', 'farm'].includes(a.category);
 const attractionsHref = isLeisure
   ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : '/en/souqs-parks-farms/')
-  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/');
+  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/');
 const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
-const homeHref = ar ? '/' : zh ? '/zh/' : '/en/';
+const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : '/en/';
 const regionName = ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa';
 const jsonLd = [
   {
@@ -144,7 +144,7 @@ const nearby = a.location
       }))
   : [];
 ---
-<Base title={`${title} — ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
+<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>

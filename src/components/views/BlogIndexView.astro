@@ -9,7 +9,7 @@ import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import { formatDate } from '../../lib/dates';
 import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -41,7 +41,7 @@ const jsonLd = [
   ], siteUrl),
 ];
 ---
-<Base title={`${t('blog.title')} — ${t('site.name')}`} description={t('blog.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${t('blog.title')} ${titleSep(lang)} ${t('site.name')}`} description={t('blog.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={t('blog.eyebrow')} title={t('blog.title')} lead={t('blog.lead')} leadWidth={52} lang={lang} />

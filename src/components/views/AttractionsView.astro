@@ -7,7 +7,7 @@ import Photo from '../Photo.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 // النطاق: 'sights' صفحة المعالم (تاريخ/طبيعة/دين)، و'leisure' صفحة الأسواق
@@ -17,20 +17,22 @@ const { lang, alt, scope = 'sights' } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const de = lang === 'de';
 const leisure = scope === 'leisure';
 
 // اختيار الحقل بلغة الصفحة، ورابط البطاقة يتراجع للإنجليزية لمعلم بلا ترجمة صينية
-const pickTitle = (d: { title: string; title_en?: string; title_zh?: string }) =>
-  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
-const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string }) =>
-  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
-const hrefLang = (d: { title_zh?: string }) => (zh && !d.title_zh ? 'en' : lang);
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string; title_de?: string }) =>
+  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : lang;
 
 // أرقام العدّادات بالأرقام العربية‑الهندية في النسخة العربية اتّساقاً مع سائر الموقع.
 // الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
 const num = (n: number) => String(n);
 
-const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
+const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/';
 
 // نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
@@ -67,10 +69,12 @@ const groupsHint = ar
   ? 'ابحث بالاسم، أو تصفّح المجموعات أدناه.'
   : zh
     ? '可按名称搜索，或浏览下方分类。'
-    : 'Search by name, or browse the groups below.';
+    : de
+      ? 'Suchen Sie nach einem Namen oder stöbern Sie unten in den Gruppen.'
+      : 'Search by name, or browse the groups below.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const homeHref = ar ? '/' : zh ? '/zh/' : '/en/';
+const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : '/en/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
@@ -80,7 +84,7 @@ const jsonLd = [
     itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: pickTitle(i.data), url: new URL(attractionHref(i.data, hrefLang(i.data)), siteUrl).href })) },
 ];
 ---
-<Base title={`${tx('title')} — ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
+<Base title={`${tx('title')} ${titleSep(lang)} ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={tx('eyebrow')} title={tx('title')} lead={tx('lead')} leadWidth={56}

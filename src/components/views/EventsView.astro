@@ -10,7 +10,7 @@ import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
 import EventEdition from '../EventEdition.astro';
-import { altHref, localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { EVENTS_AR, EVENTS_EN, EVENTS_ZH, evView, type Ev } from '../../data/events';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
@@ -174,7 +174,7 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`${C.seoTitle} — ${t('site.name')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-events">
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.name')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-events">
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={60}

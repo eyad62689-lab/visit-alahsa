@@ -16,9 +16,10 @@ const ar = lang === 'ar';
 // الألمانية: **لا فهرس /de/ بعد** (مرحلة «النواة» لم تبدأ) — كل روابط الترويسة
 // في صفحات /de/ تقصد النظير الإنجليزي مؤقتاً، كما كانت الصينية قبل دفعتها.
 const zh = lang === 'zh';
-const home = ar ? '/' : zh ? '/zh/' : '/en/';
+const de = lang === 'de';
+const home = ar ? '/' : zh ? '/zh/' : de ? '/de/' : '/en/';
 const routes = {
-  attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/',
+  attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/',
   leisure: ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : '/en/souqs-parks-farms/',
   map: ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/',
   events: ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/',

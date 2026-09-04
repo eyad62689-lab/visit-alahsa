@@ -15,7 +15,7 @@ import PalmMotif from '../PalmMotif.astro';
 import HeroPoster from '../HeroPoster.astro';
 import Photo from '../Photo.astro';
 import EventEdition from '../EventEdition.astro';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { eventsFor, evView, type Ev } from '../../data/events';
 import { attractionHref } from '../../lib/routes';
@@ -171,7 +171,7 @@ if (ev.faq?.length) {
     mainEntity: ev.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
 }
 ---
-<Base title={`${ev.seoTitle ?? ev.name} — ${t('site.name')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
+<Base title={`${ev.seoTitle ?? ev.name} ${titleSep(lang)} ${t('site.name')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
   <Header lang={lang} alt={alt} />
   <main id="main"
     data-ev-edition={raw.after && raw.endISO ? '' : undefined}

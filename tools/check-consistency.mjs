@@ -400,6 +400,36 @@ async function main() {
     }
   }
 
+  // ── C17: الشرطة الطويلة ممنوعة في عناوين ووصف صفحات /de/ ────────────────
+  // شرطة الاعتراض الألمانية هي U+2013 (Halbgeviertstrich)؛ وU+2014 علامة
+  // إنجليزية يقرؤها القارئ الألماني خللاً طباعياً. الفاصل رمزٌ الآن
+  // (titleSep في i18n/utils) بعد أن كان محرفاً حرفياً في 15 قالباً — ووقع
+  // فعلاً في عنوان /de/attractions/ أول ما بُنيت.
+  {
+    const deFiles = htmlFiles.filter((f) => {
+      const rel = path.relative(DIST, f).split(path.sep);
+      return rel[0] === 'de';
+    });
+    const offenders = [];
+    for (const f of deFiles) {
+      const html = await readFile(f, 'utf8');
+      const spots = [];
+      const title = html.match(/<title>([^<]*)<\/title>/);
+      if (title) spots.push(['title', title[1]]);
+      for (const m of html.matchAll(/<meta[^>]+(?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)"[^>]+content="([^"]*)"/g))
+        spots.push(['meta', m[1]]);
+      for (const [where, text] of spots)
+        if (text.includes('\u2014')) offenders.push(`${path.relative(DIST, f)} (${where})`);
+    }
+    if (offenders.length) {
+      fail('C17', `شرطة U+2014 الطويلة في ${offenders.length} موضع من صفحات /de/: ${offenders.slice(0, 4).join(', ')} — الألمانية تستعمل U+2013`);
+    } else if (deFiles.length === 0) {
+      fail('C17', 'لا صفحة /de/ في المخرج — الحارس صار فارغاً');
+    } else {
+      pass('C17', `عناوين ووصف ${deFiles.length} صفحة ألمانية بشرطة U+2013 — لا U+2014`);
+    }
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

@@ -22,11 +22,12 @@ const de = lang === 'de';
 
 // اختيار حقل المحتوى بلغة الصفحة (الصينية تتراجع للإنجليزية عند الغياب)،
 // ورابط المعلم يقصد صفحة اللغة الحالية إن وُجدت وإلا فالإنجليزية.
-const pickTitle = (d: { title: string; title_en?: string; title_zh?: string }) =>
-  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
-const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string }) =>
-  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
-const hrefLang = (d: { title_zh?: string }) => (zh && !d.title_zh ? 'en' : lang);
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string; title_de?: string }) =>
+  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : lang;
 
 const allEntries = await getCollection('attractions');
 const featuredEntries = allEntries
@@ -58,7 +59,7 @@ const facts = [
   { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : 'Thousands', l: t('fact.springs.l') },
 ];
 // الصينية: كل هذه الصفحات لها نسخة /zh/ (رحلتي أُضيفت في الدفعة 13 — 2026-09-03)
-const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
+const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/';
 const planTripHref = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : '/en/plan-your-trip/';
 const myTripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : '/en/plan/';
 
@@ -94,7 +95,7 @@ const jsonLd = [
     name: ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + '/og-default.png',
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
-    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : 'Saudi Arabia' },
+    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : 'Saudi Arabia' },
   },
 ];
 // عنوان ووصف بكلمة «دليل السياحة» المستهدفة (سيو 2026-08-22) — كل ما يُذكر
@@ -104,12 +105,16 @@ const title = ar
   ? 'الأحساء — دليلك السياحي لأكبر واحة في العالم'
   : zh
     ? '哈萨旅游指南——全球最大的绿洲'
-    : 'Al-Ahsa Travel Guide — the World’s Largest Oasis';
+    : de
+      ? 'Al-Ahsa-Reiseführer – die größte Oase der Welt'
+      : 'Al-Ahsa Travel Guide — the World’s Largest Oasis';
 const description = ar
   ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
   : zh
     ? '沙特阿拉伯哈萨旅游指南：卡拉山、易卜拉欣宫、凯撒利亚集市、乌盖尔（Al-Uqair）。在这片列入联合国教科文组织世界遗产名录的绿洲，查看地图与行程，了解活动与美食。'
-    : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
+    : de
+      ? 'Ihr Al-Ahsa-Reiseführer: Jabal al-Qarah, Qasr Ibrahim, Qaisariyah-Souk und Al-Uqair – Karten, Routen, Veranstaltungen und Restaurants im UNESCO-Welterbe.'
+      : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} />
@@ -175,7 +180,7 @@ const description = ar
               <Photo src={e.data.heroImage} label={pickTitle(e.data)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 {/* التسمية العلوية عربية/صينية فقط — لا عنصر فارغ في الإنجليزية */}
-                {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}
+                {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : de ? (e.data.kicker_de ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}
                 <h3 class="att-t">{pickTitle(e.data)}</h3>
                 <p class="att-d">{pickSummary(e.data)}</p>
               </div>

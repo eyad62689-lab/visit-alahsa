@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
 import { srcsetFor } from '../../lib/images';
-import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -67,7 +67,7 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={`${t('map.title')} — ${t('site.name')}`} description={`${points.length} ${t('map.lead.a')}`} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${t('map.title')} ${titleSep(lang)} ${t('site.name')}`} description={`${points.length} ${t('map.lead.a')}`} lang={lang} alt={alt} jsonLd={jsonLd}>
   {/* preconnect لكارتو في أسفل الصفحة بلا crossorigin عمداً: البلاطات تُطلب كـ<img> بلا CORS،
       فاتصال crossorigin (الذي يضيفه Base) لا يُعاد استعماله ويُهدر */}
   <Header lang={lang} alt={alt} />

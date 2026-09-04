@@ -10,7 +10,7 @@ import PalmMotif from '../PalmMotif.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
-import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -85,7 +85,7 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={`${t('tmap.title')} — ${t('site.name')}`} description={t('tmap.lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/map-poster">
+<Base title={`${t('tmap.title')} ${titleSep(lang)} ${t('site.name')}`} description={t('tmap.lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/map-poster">
   <Header lang={lang} alt={alt} />
   <main class="tmap-page" id="main">
     <div class="container tmap-head">

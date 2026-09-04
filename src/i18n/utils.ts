@@ -49,3 +49,10 @@ export interface AltLinks { ar: string; en: string; zh?: string; de?: string; }
  *  غاب نظيرهما (zh وde اختياريان في AltLinks، وبدون هذا المساعد يصير alt[lang]
  *  قابلاً للغياب نوعياً في كل موضع استهلاك). */
 export const altHref = (alt: AltLinks, lang: Lang): string => alt[lang] ?? alt.en;
+
+/** فاصل عنوان الصفحة عن اسم الموقع في وسم <title>.
+ *  الألمانية تستعمل شرطة نصف الجيم U+2013 (Halbgeviertstrich) — والطويلة
+ *  U+2014 علامة إنجليزية يقرؤها القارئ الألماني خللاً طباعياً. لا تكتب
+ *  الشرطة حرفياً في قالب عنوان: استدعِ هذه، ويحرسها الفحص C17.
+ */
+export const titleSep = (lang: Lang): string => (lang === 'de' ? '\u2013' : '\u2014');

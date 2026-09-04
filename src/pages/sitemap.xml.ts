@@ -27,8 +27,8 @@ export const GET: APIRoute = async ({ site }) => {
   // أزواج (عربي/إنجليزي/صيني اختياري) — تُستبعد «رحلتي» الشخصية (noindex).
   // zh يرد من attractionAlt حين يحمل المعلم ترجمة صينية معتمدة (title_zh).
   const pairs: Pair[] = [
-    { ar: '/', en: '/en/', zh: '/zh/', lastmod: dateOf(`${V}HomeView.astro`, 'src/i18n/ui.ts', ...attractionFiles) },
-    { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
+    { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', lastmod: dateOf(`${V}HomeView.astro`, 'src/i18n/ui.ts', ...attractionFiles) },
+    { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },

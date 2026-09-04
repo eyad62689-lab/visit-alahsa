@@ -11,7 +11,7 @@ import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH } from '../../data/fruits';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { reviewedLabel } from '../../data/meta';
 
@@ -116,7 +116,7 @@ const C = localize(lang, {
   groups: FRUIT_GROUPS_EN,
 }, ZH);
 
-const pageTitle = `${C.title} — ${t('site.name')}`;
+const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.name')}`;
 const description = ar
   ? 'جولة على ثمار واحة الأحساء بمواسمها: التمور والرطب، اللومي الأحسائي، البطيخ الأصفر، التين، الكنار وغيرها — بمعلومات موثقة من مصادر رسمية.'
   : zh
