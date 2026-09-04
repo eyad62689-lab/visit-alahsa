@@ -33,8 +33,8 @@ async function serperSearch(phrase, lang, apiKey) {
     body: JSON.stringify({
       q: `"${phrase}" -site:visit-alahsa.com`,
       gl: 'sa',
-      // لغة الواجهة تتبع لغة العبارة: العبارات الصينية تُبحث بواجهة zh-cn
-      hl: lang === 'ar' ? 'ar' : lang === 'zh' ? 'zh-cn' : 'en',
+      // لغة الواجهة تتبع لغة العبارة: العبارات الصينية تُبحث بواجهة zh-cn والألمانية بـde
+      hl: lang === 'ar' ? 'ar' : lang === 'zh' ? 'zh-cn' : lang === 'de' ? 'de' : 'en',
       num: 10,
     }),
   })
