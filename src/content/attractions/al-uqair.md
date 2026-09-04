@@ -9,6 +9,13 @@ summary_zh: 哈萨一带最古老的港口，沙漠在此止步，与海湾的�
 body_zh: "在公路修通之前，乌盖尔（Al-Uqair）是哈萨通往世界的门户。这座海湾之滨的古港，曾泊满装载椰枣与货物的船只，半岛腹地的物资与消息也由此进出。如今，乌盖尔仍留着一处难得的景致：沙漠一路铺展而来的洁白细沙，到水边忽然收住，海湾清澈的蓝就从这里开始。土坯房舍的残迹与老堡垒依旧守在岸边，提醒着每个到访的人：今天这道安静的海岸，当年是往来不绝的枢纽。这里适合访古，也适合什么都不做：沿着当年商队的足迹走一段，然后在海与沙相接处坐下来。"
 area_zh: 海湾沿岸——哈萨以东
 bestTime_zh: 日落前的那段时间，白沙映着海水，泛起柔光。
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 (2026-09-04)
+title_de: "Al-Uqair"
+kicker_de: "Hafen und Sand"
+summary_de: "Der älteste Hafen der Region, wo der Wüstensand auf das Blau des Golfs trifft."
+area_de: "Die Golfküste – östlich von Al-Ahsa"
+bestTime_de: "Kurz vor Sonnenuntergang, wenn der weiße Sand vor dem Blau des Wassers leuchtet."
+body_de: "Bevor es asphaltierte Straßen gab, war Al-Uqair das Tor Al-Ahsas zur Welt. Ein alter Hafen am Golf, an dem Schiffe festmachten, beladen mit Datteln und Waren, und durch den Nachrichten und Handel ins Herz der Halbinsel gelangten. Heute treffen in Al-Uqair zwei seltene Bilder aufeinander: weicher weißer Sand, der aus der Wüste heranreicht, und das klare Blau des Golfs, das dort beginnt, wo der Sand endet. Die Reste der Lehmbauten und die alte Festung wachen noch immer über den Ort und erinnern daran, dass diese stille Küste einst das Herz rastloser Bewegung war. Ein Ort für Geschichte und Besinnung zugleich – Sie gehen auf den Spuren der Karawanen und sitzen auf Sand, der das Meer berührt."
 slug_ar: العقير
 slug_en: al-uqair
 category: historic
@@ -26,7 +33,7 @@ order: 3
 bestTime: قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء.
 bestTime_en: "Just before sunset, when the white sands glow against the blue of the water."
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 tags: ["ساحل", "تاريخ", "بحر"]
 ---
 

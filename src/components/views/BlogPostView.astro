@@ -8,7 +8,7 @@ import PalmMotif from '../PalmMotif.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { formatDate } from '../../lib/dates';
 import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { entry: CollectionEntry<'blog'>; lang: Lang; alt: AltLinks; }
@@ -54,7 +54,7 @@ if (p.faq.length > 0) {
   });
 }
 ---
-<Base title={`${p.title} — ${t('site.name')}`} description={p.description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={p.heroImage}>
+<Base title={`${p.title} ${titleSep(lang)} ${t('site.name')}`} description={p.description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={p.heroImage}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`post-hero ${p.heroImage ? 'photo' : 'post-hero--plain'}`}>

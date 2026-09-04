@@ -43,6 +43,15 @@ const SYNONYM_PAIRS = [
 // أسماء أدلة صفحات المعالم في dist (المسارات العربية تُرمَّز بـpercent-encoding)
 const AR_ATTRACTIONS_DIR = decodeURIComponent('%D9%85%D8%B9%D8%A7%D9%84%D9%85');
 
+// تقشير الوسوم حتى الاستقرار: تمريرة واحدة تُبقي «<script» إن كان الوسم متداخلاً
+// (‏<<script>>)، وCodeQL يعدّها js/incomplete-multi-character-sanitization ويُفشل الفحص.
+// المدخل هنا dist المبني لا مدخل زائر، لكن الشكل الثابت يُغلق التنبيه بلا استثناء.
+const stripTags = (html, sep = '') => {
+  let prev;
+  do { prev = html; html = html.replace(/<[^>]*>/g, sep); } while (html !== prev);
+  return html;
+};
+
 async function listHtml(dir) {
   const out = [];
   async function walk(d) {
@@ -101,7 +110,7 @@ async function main() {
   } else {
     const home = await readFile(homePath, 'utf8');
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
-    const text = home.replace(/<[^>]+>/g, '');
+    const text = stripTags(home, '');
     const m = text.match(/([\d.,+MK万]+)[\s]*معلماً ووجهةً للاكتشاف/);
     if (!m) fail('C3', 'تعذّر استخراج عدد المعالم من بطاقات حقائق الرئيسية');
     else if (m[1] === String(truth)) pass('C3', `الرئيسية تعرض ${truth} معلماً`);
@@ -228,7 +237,7 @@ async function main() {
         const htmlEn = await readFile(pageEn, 'utf8');
         const block = htmlEn.match(/class="info-src"[^>]*>([\s\S]*?)<\/p>/);
         if (!block) missing.push(`${slugEn} (en): بلا سطر إسناد`);
-        else if (/[؀-ۿ]/.test(block[1].replace(/<[^>]+>/g, ''))) {
+        else if (/[؀-ۿ]/.test(stripTags(block[1]))) {
           missing.push(`${slugEn} (en): اسم المصدر بالعربية داخل الصفحة الإنجليزية`);
         }
       }
@@ -246,6 +255,24 @@ async function main() {
     if (!rule) fail('C13', 'تعذّر العثور على قاعدة .info-src');
     else if (used.length) fail('C13', `لون دون AA في سطر الإسناد: ${used.join(', ')} — قِس قبل التغيير`);
     else pass('C13', 'سطر الإسناد بلون يبلغ AA على خلفية البطاقة (ink-soft ‏8:1)');
+
+    // ── C14: تسمية «Beste Tageszeit» الألمانية تطابق ما تحتها ──────────────
+    // حكم خط de-translation-pipeline (2026-09-03) اختار «Tageszeit» (وقت النهار)
+    // لا «Besuchszeit» (وقت الزيارة) بعدّ القيم: سبعُ قيم مصيَّرة كلها أوقات نهار،
+    // والموسمي صفر — والقارئ الألماني يقرأ «Beste Zeit/Besuchszeit» موسماً.
+    // شرط القلب كان مذكرةً في ملف ترجمة، وهو ما لن يقرأه محرّرٌ لا يعرف الألمانية
+    // يوم يضيف قيمةً موسمية؛ فصار حارساً يُفشل البناء بدل أن تكذب التسمية بصمت.
+    const SEASONAL_DE = /\b(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember|Frühling|Sommer|Herbst|Winter|Saison|Monat)\w*/;
+    const deLies = [];
+    for (const f of await listHtml(path.join(DIST, 'de'))) {
+      const html = await readFile(f, 'utf8');
+      const m = html.match(/Beste Tageszeit<\/dt>\s*<dd[^>]*>([\s\S]*?)<\/dd>/);
+      const val = m && stripTags(m[1]).trim();
+      const hit = val && val.match(SEASONAL_DE);
+      if (hit) deLies.push(`${path.relative(DIST, f)} → «${hit[0]}»`);
+    }
+    if (deLies.length) fail('C14', `قيمة موسمية تحت «Beste Tageszeit» — التسمية صارت كاذبة، حوّلها إلى «Beste Besuchszeit» في ui.de: ${deLies.slice(0, 3).join(' · ')}`);
+    else pass('C14', 'تسمية «Beste Tageszeit» الألمانية تطابق قيمها (صفر قيمة موسمية)');
   }
 
   // ── C9: مفتاح IndexNow منشور ومطابق للمفتاح في الإضافة ───────────────────
@@ -367,7 +394,7 @@ async function main() {
     const offenders = [];
     let carriers = 0;
     for (const f of htmlFiles) {
-      const text = (await readFile(f, 'utf8')).replace(/<[^>]+>/g, ' ');
+      const text = stripTags(await readFile(f, 'utf8'), ' ');
       for (const { lang, re } of NIGHT_WARMTH) {
         if (re.test(text)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
       }
@@ -379,6 +406,36 @@ async function main() {
       fail('C16', 'لا صفحة تقابل قيظ الكهوف بالشتاء — الحارس صار فارغاً، تحقّق من الصياغة');
     } else {
       pass('C16', `دفء كهوف جبل القارة منسوب للشتاء في ${carriers} صفحة — لا نسبة لليل في أي لغة`);
+    }
+  }
+
+  // ── C17: الشرطة الطويلة ممنوعة في عناوين ووصف صفحات /de/ ────────────────
+  // شرطة الاعتراض الألمانية هي U+2013 (Halbgeviertstrich)؛ وU+2014 علامة
+  // إنجليزية يقرؤها القارئ الألماني خللاً طباعياً. الفاصل رمزٌ الآن
+  // (titleSep في i18n/utils) بعد أن كان محرفاً حرفياً في 15 قالباً — ووقع
+  // فعلاً في عنوان /de/attractions/ أول ما بُنيت.
+  {
+    const deFiles = htmlFiles.filter((f) => {
+      const rel = path.relative(DIST, f).split(path.sep);
+      return rel[0] === 'de';
+    });
+    const offenders = [];
+    for (const f of deFiles) {
+      const html = await readFile(f, 'utf8');
+      const spots = [];
+      const title = html.match(/<title>([^<]*)<\/title>/);
+      if (title) spots.push(['title', title[1]]);
+      for (const m of html.matchAll(/<meta[^>]+(?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)"[^>]+content="([^"]*)"/g))
+        spots.push(['meta', m[1]]);
+      for (const [where, text] of spots)
+        if (text.includes('\u2014')) offenders.push(`${path.relative(DIST, f)} (${where})`);
+    }
+    if (offenders.length) {
+      fail('C17', `شرطة U+2014 الطويلة في ${offenders.length} موضع من صفحات /de/: ${offenders.slice(0, 4).join(', ')} — الألمانية تستعمل U+2013`);
+    } else if (deFiles.length === 0) {
+      fail('C17', 'لا صفحة /de/ في المخرج — الحارس صار فارغاً');
+    } else {
+      pass('C17', `عناوين ووصف ${deFiles.length} صفحة ألمانية بشرطة U+2013 — لا U+2014`);
     }
   }
 

@@ -8,7 +8,7 @@ import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
 import { srcsetFor } from '../../lib/images';
 import { attractionHref } from '../../lib/routes';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -46,7 +46,7 @@ const L = {
 const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/';
 ---
-<Base title={`${t('plan.title')} — ${t('site.name')}`} description={t('plan.lead')} lang={lang} alt={alt} noindex={true}>
+<Base title={`${t('plan.title')} ${titleSep(lang)} ${t('site.name')}`} description={t('plan.lead')} lang={lang} alt={alt} noindex={true}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={t('plan.eyebrow')} title={t('plan.title')} lead={t('plan.lead')} leadWidth={54}

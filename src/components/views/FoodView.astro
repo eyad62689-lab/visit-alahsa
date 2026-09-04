@@ -9,7 +9,7 @@ import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
 import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH } from '../../data/dishes';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -63,7 +63,7 @@ const C = localize(lang, {
   groups: DISH_GROUPS_EN,
 }, ZH);
 
-const pageTitle = `${C.title} — ${t('site.name')}`;
+const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.name')}`;
 const description = ar
   ? 'جولة في المطبخ الأحسائي: الأرز الأحسائي، المندي، الهريس، المفلق، البلاليط بالدبس، عصيدة التمر، الساقو، وخبز التمر.'
   : zh

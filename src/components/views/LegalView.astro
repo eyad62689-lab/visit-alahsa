@@ -7,7 +7,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN } from '../../data/legal';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -54,7 +54,7 @@ const seoDesc = ar
   ? 'السياسات والشروط القانونية لموقع زوروا الأحساء: سياسة الخصوصية، شروط الاستخدام، إخلاء المسؤولية، ملفات تعريف الارتباط، حقوق الملكية الفكرية، والروابط الخارجية.'
   : 'Policies and legal terms of Visit Al-Ahsa: privacy policy, terms of use, disclaimer, cookies, intellectual property and external links.';
 ---
-<Base title={`${C.title} — ${t('site.name')}`} description={seoDesc} lang={lang} alt={alt}>
+<Base title={`${C.title} ${titleSep(lang)} ${t('site.name')}`} description={seoDesc} lang={lang} alt={alt}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="container lg-body">

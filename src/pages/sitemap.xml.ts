@@ -9,7 +9,7 @@ import { EVENTS_AR, EVENTS_EN, EVENTS_ZH } from '../data/events';
 import { attractionAlt, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 
-type Pair = { ar: string; en?: string; zh?: string; lastmod?: string };
+type Pair = { ar: string; en?: string; zh?: string; de?: string; lastmod?: string };
 
 export const GET: APIRoute = async ({ site }) => {
   const base = site ?? new URL('https://visit-alahsa.com');
@@ -27,8 +27,8 @@ export const GET: APIRoute = async ({ site }) => {
   // أزواج (عربي/إنجليزي/صيني اختياري) — تُستبعد «رحلتي» الشخصية (noindex).
   // zh يرد من attractionAlt حين يحمل المعلم ترجمة صينية معتمدة (title_zh).
   const pairs: Pair[] = [
-    { ar: '/', en: '/en/', zh: '/zh/', lastmod: dateOf(`${V}HomeView.astro`, 'src/i18n/ui.ts', ...attractionFiles) },
-    { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
+    { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', lastmod: dateOf(`${V}HomeView.astro`, 'src/i18n/ui.ts', ...attractionFiles) },
+    { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
@@ -103,6 +103,7 @@ export const GET: APIRoute = async ({ site }) => {
       `\n    <xhtml:link rel="alternate" hreflang="ar" href="${abs(p.ar)}"/>` +
       `\n    <xhtml:link rel="alternate" hreflang="en" href="${abs(p.en)}"/>` +
       (p.zh ? `\n    <xhtml:link rel="alternate" hreflang="zh" href="${abs(p.zh)}"/>` : '') +
+      (p.de ? `\n    <xhtml:link rel="alternate" hreflang="de" href="${abs(p.de)}"/>` : '') +
       `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(p.ar)}"/>`
     );
   };
@@ -112,6 +113,7 @@ export const GET: APIRoute = async ({ site }) => {
     urls.push(`  <url><loc>${abs(p.ar)}</loc>${lm(p)}${alts(p)}</url>`);
     if (p.en) urls.push(`  <url><loc>${abs(p.en)}</loc>${lm(p)}${alts(p)}</url>`);
     if (p.zh) urls.push(`  <url><loc>${abs(p.zh)}</loc>${lm(p)}${alts(p)}</url>`);
+    if (p.de) urls.push(`  <url><loc>${abs(p.de)}</loc>${lm(p)}${alts(p)}</url>`);
   }
 
   const xml =

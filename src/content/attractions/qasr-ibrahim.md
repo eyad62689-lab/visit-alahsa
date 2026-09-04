@@ -8,6 +8,13 @@ summary_zh: 泥砖与石材在此相遇：同一道围墙里，清真寺、军�
 body_zh: "易卜拉欣宫立在胡富夫市中心，几百年的变迁在这里层层落定。说是宫，其实是一座城堡——同一道围墙之内，容纳了平日难得共处的空间：穹顶秀雅的清真寺、军营、瞭望塔、马厩与仓廪。两种建筑传统在此并肩：石材硬朗，本地泥砖温厚，随气候而呼吸。走进开阔的庭院，看穹顶在米哈拉布（礼拜朝向壁龛）上投下荫影，一代代累积的历史便清晰可感。如今，它是哈萨最重要的遗产地标之一，也是老城肌理的一部分——2018 年，这片绿洲正是凭这片肌理列入联合国教科文组织世界遗产名录。"
 area_zh: 胡富夫市中心——哈萨
 bestTime_zh: 白天前来最好，建筑细节与庭院的光线都看得最清楚。
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 (2026-09-04)
+title_de: "Qasr Ibrahim"
+kicker_de: "Historische Festung"
+summary_de: "Lehm und Stein treffen in einer Festung zusammen, die Moschee, Kaserne und Turm vereint."
+area_de: "Zentrum von Hofuf – Al-Ahsa"
+bestTime_de: "Tagsüber, um die Details der Architektur und das Licht des Innenhofs zu sehen."
+body_de: "Im Herzen von Hofuf steht Qasr Ibrahim als Zeuge jahrhundertelangen Wandels. Kein Palast im prunkvollen Sinne, sondern eine Festung, die hinter einer einzigen Mauer vereinte, was selten zusammenkommt: eine Moschee mit anmutiger Kuppel, eine Kaserne, Wachtürme, Ställe und Lagerräume. Zwei Bauweisen stehen hier nebeneinander – die Festigkeit des Steins und die Wärme des heimischen Lehms, der mit dem Klima atmet. Gehen Sie durch den weiten Hof, sehen Sie, wie die Kuppel den Mihrab (die Gebetsnische) beschattet, und Sie lesen Schichten von Geschichte, die sich Generation für Generation angesammelt haben. Heute zählt die Festung zu den bedeutendsten Kulturdenkmälern Al-Ahsas und gehört zu jenem städtischen Gefüge, dem die Oase ihre Aufnahme in die Welterbeliste der UNESCO im Jahr 2018 verdankt."
 slug_ar: قصر-إبراهيم
 slug_en: qasr-ibrahim
 category: historic
@@ -25,9 +32,9 @@ order: 2
 bestTime: النهار، لرؤية تفاصيل العمارة وضوء الفناء الداخلي.
 bestTime_en: "Daytime, to see the architectural details and the light of the inner courtyard."
 practical:
-  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_zh: "门票", value_zh: "免费入场", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
-  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_zh: "建议游览时长", value_zh: "1–2 小时", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_de: "Öffnungszeiten", value_de: "So.–Do. 8–17 Uhr · Fr. 16–20 Uhr · Sa. 9–13 und 16–20 Uhr", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
 ---
 

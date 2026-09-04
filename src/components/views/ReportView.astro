@@ -6,7 +6,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -41,7 +41,7 @@ const C = localize(lang, {
 });
 const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
 ---
-<Base title={`${C.title} — ${t('site.name')}`} description={C.lead} lang={lang} alt={alt} noindex={true}>
+<Base title={`${C.title} ${titleSep(lang)} ${t('site.name')}`} description={C.lead} lang={lang} alt={alt} noindex={true}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={60}

@@ -9,7 +9,7 @@ import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
 import { formatDate } from '../../lib/dates';
-import { useTranslations, type AltLinks } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
@@ -18,34 +18,39 @@ const a = entry.data;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const de = lang === 'de';
 
-// اختيار الحقل بلغة الصفحة — الصينية تتراجع للإنجليزية فالعربية عند الغياب
-const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined): T =>
-  ar ? arV : zh ? (zhV ?? enV ?? arV) : (enV ?? arV);
+// اختيار الحقل بلغة الصفحة — الصينية والألمانية تتراجعان للإنجليزية فالعربية عند الغياب
+const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined, deV?: T): T =>
+  ar ? arV : zh ? (zhV ?? enV ?? arV) : de ? (deV ?? enV ?? arV) : (enV ?? arV);
 
-const title = pick(a.title, a.title_en, a.title_zh);
-const summary = pick(a.summary, a.summary_en, a.summary_zh);
-const bodyText = zh ? (a.body_zh ?? a.body_en ?? '') : (a.body_en ?? a.summary_en ?? '');
+const title = pick(a.title, a.title_en, a.title_zh, a.title_de);
+const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de);
+const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
+  : de ? (a.body_de ?? a.body_en ?? '')
+  : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
 
 // فئات الأسواق/المنتزهات/المزارع تتبع صفحتها المستقلة في الفتات وزر العودة (2026-07-13)
 // الصينية: الفهرسان صينيان (الأسواق والمنتزهات أُضيفت في الدفعة 12 — 2026-09-03)
+// الألمانية: لا فهارس /de/ بعد (مرحلة «النواة» لم تبدأ) — الفتات وزر العودة
+// يقصدان النظير الإنجليزي مؤقتاً، كما كانت الصينية قبل دفعتها.
 const isLeisure = ['market', 'parks', 'farm'].includes(a.category);
 const attractionsHref = isLeisure
   ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : '/en/souqs-parks-farms/')
-  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/');
+  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/');
 const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
-const homeHref = ar ? '/' : zh ? '/zh/' : '/en/';
+const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : '/en/';
 const regionName = ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa';
 const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
     name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png'),
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
-    address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
+    address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh, a.area_de) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
     // alt[lang] هنا هو رابط صفحة المعلم نفسه — فكانت السكيما تقول إن المعلم جزءٌ
     // من نفسه في 116 صفحة (تدقيق 2026-08-28). الوجهة هي الرئيسية بلغة الصفحة.
@@ -61,13 +66,13 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
 
 // بطاقة معلومات الزيارة بلغة الصفحة: البند لا يظهر إلا إن وُجدت ترجمته للغة
 // الصفحة (label_en/value_en أو label_zh/value_zh) — لا نعرض لغةً داخل صفحة أخرى.
-const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : (a.area_en ?? null);
-const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : (a.bestTime_en ?? null);
+const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : de ? (a.area_de ?? null) : (a.area_en ?? null);
+const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : de ? (a.bestTime_de ?? null) : (a.bestTime_en ?? null);
 const shownPractical = a.practical
-  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : p.label_en && p.value_en)));
+  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : de ? p.label_de && p.value_de : p.label_en && p.value_en)));
 const practicalItems = shownPractical.map((p) => ({
-  label: ar ? p.label : zh ? p.label_zh! : p.label_en!,
-  value: ar ? p.value : zh ? p.value_zh! : p.value_en!,
+  label: ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : p.label_en!,
+  value: ar ? p.value : zh ? p.value_zh! : de ? p.value_de! : p.value_en!,
 }));
 const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label));
 
@@ -80,22 +85,28 @@ const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|ال�
 const sourceGroups = [...shownPractical
   .reduce((m, p) => {
     // اسم المصدر بلغة الصفحة — الصينية تتراجع للإنجليزية على سلسلة الموقع
-    const name = ar ? p.source! : zh ? (p.source_zh ?? p.source_en!) : p.source_en!;
+    const name = ar ? p.source! : zh ? (p.source_zh ?? p.source_en!) : de ? (p.source_de ?? p.source_en!) : p.source_en!;
     const key = `${name}|${p.verifiedAt}|${p.sourceUrl ?? ''}`;
     if (!m.has(key)) m.set(key, { source: name, verifiedAt: p.verifiedAt!, sourceUrl: p.sourceUrl, labels: [] as string[] });
-    m.get(key)!.labels.push(ar ? p.label : zh ? p.label_zh! : p.label_en!);
+    m.get(key)!.labels.push(ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : p.label_en!);
     return m;
   }, new Map<string, { source: string; verifiedAt: string; sourceUrl?: string; labels: string[] }>())
   .values()];
 
-const srcLabel = ar ? 'المصدر' : zh ? '来源' : 'Source';
-const verifiedLabel = ar ? 'تاريخ التحقق' : zh ? '核实日期' : 'Verified';
-// النص الصيني من خط zh-translation-pipeline (misc.reviewNote — دورة 2026-08-29)
+// سلاسل مضمّنة خارج القاموس — كل لغة جديدة تحتاج فرعاً هنا يدوياً، **والفشل
+// صامت**: مفاتيح القاموس تبدو مكتملة بينما الصفحة تعرض الإنجليزية (رصدته
+// المرحلتان 1 و3 من دفعة الواجهة الألمانية 2026-09-03).
+const srcLabel = ar ? 'المصدر' : zh ? '来源' : de ? 'Quelle' : 'Source';
+const verifiedLabel = ar ? 'تاريخ التحقق' : zh ? '核实日期' : de ? 'Zuletzt geprüft' : 'Verified';
+// الصيني من خط zh-translation-pipeline (misc.reviewNote — دورة 2026-08-29)
+// والألماني من خط de-translation-pipeline (دفعة الواجهة — الحاكم 90/100)
 const reviewNote = ar
   ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد.'
   : zh
     ? '开放时间与门票价格可能随季节和节假日变动。'
-    : 'Hours and fees can change in seasons and holidays.';
+    : de
+      ? 'Öffnungszeiten und Eintritt können sich je nach Saison und an Feiertagen ändern.'
+      : 'Hours and fees can change in seasons and holidays.';
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
@@ -112,8 +123,11 @@ const nearby = a.location
         // البطاقة القريبة بلغة الصفحة، وعنوانها يتراجع للإنجليزية إن غابت
         // ترجمته الصينية — لكن رابطها يقصد صفحة اللغة الحالية إن وُجدت،
         // وإلا فالإنجليزية (لا رابط لصفحة /zh/ غير مولّدة).
-        href: attractionHref(e.data, zh && !e.data.title_zh ? 'en' : lang),
-        title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title),
+        href: attractionHref(e.data, (zh && !e.data.title_zh) || (de && !e.data.title_de) ? 'en' : lang),
+        title: ar ? e.data.title
+          : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title)
+          : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title)
+          : (e.data.title_en ?? e.data.title),
         cat: catLabel(e.data.category, lang),
         img: e.data.heroImage,
         km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
@@ -123,13 +137,14 @@ const nearby = a.location
       .map((n) => ({
         ...n,
         // الصيني من خط الإنتاج (misc.underKm/aboutKm — دورة 2026-08-29)
+        // والألماني من دفعة الواجهة الألمانية (detail.underKm/aboutKm — 2026-09-03)
         dist: n.km < 1
-          ? (ar ? 'أقل من كيلومتر' : zh ? '不足 1 公里' : 'under 1 km')
-          : (ar ? `نحو ${Math.round(n.km)} كم` : zh ? `约 ${Math.round(n.km)} 公里` : `~${Math.round(n.km)} km`),
+          ? (ar ? 'أقل من كيلومتر' : zh ? '不足 1 公里' : de ? 'unter 1 km' : 'under 1 km')
+          : (ar ? `نحو ${Math.round(n.km)} كم` : zh ? `约 ${Math.round(n.km)} 公里` : de ? `ca. ${Math.round(n.km)} km` : `~${Math.round(n.km)} km`),
       }))
   : [];
 ---
-<Base title={`${title} — ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
+<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>
@@ -266,7 +281,10 @@ const nearby = a.location
   .ah-k { margin-block-end: var(--s-1); }
   .ah-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .ah-sum { font-size: var(--t-lg); color: rgba(247,243,234,.92); max-inline-size: 52ch; }
-  .ah-fav { margin-block-start: var(--s-4); background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
+  /* min-inline-size لا تقصيرُ نصّ: الزرّ يبدّل تسميته بين «أضف» و«في رحلتي ✓»
+     (‏data-tx-on/off)، والفارق بالألمانية تسعة محارف مقابل اثنين بالإنجليزية —
+     فيقفز عرض الزرّ تحت إصبع الزائر لحظة الضغط. */
+  .ah-fav { margin-block-start: var(--s-4); min-inline-size: 15ch; background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
   .ah-fav:hover { border-color: var(--c-sand); }
   .ah-fav.is-saved { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
   .att-layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--s-6); padding-block: var(--s-7); align-items: start; }

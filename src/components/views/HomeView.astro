@@ -18,14 +18,16 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const de = lang === 'de';
 
 // اختيار حقل المحتوى بلغة الصفحة (الصينية تتراجع للإنجليزية عند الغياب)،
 // ورابط المعلم يقصد صفحة اللغة الحالية إن وُجدت وإلا فالإنجليزية.
-const pickTitle = (d: { title: string; title_en?: string; title_zh?: string }) =>
-  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
-const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string }) =>
-  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
-const hrefLang = (d: { title_zh?: string }) => (zh && !d.title_zh ? 'en' : lang);
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string; title_de?: string }) =>
+  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : lang;
 
 const allEntries = await getCollection('attractions');
 const featuredEntries = allEntries
@@ -47,15 +49,17 @@ const catCards = [
   { key: 'events', cat: null, href: ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
 const facts = [
-  { n: ar ? '2.5 مليون' : zh ? '250 万' : '2.5M', l: t('fact.palms.l') },
+  // أرقام مضمّنة خارج القاموس: كل لغة تحتاج فرعاً يدوياً هنا، والفشل صامت
+  // (فاصلة عشرية ألمانية — دفعة الواجهة الألمانية 2026-09-03).
+  { n: ar ? '2.5 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : '2.5M', l: t('fact.palms.l') },
   { n: '2018', l: t('fact.unesco.l') },
   // العدد يُشتقّ من المجموعة لا يُكتب يدوياً: كان مثبَّتاً «+60» بينما المنشور 58،
   // فتضاربت الرئيسية مع الخريطة وllms.txt (تدقيق 2026-08-30). أرقام لاتينية بحكم قاعدة الموقع.
   { n: String(allEntries.length), l: t('fact.sites.l') },
-  { n: ar ? 'آلاف' : zh ? '数千' : 'Thousands', l: t('fact.springs.l') },
+  { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : 'Thousands', l: t('fact.springs.l') },
 ];
 // الصينية: كل هذه الصفحات لها نسخة /zh/ (رحلتي أُضيفت في الدفعة 13 — 2026-09-03)
-const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
+const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/';
 const planTripHref = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : '/en/plan-your-trip/';
 const myTripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : '/en/plan/';
 
@@ -91,7 +95,7 @@ const jsonLd = [
     name: ar ? 'الأحساء' : zh ? '哈萨' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + '/og-default.png',
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
-    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : 'Saudi Arabia' },
+    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : 'Saudi Arabia' },
   },
 ];
 // عنوان ووصف بكلمة «دليل السياحة» المستهدفة (سيو 2026-08-22) — كل ما يُذكر
@@ -101,12 +105,16 @@ const title = ar
   ? 'الأحساء — دليلك السياحي لأكبر واحة في العالم'
   : zh
     ? '哈萨旅游指南——全球最大的绿洲'
-    : 'Al-Ahsa Travel Guide — the World’s Largest Oasis';
+    : de
+      ? 'Al-Ahsa-Reiseführer – die größte Oase der Welt'
+      : 'Al-Ahsa Travel Guide — the World’s Largest Oasis';
 const description = ar
   ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
   : zh
     ? '沙特阿拉伯哈萨旅游指南：卡拉山、易卜拉欣宫、凯撒利亚集市、乌盖尔（Al-Uqair）。在这片列入联合国教科文组织世界遗产名录的绿洲，查看地图与行程，了解活动与美食。'
-    : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
+    : de
+      ? 'Ihr Al-Ahsa-Reiseführer: Jabal al-Qarah, Qasr Ibrahim, Qaisariyah-Souk und Al-Uqair – Karten, Routen, Veranstaltungen und Restaurants im UNESCO-Welterbe.'
+      : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} />
@@ -172,7 +180,7 @@ const description = ar
               <Photo src={e.data.heroImage} label={pickTitle(e.data)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 {/* التسمية العلوية عربية/صينية فقط — لا عنصر فارغ في الإنجليزية */}
-                {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}
+                {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : de ? (e.data.kicker_de ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}
                 <h3 class="att-t">{pickTitle(e.data)}</h3>
                 <p class="att-d">{pickSummary(e.data)}</p>
               </div>
@@ -348,6 +356,13 @@ const description = ar
     border-inline-start: 1px dashed var(--c-line);
   }
   .route-time { flex: 0 0 auto; inline-size: 68px; text-align: center; background: var(--c-turq); color: var(--c-sand); font-size: var(--t-xs); font-weight: 600; padding: 5px 0; border-radius: var(--radius-pill); position: relative; z-index: 1; }
+  /* الألمانية: «Sonnenuntergang» كلمة واحدة ≈ 103px بلا موضع فصل، فتفيض من 68px.
+     العرض ثابت (لا auto) والإزاحة نصفه بالضبط: الخط المنقّط الرابط بين المحطات
+     يُرسم عند inset-inline-start = نصف عرض الشارة، فبعرضٍ تلقائي تختلف الشارات
+     الثلاث ويستحيل مرور خطٍّ واحد بمراكزها. ولا يُحلّ بـU+00AD في قيمة القاموس
+     (محرف غير مرئي يُفشل فحص dist بصمت — قاعدة `einheiten` في المعجم). */
+  :global([lang='de']) .route-stop:not(:last-child)::before { inset-inline-start: 54px; }
+  :global([lang='de']) .route-time { inline-size: 108px; }
   .route-stop-b { padding-block-start: 2px; }
   .route-n { font-family: var(--font-heading); font-size: var(--t-lg); color: var(--c-ink); text-decoration: none; line-height: 1.3; transition: color var(--dur) var(--ease); }
   .route-n:hover { color: var(--c-turq); text-decoration: underline; text-underline-offset: 4px; }

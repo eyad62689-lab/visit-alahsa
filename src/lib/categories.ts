@@ -1,8 +1,10 @@
-// تسميات فئات المعالم — ثلاثية اللغة. مصدر موحّد للقائمة/الخريطة/التفصيل.
+// تسميات فئات المعالم — مصدر موحّد للقائمة/الخريطة/التفصيل.
 // الصينية من خط zh-translation-pipeline (دفعة نصوص الواجهة 2026-08-29).
+// الجدول **جزئي عمداً** (Partial): لغة لم تمرّ دفعة واجهتها بخط إنتاجها لا
+// جدول لها، وتتراجع في catLabel أدناه — الألمانية كذلك منذ تكاملها 2026-09-03.
 import type { Lang } from '../i18n/ui';
 
-export const CATEGORY_LABELS: Record<Lang, Record<string, string>> = {
+export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { ar: Record<string, string>; en: Record<string, string> } = {
   ar: {
     historic: 'المعالم',
     museum: 'المتاحف',
@@ -39,9 +41,26 @@ export const CATEGORY_LABELS: Record<Lang, Record<string, string>> = {
     taste: '美食与椰枣',
     events: '活动与节庆',
   },
+  // الألمانية من خط de-translation-pipeline (دفعة نصوص الواجهة 2026-09-03، الحاكم 90/100).
+  de: {
+    historic: 'Historische Stätten',
+    museum: 'Museen',
+    religious: 'Moscheen und religiöse Stätten',
+    nature: 'Natur und Höhlen',
+    parks: 'Parks und Gärten',
+    market: 'Traditionelle Souqs',
+    farm: 'Farmen und Dattelpalmen',
+    experience: 'Erlebnisse und Handwerk',
+    taste: 'Küche und Datteln',
+    events: 'Veranstaltungen und Saisonales',
+  },
 };
 
 export const CATEGORY_ORDER = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'];
 
+/** تسمية الفئة بلغة الصفحة — والتراجع على سلسلة الموقع (اللغة ← en ← ar).
+ *  الإنجليزية قبل العربية إلزامية: لغةٌ لا جدول لها بعد (de عند تكاملها
+ *  2026-09-03، وقاموسها في خط الإنتاج) كانت ستقع على التسمية العربية داخل
+ *  صفحة لاتينية — وهي المخالفة نفسها التي يحرسها فلتر label_en في المعالم. */
 export const catLabel = (c: string, lang: Lang = 'ar') =>
-  CATEGORY_LABELS[lang]?.[c] ?? CATEGORY_LABELS.ar[c] ?? c;
+  CATEGORY_LABELS[lang]?.[c] ?? CATEGORY_LABELS.en[c] ?? CATEGORY_LABELS.ar[c] ?? c;

@@ -9,6 +9,13 @@ summary_zh: 伊斯兰历史上最古老的清真寺之一，也是继麦地那�
 body_zh: "贾瓦塔清真寺的地位鲜有地标能比：它是伊斯兰历史上最古老的清真寺之一；相传继麦地那的主麻清真寺之后，最早的主麻日聚礼就在这里举行，礼拜者是定居这片土地的阿卜杜·盖斯部落。质朴的泥砖建筑只余下一部分，那份庄严却远超它的体量。站在残存的拱券与墙垣前，几百年的礼拜与聚会仿佛就在眼前；这片绿洲的居民，正是最早归信伊斯兰的族群之一。该寺已由“穆罕默德·本·萨勒曼王子历史清真寺发展项目”修复完成，同批修复的还有哈萨的贾拉尼亚清真寺、谢赫穆罕默德·本·阿比·伯克尔·穆拉清真寺与胡拜什清真寺。来这里与其说是看一座建筑，不如说是一次穿越时光的行走，让人真切地贴近这片土地的深远历史。"
 area_zh: 基拉比亚——哈萨东北部
 bestTime_zh: 白天前来最合适，并请尊重礼拜时间与场所的神圣。
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 (2026-09-04)
+title_de: "Jawatha-Moschee"
+kicker_de: "Seltenes Erbe"
+summary_de: "Eine der ältesten Moscheen des Islams und der Überlieferung nach der erste Ort nach der Moschee in Medina, an dem ein Freitagsgebet abgehalten wurde."
+area_de: "Dorf Al-Kilabiyah – nordöstlich von Al-Ahsa"
+bestTime_de: "Tagsüber, unter Beachtung der Gebetszeiten und der Heiligkeit des Ortes."
+body_de: "Die Jawatha-Moschee nimmt einen Rang ein, den nur wenige Stätten erreichen: Sie zählt zu den ältesten Moscheen des Islams, und der Überlieferung nach wurde hier nach der Jumu'ah-Moschee in Medina zum ersten Mal ein Freitagsgebet abgehalten – von den Banu Abd al-Qais, die dieses Land besiedelten. Was von ihrem schlichten Lehmbau erhalten ist, trägt eine Würde, die weit über seine Größe hinausgeht. Treten Sie vor ihre Bögen und Mauern, und Sie rufen Jahrhunderte des Gebets und der Zusammenkunft in einer Oase herauf, deren Menschen zu den Ersten gehörten, die den Islam annahmen. Die Moschee wurde im Rahmen des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen restauriert, gemeinsam mit den Moscheen Al-Jalaniyah, Scheich Muhammad bin Abi Bakr Al-Mulla und Hubaish in Al-Ahsa. Ein Besuch ist mehr eine Reise durch die Zeit als der Besuch eines Bauwerks – ein Augenblick, der Sie mit einer tiefen Wurzel der Geschichte dieses Ortes verbindet."
 slug_ar: مسجد-جواثا
 slug_en: jawatha-mosque
 category: religious
@@ -26,8 +33,8 @@ order: 4
 bestTime: أوقات النهار، مع احترام أوقات الصلاة وخصوصية المكان.
 bestTime_en: "Daylight hours, respecting prayer times and the sanctity of the place."
 practical:
-  - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", label_de: "Öffnungszeiten", value_de: "Moschee: ganztägig · umliegender Park: 8–24 Uhr", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 ---
 
