@@ -43,6 +43,15 @@ const SYNONYM_PAIRS = [
 // أسماء أدلة صفحات المعالم في dist (المسارات العربية تُرمَّز بـpercent-encoding)
 const AR_ATTRACTIONS_DIR = decodeURIComponent('%D9%85%D8%B9%D8%A7%D9%84%D9%85');
 
+// تقشير الوسوم حتى الاستقرار: تمريرة واحدة تُبقي «<script» إن كان الوسم متداخلاً
+// (‏<<script>>)، وCodeQL يعدّها js/incomplete-multi-character-sanitization ويُفشل الفحص.
+// المدخل هنا dist المبني لا مدخل زائر، لكن الشكل الثابت يُغلق التنبيه بلا استثناء.
+const stripTags = (html, sep = '') => {
+  let prev;
+  do { prev = html; html = html.replace(/<[^>]*>/g, sep); } while (html !== prev);
+  return html;
+};
+
 async function listHtml(dir) {
   const out = [];
   async function walk(d) {
@@ -101,7 +110,7 @@ async function main() {
   } else {
     const home = await readFile(homePath, 'utf8');
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
-    const text = home.replace(/<[^>]+>/g, '');
+    const text = stripTags(home, '');
     const m = text.match(/([\d.,+MK万]+)[\s]*معلماً ووجهةً للاكتشاف/);
     if (!m) fail('C3', 'تعذّر استخراج عدد المعالم من بطاقات حقائق الرئيسية');
     else if (m[1] === String(truth)) pass('C3', `الرئيسية تعرض ${truth} معلماً`);
@@ -228,7 +237,7 @@ async function main() {
         const htmlEn = await readFile(pageEn, 'utf8');
         const block = htmlEn.match(/class="info-src"[^>]*>([\s\S]*?)<\/p>/);
         if (!block) missing.push(`${slugEn} (en): بلا سطر إسناد`);
-        else if (/[؀-ۿ]/.test(block[1].replace(/<[^>]+>/g, ''))) {
+        else if (/[؀-ۿ]/.test(stripTags(block[1]))) {
           missing.push(`${slugEn} (en): اسم المصدر بالعربية داخل الصفحة الإنجليزية`);
         }
       }
@@ -258,7 +267,7 @@ async function main() {
     for (const f of await listHtml(path.join(DIST, 'de'))) {
       const html = await readFile(f, 'utf8');
       const m = html.match(/Beste Tageszeit<\/dt>\s*<dd[^>]*>([\s\S]*?)<\/dd>/);
-      const val = m && m[1].replace(/<[^>]+>/g, '').trim();
+      const val = m && stripTags(m[1]).trim();
       const hit = val && val.match(SEASONAL_DE);
       if (hit) deLies.push(`${path.relative(DIST, f)} → «${hit[0]}»`);
     }
@@ -385,7 +394,7 @@ async function main() {
     const offenders = [];
     let carriers = 0;
     for (const f of htmlFiles) {
-      const text = (await readFile(f, 'utf8')).replace(/<[^>]+>/g, ' ');
+      const text = stripTags(await readFile(f, 'utf8'), ' ');
       for (const { lang, re } of NIGHT_WARMTH) {
         if (re.test(text)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
       }
