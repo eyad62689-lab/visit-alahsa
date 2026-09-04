@@ -1,0 +1,77 @@
+# ============================================================================
+# Build gate — runs the project's own full verification on every pull request
+# ----------------------------------------------------------------------------
+# This is the workflow to mark as a REQUIRED status check in Branch protection
+# (Settings -> Branches -> main). Its job name is "Build & consistency checks";
+# that exact string is what the protection rule must reference.
+#
+# It runs `npm run build`, which is the project's complete gate:
+#   prebuild  -> tools/test-ai-detection.mjs   (unit tests; fails the build)
+#             -> tools/fetch-places.mjs        (never fails; warns without a key)
+#             -> scripts/fingerprint.mjs       (regenerates content fingerprints)
+#   build     -> astro check                   (0 type errors required)
+#             -> astro build
+#             -> pagefind --site dist
+#   postbuild -> scripts/image-rights.mjs      (EXIF ownership stamping)
+#             -> tools/check-consistency.mjs   (consistency checks on dist/)
+#
+# fetch-depth: 0 is deliberate. src/lib/git-dates.ts derives sitemap `lastmod`
+# from the last commit that touched each file; a shallow clone drops the field
+# entirely and check C8 degrades to a warning instead of actually verifying it.
+#
+# No secrets are used. GOOGLE_PLACES_API_KEY is absent here by design: the
+# fetch script warns loudly and the site builds without live ratings, which is
+# exactly the behaviour we want to keep proving works.
+#
+# Actions are pinned to commit SHAs, not moving tags — same rule as
+# security-scans.yml: a tag can be repointed by whoever controls the action.
+# ============================================================================
+
+name: Build
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+  workflow_dispatch: {}
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build & consistency checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (full history for sitemap lastmod)
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22" # يطابق NODE_VERSION في netlify.toml
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with all checks
+        run: npm run build
+
+      - name: Upload build log artefacts on failure
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: failed-build-dist-manifest
+          path: |
+            dist/sitemap.xml
+            dist/llms.txt
+          if-no-files-found: ignore
+          retention-days: 7
