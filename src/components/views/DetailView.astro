@@ -129,6 +129,9 @@ const nearby = a.location
           : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title)
           : (e.data.title_en ?? e.data.title),
         cat: catLabel(e.data.category, lang),
+        // العنوان المتراجع للإنجليزية يُوسم lang="en" فيقرؤه قارئ الشاشة بلغته،
+        // ويستثنيه الحارس C18 (تهجئة Souk الألمانية) من نصّ الصفحة الألماني.
+        titleLang: (zh && !e.data.title_zh) || (de && !e.data.title_de) ? 'en' : undefined,
         img: e.data.heroImage,
         km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
       }))
@@ -239,7 +242,7 @@ const nearby = a.location
                 <Photo src={n.img} label={n.title} class="nb-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                 <div class="nb-body">
                   <span class="t-caption nb-k">{n.cat}</span>
-                  <h3 class="nb-t">{n.title}</h3>
+                  <h3 class="nb-t" lang={n.titleLang}>{n.title}</h3>
                   <span class="nb-dist">{n.dist}</span>
                 </div>
               </a>

@@ -48,7 +48,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     religious: 'Moscheen und religiöse Stätten',
     nature: 'Natur und Höhlen',
     parks: 'Parks und Gärten',
-    market: 'Traditionelle Souqs',
+    market: 'Traditionelle Souks',
     farm: 'Farmen und Dattelpalmen',
     experience: 'Erlebnisse und Handwerk',
     taste: 'Küche und Datteln',
