@@ -1,0 +1,26 @@
+{
+  "source_lang": "en",
+  "authority_lang": "ar",
+  "target_lang": "ru-RU",
+  "html_lang": "ru",
+  "url_prefix": "/ru/",
+  "pass_threshold": 90,
+  "max_correction_loops": 3,
+  "output_path_pattern": "src/pages/ru/{slug}",
+  "content_field_suffix": "_ru",
+  "batch_size": 5,
+  "address_form": "вы (строчное — обращение к неопределённому кругу лиц)",
+  "orthography": "Правила русской орфографии и пунктуации (Лопатин 2006) + справочная служба Грамоты",
+  "font_stack": "@fontsource/{playfair-display,lora,cormorant-garamond}/cyrillic-*.css",
+  "font_note": "لا حزمة خط جديدة، لكن **استيرادات جديدة لازمة**: الحزم الثلاث المثبّتة أصلاً تحمل ملفات cyrillic-400/600/700 (فُحص node_modules 2026-09-05)، والموقع يستورد `latin-*.css` وحدها — أي أن السيريلية اليوم بلا خط. تُضاف استيرادات cyrillic في Base.astro؛ كلفتها CSS فقط: ملفات woff2 لا تُنزَّل إلا عند تصيير محارف في unicode-range.",
+  "score_rule": "درجة الدفعة = أدنى درجة صفحة فيها (سابقة الخطين الصيني والألماني)",
+  "stages": [
+    "01-translator",
+    "02-editor",
+    "03-localizer",
+    "04-benchmarker",
+    "05-proofreader",
+    "06-blind-reader",
+    "07-judge"
+  ]
+}
