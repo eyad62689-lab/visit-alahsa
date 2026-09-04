@@ -531,8 +531,11 @@ async function main() {
       let html;
       try { html = await readFile(p, 'utf8'); } catch { problems.push(`الرئيسية /${home} مفقودة`); continue; }
       const dest = parseLd(html).find((n) => n['@type'] === 'TouristDestination');
-      const sa = dest?.sameAs ?? [];
-      if (!sa.includes('https://www.wikidata.org/wiki/Q311341') || !sa.includes('https://whc.unesco.org/en/list/1563/') || dest?.identifier?.value !== '1563')
+      const sa = Array.isArray(dest?.sameAs) ? dest.sameAs : [];
+      // مساواة تامة لا includes: CodeQL يقرأ includes على رابط فحصَ سلسلة فرعية
+      // (js/incomplete-url-substring-sanitization) وإن كان على مصفوفة.
+      const hasExact = (target) => sa.some((u) => u === target);
+      if (!hasExact('https://www.wikidata.org/wiki/Q311341') || !hasExact('https://whc.unesco.org/en/list/1563/') || dest?.identifier?.value !== '1563')
         problems.push(`الرئيسية /${home}: الوجهة بلا sameAs الواحة (Q311341 + اليونسكو 1563)`);
     }
     const withQ = expected.filter((e) => e.sameAs.length).length;
