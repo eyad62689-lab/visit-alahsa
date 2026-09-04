@@ -55,9 +55,12 @@ const smartify = (s) => s.replace(/(\p{L})'(\p{L})/gu, '$1’$2')
 // الجمل الطويلة جداً تُقصّ عند حدود الكلمات — تبقى مقتطفاً حرفياً قابلاً للبحث.
 // تُستبعد الجمل التي فيها رموز يحوّلها smartypants تحويلاً سياقياً لا يمكن
 // التنبؤ به خارج المصيّر (اقتباسات مفردة/مزدوجة متبقية، --، ...).
-function pickPhrase(text, taken, fromMarkdown = false) {
+// الألمانية تكتب الأعداد الترتيبية بنقطة («im 12. Jahrhundert») فلا تُعامَل نقطة
+// بعد رقم فاصلَ جملة عندها — القاعدة ألمانية فقط لأن قوائم المدونة المرقّمة
+// «1. بند» عناصر <li> مستقلة، وضمّها إلى ما قبلها ينتج عبارة لا وجود لها حرفياً.
+function pickPhrase(text, taken, fromMarkdown = false, ordinalDots = false) {
   const sentences = text
-    .split(/(?<=[.!؟?…])\s+/)
+    .split(ordinalDots ? /(?<=(?<!\d)[.!؟?…])\s+/ : /(?<=[.!؟?…])\s+/)
     .map((s) => s.trim())
     .filter((s) => s.length >= 60)
     .sort((a, b) => b.length - a.length)
@@ -125,6 +128,14 @@ async function main() {
       const urlZh = `${SITE}/zh/attractions/${slugEn}/`
       push({ id: id(urlZh), type: 'attraction', lang: 'zh', title: fmField(fm, 'title_zh'), url: urlZh, phrase: pickPhraseZh(bodyZh.replace(/\s+/g, ' ').trim(), taken) })
     }
+    // الألمانية: البوابة title_de (نفس de/attractions/[slug].astro)، والمتن body_de
+    // يُصيَّر نصاً خاماً داخل <p> واحدة كالإنجليزية — المسار اللاتيني نفسه مع
+    // حارس الأعداد الترتيبية.
+    const bodyDe = fmField(fm, 'body_de')
+    if (bodyDe && fmField(fm, 'title_de')) {
+      const urlDe = `${SITE}/de/attractions/${slugEn}/`
+      push({ id: id(urlDe), type: 'attraction', lang: 'de', title: fmField(fm, 'title_de'), url: urlDe, phrase: pickPhrase(bodyDe.replace(/\s+/g, ' ').trim(), taken, false, true) })
+    }
   }
 
   // المنشآت (مطاعم ومقاهٍ): تُبصَّم الصفحة المفردة فقط — أي من عبر متنُها عتبة
@@ -189,7 +200,7 @@ async function main() {
   const out = { generated: new Date().toISOString(), site: SITE, count: fingerprints.length, fingerprints }
   await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8')
   const n = (lang) => fingerprints.filter((x) => x.lang === lang).length
-  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${n('ar')} | إنجليزي: ${n('en')} | صيني: ${n('zh')})`)
+  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${n('ar')} | إنجليزي: ${n('en')} | صيني: ${n('zh')} | ألماني: ${n('de')})`)
   console.log(`المخرج: ${OUT}`)
 }
 
