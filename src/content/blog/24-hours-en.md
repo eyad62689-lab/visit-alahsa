@@ -15,7 +15,7 @@ faq:
     a: "Yes — and the best order is the mountain by day and the souq by night: the Al-Qarah caves soften the midday heat, while Qaisariyah opens its shops and finds its pulse in the evening."
 ---
 
-In Al-Ahsa for a single day? This itinerary distils the heart of the oasis — the largest palm oasis on earth, a UNESCO World Heritage Site since 2018 — into one day: a fortress and a heritage district, a cave-riddled mountain, and a souq more than two centuries old.
+In Al-Ahsa for a single day? This itinerary distils the heart of the oasis — the largest oasis on earth, a UNESCO World Heritage Site since 2018 — into one day: a fortress and a heritage district, a cave-riddled mountain, and a souq more than two centuries old.
 
 The stops are arranged by the **rhythm of the day**, not by fixed hours, because opening times and fees change with the seasons — the verified details live on each landmark's page, and the final word belongs to official channels.
 

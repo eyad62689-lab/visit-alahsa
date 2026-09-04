@@ -15,7 +15,7 @@ faq:
     a: "A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's My Trip page to get a ready-made route that opens in Google Maps."
 ---
 
-Two days are enough to feel the spirit of Al-Ahsa — the largest palm oasis on earth, a UNESCO World Heritage Site since 2018, where life thrives among more than 2.5 million date palms. This itinerary splits the visit the way the oasis itself is split: **day one for its heritage heart** in Hofuf, **day two for its water, green and coast**.
+Two days are enough to feel the spirit of Al-Ahsa — the largest oasis on earth, a UNESCO World Heritage Site since 2018, where life thrives among more than 2.5 million date palms. This itinerary splits the visit the way the oasis itself is split: **day one for its heritage heart** in Hofuf, **day two for its water, green and coast**.
 
 One note before you start: the stops here are arranged by the **rhythm of the day** — morning, midday, sunset — not by fixed hours, because opening times and fees change with the seasons. You will find the verified details on each landmark's page on this site; confirm through official channels before you visit.
 

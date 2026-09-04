@@ -322,6 +322,66 @@ async function main() {
     else pass('C11', `${total} منشأة ومكان إقامة — صفحات مفردة منشورة: ${publishedAr} عربية و${publishedEn} إنجليزية`);
   }
 
+  // ── C15: دعوى «أكبر واحة» بلا محدِّد النخيل ───────────────────────────────
+  // السجل الرسمي عند غينيس عنوانه «Largest oasis» ونصّه «largest self-contained
+  // oasis in the world» — فلا «نخيل» ولا «طبيعية». وقرار إياد (2026-09-03) وحّد
+  // الدعوى على «أكبر واحة في العالم» بعد تناقض الرئيسية مع بطاقة الأرقام.
+  // يُفحص المبنيّ لا المصدر: نصٌّ ألمانيٌّ أو صينيٌّ قادم قد يعيد المحدِّد بحسن نيّة.
+  {
+    const PALM_CLAIM = [
+      { lang: 'ar', re: /أكبر\s+واحة[ٍِ]?\s+نخيل/ },
+      { lang: 'en', re: /largest\s+(?:natural\s+)?palm\s+oasis/i },
+      { lang: 'zh', re: /最大的(?:天然)?(?:椰枣|棕榈)绿洲/ },
+      { lang: 'de', re: /größten?\s+Palmenoase/i },
+    ];
+    const OK_CLAIM = /أكبر واحة[ٍ]? (?:في العالم|على وجه الأرض)|largest oasis (?:on earth|in the world)|最大的绿洲|größten Oase der Welt/;
+    const offenders = [];
+    let carriers = 0;
+    for (const f of htmlFiles) {
+      const html = await readFile(f, 'utf8');
+      for (const { lang, re } of PALM_CLAIM) {
+        if (re.test(html)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
+      }
+      if (OK_CLAIM.test(html)) carriers++;
+    }
+    if (offenders.length) {
+      fail('C15', `دعوى «واحة نخيل» عادت في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — غينيس تقول «Largest oasis»`);
+    } else if (carriers === 0) {
+      fail('C15', 'لا صفحة تحمل دعوى «أكبر واحة في العالم» — الحارس صار فارغاً، تحقّق من الصياغة');
+    } else {
+      pass('C15', `دعوى «أكبر واحة في العالم» موحّدة في ${carriers} صفحة — بلا محدِّد نخيل في أي لغة`);
+    }
+  }
+
+  // ── C16: دفء كهوف جبل القارة يُعزى للشتاء لا لليل ────────────────────────
+  // الكهوف تحافظ على اعتدال يقارب 20°م طوال العام، فالمقابلة صيفٌ/شتاء لا نهارٌ/ليل.
+  // كان الخطأ في المصدر العربي فورثته الترجمات الثلاث — حكم إياد 2026-09-03.
+  {
+    const NIGHT_WARMTH = [
+      { lang: 'ar', re: /ذروة\s+القيظ[^]{0,80}?الليل/ },
+      { lang: 'en', re: /(?:peak|height)\s+of\s+summer[^]{0,80}?night/i },
+      { lang: 'zh', re: /盛夏[^]{0,60}?(?:入夜|夜间|夜里)/ },
+      { lang: 'de', re: /Hochsommer[^]{0,100}?Nacht/i },
+    ];
+    const OK_WINTER = /قلب الشتاء|depth of winter|隆冬|tiefsten Winter/;
+    const offenders = [];
+    let carriers = 0;
+    for (const f of htmlFiles) {
+      const text = (await readFile(f, 'utf8')).replace(/<[^>]+>/g, ' ');
+      for (const { lang, re } of NIGHT_WARMTH) {
+        if (re.test(text)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
+      }
+      if (OK_WINTER.test(text)) carriers++;
+    }
+    if (offenders.length) {
+      fail('C16', `دفء الكهوف عاد منسوباً لليل في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — الاعتدال طوال العام فالمقابلة شتاء`);
+    } else if (carriers === 0) {
+      fail('C16', 'لا صفحة تقابل قيظ الكهوف بالشتاء — الحارس صار فارغاً، تحقّق من الصياغة');
+    } else {
+      pass('C16', `دفء كهوف جبل القارة منسوب للشتاء في ${carriers} صفحة — لا نسبة لليل في أي لغة`);
+    }
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

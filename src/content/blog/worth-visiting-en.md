@@ -1,6 +1,6 @@
 ---
 title: "Is Al-Ahsa Worth Visiting? An Honest Guide"
-description: "A straight answer for travellers weighing Al-Ahsa: what makes the world's largest palm oasis unlike anywhere else in Saudi Arabia, and how many days it needs."
+description: "A straight answer for travellers weighing Al-Ahsa: what makes the world's largest oasis unlike anywhere else in Saudi Arabia, and how many days it needs."
 lang: en
 key: worth-visiting
 slug: "is-al-ahsa-worth-visiting"
@@ -15,7 +15,7 @@ faq:
     a: "A car is the practical way to explore: some landmarks sit in central Hofuf, others at the edges of the oasis and on the Gulf coast. The site's My Trip tool turns your chosen stops into a ready route that opens in Google Maps."
 ---
 
-The short answer: **yes** — and for reasons no other destination in Saudi Arabia can copy. Al-Ahsa is the **largest palm oasis on earth**, inscribed on the **UNESCO World Heritage list in 2018**, where life thrives among more than 2.5 million date palms and water has run beneath the sand for millennia. The name itself tells the story: *Al-Ahsa* is the plural of *hisy* — sweet water gathered beneath a thin layer of sand, springing up where no one expects it.
+The short answer: **yes** — and for reasons no other destination in Saudi Arabia can copy. Al-Ahsa is the **largest oasis on earth**, inscribed on the **UNESCO World Heritage list in 2018**, where life thrives among more than 2.5 million date palms and water has run beneath the sand for millennia. The name itself tells the story: *Al-Ahsa* is the plural of *hisy* — sweet water gathered beneath a thin layer of sand, springing up where no one expects it.
 
 What follows is what actually sets the place apart, and how to judge whether it fits your trip.
 

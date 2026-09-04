@@ -23,7 +23,7 @@ area_en: "Northeast of the oasis"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 practical:
-  - { label: "الرسوم", value: "بانتظار التأكيد", label_en: "Fees", value_en: "Pending confirmation", label_zh: "门票", value_zh: "待确认（信息更新中）", verified: false }
+  - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.525252, lng: 49.808672 }
 mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
 ---
