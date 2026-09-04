@@ -7,6 +7,12 @@ kicker_zh: 历史地标
 summary_zh: 哈萨第一所正规官办学校，公元 1937 年开课；历史校舍如今用作“文化之家”。
 body_zh: "阿米里亚学校是哈萨第一所正规官办学校，坐落在旧胡富夫以东的乌姆·胡拜西（Umm Al-Khubaisi）高地上，紧邻凯撒利亚集市。伊斯兰历 1356 年（公元 1937 年），它在租来的房舍里开课；伊历 1360 年（公元 1941 年）迁入永久校舍：阿拉伯—伊斯兰风格，拱形门廊，内院四周绕着一圈连拱回廊。这一带的几代子弟都在这里念过书。校舍现已修复为“文化之家”（Bait Al-Thaqafa），成为见证哈萨教育复兴的地标。"
 area_zh: 纳阿西勒区——旧胡富夫以东
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 (2026-09-04)
+title_de: "Amiriah-Schule"
+kicker_de: "Historische Stätte"
+summary_de: "Die erste reguläre staatliche Schule Al-Ahsas, eröffnet 1937; ihr historisches Gebäude dient heute als Haus der Kultur."
+area_de: "Viertel Al-Na'athil – östlich der Altstadt von Hofuf"
+body_de: "Auf der Anhöhe Umm Al-Khubaisi im Viertel Al-Na'athil, östlich der Altstadt von Hofuf und nahe dem Qaisariyah-Souk, steht die Amiriah-Schule, die erste reguläre staatliche Schule Al-Ahsas. Der Unterricht begann 1356 nach der Hidschra (1937 n. Chr.) in gemieteten Räumen, und ihr fester Sitz wurde 1360 n. H. (1941 n. Chr.) eröffnet – im arabisch-islamischen Stil, mit einem Bogenportal und einem von Arkaden gesäumten Innenhof. Hier lernten Generationen aus der Region. Das Gebäude wurde als „Bait Al-Thaqafa“ (Haus der Kultur) restauriert – ein Wahrzeichen, das die Erinnerung an den Bildungsaufbruch Al-Ahsas bewahrt."
 slug_ar: "المدرسة-الأميرية"
 slug_en: "ameeriah"
 category: historic
