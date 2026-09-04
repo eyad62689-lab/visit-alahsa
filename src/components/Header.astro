@@ -39,7 +39,13 @@ const nav = [
   { href: routes.food, label: t('nav.food') },
   { href: routes.dine, label: t('nav.dining') },
   { href: routes.stay, label: t('nav.stayShort') },
-  { href: routes.plan, label: t('nav.plan') },
+  // رابط الخطة مكرَّر عمداً في البنية لا في العرض: زرّ الدعوة الذهبي يقصد
+  // routes.plan نفسه، فيصير في الشريط رابطان لوجهة واحدة بتسميتين متقاربتين
+  // (‏«خطّط لرحلتك» و«خطّط زيارتك») — تكرارٌ يبتلع ~100px من أضيق شريط في
+  // الموقع. الحلّ في CSS لا بالحذف: يظهر هذا الرابط حيث يختفي الزرّ الذهبي
+  // (‏القائمة المطويّة) ويختفي حيث يظهر — فالوجهة قابلة للوصول مرّة واحدة
+  // عند كل عرض، ولا تضيع على الجوال حيث الزرّ مخفيّ أصلاً.
+  { href: routes.plan, label: t('nav.plan'), cls: 'nav-plan' },
   { href: routes.map, label: t('nav.map') },
 ];
 // مبدّل اللغة: زرّ واحد يفتح قائمةً باللغات المتاحة لهذه الصفحة (قرار إياد
@@ -73,7 +79,7 @@ const langItems = (['ar', 'en', 'zh', 'de'] as Lang[])
     <label for="navtoggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
 
     <nav class="nav" id="site-nav" aria-label={t('a11y.mainNav')}>
-      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      {nav.map((n) => <a href={n.href} class={n.cls}>{n.label}</a>)}
     </nav>
 
     <div class="hd-actions">
@@ -121,21 +127,41 @@ const langItems = (['ar', 'en', 'zh', 'de'] as Lang[])
 
 <style>
   .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: color-mix(in srgb, var(--c-sand) 86%, transparent); backdrop-filter: blur(10px); border-block-end: 1px solid var(--c-line); }
-  /* الشريط يحمل وردماركاً وثمانية روابط وبحثاً و«رحلتي» ومبدّل لغة وزرّ دعوة —
-     الرابط الثامن (مطاعم ومقاهي/Dining) أُضيف 2026-08-22 بتسمية قصيرة عمداً،
-     والقياس الفعلي بعده: 68px بلا التفاف ولا تمرير أفقي من 1200px فما فوق
-     باللغتين — عتبة 1199px أدناه ما تزال صحيحة. أي تطويل للتسميات يُعاد قياسه. */
-  /* الشريط يحمل وردماركاً وبقية الأدوات —
-     أعرض ممّا يتّسع له عمود المحتوى (1120px)، وكان المحتوى الإنجليزي يفيض عنه
-     بـ59px فيخرج عن الشبكة ويولّد تمريراً أفقياً عند 1200px. الشريط وحده يأخذ
-     عمودًا أوسع، والفجوات أضيق. */
+  /* الشريط يحمل وردماركاً وتسعة روابط وبحثاً و«رحلتي» ومبدّل لغة وزرّ دعوة،
+     في عمودٍ أوسع (1280px) ممّا يتّسع له عمود المحتوى (1120px).
+     **العرض اللازم مقيس** (2026-09-04، بـpuppeteer على dist وبقياس العرض
+     الجوهري غير المضغوط عند سقف 2000px، لا بالنظر): كان ar ‏1249px · en ‏1331 ·
+     zh ‏1131 · de ‏1625 — أي أن ثلاث لغات من أربع كانت تفيض عن 1280px فتضغط
+     الفليكس أدوات الشريط وتنزلق روابط التنقّل فوقها. اللقطات أثبتت الضرر:
+     «Map» مطموسة خلف زرّ البحث بالإنجليزية عند 1280px، و«Karte» مختفية كلياً
+     بالألمانية مع التفاف «Meine Reise» سطرين. أي تطويل للتسميات يُعاد قياسه
+     بالأداة نفسها — لا بالنظر ولا بعدّ المحارف. */
   .hd-in { inline-size: min(100% - var(--s-3), 1280px); margin-inline: auto; display: flex; align-items: center; gap: var(--s-3); min-block-size: 68px; }
   .brand { text-decoration: none; }
-  .nav { display: flex; gap: 20px; margin-inline: auto; min-inline-size: 0; }
+  /* 16px لا 20px: ثمان فجوات × 4px = 32px موفَّرة في كل لغة، وهي وحدها تكفي
+     لردّ العربية إلى داخل الحاوية. الشريط يبقى متنفّساً بصرياً عند 16px. */
+  .nav { display: flex; gap: 16px; margin-inline: auto; min-inline-size: 0; }
+  /* مخفيّ حيث يظهر الزرّ الذهبي (وجهتهما واحدة)، ويظهر داخل القائمة المطويّة */
+  .nav .nav-plan { display: none; }
   .nav a { font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); text-decoration: none; padding-block: var(--s-2); position: relative; white-space: nowrap; transition: color var(--dur) var(--ease); }
   .nav a::after { content: ''; position: absolute; inset-block-end: 0; inset-inline: 0; block-size: 2px; background: var(--c-gold); transform: scaleX(0); transform-origin: inline-end; transition: transform var(--dur) var(--ease); }
   .nav a:hover { color: var(--c-turq); }
   .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
+  /* الألمانية وحدها في الشريط الأفقي: 14px تشتري 41px مقيسة، و12px فجوةً تشتري
+     28px أخرى — ومجموعهما هو الفرق بين انهيارٍ عند 1449px وانهيارٍ عند 1339px،
+     أي بين شاشة 1366px تعرض برغراً وأخرى تعرض الشريط. لا يسريان داخل القائمة
+     المطويّة — فالمساحة هناك رأسية والتضييق خسارة خالصة. */
+  @media (min-width: 1339px) {
+    /* وسقفُ حاويتها 1360px لا 1280px: اللازم للألمانية 1299px مقيسة، أي أوسع
+       من السقف المشترك — وعند تجاوزه لا ينكسر الشريط ظاهراً بل **ينضغط**:
+       الفليكس يقلّص أدوات الشريط فيلتفّ «Meine Reise» سطرين ويصير الشريط 69px
+       بدل 68. لذلك لا يكفي قياس التراكب وحده حكماً على الاتّساع؛ الحارس يشترط
+       الارتفاع 68px والسطر الواحد معاً. بقية اللغات تبقى على 1280px (اللازم
+       لأطولها 1188px) فلا يتغيّر عرض ترويستها. */
+    :global([lang='de']) .hd-in { inline-size: min(100% - var(--s-3), 1360px); }
+    :global([lang='de']) .nav { gap: 12px; }
+    :global([lang='de']) .nav a { font-size: .875rem; }
+  }
   .hd-actions { display: flex; align-items: center; gap: var(--s-3); }
   /* بوزن حبّة البحث المجاورة: كان الحدّ --c-line (‏1.1:1) غير مرئي عملياً
      والهدف اللمسي 47×38 دون 44px. */
@@ -161,10 +187,12 @@ const langItems = (['ar', 'en', 'zh', 'de'] as Lang[])
   /* حلقة تركيز الصندوق تُرسم على البرغر المرئي المجاور */
   .nav-toggle:focus-visible ~ .burger { outline: 2px solid var(--c-turq); outline-offset: 2px; box-shadow: 0 0 0 2px var(--c-sand); border-radius: 6px; }
   .burger span { inline-size: 24px; block-size: 2px; background: var(--c-ink); border-radius: 2px; transition: var(--dur); }
-  /* 1199px لا 920px: التنقّل تسعة روابط وبقربها بحثٌ ورابط «رحلتي» ومبدّل لغة
-     وزرّ دعوة، ودونها بقليل تلتفّ تسميات الروابط والزرّ سطرين ويرتفع الشريط.
-     العتبة مقيسة — عند 1200px يستقرّ الشريط على 68px بلا التفاف. */
-  @media (max-width: 1199px) {
+  /* عتبة الانهيار مشتقّة من قياس، لا مختارة: أدنى عرض نافذة = العرض الجوهري
+     اللازم + هامش أمان 24px + var(--s-3). بعد إخفاء رابط الخطة المكرَّر وتضييق
+     الفجوة إلى 16px صار اللازم ar ‏1123px · en ‏1188 · zh ‏1023 — فأعلاها
+     الإنجليزية عند 1228px، والعتبة 1227px أدناها. (كانت 1199px وهي مقيسة على
+     ثمانية روابط قبل إضافة التاسع، فصارت تكذب على العربية والإنجليزية معاً.) */
+  @media (max-width: 1227px) {
     .hd-actions .btn-gold { display: none; }
     .burger { display: flex; }
     /* على الجوال: الصندوق في مسار التبويب، مخفي بصرياً بقصّ لا بـhidden */
@@ -177,6 +205,22 @@ const langItems = (['ar', 'en', 'zh', 'de'] as Lang[])
     /* 70vh بدل 420px الثابتة: المحتوى الحالي 415px أي بهامش 5px فقط، وأي رابط
        سابع يُقصّ بلا تمرير. مع overflow-y:auto تتمرّر القائمة بدل أن تُبتر. */
     .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    /* الزرّ الذهبي مخفيّ هنا، فرابط الخطة داخل القائمة هو الطريق الوحيد إليها */
+    .nav .nav-plan { display: block; }
+  }
+  /* الألمانية تنهار أعلى: تسمياتها أطول بنيةً حتى بعد تقصيرها عبر خط الترجمة
+     (‏Sehenswertes · Termine · Souqs & Parks، اعتماد الحاكم 91/100)، واللازم لها
+     1339px نافذةً بهامش الأمان نفسه. تكرار الكتلة مقصود ومحصور: لو وُحِّدت العتبة
+     عند 1338px لخسرت العربية والصينية شريطهما على شاشات 1280px بلا سبب (اللازم
+     لهما 1163 و1063). لا تعدّل إحدى الكتلتين دون الأخرى. */
+  @media (max-width: 1338px) {
+    :global([lang='de']) .hd-actions .btn-gold { display: none; }
+    :global([lang='de']) .burger { display: flex; }
+    :global([lang='de']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='de']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='de']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='de']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='de']) .nav .nav-plan { display: block; }
   }
   /* هواتف 360px وما دونها: مجموع الوردمارك والبرغر وأدوات الشريط كان يفيض عن
      الحاوية بـ28px فيُقصّ مبدّل اللغة وينزلق الوردمارك خارج الشاشة. */
