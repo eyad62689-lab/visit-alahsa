@@ -46,6 +46,14 @@ const AR_ATTRACTIONS_DIR = decodeURIComponent('%D9%85%D8%B9%D8%A7%D9%84%D9%85');
 // تقشير الوسوم حتى الاستقرار: تمريرة واحدة تُبقي «<script» إن كان الوسم متداخلاً
 // (‏<<script>>)، وCodeQL يعدّها js/incomplete-multi-character-sanitization ويُفشل الفحص.
 // المدخل هنا dist المبني لا مدخل زائر، لكن الشكل الثابت يُغلق التنبيه بلا استثناء.
+// نزع نمط حتى الاستقرار وبلا حساسية لحالة الأحرف — الشكل الذي لا يعدّه CodeQL
+// bad-tag-filter ولا incomplete-multi-character-sanitization.
+const stripUntilStable = (html, re, sep = '') => {
+  let prev;
+  do { prev = html; html = html.replace(re, sep); } while (html !== prev);
+  return html;
+};
+
 const stripTags = (html, sep = '') => {
   let prev;
   do { prev = html; html = html.replace(/<[^>]*>/g, sep); } while (html !== prev);
@@ -449,7 +457,10 @@ async function main() {
     const offenders = [];
     for (const f of deFiles) {
       const html = await readFile(f, 'utf8');
-      const text = stripTags(html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<link[^>]*>/g, '').replace(/<(\w+)[^>]*\blang="en"[^>]*>[\s\S]*?<\/\1>/g, ''), ' ');
+      let text = stripUntilStable(html, /<script[\s\S]*?<\/script>/gi);
+      text = stripUntilStable(text, /<link[^>]*>/gi);
+      text = stripUntilStable(text, /<(\w+)[^>]*\blang="en"[^>]*>[\s\S]*?<\/\1>/gi);
+      text = stripTags(text, ' ');
       if (/\bSouqs?\b/.test(text)) offenders.push(path.relative(DIST, f));
     }
     if (!deFiles.length) fail('C18', 'لا صفحة /de/ في المخرج — الحارس صار فارغاً');
