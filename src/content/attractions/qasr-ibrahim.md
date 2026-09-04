@@ -26,6 +26,11 @@ body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of cha
 area: وسط الهفوف — الأحساء
 area_en: "Central Hofuf — Al-Ahsa"
 location: { lat: 25.378866, lng: 49.586894 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q12232963
+  - https://en.wikipedia.org/wiki/Qasr_Ibrahim
+  - https://ar.wikipedia.org/wiki/قصر_إبراهيم
+unesco: 1563-004
 mapUrl: https://goo.gl/maps/aGZCESAH4YraFfJU7
 featured: true
 order: 2

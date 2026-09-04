@@ -27,6 +27,11 @@ body_en: "Jawatha Mosque holds a standing few landmarks can match: it is among t
 area: قرية الكلابية — شمال شرق الأحساء
 area_en: "Al-Kilabiyah village — northeast of Al-Ahsa"
 location: { lat: 25.469801, lng: 49.678502 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q4022355
+  - https://en.wikipedia.org/wiki/Jawatha_Mosque
+  - https://ar.wikipedia.org/wiki/مسجد_جواثا
+unesco: 1563-009
 mapUrl: https://goo.gl/maps/NfRxmGxvUnTatBzJ8
 featured: true
 order: 4

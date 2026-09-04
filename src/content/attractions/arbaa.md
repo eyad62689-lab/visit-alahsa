@@ -19,6 +19,10 @@ area_en: "Southeast of Hofuf — near Al-Taraf"
 featured: false
 order: 35
 location: { lat: 25.288764, lng: 49.716349 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q12204710
+  - https://en.wikipedia.org/wiki/Al-arba'_Mountain
+  - https://ar.wikipedia.org/wiki/جبل_الأربع
 mapUrl: "https://maps.app.goo.gl/sE5Pox7xU8VN5Qtx5"
 heroImage: /img/jabal-al-arab
 ---

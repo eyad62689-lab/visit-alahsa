@@ -21,6 +21,9 @@ area_en: "Al-Koot district — Hofuf"
 featured: false
 order: 20
 location: { lat: 25.378747, lng: 49.583788 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q22689912
+  - https://ar.wikipedia.org/wiki/مسجد_الجبري
 mapUrl: "https://maps.app.goo.gl/QkAa6woiMrqZazPy5"
 ---
 

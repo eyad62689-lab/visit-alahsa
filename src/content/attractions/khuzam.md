@@ -19,6 +19,10 @@ area_en: "Al-Mazrouiyah district — west of Hofuf"
 featured: false
 order: 14
 location: { lat: 25.368042, lng: 49.576862 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q12233036
+  - https://ar.wikipedia.org/wiki/قصر_خزام_(الأحساء)
+unesco: 1563-006
 mapUrl: "https://goo.gl/maps/7s7inf4zYPPC5Gze9"
 heroImage: /img/khuzam-01
 gallery: [/img/khuzam-02]

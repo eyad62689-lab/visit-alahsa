@@ -20,6 +20,9 @@ area_en: "Al-Koot district — Hofuf"
 featured: false
 order: 22
 location: { lat: 25.378107, lng: 49.585402 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q99867393
+  - https://ar.wikipedia.org/wiki/مسجد_الدبس
 mapUrl: "https://maps.app.goo.gl/d83Hvz1LnG3kdVVC8"
 ---
 

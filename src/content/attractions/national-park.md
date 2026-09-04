@@ -19,6 +19,9 @@ area_en: "Al-Omran — northeast of the oasis"
 featured: false
 order: 43
 location: { lat: 25.444967, lng: 49.727603 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q12245245
+  - https://ar.wikipedia.org/wiki/متنزه_الأحساء_الوطني
 mapUrl: "https://goo.gl/maps/CTMGpNK6HsgvPAva6"
 heroImage: /img/alahsa-national-park
 ---

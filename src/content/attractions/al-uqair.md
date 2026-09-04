@@ -27,6 +27,10 @@ body_en: "Before the roads were paved, Al-Uqair was Al-Ahsa’s gateway to the w
 area: ساحل الخليج العربي — شرق الأحساء
 area_en: "The Arabian Gulf coast — east of Al-Ahsa"
 location: { lat: 25.643004, lng: 50.213101 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q3546517
+  - https://en.wikipedia.org/wiki/Uqair
+  - https://ar.wikipedia.org/wiki/ميناء_العقير
 mapUrl: https://maps.app.goo.gl/k5RMszgffTMuRUUb6
 featured: true
 order: 3

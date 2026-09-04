@@ -20,6 +20,9 @@ area_en: "Al-Koot district — central Hofuf"
 featured: false
 order: 15
 location: { lat: 25.376665, lng: 49.584965 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q99677807
+  - https://ar.wikipedia.org/wiki/بيت_البيعة
 mapUrl: "https://goo.gl/maps/XzXFU7h4d6eSFcHB9"
 ---
 

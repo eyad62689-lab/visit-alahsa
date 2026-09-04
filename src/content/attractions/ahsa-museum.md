@@ -20,6 +20,9 @@ area_en: "Hofuf — Al-Ahsa"
 featured: false
 order: 51
 location: { lat: 25.35964, lng: 49.599078 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q20400438
+  - https://ar.wikipedia.org/wiki/متحف_الأحساء
 mapUrl: "https://goo.gl/maps/DJ9zpLEqDtRfx5796"
 ---
 

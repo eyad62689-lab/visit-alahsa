@@ -468,6 +468,80 @@ async function main() {
     else pass('C18', `تهجئة «Souk» الألمانية موحّدة في ${deFiles.length} صفحة — لا «Souq»`);
   }
 
+  // ── C19: sameAs/Wikidata واليونسكو — المصدر يطابق المنشور في اللغات الأربع ──
+  // بند 3.1 (2026-09-04): كل معلم يحمل sameAs في ترويسته يجب أن تُصدَّر روابطه
+  // حرفياً في TouristAttraction بكل لغة له، وأول رابط كيان Wikidata، ولا كيان
+  // يتقاسمه معلمان (الخطأ الأرجح: نسخ ترويسة معلم إلى آخر). ومعرّف مكوّن اليونسكو
+  // يُصدَّر identifier ومعه عقدة الواحة (1563) في isPartOf. والرئيسيات الأربع
+  // تحمل sameAs الواحة (Q311341 + اليونسكو). حارس إيجابي: عشرة معالم وستة مكوّنات
+  // على الأقل — وإلا صار الفحص فارغاً بحذف الحقول لا بصحّتها.
+  {
+    const parseLd = (html) => {
+      const out = [];
+      for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        try { const j = JSON.parse(m[1]); out.push(...(Array.isArray(j) ? j : [j])); } catch { /* يُمسكه الفحص أدناه */ }
+      }
+      return out;
+    };
+    const WD = /^https:\/\/www\.wikidata\.org\/wiki\/Q\d+$/;
+    const expected = [];
+    const qOwner = new Map(), uOwner = new Map();
+    const problems = [];
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const unesco = head.match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const block = head.match(/^sameAs:\s*\r?\n((?:[ \t]+-[ \t]+\S.*\r?\n?)+)/m)?.[1] ?? '';
+      const sameAs = [...block.matchAll(/^[ \t]+-[ \t]+"?(\S+?)"?[ \t]*$/gm)].map((m) => m[1]);
+      if (!sameAs.length && !unesco) continue;
+      if (!sameAs.length || !WD.test(sameAs[0])) problems.push(`${f}: أول sameAs ليس كيان Wikidata`);
+      if (sameAs.some((u) => !u.startsWith('https://'))) problems.push(`${f}: رابط sameAs بلا https`);
+      if (sameAs.length) { const q = sameAs[0]; if (qOwner.has(q)) problems.push(`${f} و${qOwner.get(q)} يتقاسمان ${q.split('/').pop()}`); else qOwner.set(q, f); }
+      if (unesco) { if (uOwner.has(unesco)) problems.push(`${f} و${uOwner.get(unesco)} يتقاسمان مكوّن اليونسكو ${unesco}`); else uOwner.set(unesco, f); }
+      expected.push({ f, slugEn, slugAr, sameAs: sameAs.map((u) => encodeURI(u)), unesco, hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head) });
+    }
+    let pagesChecked = 0;
+    for (const e of expected) {
+      const pages = [
+        path.join(DIST, AR_ATTRACTIONS_DIR, e.slugAr, 'index.html'),
+        path.join(DIST, 'en', 'attractions', e.slugEn, 'index.html'),
+        ...(e.hasZh ? [path.join(DIST, 'zh', 'attractions', e.slugEn, 'index.html')] : []),
+        ...(e.hasDe ? [path.join(DIST, 'de', 'attractions', e.slugEn, 'index.html')] : []),
+      ];
+      for (const p of pages) {
+        let html;
+        try { html = await readFile(p, 'utf8'); } catch { problems.push(`${e.f}: صفحة مفقودة ${path.relative(DIST, p)}`); continue; }
+        const node = parseLd(html).find((n) => n['@type'] === 'TouristAttraction');
+        const rel = path.relative(DIST, p);
+        if (!node) { problems.push(`${rel}: لا TouristAttraction`); continue; }
+        pagesChecked++;
+        const got = Array.isArray(node.sameAs) ? node.sameAs : node.sameAs ? [node.sameAs] : [];
+        if (JSON.stringify(got) !== JSON.stringify(e.sameAs)) problems.push(`${rel}: sameAs المنشور لا يطابق المصدر`);
+        const ident = node.identifier?.value;
+        if ((ident ?? undefined) !== (e.unesco ?? undefined)) problems.push(`${rel}: معرّف اليونسكو ${ident ?? 'غائب'} ≠ ${e.unesco ?? 'لا شيء'}`);
+        if (e.unesco) {
+          const parts = Array.isArray(node.isPartOf) ? node.isPartOf : [node.isPartOf];
+          if (!parts.some((x) => x?.identifier?.value === '1563' && x?.url === 'https://whc.unesco.org/en/list/1563/')) problems.push(`${rel}: عقدة الواحة (1563) غائبة من isPartOf`);
+        }
+      }
+    }
+    for (const home of ['', 'en', 'zh', 'de']) {
+      const p = path.join(DIST, home, 'index.html');
+      let html;
+      try { html = await readFile(p, 'utf8'); } catch { problems.push(`الرئيسية /${home} مفقودة`); continue; }
+      const dest = parseLd(html).find((n) => n['@type'] === 'TouristDestination');
+      const sa = dest?.sameAs ?? [];
+      if (!sa.includes('https://www.wikidata.org/wiki/Q311341') || !sa.includes('https://whc.unesco.org/en/list/1563/') || dest?.identifier?.value !== '1563')
+        problems.push(`الرئيسية /${home}: الوجهة بلا sameAs الواحة (Q311341 + اليونسكو 1563)`);
+    }
+    const withQ = expected.filter((e) => e.sameAs.length).length;
+    const withU = expected.filter((e) => e.unesco).length;
+    if (withQ < 10 || withU < 6) fail('C19', `الحارس صار فارغاً: ${withQ} معلماً بـsameAs و${withU} بمكوّن يونسكو — المتوقع ≥10 و≥6`);
+    else if (problems.length) fail('C19', `sameAs/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C19', `sameAs في ${withQ} معلماً (${pagesChecked} صفحة) ومكوّنات اليونسكو ${withU} — المنشور يطابق المصدر، ولا كيان مشترك، والرئيسيات الأربع تحمل هوية الواحة`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

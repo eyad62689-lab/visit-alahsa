@@ -28,6 +28,10 @@ body_en: "Jabal Al-Qarah rises from the middle of the oasis like an ancient guar
 area: شرق الهفوف — الأحساء
 area_en: "East of Hofuf — Al-Ahsa"
 location: { lat: 25.411483, lng: 49.692814 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q12204761
+  - https://en.wikipedia.org/wiki/Al-Qarah_Mountain_(Saudi_Arabia)
+  - https://ar.wikipedia.org/wiki/جبل_القارة_(السعودية)
 mapUrl: https://goo.gl/maps/bx9DyKazun2bffcP6
 featured: true
 order: 1

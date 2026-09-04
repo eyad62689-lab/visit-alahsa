@@ -9,7 +9,7 @@ import HeroVideo from '../HeroVideo.astro';
 import SeasonNow from '../SeasonNow.astro';
 import { getCollection } from 'astro:content';
 import { attractionHref } from '../../lib/routes';
-import { SITE, ORG, WEBSITE, absUrl } from '../../lib/schema';
+import { SITE, ORG, WEBSITE, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
 import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -96,6 +96,10 @@ const jsonLd = [
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
     containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : 'Saudi Arabia' },
+    // هوية الوجهة خارج الموقع (بند 3.1 — 2026-09-04): Wikidata Q311341 وقائمة
+    // اليونسكو 1563 وويكيبيديا الأربع — الكيان واحد بكل لغة فالقائمة لا تتبدّل.
+    sameAs: OASIS_SAMEAS,
+    identifier: UNESCO_WHS_ID,
   },
 ];
 // عنوان ووصف بكلمة «دليل السياحة» المستهدفة (سيو 2026-08-22) — كل ما يُذكر
