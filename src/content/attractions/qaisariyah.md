@@ -26,6 +26,11 @@ practical:
   - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_zh: "费用", value_zh: "免费", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
 location: { lat: 25.37558, lng: 49.589 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q16121126
+  - https://en.wikipedia.org/wiki/Al-Qaisaryah_Market
+  - https://ar.wikipedia.org/wiki/سوق_القيصرية
+unesco: 1563-005
 mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
 ---
 

@@ -26,6 +26,11 @@ area_en: "Central Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 11
 location: { lat: 25.413828, lng: 49.58326 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q12233052
+  - https://en.wikipedia.org/wiki/Sahood_Fort
+  - https://ar.wikipedia.org/wiki/قصر_صاهود
+unesco: 1563-007
 mapUrl: "https://goo.gl/maps/SGQg356fYWxEZXe68"
 ---
 

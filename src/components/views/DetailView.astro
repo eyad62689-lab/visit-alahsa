@@ -8,6 +8,7 @@ import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
+import { unescoOasisNode } from '../../lib/schema';
 import { formatDate } from '../../lib/dates';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -54,7 +55,15 @@ const jsonLd = [
     touristType: catLabel(a.category, lang),
     // alt[lang] هنا هو رابط صفحة المعلم نفسه — فكانت السكيما تقول إن المعلم جزءٌ
     // من نفسه في 116 صفحة (تدقيق 2026-08-28). الوجهة هي الرئيسية بلغة الصفحة.
-    isPartOf: { '@type': 'TouristDestination', name: regionName, url: new URL(homeHref, siteUrl).href },
+    // ومعلم يحمل معرّف مكوّن يونسكو يصير جزءاً من الواحة كموقع تراث عالمي أيضاً
+    // (بند 3.1 — 2026-09-04): عقدة ثانية في isPartOf لا استبدال للأولى.
+    isPartOf: a.unesco
+      ? [{ '@type': 'TouristDestination', name: regionName, url: new URL(homeHref, siteUrl).href }, unescoOasisNode(lang)]
+      : { '@type': 'TouristDestination', name: regionName, url: new URL(homeHref, siteUrl).href },
+    // sameAs: هوية المعلم في Wikidata وويكيبيديا — تُرمَّز عند الإصدار لأن المصدر
+    // يحفظ روابط ويكيبيديا العربية مفكوكةً كي تبقى مقروءة في الملف.
+    ...(a.sameAs.length ? { sameAs: a.sameAs.map((u) => encodeURI(u)) } : {}),
+    ...(a.unesco ? { identifier: { '@type': 'PropertyValue', propertyID: 'UNESCO World Heritage Site component', value: a.unesco } } : {}),
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },

@@ -19,6 +19,9 @@ area_en: "Al-Qarah village — by Al-Qarah Mountain, east of Al-Ahsa"
 featured: false
 order: 60
 location: { lat: 25.412022, lng: 49.6836 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q99941895
+  - https://ar.wikipedia.org/wiki/دوغة_الغراش
 mapUrl: "https://goo.gl/maps/KUZUqQxHwgfvhGqG9"
 heroImage: /img/dughat-al-garah
 ---

@@ -21,6 +21,10 @@ area_en: "North of Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 13
 location: { lat: 25.448248, lng: 49.582469 }
+sameAs:
+  - https://www.wikidata.org/wiki/Q12233066
+  - https://en.wikipedia.org/wiki/Muhaires_Castle
+  - https://ar.wikipedia.org/wiki/قصر_محيرس
 mapUrl: "https://goo.gl/maps/XeBaevMX8saoGWyq9"
 heroImage: /img/muhairis-01
 gallery: [/img/muhairis-02]
