@@ -74,6 +74,31 @@ function pickPhrase(text, taken, fromMarkdown = false) {
   return null
 }
 
+// النظير الصيني: الجملة تُفصل على ترقيم CJK (。！？；) لا على مسافة، والنطاق أقصر
+// لأن كثافة المعنى في الحرف الصيني أعلى — 20–80 حرفاً تكافئ بحثياً 60–180 حرفاً
+// لاتينياً. حقول body_zh تُصيَّر نصاً خاماً داخل <p> واحدة (كالإنجليزية) فلا
+// تحويلات smartypants تُخشى، والقصّ عند 80 يبقى مقتطفاً حرفياً لأن الصينية بلا
+// حدود كلمات مسافية.
+function pickPhraseZh(text, taken) {
+  const sentences = text
+    .split(/(?<=[。！？；])/u)
+    .map((s) => s.trim())
+    .filter((s) => s.length >= 20)
+    .sort((a, b) => b.length - a.length)
+  for (let s of sentences) {
+    if (s.length > 80) {
+      // القصّ عند آخر فاصلة CJK قبل الحدّ لا وسط اسم لاتيني بين قوسين
+      // («格拉（Gerrh» لا يطابق شيئاً في بحث مقتبس) — وإن لم توجد فعند 80
+      const cut = s.slice(0, 80)
+      const m = cut.search(/[，、：；）][^，、：；）]*$/u)
+      s = m >= 20 ? cut.slice(0, m + 1) : cut
+    }
+    s = s.replace(/[。！？；，、：\s]+$/u, '').trim()
+    if (s.length >= 20 && !taken.has(s)) { taken.add(s); return s }
+  }
+  return null
+}
+
 // نفس الاشتقاق في Base.astro (معرّف التعليق المخفي) — تطبيع: فك ترميز النسب
 // المئوية للمسارات العربية + إسقاط الشرطة الختامية، كي يتطابق المعرّفان دوماً.
 const id = (url) => createHash('sha256').update(`visit-alahsa:${decodeURI(url).replace(/\/$/, '')}`).digest('hex').slice(0, 12)
@@ -94,6 +119,12 @@ async function main() {
     push({ id: id(urlAr), type: 'attraction', lang: 'ar', title: fmField(fm, 'title'), url: urlAr, phrase: pickPhrase(smartify(plainText(body)), taken, true) })
     const bodyEn = fmField(fm, 'body_en')
     if (bodyEn) push({ id: id(urlEn), type: 'attraction', lang: 'en', title: fmField(fm, 'title_en') || fmField(fm, 'title'), url: urlEn, phrase: pickPhrase(bodyEn.replace(/\s+/g, ' ').trim(), taken) })
+    // الصينية: صفحة /zh/ تتولد فقط حين يوجد title_zh (نفس بوابة zh/attractions/[slug].astro)
+    const bodyZh = fmField(fm, 'body_zh')
+    if (bodyZh && fmField(fm, 'title_zh')) {
+      const urlZh = `${SITE}/zh/attractions/${slugEn}/`
+      push({ id: id(urlZh), type: 'attraction', lang: 'zh', title: fmField(fm, 'title_zh'), url: urlZh, phrase: pickPhraseZh(bodyZh.replace(/\s+/g, ' ').trim(), taken) })
+    }
   }
 
   // المنشآت (مطاعم ومقاهٍ): تُبصَّم الصفحة المفردة فقط — أي من عبر متنُها عتبة
@@ -157,7 +188,8 @@ async function main() {
   }
   const out = { generated: new Date().toISOString(), site: SITE, count: fingerprints.length, fingerprints }
   await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8')
-  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${fingerprints.filter((x) => x.lang === 'ar').length} | إنجليزي: ${fingerprints.filter((x) => x.lang === 'en').length})`)
+  const n = (lang) => fingerprints.filter((x) => x.lang === lang).length
+  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${n('ar')} | إنجليزي: ${n('en')} | صيني: ${n('zh')})`)
   console.log(`المخرج: ${OUT}`)
 }
 
