@@ -23,6 +23,23 @@ practical:
   - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", source: "خرائط جوجل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_zh: "谷歌地图（营业时间由商家更新）", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.3763032, lng: 49.5939642 }
 mapUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA"
+faq:
+  - q: "ما مواعيد سوق الحرفيين؟"
+    a: "يومياً من 7:30 ص إلى 12 منتصف الليل، والأحد والاثنين من 7 ص، والجمعة من 2:30 م — بحسب الساعات التي حدّثتها المؤسسة في خرائط جوجل."
+    q_en: "What are the opening hours of the Craftsmen Souq?"
+    a_en: "Daily from 7:30 am to midnight; Sunday and Monday from 7:00 am, and Friday from 2:30 pm, according to the hours updated by the business on Google Maps."
+  - q: "ماذا يوجد في سوق الحرفيين؟"
+    a: "112 متجراً للحرفيين، وفناء مفتوح، وقهوة شعبية، ومخبز تنور، وساحة للفعاليات، وأكاديمية لتعليم الحرف اليدوية يديرها حرفيون ذوو خبرة."
+    q_en: "What is inside the Craftsmen Souq?"
+    a_en: "112 shops for artisans, an open courtyard, a traditional coffee house, a tannour bakery, an events plaza, and an academy where experienced craftspeople teach their trades."
+  - q: "أين يقع سوق الحرفيين ومن يشرف عليه؟"
+    a: "في قلب الهفوف التاريخية، ضمن مشاريع تطوير وسط المدينة التاريخي، وتشرف عليه أمانة الأحساء."
+    q_en: "Where is the Craftsmen Souq, and who runs it?"
+    a_en: "In the historic centre of Hofuf, created as part of the projects to develop historic downtown, and run by Al-Ahsa Municipality."
+  - q: "متى افتُتح سوق الحرفيين؟"
+    a: "في مارس 2020م."
+    q_en: "When did the Craftsmen Souq open?"
+    a_en: "In March 2020."
 ---
 
 في قلب الهفوف التاريخية يقع سوق الحرفيين، الذي افتُتح في مارس 2020م دعماً

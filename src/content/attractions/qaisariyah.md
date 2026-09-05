@@ -32,6 +32,27 @@ sameAs:
   - https://ar.wikipedia.org/wiki/سوق_القيصرية
 unesco: 1563-005
 mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
+faq:
+  - q: "ما مواعيد سوق القيصرية؟"
+    a: "من 8 ص إلى 12 ظهراً، ومن 3:30 عصراً إلى 10 مساءً، والجمعة مساءً فقط."
+    q_en: "What are the opening hours of Qaisariyah Souq?"
+    a_en: "8 am to 12 noon and 3:30 to 10 pm; on Fridays, evenings only."
+  - q: "هل دخول سوق القيصرية برسوم؟"
+    a: "لا، الدخول مجاني."
+    q_en: "Is there an entry fee at Qaisariyah Souq?"
+    a_en: "No, entry is free."
+  - q: "ماذا أشتري من سوق القيصرية؟"
+    a: "البشت الحساوي الشهير، والحرف المحلية من الخوص والفخار، والتمور بأصنافها، والقهوة والبهارات."
+    q_en: "What can I buy at Qaisariyah Souq?"
+    a_en: "The famous Hasawi bisht, local crafts in palm frond and pottery, dates of every variety, coffee and spices."
+  - q: "ما أفضل وقت لزيارة سوق القيصرية؟"
+    a: "الفترة المسائية، حين تفتح المتاجر أبوابها ويشتدّ نبض السوق."
+    q_en: "What is the best time to visit Qaisariyah Souq?"
+    a_en: "The evening, when the shops open their doors and the souq comes alive."
+  - q: "كم عمر سوق القيصرية؟"
+    a: "يعود لأكثر من قرنين، وهو من أقدم أسواق الخليج وأعرقها."
+    q_en: "How old is Qaisariyah Souq?"
+    a_en: "It goes back more than two centuries, and is among the oldest and most storied souqs in the Gulf."
 ---
 
 من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. طرازه المعماري فريد، ومتاجره

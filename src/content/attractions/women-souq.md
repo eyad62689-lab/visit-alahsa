@@ -23,6 +23,19 @@ practical:
   - { label: "المواعيد", value: "يومياً 8 ص – 11 م", label_en: "Hours", value_en: "Daily 8:00 am – 11:00 pm", label_zh: "开放时间", value_zh: "每日 8:00–23:00", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-04", verified: true }
 location: { lat: 25.3713889, lng: 49.5886111 }
 mapUrl: "https://maps.app.goo.gl/AjLK1nvuFsuJQ3i89"
+faq:
+  - q: "ما مواعيد سوق النساء الشعبي؟"
+    a: "يومياً من 8 ص إلى 11 م."
+    q_en: "What are the opening hours of the Women’s Folk Souq?"
+    a_en: "Daily from 8:00 am to 11:00 pm."
+  - q: "أين يقع سوق النساء الشعبي؟"
+    a: "في حي الرفعة الجنوبية بالهفوف، وسط منطقة سوق السويق القديمة."
+    q_en: "Where is the Women’s Folk Souq?"
+    a_en: "In the South Al-Rifaa district of Hofuf, at the heart of the old Suwaiq market area."
+  - q: "ماذا يُباع في سوق النساء الشعبي؟"
+    a: "الملابس وحاجات البيت اليومية."
+    q_en: "What is sold at the Women’s Folk Souq?"
+    a_en: "Clothes and everyday household goods."
 ---
 
 في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقٌ تراثي وسط

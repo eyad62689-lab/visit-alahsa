@@ -205,6 +205,7 @@ export const ui = {
     'det.nearby.note': 'المسافات تقريبية بخطٍّ مستقيم.',
     // الإبلاغ عن خطأ
     'det.report': 'لاحظت معلومة غير دقيقة؟ أبلغنا',
+    'det.faq': 'أسئلة شائعة',
     'foot.l.report': 'أبلغ عن خطأ',
     // المدونة
     'nav.blog': 'المدونة',
@@ -407,6 +408,7 @@ export const ui = {
     'det.nearby.d': 'Nearby sights to round out your route.',
     'det.nearby.note': 'Distances are approximate, in a straight line.',
     'det.report': 'Spotted something inaccurate? Tell us',
+    'det.faq': 'Frequently asked questions',
     'foot.l.report': 'Report an error',
     // Blog
     'nav.blog': 'Blog',
@@ -586,6 +588,7 @@ export const ui = {
     'det.nearby.d': '附近还有这些景点，方便串联成一条路线。',
     'det.nearby.note': '距离为直线估算，仅供参考。',
     'det.report': '发现信息有误？告诉我们',
+    'det.faq': '常见问题',
     'crumb.home': '首页',
     'crumb.attractions': '景点',
     'crumb.leisure': '传统市集与公园',

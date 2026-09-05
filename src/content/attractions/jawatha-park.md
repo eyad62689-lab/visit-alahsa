@@ -24,6 +24,23 @@ practical:
   - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", verifiedAt: "2026-06-21", verified: true }
 location: { lat: 25.471156, lng: 49.677408 }
 mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
+faq:
+  - q: "ما مواعيد منتزه جواثا؟"
+    a: "يومياً من 8 ص إلى 12 منتصف الليل."
+    q_en: "What are the opening hours of Jawatha Park?"
+    a_en: "Daily from 8 am to 12 midnight."
+  - q: "كم رسوم دخول منتزه جواثا؟"
+    a: "من 10 إلى 15 ريالاً، وزيارة المسجد مجانية."
+    q_en: "How much is entry to Jawatha Park?"
+    a_en: "SAR 10–15, and visiting the mosque is free."
+  - q: "ماذا يوجد داخل منتزه جواثا؟"
+    a: "مسجد جواثا الأثري، ثاني موضع أُقيمت فيه صلاة الجمعة في الإسلام، وموقع جواثا الأثري."
+    q_en: "What is inside Jawatha Park?"
+    a_en: "The ancient Jawatha Mosque, the second place where Friday prayers were held in Islam, and the Jawatha archaeological site."
+  - q: "أين يقع منتزه جواثا؟"
+    a: "في بلدة الكلابية شمال شرق الأحساء."
+    q_en: "Where is Jawatha Park?"
+    a_en: "In the town of Al-Kilabiyah, northeast of Al-Ahsa."
 ---
 
 منتزهٌ أخضر واسع في بلدة الكلابية، يجمع الطبيعة بالتاريخ: ففي نطاقه يقع **مسجد

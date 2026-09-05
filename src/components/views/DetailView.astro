@@ -51,7 +51,7 @@ const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
 // اسم المنطقة في السكيما بلغة الصفحة — الروسية من معجم ru-translation حرفياً
 // (مدخل «Al-Ahsa» = Аль-Ахса)؛ والألمانية تبقى لاتينية بحكم سياسة أعلامها.
 const regionName = ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : 'Al-Ahsa';
-const jsonLd = [
+const jsonLd: object[] = [
   {
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
     name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png'),
@@ -77,6 +77,27 @@ const jsonLd = [
   ] },
 ];
 const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
+
+// ── أسئلة شائعة (بند 3.2 — 2026-09-05) ──────────────────────────────────
+// البند بلغة الصفحة فقط: بلا q_en/a_en لا يظهر في الإنجليزية، وهكذا zh/de/ru —
+// البوابة نفسها التي تحكم بطاقة الزيارة. تُصدَّر FAQPage متى وُجد بند واحد،
+// والقسم المرئي أدناه يطابقها حرفياً (قوقل تشترط ظهور المحتوى المنظَّم للزائر).
+// يحرسها C21: المنشور = المصدر، ولا رقم في سؤال أو جواب من خارج الصفحة.
+const faqItems = a.faq
+  .filter((f) => ar || (zh ? f.q_zh && f.a_zh : de ? f.q_de && f.a_de : ru ? f.q_ru && f.a_ru : f.q_en && f.a_en))
+  .map((f) => ({
+    q: ar ? f.q : zh ? f.q_zh! : de ? f.q_de! : ru ? f.q_ru! : f.q_en!,
+    a: ar ? f.a : zh ? f.a_zh! : de ? f.a_de! : ru ? f.a_ru! : f.a_en!,
+  }));
+if (faqItems.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faqItems.map((f) => ({
+      '@type': 'Question', name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
 
 // بطاقة معلومات الزيارة بلغة الصفحة: البند لا يظهر إلا إن وُجدت ترجمته للغة
 // الصفحة (label_en/value_en أو label_zh/value_zh) — لا نعرض لغةً داخل صفحة أخرى.
@@ -241,6 +262,18 @@ const nearby = a.location
       </aside>
     </div>
 
+    {faqItems.length > 0 && (
+      <section class="container att-faq" data-reveal>
+        <h2 class="faq-h">{t('det.faq')}</h2>
+        {faqItems.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+    )}
+
     {/* الشرط على القسم كله لا على محتواه: القسم الفارغ كان يترك فراغاً 32–48px */}
     {a.gallery.length > 0 && (
       <section class="container gallery-sec" data-reveal>
@@ -342,6 +375,14 @@ const nearby = a.location
   .report-link { display: block; padding-block: var(--s-1); margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-soft);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
+  /* الأسئلة الشائعة — الأنماط نفسها في BlogPostView (post-faq) حرفياً؛ تحت
+     الشبكة ثنائية الأعمدة وبعرض المتن 68ch كي تُقرأ امتداداً له لا عموداً ثالثاً */
+  .att-faq { max-inline-size: 68ch; padding-block: 0 var(--s-6); }
+  .faq-h { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); margin-block-end: var(--s-3); }
+  .faq-item { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); }
+  .faq-item summary { cursor: pointer; padding: var(--s-3) var(--s-4); font-weight: 600; color: var(--c-ink); }
+  .faq-item summary:hover { color: var(--c-turq); }
+  .faq-item p { padding: 0 var(--s-4) var(--s-3); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
   .gallery-sec { padding-block: 0 var(--s-6); }
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }

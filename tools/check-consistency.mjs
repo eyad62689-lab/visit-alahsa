@@ -577,6 +577,99 @@ async function main() {
     else pass('C20', `انقسام الأداة الروسية سليم في ${ruFiles.length} صفحة (${carriers} تحمل «Аль-Ахса») — لا «Эль-Ахс» ولا «Аль-» لغيرها`);
   }
 
+  // ── C21: أسئلة المعالم الشائعة — المنشور يطابق المصدر، ولا رقم من خارج الصفحة ──
+  // بند 3.2 (2026-09-05). القاعدة الحاكمة: السؤال يُبنى حصراً مما هو موثّق في
+  // الصفحة نفسها (المتن + بنود practical الموثّقة التي تُصيَّر في بطاقة الزيارة).
+  // الحارس يقرأ faq من ترويسة المصدر ويفحص كل صفحة معلم في كل لغة له:
+  //   (أ) FAQPage المنشور يطابق حرفياً بنود اللغة (وجوداً وترتيباً ونصاً)، ولا
+  //       FAQPage لصفحة بلا بند بلغتها — البوابة q_xx/a_xx كما في بطاقة الزيارة؛
+  //   (ب) القسم المرئي يحمل عدد البنود نفسه (قوقل تشترط ظهور المحتوى المنظَّم)؛
+  //   (ج) **كل رقم** في سؤال أو جواب (موعد، رسم، عدد، سنة) يرد في متن الصفحة
+  //       أو بطاقتها بحدود رقمية — فلا يتسرّب موعد أو رسم من بند غير موثّق
+  //       (لا يُصيَّر) ولا من خارج الصفحة. المطابقة على «8» لا تقبل «18».
+  // القراءة من المصدر بصيغة محدَّدة (سلاسل مزدوجة التنصيص بهروب JSON) — سطرٌ
+  // خارجها يُفشل الفحص بدل أن يتخطّاه، وحارس إيجابي ≥10 معالم بأسئلة.
+  {
+    const parseLd = (html) => {
+      const out = [];
+      for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        try { const j = JSON.parse(m[1]); out.push(...(Array.isArray(j) ? j : [j])); } catch { /* يُمسكه الفحص أدناه */ }
+      }
+      return out;
+    };
+    const problems = [];
+    const expected = [];
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const block = head.match(/^faq:[ \t]*\r?\n((?:[ \t]+\S.*\r?\n?)+)/m)?.[1];
+      if (!block) continue;
+      const items = [];
+      for (const raw of block.split(/\r?\n/)) {
+        if (!raw.trim()) continue;
+        const m = raw.match(/^[ \t]+(-[ \t]+)?(q|a)(_en|_zh|_de|_ru)?:[ \t]*(".*")[ \t]*$/);
+        if (!m) { problems.push(`${f}: سطر faq خارج الصيغة المحدَّدة — ${raw.trim().slice(0, 40)}`); continue; }
+        if (m[1]) items.push({});
+        if (!items.length) { problems.push(`${f}: حقل faq قبل أول بند`); continue; }
+        let val;
+        try { val = JSON.parse(m[4]); } catch { problems.push(`${f}: قيمة faq غير قابلة للتحليل — ${raw.trim().slice(0, 40)}`); continue; }
+        items.at(-1)[m[2] + (m[3] ?? '')] = val;
+      }
+      if (items.some((it) => !it.q || !it.a)) problems.push(`${f}: بند faq بلا q أو a بالعربية`);
+      expected.push({
+        f, items,
+        slugEn: head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+        slugAr: head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+        hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head),
+      });
+    }
+    const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    let pagesChecked = 0, questions = 0;
+    for (const e of expected) {
+      const pages = [
+        ['', path.join(DIST, AR_ATTRACTIONS_DIR, e.slugAr, 'index.html')],
+        ['_en', path.join(DIST, 'en', 'attractions', e.slugEn, 'index.html')],
+        ...(e.hasZh ? [['_zh', path.join(DIST, 'zh', 'attractions', e.slugEn, 'index.html')]] : []),
+        ...(e.hasDe ? [['_de', path.join(DIST, 'de', 'attractions', e.slugEn, 'index.html')]] : []),
+        ...(e.hasRu ? [['_ru', path.join(DIST, 'ru', 'attractions', e.slugEn, 'index.html')]] : []),
+      ];
+      for (const [sfx, p] of pages) {
+        const want = e.items.filter((it) => it['q' + sfx] && it['a' + sfx]).map((it) => ({ q: it['q' + sfx], a: it['a' + sfx] }));
+        let html;
+        try { html = await readFile(p, 'utf8'); } catch { problems.push(`${e.f}: صفحة مفقودة ${path.relative(DIST, p)}`); continue; }
+        const rel = path.relative(DIST, p);
+        pagesChecked++;
+        const nodes = parseLd(html).filter((n) => n['@type'] === 'FAQPage');
+        const visible = (html.match(/<details\b[^>]*\bclass="faq-item"/g) ?? []).length;
+        if (!want.length) {
+          if (nodes.length) problems.push(`${rel}: FAQPage منشور بلا بند بلغته في المصدر`);
+          if (visible) problems.push(`${rel}: قسم أسئلة مرئي بلا بند بلغته في المصدر`);
+          continue;
+        }
+        if (nodes.length !== 1) { problems.push(`${rel}: ${nodes.length} عقدة FAQPage والمتوقع واحدة`); continue; }
+        const got = (nodes[0].mainEntity ?? []).map((m) => ({ q: m.name, a: m.acceptedAnswer?.text }));
+        if (JSON.stringify(got) !== JSON.stringify(want)) problems.push(`${rel}: FAQPage المنشور لا يطابق المصدر`);
+        if (visible !== want.length) problems.push(`${rel}: القسم المرئي ${visible} بنداً والسكيما ${want.length}`);
+        questions += want.length;
+        // (ج) الأرقام: مصدرها المتن (<article class="prose">) وبطاقة الزيارة (<aside>) وحدهما
+        const prose = html.match(/<article\b[^>]*\bclass="prose"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '';
+        const aside = html.match(/<aside\b[^>]*\bclass="att-aside"[^>]*>[\s\S]*?<\/aside>/)?.[0] ?? '';
+        if (!prose || !aside) { problems.push(`${rel}: تعذّر عزل المتن أو بطاقة الزيارة لفحص الأرقام`); continue; }
+        const srcText = stripTags(prose + ' ' + aside, ' ');
+        for (const it of want) {
+          for (const num of (it.q + ' ' + it.a).match(/\d+(?:[:.,]\d+)*/g) ?? []) {
+            // الحدود رقمية لا ترقيمية: «2018.» آخر الجملة رقمٌ صحيح، أما «18» فلا تُقبل لـ«8»،
+            // و«8:00» لا تُقبل لـ«8» (الصيغة في السؤال تطابق صيغة البطاقة حرفياً)
+            if (!new RegExp('(?<!\\d)(?<!\\d[:.,])' + escapeRe(num) + '(?![:.,]?\\d)').test(srcText))
+              problems.push(`${rel}: الرقم «${num}» في السؤال «${it.q.slice(0, 30)}…» لا يرد في متن الصفحة ولا بطاقتها`);
+          }
+        }
+      }
+    }
+    if (expected.length < 10) fail('C21', `الحارس صار فارغاً: ${expected.length} معلماً يحمل faq — المتوقع ≥10`);
+    else if (problems.length) fail('C21', `أسئلة المعالم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C21', `أسئلة شائعة في ${expected.length} معلماً (${pagesChecked} صفحة، ${questions} سؤالاً منشوراً) — FAQPage والقسم المرئي يطابقان المصدر، وكل رقم فيها من متن الصفحة أو بطاقتها`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

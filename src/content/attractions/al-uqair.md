@@ -39,6 +39,23 @@ bestTime_en: "Just before sunset, when the white sands glow against the blue of 
 practical:
   - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 tags: ["ساحل", "تاريخ", "بحر"]
+faq:
+  - q: "هل دخول العُقير برسوم؟"
+    a: "لا، العُقير موقع عام مفتوح بلا رسوم دخول، بتأكيد فريق «زوروا الأحساء»."
+    q_en: "Is there an entry fee at Al-Uqair?"
+    a_en: "No. Al-Uqair is an open public site with no entry fee, as confirmed by the Visit Al-Ahsa team."
+  - q: "أين يقع العُقير؟"
+    a: "على ساحل الخليج العربي شرق الأحساء."
+    q_en: "Where is Al-Uqair?"
+    a_en: "On the Arabian Gulf coast, east of Al-Ahsa."
+  - q: "ما أفضل وقت لزيارة العُقير؟"
+    a: "قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء."
+    q_en: "What is the best time to visit Al-Uqair?"
+    a_en: "Just before sunset, when the white sands glow against the blue of the water."
+  - q: "ماذا يمكن أن أرى في العُقير؟"
+    a: "بقايا المباني الطينية والحصن القديم للميناء التاريخي، ورمالاً بيضاء ناعمة تلامس مياه الخليج."
+    q_en: "What can I see at Al-Uqair?"
+    a_en: "The remains of the old port’s mud buildings and its fort, and soft white sand that meets the waters of the Gulf."
 ---
 
 قبل أن تُعبّد الطرق، كان العُقير بوّابة الأحساء إلى العالم. ميناءٌ قديمٌ على ساحل

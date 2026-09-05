@@ -41,6 +41,27 @@ practical:
   - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", label_de: "Öffnungszeiten", value_de: "Moschee: ganztägig · umliegender Park: 8–24 Uhr", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
+faq:
+  - q: "هل دخول مسجد جواثا برسوم؟"
+    a: "لا، زيارة المسجد مجانية، أمّا دخول المنتزه المحيط به فمن 10 إلى 15 ريالاً."
+    q_en: "Is there a fee to visit Jawatha Mosque?"
+    a_en: "No. Visiting the mosque is free; entry to the surrounding park is SAR 10–15."
+  - q: "ما مواعيد زيارة مسجد جواثا؟"
+    a: "المسجد مفتوح طوال اليوم، والمنتزه المحيط من 8 ص إلى 12 منتصف الليل، مع احترام أوقات الصلاة وخصوصية المكان."
+    q_en: "What are the visiting hours of Jawatha Mosque?"
+    a_en: "The mosque is open all day, and the surrounding park from 8 am to 12 midnight; please respect prayer times and the sanctity of the place."
+  - q: "لماذا يُعدّ مسجد جواثا مهماً؟"
+    a: "هو من أقدم المساجد في الإسلام، ويُذكر أنّه أوّل موضع أُقيمت فيه صلاة الجمعة بعد مسجد الجمعة في المدينة، على يد بني عبد القيس."
+    q_en: "Why is Jawatha Mosque significant?"
+    a_en: "It is among the oldest mosques in Islam, and is said to be the first place where Friday prayer was held after the Jumu'ah Mosque in Medina, by the Banu Abd al-Qais."
+  - q: "أين يقع مسجد جواثا؟"
+    a: "في قرية الكلابية شمال شرق الأحساء."
+    q_en: "Where is Jawatha Mosque?"
+    a_en: "In Al-Kilabiyah village, northeast of Al-Ahsa."
+  - q: "هل رُمّم مسجد جواثا؟"
+    a: "نعم، ضمن مشروع الأمير محمد بن سلمان لتطوير المساجد التاريخية، مع مساجد الجعلانية والشيخ محمد بن أبي بكر الملا والحبيش في الأحساء."
+    q_en: "Has Jawatha Mosque been restored?"
+    a_en: "Yes, under the Prince Mohammed bin Salman Project for the Development of Historic Mosques, together with the Jalaniyah, Sheikh Muhammad bin Abi Bakr Al-Mulla and Hubaish mosques in Al-Ahsa."
 ---
 
 لمسجد جواثا مكانةٌ لا تضاهيها كثيرٌ من المعالم: فهو من **أقدم المساجد في الإسلام**،

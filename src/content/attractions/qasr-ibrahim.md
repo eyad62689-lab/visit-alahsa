@@ -41,6 +41,23 @@ practical:
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
+faq:
+  - q: "ما مواعيد قصر إبراهيم؟"
+    a: "الأحد إلى الخميس من 8 ص إلى 5 م، والجمعة من 4 إلى 8 م، والسبت من 9 ص إلى 1 م ومن 4 إلى 8 م."
+    q_en: "What are the opening hours of Qasr Ibrahim?"
+    a_en: "Sunday to Thursday 8 am–5 pm, Friday 4–8 pm, and Saturday 9 am–1 pm and 4–8 pm."
+  - q: "هل دخول قصر إبراهيم برسوم؟"
+    a: "لا، الدخول مجاني."
+    q_en: "Is there an entry fee at Qasr Ibrahim?"
+    a_en: "No, entry is free."
+  - q: "كم تستغرق زيارة قصر إبراهيم؟"
+    a: "ساعة إلى ساعتين."
+    q_en: "How long does a visit to Qasr Ibrahim take?"
+    a_en: "One to two hours."
+  - q: "ماذا يضمّ قصر إبراهيم؟"
+    a: "حصن يجمع تحت سوره مسجداً بقبّة أنيقة وثكنات عسكرية وأبراج مراقبة وإسطبلات ومخازن، وهو جزء من النسيج العمراني الذي أدرج الواحة على قائمة التراث العالمي لليونسكو عام 2018."
+    q_en: "What is inside Qasr Ibrahim?"
+    a_en: "A fortress gathering beneath one wall a domed mosque, military barracks, watchtowers, stables and stores; it is part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
 ---
 
 في قلب الهفوف يقف قصر إبراهيم شاهداً على قرونٍ من التحوّل. ليس قصراً بالمعنى

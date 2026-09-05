@@ -23,6 +23,19 @@ practical:
   - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.8130215, lng: 49.8498148 }
 mapUrl: "https://maps.app.goo.gl/zN7Z8fyjrrdkYwUk9"
+faq:
+  - q: "هل بحيرة الديلفوون دائمة؟"
+    a: "لا، هي بحيرات صغيرة موسمية تنشأ في فترات الأمطار حين تتجمّع المياه في منخفضات الأرض."
+    q_en: "Is Delfoon Lake permanent?"
+    a_en: "No. It is a cluster of small seasonal lakes that form in the rainy spells, when the water gathers in the low ground."
+  - q: "أين تقع بحيرة الديلفوون؟"
+    a: "قرب بحيرة الحبيل شمال الأحساء."
+    q_en: "Where is Delfoon Lake?"
+    a_en: "Near Al-Hubail Lake, north of Al-Ahsa."
+  - q: "هل لزيارة بحيرة الديلفوون رسوم؟"
+    a: "لا، موقع طبيعي عام مفتوح بلا رسوم."
+    q_en: "Is there a fee to visit Delfoon Lake?"
+    a_en: "No. It is an open public natural site with no fee."
 ---
 
 الديلفوون بحيرات صغيرة موسمية تنشأ في فترات الأمطار قرب بحيرة الحبيل

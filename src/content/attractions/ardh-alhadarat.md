@@ -25,6 +25,23 @@ practical:
 location: { lat: 25.41184, lng: 49.6927 }
 mapUrl: "https://maps.app.goo.gl/uCahvRZfgCzKpkxc7"
 heroImage: /img/earth-of-civilization
+faq:
+  - q: "ما مواعيد أرض الحضارات؟"
+    a: "يومياً من 8:00 ص إلى 10:00 م، وقد تُمدّد في العطلات."
+    q_en: "What are the opening hours of the Land of Civilisations?"
+    a_en: "Daily from 8:00 am to 10:00 pm, and they may be extended on holidays."
+  - q: "كم رسوم دخول أرض الحضارات؟"
+    a: "50 ريالاً للبالغين، والتذاكر تشمل تجربة كهوف جبل القارة."
+    q_en: "How much is entry to the Land of Civilisations?"
+    a_en: "SAR 50 for adults, and tickets include the Al-Qarah Mountain caves experience."
+  - q: "ما أرض الحضارات؟"
+    a: "قرية تراثية ومعرض عند سفح جبل القارة، تستعرض مراحل الحضارة في المنطقة."
+    q_en: "What is the Land of Civilisations?"
+    a_en: "A heritage village and exhibition at the foot of Al-Qarah Mountain, tracing the region’s stages of civilisation."
+  - q: "أين تقع أرض الحضارات؟"
+    a: "في مدينة العمران شرق الهفوف، عند جبل القارة."
+    q_en: "Where is the Land of Civilisations?"
+    a_en: "In Al-Omran, east of Hofuf, by Al-Qarah Mountain."
 ---
 
 قرية تراثية ومعرضٌ عند سفح جبل القارة، تستعرض مراحل الحضارة في المنطقة، وتتكامل

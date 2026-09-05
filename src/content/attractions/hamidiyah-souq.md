@@ -23,6 +23,19 @@ practical:
   - { label: "الوضع الحالي", value: "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق", label_en: "Current status", value_en: "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it", label_zh: "现状", value_zh: "遗产地标——不再作为市集营业；目前在其建筑内经营的是沙尔格餐厅", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-04", verified: true }
 location: { lat: 25.375159, lng: 49.5890072 }
 mapUrl: "https://maps.app.goo.gl/4KEvxVRALRYuCDYA9"
+faq:
+  - q: "هل سوق الحميدية سوق عامل اليوم؟"
+    a: "لا، هو معلم تراثي توقّف نشاطه بوصفه سوقاً شعبياً، والنشاط القائم في مبناه اليوم مطعم شرق."
+    q_en: "Is Al-Hamidiyah Souq still a working souq?"
+    a_en: "No. It is a heritage landmark that no longer trades as a folk market; Sharq Restaurant operates in its building today."
+  - q: "أين يقع سوق الحميدية؟"
+    a: "في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك عبدالعزيز."
+    q_en: "Where is Al-Hamidiyah Souq?"
+    a_en: "In central Hofuf, in the North Al-Rifaa district on King Abdulaziz Road."
+  - q: "ما علاقة سوق الحميدية بالأسواق التراثية المجاورة؟"
+    a: "أُعيد بناؤه ضمن تطوير وسط الهفوف التاريخي، إلى جانب إعادة بناء سوق القيصرية وإنشاء سوق الحرفيين."
+    q_en: "How does Al-Hamidiyah Souq relate to the neighbouring heritage souqs?"
+    a_en: "It was rebuilt as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq."
 ---
 
 سوق الحميدية مبنىً في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك

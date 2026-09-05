@@ -31,6 +31,23 @@ sameAs:
   - https://ar.wikipedia.org/wiki/بحيرة_الأصفر
 unesco: 1563-012
 mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
+faq:
+  - q: "هل لزيارة بحيرة الأصفر رسوم؟"
+    a: "لا، بحيرة الأصفر موقع طبيعي عام بلا رسوم."
+    q_en: "Is there a fee to visit Al-Asfar Lake?"
+    a_en: "No. Al-Asfar Lake is an open natural site with no fee."
+  - q: "أين تقع بحيرة الأصفر؟"
+    a: "شمال شرق الواحة."
+    q_en: "Where is Al-Asfar Lake?"
+    a_en: "Northeast of the oasis."
+  - q: "هل بحيرة الأصفر ضمن موقع اليونسكو؟"
+    a: "نعم، هي أحد المكوّنات الاثني عشر المُدرجة ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي."
+    q_en: "Is Al-Asfar Lake part of the UNESCO site?"
+    a_en: "Yes. It is one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List."
+  - q: "ما أفضل وقت لزيارة بحيرة الأصفر؟"
+    a: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
+    q_en: "What is the best time to visit Al-Asfar Lake?"
+    a_en: "At sunset, when the water glows and the flocks of birds return."
 ---
 
 من أكبر البحيرات الطبيعية في الخليج العربي، وأحد **المكوّنات الاثني عشر** المُدرجة

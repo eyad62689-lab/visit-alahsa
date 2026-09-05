@@ -23,6 +23,19 @@ practical:
   - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.7607843, lng: 49.7626523 }
 mapUrl: "https://maps.app.goo.gl/tepZoP6zNeRqmmCfA"
+faq:
+  - q: "كيف تكوّنت بحيرة الحبيل؟"
+    a: "تكوّنت بمرور الوقت من تجمّع مياه الصرف الزراعي لمزارع الواحة."
+    q_en: "How did Al-Hubail Lake form?"
+    a_en: "It formed over time from the gathering of agricultural drainage water from the oasis farms."
+  - q: "أين تقع بحيرة الحبيل؟"
+    a: "شمال الأحساء."
+    q_en: "Where is Al-Hubail Lake?"
+    a_en: "North of Al-Ahsa."
+  - q: "هل لزيارة بحيرة الحبيل رسوم؟"
+    a: "لا، موقع طبيعي عام مفتوح بلا رسوم."
+    q_en: "Is there a fee to visit Al-Hubail Lake?"
+    a_en: "No. It is an open public natural site with no fee."
 ---
 
 بحيرة الحبيل مسطح مائي يقع شمال الأحساء، تكوّن بمرور الوقت من تجمّع
