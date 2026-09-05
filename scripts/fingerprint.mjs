@@ -136,6 +136,14 @@ async function main() {
       const urlDe = `${SITE}/de/attractions/${slugEn}/`
       push({ id: id(urlDe), type: 'attraction', lang: 'de', title: fmField(fm, 'title_de'), url: urlDe, phrase: pickPhrase(bodyDe.replace(/\s+/g, ' ').trim(), taken, false, true) })
     }
+    // الروسية: البوابة title_ru (نفس ru/attractions/[slug].astro)، والمتن body_ru
+    // يُصيَّر نصاً خاماً داخل <p> واحدة كالإنجليزية — المسار اللاتيني نفسه بلا حارس
+    // الأعداد الترتيبية: الروسية لا تكتب الترتيبيّ بنقطة كالألمانية.
+    const bodyRu = fmField(fm, 'body_ru')
+    if (bodyRu && fmField(fm, 'title_ru')) {
+      const urlRu = `${SITE}/ru/attractions/${slugEn}/`
+      push({ id: id(urlRu), type: 'attraction', lang: 'ru', title: fmField(fm, 'title_ru'), url: urlRu, phrase: pickPhrase(bodyRu.replace(/\s+/g, ' ').trim(), taken) })
+    }
   }
 
   // المنشآت (مطاعم ومقاهٍ): تُبصَّم الصفحة المفردة فقط — أي من عبر متنُها عتبة
@@ -200,7 +208,7 @@ async function main() {
   const out = { generated: new Date().toISOString(), site: SITE, count: fingerprints.length, fingerprints }
   await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8')
   const n = (lang) => fingerprints.filter((x) => x.lang === lang).length
-  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${n('ar')} | إنجليزي: ${n('en')} | صيني: ${n('zh')} | ألماني: ${n('de')})`)
+  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${n('ar')} | إنجليزي: ${n('en')} | صيني: ${n('zh')} | ألماني: ${n('de')} | روسي: ${n('ru')})`)
   console.log(`المخرج: ${OUT}`)
 }
 

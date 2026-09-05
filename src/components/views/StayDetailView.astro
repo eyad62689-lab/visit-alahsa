@@ -35,27 +35,30 @@ const lv = liveFor(d.img);
 const bodyEnParas = d.body_en.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 const C = localize(lang, {
-  kindLabel: d.kind === 'heritage-inn' ? 'نُزل تراثي' : 'فندق',
-  backLabel: 'كل أماكن الإقامة',
-  openMaps: t('det.openMaps'),
-  newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
-  ratingLabel: 'التقييم في خرائط قوقل',
-  closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
-  closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
-  areaH: 'الموقع',
-  noteH: 'حول هذه الصفحة',
-  noteP: 'الاسم والموقع من خرائط قوقل مباشرة، والتقييم يُجلب منها عند كل تحديث للموقع وقد يتغير. لا تُعرض أسعار ولا تصنيفات نجوم، وهذه الصفحة وصفية لا ترشيحية.',
-}, {
-  kindLabel: d.kind === 'heritage-inn' ? 'Heritage inn' : 'Hotel',
-  backLabel: 'All places to stay',
-  openMaps: t('det.openMaps'),
-  newWindow: '(opens Google Maps in a new window)',
-  ratingLabel: 'Rating on Google Maps',
-  closedPerm: 'Permanently closed — according to Google Maps',
-  closedTemp: 'Temporarily closed — according to Google Maps',
-  areaH: 'Location',
-  noteH: 'About this page',
-  noteP: 'The name and location come straight from Google Maps; the rating is fetched from it on each site update and can change. No prices or star ratings are listed, and this page is descriptive rather than a recommendation.',
+  ar: {
+    kindLabel: d.kind === 'heritage-inn' ? 'نُزل تراثي' : 'فندق',
+    backLabel: 'كل أماكن الإقامة',
+    openMaps: t('det.openMaps'),
+    newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
+    ratingLabel: 'التقييم في خرائط قوقل',
+    closedPerm: 'مغلق نهائياً — بحسب خرائط قوقل',
+    closedTemp: 'مغلق مؤقتاً — بحسب خرائط قوقل',
+    areaH: 'الموقع',
+    noteH: 'حول هذه الصفحة',
+    noteP: 'الاسم والموقع من خرائط قوقل مباشرة، والتقييم يُجلب منها عند كل تحديث للموقع وقد يتغير. لا تُعرض أسعار ولا تصنيفات نجوم، وهذه الصفحة وصفية لا ترشيحية.',
+  },
+  en: {
+    kindLabel: d.kind === 'heritage-inn' ? 'Heritage inn' : 'Hotel',
+    backLabel: 'All places to stay',
+    openMaps: t('det.openMaps'),
+    newWindow: '(opens Google Maps in a new window)',
+    ratingLabel: 'Rating on Google Maps',
+    closedPerm: 'Permanently closed — according to Google Maps',
+    closedTemp: 'Temporarily closed — according to Google Maps',
+    areaH: 'Location',
+    noteH: 'About this page',
+    noteP: 'The name and location come straight from Google Maps; the rating is fetched from it on each site update and can change. No prices or star ratings are listed, and this page is descriptive rather than a recommendation.',
+  },
 });
 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
