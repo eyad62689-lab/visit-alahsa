@@ -23,19 +23,26 @@ practical:
   - { label: "المواعيد", value: "يومياً 8 ص – 11 م", label_en: "Hours", value_en: "Daily 8:00 am – 11:00 pm", label_zh: "开放时间", value_zh: "每日 8:00–23:00", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-04", verified: true }
 location: { lat: 25.3713889, lng: 49.5886111 }
 mapUrl: "https://maps.app.goo.gl/AjLK1nvuFsuJQ3i89"
+# أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد سوق النساء الشعبي؟"
     a: "يومياً من 8 ص إلى 11 م."
     q_en: "What are the opening hours of the Women’s Folk Souq?"
     a_en: "Daily from 8:00 am to 11:00 pm."
+    q_zh: "妇女民俗市集的开放时间是几点到几点？"
+    a_zh: "每日 8:00–23:00；此信息已由本站编辑团队确认。"
   - q: "أين يقع سوق النساء الشعبي؟"
     a: "في حي الرفعة الجنوبية بالهفوف، وسط منطقة سوق السويق القديمة."
     q_en: "Where is the Women’s Folk Souq?"
     a_en: "In the South Al-Rifaa district of Hofuf, at the heart of the old Suwaiq market area."
+    q_zh: "妇女民俗市集在哪里？"
+    a_zh: "在胡富夫的里法阿南区，就在老苏韦格市集区的中心。"
   - q: "ماذا يُباع في سوق النساء الشعبي؟"
     a: "الملابس وحاجات البيت اليومية."
     q_en: "What is sold at the Women’s Folk Souq?"
     a_en: "Clothes and everyday household goods."
+    q_zh: "在妇女民俗市集能买到什么？"
+    a_zh: "这里卖的是衣物和日常家用杂货。"
 ---
 
 في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقٌ تراثي وسط

@@ -41,23 +41,32 @@ practical:
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
+# أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد قصر إبراهيم؟"
     a: "الأحد إلى الخميس من 8 ص إلى 5 م، والجمعة من 4 إلى 8 م، والسبت من 9 ص إلى 1 م ومن 4 إلى 8 م."
     q_en: "What are the opening hours of Qasr Ibrahim?"
     a_en: "Sunday to Thursday 8 am–5 pm, Friday 4–8 pm, and Saturday 9 am–1 pm and 4–8 pm."
+    q_zh: "易卜拉欣宫的开放时间是几点到几点？"
+    a_zh: "周日至周四 8:00–17:00，周五 16:00–20:00，周六 9:00–13:00、16:00–20:00。"
   - q: "هل دخول قصر إبراهيم برسوم؟"
     a: "لا، الدخول مجاني."
     q_en: "Is there an entry fee at Qasr Ibrahim?"
     a_en: "No, entry is free."
+    q_zh: "去易卜拉欣宫要门票吗？"
+    a_zh: "不需要。易卜拉欣宫免费入场。"
   - q: "كم تستغرق زيارة قصر إبراهيم؟"
     a: "ساعة إلى ساعتين."
     q_en: "How long does a visit to Qasr Ibrahim take?"
     a_en: "One to two hours."
+    q_zh: "参观易卜拉欣宫需要多长时间？"
+    a_zh: "建议预留 1–2 小时。"
   - q: "ماذا يضمّ قصر إبراهيم؟"
     a: "حصن يجمع تحت سوره مسجداً بقبّة أنيقة وثكنات عسكرية وأبراج مراقبة وإسطبلات ومخازن، وهو جزء من النسيج العمراني الذي أدرج الواحة على قائمة التراث العالمي لليونسكو عام 2018."
     q_en: "What is inside Qasr Ibrahim?"
     a_en: "A fortress gathering beneath one wall a domed mosque, military barracks, watchtowers, stables and stores; it is part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
+    q_zh: "易卜拉欣宫里有什么？"
+    a_zh: "易卜拉欣宫其实是一座城堡：同一道围墙之内，有穹顶秀雅的清真寺、军营、瞭望塔、马厩与仓廪。它也是老城肌理的一部分，而哈萨绿洲正是凭这片老城肌理，于 2018 年列入联合国教科文组织世界遗产名录。"
 ---
 
 في قلب الهفوف يقف قصر إبراهيم شاهداً على قرونٍ من التحوّل. ليس قصراً بالمعنى
