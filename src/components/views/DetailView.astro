@@ -110,12 +110,11 @@ const sourceGroups = [...shownPractical
 // سلاسل مضمّنة خارج القاموس — كل لغة جديدة تحتاج فرعاً هنا يدوياً، **والفشل
 // صامت**: مفاتيح القاموس تبدو مكتملة بينما الصفحة تعرض الإنجليزية (رصدته
 // المرحلتان 1 و3 من دفعة الواجهة الألمانية 2026-09-03).
-// فروع ru أدناه تُعطي القيمة **الإنجليزية عمداً**: هذه سلاسل واجهة لم تمرّ بخط
-// ru-translation-pipeline بعد (دفعة ui.ru)، وكتابتها فرعاً صريحاً بدل تركها
-// للتراجع الصامت هي ما يجعل المتبقّي مرئياً ببحثٍ عن «ru ?» — وهو الدواء لعطب
-// «مفاتيح القاموس تبدو مكتملة بينما الصفحة تعرض الإنجليزية».
-const srcLabel = ar ? 'المصدر' : zh ? '来源' : de ? 'Quelle' : ru ? 'Source' : 'Source';
-const verifiedLabel = ar ? 'تاريخ التحقق' : zh ? '核实日期' : de ? 'Zuletzt geprüft' : ru ? 'Verified' : 'Verified';
+// فروع ru من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05، الحاكم 91/100) —
+// كانت قبلها بالقيمة الإنجليزية عمداً كي تُرى بالبحث عن «ru ?» لا أن تختفي في
+// التراجع الصامت (الدواء لعطب «مفاتيح القاموس تبدو مكتملة بينما الصفحة تعرض الإنجليزية»).
+const srcLabel = ar ? 'المصدر' : zh ? '来源' : de ? 'Quelle' : ru ? 'Источник' : 'Source';
+const verifiedLabel = ar ? 'تاريخ التحقق' : zh ? '核实日期' : de ? 'Zuletzt geprüft' : ru ? 'Проверено' : 'Verified';
 // الصيني من خط zh-translation-pipeline (misc.reviewNote — دورة 2026-08-29)
 // والألماني من خط de-translation-pipeline (دفعة الواجهة — الحاكم 90/100)
 const reviewNote = ar
@@ -125,7 +124,7 @@ const reviewNote = ar
     : de
       ? 'Öffnungszeiten und Eintritt können sich je nach Saison und an Feiertagen ändern.'
       : ru
-        ? 'Hours and fees can change in seasons and holidays.'
+        ? 'Часы работы и стоимость входа могут меняться по сезонам и в праздники.'
         : 'Hours and fees can change in seasons and holidays.';
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
@@ -162,10 +161,10 @@ const nearby = a.location
         ...n,
         // الصيني من خط الإنتاج (misc.underKm/aboutKm — دورة 2026-08-29)
         // والألماني من دفعة الواجهة الألمانية (detail.underKm/aboutKm — 2026-09-03)
-        // فرع ru بالقيمة الإنجليزية عمداً — بانتظار دفعة ui.ru (انظر أعلاه)
+        // والروسي من دفعة الواجهة الروسية (2026-09-05)
         dist: n.km < 1
-          ? (ar ? 'أقل من كيلومتر' : zh ? '不足 1 公里' : de ? 'unter 1 km' : ru ? 'under 1 km' : 'under 1 km')
-          : (ar ? `نحو ${Math.round(n.km)} كم` : zh ? `约 ${Math.round(n.km)} 公里` : de ? `ca. ${Math.round(n.km)} km` : ru ? `~${Math.round(n.km)} km` : `~${Math.round(n.km)} km`),
+          ? (ar ? 'أقل من كيلومتر' : zh ? '不足 1 公里' : de ? 'unter 1 km' : ru ? 'менее 1 км' : 'under 1 km')
+          : (ar ? `نحو ${Math.round(n.km)} كم` : zh ? `约 ${Math.round(n.km)} 公里` : de ? `ca. ${Math.round(n.km)} km` : ru ? `около ${Math.round(n.km)} км` : `~${Math.round(n.km)} km`),
       }))
   : [];
 ---

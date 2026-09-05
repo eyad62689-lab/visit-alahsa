@@ -279,8 +279,22 @@ async function main() {
       const hit = val && val.match(SEASONAL_DE);
       if (hit) deLies.push(`${path.relative(DIST, f)} → «${hit[0]}»`);
     }
+    // والروسية على النمط نفسه (دفعة ui.ru 2026-09-05 اختارت «Лучшее время дня» —
+    // وقت النهار — بالعدّ ذاته): قيمة موسمية تحتها تكذّب التسمية فتُقلب إلى
+    // «Лучшее время для визита» المحايدة. حدود الكلمات صريحة لأن \b لا تعمل مع
+    // السيريلية بلا علم u؛ و«лет» وحدها مستثناة (تعني «سنوات») فتُمسك «лето/летом».
+    const SEASONAL_RU = /(?:^|[^а-яё])(?:январ|феврал|март|апрел|июн|июл|август|сентябр|октябр|ноябр|декабр|весн|осен|зим|сезон|месяц)[а-яё]*|(?:^|[^а-яё])ма[йяе](?![а-яё])|(?:^|[^а-яё])лет(?:о|ом)(?![а-яё])/i;
+    const ruLies = [];
+    for (const f of await listHtml(path.join(DIST, 'ru'))) {
+      const html = await readFile(f, 'utf8');
+      const m = html.match(/Лучшее время дня<\/dt>\s*<dd[^>]*>([\s\S]*?)<\/dd>/);
+      const val = m && stripTags(m[1]).trim();
+      const hit = val && val.match(SEASONAL_RU);
+      if (hit) ruLies.push(`${path.relative(DIST, f)} → «${hit[0].trim()}»`);
+    }
     if (deLies.length) fail('C14', `قيمة موسمية تحت «Beste Tageszeit» — التسمية صارت كاذبة، حوّلها إلى «Beste Besuchszeit» في ui.de: ${deLies.slice(0, 3).join(' · ')}`);
-    else pass('C14', 'تسمية «Beste Tageszeit» الألمانية تطابق قيمها (صفر قيمة موسمية)');
+    else if (ruLies.length) fail('C14', `قيمة موسمية تحت «Лучшее время дня» — التسمية صارت كاذبة، حوّلها إلى «Лучшее время для визита» في ui.ru: ${ruLies.slice(0, 3).join(' · ')}`);
+    else pass('C14', 'تسميتا «Beste Tageszeit» و«Лучшее время дня» تطابقان قيمهما (صفر قيمة موسمية)');
   }
 
   // ── C9: مفتاح IndexNow منشور ومطابق للمفتاح في الإضافة ───────────────────
@@ -368,8 +382,11 @@ async function main() {
       { lang: 'en', re: /largest\s+(?:natural\s+)?palm\s+oasis/i },
       { lang: 'zh', re: /最大的(?:天然)?(?:椰枣|棕榈)绿洲/ },
       { lang: 'de', re: /größten?\s+Palmenoase/i },
+      // الروسية أُضيفت مع دفعة ui.ru (2026-09-05): رصدت المرحلة 4 أن /ru/ كانت بلا حارس
+      // (‏\w لا تطابق السيريلية في JS بلا علم u، فالمقاطع بـ[а-яё] صراحةً)
+      { lang: 'ru', re: /крупнейш[а-яё]+\s+(?:пальмов[а-яё]+|фиников[а-яё]+|природн[а-яё]+)\s+оазис/i },
     ];
-    const OK_CLAIM = /أكبر واحة[ٍ]? (?:في العالم|على وجه الأرض)|largest oasis (?:on earth|in the world)|最大的绿洲|größten Oase der Welt/;
+    const OK_CLAIM = /أكبر واحة[ٍ]? (?:في العالم|على وجه الأرض)|largest oasis (?:on earth|in the world)|最大的绿洲|größten Oase der Welt|крупнейш[а-яё]+\s+оазис[а-яё]*\s+(?:в\s+мире|мира)/i;
     const offenders = [];
     let carriers = 0;
     for (const f of htmlFiles) {
