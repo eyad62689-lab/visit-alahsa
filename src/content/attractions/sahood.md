@@ -13,6 +13,12 @@ kicker_de: "Historische Stätte"
 summary_de: "Eine mächtige Wehranlage mit sieben Türmen im Herzen von Al-Mubarraz und Bestandteil der UNESCO-Welterbestätte Oase Al-Ahsa."
 area_de: "Zentrum von Al-Mubarraz – Al-Ahsa"
 body_de: "Der Sahood-Palast (Qasr Sahood) erhebt sich im Herzen von Al-Mubarraz: eine mächtige Festung von rund 10.000 Quadratmetern, deren sechs Meter hohe Mauern von sieben Wachtürmen gesichert werden und einst von einem Wehrgraben umgeben waren. Errichtet im späten 12. Jahrhundert nach der Hidschra, erlebte sie Kapitel des Widerstands Al-Ahsas gegen den Feldzug Ali Paschas. Innerhalb ihrer Mauern vereinte die Anlage eine Moschee, einen Brunnen, Lagerräume, Unterkünfte für Soldaten und Ställe und bot der Stadtbevölkerung in Zeiten der Belagerung Schutz. Von der Heritage Commission restauriert, ist sie heute einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die 2018 in die Welterbeliste der UNESCO aufgenommen wurde."
+# الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 1 بدرجة 91/100 (2026-09-05، السجل في ru-translation/memory/scores.csv)
+title_ru: "Дворец Сахуд"
+kicker_ru: "Историческая достопримечательность"
+summary_ru: "Мощная оборонительная крепость с семью башнями в центре Эль-Мубарраза — часть объекта Всемирного наследия ЮНЕСКО «Оазис Аль-Ахса»."
+body_ru: "Дворец Сахуд (по-арабски — Каср-Сахуд) поднимается в центре Эль-Мубарраза. Это мощная крепость площадью около 10 000 квадратных метров: семь сторожевых башен охраняют ее шестиметровые стены, а прежде ее опоясывал еще и оборонительный ров с водой. Крепость построили в конце XII века хиджры, и на ее глазах Аль-Ахса сопротивлялась походу Али-паши. За ее стенами умещались мечеть, колодец, склады, помещения для солдат и конюшни, а в дни осады здесь укрывались горожане. Крепость отреставрировала Комиссия по наследию, и сегодня это один из двенадцати компонентов объекта «Оазис Аль-Ахса», который в 2018 году внесли в Список всемирного наследия ЮНЕСКО."
+area_ru: "Центр Эль-Мубарраза, Аль-Ахса"
 slug_ar: "قصر-صاهود"
 slug_en: "sahood"
 category: historic
