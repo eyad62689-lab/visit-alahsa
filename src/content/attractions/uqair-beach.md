@@ -33,6 +33,32 @@ gallery:
 # تزويد بالمياه وتصريف وحجز إلكتروني — بلا أعداد ولا رسوم ولا مواعيد.
 practical:
   - { label: "عربات الكرفان", value: "للشاطئ موقعٌ مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً", label_en: "Caravans", value_en: "The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online", label_zh: "房车", value_zh: "海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订", source_zh: "哈萨县关于房车营地服务的官方公告", verified: true, source: "إعلان محافظة الأحساء الرسمي عن خدمة موقع الكرفانات", source_en: "Al-Ahsa Governorate's official announcement of the caravan-site service", verifiedAt: "2026-09-01" }
+# أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
+faq:
+  - q: "هل يمكن المبيت بعربات الكرفان في شاطئ العقير؟"
+    a: "نعم، للشاطئ موقع مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً."
+    q_en: "Can I stay in a caravan at Al-Uqair Beach?"
+    a_en: "Yes. The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online."
+    q_zh: "乌盖尔海滩可以房车露营吗？"
+    a_zh: "可以。海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订。"
+  - q: "ما أفضل وقت لزيارة شاطئ العقير؟"
+    a: "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
+    q_en: "What is the best time to visit Al-Uqair Beach?"
+    a_en: "Early morning, or late afternoon onwards, away from the peak heat."
+    q_zh: "什么时候去乌盖尔海滩最好？"
+    a_zh: "清晨或下午稍晚以后，避开一天中最热的时段。"
+  - q: "هل شاطئ العقير مناسب للعائلات؟"
+    a: "نعم، الشاطئ مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق مخصّصة للزوّار."
+    q_en: "Is Al-Uqair Beach suitable for families?"
+    a_en: "Yes. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors."
+    q_zh: "乌盖尔海滩适合带孩子吗？"
+    a_zh: "适合。乌盖尔海滩是家庭出游和摄影取景的好去处，紧邻处还设有专供游客使用的遮阳棚与配套设施。"
+  - q: "أين يقع شاطئ العقير؟"
+    a: "على ساحل العقير شرق الأحساء، بجوار ميناء العقير التاريخي."
+    q_en: "Where is Al-Uqair Beach?"
+    a_en: "On the Al-Uqair coast east of Al-Ahsa, beside the historic Al-Uqair port."
+    q_zh: "乌盖尔海滩在哪里？"
+    a_zh: "在哈萨以东的乌盖尔海岸，一旁就是乌盖尔古港。"
 ---
 
 على ساحل الخليج العربي يمتدّ شاطئ العقير التاريخي بمياهه الهادئة الضحلة ورماله

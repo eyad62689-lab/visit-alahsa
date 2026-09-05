@@ -32,6 +32,38 @@ sameAs:
   - https://ar.wikipedia.org/wiki/سوق_القيصرية
 unesco: 1563-005
 mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
+# أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
+faq:
+  - q: "ما مواعيد سوق القيصرية؟"
+    a: "من 8 ص إلى 12 ظهراً، ومن 3:30 عصراً إلى 10 مساءً، والجمعة مساءً فقط."
+    q_en: "What are the opening hours of Qaisariyah Souq?"
+    a_en: "8 am to 12 noon and 3:30 to 10 pm; on Fridays, evenings only."
+    q_zh: "凯撒利亚集市的开放时间是几点到几点？"
+    a_zh: "8:00–12:00、15:30–22:00，周五只在下午至晚间那一段营业。"
+  - q: "هل دخول سوق القيصرية برسوم؟"
+    a: "لا، الدخول مجاني."
+    q_en: "Is there an entry fee at Qaisariyah Souq?"
+    a_en: "No, entry is free."
+    q_zh: "去凯撒利亚集市要门票吗？"
+    a_zh: "不需要。凯撒利亚集市免费入场。"
+  - q: "ماذا أشتري من سوق القيصرية؟"
+    a: "البشت الحساوي الشهير، والحرف المحلية من الخوص والفخار، والتمور بأصنافها، والقهوة والبهارات."
+    q_en: "What can I buy at Qaisariyah Souq?"
+    a_en: "The famous Hasawi bisht, local crafts in palm frond and pottery, dates of every variety, coffee and spices."
+    q_zh: "在凯撒利亚集市能买到什么？"
+    a_zh: "市集的招牌是著名的哈萨比什特长袍；此外还有棕榈叶编织、陶器一类的本地手工艺品，以及各色椰枣、咖啡与香料。"
+  - q: "ما أفضل وقت لزيارة سوق القيصرية؟"
+    a: "الفترة المسائية، حين تفتح المتاجر أبوابها ويشتدّ نبض السوق."
+    q_en: "What is the best time to visit Qaisariyah Souq?"
+    a_en: "The evening, when the shops open their doors and the souq comes alive."
+    q_zh: "什么时候去凯撒利亚集市最好？"
+    a_zh: "傍晚最佳：店铺陆续开门，市集也热闹起来。"
+  - q: "كم عمر سوق القيصرية؟"
+    a: "يعود لأكثر من قرنين، وهو من أقدم أسواق الخليج وأعرقها."
+    q_en: "How old is Qaisariyah Souq?"
+    a_en: "It goes back more than two centuries, and is among the oldest and most storied souqs in the Gulf."
+    q_zh: "凯撒利亚集市有多少年历史了？"
+    a_zh: "已有 200 多年历史，是海湾地区最古老、最有故事的传统市集之一。"
 ---
 
 من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. طرازه المعماري فريد، ومتاجره
