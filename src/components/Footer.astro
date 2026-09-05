@@ -11,8 +11,11 @@ const ar = lang === 'ar';
 // الصينية: ما له نسخة /zh/ يقصدها (توسعة 2026-09-02)؛ والبقية إلى النظير الإنجليزي.
 const zh = lang === 'zh';
 
+// الألمانية والروسية: نواةٌ فقط (رئيسية + فهرس معالم)، وبقية الأعمدة تقصد
+// النظير الإنجليزي — تسمية إنجليزية لصفحة إنجليزية.
 const de = lang === 'de';
-const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/';
+const ru = lang === 'ru';
+const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
 const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : '/en/souqs-parks-farms/';
 const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : '/en/plan-your-trip/';
 const cols = [

@@ -1,7 +1,8 @@
 // تسميات فئات المعالم — مصدر موحّد للقائمة/الخريطة/التفصيل.
 // الصينية من خط zh-translation-pipeline (دفعة نصوص الواجهة 2026-08-29).
 // الجدول **جزئي عمداً** (Partial): لغة لم تمرّ دفعة واجهتها بخط إنتاجها لا
-// جدول لها، وتتراجع في catLabel أدناه — الألمانية كذلك منذ تكاملها 2026-09-03.
+// جدول لها، وتتراجع في catLabel أدناه — الألمانية كذلك منذ تكاملها 2026-09-03،
+// **والروسية بلا جدول** منذ تكاملها 2026-09-05 (دفعة ui.ru لم تمرّ بعد).
 import type { Lang } from '../i18n/ui';
 
 export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { ar: Record<string, string>; en: Record<string, string> } = {

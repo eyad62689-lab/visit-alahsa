@@ -468,7 +468,7 @@ async function main() {
     else pass('C18', `تهجئة «Souk» الألمانية موحّدة في ${deFiles.length} صفحة — لا «Souq»`);
   }
 
-  // ── C19: sameAs/Wikidata واليونسكو — المصدر يطابق المنشور في اللغات الأربع ──
+  // ── C19: sameAs/Wikidata واليونسكو — المصدر يطابق المنشور في اللغات الخمس ──
   // بند 3.1 (2026-09-04): كل معلم يحمل sameAs في ترويسته يجب أن تُصدَّر روابطه
   // حرفياً في TouristAttraction بكل لغة له، وأول رابط كيان Wikidata، ولا كيان
   // يتقاسمه معلمان (الخطأ الأرجح: نسخ ترويسة معلم إلى آخر). ومعرّف مكوّن اليونسكو
@@ -499,7 +499,7 @@ async function main() {
       if (sameAs.some((u) => !u.startsWith('https://'))) problems.push(`${f}: رابط sameAs بلا https`);
       if (sameAs.length) { const q = sameAs[0]; if (qOwner.has(q)) problems.push(`${f} و${qOwner.get(q)} يتقاسمان ${q.split('/').pop()}`); else qOwner.set(q, f); }
       if (unesco) { if (uOwner.has(unesco)) problems.push(`${f} و${uOwner.get(unesco)} يتقاسمان مكوّن اليونسكو ${unesco}`); else uOwner.set(unesco, f); }
-      expected.push({ f, slugEn, slugAr, sameAs: sameAs.map((u) => encodeURI(u)), unesco, hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head) });
+      expected.push({ f, slugEn, slugAr, sameAs: sameAs.map((u) => encodeURI(u)), unesco, hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head) });
     }
     let pagesChecked = 0;
     for (const e of expected) {
@@ -508,6 +508,7 @@ async function main() {
         path.join(DIST, 'en', 'attractions', e.slugEn, 'index.html'),
         ...(e.hasZh ? [path.join(DIST, 'zh', 'attractions', e.slugEn, 'index.html')] : []),
         ...(e.hasDe ? [path.join(DIST, 'de', 'attractions', e.slugEn, 'index.html')] : []),
+        ...(e.hasRu ? [path.join(DIST, 'ru', 'attractions', e.slugEn, 'index.html')] : []),
       ];
       for (const p of pages) {
         let html;
@@ -526,7 +527,7 @@ async function main() {
         }
       }
     }
-    for (const home of ['', 'en', 'zh', 'de']) {
+    for (const home of ['', 'en', 'zh', 'de', 'ru']) {
       const p = path.join(DIST, home, 'index.html');
       let html;
       try { html = await readFile(p, 'utf8'); } catch { problems.push(`الرئيسية /${home} مفقودة`); continue; }
@@ -542,7 +543,38 @@ async function main() {
     const withU = expected.filter((e) => e.unesco).length;
     if (withQ < 10 || withU < 6) fail('C19', `الحارس صار فارغاً: ${withQ} معلماً بـsameAs و${withU} بمكوّن يونسكو — المتوقع ≥10 و≥6`);
     else if (problems.length) fail('C19', `sameAs/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C19', `sameAs في ${withQ} معلماً (${pagesChecked} صفحة) ومكوّنات اليونسكو ${withU} — المنشور يطابق المصدر، ولا كيان مشترك، والرئيسيات الأربع تحمل هوية الواحة`);
+    else pass('C19', `sameAs في ${withQ} معلماً (${pagesChecked} صفحة) ومكوّنات اليونسكو ${withU} — المنشور يطابق المصدر، ولا كيان مشترك، والرئيسيات الخمس تحمل هوية الواحة`);
+  }
+
+  // ── C20: انقسام أداة التعريف في الروسية (حكم المعايرة P1 — 2026-09-05) ────
+  // «Аль-Ахса» رأسُ الاسم: صيغة اليونسكو الروسية الرسمية واسم العلامة نفسها؛
+  // و«Эль-» لما عداه (Эль-Хуфуф عنوانُ مقالة ru.wikipedia). التفاوت مقصود ومُسنَد
+  // والتوحيد غير متاح: نحو «Эль-» يناقض اليونسكو ويكسر العلامة، ونحو ويكيبيديا
+  // يعطي صيغةً ثالثة. **والمحظور تفاوتُ الاسم الواحد عن نفسه** — فالحارس يمنع
+  // الاتجاهين معاً: لا «Эль-Ахс…» ولا «Аль-» أمام اسمٍ غير الأحساء. ومعه حارسٌ
+  // إيجابيّ (ورود «Аль-Ахс…» فعلاً) كي لا يصير فارغاً بحذف النصّ لا بصحّته.
+  // يُفحص المنشور لا المصدر: ما يتسرّب من ترنري بلا فرع ru أو من متن روسيّ جديد.
+  // الجذع «Аль-Ахс» لا الصيغة التامة: الروسية تُصرّف الاسم بست حالات
+  // (Аль-Ахса · Аль-Ахсы · Аль-Ахсе)، وحصرُه في المرفوع يجعل الحارس يكذب.
+  {
+    const ruFiles = await listHtml(path.join(DIST, 'ru'));
+    const offenders = [];
+    let carriers = 0;
+    for (const f of ruFiles) {
+      const html = await readFile(f, 'utf8');
+      let text = stripUntilStable(html, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
+      text = stripUntilStable(text, /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi);
+      text = stripTags(text, ' ');
+      const rel = path.relative(DIST, f);
+      if (/Эль-Ахс/.test(text)) offenders.push(`${rel} → «Эль-Ахс…»`);
+      const wrong = text.match(/Аль-(?!Ахс)[^\s<]*/);
+      if (wrong) offenders.push(`${rel} → «${wrong[0]}»`);
+      if (/Аль-Ахс/.test(text)) carriers++;
+    }
+    if (!ruFiles.length) fail('C20', 'لا صفحة /ru/ في المخرج — الحارس صار فارغاً');
+    else if (offenders.length) fail('C20', `انقسام الأداة الروسية مكسور في ${offenders.length} موضع: ${offenders.slice(0, 4).join(' · ')} — «Аль-» للأحساء وحدها و«Эль-» لما عداها`);
+    else if (carriers === 0) fail('C20', 'لا صفحة /ru/ تحمل «Аль-Ахса» — الحارس صار فارغاً، تحقّق من الصياغة');
+    else pass('C20', `انقسام الأداة الروسية سليم في ${ruFiles.length} صفحة (${carriers} تحمل «Аль-Ахса») — لا «Эль-Ахс» ولا «Аль-» لغيرها`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

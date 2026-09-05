@@ -13,13 +13,14 @@ const ar = lang === 'ar';
 
 // الصينية: ما اكتملت صفحته الصينية يقصدها (توسعة 2026-09-02: الفعاليات والثمار
 // والأكلات والخريطة)؛ والبقية إلى النظير الإنجليزي حتى تكتمل في مراحل التعميم.
-// الألمانية: **لا فهرس /de/ بعد** (مرحلة «النواة» لم تبدأ) — كل روابط الترويسة
-// في صفحات /de/ تقصد النظير الإنجليزي مؤقتاً، كما كانت الصينية قبل دفعتها.
+// الألمانية والروسية: النواة وحدها مبنيّة (الرئيسية وفهرس المعالم) — وما لا
+// نظير له يقصد الصفحة الإنجليزية: تسمية إنجليزية لصفحة إنجليزية، لا وعدٌ مكسور.
 const zh = lang === 'zh';
 const de = lang === 'de';
-const home = ar ? '/' : zh ? '/zh/' : de ? '/de/' : '/en/';
+const ru = lang === 'ru';
+const home = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
 const routes = {
-  attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/',
+  attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/',
   leisure: ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : '/en/souqs-parks-farms/',
   map: ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/',
   events: ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/',
@@ -57,9 +58,10 @@ const LANG_META: Record<Lang, { short: string; native: string; code: string; dir
   en: { short: 'EN', native: 'English', code: 'en', dir: 'ltr' },
   zh: { short: '中文', native: '中文（简体）', code: 'zh-CN', dir: 'ltr' },
   de: { short: 'DE', native: 'Deutsch', code: 'de', dir: 'ltr' },
+  ru: { short: 'RU', native: 'Русский', code: 'ru', dir: 'ltr' },
 };
-const langItems = (['ar', 'en', 'zh', 'de'] as Lang[])
-  .filter((l) => l === lang || (alt ? Boolean(alt[l]) : l !== 'zh' && l !== 'de'))
+const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
+  .filter((l) => l === lang || (alt ? Boolean(alt[l]) : l !== 'zh' && l !== 'de' && l !== 'ru'))
   .map((l) => ({
     current: l === lang,
     href: l === lang ? null : (alt?.[l] ?? (l === 'ar' ? '/' : '/en/')),

@@ -4,7 +4,8 @@
 // وما يغيب عنه يتراجع للإنجليزية في useTranslations — كل نص صيني يمرّ بخط
 // إنتاج zh-translation-pipeline حصراً (لا ترجمة عابرة خارج السلسلة).
 // والألمانية (de-DE) قاموس جزئي كذلك، وخطها de-translation-pipeline.
-export type Lang = 'ar' | 'en' | 'zh' | 'de';
+// والروسية (ru-RU) قاموس جزئي جداً (مفتاح واحد)، وخطها ru-translation-pipeline.
+export type Lang = 'ar' | 'en' | 'zh' | 'de' | 'ru';
 
 export const ui = {
   ar: {
@@ -792,5 +793,18 @@ export const ui = {
     'video.play': 'Hintergrundvideo abspielen',
     'fav.add': 'Zu „Meine Reise“ hinzufügen',
     'fav.added': 'In „Meine Reise“ ✓',
+  } as Record<string, string>,
+  // الروسية (ru-RU) — قاموس **جزئي جداً** على سابقة الألمانية يوم تكاملها
+  // (2026-09-03): مفتاح واحد، وكل ما عداه يتراجع ru ← en ← ar فتعرض صفحات /ru/
+  // هيكلاً إنجليزياً حتى تمرّ دفعة نصوص الواجهة بخط ru-translation-pipeline
+  // (المرحلة 2 في ru-translation/PLAN.md). لا يُحرَّر يدوياً خارج خط الإنتاج.
+  //
+  // ملاحظات مقيسة تنتظر تلك الدفعة (حكم المعايرة P6 — القارئ الأعمى 2026-09-05):
+  //   det.visitInfo · det.area · det.bestTime — ثلاث سلاسل وقعت عليها ملاحظتان
+  //   من 24 وهي في الواجهة لا في ملف المعلم، فتُبتّ في دفعة ui.ru لا موضعياً.
+  ru: {
+    // تسمية مبدّل اللغة (aria-label) — أُقرّت عند التكامل لئلا تظهر «Language»
+    // في صفحة روسية، كما أُقرّت 'Sprache' يوم تكامل الألمانية.
+    'lang.menu': 'Язык',
   } as Record<string, string>,
 } as const;
