@@ -2,7 +2,7 @@
 // الصينية من خط zh-translation-pipeline (دفعة نصوص الواجهة 2026-08-29).
 // الجدول **جزئي عمداً** (Partial): لغة لم تمرّ دفعة واجهتها بخط إنتاجها لا
 // جدول لها، وتتراجع في catLabel أدناه — الألمانية كذلك منذ تكاملها 2026-09-03،
-// **والروسية بلا جدول** منذ تكاملها 2026-09-05 (دفعة ui.ru لم تمرّ بعد).
+// والروسية منذ دفعة واجهتها 2026-09-05 (خط ru-translation-pipeline).
 import type { Lang } from '../i18n/ui';
 
 export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { ar: Record<string, string>; en: Record<string, string> } = {
@@ -54,6 +54,19 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     experience: 'Erlebnisse und Handwerk',
     taste: 'Küche und Datteln',
     events: 'Veranstaltungen und Saisonales',
+  },
+  // الروسية من خط ru-translation-pipeline (دفعة نصوص الواجهة 2026-09-05، الحاكم 91/100).
+  ru: {
+    historic: 'Исторические места',
+    museum: 'Музеи',
+    religious: 'Мечети и религиозные места',
+    nature: 'Природа и пещеры',
+    parks: 'Парки и сады',
+    market: 'Традиционные рынки',
+    farm: 'Фермы и пальмы',
+    experience: 'Впечатления и ремёсла',
+    taste: 'Кухня и финики',
+    events: 'События и сезоны',
   },
 };
 
