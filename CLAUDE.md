@@ -14,7 +14,7 @@
 
 - **الروابط:** كل رابط صفحة تفصيلية يُبنى من `src/lib/routes.ts` وينتهي بشرطة ختامية (تطابق canonical). لا تركيب مسارات يدوياً.
 - **الترجمة:** نصوص الواجهة في `src/i18n/ui.ts`؛ مفاتيح `ar` و`en` متطابقة إلزامياً، و`zh` جزئي يتراجع للإنجليزية. الكتل ثنائية اللغة داخل الواجهات عبر `localize()`.
-- **الصينية** لا تُكتب إلا عبر `.claude/skills/zh-translation-pipeline` (المعجم `zh-translation/glossary/termbase.json` ملزم)، و**الألمانية** عبر `.claude/skills/de-translation-pipeline` (‏`de-translation/glossary/termbase.json` ملزم بأجناسه النحوية).
+- **الصينية** لا تُكتب إلا عبر `.claude/skills/zh-translation-pipeline` (المعجم `zh-translation/glossary/termbase.json` ملزم)، و**الألمانية** عبر `.claude/skills/de-translation-pipeline` (‏`de-translation/glossary/termbase.json` ملزم بأجناسه النحوية)، و**الروسية** عبر `.claude/skills/ru-translation-pipeline` (‏`ru-translation/glossary/termbase.json` ملزم بأجناسه وأحكام تصريفه). الخط الروسي **معايَر ولم يُدمج بعد**: صفحة جبل القارة 91/100 في `ru-translation/output/`، ولا مسار `/ru/` في الموقع حتى تُنفَّذ قائمة التكامل في `ru-translation/PLAN.md §٦`.
 - **السكربتات الداخلية** يجب أن تنجو من تنقّلات ClientRouter: ما يُسجَّل على `document`/`window` يُحرَس بحارس مرة واحدة، وما يخص الصفحة يُعاد عبر `astro:page-load`، والمؤقّتات تُلغى عند `astro:before-swap`.
 - **التخزين المحلي** دائماً داخل `try/catch`.
 - **الصور:** مسار أساسي بلا امتداد (`/img/name`)، ويُشغَّل `node tools/gen-image-widths.mjs` بعد إضافة أي صورة لتوليد النسخ والبيان.
