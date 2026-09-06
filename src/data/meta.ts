@@ -19,7 +19,9 @@ export function reviewedLabel(key: keyof typeof REVIEWED, lang: Lang): string {
   const [y, m] = REVIEWED[key].split('-').map(Number);
   if (lang === 'ar') return `${MONTHS_AR[m - 1]} ${y}م`;
   if (lang === 'zh') return `${y} 年 ${m} 月`;
-  // الألمانية صيغة Intl لا نصّاً مؤلَّفاً («Juni 2026») — سابقة formatDate،
-  // فلا تمرّ بخط الترجمة. بلا هذا الفرع كانت de تقع على «June 2026» الإنجليزية.
-  return new Intl.DateTimeFormat(lang === 'de' ? 'de-DE' : 'en-GB', { month: 'long', year: 'numeric' }).format(new Date(Date.UTC(y, m - 1, 1)));
+  // الألمانية والروسية صيغة Intl لا نصّاً مؤلَّفاً («Juni 2026» · «июнь 2026 г.»)
+  // — سابقة formatDate، فلا تمرّان بخط الترجمة، ولا جدول شهور مكتوباً باليد.
+  // (الروسية تُصغّر اسم الشهر من نفسها، وهو ما يوجبه إملاؤها.) بلا هذين الفرعين
+  // كانتا تقعان على «June 2026» الإنجليزية.
+  return new Intl.DateTimeFormat(lang === 'de' ? 'de-DE' : lang === 'ru' ? 'ru-RU' : 'en-GB', { month: 'long', year: 'numeric' }).format(new Date(Date.UTC(y, m - 1, 1)));
 }

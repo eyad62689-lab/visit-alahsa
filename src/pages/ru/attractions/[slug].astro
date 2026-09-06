@@ -1,0 +1,18 @@
+---
+// صفحات المعالم الروسية (ru-RU) — تُولَّد فقط للمعالم التي تحمل ترجمة روسية
+// معتمدة من خط ru-translation-pipeline (وجود title_ru هو المفتاح، على سابقة
+// title_zh وtitle_de). البقية لا صفحة لها فلا تظهر في hreflang ولا مبدّل اللغة
+// (منطق attractionAlt) — ولا خيار يقود إلى 404.
+import { attractionAlt } from '../../../lib/routes';
+import DetailView from '../../../components/views/DetailView.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const items = await getCollection('attractions', ({ data }) => Boolean(data.title_ru));
+  return items.map((entry) => ({
+    params: { slug: entry.data.slug_en },
+    props: { entry, alt: attractionAlt(entry.data) },
+  }));
+}
+const { entry, alt } = Astro.props;
+---
+<DetailView entry={entry} lang="ru" alt={alt} />

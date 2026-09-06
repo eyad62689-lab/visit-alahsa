@@ -1,0 +1,9 @@
+---
+// الرئيسية الروسية (ru-RU) — قاموس ui.ru جزئي جداً بعد (lang.menu وحده)، فكل ما
+// عداه يتراجع ru ← en ← ar فيظهر بالإنجليزية وروابطه تقصد الصفحات الإنجليزية:
+// تسمية إنجليزية لصفحة إنجليزية، لا وعدٌ مكسور. يُستبدل بمخرج خط الترجمة في
+// دفعة نصوص الواجهة (المرحلة 2 في ru-translation/PLAN.md).
+import HomeView from '../../components/views/HomeView.astro';
+const alt = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/' };
+---
+<HomeView lang="ru" alt={alt} />

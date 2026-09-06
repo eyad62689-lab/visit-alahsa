@@ -18,14 +18,15 @@ const ogImage = new URL(image, site).href;
 const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const arHref = alt ? new URL(alt.ar, site).href : null;
 const enHref = alt ? new URL(alt.en, site).href : null;
-// الصينية والألمانية تُدرجان في hreflang فقط حين توجد نسخة فعلية للصفحة
-// بتلك اللغة (alt.zh وalt.de اختياريان) — لا hreflang لصفحة غير مولّدة.
+// zh وde وru تُدرج في hreflang فقط حين توجد نسخة فعلية للصفحة بتلك اللغة
+// (الحقول الثلاثة اختيارية في alt) — لا hreflang لصفحة غير مولّدة.
 const zhHref = alt?.zh ? new URL(alt.zh, site).href : null;
 const deHref = alt?.de ? new URL(alt.de, site).href : null;
-const OG_LOCALE: Record<string, string> = { ar: 'ar_SA', en: 'en_US', zh: 'zh_CN', de: 'de_DE' };
+const ruHref = alt?.ru ? new URL(alt.ru, site).href : null;
+const OG_LOCALE: Record<string, string> = { ar: 'ar_SA', en: 'en_US', zh: 'zh_CN', de: 'de_DE', ru: 'ru_RU' };
 const ogLocale = OG_LOCALE[lang];
-const ogLocaleAlts = (['ar', 'en', 'zh', 'de'] as const)
-  .filter((l) => l !== lang && (l !== 'zh' || zhHref) && (l !== 'de' || deHref))
+const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru'] as const)
+  .filter((l) => l !== lang && (l !== 'zh' || zhHref) && (l !== 'de' || deHref) && (l !== 'ru' || ruHref))
   .map((l) => OG_LOCALE[l]);
 ---
 <link rel="canonical" href={canonical} />
@@ -35,6 +36,7 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de'] as const)
 {enHref && <link rel="alternate" hreflang="en" href={enHref} />}
 {zhHref && <link rel="alternate" hreflang="zh" href={zhHref} />}
 {deHref && <link rel="alternate" hreflang="de" href={deHref} />}
+{ruHref && <link rel="alternate" hreflang="ru" href={ruHref} />}
 {arHref && <link rel="alternate" hreflang="x-default" href={arHref} />}
 
 <meta property="og:type" content={type} />

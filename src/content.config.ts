@@ -30,6 +30,15 @@ const attractions = defineCollection({
     body_de: z.string().optional(),
     area_de: z.string().optional(),
     bestTime_de: z.string().optional(),
+    // الحقول الروسية (ru-RU): تُملأ حصراً من مخرجات خط ru-translation-pipeline
+    // المعتمدة (درجة الحاكم ≥ العتبة). وجود title_ru هو مفتاح توليد صفحة /ru/
+    // وإدراج hreflang وخيار Русский في مبدّل اللغة — على سابقة title_zh.
+    title_ru: z.string().optional(),
+    kicker_ru: z.string().optional(),
+    summary_ru: z.string().optional(),
+    body_ru: z.string().optional(),
+    area_ru: z.string().optional(),
+    bestTime_ru: z.string().optional(),
     slug_ar: z.string(),                       // الرابط العربي (النسخة العربية)
     slug_en: z.string(),                       // الرابط اللاتيني (النسخة الإنجليزية)
     category: z.enum(CATEGORIES),
@@ -73,6 +82,9 @@ const attractions = defineCollection({
       // label_de/value_de ترجمة البند للألمانية — بدونهما لا يظهر البند في صفحة /de/
       label_de: z.string().optional(),
       value_de: z.string().optional(),
+      // label_ru/value_ru ترجمة البند للروسية — بدونهما لا يظهر البند في صفحة /ru/
+      label_ru: z.string().optional(),
+      value_ru: z.string().optional(),
       verified: z.boolean().default(false),
       // ── التوثيق (2026-08-31) ───────────────────────────────────────────
       // بند دراسة التطوير: «لا معلومة تشغيلية دون مصدر وتاريخ تحقق».
@@ -81,10 +93,11 @@ const attractions = defineCollection({
       source: z.string().optional(),                                   // اسم الجهة أو المرجع (عربي)
       // اسم المصدر بلغة كل نسخة: بدونه يظهر اسمٌ عربي داخل الصفحة الإنجليزية —
       // وهي المخالفة نفسها التي يحرسها فلتر label_en/value_en أعلاه.
-      // الصينية والألمانية تتراجعان للإنجليزية على سلسلة الموقع (zh/de ← en ← ar).
+      // zh وde وru تتراجع للإنجليزية على سلسلة الموقع (اللغة ← en ← ar).
       source_en: z.string().optional(),
       source_zh: z.string().optional(),
       source_de: z.string().optional(),
+      source_ru: z.string().optional(),
       sourceUrl: z.string().url().optional(),                          // رابطه إن وُجد
       verifiedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تاريخ التحقق YYYY-MM-DD
       nextReview: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تجاوز دورة المراجعة الافتراضية
@@ -158,6 +171,11 @@ const dining = defineCollection({
     blurb_zh: z.string().optional(),
     area_zh: z.string().optional(),
     alt_zh: z.string().optional(),
+    // الروسية (تكامل ru-RU — 2026-09-05): الحقول نفسها بوابةً للدفعة القادمة.
+    // لا نظير ألماني لها: الألمانية تتراجع للإنجليزية في هذا القسم كله.
+    blurb_ru: z.string().optional(),
+    area_ru: z.string().optional(),
+    alt_ru: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),
@@ -192,6 +210,10 @@ const stay = defineCollection({
     blurb_zh: z.string().optional(),
     area_zh: z.string().optional(),
     alt_zh: z.string().optional(),
+    // الروسية (تكامل ru-RU — 2026-09-05) — الفرع نفسه بحرفه، كنموذج dining
+    blurb_ru: z.string().optional(),
+    area_ru: z.string().optional(),
+    alt_ru: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),

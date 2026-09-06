@@ -19,6 +19,7 @@ export const GET: APIRoute = async () => {
   const attractionCount = attractions.length;
   const zhCount = attractions.filter((e) => e.data.title_zh).length;
   const deCount = attractions.filter((e) => e.data.title_de).length;
+  const ruCount = attractions.filter((e) => e.data.title_ru).length;
   const diningCount = (await getCollection('dining')).length;
   const stayCount = (await getCollection('stay')).length;
   const eventCount = EVENTS_AR.length;
@@ -29,7 +30,7 @@ export const GET: APIRoute = async () => {
 
 > دليل سياحي رقمي مستقل لمحافظة الأحساء في المنطقة الشرقية بالسعودية — أكبر واحة في العالم وموقع تراث عالمي مسجل في اليونسكو منذ 2018. المحتوى موثق: المواعيد والرسوم لا تُنشر إلا بعد التحقق، وما لم يتأكد يوسم «بانتظار التأكيد».
 
-النسخة العربية على الجذر، والإنجليزية تحت \`/en/\`، ونسخة صينية جزئية تحت \`/zh/\` (${zhCount} معلماً حتى الآن)، ونسخة ألمانية جزئية تحت \`/de/\` (${deCount} ${deCount === 1 ? 'معلم' : 'معلماً'} حتى الآن).
+النسخة العربية على الجذر، والإنجليزية تحت \`/en/\`، ونسخة صينية جزئية تحت \`/zh/\` (${zhCount} معلماً حتى الآن)، ونسخة ألمانية جزئية تحت \`/de/\` (${deCount} ${deCount === 1 ? 'معلم' : 'معلماً'} حتى الآن)، ونسخة روسية جزئية تحت \`/ru/\` (${ruCount} ${ruCount === 1 ? 'معلم' : 'معلماً'} حتى الآن).
 
 ## الأقسام الرئيسية — Main sections
 

@@ -96,37 +96,41 @@ const ZH = {
     }
   ]
 } as typeof AR;
-const C = localize(lang, AR, {
-  eyebrow: 'Seasons of the oasis',
-  title: 'What season is Al-Ahsa in now?',
-  lead: 'Each season in the oasis brings its own bounty and events — here is what welcomes you in each.',
-  nowBadge: 'You are here now',
-  note: 'Seasons are approximate and event dates change from year to year — confirm via official channels before visiting.',
-  fruitsCta: 'Fruits by season',
-  eventsCta: 'Event seasons',
-  seasons: [
-    { key: 'winter', name: 'Winter', months: 'December – February', items: [
-      'The gentlest weather of the year — prime time for the landmarks and forts',
-      'Kanar and citron fresh from the oasis groves',
-      'Festival high season: the Hasawi Bisht, the Processed Dates Festival, Palm Village, Al-Uqair Winter',
-    ] },
-    { key: 'spring', name: 'Spring', months: 'March – May', items: [
-      'Oasis mulberries — a short season around April',
-      'Creative Al-Ahsa Festival and the close of Qaisariyah Nights',
-      'Late May: the first early rutab dates',
-    ] },
-    { key: 'summer', name: 'Summer', months: 'June – August', items: [
-      'Rutab and early-harvest season — Al-Ahsa picks first in Saudi Arabia',
-      'Hasawi figs, bambar and papaya at their peak',
-      'The Hasawi Lomi Exhibition closes the summer',
-    ] },
-    { key: 'autumn', name: 'Autumn', months: 'September – November', items: [
-      'The “siram” harvest: full dates until early October',
-      'The weather softens — the ideal visiting months begin',
-      'The horse racing season and Al-Wafrah Winter get under way',
-    ] },
-  ] as Season[],
-}, ZH);
+const C = localize(lang, {
+  ar: AR,
+  en: {
+    eyebrow: 'Seasons of the oasis',
+    title: 'What season is Al-Ahsa in now?',
+    lead: 'Each season in the oasis brings its own bounty and events — here is what welcomes you in each.',
+    nowBadge: 'You are here now',
+    note: 'Seasons are approximate and event dates change from year to year — confirm via official channels before visiting.',
+    fruitsCta: 'Fruits by season',
+    eventsCta: 'Event seasons',
+    seasons: [
+      { key: 'winter', name: 'Winter', months: 'December – February', items: [
+        'The gentlest weather of the year — prime time for the landmarks and forts',
+        'Kanar and citron fresh from the oasis groves',
+        'Festival high season: the Hasawi Bisht, the Processed Dates Festival, Palm Village, Al-Uqair Winter',
+      ] },
+      { key: 'spring', name: 'Spring', months: 'March – May', items: [
+        'Oasis mulberries — a short season around April',
+        'Creative Al-Ahsa Festival and the close of Qaisariyah Nights',
+        'Late May: the first early rutab dates',
+      ] },
+      { key: 'summer', name: 'Summer', months: 'June – August', items: [
+        'Rutab and early-harvest season — Al-Ahsa picks first in Saudi Arabia',
+        'Hasawi figs, bambar and papaya at their peak',
+        'The Hasawi Lomi Exhibition closes the summer',
+      ] },
+      { key: 'autumn', name: 'Autumn', months: 'September – November', items: [
+        'The “siram” harvest: full dates until early October',
+        'The weather softens — the ideal visiting months begin',
+        'The horse racing season and Al-Wafrah Winter get under way',
+      ] },
+    ] as Season[],
+  },
+  zh: ZH,
+});
 // بطاقات المواسم الصينية تقصد صفحتي /zh/ منذ توسعة 2026-09-02
 const fruitsHref = ar ? '/ثمار/' : lang === 'zh' ? '/zh/fruits/' : '/en/fruits/';
 const eventsHref = ar ? '/فعاليات/' : lang === 'zh' ? '/zh/events/' : '/en/events/';

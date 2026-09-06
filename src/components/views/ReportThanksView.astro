@@ -13,13 +13,16 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 
 const C = localize(lang, {
-  title: 'وصل بلاغك — شكراً لك',
-  d: 'سيراجع فريق الموقع الملاحظة ويصحح ما يثبت منها. مساهمتك تُبقي دليل الأحساء دقيقاً للجميع.',
-  back: 'عودة إلى الرئيسية',
-}, {
-  title: 'Your report has arrived — thank you',
-  d: 'The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.',
-  back: 'Back to home',
+  ar: {
+    title: 'وصل بلاغك — شكراً لك',
+    d: 'سيراجع فريق الموقع الملاحظة ويصحح ما يثبت منها. مساهمتك تُبقي دليل الأحساء دقيقاً للجميع.',
+    back: 'عودة إلى الرئيسية',
+  },
+  en: {
+    title: 'Your report has arrived — thank you',
+    d: 'The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.',
+    back: 'Back to home',
+  },
 });
 const homeHref = ar ? '/' : '/en/';
 ---

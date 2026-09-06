@@ -18,21 +18,22 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
+const ru = lang === 'ru';
 const leisure = scope === 'leisure';
 
-// اختيار الحقل بلغة الصفحة، ورابط البطاقة يتراجع للإنجليزية لمعلم بلا ترجمة صينية
-const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string }) =>
-  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
-const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string }) =>
-  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
-const hrefLang = (d: { title_zh?: string; title_de?: string }) =>
-  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : lang;
+// اختيار الحقل بلغة الصفحة، ورابط البطاقة يتراجع للإنجليزية لمعلم بلا ترجمة بلغتها
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string; title_ru?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : ru ? (d.title_ru ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string; summary_ru?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : ru ? (d.summary_ru ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string; title_de?: string; title_ru?: string }) =>
+  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : ru && !d.title_ru ? 'en' : lang;
 
 // أرقام العدّادات بالأرقام العربية‑الهندية في النسخة العربية اتّساقاً مع سائر الموقع.
 // الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
 const num = (n: number) => String(n);
 
-const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : '/en/attractions/';
+const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : '/en/map/';
 
 // نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
@@ -65,16 +66,20 @@ const CAT_ICONS: Record<string, string> = {
   farm: '<path d="M12 21v-8"/><path d="M12 13c-.5-3-3-5-7-4 3-1.5 5.5-1 7 1 .5-3 3-5 7-4-3-1.5-5.5-1-7 1z"/>',
 };
 // النص الصيني من خط zh-translation-pipeline (misc.groupsHint — دفعة 2026-08-29)
+// فرع ru بالقيمة الإنجليزية عمداً — سلسلة مضمّنة تنتظر دفعة ui.ru، ومكتوبةٌ
+// صراحةً كي تُرى بالبحث عن «ru ?» لا أن تختفي في التراجع الصامت.
 const groupsHint = ar
   ? 'ابحث بالاسم، أو تصفّح المجموعات أدناه.'
   : zh
     ? '可按名称搜索，或浏览下方分类。'
     : de
       ? 'Suchen Sie nach einem Namen oder stöbern Sie unten in den Gruppen.'
-      : 'Search by name, or browse the groups below.';
+      : ru
+        ? 'Search by name, or browse the groups below.'
+        : 'Search by name, or browse the groups below.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : '/en/';
+const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },

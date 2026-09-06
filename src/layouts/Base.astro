@@ -19,6 +19,16 @@ import '@fontsource/lora/latin-400.css';
 import '@fontsource/lora/latin-600.css';
 import '@fontsource/cormorant-garamond/latin-400.css';
 import '@fontsource/cormorant-garamond/latin-600.css';
+// السيريلية (تكامل ru-RU — 2026-09-05): المقاطع نفسها بالأوزان نفسها من الحزم
+// المثبّتة أصلاً — لا حزمة جديدة. بدونها كانت صفحات /ru/ تقع على Georgia, serif
+// الاحتياطي لأن الموقع يستورد latin-*.css وحدها. الكلفة CSS فقط: ملفات woff2
+// لا تُنزَّل إلا حين تُصيَّر محارف داخل unicode-range، فصفحات ar/en/zh لا تمسّها.
+import '@fontsource/playfair-display/cyrillic-400.css';
+import '@fontsource/playfair-display/cyrillic-700.css';
+import '@fontsource/lora/cyrillic-400.css';
+import '@fontsource/lora/cyrillic-600.css';
+import '@fontsource/cormorant-garamond/cyrillic-400.css';
+import '@fontsource/cormorant-garamond/cyrillic-600.css';
 import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
@@ -121,7 +131,11 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         أُزيل استدعاء Google Fonts المحجِب للعرض (سيو 2026-08-22). */}
 
     {/* preload لخطّ المتن الحرج المستضاف ذاتياً حسب اللغة (يحمي LCP).
-        الصينية بلا preload: خطوطها خطوط نظام (tokens.css) فلا ملف يُحمَّل. */}
+        الصينية بلا preload: خطوطها خطوط نظام (tokens.css) فلا ملف يُحمَّل.
+        والروسية بلا preload كذلك، بقياسٍ لا بإهمال: الملف المحمَّل مسبقاً هنا
+        هو plex-lat-400 ومداه U+0000-00FF (لاتيني) فلا يحمل سيريلياً أصلاً،
+        ومتن /ru/ يُصيَّر من Lora cyrillic — أصلٌ ببصمة يولّدها fontsource وقت
+        البناء، فلا يُحمَّل مسبقاً بلا قياس LCP على /ru/ يبرّره. */}
     {lang === 'ar' ? (
       <link rel="preload" href="/fonts/plex-ar-400.woff2" as="font" type="font/woff2" crossorigin />
     ) : lang === 'en' ? (
