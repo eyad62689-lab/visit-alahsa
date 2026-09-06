@@ -51,6 +51,7 @@ practical:
   - { label: "مناسب لـ", value: "العائلات · التصوير · الأجواء الحارّة", label_en: "Good for", value_en: "Families · photography · hot days", label_zh: "适合", value_zh: "家庭出游、摄影、酷暑出行", label_de: "Geeignet für", value_de: "Familien · Fotografie · Heiße Tage", label_ru: "Подходит для", value_ru: "семей · фотосъёмки · жарких дней", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 tags: ["كهوف", "طبيعة", "تصوير"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
+# أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد زيارة جبل القارة؟"
     a: "يومياً من 8:00 ص إلى 10:00 م، وقد تُمدّد في العطلات."
@@ -58,18 +59,24 @@ faq:
     a_en: "Daily from 8:00 am to 10:00 pm, and they may be extended on holidays."
     q_zh: "卡拉山的开放时间是几点到几点？"
     a_zh: "每日 8:00 至 22:00，节假日可能延长。"
+    q_ru: "В какие часы открыт вход на Джабаль-эль-Кара?"
+    a_ru: "Ежедневно 8:00–22:00; в праздники может быть открыто дольше."
   - q: "كم رسوم دخول جبل القارة؟"
     a: "50 ريالاً للبالغين، والتذاكر عبر «أرض الحضارات»."
     q_en: "How much is entry to Jabal Al-Qarah?"
     a_en: "SAR 50 for adults; tickets are sold via the “Land of Civilisations” heritage village."
     q_zh: "卡拉山门票多少钱？"
     a_zh: "成人每位 50 沙特里亚尔，在“文明之地”遗产村落购票。"
+    q_ru: "Сколько стоит вход на Джабаль-эль-Кара?"
+    a_ru: "50 саудовских риялов для взрослых; билеты — через этнографическую деревню «Земля цивилизаций»."
   - q: "لماذا تشتهر كهوف جبل القارة باعتدال حرارتها؟"
     a: "تحافظ مغاراته على اعتدال حراري يقارب 20°م طوال العام، فتحتفظ ببرودة لطيفة في ذروة القيظ ودفء هادئ في قلب الشتاء."
     q_en: "Why are the Jabal Al-Qarah caves known for their mild temperature?"
     a_en: "The caves keep a mild temperature all year round: a gentle coolness at the peak of summer and a quiet warmth in the depth of winter."
     q_zh: "卡拉山的洞穴为什么以冬暖夏凉著称？"
     a_zh: "洞内温度全年宜人：盛夏时节凉爽，隆冬之际温暖。正因如此，当地居民自古便在此栖身。"
+    q_ru: "Чем славятся пещеры Джабаль-эль-Кара?"
+    a_ru: "Умеренной температурой круглый год: в самый зной в них держится мягкая прохлада, а в разгар зимы — спокойное тепло."
   - q: "كم عدد مغارات جبل القارة؟"
     a: "اثنتا عشرة مغارة متباينة الأشكال، منها كهف الناقة وكهف العيد وكهف المهيوب."
   - q: "ما أفضل وقت لزيارة جبل القارة؟"
@@ -78,6 +85,8 @@ faq:
     a_en: "Early morning or just before sunset, when the light softens and the heat eases."
     q_zh: "什么时候去卡拉山最好？"
     a_zh: "清晨或傍晚日落前——光线转柔、暑气渐退的时刻，也最宜取景拍摄。"
+    q_ru: "Когда лучше посетить Джабаль-эль-Кара?"
+    a_ru: "Ранним утром или незадолго до заката, когда свет смягчается, а жара спадает."
 ---
 
 يرتفع جبل القارة من وسط الواحة كأنّه حارسٌ قديم، لكنّ سرّه ليس في علوّه بل في

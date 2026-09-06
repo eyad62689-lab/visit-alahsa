@@ -15,6 +15,13 @@ summary_de: "Lehm und Stein treffen in einer Festung zusammen, die Moschee, Kase
 area_de: "Zentrum von Hofuf – Al-Ahsa"
 bestTime_de: "Tagsüber, um die Details der Architektur und das Licht des Innenhofs zu sehen."
 body_de: "Im Herzen von Hofuf steht Qasr Ibrahim als Zeuge jahrhundertelangen Wandels. Kein Palast im prunkvollen Sinne, sondern eine Festung, die hinter einer einzigen Mauer vereinte, was selten zusammenkommt: eine Moschee mit anmutiger Kuppel, eine Kaserne, Wachtürme, Ställe und Lagerräume. Zwei Bauweisen stehen hier nebeneinander – die Festigkeit des Steins und die Wärme des heimischen Lehms, der mit dem Klima atmet. Gehen Sie durch den weiten Hof, sehen Sie, wie die Kuppel den Mihrab (die Gebetsnische) beschattet, und Sie lesen Schichten von Geschichte, die sich Generation für Generation angesammelt haben. Heute zählt die Festung zu den bedeutendsten Kulturdenkmälern Al-Ahsas und gehört zu jenem städtischen Gefüge, dem die Oase ihre Aufnahme in die Welterbeliste der UNESCO im Jahr 2018 verdankt."
+# الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-09-05، السجل في ru-translation/memory/scores.csv)
+title_ru: "Каср-Ибрахим"
+kicker_ru: "Историческая крепость"
+summary_ru: "Глина и камень сходятся в крепости, вместившей мечеть, казармы и сторожевые башни."
+body_ru: "В сердце Эль-Хуфуфа стоит Каср-Ибрахим (в переводе — дворец Ибрахима), свидетель столетий перемен. Это не роскошный дворец, а крепость, собравшая за одной стеной то, что редко встречается вместе: мечеть с изящным куполом, казармы, сторожевые башни, конюшни и склады. Здесь соседствуют две строительные традиции — прочность камня и тепло местной глины, которая дышит в лад с климатом. Пройдитесь по просторному двору, посмотрите, как купол затеняет михраб (молитвенную нишу), и вы прочтете на стенах слои истории, которые копились поколение за поколением. Сегодня крепость — один из главных исторических памятников Аль-Ахсы и часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО."
+area_ru: "Центр Эль-Хуфуфа, Аль-Ахса"
+bestTime_ru: "Днем, чтобы увидеть детали архитектуры и свет во внутреннем дворе."
 slug_ar: قصر-إبراهيم
 slug_en: qasr-ibrahim
 category: historic
@@ -37,11 +44,12 @@ order: 2
 bestTime: النهار، لرؤية تفاصيل العمارة وضوء الفناء الداخلي.
 bestTime_en: "Daytime, to see the architectural details and the light of the inner courtyard."
 practical:
-  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_de: "Öffnungszeiten", value_de: "So.–Do. 8–17 Uhr · Fr. 16–20 Uhr · Sa. 9–13 und 16–20 Uhr", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
-  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_ru: "Часы работы", value_ru: "Вс–чт 8:00–17:00 · пт 16:00–20:00 · сб 9:00–13:00 и 16:00–20:00", label_de: "Öffnungszeiten", value_de: "So.–Do. 8–17 Uhr · Fr. 16–20 Uhr · Sa. 9–13 und 16–20 Uhr", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_ru: "Время на осмотр", value_ru: "От одного до двух часов", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
+# أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد قصر إبراهيم؟"
     a: "الأحد إلى الخميس من 8 ص إلى 5 م، والجمعة من 4 إلى 8 م، والسبت من 9 ص إلى 1 م ومن 4 إلى 8 م."
@@ -49,24 +57,32 @@ faq:
     a_en: "Sunday to Thursday 8 am–5 pm, Friday 4–8 pm, and Saturday 9 am–1 pm and 4–8 pm."
     q_zh: "易卜拉欣宫的开放时间是几点到几点？"
     a_zh: "周日至周四 8:00–17:00，周五 16:00–20:00，周六 9:00–13:00、16:00–20:00。"
+    q_ru: "В какие часы открыт Каср-Ибрахим?"
+    a_ru: "С воскресенья по четверг 8:00–17:00, в пятницу 16:00–20:00, в субботу 9:00–13:00 и 16:00–20:00."
   - q: "هل دخول قصر إبراهيم برسوم؟"
     a: "لا، الدخول مجاني."
     q_en: "Is there an entry fee at Qasr Ibrahim?"
     a_en: "No, entry is free."
     q_zh: "去易卜拉欣宫要门票吗？"
     a_zh: "不需要。易卜拉欣宫免费入场。"
+    q_ru: "Сколько стоит вход в Каср-Ибрахим?"
+    a_ru: "Вход свободный."
   - q: "كم تستغرق زيارة قصر إبراهيم؟"
     a: "ساعة إلى ساعتين."
     q_en: "How long does a visit to Qasr Ibrahim take?"
     a_en: "One to two hours."
     q_zh: "参观易卜拉欣宫需要多长时间？"
     a_zh: "建议预留 1–2 小时。"
+    q_ru: "Сколько времени нужно на осмотр крепости Каср-Ибрахим?"
+    a_ru: "От одного до двух часов."
   - q: "ماذا يضمّ قصر إبراهيم؟"
     a: "حصن يجمع تحت سوره مسجداً بقبّة أنيقة وثكنات عسكرية وأبراج مراقبة وإسطبلات ومخازن، وهو جزء من النسيج العمراني الذي أدرج الواحة على قائمة التراث العالمي لليونسكو عام 2018."
     q_en: "What is inside Qasr Ibrahim?"
     a_en: "A fortress gathering beneath one wall a domed mosque, military barracks, watchtowers, stables and stores; it is part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
     q_zh: "易卜拉欣宫里有什么？"
     a_zh: "易卜拉欣宫其实是一座城堡：同一道围墙之内，有穹顶秀雅的清真寺、军营、瞭望塔、马厩与仓廪。它也是老城肌理的一部分，而哈萨绿洲正是凭这片老城肌理，于 2018 年列入联合国教科文组织世界遗产名录。"
+    q_ru: "Что можно увидеть в крепости Каср-Ибрахим?"
+    a_ru: "За одной стеной здесь мечеть с куполом, казармы, сторожевые башни, конюшни и склады; крепость — часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО."
 ---
 
 في قلب الهفوف يقف قصر إبراهيم شاهداً على قرونٍ من التحوّل. ليس قصراً بالمعنى

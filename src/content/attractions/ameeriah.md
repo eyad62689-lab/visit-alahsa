@@ -13,6 +13,12 @@ kicker_de: "Historische Stätte"
 summary_de: "Die erste reguläre staatliche Schule Al-Ahsas, eröffnet 1937; ihr historisches Gebäude dient heute als Haus der Kultur."
 area_de: "Viertel Al-Na'athil – östlich der Altstadt von Hofuf"
 body_de: "Auf der Anhöhe Umm Al-Khubaisi im Viertel Al-Na'athil, östlich der Altstadt von Hofuf und nahe dem Qaisariyah-Souk, steht die Amiriah-Schule, die erste reguläre staatliche Schule Al-Ahsas. Der Unterricht begann 1356 nach der Hidschra (1937 n. Chr.) in gemieteten Räumen, und ihr fester Sitz wurde 1360 n. H. (1941 n. Chr.) eröffnet – im arabisch-islamischen Stil, mit einem Bogenportal und einem von Arkaden gesäumten Innenhof. Hier lernten Generationen aus der Region. Das Gebäude wurde als „Bait Al-Thaqafa“ (Haus der Kultur) restauriert – ein Wahrzeichen, das die Erinnerung an den Bildungsaufbruch Al-Ahsas bewahrt."
+# الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 1 بدرجة 91/100 (2026-09-05، السجل في ru-translation/memory/scores.csv)
+title_ru: "Школа «Эль-Амирия»"
+kicker_ru: "Историческая достопримечательность"
+summary_ru: "Первая государственная школа современного типа в Аль-Ахсе, открытая в 1937 году; ее историческое здание сегодня — дом культуры."
+body_ru: "Школа «Эль-Амирия» — первая государственная школа современного типа в Аль-Ахсе — стоит на возвышенности Умм-эль-Хубайси в районе Эн-Наасиль, к востоку от старой части Эль-Хуфуфа и недалеко от рынка Эль-Кайсария. Занятия начались в 1356 году хиджры (1937 год н. э.) в арендованном помещении, а постоянное здание открылось в 1360 г. х. (1941 г. н. э.) — в арабо-исламском стиле, с арочным входом и внутренним двором в кольце аркад. Здесь учились поколения жителей региона. Здание отреставрировали, и теперь это «Байт-эс-Сакафа» (в переводе — Дом культуры) — достопримечательность, которая хранит память о просветительском подъеме Аль-Ахсы."
+area_ru: "Район Эн-Наасиль, к востоку от старой части Эль-Хуфуфа"
 slug_ar: "المدرسة-الأميرية"
 slug_en: "ameeriah"
 category: historic
