@@ -149,7 +149,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
   .nav a::after { content: ''; position: absolute; inset-block-end: 0; inset-inline: 0; block-size: 2px; background: var(--c-gold); transform: scaleX(0); transform-origin: inline-end; transition: transform var(--dur) var(--ease); }
   .nav a:hover { color: var(--c-turq); }
   .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
-  /* الألمانية وحدها في الشريط الأفقي: 14px تشتري 41px مقيسة، و12px فجوةً تشتري
+  /* الألمانية والروسية في الشريط الأفقي (الروسية انضمّت 2026-09-05: تسمياتها الطبيعية
+     تلزمها 1291px مقيسةً تحت هذه الكتلة، مقابل 1188 للإنجليزية):
+     14px تشتري 41px مقيسة، و12px فجوةً تشتري
      28px أخرى — ومجموعهما هو الفرق بين انهيارٍ عند 1449px وانهيارٍ عند 1339px،
      أي بين شاشة 1366px تعرض برغراً وأخرى تعرض الشريط. لا يسريان داخل القائمة
      المطويّة — فالمساحة هناك رأسية والتضييق خسارة خالصة. */
@@ -160,9 +162,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
        بدل 68. لذلك لا يكفي قياس التراكب وحده حكماً على الاتّساع؛ الحارس يشترط
        الارتفاع 68px والسطر الواحد معاً. بقية اللغات تبقى على 1280px (اللازم
        لأطولها 1188px) فلا يتغيّر عرض ترويستها. */
-    :global([lang='de']) .hd-in { inline-size: min(100% - var(--s-3), 1360px); }
-    :global([lang='de']) .nav { gap: 12px; }
-    :global([lang='de']) .nav a { font-size: .875rem; }
+    :global([lang='de']) .hd-in, :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1360px); }
+    :global([lang='de']) .nav, :global([lang='ru']) .nav { gap: 12px; }
+    :global([lang='de']) .nav a, :global([lang='ru']) .nav a { font-size: .875rem; }
   }
   .hd-actions { display: flex; align-items: center; gap: var(--s-3); }
   /* بوزن حبّة البحث المجاورة: كان الحدّ --c-line (‏1.1:1) غير مرئي عملياً
@@ -210,19 +212,19 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     /* الزرّ الذهبي مخفيّ هنا، فرابط الخطة داخل القائمة هو الطريق الوحيد إليها */
     .nav .nav-plan { display: block; }
   }
-  /* الألمانية تنهار أعلى: تسمياتها أطول بنيةً حتى بعد تقصيرها عبر خط الترجمة
+  /* الألمانية والروسية تنهاران أعلى: تسمياتهما أطول بنيةً حتى بعد تقصيرها عبر خط الترجمة
      (‏Sehenswertes · Termine · Souqs & Parks، اعتماد الحاكم 91/100)، واللازم لها
      1339px نافذةً بهامش الأمان نفسه. تكرار الكتلة مقصود ومحصور: لو وُحِّدت العتبة
      عند 1338px لخسرت العربية والصينية شريطهما على شاشات 1280px بلا سبب (اللازم
      لهما 1163 و1063). لا تعدّل إحدى الكتلتين دون الأخرى. */
   @media (max-width: 1338px) {
-    :global([lang='de']) .hd-actions .btn-gold { display: none; }
-    :global([lang='de']) .burger { display: flex; }
-    :global([lang='de']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    :global([lang='de']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
-    :global([lang='de']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
-    :global([lang='de']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
-    :global([lang='de']) .nav .nav-plan { display: block; }
+    :global([lang='de']) .hd-actions .btn-gold, :global([lang='ru']) .hd-actions .btn-gold { display: none; }
+    :global([lang='de']) .burger, :global([lang='ru']) .burger { display: flex; }
+    :global([lang='de']) .nav-toggle, :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='de']) .nav, :global([lang='ru']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='de']) .nav a, :global([lang='ru']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='de']) .nav-toggle:checked ~ .nav, :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='de']) .nav .nav-plan, :global([lang='ru']) .nav .nav-plan { display: block; }
   }
   /* هواتف 360px وما دونها: مجموع الوردمارك والبرغر وأدوات الشريط كان يفيض عن
      الحاوية بـ28px فيُقصّ مبدّل اللغة وينزلق الوردمارك خارج الشاشة. */
