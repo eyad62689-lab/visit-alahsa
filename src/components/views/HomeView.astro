@@ -52,14 +52,13 @@ const catCards = [
 const facts = [
   // أرقام مضمّنة خارج القاموس: كل لغة تحتاج فرعاً يدوياً هنا، والفشل صامت
   // (فاصلة عشرية ألمانية — دفعة الواجهة الألمانية 2026-09-03).
-  // فرع ru بالقيمة الإنجليزية عمداً: لصيقة البطاقة نفسها (fact.palms.l) إنجليزية
-  // حتى تمرّ دفعة ui.ru، ورقمٌ روسيّ («2,5 млн») بجوار لصيقة إنجليزية تنافر لا اتساق.
-  { n: ar ? '2.5 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2.5M' : '2.5M', l: t('fact.palms.l') },
+  // الرقم الروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05) — فاصلة عشرية روسية.
+  { n: ar ? '2.5 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2,5 млн' : '2.5M', l: t('fact.palms.l') },
   { n: '2018', l: t('fact.unesco.l') },
   // العدد يُشتقّ من المجموعة لا يُكتب يدوياً: كان مثبَّتاً «+60» بينما المنشور 58،
   // فتضاربت الرئيسية مع الخريطة وllms.txt (تدقيق 2026-08-30). أرقام لاتينية بحكم قاعدة الموقع.
   { n: String(allEntries.length), l: t('fact.sites.l') },
-  { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : ru ? 'Thousands' : 'Thousands', l: t('fact.springs.l') },
+  { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : ru ? 'Тысячи' : 'Thousands', l: t('fact.springs.l') },
 ];
 // الصينية: كل هذه الصفحات لها نسخة /zh/ (رحلتي أُضيفت في الدفعة 13 — 2026-09-03)
 const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
@@ -109,9 +108,7 @@ const jsonLd = [
 // عنوان ووصف بكلمة «دليل السياحة» المستهدفة (سيو 2026-08-22) — كل ما يُذكر
 // موجود فعلاً في الموقع (معالم وخرائط ومسارات وفعاليات ومطاعم).
 // النص الصيني من خط zh-translation-pipeline (misc.seo.* — دفعة الرئيسية 2026-08-29)
-// فرعا ru في العنوان والوصف بالقيمة الإنجليزية عمداً: الرئيسية الروسية هيكلها
-// إنجليزي حتى تمرّ دفعة ui.ru، فعنوانٌ روسيّ لصفحةٍ إنجليزية وعدٌ مكسور في نتائج
-// البحث. يُستبدلان بمخرج الخط في تلك الدفعة (سابقة السلاسل الثلاث الألمانية).
+// والروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05، الحاكم 91/100) — الفاصل U+2014 كالإنجليزية.
 const title = ar
   ? 'الأحساء — دليلك السياحي لأكبر واحة في العالم'
   : zh
@@ -119,7 +116,7 @@ const title = ar
     : de
       ? 'Al-Ahsa-Reiseführer – die größte Oase der Welt'
       : ru
-        ? 'Al-Ahsa Travel Guide — the World’s Largest Oasis'
+        ? 'Аль-Ахса — путеводитель по крупнейшему оазису в мире'
         : 'Al-Ahsa Travel Guide — the World’s Largest Oasis';
 const description = ar
   ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
@@ -128,7 +125,7 @@ const description = ar
     : de
       ? 'Ihr Al-Ahsa-Reiseführer: Jabal al-Qarah, Qasr Ibrahim, Qaisariyah-Souk und Al-Uqair – Karten, Routen, Veranstaltungen und Restaurants im UNESCO-Welterbe.'
       : ru
-        ? 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.'
+        ? 'Путеводитель по Аль-Ахсе, оазису из списка ЮНЕСКО: Джабаль-эль-Кара, Каср-Ибрахим, рынок Эль-Кайсария и Эль-Укайр — карты, маршруты, события и рестораны.'
         : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
