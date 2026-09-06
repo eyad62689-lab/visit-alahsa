@@ -31,6 +31,32 @@ sameAs:
   - https://ar.wikipedia.org/wiki/بحيرة_الأصفر
 unesco: 1563-012
 mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
+# أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
+faq:
+  - q: "هل لزيارة بحيرة الأصفر رسوم؟"
+    a: "لا، بحيرة الأصفر موقع طبيعي عام بلا رسوم."
+    q_en: "Is there a fee to visit Al-Asfar Lake?"
+    a_en: "No. Al-Asfar Lake is an open natural site with no fee."
+    q_zh: "去阿斯法湖要门票吗？"
+    a_zh: "不需要。阿斯法湖是开放的公共自然景点，免收门票。"
+  - q: "أين تقع بحيرة الأصفر؟"
+    a: "شمال شرق الواحة."
+    q_en: "Where is Al-Asfar Lake?"
+    a_en: "Northeast of the oasis."
+    q_zh: "阿斯法湖在哪里？"
+    a_zh: "在绿洲东北部。"
+  - q: "هل بحيرة الأصفر ضمن موقع اليونسكو؟"
+    a: "نعم، هي أحد المكوّنات الاثني عشر المُدرجة ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي."
+    q_en: "Is Al-Asfar Lake part of the UNESCO site?"
+    a_en: "Yes. It is one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List."
+    q_zh: "阿斯法湖属于联合国教科文组织世界遗产吗？"
+    a_zh: "是的。哈萨绿洲以十二处组成部分列入联合国教科文组织世界遗产名录，阿斯法湖就是其中之一。"
+  - q: "ما أفضل وقت لزيارة بحيرة الأصفر؟"
+    a: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
+    q_en: "What is the best time to visit Al-Asfar Lake?"
+    a_en: "At sunset, when the water glows and the flocks of birds return."
+    q_zh: "什么时候去阿斯法湖最好？"
+    a_zh: "日落时分，水面熠熠生辉，鸟群陆续归来。"
 ---
 
 من أكبر البحيرات الطبيعية في الخليج العربي، وأحد **المكوّنات الاثني عشر** المُدرجة
