@@ -7,6 +7,12 @@ kicker_zh: 季节性湖泊
 summary_zh: "胡拜勒湖附近的一片季节性小湖群，雨季时成形，是沙漠出游爱好者喜爱的目的地。"
 body_zh: "迪勒丰湖（Delfoon）位于哈萨北部的胡拜勒湖附近，实为一片季节性小湖群。雨水汇入低洼地带时，湖泊便会成形。每逢雨季，这里就成了沙漠出游、郊游爱好者喜爱的好地方。其余详情目前待确认（信息更新中），有可靠来源后将予补充。"
 area_zh: 胡拜勒湖附近——哈萨北部
+# الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 7 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
+title_ru: "Озеро Эд-Дильфун"
+kicker_ru: "Сезонное озеро"
+summary_ru: "Небольшие сезонные озёра близ озера Эль-Хубайль, которые появляются в дождливые периоды, — любимое место для поездок в пустыню."
+body_ru: "Эд-Дильфун (Delfoon) — это несколько небольших сезонных озёр близ озера Эль-Хубайль, к северу от Аль-Ахсы: они появляются в дождливые периоды, когда вода собирается в низинах. В такие сезоны сюда едут те, кто любит вылазки в пустыню и прогулки на природе. Об остальном информация уточняется по надёжным источникам."
+area_ru: "Близ озера Эль-Хубайль, к северу от Аль-Ахсы"
 slug_ar: "بحيرة-الديلفوون"
 slug_en: "delfoon-lake"
 category: nature
@@ -20,10 +26,11 @@ order: 43
 area: "قرب بحيرة الحبيل — شمال الأحساء"
 area_en: "Near Al-Hubail Lake — north of Al-Ahsa"
 practical:
-  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
+  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.8130215, lng: 49.8498148 }
 mapUrl: "https://maps.app.goo.gl/zN7Z8fyjrrdkYwUk9"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
+# أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-07، الدفعة ru-attr-7 — السجل في ru-translation/memory/scores.csv).
 faq:
   - q: "هل بحيرة الديلفوون دائمة؟"
     a: "لا، هي بحيرات صغيرة موسمية تنشأ في فترات الأمطار حين تتجمّع المياه في منخفضات الأرض."
@@ -31,18 +38,24 @@ faq:
     a_en: "No. It is a cluster of small seasonal lakes that form in the rainy spells, when the water gathers in the low ground."
     q_zh: "迪勒丰湖是常年有水的湖吗？"
     a_zh: "不是。迪勒丰湖其实是一片季节性小湖群，只有到了雨季，雨水汇入低洼地带后才会成形。"
+    q_ru: "Существует ли озеро Эд-Дильфун круглый год?"
+    a_ru: "Нет. Эд-Дильфун — это несколько небольших сезонных озёр: они появляются в дождливые периоды, когда вода собирается в низинах."
   - q: "أين تقع بحيرة الديلفوون؟"
     a: "قرب بحيرة الحبيل شمال الأحساء."
     q_en: "Where is Delfoon Lake?"
     a_en: "Near Al-Hubail Lake, north of Al-Ahsa."
     q_zh: "迪勒丰湖在哪里？"
     a_zh: "在哈萨北部的胡拜勒湖附近。"
+    q_ru: "Где находится озеро Эд-Дильфун?"
+    a_ru: "Близ озера Эль-Хубайль, к северу от Аль-Ахсы."
   - q: "هل لزيارة بحيرة الديلفوون رسوم؟"
     a: "لا، موقع طبيعي عام مفتوح بلا رسوم."
     q_en: "Is there a fee to visit Delfoon Lake?"
     a_en: "No. It is an open public natural site with no fee."
     q_zh: "去迪勒丰湖要门票吗？"
     a_zh: "不需要。迪勒丰湖是开放的公共自然景点，免收门票。"
+    q_ru: "Нужно ли платить за посещение озера Эд-Дильфун?"
+    a_ru: "Нет. Это открытая общедоступная природная территория, вход свободный."
 ---
 
 الديلفوون بحيرات صغيرة موسمية تنشأ في فترات الأمطار قرب بحيرة الحبيل
