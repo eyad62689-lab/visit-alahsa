@@ -6,6 +6,11 @@ title_zh: 体育场公园
 kicker_zh: 公园
 summary_zh: "胡富夫的一座公共公园，位于体育场旁。"
 body_zh: "体育场公园（Sports Stadium Park）是胡富夫的一座公共公园，紧邻体育场。"
+# الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 8 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
+title_ru: "Парк спортивного стадиона"
+kicker_ru: "Парк"
+summary_ru: "Общественный парк рядом со спортивным стадионом в Эль-Хуфуфе."
+body_ru: "Общественный парк рядом со спортивным стадионом в Эль-Хуфуфе."
 slug_ar: "حديقة-الاستاد-الرياضي"
 slug_en: "stadium-park"
 category: parks
