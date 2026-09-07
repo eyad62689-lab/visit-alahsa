@@ -925,6 +925,7 @@ export const ui = {
     'det.visitInfo': 'Практическая информация',
     'det.area': 'Расположение',
     'det.bestTime': 'Лучшее время дня',
+    'det.faq': 'Часто задаваемые вопросы',
     'det.coords': 'Координаты',
     'det.openMaps': 'Открыть в Google Картах ↗',
     'det.fromPlace': 'Фотографии этого места',
