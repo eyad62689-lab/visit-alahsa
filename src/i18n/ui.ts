@@ -34,6 +34,10 @@ export const ui = {
     'lang.suggest.close': 'إغلاق',
     // زر المشاركة (الخطوة 6): zh يستعمل plan.copy المعتمد، وde/ru أيقونة وحدها حتى تمرّ بالخطوط
     'share.btn': 'مشاركة',
+    // «بالقرب مني» (الخطوة 7): الموقع لا يغادر الجهاز؛ zh/de/ru أيقونة وحدها حتى تمرّ بالخطوط
+    'map.locate': 'موقعي على الخريطة',
+    'map.locate.err': 'تعذّر تحديد موقعك — تحقق من إذن الموقع في المتصفح.',
+    'det.distance': 'كم يبعد عني؟',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
     // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
@@ -258,6 +262,9 @@ export const ui = {
     'lang.suggest.cta': 'Read in English',
     'lang.suggest.close': 'Dismiss',
     'share.btn': 'Share',
+    'map.locate': 'My location on the map',
+    'map.locate.err': 'Could not get your location — check the browser’s location permission.',
+    'det.distance': 'How far from me?',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
     'a11y.mainNav': 'Main navigation',

@@ -54,8 +54,10 @@
     X-Frame-Options = "SAMEORIGIN"
     # HTTPS إلزامي سنةً كاملة (الموقع لا يُخدم إلا عبر Netlify HTTPS)
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    # لا يستخدم الموقع الكاميرا ولا الميكروفون ولا الموقع الجغرافي — نعلن ذلك صراحةً
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    # لا يستخدم الموقع الكاميرا ولا الميكروفون — نعلن ذلك صراحةً. الموقع الجغرافي
+    # للأصل نفسه فقط (self) منذ الخطوة 7 من خطة التفاعل العالمي: «بالقرب مني» على
+    # الخريطة و«كم يبعد عني» في صفحة المعلم، بطلب صريح من الزائر ولا يغادر جهازه.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(self), payment=()"
     # CSP بوضع التقرير فقط (لا يحجب شيئاً): يكشف في console أي مصدر غير مدرج قبل
     # الانتقال إلى Content-Security-Policy الإلزامي. unsafe-inline لازم للسكربتات
     # الداخلية (GA، الخرائط، رحلتي) إلى أن تُنقل إلى ملفات أو nonces.
