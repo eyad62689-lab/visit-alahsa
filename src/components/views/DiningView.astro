@@ -12,6 +12,7 @@ import PageHero from '../PageHero.astro';
 import OpenNowBadge from '../OpenNowBadge.astro';
 import { getCollection } from 'astro:content';
 import { diningHref } from '../../lib/routes';
+import { DISTRICT_NAMES } from '../../data/districts';
 import { loadLive, liveFor, hoursData, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
@@ -91,12 +92,7 @@ const ZH = {
   kindBakeries: '烘焙坊',
   districtLabel: '区域',
   districtAll: '全部区域',
-  districtNames: {
-    alkoot: '库特区', downtown: '胡富夫历史城区', 'rafah-north': '里法阿北区',
-    khalidiyah: '哈利迪亚区', rawdah: '拉乌达区', mazrou: '马兹鲁阿区', uwaimriyah: '欧韦米里亚区',
-    olaya: '奥拉雅区', khaleej: '海湾路', mubarraz: '穆巴拉兹',
-    khudud: '胡杜德区', qarah: '卡拉',
-  } as Record<string, string>,
+  districtNames: DISTRICT_NAMES.zh as Record<string, string>,
   openNow: '营业中',
   closedNow: '已打烊',
   openFilter: '营业中',
@@ -163,12 +159,7 @@ const C = localize(lang, {
     kindBakeries: 'مخابز',
     districtLabel: 'الموقع',
     districtAll: 'كل المواقع',
-    districtNames: {
-      alkoot: 'حي الكوت', downtown: 'وسط الهفوف التاريخي', 'rafah-north': 'الرفعة الشمالية',
-      khalidiyah: 'الخالدية', rawdah: 'الروضة', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
-      olaya: 'العليا', khaleej: 'طريق الخليج', mubarraz: 'المبرز',
-      khudud: 'حي الخدود', qarah: 'القارة',
-    } as Record<string, string>,
+    districtNames: DISTRICT_NAMES.ar as Record<string, string>,
     openNow: 'مفتوح الآن',
     closedNow: 'مغلق الآن',
     openFilter: 'مفتوح الآن',
@@ -234,12 +225,7 @@ const C = localize(lang, {
     kindBakeries: 'Bakeries',
     districtLabel: 'Area',
     districtAll: 'All areas',
-    districtNames: {
-      alkoot: 'Al-Koot district', downtown: 'Historic downtown Hofuf', 'rafah-north': 'Al-Raf‘ah North',
-      khalidiyah: 'Al-Khalidiyah', rawdah: 'Al-Rawdah', mazrou: 'Al-Mazrou‘', uwaimriyah: 'Al-Uwaimriyah',
-      olaya: 'Al-Olaya', khaleej: 'Al-Khaleej Road', mubarraz: 'Al-Mubarraz',
-      khudud: 'Al-Khudud', qarah: 'Al-Qarah',
-    },
+    districtNames: DISTRICT_NAMES.en as Record<string, string>,
     openNow: 'Open now',
     closedNow: 'Closed now',
     openFilter: 'Open now',

@@ -25,6 +25,7 @@ area: حي الكوت — وسط الهفوف
 area_en: "Al-Koot district — central Hofuf"
 featured: false
 order: 15
+district: alkoot
 location: { lat: 25.376665, lng: 49.584965 }
 sameAs:
   - https://www.wikidata.org/wiki/Q99677807

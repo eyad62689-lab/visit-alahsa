@@ -39,6 +39,7 @@ export const ui = {
     'map.locate.err': 'تعذّر تحديد موقعك — تحقق من إذن الموقع في المتصفح.',
     'det.distance': 'كم يبعد عني؟',
     'det.unesco': 'من مكوّنات موقع اليونسكو للتراث العالمي',
+    'det.mentions.h': 'مقالات تذكر هذا المعلم',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
     // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
@@ -268,6 +269,7 @@ export const ui = {
     'map.locate.err': 'Could not get your location — check the browser’s location permission.',
     'det.distance': 'How far from me?',
     'det.unesco': 'A component of the UNESCO World Heritage site',
+    'det.mentions.h': 'Articles that mention this place',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
     'a11y.mainNav': 'Main navigation',

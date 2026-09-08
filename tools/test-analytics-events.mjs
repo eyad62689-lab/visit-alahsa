@@ -96,6 +96,16 @@ try {
   ev = await events(page);
   ok(find(ev, 'maps_open', (p) => p.item_id === '/en/attractions/jabal-al-qarah/'), 'maps_open عند الخروج إلى خرائط قوقل');
 
+  // الروابط ذات الصلة (الخطوة 9): «مقالات تذكر هذا المعلم» و«أكمل يومك» — نمنع التنقّل ونبقي النقر
+  await page.evaluate(() => document.querySelectorAll('a.mn-link, a.nb-card').forEach((a) => a.addEventListener('click', (e) => e.preventDefault())));
+  await page.click('a.mn-link');
+  await page.click('a.nb-card');
+  ev = await events(page);
+  const rcA = find(ev, 'related_click', (p) => p.kind === 'article');
+  const rcN = find(ev, 'related_click', (p) => p.kind === 'attraction');
+  ok(rcA && typeof rcA.params.item_id === 'string' && rcA.params.item_id.length > 0, 'related_click على مقال يذكر المعلم', rcA ? `item_id = ${rcA.params.item_id}` : '');
+  ok(rcN && typeof rcN.params.item_id === 'string' && rcN.params.item_id.length > 0, 'related_click على معلم قريب', rcN ? `item_id = ${rcN.params.item_id}` : '');
+
   await page.click('#search-open');
   ev = await events(page);
   ok(find(ev, 'search_open'), 'search_open عند فتح البحث');

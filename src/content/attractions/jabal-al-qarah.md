@@ -40,6 +40,7 @@ hoursSpec:
 fee: { amount: 50, currency: SAR }
 answer: "جبل القارة جبلٌ يرتفع وسط واحة الأحساء شرق الهفوف، تشتهر مغاراته الاثنتا عشرة باعتدال حرارتها نحو 20°م طوال العام: باردة في ذروة الصيف ودافئة في الشتاء. يُفتح يومياً من 8:00 ص إلى 10:00 م، والتذكرة 50 ريالاً للبالغين عبر «أرض الحضارات»."
 answer_en: "Jabal Al-Qarah rises in the middle of the Al-Ahsa oasis, east of Hofuf; its caves stay cool at the peak of summer and warm in winter, and its summit overlooks a sea of palms. Open daily 8:00 am to 10:00 pm; adult tickets SAR 50."
+district: qarah
 location: { lat: 25.411483, lng: 49.692814 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12204761

@@ -16,6 +16,7 @@ import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 import { kmBetween, distLabel } from '../../lib/distance';
 import ShareButton from '../ShareButton.astro';
+import { mentionsOf } from '../../lib/related';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -44,6 +45,8 @@ const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : ru ? (a.body_ru ?? a.body_en ?? '')
   : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
+// «مقالات تذكر هذا المعلم» — الفهرس العكسي بلغة الصفحة (الخطوة 9)؛ [] حين لا مقال بها
+const mentions = await mentionsOf(a, lang);
 
 // فئات الأسواق/المنتزهات/المزارع تتبع صفحتها المستقلة في الفتات وزر العودة (2026-07-13)
 // الصينية: الفهرسان صينيان (الأسواق والمنتزهات أُضيفت في الدفعة 12 — 2026-09-03)
@@ -193,6 +196,7 @@ const nearby = a.location
         // العنوان المتراجع للإنجليزية يُوسم lang="en" فيقرؤه قارئ الشاشة بلغته،
         // ويستثنيه الحارس C18 (تهجئة Souk الألمانية) من نصّ الصفحة الألماني.
         titleLang: (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) ? 'en' : undefined,
+        id: e.data.slug_en,
         img: e.data.heroImage,
         km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
       }))
@@ -324,6 +328,22 @@ const nearby = a.location
       </section>
     )}
 
+    {mentions.length > 0 && (
+      <section class="container mentions-sec" data-reveal>
+        <h2 class="mn-h">{t('det.mentions.h')}</h2>
+        <ul class="mn-list">
+          {mentions.map((m) => (
+            <li>
+              <a class="mn-link" href={m.href} data-track="related_click" data-track-kind="article" data-track-item-id={m.key}>
+                <span class="t-caption mn-k">{m.topic}</span>
+                <span class="mn-t">{m.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     {nearby.length > 0 && (
       <section class="nearby-sec">
         <div class="container" data-reveal>
@@ -331,7 +351,7 @@ const nearby = a.location
           <p class="nb-lead">{t('det.nearby.d')}</p>
           <div class="nb-grid">
             {nearby.map((n) => (
-              <a class="card card--lift nb-card" href={n.href}>
+              <a class="card card--lift nb-card" href={n.href} data-track="related_click" data-track-kind="attraction" data-track-item-id={n.id}>
                 <Photo src={n.img} label={n.title} class="nb-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                 <div class="nb-body">
                   <span class="t-caption nb-k">{n.cat}</span>
@@ -468,6 +488,14 @@ const nearby = a.location
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
   .gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  /* مقالات تذكر هذا المعلم (الخطوة 9) */
+  .mentions-sec { padding-block: var(--s-2) var(--s-6); }
+  .mn-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
+  .mn-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-3); }
+  .mn-link { display: flex; flex-direction: column; gap: 4px; padding: var(--s-3) var(--s-4); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); text-decoration: none; color: var(--c-ink); transition: border-color var(--dur) var(--ease); }
+  .mn-link:hover { border-color: var(--c-turq); }
+  .mn-k { color: var(--c-gold-deep); }
+  .mn-t { font-weight: 600; color: var(--c-turq-deep); line-height: 1.5; }
   .nearby-sec { background: var(--c-sand-2); padding-block: var(--s-6); }
   .nb-h { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-1) var(--s-4); }

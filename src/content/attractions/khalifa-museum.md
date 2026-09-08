@@ -25,6 +25,7 @@ area: شمال المبرز — بين الشعبة والقرين
 area_en: "North of Al-Mubarraz — between Al-Shu'bah and Al-Qurain"
 featured: false
 order: 53
+district: mubarraz
 location: { lat: 25.422917, lng: 49.580739 }
 mapUrl: "https://goo.gl/maps/jmPcvnWqa1xXRnz6A"
 ---

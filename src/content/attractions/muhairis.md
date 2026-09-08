@@ -26,6 +26,7 @@ area: شمال المبرز — الأحساء
 area_en: "North of Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 13
+district: mubarraz
 location: { lat: 25.448248, lng: 49.582469 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233066

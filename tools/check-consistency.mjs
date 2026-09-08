@@ -999,6 +999,99 @@ async function main() {
     else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ صفحة اليونسكو بلغتيها تحمل المكوّنات ${comps.length} بروابطها`);
   }
 
+  // ── C25: الربط الداخلي (الخطوة 9 من خطة التفاعل العالمي، ف4) ──
+  // (أ) كل معلم يربطه مقالٌ (رابط /معالم/<slug>/ أو /<lang>/attractions/<slug>/ في صفحة
+  //     المقال المبنية) تحمل صفحته بلغة المقال قسم «مقالات تذكر هذا المعلم» برابط إلى ذلك
+  //     المقال — والعكس: لا رابط في القسم إلى مقال لا يذكره (المنشور = الفهرس العكسي).
+  // (ب) صفحة المنشأة التي يحمل مصدرها district تعرض كل المعالم الحاملة للحيّ نفسه
+  //     (عدداً وروابط)، ولا قسم لمنشأة بلا حيّ. حارس إيجابي على العددين.
+  {
+    const problems = [];
+    const AR_BLOG_DIR = 'مدونة';
+    const linksIn = (html, re) => [...html.matchAll(re)].map((m) => { try { return decodeURIComponent(m[1]); } catch { return m[1]; } });
+    const hrefsOf = (block) => new Set(linksIn(block, /href="([^"]+)"/g));
+    // (أ) المقالات → المعالم
+    const expected = new Map(); // `${lang}:${slug}` → Set(postPath)
+    const blogDirs = [['ar', path.join(DIST, AR_BLOG_DIR)], ['en', path.join(DIST, 'en', 'blog')], ...['zh', 'de', 'ru'].map((l) => [l, path.join(DIST, l, 'blog')])];
+    let posts = 0;
+    for (const [l, dir] of blogDirs) {
+      let names;
+      try { names = (await readdir(dir, { withFileTypes: true })).filter((e) => e.isDirectory()).map((e) => e.name); } catch { continue; }
+      for (const n of names) {
+        const fp = path.join(dir, n, 'index.html');
+        if (!existsSync(fp)) continue;
+        posts++;
+        const html = await readFile(fp, 'utf8');
+        const postPath = l === 'ar' ? `/${AR_BLOG_DIR}/${n}/` : `/${l}/blog/${n}/`;
+        // روابط الماركداون العربية تخرج مرمَّزة (percent-encoding) — تُفكّ في hrefsOf قبل المطابقة
+        const prefix = l === 'ar' ? `/${AR_ATTRACTIONS_DIR}/` : `/${l}/attractions/`;
+        for (const h of hrefsOf(html)) {
+          const m = h.startsWith(prefix) ? h.slice(prefix.length).match(/^([^/?#]+)\/$/) : null;
+          if (!m) continue;
+          const k = `${l}:${m[1]}`;
+          (expected.get(k) ?? expected.set(k, new Set()).get(k)).add(postPath);
+        }
+      }
+    }
+    let withMentions = 0, mentionLinks = 0;
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue;
+      const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
+        .map(([l, slug, p]) => [l, slug, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , , fp]) => existsSync(fp));
+      for (const [l, slug, p, fp] of pages) {
+        const html = await readFile(fp, 'utf8');
+        const sec = html.match(/<section class="container mentions-sec"[\s\S]*?<\/section>/)?.[0] ?? '';
+        const got = hrefsOf(sec);
+        const want = expected.get(`${l}:${slug}`) ?? new Set();
+        if (want.size) { withMentions++; mentionLinks += want.size; }
+        const missing = [...want].filter((x) => !got.has(x));
+        const extra = [...got].filter((x) => !want.has(x));
+        if (missing.length) problems.push(`${p}: قسم المقالات بلا ${missing.slice(0, 2).join('، ')}`);
+        if (extra.length) problems.push(`${p}: قسم المقالات يربط مقالاً لا يذكره — ${extra.slice(0, 2).join('، ')}`);
+      }
+    }
+    // (ب) المنشآت → معالم الحيّ
+    const SRC_DINING = path.join(ROOT, 'src/content/dining');
+    const attrByDistrict = new Map();
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!dist) continue;
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      (attrByDistrict.get(dist) ?? attrByDistrict.set(dist, []).get(dist)).push({ ar: `/${AR_ATTRACTIONS_DIR}/${slugAr}/`, en: `/en/attractions/${slugEn}/` });
+    }
+    let diningWith = 0, diningChecked = 0;
+    for (const f of (await readdir(SRC_DINING)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_DINING, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue;
+      const pages = [['ar', `/مطاعم-ومقاهي/${slugAr}/`], ['en', `/en/restaurants-cafes/${slugEn}/`]]
+        .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      for (const [l, p, fp] of pages) {
+        diningChecked++;
+        const html = await readFile(fp, 'utf8');
+        const sec = html.match(/<section class="dd-panel dd-sights"[\s\S]*?<\/section>/)?.[0] ?? '';
+        const got = hrefsOf(sec);
+        const want = new Set((dist ? attrByDistrict.get(dist) ?? [] : []).map((x) => x[l]));
+        if (!dist && sec) problems.push(`${p}: قسم معالم الحيّ بلا district في المصدر`);
+        if (want.size) diningWith++;
+        const missing = [...want].filter((x) => !got.has(x));
+        const extra = [...got].filter((x) => !want.has(x));
+        if (missing.length) problems.push(`${p}: معالم الحيّ بلا ${missing.slice(0, 2).join('، ')}`);
+        if (extra.length) problems.push(`${p}: معالم الحيّ تربط ${extra.slice(0, 2).join('، ')} من خارج الحيّ`);
+      }
+    }
+    if (posts < 10 || withMentions < 20 || diningChecked < 20 || diningWith < 6) fail('C25', `الحارس صار فارغاً: ${posts} مقالات، ${withMentions} صفحة معلم بمقالات، ${diningChecked} صفحة منشأة (${diningWith} بمعالم حيّ) — المتوقع ≥10 و≥20 و≥20 و≥6`);
+    else if (problems.length) fail('C25', `الربط الداخلي: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C25', `${withMentions} صفحة معلم تحمل قسم المقالات (${mentionLinks} رابطاً) مطابقاً للمقالات الـ${posts} التي تذكرها، و${diningWith} من ${diningChecked} صفحة منشأة تعرض معالم حيّها كاملةً`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

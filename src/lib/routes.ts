@@ -54,3 +54,10 @@ export const stayAlt = (d: StaySlugs): { ar: string; en: string } => ({
   ar: stayHref(d, 'ar'),
   en: stayHref(d, 'en'),
 });
+
+type PostSlugs = { lang: string; slug: string };
+
+/** رابط صفحة المقال بلغة ملفه — بشرطة ختامية دائماً. العربية على الجذر، وسواها
+ *  تحت بادئة لغتها (/en/blog/ و/zh/blog/ …) على النمط نفسه. */
+export const blogHref = (d: PostSlugs): string =>
+  d.lang === 'ar' ? `/مدونة/${d.slug}/` : `/${d.lang}/blog/${d.slug}/`;

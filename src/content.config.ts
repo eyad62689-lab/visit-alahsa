@@ -1,6 +1,7 @@
 // نموذج محتوى «المعلم» — Content Collection عبر طبقة المحتوى (glob loader).
 // مصدر الحقيقة لكل صفحات المعالم. الحقول العملية موسومة وتُملأ بعد التحقق.
 import { defineCollection } from 'astro:content';
+import { DISTRICTS, DISTRICT_MENTION } from './data/districts';
 // z من astro/zod لا astro:content: التصدير القديم مهمل في Astro 7 (38 تحذيراً في astro check)
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
@@ -129,6 +130,10 @@ const attractions = defineCollection({
     // نسخة آلية القراءة من بند practical الموثّق نفسه — لا تُملأ إلا لما بنده موثّق
     // (يفرضه الفحص أدناه ويحرسه C24 على dist)، وتُصدَّر openingHoursSpecification
     // وisAccessibleForFree/offers في TouristAttraction. الأيام برموز schema.org المختصرة.
+    // ── الحيّ (الخطوة 9 من خطة التفاعل العالمي، ف4) ──
+    // مفتاح حيّ المنشآت نفسه؛ يُسند فقط حين يسمّي نصّ area القائم (أو العنوان) الحيَّ —
+    // يفرضه الفحص أدناه — فتعرض صفحة المنشأة «معالم قريبة في الحيّ» بلا حقيقة مضافة.
+    district: z.enum(DISTRICTS).optional(),
     // ── فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي، بند 3 من ف3) ──
     // 35–45 كلمة تتصدّر المتن وتكون وصف الصفحة، مركّبة حصراً من المتن وبطاقة الزيارة
     // (كل رقم فيها يحرسه C24 على dist ضد بقية المتن والبطاقة). عربي وإنجليزي معاً أو
@@ -153,6 +158,8 @@ const attractions = defineCollection({
     message: 'answer وanswer_en معاً أو لا شيء — فقرة الإجابة بلغتي الموقع الكاملتين',
   }).refine((a) => [a.answer, a.answer_en].every((s) => !s || (wc(s) >= 35 && wc(s) <= 45)), {
     message: 'فقرة الإجابة بين 35 و45 كلمة',
+  }).refine((a) => !a.district || DISTRICT_MENTION[a.district].test(`${a.area ?? ''} ${a.title}`), {
+    message: 'district يُسند فقط حين يسمّي نصّ area أو العنوان الحيَّ نفسه — لا حيّ بالتقدير',
   }),
 });
 
@@ -188,9 +195,8 @@ const blog = defineCollection({
 // مطعماً ولا مقهى، وحشره في `cafe` كان يفسد مرشّح النوع ونوع schema.org معاً.
 const DINING_KINDS = ['restaurant', 'cafe', 'bakery'] as const;
 // `khudud` و`qarah` أُضيفا مع الدفعة نفسها — حي الخدود شرق الهفوف، والقارة
-// شرق الواحة عند جبل القارة.
-const DISTRICTS = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'rawdah',
-  'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz', 'khudud', 'qarah'] as const;
+// شرق الواحة عند جبل القارة. المفاتيح وتسمياتها في src/data/districts.ts منذ
+// الخطوة 9 (تشاركها المعالم والمنشآت).
 
 const dining = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/dining' }),

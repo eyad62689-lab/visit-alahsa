@@ -24,6 +24,7 @@ area: حي الكوت — وسط الهفوف
 area_en: "Al-Koot district — central Hofuf"
 featured: false
 order: 48
+district: alkoot
 location: { lat: 25.378523, lng: 49.584952 }
 mapUrl: "https://goo.gl/maps/wUgnv5hVGcKYmxAu8"
 heroImage: /img/al-kout-garden

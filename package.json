@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "prebuild": "node tools/test-ai-detection.mjs && node tools/fetch-places.mjs && node scripts/fingerprint.mjs",
     "build": "astro check && astro build && pagefind --site dist",
-    "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs",
+    "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs && node tools/check-links.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "fingerprint": "node scripts/fingerprint.mjs",

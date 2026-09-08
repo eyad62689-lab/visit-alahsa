@@ -33,6 +33,7 @@ hoursSpec:
 fee: { amount: 50, currency: SAR }
 answer: "أرض الحضارات قرية تراثية ومعرض عند سفح جبل القارة في مدينة العمران شرق الهفوف، تستعرض مراحل الحضارة في المنطقة وتتكامل معها تجربة زيارة الجبل وكهوفه بمسارات ومرافق ومطلّات. تفتح يومياً من 8:00 ص إلى 10:00 م، والتذكرة 50 ريالاً للبالغين وتشمل تجربة كهوف جبل القارة."
 answer_en: "Land of Civilisations is a heritage village and exhibition at the foot of Al-Qarah Mountain, tracing the region’s stages of civilisation, with trails and viewpoints linking it to the mountain’s caves. Open daily 8:00 am to 10:00 pm; adult tickets SAR 50 include the caves."
+district: qarah
 location: { lat: 25.41184, lng: 49.6927 }
 mapUrl: "https://maps.app.goo.gl/uCahvRZfgCzKpkxc7"
 heroImage: /img/earth-of-civilization

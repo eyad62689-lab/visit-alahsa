@@ -24,6 +24,7 @@ area: قرية القارة — عند جبل القارة، شرق الأحسا
 area_en: "Al-Qarah village — by Al-Qarah Mountain, east of Al-Ahsa"
 featured: false
 order: 60
+district: qarah
 location: { lat: 25.412022, lng: 49.6836 }
 sameAs:
   - https://www.wikidata.org/wiki/Q99941895
