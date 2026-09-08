@@ -170,7 +170,8 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),                   // وصف الميتا وبطاقة الفهرس
-    lang: z.enum(['ar', 'en']),
+    // zh/de/ru منذ الخطوة 10 من خطة التفاعل العالمي — لا يُكتب مقال بها إلا عبر خط ترجمتها (حاكم ≥ 90)
+    lang: z.enum(['ar', 'en', 'zh', 'de', 'ru']),
     key: z.string(),                           // معرّف مشترك يقرن الترجمتين
     slug: z.string(),                          // رابط المقال بلغة الملف
     topic: z.string(),                         // التسمية العلوية (eyebrow) بلغة الملف

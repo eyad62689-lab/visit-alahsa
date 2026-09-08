@@ -1092,6 +1092,45 @@ async function main() {
     else pass('C25', `${withMentions} صفحة معلم تحمل قسم المقالات (${mentionLinks} رابطاً) مطابقاً للمقالات الـ${posts} التي تذكرها، و${diningWith} من ${diningChecked} صفحة منشأة تعرض معالم حيّها كاملةً`);
   }
 
+  // ── C26: تبادل hreflang (الخطوة 10 من خطة التفاعل العالمي — المدونة متعددة اللغات) ──
+  // كل صفحة تعلن نظائرها: (أ) تُدرج نفسها بلغتها في المجموعة، (ب) كل نظير موجود في dist
+  // ويعلن المجموعة نفسها حرفياً (تبادل تام لا أحادي)، (ج) x-default يساوي النظير العربي.
+  // الحكم على ما يراه الزاحف في dist لا على المصدر — والمدونة بلغاتها الخمس أول من يجرّبه.
+  {
+    const problems = [];
+    const dec = (u) => { try { return decodeURIComponent(u); } catch { return u; } };
+    const pageSets = new Map(); // المسار (مفكوكاً) → { lang, alts: Map(lang → path), xdef }
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      const alts = new Map();
+      let xdef;
+      for (const m of html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="https:\/\/visit-alahsa\.com([^"]+)"/g)) {
+        if (m[1] === 'x-default') xdef = dec(m[2]); else alts.set(m[1], dec(m[2]));
+      }
+      if (!alts.size) continue;
+      const self = dec(html.match(/<link rel="canonical" href="https:\/\/visit-alahsa\.com([^"]+)"/)?.[1] ?? '');
+      const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
+      pageSets.set(self, { lang, alts, xdef, rel: path.relative(DIST, fp) });
+    }
+    let reciprocal = 0;
+    for (const [self, { lang, alts, xdef, rel }] of pageSets) {
+      if (alts.get(lang) !== self) { problems.push(`${rel}: لا تُدرج نفسها بلغتها (${lang}) في hreflang`); continue; }
+      if (xdef !== alts.get('ar')) problems.push(`${rel}: x-default ≠ النظير العربي`);
+      for (const [l, p] of alts) {
+        if (p === self) continue;
+        const other = pageSets.get(p);
+        if (!other) { problems.push(`${rel}: النظير ${l} ${p} غير موجود أو بلا hreflang`); continue; }
+        if (other.lang !== l) problems.push(`${rel}: النظير ${p} لغته ${other.lang} لا ${l}`);
+        if (other.alts.get(lang) !== self) problems.push(`${rel}: النظير ${p} لا يعود إليها`);
+        else if ([...alts].some(([k, v]) => other.alts.get(k) !== v) || other.alts.size !== alts.size) problems.push(`${rel}: مجموعة hreflang تختلف عن نظيرها ${p}`);
+        else reciprocal++;
+      }
+    }
+    if (pageSets.size < 300) fail('C26', `الحارس صار فارغاً: ${pageSets.size} صفحة تحمل hreflang — المتوقع ≥300`);
+    else if (problems.length) fail('C26', `تبادل hreflang: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C26', `${pageSets.size} صفحة تحمل hreflang، ${reciprocal} رابط نظير كلها متبادلة بالمجموعة نفسها وx-default عربي`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

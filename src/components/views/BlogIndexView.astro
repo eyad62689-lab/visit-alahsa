@@ -9,6 +9,7 @@ import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import { formatDate } from '../../lib/dates';
 import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
+import { blogHref } from '../../lib/routes';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -20,10 +21,13 @@ const zh = lang === 'zh';
 
 // الصينية: لا مقالات صينية بعد — تُعرض المقالات الإنجليزية وبطاقاتها تقصد
 // نظائرها الإنجليزية (سابقة فهرس المعالم: التراجع للإنجليزية نصاً ورابطاً).
-const listLang = zh ? 'en' : lang;
-const base = ar ? '/مدونة/' : '/en/blog/';
+// الصينية منذ الخطوة 10: المقالات الصينية المعتمدة أولاً، ثم ما لا نسخة صينية له بنسخته
+// الإنجليزية (بطاقة إنجليزية تقصد الصفحة الإنجليزية بـhreflang="en") — سابقة فهرس المعالم.
+// الفهرس يبقى في unlisted.ts ما دامت الكتل الإنجليزية فوق عتبة C22.
 const selfPath = ar ? '/مدونة/' : zh ? '/zh/blog/' : '/en/blog/';
-const posts = (await getCollection('blog', ({ data }) => data.lang === listLang && !data.draft))
+const all = await getCollection('blog', ({ data }) => !data.draft);
+const own = all.filter((p) => p.data.lang === lang);
+const posts = (zh ? [...own, ...all.filter((p) => p.data.lang === 'en' && !own.some((o) => o.data.key === p.data.key))] : own)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const siteUrl = SITE;
@@ -52,7 +56,7 @@ const jsonLd = [
       ) : (
         <div class="bl-grid">
           {posts.map((p) => (
-            <a class="card card--lift bl-card" href={base + p.data.slug + '/'} hreflang={zh ? 'en' : undefined}>
+            <a class="card card--lift bl-card" href={blogHref(p.data)} hreflang={p.data.lang === lang ? undefined : 'en'}>
               {p.data.heroImage ? (
                 <Photo src={p.data.heroImage} label={p.data.title} class="bl-photo" sizes="(max-width: 760px) 100vw, 33vw" />
               ) : (

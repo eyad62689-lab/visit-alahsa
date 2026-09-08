@@ -9,7 +9,7 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 import { EVENTS_AR } from '../data/events';
-import { attractionHref } from '../lib/routes';
+import { attractionHref, blogHref } from '../lib/routes';
 import { isThinAttraction } from '../lib/publish';
 import { LANG_META } from '../i18n/langs';
 import { ui } from '../i18n/ui';
@@ -33,8 +33,11 @@ export const GET: APIRoute = async () => {
   // قوائم النسخ الجزئية (الخطوة 8): الصفحات المعلَنة فقط — بعنوان معتمد من خط الترجمة
   // ودون عتبة الصفحة الرقيقة (المحجوبة noindex في C23) — مرتبةً كترتيب الفهرس.
   const listed = attractions.filter((e) => !isThinAttraction(e)).sort((a, b) => a.data.order - b.data.order);
-  const langList = (lang: 'zh' | 'de' | 'ru') =>
-    listed.filter((e) => e.data[`title_${lang}`]).map((e) => `- [${e.data[`title_${lang}`]}](${SITE}${encodeURI(attractionHref(e.data, lang))})`).join('\n');
+  const langList = (lang: 'zh' | 'de' | 'ru') => [
+    ...listed.filter((e) => e.data[`title_${lang}`]).map((e) => `- [${e.data[`title_${lang}`]}](${SITE}${encodeURI(attractionHref(e.data, lang))})`),
+    // مقالات المدونة بتلك اللغة (الخطوة 10) — بعناوينها المعتمدة من خط ترجمتها
+    ...posts.filter((p) => p.data.lang === lang && !p.data.draft).map((p) => `- [${p.data.title}](${SITE}${encodeURI(blogHref(p.data))})`),
+  ].join('\n');
 
   const body = `# زوروا الأحساء — Visit Al-Ahsa
 

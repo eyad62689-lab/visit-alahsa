@@ -8,7 +8,8 @@ import PalmMotif from '../PalmMotif.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { formatDate } from '../../lib/dates';
 import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
-import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { htmlLang, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { BLOG_INDEX } from '../../lib/blog';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 import ShareButton from '../ShareButton.astro';
@@ -20,8 +21,9 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 const { Content } = await render(entry);
 
-const homeHref = ar ? '/' : '/en/';
-const blogHref = ar ? '/مدونة/' : '/en/blog/';
+// الرئيسية بلغة الصفحة؛ والفهرس من BLOG_INDEX (de/ru بلا فهرس بعد فيقصدان الإنجليزي)
+const homeHref = ar ? '/' : lang === 'en' ? '/en/' : `/${lang}/`;
+const blogHref = BLOG_INDEX[lang];
 const siteUrl = SITE;
 const pageUrl = absUrl(Astro.url.pathname, siteUrl);
 const ogImage = p.heroImage ? `${p.heroImage}.jpg` : ogDefault(lang);
@@ -32,7 +34,7 @@ const jsonLd: object[] = [
   {
     '@context': 'https://schema.org', '@type': 'BlogPosting',
     headline: p.title, description: p.description, url: pageUrl,
-    inLanguage: ar ? 'ar' : 'en',
+    inLanguage: htmlLang(lang),
     image: siteUrl + ogImage,
     datePublished: p.pubDate.toISOString().slice(0, 10),
     ...(p.updatedDate ? { dateModified: p.updatedDate.toISOString().slice(0, 10) } : {}),
