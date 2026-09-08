@@ -25,6 +25,8 @@ area: شمال المبرز — بين الشعبة والقرين
 area_en: "North of Al-Mubarraz — between Al-Shu'bah and Al-Qurain"
 featured: false
 order: 53
+practical:
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily 4:00–9:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.422917, lng: 49.580739 }
 mapUrl: "https://goo.gl/maps/jmPcvnWqa1xXRnz6A"
 ---

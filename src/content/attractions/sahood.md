@@ -31,6 +31,8 @@ area: وسط المبرز — الأحساء
 area_en: "Central Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 11
+practical:
+  - { label: "الوضع الحالي", value: "مغلق حالياً لأعمال الترميم والتأهيل التراثي", label_en: "Current status", value_en: "Currently closed for restoration and heritage rehabilitation", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.413828, lng: 49.58326 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233052

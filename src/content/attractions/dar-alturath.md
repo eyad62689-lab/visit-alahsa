@@ -25,6 +25,9 @@ area: بلدة المنصورة — شرق الواحة
 area_en: "Al-Mansurah — east of the oasis"
 featured: false
 order: 55
+practical:
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 10:30 م", label_en: "Hours", value_en: "Daily 4:00–10:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "20 ريال للفرد", label_en: "Fees", value_en: "SAR 20 per person", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.397274, lng: 49.681173 }
 mapUrl: "https://goo.gl/maps/DvscYb4gtJNf3CGM7"
 ---

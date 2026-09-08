@@ -25,6 +25,9 @@ area: حي الكوت — وسط الهفوف
 area_en: "Al-Koot district — central Hofuf"
 featured: false
 order: 15
+practical:
+  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 8:00 م | الجمعة والسبت: 4:00 م - 8:00 م", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 8:00 pm; Friday & Saturday 4:00–8:00 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.376665, lng: 49.584965 }
 sameAs:
   - https://www.wikidata.org/wiki/Q99677807

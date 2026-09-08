@@ -20,6 +20,9 @@ summary_en: "A public park beside the sports stadium in Hofuf."
 body_en: "A public park beside the sports stadium in Hofuf."
 featured: false
 order: 50
+practical:
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.309695, lng: 49.611511 }
 mapUrl: "https://goo.gl/maps/SasB8ksT1gdzCiC99"
 heroImage: /img/stadium-park

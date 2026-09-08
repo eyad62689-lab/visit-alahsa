@@ -24,6 +24,9 @@ area: جبل الشعبة — شمال شرق الواحة
 area_en: "Al-Shu'bah Mountain — northeast of the oasis"
 featured: false
 order: 47
+practical:
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل", label_en: "Hours", value_en: "Daily 4:00 pm – midnight", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.476554, lng: 49.641744 }
 mapUrl: "https://maps.app.goo.gl/MAuvnpt8hXJdWbkz9"
 heroImage: /img/kanzan-mountain-park

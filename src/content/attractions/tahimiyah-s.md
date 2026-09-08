@@ -24,6 +24,9 @@ area: قرية التهيمية — القرى الشرقية، الأحساء
 area_en: "Al-Tahimiyah village — the eastern villages, Al-Ahsa"
 featured: false
 order: 25
+practical:
+  - { label: "المواعيد", value: "متاح للزيارة طوال ساعات النهار", label_en: "Hours", value_en: "Open to visitors during daylight hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.402082, lng: 49.690285 }
 mapUrl: "https://maps.app.goo.gl/4Ubt8aZJsY6AtGLj7"
 heroImage: /img/tahimiyah

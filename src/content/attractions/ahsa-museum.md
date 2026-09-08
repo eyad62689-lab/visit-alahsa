@@ -25,6 +25,9 @@ area: الهفوف — الأحساء
 area_en: "Hofuf — Al-Ahsa"
 featured: false
 order: 51
+practical:
+  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 2:30 م (مغلق الجمعة والسبت)", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 2:30 pm (closed Friday & Saturday)", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.35964, lng: 49.599078 }
 sameAs:
   - https://www.wikidata.org/wiki/Q20400438

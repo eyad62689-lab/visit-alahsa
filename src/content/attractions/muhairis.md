@@ -26,6 +26,9 @@ area: شمال المبرز — الأحساء
 area_en: "North of Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 13
+practical:
+  - { label: "المواعيد", value: "الحديقة والممشى يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "The garden and walkway daily 4:00–11:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.448248, lng: 49.582469 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233066

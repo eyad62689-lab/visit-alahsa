@@ -24,6 +24,9 @@ area: حي الكوت — وسط الهفوف
 area_en: "Al-Koot district — central Hofuf"
 featured: false
 order: 48
+practical:
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.378523, lng: 49.584952 }
 mapUrl: "https://goo.gl/maps/wUgnv5hVGcKYmxAu8"
 heroImage: /img/al-kout-garden
