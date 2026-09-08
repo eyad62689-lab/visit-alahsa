@@ -1,34 +1,76 @@
 ---
-// صفحة 404 ثنائية اللغة — Netlify يلتقط dist/404.html تلقائياً.
+// صفحة 404 — تستنتج لغة الزائر من بادئة المسار (الخطوة 2 من خطة التفاعل العالمي).
+//
+// Netlify يقدّم dist/404.html لأي مسار مفقود فلا يعرف الخادم لغة الزائر؛ السكربت
+// المضمّن أدناه يكشف الكتلة المطابقة للبادئة (/en/ أو /zh/ أو /de/ أو /ru/) ويخفي
+// البقية، وبلا بادئة تبقى العربية. بلا جافاسكربت تظهر العربية والإنجليزية معاً كما
+// كانتا. نصوص الصينية والألمانية والروسية من مفاتيح قواميسها المعتمدة حصراً
+// (crumb.home وnav.attractions) — لا جملة جديدة خارج خطوط الترجمة، فتُكمَّل بالسطر
+// الإنجليزي. شريط اقتراح اللغة معطَّل هنا لأن الصفحة تتولى لغتها بنفسها.
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PalmMotif from '../components/PalmMotif.astro';
+import { LANG_META, LANGS } from '../i18n/langs';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
 const alt = { ar: '/', en: '/en/' };
+const HOME: Record<Lang, string> = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/' };
+const LIST: Record<Lang, string> = { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/' };
+const EN_LINE = 'This page doesn’t exist or has moved. Try the home page or the attractions below.';
+const blocks = LANGS.map((l) => {
+  const t = useTranslations(l);
+  return {
+    lang: l, code: LANG_META[l].code, dir: LANG_META[l].dir,
+    home: HOME[l], list: LIST[l], homeLabel: t('crumb.home'), listLabel: t('nav.attractions'),
+    title: l === 'ar' ? 'الصفحة غير موجودة — الأحساء' : l === 'en' ? 'Page not found — Al-Ahsa' : `404 — ${t('site.name')}`,
+    heading: l === 'ar' ? 'يبدو أنّك خرجت عن مسار الواحة' : l === 'en' ? 'Looks like you wandered off the oasis trail' : null,
+    text: l === 'ar' ? 'الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:' : l === 'en' ? EN_LINE : null,
+    // العربية والإنجليزية ظاهرتان بلا JS (السلوك السابق)؛ البقية تُكشف بالسكربت
+    initiallyHidden: l !== 'ar' && l !== 'en',
+  };
+});
 ---
-<Base title="الصفحة غير موجودة — الأحساء" description="لم نعثر على هذه الصفحة." lang="ar" alt={alt} noindex={true}>
+<Base title="الصفحة غير موجودة — الأحساء" description="لم نعثر على هذه الصفحة." lang="ar" alt={alt} noindex={true} langSuggest={false}>
   <Header lang="ar" alt={alt} />
   <main id="main" data-pagefind-ignore>
     <section class="container nf">
       <PalmMotif size={72} class="nf-palm" />
       <p class="nf-code" aria-hidden="true"><bdi>404</bdi></p>
-      <h1 class="nf-h">يبدو أنّك خرجت عن مسار الواحة</h1>
-      <p class="nf-d">الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:</p>
-      <p class="nf-d nf-en" lang="en" dir="ltr">This page doesn’t exist. Try the home page or the attractions below.</p>
-      <div class="nf-cta">
-        <a href="/" class="btn btn--gold">الصفحة الرئيسية</a>
-        <a href="/معالم/" class="btn btn--ghost-nf">تصفّح المعالم</a>
-        <a href="/en/" class="btn btn--ghost-nf" lang="en">English home</a>
-      </div>
+      {blocks.map((b) => (
+        <div class="nf-block" data-lang={b.lang} data-title={b.title} lang={b.code} dir={b.dir} hidden={b.initiallyHidden}>
+          {/* كل كتلة بعنوان h1 (إتاحة: page-has-heading-one) — الكتل بلا جملة معتمدة تأخذ العنوان الإنجليزي */}
+          <h1 class="nf-h" lang={b.heading ? undefined : 'en'} dir={b.heading ? undefined : 'ltr'}>{b.heading ?? 'Page not found'}</h1>
+          <p class:list={['nf-d', { 'nf-en': !b.text }]} lang={b.text ? undefined : 'en'} dir={b.text ? undefined : 'ltr'}>{b.text ?? EN_LINE}</p>
+          <div class="nf-cta">
+            <a href={b.home} class="btn btn--gold">{b.homeLabel}</a>
+            <a href={b.list} class="btn btn--ghost-nf">{b.listLabel}</a>
+          </div>
+        </div>
+      ))}
     </section>
   </main>
   <Footer lang="ar" />
 </Base>
 
+<script is:inline>
+  (function () {
+    var m = location.pathname.match(/^\/(en|zh|de|ru)(\/|$)/);
+    var want = m ? m[1] : 'ar';
+    var blocks = document.querySelectorAll('.nf-block');
+    if (!blocks.length) return;
+    var chosen = null;
+    blocks.forEach(function (b) { var on = b.getAttribute('data-lang') === want; b.hidden = !on; if (on) chosen = b; });
+    if (chosen && chosen.getAttribute('data-title')) document.title = chosen.getAttribute('data-title');
+  })();
+</script>
+
 <style>
   .nf { text-align: center; padding-block: var(--s-8); max-inline-size: 52ch; margin-inline: auto; }
   :global(.nf-palm) { color: var(--c-turq); opacity: .45; margin-inline: auto; }
   .nf-code { font-family: var(--font-latin); font-size: clamp(3rem, 9vw, 5rem); color: var(--c-gold-deep); line-height: 1; margin-block: var(--s-3); letter-spacing: .08em; }
+  .nf-block[hidden] { display: none; }
   .nf-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; margin-block-end: var(--s-3); }
   .nf-d { color: var(--c-ink-soft); line-height: 1.8; }
   .nf-en { font-size: var(--t-sm); margin-block-start: var(--s-2); }

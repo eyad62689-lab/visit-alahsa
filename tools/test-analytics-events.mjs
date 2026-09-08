@@ -98,8 +98,11 @@ try {
   ev = await events(page);
   ok(find(ev, 'search_open'), 'search_open عند فتح البحث');
   await page.type('#sm-input', 'qarah');
-  const gotResult = await page.waitForSelector('a.sm-item', { timeout: 10000 }).then(() => true).catch(() => false);
-  ok(gotResult, 'نتائج Pagefind ظهرت لعبارة «qarah»');
+  // Pagefind يُحمَّل كسولاً ويجلب أجزاء الفهرس عند أول بحث؛ المهلة تسع تحميل الفهرس على آلة بطيئة
+  let waitErr = '';
+  const gotResult = await page.waitForSelector('a.sm-item', { timeout: 20000 }).then(() => true).catch((e) => { waitErr = String(e).slice(0, 160); return false; });
+  const diag = gotResult ? '' : await page.evaluate(() => `dialog.open=${document.getElementById('site-search')?.open} · value=${document.getElementById('sm-input')?.value} · results=${(document.getElementById('sm-results')?.textContent || '').slice(0, 80)}`).catch((e) => String(e).slice(0, 120));
+  ok(gotResult, 'نتائج Pagefind ظهرت لعبارة «qarah»', gotResult ? '' : `${waitErr} · ${diag}`);
   if (gotResult) {
     await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }).catch(() => {}), page.click('a.sm-item')]);
     const sr = await waitEvent(page, 'search_result', (p) => p.search_term === 'qarah');

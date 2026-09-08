@@ -27,6 +27,11 @@ export const ui = {
     'lang.switch': 'EN',
     'lang.switchLabel': 'English',
     'lang.menu': 'اللغة',
+    // شريط اقتراح اللغة (الخطوة 2 من خطة التفاعل العالمي): يُعرض بلغة الزائر لا بلغة الصفحة.
+    // zh/de/ru بلا هذه المفاتيح عمداً حتى تمرّ بخطوط الترجمة — فيُعرض اسم اللغة الأصلي وحده.
+    'lang.suggest.text': 'هذه الصفحة متاحة بالعربية',
+    'lang.suggest.cta': 'اقرأها بالعربية',
+    'lang.suggest.close': 'إغلاق',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
     // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
@@ -247,6 +252,9 @@ export const ui = {
     'lang.switch': 'ع',
     'lang.switchLabel': 'العربية',
     'lang.menu': 'Language',
+    'lang.suggest.text': 'This page is available in English',
+    'lang.suggest.cta': 'Read in English',
+    'lang.suggest.close': 'Dismiss',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
     'a11y.mainNav': 'Main navigation',

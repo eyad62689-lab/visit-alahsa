@@ -68,13 +68,17 @@ jobs:
       # فحص قبول الخطوة 1 من خطة التفاعل العالمي: أحداث القياس تصل إلى dataLayer
       # في متصفح حقيقي على dist. puppeteer-core يُثبَّت خارج المستودع عمداً (لا يدخل
       # package.json كي لا يثقل بناء نتلايفي) — سابقة tools/measure-header-fit.mjs.
-      - name: Acceptance — analytics events reach dataLayer
+      # الخطوة 2 (استقبال الزائر بلغته): tools/test-lang-suggest.mjs يفحص شريط اقتراح
+      # اللغة و404 وبيانات التطبيق، ويشغّل axe-core (صفر مخالفات) على الصفحات المعنية.
+      - name: Acceptance — browser checks on dist (analytics, language suggestion)
         run: |
           (npx astro preview --host 127.0.0.1 --port 4399 > /tmp/preview.log 2>&1 &)
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:4399/en/ && break; sleep 1; done
-          mkdir -p /tmp/pptr && cd /tmp/pptr && npm init -y > /dev/null && npm i puppeteer-core@24 --no-audit --no-fund > /dev/null && cd -
+          mkdir -p /tmp/pptr && cd /tmp/pptr && npm init -y > /dev/null && npm i puppeteer-core@24 axe-core@4 --no-audit --no-fund > /dev/null && cd -
           CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser)"
-          PUPPETEER_DIR=/tmp/pptr CHROME="$CHROME" BASE=http://127.0.0.1:4399 node tools/test-analytics-events.mjs
+          export PUPPETEER_DIR=/tmp/pptr CHROME BASE=http://127.0.0.1:4399
+          node tools/test-analytics-events.mjs
+          node tools/test-lang-suggest.mjs
 
       - name: Upload build log artefacts on failure
         if: failure()

@@ -1,0 +1,127 @@
+---
+// شريط اقتراح اللغة — الخطوة 2 من خطة التفاعل العالمي (ع1 في التشخيص).
+//
+// المشكلة: الزائر غير العربي الذي يصل إلى الجذر (رابط مشارَك، أو نطاق مذكور في
+// إجابة محرك ذكاء اصطناعي) يهبط على صفحة عربية معكوسة الاتجاه ولا تحويل ولا اقتراح.
+// الحل: شريط واحد غير حاجب، ثابت أسفل الشاشة (لا يزيح المحتوى فلا CLS)، يُقيَّم مرة
+// واحدة في الجلسة عند الدخول، ويقارن لغات المتصفح مرتّبةً بلغة الصفحة: أول لغة
+// مفضّلة تسبق لغة الصفحة ولها نظير في alt تُقترح؛ وإن جاءت لغة الصفحة أولاً فلا شيء.
+// لا تحويل بالخادم عمداً: التحويل حسب لغة المتصفح يحجب النسخ الأخرى عن الزواحف.
+//
+// النصوص بلغة الزائر لا بلغة الصفحة: العربية والإنجليزية بجملة ودعوة من ui.ts؛
+// والصينية والألمانية والروسية باسم اللغة الأصلي وحده (المعتمد في مبدّل اللغة) حتى
+// تمرّ مفاتيح lang.suggest.* بخطوط الترجمة — قاعدة CLAUDE.md: لا نصّ بهذه اللغات خارجها.
+//
+// الرفض يُحفظ في localStorage (داخل try/catch) فلا يُلحّ الشريط؛ والنقر على الدعوة
+// يُحفظ كذلك. القياس عبر data-track (lang_suggest_click / lang_suggest_dismiss).
+import { ui, type Lang } from '../i18n/ui';
+import { LANG_META, LANGS } from '../i18n/langs';
+import { useTranslations, type AltLinks } from '../i18n/utils';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+
+// النصّ بلغة الهدف حصراً — بلا تراجع إلى الإنجليزية (تراجع الجملة يعطي قارئاً
+// صينياً جملةً إنجليزية، وهو أسوأ من اسم لغته وحده).
+const str = (l: Lang, key: string): string | undefined => (ui[l] as Record<string, string>)[key];
+
+const options = LANGS
+  .filter((l) => l !== lang && alt[l])
+  .map((l) => ({
+    lang: l,
+    href: alt[l]!,
+    code: LANG_META[l].code,
+    dir: LANG_META[l].dir,
+    native: LANG_META[l].native,
+    text: str(l, 'lang.suggest.text') ?? '',
+    cta: str(l, 'lang.suggest.cta') ?? LANG_META[l].native,
+    close: str(l, 'lang.suggest.close') ?? t('lang.suggest.close'),
+  }));
+---
+{options.length > 0 && (
+  <div id="lang-suggest" class="lang-suggest" data-lang={lang} data-pagefind-ignore hidden>
+    {options.map((o) => (
+      <div class="ls-opt" data-for={o.lang} lang={o.code} dir={o.dir} role="region" aria-label={o.native} hidden>
+        <svg class="ls-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15.6 15.6 0 0 1 0 18a15.6 15.6 0 0 1 0-18Z" />
+        </svg>
+        {o.text && <span class="ls-tx">{o.text}</span>}
+        <a class="ls-cta" href={o.href} hreflang={o.code} data-track="lang_suggest_click" data-track-to={o.lang}>{o.cta}</a>
+        <button class="ls-x" type="button" aria-label={o.close} data-track="lang_suggest_dismiss" data-track-to={o.lang}>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="6" y1="6" x2="18" y2="18" /><line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
+        </button>
+      </div>
+    ))}
+  </div>
+)}
+
+<script is:inline>
+  (function () {
+    if (window.__vaLangSuggest) return;
+    window.__vaLangSuggest = true;
+    var KEY = 'va-lang-suggest';        // localStorage: 'off' = لا تقترح ثانيةً
+    var SEEN = 'va-lang-suggest-seen';  // sessionStorage: قُيِّم مرة في هذه الجلسة
+    function isOff() { try { return localStorage.getItem(KEY) === 'off'; } catch (e) { return false; } }
+    function setOff() { try { localStorage.setItem(KEY, 'off'); } catch (e) {} }
+    // zh-CN وzh-Hans وzh-TW كلها إلى zh (النسخة المبسّطة أقرب للقارئ من الإنجليزية)
+    function base(tag) { tag = String(tag || '').toLowerCase(); return tag.indexOf('zh') === 0 ? 'zh' : tag.split('-')[0]; }
+    function pick(pageLang, has) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language];
+      for (var i = 0; i < prefs.length; i++) {
+        var b = base(prefs[i]);
+        if (!b) continue;
+        if (b === pageLang) return null;   // لغة الصفحة تسبق كل بديل ممكن
+        if (has(b)) return b;
+      }
+      return null;
+    }
+    function show() {
+      var host = document.getElementById('lang-suggest');
+      if (!host || host.dataset.wired) return;
+      host.dataset.wired = '1';
+      if (isOff()) return;
+      try { if (sessionStorage.getItem(SEEN)) return; sessionStorage.setItem(SEEN, '1'); } catch (e) {}
+      var target = pick(host.getAttribute('data-lang'), function (l) { return !!host.querySelector('.ls-opt[data-for="' + l + '"]'); });
+      if (!target) return;
+      var opt = host.querySelector('.ls-opt[data-for="' + target + '"]');
+      host.setAttribute('dir', opt.getAttribute('dir'));
+      opt.hidden = false;
+      // بعد الرسم الأول وبمهلة قصيرة: الشريط ثابت الموضع فلا يزيح شيئاً، لكننا لا نزاحم LCP
+      var reveal = function () { host.hidden = false; };
+      if ('requestIdleCallback' in window) requestIdleCallback(reveal, { timeout: 1500 }); else setTimeout(reveal, 600);
+    }
+    document.addEventListener('click', function (e) {
+      var x = e.target.closest && e.target.closest('#lang-suggest .ls-x');
+      var cta = e.target.closest && e.target.closest('#lang-suggest .ls-cta');
+      if (x) { setOff(); var h = document.getElementById('lang-suggest'); if (h) h.hidden = true; }
+      if (cta) setOff();
+    });
+    document.addEventListener('astro:page-load', show);
+    if (document.readyState !== 'loading') show(); else document.addEventListener('DOMContentLoaded', show);
+  })();
+</script>
+
+<style>
+  .lang-suggest { position: fixed; inset-inline: 0; inset-block-end: 0; z-index: 70; display: flex; justify-content: center; padding: 0 var(--s-3) calc(var(--s-3) + env(safe-area-inset-bottom, 0px)); pointer-events: none; }
+  .lang-suggest[hidden] { display: none; }
+  .ls-opt { pointer-events: auto; display: flex; align-items: center; gap: var(--s-3); max-inline-size: 560px; inline-size: 100%; padding: 10px var(--s-3) 10px var(--s-4); background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); border-inline-start: 4px solid var(--c-turq); border-radius: var(--radius); box-shadow: 0 12px 32px rgba(0, 42, 37, .18); font-family: var(--font-body); font-size: var(--t-sm); }
+  .ls-opt[hidden] { display: none; }
+  .ls-ic { flex-shrink: 0; color: var(--c-turq); }
+  .ls-tx { flex: 1; min-inline-size: 0; line-height: 1.4; }
+  .ls-cta { flex-shrink: 0; font-weight: 700; color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; min-block-size: 44px; display: inline-flex; align-items: center; padding-inline: 4px; }
+  .ls-cta:hover { color: var(--c-turq); }
+  .ls-tx + .ls-cta { margin-inline-start: auto; }
+  /* الاسم وحده (zh/de/ru): يأخذ مكان الجملة ويبقى الزر بمقاس لمس كامل */
+  .ls-ic + .ls-cta { flex: 1; justify-content: flex-start; }
+  .ls-x { flex-shrink: 0; display: grid; place-items: center; inline-size: 44px; block-size: 44px; margin-inline-end: -8px; color: var(--c-ink-soft); background: none; border: 0; border-radius: 50%; cursor: pointer; }
+  .ls-x:hover { background: var(--c-sand-2); color: var(--c-ink); }
+  .ls-x:focus-visible, .ls-cta:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .ls-opt { animation: ls-in .35s var(--ease) both; }
+    @keyframes ls-in { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+  }
+  @media (max-width: 480px) { .ls-opt { font-size: var(--t-xs, .8125rem); gap: var(--s-2); } }
+</style>

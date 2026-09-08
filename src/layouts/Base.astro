@@ -32,6 +32,7 @@ import '@fontsource/cormorant-garamond/cyrillic-600.css';
 import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
+import LangSuggest from '../components/LangSuggest.astro';
 import { srcsetFor } from '../lib/images';
 import { ORG, WEBSITE } from '../lib/schema';
 import { AI_REFERRER_HOSTS } from '../lib/ai-referrers.mjs';
@@ -56,11 +57,15 @@ interface Props {
   /* أصول خارجية تفتح اتصالها مبكراً — لصفحات تعتمد LCP فيها على مضيف خارجي
      (بلاطات خريطة كارتو مثلاً — لايتهاوس 2026-08-29: prioritize-lcp-image) */
   preconnect?: string[];
+  /* شريط اقتراح اللغة (الخطوة 2 من خطة التفاعل العالمي) — يُعطَّل حيث تتولى الصفحة
+     لغتها بنفسها (404 تستنتج اللغة من المسار). الافتراضي: يعمل متى وُجد alt. */
+  langSuggest?: boolean;
 }
 const {
   title,
   description = 'الأحساء — أكبر واحة في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
   lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
+  langSuggest = true,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -121,7 +126,8 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    {/* بيان التطبيق بلغة الصفحة: العربي ملف ثابت، والبقية من src/pages/[lang]/site.webmanifest.ts */}
+    <link rel="manifest" href={lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`} />
     <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
     <meta name="copyright" content={copyrightNotice} />
     <meta name="rights" content={copyrightNotice} />
@@ -287,6 +293,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
       if (document.readyState !== 'loading') window.VAPlan.sync();
       else document.addEventListener('DOMContentLoaded', () => window.VAPlan.sync());
     </script>
+    {alt && langSuggest && <LangSuggest lang={lang} alt={alt} />}
     <CopyGuard />
     {/* طبقة القياس الموحّدة (وحدة مُجمَّعة تُنفَّذ مرة واحدة): الأحداث العشرة
         ومؤشرات الويب الحيوية — src/scripts/analytics.ts. تأتي بعد سكربت VAPlan
