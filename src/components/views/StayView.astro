@@ -18,7 +18,7 @@ import { getCollection } from 'astro:content';
 import { stayHref } from '../../lib/routes';
 import { liveFor, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -145,11 +145,15 @@ const C = localize(lang, {
   zh: ZH,
 });
 
+// العنوان والوصف الصينيان من الكتلة الصينية المعتمدة (title وheroSum) بدل السقوط على
+// الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
 const pageTitle = ar
   ? 'أماكن الإقامة في الأحساء — نُزل تراثية وفنادق'
+  : lang === 'zh' ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
   : 'Where to Stay in Al Ahsa — Heritage Inns & Hotels';
 const description = ar
   ? 'أماكن الإقامة في الأحساء: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
+  : lang === 'zh' ? C.heroSum
   : 'Where to stay in Al Ahsa: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;

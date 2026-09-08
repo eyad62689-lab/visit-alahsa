@@ -42,8 +42,9 @@ async function fresh(langs) {
     Object.defineProperty(navigator, 'languages', { get: () => ls });
     Object.defineProperty(navigator, 'language', { get: () => ls[0] });
   }, langs);
-  await page.setRequestInterception(true);
-  page.on('request', (r) => (/googletagmanager\.com|google-analytics\.com/.test(r.url()) ? r.abort() : r.continue()));
+  // حجب GA عبر CDP (لا اعتراض طلبات — انظر test-analytics-events.mjs)
+  const cdp = await page.createCDPSession();
+  await cdp.send('Network.setBlockedURLs', { urls: ['*googletagmanager.com*', '*google-analytics.com*'] });
   page.goto2 = (p) => page.goto(BASE + p, { waitUntil: 'networkidle0', timeout: 30000 });
   page.bar = async (timeout = 5000) => {
     try {

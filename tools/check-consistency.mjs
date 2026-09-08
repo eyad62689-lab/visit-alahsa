@@ -687,6 +687,80 @@ async function main() {
     else pass('C21', `أسئلة شائعة في ${expected.length} معلماً (${pagesChecked} صفحة، ${questions} سؤالاً منشوراً) — FAQPage والقسم المرئي يطابقان المصدر، وكل رقم فيها من متن الصفحة أو بطاقتها`);
   }
 
+  // ── C22: سلامة اللغة في النسخ الصينية والألمانية والروسية (الخطوة 5 من خطة التفاعل العالمي) ──
+  // كل صفحة zh/de/ru **معلَنة** (تحمل hreflang) يجب أن يبقى نصّها غير المترجم دون 20%:
+  // المقياس = كتل نصّ من كلمتين لاتينيتين فأكثر مطابقة حرفياً لكتلة في النظيرة
+  // الإنجليزية، مقسومة على كل كتل الصفحة من كلمتين فأكثر بأي كتابة — بعد استثناء
+  // أسماء الأعلام من المصدر (title/title_en/name_en/area_en/kicker_en تبقى لاتينية
+  // في الألمانية عمداً) والعلامة والأرقام. والصفحات في src/i18n/unlisted.ts: بلا
+  // hreflang وخارج sitemap ولا يشير إليها hreflang من أي صفحة، وnoindex متى وُسمت.
+  {
+    const THRESHOLD = 20;
+    const unlistedSrc = await readFile(path.join(ROOT, 'src/i18n/unlisted.ts'), 'utf8');
+    const unlisted = [...unlistedSrc.matchAll(/\{\s*path:\s*'([^']+)',\s*noindex:\s*(true|false)/g)].map((m) => ({ path: m[1], noindex: m[2] === 'true' }));
+    const names = new Set(['Visit Al-Ahsa', 'Al-Ahsa', 'VISIT AL-AHSA', 'visit-alahsa.com', 'Ctrl K', 'Esc']);
+    for (const dir of ['src/content/attractions', 'src/content/dining', 'src/content/stay']) {
+      for (const f of (await readdir(path.join(ROOT, dir))).filter((n) => n.endsWith('.md'))) {
+        const head = (await readFile(path.join(ROOT, dir, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+        for (const k of ['title', 'title_en', 'name_en', 'area_en', 'kicker_en']) {
+          const m = head.match(new RegExp(`^${k}:\\s*"?([^"\\r\\n]+?)"?\\s*$`, 'm'));
+          if (m) names.add(m[1].trim());
+        }
+      }
+    }
+    const chunksOf = (html) => {
+      const body = html.replace(/<head[\s\S]*?<\/head>/, '').replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<!--[\s\S]*?-->/g, '');
+      const attrs = [...body.matchAll(/(?:alt|aria-label|placeholder)="([^"]{3,})"/g)].map((m) => m[1]);
+      return [...body.replace(/<[^>]+>/g, '\n').split(/\n+/), ...attrs]
+        .map((t) => t.replace(/&[a-z]+;|&#\d+;/g, ' ').replace(/\s+/g, ' ').trim())
+        .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t));
+    };
+    const smXml = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    const problems = [];
+    const worst = {};
+    let advertised = 0;
+    for (const lang of ['zh', 'de', 'ru']) {
+      worst[lang] = { pct: 0, page: '' };
+      for (const fp of await listHtml(path.join(DIST, lang))) {
+        const html = await readFile(fp, 'utf8');
+        const pagePath = '/' + path.relative(DIST, fp).replace(/index\.html$/, '');
+        const isUnlisted = unlisted.some((u) => u.path === pagePath);
+        const hasHreflang = /<link rel="alternate" hreflang=/.test(html);
+        const noindex = /<meta name="robots" content="noindex/.test(html);
+        if (isUnlisted) {
+          if (hasHreflang) problems.push(`${pagePath}: غير معلَنة لكنها تحمل hreflang`);
+          if (smXml.includes(`<loc>https://visit-alahsa.com${pagePath}</loc>`)) problems.push(`${pagePath}: غير معلَنة داخل sitemap`);
+          const flag = unlisted.find((u) => u.path === pagePath).noindex;
+          if (flag && !noindex) problems.push(`${pagePath}: موسومة noindex في unlisted.ts وليست كذلك`);
+          continue;
+        }
+        if (!hasHreflang || noindex) continue; // غير معلَنة أصلاً (رحلتي، الرقيقة…)
+        const enHref = html.match(/hreflang="en" href="https:\/\/visit-alahsa\.com([^"]+)"/)?.[1];
+        if (!enHref) { problems.push(`${pagePath}: معلَنة بلا نظير إنجليزي`); continue; }
+        const enFile = path.join(DIST, decodeURIComponent(enHref), 'index.html');
+        if (!existsSync(enFile)) { problems.push(`${pagePath}: النظير الإنجليزي ${enHref} غير مبني`); continue; }
+        const en = new Set(chunksOf(await readFile(enFile, 'utf8')).filter((t) => /[A-Za-z]{2,}/.test(t)));
+        const all = chunksOf(html);
+        const same = all.filter((t) => /[A-Za-z]{2,}/.test(t) && en.has(t));
+        const pct = all.length ? Math.round((100 * same.length) / all.length) : 0;
+        advertised++;
+        if (pct > worst[lang].pct) worst[lang] = { pct, page: pagePath };
+        if (pct > THRESHOLD) problems.push(`${pagePath}: ${pct}% من كتل النصّ إنجليزية (${same.length}/${all.length}) — مثال: «${same[0]?.slice(0, 40)}»`);
+      }
+    }
+    // لا صفحة معلَنة تشير بـhreflang إلى صفحة غير معلَنة
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      for (const u of unlisted) {
+        if (html.includes(`hreflang="${u.path.split('/')[1]}" href="https://visit-alahsa.com${u.path}"`)) problems.push(`${path.relative(DIST, fp)}: hreflang يشير إلى غير المعلَنة ${u.path}`);
+      }
+    }
+    const summary = ['zh', 'de', 'ru'].map((l) => `${l} ≤ ${worst[l].pct}% (${worst[l].page || '—'})`).join(' · ');
+    if (advertised < 50) fail('C22', `الحارس صار فارغاً: ${advertised} صفحة معلَنة مفحوصة — المتوقع ≥50`);
+    else if (problems.length) fail('C22', `سلامة اللغة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C22', `${advertised} صفحة zh/de/ru معلَنة كلها دون ${THRESHOLD}% إنجليزية (الأعلى: ${summary})؛ و${unlisted.length} صفحة غير معلَنة بلا hreflang وخارج sitemap`);
+  }
+
   // ── C23: عتبة نشر المعالم وبطاقات المشاركة بلغة الصفحة (الخطوة 4 من خطة التفاعل العالمي) ──
   // (أ) صفحة المعلم الرقيقة (المتن + الأسئلة الشائعة دون 40 كلمة بالعربية أو
   //     الإنجليزية — القاعدة في src/lib/publish.ts) تبقى مبنية للزائر لكنها

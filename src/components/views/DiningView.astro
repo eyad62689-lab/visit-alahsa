@@ -14,7 +14,7 @@ import { getCollection } from 'astro:content';
 import { diningHref } from '../../lib/routes';
 import { loadLive, liveFor, hoursData, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -312,11 +312,15 @@ const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area ?? ''
 const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
+// العنوان والوصف الصينيان من الكتلة الصينية المعتمدة (title وheroSum) بدل السقوط على
+// الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
 const pageTitle = ar
   ? 'مطاعم ومقاهي الأحساء — دليلك لتجارب الأكل في الهفوف'
+  : lang === 'zh' ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
   : 'Al Ahsa Restaurants & Cafés — Where to Eat in Hofuf';
 const description = ar
   ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
+  : lang === 'zh' ? C.heroSum
   : 'Discover the best restaurants and cafés in Al Ahsa — from traditional Hasawi dining to specialty coffee, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;

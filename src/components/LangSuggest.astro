@@ -17,6 +17,7 @@
 import { ui, type Lang } from '../i18n/ui';
 import { LANG_META, LANGS } from '../i18n/langs';
 import { useTranslations, type AltLinks } from '../i18n/utils';
+import { listedAlt } from '../i18n/unlisted';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -26,11 +27,13 @@ const t = useTranslations(lang);
 // صينياً جملةً إنجليزية، وهو أسوأ من اسم لغته وحده).
 const str = (l: Lang, key: string): string | undefined => (ui[l] as Record<string, string>)[key];
 
+// لا اقتراح لصفحة غير معلَنة (unlisted.ts) — القائمة نفسها التي يتبعها hreflang والمبدّل
+const altL = listedAlt(alt);
 const options = LANGS
-  .filter((l) => l !== lang && alt[l])
+  .filter((l) => l !== lang && altL[l])
   .map((l) => ({
     lang: l,
-    href: alt[l]!,
+    href: altL[l]!,
     code: LANG_META[l].code,
     dir: LANG_META[l].dir,
     native: LANG_META[l].native,

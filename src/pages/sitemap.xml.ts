@@ -9,6 +9,7 @@ import { EVENTS_AR, EVENTS_EN, EVENTS_ZH } from '../data/events';
 import { attractionAlt, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
+import { isUnlisted } from '../i18n/unlisted';
 
 type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; lastmod?: string };
 
@@ -98,6 +99,11 @@ export const GET: APIRoute = async ({ site }) => {
     })),
   ];
 
+  // الصفحات غير المعلَنة (src/i18n/unlisted.ts) تُحذف من أزواجها: لا تدخل الخريطة
+  // ولا تُذكر بديلاً لنظيراتها (الخطوة 5 من خطة التفاعل العالمي)
+  for (const p of pairs) {
+    for (const k of ['zh', 'de', 'ru'] as const) if (p[k] && isUnlisted(p[k]!)) delete p[k];
+  }
   const lm = (p: Pair) => (p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : '');
   const alts = (p: Pair) => {
     if (!p.en) return '';

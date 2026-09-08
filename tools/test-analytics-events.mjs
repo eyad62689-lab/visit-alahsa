@@ -62,8 +62,10 @@ const browser = await puppeteer.launch({
 try {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 900 });
-  await page.setRequestInterception(true);
-  page.on('request', (r) => (/googletagmanager\.com|google-analytics\.com/.test(r.url()) ? r.abort() : r.continue()));
+  // حجب GA عبر CDP لا عبر اعتراض الطلبات: الاعتراض في puppeteer كان يُسقط بعض جلبات
+  // Pagefind المتزامنة فتعلق النتائج (فشل 1 من 3 تشغيلات) — بالحجب على مستوى الشبكة 8/8.
+  const cdp = await page.createCDPSession();
+  await cdp.send('Network.setBlockedURLs', { urls: ['*googletagmanager.com*', '*google-analytics.com*'] });
   const goto = (p) => page.goto(BASE + p, { waitUntil: 'networkidle0', timeout: 30000 });
 
   console.log('\n── صفحة المعلم: المشاهدة، الحفظ، خرائط قوقل، البحث، مبدّل اللغة ──');

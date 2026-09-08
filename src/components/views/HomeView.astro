@@ -234,7 +234,9 @@ const description = ar
       </div>
     </section>
 
-    <SeasonNow lang={lang} />
+    {/* كتلة الموسم بلا نسخة ألمانية أو روسية بعد (تُترجم عبر الخطين) — إخفاؤها أهون من
+        عرضها إنجليزية داخل صفحة معلَنة بلغة أخرى (بوابة C22، الخطوة 5) */}
+    {!(de || ru) && <SeasonNow lang={lang} />}
 
     <section class="why on-dark">
       <PalmMotif size={360} class="why-wm" />
