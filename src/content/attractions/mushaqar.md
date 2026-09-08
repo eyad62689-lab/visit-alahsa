@@ -24,6 +24,9 @@ area: قرب قرية القارة — شرق الأحساء
 area_en: "Near Al-Qarah village — east of Al-Ahsa"
 featured: false
 order: 46
+practical:
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "Daily 4:00–11:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.423663, lng: 49.67916 }
 mapUrl: "https://goo.gl/maps/RmGxkW2cm1xvkW4W7"
 heroImage: /img/al-mashqar-park-01

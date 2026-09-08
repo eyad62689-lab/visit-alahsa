@@ -25,6 +25,9 @@ area: قرب التويثير — شرق الهفوف
 area_en: "Near Al-Tuwaither — east of Hofuf"
 featured: false
 order: 32
+practical:
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.401341, lng: 49.631127 }
 mapUrl: "https://maps.app.goo.gl/f89hEVunAiJo8Bhv6"
 ---

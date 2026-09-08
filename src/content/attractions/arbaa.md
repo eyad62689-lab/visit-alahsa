@@ -24,6 +24,9 @@ area: جنوب شرق الهفوف — قرب بلدة الطرف
 area_en: "Southeast of Hofuf — near Al-Taraf"
 featured: false
 order: 35
+practical:
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.288764, lng: 49.716349 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12204710

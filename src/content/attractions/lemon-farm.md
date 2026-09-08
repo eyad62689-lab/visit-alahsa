@@ -18,6 +18,8 @@ summary_en: "A citrus farm where visitors pick the famous Hasawi lime (lomi) in 
 body_en: "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season."
 featured: false
 order: 61
+practical:
+  - { label: "المواعيد", value: "يومياً في المواسم الزراعية: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily in the growing seasons, 4:00–9:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.382611, lng: 49.605278 }
 mapUrl: "https://maps.app.goo.gl/P24d8Cya5Fg2ChTi6"
 heroImage: /img/hasawi-lemon-farm

@@ -25,6 +25,9 @@ area: محلة الرويضة، حي الكوت — الهفوف
 area_en: "Al-Ruwaidah quarter, Al-Koot district — Hofuf"
 featured: false
 order: 23
+practical:
+  - { label: "المواعيد", value: "أوقات الصلوات / الزيارات الثقافية بالتنسيق المسبق مع القائمين", label_en: "Hours", value_en: "At prayer times; cultural visits by prior arrangement with those who run it", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.376461, lng: 49.583846 }
 mapUrl: "https://maps.app.goo.gl/SXAr6bn8aUoLvQzw6"
 ---

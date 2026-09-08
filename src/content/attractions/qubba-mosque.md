@@ -25,6 +25,9 @@ area: داخل قصر إبراهيم، حي الكوت — الهفوف
 area_en: "Inside Qasr Ibrahim, Al-Koot district — Hofuf"
 featured: false
 order: 24
+practical:
+  - { label: "المواعيد", value: "مفتوح مع أوقات فتح قصر إبراهيم التاريخي (8:00 ص - 8:00 م)", label_en: "Hours", value_en: "Open with Qasr Ibrahim’s own hours (8:00 am – 8:00 pm)", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.378485, lng: 49.586481 }
 mapUrl: "https://maps.app.goo.gl/utuJ951niRq3T3fbA"
 ---

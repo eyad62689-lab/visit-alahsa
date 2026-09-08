@@ -25,6 +25,9 @@ area: قرية البطالية — شمال شرق الهفوف
 area_en: "Al-Battaliyah village — northeast of Hofuf"
 featured: false
 order: 21
+practical:
+  - { label: "المواعيد", value: "يومياً خلال أوقات الصلوات الخمس", label_en: "Hours", value_en: "Daily, at the five prayer times", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.431233, lng: 49.625652 }
 mapUrl: "https://maps.app.goo.gl/x3Hq8z6hfpoQnBjD7"
 heroImage: /img/jalaniyah-01

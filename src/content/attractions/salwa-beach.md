@@ -25,6 +25,9 @@ area: بلدة سلوى — أقصى جنوب شرق الأحساء
 area_en: "Salwa — the far southeast of Al-Ahsa"
 featured: false
 order: 41
+practical:
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 24.765501, lng: 50.751494 }
 mapUrl: "https://maps.app.goo.gl/iz6mDtRQ4RVGztHt7"
 ---

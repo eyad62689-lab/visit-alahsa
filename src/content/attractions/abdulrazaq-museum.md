@@ -25,6 +25,8 @@ area: الهفوف — الأحساء
 area_en: "Hofuf — Al-Ahsa"
 featured: false
 order: 54
+practical:
+  - { label: "المواعيد", value: "الفترة المسائية: 4:30 م - 9:30 م (بالاتصال المسبق)", label_en: "Hours", value_en: "Evenings 4:30–9:30 pm, by prior arrangement", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.360015, lng: 49.608017 }
 mapUrl: "https://goo.gl/maps/b9Sdf6HmKhbBXUNz7"
 ---

@@ -18,6 +18,9 @@ area: قرية القارة — عند جبل القارة، شرق الأحسا
 area_en: "Al-Qarah village — by Al-Qarah Mountain, east of Al-Ahsa"
 featured: false
 order: 60
+practical:
+  - { label: "المواعيد", value: "يومياً: 8:00 ص - 12:00 ظهراً | 3:00 م - 7:30 م", label_en: "Hours", value_en: "Daily 8:00 am – 12:00 noon and 3:00–7:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.412022, lng: 49.6836 }
 sameAs:
   - https://www.wikidata.org/wiki/Q99941895
