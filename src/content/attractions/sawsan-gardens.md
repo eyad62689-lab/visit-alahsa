@@ -6,6 +6,11 @@ title_zh: 苏珊鸟园
 kicker_zh: 农场与椰枣林
 summary_zh: "一座展示鸟类的花园，就在哈萨绿洲之中。"
 body_zh: "苏珊鸟园（Al-Sawsan Bird Gardens）是一座展示鸟类的花园，坐落在哈萨绿洲之中。"
+# الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 11 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
+title_ru: "Птичьи сады Эс-Саусан"
+kicker_ru: "Ферма и пальмы"
+summary_ru: "Сад, где в атмосфере оазиса Аль-Ахса собраны птицы."
+body_ru: "Сад, где в атмосфере оазиса Аль-Ахса собраны птицы."
 slug_ar: "حدائق-السوسن-للطيور"
 slug_en: "sawsan-gardens"
 category: farm
