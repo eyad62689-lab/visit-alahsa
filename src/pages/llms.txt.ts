@@ -27,6 +27,7 @@ export const GET: APIRoute = async () => {
   const diningCount = (await getCollection('dining')).length;
   const stayCount = (await getCollection('stay')).length;
   const eventCount = EVENTS_AR.length;
+  const unescoCount = attractions.filter((e) => e.data.unesco).length;
   // المقالات تُعدّ بالموضوع لا بالملف (لكل موضوع ملف عربي وآخر إنجليزي)
   const topicCount = new Set(posts.filter((p) => !p.data.draft).map((p) => p.data.key)).size;
   // قوائم النسخ الجزئية (الخطوة 8): الصفحات المعلَنة فقط — بعنوان معتمد من خط الترجمة
@@ -52,6 +53,7 @@ export const GET: APIRoute = async () => {
 - [أماكن الإقامة (${stayCount} أماكن بمواقع خرائط قوقل)](${SITE}/إقامة/) | [Places to Stay](${SITE}/en/stay/): نُزلٌ تراثي في حي الكوت وفندقٌ على ساحل العقير — بطاقات وصفية لا ترشيحات.
 - [المدونة (${topicCount} مقالات بالعربية والإنجليزية)](${SITE}/مدونة/) | [Blog](${SITE}/en/blog/): مسارات 24 و48 ساعة، الحرف اليدوية، الهدايا، وهل تستحق الأحساء الزيارة.
 - [خطط لرحلتك](${SITE}/خطط/) | [Plan your trip](${SITE}/en/plan-your-trip/): كيفية الوصول ومسارات مقترحة وأسئلة شائعة.
+- [واحة الأحساء في اليونسكو](${SITE}/اليونسكو/) | [UNESCO World Heritage](${SITE}/en/unesco/): ${unescoCount} من مكوّنات موقع التراث العالمي 1563 (الاثني عشر) بصفحات مفردة.
 - [خريطة المعالم](${SITE}/خريطة/) | [Map](${SITE}/en/map/) — و[الخريطة التضاريسية 3D](${SITE}/خريطة-تضاريس/) | [Terrain map](${SITE}/en/terrain-map/)
 
 ## Main sections (English mirror)
@@ -65,6 +67,7 @@ export const GET: APIRoute = async () => {
 - [Places to Stay](${SITE}/en/stay/) — ${stayCount} places with Google Maps locations; descriptive cards, not recommendations.
 - [Blog](${SITE}/en/blog/) — ${topicCount} topics in Arabic and English: 24- and 48-hour itineraries, handicrafts, gifts, and whether Al-Ahsa is worth the visit.
 - [Plan your trip](${SITE}/en/plan-your-trip/) — getting there, suggested routes, FAQ, and a table of verified hours and fees.
+- [UNESCO World Heritage](${SITE}/en/unesco/) — ${unescoCount} of the twelve components of site 1563 (inscribed 2018) with their own pages.
 - [Map](${SITE}/en/map/) and [Terrain map](${SITE}/en/terrain-map/)
 
 ## ${LANG_META.zh.native} — ${ui.zh['nav.attractions']}

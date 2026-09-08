@@ -31,6 +31,8 @@ hoursSpec:
   - { days: "Tu We Th Sa", opens: "07:30", closes: "23:59" }
   - { days: "Su Mo", opens: "07:00", closes: "23:59" }
   - { days: "Fr", opens: "14:30", closes: "23:59" }
+answer: "سوق الحرفيين في قلب الهفوف التاريخية افتُتح في مارس 2020م دعماً للحرف اليدوية، ويمتد على أكثر من 12 ألف متر مربع بـ112 متجراً للحرفيين وفناء وأكاديمية لتعليم الحرف، بإشراف أمانة الأحساء. يفتح يومياً حتى 12 منتصف الليل، والافتتاح من 7:30 ص عدا الأحد والاثنين والجمعة."
+answer_en: "The Craftsmen Souq in Hofuf opened in March 2020 to support handicrafts: more than 12,000 square metres with 112 artisan shops and an academy where craftspeople teach their trades, run by Al-Ahsa Municipality. Open daily until midnight, from 7:30 am except Sunday, Monday and Friday."
 location: { lat: 25.3763032, lng: 49.5939642 }
 mapUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).

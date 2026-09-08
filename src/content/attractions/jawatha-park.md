@@ -31,6 +31,8 @@ practical:
 hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:59" }
 fee: { min: 10, max: 15, currency: SAR }
+answer: "منتزه جواثا السياحي منتزه أخضر في بلدة الكلابية، يجمع الطبيعة بالتاريخ: ففي نطاقه مسجد جواثا الأثري، ثاني موضع أُقيمت فيه صلاة الجمعة في الإسلام، وموقع جواثا الأثري. وجهة للنزهات العائلية تفتح يومياً من 8 ص إلى 12 منتصف الليل، والدخول 10–15 ريالاً وزيارة المسجد مجانية."
+answer_en: "Jawatha Park is a green park in Al-Kilabiyah joining nature to history: within its grounds stand the Jawatha Mosque, the second place where Friday prayers were held in Islam, and the Jawatha archaeological site. Open daily 8 am to midnight; entry SAR 10–15, mosque free."
 location: { lat: 25.471156, lng: 49.677408 }
 mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).

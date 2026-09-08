@@ -38,6 +38,8 @@ hoursSpec:
   - { days: "Sa", opens: "09:00", closes: "13:00" }
   - { days: "Sa", opens: "16:00", closes: "20:00" }
 fee: { free: true }
+answer: "قصر إبراهيم حصنٌ تاريخي في قلب الهفوف يجمع تحت سوره مسجداً بقبّة أنيقة وثكنات وأبراج مراقبة وإسطبلات ومخازن، بُني من الحجر والطين المحلي، وهو جزء من موقع واحة الأحساء المسجّل في اليونسكو عام 2018. الدخول مجاني، والزيارة تستغرق ساعة إلى ساعتين."
+answer_en: "Qasr Ibrahim is a fortress in central Hofuf gathering a domed mosque, barracks, watchtowers, stables and stores, built of stone and local mud. Part of the Al-Ahsa Oasis site inscribed by UNESCO in 2018, it is free to enter; allow one to two hours."
 location: { lat: 25.378866, lng: 49.586894 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12232963

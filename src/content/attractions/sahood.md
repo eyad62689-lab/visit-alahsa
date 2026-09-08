@@ -31,6 +31,8 @@ area: وسط المبرز — الأحساء
 area_en: "Central Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 11
+answer: "قصر صاهود قلعة حربية ضخمة تتوسط مدينة المبرز، بأسوار ترتفع ستة أمتار تحرسها سبعة أبراج مراقبة، ويعود بناؤها إلى أواخر القرن الثاني عشر الهجري. رمّمتها هيئة التراث، وهي أحد المكونات الاثني عشر لموقع واحة الأحساء المسجل في قائمة اليونسكو للتراث العالمي عام 2018."
+answer_en: "Sahood Palace is a fortress at the heart of Al-Mubarraz, built in the late twelfth century AH, its six-metre walls guarded by seven watchtowers. Restored by the Heritage Commission, it is one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site (2018)."
 location: { lat: 25.413828, lng: 49.58326 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233052

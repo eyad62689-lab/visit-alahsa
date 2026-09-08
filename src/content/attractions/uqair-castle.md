@@ -26,6 +26,8 @@ area: ميناء العقير — ساحل الخليج شرق الأحساء
 area_en: "Al-Uqair port — the Gulf coast east of Al-Ahsa"
 featured: false
 order: 17
+answer: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي، أقدم الموانئ البحرية في المملكة وبوابة نجد إلى البحر قديماً. تشمل المباني القائمة الحصن والخان ومبنى الإمارة والجمارك والمسجد، وعلى أرض الميناء وُقّع بروتوكول العقير عام 1341هـ/1922م. رُمّمت أواخر التسعينيات، وتنفّذ هيئة التراث ترميماً شاملاً للموقع."
+answer_en: "Al-Uqair Castle stands among the buildings of the historic Al-Uqair port east of Al-Ahsa, the oldest seaport in Saudi Arabia and once Najd’s gateway to the sea. The fort, khan, emirate building, customs house and mosque survive; the Uqair Protocol was signed here in 1922."
 location: { lat: 25.644409, lng: 50.214729 }
 mapUrl: "https://maps.app.goo.gl/pQj9N6Dq75yekPTK8"
 ---

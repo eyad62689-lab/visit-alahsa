@@ -7,6 +7,9 @@ import { glob } from 'astro/loaders';
 
 const CATEGORIES = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'] as const;
 
+// عدد الكلمات لفقرة الإجابة — حدّاها ملزمان في المخطط ويُعاد فحصهما في C24 على dist
+const wc = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
+
 const attractions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/attractions' }),
   schema: z.object({
@@ -126,6 +129,12 @@ const attractions = defineCollection({
     // نسخة آلية القراءة من بند practical الموثّق نفسه — لا تُملأ إلا لما بنده موثّق
     // (يفرضه الفحص أدناه ويحرسه C24 على dist)، وتُصدَّر openingHoursSpecification
     // وisAccessibleForFree/offers في TouristAttraction. الأيام برموز schema.org المختصرة.
+    // ── فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي، بند 3 من ف3) ──
+    // 35–45 كلمة تتصدّر المتن وتكون وصف الصفحة، مركّبة حصراً من المتن وبطاقة الزيارة
+    // (كل رقم فيها يحرسه C24 على dist ضد بقية المتن والبطاقة). عربي وإنجليزي معاً أو
+    // لا شيء؛ zh/de/ru لا تُكتب إلا عبر خطوط الترجمة فلا فقرة لها حتى تمرّ بها.
+    answer: z.string().optional(),
+    answer_en: z.string().optional(),
     hoursSpec: z.array(z.object({
       days: z.string().regex(/^(Mo|Tu|We|Th|Fr|Sa|Su)( (Mo|Tu|We|Th|Fr|Sa|Su))*$/),
       opens: z.string().regex(/^\d{2}:\d{2}$/),
@@ -140,6 +149,10 @@ const attractions = defineCollection({
     message: 'hoursSpec يلزمه بند practical موثّق للمواعيد — لا مواعيد مبنيَنة بلا بند موثّق',
   }).refine((a) => !a.fee || a.practical.some((p) => p.verified && /الرسوم|الدخول/.test(p.label)), {
     message: 'fee يلزمه بند practical موثّق للرسوم أو الدخول — لا رسم مبنيَن بلا بند موثّق',
+  }).refine((a) => Boolean(a.answer) === Boolean(a.answer_en), {
+    message: 'answer وanswer_en معاً أو لا شيء — فقرة الإجابة بلغتي الموقع الكاملتين',
+  }).refine((a) => [a.answer, a.answer_en].every((s) => !s || (wc(s) >= 35 && wc(s) <= 45)), {
+    message: 'فقرة الإجابة بين 35 و45 كلمة',
   }),
 });
 

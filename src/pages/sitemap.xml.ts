@@ -41,6 +41,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
+    { ar: '/اليونسكو/', en: '/en/unesco/', lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
     // مقالات المدونة — الاقتران بحقل key المشترك بين الترجمتين.
     // التاريخ من ترويسة المقال نفسه: هو إعلان الكاتب، وأوثق من تاريخ الالتزام.

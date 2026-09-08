@@ -38,6 +38,7 @@ export const ui = {
     'map.locate': 'موقعي على الخريطة',
     'map.locate.err': 'تعذّر تحديد موقعك — تحقق من إذن الموقع في المتصفح.',
     'det.distance': 'كم يبعد عني؟',
+    'det.unesco': 'من مكوّنات موقع اليونسكو للتراث العالمي',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
     // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
@@ -70,6 +71,7 @@ export const ui = {
     'foot.l.privacy': 'السياسات والشروط',
     'foot.l.contact': 'تواصل معنا',
     'foot.l.whatsapp': 'واتساب',
+    'foot.l.unesco': 'واحة الأحساء في اليونسكو',
     // الرئيسية
     'home.hero.eyebrow': 'موقع تراث عالمي · اليونسكو 2018',
     'home.hero.title': 'تجوّل بين الواحات والنخيل',
@@ -265,6 +267,7 @@ export const ui = {
     'map.locate': 'My location on the map',
     'map.locate.err': 'Could not get your location — check the browser’s location permission.',
     'det.distance': 'How far from me?',
+    'det.unesco': 'A component of the UNESCO World Heritage site',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
     'a11y.mainNav': 'Main navigation',
@@ -293,6 +296,7 @@ export const ui = {
     'foot.l.privacy': 'Policies & Terms',
     'foot.l.contact': 'Contact us',
     'foot.l.whatsapp': 'WhatsApp',
+    'foot.l.unesco': 'UNESCO World Heritage',
     'home.hero.eyebrow': 'UNESCO World Heritage Site · 2018',
     'home.hero.title': 'Wander among the oases and palms',
     'home.hero.lead': 'Al-Ahsa — the largest oasis on earth. Where water has run beneath the sand for millennia, and life thrives among more than 2.5 million date palms.',

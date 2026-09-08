@@ -773,9 +773,12 @@ async function main() {
     const THIN = 40;
     const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
     const sectionText = (html, re) => { const m = html.match(re); return m ? stripTags(m[1], ' ') : ''; };
-    const contentWords = (html) =>
-      wc(sectionText(html, /<article class="prose"[^>]*>([\s\S]*?)<\/article>/)) +
-      wc(sectionText(html, /<section class="container att-faq"[^>]*>([\s\S]*?)<\/section>/));
+    // فقرة الإجابة (الخطوة 8) مركّبة من المتن نفسه فلا تُحسب — وإلا رفعت صفحةً رقيقة فوق العتبة بلا مصدر
+    const contentWords = (raw) => {
+      const html = raw.replace(/<p class="answer"[^>]*>[\s\S]*?<\/p>/, '');
+      return wc(sectionText(html, /<article class="prose"[^>]*>([\s\S]*?)<\/article>/)) +
+        wc(sectionText(html, /<section class="container att-faq"[^>]*>([\s\S]*?)<\/section>/));
+    };
     const smXml = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
     const inSitemap = (p) => smXml.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`);
     const problems = [];
@@ -930,10 +933,70 @@ async function main() {
         }
       }
     }
-    if (tables < 6 || attrPages < 100 || ldCount < 300) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json — المتوقع ≥6 و≥100 و≥300`);
+    // (ج) فقرة الإجابة (answer/answer_en): تُنشر حرفياً أول المتن وفي وصف الصفحة بالعربية
+    //     والإنجليزية فقط، بين 35 و45 كلمة، وكل رقم فيها وارد في بقية المتن أو بطاقة الزيارة
+    //     (المتن دون الفقرة نفسها) — ولا فقرة لصفحة بلا answer في مصدرها.
+    const escapeRe = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const numRe = (num) => new RegExp('(?<!\\d)(?<!\\d[:.,])' + escapeRe(num) + '(?![:.,]?\\d)');
+    const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
+    const unesc = (t) => t.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+    let answerPages = 0;
+    for (const f of attrFiles) {
+      const head = heads[f];
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue;
+      const src = { ar: head.match(/^answer:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^answer_en:\s*"(.*)"\s*$/m)?.[1] };
+      if (Boolean(src.ar) !== Boolean(src.en)) problems.push(`${f}: answer بلغة واحدة`);
+      const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
+        .map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      for (const [l, p, fp] of pages) {
+        const html = await readFile(fp, 'utf8');
+        const found = [...html.matchAll(/<p class="answer"[^>]*>([\s\S]*?)<\/p>/g)].map((m) => unesc(stripTags(m[1], ' ')).trim());
+        const want = l === 'ar' || l === 'en' ? src[l] : undefined;
+        if (!want) { if (found.length) problems.push(`${p}: فقرة إجابة بلا answer بلغتها في المصدر`); continue; }
+        answerPages++;
+        if (found.length !== 1 || found[0] !== want) { problems.push(`${p}: فقرة الإجابة المنشورة لا تطابق المصدر`); continue; }
+        const words = wc(want);
+        if (words < 35 || words > 45) problems.push(`${p}: فقرة الإجابة ${words} كلمة — المطلوب 35–45`);
+        const desc = unesc(html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
+        if (desc !== want) problems.push(`${p}: وصف الصفحة ليس فقرة الإجابة`);
+        const prose = (html.match(/<article\b[^>]*\bclass="prose"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '').replace(/<p class="answer"[^>]*>[\s\S]*?<\/p>/, '');
+        const aside = html.match(/<aside\b[^>]*\bclass="att-aside"[^>]*>[\s\S]*?<\/aside>/)?.[0] ?? '';
+        if (!prose || !aside) { problems.push(`${p}: تعذّر عزل المتن أو بطاقة الزيارة لفحص أرقام الإجابة`); continue; }
+        const srcText = stripTags(prose + ' ' + aside, ' ');
+        for (const num of want.match(/\d+(?:[:.,]\d+)*/g) ?? []) if (!numRe(num).test(srcText)) problems.push(`${p}: الرقم «${num}» في فقرة الإجابة لا يرد في متن الصفحة ولا بطاقتها`);
+      }
+    }
+
+    // (د) صفحة مكوّنات اليونسكو: عربية وإنجليزية، تحمل كل ما يحمل unesco في المصدر (عدداً
+    //     ومعرّفات ورابطاً لكل صفحة معلم)، وItemList بعددها، وhreflang متبادل، وداخل sitemap.
+    const comps = attrFiles.map((f) => ({
+      f, id: heads[f].match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+      slugAr: heads[f].match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1], slugEn: heads[f].match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+    })).filter((c) => c.id).sort((a, b) => a.id.localeCompare(b.id));
+    const smXml24 = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    for (const [l, p] of [['ar', '/اليونسكو/'], ['en', '/en/unesco/']]) {
+      const fp = path.join(DIST, p, 'index.html');
+      let html;
+      try { html = await readFile(fp, 'utf8'); } catch { problems.push(`صفحة اليونسكو ${p} مفقودة`); continue; }
+      const ids = [...html.matchAll(/data-unesco="([^"]+)"/g)].map((m) => m[1]);
+      if (JSON.stringify(ids) !== JSON.stringify(comps.map((c) => c.id))) problems.push(`${p}: المكوّنات المنشورة (${ids.join('، ')}) ≠ المصدر (${comps.map((c) => c.id).join('، ')})`);
+      for (const c of comps) {
+        const href = l === 'ar' ? `/${AR_ATTRACTIONS_DIR}/${c.slugAr}/` : `/en/attractions/${c.slugEn}/`;
+        if (!html.includes(`href="${href}"`) && !html.includes(`href="${encodeURI(href)}"`)) problems.push(`${p}: بلا رابط إلى ${c.slugEn}`);
+      }
+      const list = (LD.get(fp) ?? []).find((o) => o?.['@type'] === 'ItemList');
+      if (!list || list.numberOfItems !== comps.length || (list.itemListElement ?? []).length !== comps.length) problems.push(`${p}: ItemList لا يحمل ${comps.length} مكوّنات`);
+      const other = l === 'ar' ? '/en/unesco/' : '/اليونسكو/';
+      if (!new RegExp(`hreflang="${l === 'ar' ? 'en' : 'ar'}"[^>]*href="[^"]*(?:${escapeRe(other)}|${escapeRe(encodeURI(other))})"`).test(html)) problems.push(`${p}: بلا hreflang إلى ${other}`);
+      if (!smXml24.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`)) problems.push(`${p}: غائبة عن sitemap`);
+    }
+
+    if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥6`);
     else if (hoursPages < 16 || feePages < 40) fail('C24', `المواعيد المبنيَنة في ${hoursPages} صفحة والرسوم في ${feePages} — المتوقع ≥16 و≥40 (تراجع في المصدر؟)`);
-    else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} كلها مطابقة لمصدرها`);
+    else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة/الإجابات/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ صفحة اليونسكو بلغتيها تحمل المكوّنات ${comps.length} بروابطها`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

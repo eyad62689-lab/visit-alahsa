@@ -21,6 +21,8 @@ area: "الهفوف، حي الرفعة الشمالية"
 area_en: "Hofuf, North Al-Rifaa district"
 practical:
   - { label: "الوضع الحالي", value: "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق", label_en: "Current status", value_en: "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it", label_zh: "现状", value_zh: "遗产地标——不再作为市集营业；目前在其建筑内经营的是沙尔格餐厅", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-04", verified: true }
+answer: "سوق الحميدية مبنى تراثي في وسط الهفوف بحي الرفعة الشمالية على طريق الملك عبدالعزيز، أُعيد بناؤه ضمن مشاريع تطوير وسط الهفوف التاريخي إلى جانب سوق القيصرية وسوق الحرفيين. وهو اليوم معلم تراثي لا سوق عامل: توقّف نشاطه سوقاً شعبياً، والنشاط القائم في مبناه مطعم شرق."
+answer_en: "Al-Hamidiyah Souq is a heritage building in central Hofuf, in North Al-Rifaa on King Abdulaziz Road, rebuilt as part of the historic downtown development alongside Qaisariyah Souq and Craftsmen Souq. Today it is a landmark rather than a working souq: Sharq Restaurant occupies the building."
 location: { lat: 25.375159, lng: 49.5890072 }
 mapUrl: "https://maps.app.goo.gl/4KEvxVRALRYuCDYA9"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).

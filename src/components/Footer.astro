@@ -47,6 +47,9 @@ const cols = [
     h: t('foot.col.site'),
     links: [
       { label: t('foot.l.about'), href: ar ? '/#name' : zh ? '/zh/#name' : '/en/#name' },
+      // صفحة مكوّنات اليونسكو عربية/إنجليزية فقط (الخطوة 8) — لا تُربط من zh/de/ru: تسميتها
+      // الإنجليزية رفعت /zh/map/ (9 كتل نصّ) فوق عتبة C22 (22%)، والصفحة تُربط منها حين تُترجم.
+      ...(ar || lang === 'en' ? [{ label: t('foot.l.unesco'), href: ar ? '/اليونسكو/' : '/en/unesco/' }] : []),
       { label: t('foot.l.brand'), href: '/brand/' },
       { label: t('foot.l.privacy'), href: ar ? '/السياسات/' : '/en/legal/' },
       { label: t('foot.l.report'), href: ar ? '/أبلغ/' : '/en/report/' },
