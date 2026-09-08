@@ -21,6 +21,7 @@ import { eventsFor, evView, type Ev } from '../../data/events';
 import { attractionHref } from '../../lib/routes';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { ogDefault } from '../../lib/og';
+import ShareButton from '../ShareButton.astro';
 
 interface Props { ev: Ev; lang: Lang; alt: AltLinks; }
 const { ev: raw, lang, alt } = Astro.props;
@@ -196,6 +197,7 @@ if (ev.faq?.length) {
         </nav>
         <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
         <h1 class="evd-title">{ev.name}</h1>
+        <ShareButton lang={lang} contentType="event" itemId={ev.id} dark class="evd-share" />
         <p class="evd-when">
           <svg class="evd-cal" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="4.5" width="18" height="17" rx="2" /><path d="M3 9h18M8 2.5v4M16 2.5v4" />

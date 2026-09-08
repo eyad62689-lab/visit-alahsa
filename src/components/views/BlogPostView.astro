@@ -11,6 +11,7 @@ import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
+import ShareButton from '../ShareButton.astro';
 
 interface Props { entry: CollectionEntry<'blog'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -76,6 +77,7 @@ if (p.faq.length > 0) {
             <> · <time datetime={p.updatedDate.toISOString().slice(0, 10)}>{t('blog.updated')} {formatDate(p.updatedDate, lang)}</time></>
           )}
         </p>
+        <ShareButton lang={lang} contentType="blog" itemId={p.slug} dark class="ph-share" />
       </div>
     </section>
 

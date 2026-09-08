@@ -32,6 +32,8 @@ export const ui = {
     'lang.suggest.text': 'هذه الصفحة متاحة بالعربية',
     'lang.suggest.cta': 'اقرأها بالعربية',
     'lang.suggest.close': 'إغلاق',
+    // زر المشاركة (الخطوة 6): zh يستعمل plan.copy المعتمد، وde/ru أيقونة وحدها حتى تمرّ بالخطوط
+    'share.btn': 'مشاركة',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
     // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
@@ -255,6 +257,7 @@ export const ui = {
     'lang.suggest.text': 'This page is available in English',
     'lang.suggest.cta': 'Read in English',
     'lang.suggest.close': 'Dismiss',
+    'share.btn': 'Share',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
     'a11y.mainNav': 'Main navigation',

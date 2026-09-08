@@ -14,6 +14,7 @@ import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
+import ShareButton from '../ShareButton.astro';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -212,9 +213,12 @@ const nearby = a.location
         <span class="eyebrow gold-on-dark ah-k">{catLabel(a.category, lang)}</span>
         <h1 class="ah-title">{title}</h1>
         <p class="ah-sum">{summary}</p>
-        <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
-          <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
-        </button>
+        <div class="ah-actions">
+          <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
+            <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
+          </button>
+          <ShareButton lang={lang} contentType="attraction" itemId={a.slug_en} dark />
+        </div>
       </div>
     </section>
 
@@ -347,7 +351,8 @@ const nearby = a.location
   /* min-inline-size لا تقصيرُ نصّ: الزرّ يبدّل تسميته بين «أضف» و«في رحلتي ✓»
      (‏data-tx-on/off)، والفارق بالألمانية تسعة محارف مقابل اثنين بالإنجليزية —
      فيقفز عرض الزرّ تحت إصبع الزائر لحظة الضغط. */
-  .ah-fav { margin-block-start: var(--s-4); min-inline-size: 15ch; background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
+  .ah-actions { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-start: var(--s-4); }
+  .ah-fav { min-inline-size: 15ch; background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
   .ah-fav:hover { border-color: var(--c-sand); }
   .ah-fav.is-saved { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
   .att-layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--s-6); padding-block: var(--s-7); align-items: start; }

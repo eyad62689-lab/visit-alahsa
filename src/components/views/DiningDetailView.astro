@@ -17,6 +17,7 @@ import { liveFor, hoursData as hoursDataFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import ShareButton from '../ShareButton.astro';
 
 interface Props { entry: CollectionEntry<'dining'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -107,6 +108,7 @@ const jsonLd = [
       <header class="dd-head">
         <span class="eyebrow">{C.kindLabel}</span>
         <h1>{name}</h1>
+        <ShareButton lang={lang} contentType="dining" itemId={d.slug_en} class="dd-share" />
         {area && <p class="dd-area">{area}</p>}
         {closed && <p class="dd-closed">{closed}</p>}
         <div class="dd-meta">
