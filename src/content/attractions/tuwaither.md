@@ -25,6 +25,8 @@ area: قرية التويثير — القرى الشرقية، الأحساء
 area_en: "Al-Tuwaither village — the eastern villages, Al-Ahsa"
 featured: false
 order: 38
+practical:
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.423566, lng: 49.691958 }
 mapUrl: "https://maps.app.goo.gl/NCjJF7bsuFv66CDVA"
 ---
