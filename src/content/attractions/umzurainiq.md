@@ -25,6 +25,8 @@ area: حي العويمرية — وسط الهفوف
 area_en: "Al-Uwaimriyah district — central Hofuf"
 featured: false
 order: 28
+practical:
+  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.361522, lng: 49.580333 }
 mapUrl: "https://maps.app.goo.gl/GwS2taT78CzUfTCB6"
 ---

@@ -25,6 +25,8 @@ area: حي الكوت — الهفوف
 area_en: "Al-Koot district — Hofuf"
 featured: false
 order: 22
+practical:
+  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.378107, lng: 49.585402 }
 sameAs:
   - https://www.wikidata.org/wiki/Q99867393
