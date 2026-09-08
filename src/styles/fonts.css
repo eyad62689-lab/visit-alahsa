@@ -22,11 +22,18 @@
   unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D, U+2010-2011, U+060C, U+061B, U+061F;
 }
 
-/* ---------- IBM Plex Sans Arabic (النصّ/الواجهة) — عربي + لاتيني ---------- */
+/* ---------- IBM Plex Sans Arabic (النصّ/الواجهة) — عربي + لاتيني ----------
+   الملفات العربية الثلاثة مُشذَّبة (الخطوة 3 من خطة التفاعل العالمي، 2026-09-08): كان كلٌّ
+   منها 43–46 كيلوبايت بـ1304 محرف منها 336 من أشكال العرض (FB50–FDFF وFE70–FEFF) و88
+   من الملحق والممتد — والموقع كله يستعمل 50 محرفاً من الكتلة الأساسية وحدها (عدٌّ على dist).
+   التشذيب بـpyftsubset مع إبقاء كل ميزات التشكيل (init/medi/fina/rlig/calt/mark…):
+     pyftsubset plex-ar-400.woff2 --unicodes="U+0600-06FF,U+200C-200D" --layout-features='*' --flavor=woff2
+   فصار 29–31 كيلوبايت لكل وزن. النطاق المعلَن أدناه يطابق التشذيب، فأي محرف خارجه يقع
+   على الخط الاحتياطي لا على فراغ. الأصول الكاملة في تاريخ git (الالتزام c71bbd8). */
 @font-face {
   font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 400; font-display: swap;
   src: url('/fonts/plex-ar-400.woff2') format('woff2');
-  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D;
+  unicode-range: U+0600-06FF, U+200C-200D;
 }
 @font-face {
   font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 400; font-display: swap;
@@ -36,7 +43,7 @@
 @font-face {
   font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 500; font-display: swap;
   src: url('/fonts/plex-ar-500.woff2') format('woff2');
-  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D;
+  unicode-range: U+0600-06FF, U+200C-200D;
 }
 @font-face {
   font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 500; font-display: swap;
@@ -46,7 +53,7 @@
 @font-face {
   font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 600; font-display: swap;
   src: url('/fonts/plex-ar-600.woff2') format('woff2');
-  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D;
+  unicode-range: U+0600-06FF, U+200C-200D;
 }
 @font-face {
   font-family: 'IBM Plex Sans Arabic'; font-style: normal; font-weight: 600; font-display: swap;
@@ -90,4 +97,41 @@
   font-family: 'Marcellus'; font-style: normal; font-weight: 400; font-display: swap;
   src: local('Marcellus'), url('/fonts/marcellus-400.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2212;
+}
+
+/* ---------- السيريلية (ru-RU) — Playfair / Lora / Cormorant بنطاق يونيكود ----------
+   ملفات fontsource الفرعية `cyrillic-*.css` بلا unicode-range، فكان المتصفح يعدّ الوجه
+   السيريلي شاملاً لكل المحارف وينزّل ستة ملفات (73 كيلوبايت) في كل صفحة بكل لغة
+   (مقيس على dist 2026-09-08 — الخطوة 3 من خطة التفاعل العالمي). هنا الوجوه نفسها
+   (نُسخت من مجلد files في حزم @fontsource الثلاث إلى public/fonts) بنطاق «cyrillic» كما
+   يعرّفه fontsource في unicode.json، فلا تُنزَّل إلا حين تُصيَّر محارف سيريلية. */
+@font-face {
+  font-family: 'Playfair Display'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/playfair-display-cyrillic-400-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Playfair Display'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/playfair-display-cyrillic-700-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/lora-cyrillic-400-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/lora-cyrillic-600-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/cormorant-garamond-cyrillic-400-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/cormorant-garamond-cyrillic-600-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }

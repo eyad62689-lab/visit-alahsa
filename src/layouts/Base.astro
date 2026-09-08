@@ -19,16 +19,12 @@ import '@fontsource/lora/latin-400.css';
 import '@fontsource/lora/latin-600.css';
 import '@fontsource/cormorant-garamond/latin-400.css';
 import '@fontsource/cormorant-garamond/latin-600.css';
-// السيريلية (تكامل ru-RU — 2026-09-05): المقاطع نفسها بالأوزان نفسها من الحزم
-// المثبّتة أصلاً — لا حزمة جديدة. بدونها كانت صفحات /ru/ تقع على Georgia, serif
-// الاحتياطي لأن الموقع يستورد latin-*.css وحدها. الكلفة CSS فقط: ملفات woff2
-// لا تُنزَّل إلا حين تُصيَّر محارف داخل unicode-range، فصفحات ar/en/zh لا تمسّها.
-import '@fontsource/playfair-display/cyrillic-400.css';
-import '@fontsource/playfair-display/cyrillic-700.css';
-import '@fontsource/lora/cyrillic-400.css';
-import '@fontsource/lora/cyrillic-600.css';
-import '@fontsource/cormorant-garamond/cyrillic-400.css';
-import '@fontsource/cormorant-garamond/cyrillic-600.css';
+// السيريلية (تكامل ru-RU — 2026-09-05) تُعلَن في src/styles/fonts.css لا هنا:
+// ملفات fontsource الفرعية `cyrillic-*.css` **بلا unicode-range** (مقيس على dist
+// 2026-09-08)، فكان المتصفح يعدّ الوجه السيريلي شاملاً لكل المحارف وينزّل ستة ملفات
+// (73 كيلوبايت) في كل صفحة بكل لغة — حتى /en/map/ الخالية من أي حرف سيريلي.
+// الإعلان اليدوي في fonts.css يحمل نطاق السيريلية فلا تُنزَّل إلا حين تُصيَّر
+// محارفها (صفحات /ru/ وكلمة «Русский» في مبدّل اللغة إن ظهرت).
 import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';

@@ -25,6 +25,7 @@ const set = src ? srcsetFor(src) : null;
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
       sizes={sizes}
+      fetchpriority={eager ? undefined : 'low'}
     />
   </picture>
 ) : (

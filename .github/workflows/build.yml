@@ -80,6 +80,14 @@ jobs:
           node tools/test-analytics-events.mjs
           node tools/test-lang-suggest.mjs
 
+      # الخطوة 3 (الأداء): بوابة Lighthouse بميزانيات حتمية (لا CSS حاجب، لا سيريلي خارج
+      # /ru/، سقف الخطوط، لا فيديو قبل LCP) وحارسَي محاكاة خشنين — الأرقام الميدانية من web_vitals.
+      - name: Acceptance — performance budgets (Lighthouse, mobile simulation)
+        run: |
+          mkdir -p /tmp/lh && cd /tmp/lh && npm init -y > /dev/null && npm i lighthouse@12 --no-audit --no-fund > /dev/null && cd -
+          CHROME_PATH="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser)"
+          LH_DIR=/tmp/lh CHROME_PATH="$CHROME_PATH" BASE=http://127.0.0.1:4399 node tools/lighthouse-gate.mjs
+
       - name: Upload build log artefacts on failure
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
