@@ -12,6 +12,7 @@ import { attractionHref } from '../../lib/routes';
 import { SITE, ORG, WEBSITE, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
 import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import { ogDefault } from '../../lib/og';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -95,7 +96,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'TouristDestination',
     // الاسم الروسي من معجم ru-translation حرفياً (مدخل «Al-Ahsa» = Аль-Ахса)
-    name: ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + '/og-default.png',
+    name: ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + ogDefault(lang),
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
     containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : ru ? 'Саудовская Аравия' : 'Saudi Arabia' },

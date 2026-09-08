@@ -687,6 +687,76 @@ async function main() {
     else pass('C21', `أسئلة شائعة في ${expected.length} معلماً (${pagesChecked} صفحة، ${questions} سؤالاً منشوراً) — FAQPage والقسم المرئي يطابقان المصدر، وكل رقم فيها من متن الصفحة أو بطاقتها`);
   }
 
+  // ── C23: عتبة نشر المعالم وبطاقات المشاركة بلغة الصفحة (الخطوة 4 من خطة التفاعل العالمي) ──
+  // (أ) صفحة المعلم الرقيقة (المتن + الأسئلة الشائعة دون 40 كلمة بالعربية أو
+  //     الإنجليزية — القاعدة في src/lib/publish.ts) تبقى مبنية للزائر لكنها
+  //     noindex بلا hreflang وخارج sitemap في كل لغاتها؛ وغير الرقيقة مفهرسة
+  //     وداخل الخريطة. الحكم على ما يراه الزاحف في dist لا على المصدر.
+  // (ب) كل صفحة قابلة للفهرسة تحمل og:image بلغتها: صورة محتوى، أو الافتراضية
+  //     بلغة الصفحة (og-default.png للعربية وog-default-{lang}.png لغيرها) — لا
+  //     بطاقة عربية لصفحة أجنبية. والملفات الخمسة موجودة في dist.
+  {
+    const THIN = 40;
+    const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
+    const sectionText = (html, re) => { const m = html.match(re); return m ? stripTags(m[1], ' ') : ''; };
+    const contentWords = (html) =>
+      wc(sectionText(html, /<article class="prose"[^>]*>([\s\S]*?)<\/article>/)) +
+      wc(sectionText(html, /<section class="container att-faq"[^>]*>([\s\S]*?)<\/section>/));
+    const smXml = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    const inSitemap = (p) => smXml.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`);
+    const problems = [];
+    let thinCount = 0, checked = 0;
+    const thinSlugs = [];
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) { problems.push(`${f}: بلا slug`); continue; }
+      const pages = [
+        ['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`],
+        ['en', `/en/attractions/${slugEn}/`],
+        ...['zh', 'de', 'ru'].map((l) => [l, `/${l}/attractions/${slugEn}/`]),
+      ].map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      const htmlBy = Object.fromEntries(await Promise.all(pages.map(async ([l, , fp]) => [l, await readFile(fp, 'utf8')])));
+      if (!htmlBy.ar || !htmlBy.en) { problems.push(`${f}: صفحة عربية أو إنجليزية غير مبنية`); continue; }
+      const thin = contentWords(htmlBy.ar) < THIN || contentWords(htmlBy.en) < THIN;
+      if (thin) { thinCount++; thinSlugs.push(slugEn); }
+      for (const [l, p] of pages) {
+        checked++;
+        const html = htmlBy[l];
+        const noindex = /<meta name="robots" content="noindex/.test(html);
+        const hasHreflang = /<link rel="alternate" hreflang=/.test(html);
+        if (thin && !noindex) problems.push(`${p}: رقيقة (${contentWords(htmlBy.ar)}/${contentWords(htmlBy.en)} كلمة) بلا noindex`);
+        if (!thin && noindex) problems.push(`${p}: noindex وهي فوق العتبة`);
+        if (thin && hasHreflang) problems.push(`${p}: hreflang على صفحة رقيقة`);
+        if (!thin && !hasHreflang) problems.push(`${p}: بلا hreflang`);
+        if (thin && inSitemap(p)) problems.push(`${p}: رقيقة داخل sitemap`);
+        if (!thin && !inSitemap(p)) problems.push(`${p}: غائبة عن sitemap`);
+      }
+    }
+    // (ب) بطاقات المشاركة
+    const ogFiles = ['og-default.png', 'og-default-en.png', 'og-default-zh.png', 'og-default-de.png', 'og-default-ru.png'];
+    for (const o of ogFiles) if (!existsSync(path.join(DIST, o))) problems.push(`${o} غير موجودة في dist`);
+    let ogChecked = 0, ogDefault = 0;
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      if (/<meta name="robots" content="noindex/.test(html)) continue;
+      const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
+      const og = html.match(/property="og:image" content="([^"]+)"/)?.[1] ?? '';
+      if (!og) { problems.push(`${path.relative(DIST, fp)}: بلا og:image`); continue; }
+      ogChecked++;
+      const m = og.match(/\/og-default(?:-([a-z]{2}))?\.png$/);
+      if (m) {
+        ogDefault++;
+        const imgLang = m[1] ?? 'ar';
+        if (imgLang !== lang) problems.push(`${path.relative(DIST, fp)}: og:image بلغة ${imgLang} على صفحة ${lang}`);
+      }
+    }
+    if (checked < 100) fail('C23', `الحارس صار فارغاً: ${checked} صفحة معلم مفحوصة — المتوقع ≥100`);
+    else if (problems.length) fail('C23', `عتبة النشر/بطاقات المشاركة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C23', `${thinCount} معالم رقيقة (${thinSlugs.join('، ')}) noindex وخارج sitemap في ${checked} صفحة معلم؛ و${ogChecked} صفحة مفهرسة كلها بصورة OG بلغتها (${ogDefault} منها بالافتراضية)`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

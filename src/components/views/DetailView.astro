@@ -10,8 +10,10 @@ import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
 import { formatDate } from '../../lib/dates';
+import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import { ogDefault } from '../../lib/og';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -54,7 +56,7 @@ const regionName = ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса
 const jsonLd: object[] = [
   {
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
-    name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png'),
+    name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : ogDefault(lang)),
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
     address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh, a.area_de, a.area_ru) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
@@ -76,7 +78,11 @@ const jsonLd: object[] = [
     { '@type': 'ListItem', position: 3, name: title, item: pageUrl },
   ] },
 ];
-const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
+// الصفحة الرقيقة (دون عتبة النشر في lib/publish.ts) تبقى للزائر لكنها noindex وخارج
+// sitemap وhreflang حتى يصل متن مصدري — لا صفحة رقيقة مفهرسة بأربع لغات.
+const thin = isThinAttraction(entry);
+// بلا صورة خاصة تُترك للافتراضية بلغة الصفحة (Seo.astro يختارها)
+const ogImage = a.heroImage ? `${a.heroImage}.jpg` : undefined;
 
 // ── أسئلة شائعة (بند 3.2 — 2026-09-05) ──────────────────────────────────
 // البند بلغة الصفحة فقط: بلا q_en/a_en لا يظهر في الإنجليزية، وهكذا zh/de/ru —
@@ -189,7 +195,7 @@ const nearby = a.location
       }))
   : [];
 ---
-<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
+<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>

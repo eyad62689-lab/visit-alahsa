@@ -8,6 +8,7 @@ import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_ZH } from '../data/events';
 import { attractionAlt, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
+import { isThinAttraction } from '../lib/publish';
 
 type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; lastmod?: string };
 
@@ -60,7 +61,8 @@ export const GET: APIRoute = async ({ site }) => {
         ar: '/en/blog/' + p.data.slug + '/',
         lastmod: (p.data.updatedDate ?? p.data.pubDate).toISOString().slice(0, 10),
       })),
-    ...items.map((e) => ({ ...attractionAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath) : undefined })),
+    // المعالم الرقيقة (lib/publish.ts) noindex فلا تدخل الخريطة بأي لغة
+    ...items.filter((e) => !isThinAttraction(e)).map((e) => ({ ...attractionAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath) : undefined })),
     // صفحات المنشآت المفردة — تدخل الخريطة فقط متى عبر متنُها العتبة، تطابقاً
     // مع حارس getStaticPaths. وإن عبرت لغةٌ دون الأخرى دخلت وحدها بلا hreflang،
     // فلا يُعلَن زوجٌ لصفحة غير مولَّدة (docs/قرار-بنية-صفحات-المنشآت.md).

@@ -20,6 +20,7 @@ import type { Lang } from '../../i18n/ui';
 import { eventsFor, evView, type Ev } from '../../data/events';
 import { attractionHref } from '../../lib/routes';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
+import { ogDefault } from '../../lib/og';
 
 interface Props { ev: Ev; lang: Lang; alt: AltLinks; }
 const { ev: raw, lang, alt } = Astro.props;
@@ -141,7 +142,7 @@ const others = eventsFor(lang).filter((e) => e.id !== ev.id).slice(0, 3).map((e)
 
 const siteUrl = SITE;
 const pageUrl = absUrl(Astro.url.pathname);
-const ogImage = ev.img ? `${ev.img}.jpg` : '/og-default.png';
+const ogImage = ev.img ? `${ev.img}.jpg` : ogDefault(lang); // بلا صورة: الافتراضية بلغة الصفحة (الخطوة 4)
 const jsonLd: object[] = [
   breadcrumb([
     { name: t('crumb.home'), path: homeHref },

@@ -10,6 +10,7 @@ import { formatDate } from '../../lib/dates';
 import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import { ogDefault } from '../../lib/og';
 
 interface Props { entry: CollectionEntry<'blog'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -22,7 +23,7 @@ const homeHref = ar ? '/' : '/en/';
 const blogHref = ar ? '/مدونة/' : '/en/blog/';
 const siteUrl = SITE;
 const pageUrl = absUrl(Astro.url.pathname, siteUrl);
-const ogImage = p.heroImage ? `${p.heroImage}.jpg` : '/og-default.png';
+const ogImage = p.heroImage ? `${p.heroImage}.jpg` : ogDefault(lang);
 
 // الكاتب والناشر هما الجهة نفسها (ORG في lib/schema.ts) بمعرّف @id يطابق حامل
 // الحقوق في Base والرئيسية — كان الاسم يختلف بين الصفحات.
