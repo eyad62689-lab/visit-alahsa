@@ -35,6 +35,9 @@ summary_en: "Caves that stay cool in summer and warm in winter, carved by time a
 body_en: "Jabal Al-Qarah rises from the middle of the oasis like an ancient guardian, but its secret lies not in its height — rather in its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth in the depth of winter — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity. Walk its narrow corridors, where the stone almost brushes your shoulders, then suddenly opens onto a high chamber pierced by a thread of light. From the summit the oasis unfolds like a sea of palms — a view that sums up why Al-Ahsa became the largest oasis on earth."
 area: شرق الهفوف — الأحساء
 area_en: "East of Hofuf — Al-Ahsa"
+hoursSpec:
+  - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "22:00" }
+fee: { amount: 50, currency: SAR }
 location: { lat: 25.411483, lng: 49.692814 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12204761

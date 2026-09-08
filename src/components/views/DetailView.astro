@@ -51,6 +51,7 @@ const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const DAY_NAME: Record<string, string> = { Mo: 'Monday', Tu: 'Tuesday', We: 'Wednesday', Th: 'Thursday', Fr: 'Friday', Sa: 'Saturday', Su: 'Sunday' };
 const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
 // اسم المنطقة في السكيما بلغة الصفحة — الروسية من معجم ru-translation حرفياً
 // (مدخل «Al-Ahsa» = Аль-Ахса)؛ والألمانية تبقى لاتينية بحكم سياسة أعلامها.
@@ -73,6 +74,16 @@ const jsonLd: object[] = [
     // يحفظ روابط ويكيبيديا العربية مفكوكةً كي تبقى مقروءة في الملف.
     ...(a.sameAs.length ? { sameAs: a.sameAs.map((u) => encodeURI(u)) } : {}),
     ...(a.unesco ? { identifier: { '@type': 'PropertyValue', propertyID: 'UNESCO World Heritage Site component', value: a.unesco } } : {}),
+    // المواعيد والرسوم آلية القراءة (الخطوة 8) — من hoursSpec/fee الملزمَين ببند موثّق
+    ...(a.hoursSpec.length ? { openingHoursSpecification: a.hoursSpec.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.days.split(' ').map((d) => `https://schema.org/${DAY_NAME[d]}`),
+      opens: h.opens, closes: h.closes,
+    })) } : {}),
+    ...(a.fee ? ('free' in a.fee
+      ? { isAccessibleForFree: true }
+      : { isAccessibleForFree: false, offers: { '@type': 'Offer', priceCurrency: a.fee.currency,
+          ...('amount' in a.fee ? { price: a.fee.amount } : { priceSpecification: { '@type': 'PriceSpecification', minPrice: a.fee.min, maxPrice: a.fee.max, priceCurrency: a.fee.currency } }) } }) : {}),
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },

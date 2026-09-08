@@ -26,6 +26,7 @@ featured: false
 order: 37
 practical:
   - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+fee: { free: true }
 location: { lat: 25.60932, lng: 49.531818 }
 mapUrl: "https://maps.app.goo.gl/MUgsdWiBE6LNA5mY7"
 heroImage: /img/jabal-al-thalim

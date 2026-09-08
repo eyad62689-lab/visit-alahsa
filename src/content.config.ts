@@ -122,6 +122,24 @@ const attractions = defineCollection({
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)
     gallery: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
+    // ── المواعيد والرسوم المبنيَنة (الخطوة 8 من خطة التفاعل العالمي، بند 3.3 من الدراسة) ──
+    // نسخة آلية القراءة من بند practical الموثّق نفسه — لا تُملأ إلا لما بنده موثّق
+    // (يفرضه الفحص أدناه ويحرسه C24 على dist)، وتُصدَّر openingHoursSpecification
+    // وisAccessibleForFree/offers في TouristAttraction. الأيام برموز schema.org المختصرة.
+    hoursSpec: z.array(z.object({
+      days: z.string().regex(/^(Mo|Tu|We|Th|Fr|Sa|Su)( (Mo|Tu|We|Th|Fr|Sa|Su))*$/),
+      opens: z.string().regex(/^\d{2}:\d{2}$/),
+      closes: z.string().regex(/^\d{2}:\d{2}$/),
+    })).default([]),
+    fee: z.union([
+      z.object({ free: z.literal(true) }),
+      z.object({ amount: z.number().positive(), currency: z.string().default('SAR') }),
+      z.object({ min: z.number().positive(), max: z.number().positive(), currency: z.string().default('SAR') }),
+    ]).optional(),
+  }).refine((a) => a.hoursSpec.length === 0 || a.practical.some((p) => p.verified && /المواعيد|ساعات/.test(p.label)), {
+    message: 'hoursSpec يلزمه بند practical موثّق للمواعيد — لا مواعيد مبنيَنة بلا بند موثّق',
+  }).refine((a) => !a.fee || a.practical.some((p) => p.verified && /الرسوم|الدخول/.test(p.label)), {
+    message: 'fee يلزمه بند practical موثّق للرسوم أو الدخول — لا رسم مبنيَن بلا بند موثّق',
   }),
 });
 

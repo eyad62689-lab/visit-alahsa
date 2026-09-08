@@ -8,11 +8,14 @@ import PageHero from '../PageHero.astro';
 import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { reviewedLabel } from '../../data/meta';
+import DataTable from '../DataTable.astro';
+import { practicalTable } from '../../lib/tables';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const rev = reviewedLabel('attractions', lang);
 const t = useTranslations(lang);
+const practical = await practicalTable(lang);
 const ar = lang === 'ar';
 
 /* أيقونات خطّية بلغة أيقونات فئات المعالم نفسها. كانت إيموجي (✈ 🚗 🚆) تُصيَّرها
@@ -222,6 +225,8 @@ const jsonLd = [
             </div>
           ))}
         </dl>
+        {/* جدول المواعيد والرسوم الموثّقة (الخطوة 8): من بنود practical نفسها — C24 يحرس أرقامه */}
+        {practical && <DataTable table={practical} />}
       </div>
     </section>
 

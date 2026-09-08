@@ -28,6 +28,9 @@ area_en: "Al-Omran, east of Hofuf — by Al-Qarah Mountain"
 practical:
   - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–22:00 (в праздники может быть открыто дольше)", label_zh: "开放时间", value_zh: "每日 8:00–22:00（节假日与旺季可能延长）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "50 ريالاً للبالغين", label_en: "Fees", value_en: "SAR 50 for adults", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых", label_zh: "门票", value_zh: "成人 50 沙特里亚尔（SAR）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+hoursSpec:
+  - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "22:00" }
+fee: { amount: 50, currency: SAR }
 location: { lat: 25.41184, lng: 49.6927 }
 mapUrl: "https://maps.app.goo.gl/uCahvRZfgCzKpkxc7"
 heroImage: /img/earth-of-civilization

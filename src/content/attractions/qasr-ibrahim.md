@@ -32,6 +32,12 @@ summary_en: "Mud and stone meet in a fortress that gathers mosque, garrison and 
 body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. Two schools of building sit side by side — the solidity of stone and the warmth of local mud that breathes with the climate. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
 area: وسط الهفوف — الأحساء
 area_en: "Central Hofuf — Al-Ahsa"
+hoursSpec:
+  - { days: "Su Mo Tu We Th", opens: "08:00", closes: "17:00" }
+  - { days: "Fr", opens: "16:00", closes: "20:00" }
+  - { days: "Sa", opens: "09:00", closes: "13:00" }
+  - { days: "Sa", opens: "16:00", closes: "20:00" }
+fee: { free: true }
 location: { lat: 25.378866, lng: 49.586894 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12232963

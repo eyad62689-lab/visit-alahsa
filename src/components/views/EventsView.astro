@@ -10,6 +10,8 @@ import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
 import EventEdition from '../EventEdition.astro';
+import DataTable from '../DataTable.astro';
+import { eventsTable } from '../../lib/tables';
 import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { EVENTS_AR, EVENTS_EN, EVENTS_ZH, evView, type Ev } from '../../data/events';
@@ -248,6 +250,12 @@ const jsonLd = [
           ))}
         </div>
       </div>
+    </section>
+
+    {/* روزنامة الفعاليات جدولاً (الخطوة 8 من خطة التفاعل العالمي): من events.ts نفسها،
+        ورؤوسه من نصوص معتمدة لكل لغة (nav.events · placeK · عنوان بند التوقيت) — C24 يحرس أرقامه */}
+    <section class="container ev-table">
+      <DataTable table={eventsTable(lang, { name: t('nav.events'), place: C.placeK, time: C.notes[0].h }, detailBase)} />
     </section>
 
     <section class="sec sec--sand" id="notes">

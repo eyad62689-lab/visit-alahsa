@@ -1,0 +1,24 @@
+---
+// جدول بيانات موحّد — الخطوة 8 من خطة التفاعل العالمي. يُمرَّر Table من lib/tables.ts.
+// data-table يميّز مصدره لفحص C24، والغلاف يتمرّر أفقياً على الشاشات الضيقة.
+import type { Table } from '../lib/tables';
+interface Props { table: Table; class?: string; }
+const { table, class: cls = '' } = Astro.props;
+---
+<div class:list={['tbl-wrap', cls]}>
+  <table class="va-table" data-table={table.id}>
+    {table.caption && <caption>{table.caption}</caption>}
+    <thead><tr>{table.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+    <tbody>
+      {table.rows.map((r) => (
+        <tr>
+          {r.cells.map((c, i) => (
+            i === 0
+              ? <th scope="row">{typeof c === 'string' ? c : <a href={c.href}>{c.text}</a>}</th>
+              : <td>{typeof c === 'string' ? c : <a href={c.href}>{c.text}</a>}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

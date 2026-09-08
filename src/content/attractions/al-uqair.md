@@ -33,6 +33,7 @@ summary_en: "The region’s oldest port, where desert sands meet the blue of the
 body_en: "Before the roads were paved, Al-Uqair was Al-Ahsa’s gateway to the world. An ancient port on the Arabian Gulf, where vessels moored laden with dates and goods, and through which news and trade entered the heart of the peninsula. Today two rare scenes meet at Al-Uqair: soft white sands stretching in from the desert, and the clear blue of the Gulf beginning where the sand ends. The remains of mud buildings and the old fort still guard the place, reminding the visitor that this quiet shore was once the heart of restless movement. A site for history and contemplation alike — you walk in the trace of caravans, and sit on sand that touches the sea."
 area: ساحل الخليج العربي — شرق الأحساء
 area_en: "The Arabian Gulf coast — east of Al-Ahsa"
+fee: { free: true }
 location: { lat: 25.643004, lng: 50.213101 }
 sameAs:
   - https://www.wikidata.org/wiki/Q3546517

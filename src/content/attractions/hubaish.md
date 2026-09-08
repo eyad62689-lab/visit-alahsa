@@ -27,6 +27,7 @@ featured: false
 order: 27
 practical:
   - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+fee: { free: true }
 location: { lat: 25.373299, lng: 49.592377 }
 mapUrl: "https://maps.app.goo.gl/5bDrxyVhqas7rUc19"
 ---

@@ -831,6 +831,111 @@ async function main() {
     else pass('C23', `${thinCount} معالم رقيقة (${thinSlugs.join('، ')}) noindex وخارج sitemap في ${checked} صفحة معلم؛ و${ogChecked} صفحة مفهرسة كلها بصورة OG بلغتها (${ogDefault} منها بالافتراضية)`);
   }
 
+  // ── C24: الجداول والمواعيد المبنيَنة (الخطوة 8 من خطة التفاعل العالمي) ──
+  // (أ) كل رقم في خلية جدول `data-table` وارد حرفياً في مصدر الجدول نفسه: بنود practical
+  //     في ملفات المعالم، أو src/data/events.ts، أو src/data/fruits.ts — فلا يدخل الجداول
+  //     رقم من خارج مصادر الحقيقة، ولا يتقادم جدول عن بطاقته. والجداول الثلاثة مطلوبة
+  //     بالعربية والإنجليزية وبصفوف لا تقل عن عتبة (وإلا صار الحارس فارغاً بصمت).
+  // (ب) openingHoursSpecification وisAccessibleForFree/offers في JSON-LD صفحات المعلم
+  //     لا تظهر إلا حيث يحمل مصدر المعلم hoursSpec/fee، وتظهر في كل لغاته حيث يحملهما،
+  //     وساعاتها ومبالغها واردة في المصدر حرفياً. وكل كتلة ld+json في dist تُحلَّل JSON.
+  {
+    const problems = [];
+    const numsOf = (t) => t.match(/\d+(?:[.:]\d+)?/g) ?? [];
+    const decode = (t) => t.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ');
+    const attrFiles = (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'));
+    const heads = {};
+    for (const f of attrFiles) heads[f] = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+    const SOURCES = {
+      practical: Object.values(heads).map((h) => h.match(/^practical:\n([\s\S]*?)(?=^\S)/m)?.[1] ?? '').join('\n'),
+      events: await readFile(path.join(ROOT, 'src/data/events.ts'), 'utf8'),
+      fruits: await readFile(path.join(ROOT, 'src/data/fruits.ts'), 'utf8'),
+    };
+    const MIN_ROWS = { practical: 15, events: 8, fruits: 12 };
+    const seen = {};
+    const LD = new Map();
+    let tables = 0, cells = 0, ldCount = 0;
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      const rel = path.relative(DIST, fp);
+      const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
+      for (const m of html.matchAll(/<table class="va-table" data-table="([^"]+)">([\s\S]*?)<\/table>/g)) {
+        const [, id, body] = m;
+        const src = SOURCES[id];
+        if (!src) { problems.push(`${rel}: جدول ${id} بلا مصدر معروف`); continue; }
+        tables++;
+        (seen[id] ??= new Set()).add(lang);
+        const rows = (body.match(/<tbody>([\s\S]*)<\/tbody>/)?.[1].match(/<tr>/g) ?? []).length;
+        if (rows < MIN_ROWS[id]) problems.push(`${rel}: جدول ${id} بـ${rows} صفوف — المتوقع ≥${MIN_ROWS[id]}`);
+        for (const c of body.matchAll(/<(?:td|th scope="row")[^>]*>([\s\S]*?)<\/(?:td|th)>/g)) {
+          cells++;
+          const text = decode(stripTags(c[1], ' ')).trim();
+          for (const n of numsOf(text)) if (!src.includes(n)) problems.push(`${rel}: الرقم ${n} في جدول ${id} («${text.slice(0, 30)}») غير وارد في مصدره`);
+        }
+      }
+      const objs = [];
+      for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        try {
+          const j = JSON.parse(m[1]);
+          for (const o of Array.isArray(j) ? j : [j]) objs.push(...(Array.isArray(o?.['@graph']) ? o['@graph'] : [o]));
+          ldCount++;
+        } catch { problems.push(`${rel}: كتلة ld+json غير صالحة`); }
+      }
+      LD.set(fp, objs);
+    }
+    for (const id of Object.keys(SOURCES)) for (const l of ['ar', 'en']) if (!seen[id]?.has(l)) problems.push(`جدول ${id} غائب عن النسخة ${l}`);
+
+    // (ب) المواعيد والرسوم المبنيَنة
+    let hoursPages = 0, feePages = 0, attrPages = 0;
+    for (const f of attrFiles) {
+      const head = heads[f];
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue; // يبلّغ عنه C23
+      const hoursSrc = head.match(/^hoursSpec:\n([\s\S]*?)(?=^\S)/m)?.[1];
+      const feeSrc = head.match(/^fee:.*$/m)?.[0];
+      const pages = [`/${AR_ATTRACTIONS_DIR}/${slugAr}/`, `/en/attractions/${slugEn}/`, ...['zh', 'de', 'ru'].map((l) => `/${l}/attractions/${slugEn}/`)]
+        .map((p) => [p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, fp]) => existsSync(fp));
+      for (const [p, fp] of pages) {
+        attrPages++;
+        const objs = LD.get(fp) ?? [];
+        const place = objs.find((o) => o?.['@type'] === 'TouristAttraction');
+        if (!place) { problems.push(`${p}: بلا TouristAttraction في JSON-LD`); continue; }
+        const ohs = place.openingHoursSpecification;
+        if (hoursSrc && !(Array.isArray(ohs) && ohs.length)) problems.push(`${p}: المصدر يحمل hoursSpec والسكيما بلا openingHoursSpecification`);
+        if (!hoursSrc && ohs) problems.push(`${p}: openingHoursSpecification بلا hoursSpec في المصدر`);
+        if (hoursSrc && Array.isArray(ohs)) {
+          hoursPages++;
+          for (const h of ohs) {
+            if (h?.['@type'] !== 'OpeningHoursSpecification') problems.push(`${p}: نوع مواعيد غير متوقع`);
+            for (const k of ['opens', 'closes']) if (typeof h?.[k] !== 'string' || !hoursSrc.includes(`"${h[k]}"`)) problems.push(`${p}: ${k}=${h?.[k]} غير وارد في hoursSpec`);
+            const days = Array.isArray(h?.dayOfWeek) ? h.dayOfWeek : [h?.dayOfWeek];
+            if (!days.length || !days.every((d) => /^https:\/\/schema\.org\/(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day$/.test(d))) problems.push(`${p}: dayOfWeek غير صالح`);
+          }
+        }
+        const hasFee = 'isAccessibleForFree' in place;
+        if (feeSrc && !hasFee) problems.push(`${p}: المصدر يحمل fee والسكيما بلا isAccessibleForFree`);
+        if (!feeSrc && (hasFee || place.offers)) problems.push(`${p}: isAccessibleForFree/offers بلا fee في المصدر`);
+        if (feeSrc && hasFee) {
+          feePages++;
+          const free = /free:\s*true/.test(feeSrc);
+          if (place.isAccessibleForFree !== free) problems.push(`${p}: isAccessibleForFree=${place.isAccessibleForFree} يخالف المصدر`);
+          if (free && place.offers) problems.push(`${p}: offers على معلم مجاني`);
+          if (!free) {
+            const o = place.offers;
+            const nums = [o?.price, o?.priceSpecification?.minPrice, o?.priceSpecification?.maxPrice].filter((v) => v !== undefined);
+            if (o?.['@type'] !== 'Offer' || !nums.length) problems.push(`${p}: رسم مدفوع بلا Offer صالح`);
+            for (const n of nums) if (!new RegExp(`\\b${n}\\b`).test(feeSrc)) problems.push(`${p}: المبلغ ${n} غير وارد في fee`);
+          }
+        }
+      }
+    }
+    if (tables < 6 || attrPages < 100 || ldCount < 300) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json — المتوقع ≥6 و≥100 و≥300`);
+    else if (hoursPages < 16 || feePages < 40) fail('C24', `المواعيد المبنيَنة في ${hoursPages} صفحة والرسوم في ${feePages} — المتوقع ≥16 و≥40 (تراجع في المصدر؟)`);
+    else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} كلها مطابقة لمصدرها`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');

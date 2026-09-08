@@ -301,3 +301,13 @@ picture.photo { display: block; }
 .ev-ticket:focus-visible { outline: 2px solid var(--c-turq-deep); outline-offset: 3px; }
 .ev-ticket-ic { flex-shrink: 0; }
 @media (prefers-reduced-motion: reduce) { .ev-ticket:hover { transform: none; } }
+
+/* ── جداول البيانات (الخطوة 8 من خطة التفاعل العالمي) — DataTable.astro ── */
+.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-block: var(--s-4); border: 1px solid var(--c-line); border-radius: var(--radius); background: #fff; }
+.va-table { inline-size: 100%; border-collapse: collapse; font-family: var(--font-body); font-size: var(--t-sm); line-height: 1.55; }
+.va-table caption { caption-side: top; text-align: start; padding: var(--s-3) var(--s-3) var(--s-2); font-weight: 600; color: var(--c-turq-deep); }
+.va-table th, .va-table td { padding: 10px var(--s-3); text-align: start; vertical-align: top; border-block-start: 1px solid var(--c-line); }
+.va-table thead th { background: var(--c-sand-2); color: var(--c-turq-deep); font-weight: 700; border-block-start: 0; white-space: nowrap; }
+.va-table tbody th { font-weight: 600; color: var(--c-ink); }
+.va-table tbody th a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; }
+.va-table tbody tr:nth-child(even) { background: var(--c-sand); }
