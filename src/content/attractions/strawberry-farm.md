@@ -16,7 +16,7 @@ body_en: "A strawberry farm on the Al-Uqair road offering seasonal picking."
 featured: false
 order: 63
 practical:
-  - { label: "المواعيد", value: "الموسم الشتوي والربيعي: 3:30 م - 9:30 م", label_en: "Hours", value_en: "Winter and spring season, 3:30–9:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الموسم الشتوي والربيعي: 3:30 م - 9:30 م", label_en: "Hours", value_en: "Winter and spring season, 3:30–9:30 pm", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.356864, lng: 49.685624 }
 mapUrl: "https://maps.app.goo.gl/qZwEquXBiyLu1y6X7"
 heroImage: /img/strawberry-farm

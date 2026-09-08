@@ -20,8 +20,8 @@ area_en: "Al-Jafr — east of Al-Ahsa"
 featured: false
 order: 57
 practical:
-  - { label: "المواعيد", value: "الفترة المسائية (بالاتصال والتنسيق المسبق)", label_en: "Hours", value_en: "Evenings, by prior arrangement", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الفترة المسائية (بالاتصال والتنسيق المسبق)", label_en: "Hours", value_en: "Evenings, by prior arrangement", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.376243, lng: 49.715393 }
 mapUrl: "https://goo.gl/maps/D7TWfsPXagcZHpAY9"
 ---

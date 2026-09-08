@@ -21,7 +21,7 @@ body_en: "A vast environmental park for walking and family outings."
 featured: false
 order: 42
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل (عروض النافورة من بعد المغرب)", label_en: "Hours", value_en: "Daily 4:00 pm – midnight (fountain shows after sunset)", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل (عروض النافورة من بعد المغرب)", label_en: "Hours", value_en: "Daily 4:00 pm – midnight (fountain shows after sunset)", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.321457, lng: 49.558356 }
 mapUrl: "https://goo.gl/maps/XBJEVnW23eQz96db8"
 heroImage: /img/king-abdullah-ecopark

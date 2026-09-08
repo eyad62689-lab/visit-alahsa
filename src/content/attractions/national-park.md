@@ -25,8 +25,8 @@ area_en: "Al-Omran — northeast of the oasis"
 featured: false
 order: 43
 practical:
-  - { label: "المواعيد", value: "يومياً: 6:00 ص - 6:00 م", label_en: "Hours", value_en: "Daily 6:00 am – 6:00 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 6:00 ص - 6:00 م", label_en: "Hours", value_en: "Daily 6:00 am – 6:00 pm", source: "تحقق مباشر من المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر", source_en: "Verified directly with the National Center for Vegetation Cover Development", sourceUrl: "https://ncvc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر", source_en: "Verified directly with the National Center for Vegetation Cover Development", sourceUrl: "https://ncvc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.444967, lng: 49.727603 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12245245

@@ -16,7 +16,7 @@ body_en: "A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis
 featured: false
 order: 64
 practical:
-  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.36264, lng: 49.69037 }
 mapUrl: "https://maps.app.goo.gl/jrkvGmKumQ6s9q2k6"
 heroImage: /img/al-sousan-bird-park

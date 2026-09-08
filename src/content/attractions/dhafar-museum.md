@@ -26,8 +26,8 @@ area_en: "South of Hofuf — Al-Ahsa"
 featured: false
 order: 56
 practical:
-  - { label: "المواعيد", value: "الفترة المسائية (بالحجز والاتصال المسبق)", label_en: "Hours", value_en: "Evenings, by prior booking and arrangement", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الفترة المسائية (بالحجز والاتصال المسبق)", label_en: "Hours", value_en: "Evenings, by prior booking and arrangement", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.33304, lng: 49.57921 }
 mapUrl: "https://goo.gl/maps/62qJWimkfPshjqnMA"
 ---

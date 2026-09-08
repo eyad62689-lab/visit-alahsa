@@ -27,8 +27,8 @@ area_en: "Al-Koot district — Hofuf"
 featured: false
 order: 20
 practical:
-  - { label: "المواعيد", value: "يومياً خلال أوقات الصلوات الخمس والجمعة", label_en: "Hours", value_en: "Daily at the five prayer times, and for Friday prayer", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً خلال أوقات الصلوات الخمس والجمعة", label_en: "Hours", value_en: "Daily at the five prayer times, and for Friday prayer", source: "تحقق مباشر من وزارة الشؤون الإسلامية", source_en: "Verified directly with the Ministry of Islamic Affairs", sourceUrl: "https://moia.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من وزارة الشؤون الإسلامية", source_en: "Verified directly with the Ministry of Islamic Affairs", sourceUrl: "https://moia.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.378747, lng: 49.583788 }
 sameAs:
   - https://www.wikidata.org/wiki/Q22689912

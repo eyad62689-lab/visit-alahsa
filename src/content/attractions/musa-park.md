@@ -25,8 +25,8 @@ order: 49
 area: "حي الفيصل — المبرز"
 area_en: "Al-Faisal district — Al-Mubarraz"
 practical:
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.436352, lng: 49.573605 }
 mapUrl: "https://goo.gl/maps/Vp66QYY7itVeeV9n7"
 heroImage: /img/al-mousa-garden

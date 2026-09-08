@@ -20,7 +20,7 @@ featured: false
 heroImage: /img/taraf-zoo
 order: 65
 practical:
-  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.366635, lng: 49.722483 }
 mapUrl: "https://maps.app.goo.gl/LQqCFeu7UHmaMpLn8"
 ---

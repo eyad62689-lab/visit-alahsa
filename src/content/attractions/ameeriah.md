@@ -32,8 +32,8 @@ area_en: "Al-Na'athil district — east of old Hofuf"
 featured: false
 order: 12
 practical:
-  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 8:00 م | الجمعة والسبت: 4:00 م - 8:00 م", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 8:00 pm; Friday & Saturday 4:00–8:00 pm", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 8:00 م | الجمعة والسبت: 4:00 م - 8:00 م", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 8:00 pm; Friday & Saturday 4:00–8:00 pm", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.37411, lng: 49.58745 }
 mapUrl: "https://goo.gl/maps/KsemJ5EufHLVJwaWA"
 ---

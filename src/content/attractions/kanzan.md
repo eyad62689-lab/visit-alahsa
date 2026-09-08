@@ -25,8 +25,8 @@ area_en: "Northeast of the oasis — near the villages of Al-Shu'bah and Al-Kila
 featured: false
 order: 34
 practical:
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.472262, lng: 49.639016 }
 mapUrl: "https://maps.app.goo.gl/cZW3oLwKQkGJqERQA"
 heroImage: /img/kanzan-mountain

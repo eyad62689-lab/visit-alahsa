@@ -27,8 +27,8 @@ area_en: "Al-Uqair port — the Gulf coast east of Al-Ahsa"
 featured: false
 order: 17
 practical:
-  - { label: "المواعيد", value: "متاح للزيارة الخارجية طوال اليوم (24 ساعة)", label_en: "Hours", value_en: "The exterior is open to visitors at any hour", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "متاح للزيارة الخارجية طوال اليوم (24 ساعة)", label_en: "Hours", value_en: "The exterior is open to visitors at any hour", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.644409, lng: 50.214729 }
 mapUrl: "https://maps.app.goo.gl/pQj9N6Dq75yekPTK8"
 ---
