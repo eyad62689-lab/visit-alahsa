@@ -34,7 +34,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
     { ar: '/خريطة-تضاريس/', en: '/en/terrain-map/', lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
     { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
-    { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
+    { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', ru: '/ru/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
