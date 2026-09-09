@@ -17,9 +17,9 @@ slug_ar: "سوق-النساء-الشعبي"
 slug_en: "women-souq"
 category: market
 kicker: "سوق شعبي"
-summary: "سوق تراثي في حي الرفعة الجنوبية وسط الهفوف، من مشاهد التجارة الشعبية الحيّة في المدينة."
-summary_en: "A heritage souq in the South Al-Rifaa district of central Hofuf, one of the city's living folk-trade scenes."
-body_en: "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional market at the heart of the old Suwaiq market area. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes and everyday household goods."
+summary: "بسطاتٌ في حي الرفعة الجنوبية وسط الهفوف، بائعاتها نساءٌ ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة."
+summary_en: "A stall market in the South Al-Rifaa district of central Hofuf whose sellers are women — hence the name — and one of the city's living folk-trade scenes."
+body_en: "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more."
 heroImage: /img/women-souq
 featured: false
 order: 67
@@ -48,18 +48,22 @@ faq:
     a_zh: "在胡富夫的里法阿南区，就在老苏韦格市集区的中心。"
     q_ru: "Где находится Женский народный рынок?"
     a_ru: "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, в сердце старого рыночного квартала Эс-Сувайк."
+  - q: "لماذا سُمّي سوق النساء الشعبي بهذا الاسم؟"
+    a: "لأن البائعات فيه نساء."
+    q_en: "Why is it called the Women’s Folk Souq?"
+    a_en: "Because the sellers there are women."
   - q: "ماذا يُباع في سوق النساء الشعبي؟"
-    a: "الملابس وحاجات البيت اليومية."
+    a: "الملابس والسمن والإقط وغيرها."
     q_en: "What is sold at the Women’s Folk Souq?"
-    a_en: "Clothes and everyday household goods."
+    a_en: "Clothes, ghee, aqit (dried yoghurt) and more."
     q_zh: "在妇女民俗市集能买到什么？"
     a_zh: "这里卖的是衣物和日常家用杂货。"
     q_ru: "Что продают на Женском народном рынке?"
     a_ru: "Одежду и повседневные товары для дома."
 ---
 
-في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقٌ تراثي وسط
-منطقة سوق السويق القديمة.
+في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقُ بسطاتٍ تراثي وسط
+منطقة سوق السويق القديمة. وسُمّي بذلك لأن البائعات فيه نساء.
 
 نفّذت أمانة الأحساء أعمال تطوير للسوق، وهو أحد مشاهد التجارة الشعبية
-الحيّة في الهفوف، تُباع فيه الملابس وحاجات البيت اليومية.
+الحيّة في الهفوف، تُباع فيه الملابس والسمن والإقط وغيرها.
