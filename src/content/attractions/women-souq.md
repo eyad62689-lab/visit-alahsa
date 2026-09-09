@@ -10,16 +10,16 @@ area_zh: 胡富夫，里法阿南区
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 12 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Женский народный рынок"
 kicker_ru: "Народный рынок"
-summary_ru: "Традиционный рынок с лотками в районе Эр-Рифаа аль-Джанубия, в центре Эль-Хуфуфа: торгуют здесь женщины, отсюда и название. Это одно из мест в городе, где жива народная торговля."
-body_ru: "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, расположен Женский народный рынок — традиционный рынок с лотками в сердце старого рыночного квартала Эс-Сувайк. Своё название он получил, потому что торгуют на нём женщины. Муниципалитет Аль-Ахсы провёл работы по развитию рынка. Это одно из мест в Эль-Хуфуфе, где жива народная торговля: здесь продают одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары."
+summary_ru: "Традиционный рынок с лотками в районе Эр-Рифаа аль-Джанубия, в центре Эль-Хуфуфа: торгуют здесь женщины из Аль-Ахсы, отсюда и название. Это одно из мест в городе, где жива народная торговля."
+body_ru: "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, расположен Женский народный рынок — традиционный рынок с лотками в сердце старого рыночного квартала Эс-Сувайк. Своё название он получил, потому что торгуют на нём женщины из Аль-Ахсы. Они предлагают разные товары, часть которых делают сами. Рынок открыт для всех — и для женщин, и для мужчин. Муниципалитет Аль-Ахсы провёл работы по развитию рынка. Это одно из мест в Эль-Хуфуфе, где жива народная торговля: здесь продают одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары."
 area_ru: "Эль-Хуфуф, район Эр-Рифаа аль-Джанубия"
 slug_ar: "سوق-النساء-الشعبي"
 slug_en: "women-souq"
 category: market
 kicker: "سوق شعبي"
-summary: "سوقُ بسطاتٍ تراثي في حي الرفعة الجنوبية وسط الهفوف، بائعاته نساءٌ ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة."
-summary_en: "A traditional stall market in the South Al-Rifaa district of central Hofuf whose sellers are women — hence the name — and one of the city's living folk-trade scenes."
-body_en: "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more."
+summary: "سوقُ بسطاتٍ تراثي في حي الرفعة الجنوبية وسط الهفوف، بائعاته نساءٌ من الأحساء ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة."
+summary_en: "A traditional stall market in the South Al-Rifaa district of central Hofuf whose sellers are women of Al-Ahsa — hence the name — and one of the city's living folk-trade scenes."
+body_en: "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women of Al-Ahsa, offering a range of goods, some of them their own handiwork. The souq is open to everyone, women and men alike. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more."
 heroImage: /img/women-souq
 featured: false
 order: 67
@@ -49,11 +49,17 @@ faq:
     q_ru: "Где находится Женский народный рынок?"
     a_ru: "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, в сердце старого рыночного квартала Эс-Сувайк."
   - q: "لماذا سُمّي سوق النساء الشعبي بهذا الاسم؟"
-    a: "لأن البائعات فيه نساء."
+    a: "لأن البائعات فيه نساءٌ من الأحساء."
     q_en: "Why is it called the Women’s Folk Souq?"
-    a_en: "Because the sellers there are women."
+    a_en: "Because the sellers there are women of Al-Ahsa."
     q_ru: "Почему Женский народный рынок так называется?"
-    a_ru: "Потому что торгуют на нём женщины."
+    a_ru: "Потому что торгуют на нём женщины из Аль-Ахсы."
+  - q: "هل دخول سوق النساء الشعبي مقتصر على النساء؟"
+    a: "لا، السوق مفتوح للجميع نساءً ورجالاً؛ والنساء هنّ البائعات فيه."
+    q_en: "Is the Women’s Folk Souq open only to women?"
+    a_en: "No — the souq is open to everyone, women and men alike; it is the sellers who are women."
+    q_ru: "Вход на Женский народный рынок только для женщин?"
+    a_ru: "Нет. Рынок открыт для всех — и для женщин, и для мужчин, а торгуют на нём женщины."
   - q: "ماذا يُباع في سوق النساء الشعبي؟"
     a: "الملابس والسمن والإقط وغيرها."
     q_en: "What is sold at the Women’s Folk Souq?"
@@ -65,7 +71,7 @@ faq:
 ---
 
 في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقُ بسطاتٍ تراثي وسط
-منطقة سوق السويق القديمة. وسُمّي بذلك لأن البائعات فيه نساء.
+منطقة سوق السويق القديمة. وسُمّي بذلك لأن البائعات فيه نساء — نساءٌ من الأحساء يبعن منتجاتٍ مختلفة، بعضها من صنع أيديهنّ. والسوق مفتوح للجميع، نساءً ورجالاً.
 
 نفّذت أمانة الأحساء أعمال تطوير للسوق، وهو أحد مشاهد التجارة الشعبية
 الحيّة في الهفوف، تُباع فيه الملابس والسمن والإقط وغيرها.
