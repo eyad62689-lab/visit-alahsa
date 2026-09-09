@@ -10,15 +10,15 @@ area_zh: 胡富夫，里法阿南区
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 12 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Женский народный рынок"
 kicker_ru: "Народный рынок"
-summary_ru: "Традиционный рынок в районе Эр-Рифаа аль-Джанубия, в центре Эль-Хуфуфа — одно из мест в городе, где жива народная торговля."
-body_ru: "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, стоит Женский народный рынок — традиционный рынок в сердце старого рыночного квартала Эс-Сувайк. Муниципалитет Аль-Ахсы провёл работы по развитию рынка. Это одно из мест в Эль-Хуфуфе, где жива народная торговля: здесь продают одежду и повседневные товары для дома."
+summary_ru: "Традиционный рынок с лотками в районе Эр-Рифаа аль-Джанубия, в центре Эль-Хуфуфа: торгуют здесь женщины, отсюда и название. Это одно из мест в городе, где жива народная торговля."
+body_ru: "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, расположен Женский народный рынок — традиционный рынок с лотками в сердце старого рыночного квартала Эс-Сувайк. Своё название он получил, потому что торгуют на нём женщины. Муниципалитет Аль-Ахсы провёл работы по развитию рынка. Это одно из мест в Эль-Хуфуфе, где жива народная торговля: здесь продают одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары."
 area_ru: "Эль-Хуфуф, район Эр-Рифаа аль-Джанубия"
 slug_ar: "سوق-النساء-الشعبي"
 slug_en: "women-souq"
 category: market
 kicker: "سوق شعبي"
-summary: "بسطاتٌ في حي الرفعة الجنوبية وسط الهفوف، بائعاتها نساءٌ ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة."
-summary_en: "A stall market in the South Al-Rifaa district of central Hofuf whose sellers are women — hence the name — and one of the city's living folk-trade scenes."
+summary: "سوقُ بسطاتٍ تراثي في حي الرفعة الجنوبية وسط الهفوف، بائعاته نساءٌ ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة."
+summary_en: "A traditional stall market in the South Al-Rifaa district of central Hofuf whose sellers are women — hence the name — and one of the city's living folk-trade scenes."
 body_en: "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more."
 heroImage: /img/women-souq
 featured: false
@@ -52,6 +52,8 @@ faq:
     a: "لأن البائعات فيه نساء."
     q_en: "Why is it called the Women’s Folk Souq?"
     a_en: "Because the sellers there are women."
+    q_ru: "Почему Женский народный рынок так называется?"
+    a_ru: "Потому что торгуют на нём женщины."
   - q: "ماذا يُباع في سوق النساء الشعبي؟"
     a: "الملابس والسمن والإقط وغيرها."
     q_en: "What is sold at the Women’s Folk Souq?"
@@ -59,7 +61,7 @@ faq:
     q_zh: "在妇女民俗市集能买到什么？"
     a_zh: "这里卖的是衣物和日常家用杂货。"
     q_ru: "Что продают на Женском народном рынке?"
-    a_ru: "Одежду и повседневные товары для дома."
+    a_ru: "Одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары."
 ---
 
 في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقُ بسطاتٍ تراثي وسط
