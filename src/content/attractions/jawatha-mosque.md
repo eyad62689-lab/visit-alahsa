@@ -47,11 +47,13 @@ unesco: 1563-009
 mapUrl: https://goo.gl/maps/NfRxmGxvUnTatBzJ8
 featured: true
 order: 4
-bestTime: أوقات النهار، مع احترام أوقات الصلاة وخصوصية المكان.
+bestTime: أوقات النهار، مع احترام أوقات الصلاة وحرمة المكان.
 bestTime_en: "Daylight hours, respecting prayer times and the sanctity of the place."
 practical:
   - { label: "المواعيد", value: "المسجد طوال اليوم · المنتزه المحيط 8 ص–12 منتصف الليل", label_en: "Hours", value_en: "Mosque: all day · surrounding park: 8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Мечеть: открыта весь день · окружающий парк: 8:00–24:00", label_de: "Öffnungszeiten", value_de: "Moschee: ganztägig · umliegender Park: 8–24 Uhr", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_ru: "Стоимость входа", value_ru: "Мечеть: бесплатно · вход в парк: 10–15 саудовских риялов (SAR)", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  # زيارة غير المسلمين: تأكيد المالك 2026-09-10 (قرار البند 4ج)؛ label_zh/de/ru تُضاف عبر خطوط الترجمة وإلا لا يظهر البند بتلك اللغات.
+  - { label: "زيارة غير المسلمين", value: "متاحة، مع المحافظة على اللباس المحتشم", label_en: "Visitors of other faiths", value_en: "Welcome, with modest dress", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-10", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
@@ -65,7 +67,7 @@ faq:
     q_ru: "Сколько стоит вход в мечеть Джавата?"
     a_ru: "Вход в мечеть свободный, а в окружающий парк — 10–15 саудовских риялов."
   - q: "ما مواعيد زيارة مسجد جواثا؟"
-    a: "المسجد مفتوح طوال اليوم، والمنتزه المحيط من 8 ص إلى 12 منتصف الليل، مع احترام أوقات الصلاة وخصوصية المكان."
+    a: "المسجد مفتوح طوال اليوم، والمنتزه المحيط من 8 ص إلى 12 منتصف الليل، مع احترام أوقات الصلاة وحرمة المكان."
     q_en: "What are the visiting hours of Jawatha Mosque?"
     a_en: "The mosque is open all day, and the surrounding park from 8 am to 12 midnight; please respect prayer times and the sanctity of the place."
     q_zh: "贾瓦塔清真寺的开放时间是几点到几点？"

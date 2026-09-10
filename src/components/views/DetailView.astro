@@ -299,6 +299,17 @@ const nearby = a.location
               {t('det.openMaps')}
             </a>
           )}
+          {/* رابط خرائط 高德 للقارئ في الصين (قرار المالك 6ب، 2026-09-10): خرائط قوقل لا تُفتح هناك،
+              والرابط يُبنى من إحداثيات المعلم نفسها بلا حساب ولا مفتاح، ويُقاس maps_open بمعامل provider */}
+          {zh && a.location && (
+            <a class="map-link map-link--amap" href={`https://uri.amap.com/marker?position=${a.location.lng},${a.location.lat}&name=${encodeURIComponent(a.title_zh ?? a.title_en ?? a.title)}`} target="_blank" rel="noopener">
+              <svg class="map-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+                <circle cx="12" cy="10" r="2.6" />
+              </svg>
+              {t('det.openAmap')}
+            </a>
+          )}
           <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
         </div>
       </aside>

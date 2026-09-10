@@ -153,6 +153,7 @@ export const ui = {
     'det.bestTime': 'أفضل وقت',
     'det.coords': 'الإحداثيات',
     'det.openMaps': 'افتح في خرائط جوجل ↗',
+    'det.openAmap': 'افتح في خرائط Amap ↗',   // لا يُعرض إلا في /zh/ (قرار المالك 6ب)؛ الصينية عبر الخط
     'det.fromPlace': 'من المكان',
     'det.allSights': '← كل المعالم',
     'det.allStays': '← كل أماكن الإقامة',
@@ -372,6 +373,7 @@ export const ui = {
     'det.bestTime': 'Best time',
     'det.coords': 'Coordinates',
     'det.openMaps': 'Open in Google Maps ↗',
+    'det.openAmap': 'Open in Amap ↗',
     'det.fromPlace': 'From the place',
     'det.allSights': 'All attractions →',
     'det.allStays': 'All places to stay →',

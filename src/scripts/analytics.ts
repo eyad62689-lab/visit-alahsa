@@ -57,7 +57,8 @@ const paramsOf = (el: HTMLElement): Params => {
   return out;
 };
 
-const MAPS_RE = /^https?:\/\/(maps\.app\.goo\.gl|goo\.gl\/maps|(www\.)?google\.[a-z.]+\/maps|maps\.google\.[a-z.]+)/i;
+// uri.amap.com: رابط خرائط 高德 في صفحات /zh/ (قرار المالك 6ب، 2026-09-10) — الحدث نفسه بمعامل provider
+const MAPS_RE = /^https?:\/\/(maps\.app\.goo\.gl|goo\.gl\/maps|(www\.)?google\.[a-z.]+\/maps|maps\.google\.[a-z.]+|uri\.amap\.com)/i;
 
 const pathOf = (href: string): string => {
   try { return decodeURI(new URL(href, location.href).pathname); } catch { return href; }
@@ -90,7 +91,7 @@ function onClick(e: MouseEvent): void {
 
   // 5) الخروج إلى خرائط قوقل — من صفحة المعلم أو بطاقة المنشأة أو الفعالية
   const a = t.closest<HTMLAnchorElement>('a[href]');
-  if (a && MAPS_RE.test(a.href)) track('maps_open', { item_id: currentPath() });
+  if (a && MAPS_RE.test(a.href)) track('maps_open', { item_id: currentPath(), provider: /amap\.com/i.test(a.href) ? 'amap' : 'google' });
 
   // 6) الفلاتر: شرائح الخريطة والمطاعم، وزر «مفتوح الآن»، وأقسام فهرس المعالم
   const chip = t.closest<HTMLElement>('.chip[data-filter], .chip[data-kind], #dn-open');
