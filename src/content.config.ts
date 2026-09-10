@@ -166,7 +166,10 @@ const attractions = defineCollection({
 // مقالات المدونة — كل لغة ملفها المستقل (المقال طويل فلا يصلح نمط الحقول _en).
 // الترجمتان تُقرنان بحقل key المشترك؛ slug بلغة الملف نفسه (عربي للعربية).
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  // معرّف المدخل من اسم الملف لا من حقل slug: محمّل glob يجعل slug معرّفاً ضمنياً، والمقال
+  // الواحد بلغاته (الخطوة 10) يتقاسم الـslug اللاتيني عبر /en/ و/zh/ و/de/ و/ru/ فتتصادم
+  // المعرّفات ويطمس مقالٌ آخر بصمت (تحذير Duplicate id في astro sync — 2026-09-10).
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog', generateId: ({ entry }) => entry.replace(/\.md$/, '') }),
   schema: z.object({
     title: z.string(),
     description: z.string(),                   // وصف الميتا وبطاقة الفهرس
