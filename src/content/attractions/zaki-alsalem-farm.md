@@ -24,8 +24,6 @@ featured: false
 order: 68
 area: "طريق الخليج — الأحساء"
 area_en: "Al-Khaleej Road — Al-Ahsa"
-practical:
-  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", verified: false }
 location: { lat: 25.2985879, lng: 49.6605849 }
 mapUrl: "https://maps.app.goo.gl/S3QhpmWT7b3ge6DKA"
 ---

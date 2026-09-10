@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "batch": "batch-20260910 (zh) — stage 4 (benchmarker)",
+    "date": "2026-09-10",
+    "input": "fields.stage3.json",
+    "sources": {
+      "baiah": "src/content/attractions/baiah.md — summary_en/body_en at HEAD 4ffac3b (body_en clarified 6b4bf2b: «celebrations of the Saudi National Day», «sitting areas for guests») · Arabic summary/body after --- (arbiter)",
+      "jawatha": "src/content/attractions/jawatha-mosque.md — practical[2] (label_en/value_en/source_en; Arabic arbiter)",
+      "ui": "src/i18n/ui.ts — keys det.openAmap / home.route.s1.d / home.route.s2.d (en + ar blocks as source, zh block as current value)"
+    },
+    "calendar_rule": "summary_zh carries the first mention on the page → 伊斯兰历 1203 年（公元 1789 年）; body_zh uses the second-mention form 伊历 … (style_rules_additions.calendar). Full Hijri date rendered 伊历 1331 年 5 月 28 日（公元 1913 年 5 月 4 日）— Jumada I is month 5 of the Hijri year; the 公元 gloss carries the calendar difference.",
+    "stage2_changes": [
+      "baiah.body_zh — FACT: «初入哈萨时便在此下榻» (stayed here) → «抵达哈萨时，最先走进的便是这座宅邸» (the first house he entered), per the unified Arabic/English source.",
+      "baiah.body_zh — TERMBASE: «哈萨人便在这里庆祝沙特国庆日» → «哈萨居民便在这里庆祝沙特国庆日» (termbase: 哈萨人 is never used; 当地居民/哈萨居民).",
+      "baiah.body_zh — STYLE: agent + long gloss + verb (由…（gloss）建于…) re-ordered to the Chinese narrative order time → agent → verb: «伊历 1203 年（公元 1789 年），哈萨的法官谢赫…（gloss）建起了这座占地 705 平方米的宅邸»; the double 由此 (哈萨由此归入…，宅邸由此成为…) resolved with 自此 on the new clause so the approved clause 宅邸由此成为哈萨融入现代沙特国家的象征 stays byte-identical; 归属于 → 传到…手中 (آلت إلى); 进行了修复 → 修复了这座老宅; 讲述着它的故事 → 把它的故事娓娓道来 (second 讲述 kept as 道出…往事); 宅邸 thinned (老宅 / 宅子) where it repeated 8 times.",
+      "baiah.summary_zh — unchanged from stage 1 (reads natively; carries the page's first-mention calendar form).",
+      "jawatha.practical — unchanged from stage 1.",
+      "ui — unchanged from stage 1."
+    ],
+    "preserved_verbatim": [
+      "baiah.body_zh sentence 1 (source unchanged): 在胡富夫城中心的库特区，距易卜拉欣宫与凯撒利亚集市不过数步之遥，坐落着效忠之家（拜特·拜阿），当地人称之为拜特·穆拉。",
+      "baiah.body_zh clauses kept byte-identical from the approved text where their source clause survived: “拜特·穆拉”之名正来自这一家族 · 民众也正是在这里向他宣誓效忠 · 宅邸由此成为哈萨融入现代沙特国家的象征 · 如今辟为博物馆",
+      "jawatha.practical.source_zh — the approved house form 本站编辑团队确认 (12 published cards)",
+      "ui.det.openAmap — the approved det.openMaps pattern 在谷歌地图中打开 ↗ with the brand swapped",
+      "24h Dougha sentence «山脚下的卡拉村里坐落着……制陶之地之一» — published wording (传统陶坊 was judge-approved in batch-18; EN unchanged except Kingdom→Saudi Arabia)."
+    ],
+    "stage3_changes": [],
+    "stage4_changes": [
+      "baiah.body_zh — FACT FENCE + TERM: «四周的内廊俯瞰其间» → «内侧的回廊俯瞰其间». (a) 四周 (on all sides) is not in body_en «overlooked by inner balconies» nor in the Arabic «تطل عليها شرفات داخلية» — removed (P5). (b) 内廊 rejected: in Chinese architectural usage 内廊 is an interior double-loaded corridor (内廊式) and cannot overlook a courtyard; the courtyard-facing gallery is 回廊 — the site's approved precedent (ameeriah.md body_zh «内院四周绕着一圈连拱回廊»); 阳台 rejected as a residential hanging balcony (judge, batch-5 minaret ruling). Ruling recorded in termbase-additions.stage4.json.",
+      "baiah.summary_zh — unchanged (verified against summary_en/summary at HEAD).",
+      "jawatha.practical — unchanged (verified against practical[2] at HEAD; source_zh is the bound entry 本站编辑团队确认).",
+      "ui — unchanged (det.openAmap on the bound «Location ↗» pattern; home.route.s1.d 城堡 per brief 6; home.route.s2.d per the judge-approved itinerary sentence).",
+      "24-hours-itinerary — SOURCE CHANGE mid-batch (commit 4ffac3b, 2026-09-10 14:08): EN «steps from Qasr Ibrahim» → «about half a kilometre from Qasr Ibrahim» / AR «على نحو نصف كيلومتر من قصر إبراهيم». zh «距易卜拉欣宫不过数步之遥» → «距易卜拉欣宫约半公里» (unit kept as in the source; no digit introduced). No other + line changed.",
+      "48-hours-itinerary — no change (byte-identical to stage 3); 归入/融入 split confirmed (see rulings)."
+    ],
+    "stage4_rulings": {
+      "guiru_vs_rongru": "CONFIRMED (stage 2 decision): dated act «joined the Saudi state» (1913) → 归入沙特国家; the symbol clause stays on the protected approved wording 融入(现代)沙特国家的象征. Two concepts, not a term split; 并入/加入 rejected.",
+      "neilang_vs_huilang": "回廊 (see stage4_changes[0]); 四周 dropped.",
+      "mid_morning": "上午 (24h) confirmed — three-period day 清晨→上午→傍晚 needs no 上午晚些时候; the 48h article keeps 上午晚些时候 because its day one also has 上午.",
+      "proper_nouns": "six names verified internally (web blocked) and written to termbase-additions.stage4.json with status verified/pending.",
+      "calendar": "1789 present in summary (伊斯兰历, first mention) and body (伊历, second mention); the superseded CE year absent everywhere except the tm.remove record.",
+      "half_kilometre": "约半公里 — the source gives no digit (half a kilometre / نصف كيلومتر); the site's «约 N 米/公里» pattern is for sourced numerals, so no 500 米 conversion was introduced."
+    }
+  },
+  "baiah": {
+    "summary_zh": "库特区内穆拉家族的历史宅邸——由哈萨的法官建于伊斯兰历 1203 年（公元 1789 年）；公元 1913 年，哈萨民众在此向阿卜杜勒阿齐兹国王宣誓效忠，宅邸由此成为哈萨融入沙特国家的象征。",
+    "body_zh": "在胡富夫城中心的库特区，距易卜拉欣宫与凯撒利亚集市不过数步之遥，坐落着效忠之家（拜特·拜阿），当地人称之为拜特·穆拉。伊历 1203 年（公元 1789 年），哈萨的法官谢赫阿卜杜勒拉赫曼·本·奥马尔·本·穆罕默德·穆拉（“谢赫”是宗教学者的尊称）建起了这座占地 705 平方米的宅邸，“拜特·穆拉”之名正来自这一家族；后来，宅邸传到阿卜杜勒拉蒂夫·本·阿卜杜勒拉赫曼·穆拉（1853—1921）手中——他是穆拉家族的族长，也是家族里的教法学家与法官。伊历 1331 年 5 月 28 日（公元 1913 年 5 月 4 日），阿卜杜勒阿齐兹国王抵达哈萨时，最先走进的便是这座宅邸；哈萨民众也正是在这里向他宣誓效忠，哈萨自此归入沙特国家。宅邸由此成为哈萨融入现代沙特国家的象征，也是哈萨最重要的历史与政治地标之一。2005 至 2007 年，沙特文物与博物馆局修复了这座老宅；自那以后，哈萨居民便在这里庆祝沙特国庆日。宅邸如今辟为博物馆，各个房间里陈列着文物、器具、手稿与照片，把它的故事娓娓道来。整座宅子通体白色，配着木窗，分上下两层：一层是宽敞的迎宾庭院，内侧的回廊俯瞰其间，设有会客区，陈列着服饰与个人用品；二层的房间大多用作卧室与起居室，墙上挂着历史照片与说明图片，道出这座老宅的往事。"
+  },
+  "jawatha": {
+    "practical": {
+      "label_zh": "非穆斯林游客",
+      "value_zh": "欢迎参观，请注意衣着端庄",
+      "source_zh": "本站编辑团队确认"
+    }
+  },
+  "ui": {
+    "det.openAmap": "在高德地图中打开 ↗",
+    "home.route.s1.d": "从这座城堡开始：同一道围墙之内，清真寺、军营与瞭望塔比邻而立。",
+    "home.route.s2.d": "巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。"
+  },
+  "tm": {
+    "remove": [
+      {
+        "page": "jabal-al-qarah",
+        "field": "body.3",
+        "en": "From the summit the oasis unfolds like a sea of palms — a view that sums up why Al-Ahsa became the largest palm oasis on earth.",
+        "zh": "登临山顶，绿洲铺展至天际，椰枣林连绵如海——一眼望去，便明白哈萨为何成为世界上最大的椰枣绿洲。",
+        "reason": "يخالف قرار 2026-09-03 (_meta.oasis_anspruch) وحارس C15: لا محدِّد 椰枣/棕榈/天然 على دعوى «أكبر واحة». صفحة جبل القارة المنشورة (body_zh) مصحَّحة سلفاً إلى «世界上最大的绿洲»؛ الزوج وحده هو المتخلّف. يُدرج تحت مفتاح remove في tm-additions.json عند الاعتماد.",
+        "replacement_suggested": "登临山顶，绿洲铺展至天际，椰枣林连绵如海——一眼望去，便明白哈萨为何成为世界上最大的绿洲。"
+      },
+      {
+        "page": "48-hours-itinerary",
+        "field": "body.d1.koot",
+        "en": "Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla house built by Al-Ahsa's judge in 1203 AH, a symbol of the state's founding.",
+        "zh": "宫殿近旁便是历史悠久的库特区，[效忠之家](/zh/attractions/baiah/)（拜特·拜阿）就在这里——这座宅邸当地人称之为拜特·穆拉，由哈萨的法官建于伊斯兰历 1203 年（公元 1788 年），是沙特建国的象征。",
+        "reason": "يحمل «公元 1788 年» و«沙特建国的象征» وكلاهما أُلغي بقرار المالك 2026-09-10 (السنة 1789، والرمز لانضمام الأحساء لا لتأسيس الدولة). لا يجوز أن يُعاد استعماله ولو طابق مصدرٌ قديم."
+      }
+    ],
+    "superseded_by_this_batch": [
+      "24-hours-itinerary · description",
+      "24-hours-itinerary · faq[0].a",
+      "24-hours-itinerary · faq[1].a",
+      "24-hours-itinerary · body.4 (the midday cave sentence no longer exists in the source)",
+      "24-hours-itinerary · tips.jawatha (the source bullet gained Al-Kilabiyah and the non-Muslim visitors clause)",
+      "48-hours-itinerary · faq[0].a",
+      "48-hours-itinerary · body.d2.etiquette (the source sentence gained the non-Muslim visitors clause)",
+      "48-hours-itinerary · tips.hours (bullet deleted from the source; the pair stays valid as a pair but is orphaned)"
+    ],
+    "note": "الأزواج أعلاه ليست خاطئة كأزواج EN→ZH (عدا الاثنين تحت remove)، لكنها لم تعد تطابق مصدر المقالين؛ مرحلة 6 تضيف الأزواج الجديدة من الملفات النهائية. حُمل القسم كما هو من المرحلة 1 لأن المرحلتين 2 و3 لا تمسّان الذاكرة."
+  }
+}

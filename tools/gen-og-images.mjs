@@ -17,12 +17,22 @@ const ui = readFileSync(path.join(ROOT, 'src/i18n/ui.ts'), 'utf8');
 
 /** قيمة مفتاح في كتلة لغة من ui.ts — قراءة نصّية لأن الملف TypeScript */
 function uiValue(lang, key) {
-  const start = ui.search(new RegExp(`^  ${lang}: \\{`, 'm'));
+  // بحث نصّي لا تعبير نمطي مبني من مدخل (Semgrep detect-non-literal-regexp على طلب الدمج #38)
+  const start = ui.indexOf(`\n  ${lang}: {`);
   if (start < 0) throw new Error(`لا كتلة ${lang} في ui.ts`);
   const block = ui.slice(start, ui.indexOf('\n  }', start));
-  const m = block.match(new RegExp(`'${key.replace(/\./g, '\\.')}':\\s*'((?:[^'\\\\]|\\\\.)*)'`));
-  if (!m) throw new Error(`المفتاح ${key} غائب من ${lang}`);
-  return m[1].replace(/\\'/g, "'");
+  const needle = `'${key}':`;
+  const at = block.indexOf(needle);
+  if (at < 0) throw new Error(`المفتاح ${key} غائب من ${lang}`);
+  let i = at + needle.length;
+  while (block[i] === ' ' || block[i] === '\t') i++;
+  if (block[i] !== "'") throw new Error(`قيمة ${key} في ${lang} ليست سلسلة بين علامتي اقتباس مفردتين`);
+  let out = '';
+  for (let j = i + 1; j < block.length && block[j] !== "'"; j++) {
+    if (block[j] === '\\') { out += block[j + 1] === "'" ? "'" : block[j] + block[j + 1]; j++; }
+    else out += block[j];
+  }
+  return out;
 }
 
 const W = 1200, H = 630;

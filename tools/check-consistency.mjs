@@ -11,6 +11,19 @@ import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
+// وجود الرقم num في النص بحدود رقمية لا ترقيمية (لا رقم قبله ولا «رقم:» أو «رقم.» قبله، ولا رقم
+// بعده ولو بعد فاصل)، دون بناء تعبير نمطي من مدخل — «2018.» آخر الجملة رقم صحيح، أما «18» فلا تُقبل
+// لـ«8»، و«8:00» لا تُقبل لـ«8». (Semgrep detect-non-literal-regexp على طلب الدمج #38.)
+const numInText = (text, num) => {
+  const isD = (c) => c >= '0' && c <= '9';
+  const isSep = (c) => c === ':' || c === '.' || c === ',';
+  for (let i = text.indexOf(num); i !== -1; i = text.indexOf(num, i + 1)) {
+    const b1 = text[i - 1] ?? '', b2 = text[i - 2] ?? '', a1 = text[i + num.length] ?? '', a2 = text[i + num.length + 1] ?? '';
+    if (!isD(b1) && !(isSep(b1) && isD(b2)) && !isD(a1) && !(isSep(a1) && isD(a2))) return true;
+  }
+  return false;
+};
+
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
 const SRC_ATTRACTIONS = path.join(ROOT, 'src/content/attractions');
@@ -680,7 +693,7 @@ async function main() {
           for (const num of (it.q + ' ' + it.a).match(/\d+(?:[:.,]\d+)*/g) ?? []) {
             // الحدود رقمية لا ترقيمية: «2018.» آخر الجملة رقمٌ صحيح، أما «18» فلا تُقبل لـ«8»،
             // و«8:00» لا تُقبل لـ«8» (الصيغة في السؤال تطابق صيغة البطاقة حرفياً)
-            if (!new RegExp('(?<!\\d)(?<!\\d[:.,])' + escapeRe(num) + '(?![:.,]?\\d)').test(srcText))
+            if (!numInText(srcText, num))
               problems.push(`${rel}: الرقم «${num}» في السؤال «${it.q.slice(0, 30)}…» لا يرد في متن الصفحة ولا بطاقتها`);
           }
         }
@@ -932,7 +945,7 @@ async function main() {
             const o = place.offers;
             const nums = [o?.price, o?.priceSpecification?.minPrice, o?.priceSpecification?.maxPrice].filter((v) => v !== undefined);
             if (o?.['@type'] !== 'Offer' || !nums.length) problems.push(`${p}: رسم مدفوع بلا Offer صالح`);
-            for (const n of nums) if (!new RegExp(`\\b${n}\\b`).test(feeSrc)) problems.push(`${p}: المبلغ ${n} غير وارد في fee`);
+            for (const n of nums) if (!numInText(feeSrc, String(n))) problems.push(`${p}: المبلغ ${n} غير وارد في fee`);
           }
         }
       }
@@ -941,7 +954,6 @@ async function main() {
     //     والإنجليزية فقط، بين 35 و45 كلمة، وكل رقم فيها وارد في بقية المتن أو بطاقة الزيارة
     //     (المتن دون الفقرة نفسها) — ولا فقرة لصفحة بلا answer في مصدرها.
     const escapeRe = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const numRe = (num) => new RegExp('(?<!\\d)(?<!\\d[:.,])' + escapeRe(num) + '(?![:.,]?\\d)');
     const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
     const unesc = (t) => t.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
     let answerPages = 0;
@@ -969,7 +981,7 @@ async function main() {
         const aside = html.match(/<aside\b[^>]*\bclass="att-aside"[^>]*>[\s\S]*?<\/aside>/)?.[0] ?? '';
         if (!prose || !aside) { problems.push(`${p}: تعذّر عزل المتن أو بطاقة الزيارة لفحص أرقام الإجابة`); continue; }
         const srcText = stripTags(prose + ' ' + aside, ' ');
-        for (const num of want.match(/\d+(?:[:.,]\d+)*/g) ?? []) if (!numRe(num).test(srcText)) problems.push(`${p}: الرقم «${num}» في فقرة الإجابة لا يرد في متن الصفحة ولا بطاقتها`);
+        for (const num of want.match(/\d+(?:[:.,]\d+)*/g) ?? []) if (!numInText(srcText, num)) problems.push(`${p}: الرقم «${num}» في فقرة الإجابة لا يرد في متن الصفحة ولا بطاقتها`);
       }
     }
 

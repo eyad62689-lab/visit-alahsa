@@ -10,14 +10,14 @@ pubDate: 2026-08-22
 tags: ["itinerary", "two days in Al-Ahsa", "trip plan"]
 faq:
   - q: "Are two days enough to visit Al-Ahsa?"
-    a: "Two days are enough to feel the spirit of the oasis and cover its foremost landmarks: the heritage heart of Hofuf on day one, and the oasis's nature, water and coast on day two. If you want to add the museums, parks and weekly souqs, three days give the trip more room to breathe."
+    a: "Two days are enough to feel the spirit of the oasis and cover its foremost landmarks: the heritage heart of Hofuf on day one, and the oasis's nature, water and coast on day two. If you want more, the attractions pages on this site hold museums, parks and folk souqs enough to fill a third day."
   - q: "How do I get between the stops on this itinerary?"
     a: "A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's My Trip page to get a ready-made route that opens in Google Maps."
 ---
 
-Two days are enough to feel the spirit of Al-Ahsa — the largest oasis on earth, a UNESCO World Heritage Site since 2018, where life thrives among more than 2.5 million date palms. This itinerary splits the visit the way the oasis itself is split: **day one for its heritage heart** in Hofuf, **day two for its water, green and coast**.
+Two days are enough to feel the spirit of Al-Ahsa — the largest oasis on earth, a UNESCO World Heritage Site since 2018, where life thrives among more than 2.5 million date palms. This itinerary splits the visit the way the oasis itself is split: **day one for its heritage heart in Hofuf**, **day two for its water, green and coast**.
 
-One note before you start: the stops here are arranged by the **rhythm of the day** — morning, midday, sunset — not by fixed hours, because opening times and fees change with the seasons. You will find the verified details on each landmark's page on this site; confirm through official channels before you visit.
+One note before you start: the stops here are arranged by the **rhythm of the day**, from morning to sunset, not by fixed hours, because opening times and fees change with the seasons. You will find the verified details on each landmark's page on this site; confirm through official channels before you visit.
 
 ## Day One: Hofuf's Heritage Heart
 
@@ -27,7 +27,7 @@ Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the 
 
 ### Mid-morning: Al-Koot District and the City's Memory
 
-Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla house built by Al-Ahsa's judge in 1203 AH, a symbol of the state's founding. Then continue east to the [Amiriah School](/en/attractions/ameeriah/), Al-Ahsa's first formal government school (1937), whose historic building now serves as a house of culture.
+Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1789 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum. Then continue east to the [Amiriah School](/en/attractions/ameeriah/), Al-Ahsa's first formal government school (1937), whose historic building now serves as a house of culture.
 
 ### Evening: Qaisariyah Souq
 
@@ -37,15 +37,15 @@ Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a her
 
 ### Early Morning: Jabal Al-Qarah and Dougha Al-Gharash
 
-Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. Early morning is its finest hour, when the light is soft and the heat is mild. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of the Kingdom's best-known homes of the craft.
+Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. Early morning is its finest hour, when the light is soft and the heat is mild. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
 
 ### Midday: Jawatha Mosque
 
-Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. Be mindful of prayer times and the sanctity of the place.
+Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. Be mindful of prayer times and the sanctity of the place; visitors of other faiths are welcome, with modest dress.
 
 ### Afternoon: The Green of the Farms
 
-If your visit falls in citrus season, give the afternoon to the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and choose what suits your day.
+If your visit falls in the Hasawi lime season, in summer from mid-June, give the afternoon to the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
 
 ### Sunset: Al-Uqair
 
@@ -55,5 +55,4 @@ End your trip on the Gulf coast east of Al-Ahsa at [Al-Uqair](/en/attractions/al
 
 - **Arrange your route before you set out**: add stops to [My Trip](/en/plan/) from each landmark's page and get a ready-made route that opens in Google Maps.
 - **Use the map**: the [attractions map](/en/map/) shows every stop in its place and helps you judge the order of your day.
-- **Hours and fees**: they change with seasons and holidays — the verified details live on each landmark's page, and the final word belongs to official channels.
 - **First time in Al-Ahsa?** The [Plan your trip](/en/plan-your-trip/) page gathers the essentials of getting there and getting around.

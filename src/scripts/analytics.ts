@@ -57,7 +57,24 @@ const paramsOf = (el: HTMLElement): Params => {
   return out;
 };
 
-const MAPS_RE = /^https?:\/\/(maps\.app\.goo\.gl|goo\.gl\/maps|(www\.)?google\.[a-z.]+\/maps|maps\.google\.[a-z.]+)/i;
+// مزوّد الخرائط من **المضيف** لا بتعبير نمطي على سلسلة الرابط: التعبير النمطي يطابق جزءاً من
+// مضيف أطول («uri.amap.com.example.org») ما لم يُحدَّد طرفاه، وهي علّة تنبيه CodeQL «Missing regular
+// expression anchor» على طلب الدمج #41. واجهة URL تفكّ الرابط فيُقارن `hostname` كاملاً.
+// uri.amap.com: رابط خرائط 高德 في صفحات /zh/ (قرار المالك 6ب، 2026-09-10) — الحدث نفسه بمعامل provider.
+function mapsProvider(href: string): 'google' | 'amap' | null {
+  let u: URL;
+  try { u = new URL(href, location.href); } catch { return null; }
+  if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
+  const host = u.hostname.toLowerCase().replace(/^www\./, '');
+  if (host === 'uri.amap.com') return 'amap';
+  if (host === 'maps.app.goo.gl') return 'google';
+  if (host === 'goo.gl') return u.pathname === '/maps' || u.pathname.startsWith('/maps/') ? 'google' : null;
+  if (host === 'maps.google.com') return 'google';
+  // google.com وحده: نمطٌ مثل /^google\.[a-z]+$/ يقبل نطاقاً وهمياً («google.comevil») لأن لاحقة
+  // النطاق ليست مجموعة مغلقة. والموقع لا يُصدر إلا هذه المضيفات الخمسة، فمن أضاف سادساً يضيفه هنا.
+  if (host === 'google.com') return u.pathname === '/maps' || u.pathname.startsWith('/maps/') ? 'google' : null;
+  return null;
+}
 
 const pathOf = (href: string): string => {
   try { return decodeURI(new URL(href, location.href).pathname); } catch { return href; }
@@ -90,7 +107,8 @@ function onClick(e: MouseEvent): void {
 
   // 5) الخروج إلى خرائط قوقل — من صفحة المعلم أو بطاقة المنشأة أو الفعالية
   const a = t.closest<HTMLAnchorElement>('a[href]');
-  if (a && MAPS_RE.test(a.href)) track('maps_open', { item_id: currentPath() });
+  const provider = a ? mapsProvider(a.href) : null;
+  if (provider) track('maps_open', { item_id: currentPath(), provider });
 
   // 6) الفلاتر: شرائح الخريطة والمطاعم، وزر «مفتوح الآن»، وأقسام فهرس المعالم
   const chip = t.closest<HTMLElement>('.chip[data-filter], .chip[data-kind], #dn-open');
