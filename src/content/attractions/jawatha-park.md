@@ -28,6 +28,11 @@ area_en: "Al-Kilabiyah — northeast of Al-Ahsa"
 practical:
   - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–24:00", label_zh: "开放时间", value_zh: "每日 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", label_ru: "Стоимость входа", value_ru: "10–15 саудовских риялов (SAR) · посещение мечети бесплатно", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+hoursSpec:
+  - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:59" }
+fee: { min: 10, max: 15, currency: SAR }
+answer: "منتزه جواثا السياحي منتزه أخضر في بلدة الكلابية، يجمع الطبيعة بالتاريخ: ففي نطاقه مسجد جواثا الأثري، ثاني موضع أُقيمت فيه صلاة الجمعة في الإسلام، وموقع جواثا الأثري. وجهة للنزهات العائلية تفتح يومياً من 8 ص إلى 12 منتصف الليل، والدخول 10–15 ريالاً وزيارة المسجد مجانية."
+answer_en: "Jawatha Park is a green park in Al-Kilabiyah joining nature to history: within its grounds stand the Jawatha Mosque, the second place where Friday prayers were held in Islam, and the Jawatha archaeological site. Open daily 8 am to midnight; entry SAR 10–15, mosque free."
 location: { lat: 25.471156, lng: 49.677408 }
 mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).

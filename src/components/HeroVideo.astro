@@ -55,7 +55,11 @@ const t = useTranslations(lang);
         var s = v.querySelector('source');
         if (reduceMotion || !s || !s.dataset.src) return; // بلا زر: لا حركة أصلاً
 
-        var saveData = navigator.connection && navigator.connection.saveData === true;
+        var conn = navigator.connection || {};
+        var saveData = conn.saveData === true;
+        // شبكة بطيئة (2g/3g المُعلنة): لا تشغيل تلقائي — الملصق هو المشهد، والزر يتيح التشغيل
+        // بطلب صريح (الخطوة 3 من خطة التفاعل العالمي: الفيديو كان يزاحم LCP على الجوال).
+        var slowNet = typeof conn.effectiveType === 'string' && /(^|-)2g$|^3g$/.test(conn.effectiveType);
 
         function setState(playing) {
           if (!btn) return;
@@ -73,9 +77,27 @@ const t = useTranslations(lang);
           v.addEventListener('canplay', function () { v.play().catch(function () {}); }, { once: true });
         }
 
-        var auto = !saveData && !prefOff();
+        var auto = !saveData && !slowNet && !prefOff();
         if (btn) { btn.hidden = false; setState(auto); }
-        if (auto) { v.autoplay = true; load(); }
+        // التحميل التلقائي يبدأ بعد اكتمال تحميل الصفحة ثم عند خمول المتصفح، لا فوراً:
+        // كان الفيديو (1.26 ميغابايت على الجوال) يبدأ عند ~450 مللي ثانية فيزاحم صورة
+        // LCP والخطوط على عرض النطاق (Lighthouse 2026-09-08: LCP 4.9 ث على الرئيسية
+        // العربية). الملصق يبقى المشهد حتى يبدأ التشغيل فلا يتغير ما يراه الزائر.
+        // على الجوال يتأخر ثلاث ثوانٍ أخرى بعد load: النسخة العمودية 1.26 ميغابايت، ومحاكاة
+        // Lighthouse للجوال أثبتت أنها تُدرَج في مخطط الشبكة فتؤخر LCP متى بدأت قبل
+        // هدوء الشبكة؛ الملصق يبقى المشهد في هذه الثواني.
+        function autoLoad() {
+          if (s.src) return;
+          var delay = matchMedia('(max-width: 760px)').matches ? 3000 : 0;
+          setTimeout(function () {
+            if ('requestIdleCallback' in window) requestIdleCallback(function () { v.autoplay = true; load(); }, { timeout: 2500 });
+            else { v.autoplay = true; load(); }
+          }, delay);
+        }
+        if (auto) {
+          if (document.readyState === 'complete') autoLoad();
+          else window.addEventListener('load', autoLoad, { once: true });
+        }
 
         if (btn) btn.addEventListener('click', function () {
           if (!s.src) { setPref(false); setState(true); load(); return; }

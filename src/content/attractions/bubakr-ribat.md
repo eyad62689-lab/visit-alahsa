@@ -25,6 +25,7 @@ area: محلة الرويضة، حي الكوت — الهفوف
 area_en: "Al-Ruwaidah quarter, Al-Koot district — Hofuf"
 featured: false
 order: 23
+district: alkoot
 location: { lat: 25.376461, lng: 49.583846 }
 mapUrl: "https://maps.app.goo.gl/SXAr6bn8aUoLvQzw6"
 ---

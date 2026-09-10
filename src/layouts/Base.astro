@@ -19,19 +19,16 @@ import '@fontsource/lora/latin-400.css';
 import '@fontsource/lora/latin-600.css';
 import '@fontsource/cormorant-garamond/latin-400.css';
 import '@fontsource/cormorant-garamond/latin-600.css';
-// السيريلية (تكامل ru-RU — 2026-09-05): المقاطع نفسها بالأوزان نفسها من الحزم
-// المثبّتة أصلاً — لا حزمة جديدة. بدونها كانت صفحات /ru/ تقع على Georgia, serif
-// الاحتياطي لأن الموقع يستورد latin-*.css وحدها. الكلفة CSS فقط: ملفات woff2
-// لا تُنزَّل إلا حين تُصيَّر محارف داخل unicode-range، فصفحات ar/en/zh لا تمسّها.
-import '@fontsource/playfair-display/cyrillic-400.css';
-import '@fontsource/playfair-display/cyrillic-700.css';
-import '@fontsource/lora/cyrillic-400.css';
-import '@fontsource/lora/cyrillic-600.css';
-import '@fontsource/cormorant-garamond/cyrillic-400.css';
-import '@fontsource/cormorant-garamond/cyrillic-600.css';
+// السيريلية (تكامل ru-RU — 2026-09-05) تُعلَن في src/styles/fonts.css لا هنا:
+// ملفات fontsource الفرعية `cyrillic-*.css` **بلا unicode-range** (مقيس على dist
+// 2026-09-08)، فكان المتصفح يعدّ الوجه السيريلي شاملاً لكل المحارف وينزّل ستة ملفات
+// (73 كيلوبايت) في كل صفحة بكل لغة — حتى /en/map/ الخالية من أي حرف سيريلي.
+// الإعلان اليدوي في fonts.css يحمل نطاق السيريلية فلا تُنزَّل إلا حين تُصيَّر
+// محارفها (صفحات /ru/ وكلمة «Русский» في مبدّل اللغة إن ظهرت).
 import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
+import LangSuggest from '../components/LangSuggest.astro';
 import { srcsetFor } from '../lib/images';
 import { ORG, WEBSITE } from '../lib/schema';
 import { AI_REFERRER_HOSTS } from '../lib/ai-referrers.mjs';
@@ -56,11 +53,15 @@ interface Props {
   /* أصول خارجية تفتح اتصالها مبكراً — لصفحات تعتمد LCP فيها على مضيف خارجي
      (بلاطات خريطة كارتو مثلاً — لايتهاوس 2026-08-29: prioritize-lcp-image) */
   preconnect?: string[];
+  /* شريط اقتراح اللغة (الخطوة 2 من خطة التفاعل العالمي) — يُعطَّل حيث تتولى الصفحة
+     لغتها بنفسها (404 تستنتج اللغة من المسار). الافتراضي: يعمل متى وُجد alt. */
+  langSuggest?: boolean;
 }
 const {
   title,
   description = 'الأحساء — أكبر واحة في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
   lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
+  langSuggest = true,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -121,7 +122,8 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    {/* بيان التطبيق بلغة الصفحة: العربي ملف ثابت، والبقية من src/pages/[lang]/site.webmanifest.ts */}
+    <link rel="manifest" href={lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`} />
     <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
     <meta name="copyright" content={copyrightNotice} />
     <meta name="rights" content={copyrightNotice} />
@@ -162,6 +164,10 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <script is:inline define:vars={{ GA_ID, AI_HOSTS: AI_REFERRER_HOSTS }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
+      // define:vars يغلّف هذا السكربت في نطاق مغلق، فلم تكن gtag عامةً قط: أحداث
+      // «رحلتي» (plan_*) وmap_3d_opened كانت تُسقَط بصمت لأن `typeof gtag` هناك
+      // undefined (كشفه فحص قبول الخطوة 1 — tools/test-analytics-events.mjs).
+      window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', GA_ID, { send_page_view: false });
       // مصدر محرك الإجابة الذي جاء منه الزائر — يُحسب مرة واحدة عند دخول الجلسة.
@@ -197,6 +203,8 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         } catch (e) { /* بحث غير صالح */ }
         return null;
       })();
+      // تُقرأ في src/scripts/analytics.ts لتُلحق بكل حدث (الخطوة 1 من خطة التفاعل العالمي)
+      window.__vaAiSource = aiSource;
 
       document.addEventListener('astro:page-load', () => {
         gtag('event', 'page_view', {
@@ -281,6 +289,11 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
       if (document.readyState !== 'loading') window.VAPlan.sync();
       else document.addEventListener('DOMContentLoaded', () => window.VAPlan.sync());
     </script>
+    {alt && langSuggest && <LangSuggest lang={lang} alt={alt} />}
     <CopyGuard />
+    {/* طبقة القياس الموحّدة (وحدة مُجمَّعة تُنفَّذ مرة واحدة): الأحداث العشرة
+        ومؤشرات الويب الحيوية — src/scripts/analytics.ts. تأتي بعد سكربت VAPlan
+        المضمّن عمداً: مستمع الحفظ هناك يقلب الحالة قبل أن يقرأها القياس هنا. */}
+    <script>import '../scripts/analytics';</script>
   </body>
 </html>

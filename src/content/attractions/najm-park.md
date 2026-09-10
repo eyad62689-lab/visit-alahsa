@@ -25,6 +25,7 @@ area: غرب المبرز — الأحساء
 area_en: "West of Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 45
+district: mubarraz
 location: { lat: 25.40642, lng: 49.557917 }
 mapUrl: "https://goo.gl/maps/zD3noGFvTMLadcKRA"
 ---

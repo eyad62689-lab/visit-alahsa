@@ -65,6 +65,31 @@ jobs:
       - name: Build with all checks
         run: npm run build
 
+      # فحص قبول الخطوة 1 من خطة التفاعل العالمي: أحداث القياس تصل إلى dataLayer
+      # في متصفح حقيقي على dist. puppeteer-core يُثبَّت خارج المستودع عمداً (لا يدخل
+      # package.json كي لا يثقل بناء نتلايفي) — سابقة tools/measure-header-fit.mjs.
+      # الخطوة 2 (استقبال الزائر بلغته): tools/test-lang-suggest.mjs يفحص شريط اقتراح
+      # اللغة و404 وبيانات التطبيق، ويشغّل axe-core (صفر مخالفات) على الصفحات المعنية.
+      - name: Acceptance — browser checks on dist (analytics, language suggestion)
+        run: |
+          (npx astro preview --host 127.0.0.1 --port 4399 > /tmp/preview.log 2>&1 &)
+          for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:4399/en/ && break; sleep 1; done
+          mkdir -p /tmp/pptr && cd /tmp/pptr && npm init -y > /dev/null && npm i puppeteer-core@24 axe-core@4 --no-audit --no-fund > /dev/null && cd -
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser)"
+          export PUPPETEER_DIR=/tmp/pptr CHROME BASE=http://127.0.0.1:4399
+          node tools/test-analytics-events.mjs
+          node tools/test-lang-suggest.mjs
+          node tools/test-share-map.mjs
+          node tools/test-near-me.mjs
+
+      # الخطوة 3 (الأداء): بوابة Lighthouse بميزانيات حتمية (لا CSS حاجب، لا سيريلي خارج
+      # /ru/، سقف الخطوط، لا فيديو قبل LCP) وحارسَي محاكاة خشنين — الأرقام الميدانية من web_vitals.
+      - name: Acceptance — performance budgets (Lighthouse, mobile simulation)
+        run: |
+          mkdir -p /tmp/lh && cd /tmp/lh && npm init -y > /dev/null && npm i lighthouse@12 --no-audit --no-fund > /dev/null && cd -
+          CHROME_PATH="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser)"
+          LH_DIR=/tmp/lh CHROME_PATH="$CHROME_PATH" BASE=http://127.0.0.1:4399 node tools/lighthouse-gate.mjs
+
       - name: Upload build log artefacts on failure
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

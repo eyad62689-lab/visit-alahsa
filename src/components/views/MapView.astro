@@ -3,10 +3,12 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
+import ShareButton from '../ShareButton.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
 import { srcsetFor } from '../../lib/images';
+import { DIST_LABELS } from '../../lib/distance';
 import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -32,6 +34,8 @@ const points = items
     // معلم بلا ترجمة صينية معتمدة: رابطه يقصد النسخة الإنجليزية (سابقة الفهرس)
     href: attractionHref(e.data, zh && !e.data.title_zh ? 'en' : lang),
     fav: e.data.slug_ar,
+    // معرّف الرابط العميق (#slug) — لاتيني في كل اللغات (الخطوة 6 من خطة التفاعل العالمي)
+    id: e.data.slug_en,
     summary: ar ? e.data.summary : zh ? (e.data.summary_zh ?? e.data.summary_en ?? e.data.summary) : (e.data.summary_en ?? e.data.summary),
     img: e.data.heroImage ?? null,
     // مصغّر القائمة (72px) والبطاقة المنبثقة: أصغر نسخة مولَّدة لا الأصل الكامل.
@@ -45,7 +49,11 @@ const points = items
   .sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : zh ? 'zh' : 'en'));
 const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
 const catCounts = Object.fromEntries(usedCats.map((c) => [c, points.filter((p) => p.cat === c).length]));
-const labels = { view: t('map.pop.view'), favAdd: t('fav.add'), favAdded: t('fav.added') };
+const labels = {
+  view: t('map.pop.view'), favAdd: t('fav.add'), favAdded: t('fav.added'),
+  // «بالقرب مني» (الخطوة 7): صياغة المسافة المعتمدة لكل لغة، ورسالة الخطأ (zh تتراجع للإنجليزية حتى تمرّ بالخط)
+  distUnder: DIST_LABELS[lang].under, distAbout: DIST_LABELS[lang].about, locateErr: t('map.locate.err'),
+};
 
 // إطار العرض الافتراضي — مئينات 5–95 لا المدى الكامل. معلمان ساحليان يمدّان
 // النطاق ~1.2° طولاً (≈120 كم) فيهبط التكبير إلى 9: أغلب المعالم ينهار في
@@ -90,6 +98,16 @@ const jsonLd = [
             خارج مجموعة الفلاتر: رابط تنقّل لا فلتر، وكان شكله يوهم أنه أحدها. */}
         {/* لا نسخة صينية للتضاريسية بعد — رابط zh يقصد الإنجليزية */}
         <a class="map-terrain-link" href={ar ? '/خريطة-تضاريس/' : '/en/terrain-map/'}>{t('map.terrain')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+        {/* «بالقرب مني» (الخطوة 7): تحديد الموقع بطلب صريح؛ يرتّب القائمة بالمسافة ويضع علامة
+            الزائر بلا تخزين. أيقونة وحدها في كل اللغات بتسمية aria (zh تتراجع للإنجليزية حتى تمرّ بالخط). */}
+        <button class="map-locate" id="map-locate" type="button" aria-label={t('map.locate')} title={t('map.locate')} aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /><circle cx="12" cy="12" r="8" />
+          </svg>
+        </button>
+        <p class="map-locate-msg" id="map-locate-msg" role="status" aria-live="polite" hidden></p>
+        {/* مشاركة الخريطة بحالتها (الفئة والبحث والدبوس في الرابط) — الخطوة 6 */}
+        <ShareButton lang={lang} contentType="map" class="map-share" />
       </div>
     </div>
     <div class="container map-layout">
@@ -107,7 +125,7 @@ const jsonLd = [
                 )}
                 <span class="ms-tx">
                   <strong class="ms-t">{p.title}</strong>
-                  <span class="ms-k"><span class={`dot dot--${p.cat}`} aria-hidden="true"></span>{p.catLabel}</span>
+                  <span class="ms-k"><span class={`dot dot--${p.cat}`} aria-hidden="true"></span>{p.catLabel}<span class="ms-dist" data-dist hidden></span></span>
                 </span>
               </button>
             </li>
@@ -205,6 +223,23 @@ const jsonLd = [
       const countEl = document.getElementById('map-count');
       const emptyEl = document.getElementById('map-empty');
       const state = { cat: 'all', q: '' };
+      // ── روابط عميقة (الخطوة 6 من خطة التفاعل العالمي): ?cat= و?q= و#slug ──
+      // تُقرأ عند التحميل وتُكتب بـreplaceState عند كل تغيير، فتُشارَك الخريطة
+      // مفلترةً أو على دبوس بعينه، ولا يُلوَّث سجل التصفح.
+      const params = new URLSearchParams(location.search);
+      const initCat = params.get('cat');
+      const initQ = (params.get('q') || '').trim();
+      let initId = '';
+      try { initId = decodeURIComponent((location.hash || '').slice(1)); } catch (e) { initId = ''; }
+      function syncUrl(hash) {
+        const q = new URLSearchParams();
+        if (state.cat !== 'all') q.set('cat', state.cat);
+        const raw = search ? search.value.trim() : '';
+        if (raw) q.set('q', raw);
+        const qs = q.toString();
+        const h = hash === undefined ? location.hash : (hash ? '#' + hash : '');
+        history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + h);
+      }
       function apply() {
         const shown = [];
         entries.forEach(({ p, m, li }) => {
@@ -223,6 +258,7 @@ const jsonLd = [
           c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
         });
         apply();
+        syncUrl();
       }));
       // تهدئة 200ms: apply() تعيد fitBounds، وبلاها كانت الخريطة تُرسم مع كل حرف
       // (8 أحرف = 8 إعادة رسم — تدقيق 2026-08-28). الشرائح فورية كما كانت.
@@ -230,8 +266,66 @@ const jsonLd = [
         let deb = 0;
         search.addEventListener('input', () => {
           clearTimeout(deb);
-          deb = setTimeout(() => { state.q = norm(search.value.trim()); apply(); }, 200);
+          deb = setTimeout(() => { state.q = norm(search.value.trim()); apply(); syncUrl(); }, 200);
         });
+      }
+      // الدبوس المفتوح يكتب #slug في الرابط ويمحوه عند الإغلاق
+      entries.forEach(({ p, m }) => {
+        m.on('popupopen', () => syncUrl(p.id));
+        m.on('popupclose', () => { if (location.hash === '#' + p.id) syncUrl(''); });
+      });
+      // ── «بالقرب مني» (الخطوة 7): بطلب صريح، يُحسب محلياً ولا يُخزَّن ──
+      const locateBtn = document.getElementById('map-locate');
+      const locateMsg = document.getElementById('map-locate-msg');
+      let meMarker = null;
+      const km = (la1, lo1, la2, lo2) => {
+        const r = Math.PI / 180, dLa = (la2 - la1) * r, dLo = (lo2 - lo1) * r;
+        const h = Math.sin(dLa / 2) ** 2 + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin(dLo / 2) ** 2;
+        return 2 * 6371 * Math.asin(Math.sqrt(h));
+      };
+      const distText = (d) => (d < 1 ? labels.distUnder : labels.distAbout.replace('{n}', String(Math.round(d))));
+      const trackLocate = (ok) => { try { if (window.VATrack) window.VATrack('map_locate', { ok }); } catch (e) {} };
+      function showMe(lat, lng) {
+        if (locateMsg) { locateMsg.hidden = true; locateMsg.textContent = ''; }
+        if (meMarker) meMarker.remove();
+        meMarker = L.circleMarker([lat, lng], { radius: 9, color: '#fff', weight: 3, fillColor: '#006E61', fillOpacity: 1, className: 'va-me' }).addTo(map);
+        // المسافة على كل عنصر، ثم إعادة ترتيب القائمة من الأقرب (المخفيّ بالفلتر يبقى مخفياً)
+        const withDist = entries.map((en) => ({ en, d: km(lat, lng, en.p.lat, en.p.lng) }));
+        withDist.forEach(({ en, d }) => {
+          if (!en.li) return;
+          const el = en.li.querySelector('[data-dist]');
+          if (el) { el.textContent = ' · ' + distText(d); el.hidden = false; }
+        });
+        withDist.sort((a, b) => a.d - b.d).forEach(({ en }) => { if (en.li && listEl) listEl.appendChild(en.li); });
+        map.setView([lat, lng], Math.max(map.getZoom(), 12));
+        if (locateBtn) locateBtn.setAttribute('aria-pressed', 'true');
+      }
+      if (locateBtn) locateBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) { if (locateMsg) { locateMsg.textContent = labels.locateErr; locateMsg.hidden = false; } trackLocate(false); return; }
+        locateBtn.disabled = true;
+        // حارس مهلة خاص: حين يتجاهل الزائر نافذة الإذن يبقى الطلب معلّقاً في كروم بلا
+        // خطأ ولا مهلة (timeout لا يسري قبل قرار الإذن)، فلا يبقى الزر معطَّلاً
+        let settled = false;
+        const fail = () => { if (settled) return; settled = true; locateBtn.disabled = false; if (locateMsg) { locateMsg.textContent = labels.locateErr; locateMsg.hidden = false; } trackLocate(false); };
+        const guard = setTimeout(fail, 12000);
+        navigator.geolocation.getCurrentPosition(
+          (pos) => { if (settled) return; settled = true; clearTimeout(guard); locateBtn.disabled = false; showMe(pos.coords.latitude, pos.coords.longitude); trackLocate(true); },
+          () => { clearTimeout(guard); fail(); },
+          { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
+        );
+      });
+      // تطبيق حالة الرابط عند الدخول
+      const catChip = initCat ? Array.from(chips).find((c) => c.getAttribute('data-filter') === initCat) : null;
+      if (catChip) {
+        state.cat = initCat;
+        chips.forEach((c) => { c.classList.toggle('is-active', c === catChip); c.setAttribute('aria-pressed', c === catChip ? 'true' : 'false'); });
+      }
+      if (initQ && search) { search.value = initQ; state.q = norm(initQ); }
+      if (catChip || initQ) apply();
+      const target = initId ? entries.find(({ p }) => p.id === initId) : null;
+      if (target) cluster.zoomToShowLayer(target.m, () => target.m.openPopup());
+      if (catChip || initQ || target) {
+        try { if (window.VATrack) window.VATrack('map_deeplink', { cat: state.cat, q_len: initQ.length, item_id: target ? initId : '' }); } catch (e) {}
       }
     }
     document.addEventListener('astro:page-load', initMap);
@@ -256,6 +350,15 @@ const jsonLd = [
   .map-sum { color: var(--c-ink-soft); margin-block-end: var(--s-4); }
   .map-tools { display: flex; gap: var(--s-3); align-items: center; flex-wrap: wrap; }
   /* 16px حدّ أدنى إلزامي: سفاري iOS يزوّم الصفحة تلقائياً عند لمس أي حقل أصغر */
+  .map-locate { display: inline-grid; place-items: center; inline-size: 44px; block-size: 44px; color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: 50%; cursor: pointer; }
+  .map-locate:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .map-locate[aria-pressed="true"] { color: #fff; background: var(--c-turq-deep); border-color: var(--c-turq-deep); }
+  .map-locate:disabled { opacity: .6; cursor: progress; }
+  .map-locate:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .map-locate-msg { flex-basis: 100%; margin: 0; font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .map-locate-msg[hidden] { display: none; }
+  .ms-dist { color: var(--c-turq-deep); font-weight: 600; }
+  .ms-dist[hidden] { display: none; }
   .map-search { font-family: var(--font-body); font-size: 16px; color: var(--c-ink); background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 8px 16px; min-inline-size: 230px; }
   /* أزرار تكبير Leaflet الافتراضية 30×30 — دون الحدّ المريح للمس.
      التخصيص هنا (0,3,1) لا بدّ أن يتجاوز قاعدة leaflet‏ `.leaflet-touch .leaflet-bar a` (0,2,1)،

@@ -32,6 +32,12 @@ bestTime_en: "The evening, when the shops open their doors and the souq comes al
 practical:
   - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00 (по пятницам — только вечером)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_zh: "费用", value_zh: "免费", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+hoursSpec:
+  - { days: "Sa Su Mo Tu We Th", opens: "08:00", closes: "12:00" }
+  - { days: "Mo Tu We Th Fr Sa Su", opens: "15:30", closes: "22:00" }
+fee: { free: true }
+answer: "سوق القيصرية في حي الرفعة بالهفوف من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. متاجره المتراصّة تبيع البشت الحساوي والحِرف من الخوص والفخار والتمور والقهوة والبهارات. يفتح من 8 ص إلى 12 ظهراً ومن 3:30 ع إلى 10 م (الجمعة مساءً فقط)، والدخول مجاني."
+answer_en: "Qaisariyah Souq in Hofuf’s Al-Rifaa district is among the Gulf’s oldest souqs, over two centuries old. Its close-packed shops sell the Hasawi bisht, palm-frond and pottery crafts, dates, coffee and spices. Open 8 am–12 noon and 3:30–10 pm (Friday evenings only); entry is free."
 location: { lat: 25.37558, lng: 49.589 }
 sameAs:
   - https://www.wikidata.org/wiki/Q16121126

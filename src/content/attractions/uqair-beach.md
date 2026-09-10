@@ -29,6 +29,8 @@ area: "ساحل العقير — شرق الأحساء"
 area_en: "Al-Uqair coast — east of Al-Ahsa"
 bestTime: "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
 bestTime_en: "Early morning, or late afternoon onwards, away from the peak heat."
+answer: "شاطئ العقير التاريخي على ساحل الخليج العربي شرق الأحساء، بمياهه الهادئة الضحلة ورماله البيضاء وكثبانه، من أقدم وجهات الاصطياف على الخليج، وبجواره ميناء العقير التاريخي الذي كان بوّابة الأحساء البحرية. مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق للزوّار وموقعاً مخصّصاً لعربات الكرفان يُحجز إلكترونياً."
+answer_en: "Al-Uqair Beach stretches along the Arabian Gulf coast with calm shallow waters, white sand and dunes, one of the oldest summer destinations on the Gulf, beside the historic Al-Uqair port. It suits families and photographers, with shades, facilities and a caravan site booked online."
 location: { lat: 25.746988, lng: 50.194863 }
 mapUrl: "https://maps.app.goo.gl/nwATsMpiUuzqxwXw7"
 gallery:

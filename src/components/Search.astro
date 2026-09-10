@@ -50,14 +50,21 @@ const t = useTranslations(lang);
     const form = dialog.querySelector('#sm-form');
     let loaded = false, loadFailed = false;
 
-    // تحميل Pagefind كسولاً مرة واحدة، ويُحفظ على window ليبقى عبر تنقّلات ClientRouter
-    async function ensurePagefind() {
-      if (window.__pagefind) return window.__pagefind;
-      const pf = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
-      await pf.options({ excerptLength: 22 });
-      pf.init();
-      window.__pagefind = pf;
-      return pf;
+    // تحميل Pagefind كسولاً مرة واحدة، ويُحفظ على window ليبقى عبر تنقّلات ClientRouter.
+    // وعدٌ واحد مشترك: كل حرف يُكتب قبل اكتمال التحميل كان يستدعي options() وinit()
+    // من جديد على الوحدة نفسها، فيضيع أول بحث أحياناً (كشفه فحص القبول المتصفحي
+    // 2026-09-08: النافذة مفتوحة والقيمة مكتوبة والنتائج لا تصل).
+    function ensurePagefind() {
+      if (window.__pagefind) return Promise.resolve(window.__pagefind);
+      if (!window.__pagefindLoading) {
+        window.__pagefindLoading = import(/* @vite-ignore */ '/pagefind/pagefind.js').then(async (pf) => {
+          await pf.options({ excerptLength: 22 });
+          pf.init();
+          window.__pagefind = pf;
+          return pf;
+        }).catch((e) => { window.__pagefindLoading = null; throw e; });
+      }
+      return window.__pagefindLoading;
     }
 
     function setMsg(text) { results.innerHTML = '<p class="sm-msg">' + text + '</p>'; }

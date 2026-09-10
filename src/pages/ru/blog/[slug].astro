@@ -1,0 +1,16 @@
+---
+// صفحة المقال — النسخة الروسية (ru). لا تُبنى إلا لمقال لغته ru مرّ بخط ru-translation-pipeline
+// (حاكم ≥ 90)؛ نظائره من postAlt (الاقتران بـkey) — مصدر hreflang ومبدّل اللغة.
+import BlogPostView from '../../../components/views/BlogPostView.astro';
+import { getCollection } from 'astro:content';
+import { postAlt } from '../../../lib/blog';
+
+export async function getStaticPaths() {
+  const all = await getCollection('blog', ({ data }) => !data.draft);
+  return all
+    .filter((e) => e.data.lang === 'ru')
+    .map((entry) => ({ params: { slug: entry.data.slug }, props: { entry, alt: postAlt(all, entry) } }));
+}
+const { entry, alt } = Astro.props;
+---
+<BlogPostView entry={entry} lang="ru" alt={alt} />

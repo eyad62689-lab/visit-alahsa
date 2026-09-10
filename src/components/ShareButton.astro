@@ -1,0 +1,91 @@
+---
+// زر المشاركة — الخطوة 6 من خطة التفاعل العالمي (ف1 في التشخيص).
+//
+// كانت المشاركة في «رحلتي» وحدها (واتساب ونسخ الرابط)، ولا زر في صفحات المعالم
+// والمقالات والمنشآت والفعاليات والخريطة. هنا زر واحد: Web Share API حيث تتوفر
+// (ورقة المشاركة الأصلية على الجوال)، وإلا نسخ الرابط مع تأكيد مرئي. يُقاس حدث
+// `share` بطريقته (web_share / copy) ونوع المحتوى ومعرّفه عبر VATrack.
+//
+// النصوص: العربية والإنجليزية من ui.ts (share.btn وplan.copied)؛ الصينية من مفتاحي
+// plan.copy وplan.copied المعتمدين (وصف الفعل المتاح فعلاً)؛ الألمانية والروسية أيقونة
+// وحدها بتسمية aria إنجليزية من كلمة واحدة حتى تمرّ مفاتيح share.* بخطي الترجمة —
+// قاعدة CLAUDE.md: لا نصّ بهذه اللغات خارج الخطوط.
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** نوع المحتوى لحدث القياس: attraction · blog · dining · stay · event · map */
+  contentType: string;
+  /** معرّف العنصر لحدث القياس (slug) — الافتراضي مسار الصفحة */
+  itemId?: string;
+  /** على خلفية داكنة (هيرو مصوّر) */
+  dark?: boolean;
+  class?: string;
+}
+const { lang, contentType, itemId, dark = false, class: cls = '' } = Astro.props;
+const str = (l: Lang, key: string): string | undefined => (ui[l] as Record<string, string>)[key];
+const label = lang === 'ar' || lang === 'en' ? str(lang, 'share.btn') : lang === 'zh' ? str('zh', 'plan.copy') : undefined;
+const copied = str(lang === 'de' || lang === 'ru' ? 'en' : lang, 'plan.copied') ?? 'Link copied ✓';
+const aria = label ?? 'Share';
+---
+<button
+  class:list={['share-btn', { 'share-btn--dark': dark, 'share-btn--icon': !label }, cls]}
+  type="button"
+  data-share={contentType}
+  data-share-id={itemId}
+  data-copied={copied}
+  aria-label={label ? undefined : aria}
+  title={label ? undefined : aria}
+>
+  <svg class="share-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="18" cy="5" r="2.6" /><circle cx="6" cy="12" r="2.6" /><circle cx="18" cy="19" r="2.6" />
+    <path d="M8.3 10.7l7.4-4.3M8.3 13.3l7.4 4.3" />
+  </svg>
+  {label && <span class="share-tx" data-share-tx data-share-label={label}>{label}</span>}
+</button>
+
+<script is:inline>
+  (function () {
+    if (window.__vaShare) return;
+    window.__vaShare = true;
+    var timers = new WeakMap();
+    function track(btn, method) {
+      try { if (window.VATrack) window.VATrack('share', { method: method, content_type: btn.dataset.share, item_id: btn.dataset.shareId || decodeURI(location.pathname) }); } catch (e) {}
+    }
+    function copied(btn) {
+      var tx = btn.querySelector('[data-share-tx]');
+      btn.classList.add('is-copied');
+      if (tx) tx.textContent = btn.dataset.copied;
+      clearTimeout(timers.get(btn));
+      timers.set(btn, setTimeout(function () {
+        btn.classList.remove('is-copied');
+        if (tx) tx.textContent = tx.dataset.shareLabel;
+      }, 2200));
+    }
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('button[data-share]');
+      if (!btn) return;
+      var url = location.href;
+      var title = document.title;
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).then(function () { track(btn, 'web_share'); }).catch(function () { /* أُلغيت الورقة */ });
+        return;
+      }
+      var done = function () { copied(btn); track(btn, 'copy'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt(title, url); });
+      else window.prompt(title, url);
+    });
+  })();
+</script>
+
+<style>
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; min-block-size: 44px; padding: 0 16px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), background var(--dur) var(--ease); }
+  .share-btn:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .share-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .share-btn--icon { inline-size: 44px; padding: 0; justify-content: center; }
+  .share-btn--dark { color: var(--c-sand); background: transparent; border-color: rgba(247, 243, 234, .5); }
+  .share-btn--dark:hover { color: var(--c-sand); border-color: var(--c-sand); background: rgba(247, 243, 234, .08); }
+  .share-btn--dark:focus-visible { outline-color: var(--c-gold-bright, var(--c-gold)); }
+  .share-btn.is-copied { color: var(--c-turq-deep); border-color: var(--c-turq); background: var(--c-sand-2); }
+  .share-btn--dark.is-copied { color: var(--c-sand); background: rgba(247, 243, 234, .14); border-color: var(--c-sand); }
+</style>

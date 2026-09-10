@@ -5,6 +5,8 @@ import Search from './Search.astro';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
+import { LANG_META } from '../i18n/langs';
+import { listedAlt } from '../i18n/unlisted';
 
 interface Props { lang?: Lang; alt?: AltLinks; }
 const { lang = 'ar', alt } = Astro.props;
@@ -53,18 +55,14 @@ const nav = [
 // 2026-08-29 — قابل للتوسع لأي لغة قادمة بلا إعادة تصميم). اللغة غير العربية
 // والإنجليزية تُدرج فقط حين تحمل الصفحة نظيراً لها في alt — لا خيار يقود إلى 404.
 // القائمة عنصر <details> أصلي: كيبورد وحالة بلا JS، وسكربت صغير للإغلاق خارجها.
-const LANG_META: Record<Lang, { short: string; native: string; code: string; dir: 'rtl' | 'ltr' }> = {
-  ar: { short: 'ع', native: 'العربية', code: 'ar', dir: 'rtl' },
-  en: { short: 'EN', native: 'English', code: 'en', dir: 'ltr' },
-  zh: { short: '中文', native: '中文（简体）', code: 'zh-CN', dir: 'ltr' },
-  de: { short: 'DE', native: 'Deutsch', code: 'de', dir: 'ltr' },
-  ru: { short: 'RU', native: 'Русский', code: 'ru', dir: 'ltr' },
-};
+// LANG_META من src/i18n/langs.ts (مصدر واحد مع شريط اقتراح اللغة وصفحة 404)
+// الصفحات غير المعلَنة (unlisted.ts) لا تظهر خياراً في المبدّل — كما لا تظهر في hreflang
+const altL = alt ? listedAlt(alt) : undefined;
 const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
-  .filter((l) => l === lang || (alt ? Boolean(alt[l]) : l !== 'zh' && l !== 'de' && l !== 'ru'))
+  .filter((l) => l === lang || (altL ? Boolean(altL[l]) : l !== 'zh' && l !== 'de' && l !== 'ru'))
   .map((l) => ({
     current: l === lang,
-    href: l === lang ? null : (alt?.[l] ?? (l === 'ar' ? '/' : '/en/')),
+    href: l === lang ? null : (altL?.[l] ?? (l === 'ar' ? '/' : '/en/')),
     ...LANG_META[l],
   }));
 ---

@@ -192,8 +192,11 @@ async function main() {
     if (fmField(fm, 'draft') === 'true') continue
     const lang = fmField(fm, 'lang')
     const slug = fmField(fm, 'slug')
-    const url = lang === 'ar' ? `${SITE}/مدونة/${slug}/` : `${SITE}/en/blog/${slug}/`
-    push({ id: id(url), type: 'blog', lang, title: fmField(fm, 'title'), url, phrase: pickPhrase(smartify(plainText(body)), taken, true), published: fmField(fm, 'pubDate') })
+    // zh/de/ru منذ الخطوة 10: الرابط تحت بادئة لغته، وقاطف العبارة بقاطف لغته (سابقة المعالم)
+    const url = lang === 'ar' ? `${SITE}/مدونة/${slug}/` : `${SITE}/${lang}/blog/${slug}/`
+    const text = smartify(plainText(body))
+    const phrase = lang === 'zh' ? pickPhraseZh(text.replace(/\s+/g, ' ').trim(), taken) : pickPhrase(text, taken, true, lang === 'de')
+    push({ id: id(url), type: 'blog', lang, title: fmField(fm, 'title'), url, phrase, published: fmField(fm, 'pubDate') })
   }
 
   await mkdir(dirname(OUT), { recursive: true })

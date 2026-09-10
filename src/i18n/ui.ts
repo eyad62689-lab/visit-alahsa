@@ -27,6 +27,19 @@ export const ui = {
     'lang.switch': 'EN',
     'lang.switchLabel': 'English',
     'lang.menu': 'اللغة',
+    // شريط اقتراح اللغة (الخطوة 2 من خطة التفاعل العالمي): يُعرض بلغة الزائر لا بلغة الصفحة.
+    // zh/de/ru بلا هذه المفاتيح عمداً حتى تمرّ بخطوط الترجمة — فيُعرض اسم اللغة الأصلي وحده.
+    'lang.suggest.text': 'هذه الصفحة متاحة بالعربية',
+    'lang.suggest.cta': 'اقرأها بالعربية',
+    'lang.suggest.close': 'إغلاق',
+    // زر المشاركة (الخطوة 6): zh يستعمل plan.copy المعتمد، وde/ru أيقونة وحدها حتى تمرّ بالخطوط
+    'share.btn': 'مشاركة',
+    // «بالقرب مني» (الخطوة 7): الموقع لا يغادر الجهاز؛ zh/de/ru أيقونة وحدها حتى تمرّ بالخطوط
+    'map.locate': 'موقعي على الخريطة',
+    'map.locate.err': 'تعذّر تحديد موقعك — تحقق من إذن الموقع في المتصفح.',
+    'det.distance': 'كم يبعد عني؟',
+    'det.unesco': 'من مكوّنات موقع اليونسكو للتراث العالمي',
+    'det.mentions.h': 'مقالات تذكر هذا المعلم',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
     // نصوص كانت مضمّنة خارج القاموس (توحيد i18n — دفعة 3)
@@ -59,6 +72,7 @@ export const ui = {
     'foot.l.privacy': 'السياسات والشروط',
     'foot.l.contact': 'تواصل معنا',
     'foot.l.whatsapp': 'واتساب',
+    'foot.l.unesco': 'واحة الأحساء في اليونسكو',
     // الرئيسية
     'home.hero.eyebrow': 'موقع تراث عالمي · اليونسكو 2018',
     'home.hero.title': 'تجوّل بين الواحات والنخيل',
@@ -247,6 +261,15 @@ export const ui = {
     'lang.switch': 'ع',
     'lang.switchLabel': 'العربية',
     'lang.menu': 'Language',
+    'lang.suggest.text': 'This page is available in English',
+    'lang.suggest.cta': 'Read in English',
+    'lang.suggest.close': 'Dismiss',
+    'share.btn': 'Share',
+    'map.locate': 'My location on the map',
+    'map.locate.err': 'Could not get your location — check the browser’s location permission.',
+    'det.distance': 'How far from me?',
+    'det.unesco': 'A component of the UNESCO World Heritage site',
+    'det.mentions.h': 'Articles that mention this place',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
     'a11y.mainNav': 'Main navigation',
@@ -275,6 +298,7 @@ export const ui = {
     'foot.l.privacy': 'Policies & Terms',
     'foot.l.contact': 'Contact us',
     'foot.l.whatsapp': 'WhatsApp',
+    'foot.l.unesco': 'UNESCO World Heritage',
     'home.hero.eyebrow': 'UNESCO World Heritage Site · 2018',
     'home.hero.title': 'Wander among the oases and palms',
     'home.hero.lead': 'Al-Ahsa — the largest oasis on earth. Where water has run beneath the sand for millennia, and life thrives among more than 2.5 million date palms.',
@@ -758,6 +782,11 @@ export const ui = {
     'foot.l.privacy': 'Richtlinien und Nutzungsbedingungen',
     'foot.l.contact': 'Kontakt',
     'foot.l.whatsapp': 'WhatsApp',
+    'blog.published': 'Veröffentlicht am',
+    'blog.updated': 'Aktualisiert am',
+    'blog.back': 'Alle Artikel →',
+    'blog.faq': 'Häufige Fragen',
+    'plan.printNote': 'Öffnungszeiten und Eintritt können sich ändern – prüfen Sie beides vor Ihrem Besuch über die offiziellen Kanäle nach.',
     'foot.l.report': 'Fehler melden',
     'det.visitInfo': 'Besuchsinformationen',
     'det.area': 'Lage',
@@ -920,6 +949,11 @@ export const ui = {
     'foot.l.privacy': 'Правила и условия использования',
     'foot.l.contact': 'Свяжитесь с нами',
     'foot.l.whatsapp': 'WhatsApp',
+    'blog.published': 'Опубликовано',
+    'blog.updated': 'Обновлено',
+    'blog.back': 'Все статьи →',
+    'blog.faq': 'Часто задаваемые вопросы',
+    'plan.printNote': 'Часы работы и стоимость входа могут меняться — перед поездкой уточните их по официальным источникам.',
     'foot.l.report': 'Сообщить об ошибке',
     // صفحة المعلم
     'det.visitInfo': 'Практическая информация',

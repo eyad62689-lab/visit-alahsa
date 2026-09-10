@@ -24,6 +24,7 @@ area: قرب قرية القارة — شرق الأحساء
 area_en: "Near Al-Qarah village — east of Al-Ahsa"
 featured: false
 order: 46
+district: qarah
 location: { lat: 25.423663, lng: 49.67916 }
 mapUrl: "https://goo.gl/maps/RmGxkW2cm1xvkW4W7"
 heroImage: /img/al-mashqar-park-01

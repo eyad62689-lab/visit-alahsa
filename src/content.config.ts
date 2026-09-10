@@ -1,11 +1,15 @@
 // نموذج محتوى «المعلم» — Content Collection عبر طبقة المحتوى (glob loader).
 // مصدر الحقيقة لكل صفحات المعالم. الحقول العملية موسومة وتُملأ بعد التحقق.
 import { defineCollection } from 'astro:content';
+import { DISTRICTS, DISTRICT_MENTION } from './data/districts';
 // z من astro/zod لا astro:content: التصدير القديم مهمل في Astro 7 (38 تحذيراً في astro check)
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const CATEGORIES = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'] as const;
+
+// عدد الكلمات لفقرة الإجابة — حدّاها ملزمان في المخطط ويُعاد فحصهما في C24 على dist
+const wc = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
 
 const attractions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/attractions' }),
@@ -122,17 +126,55 @@ const attractions = defineCollection({
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)
     gallery: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
+    // ── المواعيد والرسوم المبنيَنة (الخطوة 8 من خطة التفاعل العالمي، بند 3.3 من الدراسة) ──
+    // نسخة آلية القراءة من بند practical الموثّق نفسه — لا تُملأ إلا لما بنده موثّق
+    // (يفرضه الفحص أدناه ويحرسه C24 على dist)، وتُصدَّر openingHoursSpecification
+    // وisAccessibleForFree/offers في TouristAttraction. الأيام برموز schema.org المختصرة.
+    // ── الحيّ (الخطوة 9 من خطة التفاعل العالمي، ف4) ──
+    // مفتاح حيّ المنشآت نفسه؛ يُسند فقط حين يسمّي نصّ area القائم (أو العنوان) الحيَّ —
+    // يفرضه الفحص أدناه — فتعرض صفحة المنشأة «معالم قريبة في الحيّ» بلا حقيقة مضافة.
+    district: z.enum(DISTRICTS).optional(),
+    // ── فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي، بند 3 من ف3) ──
+    // 35–45 كلمة تتصدّر المتن وتكون وصف الصفحة، مركّبة حصراً من المتن وبطاقة الزيارة
+    // (كل رقم فيها يحرسه C24 على dist ضد بقية المتن والبطاقة). عربي وإنجليزي معاً أو
+    // لا شيء؛ zh/de/ru لا تُكتب إلا عبر خطوط الترجمة فلا فقرة لها حتى تمرّ بها.
+    answer: z.string().optional(),
+    answer_en: z.string().optional(),
+    hoursSpec: z.array(z.object({
+      days: z.string().regex(/^(Mo|Tu|We|Th|Fr|Sa|Su)( (Mo|Tu|We|Th|Fr|Sa|Su))*$/),
+      opens: z.string().regex(/^\d{2}:\d{2}$/),
+      closes: z.string().regex(/^\d{2}:\d{2}$/),
+    })).default([]),
+    fee: z.union([
+      z.object({ free: z.literal(true) }),
+      z.object({ amount: z.number().positive(), currency: z.string().default('SAR') }),
+      z.object({ min: z.number().positive(), max: z.number().positive(), currency: z.string().default('SAR') }),
+    ]).optional(),
+  }).refine((a) => a.hoursSpec.length === 0 || a.practical.some((p) => p.verified && /المواعيد|ساعات/.test(p.label)), {
+    message: 'hoursSpec يلزمه بند practical موثّق للمواعيد — لا مواعيد مبنيَنة بلا بند موثّق',
+  }).refine((a) => !a.fee || a.practical.some((p) => p.verified && /الرسوم|الدخول/.test(p.label)), {
+    message: 'fee يلزمه بند practical موثّق للرسوم أو الدخول — لا رسم مبنيَن بلا بند موثّق',
+  }).refine((a) => Boolean(a.answer) === Boolean(a.answer_en), {
+    message: 'answer وanswer_en معاً أو لا شيء — فقرة الإجابة بلغتي الموقع الكاملتين',
+  }).refine((a) => [a.answer, a.answer_en].every((s) => !s || (wc(s) >= 35 && wc(s) <= 45)), {
+    message: 'فقرة الإجابة بين 35 و45 كلمة',
+  }).refine((a) => !a.district || DISTRICT_MENTION[a.district].test(`${a.area ?? ''} ${a.title}`), {
+    message: 'district يُسند فقط حين يسمّي نصّ area أو العنوان الحيَّ نفسه — لا حيّ بالتقدير',
   }),
 });
 
 // مقالات المدونة — كل لغة ملفها المستقل (المقال طويل فلا يصلح نمط الحقول _en).
 // الترجمتان تُقرنان بحقل key المشترك؛ slug بلغة الملف نفسه (عربي للعربية).
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  // معرّف المدخل من اسم الملف لا من حقل slug: محمّل glob يجعل slug معرّفاً ضمنياً، والمقال
+  // الواحد بلغاته (الخطوة 10) يتقاسم الـslug اللاتيني عبر /en/ و/zh/ و/de/ و/ru/ فتتصادم
+  // المعرّفات ويطمس مقالٌ آخر بصمت (تحذير Duplicate id في astro sync — 2026-09-10).
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog', generateId: ({ entry }) => entry.replace(/\.md$/, '') }),
   schema: z.object({
     title: z.string(),
     description: z.string(),                   // وصف الميتا وبطاقة الفهرس
-    lang: z.enum(['ar', 'en']),
+    // zh/de/ru منذ الخطوة 10 من خطة التفاعل العالمي — لا يُكتب مقال بها إلا عبر خط ترجمتها (حاكم ≥ 90)
+    lang: z.enum(['ar', 'en', 'zh', 'de', 'ru']),
     key: z.string(),                           // معرّف مشترك يقرن الترجمتين
     slug: z.string(),                          // رابط المقال بلغة الملف
     topic: z.string(),                         // التسمية العلوية (eyebrow) بلغة الملف
@@ -157,9 +199,8 @@ const blog = defineCollection({
 // مطعماً ولا مقهى، وحشره في `cafe` كان يفسد مرشّح النوع ونوع schema.org معاً.
 const DINING_KINDS = ['restaurant', 'cafe', 'bakery'] as const;
 // `khudud` و`qarah` أُضيفا مع الدفعة نفسها — حي الخدود شرق الهفوف، والقارة
-// شرق الواحة عند جبل القارة.
-const DISTRICTS = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'rawdah',
-  'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz', 'khudud', 'qarah'] as const;
+// شرق الواحة عند جبل القارة. المفاتيح وتسمياتها في src/data/districts.ts منذ
+// الخطوة 9 (تشاركها المعالم والمنشآت).
 
 const dining = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/dining' }),

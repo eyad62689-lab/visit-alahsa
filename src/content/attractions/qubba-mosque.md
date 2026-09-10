@@ -25,6 +25,7 @@ area: داخل قصر إبراهيم، حي الكوت — الهفوف
 area_en: "Inside Qasr Ibrahim, Al-Koot district — Hofuf"
 featured: false
 order: 24
+district: alkoot
 location: { lat: 25.378485, lng: 49.586481 }
 mapUrl: "https://maps.app.goo.gl/utuJ951niRq3T3fbA"
 ---

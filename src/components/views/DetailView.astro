@@ -10,8 +10,13 @@ import { catLabel } from '../../lib/categories';
 import { attractionHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
 import { formatDate } from '../../lib/dates';
+import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import { ogDefault } from '../../lib/og';
+import { kmBetween, distLabel } from '../../lib/distance';
+import ShareButton from '../ShareButton.astro';
+import { mentionsOf } from '../../lib/related';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -28,12 +33,20 @@ const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined, deV?: T, ruV?:
 
 const title = pick(a.title, a.title_en, a.title_zh, a.title_de, a.title_ru);
 const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summary_ru);
+// فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي): 35–45 كلمة من المتن والبطاقة تتصدّر المتن
+// وتكون وصف الصفحة — عربي/إنجليزي فقط (zh/de/ru عبر خطوط الترجمة حصراً)، ويحرسها C24.
+const answer = ar ? a.answer : lang === 'en' ? a.answer_en : undefined;
+const description = answer ?? summary;
+// المعلم الحامل لمعرّف مكوّن يونسكو يربط صفحة المكوّنات (عربي/إنجليزي — الصفحة بلغتيهما فقط)
+const unescoHref = a.unesco && (ar || lang === 'en') ? (ar ? '/اليونسكو/' : '/en/unesco/') : undefined;
 // متون اللغات غير العربية تُصيَّر نصّاً خاماً في <p> — لا ماركداون (قاعدة الموقع)
 const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : de ? (a.body_de ?? a.body_en ?? '')
   : ru ? (a.body_ru ?? a.body_en ?? '')
   : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
+// «مقالات تذكر هذا المعلم» — الفهرس العكسي بلغة الصفحة (الخطوة 9)؛ [] حين لا مقال بها
+const mentions = await mentionsOf(a, lang);
 
 // فئات الأسواق/المنتزهات/المزارع تتبع صفحتها المستقلة في الفتات وزر العودة (2026-07-13)
 // الصينية: الفهرسان صينيان (الأسواق والمنتزهات أُضيفت في الدفعة 12 — 2026-09-03)
@@ -47,6 +60,7 @@ const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const DAY_NAME: Record<string, string> = { Mo: 'Monday', Tu: 'Tuesday', We: 'Wednesday', Th: 'Thursday', Fr: 'Friday', Sa: 'Saturday', Su: 'Sunday' };
 const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
 // اسم المنطقة في السكيما بلغة الصفحة — الروسية من معجم ru-translation حرفياً
 // (مدخل «Al-Ahsa» = Аль-Ахса)؛ والألمانية تبقى لاتينية بحكم سياسة أعلامها.
@@ -54,7 +68,7 @@ const regionName = ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса
 const jsonLd: object[] = [
   {
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
-    name: title, description: summary, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png'),
+    name: title, description, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : ogDefault(lang)),
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
     address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh, a.area_de, a.area_ru) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
@@ -69,6 +83,16 @@ const jsonLd: object[] = [
     // يحفظ روابط ويكيبيديا العربية مفكوكةً كي تبقى مقروءة في الملف.
     ...(a.sameAs.length ? { sameAs: a.sameAs.map((u) => encodeURI(u)) } : {}),
     ...(a.unesco ? { identifier: { '@type': 'PropertyValue', propertyID: 'UNESCO World Heritage Site component', value: a.unesco } } : {}),
+    // المواعيد والرسوم آلية القراءة (الخطوة 8) — من hoursSpec/fee الملزمَين ببند موثّق
+    ...(a.hoursSpec.length ? { openingHoursSpecification: a.hoursSpec.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.days.split(' ').map((d) => `https://schema.org/${DAY_NAME[d]}`),
+      opens: h.opens, closes: h.closes,
+    })) } : {}),
+    ...(a.fee ? ('free' in a.fee
+      ? { isAccessibleForFree: true }
+      : { isAccessibleForFree: false, offers: { '@type': 'Offer', priceCurrency: a.fee.currency,
+          ...('amount' in a.fee ? { price: a.fee.amount } : { priceSpecification: { '@type': 'PriceSpecification', minPrice: a.fee.min, maxPrice: a.fee.max, priceCurrency: a.fee.currency } }) } }) : {}),
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
@@ -76,7 +100,11 @@ const jsonLd: object[] = [
     { '@type': 'ListItem', position: 3, name: title, item: pageUrl },
   ] },
 ];
-const ogImage = a.heroImage ? `${a.heroImage}.jpg` : '/og-default.png';
+// الصفحة الرقيقة (دون عتبة النشر في lib/publish.ts) تبقى للزائر لكنها noindex وخارج
+// sitemap وhreflang حتى يصل متن مصدري — لا صفحة رقيقة مفهرسة بأربع لغات.
+const thin = isThinAttraction(entry);
+// بلا صورة خاصة تُترك للافتراضية بلغة الصفحة (Seo.astro يختارها)
+const ogImage = a.heroImage ? `${a.heroImage}.jpg` : undefined;
 
 // ── أسئلة شائعة (بند 3.2 — 2026-09-05) ──────────────────────────────────
 // البند بلغة الصفحة فقط: بلا q_en/a_en لا يظهر في الإنجليزية، وهكذا zh/de/ru —
@@ -149,13 +177,8 @@ const reviewNote = ar
         : 'Hours and fees can change in seasons and holidays.';
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
-// المسافة بخطٍّ مستقيم (haversine) وتُعرض تقريبية بالكيلومتر — لا تُقدَّر مسافات قيادة.
-const kmBetween = (la1: number, lo1: number, la2: number, lo2: number) => {
-  const r = Math.PI / 180, R = 6371;
-  const dLa = (la2 - la1) * r, dLo = (lo2 - lo1) * r;
-  const h = Math.sin(dLa / 2) ** 2 + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin(dLo / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(h));
-};
+// المسافة بخطٍّ مستقيم — kmBetween وdistLabel في src/lib/distance.ts (مشتركة مع الخريطة
+// و«كم يبعد عني» منذ الخطوة 7 من خطة التفاعل العالمي). لا تُقدَّر مسافات قيادة.
 const nearby = a.location
   ? (await getCollection('attractions'))
       .filter((e) => e.data.slug_ar !== a.slug_ar && e.data.location)
@@ -173,6 +196,7 @@ const nearby = a.location
         // العنوان المتراجع للإنجليزية يُوسم lang="en" فيقرؤه قارئ الشاشة بلغته،
         // ويستثنيه الحارس C18 (تهجئة Souk الألمانية) من نصّ الصفحة الألماني.
         titleLang: (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) ? 'en' : undefined,
+        id: e.data.slug_en,
         img: e.data.heroImage,
         km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
       }))
@@ -183,13 +207,11 @@ const nearby = a.location
         // الصيني من خط الإنتاج (misc.underKm/aboutKm — دورة 2026-08-29)
         // والألماني من دفعة الواجهة الألمانية (detail.underKm/aboutKm — 2026-09-03)
         // والروسي من دفعة الواجهة الروسية (2026-09-05)
-        dist: n.km < 1
-          ? (ar ? 'أقل من كيلومتر' : zh ? '不足 1 公里' : de ? 'unter 1 km' : ru ? 'менее 1 км' : 'under 1 km')
-          : (ar ? `نحو ${Math.round(n.km)} كم` : zh ? `约 ${Math.round(n.km)} 公里` : de ? `ca. ${Math.round(n.km)} km` : ru ? `около ${Math.round(n.km)} км` : `~${Math.round(n.km)} km`),
+        dist: distLabel(n.km, lang),
       }))
   : [];
 ---
-<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={summary} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage}>
+<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>
@@ -206,14 +228,19 @@ const nearby = a.location
         <span class="eyebrow gold-on-dark ah-k">{catLabel(a.category, lang)}</span>
         <h1 class="ah-title">{title}</h1>
         <p class="ah-sum">{summary}</p>
-        <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
-          <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
-        </button>
+        {unescoHref && <a class="ah-unesco" href={unescoHref}>{t('det.unesco')} · {a.unesco}</a>}
+        <div class="ah-actions">
+          <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
+            <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
+          </button>
+          <ShareButton lang={lang} contentType="attraction" itemId={a.slug_en} dark />
+        </div>
       </div>
     </section>
 
     <div class="container att-layout">
       <article class="prose" data-reveal>
+        {answer && <p class="answer" data-answer>{answer}</p>}
         {ar && Content ? <Content /> : <p>{bodyText}</p>}
       </article>
 
@@ -247,6 +274,22 @@ const nearby = a.location
           )}
           {/* رابط الخريطة: أيقونة صغيرة داخل البطاقة نفسها بدل اللوحة الخضراء الكبيرة
               التي كانت تحتلّ العمود (تغيير بطلب إياد 2026-07-22) */}
+          {/* «كم يبعد عني» (الخطوة 7): تحديد الموقع بطلب صريح، يُحسب محلياً ولا يُخزَّن.
+              النصّ للعربية والإنجليزية؛ zh/de/ru أيقونة وحدها حتى تمرّ det.distance بالخطوط،
+              والنتيجة بصياغة المسافة المعتمدة لكل لغة (lib/distance.ts). */}
+          {a.location && (
+            <p class="dist-me">
+              <button class="dist-btn" type="button" data-dist-btn data-lat={a.location.lat} data-lng={a.location.lng}
+                data-under={distLabel(0, lang)} data-about={distLabel(2, lang).replace('2', '{n}')} data-err={t('map.locate.err')}
+                aria-label={ar || lang === 'en' ? undefined : 'Distance'} title={ar || lang === 'en' ? undefined : 'Distance'}>
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /><circle cx="12" cy="12" r="8" />
+                </svg>
+                {(ar || lang === 'en') && <span>{t('det.distance')}</span>}
+              </button>
+              <output class="dist-out" data-dist-out aria-live="polite"></output>
+            </p>
+          )}
           {a.mapUrl && (
             <a class="map-link" href={a.mapUrl} target="_blank" rel="noopener">
               <svg class="map-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -285,6 +328,22 @@ const nearby = a.location
       </section>
     )}
 
+    {mentions.length > 0 && (
+      <section class="container mentions-sec" data-reveal>
+        <h2 class="mn-h">{t('det.mentions.h')}</h2>
+        <ul class="mn-list">
+          {mentions.map((m) => (
+            <li>
+              <a class="mn-link" href={m.href} data-track="related_click" data-track-kind="article" data-track-item-id={m.key}>
+                <span class="t-caption mn-k">{m.topic}</span>
+                <span class="mn-t">{m.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     {nearby.length > 0 && (
       <section class="nearby-sec">
         <div class="container" data-reveal>
@@ -292,7 +351,7 @@ const nearby = a.location
           <p class="nb-lead">{t('det.nearby.d')}</p>
           <div class="nb-grid">
             {nearby.map((n) => (
-              <a class="card card--lift nb-card" href={n.href}>
+              <a class="card card--lift nb-card" href={n.href} data-track="related_click" data-track-kind="attraction" data-track-item-id={n.id}>
                 <Photo src={n.img} label={n.title} class="nb-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                 <div class="nb-body">
                   <span class="t-caption nb-k">{n.cat}</span>
@@ -313,6 +372,37 @@ const nearby = a.location
   </main>
   <Footer lang={lang} />
 </Base>
+
+<script is:inline>
+  // «كم يبعد عني» — مستمع واحد على document (يصمد عبر ClientRouter)، الموقع بطلب صريح ولا يُخزَّن
+  (function () {
+    if (window.__vaDistMe) return;
+    window.__vaDistMe = true;
+    function km(la1, lo1, la2, lo2) {
+      var r = Math.PI / 180, dLa = (la2 - la1) * r, dLo = (lo2 - lo1) * r;
+      var h = Math.sin(dLa / 2) * Math.sin(dLa / 2) + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin(dLo / 2) * Math.sin(dLo / 2);
+      return 2 * 6371 * Math.asin(Math.sqrt(h));
+    }
+    function track(ok) { try { if (window.VATrack) window.VATrack('distance_check', { ok: ok }); } catch (e) {} }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-dist-btn]');
+      if (!b) return;
+      var out = b.parentElement.querySelector('[data-dist-out]');
+      if (!navigator.geolocation) { if (out) out.textContent = b.dataset.err; track(false); return; }
+      b.disabled = true;
+      // حارس مهلة خاص: تجاهل نافذة الإذن يُبقي الطلب معلّقاً في كروم بلا خطأ ولا مهلة
+      var settled = false;
+      var fail = function () { if (settled) return; settled = true; if (out) out.textContent = b.dataset.err; b.disabled = false; track(false); };
+      var guard = setTimeout(fail, 12000);
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        if (settled) return; settled = true; clearTimeout(guard);
+        var d = km(pos.coords.latitude, pos.coords.longitude, Number(b.dataset.lat), Number(b.dataset.lng));
+        if (out) out.textContent = d < 1 ? b.dataset.under : b.dataset.about.replace('{n}', String(Math.round(d)));
+        b.disabled = false; track(true);
+      }, function () { clearTimeout(guard); fail(); }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+    });
+  })();
+</script>
 
 <style>
   .att-hero { position: relative; overflow: hidden; color: var(--c-sand); min-block-size: 46vh; display: flex; align-items: flex-end; }
@@ -338,10 +428,15 @@ const nearby = a.location
   .ah-k { margin-block-end: var(--s-1); }
   .ah-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
   .ah-sum { font-size: var(--t-lg); color: rgba(247,243,234,.92); max-inline-size: 52ch; }
+  .ah-unesco { display: inline-block; margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-bright); text-decoration: underline; text-underline-offset: 3px; }
+  .ah-unesco:hover { color: var(--c-sand); }
+  /* فقرة الإجابة: أول ما يقرأه الزائر ومحرك الإجابة — بارزة بلا أن تنافس العنوان */
+  .prose .answer { font-size: var(--t-lg); line-height: 1.8; padding-inline-start: var(--s-3); border-inline-start: 3px solid var(--c-gold); margin-block-end: var(--s-4); }
   /* min-inline-size لا تقصيرُ نصّ: الزرّ يبدّل تسميته بين «أضف» و«في رحلتي ✓»
      (‏data-tx-on/off)، والفارق بالألمانية تسعة محارف مقابل اثنين بالإنجليزية —
      فيقفز عرض الزرّ تحت إصبع الزائر لحظة الضغط. */
-  .ah-fav { margin-block-start: var(--s-4); min-inline-size: 15ch; background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
+  .ah-actions { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-start: var(--s-4); }
+  .ah-fav { min-inline-size: 15ch; background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
   .ah-fav:hover { border-color: var(--c-sand); }
   .ah-fav.is-saved { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
   .att-layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--s-6); padding-block: var(--s-7); align-items: start; }
@@ -371,6 +466,13 @@ const nearby = a.location
   .map-ic { color: var(--c-gold-deep); flex-shrink: 0; }
   .map-link:hover .map-ic { color: inherit; }
   /* الإبلاغ يبقى سطراً منفصلاً تحت رابط الخريطة */
+  .dist-me { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; margin-block: var(--s-3) 0; }
+  .dist-btn { display: inline-flex; align-items: center; gap: 7px; min-block-size: 40px; padding: 0 12px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }
+  .dist-btn:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .dist-btn:disabled { opacity: .6; cursor: progress; }
+  .dist-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .dist-out { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .dist-out:empty { display: none; }
   .report-link { display: block; padding-block: var(--s-1); margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-soft);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
@@ -386,6 +488,14 @@ const nearby = a.location
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
   .gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  /* مقالات تذكر هذا المعلم (الخطوة 9) */
+  .mentions-sec { padding-block: var(--s-2) var(--s-6); }
+  .mn-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
+  .mn-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-3); }
+  .mn-link { display: flex; flex-direction: column; gap: 4px; padding: var(--s-3) var(--s-4); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); text-decoration: none; color: var(--c-ink); transition: border-color var(--dur) var(--ease); }
+  .mn-link:hover { border-color: var(--c-turq); }
+  .mn-k { color: var(--c-gold-deep); }
+  .mn-t { font-weight: 600; color: var(--c-turq-deep); line-height: 1.5; }
   .nearby-sec { background: var(--c-sand-2); padding-block: var(--s-6); }
   .nb-h { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-1) var(--s-4); }

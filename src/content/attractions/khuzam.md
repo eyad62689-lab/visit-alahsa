@@ -24,6 +24,7 @@ area: حي المزروعية — غرب الهفوف
 area_en: "Al-Mazrouiyah district — west of Hofuf"
 featured: false
 order: 14
+district: mazrou
 location: { lat: 25.368042, lng: 49.576862 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233036

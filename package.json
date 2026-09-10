@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "prebuild": "node tools/test-ai-detection.mjs && node tools/fetch-places.mjs && node scripts/fingerprint.mjs",
     "build": "astro check && astro build && pagefind --site dist",
-    "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs",
+    "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs && node tools/check-links.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "fingerprint": "node scripts/fingerprint.mjs",
@@ -25,7 +25,8 @@
     "@fontsource/playfair-display": "^5.3.0",
     "@netlify/blobs": "^10.7.13",
     "astro": "^7.0.0",
-    "maplibre-gl": "^6.4.1"
+    "maplibre-gl": "^6.4.1",
+    "web-vitals": "^6.2.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

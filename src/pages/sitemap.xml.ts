@@ -6,8 +6,10 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_ZH } from '../data/events';
-import { attractionAlt, diningAlt, stayAlt } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
+import { isThinAttraction } from '../lib/publish';
+import { isUnlisted } from '../i18n/unlisted';
 
 type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; lastmod?: string };
 
@@ -39,28 +41,21 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
+    { ar: '/اليونسكو/', en: '/en/unesco/', lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
-    // مقالات المدونة — الاقتران بحقل key المشترك بين الترجمتين.
-    // التاريخ من ترويسة المقال نفسه: هو إعلان الكاتب، وأوثق من تاريخ الالتزام.
-    ...posts
-      .filter((p) => p.data.lang === 'ar')
-      .map((p) => {
-        const en = posts.find((x) => x.data.key === p.data.key && x.data.lang === 'en');
-        const d = [p.data.updatedDate ?? p.data.pubDate, en?.data.updatedDate ?? en?.data.pubDate]
-          .filter((x): x is Date => Boolean(x))
-          .map((x) => x.toISOString().slice(0, 10))
-          .sort()
-          .at(-1);
-        return { ar: '/مدونة/' + p.data.slug + '/', en: en ? '/en/blog/' + en.data.slug + '/' : undefined, lastmod: d };
-      }),
-    // مقال إنجليزي بلا نظير عربي: يدخل بحقل ar (الحقل الإلزامي للرابط) بلا hreflang
-    ...posts
-      .filter((p) => p.data.lang === 'en' && !posts.some((x) => x.data.key === p.data.key && x.data.lang === 'ar'))
-      .map((p) => ({
-        ar: '/en/blog/' + p.data.slug + '/',
-        lastmod: (p.data.updatedDate ?? p.data.pubDate).toISOString().slice(0, 10),
-      })),
-    ...items.map((e) => ({ ...attractionAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath) : undefined })),
+    // مقالات المدونة — الاقتران بحقل key المشترك بين لغاته (ar/en/zh/de/ru منذ الخطوة 10).
+    // التاريخ من ترويسة المقال نفسه (أحدث نسخة): هو إعلان الكاتب، وأوثق من تاريخ الالتزام.
+    ...[...new Set(posts.map((p) => p.data.key))].map((key) => {
+      const by = new Map(posts.filter((p) => p.data.key === key).map((p) => [p.data.lang, p]));
+      const lastmod = [...by.values()].map((p) => (p.data.updatedDate ?? p.data.pubDate).toISOString().slice(0, 10)).sort().at(-1);
+      const href = (l: 'ar' | 'en' | 'zh' | 'de' | 'ru') => { const p = by.get(l); return p ? blogHref(p.data) : undefined; };
+      // مقال بلا نسخة عربية يدخل بحقل ar (الحقل الإلزامي للرابط) بنسخته الإنجليزية بلا hreflang
+      return by.has('ar')
+        ? { ar: href('ar')!, en: href('en'), zh: href('zh'), de: href('de'), ru: href('ru'), lastmod }
+        : { ar: href('en')!, lastmod };
+    }),
+    // المعالم الرقيقة (lib/publish.ts) noindex فلا تدخل الخريطة بأي لغة
+    ...items.filter((e) => !isThinAttraction(e)).map((e) => ({ ...attractionAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath) : undefined })),
     // صفحات المنشآت المفردة — تدخل الخريطة فقط متى عبر متنُها العتبة، تطابقاً
     // مع حارس getStaticPaths. وإن عبرت لغةٌ دون الأخرى دخلت وحدها بلا hreflang،
     // فلا يُعلَن زوجٌ لصفحة غير مولَّدة (docs/قرار-بنية-صفحات-المنشآت.md).
@@ -96,6 +91,11 @@ export const GET: APIRoute = async ({ site }) => {
     })),
   ];
 
+  // الصفحات غير المعلَنة (src/i18n/unlisted.ts) تُحذف من أزواجها: لا تدخل الخريطة
+  // ولا تُذكر بديلاً لنظيراتها (الخطوة 5 من خطة التفاعل العالمي)
+  for (const p of pairs) {
+    for (const k of ['zh', 'de', 'ru'] as const) if (p[k] && isUnlisted(p[k]!)) delete p[k];
+  }
   const lm = (p: Pair) => (p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : '');
   const alts = (p: Pair) => {
     if (!p.en) return '';

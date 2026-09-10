@@ -27,6 +27,12 @@ area: "الهفوف — وسط المدينة التاريخي"
 area_en: "Hofuf — the historic town centre"
 practical:
   - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_ru: "Часы работы", value_ru: "Ежедневно 7:30–24:00 (по воскресеньям и понедельникам с 7:00 · по пятницам с 14:30)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", source: "خرائط جوجل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_ru: "Google Карты — часы работы, обновлённые самим рынком", source_zh: "谷歌地图（营业时间由商家更新）", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
+hoursSpec:
+  - { days: "Tu We Th Sa", opens: "07:30", closes: "23:59" }
+  - { days: "Su Mo", opens: "07:00", closes: "23:59" }
+  - { days: "Fr", opens: "14:30", closes: "23:59" }
+answer: "سوق الحرفيين في قلب الهفوف التاريخية افتُتح في مارس 2020م دعماً للحرف اليدوية، ويمتد على أكثر من 12 ألف متر مربع بـ112 متجراً للحرفيين وفناء وأكاديمية لتعليم الحرف، بإشراف أمانة الأحساء. يفتح يومياً حتى 12 منتصف الليل، والافتتاح من 7:30 ص عدا الأحد والاثنين والجمعة."
+answer_en: "The Craftsmen Souq in Hofuf opened in March 2020 to support handicrafts: more than 12,000 square metres with 112 artisan shops and an academy where craftspeople teach their trades, run by Al-Ahsa Municipality. Open daily until midnight, from 7:30 am except Sunday, Monday and Friday."
 location: { lat: 25.3763032, lng: 49.5939642 }
 mapUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).

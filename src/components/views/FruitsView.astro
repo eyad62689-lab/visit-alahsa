@@ -10,6 +10,8 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
+import DataTable from '../DataTable.astro';
+import { fruitsTable } from '../../lib/tables';
 import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH } from '../../data/fruits';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -20,6 +22,8 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+// رؤوس جدول المواسم (الخطوة 8 من خطة التفاعل العالمي) — عربي/إنجليزي فقط؛ الصيني بانتظار خط الترجمة فلا يُبنى جدوله
+const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : { fruit: 'Fruit', season: 'Season', group: 'Group' };
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة fruits 2026-09-02، الحاكم 94/100)
 const ZH = {
@@ -197,6 +201,13 @@ const jsonLd = [
 
       <p class="fr-empty" id="fruits-empty" hidden>{C.emptyMsg}</p>
     </section>
+
+    {/* مواسم الثمار جدولاً: من fruits.ts نفسها (ما لا موسم له يُستثنى) — C24 يحرس أرقامه */}
+    {!zh && (
+      <section class="container fr-table">
+        <DataTable table={fruitsTable(lang, fruitHeads, C.pending)} />
+      </section>
+    )}
 
     <section class="container fr-method">
       <div class="method-box">

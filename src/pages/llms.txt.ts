@@ -9,6 +9,10 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 import { EVENTS_AR } from '../data/events';
+import { attractionHref, blogHref } from '../lib/routes';
+import { isThinAttraction } from '../lib/publish';
+import { LANG_META } from '../i18n/langs';
+import { ui } from '../i18n/ui';
 
 const SITE = 'https://visit-alahsa.com';
 
@@ -23,8 +27,17 @@ export const GET: APIRoute = async () => {
   const diningCount = (await getCollection('dining')).length;
   const stayCount = (await getCollection('stay')).length;
   const eventCount = EVENTS_AR.length;
+  const unescoCount = attractions.filter((e) => e.data.unesco).length;
   // المقالات تُعدّ بالموضوع لا بالملف (لكل موضوع ملف عربي وآخر إنجليزي)
   const topicCount = new Set(posts.filter((p) => !p.data.draft).map((p) => p.data.key)).size;
+  // قوائم النسخ الجزئية (الخطوة 8): الصفحات المعلَنة فقط — بعنوان معتمد من خط الترجمة
+  // ودون عتبة الصفحة الرقيقة (المحجوبة noindex في C23) — مرتبةً كترتيب الفهرس.
+  const listed = attractions.filter((e) => !isThinAttraction(e)).sort((a, b) => a.data.order - b.data.order);
+  const langList = (lang: 'zh' | 'de' | 'ru') => [
+    ...listed.filter((e) => e.data[`title_${lang}`]).map((e) => `- [${e.data[`title_${lang}`]}](${SITE}${encodeURI(attractionHref(e.data, lang))})`),
+    // مقالات المدونة بتلك اللغة (الخطوة 10) — بعناوينها المعتمدة من خط ترجمتها
+    ...posts.filter((p) => p.data.lang === lang && !p.data.draft).map((p) => `- [${p.data.title}](${SITE}${encodeURI(blogHref(p.data))})`),
+  ].join('\n');
 
   const body = `# زوروا الأحساء — Visit Al-Ahsa
 
@@ -43,7 +56,37 @@ export const GET: APIRoute = async () => {
 - [أماكن الإقامة (${stayCount} أماكن بمواقع خرائط قوقل)](${SITE}/إقامة/) | [Places to Stay](${SITE}/en/stay/): نُزلٌ تراثي في حي الكوت وفندقٌ على ساحل العقير — بطاقات وصفية لا ترشيحات.
 - [المدونة (${topicCount} مقالات بالعربية والإنجليزية)](${SITE}/مدونة/) | [Blog](${SITE}/en/blog/): مسارات 24 و48 ساعة، الحرف اليدوية، الهدايا، وهل تستحق الأحساء الزيارة.
 - [خطط لرحلتك](${SITE}/خطط/) | [Plan your trip](${SITE}/en/plan-your-trip/): كيفية الوصول ومسارات مقترحة وأسئلة شائعة.
+- [واحة الأحساء في اليونسكو](${SITE}/اليونسكو/) | [UNESCO World Heritage](${SITE}/en/unesco/): ${unescoCount} من مكوّنات موقع التراث العالمي 1563 (الاثني عشر) بصفحات مفردة.
 - [خريطة المعالم](${SITE}/خريطة/) | [Map](${SITE}/en/map/) — و[الخريطة التضاريسية 3D](${SITE}/خريطة-تضاريس/) | [Terrain map](${SITE}/en/terrain-map/)
+
+## Main sections (English mirror)
+
+- [Attractions](${SITE}/en/attractions/) — ${attractionCount} places with individual pages: Jabal Al-Qarah, Qasr Ibrahim, Jawatha Mosque, Al-Uqair, museums, springs and lakes. Each page carries verified opening hours and fees where confirmed (structured as openingHoursSpecification / isAccessibleForFree).
+- [Souqs, Parks & Farms](${SITE}/en/souqs-parks-farms/) — Al-Qaisariyah Souq, gardens, date-palm and Hasawi-lime farms.
+- [Events](${SITE}/en/events/) — ${eventCount} recurring seasons; dates of an edition are published only once officially confirmed.
+- [Oasis Fruits](${SITE}/en/fruits/) — Khalas dates, the Hasawi lime and harvest seasons, with a season table.
+- [Hasawi Cuisine](${SITE}/en/food/) — Hasawi rice, mandi, harees, date bread and oasis sweets.
+- [Restaurants & Cafés](${SITE}/en/restaurants-cafes/) — ${diningCount} places with Google Maps locations; no prices, no rankings.
+- [Places to Stay](${SITE}/en/stay/) — ${stayCount} places with Google Maps locations; descriptive cards, not recommendations.
+- [Blog](${SITE}/en/blog/) — ${topicCount} topics in Arabic and English: 24- and 48-hour itineraries, handicrafts, gifts, and whether Al-Ahsa is worth the visit.
+- [Plan your trip](${SITE}/en/plan-your-trip/) — getting there, suggested routes, FAQ, and a table of verified hours and fees.
+- [UNESCO World Heritage](${SITE}/en/unesco/) — ${unescoCount} of the twelve components of site 1563 (inscribed 2018) with their own pages.
+- [Map](${SITE}/en/map/) and [Terrain map](${SITE}/en/terrain-map/)
+
+## ${LANG_META.zh.native} — ${ui.zh['nav.attractions']}
+
+- [${SITE}/zh/](${SITE}/zh/) · [${SITE}/zh/attractions/](${SITE}/zh/attractions/)
+${langList('zh')}
+
+## ${LANG_META.de.native} — ${ui.de['nav.attractions']}
+
+- [${SITE}/de/](${SITE}/de/)
+${langList('de')}
+
+## ${LANG_META.ru.native} — ${ui.ru['nav.attractions']}
+
+- [${SITE}/ru/](${SITE}/ru/) · [${SITE}/ru/attractions/](${SITE}/ru/attractions/)
+${langList('ru')}
 
 ## حقائق أساسية — Key facts
 
@@ -54,6 +97,7 @@ export const GET: APIRoute = async () => {
 
 - [خريطة الموقع](${SITE}/sitemap.xml)
 - تصحيح المعلومات: ${SITE}/أبلغ/ — والتواصل: info@visit-alahsa.com
+- Corrections: ${SITE}/en/report/ — contact: info@visit-alahsa.com
 `;
 
   return new Response(body, {

@@ -691,6 +691,450 @@ async function main() {
     else pass('C21', `أسئلة شائعة في ${expected.length} معلماً (${pagesChecked} صفحة، ${questions} سؤالاً منشوراً) — FAQPage والقسم المرئي يطابقان المصدر، وكل رقم فيها من متن الصفحة أو بطاقتها`);
   }
 
+  // ── C22: سلامة اللغة في النسخ الصينية والألمانية والروسية (الخطوة 5 من خطة التفاعل العالمي) ──
+  // كل صفحة zh/de/ru **معلَنة** (تحمل hreflang) يجب أن يبقى نصّها غير المترجم دون 20%:
+  // المقياس = كتل نصّ من كلمتين لاتينيتين فأكثر مطابقة حرفياً لكتلة في النظيرة
+  // الإنجليزية، مقسومة على كل كتل الصفحة من كلمتين فأكثر بأي كتابة — بعد استثناء
+  // أسماء الأعلام من المصدر (title/title_en/name_en/area_en/kicker_en تبقى لاتينية
+  // في الألمانية عمداً) والعلامة والأرقام. والصفحات في src/i18n/unlisted.ts: بلا
+  // hreflang وخارج sitemap ولا يشير إليها hreflang من أي صفحة، وnoindex متى وُسمت.
+  {
+    const THRESHOLD = 20;
+    const unlistedSrc = await readFile(path.join(ROOT, 'src/i18n/unlisted.ts'), 'utf8');
+    const unlisted = [...unlistedSrc.matchAll(/\{\s*path:\s*'([^']+)',\s*noindex:\s*(true|false)/g)].map((m) => ({ path: m[1], noindex: m[2] === 'true' }));
+    const names = new Set(['Visit Al-Ahsa', 'Al-Ahsa', 'VISIT AL-AHSA', 'visit-alahsa.com', 'Ctrl K', 'Esc']);
+    for (const dir of ['src/content/attractions', 'src/content/dining', 'src/content/stay']) {
+      for (const f of (await readdir(path.join(ROOT, dir))).filter((n) => n.endsWith('.md'))) {
+        const head = (await readFile(path.join(ROOT, dir, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+        for (const k of ['title', 'title_en', 'name_en', 'area_en', 'kicker_en']) {
+          const m = head.match(new RegExp(`^${k}:\\s*"?([^"\\r\\n]+?)"?\\s*$`, 'm'));
+          if (m) names.add(m[1].trim());
+        }
+      }
+    }
+    const chunksOf = (html) => {
+      const body = html.replace(/<head[\s\S]*?<\/head>/, '').replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<!--[\s\S]*?-->/g, '');
+      const attrs = [...body.matchAll(/(?:alt|aria-label|placeholder)="([^"]{3,})"/g)].map((m) => m[1]);
+      return [...body.replace(/<[^>]+>/g, '\n').split(/\n+/), ...attrs]
+        .map((t) => t.replace(/&[a-z]+;|&#\d+;/g, ' ').replace(/\s+/g, ' ').trim())
+        .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t));
+    };
+    const smXml = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    const problems = [];
+    const worst = {};
+    let advertised = 0;
+    for (const lang of ['zh', 'de', 'ru']) {
+      worst[lang] = { pct: 0, page: '' };
+      for (const fp of await listHtml(path.join(DIST, lang))) {
+        const html = await readFile(fp, 'utf8');
+        const pagePath = '/' + path.relative(DIST, fp).replace(/index\.html$/, '');
+        const isUnlisted = unlisted.some((u) => u.path === pagePath);
+        const hasHreflang = /<link rel="alternate" hreflang=/.test(html);
+        const noindex = /<meta name="robots" content="noindex/.test(html);
+        if (isUnlisted) {
+          if (hasHreflang) problems.push(`${pagePath}: غير معلَنة لكنها تحمل hreflang`);
+          if (smXml.includes(`<loc>https://visit-alahsa.com${pagePath}</loc>`)) problems.push(`${pagePath}: غير معلَنة داخل sitemap`);
+          const flag = unlisted.find((u) => u.path === pagePath).noindex;
+          if (flag && !noindex) problems.push(`${pagePath}: موسومة noindex في unlisted.ts وليست كذلك`);
+          continue;
+        }
+        if (!hasHreflang || noindex) continue; // غير معلَنة أصلاً (رحلتي، الرقيقة…)
+        const enHref = html.match(/hreflang="en" href="https:\/\/visit-alahsa\.com([^"]+)"/)?.[1];
+        if (!enHref) { problems.push(`${pagePath}: معلَنة بلا نظير إنجليزي`); continue; }
+        const enFile = path.join(DIST, decodeURIComponent(enHref), 'index.html');
+        if (!existsSync(enFile)) { problems.push(`${pagePath}: النظير الإنجليزي ${enHref} غير مبني`); continue; }
+        const en = new Set(chunksOf(await readFile(enFile, 'utf8')).filter((t) => /[A-Za-z]{2,}/.test(t)));
+        const all = chunksOf(html);
+        const same = all.filter((t) => /[A-Za-z]{2,}/.test(t) && en.has(t));
+        const pct = all.length ? Math.round((100 * same.length) / all.length) : 0;
+        advertised++;
+        if (pct > worst[lang].pct) worst[lang] = { pct, page: pagePath };
+        if (pct > THRESHOLD) problems.push(`${pagePath}: ${pct}% من كتل النصّ إنجليزية (${same.length}/${all.length}) — مثال: «${same[0]?.slice(0, 40)}»`);
+      }
+    }
+    // لا صفحة معلَنة تشير بـhreflang إلى صفحة غير معلَنة
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      for (const u of unlisted) {
+        if (html.includes(`hreflang="${u.path.split('/')[1]}" href="https://visit-alahsa.com${u.path}"`)) problems.push(`${path.relative(DIST, fp)}: hreflang يشير إلى غير المعلَنة ${u.path}`);
+      }
+    }
+    const summary = ['zh', 'de', 'ru'].map((l) => `${l} ≤ ${worst[l].pct}% (${worst[l].page || '—'})`).join(' · ');
+    if (advertised < 50) fail('C22', `الحارس صار فارغاً: ${advertised} صفحة معلَنة مفحوصة — المتوقع ≥50`);
+    else if (problems.length) fail('C22', `سلامة اللغة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C22', `${advertised} صفحة zh/de/ru معلَنة كلها دون ${THRESHOLD}% إنجليزية (الأعلى: ${summary})؛ و${unlisted.length} صفحة غير معلَنة بلا hreflang وخارج sitemap`);
+  }
+
+  // ── C23: عتبة نشر المعالم وبطاقات المشاركة بلغة الصفحة (الخطوة 4 من خطة التفاعل العالمي) ──
+  // (أ) صفحة المعلم الرقيقة (المتن + الأسئلة الشائعة دون 40 كلمة بالعربية أو
+  //     الإنجليزية — القاعدة في src/lib/publish.ts) تبقى مبنية للزائر لكنها
+  //     noindex بلا hreflang وخارج sitemap في كل لغاتها؛ وغير الرقيقة مفهرسة
+  //     وداخل الخريطة. الحكم على ما يراه الزاحف في dist لا على المصدر.
+  // (ب) كل صفحة قابلة للفهرسة تحمل og:image بلغتها: صورة محتوى، أو الافتراضية
+  //     بلغة الصفحة (og-default.png للعربية وog-default-{lang}.png لغيرها) — لا
+  //     بطاقة عربية لصفحة أجنبية. والملفات الخمسة موجودة في dist.
+  {
+    const THIN = 40;
+    const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
+    const sectionText = (html, re) => { const m = html.match(re); return m ? stripTags(m[1], ' ') : ''; };
+    // فقرة الإجابة (الخطوة 8) مركّبة من المتن نفسه فلا تُحسب — وإلا رفعت صفحةً رقيقة فوق العتبة بلا مصدر
+    const contentWords = (raw) => {
+      const html = raw.replace(/<p class="answer"[^>]*>[\s\S]*?<\/p>/, '');
+      return wc(sectionText(html, /<article class="prose"[^>]*>([\s\S]*?)<\/article>/)) +
+        wc(sectionText(html, /<section class="container att-faq"[^>]*>([\s\S]*?)<\/section>/));
+    };
+    const smXml = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    const inSitemap = (p) => smXml.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`);
+    const problems = [];
+    let thinCount = 0, checked = 0;
+    const thinSlugs = [];
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) { problems.push(`${f}: بلا slug`); continue; }
+      const pages = [
+        ['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`],
+        ['en', `/en/attractions/${slugEn}/`],
+        ...['zh', 'de', 'ru'].map((l) => [l, `/${l}/attractions/${slugEn}/`]),
+      ].map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      const htmlBy = Object.fromEntries(await Promise.all(pages.map(async ([l, , fp]) => [l, await readFile(fp, 'utf8')])));
+      if (!htmlBy.ar || !htmlBy.en) { problems.push(`${f}: صفحة عربية أو إنجليزية غير مبنية`); continue; }
+      const thin = contentWords(htmlBy.ar) < THIN || contentWords(htmlBy.en) < THIN;
+      if (thin) { thinCount++; thinSlugs.push(slugEn); }
+      for (const [l, p] of pages) {
+        checked++;
+        const html = htmlBy[l];
+        const noindex = /<meta name="robots" content="noindex/.test(html);
+        const hasHreflang = /<link rel="alternate" hreflang=/.test(html);
+        if (thin && !noindex) problems.push(`${p}: رقيقة (${contentWords(htmlBy.ar)}/${contentWords(htmlBy.en)} كلمة) بلا noindex`);
+        if (!thin && noindex) problems.push(`${p}: noindex وهي فوق العتبة`);
+        if (thin && hasHreflang) problems.push(`${p}: hreflang على صفحة رقيقة`);
+        if (!thin && !hasHreflang) problems.push(`${p}: بلا hreflang`);
+        if (thin && inSitemap(p)) problems.push(`${p}: رقيقة داخل sitemap`);
+        if (!thin && !inSitemap(p)) problems.push(`${p}: غائبة عن sitemap`);
+      }
+    }
+    // (ب) بطاقات المشاركة
+    const ogFiles = ['og-default.png', 'og-default-en.png', 'og-default-zh.png', 'og-default-de.png', 'og-default-ru.png'];
+    for (const o of ogFiles) if (!existsSync(path.join(DIST, o))) problems.push(`${o} غير موجودة في dist`);
+    let ogChecked = 0, ogDefault = 0;
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      if (/<meta name="robots" content="noindex/.test(html)) continue;
+      const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
+      const og = html.match(/property="og:image" content="([^"]+)"/)?.[1] ?? '';
+      if (!og) { problems.push(`${path.relative(DIST, fp)}: بلا og:image`); continue; }
+      ogChecked++;
+      const m = og.match(/\/og-default(?:-([a-z]{2}))?\.png$/);
+      if (m) {
+        ogDefault++;
+        const imgLang = m[1] ?? 'ar';
+        if (imgLang !== lang) problems.push(`${path.relative(DIST, fp)}: og:image بلغة ${imgLang} على صفحة ${lang}`);
+      }
+    }
+    if (checked < 100) fail('C23', `الحارس صار فارغاً: ${checked} صفحة معلم مفحوصة — المتوقع ≥100`);
+    else if (problems.length) fail('C23', `عتبة النشر/بطاقات المشاركة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C23', `${thinCount} معالم رقيقة (${thinSlugs.join('، ')}) noindex وخارج sitemap في ${checked} صفحة معلم؛ و${ogChecked} صفحة مفهرسة كلها بصورة OG بلغتها (${ogDefault} منها بالافتراضية)`);
+  }
+
+  // ── C24: الجداول والمواعيد المبنيَنة (الخطوة 8 من خطة التفاعل العالمي) ──
+  // (أ) كل رقم في خلية جدول `data-table` وارد حرفياً في مصدر الجدول نفسه: بنود practical
+  //     في ملفات المعالم، أو src/data/events.ts، أو src/data/fruits.ts — فلا يدخل الجداول
+  //     رقم من خارج مصادر الحقيقة، ولا يتقادم جدول عن بطاقته. والجداول الثلاثة مطلوبة
+  //     بالعربية والإنجليزية وبصفوف لا تقل عن عتبة (وإلا صار الحارس فارغاً بصمت).
+  // (ب) openingHoursSpecification وisAccessibleForFree/offers في JSON-LD صفحات المعلم
+  //     لا تظهر إلا حيث يحمل مصدر المعلم hoursSpec/fee، وتظهر في كل لغاته حيث يحملهما،
+  //     وساعاتها ومبالغها واردة في المصدر حرفياً. وكل كتلة ld+json في dist تُحلَّل JSON.
+  {
+    const problems = [];
+    const numsOf = (t) => t.match(/\d+(?:[.:]\d+)?/g) ?? [];
+    const decode = (t) => t.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ');
+    const attrFiles = (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'));
+    const heads = {};
+    for (const f of attrFiles) heads[f] = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+    const SOURCES = {
+      practical: Object.values(heads).map((h) => h.match(/^practical:\n([\s\S]*?)(?=^\S)/m)?.[1] ?? '').join('\n'),
+      events: await readFile(path.join(ROOT, 'src/data/events.ts'), 'utf8'),
+      fruits: await readFile(path.join(ROOT, 'src/data/fruits.ts'), 'utf8'),
+    };
+    const MIN_ROWS = { practical: 15, events: 8, fruits: 12 };
+    const seen = {};
+    const LD = new Map();
+    let tables = 0, cells = 0, ldCount = 0;
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      const rel = path.relative(DIST, fp);
+      const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
+      for (const m of html.matchAll(/<table class="va-table" data-table="([^"]+)">([\s\S]*?)<\/table>/g)) {
+        const [, id, body] = m;
+        const src = SOURCES[id];
+        if (!src) { problems.push(`${rel}: جدول ${id} بلا مصدر معروف`); continue; }
+        tables++;
+        (seen[id] ??= new Set()).add(lang);
+        const rows = (body.match(/<tbody>([\s\S]*)<\/tbody>/)?.[1].match(/<tr>/g) ?? []).length;
+        if (rows < MIN_ROWS[id]) problems.push(`${rel}: جدول ${id} بـ${rows} صفوف — المتوقع ≥${MIN_ROWS[id]}`);
+        for (const c of body.matchAll(/<(?:td|th scope="row")[^>]*>([\s\S]*?)<\/(?:td|th)>/g)) {
+          cells++;
+          const text = decode(stripTags(c[1], ' ')).trim();
+          for (const n of numsOf(text)) if (!src.includes(n)) problems.push(`${rel}: الرقم ${n} في جدول ${id} («${text.slice(0, 30)}») غير وارد في مصدره`);
+        }
+      }
+      const objs = [];
+      for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        try {
+          const j = JSON.parse(m[1]);
+          for (const o of Array.isArray(j) ? j : [j]) objs.push(...(Array.isArray(o?.['@graph']) ? o['@graph'] : [o]));
+          ldCount++;
+        } catch { problems.push(`${rel}: كتلة ld+json غير صالحة`); }
+      }
+      LD.set(fp, objs);
+    }
+    for (const id of Object.keys(SOURCES)) for (const l of ['ar', 'en']) if (!seen[id]?.has(l)) problems.push(`جدول ${id} غائب عن النسخة ${l}`);
+
+    // (ب) المواعيد والرسوم المبنيَنة
+    let hoursPages = 0, feePages = 0, attrPages = 0;
+    for (const f of attrFiles) {
+      const head = heads[f];
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue; // يبلّغ عنه C23
+      const hoursSrc = head.match(/^hoursSpec:\n([\s\S]*?)(?=^\S)/m)?.[1];
+      const feeSrc = head.match(/^fee:.*$/m)?.[0];
+      const pages = [`/${AR_ATTRACTIONS_DIR}/${slugAr}/`, `/en/attractions/${slugEn}/`, ...['zh', 'de', 'ru'].map((l) => `/${l}/attractions/${slugEn}/`)]
+        .map((p) => [p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, fp]) => existsSync(fp));
+      for (const [p, fp] of pages) {
+        attrPages++;
+        const objs = LD.get(fp) ?? [];
+        const place = objs.find((o) => o?.['@type'] === 'TouristAttraction');
+        if (!place) { problems.push(`${p}: بلا TouristAttraction في JSON-LD`); continue; }
+        const ohs = place.openingHoursSpecification;
+        if (hoursSrc && !(Array.isArray(ohs) && ohs.length)) problems.push(`${p}: المصدر يحمل hoursSpec والسكيما بلا openingHoursSpecification`);
+        if (!hoursSrc && ohs) problems.push(`${p}: openingHoursSpecification بلا hoursSpec في المصدر`);
+        if (hoursSrc && Array.isArray(ohs)) {
+          hoursPages++;
+          for (const h of ohs) {
+            if (h?.['@type'] !== 'OpeningHoursSpecification') problems.push(`${p}: نوع مواعيد غير متوقع`);
+            for (const k of ['opens', 'closes']) if (typeof h?.[k] !== 'string' || !hoursSrc.includes(`"${h[k]}"`)) problems.push(`${p}: ${k}=${h?.[k]} غير وارد في hoursSpec`);
+            const days = Array.isArray(h?.dayOfWeek) ? h.dayOfWeek : [h?.dayOfWeek];
+            if (!days.length || !days.every((d) => /^https:\/\/schema\.org\/(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day$/.test(d))) problems.push(`${p}: dayOfWeek غير صالح`);
+          }
+        }
+        const hasFee = 'isAccessibleForFree' in place;
+        if (feeSrc && !hasFee) problems.push(`${p}: المصدر يحمل fee والسكيما بلا isAccessibleForFree`);
+        if (!feeSrc && (hasFee || place.offers)) problems.push(`${p}: isAccessibleForFree/offers بلا fee في المصدر`);
+        if (feeSrc && hasFee) {
+          feePages++;
+          const free = /free:\s*true/.test(feeSrc);
+          if (place.isAccessibleForFree !== free) problems.push(`${p}: isAccessibleForFree=${place.isAccessibleForFree} يخالف المصدر`);
+          if (free && place.offers) problems.push(`${p}: offers على معلم مجاني`);
+          if (!free) {
+            const o = place.offers;
+            const nums = [o?.price, o?.priceSpecification?.minPrice, o?.priceSpecification?.maxPrice].filter((v) => v !== undefined);
+            if (o?.['@type'] !== 'Offer' || !nums.length) problems.push(`${p}: رسم مدفوع بلا Offer صالح`);
+            for (const n of nums) if (!new RegExp(`\\b${n}\\b`).test(feeSrc)) problems.push(`${p}: المبلغ ${n} غير وارد في fee`);
+          }
+        }
+      }
+    }
+    // (ج) فقرة الإجابة (answer/answer_en): تُنشر حرفياً أول المتن وفي وصف الصفحة بالعربية
+    //     والإنجليزية فقط، بين 35 و45 كلمة، وكل رقم فيها وارد في بقية المتن أو بطاقة الزيارة
+    //     (المتن دون الفقرة نفسها) — ولا فقرة لصفحة بلا answer في مصدرها.
+    const escapeRe = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const numRe = (num) => new RegExp('(?<!\\d)(?<!\\d[:.,])' + escapeRe(num) + '(?![:.,]?\\d)');
+    const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
+    const unesc = (t) => t.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+    let answerPages = 0;
+    for (const f of attrFiles) {
+      const head = heads[f];
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue;
+      const src = { ar: head.match(/^answer:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^answer_en:\s*"(.*)"\s*$/m)?.[1] };
+      if (Boolean(src.ar) !== Boolean(src.en)) problems.push(`${f}: answer بلغة واحدة`);
+      const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
+        .map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      for (const [l, p, fp] of pages) {
+        const html = await readFile(fp, 'utf8');
+        const found = [...html.matchAll(/<p class="answer"[^>]*>([\s\S]*?)<\/p>/g)].map((m) => unesc(stripTags(m[1], ' ')).trim());
+        const want = l === 'ar' || l === 'en' ? src[l] : undefined;
+        if (!want) { if (found.length) problems.push(`${p}: فقرة إجابة بلا answer بلغتها في المصدر`); continue; }
+        answerPages++;
+        if (found.length !== 1 || found[0] !== want) { problems.push(`${p}: فقرة الإجابة المنشورة لا تطابق المصدر`); continue; }
+        const words = wc(want);
+        if (words < 35 || words > 45) problems.push(`${p}: فقرة الإجابة ${words} كلمة — المطلوب 35–45`);
+        const desc = unesc(html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
+        if (desc !== want) problems.push(`${p}: وصف الصفحة ليس فقرة الإجابة`);
+        const prose = (html.match(/<article\b[^>]*\bclass="prose"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '').replace(/<p class="answer"[^>]*>[\s\S]*?<\/p>/, '');
+        const aside = html.match(/<aside\b[^>]*\bclass="att-aside"[^>]*>[\s\S]*?<\/aside>/)?.[0] ?? '';
+        if (!prose || !aside) { problems.push(`${p}: تعذّر عزل المتن أو بطاقة الزيارة لفحص أرقام الإجابة`); continue; }
+        const srcText = stripTags(prose + ' ' + aside, ' ');
+        for (const num of want.match(/\d+(?:[:.,]\d+)*/g) ?? []) if (!numRe(num).test(srcText)) problems.push(`${p}: الرقم «${num}» في فقرة الإجابة لا يرد في متن الصفحة ولا بطاقتها`);
+      }
+    }
+
+    // (د) صفحة مكوّنات اليونسكو: عربية وإنجليزية، تحمل كل ما يحمل unesco في المصدر (عدداً
+    //     ومعرّفات ورابطاً لكل صفحة معلم)، وItemList بعددها، وhreflang متبادل، وداخل sitemap.
+    const comps = attrFiles.map((f) => ({
+      f, id: heads[f].match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+      slugAr: heads[f].match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1], slugEn: heads[f].match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+    })).filter((c) => c.id).sort((a, b) => a.id.localeCompare(b.id));
+    const smXml24 = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    for (const [l, p] of [['ar', '/اليونسكو/'], ['en', '/en/unesco/']]) {
+      const fp = path.join(DIST, p, 'index.html');
+      let html;
+      try { html = await readFile(fp, 'utf8'); } catch { problems.push(`صفحة اليونسكو ${p} مفقودة`); continue; }
+      const ids = [...html.matchAll(/data-unesco="([^"]+)"/g)].map((m) => m[1]);
+      if (JSON.stringify(ids) !== JSON.stringify(comps.map((c) => c.id))) problems.push(`${p}: المكوّنات المنشورة (${ids.join('، ')}) ≠ المصدر (${comps.map((c) => c.id).join('، ')})`);
+      for (const c of comps) {
+        const href = l === 'ar' ? `/${AR_ATTRACTIONS_DIR}/${c.slugAr}/` : `/en/attractions/${c.slugEn}/`;
+        if (!html.includes(`href="${href}"`) && !html.includes(`href="${encodeURI(href)}"`)) problems.push(`${p}: بلا رابط إلى ${c.slugEn}`);
+      }
+      const list = (LD.get(fp) ?? []).find((o) => o?.['@type'] === 'ItemList');
+      if (!list || list.numberOfItems !== comps.length || (list.itemListElement ?? []).length !== comps.length) problems.push(`${p}: ItemList لا يحمل ${comps.length} مكوّنات`);
+      const other = l === 'ar' ? '/en/unesco/' : '/اليونسكو/';
+      if (!new RegExp(`hreflang="${l === 'ar' ? 'en' : 'ar'}"[^>]*href="[^"]*(?:${escapeRe(other)}|${escapeRe(encodeURI(other))})"`).test(html)) problems.push(`${p}: بلا hreflang إلى ${other}`);
+      if (!smXml24.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`)) problems.push(`${p}: غائبة عن sitemap`);
+    }
+
+    if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥6`);
+    else if (hoursPages < 16 || feePages < 40) fail('C24', `المواعيد المبنيَنة في ${hoursPages} صفحة والرسوم في ${feePages} — المتوقع ≥16 و≥40 (تراجع في المصدر؟)`);
+    else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة/الإجابات/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ صفحة اليونسكو بلغتيها تحمل المكوّنات ${comps.length} بروابطها`);
+  }
+
+  // ── C25: الربط الداخلي (الخطوة 9 من خطة التفاعل العالمي، ف4) ──
+  // (أ) كل معلم يربطه مقالٌ (رابط /معالم/<slug>/ أو /<lang>/attractions/<slug>/ في صفحة
+  //     المقال المبنية) تحمل صفحته بلغة المقال قسم «مقالات تذكر هذا المعلم» برابط إلى ذلك
+  //     المقال — والعكس: لا رابط في القسم إلى مقال لا يذكره (المنشور = الفهرس العكسي).
+  // (ب) صفحة المنشأة التي يحمل مصدرها district تعرض كل المعالم الحاملة للحيّ نفسه
+  //     (عدداً وروابط)، ولا قسم لمنشأة بلا حيّ. حارس إيجابي على العددين.
+  {
+    const problems = [];
+    const AR_BLOG_DIR = 'مدونة';
+    const linksIn = (html, re) => [...html.matchAll(re)].map((m) => { try { return decodeURIComponent(m[1]); } catch { return m[1]; } });
+    const hrefsOf = (block) => new Set(linksIn(block, /href="([^"]+)"/g));
+    // (أ) المقالات → المعالم
+    const expected = new Map(); // `${lang}:${slug}` → Set(postPath)
+    const blogDirs = [['ar', path.join(DIST, AR_BLOG_DIR)], ['en', path.join(DIST, 'en', 'blog')], ...['zh', 'de', 'ru'].map((l) => [l, path.join(DIST, l, 'blog')])];
+    let posts = 0;
+    for (const [l, dir] of blogDirs) {
+      let names;
+      try { names = (await readdir(dir, { withFileTypes: true })).filter((e) => e.isDirectory()).map((e) => e.name); } catch { continue; }
+      for (const n of names) {
+        const fp = path.join(dir, n, 'index.html');
+        if (!existsSync(fp)) continue;
+        posts++;
+        const html = await readFile(fp, 'utf8');
+        const postPath = l === 'ar' ? `/${AR_BLOG_DIR}/${n}/` : `/${l}/blog/${n}/`;
+        // روابط الماركداون العربية تخرج مرمَّزة (percent-encoding) — تُفكّ في hrefsOf قبل المطابقة
+        const prefix = l === 'ar' ? `/${AR_ATTRACTIONS_DIR}/` : `/${l}/attractions/`;
+        for (const h of hrefsOf(html)) {
+          const m = h.startsWith(prefix) ? h.slice(prefix.length).match(/^([^/?#]+)\/$/) : null;
+          if (!m) continue;
+          const k = `${l}:${m[1]}`;
+          (expected.get(k) ?? expected.set(k, new Set()).get(k)).add(postPath);
+        }
+      }
+    }
+    let withMentions = 0, mentionLinks = 0;
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue;
+      const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
+        .map(([l, slug, p]) => [l, slug, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , , fp]) => existsSync(fp));
+      for (const [l, slug, p, fp] of pages) {
+        const html = await readFile(fp, 'utf8');
+        const sec = html.match(/<section class="container mentions-sec"[\s\S]*?<\/section>/)?.[0] ?? '';
+        const got = hrefsOf(sec);
+        const want = expected.get(`${l}:${slug}`) ?? new Set();
+        if (want.size) { withMentions++; mentionLinks += want.size; }
+        const missing = [...want].filter((x) => !got.has(x));
+        const extra = [...got].filter((x) => !want.has(x));
+        if (missing.length) problems.push(`${p}: قسم المقالات بلا ${missing.slice(0, 2).join('، ')}`);
+        if (extra.length) problems.push(`${p}: قسم المقالات يربط مقالاً لا يذكره — ${extra.slice(0, 2).join('، ')}`);
+      }
+    }
+    // (ب) المنشآت → معالم الحيّ
+    const SRC_DINING = path.join(ROOT, 'src/content/dining');
+    const attrByDistrict = new Map();
+    for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!dist) continue;
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      (attrByDistrict.get(dist) ?? attrByDistrict.set(dist, []).get(dist)).push({ ar: `/${AR_ATTRACTIONS_DIR}/${slugAr}/`, en: `/en/attractions/${slugEn}/` });
+    }
+    let diningWith = 0, diningChecked = 0;
+    for (const f of (await readdir(SRC_DINING)).filter((n) => n.endsWith('.md'))) {
+      const head = (await readFile(path.join(SRC_DINING, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      if (!slugAr || !slugEn) continue;
+      const pages = [['ar', `/مطاعم-ومقاهي/${slugAr}/`], ['en', `/en/restaurants-cafes/${slugEn}/`]]
+        .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      for (const [l, p, fp] of pages) {
+        diningChecked++;
+        const html = await readFile(fp, 'utf8');
+        const sec = html.match(/<section class="dd-panel dd-sights"[\s\S]*?<\/section>/)?.[0] ?? '';
+        const got = hrefsOf(sec);
+        const want = new Set((dist ? attrByDistrict.get(dist) ?? [] : []).map((x) => x[l]));
+        if (!dist && sec) problems.push(`${p}: قسم معالم الحيّ بلا district في المصدر`);
+        if (want.size) diningWith++;
+        const missing = [...want].filter((x) => !got.has(x));
+        const extra = [...got].filter((x) => !want.has(x));
+        if (missing.length) problems.push(`${p}: معالم الحيّ بلا ${missing.slice(0, 2).join('، ')}`);
+        if (extra.length) problems.push(`${p}: معالم الحيّ تربط ${extra.slice(0, 2).join('، ')} من خارج الحيّ`);
+      }
+    }
+    if (posts < 10 || withMentions < 20 || diningChecked < 20 || diningWith < 6) fail('C25', `الحارس صار فارغاً: ${posts} مقالات، ${withMentions} صفحة معلم بمقالات، ${diningChecked} صفحة منشأة (${diningWith} بمعالم حيّ) — المتوقع ≥10 و≥20 و≥20 و≥6`);
+    else if (problems.length) fail('C25', `الربط الداخلي: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C25', `${withMentions} صفحة معلم تحمل قسم المقالات (${mentionLinks} رابطاً) مطابقاً للمقالات الـ${posts} التي تذكرها، و${diningWith} من ${diningChecked} صفحة منشأة تعرض معالم حيّها كاملةً`);
+  }
+
+  // ── C26: تبادل hreflang (الخطوة 10 من خطة التفاعل العالمي — المدونة متعددة اللغات) ──
+  // كل صفحة تعلن نظائرها: (أ) تُدرج نفسها بلغتها في المجموعة، (ب) كل نظير موجود في dist
+  // ويعلن المجموعة نفسها حرفياً (تبادل تام لا أحادي)، (ج) x-default يساوي النظير العربي.
+  // الحكم على ما يراه الزاحف في dist لا على المصدر — والمدونة بلغاتها الخمس أول من يجرّبه.
+  {
+    const problems = [];
+    const dec = (u) => { try { return decodeURIComponent(u); } catch { return u; } };
+    const pageSets = new Map(); // المسار (مفكوكاً) → { lang, alts: Map(lang → path), xdef }
+    for (const fp of await listHtml(DIST)) {
+      const html = await readFile(fp, 'utf8');
+      const alts = new Map();
+      let xdef;
+      for (const m of html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="https:\/\/visit-alahsa\.com([^"]+)"/g)) {
+        if (m[1] === 'x-default') xdef = dec(m[2]); else alts.set(m[1], dec(m[2]));
+      }
+      if (!alts.size) continue;
+      const self = dec(html.match(/<link rel="canonical" href="https:\/\/visit-alahsa\.com([^"]+)"/)?.[1] ?? '');
+      const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
+      pageSets.set(self, { lang, alts, xdef, rel: path.relative(DIST, fp) });
+    }
+    let reciprocal = 0;
+    for (const [self, { lang, alts, xdef, rel }] of pageSets) {
+      if (alts.get(lang) !== self) { problems.push(`${rel}: لا تُدرج نفسها بلغتها (${lang}) في hreflang`); continue; }
+      if (xdef !== alts.get('ar')) problems.push(`${rel}: x-default ≠ النظير العربي`);
+      for (const [l, p] of alts) {
+        if (p === self) continue;
+        const other = pageSets.get(p);
+        if (!other) { problems.push(`${rel}: النظير ${l} ${p} غير موجود أو بلا hreflang`); continue; }
+        if (other.lang !== l) problems.push(`${rel}: النظير ${p} لغته ${other.lang} لا ${l}`);
+        if (other.alts.get(lang) !== self) problems.push(`${rel}: النظير ${p} لا يعود إليها`);
+        else if ([...alts].some(([k, v]) => other.alts.get(k) !== v) || other.alts.size !== alts.size) problems.push(`${rel}: مجموعة hreflang تختلف عن نظيرها ${p}`);
+        else reciprocal++;
+      }
+    }
+    if (pageSets.size < 300) fail('C26', `الحارس صار فارغاً: ${pageSets.size} صفحة تحمل hreflang — المتوقع ≥300`);
+    else if (problems.length) fail('C26', `تبادل hreflang: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C26', `${pageSets.size} صفحة تحمل hreflang، ${reciprocal} رابط نظير كلها متبادلة بالمجموعة نفسها وx-default عربي`);
+  }
+
   // ── التقرير ──────────────────────────────────────────────────────────────
   const failed = results.filter((r) => r.level === 'fail');
   const warned = results.filter((r) => r.level === 'warn');
