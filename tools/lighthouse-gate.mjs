@@ -32,7 +32,7 @@ const LH_DIR = (process.env.LH_DIR ?? '.').replace(/\\/g, '/');
 // المحاكاة على أثر فعلي تتقلّب أزمنة CPU فيه. هدف الجودة (LCP ≤ 2.5 ث) يُقرأ ميدانياً
 // من حدث web_vitals (الخطوة 1)، وهذه البوابة تحرس **الأسباب** التي أُصلحت بميزانيات
 // حتمية لا تتقلّب: لا CSS حاجب، لا وجه سيريلي خارج /ru/، سقف عدد الخطوط وحجمها،
-// لا فيديو قبل LCP، وصورة LCP محمَّلة مسبقاً لا كسولة.
+// لا فيديو قبل LCP، وصورة LCP محمَّلة مسبقاً لا كسولة، ولا صورة eager تحت الطيّة.
 const LCP_MAX = Number(process.env.LCP_MAX ?? 4000);   // مللي ثانية — حارس كارثة (محاكاة)
 const PERF_MIN = Number(process.env.PERF_MIN ?? 80);   // درجة الأداء الدنيا (محاكاة)
 const FONT_FILES_MAX = Number(process.env.FONT_FILES_MAX ?? 12);
@@ -60,14 +60,15 @@ try {
   process.exit(2);
 }
 
-// نوع الشبكة المُعلَن (NetInfo) يحدّد مسافة التحميل الكسول للصور في كروم (settings.json5 في Blink:
-// 4g ‏1250px · 3g ‏2500px · مجهول 3000px). على عدّاء GitHub (كروم أحدث من المحلي) دخلت ثلاث صور بطاقات
-// إضافية (≈250KB على عمق 2324–2847px) في مخطط Lantern لـLCP لأن النوع تحت محاكاة Lighthouse لم يكن 4g،
-// فتباينت القراءة بين مضيفَين للصفحة نفسها (التشغيل 81: 6 صور قبل LCP مقابل 3 محلياً). الجهاز المحاكى
-// (mobileSlow4G، RTT ‏150ms) يُصنَّف 4g في NetInfo (العتبة 270ms)، فيُثبَّت النوع عليه ليتطابق المضيفان.
+// ملاحظة مقيسة (2026-09-10): كروم 152 على عدّاء GitHub يجلب الصور الكسولة حتى عمق ≈2850px من أعلى
+// الرئيسية عند التحميل (6 صور غير LCP، 529KB) بينما كروم 141 محلياً يقف عند ≈2070px (3 صور، 277KB)،
+// ونوع الشبكة في NetInfo 4g في الحالتين حتى تحت محاكاة Lighthouse (التشغيلان 81 و82) — أي أن مسافة
+// التحميل الكسول تختلف بإصدار كروم لا بنوع الشبكة، وتثبيت النوع بعلم كروم لا يغيّر شيئاً. الأثر على LCP
+// المحاكى صغير لأن الكسول يدخل مخطط Lantern متأخراً (بعد مهمة التخطيط)، على خلاف صورة eager تبدأ مع
+// الهيرو وتزاحمه — وتلك هي التي تحرسها ميزانية «لا صورة eager تحت الطيّة» أدناه.
 const chrome = await chromeLauncher.launch({
   chromePath: process.env.CHROME_PATH,
-  chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--force-effective-connection-type=4G'],
+  chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'],
 });
 
 // معايرة المضيف: وسيط ثلاث قياسات لدالة Lighthouse نفسها في صفحة فارغة على المتصفح ذاته.
@@ -96,6 +97,26 @@ async function hostBenchmarkIndex() {
   }
 }
 
+// ميزانية حتمية: لا صورة غير كسولة (eager/auto) تحت الطيّة الأولى للجوال. بطاقة المعلم الأولى في الرئيسية
+// كانت eager على عمق 3392px فطُلبت (126KB، أولوية Medium) عند 16ms مع صورة الهيرو ودخلت حتى مخطط Lantern
+// المتفائل: LCP المحاكى على العدّاء 4588 → 2719 مللي ثانية بجعلها كسولة (التشغيلان 81 → 82).
+async function eagerBelowFold(url) {
+  const browser = await puppeteer.connect({ browserURL: `http://127.0.0.1:${chrome.port}` });
+  try {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 412, height: 823, deviceScaleFactor: 1.75, isMobile: true, hasTouch: true });
+    await page.goto(url, { waitUntil: 'load', timeout: 60000 });
+    const list = await page.evaluate((h) => [...document.querySelectorAll('img')]
+      .filter((i) => i.loading !== 'lazy')
+      .map((i) => ({ src: (i.currentSrc || i.src).replace(location.origin, ''), top: Math.round(i.getBoundingClientRect().top), w: Math.round(i.getBoundingClientRect().width) }))
+      .filter((i) => i.w > 0 && i.top >= h), 823);
+    await page.close();
+    return list;
+  } finally {
+    await browser.disconnect();
+  }
+}
+
 const rows = [];
 let failed = false;
 try {
@@ -114,6 +135,7 @@ try {
     const samples = [];
     const warnings = new Set();
     let lhr = null, lastPre = [];
+    const eagerBelow = await eagerBelowFold(BASE + path);
     for (let i = 0; i < RUNS; i++) {
     const r = await lighthouse(BASE + path, {
       port: chrome.port, output: 'json', logLevel: 'error',
@@ -182,6 +204,7 @@ try {
       [`خطوط ≤ ${FONT_KB_MAX}KB`]: row.fontKb <= FONT_KB_MAX,
       'فيديو قبل LCP': row.videoBeforeLcp === 1,
       'صورة LCP محمَّلة مسبقاً': row.lcpImageOk === 1,
+      'لا صورة eager تحت الطيّة': eagerBelow.length === 0,
     };
     row.budgetFail = Object.entries(row.budget).filter(([, v]) => !v).map(([k]) => k);
     row.ok = row.lcp <= LCP_MAX && row.perf >= PERF_MIN && row.budgetFail.length === 0;
@@ -195,9 +218,10 @@ try {
     const phases = (lcpEl[1]?.items ?? []).map((p) => `${p.phase} ${Math.round(p.timing)}`).join(' · ');
     console.log(`    LCP: ${snippet}${phases ? `\n    مراحل LCP (آخر تشغيل): ${phases}` : ''}\n    الأثر الفعلي (وسيط): FCP ${row.obsFcp}ms · LCP ${row.obsLcp}ms · load ${row.obsLoad}ms · نهاية الأثر ${row.traceEnd}ms · TBT محاكى ${row.tbt}ms · فيديو ${row.videoAt < 0 ? 'لم يبدأ داخل الأثر' : `بدأ عند ${row.videoAt}ms (${row.videoKb}KB)`} · benchmarkIndex ${row.bi}\n    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): ${row.preN} (${row.preKb}KB) منها صور غير LCP ${row.preImgN} (${row.preImgKb}KB)${warnings.size ? `\n    تحذيرات Lighthouse: ${[...warnings].join(' | ')}` : ''}`);
     if (!row.ok && lastPre.length) console.log(`    أكبر ما بدأ قبل LCP (آخر تشغيل):\n      ${lastPre.join('\n      ')}`);
+    if (eagerBelow.length) console.log(`    صور غير كسولة تحت الطيّة (412×823): ${eagerBelow.map((i) => `${i.src} @${i.top}px`).join(' · ')}`);
   }
 } finally {
   await chrome.kill();
 }
-console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو قبل LCP · صورة LCP محمَّلة مسبقاً؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
+console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
 if (failed) process.exit(1);
