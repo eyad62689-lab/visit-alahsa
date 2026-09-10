@@ -10,14 +10,14 @@ pubDate: 2026-08-22
 tags: ["Reiseroute", "Zwei Tage in Al-Ahsa", "Reiseplan"]
 faq:
   - q: "Reichen zwei Tage für einen Besuch in Al-Ahsa?"
-    a: "Zwei Tage genügen, um den Geist der Oase zu spüren und ihre bedeutendsten Sehenswürdigkeiten zu besuchen: am ersten Tag das historische Herz von Hofuf, am zweiten Tag ihre Natur, ihr Wasser und ihre Küste. Wer zusätzlich Museen, Parks und die wöchentlichen Souks sehen möchte, plant besser drei Tage ein – das gibt der Reise mehr Luft."
+    a: "Zwei Tage genügen, um den Geist der Oase zu spüren und ihre bedeutendsten Sehenswürdigkeiten zu besuchen: am ersten Tag das historische Herz von Hofuf, am zweiten Tag ihre Natur, ihr Wasser und ihre Küste. Wer mehr möchte, findet unter den Sehenswürdigkeiten auf dieser Website Museen, Parks und traditionelle Souks – genug für einen dritten Tag."
   - q: "Wie bewege ich mich zwischen den Stationen dieser Route?"
     a: "Das Auto ist die praktische Wahl: Manche Stationen liegen in Hofuf selbst, andere am Rand der Oase und an der Küste. Stellen Sie Ihre Stationen auf der Seite „Meine Reise“ zusammen; Sie erhalten eine fertige Route, die sich in Google Maps öffnet."
 ---
 
-Zwei Tage genügen, um den Geist von Al-Ahsa zu spüren – der größten Oase der Welt, seit 2018 UNESCO-Welterbe. Zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert hier das Leben. Diese Route teilt den Besuch so, wie die Oase selbst geteilt ist: **Tag eins gehört ihrem historischen Herzen** in Hofuf, **Tag zwei ihrem Wasser, ihrem Grün und ihrer Küste**.
+Zwei Tage genügen, um den Geist von Al-Ahsa zu spüren – der größten Oase der Welt, seit 2018 UNESCO-Welterbe. Zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert hier das Leben. Diese Route teilt den Besuch so, wie die Oase selbst geteilt ist: **Tag eins gehört ihrem historischen Herzen in Hofuf**, **Tag zwei ihrem Wasser, ihrem Grün und ihrer Küste**.
 
-Eine Anmerkung vorab: Öffnungszeiten und Eintritt ändern sich je nach Saison. Deshalb folgen die Stationen hier dem **Rhythmus des Tages** – Morgen, Mittag, Sonnenuntergang – und nicht festen Uhrzeiten. Die geprüften Angaben stehen auf der Seite jeder Sehenswürdigkeit dieser Website; prüfen Sie sie vor Ihrem Besuch über die offiziellen Kanäle nach.
+Eine Anmerkung vorab: Öffnungszeiten und Eintritt ändern sich je nach Saison. Deshalb folgen die Stationen hier dem **Rhythmus des Tages** – vom Morgen bis zum Sonnenuntergang – und nicht festen Uhrzeiten. Die geprüften Angaben stehen auf der Seite jeder Sehenswürdigkeit dieser Website; prüfen Sie sie vor Ihrem Besuch über die offiziellen Kanäle nach.
 
 ## Tag 1: Das historische Herz von Hofuf
 
@@ -27,7 +27,7 @@ Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (
 
 ### Vormittag: Das Al-Koot-Viertel und das Gedächtnis der Stadt
 
-Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/en/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa erbaute dieses Haus im Jahr 1203 nach der Hidschra (n. H.); es wurde zum Symbol der Staatsgründung. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient.
+Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/en/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1789 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient.
 
 ### Abend: Der Qaisariyah-Souk
 
@@ -41,11 +41,11 @@ Fahren Sie von Hofuf aus nach Osten zum [Jabal al-Qarah](/de/attractions/jabal-a
 
 ### Mittag: Die Jawatha-Moschee
 
-Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/attractions/jawatha-mosque/) – eine der ältesten Moscheen des Islams und der erste Ort nach Medina, an dem ein Freitagsgebet stattfand. Die Lehmmauern tragen eine der ältesten Geschichten des Islams. Beachten Sie die Gebetszeiten und die Heiligkeit des Ortes.
+Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/attractions/jawatha-mosque/) – eine der ältesten Moscheen des Islams und der erste Ort nach Medina, an dem ein Freitagsgebet stattfand. Die Lehmmauern tragen eine der ältesten Geschichten des Islams. Beachten Sie die Gebetszeiten und die Heiligkeit des Ortes. Auch Nichtmuslime sind willkommen, bedeckende Kleidung vorausgesetzt.
 
 ### Nachmittag: Das Grün der Farmen
 
-Fällt Ihr Besuch in die Zitrussaison, gehört der Nachmittag der [Hasawi-Limettenfarm](/en/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Außerhalb der Saison stöbern Sie auf der Seite [Souks, Parks und Farmen](/en/souqs-parks-farms/) und wählen Sie, was zu Ihrem Tag passt.
+Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der Nachmittag der [Hasawi-Limettenfarm](/en/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/en/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
 
 ### Sonnenuntergang: Al-Uqair
 
@@ -55,5 +55,4 @@ Beenden Sie Ihre Reise an der Golfküste östlich von Al-Ahsa bei [Al-Uqair](/de
 
 - **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/en/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet.
 - **Nutzen Sie die Karte**: Die [Karte der Sehenswürdigkeiten](/en/map/) zeigt jede Station an ihrem Ort und hilft Ihnen, die Reihenfolge Ihres Tages zu planen.
-- **Öffnungszeiten und Eintritt**: Beide ändern sich je nach Saison und an Feiertagen – die geprüften Angaben stehen auf der Seite jeder Sehenswürdigkeit, und das letzte Wort haben die offiziellen Kanäle.
 - **Zum ersten Mal in Al-Ahsa?** Die Seite [Reise planen](/en/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.
