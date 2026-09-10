@@ -311,3 +311,12 @@ picture.photo { display: block; }
 .va-table tbody th { font-weight: 600; color: var(--c-ink); }
 .va-table tbody th a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; }
 .va-table tbody tr:nth-child(even) { background: var(--c-sand); }
+
+/* ── content-visibility للأقسام تحت الطيّة (2026-09-10) ──
+   أثر تبديل الخطوط (تسعة وجوه تصل تباعاً) إعادةُ تخطيط الصفحة كلها في كل وصول:
+   الأثر المقيس على الرئيسية بمحاكاة Lighthouse 12 تخطيطاً يشمل ~650 عقدة كلٌّ منها،
+   و3.5 ث «Style & Layout» من أصل 4.4 ث عمل الخيط الرئيسي، فتجاوز LCP حارس البوابة
+   على عدّاء GitHub (4.3 ث). content-visibility: auto يُعفي الأقسام خارج الشاشة من
+   التخطيط حتى تقترب، وcontain-intrinsic-size يحفظ ارتفاعاً تقديرياً لشريط التمرير
+   فلا يقفز. لا يُطبَّق على قسم الهيرو (LCP) ولا على ما يحمل مرساة الفتات الأولى. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 720px; }
