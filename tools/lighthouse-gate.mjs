@@ -72,8 +72,10 @@ async function hostBenchmarkIndex() {
     const page = await browser.newPage();
     const xs = [];
     for (let i = 0; i < 3; i++) xs.push(await page.evaluate(pageFunctions.computeBenchmarkIndex));
+    // نوع الشبكة كما يراه كروم: يحدّد مسافة التحميل الكسول للصور (1250px على 4g وأكبر على ما دونه/المجهول)
+    const ect = await page.evaluate(() => { const c = navigator.connection || {}; return `${c.effectiveType ?? '?'} · rtt ${c.rtt ?? '?'} · downlink ${c.downlink ?? '?'}`; });
     await page.close();
-    return { bi: median(xs), spread: `${Math.min(...xs)}–${Math.max(...xs)}` };
+    return { bi: median(xs), spread: `${Math.min(...xs)}–${Math.max(...xs)}`, ect };
   } finally {
     await browser.disconnect();
   }
@@ -84,9 +86,9 @@ let failed = false;
 try {
   let mult;
   if (CPU_MULT === 'auto') {
-    const { bi, spread } = await hostBenchmarkIndex();
+    const { bi, spread, ect } = await hostBenchmarkIndex();
     mult = round1(multiplierFor(bi));
-    console.log(`معايرة المضيف: benchmarkIndex ${bi} (وسيط 3: ${spread}) → مضاعف إبطاء المعالج ${mult}x (افتراضي Lighthouse 4x يفترض مؤشراً ≈ 1533)${bi < 150 ? ' — تحذير: المضيف أبطأ من أن يحاكي جوالاً؛ حارسا المحاكاة غير موثوقين هنا' : ''}`);
+    console.log(`معايرة المضيف: benchmarkIndex ${bi} (وسيط 3: ${spread}) → مضاعف إبطاء المعالج ${mult}x (افتراضي Lighthouse 4x يفترض مؤشراً ≈ 1533)${bi < 150 ? ' — تحذير: المضيف أبطأ من أن يحاكي جوالاً؛ حارسا المحاكاة غير موثوقين هنا' : ''} · شبكة كروم: ${ect}`);
   } else {
     mult = Number(CPU_MULT);
     if (!(mult > 0)) { console.error(`CPU_MULT غير صالح: ${CPU_MULT}`); process.exit(2); }
@@ -96,7 +98,7 @@ try {
   for (const path of PAGES) {
     const samples = [];
     const warnings = new Set();
-    let lhr = null;
+    let lhr = null, lastPre = [];
     for (let i = 0; i < RUNS; i++) {
     const r = await lighthouse(BASE + path, {
       port: chrome.port, output: 'json', logLevel: 'error',
@@ -119,6 +121,12 @@ try {
     const m = a['metrics']?.details?.items?.[0] ?? {};
     const obsLcp = m.observedLargestContentfulPaint ?? Infinity;
     const video = reqs.filter((i) => /\.mp4(\?|$)/.test(i.url)).sort((x, y) => x.networkRequestTime - y.networkRequestTime)[0];
+    // ما بدأ قبل LCP المرصود يدخل في مخطط Lantern التشاؤمي لـLCP: الصور الكسولة التي يقرّر كروم
+    // جلبها مبكراً (مسافة التحميل الكسول تتبع نوع الشبكة المُعلَن) تزاحم صورة LCP في المحاكاة.
+    const lcpSrc = (a['largest-contentful-paint-element']?.details?.items?.[0]?.items?.[0]?.node?.snippet ?? '').match(/\bsrc="([^"]+)"/)?.[1];
+    const preLcp = reqs.filter((i) => i.networkRequestTime < obsLcp);
+    const preImgs = preLcp.filter((i) => i.resourceType === 'Image' && i.url !== lcpSrc);
+    const kb = (xs) => Math.round(xs.reduce((t, i) => t + (i.transferSize || 0), 0) / 1024);
     samples.push({
       perf: Math.round((lhr.categories.performance.score ?? 0) * 100),
       // ميزانيات حتمية (1 = سليم)
@@ -141,7 +149,10 @@ try {
       videoAt: video ? Math.round(video.networkRequestTime) : -1,
       videoKb: video ? Math.round((video.transferSize || 0) / 1024) : 0,
       bi: lhr.environment?.benchmarkIndex ?? 0,
+      preN: preLcp.length, preKb: kb(preLcp), preImgN: preImgs.length, preImgKb: kb(preImgs),
     });
+    lastPre = [...preLcp].sort((x, y) => (y.transferSize || 0) - (x.transferSize || 0)).slice(0, 8)
+      .map((i) => `${Math.round((i.transferSize || 0) / 1024)}KB ${i.resourceType ?? '?'} @${Math.round(i.networkRequestTime)}ms ${i.url.replace(BASE, '')}`);
     }
     if (!samples.length) { failed = true; rows.push({ path, ok: false }); continue; }
     const row = { path, runs: samples.length };
@@ -167,7 +178,8 @@ try {
     const lcpEl = lhr.audits['largest-contentful-paint-element']?.details?.items ?? [];
     const snippet = (lcpEl[0]?.items?.[0]?.node?.snippet ?? '—').replace(/\s+/g, ' ').slice(0, 110);
     const phases = (lcpEl[1]?.items ?? []).map((p) => `${p.phase} ${Math.round(p.timing)}`).join(' · ');
-    console.log(`    LCP: ${snippet}${phases ? `\n    مراحل LCP (آخر تشغيل): ${phases}` : ''}\n    الأثر الفعلي (وسيط): FCP ${row.obsFcp}ms · LCP ${row.obsLcp}ms · load ${row.obsLoad}ms · نهاية الأثر ${row.traceEnd}ms · TBT محاكى ${row.tbt}ms · فيديو ${row.videoAt < 0 ? 'لم يبدأ داخل الأثر' : `بدأ عند ${row.videoAt}ms (${row.videoKb}KB)`} · benchmarkIndex ${row.bi}${warnings.size ? `\n    تحذيرات Lighthouse: ${[...warnings].join(' | ')}` : ''}`);
+    console.log(`    LCP: ${snippet}${phases ? `\n    مراحل LCP (آخر تشغيل): ${phases}` : ''}\n    الأثر الفعلي (وسيط): FCP ${row.obsFcp}ms · LCP ${row.obsLcp}ms · load ${row.obsLoad}ms · نهاية الأثر ${row.traceEnd}ms · TBT محاكى ${row.tbt}ms · فيديو ${row.videoAt < 0 ? 'لم يبدأ داخل الأثر' : `بدأ عند ${row.videoAt}ms (${row.videoKb}KB)`} · benchmarkIndex ${row.bi}\n    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): ${row.preN} (${row.preKb}KB) منها صور غير LCP ${row.preImgN} (${row.preImgKb}KB)${warnings.size ? `\n    تحذيرات Lighthouse: ${[...warnings].join(' | ')}` : ''}`);
+    if (!row.ok && lastPre.length) console.log(`    أكبر ما بدأ قبل LCP (آخر تشغيل):\n      ${lastPre.join('\n      ')}`);
   }
 } finally {
   await chrome.kill();
