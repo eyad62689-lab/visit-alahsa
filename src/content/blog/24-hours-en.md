@@ -31,7 +31,7 @@ For lunch, with the city centre around you, the restaurants and cafés are gathe
 
 ## Evening: Qaisariyah Souq
 
-End your day at [Qaisariyah Souq](/en/attractions/qaisariyah/), steps from Qasr Ibrahim: a heritage market more than two centuries old, its passages scented with perfume and gleaming with copper, its cloaks embroidered by the hands of Al-Ahsa's own people. Evening is its best hour, when the shops open their doors and the souq's pulse rises — a close worthy of a concentrated day before you leave.
+End your day at [Qaisariyah Souq](/en/attractions/qaisariyah/), about half a kilometre from Qasr Ibrahim: a heritage market more than two centuries old, its passages scented with perfume and gleaming with copper, its cloaks embroidered by the hands of Al-Ahsa's own people. Evening is its best hour, when the shops open their doors and the souq's pulse rises — a close worthy of a concentrated day before you leave.
 
 ## If Time Allows
 
