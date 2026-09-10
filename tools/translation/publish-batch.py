@@ -22,11 +22,7 @@ tmp = f'{root}/{lang}-translation/memory/tm.json'; tm = json.load(open(tmp, enco
 add = json.load(open(f'{B}/tm-additions.json', encoding='utf-8'))
 addl = (add.get('pairs') or add.get('additions') or []) if isinstance(add, dict) else add
 rem = (add.get('remove') or []) if isinstance(add, dict) else []
-have = {(p.get('en'), p.get(lang)) for p in pairs}; n = 0
-for a in addl:
-    if lang not in a or 'en' not in a or (a['en'], a[lang]) in have: continue
-    pairs.append({'en': a['en'], lang: a[lang], 'page': a.get('page', 'blog'), 'field': a.get('field', 'body'), 'date': a.get('date', today)}); n += 1
-removed = 0
+removed = 0   # الحذف أولاً: مواصفة الحذف (page+field) تصف زوجاً متقادماً قائماً، ولو طُبّقت بعد الإضافة لابتلعت الزوج الجديد الذي يحمل المفتاح نفسه (وقع فعلاً في دفعة zh 2026-09-10)
 for r in rem:
     if isinstance(r, str): r = {lang: r}
     def hit(p):
@@ -35,6 +31,10 @@ for r in rem:
         if r.get('en') and not r.get('page') and p.get('en') == r['en'] and (not r.get(lang) or p.get(lang) == r[lang]): return True
         return False
     before = len(pairs); pairs[:] = [p for p in pairs if not hit(p)]; removed += before - len(pairs)
+have = {(p.get('en'), p.get(lang)) for p in pairs}; n = 0
+for a in addl:
+    if lang not in a or 'en' not in a or (a['en'], a[lang]) in have: continue
+    pairs.append({'en': a['en'], lang: a[lang], 'page': a.get('page', 'blog'), 'field': a.get('field', 'body'), 'date': a.get('date', today)}); n += 1
 json.dump(tm, open(tmp, 'w', encoding='utf-8'), ensure_ascii=False, indent=2); print('tm added', n, 'removed', removed, 'total', len(pairs))
 # 3) سجل الدرجات
 row = open(f'{B}/scores-row.txt', encoding='utf-8').read().strip()
