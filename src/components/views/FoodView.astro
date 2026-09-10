@@ -8,7 +8,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
-import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH } from '../../data/dishes';
+import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_RU } from '../../data/dishes';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -17,6 +17,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const ru = lang === 'ru';
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة food-map 2026-09-02، الحاكم 94/100).
 // dineHref يقصد فهرس المطاعم الصيني منذ صدوره (دفعة indexes 2026-09-02).
@@ -33,6 +34,24 @@ const ZH = {
   dineCta: '想找地方一饱口福？浏览餐厅与咖啡馆 →',
   dineHref: '/zh/restaurants-cafes/',
   groups: DISH_GROUPS_ZH,
+};
+
+// الكتلة الروسية — خط ru-translation-pipeline (دفعة ru-food 2026-09-09).
+// dineHref يقصد فهرس المطاعم الإنجليزي: لا نظير روسيّ له بعد، وهو تراجع
+// القاموس نفسه — تسمية إنجليزية لصفحة إنجليزية لا وعدٌ مكسور.
+const RU = {
+  heroEyebrow: 'Стол оазиса',
+  title: 'Кухня Аль-Ахсы',
+  heroSum: 'Кухня Аль-Ахсы держится на дарах оазиса: местный рис Аль-Ахсы, финиковая патока, сушёный лайм и дроблёная пшеница. Из них и рождаются домашние блюда, которые переходят от поколения к поколению.',
+  listEyebrow: 'Путешествие по вкусам',
+  listH: 'Восемь блюд из сердца оазиса',
+  more: 'Подробнее',
+  less: 'Свернуть',
+  methodH: 'Об этой странице',
+  methodP1: 'Эти описания знакомят с традиционными блюдами и их хорошо известными ингредиентами, а не дают точных рецептов: и пропорции, и названия меняются от дома к дому и от одной местности к другой.',
+  dineCta: 'Ищете, где это попробовать? Посмотрите список ресторанов и кафе →',
+  dineHref: '/en/restaurants-cafes/',
+  groups: DISH_GROUPS_RU,
 };
 
 const C = localize(lang, {
@@ -65,6 +84,7 @@ const C = localize(lang, {
     groups: DISH_GROUPS_EN,
   },
   zh: ZH,
+  ru: RU,
 });
 
 const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.name')}`;
@@ -72,13 +92,15 @@ const description = ar
   ? 'جولة في المطبخ الأحسائي: الأرز الأحسائي، المندي، الهريس، المفلق، البلاليط بالدبس، عصيدة التمر، الساقو، وخبز التمر.'
   : zh
     ? '走进哈萨美食：哈萨焖饭、曼迪、哈里斯、穆法拉格、椰枣糖浆巴拉利特、椰枣阿西达、西米羹与椰枣面包。'
-    : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
+    : ru
+      ? 'Кухня Аль-Ахсы в восьми блюдах: рис Аль-Ахсы, манди, хариса из пшеницы, муфаллак, балалит с финиковой патокой, финиковая асида, саго и финиковый хлеб.'
+      : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : '/en/food/';
+const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : ru ? '/ru/food/' : '/en/food/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];
