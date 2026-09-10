@@ -190,7 +190,9 @@ const description = ar
         <div class="att-grid">
           {featuredEntries.map((e, i) => (
             <a class={`card card--lift att-card ${i === 0 ? 'att-card--lead' : ''}`} href={attractionHref(e.data, hrefLang(e.data))} data-reveal style={`transition-delay:${i * 80}ms`}>
-              <Photo src={e.data.heroImage} label={pickTitle(e.data)} class="att-photo" eager={i === 0} sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
+              {/* لا eager هنا: القسم ثالث الأقسام (على عمق 3392px من أعلى الصفحة على الجوال، قياس 2026-09-10) فكانت أثقل صورة في
+                  الصفحة (126KB) تُطلب عند 16ms وتزاحم صورة الهيرو (LCP) على عرض النطاق في كل متصفح؛ الكسول مع fetchpriority=low يخرجها من مسار LCP */}
+              <Photo src={e.data.heroImage} label={pickTitle(e.data)} class="att-photo" sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 {/* التسمية العلوية عربية/صينية فقط — لا عنصر فارغ في الإنجليزية */}
                 {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : de ? (e.data.kicker_de ?? '') : ru ? (e.data.kicker_ru ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}

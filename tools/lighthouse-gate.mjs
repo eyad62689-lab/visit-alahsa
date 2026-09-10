@@ -60,9 +60,14 @@ try {
   process.exit(2);
 }
 
+// نوع الشبكة المُعلَن (NetInfo) يحدّد مسافة التحميل الكسول للصور في كروم (settings.json5 في Blink:
+// 4g ‏1250px · 3g ‏2500px · مجهول 3000px). على عدّاء GitHub (كروم أحدث من المحلي) دخلت ثلاث صور بطاقات
+// إضافية (≈250KB على عمق 2324–2847px) في مخطط Lantern لـLCP لأن النوع تحت محاكاة Lighthouse لم يكن 4g،
+// فتباينت القراءة بين مضيفَين للصفحة نفسها (التشغيل 81: 6 صور قبل LCP مقابل 3 محلياً). الجهاز المحاكى
+// (mobileSlow4G، RTT ‏150ms) يُصنَّف 4g في NetInfo (العتبة 270ms)، فيُثبَّت النوع عليه ليتطابق المضيفان.
 const chrome = await chromeLauncher.launch({
   chromePath: process.env.CHROME_PATH,
-  chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'],
+  chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--force-effective-connection-type=4G'],
 });
 
 // معايرة المضيف: وسيط ثلاث قياسات لدالة Lighthouse نفسها في صفحة فارغة على المتصفح ذاته.
@@ -73,7 +78,17 @@ async function hostBenchmarkIndex() {
     const xs = [];
     for (let i = 0; i < 3; i++) xs.push(await page.evaluate(pageFunctions.computeBenchmarkIndex));
     // نوع الشبكة كما يراه كروم: يحدّد مسافة التحميل الكسول للصور (1250px على 4g وأكبر على ما دونه/المجهول)
-    const ect = await page.evaluate(() => { const c = navigator.connection || {}; return `${c.effectiveType ?? '?'} · rtt ${c.rtt ?? '?'} · downlink ${c.downlink ?? '?'}`; });
+    const readEct = () => page.evaluate(() => { const c = navigator.connection || {}; return `${c.effectiveType ?? '?'} (rtt ${c.rtt ?? '?'} · downlink ${c.downlink ?? '?'})`; });
+    const ect0 = await readEct();
+    // ما يراه NetInfo تحت محاكاة Lighthouse نفسها (وضع simulate يلغي الخنق عبر CDP بهذه القيم بالضبط)
+    const cdp = await page.createCDPSession();
+    await cdp.send('Network.enable');
+    await cdp.send('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: 0, uploadThroughput: 0 });
+    await new Promise((r) => setTimeout(r, 200));
+    const ect1 = await readEct();
+    await cdp.detach();
+    const ua = await page.evaluate(() => (navigator.userAgent.match(/Chrome\/[\d.]+/) || ['Chrome/?'])[0]);
+    const ect = `${ect0} → تحت محاكاة Lighthouse ${ect1} · ${ua}`;
     await page.close();
     return { bi: median(xs), spread: `${Math.min(...xs)}–${Math.max(...xs)}`, ect };
   } finally {
