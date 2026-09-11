@@ -792,6 +792,7 @@ export const ui = {
     'plan.printNote': 'Öffnungszeiten und Eintritt können sich ändern – prüfen Sie beides vor Ihrem Besuch über die offiziellen Kanäle nach.',
     'foot.l.report': 'Fehler melden',
     'det.visitInfo': 'Besuchsinformationen',
+    'det.faq': 'Häufige Fragen',
     'det.area': 'Lage',
     'det.bestTime': 'Beste Tageszeit',
     'det.coords': 'Koordinaten',

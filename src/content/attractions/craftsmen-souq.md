@@ -7,6 +7,12 @@ kicker_zh: 手工艺市集
 summary_zh: "位于胡富夫历史城区中心、由哈萨市政局主管的一座市集，汇聚手工艺人和他们的店铺，并设有一所传授手工艺的学院。"
 body_zh: "手工艺人市集（Craftsmen Souq）位于胡富夫历史城区的中心，2020 年 3 月开放，旨在扶持手工艺与民间艺术。市集占地 12000 多平方米，设有 112 家手工艺人店铺，另有一处露天庭院、一家传统咖啡馆、一家坦努尔泥炉面包坊和一座活动广场。市集里还有一所传授手工艺的学院，由经验丰富的手工艺人主持，把手艺传给新一代，这一使命也与哈萨加入联合国教科文组织创意城市网络一脉相承。市集的兴建是胡富夫历史城区开发项目的一部分，由哈萨市政局主管。"
 area_zh: 胡富夫——历史城区
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 بدرجة 93/100 (2026-09-11، الدورة 2 من 3)
+title_de: "Handwerker-Souk"
+kicker_de: "Souk des Handwerks"
+summary_de: "Ein Souk im Herzen des historischen Hofuf: Er vereint Handwerker, ihre Geschäfte und eine Akademie für Kunsthandwerk – unter der Aufsicht der Kommunalverwaltung von Al-Ahsa."
+body_de: "Im historischen Zentrum von Hofuf liegt der Handwerker-Souk. Er wurde im März 2020 eröffnet, um Kunsthandwerk und Volkskunst zu fördern. Auf mehr als 12.000 Quadratmetern finden Sie 112 Geschäfte von Handwerkern, einen offenen Innenhof, ein traditionelles Kaffeehaus, eine Bäckerei mit Tanur (Lehmofen) und einen Veranstaltungsplatz. Dazu kommt eine Akademie, in der erfahrene Handwerker ihr Können an neue Generationen weitergeben – ein Auftrag, der mit dem Beitritt Al-Ahsas zum Netzwerk der UNESCO Creative Cities verbunden ist. Der Souk entstand im Rahmen der Projekte zur Entwicklung der historischen Innenstadt und steht unter der Aufsicht der Kommunalverwaltung von Al-Ahsa."
+area_de: "Hofuf – das historische Stadtzentrum"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 10 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Рынок ремесленников"
 kicker_ru: "Ремесленный рынок"
@@ -26,7 +32,7 @@ order: 59
 area: "الهفوف — وسط المدينة التاريخي"
 area_en: "Hofuf — the historic town centre"
 practical:
-  - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_ru: "Часы работы", value_ru: "Ежедневно 7:30–24:00 (по воскресеньям и понедельникам с 7:00 · по пятницам с 14:30)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", source: "خرائط جوجل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_ru: "Google Карты — часы работы, обновлённые самим рынком", source_zh: "谷歌地图（营业时间由商家更新）", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
+  - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_ru: "Часы работы", value_ru: "Ежедневно 7:30–24:00 (по воскресеньям и понедельникам с 7:00 · по пятницам с 14:30)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", label_de: "Öffnungszeiten", value_de: "Täglich 7:30–24:00 Uhr (sonntags und montags ab 7:00 Uhr · freitags ab 14:30 Uhr)", source: "خرائط جوجل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_ru: "Google Карты — часы работы, обновлённые самим рынком", source_zh: "谷歌地图（营业时间由商家更新）", source_de: "Google Maps – vom Betrieb selbst aktualisierte Öffnungszeiten", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
 hoursSpec:
   - { days: "Tu We Th Sa", opens: "07:30", closes: "23:59" }
   - { days: "Su Mo", opens: "07:00", closes: "23:59" }
@@ -44,6 +50,8 @@ faq:
     a_en: "Daily from 7:30 am to midnight; Sunday and Monday from 7:00 am, and Friday from 2:30 pm, according to the hours updated by the business on Google Maps."
     q_zh: "手工艺人市集的开放时间是几点到几点？"
     a_zh: "一般为 7:30–24:00；周日、周一提前到 7:00 开门，周五则要到 14:30 才开门。以上为市集方在谷歌地图上更新的营业时间。"
+    q_de: "Wie sind die Öffnungszeiten des Handwerker-Souks?"
+    a_de: "Täglich von 7:30 bis 24:00 Uhr; sonntags und montags ab 7:00 Uhr und freitags ab 14:30 Uhr – nach den Öffnungszeiten, die der Betrieb selbst bei Google Maps aktualisiert hat."
     q_ru: "В какие часы открыт Рынок ремесленников?"
     a_ru: "Ежедневно с 7:30 до 24:00; по воскресеньям и понедельникам — с 7:00, по пятницам — с 14:30. Это часы работы, которые сам рынок обновил в Google Картах."
   - q: "ماذا يوجد في سوق الحرفيين؟"
@@ -52,6 +60,8 @@ faq:
     a_en: "112 shops for artisans, an open courtyard, a traditional coffee house, a tannour bakery, an events plaza, and an academy where experienced craftspeople teach their trades."
     q_zh: "手工艺人市集里有什么？"
     a_zh: "市集里有 112 家手工艺人店铺，另有露天庭院、传统咖啡馆、坦努尔泥炉面包坊和活动广场；还设有一所传授手工艺的学院，由经验丰富的手工艺人执教。"
+    q_de: "Was gibt es im Handwerker-Souk?"
+    a_de: "112 Geschäfte von Handwerkern, einen offenen Innenhof, ein traditionelles Kaffeehaus, eine Bäckerei mit Tanur, einen Veranstaltungsplatz und eine Akademie, in der erfahrene Handwerker ihr Können weitergeben."
     q_ru: "Что можно увидеть на Рынке ремесленников?"
     a_ru: "112 лавок ремесленников, открытый двор, традиционную кофейню, пекарню с тандыром, площадь для мероприятий и академию, где опытные мастера передают своё дело."
   - q: "أين يقع سوق الحرفيين ومن يشرف عليه؟"
@@ -60,6 +70,8 @@ faq:
     a_en: "In the historic centre of Hofuf, created as part of the projects to develop historic downtown, and run by Al-Ahsa Municipality."
     q_zh: "手工艺人市集在哪里，由谁主管？"
     a_zh: "在胡富夫历史城区的中心，由哈萨市政局主管；市集的兴建是胡富夫历史城区开发项目的一部分。"
+    q_de: "Wo liegt der Handwerker-Souk, und wer hat die Aufsicht?"
+    a_de: "Im historischen Zentrum von Hofuf. Er entstand im Rahmen der Projekte zur Entwicklung der historischen Innenstadt und steht unter der Aufsicht der Kommunalverwaltung von Al-Ahsa."
     q_ru: "Где находится Рынок ремесленников и кто им управляет?"
     a_ru: "В историческом центре Эль-Хуфуфа. Рынок появился в рамках проектов по развитию исторического центра, а управляет им муниципалитет Аль-Ахсы."
   - q: "متى افتُتح سوق الحرفيين؟"
@@ -68,6 +80,8 @@ faq:
     a_en: "In March 2020."
     q_zh: "手工艺人市集是哪一年开放的？"
     a_zh: "2020 年 3 月开放。"
+    q_de: "Wann wurde der Handwerker-Souk eröffnet?"
+    a_de: "Im März 2020."
     q_ru: "Когда открылся Рынок ремесленников?"
     a_ru: "В марте 2020 года."
 ---
