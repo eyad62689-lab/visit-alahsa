@@ -8,6 +8,13 @@ summary_zh: "海湾地区最大的天然湖泊之一，也是吸引候鸟与自�
 body_zh: "阿斯法湖（黄湖）是海湾地区最大的天然湖泊之一。哈萨绿洲列入联合国教科文组织世界遗产名录的十二处组成部分，这片湖也名列其中。这片沙漠中央难得一见的水域，如今成了候鸟的栖息地，也吸引着寻求宁静与开阔视野的人们。湖泊位于绿洲东北部，最美莫过于日落时分：水面染上一层金色，那也是摄影师与自然爱好者最钟爱的时刻。"
 area_zh: 绿洲东北部
 bestTime_zh: "日落时分，水面熠熠生辉，鸟群陆续归来。"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-2 بدرجة 91/100 (2026-09-11، الدورة 3 من 3)
+title_de: "Al-Asfar-See"
+kicker_de: "Naturlandschaft"
+summary_de: "Einer der größten natürlichen Seen der Golfregion – ein Schutzgebiet, das Zugvögel und Naturfreunde anzieht."
+body_de: "Der Al-Asfar-See (Gelber See) ist einer der größten natürlichen Seen der Golfregion und einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die in die Welterbeliste der UNESCO aufgenommen wurde. Als seltene Wasserfläche mitten in der Wüste ist er zum Rückzugsort für Zugvögel geworden und zum Ziel für alle, die Ruhe und einen weiten Horizont suchen. Der See liegt nordöstlich der Oase. Seine schönste Stunde ist der Sonnenuntergang, wenn sich die Wasseroberfläche golden färbt – die Lieblingszeit von Fotografen und Naturfreunden."
+area_de: "Nordöstlich der Oase"
+bestTime_de: "Bei Sonnenuntergang, wenn das Wasser leuchtet und die Vogelschwärme zurückkehren."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 6 بدرجة 91/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Озеро Эль-Асфар"
 kicker_ru: "Природная достопримечательность"
@@ -30,7 +37,7 @@ area_en: "Northeast of the oasis"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 practical:
-  - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
+  - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", label_de: "Eintritt", value_de: "Kostenlos – frei zugängliches Naturgelände", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-03", verified: true }
 fee: { free: true }
 answer: "بحيرة الأصفر شمال شرق واحة الأحساء من أكبر البحيرات الطبيعية في الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي. مسطّح مائي نادر وسط الصحراء صار موئلاً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
 answer_en: "Al-Asfar Lake, northeast of the oasis, is among the largest natural lakes in the Arabian Gulf and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: an expanse of water in the desert sheltering migratory birds. Finest at sunset; no fee."
@@ -50,6 +57,8 @@ faq:
     a_en: "No. Al-Asfar Lake is an open natural site with no fee."
     q_zh: "去阿斯法湖要门票吗？"
     a_zh: "不需要。阿斯法湖是开放的公共自然景点，免收门票。"
+    q_de: "Muss ich für den Al-Asfar-See Eintritt zahlen?"
+    a_de: "Nein. Der Al-Asfar-See ist ein frei zugängliches Naturgelände; der Eintritt ist kostenlos."
     q_ru: "Нужно ли платить за посещение озера Эль-Асфар?"
     a_ru: "Нет. Озеро Эль-Асфар — открытая природная территория, вход свободный."
   - q: "أين تقع بحيرة الأصفر؟"
@@ -58,6 +67,8 @@ faq:
     a_en: "Northeast of the oasis."
     q_zh: "阿斯法湖在哪里？"
     a_zh: "在绿洲东北部。"
+    q_de: "Wo liegt der Al-Asfar-See?"
+    a_de: "Nordöstlich der Oase."
     q_ru: "Где находится озеро Эль-Асфар?"
     a_ru: "К северо-востоку от оазиса."
   - q: "هل بحيرة الأصفر ضمن موقع اليونسكو؟"
@@ -66,6 +77,8 @@ faq:
     a_en: "Yes. It is one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List."
     q_zh: "阿斯法湖属于联合国教科文组织世界遗产吗？"
     a_zh: "是的。哈萨绿洲以十二处组成部分列入联合国教科文组织世界遗产名录，阿斯法湖就是其中之一。"
+    q_de: "Gehört der Al-Asfar-See zur UNESCO-Welterbestätte?"
+    a_de: "Ja. Er ist einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die in die Welterbeliste der UNESCO aufgenommen wurde."
     q_ru: "Входит ли озеро Эль-Асфар в объект Всемирного наследия ЮНЕСКО?"
     a_ru: "Да. Это один из двенадцати компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО."
   - q: "ما أفضل وقت لزيارة بحيرة الأصفر؟"
@@ -74,6 +87,8 @@ faq:
     a_en: "At sunset, when the water glows and the flocks of birds return."
     q_zh: "什么时候去阿斯法湖最好？"
     a_zh: "日落时分，水面熠熠生辉，鸟群陆续归来。"
+    q_de: "Wann besuche ich den Al-Asfar-See am besten?"
+    a_de: "Bei Sonnenuntergang, wenn das Wasser leuchtet und die Vogelschwärme zurückkehren."
     q_ru: "Когда лучше посетить озеро Эль-Асфар?"
     a_ru: "На закате, когда светится вода и возвращаются птичьи стаи."
 ---
