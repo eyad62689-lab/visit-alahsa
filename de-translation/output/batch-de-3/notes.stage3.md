@@ -1,6 +1,6 @@
 # المرحلة 3 — ملاحظات المحلِّي · دفعة المعالم الألمانية 3
 
-نُسخ `fields.stage2.json` إلى `fields.stage3.json` وحُرّر حقلاً حقلاً. **المتغيّر 2 من 37 · و35 باقيةٌ بايتاً ببايت** (فرقٌ آليّ) · **ومضافٌ حقلان** ⇐ المفاتيح **8** والحقول **39**.
+نُسخ `fields.stage2.json` إلى `fields.stage3.json` وحُرّر حقلاً حقلاً بـEdit. **المتغيّر 2 من 37 · و35 بايتاً ببايت** **ومضافٌ حقلان** ⇐ المفاتيح **8** · الحقول **39**.
 
 ## أ. ما تغيّر
 
@@ -27,7 +27,7 @@
 
 **3. `Volkskultur` — تثبيتٌ مسنَد، والبديل مرفوض.** `Volkskunde` **اسمُ العلم** لا اسمُ الموروث (سندُ ويبٍ جديد 2026-09-11: «Volkskultur موضوعُ البحث وVolkskunde الحقلُ الذي يبحثه» — Historisches Lexikon Bayerns · wissen.de)، فـ`Stücke der örtlichen Volkskunde` خطأٌ صريح، وثلاثةٌ من مواضع الدفعة الخمسة مادّية (`Zeugnisse` · `Stücke` · `Sammlung`). وعرفُ تسمية المتاحف لا يفرضه: `Museum für Volkskultur` اسمُ متحفٍ قائم. ورُفض `Alltagskultur`: يَرُدّ «شعبي» إلى «يوميّ». **فلا تغيير في الحقول**، والمدخل المصدَّق (`die`) في `termbase-additions.stage3.json`.
 
-**4. المسح الآليّ بعد آخر تحريرٍ لي أنا** (بحدود الكلمات): `json.tool` ✅ · المفاتيح **8** · الحقول **39**. صفرٌ لكلٍّ: `du/dich/dir/dein` · `volkstümlich` · `denkmalgeschützt` · `Baudenkmal` · `Souq` · Denglisch (ومعها `Highlight` و`Workshop`) · `Erleben/Entdecken Sie` · U+2014 · U+00A0/U+2009 · أرقام عربية-هندية · `"` مستقيمة · تعجّب · روابط. (`'` في `Al-Shu'bah` كما في الإنجليزية — `naming_policy`.) **وعدم الانطباق على الصفحات الثماني كاملةً**: لا صفحة تَرُدّ لفظين مختلفين إلى لفظٍ ألمانيّ واحد؛ و`hamidiyah` بعد إضافتيَّ: `historisch` 2 (historic downtown) · `traditionell` 2 (folk market) · عائلة `Kulturerbe` 5 (heritage).
+**4. المسح الآليّ بعد آخر تحريرٍ لي أنا** (بحدود الكلمات): `json.tool` ✅ · المفاتيح **8** · الحقول **39**. صفرٌ لكلٍّ: `du/dich/dir/dein` · `volkstümlich` · `denkmalgeschützt` · `Baudenkmal` · `Souq` · Denglisch (ومعها `Highlight` و`Workshop`) · `Erleben/Entdecken Sie` · U+2014 · U+00A0/U+2009 · أرقام عربية-هندية · `"` مستقيمة · تعجّب · روابط. (`'` في `Al-Shu'bah` كما في الإنجليزية — `naming_policy`.) **وعدم الانطباق على الثماني كاملةً**: لا صفحة تَرُدّ لفظين مختلفين إلى لفظٍ ألمانيّ واحد؛ و`hamidiyah` بعد إضافتيَّ: `historisch` 2 (historic downtown) · `traditionell` 2 (folk market) · `Kulturerbe` وأسرتُها 5 (heritage).
 
 ## د. مرفوعٌ للمراحل التالية
 1. **للقارئ الأعمى:** `Werkstätten` أحدثٌ أم غرفة؟ (`veranstaltet` تحسمها نحواً؛ البديل `Workshops`) · `Diwaniyya` بلا گلوسٍ ثانٍ · `eine Sehenswürdigkeit dieses Erbes` · و**`Kulturerbe-Souks`** الجديدة.
