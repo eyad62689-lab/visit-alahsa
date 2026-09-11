@@ -43,11 +43,64 @@ const yq = (v) => '"' + String(v).replace(/\\/g, '\\\\').replace(/"/g, '\\"').re
 // ── 1) حقول المعالم ─────────────────────────────────────────────────────
 const fields = JSON.parse(read(path.join(B, 'fields.final.json')));
 const ORDER = ['title', 'kicker', 'summary', 'body', 'area', 'bestTime'];
-const HEADER = `# الحقول الألمانية: معتمدة من خط de-translation-pipeline — ${batch} بدرجة ${judge.batch_score}/100 (${judge.date}، الدورة ${judge.loop ?? 1} من ${judge.max_correction_loops ?? 3})`;
+const LANG_AR = { de: 'الألمانية', zh: 'الصينية', ru: 'الروسية' }[lang] ?? lang;
+const HEADER = `# الحقول ${LANG_AR}: معتمدة من خط ${lang}-translation-pipeline — ${batch} بدرجة ${judge.batch_score}/100 (${judge.date}، الدورة ${judge.loop ?? 1} من ${judge.max_correction_loops ?? 3})`;
+
+// صفحاتُ **المراجعة**: منشورةٌ سلفاً بهذه اللغة، ويُستبدَل فيها حقلٌ مسمّى في
+// موضعه. ملفٌ اختياريّ `revise.json` صيغته {"<صفحة>": ["summary_de", …]}، وهو
+// **قائمةُ إذنٍ حصرية**: أي حقلٍ في `fields.final.json` خارجها يُرفض، فلا توسّع
+// مرحلةٌ مراجعةً بصمت. وحارسُ «لا كتابة فوق منشور» يبقى على ما عداها.
+const revP = path.join(B, 'revise.json');
+const revise = existsSync(revP) ? JSON.parse(read(revP)) : {};
+
+// استبدالُ قيمةِ مفتاحٍ مقتبَسٍ في العمود صفر — مسحٌ نصّي لا تعبيرٌ نمطيّ مبنيّ
+// من مدخل (سابقة `numInText`/`uiValue`، وإصلاح Semgrep على الطلب #43).
+const replaceQuoted = (text, key, value) => {
+  const needle = `\n${key}: "`;
+  const at = text.indexOf(needle);
+  if (at < 0) throw new Error(`لا سطر ${key} في العمود صفر`);
+  if (text.indexOf(needle, at + 1) >= 0) throw new Error(`${key} غير فريد — لا تحرير بالظنّ`);
+  const open = at + needle.length;                       // أول حرفٍ داخل الاقتباس
+  let j = open;
+  while (j < text.length && text[j] !== '"') j += text[j] === '\\' ? 2 : 1;
+  if (j >= text.length) throw new Error(`${key}: اقتباسٌ غير مغلق`);
+  const old = text.slice(open, j);
+  const nw = yq(value).slice(1, -1);                     // المهروب بلا قوسيه
+  return { text: text.slice(0, open) + nw + text.slice(j), changed: old !== nw };
+};
 
 for (const [name, page] of Object.entries(fields)) {
   const fp = path.join(ROOT, 'src/content/attractions', `${name}.md`);
   let t = read(fp);
+
+  const allow = revise[name];
+  if (allow) {
+    if (!t.includes(`title${sfx}:`)) throw new Error(`${name}: مراجعةٌ لصفحةٍ غير منشورة بـ${lang}`);
+    if (page.practical || page.faq) throw new Error(`${name}: المراجعة لا تمسّ practical/faq`);
+    const given = Object.keys(page).filter((k) => k.endsWith(sfx));
+    const extra = given.filter((k) => !allow.includes(k));
+    if (extra.length) throw new Error(`${name}: حقولٌ خارج إذن المراجعة — ${extra.join(' · ')}`);
+    const missing = allow.filter((k) => !given.includes(k));
+    if (missing.length) throw new Error(`${name}: إذنُ مراجعةٍ بلا قيمة — ${missing.join(' · ')}`);
+    let n = 0;
+    for (const k of allow) {
+      const r = replaceQuoted(t, k, page[k]);
+      t = r.text;
+      if (r.changed) n++;
+      log(`${name}: ${k} ${r.changed ? 'استُبدل' : '**بلا تغيير**'}`);
+    }
+    // الإسنادُ لا يُطمَس: سطرُ مراجعةٍ بعد ترويسة اعتماد اللغة نفسها.
+    const hdr = `\n# الحقول ${LANG_AR}: `;
+    const h = t.indexOf(hdr);
+    if (h < 0) throw new Error(`${name}: لا ترويسةَ اعتمادٍ ${LANG_AR} لتقييد المراجعة`);
+    const eol = t.indexOf('\n', h + 1);
+    const note = `\n# ومراجعةُ ${allow.join(' · ')}: ${batch} بدرجة ${judge.batch_score}/100 (${judge.date}، الدورة ${judge.loop ?? 1} من ${judge.max_correction_loops ?? 3})`;
+    t = t.slice(0, eol) + note + t.slice(eol);
+    log(`${name}: مراجعةٌ — ${n} من ${allow.length} حقلاً تغيّر فعلاً`);
+    write(fp, t);
+    continue;
+  }
+
   if (t.includes(`title${sfx}:`)) throw new Error(`${name}: فيه title${sfx} سلفاً — لا كتابة فوق منشور`);
 
   const lines = [HEADER];
