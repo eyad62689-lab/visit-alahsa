@@ -62,10 +62,20 @@ for (const [name, page] of Object.entries(fields)) {
       const it = prac[i];
       if (/label_de:/.test(line)) throw new Error(`${name}: البند ${i} فيه label_de سلفاً`);
       let out = line;
+      // مسحٌ نصّي لا تعبيرٌ نمطيّ مبنيّ من مدخل — سابقة `numInText` و`uiValue` في
+      // `tools/check-consistency.mjs` و`tools/gen-og-images.mjs` (إصلاح Semgrep
+      // `detect-non-literal-regexp` على طلب الدمج #38). ندخل عند `key: "` ونمشي إلى
+      // خاتمة القيمة المقتبسة (بعد `\` نقفز حرفين) ثم نتخطّى `, `.
       const after = (key, add) => {
-        const m = new RegExp(`(${key}: (?:[^"]|"(?:[^"\\\\]|\\\\.)*")*?"(?:[^"\\\\]|\\\\.)*", )`).exec(out);
-        if (!m) return false;
-        out = out.slice(0, m.index + m[1].length) + add + out.slice(m.index + m[1].length);
+        const at = out.indexOf(`${key}: "`);
+        if (at < 0) return false;
+        let j = at + key.length + 3;                       // أول حرفٍ داخل الاقتباس
+        while (j < out.length && out[j] !== '"') j += out[j] === '\\' ? 2 : 1;
+        if (j >= out.length) return false;                 // اقتباسٌ غير مغلق
+        j += 1;                                            // بعد اقتباس الخاتمة
+        if (out.slice(j, j + 2) !== ', ') return false;    // القيمة ليست آخر ما في البند
+        j += 2;
+        out = out.slice(0, j) + add + out.slice(j);
         return true;
       };
       // نُدرج بعد آخر زوج صيني إن وُجد، وإلا بعد الإنجليزي
