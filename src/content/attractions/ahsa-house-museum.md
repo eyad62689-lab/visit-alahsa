@@ -7,6 +7,12 @@ kicker_zh: 私人博物馆
 summary_zh: "人称“纳阿西勒”博物馆，由苏莱曼·马吉德创办，按哈萨老宅的样式布置，会客厅、厨房与新娘房一应俱全。"
 body_zh: "哈萨民居博物馆位于胡富夫，人称“纳阿西勒”博物馆（Naathel Museum），逐间再现哈萨传统老宅。博物馆由苏莱曼·本·穆罕默德·马吉德创办，设在他自家住宅的外院，占地约 180 平方米。各个房间按传统生活的格局布置：男宾会客厅里摆着哈萨咖啡壶，以及烘焙、研磨咖啡的器具；女宾会客厅保留着旧日陈设；厨房里有石磨和铜盘；新娘房里陈列着嫁衣与首饰；儿童房里则是老式玩具。此外还有手稿、钱币、老照片和农具。博物馆还举办传统文化聚会与工作坊，让这座老宅不只是静态的陈列，而是依然“活”着。"
 area_zh: 胡富夫——哈萨
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-3 بدرجة 91/100 (2026-09-11، الدورة 1 من 3)
+title_de: "Al-Ahsa-Hausmuseum"
+kicker_de: "Privatmuseum"
+summary_de: "Das „Naathel“-Museum – ein altes Wohnhaus Al-Ahsas mit Empfangsräumen, Küche und Brautzimmer, von Sulaiman Al-Majed gegründet."
+body_de: "In Hofuf bildet das Al-Ahsa-Hausmuseum, bekannt als „Naathel“-Museum, Raum für Raum das alte Wohnhaus Al-Ahsas nach. Sulaiman bin Mohammed Al-Majed gründete es im äußeren Hof seines eigenen Hauses, auf einer Fläche von rund 180 Quadratmetern. Die Räume folgen der Ordnung des traditionellen Lebens: ein Madschlis (Empfangsraum) für Männer mit Kaffeekannen aus Al-Ahsa und Geräten zum Rösten und Mahlen des Kaffees, ein Madschlis für Frauen mit seiner alten Einrichtung, eine Küche mit steinernen Handmühlen und kupfernem Geschirr, ein Brautzimmer mit Kleidung und Schmuck sowie ein Kinderzimmer mit Spielzeug von einst. Dazu kommen Handschriften, Münzen, alte Fotografien und landwirtschaftliches Gerät. Außerdem veranstaltet das Museum Treffen und Werkstätten zum Kulturerbe und hält das alte Haus so lebendig, statt es nur auszustellen."
+area_de: "Hofuf – Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 9 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Музей традиционного дома Аль-Ахсы"
 kicker_ru: "Частный музей"
