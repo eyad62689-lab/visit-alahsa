@@ -65,17 +65,37 @@ def strip_links(s):
     return re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', s or '')
 
 
+def kicker_is_rendered(page):
+    """أتُعرض اللصيقة على زائر هذه الصفحة فعلاً؟
+
+    قياسٌ لا تقدير: `kicker` يرد في `src/` في موضعٍ واحد — شبكة `featuredEntries`
+    في `HomeView.astro` — فلا تُعرض إلا لمعلمٍ `featured: true`، و`DetailView`
+    لا يعرضها أصلاً. وأربعةٌ من 58 معلماً مميَّزة.
+
+    وعلّة هذا الفحص واقعةٌ مقيسة (POL-DE-17، دفعة المعالم الألمانية 2): القارئ
+    الأعمى تعثّر في لصيقةِ صفحةٍ غير مميَّزة، فصدر أمرُ تصحيحٍ كاملٌ على نصٍّ لا
+    يراه زائر. فما لا يُعرَض لا يُعطى للقارئ.
+    """
+    p = os.path.join(ROOT, 'src/content/attractions', f'{page}.md')
+    if not os.path.exists(p):
+        return True                                  # ليس معلماً — لا نحجب بالظنّ
+    return bool(re.search(r'^featured:\s*true\s*$', open(p, encoding='utf-8').read(), re.M))
+
+
 def main():
     src, lang, dst = sys.argv[1], sys.argv[2], sys.argv[3]
     data = json.load(open(src, encoding='utf-8'))
     S = lambda k: label(lang, k)
     sfx = f'_{lang}'
-    parts = []
-    for page in data.values():                      # المفاتيح أسماء ملفات — لا تُكتب
+    parts, hidden = [], []
+    for name, page in data.items():                 # الاسم للفحص وحده — لا يُكتب في المخرج
         g = lambda k: (page.get(k + sfx) or '').strip()
         parts.append(f"# {g('title')}\n")
         if g('kicker'):
-            parts.append(f"*{g('kicker')}*\n")
+            if kicker_is_rendered(name):
+                parts.append(f"*{g('kicker')}*\n")
+            else:
+                hidden.append(name)
         if g('summary'):
             parts.append(f"{strip_links(g('summary'))}\n")
         if g('area'):
@@ -112,7 +132,8 @@ def main():
         leaks.append('اسم حقل')
     if re.search(r'\((?:/|https?://)', out):
         leaks.append('هدف رابط')
-    print(dst, len(out), 'chars', ('| تسريب: ' + ' · '.join(leaks)) if leaks else '| بلا تسريب')
+    note = f" | لصيقة محجوبة (غير مميَّزة فلا تُعرض): {len(hidden)}" if hidden else ''
+    print(dst, len(out), 'chars', ('| تسريب: ' + ' · '.join(leaks)) if leaks else '| بلا تسريب', note)
     sys.exit(1 if leaks else 0)
 
 
