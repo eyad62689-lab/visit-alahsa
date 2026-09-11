@@ -81,14 +81,30 @@ const faqBounds = (text, i) => {
   return [starts[i], i + 1 < starts.length ? starts[i + 1] : end];
 };
 
-// مفتاحُ مراجعةٍ داخل بند سؤال: `faq[2].q_de`. القيمةُ على سطرها بمسافتين
-// أربع، فالنطاقُ حدودُ البند وحدها كي لا يُصيب مفتاحاً في بندٍ آخر.
+// حدودُ بند بطاقةٍ رقمه `i` — البنودُ سطرٌ واحدٌ لكلٍّ، فالنطاقُ سطرُه وحده.
+const pracBounds = (text, i) => {
+  const rows = [...text.matchAll(/^ {2}- \{ label: .*$/gm)];
+  if (i >= rows.length) throw new Error(`practical[${i}]: الصفحة فيها ${rows.length} بنداً فقط`);
+  return [rows[i].index, rows[i].index + rows[i][0].length];
+};
+
+// مفاتيحُ مراجعةٍ داخل بند: `faq[2].q_de` (سطرٌ بمسافاتٍ أربع) و
+// `practical[0].value_de` (داخل سطر البند). والنطاقُ حدودُ البند وحدها كي لا
+// يُصيب المفتاحُ بنداً آخر يحمل الاسم نفسه.
 const FAQ_KEY = /^faq\[(\d+)\]\.([A-Za-z_][\w]*)$/;
+const PRAC_KEY = /^practical\[(\d+)\]\.([A-Za-z_][\w]*)$/;
 const reviseKey = (text, key, value) => {
-  const m = FAQ_KEY.exec(key);
-  if (!m) return replaceQuotedAt(text, `\n${key}: "`, key, value);
-  const [lo, hi] = faqBounds(text, Number(m[1]));
-  return replaceQuotedAt(text, `\n    ${m[2]}: "`, key, value, lo, hi);
+  const f = FAQ_KEY.exec(key);
+  if (f) {
+    const [lo, hi] = faqBounds(text, Number(f[1]));
+    return replaceQuotedAt(text, `\n    ${f[2]}: "`, key, value, lo, hi);
+  }
+  const p = PRAC_KEY.exec(key);
+  if (p) {
+    const [lo, hi] = pracBounds(text, Number(p[1]));
+    return replaceQuotedAt(text, ` ${p[2]}: "`, key, value, lo, hi);
+  }
+  return replaceQuotedAt(text, `\n${key}: "`, key, value);
 };
 
 for (const [name, page] of Object.entries(fields)) {
