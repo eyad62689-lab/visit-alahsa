@@ -53,20 +53,42 @@ const HEADER = `# الحقول ${LANG_AR}: معتمدة من خط ${lang}-transl
 const revP = path.join(B, 'revise.json');
 const revise = existsSync(revP) ? JSON.parse(read(revP)) : {};
 
-// استبدالُ قيمةِ مفتاحٍ مقتبَسٍ في العمود صفر — مسحٌ نصّي لا تعبيرٌ نمطيّ مبنيّ
-// من مدخل (سابقة `numInText`/`uiValue`، وإصلاح Semgrep على الطلب #43).
-const replaceQuoted = (text, key, value) => {
-  const needle = `\n${key}: "`;
-  const at = text.indexOf(needle);
-  if (at < 0) throw new Error(`لا سطر ${key} في العمود صفر`);
-  if (text.indexOf(needle, at + 1) >= 0) throw new Error(`${key} غير فريد — لا تحرير بالظنّ`);
+// استبدالُ قيمةِ مفتاحٍ مقتبَسٍ داخل نطاقٍ من النصّ — مسحٌ نصّي لا تعبيرٌ نمطيّ
+// مبنيّ من مدخل (سابقة `numInText`/`uiValue`، وإصلاح Semgrep على الطلب #43).
+const replaceQuotedAt = (text, needle, label, value, from = 0, to = text.length) => {
+  const at = text.indexOf(needle, from);
+  if (at < 0 || at >= to) throw new Error(`لا سطر ${label} في نطاقه`);
+  const again = text.indexOf(needle, at + 1);
+  if (again >= 0 && again < to) throw new Error(`${label} غير فريد في نطاقه — لا تحرير بالظنّ`);
   const open = at + needle.length;                       // أول حرفٍ داخل الاقتباس
   let j = open;
   while (j < text.length && text[j] !== '"') j += text[j] === '\\' ? 2 : 1;
-  if (j >= text.length) throw new Error(`${key}: اقتباسٌ غير مغلق`);
+  if (j >= text.length) throw new Error(`${label}: اقتباسٌ غير مغلق`);
   const old = text.slice(open, j);
   const nw = yq(value).slice(1, -1);                     // المهروب بلا قوسيه
   return { text: text.slice(0, open) + nw + text.slice(j), changed: old !== nw };
+};
+
+// حدودُ بند سؤالٍ رقمه `i` — البداياتُ `  - q: ` وخاتمةُ الأخير أولُ مفتاحٍ في
+// العمود صفر بعده. (‏`\Z` ليست رمزاً في تعابير JS فلا تُستعمل حدّاً — علّةٌ
+// أمسكتها تجربةُ الدفعة 2 الجافّة.)
+const faqBounds = (text, i) => {
+  const starts = [...text.matchAll(/^ {2}- q: /gm)].map((m) => m.index);
+  if (i >= starts.length) throw new Error(`faq[${i}]: الصفحة فيها ${starts.length} سؤالاً فقط`);
+  const tailKey = /^[A-Za-z_][\w]*:/gm;
+  tailKey.lastIndex = starts[starts.length - 1];
+  const end = tailKey.exec(text)?.index ?? text.length;
+  return [starts[i], i + 1 < starts.length ? starts[i + 1] : end];
+};
+
+// مفتاحُ مراجعةٍ داخل بند سؤال: `faq[2].q_de`. القيمةُ على سطرها بمسافتين
+// أربع، فالنطاقُ حدودُ البند وحدها كي لا يُصيب مفتاحاً في بندٍ آخر.
+const FAQ_KEY = /^faq\[(\d+)\]\.([A-Za-z_][\w]*)$/;
+const reviseKey = (text, key, value) => {
+  const m = FAQ_KEY.exec(key);
+  if (!m) return replaceQuotedAt(text, `\n${key}: "`, key, value);
+  const [lo, hi] = faqBounds(text, Number(m[1]));
+  return replaceQuotedAt(text, `\n    ${m[2]}: "`, key, value, lo, hi);
 };
 
 for (const [name, page] of Object.entries(fields)) {
@@ -84,7 +106,7 @@ for (const [name, page] of Object.entries(fields)) {
     if (missing.length) throw new Error(`${name}: إذنُ مراجعةٍ بلا قيمة — ${missing.join(' · ')}`);
     let n = 0;
     for (const k of allow) {
-      const r = replaceQuoted(t, k, page[k]);
+      const r = reviseKey(t, k, page[k]);
       t = r.text;
       if (r.changed) n++;
       log(`${name}: ${k} ${r.changed ? 'استُبدل' : '**بلا تغيير**'}`);
