@@ -279,8 +279,23 @@ for (const [name, page] of Object.entries(fields)) {
       if (!row.added) row.added = judge.date;
       tb.terms.push(row); have.set(e.en, row); n++;
     }
+
+    // سحبُ مدخلٍ معتمدٍ صار يأمر بما يخالف حسماً لاحقاً. الصيغة: `remove` قائمةُ
+    // نصوصِ `en` حرفيةً. **وعلّتُه واقعةٌ مقيسة** (دفعة 3): مدخلُ
+    // `heritage <building> ⇒ das historische <Gebäude>` كان يأمر الدفعاتِ
+    // القادمة بردّ «heritage» إلى `historisch`، وهي تحمل دعوى عمرٍ مسنَد
+    // («durch Quellen beglaubigt») لا يقولها المصدر — فبقاؤه يعيد إنتاج خرقِ
+    // سياج الوقائع الذي حُسم. والحذفُ لا يمرّ إلا باسمٍ مطابقٍ حرفياً: اسمٌ لا
+    // يُطابق **يُفشل النشر** ولا يُتجاهَل، كي لا يُظنّ مدخلٌ مسحوباً وهو باقٍ.
+    let gone = 0;
+    for (const en of add.remove ?? []) {
+      const at = tb.terms.findIndex((x) => x.en === en);
+      if (at < 0) throw new Error(`معجم: لا مدخل بهذا الاسم ليُسحب — ${en}`);
+      tb.terms.splice(at, 1); have.delete(en); gone++;
+      log(`معجم: سُحب ${en}`);
+    }
     write(p, JSON.stringify(tb, null, 2) + '\n');
-    log(`المعجم: +${n} · ${merged} مدموجاً · المجموع ${tb.terms.length}`);
+    log(`المعجم: +${n} · ${merged} مدموجاً · ${gone} مسحوباً · المجموع ${tb.terms.length}`);
   }
 }
 
