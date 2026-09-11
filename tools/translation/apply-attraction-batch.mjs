@@ -208,6 +208,9 @@ for (const [name, page] of Object.entries(fields)) {
     const add = JSON.parse(read(ap));
     const entries = add.terms ?? add.additions ?? add;
     const have = new Map(tb.terms.map((x) => [x.en, x]));
+    // مفاتيحُ مدخلٍ قائمٍ يجوز تحديثها من دفعةٍ لاحقة. مقيسةٌ على المعجم نفسه:
+    // مفاتيحه en · <lang> · artikel · source · note · added · stage · origin.
+    const MERGEABLE = [lang, 'artikel', 'source', 'note', 'stage', 'origin'];
     let n = 0, merged = 0;
     for (const e of entries) {
       if (!e?.en || !e?.[lang]) continue;
@@ -215,7 +218,23 @@ for (const [name, page] of Object.entries(fields)) {
       if (!e.source) throw new Error(`معجم: مدخل بلا مصدر — ${e.en}`);
       const cur = have.get(e.en);
       if (cur) {
-        if (cur[lang] !== e[lang]) { Object.assign(cur, e); merged++; log(`معجم: دُمج ${e.en}`); }
+        if (cur[lang] !== e[lang]) {
+          // دمجٌ بقائمةِ إذن، لا `Object.assign` (‏Semgrep على الطلب #43:
+          // `insecure-object-assign`). والعلّةُ هنا عمليّة قبل أن تكون أمنيّة:
+          // النسخُ الأعمى يطمس `added` — تاريخَ أول اعتمادٍ للمدخل — وينقل أي
+          // مفتاحٍ كتبته مرحلةٌ سهواً إلى معجمٍ معتمد. و`en` مفتاحُ المطابقة
+          // فلا يُبدَّل، و`added` تاريخٌ لا يُعاد كتابته.
+          const changed = [];
+          for (const k of MERGEABLE) {
+            if (!Object.hasOwn(e, k) || e[k] === cur[k]) continue;
+            cur[k] = e[k];                                // `k` من قائمةٍ حرفية
+            changed.push(k);
+          }
+          const skipped = Object.keys(e).filter((k) => !MERGEABLE.includes(k) && k !== 'en');
+          merged++;
+          log(`معجم: دُمج ${e.en} — ${changed.join(' · ') || 'لا مفتاح تغيّر'}`
+            + (skipped.length ? ` (أُهمل: ${skipped.join(' · ')})` : ''));
+        }
         continue;
       }
       const row = { ...e };
@@ -243,12 +262,12 @@ for (const [name, page] of Object.entries(fields)) {
       ));
       removed += before - tm.pairs.length;
     }
-    const have = new Set(tm.pairs.map((q) => `${q.en} ${q[lang]}`));
+    const have = new Set(tm.pairs.map((q) => `${q.en}\0${q[lang]}`));
     let n = 0;
     for (const a of spec.pairs ?? []) {
-      if (!a.en || !a[lang] || have.has(`${a.en} ${a[lang]}`)) continue;
+      if (!a.en || !a[lang] || have.has(`${a.en}\0${a[lang]}`)) continue;
       tm.pairs.push({ en: a.en, [lang]: a[lang], page: a.page ?? 'attractions', field: a.field ?? 'body', date: a.date ?? judge.date });
-      have.add(`${a.en} ${a[lang]}`); n++;
+      have.add(`${a.en}\0${a[lang]}`); n++;
     }
     write(p, JSON.stringify(tm, null, 2) + '\n');
     log(`الذاكرة: -${removed} +${n} · المجموع ${tm.pairs.length}`);
