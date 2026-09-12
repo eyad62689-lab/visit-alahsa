@@ -7,6 +7,12 @@ kicker_zh: 宗教场所
 summary_zh: "易卜拉欣宫内的圆顶清真寺是宫中最醒目的建筑之一。"
 body_zh: "圆顶清真寺（Qubbah，意为“穹顶”）坐落在胡富夫库特区的易卜拉欣宫围墙之内，是宫中最醒目的建筑，也是哈萨传统风貌中最具代表性的一景。寺的营建历时约 5 年，于伊斯兰历 979 年（公元 1571 年）落成，是一组建筑群的一部分；同一建筑群里还有一所讲授伊斯兰宗教学问的学校和一处传授《古兰经》的场所。寺顶正中是一座直径约 13 米的半球形穹顶，四角各有一座小穹顶相伴；一旁是一座独立的圆柱形宣礼塔，高 19 米，塔内是石砌的螺旋楼梯。入口上方的石膏铭牌以苏鲁斯体书法记载着建寺年代，为绿洲历史上的那个时代留下了见证。"
 area_zh: 易卜拉欣宫内，库特区——胡富夫
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Al-Qubba-Moschee"
+kicker_de: "Religiöse Stätte"
+summary_de: "Die Kuppelmoschee in Qasr Ibrahim – eines seiner markantesten baulichen Elemente."
+body_de: "In den Mauern von Qasr Ibrahim (dem Ibrahim-Palast) im Al-Koot-Viertel von Hofuf steht die Al-Qubba-Moschee, die Kuppelmoschee: das markanteste bauliche Element des Palastes und eines der Bilder, die das kulturelle Erbe Al-Ahsas prägen. Gegründet wurde sie im Jahr 979 nach der Hidschra (1571 n. Chr.), als Teil eines Komplexes mit einer Schule für die islamischen Wissenschaften und einem Ort für den Koranunterricht; rund fünf Jahre hatte der Bau gedauert. Gekrönt ist sie von einer halbkugeligen Mittelkuppel mit etwa 13 Metern Durchmesser, flankiert von kleinen Eckkuppeln. Neben der Moschee steht ein freistehendes zylindrisches Minarett, 19 Meter hoch, mit einer steinernen Wendeltreppe. Über dem Eingang trägt eine Gipstafel das Gründungsdatum in Thuluth-Schrift – ein Zeugnis einer ganzen Epoche in der Geschichte der Oase."
+area_de: "In Qasr Ibrahim, Al-Koot-Viertel – Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 3 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Мечеть Эль-Кубба"
 kicker_ru: "Религиозное место"
@@ -25,6 +31,9 @@ area: داخل قصر إبراهيم، حي الكوت — الهفوف
 area_en: "Inside Qasr Ibrahim, Al-Koot district — Hofuf"
 featured: false
 order: 24
+practical:
+  # زيارة غير المسلمين: قرار المالك 2026-09-12 — الصيغة الخماسية اللغات منقولة حرفياً من jawatha-mosque.md (مدخل المعجم الألماني 62).
+  - { label: "زيارة غير المسلمين", value: "متاحة، مع المحافظة على اللباس المحتشم", label_en: "Visitors of other faiths", value_en: "Welcome, with modest dress", label_ru: "Вход для немусульман", value_ru: "Открыт при условии скромной одежды", label_zh: "非穆斯林游客", value_zh: "欢迎参观，请注意衣着端庄", label_de: "Nichtmuslimische Besucher", value_de: "Willkommen – bedeckende Kleidung vorausgesetzt", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
 district: alkoot
 location: { lat: 25.378485, lng: 49.586481 }
 mapUrl: "https://maps.app.goo.gl/utuJ951niRq3T3fbA"

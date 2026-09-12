@@ -7,6 +7,12 @@ kicker_zh: 公园
 summary_zh: "位于穆巴拉兹的费萨尔区，是“我们一起玩”倡议下的一座家庭公园，游乐设施让残障儿童与同龄伙伴一起玩耍、彼此融合。"
 body_zh: "穆萨公园（Al-Moosa Park）位于穆巴拉兹的费萨尔区，2019 年 11 月下旬开放，是“我们一起玩”（Nalaab Ma'an）倡议建成的第二座公园，第一座此前已落户胡拜尔。该倡议由穆海迪卜社区服务机构与穆萨专科医院携手推动，是两家机构在社区层面的合作。公园的构想在当时的沙特阿拉伯还很少见：游乐设施经过专门设计，让残障儿童与同龄伙伴并肩玩耍，孩子们由此在游戏中亲身体会融合的价值，而不是靠说教去懂得它。公园占地 2200 多平方米，设有 12 套以上专门的融合游乐设施。"
 area_zh: 费萨尔区——穆巴拉兹
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-5 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Moosa-Park"
+kicker_de: "Park"
+summary_de: "Ein Park für Familien im Al-Faisal-Viertel von Al-Mubarraz, Teil der Initiative „Wir spielen gemeinsam“: Seine Spielgeräte bringen Kinder mit Behinderung und ihre Altersgenossen zusammen."
+body_de: "Im Al-Faisal-Viertel von Al-Mubarraz liegt der Al-Moosa-Park. Er wurde Ende November 2019 als zweiter Park der Initiative „Wir spielen gemeinsam“ (Nalaab Ma'an) eröffnet – einer gesellschaftlichen Partnerschaft zwischen Al-Muhaidib für den Dienst an der Gemeinschaft und dem Almoosa Specialist Hospital. Der Park ging aus einem einfachen Gedanken hervor, der im Königreich damals selten war: Spielgeräte, eigens so entworfen, dass Kinder mit Behinderung und ihre Altersgenossen Seite an Seite spielen. So leben die Kinder die Werte der Inklusion, statt sie nur vermittelt zu bekommen. Auf mehr als 2.200 Quadratmetern vereint der Park mehr als zwölf spezielle Spielgeräte für Inklusion. Vorausgegangen war ihm der erste Park der Initiative in Khobar."
+area_de: "Al-Faisal-Viertel – Al-Mubarraz"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 8 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Парк Эль-Муса"
 kicker_ru: "Парк"

@@ -6,6 +6,11 @@ title_zh: 体育场公园
 kicker_zh: 公园
 summary_zh: "胡富夫的一座公共公园，位于体育场旁。"
 body_zh: "体育场公园（Sports Stadium Park）是胡富夫的一座公共公园，紧邻体育场。"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-5 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Sportstadion-Park"
+kicker_de: "Park"
+summary_de: "Ein öffentlicher Park neben dem Sportstadion in Hofuf."
+body_de: "Ein öffentlicher Park neben dem Sportstadion in Hofuf."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 8 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Парк спортивного стадиона"
 kicker_ru: "Парк"
