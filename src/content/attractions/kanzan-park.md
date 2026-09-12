@@ -7,6 +7,12 @@ kicker_zh: 公园
 summary_zh: "哈萨市政局正在舒阿巴山（史称坎赞山）上建设一座山地公园，项目包含山地滑道、悬索桥与瀑布。"
 body_zh: "舒阿巴山（Al-Shu'bah）史称坎赞山（Kanzan），位于绿洲东北部。哈萨市政局正在这座山上分期建设一座大型山地休闲公园，即坎赞山公园，其官方名称为“舒阿巴山公园”。公园上部区域的设施已于 2022 年底部分投入运营，包括山地滑道场地、总长约 1100 米的一组人工瀑布、三座木制悬索桥、一条滑索、儿童游乐区和步行道。项目已公布的规划还包括一条长 1500 米、设三个站点的缆车线路，以及两个湖泊。其余各期工程仍在推进中，全面运营时间待确认（信息更新中）。"
 area_zh: 舒阿巴山——绿洲东北部
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-7 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Kanzan-Bergpark (Al-Shu'bah)"
+kicker_de: "Park"
+summary_de: "Der Bergpark, den die Kommunalverwaltung von Al-Ahsa auf dem Massiv Al-Shu'bah/Kanzan baut – mit Rutschbahnen am Hang, Hängebrücken und Wasserfällen."
+body_de: "Nordöstlich der Oase, auf dem Massiv des Al-Shu'bah-Bergs (historisch Kanzan), baut die Kommunalverwaltung von Al-Ahsa in mehreren Bauabschnitten einen großen Bergpark zur Erholung; offiziell ist das Vorhaben als Al-Shu'bah-Bergpark bekannt. Der obere Bereich ging Ende 2022 teilweise in Betrieb – mit Flächen für Rutschbahnen am Hang, künstlichen Wasserfällen von rund 1.100 Metern Länge, drei hölzernen Hängebrücken, einer Seilrutsche, Spielbereichen für Kinder und Fußwegen. Zu den angekündigten Bestandteilen des Projekts gehören außerdem zwei Seen und eine 1.500 Meter lange Seilbahn mit drei Stationen. Die übrigen Bauabschnitte dauern an; Angaben werden noch bestätigt – zur vollständigen Inbetriebnahme des Parks."
+area_de: "Al-Shu'bah-Berg – nordöstlich der Oase"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 8 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Парк горы Канзан (Эш-Шууба)"
 kicker_ru: "Парк"

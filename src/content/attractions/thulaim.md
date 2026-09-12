@@ -7,6 +7,12 @@ kicker_zh: 自然景观
 summary_zh: "哈萨北部入口处的第一座地标，就在乌尤恩市西侧。"
 body_zh: "苏莱姆山（Al-Thulaim）位于乌尤恩市（Al-Oyoun）以西约 1 公里，正当哈萨的北部入口。从北面进入绿洲的旅人，最先迎面看到的地标就是这座山。这是一座孤立的岩石山体，也是散布在绿洲边缘的沙漠沉积丘陵之一。这里既靠近乌尤恩，又靠近绿洲北侧的公路，去沙漠出游或漫步都很方便。当地民间也曾提议把它开发成哈萨北部的旅游门户，不过目前还只停留在设想阶段。"
 area_zh: 乌尤恩市以西——哈萨北部
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-7 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Thulaim-Berg"
+kicker_de: "Naturlandschaft"
+summary_de: "Das erste Wahrzeichen Al-Ahsas am nördlichen Zugang zur Oase, gleich westlich der Stadt Al-Oyoun."
+body_de: "Am nördlichen Zugang zu Al-Ahsa, rund einen Kilometer westlich der Stadt Al-Oyoun, erhebt sich der Al-Thulaim-Berg – das erste Wahrzeichen, das alle empfängt, die von Norden in die Oase kommen. Er ist eine freistehende Felsformation und gehört zu den Sedimenthügeln der Wüste, die über die Ränder der Oase verstreut liegen. Seine Lage neben Al-Oyoun und an der nördlichen Oasenstraße macht ihn zu einem leicht erreichbaren Ziel für Ausflüge in die Wüste und für Spaziergänge. Aus der Bevölkerung kamen Vorschläge, ihn zum touristischen Eingangstor im Norden Al-Ahsas auszubauen; über das Ideenstadium sind sie bisher nicht hinausgekommen."
+area_de: "Westlich von Al-Oyoun – nördlich von Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 5 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Гора Эс-Сулайм"
 kicker_ru: "Природная достопримечательность"

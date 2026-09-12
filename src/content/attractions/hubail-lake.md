@@ -7,6 +7,12 @@ kicker_zh: 湖泊
 summary_zh: "哈萨北部的一座湖泊，由绿洲农田的排水汇聚而成。"
 body_zh: "胡拜勒湖（Al-Hubail）是哈萨北部的一片水域，由绿洲农田的排水长年汇聚而成。湖的面积、游客设施等详情目前待确认（信息更新中），待可靠来源核实后再作补充。"
 area_zh: 哈萨北部
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-7 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Hubail-See"
+kicker_de: "See"
+summary_de: "Ein See nördlich von Al-Ahsa, entstanden aus dem landwirtschaftlichen Drainagewasser der Farmen in der Oase."
+body_de: "Der Al-Hubail-See ist eine Wasserfläche nördlich von Al-Ahsa. Er ist mit der Zeit entstanden: Hier sammelte sich das landwirtschaftliche Drainagewasser der Farmen in der Oase. Weitere Angaben werden noch bestätigt, sobald verlässliche Quellen vorliegen – zur Ausdehnung des Sees und zu Einrichtungen für Besucher."
+area_de: "Nördlich von Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 6 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Озеро Эль-Хубайль"
 kicker_ru: "Озеро"
@@ -26,7 +32,7 @@ order: 42
 area: "شمال الأحساء"
 area_en: "North of Al-Ahsa"
 practical:
-  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
+  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.7607843, lng: 49.7626523 }
 mapUrl: "https://maps.app.goo.gl/tepZoP6zNeRqmmCfA"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
@@ -38,6 +44,8 @@ faq:
     a_en: "It formed over time from the gathering of agricultural drainage water from the oasis farms."
     q_zh: "胡拜勒湖是怎样形成的？"
     a_zh: "由绿洲农田排出的水长年汇聚而成。"
+    q_de: "Wie ist der Al-Hubail-See entstanden?"
+    a_de: "Er ist mit der Zeit entstanden: Hier sammelte sich das landwirtschaftliche Drainagewasser der Farmen in der Oase."
     q_ru: "Как образовалось озеро Эль-Хубайль?"
     a_ru: "Оно образовалось со временем: здесь скопились дренажные воды с ферм оазиса."
   - q: "أين تقع بحيرة الحبيل؟"
@@ -46,6 +54,8 @@ faq:
     a_en: "North of Al-Ahsa."
     q_zh: "胡拜勒湖在哪里？"
     a_zh: "在哈萨北部。"
+    q_de: "Wo liegt der Al-Hubail-See?"
+    a_de: "Nördlich von Al-Ahsa."
     q_ru: "Где находится озеро Эль-Хубайль?"
     a_ru: "К северу от Аль-Ахсы."
   - q: "هل لزيارة بحيرة الحبيل رسوم؟"
@@ -54,6 +64,8 @@ faq:
     a_en: "No. It is an open public natural site with no fee."
     q_zh: "去胡拜勒湖要门票吗？"
     a_zh: "不需要。胡拜勒湖是开放的公共自然景点，免收门票。"
+    q_de: "Muss ich für den Al-Hubail-See Eintritt zahlen?"
+    a_de: "Nein. Der Al-Hubail-See ist ein öffentlich zugängliches Naturgelände; der Eintritt ist kostenlos."
     q_ru: "Нужно ли платить за посещение озера Эль-Хубайль?"
     a_ru: "Нет. Это открытая общедоступная природная территория, вход свободный."
 ---
