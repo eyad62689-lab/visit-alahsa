@@ -7,6 +7,12 @@ kicker_zh: 宗教场所
 summary_zh: "库特区中心一座约有 300 年历史的传统清真寺，与学者世家阿比·伯克尔·穆拉家族渊源深厚。"
 body_zh: "谢赫穆罕默德·本·阿比·伯克尔·穆拉清真寺（“谢赫”是宗教学者的尊称）又称东清真寺，位于胡富夫历史悠久的库特区中心，紧邻谢赫阿比·伯克尔的宅邸与宗教学校。该寺是哈萨最古老的传统清真寺之一，已有约 300 年历史。寺以泥土、砾石与椰枣树干筑成，长期是讲授教法学、《古兰经》经注学与阿拉伯语语法学的重地；一代又一代的伊玛目（领拜人），均出自阿比·伯克尔·穆拉这个学者世家——寺名里的“阿比·伯克尔·穆拉”，正是这一家族之名。在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”第一期中，该寺的修复工程于伊斯兰历 1441 年（公元 2020 年）完成，旧貌得以保留，可容纳约 125 名礼拜者。"
 area_zh: 库特区——胡富夫
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Moschee des Scheichs Muhammad bin Abi Bakr Al-Mulla"
+kicker_de: "Religiöse Stätte"
+summary_de: "Eine rund drei Jahrhunderte alte Kulturerbe-Moschee im Herzen des Al-Koot-Viertels, verbunden mit der Gelehrtenfamilie Al-Mulla."
+body_de: "Im Herzen des historischen Al-Koot-Viertels von Hofuf, nahe dem Haus und den religiösen Schulen der Familie Al-Mulla, steht die Moschee des Scheichs Muhammad bin Abi Bakr Al-Mulla, auch Östliche Moschee genannt. Sie zählt zu den ältesten Kulturerbe-Moscheen Al-Ahsas, und ihre Geschichte reicht rund drei Jahrhunderte zurück. Erbaut aus Lehm, Kies und Palmstämmen, war sie lange ein Zentrum der Gelehrsamkeit: Hier wurden Fiqh (islamische Rechtswissenschaft), Koranauslegung und Grammatik unterrichtet, und ihre Imame stammten Generation für Generation aus der Gelehrtenfamilie Al-Mulla. In der ersten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie instand gesetzt; diese Phase wurde 1441 nach der Hidschra (2020 n. Chr.) abgeschlossen. Dabei blieb ihr traditioneller Charakter erhalten, und heute bietet sie rund 125 Betenden Platz."
+area_de: "Al-Koot-Viertel – Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 4 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Мечеть шейха Мухаммеда ибн Абу Бакра аль-Муллы"
 kicker_ru: "Религиозное место"
@@ -26,7 +32,7 @@ area_en: "Al-Koot district — Hofuf"
 featured: false
 order: 30
 practical:
-  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", label_de: "Öffnungszeiten und Eintritt", value_de: "Für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 district: alkoot
 location: { lat: 25.376729, lng: 49.584177 }

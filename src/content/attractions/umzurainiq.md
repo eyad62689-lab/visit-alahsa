@@ -7,6 +7,12 @@ kicker_zh: 宗教场所
 summary_zh: "欧韦米里亚区的一座老清真寺，因紧邻墓地而得名，已在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”中完成修复。"
 body_zh: "乌姆·祖赖尼格清真寺坐落在胡富夫最古老的街区之一——欧韦米里亚区。这座小巧的清真寺已有百余年历史，因紧邻一片老墓地而得名。寺以泥土、石膏与椰枣树干按传统工艺筑成。最引人注目的是一座圆柱形宣礼塔，塔身带木制阳台，这正是东部省清真寺建筑的标志性样式；室内墙面、窗户与拱券上还留有石膏装饰纹样。寺内礼拜曾一度中断。其后，该寺在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”第二期中完成修复，面积由原先仅 30 平方米扩展到约 214 平方米，可容纳约 94 名礼拜者，重新成为街区里一座日常礼拜之所。"
 area_zh: 欧韦米里亚区——胡富夫市中心
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Umm-Zurainiq-Moschee"
+kicker_de: "Religiöse Stätte"
+summary_de: "Eine historische Moschee im Al-Uwaimriyah-Viertel, benannt nach dem angrenzenden Friedhof und im Rahmen des Projekts für historische Moscheen restauriert."
+body_de: "Im Al-Uwaimriyah-Viertel, einem der ältesten Teile des Zentrums von Hofuf, steht die Umm-Zurainiq-Moschee, eine kleine historische Moschee, mehr als hundert Jahre alt und benannt nach dem alten Friedhof neben ihr. Auf traditionelle Weise aus Lehm, Gips und Palmstämmen erbaut, zeichnet sie sich durch ihr zylindrisches Minarett mit hölzernem Balkon aus, ein Kennzeichen der Moscheearchitektur der Ostprovinz (asch-Scharqiyya). Im Inneren schmücken Stuckornamente Wände, Fenster und Bögen. Eine Zeit lang wurde dort nicht mehr gebetet. In der zweiten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie dann instand gesetzt und dabei von nur 30 auf rund 214 Quadratmeter erweitert; heute bietet sie etwa 94 Betenden Platz. So kehrte in das Viertel eine Moschee zurück, in der wieder gebetet wird."
+area_de: "Al-Uwaimriyah-Viertel – Zentrum von Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 4 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Мечеть Умм-Зурайник"
 kicker_ru: "Религиозное место"
@@ -26,7 +32,7 @@ area_en: "Al-Uwaimriyah district — central Hofuf"
 featured: false
 order: 28
 practical:
-  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", label_de: "Öffnungszeiten und Eintritt", value_de: "Für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 district: uwaimriyah
 location: { lat: 25.361522, lng: 49.580333 }

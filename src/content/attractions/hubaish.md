@@ -7,6 +7,12 @@ kicker_zh: 宗教场所
 summary_zh: "里法阿南区一座清真寺，建于伊斯兰历 13 世纪（约公元 19 世纪），谢赫阿卜杜勒阿齐兹·阿勒吉曾在此讲学。"
 body_zh: "胡拜什清真寺坐落在胡富夫市中心的里法阿南区，是哈萨最古老的历史清真寺之一，建于伊历 13 世纪（约公元 19 世纪）。该寺又名谢赫阿卜杜勒阿齐兹·阿勒吉清真寺（“谢赫”是宗教学者的尊称）。这位哈萨大学者精于教法学与阿拉伯语语法学，当年正是在此讲学授课，清真寺便以他为名。寺以石灰石与泥土筑成，屋顶用尚达尔木杆（chandal，海湾传统建筑常用的进口木料）、竹竿与草席铺就。最具特色的是一道圆拱柱廊，以及东北角的一座方形宣礼塔。全寺面积约 318 平方米，可容纳约 90 名礼拜者。2020 年，该寺在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”第一期中完成修复，原有风貌得以保留，如今已恢复日常礼拜。"
 area_zh: 里法阿南区——胡富夫市中心
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Al-Hubaish-Moschee"
+kicker_de: "Religiöse Stätte"
+summary_de: "Eine Moschee aus dem 13. Jahrhundert nach der Hidschra (etwa dem 19. Jahrhundert n. Chr.) im Al-Rifaa-Süd-Viertel, in der Scheich Abdulaziz Al-Alji unterrichtete."
+body_de: "Im Al-Rifaa-Süd-Viertel im Zentrum von Hofuf steht die Al-Hubaish-Moschee, eine der ältesten historischen Moscheen Al-Ahsas; sie stammt aus dem 13. Jahrhundert nach der Hidschra (etwa dem 19. Jahrhundert n. Chr.). Bekannt ist sie auch als Moschee des Scheichs Abdulaziz Al-Alji, eines der führenden Gelehrten des Fiqh (islamische Rechtswissenschaft) und der Grammatik in Al-Ahsa, der hier seine Lehrstunden hielt. Erbaut aus Kalkstein und Lehm, gedeckt mit Chandal-Holz, Bambus und geflochtenen Matten, zeichnet sie sich durch einen Arkadengang mit Rundbögen und ein quadratisches Minarett an ihrer Nordostecke aus. Auf rund 318 Quadratmetern bietet sie etwa 90 Betenden Platz. In der ersten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie 2020 instand gesetzt: Sie wird wieder für das Gebet genutzt und hat ihre ursprünglichen Merkmale bewahrt."
+area_de: "Al-Rifaa-Süd-Viertel – Zentrum von Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 4 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Мечеть Эль-Хубайш"
 kicker_ru: "Религиозное место"
@@ -26,7 +32,7 @@ area_en: "South Al-Rifaa district — central Hofuf"
 featured: false
 order: 27
 practical:
-  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", label_de: "Öffnungszeiten und Eintritt", value_de: "Für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 25.373299, lng: 49.592377 }
 mapUrl: "https://maps.app.goo.gl/5bDrxyVhqas7rUc19"

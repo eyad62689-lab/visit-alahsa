@@ -8,6 +8,12 @@ kicker_zh: 宗教场所
 summary_zh: 库特区内一座贾布尔王朝时期的清真寺，自 15 世纪至今礼拜不辍。
 body_zh: "库特区是胡富夫历史城区里最古老的街区，紧邻易卜拉欣宫；贾布里清真寺就坐落在这里，是哈萨最古老、最负盛名的清真寺之一。它由赛义夫·本·扎米勒·贾布里建于贾布尔王朝时期，约在伊斯兰历 850 年（公元 1446 年），并将农田与椰枣园设为瓦克夫（宗教捐产）；除礼拜之外，这里也是讲学与学术的中心。寺以泥土与石灰石筑成，拱顶交错，柱廊相连，穹顶形制各异，另有一座圆柱形宣礼塔；全寺可容纳约 1600 名礼拜者。数百年间，它历经多次修复，最近一次在伊历 1437 年（公元 2016 年），依照“历史清真寺修缮计划”以原始材料完成。时至今日，它仍是一座日常使用的清真寺，礼拜者往来其间。"
 area_zh: 库特区——胡富夫
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Al-Jabri-Moschee"
+kicker_de: "Religiöse Stätte"
+summary_de: "Eine Moschee aus der Zeit der Jabriden im Al-Koot-Viertel, in der seit dem 15. Jahrhundert gebetet wird."
+body_de: "Im Al-Koot-Viertel, dem ältesten Teil des historischen Hofuf, steht unweit von Qasr Ibrahim (dem Ibrahim-Palast) die Al-Jabri-Moschee, eine der ältesten und bekanntesten Moscheen Al-Ahsas. In der Zeit des Staates der Jabriden, um 850 nach der Hidschra (n. H.; 1446 n. Chr.), ließ Saif bin Zamil Al-Jabri sie errichten und stiftete ihr Äcker und Palmenhaine. So wurde sie neben dem Gebet zu einem Zentrum des Unterrichts und der Gelehrsamkeit. Erbaut aus Lehm und Kalkstein, zeichnet sie sich durch einander kreuzende Gewölbe, zahlreiche Arkaden und unterschiedliche Kuppeln aus. Ihr Minarett ist zylindrisch, und sie fasst rund 1.600 Betende. Über die Jahrhunderte wurde sie immer wieder restauriert, zuletzt 1437 n. H. (2016 n. Chr.) mit den ursprünglichen Materialien im Rahmen des Programms zur Pflege historischer Moscheen. Bis heute ist sie eine lebendige Moschee, in der gebetet wird."
+area_de: "Al-Koot-Viertel – Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 2 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Мечеть Эль-Джабри"
 kicker_ru: "Религиозное место"
@@ -27,7 +33,7 @@ area_en: "Al-Koot district — Hofuf"
 featured: false
 order: 20
 practical:
-  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", label_de: "Öffnungszeiten und Eintritt", value_de: "Für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 district: alkoot
 location: { lat: 25.378747, lng: 49.583788 }

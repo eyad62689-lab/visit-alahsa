@@ -7,6 +7,12 @@ kicker_zh: 宗教场所
 summary_zh: "乌盖尔港建筑群中的历史清真寺，是阿卜杜勒阿齐兹国王时期发展起来的港口建筑之一。"
 body_zh: "乌盖尔港清真寺位于哈萨以东的海湾沿岸，就在历史悠久的乌盖尔港（Al-Uqair）建筑群之中。乌盖尔港是沙特阿拉伯最古老的海港，昔日也是纳季德（沙特中部地区）通往大海的门户；当年往来于此的水手、商人与旅客，都曾在此礼拜。与要塞、商队客栈、埃米尔府和海关楼一样，这座清真寺也是阿卜杜勒阿齐兹国王在位期间兴建并发展起来的港口建筑之一——那时的乌盖尔港，正是哈萨对外贸易的命脉。该寺与哈萨的另一批历史清真寺一同在“历史清真寺修缮计划”中完成修复，修复工程由朱拜勒与延布皇家委员会这一机构提供支持。如今，沙特遗产委员会正对整片遗址进行全面修缮，这座清真寺亦在其列，老港口向来访者讲述的完整往事里，也有它的一页。"
 area_zh: 乌盖尔港——哈萨以东的海湾沿岸
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Al-Uqair-Hafen-Moschee"
+kicker_de: "Religiöse Stätte"
+summary_de: "Die historische Moschee im Hafenkomplex von Al-Uqair – eine der Anlagen, die unter König Abdulaziz ausgebaut wurden."
+body_de: "An der Golfküste östlich von Al-Ahsa steht die historische Moschee im Gebäudekomplex des historischen Hafens Al-Uqair – des ältesten Seehafens Saudi-Arabiens. Hier beteten einst Seeleute, Kaufleute und Reisende am alten Tor Nadschds zum Meer. Sie zählt zu den Hafenanlagen, die in der Regierungszeit von König Abdulaziz errichtet und ausgebaut wurden – neben der Festung, dem Khan (der Karawanserei), dem Gebäude des Emirats und dem Zollhaus. Damals war Al-Uqair die Handelsader Al-Ahsas. Im Rahmen des Programms zur Wiederherstellung historischer Moscheen wurde sie mit Unterstützung der Königlichen Kommission für Jubail und Yanbu restauriert, gemeinsam mit einer Reihe weiterer historischer Moscheen Al-Ahsas. Heute steht sie auf einem Gelände, das von der Kommission für Kulturerbe umfassend instand gesetzt wird – ein Teil der ganzen Geschichte, die der alte Hafen seinen Besuchern erzählt."
+area_de: "Hafen Al-Uqair – die Golfküste östlich von Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 4 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Мечеть порта Эль-Укайр"
 kicker_ru: "Религиозное место"

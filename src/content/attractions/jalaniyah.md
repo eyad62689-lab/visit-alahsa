@@ -8,6 +8,12 @@ kicker_zh: 宗教场所
 summary_zh: 巴塔利亚村内一座乌尤尼王朝时期的清真寺，又称巴塔利亚清真寺。
 body_zh: "贾拉尼亚清真寺坐落在巴塔利亚村西区，距胡富夫东北方约 12 公里；它又称巴塔利亚清真寺，是哈萨最负盛名的历史清真寺之一。寺的历史可上溯至乌尤尼王朝时期，约在伊斯兰历 5 世纪（公元 11 世纪前后）；相传得名于王朝创建者之女希芭公主（希芭·宾特·阿卜杜拉·本·阿里·乌尤尼）。寺以石块与泥土砌筑，屋顶覆以椰枣树干与枝叶；最特别之处，是指向麦加方向的朝拜墙上并列着两座米哈拉布（礼拜朝向的壁龛）。成排的立柱托起尖拱，全寺可容纳逾千名礼拜者。朱拜勒与延布皇家委员会主持了修复，工程于伊历 1430 年（公元 2009 年）竣工；2017 年，它正式列入哈萨历史清真寺官方名录。"
 area_zh: 巴塔利亚村——胡富夫东北
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Al-Jalaniyah-Moschee"
+kicker_de: "Religiöse Stätte"
+summary_de: "Eine Moschee aus der Zeit der Uyuniden im Dorf Al-Battaliyah, auch Al-Battaliyah-Moschee genannt."
+body_de: "Im westlichen Teil des Dorfes Al-Battaliyah, rund zwölf Kilometer nordöstlich von Hofuf, steht die Al-Jalaniyah-Moschee, auch Al-Battaliyah-Moschee genannt – eine der bekanntesten historischen Moscheen Al-Ahsas. Sie geht auf den Staat der Uyuniden zurück, auf das 5. Jahrhundert nach der Hidschra (n. H.; etwa das 11. Jahrhundert n. Chr.). Ihr Name ist mit Prinzessin Hibah bint Abdullah bin Ali Al-Uyuni verbunden, der Tochter des Staatsgründers; die Moschee wird ihr zugeschrieben. Erbaut aus Stein und Lehm, gedeckt mit Palmstämmen und Palmwedeln, fällt sie durch eine Besonderheit auf: In ihrer Qibla-Wand, der Wand in Gebetsrichtung, liegen zwei Mihrabs (Gebetsnischen). Dazu kommen Säulenreihen, die Spitzbögen tragen; sie bietet weit über tausend Betenden Platz. Die Königliche Kommission für Jubail und Yanbu restaurierte sie und schloss die Arbeiten 1430 n. H. (2009 n. Chr.) ab. 2017 wurde sie in die Liste der amtlich registrierten historischen Moscheen Al-Ahsas aufgenommen."
+area_de: "Dorf Al-Battaliyah – nordöstlich von Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 3 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Мечеть Эль-Джаалания"
 kicker_ru: "Религиозное место"

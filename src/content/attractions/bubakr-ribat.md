@@ -7,6 +7,12 @@ kicker_zh: 宗教场所
 summary_zh: "阿比·伯克尔·穆拉家族的里巴特，是一处供学子寄宿的宗教学舍，也是学术性质的瓦克夫（宗教捐产）：创立于伊斯兰历 1280 年（约公元 1863 年），专为求学的学子而设，至今仍在使用。"
 body_zh: "胡富夫库特区的鲁维达街区里，有一处当地人叫作“布巴克尔里巴特”的所在，正式名称是阿比·伯克尔·穆拉家族里巴特。里巴特（Ribat）是供学子寄宿的宗教学舍；“布巴克尔”则是“阿比·伯克尔”这一家族名在当地的叫法。这座里巴特属学术性质的瓦克夫（宗教捐产），由谢赫阿卜杜拉·本·阿比·伯克尔·穆拉（“谢赫”是宗教学者的尊称）创立于伊历 1280 年（约公元 1863 年）。长久以来，凡从哈萨各地乃至更远处前来研习伊斯兰学问的学子，以及途经此地的旅人，都能在这里免费食宿；从这里也走出了一代又一代的学者与法官。建筑以石膏、砾石、木材与椰枣树干筑成，两层房舍环抱一方露天庭院，院边廊道相通，东翼设有水井与厨房。伊历 1430 年（约公元 2009 年）经全面修缮，旧貌得以保留；如今仍由穆拉家族打理，照常使用，默默见证着这片绿洲深厚的治学传统。"
 area_zh: 鲁维达街区，库特区——胡富夫
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
+title_de: "Ribat der Familie Al Abi Bakr Al-Mulla"
+kicker_de: "Religiöse Stätte"
+summary_de: "Der Ribat der Familie Al Abi Bakr Al-Mulla – eine bis heute aktive Stiftung für die Gelehrsamkeit, 1280 nach der Hidschra (um 1863 n. Chr.) gegründet, um Studierende der islamischen Wissenschaften zu beherbergen."
+body_de: "In Al-Ruwaidah, einem Teil des Al-Koot-Viertels von Hofuf, steht der Ribat der Familie Al Abi Bakr Al-Mulla, vor Ort Bubakr-Ribat genannt. Er ist eine Stiftung für die Gelehrsamkeit und Herberge für Studierende, gegründet von Scheich Abdullah bin Abi Bakr Al-Mulla im Jahr 1280 nach der Hidschra (n. H.; um 1863 n. Chr.). Studierende der islamischen Wissenschaften aus Al-Ahsa und von weit her finden seit Generationen im Ribat kostenlos Unterkunft und Verpflegung, Reisende ebenso. Aus ihm gingen Generationen von Gelehrten und Richtern hervor. Erbaut aus Gips, Kies, Holz und Palmstämmen, erhebt er sich in zwei Geschossen mit Kammern rund um einen offenen, von Arkaden gesäumten Innenhof; im Ostflügel liegen ein Brunnen und Küchen. Im Jahr 1430 n. H. (um 2009 n. Chr.) wurde er umfassend restauriert und behielt dabei seinen alten Charakter. Bis heute ist er aktiv, betreut von der Familie Al-Mulla – ein Zeugnis für die Tiefe der Gelehrsamkeit in der Oase."
+area_de: "Al-Ruwaidah, Teil des Al-Koot-Viertels – Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 3 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Рибат Аль Абу Бакр аль-Мулла"
 kicker_ru: "Религиозное место"
