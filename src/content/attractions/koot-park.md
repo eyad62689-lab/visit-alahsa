@@ -7,6 +7,12 @@ kicker_zh: 公园
 summary_zh: "胡富夫历史城区的一座市政公园，距易卜拉欣宫仅几步之遥，是“城市人性化”项目所建公园之一。"
 body_zh: "库特公园（Al-Koot Park）是一座市政公园，位于胡富夫历史城区，坐落在库特区的中心地带，离易卜拉欣宫和凯撒利亚集市只有几步路。公园由哈萨市政局于 2020 年底揭幕启用，是“城市人性化”项目所建八座公园之一。园内有喷泉、树木和草坪，还有一片阴凉的儿童游乐区、步行道和公共卫生间，并兼顾了残障人士的无障碍需求。公园也是胡富夫历史城区整体开发项目的一部分，街区内的各座公园正融入哈萨建筑元素，这也使它自然而然地成为老城各处遗产地标之间的一处歇脚处。"
 area_zh: 库特区——胡富夫市中心
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-5 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Koot-Park"
+kicker_de: "Park"
+summary_de: "Ein kommunaler Garten im historischen Zentrum von Hofuf, nur wenige Schritte von Qasr Ibrahim entfernt – Teil des Programms „Humanisierung der Städte“."
+body_de: "Im Herzen des Al-Koot-Viertels im historischen Zentrum von Hofuf liegt der Al-Koot-Park, ein kommunaler Garten nur wenige Schritte von Qasr Ibrahim (dem Ibrahim-Palast) und vom Qaisariyah-Souk entfernt. Ende 2020 weihte ihn die Kommunalverwaltung von Al-Ahsa ein – als einen von acht Gärten ihres Programms „Humanisierung der Städte“. Der Garten bietet einen schattigen Spielbereich für Kinder, Spazierwege und öffentliche Toiletten sowie Springbrunnen, Bäume und Rasenflächen; die Bedürfnisse von Menschen mit Behinderung wurden dabei berücksichtigt. Er gehört zugleich zu den größer angelegten Projekten zur Entwicklung der historischen Innenstadt von Hofuf, in deren Rahmen die Gärten des Viertels architektonische Motive aus Al-Ahsa erhalten. So wird der Park zu einer natürlichen Pause zwischen den Sehenswürdigkeiten, die zum kulturellen Erbe des Viertels gehören."
+area_de: "Al-Koot-Viertel – Zentrum von Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 8 بدرجة 91/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Парк Эль-Кут"
 kicker_ru: "Парк"

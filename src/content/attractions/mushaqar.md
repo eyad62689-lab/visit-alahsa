@@ -7,6 +7,12 @@ kicker_zh: 公园
 summary_zh: "卡拉村附近的一座大型公园，得名于伊斯兰教兴起前的穆沙卡尔堡。园中心的“穆沙卡尔宫”便是以这座古堡为灵感建成的。"
 body_zh: "穆沙卡尔公园（Al-Mushaqar Park）旧称沙伊巴尼公园，位于绿洲东侧的卡拉村附近，是一座掩映在葱郁田园之中的大型公园，园内有开阔的绿地、一个民俗市集和几片家庭游乐区。公园得名于著名的穆沙卡尔堡。这座古堡可追溯至伊斯兰教兴起之前，古代阿拉伯文献称之为“哈杰尔堡”；穆沙卡尔堡之名既见于记述早期部落战事的“阿拉伯人的日子”（Ayyam al-Arab），也与古代阿拉伯人的集市传统有关：昔日的穆沙卡尔集市就设在堡垒附近，是那个时代阿拉伯人的集市之一。至于古堡原址究竟在巴塔利亚、贾瓦塔还是卡拉，学者们至今仍有争论。公园中心矗立着“穆沙卡尔宫”，这座现代建筑以古堡为灵感建成，如今已是公园的门面与标志。"
 area_zh: 卡拉村附近——哈萨东部
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-5 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Shaibani-/Al-Mushaqar-Park"
+kicker_de: "Park"
+summary_de: "Ein weitläufiger Park nahe dem Dorf Al-Qarah: Er trägt den Namen der vorislamischen Festung Mushaqar, und in seinem Herzen steht ein Palast, der ihr nachempfunden ist."
+body_de: "Nahe dem Dorf Al-Qarah, an der Ostseite der Oase, erstreckt sich der Al-Mushaqar-Park (früher Al-Shaibani-Park): ein weitläufiger grüner Rückzugsort inmitten dichter Pflanzungen, mit offenen Grünflächen, einem Souk (traditioneller Markt) und Spielbereichen für Familien. Der Ort trägt den Namen der berühmten vorislamischen Festung Mushaqar, die in den frühen arabischen Quellen „Festung von Hajar“ heißt. Erwähnt wird sie in den Berichten über die Ayyam al-Arab (die Schlachttage der Araber). In der Nachbarschaft der Festung fand der Markt von Mushaqar statt, einer der Märkte der Araber aus vorislamischer Zeit. Wo die ursprüngliche Festung stand, ist in der Forschung bis heute umstritten: Al-Battaliyah, Jawatha oder Al-Qarah. Im Herzen des Parks steht der „Mushaqar-Palast“, ein moderner Bau, errichtet in Anlehnung an jene alte Festung – heute das Gesicht und das Wahrzeichen des Parks."
+area_de: "Nahe dem Dorf Al-Qarah – östlich von Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 7 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Парк Эш-Шайбани / Эль-Мушаккар"
 kicker_ru: "Парк"

@@ -6,6 +6,11 @@ title_zh: 阿卜杜拉国王环境公园
 kicker_zh: 公园
 summary_zh: "一座面积广阔的环境公园，适合散步和家庭出游。"
 body_zh: "阿卜杜拉国王环境公园是一座面积广阔的环境公园，适合散步和家庭出游。"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-5 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "König-Abdullah-Umweltpark"
+kicker_de: "Park"
+summary_de: "Ein weitläufiger Umweltpark für Spaziergänge und Familienausflüge."
+body_de: "Ein weitläufiger Umweltpark für Spaziergänge und Familienausflüge."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 6 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Экологический парк короля Абдаллы"
 kicker_ru: "Парк"

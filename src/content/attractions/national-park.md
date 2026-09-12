@@ -7,6 +7,12 @@ kicker_zh: 公园
 summary_zh: "这片人工林源于 1962 年的固沙工程，栽有数百万棵柽柳，林间设有遮阳凉棚与步道。"
 body_zh: "哈萨国家公园（Al-Ahsa National Park）位于绿洲东北部的欧姆兰市，距卡拉山不远。公园的由来可追溯到伊斯兰历 1382 年（公元 1962 年）：那一年，沙特农业部启动了一项固沙工程，以保护绿洲村庄免受流沙侵袭。工程栽下了数百万棵树，以柽柳为主，造林面积约 4500 公顷，防护林带绵延 20 公里。随着时间推移，这些防沙屏障渐渐长成一片葱郁的人工林，继而辟为公共公园，设有遮阳凉棚、步道与家庭休闲设施。如今，公园由沙特国家植被发展与荒漠化防治中心负责管理，该中心至今仍在推进园区的修复项目。园区范围内还启动了贾瓦塔森林项目，栽种耐盐本地树木 200 万棵。"
 area_zh: 欧姆兰市——绿洲东北部
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-5 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Ahsa-Nationalpark"
+kicker_de: "Park"
+summary_de: "Ein künstlich angelegter Wald, hervorgegangen aus einem Projekt zur Sandeindämmung von 1962 – Millionen Tamarisken, Schattendächer und Wege."
+body_de: "Nordöstlich der Oase, bei der Stadt Al-Omran und unweit des Jabal al-Qarah (des Qarah-Bergs), erstreckt sich der Al-Ahsa-Nationalpark. Seine Geschichte begann 1382 nach der Hidschra (1962 n. Chr.) als Projekt, mit dem das Landwirtschaftsministerium die Dörfer der Oase vor dem vordringenden Sand schützen wollte. Auf einer Fläche von rund 4.500 Hektar wurden Millionen Bäume gepflanzt, überwiegend Tamarisken; ein Gürtel zieht sich über zwanzig Kilometer. Mit der Zeit wuchsen die Sandbarrieren zu einem üppigen, künstlich angelegten Wald heran. Später wurde daraus ein öffentlicher Park mit Schattendächern, Wegen und Einrichtungen für Familien. Heute steht der Park unter der Aufsicht des Nationalen Zentrums für die Entwicklung der Vegetationsdecke und die Bekämpfung der Wüstenbildung, das die Projekte zu seiner Wiederherstellung fortführt. In den Grenzen des Parks wurde der Jawatha-Wald mit zwei Millionen Bäumen heimischer, salztoleranter Arten ins Leben gerufen."
+area_de: "Al-Omran – nordöstlich der Oase"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 7 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Национальный парк Аль-Ахсы"
 kicker_ru: "Парк"
