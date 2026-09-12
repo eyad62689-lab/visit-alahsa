@@ -33,6 +33,8 @@ featured: false
 order: 30
 practical:
   - { label: "المواعيد والدخول", value: "مسجد عامل — يُفتح لأوقات الصلوات، بلا رسوم دخول", label_en: "Hours & entry", value_en: "A working mosque — open at prayer times, no entry fee", label_de: "Öffnungszeiten und Eintritt", value_de: "Für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-08", verified: true }
+  # زيارة غير المسلمين: قرار المالك 2026-09-12 — الصيغة الخماسية اللغات منقولة حرفياً من jawatha-mosque.md (مدخل المعجم الألماني 62).
+  - { label: "زيارة غير المسلمين", value: "متاحة، مع المحافظة على اللباس المحتشم", label_en: "Visitors of other faiths", value_en: "Welcome, with modest dress", label_ru: "Вход для немусульман", value_ru: "Открыт при условии скромной одежды", label_zh: "非穆斯林游客", value_zh: "欢迎参观，请注意衣着端庄", label_de: "Nichtmuslimische Besucher", value_de: "Willkommen – bedeckende Kleidung vorausgesetzt", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
 fee: { free: true }
 district: alkoot
 location: { lat: 25.376729, lng: 49.584177 }

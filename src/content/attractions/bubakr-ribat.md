@@ -32,6 +32,10 @@ area_en: "Al-Ruwaidah quarter, Al-Koot district — Hofuf"
 featured: false
 order: 23
 district: alkoot
+practical:
+  # زيارة غير المسلمين: قرار المالك 2026-09-12 — الصيغة الخماسية اللغات منقولة حرفياً من jawatha-mosque.md (مدخل المعجم الألماني 62).
+  # ورباطٌ لا مسجد — أُدرج بإذنٍ صريح من المالك 2026-09-12 بعد عرضِه عليه بعينه.
+  - { label: "زيارة غير المسلمين", value: "متاحة، مع المحافظة على اللباس المحتشم", label_en: "Visitors of other faiths", value_en: "Welcome, with modest dress", label_ru: "Вход для немусульман", value_ru: "Открыт при условии скромной одежды", label_zh: "非穆斯林游客", value_zh: "欢迎参观，请注意衣着端庄", label_de: "Nichtmuslimische Besucher", value_de: "Willkommen – bedeckende Kleidung vorausgesetzt", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
 location: { lat: 25.376461, lng: 49.583846 }
 mapUrl: "https://maps.app.goo.gl/SXAr6bn8aUoLvQzw6"
 ---
