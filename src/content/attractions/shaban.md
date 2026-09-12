@@ -7,6 +7,12 @@ kicker_zh: 自然景观
 summary_zh: "图韦西尔村附近一座孤立的岩石山丘，又名“阿巴·卡巴里”；而在古代史籍中，“沙巴安”原本指的是卡拉山。"
 body_zh: "今天所说的沙巴安山（Al-Shaban），是一座独立于卡拉山之外的岩石山丘，位于胡富夫以东的图韦西尔村（Al-Tuwaither）附近，当地人也称它“阿巴·卡巴里”。不过在古代史籍中，“沙巴安”原是卡拉山本身的名字。地理学家雅库特·哈马维记载：“沙巴安，巴林（此处指历史上的东部沿海地区）的一座山，人们在山中洞穴避暑纳凉。”相传此名意为“饱足者”：昔日椰枣林与流水四面环绕，这座山因而得以“饱足”。后来，邻近村镇的名字“卡拉”渐渐成了那座名山的通称，“沙巴安”便成了旁边这座山丘的专名。那座名山的洞穴故事与游览详情，详见卡拉山页面。"
 area_zh: 图韦西尔村附近——胡富夫以东
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-6 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Shaban-Berg"
+kicker_de: "Naturlandschaft"
+summary_de: "Ein freistehender Felsberg nahe Al-Tuwaither, auch „Aba Al-Kabari“ genannt; in den alten Quellen trug der Jabal al-Qarah den Namen „Al-Shaban“."
+body_de: "Der Al-Shaban-Berg, wie er heute heißt, ist ein freistehender Felsberg abseits des Jabal al-Qarah (des Qarah-Bergs), nahe dem Dorf Al-Tuwaither östlich von Hofuf; örtlich trägt er einen zweiten Namen: „Aba Al-Kabari“. In den alten historischen Quellen dagegen war „Al-Shaban“ ein Name des Qarah-Bergs selbst: Der Geograph Yaqut al-Hamawi verzeichnete ihn als „einen Berg in Bahrain [den historischen Ostküstenlanden], in dessen Höhlen man Kühlung sucht“. Der Name – „der Satte“ – soll von den Palmen und dem Wasser stammen, die den Qarah-Berg einst von allen Seiten umgaben. Als sich für jenen berühmten Berg der Name „Al-Qarah“ nach dem Nachbarort durchsetzte, wurde der Name „Al-Shaban“ zum Eigennamen dieser benachbarten Erhebung. Mehr über die Höhlen des berühmten Bergs und Hinweise für einen Besuch finden Sie auf der Seite zum Jabal al-Qarah."
+area_de: "Nahe Al-Tuwaither – östlich von Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 5 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Гора Эш-Шабаан"
 kicker_ru: "Природная достопримечательность"

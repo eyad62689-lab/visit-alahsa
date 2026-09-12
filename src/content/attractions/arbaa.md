@@ -7,6 +7,12 @@ kicker_zh: 自然景观
 summary_zh: "胡富夫东南方向四座相连的锥形山丘，是远近闻名的露营与沙漠出游目的地。"
 body_zh: "阿尔巴山（Jabal Al-Arba）位于胡富夫东南约 22 公里处，就在通往萨尔瓦与卡塔尔的公路旁，塔拉夫镇（Al-Taraf）在其北面约 6 公里处。整座山由四座相连的锥形山丘组成，均为泛红的沉积岩。据推测，这四座山丘原本是一座，后来因侵蚀而分开，“阿尔巴”（意为“四”）这个名字正由此而来。这里是哈萨南部最有名的露营、沙漠出游和徒步去处之一。哈萨市政局已启动阿尔巴山道路“人性化”改造工程，好让这处景点更方便到达。"
 area_zh: 塔拉夫镇附近——胡富夫东南
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-6 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Al-Arba-Berg"
+kicker_de: "Naturlandschaft"
+summary_de: "Vier benachbarte kegelförmige Hügel südöstlich von Hofuf – ein bekanntes Ziel für Camping und Ausflüge in die Wüste."
+body_de: "Rund 22 Kilometer südöstlich von Hofuf, an der Straße Richtung Salwa und Katar, erheben sich die Hügel des Al-Arba-Bergs (Jabal Al-Arba): vier benachbarte kegelförmige Formationen aus rötlichem Sedimentgestein. Vermutlich waren sie einst ein einziger Hügel, den die Erosion zerteilt hat – daher der Name „die Vier“. Der Ort Al-Taraf liegt etwa sechs Kilometer nördlich davon. Für Camping, Wüstenausflüge und Wanderungen gehört der Berg zu den bekanntesten Zielen im Süden Al-Ahsas. Die Kommunalverwaltung von Al-Ahsa hat ein Projekt zur Humanisierung der Straße zum Al-Arba-Berg gestartet, das den Zugang erleichtert."
+area_de: "Südöstlich von Hofuf – nahe Al-Taraf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 5 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Гора Эль-Арба"
 kicker_ru: "Природная достопримечательность"

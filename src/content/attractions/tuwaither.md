@@ -7,6 +7,12 @@ kicker_zh: 自然景观
 summary_zh: "图韦西尔村以北、东部村落地带中央的一座山，以清凉的岩洞和岩石造型著称。"
 body_zh: "阿布·胡赛斯山（Abu Husais）位于图韦西尔村（Al-Tuwaither）以北的古阿区，地处哈萨东部村落地带的中央，在胡富夫以东约 20 公里处。山的西侧紧挨着图韦西尔和卡拉两地的椰枣林。这座山以狭窄的岩洞闻名，洞里终年有凉风吹出——这是哈萨沉积丘陵的共同特点。山上还有风蚀而成的岩石造型，山坡平缓，易于攀登。2024 年，哈萨市政局签署了一份投资合同，拟将这座山开发为占地 10 万平方米的旅游度假区并投入运营，配以环保型乡村旅舍。"
 area_zh: 图韦西尔村——哈萨东部村落
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-6 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Abu-Husais-Berg"
+kicker_de: "Naturlandschaft"
+summary_de: "Ein Berg mit kühlen Grotten und Felsformationen nördlich von Al-Tuwaither, mitten im Gürtel der östlichen Dörfer."
+body_de: "Im Viertel Al-Qou' nördlich des Dorfes Al-Tuwaither erhebt sich der Abu-Husais-Berg – mitten im Gürtel der östlichen Dörfer Al-Ahsas, rund zwanzig Kilometer östlich von Hofuf. Im Westen grenzen die Palmenhaine von Al-Tuwaither und Al-Qarah an ihn. Bekannt ist der Berg für seine engen Grotten, für seine vom Wind gemeißelten Felsformationen und für Hänge, die sich leicht erklimmen lassen. Aus den Grotten strömt das ganze Jahr über kühle Luft – eine Eigenheit der Sedimenthügel Al-Ahsas. Im Jahr 2024 unterzeichnete die Kommunalverwaltung von Al-Ahsa einen Investitionsvertrag, um den Berg auf einer Fläche von 100.000 Quadratmetern als touristische Ferienanlage mit umweltfreundlichen ländlichen Unterkünften zu entwickeln und zu betreiben."
+area_de: "Dorf Al-Tuwaither – die östlichen Dörfer, Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 5 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Гора Абу-Хусайс"
 kicker_ru: "Природная достопримечательность"
