@@ -21,17 +21,17 @@ Nur ein Tag in Al-Ahsa? Diese Route verdichtet das Herz der Oase – der größt
 
 ## Früher Morgen: Die Höhlen des Jabal al-Qarah und Dougha Al-Gharash
 
-Beginnen Sie Ihren Tag östlich von Hofuf am [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (dem Qarah-Berg), dem geologischen Wunder im Herzen der Oase. Seine Höhlen **bleiben im Sommer kühl und im Winter warm**. Der frühe Morgen ist seine beste Zeit: Dann ist das Licht weich und die Hitze mild. Am Fuß des Berges, im Dorf Al-Qarah, liegt [Dougha Al-Gharash](/en/attractions/duqat-algharash/) – das Töpferhaus, das die Familie Al-Gharash über Generationen weitergegeben hat und das zu den bekanntesten Stätten dieses Handwerks in Saudi-Arabien zählt.
+Beginnen Sie Ihren Tag östlich von Hofuf am [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (dem Qarah-Berg), dem geologischen Wunder im Herzen der Oase. Seine Höhlen **bleiben im Sommer kühl und im Winter warm**. Der frühe Morgen ist seine beste Zeit: Dann ist das Licht weich und die Hitze mild. Am Fuß des Berges, im Dorf Al-Qarah, liegt [Dougha Al-Gharash](/de/attractions/duqat-algharash/) – das Töpferhaus, das die Familie Al-Gharash über Generationen weitergegeben hat und das zu den bekanntesten Stätten dieses Handwerks in Saudi-Arabien zählt.
 
 ## Vormittag: Qasr Ibrahim und das Al-Koot-Viertel
 
-Kehren Sie ins Zentrum von Hofuf zurück, zu [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast): Die Palastfestung vereint Moschee, Kaserne und Turm hinter einer einzigen Mauer. Im Vormittagslicht kommen Architektur und Innenhof zur Geltung. In der Nähe liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/en/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1789 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum.
+Kehren Sie ins Zentrum von Hofuf zurück, zu [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast): Die Palastfestung vereint Moschee, Kaserne und Turm hinter einer einzigen Mauer. Im Vormittagslicht kommen Architektur und Innenhof zur Geltung. In der Nähe liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1789 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum.
 
 Zum Mittagessen sind Sie bereits mitten in der Stadt: Die Adressen finden Sie gesammelt auf der Seite [Restaurants und Cafés](/en/restaurants-cafes/).
 
 ## Abend: Der Qaisariyah-Souk
 
-Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/en/attractions/qaisariyah/), einem traditionellen Markt, mehr als zwei Jahrhunderte alt und etwa einen halben Kilometer von Qasr Ibrahim entfernt. In seinen Gassen duftet es nach Parfüm, das Kupfer glänzt, und die Einheimischen besticken den Bischt (den traditionellen Umhang) von Hand. Der Abend ist seine beste Zeit: Dann öffnen die Geschäfte ihre Türen, und der Puls des Souks schlägt schneller – ein würdiger Abschluss für einen vollen Tag, bevor Sie abreisen.
+Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/), einem traditionellen Markt, mehr als zwei Jahrhunderte alt und etwa einen halben Kilometer von Qasr Ibrahim entfernt. In seinen Gassen duftet es nach Parfüm, das Kupfer glänzt, und die Einheimischen besticken den Bischt (den traditionellen Umhang) von Hand. Der Abend ist seine beste Zeit: Dann öffnen die Geschäfte ihre Türen, und der Puls des Souks schlägt schneller – ein würdiger Abschluss für einen vollen Tag, bevor Sie abreisen.
 
 ## Wenn die Zeit reicht
 

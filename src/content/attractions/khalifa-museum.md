@@ -7,6 +7,12 @@ kicker_zh: 私人博物馆
 summary_zh: "一座私人博物馆，仿照凯撒利亚集市布置成一座民俗市集，馆藏文物涵盖哈萨的旧日行当与生活。"
 body_zh: "哈利法遗产博物馆（Al-Khalifa Heritage Museum）位于穆巴拉兹以北、舒阿巴与古赖恩两镇之间，是哈萨最著名的私人博物馆之一，并持有沙特博物馆委员会颁发的许可。创办人侯赛因·阿里·哈利法起初在穆巴拉兹的舒鲁菲亚区自家住宅的花园里办起这座博物馆，前后用了约 20 年收集藏品，才有了今天的模样：一座仿照老凯撒利亚集市的民俗市集，由 20 多间小店铺重现昔日的行当与手艺。馆内展品分区陈列：兵器、阿拉伯咖啡壶与炊具、农具、女装与首饰，还有旧时的教学用具。此外还设有哈萨传统民居、农耕、沙漠生活与航海生活等专区，以及一处呈现阿美石油公司（Aramco）时期的展区；另有一间会客厅，按哈萨“迪瓦尼亚”（diwaniyah，传统的待客聚会厅）的样式布置。"
 area_zh: 穆巴拉兹以北——舒阿巴与古赖恩之间
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-3 بدرجة 91/100 (2026-09-11، الدورة 1 من 3)
+title_de: "Al-Khalifa-Kulturerbe-Museum"
+kicker_de: "Privatmuseum"
+summary_de: "Ein Privatmuseum, gebaut wie ein traditioneller Souk nach dem Vorbild des Qaisariyah-Souks: Seine Exponate zum Kulturerbe zeigen die alten Berufe Al-Ahsas und den Alltag von einst."
+body_de: "Nördlich von Al-Mubarraz, zwischen den Dörfern Al-Shu'bah und Al-Qurain, liegt das Al-Khalifa-Kulturerbe-Museum, eines der bekanntesten Privatmuseen Al-Ahsas, von der Museumskommission lizenziert. Sein Gründer Hussain Ali Al-Khalifa begann damit im Garten seines Hauses im Shurufiyah-Viertel von Al-Mubarraz und trug die Sammlung über rund 20 Jahre zusammen. So fand das Museum seine heutige Gestalt: die eines traditionellen Souks nach dem Vorbild des alten Qaisariyah-Souks. Mehr als 20 kleine Läden bilden darin die historischen Berufe und Handwerke nach. Die Exponate verteilen sich auf Ecken für Waffen, Kaffeekannen und Kochgefäße, landwirtschaftliches Gerät, Kleidung und Schmuck der Frauen sowie alte Lehrmittel. Dazu kommen Abteilungen zum Wohnhaus in Al-Ahsa, zur Landwirtschaft, zum Leben in der Wüste und zum Leben der Seefahrer, eine Ecke zur Aramco-Ära und ein Madschlis (Empfangsraum), der einer Diwaniyya aus Al-Ahsa nachempfunden ist."
+area_de: "Nördlich von Al-Mubarraz – zwischen Al-Shu'bah und Al-Qurain"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 9 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Музей наследия Эль-Халифа"
 kicker_ru: "Частный музей"

@@ -1,0 +1,238 @@
+{
+  "batch": "batch-de-2",
+  "date": "2026-09-11",
+  "loop": 3,
+  "decision": "APPROVE",
+  "note": "دمجُ إضافات المرحلتين 1 و4 من **الدورات الثلاث** بلا تكرار: 16 (م1) + 5 (م4/د1) + 2 (م4/د2) + 1 (م4/د3) = 24 مدخلاً خاماً ⟵ **20 فريداً**. قاعدةُ الترجيح عند التصادم هي قاعدةُ `batch-de-1` نفسها: **صيغةُ المرحلة 4 المحقَّقة تغلب صيغةَ المرحلة 1 المبدئية** — وأربعةُ تصادماتٍ وقعت، و**الصيغة الألمانية فيها متطابقةٌ في الطرفين** (تحقّقٌ آليّ بـassert)، فالترجيحُ يرفع سندَ الويب لا يبدّل لفظاً. وكلُّ مدخلٍ بجنسه ومصدره.",
+  "raw_count": 24,
+  "count": 20,
+  "collisions": [
+    {
+      "en": "First Saudi State (الدولة السعودية الأولى)",
+      "de": "der erste saudische Staat",
+      "kept_from": "المرحلة 4 (الدورة 1)",
+      "identical_forms": true
+    },
+    {
+      "en": "majlis (مجلس — reception hall in a fort)",
+      "de": "der Madschlis (Empfangsraum)",
+      "kept_from": "المرحلة 4 (الدورة 1)",
+      "identical_forms": true
+    },
+    {
+      "en": "King Abdulaziz Road (طريق الملك عبدالعزيز)",
+      "de": "die König-Abdulaziz-Straße",
+      "kept_from": "المرحلة 4 (الدورة 1)",
+      "identical_forms": true
+    },
+    {
+      "en": "aqit (dried yoghurt — الإقط)",
+      "de": "das Aqit (getrockneter Joghurt)",
+      "kept_from": "المرحلة 4 (الدورة 1)",
+      "identical_forms": true
+    }
+  ],
+  "judge_caveats": [
+    "‏`das Kulturerbe-Dorf` (م4/د2): يُدمج **مقروناً بـPOL-DE-11**. المركّب صفرُ وروداً في `src/` قبل هذه الدفعة، ودخل لأن البديلين ممنوعان (أحدهما بسياج الحاكم F1، والآخر بهذه السياسة). فهو مدخلُ **دفعةٍ** لا مدخلُ معجمٍ مستقرّ حتى يُحسم معجم heritage/تراثي مرّةً واحدة قبل الدفعة 3.",
+    "‏`zeigen — nicht nachzeichnen` (م4/د3): سندُه معجميّ (DWDS) **مأخوذٌ من فهرس البحث لا بجلبٍ مباشر** (‏`dwds.de` محجوب). وراجعتُه فوجدتُ الحكم **لا يتوقّف عليه**: السياج ترك الفعل حرّاً («أيُّهما اخترت فهو لك»)، والفيصل العربيّ يقول «تستعرض» في الحقول الثلاثة، و`zeigen` فعلُ المعرض القياسيّ. فالمدخل يُدمج بسندَين مستقلَّين.",
+    "‏`der Frauen-Souk` (م1): يُدمج كما هو، **ومعه POL-DE-18** — انظر بتّ الحاكم في `judge.loop3.json`."
+  ],
+  "terms": [
+    {
+      "en": "Al-Hamidiyah Souq",
+      "de": "der Al-Hamidiyah-Souk",
+      "artikel": "der",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/hamidiyah-souq.md` → `title_en: \"Al-Hamidiyah Souq\"`, `summary_en`, `body_en`, `answer_en`; arabische Autorität «سوق الحميدية». Deutsche Form nach termbase.json `_meta.style_rules.titel_regel` (das Englische übersetzt den Gattungsnamen ⇒ die deutsche Fassung übersetzt ihn mit Durchkopplung) und `_meta.naming_policy.durchkopplung`, Muster am bestehenden Eintrag „Qaisariyah Souq → der Qaisariyah-Souk“. Genus vom bestehenden Eintrag „souq (generic) → der Souk“.",
+      "note": "Gebrauch: der Al-Hamidiyah-Souk, Genitiv „des Al-Hamidiyah-Souks“. Schreibung **Souk**, nicht Souq (Prüfung C18). Das „Al-“ bleibt im Gegensatz zu „Qaisariyah-Souk“ erhalten, weil `title_en` es trägt. Kein Pleonasmus: nicht „Al-Hamidiyah-Souk-Markt“. Web-Verifikation in dieser Umgebung nicht möglich (unesco.de, unesco.at, de.wikipedia.org, duden.de gesperrt) und nach `naming_policy.default` für die Umschrift auch nicht erforderlich.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "Women's Folk Souq",
+      "de": "der Frauen-Souk",
+      "artikel": "der",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/women-souq.md` → `title_en: \"Women's Folk Souq\"`; arabische Autorität «سوق النساء الشعبي». Deutsche Form nach `_meta.style_rules.titel_regel` (Gattungsname übersetzt ⇒ Durchkopplung) nach dem vom Judge bestätigten Muster „Craftsmen Souq → der Handwerker-Souk“ (gleicher Bau: Personengruppe + Souk). Genus vom bestehenden Eintrag „souq (generic) → der Souk“.",
+      "note": "**Stage-1-Urteil, ausdrücklich für Stage 4/7 zur Prüfung gestellt:** Das Namenselement „Folk“ (‏شعبي) steht **nicht** im Titel, sondern im Kicker („Traditioneller Markt“) und im ersten Satz von `summary_de`/`body_de` („ein traditioneller Markt mit Ständen“). Grund: Die Belegform für شعبي/folk ist im freigegebenen Deutsch das **Adjektiv** „traditionell“ (tm.json: „the oasis's folk souqs“ → „die traditionellen Souks“; `qaisariyah.md` `kicker_de` „Traditioneller Souk“ ← «سوق تراثي»). Ein Adjektiv im Eigennamen müsste im Deutschen mitgroßgeschrieben werden („der Traditionelle Frauen-Souk“) und liest sich dann als Beschreibung, nicht als Name; zh und ru übersetzen zwar alle drei Namensteile (妇女民俗市集 · Женский народный рынок), doch beide Sprachen kennen dieses Großschreibungsproblem nicht. Der Umfang bleibt gewahrt: Alle drei Elemente (Frauen · traditionell/Markt · Souk) stehen auf der Seite, nur verteilt auf Titel, Kicker und ersten Satz. Bindestrich wie bei „Handwerker-Souk“ (Duden erlaubt den Bindestrich zur Gliederung von Zusammensetzungen mit Fremdwort). Kein Pleonasmus: nicht „Frauen-Souk-Markt“.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "Khuzam Palace (Qasr Khuzam)",
+      "de": "der Khuzam-Palast (Qasr Khuzam)",
+      "artikel": "der",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/khuzam.md` → `title_en: \"Khuzam Palace\"` (Titel) und `body_en` („stands Qasr Khuzam\"); arabische Autorität «قصر خزام». Deutsche Form nach `_meta.style_rules.titel_regel` und dem freigegebenen Parallelfall `src/content/attractions/sahood.md` → `title_en: \"Sahood Palace\"` / `title_de: \"Sahood-Palast\"` sowie `body_de` („Der Sahood-Palast (Qasr Sahood) …\"). Genus nach Duden: „der Palast“.",
+      "note": "Gebrauch wie bei Sahood: Titel „Khuzam-Palast“, im Fließtext bei der ersten Nennung „der Khuzam-Palast (Qasr Khuzam)“, danach „die Festung“. Der Gegensatz Name/Sache (Palast dem Namen nach, Festung der Sache nach) steht schon in der Quelle («قصر خزام، قلعةٌ …» / „Qasr Khuzam, a fort“) und wird **nicht** zusätzlich kommentiert – die Formulierung „Kein Palast im prunkvollen Sinne“ aus `qasr-ibrahim.md` gehört zu deren Quelltext und wird hier nicht übernommen.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "Al-Omran (town east of Hofuf)",
+      "de": "Al-Omran",
+      "artikel": "das (ortsüblich ohne Artikel: „in Al-Omran“)",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/ardh-alhadarat.md` → `area_en: \"Al-Omran, east of Hofuf — by Al-Qarah Mountain\"` und `answer_en`; arabische Autorität «مدينة العمران، شرق الهفوف». Genus nach der Duden-Regel für Ortsnamen (sächlich, im Gebrauch artikellos) – Muster des bestehenden Eintrags „Canada → Kanada [das (يُستعمل بلا أداة)]“.",
+      "note": "Reine Ortsangabe, keine Durchkopplung. Das arabische «مدينة» (Stadt) führt die englische Fassung nicht mit, also auch die deutsche nicht („in Al-Omran“, nicht „in der Stadt Al-Omran“) – Muster der freigegebenen Ortsangaben in `jawatha-mosque.md` und `duqat-algharash.md`. Web-Verifikation in dieser Umgebung gesperrt; nach `naming_policy.default` nicht erforderlich.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "Al-Mazrouiyah District",
+      "de": "das Al-Mazrouiyah-Viertel",
+      "artikel": "das",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/khuzam.md` → `area_en: \"Al-Mazrouiyah district — west of Hofuf\"`, arabische Autorität «حي المزروعية — غرب الهفوف»; `district: mazrou`. Deutsche Form nach `_meta.naming_policy.default` + `durchkopplung`, genau nach dem Muster der vom Judge bestätigten Einträge „Al-Koot District → das Al-Koot-Viertel“ (2026-09-10) und „Al-Rifaa District → das Al-Rifaa-Viertel“ (2026-09-11). Genus nach Duden: „das Viertel“.",
+      "note": "In `area_de` ohne Artikel als Ortsangabe („Al-Mazrouiyah-Viertel – westlich von Hofuf“), im Fließtext mit Artikel („am Rand des Al-Mazrouiyah-Viertels“). Achtung: `src/data/districts.ts` schreibt den Schlüssel `mazrou` englisch „Al-Mazrou‘“ (mit ʻAin-Zeichen), die Attraktionsseite dagegen „Al-Mazrouiyah“; ich folge der Seite selbst, weil `area_en` die Belegstelle der Übersetzung ist. **Für Stage 4/7:** Beim Ausbau von `districts.ts` um `de` ist zu entscheiden, welche der beiden englischen Schreibungen die deutsche Grundlage wird.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "North Al-Rifaa District",
+      "de": "das Al-Rifaa-Nord-Viertel",
+      "artikel": "das",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/hamidiyah-souq.md` → `area_en: \"Hofuf, North Al-Rifaa district\"`, arabische Autorität «الهفوف، حي الرفعة الشمالية»; `district: rafah-north`. Deutsche Form nach dem bestehenden Eintrag „Al-Rifaa District → das Al-Rifaa-Viertel“ plus der deutschen Ortsnamenkonvention, die die Himmelsrichtung dem Namen nachstellt und durchkoppelt (Hamburg-Nord, Köln-Nord). Genus nach Duden: „das Viertel“.",
+      "note": "Reihenfolge „Al-Rifaa-Nord“ (nicht „Nord-Al-Rifaa“) folgt sowohl der deutschen Konvention als auch dem Arabischen («الرفعة الشمالية», Attribut nachgestellt). In `area_de`: „Hofuf, Al-Rifaa-Nord-Viertel“ – parallel zum freigegebenen „Hofuf, Al-Rifaa-Viertel“ in `qaisariyah.md`. Die Lesart „das nördliche Viertel von Al-Rifaa“ ist kein Fehllesen, sondern sachlich richtig (es gibt Al-Rifaa Nord und Al-Rifaa Süd). Dieselbe Ortsangabe trägt `src/content/dining/sharq-alqaisariah.md` → `area_en: \"North Al-Rifaa — Hofuf\"`; eine deutsche Fassung der Gastronomieseiten existiert noch nicht, dieser Eintrag ist beim Nachziehen zu verwenden.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "South Al-Rifaa District",
+      "de": "das Al-Rifaa-Süd-Viertel",
+      "artikel": "das",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/women-souq.md` → `area_en: \"Hofuf, South Al-Rifaa district\"`, arabische Autorität «الهفوف، حي الرفعة الجنوبية». Deutsche Form wie beim Schwestereintrag „North Al-Rifaa District → das Al-Rifaa-Nord-Viertel“. Genus nach Duden: „das Viertel“.",
+      "note": "`women-souq.md` trägt keinen `district:`-Schlüssel, `src/data/districts.ts` kennt `rafah-north`, aber kein `rafah-south` – dieser Eintrag begründet also keine neue Bezirkszuordnung, sondern nur die deutsche Schreibung der Ortsangabe. Gebrauch: „im Al-Rifaa-Süd-Viertel von Hofuf“.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "the old Suwaiq market area (منطقة سوق السويق القديمة)",
+      "de": "das alte Marktviertel Suwaiq",
+      "artikel": "das",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/women-souq.md` → `body_en` („at the heart of the old Suwaiq market area\"), `answer_en`, `faq[1].a_en`; arabische Autorität «وسط منطقة سوق السويق القديمة». Umschrift nach `_meta.naming_policy.default`; Genus nach Duden über den Gattungsbegriff „das Viertel“.",
+      "note": "Getrenntschreibung („Marktviertel Suwaiq“), **nicht** Durchkopplung: Der Gattungsname ist nicht Teil des Namens – dieselbe Begründung wie beim freigegebenen Eintrag „Al-Kilabiyah (village)“ („Dorf Al-Kilabiyah“). „Marktviertel“ statt „Marktgebiet“, weil das Deutsche für einen zusammenhängenden Handelsbereich in der Altstadt „Viertel“ sagt; der Zusatz „alt“ steht in beiden Quellen. Achtung: Der Name des Viertels (Suwaiq) und der Name des Souks (Frauen-Souk) stehen im selben Satz – keine Zusammenziehung zu „Suwaiq-Souk“.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "Sharq Restaurant (مطعم شرق)",
+      "de": "das Sharq-Restaurant",
+      "artikel": "das",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/dining/sharq-alqaisariah.md` → `name_en: \"Sharq Restaurant\"`; `src/content/attractions/hamidiyah-souq.md` → `summary_en`/`body_en`/`answer_en`/`practical[0].value_en`, arabische Autorität «مطعم شرق». Deutsche Form nach `_meta.naming_policy.durchkopplung` (Eigenname + Gattungsname). Genus nach Duden: „das Restaurant“.",
+      "note": "Gebrauch: „im Gebäude ist das Sharq-Restaurant untergebracht“. Der Dateiname der Gastronomieseite lautet `sharq-alqaisariah`, der geführte Name aber „Sharq Restaurant“ – für die deutsche Fassung gilt der Name, nicht der Slug. **Kein Link** im `body_de`: Die arabische Fassung verlinkt «مطعم شرق» auf `/مطاعم-ومقاهي/مطعم-شرق/`, `body_en`/`body_zh`/`body_ru` verlinken nicht, und eine deutsche Gastronomieseite ist nicht gebaut (`check-links` würde ein Ziel ins Leere melden).",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "King Abdulaziz Road (طريق الملك عبدالعزيز)",
+      "de": "die König-Abdulaziz-Straße",
+      "artikel": "die",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/hamidiyah-souq.md` → `body_en`/`answer_en`/`faq[1].a_en` und `women-souq.md` → `body_en`/`faq[1].a_en`; arabische Autorität «طريق الملك عبدالعزيز». Deutsche Form aus dem freigegebenen Eintrag „King Abdulaziz → König Abdulaziz“ (Judge 2026-09-10) plus `_meta.naming_policy.durchkopplung` (mehrgliedrige Straßennamen werden im Deutschen vollständig durchgekoppelt). Genus nach Duden: „die Straße“. Web-Verifikation Stage 4 (2026-09-11, WebSearch): deutschsprachiges Reisematerial führt die übersetzte Form „König-Abdulaziz-Straße“ neben der englischen.",
+      "note": "**Löst die von Stage 1 notierte Abwägung auf: Der Straßenname wird übersetzt.** Ausschlaggebend ist die projekteigene Regel, nicht der Geschmack: `_meta.style_rules.titel_regel` besagt, die deutsche Fassung übersetze den Gattungsnamen dort, wo die englische ihn übersetzt — und die englische Fassung hat hier BEIDE Glieder übersetzt (طريق ⇒ Road, الملك ⇒ King), es liegt also keine Umschrift vor, die nach `naming_policy.default` zu erhalten wäre. Dazu: der Personenname ist mit „König Abdulaziz“ bereits freigegeben, eine Mischform „King-Abdulaziz-Straße“ widerspräche dem Eintrag; zh (阿卜杜勒阿齐兹国王路) und ru («дорога короля Абдул-Азиза») übersetzen beide vollständig und OHNE lateinische Glosse. **Gegenbeleg ausdrücklich protokolliert:** Deutschsprachige Reiseführer behalten saudische Straßennamen oft englisch bei (de.wikivoyage.org/wiki/Riad nennt „King Abdullah Road“; die deutschen rome2rio-Seiten „King Abdulaziz Rd“). Daraus folgt für diese Charge NICHTS: Eine einmalige lateinische Glosse zur Orientierung vor Ort wäre ein Element, das keine der vier Sprachfassungen trägt, und damit eine Eigentümerentscheidung, keine Chargenentscheidung. **Keine Textänderung**: vier Vorkommen in zwei Seiten, alle bereits in dieser Form. Kein Zusatz „Ibn Saud“, keine Regierungsdaten — Verbot aus dem Eintrag „King Abdulaziz“ gilt fort.",
+      "stage": "4 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 4 (الدورة 1)"
+    },
+    {
+      "en": "Imam Saud bin Abdulaziz (الإمام سعود بن عبدالعزيز)",
+      "de": "Imam Saud bin Abdulaziz",
+      "artikel": "der (der Imam)",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/khuzam.md` → `body_en` („by Imam Saud bin Abdulaziz, third imam of the First Saudi State\"); arabische Autorität «الإمام سعود بن عبدالعزيز، ثالث أئمة الدولة السعودية الأولى». Muster „deutscher Titel + Website-Umschrift“ wie bei den freigegebenen Einträgen „König Abdulaziz“ und „Scheich Abdulrahman bin Omar Al-Mulla“. Genus nach Duden: „der Imam“.",
+      "note": "Gebrauch: „Imam Saud bin Abdulaziz, der dritte Imam des ersten saudischen Staates“ – Name unflektiert in allen Kasus, Titel „Imam“ ohne Artikel vorangestellt (Duden-Muster für Titel + Eigenname). **Nicht** mit „König Abdulaziz“ (1913, Bayt Al-Bay'ah) verwechseln: andere Person, anderes Jahrhundert; der Zusatz „bin Abdulaziz“ ist Teil des Namens und darf nicht gekürzt werden. Keine Regierungsdaten, keine Wertung – steht in keiner Quelle. Web-Verifikation in dieser Umgebung gesperrt (de.wikipedia, unesco.de/at).",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "First Saudi State (الدولة السعودية الأولى)",
+      "de": "der erste saudische Staat",
+      "artikel": "der",
+      "source": "Web-Verifikation Stage 4 (2026-09-11, WebSearch; unesco.de, unesco.at, de.wikipedia.org und duden.de sind in dieser Umgebung für den Abruf gesperrt, Suchindex-Auszüge sind nach termbase.json `_meta.source_caveat` zulässig): Der Artikel „Geschichte Saudi-Arabiens“ auf de.wikipedia.org führt die Fügung im laufenden Text zweimal KLEIN — „Der erste saudische Staat, auch das ‚Emirat von Naǧd‘ genannt, wurde unter Muḥammad Ibn Saʿūd … 1744 ausgerufen“ und „womit der erste saudische Staat endete“. Belegstelle der Charge: `src/content/attractions/khuzam.md` → `summary_en: \"A First Saudi State fort …\"` und `body_en`; arabische Autorität «الدولة السعودية الأولى». Genus nach Duden: „der Staat“.",
+      "note": "**Löst den Vorbehalt des Stage-1-Eintrags auf; der Eintrag galt bis hierher als „بانتظار تحقق الويب — المرحلة 4“.** Stage 1 hatte die Kleinschreibung gewählt, weil sie in beiden Lesarten (Eigenname / beschreibende Fügung) orthografisch zulässig ist, die Großschreibung dagegen nur in einer. Die Prüfung bestätigt die Wahl nun positiv: Im deutschen Fließtext ist die Fügung klein belegt. Das Lemma „Erster Saudi-Staat“ ist eine ANDERE Form (Durchkopplung `Saudi-Staat`), und das große E dort ist Lemma-/Satzanfang — es begründet keine Großschreibung von „erste saudische“ im Satzinneren. **Keine Textänderung**: `khuzam.summary_de` und `khuzam.body_de` tragen die Fügung bereits klein. Nicht zu übernehmen sind die dort gefundenen Zusatzangaben (Gründungsjahr 1744, „Emirat von Naǧd“, Ende 1818) — sie stehen in keiner Quelle dieser Seite und sind durch den Faktenzaun ausgeschlossen.",
+      "stage": "4 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 4 (الدورة 1)"
+    },
+    {
+      "en": "majlis (مجلس — reception hall in a fort)",
+      "de": "der Madschlis (Empfangsraum)",
+      "artikel": "der",
+      "source": "Web-Verifikation Stage 4 (2026-09-11, WebSearch): (1) Umschrift — de.wikipedia.org führt das Lemma „Madschlis“ genau in dieser Schreibung („Madschlis, arabisch مجلس, DMG maǧlis, auch Majlis“); de.wikipedia ist Quelle Nr. 3 in termbase.json `_meta.sources_priority`. (2) Genus maskulin, belegt in deutschsprachiger Presse: trtdeutsch.com, Titel „**Der** Madschlis – ein zentrales Forum der aserbaidschanischen Kultur“. (3) Bedeutung der Glosse: de.wikipedia definiert „(Raum der) Zusammenkunft“ und „ein Privatzimmer, in dem die Familie Gäste bewirtet“. Belegstelle der Charge: `src/content/attractions/khuzam.md` → `body_en` („a mosque, a majlis, a well and stables“); arabische Autorität «ومسجداً ومجلساً وبئراً». duden.de selbst war nicht abrufbar; `_meta.sources_priority` lässt Quelle 3 genügen.",
+      "note": "**Löst den Vorbehalt des Stage-1-Eintrags auf** („Web-Verifikation der Duden-Schreibung steht aus — المرحلة 4“). Beide offenen Fragen sind beantwortet: die deutsche Umschrift „Madschlis“ ist belegt (die Alternative „Majlis“ der englischen Fassung entfällt, sie stünde gegen das dsch/sch-Muster aller übrigen arabischen Lehnwörter der termbase — „der Bischt“, „der Tanur“, „Dschumada“, „der Zari-Faden“), und das Genus ist maskulin wie angenommen. **Keine Textänderung**: `khuzam.body_de` trägt bereits „ein Madschlis (Empfangsraum)“, einmal, im Fließtext, nicht im Titel. Zur Glosse: Sie steht NICHT wörtlich in der englischen Quelle dieser Seite und ist daher im Faktenzaun (`stage4-changes.md` ب.3) eigens ausgewiesen und gehalten — sie ist eine lexikalische Erläuterung nach `_meta.style_rules.gloss_regel`, keine Tatsachenbehauptung über den Ort, und ru («меджлис (приёмный зал)») und zh (会客厅) fassen مجلس an derselben Stelle ebenso. Die Bedeutung „Parlament“, die Madschlis ebenfalls hat, wird durch die Glosse und den Kontext (Innenhof, Moschee, Brunnen, Ställe) ausgeschlossen.",
+      "stage": "4 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 4 (الدورة 1)"
+    },
+    {
+      "en": "aqit (dried yoghurt — الإقط)",
+      "de": "das Aqit (getrockneter Joghurt)",
+      "artikel": "das (Regelgenus, nicht extern belegt)",
+      "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/women-souq.md` → `body_en` („selling clothes, ghee, aqit (dried yoghurt) and more“) und `faq[4].a_en`; arabische Autorität «الملابس والسمن والإقط». Die Glosse „getrockneter Joghurt“ steht in der Quelle selbst, ist also keine Zutat. Genus: deutsche Regel für nicht assimilierte Lehnwörter ohne erkennbares Genusmuster (sächlich) — **kein externer Beleg**.",
+      "note": "**Der Vorbehalt des Stage-1-Eintrags BLEIBT bestehen; er ist in Stage 4 geprüft und konnte nicht aufgelöst werden.** Zwei Websuchen (2026-09-11): Das Deutsche kennt „Aqit“/„Iqt“ nicht. Dasselbe Erzeugnis erscheint im Deutschen unter anderen regionalen Namen — „Kaschk“/„Kashk“ (persisch-levantinisch), „Jameed“ (jordanisch), „Qurut“/„Kurt“ — oder rein beschreibend als „getrocknete Joghurtmasse“; für die Golf-Form gibt es keinen Genusbeleg, und die gefundenen Verwandten schwanken selbst zwischen „der“ und „das“. Das eingetragene „das“ ist daher **regelabgeleitet, nicht bezeugt**, und ist bei der ersten belegten Verwendung zu überprüfen. **Risiko ist inhaltlich eingeschlossen und damit publikationsneutral:** Das Wort steht auf der Seite an BEIDEN Stellen artikellos (Aufzählung: „Kleidung, Butterschmalz, Aqit (getrockneter Joghurt) und anderes mehr“ · „Kleidung, Butterschmalz, Aqit und anderes mehr“), mechanisch nachgeprüft — kein einziges Zeichen der /de/-Fassung hängt an diesem Genus. Der Eintrag gilt für spätere Küchen- und Speisenseiten, die den Artikel brauchen würden; dort ist er vor Gebrauch zu belegen. Glosse weiterhin nur einmal, im `body_de`, NICHT in `faq[4].a_de` (`gloss_regel` + Judge-Präzedenz „Hasawi bisht“) — mechanisch bestätigt.",
+      "stage": "4 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 4 (الدورة 1)"
+    },
+    {
+      "en": "ghee (السمن)",
+      "de": "das Butterschmalz",
+      "artikel": "das",
+      "source": "`src/content/attractions/women-souq.md` → `body_en`/`faq[4].a_en` („ghee\"); arabische Autorität «السمن». Deutscher Produktname nach Duden; ru bestätigt die Lesart mit «топлёное масло» (= Butterschmalz), zh mit 酥油.",
+      "note": "Kein Lehnwort „Ghee“ im deutschen Text: Duden führt zwar „das Ghee“, doch „Butterschmalz“ ist die gebräuchliche deutsche Bezeichnung desselben Erzeugnisses und braucht keine Glosse – das spart auf einer Seite mit „Aqit (getrockneter Joghurt)“ die zweite Klammer. Kein Eigenname, aber als Warenbegriff eingetragen, damit Speisen- und Marktseiten nicht auseinanderlaufen.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "zimam (الزمام — the rein by which camels are led)",
+      "de": "„Zimam“ (der Zügel)",
+      "artikel": "der (der Zügel)",
+      "source": "`src/content/attractions/khuzam.md` → `body_en` („its name derives from the 'zimam', the rein by which camels are led\"); arabische Autorität «واسمه من «الزمام» الذي تُقاد به الإبل». Die Übersetzung „Zügel“ folgt der Quelle („rein\"), nicht einer eigenen Wortwahl; ru bestätigt sie mit «повод».",
+      "note": "Wird **als zitiertes arabisches Wort** gebraucht, in deutschen Anführungszeichen und regiert von „das Wort“: „geht auf das arabische Wort „Zimam“ zurück, den Zügel, an dem Kamele geführt werden“. Kein eigener Artikel im Satz, das eingetragene Genus gilt der Bedeutung („der Zügel“). Nicht durchkoppeln, nicht zum Namensbestandteil machen: Der Name der Festung ist „Khuzam“, „Zimam“ ist nur die etymologische Herleitung der Quelle. Keine Verschärfung der Aussage – die Quelle sagt „a sign of its command over the region“, nicht mehr.",
+      "stage": "1 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 1 (الدورة 1)"
+    },
+    {
+      "en": "souq (generic) — Nachtrag zur Glossenvorschrift",
+      "de": "der Souk",
+      "artikel": "der",
+      "source": "Mechanischer Bestandsbefund Stage 4 (2026-09-11) über alle elf freigegebenen deutschen Attraktionsseiten in `src/content/attractions/*.md`: Das Muster „Souk (…)“ kommt **null mal** vor — auch nicht in den beiden Souk-Seiten `qaisariyah.md` (Freigabe 93/100) und `craftsmen-souq.md` (Freigabe 94/100), die „Souk“ durchgehend unglossiert führen. Die Schreibung „Souk“ selbst bleibt unverändert bindend (Entscheid Ayad 2026-09-04, Prüfung C18).",
+      "note": "**Änderungsvorschlag an die bestehende `note` dieses Eintrags, zur Entscheidung durch den Judge / den Eigentümer — keine einseitige Änderung durch diese Charge.** Die geltende Note verlangt „أول ذكر في الصفحة يُگلَس: «Souk (traditioneller Markt)»“. Diese Vorschrift ist von der freigegebenen Praxis ausnahmslos NICHT befolgt worden (0 von 11 Seiten). In `hamidiyah-souq` kommt ein sachlicher Grund hinzu, der in `stage4-changes.md` د.4 entschieden wurde: Die Seite sagt durchgehend, das Gebäude sei KEIN Souk mehr — eine Glosse „(traditioneller Markt)“ bei der Erstnennung schriebe ihm genau die Eigenschaft zu, die die Seite bestreitet; und der Sinn wird zwei Sätze später mit dem Wortlaut der Quelle selbst geliefert („Der Betrieb als traditioneller Markt ist eingestellt“), was der Judge-Präzedenz im Eintrag „Hasawi bisht“ entspricht („keine zweite Klammer, wenn die Apposition der Quelle die Erklärung schon liefert“). Vorschlag: die Glossenpflicht für „Souk“ aus der Note streichen oder auf „bei Bedarf“ herabstufen. Solange das nicht geschieht, steht im Glossar eine Vorschrift, gegen die jede freigegebene Seite verstößt, ohne dass ein Build oder eine Prüfung fällt.",
+      "stage": "4 (الدورة 1)",
+      "added": "2026-09-11",
+      "origin": "المرحلة 4 (الدورة 1)"
+    },
+    {
+      "en": "heritage village (قرية تراثية — attraction descriptor)",
+      "de": "das Kulturerbe-Dorf",
+      "artikel": "das",
+      "source": "مركّبٌ جنسيّ شفّاف (Kultur + Erbe + Dorf)؛ الجنس من رأس المركّب `das Dorf` بلا اجتهاد. والوصفُ نفسه موثّقٌ في مدخل المعجم القائم لـ«Land of Civilisations» نصّاً: «صفحة الموقع نفسها توثّقه: قرية تراثية ومعرض».",
+      "note": "**مدخلٌ جديد على المعتمد كلّه**: `Kulturerbe` = 0 وروداً في `src/` قبل هذه الدفعة (فحصٌ آليّ)، والذاكرة تعطي «heritage» ⇐ `historisch` (heritage heart/district/building) أو `traditionell` (heritage market/pottery house) في ستة أزواج معتمدة. **فلماذا الخروج عن المطّرد هنا وحده**: الحاكم استبعد `Traditionelles Dorf` صراحةً بعيبٍ وقائعيّ (تُقرأ قريةً قديمةً مأهولة، والموقع قريةٌ تراثية **ومعرض**)، و`historisches Dorf` تُدخل واقعةَ قِدَمٍ وتصطدم بلصيقة `Historische Stätte` في ثلاث صفحات. والمركّبُ السابق وحده يُغلق مدى المحدِّد على القرية دون المعرض — وهو **عينُ بنية الفيصل** («[قرية تراثية] ومعرض»، والمعرضُ بلا نعت). **ولا دعوى إدراجٍ رسميّ**: `Welt-` = 0 في الصفحة، والمحجوز في المعجم `UNESCO-Welterbe`/`-Welterbestätte`، وترويسة `ardh-alhadarat.md` بلا مفتاح `unesco`. والشرطةُ جائزةٌ بقاعدة Duden في توضيح المركّبات، وعلى عادة الموقع (`Souk-Gebäude` · `Handwerker-Souk`). **نقطةُ رصدٍ مرفوعة للقارئ الأعمى**: أتُقرأ تصنيفاً وصفياً لا دعوى إدراج؟ — والاعتماد معلَّقٌ على جوابه.",
+      "origin": "المرحلة 4 (الدورة 2)"
+    },
+    {
+      "en": "heritage <building> (مبنى تراثي — in building names and descriptors)",
+      "de": "das historische <Gebäude> · das historische Souk-Gebäude",
+      "artikel": "das",
+      "source": "الذاكرة المعتمدة: «whose historic building» ⇐ «deren historisches Gebäude» (`48-hours-itinerary`) · «the cluster of heritage souq buildings» ⇐ «des Ensembles historischer Souk-Gebäude» (`hamidiyah-souq.body_de`، الدفعة نفسها) · ولصائقُ «معلم تراثي/تاريخي» ⇐ `Historische Stätte` في `ameeriah` و`baiah` و`sahood`.",
+      "note": "**حسمٌ موضعيّ لا قاعدةٌ عامّة، ومعلَّقٌ على POL-DE-11.** أدخلتُه لأن غيابه كلّف حقلاً في هذه اللفّة: لفّةُ التصحيح حذفت الوصف من `hamidiyah.summary_de` (`Das historische Souk-Gebäude` ⟵ `Das Souk-Gebäude`) تفادياً لتلاصق `historisch`، فخسرت عنصر مصدرٍ («مبنى السوق **التراثي**» · «**The heritage** souq building») من الحقل الذي هو `<meta name=\"description\">` الألمانية (`DetailView.astro:39`)، **وشقّت العبارة الإنجليزية الواحدة** بين متنٍ يقول `historischer Souk-Gebäude` ونبذةٍ تقول لا شيء. فرُدّ الوصف. **والقيد**: `traditionell` **لا تصلح بديلاً على هذه الصفحة** لأن متنها يعطي «سوقاً شعبياً» ⇐ `traditioneller Markt`، فيلتقي «شعبي» بـ«تراثي» — وهي علّةُ POL-DE-11 بعينها. **وثمنُ الحسم مسجَّل**: تلاصقُ `historische … historischen` على بُعد سبع كلمات في النبذة، مقبولٌ لأن متن الصفحة المعتمَد يحمل اللفظ ثلاث مرات في ثلاث جملٍ متعاقبة، ولأن «العيب الوقائعي يُقدَّم على التحفّظ الأسلوبي» (سياج F1). **ويسقط هذا المدخل أو يُعاد صوغه متى حُسم معجم «تراثي/تاريخي/شعبي»** — وهو ما يجعل حسمَها قبل الدفعة 3 شرطاً لا تحسيناً.",
+      "origin": "المرحلة 4 (الدورة 2)"
+    },
+    {
+      "en": "to showcase / to trace (the region's) stages of civilisation — «تستعرض مراحل الحضارة»",
+      "de": "zeigen (‏die Kulturepochen zeigen) — **nicht** nachzeichnen",
+      "artikel": "—",
+      "source": "‏DWDS، مدخل «nachzeichnen»: قائمةُ التركيبات النمطية (‏typische Verbindungen) تعطي Entstehungsgeschichte · Entwicklung · Entwicklungslinie · Lebensgeschichte · Lebenslauf · Lebensstation · Lebensweg · Leidensweg · Werdegang — **وكلُّها مسارٌ أو مجرىً متّصل، و`Epoche(n)` غائبةٌ عنها**؛ وتعريفُ المعنى المجازيّ فيه «eine Erinnerung beschreiben oder **eine Entwicklung** schildern». (‏`dwds.de` محجوبٌ عن الجلب المباشر في بيئة التنفيذ — `EGRESS_BLOCKED` — والسندُ من فهرس البحث لنصّ المدخل نفسه: https://www.dwds.de/wb/nachzeichnen ، ومعه https://de.wiktionary.org/wiki/nachzeichnen و https://www.verbformen.de/konjugation/beispiele/nachzeichnen.htm ). وشاهدُ استعمالٍ متحفيّ لـ`Kulturepochen` مسنَدةً إلى العرض: Knauf-Museum Iphofen، «Reliefsammlung der großen Kulturepochen».",
+      "note": "**العلّة**: عبارةُ المصدر الواحدة («tracing the region's stages of civilisation» في `body_en` وفي `faq[2].a_en` حرفاً، و«showcasing» في `summary_en`؛ والفيصل «تستعرض» في الثلاثة) صيغَت ألمانياً بفعلين فولّدت الأمر G2. **الحسم**: فعلٌ ألمانيّ واحد — `zeigen` — في كلّ حقلٍ يحمل العبارة. **وعلّةُ ترجيحه على `nachzeichnen` معجميةٌ لا ذوقية**: `nachzeichnen` يقترن بالمجرى المتّصل لا بالوحدات المنفصلة، و`Epoche` أصلُها «Einschnitt» (قَطْع) فهي وحداتٌ مفصولة؛ وبحثُ الشاهد المضادّ («Epochen nachgezeichnet» / «die Epochen nachzuzeichnen») أعطى صفراً. و`zeigen` فعلُ المعرض القياسيّ (‏«eine Ausstellung zeigt …»). **و`Kulturepochen` باقيةٌ بحالها** — الاسمُ خارج أمر الحاكم، واختيارُ `zeigen` يُصلح اقترانَه دون أن يمسّه. **قاعدةٌ عامّة مستخرَجة** (وهي الدرس المضاف في POL-DE-9): حين يحمل حقلان أو أكثر **عبارةَ المصدر نفسها حرفاً**، تُوحَّد الصيغةُ الألمانية بينها، ولا يتجاوز عددُ الصيغ الألمانية عددَ الصيغ في المصدر. **وقياسٌ مضادّ مسجَّل لا ناقض**: الروسية المعتمدة (‏90) على الصفحة نفسها توحّد في الاتجاه الآخر (прослеживают في المتن والجواب · показаны في النبذة) — والطريقان يُرضيان الأمر، والعلّةُ الألمانية (الاقتران) لا تنتقل من الروسية.",
+      "added": "2026-09-11",
+      "stage": "4 (الدورة 3)",
+      "origin": "المرحلة 4 (الدورة 3)"
+    }
+  ]
+}

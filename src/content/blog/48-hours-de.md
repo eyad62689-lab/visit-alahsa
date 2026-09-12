@@ -27,17 +27,17 @@ Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (
 
 ### Vormittag: Das Al-Koot-Viertel und das Gedächtnis der Stadt
 
-Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/en/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1789 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient.
+Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1789 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient.
 
 ### Abend: Der Qaisariyah-Souk
 
-Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/en/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Der Abend ist seine beste Zeit, wenn die Geschäfte ihre Türen öffnen und der Souk zu pulsieren beginnt. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/en/restaurants-cafes/).
+Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Der Abend ist seine beste Zeit, wenn die Geschäfte ihre Türen öffnen und der Souk zu pulsieren beginnt. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/en/restaurants-cafes/).
 
 ## Tag 2: Wasser, Grün und Küste
 
 ### Früher Morgen: Jabal al-Qarah und Dougha Al-Gharash
 
-Fahren Sie von Hofuf aus nach Osten zum [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (dem Qarah-Berg), dem geologischen Wunder im Herzen der Oase, dessen Höhlen von der Zeit gemeißelt wurden: im Sommer kühl, im Winter warm. Der frühe Morgen ist seine beste Zeit: Dann ist das Licht weich und die Hitze mild. Am Fuß des Berges, im Dorf Al-Qarah, machen Sie Halt bei [Dougha Al-Gharash](/en/attractions/duqat-algharash/), dem traditionellen Töpferhaus, das die Familie Al-Gharash über Generationen weitergegeben hat und das zu den bekanntesten Stätten dieses Handwerks in Saudi-Arabien zählt.
+Fahren Sie von Hofuf aus nach Osten zum [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (dem Qarah-Berg), dem geologischen Wunder im Herzen der Oase, dessen Höhlen von der Zeit gemeißelt wurden: im Sommer kühl, im Winter warm. Der frühe Morgen ist seine beste Zeit: Dann ist das Licht weich und die Hitze mild. Am Fuß des Berges, im Dorf Al-Qarah, machen Sie Halt bei [Dougha Al-Gharash](/de/attractions/duqat-algharash/), dem traditionellen Töpferhaus, das die Familie Al-Gharash über Generationen weitergegeben hat und das zu den bekanntesten Stätten dieses Handwerks in Saudi-Arabien zählt.
 
 ### Mittag: Die Jawatha-Moschee
 
@@ -45,7 +45,7 @@ Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/att
 
 ### Nachmittag: Das Grün der Farmen
 
-Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der Nachmittag der [Hasawi-Limettenfarm](/en/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/en/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
+Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der Nachmittag der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/en/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
 
 ### Sonnenuntergang: Al-Uqair
 

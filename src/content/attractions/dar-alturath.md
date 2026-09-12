@@ -7,6 +7,12 @@ kicker_zh: 私人博物馆
 summary_zh: "一座按哈萨旧式风格建造的宅院，坐落在曼苏拉的农田之间，收藏着珍稀的传统文物与历史器物。"
 body_zh: "遗产之家（Dar Al-Turath）坐落在绿洲东部曼苏拉镇的椰枣园之间，是一座按哈萨旧式建筑风格建造的私人博物馆。创办人贾法尔·哈瓦希尔承袭家族收藏文物的传统，前后花了 25 年多的时间，从哈萨内外搜罗藏品。宅院经改造升级后，于 2017 年 5 月以新面貌揭幕。馆藏有各类珍稀的传统文物与历史器物：手稿、钱币、老照片、炊具和阿拉伯咖啡壶，还有刀剑、军用头盔等兵器，其中一些已有 300 多年历史；此外还有动物化石。这座掩映在绿荫中的本地旧式宅院，本身就是展览的一部分。"
 area_zh: 曼苏拉镇——绿洲东部
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-3 بدرجة 91/100 (2026-09-11، الدورة 1 من 3)
+title_de: "Dar Al-Turath"
+kicker_de: "Privatmuseum"
+summary_de: "Ein Haus im alten Baustil Al-Ahsas zwischen den Farmen von Al-Mansurah: Es bewahrt seltene Objekte des Kulturerbes und historische Stücke."
+body_de: "Zwischen den Palmenfarmen von Al-Mansurah, östlich der Oase, steht Dar Al-Turath (das Kulturerbe-Haus), ein Privatmuseum im alten Baustil Al-Ahsas. Sein Gründer Jafar Al-Khawaher trug die Sammlung über mehr als 25 Jahre zusammen, aus Al-Ahsa selbst wie von außerhalb, und setzte damit eine Familientradition fort, die dem Kulturerbe gilt. Im Mai 2017 wurde das Haus in seiner weiterentwickelten Form eingeweiht. Zu den Beständen zählen seltene Objekte des Kulturerbes und historische Stücke: Handschriften, Münzen, alte Fotografien, Kochgefäße und Kaffeekannen sowie Waffen, darunter Schwerter und Militärhelme, von denen einige mehr als 300 Jahre alt sind. Dazu kommen versteinerte Tiere. Das Gebäude selbst, im alten örtlichen Stil und mitten im Grün, gehört zur Ausstellung."
+area_de: "Al-Mansurah – östlich der Oase"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 9 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Дар ат-Турас"
 kicker_ru: "Частный музей"

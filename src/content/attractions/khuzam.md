@@ -7,6 +7,12 @@ kicker_zh: 历史地标
 summary_zh: 位于胡富夫西缘的第一沙特王国要塞，是世界遗产“哈萨绿洲，变迁的文化景观”十二处组成部分之一。
 body_zh: "在胡富夫西部马兹鲁伊亚区的边缘，矗立着胡扎姆宫——虽名为“宫”，实为一座要塞。它由第一沙特王国第三任伊玛目沙特·本·阿卜杜勒阿齐兹建于伊斯兰历 1220 年（公元 1805 年），是守卫哈萨的一系列防御工事之一，扼守绿洲西侧的通路；其名源自阿拉伯语中的“zimam”一词，即牵引骆驼的缰绳，寓意它对这片地区的掌控。要塞平面呈矩形，围墙约 70×80 米，四周设六座塔楼，塔身多呈锥形；墙内是一座开阔的庭院，还有清真寺、会客厅、水井与马厩。后来，这里也成为管理部落事务、调解水源纠纷的所在。修复完成后，要塞于 2017 年对访客开放；2018 年，它随“哈萨绿洲，变迁的文化景观”列入联合国教科文组织世界遗产名录，成为十二处组成部分之一。"
 area_zh: 马兹鲁伊亚区——胡富夫以西
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-2 بدرجة 91/100 (2026-09-11، الدورة 3 من 3)
+title_de: "Khuzam-Palast"
+kicker_de: "Historische Stätte"
+summary_de: "Eine Festung des ersten saudischen Staates am Westrand von Hofuf und Bestandteil der UNESCO-Welterbestätte Oase Al-Ahsa."
+body_de: "Am Rand des Al-Mazrouiyah-Viertels im Westen von Hofuf steht der Khuzam-Palast (Qasr Khuzam), eine Festung aus dem Jahr 1220 nach der Hidschra (1805 n. Chr.). Imam Saud bin Abdulaziz, der dritte Imam des ersten saudischen Staates, erbaute sie als Teil einer Kette von Festungen, die Al-Ahsa schützten und die Zugänge im Westen bewachten. Der Name Khuzam geht auf das arabische Wort „Zimam“ zurück, den Zügel, an dem Kamele geführt werden – ein Zeichen für die Kontrolle der Festung über die Region. Die rechteckige Mauer misst rund 70 mal 80 Meter und wird von sechs überwiegend kegelförmigen Türmen gesichert. Innerhalb der Mauer liegen ein offener Innenhof, eine Moschee, ein Madschlis (Empfangsraum), ein Brunnen und Ställe. Später diente die Festung als Sitz für die Verwaltung der Stammesangelegenheiten und die Schlichtung von Streitigkeiten über Wasserquellen. Restauriert und 2017 für Besucher geöffnet, ist sie heute einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die 2018 in die Welterbeliste der UNESCO aufgenommen wurde."
+area_de: "Al-Mazrouiyah-Viertel – westlich von Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 2 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Дворец Хузам"
 kicker_ru: "Историческая достопримечательность"

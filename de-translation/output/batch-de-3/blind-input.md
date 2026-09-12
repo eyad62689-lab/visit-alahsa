@@ -1,0 +1,105 @@
+# Abdulrazaq-Al-Arab-Museum
+
+Ein Privatmuseum in Hofuf, bekannt für seine seltene Sammlung alter saudischer Schullehrpläne.
+
+**Lage:** Hofuf – Al-Ahsa
+
+In Hofuf liegt das Museum von Abdulrazaq Al-Arab, ein Privatmuseum, das Zeugnisse der Volkskultur Al-Ahsas versammelt. Bekannt ist es vor allem für seinen dokumentierten Schwerpunkt: die Geschichte des Bildungswesens in Saudi-Arabien, mit einer seltenen Sammlung der frühesten Schullehrpläne und der ersten Lehrmittel des Königreichs. Seine Bestände fanden auch offizielle Beachtung: 2019 startete das Al-Ahsa-Büro der Kommission für Tourismus und Nationalerbe im Museum selbst ein Projekt zur elektronischen Archivierung, bei dem in rund 750 Arbeitsstunden mehr als 150 alte Lehrpläne digitalisiert wurden. Neben der Sammlung zum Bildungswesen zeigt das Museum Stücke der örtlichen Volkskultur. Wer den Anfängen des Lernens im Königreich nachgehen möchte, findet hier eine besondere Station.
+
+
+---
+
+# Al-Ahsa-Hausmuseum
+
+Das „Naathel“-Museum – ein altes Wohnhaus Al-Ahsas mit Empfangsräumen, Küche und Brautzimmer, von Sulaiman Al-Majed gegründet.
+
+**Lage:** Hofuf – Al-Ahsa
+
+In Hofuf bildet das Al-Ahsa-Hausmuseum, bekannt als „Naathel“-Museum, Raum für Raum das alte Wohnhaus Al-Ahsas nach. Sulaiman bin Mohammed Al-Majed gründete es im äußeren Hof seines eigenen Hauses, auf einer Fläche von rund 180 Quadratmetern. Die Räume folgen der Ordnung des traditionellen Lebens: ein Madschlis (Empfangsraum) für Männer mit Kaffeekannen aus Al-Ahsa und Geräten zum Rösten und Mahlen des Kaffees, ein Madschlis für Frauen mit seiner alten Einrichtung, eine Küche mit steinernen Handmühlen und kupfernem Geschirr, ein Brautzimmer mit Kleidung und Schmuck sowie ein Kinderzimmer mit Spielzeug von einst. Dazu kommen Handschriften, Münzen, alte Fotografien und landwirtschaftliches Gerät. Außerdem veranstaltet das Museum Treffen und Werkstätten zum Kulturerbe und hält das alte Haus so lebendig, statt es nur auszustellen.
+
+
+---
+
+# Al-Ahsa-Museum
+
+Das offizielle Regionalmuseum: Es zeigt Geschichte und Altertümer Al-Ahsas über die Epochen hinweg.
+
+**Lage:** Hofuf – Al-Ahsa
+
+In Hofuf liegt das Al-Ahsa-Museum für Archäologie und Volkskultur, das offizielle staatliche Museum der Oase. Es wurde Anfang der 1980er-Jahre (1404 nach der Hidschra) eröffnet und steht auf einem Gelände von rund 4.000 Quadratmetern. Seine Bestände aus Archäologie und Kulturerbe erzählen die Geschichte der Region in zeitlicher Folge: von Funden der Steinzeit an archäologischen Stätten wie Ain Qannas über die Kulturen von Dilmun und Gerrha bis zu den islamischen Epochen und zum ersten und zweiten saudischen Staat. Neben dem Hauptausstellungssaal gibt es einen Empfangssaal mit Karten der archäologischen Stätten und mit historischen Fotografien Al-Ahsas aus den 1930er- und 1940er-Jahren, dazu einen Vortragssaal und eine Restaurierungsabteilung. Das Museum ist ein idealer Ausgangspunkt: Hier verstehen Sie die Tiefe der Oase, bevor Sie ihre Sehenswürdigkeiten besuchen.
+
+
+---
+
+# Dar Al-Turath
+
+Ein Haus im alten Baustil Al-Ahsas zwischen den Farmen von Al-Mansurah: Es bewahrt seltene Objekte des Kulturerbes und historische Stücke.
+
+**Lage:** Al-Mansurah – östlich der Oase
+
+Zwischen den Palmenfarmen von Al-Mansurah, östlich der Oase, steht Dar Al-Turath (das Kulturerbe-Haus), ein Privatmuseum im alten Baustil Al-Ahsas. Sein Gründer Jafar Al-Khawaher trug die Sammlung über mehr als 25 Jahre zusammen, aus Al-Ahsa selbst wie von außerhalb, und setzte damit eine Familientradition fort, die dem Kulturerbe gilt. Im Mai 2017 wurde das Haus in seiner weiterentwickelten Form eingeweiht. Zu den Beständen zählen seltene Objekte des Kulturerbes und historische Stücke: Handschriften, Münzen, alte Fotografien, Kochgefäße und Kaffeekannen sowie Waffen, darunter Schwerter und Militärhelme, von denen einige mehr als 300 Jahre alt sind. Dazu kommen versteinerte Tiere. Das Gebäude selbst, im alten örtlichen Stil und mitten im Grün, gehört zur Ausstellung.
+
+
+---
+
+# Saleh-Al-Dhafar-Museum
+
+Ein Museum zum Kulturerbe südlich von Hofuf, bekannt für seine einzigartige Sammlung zur Pfadfinderbewegung – sie gilt als die erste ihrer Art in Saudi-Arabien.
+
+**Lage:** Südlich von Hofuf – Al-Ahsa
+
+Südlich von Hofuf liegt das Museum von Saleh bin Abdullatif Al-Dhafar. Der Eigentümer dieses Privatmuseums trug die Sammlung zur Volkskultur über mehr als 35 Jahre zusammen: seltene Stücke, geordnet nach Abteilungen für Gastfreundschaft und Kaffee, Landwirtschaft und Bewässerung, Waffen, Kochgefäße sowie traditionelle Kleidung und Schmuck. Was dieses Museum auszeichnet, ist sein Pfadfindermuseum, das als das erste seiner Art in Saudi-Arabien gilt: Uniformen, Halstücher, Abzeichen, Trillerpfeifen, Kompasse, Urkunden und Dokumentarfotos zeichnen Jahrzehnte der Pfadfinderbewegung nach. Beide Sammlungen zusammen geben dem Museum ein Profil, wie es unter den Privatmuseen Al-Ahsas nur wenige haben.
+
+
+---
+
+# Al-Khalifa-Kulturerbe-Museum
+
+Ein Privatmuseum, gebaut wie ein traditioneller Souk nach dem Vorbild des Qaisariyah-Souks: Seine Exponate zum Kulturerbe zeigen die alten Berufe Al-Ahsas und den Alltag von einst.
+
+**Lage:** Nördlich von Al-Mubarraz – zwischen Al-Shu'bah und Al-Qurain
+
+Nördlich von Al-Mubarraz, zwischen den Dörfern Al-Shu'bah und Al-Qurain, liegt das Al-Khalifa-Kulturerbe-Museum, eines der bekanntesten Privatmuseen Al-Ahsas, von der Museumskommission lizenziert. Sein Gründer Hussain Ali Al-Khalifa begann damit im Garten seines Hauses im Shurufiyah-Viertel von Al-Mubarraz und trug die Sammlung über rund 20 Jahre zusammen. So fand das Museum seine heutige Gestalt: die eines traditionellen Souks nach dem Vorbild des alten Qaisariyah-Souks. Mehr als 20 kleine Läden bilden darin die historischen Berufe und Handwerke nach. Die Exponate verteilen sich auf Ecken für Waffen, Kaffeekannen und Kochgefäße, landwirtschaftliches Gerät, Kleidung und Schmuck der Frauen sowie alte Lehrmittel. Dazu kommen Abteilungen zum Wohnhaus in Al-Ahsa, zur Landwirtschaft, zum Leben in der Wüste und zum Leben der Seefahrer, eine Ecke zur Aramco-Ära und ein Madschlis (Empfangsraum), der einer Diwaniyya aus Al-Ahsa nachempfunden ist.
+
+
+---
+
+# Walid-Al-Najim-Museum
+
+Ein Privatmuseum in Al-Jafr: Seine Sammlung füllt 26 thematische Ecken, die das alte Leben in Al-Ahsa nachbilden.
+
+**Lage:** Al-Jafr – östlich von Al-Ahsa
+
+Im Ort Al-Jafr, östlich der Oase, liegt das Museum von Walid Al-Najim, eines der bedeutendsten Privatmuseen der Region: Seine Sammlung ist auf rund 400 Quadratmetern in 26 thematischen Ecken untergebracht. Das Museum ist vom Kulturministerium lizenziert. Seine Ecken bilden ganze Szenen des alten Lebens in Al-Ahsa nach: ein Lebensmittelladen von einst, ein Brautzimmer, ein historisches Klassenzimmer, ein Madschlis (Empfangsraum) für Männer und einer für Frauen, Handwerkerecken für Schmiede-, Tischler- und Goldschmiedearbeit, dazu alte saudische Münzen und Briefmarken, antike Möbel und Kleidung sowie die ersten Maschinen. Vertreter der Kommission für Tourismus und Kulturerbe haben es als Privatmuseum von bedeutendem Wert für das kulturelle Erbe gelobt.
+
+
+---
+
+# Al-Hamidiyah-Souk
+
+Das Souk-Gebäude im Zentrum von Hofuf gehört zum kulturellen Erbe der Stadt und wurde im Rahmen der Entwicklung der historischen Innenstadt wiederaufgebaut. Als Souk ist es nicht mehr in Betrieb; heute ist darin das Sharq-Restaurant untergebracht.
+
+**Lage:** Hofuf, Al-Rifaa-Nord-Viertel
+
+Der Al-Hamidiyah-Souk ist ein Gebäude im Zentrum von Hofuf, im Al-Rifaa-Nord-Viertel an der König-Abdulaziz-Straße. Er wurde im Rahmen der Entwicklung der historischen Innenstadt wiederaufgebaut, ebenso wie der Qaisariyah-Souk; dabei entstand auch der Handwerker-Souk. So wurde er im Herzen der Stadt Teil des Ensembles benachbarter Souk-Gebäude, die zum kulturellen Erbe Hofufs gehören. Heute ist er kein Souk mehr, sondern eine Sehenswürdigkeit dieses Erbes: Der Betrieb als traditioneller Markt ist eingestellt, und im Gebäude ist das Sharq-Restaurant untergebracht. Weitere Angaben zum Gebäude und zu seiner Geschichte werden noch bestätigt und erscheinen hier erst, wenn verlässliche Quellen sie belegen.
+
+## Besuchsinformationen
+
+- **Aktueller Status:** Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört – als Souk nicht mehr in Betrieb; im Gebäude ist das Sharq-Restaurant (Bestätigung durch das Redaktionsteam von Visit Al-Ahsa)
+
+## Häufige Fragen
+
+**Wird der Al-Hamidiyah-Souk heute noch als Souk betrieben?**
+
+Nein. Er ist eine Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört; der Betrieb als traditioneller Markt ist eingestellt, und in seinem Gebäude ist heute das Sharq-Restaurant untergebracht.
+
+**Wo liegt der Al-Hamidiyah-Souk?**
+
+Im Zentrum von Hofuf, im Al-Rifaa-Nord-Viertel an der König-Abdulaziz-Straße.
+
+**In welchem Verhältnis steht der Al-Hamidiyah-Souk zu den benachbarten Kulturerbe-Souks?**
+
+Er wurde im Rahmen der Entwicklung der historischen Innenstadt von Hofuf wiederaufgebaut, ebenso wie der Qaisariyah-Souk; dabei entstand auch der Handwerker-Souk.
+
+
+---

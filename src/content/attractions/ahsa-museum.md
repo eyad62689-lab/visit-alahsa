@@ -7,6 +7,12 @@ kicker_zh: 历史地标
 summary_zh: "哈萨地区的官方博物馆，呈现这片土地各个时代的历史与文物。"
 body_zh: "哈萨博物馆全称“哈萨考古与民俗遗产博物馆”（Al-Ahsa Museum for Archaeology and Folk Heritage），位于胡富夫市，是哈萨绿洲的官方博物馆，由政府开办。博物馆于 20 世纪 80 年代初（伊斯兰历 1404 年）开馆，占地约 4000 平方米。馆内的考古与文化遗产藏品按时间顺序讲述本地区的故事：从艾因卡纳斯（Ain Qannas）等遗址出土的石器时代文物开始，经迪尔蒙（Dilmun）与格拉（Gerrha）文明时期，直至伊斯兰时代的各个时期以及第一、第二沙特王国。主展厅之外还有一间接待厅，陈列着考古遗址地图和 20 世纪 30 至 40 年代的哈萨历史照片；馆内另设讲堂与文物修复部门。在游览各处地标之前，先来这里读懂这片绿洲的深厚底蕴，再合适不过。"
 area_zh: 胡富夫——哈萨
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-3 بدرجة 91/100 (2026-09-11، الدورة 1 من 3)
+title_de: "Al-Ahsa-Museum"
+kicker_de: "Historische Stätte"
+summary_de: "Das offizielle Regionalmuseum: Es zeigt Geschichte und Altertümer Al-Ahsas über die Epochen hinweg."
+body_de: "In Hofuf liegt das Al-Ahsa-Museum für Archäologie und Volkskultur, das offizielle staatliche Museum der Oase. Es wurde Anfang der 1980er-Jahre (1404 nach der Hidschra) eröffnet und steht auf einem Gelände von rund 4.000 Quadratmetern. Seine Bestände aus Archäologie und Kulturerbe erzählen die Geschichte der Region in zeitlicher Folge: von Funden der Steinzeit an archäologischen Stätten wie Ain Qannas über die Kulturen von Dilmun und Gerrha bis zu den islamischen Epochen und zum ersten und zweiten saudischen Staat. Neben dem Hauptausstellungssaal gibt es einen Empfangssaal mit Karten der archäologischen Stätten und mit historischen Fotografien Al-Ahsas aus den 1930er- und 1940er-Jahren, dazu einen Vortragssaal und eine Restaurierungsabteilung. Das Museum ist ein idealer Ausgangspunkt: Hier verstehen Sie die Tiefe der Oase, bevor Sie ihre Sehenswürdigkeiten besuchen."
+area_de: "Hofuf – Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 8 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Музей Аль-Ахсы"
 kicker_ru: "Историческая достопримечательность"

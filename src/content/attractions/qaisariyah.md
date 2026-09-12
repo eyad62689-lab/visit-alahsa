@@ -8,6 +8,13 @@ summary_zh: 可上溯 200 多年的老市集，海湾地区最古老的传统集
 body_zh: "这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；傍晚最热闹。"
 area_zh: 胡富夫，里法阿区
 bestTime_zh: 傍晚最佳：店铺陆续开门，市集也热闹起来。
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 بدرجة 93/100 (2026-09-11، الدورة 2 من 3)
+title_de: "Qaisariyah-Souk"
+kicker_de: "Traditioneller Souk"
+summary_de: "Ein traditioneller Souk, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht – einer der ältesten seiner Art und ein Ziel für Handwerk und einheimische Erzeugnisse."
+body_de: "Der Qaisariyah-Souk gehört zu den ältesten und traditionsreichsten Souks der Golfregion: Seine Geschichte reicht mehr als zwei Jahrhunderte zurück. Unverwechselbar ist seine Architektur, und die dicht an dicht stehenden Geschäfte führen Sie durch Gassen, in denen es nach Gewürzen, Kupfer und Parfüm duftet – hier schlägt das Herz des traditionellen Einkaufs in Al-Ahsa. Der Souk ist der ideale Ort, um den berühmten Hasawi-Bischt zu erwerben – den Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen. Die „Hasawi-Weberei“ zeichnet sich durch die Feinheit ihrer Handstickerei mit Zari-Fäden aus, die mit Gold oder Silber überzogen sind. Dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter. Neben dem Bischt finden Sie einheimisches Kunsthandwerk aus Palmblättern und Keramik sowie Datteln aller Sorten, Kaffee und Gewürze. Öffnungszeiten und Eintritt stehen weiter unten bei „Besuchsinformationen“; die beste Zeit ist der Abend."
+area_de: "Hofuf, Al-Rifaa-Viertel"
+bestTime_de: "Am Abend, wenn die Geschäfte ihre Türen öffnen und der Souk zu pulsieren beginnt."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 10 بدرجة 91/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Рынок Эль-Кайсария"
 kicker_ru: "Традиционный рынок"
@@ -30,8 +37,8 @@ area_en: "Hofuf, Al-Rifaa district"
 bestTime: "الفترة المسائية، حين تفتح المتاجر أبوابها ويشتدّ نبض السوق."
 bestTime_en: "The evening, when the shops open their doors and the souq comes alive."
 practical:
-  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00 (по пятницам — только вечером)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_zh: "费用", value_zh: "免费", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00 (по пятницам — только вечером)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", label_de: "Öffnungszeiten", value_de: "8:00–12:00 und 15:30–22:00 Uhr (freitags nur abends)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_zh: "费用", value_zh: "免费", label_de: "Eintritt", value_de: "Kostenlos", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 hoursSpec:
   - { days: "Sa Su Mo Tu We Th", opens: "08:00", closes: "12:00" }
   - { days: "Mo Tu We Th Fr Sa Su", opens: "15:30", closes: "22:00" }
@@ -54,6 +61,8 @@ faq:
     a_en: "8 am to 12 noon and 3:30 to 10 pm; on Fridays, evenings only."
     q_zh: "凯撒利亚集市的开放时间是几点到几点？"
     a_zh: "8:00–12:00、15:30–22:00，周五只在下午至晚间那一段营业。"
+    q_de: "Wie sind die Öffnungszeiten des Qaisariyah-Souks?"
+    a_de: "Von 8:00 bis 12:00 Uhr und von 15:30 bis 22:00 Uhr; freitags nur abends."
     q_ru: "В какие часы открыт рынок Эль-Кайсария?"
     a_ru: "С 8:00 до 12:00 и с 15:30 до 22:00; по пятницам — только вечером."
   - q: "هل دخول سوق القيصرية برسوم؟"
@@ -62,6 +71,8 @@ faq:
     a_en: "No, entry is free."
     q_zh: "去凯撒利亚集市要门票吗？"
     a_zh: "不需要。凯撒利亚集市免费入场。"
+    q_de: "Muss ich für den Qaisariyah-Souk Eintritt zahlen?"
+    a_de: "Nein, der Eintritt ist frei."
     q_ru: "Нужно ли платить за посещение рынка Эль-Кайсария?"
     a_ru: "Вход свободный."
   - q: "ماذا أشتري من سوق القيصرية؟"
@@ -70,6 +81,8 @@ faq:
     a_en: "The famous Hasawi bisht, local crafts in palm frond and pottery, dates of every variety, coffee and spices."
     q_zh: "在凯撒利亚集市能买到什么？"
     a_zh: "市集的招牌是著名的哈萨比什特长袍；此外还有棕榈叶编织、陶器一类的本地手工艺品，以及各色椰枣、咖啡与香料。"
+    q_de: "Was kann ich im Qaisariyah-Souk kaufen?"
+    a_de: "Den berühmten Hasawi-Bischt, einheimisches Kunsthandwerk aus Palmblättern und Keramik, Datteln aller Sorten, Kaffee und Gewürze."
     q_ru: "Что купить на рынке Эль-Кайсария?"
     a_ru: "Знаменитый бишт Аль-Ахсы, местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи."
   - q: "ما أفضل وقت لزيارة سوق القيصرية؟"
@@ -78,6 +91,8 @@ faq:
     a_en: "The evening, when the shops open their doors and the souq comes alive."
     q_zh: "什么时候去凯撒利亚集市最好？"
     a_zh: "傍晚最佳：店铺陆续开门，市集也热闹起来。"
+    q_de: "Wann besuche ich den Qaisariyah-Souk am besten?"
+    a_de: "Am Abend, wenn die Geschäfte ihre Türen öffnen und der Souk zu pulsieren beginnt."
     q_ru: "Когда лучше посетить рынок Эль-Кайсария?"
     a_ru: "Вечером, когда лавки открывают двери и рынок оживает."
   - q: "كم عمر سوق القيصرية؟"
@@ -86,6 +101,8 @@ faq:
     a_en: "It goes back more than two centuries, and is among the oldest and most storied souqs in the Gulf."
     q_zh: "凯撒利亚集市有多少年历史了？"
     a_zh: "已有 200 多年历史，是海湾地区最古老、最有故事的传统市集之一。"
+    q_de: "Wie alt ist der Qaisariyah-Souk?"
+    a_de: "Seine Geschichte reicht mehr als zwei Jahrhunderte zurück; er zählt zu den ältesten und traditionsreichsten Souks der Golfregion."
     q_ru: "Сколько лет рынку Эль-Кайсария?"
     a_ru: "Ему более двух веков: это один из старейших и самых прославленных рынков в регионе Залива."
 ---

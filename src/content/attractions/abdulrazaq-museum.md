@@ -7,6 +7,12 @@ kicker_zh: 私人博物馆
 summary_zh: "位于胡富夫的私人博物馆，以收藏珍稀的沙特旧时学校课本闻名。"
 body_zh: "阿卜杜勒拉扎克·阿拉卜博物馆（Abdulrazaq Al-Arab Museum）位于胡富夫，是一座汇集哈萨民俗遗产的私人博物馆，其中最为人称道的，是沙特阿拉伯教育史这一有据可查的专题收藏。馆内藏有沙特最早的学校课本和早期教学用具，是一批珍稀的藏品。这些藏品也得到官方关注：2019 年，沙特旅游与国家遗产总局哈萨办事处在馆内启动了课本电子归档项目，该项目耗时约 750 个工时，将 150 多本旧课本数字化。除教育专区之外，博物馆还陈列着各类本地民俗文物。对想追溯沙特教育起点的游客来说，这里是一处别具一格的驻足之地。"
 area_zh: 胡富夫——哈萨
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-3 بدرجة 91/100 (2026-09-11، الدورة 1 من 3)
+title_de: "Abdulrazaq-Al-Arab-Museum"
+kicker_de: "Privatmuseum"
+summary_de: "Ein Privatmuseum in Hofuf, bekannt für seine seltene Sammlung alter saudischer Schullehrpläne."
+body_de: "In Hofuf liegt das Museum von Abdulrazaq Al-Arab, ein Privatmuseum, das Zeugnisse der Volkskultur Al-Ahsas versammelt. Bekannt ist es vor allem für seinen dokumentierten Schwerpunkt: die Geschichte des Bildungswesens in Saudi-Arabien, mit einer seltenen Sammlung der frühesten Schullehrpläne und der ersten Lehrmittel des Königreichs. Seine Bestände fanden auch offizielle Beachtung: 2019 startete das Al-Ahsa-Büro der Kommission für Tourismus und Nationalerbe im Museum selbst ein Projekt zur elektronischen Archivierung, bei dem in rund 750 Arbeitsstunden mehr als 150 alte Lehrpläne digitalisiert wurden. Neben der Sammlung zum Bildungswesen zeigt das Museum Stücke der örtlichen Volkskultur. Wer den Anfängen des Lernens im Königreich nachgehen möchte, findet hier eine besondere Station."
+area_de: "Hofuf – Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 9 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Музей Абдурраззака аль-Араба"
 kicker_ru: "Частный музей"

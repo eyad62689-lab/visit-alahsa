@@ -7,6 +7,12 @@ kicker_zh: 私人博物馆
 summary_zh: "位于胡富夫以南的一座遗产博物馆，以独特的童子军收藏著称，据称在沙特阿拉伯尚属首例。"
 body_zh: "萨利赫·阿卜杜勒拉蒂夫·扎法尔博物馆（Saleh Al-Dhafar Museum）位于胡富夫以南，是一座私人博物馆。馆主用 35 年多的时间收集民俗文物，珍稀物件按“待客与咖啡”“农耕与灌溉”“兵器”“炊具”“传统服饰与首饰”等主题分区陈列。真正让它与众不同的，是馆内附设的童子军博物馆，据称是沙特阿拉伯同类博物馆中的第一座。童子军制服、领巾、徽章、哨子、指南针、证书与纪实照片，记录了童子军运动数十年的历程。有了民俗与童子军这两部分收藏，它得以跻身哈萨最具特色的私人博物馆之列。"
 area_zh: 胡富夫以南——哈萨
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-3 بدرجة 91/100 (2026-09-11، الدورة 1 من 3)
+title_de: "Saleh-Al-Dhafar-Museum"
+kicker_de: "Privatmuseum"
+summary_de: "Ein Museum zum Kulturerbe südlich von Hofuf, bekannt für seine einzigartige Sammlung zur Pfadfinderbewegung – sie gilt als die erste ihrer Art in Saudi-Arabien."
+body_de: "Südlich von Hofuf liegt das Museum von Saleh bin Abdullatif Al-Dhafar. Der Eigentümer dieses Privatmuseums trug die Sammlung zur Volkskultur über mehr als 35 Jahre zusammen: seltene Stücke, geordnet nach Abteilungen für Gastfreundschaft und Kaffee, Landwirtschaft und Bewässerung, Waffen, Kochgefäße sowie traditionelle Kleidung und Schmuck. Was dieses Museum auszeichnet, ist sein Pfadfindermuseum, das als das erste seiner Art in Saudi-Arabien gilt: Uniformen, Halstücher, Abzeichen, Trillerpfeifen, Kompasse, Urkunden und Dokumentarfotos zeichnen Jahrzehnte der Pfadfinderbewegung nach. Beide Sammlungen zusammen geben dem Museum ein Profil, wie es unter den Privatmuseen Al-Ahsas nur wenige haben."
+area_de: "Südlich von Hofuf – Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 9 بدرجة 91/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Музей Салиха аз-Зафара"
 kicker_ru: "Частный музей"

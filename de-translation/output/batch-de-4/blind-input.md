@@ -1,0 +1,129 @@
+# Moschee des Scheichs Muhammad bin Abi Bakr Al-Mulla
+
+Eine rund drei Jahrhunderte alte Kulturerbe-Moschee im Herzen des Al-Koot-Viertels, verbunden mit der Gelehrtenfamilie Al-Mulla.
+
+**Lage:** Al-Koot-Viertel – Hofuf
+
+Im Herzen des historischen Al-Koot-Viertels von Hofuf, nahe dem Haus und den religiösen Schulen der Familie Al-Mulla, steht die Moschee des Scheichs Muhammad bin Abi Bakr Al-Mulla, auch Östliche Moschee genannt. Sie zählt zu den ältesten Kulturerbe-Moscheen Al-Ahsas und geht rund drei Jahrhunderte zurück. Erbaut aus Lehm, Kies und Palmstämmen, war sie lange ein Zentrum der Gelehrsamkeit: Hier wurden Fiqh (islamische Rechtswissenschaft), Koranauslegung und Grammatik unterrichtet, und ihre Imame stammten Generation für Generation aus der Gelehrtenfamilie Al-Mulla. In der ersten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie instand gesetzt; diese Phase wurde 1441 nach der Hidschra (2020 n. Chr.) abgeschlossen. Dabei blieb ihr traditioneller Charakter erhalten, und heute bietet sie rund 125 Betenden Platz.
+
+## Besuchsinformationen
+
+- **Öffnungszeiten und Eintritt:** Weiterhin für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld (Bestätigung durch das Redaktionsteam von Visit Al-Ahsa)
+
+
+---
+
+# Ribat der Familie Al Abi Bakr Al-Mulla
+
+Der Ribat der Familie Al Abi Bakr Al-Mulla – eine bis heute aktive Stiftung für die Gelehrsamkeit, 1280 nach der Hidschra gegründet, um Studierende der islamischen Wissenschaften zu beherbergen.
+
+**Lage:** Quartier Al-Ruwaidah, Al-Koot-Viertel – Hofuf
+
+Im Quartier Al-Ruwaidah des Al-Koot-Viertels von Hofuf steht der Ribat der Familie Al Abi Bakr Al-Mulla, vor Ort Bubakr-Ribat genannt: eine Stiftung für die Gelehrsamkeit, gegründet von Scheich Abdullah bin Abi Bakr Al-Mulla im Jahr 1280 nach der Hidschra (n. H., um 1863 n. Chr.). Seit Generationen bietet der Ribat kostenlos Unterkunft und Verpflegung – Studierenden der islamischen Wissenschaften aus Al-Ahsa und von weit her ebenso wie Reisenden. Aus ihm gingen Generationen von Gelehrten und Richtern hervor. Erbaut aus Gips, Kies, Holz und Palmstämmen, erhebt er sich in zwei Geschossen mit Kammern rund um einen offenen Innenhof, den Arkaden säumen; im Ostflügel liegen ein Brunnen und Küchen. Im Jahr 1430 n. H. (um 2009 n. Chr.) wurde er umfassend restauriert und behielt dabei seinen alten Charakter. Bis heute ist er aktiv, betreut von der Familie Al-Mulla – ein Zeugnis für die Tiefe der Gelehrsamkeit in der Oase.
+
+
+---
+
+# Al-Dibs-Moschee
+
+Die historische Al-Fatih-Moschee – eine der ältesten im Al-Koot-Viertel, in osmanischer Zeit im Jahr 962 nach der Hidschra (1555 n. Chr.) errichtet.
+
+**Lage:** Al-Koot-Viertel – Hofuf
+
+Im Al-Koot-Viertel des alten Hofuf, nach Osten hin von Qasr Ibrahim begrenzt und nur wenige Schritte von der Al-Jabri-Moschee und von Bayt Al-Bay'ah entfernt, steht die Al-Dibs-Moschee. Ihr offizieller Name lautet Al-Fatih-Moschee: Der osmanische Statthalter Muhammad Farrukh Pascha ließ sie im Jahr 962 nach der Hidschra (n. H., 1555 n. Chr.) errichten. Ihren bekannten Namen verdankt sie den Dattellagern und dem Handel mit Dibs (Dattelsirup), die einst die Straße neben ihr füllten. Sie nimmt rund 350 Quadratmeter ein und folgt dem frühen osmanischen Baustil: Eine große Mittelkuppel krönt sie, umringt von kleineren Kuppeln, die Licht einlassen. Lange war sie eine Lehrmoschee, in der Koran, Fiqh (islamische Rechtswissenschaft) und Hadith nach der schafiitischen Rechtsschule gelehrt wurden. Ihr östliches Minarett wurde 1391 n. H. (1971 n. Chr.) abgetragen, als die Al-Koot-Straße angelegt wurde. Nachdem 1406 n. H. (1986 n. Chr.) ein Teil des Baus eingestürzt war, wurde sie restauriert und behielt dabei ihren alten baulichen Charakter. Bis heute wird in ihr gebetet.
+
+## Besuchsinformationen
+
+- **Öffnungszeiten und Eintritt:** Weiterhin für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld (Bestätigung durch das Redaktionsteam von Visit Al-Ahsa)
+
+
+---
+
+# Al-Hubaish-Moschee
+
+Eine Moschee aus dem 13. Jahrhundert nach der Hidschra im Al-Rifaa-Süd-Viertel, in der Scheich Abdulaziz Al-Alji unterrichtete.
+
+**Lage:** Al-Rifaa-Süd-Viertel – Zentrum von Hofuf
+
+Im Al-Rifaa-Süd-Viertel im Zentrum von Hofuf steht die Al-Hubaish-Moschee, eine der ältesten historischen Moscheen Al-Ahsas; sie stammt aus dem 13. Jahrhundert nach der Hidschra (etwa dem 19. Jahrhundert n. Chr.). Bekannt ist sie auch als Moschee des Scheichs Abdulaziz Al-Alji, dessen Lehrstunden hier stattfanden – eines der führenden Gelehrten des Fiqh (islamische Rechtswissenschaft) und der Grammatik in Al-Ahsa. Erbaut aus Kalkstein und Lehm, gedeckt mit Chandal-Holz, Bambus und geflochtenen Matten, zeichnet sie sich durch einen Arkadengang mit Rundbögen und ein quadratisches Minarett an ihrer Nordostecke aus. Auf rund 318 Quadratmetern bietet sie etwa 90 Betenden Platz. In der ersten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie 2020 instand gesetzt: Sie wird wieder für das Gebet genutzt und hat ihre ursprünglichen Merkmale bewahrt.
+
+## Besuchsinformationen
+
+- **Öffnungszeiten und Eintritt:** Weiterhin für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld (Bestätigung durch das Redaktionsteam von Visit Al-Ahsa)
+
+
+---
+
+# Al-Jabri-Moschee
+
+Eine Moschee aus der Zeit der Jabriden im Al-Koot-Viertel, seit dem 15. Jahrhundert von Betenden belebt.
+
+**Lage:** Al-Koot-Viertel – Hofuf
+
+Im Al-Koot-Viertel, dem ältesten Teil des historischen Hofuf, steht unweit von Qasr Ibrahim die Al-Jabri-Moschee, eine der ältesten und bekanntesten Moscheen Al-Ahsas. In der Zeit des Staates der Jabriden, um 850 nach der Hidschra (n. H., 1446 n. Chr.), ließ Saif bin Zamil Al-Jabri sie errichten und stiftete ihr Farmen und Palmenhaine. So wurde sie neben dem Gebet zu einem Zentrum des Unterrichts und der Gelehrsamkeit. Erbaut aus Lehm und Kalkstein, zeichnet sie sich durch einander kreuzende Gewölbe, zahlreiche Arkaden und unterschiedliche Kuppeln aus. Ihr Minarett ist zylindrisch, und sie fasst rund 1.600 Betende. Über die Jahrhunderte wurde sie immer wieder restauriert, zuletzt 1437 n. H. (2016 n. Chr.) mit den ursprünglichen Materialien im Rahmen des Programms zur Pflege historischer Moscheen. Bis heute ist sie eine lebendige Moschee, in der gebetet wird.
+
+## Besuchsinformationen
+
+- **Öffnungszeiten und Eintritt:** Weiterhin für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld (Bestätigung durch das Redaktionsteam von Visit Al-Ahsa)
+
+
+---
+
+# Al-Jalaniyah-Moschee
+
+Eine Moschee aus der Zeit der Uyuniden im Dorf Al-Battaliyah, auch Al-Battaliyah-Moschee genannt.
+
+**Lage:** Dorf Al-Battaliyah – nordöstlich von Hofuf
+
+Im westlichen Teil des Dorfes Al-Battaliyah, rund zwölf Kilometer nordöstlich von Hofuf, steht die Al-Jalaniyah-Moschee, auch Al-Battaliyah-Moschee genannt – eine der bekanntesten historischen Moscheen Al-Ahsas. Sie geht auf den Staat der Uyuniden zurück, auf das 5. Jahrhundert nach der Hidschra (n. H., etwa das 11. Jahrhundert n. Chr.). Ihr Name ist mit Prinzessin Hibah bint Abdullah bin Ali Al-Uyuni verbunden, der Tochter des Staatsgründers; die Moschee wird ihr zugeschrieben. Erbaut aus Stein und Lehm, gedeckt mit Palmstämmen und Palmwedeln, fällt sie durch eine Besonderheit auf: In ihrer Qibla-Wand, der Wand in Gebetsrichtung, liegen zwei Mihrabs (Gebetsnischen). Dazu kommen Säulenreihen, die Spitzbögen tragen; Platz bietet sie weit über tausend Betenden. Die Königliche Kommission für Jubail und Yanbu restaurierte sie und schloss die Arbeiten 1430 n. H. (2009 n. Chr.) ab. 2017 wurde sie in die Liste der amtlich registrierten historischen Moscheen Al-Ahsas aufgenommen.
+
+
+---
+
+# Al-Qubba-Moschee
+
+Die Kuppelmoschee in Qasr Ibrahim – eines seiner markantesten baulichen Elemente.
+
+**Lage:** In Qasr Ibrahim, Al-Koot-Viertel – Hofuf
+
+In den Mauern von Qasr Ibrahim im Al-Koot-Viertel von Hofuf steht die Al-Qubba-Moschee, die Kuppelmoschee: das markanteste bauliche Element des Palastes und eines der Bilder, die das kulturelle Erbe Al-Ahsas prägen. Gegründet wurde sie im Jahr 979 nach der Hidschra (1571 n. Chr.), als Teil eines Komplexes mit einer Schule für die islamischen Wissenschaften und einem Ort für den Koranunterricht; rund fünf Jahre hatte der Bau gedauert. Gekrönt ist sie von einer halbkugeligen Mittelkuppel mit etwa 13 Metern Durchmesser, flankiert von kleinen Eckkuppeln; frei daneben steht ein zylindrisches Minarett, das sich um eine steinerne Wendeltreppe 19 Meter hoch erhebt. Über dem Eingang hält eine Gipstafel das Gründungsdatum in Thuluth-Schrift fest – ein Zeugnis einer ganzen Epoche in der Geschichte der Oase.
+
+
+---
+
+# Al-Tahimiyah-Ost-Moschee
+
+Eine alte Moschee aus Lehm in Al-Tahimiyah, dem Dorf, das einst für seine vierzig Moscheen berühmt war.
+
+**Lage:** Dorf Al-Tahimiyah – die östlichen Dörfer, Al-Ahsa
+
+Im Dorf Al-Tahimiyah, das zu den östlichen Dörfern Al-Ahsas gehört und rund zwölf Kilometer von Hofuf entfernt liegt, steht die Al-Tahimiyah-Ost-Moschee – auch als Erste Moschee von Al-Tahimiyah bekannt und früher als Abu-Al-Nu'ush-Moschee. Hier wurde vor der Bestattung auf dem nahen Friedhof das Totengebet gesprochen. Ihre Geschichte reicht Jahrhunderte zurück; das Dorf selbst war einst als „das Dorf der vierzig Moscheen“ berühmt, von denen nur noch etwa elf erhalten sind. Sie ist ein schlichter Lehmbau mit drei Arkadengängen um einen Innenhof, den eine Außenmauer umschließt; ihr Dach besteht aus Palmstämmen, und sie bietet etwa 50 Betenden Platz. Erbaut wurde sie am Ufer des alten Zuhairi-Flusses, dicht bei den Hängen des Jabal al-Qarah (des Qarah-Bergs). 2017 wurde sie in die Liste der amtlich registrierten historischen Moscheen Al-Ahsas aufgenommen, und ihre Lage nahe dem Jabal al-Qarah macht sie zu einem leicht erreichbaren Halt für Besucher der Gegend.
+
+
+---
+
+# Al-Uqair-Hafen-Moschee
+
+Die historische Moschee im Hafenkomplex von Al-Uqair – eine der Anlagen, die unter König Abdulaziz ausgebaut wurden.
+
+**Lage:** Hafen Al-Uqair – die Golfküste östlich von Al-Ahsa
+
+An der Golfküste östlich von Al-Ahsa steht im Gebäudekomplex des historischen Hafens Al-Uqair – des ältesten Seehafens Saudi-Arabiens – die historische Moschee. Hier beteten einst Seeleute, Kaufleute und Reisende am alten Tor Nadschds zum Meer. Sie zählt zu den Hafenanlagen, die in der Regierungszeit von König Abdulaziz errichtet und ausgebaut wurden – neben der Festung, dem Khan (der Karawanserei), dem Gebäude des Emirats und dem Zollhaus. Damals war Al-Uqair die Handelsader Al-Ahsas. Im Rahmen des Programms zur Wiederherstellung historischer Moscheen wurde sie mit Unterstützung der Königlichen Kommission für Jubail und Yanbu restauriert, gemeinsam mit einer Reihe weiterer historischer Moscheen Al-Ahsas. Heute steht sie auf einem Gelände, das die Kommission für Kulturerbe umfassend instand setzt – ein Teil der ganzen Geschichte, die der alte Hafen seinen Besuchern erzählt.
+
+
+---
+
+# Umm-Zurainiq-Moschee
+
+Eine historische Moschee im Al-Uwaimriyah-Viertel, benannt nach dem angrenzenden Friedhof und im Rahmen des Projekts für historische Moscheen restauriert.
+
+**Lage:** Al-Uwaimriyah-Viertel – Zentrum von Hofuf
+
+Im Al-Uwaimriyah-Viertel, einem der ältesten Teile des Zentrums von Hofuf, steht die Umm-Zurainiq-Moschee, eine kleine historische Moschee, mehr als hundert Jahre alt und benannt nach dem alten Friedhof neben ihr. Auf traditionelle Weise aus Lehm, Gips und Palmstämmen erbaut, zeichnet sie sich durch ihr zylindrisches Minarett mit hölzernem Balkon aus, ein Kennzeichen der Moscheearchitektur der Ostprovinz (asch-Scharqiyya). Dazu kommen Stuckornamente im Inneren, an Wänden, Fenstern und Bögen. Eine Zeit lang wurde dort nicht mehr gebetet. In der zweiten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie dann instand gesetzt und dabei von nur 30 auf rund 214 Quadratmeter erweitert; heute bietet sie etwa 94 Betenden Platz. So kehrte in das Viertel eine Moschee zurück, in der wieder gebetet wird.
+
+## Besuchsinformationen
+
+- **Öffnungszeiten und Eintritt:** Weiterhin für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld (Bestätigung durch das Redaktionsteam von Visit Al-Ahsa)
+
+
+---

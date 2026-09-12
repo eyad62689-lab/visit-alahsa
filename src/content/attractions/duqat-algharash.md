@@ -7,6 +7,12 @@ kicker_zh: 传统手工艺
 summary_zh: "卡拉山下的一座传统陶坊，由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。"
 body_zh: "加拉什家族的杜加陶坊（Dougha Al-Gharash）坐落在卡拉村，就在卡拉山脚下。坊里的器皿至今仍用黏土手工塑成，再入窑烧制，做法一如从前。这门手艺在加拉什家族中代代相传。媒体报道称，此地制陶已延续 600 多年，这里也因此成为沙特阿拉伯最有名的民间手工艺作坊之一。坊里的陶艺人曾在法国、美国和加拿大的国际展览上展出作品。如今陶坊也成了游客游览的一站，从揉泥、陶轮拉坯到入窑烧制，制陶的各道工序都能看到，坊里的陶器也能选一件带走。"
 area_zh: 卡拉村——毗邻卡拉山，哈萨东部
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 بدرجة 93/100 (2026-09-11، الدورة 2 من 3)
+title_de: "Dougha Al-Gharash"
+kicker_de: "Traditionelles Handwerk"
+summary_de: "Ein traditionelles Töpferhaus am Jabal al-Qarah, von der Familie Al-Gharash über Generationen weitergegeben – eine der bekanntesten Stätten des Töpferhandwerks in Saudi-Arabien."
+body_de: "Am Fuß des Jabal al-Qarah (des Qarah-Bergs), im Dorf Al-Qarah, steht Dougha Al-Gharash, ein traditionelles Töpferhaus. Die Gefäße werden hier noch immer von Hand und auf die alte Art aus Ton geformt und in den Brennöfen des Hauses gebrannt. Die Familie Al-Gharash hat ihr Handwerk über Generationen weitergegeben. Presseberichten zufolge besteht das Töpferhandwerk an diesem Ort seit mehr als 600 Jahren fort; damit zählt Dougha Al-Gharash zu den berühmtesten Stätten dieses Volkshandwerks in Saudi-Arabien. Die Töpfer des Hauses haben ihre Arbeiten in Frankreich, den Vereinigten Staaten und Kanada ausgestellt. Heute ist das Töpferhaus eine Station für Besucher: Hier verfolgen Sie die Schritte des Handwerks – vom Kneten des Tons über die Töpferscheibe bis zum Brennofen – und nehmen eines der Erzeugnisse des Hauses mit."
+area_de: "Dorf Al-Qarah – am Jabal al-Qarah, östlich von Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 10 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Гончарная мастерская Дуга-эль-Гараш"
 kicker_ru: "Традиционное ремесло"

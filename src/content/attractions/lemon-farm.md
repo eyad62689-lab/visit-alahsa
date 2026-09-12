@@ -9,6 +9,11 @@ title_zh: 哈萨青柠农场
 kicker_zh: 农场与椰枣林
 summary_zh: 一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠。
 body_zh: "一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠。"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 بدرجة 93/100 (2026-09-11، الدورة 2 من 3)
+title_de: "Hasawi-Limettenfarm"
+kicker_de: "Farm und Dattelpalmen"
+summary_de: "Eine Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken – die Limette aus Al-Ahsa."
+body_de: "Eine Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken – die Limette aus Al-Ahsa."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 11 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Ферма лайма Аль-Ахсы"
 kicker_ru: "Ферма и пальмы"
