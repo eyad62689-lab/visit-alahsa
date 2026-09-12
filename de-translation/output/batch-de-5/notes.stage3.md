@@ -58,6 +58,6 @@
 
 ## و. فحوصٌ آليّة بعد آخر تحريرٍ لي
 
-52 حقلاً بترتيب مفاتيحه · **2 مغيَّرة و50 متطابقة** · `kicker_de` = `Park` ×8 · الرقيقتان `summary_de == body_de` · لا `answer_de`/`bestTime_de`. **C21 بمنطق `numInText`**: `8:00` · `24:00` · `10` · `15` ⇒ **PASS**.
+52 حقلاً بترتيب مفاتيحه · **2 مغيَّرة و50 متطابقة** · `kicker_de` = `Park` ×8 · الرقيقتان `summary_de == body_de` · لا `answer_de`/`bestTime_de` · **C21 بمنطق `numInText`** (`8:00` · `24:00` · `10` · `15`) **PASS**.
 لا U+2014/U+00A0/شرطةٍ لينة/`"` مستقيمة · `„…“` ×7 متوازنة · `–` (U+2013) في `area_de` الستّة (C17) · لا رقمَ عربيَّ-هنديّ (C4) · لا `Souq` (C18) · لا جملةَ تبدأ بـ`Sie`.
-مسحٌ بحدود الكلمات وبالصيغ المصرَّفة: أصنافُ الحماية الأربعة · `denkmalgesch*`/`Baudenkm*` · `Heilquell*`/`Thermal*`/`Kurort*`/`Heilbad*` · `barrierefrei*` · `Parkanlage*`/`Grünanlage*` · `Stadtverwaltung*`/`städtisch*` · Denglisch · `Highlight` · `Erleben/Entdecken Sie` · `\bdu\b` · `!` — **صفرُ إصابات**.
+ومسحٌ بحدود الكلمات وبالصيغ المصرَّفة على أصنافِ الحماية الأربعة و`denkmalgesch*`/`Baudenkm*` و`Heilquell*`/`Thermal*`/`Kurort*`/`Heilbad*` و`barrierefrei*` و`Parkanlage*`/`Grünanlage*` و`Stadtverwaltung*`/`städtisch*` وDenglisch و`Highlight` و`Erleben/Entdecken Sie` و`\bdu\b` و`!` — **صفرُ إصابات**.
