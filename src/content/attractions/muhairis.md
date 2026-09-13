@@ -9,6 +9,12 @@ kicker_zh: 历史地标
 summary_zh: 穆巴拉兹以北的小型瞭望堡垒，建于第一沙特王国时期。
 body_zh: "穆海里斯宫（Qasr Muhairis）立在穆巴拉兹以北，是一座用于瞭望戍守的小型堡垒，第一沙特王国时期由沙特·本·阿卜杜勒阿齐兹（后来的伊玛目）下令兴建，伊斯兰历 1208 年（公元 1794 年）落成。堡身以土坯与石材砌筑，屋顶用树干和棕榈叶铺盖；平面近似正方形，每边约 20 米，墙体自下而上略微向内收窄，东南角立着一座两层圆塔。它曾用作瞭望哨所；在弃用之前，它最后的用途是存放给养与弹药。如今堡旁辟出一片绿地公园，每逢哈萨的节庆季，这里会举办遗产与艺术活动。"
 area_zh: 穆巴拉兹以北——哈萨
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-8 بدرجة 91/100 (2026-09-13، الدورة 1 من 3)
+title_de: "Muhairis-Palast"
+kicker_de: "Historische Stätte"
+summary_de: "Eine kleine Festung zur Beobachtung und Bewachung aus der Zeit des ersten saudischen Staates am Rand von Al-Mubarraz."
+body_de: "Nördlich von Al-Mubarraz steht der Muhairis-Palast (Qasr Muhairis), eine kleine Festung zur Beobachtung und Bewachung aus dem Jahr 1208 nach der Hidschra (1794 n. Chr.). Saud bin Abdulaziz, der spätere Imam, ließ sie zur Zeit des ersten saudischen Staates errichten. Erbaut aus Lehm, Lehmziegeln und Stein, gedeckt mit Baumstämmen und Palmwedeln, folgt sie einem quadratischen Grundriss von rund zwanzig Metern Seitenlänge. An ihrer Südostecke erhebt sich ein runder Turm mit zwei Geschossen, und ihre Mauern neigen sich sanft nach innen, je höher sie steigen. Sie diente als Wachposten; zuletzt lagerten hier Vorräte und Munition, bevor sie aufgegeben wurde. Heute grenzt ein grüner Park an sie, und in den Festivalsaisons Al-Ahsas finden auf ihrem Gelände Veranstaltungen zu Kulturerbe und Kunst statt."
+area_de: "Nördlich von Al-Mubarraz – Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 2 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Дворец Мухайрис"
 kicker_ru: "Историческая достопримечательность"

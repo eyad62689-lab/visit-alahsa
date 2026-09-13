@@ -7,6 +7,12 @@ kicker_zh: 农场
 summary_zh: "种植哈萨红米规模最大的农场之一，以收获季的庆典闻名，农场里有一处硫磺泉和乡村小屋。"
 body_zh: "扎基·萨利姆农场（Zaki Al-Salem Farm）坐落在海湾路旁，是当地种植哈萨红米规模最大的农场之一，此外还种有绿洲出产的其他作物。农场以每年的哈萨红米收获季庆典闻名，庆典期间气氛如同过节，游客也会专程前来。农场里还有一眼从地下涌出的天然硫磺泉，泉眼周围建起了乡村小屋，名叫“扎基田园”（Aryaf Zaki）。游客可以在一片绿意里泡一泡温热的泉水，水中富含矿物质。"
 area_zh: 海湾路——哈萨
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-8 بدرجة 91/100 (2026-09-13، الدورة 1 من 3)
+title_de: "Zaki-Al-Salem-Farm"
+kicker_de: "Farm"
+summary_de: "Eine der größten Farmen für Hasawi-Reis in Al-Ahsa – bekannt für ihre Feste zur Erntezeit, mit einer Schwefelquelle und ländlichen Hütten."
+body_de: "An der Al-Khaleej-Straße liegt die Zaki-Al-Salem-Farm, eine der größten Farmen der Oase für den Anbau von Hasawi-Reis – dem Reis aus Al-Ahsa. Daneben wachsen hier weitere Kulturpflanzen der Oase. Bekannt ist sie für die Feste, die jedes Jahr zur Ernte des Hasawi-Reises stattfinden: Die ausgelassene Stimmung zieht Besucher auf die Farm. Zudem tritt hier eine natürliche Schwefelquelle aus dem Boden; rund um sie sind ländliche Hütten entstanden, bekannt als „Aryaf Zaki“. In ihnen genießen die Gäste das warme, mineralreiche Wasser inmitten des Grüns."
+area_de: "Al-Khaleej-Straße – Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 11 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Ферма Заки ас-Салема"
 kicker_ru: "Ферма"

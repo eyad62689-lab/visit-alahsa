@@ -6,6 +6,11 @@ title_zh: 苏珊鸟园
 kicker_zh: 农场与椰枣林
 summary_zh: "一座展示鸟类的花园，就在哈萨绿洲之中。"
 body_zh: "苏珊鸟园（Al-Sawsan Bird Gardens）是一座展示鸟类的花园，坐落在哈萨绿洲之中。"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-8 بدرجة 91/100 (2026-09-13، الدورة 1 من 3)
+title_de: "Al-Sawsan-Vogelgärten"
+kicker_de: "Farm und Dattelpalmen"
+summary_de: "Ein Garten, in dem Vögel gezeigt werden – in der Atmosphäre der Al-Ahsa-Oase."
+body_de: "Ein Garten, in dem Vögel gezeigt werden – in der Atmosphäre der Al-Ahsa-Oase."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 11 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Птичьи сады Эс-Саусан"
 kicker_ru: "Ферма и пальмы"

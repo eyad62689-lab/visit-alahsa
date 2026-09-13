@@ -6,6 +6,11 @@ title_zh: 草莓农场
 kicker_zh: 农场与椰枣林
 summary_zh: "乌盖尔路旁的一座草莓农场，到了季节可以亲手采摘。"
 body_zh: "草莓农场坐落在乌盖尔路（Al-Uqair）旁，到了季节可以亲手采摘。"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-8 بدرجة 91/100 (2026-09-13، الدورة 1 من 3)
+title_de: "Erdbeerfarm"
+kicker_de: "Farm und Dattelpalmen"
+summary_de: "Eine Erdbeerfarm an der Straße nach Al-Uqair: In der Saison können Besucher hier selbst pflücken."
+body_de: "Eine Erdbeerfarm an der Straße nach Al-Uqair: In der Saison können Besucher hier selbst pflücken."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 11 بدرجة 91/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Клубничная ферма"
 kicker_ru: "Ферма и пальмы"

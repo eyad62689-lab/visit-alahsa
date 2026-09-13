@@ -7,6 +7,12 @@ kicker_zh: 历史地标
 summary_zh: 一座扼守港口的历史城堡，见证乌盖尔昔日的商贸繁华。
 body_zh: "在哈萨以东的海湾沿岸，乌盖尔城堡（Al-Uqair）立于乌盖尔港的历史建筑群之间。这里是沙特阿拉伯最古老的海港，昔日也是纳季德（沙特中部地区）通往大海的门户；考古发现表明，这里的贸易往来可上溯到久远的年代。今日所见的建筑包括要塞、商队客栈、埃米尔府、海关楼与清真寺；划定边界的《乌盖尔议定书》，正是于伊斯兰历 1341 年（公元 1922 年）在这里签署。20 世纪中叶达曼港兴起之后，乌盖尔港的角色渐渐淡去，只留下这片建筑，成为一个时代的见证。20 世纪 90 年代末，这批建筑得到修复；如今，沙特遗产委员会正对整片遗址进行全面修缮。"
 area_zh: 乌盖尔港——哈萨以东的海湾沿岸
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-8 بدرجة 91/100 (2026-09-13، الدورة 1 من 3)
+title_de: "Al-Uqair-Festung"
+kicker_de: "Historische Stätte"
+summary_de: "Eine historische Festung, die den Hafen bewacht – Zeugin der einstigen Handelsblüte von Al-Uqair."
+body_de: "An der Golfküste östlich von Al-Ahsa steht die Al-Uqair-Festung im Gebäudekomplex des historischen Hafens Al-Uqair – des ältesten Seehafens Saudi-Arabiens. In früherer Zeit war er das Tor Nadschds zum Meer; archäologische Funde belegen hier einen Handel, der bis in ferne Vorzeit zurückreicht. Erhalten sind heute unter anderem die Festung, der Khan (die Karawanserei), das Gebäude des Emirats, das Zollhaus und die Moschee. Auf dem Hafengelände wurde 1341 nach der Hidschra (1922 n. Chr.) das Uqair-Protokoll unterzeichnet, das die Grenzen festlegte. Mitte des 20. Jahrhunderts entstand der Hafen von Dammam; danach verlor Al-Uqair als Hafen an Bedeutung, und seine Bauten blieben als Zeugen einer ganzen Epoche zurück. Ende der 1990er-Jahre wurden sie restauriert, und heute setzt die Kommission für Kulturerbe das gesamte Gelände umfassend instand."
+area_de: "Hafen Al-Uqair – die Golfküste östlich von Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 2 بدرجة 90/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Крепость Эль-Укайр"
 kicker_ru: "Историческая достопримечательность"
