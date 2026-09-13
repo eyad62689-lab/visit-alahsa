@@ -27,6 +27,12 @@ def source_text(page):
     if page.startswith('blog:'):
         stem = page.split(':', 1)[1]
         return open(os.path.join(ROOT, f'src/content/blog/{stem}-en.md'), encoding='utf-8').read()
+    # المنشآت والإقامة (البند 10ج): `dining:<slug>` و`stay:<slug>` — ملفٌّ واحدٌ
+    # لكل منشأة يحمل لغاته كلها، بخلاف المدونة التي تفصل ملفاً لكل لغة.
+    for coll in ('dining', 'stay'):
+        if page.startswith(f'{coll}:'):
+            stem = page.split(':', 1)[1]
+            return open(os.path.join(ROOT, f'src/content/{coll}/{stem}.md'), encoding='utf-8').read()
     return open(os.path.join(ROOT, f'src/content/attractions/{page}.md'), encoding='utf-8').read()
 
 
