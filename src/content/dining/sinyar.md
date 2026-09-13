@@ -21,6 +21,8 @@ order: 5
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.
 body_en: "Sinyar stands on Al-Khaleej Road in Al-Uwaimriyah, Hofuf, and presents itself as a seafood restaurant — its line on its own accounts reads \"a sea voyage in every dish\", and its name on X is Sinyar Seafood Restaurant. The word sinyar comes from the maritime heritage of the Gulf. It is used for the many vessels moored together in a harbour, and also for two ships that agree to sail in company so that each may watch over the other's safety; its use is not confined to the sea, extending to the travel of caravans overland. The same word gives its name to a diving and pearl-fishing festival in Qatar. The restaurant itself has not stated why it chose the name. It has more than one location in Al-Ahsa, and this page is about the Al-Uwaimriyah branch."
+# المتن بالصينية: معتمد من خط zh-translation-pipeline — batch-zh-21 بدرجة 91/100 (2026-09-13، الدورة 1 من 3)
+body_zh: "辛亚尔（Sinyar）坐落在胡富夫欧韦米里亚区的海湾路上，把自己定位为一家海鲜餐厅——自家账号上打出的一句话是“每一道菜都是一趟海上之旅”，在 X 平台上的名称则是辛亚尔海鲜餐厅（Sinyar Seafood Restaurant）。“辛亚尔”一词出自海湾地区的航海传统：既指同泊一港的众多船只，也指两艘约定结伴同行、彼此照看安危的船；这一用法并不限于海上，也延及陆上商队的行旅。卡塔尔有一个潜水与采珠的节庆，也以这个词命名。至于当初为何取了这个名字，餐厅本身未曾说明。餐厅在哈萨不止一处，本页说的是欧韦米里亚区的这一家。"
 ---
 
 على طريق الخليج في العويمرية بالهفوف يقع مطعم سنيار، ويعرّف نفسه بالمأكولات البحرية — وشعاره على حساباته «رحلة بحرية في كل طبق»، واسمه على منصة إكس «مطعم سنيار للمأكولات البحرية».

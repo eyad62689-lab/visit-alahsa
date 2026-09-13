@@ -134,7 +134,7 @@ const applyFacility = (collection, stem, page) => {
   const lines = t.split('\n');
   const at = lines.findIndex((l) => l.startsWith('body_en:'));
   if (at < 0) throw new Error(`${collection}:${stem}: لا سطر body_en يُرسى عليه`);
-  const head = `# المتن ${LANG_AR}: معتمد من خط ${lang}-translation-pipeline — ${batch} بدرجة ${judge.batch_score}/100 (${judge.date}، الدورة ${judge.loop ?? 1} من ${judge.max_correction_loops ?? 3})`;
+  const head = `# المتن بـ${LANG_AR}: معتمد من خط ${lang}-translation-pipeline — ${batch} بدرجة ${judge.batch_score}/100 (${judge.date}، الدورة ${judge.loop ?? 1} من ${judge.max_correction_loops ?? 3})`;
   lines.splice(at + 1, 0, head, `${key}: ${yq(value)}`);
   write(fp, lines.join('\n'));
   log(`${collection}:${stem}: ${key} (${[...String(value)].length} محرفاً)`);
