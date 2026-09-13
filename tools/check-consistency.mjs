@@ -368,7 +368,7 @@ async function main() {
       return (v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")) ? v.slice(1, -1) : v;
     };
     const bad = [];
-    let total = 0, publishedAr = 0, publishedEn = 0;
+    let total = 0, publishedAr = 0, publishedEn = 0, publishedZh = 0;
     for (const [label, dir] of dirs) {
       let files = [];
       try { files = (await readdir(dir)).filter((f) => f.endsWith('.md')); } catch { /* لا مجموعة بعد */ }
@@ -377,15 +377,24 @@ async function main() {
         const raw = await readFile(path.join(dir, f), 'utf8');
         const fm = fmOf(raw), body = bodyOf(raw), bodyEn = fld(fm, 'body_en').trim();
         const blurb = fld(fm, 'blurb'), blurbEn = fld(fm, 'blurb_en');
+        const bodyZh = fld(fm, 'body_zh').trim(), blurbZh = fld(fm, 'blurb_zh').trim();
         // متنٌ مكتوبٌ لكنه دون العتبة أو مطابقٌ للنبذة = خطأ صريح لا صمت
         if (body && (wc(body) < 80 || body === blurb)) bad.push(`${label}/${f} (ar: ${wc(body)} كلمة${body === blurb ? '، نسخة من النبذة' : ''})`);
         if (bodyEn && (wc(bodyEn) < 100 || bodyEn === blurbEn)) bad.push(`${label}/${f} (en: ${wc(bodyEn)} كلمة${bodyEn === blurbEn ? '، نسخة من النبذة' : ''})`);
+        // الذراع الصينية (الدفعة 21 — 2026-09-13). لا عتبةَ كلماتٍ للصينية: نصُّها بلا
+        // فواصل فيعدّه `wc` كلمةً واحدة. فالمقيسُ ما يُقاس بلا اختراع عتبة — ألّا يكون
+        // المتنُ نسخةَ النبذة، وألّا يقصر عنها، وألّا يوجد متنٌ صينيٌّ بلا نظيرٍ إنجليزيٍّ
+        // يُترجَم عنه (فالإنجليزيةُ مصدرُ خطّ الترجمة والعربيةُ فيصلُ وقائعه).
+        if (bodyZh && bodyZh === blurbZh) bad.push(`${label}/${f} (zh: نسخة من النبذة)`);
+        if (bodyZh && !bodyEn) bad.push(`${label}/${f} (zh: متنٌ صينيٌّ بلا body_en يُترجَم عنه)`);
+        if (bodyZh && blurbZh && [...bodyZh].length < [...blurbZh].length) bad.push(`${label}/${f} (zh: ${[...bodyZh].length} محرفاً دون النبذة ${[...blurbZh].length})`);
         if (body && wc(body) >= 80 && body !== blurb) publishedAr++;
         if (bodyEn && wc(bodyEn) >= 100 && bodyEn !== blurbEn) publishedEn++;
+        if (bodyZh && bodyEn && bodyZh !== blurbZh) publishedZh++;
       }
     }
     if (bad.length) fail('C11', `متونٌ دون عتبة النشر: ${bad.join(' | ')}`);
-    else pass('C11', `${total} منشأة ومكان إقامة — صفحات مفردة منشورة: ${publishedAr} عربية و${publishedEn} إنجليزية`);
+    else pass('C11', `${total} منشأة ومكان إقامة — صفحات مفردة منشورة: ${publishedAr} عربية و${publishedEn} إنجليزية، ومتونٌ صينيةٌ مخزَّنة: ${publishedZh}`);
   }
 
   // ── C15: دعوى «أكبر واحة» بلا محدِّد النخيل ───────────────────────────────

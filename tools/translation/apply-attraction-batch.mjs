@@ -107,7 +107,42 @@ const reviseKey = (text, key, value) => {
   return replaceQuotedAt(text, `\n${key}: "`, key, value);
 };
 
+// ── 1ب) منشآتُ الطعام والإقامة ───────────────────────────────────────────
+// القسم ب من جدول الترجمة (2026-09-13): مفتاحُ الصفحة مسبوقٌ بمجموعته
+// `dining:` أو `stay:`، **والمكتوبُ `body<sfx>` وحدَه** — فنموذجُ المنشأة لا
+// عنوانَ فيه ولا نبذةَ ولا بطاقةَ زيارةٍ ولا أسئلة، وما عداه يُرفض صراحةً بدل
+// أن يُتجاهَل بصمت. والمفتاحُ **بلا بادئةٍ يبقى معلَماً كما كان حرفاً**، فلا
+// تتغيّر دفعةٌ سابقةٌ ببايت.
+//
+// والفحصُ نصّيٌّ لا بتعبيرٍ نمطيٍّ مبنيٍّ من مدخل (سابقة `numInText`/`uiValue`
+// وإصلاح Semgrep على الطلب #43): `sfx` يأتي من argv.
+const hasKeyLine = (text, key) => text.split('\n').some((l) => l.startsWith(key + ':'));
+const FACILITY = /^(dining|stay):(.+)$/;
+
+const applyFacility = (collection, stem, page) => {
+  const fp = path.join(ROOT, `src/content/${collection}`, `${stem}.md`);
+  if (!existsSync(fp)) throw new Error(`${collection}:${stem}: لا ملف`);
+  const key = `body${sfx}`;
+  const extra = Object.keys(page).filter((k) => k !== key);
+  if (extra.length) throw new Error(`${collection}:${stem}: نموذجُ المنشأة يكتب ${key} وحدَه — زائد: ${extra.join(' · ')}`);
+  const value = page[key];
+  if (value == null || String(value).trim() === '') throw new Error(`${collection}:${stem}: ${key} فارغ`);
+  let t = read(fp);
+  if (hasKeyLine(t, key)) throw new Error(`${collection}:${stem}: فيه ${key} سلفاً — لا كتابة فوق منشور`);
+  // المرساة `body_en` نفسُها: المتنُ المترجَم يلي مصدرَه في الملف، والسطرُ واحدٌ
+  // لأن `yq` تهرب السطر الجديد. وغيابُها خطأٌ صريح — لا متنَ مترجَماً بلا مصدر.
+  const lines = t.split('\n');
+  const at = lines.findIndex((l) => l.startsWith('body_en:'));
+  if (at < 0) throw new Error(`${collection}:${stem}: لا سطر body_en يُرسى عليه`);
+  const head = `# المتن ${LANG_AR}: معتمد من خط ${lang}-translation-pipeline — ${batch} بدرجة ${judge.batch_score}/100 (${judge.date}، الدورة ${judge.loop ?? 1} من ${judge.max_correction_loops ?? 3})`;
+  lines.splice(at + 1, 0, head, `${key}: ${yq(value)}`);
+  write(fp, lines.join('\n'));
+  log(`${collection}:${stem}: ${key} (${[...String(value)].length} محرفاً)`);
+};
+
 for (const [name, page] of Object.entries(fields)) {
+  const facility = FACILITY.exec(name);
+  if (facility) { applyFacility(facility[1], facility[2], page); continue; }
   const fp = path.join(ROOT, 'src/content/attractions', `${name}.md`);
   let t = read(fp);
 

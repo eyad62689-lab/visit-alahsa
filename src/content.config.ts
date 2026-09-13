@@ -236,6 +236,11 @@ const dining = defineCollection({
     maps: z.url(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (المتن العربي في جسم الملف)
+    // المتن الصيني (الدفعة 21 — 2026-09-13، خط zh-translation-pipeline). حقلُ تخزينٍ
+    // اليومَ لا عرض: مسارُ `/zh/restaurants-cafes/[slug]/` و`/zh/stay/[slug]/` يُبنيان في
+    // المرحلة 16 من docs/جدول-إكمال-الترجمة-2026-09-12.md، فيصيرُ ما كُتب هنا صفحةً حينئذ.
+    // ويحرسه C11 بذراعه الصينية (لا نسخةَ نبذة، ولا متنَ صينيّ بلا نظيرٍ إنجليزيّ).
+    body_zh: z.string().optional(),
   }),
 });
 
@@ -274,6 +279,11 @@ const stay = defineCollection({
     maps: z.url(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (العربي في جسم الملف)
+    // المتن الصيني (الدفعة 21 — 2026-09-13، خط zh-translation-pipeline). حقلُ تخزينٍ
+    // اليومَ لا عرض: مسارُ `/zh/restaurants-cafes/[slug]/` و`/zh/stay/[slug]/` يُبنيان في
+    // المرحلة 16 من docs/جدول-إكمال-الترجمة-2026-09-12.md، فيصيرُ ما كُتب هنا صفحةً حينئذ.
+    // ويحرسه C11 بذراعه الصينية (لا نسخةَ نبذة، ولا متنَ صينيّ بلا نظيرٍ إنجليزيّ).
+    body_zh: z.string().optional(),
   }),
 });
 
