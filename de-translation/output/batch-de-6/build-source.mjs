@@ -1,6 +1,18 @@
 // يبني source.json للدفعة 6 من ملفات المحتوى مباشرةً — لا نسخ يدوي.
 import fs from 'node:fs';
 
+// مسحٌ نصّيّ للسطر بدل RegExp مبنيٍّ من مفتاح — سابقة `replaceQuotedAt` في
+// tools/translation/apply-attraction-batch.mjs وإصلاح Semgrep على الطلب #43.
+// المفاتيحُ هنا حرفيةٌ كلُّها، لكنّ النمط نفسَه يُرفَع تنبيهَ ReDoS فيُسدّ بنيوياً.
+const lineValue = (text, key, allowDash = false) => {
+  for (const raw of text.split('\n')) {
+    const line = allowDash ? raw.replace(/^\s+/, '').replace(/^- /, '') : raw;
+    if (line.startsWith(key + ':')) return line.slice(key.length + 1).trim();
+  }
+  return undefined;
+};
+const hasKeyLine = (text, key) => text.split('\n').some((l) => l.startsWith(key + ':'));
+
 const PAGES = ['uqair-beach', 'arbaa', 'salwa-beach', 'shaban', 'tuwaither'];
 const SCALARS = [
   'title', 'title_en', 'kicker', 'summary', 'summary_en', 'body_en',
@@ -17,9 +29,9 @@ for (const p of PAGES) {
 
   const rec = {};
   for (const k of SCALARS) {
-    const m = fm.match(new RegExp(`^${k}:\\s*(.*)$`, 'm'));
-    if (!m) continue;
-    let v = m[1].trim();
+    const raw = lineValue(fm, k);
+    if (raw === undefined) continue;
+    let v = raw;
     if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
       v = v.slice(1, -1);
     }
@@ -43,9 +55,9 @@ for (const p of PAGES) {
     for (const blk of block.split(/\n(?=  - q: )/)) {
       // بادئة «- » تسبق مفتاح q في أول سطرٍ من البند، فلا يكفي ^\s*
       const g = (k) => {
-        const m = blk.match(new RegExp(`^\\s*(?:- )?${k}:\\s*(.*)$`, 'm'));
-        if (!m) return undefined;
-        let v = m[1].trim();
+        const raw = lineValue(blk, k, true);
+        if (raw === undefined) return undefined;
+        let v = raw;
         if (v.startsWith('"') && v.endsWith('"')) v = v.slice(1, -1);
         return v;
       };
@@ -64,7 +76,7 @@ for (const p of PAGES) {
   const txt = fs.readFileSync(`src/content/attractions/${p}.md`, 'utf8');
   const base = ['title', 'kicker', 'summary', 'body', 'area', 'bestTime']
     .filter((b) => r[b] !== undefined || r[`${b}_en`] !== undefined);
-  const have = base.filter((b) => new RegExp(`^${b}_de:`, 'm').test(txt)).length;
+  const have = base.filter((b) => hasKeyLine(txt, `${b}_de`)).length;
   const pDe = (txt.match(/label_de:/g) || []).length;
   const fDe = (txt.match(/q_de:/g) || []).length;
   const req = base.length + r.practical.length * 3 + r.faq.length * 2;
