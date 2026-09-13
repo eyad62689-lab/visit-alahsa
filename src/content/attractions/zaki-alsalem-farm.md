@@ -7,11 +7,17 @@ kicker_zh: 农场
 summary_zh: "种植哈萨红米规模最大的农场之一，以收获季的庆典闻名，农场里有一处硫磺泉和乡村小屋。"
 body_zh: "扎基·萨利姆农场（Zaki Al-Salem Farm）坐落在海湾路旁，是当地种植哈萨红米规模最大的农场之一，此外还种有绿洲出产的其他作物。农场以每年的哈萨红米收获季庆典闻名，庆典期间气氛如同过节，游客也会专程前来。农场里还有一眼从地下涌出的天然硫磺泉，泉眼周围建起了乡村小屋，名叫“扎基田园”（Aryaf Zaki）。游客可以在一片绿意里泡一泡温热的泉水，水中富含矿物质。"
 area_zh: 海湾路——哈萨
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-8 بدرجة 91/100 (2026-09-13، الدورة 1 من 3)
+title_de: "Zaki-Al-Salem-Farm"
+kicker_de: "Farm"
+summary_de: "Eine der größten Farmen für Hasawi-Reis in Al-Ahsa – bekannt für ihre Feste zur Erntezeit, mit einer Schwefelquelle und ländlichen Hütten."
+body_de: "An der Al-Khaleej-Straße liegt die Zaki-Al-Salem-Farm, eine der größten Farmen der Oase für den Anbau von Hasawi-Reis – dem Reis aus Al-Ahsa. Daneben wachsen hier weitere Kulturpflanzen der Oase. Bekannt ist sie für die Feste, die jedes Jahr zur Ernte des Hasawi-Reises stattfinden: Die ausgelassene Stimmung zieht Besucher auf die Farm. Zudem tritt hier eine natürliche Schwefelquelle aus dem Boden; rund um sie sind ländliche Hütten entstanden, bekannt als „Aryaf Zaki“. Dort baden die Gäste im warmen, mineralreichen Wasser inmitten des Grüns."
+area_de: "Al-Khaleej-Straße – Al-Ahsa"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 11 بدرجة 90/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Ферма Заки ас-Салема"
 kicker_ru: "Ферма"
 summary_ru: "Одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы. Она славится праздниками сбора урожая, а ещё здесь серный источник и сельские домики."
-body_ru: "У дороги Эль-Халидж раскинулась ферма Заки ас-Салема — одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы, а вместе с ним и другие здешние культуры. Ферма славится праздниками, которые каждый год устраивают в сезон сбора риса Аль-Ахсы: посетители едут на них за карнавальной атмосферой. Здесь же из-под земли бьёт природный серный источник. Вокруг него построили сельские домики, известные как «Арияф Заки». В них посетители наслаждаются тёплой минеральной водой этого источника среди зелени."
+body_ru: "У дороги Эль-Халидж раскинулась ферма Заки ас-Салема — одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы, а вместе с ним и другие здешние культуры. Ферма славится праздниками, которые каждый год устраивают в сезон сбора риса Аль-Ахсы: посетители едут на них за карнавальной атмосферой. Здесь же из-под земли бьёт природный серный источник. Вокруг него построили сельские домики, известные как «Арияф Заки». В них посетители купаются в тёплой минеральной воде этого источника среди зелени."
 area_ru: "Дорога Эль-Халидж, Аль-Ахса"
 slug_ar: "مزرعة-زكي-السالم"
 slug_en: "zaki-alsalem-farm"
@@ -33,5 +39,5 @@ mapUrl: "https://maps.app.goo.gl/S3QhpmWT7b3ge6DKA"
 
 تشتهر المزرعة **باحتفالات موسم حصاد** الأرز الأحسائي التي تقام كل عام
 ويقصدها الزوار بأجوائها الكرنفالية. وفيها **نبع مياه كبريتية** طبيعي من
-باطن الأرض، أقيمت حوله أكواخ ريفية تُعرف بـ«أرياف زكي»، يستمتع فيها
+باطن الأرض، أقيمت حوله أكواخ ريفية تُعرف بـ«أرياف زكي»، يستحمّ فيها
 الزوار بالمياه المعدنية الدافئة وسط الخضرة.

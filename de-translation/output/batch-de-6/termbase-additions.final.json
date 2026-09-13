@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "batch": "batch-de-6",
+    "stage": "7 (الحاكم) — مبنيٌّ من termbase-additions.stage4.json بعد البتّ",
+    "date": "2026-09-12",
+    "judge_ruling": "المداخل الثلاثة **مُقَرّة** كما اقترحتها المرحلة 4، وصفرُ مدخلٍ يُسحب (`remove` فارغة). وأعدتُ قياسَ الالتزام في الاتجاهين بنفسي على 252 مدخلاً: كلُّ اسمِ علمٍ في الألمانية له مدخلٌ بصيغته، وكلُّ مدخلٍ يخصّ مصدرَ الدفعة مُطبَّقٌ — عدا ثلاثةٍ لا تخصّها (`Beste Tageszeit` تسميةُ واجهةٍ في ui.ts · `Öffnungszeiten und Eintritt` بنودٌ منشورةٌ خارج ملفّ الدفعة · `die Ortschaft Al-Kilabiyah` مدخلُ صفحةٍ أخرى، وهو طرفُ تضارب «بلدة» المرفوع أدناه) و`das Programm „Humanisierung der Städte“` المُهمَل بتعليلٍ لأنّ المصدر لا ينسب مشروعَ الطريق إليه.",
+    "publisher_caveat": "‏`tools/translation/apply-attraction-batch.mjs` لا يقرأ إلا `terms` و`remove`. ودمجُ مدخلٍ قائمٍ **لا يقع إلا إذا اختلفت صيغتُه الألمانية** (‏`if (cur[lang] !== e[lang])`) — فالتعديلان في `amendments` أدناه **تعديلا ملاحظةٍ بصيغةٍ ألمانيةٍ لم تتغيّر، فلن يطبّقهما الناشر**. يُنقلان بيد المالك إن أرادهما، ولا يمنع تخلّفُهما النشرَ."
+  },
+  "terms": [
+    {
+      "en": "the municipality (البلدية — الجهةُ غيرُ المسمّاة في المصدر) — `salwa-beach` → `body_en`",
+      "de": "die Kommunalverwaltung",
+      "artikel": "die (die Verwaltung)",
+      "source": "`src/content/attractions/salwa-beach.md` → `body_en` „the municipality has developed the beach and its park“؛ العربية الفيصل «وقد طوّرت البلدية الشاطئ وحديقته». قياسٌ على المنشور: `Kommunalverwaltung` تردُ سبعَ مرّاتٍ في ألمانيةِ `src/` (‏`craftsmen-souq` ×3 · `najm-park` ×2 · `koot-park` ×1 · `women-souq` ×1) و**كلُّها بصيغة „von Al-Ahsa“**، ويقابل كلَّ واحدةٍ منها „Al-Ahsa Municipality“ في `body_en` (مقيسٌ آلياً: 4+1+2+1). فالاسمُ يُلحَق حيث يُلحقه المصدر، ويُحذف حيث يحذفه. والنظيرتان المعتمدتان تفعلان ذلك بعينه في هذه الصفحة: ru «Муниципалитет благоустроил пляж» · zh 「市政部门还为海滩…」 مجرّدتين، بينما تسمّيانها في `uqair-beach` حيث يسمّيها المصدر (ru «Муниципалитет Аль-Ахсы» · zh 「哈萨市政局」).",
+      "note": "**ليس مدخلاً منافساً لـ`die Kommunalverwaltung von Al-Ahsa` (أمانة الأحساء) بل تقييدٌ لمداه**: الجذرُ المعجميُّ واحد، والفرقُ أنّ «من الأحساء» تُكتب متى سمّى المصدرُ الجهة فقط. إلحاقُها حيث لا يسمّيها المصدر **يُسند عملاً إلى جهةٍ بعينها بلا سند** (سياجُ الوقائع)، وسلوى تبعد 150 كم عن الهفوف ولأمانة الأحساء تسعُ بلدياتٍ نازلة. و`die Gemeindeverwaltung` **مرفوضة**: مصطلحٌ ثالثٌ بصفرِ وُرودٍ في المنشور (مقيس). ومدخلُ `die Kommunalverwaltung von Al-Ahsa` يبقى كما هو بلا مساس.",
+      "stage": "4 (batch-de-6) — أقرّها الحاكم في المرحلة 7، الدورة 1",
+      "added": "2026-09-12"
+    },
+    {
+      "en": "caravan site / caravans (موقع عربات الكرفان · عربات الكرفان) — `uqair-beach` → `practical[0]` و`faq[0]`",
+      "de": "der Caravanstellplatz · Caravans (تسميةُ البند) · die Stellfläche (المواقفُ داخله)",
+      "artikel": "der (der Stellplatz) · die (die Stellfläche)",
+      "source": "`src/content/attractions/uqair-beach.md` → `practical[0].value_en` „a dedicated caravan site … with bays, fresh-water and waste-disposal points, booked online“ و`label_en: \"Caravans\"`؛ العربية الفيصل «موقعٌ مخصّص لعربات الكرفان … فيه مواقف ونقاط تزويد بالمياه وتصريف». Duden يحمل `der Caravan` (وجمعه `die Caravans`) و`der Stellplatz`، والمركّبُ `Caravanstellplatz` هو الصيغةُ الجاريةُ في بوابات التخييم الألمانية. والنظيرتان المعتمدتان تستعملان اسماً محلياً لكلٍّ منهما (ru «Дома на колёсах» · zh 「房车」) فلا تُلزمان الألمانية بصيغةٍ بعينها.",
+      "note": "**تحذيرُ التضييق**: `Wohnwagen` (مقطورة) و`Wohnmobil` (ذاتيّ الدفع) كلاهما **يضيّق** واقعةَ المصدر، والإنجليزيةُ `caravan` والعربيةُ «عربة كرفان» تحتملانهما معاً ⇒ تُمنع الصيغتان الضيّقتان. و`Caravan` **ليست Denglisch محظورة**: ليست في `_meta.style_rules.denglisch_verboten` وهي مدخلُ Duden. و`Stellflächen` للمواقف داخل الموقع تفادياً لاستعمال `Stellplatz` بمعنيين في جملةٍ واحدة. `Frischwasser- und Entsorgungsstationen` لـ«نقاط تزويد بالمياه وتصريف» — `Punkte` غيرُ مستعملةٍ في معجم التخييم الألماني.",
+      "stage": "4 (batch-de-6) — أقرّها الحاكم في المرحلة 7، الدورة 1",
+      "added": "2026-09-12"
+    },
+    {
+      "en": "grotto ⇄ cave (مغارة ⇄ كهف) — `tuwaither` → `body_en` مقابل `shaban` → `body_en`",
+      "de": "die Grotte (Pl.: die Grotten) — مقابل — die Höhle (Pl.: die Höhlen)",
+      "artikel": "die (كلتاهما)",
+      "source": "`src/content/attractions/tuwaither.md` → `summary_en`/`body_en` „cool grottoes“ · „its narrow grottoes“؛ العربية «بمغاراته الضيقة». وفي المقابل `src/content/attractions/shaban.md` → `body_en` اقتباسُ ياقوت „in whose caves one seeks the cool“؛ العربية «يتبرّد بكهافه». والمدخلُ المنشور `der Qarah-Berg (Jabal al-Qarah)` ينصّ على „die Höhlen“ و„das Höhlenlabyrinth“ لكهوف جبل القارة.",
+      "note": "**المصدرُ يفرّق فالألمانيةُ تفرّق**: دمجُ اللفظين يقول إنّ مغارات جبل أبو حصيص هي كهوفُ جبل القارة نفسُها — واقعةٌ جغرافيةٌ زائفةٌ **لا يستطيع القارئُ الأعمى كشفَها**. مقيسٌ في هذه الدفعة بعد آخر تحرير: `tuwaither` ‏`Grotten` ×2 و`Höhlen` ×0 · `shaban` ‏`Höhlen` ×2 و`Grotten` ×0. (نظيرُ منطقِ المدخل 198 `free-standing`: مصطلحُ مصدرٍ واحدٌ لا يتشظّى، ومصطلحان مختلفان لا يندمجان.)",
+      "stage": "4 (batch-de-6) — أقرّها الحاكم في المرحلة 7، الدورة 1",
+      "added": "2026-09-12"
+    }
+  ],
+  "remove": [],
+  "amendments_not_applied_by_publisher": [
+    {
+      "target_entry": "the Kingdom (المملكة) — als Landesbezeichnung im Fließtext ⇒ das Königreich",
+      "proposed_note_addition": "**قياس batch-de-6:** `salwa-beach` → `body_en` „by the Kingdom's land gateway to Qatar“ ⇔ «بوابة المملكة البرية إلى قطر» ⇒ `am Landübergang des Königreichs nach Katar` **مجرّدةً**. الاستثناءُ لا ينطبق: الواقعةُ لا تَرِد ثانيةً في الموقع بصيغة „Saudi Arabia“ (مسحٌ على `src/content` و`src/data`: وردٌ واحدٌ لا غير). **وسابقةُ النظائر لا تُلزم الألمانية**، وهو مقيسٌ مرّتين على المنشور: `najm-park` و`musa-park` كلتاهما „the Kingdom“ في الإنجليزية، وzh تفكّ الإحالة فيهما معاً (‏沙特阿拉伯) وru تُبقيها (‏«Королевства»)، **والألمانيةُ المنشورةُ تُبقيها في الاثنتين** („im Königreich“). فرفعُ ru/zh حجّةً على الألمانية في `salwa-beach` يخالف قياساً قائماً على الصفحتين.",
+      "reason": "المرحلة 3 كتبت `des Königreichs Saudi-Arabien` واحتجّت بالنظيرتين؛ المرحلة 4 ردّتها بهذا القياس. تدوينُ القياس يمنع إعادةَ الجدل في كل دفعة."
+    },
+    {
+      "target_entry": "Al-Ahsa Governorate ⇒ das Gouvernorat al-Ahsa",
+      "proposed_note_addition": "**صيغةُ الگلوس (batch-de-6):** أولَ ورودٍ في **متن** الصفحة: „… zum Gouvernorat al-Ahsa, dem übergeordneten Verwaltungsbezirk“ — مرّةً واحدةً للصفحة، ولا گلوسَ في عنوانٍ ولا في سطر `source_de` (حيث يكون الگلوسُ في إحالةٍ مرجعيةٍ حشواً؛ والنظيرتان المعتمدتان لا تُگلّسانه هناك). سندُ الگلوس: نصُّ دور المرحلة 3 يسمّيه بعينه („a governorate as an administrative unit“)، والنظيرةُ الروسيةُ المعتمدة (90/100) تحمله حرفياً: «мухафазе (административному округу) Аль-Ахса». و`übergeordnet` ترجمةُ „falls … under“ / «تتبع» لا زيادةٌ عليها. و`Verwaltungsbezirk` فُضِّلت على `Verwaltungseinheit` لأنها الأشيعُ للوحدة المكانية، ولا تصطدم بمنعِ `Provinz` (المحجوزة للمنطقة الشرقية).",
+      "reason": "أولُ ورودٍ لـ`Gouvernorat` في متنٍ ألمانيٍّ منشور (مقيس: صفرُ ورودٍ في `src/` قبل هذه الدفعة) — فالصيغةُ تُثبَّت الآن قبل أن تتفرّق."
+    }
+  ],
+  "flags_for_owner": [
+    {
+      "issue": "«بلدة» لها **ثلاثُ** صيغٍ في المعجم نفسِه",
+      "detail": "‏`der Ort` (مدخل `Al-Jafr`، وتصحيحُ 2026-09-12 لمدخلَي `Salwa` و`Al-Taraf`) · `die Ortschaft` (مدخل «the town of Al-Kilabiyah» الصادر في `batch-de-5`) · `die Stadt` (الصيغةُ المصحَّحةُ المتروكة). والمدخلُ الكلابيّ يعلّل صيغتَه بأنها «تغطّي «بلدة» و«قرية» معاً» — وهو بعينه ما يردّه مدخلُ `Al-Jafr` («Stadt» أكبر و«Dorf» أصغر، وكلاهما واقعةٌ مضافة).",
+      "batch_action": "الدفعةُ التزمت التصحيحَ السارِيَ `der Ort` في المواضع الخمسة وفي `Nachbarort`، ولم تمسّ المعجم.",
+      "owner_decision_needed": "بتُّ القاعدة مرةً واحدةً في `_meta.naming_policy` («مدينة» ⇒ die Stadt · «بلدة» ⇒ der Ort · «قرية» ⇒ das Dorf) ثم مواءمةُ مدخل الكلابية عليه — وإلا عادت القسمةُ تتذبذب في أول دفعةٍ تجمع الثلاثة."
+    },
+    {
+      "issue": "تفاوتُ `Al-`/`al-` داخل النقحرة المركّبة — **تضاربُ معجمٍ لا عيبُ نصّ**",
+      "detail": "‏`_meta.style_rules.titel_regel` ينصّ: «الأداة كبيرة في أول الاسم وصغيرة في وسطه (`Al-Ahsa`، `al-Qarah`)»، وثلاثةُ مداخلَ تتبعه حرفياً (`der Qarah-Berg (Jabal al-Qarah)` · `das Gouvernorat al-Ahsa` · `Yaqut al-Hamawi`، والأخيرُ يستشهد بالقاعدة بالاسم)، بينما مدخلُ `Al-Arba Mountain / Jabal Al-Arba` يكتبها كبيرةً مرآةً للإنجليزية ويأمر: «Das Namenselement `Al-Arba` bleibt in allen Vorkommen so geschrieben». والقارئ الأعمى رصد الفرقَ (الملاحظة 52).",
+      "batch_action": "الدفعةُ طبّقت **كلَّ مدخلٍ بصيغته المكتوبة** (`Jabal Al-Arba` في `arbaa` · `Jabal al-Qarah` في `shaban`) ولم تخالف مدخلاً — فلا خصمَ على النصّ، ولم يُمَسّ المعجم.",
+      "owner_decision_needed": "بتٌّ واحدٌ في `_meta.style_rules.titel_regel`: إمّا تعميمُ التصغير في وسط الاسم (فيصير `Jabal al-Arba` ويُعدَّل مدخلُه) وإمّا استثناءُ المرآة للإنجليزية (فتُدوَّن في القاعدة). التغييرُ متى بُتّ **كلمةٌ واحدةٌ في صفحةٍ واحدة**."
+    }
+  ],
+  "not_needed": [
+    "`freistehend` — **قائمٌ سلفاً** (مدخل 198، صادرٌ في `batch-de-4` لفّة 2) ونصُّه يسمّي `shaban.md` بالاسم مُلزِماً للدفعة التالية. لا مدخلَ جديد؛ الخللُ كان في **التطبيق** وصُحّح في المرحلة 5 (البند 5).",
+    "`die Gemeindeverwaltung` — مقترحُ المرحلة 1 (و-3)، **ساقطٌ**: المدخلُ المقيَّد أعلاه يغني عنه بلا مصطلحٍ ثالث.",
+    "`Naturlandschaft` — تسميةُ `kicker` مقيسةٌ في الموجز على 41 صفحة، وليست مدخلَ معجمٍ بل خريطةَ تسميات.",
+    "أسماءُ الأجناس المتكرّرة التي رفعتها المرحلة 1 (و-2): «مظلات» ⇒ `Schattendächer` · «ممشى» ⇒ `Spazierweg` · «أجهزة لياقة» ⇒ `Fitnessgeräte im Freien` · «نُزل ريفية» ⇒ `ländliche Unterkünfte` · «منتجع سياحي» ⇒ `touristische Ferienanlage` — كلُّها مطبَّقةٌ بسابقةٍ منشورة، وأثرُ تفرّقها **أسلوبيٌّ لا وقائعيّ**، فلا تُدخَل في دفعةٍ يُقاس معجمُها بالالتزام. يُستحسن جمعُها في دفعةٍ معجميةٍ واحدة. تنبيهٌ واحدٌ يستحقّ التدوين متى فُتح الباب: `Ferienanlage` مقابل `Resort` (التباسٌ بصريٌّ مع `Ressort` الألمانية)، و`die touristische Stätte` تبقى محجوزةً لـ«موقع سياحي» (مدخل 236) فلا تتداخل مع «منتجع»."
+  ]
+}

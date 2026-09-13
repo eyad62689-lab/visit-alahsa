@@ -7,6 +7,12 @@ kicker_zh: 自然景观
 summary_zh: "萨尔瓦镇的一处静谧海滩，位于哈萨最东南端，邻近卡塔尔边境。"
 body_zh: "萨尔瓦海滩位于哈萨最东南端的萨尔瓦镇，这里也是沙特阿拉伯通往卡塔尔的陆路门户。海滩沿着海湾延伸，距胡富夫约 150 公里。萨尔瓦镇在行政上隶属哈萨县，这里的沙滩被誉为海湾最美之一。海滩西侧与贾富拉沙漠（Jafurah）的沙丘相接，这一带鸟类也很丰富。萨尔瓦海滩既是知名的海钓地点，也是适合家人相聚、海边漫步的清静之地。市政部门还为海滩及附属公园修建了遮阳棚、游乐场和步道，并配备了户外健身器材。"
 area_zh: 萨尔瓦镇——哈萨最东南端
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-6 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
+title_de: "Salwa-Strand"
+kicker_de: "Naturlandschaft"
+summary_de: "Ein ruhiger Strand beim Ort Salwa im äußersten Südosten Al-Ahsas, nahe der Grenze zu Katar."
+body_de: "Im äußersten Südosten Al-Ahsas liegt der Ort Salwa, am Landübergang des Königreichs nach Katar. Dort erstreckt sich der Salwa-Strand am Golf entlang, rund 150 Kilometer von Hofuf entfernt. Salwa gehört zum Gouvernorat al-Ahsa, dem übergeordneten Verwaltungsbezirk. Der Sand des Strandes gilt als einer der schönsten am Golf. Im Westen grenzen die Dünen der Jafurah-Wüste an den Strand, und die Gegend ist reich an Vögeln. Der Strand ist ein bekannter Platz zum Meeresangeln und ein ruhiges Ziel, um mit der Familie zusammenzusitzen und am Ufer spazieren zu gehen. Die Kommunalverwaltung hat ihn samt Park ausgebaut – mit Schattendächern, Spielplätzen, einem Spazierweg und Fitnessgeräten im Freien."
+area_de: "Salwa – der äußerste Südosten Al-Ahsas"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 6 بدرجة 90/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Пляж Сальва"
 kicker_ru: "Природная достопримечательность"
