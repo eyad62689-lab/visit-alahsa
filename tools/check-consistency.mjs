@@ -11,6 +11,12 @@ import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
+// كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
+// العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
+// مثل /^hoursSpec:\n/ كانت تقرأ الترويسة فارغةً محلياً فيُخفق C24 هنا وينجح هناك (2026-09-16).
+// التوحيد عند القراءة لا في كل نمط: فحصٌ قادم يُكتب بـ\n فيسلك على المنصتين سلوكاً واحداً.
+const readText = async (p) => (await readFile(p, 'utf8')).replace(/\r\n?/g, '\n');
+
 // وجود الرقم num في النص بحدود رقمية لا ترقيمية (لا رقم قبله ولا «رقم:» أو «رقم.» قبله، ولا رقم
 // بعده ولو بعد فاصل)، دون بناء تعبير نمطي من مدخل — «2018.» آخر الجملة رقم صحيح، أما «18» فلا تُقبل
 // لـ«8»، و«8:00» لا تُقبل لـ«8». (Semgrep detect-non-literal-regexp على طلب الدمج #38.)
@@ -120,7 +126,7 @@ async function main() {
   if (!existsSync(llmsPath)) {
     fail('C2', 'llms.txt غير موجود في dist');
   } else {
-    const llms = await readFile(llmsPath, 'utf8');
+    const llms = await readText(llmsPath);
     const m = llms.match(/المعالم \((\d+) معلماً/);
     if (!m) fail('C2', 'تعذّر استخراج عدد المعالم من llms.txt');
     else if (Number(m[1]) === truth) pass('C2', `llms.txt يعلن ${truth} معلماً`);
@@ -133,7 +139,7 @@ async function main() {
   if (!existsSync(homePath)) {
     fail('C3', 'الصفحة الرئيسية غير موجودة في dist');
   } else {
-    const home = await readFile(homePath, 'utf8');
+    const home = await readText(homePath);
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
     const text = stripTags(home, '');
     const m = text.match(/([\d.,+MK万]+)[\s]*معلماً ووجهةً للاكتشاف/);
@@ -147,7 +153,7 @@ async function main() {
   const indicDigits = /[٠-٩۰-۹]/;
   const withIndic = [];
   for (const f of htmlFiles) {
-    const html = await readFile(f, 'utf8');
+    const html = await readText(f);
     // يُستثنى ما بين وسوم script/style (بيانات خارجية قد تحمل نصوصاً)
     const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '');
     if (indicDigits.test(visible)) withIndic.push(path.relative(DIST, f));
@@ -159,7 +165,7 @@ async function main() {
   for (const { term, blocking, why } of PENDING_TERMS) {
     const hits = [];
     for (const f of htmlFiles) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       if (html.includes(term)) hits.push(path.relative(DIST, f));
     }
     if (hits.length === 0) { pass('C5', `«${term}» غير وارد في المخرج`); continue; }
@@ -171,7 +177,7 @@ async function main() {
   for (const { alias, canonicals } of SYNONYM_PAIRS) {
     const orphans = [];
     for (const f of htmlFiles) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       const aliasRe = new RegExp(alias, 'i');
       if (aliasRe.test(html) && !canonicals.some((c) => html.includes(c))) orphans.push(path.relative(DIST, f));
     }
@@ -186,7 +192,7 @@ async function main() {
   const rowMismatch = [];
   let checkedPages = 0;
   for (const f of mdFiles) {
-    const raw = await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8');
+    const raw = await readText(path.join(SRC_ATTRACTIONS, f));
     // بعض الملفات تكتب الرابط بين علامتَي اقتباس فتُنزع
     const slug = raw.match(/^slug_ar:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
     if (!slug) continue;
@@ -197,7 +203,7 @@ async function main() {
     const expected = verifiedCount + (hasArea ? 1 : 0) + (hasBest ? 1 : 0);
     const page = path.join(DIST, AR_ATTRACTIONS_DIR, slug, 'index.html');
     if (!existsSync(page)) { rowMismatch.push(`${slug}: الصفحة غير مبنية`); continue; }
-    const html = await readFile(page, 'utf8');
+    const html = await readText(page);
     const card = html.match(/<dl class="info-list"[^>]*>([\s\S]*?)<\/dl>/);
     const rows = card ? (card[1].match(/<dt[\s>]/g) ?? []).length : 0;
     checkedPages++;
@@ -211,7 +217,7 @@ async function main() {
   if (!existsSync(smPath)) {
     fail('C7', 'sitemap.xml غير موجود في dist');
   } else {
-    const sm = await readFile(smPath, 'utf8');
+    const sm = await readText(smPath);
     const locs = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     if (locs.length > 0) pass('C7', `sitemap يحمل ${locs.length} رابطاً`);
     else fail('C7', 'sitemap فارغ');
@@ -241,14 +247,14 @@ async function main() {
     const missing = [];
     let withSource = 0;
     for (const f of mdFiles) {
-      const raw = await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8');
+      const raw = await readText(path.join(SRC_ATTRACTIONS, f));
       const slug = raw.match(/^slug_ar:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
       if (!slug) continue;
       const verified = raw.split('\n').filter((l) => /^\s*-\s*\{\s*label:/.test(l) && l.includes('verified: true'));
       if (verified.length === 0) continue;
       const page = path.join(DIST, AR_ATTRACTIONS_DIR, slug, 'index.html');
       if (!existsSync(page)) { missing.push(`${slug}: الصفحة غير مبنية`); continue; }
-      const html = await readFile(page, 'utf8');
+      const html = await readText(page);
       const hasBlock = /class="info-src"/.test(html);
       const hasTime = /<time datetime="\d{4}-\d{2}-\d{2}"/.test(html);
       if (!hasBlock || !hasTime) { missing.push(`${slug}: بلا سطر إسناد مقروء`); continue; }
@@ -259,7 +265,7 @@ async function main() {
       const slugEn = raw.match(/^slug_en:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
       const pageEn = slugEn && path.join(DIST, 'en', 'attractions', slugEn, 'index.html');
       if (pageEn && existsSync(pageEn)) {
-        const htmlEn = await readFile(pageEn, 'utf8');
+        const htmlEn = await readText(pageEn);
         const block = htmlEn.match(/class="info-src"[^>]*>([\s\S]*?)<\/p>/);
         if (!block) missing.push(`${slugEn} (en): بلا سطر إسناد`);
         else if (/[؀-ۿ]/.test(stripTags(block[1]))) {
@@ -273,7 +279,7 @@ async function main() {
     // ── C13: تباين سطر الإسناد يبلغ AA ─────────────────────────────────────
     // قيس أول مرة في المتصفح فكان --c-ink-60 يعطي 4.36:1 — دون العتبة 4.5.
     // الفحص يمنع عودة أي رمز لون خافت إلى هذا السطر بلا قياس.
-    const css = (await readFile(path.join(ROOT, 'src/components/views/DetailView.astro'), 'utf8'));
+    const css = (await readText(path.join(ROOT, 'src/components/views/DetailView.astro')));
     const rule = css.match(/\.info-src\s*\{[^}]*\}/);
     const banned = ['--c-ink-60', '--c-gold-deep', '--c-gold'];
     const used = rule ? banned.filter((t) => rule[0].includes(t)) : [];
@@ -290,7 +296,7 @@ async function main() {
     const SEASONAL_DE = /\b(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember|Frühling|Sommer|Herbst|Winter|Saison|Monat)\w*/;
     const deLies = [];
     for (const f of await listHtml(path.join(DIST, 'de'))) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       const m = html.match(/Beste Tageszeit<\/dt>\s*<dd[^>]*>([\s\S]*?)<\/dd>/);
       const val = m && stripTags(m[1]).trim();
       const hit = val && val.match(SEASONAL_DE);
@@ -303,7 +309,7 @@ async function main() {
     const SEASONAL_RU = /(?:^|[^а-яё])(?:январ|феврал|март|апрел|июн|июл|август|сентябр|октябр|ноябр|декабр|весн|осен|зим|сезон|месяц)[а-яё]*|(?:^|[^а-яё])ма[йяе](?![а-яё])|(?:^|[^а-яё])лет(?:о|ом)(?![а-яё])/i;
     const ruLies = [];
     for (const f of await listHtml(path.join(DIST, 'ru'))) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       const m = html.match(/Лучшее время дня<\/dt>\s*<dd[^>]*>([\s\S]*?)<\/dd>/);
       const val = m && stripTags(m[1]).trim();
       const hit = val && val.match(SEASONAL_RU);
@@ -322,7 +328,7 @@ async function main() {
     if (!existsSync(keyFile)) {
       fail('C9', `ملف مفتاح IndexNow غير منشور: ${KEY}.txt`);
     } else {
-      const content = (await readFile(keyFile, 'utf8')).trim();
+      const content = (await readText(keyFile)).trim();
       if (content !== KEY) fail('C9', `محتوى ملف المفتاح «${content}» لا يطابق اسمه`);
       else if (HOST !== 'visit-alahsa.com') fail('C9', `نطاق IndexNow غير متوقّع: ${HOST}`);
       else pass('C9', `مفتاح IndexNow منشور ومطابق (${KEY.slice(0, 8)}…)`);
@@ -338,7 +344,7 @@ async function main() {
     const htmlFiles = await listHtml(DIST);
     const hits = [];
     for (const f of htmlFiles) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       for (const m of html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
         const found = BANNED.filter((k) => m[1].includes(k));
         if (found.length) hits.push(`${path.relative(DIST, f)} → ${found.join(', ')}`);
@@ -374,7 +380,7 @@ async function main() {
       try { files = (await readdir(dir)).filter((f) => f.endsWith('.md')); } catch { /* لا مجموعة بعد */ }
       total += files.length;
       for (const f of files) {
-        const raw = await readFile(path.join(dir, f), 'utf8');
+        const raw = await readText(path.join(dir, f));
         const fm = fmOf(raw), body = bodyOf(raw), bodyEn = fld(fm, 'body_en').trim();
         const blurb = fld(fm, 'blurb'), blurbEn = fld(fm, 'blurb_en');
         // متنٌ مكتوبٌ لكنه دون العتبة أو مطابقٌ للنبذة = خطأ صريح لا صمت
@@ -407,7 +413,7 @@ async function main() {
     const offenders = [];
     let carriers = 0;
     for (const f of htmlFiles) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       for (const { lang, re } of PALM_CLAIM) {
         if (re.test(html)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
       }
@@ -436,7 +442,7 @@ async function main() {
     const offenders = [];
     let carriers = 0;
     for (const f of htmlFiles) {
-      const text = stripTags(await readFile(f, 'utf8'), ' ');
+      const text = stripTags(await readText(f), ' ');
       for (const { lang, re } of NIGHT_WARMTH) {
         if (re.test(text)) offenders.push(`${path.relative(DIST, f)} (${lang})`);
       }
@@ -463,7 +469,7 @@ async function main() {
     });
     const offenders = [];
     for (const f of deFiles) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       const spots = [];
       const title = html.match(/<title>([^<]*)<\/title>/);
       if (title) spots.push(['title', title[1]]);
@@ -490,7 +496,7 @@ async function main() {
     const deFiles = await listHtml(path.join(DIST, 'de'));
     const offenders = [];
     for (const f of deFiles) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       let text = stripUntilStable(html, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
       text = stripUntilStable(text, /<link[^>]*>/gi);
       text = stripUntilStable(text, /<(\w+)[^>]*\blang="en"[^>]*>[\s\S]*?<\/\1>/gi);
@@ -522,7 +528,7 @@ async function main() {
     const qOwner = new Map(), uOwner = new Map();
     const problems = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
-      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const unesco = head.match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
@@ -546,7 +552,7 @@ async function main() {
       ];
       for (const p of pages) {
         let html;
-        try { html = await readFile(p, 'utf8'); } catch { problems.push(`${e.f}: صفحة مفقودة ${path.relative(DIST, p)}`); continue; }
+        try { html = await readText(p); } catch { problems.push(`${e.f}: صفحة مفقودة ${path.relative(DIST, p)}`); continue; }
         const node = parseLd(html).find((n) => n['@type'] === 'TouristAttraction');
         const rel = path.relative(DIST, p);
         if (!node) { problems.push(`${rel}: لا TouristAttraction`); continue; }
@@ -564,7 +570,7 @@ async function main() {
     for (const home of ['', 'en', 'zh', 'de', 'ru']) {
       const p = path.join(DIST, home, 'index.html');
       let html;
-      try { html = await readFile(p, 'utf8'); } catch { problems.push(`الرئيسية /${home} مفقودة`); continue; }
+      try { html = await readText(p); } catch { problems.push(`الرئيسية /${home} مفقودة`); continue; }
       const dest = parseLd(html).find((n) => n['@type'] === 'TouristDestination');
       const sa = Array.isArray(dest?.sameAs) ? dest.sameAs : [];
       // مساواة تامة لا includes: CodeQL يقرأ includes على رابط فحصَ سلسلة فرعية
@@ -595,7 +601,7 @@ async function main() {
     const offenders = [];
     let carriers = 0;
     for (const f of ruFiles) {
-      const html = await readFile(f, 'utf8');
+      const html = await readText(f);
       let text = stripUntilStable(html, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
       text = stripUntilStable(text, /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi);
       text = stripTags(text, ' ');
@@ -634,7 +640,7 @@ async function main() {
     const problems = [];
     const expected = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
-      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const block = head.match(/^faq:[ \t]*\r?\n((?:[ \t]+\S.*\r?\n?)+)/m)?.[1];
       if (!block) continue;
       const items = [];
@@ -669,7 +675,7 @@ async function main() {
       for (const [sfx, p] of pages) {
         const want = e.items.filter((it) => it['q' + sfx] && it['a' + sfx]).map((it) => ({ q: it['q' + sfx], a: it['a' + sfx] }));
         let html;
-        try { html = await readFile(p, 'utf8'); } catch { problems.push(`${e.f}: صفحة مفقودة ${path.relative(DIST, p)}`); continue; }
+        try { html = await readText(p); } catch { problems.push(`${e.f}: صفحة مفقودة ${path.relative(DIST, p)}`); continue; }
         const rel = path.relative(DIST, p);
         pagesChecked++;
         const nodes = parseLd(html).filter((n) => n['@type'] === 'FAQPage');
@@ -713,12 +719,12 @@ async function main() {
   // hreflang وخارج sitemap ولا يشير إليها hreflang من أي صفحة، وnoindex متى وُسمت.
   {
     const THRESHOLD = 20;
-    const unlistedSrc = await readFile(path.join(ROOT, 'src/i18n/unlisted.ts'), 'utf8');
+    const unlistedSrc = await readText(path.join(ROOT, 'src/i18n/unlisted.ts'));
     const unlisted = [...unlistedSrc.matchAll(/\{\s*path:\s*'([^']+)',\s*noindex:\s*(true|false)/g)].map((m) => ({ path: m[1], noindex: m[2] === 'true' }));
     const names = new Set(['Visit Al-Ahsa', 'Al-Ahsa', 'VISIT AL-AHSA', 'visit-alahsa.com', 'Ctrl K', 'Esc']);
     for (const dir of ['src/content/attractions', 'src/content/dining', 'src/content/stay']) {
       for (const f of (await readdir(path.join(ROOT, dir))).filter((n) => n.endsWith('.md'))) {
-        const head = (await readFile(path.join(ROOT, dir, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+        const head = (await readText(path.join(ROOT, dir, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
         for (const k of ['title', 'title_en', 'name_en', 'area_en', 'kicker_en']) {
           const m = head.match(new RegExp(`^${k}:\\s*"?([^"\\r\\n]+?)"?\\s*$`, 'm'));
           if (m) names.add(m[1].trim());
@@ -732,14 +738,14 @@ async function main() {
         .map((t) => t.replace(/&[a-z]+;|&#\d+;/g, ' ').replace(/\s+/g, ' ').trim())
         .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t));
     };
-    const smXml = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    const smXml = existsSync(smPath) ? await readText(smPath) : '';
     const problems = [];
     const worst = {};
     let advertised = 0;
     for (const lang of ['zh', 'de', 'ru']) {
       worst[lang] = { pct: 0, page: '' };
       for (const fp of await listHtml(path.join(DIST, lang))) {
-        const html = await readFile(fp, 'utf8');
+        const html = await readText(fp);
         const pagePath = '/' + path.relative(DIST, fp).replace(/index\.html$/, '');
         const isUnlisted = unlisted.some((u) => u.path === pagePath);
         const hasHreflang = /<link rel="alternate" hreflang=/.test(html);
@@ -756,7 +762,7 @@ async function main() {
         if (!enHref) { problems.push(`${pagePath}: معلَنة بلا نظير إنجليزي`); continue; }
         const enFile = path.join(DIST, decodeURIComponent(enHref), 'index.html');
         if (!existsSync(enFile)) { problems.push(`${pagePath}: النظير الإنجليزي ${enHref} غير مبني`); continue; }
-        const en = new Set(chunksOf(await readFile(enFile, 'utf8')).filter((t) => /[A-Za-z]{2,}/.test(t)));
+        const en = new Set(chunksOf(await readText(enFile)).filter((t) => /[A-Za-z]{2,}/.test(t)));
         const all = chunksOf(html);
         const same = all.filter((t) => /[A-Za-z]{2,}/.test(t) && en.has(t));
         const pct = all.length ? Math.round((100 * same.length) / all.length) : 0;
@@ -767,7 +773,7 @@ async function main() {
     }
     // لا صفحة معلَنة تشير بـhreflang إلى صفحة غير معلَنة
     for (const fp of await listHtml(DIST)) {
-      const html = await readFile(fp, 'utf8');
+      const html = await readText(fp);
       for (const u of unlisted) {
         if (html.includes(`hreflang="${u.path.split('/')[1]}" href="https://visit-alahsa.com${u.path}"`)) problems.push(`${path.relative(DIST, fp)}: hreflang يشير إلى غير المعلَنة ${u.path}`);
       }
@@ -796,13 +802,13 @@ async function main() {
       return wc(sectionText(html, /<article class="prose"[^>]*>([\s\S]*?)<\/article>/)) +
         wc(sectionText(html, /<section class="container att-faq"[^>]*>([\s\S]*?)<\/section>/));
     };
-    const smXml = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    const smXml = existsSync(smPath) ? await readText(smPath) : '';
     const inSitemap = (p) => smXml.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`);
     const problems = [];
     let thinCount = 0, checked = 0;
     const thinSlugs = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
-      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       if (!slugAr || !slugEn) { problems.push(`${f}: بلا slug`); continue; }
@@ -811,7 +817,7 @@ async function main() {
         ['en', `/en/attractions/${slugEn}/`],
         ...['zh', 'de', 'ru'].map((l) => [l, `/${l}/attractions/${slugEn}/`]),
       ].map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
-      const htmlBy = Object.fromEntries(await Promise.all(pages.map(async ([l, , fp]) => [l, await readFile(fp, 'utf8')])));
+      const htmlBy = Object.fromEntries(await Promise.all(pages.map(async ([l, , fp]) => [l, await readText(fp)])));
       if (!htmlBy.ar || !htmlBy.en) { problems.push(`${f}: صفحة عربية أو إنجليزية غير مبنية`); continue; }
       const thin = contentWords(htmlBy.ar) < THIN || contentWords(htmlBy.en) < THIN;
       if (thin) { thinCount++; thinSlugs.push(slugEn); }
@@ -833,7 +839,7 @@ async function main() {
     for (const o of ogFiles) if (!existsSync(path.join(DIST, o))) problems.push(`${o} غير موجودة في dist`);
     let ogChecked = 0, ogDefault = 0;
     for (const fp of await listHtml(DIST)) {
-      const html = await readFile(fp, 'utf8');
+      const html = await readText(fp);
       if (/<meta name="robots" content="noindex/.test(html)) continue;
       const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
       const og = html.match(/property="og:image" content="([^"]+)"/)?.[1] ?? '';
@@ -865,18 +871,18 @@ async function main() {
     const decode = (t) => t.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ');
     const attrFiles = (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'));
     const heads = {};
-    for (const f of attrFiles) heads[f] = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+    for (const f of attrFiles) heads[f] = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
     const SOURCES = {
       practical: Object.values(heads).map((h) => h.match(/^practical:\n([\s\S]*?)(?=^\S)/m)?.[1] ?? '').join('\n'),
-      events: await readFile(path.join(ROOT, 'src/data/events.ts'), 'utf8'),
-      fruits: await readFile(path.join(ROOT, 'src/data/fruits.ts'), 'utf8'),
+      events: await readText(path.join(ROOT, 'src/data/events.ts')),
+      fruits: await readText(path.join(ROOT, 'src/data/fruits.ts')),
     };
     const MIN_ROWS = { practical: 15, events: 8, fruits: 12 };
     const seen = {};
     const LD = new Map();
     let tables = 0, cells = 0, ldCount = 0;
     for (const fp of await listHtml(DIST)) {
-      const html = await readFile(fp, 'utf8');
+      const html = await readText(fp);
       const rel = path.relative(DIST, fp);
       const lang = (html.match(/<html lang="([^"]+)"/)?.[1] ?? 'ar').split('-')[0];
       for (const m of html.matchAll(/<table class="va-table" data-table="([^"]+)">([\s\S]*?)<\/table>/g)) {
@@ -967,7 +973,7 @@ async function main() {
       const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
         .map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
       for (const [l, p, fp] of pages) {
-        const html = await readFile(fp, 'utf8');
+        const html = await readText(fp);
         const found = [...html.matchAll(/<p class="answer"[^>]*>([\s\S]*?)<\/p>/g)].map((m) => unesc(stripTags(m[1], ' ')).trim());
         const want = l === 'ar' || l === 'en' ? src[l] : undefined;
         if (!want) { if (found.length) problems.push(`${p}: فقرة إجابة بلا answer بلغتها في المصدر`); continue; }
@@ -991,11 +997,11 @@ async function main() {
       f, id: heads[f].match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
       slugAr: heads[f].match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1], slugEn: heads[f].match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
     })).filter((c) => c.id).sort((a, b) => a.id.localeCompare(b.id));
-    const smXml24 = existsSync(smPath) ? await readFile(smPath, 'utf8') : '';
+    const smXml24 = existsSync(smPath) ? await readText(smPath) : '';
     for (const [l, p] of [['ar', '/اليونسكو/'], ['en', '/en/unesco/']]) {
       const fp = path.join(DIST, p, 'index.html');
       let html;
-      try { html = await readFile(fp, 'utf8'); } catch { problems.push(`صفحة اليونسكو ${p} مفقودة`); continue; }
+      try { html = await readText(fp); } catch { problems.push(`صفحة اليونسكو ${p} مفقودة`); continue; }
       const ids = [...html.matchAll(/data-unesco="([^"]+)"/g)].map((m) => m[1]);
       if (JSON.stringify(ids) !== JSON.stringify(comps.map((c) => c.id))) problems.push(`${p}: المكوّنات المنشورة (${ids.join('، ')}) ≠ المصدر (${comps.map((c) => c.id).join('، ')})`);
       for (const c of comps) {
@@ -1037,7 +1043,7 @@ async function main() {
         const fp = path.join(dir, n, 'index.html');
         if (!existsSync(fp)) continue;
         posts++;
-        const html = await readFile(fp, 'utf8');
+        const html = await readText(fp);
         const postPath = l === 'ar' ? `/${AR_BLOG_DIR}/${n}/` : `/${l}/blog/${n}/`;
         // روابط الماركداون العربية تخرج مرمَّزة (percent-encoding) — تُفكّ في hrefsOf قبل المطابقة
         const prefix = l === 'ar' ? `/${AR_ATTRACTIONS_DIR}/` : `/${l}/attractions/`;
@@ -1051,14 +1057,14 @@ async function main() {
     }
     let withMentions = 0, mentionLinks = 0;
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
-      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       if (!slugAr || !slugEn) continue;
       const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
         .map(([l, slug, p]) => [l, slug, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , , fp]) => existsSync(fp));
       for (const [l, slug, p, fp] of pages) {
-        const html = await readFile(fp, 'utf8');
+        const html = await readText(fp);
         const sec = html.match(/<section class="container mentions-sec"[\s\S]*?<\/section>/)?.[0] ?? '';
         const got = hrefsOf(sec);
         const want = expected.get(`${l}:${slug}`) ?? new Set();
@@ -1073,7 +1079,7 @@ async function main() {
     const SRC_DINING = path.join(ROOT, 'src/content/dining');
     const attrByDistrict = new Map();
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
-      const head = (await readFile(path.join(SRC_ATTRACTIONS, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       if (!dist) continue;
       const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
@@ -1082,7 +1088,7 @@ async function main() {
     }
     let diningWith = 0, diningChecked = 0;
     for (const f of (await readdir(SRC_DINING)).filter((n) => n.endsWith('.md'))) {
-      const head = (await readFile(path.join(SRC_DINING, f), 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const head = (await readText(path.join(SRC_DINING, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
@@ -1091,7 +1097,7 @@ async function main() {
         .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
       for (const [l, p, fp] of pages) {
         diningChecked++;
-        const html = await readFile(fp, 'utf8');
+        const html = await readText(fp);
         const sec = html.match(/<section class="dd-panel dd-sights"[\s\S]*?<\/section>/)?.[0] ?? '';
         const got = hrefsOf(sec);
         const want = new Set((dist ? attrByDistrict.get(dist) ?? [] : []).map((x) => x[l]));
@@ -1117,7 +1123,7 @@ async function main() {
     const dec = (u) => { try { return decodeURIComponent(u); } catch { return u; } };
     const pageSets = new Map(); // المسار (مفكوكاً) → { lang, alts: Map(lang → path), xdef }
     for (const fp of await listHtml(DIST)) {
-      const html = await readFile(fp, 'utf8');
+      const html = await readText(fp);
       const alts = new Map();
       let xdef;
       for (const m of html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="https:\/\/visit-alahsa\.com([^"]+)"/g)) {
