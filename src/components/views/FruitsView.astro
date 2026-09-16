@@ -12,7 +12,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import DataTable from '../DataTable.astro';
 import { fruitsTable } from '../../lib/tables';
-import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH } from '../../data/fruits';
+import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_RU } from '../../data/fruits';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { reviewedLabel } from '../../data/meta';
@@ -22,8 +22,11 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const ru = lang === 'ru';
 // رؤوس جدول المواسم (الخطوة 8 من خطة التفاعل العالمي) — عربي/إنجليزي فقط؛ الصيني بانتظار خط الترجمة فلا يُبنى جدوله
-const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : { fruit: 'Fruit', season: 'Season', group: 'Group' };
+// رؤوس جدول المواسم الروسية — من خط ru-translation-pipeline (دفعة ru-fruits)
+const RU_HEADS = { fruit: 'Плод', season: 'Сезон', group: 'Группа' };
+const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : ru ? RU_HEADS : { fruit: 'Fruit', season: 'Season', group: 'Group' };
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة fruits 2026-09-02، الحاكم 94/100)
 const ZH = {
@@ -56,6 +59,40 @@ const ZH = {
   methodP1: '本页内容取自官方与权威农业来源，每条信息在发布前都经过核实；凡未能找到确凿出处的内容，我们一律明确标注“待确认（信息更新中）”，而不妄下定论。',
   methodP2: `果实成熟期每年随天气略有变化；本页信息于 ${reviewedLabel('fruits', 'zh')} 完成复核。`,
   groups: FRUIT_GROUPS_ZH,
+};
+
+// الكتلة الروسية — خط ru-translation-pipeline (دفعة ru-fruits 2026-09-16).
+// رؤوس الجدول من الخطّ نفسه، فيُبنى جدول المواسم بالروسية لا بالإنجليزية.
+const RU = {
+  heroEyebrow: 'Дары оазиса',
+  title: 'Сезонные плоды Аль-Ахсы',
+  heroSum: 'В крупнейшем оазисе мира времена года сменяют друг друга в садах, и каждое дарит гостю свой плод и свой вкус — от золотистого летнего рутаба (фиников на стадии перед полной спелостью) до зимнего канара и знаменитого лайма оазиса.',
+  stats: [
+    { n: '2,5 млн', l: 'финиковых пальм в оазисе' },
+    { n: '400 тыс.', l: 'плодовых деревьев помимо пальм' },
+  ],
+  statsSrc: 'Источники: запись в Книге рекордов Гиннесса (октябрь 2020 года) и статистика Министерства окружающей среды, водных ресурсов и сельского хозяйства.',
+  frEyebrow: 'Знакомство с плодами',
+  frH: 'Каждому сезону — свой плод',
+  frLead: 'Выберите сезон своей поездки, чтобы увидеть его плоды:',
+  chipsAria: 'Фильтр плодов по сезону',
+  chips: [
+    { f: 'all', l: 'Все сезоны' },
+    { f: 'winter', l: 'Зима' },
+    { f: 'spring', l: 'Весна' },
+    { f: 'summer', l: 'Лето' },
+    { f: 'autumn', l: 'Осень' },
+  ],
+  pending: 'Информация уточняется',
+  rare: 'На грани исчезновения',
+  more: 'Подробнее',
+  less: 'Свернуть',
+  emptyMsg: 'Для этого сезона плоды пока не указаны.',
+  countPrefix: 'Показано плодов: ',
+  methodH: 'О точности сведений',
+  methodP1: 'Эта страница опирается на надёжные официальные и сельскохозяйственные источники, и каждый факт мы проверяем перед публикацией. Всё, что подтвердить не удалось, мы прямо помечаем словами «Информация уточняется» и не выдаём за установленный факт.',
+  methodP2: `Сроки созревания немного смещаются из года в год в зависимости от погоды. Сведения проверены: ${reviewedLabel('fruits', 'ru')}`,
+  groups: FRUIT_GROUPS_RU,
 };
 
 const C = localize(lang, {
@@ -122,6 +159,7 @@ const C = localize(lang, {
     groups: FRUIT_GROUPS_EN,
   },
   zh: ZH,
+  ru: RU,
 });
 
 const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.name')}`;
@@ -129,13 +167,15 @@ const description = ar
   ? 'جولة على ثمار واحة الأحساء بمواسمها: التمور والرطب، اللومي الأحسائي، البطيخ الأصفر، التين، الكنار وغيرها — بمعلومات موثقة من مصادر رسمية.'
   : zh
     ? '按季节了解哈萨绿洲的时令水果：椰枣与软熟鲜枣、哈萨青柠、黄西瓜、无花果、毛叶枣等——所有信息均经官方来源核实。'
-    : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
+    : ru
+      ? 'Плоды оазиса Аль-Ахса по сезонам: финики и рутаб, лайм Аль-Ахсы, жёлтая дыня, инжир, канар и другие — с проверенными сведениями из официальных источников.'
+      : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : '/en/fruits/';
+const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : ru ? '/ru/fruits/' : '/en/fruits/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];

@@ -35,7 +35,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', ru: '/ru/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
     { ar: '/خريطة-تضاريس/', en: '/en/terrain-map/', lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
-    { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
+    { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', ru: '/ru/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
     { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', ru: '/ru/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
