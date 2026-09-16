@@ -31,6 +31,7 @@ const ZH = {
   less: '收起简介',
   methodH: '关于本页',
   methodP1: '本页旨在介绍各道传统菜肴及其常见食材，并非精确食谱；用料与叫法因家庭与地区而异。',
+  methodP2: '有四张菜品卡片提到斋月、冬日寒夜、宴席与婚礼、待客的餐桌等场合与时令，这些描述讲的是菜肴在哈萨餐桌传统中扮演的角色，而不是何时向游客供应。不过在哈萨的餐厅里，本页介绍的八道菜肴全年供应。',
   dineCta: '想找地方一饱口福？浏览餐厅与咖啡馆 →',
   dineHref: '/zh/restaurants-cafes/',
   groups: DISH_GROUPS_ZH,
@@ -49,6 +50,7 @@ const RU = {
   less: 'Свернуть',
   methodH: 'Об этой странице',
   methodP1: 'Эти описания знакомят с традиционными блюдами и их хорошо известными ингредиентами, а не дают точных рецептов: и пропорции, и названия меняются от дома к дому и от одной местности к другой.',
+  methodP2: 'Четыре карточки упоминают Рамадан, зимние ночи, свадебные пиры или приём гостей: такие поводы и времена года говорят о месте этих блюд в застольных традициях Аль-Ахсы, а не о том, когда их подают туристам. А в ресторанах Аль-Ахсы описанные на этой странице блюда подают круглый год.',
   dineCta: 'Ищете, где это попробовать? Посмотрите список ресторанов и кафе →',
   dineHref: '/en/restaurants-cafes/',
   groups: DISH_GROUPS_RU,
@@ -65,6 +67,7 @@ const C = localize(lang, {
     less: 'إخفاء النبذة',
     methodH: 'حول هذه الصفحة',
     methodP1: 'الأوصاف هنا للتعريف بالأطباق الشعبية ومكوّناتها المعروفة، لا وصفاتٍ دقيقة؛ إذ تتفاوت المقادير والمسمّيات من بيتٍ لآخر ومن منطقةٍ لأخرى.',
+    methodP2: 'وما تذكره أربعُ بطاقاتٍ من مناسبةٍ أو موسم — رمضان، أو ليالي الشتاء، أو ولائم الأعراس وموائد الضيافة — يصف موضعَ الطبق في تقاليد الموائد الأحسائية، لا موعدَ تقديمه للزائر؛ أمّا في مطاعم الأحساء فتُقدَّم أطباقُ هذه الصفحة على مدار السنة.',
     dineCta: 'تبحث عن مكانٍ تجرّب فيه؟ تصفّح المطاعم والمقاهي ←',
     dineHref: '/مطاعم-ومقاهي/',
     groups: DISH_GROUPS_AR,
@@ -79,6 +82,7 @@ const C = localize(lang, {
     less: 'Hide description',
     methodH: 'About this page',
     methodP1: 'The descriptions here introduce the traditional dishes and their well-known ingredients rather than exact recipes; measures and names vary from one household and region to the next.',
+    methodP2: 'Where four of the cards mention an occasion or a season — Ramadan, winter nights, wedding feasts, tables of hospitality — they describe the dish’s place in the traditions of the Hasawi table, not when it is served to visitors. In Al-Ahsa’s restaurants, though, the dishes on this page are served all year round.',
     dineCta: 'Looking for somewhere to try it? Browse the restaurants & cafés →',
     dineHref: '/en/restaurants-cafes/',
     groups: DISH_GROUPS_EN,
@@ -147,6 +151,7 @@ const jsonLd = [
       <div class="method-box">
         <h2>{C.methodH}</h2>
         <p>{C.methodP1}</p>
+        <p>{C.methodP2}</p>
         <p class="dine-cta"><a href={C.dineHref}>{C.dineCta}</a></p>
       </div>
     </section>
