@@ -23,6 +23,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const ru = lang === 'ru';
 
 // التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
 // قبل البناء إن وُجد المفتاح. غيابها متوقَّع (بناء محلي بلا مفتاح) والصفحة
@@ -302,21 +303,21 @@ const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 // الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
 const pageTitle = ar
   ? 'مطاعم ومقاهي الأحساء — دليلك لتجارب الأكل في الهفوف'
-  : lang === 'zh' ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
+  : zh || ru ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
   : 'Al Ahsa Restaurants & Cafés — Where to Eat in Hofuf';
 const description = ar
   ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
-  : lang === 'zh' ? C.heroSum
+  : zh || ru ? C.heroSum
   : 'Discover the best restaurants and cafés in Al Ahsa — from traditional Hasawi dining to specialty coffee, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : '/en/restaurants-cafes/';
+const selfPath = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — بيانات
 // قوقل تُعرض في الواجهة فقط (شروط قوقل + إرشادات المراجعات الذاتية). الحارس
 // الآلي في tools/check-consistency.mjs (فحص C10) يُفشل البناء عند أي تسرّب.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
