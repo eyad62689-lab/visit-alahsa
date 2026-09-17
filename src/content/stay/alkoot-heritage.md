@@ -13,6 +13,9 @@ alt_en: "A room at Al-Koot Heritage Hotel, with its palm-trunk ceiling, arched n
 blurb_zh: "客房设在一座修复后改作传统客栈的宫殿里，顶棚由椰枣树干与枝叶搭成。"
 area_zh: "库特区——易卜拉欣宫对面"
 alt_zh: "Al-Koot Heritage Hotel 的一间客房，椰枣树干顶棚、拱形壁龛与萨杜织物"
+blurb_ru: "Комнаты под потолками из стволов и ветвей пальмы, во дворце, отреставрированном под исторический гостевой дом."
+area_ru: "Район Эль-Кут, напротив Каср-Ибрахим"
+alt_ru: "Комната в историческом отеле «Эль-Кут»: потолок из стволов пальмы, арочные ниши и тканые изделия в технике «саду»"
 img: /img/stay/alkoot-heritage
 maps: "https://maps.app.goo.gl/TyMDYkg382DQqFeR8"
 order: 1
@@ -20,6 +23,7 @@ order: 1
 # الكوت التراثي» — ذاك يصف المطعم، وهذا يصف الإقامة. المتنان مكتوبان من
 # المصادر ذاتها بلا تكرار لفظي بينهما.
 body_en: "In Hofuf's Al-Koot district, directly opposite Qasr Ibrahim, guests stay inside a palace close to two hundred years old that was restored into a heritage inn. The 963-square-metre building follows the old Hasawi architectural style, and was restored as a personal initiative by Abdulaziz bin Mohammed Al-Abdulqader. It opened in 1439 AH (2018 CE) at the hands of Prince Sultan bin Salman and Prince Saud bin Nayef, and was the first heritage hotel in the governorate to be licensed by the Saudi Commission for Tourism and National Heritage. The rooms are eight suites set beneath ceilings of palm trunks and fronds, their walls cut with arched niches and hung with sadu weaving. Antique pieces are displayed in the entrance hall, and an upper-floor library holds books on the history of Al-Ahsa and Al-Koot in several languages. Qasr Ibrahim stands a few steps from the door, and Qaisariyah Souq and Al-Fawaris Souq about half a kilometre away — a stay inside the historic city rather than on its edge."
+body_ru: "В районе Эль-Кут в Эль-Хуфуфе, прямо напротив крепости Каср-Ибрахим, гости останавливаются во дворце, которому почти два века, отреставрированном под исторический гостевой дом «Эль-Кут» (Al-Koot Heritage Hotel). Здание площадью 963 квадратных метра построено в старом архитектурном стиле Аль-Ахсы; Абдул-Азиз ибн Мухаммед аль-Абдулькадир отреставрировал его по личной инициативе. В 1439 году хиджры (2018 год н. э.) отель открыли принц Султан ибн Салман и принц Сауд ибн Наиф, и он стал первым историческим отелем в мухафазе, лицензированным Комиссией по туризму и национальному наследию. Номера — это восемь люксов под потолками из стволов и ветвей пальмы; их стены прорезаны арочными нишами и увешаны ткаными изделиями «саду» (традиционное бедуинское ткачество). В вестибюле выставлены антикварные предметы, а библиотека на верхнем этаже хранит книги по истории Аль-Ахсы и района Эль-Кут на нескольких языках. От дверей отеля до крепости Каср-Ибрахим — несколько шагов, а до рынка Эль-Кайсария и рынка Эль-Фаварис — около полукилометра: гость останавливается внутри исторического города, а не на его окраине."
 ---
 
 في حي الكوت بالهفوف، مقابل قصر إبراهيم، يقيم الزائر داخل قصرٍ يقارب عمره مئتي عام رُمّم ليصير نُزلاً تراثياً. المبنى على النمط العمراني الأحسائي القديم وتبلغ مساحته 963 متراً مربعاً، رمّمه عبدالعزيز بن محمد العبدالقادر بمبادرة شخصية. وافتُتح عام 1439هـ (2018م) على يد الأمير سلطان بن سلمان والأمير سعود بن نايف، وهو أول فندق تراثي في المحافظة يُرخَّص من الهيئة العامة للسياحة والتراث الوطني.

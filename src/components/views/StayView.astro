@@ -26,6 +26,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const ru = lang === 'ru';
 
 // التقييمات من Google Places API — نفس آلية صفحة المطاعم (القارئ الموحّد في
 // lib/places-live.ts)، ونفس التدهور الرشيق حين يغيب المفتاح.
@@ -45,11 +46,12 @@ const PLACES = entries.map((e) => {
     img: d.img, maps: d.maps, kind: d.kind,
     // الاسم لا يُترجم للصينية؛ النبذة والموقع والنص البديل من *_zh (الدفعة 14) بتراجع للإنجليزية
     name: ar ? d.name : d.name_en,
-    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : d.area_en,
-    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : d.alt_en,
-    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : d.blurb_en,
+    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en,
+    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en,
+    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en,
     // الصينية تتراجع للإنجليزية: صفحات المنشآت المفردة بلا نسخة صينية بعد
-    href: hasPage ? stayHref(d, zh ? 'en' : lang) : d.maps,
+    // والروسية تقصد صفحتها متى حمل المكان body_ru، وإلا النظير الإنجليزي
+    href: hasPage ? stayHref(d, zh ? 'en' : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : lang) : d.maps,
     internal: hasPage,
   };
 });
@@ -143,26 +145,65 @@ const C = localize(lang, {
     places: PLACES,
   },
   zh: ZH,
+  ru: {
+    // الكتلة الروسية — خط ru-translation-pipeline (دفعة ru-stay-1 2026-09-17، الحاكم 94/100 · APPROVE من الدورة الأولى)
+    heroEyebrow: 'Где остановиться в оазисе',
+    title: 'Где остановиться',
+    heroSum: 'Места для ночлега в Аль-Ахсе — от исторического гостевого дома в старом городе до отеля на побережье Эль-Укайр, у каждого своё фото и точка на Google Картах. Список описательный, а не рекомендательный, и постоянно пополняется.',
+    listEyebrow: 'Первая подборка',
+    listH: 'Места для ночлега в Аль-Ахсе',
+    kindLabels: {
+      'heritage-inn': 'Исторический гостевой дом',
+      hotel: 'Отель',
+    },
+    openMaps: t('det.openMaps'),
+    newWindow: '(открывает Google Карты в новом окне)',
+    moreLabel: 'Подробнее о месте',
+    ratingLabel: 'Рейтинг на Google Картах',
+    closedPerm: 'Закрыто навсегда — по данным Google Карт',
+    closedTemp: 'Временно закрыто — по данным Google Карт',
+    srcNote: fetchedLabel ? `Рейтинг — по данным Google Карт, последнее обновление: ${fetchedLabel}` : null,
+    faqH: 'Часто задаваемые вопросы о проживании в Аль-Ахсе',
+    faqs: [
+      {
+        q: 'Есть ли исторический гостевой дом для проживания в старом Эль-Хуфуфе?',
+        a: 'Да — исторический отель «Эль-Кут» (Al-Koot Heritage Hotel) занимает отреставрированный дворец в районе Эль-Кут, напротив крепости Каср-Ибрахим, и стал первым историческим отелем в мухафазе, лицензированным Комиссией по туризму и национальному наследию.',
+      },
+      {
+        q: 'Есть ли где остановиться рядом с пляжем Эль-Укайр?',
+        a: 'Да — отель «Континент» (Continent Hotel Al Uqayr) находится на побережье Эль-Укайр, к востоку от Аль-Ахсы. Кроме того, для владельцев домов на колёсах на самом пляже есть отдельная площадка, забронировать которую можно онлайн через муниципалитет Аль-Ахсы.',
+        linkText: 'Подробнее — на странице «Пляж Эль-Укайр» →',
+        linkHref: '/ru/attractions/uqair-beach/',
+      },
+      {
+        q: 'Эта подборка — рекомендация лучших отелей?',
+        a: 'Нет. Карточки — описательные: название места, его фото и точка на Google Картах. Мы не ставим одно место выше другого и не указываем цены — сравнивайте варианты на надёжных площадках бронирования.',
+      },
+    ],
+    methodH: 'Об этой странице',
+    methodP1: 'Названия и местоположения взяты напрямую из Google Карт, а короткие описания показывают каждое место таким, каким оно выглядит на фото. Цены, звёздность и рекомендации здесь не указываются.',
+    places: PLACES,
+  },
 });
 
 // العنوان والوصف الصينيان من الكتلة الصينية المعتمدة (title وheroSum) بدل السقوط على
 // الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
 const pageTitle = ar
   ? 'أماكن الإقامة في الأحساء — نُزل تراثية وفنادق'
-  : lang === 'zh' ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
+  : zh || ru ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
   : 'Where to Stay in Al Ahsa — Heritage Inns & Hotels';
 const description = ar
   ? 'أماكن الإقامة في الأحساء: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
-  : lang === 'zh' ? C.heroSum
+  : zh || ru ? C.heroSum
   : 'Where to stay in Al Ahsa: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : '/en/stay/';
+const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : ru ? '/ru/stay/' : '/en/stay/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — الحارس
 // الآلي هو الفحص C10 في tools/check-consistency.mjs.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:

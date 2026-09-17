@@ -15,6 +15,9 @@ alt_en: "The Continent Hotel Al Uqayr building, its crenellated parapets above t
 blurb_zh: "沙色建筑，锯齿状墙头与窄缝窗洞，面朝一片草坪，离海岸不远。"
 area_zh: "乌盖尔海岸——哈萨以东"
 alt_zh: "Continent Hotel Al Uqayr 的建筑，锯齿状墙头与门前的草坪"
+blurb_ru: "Песочного цвета здание с зубчатыми парапетами и узкими щелевидными проёмами, обращённое к лужайке у берега."
+area_ru: "Побережье Эль-Укайр, к востоку от Аль-Ахсы"
+alt_ru: "Здание отеля «Континент» с зубчатыми парапетами над лужайкой перед ним"
 img: /img/stay/continent-uqayr
 maps: "https://maps.app.goo.gl/7P8kN1HdnHkgvF216"
 order: 2

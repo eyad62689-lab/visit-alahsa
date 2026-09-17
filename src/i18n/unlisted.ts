@@ -13,6 +13,7 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // `/ru/stay/` وصفحة فندق الكوت الروسية أُخرجتا 2026-09-17 بدفعة ru-stay-1 (الحاكم 94/100).
   // `/ru/events/` وصفحاتها المفردة العشر أُخرجت 2026-09-17 باكتمال دفعات ب1 الخمس
   // (ru-ev-1…5، الحكّام 94 · 94 · 93 · 92 · 92).
   //
