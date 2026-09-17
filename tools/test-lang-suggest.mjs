@@ -3,7 +3,8 @@
 //
 // يحاكي لغات المتصفح (navigator.languages) في سياقات معزولة ويتحقق من:
 //   - شريط اقتراح اللغة: يظهر للغة مفضّلة تسبق لغة الصفحة ولها نظير، ولا يظهر عند
-//     التطابق أو غياب النظير، ويُحفظ الرفض، ويقيس النقر والرفض.
+//     التطابق أو غياب النظير، ويُحفظ الرفض، ويقيس النقر والرفض. ونصوصه بلغة الزائر من
+//     مفاتيح lang.suggest.* لكل لغة (zh/de/ru منذ 2026-09-17).
 //   - صفحة 404 تكشف كتلة لغة بادئة المسار.
 //   - بيان تطبيق لكل لغة، والصفحة تربط بيانها.
 //   - axe-core: صفر مخالفات إتاحة في الصفحات التي يظهر فيها الشريط وفي 404.
@@ -72,7 +73,8 @@ try {
   let p = await fresh(['de-DE', 'de', 'en']);
   await p.goto2('/');
   let bar = await p.bar();
-  ok(bar && bar.to === 'de' && bar.href === '/de/' && bar.lang === 'de' && bar.cta === 'Deutsch' && bar.text === '', 'ألماني على الجذر → اقتراح /de/ باسم اللغة الأصلي وحده', JSON.stringify(bar));
+  // النصوص من ui.de (دفعة الواجهة العامة A-ui-de، الحاكم 95 — 2026-09-17): جملة ودعوة وإغلاق بلغة الزائر، لا اسم اللغة وحده
+  ok(bar && bar.to === 'de' && bar.href === '/de/' && bar.lang === 'de' && bar.cta === 'Auf Deutsch lesen' && bar.text === 'Diese Seite ist auf Deutsch verfügbar' && bar.close === 'Schließen', 'ألماني على الجذر → اقتراح /de/ بجملة ودعوة ألمانيتين', JSON.stringify(bar));
   await p.axe('الجذر مع الشريط (de)');
   // ClientRouter ينقل داخل المستند (History API) فلا نعتمد على waitForNavigation؛ نراقب المسار
   await p.click('#lang-suggest .ls-opt:not([hidden]) .ls-cta');
@@ -100,7 +102,8 @@ try {
   p = await fresh(['ar', 'en']); await p.goto2('/en/attractions/jabal-al-qarah/'); bar = await p.bar();
   ok(bar && bar.to === 'ar' && bar.href === '/معالم/جبل-القارة/' && bar.dir === 'rtl', 'عربي أولاً على صفحة إنجليزية → اقتراح النظير العربي بالاتجاه الصحيح', bar && bar.href); await p.done();
   p = await fresh(['zh-CN', 'zh']); await p.goto2('/en/map/'); bar = await p.bar();
-  ok(bar && bar.to === 'zh' && bar.href === '/zh/map/' && bar.cta === '中文（简体）', 'صيني على /en/map/ → اقتراح /zh/map/', bar && bar.href);
+  // النصوص من ui.zh (دفعة الواجهة العامة A-ui-zh، الحاكم 92 — 2026-09-17)
+  ok(bar && bar.to === 'zh' && bar.href === '/zh/map/' && bar.cta === '阅读中文版' && bar.text === '本页提供中文版' && bar.close === '关闭', 'صيني على /en/map/ → اقتراح /zh/map/ بجملة ودعوة صينيتين', JSON.stringify(bar));
   await p.axe('/en/map/ مع الشريط (zh)'); await p.done();
   p = await fresh(['ru-RU', 'ru']); await p.goto2('/en/map/'); ok(await p.noBar(), 'روسي على /en/map/ → لا شريط (لا نظير روسي فلا رابط إلى 404)'); await p.done();
   p = await fresh(['fr-FR', 'fr', 'de']); await p.goto2('/'); bar = await p.bar();

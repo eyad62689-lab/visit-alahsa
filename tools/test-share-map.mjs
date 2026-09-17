@@ -3,7 +3,7 @@
 //
 // يتحقق من: زر المشاركة في القوالب الخمسة (معلم، مقال، منشأة، إقامة، فعالية) وعلى
 // الخريطة؛ مسار Web Share (محاكاة navigator.share) ومسار النسخ (محاكاة clipboard)
-// وحدث `share` بطريقته؛ ونصوص الزر بلغة الصفحة (zh من plan.copy، وde أيقونة وحدها)؛
+// وحدث `share` بطريقته؛ ونصوص الزر بلغة الصفحة من مفتاح share.btn لكل لغة (zh/de/ru منذ 2026-09-17)؛
 // وحالة الخريطة في الرابط تُقرأ (?cat= و?q= و#slug) وتُكتب عند التغيير مع حدث map_deeplink.
 // التشغيل كسابقة tools/test-analytics-events.mjs (puppeteer-core خارج المستودع).
 import { createRequire } from 'node:module';
@@ -77,10 +77,10 @@ try {
   else console.log('  · لا صفحة إقامة مفردة مبنية — يُتخطّى');
   await p.goto2('/en/events/hasawi-lomi-exhibition/'); ok(await p.$('button[data-share="event"]'), 'زر المشاركة في صفحة الفعالية');
   await p.goto2('/معالم/جبل-القارة/'); ok((await p.$eval('button[data-share="attraction"] [data-share-tx]', (e) => e.textContent.trim())) === 'مشاركة', 'النصّ العربي «مشاركة»');
-  await p.goto2('/zh/attractions/jabal-al-qarah/'); ok((await p.$eval('button[data-share="attraction"] [data-share-tx]', (e) => e.textContent.trim())) === '复制分享链接', 'الصينية من مفتاح plan.copy المعتمد');
+  await p.goto2('/zh/attractions/jabal-al-qarah/'); ok((await p.$eval('button[data-share="attraction"] [data-share-tx]', (e) => e.textContent.trim())) === '分享', 'الصينية من مفتاح share.btn (دفعة A-ui-zh، الحاكم 92)');
   await p.goto2('/de/attractions/jabal-al-qarah/');
   const de = await p.$eval('button[data-share="attraction"]', (b) => ({ text: b.textContent.trim(), aria: b.getAttribute('aria-label'), icon: b.classList.contains('share-btn--icon') }));
-  ok(de.text === '' && de.aria === 'Share' && de.icon, 'الألمانية أيقونة وحدها بتسمية aria من كلمة واحدة', JSON.stringify(de));
+  ok(de.text === 'Teilen' && de.aria === null && !de.icon, 'الألمانية «Teilen» من مفتاح share.btn (دفعة A-ui-de، الحاكم 95)', JSON.stringify(de));
   await p.done();
 
   console.log('\n── الخريطة: روابط عميقة وحالة في الرابط ──');
