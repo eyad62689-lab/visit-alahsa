@@ -103,7 +103,7 @@ try {
   ok(/^نحو \d+ كم$|^أقل من كيلومتر$/.test(outAr), 'المسافة بصياغة العربية', outAr);
   await p.goto2('/ru/attractions/jabal-al-qarah/');
   const ru = await p.$eval('[data-dist-btn]', (b) => ({ text: b.textContent.trim(), aria: b.getAttribute('aria-label') }));
-  ok(ru.text === '' && ru.aria === 'Distance', 'الروسية أيقونة وحدها بتسمية من كلمة واحدة', JSON.stringify(ru));
+  ok(ru.text === 'Как далеко от меня?' && ru.aria === null, 'الزر الروسي من مفتاح det.distance (دفعة A-ui-ru، الحاكم 94)', JSON.stringify(ru));
   await p.click('[data-dist-btn]');
   await p.waitForFunction(() => document.querySelector('[data-dist-out]')?.textContent.trim().length > 0, { timeout: 8000 }).catch(() => {});
   const outRu = await p.$eval('[data-dist-out]', (o) => o.textContent.trim());
