@@ -6,9 +6,9 @@
 // (ورقة المشاركة الأصلية على الجوال)، وإلا نسخ الرابط مع تأكيد مرئي. يُقاس حدث
 // `share` بطريقته (web_share / copy) ونوع المحتوى ومعرّفه عبر VATrack.
 //
-// النصوص: العربية والإنجليزية من ui.ts (share.btn وplan.copied)؛ الصينية من مفتاحي
-// plan.copy وplan.copied المعتمدين (وصف الفعل المتاح فعلاً)؛ الألمانية والروسية أيقونة
-// وحدها بتسمية aria إنجليزية من كلمة واحدة حتى تمرّ مفاتيح share.* بخطي الترجمة —
+// النصوص: share.btn وplan.copied من قاموس لغة الصفحة نفسها متى مرّا بخطّها (دفعة الواجهة
+// العامة 2026-09-16 أدخلتهما للصينية والألمانية والروسية). لغة بلا share.btn تعرض الأيقونة
+// وحدها بتسمية aria إنجليزية من كلمة واحدة، وبلا plan.copied تتراجع إلى الإنجليزية —
 // قاعدة CLAUDE.md: لا نصّ بهذه اللغات خارج الخطوط.
 import { ui, type Lang } from '../i18n/ui';
 
@@ -24,8 +24,8 @@ interface Props {
 }
 const { lang, contentType, itemId, dark = false, class: cls = '' } = Astro.props;
 const str = (l: Lang, key: string): string | undefined => (ui[l] as Record<string, string>)[key];
-const label = lang === 'ar' || lang === 'en' ? str(lang, 'share.btn') : lang === 'zh' ? str('zh', 'plan.copy') : undefined;
-const copied = str(lang === 'de' || lang === 'ru' ? 'en' : lang, 'plan.copied') ?? 'Link copied ✓';
+const label = str(lang, 'share.btn');
+const copied = str(lang, 'plan.copied') ?? str('en', 'plan.copied') ?? 'Link copied ✓';
 const aria = label ?? 'Share';
 ---
 <button

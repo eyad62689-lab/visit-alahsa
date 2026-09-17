@@ -13,6 +13,12 @@ kicker_ru: "Религиозное место"
 summary_ru: "Одна из старых глинобитных мечетей деревни Эт-Тахимия — подробности ее истории пока не подтверждены."
 body_ru: "В деревне Эт-Тахимия, среди восточных деревень Аль-Ахсы у горы Эль-Кара, стоит эта мечеть — одна из уцелевших здесь старых глинобитных мечетей. Когда-то за деревней закрепилось прозвище «деревня сорока мечетей», а сегодня их осталось около одиннадцати. Мечети Эт-Тахимии — традиционные постройки из глины и пальмовых стволов. Две из них, Западная и Восточная, внесены в официальный реестр исторических мечетей Аль-Ахсы. Дата основания этой мечети и имя ее строителя пока не подтверждены документальными источниками."
 area_ru: "Деревня Эт-Тахимия, восточные деревни Аль-Ахсы"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-9 بدرجة 96/100 (2026-09-17، الدورة 2 من 3)
+title_de: "Al-Tahimiyah-West-Moschee"
+kicker_de: "Religiöse Stätte"
+summary_de: "Eine der alten Lehmmoscheen im Dorf Al-Tahimiyah."
+body_de: "Das Dorf Al-Tahimiyah gehört zu den östlichen Dörfern Al-Ahsas, in der Nähe des Jabal al-Qarah (des Qarah-Bergs). Diese Moschee zählt zu den erhaltenen alten Lehmmoscheen des Dorfes, das einst als „das Dorf der vierzig Moscheen“ berühmt war – davon sind nur noch etwa elf erhalten. Die Moscheen Al-Tahimiyahs sind traditionelle Bauten aus Lehm und Palmstämmen, und zwei von ihnen – die Ost- und die West-Moschee – sind in die Liste der amtlich registrierten historischen Moscheen Al-Ahsas aufgenommen."
+area_de: "Dorf Al-Tahimiyah – die östlichen Dörfer, Al-Ahsa"
 slug_ar: "مسجد-التهيمية-الغربي"
 slug_en: "tahimiyah-w"
 category: religious
