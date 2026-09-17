@@ -154,8 +154,12 @@ const jsonLd: object[] = [
 ];
 // الفاصلة بلغة الصفحة (كانت العربية «،» تتسرب للوصف الإنجليزي)، ونشاطان
 // يكفيان — ثلاثة كانت تتجاوز 160 حرفاً في بعض الفعاليات (تدقيق 2026-08-28).
+// والروسية بنقطة بين الحقول: قيم البطاقة تبدأ بحرف كبير («Зима», «Примерно в декабре»)، والحرف الكبير
+// بعد فاصلة أو شرطة خطأ إملائي في الروسية — والنقطة تحفظ القيم المعتمدة كما هي بلا تصغير آلي.
 const sep = ar ? '، ' : ', ';
-const desc = ev.seoDesc ?? `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`;
+const desc = ev.seoDesc ?? (ru
+  ? `${[ev.name, ev.place, ev.season, ev.time, ...ev.acts.slice(0, 2)].join('. ')}.`
+  : `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`);
 // Event schema للنسخ المؤكدة فقط: جوجل يشترط startDate محدداً، ومواسمنا تقريبية
 // بقرار محتوى ملزم — فلا تُضاف إلا حين يوثّق المصدر الرسمي تاريخين دقيقين (startISO/endISO).
 if (ev.startISO && ev.endISO) {
