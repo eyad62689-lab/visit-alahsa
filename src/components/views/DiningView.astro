@@ -13,7 +13,7 @@ import OpenNowBadge from '../OpenNowBadge.astro';
 import { getCollection } from 'astro:content';
 import { diningHref } from '../../lib/routes';
 import { DISTRICT_NAMES } from '../../data/districts';
-import { loadLive, liveFor, hoursData, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
+import { loadLive, liveFor, hoursData, hoursFor, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -384,7 +384,7 @@ const jsonLd = [
           <div class="dngrid">
             {sec.list.map((p, idx) => {
               const lv = liveFor(p.img);
-              const hours = ar ? lv?.hoursAr : lv?.hoursEn;
+              const hours = hoursFor(lv, lang);
               // «مغلق نهائياً» أخطر معلومة خاطئة ممكنة في دليل سياحي — تُعرض
               // فور ورودها من قوقل، لا تُبتلع كما كان الحقل مهملاً حتى 2026-08-30
               const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
