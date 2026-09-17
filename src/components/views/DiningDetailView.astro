@@ -15,7 +15,7 @@ import OpenNowBadge from '../OpenNowBadge.astro';
 import { attractionHref, diningHref } from '../../lib/routes';
 import { catLabel } from '../../lib/categories';
 import { DISTRICT_NAMES } from '../../data/districts';
-import { liveFor, hoursData as hoursDataFor } from '../../lib/places-live';
+import { liveFor, hoursData as hoursDataFor, hoursFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
@@ -35,7 +35,7 @@ const alTxt = ar ? d.alt : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
-const hours = ar ? lv?.hoursAr : lv?.hoursEn;
+const hours = hoursFor(lv, lang);
 const hoursData = hoursDataFor(lv);
 // المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
 // «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.

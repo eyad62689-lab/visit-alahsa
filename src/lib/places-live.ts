@@ -17,6 +17,7 @@ export type Live = {
   /** أوقات العمل نصوصاً بلغتَي قوقل — للمنشآت التي تُرجعها فقط (المطاعم) */
   hoursAr?: string[];
   hoursEn?: string[];
+  hoursZh?: string[];
   /** الفترات الأسبوعية [يومُ الفتح، دقيقته، يومُ الإغلاق، دقيقته] — 0 = الأحد */
   periods?: (number | null)[][];
   utcOffset?: number | null;
@@ -40,6 +41,25 @@ export function loadLive(): LiveFile | null {
 /** بيانات منشأة من مسار صورتها — المفتاح في الملف هو اسم الصورة بلا مجلدها. */
 export const liveFor = (img: string): Live | undefined =>
   loadLive()?.places?.[img.replace(/^\/img\/(?:dining|stay)\//, '')];
+
+/** أوقات العمل بلغة الصفحة — **ولا تُعرض بغيرها**.
+ *
+ *  قوقل تعيد النصّ بلغة الطلب حين تملكها، وقد تعيده إنجليزياً حين لا تملكها. وصفحة
+ *  بلغةٍ تعرض سبعة أسطر إنجليزية لكل منشأة تصير إنجليزية في عين قارئها وفي عين
+ *  الحارس C22 معاً — وهو ما أوقف نشر الإنتاج (‏/zh/restaurants-cafes/: 75%).
+ *  فالحارس هنا على **الرسم**: ما لا يحمل حروف لغة الصفحة يسقط بدل أن يُعرض بلغة أخرى،
+ *  ولا تُعرض قيمةٌ مختلَقة مكانه. de/ru بلا صفحات مطاعم بعد، فتسقط أوقاتهما حتى تُبنى.
+ *  (وأوقات الإنجليزية تبقى كما هي: اللاتينية رسمُها.) */
+const SCRIPT_OF: Partial<Record<Lang, RegExp>> = {
+  ar: /[؀-ۿ]/,
+  zh: /[一-鿿]/,
+};
+export const hoursFor = (lv: Live | undefined, lang: Lang): string[] | undefined => {
+  const list = lang === 'ar' ? lv?.hoursAr : lang === 'zh' ? lv?.hoursZh : lang === 'en' ? lv?.hoursEn : undefined;
+  if (!list?.length) return undefined;
+  const script = SCRIPT_OF[lang];
+  return !script || list.every((l) => script.test(l)) ? list : undefined;
+};
 
 /** «مفتوح الآن»: تُمرَّر البنية الأسبوعية والإزاحة إلى المتصفح ولا تُصيَّر حالةٌ
  *  في البناء إطلاقاً — الشارة تخرج hidden ويملؤها OpenNowBadge من ساعة الزائر.

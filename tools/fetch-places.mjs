@@ -104,19 +104,24 @@ async function main() {
   }
   if (idsChanged) await writeFile(IDS, JSON.stringify(ids, null, 2) + '\n', 'utf8');
 
-  // المرحلة 2: تفاصيل كل مكان باللغتين (أوقات العمل نصوص مُعرَّبة/مُنجلَزة من قوقل)
+  // المرحلة 2: تفاصيل كل مكان بثلاث لغات — أوقات العمل نصوصٌ تعيدها قوقل بلغة الطلب.
+  // الصينية لازمة لا تحسيناً: صفحة /zh/restaurants-cafes/ كانت تعرض أوقات الإنجليزية
+  // فترتفع نسبة الإنجليزية فيها إلى 75% ويمنع الحارس C22 النشر — إخفاقٌ لا يقع محلياً
+  // ولا في المعاينة لأن المفتاح محصور بسياق الإنتاج، فلا أوقات تُجلب أصلاً.
   const places = {};
   for (const [slug, id] of Object.entries(ids)) {
     try {
-      const [ar, en] = await Promise.all([
+      const [ar, en, zh] = await Promise.all([
         api(`places/${id}`, { lang: 'ar' }),
         api(`places/${id}`, { lang: 'en' }),
+        api(`places/${id}`, { lang: 'zh-CN' }),
       ]);
       places[slug] = {
         rating: ar.rating ?? null,
         count: ar.userRatingCount ?? null,
         hoursAr: (ar.regularOpeningHours?.weekdayDescriptions ?? []).map(latinize),
         hoursEn: en.regularOpeningHours?.weekdayDescriptions ?? [],
+        hoursZh: zh.regularOpeningHours?.weekdayDescriptions ?? [],
         status: ar.businessStatus ?? null,
         // «مفتوح الآن» يُحسب في متصفح الزائر لا هنا: الصفحة ثابتة تُصيَّر مرة عند
         // البناء، فأي حالة لحظية تُخزَّن تصير كذباً بعد ساعة (سابقة عدّاد الفعاليات
