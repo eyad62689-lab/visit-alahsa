@@ -32,6 +32,9 @@ area_en: "West of Al-Mubarraz — Al-Ahsa"
 featured: false
 order: 45
 district: mubarraz
+practical:
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "Daily 4:00–11:30 pm", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.40642, lng: 49.557917 }
 mapUrl: "https://goo.gl/maps/zD3noGFvTMLadcKRA"
 ---

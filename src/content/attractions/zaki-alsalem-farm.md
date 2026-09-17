@@ -30,6 +30,10 @@ featured: false
 order: 68
 area: "طريق الخليج — الأحساء"
 area_en: "Al-Khaleej Road — Al-Ahsa"
+practical:
+  - { label: "المواعيد", value: "الخميس والجمعة والسبت: 3:30 م - 10:00 م", label_en: "Hours", value_en: "Thursday, Friday and Saturday 3:30–10:00 pm", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "25 ريال للفرد", label_en: "Fees", value_en: "SAR 25 per person", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", verified: false }
 location: { lat: 25.2985879, lng: 49.6605849 }
 mapUrl: "https://maps.app.goo.gl/S3QhpmWT7b3ge6DKA"
 ---

@@ -34,6 +34,8 @@ practical:
   # زيارة غير المسلمين: قرار المالك 2026-09-12 — الصيغة الخماسية اللغات منقولة حرفياً من jawatha-mosque.md (مدخل المعجم الألماني 62).
   # والحقولُ الألمانية معطَّلةٌ حتى تُترجم الصفحة (لا title_de) — أُدرج بإذنٍ صريح من المالك 2026-09-12.
   - { label: "زيارة غير المسلمين", value: "متاحة، مع المحافظة على اللباس المحتشم", label_en: "Visitors of other faiths", value_en: "Welcome, with modest dress", label_ru: "Вход для немусульман", value_ru: "Открыт при условии скромной одежды", label_zh: "非穆斯林游客", value_zh: "欢迎参观，请注意衣着端庄", label_de: "Nichtmuslimische Besucher", value_de: "Willkommen – bedeckende Kleidung vorausgesetzt", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
+  - { label: "المواعيد", value: "متاح للزيارة طوال ساعات النهار", label_en: "Hours", value_en: "Open to visitors during daylight hours", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.402082, lng: 49.690285 }
 mapUrl: "https://maps.app.goo.gl/4Ubt8aZJsY6AtGLj7"
 heroImage: /img/tahimiyah
