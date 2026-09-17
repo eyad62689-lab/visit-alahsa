@@ -13,6 +13,8 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // فهرس الإقامة الروسي (المرحلة ب3) — يُخرج متى مرّت كتلته وبطاقتاه بالخط
+  { path: '/ru/stay/', noindex: true, why: 'دفعة ب3 قيد التنفيذ: الواجهة والبطاقتان تتراجع للإنجليزية' },
   // `/ru/events/` وصفحاتها المفردة العشر أُخرجت 2026-09-17 باكتمال دفعات ب1 الخمس
   // (ru-ev-1…5، الحكّام 94 · 94 · 93 · 92 · 92).
   //

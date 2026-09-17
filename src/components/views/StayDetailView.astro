@@ -21,24 +21,27 @@ interface Props { entry: CollectionEntry<'stay'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const ru = lang === 'ru';
 const d = entry.data;
 const { Content } = await render(entry);
 
 const name = ar ? d.name : d.name_en;
-const area = ar ? d.area : d.area_en;
-const blurb = ar ? d.blurb : d.blurb_en;
-const alTxt = ar ? d.alt : d.alt_en;
+const area = ar ? d.area : ru ? (d.area_ru ?? d.area_en) : d.area_en;
+const blurb = ar ? d.blurb : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
+const alTxt = ar ? d.alt : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
 // المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
 // «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.
-const bodyEnParas = d.body_en.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+// والروسية من body_ru بالبنية نفسها (الصفحة الروسية لا تُولَّد بدونه).
+const bodyEnParas = ((ru ? d.body_ru : undefined) ?? d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 const C = localize(lang, {
   ar: {
     kindLabel: d.kind === 'heritage-inn' ? 'نُزل تراثي' : 'فندق',
     backLabel: 'كل أماكن الإقامة',
+    indexName: 'أماكن الإقامة',
     openMaps: t('det.openMaps'),
     newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
     ratingLabel: 'التقييم في خرائط قوقل',
@@ -51,6 +54,7 @@ const C = localize(lang, {
   en: {
     kindLabel: d.kind === 'heritage-inn' ? 'Heritage inn' : 'Hotel',
     backLabel: 'All places to stay',
+    indexName: 'Places to Stay',
     openMaps: t('det.openMaps'),
     newWindow: '(opens Google Maps in a new window)',
     ratingLabel: 'Rating on Google Maps',
@@ -65,13 +69,13 @@ const C = localize(lang, {
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/إقامة/' : '/en/stay/';
+const indexHref = ar ? '/إقامة/' : ru ? '/ru/stay/' : '/en/stay/';
 const siteUrl = SITE;
 const selfUrl = absUrl(stayHref(d, lang), siteUrl);
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
-    { name: ar ? 'أماكن الإقامة' : 'Places to Stay', path: indexHref },
+    { name: t('crumb.home'), path: ar ? '/' : ru ? '/ru/' : '/en/' },
+    { name: C.indexName, path: indexHref },
     { name, path: stayHref(d, lang) },
   ], siteUrl),
   { '@context': 'https://schema.org', '@type': 'LodgingBusiness',
@@ -80,7 +84,7 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`${name} — ${ar ? 'أماكن الإقامة' : 'Places to Stay'} — ${t('site.name')}`} description={blurb} image={`${d.img}.jpg`}
+<Base title={`${name} — ${C.indexName} — ${t('site.name')}`} description={blurb} image={`${d.img}.jpg`}
   lang={lang} alt={alt} jsonLd={jsonLd}
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />

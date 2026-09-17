@@ -42,17 +42,19 @@ export const diningAlt = (d: DiningSlugs): { ar: string; en: string } => ({
   en: diningHref(d, 'en'),
 });
 
-type StaySlugs = { slug_ar: string; slug_en: string };
+type StaySlugs = { slug_ar: string; slug_en: string; body_ru?: string };
 
 /** رابط صفحة مكان الإقامة — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
 export const stayHref = (d: StaySlugs, lang: Lang): string =>
-  lang === 'ar' ? `/إقامة/${d.slug_ar}/` : `/en/stay/${d.slug_en}/`;
+  lang === 'ar' ? `/إقامة/${d.slug_ar}/` : lang === 'ru' ? `/ru/stay/${d.slug_en}/` : `/en/stay/${d.slug_en}/`;
 
-/** روابط مكان الإقامة بلغتيه — مصدر hreflang ومبدّل اللغة. لا نسخة صينية ولا
- *  ألمانية ولا روسية بعد، فلا تُدرج هنا لئلا يقود المبدّل إلى 404. */
-export const stayAlt = (d: StaySlugs): { ar: string; en: string } => ({
+/** روابط مكان الإقامة بلغاتها — مصدر hreflang ومبدّل اللغة. لا نسخة صينية ولا
+ *  ألمانية بعد؛ والروسية تُدرج متى حمل المكان body_ru المعتمد (بوابة صفحتها،
+ *  على سابقة title_ru) — فلا يقود المبدّل إلى 404. */
+export const stayAlt = (d: StaySlugs): { ar: string; en: string; ru?: string } => ({
   ar: stayHref(d, 'ar'),
   en: stayHref(d, 'en'),
+  ...(d.body_ru?.trim() ? { ru: stayHref(d, 'ru') } : {}),
 });
 
 type PostSlugs = { lang: string; slug: string };

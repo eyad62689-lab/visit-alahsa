@@ -274,6 +274,8 @@ const stay = defineCollection({
     maps: z.url(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (العربي في جسم الملف)
+    // المتن الروسي من خط ru-translation-pipeline حصراً — بوابة صفحة /ru/stay/<slug>/ (على سابقة title_ru)
+    body_ru: z.string().optional(),
   }),
 });
 

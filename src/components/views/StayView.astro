@@ -26,6 +26,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const ru = lang === 'ru';
 
 // التقييمات من Google Places API — نفس آلية صفحة المطاعم (القارئ الموحّد في
 // lib/places-live.ts)، ونفس التدهور الرشيق حين يغيب المفتاح.
@@ -45,11 +46,12 @@ const PLACES = entries.map((e) => {
     img: d.img, maps: d.maps, kind: d.kind,
     // الاسم لا يُترجم للصينية؛ النبذة والموقع والنص البديل من *_zh (الدفعة 14) بتراجع للإنجليزية
     name: ar ? d.name : d.name_en,
-    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : d.area_en,
-    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : d.alt_en,
-    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : d.blurb_en,
+    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en,
+    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en,
+    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en,
     // الصينية تتراجع للإنجليزية: صفحات المنشآت المفردة بلا نسخة صينية بعد
-    href: hasPage ? stayHref(d, zh ? 'en' : lang) : d.maps,
+    // والروسية تقصد صفحتها متى حمل المكان body_ru، وإلا النظير الإنجليزي
+    href: hasPage ? stayHref(d, zh ? 'en' : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : lang) : d.maps,
     internal: hasPage,
   };
 });
@@ -149,20 +151,20 @@ const C = localize(lang, {
 // الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
 const pageTitle = ar
   ? 'أماكن الإقامة في الأحساء — نُزل تراثية وفنادق'
-  : lang === 'zh' ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
+  : zh || ru ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
   : 'Where to Stay in Al Ahsa — Heritage Inns & Hotels';
 const description = ar
   ? 'أماكن الإقامة في الأحساء: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
-  : lang === 'zh' ? C.heroSum
+  : zh || ru ? C.heroSum
   : 'Where to stay in Al Ahsa: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : '/en/stay/';
+const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : ru ? '/ru/stay/' : '/en/stay/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — الحارس
 // الآلي هو الفحص C10 في tools/check-consistency.mjs.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
