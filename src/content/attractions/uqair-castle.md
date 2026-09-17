@@ -34,6 +34,9 @@ featured: false
 order: 17
 answer: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي، أقدم الموانئ البحرية في المملكة وبوابة نجد إلى البحر قديماً. تشمل المباني القائمة القلعة والخان ومبنى الإمارة والجمارك والمسجد، وعلى أرض الميناء وُقّع بروتوكول العقير عام 1341هـ/1922م. رُمّمت أواخر التسعينيات، وتنفّذ هيئة التراث ترميماً شاملاً للموقع."
 answer_en: "Al-Uqair Castle stands among the buildings of the historic Al-Uqair port east of Al-Ahsa, the oldest seaport in Saudi Arabia and once Najd’s gateway to the sea. The castle, khan, emirate building, customs house and mosque survive; the Uqair Protocol was signed here in 1922."
+practical:
+  - { label: "المواعيد", value: "متاح للزيارة الخارجية طوال اليوم (24 ساعة)", label_en: "Hours", value_en: "The exterior is open to visitors at any hour", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.644409, lng: 50.214729 }
 mapUrl: "https://maps.app.goo.gl/pQj9N6Dq75yekPTK8"
 ---
