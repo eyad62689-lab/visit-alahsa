@@ -31,6 +31,8 @@ area_en: "Al-Mazrouiyah district — west of Hofuf"
 featured: false
 order: 14
 district: mazrou
+practical:
+  - { label: "الوضع الحالي", value: "مغلق حالياً لأعمال الترميم والتطوير التراثي", label_en: "Current status", value_en: "Currently closed for restoration and heritage development", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.368042, lng: 49.576862 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233036

@@ -33,6 +33,9 @@ featured: false
 order: 51
 answer: "متحف الأحساء للآثار والتراث الشعبي في الهفوف هو المتحف الحكومي الرسمي للواحة، افتُتح أوائل الثمانينيات الميلادية (1404هـ). يعرض قطعاً أثرية وتراثية في تسلسل زمني من العصور الحجرية وحضارات دلمون والجرهاء إلى العصور الإسلامية والدولتين السعوديتين، وهو نقطة انطلاق مثالية قبل جولتك على المعالم."
 answer_en: "The Al-Ahsa Museum in Hofuf is the oasis’s official government museum, opened in the early 1980s (1404 AH). Its archaeological and heritage pieces tell the region’s story in sequence, from Stone Age finds through Dilmun and Gerrha to the Islamic eras and the Saudi States."
+practical:
+  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 2:30 م (مغلق الجمعة والسبت)", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 2:30 pm (closed Friday & Saturday)", source: "تحقق مباشر من هيئة المتاحف", source_en: "Verified directly with the Museums Commission", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من هيئة المتاحف", source_en: "Verified directly with the Museums Commission", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.35964, lng: 49.599078 }
 sameAs:
   - https://www.wikidata.org/wiki/Q20400438

@@ -31,6 +31,8 @@ area_en: "Al-Taraf — east of Hofuf"
 featured: false
 heroImage: /img/taraf-zoo
 order: 65
+practical:
+  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.366635, lng: 49.722483 }
 mapUrl: "https://maps.app.goo.gl/LQqCFeu7UHmaMpLn8"
 ---
