@@ -599,10 +599,11 @@ export const eventsFor = (lang: Lang): Ev[] =>
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>
   (lang === 'ar' ? EVENTS_EN : EVENTS_AR).find((e) => e.id === id);
 
-/** روابط الفعالية بلغاتها الثلاث — مصدر alt (hreflang ومبدّل اللغة) لصفحاتها المفردة.
- *  النسخة الصينية كاملة (الفعاليات العشر) فتُدرج zh دائماً. */
-export const eventAlt = (id: string): { ar: string; en: string; zh: string } => ({
+/** روابط الفعالية بلغاتها — مصدر alt (hreflang ومبدّل اللغة) لصفحاتها المفردة.
+ *  الصينية والروسية كاملتان (الفعاليات العشر)؛ والروسية تُحذف من alt ما دامت في unlisted.ts. */
+export const eventAlt = (id: string): { ar: string; en: string; zh: string; ru: string } => ({
   ar: `/فعاليات/${EVENTS_AR.find((e) => e.id === id)!.slug}/`,
   en: `/en/events/${EVENTS_EN.find((e) => e.id === id)!.slug}/`,
   zh: `/zh/events/${EVENTS_ZH.find((e) => e.id === id)!.slug}/`,
+  ru: `/ru/events/${EVENTS_RU.find((e) => e.id === id)!.slug}/`,
 });
