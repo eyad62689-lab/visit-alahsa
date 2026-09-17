@@ -487,6 +487,12 @@ const TEXT_ZH: EventTexts = {
   },
 };
 
+// النسخة الروسية — خط ru-translation-pipeline حصراً (المرحلة ب من خطة إكمال اللغات).
+// المقاطع slug تشارك الإنجليزية كالصينية. جزئية أثناء الدفعات (Partial) وتُشدَّد إلى
+// EventTexts متى اكتملت الفعاليات العشر.
+const TEXT_RU: Partial<EventTexts> = {
+};
+
 // ── الدمج: Ev واحدة لكل فعالية ولغة — الشكل نفسه الذي يقرؤه كل مستهلك ─────────
 function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
   const m: EventMeta = EVENT_META[id];
@@ -502,10 +508,13 @@ function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
 export const EVENTS_AR: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_AR[id]));
 export const EVENTS_EN: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_EN[id]));
 export const EVENTS_ZH: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_ZH[id]));
+// الروسية تُبنى بدفعات (خطة إكمال اللغات، المرحلة ب): الفعالية التي لم تبلغها دفعتها
+// تتراجع إلى نصّها الإنجليزي كاملاً — لا خلط لغتين داخل بطاقة واحدة.
+export const EVENTS_RU: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_RU[id] ?? TEXT_EN[id]));
 
 /** فعاليات لغة الصفحة */
 export const eventsFor = (lang: Lang): Ev[] =>
-  lang === 'ar' ? EVENTS_AR : lang === 'zh' ? EVENTS_ZH : EVENTS_EN;
+  lang === 'ar' ? EVENTS_AR : lang === 'zh' ? EVENTS_ZH : lang === 'ru' ? EVENTS_RU : EVENTS_EN;
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>

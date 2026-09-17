@@ -13,6 +13,8 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // فهرس الفعاليات الروسي يُبنى بخمس دفعات (المرحلة ب1) — يُخرج متى اكتملت بطاقاته
+  { path: '/ru/events/', noindex: true, why: 'دفعات ب1 قيد التنفيذ: بطاقاتٌ تتراجع للإنجليزية' },
   // فارغةٌ منذ 2026-09-13 بقرار المالك.
   //
   // آخرُ مدخلٍ كان `/de/attractions/`، وأُخرج بعد أن اكتملت الألمانيةُ 56 معلماً

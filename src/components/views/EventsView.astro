@@ -14,7 +14,7 @@ import DataTable from '../DataTable.astro';
 import { eventsTable } from '../../lib/tables';
 import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { EVENTS_AR, EVENTS_EN, EVENTS_ZH, evView, type Ev } from '../../data/events';
+import { EVENTS_AR, EVENTS_EN, EVENTS_RU, EVENTS_ZH, evView, type Ev } from '../../data/events';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -161,13 +161,15 @@ for (const { raw } of cards) { if (eagerIds.size >= 2) break; eagerIds.add(raw.i
 
 // الصينية: صفحات الفعاليات لها نسخ /zh/ (توسعة 2026-09-02)؛ «خطط» لم تُترجم بعد
 const zh = lang === 'zh';
-const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
+// الروسية: الفهرس مبنيّ والصفحات المفردة لم تُبنَ بعد (الدفعة 5) — البطاقات تقصد النظير الإنجليزي
+const ru = lang === 'ru';
+const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
 const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/';
 const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 const siteUrl = SITE;
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/' },
     { name: C.title, path: altHref(alt, lang) },
   ]),
   // ItemList فقط — لا Event schema عمداً: جوجل يشترط startDate محدداً للأهلية،
