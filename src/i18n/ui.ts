@@ -662,6 +662,17 @@ export const ui = {
     'cat.market.d': "凯撒利亚集市里，香水、黄金与铜器的气息交织。",
     'cat.events.t': "活动与节庆",
     'cat.events.d': "节庆贯穿全年，让传统在今天焕发生机。",
+    // ── دفعة الواجهة العامة A-ui-zh — خط zh-translation-pipeline، الحاكم 92/100 (2026-09-17، الدورة 1) ──
+    'lang.suggest.text': '本页提供中文版',
+    'lang.suggest.cta': '阅读中文版',
+    'lang.suggest.close': '关闭',
+    'share.btn': '分享',
+    'map.locate': '我在地图上的位置',
+    'map.locate.err': '无法获取您的位置，请检查浏览器的位置权限。',
+    'det.distance': '距我多远？',
+    'det.unesco': '联合国教科文组织世界遗产十二处组成部分之一',
+    'det.mentions.h': '相关文章',
+    'foot.l.unesco': '联合国教科文组织世界遗产',
   } as Record<string, string>,
   // الألمانية (de-DE) — قاموس جزئي على سابقة الصينية. **دفعة نصوص الواجهة لم
   // تمرّ بخط de-translation-pipeline بعد**، فكل مفتاح غائب يتراجع للإنجليزية
@@ -830,6 +841,17 @@ export const ui = {
     'video.play': 'Hintergrundvideo abspielen',
     'fav.add': 'Zu „Meine Reise“ hinzufügen',
     'fav.added': 'In „Meine Reise“ ✓',
+    // ── دفعة الواجهة العامة A-ui-de — خط de-translation-pipeline، الحاكم 95/100 (2026-09-17، الدورة 1) ──
+    'lang.suggest.text': 'Diese Seite ist auf Deutsch verfügbar',
+    'lang.suggest.cta': 'Auf Deutsch lesen',
+    'lang.suggest.close': 'Schließen',
+    'share.btn': 'Teilen',
+    'plan.copied': 'Link kopiert ✓',
+    'map.locate.err': 'Ihr Standort konnte nicht ermittelt werden – prüfen Sie die Standortberechtigung Ihres Browsers.',
+    'det.distance': 'Wie weit ist es von mir entfernt?',
+    'det.unesco': 'Bestandteil der UNESCO-Welterbestätte',
+    'det.openAmap': 'In Amap öffnen ↗',
+    'foot.l.unesco': 'UNESCO-Welterbe',
   } as Record<string, string>,
   // الروسية (ru-RU) — قاموس جزئي على سابقة الألمانية: الهيكل المشترك والرئيسية
   // وفهرس المعالم وصفحة المعلم. كل سطر هنا من خط ru-translation-pipeline حصراً
@@ -1005,5 +1027,17 @@ export const ui = {
     // المفضّلة
     'fav.add': 'Добавить в поездку',
     'fav.added': 'В моей поездке ✓',
+    // ── دفعة الواجهة العامة A-ui-ru — خط ru-translation-pipeline، الحاكم 94/100 (2026-09-17، الدورة 1) ──
+    'lang.suggest.text': 'Эта страница доступна на русском',
+    'lang.suggest.cta': 'Читать на русском',
+    'lang.suggest.close': 'Закрыть',
+    'share.btn': 'Поделиться',
+    'plan.copied': 'Ссылка скопирована ✓',
+    'map.locate.err': 'Не удалось определить ваше местоположение — проверьте разрешение на геолокацию в браузере.',
+    'det.distance': 'Как далеко от меня?',
+    'det.unesco': 'Компонент объекта Всемирного наследия ЮНЕСКО',
+    'det.mentions.h': 'Статьи, где упоминается это место',
+    'det.openAmap': 'Открыть в Amap ↗',
+    'foot.l.unesco': 'Всемирное наследие ЮНЕСКО',
   } as Record<string, string>,
 } as const;

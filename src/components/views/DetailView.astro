@@ -12,7 +12,7 @@ import { unescoOasisNode } from '../../lib/schema';
 import { formatDate } from '../../lib/dates';
 import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
-import type { Lang } from '../../i18n/ui';
+import { ui, type Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 import { kmBetween, distLabel } from '../../lib/distance';
 import ShareButton from '../ShareButton.astro';
@@ -22,6 +22,8 @@ interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLin
 const { entry, lang, alt } = Astro.props;
 const a = entry.data;
 const t = useTranslations(lang);
+// نصّ زرّ «كم يبعد عني» من قاموس اللغة نفسها بلا تراجع (تراجعٌ يعطي صفحةً صينية زرّاً إنجليزياً)
+const distText = (ui[lang] as Record<string, string>)['det.distance'];
 const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
@@ -275,17 +277,18 @@ const nearby = a.location
           {/* رابط الخريطة: أيقونة صغيرة داخل البطاقة نفسها بدل اللوحة الخضراء الكبيرة
               التي كانت تحتلّ العمود (تغيير بطلب إياد 2026-07-22) */}
           {/* «كم يبعد عني» (الخطوة 7): تحديد الموقع بطلب صريح، يُحسب محلياً ولا يُخزَّن.
-              النصّ للعربية والإنجليزية؛ zh/de/ru أيقونة وحدها حتى تمرّ det.distance بالخطوط،
+              النصّ من قاموس لغة الصفحة نفسها متى مرّ det.distance بخطّها (دفعة الواجهة العامة
+              2026-09-16 للغات الثلاث)؛ لغة بلا المفتاح تعرض الأيقونة وحدها بتسمية aria إنجليزية،
               والنتيجة بصياغة المسافة المعتمدة لكل لغة (lib/distance.ts). */}
           {a.location && (
             <p class="dist-me">
               <button class="dist-btn" type="button" data-dist-btn data-lat={a.location.lat} data-lng={a.location.lng}
                 data-under={distLabel(0, lang)} data-about={distLabel(2, lang).replace('2', '{n}')} data-err={t('map.locate.err')}
-                aria-label={ar || lang === 'en' ? undefined : 'Distance'} title={ar || lang === 'en' ? undefined : 'Distance'}>
+                aria-label={distText ? undefined : 'Distance'} title={distText ? undefined : 'Distance'}>
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /><circle cx="12" cy="12" r="8" />
                 </svg>
-                {(ar || lang === 'en') && <span>{t('det.distance')}</span>}
+                {distText && <span>{distText}</span>}
               </button>
               <output class="dist-out" data-dist-out aria-live="polite"></output>
             </p>

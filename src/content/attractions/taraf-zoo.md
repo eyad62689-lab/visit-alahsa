@@ -13,6 +13,12 @@ kicker_ru: "Семейный отдых"
 summary_ru: "Семейный зоопарк в посёлке Эт-Тараф к востоку от Эль-Хуфуфа — о посещении информация уточняется."
 body_ru: "В посёлке Эт-Тараф к востоку от Эль-Хуфуфа, среди деревень оазиса, расположен зоопарк Эт-Тараф — место для семейного отдыха, где дети могут вблизи увидеть самых разных животных. Это одно из спокойных мест для семейной прогулки в этих краях, и её легко совместить с поездкой по сельской округе Эт-Тарафа и по югу оазиса. Впрочем, об основании зоопарка, о том, кто им управляет и каков сегодня порядок посещения, информация уточняется — прежде чем планировать поездку, эти сведения стоит проверить на месте."
 area_ru: "Эт-Тараф — к востоку от Эль-Хуфуфа"
+# الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-9 بدرجة 96/100 (2026-09-17، الدورة 2 من 3)
+title_de: "Al-Taraf-Zoo"
+kicker_de: "Familienausflugsziel"
+summary_de: "Ein Familienzoo im Ort Al-Taraf, östlich von Hofuf."
+body_de: "Im Ort Al-Taraf, östlich von Hofuf, inmitten der Dörfer der Oase, liegt der Al-Taraf-Zoo, ein Familienausflugsziel, in dem Kinder eine Vielfalt an Tieren aus nächster Nähe sehen können. Er zählt zu den ruhigen Familienausflügen der Gegend und lässt sich gut mit einem Besuch der nahen ländlichen Umgebung von Al-Taraf sowie des südlichen Teils der Oase verbinden. Erkundigen Sie sich lokal, bevor Sie die Reise planen."
+area_de: "Al-Taraf – östlich von Hofuf"
 slug_ar: "حديقة-حيوانات-الطرف"
 slug_en: "taraf-zoo"
 category: farm
