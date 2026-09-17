@@ -197,10 +197,10 @@ for (const { raw } of cards) { if (eagerIds.size >= 2) break; eagerIds.add(raw.i
 
 // الصينية: صفحات الفعاليات لها نسخ /zh/ (توسعة 2026-09-02)؛ «خطط» لم تُترجم بعد
 const zh = lang === 'zh';
-// الروسية: الفهرس مبنيّ والصفحات المفردة لم تُبنَ بعد (الدفعة 5) — البطاقات تقصد النظير الإنجليزي
+// الروسية: الصفحات المفردة /ru/events/<slug>/ مبنية منذ الدفعة 5
 const ru = lang === 'ru';
 const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
-const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/';
+const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : ru ? '/ru/events/' : '/en/events/';
 const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 const siteUrl = SITE;
 const jsonLd = [

@@ -1,0 +1,15 @@
+---
+// صفحة الفعالية المفردة — النسخة الروسية (ru-RU): نصوص EVENTS_RU وكتلة ru في
+// EventDetailView من خط ru-translation-pipeline حصراً (المرحلة ب1، الدفعة ru-ev-5).
+// المقاطع slug تشارك الإنجليزية.
+import EventDetailView from '../../../components/views/EventDetailView.astro';
+import { EVENTS_RU, eventAlt } from '../../../data/events';
+
+export function getStaticPaths() {
+  return EVENTS_RU.map((ev) => ({ params: { slug: ev.slug }, props: { ev } }));
+}
+
+const { ev } = Astro.props;
+const alt = eventAlt(ev.id);
+---
+<EventDetailView ev={ev} lang="ru" alt={alt} />

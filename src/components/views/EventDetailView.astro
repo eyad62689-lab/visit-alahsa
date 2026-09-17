@@ -113,12 +113,43 @@ const C = localize(lang, {
     moreH: '更多时令活动',
     back: '全部活动',
   },
+  ru: {
+    // الكتلة الروسية — خط ru-translation-pipeline (دفعة ru-ev-5 2026-09-17، الحاكم 92/100 · APPROVE من الدورة الأولى؛ 20 قيمة موروثة من ru-ev-1)
+    eyebrow: 'Сезон оазиса',
+    placeK: 'Место',
+    orgK: 'Организаторы',
+    seasonK: 'Сезон',
+    timeK: 'Когда',
+    spanK: 'Примерная продолжительность',
+    actsK: 'Ключевые моменты',
+    ticketK: 'Забронировать билет',
+    hoursK: 'Часы работы',
+    faqH: 'Часто задаваемые вопросы',
+    relatedH: 'Читайте также',
+    mapH: 'Расположение на карте',
+    mapOpen: 'Открыть в Google Картах',
+    mapNone: 'Организаторы пока не объявили точное место проведения этого мероприятия, поэтому мы не разместили здесь карту.',
+    mapFrameTitle: 'Карта места проведения мероприятия',
+    noticeH: 'Перед поездкой',
+    notice: 'Мероприятие проводится ежегодно в этот примерный период, однако даты и детали могут меняться из года в год. Уточняйте их в анонсах организаторов перед поездкой.',
+    statusL: { confirmed: 'Подтверждено в этом году', expected: 'Ожидаемый сезон', tba: 'Дата ещё не объявлена' },
+    cd: {
+      pre: { one: 'Начинается через {n} день', few: 'Начинается через {n} дня', many: 'Начинается через {n} дней', other: 'Начинается через {n} дня' },
+      today: 'Начинается сегодня',
+      last: 'Сегодня последний день',
+      left: { one: 'Остался {n} день', few: 'Осталось {n} дня', many: 'Осталось {n} дней', other: 'Осталось {n} дня' },
+    },
+    crumb: 'Фестивали и мероприятия',
+    moreH: 'Другие сезоны',
+    back: 'Все события',
+  },
 });
 
 const zh = lang === 'zh';
-const listHref = ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/';
-const homeHref = ar ? '/' : zh ? '/zh/' : '/en/';
-const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : '/en/events/';
+const ru = lang === 'ru';
+const listHref = ar ? '/فعاليات/' : zh ? '/zh/events/' : ru ? '/ru/events/' : '/en/events/';
+const homeHref = ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/';
+const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : ru ? '/ru/events/' : '/en/events/';
 
 // الإحداثيات تُسحب من ملف المعلم الموثّق — لا تُقدَّر يدوياً (قاعدة المشروع).
 const venue = ev.venue
@@ -131,11 +162,11 @@ const mapUrl = ev.map ?? venue?.data.mapUrl ?? (loc ? `https://www.google.com/ma
 const embedSrc = loc ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}&hl=${lang}&z=15&output=embed` : undefined;
 const venueHref = venue ? attractionHref(venue.data, lang) : undefined;
 const venueName = venue
-  ? (ar ? venue.data.title : zh ? (venue.data.title_zh ?? venue.data.title_en ?? venue.data.title) : (venue.data.title_en ?? venue.data.title))
+  ? (ar ? venue.data.title : zh ? (venue.data.title_zh ?? venue.data.title_en ?? venue.data.title) : ru ? (venue.data.title_ru ?? venue.data.title_en ?? venue.data.title) : (venue.data.title_en ?? venue.data.title))
   : undefined;
 // المدينة/الحي في سكيما Event: من حقل area الموثّق في ملف المعلم وحده — وإن غاب
 // المعلم أو حقله سقط addressLocality كلياً (كان «الهفوف» مكتوباً يدوياً لكل فعالية).
-const venueArea = venue ? (ar ? venue.data.area : venue.data.area_en) : undefined;
+const venueArea = venue ? (ar ? venue.data.area : ru ? (venue.data.area_ru ?? venue.data.area_en) : venue.data.area_en) : undefined;
 
 // ثلاث فعاليات أخرى للتصفّح — بعرضها الفعّال (evView) لا الخام، وإلا عرضت
 // بطاقة نسخةٍ منتهية موعدَها القديم بينما صفحتها تعرض الموسم التقريبي.
@@ -153,8 +184,12 @@ const jsonLd: object[] = [
 ];
 // الفاصلة بلغة الصفحة (كانت العربية «،» تتسرب للوصف الإنجليزي)، ونشاطان
 // يكفيان — ثلاثة كانت تتجاوز 160 حرفاً في بعض الفعاليات (تدقيق 2026-08-28).
+// والروسية بنقطة بين الحقول: قيم البطاقة تبدأ بحرف كبير («Зима», «Примерно в декабре»)، والحرف الكبير
+// بعد فاصلة أو شرطة خطأ إملائي في الروسية — والنقطة تحفظ القيم المعتمدة كما هي بلا تصغير آلي.
 const sep = ar ? '، ' : ', ';
-const desc = ev.seoDesc ?? `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`;
+const desc = ev.seoDesc ?? (ru
+  ? `${[ev.name, ev.place, ev.season, ev.time, ...ev.acts.slice(0, 2)].join('. ')}.`
+  : `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`);
 // Event schema للنسخ المؤكدة فقط: جوجل يشترط startDate محدداً، ومواسمنا تقريبية
 // بقرار محتوى ملزم — فلا تُضاف إلا حين يوثّق المصدر الرسمي تاريخين دقيقين (startISO/endISO).
 if (ev.startISO && ev.endISO) {

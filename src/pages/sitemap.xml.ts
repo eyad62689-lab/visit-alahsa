@@ -5,7 +5,7 @@
 // يتعذّر git يسقط الحقل من الخريطة كلها بدل تلفيق تاريخ موحَّد (انظر git-dates.ts).
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { EVENTS_AR, EVENTS_EN, EVENTS_ZH } from '../data/events';
+import { EVENTS_AR, EVENTS_EN, EVENTS_RU, EVENTS_ZH } from '../data/events';
 import { attractionAlt, blogHref, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
@@ -87,6 +87,7 @@ export const GET: APIRoute = async ({ site }) => {
       ar: '/فعاليات/' + e.slug + '/',
       en: EVENTS_EN.find((x) => x.id === e.id) ? '/en/events/' + EVENTS_EN.find((x) => x.id === e.id)!.slug + '/' : undefined,
       zh: EVENTS_ZH.find((x) => x.id === e.id) ? '/zh/events/' + EVENTS_ZH.find((x) => x.id === e.id)!.slug + '/' : undefined,
+      ru: EVENTS_RU.find((x) => x.id === e.id) ? '/ru/events/' + EVENTS_RU.find((x) => x.id === e.id)!.slug + '/' : undefined,
       lastmod: dateOf('src/data/events.ts', `${V}EventDetailView.astro`),
     })),
   ];
