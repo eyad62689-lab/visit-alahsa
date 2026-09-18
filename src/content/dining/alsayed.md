@@ -14,6 +14,9 @@ alt_en: "The heritage interior of Al-Sayed Café with its wooden ceiling"
 blurb_zh: "木质顶棚下的老式座位区，保留着传统咖啡馆的模样。"
 area_zh: "里法阿北区——胡富夫"
 alt_zh: "Al-Sayed Café 内木质顶棚下的老式座位区"
+blurb_ru: "Историческое убранство с деревянным потолком, сохраняющее облик народных кофеен."
+area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
+alt_ru: "Историческое убранство Al-Sayed Café с деревянным потолком"
 img: /img/dining/alsayed
 maps: "https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9"
 order: 5

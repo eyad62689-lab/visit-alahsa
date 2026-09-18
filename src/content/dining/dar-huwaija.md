@@ -14,6 +14,9 @@ alt_en: "Dar Huwaija’s seating among plaster arches and wooden chairs"
 blurb_zh: "座位设在白色石膏拱门之间，架子上摆着煮咖啡的器具。"
 area_zh: "法赫德国王路——胡富夫历史城区"
 alt_zh: "Dar Huwaija 石膏拱门之间的木椅座位"
+blurb_ru: "Места для сидения среди белых гипсовых арок и полок с кофейной утварью."
+area_ru: "Дорога короля Фахда — исторический центр Эль-Хуфуфа"
+alt_ru: "Места для сидения кафе Dar Huwaija среди гипсовых арок и деревянных стульев"
 img: /img/dining/dar-huwaija
 maps: "https://maps.app.goo.gl/EejCz9U79km3VEUL6"
 order: 4

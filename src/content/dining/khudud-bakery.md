@@ -16,6 +16,9 @@ alt_en: "The lit arched façade of Al-Khudud Traditional Bakery at dusk"
 blurb_zh: "黄昏时分，黄色门面上的拱门亮着灯，门里就是烘焙坊的店堂。"
 area_zh: "胡杜德区"
 alt_zh: "黄昏时分 Al-Khudud Traditional Bakery 的门面，拱门亮着灯"
+blurb_ru: "Жёлтый фасад с освещённой аркой, ведущей в зал пекарни, в сумерках."
+area_ru: "Район Эль-Худуд"
+alt_ru: "Освещённый арочный фасад Al-Khudud Traditional Bakery в сумерках"
 img: /img/dining/khudud-bakery
 maps: "https://maps.app.goo.gl/9WrPbhXHryjb9Ees6"
 order: 2

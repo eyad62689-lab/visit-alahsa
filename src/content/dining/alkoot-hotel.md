@@ -14,6 +14,9 @@ alt_en: "The courtyard of Al-Koot Heritage Hotel with its arcades and glass roof
 blurb_zh: "传统客栈的餐厅——拱廊环绕的庭院中，餐桌摆在玻璃顶下。"
 area_zh: "库特区——易卜拉欣宫对面"
 alt_zh: "Al-Koot Heritage Hotel 的内院，拱廊环绕，上覆玻璃顶"
+blurb_ru: "Ресторан исторического отеля — столы под стеклянной крышей во дворе, окружённом аркадами."
+area_ru: "Район Эль-Кут — напротив Каср-Ибрахим"
+alt_ru: "Внутренний двор Al-Koot Heritage Hotel с его аркадами и стеклянной крышей"
 img: /img/dining/alkoot-hotel
 maps: "https://maps.app.goo.gl/gjwiTHDg83VZEbz76"
 order: 2

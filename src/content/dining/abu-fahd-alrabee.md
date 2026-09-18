@@ -17,6 +17,9 @@ alt_en: "A baker at Abu Fahd Al-Rabee Bakery lifting a loaf beside a floor tanno
 blurb_zh: "面包师坐在坦努尔泥炉的炉口旁，炉子嵌在地里，四周的地砖上摊着面饼。"
 area_zh: "胡杜德区——艾因胡杜德泉附近"
 alt_zh: "Abu Fahd Al-Rabee Bakery 的面包师在嵌在地里的坦努尔泥炉旁举起一张面饼，身边还摊着一张张面饼"
+blurb_ru: "У горловины напольного тандыра сидит пекарь, а вокруг него на плитке разложены лепёшки."
+area_ru: "Район Эль-Худуд — рядом с Айн-эль-Худуд"
+alt_ru: "Пекарь пекарни Abu Fahd Al-Rabee Bakery поднимает лепёшку у напольного тандыра, вокруг разложены лепёшки"
 img: /img/dining/abu-fahd-alrabee
 maps: "https://maps.app.goo.gl/u8xKKnydxd1cVinv7"
 order: 1

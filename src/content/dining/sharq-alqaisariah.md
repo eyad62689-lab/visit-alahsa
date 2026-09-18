@@ -14,6 +14,9 @@ alt_en: "The ornate arched entrance and outdoor seating of Sharq Al-Qaisariyah"
 blurb_zh: "饰有花纹的拱门，通向传统风格的座位区。"
 area_zh: "里法阿北区——胡富夫"
 alt_zh: "Sharq Al-Qaisariyah 餐厅饰有花纹的拱形入口与户外座位"
+blurb_ru: "Арочные ворота богато украшены и ведут к местам для сидения в традиционном стиле."
+area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
+alt_ru: "Богато украшенный арочный вход и места под открытым небом Sharq Al-Qaisariyah"
 img: /img/dining/sharq-alqaisariah
 maps: "https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8"
 order: 9

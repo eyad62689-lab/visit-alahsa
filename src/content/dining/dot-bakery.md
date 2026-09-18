@@ -14,6 +14,9 @@ alt_en: "The order counter and pastry display at Dot Bakery & Café"
 blurb_zh: "烘焙坊与咖啡馆合一：烘焙点心的展示柜，以及带一抹蓝色的点餐台。"
 area_zh: "艾因奈杰姆路——穆巴拉兹"
 alt_zh: "Dot Bakery & Café 的点餐台与烘焙点心展示柜"
+blurb_ru: "Пекарня и кафе в одном месте: витрина со свежей выпечкой и стойка заказа с голубым акцентом."
+area_ru: "Дорога на Айн-Наджм — Эль-Мубарраз"
+alt_ru: "Стойка заказа и витрина с выпечкой в Dot Bakery & Café"
 img: /img/dining/dot-bakery
 maps: "https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6"
 order: 9

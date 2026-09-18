@@ -16,6 +16,9 @@ alt_en: "VOLK’s curved bar beneath its circular wooden chandelier"
 blurb_zh: "弧形吧台上方，木条拼成的圆形吊灯垂下一盏盏玻璃灯泡。"
 area_zh: "卡拉"
 alt_zh: "VOLK 的弧形吧台与圆形木吊灯"
+blurb_ru: "Изогнутая барная стойка под круглой люстрой из деревянных реек, увешанной стеклянными плафонами."
+area_ru: "Эль-Кара"
+alt_ru: "Изогнутая барная стойка VOLK под круглой деревянной люстрой"
 img: /img/dining/volk
 maps: "https://maps.app.goo.gl/SaSqaa3tbUCimoLL8"
 order: 13

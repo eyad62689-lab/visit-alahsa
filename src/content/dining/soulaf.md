@@ -14,6 +14,9 @@ alt_en: "Soulaf Coffee’s modern interior with an olive tree and slatted ceilin
 blurb_zh: "静谧的现代室内，正中一棵橄榄树，上方开着天窗。"
 area_zh: "拉乌达区——阿卜杜拉国王路"
 alt_zh: "Soulaf Coffee 的现代室内，橄榄树与木质顶棚"
+blurb_ru: "Спокойный современный интерьер с оливковым деревом в центре под потолочным окном."
+area_ru: "Эр-Рауда — дорога короля Абдаллы"
+alt_ru: "Современный интерьер Soulaf Coffee с оливковым деревом и потолком из деревянных реек"
 img: /img/dining/soulaf
 maps: "https://maps.app.goo.gl/S47bGoYznnPUYTrm6"
 order: 7

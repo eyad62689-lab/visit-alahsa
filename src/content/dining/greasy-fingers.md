@@ -14,6 +14,9 @@ alt_en: "A burger and fries on a serving tray at Greasy Fingers"
 blurb_zh: "金属托盘上的汉堡与薯条——本列表里走现代快餐路线的一家。"
 area_zh: "哈利迪亚区——纳瓦夫王子街"
 alt_zh: "Greasy Fingers 托盘上的汉堡与薯条"
+blurb_ru: "Бургеры и картофель фри на металлических подносах — современный быстрый вариант в списке."
+area_ru: "Эль-Халидия — улица принца Наввафа"
+alt_ru: "Бургер и картофель фри на подносе в Greasy Fingers"
 img: /img/dining/greasy-fingers
 maps: "https://maps.app.goo.gl/AQhfw1PKHnLviEyt6"
 order: 6

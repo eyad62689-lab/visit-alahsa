@@ -11,6 +11,8 @@ alt: "صالة مقهى بن البيضاء بجزيرة البار الرخام
 alt_en: "Bun Café’s white hall with its marble bar island and floating wooden stair"
 blurb_zh: "挑高的白色空间开着长窗，正中是大理石中岛吧台与悬空木楼梯。"
 alt_zh: "Bun Café 的白色大厅，大理石中岛吧台与悬空木楼梯"
+blurb_ru: "Высокое белое пространство с окнами в полный рост, посередине — барная стойка-остров из мрамора и парящая деревянная лестница."
+alt_ru: "Белый зал Bun Café с барной стойкой-островом из мрамора и парящей деревянной лестницей"
 img: /img/dining/bun
 maps: "https://maps.app.goo.gl/sEoiBiKGABVMMoCM9"
 order: 12

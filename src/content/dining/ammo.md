@@ -14,6 +14,9 @@ alt_en: "Ammo’s glass façade with its illuminated sign at night"
 blurb_zh: "现代风格的玻璃门面，顶端是发光招牌。"
 area_zh: "阿卜杜拉国王路——马兹鲁阿区"
 alt_zh: "夜色中 Ammo 的玻璃门面与发光招牌"
+blurb_ru: "Современный стеклянный фасад, увенчанный светящейся вывеской."
+area_ru: "Дорога короля Абдаллы — Эль-Мазру"
+alt_ru: "Стеклянный фасад Ammo с подсвеченной вывеской ночью"
 img: /img/dining/ammo
 maps: "https://maps.app.goo.gl/sj8f9VMZL3LdthJX9"
 order: 8

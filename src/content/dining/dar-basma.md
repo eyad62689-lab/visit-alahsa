@@ -14,6 +14,9 @@ alt_en: "Dar Basma’s glass façade and outdoor seating among the palms at nigh
 blurb_zh: "椰枣树间的户外座位与玻璃门面，就在易卜拉欣宫公园边上。"
 area_zh: "库特区——易卜拉欣宫公园旁"
 alt_zh: "傍晚 Dar Basma 的玻璃门面与椰枣树间的户外座位"
+blurb_ru: "Места под открытым небом среди пальм и стеклянный фасад на краю парка Каср-Ибрахим."
+area_ru: "Район Эль-Кут — рядом с парком Каср-Ибрахим"
+alt_ru: "Стеклянный фасад и места под открытым небом Dar Basma среди пальм вечером"
 img: /img/dining/dar-basma
 maps: "https://maps.app.goo.gl/CLwUux3kdzc5Z4WE6"
 order: 1

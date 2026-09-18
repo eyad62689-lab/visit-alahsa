@@ -14,6 +14,9 @@ alt_en: "A sitting corner with leather armchairs and a stained-glass window at 7
 blurb_zh: "精品咖啡，古典风格的座位区，皮椅配彩色玻璃窗。"
 area_zh: "里法阿北区——胡富夫"
 alt_zh: "7st 咖啡馆内的座位区一角，皮椅与一扇彩色玻璃窗"
+blurb_ru: "Спешелти-кофе в классическом зале с кожаными креслами и витражными окнами."
+area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
+alt_ru: "Уголок с кожаными креслами и витражным окном в кафе 7st"
 img: /img/dining/7st
 maps: "https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6"
 order: 2

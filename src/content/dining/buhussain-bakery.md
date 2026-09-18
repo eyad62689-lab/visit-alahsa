@@ -11,6 +11,8 @@ alt: "مجلس مخبز بوحسين الشعبي بمقاعده الخشبية 
 alt_en: "The sitting room at Bu Hussain Traditional Bakery, with wooden benches and patterned cushions"
 blurb_zh: "店内的会客厅里，木长凳配着花纹坐垫，架子上摆着老物件。"
 alt_zh: "Bu Hussain Traditional Bakery 的会客厅，木长凳与花纹坐垫"
+blurb_ru: "Гостиная с деревянными скамьями и узорчатыми подушками, на полках — старинная утварь."
+alt_ru: "Гостиная Bu Hussain Traditional Bakery с деревянными скамьями и узорчатыми подушками"
 img: /img/dining/buhussain-bakery
 maps: "https://maps.app.goo.gl/QfZ5nfnepYYTzvSW7"
 order: 3

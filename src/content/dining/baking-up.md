@@ -14,6 +14,9 @@ alt_en: "Baking Up’s storefront with umbrellas and outdoor seating"
 blurb_zh: "明快的店面加上户外座位，店家在谷歌地图上自称“烘焙点心与酥脆小食”。"
 area_zh: "艾因奈杰姆路——穆巴拉兹"
 alt_zh: "Baking Up 的店面与撑着遮阳伞的户外座位"
+blurb_ru: "Выпечка и хрустящие лакомства (так называет себя это место в Google Картах) за жизнерадостным фасадом с местами для сидения на улице."
+area_ru: "Дорога на Айн-Наджм — Эль-Мубарраз"
+alt_ru: "Фасад кафе Baking Up с зонтами и местами для сидения на улице"
 img: /img/dining/baking-up
 maps: "https://maps.app.goo.gl/Vq412YHJLwnKc1SE8"
 order: 8
