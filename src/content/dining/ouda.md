@@ -12,6 +12,8 @@ alt: "واجهة مقهى أودا الكريمية واسمه بالحروف ا
 alt_en: "OUDA’s cream façade with its name in dark lettering and its outdoor tables"
 blurb_zh: "奶油色门面，上方是深色字样的店名，还有木窗和摆在人行道上的桌子。"
 alt_zh: "OUDA 的奶油色门面，深色字样的店名与户外的桌子"
+blurb_ru: "Кремовый фасад с названием тёмными буквами наверху, деревянные оконные рамы и столики на мощёной площадке."
+alt_ru: "Кремовый фасад OUDA с названием тёмными буквами и столиками на улице"
 img: /img/dining/ouda
 maps: "https://maps.app.goo.gl/tZmEXTYHzcsWMBvj6"
 order: 15

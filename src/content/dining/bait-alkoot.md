@@ -14,6 +14,9 @@ alt_en: "Bait Al-Koot’s façade with hanging lights at dusk"
 blurb_zh: "哈萨风格的宅子，上方垂挂着灯饰，坐落在胡富夫历史城区的中心。"
 area_zh: "胡富夫历史城区"
 alt_zh: "傍晚时分 Bait Al-Koot 的门面与垂挂的灯饰"
+blurb_ru: "Дом в стиле Аль-Ахсы с гирляндами огней в историческом сердце Эль-Хуфуфа."
+area_ru: "Исторический центр Эль-Хуфуфа"
+alt_ru: "Фасад кафе Bait Al-Koot с гирляндами огней в сумерках"
 img: /img/dining/bait-alkoot
 maps: "https://maps.app.goo.gl/gkvgXUYMUZsV5BK38"
 order: 3

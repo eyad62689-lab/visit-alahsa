@@ -14,6 +14,9 @@ alt_en: "Sinyar’s earthen façade and Arabic calligraphy sign at dusk"
 blurb_zh: "泥土色的建筑，传统风格中透着现代气息，店名用阿拉伯书法写成。"
 area_zh: "海湾路——欧韦米里亚区"
 alt_zh: "傍晚 Sinyar 的泥土色门面与阿拉伯书法招牌"
+blurb_ru: "Глинобитное здание в современном облике с чертами наследия — на нём арабской каллиграфией выведено название."
+area_ru: "Дорога Эль-Халидж — район Эль-Увеймирия"
+alt_ru: "Глинобитный фасад Sinyar и вывеска арабской каллиграфией в сумерках"
 img: /img/dining/sinyar
 maps: "https://maps.app.goo.gl/kiKK2QEshBwycpDn6"
 order: 5

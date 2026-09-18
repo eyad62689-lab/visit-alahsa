@@ -12,6 +12,8 @@ alt: "تراس مقهى شليم وشجرة الزيتون في حوض الما�
 alt_en: "SHYLM’s terrace, with an olive tree in a water basin at the centre of the seating"
 blurb_zh: "铺砌的露台正中，水池里立着一棵橄榄树，四周围着编织椅。"
 alt_zh: "SHYLM 的露台，座位区中央的橄榄树与水池"
+blurb_ru: "Мощёная терраса с оливковым деревом в водоёме посередине, а вокруг дерева — плетёные кресла."
+alt_ru: "Терраса SHYLM с оливковым деревом в водоёме посреди зоны отдыха"
 img: /img/dining/shylm
 maps: "https://maps.app.goo.gl/EkVG5edhp3GSd8vRA"
 order: 14

@@ -14,6 +14,9 @@ alt_en: "Heritage dishes served in wicker baskets at Khunaina"
 blurb_zh: "传统菜肴盛在棕榈叶编织篮里，四周是深绿色天鹅绒座椅。"
 area_zh: "哈利迪亚区——胡富夫"
 alt_zh: "Khunaina 餐桌上盛在棕榈叶编织篮里的传统菜肴"
+blurb_ru: "Традиционные блюда, поданные в плетёных корзинах из пальмовых листьев, среди тёмно-зелёных бархатных сидений."
+area_ru: "Эль-Халидия — Эль-Хуфуф"
+alt_ru: "Традиционные блюда в корзинах из пальмовых листьев на столе в Khunaina"
 img: /img/dining/khunaina
 maps: "https://maps.app.goo.gl/LZWmKXLDNreXhUHL6"
 order: 4

@@ -14,6 +14,9 @@ alt_en: "A traditional breakfast spread of assorted dishes at Al Hawy"
 blurb_zh: "传统早餐铺在棕榈叶编织席上，一盘挨着一盘。"
 area_zh: "哈利迪亚区——费萨尔国王大学对面"
 alt_zh: "Al Hawy 餐厅里的传统早餐，各式菜肴摆成一席"
+blurb_ru: "Традиционный завтрак, разложенный на циновках из пальмовых листьев, — блюдо за блюдом."
+area_ru: "Эль-Халидия — напротив Университета короля Фейсала"
+alt_ru: "Традиционный завтрак с разнообразными блюдами в Al Hawy"
 img: /img/dining/alhawi
 maps: "https://maps.app.goo.gl/GZ61EihCSipwJyzJ8"
 order: 3

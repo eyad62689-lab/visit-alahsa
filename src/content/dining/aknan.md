@@ -16,6 +16,9 @@ alt_en: "Aknan Café’s outdoor seating before the rocks of Jabal Al-Qarah at s
 blurb_zh: "露天餐桌摆在卡拉山的岩壁下，露台地面上嵌着一方采光玻璃。"
 area_zh: "卡拉——卡拉山脚下"
 alt_zh: "日落时分 Aknan Café 的户外座位，面朝卡拉山的岩石"
+blurb_ru: "Столики под открытым небом у скалистой стены Джабаль-эль-Кара, а в полу террасы — стеклянный световой люк."
+area_ru: "Эль-Кара — у подножия Джабаль-эль-Кара"
+alt_ru: "Столики Aknan Café под открытым небом на фоне скал Джабаль-эль-Кара на закате"
 img: /img/dining/aknan
 maps: "https://maps.app.goo.gl/yDBd9dZTXuTwXCDQ8"
 order: 11
