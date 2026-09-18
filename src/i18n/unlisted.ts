@@ -13,6 +13,9 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // مؤقت (ب8): المساران والتنقّل جاهزة وكتلة PlanTripView ومفاتيح plan.* تتراجع للإنجليزية حتى تمرّ بخطّها.
+  { path: '/ru/plan-your-trip/', noindex: true, why: 'ب8: PlanTripView بانتظار خط الترجمة الروسية' },
+  { path: '/ru/plan/', noindex: true, why: 'ب8: plan.* بانتظار خط الترجمة الروسية' },
   // `/ru/map/` أُخرج 2026-09-18 باكتمال ب7 (ru-map-1): مفاتيح map.* الأحد عشر، وأسماء المعالم الـ58
   // ونبذها من title_ru/summary_ru المنشورة.
   // `/ru/restaurants-cafes/` أُخرج 2026-09-18 باكتمال ب4 (ru-dining-1/2، الحاكمان 91 · 92) وب5

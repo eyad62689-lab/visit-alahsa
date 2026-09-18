@@ -108,7 +108,8 @@ try {
   // /en/map/ صار لها نظير روسي (ب7، 2026-09-18) — فحالة «لا نظير» انتقلت إلى صفحة بلا نسخة روسية بعد
   p = await fresh(['ru-RU', 'ru']); await p.goto2('/en/map/'); bar = await p.bar();
   ok(bar && bar.to === 'ru' && bar.href === '/ru/map/' && bar.cta === 'Читать на русском' && bar.text === 'Эта страница доступна на русском', 'روسي على /en/map/ → اقتراح /ru/map/ بجملة ودعوة روسيتين', JSON.stringify(bar)); await p.done();
-  p = await fresh(['ru-RU', 'ru']); await p.goto2('/en/plan-your-trip/'); ok(await p.noBar(), 'روسي على /en/plan-your-trip/ → لا شريط (لا نظير روسي فلا رابط إلى 404)'); await p.done();
+  // انتقلت من /en/plan-your-trip/ بعد ب8 (2026-09-18): التضاريسية بلا نسخة روسية (المرحلة هـ)
+  p = await fresh(['ru-RU', 'ru']); await p.goto2('/en/terrain-map/'); ok(await p.noBar(), 'روسي على /en/terrain-map/ → لا شريط (لا نظير روسي فلا رابط إلى 404)'); await p.done();
   p = await fresh(['fr-FR', 'fr', 'de']); await p.goto2('/'); bar = await p.bar();
   ok(bar && bar.to === 'de', 'فرنسي ثم ألماني على الجذر → تُتخطّى اللغة غير المدعومة إلى التالية', bar && bar.to); await p.done();
 

@@ -176,9 +176,9 @@ const C = localize(lang, {
 });
 
 const zh = lang === 'zh';
-const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : '/en/attractions/';
-// «رحلتي» بلا نسخة صينية بعد — تقصد الإنجليزية
-const tripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : '/en/plan/';
+const ru = lang === 'ru';
+const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
+const tripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : ru ? '/ru/plan/' : '/en/plan/';
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   {
@@ -189,7 +189,7 @@ const jsonLd = [
     })),
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: t('nav.plan'), item: new URL(altHref(alt, lang), siteUrl).href },
   ] },
 ];
