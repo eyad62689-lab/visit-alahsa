@@ -91,6 +91,25 @@ const C = localize(lang, {
     indexName: 'Restaurants & Cafés',
     sightsH: 'Sights nearby in {district}',
   },
+  // الروسية — خط ru-translation-pipeline (دفعة ru-dining-detail-1)؛ ما يطابق كتلة RU في الفهرس منسوخٌ منها.
+  ru: {
+    kindLabel: d.kind === 'cafe' ? 'Кафе' : d.kind === 'bakery' ? 'Пекарня' : 'Ресторан',
+    backLabel: 'Все рестораны и кафе',
+    openMaps: t('det.openMaps'),
+    newWindow: '(открывает Google Карты в новом окне)',
+    hoursH: 'Часы работы',
+    hoursNote: 'Часы работы указаны по данным Google Карт и могут меняться — проверяйте по ссылке на это место.',
+    ratingLabel: 'Рейтинг на Google Картах',
+    openNow: 'Открыто сейчас',
+    closedNow: 'Закрыто сейчас',
+    closedPerm: 'Закрыто навсегда — по данным Google Карт',
+    closedTemp: 'Временно закрыто — по данным Google Карт',
+    areaH: 'Расположение',
+    noteH: 'Об этой странице',
+    noteP: 'Название и местоположение взяты напрямую из Google Карт; рейтинг и часы работы подгружаются оттуда при каждом обновлении сайта и могут меняться. Цены и рекомендации по блюдам здесь не указываются.',
+    indexName: 'Рестораны и кафе',
+    sightsH: 'Достопримечательности поблизости: {district}',
+  },
 });
 const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : ru ? 'ru' : 'en'][d.district]) : '';
 
