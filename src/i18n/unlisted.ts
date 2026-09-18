@@ -13,6 +13,8 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // مؤقت (ب7): المسار والتنقّل جاهزان ومفاتيح map.* تتراجع للإنجليزية حتى تمرّ بخطّها — يُخرج بها.
+  { path: '/ru/map/', noindex: true, why: 'ب7: map.* بانتظار خط الترجمة الروسية' },
   // `/ru/restaurants-cafes/` أُخرج 2026-09-18 باكتمال ب4 (ru-dining-1/2، الحاكمان 91 · 92) وب5
   // (بطاقاته التسع والعشرون: ru-dining-cards-1/2/3، الحكّام 91 · 93 · 91) — نسبة الإنجليزية فيه
   // بمنطق C22 نفسِه 1% (كتلتان من 210، وهما اسما منشأتين لاتينيان داخل الأسئلة عمداً).
