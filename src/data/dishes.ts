@@ -115,3 +115,31 @@ export const DISH_GROUPS_RU: DishGroup[] = [
     ],
   },
 ];
+
+// @de-food:start
+// النسخة الألمانية — خط de-translation-pipeline حصراً (دفعة de-food، ج2 من خطة إكمال اللغات).
+// الاقتران «rotes Brot»/اسم الطبق على البطاقة نفسها (‏C5b، وزوجه الألماني في SYNONYM_PAIRS).
+export const DISH_GROUPS_DE: DishGroup[] = [
+  {
+    title: '',
+    dishes: [
+      { img: '/img/food/hasawi-rice-v2', alt: 'Hasawi-Reis, der in einem Tontopf über dem Holzfeuer gerührt wird', k: 'Hauptgericht', name: 'Hasawi-Reis',
+        pre: 'Eines der bekanntesten Gerichte Al-Ahsas: einheimischer Hasawi-Reis, gekocht mit Fleisch oder Hähnchen, Tomatensauce und Gewürzen (Lomi, Zimt, Kardamom), bis er seine rotbraune Farbe und seinen kräftigen Geschmack annimmt. Serviert bei Festen und auf den Tafeln der Gastfreundschaft.' },
+      { img: '/img/food/mandi-v2', alt: 'Ein Mandi-Gericht neben einer glühenden Tanur-Grube', k: 'Hauptgericht', name: 'Mandi',
+        pre: 'In Al-Ahsa wird Mandi weniger gekocht als der Erde anvertraut – so wie man Geheimnisse anvertraut. Stundenlang nimmt das Fleisch den Atem des tönernen Tanurs (Lehmofen) in sich auf, und der Reis trägt den Duft von Palmen und Rauch – ein Gericht, das von einer Oase erzählt, die Großzügigkeit kannte, noch bevor sie Worte dafür hatte.' },
+      { img: '/img/food/harees-v3', alt: 'Ein Topf Harees, gerührt über dem Holzfeuer', k: 'Hauptgericht', name: 'Harees',
+        pre: 'Wenn Weizen und Fleisch stundenlang verschmelzen, bis sie eine einzige Seele werden, entsteht Harees (ein Weizen-Fleisch-Brei – nicht zu verwechseln mit der ähnlich klingenden Gewürzpaste Harissa). Es ist das erste Gericht der Großzügigkeit bei den Festmählern und Hochzeiten Al-Ahsas und seit jeher Begleiter der Ramadan-Tafeln.' },
+      { img: '/img/food/mufallaq-v2', alt: 'Ein Topf Mufallaq – Weizenschrot mit Datteln – kocht über dem Holzfeuer in der Oase', k: 'Hauptgericht', name: 'Mufallaq',
+        pre: 'Ein traditionelles Gericht aus Al-Ahsa: Weizenschrot (Jareesh), gekocht mit Gewürzen und Lomi, anschließend garniert mit Datteln und gekochten Eiern – ein herzhaftes Gericht, das die Aromen der Oase vereint.' },
+      { img: '/img/food/balaleet-v2', alt: 'Balaleet-Fadennudeln rösten über dem Holzfeuer neben einer Omelettpfanne', k: 'Süßspeise', name: 'Balaleet mit Dattelsirup',
+        pre: 'Goldene Fadennudeln, parfümiert mit Safran und Kardamom, werden nach Art von Al-Ahsa mit Dattelsirup gesüßt. Aus einem Land, das die Hauptstadt der Dattelpalme ist, kommt die Süße von der Dattel selbst.' },
+      { img: '/img/food/date-asida-v2', alt: 'Ein Teller Dattel-Asida mit einer Mulde aus Dibs (Dattelsirup) in der Mitte, dazu Datteln und eine Kaffeekanne', k: 'Süßspeise', name: 'Dattel-Asida',
+        pre: 'Al-Ahsas eigene Datteln zerschmelzen bei sanfter Flamme mit Weizenmehl. Geduldig gerührt, bis die Asida eindickt und mit Safran erstrahlt, wird sie mit Butterschmalz und einer Prise schwarzem Pfeffer gekrönt. Die Prise entfacht ihre Wärme. Die winterliche Süßspeise aus Al-Ahsa, um die sich die Familie in kalten Nächten versammelt.' },
+      { img: '/img/food/sago', alt: 'Sago, garniert mit Walnüssen und Pistazien', k: 'Süßspeise', name: 'Sago',
+        pre: 'Kleine Körner, die über der Flamme zerschmelzen, bis sie zu einem durchscheinenden Juwel werden, das im Schimmer von Safran und Kardamom erstrahlt. Al-Ahsas Süßspeise an der Spitze der Ramadan-Tafeln – zart in der Konsistenz, seit langem verwurzelt, ihre Zubereitung wird von den Bewohnern der Oase weitergegeben.' },
+      { img: '/img/food/date-bread-v2', alt: 'Dattelbrot auf dem Blech vor einem glühenden Tanur', k: 'Brot', name: 'Dattelbrot',
+        pre: 'Dieses Dattelbrot – ein lokales Brot, geknetet oder gefüllt mit Dattelpaste und bestreut mit Schwarzkümmel – vereint gutes Brot mit der Süße der Dattel. Serviert mit arabischem Kaffee. Auch als „rotes Brot“ (khubz ahmar) bekannt.' },
+    ],
+  },
+];
+// @de-food:end

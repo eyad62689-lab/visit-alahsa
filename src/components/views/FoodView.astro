@@ -8,7 +8,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
-import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_RU } from '../../data/dishes';
+import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_DE, DISH_GROUPS_RU } from '../../data/dishes';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -17,6 +17,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const de = lang === 'de';
 const ru = lang === 'ru';
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة food-map 2026-09-02، الحاكم 94/100).
@@ -55,6 +56,26 @@ const RU = {
   dineHref: '/en/restaurants-cafes/',
   groups: DISH_GROUPS_RU,
 };
+// @de-food:start
+// الكتلة الألمانية — خط de-translation-pipeline (دفعة de-food، ج2).
+// العنوان = nav.food المنشور (حكم F6). dineHref يقصد فهرس المطاعم الإنجليزي: لا نظير
+// ألمانيّ له بعد (ج6)، وهو تراجع القاموس نفسه — تسمية ألمانية لصفحة إنجليزية لا وعدٌ مكسور.
+const DE = {
+  heroEyebrow: 'Von der Oasentafel',
+  title: 'Hasawi-Küche',
+  heroSum: 'Die Hasawi-Küche schöpft aus den Gaben der Oase: aus einheimischem Hasawi-Reis (dem Reis aus Al-Ahsa), Dattelsirup, getrockneter Limette (Lomi) und geschrotetem Weizen – so entstehen warme Gerichte, die von Generation zu Generation an den Tischen weitergegeben werden.',
+  listEyebrow: 'Eine Geschmackstour',
+  listH: 'Acht Gerichte aus dem Herzen der Oase',
+  more: 'Mehr anzeigen',
+  less: 'Weniger anzeigen',
+  methodH: 'Über diese Seite',
+  methodP1: 'Die Beschreibungen hier stellen die traditionellen Gerichte und ihre bekannten Zutaten vor, keine genauen Rezepte. Mengenangaben und Bezeichnungen unterscheiden sich von Haushalt zu Haushalt und von Region zu Region.',
+  methodP2: 'Wo vier der Karten einen Anlass oder eine Jahreszeit nennen – Ramadan, Winternächte, Hochzeitsfeste, Tafeln der Gastfreundschaft –, beschreiben sie den Platz des Gerichts in den Tafeltraditionen Al-Ahsas, nicht den Zeitpunkt, zu dem es Besuchern serviert wird. In den Restaurants Al-Ahsas jedoch werden die Gerichte dieser Seite das ganze Jahr über serviert.',
+  dineCta: 'Suchen Sie einen Ort, um sie zu probieren? Entdecken Sie die Restaurants und Cafés →',
+  dineHref: '/en/restaurants-cafes/',
+  groups: DISH_GROUPS_DE,
+};
+// @de-food:end
 
 const C = localize(lang, {
   ar: {
@@ -88,6 +109,7 @@ const C = localize(lang, {
     groups: DISH_GROUPS_EN,
   },
   zh: ZH,
+  de: DE,
   ru: RU,
 });
 
@@ -96,15 +118,17 @@ const description = ar
   ? 'جولة في المطبخ الأحسائي: الأرز الأحسائي، المندي، الهريس، المفلق، البلاليط بالدبس، عصيدة التمر، الساقو، وخبز التمر.'
   : zh
     ? '走进哈萨美食：哈萨焖饭、曼迪、哈里斯、穆法拉格、椰枣糖浆巴拉利特、椰枣阿西达、西米羹与椰枣面包。'
+    : de
+      ? 'Eine Tour durch die Hasawi-Küche: Hasawi-Reis, Mandi, Harees, Mufallaq, Balaleet mit Dattelsirup, Dattel-Asida, Sago und Dattelbrot.'
     : ru
       ? 'Кухня Аль-Ахсы в восьми блюдах: рис Аль-Ахсы, манди, хариса из пшеницы, муфаллак, балалит с финиковой патокой, финиковая асида, саго и финиковый хлеб.'
       : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : ru ? '/ru/food/' : '/en/food/';
+const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : '/en/food/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];
