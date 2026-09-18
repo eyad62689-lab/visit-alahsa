@@ -48,7 +48,10 @@ export function gitDates(): Map<string, string> {
 
   let current = '';
   for (const line of log.split('\n')) {
-    if (line.startsWith('@')) { current = line.slice(1, 11); continue; } // YYYY-MM-DD
+    // YYYY-MM-DD بتوقيت UTC لا بتوقيت الملتزِم: `%cI` يحمل منطقته (+03:00)، فالتزامٌ بين
+    // منتصف الليل والثالثة فجراً بتوقيت الرياض كان يُكتب بتاريخ الغد عند خادم البناء (UTC)
+    // فيُفشل C8 («تاريخ في المستقبل») ساعاتٍ حتى يلحقه اليوم — وقع في PR #64.
+    if (line.startsWith('@')) { current = new Date(line.slice(1)).toISOString().slice(0, 10); continue; }
     const p = line.trim();
     if (p && current && !cache.has(p)) cache.set(p, current);
   }
