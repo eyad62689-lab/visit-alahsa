@@ -45,7 +45,7 @@ Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/att
 
 ### Nachmittag: Das Grün der Farmen
 
-Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der Nachmittag der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/en/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
+Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der Nachmittag der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
 
 ### Sonnenuntergang: Al-Uqair
 
