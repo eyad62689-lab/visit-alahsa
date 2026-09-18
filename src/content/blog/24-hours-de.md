@@ -36,7 +36,7 @@ Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/), ei
 ## Wenn die Zeit reicht
 
 - Die [Jawatha-Moschee](/de/attractions/jawatha-mosque/) im Dorf Al-Kilabiyah nordöstlich der Oase – eine der ältesten Moscheen des Islams und der erste Ort nach Medina, an dem ein Freitagsgebet stattfand. Auch Nichtmuslime sind willkommen, bedeckende Kleidung vorausgesetzt.
-- Auf der Seite [Souks, Parks und Farmen](/en/souqs-parks-farms/) finden Sie die traditionellen Souks, Parks und Farmen der Oase – wählen Sie daraus eine Station nahe Ihrer Route.
+- Auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) finden Sie die traditionellen Souks, Parks und Farmen der Oase – wählen Sie daraus eine Station nahe Ihrer Route.
 
 ## Praktische Hinweise
 
