@@ -62,7 +62,10 @@ const SYNONYM_PAIRS = [
   // الروسية تصرّف الاسم بست حالات («красным хлебом» في المتن) فالمرساة على
   // **العبارة** بجذعيها لا على الصفة وحدها — «красные» وحدها تطابق أي أحمر آخر.
   // ولا \w ولا \b: آسكيّان في JS فلا يطابقان السيريلية ولا يُخفقان.
-  { alias: 'красн[а-яё]{2,3}\\s+хлеб[а-яё]{0,2}', canonicals: ['Финиковый хлеб'] },
+  // والموثّق يتصرّف كذلك: في عنوان الطبق «Финиковый хлеб»، وفي جملة جارية «финиковым
+  // хлебом» (أسئلة «خطّط لرحلتك»، ب8 2026-09-18) — فالقرين نمطٌ على جذعيه بأيّ حالة
+  // وبأيّ حرف أول، لا سلسلة حرفية تفوت صيغ الجرّ. الشرط نفسه: الاسم الموثّق في الصفحة.
+  { alias: 'красн[а-яё]{2,3}\\s+хлеб[а-яё]{0,2}', canonicals: [/[Фф]иников[а-яё]{2,3}\s+хлеб[а-яё]{0,2}/] },
 ];
 
 // أسماء أدلة صفحات المعالم في dist (المسارات العربية تُرمَّز بـpercent-encoding)
@@ -181,9 +184,9 @@ async function main() {
     for (const f of htmlFiles) {
       const html = await readText(f);
       const aliasRe = new RegExp(alias, 'i');
-      if (aliasRe.test(html) && !canonicals.some((c) => html.includes(c))) orphans.push(path.relative(DIST, f));
+      if (aliasRe.test(html) && !canonicals.some((c) => (c instanceof RegExp ? c.test(html) : html.includes(c)))) orphans.push(path.relative(DIST, f));
     }
-    if (orphans.length === 0) pass('C5b', `«${alias}» مقرون دائماً بأحد: ${canonicals.map((c) => `«${c}»`).join(' / ')}`);
+    if (orphans.length === 0) pass('C5b', `«${alias}» مقرون دائماً بأحد: ${canonicals.map((c) => `«${c instanceof RegExp ? c.source : c}»`).join(' / ')}`);
     else fail('C5b', `«${alias}» بلا اقتران في ${orphans.length} صفحة: ${orphans.slice(0, 3).join(', ')}`);
   }
 

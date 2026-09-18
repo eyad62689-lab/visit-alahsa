@@ -13,6 +13,8 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // `/ru/plan-your-trip/` و`/ru/plan/` أُخرجا 2026-09-18 باكتمال ب8 (ru-plan-1/2/3): مفاتيح plan.*
+  // الخمسة والعشرون، وكتلة PlanTripView بأسئلتها الثلاث عشرة. و«رحلتي» noindex كنظيرتيها أصلاً.
   // `/ru/map/` أُخرج 2026-09-18 باكتمال ب7 (ru-map-1): مفاتيح map.* الأحد عشر، وأسماء المعالم الـ58
   // ونبذها من title_ru/summary_ru المنشورة.
   // `/ru/restaurants-cafes/` أُخرج 2026-09-18 باكتمال ب4 (ru-dining-1/2، الحاكمان 91 · 92) وب5
