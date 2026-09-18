@@ -10,24 +10,26 @@ import Photo from '../Photo.astro';
 import { formatDate } from '../../lib/dates';
 import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
 import { blogHref } from '../../lib/routes';
-import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { htmlLang, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { BLOG_INDEX } from '../../lib/blog';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
-const zh = lang === 'zh';
+// الفهارس الجزئية: الصينية، والروسية منذ ب9 (2026-09-18)
+const partial = lang === 'zh' || lang === 'ru';
 
 // الصينية: لا مقالات صينية بعد — تُعرض المقالات الإنجليزية وبطاقاتها تقصد
 // نظائرها الإنجليزية (سابقة فهرس المعالم: التراجع للإنجليزية نصاً ورابطاً).
 // الصينية منذ الخطوة 10: المقالات الصينية المعتمدة أولاً، ثم ما لا نسخة صينية له بنسخته
 // الإنجليزية (بطاقة إنجليزية تقصد الصفحة الإنجليزية بـhreflang="en") — سابقة فهرس المعالم.
-// الفهرس يبقى في unlisted.ts ما دامت الكتل الإنجليزية فوق عتبة C22.
-const selfPath = ar ? '/مدونة/' : zh ? '/zh/blog/' : '/en/blog/';
+// الفهرس يبقى في unlisted.ts ما دامت الكتل الإنجليزية فوق عتبة C22. والروسية على السابقة نفسها.
+const selfPath = BLOG_INDEX[lang];
 const all = await getCollection('blog', ({ data }) => !data.draft);
 const own = all.filter((p) => p.data.lang === lang);
-const posts = (zh ? [...own, ...all.filter((p) => p.data.lang === 'en' && !own.some((o) => o.data.key === p.data.key))] : own)
+const posts = (partial ? [...own, ...all.filter((p) => p.data.lang === 'en' && !own.some((o) => o.data.key === p.data.key))] : own)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const siteUrl = SITE;
@@ -35,12 +37,12 @@ const pageUrl = absUrl(selfPath, siteUrl);
 const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'Blog',
-    name: t('blog.title'), description: t('blog.lead'), url: pageUrl, inLanguage: ar ? 'ar' : zh ? 'zh-CN' : 'en',
+    name: t('blog.title'), description: t('blog.lead'), url: pageUrl, inLanguage: htmlLang(lang),
     // الناشر هو الجهة نفسها (ORG) التي تحمل مقالات المدونة والحقوق في Base
     publisher: ORG,
   },
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : `/${lang}/` },
     { name: t('crumb.blog'), path: selfPath },
   ], siteUrl),
 ];

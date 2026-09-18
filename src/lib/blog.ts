@@ -2,7 +2,7 @@
 //
 // كل لغة ملف Markdown مستقل يقترن بنظائره بحقل key. النظائر هنا مصدر hreflang ومبدّل
 // اللغة وشريط الاقتراح لصفحة المقال، وما لا نظير له بلغةٍ يتراجع إلى فهرسها (العربية
-// والإنجليزية فهرسان كاملان؛ الصينية فهرس جزئي؛ الألمانية والروسية بلا فهرس بعد فتقصدان
+// والإنجليزية فهرسان كاملان؛ الصينية والروسية فهرسان جزئيان؛ الألمانية بلا فهرس بعد فتقصد
 // الإنجليزي — تسمية إنجليزية لصفحة إنجليزية، لا وعد مكسور).
 import type { CollectionEntry } from 'astro:content';
 import type { AltLinks } from '../i18n/utils';
@@ -11,8 +11,8 @@ import { blogHref } from './routes';
 
 type Post = CollectionEntry<'blog'>;
 
-/** فهرس المدونة بلغة الطلب — de/ru بلا فهرس بعد فيقصدان الإنجليزي */
-export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/en/blog/', ru: '/en/blog/' };
+/** فهرس المدونة بلغة الطلب — de بلا فهرس بعد فيقصد الإنجليزي؛ ru منذ ب9 (2026-09-18) */
+export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/en/blog/', ru: '/ru/blog/' };
 
 /** نظائر المقال بلغاته المبنية — zh/de/ru تُدرج فقط حين يوجد ملفها (بوابة التوليد كما في المعالم) */
 export const postAlt = (all: Post[], entry: Post): AltLinks => {
