@@ -13,6 +13,8 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // `/ru/map/` أُخرج 2026-09-18 باكتمال ب7 (ru-map-1): مفاتيح map.* الأحد عشر، وأسماء المعالم الـ58
+  // ونبذها من title_ru/summary_ru المنشورة.
   // `/ru/restaurants-cafes/` أُخرج 2026-09-18 باكتمال ب4 (ru-dining-1/2، الحاكمان 91 · 92) وب5
   // (بطاقاته التسع والعشرون: ru-dining-cards-1/2/3، الحكّام 91 · 93 · 91) — نسبة الإنجليزية فيه
   // بمنطق C22 نفسِه 1% (كتلتان من 210، وهما اسما منشأتين لاتينيان داخل الأسئلة عمداً).
