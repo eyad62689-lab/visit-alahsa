@@ -29,17 +29,19 @@ export const attractionAlt = (d: AttractionSlugs): { ar: string; en: string; zh?
   ...(d.title_ru ? { ru: attractionHref(d, 'ru') } : {}),
 });
 
-type DiningSlugs = { slug_ar: string; slug_en: string };
+type DiningSlugs = { slug_ar: string; slug_en: string; body_ru?: string };
 
 /** رابط صفحة المنشأة (مطعم/مقهى) — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
 export const diningHref = (d: DiningSlugs, lang: Lang): string =>
-  lang === 'ar' ? `/مطاعم-ومقاهي/${d.slug_ar}/` : `/en/restaurants-cafes/${d.slug_en}/`;
+  lang === 'ar' ? `/مطاعم-ومقاهي/${d.slug_ar}/` : lang === 'ru' ? `/ru/restaurants-cafes/${d.slug_en}/` : `/en/restaurants-cafes/${d.slug_en}/`;
 
-/** روابط المنشأة بلغتيها — مصدر hreflang ومبدّل اللغة. لا نسخة صينية ولا ألمانية
- *  ولا روسية بعد، فلا تُدرج هنا لئلا يقود المبدّل إلى 404. */
-export const diningAlt = (d: DiningSlugs): { ar: string; en: string } => ({
+/** روابط المنشأة بلغاتها — مصدر hreflang ومبدّل اللغة. لا نسخة صينية ولا ألمانية
+ *  بعد؛ والروسية تُدرج متى حملت المنشأة body_ru المعتمد (بوابة صفحتها، على سابقة
+ *  stayAlt) — فلا يقود المبدّل إلى 404. */
+export const diningAlt = (d: DiningSlugs): { ar: string; en: string; ru?: string } => ({
   ar: diningHref(d, 'ar'),
   en: diningHref(d, 'en'),
+  ...(d.body_ru?.trim() ? { ru: diningHref(d, 'ru') } : {}),
 });
 
 type StaySlugs = { slug_ar: string; slug_en: string; body_ru?: string };

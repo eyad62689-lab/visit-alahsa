@@ -67,7 +67,8 @@ export const GET: APIRoute = async ({ site }) => {
       if (!okAr && !okEn) return [];
       const a = diningAlt(e.data);
       const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
-      if (okAr && okEn) return [{ ar: a.ar, en: a.en, lastmod }];
+      // والروسية متى حملت المنشأة body_ru (ب6) — على سابقة الإقامة تحته
+      if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.ru ? { ru: a.ru } : {}), lastmod }];
       return [{ ar: okAr ? a.ar : a.en, lastmod }];
     }),
     // صفحات أماكن الإقامة المفردة — العتبة نفسها وحارسها نفسه

@@ -25,13 +25,16 @@ interface Props { entry: CollectionEntry<'dining'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+// الروسية (ب6): الصفحة لا تُولَّد إلا لمن حمل body_ru (البوابة في ru/restaurants-cafes/[slug])،
+// وحقول البطاقة *_ru من ب5 تتراجع للإنجليزية عند غيابها. الاسم لاتيني كما تسمّي المنشأة نفسها.
+const ru = lang === 'ru';
 const d = entry.data;
 const { Content } = await render(entry);
 
 const name = ar ? d.name : d.name_en;
-const area = ar ? d.area : d.area_en;
-const blurb = ar ? d.blurb : d.blurb_en;
-const alTxt = ar ? d.alt : d.alt_en;
+const area = ar ? d.area : ru ? (d.area_ru ?? d.area_en) : d.area_en;
+const blurb = ar ? d.blurb : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
+const alTxt = ar ? d.alt : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
@@ -39,7 +42,7 @@ const hours = hoursFor(lv, lang);
 const hoursData = hoursDataFor(lv);
 // المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
 // «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.
-const bodyEnParas = d.body_en.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+const bodyEnParas = (ru && d.body_ru?.trim() ? d.body_ru : d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 // «معالم قريبة في الحيّ» (الخطوة 9 من خطة التفاعل العالمي): المعالم التي تحمل مفتاح حيّ
 // المنشأة نفسه (district — مشتقّ من نصّ area في ملف المعلم، يفرضه المخطط). بلا حيّ لا قسم.
@@ -47,9 +50,8 @@ const sights = d.district
   ? (await getCollection('attractions'))
       .filter((e) => e.data.district === d.district)
       .sort((x, y) => x.data.order - y.data.order)
-      .map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
+      .map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
   : [];
-const sightsH = d.district ? (ar ? `معالم قريبة في ${DISTRICT_NAMES.ar[d.district]}` : `Sights nearby in ${DISTRICT_NAMES.en[d.district]}`) : '';
 
 const C = localize(lang, {
   ar: {
@@ -67,6 +69,9 @@ const C = localize(lang, {
     areaH: 'الموقع',
     noteH: 'حول هذه الصفحة',
     noteP: 'الاسم والموقع من خرائط قوقل مباشرة، والتقييم وأوقات العمل تُجلب منها عند كل تحديث للموقع وقد تتغير. لا تُعرض أسعار ولا توصيات بأصناف بعينها.',
+    // اسم الفهرس في العنوان والفتات، وعنوان قسم المعالم ({district} اسم الحيّ من DISTRICT_NAMES)
+    indexName: 'المطاعم والمقاهي',
+    sightsH: 'معالم قريبة في {district}',
   },
   en: {
     kindLabel: d.kind === 'cafe' ? 'Café' : d.kind === 'bakery' ? 'Bakery' : 'Restaurant',
@@ -83,19 +88,41 @@ const C = localize(lang, {
     areaH: 'Location',
     noteH: 'About this page',
     noteP: 'The name and location come straight from Google Maps; the rating and opening hours are fetched from it on each site update and can change. No prices or dish recommendations are listed.',
+    indexName: 'Restaurants & Cafés',
+    sightsH: 'Sights nearby in {district}',
+  },
+  // الروسية — خط ru-translation-pipeline (دفعة ru-dining-detail-1)؛ ما يطابق كتلة RU في الفهرس منسوخٌ منها.
+  ru: {
+    kindLabel: d.kind === 'cafe' ? 'Кафе' : d.kind === 'bakery' ? 'Пекарня' : 'Ресторан',
+    backLabel: 'Все рестораны и кафе',
+    openMaps: t('det.openMaps'),
+    newWindow: '(открывает Google Карты в новом окне)',
+    hoursH: 'Часы работы',
+    hoursNote: 'Часы работы указаны по данным Google Карт и могут меняться — проверяйте по ссылке на это место.',
+    ratingLabel: 'Рейтинг на Google Картах',
+    openNow: 'Открыто сейчас',
+    closedNow: 'Закрыто сейчас',
+    closedPerm: 'Закрыто навсегда — по данным Google Карт',
+    closedTemp: 'Временно закрыто — по данным Google Карт',
+    areaH: 'Расположение',
+    noteH: 'Об этой странице',
+    noteP: 'Название и местоположение взяты напрямую из Google Карт; рейтинг и часы работы подгружаются оттуда при каждом обновлении сайта и могут меняться. Цены и рекомендации по блюдам здесь не указываются.',
+    indexName: 'Рестораны и кафе',
+    sightsH: 'Достопримечательности поблизости: {district}',
   },
 });
+const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : ru ? 'ru' : 'en'][d.district]) : '';
 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/';
+const indexHref = ar ? '/مطاعم-ومقاهي/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
 const siteUrl = SITE;
 const selfUrl = absUrl(diningHref(d, lang), siteUrl);
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
-    { name: ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés', path: indexHref },
+    { name: t('crumb.home'), path: ar ? '/' : ru ? '/ru/' : '/en/' },
+    { name: C.indexName, path: indexHref },
     { name, path: diningHref(d, lang) },
   ], siteUrl),
   { '@context': 'https://schema.org',
@@ -103,11 +130,11 @@ const jsonLd = [
     name, url: selfUrl, hasMap: d.maps, image: absUrl(`${d.img}.jpg`, siteUrl),
     // addressLocality يسقط حين لا يكون الموقع المعياري متحقَّقاً منه بعد —
     // عنوانٌ ناقص أصدق من عنوانٍ مخمَّن.
-    address: { '@type': 'PostalAddress', ...(area ? { addressLocality: area } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
+    address: { '@type': 'PostalAddress', ...(area ? { addressLocality: area } : {}), addressRegion: ar ? 'الأحساء' : ru ? 'Аль-Ахса' : 'Al-Ahsa', addressCountry: 'SA' },
   },
 ];
 ---
-<Base title={`${name} — ${ar ? 'المطاعم والمقاهي' : 'Restaurants & Cafés'} — ${t('site.name')}`} description={blurb} image={`${d.img}.jpg`}
+<Base title={`${name} — ${C.indexName} — ${t('site.name')}`} description={blurb} image={`${d.img}.jpg`}
   lang={lang} alt={alt} jsonLd={jsonLd}
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />

@@ -236,6 +236,9 @@ const dining = defineCollection({
     maps: z.url(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (المتن العربي في جسم الملف)
+    // المتن الروسي من خط ru-translation-pipeline حصراً — بوابة صفحة /ru/restaurants-cafes/<slug>/
+    // (على سابقة body_ru في الإقامة). بلا متنٍ روسيّ تقود البطاقة الروسية إلى الصفحة الإنجليزية.
+    body_ru: z.string().optional(),
   }),
 });
 
