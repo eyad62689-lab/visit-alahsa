@@ -69,6 +69,13 @@ const lats = points.map((p) => p.lat);
 const lngs = points.map((p) => p.lng);
 const viewBounds = [[pct(lats, 0.05), pct(lngs, 0.05)], [pct(lats, 0.95), pct(lngs, 0.95)]];
 
+// النبذة يسبقها العدد في القالب (ar/en/zh). لغةٌ يتصرّف فيها الاسم بحسب العدد (الروسية: 51
+// достопримечательность · 52 достопримечательности · 58 достопримечательностей) تضع «{n}» في
+// السلسلة موضعاً للعدد فتصوغ الجملة صحيحةً مع أي عدد — والعدد مشتقّ من البيانات لا ثابت.
+const leadRaw = t('map.lead.a');
+const leadParts = leadRaw.includes('{n}') ? leadRaw.split('{n}') : null;
+const leadText = leadParts ? leadParts.join(String(points.length)) : `${points.length} ${leadRaw}`;
+
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -77,7 +84,7 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={`${t('map.title')} ${titleSep(lang)} ${t('site.name')}`} description={`${points.length} ${t('map.lead.a')}`} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${t('map.title')} ${titleSep(lang)} ${t('site.name')}`} description={leadText} lang={lang} alt={alt} jsonLd={jsonLd}>
   {/* preconnect لكارتو في أسفل الصفحة بلا crossorigin عمداً: البلاطات تُطلب كـ<img> بلا CORS،
       فاتصال crossorigin (الذي يضيفه Base) لا يُعاد استعماله ويُهدر */}
   <Header lang={lang} alt={alt} />
@@ -85,7 +92,9 @@ const jsonLd = [
     <div class="container map-head">
       <span class="eyebrow">{t('map.eyebrow')}</span>
       <h1 class="map-title">{t('map.title')}</h1>
-      <p class="map-sum"><bdi>{num(points.length)}</bdi> {t('map.lead.a')}</p>
+      <p class="map-sum">{leadParts
+        ? <>{leadParts[0]}<bdi>{num(points.length)}</bdi>{leadParts.slice(1).join(num(points.length))}</>
+        : <><bdi>{num(points.length)}</bdi> {leadRaw}</>}</p>
       <div class="map-tools">
         <input id="map-search" class="map-search" type="search" placeholder={t('map.search.ph')} aria-label={t('map.search.ph')} autocomplete="off" />
         <div class="chips" id="map-chips" role="group" aria-label={t('map.filter.aria')}>
