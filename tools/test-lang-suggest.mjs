@@ -105,7 +105,10 @@ try {
   // النصوص من ui.zh (دفعة الواجهة العامة A-ui-zh، الحاكم 92 — 2026-09-17)
   ok(bar && bar.to === 'zh' && bar.href === '/zh/map/' && bar.cta === '阅读中文版' && bar.text === '本页提供中文版' && bar.close === '关闭', 'صيني على /en/map/ → اقتراح /zh/map/ بجملة ودعوة صينيتين', JSON.stringify(bar));
   await p.axe('/en/map/ مع الشريط (zh)'); await p.done();
-  p = await fresh(['ru-RU', 'ru']); await p.goto2('/en/map/'); ok(await p.noBar(), 'روسي على /en/map/ → لا شريط (لا نظير روسي فلا رابط إلى 404)'); await p.done();
+  // /en/map/ صار لها نظير روسي (ب7، 2026-09-18) — فحالة «لا نظير» انتقلت إلى صفحة بلا نسخة روسية بعد
+  p = await fresh(['ru-RU', 'ru']); await p.goto2('/en/map/'); bar = await p.bar();
+  ok(bar && bar.to === 'ru' && bar.href === '/ru/map/' && bar.cta === 'Читать на русском' && bar.text === 'Эта страница доступна на русском', 'روسي على /en/map/ → اقتراح /ru/map/ بجملة ودعوة روسيتين', JSON.stringify(bar)); await p.done();
+  p = await fresh(['ru-RU', 'ru']); await p.goto2('/en/plan-your-trip/'); ok(await p.noBar(), 'روسي على /en/plan-your-trip/ → لا شريط (لا نظير روسي فلا رابط إلى 404)'); await p.done();
   p = await fresh(['fr-FR', 'fr', 'de']); await p.goto2('/'); bar = await p.bar();
   ok(bar && bar.to === 'de', 'فرنسي ثم ألماني على الجذر → تُتخطّى اللغة غير المدعومة إلى التالية', bar && bar.to); await p.done();
 
