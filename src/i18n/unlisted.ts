@@ -13,6 +13,9 @@
 import type { AltLinks } from './utils';
 
 export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+  // مؤقت (ب9): الفهرس والتنقّل جاهزان، ومفاتيح blog.* تتراجع للإنجليزية وستٌّ من ثماني بطاقات إنجليزية
+  // حتى تمرّ المقالات الست بالخط — يخرج حين يطبع C22 نسبةً دون 20%.
+  { path: '/ru/blog/', noindex: true, why: 'ب9: blog.* وستة مقالات بانتظار خط الترجمة الروسية' },
   // `/ru/plan-your-trip/` و`/ru/plan/` أُخرجا 2026-09-18 باكتمال ب8 (ru-plan-1/2/3): مفاتيح plan.*
   // الخمسة والعشرون، وكتلة PlanTripView بأسئلتها الثلاث عشرة. و«رحلتي» noindex كنظيرتيها أصلاً.
   // `/ru/map/` أُخرج 2026-09-18 باكتمال ب7 (ru-map-1): مفاتيح map.* الأحد عشر، وأسماء المعالم الـ58
