@@ -9,7 +9,7 @@ export const DISTRICTS = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'ra
   'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz', 'khudud', 'qarah'] as const;
 export type District = (typeof DISTRICTS)[number];
 
-export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh', Record<District, string>> = {
+export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh' | 'ru', Record<District, string>> = {
   ar: {
     alkoot: 'حي الكوت', downtown: 'وسط الهفوف التاريخي', 'rafah-north': 'الرفعة الشمالية',
     khalidiyah: 'الخالدية', rawdah: 'الروضة', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
@@ -27,6 +27,13 @@ export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh', Record<District, string>
     khalidiyah: '哈利迪亚区', rawdah: '拉乌达区', mazrou: '马兹鲁阿区', uwaimriyah: '欧韦米里亚区',
     olaya: '奥拉雅区', khaleej: '海湾路', mubarraz: '穆巴拉兹',
     khudud: '胡杜德区', qarah: '卡拉',
+  },
+  // الأسماء الروسية من خط ru-translation-pipeline (دفعة ru-dining-2).
+  ru: {
+    alkoot: 'район Эль-Кут', downtown: 'исторический центр Эль-Хуфуфа', 'rafah-north': 'район Эр-Рифаа аш-Шамалия',
+    khalidiyah: 'Эль-Халидия', rawdah: 'Эр-Рауда', mazrou: 'Эль-Мазру',
+    uwaimriyah: 'район Эль-Увеймирия', olaya: 'Эль-Улья', khaleej: 'дорога Эль-Халидж',
+    mubarraz: 'Эль-Мубарраз', khudud: 'район Эль-Худуд', qarah: 'Эль-Кара',
   },
 };
 
