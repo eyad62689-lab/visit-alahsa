@@ -1,0 +1,463 @@
+{
+  "batch": "de-fruits-2",
+  "loop": 1,
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "source_defect",
+      "reason": "تناقض 100.000-120.000 طن مقابل أكثر من 200.000 طن وقائعُ المصدرين (تقارير رسمية مقابل واس) بنسبتها في العربية والإنجليزية كليهما؛ الترجمة تنقل نفس الإسناد الحرفي دون حذف أو تلفيق تفسير. إضافة تفسير لسبب الفارق يضيف واقعة لا يحملها أي من المصدرين.",
+      "edit": null
+    },
+    {
+      "n": 2,
+      "ruling": "source_defect",
+      "reason": "المصدران الإنجليزي والعربي لا يذكران فئة الرقم القياسي (أكبر مجموعة أصناف أم أكبر معرض) - الغموض من المصدر نفسه، وإضافة فئة مخترَعة يخرق سياج الوقائع.",
+      "edit": null
+    },
+    {
+      "n": 3,
+      "ruling": "applied",
+      "reason": "عطب حقيقي في السلاسة الألمانية: 'und' بين الوصفين أوحى بفاعل مركّب يستوجب فعلاً جمعياً. أُعيدت الصياغة بفاصلة بدل 'und' ودمج الوصفين بـ'und zugleich' بلا أي تغيير في الوقائع.",
+      "edit": {
+        "key_or_field": "g0.f0.pre",
+        "before": "Die Ikone der Datteln Al-Ahsas und ihre berühmteste Sorte, die meistverkaufte von allen, macht 15–20 % der Palmen der Oase aus.",
+        "after": "Die Ikone der Datteln Al-Ahsas, ihre berühmteste und zugleich meistverkaufte Sorte, macht 15–20 % der Palmen der Oase aus."
+      }
+    },
+    {
+      "n": 4,
+      "ruling": "applied",
+      "reason": "غموض 'nach Khalas' (زمني أم رُتبي) خُفِّف بإعادة ترتيب بسيطة بلا تغيير في الواقعة (لا تزال الشيشي ثاني الأصناف شهرة والأكثر طلباً بعد الخلاص).",
+      "edit": {
+        "key_or_field": "g0.f1.pre",
+        "before": "Die zweitberühmteste Sorte Al-Ahsas und die gefragteste nach Khalas.",
+        "after": "Al-Ahsas zweitberühmteste Sorte – nach Khalas am meisten gefragt."
+      }
+    },
+    {
+      "n": 5,
+      "ruling": "source_defect",
+      "reason": "بنية الصفحة (alt يُعرض قبل نص البطاقة المطوي) واحدة في en/ar/de؛ النص البديل يصف الصورة فقط كما توجّه pack.json، وشرح 'Sifsif' فيه يكرر التعريف أسفله ويخالف تعليمات السياق. ترتيب عرض (UX) لا عيب ترجمة.",
+      "edit": null
+    },
+    {
+      "n": 6,
+      "ruling": "source_defect",
+      "reason": "'late season, around early October' / 'متأخر الموسم، نحو مطلع أكتوبر' يحملان الظاهرة نفسها في en/ar؛ الترجمة أمينة للمصدر، وربطها بمعلومة البواكير الواردة في بطاقة أخرى تلفيق غير مسنود داخل هذه الخلية.",
+      "edit": null
+    },
+    {
+      "n": 7,
+      "ruling": "applied",
+      "reason": "جملة السفسيف أُعيد بناؤها بنمط 'Grundlage für X ... sowie für Y' بدل فعل بعيد عن 'sowie Dattelsirup selbst' - يحل تيه القارئ بلا أي إضافة أو حذف واقعة، ويطابق بنية المصدر 'base of ... as well as of ... itself' أكثر حرفية.",
+      "edit": {
+        "key_or_field": "g0.f2.pre",
+        "before": "Aus ihr wird „Sifsif“ hergestellt – eine berühmte winterliche Süßspeise aus Razeez-Datteln mit Dattelsirup und Sesam, die in Gäste-Madschlis (Empfangsräumen) serviert wird – sowie Dattelsirup selbst.",
+        "after": "Sie ist die Grundlage für „Sifsif“ – eine berühmte winterliche Süßspeise aus Razeez-Datteln mit Dattelsirup und Sesam, die in Gäste-Madschlis (Empfangsräumen) serviert wird – sowie für Dattelsirup selbst."
+      }
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "تفكيك 'Rutab-Sorten' يتطلب قوساً تفسيرياً جديداً لـ'Rutab' وهذا يخرق قرار الدفعة الأولى الملزم (Gloss-Sperre): 'Rutab' گُلست مرة واحدة في ui.heroSum ولا تُگلَس ثانية في أي بطاقة. الغموض نفسه موجود في en ('rutab varieties') وar، فهو انعكاس أمين للمصدر لا عيب ترجمة يستوجب كسر القرار الملزم.",
+      "edit": null
+    },
+    {
+      "n": 9,
+      "ruling": "source_defect",
+      "reason": "مرحلة 'balah/bisr' مذكورة في بطاقة البرحي حصراً في en/ar كليهما، ولا يُذكر انطباقها على الأصناف الأخرى في أي من المصدرين - الترجمة أمينة، وتعميم انطباقها إضافة واقعة غير مسنودة.",
+      "edit": null
+    },
+    {
+      "n": 10,
+      "ruling": "applied",
+      "reason": "'adstringierend' مصطلح صيدلاني/تجميلي بارد لا يلائم نبرة نص سياحي سردي؛ الترجمة البديلة أدق نغمياً للمصدر (astringent = عفوصة قابضة) دون فقد المعنى (عفوصة تجعد الفم لا مجرد مرارة).",
+      "edit": {
+        "key_or_field": "g0.f3.pre",
+        "before": "frei von adstringierender Bitterkeit",
+        "after": "frei von herber, zusammenziehender Bitterkeit"
+      }
+    },
+    {
+      "n": 11,
+      "ruling": "source_defect",
+      "reason": "الجملة المكتظة بأكثر من عشرة أسماء أصناف متتالية مطابقة بنيةً وعدداً للإنجليزية والعربية كليهما؛ إعادة الهيكلة إلى قائمة تتجاوز صلاحية الترجمة لحقل نصّي خام (context: 'Plain text') وتغيّر شكل المحتوى لا لغته.",
+      "edit": null
+    },
+    {
+      "n": 12,
+      "ruling": "source_defect",
+      "reason": "عودة ذكر الخلاص والشيشي ضمن 'عشرات الأصناف المحلية' واردة حرفياً في en وar كليهما بالتراكيب نفسها - تناقض ظاهري من تصميم المحتوى المصدري لا من الترجمة؛ يُرفع كملاحظة محتوى لإياد.",
+      "edit": null
+    },
+    {
+      "n": 13,
+      "ruling": "rejected",
+      "reason": "'durchdringend' يطابق دلالة 'piercing fragrance' الإنجليزية و'رائحة ... نفّاذة' العربية (نفّاذة = حادة نافذة، ليست مجرد قوة). تخفيفها إلى 'intensiv' يمحو تمييزاً متعمَّداً يحمله المصدران - سياج الوقائع أعلى من السلاسة.",
+      "edit": null
+    },
+    {
+      "n": 14,
+      "ruling": "source_defect",
+      "reason": "غموض علاقة 'العصر' بـ'الجميد' قائم بالحرف نفسه في en و ar؛ الترجمة تنقل نفس الربط دون حسم لم يحسمه المصدر.",
+      "edit": null
+    },
+    {
+      "n": 15,
+      "ruling": "source_defect",
+      "reason": "بطاقة الأترنج قصيرة ووصفية بلا استخدام أو مناسبة مذكورة في en وar كليهما - فجوة معلومات في المصدر نفسه، لا يجوز اختلاق استخدام لسدّها.",
+      "edit": null
+    },
+    {
+      "n": 16,
+      "ruling": "source_defect",
+      "reason": "اسم 'Bawakir - early & local varieties' هو الحقل المستخدم لعنوان البطاقة وخلية الجدول معاً بحسب توجيه pack.json؛ لا حقل مصدر منفصل لاسم مختصر يخص الجدول وحده، وإضافته تتطلب حقلاً جديداً خارج نطاق هذه الدفعة.",
+      "edit": null
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "g0.intro",
+      "defect": "تناقض غير مفسَّر بين رقمي الإنتاج (100-120 ألف طن رسمياً مقابل أكثر من 200 ألف طن عن واس، أكتوبر 2024) دون توضيح سبب الفارق في أي من المصدرين.",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g0.intro",
+      "defect": "لا يُذكر فئة الرقم القياسي في غينيس (أكبر ماذا تحديداً) في أي من المصدرين.",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g0.f2.alt",
+      "defect": "النص البديل يذكر 'Sifsif' قبل أن يُعرَّف المصطلح في نص البطاقة المطوي أسفله - ترتيب عرض متطابق في كل اللغات.",
+      "langs_affected": "en, ar, de"
+    },
+    {
+      "where": "g0.f2.season",
+      "defect": "'late season, around early October' يبدو متناقضاً بصرياً دون الرجوع إلى موسم البواكير (بطاقة أخرى) الذي يوضح أن الموسم يبدأ في مايو.",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g0.f3.pre",
+      "defect": "مرحلة 'balah/bisr' تُذكر حصراً في بطاقة البرحي دون توضيح هل تنطبق على بقية الأصناف أو خاصة به.",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g0.f4.pre",
+      "defect": "جملة واحدة مكتظة بأكثر من عشرة أسماء أصناف متتالية بلا فصل بصري يربط كل اسم بفترته.",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g0.f4.pre",
+      "defect": "الخلاص والشيشي (المقدَّمان أعلاه كصنفين رئيسيين) يُعاد ذكرهما ضمن 'عشرات الأصناف المحلية' - تناقض تصنيفي ظاهري في تصميم المحتوى.",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g1.f0.pre",
+      "defect": "العلاقة بين 'عصر' اللومي و'الجميد' غير محسومة - هل العصر جزء من التجميد أم عملية منفصلة؟",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g1.f1.pre",
+      "defect": "بطاقة الأترنج الأقصر بين كل البطاقات، وصفية بحتة بلا ذكر استخدام أو مناسبة أو أهمية ثقافية.",
+      "langs_affected": "en, ar"
+    },
+    {
+      "where": "g0.f4.name / tbl.group",
+      "defect": "حقل واحد يُستخدم كعنوان بطاقة وكخلية جدول معاً، فتبدو خلية الجدول دخيلة مقارنة بالأسماء المفردة لبقية الصفوف - يتطلب حقل اسم مختصر منفصل للجدول لو أُريد إصلاحه.",
+      "langs_affected": "en, ar, de"
+    }
+  ],
+  "final": {
+    "strings": {
+      "g0.title": "Datteln – Krone der Oase",
+      "g0.intro": "Datteln sind Al-Ahsas wichtigste Ernte; offizielle Berichte beziffern die jährliche Produktion auf rund 100.000 bis 120.000 Tonnen, während die Saudi Press Agency (SPA) im Oktober 2024 von mehr als 200.000 Tonnen berichtete. Die Oase besitzt eine der größten Genbanken für Dattelpalmen der Welt: 2021 stellte das Zentrum für Palmen und Datteln in Al-Ahsa einen Guinness-Rekord auf – mit mehr als 127 nationalen und internationalen Sorten. Manchen Quellen zufolge machen Khalas, Shishi und Razeez zusammen etwa drei Viertel der Produktion aus.",
+      "g0.f0.name": "Khalas",
+      "g0.f0.season": "Rutab: Mitte Juli – Ende August • Tamr (die reife, getrocknete Dattel): ca. 15.–25. September",
+      "g0.f0.pre": "Die Ikone der Datteln Al-Ahsas, ihre berühmteste und zugleich meistverkaufte Sorte, macht 15–20 % der Palmen der Oase aus. Die Frucht ist oval, mittelgroß und faserarm, golden bis bernsteinfarben, mit weicher Konsistenz und einer ausgewogenen, aromatischen Süße. Sie behält ihren Geschmack auch nach langer Lagerung und wird traditionell zu arabischem Kaffee gereicht – als Symbol für Großzügigkeit und Gastfreundschaft. Zudem ist sie reich an Mineralstoffen wie Zink, Mangan und Selen.",
+      "g0.f0.alt": "Goldener Khalas-Rutab und bernsteinfarbener Khalas-Tamr in zwei nebeneinanderstehenden Schälchen auf einer Platte",
+      "g0.f1.name": "Shishi",
+      "g0.f1.season": "Rutab: Ende Juni • Tamr: Mitte – Ende August",
+      "g0.f1.pre": "Al-Ahsas zweitberühmteste Sorte – nach Khalas am meisten gefragt. Die Frucht ist groß, mit einer vergleichsweise weichen, dicken Konsistenz, überwiegend braun mit goldgelber Basis und intensiv süß. Sie hält sich lange, ohne zu verderben – ideal zum Lagern und Einfrieren für den Verzehr übers ganze Jahr. Zudem wird sie zu Dibs (Dattelsirup) und anderen Dattelerzeugnissen weiterverarbeitet.",
+      "g0.f1.alt": "Gelber Shishi-Rutab und brauner Shishi-Tamr zusammen auf einer Servierplatte",
+      "g0.f2.name": "Razeez",
+      "g0.f2.season": "Tamr: spät in der Saison, gegen Anfang Oktober",
+      "g0.f2.pre": "Eine der ältesten und geschichtsträchtigsten Dattelsorten Al-Ahsas, die als eine der feinsten und nahrhaftesten Sorten gilt. Sie ist die Grundlage für „Sifsif“ – eine berühmte winterliche Süßspeise aus Razeez-Datteln mit Dattelsirup und Sesam, die in Gäste-Madschlis (Empfangsräumen) serviert wird – sowie für Dattelsirup selbst. Heute ist sie verhältnismäßig selten geworden, da sich die meisten Landwirte inzwischen dem Anbau von Khalas zugewandt haben.",
+      "g0.f2.alt": "Mit Sesam bedeckte Sifsif-Kugeln aus Razeez-Datteln in einer Messingschale",
+      "g0.f3.name": "Barhi",
+      "g0.f3.season": "Rutab: im Sommer",
+      "g0.f3.pre": "Eine der berühmtesten Rutab-Sorten in Al-Ahsa und der arabischen Welt; ursprünglich aus dem Irak stammend, gelangte sie im späten 19. Jahrhundert nach Al-Ahsa und Qassim. Außergewöhnlich süß und weich, dazu frei von herber, zusammenziehender Bitterkeit selbst im gelben Balah-Stadium (Bisr) – deshalb wird sie in allen drei Stadien gegessen: als Balah, Rutab und Tamr. Beim Reifen wechselt sie dabei die Farbe von Grün über Gelb zu Bernsteinfarben.",
+      "g0.f3.alt": "Eine Rispe gelber Barhi-Datteln, hängend zwischen den Palmwedeln",
+      "g0.f4.name": "Bawakir – frühe und lokale Sorten",
+      "g0.f4.season": "Rutab und Tamr: von Ende Mai bis Oktober",
+      "g0.f4.pre": "Neben den großen Sorten hält die Oase Dutzende lokaler Sorten bereit, die die Saison eröffnen oder beschließen: Tayyar, Mignaz und Ghar führen die Frühernte an, gefolgt von Khneizi, Shishi und Khalas, während später Rutab wie Umm Rahim, Zamli und Hilali bis Mitte August reicht – dazu kommen Shubaibi, Shahl, Wusaili, Hatimi, Kasbi und weitere.",
+      "g0.f4.alt": "Schalen mit verschiedenem Rutab: Ghar, Khneizi und Shahl",
+      "g1.title": "Zitrusfrüchte",
+      "g1.f0.name": "Hasawi-Limette (Bin Zuhairi)",
+      "g1.f0.season": "Sommer: ab Mitte Juni",
+      "g1.f0.pre": "Das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln. Die kleine, dunkelgrüne, dünnschalige Frucht steckt voller Saft, schmeckt kräftig-sauer und besitzt einen durchdringenden Duft, der sie von allen anderen Zitrusfrüchten unterscheidet. In der Oase stehen mehr als 100.000 tragende Limettenbäume; ein einzelner Baum liefert 25–30 kg pro Saison. Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie zu pressen und als „Jameed“ (die sonnengetrocknete Limette) für den Gebrauch übers ganze Jahr haltbar zu machen. Alljährlich feiert das Gouvernorat sie mit der Hasawi-Lomi-Ausstellung, veranstaltet von der Al-Ahsa-Handelskammer in Partnerschaft mit der Al-Ahsa-Entwicklungsbehörde.",
+      "g1.f0.alt": "Grüne Hasawi-Limetten mit einer aufgeschnittenen Hälfte",
+      "g1.f1.name": "Atranj (Zitronatzitrone)",
+      "g1.f1.season": "Winter: von Januar bis Anfang März",
+      "g1.f1.pre": "Eine altehrwürdige Zitrusart mit großer, duftender Frucht und dicker, runzliger Schale.",
+      "g1.f1.alt": "Grüne Atranj-Früchte mit runzliger Schale"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Saudi Press Agency (SPA)",
+      "de": "die Saudi Press Agency (SPA)",
+      "artikel": "die",
+      "source": "de.wikipedia.org/wiki/Saudi_Press_Agency — wörtliches Zitat: „Die Saudi Press Agency (SPA; ...) ist die offizielle Nachrichtenagentur des Königreichs Saudi-Arabien.“",
+      "status": "verified"
+    },
+    {
+      "en": "citron (Atranj)",
+      "de": "die Zitronatzitrone",
+      "artikel": "die",
+      "source": "de.wikipedia.org/wiki/Zitronatzitrone — Artikeltitel und -inhalt (Citrus medica = Zitronatzitrone).",
+      "status": "verified"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Dates — crown of the oasis",
+      "de": "Datteln – Krone der Oase",
+      "page": "fruits",
+      "field": "g0.title",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Dates are Al-Ahsa’s foremost crop; official reports place annual production between roughly 100,000 and 120,000 tonnes, while the Saudi Press Agency (October 2024) reported more than 200,000 tonnes. The oasis holds one of the world’s largest palm gene banks: in 2021 the Palms and Dates Center in Al-Ahsa set a Guinness record with more than 127 national and international cultivars. Some sources suggest that Khalas, Shishi and Razeez together account for about three-quarters of production.",
+      "de": "Datteln sind Al-Ahsas wichtigste Ernte; offizielle Berichte beziffern die jährliche Produktion auf rund 100.000 bis 120.000 Tonnen, während die Saudi Press Agency (SPA) im Oktober 2024 von mehr als 200.000 Tonnen berichtete. Die Oase besitzt eine der größten Genbanken für Dattelpalmen der Welt: 2021 stellte das Zentrum für Palmen und Datteln in Al-Ahsa einen Guinness-Rekord auf – mit mehr als 127 nationalen und internationalen Sorten. Manchen Quellen zufolge machen Khalas, Shishi und Razeez zusammen etwa drei Viertel der Produktion aus.",
+      "page": "fruits",
+      "field": "g0.intro",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Khalas",
+      "de": "Khalas",
+      "page": "fruits",
+      "field": "g0.f0.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Rutab: mid-July – late August • Full dates: c. 15–25 September",
+      "de": "Rutab: Mitte Juli – Ende August • Tamr (die reife, getrocknete Dattel): ca. 15.–25. September",
+      "page": "fruits",
+      "field": "g0.f0.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The icon of Al-Ahsa dates and its most famous variety, the top seller, making up 15–20% of the oasis’s palms. The fruit is oval and medium-sized with little fibre, golden to amber in colour, soft in texture, with a balanced, aromatic sweetness. It keeps its flavour even after long storage, is traditionally served with Arabic coffee as a symbol of generosity and hospitality, and is rich in minerals such as zinc, manganese and selenium.",
+      "de": "Die Ikone der Datteln Al-Ahsas, ihre berühmteste und zugleich meistverkaufte Sorte, macht 15–20 % der Palmen der Oase aus. Die Frucht ist oval, mittelgroß und faserarm, golden bis bernsteinfarben, mit weicher Konsistenz und einer ausgewogenen, aromatischen Süße. Sie behält ihren Geschmack auch nach langer Lagerung und wird traditionell zu arabischem Kaffee gereicht – als Symbol für Großzügigkeit und Gastfreundschaft. Zudem ist sie reich an Mineralstoffen wie Zink, Mangan und Selen.",
+      "page": "fruits",
+      "field": "g0.f0.pre",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Golden Khalas rutab and amber tamr dates in two bowls on one platter",
+      "de": "Goldener Khalas-Rutab und bernsteinfarbener Khalas-Tamr in zwei nebeneinanderstehenden Schälchen auf einer Platte",
+      "page": "fruits",
+      "field": "g0.f0.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Shishi",
+      "de": "Shishi",
+      "page": "fruits",
+      "field": "g0.f1.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Rutab: late June • Full dates: mid–late August",
+      "de": "Rutab: Ende Juni • Tamr: Mitte – Ende August",
+      "page": "fruits",
+      "field": "g0.f1.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa’s second most famous variety, the most sought-after after Khalas. Large fruit with a relatively soft, thick texture, mostly brown with a golden-yellow base, and intensely sweet. It keeps for a long time without spoiling, making it well suited to storing and freezing for year-round eating, and it goes into dibs (date molasses) and other date products.",
+      "de": "Al-Ahsas zweitberühmteste Sorte – nach Khalas am meisten gefragt. Die Frucht ist groß, mit einer vergleichsweise weichen, dicken Konsistenz, überwiegend braun mit goldgelber Basis und intensiv süß. Sie hält sich lange, ohne zu verderben – ideal zum Lagern und Einfrieren für den Verzehr übers ganze Jahr. Zudem wird sie zu Dibs (Dattelsirup) und anderen Dattelerzeugnissen weiterverarbeitet.",
+      "page": "fruits",
+      "field": "g0.f1.pre",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Yellow Shishi rutab and brown tamr dates together on one serving plate",
+      "de": "Gelber Shishi-Rutab und brauner Shishi-Tamr zusammen auf einer Servierplatte",
+      "page": "fruits",
+      "field": "g0.f1.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Razeez",
+      "de": "Razeez",
+      "page": "fruits",
+      "field": "g0.f2.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Full dates: late season, around early October",
+      "de": "Tamr: spät in der Saison, gegen Anfang Oktober",
+      "page": "fruits",
+      "field": "g0.f2.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "One of the oldest and most storied dates of Al-Ahsa, described as among the finest and most nutritious varieties. It is the base of “sifsif” — a famous winter sweet of Razeez dates with date molasses and sesame, served in guest majalis — as well as of molasses itself. It has become relatively rare today, as most farmers have turned to growing Khalas.",
+      "de": "Eine der ältesten und geschichtsträchtigsten Dattelsorten Al-Ahsas, die als eine der feinsten und nahrhaftesten Sorten gilt. Sie ist die Grundlage für „Sifsif“ – eine berühmte winterliche Süßspeise aus Razeez-Datteln mit Dattelsirup und Sesam, die in Gäste-Madschlis (Empfangsräumen) serviert wird – sowie für Dattelsirup selbst. Heute ist sie verhältnismäßig selten geworden, da sich die meisten Landwirte inzwischen dem Anbau von Khalas zugewandt haben.",
+      "page": "fruits",
+      "field": "g0.f2.pre",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Sesame-coated sifsif balls of Razeez dates in a brass bowl",
+      "de": "Mit Sesam bedeckte Sifsif-Kugeln aus Razeez-Datteln in einer Messingschale",
+      "page": "fruits",
+      "field": "g0.f2.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Barhi",
+      "de": "Barhi",
+      "page": "fruits",
+      "field": "g0.f3.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Rutab: in summer",
+      "de": "Rutab: im Sommer",
+      "page": "fruits",
+      "field": "g0.f3.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "One of the most celebrated rutab varieties in Al-Ahsa and the Arab world; originally from Iraq, it reached Al-Ahsa and Qassim in the late nineteenth century. Exceptionally sweet and soft, and free of astringent bitterness even at the yellow balah (bisr) stage, so it is eaten at all three stages — balah, rutab and full date — turning from green to yellow to amber as it ripens.",
+      "de": "Eine der berühmtesten Rutab-Sorten in Al-Ahsa und der arabischen Welt; ursprünglich aus dem Irak stammend, gelangte sie im späten 19. Jahrhundert nach Al-Ahsa und Qassim. Außergewöhnlich süß und weich, dazu frei von herber, zusammenziehender Bitterkeit selbst im gelben Balah-Stadium (Bisr) – deshalb wird sie in allen drei Stadien gegessen: als Balah, Rutab und Tamr. Beim Reifen wechselt sie dabei die Farbe von Grün über Gelb zu Bernsteinfarben.",
+      "page": "fruits",
+      "field": "g0.f3.pre",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A cluster of yellow Barhi dates hanging among the palm fronds",
+      "de": "Eine Rispe gelber Barhi-Datteln, hängend zwischen den Palmwedeln",
+      "page": "fruits",
+      "field": "g0.f3.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Bawakir — early & local varieties",
+      "de": "Bawakir – frühe und lokale Sorten",
+      "page": "fruits",
+      "field": "g0.f4.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Rutab & dates: late May to October",
+      "de": "Rutab und Tamr: von Ende Mai bis Oktober",
+      "page": "fruits",
+      "field": "g0.f4.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Beyond the major varieties, the oasis abounds in dozens of local ones that open or close the season: Tayyar, Mignaz and Ghar lead the early harvest, followed by Khneizi, Shishi and Khalas, while late rutab such as Umm Rahim, Zamli and Hilali run to mid-August — joined by Shubaibi, Shahl, Wusaili, Hatimi, Kasbi and more.",
+      "de": "Neben den großen Sorten hält die Oase Dutzende lokaler Sorten bereit, die die Saison eröffnen oder beschließen: Tayyar, Mignaz und Ghar führen die Frühernte an, gefolgt von Khneizi, Shishi und Khalas, während später Rutab wie Umm Rahim, Zamli und Hilali bis Mitte August reicht – dazu kommen Shubaibi, Shahl, Wusaili, Hatimi, Kasbi und weitere.",
+      "page": "fruits",
+      "field": "g0.f4.pre",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Bowls of assorted rutab: Ghar, Khneizi and Shahl",
+      "de": "Schalen mit verschiedenem Rutab: Ghar, Khneizi und Shahl",
+      "page": "fruits",
+      "field": "g0.f4.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Citrus",
+      "de": "Zitrusfrüchte",
+      "page": "fruits",
+      "field": "g1.title",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Hasawi Lime (Bin Zuhairi)",
+      "de": "Hasawi-Limette (Bin Zuhairi)",
+      "page": "fruits",
+      "field": "g1.f0.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Summer: from mid-June",
+      "de": "Sommer: ab Mitte Juni",
+      "page": "fruits",
+      "field": "g1.f0.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa's second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it (“jameed”, or sun-dried lime) for use all year. The governorate celebrates it annually at the Hasawi Lomi Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.",
+      "de": "Das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln. Die kleine, dunkelgrüne, dünnschalige Frucht steckt voller Saft, schmeckt kräftig-sauer und besitzt einen durchdringenden Duft, der sie von allen anderen Zitrusfrüchten unterscheidet. In der Oase stehen mehr als 100.000 tragende Limettenbäume; ein einzelner Baum liefert 25–30 kg pro Saison. Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie zu pressen und als „Jameed“ (die sonnengetrocknete Limette) für den Gebrauch übers ganze Jahr haltbar zu machen. Alljährlich feiert das Gouvernorat sie mit der Hasawi-Lomi-Ausstellung, veranstaltet von der Al-Ahsa-Handelskammer in Partnerschaft mit der Al-Ahsa-Entwicklungsbehörde.",
+      "page": "fruits",
+      "field": "g1.f0.pre",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Green Hasawi limes with a cut half",
+      "de": "Grüne Hasawi-Limetten mit einer aufgeschnittenen Hälfte",
+      "page": "fruits",
+      "field": "g1.f0.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Atranj (Citron)",
+      "de": "Atranj (Zitronatzitrone)",
+      "page": "fruits",
+      "field": "g1.f1.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter: from January to early March",
+      "de": "Winter: von Januar bis Anfang März",
+      "page": "fruits",
+      "field": "g1.f1.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "An ancient citrus with large, fragrant fruit and a thick, wrinkled rind.",
+      "de": "Eine altehrwürdige Zitrusart mit großer, duftender Frucht und dicker, runzliger Schale.",
+      "page": "fruits",
+      "field": "g1.f1.pre",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Green wrinkle-skinned atranj (citron) fruits",
+      "de": "Grüne Atranj-Früchte mit runzliger Schale",
+      "page": "fruits",
+      "field": "g1.f1.alt",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": [
+    "BINDING: 'Rutab', 'Kanar' und 'Hasawi-Limette' bleiben für die GESAMTE Seite (auch Charge 3) EIN letztes Mal in ui.heroSum geglost — keine erneute Klammererklärung in Charge 3. Charge 2 fügt vier weitere Einmal-Glossen an ihrer ersten Nennung hinzu: 'Tamr' (g0.f0.season), 'Balah (Bisr)' (g0.f3.pre), 'Sifsif' (g0.f2.pre), 'Jameed' (g1.f0.pre) — auch diese vier dürfen in Charge 3 NICHT erneut geglost werden, falls sie dort erwähnt werden.",
+    "BINDING: Tamr/Balah/Sifsif/Jameed bleiben artikellos ('pending', kein Genus im Termbase) — kein WebSearch-Beleg gefunden. Charge 3 darf ihnen keinen Artikel zuweisen ohne wörtlichen deutschen Beleg mit URL; sonst bei Bedarf mit 'namens X'-Konstruktionen oder artikelloser Verwendung arbeiten.",
+    "BINDING: Institutionsnamen ohne veröffentlichte deutsche Eigenbezeichnung (Zentrum für Palmen und Datteln in Al-Ahsa / Al-Ahsa-Handelskammer / Al-Ahsa-Entwicklungsbehörde / Hasawi-Lomi-Ausstellung) bleiben transparente, durchgekoppelte Übersetzungen mit regulärem deutschem Kopfwort-Genus (das Zentrum / die Kammer / die Behörde / die Ausstellung) — Status 'pending', NICHT in termbase_additions_final aufgenommen. Charge 3 folgt demselben Muster für neue Einrichtungsnamen.",
+    "BINDING: Jahreszeiten-Wortwahl bestätigt und für Charge 3 (Sommer-, Frühlings- und Winterfrüchte) bindend: Winter · Frühling · Sommer · Herbst ohne Artikel als Filter-Chips; 'Jahreszeit' = Kalenderjahreszeit, 'Saison' = Erntefenster, nicht mischen. Saisonzellen-Muster: Trennpunkt '•' zwischen Reifestufen beibehalten, Zeitspannen mit U+2013 (mit Leerzeichen bei Wortspannen, ohne Leerzeichen bei reinen Zahlenspannen wie '15–20 %'), deutsche Ordnungszahl-Schreibweise 'ca. 15.–25. September' für Datumsspannen.",
+    "BINDING: Zahlenformat bestätigt für Charge 3: Tausenderpunkt (100.000 nicht 100,000), Prozent-/Gewichtsangaben mit normalem Leerzeichen U+0020 vor % und kg (NIE U+00A0), Komma nur als deutsches Dezimalkomma falls gebraucht.",
+    "BINDING: Sortennamen (Eigennamen von Dattel-/Zitrus-Kultivaren) bleiben in Charge 3 durchgängig lateinisch/unübersetzt wie im Englischen, keine deutsche Nachbildung, keine Anführungszeichen um sie herum (nur um tatsächliche Zitate/Fachbegriffe wie Sifsif/Jameed).",
+    "BINDING: 'die Limette' (nie 'Zitrone', nie 'schwarze Limette') gilt unverändert für jede weitere Nennung der Hasawi-Limette/Lomi in Charge 3.",
+    "BINDING: Zwei Stilkorrekturen aus dem Blind-Reader dieser Charge als Muster für Charge 3 übernehmen: (a) lange Ketten aus mehr als zwei Appositionen vor dem Verb auflösen (Komma statt 'und' zwischen gleichwertigen Beschreibungen, Verb bleibt Singular bei einem tatsächlichen Subjekt); (b) 'Grundlage für X ... sowie für Y' statt 'wird X hergestellt ... sowie Y selbst' als Satzmuster für '(ist die) Grundlage von/für'-Konstruktionen aus der Quelle.",
+    "Fünf Punkte (Ziffern 1, 2, 6, 9, 12 im Blind-Reader dieser Charge) sind wiederkehrende SOURCE-Charakteristika (Zahlenwidersprüche ohne Erklärung, unspezifizierte Rekordkategorie, scheinbar widersprüchliche Saisonangaben, unklare Reichweite von Zwischenstufen, Wiederauftauchen von Leitsorten in der Lokalsorten-Liste) — bei künftigen Chargen mit ähnlichem Muster gilt: Attribution wie im Quelltext beibehalten, keine erklärende Ergänzung erfinden, als source_defect vermerken.",
+    "Vier Textänderungen dieser Runde (g0.f0.pre, g0.f1.pre, g0.f2.pre, g0.f3.pre) sind in final.strings eingearbeitet und in tm_pairs mit dem aktualisierten Wortlaut hinterlegt — die Fassungen aus BATCH/de-05.json (Stufe 5) für diese vier Felder sind damit überholt.",
+    "Zehn Beobachtungen (3, 6, 9, 11, 12, 14, 15, 16 u.a.) betreffen Inhaltsfragen des Quelltexts (Produktionszahlen, Rekordkategorie, Saisonlogik, Balah-Reichweite, Atranj-Kurzkarte, doppeltes Auftauchen von Khalas/Shishi, Tabellen-Zellenformat für Bawakir) — siehe source_defects; zur Weitergabe an Eyad außerhalb dieses Übersetzungslaufs geeignet, nicht Teil der Übersetzungsarbeit."
+  ]
+}
