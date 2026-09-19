@@ -17,6 +17,9 @@ alt_zh: "傍晚时分 Bait Al-Koot 的门面与垂挂的灯饰"
 blurb_ru: "Дом в стиле Аль-Ахсы с гирляндами огней в историческом сердце Эль-Хуфуфа."
 area_ru: "Исторический центр Эль-Хуфуфа"
 alt_ru: "Фасад кафе Bait Al-Koot с гирляндами огней в сумерках"
+blurb_de: "Ein mit Lichtern behangenes Haus im Baustil Al-Ahsas – im historischen Herzen von Hofuf."
+area_de: "Historisches Zentrum von Hofuf"
+alt_de: "Die Fassade von Bait Al-Koot mit hängenden Lichtern bei Dämmerung"
 img: /img/dining/bait-alkoot
 maps: "https://maps.app.goo.gl/gkvgXUYMUZsV5BK38"
 order: 3

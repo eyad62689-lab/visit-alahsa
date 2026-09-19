@@ -27,7 +27,7 @@ Beginnen Sie Ihren Tag östlich von Hofuf am [Jabal al-Qarah](/de/attractions/ja
 
 Kehren Sie ins Zentrum von Hofuf zurück, zu [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast): Die Palastfestung vereint Moschee, Kaserne und Turm hinter einer einzigen Mauer. Im Vormittagslicht kommen Architektur und Innenhof zur Geltung. In der Nähe liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1789 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum.
 
-Zum Mittagessen sind Sie bereits mitten in der Stadt: Die Adressen finden Sie gesammelt auf der Seite [Restaurants und Cafés](/en/restaurants-cafes/).
+Zum Mittagessen sind Sie bereits mitten in der Stadt: Die Adressen finden Sie gesammelt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
 
 ## Abend: Der Qaisariyah-Souk
 

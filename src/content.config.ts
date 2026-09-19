@@ -228,10 +228,14 @@ const dining = defineCollection({
     area_zh: z.string().optional(),
     alt_zh: z.string().optional(),
     // الروسية (تكامل ru-RU — 2026-09-05): الحقول نفسها بوابةً للدفعة القادمة.
-    // لا نظير ألماني لها: الألمانية تتراجع للإنجليزية في هذا القسم كله.
     blurb_ru: z.string().optional(),
     area_ru: z.string().optional(),
     alt_ru: z.string().optional(),
+    // الألمانية (ج6 — 2026-09-19): من خط de-translation-pipeline حصراً، والبطاقة تتراجع
+    // للإنجليزية بدونها. لا body_de بعد: البطاقة الألمانية تقصد الصفحة الإنجليزية حتى ج7.
+    blurb_de: z.string().optional(),
+    area_de: z.string().optional(),
+    alt_de: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),

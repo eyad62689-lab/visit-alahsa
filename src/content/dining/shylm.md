@@ -14,6 +14,8 @@ blurb_zh: "铺砌的露台正中，水池里立着一棵橄榄树，四周围着
 alt_zh: "SHYLM 的露台，座位区中央的橄榄树与水池"
 blurb_ru: "Мощёная терраса с оливковым деревом в водоёме посередине, а вокруг дерева — плетёные кресла."
 alt_ru: "Терраса SHYLM с оливковым деревом в водоёме посреди зоны отдыха"
+blurb_de: "Im Zentrum der gepflasterten Terrasse steht ein Olivenbaum in einem Wasserbecken, umgeben von geflochtenen Sesseln."
+alt_de: "Die Terrasse von SHYLM mit dem Olivenbaum im Wasserbecken inmitten der Sitzgruppe"
 img: /img/dining/shylm
 maps: "https://maps.app.goo.gl/EkVG5edhp3GSd8vRA"
 order: 14

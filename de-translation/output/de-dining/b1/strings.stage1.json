@@ -1,0 +1,57 @@
+{
+  "batch": "de-din-1",
+  "stage": 1,
+  "strings": {
+    "ix.heroEyebrow": "Von den Tischen Al-Ahsas",
+    "ix.title": "Restaurants und Cafés",
+    "ix.heroSum": "Ihr Wegweiser zum Essen in Al-Ahsa: ausgewählte Restaurants, Cafés und Bäckereien für „rotes Brot“ in Hofuf, Al-Mubarraz und der Umgebung – von Kulturerbe-Ambiente und traditionellen Gerichten bis zu modernen Lokalen und Spezialitätenkaffee –, jeweils mit Foto und Standort in Google Maps, einen Klick entfernt. Die Liste wächst stetig weiter.",
+    "ix.listEyebrow": "Die erste Gruppe",
+    "ix.listH": "Ausgewählte Restaurants",
+    "ix.cafesEyebrow": "Für Kaffeeliebhaber",
+    "ix.cafesH": "Ausgewählte Cafés",
+    "ix.bakeriesEyebrow": "Direkt aus dem Tanur",
+    "ix.bakeriesH": "Bäckereien für rotes Brot",
+    "ix.bakeriesNote": "Dattelbrot und rotes Brot sind ein und dasselbe – zwei Namen für ein Gericht –, und dies sind die Bäckereien, deren Tanur-Öfen (Lehmöfen) dafür angefeuert werden.",
+    "ix.newWindow": "(öffnet Google Maps in einem neuen Fenster)",
+    "ix.moreLabel": "Details zum Ort",
+    "ix.hoursLabel": "Öffnungszeiten",
+    "ix.ratingLabel": "Bewertung bei Google Maps",
+    "ix.searchPh": "Nach Name oder Gebiet suchen…",
+    "ix.searchLabel": "Restaurants und Cafés durchsuchen",
+    "ix.kindAria": "Nach Art filtern",
+    "ix.kindRestaurants": "Restaurants",
+    "ix.kindCafes": "Cafés",
+    "ix.kindBakeries": "Bäckereien",
+    "ix.districtLabel": "Gebiet",
+    "ix.districtAll": "Alle Gebiete",
+    "ix.openNow": "Jetzt geöffnet",
+    "ix.closedNow": "Jetzt geschlossen",
+    "ix.openFilter": "Jetzt geöffnet",
+    "ix.hoursNote": "Die Öffnungszeiten stammen von Google Maps und können sich ändern – prüfen Sie den Link des Ortes.",
+    "ix.countPrefix": "Angezeigt: ",
+    "ix.countSuffix": "von {n}",
+    "ix.emptyMsg": "Keine Treffer – erweitern Sie die Suche oder wählen Sie „Alle Gebiete“.",
+    "ix.closedPerm": "Dauerhaft geschlossen – laut Google Maps",
+    "ix.closedTemp": "Vorübergehend geschlossen – laut Google Maps",
+    "ix.srcNote": "Bewertungen und Öffnungszeiten von Google Maps – zuletzt aktualisiert {date}"
+  },
+  "termbase_additions": [
+    {
+      "en": "specialty coffee",
+      "de": "der Spezialitätenkaffee",
+      "artikel": "der",
+      "source": "Duden-Wortbildung aus 'der Kaffee' + 'die Spezialität'; etabliertes Fachwort der deutschen Kaffeebranche (vgl. Verband Deutscher Spezialitäten-Kaffee e.V., SCA Deutschland). Keine Web-Verifikation in dieser Umgebung möglich; Genus unstrittig, da vom Grundwort 'der Kaffee' bestimmt.",
+      "status": "confirmed"
+    }
+  ],
+  "notes": [
+    "heroSum: en 'traditional food' vs ar 'الأكل الشعبي' (folk/home-style food) - kept close to en ('traditionelle Gerichte'); not reconciled per instructions, flagged for stage 2+.",
+    "heroSum: en 'modern spots' vs ar 'المطاعم العصرية' (modern restaurants) - translated 'moderne Lokale' (avoids repeating 'Restaurants' three times in one sentence and avoids Denglisch 'Spots'); fact preserved (modern eating places).",
+    "ix.districtLabel/ix.districtAll: chose 'Gebiet'/'Alle Gebiete' rather than reusing det.area='Lage' verbatim - 'Lage' pluralizes awkwardly ('Lagen') for a multi-option dropdown of districts/streets/cities; 'Gebiet' stays a neutral non-administrative term (avoids 'Bezirk') and pluralizes naturally. ix.searchPh echoes the same concept ('Gebiet').",
+    "Tanur gloss placement: per gloss_regel the gloss belongs at first running-text occurrence, not a heading/eyebrow - ix.bakeriesEyebrow stays 'Tanur' unglossed, gloss placed in ix.bakeriesNote as the compound 'Tanur-Öfen (Lehmöfen)' since the termbase entry only covers the singular 'der Tanur (Lehmofen)' and this context needs the plural 'ovens' across several bakeries.",
+    "'rotes Brot' is quoted in „...“ at its first running-text occurrence on the page (ix.heroSum), matching the published /de/food/ dish-card convention; left unquoted afterwards in ix.bakeriesH. 'Dattelbrot' appears in ix.bakeriesNote, satisfying the C5b pairing guard on this page.",
+    "Added termbase entry for 'Spezialitätenkaffee' (specialty coffee) - no prior termbase entry existed; generic compound noun, gender unambiguous from the head noun 'der Kaffee'.",
+    "ix.title = 'Restaurants und Cafés' matches the published nav.dine string verbatim (it serves as H1, breadcrumb label, tab title and ItemList name per pack.json context)."
+  ],
+  "stage_specific": {}
+}

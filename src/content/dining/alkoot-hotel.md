@@ -17,6 +17,9 @@ alt_zh: "Al-Koot Heritage Hotel 的内院，拱廊环绕，上覆玻璃顶"
 blurb_ru: "Ресторан исторического отеля — столы под стеклянной крышей во дворе, окружённом аркадами."
 area_ru: "Район Эль-Кут — напротив Каср-Ибрахим"
 alt_ru: "Внутренний двор Al-Koot Heritage Hotel с его аркадами и стеклянной крышей"
+blurb_de: "Das Restaurant des Kulturerbe-Hotels – Tische unter einem Glasdach in einem von Arkaden gesäumten Innenhof."
+area_de: "Al-Koot-Viertel – gegenüber Qasr Ibrahim"
+alt_de: "Der Innenhof des Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach"
 img: /img/dining/alkoot-hotel
 maps: "https://maps.app.goo.gl/gjwiTHDg83VZEbz76"
 order: 2

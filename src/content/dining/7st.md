@@ -17,6 +17,9 @@ alt_zh: "7st 咖啡馆内的座位区一角，皮椅与一扇彩色玻璃窗"
 blurb_ru: "Спешелти-кофе в классическом зале с кожаными креслами и витражными окнами."
 area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Уголок с кожаными креслами и витражным окном в кафе 7st"
+blurb_de: "Spezialitätenkaffee in einem klassischen Salon mit Lederstühlen und bunten Glasfenstern."
+area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
+alt_de: "Eine Sitzecke mit Lederstühlen und einem bunten Glasfenster bei 7st"
 img: /img/dining/7st
 maps: "https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6"
 order: 2

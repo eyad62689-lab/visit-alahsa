@@ -1,0 +1,417 @@
+{
+  "batch": "de-din-4",
+  "loop": 1,
+  "score": 93,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 26,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "rejected",
+      "reason": "'Für Kaffeeliebhaber' (ix.cafesEyebrow) and 'Ausgewählte Cafés' (ix.cafesH) are de-din-1 approved_prev page-frame strings, locked BINDING verbatim ('must not introduce alternate wording for these same UI concepts') and outside this batch's 30-key scope (area/blurb/alt of the ten café cards only). No factual error found — a heading-pair reading stumble is not grounds to override an already-approved, binding sibling string."
+    },
+    {
+      "n": 2,
+      "ruling": "rejected",
+      "reason": "'Al-Rifaa-Nord-Viertel – Hofuf' reuses dist.rafah-north, fixed byte-identical page-wide by the de-din-2 BINDING ruling ('must appear byte-identical ... in de-din-3/4/5's location lists ... do not re-derive or re-transliterate'). No factual error, only a parsing stumble on a compound German place name — not grounds to override a binding prior judge decision."
+    },
+    {
+      "n": 3,
+      "ruling": "applied",
+      "reason": "Genuine nativeness issue: a bare genitive-s on a foreign place name in short travel-blurb prose reads archaic to a native reader. The termbase's own Hofuf entry offers 'die Altstadt von Hofuf' as the project's preferred alternative to Durchkopplung/genitive for exactly this kind of compound, so switching to 'von Hofuf' is termbase-consistent, adds no fact, and does not touch any TM-pair precedent.",
+      "edit": {
+        "key_or_field": "baithana.blurb",
+        "before": "Ein lehmverputztes Haus mit Holztür in einer der alten Gassen Hofufs.",
+        "after": "Ein lehmverputztes Haus mit Holztür in einer der alten Gassen von Hofuf."
+      }
+    },
+    {
+      "n": 4,
+      "ruling": "partial",
+      "reason": "Two parts bundled in one observation. (a) 'Al-Ahsas' bare genitive: REJECTED — Stage 2 matched it deliberately to the existing TM pair 'Ein Haus im alten Baustil Al-Ahsas' (dar-alturath); changing it here would break that recorded TM-pair consistency for no factual gain. (b) The comma reading as ambiguous between 'im Baustil Al-Ahsas, im historischen Herzen von Hofuf' (does the second 'im...' phrase modify Baustil or the house?) is a genuine structural ambiguity: APPLIED by replacing the comma with a spaced en-dash (U+2013, matching this project's own convention of using the dash to set off a distinct locating element), which disambiguates without adding or removing any fact and without touching the genitive.",
+      "edit": {
+        "key_or_field": "bait-alkoot.blurb",
+        "before": "Ein mit Lichtern behangenes Haus im Baustil Al-Ahsas, im historischen Herzen von Hofuf.",
+        "after": "Ein mit Lichtern behangenes Haus im Baustil Al-Ahsas – im historischen Herzen von Hofuf."
+      }
+    },
+    {
+      "n": 5,
+      "ruling": "source_defect",
+      "reason": "Not a translation error: EN blurb ('shelves of coffee-making gear') and EN alt ('wooden chairs') already name two different secondary objects beside the arches, and AR mirrors the same split independently («أرفف تحمل عُدَّة القهوة» vs «الكراسي الخشبية»). The German stays faithful to each field's own source rather than inventing a reconciling description. Logged in source_defects."
+    },
+    {
+      "n": 6,
+      "ruling": "applied",
+      "reason": "The repetition is a real accuracy/nativeness defect, not merely cosmetic: 'heritage'/تراثي in this batch is consistently rendered 'traditionell (eingerichtet)' (cross-batch coordination with de-din-3), while the AR authority for the coffeehouses is «الشعبية» ('folk/popular'), a distinct word from تراثية that Stage 4 had collapsed into the same German 'traditionell'. The termbase already establishes 'Volks-' as this project's rendering of 'folk' (folk craft → Volkshandwerk), so 'Volkskaffeehäuser' both resolves the echo and is a more accurate match to the Arabic authority's actual distinction than the prior wording.",
+      "edit": {
+        "key_or_field": "alsayed.blurb",
+        "before": "Ein traditionell eingerichteter Innenraum mit Holzdecke, der den Charakter der traditionellen Kaffeehäuser bewahrt.",
+        "after": "Ein traditionell eingerichteter Innenraum mit Holzdecke, der den Charakter der Volkskaffeehäuser bewahrt."
+      }
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "BRIEF.md §10 (binding) explicitly assigns the Madschlis gloss to 'the card's running text' (i.e. the blurb) at its first occurrence there, and explicitly says not to repeat it in the alt text — stage 5 complies exactly. The alt-before-blurb visual/DOM order the blind reader is reacting to is a page-template characteristic (the card's image/alt markup precedes its heading and blurb in the built card), not something this translation batch controls or that the binding brief authorizes relocating the gloss for. Flagged in notes as a template-level accessibility observation, not overridden here against the binding brief."
+    },
+    {
+      "n": 8,
+      "ruling": "source_defect",
+      "reason": "EN alt ('slatted ceiling'/«سقفها الخشبي») and EN blurb ('a skylight'/«فتحة سماوية») name two different ceiling features for the same photo, consistently between EN and AR within each field but divergent across the two fields — the same pattern as #5 and #13. German renders each field faithfully to its own source ('Lamellendecke aus Holz' / 'Oberlicht') rather than harmonizing the two. Logged in source_defects."
+    },
+    {
+      "n": 9,
+      "ruling": "applied",
+      "reason": "The citation wording itself ('laut eigener Beschreibung in Google Maps') is prescribed verbatim by BRIEF.md §11 and stays untouched — not overridden. But its placement, which the blind reader read as a footnote dropped mid-sentence, is improved as a side effect of the reordering applied under #10 below: moving the aside to the sentence's end (after the main clause) reads as a trailing citation rather than an interruption, with no change to its wording.",
+      "edit": {
+        "key_or_field": "baking-up.blurb",
+        "before": "Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps – hinter einer fröhlichen Fassade mit Sitzplätzen im Freien.",
+        "after": "Hinter einer fröhlichen Fassade mit Sitzplätzen im Freien warten Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps."
+      }
+    },
+    {
+      "n": 10,
+      "ruling": "applied",
+      "reason": "Genuine nativeness defect: 'behind a cheerful storefront' as a trailing PP attached loosely after 'treats' literally reads in German as the pastries being hidden behind a wall. Reordering so the café (implicitly, via 'hinter einer fröhlichen Fassade ... warten') is what the treats are found behind/at removes the unintended image; no fact added or removed (same façade, same outdoor seating, same treats).",
+      "edit": {
+        "key_or_field": "baking-up.blurb",
+        "before": "Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps – hinter einer fröhlichen Fassade mit Sitzplätzen im Freien.",
+        "after": "Hinter einer fröhlichen Fassade mit Sitzplätzen im Freien warten Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps."
+      }
+    },
+    {
+      "n": 11,
+      "ruling": "source_defect",
+      "reason": "Neither EN ('Al-Khaleej Road (Qatar Road)') nor AR («طريق الخليج (طريق قطر)») names a city or district for this card, unlike every sibling card. Inventing one (e.g. adding 'Hofuf' or a district) would violate the no-fabrication rule even though it would make the card visually consistent with the others. Logged in source_defects; German stays exactly as faithful to source as every other card."
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "reason": "The asymmetry is naming_policy-correct, not an inconsistency to fix: 'Al-Khaleej' is a transliterated proper street name with no termbase exception (naming_policy.default), while 'Qatar'/'Katar' is a country name with a stable, Duden-standard German exonym that the termbase's naming_policy.exception explicitly calls for using, now backed by this batch's own web-verified 'Katar' entry (de.wikipedia.org). Homogenizing either direction would override a sourced termbase/naming-policy rule by taste."
+    },
+    {
+      "n": 13,
+      "ruling": "source_defect",
+      "reason": "EN blurb ('simple breakfast bites') and EN alt ('breakfast dishes') already use two different words for scale/register, and AR mirrors the same split («أصناف فطور بسيطة» vs «أطباق فطور»). German preserves the same field-specific distinction (Frühstückshäppchen vs. Frühstücksgerichte) rather than picking one. Logged in source_defects."
+    },
+    {
+      "n": 14,
+      "ruling": "rejected",
+      "reason": "Same binding-brief basis as #7: BRIEF.md §12 places the Karak gloss at its first occurrence in the card's running text (the blurb) and the general §10 rule forbids repeating it in the alt text; stage 5 already complies. The alt-before-blurb reading-order concern is the same page-template characteristic noted under #7, not a translation-batch fix — flagged in notes, not overridden against the binding brief."
+    },
+    {
+      "n": 15,
+      "ruling": "source_defect",
+      "reason": "The Street–District vs. District–Street order is not translator-introduced: EN/AR give 'King Fahd Road — historic downtown Hofuf' and 'King Abdulaziz Road — historic downtown Hofuf' (Street–District) but 'Al-Rawdah — King Abdullah Road' (District–Street) for Soulaf, each order mirrored identically between EN and AR for that specific card. German follows each card's own source order faithfully rather than normalizing all cards to one order. Logged in source_defects."
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "dar-huwaija.blurb vs dar-huwaija.alt",
+      "defect": "EN/AR independently name two different secondary objects beside the plaster arches — blurb: 'shelves of coffee-making gear'/«أرفف تحمل عُدَّة القهوة»؛ alt: 'wooden chairs'/«الكراسي الخشبية».",
+      "langs_affected": "en, ar (both, consistently with each other per field)"
+    },
+    {
+      "where": "soulaf.blurb vs soulaf.alt",
+      "defect": "blurb names a skylight over the olive tree ('a skylight'/«فتحة سماوية»)، alt names a slatted wooden ceiling ('slatted ceiling'/«سقفها الخشبي») — two different ceiling features for the same photo.",
+      "langs_affected": "en, ar (both, consistently with each other per field)"
+    },
+    {
+      "where": "karak-raslan.area",
+      "defect": "unlike every other card in the batch, EN ('Al-Khaleej Road (Qatar Road)') and AR («طريق الخليج (طريق قطر)») give no city/district name on this location line.",
+      "langs_affected": "en, ar (both)"
+    },
+    {
+      "where": "karak-raslan.blurb vs karak-raslan.alt",
+      "defect": "blurb calls the food 'simple breakfast bites'/«أصناف فطور بسيطة»، alt calls it 'breakfast dishes'/«أطباق فطور» — a scale/register divergence present in both fields of both source languages.",
+      "langs_affected": "en, ar (both, consistently with each other per field)"
+    },
+    {
+      "where": "dar-huwaija.area / ratio-alkoot.area vs soulaf.area",
+      "defect": "EN/AR alternate the Street–District order per card (Street–District for Dar Huwaija and Ratio Al-Koot; District–Street for Soulaf), each order mirrored identically between EN and AR for that card.",
+      "langs_affected": "en, ar (both)"
+    }
+  ],
+  "final": {
+    "strings": {
+      "baithana.area": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "baithana.blurb": "Ein lehmverputztes Haus mit Holztür in einer der alten Gassen von Hofuf.",
+      "baithana.alt": "Der Eingang von Baithana mit seinen lehmverputzten Wänden und der Holztür in einer traditionellen Gasse",
+      "7st.area": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "7st.blurb": "Spezialitätenkaffee in einem klassischen Salon mit Lederstühlen und bunten Glasfenstern.",
+      "7st.alt": "Eine Sitzecke mit Lederstühlen und einem bunten Glasfenster bei 7st",
+      "bait-alkoot.area": "Historisches Zentrum von Hofuf",
+      "bait-alkoot.blurb": "Ein mit Lichtern behangenes Haus im Baustil Al-Ahsas – im historischen Herzen von Hofuf.",
+      "bait-alkoot.alt": "Die Fassade von Bait Al-Koot mit hängenden Lichtern bei Dämmerung",
+      "dar-huwaija.area": "König-Fahd-Straße – Historisches Zentrum von Hofuf",
+      "dar-huwaija.blurb": "Sitzplätze zwischen weiß verputzten Bögen und Regalen mit Kaffeegeräten.",
+      "dar-huwaija.alt": "Sitzplätze von Dar Huwaija zwischen verputzten Bögen und Holzstühlen",
+      "alsayed.area": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "alsayed.blurb": "Ein traditionell eingerichteter Innenraum mit Holzdecke, der den Charakter der alten Kaffeehäuser bewahrt.",
+      "alsayed.alt": "Der traditionell eingerichtete Innenraum von Al-Sayed Café mit seiner Holzdecke",
+      "ratio-alkoot.area": "König-Abdulaziz-Straße – Historisches Zentrum von Hofuf",
+      "ratio-alkoot.blurb": "Ein arabischer Madschlis (Empfangsraum) mit Kissen und Teppichen unter einer Decke aus Palmstämmen.",
+      "ratio-alkoot.alt": "Ein traditioneller Madschlis mit Kissen und Teppichen unter einer Decke aus Palmstämmen bei Ratio Al-Koot",
+      "soulaf.area": "Al-Rawdah – König-Abdullah-Straße",
+      "soulaf.blurb": "Ein ruhiges, modernes Interieur, in dessen Mitte ein Olivenbaum unter einem Oberlicht steht.",
+      "soulaf.alt": "Das moderne Interieur von Soulaf Coffee mit Olivenbaum und Lamellendecke aus Holz",
+      "baking-up.area": "Ain-Najm-Straße – Al-Mubarraz",
+      "baking-up.blurb": "Hinter einer fröhlichen Fassade mit Sitzplätzen im Freien warten Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps.",
+      "baking-up.alt": "Die Fassade von Baking Up mit Sonnenschirmen und Sitzplätzen im Freien",
+      "dot-bakery.area": "Ain-Najm-Straße – Al-Mubarraz",
+      "dot-bakery.blurb": "Bäckerei und Café in einem: eine Vitrine mit frischem Gebäck und eine Bestelltheke mit blauem Akzent.",
+      "dot-bakery.alt": "Die Bestelltheke und die Gebäckvitrine bei Dot Bakery & Café",
+      "karak-raslan.area": "Al-Khaleej-Straße (Katar-Straße)",
+      "karak-raslan.blurb": "Karak (gewürzter Milchtee), in kleine Tassen gegossen, dazu einfache Frühstückshäppchen.",
+      "karak-raslan.alt": "Karak-Tassen und Frühstücksgerichte auf einem Holztablett bei Raslan"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Qatar Road (طريق قطر — part of \"Al-Khaleej Road (Qatar Road)\" in karak-raslan.area)",
+      "de": "die Katar-Straße",
+      "artikel": "die",
+      "source": "Pattern-derived (translated generic noun + Durchkopplung), same pattern as 'die König-Fahd-Straße'/'die Al-Khaleej-Straße', artikel witnessed by 'Straße'; country name element separately verified below.",
+      "status": "derived"
+    },
+    {
+      "en": "Karak (كرك — spiced milk tea)",
+      "de": "Karak (gewürzter Milchtee)",
+      "artikel": "der",
+      "source": "https://www.kuechenfibel.de/faq/was-ist-karak (WebFetch, abgerufen 2026-09-19) — Abschnitt „Karak Chai“, durchweg maskulines Genus („Der Name wird vom Wort kadak abgeleitet, was auf Hindi „stark“ bedeutet“); Getränk aus Schwarztee, Milch, Zucker und Gewürzen wie Kardamom, verbreitet in den Golfstaaten.",
+      "status": "verified"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "North Al-Rifaa — Hofuf",
+      "de": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "page": "restaurants-cafes",
+      "field": "baithana.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A mud-plastered house with a wooden door in one of Hofuf’s old lanes.",
+      "de": "Ein lehmverputztes Haus mit Holztür in einer der alten Gassen von Hofuf.",
+      "page": "restaurants-cafes",
+      "field": "baithana.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Baithana’s mud-plastered entrance and wooden door in a heritage lane",
+      "de": "Der Eingang von Baithana mit seinen lehmverputzten Wänden und der Holztür in einer traditionellen Gasse",
+      "page": "restaurants-cafes",
+      "field": "baithana.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "North Al-Rifaa — Hofuf",
+      "de": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "page": "restaurants-cafes",
+      "field": "7st.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Specialty coffee in a classic sitting room of leather chairs and stained glass.",
+      "de": "Spezialitätenkaffee in einem klassischen Salon mit Lederstühlen und bunten Glasfenstern.",
+      "page": "restaurants-cafes",
+      "field": "7st.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A sitting corner with leather armchairs and a stained-glass window at 7st",
+      "de": "Eine Sitzecke mit Lederstühlen und einem bunten Glasfenster bei 7st",
+      "page": "restaurants-cafes",
+      "field": "7st.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Historic downtown Hofuf",
+      "de": "Historisches Zentrum von Hofuf",
+      "page": "restaurants-cafes",
+      "field": "bait-alkoot.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A Hasawi-style house strung with lights in the historic heart of Hofuf.",
+      "de": "Ein mit Lichtern behangenes Haus im Baustil Al-Ahsas – im historischen Herzen von Hofuf.",
+      "page": "restaurants-cafes",
+      "field": "bait-alkoot.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Bait Al-Koot’s façade with hanging lights at dusk",
+      "de": "Die Fassade von Bait Al-Koot mit hängenden Lichtern bei Dämmerung",
+      "page": "restaurants-cafes",
+      "field": "bait-alkoot.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "King Fahd Road — historic downtown Hofuf",
+      "de": "König-Fahd-Straße – Historisches Zentrum von Hofuf",
+      "page": "restaurants-cafes",
+      "field": "dar-huwaija.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Seating among white plaster arches and shelves of coffee-making gear.",
+      "de": "Sitzplätze zwischen weiß verputzten Bögen und Regalen mit Kaffeegeräten.",
+      "page": "restaurants-cafes",
+      "field": "dar-huwaija.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Dar Huwaija’s seating among plaster arches and wooden chairs",
+      "de": "Sitzplätze von Dar Huwaija zwischen verputzten Bögen und Holzstühlen",
+      "page": "restaurants-cafes",
+      "field": "dar-huwaija.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "North Al-Rifaa — Hofuf",
+      "de": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "page": "restaurants-cafes",
+      "field": "alsayed.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A heritage interior with a wooden ceiling that keeps the feel of the old coffeehouses.",
+      "de": "Ein traditionell eingerichteter Innenraum mit Holzdecke, der den Charakter der alten Kaffeehäuser bewahrt.",
+      "page": "restaurants-cafes",
+      "field": "alsayed.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The heritage interior of Al-Sayed Café with its wooden ceiling",
+      "de": "Der traditionell eingerichtete Innenraum von Al-Sayed Café mit seiner Holzdecke",
+      "page": "restaurants-cafes",
+      "field": "alsayed.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "King Abdulaziz Road — historic downtown Hofuf",
+      "de": "König-Abdulaziz-Straße – Historisches Zentrum von Hofuf",
+      "page": "restaurants-cafes",
+      "field": "ratio-alkoot.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "An Arabian majlis of cushions and rugs beneath a palm-trunk ceiling.",
+      "de": "Ein arabischer Madschlis (Empfangsraum) mit Kissen und Teppichen unter einer Decke aus Palmstämmen.",
+      "page": "restaurants-cafes",
+      "field": "ratio-alkoot.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A traditional majlis with cushions and rugs beneath a palm-trunk ceiling at Ratio Al-Koot",
+      "de": "Ein traditioneller Madschlis mit Kissen und Teppichen unter einer Decke aus Palmstämmen bei Ratio Al-Koot",
+      "page": "restaurants-cafes",
+      "field": "ratio-alkoot.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Rawdah — King Abdullah Road",
+      "de": "Al-Rawdah – König-Abdullah-Straße",
+      "page": "restaurants-cafes",
+      "field": "soulaf.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A calm, modern interior centred on an olive tree beneath a skylight.",
+      "de": "Ein ruhiges, modernes Interieur, in dessen Mitte ein Olivenbaum unter einem Oberlicht steht.",
+      "page": "restaurants-cafes",
+      "field": "soulaf.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Soulaf Coffee’s modern interior with an olive tree and slatted ceiling",
+      "de": "Das moderne Interieur von Soulaf Coffee mit Olivenbaum und Lamellendecke aus Holz",
+      "page": "restaurants-cafes",
+      "field": "soulaf.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Ain Najm Road — Al-Mubarraz",
+      "de": "Ain-Najm-Straße – Al-Mubarraz",
+      "page": "restaurants-cafes",
+      "field": "baking-up.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Bakes and crunchy treats — as it calls itself on Google Maps — behind a cheerful storefront.",
+      "de": "Hinter einer fröhlichen Fassade mit Sitzplätzen im Freien warten Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps.",
+      "page": "restaurants-cafes",
+      "field": "baking-up.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Baking Up’s storefront with umbrellas and outdoor seating",
+      "de": "Die Fassade von Baking Up mit Sonnenschirmen und Sitzplätzen im Freien",
+      "page": "restaurants-cafes",
+      "field": "baking-up.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Ain Najm Road — Al-Mubarraz",
+      "de": "Ain-Najm-Straße – Al-Mubarraz",
+      "page": "restaurants-cafes",
+      "field": "dot-bakery.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Bakery and café in one: a fresh-pastry display with a blue-accented order counter.",
+      "de": "Bäckerei und Café in einem: eine Vitrine mit frischem Gebäck und eine Bestelltheke mit blauem Akzent.",
+      "page": "restaurants-cafes",
+      "field": "dot-bakery.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The order counter and pastry display at Dot Bakery & Café",
+      "de": "Die Bestelltheke und die Gebäckvitrine bei Dot Bakery & Café",
+      "page": "restaurants-cafes",
+      "field": "dot-bakery.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khaleej Road (Qatar Road)",
+      "de": "Al-Khaleej-Straße (Katar-Straße)",
+      "page": "restaurants-cafes",
+      "field": "karak-raslan.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Karak poured into small cups alongside simple breakfast bites.",
+      "de": "Karak (gewürzter Milchtee), in kleine Tassen gegossen, dazu einfache Frühstückshäppchen.",
+      "page": "restaurants-cafes",
+      "field": "karak-raslan.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Cups of karak on a wooden tray with breakfast dishes at Raslan",
+      "de": "Karak-Tassen und Frühstücksgerichte auf einem Holztablett bei Raslan",
+      "page": "restaurants-cafes",
+      "field": "karak-raslan.alt",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Score 93/100, APPROVE. Six of fifteen blind-reader observations were real, fixable issues (3 applied outright, 1 partial, plus #9 resolved as a side effect of #10's edit) touching two strings' worth of prose: baithana.blurb (genitive readability), bait-alkoot.blurb (disambiguating dash, genitive kept), alsayed.blurb (Volkskaffeehäuser for شعبية, resolving both a repetition and an accuracy nuance vs. the Arabic authority), and baking-up.blurb (reordered so the café, not the pastries, sits 'behind the façade', which also de-clutters the citation aside). Five observations (#5, #8, #11, #13, #15) are source_defects: EN and AR independently diverge between a card's blurb and alt field (dar-huwaija, soulaf, karak-raslan) or omit a district (karak-raslan.area) or alternate the Street/District order (soulaf vs. its siblings) — German stays faithful to each field's own source rather than inventing a bridging description or a district name absent from source. Four observations (#1, #2, #7, #12, #14) were rejected: #1/#2 touch de-din-1/de-din-2 BINDING page-frame and district strings outside this batch's editable scope with no factual error found; #7/#14 ask to relocate the Madschlis/Karak glosses into the alt text, which would directly contradict BRIEF.md §10/§12 (binding: gloss goes in the card's running text/blurb at first occurrence, explicitly not repeated in alt) — the underlying accessibility concern (alt text visually precedes the heading/blurb in the built card, so a screen-reader user meets the unglossed term first) is real but is a DiningView.astro card-template ordering issue, not something this translation batch is authorized to fix against a binding brief; #12 (Al-Khaleej vs. Katar asymmetric treatment) is naming_policy-correct, not an inconsistency. Termbase: the four de-05 entries (König-Abdullah-Straße, Katar-Straße, Katar, Karak) carry verbatim witnesses/URLs or are pattern-derived with artikel witnessed by 'Straße', and are approved unchanged. BINDING: gloss placement (Madschlis, Karak, and any future first-occurrence foreign term on a dining card) goes in the card's running-text blurb at its first occurrence there, never repeated in the alt text, regardless of the image/alt markup's position in the built page's DOM order — ج7 single pages must follow the same rule and must not relocate a gloss into alt text based on visual/DOM order alone. BINDING: 'folk'/شعبية (popular, of the people) renders with the 'Volks-' prefix (e.g. Volkskaffeehäuser), kept distinct from 'heritage'/تراثي which renders 'traditionell (eingerichtet)' for furniture/room attributes — do not collapse the two into the same German word within one page. BINDING: prefer 'von Hofuf' over a bare genitive-s ('Hofufs') in new short-blurb prose naming the city, per the termbase's own preferred alternative form — but do not retrofit this onto the existing, already-published TM pair 'im Baustil Al-Ahsas' (Al-Ahsa genitive), which stays as-is for TM consistency. BINDING: when two adjacent 'im ...' prepositional phrases (a style/attribute phrase followed by a location phrase) in one sentence would be ambiguous about which one modifies what, separate them with a spaced en-dash (U+2013) rather than a comma, if rewording is not possible without changing the sentence's shape. BINDING: a factual divergence between a venue's blurb and alt text (different secondary object, different ceiling feature, different food-register word, a missing district) that already exists independently in both the EN source and the AR authority is a source_defect — preserve it faithfully per field in German; do not harmonize the two fields or invent a bridging description, and do not add a district/city name to a location line whose source omits one. BINDING: the Street–District vs. District–Street order in an area/location line follows each card's own EN/AR source order exactly and must not be normalized to one fixed order across cards. BINDING: Al-Khaleej-Straße (transliterated) vs. Katar-Straße (German exonym for the country name) is the correct, naming_policy-mandated asymmetric treatment and must not be homogenized in either direction. (Coordinator override 2026-09-19: no coined «Volkskaffeehaus» — «alte Kaffeehäuser» per en «old coffeehouses».)",
+  "coordinator_override": [
+    {
+      "keys": [
+        "alsayed.blurb"
+      ],
+      "before": "Ein traditionell eingerichteter Innenraum mit Holzdecke, der den Charakter der Volkskaffeehäuser bewahrt.",
+      "after": "Ein traditionell eingerichteter Innenraum mit Holzdecke, der den Charakter der alten Kaffeehäuser bewahrt.",
+      "why": "«Volkskaffeehaus» is not an established German compound (no Duden entry; coined to render ar «الشعبية»). The English source says «the old coffeehouses»; «der alten Kaffeehäuser» removes the traditionell/traditionellen repetition the judge wanted gone without a coinage."
+    }
+  ],
+  "coordinator_termbase_note": "Removed duplicates at merge: «die König-Abdullah-Straße» (merged from de-din-3) and «Katar» (already in termbase)."
+}

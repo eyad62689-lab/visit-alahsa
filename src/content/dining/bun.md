@@ -13,6 +13,8 @@ blurb_zh: "挑高的白色空间开着长窗，正中是大理石中岛吧台与
 alt_zh: "Bun Café 的白色大厅，大理石中岛吧台与悬空木楼梯"
 blurb_ru: "Высокое белое пространство с окнами в полный рост, посередине — барная стойка-остров из мрамора и парящая деревянная лестница."
 alt_ru: "Белый зал Bun Café с барной стойкой-островом из мрамора и парящей деревянной лестницей"
+blurb_de: "Ein hoher, weißer Raum mit raumhohen Fenstern, einer freistehenden Bartheke aus Marmor und einer freitragenden Holztreppe."
+alt_de: "Die weiße Halle des Bun Café mit ihrer freistehenden Bartheke aus Marmor und der freitragenden Holztreppe"
 img: /img/dining/bun
 maps: "https://maps.app.goo.gl/sEoiBiKGABVMMoCM9"
 order: 12
