@@ -60,7 +60,8 @@ export interface AltLinks { ar: string; en: string; zh?: string; de?: string; ru
  *  للغياب نوعياً في كل موضع استهلاك). */
 export const altHref = (alt: AltLinks, lang: Lang): string => alt[lang] ?? alt.en;
 
-/** فاصل عنوان الصفحة عن اسم الموقع في وسم <title>.
+/** فاصل عنوان الصفحة عن اسم الموقع في وسم <title>، وفاصل سطر الحقوق المرئي
+ *  في التذييل (`.ft-bar span`).
  *  الألمانية تستعمل شرطة نصف الجيم U+2013 (Halbgeviertstrich) — والطويلة
  *  U+2014 علامة إنجليزية يقرؤها القارئ الألماني خللاً طباعياً. لا تكتب
  *  الشرطة حرفياً في قالب عنوان: استدعِ هذه، ويحرسها الفحص C17.
