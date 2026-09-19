@@ -1,7 +1,7 @@
 ---
 import Wordmark from './Wordmark.astro';
 import PalmMotif from './PalmMotif.astro';
-import { useTranslations } from '../i18n/utils';
+import { useTranslations, titleSep } from '../i18n/utils';
 import { catLabel } from '../lib/categories';
 import type { Lang } from '../i18n/ui';
 interface Props { lang?: Lang; }
@@ -91,7 +91,8 @@ const year = new Date().getFullYear();
 
   {/* أُزيل نموذج «النشرة البريدية» بطلب إياد (2026-07-13) — لا تجميع للإيميلات */}
   <div class="container ft-bar">
-    <span>© {year} {t('site.name')} — {t('foot.rights')}</span>
+    {/* الفاصل رمزٌ لا محرف: الألمانية U+2013 لا U+2014 — يحرسه C17 */}
+    <span>© {year} {t('site.name')} {titleSep(lang)} {t('foot.rights')}</span>
     <a href="mailto:info@visit-alahsa.com" class="ft-mail">info@visit-alahsa.com</a>
   </div>
 </footer>
