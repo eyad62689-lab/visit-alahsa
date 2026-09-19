@@ -1,0 +1,367 @@
+{
+  "batch": "de-ev-5",
+  "loop": 1,
+  "score": 92,
+  "breakdown": {
+    "accuracy": 28,
+    "nativeness": 26,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "applied",
+      "reason": "Valid nativeness catch: 'im' does not idiomatically govern a two-month range. Fixed within the 160-char SEO budget by recasting as 'ungefähre jährliche Saison: August–September' (155 chars total before ruling on n=2). No fact changed — still the approximate season only, no year, no dates.",
+      "edit": {
+        "key_or_field": "ev.lomi.after.seoDesc",
+        "before": "ungefähre Saison jährlich im August–September",
+        "after": "ungefähre jährliche Saison: August–September"
+      }
+    },
+    {
+      "n": 2,
+      "ruling": "applied",
+      "reason": "Valid clarity catch: bare 'siehe X' at the end of a search snippet does not state the organiser's role. Found a fix that fits the remaining budget exactly (160/160 chars total with n=1's fix): 'Al-Ahsa-Handelskammer informiert' states plainly that the Chamber is the source of the next dates, mirroring the source's 'follow the Al-Ahsa Chamber for the next edition's dates' without adding an unsourced call-to-action (no phone/URL is given in en/ar).",
+      "edit": {
+        "key_or_field": "ev.lomi.after.seoDesc",
+        "before": "Termine der nächsten Ausgabe: siehe Al-Ahsa-Handelskammer.",
+        "after": "Termine der nächsten Ausgabe: Al-Ahsa-Handelskammer informiert."
+      }
+    },
+    {
+      "n": 3,
+      "ruling": "rejected",
+      "reason": "Out of batch scope: 'Etwa August–September' (ev.lomi.after.time) and the 'Erwartete Saison' badge (ix.statusL.expected) were both approved in earlier batches (de-ev-4 and de-ev-1 respectively) and are not among this batch's 27 editable keys — see context.json 'approved_earlier_batches_of_this_page_do_not_edit'. The double-hedge pairing (Etwa + Erwartete) is a template/data pairing this batch cannot alter."
+    },
+    {
+      "n": 4,
+      "ruling": "applied",
+      "reason": "Valid garden-path parsing issue: the trailing 'nach den Datteln' after the superlative reads, on first pass, as a completed claim ('the most famous crop', full stop) that then has to be revised. Fronting the comparative phrase before the superlative ('des nach den Datteln berühmtesten ... Erzeugnisses') is idiomatic German (cf. 'der nach ihm zweitgrößte') and removes the stumble without changing the ranking fact (2nd most famous crop after dates, per en 'most famous crop after dates' / ar «الأشهر بعد التمور»).",
+      "edit": {
+        "key_or_field": "ev.lomi.intro",
+        "before": "zu Ehren des berühmtesten landwirtschaftlichen Erzeugnisses der Oase nach den Datteln",
+        "after": "zu Ehren des nach den Datteln berühmtesten landwirtschaftlichen Erzeugnisses der Oase"
+      }
+    },
+    {
+      "n": 5,
+      "ruling": "applied",
+      "reason": "'produktive Familien' is a calque of the Saudi programme term «الأسر المنتجة» that reads as an unexplained qualifier to a German audience ('productive' as opposed to what?). No termbase entry binds this exact phrase to a fixed rendering, so swapping it for the natural equivalent 'Familienbetriebe' (family-run stalls/businesses) loses no fact — en/ar both use the term generically here (shopping from family stalls), not as a proper institutional name requiring literal preservation.",
+      "edit": {
+        "key_or_field": "ev.lomi.intro",
+        "before": "Einkaufsmöglichkeiten an den Ständen produktiver Familien",
+        "after": "Einkaufsmöglichkeiten an den Ständen von Familienbetrieben"
+      }
+    },
+    {
+      "n": 6,
+      "ruling": "applied",
+      "reason": "Fair catch: 'das Begleitprogramm' with the definite article can read as anaphoric to something not previously introduced. Swapping to the indefinite 'ein Begleitprogramm' removes the ambiguity at zero cost — same fact (an accompanying programme exists alongside the three listed activities), no length constraint on this body sentence.",
+      "edit": {
+        "key_or_field": "ev.lomi.intro",
+        "before": "Dazu kommt das Begleitprogramm.",
+        "after": "Hinzu kommt ein Begleitprogramm."
+      }
+    },
+    {
+      "n": 7,
+      "ruling": "source_defect",
+      "reason": "The ambiguity is inherited unchanged from the en/ar source itself, which already parenthesises two street names for the same venue ('Al-Salam Street (Ain Najm Road)' / «شارع السلام (طريق عين النجم)») without saying whether they are two names for one street or two landmarks. The field ev.lomi.place is also frozen from the already-judged batch de-ev-4 and reused verbatim here per this batch's own brief instruction — not open for a wording fix in this batch even if it were a translation issue rather than a source one. Logged in source_defects for the coordinator/Iyad.",
+      "edit": null
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "'tragende [Obst-/Limetten-]Bäume' is standard German horticultural usage for fruit-bearing trees, not a mistranslation. It is also the exact word already published live on /de/fruits/ ('mehr als 100.000 tragende Limettenbäume', context.json fruits_page_published_do_not_edit) — changing it here to 'fruchttragend' would create an unexplained inconsistency between two pages stating the identical fact about the identical trees."
+    },
+    {
+      "n": 9,
+      "ruling": "rejected",
+      "reason": "'sich um etwas ranken' in the figurative sense ('um diese Sagengestalt ranken sich viele Legenden') is a standard, Duden-sanctioned idiom, not an invented or stilted image. It is also byte-identical to the sentence already live on the published /de/fruits/ card ('Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie'), so replacing it here alone would break consistency between two pages describing the same custom."
+    },
+    {
+      "n": 10,
+      "ruling": "applied",
+      "reason": "Genuine internal contradiction: 'haltbar machen' (preserve/make it keep) sits awkwardly with 'frisch' as one of the three listed forms, since fresh consumption is not preservation. The Arabic authority frames this as 'لاستعماله على مدار العام' (for its use throughout the year), not as preservation specifically — recasting the German around 'für die Verwendung übers ganze Jahr' follows the Arabic framing and removes the contradiction without dropping any of the three forms (fresh / juice / dried) or the Jameed gloss.",
+      "edit": {
+        "key_or_field": "ev.lomi.sec0.p1",
+        "before": "um sie für das ganze Jahr zu pressen und haltbar zu machen",
+        "after": "um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren"
+      }
+    },
+    {
+      "n": 11,
+      "ruling": "rejected",
+      "reason": "The homonymy with the Levantine dried-yogurt 'jameed' is a genuine but unavoidable naming collision in the loanword itself (not a translation choice), and the reader's own observation confirms the parenthetical gloss '(die sonnengetrocknete Limette)' resolves it immediately at first mention, exactly as gloss_regel requires. The spelling and gloss are also already published verbatim on /de/fruits/."
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "reason": "Orchestrator ruling for this batch (binding, given ahead of scoring): en faq4.q explicitly contrasts the lomi with 'a regular lemon' (ar «الليمون العادي»), so 'Zitrone' correctly names the comparison object, not the lomi itself, which is never called 'Zitrone' anywhere in this batch (it stays 'die Lomi' / 'die Hasawi-Limette' throughout, including in the very same answer). Changing 'Zitrone' to 'Limette' here would misstate what the source is actually comparing."
+    },
+    {
+      "n": 13,
+      "ruling": "rejected",
+      "reason": "BINDING decision from the de-ev-1 judge (quoted verbatim in BRIEF.md): the column header / page-name 'Termine' (nav.events / foot.l.events, reused in dv.back) is explicitly held to be a fixed, out-of-scope naming point for text batches and was already reported to the coordinator/Iyad as a source/UI defect — not to be 'repaired' in a later text batch. This batch's dv.notice and dv.mapNone already state the approximate-dates caveat in full, per the same termbase ruling's requirement."
+    },
+    {
+      "n": 14,
+      "ruling": "rejected",
+      "reason": "This is a linearised-text artifact of how the blind reader's extraction flattens the three-field 'other events' cards (season / name / timing), not a wording problem — the values themselves (e.g. 'Winter', 'Hasawi-Bischt-Festival', 'Etwa im Dezember') come from earlier-approved batches and are not part of this batch's 27 keys. Visual separation between card fields is a template/markup concern outside a text-translation batch's scope, and would apply identically to every language version of the same component."
+    },
+    {
+      "n": 15,
+      "ruling": "rejected",
+      "reason": "BINDING decision from the de-ev-2 judge (quoted verbatim in BRIEF.md): a religious calendar event used as a season badge is deliberately shortened to the respectful two-word form 'Heiliger Ramadan', kept distinct in register from the secular 'Winter'/'Spätwinter' labels by design, not by oversight. The substantive point about the lunar calendar shifting relative to fixed seasons is real but is a page-design question already settled outside this batch's scope, not a wording error to fix here."
+    },
+    {
+      "n": 16,
+      "ruling": "rejected",
+      "reason": "Out of batch scope: the Palm Village event's 'place' field ('Al-Ahsa-Oase') was approved in an earlier batch (de-ev-3/4) and is not among this batch's 27 editable keys, which cover only the shared single-event page chrome (dv.*) and the Hasawi Lomi Exhibition's own body text (ev.lomi.*)."
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "ev.lomi.place / ev.lomi.faq1.a (field frozen since de-ev-4, reused verbatim in this batch)",
+      "defect": "en/ar give two street names in parentheses for the same venue address ('Al-Salam Street (Ain Najm Road)' / «شارع السلام (طريق عين النجم)») without stating whether both name the same street or refer to two separate reference points — a genuine wayfinding ambiguity a visitor could hit at the venue.",
+      "langs_affected": "en, ar, de (and any other language batch — zh/ru — that translates ev.lomi.place from the same source)"
+    }
+  ],
+  "final": {
+    "strings": {
+      "dv.eyebrow": "Eine Saison der Oase",
+      "dv.seasonK": "Jahreszeit",
+      "dv.timeK": "Zeitraum",
+      "dv.hoursK": "Öffnungszeiten",
+      "dv.faqH": "Häufige Fragen",
+      "dv.relatedH": "Siehe auch",
+      "dv.mapH": "Auf der Karte",
+      "dv.mapOpen": "In Google Maps öffnen",
+      "dv.mapNone": "Die Veranstalter haben den genauen Ort dieser Veranstaltung noch nicht bekannt gegeben, daher wird keine Karte angezeigt.",
+      "dv.mapFrameTitle": "Karte des Veranstaltungsortes",
+      "dv.notice": "Diese Veranstaltung kehrt jährlich in ihrer ungefähren Saison wieder. Termine und Einzelheiten können von Jahr zu Jahr abweichen. Bitte bestätigen Sie diese vor Ihrem Besuch anhand der Ankündigungen der Veranstalter.",
+      "dv.moreH": "Weitere Saisons",
+      "dv.back": "Alle Termine",
+      "ev.lomi.intro": "Die Hasawi-Lomi-Ausstellung – auch als Hasawi-Limetten-Ausstellung bekannt – ist Al-Ahsas bedeutendste saisonale landwirtschaftliche Veranstaltung. Die Al-Ahsa-Handelskammer veranstaltet sie zu Ehren des nach den Datteln berühmtesten landwirtschaftlichen Erzeugnisses der Oase. Die Ausstellung bietet ein interaktives Erlebnis rund um die Eigenschaften, den Nutzen und den Anbau der Lomi (die Hasawi-Limette), direkten Kontakt zu den Landwirten und Einkaufsmöglichkeiten an den Ständen von Familienbetrieben. Hinzu kommt ein Begleitprogramm.",
+      "ev.lomi.sec0.h": "Was ist die Hasawi-Lomi?",
+      "ev.lomi.sec0.p0": "Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.",
+      "ev.lomi.sec0.p1": "Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet als „Jameed“ (die sonnengetrocknete Limette) für die Hasawi- und Golfküche.",
+      "ev.lomi.faq1.q": "Wo findet die Ausstellung statt?",
+      "ev.lomi.faq1.a": "Im Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf – die Karte finden Sie auf dieser Seite.",
+      "ev.lomi.faq4.q": "Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?",
+      "ev.lomi.faq4.a": "Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Hasawi-Küche verwendet.",
+      "ev.lomi.faq5.q": "Gibt es Aktivitäten für Kinder?",
+      "ev.lomi.faq5.a": "Ja – die Ausstellung bietet eine Kinderecke, dazu Live-Kochvorführungen, landwirtschaftliche Workshops und familiäres Beisammensein.",
+      "ev.lomi.related.0.label": "Die Hasawi-Lomi auf unserer Seite „Oasenfrüchte“",
+      "ev.lomi.related.1.label": "Reise planen",
+      "ev.lomi.after.seoTitle": "Hasawi-Lomi-Ausstellung: Saison, Ort & Höhepunkte",
+      "ev.lomi.after.seoDesc": "Reiseführer zur Hasawi-Lomi-Ausstellung in Hofuf: ungefähre jährliche Saison: August–September – Termine der nächsten Ausgabe: Al-Ahsa-Handelskammer informiert."
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Hasawi Lemon Exhibition (alternative name of the Hasawi Lomi Exhibition)",
+      "de": "die Hasawi-Limetten-Ausstellung",
+      "artikel": "die",
+      "status": "derived",
+      "source": "Durchkopplung of two already-verified elements: 'die Hasawi-Limette' (die) — Iyad's field investigation 2026-08-29, published /de/fruits/ card — plus the undisputed Duden headword 'Ausstellung' (feminine). Same precedent class as the batch's own 'die Al-Salam-Straße' / 'die Ain-Najm-Straße' (both status 'derived', judge-confirmed in de-ev-4, context.json termbase_terms_relevant).",
+      "note": "Judge-confirmed final: status 'derived' correctly distinguishes this from an unwitnessed foreign proper name (e.g. 'Freej') — the gender comes from an unambiguous German generic noun, not a guess. Used once, in ev.lomi.intro, as the Arabic-authorised alternative name (English's second alt-name 'Al-Ahsa Lemon Festival' is correctly fenced out — the Arabic authority carries only one alternative name)."
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "A season of the oasis",
+      "de": "Eine Saison der Oase",
+      "page": "events",
+      "field": "dv.eyebrow",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Season",
+      "de": "Jahreszeit",
+      "page": "events",
+      "field": "dv.seasonK",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "When",
+      "de": "Zeitraum",
+      "page": "events",
+      "field": "dv.timeK",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Opening hours",
+      "de": "Öffnungszeiten",
+      "page": "events",
+      "field": "dv.hoursK",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "FAQ",
+      "de": "Häufige Fragen",
+      "page": "events",
+      "field": "dv.faqH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "See also",
+      "de": "Siehe auch",
+      "page": "events",
+      "field": "dv.relatedH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "On the map",
+      "de": "Auf der Karte",
+      "page": "events",
+      "field": "dv.mapH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Open in Google Maps",
+      "de": "In Google Maps öffnen",
+      "page": "events",
+      "field": "dv.mapOpen",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The organisers have not announced a precise location for this event yet, so no map is shown.",
+      "de": "Die Veranstalter haben den genauen Ort dieser Veranstaltung noch nicht bekannt gegeben, daher wird keine Karte angezeigt.",
+      "page": "events",
+      "field": "dv.mapNone",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Event location map",
+      "de": "Karte des Veranstaltungsortes",
+      "page": "events",
+      "field": "dv.mapFrameTitle",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "This event recurs annually in its approximate season; dates and details may vary from year to year. Please confirm via the organisers’ announcements before visiting.",
+      "de": "Diese Veranstaltung kehrt jährlich in ihrer ungefähren Saison wieder. Termine und Einzelheiten können von Jahr zu Jahr abweichen. Bitte bestätigen Sie diese vor Ihrem Besuch anhand der Ankündigungen der Veranstalter.",
+      "page": "events",
+      "field": "dv.notice",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Other seasons",
+      "de": "Weitere Saisons",
+      "page": "events",
+      "field": "dv.moreH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "All events",
+      "de": "Alle Termine",
+      "page": "events",
+      "field": "dv.back",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The Hasawi Lomi Exhibition — also known as the Hasawi Lemon Exhibition or the Al-Ahsa Lemon Festival — is Al-Ahsa’s flagship seasonal agricultural event, organised by the Al-Ahsa Chamber to celebrate the oasis’s most famous crop after dates. The exhibition offers an interactive experience of the Hasawi lomi’s qualities, benefits and cultivation, direct contact with the farmers, and shopping from productive-family stalls, alongside the accompanying programme.",
+      "de": "Die Hasawi-Lomi-Ausstellung – auch als Hasawi-Limetten-Ausstellung bekannt – ist Al-Ahsas bedeutendste saisonale landwirtschaftliche Veranstaltung. Die Al-Ahsa-Handelskammer veranstaltet sie zu Ehren des nach den Datteln berühmtesten landwirtschaftlichen Erzeugnisses der Oase. Die Ausstellung bietet ein interaktives Erlebnis rund um die Eigenschaften, den Nutzen und den Anbau der Lomi (die Hasawi-Limette), direkten Kontakt zu den Landwirten und Einkaufsmöglichkeiten an den Ständen von Familienbetrieben. Hinzu kommt ein Begleitprogramm.",
+      "page": "events",
+      "field": "ev.lomi.intro",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "What is the Hasawi lomi?",
+      "de": "Was ist die Hasawi-Lomi?",
+      "page": "events",
+      "field": "ev.lomi.sec0.h",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The Hasawi lomi — often called the Hasawi lemon or Hasawi lime — is a small, dark-green citrus with a thin skin, abundant juice, a sharp tang and a distinctive aroma that sets it apart from other citrus. It is Al-Ahsa’s second crop after dates: the oasis grows more than 100,000 fruiting lomi trees, each yielding some 25-30 kilograms a season.",
+      "de": "Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.",
+      "page": "events",
+      "field": "ev.lomi.sec0.p0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A cherished summer tradition surrounds it: families gather to juice and preserve it for the whole year — fresh, as juice, or dried for Hasawi and Gulf cooking.",
+      "de": "Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet als „Jameed“ (die sonnengetrocknete Limette) für die Hasawi- und Golfküche.",
+      "page": "events",
+      "field": "ev.lomi.sec0.p1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Where is the exhibition held?",
+      "de": "Wo findet die Ausstellung statt?",
+      "page": "events",
+      "field": "ev.lomi.faq1.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "At the Al-Ahsa Expo Center on Al-Salam Street (Ain Najm Road) in Hofuf — the map is on this page.",
+      "de": "Im Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf – die Karte finden Sie auf dieser Seite.",
+      "page": "events",
+      "field": "ev.lomi.faq1.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "How does the Hasawi lomi differ from a regular lemon?",
+      "de": "Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?",
+      "page": "events",
+      "field": "ev.lomi.faq4.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "It is smaller, thinner-skinned, juicier and more aromatic, and is used fresh, as juice, and dried in Hasawi cooking.",
+      "de": "Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Hasawi-Küche verwendet.",
+      "page": "events",
+      "field": "ev.lomi.faq4.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Are there activities for children?",
+      "de": "Gibt es Aktivitäten für Kinder?",
+      "page": "events",
+      "field": "ev.lomi.faq5.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Yes — the exhibition has a kids’ corner, alongside live cooking, agricultural workshops and family sessions.",
+      "de": "Ja – die Ausstellung bietet eine Kinderecke, dazu Live-Kochvorführungen, landwirtschaftliche Workshops und familiäres Beisammensein.",
+      "page": "events",
+      "field": "ev.lomi.faq5.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The Hasawi lomi on our Fruits of Al-Ahsa page",
+      "de": "Die Hasawi-Lomi auf unserer Seite „Oasenfrüchte“",
+      "page": "events",
+      "field": "ev.lomi.related.0.label",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Plan your trip to Al-Ahsa",
+      "de": "Reise planen",
+      "page": "events",
+      "field": "ev.lomi.related.1.label",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Hasawi Lomi Exhibition: Season, Location & Highlights",
+      "de": "Hasawi-Lomi-Ausstellung: Saison, Ort & Höhepunkte",
+      "page": "events",
+      "field": "ev.lomi.after.seoTitle",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Guide to the Hasawi Lomi Exhibition in Hofuf: its approximate season in August-September each year — follow the Al-Ahsa Chamber for the next edition’s dates.",
+      "de": "Reiseführer zur Hasawi-Lomi-Ausstellung in Hofuf: ungefähre jährliche Saison: August–September – Termine der nächsten Ausgabe: Al-Ahsa-Handelskammer informiert.",
+      "page": "events",
+      "field": "ev.lomi.after.seoDesc",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Score 92/100 (accuracy 28/30, nativeness 26/30, compliance 19/20, fit 9/10, structure 10/10) — APPROVE. Stage 5 delivered a clean, fully compliant draft (all ten checklist items PASS, termbase 100%, zero Denglisch, correct gloss placement/ordering per gloss_regel, correct fact-fence on the alt-name lists), but the blind reader surfaced six genuine, zero-fact-cost fluency/clarity fixes, all applied: a grammar stumble ('im' + month range) and a clearer next-edition line in ev.lomi.after.seoDesc (both fit within the 160-char budget, the final measuring exactly 160); a rank/garden-path fix and a calque fix ('produktive Familien' → 'Familienbetriebe') and an article fix in ev.lomi.intro; and a fresh/preserve contradiction fix in ev.lomi.sec0.p1. One observation (n=7, the twin street names in ev.lomi.place) is a genuine source characteristic, not a translation defect, and is logged in source_defects — the field itself is frozen since de-ev-4 and reused verbatim here per this batch's brief. Nine observations were rejected: three reopen decisions BINDING from earlier judges of this same page (de-ev-1 on 'Termine' as the fixed page name, de-ev-2 on 'Heiliger Ramadan' as the fixed badge form, and this batch's own binding orchestrator ruling on faq4's 'Zitrone'); three concern strings genuinely outside this batch's 27 keys (the Etwa/Erwartete Saison pairing, the Palmendorf place field, the other-events card list); two defend already-published, Duden-sound wording shared verbatim with the live /de/fruits/ page ('tragende [...]-Bäume', 'rankt sich um sie'), where a unilateral change here would have created a new inconsistency; and one (Jameed's homonymy with the Levantine dish) is an unavoidable loanword collision already resolved by the existing parenthetical gloss. The termbase addition ('die Hasawi-Limetten-Ausstellung', status 'derived') is confirmed final, on the same precedent already used for 'die Al-Salam-Straße'/'die Ain-Najm-Straße' in this batch's own termbase. Structural check: all 27 pack.json keys present in final.strings, in pack order, none added or dropped. Since this is batch 5 of 5 for this page, the BINDING lines below bind any future correction pass to this same page and any other page reusing these exact phrases — not a next translation batch of new content.\nBINDING: 'zu Ehren des nach den Datteln berühmtesten [Nomen] der Oase' is the fixed word order for 'the oasis's most famous X after dates' — the comparative phrase fronts before the superlative adjective to avoid the garden-path reading of a trailing 'nach den Datteln'; reuse this order for any future 'most famous/largest ... after Y' construction on the site.\nBINDING: «الأسر المنتجة» / 'productive-family stalls' (generic use, not a cited institution name) = 'Familienbetriebe' in German — not 'produktive Familien', which reads as an unexplained calque.\nBINDING: when a foodstuff's multi-form usage list includes 'fresh' as one of the forms, translate the governing verb as '(für die Verwendung) übers ganze Jahr zu pressen und aufzubewahren' — not '... haltbar zu machen' — to avoid a fresh/preserve contradiction; applies to any future Hasawi-lomi text (blog, fruits page revision) using the same fresh/juice/dried triad.\nBINDING: SEO meta descriptions on this site must not place 'im' directly before a two-month range ('im August–September'); use 'Monat–Monat' bare after a colon or dash, or 'von Monat bis Monat', and re-measure against the ≤160-character budget before submitting.\nBINDING (termbase): 'die Hasawi-Limetten-Ausstellung' (Hasawi Lemon Exhibition) is termbase-final, status 'derived' — reuse verbatim, do not re-derive or re-litigate its gender.\nBINDING: the twin street names in ev.lomi.place/ev.lomi.faq1.a ('Al-Salam-Straße (Ain-Najm-Straße)') are a reported source_defect, not a translation gap — no future batch of this page should attempt to 'resolve' the ambiguity in prose without new information from Iyad/the coordinator."
+}

@@ -57,7 +57,7 @@ export function eventsTable(lang: Lang, heads: { name: string; place: string; ti
   const list = eventsFor(lang).map((e) => evView(e)).sort((a, b) => a.start - b.start);
   return {
     id: 'events',
-    caption: lang === 'ar' ? 'روزنامة مواسم الفعاليات — مواعيد تقريبية تعود سنوياً' : lang === 'en' ? 'Seasonal calendar of events — approximate, recurring annually' : lang === 'ru' ? 'Календарь сезонных мероприятий — даты приблизительны и повторяются ежегодно' : undefined,
+    caption: lang === 'ar' ? 'روزنامة مواسم الفعاليات — مواعيد تقريبية تعود سنوياً' : lang === 'en' ? 'Seasonal calendar of events — approximate, recurring annually' : lang === 'de' ? 'Saisonaler Kalender der Veranstaltungen – ungefähre Angaben, jährlich wiederkehrend' : lang === 'ru' ? 'Календарь сезонных мероприятий — даты приблизительны и повторяются ежегодно' : undefined,
     head: [heads.name, heads.place, heads.time],
     rows: list.map((e) => ({ cells: [{ text: e.name, href: `${base}${e.slug}/` }, e.place, `${e.season} · ${e.time}`] })),
   };

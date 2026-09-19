@@ -1,0 +1,395 @@
+{
+  "batch": "de-ev-4",
+  "loop": 1,
+  "score": 93,
+  "breakdown": {
+    "accuracy": 27,
+    "nativeness": 28,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "rejected",
+      "reason": "„Freej“ ist ein fremdsprachiges Eigennamen-Token in einem kurzen Karten-/Tabellenfeld (nicht im Fließtext). Bindende Regel aus Charge 2: fremdsprachige Eigennamen ohne deutsche Bedeutungsquelle (Bischt, Kafu, Ghabqa) werden in kurzen Karten-/Tabellenfeldern nicht geglosst; eine Glosse gehört ausschließlich in Fließtext mit eigenem Quellenbeleg. Eine Erklärung hier hinzuzufügen würde diese Regel brechen und zugleich eine Bedeutung einführen, für die kein deutschsprachiger Beleg existiert (termbase-Eintrag „der Freej“ steht auf status: pending)."
+    },
+    {
+      "n": 2,
+      "ruling": "source_defect",
+      "reason": "Die Unklarheit (ein Ort oder zwei Landmarken?) steht bereits in en/ar: „Heritage Freej, the Municipality Fort“ / «الفريج التراثي، قلعة الأمانة» reiht zwei Ortsbezeichnungen mit bloßem Komma ohne Präposition. Die deutsche Fassung überträgt das treu. Eine Präposition („bei“, „im“) hinzuzufügen wäre eine im Quelltext nicht belegte Tatsachenbehauptung über die räumliche Beziehung — der Sachverhaltszaun verbietet das."
+    },
+    {
+      "n": 3,
+      "ruling": "source_defect",
+      "reason": "Derselbe Befund liegt schon in der Quelle: „Al-Salam St (Ain Najm Rd)“ / «شارع السلام (طريق عين النجم)» lässt offen, ob es sich um einen alternativen Namen, einen früheren Namen oder eine Querstraße handelt. Die deutsche Fassung übernimmt die Klammer unverändert und fügt keine unbelegte Erklärung hinzu."
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "reason": "Das Quellfeld trägt explizit ein Näherungswort: „About a week“ / «نحو أسبوع». Bindende Regel aus Charge 2: ein Näherungswort wird nur gesetzt, wenn das en/ar-Feld selbst eines trägt — und hier trägt es eines, anders als bei den übrigen Span-Feldern der Seite („A few days“, „Several weeks“, „An extended winter season“, die alle ohne „About“ auskommen und deshalb auch ohne „Etwa“ übersetzt sind). „Etwa“ zu streichen würde die vom Quelltext ausdrücklich gemachte Unterscheidung (dieser Zeitraum ist explizit als ungefähr markiert, andere nicht) auslöschen — verboten durch den Sachverhaltszaun. Die scheinbare Doppelung mit dem Feldlabel „Ungefähre Dauer“ ist ein UI-Musterzug, der schon im Aufbau des freigegebenen Labels selbst angelegt ist, kein Übersetzungsfehler dieser Charge."
+    },
+    {
+      "n": 5,
+      "ruling": "rejected",
+      "reason": "Alle drei Zeilen gehören zu bereits freigegebenem, außerhalb dieser Charge liegendem Text (`ev.bisht.time`, `ev.qaisariyah-nights.time`, `ev.kafu-nights.time` aus de-ev-2, siehe `approved_earlier_batches_of_this_page_do_not_edit`) und sind damit außerhalb des Bearbeitungsumfangs von Charge 4. Die Uneinheitlichkeit ist zudem bindend beabsichtigt (Ruling Charge 2): ein Näherungswort wird nur gesetzt, wenn das jeweilige en/ar-Feld selbst eines trägt — „Around December“ trägt eines, ein bereits genauer Monatsbereich („February – March“) keines, und „During Ramadan“ ist keine Monatsspanne, sondern ein Kalenderbezug mit eigenem Muster. Eine Vereinheitlichung würde drei verschiedene Quellfakten überschreiben und mit `tm.json`-Paaren aus Charge 2 brechen."
+    },
+    {
+      "n": 6,
+      "ruling": "rejected",
+      "reason": "„Heiliger Ramadan“ ist bereits freigegebener Text aus de-ev-2 (`ev.kafu-nights.season`, siehe `approved_earlier_batches_of_this_page_do_not_edit`) und liegt außerhalb des Bearbeitungsumfangs dieser Charge. Es ist zudem eine bindende Entscheidung des Charge-2-Judge: ein als Saison-Badge verwendetes religiöses Kalenderereignis wird auf eine kurze, respektvolle Zweiwortform mit religiöser Qualifikation verkürzt — „Ramadan“ allein war ausdrücklich verworfen."
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "„Kafu-Nächte“ ist bereits freigegebener Text aus de-ev-2 und liegt außerhalb des Bearbeitungsumfangs dieser Charge; der Leser selbst schlägt keine Änderung vor. Die termbase bestätigt zudem ausdrücklich: „Kafu“ bleibt unerläutert, weil keine Quelle eine Bedeutung liefert — eine Erklärung ohne Beleg wäre eine erfundene Tatsache."
+    },
+    {
+      "n": 8,
+      "ruling": "applied",
+      "reason": "Berechtigter Fund, wenn auch nicht aus den vom Leser genannten Gründen: Die englische Quelle nennt für `ix.seoDesc` nur drei Veranstaltungen namentlich und schließt mit „and more“ / «وغيرها» — ohne einen vierten Namen. Die Stage-5-Fassung hatte „Al-Uqair-Winter“ als vierten, im Quelltext nicht genannten Eigennamen ergänzt. Das ist eine Tatsachenergänzung, die der Sachverhaltszaun verbietet, unabhängig davon, dass der Name selbst korrekt aus Charge 3 stammt. Korrigiert: der vierte Name entfällt, „u. a.“ deckt weiterhin „and more“ ab.",
+      "edit": {
+        "key_or_field": "ix.seoDesc",
+        "before": "Al-Ahsas Festivals und Veranstaltungen: Hasawi-Bischt-Festival, Qaisariyah-Nächte, Hasawi-Lomi-Ausstellung, Al-Uqair-Winter u. a. – Saisons und Veranstalter.",
+        "after": "Al-Ahsas Festivals und Veranstaltungen: Hasawi-Bischt-Festival, Qaisariyah-Nächte, Hasawi-Lomi-Ausstellung u. a. – Saisons und Veranstalter."
+      }
+    },
+    {
+      "n": 9,
+      "ruling": "rejected",
+      "reason": "Außerhalb des Batch-Umfangs: das zweite „Al-Ahsa“ stammt aus dem Website-Template, das dem Feldwert automatisch ein «– Al-Ahsa»-Site-Suffix anhängt (vgl. pack.json-Kontext zu `ix.seoTitle`) — dieses Suffix ist keiner der 26 Schlüssel dieser Charge. Der Feldwert selbst, `ev.creative-ahsa.name` = „Kreativ-Al-Ahsa-Festival“, enthält „Al-Ahsa“ notwendig und rechtmäßig, weil die englische Quelle „Creative Al-Ahsa Festival“ es als Bestandteil des Eigennamens führt; ihn zu kürzen würde den Namen verfälschen. Dasselbe Muster träfe jeden anderen Veranstaltungsnamen mit „Al-Ahsa“ im Titel."
+    },
+    {
+      "n": 10,
+      "ruling": "rejected",
+      "reason": "„Bildende Kunst“ ist die korrekte, treue Übersetzung von „Fine arts“ / «فنون تشكيلية». Eine Konkretisierung („Kunsthandwerk-Ausstellung“, „Malerei-Vorführungen“) würde eine im Quelltext nicht enthaltene Tatsache über die genaue Programmform erfinden — verboten durch den Sachverhaltszaun. Die Abstraktheit ist ein Merkmal der Quelle, kein Übersetzungsmangel."
+    },
+    {
+      "n": 11,
+      "ruling": "rejected",
+      "reason": "„Familiäres Beisammensein“ überträgt „Family sessions“ / «جلسات عائلية» treu und reiht sich in die bereits freigegebene «جلسات» → „Beisammensein“-Familie ein (Charge 2: „Community gatherings“ → „Geselliges Beisammensein“; Charge 3: „Open-air winter gatherings“ → „Winterliches Beisammensein im Freien“). Eine Konkretisierung würde eine im Quelltext nicht genannte Aktivität erfinden."
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "reason": "Der Leser schlägt selbst keine Änderung vor. Die Konstruktion folgt dem bereits etablierten Muster durchgekoppelter Veranstaltungsnamen mit generischem deutschem Grundwort (Charge 2: „Hasawi-Bischt-Festival“); der Name steht im termbase als status: pending mangels amtlicher deutscher Form, ist aber strukturell konsistent mit dem Hausstil."
+    },
+    {
+      "n": 13,
+      "ruling": "rejected",
+      "reason": "Die Präpositionalfügung „Kommunalverwaltung von Al-Ahsa“ ist ein termbase-verifizierter Eintrag mit eigens begründeter Entscheidung gegen Durchkopplung: die Notiz erklärt ausdrücklich, dass eine durchgekoppelte Form „die Al-Ahsa-Kommunalverwaltung“ nur attributiv correct wäre, als eigenständiger Institutionsname aber bewusst präpositional bleibt (Muster „Zentrum von Hofuf“), um die falsche Gleichung Al-Ahsa = Stadt zu vermeiden. Eine Angleichung an „Al-Ahsa-Handelskammer“ würde einen sourcierten Termbase-Eintrag durch Geschmack aufheben — ausdrücklich verboten."
+    },
+    {
+      "n": 14,
+      "ruling": "rejected",
+      "reason": "Das Quellfeld trägt „About 26 days“ / «نحو 26 يوماً» — das Näherungswort steht explizit im Quelltext, obwohl Start- und Enddatum exakt bekannt sind (ein Quellenmerkmal, keine Übersetzungsentscheidung). „Etwa“ zu streichen würde dem Sachverhaltszaun widersprechen. Das Feld wird zudem aktuell gar nicht angezeigt (die Ausgabe 2026 ist beendet; `after.span` ersetzt es auf der Seite), sein Charakter als archivierter Datensatz mindert die praktische Wirkung der Beobachtung zusätzlich."
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "ev.lomi.acts.0 — englische Quelle „Lomi (dried lime) product shows“",
+      "defect": "Die Klammer „(dried lime)“ engt die Aktivität fälschlich auf die getrocknete Form ein. Die arabische Autorität «معارض منتجات اللومي» trägt keine solche Einschränkung, und der Lomi wird laut Eigentümer-Feldrecherche (2026-08-29) frisch, als Saft und getrocknet gleichermaßen verwendet. Die deutsche Fassung folgt korrekt der arabischen Autorität und übernimmt die Einschränkung nicht.",
+      "langs_affected": "en (Quelle); betrifft potenziell jede Sprachcharge, die unreflektiert vom Englischen statt vom arabischen Fiator übersetzt."
+    },
+    {
+      "where": "ev.creative-ahsa.place — en/ar „Heritage Freej, the Municipality Fort“ / «الفريج التراثي، قلعة الأمانة»",
+      "defect": "Zwei Ortsbezeichnungen werden mit bloßem Komma aneinandergereiht, ohne dass klar wird, ob ein einziger Ort mit zwei Landmarken oder zwei getrennte Orte gemeint sind.",
+      "langs_affected": "en, ar und jede daraus abgeleitete Sprachfassung (de, zh, ru)."
+    },
+    {
+      "where": "ev.lomi.place — en/ar „Al-Salam St (Ain Najm Rd)“ / «شارع السلام (طريق عين النجم)»",
+      "defect": "Der Klammerzusatz benennt eine zweite Straße, ohne zu sagen, ob es ein Alternativname, ein früherer Name oder eine Querstraße ist.",
+      "langs_affected": "en, ar und jede daraus abgeleitete Sprachfassung."
+    }
+  ],
+  "final": {
+    "strings": {
+      "ev.creative-ahsa.name": "Kreativ-Al-Ahsa-Festival",
+      "ev.creative-ahsa.place": "Traditioneller Freej, Festung der Kommunalverwaltung von Al-Ahsa",
+      "ev.creative-ahsa.season": "Frühling",
+      "ev.creative-ahsa.time": "März–April",
+      "ev.creative-ahsa.span": "Etwa eine Woche",
+      "ev.creative-ahsa.org": "Kommunalverwaltung von Al-Ahsa",
+      "ev.creative-ahsa.acts.0": "Töpferei",
+      "ev.creative-ahsa.acts.1": "Palmwedel-Flechtwaren",
+      "ev.creative-ahsa.acts.2": "Traditionelles Tischlerhandwerk",
+      "ev.creative-ahsa.acts.3": "Bildende Kunst",
+      "ev.creative-ahsa.acts.4": "Volksdarbietungen",
+      "ev.lomi.name": "Hasawi-Lomi-Ausstellung",
+      "ev.lomi.place": "Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf",
+      "ev.lomi.season": "Sommer",
+      "ev.lomi.time": "19. August – 13. September 2026",
+      "ev.lomi.span": "Etwa 26 Tage",
+      "ev.lomi.org": "Al-Ahsa-Handelskammer",
+      "ev.lomi.acts.0": "Lomi-Produktausstellungen",
+      "ev.lomi.acts.1": "Live-Kochvorführungen",
+      "ev.lomi.acts.2": "Landwirtschaftliche Workshops",
+      "ev.lomi.acts.3": "Kinderecke",
+      "ev.lomi.acts.4": "Familiäres Beisammensein",
+      "ev.lomi.after.time": "Etwa August–September",
+      "ev.lomi.after.span": "Mehrere Wochen",
+      "ix.seoTitle": "Al-Ahsa: Festivals und Veranstaltungen – Saisons der Oase ganzjährig",
+      "ix.seoDesc": "Al-Ahsas Festivals und Veranstaltungen: Hasawi-Bischt-Festival, Qaisariyah-Nächte, Hasawi-Lomi-Ausstellung u. a. – Saisons und Veranstalter."
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Hasawi Lomi Exhibition",
+      "de": "die Hasawi-Lomi-Ausstellung",
+      "artikel": "die",
+      "source": "Bereits veröffentlichter deutscher Text auf /de/fruits/ (src/data/fruits.ts, g1.f0.pre), wörtlich: „Alljährlich feiert das Gouvernorat sie mit der Hasawi-Lomi-Ausstellung, veranstaltet von der Al-Ahsa-Handelskammer …“ — Dativartikel „der“ vor dem Femininum bestätigt das Genus die.",
+      "note": "Vom Judge bestätigt. Wortgleich aus /de/fruits/ übernommen, gilt für ev.lomi.name, Tabellentitel, H1 der Einzelseite, Breadcrumb und Browser-Tab-Titel.",
+      "status": "verified",
+      "stage": "4 (de-ev-4)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Chamber",
+      "de": "die Al-Ahsa-Handelskammer",
+      "artikel": "die",
+      "source": "Derselbe veröffentlichte Satz (src/data/fruits.ts, g1.f0.pre): „… veranstaltet von der Al-Ahsa-Handelskammer in Partnerschaft mit der Al-Ahsa-Entwicklungsbehörde.“",
+      "note": "Vom Judge bestätigt. Wortgleich für ev.lomi.org verwendet (Feldform ohne vorangestellten Artikel).",
+      "status": "verified",
+      "stage": "4 (de-ev-4)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Expo Center (مركز الأحساء للمعارض)",
+      "de": "das Al-Ahsa-Ausstellungszentrum",
+      "artikel": "das",
+      "source": "Stage-4-Websuche (2026-09-19): kein deutschsprachiger Beleg für den Institutionsnamen selbst gefunden — nur arabische/englische Ortsseiten. Genus rein aus dem Duden-Kompositumskopf „das Zentrum“ hergeleitet, nicht aus einem Beleg für den Namen als Ganzes.",
+      "note": "Vom Judge geprüft und mit unverändertem status „pending“ bestätigt: die Übersetzung des Institutionsnamens selbst (nicht nur sein Genus) hat keinen deutschsprachigen Beleg. Bei Wiederauftreten wortgleich übernehmen statt neu zu recherchieren; nicht als amtlich zitieren.",
+      "status": "pending",
+      "stage": "4 (de-ev-4)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Al-Salam Street (شارع السلام)",
+      "de": "die Al-Salam-Straße",
+      "artikel": "die",
+      "source": "Durchkopplung nach `_meta.naming_policy.durchkopplung`; Genus des Gattungsworts „die Straße“ unstrittiges Duden-Standardwissen (kein Namensrisiko, da nur das Grundwort das Genus trägt). Hausstil-Präzedenz: „König-Abdulaziz-Straße“, „Al-Khaleej-Straße“ (beide «طريق»/„Road“ → „Straße“).",
+      "note": "Vom Judge bestätigt: status „derived“ bleibt angemessen, da das Genus nicht erraten, sondern aus einem eindeutigen deutschen Gattungswort abgeleitet ist — kein Fall des „ohne Beleg“-Vorbehalts, der unbekannte Fremdwörter wie „Freej“ betrifft.",
+      "status": "derived",
+      "stage": "4 (de-ev-4)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Ain Najm Road (طريق عين النجم)",
+      "de": "die Ain-Najm-Straße",
+      "artikel": "die",
+      "source": "Gleiche Hausstil-Präzedenz wie „Al-Salam-Straße“ plus bestehender Termbase-Eintrag „Ain Najm (die Najm-Quelle) · der Ain-Najm-Park“.",
+      "note": "Vom Judge bestätigt. Stage-1-Vorbehalt (Straße vs. Weg) durch Stage 4 aufgelöst — keine widersprüchliche „Weg“-Verwendung für «طريق» im Projekt gefunden.",
+      "status": "derived",
+      "stage": "4 (de-ev-4)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Freej (الفريج — traditional/heritage quarter)",
+      "de": "der Freej",
+      "artikel": "der",
+      "source": "Stage-4-Websuche (2026-09-19, zwei Anfragen): kein deutschsprachiger Beleg mit Artikel gefunden.",
+      "note": "Vom Judge geprüft und mit unverändertem status „pending“ bestätigt: das Genus bleibt begründete Analogie (der Souk, der Bischt, der Madschlis, der Tanur; arabisches Genus maskulin) ohne direkten Fund. Nicht als gesichert zitieren; bei künftigem Beleg neu bewerten.",
+      "status": "pending",
+      "stage": "4 (de-ev-4)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Creative Al-Ahsa Festival",
+      "de": "das Kreativ-Al-Ahsa-Festival",
+      "artikel": "das",
+      "source": "Stage-4-Websuche (2026-09-19): nur englische/arabische Belege (spa.gov.sa, unesco.org/en/creative-cities/al-ahsa, unesco.alhasa.gov.sa) — kein deutscher Name gefunden.",
+      "note": "Vom Judge geprüft und mit unverändertem status „pending“ bestätigt: Struktur folgt der Präzedenz „Hasawi-Bischt-Festival“, Genus vom unstrittigen Kopf „das Festival“ — die Unsicherheit betrifft allein das Fehlen eines amtlichen deutschen Namens, nicht das Genus.",
+      "status": "pending",
+      "stage": "4 (de-ev-4)",
+      "added": "2026-09-19"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Creative Al-Ahsa Festival",
+      "de": "Kreativ-Al-Ahsa-Festival",
+      "page": "events",
+      "field": "ev.creative-ahsa.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Heritage Freej, the Municipality Fort",
+      "de": "Traditioneller Freej, Festung der Kommunalverwaltung von Al-Ahsa",
+      "page": "events",
+      "field": "ev.creative-ahsa.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Spring",
+      "de": "Frühling",
+      "page": "events",
+      "field": "ev.creative-ahsa.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "March – April",
+      "de": "März–April",
+      "page": "events",
+      "field": "ev.creative-ahsa.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "About a week",
+      "de": "Etwa eine Woche",
+      "page": "events",
+      "field": "ev.creative-ahsa.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Municipality",
+      "de": "Kommunalverwaltung von Al-Ahsa",
+      "page": "events",
+      "field": "ev.creative-ahsa.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Pottery making",
+      "de": "Töpferei",
+      "page": "events",
+      "field": "ev.creative-ahsa.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Palm-frond crafts",
+      "de": "Palmwedel-Flechtwaren",
+      "page": "events",
+      "field": "ev.creative-ahsa.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Traditional carpentry",
+      "de": "Traditionelles Tischlerhandwerk",
+      "page": "events",
+      "field": "ev.creative-ahsa.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Fine arts",
+      "de": "Bildende Kunst",
+      "page": "events",
+      "field": "ev.creative-ahsa.acts.3",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Folk performances",
+      "de": "Volksdarbietungen",
+      "page": "events",
+      "field": "ev.creative-ahsa.acts.4",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Hasawi Lomi Exhibition",
+      "de": "Hasawi-Lomi-Ausstellung",
+      "page": "events",
+      "field": "ev.lomi.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Expo Center, Al-Salam St (Ain Najm Rd), Hofuf",
+      "de": "Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf",
+      "page": "events",
+      "field": "ev.lomi.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Summer",
+      "de": "Sommer",
+      "page": "events",
+      "field": "ev.lomi.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "19 August – 13 September 2026",
+      "de": "19. August – 13. September 2026",
+      "page": "events",
+      "field": "ev.lomi.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "About 26 days",
+      "de": "Etwa 26 Tage",
+      "page": "events",
+      "field": "ev.lomi.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Chamber",
+      "de": "Al-Ahsa-Handelskammer",
+      "page": "events",
+      "field": "ev.lomi.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Lomi (dried lime) product shows",
+      "de": "Lomi-Produktausstellungen",
+      "page": "events",
+      "field": "ev.lomi.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Live cooking",
+      "de": "Live-Kochvorführungen",
+      "page": "events",
+      "field": "ev.lomi.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Agricultural workshops",
+      "de": "Landwirtschaftliche Workshops",
+      "page": "events",
+      "field": "ev.lomi.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Kids’ corner",
+      "de": "Kinderecke",
+      "page": "events",
+      "field": "ev.lomi.acts.3",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Family sessions",
+      "de": "Familiäres Beisammensein",
+      "page": "events",
+      "field": "ev.lomi.acts.4",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Around August – September",
+      "de": "Etwa August–September",
+      "page": "events",
+      "field": "ev.lomi.after.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Several weeks",
+      "de": "Mehrere Wochen",
+      "page": "events",
+      "field": "ev.lomi.after.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa festivals & events — seasons of the oasis all year round",
+      "de": "Al-Ahsa: Festivals und Veranstaltungen – Saisons der Oase ganzjährig",
+      "page": "events",
+      "field": "ix.seoTitle",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A guide to Al-Ahsa's seasonal festivals and events — the Bisht Festival, Qaisariyah Nights, the Lomi Exhibition and more, with seasons and organisers.",
+      "de": "Al-Ahsas Festivals und Veranstaltungen: Hasawi-Bischt-Festival, Qaisariyah-Nächte, Hasawi-Lomi-Ausstellung u. a. – Saisons und Veranstalter.",
+      "page": "events",
+      "field": "ix.seoDesc",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Bewertung 93/100 (APPROVE, Schwelle 90). Übersetzung insgesamt solide: Durchkopplung, Genus, Anführungszeichen, U+2013 und der automatische Zahlenzaun bestehen alle Prüfungen; der veröffentlichte Name „Hasawi-Lomi-Ausstellung“ (/de/fruits/) wurde korrekt wortgleich übernommen. Zwei echte Abweichungen vom Sachverhaltszaun gefunden und korrigiert (siehe final.strings): (1) ix.seoDesc nannte mit „Al-Uqair-Winter“ ein viertes, im en/ar-Quelltext nicht genanntes Ereignis namentlich (Quelle sagt nur „and more“/«وغيرها») — entfernt. (2) ix.seoTitle ließ «على مدار العام»/„all year round“ vollständig aus — „ganzjährig“ ergänzt (dadurch 68 statt ≤65 Zeichen: bewusste Abwägung, da der Sachverhaltszaun laut Brief höher steht als Kürze; verify-stage meldet dies nur als Warnung, kein Fehler). Von den 14 Beobachtungen des blinden Lesers wurde nur eine (Nr. 8) angewandt; drei sind Eigenschaften der englisch/arabischen Quelle selbst (source_defect, Nr. 2/3 sowie das „(dried lime)“-Problem aus dem Brief), und die übrigen zehn sind entweder durch bindende Entscheidungen früherer Chargen gedeckt, liegen in bereits freigegebenem, außerhalb dieser Charge liegendem Text, oder würden den Sachverhaltszaun verletzen. Termbase: 6 neue Einträge geprüft und bestätigt (2 verified, 2 derived, 2 pending); bei den 2 pending-Einträgen mit unsicherem Institutions-/Eigennamen (Al-Ahsa-Ausstellungszentrum, Kreativ-Al-Ahsa-Festival) sowie bei „der Freej“ bleibt das Genus im Feld strukturell gesetzt (verify-stage.mjs verlangt ein nicht-leeres artikel-Feld für jeden de-Eintrag), aber status „pending“ signalisiert ausdrücklich, dass es nicht als gesichert zu zitieren ist — dies weicht von der wörtlichen Lesart der Anweisung „status pending ohne Artikel“ nur strukturell ab, um mit dem verpflichtenden verify-stage-Schema kompatibel zu bleiben.\n\nBINDING: Ein im en/ar-Quellfeld eines span-/time-Feldes explizit stehendes Näherungswort (About/Around/تقريباً/نحو) bleibt auch dann in der deutschen Übersetzung stehen, wenn das Feldlabel selbst schon Näherung signalisiert (z. B. „Ungefähre Dauer“) oder wenn Start-/Enddatum anderswo exakt bekannt sind — Streichen würde eine vom Quelltext gemachte Unterscheidung auslöschen.\nBINDING: ix.seoTitle/ix.seoDesc (und jedes künftige „u. a.“/„and more“-Aufzählungsfeld dieser Seite) darf nur die im en/ar-Quelltext tatsächlich namentlich genannten Veranstaltungen auflisten — ein zusätzlicher, an anderer Stelle der Seite bereits freigegebener Veranstaltungsname darf nicht ergänzt werden, auch wenn er korrekt wäre.\n„Al-Ahsa Municipality Fort“/«قلعة الأمانة» bleibt „Festung der Kommunalverwaltung von Al-Ahsa“ — bestätigt aus de-ev-2 und wortgleich für Folgechargen dieser Seite zu verwenden; „, Hofuf“ wird nur angehängt, wenn das jeweilige Quellfeld „Hofuf“ selbst führt.\nBINDING: «طريق»/„Road“ vor einem Al-Ahsa-Straßennamen wird mit Durchkopplung als „-Straße“ übersetzt (nicht „-Weg“) — „Al-Salam-Straße“, „Ain-Najm-Straße“; damit ist der Stage-1-Vorbehalt aus Charge 3 endgültig aufgelöst.\nBINDING: „Lomi (dried lime) product shows“ — die Klammer „(dried lime)“ ist ein Fehler der englischen Quelle (die arabische Autorität und die Eigentümer-Feldrecherche kennen keine solche Einschränkung); sie wird in keiner Sprachfassung nachgebildet, auch nicht in künftigen Batches, die von dieser Aktivität handeln.\nBINDING: Fremdsprachige Eigennamen-Token ohne deutsche Bedeutungsquelle (Freej, Kafu, Ghabqa, Lomi in Kurzform) werden in Karten-/Tabellenfeldern dieser Seite nie geglosst — dies gilt jetzt ausdrücklich auch für „Freej“, bestätigt in Charge 4."
+}

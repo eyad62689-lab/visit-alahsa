@@ -5,7 +5,7 @@
 // يتعذّر git يسقط الحقل من الخريطة كلها بدل تلفيق تاريخ موحَّد (انظر git-dates.ts).
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { EVENTS_AR, EVENTS_EN, EVENTS_RU, EVENTS_ZH } from '../data/events';
+import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH } from '../data/events';
 import { attractionAlt, blogHref, diningAlt, stayAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', ru: '/ru/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', ru: '/ru/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
-    { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', ru: '/ru/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
+    { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', ru: '/ru/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
     { ar: '/اليونسكو/', en: '/en/unesco/', lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', ru: '/ru/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
@@ -88,6 +88,7 @@ export const GET: APIRoute = async ({ site }) => {
       ar: '/فعاليات/' + e.slug + '/',
       en: EVENTS_EN.find((x) => x.id === e.id) ? '/en/events/' + EVENTS_EN.find((x) => x.id === e.id)!.slug + '/' : undefined,
       zh: EVENTS_ZH.find((x) => x.id === e.id) ? '/zh/events/' + EVENTS_ZH.find((x) => x.id === e.id)!.slug + '/' : undefined,
+      de: EVENTS_DE.find((x) => x.id === e.id) ? '/de/events/' + EVENTS_DE.find((x) => x.id === e.id)!.slug + '/' : undefined,
       ru: EVENTS_RU.find((x) => x.id === e.id) ? '/ru/events/' + EVENTS_RU.find((x) => x.id === e.id)!.slug + '/' : undefined,
       lastmod: dateOf('src/data/events.ts', `${V}EventDetailView.astro`),
     })),

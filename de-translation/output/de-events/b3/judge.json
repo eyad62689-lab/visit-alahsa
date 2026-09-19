@@ -1,0 +1,448 @@
+{
+  "batch": "de-ev-3",
+  "loop": 1,
+  "score": 93,
+  "breakdown": {
+    "accuracy": 28,
+    "nativeness": 26,
+    "compliance": 20,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "source_defect",
+      "reason": "«An extended season»/«An extended winter season» (موسم ممتد / موسم شتوي ممتد) never states an actual length in either source language — unlike the sibling event uqair-winter, whose source itself gives «Several weeks». Supplying a concrete span in German (e.g. 'mehrere Wochen') would add a fact the en/ar source does not carry. Translation ('Verlängerte Saison' / 'Verlängerte Wintersaison') is faithful to the vague source wording."
+    },
+    {
+      "n": 2,
+      "ruling": "source_defect",
+      "reason": "The source itself pairs a full, precise month range with the qualifier 'extended'/'ممتد' without ever saying what baseline it is extended relative to — this is unresolved in English and Arabic alike, not introduced by the German rendering. Dropping the qualifier (as suggested) would be an omission of information the source states, which is treated as wrong as an addition; keeping it faithfully reproduces the source's own ambiguity."
+    },
+    {
+      "n": 3,
+      "ruling": "rejected",
+      "reason": "Out of batch scope — the capitalised 'Lokale' the reader flags occurs only in the auto-generated search-result description, a code template that concatenates highlight-bullet strings into a sentence (per the orchestrator's note, that template is not this batch's string content). Inside its own field, 'Lokale Restaurants und Cafés' is a standalone Höhepunkte bullet capitalised the same way as its siblings ('Dattelläden', 'Handwerker-Pavillons …', 'Vermarktung ländlicher Erzeugnisse') and as every other batch's highlight bullets on this page — changing the string itself would break that established parallel-bullet capitalisation, not fix the template."
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "reason": "The Arabic authority deliberately uses «تسويق» (marketing/selling) rather than «سوق» (market as a place) precisely to avoid naming a physical marketplace — the binding brief for this batch explicitly required avoiding 'Markt' as a place-noun here. The suggested fix ('Marktstände mit lokalen Erzeugnissen') would reintroduce exactly the place-noun distinction the Arabic source avoids, so applying it would erase a distinction the Arabic makes."
+    },
+    {
+      "n": 5,
+      "ruling": "source_defect",
+      "reason": "The ambiguity between a permanent village and a seasonal pop-up is already present in the English ('Palm Village' at 'Al-Ahsa Oasis') and Arabic ('قرية النخيل' at 'واحة الأحساء') source — the venue is left as the whole oasis in both source languages, not narrowed by the German translation. Nothing in the German text narrows or widens this compared to the source."
+    },
+    {
+      "n": 6,
+      "ruling": "rejected",
+      "reason": "Out of batch scope — 'Erwartete Saison' is the fixed status badge 'ix.statusL.expected', approved and marked do-not-edit by the Batch-1 judge (95/100), and is not one of this batch's 36 keys. Re-wording it here would also break the tm.json pair already recorded for that string."
+    },
+    {
+      "n": 7,
+      "ruling": "source_defect",
+      "reason": "The Arabic authority «ملاك ومستثمرون بإشراف أمانة الأحساء» is itself unspecific about what is owned/invested in — the English 'Private operators' is even narrower and drops «ملاك» entirely. The German 'Eigentümer und Investoren unter Aufsicht der Kommunalverwaltung von Al-Ahsa' carries exactly the openness of the Arabic source; resolving 'owners of what' would require inventing a fact not present in either source language."
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "'Open-air winter gatherings'/«جلسات شتوية مفتوحة» is itself the more social/soft-register item in its English and Arabic list, sitting next to '150+ food trucks' and 'Hasawi folk dishes' — the register mix is a source characteristic. The German rendering follows the termbase-established 'Beisammensein' family already fixed for gatherings-type highlights (Charge 2 binding: 'Community gatherings' → 'Geselliges Beisammensein'); no faithful alternative was suggested, and departing from that family would break consistency with the approved Charge 2 pattern."
+    },
+    {
+      "n": 9,
+      "ruling": "source_defect",
+      "reason": "The Arabic authority itself names the venue twice inconsistently — «ميدان الفروسية، الطرف» (place, without Al-Ahsa) and «ميدان الفروسية بالأحساء» (organiser, with Al-Ahsa). Stage 4 ran a web search and found no official name resolving whether these are one institution or two, and documented that the identical inconsistency appears in the Russian batch ru-ev-3 at the same two fields. The German text transfers each field faithfully rather than silently harmonising a distinction the source itself does not resolve."
+    },
+    {
+      "n": 10,
+      "ruling": "rejected",
+      "reason": "Out of batch scope — the 'Other seasons' cross-link widget concatenates season/name/date with no separator; that run-together layout is a code template, not a string in this batch's pack.json. The season/name/date values shown ('Heiliger Ramadan', 'Kafu-Nächte', 'Während des Ramadan') are already-approved Charge 2 content (do-not-edit) — this batch owns none of those three fields."
+    },
+    {
+      "n": 11,
+      "ruling": "rejected",
+      "reason": "Out of batch scope — the mix of weather-based and religious season labels, and the 'Heiliger Ramadan' qualifier, are already-approved Charge 2 content and a Charge-2 binding decision (a religious calendar event gets a short, respectful two-word form). This batch's four events (palm-village, uqair-winter, wafrah-winter, horse-racing) do not include a religious season label to compare against."
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "reason": "Out of batch scope — running season/name/date together without a visible separator in the 'Other seasons' list is a code-template layout choice (unlike the main table, which does use a separator), not a translatable string; and the specific rows quoted (Hasawi-Bischt-Festival, Qaisariyah-Nächte, Kafu-Nächte) are already-approved earlier-batch content this batch does not own."
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "ev.palm-village.span, ev.wafrah-winter.span, ev.horse-racing.span ('Ungefähre Dauer' field)",
+      "defect": "The English/Arabic source pairs the label 'approximate duration' with a vague qualifier ('An extended season'/'An extended winter season' — «موسم ممتد»/«موسم شتوي ممتد») that never states an actual length, unlike the sibling event uqair-winter whose source gives 'Several weeks'/«عدة أسابيع». A faithful translation cannot supply a duration the source withholds.",
+      "langs_affected": "en, ar, and every target translation (de, ru, zh) equally — not language-specific"
+    },
+    {
+      "where": "ev.palm-village.span / .time, ev.wafrah-winter.span / .time, ev.horse-racing.span / .time (duration read together with the date range)",
+      "defect": "The source states a full, precise month range and simultaneously calls the season 'extended'/'ممتد' without ever indicating what shorter baseline it is extended relative to. This internal tension exists in English and Arabic before translation.",
+      "langs_affected": "en, ar, and every target translation equally"
+    },
+    {
+      "where": "ev.palm-village.name + ev.palm-village.place ('Palm Village' at 'Al-Ahsa Oasis' / «قرية النخيل» at «واحة الأحساء»)",
+      "defect": "The event name reads like a permanent settlement rather than a seasonal event, and its venue is the entire oasis rather than a specific site, so a reader cannot tell whether it is a real year-round village or a temporary seasonal setup. This ambiguity originates in the source naming and location fields, not in translation.",
+      "langs_affected": "en, ar, and every target translation equally"
+    },
+    {
+      "where": "ev.wafrah-winter.org ('Private operators under Al-Ahsa Municipality supervision' / «ملاك ومستثمرون بإشراف أمانة الأحساء»)",
+      "defect": "Neither source language specifies owners/investors of what (land, food-truck plots, or businesses) — the phrase is left open in English and Arabic alike.",
+      "langs_affected": "en, ar, and every target translation equally"
+    },
+    {
+      "where": "ev.horse-racing.place ('Al-Ahsa Equestrian Arena, Al-Taraf' / «ميدان الفروسية، الطرف») vs. ev.horse-racing.org ('Al-Ahsa Equestrian Arena' / «ميدان الفروسية بالأحساء»)",
+      "defect": "The Arabic authority names the same venue/organiser once without and once with the 'Al-Ahsa' prefix, leaving it unclear whether venue and organiser are the same institution. Stage 4's web search found no official name to resolve it; the identical inconsistency was independently flagged in the Russian batch ru-ev-3 at the same two fields.",
+      "langs_affected": "en, ar, and every target translation (de, ru) equally"
+    }
+  ],
+  "final": {
+    "strings": {
+      "ev.palm-village.name": "Palmendorf",
+      "ev.palm-village.place": "Al-Ahsa-Oase",
+      "ev.palm-village.season": "Winter und Frühling",
+      "ev.palm-village.time": "Januar–März",
+      "ev.palm-village.span": "Verlängerte Saison",
+      "ev.palm-village.org": "Nationales Zentrum für Palmen und Datteln",
+      "ev.palm-village.acts.0": "Dattelläden",
+      "ev.palm-village.acts.1": "Lokale Restaurants und Cafés",
+      "ev.palm-village.acts.2": "Handwerker-Pavillons (Palmwedel-Flechtwaren)",
+      "ev.palm-village.acts.3": "Vermarktung ländlicher Erzeugnisse",
+      "ev.uqair-winter.name": "Al-Uqair-Winter",
+      "ev.uqair-winter.place": "Park am Al-Uqair-Strand",
+      "ev.uqair-winter.season": "Winter",
+      "ev.uqair-winter.time": "Dezember–Februar",
+      "ev.uqair-winter.span": "Mehrere Wochen",
+      "ev.uqair-winter.org": "Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa",
+      "ev.uqair-winter.acts.0": "Familienfreundliche Meeres- und Sportaktivitäten",
+      "ev.uqair-winter.acts.1": "Kunst- und Handwerksworkshops",
+      "ev.uqair-winter.acts.2": "Unterhaltungsspiele",
+      "ev.wafrah-winter.name": "Al-Wafrah-Winter",
+      "ev.wafrah-winter.place": "Al-Wafrah-Viertel, südlich von Hofuf",
+      "ev.wafrah-winter.season": "Winter",
+      "ev.wafrah-winter.time": "Ab etwa November",
+      "ev.wafrah-winter.span": "Verlängerte Wintersaison",
+      "ev.wafrah-winter.org": "Eigentümer und Investoren unter Aufsicht der Kommunalverwaltung von Al-Ahsa",
+      "ev.wafrah-winter.acts.0": "Mehr als 150 Foodtrucks",
+      "ev.wafrah-winter.acts.1": "Hasawi-Volksgerichte",
+      "ev.wafrah-winter.acts.2": "Winterliches Beisammensein im Freien",
+      "ev.horse-racing.name": "Pferderennsaison",
+      "ev.horse-racing.place": "Reitsportanlage, Al-Taraf",
+      "ev.horse-racing.season": "Winter",
+      "ev.horse-racing.time": "November–Februar",
+      "ev.horse-racing.span": "Verlängerte Saison",
+      "ev.horse-racing.org": "Al-Ahsa-Reitsportanlage",
+      "ev.horse-racing.acts.0": "Pferderennen",
+      "ev.horse-racing.acts.1": "Reitsportveranstaltungen"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "National Center for Palms and Dates (المركز الوطني للنخيل والتمور)",
+      "de": "das Nationale Zentrum für Palmen und Datteln",
+      "artikel": "das",
+      "source": "Stage 4 web search (2026-09-19) found no official German name and no fixed foreign-language short form for this institution; genus 'das Zentrum' is deterministic from the German compound head (Duden), not a guess about an unconfirmed proper name.",
+      "status": "pending",
+      "note": "Descriptive placeholder carried over from Stage 1; reuse verbatim if this body recurs, do not re-derive."
+    },
+    {
+      "en": "Al-Ahsa Equestrian Arena (ميدان الفروسية بالأحساء / ميدان الفروسية)",
+      "de": "die Al-Ahsa-Reitsportanlage",
+      "artikel": "die",
+      "source": "Stage 4 web search (2026-09-19) found related but non-matching facilities in Al-Taraf/Al-Ahsa, none confirming an official German or English name for this exact venue; genus 'die Anlage' is deterministic from the German compound head.",
+      "status": "pending",
+      "note": "Arabic authority names the same institution with/without the 'Al-Ahsa' prefix in different fields (see source_defects); both forms ('Reitsportanlage, Al-Taraf' and 'Al-Ahsa-Reitsportanlage') are kept faithful to their respective source fields."
+    },
+    {
+      "en": "food truck(s) (فود ترك / عربة طعام)",
+      "de": "der Foodtruck (Pl. die Foodtrucks)",
+      "artikel": "der",
+      "source": "https://www.duden.de/rechtschreibung/Foodtruck — verbatim: \"Food­truck, Food-Truck, der\" (Substantiv, Maskulinum).",
+      "status": "verified",
+      "note": "Supersedes the earlier descriptive candidate 'Imbisswagen'; not Denglisch since it is a regular Duden headword."
+    },
+    {
+      "en": "Al-Wafrah district (حي الوفرة)",
+      "de": "das Al-Wafrah-Viertel",
+      "artikel": "das",
+      "source": "Pattern-matched to the already judge-approved termbase entries 'Al-Koot District → das Al-Koot-Viertel' and 'Al-Faisal district → das Al-Faisal-Viertel'; genus deterministic from the compound head 'das Viertel'.",
+      "status": "verified",
+      "note": "Used artikellos in card fields, matching the 'Al-Faisal-Viertel' precedent: 'Al-Wafrah-Viertel, südlich von Hofuf'."
+    },
+    {
+      "en": "folk dishes (أكلات شعبية)",
+      "de": "die Volksgerichte",
+      "artikel": "die",
+      "source": "Transparent compound following the established 'Volks-' family already in the termbase ('folk craft → das Volkshandwerk', 'folk heritage → die Volkskultur', 'folk arts shows → Volkskunstvorführungen'); genus deterministic from the compound head 'das Gericht' (Pl. 'die Gerichte').",
+      "status": "verified",
+      "note": "Used with Durchkopplung on the origin adjective: 'Hasawi-Volksgerichte'."
+    },
+    {
+      "en": "palm-frond crafts (الخوصيات)",
+      "de": "die Palmwedel-Flechtwaren",
+      "artikel": "die",
+      "source": "Transparent compound of two Duden headwords ('Palmwedel' + 'Flechtwaren'); genus deterministic from the compound head 'die Waren'.",
+      "status": "verified",
+      "note": "Used only as a parenthetical gloss, matching both source languages which also parenthesise «الخوصيات»."
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Palm Village",
+      "de": "Palmendorf",
+      "page": "events",
+      "field": "ev.palm-village.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Oasis",
+      "de": "Al-Ahsa-Oase",
+      "page": "events",
+      "field": "ev.palm-village.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter & spring",
+      "de": "Winter und Frühling",
+      "page": "events",
+      "field": "ev.palm-village.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "January – March",
+      "de": "Januar–März",
+      "page": "events",
+      "field": "ev.palm-village.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "An extended season",
+      "de": "Verlängerte Saison",
+      "page": "events",
+      "field": "ev.palm-village.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "National Center for Palms and Dates",
+      "de": "Nationales Zentrum für Palmen und Datteln",
+      "page": "events",
+      "field": "ev.palm-village.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Date shops",
+      "de": "Dattelläden",
+      "page": "events",
+      "field": "ev.palm-village.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Local restaurants & cafés",
+      "de": "Lokale Restaurants und Cafés",
+      "page": "events",
+      "field": "ev.palm-village.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Artisan pavilions (palm-frond crafts)",
+      "de": "Handwerker-Pavillons (Palmwedel-Flechtwaren)",
+      "page": "events",
+      "field": "ev.palm-village.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Rural products market",
+      "de": "Vermarktung ländlicher Erzeugnisse",
+      "page": "events",
+      "field": "ev.palm-village.acts.3",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Uqair Winter",
+      "de": "Al-Uqair-Winter",
+      "page": "events",
+      "field": "ev.uqair-winter.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Uqair Beach Park",
+      "de": "Park am Al-Uqair-Strand",
+      "page": "events",
+      "field": "ev.uqair-winter.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter",
+      "de": "Winter",
+      "page": "events",
+      "field": "ev.uqair-winter.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "December – February",
+      "de": "Dezember–Februar",
+      "page": "events",
+      "field": "ev.uqair-winter.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Several weeks",
+      "de": "Mehrere Wochen",
+      "page": "events",
+      "field": "ev.uqair-winter.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Development Authority, Al-Ahsa Municipality",
+      "de": "Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa",
+      "page": "events",
+      "field": "ev.uqair-winter.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Family sea & sports activities",
+      "de": "Familienfreundliche Meeres- und Sportaktivitäten",
+      "page": "events",
+      "field": "ev.uqair-winter.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Art & craft workshops",
+      "de": "Kunst- und Handwerksworkshops",
+      "page": "events",
+      "field": "ev.uqair-winter.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Fun games",
+      "de": "Unterhaltungsspiele",
+      "page": "events",
+      "field": "ev.uqair-winter.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Wafrah Winter",
+      "de": "Al-Wafrah-Winter",
+      "page": "events",
+      "field": "ev.wafrah-winter.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Wafrah district, south Hofuf",
+      "de": "Al-Wafrah-Viertel, südlich von Hofuf",
+      "page": "events",
+      "field": "ev.wafrah-winter.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter",
+      "de": "Winter",
+      "page": "events",
+      "field": "ev.wafrah-winter.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "From around November",
+      "de": "Ab etwa November",
+      "page": "events",
+      "field": "ev.wafrah-winter.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "An extended winter season",
+      "de": "Verlängerte Wintersaison",
+      "page": "events",
+      "field": "ev.wafrah-winter.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Private operators under Al-Ahsa Municipality supervision",
+      "de": "Eigentümer und Investoren unter Aufsicht der Kommunalverwaltung von Al-Ahsa",
+      "page": "events",
+      "field": "ev.wafrah-winter.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "150+ food trucks",
+      "de": "Mehr als 150 Foodtrucks",
+      "page": "events",
+      "field": "ev.wafrah-winter.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Hasawi folk dishes",
+      "de": "Hasawi-Volksgerichte",
+      "page": "events",
+      "field": "ev.wafrah-winter.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Open-air winter gatherings",
+      "de": "Winterliches Beisammensein im Freien",
+      "page": "events",
+      "field": "ev.wafrah-winter.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Horse Racing Season",
+      "de": "Pferderennsaison",
+      "page": "events",
+      "field": "ev.horse-racing.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Equestrian Arena, Al-Taraf",
+      "de": "Reitsportanlage, Al-Taraf",
+      "page": "events",
+      "field": "ev.horse-racing.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter",
+      "de": "Winter",
+      "page": "events",
+      "field": "ev.horse-racing.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "November – February",
+      "de": "November–Februar",
+      "page": "events",
+      "field": "ev.horse-racing.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "An extended season",
+      "de": "Verlängerte Saison",
+      "page": "events",
+      "field": "ev.horse-racing.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Equestrian Arena",
+      "de": "Al-Ahsa-Reitsportanlage",
+      "page": "events",
+      "field": "ev.horse-racing.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Horse races",
+      "de": "Pferderennen",
+      "page": "events",
+      "field": "ev.horse-racing.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Equestrian events",
+      "de": "Reitsportveranstaltungen",
+      "page": "events",
+      "field": "ev.horse-racing.acts.1",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Charge de-ev-3 (36 Felder, Karten 5–8: Palmendorf, Al-Uqair-Winter, Al-Wafrah-Winter, Pferderennsaison) übernimmt den Stage-5-Text unverändert — keine Textänderung gegenüber de-04/de-05 nötig. Alle 12 Beobachtungen des blinden Lesers wurden bewertet: 5 sind source_defect (die Vagheit von 'Verlängerte(r) (Winter-)Saison' ohne Zahlenangabe, die Spannung zwischen genauem Datumsbereich und 'verlängert', die Ambiguität von 'Palmendorf' an der ganzen Oase, die Unschärfe von 'Eigentümer und Investoren', und der Al-Ahsa-Präfix-Unterschied zwischen Ort und Veranstalter bei der Pferderennsaison — alle fünf liegen bereits im englischen/arabischen Quelltext, nicht in der Übersetzung); 7 wurden zurückgewiesen (drei davon betreffen bereits freigegebene frühere Chargen oder ein Code-Template außerhalb dieser Chargen-Strings — die Meta-Beschreibungsvorlage, das Status-Badge 'Erwartete Saison' aus Charge 1, und die Layout-Reihung der 'Other seasons'-Liste mit Charge-2-Inhalten; einer würde die von der arabischen Autorität bewusst gesetzte Unterscheidung «تسويق» vs. «سوق» aufheben; einer würde die in Charge 2 freigegebene 'Beisammensein'-Familie ohne besseren Vorschlag verlassen). Termbase: fünf Kandidaten bestätigt (zwei Institutionsnamen bleiben laut durchgeführter Web-Recherche 'pending', mit deterministischem Genus aus dem deutschen Kompositum-Kopf; 'Foodtrucks' mit Duden-Beleg 'verified'; 'Al-Wafrah-Viertel', 'Volksgerichte' und 'Palmwedel-Flechtwaren' 'verified' nach etabliertem Bildungsmuster). Alle 36 tm.json-Paare neu angelegt.\nBINDING: „An extended season“/«موسم ممتد» = „Verlängerte Saison“; „An extended winter season“/«موسم شتوي ممتد» = „Verlängerte Wintersaison“ — die fehlende Zahlenangabe ist ein Quellenmerkmal (kein konkreter Zeitraum im Quelltext), keine Übersetzungslücke; keine Zahl oder Wochenangabe nachträglich erfinden.\nBINDING: „food truck(s)“/«فود ترك» = „der Foodtruck“ (Pl. „die Foodtrucks“) — Duden-belegt (https://www.duden.de/rechtschreibung/Foodtruck), kein Denglisch; ersetzt den früheren deskriptiven Kandidaten „Imbisswagen“ für diese Begriffsfamilie in allen Folgechargen.\nBINDING: Ein rein gattungsbezeichnender englischer Veranstaltungsname ohne Eigennamen (z. B. „Palm Village“, „Horse Racing Season“) wird vollständig ins Deutsche übersetzt und nicht transliteriert — „Palmendorf“, „Pferderennsaison“ —, nach demselben Muster wie „Processed Dates Festival“ → „Festival der verarbeiteten Datteln“ (Charge 2).\nBINDING: Ein Veranstaltungsname aus Ortsname + englischem Gattungswort (Eigenname + Gattungswort, z. B. „Al-Uqair Winter“, „Al-Wafrah Winter“) wird als EIN durchgekoppeltes Kompositum geschrieben — „Al-Uqair-Winter“, „Al-Wafrah-Winter“ —, nie als Präpositionalfügung wie „Winter in Al-Uqair“.\nBINDING: Ein bereits auf der deutschen Seite veröffentlichter Attraktionsname (`venue_attractions_published_do_not_edit`) wird im `place`-Feld einer Veranstaltung wortgleich zitiert, mit vorangestelltem Gattungswort bei Bedarf («منتزه شاطئ العقير» → „Park am Al-Uqair-Strand“) — „Al-Uqair-Strand“ bleibt identisch mit `title_de` der Attraktionsseite, damit das Linkziel eindeutig bleibt.\nBINDING: „National Center for Palms and Dates“/«المركز الوطني للنخيل والتمور» = „das Nationale Zentrum für Palmen und Datteln“ (status pending) und „Al-Ahsa Equestrian Arena“/«ميدان الفروسية بالأحساء / ميدان الفروسية» = „die Al-Ahsa-Reitsportanlage“ (status pending) — beide nach durchgeführter Web-Recherche ohne amtliche deutsche oder feststehende fremdsprachige Form; bei Wiederauftreten wortgleich übernehmen, nicht neu recherchieren.\nBINDING: Nennt die arabische Autorität dieselbe Institution in verschiedenen Feldern desselben Ereignisses einmal mit und einmal ohne „Al-Ahsa“-Präfix (Ort vs. Veranstalter), wird jedes Feld einzeln treu übersetzt statt vereinheitlicht — dies ist ein Quellenmerkmal (auch in der russischen Charge ru-ev-3 an denselben Stellen beobachtet), kein stillschweigend zu korrigierender Fehler.\nBINDING: «تسويق المنتجات الريفية» („Vermarktung/Verkauf“, nicht «سوق» als Ortsbegriff) = „Vermarktung ländlicher Erzeugnisse“ — auch aus Gründen der Lesbarkeit nie „Markt“/„Marktstände“ einsetzen, da die arabische Autorität den Ortsbegriff bewusst vermeidet.\nBINDING: „Open-air winter gatherings“/«جلسات شتوية مفتوحة» = „Winterliches Beisammensein im Freien“ — reiht sich in die bereits freigegebene „Beisammensein“-Familie für Gatherings-Highlights ein (Charge 2: „Community gatherings“ → „Geselliges Beisammensein“); bei künftigen „gatherings“-Begriffen dieselbe Familie fortsetzen."
+}

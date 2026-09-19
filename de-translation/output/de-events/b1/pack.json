@@ -1,0 +1,178 @@
+{
+  "batch": "de-ev-1",
+  "lang": "de",
+  "page": "/de/events/ + /de/events/<slug>/ (EventsView.astro block de; EventDetailView.astro block de; TEXT_DE in src/data/events.ts; eventsTable caption in tables.ts)",
+  "part": "Batch 1 of 5 — index page chrome: hero, notice, card labels, status badges, countdown, tips, CTA, table caption",
+  "strings": {
+    "ix.eyebrow": {
+      "en": "Seasons of the oasis",
+      "ar": "مواسم الواحة",
+      "context": "Index page hero: small eyebrow line above the H1 (2–4 words; uppercased by CSS — do not write capitals)."
+    },
+    "ix.title": {
+      "en": "Festivals & Events",
+      "ar": "المهرجانات والفعاليات",
+      "context": "Index page H1 («Festivals & Events»); also the breadcrumb label of this page and the second breadcrumb on every single-event page. The published header/footer nav label for this page is nav.events = «Termine» (not editable here, see context). The H1 may differ from the nav label, as it does in English («Events» vs «Festivals & Events»)."
+    },
+    "ix.lead": {
+      "en": "From Qaisariyah Souq to the palm groves, Al-Ahsa pulses with seasons that revive its heritage all year round — celebrations and festivals that return each year in their season.",
+      "ar": "من سوق القيصرية إلى مزارع النخيل، تنبض الأحساء بمواسمَ تُحيي تراثها على مدار العام — احتفالاتٌ ومهرجاناتٌ تعود كلَّ سنةٍ في موسمها.",
+      "context": "Hero lead paragraph under the H1 (≈60ch column). Names: Qaisariyah Souq = published «der Qaisariyah-Souk»."
+    },
+    "ix.notice": {
+      "en": "These events recur annually in their approximate seasons; official dates and details may vary from year to year with each edition. Please confirm via the organisers’ announcements and official channels before visiting.",
+      "ar": "تتكرّر هذه الفعاليات سنوياً في مواسمها التقريبية، وقد تختلف مواعيدها وتفاصيلها من عامٍ لآخر بحسب تنظيم كل نسخة. يُرجى التأكد من إعلانات الجهات المنظّمة والقنوات الرسمية قبل الزيارة.",
+      "context": "FIRST paragraph of the page body, directly under the hero, above the event cards. BINDING OWNER RULE (CLAUDE.md): because the German nav label is «Termine» (which promises fixed dates), the top of /de/events/ MUST say explicitly that the dates are approximate — this paragraph carries that statement; keep it explicit and unmissable (e.g. «ungefähr»/«ungefähren»), without inventing anything beyond the source."
+    },
+    "ix.placeK": {
+      "en": "Location",
+      "ar": "الموقع",
+      "context": "Label (dt) on every event card before the venue; also the 2nd column header of the events table under the cards; reused as the same label on single-event pages. One word."
+    },
+    "ix.mapK": {
+      "en": "Map ↗",
+      "ar": "الخريطة ↗",
+      "context": "Small link after the venue on a card: opens Google Maps in a new tab. Keep the arrow ↗."
+    },
+    "ix.ticketK": {
+      "en": "Book your ticket",
+      "ar": "احجز تذكرتك",
+      "context": "Button on a card (and on the single-event page) linking to the official booking page — only shown for an edition that sells tickets. Imperative, Sie."
+    },
+    "ix.orgK": {
+      "en": "Organisers",
+      "ar": "الجهات المنظّمة",
+      "context": "Label (dt) on every card before the organising bodies (several cards list 2–3 bodies). Also used on single-event pages."
+    },
+    "ix.spanK": {
+      "en": "Approximate length",
+      "ar": "المدة التقريبية",
+      "context": "Label for the approximate duration («A few days», «Several weeks») — used on single-event pages next to «Season» and «When»."
+    },
+    "ix.actsK": {
+      "en": "Highlights",
+      "ar": "أبرز الأنشطة",
+      "context": "H3 above the bullet list of activities on each card (and H2 on single-event pages). Denglisch rule: «Highlight» at most once per page — prefer a German word."
+    },
+    "ix.statusL.confirmed": {
+      "en": "Confirmed this year",
+      "ar": "مؤكد هذا العام",
+      "context": "Status badge on a card photo: the organiser officially announced this year’s dates. Very short badge."
+    },
+    "ix.statusL.expected": {
+      "en": "Expected season",
+      "ar": "موسم متوقع",
+      "context": "Status badge (most cards): season expected by analogy with past editions — no official date. Very short badge, parallel to the other two."
+    },
+    "ix.statusL.tba": {
+      "en": "Awaiting announcement",
+      "ar": "بانتظار الإعلان",
+      "context": "Status badge: recurrence not yet announced. Very short badge, parallel to the other two."
+    },
+    "ix.cd.pre.one": {
+      "en": "Starts tomorrow",
+      "ar": "يبدأ غداً",
+      "context": "Countdown badge filled by JavaScript from the visitor’s device date, when exactly 1 day is left before an announced edition starts. German plural form «one» (n = 1); may contain {n} or not — English says «tomorrow»."
+    },
+    "ix.cd.pre.other": {
+      "en": "Starts in {n} days",
+      "ar": "يبدأ بعد {n} يوماً",
+      "context": "Countdown badge, n ≠ 1 days before the start. Keep the placeholder {n} literally (replaced by a Western-digit number)."
+    },
+    "ix.cd.today": {
+      "en": "Starts today",
+      "ar": "يبدأ اليوم",
+      "context": "Countdown badge on the opening day."
+    },
+    "ix.cd.last": {
+      "en": "Last day today",
+      "ar": "آخر يوم اليوم",
+      "context": "Countdown badge on the closing day of an edition."
+    },
+    "ix.cd.left.one": {
+      "en": "1 day left",
+      "ar": "يتبقّى يوم واحد",
+      "context": "Countdown badge during an edition: exactly 1 day left (German plural form «one»)."
+    },
+    "ix.cd.left.other": {
+      "en": "{n} days left",
+      "ar": "يتبقّى {n} يوم",
+      "context": "Countdown badge during an edition: n ≠ 1 days left. Keep {n} literally."
+    },
+    "ix.nowBadge": {
+      "en": "You are here now",
+      "ar": "نحن الآن هنا",
+      "context": "Badge on the card of whatever event is running in the current month (JS, device date). Arabic «نحن الآن هنا» = «we are here now» on a timeline — i.e. «this is the current season». Very short badge."
+    },
+    "ix.orderNote": {
+      "en": "The cards are ordered automatically by what is nearest to your device’s date — starting with whatever is under way now.",
+      "ar": "رُتِّبت البطاقات تلقائياً حسب الأقرب إلى تاريخ جهازك — تبدأ بما هو جارٍ الآن.",
+      "context": "Small note above the cards, shown only after JavaScript re-orders them by closeness to the device date."
+    },
+    "ix.notesH": {
+      "en": "Before you go",
+      "ar": "قبل أن تحضر",
+      "context": "H2 of the three-tip section below the cards; the SAME string is the heading of the notice box on every single-event page."
+    },
+    "ix.notes.0.h": {
+      "en": "Timing",
+      "ar": "التوقيت",
+      "context": "H3 of tip 1 («Timing»); ALSO the 3rd column header of the events table (the cells read «Winter · Around December»). One word."
+    },
+    "ix.notes.0.d": {
+      "en": "The events follow both the Hijri and Gregorian calendars and return annually in their approximate seasons; official dates can shift from year to year — follow each edition’s announcements.",
+      "ar": "تتبع الفعاليات التقويمين الهجري والميلادي وتعود سنوياً في مواسمها التقريبية، وقد تختلف المواعيد الرسمية من عامٍ لآخر — تابع إعلانات كل نسخة.",
+      "context": "Tip 1 text. Hijri calendar: gloss rule of the termbase applies (first mention on the page)."
+    },
+    "ix.notes.1.h": {
+      "en": "Heritage & creativity",
+      "ar": "التراث والإبداع",
+      "context": "H3 of tip 2."
+    },
+    "ix.notes.1.d": {
+      "en": "The festivals spotlight Al-Ahsa’s identity and heritage through folk dress, handicrafts and authentic local products.",
+      "ar": "تسلّط المهرجانات الضوء على هوية الأحساء وتراثها عبر الملابس الشعبية والحرف اليدوية والمنتجات المحلية الأصيلة.",
+      "context": "Tip 2 text."
+    },
+    "ix.notes.2.h": {
+      "en": "Family atmosphere",
+      "ar": "الأجواء العائلية",
+      "context": "H3 of tip 3."
+    },
+    "ix.notes.2.d": {
+      "en": "Programmes suit the whole family, focused on entertainment, creativity, shopping and tasting for all ages.",
+      "ar": "برامج تناسب جميع أفراد العائلة، بتركيزٍ على الترفيه والإبداع والتسوق والتذوق لكل الأعمار.",
+      "context": "Tip 3 text."
+    },
+    "ix.srcNote": {
+      "en": "For more information and updates, follow Al-Ahsa Municipality, the Al-Ahsa Development Authority and the events’ official channels.",
+      "ar": "للمزيد من المعلومات والتحديثات، يُرجى متابعة أمانة الأحساء وهيئة تطوير الأحساء والقنوات الرسمية للفعاليات.",
+      "context": "Small closing note under the tips. Bodies by their termbase names (Al-Ahsa Municipality = «die Kommunalverwaltung von Al-Ahsa»; Al-Ahsa Development Authority — search the termbase; if absent, stage 4 sources it)."
+    },
+    "ix.ctaH": {
+      "en": "Turn your season into a full trip",
+      "ar": "اجعل موسمك رحلةً كاملة",
+      "context": "H2 of the closing call-to-action band."
+    },
+    "ix.ctaD": {
+      "en": "Pair the festival with the oasis sights around it, and build your route in “My Trip”.",
+      "ar": "اربط زيارة المهرجان بمعالم الواحة القريبة منه، وجهّز مسارك في «رحلتي».",
+      "context": "CTA paragraph. «My Trip» = the published German label of the favourites feature (see neighbours: nav.myTrip or similar) — quote it exactly as published."
+    },
+    "ix.ctaBrowse": {
+      "en": "Browse attractions",
+      "ar": "تصفّح المعالم",
+      "context": "CTA button 1 → /de/attractions/. Short, imperative or noun phrase, parallel to button 2."
+    },
+    "ix.ctaPlan": {
+      "en": "Plan your trip",
+      "ar": "خطّط لرحلتك",
+      "context": "CTA button 2 → the (English) trip-planning page. Must match the published German label of the plan link (see neighbours nav.plan / nav.planVisit)."
+    },
+    "tbl.caption": {
+      "en": "Seasonal calendar of events — approximate, recurring annually",
+      "ar": "روزنامة مواسم الفعاليات — مواعيد تقريبية تعود سنوياً",
+      "context": "Caption of the events table below the cards (rows: event · venue · «season · time»). The source dash — ⇒ U+2013 with spaces. Must keep «approximate» explicit."
+    }
+  }
+}
