@@ -74,7 +74,7 @@ export function fruitsTable(lang: Lang, heads: { fruit: string; season: string; 
   }
   return {
     id: 'fruits',
-    caption: lang === 'ar' ? 'مواسم ثمار الواحة — كما في بطاقات الثمار' : lang === 'en' ? 'Oasis fruit seasons — as on the fruit cards' : lang === 'ru' ? 'Сезоны плодов оазиса — те же, что на карточках' : undefined,
+    caption: lang === 'ar' ? 'مواسم ثمار الواحة — كما في بطاقات الثمار' : lang === 'en' ? 'Oasis fruit seasons — as on the fruit cards' : lang === 'de' ? 'Saisons der Oasenfrüchte – wie auf den Fruchtkarten' : lang === 'ru' ? 'Сезоны плодов оазиса — те же, что на карточках' : undefined,
     head: [heads.fruit, heads.season, heads.group],
     rows,
   };

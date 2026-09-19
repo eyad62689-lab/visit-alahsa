@@ -488,4 +488,122 @@ export const FRUIT_GROUPS_RU: Group[] = [
   },
 ];
 
-export const fruitGroupsFor = (lang: string): Group[] => (lang === 'ar' ? FRUIT_GROUPS_AR : lang === 'zh' ? FRUIT_GROUPS_ZH : lang === 'ru' ? FRUIT_GROUPS_RU : FRUIT_GROUPS_EN);
+// @de-fruits:start
+// النسخة الألمانية — خط de-translation-pipeline حصراً (دفعات de-fruits-1/2/3، ج3 من خطة إكمال اللغات).
+// الصور والفصول (seasons) والاسم العلمي (sci) من البنية الإنجليزية نفسها؛ الرمان السواري بلا موسم بقرار إياد.
+export const FRUIT_GROUPS_DE: Group[] = [
+  {
+    title: 'Datteln – Krone der Oase',
+    intro: 'Datteln sind Al-Ahsas wichtigste Ernte; offizielle Berichte beziffern die jährliche Produktion auf rund 100.000 bis 120.000 Tonnen, während die Saudi Press Agency (SPA) im Oktober 2024 von mehr als 200.000 Tonnen berichtete. Die Oase besitzt eine der größten Genbanken für Dattelpalmen der Welt: 2021 stellte das Zentrum für Palmen und Datteln in Al-Ahsa einen Guinness-Rekord auf – mit mehr als 127 nationalen und internationalen Sorten. Manchen Quellen zufolge machen Khalas, Shishi und Razeez zusammen etwa drei Viertel der Produktion aus.',
+    fruits: [
+      {
+        img: '/img/fruits/khalas-v2', alt: 'Goldener Khalas-Rutab und bernsteinfarbener Khalas-Tamr in zwei nebeneinanderstehenden Schälchen auf einer Platte',
+        k: 'Datteln', name: 'Khalas',
+        season: 'Rutab: Mitte Juli – Ende August • Tamr (die reife, getrocknete Dattel): ca. 15.–25. September', seasons: 'summer autumn',
+        pre: 'Die Ikone der Datteln Al-Ahsas, ihre berühmteste und zugleich meistverkaufte Sorte, macht 15–20 % der Palmen der Oase aus. Die Frucht ist oval, mittelgroß und faserarm, golden bis bernsteinfarben, mit weicher Konsistenz und einer ausgewogenen, aromatischen Süße. Sie behält ihren Geschmack auch nach langer Lagerung und wird traditionell zu arabischem Kaffee gereicht – als Symbol für Großzügigkeit und Gastfreundschaft. Zudem ist sie reich an Mineralstoffen wie Zink, Mangan und Selen.',
+      },
+      {
+        img: '/img/fruits/shishi-v2', alt: 'Gelber Shishi-Rutab und brauner Shishi-Tamr zusammen auf einer Servierplatte',
+        k: 'Datteln', name: 'Shishi',
+        season: 'Rutab: Ende Juni • Tamr: Mitte – Ende August', seasons: 'summer',
+        pre: 'Al-Ahsas zweitberühmteste Sorte – nach Khalas am meisten gefragt. Die Frucht ist groß, mit einer vergleichsweise weichen, dicken Konsistenz, überwiegend braun mit goldgelber Basis und intensiv süß. Sie hält sich lange, ohne zu verderben – ideal zum Lagern und Einfrieren für den Verzehr übers ganze Jahr. Zudem wird sie zu Dibs (Dattelsirup) und anderen Dattelerzeugnissen weiterverarbeitet.',
+      },
+      {
+        img: '/img/fruits/raziz-tamr-v2', alt: 'Mit Sesam bedeckte Sifsif-Kugeln aus Razeez-Datteln in einer Messingschale',
+        k: 'Datteln', name: 'Razeez',
+        season: 'Tamr: spät in der Saison, gegen Anfang Oktober', seasons: 'autumn',
+        pre: 'Eine der ältesten und geschichtsträchtigsten Dattelsorten Al-Ahsas, die als eine der feinsten und nahrhaftesten Sorten gilt. Sie ist die Grundlage für „Sifsif“ – eine berühmte winterliche Süßspeise aus Razeez-Datteln mit Dattelsirup und Sesam, die in Gäste-Madschlis (Empfangsräumen) serviert wird – sowie für Dattelsirup selbst. Heute ist sie verhältnismäßig selten geworden, da sich die meisten Landwirte inzwischen dem Anbau von Khalas zugewandt haben.',
+      },
+      {
+        img: '/img/fruits/barhi', alt: 'Eine Rispe gelber Barhi-Datteln, hängend zwischen den Palmwedeln',
+        k: 'Datteln', name: 'Barhi',
+        season: 'Rutab: im Sommer', seasons: 'summer',
+        pre: 'Eine der berühmtesten Rutab-Sorten in Al-Ahsa und der arabischen Welt; ursprünglich aus dem Irak stammend, gelangte sie im späten 19. Jahrhundert nach Al-Ahsa und Qassim. Außergewöhnlich süß und weich, dazu frei von herber, zusammenziehender Bitterkeit selbst im gelben Balah-Stadium (Bisr) – deshalb wird sie in allen drei Stadien gegessen: als Balah, Rutab und Tamr. Beim Reifen wechselt sie dabei die Farbe von Grün über Gelb zu Bernsteinfarben.',
+      },
+      {
+        img: '/img/fruits/bawakir-v2', alt: 'Schalen mit verschiedenem Rutab: Ghar, Khneizi und Shahl',
+        k: 'Datteln', name: 'Bawakir – frühe und lokale Sorten',
+        season: 'Rutab und Tamr: von Ende Mai bis Oktober', seasons: 'spring summer autumn',
+        pre: 'Neben den großen Sorten hält die Oase Dutzende lokaler Sorten bereit, die die Saison eröffnen oder beschließen: Tayyar, Mignaz und Ghar führen die Frühernte an, gefolgt von Khneizi, Shishi und Khalas, während später Rutab wie Umm Rahim, Zamli und Hilali bis Mitte August reicht – dazu kommen Shubaibi, Shahl, Wusaili, Hatimi, Kasbi und weitere.',
+      },
+    ],
+  },
+  {
+    title: 'Zitrusfrüchte',
+    fruits: [
+      {
+        img: '/img/fruits/lomi-v2', alt: 'Grüne Hasawi-Limetten mit einer aufgeschnittenen Hälfte',
+        k: 'Zitrusfrüchte', name: 'Hasawi-Limette (Bin Zuhairi)',
+        season: 'Sommer: ab Mitte Juni', seasons: 'summer',
+        pre: 'Das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln. Die kleine, dunkelgrüne, dünnschalige Frucht steckt voller Saft, schmeckt kräftig-sauer und besitzt einen durchdringenden Duft, der sie von allen anderen Zitrusfrüchten unterscheidet. In der Oase stehen mehr als 100.000 tragende Limettenbäume; ein einzelner Baum liefert 25–30 kg pro Saison. Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie zu pressen und als „Jameed“ (die sonnengetrocknete Limette) für den Gebrauch übers ganze Jahr haltbar zu machen. Alljährlich feiert das Gouvernorat sie mit der Hasawi-Lomi-Ausstellung, veranstaltet von der Al-Ahsa-Handelskammer in Partnerschaft mit der Al-Ahsa-Entwicklungsbehörde.',
+      },
+      {
+        img: '/img/fruits/atranj-v2', alt: 'Grüne Atranj-Früchte mit runzliger Schale',
+        k: 'Zitrusfrüchte', name: 'Atranj (Zitronatzitrone)',
+        season: 'Winter: von Januar bis Anfang März', seasons: 'winter',
+        pre: 'Eine altehrwürdige Zitrusart mit großer, duftender Frucht und dicker, runzliger Schale.',
+      },
+    ],
+  },
+  {
+    title: 'Sommerfrüchte',
+    fruits: [
+      {
+        img: '/img/fruits/melon-v2', alt: 'Hasawi-Melonen mit einer aufgeschnittenen Scheibe',
+        k: 'Sommerfrüchte', name: 'Gelbe Hasawi-Melone',
+        season: 'Sommer: ab etwa Ende Mai', seasons: 'summer',
+        pre: 'Ein landwirtschaftliches und kulturelles Erbe, über Generationen weitergegeben: Die lokale Sorte entstand durch gezielte Auslese und die Bewahrung überlegenen Saatguts. So erhielt sie ihre unverwechselbare gelbe Farbe und ihre Widerstandsfähigkeit gegen die Hitze und den Wassermangel Al-Ahsas. Süß und aromatisch, reich an Wasser, Ballaststoffen, Vitamin C, Kalium und Carotinoiden, dabei kalorienarm – ein natürlicher Erfrischer für den Sommer.',
+      },
+      {
+        img: '/img/fruits/fig', alt: 'Hasawi-Feigen mit einer aufgeschnittenen Hälfte, die das Fruchtfleisch zeigt',
+        k: 'Sommerfrüchte', name: 'Hasawi-Feige',
+        season: 'Sommer', seasons: 'summer',
+        pre: 'Eine beliebte Sommerfrucht: Die bekannteste Sorte Al-Ahsas ist blassgrün mit einem Hauch von Zitronengelb, und jede Feige hat etwa die Größe eines Bissens. Sie ist zuckersüß und zart und zeichnet sich – anders als viele Feigenarten – dadurch aus, dass sie nicht schnell verdirbt. Meist wird sie verstreut zwischen den Palmenhainen neben Limetten und Granatäpfeln gepflanzt statt in eigenen Gärten, weshalb sich ihre Bäume nicht genau zählen lassen. Manche Landwirte bewahren sie getrocknet auf; sie ist eine gesegnete Frucht, die im heiligen Koran erwähnt wird.',
+      },
+      {
+        img: '/img/fruits/bambar-v2', alt: 'Bambar-Früchte',
+        k: 'Sommerfrüchte', name: 'Hasawi-Bambar',
+        season: 'Sommer: etwa Juli – August', seasons: 'summer',
+        pre: 'Eine traditionsreiche Frucht, die von der älteren Generation geliebt wird, ist wissenschaftlich bekannt als ', sci: 'Cordia myxa', post: ' und wird auch als Sebestan, Mkheit und Hambu bezeichnet. Die kleine, ovale Frucht wechselt beim Reifen die Farbe von Grün zu Gelb oder Braun; ihr Geschmack ist süß, und ihr Fruchtfleisch ist so klebrig, dass es dafür sprichwörtlich geworden ist. Sie wird frisch gegessen und traditionell in der Volksmedizin bei Verdauungsbeschwerden verwendet.',
+      },
+      {
+        img: '/img/fruits/grapes-v2', alt: 'Eine Rispe Hasawi-Trauben',
+        k: 'Sommerfrüchte', name: 'Hasawi-Trauben',
+        season: 'Sommer: ab dem Frühsommer', seasons: 'summer',
+        pre: 'Eine kleine lokale Traube mit Kernen, die trotz ihrer geringen Größe für ihren Geschmack geschätzt wird und in einer roten und einer grünen Sorte vorkommt. Ihre Ernte beginnt mit dem Sommer, zusammen mit Limette, Feige und Rutab. Doch laut Landwirten und Händlern, die in der lokalen Presse zitiert wurden, ist die Produktion stark zurückgegangen, und die Sorte ist durch Wassermangel und schwindende Anbauflächen vom Aussterben bedroht.',
+      },
+      {
+        img: '/img/fruits/pomegranate-v2', alt: 'Suwari-Granatäpfel mit einer aufgeschnittenen Hälfte voller glänzender roter Kerne',
+        k: 'Sommerfrüchte', name: 'Hasawi-Granatapfel (Suwari)', rare: true,
+        season: '', seasons: 'summer autumn',
+        pre: 'Eine altehrwürdige lokale Frucht: Ihre größten Exemplare werden „Suwari“ genannt. Der Granatapfel ist so intensiv süß, dass er davon aufplatzt. Zugleich strahlt er in kräftiger Farbe. Einst wurde er dicht in der ganzen Oase neben Feigen und Limetten gepflanzt. Doch seine Produktion ist – wie bei mehreren traditionellen Früchten Al-Ahsas – so stark zurückgegangen, dass er in den Hainen fast ausgestorben ist. Er ist heute nur noch selten zu finden.',
+      },
+      {
+        img: '/img/fruits/papaya-v2', alt: 'Eine Papaya und eine aufgeschnittene Hälfte, die das orangefarbene Fruchtfleisch zeigt',
+        k: 'Sommerfrüchte', name: 'Papaya',
+        season: 'Sommer: von Juni bis August', seasons: 'summer',
+        pre: 'Eine tropische Frucht mit süßem, orangefarbenem Fruchtfleisch, die im Sommer in den Hainen der Oase reift.',
+      },
+    ],
+  },
+  {
+    title: 'Frühlings- und Winterfrüchte',
+    fruits: [
+      {
+        img: '/img/fruits/mulberry-v2', alt: 'Ein Haufen roter und schwarzer Hasawi-Maulbeeren',
+        k: 'Frühlingsfrüchte', name: 'Hasawi-Maulbeere',
+        season: 'Frühling: etwa April – eine Saison von kaum einem Monat', seasons: 'spring',
+        pre: 'Eine Frühlingsfrucht mit kurzer Saison: Sie erscheint, sobald die letzten Kälteperioden abklingen. Ihre kleinen, fast runden Beeren sind rot, schwarz oder blau, wobei Rot und Schwarz auf den Farmen Al-Ahsas überwiegen. Die Nachfrage ist gerade wegen der kurzen Saison hoch. Sie wird frisch gegessen und in Süßspeisen, Eiscreme, Säften und Konfitüren verwendet; nach Saisonende wird sie eingefroren. Ihr Anbau gilt als eine der vielversprechenden Kulturen der Oase.',
+      },
+      {
+        img: '/img/fruits/kanar', alt: 'Kanar-Früchte',
+        k: 'Winterfrüchte', name: 'Hasawi-Kanar (Nabk)',
+        season: 'Winter: von etwa Januar bis Ende März', seasons: 'winter spring',
+        pre: 'Eine altehrwürdige Winterfrucht vom Sidr-Baum, der im heiligen Koran erwähnt wird: Die Oase blieb die fruchtbare Heimat dieses Baums. Sie kommt in mehreren Sorten vor: „Tuffahi“ (apfelgroß), „Umm Sulaim“ (klein und kernlos) und „Sini“ (groß und grün), dazu birnenähnliche und indische Sorten. Süß und besonders bei Kindern beliebt, hält sie sich nicht lange, und ihr Kauf auf den Souks ist mit eigenen volkstümlichen Sprüchen verbunden.',
+      },
+    ],
+  },
+];
+
+// @de-fruits:end
+export const fruitGroupsFor = (lang: string): Group[] => (lang === 'ar' ? FRUIT_GROUPS_AR : lang === 'zh' ? FRUIT_GROUPS_ZH : lang === 'de' ? FRUIT_GROUPS_DE : lang === 'ru' ? FRUIT_GROUPS_RU : FRUIT_GROUPS_EN);

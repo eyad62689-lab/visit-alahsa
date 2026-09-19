@@ -12,7 +12,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import DataTable from '../DataTable.astro';
 import { fruitsTable } from '../../lib/tables';
-import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_RU } from '../../data/fruits';
+import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_DE, FRUIT_GROUPS_RU } from '../../data/fruits';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { reviewedLabel } from '../../data/meta';
@@ -22,11 +22,16 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const de = lang === 'de';
 const ru = lang === 'ru';
 // رؤوس جدول المواسم (الخطوة 8 من خطة التفاعل العالمي) — عربي/إنجليزي فقط؛ الصيني بانتظار خط الترجمة فلا يُبنى جدوله
+// @de-fruits:heads:start
+// رؤوس جدول المواسم الألمانية — من خط de-translation-pipeline (دفعة de-fruits-1)
+const DE_HEADS = { fruit: 'Frucht', season: 'Saison', group: 'Gruppe' };
+// @de-fruits:heads:end
 // رؤوس جدول المواسم الروسية — من خط ru-translation-pipeline (دفعة ru-fruits)
 const RU_HEADS = { fruit: 'Плод', season: 'Сезон', group: 'Группа' };
-const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : ru ? RU_HEADS : { fruit: 'Fruit', season: 'Season', group: 'Group' };
+const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : de ? DE_HEADS : ru ? RU_HEADS : { fruit: 'Fruit', season: 'Season', group: 'Group' };
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة fruits 2026-09-02، الحاكم 94/100)
 const ZH = {
@@ -95,6 +100,44 @@ const RU = {
   groups: FRUIT_GROUPS_RU,
 };
 
+// @de-fruits:start
+// الكتلة الألمانية — خط de-translation-pipeline (دفعات de-fruits-1/2/3، ج3).
+// رؤوس الجدول وعنوانه من الخط نفسه، فيُبنى جدول المواسم بالألمانية لا بالإنجليزية.
+const DE = {
+  heroEyebrow: 'Von den Gaben der Oase',
+  title: 'Saisonale Früchte Al-Ahsas',
+  heroSum: 'In der größten Oase der Welt lösen sich die Jahreszeiten in den Hainen ab und schenken den Besuchern in jeder Jahreszeit eine neue Frucht und einen neuen Geschmack. Das reicht von der goldenen, halbreifen, weichen Sommerdattel namens Rutab bis zur winterlichen Sidr-Frucht namens Kanar (Indische Jujube) – dazu die berühmte Hasawi-Limette (Lomi) der Oase.',
+  stats: [
+    { n: '2,5 Mio.', l: 'Dattelpalmen in der Oase' },
+    { n: '400 Tsd.', l: 'Obstbäume neben den Palmen' },
+  ],
+  statsSrc: 'Laut Eintrag von Guinness World Records (Oktober 2020) und Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft.',
+  frEyebrow: 'Rundgang durch die Früchte',
+  frH: 'Eine Frucht für jede Jahreszeit',
+  frLead: 'Wählen Sie die Jahreszeit Ihres Besuchs, um deren Früchte zu sehen:',
+  chipsAria: 'Früchte nach Jahreszeit filtern',
+  chips: [
+    { f: 'all', l: 'Alle Jahreszeiten' },
+    { f: 'winter', l: 'Winter' },
+    { f: 'spring', l: 'Frühling' },
+    { f: 'summer', l: 'Sommer' },
+    { f: 'autumn', l: 'Herbst' },
+  ],
+  // وسم «بانتظار التأكيد» لا يُترجم (القرار 8 وقرار 2026-09-16): لا ثمرة ولا مجموعة تحمله اليوم،
+  // والحقل باقٍ لأن النوع يُستنتج من الكتلة العربية.
+  pending: '',
+  rare: 'Fast ausgestorben',
+  more: 'Mehr anzeigen',
+  less: 'Weniger anzeigen',
+  emptyMsg: 'Für diese Jahreszeit sind noch keine Früchte verzeichnet.',
+  countPrefix: 'Angezeigte Früchte: ',
+  methodH: 'Über die Genauigkeit dieser Seite',
+  methodP1: 'Diese Seite stützt sich auf vertrauenswürdige offizielle und landwirtschaftliche Quellen, und wir prüfen jede Angabe sorgfältig, bevor wir sie veröffentlichen.',
+  methodP2: `Die Reifezeiten verschieben sich je nach Witterung leicht von Saison zu Saison; diese Angaben wurden im ${reviewedLabel('fruits', 'de')} überprüft.`,
+  groups: FRUIT_GROUPS_DE,
+};
+
+// @de-fruits:end
 const C = localize(lang, {
   ar: {
     heroEyebrow: 'من خيرات الواحة',
@@ -159,6 +202,7 @@ const C = localize(lang, {
     groups: FRUIT_GROUPS_EN,
   },
   zh: ZH,
+  de: DE,
   ru: RU,
 });
 
@@ -167,15 +211,17 @@ const description = ar
   ? 'جولة على ثمار واحة الأحساء بمواسمها: التمور والرطب، اللومي الأحسائي، البطيخ الأصفر، التين، الكنار وغيرها — بمعلومات موثقة من مصادر رسمية.'
   : zh
     ? '按季节了解哈萨绿洲的时令水果：椰枣与软熟鲜枣、哈萨青柠、黄西瓜、无花果、毛叶枣等——所有信息均经官方来源核实。'
+    : de
+      ? 'Die Früchte der Al-Ahsa-Oase Saison für Saison: Datteln und Rutab, Hasawi-Limette, gelbe Melone, Feigen, Kanar und mehr – nach offiziellen Quellen geprüft.'
     : ru
       ? 'Плоды оазиса Аль-Ахса по сезонам: финики и рутаб, лайм Аль-Ахсы, жёлтая дыня, инжир, канар и другие — с проверенными сведениями из официальных источников.'
       : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : ru ? '/ru/fruits/' : '/en/fruits/';
+const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : '/en/fruits/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];

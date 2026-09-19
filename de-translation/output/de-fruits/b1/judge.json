@@ -1,0 +1,483 @@
+{
+  "batch": "de-fruits-1",
+  "loop": 1,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "rejected",
+      "reason": "Der doppelte Ortsname im Tab-Titel entsteht durch das gemeinsame <title>-Muster «{H1} – Al-Ahsa», das jede Seite anhängt (F6) — laut BRIEF.md ausdrücklich außerhalb des Zugriffs dieser Charge («لا يُعدَّل هنا»). ui.title selbst («Saisonale Früchte Al-Ahsas») ist für sich genommen korrekt und folgt titel_regel/der Genitiv-Präzedenz."
+    },
+    {
+      "n": 2,
+      "ruling": "applied",
+      "reason": "Berechtigter Nativeness-Einwand: «geprüft nach X» ist unidiomatisch. Umgestellt zu «nach offiziellen Quellen geprüft» (Partizip nachgestellt) — keine Tatsache geändert, Zeichenzahl identisch (155/160).",
+      "edit": {
+        "key_or_field": "ui.description",
+        "before": "Die Früchte der Al-Ahsa-Oase Saison für Saison: Datteln und Rutab, Hasawi-Limette, gelbe Melone, Feigen, Kanar und mehr – geprüft nach offiziellen Quellen.",
+        "after": "Die Früchte der Al-Ahsa-Oase Saison für Saison: Datteln und Rutab, Hasawi-Limette, gelbe Melone, Feigen, Kanar und mehr – nach offiziellen Quellen geprüft."
+      }
+    },
+    {
+      "n": 3,
+      "ruling": "rejected",
+      "reason": "Die Meta-Beschreibung ist ein ≤160-Zeichen-Suchschnipsel (Regel 13 im BRIEF), der laut pack.json bewusst generische Fruchtnamen ohne Erläuterung führen soll, konsistent mit den Kartennamen der Batches 2–3. Eine Klammerglosse für Rutab/Kanar an dieser Stelle würde das Budget sprengen und widerspricht der gloss_regel, die die Glosse ausdrücklich in den ersten Fließtext (ui.heroSum), nicht in die Meta-Beschreibung, legt. Kein Fakt fehlt — die Begriffe werden im eigentlichen Seitentext (Zeile 1) definiert."
+    },
+    {
+      "n": 4,
+      "ruling": "applied",
+      "reason": "Berechtigte Lesbarkeitskritik: der Satz war zu lang/verschachtelt. In zwei Sätze aufgeteilt, keine Tatsache, Reihenfolge oder Zahl geändert.",
+      "edit": {
+        "key_or_field": "ui.heroSum",
+        "before": "In der größten Oase der Welt wechseln sich die Jahreszeiten über den Hainen ab und schenken den Besuchern in jeder Jahreszeit eine neue Frucht und einen neuen Geschmack – von der goldenen, halbreifen, weichen Sommerdattel namens Rutab bis zur winterlichen Sidr-Frucht namens Kanar (Indische Jujube) und der berühmten Hasawi-Limette (Lomi) der Oase.",
+        "after": "In der größten Oase der Welt lösen sich die Jahreszeiten in den Hainen ab und schenken den Besuchern in jeder Jahreszeit eine neue Frucht und einen neuen Geschmack. Das reicht von der goldenen, halbreifen, weichen Sommerdattel namens Rutab bis zur winterlichen Sidr-Frucht namens Kanar (Indische Jujube) – dazu die berühmte Hasawi-Limette (Lomi) der Oase."
+      }
+    },
+    {
+      "n": 5,
+      "ruling": "applied",
+      "reason": "Berechtigt: «über den Hainen ab» konnte räumlich («oberhalb der Baumkronen») statt zeitlich gelesen werden. Ersetzt durch «in den Hainen ab» (gleicher Sachverhalt: die Jahreszeiten wechseln einander in den Hainen ab), löst die Fehllesart ohne neue Information.",
+      "edit": {
+        "key_or_field": "ui.heroSum",
+        "before": "…wechseln sich die Jahreszeiten über den Hainen ab…",
+        "after": "…lösen sich die Jahreszeiten in den Hainen ab…"
+      }
+    },
+    {
+      "n": 6,
+      "ruling": "applied",
+      "reason": "Berechtigt: die Kette «bis zur … und der …» ließ offen, ob die Hasawi-Limette noch Teil der Von-bis-Spanne ist. Durch Gedankenstrich + «dazu» als klar abgesetztes drittes, zusätzliches Beispiel markiert — entspricht dem Englischen/Arabischen, wo «and» / «و» die Limette ebenfalls als eigenständige, additive Nennung neben der Spanne führt (keine neue Tatsache, nur die Satzachse geändert, siehe Bearbeitung zu #4).",
+      "edit": {
+        "key_or_field": "ui.heroSum",
+        "before": "…namens Kanar (Indische Jujube) und der berühmten Hasawi-Limette (Lomi) der Oase.",
+        "after": "…namens Kanar (Indische Jujube) – dazu die berühmte Hasawi-Limette (Lomi) der Oase."
+      }
+    },
+    {
+      "n": 7,
+      "ruling": "source_defect",
+      "reason": "Das Versprechen «in jeder Jahreszeit eine neue Frucht» wird im Quelltext selbst (Englisch UND Arabisch) nur mit zwei Beispielen (Sommer/Winter) plus der Limette illustriert — Frühling und Herbst bleiben unbenannt. Das ist keine Übersetzungslücke: eine Frühlings-/Herbstfrucht zu erfinden würde eine Tatsache hinzufügen, die weder en noch ar trägt. Die Batches 2–3 lösen das inhaltlich durch ihre eigenen Saison-Badges, nicht durch Ergänzung dieses Satzes."
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "Das Muster «Fremdwort + Klammerglosse danach» ist die site-weite, freigegebene Glossierungskonvention (z. B. «Jabal al-Qarah (der Qarah-Berg)», «die Sidr-Frucht (Indische Jujube)») — nicht umkehrbar, ohne mit allen bestehenden Glossen zu brechen. Der Leser löst die kurze Irritation selbst auf, wie im Beobachtungstext beschrieben; das ist die Funktionsweise des Verfahrens, kein Fehler."
+    },
+    {
+      "n": 9,
+      "ruling": "rejected",
+      "reason": "BRIEF Regel 4 verbietet «mehr als»/«über» in dieser Kachel ausdrücklich, weil der Quelltext es an dieser Stelle nicht trägt («Die Kachel selbst trägt es nicht»); der Fließtext «home.hero.lead» führt den Zusatz bereits an anderer Stelle. Eine Ergänzung hier wäre ein Verstoß gegen eine bindende Vorgabe dieser Charge, keine Korrektur."
+    },
+    {
+      "n": 10,
+      "ruling": "rejected",
+      "reason": "«alongside the palms» ist im Englischen selbst räumlich UND additiv lesbar; «neben den Palmen» überträgt genau diese offene Lesart. Eine Auflösung in die eine oder andere Richtung («zusätzlich zu» vs. rein räumlich) würde eine Präzisierung einführen, die der Quelltext nicht trägt."
+    },
+    {
+      "n": 11,
+      "ruling": "applied",
+      "reason": "Berechtigter Nativeness-Einwand: «Nach dem Eintrag von» klingt unidiomatisch. Ersetzt durch «Laut Eintrag von» — behält den unartikulierten Markennamen «Guinness World Records» (Termbase: artikel «—») bei, ohne ein Genus dafür zu erfinden.",
+      "edit": {
+        "key_or_field": "ui.statsSrc",
+        "before": "Nach dem Eintrag von Guinness World Records (Oktober 2020) und Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft.",
+        "after": "Laut Eintrag von Guinness World Records (Oktober 2020) und Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft."
+      }
+    },
+    {
+      "n": 12,
+      "ruling": "applied",
+      "reason": "Berechtigt: «Tour durch die Früchte» liest sich als Kalke. Ersetzt durch «Rundgang durch die Früchte» (gleiche Wortzahl/Budget, idiomatischer).",
+      "edit": {
+        "key_or_field": "ui.frEyebrow",
+        "before": "Tour durch die Früchte",
+        "after": "Rundgang durch die Früchte"
+      }
+    },
+    {
+      "n": 13,
+      "ruling": "applied",
+      "reason": "Berechtigt: die Nähe von großgeschriebenem «Sie»/«Ihres» und kleingeschriebenem «ihre» (bezogen auf «die Jahreszeit») kann kurz verwirren, obwohl grammatisch korrekt. «ihre» durch das eindeutig rückbezügliche «deren» ersetzt — beseitigt die optische Nähe zur Anrede, ohne Bedeutung zu ändern.",
+      "edit": {
+        "key_or_field": "ui.frLead",
+        "before": "Wählen Sie die Jahreszeit Ihres Besuchs, um ihre Früchte zu sehen:",
+        "after": "Wählen Sie die Jahreszeit Ihres Besuchs, um deren Früchte zu sehen:"
+      }
+    },
+    {
+      "n": 14,
+      "ruling": "rejected",
+      "reason": "«noch» überträgt originalgetreu das «yet» der englischen Quelle («No fruits recorded for this season yet.») — dieselbe Offenheit (vorübergehende Lücke vs. strukturell fruchtlos) besteht bereits im Englischen. Keine Übersetzungslücke."
+    },
+    {
+      "n": 15,
+      "ruling": "rejected",
+      "reason": "Laut BRIEF Regel 8 ist «Fast ausgestorben» bewusst ein kurzes, unerläutertes Etikett (Eigentümerformulierung «شبه منقرض»), parallel zum ebenso unerläuterten Englischen «Nearly extinct». Eine Erklärung würde Fakten hinzufügen, die pack.json nicht liefert."
+    },
+    {
+      "n": 16,
+      "ruling": "source_defect",
+      "reason": "Diese Charge führt nur fünf Kategorie-Badges (Datteln, Zitrusfrüchte, Sommer-, Frühlings-, Winterfrüchte); ein «Herbstfrüchte»-Badge existiert im englischen Quellmodell selbst nicht (tbl.group nennt nur vier Gruppentitel: Dates, Citrus, Summer fruits, Spring & winter fruits), obwohl der Saisonfilter «Autumn» als Kalenderjahreszeit führt. Diese Diskrepanz liegt im Datenmodell/der englischen Quelle, nicht in der deutschen Übertragung, und ist nicht ohne Erfindung eines neuen Fakts zu schließen."
+    },
+    {
+      "n": 17,
+      "ruling": "rejected",
+      "reason": "«— as on the fruit cards» steht wortgleich im englischen Original; die deutsche Fassung überträgt diese vom Auftraggeber gewählte Unterschrift originalgetreu. Kein Übersetzungsfehler."
+    },
+    {
+      "n": 18,
+      "ruling": "rejected",
+      "reason": "«Group» im Original ist ebenfalls ein einzelnes, kontextabhängiges Wort; «Gruppe» überträgt es originalgetreu als kurze Tabellen-Spaltenüberschrift, wie im pack.json-Kontext vorgegeben (ein Wort)."
+    },
+    {
+      "n": 19,
+      "ruling": "rejected",
+      "reason": "Der Tonwechsel zu einer sachlicheren Rubrik («About the accuracy of this page») steht bereits so im Original und ist eine bewusste, site-weite Konvention für Genauigkeits-/Verifizierungs-Hinweiskästen (vgl. Stage-5-Notiz zur Abgrenzung von der generischen Formel). Keine deutsche Übertreibung."
+    },
+    {
+      "n": 20,
+      "ruling": "applied",
+      "reason": "Berechtigt: die vorangestellte Konstruktion «jede Angabe prüfen wir» wirkt kanzleihaft. Zu regulärer SVO-Wortstellung «wir prüfen jede Angabe sorgfältig, bevor wir sie veröffentlichen» umgebaut — gleicher Inhalt, wärmerer Ton, «stützt sich auf» beibehalten (fachlich neutral, keine Kanzleisprache).",
+      "edit": {
+        "key_or_field": "ui.methodP1",
+        "before": "Diese Seite stützt sich auf vertrauenswürdige offizielle und landwirtschaftliche Quellen; jede Angabe prüfen wir vor der Veröffentlichung.",
+        "after": "Diese Seite stützt sich auf vertrauenswürdige offizielle und landwirtschaftliche Quellen, und wir prüfen jede Angabe sorgfältig, bevor wir sie veröffentlichen."
+      }
+    },
+    {
+      "n": 21,
+      "ruling": "source_defect",
+      "reason": "Die logische Spannung («je nach Witterung» impliziert eigentlich Jahr-zu-Jahr-Schwankung, der Satz sagt aber «von Saison zu Saison») steht wortgleich im Englischen («shift slightly from season to season with the weather») und im Arabischen («من موسم لآخر بحسب الأحوال الجوية»). Eine deutsche Korrektur zu «von Jahr zu Jahr» würde vom Quelltext abweichen und ist daher nicht Aufgabe der Übersetzung."
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "ui.heroSum (en/ar)",
+      "defect": "Der Satz verspricht «in jeder Jahreszeit» eine neue Frucht, nennt aber nur Beispiele für Sommer und Winter plus die Limette — Frühling und Herbst bleiben unbenannt.",
+      "langs_affected": "en, ar, de, zh, ru"
+    },
+    {
+      "where": "k.* Kategorie-Badges vs. ui.chipAutumn (en)",
+      "defect": "Der Saisonfilter führt fünf Jahreszeiten inkl. «Autumn», aber die Fruchtgruppen/Tabellenspalte «Group» kennen kein eigenes «Autumn fruits»-Badge (nur Dates, Citrus, Summer, Spring & winter). Liegt im Datenmodell der englischen Seite, nicht in der Übersetzung.",
+      "langs_affected": "en, ar, de, zh, ru"
+    },
+    {
+      "where": "ui.methodP2 (en/ar)",
+      "defect": "«Ripening dates shift … with the weather» wird an «from season to season» gekoppelt, obwohl Witterungsschwankung eher Jahr-zu-Jahr gemeint sein dürfte — leichte logische Unschärfe bereits im Quelltext.",
+      "langs_affected": "en, ar, de, zh, ru"
+    }
+  ],
+  "final": {
+    "strings": {
+      "ui.heroEyebrow": "Von den Gaben der Oase",
+      "ui.title": "Saisonale Früchte Al-Ahsas",
+      "ui.heroSum": "In der größten Oase der Welt lösen sich die Jahreszeiten in den Hainen ab und schenken den Besuchern in jeder Jahreszeit eine neue Frucht und einen neuen Geschmack. Das reicht von der goldenen, halbreifen, weichen Sommerdattel namens Rutab bis zur winterlichen Sidr-Frucht namens Kanar (Indische Jujube) – dazu die berühmte Hasawi-Limette (Lomi) der Oase.",
+      "ui.stat1n": "2,5 Mio.",
+      "ui.stat1l": "Dattelpalmen in der Oase",
+      "ui.stat2n": "400 Tsd.",
+      "ui.stat2l": "Obstbäume neben den Palmen",
+      "ui.statsSrc": "Laut Eintrag von Guinness World Records (Oktober 2020) und Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft.",
+      "ui.frEyebrow": "Rundgang durch die Früchte",
+      "ui.frH": "Eine Frucht für jede Jahreszeit",
+      "ui.frLead": "Wählen Sie die Jahreszeit Ihres Besuchs, um deren Früchte zu sehen:",
+      "ui.chipsAria": "Früchte nach Jahreszeit filtern",
+      "ui.chipAll": "Alle Jahreszeiten",
+      "ui.chipWinter": "Winter",
+      "ui.chipSpring": "Frühling",
+      "ui.chipSummer": "Sommer",
+      "ui.chipAutumn": "Herbst",
+      "ui.rare": "Fast ausgestorben",
+      "ui.more": "Mehr anzeigen",
+      "ui.less": "Weniger anzeigen",
+      "ui.emptyMsg": "Für diese Jahreszeit sind noch keine Früchte verzeichnet.",
+      "ui.countPrefix": "Angezeigte Früchte: ",
+      "ui.methodH": "Über die Genauigkeit dieser Seite",
+      "ui.methodP1": "Diese Seite stützt sich auf vertrauenswürdige offizielle und landwirtschaftliche Quellen, und wir prüfen jede Angabe sorgfältig, bevor wir sie veröffentlichen.",
+      "ui.methodP2": "Die Reifezeiten verschieben sich je nach Witterung leicht von Saison zu Saison; diese Angaben wurden im {reviewed} überprüft.",
+      "ui.description": "Die Früchte der Al-Ahsa-Oase Saison für Saison: Datteln und Rutab, Hasawi-Limette, gelbe Melone, Feigen, Kanar und mehr – nach offiziellen Quellen geprüft.",
+      "tbl.caption": "Saisons der Oasenfrüchte – wie auf den Fruchtkarten",
+      "tbl.fruit": "Frucht",
+      "tbl.season": "Saison",
+      "tbl.group": "Gruppe",
+      "k.dates": "Datteln",
+      "k.citrus": "Zitrusfrüchte",
+      "k.summer": "Sommerfrüchte",
+      "k.spring": "Frühlingsfrüchte",
+      "k.winter": "Winterfrüchte"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Guinness World Records",
+      "de": "Guinness World Records",
+      "artikel": "—",
+      "source": "BATCH/pack.json → ui.statsSrc; Stage-4-Webverifikation (WebFetch guinnessworldrecords.de/about-us): amtliche deutschsprachige Eigenbezeichnung ohne Eindeutschung.",
+      "note": "Markenname ohne Artikel, kein Genus-Risiko. Stage 5/7 unverändert übernommen.",
+      "status": "verified"
+    },
+    {
+      "en": "Ministry of Environment, Water and Agriculture",
+      "de": "das Ministerium für Umwelt, Wasser und Landwirtschaft",
+      "artikel": "das",
+      "source": "BATCH/pack.json → ui.statsSrc; Stage-4-Webverifikation (amtlicher englischer Name seit Mai 2016 bestätigt). Reguläres deutsches Substantiv, Genus lexikalisch feststehend (Duden).",
+      "note": "Ausdrücklich getrennt vom bestehenden Termbase-Eintrag «das Landwirtschaftsministerium» (historische Nennung 1962/national-park.md) — dieser Eintrag gilt nur für den heutigen vollen Ressortnamen dieser Quelle (ui.statsSrc).",
+      "status": "verified"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "From the oasis bounty",
+      "de": "Von den Gaben der Oase",
+      "page": "fruits",
+      "field": "ui.heroEyebrow",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Seasonal Fruits of Al-Ahsa",
+      "de": "Saisonale Früchte Al-Ahsas",
+      "page": "fruits",
+      "field": "ui.title",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "In the world’s largest oasis, the seasons take turns over the groves, offering visitors a new fruit and flavour with each one — from golden summer rutab to winter kanar and the oasis’s famous lime.",
+      "de": "In der größten Oase der Welt lösen sich die Jahreszeiten in den Hainen ab und schenken den Besuchern in jeder Jahreszeit eine neue Frucht und einen neuen Geschmack. Das reicht von der goldenen, halbreifen, weichen Sommerdattel namens Rutab bis zur winterlichen Sidr-Frucht namens Kanar (Indische Jujube) – dazu die berühmte Hasawi-Limette (Lomi) der Oase.",
+      "page": "fruits",
+      "field": "ui.heroSum",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "2.5M",
+      "de": "2,5 Mio.",
+      "page": "fruits",
+      "field": "ui.stat1n",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "palm trees in the oasis",
+      "de": "Dattelpalmen in der Oase",
+      "page": "fruits",
+      "field": "ui.stat1l",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "400K",
+      "de": "400 Tsd.",
+      "page": "fruits",
+      "field": "ui.stat2n",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "fruit trees alongside the palms",
+      "de": "Obstbäume neben den Palmen",
+      "page": "fruits",
+      "field": "ui.stat2l",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Per the Guinness World Records listing (October 2020) and Ministry of Environment, Water and Agriculture statistics.",
+      "de": "Laut Eintrag von Guinness World Records (Oktober 2020) und Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft.",
+      "page": "fruits",
+      "field": "ui.statsSrc",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A tour of the fruits",
+      "de": "Rundgang durch die Früchte",
+      "page": "fruits",
+      "field": "ui.frEyebrow",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A fruit for every season",
+      "de": "Eine Frucht für jede Jahreszeit",
+      "page": "fruits",
+      "field": "ui.frH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Pick the season of your visit to see its fruits:",
+      "de": "Wählen Sie die Jahreszeit Ihres Besuchs, um deren Früchte zu sehen:",
+      "page": "fruits",
+      "field": "ui.frLead",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Filter fruits by season",
+      "de": "Früchte nach Jahreszeit filtern",
+      "page": "fruits",
+      "field": "ui.chipsAria",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "All seasons",
+      "de": "Alle Jahreszeiten",
+      "page": "fruits",
+      "field": "ui.chipAll",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter",
+      "de": "Winter",
+      "page": "fruits",
+      "field": "ui.chipWinter",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Spring",
+      "de": "Frühling",
+      "page": "fruits",
+      "field": "ui.chipSpring",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Summer",
+      "de": "Sommer",
+      "page": "fruits",
+      "field": "ui.chipSummer",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Autumn",
+      "de": "Herbst",
+      "page": "fruits",
+      "field": "ui.chipAutumn",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Nearly extinct",
+      "de": "Fast ausgestorben",
+      "page": "fruits",
+      "field": "ui.rare",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Read more",
+      "de": "Mehr anzeigen",
+      "page": "fruits",
+      "field": "ui.more",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Hide description",
+      "de": "Weniger anzeigen",
+      "page": "fruits",
+      "field": "ui.less",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "No fruits recorded for this season yet.",
+      "de": "Für diese Jahreszeit sind noch keine Früchte verzeichnet.",
+      "page": "fruits",
+      "field": "ui.emptyMsg",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Fruits shown: ",
+      "de": "Angezeigte Früchte: ",
+      "page": "fruits",
+      "field": "ui.countPrefix",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "About the accuracy of this page",
+      "de": "Über die Genauigkeit dieser Seite",
+      "page": "fruits",
+      "field": "ui.methodH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it.",
+      "de": "Diese Seite stützt sich auf vertrauenswürdige offizielle und landwirtschaftliche Quellen, und wir prüfen jede Angabe sorgfältig, bevor wir sie veröffentlichen.",
+      "page": "fruits",
+      "field": "ui.methodP1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Ripening dates shift slightly from season to season with the weather; this information was reviewed in {reviewed}.",
+      "de": "Die Reifezeiten verschieben sich je nach Witterung leicht von Saison zu Saison; diese Angaben wurden im {reviewed} überprüft.",
+      "page": "fruits",
+      "field": "ui.methodP2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.",
+      "de": "Die Früchte der Al-Ahsa-Oase Saison für Saison: Datteln und Rutab, Hasawi-Limette, gelbe Melone, Feigen, Kanar und mehr – nach offiziellen Quellen geprüft.",
+      "page": "fruits",
+      "field": "ui.description",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Oasis fruit seasons — as on the fruit cards",
+      "de": "Saisons der Oasenfrüchte – wie auf den Fruchtkarten",
+      "page": "fruits",
+      "field": "tbl.caption",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Fruit",
+      "de": "Frucht",
+      "page": "fruits",
+      "field": "tbl.fruit",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Season",
+      "de": "Saison",
+      "page": "fruits",
+      "field": "tbl.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Group",
+      "de": "Gruppe",
+      "page": "fruits",
+      "field": "tbl.group",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Dates",
+      "de": "Datteln",
+      "page": "fruits",
+      "field": "k.dates",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Citrus",
+      "de": "Zitrusfrüchte",
+      "page": "fruits",
+      "field": "k.citrus",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Summer fruits",
+      "de": "Sommerfrüchte",
+      "page": "fruits",
+      "field": "k.summer",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Spring fruits",
+      "de": "Frühlingsfrüchte",
+      "page": "fruits",
+      "field": "k.spring",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter fruits",
+      "de": "Winterfrüchte",
+      "page": "fruits",
+      "field": "k.winter",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "APPROVE 95/100 (Schwelle 90). Stage 5 hatte bereits den Hauptbefund geleistet (Rutab/Kanar mangels Beleg auf 'pending' zurückgestuft, ui.heroSum grammatisch entschärft); der Richter hat 8 der 21 Blindleser-Beobachtungen angewandt (2, 4, 5, 6, 11, 12, 13, 20 — alles Nativeness-Feinschliff ohne Faktenänderung), 10 abgelehnt (1, 3, 8, 9, 10, 14, 15, 17, 18, 19 — Budget-/Konventions-/Zaun-Gründe) und 3 als Quellenfehler verbucht (7, 16, 21 — liegen wortgleich in en/ar vor). \nBINDING für Batches 2–3 (Karten der Datteln/Zitrus- und Sommer-/Frühlings-/Winterfrüchte): \n- Gloss-Sperre: 'Rutab', 'Kanar' und 'Hasawi-Limette'/'Lomi' sind in ui.heroSum EIN letztes Mal geglosst — auf den Fruchtkarten NUR die nackten Namen 'Rutab', 'Kanar', 'Hasawi-Limette' (Lomi in Klammer erlaubt wie in lemon-farm.md), keine erneute Klammererklärung (Guard: pack.batch !== 'de-fruits-1' schlägt sonst fehl). \n- Rutab/Kanar bleiben OHNE eigenen Artikel (termbase-Status 'pending') — auf den Karten keinen Artikel für diese beiden Namen erfinden, bis ein Beleg nachgetragen wird; Konstruktionen nach dem Muster 'namens Rutab'/'namens Kanar' oder artikellose Titelverwendung nutzen. \n- Jahreszeiten-Wortwahl fix: Winter · Frühling · Sommer · Herbst (Filter, ohne Artikel); 'Jahreszeit' = Kalenderjahreszeit, 'Saison' = Erntefenster — nicht mischen. \n- Badge-Kompositionsmuster fix: '…früchte' geschlossen, ohne Artikel — Sommerfrüchte, Frühlingsfrüchte, Winterfrüchte, Zitrusfrüchte, Datteln (kein '-frucht' Singular). Kein 'Herbstfrüchte'-Badge vorgesehen (source_defect #16 — nur übernehmen, falls die Fruchtdaten es tatsächlich fordern, sonst nicht erfinden). \n- Zahlenformat fix: '2,5 Mio.' / '400 Tsd.' für kompakte Kacheln (kein 'mehr als' ohne Quellenbeleg in der jeweiligen Kachel); Datum 'Oktober 2020' unverändert lassen, falls erneut zitiert. \n- 'die Limette' NIE 'Zitrone', NIE 'schwarze Limette' — gilt für jede Karte mit Hasawi-Limette/Lomi. \n- 'Guinness World Records' und 'das Ministerium für Umwelt, Wasser und Landwirtschaft' sind jetzt verifizierte Termbase-Einträge — bei erneuter Nennung unverändert übernehmen, nicht mit 'das Landwirtschaftsministerium' (historischer 1962er-Eintrag) verwechseln. \n- ui.rare='Fast ausgestorben' bleibt Kurzetikett ohne Erläuterung — falls Batches 2–3 die Sawari-Granatapfelkarte selbst texten, dieselbe Kurzform ohne Ausschmückung verwenden."
+}
