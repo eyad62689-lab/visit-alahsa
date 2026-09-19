@@ -1,0 +1,481 @@
+{
+  "batch": "de-stay",
+  "loop": 1,
+  "score": 97,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 28,
+    "compliance": 19,
+    "fit": 10,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "applied",
+      "reason": "The construction “ist beschreibend, keine Empfehlung” reads as a direct calque of “is descriptive, not a recommendation” predicated onto the list itself, which German would not phrase this way. Rewrote both occurrences (the lead/meta-description sentence and the single-page “about this page” box) with a verb-led clause that keeps exactly the same two facts (descriptive; not a recommendation) without adding or dropping anything.",
+      "edit": {
+        "key_or_field": "ix.heroSum; dv.noteP",
+        "before": "Die Liste ist beschreibend, keine Empfehlung, und wächst stetig weiter. / … und diese Seite ist beschreibend und keine Empfehlung.",
+        "after": "Die Liste beschreibt nur, ohne zu empfehlen, und wächst stetig weiter. / … und diese Seite beschreibt nur, ohne zu empfehlen."
+      }
+    },
+    {
+      "n": 2,
+      "ruling": "applied",
+      "reason": "“von X bis Y” implies a spanning range with intermediate stops; the list holds exactly two entries, so the range reading misleads. Replaced with a plain conjunction that keeps both named venues and both facts (heritage inn in the old city; hotel on the Al-Uqair coast) unchanged.",
+      "edit": {
+        "key_or_field": "ix.heroSum",
+        "before": "von einem Kulturerbe-Gasthaus in der Altstadt bis zu einem Hotel an der Küste von Al-Uqair",
+        "after": "ein Kulturerbe-Gasthaus in der Altstadt und ein Hotel an der Küste von Al-Uqair"
+      }
+    },
+    {
+      "n": 3,
+      "ruling": "source_defect",
+      "reason": "The eyebrow floats with no visible referent for what “first” means or how many batches will follow — but this ambiguity is identical in en (“The first batch”) and ar (الدفعة الأولى); it is a page-design/IA property of the source pack, not a translation choice, and a 2–3-word eyebrow string has no room to add the missing context without inventing a fact the source doesn't give. Logged in source_defects for the page owner."
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "reason": "The brief (trap 5, gloss_regel) is explicit: gloss sadu weaving only with its literal meaning (Gewebe/Webstoff) and do not invent a description of the craft itself (no 'Bedouin', no 'wool') unless a sourced witness exists — none does. Adding an explanation of what the sadu technique is would add a fact the source and termbase do not carry; this is exactly the fence the brief draws."
+    },
+    {
+      "n": 5,
+      "ruling": "partial",
+      "reason": "The double “einem … einem” in koot.blurb is a genuine parse stumble from the embedded participle before the noun; restructured to a relative clause (matching the construction already used in koot.body) to remove it. Rejected the accompanying suggestion to replace “restaurieren zu” with “umbauen/herrichten”: en says “restored” and ar رُمّم — both specifically mean restoration, and “umgebaut/hergerichtet” would shift the claim toward conversion, softening a distinction the source makes on purpose.",
+      "edit": {
+        "key_or_field": "koot.blurb",
+        "before": "in einem zu einem Kulturerbe-Gasthaus restaurierten Palast.",
+        "after": "in einem Palast, der zu einem Kulturerbe-Gasthaus restauriert wurde."
+      }
+    },
+    {
+      "n": 6,
+      "ruling": "applied",
+      "reason": "Alt text should stay plain and functional for a screen reader, not literary; “über der davorliegenden Rasenfläche” stacks two decorative modifiers. Simplified the connector while keeping both facts (crenellated parapets; lawn in front) and the hotel's own name intact.",
+      "edit": {
+        "key_or_field": "cont.alt",
+        "before": "mit seinen zinnenbekrönten Brüstungen über der davorliegenden Rasenfläche",
+        "after": "mit seinen zinnenbekrönten Brüstungen und der Rasenfläche davor"
+      }
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "“Küste von Al-Uqair – östlich von Al-Ahsa” is the exact string already published on the German Al-Uqair Beach page and recorded in memory/tm.json; cont.area reuses it deliberately for site-wide consistency (context.json calls this out by name). Editing it here would both break that tm.json pair and reintroduce the header/footer-style self-contradiction the project has fought hard to eliminate. The underlying ambiguity (is Al-Uqair administratively part of Al-Ahsa?) is present identically in en and ar and is logged separately in source_defects."
+    },
+    {
+      "n": 8,
+      "ruling": "applied",
+      "reason": "Genuine ambiguity: “das” after “…im Gouvernorat, dem übergeordneten Verwaltungsbezirk, das von der Kommission … lizenziert wurde” can grammatically attach to either “Hotel” or “Gouvernorat” (both neuter). Bracketed the apposition in en-dashes instead of commas on both occurrences (index FAQ and single-page body) so the relative clause visibly resumes the main clause after the closing dash, without moving any word or changing the original scope (still “first heritage hotel in the governorate ... licensed by ...”).",
+      "edit": {
+        "key_or_field": "ix.faq0.a; koot.body",
+        "before": "…das erste Kulturerbe-Hotel im Gouvernorat, dem übergeordneten Verwaltungsbezirk, das von der Kommission für Tourismus und Nationalerbe lizenziert wurde.",
+        "after": "…das erste Kulturerbe-Hotel im Gouvernorat – dem übergeordneten Verwaltungsbezirk – das von der Kommission für Tourismus und Nationalerbe lizenziert wurde."
+      }
+    },
+    {
+      "n": 9,
+      "ruling": "applied",
+      "reason": "“einen eigenen Caravanstellplatz” reads as one individually assigned spot per owner; the source (“a dedicated site”) describes one shared, purpose-set-aside area. Swapped the adjective “eigenen” for the adverb “eigens dafür vorgesehenen”, which states purpose without implying individual ownership — same fact, no addition.",
+      "edit": {
+        "key_or_field": "ix.faq1.a",
+        "before": "einen eigenen Caravanstellplatz direkt am Strand",
+        "after": "einen eigens dafür vorgesehenen Caravanstellplatz direkt am Strand"
+      }
+    },
+    {
+      "n": 10,
+      "ruling": "rejected",
+      "reason": "“die Kommunalverwaltung von Al-Ahsa” is a termbase-locked form (confirmed by the judge in batch de-6 and reused on the published Al-Uqair Beach page) and its pair is already recorded in memory/tm.json; substituting a lighter synonym would override a sourced termbase entry by register preference alone and break cross-page consistency."
+    },
+    {
+      "n": 11,
+      "ruling": "applied",
+      "reason": "“Wir stufen keine Unterkunft über eine andere ein” is a calque of “we do not rank one above another”. Replaced with “bevorzugen … gegenüber einer anderen”, a natural German phrasing that keeps the same claim (no ranking) and the same grammatical subject/agent as the following clause (“… und nennen keine Preise”).",
+      "edit": {
+        "key_or_field": "ix.faq2.a",
+        "before": "Wir stufen keine Unterkunft über eine andere ein und nennen keine Preise",
+        "after": "Wir bevorzugen keine Unterkunft gegenüber einer anderen und nennen keine Preise"
+      }
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "reason": "This sentence faithfully translates the source: en explicitly says the blurbs are “brief introductions describing each place as it appears in its photo”, ar the same. The reader's puzzlement is with the site's own documented editorial policy (blurbs describe the photo, not an independent judgement of the venue), not with the German wording; explaining “why” would require content neither en nor ar provides."
+    },
+    {
+      "n": 13,
+      "ruling": "applied",
+      "reason": "“Die Zimmer sind acht Suiten” equates “rooms” with “suites” as a copula, reading like a translation of “The rooms are eight suites”. Reworded to “Die Zimmer umfassen acht Suiten”, same fact (there are eight suites), more natural German predicate.",
+      "edit": {
+        "key_or_field": "koot.body",
+        "before": "Die Zimmer sind acht Suiten unter Decken aus Palmstämmen und Palmwedeln,",
+        "after": "Die Zimmer umfassen acht Suiten unter Decken aus Palmstämmen und Palmwedeln,"
+      }
+    },
+    {
+      "n": 14,
+      "ruling": "applied",
+      "reason": "The clause after the first comma has no finite verb (“ihre Wände von gewölbten Nischen durchbrochen und … behängt”), forcing a re-read. Added the missing “sind” — a grammatical completion only, no fact touched.",
+      "edit": {
+        "key_or_field": "koot.body",
+        "before": "ihre Wände von gewölbten Nischen durchbrochen und mit Sadu-Gewebe (Webstoff) behängt.",
+        "after": "ihre Wände sind von gewölbten Nischen durchbrochen und mit Sadu-Gewebe (Webstoff) behängt."
+      }
+    },
+    {
+      "n": 15,
+      "ruling": "applied",
+      "reason": "“in mehreren Sprachen” sits far from “Bücher”, so on first pass it can misread as modifying “Geschichte”. Moved it next to “Bücher”, exactly as the reader's own suggested fix — pure reordering, no fact added or dropped.",
+      "edit": {
+        "key_or_field": "koot.body",
+        "before": "enthält Bücher über die Geschichte von Al-Ahsa und Al-Koot in mehreren Sprachen.",
+        "after": "enthält Bücher in mehreren Sprachen über die Geschichte von Al-Ahsa und Al-Koot."
+      }
+    },
+    {
+      "n": 16,
+      "ruling": "rejected",
+      "reason": "The dash-appended, verbless closing clause exists identically in en (“a stay inside the historic city rather than on its edge”) and ar (فالنزيل هنا داخل المدينة التاريخية لا على أطرافها), and BRIEF.md (trap 5, final bullet) explicitly directs to keep this ending with the dash. This is a deliberate rhetorical device carried over from the source, not a translation defect."
+    },
+    {
+      "n": 17,
+      "ruling": "partial",
+      "reason": "Opening the sentence on a bare year number is unusual in German; BRIEF.md (trap 5) explicitly sanctions an alternate first-mention format, “im Jahr X n. H. (Y n. Chr.)”, so applied that exact sanctioned form instead of inventing a new pattern. Rejected the accompanying suggestion to move the pronoun “es” after the subject: fronting an unstressed pronoun object before a full-noun-phrase subject is standard, correct German word order, not an error to fix.",
+      "edit": {
+        "key_or_field": "koot.body",
+        "before": "1439 nach der Hidschra (n. H.; 2018 n. Chr.) eröffneten es Prinz Sultan bin Salman und Prinz Saud bin Nayef.",
+        "after": "Im Jahr 1439 n. H. (2018 n. Chr.) eröffneten es Prinz Sultan bin Salman und Prinz Saud bin Nayef."
+      }
+    },
+    {
+      "n": 18,
+      "ruling": "rejected",
+      "reason": "dv.noteP faithfully translates en/ar (“the rating is fetched from it on each site update and can change” / والتقييم يُجلب منها عند كل تحديث للموقع وقد يتغيّر) — the sentence is a general, always-true statement about a conditionally rendered UI element (ix.ratingLabel is itself listed among the “appears only in certain situations” strings). That this particular blind-reader capture of one page shows no rating rendered is a build-time data-availability/rendering matter (e.g. no Google rating fetched for this venue in this snapshot), outside a translation judge's fence and not a wording defect."
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "ix.listEyebrow ('The first batch' / «الدفعة الأولى»)",
+      "defect": "The eyebrow label above the list heading has no visible anchor for what “first” refers to or how many batches will follow; a reader meets it with no context. Present identically in en and ar — not something a single short eyebrow string can fix without inventing content the source doesn't supply.",
+      "langs_affected": "en, ar, de"
+    },
+    {
+      "where": "koot.area / cont.area ('… east of Al-Ahsa' / «… شرق الأحساء»)",
+      "defect": "Does not state whether Al-Uqair is administratively part of the Al-Ahsa governorate or a separate nearby place — a natural traveller question left open. Identical phrasing/ambiguity in en and ar, and already baked into the published German Al-Uqair Beach page, so it cannot be resolved at the string level of a single batch.",
+      "langs_affected": "en, ar, de (published Al-Uqair Beach page + this batch)"
+    }
+  ],
+  "final": {
+    "strings": {
+      "ix.heroEyebrow": "Übernachten in der Oase",
+      "ix.title": "Unterkünfte",
+      "ix.heroSum": "Unterkünfte in Al-Ahsa – ein Kulturerbe-Gasthaus in der Altstadt und ein Hotel an der Küste von Al-Uqair, jeweils mit Foto und Standort in Google Maps. Die Liste beschreibt nur, ohne zu empfehlen, und wächst stetig weiter.",
+      "ix.listEyebrow": "Die erste Gruppe",
+      "ix.listH": "Unterkünfte in Al-Ahsa",
+      "ix.kind.heritage-inn": "Kulturerbe-Gasthaus",
+      "ix.kind.hotel": "Hotel",
+      "ix.newWindow": "(öffnet Google Maps in einem neuen Fenster)",
+      "ix.moreLabel": "Details zum Ort",
+      "ix.ratingLabel": "Bewertung bei Google Maps",
+      "ix.closedPerm": "Dauerhaft geschlossen – laut Google Maps",
+      "ix.closedTemp": "Vorübergehend geschlossen – laut Google Maps",
+      "ix.srcNote": "Bewertungen von Google Maps – zuletzt aktualisiert {date}",
+      "ix.faqH": "Häufige Fragen zum Übernachten in Al-Ahsa",
+      "ix.faq0.q": "Gibt es ein Kulturerbe-Gasthaus in der Altstadt von Hofuf?",
+      "ix.faq0.a": "Ja – das Al-Koot Heritage Hotel liegt in einem restaurierten Palast im Al-Koot-Viertel gegenüber Qasr Ibrahim. Es war im Gouvernorat das erste Kulturerbe-Hotel, das von der Kommission für Tourismus und Nationalerbe lizenziert wurde.",
+      "ix.faq1.q": "Gibt es eine Unterkunft in der Nähe des Al-Uqair-Strands?",
+      "ix.faq1.a": "Ja – das Continent Hotel Al Uqayr liegt an der Küste von Al-Uqair, östlich von Al-Ahsa. Caravan-Besitzer haben außerdem einen eigens dafür vorgesehenen Caravanstellplatz direkt am Strand, buchbar online über die Kommunalverwaltung von Al-Ahsa.",
+      "ix.faq1.linkText": "Details auf der Seite Al-Uqair-Strand →",
+      "ix.faq2.q": "Ist diese Liste eine Empfehlung der besten Hotels?",
+      "ix.faq2.a": "Nein. Die Einträge sind beschreibend: Name, Foto und Standort jedes Ortes in Google Maps. Wir bevorzugen keine Unterkunft gegenüber einer anderen und nennen keine Preise – vergleichen Sie die Angebote auf vertrauenswürdigen Buchungsplattformen.",
+      "ix.methodH": "Über diese Seite",
+      "ix.methodP1": "Namen und Standorte stammen direkt aus Google Maps, und die Kurztexte sind knappe Beschreibungen, wie der jeweilige Ort auf seinem Foto erscheint. Wir führen keine Preise, keine Sternebewertungen und keine Empfehlungen auf.",
+      "dv.backLabel": "Alle Unterkünfte",
+      "dv.areaH": "Lage",
+      "dv.noteP": "Name und Standort stammen direkt aus Google Maps; die Bewertung wird bei jeder Aktualisierung der Website von dort abgerufen und kann sich ändern. Wir führen keine Preise oder Sternebewertungen auf, und diese Seite beschreibt nur, ohne zu empfehlen.",
+      "koot.area": "Al-Koot-Viertel – gegenüber Qasr Ibrahim",
+      "koot.blurb": "Zimmer unter Decken aus Palmstämmen und Palmwedeln, in einem Palast, der zu einem Kulturerbe-Gasthaus restauriert wurde.",
+      "koot.alt": "Ein Zimmer im Al-Koot Heritage Hotel mit seiner Decke aus Palmstämmen, gewölbten Nischen und Sadu-Gewebe",
+      "cont.area": "Küste von Al-Uqair – östlich von Al-Ahsa",
+      "cont.blurb": "Ein sandfarbenes Gebäude mit zinnenbekrönten Brüstungen und schmalen Schlitzöffnungen, das auf eine Rasenfläche nahe der Küste blickt.",
+      "cont.alt": "Das Gebäude des Continent Hotel Al Uqayr mit seinen zinnenbekrönten Brüstungen und der Rasenfläche davor",
+      "koot.body": "Im Al-Koot-Viertel von Hofuf, direkt gegenüber Qasr Ibrahim, wohnen die Gäste in einem knapp zweihundert Jahre alten Palast, der zu einem Kulturerbe-Gasthaus restauriert wurde. Das 963 Quadratmeter große Gebäude folgt dem alten Hasawi-Baustil, dem Baustil Al-Ahsas, und wurde auf persönliche Initiative von Abdulaziz bin Mohammed Al-Abdulqader restauriert. Im Jahr 1439 n. H. (2018 n. Chr.) eröffneten es Prinz Sultan bin Salman und Prinz Saud bin Nayef. Es war im Gouvernorat das erste Kulturerbe-Hotel, das von der Kommission für Tourismus und Nationalerbe lizenziert wurde.\n\nDie Zimmer umfassen acht Suiten unter Decken aus Palmstämmen und Palmwedeln, ihre Wände sind von gewölbten Nischen durchbrochen und mit Sadu-Gewebe (Webstoff) behängt. Im Eingangsbereich sind antike Stücke ausgestellt, und eine Bibliothek im Obergeschoss enthält Bücher in mehreren Sprachen über die Geschichte von Al-Ahsa und Al-Koot. Qasr Ibrahim liegt nur wenige Schritte von der Tür entfernt, und der Qaisariyah-Souk sowie der Al-Fawaris-Souk sind etwa einen halben Kilometer entfernt – ein Aufenthalt mitten in der historischen Stadt, nicht an ihrem Rand."
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "heritage inn",
+      "de": "das Kulturerbe-Gasthaus",
+      "artikel": "das",
+      "source": "No existing termbase entry. 'Kulturerbe-' is reserved for 'heritage' in the termbase (Kulturerbe-Dorf/-Moschee/-Souks); 'inn' is deliberately distinct from 'Hotel' in the source (ix.kind.heritage-inn vs ix.kind.hotel). Genus verified: Duden, https://www.duden.de/rechtschreibung/Gasthaus - headword 'Gast.haus, das' (WebFetch, 2026-09-19).",
+      "status": "verified"
+    },
+    {
+      "en": "Al-Fawaris Souq",
+      "de": "der Al-Fawaris-Souk",
+      "artikel": "der",
+      "source": "No existing termbase entry; BRIEF.md directs deriving it by the same pattern as the confirmed twins 'Qaisariyah Souq -> der Qaisariyah-Souk' and 'Al-Hamidiyah Souq -> der Al-Hamidiyah-Souk'. Genus verified against three published repository occurrences of the compound head 'Souk': src/content/attractions/qaisariyah.md:15 ('Der Qaisariyah-Souk gehoert ...'), hamidiyah-souq.md:15 ('Der Al-Hamidiyah-Souk ist ...'), craftsmen-souq.md:14 ('liegt der Handwerker-Souk').",
+      "status": "verified"
+    },
+    {
+      "en": "sadu weaving",
+      "de": "das Sadu-Gewebe",
+      "artikel": "das",
+      "source": "No existing termbase entry (BRIEF.md: no German form yet). Literal generic meaning per gloss_regel: 'weaving' = the hung textile object => Gewebe (Duden, saechlich), hyphenated with the untranslated craft name 'Sadu'. Genus verified: Duden, https://www.duden.de/rechtschreibung/Gewebe - headword 'Ge.we.be, das' (WebFetch, 2026-09-19). Bracket-gloss '(Webstoff)' at first mention follows the published in-repo pattern (craftsmen-souq.md:14 'Tanur (Lehmofen)'; khalifa-museum.md:14 et al. 'Madschlis (Empfangsraum)'), applied once in koot.body only, not in the short koot.alt per the brief.",
+      "status": "verified"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Where to stay in the oasis",
+      "de": "Übernachten in der Oase",
+      "page": "stay",
+      "field": "ix.heroEyebrow",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Places to Stay",
+      "de": "Unterkünfte",
+      "page": "stay",
+      "field": "ix.title",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Places to stay in Al Ahsa — from a heritage inn inside the old city to a hotel on the Al-Uqair coast, each with its photo and its spot on Google Maps. The list is descriptive rather than a set of recommendations, and it keeps growing.",
+      "de": "Unterkünfte in Al-Ahsa – ein Kulturerbe-Gasthaus in der Altstadt und ein Hotel an der Küste von Al-Uqair, jeweils mit Foto und Standort in Google Maps. Die Liste beschreibt nur, ohne zu empfehlen, und wächst stetig weiter.",
+      "page": "stay",
+      "field": "ix.heroSum",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The first batch",
+      "de": "Die erste Gruppe",
+      "page": "stay",
+      "field": "ix.listEyebrow",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Places to stay in Al-Ahsa",
+      "de": "Unterkünfte in Al-Ahsa",
+      "page": "stay",
+      "field": "ix.listH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Heritage inn",
+      "de": "Kulturerbe-Gasthaus",
+      "page": "stay",
+      "field": "ix.kind.heritage-inn",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Hotel",
+      "de": "Hotel",
+      "page": "stay",
+      "field": "ix.kind.hotel",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "(opens Google Maps in a new window)",
+      "de": "(öffnet Google Maps in einem neuen Fenster)",
+      "page": "stay",
+      "field": "ix.newWindow",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Place details",
+      "de": "Details zum Ort",
+      "page": "stay",
+      "field": "ix.moreLabel",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Rating on Google Maps",
+      "de": "Bewertung bei Google Maps",
+      "page": "stay",
+      "field": "ix.ratingLabel",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Permanently closed — according to Google Maps",
+      "de": "Dauerhaft geschlossen – laut Google Maps",
+      "page": "stay",
+      "field": "ix.closedPerm",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Temporarily closed — according to Google Maps",
+      "de": "Vorübergehend geschlossen – laut Google Maps",
+      "page": "stay",
+      "field": "ix.closedTemp",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Ratings from Google Maps — last updated {date}",
+      "de": "Bewertungen von Google Maps – zuletzt aktualisiert {date}",
+      "page": "stay",
+      "field": "ix.srcNote",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Frequently asked questions about staying in Al Ahsa",
+      "de": "Häufige Fragen zum Übernachten in Al-Ahsa",
+      "page": "stay",
+      "field": "ix.faqH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Is there a heritage inn to stay in inside old Hofuf?",
+      "de": "Gibt es ein Kulturerbe-Gasthaus in der Altstadt von Hofuf?",
+      "page": "stay",
+      "field": "ix.faq0.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Yes — Al-Koot Heritage Hotel occupies a restored palace in the Al-Koot district opposite Qasr Ibrahim, and was the first heritage hotel in the governorate to be licensed by the Saudi Commission for Tourism and National Heritage.",
+      "de": "Ja – das Al-Koot Heritage Hotel liegt in einem restaurierten Palast im Al-Koot-Viertel gegenüber Qasr Ibrahim. Es war im Gouvernorat das erste Kulturerbe-Hotel, das von der Kommission für Tourismus und Nationalerbe lizenziert wurde.",
+      "page": "stay",
+      "field": "ix.faq0.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Is there anywhere to stay near Al-Uqair beach?",
+      "de": "Gibt es eine Unterkunft in der Nähe des Al-Uqair-Strands?",
+      "page": "stay",
+      "field": "ix.faq1.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Yes — Continent Hotel Al Uqayr sits on the Al-Uqair coast east of Al-Ahsa. Caravan owners also have a dedicated site on the beach itself, bookable online through Al-Ahsa Municipality.",
+      "de": "Ja – das Continent Hotel Al Uqayr liegt an der Küste von Al-Uqair, östlich von Al-Ahsa. Caravan-Besitzer haben außerdem einen eigens dafür vorgesehenen Caravanstellplatz direkt am Strand, buchbar online über die Kommunalverwaltung von Al-Ahsa.",
+      "page": "stay",
+      "field": "ix.faq1.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "See the details on the Al-Uqair Beach page →",
+      "de": "Details auf der Seite Al-Uqair-Strand →",
+      "page": "stay",
+      "field": "ix.faq1.linkText",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Is this list a recommendation of the best hotels?",
+      "de": "Ist diese Liste eine Empfehlung der besten Hotels?",
+      "page": "stay",
+      "field": "ix.faq2.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "No. The cards are descriptive: each place’s name, photo and location on Google Maps. We do not rank one venue above another and we do not list prices — compare options on trusted booking platforms.",
+      "de": "Nein. Die Einträge sind beschreibend: Name, Foto und Standort jedes Ortes in Google Maps. Wir bevorzugen keine Unterkunft gegenüber einer anderen und nennen keine Preise – vergleichen Sie die Angebote auf vertrauenswürdigen Buchungsplattformen.",
+      "page": "stay",
+      "field": "ix.faq2.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "About this page",
+      "de": "Über diese Seite",
+      "page": "stay",
+      "field": "ix.methodH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo. No prices, star ratings or recommendations are listed.",
+      "de": "Namen und Standorte stammen direkt aus Google Maps, und die Kurztexte sind knappe Beschreibungen, wie der jeweilige Ort auf seinem Foto erscheint. Wir führen keine Preise, keine Sternebewertungen und keine Empfehlungen auf.",
+      "page": "stay",
+      "field": "ix.methodP1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "All places to stay",
+      "de": "Alle Unterkünfte",
+      "page": "stay",
+      "field": "dv.backLabel",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Location",
+      "de": "Lage",
+      "page": "stay",
+      "field": "dv.areaH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The name and location come straight from Google Maps; the rating is fetched from it on each site update and can change. No prices or star ratings are listed, and this page is descriptive rather than a recommendation.",
+      "de": "Name und Standort stammen direkt aus Google Maps; die Bewertung wird bei jeder Aktualisierung der Website von dort abgerufen und kann sich ändern. Wir führen keine Preise oder Sternebewertungen auf, und diese Seite beschreibt nur, ohne zu empfehlen.",
+      "page": "stay",
+      "field": "dv.noteP",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Koot district — opposite Qasr Ibrahim",
+      "de": "Al-Koot-Viertel – gegenüber Qasr Ibrahim",
+      "page": "stay",
+      "field": "koot.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Rooms beneath ceilings of palm trunks and fronds, in a palace restored as a heritage inn.",
+      "de": "Zimmer unter Decken aus Palmstämmen und Palmwedeln, in einem Palast, der zu einem Kulturerbe-Gasthaus restauriert wurde.",
+      "page": "stay",
+      "field": "koot.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A room at Al-Koot Heritage Hotel, with its palm-trunk ceiling, arched niches and sadu weaving",
+      "de": "Ein Zimmer im Al-Koot Heritage Hotel mit seiner Decke aus Palmstämmen, gewölbten Nischen und Sadu-Gewebe",
+      "page": "stay",
+      "field": "koot.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Uqair coast — east of Al-Ahsa",
+      "de": "Küste von Al-Uqair – östlich von Al-Ahsa",
+      "page": "stay",
+      "field": "cont.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A sand-coloured building with crenellated parapets and narrow slot openings, facing a lawn near the shore.",
+      "de": "Ein sandfarbenes Gebäude mit zinnenbekrönten Brüstungen und schmalen Schlitzöffnungen, das auf eine Rasenfläche nahe der Küste blickt.",
+      "page": "stay",
+      "field": "cont.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The Continent Hotel Al Uqayr building, its crenellated parapets above the lawn in front",
+      "de": "Das Gebäude des Continent Hotel Al Uqayr mit seinen zinnenbekrönten Brüstungen und der Rasenfläche davor",
+      "page": "stay",
+      "field": "cont.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "In Hofuf's Al-Koot district, directly opposite Qasr Ibrahim, guests stay inside a palace close to two hundred years old that was restored into a heritage inn. The 963-square-metre building follows the old Hasawi architectural style, and was restored as a personal initiative by Abdulaziz bin Mohammed Al-Abdulqader. It opened in 1439 AH (2018 CE) at the hands of Prince Sultan bin Salman and Prince Saud bin Nayef, and was the first heritage hotel in the governorate to be licensed by the Saudi Commission for Tourism and National Heritage. The rooms are eight suites set beneath ceilings of palm trunks and fronds, their walls cut with arched niches and hung with sadu weaving. Antique pieces are displayed in the entrance hall, and an upper-floor library holds books on the history of Al-Ahsa and Al-Koot in several languages. Qasr Ibrahim stands a few steps from the door, and Qaisariyah Souq and Al-Fawaris Souq about half a kilometre away — a stay inside the historic city rather than on its edge.",
+      "de": "Im Al-Koot-Viertel von Hofuf, direkt gegenüber Qasr Ibrahim, wohnen die Gäste in einem knapp zweihundert Jahre alten Palast, der zu einem Kulturerbe-Gasthaus restauriert wurde. Das 963 Quadratmeter große Gebäude folgt dem alten Hasawi-Baustil, dem Baustil Al-Ahsas, und wurde auf persönliche Initiative von Abdulaziz bin Mohammed Al-Abdulqader restauriert. Im Jahr 1439 n. H. (2018 n. Chr.) eröffneten es Prinz Sultan bin Salman und Prinz Saud bin Nayef. Es war im Gouvernorat das erste Kulturerbe-Hotel, das von der Kommission für Tourismus und Nationalerbe lizenziert wurde.\n\nDie Zimmer umfassen acht Suiten unter Decken aus Palmstämmen und Palmwedeln, ihre Wände sind von gewölbten Nischen durchbrochen und mit Sadu-Gewebe (Webstoff) behängt. Im Eingangsbereich sind antike Stücke ausgestellt, und eine Bibliothek im Obergeschoss enthält Bücher in mehreren Sprachen über die Geschichte von Al-Ahsa und Al-Koot. Qasr Ibrahim liegt nur wenige Schritte von der Tür entfernt, und der Qaisariyah-Souk sowie der Al-Fawaris-Souk sind etwa einen halben Kilometer entfernt – ein Aufenthalt mitten in der historischen Stadt, nicht an ihrem Rand.",
+      "page": "stay",
+      "field": "koot.body",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Batch de-stay reviewed as stage-7 judge. The 01-05 pipeline had already resolved the largest fluency risks (sentence-clamp splitting, active voice) and stage 5's 10-point checklist passed clean; the blind reader's 18 observations caught second-order naturalness issues: an en/ar calque pattern ('ist beschreibend, keine Empfehlung' / 'einstufen ... ueber'), a genuine two-antecedent relative-pronoun ambiguity around 'Gouvernorat'/'Kulturerbe-Hotel' repeated twice on the page, an over-literary alt text, a sentence-opening bare year number, and smaller clarity nits (caravan site 'eigen', 'in mehreren Sprachen' placement, double 'einem'). All nine applied/partial fixes changed wording only - no fact, number, or termbase form was added, removed or overridden. Three observations were rejected because applying them would have broken an already-published cross-page German string (Kommunalverwaltung von Al-Ahsa / Caravanstellplatz; Kueste von Al-Uqair - oestlich von Al-Ahsa, both recorded in memory/tm.json) or invented a fact the source does not carry (a description of what sadu weaving is). Two observations (the free-floating 'Die erste Gruppe' eyebrow; the unstated Al-Uqair/Al-Ahsa administrative relationship) are logged as source_defects - both exist identically in en and ar and sit outside a translation stage's fence. One observation (no visible rating on the captured single-place page) is a build/data-rendering matter, not a wording defect, and was rejected as out of scope. The three termbase additions (Kulturerbe-Gasthaus, Al-Fawaris-Souk, Sadu-Gewebe) carry verbatim sourced witnesses (Duden + in-repo precedent) and are promoted unchanged from stage 4/5.\n\nBINDING: The 'descriptive, not a recommendation' disclaimer must use a verb-led clause ('... beschreibt nur, ohne zu empfehlen'), never the calque 'ist beschreibend, keine Empfehlung' - applies to every card/FAQ/method-note page reusing this disclaimer, including restaurants ج6/ج7.\nBINDING: For a short list of only two or a few sample items, write 'X und Y', never 'von X bis Y' (implies a spanning range) - same fix for any future short card list using this pattern.\nBINDING: Alt text for photos must stay plain and functional, not literary; avoid stacking two decorative participles/adjectives ('zinnenbekroent' + 'davorliegend') in one alt string - prefer 'mit X und Y davor'.\nBINDING: 'We do not rank one place above another' -> 'Wir bevorzugen keine [X] gegenueber einer anderen', never 'Wir stufen ... ueber eine andere ein' - restaurants ج6/ج7 FAQ likely reuses this exact disclaimer.\nBINDING: Google Maps UI strings are locked and must be reused verbatim in every future page: '(oeffnet Google Maps in einem neuen Fenster)', 'Bewertung bei Google Maps', 'Dauerhaft/Vorübergehend geschlossen - laut Google Maps', 'Bewertungen von Google Maps - zuletzt aktualisiert {date}', 'In Google Maps oeffnen ->'.\nBINDING: 'der Caravanstellplatz' and 'die Kommunalverwaltung von Al-Ahsa' are termbase-locked (confirmed in batch de-6 and again here) - reuse verbatim, do not resynonymize even where the register feels heavy.\nBINDING: A relative clause stands directly after its antecedent ('Es war im Gouvernorat das erste Kulturerbe-Hotel, das …'); never separate them by an apposition — and an explanatory gloss such as 'dem übergeordneten Verwaltungsbezirk' is used only where the source states the hierarchy (published salwa-beach: 'Salwa gehört zum Gouvernorat al-Ahsa, …'), never attached to an unrelated noun. (Coordinator override 2026-09-19: the judge's dash-bracketed version lacked the mandatory comma after the closing dash and kept the 'das' ambiguity; the gloss asserted a hierarchy the source does not state; 'Damit' asserted a causation absent from en/ar.)\nBINDING: Self-designated Latin venue names (e.g. 'Al-Koot Heritage Hotel', 'Continent Hotel Al Uqayr') are reproduced exactly as the venue spells itself, un-hyphenated inside the name even where Durchkopplung would otherwise apply - never edited for consistency.\nBINDING: 'dedicated site for X' -> 'eigens dafuer vorgesehen[e]', not 'eigen[e]' alone, which wrongly implies an individually assigned spot per owner.",
+  "coordinator_override": [
+    {
+      "keys": [
+        "ix.faq0.a",
+        "koot.body"
+      ],
+      "before": [
+        "Es war das erste Kulturerbe-Hotel im Gouvernorat – dem übergeordneten Verwaltungsbezirk – das von der Kommission für Tourismus und Nationalerbe lizenziert wurde.",
+        "Damit war es das erste Kulturerbe-Hotel im Gouvernorat – dem übergeordneten Verwaltungsbezirk – das von der Kommission für Tourismus und Nationalerbe lizenziert wurde."
+      ],
+      "after": "Es war im Gouvernorat das erste Kulturerbe-Hotel, das von der Kommission für Tourismus und Nationalerbe lizenziert wurde.",
+      "why": "Gloss «dem übergeordneten Verwaltungsbezirk» asserts a hierarchy en/ar do not state (the published precedent salwa-beach uses it only where Salwa belongs to the governorate); the dash-bracketed apposition lacked the required comma after the closing dash (–, das) and left «das» ambiguous between Gouvernorat and Hotel; «Damit» added a causal link absent from en «and was» / ar «وهو». Fix places the relative clause next to its antecedent, drops the gloss (the published fruits page uses «das Gouvernorat» unglossed)."
+    }
+  ]
+}
