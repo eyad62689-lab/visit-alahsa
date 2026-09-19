@@ -273,12 +273,18 @@ const stay = defineCollection({
     blurb_ru: z.string().optional(),
     area_ru: z.string().optional(),
     alt_ru: z.string().optional(),
+    // الألمانية (ج5 — 2026-09-19) من خط de-translation-pipeline حصراً — الفرع نفسه بحرفه
+    blurb_de: z.string().optional(),
+    area_de: z.string().optional(),
+    alt_de: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (العربي في جسم الملف)
     // المتن الروسي من خط ru-translation-pipeline حصراً — بوابة صفحة /ru/stay/<slug>/ (على سابقة title_ru)
     body_ru: z.string().optional(),
+    // والألماني بوابة صفحة /de/stay/<slug>/ بالآلية نفسها
+    body_de: z.string().optional(),
   }),
 });
 
