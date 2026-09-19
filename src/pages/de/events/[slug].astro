@@ -1,0 +1,15 @@
+---
+// صفحة الفعالية المفردة — النسخة الألمانية (de-DE): نصوص EVENTS_DE وكتلة de في
+// EventDetailView من خط de-translation-pipeline حصراً (ج4، دفعة de-ev-5).
+// المقاطع slug تشارك الإنجليزية.
+import EventDetailView from '../../../components/views/EventDetailView.astro';
+import { EVENTS_DE, eventAlt } from '../../../data/events';
+
+export function getStaticPaths() {
+  return EVENTS_DE.map((ev) => ({ params: { slug: ev.slug }, props: { ev } }));
+}
+
+const { ev } = Astro.props;
+const alt = eventAlt(ev.id);
+---
+<EventDetailView ev={ev} lang="de" alt={alt} />

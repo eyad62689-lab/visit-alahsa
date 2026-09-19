@@ -1,0 +1,507 @@
+{
+  "batch": "de-ev-2",
+  "loop": 1,
+  "score": 93,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 26,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "rejected",
+      "reason": "Out of this batch's scope and would break an already-approved pair: the two badges are 'Winter' (this batch's season string) and 'Erwartete Saison' (ix.statusL.expected, approved and made BINDING by the batch-1 judge, 95/100, as one of three fixed structural status badges). Merging them into one phrase like 'Winter (voraussichtlich)' would remove the independent status-badge string entirely, contradicting the batch-1 ruling that 'Zeitraum'/status labels stay exclusive and are not to be re-merged with the season value (Ruling 5). The two-badge layout itself is a UI/template decision, not a translatable string in this pack."
+    },
+    {
+      "n": 2,
+      "ruling": "rejected",
+      "reason": "Explaining what a 'Bisht' is would add a fact not carried by any of this batch's 40 source fields (name/place/season/time/span/org/acts are all short, context-free card and table values per pack.json; none is a running-text field that could host a sourced gloss). 'Bisht' is kept as the confirmed proper-name element of the event name (Hasawi-Bischt-Festival) per the owner rule (brief.md trap 3) and the existing termbase entry 'der Bischt (traditioneller Umhang)'; a gloss belongs only in Fließtext with its own source, which does not exist on this page."
+    },
+    {
+      "n": 3,
+      "ruling": "rejected",
+      "reason": "Same reasoning as #2: 'Kafu' is deliberately kept as the untranslated proper name of the event (pack.json context states explicitly: 'Kafu = proper name of the event (keep)'). No source explains what 'Kafu' means, so supplying an explanation would add an unsourced fact. There is no running-text field in this batch to carry a gloss even if one existed."
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "reason": "'Küche' is the direct, faithful rendering of both source words for this field ('kitchen' in English, «مطبخ» in Arabic — both literally 'kitchen', not 'cuisine' or 'show'). The suggested alternatives ('Kafu-Kochshow', 'Mitmach-Kochstation') inject a format (show/station) that neither source states. Keeping 'Küche' preserves the fact fence; the momentary first-read ambiguity is a property of the German word itself, not a translation error."
+    },
+    {
+      "n": 5,
+      "ruling": "applied",
+      "reason": "Legitimate register fix with no fact added or removed: 'Gemeinschaftstreffen' reads administrative/civic, out of step with the festive highlight list it sits in ('Volkskunstvorführungen', 'Kulturerbe-Spiele', 'Handwerks-Workshops'). 'Geselliges Beisammensein' translates 'Community gatherings'/«جلسات مجتمعية» just as faithfully (a social/convivial gathering) while reading as a festival highlight rather than a town-hall meeting. Rejected the reader's own alternative 'Nachbarschaftstreffen' because 'neighbourhood' is not in either source.",
+      "edit": {
+        "key_or_field": "ev.qaisariyah-nights.acts.1",
+        "before": "Gemeinschaftstreffen",
+        "after": "Geselliges Beisammensein"
+      }
+    },
+    {
+      "n": 6,
+      "ruling": "rejected",
+      "reason": "Overriding a sourced termbase convention by taste: the termbase (_meta note on 'Kulturerbe-Moschee') fixes 'Kulturerbe-' as exclusive to 'heritage' and forbids using it for 'historic'/'traditional', precisely so the three English/Arabic-distinguished concepts never collapse onto one German word (see abubakr-mosque, where heritage/historic/traditional are kept on three separate German words). 'Heritage games' must stay 'Kulturerbe-Spiele'; switching to 'Traditionelle Spiele' would re-create the exact ambiguity the rule exists to prevent, this time on an activity rather than a place."
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "Out of this batch's scope: 'Festivals und Veranstaltungen' is ix.title, approved and published in batch de-ev-1 (95/100, BINDING). This batch's pack contains none of the breadcrumb/title strings, so there is nothing here to edit; changing it would also mean re-opening an already-approved batch."
+    },
+    {
+      "n": 8,
+      "ruling": "source_defect",
+      "reason": "The English/Arabic source itself answers the 'duration' slot for this one event with a descriptive quality ('Extended Ramadan nights'/«ليالٍ رمضانية ممتدة») rather than an actual length, unlike its sibling events ('A few days', 'Several weeks'). The German translation is a faithful, literal rendering of that source field; the missing 'how long' answer is a gap in the underlying event data, not a translation flaw. Logged in source_defects."
+    },
+    {
+      "n": 9,
+      "ruling": "partial",
+      "reason": "pack.json specifies this field is 'Very short; capitalised as a standalone badge', matching its siblings 'Winter'/'Spätwinter' (one word). The stage-5 text 'Der heilige Monat Ramadan' is a faithful but four-word rendering of the source ('The holy month of Ramadan'/«شهر رمضان المبارك») that breaks the one-word badge pattern the reader flagged. Shortened to 'Heiliger Ramadan', which keeps the 'holy'/«المبارك» qualifier the brief explicitly forbids dropping ('دون تفخيم ولا تسطيح') while fitting the badge format. Did not apply the reader's own suggestion of 'Ramadan' alone, because that would erase the respectful qualifier both sources carry.",
+      "edit": {
+        "key_or_field": "ev.kafu-nights.season",
+        "before": "Der heilige Monat Ramadan",
+        "after": "Heiliger Ramadan"
+      }
+    },
+    {
+      "n": 10,
+      "ruling": "source_defect",
+      "reason": "The apparent circularity ('Ramadan … during Ramadan') stems from the source data model, where this event's season and time fields both reduce to the same fact, unlike other cards where season (a whole season) and time (a specific month or 'around' a month) narrow progressively. The German pairing after the stage-7 shortening (Heiliger Ramadan · Während des Ramadan) is the faithful reflection of that source pairing; a translation cannot manufacture a more specific 'time' value the source does not provide. Logged in source_defects together with #8."
+    },
+    {
+      "n": 11,
+      "ruling": "source_defect",
+      "reason": "Neither English nor Arabic source gives this venue a proper name, a 'historic' qualifier, or any description beyond 'the municipality's fort' («قلعة أمانة الأحساء»), unlike the other three venues, which are all named, well-documented landmarks. Stage 4's dated web search (2026-09-19) found only Arabic press coverage of the festival and no German, English, or authoritative source naming the building itself. The German rendering ('Festung der Kommunalverwaltung von Al-Ahsa') is the faithful, literal translation available; the reader's open question is one the source does not answer, not a translation gap. Logged in source_defects."
+    },
+    {
+      "n": 12,
+      "ruling": "source_defect",
+      "reason": "The two source activities ('Tasting & shopping pavilion'/«جناح التذوق والتسوق» and 'Dates-product pavilions'/«أجنحة المنتجات التحويلية») are themselves two closely related, overlapping descriptions of date-product pavilions from two angles (general tasting/purchase vs. product-specific pavilions) with no further differentiating detail in either source. The German text preserves exactly the distinction the source draws; supplying a sharper distinction would fabricate detail not present in en/ar. Logged in source_defects."
+    },
+    {
+      "n": 13,
+      "ruling": "rejected",
+      "reason": "The suggested alternative ('Festival der Dattelspezialitäten') trades the specific, sourced fact 'processed' (English 'Processed', Arabic «المصنّعة» = processed/manufactured) for the vaguer 'specialties', which is not the same claim and would blur the very distinction that gives this festival its identity apart from a general dates festival. Stage 1 already considered and rejected the more literal compound 'Dattelverarbeitungsfestival' as clumsy; no attested, less industrial-sounding German name for this specific festival was found. The register concern is noted but cannot be resolved without either fabricating an unofficial name or dropping a sourced fact."
+    },
+    {
+      "n": 14,
+      "ruling": "rejected",
+      "reason": "No termbase entry or source explains how a 'Ghabqa' differs from an Iftar; adding that distinction would be a fabricated fact. This was a deliberate, documented stage-3 decision (fact fence over fluency) consistent with how 'Bisht' and 'Kafu' are likewise left unglossed in these short card fields (see #2, #3)."
+    },
+    {
+      "n": 15,
+      "ruling": "rejected",
+      "reason": "The two German phrases mirror two genuinely different source phrases, not one concept translated two ways: 'Folk arts shows'/«عروض فنون شعبية» (Qaisariyah Nights) versus 'Folklore performances'/«عروض فولكلورية» (Hasawi Bisht Festival). Unifying them would erase a distinction both the English and the Arabic authority make between the two events' programmes."
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "ev.kafu-nights.season / ev.kafu-nights.time / ev.kafu-nights.span (Kafu Nights event fields, en/ar source)",
+      "defect": "The source models this single Ramadan event's 'season', 'time' and 'duration' fields all around the one fact 'Ramadan': the duration field ('Extended Ramadan nights'/«ليالٍ رمضانية ممتدة») never states an actual length the way sibling events do ('A few days', 'Several weeks'), and season+time both reduce to 'Ramadan' ('The holy month of Ramadan' / 'During Ramadan'), reading as circular once translated side by side. This is a gap in the source content model, not a translation defect (blind-reader observations 8 and 10).",
+      "langs_affected": "en, ar, and therefore every target language built from them (de, zh, ru)"
+    },
+    {
+      "where": "ev.dates-festival.place (en \"Al-Ahsa Municipality Fort\" / ar «قلعة أمانة الأحساء»)",
+      "defect": "Unlike the other three events, which are held at named, well-documented historic landmarks, the source gives this venue no proper name or descriptive attribute beyond 'the municipality's fort'. Stage 4's dated web search (2026-09-19) found no German, English or authoritative source naming the building itself, so it remains a literal, faithful but under-specified descriptive translation, and a termbase 'pending' entry (blind-reader observation 11).",
+      "langs_affected": "en, ar, and therefore every target language built from them (de, zh, ru)"
+    },
+    {
+      "where": "ev.dates-festival.acts.0 (\"Tasting & shopping pavilion\"/«جناح التذوق والتسوق») vs. ev.dates-festival.acts.1 (\"Dates-product pavilions\"/«أجنحة المنتجات التحويلية»)",
+      "defect": "Both source activities describe a pavilion themed around processed date products, distinguished only by angle (general tasting/purchase vs. product-specific pavilions), with no further detail in either source to sharpen the difference. Reads as near-duplicate once translated (blind-reader observation 12); the translation cannot add the missing differentiation without fabricating it.",
+      "langs_affected": "en, ar, and therefore every target language built from them (de, zh, ru)"
+    }
+  ],
+  "final": {
+    "strings": {
+      "ev.bisht.name": "Hasawi-Bischt-Festival",
+      "ev.bisht.place": "Historischer Qasr Ibrahim, Hofuf",
+      "ev.bisht.season": "Winter",
+      "ev.bisht.time": "Etwa im Dezember",
+      "ev.bisht.span": "Wenige Tage",
+      "ev.bisht.org": "Kommission für Kulturerbe (Kulturministerium)",
+      "ev.bisht.acts.0": "Bischt-Ausstellung",
+      "ev.bisht.acts.1": "Weberei-Workshops",
+      "ev.bisht.acts.2": "Interaktiver Bischt-Souk",
+      "ev.bisht.acts.3": "Folkloristische Vorführungen",
+      "ev.qaisariyah-nights.name": "Qaisariyah-Nächte",
+      "ev.qaisariyah-nights.place": "Historischer Qaisariyah-Souk, Hofuf",
+      "ev.qaisariyah-nights.season": "Spätwinter",
+      "ev.qaisariyah-nights.time": "Februar–März",
+      "ev.qaisariyah-nights.span": "Mehrere Wochen",
+      "ev.qaisariyah-nights.org": "Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde, Kommission für Kulturerbe",
+      "ev.qaisariyah-nights.acts.0": "Volkskunstvorführungen",
+      "ev.qaisariyah-nights.acts.1": "Geselliges Beisammensein",
+      "ev.qaisariyah-nights.acts.2": "Kulturerbe-Spiele",
+      "ev.qaisariyah-nights.acts.3": "Handwerks-Workshops",
+      "ev.kafu-nights.name": "Kafu-Nächte",
+      "ev.kafu-nights.place": "König-Abdullah-Umweltpark, Hofuf",
+      "ev.kafu-nights.season": "Heiliger Ramadan",
+      "ev.kafu-nights.time": "Während des Ramadan",
+      "ev.kafu-nights.span": "Verlängerte Ramadan-Nächte",
+      "ev.kafu-nights.org": "König-Faisal-Universität",
+      "ev.kafu-nights.acts.0": "Theateraufführungen",
+      "ev.kafu-nights.acts.1": "Kinderbereich",
+      "ev.kafu-nights.acts.2": "Interaktive Kafu-Küche",
+      "ev.kafu-nights.acts.3": "„Ghabqa“-Abendessen",
+      "ev.dates-festival.name": "Festival der verarbeiteten Datteln",
+      "ev.dates-festival.place": "Festung der Kommunalverwaltung von Al-Ahsa, Hofuf",
+      "ev.dates-festival.season": "Winter",
+      "ev.dates-festival.time": "Januar–Februar",
+      "ev.dates-festival.span": "Mehrere Wochen",
+      "ev.dates-festival.org": "Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde",
+      "ev.dates-festival.acts.0": "Verkostungs- und Einkaufspavillon",
+      "ev.dates-festival.acts.1": "Pavillons für verarbeitete Dattelerzeugnisse",
+      "ev.dates-festival.acts.2": "Kulturelle Workshops",
+      "ev.dates-festival.acts.3": "Wettbewerbe"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Hasawi Bisht Festival",
+      "de": "das Hasawi-Bischt-Festival",
+      "artikel": "das",
+      "source": "Compositional: confirmed entry 'Hasawi bisht → der Hasawi-Bischt' + generic Duden noun 'das Festival', per Durchkopplung policy. Arabic authority «مهرجان البشت الحساوي» — official event name, 'الحساوي' kept (owner rule).",
+      "note": "Confirmed unchanged by stage 7. Wortgleich in Card-H2, single-event H1, table cell, breadcrumb and browser-tab title across all future batches of this page.",
+      "status": "confirmed",
+      "stage": "7 (batch de-ev-2)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Qaisariyah Nights",
+      "de": "die Qaisariyah-Nächte",
+      "artikel": "die (Pl.)",
+      "source": "Compositional: Durchkopplung of the event proper name 'Qaisariyah' + generic Duden noun 'die Nacht/Nächte'. Arabic authority «ليالي القيصرية».",
+      "note": "Confirmed unchanged by stage 7. Independent of the existing Qaisariyah-Souk place entry; no gloss inside the event name.",
+      "status": "confirmed",
+      "stage": "7 (batch de-ev-2)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Kafu Nights",
+      "de": "die Kafu-Nächte",
+      "artikel": "die (Pl.)",
+      "source": "'Kafu' kept Latin as the event's proper name (naming_policy.default; pack.json: 'Kafu = proper name of the event (keep)'), durchgekoppelt with generic Duden noun 'die Nächte'.",
+      "note": "Confirmed unchanged by stage 7. No meaning supplied for 'Kafu' — no source explains it; that would be an added fact.",
+      "status": "confirmed",
+      "stage": "7 (batch de-ev-2)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Processed Dates Festival",
+      "de": "das Festival der verarbeiteten Datteln",
+      "artikel": "das",
+      "source": "pack.json ev.dates-festival.name; Arabic authority «مهرجان التمور المصنّعة» ('المصنّعة' = processed/manufactured). Literal, transparent translation; no established German short form exists.",
+      "note": "Confirmed unchanged by stage 7. Alternative 'Dattelverarbeitungsfestival' considered and rejected as clumsy (stage 1). Blind reader raised a register concern (obs. 13); rejected because the only offered alternative would drop the sourced 'processed' distinction.",
+      "status": "confirmed",
+      "stage": "7 (batch de-ev-2)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Municipality Fort",
+      "de": "die Festung der Kommunalverwaltung von Al-Ahsa",
+      "artikel": "pending",
+      "source": "No dedicated termbase entry for this specific venue designation exists. Constructed from the confirmed entry 'Al-Ahsa Municipality → die Kommunalverwaltung von Al-Ahsa' + generic Duden noun 'die Festung'. Arabic authority «قلعة أمانة الأحساء». Stage-4 web search (2026-09-19) found only Arabic press coverage of the festival, no German/English source naming the building itself.",
+      "note": "Per judge policy, an entry without a verbatim witness+URL for the venue's own designation is recorded as 'pending' with no confirmed artikel, even though the compositional grammar would yield 'die'. Keep this exact placeholder form for reuse in batch de-ev-4 («قلعة الأمانة», Creative Al-Ahsa Festival) until an authoritative name is found (blind-reader observation 11, logged as source_defect).",
+      "status": "pending",
+      "stage": "7 (batch de-ev-2)",
+      "added": "2026-09-19"
+    },
+    {
+      "en": "King Faisal University",
+      "de": "die König-Faisal-Universität",
+      "artikel": "die",
+      "source": "https://de.wikipedia.org/wiki/Dammam — verbatim quote (section 'Bildung'): „1975 wurde die König-Faisal-Universität in Hofuf und Dammam gegründet, eine von acht Universitäten des Landes.“ Confirms spelling, gender (die) and location Hofuf/Dammam. Arabic authority «جامعة الملك فيصل».",
+      "note": "Confirmed by stage 7, carried over unchanged from stage 4/5. No standalone de.wikipedia article titled 'König-Faisal-Universität' exists (MediaWiki API: missing); the witness is drawn from the 'Dammam' article's running text.",
+      "status": "confirmed",
+      "stage": "7 (batch de-ev-2)",
+      "added": "2026-09-19"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Hasawi Bisht Festival",
+      "de": "Hasawi-Bischt-Festival",
+      "page": "events",
+      "field": "ev.bisht.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Historic Ibrahim Palace, Hofuf",
+      "de": "Historischer Qasr Ibrahim, Hofuf",
+      "page": "events",
+      "field": "ev.bisht.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter",
+      "de": "Winter",
+      "page": "events",
+      "field": "ev.bisht.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Around December",
+      "de": "Etwa im Dezember",
+      "page": "events",
+      "field": "ev.bisht.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A few days",
+      "de": "Wenige Tage",
+      "page": "events",
+      "field": "ev.bisht.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Heritage Commission (Ministry of Culture)",
+      "de": "Kommission für Kulturerbe (Kulturministerium)",
+      "page": "events",
+      "field": "ev.bisht.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Bisht exhibition",
+      "de": "Bischt-Ausstellung",
+      "page": "events",
+      "field": "ev.bisht.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Weaving workshops",
+      "de": "Weberei-Workshops",
+      "page": "events",
+      "field": "ev.bisht.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Interactive bisht souq",
+      "de": "Interaktiver Bischt-Souk",
+      "page": "events",
+      "field": "ev.bisht.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Folklore performances",
+      "de": "Folkloristische Vorführungen",
+      "page": "events",
+      "field": "ev.bisht.acts.3",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Qaisariyah Nights",
+      "de": "Qaisariyah-Nächte",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Historic Qaisariyah Souq, Hofuf",
+      "de": "Historischer Qaisariyah-Souk, Hofuf",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Late winter",
+      "de": "Spätwinter",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "February – March",
+      "de": "Februar–März",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Several weeks",
+      "de": "Mehrere Wochen",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Municipality, Al-Ahsa Development Authority, Heritage Commission",
+      "de": "Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde, Kommission für Kulturerbe",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Folk arts shows",
+      "de": "Volkskunstvorführungen",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Community gatherings",
+      "de": "Geselliges Beisammensein",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Heritage games",
+      "de": "Kulturerbe-Spiele",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Craft workshops",
+      "de": "Handwerks-Workshops",
+      "page": "events",
+      "field": "ev.qaisariyah-nights.acts.3",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Kafu Nights",
+      "de": "Kafu-Nächte",
+      "page": "events",
+      "field": "ev.kafu-nights.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "King Abdullah Environmental Park, Hofuf",
+      "de": "König-Abdullah-Umweltpark, Hofuf",
+      "page": "events",
+      "field": "ev.kafu-nights.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The holy month of Ramadan",
+      "de": "Heiliger Ramadan",
+      "page": "events",
+      "field": "ev.kafu-nights.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "During Ramadan",
+      "de": "Während des Ramadan",
+      "page": "events",
+      "field": "ev.kafu-nights.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Extended Ramadan nights",
+      "de": "Verlängerte Ramadan-Nächte",
+      "page": "events",
+      "field": "ev.kafu-nights.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "King Faisal University",
+      "de": "König-Faisal-Universität",
+      "page": "events",
+      "field": "ev.kafu-nights.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Theatre shows",
+      "de": "Theateraufführungen",
+      "page": "events",
+      "field": "ev.kafu-nights.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Kids’ zone",
+      "de": "Kinderbereich",
+      "page": "events",
+      "field": "ev.kafu-nights.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Interactive Kafu kitchen",
+      "de": "Interaktive Kafu-Küche",
+      "page": "events",
+      "field": "ev.kafu-nights.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "“Ghabqa” dinner",
+      "de": "„Ghabqa“-Abendessen",
+      "page": "events",
+      "field": "ev.kafu-nights.acts.3",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Processed Dates Festival",
+      "de": "Festival der verarbeiteten Datteln",
+      "page": "events",
+      "field": "ev.dates-festival.name",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Municipality Fort, Hofuf",
+      "de": "Festung der Kommunalverwaltung von Al-Ahsa, Hofuf",
+      "page": "events",
+      "field": "ev.dates-festival.place",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Winter",
+      "de": "Winter",
+      "page": "events",
+      "field": "ev.dates-festival.season",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "January – February",
+      "de": "Januar–Februar",
+      "page": "events",
+      "field": "ev.dates-festival.time",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Several weeks",
+      "de": "Mehrere Wochen",
+      "page": "events",
+      "field": "ev.dates-festival.span",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Ahsa Municipality, Al-Ahsa Development Authority",
+      "de": "Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde",
+      "page": "events",
+      "field": "ev.dates-festival.org",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Tasting & shopping pavilion",
+      "de": "Verkostungs- und Einkaufspavillon",
+      "page": "events",
+      "field": "ev.dates-festival.acts.0",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Dates-product pavilions",
+      "de": "Pavillons für verarbeitete Dattelerzeugnisse",
+      "page": "events",
+      "field": "ev.dates-festival.acts.1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Cultural workshops",
+      "de": "Kulturelle Workshops",
+      "page": "events",
+      "field": "ev.dates-festival.acts.2",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Competitions",
+      "de": "Wettbewerbe",
+      "page": "events",
+      "field": "ev.dates-festival.acts.3",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Score 93/100 → APPROVE. Accuracy 29/30: all 40 values checked against en/ar; no added or missing fact found except the two corrections below, both within the fence. Nativeness 26/30: mostly natural, isolated NPs consistent with sibling batch 1; docked for the Ramadan season badge originally breaking the one-word-badge pattern (fixed, see ruling 9) and for three register/clarity rough edges the blind reader found that are genuinely un-fixable inside the fact fence (Ghabqa/Bischt/Kafu left unglossed, dates-festival name register, near-duplicate dates-festival pavilions) — all ruled source_defect or rejected with reasons, not silently ignored. Compliance 19/20: Durchkopplung, quotation marks (Ghabqa in „…“), U+2013 month ranges, no Denglisch, all termbase matches correct; docked half a point equivalent for the one termbase addition (Al-Ahsa Municipality Fort) that stage 4/5 had marked 'pending' while still carrying a confirmed artikel, corrected here to artikel 'pending'. Fit for the German-speaking traveller 9/10: venue, timing, duration, organiser and highlights all present and useful; the un-narrowed Ramadan timing and unnamed dates-festival venue (both source_defect) slightly reduce practical usefulness. Structural integrity 10/10: all 40 keys present, byte-order matches pack.json, {n}/✓/↗ placeholders not applicable to this batch, no U+2014, no U+00A0, no Souq. Blind reader: 15 observations ruled — 1 applied, 1 partial, 9 rejected, 4 source_defect (source_defects #8+#10 grouped as one entry, plus #11 and #12). Two edits applied to stage-5 text: ev.qaisariyah-nights.acts.1 'Gemeinschaftstreffen' → 'Geselliges Beisammensein'; ev.kafu-nights.season 'Der heilige Monat Ramadan' → 'Heiliger Ramadan'. Three source_defects logged for the coordinator/Iyad regarding the Kafu Nights Ramadan field redundancy, the unnamed dates-festival venue, and the near-duplicate dates-festival pavilion activities — none required a translation change. Termbase: 6 entries finalised (5 confirmed, 1 pending). The batch-1 BINDING decisions remain in force verbatim and are restated here together with this batch's own BINDING decisions, to be copied into the brief for batches 3–5. BINDING: „Saison“ = das wiederkehrende Veranstaltungsfenster/die Ausgabe (Badges, ix.eyebrow, ix.lead, ix.ctaH, tbl.caption); „Jahreszeit“ bleibt den vier Kalenderjahreszeiten vorbehalten — nicht mischen. BINDING: „Highlights“ wird durchgehend mit „Höhepunkte“ übersetzt. BINDING: Die drei Status-Badges bleiben „Dieses Jahr bestätigt“ / „Erwartete Saison“ / „Ankündigung steht aus“ — nie „Angaben werden noch bestätigt“, und „Zeitraum“ bleibt exklusiv dem Tabellenspaltenkopf/H3 „Timing“ vorbehalten. BINDING: „Ort“ (ix.placeK) und „Veranstalter“ (ix.orgK) sind feste Ein-Wort-Labels für alle Karten — keine Neuübersetzung. BINDING: Der Zähler (ix.cd.*) kennt nur „one“ (n = 1) und „other“ (n ≠ 1); {n} bleibt in „other“-Formen wörtlich stehen. BINDING: Ein Bezug auf das Gerätedatum wird als „… auf Ihrem Gerät“ formuliert. BINDING: Bei einer Aufzählung aus Institutionen und „offiziellen Kanälen“ regiert ein einziges „(den) offiziellen Kanälen …“ alle Genitive einheitlich. BINDING: „die Al-Ahsa-Entwicklungsbehörde“ (die) ist termbase-verifiziert (fruits.ts:538) und ohne erneute Herleitung zu verwenden. BINDING: Der Hidschra-Gloss „der islamische Mondkalender (Hidschra-Kalender)“ ist auf dieser Seite bereits einmal gesetzt (ix.notes.0.d) — in Folgechargen nur noch „Hidschra-Kalender“ oder „n. H.“ kurz verwenden. BINDING: Der Tabellenspaltenkopf „Termine“ bleibt außerhalb des Batch-Umfangs ein offener Code-/UI-Punkt — nicht in einer Textcharge „reparieren“. BINDING: Monatsspannen werden mit U+2013 ohne Leerzeichen geschrieben («Februar–März», «Januar–Februar») für alle zehn Ereigniskarten der Seite. BINDING: Ein Näherungswort («Etwa»/„ungefähr“/„gegen“/„rund“) wird nur gesetzt, wenn das en/ar-Quellfeld selbst ein Näherungswort trägt (Around/تقريباً); ein bereits genauer Monatsbereich erhält keines. BINDING: Ungefähre-Dauer-Wortlaute sind fest und für Chargen 3–5 wiederzuverwenden: „A few days“ = „Wenige Tage“; „Several weeks“ = „Mehrere Wochen“; ein Ramadan-spezifischer Dauertext folgt dem Muster „Verlängerte Ramadan-Nächte“ (Durchkopplung Eigenname+Nächte). BINDING: Veranstaltungsnamen mit generischem deutschem Grundwort werden durchgekoppelt und bleiben wortgleich in Card-H2, Einzelseiten-H1, Tabellenzelle, Breadcrumb und Browser-Tab-Titel: „Hasawi-Bischt-Festival“, „die Qaisariyah-Nächte“, „die Kafu-Nächte“, „das Festival der verarbeiteten Datteln“ — kein Glossar-Einschub im Namen selbst. BINDING: Fremdsprachige Eigennamen ohne deutsche Bedeutungsquelle (Bischt, Kafu, Ghabqa) werden in kurzen Karten-/Tabellenfeldern nicht geglosst; eine Glosse gehört ausschließlich in Fließtext mit eigenem Quellenbeleg. BINDING: Das „place“-Feld erhält „Historischer/Historische/Historisches + [termbase-Ortsname], Hofuf“ nur, wenn die Quelle „Historic“/„التاريخي“ trägt, mit Adjektivendung nach dem termbase-Genus des Kopfnomens; ohne „Historic“ im Quelltext entfällt das Adjektiv ganz. BINDING: „Al-Ahsa Municipality Fort“/«قلعة أمانة الأحساء» bleibt die Platzhalterform „die Festung der Kommunalverwaltung von Al-Ahsa“ (status pending) — wortgleich in Charge de-ev-4 («قلعة الأمانة») wiederzuverwenden. BINDING: „König-Faisal-Universität“ (die) ist termbase-verifiziert (de.wikipedia.org/wiki/Dammam) und ohne erneute Herleitung zu verwenden. BINDING: Ein als Saison-Badge verwendetes religiöses Kalenderereignis mit einer vollen Nominalphrase im Quelltext wird auf eine kurze, respektvolle Zweiwortform verkürzt, die die religiöse Qualifikation behält: „Heiliger Ramadan“ (nicht „Ramadan“ allein, nicht die volle Quellphrase als Badge). BINDING: „Community gatherings“/«جلسات مجتمعية» als Festival-Highlight = „Geselliges Beisammensein“ (nicht „Gemeinschaftstreffen“, nicht „Nachbarschaftstreffen“). BINDING: „Heritage games“/«ألعاب تراثية» bleibt „Kulturerbe-Spiele“ — die Vorsilbe „Kulturerbe-“ ist exklusiv „heritage“ vorbehalten, nie „historic“/„traditional“, auch auf Aktivitäten angewandt. BINDING: „Folk arts shows“/«عروض فنون شعبية» = „Volkskunstvorführungen“ und „Folklore performances“/«عروض فولكلورية» = „Folkloristische Vorführungen“ bleiben unterschiedlich übersetzt, nicht vereinheitlichen."
+}
