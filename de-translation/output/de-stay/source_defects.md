@@ -1,0 +1,4 @@
+# علل المصدر — de-stay
+
+- **ix.listEyebrow ('The first batch' / «الدفعة الأولى»)**: The eyebrow label above the list heading has no visible anchor for what “first” refers to or how many batches will follow; a reader meets it with no context. Present identically in en and ar — not something a single short eyebrow string can fix without inventing content the source doesn't supply. (en, ar, de)
+- **koot.area / cont.area ('… east of Al-Ahsa' / «… شرق الأحساء»)**: Does not state whether Al-Uqair is administratively part of the Al-Ahsa governorate or a separate nearby place — a natural traveller question left open. Identical phrasing/ambiguity in en and ar, and already baked into the published German Al-Uqair Beach page, so it cannot be resolved at the string level of a single batch. (en, ar, de (published Al-Uqair Beach page + this batch))
