@@ -113,6 +113,38 @@ const C = localize(lang, {
     moreH: '更多时令活动',
     back: '全部活动',
   },
+  // @de-events:start
+  de: {
+    // الكتلة الألمانية — خط de-translation-pipeline (دفعة de-ev-5، ج4؛ التسميات المشتركة موروثة من de-ev-1)
+    eyebrow: 'Eine Saison der Oase',
+    placeK: 'Ort',
+    orgK: 'Veranstalter',
+    seasonK: 'Jahreszeit',
+    timeK: 'Zeitraum',
+    spanK: 'Ungefähre Dauer',
+    actsK: 'Höhepunkte',
+    ticketK: 'Buchen Sie Ihr Ticket',
+    hoursK: 'Öffnungszeiten',
+    faqH: 'Häufige Fragen',
+    relatedH: 'Siehe auch',
+    mapH: 'Auf der Karte',
+    mapOpen: 'In Google Maps öffnen',
+    mapNone: 'Die Veranstalter haben den genauen Ort dieser Veranstaltung noch nicht bekannt gegeben, daher wird keine Karte angezeigt.',
+    mapFrameTitle: 'Karte des Veranstaltungsortes',
+    noticeH: 'Vor Ihrem Besuch',
+    notice: 'Diese Veranstaltung kehrt jährlich in ihrer ungefähren Saison wieder. Termine und Einzelheiten können von Jahr zu Jahr abweichen. Bitte bestätigen Sie diese vor Ihrem Besuch anhand der Ankündigungen der Veranstalter.',
+    statusL: { confirmed: 'Dieses Jahr bestätigt', expected: 'Erwartete Saison', tba: 'Ankündigung steht aus' },
+    cd: {
+      pre: { one: 'Beginnt morgen', other: 'Beginnt in {n} Tagen' },
+      today: 'Beginnt heute',
+      last: 'Letzter Tag heute',
+      left: { one: 'Noch 1 Tag', other: 'Noch {n} Tage' },
+    },
+    crumb: 'Festivals und Veranstaltungen',
+    moreH: 'Weitere Saisons',
+    back: 'Alle Termine',
+  },
+  // @de-events:end
   ru: {
     // الكتلة الروسية — خط ru-translation-pipeline (دفعة ru-ev-5 2026-09-17، الحاكم 92/100 · APPROVE من الدورة الأولى؛ 20 قيمة موروثة من ru-ev-1)
     eyebrow: 'Сезон оазиса',
@@ -147,9 +179,10 @@ const C = localize(lang, {
 
 const zh = lang === 'zh';
 const ru = lang === 'ru';
-const listHref = ar ? '/فعاليات/' : zh ? '/zh/events/' : ru ? '/ru/events/' : '/en/events/';
-const homeHref = ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/';
-const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : ru ? '/ru/events/' : '/en/events/';
+const de = lang === 'de';
+const listHref = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/';
+const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
+const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/';
 
 // الإحداثيات تُسحب من ملف المعلم الموثّق — لا تُقدَّر يدوياً (قاعدة المشروع).
 const venue = ev.venue
@@ -162,11 +195,11 @@ const mapUrl = ev.map ?? venue?.data.mapUrl ?? (loc ? `https://www.google.com/ma
 const embedSrc = loc ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}&hl=${lang}&z=15&output=embed` : undefined;
 const venueHref = venue ? attractionHref(venue.data, lang) : undefined;
 const venueName = venue
-  ? (ar ? venue.data.title : zh ? (venue.data.title_zh ?? venue.data.title_en ?? venue.data.title) : ru ? (venue.data.title_ru ?? venue.data.title_en ?? venue.data.title) : (venue.data.title_en ?? venue.data.title))
+  ? (ar ? venue.data.title : zh ? (venue.data.title_zh ?? venue.data.title_en ?? venue.data.title) : de ? (venue.data.title_de ?? venue.data.title_en ?? venue.data.title) : ru ? (venue.data.title_ru ?? venue.data.title_en ?? venue.data.title) : (venue.data.title_en ?? venue.data.title))
   : undefined;
 // المدينة/الحي في سكيما Event: من حقل area الموثّق في ملف المعلم وحده — وإن غاب
 // المعلم أو حقله سقط addressLocality كلياً (كان «الهفوف» مكتوباً يدوياً لكل فعالية).
-const venueArea = venue ? (ar ? venue.data.area : ru ? (venue.data.area_ru ?? venue.data.area_en) : venue.data.area_en) : undefined;
+const venueArea = venue ? (ar ? venue.data.area : de ? (venue.data.area_de ?? venue.data.area_en) : ru ? (venue.data.area_ru ?? venue.data.area_en) : venue.data.area_en) : undefined;
 
 // ثلاث فعاليات أخرى للتصفّح — بعرضها الفعّال (evView) لا الخام، وإلا عرضت
 // بطاقة نسخةٍ منتهية موعدَها القديم بينما صفحتها تعرض الموسم التقريبي.
@@ -187,9 +220,13 @@ const jsonLd: object[] = [
 // والروسية بنقطة بين الحقول: قيم البطاقة تبدأ بحرف كبير («Зима», «Примерно в декабре»)، والحرف الكبير
 // بعد فاصلة أو شرطة خطأ إملائي في الروسية — والنقطة تحفظ القيم المعتمدة كما هي بلا تصغير آلي.
 const sep = ar ? '، ' : ', ';
+// والألمانية بـU+2013 لا U+2014 (titleSep وC17)، والموسم والموعد بـ«·» كخلية الجدول: قيمة الموعد تبدأ بحرف
+// كبير («Etwa im Dezember») فلا تلي فاصلة.
 const desc = ev.seoDesc ?? (ru
   ? `${[ev.name, ev.place, ev.season, ev.time, ...ev.acts.slice(0, 2)].join('. ')}.`
-  : `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`);
+  : de
+    ? `${ev.name} – ${ev.place}. ${ev.season} · ${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`
+    : `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`);
 // Event schema للنسخ المؤكدة فقط: جوجل يشترط startDate محدداً، ومواسمنا تقريبية
 // بقرار محتوى ملزم — فلا تُضاف إلا حين يوثّق المصدر الرسمي تاريخين دقيقين (startISO/endISO).
 if (ev.startISO && ev.endISO) {

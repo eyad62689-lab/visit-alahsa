@@ -591,6 +591,108 @@ const TEXT_RU: EventTexts = {
   },
 };
 
+// @de-events:start
+// النسخة الألمانية — خط de-translation-pipeline حصراً (دفعات de-ev-1…5، ج4 من خطة إكمال اللغات).
+// بنود نسخة 2026 المنتهية من معرض اللومي (dated، والساعات، وعنوان النسخة ووصفها) لا تُترجم:
+// لا تُصيَّر بعد 13 سبتمبر (evView)، على سابقة TEXT_RU. والرابط إلى الثمار يقصد /de/fruits/.
+const TEXT_DE: EventTexts = {
+  bisht: {
+    slug: 'hasawi-bisht-festival',
+    name: 'Hasawi-Bischt-Festival', place: 'Historischer Qasr Ibrahim, Hofuf',
+    season: 'Winter', time: 'Etwa im Dezember', span: 'Wenige Tage',
+    org: 'Kommission für Kulturerbe (Kulturministerium)',
+    acts: ['Bischt-Ausstellung', 'Weberei-Workshops', 'Interaktiver Bischt-Souk', 'Folkloristische Vorführungen'],
+  },
+  'qaisariyah-nights': {
+    slug: 'qaisariyah-nights',
+    name: 'Qaisariyah-Nächte', place: 'Historischer Qaisariyah-Souk, Hofuf',
+    season: 'Spätwinter', time: 'Februar–März', span: 'Mehrere Wochen',
+    org: 'Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde, Kommission für Kulturerbe',
+    acts: ['Volkskunstvorführungen', 'Geselliges Beisammensein', 'Kulturerbe-Spiele', 'Handwerks-Workshops'],
+  },
+  'kafu-nights': {
+    slug: 'kafu-nights',
+    name: 'Kafu-Nächte', place: 'König-Abdullah-Umweltpark, Hofuf',
+    season: 'Heiliger Ramadan', time: 'Während des Ramadan', span: 'Verlängerte Ramadan-Nächte',
+    org: 'König-Faisal-Universität',
+    acts: ['Theateraufführungen', 'Kinderbereich', 'Interaktive Kafu-Küche', '„Ghabqa“-Abendessen'],
+  },
+  'dates-festival': {
+    slug: 'processed-dates-festival',
+    name: 'Festival der verarbeiteten Datteln', place: 'Festung der Kommunalverwaltung von Al-Ahsa, Hofuf',
+    season: 'Winter', time: 'Januar–Februar', span: 'Mehrere Wochen',
+    org: 'Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde',
+    acts: ['Verkostungs- und Einkaufspavillon', 'Pavillons für verarbeitete Dattelerzeugnisse', 'Kulturelle Workshops', 'Wettbewerbe'],
+  },
+  'palm-village': {
+    slug: 'palm-village',
+    name: 'Palmendorf', place: 'Al-Ahsa-Oase',
+    season: 'Winter und Frühling', time: 'Januar–März', span: 'Verlängerte Saison',
+    org: 'Nationales Zentrum für Palmen und Datteln',
+    acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
+  },
+  lomi: {
+    slug: 'hasawi-lomi-exhibition',
+    name: 'Hasawi-Lomi-Ausstellung', place: 'Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf',
+    season: 'Sommer', time: '19. August – 13. September 2026', span: 'Etwa 26 Tage',
+    org: 'Al-Ahsa-Handelskammer',
+    acts: ['Lomi-Produktausstellungen', 'Live-Kochvorführungen', 'Landwirtschaftliche Workshops', 'Kinderecke', 'Familiäres Beisammensein'],
+    intro: 'Die Hasawi-Lomi-Ausstellung – auch als Hasawi-Limetten-Ausstellung bekannt – ist Al-Ahsas bedeutendste saisonale landwirtschaftliche Veranstaltung. Die Al-Ahsa-Handelskammer veranstaltet sie zu Ehren des nach den Datteln berühmtesten landwirtschaftlichen Erzeugnisses der Oase. Die Ausstellung bietet ein interaktives Erlebnis rund um die Eigenschaften, den Nutzen und den Anbau der Lomi (die Hasawi-Limette), direkten Kontakt zu den Landwirten und Einkaufsmöglichkeiten an den Ständen von Familienbetrieben. Hinzu kommt ein Begleitprogramm.',
+    sections: [
+      {
+        h: 'Was ist die Hasawi-Lomi?',
+        ps: [
+          'Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.',
+          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet als „Jameed“ (die sonnengetrocknete Limette) für die Hasawi- und Golfküche.',
+        ],
+      },
+    ],
+    faq: [
+      { q: 'Wo findet die Ausstellung statt?', a: 'Im Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf – die Karte finden Sie auf dieser Seite.' },
+      { q: 'Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?', a: 'Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Hasawi-Küche verwendet.' },
+      { q: 'Gibt es Aktivitäten für Kinder?', a: 'Ja – die Ausstellung bietet eine Kinderecke, dazu Live-Kochvorführungen, landwirtschaftliche Workshops und familiäres Beisammensein.' },
+    ],
+    related: [
+      { label: 'Die Hasawi-Lomi auf unserer Seite „Oasenfrüchte“', href: '/de/fruits/' },
+      { label: 'Reise planen', href: '/en/plan-your-trip/' },
+    ],
+    after: {
+      time: 'Etwa August–September',
+      span: 'Mehrere Wochen',
+      seoTitle: 'Hasawi-Lomi-Ausstellung: Saison, Ort & Höhepunkte',
+      seoDesc: 'Reiseführer zur Hasawi-Lomi-Ausstellung in Hofuf: ungefähre jährliche Saison: August–September – Termine der nächsten Ausgabe: Al-Ahsa-Handelskammer informiert.',
+    },
+  },
+  'uqair-winter': {
+    slug: 'al-uqair-winter',
+    name: 'Al-Uqair-Winter', place: 'Park am Al-Uqair-Strand',
+    season: 'Winter', time: 'Dezember–Februar', span: 'Mehrere Wochen',
+    org: 'Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa',
+    acts: ['Familienfreundliche Meeres- und Sportaktivitäten', 'Kunst- und Handwerksworkshops', 'Unterhaltungsspiele'],
+  },
+  'wafrah-winter': {
+    slug: 'al-wafrah-winter',
+    name: 'Al-Wafrah-Winter', place: 'Al-Wafrah-Viertel, südlich von Hofuf',
+    season: 'Winter', time: 'Ab etwa November', span: 'Verlängerte Wintersaison',
+    org: 'Eigentümer und Investoren unter Aufsicht der Kommunalverwaltung von Al-Ahsa',
+    acts: ['Mehr als 150 Foodtrucks', 'Hasawi-Volksgerichte', 'Winterliches Beisammensein im Freien'],
+  },
+  'horse-racing': {
+    slug: 'horse-racing-season',
+    name: 'Pferderennsaison', place: 'Reitsportanlage, Al-Taraf',
+    season: 'Winter', time: 'November–Februar', span: 'Verlängerte Saison',
+    org: 'Al-Ahsa-Reitsportanlage',
+    acts: ['Pferderennen', 'Reitsportveranstaltungen'],
+  },
+  'creative-ahsa': {
+    slug: 'creative-alahsa-festival',
+    name: 'Kreativ-Al-Ahsa-Festival', place: 'Traditioneller Freej, Festung der Kommunalverwaltung von Al-Ahsa',
+    season: 'Frühling', time: 'März–April', span: 'Etwa eine Woche',
+    org: 'Kommunalverwaltung von Al-Ahsa',
+    acts: ['Töpferei', 'Palmwedel-Flechtwaren', 'Traditionelles Tischlerhandwerk', 'Bildende Kunst', 'Volksdarbietungen'],
+  },
+};
+// @de-events:end
 // ── الدمج: Ev واحدة لكل فعالية ولغة — الشكل نفسه الذي يقرؤه كل مستهلك ─────────
 function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
   const m: EventMeta = EVENT_META[id];
@@ -606,21 +708,23 @@ function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
 export const EVENTS_AR: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_AR[id]));
 export const EVENTS_EN: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_EN[id]));
 export const EVENTS_ZH: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_ZH[id]));
+export const EVENTS_DE: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_DE[id]));
 export const EVENTS_RU: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_RU[id]));
 
 /** فعاليات لغة الصفحة */
 export const eventsFor = (lang: Lang): Ev[] =>
-  lang === 'ar' ? EVENTS_AR : lang === 'zh' ? EVENTS_ZH : lang === 'ru' ? EVENTS_RU : EVENTS_EN;
+  lang === 'ar' ? EVENTS_AR : lang === 'zh' ? EVENTS_ZH : lang === 'de' ? EVENTS_DE : lang === 'ru' ? EVENTS_RU : EVENTS_EN;
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>
   (lang === 'ar' ? EVENTS_EN : EVENTS_AR).find((e) => e.id === id);
 
 /** روابط الفعالية بلغاتها — مصدر alt (hreflang ومبدّل اللغة) لصفحاتها المفردة.
- *  الصينية والروسية كاملتان (الفعاليات العشر)؛ والروسية تُحذف من alt ما دامت في unlisted.ts. */
-export const eventAlt = (id: string): { ar: string; en: string; zh: string; ru: string } => ({
+ *  الصينية والألمانية والروسية كاملة (الفعاليات العشر). */
+export const eventAlt = (id: string): { ar: string; en: string; zh: string; de: string; ru: string } => ({
   ar: `/فعاليات/${EVENTS_AR.find((e) => e.id === id)!.slug}/`,
   en: `/en/events/${EVENTS_EN.find((e) => e.id === id)!.slug}/`,
   zh: `/zh/events/${EVENTS_ZH.find((e) => e.id === id)!.slug}/`,
+  de: `/de/events/${EVENTS_DE.find((e) => e.id === id)!.slug}/`,
   ru: `/ru/events/${EVENTS_RU.find((e) => e.id === id)!.slug}/`,
 });

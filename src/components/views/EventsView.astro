@@ -14,7 +14,7 @@ import DataTable from '../DataTable.astro';
 import { eventsTable } from '../../lib/tables';
 import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { EVENTS_AR, EVENTS_EN, EVENTS_RU, EVENTS_ZH, evView, type Ev } from '../../data/events';
+import { EVENTS_AR, EVENTS_DE, EVENTS_EN, EVENTS_RU, EVENTS_ZH, evView, type Ev } from '../../data/events';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -132,6 +132,44 @@ const C = localize(lang, {
     seoTitle: '哈萨节庆与活动——绿洲四季精彩不断',
     seoDesc: '哈萨季节性节庆活动指南——哈萨比什特长袍节、凯撒利亚集市之夜、哈萨青柠展、乌盖尔之冬等，涵盖举办时节、亮点活动与主办单位。',
   },
+  // @de-events:start
+  de: {
+    // الكتلة الألمانية — خط de-translation-pipeline (دفعات de-ev-1 وde-ev-4، ج4)
+    eyebrow: 'Saisons der Oase',
+    title: 'Festivals und Veranstaltungen',
+    lead: 'Vom Qaisariyah-Souk bis zu den Dattelpalmenfarmen ist Al-Ahsa von Saisons geprägt, die sein Erbe das ganze Jahr über beleben. Feste und Festivals kehren jedes Jahr in ihrer Saison wieder.',
+    notice: 'Diese Veranstaltungen kehren jährlich in ihren ungefähren Saisons wieder. Die offiziellen Termine und Einzelheiten können sich von Ausgabe zu Ausgabe ändern. Bitte bestätigen Sie die Angaben vor Ihrem Besuch anhand der Ankündigungen der Veranstalter und der offiziellen Kanäle.',
+    placeK: 'Ort',
+    mapK: 'Karte ↗',
+    ticketK: 'Buchen Sie Ihr Ticket',
+    orgK: 'Veranstalter',
+    spanK: 'Ungefähre Dauer',
+    actsK: 'Höhepunkte',
+    statusL: { confirmed: 'Dieses Jahr bestätigt', expected: 'Erwartete Saison', tba: 'Ankündigung steht aus' },
+    cd: {
+      pre: { one: 'Beginnt morgen', other: 'Beginnt in {n} Tagen' },
+      today: 'Beginnt heute',
+      last: 'Letzter Tag heute',
+      left: { one: 'Noch 1 Tag', other: 'Noch {n} Tage' },
+    },
+    nowBadge: 'Läuft gerade',
+    orderNote: 'Die Karten werden automatisch nach ihrer zeitlichen Nähe zum heutigen Datum auf Ihrem Gerät sortiert – beginnend mit dem, was gerade läuft.',
+    events: EVENTS_DE,
+    notesH: 'Vor Ihrem Besuch',
+    notes: [
+      { h: 'Zeitraum', d: 'Die offiziellen Termine der Veranstaltungen können von Jahr zu Jahr abweichen – folgen Sie daher den Ankündigungen der jeweiligen Ausgabe. Die Veranstaltungen richten sich sowohl nach dem islamischen Mondkalender (Hidschra-Kalender) als auch nach dem gregorianischen Kalender und kehren jährlich in ihren ungefähren Saisons wieder.' },
+      { h: 'Erbe und Kreativität', d: 'Die Festivals rücken die Identität und das Erbe Al-Ahsas in den Fokus – mit traditioneller Tracht, Kunsthandwerk und authentischen lokalen Erzeugnissen.' },
+      { h: 'Familienatmosphäre', d: 'Die Programme sind auf die ganze Familie ausgerichtet und bieten Unterhaltung, Kreativität, Einkaufsmöglichkeiten und Kostproben für alle Altersgruppen.' },
+    ],
+    srcNote: 'Für weitere Informationen und Aktualisierungen folgen Sie den offiziellen Kanälen der Kommunalverwaltung von Al-Ahsa, der Al-Ahsa-Entwicklungsbehörde und der Veranstaltungen.',
+    ctaH: 'Machen Sie aus Ihrer Saison eine ganze Reise',
+    ctaD: 'Verbinden Sie den Festivalbesuch mit den nahegelegenen Sehenswürdigkeiten der Oase, und stellen Sie Ihre Route in „Meine Reise“ zusammen.',
+    ctaBrowse: 'Sehenswürdigkeiten entdecken',
+    ctaPlan: 'Reise planen',
+    seoTitle: 'Al-Ahsa: Festivals und Veranstaltungen – Saisons der Oase ganzjährig',
+    seoDesc: 'Al-Ahsas Festivals und Veranstaltungen: Hasawi-Bischt-Festival, Qaisariyah-Nächte, Hasawi-Lomi-Ausstellung u. a. – Saisons und Veranstalter.',
+  },
+  // @de-events:end
   ru: {
     // الكتلة الروسية — خط ru-translation-pipeline (واجهة ru-ev-1 الحاكم 94/100، وعنوان الصفحة ووصفها ru-ev-4 الحاكم 92/100 — 2026-09-17)
     eyebrow: 'Сезоны оазиса',
@@ -199,13 +237,15 @@ for (const { raw } of cards) { if (eagerIds.size >= 2) break; eagerIds.add(raw.i
 const zh = lang === 'zh';
 // الروسية: الصفحات المفردة /ru/events/<slug>/ مبنية منذ الدفعة 5
 const ru = lang === 'ru';
-const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
-const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : ru ? '/ru/events/' : '/en/events/';
+// الألمانية: الصفحات المفردة /de/events/<slug>/ مبنية منذ ج4
+const de = lang === 'de';
+const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
+const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/';
 const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
 const siteUrl = SITE;
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
     { name: C.title, path: altHref(alt, lang) },
   ]),
   // ItemList فقط — لا Event schema عمداً: جوجل يشترط startDate محدداً للأهلية،
@@ -263,7 +303,7 @@ const jsonLd = [
               <dl class="ev-meta">
                 <div class="evm-row">
                   <dt class="evm-k">{C.placeK}</dt>
-                  <dd class="evm-v">{e.place}{e.map && <> — <a class="evm-map" href={e.map} target="_blank" rel="noopener">{C.mapK}</a></>}</dd>
+                  <dd class="evm-v">{e.place}{e.map && <> {de ? '–' : '—'} <a class="evm-map" href={e.map} target="_blank" rel="noopener">{C.mapK}</a></>}</dd>
                 </div>
                 <div class="evm-row">
                   <dt class="evm-k">{C.orgK}</dt>
