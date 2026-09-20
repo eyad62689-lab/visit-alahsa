@@ -17,7 +17,7 @@ import { catLabel } from '../../lib/categories';
 import { DISTRICT_NAMES } from '../../data/districts';
 import { liveFor, hoursData as hoursDataFor, hoursFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
-import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import ShareButton from '../ShareButton.astro';
 
@@ -28,13 +28,15 @@ const ar = lang === 'ar';
 // الروسية (ب6): الصفحة لا تُولَّد إلا لمن حمل body_ru (البوابة في ru/restaurants-cafes/[slug])،
 // وحقول البطاقة *_ru من ب5 تتراجع للإنجليزية عند غيابها. الاسم لاتيني كما تسمّي المنشأة نفسها.
 const ru = lang === 'ru';
+// والألمانية (ج7): البوابة body_de في de/restaurants-cafes/[slug]، وحقول البطاقة *_de من ج6.
+const de = lang === 'de';
 const d = entry.data;
 const { Content } = await render(entry);
 
 const name = ar ? d.name : d.name_en;
-const area = ar ? d.area : ru ? (d.area_ru ?? d.area_en) : d.area_en;
-const blurb = ar ? d.blurb : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
-const alTxt = ar ? d.alt : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
+const area = ar ? d.area : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en;
+const blurb = ar ? d.blurb : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
+const alTxt = ar ? d.alt : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
@@ -42,7 +44,7 @@ const hours = hoursFor(lv, lang);
 const hoursData = hoursDataFor(lv);
 // المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
 // «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.
-const bodyEnParas = (ru && d.body_ru?.trim() ? d.body_ru : d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+const bodyEnParas = (de && d.body_de?.trim() ? d.body_de : ru && d.body_ru?.trim() ? d.body_ru : d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 // «معالم قريبة في الحيّ» (الخطوة 9 من خطة التفاعل العالمي): المعالم التي تحمل مفتاح حيّ
 // المنشأة نفسه (district — مشتقّ من نصّ area في ملف المعلم، يفرضه المخطط). بلا حيّ لا قسم.
@@ -50,7 +52,7 @@ const sights = d.district
   ? (await getCollection('attractions'))
       .filter((e) => e.data.district === d.district)
       .sort((x, y) => x.data.order - y.data.order)
-      .map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
+      .map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
   : [];
 
 const C = localize(lang, {
@@ -91,6 +93,27 @@ const C = localize(lang, {
     indexName: 'Restaurants & Cafés',
     sightsH: 'Sights nearby in {district}',
   },
+  // الكتلة الألمانية — خط de-translation-pipeline (دفعة de-dind-1 2026-09-20، الحكّام النهائيون: 91 · 90 · 90 · 90).
+  // المقفلات (أوقات العمل وصيغ Google Maps وعنوان الفهرس وعنوان صندوق المنهج) منسوخة من
+  // كتلة DE المنشورة في فهرس المطاعم — صفحةٌ واحدة بصيغتين لا تُقبل هنا.
+  de: {
+    kindLabel: d.kind === 'cafe' ? 'Café' : d.kind === 'bakery' ? 'Bäckerei' : 'Restaurant',
+    backLabel: 'Alle Restaurants und Cafés',
+    openMaps: t('det.openMaps'),
+    newWindow: '(öffnet Google Maps in einem neuen Fenster)',
+    hoursH: 'Öffnungszeiten',
+    hoursNote: 'Die Öffnungszeiten stammen von Google Maps und können sich ändern – nutzen Sie den Link zu diesem Ort, um sie zu prüfen.',
+    ratingLabel: 'Bewertung bei Google Maps',
+    openNow: 'Jetzt geöffnet',
+    closedNow: 'Jetzt geschlossen',
+    closedPerm: 'Dauerhaft geschlossen – laut Google Maps',
+    closedTemp: 'Vorübergehend geschlossen – laut Google Maps',
+    areaH: 'Lage',
+    noteH: 'Über diese Seite',
+    noteP: 'Name und Standort stammen direkt aus Google Maps; Bewertung und Öffnungszeiten werden bei jeder Aktualisierung der Website von dort abgerufen und können sich ändern. Wir führen weder Preise noch Empfehlungen zu bestimmten Gerichten auf, und diese Seite beschreibt nur, ohne zu empfehlen.',
+    indexName: 'Restaurants und Cafés',
+    sightsH: 'Sehenswürdigkeiten in der Nähe: {district}',
+  },
   // الروسية — خط ru-translation-pipeline (دفعة ru-dining-detail-1)؛ ما يطابق كتلة RU في الفهرس منسوخٌ منها.
   ru: {
     kindLabel: d.kind === 'cafe' ? 'Кафе' : d.kind === 'bakery' ? 'Пекарня' : 'Ресторан',
@@ -111,17 +134,17 @@ const C = localize(lang, {
     sightsH: 'Достопримечательности поблизости: {district}',
   },
 });
-const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : ru ? 'ru' : 'en'][d.district]) : '';
+const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : de ? 'de' : ru ? 'ru' : 'en'][d.district]) : '';
 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/مطاعم-ومقاهي/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
+const indexHref = ar ? '/مطاعم-ومقاهي/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
 const siteUrl = SITE;
 const selfUrl = absUrl(diningHref(d, lang), siteUrl);
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : ru ? '/ru/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
     { name: C.indexName, path: indexHref },
     { name, path: diningHref(d, lang) },
   ], siteUrl),
@@ -134,7 +157,7 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`${name} — ${C.indexName} — ${t('site.name')}`} description={blurb} image={`${d.img}.jpg`}
+<Base title={`${name} ${titleSep(lang)} ${C.indexName} ${titleSep(lang)} ${t('site.name')}`} description={blurb} image={`${d.img}.jpg`}
   lang={lang} alt={alt} jsonLd={jsonLd}
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />
