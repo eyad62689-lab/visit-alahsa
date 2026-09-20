@@ -468,17 +468,22 @@ async function main() {
     }
   }
 
-  // ── C17: الشرطة الطويلة ممنوعة في عناوين ووصف صفحات /de/ ────────────────
+  // ── C17: الشرطة الطويلة ممنوعة في عناوين ووصف صفحات /de/ وسطر حقوق التذييل ─
   // شرطة الاعتراض الألمانية هي U+2013 (Halbgeviertstrich)؛ وU+2014 علامة
   // إنجليزية يقرؤها القارئ الألماني خللاً طباعياً. الفاصل رمزٌ الآن
   // (titleSep في i18n/utils) بعد أن كان محرفاً حرفياً في 15 قالباً — ووقع
   // فعلاً في عنوان /de/attractions/ أول ما بُنيت.
+  // وسطر الحقوق المرئي في التذييل (`.ft-bar span`) كان محرفاً حرفياً أيضاً
+  // فمرّ من الحارس الأول وظهر في كل صفحة ألمانية (2026-09-19). خارج النطاق عمداً:
+  // `<meta name="copyright">` و`copyrightNotice` في JSON-LD — بيانات علامة
+  // ثنائية اللغة موحّدة للموقع كله لا نصٌّ ألماني.
   {
     const deFiles = htmlFiles.filter((f) => {
       const rel = path.relative(DIST, f).split(path.sep);
       return rel[0] === 'de';
     });
     const offenders = [];
+    let footers = 0;
     for (const f of deFiles) {
       const html = await readText(f);
       const spots = [];
@@ -486,6 +491,13 @@ async function main() {
       if (title) spots.push(['title', title[1]]);
       for (const m of html.matchAll(/<meta[^>]+(?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)"[^>]+content="([^"]*)"/g))
         spots.push(['meta', m[1]]);
+      const bar = html.match(/<div\b[^>]*\bclass="[^"]*\bft-bar\b[^"]*"[^>]*>\s*<span\b[^>]*>([\s\S]*?)<\/span>/);
+      if (bar) {
+        footers++;
+        spots.push(['footer', bar[1]]);
+        // حارس إيجابي: فاصلٌ سقط أو صار «-» يُمسَك هنا، وU+2014 يُمسكه السطر أدناه
+        if (!bar[1].includes('\u2013') && !bar[1].includes('\u2014')) offenders.push(`${path.relative(DIST, f)} (footer بلا U+2013)`);
+      }
       for (const [where, text] of spots)
         if (text.includes('\u2014')) offenders.push(`${path.relative(DIST, f)} (${where})`);
     }
@@ -493,8 +505,10 @@ async function main() {
       fail('C17', `شرطة U+2014 الطويلة في ${offenders.length} موضع من صفحات /de/: ${offenders.slice(0, 4).join(', ')} — الألمانية تستعمل U+2013`);
     } else if (deFiles.length === 0) {
       fail('C17', 'لا صفحة /de/ في المخرج — الحارس صار فارغاً');
+    } else if (footers === 0) {
+      fail('C17', 'لا سطر حقوق (.ft-bar span) في أي صفحة /de/ — حارس التذييل صار فارغاً');
     } else {
-      pass('C17', `عناوين ووصف ${deFiles.length} صفحة ألمانية بشرطة U+2013 — لا U+2014`);
+      pass('C17', `عناوين ووصف ${deFiles.length} صفحة ألمانية وسطر حقوق ${footers} تذييلاً بشرطة U+2013 — لا U+2014`);
     }
   }
 
