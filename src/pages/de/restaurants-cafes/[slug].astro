@@ -1,0 +1,24 @@
+---
+// صفحة المنشأة الألمانية. تُولَّد لمن عبر متنه الإنجليزي العتبة (100 كلمة) وحمل body_de
+// المعتمد من خط de-translation-pipeline — بوابة كـbody_de في الإقامة، والمقطع slug_en مشترك.
+import { getCollection } from 'astro:content';
+import { diningAlt } from '../../../lib/routes';
+import DiningDetailView from '../../../components/views/DiningDetailView.astro';
+
+export async function getStaticPaths() {
+  const WORD_MIN_EN = 100;
+  const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+  const items = await getCollection('dining');
+  return items
+    .filter((e) => {
+      const body = e.data.body_en.trim();
+      return words(body) >= WORD_MIN_EN && body !== e.data.blurb_en && !!e.data.body_de?.trim();
+    })
+    .map((entry) => ({
+      params: { slug: entry.data.slug_en },
+      props: { entry, alt: diningAlt(entry.data) },
+    }));
+}
+const { entry, alt } = Astro.props;
+---
+<DiningDetailView entry={entry} lang="de" alt={alt} />

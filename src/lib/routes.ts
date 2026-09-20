@@ -29,18 +29,22 @@ export const attractionAlt = (d: AttractionSlugs): { ar: string; en: string; zh?
   ...(d.title_ru ? { ru: attractionHref(d, 'ru') } : {}),
 });
 
-type DiningSlugs = { slug_ar: string; slug_en: string; body_ru?: string };
+type DiningSlugs = { slug_ar: string; slug_en: string; body_ru?: string; body_de?: string };
 
 /** رابط صفحة المنشأة (مطعم/مقهى) — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
 export const diningHref = (d: DiningSlugs, lang: Lang): string =>
-  lang === 'ar' ? `/مطاعم-ومقاهي/${d.slug_ar}/` : lang === 'ru' ? `/ru/restaurants-cafes/${d.slug_en}/` : `/en/restaurants-cafes/${d.slug_en}/`;
+  lang === 'ar' ? `/مطاعم-ومقاهي/${d.slug_ar}/`
+  : lang === 'de' ? `/de/restaurants-cafes/${d.slug_en}/`
+  : lang === 'ru' ? `/ru/restaurants-cafes/${d.slug_en}/`
+  : `/en/restaurants-cafes/${d.slug_en}/`;
 
-/** روابط المنشأة بلغاتها — مصدر hreflang ومبدّل اللغة. لا نسخة صينية ولا ألمانية
- *  بعد؛ والروسية تُدرج متى حملت المنشأة body_ru المعتمد (بوابة صفحتها، على سابقة
- *  stayAlt) — فلا يقود المبدّل إلى 404. */
-export const diningAlt = (d: DiningSlugs): { ar: string; en: string; ru?: string } => ({
+/** روابط المنشأة بلغاتها — مصدر hreflang ومبدّل اللغة. لا نسخة صينية بعد؛
+ *  والألمانية والروسية تُدرجان متى حملت المنشأة body_de/body_ru المعتمد (بوابة
+ *  صفحتها، على سابقة stayAlt) — فلا يقود المبدّل إلى 404. */
+export const diningAlt = (d: DiningSlugs): { ar: string; en: string; de?: string; ru?: string } => ({
   ar: diningHref(d, 'ar'),
   en: diningHref(d, 'en'),
+  ...(d.body_de?.trim() ? { de: diningHref(d, 'de') } : {}),
   ...(d.body_ru?.trim() ? { ru: diningHref(d, 'ru') } : {}),
 });
 
