@@ -14,6 +14,8 @@ blurb_zh: "奶油色门面，上方是深色字样的店名，还有木窗和摆
 alt_zh: "OUDA 的奶油色门面，深色字样的店名与户外的桌子"
 blurb_ru: "Кремовый фасад с названием тёмными буквами наверху, деревянные оконные рамы и столики на мощёной площадке."
 alt_ru: "Кремовый фасад OUDA с названием тёмными буквами и столиками на улице"
+blurb_de: "Eine cremefarbene Fassade unter dem in dunklen Buchstaben geschriebenen Namen, dazu Fenster in Holzrahmen und Tische auf dem Pflaster."
+alt_de: "Die cremefarbene Fassade von OUDA mit dem Namen in dunklen Buchstaben und den Tischen im Freien"
 img: /img/dining/ouda
 maps: "https://maps.app.goo.gl/tZmEXTYHzcsWMBvj6"
 order: 15

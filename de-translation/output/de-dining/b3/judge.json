@@ -1,0 +1,389 @@
+{
+  "batch": "de-din-3",
+  "loop": 1,
+  "score": 92,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 25,
+    "compliance": 18,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "rejected",
+      "reason": "\"Die erste Gruppe\" is the section eyebrow (DiningView.astro listEyebrow) approved in de-din-1 (page frame, BINDING there) — it is not one of this batch's 30 keys (area/blurb/alt of the ten restaurant cards) and cannot be edited from de-din-3. Out of scope for this judge; not a card-text defect."
+    },
+    {
+      "n": 2,
+      "ruling": "applied",
+      "reason": "Genuine attachment ambiguity: the three trailing PPs ('bei Dar Basma', 'zwischen den Palmen', 'am Abend') let a reader parse 'zwischen den Palmen' as modifying 'Dar Basma' instead of 'Sitzplätze'. Fix reorders only (no fact added/removed, matches EN order 'seating among the palms ... at night' and keeps the batch's established unflected 'bei <Name>' pattern).",
+      "edit": {
+        "key_or_field": "dar-basma.alt",
+        "before": "Glasfassade und Sitzplätze im Freien bei Dar Basma zwischen den Palmen am Abend",
+        "after": "Glasfassade und Sitzplätze im Freien zwischen den Palmen bei Dar Basma am Abend"
+      }
+    },
+    {
+      "n": 3,
+      "ruling": "applied",
+      "reason": "Real grammar defect, not a stylistic quibble: a bare genitive on an unflected multi-word Latin brand name ('des Al-Koot Heritage Hotel') reads as a missing genitive -s. The batch itself already solved this exact problem for other venues (Dar Basma, Ammo, Lava, Code) with a 'von <Name>' construction that avoids inflecting the brand name — applying the same established pattern here removes the error without altering the name or any fact.",
+      "edit": {
+        "key_or_field": "alkoot-hotel.alt",
+        "before": "Der Innenhof des Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach",
+        "after": "Der Innenhof von Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach"
+      }
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "reason": "'Kulturerbe-Hotel' is a sourced, already-published termbase pair: taken verbatim from body_de of src/content/stay/alkoot-heritage.md (the published /de/stay/ page) and reconfirmed as BINDING by this task's own brief ('«Kulturerbe-Hotel» only for the heritage hotel. Keep these.'). Replacing it with 'des Hotels' or 'des historischen Hotels' would break that TM pair and desynchronize this card from the already-live stay page. Reader's stylistic discomfort does not outrank a sourced termbase entry."
+    },
+    {
+      "n": 5,
+      "ruling": "applied",
+      "reason": "Legitimate readability stumble: 'Teller an Teller' sitting mid-sentence between the noun phrase and the final participle briefly reads as a second, loosely-attached list item. Moving it to the end (matching the EN/AR source order, where 'plate after plate' / «طبقاً إلى جانب طبق» trails the description) removes the stumble with a pure reorder — mats/spread/plate-after-plate facts all unchanged.",
+      "edit": {
+        "key_or_field": "alhawi.blurb",
+        "before": "Ein traditionelles Frühstück, Teller an Teller auf Matten aus Palmwedel-Flechtwaren ausgebreitet.",
+        "after": "Ein traditionelles Frühstück, auf Matten aus Palmwedel-Flechtwaren ausgebreitet, Teller an Teller."
+      }
+    },
+    {
+      "n": 6,
+      "ruling": "source_defect",
+      "reason": "Both EN and AR source give only 'district — Hofuf' for these two cards, unlike the other eight which pair the district with a landmark (opposite Qasr Ibrahim, opposite King Faisal University, Prince Nawwaf Street, etc.). The pattern break is real but is inherited from the source data itself, not introduced by translation; the fence forbids inventing a landmark to smooth the pattern. Text stays faithful to source.",
+      "edit": null
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "'Sharq Al-Qaisariyah' in the alt text is the EN source's own wording (pack.json en: \"... of Sharq Al-Qaisariyah\"), distinct on purpose from the venue's self-designated heading name 'Sharq Restaurant'. This exact split was reviewed and explicitly ruled correct by Eyad on 2026-09-04 (documented in the project CLAUDE.md: the restaurant sits in the historic Al-Hamidiyah souq building 'east of the Qaisariyah souq' — a valid positional description, not a naming conflict) and is called out as intentional in this batch's own BRIEF (trap 13). Unifying the two names would erase a source-sanctioned distinction."
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "'gekrönt von ihrem leuchtenden Schild' faithfully mirrors the EN source's own metaphor ('A modern glass façade crowned by its glowing sign' — pack.json en). It is a standing German image idiom (cf. 'ein Turm, gekrönt von einer Kuppel'), not an anglicism, and does not carry a quality/ranking claim (does not match the guarded terms beste/empfehlenswert/köstlich/lecker/berühmt). Flattening the register would diverge from the source's own stylistic choice without correcting an error."
+    },
+    {
+      "n": 9,
+      "ruling": "rejected",
+      "reason": "The 'position in the list' framing is inherited directly from the source, not invented in translation: EN says 'the modern casual pick of the list', AR «الخيار العصري السريع في القائمة» ('in the list'). BRIEF trap 8 explicitly requires this card to read as a list-position description, not a recommendation, and bars beste/Empfehlung/Tipp. 'Eintrag' (entry) was deliberately chosen over 'Wahl' (choice) specifically to strip any evaluative connotation — softening the self-referential framing further risks tipping the sentence back toward an implied recommendation, which the fence forbids."
+    },
+    {
+      "n": 10,
+      "ruling": "rejected",
+      "reason": "'Code' is the venue's own self-designated Latin name (name_en, BRIEF trap 10) and must stay verbatim and unflected per BINDING — it cannot be changed to avoid the momentary German-word misreading. The appositive '– Restaurant und Café –' was already inserted precisely to disambiguate on second reading; no further fix is available without violating the venue-name rule."
+    },
+    {
+      "n": 11,
+      "ruling": "applied",
+      "reason": "'so nennt es sich selbst' ('nennt sich' = 'is called') risks reading as if 'Restaurant und Café in einem' were the venue's official name, contradicting the heading 'Code'. EN source says 'as it calls itself' meaning a self-description of category, not a name-claim. 'so beschreibt sich der Ort selbst' preserves that exact meaning (self-description) while removing the name-collision risk — no fact added or removed.",
+      "edit": {
+        "key_or_field": "koud.blurb",
+        "before": "Restaurant und Café in einem – so nennt es sich selbst, und genau das verkünden auch die leuchtenden arabischen Buchstaben auf seiner dunklen Fassade.",
+        "after": "Restaurant und Café in einem – so beschreibt sich der Ort selbst, und genau das verkünden auch die leuchtenden arabischen Buchstaben auf seiner dunklen Fassade."
+      }
+    },
+    {
+      "n": 12,
+      "ruling": "applied",
+      "reason": "'verkünden' (proclaim/herald solemnly) overshoots both EN 'announces' and AR «تعلن» (declare/announce) in register, and stands out against the sober tone of the other 29 card strings. 'kündigen ... an' (ankündigen, plain 'announce') is an equally faithful, source-aligned rendering with a neutral register — no fact changed, only the verb's register.",
+      "edit": {
+        "key_or_field": "koud.blurb",
+        "before": "Restaurant und Café in einem – so beschreibt sich der Ort selbst, und genau das verkünden auch die leuchtenden arabischen Buchstaben auf seiner dunklen Fassade.",
+        "after": "Restaurant und Café in einem – so beschreibt sich der Ort selbst, und genau das kündigen auch die leuchtenden arabischen Buchstaben auf seiner dunklen Fassade an."
+      }
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "khunaina.area, sharq-alqaisariah.area",
+      "defect": "EN and AR source give only 'district — Hofuf' with no landmark for these two cards, breaking the pattern the other eight cards follow (district + landmark). Not fabricatable without violating the no-invention fence.",
+      "langs_affected": "en, ar (inherited by de and every other target language)"
+    }
+  ],
+  "final": {
+    "strings": {
+      "dar-basma.area": "Al-Koot-Viertel – neben dem Qasr-Ibrahim-Park",
+      "dar-basma.blurb": "Sitzplätze im Freien zwischen den Palmen und eine Glasfassade am Rand des Qasr-Ibrahim-Parks.",
+      "dar-basma.alt": "Glasfassade und Sitzplätze im Freien zwischen den Palmen bei Dar Basma am Abend",
+      "alkoot-hotel.area": "Al-Koot-Viertel – gegenüber Qasr Ibrahim",
+      "alkoot-hotel.blurb": "Das Restaurant des Kulturerbe-Hotels – Tische unter einem Glasdach in einem von Arkaden gesäumten Innenhof.",
+      "alkoot-hotel.alt": "Der Innenhof des Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach",
+      "alhawi.area": "Al-Khalidiyah – gegenüber der König-Faisal-Universität",
+      "alhawi.blurb": "Ein traditionelles Frühstück, auf Matten aus Palmwedel-Flechtwaren ausgebreitet, Teller an Teller.",
+      "alhawi.alt": "Ein traditionelles Frühstück mit verschiedenen Gerichten bei Al Hawy",
+      "khunaina.area": "Al-Khalidiyah – Hofuf",
+      "khunaina.blurb": "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, inmitten dunkelgrüner Samtsitze.",
+      "khunaina.alt": "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, auf einem Tisch bei Khunaina",
+      "sinyar.area": "Al-Khaleej-Straße – Al-Uwaimriyah-Viertel",
+      "sinyar.blurb": "Ein moderner Lehmbau im traditionellen Stil, der seinen Namen in arabischer Kalligrafie trägt.",
+      "sinyar.alt": "Lehmfassade und Schild in arabischer Kalligrafie bei Sinyar in der Abenddämmerung",
+      "greasy-fingers.area": "Al-Khalidiyah – Prinz-Nawwaf-Straße",
+      "greasy-fingers.blurb": "Burger und Pommes frites auf Metalltabletts – der moderne, zwanglose und schnelle Eintrag auf der Liste.",
+      "greasy-fingers.alt": "Ein Burger und Pommes frites auf einem Serviertablett bei Greasy Fingers",
+      "lava.area": "Al-Khaleej-Straße – Al-Olaya",
+      "lava.blurb": "Gerichte, die heiß in eisernen Pfannen auf Marmortischen ankommen.",
+      "lava.alt": "Verschiedene Gerichte auf einem Marmortisch bei Lava",
+      "ammo.area": "König-Abdullah-Straße – Al-Mazrou'",
+      "ammo.blurb": "Eine moderne Glasfassade, gekrönt von ihrem leuchtenden Schild.",
+      "ammo.alt": "Die Glasfassade von Ammo mit ihrem leuchtenden Schild bei Nacht",
+      "sharq-alqaisariah.area": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "sharq-alqaisariah.blurb": "Ein Tor mit reich verziertem Bogen führt zu Sitzgelegenheiten im traditionellen Stil.",
+      "sharq-alqaisariah.alt": "Der Eingang mit seinem reich verzierten Bogen und die Sitzplätze im Freien bei Sharq Al-Qaisariyah",
+      "koud.area": "König-Abdullah-Straße – Al-Mazrou'",
+      "koud.blurb": "Restaurant und Café in einem – so beschreibt sich der Ort selbst, und genau das kündigen auch die leuchtenden arabischen Buchstaben auf seiner dunklen Fassade an.",
+      "koud.alt": "Die Fassade von Code – Restaurant und Café – mit ihrem leuchtenden Schild in arabischer Schrift"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "King Abdullah Road (طريق الملك عبدالله)",
+      "de": "die König-Abdullah-Straße",
+      "artikel": "die",
+      "source": "Pattern-derived: gender fixed by the unambiguous German generic noun 'die Straße', not the proper name — same precedent class the judge already accepted for die König-Abdulaziz-Straße (REPO/de-translation/glossary/termbase.json:777) and die Ain-Najm-Straße (REPO/de-translation/glossary/termbase.json:2860-2863, judge-confirmed 'Genus... aus einem eindeutigen deutschen Gattungswort abgeleitet'). Witnessed by ammo.area / koud.area (en \"King Abdullah Road\", ar «طريق الملك عبدالله»).",
+      "status": "derived"
+    },
+    {
+      "en": "Prince Nawwaf Street (شارع الأمير نواف)",
+      "de": "die Prinz-Nawwaf-Straße",
+      "artikel": "die",
+      "source": "Same 'die Straße' gender pattern as above; title component 'Prinz' already has a witnessed artikel in REPO/de-translation/glossary/termbase.json:2352-2353 (entry 'Prinz Saad'). Witnessed by greasy-fingers.area (en \"Prince Nawwaf Street\", ar «شارع الأمير نواف»).",
+      "status": "derived"
+    },
+    {
+      "en": "heritage-styled (بطابع تراثي / أطباق تراثية) — decorative/adjectival use for décor, furniture or seating, NOT the official heritage-landmark designation",
+      "de": "im traditionellen Stil / traditionell",
+      "artikel": "—",
+      "source": "Judge decision (de-din-3, this batch), confirming stage 4/5's proposal and this task's own coordinator brief: 'Parallel card batches de-din-4/5 use ... «traditionell / im traditionellen Stil» for decorative heritage ... Keep these.' Used consistently in sinyar.blurb and sharq-alqaisariah.blurb; 'Kulturerbe-' stays reserved for the one venue literally named 'Heritage Hotel' (alkoot-hotel).",
+      "status": "confirmed"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Al-Koot district — next to Qasr Ibrahim park",
+      "de": "Al-Koot-Viertel – neben dem Qasr-Ibrahim-Park",
+      "page": "restaurants-cafes",
+      "field": "dar-basma.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Outdoor seating among the palms and a glass façade on the edge of the Qasr Ibrahim park.",
+      "de": "Sitzplätze im Freien zwischen den Palmen und eine Glasfassade am Rand des Qasr-Ibrahim-Parks.",
+      "page": "restaurants-cafes",
+      "field": "dar-basma.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Dar Basma’s glass façade and outdoor seating among the palms at night",
+      "de": "Glasfassade und Sitzplätze im Freien zwischen den Palmen bei Dar Basma am Abend",
+      "page": "restaurants-cafes",
+      "field": "dar-basma.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Koot district — opposite Qasr Ibrahim",
+      "de": "Al-Koot-Viertel – gegenüber Qasr Ibrahim",
+      "page": "restaurants-cafes",
+      "field": "alkoot-hotel.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The heritage hotel’s restaurant — tables beneath a glass roof in an arcaded courtyard.",
+      "de": "Das Restaurant des Kulturerbe-Hotels – Tische unter einem Glasdach in einem von Arkaden gesäumten Innenhof.",
+      "page": "restaurants-cafes",
+      "field": "alkoot-hotel.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The courtyard of Al-Koot Heritage Hotel with its arcades and glass roof",
+      "de": "Der Innenhof des Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach",
+      "page": "restaurants-cafes",
+      "field": "alkoot-hotel.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khalidiyah — opposite King Faisal University",
+      "de": "Al-Khalidiyah – gegenüber der König-Faisal-Universität",
+      "page": "restaurants-cafes",
+      "field": "alhawi.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A traditional breakfast spread laid out on woven mats, plate after plate.",
+      "de": "Ein traditionelles Frühstück, auf Matten aus Palmwedel-Flechtwaren ausgebreitet, Teller an Teller.",
+      "page": "restaurants-cafes",
+      "field": "alhawi.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A traditional breakfast spread of assorted dishes at Al Hawy",
+      "de": "Ein traditionelles Frühstück mit verschiedenen Gerichten bei Al Hawy",
+      "page": "restaurants-cafes",
+      "field": "alhawi.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khalidiyah — Hofuf",
+      "de": "Al-Khalidiyah – Hofuf",
+      "page": "restaurants-cafes",
+      "field": "khunaina.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Heritage dishes served in wicker baskets amid deep-green velvet seating.",
+      "de": "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, inmitten dunkelgrüner Samtsitze.",
+      "page": "restaurants-cafes",
+      "field": "khunaina.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Heritage dishes served in wicker baskets at Khunaina",
+      "de": "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, auf einem Tisch bei Khunaina",
+      "page": "restaurants-cafes",
+      "field": "khunaina.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khaleej Road — Al-Uwaimriyah",
+      "de": "Al-Khaleej-Straße – Al-Uwaimriyah-Viertel",
+      "page": "restaurants-cafes",
+      "field": "sinyar.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A modern earthen building carrying its name in Arabic calligraphy.",
+      "de": "Ein moderner Lehmbau im traditionellen Stil, der seinen Namen in arabischer Kalligrafie trägt.",
+      "page": "restaurants-cafes",
+      "field": "sinyar.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Sinyar’s earthen façade and Arabic calligraphy sign at dusk",
+      "de": "Lehmfassade und Schild in arabischer Kalligrafie bei Sinyar in der Abenddämmerung",
+      "page": "restaurants-cafes",
+      "field": "sinyar.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khalidiyah — Prince Nawwaf Street",
+      "de": "Al-Khalidiyah – Prinz-Nawwaf-Straße",
+      "page": "restaurants-cafes",
+      "field": "greasy-fingers.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Burgers and fries on metal trays — the modern casual pick of the list.",
+      "de": "Burger und Pommes frites auf Metalltabletts – der moderne, zwanglose und schnelle Eintrag auf der Liste.",
+      "page": "restaurants-cafes",
+      "field": "greasy-fingers.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A burger and fries on a serving tray at Greasy Fingers",
+      "de": "Ein Burger und Pommes frites auf einem Serviertablett bei Greasy Fingers",
+      "page": "restaurants-cafes",
+      "field": "greasy-fingers.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khaleej Road — Al-Olaya",
+      "de": "Al-Khaleej-Straße – Al-Olaya",
+      "page": "restaurants-cafes",
+      "field": "lava.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Dishes arriving hot in iron skillets on marble tables.",
+      "de": "Gerichte, die heiß in eisernen Pfannen auf Marmortischen ankommen.",
+      "page": "restaurants-cafes",
+      "field": "lava.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Assorted dishes on a marble table at Lava",
+      "de": "Verschiedene Gerichte auf einem Marmortisch bei Lava",
+      "page": "restaurants-cafes",
+      "field": "lava.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "King Abdullah Road — Al-Mazrou‘",
+      "de": "König-Abdullah-Straße – Al-Mazrou'",
+      "page": "restaurants-cafes",
+      "field": "ammo.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A modern glass façade crowned by its glowing sign.",
+      "de": "Eine moderne Glasfassade, gekrönt von ihrem leuchtenden Schild.",
+      "page": "restaurants-cafes",
+      "field": "ammo.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Ammo’s glass façade with its illuminated sign at night",
+      "de": "Die Glasfassade von Ammo mit ihrem leuchtenden Schild bei Nacht",
+      "page": "restaurants-cafes",
+      "field": "ammo.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "North Al-Rifaa — Hofuf",
+      "de": "Al-Rifaa-Nord-Viertel – Hofuf",
+      "page": "restaurants-cafes",
+      "field": "sharq-alqaisariah.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "An ornate arched gateway opening onto heritage-styled seating.",
+      "de": "Ein Tor mit reich verziertem Bogen führt zu Sitzgelegenheiten im traditionellen Stil.",
+      "page": "restaurants-cafes",
+      "field": "sharq-alqaisariah.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The ornate arched entrance and outdoor seating of Sharq Al-Qaisariyah",
+      "de": "Der Eingang mit seinem reich verzierten Bogen und die Sitzplätze im Freien bei Sharq Al-Qaisariyah",
+      "page": "restaurants-cafes",
+      "field": "sharq-alqaisariah.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "King Abdullah Road — Al-Mazrou‘",
+      "de": "König-Abdullah-Straße – Al-Mazrou'",
+      "page": "restaurants-cafes",
+      "field": "koud.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Restaurant and café in one — as it calls itself, and as its dark façade announces in glowing Arabic letters.",
+      "de": "Restaurant und Café in einem – so beschreibt sich der Ort selbst, und genau das kündigen auch die leuchtenden arabischen Buchstaben auf seiner dunklen Fassade an.",
+      "page": "restaurants-cafes",
+      "field": "koud.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Code’s façade — restaurant and café — with its lit Arabic sign",
+      "de": "Die Fassade von Code – Restaurant und Café – mit ihrem leuchtenden Schild in arabischer Schrift",
+      "page": "restaurants-cafes",
+      "field": "koud.alt",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Score 92/100 · APPROVE from the first loop. Six of thirty strings corrected at judge stage: dar-basma.alt and alhawi.blurb (pure reordering to fix PP-attachment/list-item ambiguity flagged by the blind reader, no fact touched), alkoot-hotel.alt (fixed a real missing-genitive-s error by switching to the batch's own established 'von <Name>' pattern), sinyar.blurb/sinyar.alt (Kalligraphie → Kalligrafie, Duden's current preferred spelling — judge catch, not from the blind reader), and koud.blurb (removed a name-collision risk in 'nennt sich' and lowered 'verkünden' to the more neutral, source-matching 'ankündigen'). Six of twelve blind-reader observations rejected: #1 is out of scope (page-frame text from de-din-1, not one of this batch's 30 keys); #4, #7, #10 would break sourced/BINDING decisions (Kulturerbe-Hotel term, the Sharq Al-Qaisariyah/Sharq Restaurant split ruled by Eyad 2026-09-04, and the unflected venue name 'Code'); #8 and #9 objected to register choices that are themselves faithful renderings of the EN/AR source's own wording, not translator overreach. One source_defect logged (#6: khunaina.area and sharq-alqaisariah.area lack a landmark because the EN/AR source itself gives none — not fabricatable).\nBINDING: Alt-text strings on this page end WITHOUT a trailing full stop (10/10 in this batch, no exceptions) — keep this un-punctuated pattern for every restaurant single page (ج7).\nBINDING: Use 'Kalligrafie' (Duden's current preferred de-DE spelling), not 'Kalligraphie', for calligraphy anywhere in German dining/restaurant content going forward.\nBINDING: 'im traditionellen Stil' / 'traditionell' is the adjective for decorative heritage character (furniture, seating, décor, building style). 'Kulturerbe-' stays reserved exclusively for the one venue literally named 'Heritage Hotel' (Al-Koot Heritage Hotel & Restaurant) — never use 'Kulturerbe-' as a generic decorative adjective on ج7 pages.\nBINDING: Self-designated venue names are never inflected. In alt texts use the plain labels «<Motiv> bei <Name>» / «<Motiv> von <Name>» (Dar Basma, Sinyar, Ammo, Lava, Code …); for the hotel the article-led genitive with the uninflected name, «des Al-Koot Heritage Hotel», as in the approved de-din-2 FAQ (coordinator override 2026-09-19).\nBINDING: 'Sharq Al-Qaisariyah' (used in the alt text) and 'Sharq Restaurant' (the venue's self-designated heading name) are two source-sanctioned, deliberately distinct forms (Eyad's 2026-09-04 ruling, CLAUDE.md) — keep both as written on ج7, do not unify them.\nBINDING: khunaina.area and sharq-alqaisariah.area intentionally carry no landmark (source gives none) — do not invent one on ج7 or elsewhere for these two venues.",
+  "coordinator_override": [
+    {
+      "keys": [
+        "alkoot-hotel.alt"
+      ],
+      "before": "Der Innenhof von Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach",
+      "after": "Der Innenhof des Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach",
+      "why": "Page-level consistency: the approved de-din-2 FAQ on the same page reads «das Restaurant des Al-Koot Heritage Hotel» (self-designated name uninflected after the article, as published on /de/stay/). «von Al-Koot Heritage Hotel» without an article reads unidiomatically before a hotel name and splits the page into two genitive patterns."
+    }
+  ]
+}

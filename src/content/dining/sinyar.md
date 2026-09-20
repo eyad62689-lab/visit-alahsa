@@ -17,6 +17,9 @@ alt_zh: "傍晚 Sinyar 的泥土色门面与阿拉伯书法招牌"
 blurb_ru: "Глинобитное здание в современном облике с чертами наследия — на нём арабской каллиграфией выведено название."
 area_ru: "Дорога Эль-Халидж — район Эль-Увеймирия"
 alt_ru: "Глинобитный фасад Sinyar и вывеска арабской каллиграфией в сумерках"
+blurb_de: "Ein moderner Lehmbau im traditionellen Stil, der seinen Namen in arabischer Kalligrafie trägt."
+area_de: "Al-Khaleej-Straße – Al-Uwaimriyah-Viertel"
+alt_de: "Lehmfassade und Schild in arabischer Kalligrafie bei Sinyar in der Abenddämmerung"
 img: /img/dining/sinyar
 maps: "https://maps.app.goo.gl/kiKK2QEshBwycpDn6"
 order: 5

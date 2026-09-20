@@ -17,6 +17,9 @@ alt_zh: "Dar Huwaija 石膏拱门之间的木椅座位"
 blurb_ru: "Места для сидения среди белых гипсовых арок и полок с кофейной утварью."
 area_ru: "Дорога короля Фахда — исторический центр Эль-Хуфуфа"
 alt_ru: "Места для сидения кафе Dar Huwaija среди гипсовых арок и деревянных стульев"
+blurb_de: "Sitzplätze zwischen weiß verputzten Bögen und Regalen mit Kaffeegeräten."
+area_de: "König-Fahd-Straße – Historisches Zentrum von Hofuf"
+alt_de: "Sitzplätze von Dar Huwaija zwischen verputzten Bögen und Holzstühlen"
 img: /img/dining/dar-huwaija
 maps: "https://maps.app.goo.gl/EejCz9U79km3VEUL6"
 order: 4

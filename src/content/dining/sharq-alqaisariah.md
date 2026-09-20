@@ -17,6 +17,9 @@ alt_zh: "Sharq Al-Qaisariyah 餐厅饰有花纹的拱形入口与户外座位"
 blurb_ru: "Арочные ворота богато украшены и ведут к местам для сидения в традиционном стиле."
 area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Богато украшенный арочный вход и места под открытым небом Sharq Al-Qaisariyah"
+blurb_de: "Ein Tor mit reich verziertem Bogen führt zu Sitzgelegenheiten im traditionellen Stil."
+area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
+alt_de: "Der Eingang mit seinem reich verzierten Bogen und die Sitzplätze im Freien bei Sharq Al-Qaisariyah"
 img: /img/dining/sharq-alqaisariah
 maps: "https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8"
 order: 9

@@ -17,6 +17,9 @@ alt_zh: "Khunaina 餐桌上盛在棕榈叶编织篮里的传统菜肴"
 blurb_ru: "Традиционные блюда, поданные в плетёных корзинах из пальмовых листьев, среди тёмно-зелёных бархатных сидений."
 area_ru: "Эль-Халидия — Эль-Хуфуф"
 alt_ru: "Традиционные блюда в корзинах из пальмовых листьев на столе в Khunaina"
+blurb_de: "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, inmitten dunkelgrüner Samtsitze."
+area_de: "Al-Khalidiyah – Hofuf"
+alt_de: "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, auf einem Tisch bei Khunaina"
 img: /img/dining/khunaina
 maps: "https://maps.app.goo.gl/LZWmKXLDNreXhUHL6"
 order: 4

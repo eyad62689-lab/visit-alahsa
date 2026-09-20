@@ -19,6 +19,9 @@ alt_zh: "VOLK 的弧形吧台与圆形木吊灯"
 blurb_ru: "Изогнутая барная стойка под круглой люстрой из деревянных реек, увешанной стеклянными плафонами."
 area_ru: "Эль-Кара"
 alt_ru: "Изогнутая барная стойка VOLK под круглой деревянной люстрой"
+blurb_de: "Ein geschwungener Tresen unter einem runden Kronleuchter aus Holzlamellen, von dem Glaskugellampen herabhängen."
+area_de: "Al-Qarah"
+alt_de: "Der geschwungene Tresen von VOLK unter seinem runden Kronleuchter aus Holz"
 img: /img/dining/volk
 maps: "https://maps.app.goo.gl/SaSqaa3tbUCimoLL8"
 order: 13

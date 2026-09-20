@@ -17,6 +17,9 @@ alt_zh: "Baking Up 的店面与撑着遮阳伞的户外座位"
 blurb_ru: "Выпечка и хрустящие лакомства (так называет себя это место в Google Картах) за жизнерадостным фасадом с местами для сидения на улице."
 area_ru: "Дорога на Айн-Наджм — Эль-Мубарраз"
 alt_ru: "Фасад кафе Baking Up с зонтами и местами для сидения на улице"
+blurb_de: "Hinter einer fröhlichen Fassade mit Sitzplätzen im Freien warten Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps."
+area_de: "Ain-Najm-Straße – Al-Mubarraz"
+alt_de: "Die Fassade von Baking Up mit Sonnenschirmen und Sitzplätzen im Freien"
 img: /img/dining/baking-up
 maps: "https://maps.app.goo.gl/Vq412YHJLwnKc1SE8"
 order: 8

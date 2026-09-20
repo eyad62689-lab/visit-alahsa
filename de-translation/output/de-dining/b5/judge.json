@@ -1,0 +1,305 @@
+{
+  "batch": "de-din-5",
+  "loop": 1,
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "applied",
+      "reason": "Valid register clash: 'Freisitz' is first attested in German usage as a municipal outdoor-seating-permit term ('Freisitzgenehmigung'), which clashes with the poetic 'vor den Felsen ... bei Sonnenuntergang' that follows it. 'Terrasse' is already established on this same page (aknan.blurb uses 'Terrassenboden', shylm uses 'gepflasterten Terrasse'), so the fix is consistent with the batch and adds/removes no fact.",
+      "edit": {
+        "key_or_field": "aknan.alt",
+        "before": "Der Freisitz des Aknan Café vor den Felsen des Qarah-Bergs bei Sonnenuntergang",
+        "after": "Die Terrasse des Aknan Café vor den Felsen des Qarah-Bergs bei Sonnenuntergang"
+      }
+    },
+    {
+      "n": 2,
+      "ruling": "rejected",
+      "reason": "The order 'der Qarah-Berg (Jabal al-Qarah)' is the binding citation form fixed in termbase.json (\"Al-Qarah Mountain / Jabal Al-Qarah\" → \"der Qarah-Berg (Jabal al-Qarah)\", explicitly required by BRIEF trap 7 and gloss_regel's 'German leads, transcription follows in parentheses' rule for a page whose own title is not the mountain page). Reversing it would override a sourced termbase entry by taste, which the brief forbids. The reader's momentary '2nd place?' read is a first-pass friction, not a factual duplication (Jabal al-Qarah literally means 'Qarah mountain' — the parenthesis glosses the transcription, it does not name a second thing), so it does not meet the bar for a required edit."
+    },
+    {
+      "n": 3,
+      "ruling": "applied",
+      "reason": "Genuine syntactic-attachment ambiguity: 'Fenstern rund um eine Barinsel ... und eine ... Holztreppe' can be misread as windows wrapping around the furniture. Splitting into a flat three-item list removes the false attachment without changing which three features are named (windows, bar counter, stairs) — no fact added or lost.",
+      "edit": {
+        "key_or_field": "bun.blurb",
+        "before": "Ein hoher, weißer Raum mit raumhohen Fenstern rund um eine Barinsel aus Marmor und eine freitragende Holztreppe.",
+        "after": "Ein hoher, weißer Raum mit raumhohen Fenstern, einer freistehenden Bartheke aus Marmor und einer freitragenden Holztreppe."
+      }
+    },
+    {
+      "n": 4,
+      "ruling": "applied",
+      "reason": "'Barinsel' is an unattested calque of English 'bar island' (unlike the established 'Kücheninsel' pattern); 'freistehende Bartheke' conveys the same free-standing-counter fact natively. Applied consistently to both occurrences (bun.blurb per #3, and bun.alt) per the batch's own Trap-5 consistency rule, so the same English phrase keeps one German rendering across both strings on the card.",
+      "edit": {
+        "key_or_field": "bun.alt",
+        "before": "Die weiße Halle des Bun Café mit ihrer Barinsel aus Marmor und der freitragenden Holztreppe",
+        "after": "Die weiße Halle des Bun Café mit ihrer freistehenden Bartheke aus Marmor und der freitragenden Holztreppe"
+      }
+    },
+    {
+      "n": 5,
+      "ruling": "applied",
+      "reason": "'darüber' has no clear anchor once no entrance/door is mentioned in the source — a real ambiguity, not just reader taste. Rewritten to mirror the English word order exactly ('a façade under its name' → 'eine Fassade unter dem ... Namen'), which removes the dangling pronoun while keeping the identical spatial fact (façade below, name above) already present in en/ar. No entrance or new detail was invented.",
+      "edit": {
+        "key_or_field": "ouda.blurb",
+        "before": "Eine cremefarbene Fassade mit dem Namen in dunklen Buchstaben darüber, dazu Fenster in Holzrahmen und Tische auf dem Pflaster.",
+        "after": "Eine cremefarbene Fassade unter dem in dunklen Buchstaben geschriebenen Namen, dazu Fenster in Holzrahmen und Tische auf dem Pflaster."
+      }
+    },
+    {
+      "n": 6,
+      "ruling": "rejected",
+      "reason": "'ix.bakeriesEyebrow' ('Direkt aus dem Tanur') and 'ix.bakeriesNote' (which carries the '(Lehmofen)' gloss) are not among this batch's 22 keys — they were translated and APPROVED in de-din-1, and that judge's BINDING ruling explicitly states 'ix.bakeriesEyebrow stays unglossed by design ... the Tanur gloss is used exactly once, at the first running-text occurrence, and only in running text (never in a heading/eyebrow)'. This batch has no authority to reopen an already-published, out-of-scope decision from a prior batch."
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "'ix.bakeriesH' ('Bäckereien für rotes Brot') is a de-din-1 approved_prev string, out of this batch's 22-key scope. A titling preference cannot be adjudicated or changed from within de-din-5."
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "'ix.bakeriesNote' ('... zwei Namen für ein Gericht.') is a de-din-1 approved_prev string, out of this batch's 22-key scope, and is BINDING for the C5b red-bread/Dattelbrot pairing across the page. Not this batch's to edit."
+    },
+    {
+      "n": 9,
+      "ruling": "rejected",
+      "reason": "Same string ('ix.bakeriesNote') and same reason as #8 — word-order preference in a locked, previously-approved, out-of-scope string."
+    },
+    {
+      "n": 10,
+      "ruling": "applied",
+      "reason": "Genuine instrumental-'mit' misreading risk ('hebt einen Laib an, mit einem ... Tanur' can parse as lifting the loaf using the oven). Splitting into two independent clauses removes the false instrumental reading while keeping exactly the same three facts (baker lifts a loaf; a tannour is set into the floor; loaves are spread around) with nothing added or dropped.",
+      "edit": {
+        "key_or_field": "abu-fahd-alrabee.alt",
+        "before": "Ein Bäcker der Abu Fahd Al-Rabee Bakery hebt einen Laib an, mit einem im Boden eingelassenen Tanur und ringsum ausgebreiteten Broten.",
+        "after": "Ein Bäcker der Abu Fahd Al-Rabee Bakery hebt einen Laib an; im Boden ist ein Tanur eingelassen, ringsum liegen die Brote ausgebreitet"
+      }
+    },
+    {
+      "n": 11,
+      "ruling": "rejected",
+      "reason": "The repetition of 'Khudud' (district name, spring name, gloss) is dense but factually necessary: dist.khudud is BINDING verbatim from de-din-2, the spring name 'Ain Al-Khudud' is the source's own location detail, and the '(der Khudud-Quelle)' gloss is required once per gloss_regel for an unexplained Arabic term. The reader offers no alternative that keeps all three required elements, and dropping any of them would erase a location fact the source carries — worse than the density complained of."
+    },
+    {
+      "n": 12,
+      "ruling": "applied",
+      "reason": "The English-caption-style absolute construction ('..., die Brote ... ausgebreitet.' with no finite verb) is a real non-idiomatic-German flag from a native reader, not a taste call — German descriptive prose of this kind normally supplies a verb. Adding 'liegen' via a 'während'-clause keeps the identical fact (loaves spread around him on the tiles) with nothing invented.",
+      "edit": {
+        "key_or_field": "abu-fahd-alrabee.blurb",
+        "before": "Ein Bäcker sitzt an der Öffnung eines im Boden eingelassenen Tanurs, die Brote um ihn herum auf den Fliesen ausgebreitet.",
+        "after": "Ein Bäcker sitzt an der Öffnung eines im Boden eingelassenen Tanurs, während die Brote um ihn herum auf den Fliesen ausgebreitet liegen."
+      }
+    },
+    {
+      "n": 13,
+      "ruling": "rejected",
+      "reason": "The reader's own note concedes 'Zinnen' is correct and standard for this Najdi mud-brick parapet feature, with no better alternative offered — momentary fortress imagery on first read is not a translation defect, and the BRIEF explicitly required avoiding 'Schießscharten' or an invented defensive function, which this rendering already avoids."
+    }
+  ],
+  "source_defects": [],
+  "final": {
+    "strings": {
+      "aknan.area": "Al-Qarah – am Fuß des Qarah-Bergs (Jabal al-Qarah)",
+      "aknan.blurb": "Tische im Freien unter der Felswand des Qarah-Bergs, dazu ein in den Terrassenboden eingelassenes Glasoberlicht.",
+      "aknan.alt": "Die Terrasse des Aknan Café vor den Felsen des Qarah-Bergs bei Sonnenuntergang",
+      "bun.blurb": "Ein hoher, weißer Raum mit raumhohen Fenstern, einer freistehenden Bartheke aus Marmor und einer freitragenden Holztreppe.",
+      "bun.alt": "Die weiße Halle des Bun Café mit ihrer freistehenden Bartheke aus Marmor und der freitragenden Holztreppe",
+      "volk.area": "Al-Qarah",
+      "volk.blurb": "Ein geschwungener Tresen unter einem runden Kronleuchter aus Holzlamellen, von dem Glaskugellampen herabhängen.",
+      "volk.alt": "Der geschwungene Tresen von VOLK unter seinem runden Kronleuchter aus Holz",
+      "shylm.blurb": "Im Zentrum der gepflasterten Terrasse steht ein Olivenbaum in einem Wasserbecken, umgeben von geflochtenen Sesseln.",
+      "shylm.alt": "Die Terrasse von SHYLM mit dem Olivenbaum im Wasserbecken inmitten der Sitzgruppe",
+      "ouda.blurb": "Eine cremefarbene Fassade unter dem in dunklen Buchstaben geschriebenen Namen, dazu Fenster in Holzrahmen und Tische auf dem Pflaster.",
+      "ouda.alt": "Die cremefarbene Fassade von OUDA mit dem Namen in dunklen Buchstaben und den Tischen im Freien",
+      "abu-fahd-alrabee.area": "Al-Khudud-Viertel – nahe Ain Al-Khudud (der Khudud-Quelle)",
+      "abu-fahd-alrabee.blurb": "Ein Bäcker sitzt an der Öffnung eines im Boden eingelassenen Tanurs, während die Brote um ihn herum auf den Fliesen ausgebreitet liegen.",
+      "abu-fahd-alrabee.alt": "Ein Bäcker der Abu Fahd Al-Rabee Bakery hebt einen Laib an; im Boden ist ein Tanur eingelassen, ringsum liegen die Brote ausgebreitet",
+      "khudud-bakery.area": "Al-Khudud-Viertel",
+      "khudud-bakery.blurb": "Eine ockerfarbene Fassade mit einem beleuchteten Bogen, der bei Dämmerung den Blick in die Backstube öffnet.",
+      "khudud-bakery.alt": "Die beleuchtete Bogenfassade der Al-Khudud Traditional Bakery bei Dämmerung",
+      "buhussain-bakery.blurb": "Ein Sitzraum mit hölzernen Bänken, gemusterten Kissen und Regalen voller alter Gefäße.",
+      "buhussain-bakery.alt": "Der Sitzraum der Bu Hussain Traditional Bakery mit hölzernen Bänken und gemusterten Kissen",
+      "bu-mubarak-bakery.blurb": "Eine Lehmputzwand mit Zinnen und vorstehenden Balken sowie einer zweiflügeligen Holztür unter den Palmen.",
+      "bu-mubarak-bakery.alt": "Die Lehmputzfassade der Bu Mubarak Traditional Bakery mit ihrer zweiflügeligen Holztür unter den Palmen"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Ain Al-Khudud (the Khudud spring)",
+      "de": "Ain Al-Khudud (die Khudud-Quelle)",
+      "artikel": "die",
+      "source": "In-repo pattern witness: de-translation/glossary/termbase.json:2018-2023 (\"Ain Najm (عين نجم — the spring) · Ain Najm Park\" → \"Ain Najm (die Najm-Quelle) · der Ain-Najm-Park\", \"Genus nach Duden: „die Quelle“\") + BATCH/pack.json → abu-fahd-alrabee.area (en \"near Ain Al-Khudud\"; ar «قرب عين الخدود», عين = spring).",
+      "note": "Judge confirms stage 5's correction from 'confirmed' to 'derived': the artikel 'die' is safely witnessed (Duden generic noun 'die Quelle', plus the identical in-repo 'Ain Najm' formation pattern), but there is no independent source naming 'Ain Al-Khudud' itself, only the structural analogy. Status stays 'derived', not 'pending', because the artikel witness itself is solid — only the place-name's own existence is unverified independently.",
+      "status": "derived"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Al-Qarah — at the foot of Jabal Al-Qarah",
+      "de": "Al-Qarah – am Fuß des Qarah-Bergs (Jabal al-Qarah)",
+      "page": "restaurants-cafes",
+      "field": "aknan.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Open-air tables beneath the rock face of Jabal Al-Qarah, with a glass skylight set into the terrace floor.",
+      "de": "Tische im Freien unter der Felswand des Qarah-Bergs, dazu ein in den Terrassenboden eingelassenes Glasoberlicht.",
+      "page": "restaurants-cafes",
+      "field": "aknan.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Aknan Café’s outdoor seating before the rocks of Jabal Al-Qarah at sunset",
+      "de": "Die Terrasse des Aknan Café vor den Felsen des Qarah-Bergs bei Sonnenuntergang",
+      "page": "restaurants-cafes",
+      "field": "aknan.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A tall white space of full-height windows around a marble bar island and a floating wooden stair.",
+      "de": "Ein hoher, weißer Raum mit raumhohen Fenstern, einer freistehenden Bartheke aus Marmor und einer freitragenden Holztreppe.",
+      "page": "restaurants-cafes",
+      "field": "bun.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Bun Café’s white hall with its marble bar island and floating wooden stair",
+      "de": "Die weiße Halle des Bun Café mit ihrer freistehenden Bartheke aus Marmor und der freitragenden Holztreppe",
+      "page": "restaurants-cafes",
+      "field": "bun.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Qarah",
+      "de": "Al-Qarah",
+      "page": "restaurants-cafes",
+      "field": "volk.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A curved bar beneath a circular chandelier of wooden slats hung with glass bulbs.",
+      "de": "Ein geschwungener Tresen unter einem runden Kronleuchter aus Holzlamellen, von dem Glaskugellampen herabhängen.",
+      "page": "restaurants-cafes",
+      "field": "volk.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "VOLK’s curved bar beneath its circular wooden chandelier",
+      "de": "Der geschwungene Tresen von VOLK unter seinem runden Kronleuchter aus Holz",
+      "page": "restaurants-cafes",
+      "field": "volk.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A paved terrace centred on an olive tree in a water basin, ringed with woven armchairs.",
+      "de": "Im Zentrum der gepflasterten Terrasse steht ein Olivenbaum in einem Wasserbecken, umgeben von geflochtenen Sesseln.",
+      "page": "restaurants-cafes",
+      "field": "shylm.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "SHYLM’s terrace, with an olive tree in a water basin at the centre of the seating",
+      "de": "Die Terrasse von SHYLM mit dem Olivenbaum im Wasserbecken inmitten der Sitzgruppe",
+      "page": "restaurants-cafes",
+      "field": "shylm.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A cream façade under its name in dark lettering, with timber-framed windows and tables out on the paving.",
+      "de": "Eine cremefarbene Fassade unter dem in dunklen Buchstaben geschriebenen Namen, dazu Fenster in Holzrahmen und Tische auf dem Pflaster.",
+      "page": "restaurants-cafes",
+      "field": "ouda.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "OUDA’s cream façade with its name in dark lettering and its outdoor tables",
+      "de": "Die cremefarbene Fassade von OUDA mit dem Namen in dunklen Buchstaben und den Tischen im Freien",
+      "page": "restaurants-cafes",
+      "field": "ouda.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khudud — near Ain Al-Khudud",
+      "de": "Al-Khudud-Viertel – nahe Ain Al-Khudud (der Khudud-Quelle)",
+      "page": "restaurants-cafes",
+      "field": "abu-fahd-alrabee.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A baker seated at the mouth of a floor tannour, loaves spread around him on the tiles.",
+      "de": "Ein Bäcker sitzt an der Öffnung eines im Boden eingelassenen Tanurs, während die Brote um ihn herum auf den Fliesen ausgebreitet liegen.",
+      "page": "restaurants-cafes",
+      "field": "abu-fahd-alrabee.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A baker at Abu Fahd Al-Rabee Bakery lifting a loaf beside a floor tannour, loaves spread around him",
+      "de": "Ein Bäcker der Abu Fahd Al-Rabee Bakery hebt einen Laib an; im Boden ist ein Tanur eingelassen, ringsum liegen die Brote ausgebreitet",
+      "page": "restaurants-cafes",
+      "field": "abu-fahd-alrabee.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khudud",
+      "de": "Al-Khudud-Viertel",
+      "page": "restaurants-cafes",
+      "field": "khudud-bakery.area",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "An ochre façade with a lit arch opening onto the bakery floor at dusk.",
+      "de": "Eine ockerfarbene Fassade mit einem beleuchteten Bogen, der bei Dämmerung den Blick in die Backstube öffnet.",
+      "page": "restaurants-cafes",
+      "field": "khudud-bakery.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The lit arched façade of Al-Khudud Traditional Bakery at dusk",
+      "de": "Die beleuchtete Bogenfassade der Al-Khudud Traditional Bakery bei Dämmerung",
+      "page": "restaurants-cafes",
+      "field": "khudud-bakery.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A sitting room of wooden benches and patterned cushions, with shelves of old vessels.",
+      "de": "Ein Sitzraum mit hölzernen Bänken, gemusterten Kissen und Regalen voller alter Gefäße.",
+      "page": "restaurants-cafes",
+      "field": "buhussain-bakery.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The sitting room at Bu Hussain Traditional Bakery, with wooden benches and patterned cushions",
+      "de": "Der Sitzraum der Bu Hussain Traditional Bakery mit hölzernen Bänken und gemusterten Kissen",
+      "page": "restaurants-cafes",
+      "field": "buhussain-bakery.alt",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "A mud-plaster wall with crenellations and protruding beams, and a double wooden door beneath the palms.",
+      "de": "Eine Lehmputzwand mit Zinnen und vorstehenden Balken sowie einer zweiflügeligen Holztür unter den Palmen.",
+      "page": "restaurants-cafes",
+      "field": "bu-mubarak-bakery.blurb",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "The mud-plaster façade of Bu Mubarak Traditional Bakery, its double wooden door beneath the palms",
+      "de": "Die Lehmputzfassade der Bu Mubarak Traditional Bakery mit ihrer zweiflügeligen Holztür unter den Palmen",
+      "page": "restaurants-cafes",
+      "field": "bu-mubarak-bakery.alt",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Score 94/100, APPROVE. Five of the blind reader's 13 observations were applied (1, 3, 4, 5, 10, 12 — six edits total, #3/#4 and #10/#12 each cover a paired blurb+alt or two-part clause fix), one (#2) was rejected as overriding a sourced, BINDING termbase citation form, four (#6-#9) were rejected as out of this batch's 22-key scope (they target de-din-1's already-approved, locked ix.bakeries* strings), and two (#11, #13) were rejected as correct-but-dense / correct-specialist-term with no viable non-lossy alternative offered. Judge also independently corrected a stage-5 punctuation slip: abu-fahd-alrabee.alt carried a stray trailing period that every other .alt string in the batch (and the established .area/.alt-no-period convention noted in de-05.json) lacks — removed in the final text, unrelated to any numbered blind-reader observation. BINDING: 'Terrasse' (not 'Freisitz') is the term for a café/restaurant's outdoor seating area in dining alt-texts and blurbs going forward. BINDING: 'freistehende Bartheke' (not 'Barinsel') is the rendering for 'bar island' across dining pages — reuse verbatim wherever the English recurs. BINDING: the termbase citation form 'der Qarah-Berg (Jabal al-Qarah)' — German head noun first, Arabic/English transcription in parentheses — is fixed and must not be reversed on non-jabal-al-qarah pages regardless of a fluency-only objection. BINDING: 'Ain <name> (die <Name>-Quelle)' is now a confirmed formation pattern (Ain Najm, Ain Al-Khudud) for future spring names — reuse the pattern, mark new instances 'derived' unless an independent source is found for the specific spring. BINDING: picture-caption strings should avoid a bare absolute-participle tail with no finite verb ('..., X Y ausgebreitet.') — supply liegen/sind or split into an independent clause, per observations #10 and #12; apply this check to future ج6/ج7 alt and blurb strings. BINDING: ix.bakeriesEyebrow/ix.bakeriesH/ix.bakeriesNote remain locked from de-din-1 (unglossed eyebrow, single Tanur gloss in ix.bakeriesNote, 'Gericht' and word-order choices already approved) — any future objection to that wording must go through a re-review of de-din-1, not a later card batch. BINDING: the abu-fahd-alrabee.alt trailing-period fix confirms the page-wide convention — .blurb strings end with a full stop, .area/.alt strings do not — apply this check mechanically in ج7 single-page proofreading."
+}

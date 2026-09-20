@@ -17,6 +17,9 @@ alt_zh: "老巷里 Baithana 的入口，泥墙与木门"
 blurb_ru: "Глинобитный дом с деревянной дверью в одном из старых переулков Эль-Хуфуфа."
 area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Глинобитный вход и деревянная дверь кафе Baithana в старинном переулке"
+blurb_de: "Ein lehmverputztes Haus mit Holztür in einer der alten Gassen von Hofuf."
+area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
+alt_de: "Der Eingang von Baithana mit seinen lehmverputzten Wänden und der Holztür in einer traditionellen Gasse"
 img: /img/dining/baithana
 maps: "https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5"
 order: 1

@@ -23,6 +23,7 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const zh = lang === 'zh';
+const de = lang === 'de';
 const ru = lang === 'ru';
 
 // التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
@@ -51,12 +52,12 @@ const toPlace = (e: (typeof diningEntries)[number]) => {
     // الاسم لا يُترجم للصينية ولا للروسية (يبقى كما تسمّي المنشأة نفسها)؛ النبذة والموقع والنص
     // البديل من الحقول *_zh (الدفعة 14 — 2026-09-03) و*_ru (ب5 — 2026-09-18) بتراجع للإنجليزية.
     name: ar ? d.name : d.name_en,
-    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en,
-    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en,
-    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en,
-    // الصينية تتراجع للإنجليزية: صفحات المنشآت المفردة بلا نسخة صينية بعد
+    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en,
+    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en,
+    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en,
+    // الصينية والألمانية تتراجعان للإنجليزية: صفحات المنشآت المفردة بلا نسخة بهما بعد (الألمانية ج7)
     // والروسية تقصد صفحتها متى حملت المنشأة body_ru (بوابة /ru/restaurants-cafes/<slug>/)، وإلا الإنجليزية
-    href: hasPage ? diningHref(d, zh || (ru && !d.body_ru?.trim()) ? 'en' : lang) : d.maps,
+    href: hasPage ? diningHref(d, zh || de || (ru && !d.body_ru?.trim()) ? 'en' : lang) : d.maps,
     internal: hasPage,
   };
 };
@@ -129,6 +130,87 @@ const ZH = {
   ],
   methodH: '关于本页',
   methodP1: '这是一份持续更新的初步列表。名称与位置均直接取自谷歌地图，简介仅依据照片所见撰写，不含评价，也不推荐特定菜品。',
+  places: RESTAURANTS,
+  cafes: CAFES,
+  bakeries: BAKERIES,
+};
+
+// الكتلة الألمانية — خط de-translation-pipeline (دفعتا de-din-1 وde-din-2 2026-09-19، الحكّام 94 · 92 · 92 · 93 · 94/100 · APPROVE من الدورة الأولى).
+// النائبان ${fetchedLabel} و${diningEntries.length} يُبنيان كما في الكتلة العربية، وروابط الأسئلة تقصد
+// صفحة المطبخ الألمانية /de/food/. بطاقات المنشآت تقصد الصفحات الإنجليزية المفردة حتى ج7.
+const DE = {
+  heroEyebrow: 'Von den Tafeln Al-Ahsas',
+  title: 'Restaurants und Cafés',
+  heroSum: 'Ihr Wegweiser zum Essen in Al-Ahsa: ausgewählte Restaurants, Cafés und Bäckereien für „rotes Brot“ in Hofuf, Al-Mubarraz und Umgebung – vom Kulturerbe-Ambiente bis zu modernen Lokalen, von traditioneller Hausmannskost bis zum Spezialitätenkaffee – jeweils mit Foto und einem Klick zum Standort in Google Maps. Die Liste wächst stetig weiter.',
+  listEyebrow: 'Die erste Gruppe',
+  listH: 'Ausgewählte Restaurants',
+  cafesEyebrow: 'Für Kaffeeliebhaber',
+  cafesH: 'Ausgewählte Cafés',
+  bakeriesEyebrow: 'Direkt aus dem Tanur',
+  bakeriesH: 'Bäckereien für rotes Brot',
+  bakeriesNote: 'Dattelbrot und rotes Brot sind ein und dasselbe – zwei Namen für ein Gericht. Das sind die Bäckereien, in denen dafür der Tanur (Lehmofen) angefeuert wird.',
+  openMaps: t('det.openMaps'),
+  newWindow: '(öffnet Google Maps in einem neuen Fenster)',
+  moreLabel: 'Details zum Ort',
+  hoursLabel: 'Öffnungszeiten',
+  ratingLabel: 'Bewertung bei Google Maps',
+  searchPh: 'Nach Namen oder Gebiet suchen…',
+  searchLabel: 'Restaurants und Cafés durchsuchen',
+  kindAria: 'Nach Art filtern',
+  kindRestaurants: 'Restaurants',
+  kindCafes: 'Cafés',
+  kindBakeries: 'Bäckereien',
+  districtLabel: 'Gebiet',
+  districtAll: 'Alle Gebiete',
+  districtNames: DISTRICT_NAMES.de as Record<string, string>,
+  openNow: 'Jetzt geöffnet',
+  closedNow: 'Jetzt geschlossen',
+  openFilter: 'Jetzt geöffnet',
+  hoursNote: 'Die Öffnungszeiten stammen von Google Maps und können sich ändern – nutzen Sie den Link zu diesem Ort, um sie zu prüfen.',
+  countPrefix: 'Angezeigt: ',
+  countSuffix: ` von ${diningEntries.length}`,
+  emptyMsg: 'Keine Treffer – erweitern Sie die Suche oder wählen Sie „Alle Gebiete“.',
+  closedPerm: 'Dauerhaft geschlossen – laut Google Maps',
+  closedTemp: 'Vorübergehend geschlossen – laut Google Maps',
+  srcNote: fetchedLabel ? `Bewertungen und Öffnungszeiten von Google Maps – zuletzt aktualisiert ${fetchedLabel}` : null,
+  faqH: 'Häufige Fragen zu Restaurants und Cafés in Al-Ahsa',
+  faqs: [
+    {
+      q: 'Für welche traditionellen Gerichte ist Al-Ahsa bekannt?',
+      a: 'Al-Ahsa ist bekannt für Gerichte wie Hasawi-Reis, Mandi, Harees und Dattelbrot.',
+      linkText: 'Mehr zu den Gerichten auf der Seite Hasawi-Küche →',
+      linkHref: '/de/food/',
+    },
+    {
+      q: 'Gibt es Restaurants oder Cafés in der Nähe von Qasr Ibrahim?',
+      a: 'Ja – zwei auf dieser Liste: Dar Basma neben dem Qasr-Ibrahim-Park und das Restaurant des Al-Koot Heritage Hotel im Al-Koot-Viertel direkt gegenüber Qasr Ibrahim. Jede Karte verlinkt zu ihrem Standort in Google Maps.',
+    },
+    {
+      q: 'Wo befinden sich die Cafés in der Altstadt von Hofuf?',
+      a: 'Im historischen Zentrum von Hofuf und im Al-Rifaa-Nord-Viertel finden Sie: Baithana, Bait Al-Koot, Dar Huwaija an der König-Fahd-Straße, Al-Sayed Café, Ratio Al-Koot an der König-Abdulaziz-Straße und 7st neben Qasr Ibrahim.',
+    },
+    {
+      q: 'Wo kann ich das rote Hasawi-Brot kaufen?',
+      a: 'Diese Seite hat einen eigenen Abschnitt für die Bäckereien, die rotes Brot backen – rotes Brot und Dattelbrot sind dasselbe – jeweils mit Foto und Standort in Google Maps.',
+      linkText: 'Mehr zu Dattelbrot auf der Seite Hasawi-Küche →',
+      linkHref: '/de/food/',
+    },
+    {
+      q: 'Wo kann ich in Al-Mubarraz essen?',
+      a: 'Zwei Orte auf dieser Liste liegen an der Ain-Najm-Straße in Al-Mubarraz: Baking Up und Dot Bakery & Café. Der Rest der Liste befindet sich in Hofuf.',
+    },
+    {
+      q: 'Wo befinden sich diese Restaurants und Cafés?',
+      a: 'Sie verteilen sich zwischen Hofuf (das historische Al-Koot-Viertel, das historische Zentrum von Hofuf, das Al-Rifaa-Nord-Viertel, Al-Khalidiyah, Al-Rawdah, Al-Mazrou\', Al-Olaya, das Al-Uwaimriyah-Viertel und das Al-Khudud-Viertel), Al-Mubarraz an der Ain-Najm-Straße und Al-Qarah östlich der Oase; jede Karte verlinkt zur genauen Stelle in Google Maps.',
+    },
+    liveRaw
+      ? { q: 'Woher stammen die Bewertungen und Öffnungszeiten?',
+          a: `Bewertungen und Öffnungszeiten stammen direkt aus Google Maps (zuletzt aktualisiert ${fetchedLabel}) und können sich ändern – öffnen Sie den Google-Maps-Link des jeweiligen Ortes für die aktuellsten Angaben. Preise werden nicht angegeben.` }
+      : { q: 'Listet diese Seite Öffnungszeiten und Preise auf?',
+          a: 'Nein – wir veröffentlichen Öffnungszeiten, Preise oder Bewertungen erst, wenn sie durch offizielle Quellen bestätigt sind. Nutzen Sie den Google-Maps-Link des jeweiligen Restaurants für die aktuellsten Angaben.' },
+  ],
+  methodH: 'Über diese Seite',
+  methodP1: 'Dies ist eine erste Liste, die stetig wächst. Namen und Standorte stammen direkt aus Google Maps, und die Kurztexte sind knappe Einführungen, die jeden Ort so beschreiben, wie er auf seinem Foto erscheint – sie bewerten nicht und empfehlen keine bestimmten Gerichte.',
   places: RESTAURANTS,
   cafes: CAFES,
   bakeries: BAKERIES,
@@ -334,6 +416,7 @@ const C = localize(lang, {
     bakeries: BAKERIES,
   },
   zh: ZH,
+  de: DE,
   ru: RU,
 });
 
@@ -372,21 +455,21 @@ const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 // الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
 const pageTitle = ar
   ? 'مطاعم ومقاهي الأحساء — دليلك لتجارب الأكل في الهفوف'
-  : zh || ru ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
+  : zh || de || ru ? `${C.title} ${titleSep(lang)} ${t('site.name')}`
   : 'Al Ahsa Restaurants & Cafés — Where to Eat in Hofuf';
 const description = ar
   ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
-  : zh || ru ? C.heroSum
+  : zh || de || ru ? C.heroSum
   : 'Discover the best restaurants and cafés in Al Ahsa — from traditional Hasawi dining to specialty coffee, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
+const selfPath = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — بيانات
 // قوقل تُعرض في الواجهة فقط (شروط قوقل + إرشادات المراجعات الذاتية). الحارس
 // الآلي في tools/check-consistency.mjs (فحص C10) يُفشل البناء عند أي تسرّب.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:

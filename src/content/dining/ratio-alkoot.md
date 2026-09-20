@@ -17,6 +17,9 @@ alt_zh: "Ratio Al-Koot 的传统会客厅，椰枣树干顶棚下的坐垫与地
 blurb_ru: "Арабский меджлис с подушками и коврами под потолком из пальмовых стволов."
 area_ru: "Дорога короля Абдул-Азиза — исторический центр Эль-Хуфуфа"
 alt_ru: "Традиционный меджлис с подушками и коврами под потолком из пальмовых стволов в кафе Ratio Al-Koot"
+blurb_de: "Ein arabischer Madschlis (Empfangsraum) mit Kissen und Teppichen unter einer Decke aus Palmstämmen."
+area_de: "König-Abdulaziz-Straße – Historisches Zentrum von Hofuf"
+alt_de: "Ein traditioneller Madschlis mit Kissen und Teppichen unter einer Decke aus Palmstämmen bei Ratio Al-Koot"
 img: /img/dining/ratio-alkoot
 maps: "https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8"
 order: 6

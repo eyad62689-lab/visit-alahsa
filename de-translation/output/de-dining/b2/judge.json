@@ -1,0 +1,501 @@
+{
+  "batch": "de-din-2",
+  "loop": 1,
+  "score": 92,
+  "breakdown": {
+    "accuracy": 27,
+    "nativeness": 27,
+    "compliance": 19,
+    "fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "rejected",
+      "reason": "String is the hero/meta-description sentence („Ihr Wegweiser zum Essen ...“) -- handled by the de-din-1 judge (other batch); none of this batch's 33 keys.",
+      "edit": null
+    },
+    {
+      "n": 2,
+      "ruling": "rejected",
+      "reason": "Same hero/meta-description sentence as #1 -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 3,
+      "ruling": "rejected",
+      "reason": "Same hero/meta-description sentence as #1 -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "reason": "The pleonasm („stetig ... weiter“) and the triple repetition the reader flags are primarily in the hero/meta-description text (ix.hero*) -- handled by the de-din-1 judge (other batch). This batch's own occurrence, ix.methodP1's „eine erste Liste, die stetig wächst“, carries no such pleonasm on its own and needs no change on this point.",
+      "edit": null
+    },
+    {
+      "n": 5,
+      "ruling": "rejected",
+      "reason": "„Von den Tafeln Al-Ahsas“ is the page kicker (ix.hero*) -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 6,
+      "ruling": "applied",
+      "reason": "The raised/curly apostrophe U+2018 stage 5 introduced for the ʿayn in „Al-Mazrou‘“ does read as a typo, exactly as the blind reader describes, and it also breaks site-wide convention: every already-published German proper name with an ʿayn/hamza apostrophe on this site uses the straight ASCII apostrophe U+0027, and the termbase repeatedly says so explicitly for „Bayt Al-Bay'ah“, „Al-Shu'bah“, „Al-Qou'“ and „Abu Al-Nu'ush“ („kein typografisches ’“). Stage 5 reasoned from pack.json's/districts.ts's own English glyph (U+2018) rather than from published German precedent -- the wrong anchor. Reverted to „Al-Mazrou'“ (U+0027) in dist.mazrou and ix.faq5.a; termbase_additions_final updated to match. This also resolves the open question the termbase's own „Al-Mazrouiyah District“ entry flags for stage 4/7.",
+      "edit": {
+        "key_or_field": "dist.mazrou / ix.faq5.a",
+        "before": "Al-Mazrou‘",
+        "after": "Al-Mazrou'"
+      }
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "„Die erste Gruppe“ is the restaurants-section kicker (ix.list*) -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "Concerns the moreLabel/openMaps link-pattern difference between internal-page cards and Google-Maps-only cards (ix.moreLabel/ix.openMaps) -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 9,
+      "ruling": "rejected",
+      "reason": "Screen-reader text for the Google Maps link (ix.newWindow) -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 10,
+      "ruling": "applied",
+      "reason": "Real defect in this batch (ix.faq1.a). BRIEF §2 explicitly instructs: «the Al-Koot Heritage Hotel Restaurant» ⇐ مطعم الفندق («das Restaurant des Al-Koot Heritage Hotel») -- i.e. „Restaurant“ here is the common noun „hotel's restaurant“ (ar مطعم = restaurant), not part of the venue's compound self-designation. Stage 5 copied „Al-Koot Heritage Hotel Restaurant“ as a solid compound instead, which is exactly what produces the blind reader's doubt against the card's real name „Al-Koot Heritage Hotel & Restaurant“. Rewritten as the genitive descriptive phrase the brief specifies, per BRIEF wording verbatim (no -s on the un-inflected foreign compound name, matching how „Al-Koot Heritage Hotel“ is kept intact elsewhere). Corresponding termbase_additions entry for the compound name dropped -- no longer a fixed proper-name unit needing its own entry.",
+      "edit": {
+        "key_or_field": "ix.faq1.a",
+        "before": "das Al-Koot Heritage Hotel Restaurant im Al-Koot-Viertel direkt gegenüber Qasr Ibrahim",
+        "after": "das Restaurant des Al-Koot Heritage Hotel im Al-Koot-Viertel direkt gegenüber Qasr Ibrahim"
+      }
+    },
+    {
+      "n": 11,
+      "ruling": "rejected",
+      "reason": "„7st“ (ix.faq2.a) is the café's own Latin self-designation, confirmed in REPO src/content/dining/7st.md body_en („7st -- which writes its name in both scripts at once ... alongside 7st“); the fuller Google Maps listing title „7st. Speciality Coffee“ is a category-suffixed business listing, not a different name. Using the short self-designation in running FAQ prose matches en/ar and the BINDING rule that venue self-designations are reproduced as given -- not a translation defect.",
+      "edit": null
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "reason": "Neither en nor ar (ix.faq2.a) states which of the six venues sits in „the historic downtown“ versus „Al-Raf‘ah North“ -- adding that attribution in German would state a fact the source does not carry, which the fact fence forbids even where it would read more clearly.",
+      "edit": null
+    },
+    {
+      "n": 13,
+      "ruling": "source_defect",
+      "reason": "ix.faq4.a („Der Rest der Liste befindet sich in Hofuf“) and ix.faq5.a (which places Al-Qarah „östlich der Oase“, i.e. neither in Hofuf nor in Al-Mubarraz) genuinely disagree about where „the rest of the list“ sits -- and both sentences already disagree in the English and Arabic source pack (en: „The rest of the list is in Hofuf“ / ar: „وبقية القائمة في الهفوف“, against faq5's separate Al-Qarah entry). The fence forbids inventing a fix (e.g. narrowing faq4.a to “the rest of Hofuf and Al-Mubarraz's list”) that the source itself does not state -- text stays faithful to source.",
+      "edit": null
+    },
+    {
+      "n": 14,
+      "ruling": "partial",
+      "reason": "The nine-item Hofuf district list, bracketed between two em-dashes inside a longer „zwischen A, B und C“ enumeration, does make the reader lose the thread back to „zwischen Hofuf…“, exactly as observed -- a genuine German-readability problem, not a fact issue. Recast the inner nine-item list inside parentheses instead of a second em-dash pair, which keeps every one of the twelve names, adds no fact, and removes the ambiguous double-dash return the reader stumbled on.",
+      "edit": {
+        "key_or_field": "ix.faq5.a",
+        "before": "zwischen Hofuf – das historische Al-Koot-Viertel, …, das Al-Khudud-Viertel – Al-Mubarraz an der Ain-Najm-Straße und Al-Qarah östlich der Oase",
+        "after": "zwischen Hofuf (das historische Al-Koot-Viertel, …, das Al-Khudud-Viertel), Al-Mubarraz an der Ain-Najm-Straße und Al-Qarah östlich der Oase"
+      }
+    },
+    {
+      "n": 15,
+      "ruling": "source_defect",
+      "reason": "Al-Khaleej-Straße is a real dropdown location (dist.khaleej) but ix.faq5.a's nine-item Hofuf list omits it in both en and ar (en lists exactly the same nine districts, no Al-Khaleej Road). Adding a tenth item the source itself never names would be an invention the fence forbids; the omission is the source's, not the translation's -- text stays faithful.",
+      "edit": null
+    },
+    {
+      "n": 16,
+      "ruling": "rejected",
+      "reason": "Artifact of the blind-reader excerpt, not a real contradiction. ix.faq6static only renders when loadLive() is false (checked in REPO src/components/views/DiningView.astro: the liveRaw ? faq6live : faq6static ternary and the identical loadLive()-derived condition gating anyHours, which controls the „Jetzt geöffnet“ filter chip, the open/closed badges and the star ratings the reader cites). When faq6static is the one shown, those Google-data UI elements are absent from the same build for the same reason -- the blind excerpt combined a production (live) screenshot of the UI controls with the static-build FAQ variant, which never co-occur on a real page.",
+      "edit": null
+    },
+    {
+      "n": 17,
+      "ruling": "rejected",
+      "reason": "„durch offizielle Quellen bestätigt“ (ix.faq6static.a) translates en „verified from official sources“ / ar “حتى تُوثّق من مصادرها الرسمية” exactly, per the pack's explicit instruction to keep this claim at its exact strength. This is a real, distinct site concept (the project's documented practical.verified sourcing policy for opening hours/fees, separate from Google Maps' live but unverified data) and not a Google-Maps synonym needing harmonising -- no translation-level fix applies; the concept is intentional, not ambiguous.",
+      "edit": null
+    },
+    {
+      "n": 18,
+      "ruling": "rejected",
+      "reason": "„Jetzt geöffnet“ used for both the filter chip and the card status badge (ix.openFilter/ix.openNow) -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 19,
+      "ruling": "rejected",
+      "reason": "„prüfen Sie sie“ is the expanded-hours note (ix.hoursNote/srcNote family) -- handled by the de-din-1 judge (other batch).",
+      "edit": null
+    },
+    {
+      "n": 20,
+      "ruling": "applied",
+      "reason": "Real mistranslation in this batch (ix.methodP1). En says the blurbs are „describing each place as it appears in its photo“, ar „تصف المكان كما يظهر في صورته” (وصف = describe, not „show“). „zeigen“ is a visual verb applied to text, which is exactly the confusion the reader flags. Changed to „beschreiben“ (matching the Arabic verb), and reworded the trailing disclaimer clause to a different verb pair („sie bewerten nicht und empfehlen keine bestimmten Gerichte“) so „beschreiben“ is not repeated twice in one sentence -- still a verb-led disclaimer per BINDING (never the forbidden „ist beschreibend, keine Empfehlung“ noun-led pattern), and both source facts („not reviews“ / „not dish recommendations“) are kept.",
+      "edit": {
+        "key_or_field": "ix.methodP1",
+        "before": "die jeden Ort so zeigen, wie er auf seinem Foto erscheint – sie beschreiben nur, ohne zu bewerten oder bestimmte Gerichte zu empfehlen",
+        "after": "die jeden Ort so beschreiben, wie er auf seinem Foto erscheint – sie bewerten nicht und empfehlen keine bestimmten Gerichte"
+      }
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "ix.faq4.a vs ix.faq5.a",
+      "defect": "en/ar both say “the rest of the list is in Hofuf” (faq4/في الهفوف) while the separate FAQ (faq5) places Al-Qarah “east of the oasis” -- outside both Hofuf and Al-Mubarraz -- so “the rest” is not actually all in Hofuf. Present in en and ar alike; translation stays faithful.",
+      "langs_affected": "en, ar (and therefore de, zh, ru if/when they translate faq4/faq5 literally)"
+    },
+    {
+      "where": "ix.faq5.a",
+      "defect": "The nine-item Hofuf district enumeration omits Al-Khaleej Road / طريق الخليج even though the page's own location-filter dropdown lists it as a real location with entries. Present in en and ar alike; translation stays faithful (no tenth item invented).",
+      "langs_affected": "en, ar (and therefore de, zh, ru)"
+    }
+  ],
+  "final": {
+    "strings": {
+      "ix.faqH": "Häufige Fragen zu Restaurants und Cafés in Al-Ahsa",
+      "ix.faq0.q": "Für welche traditionellen Gerichte ist Al-Ahsa bekannt?",
+      "ix.faq0.a": "Al-Ahsa ist bekannt für Gerichte wie Hasawi-Reis, Mandi, Harees und Dattelbrot.",
+      "ix.faq0.linkText": "Mehr zu den Gerichten auf der Seite Hasawi-Küche →",
+      "ix.faq1.q": "Gibt es Restaurants oder Cafés in der Nähe von Qasr Ibrahim?",
+      "ix.faq1.a": "Ja – zwei auf dieser Liste: Dar Basma neben dem Qasr-Ibrahim-Park und das Restaurant des Al-Koot Heritage Hotel im Al-Koot-Viertel direkt gegenüber Qasr Ibrahim. Jede Karte verlinkt zu ihrem Standort in Google Maps.",
+      "ix.faq2.q": "Wo befinden sich die Cafés in der Altstadt von Hofuf?",
+      "ix.faq2.a": "Im historischen Zentrum von Hofuf und im Al-Rifaa-Nord-Viertel finden Sie: Baithana, Bait Al-Koot, Dar Huwaija an der König-Fahd-Straße, Al-Sayed Café, Ratio Al-Koot an der König-Abdulaziz-Straße und 7st neben Qasr Ibrahim.",
+      "ix.faq3.q": "Wo kann ich das rote Hasawi-Brot kaufen?",
+      "ix.faq3.a": "Diese Seite hat einen eigenen Abschnitt für die Bäckereien, die rotes Brot backen – rotes Brot und Dattelbrot sind dasselbe – jeweils mit Foto und Standort in Google Maps.",
+      "ix.faq3.linkText": "Mehr zu Dattelbrot auf der Seite Hasawi-Küche →",
+      "ix.faq4.q": "Wo kann ich in Al-Mubarraz essen?",
+      "ix.faq4.a": "Zwei Orte auf dieser Liste liegen an der Ain-Najm-Straße in Al-Mubarraz: Baking Up und Dot Bakery & Café. Der Rest der Liste befindet sich in Hofuf.",
+      "ix.faq5.q": "Wo befinden sich diese Restaurants und Cafés?",
+      "ix.faq5.a": "Sie verteilen sich zwischen Hofuf (das historische Al-Koot-Viertel, das historische Zentrum von Hofuf, das Al-Rifaa-Nord-Viertel, Al-Khalidiyah, Al-Rawdah, Al-Mazrou', Al-Olaya, das Al-Uwaimriyah-Viertel und das Al-Khudud-Viertel), Al-Mubarraz an der Ain-Najm-Straße und Al-Qarah östlich der Oase; jede Karte verlinkt zur genauen Stelle in Google Maps.",
+      "ix.faq6live.q": "Woher stammen die Bewertungen und Öffnungszeiten?",
+      "ix.faq6live.a": "Bewertungen und Öffnungszeiten stammen direkt aus Google Maps (zuletzt aktualisiert {date}) und können sich ändern – öffnen Sie den Google-Maps-Link des jeweiligen Ortes für die aktuellsten Angaben. Preise werden nicht angegeben.",
+      "ix.faq6static.q": "Listet diese Seite Öffnungszeiten und Preise auf?",
+      "ix.faq6static.a": "Nein – wir veröffentlichen Öffnungszeiten, Preise oder Bewertungen erst, wenn sie durch offizielle Quellen bestätigt sind. Nutzen Sie den Google-Maps-Link des jeweiligen Restaurants für die aktuellsten Angaben.",
+      "ix.methodH": "Über diese Seite",
+      "ix.methodP1": "Dies ist eine erste Liste, die stetig wächst. Namen und Standorte stammen direkt aus Google Maps, und die Kurztexte sind knappe Einführungen, die jeden Ort so beschreiben, wie er auf seinem Foto erscheint – sie bewerten nicht und empfehlen keine bestimmten Gerichte.",
+      "dist.alkoot": "Al-Koot-Viertel",
+      "dist.downtown": "Historisches Zentrum von Hofuf",
+      "dist.rafah-north": "Al-Rifaa-Nord-Viertel",
+      "dist.khalidiyah": "Al-Khalidiyah",
+      "dist.rawdah": "Al-Rawdah",
+      "dist.mazrou": "Al-Mazrou'",
+      "dist.uwaimriyah": "Al-Uwaimriyah-Viertel",
+      "dist.olaya": "Al-Olaya",
+      "dist.khaleej": "Al-Khaleej-Straße",
+      "dist.mubarraz": "Al-Mubarraz",
+      "dist.khudud": "Al-Khudud-Viertel",
+      "dist.qarah": "Al-Qarah"
+    }
+  },
+  "termbase_additions_final": [
+    {
+      "en": "Al-Mazrou' (المزروع — district, distinct from Al-Mazrouiyah)",
+      "de": "Al-Mazrou'",
+      "artikel": "— (Ortsname, artikellos)",
+      "source": "REPO src/data/districts.ts:21 `mazrou: 'Al-Mazrou‘'`; REPO src/content/dining/koud.md area_en: \"King Abdullah Road — Al-Mazrou‘\"; REPO src/content/dining/ammo.md area_en: \"King Abdullah Road — Al-Mazrou‘\". Distinct from the published termbase entry \"Al-Mazrouiyah District → das Al-Mazrouiyah-Viertel\" (a different district, khuzam.md). JUDGE (ج7): reverted stage 5's U+2018 to the straight ASCII apostrophe U+0027, per repeated, explicit termbase precedent for the same ʿayn marker in \"Bayt Al-Bay'ah\" (note: \"Apostroph ist U+0027 – geprüft ... überall U+0027, kein typografisches ’\"), \"Al-Shu'bah\" (note: \"der gerade Apostroph wird wie in der freigegebenen Schreibung „Bayt Al-Bay'ah“ beibehalten\"), \"Al-Qou'\" and \"Abu Al-Nu'ush\" (identical note wording). This also resolves the open question the termbase's own \"Al-Mazrouiyah District\" entry flags for stage 4/7 („welche der beiden englischen Schreibungen die deutsche Grundlage wird“).",
+      "status": "confirmed (repo witness + termbase precedent; artikellos per policy, no gender required) -- JUDGE override of stage 5 glyph choice"
+    },
+    {
+      "en": "Al-Khalidiyah (الخالدية — district)",
+      "de": "Al-Khalidiyah",
+      "artikel": "— (Ortsname, artikellos)",
+      "source": "REPO src/data/districts.ts:21 `khalidiyah: 'Al-Khalidiyah'`; REPO src/content/dining/khunaina.md area_en: \"Al-Khalidiyah — Hofuf\"; REPO src/content/dining/alhawi.md area_en: \"Al-Khalidiyah — opposite King Faisal University\"; REPO src/content/dining/greasy-fingers.md area_en: \"Al-Khalidiyah — Prince Nawwaf Street\".",
+      "status": "confirmed (repo witness; artikellos per policy, no gender required)"
+    },
+    {
+      "en": "Al-Rawdah (الروضة — district)",
+      "de": "Al-Rawdah",
+      "artikel": "— (Ortsname, artikellos)",
+      "source": "REPO src/data/districts.ts:21 `rawdah: 'Al-Rawdah'`; REPO src/content/dining/soulaf.md area_en: \"Al-Rawdah — King Abdullah Road\".",
+      "status": "confirmed (repo witness; artikellos per policy, no gender required)"
+    },
+    {
+      "en": "Al-Olaya (العليا — district)",
+      "de": "Al-Olaya",
+      "artikel": "— (Ortsname, artikellos)",
+      "source": "REPO src/data/districts.ts:22 `olaya: 'Al-Olaya'`; REPO src/content/dining/lava.md area_en: \"Al-Khaleej Road — Al-Olaya\".",
+      "status": "confirmed (repo witness; artikellos per policy, no gender required)"
+    },
+    {
+      "en": "Al-Khudud (حي الخدود — district)",
+      "de": "das Al-Khudud-Viertel",
+      "artikel": "das",
+      "source": "REPO src/data/districts.ts:23 `khudud: 'Al-Khudud'`; REPO src/content/dining/khudud-bakery.md area_en: \"Al-Khudud\"; REPO src/content/dining/abu-fahd-alrabee.md area_en: \"Al-Khudud — near Ain Al-Khudud\"; pack.json dist.khudud ar: \"حي الخدود\" (carries حي, unlike khalidiyah/rawdah/olaya) → licenses '-Viertel' per naming_policy.durchkopplung. Gender witness: Duden, headword \"Viertel\" (im Sinn von Stadtteil), https://www.duden.de/rechtschreibung/Viertel_Stadtteil — \"Wortart: Substantiv, Neutrum\".",
+      "status": "confirmed"
+    },
+    {
+      "en": "King Fahd Road (طريق/شارع الملك فهد)",
+      "de": "die König-Fahd-Straße",
+      "artikel": "die",
+      "source": "REPO src/content/dining/dar-huwaija.md:8-9 area/area_en: \"شارع الملك فهد — وسط الهفوف التاريخي\" / \"King Fahd Road — historic downtown Hofuf\"; pack.json ix.faq2.a (\"Dar Huwaija on King Fahd Road\"). Formed by the identical, judge-confirmed pattern as the published entry \"King Abdulaziz Road → die König-Abdulaziz-Straße\" (König + Name + Straße, Durchkopplung). Gender witness: Duden, headword \"Straße\", https://www.duden.de/rechtschreibung/Strasze — \"Wortart: Substantiv, feminin\".",
+      "status": "derived",
+      "coordinator_note": "Pattern-derived from the published «König-Abdulaziz-Straße» (termbase precedent «die Ain-Najm-Straße» = derived); artikel die witnessed by «Straße»."
+    },
+    {
+      "en": "Historic downtown Hofuf (وسط الهفوف التاريخي) — standalone list-name form",
+      "de": "Historisches Zentrum von Hofuf",
+      "artikel": "das",
+      "source": "BRIEF.md §1 gives this exact standalone form for the dropdown, distinguishing it from the inline phrase. REPO src/content/attractions/craftsmen-souq.md:74 a_de: \"Im historischen Zentrum von Hofuf. Er entstand im Rahmen der Projekte zur Entwicklung der historischen Innenstadt …\"; REPO src/content/attractions/koot-park.md:13 summary_de: \"Ein kommunaler Garten im historischen Zentrum von Hofuf …\". Gender witness: Duden, headword \"Zentrum\", https://www.duden.de/rechtschreibung/Zentrum — \"Wortart: Substantiv, Neutrum\".",
+      "status": "confirmed — with a flagged source inconsistency (see notes: craftsmen-souq.md's own standalone `area_de` field says \"Hofuf – das historische Stadtzentrum\", a different noun than the inline \"Zentrum von Hofuf\" used two fields later in the same file; BRIEF's explicit instruction for the dropdown form was followed as binding, the variant is not changed here)"
+    },
+    {
+      "en": "Hasawi red bread (الخبز الأحمر الحساوي)",
+      "de": "das rote Hasawi-Brot",
+      "artikel": "das",
+      "source": "Combines the established Nisba-compound pattern (Hasawi-Reis, Hasawi-Küche, Hasawi-Limette, Hasawi-Bischt) with the judge-approved published phrase in context.json published_food_de_do_not_edit, field d7.pre: \"Auch als „rotes Brot“ (khubz ahmar) bekannt.\" (batch de-food). Gender witness for the headword: Duden, headword \"Brot\", https://www.duden.de/rechtschreibung/Brot — \"Wortart: Substantiv, Neutrum\".",
+      "status": "confirmed"
+    },
+    {
+      "en": "the Qasr Ibrahim park (حديقة قصر إبراهيم)",
+      "de": "der Qasr-Ibrahim-Park",
+      "artikel": "der",
+      "source": "pack.json ix.faq1.a context, explicit instruction: '«the Qasr Ibrahim park / حديقة قصر إبراهيم» ⇐ Durchkopplung'. Built from the published, judge-confirmed termbase entry \"Qasr Ibrahim\" (der) + Gattungswort \"Park\". Gender witness: Duden, headword \"Park\", https://www.duden.de/rechtschreibung/Park — \"Wortart: Substantiv, maskulin\".",
+      "status": "confirmed"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Frequently asked questions about dining in Al Ahsa",
+      "de": "Häufige Fragen zu Restaurants und Cafés in Al-Ahsa",
+      "page": "restaurants-cafes",
+      "field": "ix.faqH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "What traditional dishes is Al Ahsa known for?",
+      "de": "Für welche traditionellen Gerichte ist Al-Ahsa bekannt?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq0.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al Ahsa is known for dishes such as Hasawi rice, mandi, harees and date bread.",
+      "de": "Al-Ahsa ist bekannt für Gerichte wie Hasawi-Reis, Mandi, Harees und Dattelbrot.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq0.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Explore them on the Hasawi Cuisine page →",
+      "de": "Mehr zu den Gerichten auf der Seite Hasawi-Küche →",
+      "page": "restaurants-cafes",
+      "field": "ix.faq0.linkText",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Are there restaurants or cafés near Qasr Ibrahim?",
+      "de": "Gibt es Restaurants oder Cafés in der Nähe von Qasr Ibrahim?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq1.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Yes — two on this list: Dar Basma, next to the Qasr Ibrahim park, and the Al-Koot Heritage Hotel Restaurant in the Al-Koot district directly opposite the fort. Each card links to its spot on Google Maps.",
+      "de": "Ja – zwei auf dieser Liste: Dar Basma neben dem Qasr-Ibrahim-Park und das Restaurant des Al-Koot Heritage Hotel im Al-Koot-Viertel direkt gegenüber Qasr Ibrahim. Jede Karte verlinkt zu ihrem Standort in Google Maps.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq1.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Where are the cafés inside old Hofuf?",
+      "de": "Wo befinden sich die Cafés in der Altstadt von Hofuf?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq2.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "In the historic downtown and Al-Raf‘ah North you will find: Baithana, Bait Al-Koot, Dar Huwaija on King Fahd Road, Al-Sayed Café, Ratio Al-Koot on King Abdulaziz Road, and 7st beside Qasr Ibrahim.",
+      "de": "Im historischen Zentrum von Hofuf und im Al-Rifaa-Nord-Viertel finden Sie: Baithana, Bait Al-Koot, Dar Huwaija an der König-Fahd-Straße, Al-Sayed Café, Ratio Al-Koot an der König-Abdulaziz-Straße und 7st neben Qasr Ibrahim.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq2.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Where can I buy Hasawi red bread?",
+      "de": "Wo kann ich das rote Hasawi-Brot kaufen?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq3.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "This page has a section of its own for the red-bread bakeries — red bread and date bread being the same thing — each with its photo and its spot on Google Maps.",
+      "de": "Diese Seite hat einen eigenen Abschnitt für die Bäckereien, die rotes Brot backen – rotes Brot und Dattelbrot sind dasselbe – jeweils mit Foto und Standort in Google Maps.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq3.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Read about date bread on the Hasawi Cuisine page →",
+      "de": "Mehr zu Dattelbrot auf der Seite Hasawi-Küche →",
+      "page": "restaurants-cafes",
+      "field": "ix.faq3.linkText",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Where can I eat in Al-Mubarraz?",
+      "de": "Wo kann ich in Al-Mubarraz essen?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq4.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Two places on this list sit on Ain Najm Road in Al-Mubarraz: Baking Up and Dot Bakery & Café. The rest of the list is in Hofuf.",
+      "de": "Zwei Orte auf dieser Liste liegen an der Ain-Najm-Straße in Al-Mubarraz: Baking Up und Dot Bakery & Café. Der Rest der Liste befindet sich in Hofuf.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq4.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Where are these restaurants and cafés located?",
+      "de": "Wo befinden sich diese Restaurants und Cafés?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq5.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "They are spread between Al Hofuf — the historic Al-Koot district, the historic downtown, Al-Raf‘ah North, Al-Khalidiyah, Al-Rawdah, Al-Mazrou‘, Al-Olaya, Al-Uwaimriyah and Al-Khudud — Al-Mubarraz along Ain Najm Road, and Al-Qarah east of the oasis; each card links to the exact spot on Google Maps.",
+      "de": "Sie verteilen sich zwischen Hofuf (das historische Al-Koot-Viertel, das historische Zentrum von Hofuf, das Al-Rifaa-Nord-Viertel, Al-Khalidiyah, Al-Rawdah, Al-Mazrou', Al-Olaya, das Al-Uwaimriyah-Viertel und das Al-Khudud-Viertel), Al-Mubarraz an der Ain-Najm-Straße und Al-Qarah östlich der Oase; jede Karte verlinkt zur genauen Stelle in Google Maps.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq5.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Where do the ratings and opening hours come from?",
+      "de": "Woher stammen die Bewertungen und Öffnungszeiten?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq6live.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Ratings and opening hours come straight from Google Maps (last updated {date}) and can change — check each place’s Google Maps link for the very latest details. Prices are not listed.",
+      "de": "Bewertungen und Öffnungszeiten stammen direkt aus Google Maps (zuletzt aktualisiert {date}) und können sich ändern – öffnen Sie den Google-Maps-Link des jeweiligen Ortes für die aktuellsten Angaben. Preise werden nicht angegeben.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq6live.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Does this page list opening hours and prices?",
+      "de": "Listet diese Seite Öffnungszeiten und Preise auf?",
+      "page": "restaurants-cafes",
+      "field": "ix.faq6static.q",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "No — we only publish opening hours, prices or ratings once they are verified from official sources. Use each restaurant’s Google Maps link for its latest details.",
+      "de": "Nein – wir veröffentlichen Öffnungszeiten, Preise oder Bewertungen erst, wenn sie durch offizielle Quellen bestätigt sind. Nutzen Sie den Google-Maps-Link des jeweiligen Restaurants für die aktuellsten Angaben.",
+      "page": "restaurants-cafes",
+      "field": "ix.faq6static.a",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "About this page",
+      "de": "Über diese Seite",
+      "page": "restaurants-cafes",
+      "field": "ix.methodH",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "This is a first list that will keep growing. Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo — not reviews or dish recommendations.",
+      "de": "Dies ist eine erste Liste, die stetig wächst. Namen und Standorte stammen direkt aus Google Maps, und die Kurztexte sind knappe Einführungen, die jeden Ort so beschreiben, wie er auf seinem Foto erscheint – sie bewerten nicht und empfehlen keine bestimmten Gerichte.",
+      "page": "restaurants-cafes",
+      "field": "ix.methodP1",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Koot district",
+      "de": "Al-Koot-Viertel",
+      "page": "restaurants-cafes",
+      "field": "dist.alkoot",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Historic downtown Hofuf",
+      "de": "Historisches Zentrum von Hofuf",
+      "page": "restaurants-cafes",
+      "field": "dist.downtown",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Raf‘ah North",
+      "de": "Al-Rifaa-Nord-Viertel",
+      "page": "restaurants-cafes",
+      "field": "dist.rafah-north",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khalidiyah",
+      "de": "Al-Khalidiyah",
+      "page": "restaurants-cafes",
+      "field": "dist.khalidiyah",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Rawdah",
+      "de": "Al-Rawdah",
+      "page": "restaurants-cafes",
+      "field": "dist.rawdah",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Mazrou‘",
+      "de": "Al-Mazrou'",
+      "page": "restaurants-cafes",
+      "field": "dist.mazrou",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Uwaimriyah",
+      "de": "Al-Uwaimriyah-Viertel",
+      "page": "restaurants-cafes",
+      "field": "dist.uwaimriyah",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Olaya",
+      "de": "Al-Olaya",
+      "page": "restaurants-cafes",
+      "field": "dist.olaya",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khaleej Road",
+      "de": "Al-Khaleej-Straße",
+      "page": "restaurants-cafes",
+      "field": "dist.khaleej",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Mubarraz",
+      "de": "Al-Mubarraz",
+      "page": "restaurants-cafes",
+      "field": "dist.mubarraz",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Khudud",
+      "de": "Al-Khudud-Viertel",
+      "page": "restaurants-cafes",
+      "field": "dist.khudud",
+      "date": "2026-09-19"
+    },
+    {
+      "en": "Al-Qarah",
+      "de": "Al-Qarah",
+      "page": "restaurants-cafes",
+      "field": "dist.qarah",
+      "date": "2026-09-19"
+    }
+  ],
+  "notes": "Batch judged at 92/100, APPROVE. Four judge-level fixes applied beyond stage 5: (1) dist.mazrou/ix.faq5.a apostrophe reverted from stage 5's U+2018 to the site-wide established U+0027 for ʿayn; (2) ix.faq5.a's nine-item Hofuf list recast in parentheses for readability (no names dropped); (3) ix.faq1.a rewritten as „das Restaurant des Al-Koot Heritage Hotel“ per BRIEF §2's literal instruction, dropping the compound-name termbase entry stage 5 had added for it; (4) ix.methodP1's „zeigen“ corrected to „beschreiben“ to match ar وصف, with the trailing clause reworded to avoid repetition. Two real source-pack contradictions (Hofuf/Al-Qarah in faq4 vs faq5; Al-Khaleej-Straße missing from faq5's Hofuf list) are logged as source_defects and left untouched -- the fence outranks fluency. Ten of the twenty blind-reader observations belong to the parallel de-din-1 batch (hero/meta, kickers, card link labels, screen-reader text, open/closed badge text, hours note) and are left for that judge.\nBINDING: Al-Mazrou' renders with the straight ASCII apostrophe U+0027 for the ʿayn in every German string (dist.mazrou and any inline mention), never U+2018/’ -- matching „Bayt Al-Bay'ah“, „Al-Shu'bah“, „Al-Qou'“, „Abu Al-Nu'ush“, regardless of which apostrophe character districts.ts's English literal happens to use. This resolves the open question the termbase's own „Al-Mazrouiyah District“ entry flagged for stage 4/7.\nBINDING: dist.downtown has two legitimate, non-interchangeable German surface forms -- the capitalized noun-phrase „Historisches Zentrum von Hofuf“ for the dropdown/list-name slot, and the lower-case inline adjective phrase „im historischen Zentrum von Hofuf“ for running prose -- both already published (craftsmen-souq.md, koot-park.md). Use the form matching the grammatical slot, not always the dropdown's capitalized form.\nBINDING: dist.rafah-north is „Al-Rifaa-Nord-Viertel“ (not the bare „Al-Rifaa-Nord“ and not „Al-Raf‘ah“), matching the already-published hamidiyah-souq.md area_de/body_de/faq a_de -- identical across the dropdown, any FAQ, and any card/location line that names this district.\nBINDING: dist.khudud carries „-Viertel“ („das Al-Khudud-Viertel“) because the Arabic source explicitly says حي الخدود (“district”); dist.khalidiyah, dist.rawdah and dist.olaya stay bare (no „-Viertel“) because their Arabic source gives a bare place name with no حي. This asymmetry is intentional and must not be “normalised” to all-Viertel or all-bare in a later batch -- follow each district's own Arabic source line.\nBINDING: „King Fahd Road” / طريق الملك فهد renders „die König-Fahd-Straße“, formed by the identical pattern as the already-published „die König-Abdulaziz-Straße“ (König + Name + Straße, Durchkopplung, feminine per Duden „Straße“) -- reuse this pattern for any further „King <Name> Road” encountered.\nBINDING: “the Al-Koot Heritage Hotel Restaurant” (en) = “the hotel's restaurant” (ar مطعم الفندق), i.e. a compositional descriptive phrase, not the card's compound venue name „Al-Koot Heritage Hotel & Restaurant“ -- render it as „das Restaurant des Al-Koot Heritage Hotel“ (genitive, hotel name left uninflected), never as a copied „Hotel Restaurant“ compound, in this page and in the ج7 single restaurant page for this venue if one exists.\nBINDING: „describing each place as it appears in its photo” / تصف المكان كما يظهر في صورته renders with „beschreiben“, never „zeigen“ (a visual verb misapplied to text) -- applies to the parallel /de/stay/ methodP1 wording and any future page reusing this disclaimer pattern.\nBINDING: the twelve district/road names of this batch (dist.*) are fixed as published in final.strings below and must appear byte-identical (up to grammatical inflection/article) in de-din-3/4/5's location lists and in every single restaurant/café page (ج7) that names one of these districts -- do not re-derive or re-transliterate any of them."
+}
