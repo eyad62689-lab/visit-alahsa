@@ -224,6 +224,11 @@ export const ui = {
     // متجر منتجات الفعالية (صفحة الفعالية) — لغة بلا هذا المفتاح تعرض الأيقونة
     // وحدها كزرّ المشاركة، فلا نصّ بـzh/de/ru خارج خطوط الترجمة.
     'ev.shop': 'تسوّق منتجات المعرض',
+    // نبذة الزرّ في بطاقة القائمة — وصفٌ لفئات ما يعرضه المتجر فعلاً كما شوهدت
+    // في صفحته (2026-09-21): اللومي بأشكاله (مشمّس · جميد · شطة · بودرة)،
+    // ومأكولات (مكسرات · شيبس · خلّ التمر)، ومستحضرات عناية (صابون · شامبو ·
+    // حنّاء · سدر)، وكل منتج منسوب إلى مؤسسة مشاركة. لا جودة ولا شهرة ولا سعر.
+    'ev.shopNote': 'منتجات اللومي ومأكولات ومستحضرات عناية من المؤسسات المشاركة في المعرض.',
     'foot.l.report': 'أبلغ عن خطأ',
     // المدونة
     'nav.blog': 'المدونة',
@@ -439,6 +444,7 @@ export const ui = {
     'det.report': 'Spotted something inaccurate? Tell us',
     'det.faq': 'Frequently asked questions',
     'ev.shop': 'Shop the exhibition products',
+    'ev.shopNote': 'Lomi products, foods and care items from the establishments taking part in the exhibition.',
     'foot.l.report': 'Report an error',
     // Blog
     'nav.blog': 'Blog',

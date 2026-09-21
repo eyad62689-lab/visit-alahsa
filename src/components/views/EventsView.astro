@@ -239,6 +239,10 @@ const zh = lang === 'zh';
 // الإنجليزية. لغة بلا المفتاح تعرض الأيقونة وحدها بتسمية aria إنجليزية من كلمة
 // واحدة، كما في الصفحة التفصيلية وزرّ المشاركة: لا نصّ بـzh/de/ru خارج الخطوط.
 const shopLabel = (ui[lang] as Record<string, string>)['ev.shop'];
+// نبذة المتجر بجانب الزرّ — تُحذف كلياً في لغة بلا المفتاح (لا تُعرض إنجليزية):
+// قاعدة CLAUDE.md «كتلة بلا نسخة بلغة الصفحة تُخفى». والنصّ وصفٌ لفئات ما يعرضه
+// المتجر كما شوهدت في صفحته، لا حكم جودة ولا سعر (تفصيله عند المفتاح في ui.ts).
+const shopNote = (ui[lang] as Record<string, string>)['ev.shopNote'];
 // الروسية: الصفحات المفردة /ru/events/<slug>/ مبنية منذ الدفعة 5
 const ru = lang === 'ru';
 // الألمانية: الصفحات المفردة /de/events/<slug>/ مبنية منذ ج4
@@ -320,6 +324,7 @@ const jsonLd = [
               </ul>
               {(e.ticket || e.shop) && (
                 <div class="ev-btns ev-btns--card">
+                  {e.shop && shopNote && <p class="ev-shop-note">{shopNote}</p>}
                   {e.ticket && (
                     <a class="ev-ticket" href={e.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
                       <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -526,7 +531,15 @@ const jsonLd = [
   .ev-name-link:hover { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 4px; }
   .ev-name-link::after { content: ''; position: absolute; inset: 0; z-index: 1; }
   /* z-index فوق رابط البطاقة الممتد، وإلا التقط الضغطةَ بدل الزرّ */
+  /* z-index فوق رابط البطاقة الممتد، وإلا التقط الضغطةَ بدل الزرّ */
   .ev-btns--card { gap: var(--s-2); margin-block-start: var(--s-3); position: relative; z-index: 2; }
+  /* نبذة المتجر: سطرها الخاص فوق الزرّ (‏flex-basis: 100%) — تشرح الوجهة ثم يأتي
+     الفعل. و«بجانبه» غير متاح بالقياس: عرض محتوى البطاقة 285px في شبكة الأعمدة
+     الثلاثة و~350 في العمودين، والزرّ 199 — فلا يبقى للنبذة إلا 78–143px تعصرها
+     في ثلاثة أسطر إلى أربعة. و--c-ink-soft لا --c-ink-60: على بياض البطاقة الأول
+     9.77:1 والثاني 4.69:1 — يمرّ AA بهامش 0.19 وحدها وهو ضيّق على --t-xs.
+     (‏4.36:1 في CLAUDE.md قياسٌ على خلفية بطاقة الزيارة #EFE8D6 لا على هذه.) */
+  .ev-shop-note { flex: 0 0 100%; margin: 0; font-size: var(--t-xs); line-height: 1.55; color: var(--c-ink-soft); }
   .ev-acts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
 
   .ev-act { font-size: var(--t-xs); color: var(--c-ink-soft); background: var(--c-sand);
