@@ -313,7 +313,7 @@ if (ev.faq?.length) {
         </ul>
 
         {(ev.ticket || ev.shop) && (
-          <div class="evd-cta">
+          <div class="ev-btns evd-cta">
             {ev.ticket && (
               <a class="ev-ticket" href={ev.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
                 <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -478,10 +478,8 @@ if (ev.faq?.length) {
     border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 7px 15px; }
   /* صفّ الأزرار: الحجز والمتجر — يلتفّان على الجوال، وإخفاء أحدهما (hidden عند
      انقضاء النسخة) لا يترك فجوة لأن الفجوة بين عنصرين ظاهرين فقط. */
-  .evd-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-block-start: var(--s-5); }
-  /* أيقونة وحدها للغة لم تمرّ تسميتها بخطّ ترجمتها — 44×44 هدف لمس مريح كزرّ المشاركة
-     (‏padding: 0 وحده كان يعطي 38px ارتفاعاً: الأيقونة 16px + حشوة الزرّ). */
-  .ev-ticket--icon { inline-size: 44px; min-block-size: 44px; padding: 0; justify-content: center; }
+  /* القشرة (‏flex + التفاف) من .ev-btns في global.css — هنا مقاساتها في هذه الصفحة */
+  .evd-cta { gap: var(--s-3); margin-block-start: var(--s-5); }
 
   /* الخريطة */
   .evd-map-sec { margin-block-start: var(--s-2); }

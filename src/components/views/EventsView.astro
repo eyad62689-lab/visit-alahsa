@@ -13,7 +13,7 @@ import EventEdition from '../EventEdition.astro';
 import DataTable from '../DataTable.astro';
 import { eventsTable } from '../../lib/tables';
 import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
-import type { Lang } from '../../i18n/ui';
+import { ui, type Lang } from '../../i18n/ui';
 import { EVENTS_AR, EVENTS_DE, EVENTS_EN, EVENTS_RU, EVENTS_ZH, evView, type Ev } from '../../data/events';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 
@@ -235,6 +235,10 @@ for (const { raw } of cards) { if (eagerIds.size >= 2) break; eagerIds.add(raw.i
 
 // الصينية: صفحات الفعاليات لها نسخ /zh/ (توسعة 2026-09-02)؛ «خطط» لم تُترجم بعد
 const zh = lang === 'zh';
+// تسمية زرّ المتجر من قاموس لغة الصفحة نفسها (‏ev.shop) لا من t() — تراجعه يعطي
+// الإنجليزية. لغة بلا المفتاح تعرض الأيقونة وحدها بتسمية aria إنجليزية من كلمة
+// واحدة، كما في الصفحة التفصيلية وزرّ المشاركة: لا نصّ بـzh/de/ru خارج الخطوط.
+const shopLabel = (ui[lang] as Record<string, string>)['ev.shop'];
 // الروسية: الصفحات المفردة /ru/events/<slug>/ مبنية منذ الدفعة 5
 const ru = lang === 'ru';
 // الألمانية: الصفحات المفردة /de/events/<slug>/ مبنية منذ ج4
@@ -314,14 +318,36 @@ const jsonLd = [
               <ul class="ev-acts">
                 {e.acts.map((a) => <li class="ev-act">{a}</li>)}
               </ul>
-              {e.ticket && (
-                <a class="ev-ticket" href={e.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
-                  <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M3 9.6V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.6a2.4 2.4 0 0 0 0 4.8V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.6a2.4 2.4 0 0 0 0-4.8Z" />
-                    <path d="M14.5 6.6v10.8" stroke-dasharray="2 2.6" />
-                  </svg>
-                  {C.ticketK}
-                </a>
+              {(e.ticket || e.shop) && (
+                <div class="ev-btns ev-btns--card">
+                  {e.ticket && (
+                    <a class="ev-ticket" href={e.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
+                      <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 9.6V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.6a2.4 2.4 0 0 0 0 4.8V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.6a2.4 2.4 0 0 0 0-4.8Z" />
+                        <path d="M14.5 6.6v10.8" stroke-dasharray="2 2.6" />
+                      </svg>
+                      {C.ticketK}
+                    </a>
+                  )}
+                  {/* المتجر بلا data-ev-dated عن قصد — يبقى بعد انقضاء النسخة
+                      (التفصيل في تعليق shop في events.ts) */}
+                  {e.shop && (
+                    <a
+                      class:list={['ev-ticket', { 'ev-ticket--icon': !shopLabel }]}
+                      href={e.shop}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={shopLabel ? undefined : 'Shop'}
+                      title={shopLabel ? undefined : 'Shop'}
+                    >
+                      <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5.4 8h13.2l1.1 11.1a1 1 0 0 1-1 1.1H5.3a1 1 0 0 1-1-1.1L5.4 8Z" />
+                        <path d="M9 8V6.4a3 3 0 0 1 6 0V8" />
+                      </svg>
+                      {shopLabel}
+                    </a>
+                  )}
+                </div>
               )}
               </div>
             </article>
@@ -499,7 +525,8 @@ const jsonLd = [
   .ev-name-link { color: inherit; text-decoration: none; }
   .ev-name-link:hover { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 4px; }
   .ev-name-link::after { content: ''; position: absolute; inset: 0; z-index: 1; }
-  .ev-ticket { margin-block-start: var(--s-3); position: relative; z-index: 2; }
+  /* z-index فوق رابط البطاقة الممتد، وإلا التقط الضغطةَ بدل الزرّ */
+  .ev-btns--card { gap: var(--s-2); margin-block-start: var(--s-3); position: relative; z-index: 2; }
   .ev-acts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
 
   .ev-act { font-size: var(--t-xs); color: var(--c-ink-soft); background: var(--c-sand);
