@@ -16,7 +16,7 @@ import HeroPoster from '../HeroPoster.astro';
 import Photo from '../Photo.astro';
 import EventEdition from '../EventEdition.astro';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
-import type { Lang } from '../../i18n/ui';
+import { ui, type Lang } from '../../i18n/ui';
 import { eventsFor, evView, type Ev } from '../../data/events';
 import { attractionHref } from '../../lib/routes';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
@@ -177,6 +177,13 @@ const C = localize(lang, {
   },
 });
 
+// تسمية زرّ المتجر من قاموس لغة الصفحة نفسها (‏ev.shop) — لا من t() لأن تراجعه
+// يعطي الإنجليزية. لغة بلا المفتاح تعرض **الأيقونة وحدها** بتسمية aria إنجليزية من
+// كلمة واحدة، على سابقة ShareButton حرفياً: قاعدة CLAUDE.md تمنع نصّاً بـzh/de/ru
+// خارج خطوط الترجمة، وكتلةٌ بلا نسخة بلغة الصفحة تُخفى لا تُعرض إنجليزية. والكلمة
+// الواحدة تبقى خارج مقياس C22 أيضاً (كتلته من كلمتين فأكثر).
+const shopLabel = (ui[lang] as Record<string, string>)['ev.shop'];
+
 const zh = lang === 'zh';
 const ru = lang === 'ru';
 const de = lang === 'de';
@@ -305,14 +312,36 @@ if (ev.faq?.length) {
           {ev.acts.map((a) => <li class="evd-act">{a}</li>)}
         </ul>
 
-        {ev.ticket && (
-          <a class="ev-ticket evd-ticket" href={ev.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
-            <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 9.6V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.6a2.4 2.4 0 0 0 0 4.8V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.6a2.4 2.4 0 0 0 0-4.8Z" />
-              <path d="M14.5 6.6v10.8" stroke-dasharray="2 2.6" />
-            </svg>
-            {C.ticketK}
-          </a>
+        {(ev.ticket || ev.shop) && (
+          <div class="evd-cta">
+            {ev.ticket && (
+              <a class="ev-ticket" href={ev.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
+                <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 9.6V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.6a2.4 2.4 0 0 0 0 4.8V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.6a2.4 2.4 0 0 0 0-4.8Z" />
+                  <path d="M14.5 6.6v10.8" stroke-dasharray="2 2.6" />
+                </svg>
+                {C.ticketK}
+              </a>
+            )}
+            {/* المتجر بلا data-ev-dated عن قصد: الحجز خاص بالنسخة الجارية ويسقط
+                بانقضائها، والمتجر يبيع بعدها (التفصيل في تعليق shop في events.ts) */}
+            {ev.shop && (
+              <a
+                class:list={['ev-ticket', { 'ev-ticket--icon': !shopLabel }]}
+                href={ev.shop}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={shopLabel ? undefined : 'Shop'}
+                title={shopLabel ? undefined : 'Shop'}
+              >
+                <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5.4 8h13.2l1.1 11.1a1 1 0 0 1-1 1.1H5.3a1 1 0 0 1-1-1.1L5.4 8Z" />
+                  <path d="M9 8V6.4a3 3 0 0 1 6 0V8" />
+                </svg>
+                {shopLabel}
+              </a>
+            )}
+          </div>
         )}
 
         {ev.sections?.map((s) => (
@@ -447,7 +476,12 @@ if (ev.faq?.length) {
   .evd-acts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
   .evd-act { font-size: var(--t-sm); color: var(--c-ink); background: var(--c-sand-2);
     border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 7px 15px; }
-  .evd-ticket { margin-block-start: var(--s-5); }
+  /* صفّ الأزرار: الحجز والمتجر — يلتفّان على الجوال، وإخفاء أحدهما (hidden عند
+     انقضاء النسخة) لا يترك فجوة لأن الفجوة بين عنصرين ظاهرين فقط. */
+  .evd-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-block-start: var(--s-5); }
+  /* أيقونة وحدها للغة لم تمرّ تسميتها بخطّ ترجمتها — 44×44 هدف لمس مريح كزرّ المشاركة
+     (‏padding: 0 وحده كان يعطي 38px ارتفاعاً: الأيقونة 16px + حشوة الزرّ). */
+  .ev-ticket--icon { inline-size: 44px; min-block-size: 44px; padding: 0; justify-content: center; }
 
   /* الخريطة */
   .evd-map-sec { margin-block-start: var(--s-2); }

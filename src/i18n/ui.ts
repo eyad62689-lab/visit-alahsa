@@ -221,6 +221,9 @@ export const ui = {
     // الإبلاغ عن خطأ
     'det.report': 'لاحظت معلومة غير دقيقة؟ أبلغنا',
     'det.faq': 'أسئلة شائعة',
+    // متجر منتجات الفعالية (صفحة الفعالية) — لغة بلا هذا المفتاح تعرض الأيقونة
+    // وحدها كزرّ المشاركة، فلا نصّ بـzh/de/ru خارج خطوط الترجمة.
+    'ev.shop': 'تسوّق منتجات المعرض',
     'foot.l.report': 'أبلغ عن خطأ',
     // المدونة
     'nav.blog': 'المدونة',
@@ -435,6 +438,7 @@ export const ui = {
     'det.nearby.note': 'Distances are approximate, in a straight line.',
     'det.report': 'Spotted something inaccurate? Tell us',
     'det.faq': 'Frequently asked questions',
+    'ev.shop': 'Shop the exhibition products',
     'foot.l.report': 'Report an error',
     // Blog
     'nav.blog': 'Blog',
