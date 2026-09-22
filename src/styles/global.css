@@ -300,6 +300,15 @@ picture.photo { display: block; }
 .ev-ticket:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(201,154,74,.38); }
 .ev-ticket:focus-visible { outline: 2px solid var(--c-turq-deep); outline-offset: 3px; }
 .ev-ticket-ic { flex-shrink: 0; }
+/* أيقونة وحدها للغة لم تمرّ تسميتها بخطّ ترجمتها (‏ev.shop) — 44×44 هدف لمس مريح
+   كزرّ المشاركة (‏padding: 0 وحده يعطي 38px: الأيقونة 16px + حشوة الزرّ).
+   تتشاركه البطاقة والصفحة التفصيلية كما تتشاركان .ev-ticket نفسه. */
+.ev-ticket--icon { inline-size: 44px; min-block-size: 44px; padding: 0; justify-content: center; }
+/* صفّ الحجز والمتجر — يلتفّ على الجوال، وإخفاء أحدهما (hidden بانقضاء النسخة)
+   لا يترك فجوة لأن gap بين عنصرين ظاهرين فقط. الاسم `ev-btns` لا `ev-cta`:
+   الأخير محجوز في EventsView لقسم الدعوة للفعل أسفل الصفحة (خلفية رملية
+   وحشوة 96px)، فصفّ البطاقة ورثهما لمّا تشاركا الاسم — تصادمٌ ظهر في المعاينة. */
+.ev-btns { display: flex; flex-wrap: wrap; align-items: center; }
 @media (prefers-reduced-motion: reduce) { .ev-ticket:hover { transform: none; } }
 
 /* ── جداول البيانات (الخطوة 8 من خطة التفاعل العالمي) — DataTable.astro ── */

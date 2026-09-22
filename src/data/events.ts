@@ -21,6 +21,13 @@ export type Ev = {
   span: string; org: string; acts: string[]; img: string; start: number;
   map?: string; // رابط خرائط جوجل (اختياري)
   ticket?: string; // رابط حجز التذاكر الرسمي (اختياري) — لا يُضاف إلا لفعالية أعلنت الحجز فعلاً
+  /** المتجر الإلكتروني الرسمي لمنتجات الفعالية (اختياري) — لا يُضاف إلا لمتجرٍ تديره
+   *  الجهة المنظّمة نفسها (مطابقة org) وتحقّقنا أنه يفتح ويعرض منتجات.
+   *  **ليس موسوماً dated خلافاً لـticket**: الحجز خاص بالنسخة الجارية ويسقط بانقضائها،
+   *  والمتجر يبقى يبيع بعد ختام المعرض (مقيس 2026-09-21، بعد ختام نسخة 2026 بثمانية
+   *  أيام). فإن أُغلق المتجر أو صار خاصاً بنسخةٍ منقضية يُحذف الحقل يدوياً — لا آلية
+   *  تسقطه تلقائياً كما يسقط الحجز. */
+  shop?: string;
   /** إحداثيات الدبوس حين لا يكون المكان معلماً في الموقع — تُستخرج من رابط خرائط
    *  قدّمه إياد لا بالتقدير، ويبقى رابطه الأصلي في map لزرّ «افتح في خرائط جوجل». */
   coords?: { lat: number; lng: number };
@@ -85,7 +92,7 @@ export function evView(ev: Ev, now: Date = new Date()): Ev {
 
 // ── الحقول البنيوية — مرة واحدة لكل فعالية ──────────────────────────────────
 /** ما يشترك فيه كل الأنواع (انظر Ev لشرح كل حقل). */
-type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'coords' | 'priceRange' | 'venue'>;
+type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'coords' | 'priceRange' | 'venue'>;
 /** النسخة المؤكدة تلزمها تواريخ ISO وحالةُ ما بعد الانقضاء؛ وسواها لا تحمل شيئاً منها.
  *  اتحادٌ مميَّز: لا يمكن كتابة status: 'confirmed' بلا afterStatus، ولا تواريخ ISO بلا تأكيد. */
 type EventMeta = MetaCommon & (
@@ -113,6 +120,11 @@ const EVENT_META = {
     status: 'confirmed', afterStatus: 'expected',
     startISO: '2026-08-19', endISO: '2026-09-13',
     ticket: 'https://www.evento.sa/event-details/62ccadc9-df5c-4e0c-8d10-90eeb297ef74',
+    // المتجر الإلكتروني لمنتجات المعرض — من إياد (2026-09-21)، وتحقّقتُ منه في اليوم
+    // نفسه: يفتح بـ200 بلا تحويل، عنوان صفحته «معرض اللومي الحساوي 2026»، ويعرض
+    // منتجات بأسعارها من مؤسسات أحسائية، وروابطه الرسمية تقود إلى hcci.org.sa
+    // وحسابات @ahsachamber — أي أن المتجر لغرفة الأحساء نفسها، وهي org أعلاه.
+    shop: 'https://hcci.hozma.tech/menu/U7udKjnD7mg',
     map: 'https://maps.app.goo.gl/uY5gEBdUJ43pMEFV7',
     coords: { lat: 25.3903836, lng: 49.5619631 },
     priceRange: { low: 10, high: 15, currency: 'SAR' },
