@@ -1,0 +1,147 @@
+---
+// شريط اليوم الوطني السعودي 96 — لمسة موسمية رفيعة فوق الترويسة.
+//
+// الانقضاء بطبقتين، على نمط EventEdition حرفياً (لا عنصر يدوي يُنسى حذفه):
+//   (١) البناء: بعد يوم الختام لا يُصيَّر العنصر إطلاقاً — فأول نشرٍ بعد الأسبوع
+//       يمحوه من الموقع كله بلا تعديل ملف.
+//   (٢) المتصفح: سكربت متزامن يحذفه بتاريخ الجهاز إن بقيت الصفحة مخزّنة بلا
+//       نشرٍ جديد. وهو **متزامن وملاصق للعنصر** لا مؤجَّل: يُنفَّذ أثناء التحليل
+//       قبل أول رسم، فلا يومض الشريط المنتهي ولا يُحدث إزاحة تخطيط (CLS).
+// الطبقة الثانية هي الحاسمة: الموقع ثابت (SSG) ولا يُبنى إلا عند دفعة، فلو لم
+// يُدفع شيء بعد 28 سبتمبر بقي الشريط في HTML المنشور — وهذه تكفله وحدها.
+//
+// التوقيت بتوقيت السعودية (UTC+3 ثابت بلا توقيت صيفي) لا بتوقيت جهاز الزائر:
+// فيتفق الانقضاء على يوم الأحساء أينما كان الزائر — نفس ksaDay في EventEdition.
+//
+// الألوان: التدرّج من --c-turq-deep (‏#004F46) إلى أخضر العلم **مُعمَّقاً**
+// (‏#00522A) لا إلى أخضر العلم الحرفي (‏#006C35). القياس هو السبب لا الذوق:
+// ‏--c-gold-bright على أخضر العلم الحرفي 3.19:1 — دون AA؛ وعلى المُعمَّق 4.55:1.
+// وطرفا التدرّج متقاربا الإضاءة فيقرأ الشريط شريطاً واحداً هادئاً تتحوّل نغمته
+// من فيروزي الموقع إلى أخضر العلم، لا كتلتين متصادمتين. أدنى تباين عبر كامل
+// التدرّج مقيس: الذهبي الفاتح 4.54:1 والرملي 8.44:1 — كلاهما AA.
+//
+// النخلة: موتيف الموقع نفسه (PalmMotif) — وهي في آنٍ عنصر العلامة وعنصر الشعار
+// الوطني، فالتقاؤهما هنا ليس استعارةً من خارج النظام البصري.
+import PalmMotif from './PalmMotif.astro';
+import type { Lang } from '../i18n/ui';
+import { localize } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+// نافذة العرض: أسبوع واحد يبدأ 2026-09-22 (طلب إياد) واليوم الوطني 23 سبتمبر.
+const START = '2026-09-22';
+const END = '2026-09-28';
+
+// يوم البناء بتوقيت السعودية — بنفس اشتقاق السكربت أدناه فلا تتباعد الطبقتان.
+const ksaToday = new Date(Date.now() + 3 * 3600000).toISOString().slice(0, 10);
+const inWindow = ksaToday >= START && ksaToday <= END;
+
+// النصوص: العربية والإنجليزية فقط. الصينية والألمانية والروسية لا تتراجع
+// للإنجليزية هنا — تراجعها كان سيضع سلسلةً إنجليزية مطابقة لنظيرتها في الصفحة
+// الإنجليزية داخل صفحة zh/de/ru، وهو عين ما يقيسه الفحص C22 (وعلى صفحات zh
+// القليلة الكتل تساوي السلسلة الواحدة ~5 نقاط). فحتى تمرّ النصوص بخطوط
+// الترجمة الثلاثة يبقى الشريط عربياً وإنجليزياً، والصفحات الأخرى بلا شريط
+// — غيابُ لمسة أهونُ من سلسلة غير مترجمة تُضعف حارساً.
+//
+// والشعار الرسمي «عزّنا بطبعنا» (أطلقته هيئة الترفيه) بالعربية وحدها: لا ترجمة
+// إنجليزية رسمية له، وصوغ واحدة من عندنا ادّعاءُ رسميةٍ لا نملكها. فتأخذ
+// الإنجليزية التاريخ مكانه — وهو واقعة لا تفسير.
+const C = localize(lang, {
+  ar: { title: 'اليوم الوطني السعودي', tag: 'عزّنا بطبعنا', region: 'مناسبة وطنية' },
+  en: { title: 'Saudi National Day', tag: '23 September', region: 'National occasion' },
+});
+const show = inWindow && (lang === 'ar' || lang === 'en');
+---
+
+{show && (
+  <aside class="natday" aria-label={C.region} data-natday data-natday-end={END} data-pagefind-ignore>
+    <div class="nd-in">
+      <span class="nd-palm"><PalmMotif size={17} /></span>
+      <p class="nd-text">
+        <span class="nd-title">{C.title} <span class="nd-num">96</span></span>
+        <span class="nd-dot" aria-hidden="true"></span>
+        <span class="nd-tag">{C.tag}</span>
+      </p>
+    </div>
+  </aside>
+  <script is:inline define:vars={{ END }}>
+    // متزامن وملاصق: يُنفَّذ أثناء التحليل قبل أول رسم، فلا وميض ولا إزاحة.
+    (function () {
+      function ksaDay(ms) { return Math.floor((ms + 3 * 3600000) / 86400000); }
+      function sweep() {
+        var end = Date.parse(END + 'T00:00:00Z');
+        if (isNaN(end)) return;
+        if (ksaDay(Date.now()) <= end / 86400000) return;
+        document.querySelectorAll('[data-natday]').forEach(function (el) { el.remove(); });
+      }
+      sweep();
+      // ClientRouter يبدّل المستند، فيعود الشريط من HTML الصفحة الجديدة —
+      // الحارس يمنع تكرار المستمع عبر التنقّلات (نمط __vaLangMenu في الترويسة).
+      if (!window.__vaNatDay) {
+        window.__vaNatDay = true;
+        document.addEventListener('astro:page-load', sweep);
+      }
+    })();
+  </script>
+)}
+
+<style>
+  /* <aside> بتسمية لا <div>: قاعدة axe «region» تُلزم أن يكون كل محتوى الصفحة
+     داخل معلَم (landmark)، والشريط يسبق <header> فكان نصّاه خارج أي معلَم —
+     فأخفق الفحص على أربع صفحات بـ`region×2` (مقيس، لا مُستنتَج: العقدتان
+     .nd-title و.nd-tag). والمحتوى مكمّل فعلاً لا ملاحة ولا متن، فـ<aside>
+     وصفُه الصحيح. والتسمية من كتلة C بلغة الصفحة كي لا يُعلَن معلَم بلا اسم.
+     ولا يجوز ضمّه إلى <header> بدلاً من ذلك: الترويسة لاصقة فيصير الشريط
+     لاصقاً معها ويبتلع 37px من كل شاشة طوال الأسبوع — والمقصود أن ينزلق. */
+  /* شريط رفيع فوق الترويسة اللاصقة: ينزلق مع الصفحة ولا يزاحم الترويسة مكانها
+     الثابت — لمسة مناسبة لا عنصر ملاحة دائم. وهو خارج .hd-in فلا يمسّ ميزانية
+     عرض الشريط المقيسة (tools/measure-header-fit.mjs يقيس .hd-in وحدها). */
+  /* اتجاه التدرّج منطقي يتبع اتجاه الكتابة — على نمط --hero-scrim-dir في
+     tokens.css حرفياً: زوايا تدرّجات CSS ثابتة لا تنعكس مع dir، فكان الشريط
+     يبدأ في العربية بأخضر العلم وينتهي بفيروزي الموقع — أي يقرأ الزائر العربي
+     نغمته معكوسةً. المقصود أن يبدأ من هوية الموقع ويمضي إلى أخضر العلم في
+     اللغتين، فتُقلب الزاوية مع الاتجاه لا مع اللغة. */
+  .natday {
+    --nd-dir: 270deg; /* عربي RTL — الفيروزي عند حافة البداية (اليمين) */
+    background: linear-gradient(var(--nd-dir), var(--c-turq-deep) 0%, #00522A 100%);
+    border-block-end: 1px solid color-mix(in srgb, var(--c-gold) 55%, transparent);
+  }
+  :global(html[dir='ltr']) .natday { --nd-dir: 90deg; } /* إنجليزي LTR — الفيروزي عند اليسار */
+  .nd-in {
+    inline-size: min(100% - var(--s-3), 1280px);
+    margin-inline: auto;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding-block: 8px;
+  }
+  /* السعفة داخل غلافٍ من هذا الملف لا بصنفٍ ممرَّر إلى المكوّن: أنماط Astro
+     المحصورة تُصاغ `.nd-palm[data-astro-cid-…]`، وجذرُ مكوّنٍ آخر لا يحمل هذه
+     السمة — فكانت القاعدتان ميتتين (مقيس: السعفة تُصيَّر بـ--c-ink الداكن على
+     الشريط الداكن، ولا تختفي على أضيق الهواتف). واللون والإخفاء يورَثان من
+     الغلاف إلى الـ<svg> فيعملان بلا :global ولا تسريب. */
+  .nd-palm { display: flex; color: var(--c-gold); opacity: .85; flex: none; }
+  .nd-text {
+    margin: 0;
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-heading); font-size: var(--t-sm); font-weight: 700;
+    color: var(--c-sand); /* 8.44:1 عبر كامل التدرّج */
+    line-height: 1.3;
+    text-align: center;
+  }
+  /* الأرقام لاتينية دائماً (قاعدة الموقع)، وبخط اللاتيني الفاخر نفسه */
+  .nd-num { font-family: var(--font-latin); font-weight: 600; letter-spacing: .02em; }
+  /* معيّن ذهبي فاصل — زخرفة غير نصّية فيبقى --c-gold (لا عتبة تباين عليها) */
+  .nd-dot { inline-size: 5px; block-size: 5px; flex: none; background: var(--c-gold); transform: rotate(45deg); }
+  /* الشعار/التاريخ: ذهبي فاتح — 4.54:1 كحدّ أدنى عبر التدرّج، وهو AA.
+     ‏--c-gold نفسه 3.20:1 هنا فلا يُستعمل لنصّ (قاعدة الموقع). */
+  .nd-tag { color: var(--c-gold-bright); font-weight: 400; }
+
+  @media (max-width: 480px) {
+    .nd-in { gap: 8px; padding-block: 7px; }
+    .nd-text { gap: 8px; font-size: var(--t-xs); }
+  }
+  /* أضيق الهواتف: السعفة تُسقَط قبل أن يلتفّ النصّ سطرين */
+  @media (max-width: 360px) {
+    .nd-palm { display: none; }
+  }
+</style>
