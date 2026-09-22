@@ -48,14 +48,14 @@ const inWindow = ksaToday >= START && ksaToday <= END;
 // إنجليزية رسمية له، وصوغ واحدة من عندنا ادّعاءُ رسميةٍ لا نملكها. فتأخذ
 // الإنجليزية التاريخ مكانه — وهو واقعة لا تفسير.
 const C = localize(lang, {
-  ar: { title: 'اليوم الوطني السعودي', tag: 'عزّنا بطبعنا' },
-  en: { title: 'Saudi National Day', tag: '23 September' },
+  ar: { title: 'اليوم الوطني السعودي', tag: 'عزّنا بطبعنا', region: 'مناسبة وطنية' },
+  en: { title: 'Saudi National Day', tag: '23 September', region: 'National occasion' },
 });
 const show = inWindow && (lang === 'ar' || lang === 'en');
 ---
 
 {show && (
-  <div class="natday" data-natday data-natday-end={END} data-pagefind-ignore>
+  <aside class="natday" aria-label={C.region} data-natday data-natday-end={END} data-pagefind-ignore>
     <div class="nd-in">
       <span class="nd-palm"><PalmMotif size={17} /></span>
       <p class="nd-text">
@@ -64,7 +64,7 @@ const show = inWindow && (lang === 'ar' || lang === 'en');
         <span class="nd-tag">{C.tag}</span>
       </p>
     </div>
-  </div>
+  </aside>
   <script is:inline define:vars={{ END }}>
     // متزامن وملاصق: يُنفَّذ أثناء التحليل قبل أول رسم، فلا وميض ولا إزاحة.
     (function () {
@@ -87,6 +87,13 @@ const show = inWindow && (lang === 'ar' || lang === 'en');
 )}
 
 <style>
+  /* <aside> بتسمية لا <div>: قاعدة axe «region» تُلزم أن يكون كل محتوى الصفحة
+     داخل معلَم (landmark)، والشريط يسبق <header> فكان نصّاه خارج أي معلَم —
+     فأخفق الفحص على أربع صفحات بـ`region×2` (مقيس، لا مُستنتَج: العقدتان
+     .nd-title و.nd-tag). والمحتوى مكمّل فعلاً لا ملاحة ولا متن، فـ<aside>
+     وصفُه الصحيح. والتسمية من كتلة C بلغة الصفحة كي لا يُعلَن معلَم بلا اسم.
+     ولا يجوز ضمّه إلى <header> بدلاً من ذلك: الترويسة لاصقة فيصير الشريط
+     لاصقاً معها ويبتلع 37px من كل شاشة طوال الأسبوع — والمقصود أن ينزلق. */
   /* شريط رفيع فوق الترويسة اللاصقة: ينزلق مع الصفحة ولا يزاحم الترويسة مكانها
      الثابت — لمسة مناسبة لا عنصر ملاحة دائم. وهو خارج .hd-in فلا يمسّ ميزانية
      عرض الشريط المقيسة (tools/measure-header-fit.mjs يقيس .hd-in وحدها). */
