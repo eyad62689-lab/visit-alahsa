@@ -41,6 +41,6 @@ Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/), ei
 ## Praktische Hinweise
 
 - **Ein Auto** ist zwischen den Stationen die praktische Wahl: Manche liegen mitten in Hofuf, andere am Rand der Oase.
-- Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/en/plan/) hinzu: Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der [Karte der Sehenswürdigkeiten](/en/map/) bringen Sie Ihren Tag in die richtige Reihenfolge.
+- Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/en/plan/) hinzu: Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der [Karte der Sehenswürdigkeiten](/de/map/) bringen Sie Ihren Tag in die richtige Reihenfolge.
 - **Bleiben Sie über Nacht?** Dann wechseln Sie zur [Zwei-Tage-Route (48 Stunden)](/de/blog/48-hours-in-al-ahsa/) – dort kommen die Amiriah-Schule, in der Saison die Hasawi-Limettenfarm und die Küste von Al-Uqair hinzu.
 - Zum ersten Mal in Al-Ahsa? Die Seite [Reise planen](/en/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.
