@@ -1,0 +1,114 @@
+{
+  "batch": "de-plan-1",
+  "stage": 5,
+  "strings": {
+    "plan.eyebrow": "Ihr eigener Plan",
+    "plan.title": "Meine Reise",
+    "plan.lead": "Die Sehenswürdigkeiten, die Sie ausgewählt haben, sind auf diesem Gerät gespeichert. Ordnen Sie sie an und erhalten Sie eine fertige Route.",
+    "plan.savedSuffix": "Sehenswürdigkeiten gespeichert",
+    "plan.savedOne": "Sehenswürdigkeit gespeichert",
+    "plan.savedTwo": "Sehenswürdigkeiten gespeichert",
+    "plan.savedFew": "Sehenswürdigkeiten gespeichert",
+    "plan.clearConfirm": "Möchten Sie Ihre gesamte Liste leeren?",
+    "plan.routeLimit": "Google Maps akzeptiert 10 Stationen pro Route, daher öffnet sich die Route mit den ersten 10 Sehenswürdigkeiten Ihrer Liste.",
+    "plan.route": "Route in Google Maps öffnen",
+    "plan.clear": "Liste leeren",
+    "plan.remove": "Entfernen",
+    "plan.location": "Standort ↗",
+    "plan.empty.h": "Ihre Liste ist noch leer",
+    "plan.empty.d": "Durchstöbern Sie die Sehenswürdigkeiten, und klicken oder tippen Sie auf „Zu ‚Meine Reise‘ hinzufügen“, um Ihre Ziele hier zu sammeln. Anschließend erhalten Sie eine fertige Route.",
+    "plan.empty.browse": "Sehenswürdigkeiten entdecken",
+    "plan.empty.map": "Karte öffnen",
+    "plan.share": "Auf WhatsApp teilen",
+    "plan.copy": "Link kopieren",
+    "plan.print": "Liste drucken",
+    "plan.waText": "Meine Al-Ahsa-Reise – die Liste der Sehenswürdigkeiten:",
+    "plan.shared.h": "Eine geteilte Liste von Sehenswürdigkeiten",
+    "plan.shared.d": "Diese Liste hat Sie über einen Freigabelink erreicht – durchstöbern Sie sie, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.",
+    "plan.shared.import": "Zu „Meine Reise“ hinzufügen",
+    "plan.shared.mine": "Meine eigene Reise ansehen"
+  },
+  "termbase_additions": [
+    {
+      "en": "WhatsApp",
+      "de": "WhatsApp",
+      "artikel": "— (Markenname, artikellos; in Präpositionalfügungen wie „auf/bei/über WhatsApp“)",
+      "source": "projekt29.de, „Inhalte Teilen mit dem WhatsApp Share-Button“ (https://projekt29.de/inhalte-teilen-mit-dem-whatsapp-share-button/): Schaltflächentext wörtlich „Auf WhatsApp teilen“, und im Fließtext „Der WhatsApp Share-Button unterscheidet sich hier aber maßgeblich von dem des Mutterkonzerns Facebook“ (artikellose Verwendung des Markennamens). Zusätzlich bereits im veröffentlichten deutschen Bestand dieser Website ohne termbase-Eintrag: foot.l.whatsapp = „WhatsApp“.",
+      "status": "verified"
+    }
+  ],
+  "notes": [
+    "plan.title: keine Anführungszeichen — als H1/Tab-Titel ist es eine Überschrift, keine Zitierung im Satz; deckt sich mit nav.myTrip, das ebenfalls unzitiert „Meine Reise“ lautet. Die Anführungszeichenform aus der termbase gilt nur, wenn der Name innerhalb eines Satzes zitiert wird (so in plan.shared.d/plan.shared.import).",
+    "plan.savedSuffix/savedOne/savedTwo/savedFew: Intl.PluralRules('de') kennt nur 'one' und 'other'. savedTwo und savedFew sind in der deutschen Ausgabe technisch unerreichbar (kein Besucher sieht sie), müssen aber im Schlüsselbestand bleiben, sonst fällt der Lookup auf Englisch zurück. Beide erhalten dieselbe Form wie savedSuffix ('other'), da Deutsch keinen Dual und keine Paukalform kennt — kein erfundener Plural.",
+    "Einheitliches Substantiv 'Liste' für die sechs zusammenhängenden Strings (plan.clear, plan.clearConfirm, plan.empty.h, plan.shared.h, plan.shared.d, plan.routeLimit) — bewusst NICHT 'Reiseliste', um keine Verwechslung mit dem Seitennamen „Meine Reise“ zu erzeugen; das englische/arabische Original nennt die Sache selbst durchgehend schlicht 'list'/'قائمة'.",
+    "plan.location: weder 'Lage' (DiningDetailView/StayDetailView: Gegend eines Betriebs) noch 'Ort' (EventsView/EventDetailView: Veranstaltungsort) passt — hier öffnet der Link exakt den Kartenpunkt (Pin) der Sehenswürdigkeit. Gewählt: 'Standort' (Positionsangabe), klar unterschieden von beiden Geschwistern und ohne Denglisch-Verstoß.",
+    "plan.empty.d: Zitat des publizierten Buttons fav.add = „Zu ‚Meine Reise‘ hinzufügen“ (innere Anführungszeichen auf ‚…‘ umgestellt, da der ganze Satzteil bereits in „…“ steht). Für 'tap' wurde NICHT die im Brief behauptete Form 'tippen' allein verwendet — der tatsächlich publizierte Präzedenzfall (map.lead.a, tm_relevant) lautet 'Klicken oder tippen Sie', diese geräteneutrale Formulierung wurde übernommen; die Beschreibung im Auftrag widerspricht insofern dem tatsächlichen Bestand.",
+    "plan.empty.h: 'noch' übernommen, weil die arabische Fassung 'بعد' (noch nicht) trägt und das Englische es nur unterschlägt — Arabisch ist Schiedsrichter.",
+    "plan.copy: Verb+Nomen bewusst auf 'Link kopieren' reduziert (nicht 'Freigabelink kopieren'), um exakt zum bereits publizierten plan.copied = „Link kopiert ✓“ zu passen — Paar aus Aktion und Bestätigung. Funktioniert auch als Label des prompt()-Dialogs.",
+    "plan.shared.import: Bindender Geschwisterstring fav.add = „Zu ‚Meine Reise‘ hinzufügen“ wortgleich übernommen. Der Unterschied (ganze geteilte Liste vs. eine einzelne Sehenswürdigkeit von einer Karte) ist real, aber aus Besuchersicht dieselbe Handlung ('zu meiner Reise hinzufügen') — eine zweite, nur leicht andere Formulierung hätte das im Auftrag selbst benannte Risiko 'drei Bezeichnungen für dieselbe Funktion' vergrößert statt verringert.",
+    "plan.routeLimit: Quelldefekt dokumentiert — die arabische Fassung schreibt die Marke hier «خرائط قوقل», zwei Schlüssel weiter in plan.route «خرائط جوجل»: zwei arabische Schreibweisen eines Produkts auf einer Seite. Deutsch hat nur 'Google Maps' (artikellos), der Defekt pflanzt sich nicht fort — zur Meldung an source_defects.md vorgesehen.",
+    "plan.waText: einzige Zeile ohne Sie-Anrede (niemand wird angesprochen, Besucher spricht über die eigene Reise). Gedankenstrich von U+2014 auf U+2013 umgestellt, Durchkopplung 'Al-Ahsa-Reise' nach Regel; schließender Doppelpunkt vor dem Link-Anhang beibehalten.",
+    "STUFE 2 (Redaktion): plan.lead — den erweiterten Partizipialattribut 'die von Ihnen ausgewählten Sehenswürdigkeiten' (Behördendeutsch-Muster) durch einen Relativsatz ersetzt: 'die Sehenswürdigkeiten, die Sie ausgewählt haben'. Kein Fakt geändert, nur die Satzform.",
+    "STUFE 2 (Redaktion): plan.clearConfirm — Füllwort 'wirklich' gestrichen (Liste der zu streichenden Füllwörter in 02-editor.md nennt es ausdrücklich). Die Frage bleibt vollständig und eindeutig; kein Versprechen hinzugefügt oder entfernt.",
+    "STUFE 2 (Redaktion): plan.empty.d — die Kette 'um … zu sammeln und anschließend … zu erhalten' nach dem ersten Infinitiv in zwei Sätze aufgebrochen ('… zu sammeln. Anschließend erhalten Sie …'), damit der Nebensatz nicht zu lang wird. Zitat des publizierten Buttons unverändert übernommen.",
+    "STUFE 2 (Redaktion): keine Änderung an plan.route, plan.shared.d nötig befunden — plan.route folgt bewusst dem Imperativ-mit-Sie-Muster der publizierten ev.*-Buttons (keine Nominalstil-Verkürzung); plan.shared.d enthält keine Füllwörter und der Gedankenstrich mit dem Sie/sie-Nebeneinander ist im Deutschen klar lesbar (Groß-/Kleinschreibung disambiguiert Anrede vs. Pronomen).",
+    "STUFE 3 (kulturelle Anpassung): keine Änderung an irgendeinem String. Diese Charge besteht ausschließlich aus UI-Chrome (Buttons, Überschriften, Dialogtexte, Leerzustand) — keine Fließtext-Stelle, an der ein Begriff (arabischer Ausdruck, Hijri-Kalender, Gouvernorat) zum ersten Mal glossiert werden könnte, und kein Raum für Hitze/Jahreszeit/Barrierefreiheit/Familien-Framing, ohne den Zaun der Stufe zu verletzen ('kein einziger Fakt'). Die Anrede ist bereits durchweg Sie (außer plan.waText, das aus einem bindenden Grund keine Anrede trägt, siehe oben). Register (gehobenes, aber knappes Reisemagazin-Deutsch) entspricht bereits dem DACH-Zielpublikum. Es wurde kein Wort geändert.",
+    "STUFE 4 (Sachfaktenzaun): jede der 25 Zeichenketten Satz für Satz gegen pack.json → en/ar geprüft — keine unbelegte Tatsache, kein Superlativ, kein Ratschlag und keine Zahl gefunden, die Stufe 2/3 hinzugefügt hätte und die Quelle nicht trägt. stage_specific.fence_removed bleibt daher leer: das ist ein geprüftes Ergebnis, keine übersprungene Prüfung.",
+    "STUFE 4: plan.route — „Öffnen Sie die Route in Google Maps“ zu „Route in Google Maps öffnen“ geändert. Begründung in stage_specific.changed: Register-Bruch, kein Faktenfehler — die vier Nachbar-Buttons derselben Zeile (plan.clear, plan.share, plan.copy, plan.print) und die einzige publizierte Parallelaktion für dieselbe Handlung (det.openMaps = „In Google Maps öffnen ↗“) sind alle artikellose Infinitiv-Endstellungen ohne Sie-Anrede.",
+    "STUFE 4: plan.location = „Standort ↗“ (Stufe 3) gegen die termbase geprüft und bestätigt — der de-dind-4-Richterentscheid (termbase, Eintrag „branch“) reserviert „der Standort“ ausdrücklich für die generische Bedeutung von „location“ und trennt sie von „Filiale“ (Geschäftsstandort/Zweigstelle) sowie von „Lage“ (Gegend eines Betriebs, DiningDetailView/StayDetailView) und „Ort“ (Veranstaltungsort, EventsView/EventDetailView). Kein Widerspruch zu den drei publizierten Geschwistern, weil jede der vier eine andere Bedeutungsnische von „location“ besetzt.",
+    "STUFE 4: deutsche Exonyme (Riad, Dschidda, Mekka, Saudi-Arabien, Arabische Halbinsel, Ostprovinz) und die Golf-Regel (die Golfregion/der Golf, nie Persischer/Arabischer Golf) kommen in dieser Charge nicht vor — nichts zu prüfen, keine Verletzung.",
+    "STUFE 4: neuer Eigenname „WhatsApp“ (plan.share) war nicht in der termbase — gemäß Auftrag verifiziert und mit Beleg+URL nachgetragen (termbase_additions). Die gewählte Fügung „Auf WhatsApp teilen“ (Stufe 3) ist durch externe Web-Recherche als tatsächlich gebräuchliche deutsche Schaltflächenbeschriftung bestätigt, nicht nur plausibel übersetzt.",
+    "STUFE 4: plan.empty.browse/plan.empty.map — die im Auftrag gewünschte Längen-Balance der beiden Leerzustand-Buttons bleibt der stärkeren Geschwister-Bindung (plan.empty.browse = wortgleich mit dem bereits publizierten EventsView.ctaBrowse „Sehenswürdigkeiten entdecken“) untergeordnet; keine Änderung, bewusst dokumentiert.",
+    "STUFE 5 (Korrektorat): mechanische Prüfung aller zehn Checklistenpunkte auf den 25 Zeichenketten der Stufe 4 — keine Rechtschreib-, Durchkopplungs-, Grammatik-, Anrede-, Interpunktions- oder Zahlenfehler gefunden. Kein String wurde verändert; die Stufe-4-Fassung ist mechanisch fehlerfrei.",
+    "STUFE 5: verboten Zeichen (U+00A0, U+2014, U+2009/U+202F) programmatisch auf allen 25 Strings geprüft — keiner enthält sie. plan.waText und plan.shared.d tragen U+2013 korrekt mit Leerzeichen beidseitig (gedankenstrich-Regel); der Quell-Gedankenstrich U+2014 wurde in Stufe 4 bereits richtig umgestellt.",
+    "STUFE 5: Anführungszeichen geprüft — ausschließlich „…“ und verschachteltes ‚…‘ (plan.empty.d), keine geraden \" oder Guillemets «». Die Verschachtelung in plan.empty.d («Zu ‚Meine Reise‘ hinzufügen» innerhalb des zitierenden Satzes) ist korrekt aufgelöst, weil der publizierte Button fav.add selbst bereits „Zu „Meine Reise“ hinzufügen“ lautet und beim Zitieren eine Ebene tiefer geht.",
+    "STUFE 5: die sechs Strings, die dieselbe Sache benennen (plan.clear, plan.clearConfirm, plan.empty.h, plan.shared.h, plan.shared.d, plan.routeLimit), verwenden alle ausnahmslos 'Liste' — Brief-Auflage 4 erfüllt, keine Abweichung gefunden.",
+    "STUFE 5: die drei dem Richter vorgelegten offenen Erwägungen (Souk-Glossierung, Abschwächung der allgemeinen Glossierungsregel, zwei Ermessensentscheide aus Charge 3) haben in dieser Charge keinen Berührungspunkt — kein 'Souk', kein zu glossierender Fremdbegriff und keine Charge-3-Stelle kommen in den plan.*-Strings vor. Nichts wurde daher entschieden oder verändert.",
+    "STUFE 5: Anrede-Prüfung — Sie/Ihr(e) durchweg großgeschrieben in plan.lead, plan.clearConfirm, plan.empty.d, plan.shared.d; kein 'du'/'dein' irgendwo. plan.waText bleibt wie in Stufe 4 begründet ohne Anrede (Besucher spricht in eigener Stimme über die eigene Reise, niemand wird adressiert) — einzige zulässige Ausnahme laut Brief-Fallstrick 6.",
+    "STUFE 5: Zahlenzaun geprüft — einzige Ziffern der Charge sind die beiden „10“ in plan.routeLimit, beide im Quelltext (en und ar) belegt. Keine weitere Ziffer in der Charge."
+  ],
+  "stage_specific": {
+    "checklist": {
+      "1_rechtschreibung": {
+        "result": "pass",
+        "detail": "Duden-Orthographie, ß-Regel (keine ß-pflichtigen Wörter in dieser Charge: kein 'Straße/größte/heiß'-Muster vorhanden), Großschreibung der Substantive (Reise, Liste, Route, Sehenswürdigkeit(en), Gerät, Freigabelink, Ziele …) und Komposita korrekt zusammengeschrieben (Al-Ahsa-Reise, Freigabelink) — kein Fehler in den 25 Strings."
+      },
+      "2_durchkopplung": {
+        "result": "pass",
+        "detail": "Einziger Eigenname-Kompositum-Fall der Charge: plan.waText 'Meine Al-Ahsa-Reise' korrekt durchgekoppelt. Kein Pleonasmus (kein 'Google-Maps-Karte' o.ä.); 'Google Maps' bleibt als Markenname unhyphenisiert gemäß termbase-Eintrag."
+      },
+      "3_grammatik": {
+        "result": "pass",
+        "detail": "Genus/Artikel aller Substantive korrekt (die Liste, die Route, der Freigabelink, das Gerät); Kasus nach Präpositionen stimmt (mit den ersten 10 Sehenswürdigkeiten Ihrer Liste = Dativ; zu Ihrer eigenen „Meine Reise“ = Dativ; über einen Freigabelink = Akkusativ; in Google Maps öffnen = Akkusativ/Richtung, termbase-Rektion); Satzklammern geschlossen (Ordnen Sie sie an; fügen Sie sie … hinzu). Kein Fehler."
+      },
+      "4_anrede": {
+        "result": "pass",
+        "detail": "Sie/Ihr(e) großgeschrieben und durchgehend in plan.lead, plan.clearConfirm, plan.empty.d, plan.shared.d verwendet; null Treffer für du/dein/dich/dir in der ganzen Charge. plan.waText bewusst ohne Anrede (begründete Ausnahme, Brief-Fallstrick 6 — Besucherstimme, niemand wird angesprochen)."
+      },
+      "5_termbase": {
+        "result": "pass",
+        "detail": "100% Termbase-Konformität: 'Al-Ahsa' (waText) im festen Kopfform, 'Meine Reise' unzitiert als H1/Tab-Titel (plan.title) und zitiert mit „…“ wo im Satz erwähnt (plan.shared.d, plan.shared.import — wortgleich mit dem publizierten fav.add), 'Google Maps' artikellos mit korrekter Rektion 'in Google Maps öffnen' (plan.route) und als Subjekt 'Google Maps akzeptiert' (plan.routeLimit), 'WhatsApp' artikellos mit Präposition 'auf' (plan.share) laut neuem, belegtem Eintrag. plan.location = 'Standort ↗' geprüft gegen den de-dind-4-Richterentscheid (Standort reserviert für generisches 'location', getrennt von Filiale/Lage/Ort) — kein Widerspruch."
+      },
+      "6_interpunktion": {
+        "result": "pass",
+        "detail": "„…“ für Zitate, ‚…‘ korrekt verschachtelt in plan.empty.d; U+2013 mit beidseitigem Leerzeichen in plan.waText und plan.shared.d; Komma vor Relativsatz (plan.lead: 'Sehenswürdigkeiten, die Sie …'), Komma vor um-zu-Konstruktion (plan.empty.d: '…, um Ihre Ziele … zu sammeln'); keine geraden Anführungszeichen, keine Guillemets, kein englisches Komma vor 'und/oder'."
+      },
+      "7_zahlen_datum": {
+        "result": "pass",
+        "detail": "Einzige Zahlen der Charge: die beiden „10“ in plan.routeLimit, beide durch Quelle (en/ar) gedeckt, lateinische Ziffern. Kein Datum, keine Uhrzeit, keine Währung, keine Hidschra-Angabe in dieser Charge — nicht anwendbar."
+      },
+      "8_denglisch": {
+        "result": "pass",
+        "detail": "Kein Treffer aus der Verbotsliste (Event(s), Spot, Location, Must-see, Hotspot, Guide, Map, Trip) außerhalb des artikellosen Markennamens 'Google Maps'; 'Route', 'Liste', 'Standort', 'Plan' sind reguläre deutsche Wörter, kein Denglisch. 'Highlight' kommt null Mal vor."
+      },
+      "9_glossierung": {
+        "result": "pass",
+        "detail": "Nicht anwendbar: diese Charge enthält keinen erstmals im Fließtext auftauchenden arabischen oder fremdsprachigen Begriff, der eine Glossierung bräuchte (kein 'Souk', kein 'Lomi' o.ä.). 'Al-Ahsa' in plan.waText ist der etablierte, im ganzen Bestand ungeglosste Eigenname/Markenname der Website, keine zu erklärende Entlehnung."
+      },
+      "10_struktur": {
+        "result": "pass",
+        "detail": "Alle 25 pack.json-Schlüssel vorhanden, Reihenfolge byte-identisch zur Quelle; keine Markdown-Syntax (keine [Link](), kein **Fett**) in den als Rohtext gerenderten Feldern; Pfeil ↗ in plan.location mit genau einem gewöhnlichen Leerzeichen (U+0020) davor, gleiche Häufigkeit wie Quelle."
+      }
+    }
+  }
+}
