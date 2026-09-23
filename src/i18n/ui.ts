@@ -903,7 +903,7 @@ export const ui = {
     'plan.print': 'Liste drucken',
     'plan.waText': 'Meine Al-Ahsa-Reise – die Liste der Sehenswürdigkeiten:',
     'plan.shared.h': 'Eine geteilte Liste von Sehenswürdigkeiten',
-    'plan.shared.d': 'Diese Liste hat Sie über einen Freigabelink erreicht – durchstöbern Sie sie, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.',
+    'plan.shared.d': 'Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.',
     'plan.shared.import': 'Zu „Meine Reise“ hinzufügen',
     'plan.shared.mine': 'Meine eigene Reise ansehen',
   } as Record<string, string>,
