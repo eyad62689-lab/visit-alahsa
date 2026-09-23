@@ -1,0 +1,139 @@
+{
+  "batch": "de-plan-3",
+  "lang": "de",
+  "page": "/de/plan-your-trip/ — the FAQ section of the practical-information page (PlanTripView.astro, block de, key `faq`).",
+  "part": "Batch 3 of 3 (ج9): the thirteen question/answer pairs. Batch 2 translates the same page's other thirty-six strings and runs in parallel — see BRIEF §cross-batch. Batch 1 translates /de/plan/.",
+  "how_rendered": "Each pair is rendered TWICE from one source: (1) as visible <h3>question</h3><p>answer</p> under the heading `faqH`; (2) as a FAQPage JSON-LD block in the page head, where the question is `name` and the answer is `acceptedAnswer.text`. So every answer is also a candidate for a Google rich result and must stand alone, without the question, without the page around it, and without markdown (plain text only — a link written as [text](url) would be shown to the visitor with its brackets).",
+  "strings": {
+    "faq.0.q": {
+      "en": "Is Al-Ahsa worth visiting?",
+      "ar": "ماذا يوجد في الأحساء سياحة؟",
+      "context": "Question 1 of 13. SOURCE DIVERGENCE, and it matters: the Arabic asks WHAT THERE IS to see in Al-Ahsa, the English asks WHETHER it is worth visiting. These are two different search queries and the answer below fits both. The Arabic is the decider on meaning — decide which question the German asks, and justify it; German search behaviour («Lohnt sich …?» vs «Was gibt es in … zu sehen?») is a legitimate part of that reasoning."
+    },
+    "faq.0.a": {
+      "en": "Absolutely. Al-Ahsa is the world’s largest oasis (Guinness 2020) and a UNESCO World Heritage Site (2018). It pairs natural wonders — Al-Qarah Mountain’s caves, Al-Asfar Lake and the freshwater springs — with living heritage in Hofuf: Qasr Ibrahim, Qaisariyah Souq and Jawatha Mosque, plus palm groves, oasis fruits and distinctive local cuisine. A welcoming, family-friendly destination blending history, nature and hospitality.",
+      "ar": "الأحساء أكبر واحة في العالم (موسوعة غينيس 2020م) وموقع تراث عالمي مسجّل في اليونسكو منذ 2018م. تجمع بين المعالم الطبيعية كجبل القارة بكهوفه وبحيرة الأصفر والعيون، والتراث العمراني في الهفوف كقصر إبراهيم وسوق القيصرية ومسجد جواثى، إضافةً إلى مزارع النخيل وثمار الواحة وأكلاتها الشعبية — وجهة عائلية تجمع التاريخ والطبيعة والضيافة.",
+      "context": "HARD BUILD CONSTRAINT — THE OASIS CLAIM. The owner's ruling (2026-09-03) is that the site says «the largest oasis in the world» with NO qualifier: not «palm oasis», not «natural oasis». The automated check C15 fails the build if the German «größte(n) Palmenoase» appears anywhere in the output, and the approved German wording is «die größte Oase der Welt». Guinness's own record title is «Largest oasis». — Two dated facts: Guinness 2020, UNESCO 2018; the Arabic says «منذ 2018م» (SINCE 2018, i.e. inscribed in 2018) while the English says only «(2018)». Both years must appear and neither may move. — Termbase fixes: das UNESCO-Welterbe, der Qarah-Berg (Jabal al-Qarah), der Al-Asfar-See, Qasr Ibrahim, der Qaisariyah-Souk, die Jawatha-Moschee, Hofuf, die Oasenfrüchte. C18 fails the build on the spelling «Souq» in German. — The dashes are U+2014; German uses U+2013. — «Absolutely» opens the English but NOT the Arabic, which begins with the fact; if the German question asks «what is there», an opening «Absolutely» answers a question nobody asked."
+    },
+    "faq.1.q": {
+      "en": "What are the best places to visit in Al-Ahsa?",
+      "ar": "ما هي أبرز الأماكن السياحية في الأحساء؟",
+      "context": "Question 2 of 13. A search-query form. The Arabic «أبرز» = most prominent; the English «best» is a value judgement the Arabic does not make."
+    },
+    "faq.1.a": {
+      "en": "Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” centre, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My Trip”.",
+      "ar": "من أبرزها: جبل القارة وكهوفه ومركز «أرض الحضارات»، وقصر إبراهيم التاريخي، وسوق القيصرية التراثي، ومسجد جواثى (من أقدم مساجد الإسلام)، وبحيرة الأصفر، وقصر صاهود بالمبرّز. تصفّح صفحة «المعالم» لقائمة كاملة يمكنك إضافتها إلى «رحلتي».",
+      "context": "TWO CROSS-PAGE BINDINGS. (1) «Land of Civilisations» — the termbase keeps the English name in quotation marks, AND the owner settled (2026-09-03) that it is a HERITAGE VILLAGE, not a visitor centre; the Chinese page was corrected to 遗产村落 and the English to «heritage village» for that reason. The English source here still says «centre». Do not copy a descriptor the owner has ruled wrong — and log it as a source defect. (2) «the Attractions page» and “My Trip” are two pages of this site whose German names are published: ui.crumb.attractions = «Sehenswürdigkeiten» and ui.nav.myTrip = «Meine Reise»; the German names must be those, or the sentence points at pages that do not exist. NO TERMBASE ENTRY for «Qasr Sahood» — stage 4 verifies and adds it with gender (note the site's own attraction page for it exists in German; look for its published title before inventing one). «Highlight» is allowed at most ONCE per page in German (Denglisch rule) and batch 2 may already have spent it — prefer a German noun here. C18: «Souk», never «Souq»."
+    },
+    "faq.2.q": {
+      "en": "What are the opening hours for Al-Qarah Mountain?",
+      "ar": "ما هي مواعيد وأوقات العمل في جبل القارة؟",
+      "context": "Question 3 of 13. A search-query form about one named attraction. The published German label for opening hours across the site is «Öffnungszeiten» and it is rendered in the table ON THIS VERY PAGE."
+    },
+    "faq.2.a": {
+      "en": "It opens daily from 8:00 am to 10:00 pm (hours may be extended on holidays), and admission is SAR 50 for adults, booked through the “Land of Civilisations” centre. Hours can change seasonally, so confirm before you go. (Reviewed ${rev})",
+      "ar": "يفتح يومياً من 8:00 صباحاً حتى 10:00 مساءً (وقد تُمدّد المواعيد في العطلات)، ورسوم الدخول 50 ريالاً للبالغين تُحجز تذاكرها عبر مركز «أرض الحضارات». يُفضّل تأكيد المواعيد قبل الزيارة فقد تتغيّر موسمياً. (رُوجعت في ${rev})",
+      "context": "STRONGEST CONSTRAINT IN THIS BATCH: the very same facts are ALREADY PUBLISHED IN GERMAN, verbatim, in the generated table a few sections above this answer on this same page, and on the German Jabal al-Qarah attraction page: hours = «Täglich 8:00–22:00 Uhr (an Feiertagen möglicherweise länger)», admission = «50 Saudi-Riyal (SAR) für Erwachsene – Tickets über „Land of Civilisations“». A visitor reads both within one screen. Your answer must not contradict them in a single digit or a single noun. — ${rev} IS A TEMPLATE PLACEHOLDER: keep the exact seven characters ${rev} in your German string, in a parenthetical at the end. The template substitutes the review month, which in German renders as «Juni 2026». Look at how the published Russian and Chinese versions of this same string phrase the parenthetical (in the source file), then choose the German. — NUMBER FENCE: 8:00, 10:00 pm → 22:00, 50. German time format is «8:00–22:00 Uhr» (site rule). No other number may appear."
+    },
+    "faq.3.q": {
+      "en": "When does Qaisariyah Souq open?",
+      "ar": "متى يفتح سوق القيصرية في الأحساء؟",
+      "context": "Question 4 of 13. Note the Arabic adds «في الأحساء» (in Al-Ahsa) which the English drops — search-query forms usually carry the place name. Termbase: der Qaisariyah-Souk. C18 fails the build on «Souq» in German."
+    },
+    "faq.3.a": {
+      "en": "The souq trades in the morning from 8 am to 12 noon and in the evening from 3:30 pm to 10 pm (Friday evenings only), and entry is free. Evenings are the best time, when the shops open and the market comes alive. (Reviewed ${rev})",
+      "ar": "يعمل السوق صباحاً من 8 حتى 12 ظهراً، ومساءً من 3:30 حتى 10 مساءً (الجمعة مساءً فقط)، والدخول مجاني. وأفضل أوقاته الفترة المسائية حين تفتح المتاجر ويشتدّ نبض السوق. (رُوجعت في ${rev})",
+      "context": "SAME CONSTRAINT AS faq.2.a: the published German for these facts is on this page's own table and on the German Qaisariyah attraction page — hours «8:00–12:00 und 15:30–22:00 Uhr (freitags nur abends)», entry «Kostenlos». Do not diverge. — Keep the literal placeholder ${rev}. — NUMBER FENCE: 8, 12, 3:30, 10 → German 24-hour clock 8:00–12:00 and 15:30–22:00. No other number. — «Friday evenings only» is a restriction on Friday alone, not on the whole week; German «freitags» is the published form."
+    },
+    "faq.4.q": {
+      "en": "When is the best time to visit Al-Ahsa?",
+      "ar": "ما هو أفضل وقت لزيارة الأحساء؟",
+      "context": "Question 5 of 13. CAUTION: «Beste Tageszeit» is the published German label for an attraction's best time OF DAY, and the automated check C14 fails the build if a seasonal value appears under it. This question is about the time of YEAR. Do not import that label."
+    },
+    "faq.4.a": {
+      "en": "A year-round destination; the weather is gentlest from October to March — ideal for the landmarks and forts — while summer brings fresh dates, evening experiences and the parks. Early in the year is the season of the Dates Festival.",
+      "ar": "وجهةٌ على مدار العام؛ الأجواء ألطف من أكتوبر إلى مارس وهي الأنسب لزيارة المعالم والقلاع، أمّا الصيف فموسم الرطب والثمار الطازجة والتجارب المسائية والمنتزهات. ومطلع العام موعد مهرجان التمور.",
+      "context": "CROSS-BATCH: batch 2's practical.0.v says nearly the same thing about seasons; the two sit on one page and must not contradict each other, though they need not be identical sentences. — A SOURCE DEFECT TO LOG, NOT TO FIX SILENTLY: «the Dates Festival» / «مهرجان التمور» names a festival that does not exist under that name on this site. The events section publishes exactly one dates festival, in German «Festival der verarbeiteten Datteln» (Processed Dates Festival), Januar–Februar — which matches «early in the year». Use the published German name so the visitor can find it, and report the mismatch. — The Arabic «الرطب» is rutab, fresh soft dates at a specific ripening stage, and the English flattens it to «fresh dates»; the Arabic is the decider. — Month names: Oktober, März. The dashes are U+2014; German uses U+2013."
+    },
+    "faq.5.q": {
+      "en": "How do I travel from Riyadh to Al-Ahsa?",
+      "ar": "كم تبعد الأحساء عن الرياض؟ وكيف يمكن الذهاب إليها؟",
+      "context": "Question 6 of 13. SOURCE DIVERGENCE: the Arabic is TWO questions (how far is it? and how do I get there?) and the English keeps only the second, although the answer opens with the distance. The Arabic is the decider. Riyadh = «Riad» (termbase)."
+    },
+    "faq.5.a": {
+      "en": "Al-Ahsa is about 326 km from Riyadh. The fastest and most comfortable option is the train to Hofuf station (around two hours and ten minutes with SAR), or driving via the highway (around 3 hours 20 minutes), or flying into Al-Ahsa International Airport.",
+      "ar": "تبعد عن الرياض نحو 326 كم. أسرع وأريح خيار هو القطار إلى محطة الهفوف (نحو ساعتين وعشر دقائق مع شركة «سار»)، أو القيادة عبر الطريق السريع (نحو 3 ساعات و20 دقيقة)، أو الطيران إلى مطار الأحساء الدولي.",
+      "context": "CROSS-BATCH: batch 2's getThere.1.d and getThere.2.d carry these exact facts (326 km, 3 h 20 min, two hours ten minutes, SAR, Al-Ahsa International Airport) on the same page. The two must agree on every number and every name. — NUMBER FENCE: 326, 3, 20 and the spelled-out «two … ten». — NO TERMBASE ENTRY for the railway operator «SAR» (Arabic «شركة سار») nor for «Al-Ahsa International Airport»: stage 4 verifies and adds both with gender, and must keep them distinct from «der Saudi-Riyal (SAR)» which is already in the termbase and appears elsewhere on this page. — All three options are approximate («about», «around»): the hedges must survive."
+    },
+    "faq.6.q": {
+      "en": "What is the distance from Al-Ahsa to Bahrain and Dammam?",
+      "ar": "كم تبعد الأحساء عن الدمام والبحرين؟",
+      "context": "Question 7 of 13. Note the two place names are in opposite order in the two sources; the Arabic order (Dammam first) matches the order of the answer. Bahrain and Dammam are both fixed in the termbase."
+    },
+    "faq.6.a": {
+      "en": "Al-Ahsa is close to Dammam and Khobar via a good highway network (Dammam is roughly 150 km, about 1.5 hours). Bahrain is reached by road across the King Fahd Causeway via Khobar (about two hours). SAR trains also stop at nearby Abqaiq (Buqayq) on the same line.",
+      "ar": "الأحساء قريبة من الدمام والخبر عبر شبكة طرق سريعة جيدة (الدمام نحو 150 كم / قرابة ساعة ونصف). وتُوصَل مملكة البحرين بالسيارة عبر جسر الملك فهد مروراً بالخبر (نحو ساعتين). ويتوقّف قطار «سار» أيضاً في بقيق القريبة على المسار نفسه.",
+      "context": "NUMBER FENCE: 150 and 1.5 — German writes a decimal comma, so «1,5 Stunden»; the Arabic says «ساعة ونصف» (an hour and a half) in words, and either German form is defensible, but the digit «1.5» with a POINT is not. — NO TERMBASE ENTRY for «King Fahd Causeway» (جسر الملك فهد) nor «Abqaiq (Buqayq)»: stage 4 verifies and adds both with gender; the causeway has an established German name — find it, do not coin one. — The Arabic says «مملكة البحرين» (the Kingdom of Bahrain), the English says «Bahrain»; the termbase entry for Bahrain notes it is article-less as a place name. — «SAR trains» again: same operator as faq.5.a, same German form."
+    },
+    "faq.7.q": {
+      "en": "How do I book a Riyadh–Al-Ahsa train ticket?",
+      "ar": "كيف يمكن حجز قطار الرياض–الأحساء؟",
+      "context": "Question 8 of 13. The dash between the two place names is U+2013 in the source and must stay U+2013 (it is a route, not an interruption). Riyadh = «Riad»."
+    },
+    "faq.7.a": {
+      "en": "Book through Saudi Arabia Railways (SAR) via its official app or website sar.com.sa, or at station ticket counters. The line connects Riyadh with Hofuf and Dammam; book early during holidays and peak seasons.",
+      "ar": "يُحجز القطار عبر الشركة السعودية للخطوط الحديدية «سار» (SAR) من تطبيقها الرسمي أو موقعها sar.com.sa، أو من شبابيك التذاكر في المحطات. يربط الخط الرياض بالهفوف والدمام، ويُنصح بالحجز مبكراً في المواسم وأيام العطل.",
+      "context": "THE OPERATOR'S FULL NAME appears here and nowhere else: «Saudi Arabia Railways (SAR)» / «الشركة السعودية للخطوط الحديدية «سار»». Stage 4 must verify the German form of this company name against a German source and add it to the termbase with its gender — and the short form used in faq.5.a and faq.6.a must be consistent with it. — «sar.com.sa» and any domain is a bare string: it is NOT a link (this field renders as plain text, markdown would show its brackets) and it must not be altered. — FACT FENCE: three booking channels (app, website, station counters) and one piece of advice (book early); do not add a phone number, a price, or a booking deadline."
+    },
+    "faq.8.q": {
+      "en": "What is the postal code for Al-Ahsa?",
+      "ar": "ما هو الرمز البريدي للأحساء؟",
+      "context": "Question 9 of 13. A pure search-query form."
+    },
+    "faq.8.a": {
+      "en": "Al-Ahsa (Hofuf and Al-Mubarraz) falls within postal codes beginning with 36, with the exact code varying by district and location. For a precise address, use the Saudi Post (SPL) National Address directory at splonline.com.sa.",
+      "ar": "تقع الأحساء (الهفوف والمبرّز) ضمن نطاق أرقامٍ بريدية تبدأ بالرقم 36، وتختلف الأرقام التفصيلية باختلاف الحي والموقع. للحصول على العنوان الدقيق استخدم دليل العنوان الوطني من مؤسسة البريد السعودي (سُبل) على splonline.com.sa.",
+      "context": "FACT FENCE, TIGHT: the answer deliberately does NOT give a postal code. It gives a prefix («beginning with 36») and points at the official directory. Do not complete it into a code, do not give an example code, do not add digits. «36» is the only number allowed. — NO TERMBASE ENTRY for «Saudi Post (SPL)» (مؤسسة البريد السعودي «سُبل») nor for the «National Address» directory (دليل العنوان الوطني): stage 4 verifies and adds them with gender. — «splonline.com.sa» is a bare string, not a link, unaltered. — Hofuf and Al-Mubarraz are fixed in the termbase."
+    },
+    "faq.9.q": {
+      "en": "What are the best hotels to stay at in Al-Ahsa?",
+      "ar": "ما هي أفضل فنادق وشاليهات الأحساء؟",
+      "context": "Question 10 of 13. SOURCE DIVERGENCE: the Arabic asks about hotels AND chalets, the English about hotels only; the answer covers hotels, resorts, heritage inns, chalets and farm stays. The Arabic is the decider."
+    },
+    "faq.9.a": {
+      "en": "Al-Ahsa offers modern hotels and resorts across Hofuf and Al-Mubarraz, alongside heritage inns, chalets and farm stays for an authentic local experience among the palms. To find the best fit for your budget and location, compare options and reviews on trusted booking platforms. (We don’t endorse specific venues, to keep the information neutral.)",
+      "ar": "تضمّ الأحساء فنادق ومنتجعات حديثة موزّعة في الهفوف والمبرّز، إضافةً إلى نُزلٍ ومنازل تراثية وشاليهات ومزارع للإيجار تمنح تجربة محلية أصيلة وسط النخيل. لاختيار الأنسب لميزانيتك وموقعك، قارن الخيارات والتقييمات عبر منصّات الحجز الموثوقة. (لا نرشّح منشآت بعينها حفاظاً على حياد المعلومة.)",
+      "context": "THE CLOSING PARENTHESIS IS THE POINT OF THE ANSWER: the site states in its own voice that it does not endorse named venues, in order to stay neutral. It is the first-person plural of the editorial team — the only place in this batch where the site speaks as «we». Keep it a parenthesis, keep the reason, and do not weaken it into a disclaimer about liability. — FACT FENCE: no hotel names, no star ratings, no prices, no counts. «trusted booking platforms» names no platform and must keep naming none. — The Arabic lists «نُزلٍ ومنازل تراثية» = heritage inns AND heritage houses, two things; the English keeps one. Arabic is the decider. — CROSS-BATCH: batch 2's practical.1.v covers the same subject in one sentence on the same page; the German nouns for «hotels», «resorts» and «heritage inns» must be the same in both. — NO TERMBASE ENTRY for «heritage inn», «chalet» or «farm stay» in this sense: stage 4 verifies and adds them."
+    },
+    "faq.10.q": {
+      "en": "What is Al-Ahsa famous for?",
+      "ar": "بماذا تشتهر الأحساء في الطعام والمنتجات المحلية؟",
+      "context": "Question 11 of 13. SOURCE DIVERGENCE: the Arabic scopes the question to FOOD AND LOCAL PRODUCTS; the English asks what Al-Ahsa is famous for in general, while the answer is entirely about food, fruit and crafts. The Arabic is the decider and the English is the defect — a German reader who asks the broad question and gets only food has been misled."
+    },
+    "faq.10.a": {
+      "en": "Al-Ahsa is famous for its golden Khalas dates (its best-known variety), Hasawi red rice and folk dishes such as harees, balaleet and date bread (also called red bread). Its oasis fruits include the Hasawi fig, lomi, kanar and Suwari pomegranate. In crafts, the Hasawi bisht embroidered with zari thread stands out, along with pottery, palm-frond ware, incense and perfumes from Qaisariyah Souq.",
+      "ar": "تشتهر الأحساء بتمور الخلاص الذهبية (أشهر أصنافها)، والأرز الأحسائي الأحمر، والأكلات الشعبية كالهريس والبلاليط وخبز التمر (الخبز الأحمر). ومن ثمار الواحة: التين الأحسائي واللومي والكنار والرمان السواري. وفي الحِرف يبرز البشت الحساوي المطرّز بخيوط الزري، إلى جانب الفخار والخوص والبخور والعطور من سوق القيصرية.",
+      "context": "THE DENSEST STRING OF THE BATCH — thirteen local terms in three sentences. Already fixed in the termbase, use them exactly: der Hasawi-Reis (gloss «der Reis aus Al-Ahsa»), Harees (explicitly NOT Harissa), das rote Hasawi-Brot, die Oasenfrüchte, die Lomi / die Hasawi-Limette, der Hasawi-Bischt, der Zari-Faden, die Palmwedel-Flechtwaren, der Qaisariyah-Souk. NO TERMBASE ENTRY for: Khalas dates (تمور الخلاص), balaleet (البلاليط), the Hasawi fig (التين الأحسائي), kanar (الكنار), Suwari pomegranate (الرمان السواري), incense (البخور) and perfumes in this sense, pottery as a craft (الفخار) — stage 4 verifies and adds each with gender. — A SITE RULE THAT DECIDES ONE PHRASE: «date bread (also called red bread)» — the owner confirmed (2026-08-30) these are two names for ONE dish, not two dishes, and the automated check C5b requires the common name and the documented name to appear together on the same page. The German must keep both names paired in one phrase. THE GUARD IS LITERAL: C5b scans the built German page for the pattern rot(e|es|er|en|em)? + space + «Brot» and FAILS THE BUILD unless the exact string «Dattelbrot» also appears on that page. The termbase form «das rote Hasawi-Brot» does not trip it (the compound breaks the pattern), but a bare «rotes Brot» does — so if you use the bare form anywhere, «Dattelbrot» must be present as the documented name. — ANOTHER SITE RULE: the lomi is a LIME, «die Limette», never «Zitrone» (owner's field investigation, 2026-08-29), and the dried lomi is NEVER described as black. — The gloss rule: each term is glossed at most once per page, at its first appearance in running text. — C18: «Souk», never «Souq»."
+    },
+    "faq.11.q": {
+      "en": "How did Al-Ahsa get its name?",
+      "ar": "لماذا سميت الأحساء بهذا الاسم؟",
+      "context": "Question 12 of 13. An etymology question."
+    },
+    "faq.11.a": {
+      "en": "“Al-Ahsa” is the plural of “hisy”: the sweet water that runs and gathers beneath a thin layer of sand, which springs up as soon as your hand uncovers it. It is a precise description of this land — a generous oasis of springs, channels and groundwater that made it the largest oasis in the world.",
+      "ar": "«الأحساء» جمعُ «حِسْي»: الماء العذب الذي يجري ويُختزَن تحت طبقةٍ رقيقةٍ من الرمل، تكشفه اليد فلا يلبث أن يفور. وهو وصفٌ دقيق لهذه الأرض: واحةٌ سخيّةٌ بعيونها وأفلاجها ومياهها الجوفية التي جعلتها أكبر واحة في العالم.",
+      "context": "AN ARABIC ETYMOLOGY, AND THE HARDEST STRING TO GET RIGHT. «الأحساء» is the plural of «حِسْي» (hisy) — the German must make the plural relation visible to a reader who cannot read Arabic script, which means the transliterated singular has to carry its own gloss. Both words are cited AS WORDS, so German quotation marks apply („…“) and the site's head form «Al-Ahsa» is fixed by the termbase. — SAME BUILD CONSTRAINT AS faq.0.a: «the largest oasis in the world» → «die größte Oase der Welt»; «Palmenoase» fails the build (C15). — «أفلاجها» is the aflaj — the traditional irrigation channels of the oasis; the English flattens it to «channels». Check the termbase and the published German attraction bodies for how the site already renders it before choosing. — FACT FENCE: the mechanism is specific (sweet water, thin sand layer, surfaces when uncovered by hand); do not generalise it into «underground water» and do not add a date, a depth or a source."
+    },
+    "faq.12.q": {
+      "en": "What are the best traditional restaurants in Al-Ahsa?",
+      "ar": "ما هي أفضل مطاعم الفطور الشعبي في الأحساء؟",
+      "context": "Question 13 of 13. SOURCE DIVERGENCE: the Arabic asks specifically about FOLK BREAKFAST restaurants; the English broadens it to traditional restaurants. The Arabic is the decider and the answer is about breakfast."
+    },
+    "faq.12.a": {
+      "en": "Hasawi breakfasts and folk dishes (Hasawi red rice, balaleet, harees, date bread) are served at several heritage restaurants in Hofuf, and some farms offer a Hasawi breakfast in nature. For the best current pick, check up-to-date local reviews. (We don’t endorse specific restaurants, to keep the information neutral.)",
+      "ar": "يُقدَّم الفطور الأحسائي والأكلات الشعبية (الأرز الأحسائي الأحمر، البلاليط، الهريس، خبز التمر (الخبز الأحمر)) في عددٍ من المطاعم التراثية في الهفوف، وتتيح بعض المزارع تجربة فطور أحسائي وسط الطبيعة. ولاختيار الأنسب حالياً ننصح بمراجعة التقييمات المحلية المحدّثة. (لا نرشّح مطاعم بعينها حفاظاً على حياد المعلومة.)",
+      "context": "The closing parenthesis is the same editorial «we» as faq.9.a and must be phrased consistently with it — two neutrality statements on one page that differ in wording read as carelessness. — NOTE the Arabic parenthesis here spells out «خبز التمر (الخبز الأحمر)» — the same paired naming as faq.10.a, and C5b fails the build if any bare «rotes/rotem/roten … Brot» stands on this page without the literal string «Dattelbrot» somewhere on it. If faq.10.a already carries the pair, decide whether this second occurrence repeats it or uses the short form, and say why. — The dish names are the same set as faq.10.a and must use the same German. — «مطاعم تراثية» = heritage restaurants; the site has a whole restaurants section published in German (see published_de_ui nav.dining) — read its label before choosing a noun. — FACT FENCE: no restaurant names, no farm names, no counts; «several» stays indefinite."
+    }
+  }
+}

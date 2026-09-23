@@ -20,6 +20,8 @@ const ar = lang === 'ar';
 const zh = lang === 'zh';
 // الروسية (ب8): المعالم الـ58 كلها تحمل title_ru/summary_ru — والتراجع للإنجليزية حارسٌ لمعلم جديد.
 const ru = lang === 'ru';
+// الألمانية (ج9): المعالم الـ58 كلها تحمل title_de/summary_de منذ المرحلة أ — والتراجع للإنجليزية حارسٌ لمعلم جديد.
+const de = lang === 'de';
 
 const items = await getCollection('attractions');
 // srcset يُحسب هنا وقت البناء من بيان العروض (كما يفعل مكوّن Photo): بطاقات هذه
@@ -29,10 +31,10 @@ const allPoints = items.map((e) => {
   const set = e.data.heroImage ? srcsetFor(e.data.heroImage) : undefined;
   return {
     slug: e.data.slug_ar, // المفتاح العالمي للحفظ
-    href: attractionHref(e.data, (zh && !e.data.title_zh) || (ru && !e.data.title_ru) ? 'en' : lang),
-    title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title),
+    href: attractionHref(e.data, (zh && !e.data.title_zh) || (ru && !e.data.title_ru) || (de && !e.data.title_de) ? 'en' : lang),
+    title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title),
     cat: catLabel(e.data.category, lang),
-    summary: ar ? e.data.summary : zh ? (e.data.summary_zh ?? e.data.summary_en ?? e.data.summary) : ru ? (e.data.summary_ru ?? e.data.summary_en ?? e.data.summary) : (e.data.summary_en ?? e.data.summary),
+    summary: ar ? e.data.summary : zh ? (e.data.summary_zh ?? e.data.summary_en ?? e.data.summary) : ru ? (e.data.summary_ru ?? e.data.summary_en ?? e.data.summary) : de ? (e.data.summary_de ?? e.data.summary_en ?? e.data.summary) : (e.data.summary_en ?? e.data.summary),
     lat: e.data.location?.lat ?? null, lng: e.data.location?.lng ?? null,
     mapUrl: e.data.mapUrl ?? null,
     img: e.data.heroImage ?? null,
@@ -45,8 +47,8 @@ const L = {
   remove: t('plan.remove'), location: t('plan.location'),
   copy: t('plan.copy'), copied: t('plan.copied'), waText: t('plan.waText'),
 };
-const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
-const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : ru ? '/ru/map/' : '/en/map/';
+const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : de ? '/de/attractions/' : '/en/attractions/';
+const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : ru ? '/ru/map/' : de ? '/de/map/' : '/en/map/';
 ---
 <Base title={`${t('plan.title')} ${titleSep(lang)} ${t('site.name')}`} description={t('plan.lead')} lang={lang} alt={alt} noindex={true}>
   <Header lang={lang} alt={alt} />

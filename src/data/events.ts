@@ -592,7 +592,7 @@ const TEXT_RU: EventTexts = {
     ],
     related: [
       { label: 'Лайм Аль-Ахсы на странице «Сезонные плоды Аль-Ахсы»', href: '/ru/fruits/' },
-      { label: 'Спланируйте поездку в Аль-Ахсу', href: '/en/plan-your-trip/' },
+      { label: 'Спланируйте поездку в Аль-Ахсу', href: '/ru/plan-your-trip/' },
     ],
     after: {
       time: 'Примерно в августе–сентябре',
@@ -666,7 +666,7 @@ const TEXT_DE: EventTexts = {
     ],
     related: [
       { label: 'Die Hasawi-Lomi auf unserer Seite „Oasenfrüchte“', href: '/de/fruits/' },
-      { label: 'Reise planen', href: '/en/plan-your-trip/' },
+      { label: 'Reise planen', href: '/de/plan-your-trip/' },
     ],
     after: {
       time: 'Etwa August–September',
