@@ -1,0 +1,159 @@
+{
+ "batch": "de-map",
+ "stage": 7,
+ "strings": {
+  "map.eyebrow": "Reiseführer",
+  "map.title": "Karte der Sehenswürdigkeiten",
+  "map.lead.a": "Sehenswürdigkeiten auf der Karte der Oase – suchen Sie oder wählen Sie eine Kategorie. Klicken oder tippen Sie dann auf eine beliebige Sehenswürdigkeit in der Liste oder auf der Karte, um ihre Kurzinfo zu öffnen.",
+  "map.pop.view": "Seite ansehen →",
+  "map.search.ph": "Sehenswürdigkeiten suchen…",
+  "map.count": "Angezeigte Sehenswürdigkeiten",
+  "map.list.aria": "Liste der auf der Karte angezeigten Sehenswürdigkeiten",
+  "map.filter.aria": "Sehenswürdigkeiten nach Kategorie filtern",
+  "map.empty": "Keine Ergebnisse – versuchen Sie ein anderes Wort oder eine andere Kategorie.",
+  "map.terrain": "3D-Geländekarte",
+  "map.locate": "Mein Standort auf der Karte",
+  "ev.shop": "Kaufen Sie die Ausstellungsprodukte",
+  "ev.shopNote": "Lomi-Produkte, Lebensmittel und Pflegeprodukte der teilnehmenden Aussteller."
+ },
+ "termbase_additions": [
+  {
+   "en": "establishments taking part in an event (generic exhibitors) — distinct from 'family businesses'",
+   "de": "die teilnehmenden Aussteller",
+   "artikel": "der",
+   "source": "https://www.duden.de/rechtschreibung/Aussteller (تحقّق المنسّق 2026-09-23): «Aus·stel·ler, der» — جنسه maskulin وجمعه «die Aussteller»، ومعناه «männliche Person, die etwas ausstellt, auf einer Ausstellung vertreten ist». ومصدر المفتاح ev.shopNote: en «the establishments taking part in the exhibition» / ar «المؤسسات المشاركة في المعرض» — عبارةٌ عامة محايدة تختلف عن «الأسر المنتجة» الأضيق.",
+   "status": "verified",
+   "note": "لا تُستعمل «Familienbetriebe» للعبارة العامة «المؤسسات المشاركة» — فهي محجوزة لـ«الأسر المنتجة» (en «productive-family stalls») المنشورة حرفياً في متن المعرض نفسه (src/data/events.ts، lomi.intro). المرحلة 5 من دفعة de-map خلطت بينهما في ev.shopNote («der teilnehmenden Familienbetriebe») فصحّحها الحاكم إلى «der teilnehmenden Aussteller» صوناً للفرق الذي تقيمه العبارتان العربيتان."
+  }
+ ],
+ "notes": [
+  "map.eyebrow: identisch mit list.eyebrow übernommen (\"Reiseführer\") — same_source_as-Pflicht aus identical_source_siblings, keine Abweichung ohne Grund.",
+  "map.search.ph: identisch mit list.search übernommen (\"Sehenswürdigkeiten suchen…\"). Der reale Unterschied (dient hier zugleich als aria-label, während list.search und list.searchLabel getrennt sind) verlangt keinen anderen Wortlaut, da der deutsche Satz als gesprochenes Label ohnehin funktioniert.",
+  "map.title: gewählt als \"Karte der Sehenswürdigkeiten\", wortgleich mit dem sichtbaren Linktext in beiden veröffentlichten deutschen Blogartikeln (24-hours-de.md, 48-hours-de.md). Dieselbe Zeichenkette dient H1, zweitem Breadcrumb-Eintrag, Präfix des Tab-Titels (+ \" – Al-Ahsa\") und aria-label des Kartenwidgets — kein Widerspruch zu nav.map \"Karte\" oder list.map \"Auf der Karte ansehen\", da beide eine andere Funktion (Navigationslabel bzw. Verweis-Button) benennen, nicht den Seitentitel selbst.",
+  "map.lead.a: Form (a) gewählt (kein \"{n}\" in der Zeichenkette) — das Template stellt \"58 \" voran, daher beginnt der Satz mit dem gezählten Substantiv \"Sehenswürdigkeiten\". Für \"open its card\" wurde \"Kurzinfo\" statt einer wörtlichen Entsprechung von \"card\" gewählt, weil der Satz bereits \"Karte\" im Sinn von \"Landkarte\" enthält (\"auf der Karte der Oase\") — eine zweite \"Karte\" mit anderer Bedeutung (Popup-Karte) im selben Satz wäre missverständlich. \"Kurzinfo\" ist kein neuer Eigenname und braucht daher keinen termbase-Eintrag.",
+  "map.empty: um \"oder eine andere Kategorie\" erweitert gegenüber dem veröffentlichten Nachbarn search.empty (\"Keine Ergebnisse – versuchen Sie ein anderes Wort.\"). Kein Kopierfehler: die Quelle (en/ar) nennt hier ausdrücklich zusätzlich \"or category\"/\"أو فئة مختلفة\", weil die Kartenseite — anders als die globale Website-Suche — einen Kategoriefilter hat.",
+  "map.count: die arabische Fassung (Autorität bei Abweichung) ist eine Substantivphrase (\"المعالم الظاهرة\" = die angezeigten Sehenswürdigkeiten), nicht das englische Verb \"Showing\" — daher \"Angezeigte Sehenswürdigkeiten\" statt einer wörtlichen Übersetzung von \"Showing\". Kein Doppelpunkt, keine Zahl in der Zeichenkette (beides fügt das Template an).",
+  "ev.shop / ev.shopNote: \"Familienbetriebe\" für \"establishments taking part in the exhibition\" übernommen aus dem bereits veröffentlichten deutschen Ausstellungstext auf /de/fruits/ (src/data/fruits.ts): \"Einkaufsmöglichkeiten an den Ständen von Familienbetrieben.\" — dieselbe Ausstellung, derselbe Sachverhalt. \"Lomi\" bleibt hier ohne erneute Klammerglosse, da die vollständige Glosse \"Lomi (die Hasawi-Limette)\" bereits im veröffentlichten Fließtext derselben Ausstellung erscheint (published_de_lomi_event_excerpt) und ev.shopNote nur eine kurze Zeile neben dem Button ist, keine erste Erwähnung der Seite.",
+  "Keine termbase_additions nötig: der einzige Eigenname der Charge (Hasawi-Lomi-Ausstellung) ist bereits im Termbase verifiziert (\"die Hasawi-Lomi-Ausstellung\").",
+  "STAGE 2 (Redaktion) — map.lead.a inhaltlich präzisiert, nicht nur stilistisch: Stage 1 schrieb \"auf einen beliebigen Ort in der Liste oder auf der Karte\". \"Ort\" ist im Deutschen ein neues, unnötiges Synonym für \"Sehenswürdigkeit\" — Falle Nr. 9 des Briefs verbietet genau das (\"Attraktionen\"/\"Highlights\"/\"Orte\" nicht ohne schriftlichen Grund einführen), und die arabische Autorität sagt hier ausdrücklich «معلم» (Sehenswürdigkeit/Landmarke), nicht ein allgemeines Wort für \"Ort\" (das wäre «مكان»). Die englische Quelle \"place\" ist also selbst schon vager als die arabische Autorität. Ersetzt durch \"eine beliebige Sehenswürdigkeit\" — hält den einen Begriff der Seite durch, ist inhaltlich näher an «معلم», und fügt keine Tatsache hinzu (derselbe Klick auf denselben Kartenpunkt). Possessivpronomen entsprechend von \"seine\" (bezogen auf \"Ort\", maskulin) auf \"ihre\" (bezogen auf \"Sehenswürdigkeit\", feminin, Akkusativ) angepasst — reine Kongruenzfolge der Substantivänderung, keine eigene Bedeutungsänderung.",
+  "STAGE 2 (Redaktion) — ev.shop gekürzt von \"Kaufen Sie die Produkte der Ausstellung\" (Genitivkette) zu \"Kaufen Sie die Ausstellungsprodukte\" (Kompositum): entspricht dem Bauplan des bereits veröffentlichten Nachbar-Buttons in derselben Zeile, ticketK \"Buchen Sie Ihr Ticket\" (Imperativ mit Sie + kompaktes Akkusativobjekt, kein Genitivanschluss). Keine Bedeutungsänderung — \"die Produkte der Ausstellung\" und \"die Ausstellungsprodukte\" bezeichnen dieselbe Sache.",
+  "STAGE 2 (Redaktion) — ev.shopNote gestrafft von \"… von den Familienbetrieben, die an der Ausstellung teilnehmen\" (Relativsatz, dem englischen \"from the establishments taking part in the exhibition\" nachgebildet) zu \"… der teilnehmenden Familienbetriebe\" (Partizip als Attribut, Genitiv). Vermeidet den vom Englischen übernommenen Relativsatz-Anhang, ohne etwas an der Aussage zu ändern: Es bleiben genau dieselben Akteure (die ausstellenden Familienbetriebe) und derselbe Bezug zur Ausstellung.",
+  "Restliche neun Zeichenketten unverändert aus Stage 1 übernommen: kein Nominalstil, keine Werbeklischees (kein \"Erleben Sie\"/\"Entdecken Sie\", keine Ausrufezeichen-Inflation, keine Superlativhäufung), kein Füllwort (\"natürlich\"/\"wirklich\"/\"einfach\"/\"ganz besonders\"), Genitiv-/Kasusendungen bereits korrekt (\"der Oase\", \"der Ausstellung\") — keine redaktionelle Änderung nötig.",
+  "STAGE 3 (Kulturelle Anpassung) — geprüft und unverändert übernommen: diese Charge besteht aus UI-Mikrotexten (Kartenwidget-Label, aria-Labels, ein Button + eine Nebenzeile), nicht aus Reise-Fließtext. Die typischen DACH-Planungsfragen (Hitze/Jahreszeit, Begehbarkeit/Schatten, Wasser/Rastmöglichkeiten, Öffnungszeiten als Planungsgröße, Familien/ältere Reisende, Einbettung in den Tagesablauf) haben in keiner der 13 Zeichenketten einen Anknüpfungspunkt in der Quelle — sie hinzuzufügen wäre ein Tatsachenzusatz und verstieße gegen den Zaun (\"Sie dürfen keine einzige Tatsache hinzufügen\"). Kein Handlungsbedarf, keine Änderung.",
+  "STAGE 3 — Glossierungspflicht geprüft: \"Lomi\" (ev.shopNote) ist der einzige für einen deutschen Leser erklärungsbedürftige Begriff der Charge. Er wird auf derselben Seite (Ausstellungskarte auf /de/events/ bzw. Einzelseite /de/events/hasawi-lomi-exhibition/) bereits vor ev.shopNote im veröffentlichten Fließtext (\"intro\") als \"Lomi (die Hasawi-Limette)\" geglost — siehe Stage-1-Notiz oben. Nach der Regel \"einmal pro Begriff pro Seite, bei der ersten Nennung\" (nicht bei jeder Nennung) bleibt ev.shopNote ohne eigene Klammerglosse: eine zweite Glosse wäre redundant, keine fehlende Information.",
+  "STAGE 3 — kein religiöser/kulturerbebezogener Inhalt in dieser Charge (reine Kartenfunktion, kein Sakralbau, keine Zutritts- oder Kleidungsfrage); keine Maßeinheiten in den 13 Zeichenketten (keine Umrechnung nötig); keine Hijri-Datumsangabe, keine Gouvernement-Erklärung fällig. Sie-Anrede, ß-Schreibung, Durchkopplung, U+2013 und Souk/Souq-Regel bereits in Stage 1/2 eingehalten (siehe verify-stage.mjs, ✓). Zaun eingehalten: gegenüber Stage 2 wurde kein Wort, kein Zeichen und keine Tatsache verändert.",
+  "STAGE 4 (Vergleich mit dem Register + Tatsachenzaun) — vollständiger Abgleich aller 13 Zeichenketten gegen englische Quelle und arabische Autorität durchgeführt (Zeile für Zeile): keine einzige Zeichenkette enthält eine Zahl, einen Superlativ, einen Tipp oder eine Behauptung, die die Quelle nicht trägt. Insbesondere geprüft: map.terrain behauptet nicht \"interaktiv\", \"3D\" ist der Produktname der separaten Geländekarte, nicht hinzuerfundenes Werbewort; map.locate verspricht keine Standort-Speicherung; ev.shopNote nennt keinen Preis, keine Empfehlung, keinen Plattform-/Shopnamen und keine Qualitätsaussage — genau die drei Warenkategorien der Quelle (Lomi-Produkte, Lebensmittel, Pflegeprodukte) plus die eine Akteursangabe (teilnehmende Einrichtungen/Familienbetriebe), keine mehr, keine weniger.",
+  "STAGE 4 — Auslassungsprüfung: map.lead.a trägt weiterhin alle drei Tatsachen der Quelle (Sehenswürdigkeiten auf der Oasenkarte; Suche ODER Kategorie wählen; Antippen in Liste ODER auf der Karte öffnet die Kurzinfo). ev.shopNote trägt weiterhin alle drei Warenkategorien UND die Akteursangabe (\"der teilnehmenden Familienbetriebe\" = \"من المؤسسات المشاركة في المعرض\") — nichts in Stage 1–3 stillschweigend gekürzt.",
+  "STAGE 4 — Eigennamen-/Termbase-Abgleich: keine neuen Eigennamen in dieser Charge; die einzige relevante Entität (Hasawi-Lomi-Ausstellung) ist bereits im Termbase mit Genus, Quelle und status \"verified\" geführt — keine termbase_additions nötig.",
+  "STAGE 4 — Exonym-Prüfung: Riad/Dschidda/Mekka/Saudi-Arabien/Arabische Halbinsel/Ostprovinz sowie die Golf-Regel kommen in dieser Charge sachlich nicht vor — Prüfung gegenstandslos erfüllt.",
+  "STAGE 4 — Registervergleich mit echten deutschsprachigen Reiseziel-Portalen: map.locate entspricht wörtlich der in deutschen Kartenwidgets (z. B. Google Maps DE) üblichen Standort-Button-Beschriftung; map.list.aria/map.filter.aria folgen dem in deutschen Web-Anwendungen üblichen erweiterten Partizipialattribut bzw. Infinitiv-Label für aria-Beschriftungen; ev.shop neben ticketK folgt dem üblichen Satzbauplan aus Imperativ + Sie + kompaktem Akkusativobjekt für nebeneinanderstehende CTA-Buttons auf Kultur-/Festival-Websites. Kein Übersetzerdeutsch (keine 'es gibt'-Ketten, keine calquierten Präpositionen, keine englische Wortstellung) gefunden. Ergebnis Stage 4: keine Zeichenkette geändert, changed = [], fence_removed = [].",
+  "STAGE 5 (Korrektorat) — mechanische Prüfung aller 13 Zeichenketten gegen die zehn Prüfpunkte des Prompts sowie alle Brief-Zusatzpflichten durchgeführt (vollständige Liste in stage_specific.checklist). Ergebnis: 19 von 19 geprüften Punkten PASS, null FIXED — Stage 4 hat den Text bereits fehlerfrei übergeben. Keine einzige Zeichenkette in Stage 5 verändert.",
+  "STAGE 5 — Einzelbefunde, die die Prüfung ausdrücklich verifiziert hat: kein ß-pflichtiges Wort in der Charge (kein Fehlrisiko, da nichts zu prüfen war, nicht weil ß übersehen wurde); '3D-Geländekarte' korrekt mit Bindestrich (alphanumerisches Kompositum nach Duden-Muster '3D-Druck'); Kongruenz 'eine beliebige Sehenswürdigkeit … ihre Kurzinfo' (fem. Akk. → fem. Possessiv) korrekt; Kommasetzung vor 'um … zu öffnen' korrekt gesetzt; keine Serial-comma vor 'und' in 'Lomi-Produkte, Lebensmittel und Pflegeprodukte'; alle fünf Sie-Imperative ('suchen Sie', 'wählen Sie', 'tippen Sie', 'versuchen Sie', 'Kaufen Sie') großgeschrieben und konsistent; map.pop.view endet exakt mit einem normalen Leerzeichen + '→'; map.terrain und map.count ohne das vom Template hinzugefügte Element (Pfeil bzw. Doppelpunkt/Zahl); map.lead.a ohne '{n}' und ohne die Ziffer 58; alle Zeichen non-ASCII geprüft — ausschließlich ü/ä/ö, U+2013, U+2026 (…) und U+2192 (→), kein U+2014, kein U+00A0, kein U+202F, kein U+2009.",
+  "STAGE 7 (Judge) — Punktzahl 93/100, APPROVE. Bewertet gegen englische Quelle, arabische Autorität, Termbase, blinden Leser (11 Beobachtungen) und die Koordinatorennotiz zu ev.shopNote.",
+  "STAGE 7 — Koordinatorennotiz zu ev.shopNote ANGEWANDT: 'der teilnehmenden Familienbetriebe' war eine Verengung. Die Quelle DIESES Schlüssels sagt en 'the establishments taking part in the exhibition' / ar 'مؤسسات المشاركة في المعرض' — ein allgemeiner, neutraler Begriff. 'Familienbetriebe' im bereits veröffentlichten Ausstellungstext (src/data/events.ts, lomi.intro) übersetzt dagegen eine ANDERE, engere arabische Formulierung derselben Seite: 'تسوّق منتجات الأسر المنتجة' (en 'productive-family stalls') — belegt durch direkten Repo-Vergleich (Zeile 208 vs. Zeile 652 in src/data/events.ts). Der Sachverhalt 'Aussteller allgemein' ist weiter als 'Familienbetriebe' (schließt z. B. landwirtschaftliche Kooperativen oder größere Erzeuger nicht aus) — die engere deutsche Übersetzung hätte eine Tatsache behauptet, die diese Zeichenkette nicht trägt. Korrigiert zu 'der teilnehmenden Aussteller' (Duden-Standardwort für 'wer an einer Ausstellung teilnimmt', deckt exakt 'taking part in the exhibition' ab, ohne Rechtsform oder Betriebsgröße zu behaupten). 'Familienbetriebe' bleibt reserviert für die künftige Übersetzung von lomi.intro, wo die arabische Autorität tatsächlich 'الأسر المنتجة' sagt.",
+  "STAGE 7 — Blind-reader Beobachtung 1 (verschachtelter Satz in map.lead.a) ANGEWANDT: Satz in zwei Sätze geteilt nach dem Vorschlag der Leserin selbst ('Suchen Sie oder wählen Sie eine Kategorie. Tippen Sie dann …'). Kein Tatsachenzusatz, keine gestrichene arabische Unterscheidung, kein tm.json-Paar betroffen (map.lead.a ist ein neuer Schlüssel) — Regel 'sonst anwenden' greift.",
+  "STAGE 7 — Blind-reader Beobachtung 2 ('tippen' als reine Touch-Anweisung) ANGEWANDT: Die arabische Autorität 'اضغط' (drücken/betätigen) ist geräteneutral — sie schließt Mausklick nicht aus, anders als das englische Quellwort 'tap', das wörtlich zu 'tippen' nur die Touch-Handlung überträgt. Da Arabisch bei Abweichung die Autorität ist, wurde 'tippen Sie auf' zu 'klicken oder tippen Sie auf' erweitert — keine neue Tatsache (dieselbe Handlung, derselbe Klickpunkt), sondern die Wiederherstellung der geräteneutralen Bedeutung, die die arabische Autorität trägt und die deutsche Leserin (Laptop, keine Touch-Erwartung) faktisch vermisst hat.",
+  "STAGE 7 — Blind-reader Beobachtung 9 (ev.shop 'Kaufen Sie die Ausstellungsprodukte' wirkt werblich neben 'Teilen'/'Seite ansehen') ABGELEHNT mit Begründung: Der wahre, dauerhafte Nachbar dieses Buttons in derselben Zeile ist das bereits veröffentlichte 'ticketK' = 'Buchen Sie Ihr Ticket' (volles Sie-Imperativ-Satzmuster) — nicht 'Teilen'/'Seite ansehen'. Die blinde Leserin sah 'ticketK' nicht, weil die Ausgabe 2026 im Prüfzeitpunkt bereits abgelaufen ist und der Ticket-Button daher aktuell nicht gerendert wird (after-Feld greift) — bei der nächsten bestätigten Ausgabe erscheinen beide Buttons wieder nebeneinander. Konsistenz mit dem strukturell maßgeblichen, dauerhaften Geschwister-Button wiegt hier schwerer als der Eindruck aus einer unvollständigen Momentaufnahme; 'Kaufen Sie die Ausstellungsprodukte' bleibt unverändert.",
+  "STAGE 7 — Blind-reader Beobachtungen 3, 4, 5, 6, 7, 8, 10, 11 als AUSSERHALB DER CHARGE eingestuft (Attraktionsnamen, Kategorie-Bezeichnungen, Straßenadresse, dreifache Saisonangabe, Höhepunkte-Liste, Lomi-Glosse auf der Indexkarte — alle in bereits veröffentlichten Feldern außerhalb der 13 Schlüssel dieser Charge). Nicht bearbeitet; als Quellmängel an Iyad gemeldet (siehe judge.json → source_defects_for_iyad).",
+  "STAGE 7 — verify-stage.mjs erneut ausgeführt nach beiden Korrekturen: ✓, keine neuen Fehler (kein U+2014, kein U+00A0, keine Denglisch-Treffer, kein Zahlenzaun-Verstoß, map.pop.view/map.terrain/map.count/map.lead.a-Sonderregeln weiterhin erfüllt)."
+ ],
+ "stage_specific": {
+  "checklist": [
+   {
+    "item": "1. Rechtschreibung (Duden de-DE): ß nach Langvokal/Diphthong, keine Schweizer ss, Umlaute korrekt, Nomen großgeschrieben, Komposita zusammen-/durchgekoppelt",
+    "status": "pass",
+    "detail": "Kein ß-pflichtiges Wort in der Charge (kein Wort mit langem Vokal/Diphthong vor scharfem s). Alle Nomen großgeschrieben (Sehenswürdigkeiten, Karte, Oase, Kategorie, Liste, Kurzinfo, Ergebnisse, Wort, Standort, Ausstellungsprodukte, Lebensmittel, Pflegeprodukte, Familienbetriebe). Komposita korrekt zusammengeschrieben: Ausstellungsprodukte, Familienbetriebe, Pflegeprodukte, Kurzinfo, Geländekarte."
+   },
+   {
+    "item": "2. Durchkopplung: jeder Eigenname-Kompositum durchgekoppelt, kein Pleonasmus",
+    "status": "pass",
+    "detail": "Kein Eigenname in dieser Charge. Das einzige alphanumerische Kompositum '3D-Geländekarte' ist nach Duden-Konvention (3D-Druck, 4K-Fernseher) korrekt mit Bindestrich geschrieben; kein Pleonasmus."
+   },
+   {
+    "item": "3. Grammatik: Genus jedes Termbase-Namens passt zum artikel; Kasus nach Präpositionen; Genitiv -s/-es bei Namen; Adjektivendungen; Satzklammer geschlossen",
+    "status": "pass",
+    "detail": "Kein Termbase-Name in den 13 Strings. Kasus korrekt: 'auf der Karte' (Dativ, Ort), 'in der Liste' (Dativ), 'nach Kategorie' (Dativ). Adjektivendungen korrekt: 'eine beliebige Sehenswürdigkeit' (fem. Akk.), 'ein anderes Wort' (neutr. Akk.), 'eine andere Kategorie' (fem. Akk.), 'der teilnehmenden Familienbetriebe' (Gen. Pl., schwache Endung -en nach 'der'). Kongruenz 'ihre Kurzinfo' (fem., bezogen auf Sehenswürdigkeit) korrekt. Satzklammer in map.lead.a mit 'um … zu öffnen' korrekt geschlossen."
+   },
+   {
+    "item": "4. Anrede: Sie/Ihnen/Ihr großgeschrieben und konsistent, null 'du'/'dein'",
+    "status": "pass",
+    "detail": "Fünf Imperative mit großgeschriebenem Sie: suchen Sie, wählen Sie, tippen Sie, versuchen Sie, Kaufen Sie. Kein 'du', 'dich', 'dein' in der Charge."
+   },
+   {
+    "item": "5. Termbase-Konformität: 100 %",
+    "status": "pass",
+    "detail": "Kein Eigenname aus der Termbase wird in dieser Charge sprachlich verwendet (Hasawi-Lomi-Ausstellung erscheint nur im Template daneben, nicht im String selbst). 'die Limette' (nicht 'Zitrone') war für ev.shopNote nicht nötig, da 'Lomi' hier ungeglost als bereits eingeführter Begriff steht — konform mit gloss_regel."
+   },
+   {
+    "item": "6. Interpunktion: „…“ für Zitate, – mit Leerzeichen bei Einschüben, Zahlenbereiche ohne Leerzeichen, Komma vor Nebensatz (dass/der-die-das/weil), kein englisches Serial Comma",
+    "status": "pass",
+    "detail": "Keine Zitate in der Charge. Halbgeviertstriche korrekt mit Leerzeichen: 'Oase – suchen', 'Ergebnisse – versuchen'. Keine Zahlenbereiche. Komma vor 'um … zu öffnen' gesetzt. 'Lomi-Produkte, Lebensmittel und Pflegeprodukte' ohne Komma vor 'und' (kein Serial Comma)."
+   },
+   {
+    "item": "7. Zahlen, Datum, Währung, Hidschra nach _meta.style_rules",
+    "status": "pass",
+    "detail": "Keine Zahl, kein Datum, keine Währung, keine Hidschra-Angabe in der Charge — einzige Ziffer ist '3' in '3D-Geländekarte', identisch mit Quelle ('3D terrain map' / 'الخريطة التضاريسية 3D')."
+   },
+   {
+    "item": "8. Denglisch: null verbotene Wörter, 'Highlight' höchstens einmal",
+    "status": "pass",
+    "detail": "Keines der verbotenen Wörter (Event, Spot, Location, Must-see, Hotspot, Guide, Map, Attraktion, Highlight) kommt vor. 'Highlight' wird in dieser Charge nicht verwendet (bereits einmal in der veröffentlichten Nachbar-Zeile actsK 'Höhepunkte' — dort aber deutsch übersetzt, nicht Denglisch)."
+   },
+   {
+    "item": "9. Glossierung: jeder Fremdbegriff genau einmal pro Seite, bei erster Nennung im Fließtext, nicht in der Überschrift",
+    "status": "pass",
+    "detail": "'Lomi' (in ev.shopNote als 'Lomi-Produkte') ist bereits vor dieser Zeile im veröffentlichten Fließtext derselben Seite als 'Lomi (die Hasawi-Limette)' geglost — zweite Glosse hier wäre redundant und unterbleibt korrekt."
+   },
+   {
+    "item": "10. Struktur: Frontmatter-Schlüssel, Links, Bildpfade, Feldnamen bytegleich zur Quelle; Alt-Texte/Meta-Description folgen denselben Sprachregeln",
+    "status": "pass",
+    "detail": "Reine Strings-Datei ohne Frontmatter/Links/Bildpfade. Schlüsselreihenfolge bytegleich mit pack.json (durch verify-stage.mjs geprüft). map.lead.a dient zugleich als Meta-Description/og:description — den gleichen Tatsachen- und Stilregeln unterworfen wie der sichtbare Lead, keine Abweichung."
+   },
+   {
+    "item": "Zusatz (Brief): U+2013 statt U+2014 (C17-Wächter)",
+    "status": "pass",
+    "detail": "Beide Halbgeviertstriche (map.lead.a, map.empty) sind U+2013. Kein U+2014 in der Charge."
+   },
+   {
+    "item": "Zusatz (Brief): kein U+00A0 (stiller Fehlschlag)",
+    "status": "pass",
+    "detail": "Zeichencode-Scan aller 13 Strings: kein U+00A0, kein U+202F, kein U+2009."
+   },
+   {
+    "item": "Zusatz (Brief): Sie durchgängig",
+    "status": "pass",
+    "detail": "Siehe Punkt 4 oben."
+   },
+   {
+    "item": "Zusatz (Brief): ß (Duden) statt Schweizer ss",
+    "status": "pass",
+    "detail": "Kein ß-pflichtiges Wort vorhanden; kein irrtümliches 'ss' anstelle von 'ß' gefunden."
+   },
+   {
+    "item": "Zusatz (Brief): Durchkopplung (Al-Ahsa-Oase-Muster)",
+    "status": "pass",
+    "detail": "Kein Eigenname-Kompositum in der Charge; '3D-Geländekarte' korrekt gekoppelt."
+   },
+   {
+    "item": "Zusatz (Brief): 'Souk' nicht 'Souq' (C18-Wächter)",
+    "status": "pass",
+    "detail": "Weder 'Souk' noch 'Souq' kommt in dieser Charge vor — Regel gegenstandslos erfüllt."
+   },
+   {
+    "item": "Zusatz (Brief): Zahlenzaun — jede Ziffer im Ziel muss im Quellstring desselben Schlüssels stehen",
+    "status": "pass",
+    "detail": "Einzige Ziffer '3' in map.terrain ('3D-Geländekarte') steht in en ('3D terrain map') und ar ('الخريطة التضاريسية 3D') desselben Schlüssels. Kein anderer String enthält eine Ziffer. Automatisch durch verify-stage.mjs bestätigt (✓, 0 Fehler)."
+   },
+   {
+    "item": "Zusatz (Brief): kein Denglisch (erweiterte Liste inkl. 'Map', 'Attraktion')",
+    "status": "pass",
+    "detail": "Siehe Punkt 8 oben; zusätzlich geprüft: kein 'Map' als englisches Substantiv (nur im deutschen Kompositum 'Geländekarte' als Übersetzung, kein Fremdwortimport), kein 'Attraktion' als Synonym für Sehenswürdigkeit."
+   },
+   {
+    "item": "Zusatz (Brief): Konsistenz mit veröffentlichten Nachbarn (identical_source_siblings, map.title in vier Positionen, Kategorie-/Ausstellungsnamen)",
+    "status": "pass",
+    "detail": "map.eyebrow = list.eyebrow ('Reiseführer'); map.search.ph = list.search ('Sehenswürdigkeiten suchen…'); map.title ('Karte der Sehenswürdigkeiten') stimmt wörtlich mit dem Linktext in 24-hours-de.md/48-hours-de.md überein und widerspricht nicht nav.map ('Karte')/list.map ('Auf der Karte ansehen'), da unterschiedliche Funktionen; map.empty erweitert search.empty begründet um 'oder eine andere Kategorie' (Quellenunterschied, kein Kopierfehler); ev.shop/ev.shopNote stehen im selben Sie-Imperativ-Register wie das veröffentlichte ticketK 'Buchen Sie Ihr Ticket' in derselben Zeile; 'Familienbetriebe' stimmt mit dem veröffentlichten Ausstellungstext auf /de/fruits/ überein."
+   }
+  ]
+ }
+}

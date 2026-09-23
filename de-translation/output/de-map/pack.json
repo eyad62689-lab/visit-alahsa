@@ -1,0 +1,73 @@
+{
+  "batch": "de-map",
+  "lang": "de",
+  "page": "/de/map/ (MapView.astro, block de) + the shop button of the Hasawi Lomi Exhibition on /de/events/ and /de/events/hasawi-lomi-exhibition/ (EventsView.astro / EventDetailView.astro)",
+  "part": "Single batch (ج8): the eleven map.* keys of the German attractions map, plus the two ev.shop* keys that are missing in German",
+  "strings": {
+    "map.eyebrow": {
+      "en": "Visit guide",
+      "ar": "دليل الزيارة",
+      "context": "Page /de/map/: the small eyebrow line (kicker) above the H1, in the page head block. Same role as the eyebrow on the other index pages. The English «Visit guide» and the Arabic «دليل الزيارة» name the section the page belongs to, not the page itself."
+    },
+    "map.title": {
+      "en": "Attractions Map",
+      "ar": "خريطة المعالم",
+      "context": "Page /de/map/: read in FOUR places at once — (1) the H1; (2) the second breadcrumb item in the BreadcrumbList JSON-LD (first is crumb.home «Startseite»); (3) the browser-tab title, composed as «<map.title> – Visit Al-Ahsa» (the separator is U+2013 for German, added by the template); (4) the aria-label of the map widget itself (<div role=\"application\">). NOTE the published German neighbours in context.json: the header/footer nav label for this page is nav.map «Karte», the attractions index button to it is list.map «Auf der Karte ansehen», and BOTH published German blog articles link to this page with the visible text «Karte der Sehenswürdigkeiten». Do not contradict them."
+    },
+    "map.lead.a": {
+      "en": "sights on the map of the oasis — search or pick a category, and tap any place in the list or on the map to open its card.",
+      "ar": "معلماً على خريطة الواحة — ابحث أو اختر فئة، واضغط أي معلم في القائمة أو الخريطة لفتح بطاقته.",
+      "context": "Page /de/map/: the lead paragraph under the H1 AND the meta description (og:description and twitter:description too — it is the search-result snippet). The COUNT of mapped attractions (58 today, derived from the data, not fixed) is printed by the template. Two shapes are available: (a) leave no «{n}» in the string and the template prints «58 » + your string, so your string must begin with the noun the number counts (this is what ar/en/zh do); or (b) put «{n}» exactly once anywhere in the string and the template substitutes the number there, freeing the word order (this is what ru does). Choose whichever makes the better German sentence; the number itself is never written into the string."
+    },
+    "map.pop.view": {
+      "en": "View page →",
+      "ar": "عرض الصفحة ←",
+      "context": "Page /de/map/: the link label inside the popup card that opens when a visitor clicks a pin on the map. It leads to that attraction’s own page. The «→» is part of the string in en/zh/ru (the Arabic uses «←» for RTL) — keep a trailing «→» with one normal space before it."
+    },
+    "map.search.ph": {
+      "en": "Search attractions…",
+      "ar": "ابحث عن معلم…",
+      "context": "Page /de/map/: the placeholder of the search input AND its aria-label (the same string is used for both, so it must work as a spoken label too). The search matches attraction names in every language plus the district name."
+    },
+    "map.count": {
+      "en": "Showing",
+      "ar": "المعالم الظاهرة",
+      "context": "Page /de/map/: the label of the live counter above the list beside the map, rendered as «<map.count>: <number>» — the colon and the number are added by the template, so the string is the label alone with NO colon and NO number. It is inside role=\"status\" and is announced whenever filtering changes the number."
+    },
+    "map.list.aria": {
+      "en": "List of attractions shown on the map",
+      "ar": "قائمة المعالم الظاهرة على الخريطة",
+      "context": "Page /de/map/: aria-label of the <aside> that holds the list of attractions next to the map. Never visible — it is read aloud by screen readers to name that region."
+    },
+    "map.filter.aria": {
+      "en": "Filter attractions by category",
+      "ar": "تصفية المعالم حسب الفئة",
+      "context": "Page /de/map/: aria-label of the category-chip group (role=\"group\"). Never visible. The chips themselves carry published German category labels (see context.json: «Historische Stätten», «Museen», «Moscheen und religiöse Stätten», «Natur und Höhlen», «Parks und Gärten», «Traditionelle Souks», «Farmen und Dattelpalmen», «Erlebnisse und Handwerk», «Küche und Datteln», «Veranstaltungen und Saisonales») and the first chip is list.all «Alle»."
+    },
+    "map.empty": {
+      "en": "No matches — try another word or category.",
+      "ar": "لا نتائج مطابقة — جرّب كلمة أخرى أو فئة مختلفة.",
+      "context": "Page /de/map/: the message shown in place of the list when the search word and the chosen category together match nothing. Addresses the visitor (Sie). The published German neighbour on the attractions index is list.empty «Noch keine passenden Sehenswürdigkeiten.» — a different situation (nothing published yet) from this one (nothing matches the current filter), so the two need not be identical, but they must not clash."
+    },
+    "map.terrain": {
+      "en": "3D terrain map",
+      "ar": "الخريطة التضاريسية 3D",
+      "context": "Page /de/map/: the label of a navigation link that sits beside the filter chips and leads to the separate 3-D terrain map. The template appends « →». IMPORTANT: there is no German terrain map yet (stage هـ), so this link points at the English page /en/terrain-map/ — the label is still written in German, which is the site’s settled practice (a label in the reader’s language for a page that falls back to English). «3D» is the product name of that map, not English prose."
+    },
+    "map.locate": {
+      "en": "My location on the map",
+      "ar": "موقعي على الخريطة",
+      "context": "Page /de/map/: BOTH the aria-label and the title (tooltip) of the icon-only «near me» button. The button asks the browser for the visitor’s position, then sorts the list by distance and drops a marker for the visitor. Nothing is stored. Its error message is already published in German — see context.json map.locate.err — so the two must read as one pair."
+    },
+    "ev.shop": {
+      "en": "Shop the exhibition products",
+      "ar": "تسوّق منتجات المعرض",
+      "context": "NOT the map page. Events section: the label of a button that opens the online shop of the Hasawi Lomi Exhibition (an external site). It appears on the exhibition card on /de/events/ and on the single page /de/events/hasawi-lomi-exhibition/. Today German has no value for this key, so the button renders icon-only with an English aria-label — that is the gap this string closes. German is the shop of a specific exhibition, so «the exhibition» is definite. The published German name of the event is in context.json."
+    },
+    "ev.shopNote": {
+      "en": "Lomi products, foods and care items from the establishments taking part in the exhibition.",
+      "ar": "منتجات اللومي ومأكولات ومستحضرات عناية من المؤسسات المشاركة في المعرض.",
+      "context": "NOT the map page. Events section: a short line printed beside the shop button on the /de/events/ card, describing WHAT KINDS of goods the shop lists — as seen on the shop page itself. It is descriptive only: no quality claim, no price, no recommendation. A language without this key hides the line entirely, so today German readers do not see it at all. «Lomi» = die Limette (glossary — never «Zitrone»); «establishments taking part» are the family businesses and producers with stalls at the exhibition (the Arabic says «المؤسسات المشاركة في المعرض»)."
+    }
+  }
+}

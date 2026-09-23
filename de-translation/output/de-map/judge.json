@@ -1,0 +1,118 @@
+{
+  "batch": "de-map",
+  "score": 93,
+  "breakdown": {
+    "accuracy_vs_source_and_arabic": {
+      "points": 27,
+      "max": 30,
+      "note": "Zwei Verengungen vor der Korrektur: ev.shopNote ('Familienbetriebe' statt des allgemeinen 'teilnehmenden Aussteller', verwechselte eine andere, engere arabische Formulierung derselben Seite) und map.lead.a ('tippen' verengte die geräteneutrale arabische Autorität 'اضغط' auf Touch). Beide vom Judge korrigiert; alle anderen 11 Zeichenketten decken die Quelle vollständig und ohne Zusatz ab."
+    },
+    "nativeness": {
+      "points": 28,
+      "max": 30,
+      "note": "Durchgehend idiomatisches Deutsch; der blinde Leser fand einen echten Lesbarkeitsstolperer in map.lead.a (verschachtelte dreifache Alternative), vom Judge durch Satzteilung behoben."
+    },
+    "termbase_orthography_style": {
+      "points": 19,
+      "max": 20,
+      "note": "Sie/ß/Durchkopplung/U+2013/Souk-Regel vollständig eingehalten (verify-stage.mjs ✓). Ein Punkt Abzug für die vor der Korrektur bestehende Begriffsverwechslung Aussteller/Familienbetriebe, die ohne den Koordinatorenhinweis unentdeckt geblieben wäre."
+    },
+    "fit_for_traveller": {
+      "points": 9,
+      "max": 10,
+      "note": "Barrierefreiheit über Eingabegeräte (Maus vs. Touch) ist nach der Korrektur gewahrt; die acht ausgelagerten Beobachtungen (Kategorienamen, Adresse, Saison-Dreifachnennung, Lomi-Glosse auf der Indexkarte) mindern die Reisetauglichkeit der Gesamtseite, liegen aber außerhalb der 13 Schlüssel dieser Charge."
+    },
+    "structural_integrity": {
+      "points": 10,
+      "max": 10,
+      "note": "13/13 Schlüssel, Reihenfolge bytegleich zu pack.json, keine Zahl außer dem quellgedeckten '3D', verify-stage.mjs ✓ nach der Korrektur."
+    }
+  },
+  "decision": "APPROVE",
+  "threshold": 90,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "stelle": "map.lead.a — verschachtelter Satz (suchen/wählen UND tippen in Liste/Karte)",
+      "ruling": "applied",
+      "reason": "Kein Tatsachenzusatz, keine arabische Unterscheidung betroffen, kein tm.json-Paar — Satz nach dem eigenen Vorschlag der Leserin in zwei Sätze geteilt."
+    },
+    {
+      "n": 2,
+      "stelle": "map.lead.a — 'tippen' liest sich touch-exklusiv (eine Laptop-Nutzerin würde klicken)",
+      "ruling": "applied",
+      "reason": "Die arabische Autorität 'اضغط' ist geräteneutral; das englische 'tap' ist enger. Bei Abweichung gilt Arabisch — zu 'klicken oder tippen Sie auf' erweitert, keine neue Tatsache."
+    },
+    {
+      "n": 3,
+      "stelle": "'Abdulrazaq-Al-Arab-Museum' — liest sich zunächst als 'Museum der Araber'",
+      "ruling": "source_defect",
+      "reason": "Bereits veröffentlichter Attraktionsname (Sehenswürdigkeitenliste), nicht Teil der 13 Schlüssel dieser Charge; die fehlende Erklärung, wer Abdulrazaq Al-Arab war, ist eine Lücke der Attraktionsseite selbst."
+    },
+    {
+      "n": 4,
+      "stelle": "'Land of Civilisations' — einziger unübersetzter, in Anführungszeichen stehender Listeneintrag",
+      "ruling": "source_defect",
+      "reason": "Bereits veröffentlichter title_de (ardh-alhadarat), eine an früherer Stelle im Termbase dokumentierte bewusste Entscheidung (titel_regel) — nicht Teil dieser Charge. Gemeldet, da der blinde Leser den Musterbruch weiterhin als verwirrend empfindet."
+    },
+    {
+      "n": 5,
+      "stelle": "'Farmen und Dattelpalmen' — kombiniert Ortstyp mit Pflanze statt zweitem Ortstyp",
+      "ruling": "source_defect",
+      "reason": "Bereits veröffentlichte Kategorie-Bezeichnung (geschlossene Zehnergruppe), nicht Teil der 13 Schlüssel dieser Charge."
+    },
+    {
+      "n": 6,
+      "stelle": "'Natur und Höhlen' — Höhlen sind eine Teilmenge von Natur",
+      "ruling": "source_defect",
+      "reason": "Ebenfalls bereits veröffentlichte Kategorie-Bezeichnung, außerhalb dieser Charge."
+    },
+    {
+      "n": 7,
+      "stelle": "'Al-Salam-Straße (Ain-Najm-Straße)' — zwei Straßennamen ohne Erklärung",
+      "ruling": "source_defect",
+      "reason": "Bereits veröffentlichtes place-Feld der Veranstaltung (src/data/events.ts), nicht Teil der 13 Schlüssel dieser Charge."
+    },
+    {
+      "n": 8,
+      "stelle": "'Sommer' / 'Erwartete Saison' / 'Etwa August–September' — wirkt dreifach redundant",
+      "ruling": "source_defect",
+      "reason": "Vorlagen-/Layoutfrage (season-Plakette plus after.time-Feld), betrifft alle zehn Veranstaltungskarten und alle Sprachen gleichermaßen — keine Übersetzungsfrage dieser Charge."
+    },
+    {
+      "n": 9,
+      "stelle": "'Kaufen Sie die Ausstellungsprodukte' wirkt werblich neben knappen Nachbar-Buttons",
+      "ruling": "rejected",
+      "reason": "Der maßgebliche, dauerhafte Nachbar in derselben Zeile ist das veröffentlichte 'ticketK' = 'Buchen Sie Ihr Ticket' (volles Sie-Imperativ-Muster), das die Leserin nicht sah, weil die Ausgabe 2026 aktuell abgelaufen ist. Konsistenz mit diesem echten Geschwister-Button wiegt schwerer als der Eindruck aus einer unvollständigen Momentaufnahme."
+    },
+    {
+      "n": 10,
+      "stelle": "Registerbruch in der Höhepunkte-Liste ('Landwirtschaftliche Workshops'/'Familiäres Beisammensein' vs. 'Kinderecke')",
+      "ruling": "source_defect",
+      "reason": "Bereits veröffentlichtes acts-Feld derselben Veranstaltung, nicht Teil der 13 Schlüssel dieser Charge."
+    },
+    {
+      "n": 11,
+      "stelle": "'Lomi' taucht viermal auf der Karte auf, ohne je erklärt zu werden",
+      "ruling": "source_defect",
+      "reason": "Die Glosse 'Lomi (die Hasawi-Limette)' existiert bereits im veröffentlichten intro-Absatz derselben Ausstellung — aber intro rendert nur auf der Einzelseite, nicht auf der Indexkarte von /de/events/. Die Erstnennung auf der Karte liegt im Titel und in den acts, beide außerhalb dieser Charge; eine zweite Glosse in ev.shopNote wäre keine Erstnennung und verstieße gegen gloss_regel. Struktureller Nachtrag nötig, nicht in dieser Charge lösbar."
+    }
+  ],
+  "coordinator_note_ruling": {
+    "subject": "ev.shopNote: 'der teilnehmenden Familienbetriebe'",
+    "ruling": "applied_correction",
+    "reasoning": "Verengung bestätigt. Der Quellstring dieses Schlüssels sagt en 'the establishments taking part in the exhibition' / ar 'المؤسسات المشاركة في المعرض' — ein allgemeiner, neutraler Begriff für Aussteller/Einrichtungen. 'Familienbetriebe' ist im bereits veröffentlichten Ausstellungstext (src/data/events.ts, Zeile 652, Feld intro) die belegte Übersetzung einer ANDEREN arabischen Formulierung derselben Seite (Zeile 208: 'تسوّق منتجات الأسر المنتجة', en 'productive-family stalls'). Die beiden arabischen Phrasen sind nicht austauschbar ('Aussteller allgemein' vs. 'Aussteller aus Produktivfamilien') — die engere deutsche Wahl hätte eine Tatsache behauptet (Rechtsform/Betriebsart), die dieser Quellstring nicht trägt. Korrigiert zu 'der teilnehmenden Aussteller'; Termbase-Eintrag ergänzt, um die Verwechslung künftig zu verhindern."
+  },
+  "source_defects_for_iyad": [
+    "Attraktionsname 'Abdulrazaq-Al-Arab-Museum' (und vergleichbare Personennamen-Museen) ohne kurze Erklärung, wer die Person war — liest sich beim ersten Blick als Gattungsname ('Museum der Araber').",
+    "Attraktionstitel 'Land of Civilisations' (ardh-alhadarat) bleibt als einziger Listeneintrag unübersetzt/in Anführungszeichen — bereits als bewusste Entscheidung dokumentiert (titel_regel), aber im Kontext einer rein deutschen Liste weiterhin ein auffälliger Musterbruch für deutschsprachige Leser.",
+    "Kategorie 'Farmen und Dattelpalmen' kombiniert einen Ortstyp mit einer Pflanze statt mit einem zweiten Ortstyp wie die übrigen neun Kategorien — unklar, ob Bauernhöfe allgemein oder spezifisch Dattelpalmenanbau gemeint sind.",
+    "Kategorie 'Natur und Höhlen' benennt eine Menge und eine ihrer Untermengen nebeneinander (Höhlen sind Natur) — dieselbe Unschärfe wie bei 'Farmen und Dattelpalmen'.",
+    "Veranstaltungsort 'Al-Salam-Straße (Ain-Najm-Straße)' nennt zwei Straßennamen ohne jede Erklärung des Verhältnisses (Alias? frühere Bezeichnung? Kreuzung?) — betrifft alle Sprachfassungen gleichermaßen.",
+    "Veranstaltungskarten zeigen bis zu drei sich überschneidende Saison-Hinweise nebeneinander (Plakette 'Sommer', Plakette 'Erwartete Saison', Zeile 'Etwa August–September') — Layout-/Datenmodellfrage, betrifft alle zehn Veranstaltungen und alle Sprachen.",
+    "Die acts-Liste der Hasawi-Lomi-Ausstellung mischt Register ('Landwirtschaftliche Workshops', 'Familiäres Beisammensein' amtlich-förmlich vs. 'Kinderecke', 'Live-Kochvorführungen' locker-werblich) — bereits veröffentlichtes Datenfeld, betrifft vermutlich auch andere Sprachfassungen.",
+    "Die /de/events/-Indexkarte der Hasawi-Lomi-Ausstellung nennt 'Lomi' viermal (Titel, acts, shopNote) ohne jede Glosse, weil der glossierende intro-Absatz nur auf der Einzelseite rendert, nicht auf der Karte — strukturelle Lücke, nicht durch diese Charge behebbar (die Erstnennung liegt im bereits veröffentlichten Titel/den acts, außerhalb der 13 Schlüssel)."
+  ],
+  "scores_csv_row": "de-map,2026-09-23,93,27,28,19,9,10,APPROVE,1",
+  "notes": "de-final.json geschrieben und mit verify-stage.mjs bestätigt (✓, 13 Schlüssel, 1 Termbase-Eintrag, 29 Notizen). Zwei Korrekturen des Judge gegenüber Stage 5: map.lead.a (Satzteilung + geräteneutrales 'klicken oder tippen') und ev.shopNote ('der teilnehmenden Aussteller' statt 'der teilnehmenden Familienbetriebe')."
+}

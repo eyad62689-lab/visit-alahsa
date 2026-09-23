@@ -862,6 +862,20 @@ export const ui = {
     'det.unesco': 'Bestandteil der UNESCO-Welterbestätte',
     'det.openAmap': 'In Amap öffnen ↗',
     'foot.l.unesco': 'UNESCO-Welterbe',
+    // ── دفعة الخريطة ج8 (de-map) — خط de-translation-pipeline، الحاكم 93/100 (2026-09-23، الدورة 1) ──
+    'map.eyebrow': 'Reiseführer',
+    'map.title': 'Karte der Sehenswürdigkeiten',
+    'map.lead.a': 'Sehenswürdigkeiten auf der Karte der Oase – suchen Sie oder wählen Sie eine Kategorie. Klicken oder tippen Sie dann auf eine beliebige Sehenswürdigkeit in der Liste oder auf der Karte, um ihre Kurzinfo zu öffnen.',
+    'map.pop.view': 'Seite ansehen →',
+    'map.search.ph': 'Sehenswürdigkeiten suchen…',
+    'map.count': 'Angezeigte Sehenswürdigkeiten',
+    'map.list.aria': 'Liste der auf der Karte angezeigten Sehenswürdigkeiten',
+    'map.filter.aria': 'Sehenswürdigkeiten nach Kategorie filtern',
+    'map.empty': 'Keine Ergebnisse – versuchen Sie ein anderes Wort oder eine andere Kategorie.',
+    'map.terrain': '3D-Geländekarte',
+    'map.locate': 'Mein Standort auf der Karte',
+    'ev.shop': 'Kaufen Sie die Ausstellungsprodukte',
+    'ev.shopNote': 'Lomi-Produkte, Lebensmittel und Pflegeprodukte der teilnehmenden Aussteller.',
   } as Record<string, string>,
   // الروسية (ru-RU) — قاموس جزئي على سابقة الألمانية: الهيكل المشترك والرئيسية
   // وفهرس المعالم وصفحة المعلم. كل سطر هنا من خط ru-translation-pipeline حصراً
