@@ -1,0 +1,481 @@
+{
+  "batch": "de-plan (ج9) — drei Chargen, ein Richterspruch",
+  "date": "2026-09-23",
+  "threshold": 90,
+  "loop": 1,
+  "scope": "87 Zeichenketten: de-plan-1 (25 plan.*-Schlüssel in src/i18n/ui.ts) · de-plan-2 (36 Strings im de-Block von PlanTripView.astro) · de-plan-3 (13 q/a-Paare = 26 Strings im selben Block). Beurteilt wurde der tatsächlich angewandte Bestand (Commit 7cb2515), der byteweise der jeweiligen de-05.json entspricht.",
+
+  "batches": [
+    {
+      "batch": "de-plan-1",
+      "page": "/de/plan/ — „Meine Reise“",
+      "strings": 25,
+      "score": 92,
+      "decision": "APPROVE",
+      "breakdown": {
+        "accuracy_vs_source_and_arabic": {
+          "points": 28,
+          "max": 30,
+          "note": "Keine erfundene Tatsache, keine Zahl außer den zwei quellgedeckten „10“. Zwei Entscheidungen gegen die englische Verflachung und für die arabische Autorität sind richtig und belegt: plan.empty.h behält das «بعد» als „noch“, und plan.empty.d folgt dem geräteneutralen «اضغط» über den bereits publizierten Präzedenzfall map.lead.a („Klicken oder tippen“) statt des touch-engen englischen „tap“ — die Charge hat dabei die eigene Briefvorgabe („tippen“) belegt widerlegt, was zählt. Abzug für plan.shared.d: „Diese Liste hat Sie … erreicht“ ist die Oberfläche des englischen „This list reached you“, nicht die Bedeutung des arabischen «وصلتك هذه القائمة» (Sie haben sie bekommen) — eine Kalke, vom Richter behoben."
+        },
+        "nativeness": {
+          "points": 26,
+          "max": 30,
+          "note": "24 der 25 Strings sind knappes, idiomatisches UI-Deutsch. Der Abzug trifft plan.shared.d doppelt: das Personifizieren der Liste als Handelnde UND das satzfinale „durchstöbern Sie sie“, an dem der blinde Leser hängenblieb und einen Tippfehler vermutete. Erschwerend: Stufe 2 hat genau diese Stelle geprüft und ausdrücklich für unbedenklich erklärt („der Gedankenstrich mit dem Sie/sie-Nebeneinander ist im Deutschen klar lesbar“), Stufe 5 hat sie ein zweites Mal passieren lassen — eine bewusste Fehlentscheidung, nicht ein Übersehen."
+        },
+        "termbase_orthography_style": {
+          "points": 19,
+          "max": 20,
+          "note": "Sie-Anrede, ß-Regel, Durchkopplung (Al-Ahsa-Reise), U+2013 statt U+2014, verschachtelte „…‚…‘…“ in plan.empty.d, Pfeil mit U+0020 — alles eingehalten und mechanisch geprüft. Der neue Eintrag „WhatsApp“ ist mit externem Beleg und Präpositionsfügung belegt, nicht geraten. plan.location = „Standort“ ist sauber gegen die drei publizierten Geschwister (Lage/Ort/Filiale) abgegrenzt. Ein Punkt Abzug für die stilistische Fehlbeurteilung in plan.shared.d, die die Korrektoratsstufe hätte fangen müssen."
+        },
+        "fit_for_traveller": {
+          "points": 9,
+          "max": 10,
+          "note": "Die Seite führt den deutschsprachigen Besucher sauber durch Leerzustand, Aktionsreihe und geteilte Liste. Was fehlt, fehlt in allen fünf Sprachen: die Seite verspricht im Lead ein Ordnen, das kein Bedienelement einlöst, und behauptet oberhalb des leeren Zustands, es seien bereits Sehenswürdigkeiten gespeichert. Beides ist Quellsache, mindert aber die tatsächliche Reisetauglichkeit — und die Charge hat es in ihren Notizen nicht bemerkt."
+        },
+        "structural_integrity": {
+          "points": 10,
+          "max": 10,
+          "note": "25/25 Schlüssel, Reihenfolge byteidentisch zu pack.json, CRLF gewahrt, kein Markdown, kein U+00A0. Die unerreichbaren Pluralkategorien savedTwo/savedFew sind korrekt behandelt (gleiche Form wie 'other', kein erfundener Dual) und die Begründung ist gemessen, nicht behauptet."
+        }
+      }
+    },
+    {
+      "batch": "de-plan-2",
+      "page": "/de/plan-your-trip/ — Rahmen (Hero · Anreise · Praktische Informationen · Tipps · CTA · SEO)",
+      "strings": 36,
+      "score": 91,
+      "decision": "APPROVE",
+      "breakdown": {
+        "accuracy_vs_source_and_arabic": {
+          "points": 27,
+          "max": 30,
+          "note": "Die Zahlenlage ist exakt (326, 3, 20 und die ausgeschriebenen Zeiten je gegen den eigenen Quellstring geprüft), die Hedges überleben sämtlich („etwa“, „rund“, „in den meisten Einrichtungen“, „empfiehlt sich“). Vorbildlich ist die Fakten-Zaun-Entfernung der Stufe 4: das von Stufe 3 eingefügte „Fahrzeit“ wurde an beiden Stellen gestrichen, obwohl es sachlich zutraf — genau die Haltung, die dieser Schritt verlangt. Zwei Abzüge: der Flughafenname (siehe Termbase-Achse) und seoDesc „Planen Sie sicher.“ für „Plan with confidence“ — im Deutschen trägt „sicher planen“ zuerst die Lesart gefahrlos/sicherheitshalber, und in einer Meta-Beschreibung zu einer Saudi-Arabien-Reise ist das keine Nuance, sondern eine implizite Sicherheitsaussage, die die Quelle nicht macht. Stufe 5 hat die Stelle erkannt und dem Richter vorgelegt, statt sie stillzuziehen — richtig gehandelt, aber die Stelle stand im angewandten Bestand."
+        },
+        "nativeness": {
+          "points": 27,
+          "max": 30,
+          "note": "Der blinde Leser nennt die Anreise-Abschnitte ausdrücklich flüssig und „wie von einem Deutschen formuliert“ — das ist das Zeugnis, auf das diese Achse zielt. Die Semikolon- und Nominalstilketten der Stufe 1 wurden in Stufe 2 konsequent in Hauptsätze und Sie-Imperative aufgelöst. Abzüge: „eine Saison der Fülle“ (vom Leser als übersetzt empfunden; vom Richter aus Präzedenzgründen belassen, siehe Rulings) und die satzfinale Ambiguität in getThere.2.d („– eine ausgezeichnete Wahl“), die im Deutschen sichtbarer wird als in der Quelle, weil der Gedankenstrich unmittelbar hinter dem Ortsnamen steht."
+        },
+        "termbase_orthography_style": {
+          "points": 18,
+          "max": 20,
+          "note": "Die SAR/SAR-Kollision (Bahngesellschaft vs. Währung) ist auf der Textebene sauber aufgelöst („die Bahngesellschaft SAR“ nie bloßes „SAR“), C17 ist durch Konstruktion umgangen (Doppelpunkt statt Gedankenstrich im seoTitle), C18 und C14 sind erfüllt, alle sechs Gedankenstriche U+2013. Zwei echte Befunde: (1) „der Flughafen al-Ahsa“ schreibt als einzige Stelle der Seite den Kopfnamen klein und begründet das mit einer falschen Analogie — „Jabal al-Qarah“ ist die Umschrift EINER arabischen Fügung, „Flughafen + Al-Ahsa“ ist ein deutsches Gattungswort plus dem termbase-fixierten Kopfnamen, den dieselbe Seite ein Dutzend Mal groß schreibt; überdies überschreibt das Projekt de.wikipedia bei genau diesem Namen bereits dokumentiert (Kopfform „Al-Ahsa“, nicht „Al-Hasa“). Der blinde Leser hat die Kleinschreibung ohne Quellenkenntnis als einzige Abweichung der Seite markiert. (2) Der Termbase-Eintrag behauptet „Kein eigener deutscher Wikipedia-Artikel zur Gesellschaft auffindbar“ für SAR — widerlegt durch die Parallelcharge, die de.wikipedia.org/wiki/Saudi_Arabia_Railways wörtlich zitiert. Ein gescheiterter Suchversuch darf nicht als Negativbefund in die termbase."
+        },
+        "fit_for_traveller": {
+          "points": 9,
+          "max": 10,
+          "note": "Anreise, Währung, Bargeld-Hinweis, Jahreszeit und Öffnungszeiten decken die Planungsfragen des DACH-Publikums vollständig ab — der Leser sagt selbst, damit ließe sich die Reise planen. Ein Punkt Abzug für practical.2.v: „konservativer Charakter“ wirft beim deutschsprachigen Leser die Kleidungs- und Verhaltensfrage auf, die die Seite nirgends beantwortet. Der Zaun verbietet der Charge zu Recht, eine Regel zu erfinden — die Lücke bleibt dennoch eine Lücke und geht an den Eigentümer."
+        },
+        "structural_integrity": {
+          "points": 10,
+          "max": 10,
+          "note": "36/36 Strings, Reihenfolge identisch zu pack.json, seoTitle 47 Zeichen (57 mit Vorlagenanhang), seoDesc im Budget, kein U+2014, kein U+00A0, kein Markdown — alles mechanisch nachgezählt, nicht behauptet."
+        }
+      }
+    },
+    {
+      "batch": "de-plan-3",
+      "page": "/de/plan-your-trip/ — 13 Frage/Antwort-Paare (sichtbar + FAQPage-JSON-LD)",
+      "strings": 26,
+      "score": 92,
+      "decision": "APPROVE",
+      "breakdown": {
+        "accuracy_vs_source_and_arabic": {
+          "points": 28,
+          "max": 30,
+          "note": "Die arabische Autorität setzt sich an allen fünf Stellen durch, an denen sie von der englischen abweicht, und jedes Mal mit Begründung: faq.0.q (was gibt es zu sehen, nicht lohnt es sich), faq.5.q (zwei Fragen), faq.9.q (Hotels UND Chalets), faq.10.q (Speisen und lokale Produkte), faq.12.q (Volksfrühstück). Der stärkste Einzelbefund der ganzen ج9 ist die Wiederherstellung in faq.4.a: das Englische hatte «الرطب والثمار الطازجة» zu einem einzigen „fresh dates“ zusammengezogen und damit ein Glied gelöscht; Stufe 4 hat „Rutab, frische Früchte“ zurückgeholt — nach der Projektregel, dass eine Streichung so schwer wiegt wie eine Erfindung, ist das eine echte Rettung. Öffnungszeiten, Eintritt und ${rev} sind wortgleich mit der publizierten Tabelle derselben Seite. Abzug für „Land of Civilisations“ ohne jeden Deskriptor: die Charge folgte einer termbase-Notiz, die den Deskriptor als „strittig, bei Iyad anhängig“ führt — diese Notiz ist überholt, der Eigentümer hat am 2026-09-03 entschieden und die deutsche Nachbarseite publiziert die Entscheidung viermal. Vom Richter behoben."
+        },
+        "nativeness": {
+          "points": 27,
+          "max": 30,
+          "note": "Der blinde Leser bescheinigt den meisten Antworten Fluss. Die Stufe-2-Eingriffe sind substanziell und richtig (Dativkorrektur nach „mit“ in faq.0.a, Komma-Splice in faq.2.a, Satzklammer in faq.3.a, das semantisch falsche „liegt über ein Autobahnnetz nahe bei“ in faq.6.a). Abzüge: die Pronomenhäufung „…, die sie zur größten Oase der Welt machen“ in faq.11.a, die den Leser zum zweiten Durchgang zwang (behoben), und die englische Namenskette „fliegen nach Al-Ahsa International Airport“, die in einem deutschen Satz als Fremdkörper steht (behoben)."
+        },
+        "termbase_orthography_style": {
+          "points": 18,
+          "max": 20,
+          "note": "Siebzehn Termbase-Einträge, davon zwölf mit externem Beleg, drei mit publizierter Website-Präzedenz und zwei bewusst als „pending“ ohne Artikel — mit der richtigen Konsequenz im Text (Umformulierung statt Genusbehauptung bei Saudi Post). C5b, C15, C18, C14 programmatisch geprüft. Ausgezeichnet ist die Eskalation zum „roten Hasawi-Reis“: die Charge hat die Termbase-Sperre erkannt, ihren Geltungsgrund geprüft, den Text NICHT stillschweigend angepasst und die Frage vorgelegt — genau die vorgeschriebene Reihenfolge. Abzug für den zweiten Flughafeneintrag: er stützt sich darauf, dass de.wikipedia.org/wiki/Al-Ahsa_International_Airport 404 gibt — das ist die Abwesenheit eines geratenen Lemmas, kein Nachweis, dass keine deutsche Quelle existiert; die Parallelcharge fand den Artikel unter „Flughafen al-Ahsa“. So entstand auf einer Seite ein zweiter Name für denselben Flughafen."
+        },
+        "fit_for_traveller": {
+          "points": 9,
+          "max": 10,
+          "note": "Dreizehn Antworten, die jede für sich allein stehen — Bedingung für das FAQPage-Rich-Result — und die dem deutschsprachigen Reisenden Entfernung, Fahrzeit, Buchungsweg, Postleitzahlenbereich und Öffnungszeiten ohne Umweg geben. Die beiden Neutralitätsklammern sind wörtlich gleich und damit als Haltung erkennbar, nicht als Zufall. Ein Punkt Abzug für die Quelllücken, die der Leser trifft, bevor er die Antwort bekommt (Festival ohne Datum und Ort, zwei Unterkunftskategorien ohne Unterschied)."
+        },
+        "structural_integrity": {
+          "points": 10,
+          "max": 10,
+          "note": "26/26 Strings, Reihenfolge byteidentisch, ${rev} in beiden Vorkommen unverändert (6 Zeichen) und in der Klammerform der publizierten russischen und chinesischen Fassungen, sar.com.sa und splonline.com.sa als blanker Text ohne Markdown, keine geraden Anführungszeichen, kein U+2014, kein U+00A0."
+        }
+      }
+    }
+  ],
+
+  "decision": "APPROVE für alle drei Chargen (92 · 91 · 92, Schwelle 90, Schleife 1) — unter der Auflage, dass die unter `edits` aufgeführten sechs Textkorrekturen und vier Termbase-Korrekturen VOR dem Abschluss angewandt werden. Die Noten sind bereits die Noten nach diesen Korrekturen; der Abzug für den jeweiligen Vor-Zustand steckt in den Achsen.",
+  "return_to_stage": null,
+
+  "escalations_ruled": [
+    {
+      "n": 1,
+      "subject": "Doppelter Termbase-Eintrag für den Flughafen — „der Flughafen al-Ahsa“ (de-plan-2) gegen „Al-Ahsa International Airport“ (de-plan-3)",
+      "ruling": "Es gilt die deutsche Form, in korrigierter Schreibung: **„der Flughafen Al-Ahsa“**, Genus der.",
+      "reasoning": "Drei Gründe, in dieser Reihenfolge. (1) BELEGLAGE: de-plan-3 schloss auf „keine deutsche Quelle“, weil de.wikipedia.org/wiki/Al-Ahsa_International_Airport mit 404 antwortet — das ist ein geratenes Lemma, kein Negativbefund; de-plan-2 hat den Artikel unter „Flughafen al-Ahsa“ gefunden und den Eröffnungssatz wörtlich zitiert, samt Artikel „Der“. Ein gefundener Beleg schlägt einen gescheiterten Suchversuch. (2) EINE SEITE, EIN NAME: die arabische Autorität kennt genau einen Namen («مطار الأحساء الدولي»); dass getThere[0] und faq.5.a im dist zwei verschiedene Namen tragen, ist der schwerste sprachliche Mangel der ganzen ج9 und wäre ohne diese Entscheidung ausgeliefert worden. (3) GROSSSCHREIBUNG: die Begründung der Kleinschreibung („wie bei Jabal al-Qarah“) ist eine falsche Analogie — dort ist die ganze Zeichenkette die Umschrift einer arabischen Fügung, hier steht ein deutsches Gattungswort neben dem termbase-fixierten Kopfnamen „Al-Ahsa“, den dieselbe Seite durchgehend groß schreibt. Dass das Projekt de.wikipedia bei genau diesem Namen überschreibt, ist bereits dokumentierte Praxis (Kopfform „Al-Ahsa“ statt des dortigen „Al-Hasa“) — die Schreibung der Kleinbuchstaben ist derselbe Fall. Der blinde Leser hat die Stelle ohne Quellenkenntnis als einzige Kleinschreibung der Seite markiert und kurz an einen Tippfehler geglaubt; das ist der Beweis, auf den es ankommt. Der Wegfall von „International“ bleibt: er ist in derselben Quelle belegt, entspricht der deutschen Flughafen-Namenskonvention und ist parallel zum bereits akzeptierten „der König-Fahd-Flughafen“ (für „King Fahd International Airport“) auf derselben Karte.",
+      "termbase_consequence": "Eintrag idx 373 bleibt, mit korrigierter Schreibung und korrigierter Begründung. Eintrag idx 379 („Al-Ahsa International Airport“ ⇒ unübersetzt, status pending) wird GELÖSCHT — er ist kein zweiter Referent, sondern ein zweiter Eintrag zu demselben Referenten aus einer Parallelcharge."
+    },
+    {
+      "n": 2,
+      "subject": "„Souk“ ohne Klammerglosse „(traditioneller Markt)“ trotz der Termbase-Empfehlung",
+      "ruling": "rejected — keine Glosse. Der Zustand bleibt, wie die Chargen ihn abgeliefert haben.",
+      "reasoning": "Der Präzedenzfall, den Stufe 3/4 zitieren, ist einschlägig und von Stufe 4 am publizierten Quelltext gegengeprüft: auf der Qaisariyah-Seite trägt „traditioneller Souk“ (kicker_de, summary_de) die Bedeutung bereits, und ein früherer Richterspruch hat die zusätzliche Klammerglosse dort als „Redaktion ohne Beleg“ zurückgewiesen. Auf dieser Seite steht dieselbe Struktur: practical.3.v sagt „für die traditionellen Souks“, bevor tips.0.d „Feilschen in den Souks“ sagt, und faq.1.a nennt den Qaisariyah-Souk „traditionsreich“. Die Bedeutung ist damit dreimal implizit gegeben; eine Klammer wäre Zusatz ohne Quelle."
+    },
+    {
+      "n": 3,
+      "subject": "Vorschlag, die allgemeine Glossierungspflicht für „Souk“ im Termbase-Eintrag zu streichen oder abzuschwächen (0 von 11 publizierten Seiten befolgen sie)",
+      "ruling": "Die Regel wird NICHT in dieser Charge geändert — aber sie wird als Regel auch nicht mehr aufrechterhalten: der Eintrag ist umzuformulieren, nicht zu streichen.",
+      "reasoning": "Eine Vorschrift, der null von elf publizierten Seiten folgen und deren Befolgung ein Richterspruch bereits einmal zurückgewiesen hat, ist keine Vorschrift mehr, sondern eine Falle für jede künftige Charge: sie zwingt jede Stufe, dieselbe Debatte neu zu führen (in dieser ج9 hat sie drei Stufen und den Richter beschäftigt). Zu ändern ist der Eintrag „souq (generic)“: aus der Empfehlung einer Klammerglosse wird die Feststellung, dass die Bedeutung durch ein attributives „traditionell“ im Umfeld der Erstnennung getragen wird und eine Klammerglosse NUR dann zulässig ist, wenn ein solches Attribut auf der Seite fehlt. Das ist eine Termbase-Redaktion, kein Texteingriff, und gehört deshalb nicht in die 87 Strings — sie steht unter `edits` als Termbase-Auflage."
+    },
+    {
+      "n": 4,
+      "subject": "de-plan-3 (a): „frische Früchte“ in faq.4.a — Stufe 5 hat „frischen“ vor „Rutab“ gestrichen, das Stufe-4-Urteil „frische Früchte“ steht",
+      "ruling": "ratifiziert, keine Änderung.",
+      "reasoning": "Die arabische Autorität zählt vier mit Waw verbundene Glieder auf: «الرطب والثمار الطازجة والتجارب المسائية والمنتزهات». Das Englische hat Glied 1 und 2 zu „fresh dates“ verschmolzen und damit die allgemeinen frischen Früchte gelöscht. Der angewandte Text „Rutab, frische Früchte, abendliche Erlebnisse und die Parks“ gibt genau vier Glieder wieder — Rutab ohne Adjektiv (die Reifestufe trägt die Frische bereits im Begriff, ein zusätzliches „frisch“ wäre Pleonasmus) und die Früchte mit ihm. Das ist die Quelle, nicht mehr und nicht weniger. Gegenprobe gegen die Parallelcharge: practical.0.v derselben Seite widerspricht nicht, sie nennt die Sommergaben nur unspezifisch."
+    },
+    {
+      "n": 5,
+      "subject": "de-plan-3 (b): Vereinheitlichung der vier Fruchtnamen in faq.10.a mit src/data/fruits.ts",
+      "ruling": "ratifiziert, keine weitere Änderung.",
+      "reasoning": "Stufe 4 hat die Reihenfolge der publizierten Fassung übernommen (der Hasawi-Granatapfel (Suwari), nicht „der Suwari-Granatapfel“), „die Kanar“ zu „die Hasawi-Kanar“ vereinheitlicht und die Glossenreihenfolge „die Hasawi-Limette (Lomi)“ an lemon-farm.md und an die englische Quelle angeglichen. Damit tragen alle vier Namen in einem Satz dasselbe Muster Hasawi-X, und jeder einzelne stimmt mit der bereits ausgelieferten Fruchtseite überein. Richtig ist auch der Verzicht auf die Klammer „(Nabk)“: sie steht auf der Fruchtseite, nicht in der Quelle dieser Frage, und ihr Import wäre ein Faktenimport aus einer anderen Seite."
+    },
+    {
+      "n": 6,
+      "subject": "Doppelte „(Dattelbrot)“-Glosse in faq.10.a und faq.12.a",
+      "ruling": "ratifiziert, keine Änderung.",
+      "reasoning": "Zwei unabhängige Gründe, jeder für sich hinreichend. (1) C5b prüft die GEBAUTE Seite und verlangt die Kopplung; die Wiederholung ist der billigste Weg, sie in beiden Antworten unabhängig zu sichern. (2) Jede Antwort wird zusätzlich einzeln als FAQPage-Block ausgeliefert und kann allein in einem Suchergebnis erscheinen — eine Glosse, die nur in der Nachbarantwort steht, existiert für diesen Leser nicht. Die Glossenregel „einmal pro Seite“ zielt auf Fließtext, der am Stück gelesen wird; sie greift hier nicht."
+    },
+    {
+      "n": 7,
+      "subject": "„roter Hasawi-Reis“ — die Termbase verbietet die Farbangabe, die Quelle dieser Charge trägt sie in beiden Sprachen",
+      "ruling": "Die Vorentscheidung des Koordinators wird BESTÄTIGT: der Text bleibt. Die Termbase-Sperre gilt ausdrücklich nur für zaki-alsalem-farm.md.",
+      "reasoning": "Der Grund der Sperre ist im Eintrag selbst benannt und ist ein Widerspruchsgrund, kein Sachgrund: in jener einen Datei behauptet body_en eine Farbe, die summary_en derselben Datei und die arabische Autorität derselben Datei nicht tragen. Hier liegt der umgekehrte Fall vor — die englische Quelle („Hasawi red rice“) und die arabische Autorität («الأرز الأحسائي الأحمر») sagen beide rot, ohne inneren Widerspruch. Eine Streichung hätte eine doppelt belegte Tatsache gelöscht, und die Projektregel stellt die fehlerhafte Streichung der Erfindung gleich. Die Termbase ist entsprechend zu präzisieren, damit die nächste Charge nicht dieselbe Stunde verliert: der Geltungsbereich der Sperre gehört in den Eintrag. Dass die Charge den Konflikt gemeldet statt still gelöst hat, ist das Verhalten, das dieser Schritt erzwingen soll."
+    },
+    {
+      "n": 8,
+      "subject": "„Planen Sie sicher.“ (seoDesc) — von Stufe 5 als Tonfrage vorgelegt, nicht als Fehler",
+      "ruling": "Als Bedeutungsverschiebung gewertet und korrigiert: „Planen Sie mit Zuversicht.“",
+      "reasoning": "Stufe 5 hat beide Lesarten richtig beschrieben, aber die falsche gewichtet. „sicher planen“ trägt im Deutschen primär gefahrlos/sicherheitshalber; „mit Zuversicht“ ist die Lesart der Quelle («خطّط بثقة» / „Plan with confidence“). In der Meta-Beschreibung einer Saudi-Arabien-Reiseseite ist die erste Lesart keine harmlose Nuance, sondern eine implizite Sicherheitsaussage, die weder die englische noch die arabische Quelle macht — also ein Zaunbruch durch Konnotation. Damit das Längenbudget hält, wird der Auftakt auf die Durchkopplungsform des seoTitle gezogen („Alles für Ihre Al-Ahsa-Reise“, −5 Zeichen). Ergebnis 162 Zeichen gegenüber 159; das Budget der Vorgabe lautet „≈150–160“ und ist ausdrücklich eine Näherung, die drei Zeichen sind gegenüber der Konnotationskorrektur der kleinere Preis."
+    }
+  ],
+
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "plan.lead widerspricht unmittelbar dem Leerzustand plan.empty.h („Ihre ausgewählten Sehenswürdigkeiten sind gespeichert“ über „Ihre Liste ist noch leer“)",
+      "ruling": "source_defect",
+      "reason": "Vom Koordinator am Code nachgewiesen: plan.lead wird im PageHero UNBEDINGT gerendert, über der Leerzustandsprüfung. Die arabische Autorität sagt wörtlich dasselbe («المعالم التي اخترتها محفوظةٌ على هذا الجهاز» über «قائمتك فارغة بعد») — der Widerspruch steht in der Quelle und in allen fünf Sprachfassungen gleichermaßen. Die deutsche Fassung trägt ihn getreu; ihn hier aufzulösen hieße, eine Tatsache zu ändern, die die Quelle setzt, und zwar nur in einer von fünf Sprachen."
+    },
+    {
+      "n": 2,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "„Ordnen Sie sie an“ verspricht ein Ordnen, für das die Seite kein Bedienelement zeigt",
+      "ruling": "source_defect",
+      "reason": "Der Koordinator hat PlanView.astro auf drag/reorder/sortable/Pfeiltasten durchsucht: null Treffer. Das Versprechen ist also in allen fünf Sprachen unerfüllt — arabisch «رتّبها», englisch „Arrange them“. Der deutsche Imperativ „Ordnen Sie sie an“ ist die exakte Entsprechung, nicht eine Verschärfung. Abschwächen hieße, die Quelle zu redigieren; die Lücke gehört vor den Eigentümer, entweder als Bedienelement oder als Streichung in fünf Sprachen."
+    },
+    {
+      "n": 3,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "plan.shared.d — „durchstöbern Sie sie“: zwei gleichlautende Pronomen nebeneinander, vom Leser zunächst für einen Tippfehler gehalten",
+      "ruling": "applied",
+      "reason": "Keine Tatsache betroffen, keine arabische Unterscheidung, kein früheres tm.json-Paar (das Paar entsteht erst mit dieser Charge). Übernommen wird der Vorschlag des Lesers selbst: „stöbern Sie darin“. Die verbleibende Fügung „fügen Sie sie zu … hinzu“ ist bewusst belassen — sie steht im hochfrequenten Rahmen fügen…hinzu, das Pronomen wird sofort von seiner Präpositionalgruppe aufgefangen, und die Formulierung spiegelt den publizierten Button fav.add „Zu „Meine Reise“ hinzufügen“. Gestolpert ist der Leser an der satzfinalen Stellung vor dem Komma, und genau die ist beseitigt."
+    },
+    {
+      "n": 4,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "plan.shared.d — „Diese Liste hat Sie über einen Freigabelink erreicht“: die Liste als Handelnde, liest sich wörtlich aus dem Englischen übersetzt",
+      "ruling": "applied",
+      "reason": "Der Leser hat eine Kalke erkannt: das englische „This list reached you“ ist die Oberfläche, das arabische «وصلتك هذه القائمة» ist idiomatisches Arabisch für „Sie haben sie bekommen“. „Sie haben diese Liste über einen Freigabelink erhalten“ gibt genau dieselbe Tatsache (Empfang über einen Freigabelink, ohne Nennung des Absenders) in deutscher Normalstellung wieder — keine Tatsache hinzugefügt, keine gestrichen. Der zweite Vorschlag des Lesers („Jemand hat Ihnen …“) wurde NICHT übernommen: er führt einen Absender ein, den keine der beiden Quellen nennt."
+    },
+    {
+      "n": 5,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "„…prüfen Sie beides vor Ihrem Besuch über die offiziellen Kanäle nach“ — die abgetrennte Vorsilbe „nach“ steht hinter zwei Ergänzungen, der Leser musste zurückspringen",
+      "ruling": "source_defect",
+      "reason": "Der Befund ist berechtigt: die Satzklammer ist zu weit gespannt. Die Stelle gehört aber NICHT zu dieser Charge — ui.plan.printNote ist deutscher Bestand aus einer früheren Charge und steht nicht unter den 25 Schlüsseln, die 7cb2515 hinzugefügt hat. Als publizierter deutscher Text mit echtem Lesbarkeitsmangel geht er in source_defects.md und wird in einer eigenen Redaktionscharge gekürzt, nicht nebenbei."
+    },
+    {
+      "n": 6,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "plan.routeLimit wechselt innerhalb eines Satzes von „Stationen“ zu „Sehenswürdigkeiten“",
+      "ruling": "rejected",
+      "reason": "Der Wechsel ist keine Nachlässigkeit, sondern die Unterscheidung der Quelle: Google Maps begrenzt STOPS pro Route («محطات» / „stops“), die Liste des Besuchers enthält SEHENSWÜRDIGKEITEN («معالم» / „sights“). Beide zu „Sehenswürdigkeiten“ zu vereinheitlichen würde behaupten, das Limit gelte für Sehenswürdigkeiten — eine Aussage über ein fremdes Produkt, die die Quelle nicht macht. Der Satz erklärt gerade, warum aus 10 Stationen die ersten 10 Sehenswürdigkeiten werden; ohne die zwei Wörter verliert er seinen Grund."
+    },
+    {
+      "n": 7,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "„durchstöbern“ einer geteilten Liste, von der der Leser keine Einträge sieht",
+      "ruling": "rejected",
+      "reason": "Der Leser hat selbst unter Vorbehalt gemeldet, und der Vorbehalt trifft zu: die Einträge der geteilten Liste sind clientseitig erzeugter Inhalt und stehen deshalb nicht im statischen dist-Ausschnitt, aus dem sein Lesetext geschnitten wurde. Kein Mangel des Textes."
+    },
+    {
+      "n": 8,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "„Liste leeren“ ohne erkennbare Sicherheitsabfrage",
+      "ruling": "rejected",
+      "reason": "Die Abfrage existiert und stammt aus genau dieser Charge: PlanView.astro ruft window.confirm(L.clearConfirm) auf, und plan.clearConfirm lautet „Möchten Sie Ihre gesamte Liste leeren?“. Ein Browserdialog erscheint nicht im statischen Seitentext, den der Leser vor sich hatte — der Befund ist eine Grenze seines Eingabematerials, kein Mangel."
+    },
+    {
+      "n": 9,
+      "report": "de-plan-1/blind-reader.md",
+      "batch": "de-plan-1",
+      "stelle": "Eyebrow „Ihr eigener Plan“ über der Überschrift „Meine Reise“ wiederholt denselben Besitzgedanken",
+      "ruling": "source_defect",
+      "reason": "Die deutsche Fassung ist die exakte Entsprechung von «خطّتك الخاصة» / „Your own plan“ — die Doppelung des Possessiven steckt in der Quelle und betrifft alle fünf Sprachen. Sie ist geringfügig (der Leser stuft sie selbst als reine Geschmackssache ein) und wird nur der Vollständigkeit halber an den Eigentümer gemeldet, nicht als Handlungsbedarf."
+    },
+
+    {
+      "n": 10,
+      "report": "de-plan-2/blind-reader.md #1",
+      "batch": "de-plan-3 (Text) + Quelldaten (Tabelle)",
+      "stelle": "„Land of Civilisations“ bleibt völlig unerklärt, und die Tabelle führt es mit denselben Zeiten und demselben Preis wie den Qarah-Berg",
+      "ruling": "applied (Text) + source_defect (Tabelle)",
+      "reason": "TEXT: Der Deskriptor wird bei der Erstnennung eingesetzt — faq.1.a erhält „das Kulturerbe-Dorf „Land of Civilisations““. Das ist kein Zusatz: die englische Quelle trägt einen Deskriptor („centre“), er ist nur der falsche; der Eigentümer hat am 2026-09-03 entschieden, dass es ein Kulturerbedorf mit Ausstellung ist, und die deutsche Nachbarseite ardh-alhadarat.md publiziert diese Entscheidung viermal (kicker_de „Dorf und Ausstellung“, summary_de und body_de „ein Kulturerbe-Dorf und eine Ausstellung“, faq a_de ebenso). Die Termbase-Notiz, die den Deskriptor als „strittig, bei Iyad anhängig“ führt und jede Beschreibung verbietet, stammt aus der Kalibrierung vom 2026-09-03 und ist durch die seither publizierte deutsche Seite überholt — sie wird korrigiert (siehe edits). faq.2.a bleibt ohne Deskriptor: zweite Nennung derselben Seite, Glossenregel. TABELLE: Dass die Zeile „Land of Civilisations“ dieselben Zeiten und denselben Preis trägt wie „Jabal al-Qarah“, ist kein Textfehler, sondern das Ergebnis von practicalTable(lang), das für jede Sehenswürdigkeit mit belegtem Zeiten- oder Gebührenposten eine Zeile erzeugt — die beiden Seiten teilen sich tatsächlich ein Ticket. Betrifft alle fünf Sprachen, außerhalb der 87 Strings."
+    },
+    {
+      "n": 11,
+      "report": "de-plan-2/blind-reader.md #2",
+      "batch": "Quelldaten (Tabelle)",
+      "stelle": "Zwei Tabellenzeilen „Jawatha-Moschee“ und „Jawatha-Park“ mit einander überlappenden Angaben",
+      "ruling": "source_defect",
+      "reason": "Beide Zeilen stammen aus zwei getrennten Attraktionsdateien, deren Besuchsposten einander jeweils mitbeschreiben (die Moscheezeile nennt den umliegenden Park, die Parkzeile nennt den freien Moscheebesuch). Generierte Tabelle, publizierte Daten, alle fünf Sprachen — außerhalb der 87 Strings und in einer Übersetzungscharge nicht zu beheben."
+    },
+    {
+      "n": 12,
+      "report": "de-plan-2/blind-reader.md #3",
+      "batch": "Quelldaten (Tabelle)",
+      "stelle": "Der Sahood-Palast wird als bedeutende Sehenswürdigkeit genannt, fehlt in der Tabelle aber vollständig",
+      "ruling": "source_defect",
+      "reason": "practicalTable nimmt nur Sehenswürdigkeiten auf, die einen mit verified: true belegten Zeiten- oder Gebührenposten führen; sahood.md hat keinen. Das ist die größte bekannte Datenlücke des Projekts (43 von 58 Sehenswürdigkeiten ohne jede Betriebsangabe) und betrifft alle fünf Sprachen. Der Leser beschreibt die Wirkung präzise: „Das ist keine Korrektur, die ich selbst vornehmen kann – die Information fehlt schlicht.“"
+    },
+    {
+      "n": 13,
+      "report": "de-plan-2/blind-reader.md #4",
+      "batch": "Quelldaten (Tabelle) + strukturelle Lücke",
+      "stelle": "Der Gedankenstrich „–“ in der Eintritt-Spalte bedeutet einmal „bereits als kostenlos genannt“ und einmal „keine Angabe“",
+      "ruling": "source_defect",
+      "reason": "Der Strich ist der Platzhalter, den practicalTable setzt, wo kein belegter Posten existiert; dass er neben einer Zeile steht, die „kein Eintrittsgeld“ schon in der Zeitenspalte nennt, ist eine Folge der Datenform, nicht der Übersetzung. Dazu kommt eine echte deutsche Lücke, die genau diese Frage beantwortet hätte und die der Koordinator am dist gemessen hat: practicalTable trägt eine caption nur für ar und en, für de/zh/ru ist sie undefined — obwohl eventsTable und fruitsTable deutsche captions haben. Die englische Seite sagt in der caption, dass die Tabelle ausschließlich BELEGTE Zeiten und Gebühren zeigt; der deutschen Seite fehlt dieser Satz. Eigener Codepunkt außerhalb der 87 Strings, in source_defects.md aufgenommen."
+    },
+    {
+      "n": 14,
+      "report": "de-plan-2/blind-reader.md #5",
+      "batch": "Quelldaten (Tabelle)",
+      "stelle": "Preisangaben stehen in der Öffnungszeiten-Spalte, während die Eintritt-Spalte leer bleibt",
+      "ruling": "source_defect",
+      "reason": "Der Wert des Postens „Öffnungszeiten“ trägt in diesen Dateien selbst den Gebührenhinweis („Für das Gebet genutzt – zu den Gebetszeiten geöffnet, kein Eintrittsgeld“). Die Tabelle gibt den Posten wieder, sie zerlegt ihn nicht. Datenmodellfrage, alle fünf Sprachen, außerhalb der 87 Strings — und derselbe fehlende caption-Satz (siehe #13) hätte sie entschärft."
+    },
+    {
+      "n": 15,
+      "report": "de-plan-2/blind-reader.md #6",
+      "batch": "de-plan-2",
+      "stelle": "getThere.2.d — unklar, ob der Zug oder der Halt in Abqaiq „eine ausgezeichnete Wahl“ ist",
+      "ruling": "rejected",
+      "reason": "Die Mehrdeutigkeit steckt in beiden Quellen, nicht in der deutschen Fassung: arabisch «…ويتوقف القطار أيضاً في بقيق القريبة على المسار نفسه — خيارٌ ممتاز للقادمين من العاصمة والمنطقة الشرقية», englisch wortgleich gebaut. Den Bezug festzulegen — sei es auf den Zug, sei es auf die Strecke — heißt, eine Aussage zu treffen, die die Quelle offenlässt; der Zaun steht über der Lesbarkeit. Der Vorschlag des Lesers („die Strecke ist damit eine ausgezeichnete Wahl“) wäre genau diese Festlegung. Gemeldet an den Eigentümer, damit die Stelle in der arabischen Fassung entschieden und dann in fünf Sprachen nachgezogen wird."
+    },
+    {
+      "n": 16,
+      "report": "de-plan-2/blind-reader.md #7",
+      "batch": "de-plan-2 (+ de-plan-3)",
+      "stelle": "„Der Flughafen al-Ahsa“ — einzige Kleinschreibung des Ortsnamens auf der Seite, dazu eine ungewöhnliche Konstruktion",
+      "ruling": "applied",
+      "reason": "Der Leser hat ohne jede Quellenkenntnis die einzige Abweichung der Seite markiert und kurz an einen Tippfehler geglaubt — genau der Befund, den dieser Schritt liefern soll. Korrigiert zu „der Flughafen Al-Ahsa“ (Begründung ausführlich unter escalations_ruled #1), und dieselbe Entscheidung räumt zugleich den zweiten Namen für denselben Flughafen in faq.5.a ab, den der Leser nicht sehen konnte, weil er weit entfernt in der FAQ steht. NICHT übernommen wurde der zweite Teil des Vorschlags („Al-Ahsa-Flughafen“ oder „Flughafen von Al-Ahsa“): die Apposition „Flughafen + Ortsname“ ist die deutsche Normalform für Flughafennamen (Flughafen Frankfurt, Flughafen Dammam) und die Form des deutschsprachigen Belegs."
+    },
+    {
+      "n": 17,
+      "report": "de-plan-2/blind-reader.md #8",
+      "batch": "de-plan-2",
+      "stelle": "„Konservativer Charakter“ wirft die Kleidungs- und Verhaltensfrage auf, die die Seite nirgends beantwortet",
+      "ruling": "rejected",
+      "reason": "Die Frage ist berechtigt und die Lücke real — aber weder die englische noch die arabische Quelle nennt eine einzige Kleidungs- oder Verhaltensregel, und der Zaun verbietet ausdrücklich, eine zu erfinden (der Auftrag dieser Stelle sagt es wörtlich: neutral halten, keinen Rat hinzufügen, den die Quelle nicht gibt). In einer Übersetzungscharge nicht lösbar. An den Eigentümer gemeldet: eine Seite, die „konservativ“ sagt und schweigt, lässt die häufigste Vorreisefrage des deutschsprachigen Publikums offen."
+    },
+    {
+      "n": 18,
+      "report": "de-plan-2/blind-reader.md #9",
+      "batch": "de-plan-3",
+      "stelle": "„Festival der verarbeiteten Datteln“ zum Jahresbeginn — ohne Datum, ohne Ort, und scheinbar im Widerspruch zur Sommererzählung derselben Antwort",
+      "ruling": "rejected",
+      "reason": "Datum und Ort ergänzen hieße, Angaben aus src/data/events.ts in eine FAQ-Antwort zu importieren, deren Quelle sie nicht trägt — ein Faktenimport aus einer anderen Seite. Der Widerspruchseindruck ist keiner: die Quelle sagt „wanderbar das ganze Jahr“ und nennt zwei verschiedene Saisonhinweise (Sommer: Rutab und frische Früchte; Jahresbeginn: das Dattelfestival), was einander nicht ausschließt. Was hier wirklich zu melden ist, hat die Charge selbst gefunden: die Quelle nennt ein «مهرجان التمور» / „Dates Festival“, das unter diesem Namen nirgends existiert; die Charge hat den publizierten Namen eingesetzt und den Mangel vermerkt, statt ihn still zu glätten — richtig gehandelt."
+    },
+    {
+      "n": 19,
+      "report": "de-plan-2/blind-reader.md #10",
+      "batch": "de-plan-3",
+      "stelle": "faq.6.a endet mit einem Satz über einen Bahnhalt, der weder mit Dammam noch mit Bahrain zu tun hat",
+      "ruling": "source_defect",
+      "reason": "Der Satz steht so in beiden Quellen („SAR trains also stop at nearby Abqaiq (Buqayq) on the same line“ / «ويتوقّف قطار «سار» أيضاً في بقيق القريبة على المسار نفسه»). Ihn zu streichen wäre eine Streichung, und die wiegt nach Projektregel wie eine Erfindung; ihn an die Frage anzubinden hieße, eine Beziehung zu behaupten, die die Quelle nicht herstellt. Der Leser hat die Beobachtung sauber begründet („nach Bahrain fährt ohnehin kein Zug“) — sie geht an den Eigentümer und betrifft alle fünf Sprachen."
+    },
+    {
+      "n": 20,
+      "report": "de-plan-2/blind-reader.md #11",
+      "batch": "de-plan-3",
+      "stelle": "„Kulturerbe-Gasthäuser und -Häuser“ — zwei Kategorien, deren Unterschied der Leser nicht versteht",
+      "ruling": "rejected",
+      "reason": "Die zweite Kategorie ist nicht die Erfindung der Übersetzung, sondern die arabische Autorität: «نُزلٍ ومنازل تراثية» nennt Gasthäuser UND Häuser, während die englische Fassung die zweite fallen lässt. Sie zu streichen — der eine Vorschlag des Lesers — würde eine Unterscheidung löschen, die das Arabische macht, und ist nach der Regel dieses Schrittes ausdrücklich unzulässig. Sie zu erklären — der andere Vorschlag — ist unmöglich, weil die Website den Unterschied nirgends definiert: genau das ist der zu meldende Mangel. Der Ergänzungsstrich bleibt; er ist Duden-konform und nicht die Ursache des Unverständnisses."
+    },
+    {
+      "n": 21,
+      "report": "de-plan-2/blind-reader.md #12",
+      "batch": "de-plan-2",
+      "stelle": "„Saison der Fülle“ klingt nicht wie natives Deutsch",
+      "ruling": "rejected",
+      "reason": "Der Rahmen ist im deutschen Bestand belegt: „A season of the oasis“ ist auf der Veranstaltungsseite als „Eine Saison der Oase“ publiziert (dv.eyebrow, 2026-09-19) — dieselbe Genitivfügung „eine Saison der X“. Und der Vorschlag des Lesers, statt dessen konkret zu benennen, was gemeint ist (Datteln, Obst, Abendveranstaltungen), ist genau das, was der Faktenzaun dieser Stelle verbietet: der Auftrag sagt, «موسم خيرات» sei der Ernte-/Gaben-Sinn und dürfe weder in „heiß“ noch in eine Aufzählung verwandelt werden, die die Quelle nicht führt. Anmerkung für künftige Chargen, ohne Eingriff hier: das publizierte Wort dieser Website für „bounty“ ist sonst „die Gaben der Oase“ (fruits ui.heroEyebrow, food ui.heroSum) — bei einer nächsten Gelegenheit ist zu prüfen, ob „Fülle“ dagegen vereinheitlicht werden soll."
+    },
+    {
+      "n": 22,
+      "report": "de-plan-2/blind-reader.md #13",
+      "batch": "de-plan-3",
+      "stelle": "faq.11.a — „…, die sie zur größten Oase der Welt machen“: zwei Pronomen nebeneinander, der Satz musste zweimal gelesen werden",
+      "ruling": "applied",
+      "reason": "Umgebaut zu „einer großzügigen Oase, deren Quellen, Falaj-Kanäle und Grundwasser sie zur größten Oase der Welt machen“. Der Relativanschluss „deren“ trägt die Zugehörigkeit, die vorher die Possessiva trugen («بعيونها وأفلاجها ومياهها الجوفية»), die beiden Pronomen stehen nicht mehr nebeneinander, und die von C15 positiv geforderte Wendung „zur größten Oase der Welt“ bleibt wortgleich stehen. Keine Tatsache berührt."
+    },
+    {
+      "n": 23,
+      "report": "de-plan-2/blind-reader.md #14",
+      "batch": "de-plan-3",
+      "stelle": "Registerbruch ins Poetische in faq.11.a („…sobald die Hand es freilegt“)",
+      "ruling": "rejected",
+      "reason": "Der gehobene Ton ist die arabische Autorität selbst («تكشفه اليد فلا يلبث أن يفور»), und der Auftrag dieser Stelle zäunt den Mechanismus ausdrücklich ein: süßes Wasser, dünne Sandschicht, tritt hervor, sobald es freigelegt wird — nicht zu „Grundwasser“ verallgemeinern. Eine Versachlichung würde genau diese Einzelheiten kosten. Dass eine Namensherkunft anders klingt als eine Postleitzahlenauskunft, ist kein Fehler, sondern die Natur der Frage; der Leser stuft die Beobachtung selbst als „kein Fehler“ ein."
+    },
+    {
+      "n": 24,
+      "report": "de-plan-2/blind-reader.md #15",
+      "batch": "de-plan-3",
+      "stelle": "Der Neutralitätssatz steht in faq.9.a und faq.12.a wortgleich und klingt wie ein Textbaustein",
+      "ruling": "rejected",
+      "reason": "Die Wortgleichheit ist Vorgabe, nicht Nachlässigkeit: der Auftrag sagt ausdrücklich, zwei Neutralitätserklärungen auf einer Seite, die unterschiedlich formuliert sind, läsen sich als Unachtsamkeit. Dazu kommt, dass jede Antwort einzeln als FAQPage-Block ausgeliefert wird — der Satz muss in jeder Antwort vollständig stehen, weil er die Haltung der Redaktion ist und nicht aus der Nachbarantwort mitgelesen werden kann. Der Unterschied liegt korrekt allein im Objekt (Unterkünfte / Restaurants)."
+    },
+    {
+      "n": 25,
+      "report": "de-plan-2/blind-reader.md #16",
+      "batch": "de-plan-2",
+      "stelle": "Der Seitentitel endet redundant mit dem Ortsnamen („…Tipps – Al-Ahsa“)",
+      "ruling": "rejected",
+      "reason": "Die Endung « – Al-Ahsa» steht nicht in seoTitle: sie wird von der Vorlage an JEDEN Seitentitel dieser Website in ALLEN fünf Sprachen angehängt (der Trenner kommt aus titleSep(lang) und ist für de korrekt U+2013). Die Zeichenkette dieser Charge endet mit „Tipps“. Den Ortsnamen aus dem Titelanfang zu entfernen, um die Vorlagenendung auszugleichen, würde das Schlüsselwort aus der wichtigsten Position nehmen und die Charge gegen die Konvention der übrigen 100 deutschen Seiten stellen."
+    },
+    {
+      "n": 26,
+      "report": "de-plan-2/blind-reader.md #17",
+      "batch": "de-plan-2",
+      "stelle": "ctaD — „eine fertige Route in Google Maps“, ohne dass erklärt wird, wie das technisch funktioniert",
+      "ruling": "rejected",
+      "reason": "Die Erklärung steht auf der verlinkten Seite, zu der der danebenstehende Button führt, und stammt aus Charge 1: plan.route („Route in Google Maps öffnen“) und plan.routeLimit (10 Stationen pro Route). Die Quelle dieses Satzes trägt nichts weiter, und eine technische Erläuterung im CTA-Absatz wäre ein Zusatz ohne Quelle. Der Leser räumt selbst ein, dass die Buttons darunter den Weg zeigen."
+    }
+  ],
+
+  "edits": [
+    {
+      "batch": "de-plan-1",
+      "key_or_path": "src/i18n/ui.ts → de → 'plan.shared.d'",
+      "before": "Diese Liste hat Sie über einen Freigabelink erreicht – durchstöbern Sie sie, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.",
+      "after": "Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.",
+      "reason": "Blindleser-Rulings #3 und #4 (eine Zeichenkette, zwei Befunde): die Personifizierung der Liste als Handelnde ist eine Kalke des englischen „This list reached you“ gegen das idiomatische arabische «وصلتك هذه القائمة», und die satzfinale Folge „durchstöbern Sie sie“ liest sich beim ersten Mal als Wortdopplung. Gedankenstrich U+2013 unverändert, Anführungszeichen unverändert, keine Tatsache berührt. CRLF der Datei beim Ersetzen wahren."
+    },
+    {
+      "batch": "de-plan-2",
+      "key_or_path": "src/components/views/PlanTripView.astro → C.de.getThere[0].d",
+      "before": "Der Flughafen al-Ahsa fertigt nationale und internationale Flüge ab.",
+      "after": "Der Flughafen Al-Ahsa fertigt nationale und internationale Flüge ab.",
+      "reason": "Ein Buchstabe, aber der Befund des blinden Lesers (#16) und die Entscheidung unter escalations_ruled #1: „Al-Ahsa“ ist die termbase-fixierte Kopfform und steht auf derselben Seite durchgehend groß; die Analogie zu „Jabal al-Qarah“ trägt nicht, weil dort die ganze Zeichenkette die Umschrift einer arabischen Fügung ist. Nur das erste Vorkommen im String ist betroffen; der Rest des Satzes bleibt byteweise gleich."
+    },
+    {
+      "batch": "de-plan-3",
+      "key_or_path": "src/components/views/PlanTripView.astro → C.de.faq[5].a (faq.5.a)",
+      "before": "alternativ fahren Sie über die Autobahn (rund 3 Stunden 20 Minuten) oder fliegen nach Al-Ahsa International Airport.",
+      "after": "alternativ fahren Sie über die Autobahn (rund 3 Stunden 20 Minuten) oder fliegen zum Flughafen Al-Ahsa.",
+      "reason": "Beendet den schwersten Mangel der ج9: dieselbe Seite nannte denselben Flughafen mit zwei Namen (getThere[0] „der Flughafen al-Ahsa“, faq.5.a „Al-Ahsa International Airport“), während die arabische Autorität genau einen Namen kennt. Mit dem nun belegten Genus (der, de.wikipedia-Eröffnungssatz) entfällt der Grund für die genusvermeidende Fügung „fliegen nach“; „zum“ ist die natürliche deutsche Rektion. Zahlen unverändert, C22 verbessert sich (drei englische Wörter weniger auf einer deutschen Seite)."
+    },
+    {
+      "batch": "de-plan-3",
+      "key_or_path": "src/components/views/PlanTripView.astro → C.de.faq[1].a (faq.1.a)",
+      "before": "Zu den bedeutendsten zählen der Qarah-Berg mit seinen Höhlen und „Land of Civilisations“, der historische Qasr Ibrahim,",
+      "after": "Zu den bedeutendsten zählen der Qarah-Berg mit seinen Höhlen und das Kulturerbe-Dorf „Land of Civilisations“, der historische Qasr Ibrahim,",
+      "reason": "Blindleser-Ruling #10, der schwerste Einzelbefund der Seite. Kein Zusatz: die englische Quelle trägt an dieser Stelle einen Deskriptor („the ‚Land of Civilisations‘ centre“), nur den falschen; der Eigentümer hat am 2026-09-03 entschieden (Kulturerbedorf und Ausstellung), und die deutsche Nachbarseite ardh-alhadarat.md publiziert diese Entscheidung bereits in kicker_de, summary_de, body_de und einer FAQ-Antwort. Der Termbase-Eintrag, der jede Beschreibung verbietet, ist überholt und wird mitkorrigiert (siehe unten). faq.2.a bleibt unverändert ohne Deskriptor — zweite Nennung derselben Seite, Glossenregel."
+    },
+    {
+      "batch": "de-plan-3",
+      "key_or_path": "src/components/views/PlanTripView.astro → C.de.faq[11].a (faq.11.a)",
+      "before": "Es ist eine treffende Beschreibung dieses Landes – einer großzügigen Oase mit ihren Quellen, Falaj-Kanälen und ihrem Grundwasser, die sie zur größten Oase der Welt machen.",
+      "after": "Es ist eine treffende Beschreibung dieses Landes – einer großzügigen Oase, deren Quellen, Falaj-Kanäle und Grundwasser sie zur größten Oase der Welt machen.",
+      "reason": "Blindleser-Ruling #22: „die sie“ stand unmittelbar nebeneinander und zwang zum zweiten Durchgang. „deren“ trägt die Zugehörigkeit, die vorher die Possessiva trugen, und trennt die Pronomen. C15 bleibt positiv erfüllt (die Wendung „zur größten Oase der Welt“ steht wortgleich), kein Faktum und keine Aufzählungseinheit berührt."
+    },
+    {
+      "batch": "de-plan-2",
+      "key_or_path": "src/components/views/PlanTripView.astro → C.de.seoDesc",
+      "before": "Alles für Ihre Reise nach Al-Ahsa: Anreise per Flugzeug, Auto oder Zug, beste Reisezeit, praktische Informationen, Tipps und häufige Fragen. Planen Sie sicher.",
+      "after": "Alles für Ihre Al-Ahsa-Reise: Anreise per Flugzeug, Auto oder Zug, beste Reisezeit, praktische Informationen, Tipps und häufige Fragen. Planen Sie mit Zuversicht.",
+      "reason": "escalations_ruled #8. „Planen Sie sicher“ trägt im Deutschen zuerst die Lesart gefahrlos/sicherheitshalber und macht damit in einer Meta-Beschreibung zu einer Saudi-Arabien-Reise eine implizite Sicherheitsaussage, die weder «خطّط بثقة» noch „Plan with confidence“ enthält. Der gekürzte Auftakt („Alles für Ihre Al-Ahsa-Reise“, Durchkopplung wie im seoTitle) hält die Länge bei 162 Zeichen gegenüber vorher 159; das Budget der Vorgabe ist ausdrücklich eine Näherung (≈150–160). Kein U+2014 (C17 unberührt)."
+    },
+    {
+      "batch": "termbase",
+      "key_or_path": "de-translation/glossary/termbase.json → terms[373] (en: „Al-Ahsa International Airport“, batch de-plan-2)",
+      "before": "\"de\": \"der Flughafen al-Ahsa\"  ·  note: „Kleinschreibung von ‚al-‘ ist korrekt … folgt … der eigenen naming_policy.titel_regel der Website (Großschreibung nur am Namensanfang, vgl. ‚al-Qarah‘).“",
+      "after": "\"de\": \"der Flughafen Al-Ahsa\"  ·  note: „Genus ‚der‘ belegt durch den Eröffnungssatz von de.wikipedia.org/wiki/Flughafen_al-Ahsa. GROSSSCHREIBUNG GEGEN DIE QUELLE: ‚Al-Ahsa‘ ist die termbase-fixierte Kopfform der Website; die Analogie zu ‚Jabal al-Qarah‘ trägt nicht, weil dort die gesamte Zeichenkette die Umschrift einer arabischen Fügung ist, während hier ein deutsches Gattungswort neben dem Ortsnamen steht. Das Projekt überschreibt de.wikipedia bei genau diesem Namen bereits dokumentiert (Kopfform ‚Al-Ahsa‘, nicht das dortige ‚Al-Hasa‘) — die Kleinschreibung ist derselbe Fall. Der blinde Leser (ج9, 2026-09-23) markierte die Kleinschreibung als einzige Abweichung der Seite. ‚International‘ entfällt weiterhin (deutsche Flughafen-Namenskonvention, Beleg führt den Zusatz nicht, parallel zu ‚der König-Fahd-Flughafen‘).“",
+      "reason": "escalations_ruled #1. Richterentscheid, Pflichtkorrektur vor Abschluss."
+    },
+    {
+      "batch": "termbase",
+      "key_or_path": "de-translation/glossary/termbase.json → terms[379] (en: „Al-Ahsa International Airport“, de: „Al-Ahsa International Airport“, status pending, batch de-plan-3)",
+      "before": "vollständiger Eintrag",
+      "after": "GELÖSCHT",
+      "reason": "Zweiter Eintrag zu demselben Referenten, entstanden in einer Parallelcharge. Seine Grundlage („keine deutschsprachige Quelle gefunden“) beruht auf einem geratenen Lemma, das 404 gibt — die Parallelcharge fand den deutschen Artikel unter ‚Flughafen al-Ahsa‘ und zitierte ihn wörtlich. Ein gescheiterter Suchversuch darf nicht als Negativbefund in der Termbase stehen bleiben; er hat hier zu einem zweiten Namen für einen Flughafen auf einer Seite geführt."
+    },
+    {
+      "batch": "termbase",
+      "key_or_path": "de-translation/glossary/termbase.json → terms[375] (en: „SAR (Riyadh–Dammam railway operator)“, batch de-plan-2) — nur das source-Feld",
+      "before": "„… Kein eigener deutscher Wikipedia-Artikel zur Gesellschaft auffindbar (Stage-4-Suche 2026-09-23: 404 unter mehreren naheliegenden Lemmata). Genus vom deutschen Kopfwort «die Gesellschaft» …“",
+      "after": "„… Genus literal belegt: de.wikipedia.org/wiki/Saudi_Arabia_Railways, Eröffnungssatz ‚Die Saudi Arabia Railways (SAR; Saudi-Arabische Eisenbahnen) ist ein saudi-arabisches Staatseisenbahnunternehmen …‘ (WebFetch 2026-09-23, Parallelcharge de-plan-3). Der frühere Vermerk ‚kein deutscher Wikipedia-Artikel auffindbar‘ war ein gescheiterter Suchversuch und ist hiermit zurückgenommen. Kurzform im Fließtext bleibt ‚die Bahngesellschaft SAR‘, um die Kollision mit ‚der Saudi-Riyal (SAR)‘ auf derselben Seite auszuschließen. Vollform siehe Eintrag ‚Saudi Arabia Railways (SAR)‘.“",
+      "reason": "Dieselbe Fehlerart wie beim Flughafen, nur ohne Folge im Text (beide Chargen kamen auf dasselbe Femininum). Die Termbase darf keine widerlegte Negativaussage konservieren, sonst leitet sie die nächste Charge in dieselbe Herleitung. Kein Texteingriff."
+    },
+    {
+      "batch": "termbase",
+      "key_or_path": "de-translation/glossary/termbase.json → Eintrag „Land of Civilisations (أرض الحضارات)“ — nur das note-Feld",
+      "before": "„اسم لاتيني لا يُترجم، داخل الأقواس الألمانية، وبلا وصف (لا Zentrum ولا Besucherzentrum). … فالوصف واقعة متنازعة لا ناقصة. معلّق عند إياد …“",
+      "after": "„اسم لاتيني لا يُترجم، داخل الأقواس الألمانية. والوصف لم يعد متنازعاً: حسمه إياد 2026-09-03 (قرية تراثية ومعرض)، والنسخة الألمانية المنشورة من صفحة ardh-alhadarat.md تحمله في kicker_de وsummary_de وbody_de وجواب سؤال شائع — «ein Kulturerbe-Dorf und eine Ausstellung». فعند أول ورود في صفحةٍ يجوز الوصف المنشور «das Kulturerbe-Dorf»، وما بعده يبقى الاسم عارياً بقاعدة الگلوس. يبقى ممنوعاً وصفُ الإنجليزية «centre» / «Besucherzentrum». (طُبِّق في ج9، faq.1.a.)“",
+      "reason": "Blindleser-Ruling #10. Die Notiz stammt aus der Kalibrierung vom 2026-09-03 und ist seither durch die publizierte deutsche Attraktionsseite überholt; sie hat de-plan-3 dazu gebracht, den Namen viermal nackt stehen zu lassen, was der blinde Leser als schwersten Mangel der Seite gemeldet hat. Eine Notiz, die einen entschiedenen Punkt als offen führt, kostet jede Folgecharge dieselbe Stunde."
+    },
+    {
+      "batch": "termbase",
+      "key_or_path": "de-translation/glossary/termbase.json → Eintrag „souq (generic)“ — Glossenvorschrift",
+      "before": "Empfehlung einer Klammerglosse „Souk (traditioneller Markt)“ bei der Erstnennung pro Seite",
+      "after": "Feststellung: Die Bedeutung wird durch ein attributives „traditionell“ im Umfeld der Erstnennung getragen (publizierte Präzedenz qaisariyah.md: kicker_de „Traditioneller Souk“). Eine Klammerglosse ist NUR zulässig, wenn auf der Seite kein solches Attribut steht; sonst gilt sie als Redaktion ohne Beleg (Richterspruch batch-de-1 und erneut ج9).",
+      "reason": "escalations_ruled #3. Null von elf publizierten deutschen Seiten befolgen die Vorschrift, ein Richterspruch hat ihre Befolgung bereits einmal zurückgewiesen, und in dieser ج9 hat sie drei Stufen und den Richter beschäftigt. Kein Texteingriff in den 87 Strings."
+    },
+    {
+      "batch": "termbase",
+      "key_or_path": "de-translation/glossary/termbase.json → Eintrag „Hasawi rice“ (Zeilen ~2574–2578) — Geltungsbereich der Farbsperre",
+      "before": "Verbot von „roter Hasawi-Reis“ / „Hasawi-Rotreis“ ohne Angabe eines Geltungsbereichs",
+      "after": "Verbot ausdrücklich beschränkt auf zaki-alsalem-farm.md, mit dem dort geltenden Grund (body_en behauptet eine Farbe gegen summary_en und die arabische Autorität derselben Datei). Wo englische UND arabische Quelle die Farbe übereinstimmend tragen — so in der FAQ von plan-your-trip («الأرز الأحسائي الأحمر» / „Hasawi red rice“) — bleibt „roter Hasawi-Reis“ zulässig und ist dort angewandt (ج9, faq.10.a und faq.12.a).",
+      "reason": "escalations_ruled #7. Ohne den Geltungsbereich liest die nächste Charge die Sperre als projektweit und löscht eine doppelt belegte Tatsache — eine Streichung wiegt nach Projektregel wie eine Erfindung. Kein Texteingriff."
+    },
+    {
+      "batch": "memory",
+      "key_or_path": "de-translation/memory/tm.json",
+      "before": "die Paare zu plan.shared.d, getThere.0.d, faq.1.a, faq.5.a, faq.11.a und seoDesc in der Stufe-5-Fassung",
+      "after": "dieselben Paare in der Richterfassung",
+      "reason": "Sechs geänderte Zeichenketten müssen in der Übersetzungsspeicherung in der ausgelieferten Fassung stehen, sonst zieht die nächste Charge die verworfene Formulierung als Präzedenz heran — genau der Mechanismus, der in dieser ج9 zum zweiten Flughafennamen geführt hat."
+    }
+  ],
+
+  "scores_csv_rows": [
+    "\"plan / de-plan-1 (ج9، الدفعة 1 من 3: 25 Strings — die plan.*-Schlüssel der Seite /de/plan/ «Meine Reise»)\",2026-09-23,1,92,\"APPROVE في الدورة 1 من 3 — صفحة «رحلتي» الألمانية؛ المحاور 28/26/19/9/10؛ القارئ الأعمى 9 ملاحظات (2 مطبَّقة · 4 مرفوضة · 3 علل مصدر)؛ المعجم +1 (WhatsApp بلا أداة بشاهد خارجي)؛ تصحيح الحاكم: plan.shared.d — «Diese Liste hat Sie … erreicht» ⇐ «Sie haben diese Liste … erhalten» وتفكيك تجاور Sie/sie (كالكة إنجليزية والعربية «وصلتك» اصطلاحية)؛ وعدُ «Ordnen Sie sie an» بلا عنصر ترتيب في الصفحة وplan.lead غير مشروط فوق الحالة الفارغة — علّتا مصدر في اللغات الخمس؛ plan.savedTwo/savedFew غير قابلتين للبلوغ بالألمانية ومحفوظتان عمداً كي لا يتراجع البحث للإنجليزية\"",
+    "\"plan-your-trip / de-plan-2 (ج9، الدفعة 2 من 3: 36 Strings — Rahmen der Seite: Hero, Anreise, Praktische Informationen, Tipps, CTA, SEO)\",2026-09-23,1,91,\"APPROVE في الدورة 1 من 3 — إطار صفحة «خطّط لرحلتك» الألمانية؛ المحاور 27/27/18/9/10؛ القارئ الأعمى (تقرير واحد لدفعتين) وزّع الحاكم ملاحظاته الـ17 على دفعتيهما؛ المعجم +4 (Flughafen · König-Fahd-Flughafen · Bahngesellschaft SAR · Abqaiq)؛ تصحيحا الحاكم: «der Flughafen al-Ahsa» ⇐ «der Flughafen Al-Ahsa» (الكوبف المثبَّت في المعجم، وسابقةُ تجاوز de.wikipedia قائمة في رأس الاسم) وseoDesc «Planen Sie sicher.» ⇐ «Planen Sie mit Zuversicht.» (العربية «بثقة» والألمانية «sicher» تُقرأ أماناً — دعوى لا يحملها المصدر)؛ حذفُ «Fahrzeit» في المرحلة 4 رغم صحّته الواقعية نموذجٌ لسياج الوقائع؛ «konservativer Charakter» بلا أي إرشاد عمليّ — فجوة مصدر\"",
+    "\"plan-your-trip / de-plan-3 (ج9، الدفعة 3 من 3: 26 Strings — 13 Frage/Antwort-Paare der FAQ, sichtbar und als FAQPage-JSON-LD)\",2026-09-23,1,92,\"APPROVE في الدورة 1 من 3 — الأسئلة الشائعة الألمانية؛ المحاور 28/27/18/9/10؛ المعجم +17 (اثنا عشر بشاهد ويب، وثلاثة بسوابق منشورة، واثنان pending بلا أداة مع إعادة صياغة النص تفادياً لادّعاء الجنس)؛ استعادةُ «frische Früchte» في faq.4.a تصحّح حذفاً ورثته الإنجليزية عن العربية الفيصل («الرطب والثمار الطازجة» أربعة أطراف لا ثلاثة)؛ تصحيحات الحاكم ثلاثة: faq.1.a تحمل الوصف المنشور «das Kulturerbe-Dorf» (المعجم كان يمنعه بمذكّرة متقادمة سبقت نشر صفحة ardh-alhadarat الألمانية) · faq.5.a «nach Al-Ahsa International Airport» ⇐ «zum Flughafen Al-Ahsa» (اسمان لمطار واحد على صفحة واحدة) · faq.11.a تجاور «die sie» يُفكّ بـ«deren»؛ وصُدِّق إبقاء «roter Hasawi-Reis» وحُصر منعُ المعجم بـzaki-alsalem-farm.md وحدها\""
+  ],
+
+  "notes": "Drei Chargen, eine Seite zu zweien davon, ein Richterspruch. Was diese ج9 lehrt und was in den Prozess gehört: ZWEI PARALLELE CHARGEN HABEN DIESELBE TERMBASE GLEICHZEITIG BESCHRIEBEN und dabei zwei Einträge für denselben Referenten erzeugt (Flughafen) sowie eine widerlegte Negativaussage konserviert (SAR). Im dist hieß derselbe Flughafen auf einer Seite zweimal verschieden, und kein automatischer Test hätte das je gefangen. Künftige parallele Chargen auf einer Seite brauchen entweder eine gemeinsame Eigennamenliste VOR Stufe 3 oder einen Abgleich der termbase_additions zwischen den Chargen vor dem Anwenden. — Zweitens: eine Termbase-Notiz, die eine vom Eigentümer entschiedene Frage als offen führt (Land of Civilisations), kostet jede Folgecharge dieselbe Debatte und hat hier den schwersten Befund des blinden Lesers verursacht; Notizen mit dem Vermerk „anhängig“ gehören bei jedem Batch-Start gegen den publizierten Bestand geprüft. — Positiv hervorzuheben: die Streichung des sachlich zutreffenden „Fahrzeit“ durch Stufe 4, die Wiederherstellung der von der englischen Quelle gelöschten «الثمار الطازجة» und die Weigerung, den „roten Hasawi-Reis“ still an eine Termbase-Sperre anzupassen, deren Grund woanders liegt — drei Entscheidungen, die zeigen, dass der Zaun in dieser ج9 tatsächlich über der Sprachglätte stand. Sechs Textkorrekturen und sechs Termbase-/Speicher-Auflagen sind vor dem Abschluss anzuwenden; die Noten 92/91/92 sind bereits die Noten danach."
+}

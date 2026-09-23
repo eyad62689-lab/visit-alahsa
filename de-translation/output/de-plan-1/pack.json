@@ -1,0 +1,133 @@
+{
+  "batch": "de-plan-1",
+  "lang": "de",
+  "page": "/de/plan/ — „Meine Reise“ (PlanView.astro). A noindex, client-side page: the visitor's own saved list of attractions, held in this browser only.",
+  "part": "Batch 1 of 3 (ج9): the twenty-five missing plan.* keys of src/i18n/ui.ts. Batch 2 and 3 translate the other page, /de/plan-your-trip/.",
+  "strings": {
+    "plan.eyebrow": {
+      "en": "Your own plan",
+      "ar": "خطّتك الخاصة",
+      "context": "The small eyebrow line (kicker) above the H1 in the page hero. It names what this page is, not the site section — unlike the eyebrow of the index pages. The German neighbour you can read: on /de/plan-your-trip/ the eyebrow will be the section name; here it is a possessive claim about the visitor's list."
+    },
+    "plan.title": {
+      "en": "My Trip",
+      "ar": "رحلتي",
+      "context": "Read in THREE places at once — (1) the H1 of /de/plan/; (2) the browser-tab title, composed by the template as «<plan.title> – Al-Ahsa» (separator U+2013, added by the template, not by you); (3) nothing else on this page. BINDING: the published German for this exact English string is already on the page's own header and footer — ui.nav.myTrip = „Meine Reise“ — and the termbase entry «My Trip / رحلتي» fixes it as „Meine Reise“ WITH the German quotation marks when it is quoted inside a sentence. As an H1 and a tab title it is a heading, not a quotation: decide whether the quotation marks belong here and say why in notes. It must not contradict nav.myTrip."
+    },
+    "plan.lead": {
+      "en": "The sights you chose are saved on this device. Arrange them, and get a ready-made route.",
+      "ar": "المعالم التي اخترتها محفوظةٌ على هذا الجهاز. رتّبها، واحصل على مسارٍ جاهز.",
+      "context": "Two readings at once: (1) the lead paragraph under the H1 (max width 54ch); (2) the page's meta description. The page is noindex so the description is not a search snippet, but it is still the page's own summary. FACT FENCE: «saved on this device» is literal — localStorage, this browser only, no account, no server. Do not soften it into «gespeichert» alone and do not promise syncing. «Arrange them» = the visitor orders the list; «a ready-made route» = the Google Maps route button further down (see plan.route)."
+    },
+    "plan.savedSuffix": {
+      "en": "sights saved",
+      "ar": "معلماً محفوظاً",
+      "context": "A BARE SUFFIX after a number: the template renders «<bdi>7</bdi> <span>sights saved</span>». No digit, no colon in your string. This is the PLURAL «other» category. MEASURED: Intl.PluralRules('de') returns only 'one' and 'other' — so in German this string is what a visitor sees for 0 and for every count ≥ 2. Arabic is the decider on WHAT is counted («معلماً» = a sight/attraction); the published German word for that noun across the whole site is «Sehenswürdigkeit(en)» (see published_de_ui: list.title, crumb.attractions, list.search)."
+    },
+    "plan.savedOne": {
+      "en": "sight saved",
+      "ar": "معلم محفوظ",
+      "context": "Same bare-suffix slot as plan.savedSuffix, for the plural category 'one' (count = 1 exactly). MEASURED: this IS reachable in German. Keep the same noun as plan.savedSuffix."
+    },
+    "plan.savedTwo": {
+      "en": "sights saved",
+      "ar": "معلمان محفوظان",
+      "context": "Same slot, plural category 'two' (the Arabic dual). MEASURED AND IMPORTANT: Intl.PluralRules('de') NEVER returns 'two' — this string is unreachable in German and no visitor will ever see it. The key must still exist in ui.de or the lookup falls back to English. Give it the German that is correct for a count of two, which in German is the same form as 'other'. Do not invent a dual. State in notes that it is unreachable."
+    },
+    "plan.savedFew": {
+      "en": "sights saved",
+      "ar": "معالم محفوظة",
+      "context": "Same slot, plural category 'few' (Arabic 3–10). MEASURED: Intl.PluralRules('de') never returns 'few' either — unreachable in German, same treatment as plan.savedTwo."
+    },
+    "plan.clearConfirm": {
+      "en": "Clear your whole trip list?",
+      "ar": "أتريد إفراغ قائمة رحلتك كاملةً؟",
+      "context": "The text of a browser window.confirm() dialog, shown when the visitor presses the «Clear list» button (plan.clear). It is a question with OK/Cancel buttons supplied by the browser in the browser's own language — your string is the whole question and nothing else. It must read as a warning that the action is not undoable, without adding a promise the source does not make."
+    },
+    "plan.routeLimit": {
+      "en": "Google Maps accepts 10 stops per route, so the route opens with the first 10 sights on your list.",
+      "ar": "خرائط قوقل تقبل 10 محطات في المسار الواحد، فيُفتح المسار بأول 10 معالم في قائمتك.",
+      "context": "A note that appears under the action buttons ONLY when the list holds more than 10 sights with coordinates. FACT FENCE: the two «10»s are the same limit and both must stay as the digit 10. «Google Maps» is the brand name, article-less (termbase). Note a defect in the Arabic source and report it: this string spells the brand «خرائط قوقل» while plan.route two keys away spells it «خرائط جوجل» — the same product, two Arabic spellings on one page. German has one brand name, so the defect does not propagate; log it for the owner."
+    },
+    "plan.route": {
+      "en": "Open the route in Google Maps",
+      "ar": "افتح المسار في خرائط جوجل",
+      "context": "The gold primary button of the page. It is an <a> that opens a Google Maps directions URL in a new tab. Imperative with Sie, like the published German buttons on the events page (see published_de_ui ev.* and the termbase entry for Google Maps)."
+    },
+    "plan.clear": {
+      "en": "Clear list",
+      "ar": "أفرغ القائمة",
+      "context": "A button label in the same button row as plan.route, plan.share, plan.copy, plan.print. Pressing it raises the plan.clearConfirm dialog. Short button label — the row already carries five buttons, so length matters. Whatever noun you choose for «list» must be the same noun used in plan.clearConfirm, plan.shared.h, plan.shared.d and plan.empty.h."
+    },
+    "plan.remove": {
+      "en": "Remove",
+      "ar": "إزالة",
+      "context": "The label of a small button inside EACH saved attraction card, which drops that one attraction from the list. It is not the page-level clear (that is plan.clear). One word or two at most."
+    },
+    "plan.location": {
+      "en": "Location ↗",
+      "ar": "الموقع ↗",
+      "context": "A link inside each saved attraction card that opens that attraction's Google Maps pin in a new tab. Keep the arrow «↗» with exactly one ordinary space before it (U+0020, never U+00A0) — it marks the external target. SIBLING WARNING: the bare English «Location» is published in German twice over, split by context — DiningDetailView/StayDetailView render it «Lage» (the area a venue lies in) and EventsView/EventDetailView render it «Ort» (an event's venue). Neither is this: here it is a link that opens a map pin. Choose deliberately and justify the choice against both published neighbours in notes."
+    },
+    "plan.empty.h": {
+      "en": "Your list is empty",
+      "ar": "قائمتك فارغة بعد",
+      "context": "The H2 of the empty state, shown when nothing is saved — the first thing most visitors see on this page. The Arabic carries a «بعد» (= not yet) that the English drops; the Arabic is the decider on meaning, so decide whether the German says «yet» and justify it."
+    },
+    "plan.empty.d": {
+      "en": "Browse the attractions and tap “Add to my trip” to gather your destinations here, then get a ready route.",
+      "ar": "تصفّح المعالم واضغط «أضف إلى رحلتي» لتجمع وجهاتك هنا، ثم احصل على مسارٍ جاهز.",
+      "context": "The paragraph under plan.empty.h. It QUOTES A BUTTON THAT IS ALREADY PUBLISHED IN GERMAN: the favourite button on every attraction card reads ui.fav.add = «Zu „Meine Reise“ hinzufügen» (see published_de_ui). Your quotation must be that published label verbatim, or the instruction sends the visitor looking for a button that does not exist. German quotation marks are „…“ with ‚…‘ nested. Also: «tap» — the Arabic «اضغط» is device-neutral while the English «tap» narrows it to touch. THE PUBLISHED GERMAN PRECEDENT, verified in ui.de and on the live /de/map/ page, is map.lead.a: «… Klicken oder tippen Sie dann auf eine beliebige Sehenswürdigkeit …» — i.e. the site names BOTH the click and the tap. Follow it unless you can justify otherwise."
+    },
+    "plan.empty.browse": {
+      "en": "Browse attractions",
+      "ar": "تصفّح المعالم",
+      "context": "The turquoise button of the empty state; it links to /de/attractions/. BINDING SIBLING: the identical English string is already published in German as EventsView ctaBrowse = «Sehenswürdigkeiten entdecken», and the same string appears again in this very item as C.ctaBrowse on the sister page (batch 2). All three must agree unless you can show a real difference of position, which you must then write in notes."
+    },
+    "plan.empty.map": {
+      "en": "Open the map",
+      "ar": "استعرض الخريطة",
+      "context": "The second, ghost button of the empty state; it links to /de/map/. The German attractions-map page is published: its nav label is ui.nav.map = «Karte», its H1 is ui.map.title = «Karte der Sehenswürdigkeiten», and the attractions index links to it with ui.list.map = «Auf der Karte ansehen» (all in published_de_ui). This is a short button next to plan.empty.browse — do not contradict those, and keep the pair balanced in length."
+    },
+    "plan.share": {
+      "en": "Share on WhatsApp",
+      "ar": "شاركها في واتساب",
+      "context": "A button in the action row that opens wa.me with a prefilled message (that message is plan.waText). The published German share button elsewhere on the site is ui.share.btn = «Teilen» (see published_de_ui) — this one names the channel. «WhatsApp» is a brand name, spelled exactly so."
+    },
+    "plan.copy": {
+      "en": "Copy share link",
+      "ar": "انسخ رابط المشاركة",
+      "context": "A button in the same row. On click the label swaps for two seconds to the ALREADY-PUBLISHED German ui.plan.copied = «Link kopiert ✓», then swaps back. The pair must read as one action and its confirmation — so the verb and the noun you choose here must be the verb and the noun of «Link kopiert». If the clipboard API is unavailable the same string is also used as the prompt() label over the URL, so it must work as a label, not only as a button."
+    },
+    "plan.print": {
+      "en": "Print the list",
+      "ar": "اطبع القائمة",
+      "context": "A button that calls window.print(). Directly beneath the button row sits the ALREADY-PUBLISHED German ui.plan.printNote = «Öffnungszeiten und Eintritt können sich ändern – prüfen Sie beides vor Ihrem Besuch über die offiziellen Kanäle nach.» — read it, it is the print disclaimer and it sets the register for this whole row. Same «list» noun as plan.clear."
+    },
+    "plan.waText": {
+      "en": "My Al-Ahsa trip — the sights list:",
+      "ar": "رحلتي في الأحساء — قائمة المعالم:",
+      "context": "NOT a UI label: this is the first line of the WhatsApp message the visitor sends, with the share URL appended on the next line. It is written in the VISITOR'S voice about their own trip, not the site's voice addressing the visitor — the only string in this batch where Sie does not apply because nobody is being addressed. It ends with a colon introducing the link; keep that colon. The dash is U+2014 in the source: German uses U+2013. «Al-Ahsa» is the fixed head form (termbase)."
+    },
+    "plan.shared.h": {
+      "en": "A shared list of sights",
+      "ar": "قائمة معالم مُشارَكة",
+      "context": "The H2 of a notice box that appears at the top of the page ONLY when the URL carries ?list=… — i.e. the visitor opened someone else's shared list. It is a statement of what the visitor is looking at, not a greeting."
+    },
+    "plan.shared.d": {
+      "en": "This list reached you via a share link — browse it, or add it to your own “My Trip”.",
+      "ar": "وصلتك هذه القائمة برابط مشاركة — استعرضها، أو أضفها إلى «رحلتي» عندك.",
+      "context": "The paragraph of that same notice box, above its two buttons (plan.shared.import and plan.shared.mine). It QUOTES the page's own name: “My Trip” here must be the very string you chose for plan.title, in the quoted form fixed by the termbase entry («Meine Reise» inside „…“). The dash is U+2014 in the source: German uses U+2013."
+    },
+    "plan.shared.import": {
+      "en": "Add to my trip",
+      "ar": "أضفها إلى رحلتي",
+      "context": "The gold button of the shared-list notice: it merges the shared list into the visitor's own saved list. BINDING SIBLING: this exact English string is already published in German as ui.fav.add = «Zu „Meine Reise“ hinzufügen» — the favourite button on every attraction card. But the positions differ: fav.add adds ONE attraction from its card, this adds a WHOLE shared list. Decide whether that difference is real enough to justify a different German string, and write the reasoning in notes; if it is not, copy the published one."
+    },
+    "plan.shared.mine": {
+      "en": "View my own trip",
+      "ar": "اعرض رحلتي أنا",
+      "context": "The second, ghost button of the shared-list notice: it drops ?list= from the URL and shows the visitor's own list instead. The Arabic «رحلتي أنا» is emphatic — my own, as opposed to the shared one; that contrast is the whole point of the button and must survive. Uses the same page name as plan.title."
+    }
+  }
+}

@@ -876,6 +876,36 @@ export const ui = {
     'map.locate': 'Mein Standort auf der Karte',
     'ev.shop': 'Kaufen Sie die Ausstellungsprodukte',
     'ev.shopNote': 'Lomi-Produkte, Lebensmittel und Pflegeprodukte der teilnehmenden Aussteller.',
+    // ── دفعة صفحتَي الخطة (ج9) — خط de-translation-pipeline، 2026-09-23 ──
+    // 25 مفتاح plan.* لصفحة /de/plan/. المنشوران سابقاً في هذه الكتلة ولا يُكرَّران:
+    // plan.printNote (دفعة 2026-09-03) و plan.copied (دفعة الواجهة العامة A-ui-de).
+    // plan.savedTwo و plan.savedFew لا يُصيَّران بالألمانية أبداً —
+    // Intl.PluralRules('de') يعيد one/other فقط — ويبقيان لئلا يتراجعا للإنجليزية.
+    'plan.eyebrow': 'Ihr eigener Plan',
+    'plan.title': 'Meine Reise',
+    'plan.lead': 'Die Sehenswürdigkeiten, die Sie ausgewählt haben, sind auf diesem Gerät gespeichert. Ordnen Sie sie an und erhalten Sie eine fertige Route.',
+    'plan.savedSuffix': 'Sehenswürdigkeiten gespeichert',
+    'plan.savedOne': 'Sehenswürdigkeit gespeichert',
+    'plan.savedTwo': 'Sehenswürdigkeiten gespeichert',
+    'plan.savedFew': 'Sehenswürdigkeiten gespeichert',
+    'plan.clearConfirm': 'Möchten Sie Ihre gesamte Liste leeren?',
+    'plan.routeLimit': 'Google Maps akzeptiert 10 Stationen pro Route, daher öffnet sich die Route mit den ersten 10 Sehenswürdigkeiten Ihrer Liste.',
+    'plan.route': 'Route in Google Maps öffnen',
+    'plan.clear': 'Liste leeren',
+    'plan.remove': 'Entfernen',
+    'plan.location': 'Standort ↗',
+    'plan.empty.h': 'Ihre Liste ist noch leer',
+    'plan.empty.d': 'Durchstöbern Sie die Sehenswürdigkeiten, und klicken oder tippen Sie auf „Zu ‚Meine Reise‘ hinzufügen“, um Ihre Ziele hier zu sammeln. Anschließend erhalten Sie eine fertige Route.',
+    'plan.empty.browse': 'Sehenswürdigkeiten entdecken',
+    'plan.empty.map': 'Karte öffnen',
+    'plan.share': 'Auf WhatsApp teilen',
+    'plan.copy': 'Link kopieren',
+    'plan.print': 'Liste drucken',
+    'plan.waText': 'Meine Al-Ahsa-Reise – die Liste der Sehenswürdigkeiten:',
+    'plan.shared.h': 'Eine geteilte Liste von Sehenswürdigkeiten',
+    'plan.shared.d': 'Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.',
+    'plan.shared.import': 'Zu „Meine Reise“ hinzufügen',
+    'plan.shared.mine': 'Meine eigene Reise ansehen',
   } as Record<string, string>,
   // الروسية (ru-RU) — قاموس جزئي على سابقة الألمانية: الهيكل المشترك والرئيسية
   // وفهرس المعالم وصفحة المعلم. كل سطر هنا من خط ru-translation-pipeline حصراً

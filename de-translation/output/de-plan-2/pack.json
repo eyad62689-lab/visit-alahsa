@@ -1,0 +1,188 @@
+{
+  "batch": "de-plan-2",
+  "lang": "de",
+  "page": "/de/plan-your-trip/ — the practical-information page (PlanTripView.astro, a new block de inside localize()). Sections in order: hero, „How to get there“ (three cards), „Practical information“ (four term/definition pairs + a generated table), „Visitor tips“ (four numbered tips), the FAQ heading, and a closing call to action.",
+  "part": "Batch 2 of 3 (ج9): the thirty-six non-FAQ strings of the page. The twenty-six FAQ strings are batch 3 (de-plan-3) and run in parallel — see BRIEF §cross-batch. Batch 1 translates the other page, /de/plan/.",
+  "strings": {
+    "eyebrow": {
+      "en": "Plan your trip",
+      "ar": "خطّط لرحلتك",
+      "context": "The eyebrow (kicker) above the H1. BINDING SIBLING: the identical English string is already published in German twice — ui.nav.plan = «Reise planen» is the header and footer nav label FOR THIS VERY PAGE, and EventsView ctaPlan = «Reise planen» is a button that links here. The visitor arrives by clicking one of those two and lands on this eyebrow. It is also the second breadcrumb name in the page's BreadcrumbList JSON-LD, which the template fills from t('nav.plan') — i.e. from «Reise planen» — NOT from your string. Copy unless you can show a real difference of position and write it in notes."
+    },
+    "title": {
+      "en": "Everything you need before you go",
+      "ar": "كلُّ ما تحتاجه قبل أن تنطلق",
+      "context": "The H1. It is NOT the tab title (that is seoTitle). NEAR SIBLING: the published German «Vor Ihrem Besuch» translates the English «Before you go» on the events pages (EventsView notesH / EventDetailView noticeH) — there it heads a list of things to check before visiting. Here the same English fragment heads the whole page. Decide whether to echo the published phrase or not, and justify it; a silent near-miss between two pages of the same site is what the German blind reader has previously called «the page contradicts itself»."
+    },
+    "lead": {
+      "en": "Concise, practical information to make your trip smooth from arrival to departure.",
+      "ar": "معلومات عملية موجزة تجعل رحلتك سلسة من الوصول إلى الوداع.",
+      "context": "The lead paragraph under the H1 (max width 56ch). Note the Arabic ends «من الوصول إلى الوداع» — from arrival to FAREWELL, not to departure; the Arabic is the decider, so decide which the German says and justify it. Not the meta description (that is seoDesc)."
+    },
+    "getThereH": {
+      "en": "How to get there",
+      "ar": "كيف تصل؟",
+      "context": "The H2 of the first section (its anchor id is #getting-there). TERMBASE: «Getting there (كيف تصل)» is fixed as «die Anreise» — read that entry and decide whether the heading is the noun or a question. The Arabic is a question with a question mark; the English is not."
+    },
+    "getThere.0.h": {
+      "en": "By air",
+      "ar": "جوّاً",
+      "context": "The H3 on the first of three cards, next to a line-art aeroplane icon. The three headings (By air / By road / By train) are a closed set and must be parallel in form — same part of speech, same grammatical shape, roughly the same length, because they sit side by side in one grid."
+    },
+    "getThere.0.d": {
+      "en": "Al-Ahsa International Airport handles domestic and international flights; routes and schedules change, so confirm before booking. Alternatively, King Fahd International Airport in Dammam is about a two-hour drive away and offers wider connections.",
+      "ar": "مطار الأحساء الدولي يستقبل رحلاتٍ داخلية ودولية؛ وتتغيّر الوجهات والجداول فيُنصح بالتأكد قبل الحجز. وبديلاً عنه، مطار الملك فهد الدولي بالدمام يبعد نحو ساعتين بالسيارة ويتيح وجهاتٍ أوسع.",
+      "context": "The body of the air card. TWO PROPER NOUNS WITH NO TERMBASE ENTRY — «Al-Ahsa International Airport» and «King Fahd International Airport». Stage 4 must verify both against a German source and add them with their grammatical gender before this ships. FACT FENCE: «about a two-hour drive» is approximate and must stay approximate; «wider connections» is a comparison between the two airports, not a claim about either one alone; «routes and schedules change» is the reason for «confirm before booking» and the causal link must survive. Dammam is fixed in the termbase."
+    },
+    "getThere.1.h": {
+      "en": "By road",
+      "ar": "برّاً",
+      "context": "The H3 of the second card, next to a car icon. Parallel with getThere.0.h and getThere.2.h."
+    },
+    "getThere.1.d": {
+      "en": "About 326 km from Riyadh (around 3 hours 20 minutes), and close to Dammam and Khobar via a good highway network.",
+      "ar": "تبعد عن الرياض نحو 326 كم (قرابة 3 ساعات و20 دقيقة)، وقريبةٌ من الدمام والخبر عبر شبكة طرقٍ سريعة جيدة.",
+      "context": "The body of the road card. NUMBER FENCE: «326» and «3» and «20» are the only numbers allowed and each must appear; do not convert, round or add. German writes distances «326 km» and durations in the site's own register — check tm_relevant for how published German pages state durations. Riyadh = «Riad», Dammam and Khobar are fixed in the termbase. The subject of the sentence is Al-Ahsa, which the English leaves implicit — German needs it explicit, so name it without inventing a new form (see the termbase head form)."
+    },
+    "getThere.2.h": {
+      "en": "By train",
+      "ar": "بالقطار",
+      "context": "The H3 of the third card, next to a train icon. Parallel with the other two."
+    },
+    "getThere.2.d": {
+      "en": "Hofuf has a station on the Riyadh–Dammam railway (SAR). From Riyadh it is the fastest and most comfortable option (around two hours and ten minutes); from Dammam it is roughly one to one and a half hours, and the train also stops at nearby Abqaiq (Buqayq) on the same line — an excellent choice from the capital and the Eastern Province.",
+      "ar": "للهفوف محطةٌ على خط سكة حديد الرياض–الدمام (شركة سار). من الرياض هي الأسرع والأريح (نحو ساعتين وعشر دقائق)، ومن الدمام نحو ساعة إلى ساعة ونصف، ويتوقف القطار أيضاً في بقيق القريبة على المسار نفسه — خيارٌ ممتاز للقادمين من العاصمة والمنطقة الشرقية.",
+      "context": "The body of the train card and the longest string of the batch. NO TERMBASE ENTRY for «SAR» the railway operator (the Arabic says «شركة سار» = the SAR company) nor for «Abqaiq (Buqayq)» — stage 4 must verify and add both with gender. BEWARE A REAL COLLISION: the termbase already holds «Saudi Riyal (SAR)» = «der Saudi-Riyal (SAR)», and the currency abbreviation SAR appears on this very page in practical.3.v. Two different referents share the letters — make sure a reader cannot confuse them. The dash before «an excellent choice» is U+2014 in the source; German uses U+2013. «the Eastern Province» is fixed in the termbase. Hofuf is fixed. «the capital» = Riyadh, named two clauses earlier; do not repeat the name if German style prefers the epithet, but do not drop the pairing «capital and Eastern Province»."
+    },
+    "practicalH": {
+      "en": "Practical information",
+      "ar": "معلومات عملية",
+      "context": "The H2 of the second section (anchor #practical). NEAR SIBLING, NOT IDENTICAL: the visit-card heading on all 58 German attraction pages is ui.det.visitInfo = «Besuchsinformationen», whose English source is «Visit information» — a different English string from yours. So this is NOT a copy case; it is a case where two headings on one site name almost the same thing. Decide whether the German heading here should echo it or stand apart, and write the reasoning in notes. Below this heading the page also renders a generated table whose German column headers are already published and fixed: «Sehenswürdigkeit», «Öffnungszeiten», «Eintritt»."
+    },
+    "practical.0.k": {
+      "en": "Best season",
+      "ar": "أفضل موسم",
+      "context": "A <dt> term in a definition list; its <dd> is practical.0.v. HARD BUILD CONSTRAINT: the string «Beste Tageszeit» is FORBIDDEN here. That is the published German label of a DIFFERENT field (the attraction visit card's «best time of day»), and the automated check C14 fails the build whenever a seasonal value sits under a <dt> reading «Beste Tageszeit» — and the value here (October to March, summer) is seasonal by definition. Choose the German that names a season, not a time of day."
+    },
+    "practical.0.v": {
+      "en": "A year-round destination; the air is gentlest from October to March, while summer is a season of bounty and evening experiences.",
+      "ar": "وجهةٌ على مدار العام؛ الأجواء ألطف من أكتوبر إلى مارس، والصيف موسم خيراتٍ وتجاربَ مسائية.",
+      "context": "The <dd> under practical.0.k. FACT FENCE: it makes no temperature claim, no ranking of months, and does not say summer is bad — «موسم خيرات» is the harvest/bounty sense (fresh fruit, dates), which the English «bounty» keeps; do not turn it into «hot». Month names in German: Oktober, März. «year-round» is the head claim and must stay first."
+    },
+    "practical.1.k": {
+      "en": "Accommodation",
+      "ar": "الإقامة",
+      "context": "A <dt>. SIBLING: the site's accommodation section is published in German — its nav label is ui.nav.stay / ui.nav.stayShort (see published_de_ui). Read them; this <dt> names the same subject."
+    },
+    "practical.1.v": {
+      "en": "Modern hotels and resorts across the oasis, plus heritage inns that offer an authentic local stay.",
+      "ar": "فنادق ومنتجعات حديثة في الواحة، إضافةً إلى نُزلٍ تراثية تمنح تجربة محلية أصيلة.",
+      "context": "The <dd> under practical.1.k. NO TERMBASE ENTRY for «heritage inn» (نُزل تراثية) — stage 4 verifies and adds it with gender. FACT FENCE: no names, no counts, no star ratings, no recommendation — the site's standing rule is that it never recommends individual venues. «the oasis» refers to Al-Ahsa; the termbase fixes «Al-Ahsa-Oase» with the Durchkopplung hyphen."
+    },
+    "practical.2.k": {
+      "en": "Destination vibe",
+      "ar": "طابع الوجهة",
+      "context": "A <dt>. The English «vibe» is colloquial; the Arabic «طابع» is «character» and is the decider. Denglisch is forbidden — no «Vibe»."
+    },
+    "practical.2.v": {
+      "en": "An authentic, welcoming destination with a conservative character, blending heritage with modern visitor facilities — well suited to families and solo travellers alike.",
+      "ar": "وجهةٌ عائلية أصيلة بطابعٍ محافظ ومضياف، تجمع بين عبق التراث ومرافق الزائر الحديثة، وتناسب العائلات والأفراد على حدٍّ سواء.",
+      "context": "The <dd> under practical.2.k. SOURCE DIVERGENCE — the Arabic opens «وجهةٌ عائلية» (a FAMILY destination) and the English drops «family» from the opening while keeping «families» at the end; the Arabic is the decider, so decide and record it. «conservative character» is a statement about local custom, not a warning and not an apology: keep it neutral and do not add advice about dress or behaviour that the source does not give. The dash is U+2014 in the source; German uses U+2013. «solo travellers» = individuals travelling alone, gender-neutral."
+    },
+    "practical.3.k": {
+      "en": "Currency",
+      "ar": "العملة",
+      "context": "A <dt>."
+    },
+    "practical.3.v": {
+      "en": "The Saudi Riyal (SAR). Cards are accepted in most venues; carry some cash for traditional souqs.",
+      "ar": "الريال السعودي (SAR). تُقبل البطاقات في أغلب المنشآت، ويُفضّل حمل نقدٍ للأسواق التقليدية.",
+      "context": "The <dd> under practical.3.k. TERMBASE: «der Saudi-Riyal (SAR)» — use it exactly, with the parenthetical code. SPELLING GUARD: «souqs» must become the German «Souks» — the automated check C18 fails the build if the spelling «Souq» appears in German page text (owner's decision, 2026-09-04). FACT FENCE: «most venues» is a hedge and must stay a hedge — do not promise cards are accepted everywhere; «carry some cash» is advice, and the Arabic marks it as a preference («يُفضّل»)."
+    },
+    "tipsH": {
+      "en": "Visitor tips",
+      "ar": "نصائح للزائر",
+      "context": "The H2 of the third section (anchor #tips)."
+    },
+    "tipsLead": {
+      "en": "Small details that make a big difference to your experience.",
+      "ar": "تفاصيلٌ صغيرة تصنع فرقاً كبيراً في تجربتك.",
+      "context": "The lead paragraph directly under tipsH, above the four tips. It is rendered in the same .lead class as the page lead."
+    },
+    "tips.0.h": {
+      "en": "Bargain politely",
+      "ar": "المساومة بأدب",
+      "context": "The H3 of the first of four tips, inside an ordered list (<ol>). The four tip headings are a closed set displayed together and must be parallel in form. NOTE the source is not parallel with itself: Arabic uses noun phrases («المساومة بأدب» = bargaining politely) while English uses imperatives («Bargain politely»). Pick ONE German form for all four and apply it to all four — say which and why in notes."
+    },
+    "tips.0.d": {
+      "en": "Haggling in the souqs is acceptable when done respectfully — part of the traditional shopping fun.",
+      "ar": "المساومة في الأسواق مقبولة باحترام، وجزءٌ من متعة التسوّق التقليدي.",
+      "context": "The body of tip 1. SPELLING GUARD: «souqs» → «Souks» (C18 fails the build on «Souq» in German). The dash is U+2014; German uses U+2013. FACT FENCE: «acceptable» not «expected» and not «required» — the source permits, it does not instruct."
+    },
+    "tips.1.h": {
+      "en": "Pick your season",
+      "ar": "اختر موسمك",
+      "context": "The H3 of tip 2. Parallel with the other three tip headings."
+    },
+    "tips.1.d": {
+      "en": "Summer for swimming in the springs among the palms and savouring fresh fruit; winter for the landmarks and history.",
+      "ar": "الصيف للسباحة في العيون بين النخيل والاستمتاع بالثمار الطازجة، والشتاء لزيارة المعالم والغوص في التاريخ.",
+      "context": "The body of tip 2. «the springs» = the oasis's water springs (العيون); the termbase holds several named springs and the pattern for them — use the generic noun here, not a name. «the palms» = date palms (termbase: die Dattelpalme · die Datteln). «landmarks» here is the same referent the whole site calls «Sehenswürdigkeiten». The sentence is a two-part contrast with a semicolon and no verb — German may need verbs; keep the contrast."
+    },
+    "tips.2.h": {
+      "en": "Time it right",
+      "ar": "اختر التوقيت",
+      "context": "The H3 of tip 3. Parallel with the other three."
+    },
+    "tips.2.d": {
+      "en": "In the hot months, start early or after mid-afternoon for open-air sites; in winter the weather is pleasant all day.",
+      "ar": "في الأشهر الحارّة ابدأ باكراً أو بعد العصر لزيارة المواقع المفتوحة؛ أمّا في الشتاء فالجوّ لطيفٌ طوال اليوم.",
+      "context": "The body of tip 3. THE ARABIC «بعد العصر» IS A PRAYER-TIME REFERENCE (the afternoon prayer, mid-to-late afternoon) and the English renders it «after mid-afternoon»; the Arabic is the decider on the time meant, but the German must not import a religious term the English deliberately generalised — say which you chose and why. «open-air sites» = sites without shelter, the reason the advice exists. No temperatures, no month names: do not add them."
+    },
+    "tips.3.h": {
+      "en": "Confirm opening times",
+      "ar": "تأكّد من المواعيد",
+      "context": "The H3 of tip 4. Parallel with the other three. SIBLING: «Öffnungszeiten» is the published German label for opening hours across the site (it is the <dt> of the hours row in the generated table lower on THIS page, and on every attraction card)."
+    },
+    "tips.3.d": {
+      "en": "Check museum and fort opening hours ahead — some change seasonally.",
+      "ar": "تحقّق من أوقات فتح المتاحف والقلاع مسبقاً، فبعضها يتغيّر موسمياً.",
+      "context": "The body of tip 4. The dash is U+2014; German uses U+2013. «fort» (قلاع) — the site's own German for the historic palaces/forts is in the termbase (Qasr Ibrahim, Khuzam-Palast); this is the generic plural, not a name. IMPORTANT NEIGHBOUR: a generated table sits a section above this one whose own German disclaimer is already published — ui.plan.printNote = «Öffnungszeiten und Eintritt können sich ändern – prüfen Sie beides vor Ihrem Besuch über die offiziellen Kanäle nach.» This tip says almost the same thing; make sure the two do not read as an accidental repetition of one another."
+    },
+    "faqH": {
+      "en": "Frequently asked questions",
+      "ar": "أسئلة شائعة",
+      "context": "The H2 of the FAQ section (anchor #faq). The thirteen questions under it are batch 3, not yours. BINDING SIBLING: this exact English string is already published in German TWICE — ui.det.faq = «Häufige Fragen» on all 58 German attraction pages, and ui.blog.faq = «Häufige Fragen». Copy unless you can show a real difference."
+    },
+    "ctaH": {
+      "en": "Ready? Start gathering your sights",
+      "ar": "جاهز؟ ابدأ بجمع معالمك",
+      "context": "The H2 of the closing call-to-action band, above ctaD and two buttons. A direct address: keep the question and the invitation as two movements. «sights» = the same noun the site publishes as «Sehenswürdigkeiten»."
+    },
+    "ctaD": {
+      "en": "Browse the attractions, add what you like to “My Trip”, then get a ready-made route in Google Maps.",
+      "ar": "تصفّح المعالم وأضف ما يعجبك إلى «رحلتي»، ثم احصل على مسارٍ جاهز في خرائط جوجل.",
+      "context": "The paragraph of the closing band. It QUOTES the name of the sister page: “My Trip” = the published ui.nav.myTrip «Meine Reise», which the termbase fixes as „Meine Reise“ inside German quotation marks when quoted in running text. «Google Maps» is the article-less brand (termbase). The three steps (browse → add → route) are one chain and the order must survive."
+    },
+    "ctaBrowse": {
+      "en": "Browse attractions",
+      "ar": "تصفّح المعالم",
+      "context": "The turquoise button of the closing band, linking to /de/attractions/. BINDING SIBLING: the identical English string is already published as EventsView ctaBrowse = «Sehenswürdigkeiten entdecken», and the SAME English string is also being translated right now in batch 1 as ui.plan.empty.browse. See BRIEF §cross-batch: the value is fixed for all three."
+    },
+    "ctaTrip": {
+      "en": "My Trip",
+      "ar": "رحلتي",
+      "context": "The ghost button beside ctaBrowse, linking to /de/plan/ — the page batch 1 is translating. BINDING SIBLING: ui.nav.myTrip = «Meine Reise» is published in this page's own header and footer, and batch 1 is translating the same English string as that page's H1 (ui.plan.title). See BRIEF §cross-batch: the value is fixed for all three."
+    },
+    "seoTitle": {
+      "en": "Plan your trip to Al-Ahsa — getting there, best time and tips",
+      "ar": "خطّط لرحلتك إلى الأحساء — الوصول وأفضل وقت ونصائح",
+      "context": "The browser-tab title, NOT the H1. The template appends the separator and the site name: «<seoTitle> – Al-Ahsa». HARD BUILD CONSTRAINT: the dash inside this string is U+2014 in the source, and the automated check C17 FAILS THE BUILD if U+2014 appears in the <title> or description of any /de/ page — German uses U+2013 (Halbgeviertstrich). Also a length budget: the whole tab title including « – Al-Ahsa» should stay near 60 characters, so the German must be compact. «best time» here means the best time of YEAR (the page's «Best season» section), not time of day."
+    },
+    "seoDesc": {
+      "en": "Everything you need to visit Al-Ahsa: getting there by air, road and train, the best time to visit, practical information, tips and FAQs. Plan with confidence.",
+      "ar": "كل ما تحتاجه لزيارة الأحساء: الوصول جواً وبراً وبالقطار، أفضل وقت للزيارة، معلومات عملية، ونصائح وأسئلة شائعة. خطّط بثقة.",
+      "context": "The page's meta description — the text a search engine shows under the link, and the ONE string here a reader meets before reading anything else. HARD BUILD CONSTRAINT: C17 forbids U+2014 in the description of a /de/ page (there is none in this source, do not introduce one). Length budget ≈ 150–160 characters. It is a list of what the page contains, in the page's own order (air, road, train — the same order as the three cards), and it must not promise anything the page does not hold. «FAQs» is an English abbreviation: German writes it out (see faqH's published sibling)."
+    }
+  }
+}

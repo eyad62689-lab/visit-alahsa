@@ -53,6 +53,6 @@ Beenden Sie Ihre Reise an der Golfküste östlich von Al-Ahsa bei [Al-Uqair](/de
 
 ## Praktische Hinweise
 
-- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/en/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet.
+- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/de/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet.
 - **Nutzen Sie die Karte**: Die [Karte der Sehenswürdigkeiten](/de/map/) zeigt jede Station an ihrem Ort und hilft Ihnen, die Reihenfolge Ihres Tages zu planen.
-- **Zum ersten Mal in Al-Ahsa?** Die Seite [Reise planen](/en/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.
+- **Zum ersten Mal in Al-Ahsa?** Die Seite [Reise planen](/de/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.
