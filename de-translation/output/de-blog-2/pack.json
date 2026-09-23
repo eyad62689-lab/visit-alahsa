@@ -1,0 +1,74 @@
+{
+  "batch": "de-blog-2",
+  "lang": "de",
+  "page": "/de/blog/al-ahsa-traditional-crafts/ — ein Blogartikel (BlogPostView.astro). Die Artikelseite WIRD gebaut: src/pages/de/blog/[slug].astro existiert bereits und generiert jede Datei mit lang: de. Nur der INDEX /de/blog/ fehlt noch (kein index.astro) und kommt in Batch 7.",
+  "part": "Batch 2 of 7 (ج10): der erste der sechs noch fehlenden Blogartikel. Quelle src/content/blog/crafts-en.md (601 Wörter), Autorität crafts-ar.md. Ausgabe: die vollständige Datei src/content/blog/crafts-de.md.",
+  "source_file": "src/content/blog/crafts-en.md",
+  "authority_file": "src/content/blog/crafts-ar.md",
+  "output_file": "src/content/blog/crafts-de.md",
+  "published_de_siblings": [
+    "src/content/blog/24-hours-de.md",
+    "src/content/blog/48-hours-de.md"
+  ],
+  "frontmatter_rules": {
+    "copy_verbatim_from_en": ["key", "slug", "heroImage", "pubDate"],
+    "slug": "al-ahsa-traditional-crafts — GEMESSEN: die beiden veröffentlichten deutschen Artikel übernehmen den englischen Slug wörtlich (one-day-in-al-ahsa, 48-hours-in-al-ahsa), ebenso ru und zh in allen zehn Dateien. Nur Arabisch lokalisiert den Slug. Also NICHT übersetzen, NICHT neu bilden.",
+    "lang": "de",
+    "translate": ["title", "description", "topic", "tags", "faq[].q", "faq[].a"],
+    "body": "Markdown, vollständig übersetzt. Links auf /de/ umstellen (siehe links-Block)."
+  },
+  "links": {
+    "rule": "Jeder Link /en/X/ wird /de/X/. Alle Ziele sind GEPRÜFT vorhanden — außer einem.",
+    "safe": {
+      "/de/attractions/qaisariyah/": "alle 58 Attraktionen haben title_de, die Seiten werden generiert",
+      "/de/attractions/jabal-al-qarah/": "vorhanden",
+      "/de/attractions/duqat-algharash/": "vorhanden",
+      "/de/attractions/craftsmen-souq/": "vorhanden",
+      "/de/plan/": "in ج9 gemerged und auf der Produktion verifiziert",
+      "/de/blog/48-hours-in-al-ahsa/": "48-hours-de.md ist veröffentlicht"
+    },
+    "dangling_until_batch_7": {
+      "/de/blog/al-ahsa-souvenirs-guide/": "souvenirs-de.md entsteht ERST in Batch 7. Der Link wird trotzdem JETZT auf /de/ gesetzt — er darf nicht englisch bleiben (C18/C22). Die sieben Batches gehen als EIN Merge; vor Batch 7 wird nichts gemerged."
+    }
+  },
+  "measured_divergences_en_vs_ar": [
+    {
+      "field": "topic",
+      "en": "Heritage & Crafts",
+      "ar": "ثقافة وحرف — also KULTUR und Handwerk, nicht Erbe",
+      "note": "zh sagt 文化与手工艺 (Kultur), ru sagt Наследие (Erbe). Arabisch ist die Autorität. Und das Ampersand wird „und\" (gemessen: „&\" überlebt nur in drei Strings der Familie „Souks & Parks\" unter gemessenem Breitenbudget). ACHTUNG: „Erlebnisse und Handwerk\" ist BELEGT — das ist das veröffentlichte Label der Attraktionskategorie (cat.crafts.t, foot.l.crafts) und kein Artikelthema. Das einzige heute veröffentlichte deutsche topic ist „Reiserouten\" (beide Routenartikel)."
+    },
+    {
+      "field": "description",
+      "en": "…and the Craftsmen Souq in the heart of Hofuf.",
+      "ar": "…وسوق الحرفيين وأكاديميته في قلب الهفوف — nennt die AKADEMIE mit",
+      "note": "Die Autorität führt die Handwerksakademie schon in der Beschreibung; das Englische lässt sie dort weg (im Fließtext steht sie in beiden). Arabisch entscheidet."
+    },
+    {
+      "field": "H2 „The Hasawi Bisht\"",
+      "en": "The Cloak of Occasions",
+      "ar": "عباءة الوجاهة — Mantel des ANSEHENS",
+      "note": "Der Fließtext sagt in beiden Sprachen beides („عباءة المناسبات والوجاهة\" / „the cloak of ceremony and standing\"). Nur die Überschrift wählt unterschiedlich: en „Occasions\", ar „Ansehen\". Arabisch entscheidet."
+    },
+    {
+      "field": "H2 „Palm-Frond Weaving\"",
+      "en": "Palm-Frond Weaving",
+      "ar": "الخوص وحِرف النخلة — Palmblattgeflecht UND die Handwerke der Palme (weiter)",
+      "note": "Arabisch ist der breitere Begriff und die Autorität."
+    },
+    {
+      "field": "title",
+      "en": "…and Where to See Them Made",
+      "ar": "…وأين تراها حيّة — wo Sie sie LEBENDIG sehen",
+      "note": "Der erste Satz des Fließtextes trägt in beiden „lebendig/living\". Arabisch entscheidet, aber prüfen Sie, ob „lebendig\" im Titel und „lebendige Handwerke\" im ersten Satz sich im Deutschen doppeln."
+    }
+  ],
+  "numbers": {
+    "12,000 square metres": "12.000 Quadratmeter — englisches Tausender-Komma wird deutscher PUNKT (ar: «12 ألف متر مربع»)",
+    "112": "112 Handwerkerläden",
+    "more than six hundred years": "ar «أكثر من ستمائة عام»",
+    "March 2020": "im März 2020 (ar «مارس 2020م»)",
+    "more than two centuries": "Qaisariyah-Souk, ar «أكثر من قرنين»"
+  },
+  "termbase_coverage": "GEMESSEN über 394 Einträge: ALLE Eigennamen dieses Artikels stehen bereits mit Genus im termbase — der Hasawi-Bischt · der Zari-Faden (Pl. die Zari-Fäden) · Dougha Al-Gharash (das) · Al-Gharash (die, Familie) · der Handwerker-Souk · der Qaisariyah-Souk · der Qarah-Berg (Jabal al-Qarah) · Al-Qarah (Dorf) · Hofuf · das Netzwerk der UNESCO Creative Cities. Es ist KEIN neuer Eintrag nötig; ein vorgeschlagener neuer Eintrag ist hier ein Erfindungssignal."
+}
