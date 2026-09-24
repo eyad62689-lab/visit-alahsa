@@ -31,11 +31,11 @@ In den offiziellen saudischen Quellen halten die [Saudi Press Agency](https://ww
 
 Für ihre Identität zählt vor allem eines: Diese „Art“ ist keine echte Wildart, sondern eine **natürliche Hybride** zweier wilder Elternarten – Citrus micrantha aus der Papeda-Gruppe und Citrus medica, der Zitronatzitrone. Deshalb trägt ihr Name das Hybridzeichen (×). Die Genomanalyse hat diesen hybriden Ursprung bestätigt ([Wikipedia: Key Lime](https://en.wikipedia.org/wiki/Key_lime) und [Wu et al., Nature, 2018](https://www.nature.com/articles/nature25447)).
 
-Für die Geschichte ist diese Unterscheidung entscheidend. Die erste Hybridisierung fand dort statt, wo beide Elternarten zusammen wuchsen, in einer tropischen Umgebung Asiens. Keine der beiden wächst im Osten der Arabischen Halbinsel wild. Jeder Lomi-Baum in Al-Ahsa stammt daher zwangsläufig von einem Baum ab, der von außen kam.
+Für die Geschichte ist diese Unterscheidung entscheidend. Die erste Hybridisierung fand dort statt, wo beide Elternarten zusammen wuchsen, in den Tropen Asiens. Keine der beiden wächst im Osten der Arabischen Halbinsel wild. Jeder Lomi-Baum in Al-Ahsa stammt daher zwangsläufig von einem Baum ab, der von außen kam.
 
 ## Die erste Heimat: Südostasien und die Ausläufer des Himalaya
 
-Die maßgebliche genomische Studie, [2018 in Nature veröffentlicht](https://www.nature.com/articles/nature25447), stützt sich auf 60 Genome, stellvertretend für die Ahnenlinien der Zitrusfrüchte. Das Fazit: Im späten Miozän fächerte sich die Gattung in Südostasien rasch auf – eine Radiation, die mit einer deutlichen Abschwächung des Monsuns in Verbindung gebracht wird.
+Die maßgebliche genomische Studie, [2018 in Nature veröffentlicht](https://www.nature.com/articles/nature25447), stützt sich auf 60 Genome, stellvertretend für die Ahnenlinien der Zitrusfrüchte. Das Fazit: Im späten Miozän fächerte sich die Gattung der Zitrusfrüchte in Südostasien rasch auf – eine Radiation, die mit einer deutlichen Abschwächung des Monsuns in Verbindung gebracht wird.
 
 Eine [spätere genomische Übersichtsarbeit](https://pmc.ncbi.nlm.nih.gov/articles/PMC12203252/) grenzt das Ursprungszentrum weiter ein: die südöstliche Himalaya-Region mit dem östlichen Assam in Indien, dem westlichen Yunnan in China und Myanmar – und zwar vor etwa 7 bis 8 Millionen Jahren. Die Limette selbst stammt laut dem [Pflanzenführer der NC State Extension](https://plants.ces.ncsu.edu/plants/citrus-x-aurantiifolia/) aus den Tropen Südostasiens.
 
@@ -46,20 +46,20 @@ Die verbreitete Formulierung „Sie stammt aus Indien und dem Malaiischen Archip
 Die Zitrusfrüchte erreichten den Westen nicht in einer einzigen Welle, sondern in mehreren, die Jahrhunderte auseinanderlagen. Die 2017 erschienene Studie [The Citrus Route Revealed](https://www.researchgate.net/publication/318556307_The_Citrus_Route_Revealed_From_Southeast_Asia_into_the_Mediterranean) zeichnet diese Abfolge anhand botanischer und archäologischer Funde nach:
 
 - **Die Zitronatzitrone** zog als Erste nach Westen, über Persien und die Levante; ihre Reste wurden in einem persischen Königsgarten bei Jerusalem entdeckt, der ins 5. und 4. Jahrhundert v. Chr. datiert.
-- **Die Zitrone** folgte; ihre ältesten Reste fanden sich im späten 1. Jahrhundert v. Chr. auf dem Forum Romanum.
+- **Die Zitrone** folgte; ihre ältesten Reste fanden sich auf dem Forum Romanum und stammen aus dem späten 1. Jahrhundert v. Chr..
 - **Die Limette** erreichte das Mittelmeerbecken erst im 10. Jahrhundert n. Chr., gemeinsam mit der Bitterorange und der Pampelmuse, als Teil der großen landwirtschaftlichen Ausbreitung in der islamischen Welt.
 
 Diese dritte Welle bildet den Kern der These des Historikers [Andrew Watson](https://en.wikipedia.org/wiki/Andrew_Murray_Watson) in Agricultural Innovation in the Early Islamic World (700 bis 1100). Das Buch verfolgt die Ausbreitung von 17 Nahrungspflanzen, darunter die Limette und die Bitterorange, über Bewässerungsnetze und landwirtschaftliches Wissen in den ersten vier Jahrhunderten islamischer Herrschaft.
 
-## Wann erreichte sie den Osten der Arabischen Halbinsel?
+## Wann erreichte die Limette den Osten der Arabischen Halbinsel?
 
-Hier beginnt der Teil, in dem sich die Erzählungen häufen und die Dokumente dünn werden. Redlichkeit verlangt, dessen Grenzen klar zu ziehen.
+Hier beginnt der Teil, in dem sich die Erzählungen häufen und die Dokumente dünn werden. Redlichkeit verlangt, die Grenzen klar zu ziehen.
 
-**Was dokumentiert ist:** Die beste verfügbare Angabe betrifft die unmittelbare Nachbarschaft, nicht Al-Ahsa selbst. Eine [2016 in SpringerPlus veröffentlichte Studie](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5047875/) hält fest: Die omanische Limette wird in Oman seit mindestens 4 Jahrhunderten angebaut, arabische Seefahrer brachten sie dorthin, und bis in die 1970er-Jahre blieb sie nach den Datteln Omans zweitwichtigste Obstkultur.
+**Was dokumentiert ist:** Die beste verfügbare Angabe betrifft die unmittelbare Nachbarschaft, nicht Al-Ahsa selbst. Eine [2016 in SpringerPlus veröffentlichte Studie](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5047875/) hält fest: Die omanische Limette wird in Oman seit mindestens 4 Jahrhunderten angebaut, arabische Seefahrer brachten sie dorthin, und bis in die 1970er-Jahre blieb sie nach den Datteln die zweitwichtigste Obstkultur Omans.
 
-**Was nicht dokumentiert ist:** Kein Dokument und kein historischer Text datiert die Ankunft der Limette speziell in den Oasen von Al-Ahsa oder Qatif. Und aus archäologischen Fundstätten im Osten der Arabischen Halbinsel belegt kein veröffentlichter archäobotanischer Befund (Samenreste oder Pollen) das Vorkommen von Zitrusfrüchten für eine bestimmte Epoche. Die Annahme, dass die Zitrusfrüchte beide Oasen zur selben Zeit erreichten, ist ein plausibler Schluss aus ihrem gemeinsamen Naturraum und Handelsnetz, keine erwiesene Tatsache.
+**Was nicht dokumentiert ist:** Kein Dokument und kein historischer Text datiert die Ankunft der Limette speziell in den Oasen von Al-Ahsa oder Qatif. Und kein veröffentlichter archäobotanischer Befund (Samenreste oder Pollen) aus archäologischen Fundstätten im Osten der Arabischen Halbinsel belegt das Vorkommen von Zitrusfrüchten für eine bestimmte Epoche. Die Annahme, dass die Zitrusfrüchte beide Oasen zur selben Zeit erreichten, ist ein plausibler Schluss aus ihrem gemeinsamen Naturraum und Handelsnetz, keine erwiesene Tatsache.
 
-Am wahrscheinlichsten ist daher, dass die Lomi die Golfküste auf demselben Weg erreichte, der sie nach Oman gebracht hatte: über das Meer, mit Kaufleuten und Seefahrern, zu einem Zeitpunkt, den wir bislang nicht bestimmen können.
+Am wahrscheinlichsten ist daher, dass die Lomi auf demselben Weg an die Golfküste gelangte, der sie nach Oman gebracht hatte: über das Meer, mit Kaufleuten und Seefahrern, zu einem Zeitpunkt, den wir bislang nicht bestimmen können.
 
 ## Al-Ahsa oder Qatif? Eine Frage, die keinen Streit braucht
 
@@ -69,19 +69,19 @@ Bisweilen heißt es, der Baum sei in einer der beiden Oasen entstanden und von d
 2. **Sprachlich:** Die beiden Namen gehören zu ein und derselben Frucht, wie die [Saudi Press Agency](https://www.spa.gov.sa/a2a7e0ca4bw) und [Saudipedia](https://saudipedia.com/article/15994/) bestätigen; der Unterschied liegt im Namen, nicht in der Pflanze.
 3. **Genetisch:** Die Limette wird in der ganzen Region aus sehr eng verwandtem Ausgangsmaterial vermehrt. Eine [AFLP-Analyse der Limette in Oman](https://pubmed.ncbi.nlm.nih.gov/29527419/) ergab eine so geringe genetische Vielfalt, dass darin ein Faktor für die Ausbreitung der Hexenbesenkrankheit vermutet wurde. Geringe Vielfalt bedeutet in der Praxis, dass die Bäume der Region nahezu Kopien eines einzigen genetischen Ausgangsmaterials sind und nicht eigenständige Landsorten, von denen jede in ihrer eigenen Oase entstanden wäre.
 
-Was bleibt dann den beiden Oasen? Etwas, das mehr wert ist als ein Anspruch auf den Ursprung: Jahrhunderte züchterischer Auslese vor Ort, ein Bewässerungssystem und der Schatten der Dattelpalmen, die zusammen ein eigenes Kleinklima geschaffen haben, überliefertes Wissen über das Beschneiden, das Trocknen an der Sonne und das Reifenlassen, und eine ganze Esskultur, gekrönt vom Brauch des „Jameed“ (der sonnengetrocknete und gereifte Lomi-Saft). Darauf gründet sich die Besonderheit, nicht auf den Baum des Ursprungs.
+Was bleibt dann den beiden Oasen? Etwas, das mehr wert ist als ein Anspruch auf den Ursprung: Jahrhunderte züchterischer Auslese vor Ort; ein Bewässerungssystem und der Schatten der Dattelpalmen, die zusammen ein eigenes Kleinklima geschaffen haben; überliefertes Wissen über das Beschneiden, das Trocknen an der Sonne und das Reifenlassen; und eine ganze Esskultur, gekrönt vom Brauch des „Jameed“ (der sonnengetrocknete und gereifte Lomi-Saft). Darauf gründet sich die Besonderheit, nicht auf den Baum des Ursprungs.
 
-Die Unterschiede, die dem Erzeugnis der beiden Oasen in Schalendicke, Säuregehalt und ätherischen Ölen zugeschrieben werden, sind eine ökologisch plausible Hypothese. Gemessen hat diese Unterschiede jedoch keine veröffentlichte Vergleichsstudie, sodass sie eine Frage der Wahrscheinlichkeit bleiben.
+Die Unterschiede, die dem Erzeugnis der beiden Oasen in Schalendicke, Säuregehalt und ätherischen Ölen zugeschrieben werden, sind eine ökologisch plausible Hypothese. Keine veröffentlichte Vergleichsstudie hat diese Unterschiede jedoch gemessen, sodass sie eine Frage der Wahrscheinlichkeit bleiben.
 
 ## Woher kommt der Name Bin Zuhairi?
 
 Schon der Name der Frucht trägt eine Spur ihrer Reise. Das Wort „banzahir“ stammt aus dem Persischen und bedeutet **Gegengift**; in genau dieser Bedeutung hält es das Wörterbuch [Al-Mu'jam Al-Wasit](https://www.almaany.com/ar/dict/ar-ar/بنزهير/) fest. Seine zusammengesetzte Wurzel ist „badzahr“: „bad“ für „gegen“ und „zahr“ für „Gift“ – dasselbe Wort, das als „bezoar“ in die europäischen Sprachen einging und dort den Gegengiftstein bezeichnet ([Wörterbuch der Fremdwörter im Arabischen](https://mbtda.com/language/a3jmi/baa.php)).
 
-Die Bedeutung dieser Spur reicht tiefer, als es scheint: Der Name der Frucht ist persisch geprägt, ein weiteres Indiz dafür, dass sie über ein Handels- und Sprachnetz kam, das die ganze Region umspannte – sie wuchs eben nicht vor Ort und wurde auch nicht vor Ort benannt. Lomi wiederum ist ein allgemeiner Name in der Golfregion, und die Namenszusätze Hasawi und Qatifi sind geografische Zuschreibungen für den Markt, nicht für die Landsorte.
+Die Bedeutung dieser Spur reicht tiefer, als es scheint: Der Name der Frucht ist persisch geprägt, ein weiteres Indiz dafür, dass sie über ein Handels- und Sprachnetz kam, das die ganze Region umspannte – sie entstand eben nicht vor Ort und wurde auch nicht vor Ort benannt. Lomi wiederum ist ein allgemeiner Name in der Golfregion, und die Namenszusätze Hasawi und Qatifi sind geografische Zuschreibungen für den Markt, nicht für die Landsorte.
 
 ## Die Lomi heute: Von der eingeführten Frucht zur lokalen Identität
 
-Die Frucht, die von weit her kam, ist heute das Sinnbild des Oasensommers. Offiziell gilt die Hasawi-Lomi als zweites landwirtschaftliches Erzeugnis Al-Ahsas nach den Datteln ([Saudipedia](https://saudipedia.com/article/15994/)). Die [Saudi Press Agency](https://www.spa.gov.sa/a2a7e0ca4bw) verzeichnet in der Oase mehr als 100.000 tragende Bäume; ein einzelner Baum liefert 25–30 kg pro Saison. Zwischen offiziellen Quellen und einem Teil der [Presseberichterstattung](https://www.alwatan.com.sa/article/1084098) gehen die Baumzahlen durchaus auseinander; wir legen hier die Zahl der offiziellen Agentur zugrunde, wie auch auf unserer Seite [Oasenfrüchte](/de/fruits/).
+Die Frucht, die von weit her kam, ist heute das Sinnbild des Oasensommers. Offiziell gilt die Hasawi-Lomi als zweites landwirtschaftliches Erzeugnis Al-Ahsas nach den Datteln ([Saudipedia](https://saudipedia.com/article/15994/)). Die [Saudi Press Agency](https://www.spa.gov.sa/a2a7e0ca4bw) verzeichnet in der Oase mehr als 100.000 tragende Bäume; ein einzelner Baum liefert 25 bis 30 Kilogramm pro Saison. Zwischen offiziellen Quellen und einem Teil der [Presseberichterstattung](https://www.alwatan.com.sa/article/1084098) gehen die Baumzahlen durchaus auseinander; wir legen hier die Zahl der offiziellen Agentur zugrunde, wie auch auf unserer Seite [Oasenfrüchte](/de/fruits/).
 
 Jeden Sommer kommen die Familien in Al-Ahsa zusammen, um die Limette zu pressen und haltbar zu machen. Am sichtbarsten ist das beim „Jameed“: Der Lomi-Saft trocknet in der Sonne, reift in Glasgefäßen und steht so das ganze Jahr über zur Verfügung – ein Brauch, der von Generation zu Generation weitergegeben wird ([Akhbaar 24](https://www.akhbaar24.com/article/detail/615953)). Die Frucht wird inzwischen so gefeiert, dass ihr eine eigene jährliche [Hasawi-Lomi-Ausstellung](/de/events/hasawi-lomi-exhibition/) gewidmet ist und dass es auf der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/) zum Besuchererlebnis geworden ist, sie am Baum zu pflücken.
 
@@ -89,7 +89,7 @@ Jeden Sommer kommen die Familien in Al-Ahsa zusammen, um die Limette zu pressen 
 
 Die Geschichte der Lomi ist ohne ihre größte Gefahr nicht vollständig. Die Hexenbesenkrankheit der Limette wird von einem Phytoplasma namens Candidatus Phytoplasma aurantifolia ausgelöst. Erstmals nachgewiesen wurde es in den 1970er-Jahren in Oman. 1989 griff es auf die Vereinigten Arabischen Emirate über, in den 1990er-Jahren auf den Iran; dabei vernichtete es mehr als eine Million Limettenbäume ([Bericht der Europäischen Behörde für Lebensmittelsicherheit](https://pmc.ncbi.nlm.nih.gov/articles/PMC7009860/)). Omans Limettenproduktion sank über 3 Jahrzehnte hinweg um mehr als 50 %, vor allem wegen dieser Krankheit ([Plant Pathology, 2017](https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/ppa.12683)).
 
-Für Al-Ahsa wiegt am schwersten: Eine [2021 in Plant Disease veröffentlichte Studie](https://apsjournals.apsnet.org/doi/10.1094/PDIS-10-20-2112-RE) hat gezeigt, dass sich die Phytoplasma-Isolate aus der Region Al-Ahsa genetisch von ihren Gegenstücken im übrigen Nahen Osten unterscheiden. Zuvor hatte eine saudische Studie aus dem Jahr 2009 (Alhudaib et al.) das Phytoplasma dokumentiert, das im Königreich mit dem Rückgang der Limette in Verbindung steht, und dazu seine wahrscheinlichen Überträger, wie [derselbe europäische Bericht](https://pmc.ncbi.nlm.nih.gov/articles/PMC7009860/) festhält.
+Für Al-Ahsa wiegt am schwersten: Eine [2021 in Plant Disease veröffentlichte Studie](https://apsjournals.apsnet.org/doi/10.1094/PDIS-10-20-2112-RE) hat gezeigt, dass sich die Phytoplasma-Isolate aus der Region Al-Ahsa genetisch von ihren Gegenstücken im übrigen Nahen Osten unterscheiden. Zuvor hatte eine saudische Studie aus dem Jahr 2009 (Alhudaib et al.) das Phytoplasma, das im Königreich mit dem Rückgang der Limette in Verbindung steht, und seine wahrscheinlichen Überträger dokumentiert, wie [derselbe europäische Bericht](https://pmc.ncbi.nlm.nih.gov/articles/PMC7009860/) festhält.
 
 Das erklärt, warum das landwirtschaftliche Erbe der Lomi in Al-Ahsa zugleich kostbar und verletzlich ist: eine Landsorte von geringer genetischer Vielfalt in einer Region, die einer Krankheit gegenübersteht, die in der Nachbarschaft eine Million Bäume vernichtet hat.
 
@@ -101,11 +101,11 @@ Das erklärt, warum das landwirtschaftliche Erbe der Lomi in Al-Ahsa zugleich ko
 - Hasawi-Limette, Qatifi-Limette, Bin Zuhairi und Lomi sind Namen für ein und dieselbe Frucht, wie offizielle saudische Quellen bestätigen.
 - Es gibt keine Grundlage dafür, Al-Ahsa oder Qatif den Ursprung zuzuschreiben; der wirkliche Wert der beiden Oasen liegt in ihrem gewachsenen landwirtschaftlichen und kulturellen Erbe.
 
-Wenn Sie dieser Frucht selbst begegnen möchten: Ihre Saison ist der Sommer, wie unsere Seite [Oasenfrüchte](/de/fruits/) dokumentiert. Der [Artikel über die Hasawi-Lomi](/de/blog/hasawi-lomi-lime/) stellt ihre Eigenschaften und ihre jährliche Ausstellung vor, und die Seite [Reise planen](/de/plan-your-trip/) verbindet Haine und Souks zu einer einzigen Route.
+Wenn Sie dieser Frucht selbst begegnen möchten: Ihre Saison ist der Sommer, wie unsere Seite [Oasenfrüchte](/de/fruits/) dokumentiert. Der [Artikel über die Hasawi-Limette (Lomi)](/de/blog/hasawi-lomi-lime/) stellt ihre Eigenschaften und ihre jährliche Ausstellung vor, und die Seite [Reise planen](/de/plan-your-trip/) verbindet Haine und Souks zu einer einzigen Route.
 
 ## Quellen
 
-Aufgeführt in der Reihenfolge ihres Vorkommens. Alles, was im Artikel nicht als gesichert dargestellt ist, bleibt offen für eine Revision, sobald eine neue, von Fachleuten begutachtete Studie erscheint.
+Aufgeführt in der Reihenfolge ihres Vorkommens. Alles, was im Artikel nicht als gesichert dargestellt ist, kann revidiert werden, sobald eine neue, von Fachleuten begutachtete Studie erscheint.
 
 1. Key Lime: die Namen der Frucht und ihr hybrider Ursprung aus C. micrantha und C. medica. [Wikipedia](https://en.wikipedia.org/wiki/Key_lime)
 2. Citrus × aurantiifolia: das natürliche Verbreitungsgebiet im tropischen Südostasien. [NC State Extension](https://plants.ces.ncsu.edu/plants/citrus-x-aurantiifolia/)
