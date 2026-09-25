@@ -1,0 +1,28 @@
+{
+ "batch": "de-blog-1",
+ "lang": "de",
+ "page": "/de/blog/ — der Blog-Index (BlogIndexView.astro). MEASURED: the page is NOT built yet and is not built by this batch either. Its four strings are translated now and land in ui.de; the page itself is wired in batch 7, once all six remaining articles are German (a build proved the index sits at 38% English chunks against a 20% guard threshold while six of eight cards are English).",
+ "part": "Batch 1 of 7 (ج10): the four missing blog.* keys of src/i18n/ui.ts — translation only, no wiring. Batches 2–7 translate the six remaining blog articles; batch 7 also wires the index page.",
+ "strings": {
+  "blog.eyebrow": {
+   "en": "Guides & stories",
+   "ar": "أدلة ومقالات",
+   "context": "The eyebrow (kicker) line above the H1 in the page hero of /de/blog/. Rendered ONCE, nowhere else. It names what kind of page this is. BINDING CONTEXT: the three other index pages (/de/attractions/, /de/souqs-parks-farms/, /de/map/) all carry the eyebrow \"Visit guide\" = published German „Reiseführer“. Your English source is DIFFERENT (\"Guides & stories\"), so „Reiseführer“ is taken and must not be reused here. The Arabic authority says «أدلة ومقالات» — guides and ARTICLES, not stories; the English \"stories\" is the looser of the two. The published German word for an item of this blog is „Artikel“ (see blog.back „Alle Artikel →“ and det.mentions.h). On the ampersand: measured across the published ui.de, \"&\" survives in exactly three strings, all of the „Souks & Parks“ family and all under a measured header-width budget; in nine other strings \"&\" becomes „und“. This slot has no width budget."
+  },
+  "blog.title": {
+   "en": "The Al-Ahsa Blog",
+   "ar": "مدونة الأحساء",
+   "context": "Read in THREE places at once — (1) the H1 of /de/blog/; (2) the browser-tab title, composed by the template as «<blog.title> – Al-Ahsa» (separator U+2013, added by the template via titleSep('de'), not by you, and guarded by C17); (3) the name field of the Blog JSON-LD emitted on this page. site.name in German is „Al-Ahsa“, so a title that also carries the oasis name puts it twice in one tab strip. The two published siblings accepted exactly that: Russian «Блог Аль-Ахсы», Chinese «哈萨博客». If you carry the name, Durchkopplung is mandatory: „Al-Ahsa-Blog“ with a hyphen — a bare space is a spelling error, not a style choice. If you drop it, note that the bare word „Blog“ is already published as BOTH nav.blog and crumb.blog, so the H1 would then repeat the breadcrumb directly above it. Decide and justify in notes."
+  },
+  "blog.lead": {
+   "en": "Practical guides and stories from the oasis — trip plans, experiences, and everything that makes for a fuller visit.",
+   "ar": "أدلة عملية وحكايات من الواحة — خطط زيارة، تجارب، وما يعينك على رحلة أوفى.",
+   "context": "Read in THREE places with three different jobs — (1) the lead paragraph under the H1 in the hero, constrained to leadWidth={52} (about 52 characters per line); (2) the page <meta name=\"description\">; (3) the description field of the Blog JSON-LD. Budget: the English source is 118 characters and German runs about a fifth longer; stay near or under ~160 characters so a search engine does not truncate it. FACT FENCE: it promises what the index actually holds. The eight articles are two itineraries (one day / two days), traditional crafts, a souvenirs guide, \"is Al-Ahsa worth visiting\", a Jabal al-Qarah guide, and two on the Hasawi lime. Promise nothing beyond that — no hotels, no restaurants, no prices. In ج9 the German blind reader read a promise with nothing behind it as «the page is broken», not as a wording flaw. Note the em dash in the English: German uses the Halbgeviertstrich – with spaces."
+  },
+  "blog.empty": {
+   "en": "Articles are on their way — check back soon.",
+   "ar": "المقالات في الطريق — عُد قريباً.",
+   "context": "The empty-state line, rendered ONLY when posts.length === 0. MEASURED: it can never render on /de/blog/. The German index is a PARTIAL index (BlogIndexView partial flag): it lists the German articles first and then fills with the English version of every article that has no German counterpart yet. The count is eight today (two German, six English) and eight after batches 2–7 complete; it never reaches zero. It is still written in correct German and still kept in ui.de — dropping it would make the lookup fall back to English — on the precedent of plan.savedTwo / plan.savedFew in ج9, which are likewise unreachable and likewise kept. Say in notes that it is unrenderable. Wording constraint: the published German word for an item here is „Artikel“ (blog.back „Alle Artikel →“)."
+  }
+ }
+}

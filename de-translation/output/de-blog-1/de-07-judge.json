@@ -1,0 +1,185 @@
+{
+  "batch": "de-blog-1",
+  "date": "2026-09-23",
+  "threshold": 90,
+  "loop": 1,
+  "score": 91,
+  "breakdown": {
+    "accuracy_30": 28,
+    "nativeness_30": 25,
+    "compliance_20": 19,
+    "fit_10": 9,
+    "structure_10": 10
+  },
+  "breakdown_why": {
+    "accuracy_30": "28 — die vier Strings tragen genau die Aussagen der Quellen: der Eyebrow bildet das Gattungspaar der maßgeblichen arabischen Quelle ab (أدلة/مقالات → Ratgeber/Artikel), der Titel trägt den Namen mit Durchkopplung wie ru «Блог Аль-Ахсы» und zh «哈萨博客», der Lead verspricht nichts über die acht vorhandenen Karten hinaus. Minus 2 für zwei bewusste, begründete Verschiebungen: «Practical guides» nennt eine GATTUNG, „Praktisches Wissen“ nennt Inhalt (zur Vermeidung der Eyebrow-Doppelung und des Tipps-Zauns), und «Articles are on their way» / «في الطريق» ist in „Noch keine Artikel – schauen Sie bald wieder vorbei“ nur noch implikatiert, nicht ausgesagt.",
+    "nativeness_30": "25 — Rechtschreibung, Durchkopplung, Satzklammer, Kommaregel und das veröffentlichte Leerzustandsmuster sind einwandfrei (unabhängig nachgeprüft). Minus 5 für drei Lesewirkungen, die der einzige unvorbereitete deutsche Leser der Kette an drei von vier Strings gemeldet hat und die ich sämtlich mit Belegen zurückweise, ohne sie damit zu tilgen: das Gattungspaar Ratgeber/Artikel (Hyponym + Hyperonym, im Deutschen schärfer als im Englischen, weil „Artikel“ hier der veröffentlichte Gattungsname IST), „Praktisches Wissen“ als spürbar herübergeformt (#5 — die Achse heißt „liest sich wie von Anfang an auf Deutsch geschrieben“, und genau das hat er zweimal verneint) und der Beiwerk-Beiklang von „abrunden“ aus seinem einzigen veröffentlichten Gebrauch.",
+    "compliance_20": "19 — die Strings selbst sind vollständig konform, und zwar von mir nachgemessen, nicht übernommen: ss statt ß korrekt (Wissen, Erlebnisse — kurzer Vokal), 2× U+2013 mit je U+0020 davor und dahinter, 0× U+2014 (C17), 0× U+00A0/U+2009/U+202F/U+2011/U+200B/BOM, 0 Ziffern, 0 Denglisch-Treffer, Sie in beiden Formen, kein «Souq» (C18), «&» → „und“ nach der Zählung (im veröffentlichten ui.de exakt 3 Strings mit „ & “, alle „Souks & Parks“ — nachgezählt), „Reiseführer“ korrekt NICHT genommen (3 Treffer: list.eyebrow, list2.eyebrow, map.eyebrow), „Ratgeber“ kollisionsfrei (0 Treffer). Minus 1 nicht für den Text, sondern für die Aktenlage: Stufe 3 führte eine Zählung „«Besuch» ×3 gegen «Reise» ×16“ als Beleg für eine Termbase-Regel, und die 16 sind ALLE Reise-Formen (darunter 3× Reiseführer und 1× Reiseplan); die Merklisten-Benennung „Meine Reise“ steht 8×. Eine Regel mit falscher Zahl wäre ins Gedächtnis eingegangen; korrigiert unten.",
+    "fit_10": "9 — der Zaun hat gehalten, und zwar an der Stelle, die in ج9 als «die Seite ist kaputt» gelesen wurde: kein Hotel, kein Restaurant, kein Preis, keine Jahreszeit, kein Destinationsvergleich, keine Artikelzahl, keine Erscheinungsfrequenz. „Ratgeber“ ist für den planenden DACH-Leser das Register, das er sucht (ADAC /reise-freizeit/ratgeber/). Minus 1 für #6: „Erlebnisse“ sagt dem Planenden nicht, ob dahinter Lesestoff oder buchbare Angebote liegen — eine Ambiguität, die die Quelle teilt und die ich nicht gegen den Zaun auflösen kann, die den Leser aber echtes Zögern gekostet hat.",
+    "structure_10": "10 — die vier Schlüssel sind zeichen- und reihenfolgengleich mit pack.json → strings; kein Schlüssel erfunden oder ausgelassen; keine Verdrahtung versucht, und der Verzicht ist an einem echten Build gemessen (C22: 38 % englische Textblöcke, 27/72, Schwelle 20 %; dazu C18 aus den englischen Karten) statt vermutet; Lead 111 Zeichen gegen ~160; der Titeltrenner bleibt bei titleSep('de'); blog.empty bleibt trotz Unrenderbarkeit in ui.de (Präzedenz plan.savedTwo/plan.savedFew), damit die Suche nicht auf Englisch zurückfällt."
+  },
+  "strings_final": {
+    "blog.eyebrow": "Ratgeber und Artikel",
+    "blog.title": "Al-Ahsa-Blog",
+    "blog.lead": "Praktisches Wissen und Geschichten aus der Oase – Reiserouten, Erlebnisse und alles, was Ihren Besuch abrundet.",
+    "blog.empty": "Noch keine Artikel – schauen Sie bald wieder vorbei."
+  },
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "rejected",
+      "why": "Zwei Vorwürfe, beide zurückgewiesen, aber nicht mit demselben Argument. (a) LOGIK („jeder Ratgeber IST ein Artikel“, «Äpfel und Obst»): der Befund ist richtig beobachtet — und er ist die Struktur der maßgeblichen Quelle selbst. Nachgemessen in ui.ts: ar blog.eyebrow «أدلة ومقالات» UND ar blog.back «← كل المقالات» — d. h. مقالات ist auch im Arabischen der Hausname für ein Stück dieses Blogs, die Quelle koppelt also ebenfalls Teilmenge mit Obermenge. Das Deutsche erfindet die Asymmetrie nicht, es erbt sie (die englische Fassung ist mit «stories» die einzige der drei, die sie umgeht). Eine Reparatur allein im Deutschen hätte genau zwei Formen, und beide sind teurer: eine Gattung aus der Autoritätsquelle streichen (bloßes „Ratgeber“) oder eine Publikationsgattung erfinden, die keine Quelle trägt und die der H1 „Al-Ahsa-Blog“ einen zweiten Namen gegenüberstellt („Magazin“, „Reportagen“ — in de-02/de-03 mit geschriebener Begründung verworfen). Der Befund gehört an die Quelle, nicht an diese Charge: als source_defect für Eyad protokolliert, damit er einmal für fünf Sprachen behoben wird. (b) REGISTER („Sprache der Verbraucher- und Versicherungsrubriken, nicht eines Reiseblogs“): widerlegt am nächstliegenden Beleg — adac.de/reise-freizeit/ratgeber/ trägt als H1 wörtlich «Ratgeber & Tests», also der deutsche Ratgeber-Index eines Reise- und Freizeitportals; dazu koppeln offizielle DACH-Portale Rubrikenbegriffe durchgehend, mit einer Überlappung, die ENGER ist als Hyponym+Hyperonym: austria.info «Veranstaltungen und Events» ist ein reines Synonympaar. „Äpfel und Obst“ beschreibt damit ein Muster, das deutschsprachiges Destinationsmarketing tatsächlich verwendet. Der Rest der Wirkung ist in der Nativeness-Achse bezahlt (−5), nicht weggeredet."
+    },
+    {
+      "n": 2,
+      "ruling": "rejected",
+      "why": "„Drei Namen für dieselbe Seite“ ist die veröffentlichte Struktur aller Indexseiten dieses Hauses, nicht ein Defekt dieser Charge: Eyebrow benennt die Gattung, H1 benennt die Seite („Reiseführer“ über „Sehenswürdigkeiten“, über „Souks, Parks und Farmen“, über „Karte“). Und die H1 MUSS das Wort „Blog“ tragen, weil nav.blog und crumb.blog beide „Blog“ sind (nachgesehen): eine H1 ohne den Namen wäre zeichengleich mit dem Navigationslabel unmittelbar darüber. Bleibt als echter Rest die Spannung aus #1, dort behandelt."
+    },
+    {
+      "n": 3,
+      "ruling": "rejected",
+      "why": "Die Tatsachenbehauptung der Beobachtung ist an der gebauten Seite falsch. Gemessen in dist/de/blog/index.html: der deutsche Footer sagt unmittelbar unter der Marke „الأحساء / VISIT AL-AHSA“ wörtlich „Eine Oase, die eine Geschichte erzählt. Unterwegs zwischen Oasen und Dattelpalmen.“ (foot.tagline, Zeile 62 des Textauszugs), und die Navigation trägt „Oasenfrüchte“ (Zeile 7). Die Angabe fehlt der Seite also nicht — sie fehlte dem AUSSCHNITT: blind-input.txt enthält nur Hero und Karten, ohne Kopf und Fuß. Das ist der protokollierte Fallstrick „was aus dem Zuschnitt fällt, steigt als Quellenmangel auf“; als Prozessbefund für die Charge 7 vermerkt (Zuschnitt mit Chrome). Inhaltlich ist der bestimmte Artikel zudem der der Quelle («from the oasis»), und die beiden Abhilfen wären teuer: „Oase Al-Ahsa“ stellt den Namen dreimal in ein Blickfeld (H1, Tab, Lead), „die größte Oase der Welt“ trägt dieser String nicht (C15-bewachte Aussage, in de-03 mit Grund abgelehnt)."
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "why": "Die gemeinsame Ergänzung ist die der Quelle («Practical guides and stories from the oasis», «أدلة عملية وحكايات من الواحة»), und „Wissen aus …“ ist im Deutschen eine lizenzierte Fügung (Wissen aus der Praxis, aus der Region, aus erster Hand) — nicht schief, nur weniger bildhaft als „Geschichten aus der Oase“. Die vorgeschlagene Auflösung („Wissen über die Oase und Geschichten von dort“) verlängert eine Zeichenkette, die zugleich meta description ist, und verengt die Ratgeber auf ein Thema, während sie tatsächlich aus der Oase kommen: das ist die in de-02 gemessene Ablehnung, und sie hält."
+    },
+    {
+      "n": 5,
+      "ruling": "rejected",
+      "why": "Der Befund ist ehrlich und die Achse dafür ist bezahlt (Nativeness −5), aber beide Vorschläge kosten mehr, als sie einbringen. „Praktische Tipps“: „Tipps“ verspricht Empfehlungen — Hotels, Restaurants, Preise —, die der Index nicht hält; das ist exakt der Zaun aus Falle 7 und der Defekt, den der deutsche Blindleser in ج9 als «die Seite ist kaputt» las. „Praxiswissen“: berufliches Register (Praxiswissen für Handwerker, für Steuerberater), im Reise-Hero ein Fachtonfall. „Praktisches Wissen“ ist korrektes, wenn auch nüchternes Deutsch und hält den Zaun."
+    },
+    {
+      "n": 6,
+      "ruling": "rejected",
+      "why": "„Erlebnisse“ ist der veröffentlichte deutsche Hausname genau dieser Kategorie — nachgezählt 3 Treffer in ui.de: cat.crafts.t „Erlebnisse und Handwerk“, foot.l.crafts, search.placeholder „Sehenswürdigkeiten, Erlebnisse, Orte suchen…“ — und es ist das wörtliche Quellwort («experiences», «تجارب»). Die vom Leser vermisste Unterscheidung kann dieser String nicht treffen, ohne den Zaun zu brechen: „Erlebnisberichte“ benennt eine Gattung, die KEINER der acht Artikel ist (keiner ist ein Ich-Bericht), und „buchbare Angebote“ verspricht, was diese Website nicht verkauft. Die Ambiguität ist die der Quelle und kostet einen Punkt in fit_10; das Wort bleibt, weil ein Leser, der die Website benutzt, „Erlebnisse“ als Kategorie schon kennt."
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "why": "DIE PRÄZEDENZ GEWINNT — und mit einer tragfähigeren Begründung, als Stufe 2 sie gegeben hat. Stufe 2 nannte det.nearby.h „Den Tag abrunden“ eine Hausanalogie; nachgesehen ist es mehr als das: det.nearby.h lautet en «Complete your day» / ar «أكمل يومك», d. h. das Haus übersetzt COMPLETE mit ABRUNDEN, und die arabische Quelle dieses Strings sagt «رحلة أوفى» — vollständiger, dasselbe Feld. Damit ist der Tausch belegt und nicht Geschmack. Vorwurf (b) — Widerspruch zum Satzanfang, „Beiwerk statt Wesentliches“ — geht fehl, weil die Nachrangigkeit die der QUELLE ist: en «and everything that makes for a fuller visit» und ar «وما يعينك على رحلة أوفى» setzen beide eine Generalklausel als drittes Glied hinter zwei benannte Gattungen; sie zu tilgen hieße die Quelle redigieren, nicht die Übersetzung. Vorwurf (a) — Prospektfloskel — ist ebenfalls zurückgewiesen, aber gegen einen messbaren Vergleich: die Floskel dieser Zeile war „bereichert“ (Stufe 1), und Stufe 2 hat sie ersetzt; „abrunden“ hat eine nachprüfbare Bedeutung (vollständig machen), und das ist «أوفى». WAS ER TROTZDEM GEGRIFFEN HAT, und was den Stufen 2–5 entgangen ist: der einzige veröffentlichte Gebrauch ist die Überschrift über NAHE ZUSATZZIELE — dort IST das Abgerundete die Zugabe. Der Verb-Beiklang der Nachrangigkeit wandert mit, und in einem Lead über den Kern des Index ist er unerwünscht. Das ist keine Korrektur wert (jede Alternative ist länger und schwächer: „vollständiger macht“, „runder macht“), es ist in der Nativeness-Achse bezahlt und als Reichweitengrenze in die termbase gepinnt: „abrunden“ gilt für die Zugabe, nicht für die Hauptsache. Der Widerspruch wird also nicht stillschweigend durchgelassen."
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "why": "Der ungleiche Bau ist der Bau der Quelle: «trip plans, experiences, and everything that …» / «خطط زيارة، تجارب، وما يعينك …» — zwei benannte Gruppen und eine Generalklausel. Ein drittes echtes Sachglied zu erfinden, damit der Rhythmus stimmt, hieße dem Index eine Ordnung zuzuschreiben, die er nicht hat (Falle 7 und der Zaun der Stufe 4)."
+    },
+    {
+      "n": 9,
+      "ruling": "out_of_scope",
+      "why": "Betrifft 24-hours-de.md, vor dieser Charge veröffentlicht. Geprüft und in der Sache BESTÄTIGT, aber nicht als deutscher Übersetzungsfehler: die Doppelung steht in allen Quellen — en «One Day in Al-Ahsa: A 24-Hour Itinerary for the Passing Visitor», ar «يوم واحد في الأحساء: جدول 24 ساعة لزائر عابر». Als source_defect protokolliert. Seine zweite Frage („bin ich gemeint?“) hat dagegen eine deutsche/englische Ursache, die ich nachgewiesen habe: der arabische Einstieg «وصلتَ الأحساء وصباحك فيها ومساؤك خارجها؟» erklärt «زائر عابر» (morgens da, abends weiter); en «In Al-Ahsa for a single day?» und de „Nur ein Tag in Al-Ahsa?“ haben diese Erklärung fallen gelassen, sodass „für Durchreisende“ im Titel unerklärt steht. Ebenfalls protokolliert."
+    },
+    {
+      "n": 10,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt, aber quellenseitig: «24-Stunden» / «24-Hour» / «24 ساعة» benennt Tag UND Nacht, der Plan läuft früher Morgen → Vormittag → Abend (Überschriften der Datei nachgesehen). Keine Sprache hat eine Nachtstation. source_defect, alle fünf Sprachen."
+    },
+    {
+      "n": 11,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt und schwerer als gemeldet: der Nachmittag fehlt nicht nur dem Anreißer, sondern dem ARTIKEL — die Überschriften von 24-hours-de.md sind „Früher Morgen“, „Vormittag“, „Abend“, „Wenn die Zeit reicht“, „Praktische Hinweise“. Die Lücke ist in allen Sprachen dieselbe und wird nirgends erklärt. Seine Vermutung zur Hitze übernehme ich nicht (er vermutet sie, die Seite sagt sie nicht); die Lücke ist als source_defect protokolliert."
+    },
+    {
+      "n": 12,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt und deutschseitig: der englische Anreißer verbindet mit «and» («then Qasr Ibrahim and the Al-Koot district …, and Qaisariyah Souq in the evening»), das Deutsche hat daraus „dann … sowie …“ gemacht — ein erzählendes und ein abhakendes Listenwort in einer Reihe. Kein Faktum berührt, reiner Stil, aber in einer veröffentlichten Datei. Als published_defect für den Sprachdurchgang der Charge 7 protokolliert; in dieser Charge nicht editierbar (sie umfasst vier ui.de-Strings)."
+    },
+    {
+      "n": 13,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt: im Anreißer steht „Qasr Ibrahim“ ohne Gattungswort, während die Nachbarn ihres tragen (Höhlen, Viertel, Souk) — und die Leseweise als Personenname ist nachvollziehbar. Bemerkenswert ist, dass dieselbe Datei es im Fließtext und in der FAQ RICHTIG macht („eine Festung und ein historisches Viertel“), die Glossenregel also erfüllt und nur die description leer lässt. Zwei Wörter Abhilfe („die Festung Qasr Ibrahim“); en teilt die Kahlheit. published_defect, nicht in dieser Charge."
+    },
+    {
+      "n": 14,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt, quellenseitig und in allen Sprachen: «Hofuf's heritage heart» / «قلب الهفوف التراثي» nennt Hofuf ohne ein Wort zum Verhältnis zu Al-Ahsa, und weil der Satz „Hofuf“ und „die Oase“ als zwei Tagesziele gegenüberstellt, entsteht die Lesart zweier getrennter Orte. source_defect."
+    },
+    {
+      "n": 15,
+      "ruling": "rejected",
+      "why": "Auf seinem eigenen Zeugen zurückgewiesen, und der Zeuge ist nachgeschlagen: er verlangt die Genitiv-Fuge und beruft sich auf «Dreitagesbart» — der Duden-Eintrag lautet „Dreitagebart“ OHNE s. Damit ist das fugenlose Muster standardsprachlich, und „Zwei-Tage-Route“ ist verteidigt (dass «Zweitagestour» mit s ebenfalls existiert, macht die Forderung zur Variante, nicht zur Regel). Die Datei ist außerdem in sich konsistent: „Zwei-Tage-Route“ steht auch in der FAQ von 24-hours-de.md. Keine Änderung, kein Eintrag."
+    },
+    {
+      "n": 16,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt, und die Diagnose ist präziser als die Meldung: die Quelle unterscheidet die beiden Rhythmen LEXIKALISCH — en Titel «at the Oasis's Pace» gegen Anreißer «by the rhythm of the day» —, das Deutsche hat für beide dasselbe Wort „Rhythmus“ genommen und damit eine Kollision geschaffen, die das Englische vermeidet (das Arabische hat sie mit zweimal «إيقاع» allerdings auch). Abhilfe gehört in den TITEL („im Tempo der Oase“), nicht in den Fließtext: „Rhythmus des Tages“ ist die fett gesetzte Hausformel und steht unter der Websiteregel, dass Pläne dem Tagesrhythmus und nicht Uhrzeiten folgen. published_defect für Charge 7."
+    },
+    {
+      "n": 17,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt — und der stärkste Kartenbefund des Berichts, weil er ein echter deutscher Übersetzungsfehler ist, nachweisbar durch Wortstellungsvergleich. Quelle: «one day for Hofuf's heritage heart, one for the oasis, its water and its coast, arranged by the rhythm of the day» / «يوم لقلب الهفوف التراثي، ويوم للواحة ومائها وساحلها، بمحطات مرتّبة على إيقاع النهار» — beide stellen die thematische Zweitagesteilung VORAN und hängen die Rhythmusangabe als Nachtrag an, und zwar bezogen auf die STATIONEN («بمحطات مرتّبة»). Das Deutsche hat die Reihenfolge umgekehrt („geordnet nach dem Rhythmus des Tages – ein Tag …, ein Tag …“) UND das Bezugswort Stationen fallen gelassen; dadurch kündigt der Satz eine Zeitordnung an und liefert eine Themenordnung. Genau an dieser Stelle hat der Leser den Faden verloren. Reparabel durch Wiederherstellung der Quellenreihenfolge. published_defect (de), Charge 7."
+    },
+    {
+      "n": 18,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt und quellenseitig: «one for the oasis, its water and its coast» / «ويوم للواحة ومائها وساحلها» — in allen drei Fassungen hängt die Küste am Possessiv der Oase, während sie Al-Ahsa als REGION gehört. Der Leser hat einen Sachwiderspruch gegriffen, keinen Stilfehler, und er gehört in dieselbe Familie wie die bereits protokollierte Quellenlast „Asfar: Bestandteil der Oase / nordöstlich davon“. Das Deutsche kann ihn nicht einseitig auflösen, ohne eine Zuordnung zu erfinden. source_defect, alle fünf Sprachen."
+    },
+    {
+      "n": 19,
+      "ruling": "out_of_scope",
+      "why": "Bestätigt, aber vorübergehend und bauartbedingt: „Jabal al-Qarah“ (de) und „Jabal Al-Qarah“ (en) sind die je eigene, absichtliche Konvention beider Sprachen — nachgesehen in src/content/attractions/jabal-al-qarah.md: title_en „Jabal Al-Qarah“, title_de „Jabal al-Qarah“. Die Mischung entsteht nur, weil der Index ein PARTIELLER Index ist und heute sechs englische Karten einstreut; nach Charge 7 sind alle acht Karten deutsch und die Abweichung verschwindet. Kein Eintrag, kein Defekt — aber als Prüfpunkt der Charge 7 vermerkt (nach der Verdrahtung ist zu belegen, dass auf der deutschen Seite nur noch die de-Schreibung steht)."
+    },
+    {
+      "n": 20,
+      "ruling": "rejected",
+      "why": "Beide Anmerkungen zurückgewiesen. (a) „Beiträge“ statt „Artikel“: „Artikel“ ist der veröffentlichte Hausname für ein Stück dieses Blogs — blog.back „Alle Artikel →“ und det.mentions.h „Artikel, die diese Sehenswürdigkeit erwähnen“, und im Arabischen ebenso («← كل المقالات»). „Beiträge“ gäbe einer Sache einen zweiten Namen, und genau das meidet dieses Haus. Dass die H1 „Blog“ sagt, ist kein Gegenargument: der Blog ist die Publikation, der Artikel das Stück. (b) „Ein Versprechen über einem Nichts“: gemessen unmöglich — BlogIndexView führt den deutschen Index als partiellen Index (posts.length === 0 tritt nie ein: acht Karten heute, acht nach den Chargen 2–7). Der String bleibt dennoch in ui.de, sonst fällt die Suche auf Englisch zurück (Präzedenz plan.savedTwo / plan.savedFew). Sein Urteil „verständlich, sofort, kein Behördendeutsch“ bestätigt im Übrigen den Eingriff der Stufe 2 („Die Artikel sind in Vorbereitung“ → „Noch keine Artikel“)."
+    }
+  ],
+  "judge_corrections": [],
+  "judge_corrections_note": "KEINE Korrektur — und das ist eine Entscheidung, nicht ein Durchwinken. Die beiden schweren Befunde des Blindlesers an meinen Strings (#6 „Erlebnisse“, #7 „abrundet“) sind mit Quellen- bzw. Präzedenzbelegen zurückgewiesen; jede der von ihm oder von mir geprüften Alternativen bricht entweder den Faktenzaun (Tipps, buchbare Angebote), erfindet eine Gattung (Magazin, Reportagen, Erlebnisberichte) oder ist schlechteres Deutsch (vollständiger macht, runder macht). Eine Redaktion nach Geschmack an dieser Stelle würde eine gemessene Kette umstoßen und die Prüfungen der Stufen 3–5 umgehen. Was bleibt, ist als Achsenabzug bezahlt (Nativeness 25) und als Reichweitengrenze gepinnt, nicht verschwiegen.",
+  "published_defects": [
+    {
+      "file": "src/content/blog/48-hours-de.md → description",
+      "issue": "Die Quellenreihenfolge ist umgekehrt und das Bezugswort fehlt: en «one day for Hofuf's heritage heart, one for the oasis …, arranged by the rhythm of the day» und ar «… بمحطات مرتّبة على إيقاع النهار» stellen die Zweitagesteilung voran und hängen die Rhythmusangabe als Nachtrag an die STATIONEN; das Deutsche stellt „geordnet nach dem Rhythmus des Tages“ an den Anfang und lässt „Stationen“ weg, sodass der Satz eine Zeitordnung ankündigt und eine Themenordnung liefert (Blindleser #17: „an der Gedankenstrich-Stelle den Faden verloren“). Abhilfe: Quellenreihenfolge wiederherstellen, z. B. „Ein praktischer Zwei-Tage-Plan für Al-Ahsa – ein Tag für das historische Herz von Hofuf, ein Tag für die Oase, ihr Wasser und ihre Küste, mit Stationen im Rhythmus des Tages.“",
+      "langs_affected": "de (en und ar sind korrekt gebaut)",
+      "for_owner": true
+    },
+    {
+      "file": "src/content/blog/48-hours-de.md → title vs. description",
+      "issue": "Ein deutsches Wort für zwei Quellwörter: en unterscheidet «at the Oasis's Pace» (Titel) von «by the rhythm of the day» (Anreißer), das Deutsche sagt beides mit „Rhythmus“ („im Rhythmus der Oase“ / „nach dem Rhythmus des Tages“) und stellt damit zwei Rhythmen auf eine Karte (Blindleser #16: „welcher Rhythmus?“). Abhilfe im TITEL, nicht im Text: „im Tempo der Oase“ — „Rhythmus des Tages“ ist die fett gesetzte Hausformel unter der Websiteregel, dass Pläne dem Tagesrhythmus folgen. (Das Arabische hat die Kollision mit zweimal «إيقاع» ebenfalls.)",
+      "langs_affected": "de primär; ar teilt die Kollision",
+      "for_owner": true
+    },
+    {
+      "file": "src/content/blog/24-hours-de.md → description",
+      "issue": "„… am frühen Morgen, dann Qasr Ibrahim … am Vormittag sowie der Qaisariyah-Souk am Abend.“ — „dann“ erzählt eine Abfolge, „sowie“ hakt eine Liste ab; das Englische verbindet beide Male mit «and». Reiner Stil, kein Faktum. Abhilfe: „… und am Abend der Qaisariyah-Souk“ oder „… und schließlich der Qaisariyah-Souk“ (Blindleser #12).",
+      "langs_affected": "de",
+      "for_owner": true
+    },
+    {
+      "file": "src/content/blog/24-hours-de.md → description",
+      "issue": "„Qasr Ibrahim“ steht ohne Gattungswort in einer Reihe, deren übrige Glieder ihres tragen (Höhlen, Viertel, Souk); der deutsche Leser liest „Ibrahim“ zuerst als Vornamen (Blindleser #13). Dieselbe Datei macht es im Fließtext und in der FAQ richtig („eine Festung und ein historisches Viertel“) — nur die description bleibt leer. Abhilfe: „die Festung Qasr Ibrahim“. (Die englische description teilt die Kahlheit.)",
+      "langs_affected": "de; en teilt den Befund",
+      "for_owner": true
+    }
+  ],
+  "source_defects": [
+    "ar blog.eyebrow «أدلة ومقالات» koppelt أدلة mit dem hauseigenen Gattungsnamen für ein Blogstück (ar blog.back «← كل المقالات»), also Teilmenge mit Obermenge. Der deutsche Blindleser hat es als «Äpfel und Obst» gelesen (#1). Die englische Fassung umgeht es mit «stories»; ar, de, zh und ru erben es. Zu entscheiden ist es einmal an der Quelle (zwei wirklich verschiedene Gattungen oder nur eine), nicht in vier Zielsprachen einzeln.",
+    "24-Stunden-Artikel, Titel: «One Day in Al-Ahsa: A 24-Hour Itinerary …» / «يوم واحد في الأحساء: جدول 24 ساعة …» sagt dieselbe Auskunft zweimal (ein Tag = 24 Stunden); nach dem Doppelpunkt erwartet der Leser Neues und bekommt eine Wiederholung. Alle fünf Sprachen (Blindleser #9).",
+    "24-Stunden-Artikel: «24 Stunden» benennt Tag und Nacht, der Plan läuft früher Morgen → Vormittag → Abend (Überschriften: Früher Morgen / Vormittag / Abend / Wenn die Zeit reicht). Keine Nachtstation in keiner Sprache (Blindleser #10).",
+    "24-Stunden-Artikel: Der Nachmittag fehlt dem ARTIKEL, nicht nur dem Anreißer — zwischen „Vormittag“ und „Abend“ klafft die halbe Tageszeit, und keine Sprache sagt, warum (Hitze, Ruhezeit, Mittagessen). Ein Tagesplan wirft damit die Frage auf, die er beantworten müsste (Blindleser #11). Die Hitze-Erklärung stammt vom Leser, nicht von der Seite; sie ist nicht einzusetzen, sondern von Eyad zu entscheiden.",
+    "24-Stunden-Artikel: Der arabische Einstieg «وصلتَ الأحساء وصباحك فيها ومساؤك خارجها؟» erklärt, was «زائر عابر» / «for the Passing Visitor» / „für Durchreisende“ meint (morgens da, abends weiter). en («In Al-Ahsa for a single day?») und de („Nur ein Tag in Al-Ahsa?“) haben diesen Satz nicht übernommen, sodass die Zielgruppenangabe im Titel unerklärt steht und der Leser fragt, ob er gemeint ist (Blindleser #9, zweite Hälfte). Betrifft en, de und die aus en übersetzten zh/ru.",
+    "48-Stunden-Artikel: «Hofuf» erscheint ohne ein Wort zum Verhältnis zu Al-Ahsa, und weil der Satz „Hofuf“ und „die Oase“ als zwei Tagesziele gegenüberstellt, entsteht die Lesart zweier getrennter Orte (Blindleser #14). Alle fünf Sprachen.",
+    "48-Stunden-Artikel: «one for the oasis, its water and its coast» / «ويوم للواحة ومائها وساحلها» hängt die Küste an das Possessiv der OASE, während sie Al-Ahsa als Region gehört — eine Oase mit eigener Küste ist ein Widerspruch in sich (Blindleser #18). Alle fünf Sprachen; dieselbe Familie wie die protokollierte Last „Asfar: Bestandteil der Oase / nordöstlich davon“ und «area_en east/northeast of Al-Ahsa»."
+  ],
+  "termbase_rules_to_pin": [
+    "GATTUNGSPAAR: „Reiseführer“ = der Eyebrow der Indexseiten (list.eyebrow, list2.eyebrow, map.eyebrow; Quelle «Visit guide») — für die Blog-Gattung NICHT verfügbar. „Ratgeber“ = der praktische Blogartikel (Eyebrow von /de/blog/, extern belegt: adac.de/reise-freizeit/ratgeber/ H1 «Ratgeber & Tests»). Bindet die Chargen 2–7, sobald in einem Artikeltext «guide» vorkommt.",
+    "„den Tag / den Besuch abrunden“ = en «complete» / «makes for a fuller …», ar «أكمل» / «أوفى» — NICHT „bereichern“ (Werbewort, sagt Reichtum statt Vollständigkeit). Belegt in det.nearby.h (en «Complete your day», ar «أكمل يومك») und ab jetzt in blog.lead. REICHWEITENGRENZE (Urteil dieser Charge zu Blindleser #7): der veröffentlichte Gebrauch ist eine Überschrift über ZUSATZZIELE, das Verb trägt also einen Beiklang der Nachrangigkeit. Es gilt für die Zugabe, nicht für die Hauptsache einer Seite; wo der Kern gemeint ist, ist ein Verb der Vollständigkeit zu suchen.",
+    "„Besuch“ = der Aufenthalt in Al-Ahsa (nav.planVisit „Besuch planen“, plan.printNote, det.visitInfo „Besuchsinformationen“) gegen „Reise“ = die Merkliste „Meine Reise“. ar «رحلة» in erzählender Bedeutung → „Besuch“, damit keine späte Charge auf die Funktion statt auf den Aufenthalt verweist. ZAHLENKORREKTUR zur Aktenlage: im veröffentlichten ui.de steht „Besuch*“ 3×, die Merklisten-Benennung „Meine Reise“ 8× (nicht 16 — die 16 sind ALLE Reise-Formen, darunter 3× „Reiseführer“ und 1× „Reiseplan“). Die Regel von Stufe 3 ist richtig, ihre Zahl war es nicht.",
+    "„Artikel“ ist der deutsche Name für ein Stück dieses Blogs (blog.back „Alle Artikel →“, det.mentions.h; ar «كل المقالات»). Verboten als Zweitname: „Beiträge“, „Posts“, „Storys“, „Reportagen“ (Blindleser #20 abgelehnt).",
+    "EYEBROW-KOPPLUNG: Die Hausbeobachtung „0 von 11 veröffentlichten deutschen Eyebrows koppelt zwei Substantive“ ist eine TENDENZ dieses Hauses, KEINE Regel des Deutschen — hier mit Quellen gegen eine Regel entschieden (ADAC «Ratgeber & Tests», austria.info «Veranstaltungen und Events», wien.info «Führungen und Touren», myswitzerland.com «Ski und Snowboard», Tages-Anzeiger «Reiseberichte, Tipps und Inspirationen»). Keine Charge darf sie so lesen, dass sie eine Gattung aus der Quelle streicht. Getrennt davon bleibt: Rubrikenkopplung nimmt „und“, nicht „&“ — „&“ ist auf die gemessene Familie „Souks & Parks“ unter Header-Breitenbudget beschränkt (3 Strings in ui.de, nachgezählt).",
+    "BLINDLESER-ZUSCHNITT (Prozessregel, aus Blindleser #3): Der Ausschnitt muss Kopf und Fuß der gebauten Seite enthalten. Hier fehlten sie, und der Leser meldete als Quellenmangel, dass die Seite Al-Ahsa nirgends als Oase ausweist — der deutsche Footer tut es unmittelbar unter der Marke (foot.tagline „Eine Oase, die eine Geschichte erzählt.“) und die Navigation trägt „Oasenfrüchte“."
+  ],
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "notes": [
+    "91 ≥ 90 (pass_threshold) → APPROVE in Schleife 1 von 3. Vier Strings gehen unverändert aus Stufe 2 hervor: Stufe 2 nahm zwei Änderungen vor (bereichert → abrundet; „Die Artikel sind in Vorbereitung“ → „Noch keine Artikel“), die Stufen 3, 4 und 5 keine — und das ist in allen drei Fällen an einem Gegenstand geprüft und nicht durchgewunken (Stufe 3: 11 not_added-Punkte; Stufe 4: die Kopplungsfrage erstmals extern entschieden; Stufe 5: 10/10 PASS mit Codepoint-Audit). Von 20 Blindleser-Beobachtungen betreffen 9 diese Charge (1–8, 20) und sind alle zurückgewiesen, 11 (9–19) die zwei vorher veröffentlichten deutschen Karten.",
+    "Eigene Nachmessung, nicht Übernahme der Stufenberichte: Zeichenlängen 20 / 12 / 111 / 52; 2× U+2013, beide mit U+0020 auf beiden Seiten; 0× U+2014 (C17), 0× U+00A0/U+2009/U+202F/U+2011/U+2010/U+200B/BOM; 0 Ziffern; kein «Souq» (C18); Schlüssel zeichengleich mit pack.json. In ui.de nachgezählt: „Ratgeber“ 0, „Reiseführer“ 3, „Artikel“ 2, „abrund“ 1, „Erlebnis“ 3, „ & “ in genau 3 Strings (nav.leisure, crumb.leisure, det.allLeisure), „Meine Reise“ 8 von 16 Reise-Formen. Und: blog.eyebrow/title/lead/empty fehlen im de-Block tatsächlich (keine Kollision beim Anwenden).",
+    "blog.empty ist UNRENDERBAR und bleibt dennoch: BlogIndexView führt den deutschen Index als partiellen Index, posts.length === 0 tritt nie ein (acht Karten heute — zwei deutsche, sechs englische —, acht nach den Chargen 2–7). Fiele der Schlüssel aus ui.de, würde die Suche auf Englisch zurückfallen; Präzedenz plan.savedTwo / plan.savedFew aus ج9.",
+    "blog.title trägt den Namen (Entscheidung bestätigt): „Al-Ahsa-Blog“ mit Durchkopplung — die blanke Leerstelle wäre ein Rechtschreibfehler —, weil bloßes „Blog“ zeichengleich mit nav.blog und crumb.blog wäre. Präzedenzen ru «Блог Аль-Ахсы», zh «哈萨博客», extern visitberlin.de/de/blog «Berlin-Blog». Die Namensdopplung im Tab («Al-Ahsa-Blog – Al-Ahsa») entsteht in der Titelkomposition, nicht in diesem String; sie ist eine Sache für Eyad (titleSep/site.name), und C17 bleibt unberührt.",
+    "Verdrahtung bleibt ausgesetzt und der Verzicht ist gemessen: ein Build mit verdrahtetem /de/blog/ ließ C22 bei 38 % englischen Textblöcken (27/72, Schwelle 20 %) scheitern, dazu C18 über «Souq» — beides aus den sechs englischen Karten, keines aus diesen vier Strings. Charge 7 verdrahtet nach den Artikelchargen 2–6 und prüft dabei drei Punkte dieses Urteils mit: C22/C18 grün, nur noch die de-Schreibung „Jabal al-Qarah“ auf der Seite (#19), und der Blindleser-Zuschnitt mit Kopf und Fuß (#3).",
+    "Aktenbefund am Rande, weil scores.csv das einzige Gedächtnis ist: die ج9-Zeile zu de-plan-1 schreibt die Korrektur als «Diese Liste hat Sie … erreicht» ⇐ «Sie haben diese Liste … erhalten» — die Pfeilrichtung ist vertauscht. judge.json der Charge und der angewandte Stand in ui.ts sind eindeutig: „Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin …“ ist das ERGEBNIS, die Personifizierung der Liste die verworfene Kalke. Eine späte Charge, die nur die Zeile liest, würde die Kalke wiederherstellen.",
+    "Geschrieben habe ich nur: BATCH/de-07-judge.json, memory/tm.json (+4 Paare) und memory/scores.csv (+1 Zeile). src/i18n/ui.ts habe ich NICHT angetastet — das Anwenden geschieht per Skript durch Eyad. termbase.json ebenfalls nicht beschrieben; die sechs Regeln oben gehen als termbase_rules_to_pin an ihn."
+  ]
+}

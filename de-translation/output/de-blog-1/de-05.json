@@ -1,0 +1,78 @@
+{
+ "strings": {
+  "blog.eyebrow": "Ratgeber und Artikel",
+  "blog.title": "Al-Ahsa-Blog",
+  "blog.lead": "Praktisches Wissen und Geschichten aus der Oase – Reiserouten, Erlebnisse und alles, was Ihren Besuch abrundet.",
+  "blog.empty": "Noch keine Artikel – schauen Sie bald wieder vorbei."
+ },
+ "checklist": [
+  {
+   "item": "1. Rechtschreibung (Duden, de-DE)",
+   "status": "PASS",
+   "detail": "Geprüft, nicht angenommen. (a) ß: kein Bedarf — aber das ist ein Befund, kein Leerlauf: die vier Strings enthalten ZWEI s-Laute, die zur Debatte stehen könnten, „Wissen“ und „Erlebnisse“, und beide folgen einem KURZEN Vokal, wo Duden ss verlangt und ß ein Fehler wäre. Geschrieben steht ss, also richtig; 0 Treffer für ß, und das ist korrekt, nicht versehentlich. Kein de-CH-Konflikt möglich, weil kein Langvokal/Diphthong vor s steht. (b) Substantivgroßschreibung, alle acht Substantive einzeln geprüft: Ratgeber, Artikel, Wissen (substantivierter Infinitiv), Geschichten, Oase, Reiserouten, Erlebnisse, Besuch — alle groß; „alles“ und „was“ (Indefinit-/Relativpronomen) korrekt klein. (c) Komposita zusammengeschrieben: „Reiserouten“ in einem Wort, keine Spaltschreibung. (d) Umlaute: 0 Vorkommen — per Codepoint-Inventar enthalten die vier Strings außer dem Halbgeviertstrich KEIN Zeichen über U+007F, also gibt es keinen Umlaut, der falsch stehen könnte."
+  },
+  {
+   "item": "2. Durchkopplung",
+   "status": "PASS",
+   "detail": "Genau EIN Eigennamenkompositum in der Charge: „Al-Ahsa-Blog“ (blog.title). Bindestrich gesetzt, blanke Leerstelle nicht vorhanden — geprüft per Codepoint (U+002D zwischen „Al“/„Ahsa“ und zwischen „Ahsa“/„Blog“, kein U+0020, kein U+2010/U+2011). Groß-/Kleinschreibung des Artikels nach _meta.style_rules.titel_regel: Artikel am Namensanfang groß („Al-“) — erfüllt. Kein Pleonasmus: der Name wird nicht durch einen Gattungsbegriff verdoppelt (kein „Al-Ahsa-Blog-Blog“, kein „Al-Ahsa-Oase-Oase“). Die übrigen drei Strings enthalten kein Eigennamenkompositum, also hat die Regel dort keinen Gegenstand."
+  },
+  {
+   "item": "3. Grammatik",
+   "status": "PASS",
+   "detail": "Vier Prüfungen mit Gegenstand. (a) Kasus: „Ihren Besuch“ ist Akkusativ Singular Maskulinum (der Besuch → den Besuch → Ihren Besuch) als direktes Objekt von „abrundet“ — korrekt; der Dativ „aus der Oase“ nach „aus“ ebenfalls korrekt (die Oase → der Oase). (b) Adjektivendung: „Praktisches Wissen“ starke Deklination, Neutrum Nominativ, Endung -es — korrekt; das Adjektiv regiert nur „Wissen“, nicht „Geschichten“, was grammatisch eindeutig und inhaltlich gewollt ist. (c) Satzklammer, zweimal geschlossen: im Relativsatz „was Ihren Besuch abrundet“ steht das finite Verb am Ende; in blog.empty schließt der Verbzusatz die Klammer des trennbaren Verbs vorbeischauen — „schauen Sie bald wieder vorbei“. (d) Genus der termbase-Namen: die Charge enthält einen einzigen Namen, „Al-Ahsa“, dessen Eintrag artikel „—“ führt; er steht hier artikellos, also ohne Genuskonflikt. Genitiv-s an einem Namen: kein Vorkommen, also kein Gegenstand."
+  },
+  {
+   "item": "4. Anrede",
+   "status": "PASS",
+   "detail": "Per Skript über alle vier Strings: 2 Höflichkeitsformen, beide großgeschrieben — „Ihren“ (blog.lead) und „Sie“ (blog.empty). 0 Treffer für du/dich/dir/dein*/euer* UND 0 für kleingeschriebenes „ihr“ (die Suche lief case-insensitive, damit ein klein geschriebenes Possessiv nicht durchfällt). Keine Mischung, weil die beiden Formen in verschiedenen Strings stehen und beide dem Sie-Paradigma folgen. blog.eyebrow und blog.title enthalten keine Anrede — Substantivlabels ohne Prädikat, also kein Gegenstand."
+  },
+  {
+   "item": "5. Termbase-Konformität 100 %",
+   "status": "PASS",
+   "detail": "Termbase per Suche geprüft (394 Einträge, nicht vollständig gelesen). Treffer mit Gegenstand: „Al-Ahsa“ → de „Al-Ahsa“, artikel „—“, Quelle Deutsche + Österreichische UNESCO-Kommission; im Text steht genau diese Form, also konform (und es ist der einzige Eigenname der Charge). Gegenprobe, damit „konform“ nicht bloß „nichts gefunden“ heißt: für die inhaltstragenden Wörter der Charge gibt es NACHWEISLICH keinen Eintrag, der sie anders vorschreibt — 0 Treffer für guide/article/stor*/Blog/Tipp/Reiseroute/abrund* in en+de aller Einträge, 1 Treffer für „Wissen“, der eine Fiqh-Glosse ist und hier nicht greift. „Ratgeber“ erscheint in der termbase nur als Quellenname (Duden-Sprachratgeber), ist also kein reservierter Begriff. Zusatzprobe am veröffentlichten ui.de-Block: „Ratgeber“ 0 Vorkommen (kollidiert also mit nichts), „Reiseführer“ 3 Vorkommen (list.eyebrow, list2.eyebrow, map.eyebrow — die reservierte Benennung, die hier korrekt NICHT verwendet wird), „Artikel“ 2 (blog.back, det.mentions.h — dieselbe Benennung wie im Eyebrow), „abrunden“ 1 (det.nearby.h), „Erlebnisse“ 3 (cat.crafts.t, foot.l.crafts, search.placeholder), „Geschichte/Geschichten“ 4. Kein Verstoß, keine Korrektur, kein neuer Eintrag."
+  },
+  {
+   "item": "6. Interpunktion",
+   "status": "PASS",
+   "detail": "Per Codepoint, nicht per Augenmaß. (a) Gedankenstriche: 2 Vorkommen, beide U+2013, und die Nachbarzeichen beider einzeln ausgelesen — je U+0020 davor UND dahinter. 0 Treffer für U+2014 (das C17 zum Bauabbruch bringt) sowie 0 für U+00A0, U+2009, U+202F, U+2011, U+2010, U+2212 und U+200B, also kein unsichtbares Zeichen, das den Konsistenzprüfer STILL scheitern lässt. (b) Komma vor dem Relativsatz: „alles, was Ihren Besuch abrundet“ — gesetzt. (c) Kein englisches serielles Komma: „Reiserouten, Erlebnisse und alles“ hat kein Komma vor „und“ — die deutsche Regel ist erfüllt und die Vorlage «trip plans, experiences, and everything» wurde dabei nicht mitkopiert. (d) Kleinschreibung nach dem Halbgeviertstrich in blog.empty („schauen“) geprüft und bestätigt: der Strich beendet keinen Ganzsatz, es beginnt also kein neuer, und die veröffentlichte Oberfläche ist hier eindeutig — im deutschen ui.de-Block folgt auf „– “ 17-mal ein Kleinbuchstabe und 0-mal ein Großbuchstabe, darunter die strukturgleichen search.empty „Keine Ergebnisse – versuchen Sie ein anderes Wort.“ und map.empty „Keine Ergebnisse – versuchen Sie ein anderes Wort oder eine andere Kategorie.“ (e) „…“-Anführungszeichen und Zahlenbereiche: 0 Vorkommen in den vier Strings, also kein Gegenstand — geprüft, nicht unterstellt (die „…“ in den Kommentarfeldern dieser Datei sind kein Seitentext)."
+  },
+  {
+   "item": "7. Zahlen, Datum, Währung, Hidschra",
+   "status": "PASS",
+   "detail": "Kein Gegenstand, und das ist gemessen: Skriptlauf über die vier Strings ergibt 0 Ziffern — weder lateinische 0–9 noch arabisch-indische ٠–٩. Damit existiert in dieser Charge keine Dezimalstelle, kein Tausenderpunkt, kein Datum, keine Uhrzeit-Spanne, kein SAR-Betrag und keine Hidschra-Angabe, die falsch formatiert sein könnte. Die Regeln (Dezimalkomma, Tausenderpunkt, „21. Juni 2026“, „10:00–17:00 Uhr“, „50 SAR“, „962 n. H. (1555 n. Chr.)“) bleiben unberührt, weil kein Zahlwert vorliegt."
+  },
+  {
+   "item": "8. Denglisch",
+   "status": "PASS",
+   "detail": "Skriptlauf gegen die Verbotsliste der termbase (_meta.style_rules.denglisch_verboten: Spot, Location, Must-see, Hotspot, Guide, Highlight bei Übermaß, Feeling, Vibe) plus Story/Storys/Stories: 0 Treffer, jeder Begriff einzeln mit Wortgrenze gesucht. „Highlight“ 0-mal, also unter der Obergrenze von einmal. „Blog“ kommt zweimal vor (blog.title) und ist ausgenommen: es steht nicht auf der Verbotsliste und ist als nav.blog und crumb.blog bereits veröffentlicht — hier bestätigt am ui.de-Block selbst, nicht aus dem Gedächtnis. Auch „Tipps“ ist nicht verwendet, obwohl es nicht verboten wäre."
+  },
+  {
+   "item": "9. Glossierung",
+   "status": "PASS",
+   "detail": "Kein Gegenstand, geprüft: die vier Strings enthalten kein arabisches Lehnwort und keinen fremdsprachigen Fachbegriff, der nach gloss_regel bei der ersten Nennung im Fließtext zu erklären wäre — 0 Vorkommen von Souk/Souq, Rubat, Fiqh, Madschlis, Faladsch o. Ä. Zudem gibt es in dieser Charge überhaupt keinen Fließtext: drei der vier Strings sind Labels bzw. Überschriften, und die Regel verbietet die Glosse in der Überschrift ausdrücklich. Der einzige Eigenname „Al-Ahsa“ ist kein Gattungsbegriff und wird nicht glossiert."
+  },
+  {
+   "item": "10. Struktur",
+   "status": "PASS",
+   "detail": "Was hier Gegenstand hat, sind die Feldnamen — und die sind byteweise geprüft: die vier Schlüssel in de-05 sind zeichen- UND reihenfolgengleich mit pack.json → strings (Hex-Vergleich je Schlüssel, alle vier true): blog.eyebrow, blog.title, blog.lead, blog.empty. Kein Schlüssel erfunden, keiner umbenannt, keiner ausgelassen. Frontmatter, Links, Bildpfade und Alt-Texte haben keinen Gegenstand: diese Charge ist eine Oberflächen-String-Charge in ui.de, keine Inhaltsseite — 0 Vorkommen von Markdown-Links, URLs oder /img/-Pfaden (geprüft, nicht angenommen). Die Meta-Beschreibung ist kein separater Text, sondern blog.lead selbst; nach _meta.style_rules.geltungsbereich gelten für sie dieselben Regeln, und sie erfüllt sie samt Länge (111 Zeichen, Grenze ~160). Ebenfalls unberührt: der Titeltrenner kommt von titleSep(\"de\"), nicht aus diesem String — deshalb steht in blog.title kein Trennzeichen."
+  }
+ ],
+ "fixes": [],
+ "char_audit": {
+  "u2013": 2,
+  "u2014": 0,
+  "u00a0": 0,
+  "u2009": 0,
+  "u202f": 0,
+  "lead_chars": 111
+ },
+ "notes": [
+  "Ergebnis: 10 × PASS, 0 FIXED, 0 Korrekturen. Die vier Strings gehen zeichengleich aus dieser Stufe hervor wie sie hereinkamen — programmatisch aus de-04.json übernommen und nicht neu eingetippt, damit kein Zeichen beim Abschreiben kippen kann (ein Halbgeviertstrich, der beim Tippen zu U+2014 wird, wäre genau der Fehler, den C17 später als Bauabbruch meldet).",
+  "Vier der zehn Punkte hatten in dieser Charge keinen Gegenstand (ß, Zahlen/Datum/Währung/Hidschra, Glossierung, und in Punkt 10 Frontmatter/Links/Bildpfade). Das ist als Ergebnis geprüft und nicht als Annahme durchgewinkt: das Codepoint-Inventar belegt, dass die vier Strings außer einem U+2013 kein Zeichen über U+007F enthalten (also kein Umlaut, kein ß, keine arabische Ziffer), der Ziffernscan liefert 0, und die Glossenregel findet kein Lehnwort. Der ß-Punkt ist dabei der lehrreichste: er hat keinen Bedarf, ABER die Charge enthält zwei ss-Stellen (Wissen, Erlebnisse), die nach kurzem Vokal stehen — dort wäre ß der Fehler, und ss steht richtig. Das ist ein Befund, nicht eine Leerstelle.",
+  "Sechs Punkte hatten Gegenstand und sind am Text gemessen: Großschreibung (acht Substantive einzeln), Durchkopplung (ein Kompositum), Kasus/Adjektivendung/Satzklammer (vier Stellen, zwei geschlossene Klammern), Anrede (zwei Sie-Formen, null du-Formen bei case-insensitiver Suche), Interpunktion (zwei Striche per Codepoint samt Nachbarzeichen, Komma vor „was“, kein serielles Komma, Kleinschreibung nach dem Strich), Denglisch (Verbotsliste einzeln mit Wortgrenzen) und Termbase (Suche plus Gegenprobe am veröffentlichten ui.de).",
+  "Beobachtet und ausdrücklich NICHT geändert, damit die Entscheidung sichtbar bleibt: blog.eyebrow nennt die Gattung „Artikel“, blog.lead sagt „Geschichten“. Das ist kein Bruch, sondern die maßgebliche arabische Quelle je Schlüssel — «أدلة ومقالات» (Artikel) im Eyebrow und «أدلة عملية وحكايات» (Geschichten) im Lead —, und beide Wörter sind im deutschen ui.de bereits veröffentlicht („Alle Artikel →“, „det.mentions.h“; „Geschichte/Geschichten“ 4-mal, u. a. home.cats.lead und home.route.s4.d). Ein Eingriff hier wäre ein Register-/Inhaltsentscheid, keine Korrektur — und die Gattungsfrage ist in Stufe 3 und 4 (mit externen Quellen) entschieden. Ich habe sie nicht neu aufgerollt.",
+  "Ebenfalls geprüft und stehen gelassen, weil es keine Rechtschreibfrage ist: „Al-Ahsa-Blog“ setzt den Oasennamen in den Tab-Titel, der ihn über site.name „Al-Ahsa“ (am ui.de verifiziert) ohnehin trägt. Das ist die von ru/zh geerbte, in Stufe 1–4 begründete Entscheidung; meine Zuständigkeit reicht auf die SCHREIBUNG dieses Namens — Bindestrich statt Leerstelle —, und die ist korrekt.",
+  "Bestätigung der Stufenkette, mechanisch statt auf Zusage: de-03 und de-04 sind in allen vier Strings zeichengleich (Stufe 4 meldete changes: 0, und der Vergleich bestätigt es). Diese Stufe fügt 0 hinzu, also ist der Text seit Stufe 2 unverändert.",
+  "Keine Datei des Repositorys angetastet: geschrieben wurde ausschließlich BATCH/de-05.json (UTF-8, ohne BOM — nach dem Schreiben per Byteprüfung bestätigt). src/i18n/ui.ts wurde nur GELESEN (als Beleg für die veröffentlichten Vergleichsstrings), termbase.json nur durchsucht, und de-01 bis de-04 bleiben unverändert."
+ ]
+}

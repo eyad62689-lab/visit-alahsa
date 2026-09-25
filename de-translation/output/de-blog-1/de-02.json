@@ -1,0 +1,48 @@
+{
+ "strings": {
+  "blog.eyebrow": "Ratgeber und Artikel",
+  "blog.title": "Al-Ahsa-Blog",
+  "blog.lead": "Praktisches Wissen und Geschichten aus der Oase – Reiserouten, Erlebnisse und alles, was Ihren Besuch abrundet.",
+  "blog.empty": "Noch keine Artikel – schauen Sie bald wieder vorbei."
+ },
+ "changes": [
+  {
+   "key": "blog.lead",
+   "before": "Praktisches Wissen und Geschichten aus der Oase – Reiserouten, Erlebnisse und alles, was Ihren Besuch bereichert.",
+   "after": "Praktisches Wissen und Geschichten aus der Oase – Reiserouten, Erlebnisse und alles, was Ihren Besuch abrundet.",
+   "why": "„bereichern“ ist Werbesprache und trifft die Quelle nicht: en «makes for a fuller visit» und ar «رحلة أوفى» sagen vollständiger, nicht reicher. Das deutsche Verb für genau diesen Gedanken ist im Haus bereits veröffentlicht – det.nearby.h „Den Tag abrunden“ – und „den Besuch abrunden“ ist die idiomatische Kollokation (etwas rundet den Besuch ab). Der Tausch ist damit belegt, nicht Geschmack: gleiche Aussage, zwei Zeichen kürzer (111 statt 113), und derselbe Leser liest „abrunden“ auf jeder Sehenswürdigkeitsseite wieder. Kein Faktum, keine Zahl, kein Eigenname berührt; Gedankenstrich U+2013 mit U+0020 unverändert."
+  },
+  {
+   "key": "blog.empty",
+   "before": "Die Artikel sind in Vorbereitung – schauen Sie bald wieder vorbei.",
+   "after": "Noch keine Artikel – schauen Sie bald wieder vorbei.",
+   "why": "Zwei Gründe, beide an der veröffentlichten ui.de gemessen. (1) Präsupposition: „Die Artikel“ setzt eine bekannte, bestimmte Menge voraus – in genau dem Zustand, den dieser String beschreibt (posts.length === 0), existiert diese Menge nicht, der bestimmte Artikel verweist also auf nichts. (2) Register und Satzbau: die drei veröffentlichten Leerzustände dieses Hauses eröffnen alle mit der Verneinung und folgen dem Muster „Zustand – Sie-Aufforderung“ – list.empty „Noch keine passenden Sehenswürdigkeiten.“, search.empty „Keine Ergebnisse – versuchen Sie ein anderes Wort.“, map.empty „Keine Ergebnisse – versuchen Sie ein anderes Wort oder eine andere Kategorie.“; dazu plan.empty.h „Ihre Liste ist noch leer“. „sind in Vorbereitung“ ist dagegen Nominalstil (= werden vorbereitet) und Behördenton. Das Versprechen der Quelle («on their way» / «في الطريق») trägt jetzt das „Noch“ zusammen mit „bald wieder vorbei“; es geht nicht verloren, es steht nur nicht mehr als Nominalgefüge da. Die Entscheidung der Stufe 1 gegen „unterwegs“ bleibt gewahrt (das Wort kommt nicht zurück), „Artikel“ nach blog.back bleibt, kein „erste“/„weitere“ und keine Zahl wird erfunden, und die Zeile wird 14 Zeichen kürzer (52 statt 66)."
+  }
+ ],
+ "kept": [
+  {
+   "key": "blog.eyebrow",
+   "why": "„und“ statt „&“ nicht angetastet: FALLE 1 ist eine Zählung, kein Geschmack – „&“ überlebt in drei Strings der Familie „Souks & Parks“ unter gemessenem Header-Breitenbudget, in neun anderen wird es „und“, und ein Hero-Eyebrow hat kein Breitenbudget. Ebenso bleiben „Artikel“ (veröffentlicht in blog.back und det.mentions.h) und „Ratgeber“ statt „Reiseführer“ (letzteres ist der Eyebrow dreier anderer Indexseiten aus einer anderen englischen Quelle, list.eyebrow/list2.eyebrow/map.eyebrow). Geprüft und verworfen: „Ratgeber und Reportagen“ – „Reportage“ wäre das feinere Magazin-Genre für «stories», gäbe dem Stück aber einen zweiten Namen und verstieße gegen die maßgebliche ar-Quelle «مقالات». Die Gattungsstufen-Asymmetrie (ein Ratgeber ist auch ein Artikel) steht so in beiden Quellen und wird nicht wegredigiert."
+  },
+  {
+   "key": "blog.title",
+   "why": "„Al-Ahsa-Blog“ unverändert: die Durchkopplung ist Rechtschreibung (eine blanke Leerstelle wäre ein Fehler), und die Alternative – bloßes „Blog“ – wäre zeichengleich mit nav.blog und crumb.blog, also eine H1, die die Brotkrume unmittelbar über sich wiederholt. Kein Artikel davor, weil alle veröffentlichten Seitentitel artikellos sind (list.title, list2.title, map.title, plan.title). Den Trenner setzt titleSep, C17 bleibt unberührt."
+  },
+  {
+   "key": "blog.lead",
+   "why": "Drei geprüfte Stellen bleiben stehen. (a) „aus der Oase“ gilt weiter für beide Glieder wie in der Quelle; „praktisches Wissen über die Oase“ würde die Fügung in zwei Präpositionalgruppen spalten, den Lead verlängern und die Ratgeber auf ein Thema verengen, während die Geschichten von dort stammen. (b) „Praktisches Wissen“ statt „Praktische Tipps“: „Tipps“ ist der idiomatischere Magazinton, verspricht aber Empfehlungen (Hotels, Restaurants, Preise), die der Index nicht hält – genau der Faktenzaun aus FALLE 7. (c) Kein „Al-Ahsa“ in den Lead eingefügt, obwohl er auch <meta name=\"description\"> ist: H1 („Al-Ahsa-Blog“) und Tab-Titel tragen den Namen bereits, im Hero stünde er sonst dreimal in einem Blickfeld. „Geschichten“ bleibt, weil beide Quellen im Lead «stories»/«حكايات» sagen (der Eyebrow benennt, der Lead beschreibt) und foot.tagline sowie home.cats.lead das Wort veröffentlicht führen."
+  },
+  {
+   "key": "blog.empty",
+   "why": "Der zweite Halbsatz bleibt wörtlich („schauen Sie bald wieder vorbei“) – gutes Deutsch und genau das veröffentlichte Muster von search.empty/map.empty. Der String bleibt außerdem im Output, obwohl er nie rendert (partieller Index: acht Karten heute, acht nach den Batches 2–7): fiele er aus ui.de, griffe die Suche auf Englisch zurück – Präzedenz plan.savedTwo / plan.savedFew in ج9."
+  }
+ ],
+ "notes": [
+  "Vier Oberflächenstrings, kein Fließtext: die Dienstanweisungen zu Nebensatzketten, Satzklammer und Nominalstil greifen nur dort, wo eine Zeile ein Satzgefüge baut – das war allein blog.empty (Nominalgefüge „sind in Vorbereitung“). Kürzen war der einzige Hebel, Verlängern wäre hier ein Fehler: blog.lead steht jetzt bei 111 Zeichen (Grenze ~160), blog.empty bei 52.",
+  "Faktenstand unberührt: keine Zahl, kein Datum, kein Eigenname, kein Link, keine Artikelzahl, keine Erscheinungsfrequenz und keine Kategorie hinzugefügt oder entfernt. Beide Änderungen liegen auf Verb- bzw. Determinativ-Ebene.",
+  "Zeichenprüfung per Codepoint am fertigen Output: zwei Gedankenstriche, beide U+2013 mit U+0020 auf jeder Seite; kein U+2014 (C17), kein U+00A0, kein U+2009, kein U+202F. In den vier Strings selbst stehen keine Anführungszeichen (die „…“ in changes/kept/notes sind Kommentar, nicht Ausgabe).",
+  "Sie-Form in beiden Verbalformen („Ihren Besuch“, „schauen Sie“); Duden-Orthographie; in diesen vier Strings kein ß-Bedarf; kein Denglisch (kein Guide/Story/Spot/Must-see/Hotspot/Location/Highlight), „Blog“ nur als der in nav.blog veröffentlichte Name; kein „Entdecken Sie“/„Erleben Sie“, kein Ausrufezeichen, kein gestapelter Superlativ.",
+  "Die Empfehlung der Stufe 1 an Stufe 7 übernehme ich: „Reiseführer“ = Eyebrow der Indexseiten (Sehenswürdigkeiten, Souks & Parks, Karte), „Ratgeber“ = Blogartikel. Sie bindet die Batches 2–7, sobald in einem Artikeltext «guide» vorkommt.",
+  "Zusatz aus dieser Redaktion für Stufe 7: „den Tag / den Besuch abrunden“ ist nun in zwei Oberflächenstrings belegt (det.nearby.h veröffentlicht, blog.lead neu) – bitte als deutsche Entsprechung von «fuller visit» / «أوفى» festhalten, damit keine späte Charge „bereichern“ schreibt."
+ ]
+}

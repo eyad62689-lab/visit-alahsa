@@ -1,0 +1,38 @@
+{
+ "strings": {
+  "blog.eyebrow": "Ratgeber und Artikel",
+  "blog.title": "Al-Ahsa-Blog",
+  "blog.lead": "Praktisches Wissen und Geschichten aus der Oase – Reiserouten, Erlebnisse und alles, was Ihren Besuch bereichert.",
+  "blog.empty": "Die Artikel sind in Vorbereitung – schauen Sie bald wieder vorbei."
+ },
+ "notes": [
+  "FALLE 1 (&): blog.eyebrow nimmt „und“, nicht „&“. Gemessen an der veröffentlichten ui.de überlebt «&» in genau drei Strings (nav.leisure, crumb.leisure, det.allLeisure — alle „Souks & Parks“ und alle unter einem gemessenen Header-Breitenbudget), während es in neun anderen Strings zu „und“ wird (nav.dine, foot.l.nature/crafts/taste, cat.nature.t/crafts.t/taste.t/events.t, foot.l.privacy, list2.title). Der Eyebrow im Seiten-Hero hat kein Breitenbudget, also gilt die gemessene Regel: „und“.",
+  "FALLE 2 (Reiseführer): „Reiseführer“ ist der veröffentlichte Eyebrow von list.eyebrow, list2.eyebrow und map.eyebrow — alle drei aus derselben englischen Quelle «Visit guide». Meine Quelle ist eine andere («Guides & stories»), also darf sie das Wort nicht übernehmen; sonst trügen vier Indexseiten einen Eyebrow, während die Quellen zwei sind. Ersatz ist „Ratgeber“: kein Denglisch (die termbase verbietet «Guide» und verweist auf „Reiseführer“, das hier belegt ist), im deutschen Medien- und Portalgebrauch genau die Gattung des praktischen Ratgeberartikels, und in den 199 veröffentlichten de-Strings noch unbelegt (0 Treffer), also ohne Kollision.",
+  "FALLE 3 (Artikel, nicht Geschichten — im Eyebrow): der veröffentlichte Name für ein Stück dieses Blogs ist „Artikel“, zweifach belegt auf Seiten, die derselbe Leser sieht: blog.back „Alle Artikel →“ und det.mentions.h „Artikel, die diese Sehenswürdigkeit erwähnen“. Das Englische sagt im Eyebrow «stories», das maßgebliche Arabische aber «أدلة ومقالات» — also *Artikel*, nicht *Geschichten*. Es ist eine Divergenz in der Beschreibung, nicht in einer Tatsache, und das Arabische entscheidet: Eyebrow = „Ratgeber und Artikel“. So trägt der Eyebrow die zwei Gattungen der Quelle und benennt das Stück mit dem einen veröffentlichten Wort.",
+  "Der Unterschied zwischen Eyebrow und Lead ist quellengetreu, nicht inkonsistent: im Lead sagen *beide* Quellen Geschichten («stories» / «حكايات»), also steht dort „Geschichten“ — stützend auch der veröffentlichte Gebrauch (home.route.s4.d „… eine der ältesten Geschichten des Islams …“, foot.tagline „Eine Oase, die eine Geschichte erzählt“). Damit „Geschichten“ nicht als zweiter Name desselben Dings gelesen wird, benennt der Eyebrow (Ratgeber/Artikel) und der Lead beschreibt (Wissen/Geschichten); „Ratgeber“ wird im Lead nicht wiederholt, weil Eyebrow und Lead zwei Zeilen untereinander stehen.",
+  "FALLE 4 (blog.title): ich trage den Namen — „Al-Ahsa-Blog“, mit Durchkopplung (eine blanke Leerstelle wäre ein Rechtschreibfehler). Begründung: der String ist zugleich H1, Tab-Titel und name im Blog-JSON-LD; als bloßes „Blog“ wäre er (a) identisch mit crumb.blog und nav.blog, also eine H1, die die Brotkrume direkt über sich wiederholt, und (b) im Schema und in einer Suchergebnisliste ohne Seitenkontext nichtssagend. Der Preis ist der Name zweimal im Tab („Al-Ahsa-Blog – Al-Ahsa“); den haben die beiden veröffentlichten Geschwister bereits akzeptiert (ru «Блог Аль-Ахсы», zh «哈萨博客»), und er trifft nur den Tab, während die Brotkrumen-Kollision auf dem Bildschirm selbst stünde. Kein Artikel davor („Der …“), weil alle veröffentlichten Seitentitel artikellos sind (list.title, list2.title, map.title, plan.title). Den Trenner – setzt das Template über titleSep, nicht ich; C17 bleibt unberührt.",
+  "FALLE 5 (blog.empty): nicht renderbar. Der Index ist ein partieller Index — er füllt fehlende deutsche Artikel mit der englischen Fassung auf, also acht Karten heute (2 de + 6 en) und acht nach den Batches 2–7; posts.length === 0 tritt nie ein. Der String wird trotzdem korrekt übersetzt und in ui.de gehalten, sonst fällt die Suche auf Englisch zurück — Präzedenz plan.savedTwo / plan.savedFew in ج9. Wortwahl „Artikel“ nach blog.back; „in Vorbereitung“ für «on their way» / «في الطريق» („unterwegs“ würde im Deutschen eine Lieferung suggerieren); ohne „erste“ oder „weitere“, weil beides eine Anzahl erfinden würde.",
+  "FALLE 6 (Budget blog.lead): 113 Zeichen (englische Quelle 116, Grenze ~160) — gemessen, nicht geschätzt. Damit schneidet keine Suchmaschine die description ab, und bei leadWidth={52} bleibt der Hero-Lead bei etwa drei Zeilen. Gedankenstrich U+2013 mit zwei normalen Leerzeichen U+0020; im ganzen Output kein U+00A0, kein U+2014, kein U+2009 (per Codepoint geprüft).",
+  "FALLE 7 (Faktenzaun): der Lead verspricht nur, was auf dem Index liegt. „Reiserouten“ ist nicht frei gewählt, sondern das veröffentlichte topic-Label beider deutschen Karten (24-hours-de.md und 48-hours-de.md tragen topic: „Reiserouten“) — der Leser sieht das Wort unmittelbar unter dem Lead wieder; „Erlebnisse“ deckt Handwerk und Erlebnisse ab und ist mit cat.crafts.t „Erlebnisse und Handwerk“ bereits veröffentlicht; der Rest (Souvenirs, Jabal al-Qarah, «lohnt sich der Besuch», die Hasawi-Limette zweimal) läuft unter „alles, was Ihren Besuch bereichert“. Keine Hotels, keine Restaurants, keine Preise, keine Artikelzahl, keine Erscheinungsfrequenz.",
+  "FALLE 8 (kein Wiring): die vier Strings gehen nur in ui.de; /de/blog/ wird in Batch 7 verdrahtet. Kein String beschreibt den Zustand der Seite am Tag der Verdrahtung (keine Zahl, kein „neu“, kein „bald auf Deutsch“), und keiner ist aus den sechs englischen Karten abgeleitet.",
+  "Formales: Sie-Form in beiden Verbalformen („Ihren Besuch“, „schauen Sie“), Duden-Orthographie, kein ß-Bedarf in diesen vier Strings, kein Denglisch (kein Guide/Story/Spot/Highlight/Location), keine Anführungszeichen im Output. Kein neuer Eigenname, daher termbase_additions leer.",
+  "Empfehlung an Stufe 7 (von mir nicht eingetragen, da kein Eigenname): die Aufteilung „Reiseführer“ = Indexseiten der Sehenswürdigkeiten/Souks/Karte gegen „Ratgeber“ = Blogartikel bindet die Batches 2–7, sobald in einem Artikeltext «guide» vorkommt. Bitte als Regel festhalten, damit keine späte Charge „Reiseführer“ in einen Blogtext schreibt."
+ ],
+ "termbase_additions": [],
+ "source_defects": [
+  {
+   "id": "de-blog-1-SD1",
+   "severity": "niedrig",
+   "affects": "alle fünf Sprachen (Quelle ar + en)",
+   "defect": "Dieselbe Inhaltsgattung wird auf einer Seite zweimal verschieden benannt: blog.eyebrow ar «أدلة ومقالات» (Artikel) gegen blog.lead ar «أدلة عملية وحكايات» (Geschichten) — zwei Zeilen untereinander im selben Hero. Das Englische glättet in die andere Richtung («stories» in beiden), während der veröffentlichte Gattungsname der Seite „Artikel“ ist (blog.back, det.mentions.h). Jede Übersetzung muss die Spannung selbst entscheiden; eine Angleichung der arabischen Quelle würde sie für alle Sprachen auflösen.",
+   "vorschlag": "Entscheidung von Eyad: soll der arabische Lead «حكايات» behalten oder auf «مقالات» angeglichen werden?"
+  },
+  {
+   "id": "de-blog-1-SD2",
+   "severity": "niedrig",
+   "affects": "alle Sprachen, die den Namen im blog.title tragen (ru, zh, jetzt de)",
+   "defect": "Der Tab-Titel entsteht als «<blog.title> – site.name», und die Quelle lautet «The Al-Ahsa Blog». Wer den Namen trägt, bekommt ihn zweimal in einem Tab („Al-Ahsa-Blog – Al-Ahsa“, «Блог Аль-Ахсы – Аль-Ахса»); wer ihn weglässt, bekommt eine H1, die die Brotkrume über sich wiederholt. Beide Wege sind Mängel der Titelkomposition, nicht der Übersetzung.",
+   "vorschlag": "Nur zur Kenntnis — lösbar allein im Template (Seitenname ohne Site-Namen, wenn der Seitenname den Site-Namen schon enthält)."
+  }
+ ]
+}
