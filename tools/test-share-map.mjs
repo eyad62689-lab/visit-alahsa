@@ -30,7 +30,7 @@ async function fresh({ share, clipboard }) {
   const page = await ctx.newPage();
   await page.setViewport({ width: 1280, height: 900 });
   const cdp = await page.createCDPSession();
-  await cdp.send('Network.setBlockedURLs', { urls: ['*googletagmanager.com*', '*google-analytics.com*', '*cartocdn.com*'] });
+  await cdp.send('Network.setBlockedURLs', { urls: ['*googletagmanager.com*', '*google-analytics.com*', '*tile.openstreetmap.org*'] });
   await page.evaluateOnNewDocument((share, clipboard) => {
     if (share) Object.defineProperty(navigator, 'share', { value: async (d) => { window.__shared = d; }, configurable: true });
     else Object.defineProperty(navigator, 'share', { value: undefined, configurable: true });

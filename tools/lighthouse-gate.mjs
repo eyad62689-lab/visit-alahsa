@@ -144,7 +144,7 @@ try {
       throttlingMethod: 'simulate',
       throttling: { cpuSlowdownMultiplier: mult },   // يُدمج مع بقية إعدادات mobileSlow4G الافتراضية
       // حجب الطرف الثالث: الحكم على ما نملكه لا على شبكة قوقل وبلاطات الخرائط
-      blockedUrlPatterns: ['*googletagmanager.com*', '*google-analytics.com*', '*cartocdn.com*', '*openfreemap.org*', '*amazonaws.com*'],
+      blockedUrlPatterns: ['*googletagmanager.com*', '*google-analytics.com*', '*tile.openstreetmap.org*', '*openfreemap.org*', '*amazonaws.com*'],
     });
     lhr = r.lhr;
     const a = lhr.audits;

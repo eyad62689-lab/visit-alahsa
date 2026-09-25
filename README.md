@@ -12,13 +12,12 @@
 
 | الصفحة | المكتبة | البلاطات | المفتاح |
 |---|---|---|---|
-| `/خريطة/` و`/en/map/` | Leaflet (مستضاف ذاتياً في `public/vendor/leaflet-1.9.4`) | CARTO light (`basemaps.cartocdn.com`) | بلا مفتاح |
+| `/خريطة/` و`/en/map/` | Leaflet (مستضاف ذاتياً في `public/vendor/leaflet-1.9.4`) | OpenStreetMap القياسية (`tile.openstreetmap.org`) | بلا مفتاح (CARTO صارت تشترطه منذ 2026-09-23) |
 | `/خريطة-تضاريس/` و`/en/terrain-map/` | MapLibre GL v6 (حزمة npm، تُحمَّل كسولاً) | أساس: OpenFreeMap Liberty (`tiles.openfreemap.org`) · ارتفاعات: Terrarium من AWS Open Data (`s3.amazonaws.com/elevation-tiles-prod`) | بلا مفتاح |
 
 شروط الإسناد (تظهر في شريط attribution داخل الخرائط ولا تُحذف):
 
-- **OpenStreetMap** — `© OpenStreetMap contributors` (أساس بيانات CARTO وOpenFreeMap معاً).
-- **CARTO** — إسناد `© CARTO` لبلاطات الخريطة التقليدية.
+- **OpenStreetMap** — `© OpenStreetMap contributors` (بلاطات الخريطة التقليدية وأساس بيانات OpenFreeMap).
 - **OpenFreeMap / OpenMapTiles** — إسناد النمط والبلاطات المتجهة للخريطة التضاريسية.
 - **Terrain: Joerd / AWS Open Data** — بلاطات الارتفاعات (Terrarium). مجانية بلا حساب ولا سقف استخدام.
 

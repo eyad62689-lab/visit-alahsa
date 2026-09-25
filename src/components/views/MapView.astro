@@ -153,10 +153,9 @@ const jsonLd = [
 
   {/* Leaflet مستضاف ذاتياً (كان يُحمَّل من unpkg.com وقت التشغيل) — يزيل تبعية خارجية
       ونقطة فشل، ويُسرّع أول ظهور للخريطة. المسار مُصدَّر بالإصدار فيُكسر الكاش تلقائياً
-      عند أي ترقية. بلاطات الخريطة تبقى من CARTO (مجانية بلا مفتاح) — نُهيّئ اتصالها مبكراً. */}
-  <link rel="preconnect" href="https://a.basemaps.cartocdn.com" />
-  <link rel="preconnect" href="https://b.basemaps.cartocdn.com" />
-  <link rel="preconnect" href="https://c.basemaps.cartocdn.com" />
+      عند أي ترقية. بلاطات الخريطة من OpenStreetMap القياسية بلا مفتاح — CARTO صارت تشترط مفتاحاً منذ
+      23 سبتمبر 2026 وتعيد لكل طلب بلا مفتاح بلاطة «API KEY REQUIRED». نُهيّئ اتصالها مبكراً. */}
+  <link rel="preconnect" href="https://tile.openstreetmap.org" />
   <link rel="stylesheet" href="/vendor/leaflet-1.9.4/leaflet.css" />
   <script is:inline src="/vendor/leaflet-1.9.4/leaflet.js"></script>
   {/* تجميع الدبابيس المتقاربة (marker clustering) — مستضاف ذاتياً؛ يمنع تراكب الدبابيس
@@ -172,7 +171,7 @@ const jsonLd = [
       // موقع سياحي — الإسناد نفسه يبقى كاملاً.
       const map = L.map(el, { scrollWheelZoom: false, attributionControl: false }).setView([25.42, 49.62], 11);
       L.control.attribution({ prefix: '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>' }).addTo(map);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19 }).addTo(map);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors', maxZoom: 19 }).addTo(map);
       // مساحة اللمس 24×24 (حدّ WCAG الأدنى) والنقطة المرئية تبقى 16px متمركزة
       const pin = (cat) => L.divIcon({ className: 'va-pin va-pin--' + cat, html: '<span></span>', iconSize: [24, 24], iconAnchor: [12, 12] });
 
