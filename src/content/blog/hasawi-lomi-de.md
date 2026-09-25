@@ -15,7 +15,7 @@ faq:
   - q: "Wann hat die Hasawi-Limette (Lomi) Saison?"
     a: "Ihre Saison ist der Sommer und beginnt etwa Mitte Juni – dieselbe Zeit, in der die Familien in Al-Ahsa zusammenkommen, um die Frucht zu pressen und als Vorrat für das ganze Jahr haltbar zu machen."
   - q: "Was ist „Jameed“?"
-    a: "Das ist die sonnengetrocknete Limette: ein liebgewonnener Brauch in Al-Ahsa, bei dem die Familien in der Sommersaison zusammenkommen, um die Hasawi-Limette zu pressen und haltbar zu machen – ein Vorrat, der übers ganze Jahr reicht."
+    a: "Das ist sonnengetrockneter Limettensaft: ein liebgewonnener Brauch in Al-Ahsa, bei dem die Familien in der Sommersaison zusammenkommen, um die Hasawi-Limette zu pressen. Der Saft reift danach in Glasgefäßen – ein Vorrat, der übers ganze Jahr reicht."
   - q: "Wann und wo findet die Hasawi-Lomi-Ausstellung statt?"
     a: "Die Hasawi-Lomi-Ausstellung findet jährlich im Spätsommer statt, im Al-Ahsa-Ausstellungszentrum in Hofuf, veranstaltet von der Al-Ahsa-Handelskammer. Die Termine und die Öffnungszeiten der aktuellen Ausgabe stehen immer auf unserer Seite zu dieser Ausstellung."
   - q: "Was kosten Eintrittskarten für die Hasawi-Lomi-Ausstellung?"
@@ -34,9 +34,9 @@ Die Hasawi-Lomi – vor Ort auch **Bin Zuhairi** genannt – ist eine kleine, du
 
 Die Saison der Lomi ist der Sommer; sie beginnt **etwa Mitte Juni** – also auf dem Höhepunkt der Hitze, wenn die Haine der Oase zugleich Rutab tragen, die frische Sommerdattel. Der Frucht an ihrem Baum begegnen Sie auf der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), einer Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken. Was die Oase in jeder Jahreszeit hervorbringt, zeigt der vollständige Rundgang auf der Seite [Oasenfrüchte](/de/fruits/).
 
-## Vom Baum in die Speisekammer: „Jameed“, die sonnengetrocknete Limette
+## Vom Baum in die Speisekammer: „Jameed“, der sonnengetrocknete Lomi-Saft
 
-Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und als **„Jameed“** (die sonnengetrocknete Limette) haltbar zu machen – ein Vorrat für das ganze Jahr. Verwendet wird sie frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte der Hasawi-Küche und der Golfregion.
+Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und haltbar zu machen. Was dabei entsteht, heißt **„Jameed“**: Der Lomi-Saft trocknet in der Sonne und reift in Glasgefäßen – ein Vorrat für das ganze Jahr. Verwendet wird die Lomi frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte der Hasawi-Küche und der Golfregion.
 
 ## In der Hasawi-Küche
 

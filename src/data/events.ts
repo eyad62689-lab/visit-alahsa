@@ -444,7 +444,7 @@ const TEXT_ZH: EventTexts = {
         h: '什么是哈萨青柠？',
         ps: [
           '哈萨青柠（本地品种名 Bin Zuhairi）果实小巧，色泽深绿，皮薄汁多，酸味强劲，香气馥郁独特，在众多柑橘类水果中自成一格。它是哈萨仅次于椰枣的第二大农产品：绿洲里生长着 10 万余棵挂果的青柠树，每棵每季可产 25 至 30 公斤。',
-          '围绕这种果实，还流传着一项地道的哈萨夏日习俗：家家户户齐聚一堂，榨汁封存，或制成晒制青柠干（当地称“贾米德”，jameed），以备全年取用——无论鲜食、榨汁还是晒干入馔，都是哈萨与海湾菜肴中不可或缺的风味。',
+          '围绕这种果实，还流传着一项地道的哈萨夏日习俗：家家户户齐聚一堂，榨汁封存，汁液经日晒陈放（当地称“贾米德”，jameed），以备全年取用——无论鲜食、榨汁还是晒干入馔，都是哈萨与海湾菜肴中不可或缺的风味。',
         ],
       },
       {
@@ -581,7 +581,7 @@ const TEXT_RU: EventTexts = {
         h: 'Что такое лайм Аль-Ахсы?',
         ps: [
           'Лайм Аль-Ахсы — сорт, также известный под названием «Бин Зухайри» и часто называемый лимоном Аль-Ахсы, — маленький тёмно-зелёный цитрус с тонкой кожурой, обильным соком, резкой кислинкой и характерным ароматом, который отличает его от прочих цитрусовых. Это вторая после фиников сельскохозяйственная культура Аль-Ахсы: в оазисе растёт более 100 000 плодоносящих деревьев лайма, и одно дерево даёт за сезон 25–30 кг.',
-          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид», или лайм, высушенный на солнце) и пользоваться им весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Залива.',
+          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: высушенный на солнце и выдержанный лаймовый сок) и пользоваться им весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Залива.',
         ],
       },
     ],
@@ -655,7 +655,7 @@ const TEXT_DE: EventTexts = {
         h: 'Was ist die Hasawi-Lomi?',
         ps: [
           'Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.',
-          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet als „Jameed“ (die sonnengetrocknete Limette) für die Hasawi- und Golfküche.',
+          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Hasawi- und Golfküche. Der sonnengetrocknete und gereifte Lomi-Saft heißt „Jameed“.',
         ],
       },
     ],
