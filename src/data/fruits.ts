@@ -63,7 +63,7 @@ export const FRUIT_GROUPS_AR: Group[] = [
         img: '/img/fruits/lomi-v2', alt: 'حبات اللومي الأحسائي الأخضر مع نصف ثمرة',
         k: 'الحمضيات', name: 'اللومي الأحسائي (البن زهيري)',
         season: 'صيفاً: من منتصف يونيو', seasons: 'summer',
-        pre: 'المنتج الزراعي الثاني في الأحساء بعد التمور. ثمرته صغيرة خضراء داكنة رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. تنتشر في الواحة أكثر من 100 ألف شجرة لومي مثمرة؛ إذ تنتج الشجرة الواحدة ما بين 25 و30 كيلوغراماً في الموسم. وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد» أو اللومي المشمّس) لاستعماله طوال العام. وتحتفي به المحافظة سنوياً في «معرض اللومي الحساوي» الذي تنظمه غرفة الأحساء بالشراكة مع هيئة تطوير الأحساء.',
+        pre: 'المنتج الزراعي الثاني في الأحساء بعد التمور. ثمرته صغيرة خضراء داكنة رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. تنتشر في الواحة أكثر من 100 ألف شجرة لومي مثمرة؛ إذ تنتج الشجرة الواحدة ما بين 25 و30 كيلوغراماً في الموسم. وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد»: عصير اللومي المشمّس المعتّق) لاستعماله طوال العام. وتحتفي به المحافظة سنوياً في «معرض اللومي الحساوي» الذي تنظمه غرفة الأحساء بالشراكة مع هيئة تطوير الأحساء.',
       },
       {
         img: '/img/fruits/atranj-v2', alt: 'ثمار الأترنج الخضراء المجعّدة القشرة',
@@ -179,7 +179,7 @@ export const FRUIT_GROUPS_EN: Group[] = [
         img: '/img/fruits/lomi-v2', alt: 'Green Hasawi limes with a cut half',
         k: 'Citrus', name: 'Hasawi Lime (Bin Zuhairi)',
         season: 'Summer: from mid-June', seasons: 'summer',
-        pre: 'Al-Ahsa\'s second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it (“jameed”, or sun-dried lime) for use all year. The governorate celebrates it annually at the Hasawi Lomi Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.',
+        pre: 'Al-Ahsa\'s second crop after dates. A small, dark-green, thin-skinned fruit bursting with juice, sharply tart with a piercing fragrance that sets it apart from all other citrus. More than 100,000 bearing lime trees spread across the oasis; a single tree yields 25–30 kg a season. A cherished Hasawi summer custom surrounds it: families gather to press and preserve it (“jameed”: lime juice sun-dried and aged) for use all year. The governorate celebrates it annually at the Hasawi Lomi Exhibition, organised by the Al-Ahsa Chamber in partnership with the Al-Ahsa Development Authority.',
       },
       {
         img: '/img/fruits/atranj-v2', alt: 'Green wrinkle-skinned atranj (citron) fruits',
@@ -298,7 +298,7 @@ export const FRUIT_GROUPS_ZH: Group[] = [
         img: '/img/fruits/lomi-v2', alt: '青绿色的哈萨青柠与一枚切开的半果',
         k: '柑橘类', name: '哈萨青柠（Bin Zuhairi）',
         season: '夏季：6 月中旬起', seasons: 'summer',
-        pre: '哈萨仅次于椰枣的第二大农作物。果实小巧、深绿薄皮、汁水丰盈，酸味强劲，香气清冽独特，在柑橘家族中自成一格。绿洲中挂果的青柠树超过 10 万棵，单棵每季可收获 25 至 30 公斤。当地至今保留着一项地道的夏日习俗：家家户户一起动手榨汁，晒制成青柠干（当地称“贾米德”/jameed）以备全年之用。每年由哈萨商会与哈萨发展管理局联合举办的“哈萨青柠展”（Hasawi Lomi Exhibition），更是当地的年度盛事。',
+        pre: '哈萨仅次于椰枣的第二大农作物。果实小巧、深绿薄皮、汁水丰盈，酸味强劲，香气清冽独特，在柑橘家族中自成一格。绿洲中挂果的青柠树超过 10 万棵，单棵每季可收获 25 至 30 公斤。当地至今保留着一项地道的夏日习俗：家家户户一起动手榨汁，汁液经日晒陈放（当地称“贾米德”，jameed）以备全年之用。每年由哈萨商会与哈萨发展管理局联合举办的“哈萨青柠展”（Hasawi Lomi Exhibition），更是当地的年度盛事。',
       },
       {
         img: '/img/fruits/atranj-v2', alt: '表皮皱缩的青色香橼果实',
@@ -416,7 +416,7 @@ export const FRUIT_GROUPS_RU: Group[] = [
         img: '/img/fruits/lomi-v2', alt: 'Зелёные лаймы Аль-Ахсы и половинка плода',
         k: 'Цитрусовые', name: 'Лайм Аль-Ахсы (или «Бин Зухайри»)',
         season: 'Лето: с середины июня', seasons: 'summer',
-        pre: 'Вторая после фиников сельскохозяйственная культура Аль-Ахсы. Плод маленький, тёмно-зелёный, тонкокожий и очень сочный; вкус у него резко кислый, а пронзительный аромат отличает его от всех других цитрусовых. В оазисе растёт более 100 000 плодоносящих деревьев лайма; одно дерево даёт за сезон 25–30 кг. С лаймом связан давний летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид», или лайм, высушенный на солнце) и пользоваться им весь год. Ежегодно в мухафазе (административном округе) Аль-Ахса лайму посвящают «Выставку лайма Аль-Ахсы», которую Торгово-промышленная палата Аль-Ахсы организует совместно с Управлением по развитию Аль-Ахсы.',
+        pre: 'Вторая после фиников сельскохозяйственная культура Аль-Ахсы. Плод маленький, тёмно-зелёный, тонкокожий и очень сочный; вкус у него резко кислый, а пронзительный аромат отличает его от всех других цитрусовых. В оазисе растёт более 100 000 плодоносящих деревьев лайма; одно дерево даёт за сезон 25–30 кг. С лаймом связан давний летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: высушенный на солнце и выдержанный лаймовый сок) и пользоваться им весь год. Ежегодно в мухафазе (административном округе) Аль-Ахса лайму посвящают «Выставку лайма Аль-Ахсы», которую Торгово-промышленная палата Аль-Ахсы организует совместно с Управлением по развитию Аль-Ахсы.',
       },
       {
         img: '/img/fruits/atranj-v2', alt: 'Зелёные плоды атранджа (или цитрона) с морщинистой кожурой',
@@ -535,7 +535,7 @@ export const FRUIT_GROUPS_DE: Group[] = [
         img: '/img/fruits/lomi-v2', alt: 'Grüne Hasawi-Limetten mit einer aufgeschnittenen Hälfte',
         k: 'Zitrusfrüchte', name: 'Hasawi-Limette (Bin Zuhairi)',
         season: 'Sommer: ab Mitte Juni', seasons: 'summer',
-        pre: 'Das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln. Die kleine, dunkelgrüne, dünnschalige Frucht steckt voller Saft, schmeckt kräftig-sauer und besitzt einen durchdringenden Duft, der sie von allen anderen Zitrusfrüchten unterscheidet. In der Oase stehen mehr als 100.000 tragende Limettenbäume; ein einzelner Baum liefert 25–30 kg pro Saison. Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie zu pressen und als „Jameed“ (die sonnengetrocknete Limette) für den Gebrauch übers ganze Jahr haltbar zu machen. Alljährlich feiert das Gouvernorat sie mit der Hasawi-Lomi-Ausstellung, veranstaltet von der Al-Ahsa-Handelskammer in Partnerschaft mit der Al-Ahsa-Entwicklungsbehörde.',
+        pre: 'Das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln. Die kleine, dunkelgrüne, dünnschalige Frucht steckt voller Saft, schmeckt kräftig-sauer und besitzt einen durchdringenden Duft, der sie von allen anderen Zitrusfrüchten unterscheidet. In der Oase stehen mehr als 100.000 tragende Limettenbäume; ein einzelner Baum liefert 25–30 kg pro Saison. Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie zu pressen und für den Gebrauch übers ganze Jahr haltbar zu machen. Der sonnengetrocknete und gereifte Limettensaft heißt „Jameed“. Alljährlich feiert das Gouvernorat sie mit der Hasawi-Lomi-Ausstellung, veranstaltet von der Al-Ahsa-Handelskammer in Partnerschaft mit der Al-Ahsa-Entwicklungsbehörde.',
       },
       {
         img: '/img/fruits/atranj-v2', alt: 'Grüne Atranj-Früchte mit runzliger Schale',
