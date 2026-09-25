@@ -39,7 +39,6 @@ The full craft tour — where each is made and how to see it live — is in the 
 - [Qaisariyah Souq](/en/attractions/qaisariyah/) — the heart of heritage shopping for over two centuries: bishts, frond-work, dates, coffee and spices. Entry is free, and evening is its best hour.
 - [Craftsmen Souq](/en/attractions/craftsmen-souq/) — 112 shops run by the craftspeople themselves in historic central Hofuf, with a traditional coffee house and a tannour bakery.
 - [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — pottery at its source, by Jabal Al-Qarah.
-- And the cluster of adjoining souqs in Hofuf's heart — among them [Al-Hamidiyah Souq](/en/attractions/hamidiyah-souq/), rebuilt as part of the historic downtown development.
 
 ## Make Shopping the Close of Your Day
 

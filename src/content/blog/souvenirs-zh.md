@@ -39,7 +39,6 @@ faq:
 - [凯撒利亚集市](/zh/attractions/qaisariyah/)——200 多年来一直是遗产市集购物的中心：比什特长袍、棕榈叶编织品、椰枣、咖啡与香料。免费入场，傍晚是它最好的时候。
 - [手工艺人市集](/zh/attractions/craftsmen-souq/)（Craftsmen Souq）——在胡富夫历史城区的中心，112 家店铺由手艺人自己经营，另有一家传统咖啡馆和一家坦努尔泥炉面包坊。
 - [加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)——卡拉山下，陶器的源头。
-- 还有胡富夫市中心的那几座市集，彼此相邻，连成一片——其中就有在历史城区开发项目中重建的[哈米迪耶市集](/zh/attractions/hamidiyah-souq/)（Al-Hamidiyah Souq）。
 
 ## 把逛街留作一天的收尾
 
