@@ -30,17 +30,54 @@ const rendered = (line, file) => {
 
 /* ---- نصُّ الصفحة كما يقرؤه الزائر ---- */
 const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&nbsp;': ' ', '&apos;': "'" };
+// ماسحٌ محرفاً محرفاً لا تعبيرٌ نمطيّ: التعبيرُ النمطيّ على الوسوم مصفاةٌ ناقصةٌ بطبعها
+// (‏`<SCRIPT>` والتعليقاتُ والاقتباسُ داخل السمات) — وCodeQL يسمه `bad-tag-filter` بحقّ.
+// والماسحُ يعرف السياق فيصيب، ولا يدّعي تنقيةً أصلاً: مخرجُه نصٌّ خامٌّ يقرؤه إنسان.
+const RAW = new Set(['script', 'style', 'svg']);          // محتواها ليس نصّاً معروضاً
+const BLOCK = new Set(['p', 'div', 'section', 'article', 'li', 'h1', 'h2', 'h3', 'h4',
+  'tr', 'figcaption', 'blockquote', 'details', 'summary']);
 const visible = (html) => {
-  let s = html
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?<\/style>/gi, '')
-    .replace(/<svg[\s\S]*?<\/svg>/gi, '')
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/<\/(p|div|section|article|li|h1|h2|h3|h4|tr|figcaption|blockquote|details|summary)>/gi, '\n')
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<[^>]+>/g, '');
-  s = s.replace(/&#?\w+;/g, (m) => ENT[m] ?? (/^&#(\d+);$/.test(m) ? String.fromCodePoint(+m.slice(2, -1)) : m));
-  return s.split('\n').map((l) => l.replace(/[ \t]+/g, ' ').trim()).filter(Boolean).join('\n');
+  let out = '';
+  let i = 0;
+  const n = html.length;
+  while (i < n) {
+    const c = html[i];
+    if (c !== '<') { out += c; i++; continue; }
+    if (html.startsWith('<!--', i)) {                      // تعليق
+      const e = html.indexOf('-->', i + 4);
+      i = e === -1 ? n : e + 3;
+      continue;
+    }
+    // اسمُ الوسم
+    let j = i + 1;
+    const closing = html[j] === '/';
+    if (closing) j++;
+    let name = '';
+    while (j < n && /[A-Za-z0-9]/.test(html[j])) name += html[j++];
+    name = name.toLowerCase();
+    // نهايةُ الوسم، مع احترام الاقتباس داخل السمات
+    let k = j;
+    let q = '';
+    while (k < n) {
+      const d = html[k];
+      if (q) { if (d === q) q = ''; }
+      else if (d === '"' || d === "'") q = d;
+      else if (d === '>') break;
+      k++;
+    }
+    const tagEnd = k < n ? k + 1 : n;
+    if (!closing && RAW.has(name)) {                       // تخطَّ محتواها إلى وسم إغلاقها
+      const close = html.toLowerCase().indexOf(`</${name}`, tagEnd);
+      if (close === -1) { i = n; continue; }
+      const ce = html.indexOf('>', close);
+      i = ce === -1 ? n : ce + 1;
+      continue;
+    }
+    if (name === 'br' || (closing && BLOCK.has(name))) out += '\n';
+    i = tagEnd;
+  }
+  out = out.replace(/&#?\w+;/g, (m) => ENT[m] ?? (/^&#(\d+);$/.test(m) ? String.fromCodePoint(+m.slice(2, -1)) : m));
+  return out.split('\n').map((l) => l.replace(/[ \t]+/g, ' ').trim()).filter(Boolean).join('\n');
 };
 
 const slugOf = (base, lg) =>
