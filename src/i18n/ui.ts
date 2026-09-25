@@ -683,6 +683,9 @@ export const ui = {
     'det.unesco': '联合国教科文组织世界遗产十二处组成部分之一',
     'det.mentions.h': '相关文章',
     'foot.l.unesco': '联合国教科文组织世界遗产',
+    // زرّ متجر معرض اللومي — خط zh-translation-pipeline (دفعة zh-dind-2، المرحلة د1)
+    'ev.shop': '选购展品',
+    'ev.shopNote': '青柠产品、食品与个人护理用品，均来自参展商家。',
   } as Record<string, string>,
   // الألمانية (de-DE) — قاموس جزئي على سابقة الصينية. **دفعة نصوص الواجهة لم
   // تمرّ بخط de-translation-pipeline بعد**، فكل مفتاح غائب يتراجع للإنجليزية
