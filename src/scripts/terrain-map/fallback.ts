@@ -47,8 +47,8 @@ export async function initLeafletFallback(host: HTMLElement, cfg: TmapCfg, opts:
   // prefix صريح: بادئة Leaflet الافتراضية تحمل علماً سياسياً — الإسناد يبقى كاملاً
   const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
   L.control.attribution({ prefix: '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>' }).addTo(map);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
     maxZoom: 19,
   }).addTo(map);
 

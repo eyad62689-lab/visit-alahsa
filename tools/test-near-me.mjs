@@ -38,7 +38,7 @@ async function fresh(granted) {
   const page = await ctx.newPage();
   await page.setViewport({ width: 1280, height: 900 });
   const cdp = await page.createCDPSession();
-  await cdp.send('Network.setBlockedURLs', { urls: ['*googletagmanager.com*', '*google-analytics.com*', '*cartocdn.com*'] });
+  await cdp.send('Network.setBlockedURLs', { urls: ['*googletagmanager.com*', '*google-analytics.com*', '*tile.openstreetmap.org*'] });
   // الرفض: كروم المقطوع لا يحسم الإذن (يبقى prompt والطلب معلّقاً بلا مهلة)، فنحاكي
   // ردّ الرفض نفسه (PERMISSION_DENIED = 1) الذي يعيده المتصفح الحقيقي عند رفض الزائر
   if (!granted) await page.evaluateOnNewDocument(() => {
