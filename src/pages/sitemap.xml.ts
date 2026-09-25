@@ -67,8 +67,8 @@ export const GET: APIRoute = async ({ site }) => {
       if (!okAr && !okEn) return [];
       const a = diningAlt(e.data);
       const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
-      // والألمانية والروسية متى حملت المنشأة body_de (ج7) أو body_ru (ب6) — على سابقة الإقامة تحته
-      if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), lastmod }];
+      // والصينية والألمانية والروسية متى حملت المنشأة body_zh (د1) أو body_de (ج7) أو body_ru (ب6)
+      if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.zh ? { zh: a.zh } : {}), ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), lastmod }];
       return [{ ar: okAr ? a.ar : a.en, lastmod }];
     }),
     // صفحات أماكن الإقامة المفردة — العتبة نفسها وحارسها نفسه
@@ -80,7 +80,7 @@ export const GET: APIRoute = async ({ site }) => {
       if (!okAr && !okEn) return [];
       const a = stayAlt(e.data);
       const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
-      if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), lastmod }];
+      if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.zh ? { zh: a.zh } : {}), ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), lastmod }];
       return [{ ar: okAr ? a.ar : a.en, lastmod }];
     }),
     // صفحات الفعاليات المفردة — تُقرن بالمعرّف id لا بالترتيب؛ النسخة الصينية كاملة

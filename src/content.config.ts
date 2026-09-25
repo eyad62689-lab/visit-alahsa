@@ -245,6 +245,8 @@ const dining = defineCollection({
     body_ru: z.string().optional(),
     // والألماني من خط de-translation-pipeline حصراً — بوابة صفحة /de/restaurants-cafes/<slug>/ (ج7)
     body_de: z.string().optional(),
+    // والصيني من خط zh-translation-pipeline حصراً — بوابة صفحة /zh/restaurants-cafes/<slug>/ (د1)
+    body_zh: z.string().optional(),
   }),
 });
 
@@ -291,6 +293,8 @@ const stay = defineCollection({
     body_ru: z.string().optional(),
     // والألماني بوابة صفحة /de/stay/<slug>/ بالآلية نفسها
     body_de: z.string().optional(),
+    // والصيني بوابة صفحة /zh/stay/<slug>/ بالآلية نفسها (د1)
+    body_zh: z.string().optional(),
   }),
 });
 
