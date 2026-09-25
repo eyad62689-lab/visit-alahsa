@@ -39,7 +39,6 @@ Wo jedes dieser Handwerke entsteht und wie Sie dabei zusehen können, steht im [
 - [Qaisariyah-Souk](/de/attractions/qaisariyah/) – seit mehr als zwei Jahrhunderten das Herz des traditionellen Einkaufs: Umhänge, Palmblattgeflecht, Datteln, Kaffee und Gewürze. Der Besuch ist kostenlos, und der Abend ist seine beste Zeit.
 - [Handwerker-Souk](/de/attractions/craftsmen-souq/) – 112 Geschäfte im historischen Zentrum von Hofuf, von den Handwerkern selbst betrieben, dazu ein traditionelles Kaffeehaus und eine Bäckerei mit Tanur (Lehmofen).
 - [Dougha Al-Gharash](/de/attractions/duqat-algharash/) – Töpferwaren an ihrem Ursprungsort, am Jabal al-Qarah.
-- Dazu das Ensemble benachbarter Souks im Herzen von Hofuf – darunter der [Al-Hamidiyah-Souk](/de/attractions/hamidiyah-souq/), im Rahmen der Entwicklung der historischen Innenstadt wiederaufgebaut.
 
 ## Machen Sie den Einkauf zum Ausklang Ihres Tages
 

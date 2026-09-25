@@ -15,7 +15,7 @@ faq:
   - q: "When is the Hasawi lime in season?"
     a: "Its season is summer, starting from around mid-June — the same season in which Hasawi families gather to press and preserve it for the whole year."
   - q: "What is jameed?"
-    a: "It is the sun-dried lime: a cherished Hasawi custom in which families gather in the summer season to press and preserve the lomi, laying in a supply used throughout the year."
+    a: "It is sun-dried lime juice: a cherished Hasawi custom in which families gather in the summer season to press the lomi, then sun-dry and age the juice in glass jars as a supply used throughout the year."
   - q: "When and where is the Hasawi Lomi Exhibition held?"
     a: "Annually in late summer, organised by the Al-Ahsa Chamber, at the Al-Ahsa Expo Center in Hofuf. The current edition's dates and opening hours are always published on the exhibition's page on this site."
   - q: "How much are tickets to the Hasawi Lomi Exhibition?"
@@ -34,9 +34,9 @@ The Hasawi lomi — known locally as **Bin Zuhairi** — is a small, dark-green,
 
 The lomi's season is summer, starting **from around mid-June** — arriving at the height of the heat, just as the oasis's groves are also busy with summer rutab. To meet the fruit on its tree, there is the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), a citrus farm where visitors pick the famous Hasawi lime (lomi) in season. For what the oasis bears in every season, take the full tour on the [seasonal fruits page](/en/fruits/).
 
-## From Tree to Pantry: Jameed, the Sun-Dried Lime
+## From Tree to Pantry: Jameed, the Sun-Dried Lime Juice
 
-A cherished Hasawi summer custom surrounds the lomi: in its season, families gather to press and preserve it — the practice known as **"jameed"**, or sun-dried lime — laying in a supply for the whole year. It is used fresh, as juice, and dried, perfuming the dishes of Hasawi and Gulf cooking all year round.
+A cherished Hasawi summer custom surrounds the lomi: in its season, families gather to press and preserve it — the practice known as **"jameed"**: lime juice sun-dried and aged in glass jars — laying in a supply for the whole year. It is used fresh, as juice, and dried, perfuming the dishes of Hasawi and Gulf cooking all year round.
 
 ## In the Hasawi Kitchen
 
