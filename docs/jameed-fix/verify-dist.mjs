@@ -100,6 +100,41 @@ for (const lg of ['ar', 'en']) {
   RIGHT[lg].test(ld) ? ok(`${lg}: FAQPage يحمل الصحيح`) : no(`${lg}: FAQPage بلا التعريف الصحيح`);
 }
 
+/* ===== [١-ب] تعريف الجميد في de · zh · ru — الصفحات الثلاث لكل لغة ===== */
+// المقاييس ترتكز على **المرجع** لا على صياغةٍ بعينها: الخاطئ أن يُسمَّى الجميدُ الثمرةَ،
+// والصحيح أن يُسمَّى العصير. فلا تنكسر إن غيّر الحاكمُ صوغاً.
+const WRONG3 = {
+  de: /sonnengetrocknete Limette(?!n)/,
+  zh: /青柠干/,
+  ru: /джамид[»*\s]*[,:]?\s*или\s+лайм|Это\s+лайм,\s*высушенн|джамид\s+—\s+лайм,/u,
+};
+const RIGHT3 = {
+  de: /Limettensaft|Lomi-Saft/,
+  zh: /日晒青柠汁|汁液经日晒/,
+  ru: /лаймов(ый|ого|ом|ым)\s+сок|сока,?\s*высушенн/u,
+};
+const PAGES3 = (lg) => [
+  [`${lg} · مقال اللومي`, slug('hasawi-lomi', lg)],
+  [`${lg} · ثمار الواحة`, `${lg}/fruits/index.html`],
+  [`${lg} · معرض اللومي`, `${lg}/events/hasawi-lomi-exhibition/index.html`],
+];
+console.log('\n[١-ب] تعريف الجميد في de · zh · ru');
+const lomi3 = {};
+for (const lg of ['de', 'zh', 'ru']) {
+  for (const [label, p] of PAGES3(lg)) {
+    const s = read(p);
+    if (!s) { no(`${label}: ${p} غير موجودة`); continue; }
+    if (label.includes('مقال')) lomi3[lg] = s;
+    WRONG3[lg].test(s) ? no(`${label}: التعريف الخاطئ (الثمرة) ما يزال منشوراً`) : ok(`${label}: الخاطئ غائب`);
+    RIGHT3[lg].test(s) ? ok(`${label}: الصحيح (العصير) منشور`) : no(`${label}: الصحيح غير منشور — حارسٌ فارغ`);
+  }
+  const s = lomi3[lg]; if (!s) continue;
+  const ld = [...s.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]).join('\n');
+  if (!/FAQPage/.test(ld)) { no(`${lg}: لا FAQPage`); continue; }
+  WRONG3[lg].test(ld) ? no(`${lg}: FAQPage يحمل التعريف الخاطئ (يظهر في قوقل)`) : ok(`${lg}: FAQPage نظيف`);
+  RIGHT3[lg].test(ld) ? ok(`${lg}: FAQPage يحمل الصحيح`) : no(`${lg}: FAQPage بلا التعريف الصحيح`);
+}
+
 console.log('\n[حارس سلبي] مقال تاريخ اللومي لم يُمسّ في اللغات الخمس');
 for (const lg of ['ar', 'en', 'de', 'zh', 'ru']) {
   const s = read(slug('hasawi-lomi-history', lg));
@@ -143,6 +178,26 @@ must(!RIGHT.en.test(lomiSrc.en.replace(/lime juice sun-dried/gi, 'X').replace(/s
 // ١ ضبطٌ سالب: الصيغة الصحيحة لا تُقرأ خطأً
 must(!WRONG.ar.test('«الجميد»: عصير اللومي المشمّس المعتّق في أوعية زجاجية'), 'الصيغة العربية الصحيحة لا تُوسم خطأً');
 must(!WRONG.en.test('**"jameed"**: lime juice sun-dried and aged in glass jars — laying'), 'الصيغة الإنجليزية الصحيحة لا تُوسم خطأً');
+
+// ١-ب: الصيغُ الخاطئةُ الثلاثُ في كل لغة — واحدةٌ لكل شكلٍ حمله العطب
+must(WRONG3.de.test('Das ist die sonnengetrocknete Limette: ein liebgewonnener Brauch'), 'de جواب FAQ الخاطئ');
+must(WRONG3.de.test('## Vom Baum in die Speisekammer: „Jameed“, die sonnengetrocknete Limette'), 'de عنوان H2 خاطئ');
+must(WRONG3.de.test('getrocknet als „Jameed“ (die sonnengetrocknete Limette) für die'), 'de بطاقة خاطئة');
+must(WRONG3.zh.test('就是晒制青柠干：一项地道的哈萨习俗'), 'zh جواب FAQ الخاطئ');
+must(WRONG3.zh.test('或制成晒制青柠干（当地称“贾米德”，jameed）'), 'zh بطاقة خاطئة');
+must(WRONG3.ru.test('Это лайм, высушенный на солнце: подлинный обычай'), 'ru جواب FAQ الخاطئ');
+must(WRONG3.ru.test('## От дерева до кладовой: джамид — лайм, высушенный на солнце'), 'ru عنوان H2 خاطئ');
+must(WRONG3.ru.test('называют **«джамид»**, или лайм, высушенный на солнце.'), 'ru متن خاطئ');
+must(WRONG3.ru.test('его («джамид», или лайм, высушенный на солнце) и пользоваться'), 'ru بطاقة خاطئة');
+// ١-ب ضبطٌ سالب: الصيغةُ المعتمدة لا تُقرأ خطأً — وهو الطرفُ الذي يكشف حارساً فضفاضاً
+must(!WRONG3.de.test('Das ist sonnengetrockneter Limettensaft: ein liebgewonnener Brauch'), 'de الصحيح لا يُوسم خطأً');
+must(!WRONG3.de.test('Der sonnengetrocknete und gereifte Limettensaft heißt „Jameed“.'), 'de الشفّافة لا تُوسم خطأً');
+must(!WRONG3.zh.test('就是日晒青柠汁：一项地道的哈萨习俗'), 'zh الصحيح لا يُوسم خطأً');
+must(!WRONG3.ru.test('Это лаймовый сок, высушенный на солнце и выдержанный в стеклянных банках:'), 'ru الصحيح لا يُوسم خطأً');
+// ١-ب عكسياً: إزالةُ الصحيح تُرصد (لا حارسَ فارغ)
+must(!RIGHT3.de.test('Das ist sonnengetrocknete Frucht ohne Saftwort'), 'de غياب الصحيح');
+must(!RIGHT3.zh.test('就是一项地道的哈萨习俗，没有那个词'), 'zh غياب الصحيح');
+must(!RIGHT3.ru.test('Это подлинный обычай Аль-Ахсы без того слова'), 'ru غياب الصحيح');
 
 console.log(`  ← أمسك ${bpass} · فوّت ${bfail}`);
 if (bfail) fail += bfail;
