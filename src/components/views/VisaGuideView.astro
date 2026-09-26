@@ -137,6 +137,8 @@ const jsonLd = [
   .vg-sec :global(.vg-tbl:focus-visible) { outline: 2px solid var(--c-turq); outline-offset: 2px; }
   .vg-sec :global(.vg-tbl table) { min-inline-size: 760px; }
   .vg-sec :global(.vg-tbl td) { overflow-wrap: anywhere; }
+  /* داخل الخلايا الضيقة لا ينكسر الوسم بين سطرين («لم» وحدها ثم «يُتحقَّق منه») */
+  .vg-sec :global(.vg-tbl mark.vg-unverified) { white-space: nowrap; }
 
   /* «قدّم الآن…»: زرّ بلغة أزرار الموقع (btn--turq) */
   .vg-sec :global(.vg-cta) { margin-block: var(--s-4) 0; }
