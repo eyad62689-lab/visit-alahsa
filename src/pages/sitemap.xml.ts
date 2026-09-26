@@ -10,6 +10,8 @@ import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt } from '../lib/r
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
 import { isUnlisted } from '../i18n/unlisted';
+import { TRAILS } from '../data/trails';
+import { trailAlt, trailsIndexHref } from '../lib/trails';
 
 type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; lastmod?: string };
 
@@ -42,6 +44,9 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
+    // المسارات المقترحة (2026-09-26) — عربي/إنجليزي فقط، التاريخ من ملف البيانات وقالبها
+    { ar: trailsIndexHref('ar'), en: trailsIndexHref('en'), lastmod: dateOf(`${V}TrailsIndexView.astro`, 'src/data/trails.json') },
+    ...TRAILS.map((tr) => ({ ...trailAlt(tr), lastmod: dateOf(`${V}TrailView.astro`, 'src/data/trails.json') })),
     { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
     // مقالات المدونة — الاقتران بحقل key المشترك بين لغاته (ar/en/zh/de/ru منذ الخطوة 10).
     // التاريخ من ترويسة المقال نفسه (أحدث نسخة): هو إعلان الكاتب، وأوثق من تاريخ الالتزام.

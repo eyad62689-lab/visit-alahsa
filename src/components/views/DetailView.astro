@@ -17,6 +17,7 @@ import { ogDefault } from '../../lib/og';
 import { kmBetween, distLabel } from '../../lib/distance';
 import ShareButton from '../ShareButton.astro';
 import { mentionsOf } from '../../lib/related';
+import { isTrailLang, trailHref, trailsForAttraction } from '../../lib/trails';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -212,6 +213,12 @@ const nearby = a.location
         dist: distLabel(n.km, lang),
       }))
   : [];
+
+// «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم — عربي/إنجليزي فقط
+// (لا صفحات مسارات بلغات أخرى). الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
+const inTrails = isTrailLang(lang)
+  ? trailsForAttraction(a.slug_en, await getCollection('attractions')).map((tr) => ({ href: trailHref(tr, lang), title: tr[lang].title, tagline: tr[lang].tagline, slug: tr.slug }))
+  : [];
 ---
 <Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
@@ -380,6 +387,22 @@ const nearby = a.location
       </section>
     )}
 
+    {inTrails.length > 0 && (
+      <section class="container trails-sec" data-reveal data-part-of-trails>
+        <h2 class="mn-h">{t('trails.partOf')}</h2>
+        <ul class="mn-list">
+          {inTrails.map((tr) => (
+            <li>
+              <a class="mn-link" href={tr.href} data-track="related_click" data-track-kind="trail" data-track-item-id={tr.slug}>
+                <span class="mn-t">{tr.title}</span>
+                <span class="trl-d">{tr.tagline}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     <section class="container back-sec">
       <a href={attractionsHref} class="btn btn--turq back-btn">{backLabel}</a>
     </section>
@@ -510,6 +533,9 @@ const nearby = a.location
   .mn-link:hover { border-color: var(--c-turq); }
   .mn-k { color: var(--c-gold-deep); }
   .mn-t { font-weight: 600; color: var(--c-turq-deep); line-height: 1.5; }
+  /* ضمن المسارات (2026-09-26) — القشرة نفسها لقسم المقالات */
+  .trails-sec { padding-block: var(--s-6) 0; }
+  .trl-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.6; }
   .nearby-sec { background: var(--c-sand-2); padding-block: var(--s-6); }
   .nb-h { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-1) var(--s-4); }

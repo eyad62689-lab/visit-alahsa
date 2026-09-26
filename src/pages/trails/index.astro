@@ -1,0 +1,7 @@
+---
+import TrailsIndexView from '../../components/views/TrailsIndexView.astro';
+import { trailsIndexHref } from '../../lib/trails';
+// عربي/إنجليزي فقط — لا نظير zh/de/ru لقسم المسارات
+const alt = { ar: trailsIndexHref('ar'), en: trailsIndexHref('en') };
+---
+<TrailsIndexView lang="ar" alt={alt} />

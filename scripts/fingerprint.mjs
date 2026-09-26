@@ -199,6 +199,21 @@ async function main() {
     push({ id: id(url), type: 'blog', lang, title: fmField(fm, 'title'), url, phrase, published: fmField(fm, 'pubDate') })
   }
 
+  // المسارات المقترحة (2026-09-26): عربي/إنجليزي فقط — لا صفحات بغيرهما. المقدّمة ونصوص
+  // المحطات تُصيَّر نصاً خاماً (لا ماركداون ولا smartypants)، وكل نصّ عنصرٌ مستقل ينتهي بنقطة،
+  // فالجملة المختارة لا تعبر حدّ عنصرين. (اقتباس الحديث في <q> مضمَّن داخل الجملة نفسها.)
+  const trailsData = JSON.parse(await readFile(join(ROOT, 'src', 'data', 'trails.json'), 'utf8'))
+  for (const t of [...trailsData.trails].sort((a, b) => a.order - b.order)) {
+    for (const lang of ['ar', 'en']) {
+      const url = lang === 'ar' ? `${SITE}/trails/${t.slug}/` : `${SITE}/en/trails/${t.slug}/`
+      // الجملة الحاملة لنصّ الحديث المشكول تُستبعد: نصٌّ منقول في آلاف المواقع لا يصلح بصمةً
+      // (كل من يقتبس الحديث سيبدو ناسخاً)
+      const text = [t[lang].intro, ...t.stops.map((s) => s[lang].text)].join(' ').replace(/\s+/g, ' ').trim()
+        .split(/(?<=[.!؟?…])\s+/).filter((s) => !(s.match(/«[^»]*»/g) ?? []).some((q) => [...q].some((c) => c.charCodeAt(0) >= 0x64b && c.charCodeAt(0) <= 0x652))).join(' ')
+      push({ id: id(url), type: 'trail', lang, title: t[lang].title, url, phrase: pickPhrase(text, taken) })
+    }
+  }
+
   await mkdir(dirname(OUT), { recursive: true })
   // لا إعادة كتابة إن لم تتغيّر البصمات: كان الطابع generated يتبدّل مع كل
   // بناء فيتّسخ المستودع بتغيير لا معنى له في كل `npm run build`.

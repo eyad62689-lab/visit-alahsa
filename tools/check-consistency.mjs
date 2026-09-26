@@ -10,6 +10,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { checkTrails, EXPECT } from './check-trails.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -1184,6 +1185,27 @@ async function main() {
     if (pageSets.size < 300) fail('C26', `الحارس صار فارغاً: ${pageSets.size} صفحة تحمل hreflang — المتوقع ≥300`);
     else if (problems.length) fail('C26', `تبادل hreflang: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C26', `${pageSets.size} صفحة تحمل hreflang، ${reciprocal} رابط نظير كلها متبادلة بالمجموعة نفسها وx-default عربي`);
+  }
+
+  // ── C27: المسارات المقترحة (2026-09-26) ─────────────────────────────────
+  // المنطق في tools/check-trails.mjs (دالة نقية يختبرها الكسر في الذاكرة)؛ هنا القراءة فقط:
+  // المصدر src/data/trails.json وصفحات /trails/ و/en/trails/ في dist.
+  {
+    const data = JSON.parse(await readText(path.join(ROOT, 'src/data/trails.json')));
+    const pages = {};
+    for (const [l, base] of [['ar', 'trails'], ['en', path.join('en', 'trails')]]) {
+      const dir = path.join(DIST, base);
+      const idxPath = path.join(dir, 'index.html');
+      const trails = new Map();
+      for (const e of existsSync(dir) ? await readdir(dir, { withFileTypes: true }) : []) {
+        const fp = path.join(dir, e.name, 'index.html');
+        if (e.isDirectory() && existsSync(fp)) trails.set(e.name, await readText(fp));
+      }
+      pages[l] = { index: existsSync(idxPath) ? await readText(idxPath) : null, trails };
+    }
+    const { problems, stats } = checkTrails(data, pages);
+    if (problems.length) fail('C27', `المسارات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C27', `المسارات: ${EXPECT.trails} صفحات بكل لغة (ar/en) و${stats.ar.stops}/${stats.en.stops} محطة و${stats.ar.badges}/${stats.en.badges} شارة يونسكو على المحطات المسمّاة وحدها و${stats.ar.landmarks}/${stats.en.landmarks} رابط معلم و${stats.ar.sources}/${stats.en.sources} مصدراً بـtarget=_blank rel=noopener؛ النصوص حرفية والإسناد في رأس الفهرس وذيل كل مسار وملاحظة اليونسكو مرة واحدة ولا وصف رسمي في العناوين والوسوم`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────
