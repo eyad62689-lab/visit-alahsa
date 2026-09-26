@@ -1,0 +1,11 @@
+---
+import TrailView from '../../components/views/TrailView.astro';
+import { TRAILS, type Trail } from '../../data/trails';
+import { trailAlt } from '../../lib/trails';
+
+export function getStaticPaths() {
+  return TRAILS.map((trail) => ({ params: { slug: trail.slug }, props: { trail } }));
+}
+const { trail } = Astro.props as { trail: Trail };
+---
+<TrailView trail={trail} lang="ar" alt={trailAlt(trail)} />

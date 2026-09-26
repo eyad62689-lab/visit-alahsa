@@ -1,0 +1,230 @@
+---
+// صفحة المسار المقترح — /trails/<slug>/ و/en/trails/<slug>/ (عربي/إنجليزي فقط، 2026-09-26).
+//
+// النصوص كلها من src/data/trails.json حرفياً (ملف المالك المدقَّق) — لا مسافات ولا مواعيد
+// ولا رسوم في متن المسار (editorialRules): البيان التشغيلي في صفحة المعلم، ورابطها تحت
+// كل محطة مطابَقة. شارة اليونسكو حيث unesco: true وحده، وملاحظتها مرة واحدة في الصفحة.
+// الإسناد (meta.attribution) في ذيل الصفحة إلزامي — والكل يحرسه C27 على dist.
+//
+// الخريطة: محطات المسار المرتبطة بمعلم فقط، بإحداثيات المعلم المخزّنة (location) —
+// لا دبوس ولا إحداثيات مختلَقة لمحطة بلا معلم. Leaflet المستضاف ذاتياً وبلاطات OSM
+// القياسية بلا مفتاح (نمط MapView بعد #79).
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { TRAIL_META, TRAIL_SOURCES, type Trail } from '../../data/trails';
+import { stopAttraction, trailsIndexHref, type TrailLang } from '../../lib/trails';
+import { attractionHref } from '../../lib/routes';
+import { absUrl, breadcrumb } from '../../lib/schema';
+
+interface Props { trail: Trail; lang: TrailLang; alt: AltLinks; }
+const { trail, lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const tx = trail[lang];
+const all = await getCollection('attractions');
+
+// نصّ الحديث في محطة جواثى مضمَّن وسط الجملة بين «…»: يُعزل في <q> بلا أي تغيير في
+// المحارف (quotes: none فلا يضيف المتصفح علامات تنصيص) — المقطع الذي يحمل التشكيل وحده.
+// الحارس: الأجزاء مجموعةً تساوي النص الأصلي بايتاً ببايت وإلا فشل البناء.
+// التشكيل: الفتحتان حتى السكون (U+064B–U+0652) — بأرقام المحارف لا بمحارفها المركّبة غير المرئية
+const hasHarakat = (s: string) => [...s].some((c) => c.charCodeAt(0) >= 0x64b && c.charCodeAt(0) <= 0x652);
+const splitQuote = (text: string): [string, string, string] | null => {
+  const m = text.match(/«[^»]*»/g)?.find(hasHarakat);
+  if (!m) return null;
+  const i = text.indexOf(m);
+  const parts: [string, string, string] = [text.slice(0, i), m, text.slice(i + m.length)];
+  if (parts.join('') !== text) throw new Error(`عزل الاقتباس غيّر نص المحطة: ${text.slice(0, 40)}…`);
+  return parts;
+};
+
+const stops = trail.stops.map((s, i) => {
+  const att = stopAttraction(s, all);
+  return {
+    n: i + 1,
+    key: s.key,
+    name: s[lang].name,
+    text: s[lang].text,
+    quote: splitQuote(s[lang].text),
+    unesco: s.unesco,
+    href: att ? attractionHref(att.data, lang) : undefined,
+    loc: att?.data.location,
+    sources: s.sources.map((k) => ({ key: k, ...TRAIL_SOURCES[k] })),
+  };
+});
+const pins = stops.filter((s) => s.loc && s.href).map((s) => ({ n: s.n, name: s.name, href: s.href!, lat: s.loc!.lat, lng: s.loc!.lng }));
+const unescoCount = stops.filter((s) => s.unesco).length;
+const idxHref = trailsIndexHref(lang);
+const labels = { landmark: t('trails.landmark'), stop: t('trails.stop') };
+
+const pageUrl = absUrl(altHref(alt, lang));
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: tx.title,
+    description: tx.intro,
+    url: pageUrl,
+    inLanguage: lang,
+    itinerary: {
+      '@type': 'ItemList',
+      numberOfItems: stops.length,
+      itemListElement: stops.map((s) => ({
+        '@type': 'ListItem',
+        position: s.n,
+        item: {
+          '@type': 'TouristAttraction',
+          name: s.name,
+          ...(s.href ? { url: absUrl(s.href) } : {}),
+        },
+      })),
+    },
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('trails.title'), path: idxHref },
+    { name: tx.title, path: altHref(alt, lang) },
+  ]),
+];
+---
+<Base title={`${tx.title} ${titleSep(lang)} ${t('site.name')}`} description={tx.tagline} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={t('trails.title')} title={tx.title} lead={tx.tagline} leadWidth={56} motif="center" lang={lang}>
+      <dl class="trd-meta">
+        <div><dt>{t('trails.duration')}</dt><dd>{t(`trails.duration.${trail.suggestedDuration}` as const)}</dd></div>
+        <div><dt>{t('trails.mode')}</dt><dd>{t(`trails.mode.${trail.mode}` as const)}</dd></div>
+        <div><dt>{t('trails.stopsCount')}</dt><dd><bdi>{stops.length}</bdi></dd></div>
+        <div><dt>{t('trails.unescoCount')}</dt><dd><bdi>{unescoCount}</bdi></dd></div>
+      </dl>
+    </PageHero>
+
+    <section class="container trd-intro">
+      <p class="trd-intro-p">{tx.intro}</p>
+    </section>
+
+    <section class="container trd-stops" aria-labelledby="trd-stops-h">
+      <h2 id="trd-stops-h" class="trd-h">{t('trails.stopsH')}</h2>
+      <ol class="trd-list">
+        {stops.map((s) => (
+          <li class="trd-stop" id={s.key} data-stop={s.key}>
+            <span class="trd-n" aria-hidden="true">{s.n}</span>
+            <div class="trd-body">
+              <h3 class="trd-name">
+                {s.name}
+                {s.unesco && <span class="trd-badge" data-unesco-badge>{t('trails.unesco')}</span>}
+              </h3>
+              <p class="trd-text">{s.quote
+                ? <>{s.quote[0]}<q class="trd-quote">{s.quote[1]}</q>{s.quote[2]}</>
+                : s.text}</p>
+              {s.href && (
+                <p class="trd-land"><a href={s.href} data-landmark-link>{labels.landmark} <span aria-hidden="true">{ar ? '←' : '→'}</span></a></p>
+              )}
+              <div class="trd-src">
+                <h4 class="trd-src-h">{t('trails.sources')}</h4>
+                <ul>
+                  {s.sources.map((src) => (
+                    <li><a href={src.url} target="_blank" rel="noopener" data-source={src.key}>{src.title}</a></li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="trd-note" data-unesco-note>{TRAIL_META.unescoNote[lang]}</p>
+    </section>
+
+    {pins.length > 0 && (
+      <section class="container trd-map-sec" aria-labelledby="trd-map-h">
+        <h2 id="trd-map-h" class="trd-h">{t('trails.mapH')}</h2>
+        <div id="trail-map" class="trd-map" role="application" aria-label={t('trails.mapH')} data-pins={pins.length}></div>
+        <p class="trd-map-note">{t('trails.mapNote')}</p>
+      </section>
+    )}
+
+    <section class="container trd-foot">
+      <p class="trd-attr" data-trail-attribution>{TRAIL_META.attribution[lang]}</p>
+      <a href={idxHref} class="btn btn--turq">{t('trails.all')}</a>
+    </section>
+  </main>
+  <Footer lang={lang} />
+
+  {pins.length > 0 && (
+    <>
+      <link rel="preconnect" href="https://tile.openstreetmap.org" />
+      <link rel="stylesheet" href="/vendor/leaflet-1.9.4/leaflet.css" />
+      <script is:inline src="/vendor/leaflet-1.9.4/leaflet.js"></script>
+      <script is:inline define:vars={{ pins, labels }}>
+        function initTrailMap() {
+          const el = document.getElementById('trail-map');
+          if (!el || typeof L === 'undefined' || el._leaflet_id) return;
+          const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
+          L.control.attribution({ prefix: '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>' }).addTo(map);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors', maxZoom: 19 }).addTo(map);
+          const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          // دبوس بنمط va-pin يحمل رقم المحطة (أرقام لاتينية) — مساحة اللمس 28px
+          const pin = (n) => L.divIcon({ className: 'va-pin va-pin--trail', html: '<span>' + n + '</span>', iconSize: [28, 28], iconAnchor: [14, 14] });
+          const ms = pins.map((p) => L.marker([p.lat, p.lng], { icon: pin(p.n), title: labels.stop + ' ' + p.n + ': ' + p.name })
+            .bindPopup('<div class="va-pop"><span class="va-pop-k">' + esc(labels.stop) + ' ' + p.n + '</span><strong class="va-pop-t">' + esc(p.name) + '</strong><a class="va-pop-a" href="' + esc(p.href) + '">' + esc(labels.landmark) + '</a></div>')
+            .addTo(map));
+          if (ms.length === 1) map.setView(ms[0].getLatLng(), 14);
+          else map.fitBounds(L.latLngBounds(ms.map((m) => m.getLatLng())).pad(0.2), { maxZoom: 15 });
+        }
+        document.addEventListener('astro:page-load', initTrailMap);
+        if (document.readyState !== 'loading') initTrailMap(); else document.addEventListener('DOMContentLoaded', initTrailMap);
+      </script>
+    </>
+  )}
+</Base>
+
+<style>
+  .trd-meta { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); margin: var(--s-4) 0 0; }
+  .trd-meta dt { font-size: var(--t-xs); font-weight: 600; color: rgba(247,243,234,.78); }
+  .trd-meta dd { margin: 0; font-size: var(--t-base); font-weight: 600; color: var(--c-sand); }
+  .trd-intro { padding-block: var(--s-6) var(--s-2); }
+  .trd-intro-p { max-inline-size: 68ch; font-size: var(--t-lg); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
+  .trd-stops { padding-block: var(--s-5) var(--s-4); }
+  .trd-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-4); }
+  .trd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s-5); max-inline-size: 76ch; }
+  .trd-stop { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: var(--s-3); }
+  .trd-n { display: grid; place-items: center; inline-size: 44px; block-size: 44px; border-radius: 50%; background: var(--c-turq); color: var(--c-sand); font-family: var(--font-latin); font-weight: 600; font-size: var(--t-lg); }
+  .trd-name { font-size: var(--t-lg); line-height: 1.4; color: var(--c-turq-deep); margin: 6px 0 var(--s-2); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); }
+  /* شارة اليونسكو: نص فيروزي داكن على رملي (≈9:1) بحدّ ذهبي — الذهبي زخرفة لا نص */
+  .trd-badge { font-family: var(--font-body); font-size: var(--t-xs); font-weight: 600; color: var(--c-turq-deep); background: var(--c-sand-2); border: 1px solid var(--c-gold); border-radius: var(--radius-pill); padding: 2px 10px; }
+  .trd-text { line-height: 1.9; color: var(--c-ink); margin: 0; }
+  /* الاقتباس بنمط اقتباس الموقع (blockquote المدونة: حبر ثانوي وحدّ ذهبي عند البداية)
+     مضمَّناً في الجملة — التشكيل كما هو، ولا علامات تنصيص يضيفها المتصفح */
+  .trd-quote { quotes: none; color: var(--c-ink-soft); border-inline-start: 3px solid var(--c-gold); padding-inline-start: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .trd-quote::before, .trd-quote::after { content: none; }
+  .trd-land { margin: var(--s-2) 0 0; }
+  .trd-land a { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: underline; text-underline-offset: 3px; }
+  .trd-land a:hover { color: var(--c-turq-deep); }
+  .trd-src { margin-block-start: var(--s-3); padding: var(--s-2) var(--s-3); background: var(--c-sand-2); border-radius: var(--radius-sm); }
+  .trd-src-h { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); margin: 0 0 4px; }
+  .trd-src ul { margin: 0; padding-inline-start: var(--s-4); }
+  .trd-src li { font-size: var(--t-sm); line-height: 1.7; }
+  .trd-src a { color: var(--c-ink-soft); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .trd-src a:hover { color: var(--c-turq-deep); }
+  .trd-note { margin-block-start: var(--s-5); max-inline-size: 70ch; font-size: var(--t-sm); line-height: 1.8; color: var(--c-ink-soft); }
+  .trd-map-sec { padding-block: var(--s-4); }
+  .trd-map { block-size: clamp(320px, 52vh, 520px); inline-size: 100%; background: var(--c-sand-2); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+  .trd-map-note { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .trd-foot { padding-block: var(--s-5) var(--s-8); display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-4); }
+  .trd-attr { max-inline-size: 70ch; margin: 0; font-size: var(--t-sm); line-height: 1.8; color: var(--c-ink-soft); border-inline-start: 2px solid var(--c-gold); padding-inline-start: var(--s-3); }
+
+  /* دبابيس المسار بنمط va-pin في الخريطة (MapView) — القواعد هناك محصورة في صفحتها */
+  :global(.va-pin) { display: grid; place-items: center; }
+  :global(.va-pin--trail span) { display: grid; place-items: center; inline-size: 22px; block-size: 22px; border-radius: 50%; background: var(--c-turq-deep); color: var(--c-sand); font-family: var(--font-body); font-size: 12px; font-weight: 700; border: 2.5px solid var(--c-sand); box-shadow: 0 1px 4px rgba(0,42,37,.4); }
+  :global(.leaflet-popup-content-wrapper) { border-radius: var(--radius) !important; }
+  :global(.leaflet-container .leaflet-control-attribution a) { text-decoration: underline; }
+  :global(.leaflet-touch .leaflet-bar a.leaflet-control-zoom-in),
+  :global(.leaflet-touch .leaflet-bar a.leaflet-control-zoom-out) { width: 40px; height: 40px; line-height: 40px; font-size: 20px; }
+  :global(.va-pop) { font-family: var(--font-body); text-align: start; min-inline-size: 180px; }
+  :global(.va-pop-k) { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); }
+  :global(.va-pop-t) { display: block; font-family: var(--font-heading); font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: 2px 6px; }
+  :global(.va-pop-a) { font-weight: 600; color: var(--c-turq); }
+</style>

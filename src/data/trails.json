@@ -1,0 +1,484 @@
+{
+  "meta": {
+    "collection": "trails",
+    "version": "1.0.0",
+    "verifiedOn": "2026-09-26",
+    "languages": [
+      "ar",
+      "en"
+    ],
+    "attribution": {
+      "ar": "مسارات مقترحة من زوروا الأحساء، مبنية على معالم موثّقة لدى الجهات الرسمية. ليست مسارات صادرة عن الهيئة السعودية للسياحة أو وزارة السياحة.",
+      "en": "Suggested itineraries curated by Visit Al-Ahsa, built on landmarks documented by official bodies. These are not itineraries issued by the Saudi Tourism Authority or the Ministry of Tourism."
+    },
+    "unescoNote": {
+      "ar": "تُمنح شارة اليونسكو فقط للمحطات الواقعة ضمن المكونات الاثني عشر لموقع «واحة الأحساء، منظر ثقافي آخذ بالتغيّر» المسجل عام 2018م.",
+      "en": "The UNESCO badge is shown only for stops within the twelve component parts of 'Al-Ahsa Oasis, an Evolving Cultural Landscape', inscribed in 2018."
+    },
+    "editorialRules": [
+      "No distances, opening hours or fees in body text; fetch them from Google Maps / official pages at build time.",
+      "Durations are editorial suggestions, not facts.",
+      "Largest-oasis claim must keep the Guinness qualifier 'self-contained'."
+    ]
+  },
+  "sources": {
+    "unesco-ar": {
+      "title": "اليونسكو — واحة الأحساء، منظر ثقافي آخذ بالتغير",
+      "url": "https://whc.unesco.org/ar/list/1563",
+      "tier": "official"
+    },
+    "unesco-decision": {
+      "title": "UNESCO Decision 42 COM 8B.16",
+      "url": "https://whc.unesco.org/en/decisions/7129/",
+      "tier": "official"
+    },
+    "components-list": {
+      "title": "جهات الإخبارية — تصريح عن حدود المواقع الـ12 المسجلة",
+      "url": "https://jehat.net/?act=artc&id=50811",
+      "tier": "secondary"
+    },
+    "saudipedia-qasr-ibrahim": {
+      "title": "سعوديبيديا — قصر إبراهيم الأثري",
+      "url": "https://saudipedia.com/article/17016",
+      "tier": "official"
+    },
+    "spa-bayt-albayah": {
+      "title": "واس — بيت البيعة شاهد لمسيرة تاريخية",
+      "url": "https://www.spa.gov.sa/1971075",
+      "tier": "official"
+    },
+    "sabq-darah-bayt-almulla": {
+      "title": "سبق — الدارة تعرّف ببيت الملا",
+      "url": "https://sabq.org/saudia/sitrp9ognc",
+      "tier": "press"
+    },
+    "saudipedia-amiriya": {
+      "title": "سعوديبيديا — المدرسة الأميرية في الأحساء",
+      "url": "https://saudipedia.com/article/12868",
+      "tier": "official"
+    },
+    "alwatan-amiriya": {
+      "title": "الوطن — المدرسة الأميرية زارها المؤسس وافتتحها الفيصل",
+      "url": "https://www.alwatan.com.sa/article/389391",
+      "tier": "press"
+    },
+    "aleqt-craftsmen-house": {
+      "title": "الاقتصادية — تدشين بيت الحرفيين في المدرسة الأميرية",
+      "url": "https://www.aleqt.com/2022/04/22/article_2302466.html",
+      "tier": "press"
+    },
+    "saudipedia-qaisariya": {
+      "title": "سعوديبيديا — سوق القيصرية التاريخي",
+      "url": "https://saudipedia.com/article/10563",
+      "tier": "official"
+    },
+    "alwatan-qaisariya": {
+      "title": "الوطن — قيصرية الأحساء سوق تاريخي",
+      "url": "https://www.alwatan.com.sa/article/1030884",
+      "tier": "press"
+    },
+    "visitsaudi-qarah": {
+      "title": "روح السعودية — جبل القارة",
+      "url": "https://www.visitsaudi.com/ar/al-ahsa/attractions/al-qarah-mountain",
+      "tier": "official"
+    },
+    "spa-land-of-civilizations": {
+      "title": "واس — افتتاح جزئي لمشروع أرض الحضارات",
+      "url": "https://www.spa.gov.sa/1517489",
+      "tier": "official"
+    },
+    "alyaum-dougha": {
+      "title": "اليوم — دوغة الأحساء معلم لصناعة الفخار",
+      "url": "https://www.alyaum.com/articles/6194979",
+      "tier": "press"
+    },
+    "spa-jawatha": {
+      "title": "واس — مسجد جواثا ثاني مسجد تقام فيه الجمعة",
+      "url": "https://www.spa.gov.sa/ar/w1552988",
+      "tier": "official"
+    },
+    "saudipedia-springs": {
+      "title": "سعوديبيديا — العيون المائية في الأحساء",
+      "url": "https://saudipedia.com/article/11121",
+      "tier": "official"
+    },
+    "spa-rice": {
+      "title": "واس — بدء موسم زراعة الأرز الحساوي",
+      "url": "https://www.spa.gov.sa/94eaacdb35o",
+      "tier": "official"
+    },
+    "spa-siram": {
+      "title": "واس — صرام التمور في الأحساء",
+      "url": "https://www.spa.gov.sa/N2402446",
+      "tier": "official"
+    },
+    "spa-asfar": {
+      "title": "واس — بحيرة الأصفر كحل الصيف وبياض الشتاء",
+      "url": "https://www.spa.gov.sa/1901639",
+      "tier": "official"
+    },
+    "aawsat-asfar": {
+      "title": "الشرق الأوسط — بحيرة الأصفر تتحول إلى محمية طبيعية",
+      "url": "https://aawsat.com/home/article/1588881",
+      "tier": "press"
+    },
+    "almadina-national-park": {
+      "title": "المدينة — المنتزه الوطني بالأحساء",
+      "url": "https://www.al-madina.com/article/918768",
+      "tier": "press"
+    },
+    "heritage-uqair": {
+      "title": "هيئة التراث — ميناء العقير التاريخي أول ميناء بحري في المملكة",
+      "url": "https://x.com/MOCHeritage/status/1911321624034304315",
+      "tier": "official"
+    },
+    "spa-darah-uqair": {
+      "title": "واس — دارة الملك عبدالعزيز توثق تاريخ ميناء العقير",
+      "url": "https://www.spa.gov.sa/1822290",
+      "tier": "official"
+    },
+    "sabq-uqair-buildings": {
+      "title": "سبق — فرضة العقير ومبانيها",
+      "url": "https://sabq.org/article/31AKd2K",
+      "tier": "press"
+    },
+    "alriyadh-uqair-amphitheatre": {
+      "title": "الرياض — تطوير شاطئ العقير والمدرج",
+      "url": "https://www.alriyadh.com/1044008",
+      "tier": "press"
+    },
+    "aljazirah-heritage-projects": {
+      "title": "الجزيرة — مشاريع هيئة التراث في الأحساء (منها عين نجم)",
+      "url": "https://www.al-jazirah.com/2019/20191129/rl2.htm",
+      "tier": "press"
+    },
+    "ajel-jawatha": {
+      "title": "عاجل — مسجد جواثا شاهد مبكر على إقامة أول جمعة خارج المدينة",
+      "url": "https://ajel.sa/amp/story/tourism/p31vvbnivh",
+      "tier": "press"
+    }
+  },
+  "trails": [
+    {
+      "slug": "historic-hofuf",
+      "order": 1,
+      "theme": "heritage",
+      "suggestedDuration": "half-day",
+      "mode": "walking",
+      "ar": {
+        "title": "مسار الهفوف التاريخي",
+        "tagline": "التراث العمراني في قلب المدينة القديمة",
+        "intro": "يجول هذا المسار في وسط الهفوف القديم بين حي الكوت وسوق القيصرية؛ حصنٌ اتخذه العثمانيون مقراً لحاميتهم، وبيتٌ شهد بيعة أهالي الأحساء للملك عبدالعزيز، وأول مدرسة حكومية في الأحساء، وسوقٌ مسقوف ما زال ينبض بالحياة. محطاته متقاربة، ويُستحسن أداؤه سيراً على الأقدام في الصباح أو بعد العصر."
+      },
+      "en": {
+        "title": "Historic Hofuf Trail",
+        "tagline": "Urban heritage at the heart of the old city",
+        "intro": "This trail threads through old Hofuf, between Al-Kut quarter and Souq Al-Qaisariya: a fortress that housed the Ottoman garrison, the house where the people of Al-Ahsa pledged allegiance to King Abdulaziz, Al-Ahsa's first government school, and a covered market that is still very much alive. The stops sit close together and are best explored on foot in the morning or late afternoon."
+      },
+      "stops": [
+        {
+          "key": "qasr-ibrahim",
+          "landmarkSlugHint": "qasr-ibrahim",
+          "unesco": true,
+          "ar": {
+            "name": "قصر إبراهيم",
+            "text": "حصنٌ يقع شمال حي الكوت، يعود إلى القرن العاشر الهجري (السادس عشر الميلادي)، واتخذه العثمانيون مقراً لحاميتهم في الأحساء. يجمع طرازين: دينياً يتجلى في مسجد القبة بأقواسه وقبابه، وعسكرياً تمثّله الأبراج الضخمة وثكنات الجنود وإسطبلات الخيل، وقد شُيّد من الطين والقش وجذوع النخل. دخله الملك عبدالعزيز عام 1331هـ/1913م عند ضم الأحساء، وهو من المكونات المسجلة في قائمة التراث العالمي."
+          },
+          "en": {
+            "name": "Qasr Ibrahim",
+            "text": "A fortress on the northern edge of Al-Kut quarter, dating to the 10th century AH (16th century CE) and later used as the Ottoman garrison headquarters in Al-Ahsa. It blends two styles: the religious, seen in the arches and domes of the Al-Qubba Mosque, and the military, expressed in massive towers, soldiers' barracks and horse stables, all built from mud, straw and palm trunks. King Abdulaziz entered it in 1331 AH / 1913 CE when Al-Ahsa joined the Saudi state. It is one of the inscribed UNESCO component parts."
+          },
+          "sources": [
+            "saudipedia-qasr-ibrahim",
+            "components-list"
+          ]
+        },
+        {
+          "key": "bayt-al-bayah",
+          "landmarkSlugHint": "bayt-al-bayah",
+          "unesco": false,
+          "ar": {
+            "name": "بيت البيعة (بيت الملا)",
+            "text": "بيت أسرة آل الملا في حي الكوت، شُيّد عام 1203هـ/1788م بحسب دارة الملك عبدالعزيز، ويُعد نموذجاً للعمارة التقليدية الأحسائية. نزل فيه الملك عبدالعزيز عند دخوله الأحساء عام 1331هـ، وفيه بايعه أهالي الأحساء، فعُرف منذ ذلك الحين بـ«بيت البيعة». رُمّم وأُهّل لاستقبال الزوار شاهداً على لحظة مفصلية في تاريخ توحيد المملكة."
+          },
+          "en": {
+            "name": "Bayt Al-Bay'ah (Al-Mulla House)",
+            "text": "The Al-Mulla family house in Al-Kut quarter, built in 1203 AH / 1788 CE according to the King Abdulaziz Foundation (Darah), is a fine example of traditional Al-Ahsa architecture. King Abdulaziz stayed here on entering Al-Ahsa in 1331 AH / 1913 CE, and it was here that the people of Al-Ahsa pledged their allegiance to him, hence its name, the House of Allegiance. Restored and open to visitors, it bears witness to a defining moment in the unification of the Kingdom."
+          },
+          "sources": [
+            "spa-bayt-albayah",
+            "sabq-darah-bayt-almulla"
+          ]
+        },
+        {
+          "key": "al-amiriya-school",
+          "landmarkSlugHint": "al-amiriya-school",
+          "unesco": false,
+          "ar": {
+            "name": "المدرسة الأميرية (بيت الثقافة)",
+            "text": "أول منشأة تعليمية حكومية للتعليم الابتدائي في الأحساء؛ بدأت عام 1356هـ/1937م، وافتُتح مبناها الحالي رسمياً في محرم 1360هـ على مساحة نحو 1,200 م²، بفناء مربع تحيط به أروقة بعقود نصف دائرية. تخرّجت أول دفعة منها عام 1943م، ودرس فيها عدد من رجالات الدولة. تُعرف اليوم بـ«بيت الثقافة»، ودشّنت فيها هيئة التراث عام 2022م برنامج «بيت الحرفيين» للحرف اليدوية."
+          },
+          "en": {
+            "name": "Al-Amiriya School (House of Culture)",
+            "text": "Al-Ahsa's first government primary school: classes began in 1356 AH / 1937 CE, and the present building opened officially in Muharram 1360 AH, covering some 1,200 m² around a square courtyard framed by round-arched arcades. Its first class graduated in 1943, and several prominent statesmen studied here. Now known as the House of Culture, it hosts the Heritage Commission's Craftsmen's House programme, launched in 2022."
+          },
+          "sources": [
+            "saudipedia-amiriya",
+            "alwatan-amiriya",
+            "aleqt-craftsmen-house"
+          ]
+        },
+        {
+          "key": "souq-al-qaisariya",
+          "landmarkSlugHint": "souq-al-qaisariya",
+          "unesco": true,
+          "ar": {
+            "name": "سوق القيصرية",
+            "text": "سوق تاريخي مسقوف وسط الهفوف، بُني عام 1238هـ/1822م، ويمتد على أكثر من 15 ألف م² بأربع عشرة بوابة ونحو 422 محلاً للأقمشة والملابس التقليدية والبخور والمنتجات الشعبية. أتى عليه حريق عام 2001م، ثم أُعيد بناؤه وافتُتح كاملاً أواخر عام 2013م. وهو من المكونات المسجلة في قائمة التراث العالمي، وخير ختام للمسار."
+          },
+          "en": {
+            "name": "Souq Al-Qaisariya",
+            "text": "A historic covered market in central Hofuf, built in 1238 AH / 1822 CE. It spreads over more than 15,000 m² with fourteen gates and some 422 shops selling fabrics, traditional clothing, incense and local products. Damaged by fire in 2001, it was rebuilt and fully reopened in late 2013. It is one of the inscribed UNESCO component parts and the natural finale of the trail."
+          },
+          "sources": [
+            "saudipedia-qaisariya",
+            "alwatan-qaisariya",
+            "components-list"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "qarah-and-jawatha",
+      "order": 2,
+      "theme": "geology-crafts-faith",
+      "suggestedDuration": "half-day",
+      "mode": "driving",
+      "ar": {
+        "title": "مسار جبل القارة وجواثى",
+        "tagline": "كهوف وفخار وأثر إسلامي مبكر في القرى الشرقية",
+        "intro": "يأخذك هذا المسار إلى القرى الشرقية من الواحة: جبلٌ بممرات ضيقة وكهوف، وورشة فخار تتوارثها أسرة واحدة، ومسجدٌ من أقدم مساجد الإسلام شرقي الجزيرة العربية. يحتاج إلى سيارة للتنقل بين محطاته."
+      },
+      "en": {
+        "title": "Al-Qarah & Jawatha Trail",
+        "tagline": "Caves, pottery and early Islamic heritage in the eastern villages",
+        "intro": "This trail heads into the oasis's eastern villages: a mountain of narrow passages and caves, a pottery workshop handed down within one family, and one of the earliest mosques in Islam in eastern Arabia. You will need a car between stops."
+      },
+      "stops": [
+        {
+          "key": "jabal-al-qarah",
+          "landmarkSlugHint": "jabal-al-qarah",
+          "unesco": false,
+          "ar": {
+            "name": "جبل القارة",
+            "text": "من أبرز المعالم الطبيعية في الأحساء، تشتهر ممراته الضيقة وكهوفه بحرارة معتدلة تكاد تثبت طوال العام، فيجدها الزائر باردة صيفاً ودافئة شتاءً. يضم الجبل مشروع «أرض الحضارات» السياحي الثقافي الذي افتُتح جزئياً عام 2016م، ويقدّم مساراً مهيأً عبر الكهوف مع خدمات للزوار."
+          },
+          "en": {
+            "name": "Jabal Al-Qarah",
+            "text": "One of Al-Ahsa's best-known natural landmarks, famous for narrow passages and caves whose temperature stays mild almost all year, so they feel cool in summer and warm in winter. The mountain hosts 'Land of Civilizations', a cultural tourism project partly opened in 2016 that offers a prepared route through the caves with visitor services."
+          },
+          "sources": [
+            "visitsaudi-qarah",
+            "spa-land-of-civilizations"
+          ]
+        },
+        {
+          "key": "dougha-al-gharash",
+          "landmarkSlugHint": "dougha-al-gharash",
+          "unesco": false,
+          "ar": {
+            "name": "دوغة الغراش للفخار",
+            "text": "ورشة فخار تقليدية في بلدة القارة عند سفح الجبل، تتوارث أسرة الغراش صنعتها جيلاً بعد جيل. يشاهد الزائر فيها تشكيل الأواني من طين الواحة ثم حرقها بالطريقة التقليدية، ويستطيع اقتناء قطع مصنوعة يدوياً تذكاراً من الأحساء."
+          },
+          "en": {
+            "name": "Dougha Al-Gharash Pottery",
+            "text": "A traditional pottery workshop in Al-Qarah village at the foot of the mountain, run by the Al-Gharash family, who have passed the craft down through generations. Visitors watch vessels being shaped from oasis clay and fired the traditional way, and can take home handmade pieces."
+          },
+          "sources": [
+            "alyaum-dougha"
+          ]
+        },
+        {
+          "key": "jawatha-mosque",
+          "landmarkSlugHint": "jawatha-mosque",
+          "unesco": true,
+          "ar": {
+            "name": "مسجد جواثى وموقعه الأثري",
+            "text": "يقع شمال شرق الهفوف قرب بلدة الكلابية، وبناه بنو عبد القيس في السنة السابعة للهجرة بعد إسلامهم طوعاً. روى البخاري عن ابن عباس رضي الله عنهما قال: «إِنَّ أَوَّلَ جُمُعَةٍ جُمِّعَتْ بَعْدَ جُمُعَةٍ فِي مَسْجِدِ رَسُولِ اللَّهِ ﷺ فِي مَسْجِدِ عَبْدِ الْقَيْسِ بِجُوَاثَى مِنَ الْبَحْرَيْنِ»، ولذا يُعرف بثاني مسجد أقيمت فيه صلاة الجمعة في الإسلام. المسجد والموقع الأثري المحيط به مكوّنان مسجلان في قائمة التراث العالمي."
+          },
+          "en": {
+            "name": "Jawatha Mosque & Archaeological Site",
+            "text": "North-east of Hofuf near the village of Al-Kilabiyah, the mosque was built by the Banu Abd Al-Qays in the seventh year of the Hijra after they embraced Islam. Ibn Abbas reported, in Sahih Al-Bukhari, that the first Friday prayer held after the one in the Prophet's Mosque in Madinah was held at the mosque of Abd Al-Qays in Jawatha, which is why it is known as the second mosque in Islam to host the Friday prayer. The mosque and the surrounding archaeological site are both inscribed UNESCO component parts."
+          },
+          "sources": [
+            "spa-jawatha",
+            "components-list",
+            "ajel-jawatha"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "oasis-and-springs",
+      "order": 3,
+      "theme": "agritourism",
+      "suggestedDuration": "half-day",
+      "mode": "driving",
+      "ar": {
+        "title": "مسار الواحة والعيون",
+        "tagline": "الحياة الريفية بين النخيل وقنوات الري",
+        "intro": "مسار لتجربة الواحة كما يعيشها أهلها: بساتين نخيل متصلة، وحقول الأرز الحساوي، وعيون طبيعية كانت عماد الري قروناً قبل أن تحل محلها شبكة حديثة. أنسب أوقاته الصباح الباكر، ويُستحسن التنسيق المسبق مع المزارع التي تستقبل الزوار."
+      },
+      "en": {
+        "title": "Oasis & Springs Trail",
+        "tagline": "Rural life among palms and irrigation channels",
+        "intro": "A trail to experience the oasis as its people live it: unbroken palm groves, fields of Hasawi rice, and natural springs that sustained irrigation for centuries before a modern network took over. Early morning is best, and it is wise to arrange visits in advance with farms that welcome guests."
+      },
+      "stops": [
+        {
+          "key": "oasis-farms",
+          "landmarkSlugHint": "al-ahsa-oasis",
+          "unesco": true,
+          "ar": {
+            "name": "بساتين الواحة والمزارع الريفية",
+            "text": "تمثل الواحتان الشرقية والشمالية ومنطقة السيفة الزراعية قلب المشهد الثقافي المسجل في اليونسكو. في المزارع التي تستقبل الزوار يتعرف الضيف على العناية بالنخلة، ويشهد موسم «الصرام» السنوي حين تُجنى التمور وتُفرز بتعاون الأسر والجيران، ومن أشهر أصنافها الخلاص. ويبدأ مطلع أغسطس موسم زراعة الأرز الحساوي الأحمر، أحد محاصيل الواحة التراثية."
+          },
+          "en": {
+            "name": "Oasis Groves & Rural Farms",
+            "text": "The eastern and northern oases and the Al-Seifa farming area form the heart of the UNESCO-inscribed cultural landscape. At farms that welcome visitors, guests learn how the palms are tended and can witness siram, the annual date harvest, when families and neighbours gather to pick and sort the fruit, Khalas being among the best-known varieties. Early August also marks the planting of red Hasawi rice, one of the oasis's heritage crops."
+          },
+          "sources": [
+            "unesco-ar",
+            "unesco-decision",
+            "components-list",
+            "spa-siram",
+            "spa-rice"
+          ]
+        },
+        {
+          "key": "natural-springs",
+          "landmarkSlugHint": "ain-najm",
+          "unesco": false,
+          "ar": {
+            "name": "العيون الطبيعية",
+            "text": "كانت العيون عماد الري في الأحساء قبل تنفيذ مشروع الري والصرف، وبلغ إنتاجها ذروته عام 1387هـ/1967م ثم تناقص ونضب بعضها. تتفاوت مياهها بين الدافئ كعين أم سبعة التي تتدفق من سبعة مجارٍ وعين الحارة، والبارد كعين علي، والساخن كعين نجم ذات المياه الكبريتية التي رمّمتها هيئة التراث. ومن العيون التاريخية كذلك عين الجوهرية. يختلف التدفق من عين لأخرى، فيُستحسن التحقق من حالتها قبل الزيارة."
+          },
+          "en": {
+            "name": "Natural Springs",
+            "text": "Springs were the backbone of irrigation in Al-Ahsa before the modern irrigation and drainage project. Their output peaked in 1387 AH / 1967 CE, then declined, and some have dried up. Their waters range from warm, as at Umm Sab'a, which flows through seven channels, and Al-Harrah, to cool, as at Ain Ali, and hot, as at Ain Najm with its sulphurous water, restored by the Heritage Commission. Ain Al-Jawhariya is another historic spring. Flow varies from spring to spring, so check current conditions before visiting."
+          },
+          "sources": [
+            "saudipedia-springs",
+            "aljazirah-heritage-projects"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "al-asfar-and-national-park",
+      "order": 4,
+      "theme": "nature-adventure",
+      "suggestedDuration": "full-day",
+      "mode": "4x4",
+      "ar": {
+        "title": "مسار بحيرة الأصفر والمتنزه الوطني",
+        "tagline": "غابة صدّت الرمال وبحيرة وسط الكثبان",
+        "intro": "مسار لمحبي الطبيعة والرحلات البرية شرق الواحة: يبدأ بغابة زُرعت لتحمي الواحة من زحف الرمال، وينتهي عند بحيرة وسط الكثبان تستريح فيها الطيور المهاجرة. الوصول إلى البحيرة يتطلب سيارة دفع رباعي وخبرة بالقيادة في الرمال، ويُفضَّل الذهاب مع مرشد."
+      },
+      "en": {
+        "title": "Al-Asfar Lake & National Park Trail",
+        "tagline": "A forest that held back the sands, and a lake among the dunes",
+        "intro": "A trail for nature lovers and desert explorers east of the oasis: it begins in a forest planted to shield the oasis from drifting sand and ends at a lake among the dunes where migrating birds rest. Reaching the lake requires a 4x4 and experience of sand driving; going with a guide is recommended."
+      },
+      "stops": [
+        {
+          "key": "al-ahsa-national-park",
+          "landmarkSlugHint": "al-ahsa-national-park",
+          "unesco": false,
+          "ar": {
+            "name": "متنزه الأحساء الوطني",
+            "text": "في مدينة العمران، نشأ عام 1962م ضمن مشروع حجز الرمال، بزراعة أحزمة شجرية تصد زحف الكثبان عن الواحة. ومع نمو أشجاره تحوّل إلى غابة ومتنزه عائلي ممتد، يمتد جزء منه باتجاه منطقة الأصفر، ويشكّل بداية مناسبة للمسار قبل التوغل في الرمال."
+          },
+          "en": {
+            "name": "Al-Ahsa National Park",
+            "text": "In Al-Umran, the park began in 1962 as part of a sand-stabilisation project, with belts of trees planted to stop the dunes advancing on the oasis. As the trees matured it became a forest and a sprawling family park, part of which extends towards the Al-Asfar area, making it a fitting start before heading into the sands."
+          },
+          "sources": [
+            "almadina-national-park"
+          ]
+        },
+        {
+          "key": "al-asfar-lake",
+          "landmarkSlugHint": "al-asfar-lake",
+          "unesco": true,
+          "ar": {
+            "name": "بحيرة الأصفر",
+            "text": "بحيرة شرق العمران تحيط بها الكثبان، تتغذى أساساً من قنوات الصرف الزراعي لمزارع الواحة وتتسع شتاءً مع الأمطار، وتُعد من أكبر التجمعات المائية في منطقة الخليج. أعلنتها وزارة البيئة والمياه والزراعة محمية طبيعية بمساحة 326 مليون م²، وهي محطة للطيور المهاجرة في رحلتيها بين الشمال والجنوب، ومكوّن مسجل في قائمة التراث العالمي. يسميها الأهالي «كحل الصيف وبياض الشتاء» لتبدّل لون مياهها بين الفصلين."
+          },
+          "en": {
+            "name": "Al-Asfar Lake",
+            "text": "A lake east of Al-Umran ringed by dunes, fed mainly by the oasis's agricultural drainage channels and swelling with winter rain. It is one of the largest bodies of water in the Gulf region. The Ministry of Environment, Water and Agriculture declared it a nature reserve of 326 million m², and it is a resting point for birds migrating north and south, as well as an inscribed UNESCO component part. Locals call it 'kohl of summer, white of winter' for the way its colour shifts between seasons."
+          },
+          "sources": [
+            "spa-asfar",
+            "aawsat-asfar",
+            "components-list"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "al-uqair-coast",
+      "order": 5,
+      "theme": "maritime-history",
+      "suggestedDuration": "full-day",
+      "mode": "driving",
+      "ar": {
+        "title": "مسار العقير البحري",
+        "tagline": "حيث التقت تجارة البحر بتاريخ الدولة",
+        "intro": "يمتد هذا المسار شرقاً إلى ساحل الخليج العربي، حيث ميناءٌ كان بوابة الأحساء ونجد إلى البحر، وشهد مفاوضات رسمت حدود المنطقة، ثم شاطئٌ للاستجمام العائلي. يُستحسن جمعه في يوم كامل مع العودة قبل الغروب."
+      },
+      "en": {
+        "title": "Al-Uqair Coastal Trail",
+        "tagline": "Where sea trade met the history of the state",
+        "intro": "This trail runs east to the Arabian Gulf coast: a port that was the sea gateway for Al-Ahsa and Najd and hosted negotiations that drew the region's borders, followed by a beach for family time. Plan a full day and head back before sunset."
+      },
+      "stops": [
+        {
+          "key": "al-uqair-historic-port",
+          "landmarkSlugHint": "al-uqair-port",
+          "unesco": false,
+          "ar": {
+            "name": "ميناء العقير التاريخي",
+            "text": "تصفه هيئة التراث بأول ميناء بحري في المملكة؛ كان البوابة الاقتصادية للأحساء ونجد والمنفذ الرئيس إلى شرق المملكة ووسطها، إلى أن تراجعت أهميته بعد اكتشاف النفط وإنشاء ميناء الدمام. تضم منطقته مباني من عهد الملك عبدالعزيز منها الجمارك والجوازات والفرضة والخان والإمارة والحصن والمسجد. واتخذه الملك المؤسس مقراً لمقابلة الدبلوماسيين، وفيه عُقد مؤتمر العقير عام 1922م الذي رُسمت فيه حدود نجد مع العراق والكويت."
+          },
+          "en": {
+            "name": "Al-Uqair Historic Port",
+            "text": "Described by the Heritage Commission as the Kingdom's first seaport, Al-Uqair was the economic gateway for Al-Ahsa and Najd and the main entry point to eastern and central Arabia until its role faded after the discovery of oil and the building of Dammam port. Its buildings from the reign of King Abdulaziz include the customs and passport houses, the wharf, the khan, the emirate, the fort and the mosque. The founding King received foreign diplomats here, and the 1922 Uqair Conference, which set Najd's borders with Iraq and Kuwait, was held here."
+          },
+          "sources": [
+            "heritage-uqair",
+            "spa-darah-uqair",
+            "sabq-uqair-buildings"
+          ]
+        },
+        {
+          "key": "al-uqair-beach",
+          "landmarkSlugHint": "al-uqair-beach",
+          "unesco": false,
+          "ar": {
+            "name": "شاطئ العقير",
+            "text": "واجهة بحرية للتنزه والأنشطة العائلية ضمن مشروعات تطوير أمانة الأحساء. وعلى الشاطئ مدرّج مكشوف حديث أنشأته الأمانة للفعاليات ويُعرف محلياً باسم «المسرح الروماني»؛ وهو منشأة معاصرة، لا أثر روماني."
+          },
+          "en": {
+            "name": "Al-Uqair Beach",
+            "text": "A seafront for strolls and family activities, developed by Al-Ahsa Municipality. The beach also has a modern open-air amphitheatre built by the municipality for events and known locally as the 'Roman Theatre'; it is a contemporary venue, not a Roman antiquity."
+          },
+          "sources": [
+            "alriyadh-uqair-amphitheatre"
+          ]
+        }
+      ]
+    }
+  ]
+}
