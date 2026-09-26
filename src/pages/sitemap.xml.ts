@@ -6,7 +6,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH } from '../data/events';
-import { attractionAlt, blogHref, diningAlt, stayAlt } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
 import { isUnlisted } from '../i18n/unlisted';
@@ -34,14 +34,14 @@ export const GET: APIRoute = async ({ site }) => {
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', de: '/de/souqs-parks-farms/', ru: '/ru/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', de: '/de/map/', ru: '/ru/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
-    { ar: '/خريطة-تضاريس/', en: '/en/terrain-map/', lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
+    { ...staticAlt('terrainMap'), lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
     { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', de: '/de/fruits/', ru: '/ru/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
     { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
-    { ar: '/اليونسكو/', en: '/en/unesco/', lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
+    { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
     // مقالات المدونة — الاقتران بحقل key المشترك بين لغاته (ar/en/zh/de/ru منذ الخطوة 10).
     // التاريخ من ترويسة المقال نفسه (أحدث نسخة): هو إعلان الكاتب، وأوثق من تاريخ الالتزام.

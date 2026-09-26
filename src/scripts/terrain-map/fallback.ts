@@ -3,7 +3,7 @@
 // يُستدعى حين يغيب WebGL2 أو يفشل MapLibre — بلا أي رسالة خطأ للمستخدم.
 import type * as GeoJSON from 'geojson';
 import type { TmapCfg, TmapBus } from './index';
-import { buildPopupNode, catColors, fetchLandmarks, type LandmarkProps } from './shared';
+import { buildPopupNode, catColors, fetchLandmarks, nameOf, type LandmarkProps } from './shared';
 
 type Opts = { reduceMotion: boolean; bus: TmapBus };
 
@@ -69,7 +69,7 @@ export async function initLeafletFallback(host: HTMLElement, cfg: TmapCfg, opts:
     const p = f.properties as LandmarkProps;
     const [lng, lat] = (f.geometry as GeoJSON.Point).coordinates;
     const m = L.marker([lat, lng], {
-      title: cfg.lang === 'ar' ? p.name_ar : p.name_en,
+      title: nameOf(p, cfg.lang),
       icon: L.divIcon({
         className: 'tmap-pin',
         html: `<span style="--pin:${colors[p.category] ?? colors.default}"></span>`,

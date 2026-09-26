@@ -686,6 +686,19 @@ export const ui = {
     // زرّ متجر معرض اللومي — خط zh-translation-pipeline (دفعة zh-dind-2، المرحلة د1)
     'ev.shop': '选购展品',
     'ev.shopNote': '青柠产品、食品与个人护理用品，均来自参展商家。',
+    // ── الخريطة التضاريسية (خط zh-translation-pipeline (المرحلة هـ، 2026-09-26)) ──
+    'tmap.title': "地形图",
+    'tmap.lead': "绿洲立体呈现：卡拉山、椰枣林与东边的沙丘——每一处景点都标注在图上。点击列表中的任意名称，即可在地图上查看。",
+    'tmap.open': "打开地形图",
+    'tmap.loading': "地图加载中…",
+    'tmap.3d.on': "3D 视图",
+    'tmap.3d.off': "2D 视图",
+    'tmap.locate': "在地图上查看",
+    'tmap.list.title': "地图上的所有景点",
+    'tmap.classic': "经典地图",
+    'tmap.gest.win': "按住 Ctrl 滚动鼠标滚轮以缩放地图",
+    'tmap.gest.mac': "按住 ⌘ 滚动鼠标滚轮以缩放地图",
+    'tmap.gest.touch': "使用两指移动地图",
   } as Record<string, string>,
   // الألمانية (de-DE) — قاموس جزئي على سابقة الصينية. **دفعة نصوص الواجهة لم
   // تمرّ بخط de-translation-pipeline بعد**، فكل مفتاح غائب يتراجع للإنجليزية
@@ -913,6 +926,19 @@ export const ui = {
     'plan.shared.d': 'Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.',
     'plan.shared.import': 'Zu „Meine Reise“ hinzufügen',
     'plan.shared.mine': 'Meine eigene Reise ansehen',
+    // ── الخريطة التضاريسية (خط de-translation-pipeline (المرحلة هـ، 2026-09-26)) ──
+    'tmap.title': "Geländekarte",
+    'tmap.lead': "Die Oase im Relief: Jabal al-Qarah (der Qarah-Berg), die Palmenhaine und die Dünen im Osten – jedes Ausflugsziel an seinem tatsächlichen Standort. Tippen Sie auf einen Namen in der Liste, um ihn auf der Karte zu sehen.",
+    'tmap.open': "Geländekarte öffnen",
+    'tmap.loading': "Karte wird geladen…",
+    'tmap.3d.on': "3D-Ansicht",
+    'tmap.3d.off': "2D-Ansicht",
+    'tmap.locate': "Auf der Karte anzeigen",
+    'tmap.list.title': "Alle Sehenswürdigkeiten auf der Karte",
+    'tmap.classic': "Klassische Karte",
+    'tmap.gest.win': "Verwenden Sie Strg + Scrollen, um die Karte zu zoomen",
+    'tmap.gest.mac': "Verwenden Sie ⌘ + Scrollen, um die Karte zu zoomen",
+    'tmap.gest.touch': "Verwenden Sie zwei Finger, um die Karte zu verschieben",
   } as Record<string, string>,
   // الروسية (ru-RU) — قاموس جزئي على سابقة الألمانية: الهيكل المشترك والرئيسية
   // وفهرس المعالم وصفحة المعلم. كل سطر هنا من خط ru-translation-pipeline حصراً
@@ -1146,5 +1172,18 @@ export const ui = {
     // ── زرّ متجر معرض اللومي (ru-evshop 2026-09-25، الحاكم 94/100) ──
     'ev.shop': 'Купить товары выставки',
     'ev.shopNote': 'Продукция из лайма, продукты питания и уходовые средства — от заведений-участников выставки.',
+    // ── الخريطة التضاريسية (خط ru-translation-pipeline (المرحلة هـ، 2026-09-26)) ──
+    'tmap.title': "Карта рельефа",
+    'tmap.lead': "Рельеф оазиса: Джабаль-эль-Кара (гора Эль-Кара), пальмовые рощи и дюны на востоке — и каждая достопримечательность на своём месте. Нажмите на любое название в списке, чтобы увидеть его на карте.",
+    'tmap.open': "Открыть карту рельефа",
+    'tmap.loading': "Карта загружается…",
+    'tmap.3d.on': "3D-вид",
+    'tmap.3d.off': "2D-вид",
+    'tmap.locate': "Показать на карте",
+    'tmap.list.title': "Все достопримечательности на карте",
+    'tmap.classic': "Классическая карта",
+    'tmap.gest.win': "Используйте Ctrl + прокрутку, чтобы приблизить карту",
+    'tmap.gest.mac': "Используйте ⌘ + прокрутку, чтобы приблизить карту",
+    'tmap.gest.touch': "Используйте два пальца, чтобы передвигать карту",
   } as Record<string, string>,
 } as const;

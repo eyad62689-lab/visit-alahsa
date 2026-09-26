@@ -23,8 +23,26 @@ const C = localize(lang, {
     d: 'The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.',
     back: 'Back to home',
   },
+  // خط zh-translation-pipeline (المرحلة هـ، 2026-09-26)
+  zh: {
+    title: "您的反馈已收到——谢谢您",
+    d: "网站团队将核实您的反馈，并更正查证属实的问题。您的贡献让哈萨指南对每一位读者始终保持准确。",
+    back: "返回首页",
+  },
+  // خط de-translation-pipeline (المرحلة هـ، 2026-09-26)
+  de: {
+    title: "Ihre Meldung ist eingegangen – vielen Dank",
+    d: "Das Team der Website prüft den Hinweis und korrigiert die Angabe, sobald sie sich bestätigt. Mit Ihrem Beitrag bleibt der Al-Ahsa-Reiseführer für alle korrekt.",
+    back: "Zurück zur Startseite",
+  },
+  // خط ru-translation-pipeline (المرحلة هـ، 2026-09-26)
+  ru: {
+    title: "Ваше сообщение получено — спасибо",
+    d: "Команда сайта проверит замечание и исправит всё, что подтвердится. Ваш вклад помогает поддерживать точность путеводителя по Аль-Ахсе для всех.",
+    back: "Вернуться на главную",
+  },
 });
-const homeHref = ar ? '/' : '/en/';
+const homeHref = ar ? '/' : `/${lang}/`;
 ---
 <Base title={`${C.title} ${titleSep(lang)} ${t('site.name')}`} description={C.d} lang={lang} alt={alt} noindex={true}>
   <Header lang={lang} alt={alt} />

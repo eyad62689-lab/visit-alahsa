@@ -9,8 +9,21 @@ export type LandmarkProps = {
   category: string;
   url_ar: string;
   url_en: string;
+  name_zh?: string; url_zh?: string;
+  name_de?: string; url_de?: string;
+  name_ru?: string; url_ru?: string;
   thumb: string | null;
 };
+
+/** اسم المعلم ورابطه بلغة الصفحة — zh/de/ru بتراجع إلى الإنجليزية متى غابت ترجمته */
+export function nameOf(p: LandmarkProps, lang: string): string {
+  if (lang === 'ar') return p.name_ar;
+  return (p as Record<string, unknown>)[`name_${lang}`] as string | undefined ?? p.name_en;
+}
+export function urlOf(p: LandmarkProps, lang: string): string {
+  if (lang === 'ar') return p.url_ar;
+  return (p as Record<string, unknown>)[`url_${lang}`] as string | undefined ?? p.url_en;
+}
 
 /** ألوان الفئات تُستخرج من متغيّرات CSS المعرّفة على الصفحة — لا ألوان مخترعة */
 export function catColors(host: HTMLElement): Record<string, string> {
@@ -27,7 +40,6 @@ export function catColors(host: HTMLElement): Record<string, string> {
 
 /** بطاقة المعلم — تُبنى بـDOM (textContent) لا بسلاسل HTML */
 export function buildPopupNode(p: LandmarkProps, cfg: TmapCfg): HTMLElement {
-  const ar = cfg.lang === 'ar';
   const root = document.createElement('div');
   root.className = 'tmap-pop';
   if (p.thumb) {
@@ -45,11 +57,11 @@ export function buildPopupNode(p: LandmarkProps, cfg: TmapCfg): HTMLElement {
   root.appendChild(k);
   const t = document.createElement('strong');
   t.className = 'tmap-pop-t';
-  t.textContent = ar ? p.name_ar : p.name_en;
+  t.textContent = nameOf(p, cfg.lang);
   root.appendChild(t);
   const a = document.createElement('a');
   a.className = 'tmap-pop-a';
-  a.href = ar ? p.url_ar : p.url_en;
+  a.href = urlOf(p, cfg.lang);
   a.textContent = cfg.labels.view ?? '';
   root.appendChild(a);
   return root;

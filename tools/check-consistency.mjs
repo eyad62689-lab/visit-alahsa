@@ -1018,21 +1018,21 @@ async function main() {
       }
     }
 
-    // (د) صفحة مكوّنات اليونسكو: عربية وإنجليزية، تحمل كل ما يحمل unesco في المصدر (عدداً
+    // (د) صفحة مكوّنات اليونسكو بلغاتها الخمس (المرحلة هـ)، تحمل كل ما يحمل unesco في المصدر (عدداً
     //     ومعرّفات ورابطاً لكل صفحة معلم)، وItemList بعددها، وhreflang متبادل، وداخل sitemap.
     const comps = attrFiles.map((f) => ({
       f, id: heads[f].match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
       slugAr: heads[f].match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1], slugEn: heads[f].match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
     })).filter((c) => c.id).sort((a, b) => a.id.localeCompare(b.id));
     const smXml24 = existsSync(smPath) ? await readText(smPath) : '';
-    for (const [l, p] of [['ar', '/اليونسكو/'], ['en', '/en/unesco/']]) {
+    for (const [l, p] of [['ar', '/اليونسكو/'], ['en', '/en/unesco/'], ['zh', '/zh/unesco/'], ['de', '/de/unesco/'], ['ru', '/ru/unesco/']]) {
       const fp = path.join(DIST, p, 'index.html');
       let html;
       try { html = await readText(fp); } catch { problems.push(`صفحة اليونسكو ${p} مفقودة`); continue; }
       const ids = [...html.matchAll(/data-unesco="([^"]+)"/g)].map((m) => m[1]);
       if (JSON.stringify(ids) !== JSON.stringify(comps.map((c) => c.id))) problems.push(`${p}: المكوّنات المنشورة (${ids.join('، ')}) ≠ المصدر (${comps.map((c) => c.id).join('، ')})`);
       for (const c of comps) {
-        const href = l === 'ar' ? `/${AR_ATTRACTIONS_DIR}/${c.slugAr}/` : `/en/attractions/${c.slugEn}/`;
+        const href = l === 'ar' ? `/${AR_ATTRACTIONS_DIR}/${c.slugAr}/` : `/${l}/attractions/${c.slugEn}/`;
         if (!html.includes(`href="${href}"`) && !html.includes(`href="${encodeURI(href)}"`)) problems.push(`${p}: بلا رابط إلى ${c.slugEn}`);
       }
       const list = (LD.get(fp) ?? []).find((o) => o?.['@type'] === 'ItemList');
@@ -1045,7 +1045,7 @@ async function main() {
     if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥6`);
     else if (hoursPages < 16 || feePages < 40) fail('C24', `المواعيد المبنيَنة في ${hoursPages} صفحة والرسوم في ${feePages} — المتوقع ≥16 و≥40 (تراجع في المصدر؟)`);
     else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة/الإجابات/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ صفحة اليونسكو بلغتيها تحمل المكوّنات ${comps.length} بروابطها`);
+    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ صفحة اليونسكو بلغاتها الخمس تحمل المكوّنات ${comps.length} بروابطها`);
   }
 
   // ── C25: الربط الداخلي (الخطوة 9 من خطة التفاعل العالمي، ف4) ──

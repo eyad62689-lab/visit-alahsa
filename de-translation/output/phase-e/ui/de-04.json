@@ -1,0 +1,78 @@
+{
+  "batch": "de-ui",
+  "stage": 4,
+  "strings": {
+    "tmap.title": "Geländekarte",
+    "tmap.lead": "Die Oase im Relief: Jabal al-Qarah (der Qarah-Berg), die Palmenhaine und die Dünen im Osten – mit jedem Ausflugsziel an seinem Platz. Tippen Sie auf einen Namen in der Liste, um ihn auf der Karte zu sehen.",
+    "tmap.open": "Geländekarte öffnen",
+    "tmap.loading": "Karte wird geladen…",
+    "tmap.3d.on": "3D-Ansicht",
+    "tmap.3d.off": "2D-Ansicht",
+    "tmap.locate": "Auf der Karte anzeigen",
+    "tmap.list.title": "Alle Sehenswürdigkeiten auf der Karte",
+    "tmap.classic": "Klassische Karte",
+    "tmap.gest.win": "Verwenden Sie Ctrl + Scrollen, um die Karte zu zoomen",
+    "tmap.gest.mac": "Verwenden Sie ⌘ + Scrollen, um die Karte zu zoomen",
+    "tmap.gest.touch": "Verwenden Sie zwei Finger, um die Karte zu verschieben",
+    "report.eyebrow": "Helfen Sie uns, genau zu bleiben",
+    "report.title": "Fehler melden",
+    "report.lead": "Genauigkeit ist uns am wichtigsten. Wenn Ihnen eine ungenaue Angabe, ein defekter Link oder ein falsch platziertes Foto auffällt, teilen Sie es uns mit – wir prüfen es.",
+    "report.pageL": "Die betreffende Seite",
+    "report.pagePh": "Link zur Seite oder Name der Sehenswürdigkeit",
+    "report.msgL": "Welchen Fehler haben Sie bemerkt?",
+    "report.msgPh": "Beschreiben Sie den Fehler kurz – und wenn Sie die richtige Information und ihre Quelle kennen, fügen Sie sie hinzu.",
+    "report.emailL": "Ihre E-Mail-Adresse (optional – falls Sie eine Antwort wünschen)",
+    "report.emailPh": "name@example.com",
+    "report.submit": "Meldung senden",
+    "report.note": "Ihre Meldung geht direkt an das Team der Website; nichts davon wird veröffentlicht.",
+    "thanks.title": "Ihre Meldung ist eingegangen – vielen Dank",
+    "thanks.d": "Das Team der Website prüft den Hinweis und korrigiert, was sich bestätigt. Mit Ihrem Beitrag bleibt der Al-Ahsa-Reiseführer für alle genau.",
+    "thanks.back": "Zurück zur Startseite",
+    "unesco.title": "Oase Al-Ahsa auf der UNESCO-Welterbeliste",
+    "unesco.lead": "Die Oase Al-Ahsa wurde 2018 in die UNESCO-Welterbeliste aufgenommen (Stätte Nr. 1563) und umfasst zwölf Bestandteile. {count} davon sind Sehenswürdigkeiten mit eigenen Seiten in diesem Reiseführer. Sie stehen hier in der Reihenfolge ihrer Bestandteilnummern der offiziellen Liste.",
+    "unesco.comp": "Bestandteil",
+    "unesco.officialH": "Offizielle Quelle",
+    "unesco.official": "Die vollständige Liste der zwölf Bestandteile und ihre Karten finden Sie auf der Seite der Stätte beim UNESCO-Welterbezentrum.",
+    "unesco.officialLink": "Stätte 1563 bei der UNESCO ↗",
+    "unesco.seoTitle": "Oase Al-Ahsa bei der UNESCO",
+    "unesco.seoDesc": "{count} der zwölf Bestandteile der UNESCO-Welterbestätte Oase Al-Ahsa (2018) mit eigenen Seiten: {names}."
+  },
+  "termbase_additions": [],
+  "notes": [
+    "[s1] Konsistenz: `report.title` = `foot.l.report` = „Fehler melden“; `unesco.comp` folgt dem bereits freigegebenen Muster „Bestandteil“ (memory/tm.json: „component“ → „Bestandteil“, Plural „Bestandteile“; det.unesco = „Bestandteil der UNESCO-Welterbestätte“). `tmap.title` bleibt bewusst bei „Geländekarte“ ohne „3D-“: die Quelle dieser Charge (`en`/`ar`) nennt für diesen Schlüssel keine „3“, und der Faktenzaun geht der Konsistenz mit dem publizierten `map.terrain` („3D-Geländekarte“, Zugangsknopf zu dieser Seite) vor — beide Formen teilen den Kern „Geländekarte“.",
+    "[s1] `Jabal al-Qarah`: Quelle schreibt in dieser Charge „Jabal Al-Qarah“ (großes A), aber der site-weite Titel-Usus (termbase `titel_regel`, Berg-Eintrag) schreibt durchweg `Jabal al-Qarah` (kleines al in der Namensmitte) — hier übernommen, keine neue Schreibvariante eingeführt.",
+    "[s1] `Ctrl` und `⌘` bleiben laut Brief wörtlich als Tastennamen stehen (nicht zu `Strg` eingedeutscht).",
+    "[s1] `{count}`/`{names}` je genau einmal wörtlich übernommen; `unesco.lead` bei heutigem Wert {count}=6 grammatisch (Plural „davon sind“). Fakten geprüft: 2018, Stätte 1563, zwölf Bestandteile — keine weiteren erfunden.",
+    "[s1] Keine neuen Eigennamen ohne Termbase-Eintrag verwendet; `Palmenhaine`/`Dünen` sind Gattungswörter, keine Eigennamen, daher kein termbase_additions-Eintrag nötig.",
+    "[s2] `unesco.lead`: die verschachtelte Semikolon-Konstruktion mit angehängtem Partizip („… aufgeführt.“) in eine Kette aus drei kürzeren Sätzen aufgelöst (Editor-Regel: lange Nebensatzketten aufbrechen). Keine Fakten verändert — weiterhin 2018 / Stätte 1563 / zwölf Bestandteile / {count} einmal wörtlich.",
+    "[s2] `thanks.d`: „hält den … Reiseführer … genau“ (kausatives Verb + Adjektiv, ungelenke Kollokation) zu „bleibt … genau“ geglättet — gleiche Aussage (Ihr Beitrag erhält die Genauigkeit für alle), natürlicheres Verb.",
+    "[s2] Restliche Strings (tmap.*, report.*, thanks.title/back, unesco.comp/officialH/official/officialLink/seoTitle/seoDesc) bereits frei von Nominalstil, Klammer-Problemen, Denglisch und Superlativ-Häufung geprüft — unverändert übernommen; keine Floskeln (`natürlich`, `einfach`, `Erleben Sie` usw.) vorhanden.",
+    "[s3] `tmap.lead`: Erstnennung von `Jabal al-Qarah` auf dieser Seite (Terrain-Karte) mit Klammer-Gloss versehen — „Jabal al-Qarah (der Qarah-Berg)“ —, da ein deutschsprachiger Leser nicht wissen kann, dass es sich um einen Berg handelt; die Terrain-Karten-Seite trägt keinen eigenen Titel mit diesem Namen, der die Reihenfolge vorgäbe, daher die auf der Seite `jabal-al-qarah.md` etablierte Standardform übernommen (Transkription zuerst, Übersetzung in Klammern — memory/tm.json, `jabal-al-qarah/summary`; Termbase-Eintrag „der Qarah-Berg (Jabal al-Qarah)“). Keine neue Tatsache: reine Begriffserklärung eines bereits im Bestand belegten Namens, kein Zusatzfakt (keine Höhe, keine Uhrzeit, kein Vergleich).",
+    "[s3] Restliche 33 Strings enthalten keine weiteren erklärungsbedürftigen arabischen Begriffe, keinen Hijri-Bezug und keinen Gouvernement-Bezug; sie sind reine UI-Bedienelemente (Buttons, Formularfelder, kurze Statushinweise) ohne Reiseplanungs-Body-Text, daher kein Raum oder Anlass für die Gewichtung von Hitze/Jahreszeit/Öffnungszeiten aus der DACH-Perspektive — unverändert aus Stufe 2 übernommen. Kein Fakt hinzugefügt.",
+    "[s3] `unesco.*`: UNESCO ist ein DACH-seits bekannter Begriff und braucht keinen Gloss; die Sätze bleiben bei den geprüften Fakten (2018 / 1563 / zwölf Bestandteile / {count} / {names}).",
+    "[s4] Termbase-Prüfung: alle Eigennamen dieser Charge (`Al-Ahsa`, `Jabal al-Qarah`) stehen bereits gendert und mit Beleg in `glossary/termbase.json` (`der Qarah-Berg (Jabal al-Qarah)`, Eintrag #14, Quelle `jabal-al-qarah.md`; `Al-Ahsa`, Eintrag #373-Umfeld). Keine Web-Verifikation nötig, keine neuen Einträge fällig.",
+    "[s4] `tmap.lead`-Gloss `(der Qarah-Berg)` GEPRÜFT UND BESTÄTIGT (Auftrag der Aufgabenstellung): sourced in der termbase mit Genus und Beleg (Eintrag #14), folgt der sitweiten `gloss_regel` (Erstnennung pro Seite, im Fließtext, nicht im Titel — diese Seite hat keinen Titel mit dem Namen, also greift die auf `jabal-al-qarah.md` etablierte Standardreihenfolge Transkription→Klammer-Übersetzung), und fügt keine neue Tatsache hinzu (keine Höhe, kein Vergleich, keine Zahl) — reine Begriffsklärung. In einer kurzen Hero-/Meta-Zeile ist das nach demselben Muster bereits an anderer Stelle der Website etabliert (z. B. `ain-najm-park`). Bleibt unverändert.",
+    "[s4] `tmap.title` GEPRÜFT UND BEIBEHALTEN bei „Geländekarte“ (ohne „3D-“): erwogen wurde eine Angleichung an das publizierte `map.terrain` („3D-Geländekarte“, BRIEF-Vermerk «tmap.title يتّسق معه»), da die 3D-Eigenschaft der Seite durch `tmap.3d.on`/`tmap.3d.off` innerhalb derselben Charge belegt ist. Der mechanische Faktenzaun-Check (`verify.mjs`: jede Ziffer im Zieltext muss in `en`/`ar` dieses Schlüssels vorkommen) weist die Ziffer „3“ zurück, da weder `en` („Terrain Map“) noch `ar` («الخريطة التضاريسية») sie für GENAU diesen Schlüssel führen. Nach der Rangregel der Aufgabenstellung selbst («السياج أعلى من السلاسة» / «لا اختلاق ولا حذف») geht der Faktenzaun der Konsistenzvorgabe vor — „Geländekarte“ bleibt, teilt aber weiterhin den Wortstamm mit `map.terrain`. Empfehlung an das Projekt: sollte wörtliche Übereinstimmung gewünscht sein, muss `tmap.title`s `en`/`ar`-Quelle selbst um „3D“ ergänzt werden, nicht die Übersetzung im Alleingang.",
+    "[s4] Restliche 33 Strings: keine Übersetzerdeutsch-Symptome gefunden (kein `es gibt`, keine kalkierten Präpositionen, keine unaufgelösten Partizipialkonstruktionen); deutsche Exonyme nicht einschlägig (kein Riad/Dschidda/Mekka/Golf in dieser Charge); keine Fakten von Stufe 3 hinzugefügt, die im Quellentext fehlen — Faktenzaun sonst unverändert bestanden.",
+    "[s4] Keine neuen Eigennamen unsourced verwendet; keine Web-Verifikation zusätzlich nötig."
+  ],
+  "stage_specific": {
+    "changed": [],
+    "fence_removed": [],
+    "fence_restored": [],
+    "considered_not_changed": [
+      {
+        "key": "tmap.title",
+        "value": "Geländekarte",
+        "considered": "3D-Geländekarte (Angleichung an publiziertes map.terrain)",
+        "why_kept": "Ziffer „3“ steht in keinem der beiden Quellentexte (`en`/`ar`) dieses Schlüssels; der Faktenzaun geht der Konsistenzvorgabe vor (BRIEF-Rangregel + mechanischer Check in verify.mjs)."
+      },
+      {
+        "key": "tmap.lead",
+        "value": "Jabal al-Qarah (der Qarah-Berg)",
+        "considered": "Entfernen des Klammer-Glosses, den Stufe 3 hinzugefügt hat",
+        "why_kept": "Gloss ist in `glossary/termbase.json` (Eintrag #14) mit Genus und Quelle belegt, fügt keine neue Tatsache hinzu (reine Begriffsklärung des bereits genannten Eigennamens) und folgt der sitweiten `gloss_regel` für Erstnennung im Fließtext; in kurzen Hero-/Meta-Zeilen anderswo auf der Website bereits so gehandhabt."
+      }
+    ]
+  }
+}

@@ -25,9 +25,16 @@ const comps = (await getCollection('attractions'))
   .filter((e) => e.data.unesco)
   .sort((a, b) => a.data.unesco!.localeCompare(b.data.unesco!));
 type D = (typeof comps)[number]['data'];
-const title = (d: D) => (ar ? d.title : (d.title_en ?? d.title));
-const summary = (d: D) => (ar ? d.summary : (d.summary_en ?? d.summary));
+// الصينية والألمانية والروسية من حقول المعلم المعتمدة بلغتها (*_zh/_de/_ru) بتراجع للإنجليزية
+const pick = (d: D, f: 'title' | 'summary'): string => {
+  if (ar) return d[f];
+  const v = lang === 'en' ? undefined : (d as Record<string, unknown>)[`${f}_${lang}`];
+  return (typeof v === 'string' && v) || d[`${f}_en`] || d[f];
+};
+const title = (d: D) => pick(d, 'title');
+const summary = (d: D) => pick(d, 'summary');
 const names = comps.map((e) => title(e.data));
+const namesSep = lang === 'zh' ? '、' : ar ? '، ' : ', ';
 
 const C = localize(lang, {
   ar: {
@@ -50,6 +57,39 @@ const C = localize(lang, {
     seoTitle: 'Al-Ahsa Oasis at UNESCO',
     seoDesc: `${comps.length} of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site (2018) with their own pages: ${names.join(', ')}.`,
   },
+  // خط zh-translation-pipeline (المرحلة هـ، 2026-09-26)
+  zh: {
+    title: "哈萨绿洲列入联合国教科文组织世界遗产名录",
+    lead: `哈萨绿洲于 2018 年列入联合国教科文组织世界遗产名录（编号 1563），由十二处组成部分构成，其中 ${comps.length} 处是本指南收录的独立景点，此处按其在官方名录中的组成部分编号顺序列出。`,
+    comp: "组成部分",
+    officialH: "官方来源",
+    official: "完整的十二处组成部分列表及地图，可在联合国教科文组织世界遗产中心官网上该遗产地的专属页面查看。",
+    officialLink: "联合国教科文组织 1563 号遗产地 ↗",
+    seoTitle: "哈萨绿洲与联合国教科文组织",
+    seoDesc: `哈萨绿洲于 2018 年列入联合国教科文组织世界遗产名录，由十二处组成部分构成，其中 ${comps.length} 处设有独立页面：${names.join(namesSep)}。`,
+  },
+  // خط de-translation-pipeline (المرحلة هـ، 2026-09-26)
+  de: {
+    title: "Oase Al-Ahsa auf der UNESCO-Welterbeliste",
+    lead: `Die Oase Al-Ahsa wurde 2018 in die UNESCO-Welterbeliste aufgenommen (Stätte Nr. 1563) und umfasst zwölf Bestandteile. Für ${comps.length} von ihnen gibt es eigene Seiten in diesem Reiseführer, hier aufgeführt in der Reihenfolge ihrer Bestandteilnummer in der offiziellen Liste.`,
+    comp: "Bestandteil",
+    officialH: "Offizielle Quelle",
+    official: "Die vollständige Liste der zwölf Bestandteile und deren Karten finden Sie auf der Seite der Stätte beim UNESCO-Welterbezentrum.",
+    officialLink: "Stätte 1563 bei der UNESCO ↗",
+    seoTitle: "Oase Al-Ahsa bei der UNESCO",
+    seoDesc: `Von den zwölf Bestandteilen der UNESCO-Welterbestätte Oase Al-Ahsa (2018) haben ${comps.length} eigene Seiten in diesem Reiseführer: ${names.join(namesSep)}.`,
+  },
+  // خط ru-translation-pipeline (المرحلة هـ، 2026-09-26)
+  ru: {
+    title: "Оазис Аль-Ахса в Списке всемирного наследия ЮНЕСКО",
+    lead: `Оазис Аль-Ахса был включён в Список всемирного наследия ЮНЕСКО в 2018 году (объект 1563). Объект включает двенадцать компонентов. ${comps.length} из них — достопримечательности с отдельными страницами в этом путеводителе, перечисленные здесь в порядке номеров компонентов по официальному списку.`,
+    comp: "Компонент",
+    officialH: "Официальный источник",
+    official: "Полный список двенадцати компонентов и их карты — на странице объекта в Центре всемирного наследия ЮНЕСКО.",
+    officialLink: "Объект 1563 на сайте ЮНЕСКО ↗",
+    seoTitle: "Оазис Аль-Ахса в ЮНЕСКО",
+    seoDesc: `${comps.length} из двенадцати компонентов объекта Всемирного наследия ЮНЕСКО «Оазис Аль-Ахса» (2018) с отдельными страницами: ${names.join(namesSep)}.`,
+  },
 });
 
 const jsonLd = [
@@ -58,7 +98,7 @@ const jsonLd = [
     itemListElement: comps.map((e, n) => ({ '@type': 'ListItem', position: n + 1, name: title(e.data), url: absUrl(attractionHref(e.data, lang)) })),
   },
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : `/${lang}/` },
     { name: C.title, path: altHref(alt, lang) },
   ]),
 ];

@@ -77,3 +77,33 @@ type PostSlugs = { lang: string; slug: string };
  *  تحت بادئة لغتها (/en/blog/ و/zh/blog/ …) على النمط نفسه. */
 export const blogHref = (d: PostSlugs): string =>
   d.lang === 'ar' ? `/مدونة/${d.slug}/` : `/${d.lang}/blog/${d.slug}/`;
+
+/** الصفحات الثابتة الخمس التي صارت بلغاتها الخمس في المرحلة هـ (2026-09-26): السياسات
+ *  والتقرير وشكره واليونسكو والخريطة التضاريسية. المسار العربي بمقطعه العربي، وسواه
+ *  تحت بادئة لغته بالمقطع اللاتيني نفسه — مصدرٌ واحد للروابط والنظائر (alt) وsitemap. */
+const STATIC_AR = {
+  legal: '/السياسات/',
+  report: '/أبلغ/',
+  reportThanks: '/أبلغ/تم/',
+  unesco: '/اليونسكو/',
+  terrainMap: '/خريطة-تضاريس/',
+  map: '/خريطة/',
+} as const;
+const STATIC_LATIN: Record<keyof typeof STATIC_AR, string> = {
+  legal: 'legal/',
+  report: 'report/',
+  reportThanks: 'report/thanks/',
+  unesco: 'unesco/',
+  terrainMap: 'terrain-map/',
+  map: 'map/',
+};
+export type StaticPage = keyof typeof STATIC_AR;
+
+/** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. */
+export const staticHref = (page: StaticPage, lang: Lang): string =>
+  lang === 'ar' ? STATIC_AR[page] : `/${lang}/${STATIC_LATIN[page]}`;
+
+/** نظائر الصفحة الثابتة بلغاتها الخمس — مصدر hreflang ومبدّل اللغة. */
+export const staticAlt = (page: StaticPage): { ar: string; en: string; zh: string; de: string; ru: string } => ({
+  ar: staticHref(page, 'ar'), en: staticHref(page, 'en'), zh: staticHref(page, 'zh'), de: staticHref(page, 'de'), ru: staticHref(page, 'ru'),
+});

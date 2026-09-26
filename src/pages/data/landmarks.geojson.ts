@@ -3,6 +3,7 @@
 // تستهلكها الخريطة التضاريسية (MapLibre) وخريطة التراجع (Leaflet).
 import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
+import { attractionHref } from '../../lib/routes';
 
 export const GET: APIRoute = async () => {
   const items = await getCollection('attractions');
@@ -22,8 +23,13 @@ export const GET: APIRoute = async () => {
         category: e.data.category,
         slug_ar: e.data.slug_ar,
         slug_en: e.data.slug_en,
-        url_ar: `/معالم/${e.data.slug_ar}/`,
-        url_en: `/en/attractions/${e.data.slug_en}/`,
+        url_ar: attractionHref(e.data, 'ar'),
+        url_en: attractionHref(e.data, 'en'),
+        // الصينية والألمانية والروسية (المرحلة هـ): الاسم والرابط متى حمل المعلم ترجمته المعتمدة،
+        // وإلا تتراجع الخريطة إلى الإنجليزية (name_en/url_en) — فلا رابط إلى صفحة غير مبنية.
+        ...(e.data.title_zh ? { name_zh: e.data.title_zh, url_zh: attractionHref(e.data, 'zh') } : {}),
+        ...(e.data.title_de ? { name_de: e.data.title_de, url_de: attractionHref(e.data, 'de') } : {}),
+        ...(e.data.title_ru ? { name_ru: e.data.title_ru, url_ru: attractionHref(e.data, 'ru') } : {}),
         thumb: e.data.heroImage ? `${e.data.heroImage}.webp` : null,
       },
     }));
