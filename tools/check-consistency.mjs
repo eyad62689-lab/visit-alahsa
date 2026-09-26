@@ -166,7 +166,7 @@ async function main() {
   for (const f of htmlFiles) {
     const html = await readText(f);
     // يُستثنى ما بين وسوم script/style (بيانات خارجية قد تحمل نصوصاً)
-    const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '');
+    const visible = stripUntilStable(stripUntilStable(html, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi), /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi);
     if (indicDigits.test(visible)) withIndic.push(path.relative(DIST, f));
   }
   if (withIndic.length === 0) pass('C4', `لا أرقام عربية-هندية في ${htmlFiles.length} صفحة`);
@@ -899,7 +899,9 @@ async function main() {
   {
     const problems = [];
     const numsOf = (t) => t.match(/\d+(?:[.:]\d+)?/g) ?? [];
-    const decode = (t) => t.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ');
+    // تمريرةٌ واحدة: فكّ «&amp;» أولاً يفكّ «&amp;quot;» مرتين (CodeQL js/double-escaping)
+    const DEC = { '&amp;': '&', '&#39;': "'", '&quot;': '"', '&nbsp;': ' ' };
+    const decode = (t) => t.replace(/&(?:amp|#39|quot|nbsp);/g, (e) => DEC[e]);
     const attrFiles = (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'));
     const heads = {};
     for (const f of attrFiles) heads[f] = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';

@@ -25,7 +25,7 @@ function uiKeys(lang: 'ar' | 'en', prefix: string): Record<string, string> {
   const start = src.indexOf(`\n  ${lang}: {`);
   const end = src.indexOf('\n  } as', start) > 0 ? src.indexOf('\n  }', start) : src.length;
   const out: Record<string, string> = {};
-  for (const m of src.slice(start, end).matchAll(/^\s{4}'([a-z0-9.]+)':\s*'((?:\\.|[^'])*)',/gm)) if (m[1].startsWith(prefix)) out[m[1]] = m[2].replace(/\\'/g, "'");
+  for (const m of src.slice(start, end).matchAll(/^\s{4}'([a-z0-9.]+)':\s*'((?:\\.|[^'\\])*)',/gm)) if (m[1].startsWith(prefix)) out[m[1]] = m[2].replace(/\\'/g, "'");
   return out;
 }
 
@@ -79,7 +79,7 @@ const arrOf = (lang: 'ar' | 'en', key: string) => {
   const s = legalSrc.indexOf(`\n  ${lang}: {`);
   const k = legalSrc.indexOf(`${key}: [`, s);
   const e = legalSrc.indexOf('],', k);
-  return [...legalSrc.slice(k, e).matchAll(/'((?:\\.|[^'])*)'/g)].map((m) => m[1].replace(/\\'/g, "'"));
+  return [...legalSrc.slice(k, e).matchAll(/'((?:\\.|[^'\\])*)'/g)].map((m) => m[1].replace(/\\'/g, "'"));
 };
 const seo = legalSrc.match(/const seoDesc = ar\s*\?\s*'([^']*)'\s*:\s*'([^']*)'/)!;
 const LCTX = 'This is a legal document (policies & terms of the site). The Arabic is the owner-approved original and the authority on every provision; the English is its faithful translation and the source you translate from. Translate faithfully and completely in formal legal register — no summarising, no softening or strengthening of any obligation, right or disclaimer, no added clause. Keep law names, decree numbers and dates exactly (Royal Decree No. (M/19) dated 9/2/1443 AH). Product/service names (Google Analytics, GA4, Google, Netlify…) stay as written.';
