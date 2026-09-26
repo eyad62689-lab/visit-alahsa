@@ -23,20 +23,21 @@ const t = useTranslations(lang);
 const ar = lang === 'ar';
 const de = lang === 'de';
 const ru = lang === 'ru';
+const zh = lang === 'zh';
 const d = entry.data;
 const { Content } = await render(entry);
 
 const name = ar ? d.name : d.name_en;
-const area = ar ? d.area : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en;
-const blurb = ar ? d.blurb : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
-const alTxt = ar ? d.alt : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
+const area = ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en;
+const blurb = ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
+const alTxt = ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
 // المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
 // «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.
-// والألمانية والروسية من body_de/body_ru بالبنية نفسها (صفحتاهما لا تُولَّدان بدونه).
-const bodyEnParas = ((de ? d.body_de : ru ? d.body_ru : undefined) ?? d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+// والصينية والألمانية والروسية من body_zh/body_de/body_ru بالبنية نفسها (صفحاتها لا تُولَّد بدونه).
+const bodyEnParas = ((zh ? d.body_zh : de ? d.body_de : ru ? d.body_ru : undefined) ?? d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 const C = localize(lang, {
   ar: {
@@ -79,6 +80,21 @@ const C = localize(lang, {
     noteH: 'Über diese Seite',
     noteP: 'Name und Standort stammen direkt aus Google Maps; die Bewertung wird bei jeder Aktualisierung der Website von dort abgerufen und kann sich ändern. Wir führen keine Preise oder Sternebewertungen auf, und diese Seite beschreibt nur, ohne zu empfehlen.',
   },
+  zh: {
+    // الكتلة الصينية — خط zh-translation-pipeline (دفعة zh-dind-1، المرحلة د1). تسميتا النوع وعنوان الفهرس
+    // وصيغ خرائط Google منسوخة من كتلة ZH المنشورة في فهرس الإقامة، وareaH مشترك مع قالب المطاعم.
+    kindLabel: d.kind === 'heritage-inn' ? '传统客栈' : '酒店',
+    backLabel: '全部住宿',
+    indexName: '住宿',
+    openMaps: t('det.openMaps'),
+    newWindow: '（在新窗口中打开谷歌地图）',
+    ratingLabel: '谷歌地图评分',
+    closedPerm: '已永久停业（据谷歌地图）',
+    closedTemp: '已暂停营业（据谷歌地图）',
+    areaH: '位置',
+    noteH: '关于本页',
+    noteP: '名称与位置均直接取自谷歌地图；评分会随每次网站更新从谷歌地图获取，可能有所变动。本页不展示价格或星级，仅作介绍，不构成推荐。',
+  },
   ru: {
     // الكتلة الروسية — خط ru-translation-pipeline (دفعة ru-stay-1 2026-09-17، الحاكم 94/100 · APPROVE من الدورة الأولى)
     kindLabel: d.kind === 'heritage-inn' ? 'Исторический гостевой дом' : 'Отель',
@@ -98,12 +114,12 @@ const C = localize(lang, {
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/إقامة/' : de ? '/de/stay/' : ru ? '/ru/stay/' : '/en/stay/';
+const indexHref = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : '/en/stay/';
 const siteUrl = SITE;
 const selfUrl = absUrl(stayHref(d, lang), siteUrl);
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
     { name: C.indexName, path: indexHref },
     { name, path: stayHref(d, lang) },
   ], siteUrl),

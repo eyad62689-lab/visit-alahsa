@@ -7,7 +7,7 @@ import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
-import { attractionHref } from '../../lib/routes';
+import { attractionHref, staticHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
 import { formatDate } from '../../lib/dates';
 import { isThinAttraction } from '../../lib/publish';
@@ -40,8 +40,8 @@ const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summ
 // وتكون وصف الصفحة — عربي/إنجليزي فقط (zh/de/ru عبر خطوط الترجمة حصراً)، ويحرسها C24.
 const answer = ar ? a.answer : lang === 'en' ? a.answer_en : undefined;
 const description = answer ?? summary;
-// المعلم الحامل لمعرّف مكوّن يونسكو يربط صفحة المكوّنات (عربي/إنجليزي — الصفحة بلغتيهما فقط)
-const unescoHref = a.unesco && (ar || lang === 'en') ? (ar ? '/اليونسكو/' : '/en/unesco/') : undefined;
+// المعلم الحامل لمعرّف مكوّن يونسكو يربط صفحة المكوّنات بلغة الصفحة (بلغاتها الخمس منذ المرحلة هـ)
+const unescoHref = a.unesco ? staticHref('unesco', lang) : undefined;
 // متون اللغات غير العربية تُصيَّر نصّاً خاماً في <p> — لا ماركداون (قاعدة الموقع)
 const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : de ? (a.body_de ?? a.body_en ?? '')
@@ -320,7 +320,7 @@ const inTrails = isTrailLang(lang)
               {t('det.openAmap')}
             </a>
           )}
-          <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
+          <a class="report-link" href={`${staticHref('report', lang)}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
         </div>
       </aside>
     </div>

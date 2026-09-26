@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
+import { staticHref } from '../lib/routes';
 // الخطوط الفاخرة (مهارة alahsa-typography) مستضافة ذاتياً عبر fontsource
 // (سيو 2026-08-22): استدعاء Google Fonts الخارجي كان يحجب العرض ويرفع LCP
 // عبر الموقع كله (العقوبة المقيسة في Lighthouse). نفس العائلات والأوزان
@@ -95,7 +96,7 @@ const ownershipLd = {
   copyrightHolder: ORG,
   copyrightYear,
   copyrightNotice,
-  license: new URL(lang === 'ar' ? '/السياسات/' : '/en/legal/', site).href,
+  license: new URL(staticHref('legal', lang), site).href,
 };
 const jsonLdAll = [...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []), ownershipLd];
 const ownershipComment = `<!-- va-page:${pageId} lang:${lang} generated:${new Date().toISOString().slice(0, 10)} ${copyrightNotice} — original content: ${pageUrl} -->`;

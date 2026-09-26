@@ -50,9 +50,8 @@ const PLACES = entries.map((e) => {
     area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en,
     alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en,
     blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en,
-    // الصينية تتراجع للإنجليزية: صفحات المنشآت المفردة بلا نسخة صينية بعد
-    // والألمانية والروسية تقصدان صفحتهما متى حمل المكان body_de/body_ru، وإلا النظير الإنجليزي
-    href: hasPage ? stayHref(d, zh ? 'en' : de ? (d.body_de?.trim() ? 'de' : 'en') : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : lang) : d.maps,
+    // الصينية والألمانية والروسية تقصد كلٌّ منها صفحتها متى حمل المكان body_zh/body_de/body_ru، وإلا النظير الإنجليزي
+    href: hasPage ? stayHref(d, zh ? (d.body_zh?.trim() ? 'zh' : 'en') : de ? (d.body_de?.trim() ? 'de' : 'en') : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : lang) : d.maps,
     internal: hasPage,
   };
 });

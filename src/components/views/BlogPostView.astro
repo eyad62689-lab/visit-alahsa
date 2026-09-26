@@ -10,6 +10,7 @@ import { formatDate } from '../../lib/dates';
 import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
 import { htmlLang, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { BLOG_INDEX } from '../../lib/blog';
+import { staticHref } from '../../lib/routes';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 import ShareButton from '../ShareButton.astro';
@@ -100,7 +101,7 @@ if (p.faq.length > 0) {
         </section>
       )}
 
-      <a class="report-link" href={`${ar ? '/أبلغ/' : '/en/report/'}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
+      <a class="report-link" href={`${staticHref('report', lang)}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
 
       <div class="post-back">
         <a href={blogHref} class="btn btn--turq">{t('blog.back')}</a>

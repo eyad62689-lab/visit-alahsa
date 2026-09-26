@@ -1,0 +1,24 @@
+---
+// صفحة مكان الإقامة الصينية. تُولَّد لمن عبر متنه الإنجليزي العتبة (100 كلمة) وحمل body_zh
+// المعتمد من خط zh-translation-pipeline — بوابة كـtitle_zh، والمقطع slug_en مشترك.
+import { getCollection } from 'astro:content';
+import { stayAlt } from '../../../lib/routes';
+import StayDetailView from '../../../components/views/StayDetailView.astro';
+
+export async function getStaticPaths() {
+  const WORD_MIN_EN = 100;
+  const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+  const items = await getCollection('stay');
+  return items
+    .filter((e) => {
+      const body = e.data.body_en.trim();
+      return words(body) >= WORD_MIN_EN && body !== e.data.blurb_en && !!e.data.body_zh?.trim();
+    })
+    .map((entry) => ({
+      params: { slug: entry.data.slug_en },
+      props: { entry, alt: stayAlt(entry.data) },
+    }));
+}
+const { entry, alt } = Astro.props;
+---
+<StayDetailView entry={entry} lang="zh" alt={alt} />
