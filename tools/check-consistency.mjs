@@ -10,6 +10,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -1184,6 +1185,29 @@ async function main() {
     if (pageSets.size < 300) fail('C26', `الحارس صار فارغاً: ${pageSets.size} صفحة تحمل hreflang — المتوقع ≥300`);
     else if (problems.length) fail('C26', `تبادل hreflang: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C26', `${pageSets.size} صفحة تحمل hreflang، ${reciprocal} رابط نظير كلها متبادلة بالمجموعة نفسها وx-default عربي`);
+  }
+
+  // ── C28: دليل التأشيرات — النص حرفياً من المصدر، و«لم يُتحقَّق» موسومة، والروابط كما هي (2026-09-26) ──
+  // المنطق في tools/check-visa-guide.mjs (دالة نقية يُختبر كسرها في الذاكرة)؛ هنا القراءة فقط،
+  // ومعها مسحُ كل صفحات dist: ملاحظة المعاينة لا تظهر في أي صفحة من بناء الإنتاج.
+  // (C27 محجوز لحارس «المسارات» في طلب الدمج #81.)
+  {
+    const context = process.env.CONTEXT;
+    const pagePath = path.join(DIST, VISA_GUIDE_PATH, 'index.html');
+    if (!existsSync(pagePath)) fail('C28', `صفحة ${VISA_GUIDE_PATH} غائبة عن dist`);
+    else {
+      const { problems, stats } = checkVisaGuide({
+        md: await readText(path.join(ROOT, 'src/data/visa-guide.md')),
+        page: await readText(pagePath),
+        sitemap: existsSync(smPath) ? await readText(smPath) : '',
+        context,
+      });
+      if (!context || context === 'production') {
+        for (const f of htmlFiles) if (f !== pagePath && (await readText(f)).includes(VISA_PREVIEW_NOTE)) problems.push(`ملاحظة المعاينة في ${path.relative(DIST, f)} ببناء الإنتاج`);
+      }
+      if (problems.length) fail('C28', `دليل التأشيرات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C28', `دليل التأشيرات: ${stats.tokens} كلمة منشورة تطابق المصدر حرفياً، و${stats.marks} «لم يُتحقَّق» موسومة من ${stats.unverified} في المصدر، و${stats.links} رابطاً بـhref ونصّ حرفيين وtarget=_blank rel=noopener، وسطر التحديث حاضر، وملاحظة المعاينة ${!context || context === 'production' ? 'غائبة (إنتاج)' : `حاضرة (${context})`}، وعربية فقط بلا hreflang`);
+    }
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

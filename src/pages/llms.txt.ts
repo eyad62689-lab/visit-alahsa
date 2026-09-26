@@ -13,6 +13,7 @@ import { attractionHref, blogHref } from '../lib/routes';
 import { isThinAttraction } from '../lib/publish';
 import { LANG_META } from '../i18n/langs';
 import { ui } from '../i18n/ui';
+import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
 
 const SITE = 'https://visit-alahsa.com';
 
@@ -56,6 +57,7 @@ export const GET: APIRoute = async () => {
 - [أماكن الإقامة (${stayCount} أماكن بمواقع خرائط قوقل)](${SITE}/إقامة/) | [Places to Stay](${SITE}/en/stay/): نُزلٌ تراثي في حي الكوت وفندقٌ على ساحل العقير — بطاقات وصفية لا ترشيحات.
 - [المدونة (${topicCount} مقالات بالعربية والإنجليزية)](${SITE}/مدونة/) | [Blog](${SITE}/en/blog/): مسارات 24 و48 ساعة، الحرف اليدوية، الهدايا، وهل تستحق الأحساء الزيارة.
 - [خطط لرحلتك](${SITE}/خطط/) | [Plan your trip](${SITE}/en/plan-your-trip/): كيفية الوصول ومسارات مقترحة وأسئلة شائعة.
+- [دليل الحصول على تأشيرة السياحة والزيارة للسعودية](${SITE}${VISA_GUIDE_PATH})
 - [واحة الأحساء في اليونسكو](${SITE}/اليونسكو/) | [UNESCO World Heritage](${SITE}/en/unesco/): ${unescoCount} من مكوّنات موقع التراث العالمي 1563 (الاثني عشر) بصفحات مفردة.
 - [خريطة المعالم](${SITE}/خريطة/) | [Map](${SITE}/en/map/) — و[الخريطة التضاريسية 3D](${SITE}/خريطة-تضاريس/) | [Terrain map](${SITE}/en/terrain-map/)
 

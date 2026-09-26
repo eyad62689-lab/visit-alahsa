@@ -10,6 +10,7 @@ import type { Lang } from '../../i18n/ui';
 import { reviewedLabel } from '../../data/meta';
 import DataTable from '../DataTable.astro';
 import { practicalTable } from '../../lib/tables';
+import { VISA_GUIDE_PATH } from '../../lib/visa-guide.mjs';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -310,6 +311,8 @@ const jsonLd = [
             </article>
           ))}
         </div>
+        {/* دليل التأشيرات — عربي فقط حتى الآن (2026-09-26)، فلا رابط في اللغات الأخرى */}
+        {ar && <p class="gt-visa" data-reveal><a class="btn btn--turq" href={VISA_GUIDE_PATH}>{t('plan.visa')}</a></p>}
       </div>
     </section>
 
@@ -382,6 +385,7 @@ const jsonLd = [
   .gt-icon svg { inline-size: 26px; block-size: 26px; }
   .gt-h { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-2); }
   .gt-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+  .gt-visa { margin-block-start: var(--s-4); }
   .pr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 248px), 1fr)); gap: var(--s-4); margin: 0; }
   .pr-item { padding-inline-start: var(--s-3); border-inline-start: 2px solid rgba(201,154,74,.55); }
   .pr-k { font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-gold-deep); margin-block-end: var(--s-1); }
