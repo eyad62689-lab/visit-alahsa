@@ -9,6 +9,7 @@ import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH } from '../data/e
 import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
+import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
 import { isUnlisted } from '../i18n/unlisted';
 import { TRAILS } from '../data/trails';
 import { trailAlt, trailsIndexHref } from '../lib/trails';
@@ -43,6 +44,8 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
+    // دليل التأشيرات عربي فقط (2026-09-26) — بلا en فلا hreflang، على سابقة المقال بلا نظير
+    { ar: VISA_GUIDE_PATH, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.md') },
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     // المسارات المقترحة (2026-09-26) — عربي/إنجليزي فقط، التاريخ من ملف البيانات وقالبها
     { ar: trailsIndexHref('ar'), en: trailsIndexHref('en'), lastmod: dateOf(`${V}TrailsIndexView.astro`, 'src/data/trails.json') },

@@ -1,0 +1,156 @@
+---
+// صفحة «دليل التأشيرات» — عربية فقط (قرار إياد 2026-09-26: الإنجليزية تُضاف حين يوفّر نصّها).
+//
+// المصدر الوحيد: src/data/visa-guide.md — «الجزء الثاني» من تقرير البحث منسوخاً حرفياً
+// (من أول عنوان «##» إلى آخر الملف). لا صياغة ولا ترجمة ولا حقيقة مضافة: هذه الواجهة
+// تُنسّق فقط. أول عنوان «##» يصير H1 الهيرو، والفقرة التي تليه نبذته، والباقي يُصيَّر
+// كما خرج من الماركداون مع تحويلات عرضٍ محصورة في هذه الصفحة (لا تمسّ ماركداون أي
+// صفحة أخرى، فلا إضافة في astro.config):
+//   1. كل رابط خارجي يُفتح في نافذة جديدة بـrel="noopener"، وhref ونصّه كما في المصدر.
+//   2. كل «لم يُتحقَّق…» يُوسم <mark class="vg-unverified"> — ظاهرٌ ومميَّز، لا يُخفى ولا يُستبدل.
+//   3. الجداول بقشرة الموقع (tbl-wrap + va-table) وتتمرّر أفقياً على الجوال. بلا data-table
+//      عمداً: C24 (أ) يحرس جداول مصادر الحقيقة الثلاثة (practical/events/fruits)، وأرقام
+//      هذه الجداول مصدرها هذا الملف — يحرسها C28 بمطابقة النص كله حرفياً.
+//   4. سطر «قدّم الآن…» زرّاً، وسطر «ج:» في الأسئلة الشائعة على سطر جديد.
+// يحرس ذلك كله C28 (tools/check-visa-guide.mjs) على dist.
+//
+// ملاحظة المعاينة «يجب فتح كل رابط يدوياً قبل النشر» لا تظهر في الإنتاج: تُصيَّر فقط حين
+// يبني Netlify بسياق غير الإنتاج (CONTEXT = deploy-preview أو branch-deploy). البناء
+// المحلي بلا CONTEXT يُعامَل إنتاجاً. C28 يُلزم الاتجاهين.
+import * as guide from '../../data/visa-guide.md';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations } from '../../i18n/utils';
+import { ORG, breadcrumb, absUrl } from '../../lib/schema';
+import { VISA_GUIDE_PATH, VISA_UPDATED_LINE, VISA_PREVIEW_NOTE, UNVERIFIED } from '../../lib/visa-guide.mjs';
+
+const lang = 'ar' as const;
+const t = useTranslations(lang);
+const isPreview = Boolean(process.env.CONTEXT) && process.env.CONTEXT !== 'production';
+
+const DEC: Record<string, string> = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>' };
+const decode = (s: string) => s.replace(/&(?:amp|quot|#39|lt|gt);/g, (e) => DEC[e]);
+
+const raw = await guide.compiledContent();
+const head = raw.match(/^\s*<h2 id="[^"]*">([^<]*)<\/h2>\s*<p>([^<]*)<\/p>/);
+if (!head) throw new Error('visa-guide.md: المتوقع أن يبدأ بعنوان «##» تليه فقرة تمهيد');
+const title = decode(head[1]);
+const lead = decode(head[2]);
+// أول جملة من التمهيد وصفاً للصفحة — حرفياً، بلا صياغة
+const description = lead.slice(0, lead.indexOf('.') + 1);
+
+const markUnverified = (html: string) =>
+  html.replace(new RegExp(`${UNVERIFIED}[^<.،:(\\n]*`, 'g'), (m) => {
+    const core = m.trimEnd();
+    return `<mark class="vg-unverified">${core}</mark>${m.slice(core.length)}`;
+  });
+
+const sections = raw
+  .slice(head[0].length)
+  .split(/(?=<h2 id=")/)
+  .filter((c) => c.trim())
+  .map((chunk) => {
+    const id = chunk.match(/^<h2 id="([^"]*)"/)?.[1] ?? '';
+    let html = chunk
+      .replace(/<a href="(https?:\/\/[^"]*)">/g, '<a href="$1" target="_blank" rel="noopener">')
+      .replace(/<table>/g, `<div class="tbl-wrap vg-tbl" role="region" tabindex="0" aria-labelledby="${id}"><table class="va-table">`)
+      .replace(/<\/table>/g, '</table></div>')
+      .replace(/<p><strong><a /g, '<p class="vg-cta"><strong><a ')
+      .replace(/<\/strong>(\r?\n)(ج:)/g, '</strong><br>$1$2');
+    html = markUnverified(html);
+    return { id, html };
+  });
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'Article',
+    headline: title, inLanguage: 'ar', dateModified: '2026-09-26',
+    mainEntityOfPage: absUrl(VISA_GUIDE_PATH), publisher: { '@id': ORG['@id'] },
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: '/' },
+    { name: t('nav.plan'), path: '/خطط/' },
+    { name: title, path: VISA_GUIDE_PATH },
+  ]),
+];
+---
+{/* بلا alt عمداً: لا نظير إنجليزي بعد، فلا hreflang (C26 لا يرى الصفحة) ومبدّل اللغة
+    يقصد الرئيسية الإنجليزية — التراجع القائم في Header لكل صفحة بلا نظير. */}
+<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={description} lang={lang} type="article" jsonLd={jsonLd}>
+  <Header lang={lang} />
+  <main id="main">
+    <PageHero eyebrow={t('nav.plan')} title={title} lead={lead} leadWidth={64} motif="center" lang={lang}>
+      <p class="vg-updated" data-vg-updated>{VISA_UPDATED_LINE}</p>
+    </PageHero>
+
+    <div class="container vg-wrap">
+      {isPreview && (
+        <p class="vg-preview-note" role="note" data-vg-preview-note data-pagefind-ignore>{VISA_PREVIEW_NOTE}</p>
+      )}
+      <article class="vg-body" data-vg-body>
+        {sections.map((s) => (
+          <section class="card vg-sec" aria-labelledby={s.id || undefined} set:html={s.html} />
+        ))}
+      </article>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .vg-updated { margin-block-start: var(--s-3); font-size: var(--t-sm); color: rgba(247,243,234,.88); }
+  .vg-wrap { padding-block: var(--s-6) var(--s-7); }
+  .vg-preview-note {
+    margin-block-end: var(--s-4); padding: var(--s-3); border-radius: var(--radius-sm);
+    background: #FDECEA; color: #7A1F12; border: 2px dashed #B3261E; font-weight: 600;
+  }
+  .vg-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); min-inline-size: 0; }
+  .vg-sec { padding: var(--s-5) var(--s-5) var(--s-4); min-inline-size: 0; font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); }
+  .vg-sec :global(h2) { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); line-height: 1.3; margin-block: 0 var(--s-3); }
+  .vg-sec :global(p) { margin-block-end: var(--s-3); max-inline-size: 72ch; }
+  .vg-sec :global(strong) { color: var(--c-turq-deep); font-weight: 700; }
+  .vg-sec :global(ul), .vg-sec :global(ol) { margin-block-end: var(--s-3); padding-inline-start: 1.4em; max-inline-size: 72ch; }
+  .vg-sec :global(ul ul) { margin-block: var(--s-1) 0; }
+  .vg-sec :global(li) { margin-block-end: var(--s-1); }
+  .vg-sec :global(li::marker) { color: var(--c-gold-deep); }
+  .vg-sec :global(a) { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .vg-sec :global(a:hover) { color: var(--c-gold-deep); }
+  /* رمز «نافذة جديدة» زخرفي — لا نصّ في الشجرة ولا يُقرأ */
+  .vg-sec :global(a[target="_blank"])::after { content: "\2197" / ""; font-size: .8em; margin-inline-start: .15em; text-decoration: none; display: inline-block; }
+  .vg-sec :global(hr) { border: 0; border-block-start: 1px solid var(--c-line); margin-block: var(--s-4) 0; }
+
+  /* «لم يُتحقَّق…»: ظاهرٌ ومميَّز — خلفية كهرمانية فاتحة ونصّ الحبر (‏15:1 تقريباً) وحدّ ذهبي داكن */
+  .vg-sec :global(mark.vg-unverified) {
+    background: #FBEBC8; color: var(--c-ink); border: 1px dashed var(--c-gold-deep);
+    border-radius: 4px; padding: 0 .3em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  }
+  .vg-sec :global(mark.vg-unverified)::before {
+    content: "!" / ""; display: inline-grid; place-items: center; inline-size: 1.15em; block-size: 1.15em;
+    margin-inline-end: .3em; border-radius: 50%; background: var(--c-gold-deep); color: #fff;
+    font-size: .75em; font-weight: 700; line-height: 1; vertical-align: .1em;
+  }
+
+  /* الجداول: قشرة الموقع (global.css) + تمرير أفقي داخل الغلاف لا في الصفحة */
+  .vg-sec :global(.vg-tbl) { margin-block: 0 var(--s-3); max-inline-size: 100%; }
+  .vg-sec :global(.vg-tbl:focus-visible) { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .vg-sec :global(.vg-tbl table) { min-inline-size: 760px; }
+  .vg-sec :global(.vg-tbl td) { overflow-wrap: anywhere; }
+  /* داخل الخلايا الضيقة لا ينكسر الوسم بين سطرين («لم» وحدها ثم «يُتحقَّق منه») */
+  .vg-sec :global(.vg-tbl mark.vg-unverified) { white-space: nowrap; }
+
+  /* «قدّم الآن…»: زرّ بلغة أزرار الموقع (btn--turq) */
+  .vg-sec :global(.vg-cta) { margin-block: var(--s-4) 0; }
+  .vg-sec :global(.vg-cta a) {
+    display: inline-block; padding: 12px 26px; border-radius: var(--radius-pill);
+    background: var(--c-turq); color: var(--c-sand); text-decoration: none; font-weight: 600;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .vg-sec :global(.vg-cta strong) { color: inherit; font-weight: inherit; }
+  .vg-sec :global(.vg-cta a:hover) { color: var(--c-sand); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,110,97,.3); }
+  @media (prefers-reduced-motion: reduce) { .vg-sec :global(.vg-cta a:hover) { transform: none; } }
+  @media (max-width: 760px) {
+    .vg-sec { padding: var(--s-4) var(--s-3) var(--s-3); }
+  }
+</style>

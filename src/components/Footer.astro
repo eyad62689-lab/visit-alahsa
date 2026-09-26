@@ -4,6 +4,7 @@ import PalmMotif from './PalmMotif.astro';
 import { useTranslations, titleSep } from '../i18n/utils';
 import { catLabel } from '../lib/categories';
 import { staticHref } from '../lib/routes';
+import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
 import type { Lang } from '../i18n/ui';
 interface Props { lang?: Lang; }
 const { lang = 'ar' } = Astro.props;
@@ -42,6 +43,8 @@ const cols = [
     links: [
       { label: t('nav.plan'), href: planTrip },
       { label: t('foot.l.getThere'), href: planTrip + '#getting-there' },
+      // دليل التأشيرات عربي فقط حتى الآن (2026-09-26) — لا رابط في تذييل اللغات الأخرى
+      ...(ar ? [{ label: t('foot.l.visa'), href: VISA_GUIDE_PATH }] : []),
       { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : '/en/plan/' },
       { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : '/en/map/' },
     ],
