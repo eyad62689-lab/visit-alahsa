@@ -9,13 +9,18 @@ const pack = JSON.parse(fs.readFileSync(path.join(dir, 'pack.json'), 'utf8'));
 const finFile = fs.existsSync(path.join(dir, 'zh-05.json')) ? 'zh-05.json' : null;
 const fin = JSON.parse(fs.readFileSync(path.join(dir, finFile), 'utf8')).strings;
 
-const decode = (s) => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#x27;/g, "'");
+// فكّ الكيانات بتمريرة واحدة (فكّ «&amp;» أولاً يفكّ «&amp;lt;» مرتين — js/double-escaping)، ونزع الوسوم حتى الاستقرار
+// بلا حساسية للحالة (js/bad-tag-filter وincomplete-multi-character-sanitization) — نمط stripUntilStable في check-consistency.
+const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&#34;': '"' };
+const decode = (s) => s.replace(/&(?:amp|lt|gt|quot|#39|#x27|#34);/g, (e) => ENT[e]);
+const strip = (s, re, sep = '') => { let p; do { p = s; s = s.replace(re, sep); } while (s !== p); return s; };
+const dropBlocks = (h) => strip(strip(strip(h, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi), /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi), /<svg\b[^>]*>[\s\S]*?<\/svg\b[^>]*>/gi);
 function pageText(file) {
   let h = fs.readFileSync(file, 'utf8');
   const m = h.match(/<main[\s\S]*?<\/main>/);
   h = m ? m[0] : h;
-  h = h.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<svg[\s\S]*?<\/svg>/g, '');
-  h = h.replace(/<(h1|h2|h3|p|li|dt|dd|div|section|header|footer|nav|a|span)[^>]*>/g, '\n').replace(/<[^>]+>/g, '');
+  h = dropBlocks(h);
+  h = strip(strip(h, /<(h1|h2|h3|p|li|dt|dd|div|section|header|footer|nav|a|span)[^>]*>/gi, '\n'), /<[^>]*>/g);
   return decode(h).split('\n').map((l) => l.trim()).filter(Boolean).join('\n');
 }
 

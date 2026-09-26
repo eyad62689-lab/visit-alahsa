@@ -1,7 +1,7 @@
 // npx tsx build-packs.ts — يبني pack.json لدفعات المرحلة هـ الأربع × اللغات الثلاث من ملفات المستودع.
 import fs from 'node:fs';
 import path from 'node:path';
-import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN } from '/home/user/visit-alahsa/src/data/legal.ts';
+import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN } from '../../../src/data/legal.ts';
 
 const REPO = '/home/user/visit-alahsa';
 const OUT = path.dirname(new URL(import.meta.url).pathname);

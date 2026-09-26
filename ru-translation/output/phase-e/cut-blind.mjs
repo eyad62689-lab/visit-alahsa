@@ -6,15 +6,20 @@ import path from 'node:path';
 const REPO = '/home/user/visit-alahsa';
 const Z = path.dirname(new URL(import.meta.url).pathname);
 const lang = process.argv[2];
-const decode = (s) => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#x27;/g, "'").replace(/&#34;/g, '"');
+// فكّ الكيانات بتمريرة واحدة (فكّ «&amp;» أولاً يفكّ «&amp;lt;» مرتين — js/double-escaping)، ونزع الوسوم حتى الاستقرار
+// بلا حساسية للحالة (js/bad-tag-filter وincomplete-multi-character-sanitization) — نمط stripUntilStable في check-consistency.
+const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&#34;': '"' };
+const decode = (s) => s.replace(/&(?:amp|lt|gt|quot|#39|#x27|#34);/g, (e) => ENT[e]);
+const strip = (s, re, sep = '') => { let p; do { p = s; s = s.replace(re, sep); } while (s !== p); return s; };
+const dropBlocks = (h) => strip(strip(strip(h, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi), /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi), /<svg\b[^>]*>[\s\S]*?<\/svg\b[^>]*>/gi);
 function text(url) {
   let h = fs.readFileSync(`${REPO}/dist${url}index.html`, 'utf8');
   const title = decode(h.match(/<title>([^<]*)/)?.[1] ?? '');
   const desc = decode(h.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
   const m = h.match(/<main[\s\S]*?<\/main>/);
-  h = (m ? m[0] : h).replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<svg[\s\S]*?<\/svg>/g, '');
+  h = dropBlocks(m ? m[0] : h);
   const attrs = [...h.matchAll(/(?:placeholder|aria-label)="([^"]{2,})"/g)].map((x) => `[${decode(x[1])}]`);
-  h = h.replace(/<(h1|h2|h3|p|li|dt|dd|div|section|header|footer|nav|a|span|label|button|option)[^>]*>/g, '\n').replace(/<[^>]+>/g, '');
+  h = strip(strip(h, /<(h1|h2|h3|p|li|dt|dd|div|section|header|footer|nav|a|span|label|button|option)[^>]*>/gi, '\n'), /<[^>]*>/g);
   const body = decode(h).split('\n').map((l) => l.trim()).filter(Boolean).join('\n');
   return `（页面标题）${title}\n（搜索结果摘要）${desc}\n${body}\n${attrs.length ? '（输入框提示与按钮说明）\n' + attrs.join('\n') : ''}`;
 }

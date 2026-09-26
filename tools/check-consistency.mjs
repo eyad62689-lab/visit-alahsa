@@ -761,8 +761,9 @@ async function main() {
       const attrs = [...body.matchAll(/(?:alt|aria-label|placeholder)="([^"]{3,})"/g)].map((m) => m[1]);
       return [...body.replace(/<[^>]+>/g, '\n').split(/\n+/), ...attrs]
         // «&» والفاصلة العليا تُفكّان قبل إسقاط بقية الكيانات: الاسم «Al-Koot Heritage Hotel &amp; Restaurant»
-        // أو «Bayt Al-Bay&#39;ah» كان يصير «… Hotel Restaurant» فلا يطابق مجموعة الأسماء المستثناة (POL-DE-55)
-        .map((t) => t.replace(/&amp;/g, '&').replace(/&#39;|&#x27;|&apos;/g, "'").replace(/&[a-z]+;|&#\d+;/g, ' ').replace(/\s+/g, ' ').trim())
+        // أو «Bayt Al-Bay&#39;ah» كان يصير «… Hotel Restaurant» فلا يطابق مجموعة الأسماء المستثناة (POL-DE-55).
+        // تمريرةٌ واحدة: فكّ «&amp;» قبل غيره يفكّ «&amp;lt;» مرتين (CodeQL js/double-escaping)
+        .map((t) => t.replace(/&[a-z]+;|&#x?[\da-f]+;/gi, (e) => (e === '&amp;' ? '&' : /^&(#39|#x27|apos);$/i.test(e) ? "'" : ' ')).replace(/\s+/g, ' ').trim())
         .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t));
     };
     const smXml = existsSync(smPath) ? await readText(smPath) : '';
