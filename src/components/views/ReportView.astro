@@ -7,6 +7,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { staticHref } from '../../lib/routes';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -41,8 +42,50 @@ const C = localize(lang, {
     submit: 'Send the report',
     note: 'Your report goes straight to the site team; none of it is published.',
   },
+  // خط zh-translation-pipeline (المرحلة هـ، 2026-09-26)
+  zh: {
+    eyebrow: "帮助我们保持准确",
+    title: "内容纠错",
+    lead: "我们最看重内容的准确性。如您发现信息有误、链接失效，或图片位置不对，请告诉我们，我们会认真核实。",
+    pageL: "相关页面",
+    pagePh: "页面链接或景点名称",
+    msgL: "您发现了什么问题？",
+    msgPh: "简要描述问题——如果您了解正确信息及其来源，也请一并提供。",
+    emailL: "您的邮箱（选填——如需回复请填写）",
+    emailPh: "name@example.com",
+    submit: "提交反馈",
+    note: "您的反馈将直接送达网站团队，不会公开发布。",
+  },
+  // خط de-translation-pipeline (المرحلة هـ، 2026-09-26)
+  de: {
+    eyebrow: "Helfen Sie uns, genau zu bleiben",
+    title: "Fehler melden",
+    lead: "Genauigkeit ist uns am wichtigsten. Wenn Ihnen eine ungenaue Angabe, ein defekter Link oder ein falsch platziertes Foto auffällt, teilen Sie es uns mit – wir prüfen es.",
+    pageL: "Die betreffende Seite",
+    pagePh: "Link zur Seite oder Name der Sehenswürdigkeit",
+    msgL: "Welchen Fehler haben Sie bemerkt?",
+    msgPh: "Beschreiben Sie den Fehler kurz – und wenn Sie die richtige Information und ihre Quelle kennen, fügen Sie sie hinzu.",
+    emailL: "Ihre E-Mail-Adresse (optional – falls Sie eine Antwort wünschen)",
+    emailPh: "name@example.com",
+    submit: "Meldung senden",
+    note: "Ihre Meldung geht direkt an das Team der Website; nichts davon wird veröffentlicht.",
+  },
+  // خط ru-translation-pipeline (المرحلة هـ، 2026-09-26)
+  ru: {
+    eyebrow: "Помогите нам сохранять точность",
+    title: "Сообщить об ошибке",
+    lead: "Точность информации — то, что нас заботит больше всего. Если вы заметили неточность, неработающую ссылку или фотографию не на своём месте, сообщите нам, и мы это проверим.",
+    pageL: "Страница с ошибкой",
+    pagePh: "Ссылка на страницу или название достопримечательности",
+    msgL: "Какую ошибку вы заметили?",
+    msgPh: "Опишите ошибку кратко — и, если знаете верную информацию и её источник, укажите это.",
+    emailL: "Ваш email (необязательно — если хотите получить ответ)",
+    emailPh: "name@example.com",
+    submit: "Отправить сообщение",
+    note: "Ваше сообщение поступает напрямую команде сайта; ничего из него не публикуется.",
+  },
 });
-const thanksHref = ar ? '/أبلغ/تم/' : '/en/report/thanks/';
+const thanksHref = staticHref('reportThanks', lang);
 ---
 <Base title={`${C.title} ${titleSep(lang)} ${t('site.name')}`} description={C.lead} lang={lang} alt={alt} noindex={true}>
   <Header lang={lang} alt={alt} />

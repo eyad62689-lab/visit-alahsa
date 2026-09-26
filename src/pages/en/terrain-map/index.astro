@@ -1,5 +1,5 @@
 ---
 import TerrainMapView from '../../../components/views/TerrainMapView.astro';
-const alt = { ar: '/خريطة-تضاريس/', en: '/en/terrain-map/' };
+import { staticAlt } from '../../../lib/routes';
 ---
-<TerrainMapView lang="en" alt={alt} />
+<TerrainMapView lang="en" alt={staticAlt('terrainMap')} />

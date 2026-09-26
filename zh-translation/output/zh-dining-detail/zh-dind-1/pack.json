@@ -1,0 +1,152 @@
+{
+  "batch": "zh-dind-1",
+  "lang": "zh",
+  "part": "Template strings of the single venue page (7) and the single stay page (2) + bodies of four restaurants and the heritage hotel (stay)",
+  "strings": {
+    "dv.kindRestaurant": {
+      "en": "Restaurant",
+      "ar": "مطعم",
+      "ctx": "/zh/restaurants-cafes/<slug>/ (single venue page, DiningDetailView.astro): the small type label printed above the venue name (an \"eyebrow\"), for venues of kind \"restaurant\". One word, stands alone. The published Chinese index /zh/restaurants-cafes/ calls this group «餐厅» (kindRestaurants filter) — keep it consistent. The published sibling on the stay template uses «传统客栈» / «酒店» for the same slot."
+    },
+    "dv.kindCafe": {
+      "en": "Café",
+      "ar": "مقهى",
+      "ctx": "/zh/restaurants-cafes/<slug>/: the same eyebrow label for venues of kind \"cafe\". The published Chinese index calls this group «咖啡馆» — keep consistent."
+    },
+    "dv.kindBakery": {
+      "en": "Bakery",
+      "ar": "مخبز",
+      "ctx": "/zh/restaurants-cafes/<slug>/: the same eyebrow label for venues of kind \"bakery\". The published Chinese index calls this group «烘焙坊» — keep consistent. (No bakery has a single page yet; the label still ships.)"
+    },
+    "dv.backLabel": {
+      "en": "All restaurants & cafés",
+      "ar": "كل المطاعم والمقاهي",
+      "ctx": "/zh/restaurants-cafes/<slug>/: the back link in the breadcrumb strip at the very top of the page, and again at the foot of the page. It points to the index page whose published Chinese H1 is «餐厅与咖啡馆» (indexName, LOCKED, not in this batch). Must be built on the same pattern as sd.backLabel (the stay page sibling in this same batch)."
+    },
+    "dv.areaH": {
+      "en": "Location",
+      "ar": "الموقع",
+      "ctx": "/zh/restaurants-cafes/<slug>/ AND /zh/stay/<slug>/ (the stay template reuses this exact string for its own areaH): heading of the small box giving where the venue is (one line, e.g. the published card area «库特区——易卜拉欣宫对面»). Two to four characters."
+    },
+    "dv.noteP": {
+      "en": "The name and location come straight from Google Maps; the rating and opening hours are fetched from it on each site update and can change. No prices or dish recommendations are listed.",
+      "ar": "الاسم والموقع من خرائط قوقل مباشرة، والتقييم وأوقات العمل تُجلب منها عند كل تحديث للموقع وقد تتغير. لا تُعرض أسعار ولا توصيات بأصناف بعينها.",
+      "ctx": "/zh/restaurants-cafes/<slug>/: body of the «关于本页» box at the foot of the page (noteH is LOCKED to the published «关于本页»). Three claims, all load-bearing: (1) name and location come straight from Google Maps; (2) rating and opening hours are fetched from it on every site update and can change; (3) no prices and no dish recommendations are listed. «Google Maps» is «谷歌地图» everywhere on the published Chinese site. The published Chinese index methodP1 says «名称与位置均直接取自谷歌地图，简介仅依据照片所见撰写，不含评价，也不推荐特定菜品。» — reuse its wording for the shared claims (one site, one wording)."
+    },
+    "dv.sightsH": {
+      "en": "Sights nearby in {district}",
+      "ar": "معالم قريبة في {district}",
+      "ctx": "/zh/restaurants-cafes/<slug>/: H2 of the «sights nearby» list at the foot of the page (links to attraction pages in the same district). {district} is REPLACED AT BUILD TIME by one of the published Chinese district names verbatim: 库特区 · 胡富夫历史城区 · 里法阿北区 · 哈利迪亚区 · 拉乌达区 · 马兹鲁阿区 · 欧韦米里亚区 · 奥拉雅区 · 海湾路 · 穆巴拉兹 · 胡杜德区 · 卡拉. The wording must read naturally with ALL of them (note 海湾路 is a road and 穆巴拉兹 a city). Keep {district} literally, exactly once. «Sights» = the site-wide term for attractions (check termbase for 景点/名胜 ruling — entry on 站点/景点 policy POL-1)."
+    },
+    "sd.backLabel": {
+      "en": "All places to stay",
+      "ar": "كل أماكن الإقامة",
+      "ctx": "/zh/stay/<slug>/ (single place-to-stay page, StayDetailView.astro): the back link at the top of the page, pointing to the index whose published Chinese H1 is «住宿» (indexName, LOCKED). Build it on the same pattern as dv.backLabel in this same batch."
+    },
+    "sd.noteP": {
+      "en": "The name and location come straight from Google Maps; the rating is fetched from it on each site update and can change. No prices or star ratings are listed, and this page is descriptive rather than a recommendation.",
+      "ar": "الاسم والموقع من خرائط قوقل مباشرة، والتقييم يُجلب منها عند كل تحديث للموقع وقد يتغير. لا تُعرض أسعار ولا تصنيفات نجوم، وهذه الصفحة وصفية لا ترشيحية.",
+      "ctx": "/zh/stay/<slug>/: body of the «关于本页» box (noteH LOCKED). Differs from dv.noteP: rating only (no opening hours), no prices or STAR RATINGS, plus the \"descriptive, not a recommendation\" clause. The published Chinese stay index methodP1 says «名称与位置均直接取自谷歌地图，简介仅依据照片所见撰写。本页不展示价格、星级或推荐。» and its FAQ says «卡片仅作介绍» / «本列表仅作介绍，不构成推荐» — reuse that wording. dv.noteP and sd.noteP must share their common clauses word for word."
+    },
+    "dar-basma.body": {
+      "en": "In the historic heart of Hofuf, on the edge of the Qasr Ibrahim park, Dar Basma occupies an old house known as Manzil Al-Afsah, dated by the restaurant to more than a hundred years. The house was restored with contemporary touches that kept its character, and its features remain in view: handmade tiling on the staircase, arched windows, upper skylights, and restored plaster walls carrying heritage pieces. The restaurant began in 2018 around the idea of reviving Hasawi cooking and presenting it under a contemporary brand, under the line \"the taste of home\". Its own menu highlights Hasawi rice from local farms, slow-cooked broths, and seasonal dates. After Al-Ahsa the brand extended to Madinah, and a branch in Makkah has been announced. Outdoor seating among the palms sits on the edge of the park.",
+      "ar": "في وسط الهفوف التاريخي، على طرف حديقة قصر إبراهيم، يشغل مطعم دار بسمة منزلاً قديماً يُعرف بـ«منزل العفسة» يعود تاريخه لأكثر من مئة عام. رُمِّم المنزل بلمسات عصرية حفظت أصالته، ولا تزال ملامحه ظاهرة: بلاط يدوي الصنع على الدرج، ونوافذ مقوّسة، ومناور علوية، وجدران جص مُرمَّمة تحمل قطعاً تراثية.\n\nبدأ المطعم عام 2018 بفكرة إحياء المطبخ الأحسائي وتقديمه بعلامة معاصرة، وشعاره «طعم بيت». ومما تُعرّف به قائمته الرسمية: الأرز الأحسائي من مزارع محلية، والمرق بطيء الطهي، والتمور الموسمية. وقد امتدّت العلامة بعد الأحساء إلى المدينة المنورة، ولها فرع معلن في مكة المكرمة.",
+      "ctx": "/zh/restaurants-cafes/dar-basma/ (single venue page, DiningDetailView.astro): the full body text of the page for the Restaurant «Dar Basma» (ar «دار بسمة»). RENDERED AS PLAIN TEXT, paragraph by paragraph — no Markdown, no links, no emphasis (the template puts each paragraph in its own <p>). Keep the paragraph split of the English source exactly: 1 paragraph(s), separated by one blank line (\\n\\n). The page H1 above the body is the venue's Latin name «Dar Basma» (as it names itself — CLAUDE.md). Inside the body the name follows the zh termbase exactly (batch-indexes pattern: Arabic-word names = Chinese transliteration + Latin gloss at FIRST mention in the body, e.g. 达尔巴斯玛（Dar Basma）, then the Chinese form alone; Latin brand names stay Latin, e.g. Ratio Al-Koot). If the venue is missing from the termbase, propose an entry in termbase_additions following that pattern (with source) — never translate the meaning of a name. Its published Chinese card on the index page (zh batch 14, judged) says: area «库特区——易卜拉欣宫公园旁» · blurb «椰枣树间的户外座位与玻璃门面，就在易卜拉欣宫公园边上。» · image alt «傍晚 Dar Basma 的玻璃门面与椰枣树间的户外座位». The card blurb is printed directly above this body on the same page, so the body must not contradict it and must not repeat it verbatim. District key «alkoot» — published Chinese district name «库特区» (DISTRICT_NAMES.zh), use it verbatim wherever the body names this district. The Arabic column is the authority on every fact; the English is the source and sets the scope — an extra Arabic sentence is NOT added, but where English and Arabic contradict each other on a fact, follow the Arabic and report it as a source defect.",
+      "_meta": {
+        "coll": "dining",
+        "id": "dar-basma",
+        "slug_en": "dar-basma",
+        "name_en": "Dar Basma",
+        "name_ar": "دار بسمة",
+        "kind": "restaurant",
+        "district": "alkoot",
+        "paras": 1,
+        "card_zh": {
+          "area": "库特区——易卜拉欣宫公园旁",
+          "blurb": "椰枣树间的户外座位与玻璃门面，就在易卜拉欣宫公园边上。",
+          "alt": "傍晚 Dar Basma 的玻璃门面与椰枣树间的户外座位"
+        }
+      }
+    },
+    "alkoot-hotel.body": {
+      "en": "In the heart of Hofuf's Al-Koot district, directly opposite Qasr Ibrahim, Al-Koot Heritage Hotel and Restaurant occupies a palace close to two hundred years old. The 963-square-metre building follows the old Hasawi architectural style, and was restored as a personal initiative by Abdulaziz bin Mohammed Al-Abdulqader, who turned it into a heritage inn. It opened in 1439 AH (2018 CE) at the hands of Prince Sultan bin Salman and Prince Saud bin Nayef, and was the first heritage hotel in the governorate to be licensed by the Saudi Commission for Tourism and National Heritage. Alongside the restaurant the building holds eight suites, a museum of antique pieces in the entrance hall, and an upper-floor library of books on the history of Al-Ahsa and Al-Koot in several languages. The restaurant serves Hasawi rice, harees, marqooq and mufallaq, prepared under the supervision of women from the region, beside contemporary dishes. Qaisariyah Souq and Al-Fawaris Souq lie about half a kilometre away, and Qasr Ibrahim is a few steps from the door.",
+      "ar": "في قلب حي الكوت بالهفوف، مقابل قصر إبراهيم مباشرةً، يقوم فندق ومطعم الكوت التراثي في قصرٍ يقارب عمره مئتي عام، تبلغ مساحته 963 متراً مربعاً وبُني على النمط العمراني الأحسائي القديم. رمّمه عبدالعزيز بن محمد العبدالقادر بمبادرة شخصية وحوّله نُزلاً تراثياً، وافتُتح عام 1439هـ (2018م) على يد الأمير سلطان بن سلمان والأمير سعود بن نايف، وهو أول فندق تراثي في المحافظة يُرخَّص من الهيئة العامة للسياحة والتراث الوطني.\n\nيضم المبنى ثمانية أجنحة إلى جانب المطعم، ومتحفاً بقطع أثرية عند بهو الدخول، ومكتبة في الطابق العلوي تحمل كتباً عن تاريخ الأحساء والكوت بعدة لغات. ويقدّم مطعمه الرز الحساوي والهريسة والمرقوق والمفلق تُحضَّر بإشراف سيدات من المنطقة، إلى جانب أطباق عصرية. ويبعد عن سوق القيصرية وسوق الفوارس نحو نصف كيلومتر، وعن قصر إبراهيم خطوات.",
+      "ctx": "/zh/restaurants-cafes/alkoot-hotel/ (single venue page, DiningDetailView.astro): the full body text of the page for the Restaurant «Al-Koot Heritage Hotel & Restaurant» (ar «فندق ومطعم الكوت التراثي»). RENDERED AS PLAIN TEXT, paragraph by paragraph — no Markdown, no links, no emphasis (the template puts each paragraph in its own <p>). Keep the paragraph split of the English source exactly: 1 paragraph(s), separated by one blank line (\\n\\n). The page H1 above the body is the venue's Latin name «Al-Koot Heritage Hotel & Restaurant» (as it names itself — CLAUDE.md). Inside the body the name follows the zh termbase exactly (batch-indexes pattern: Arabic-word names = Chinese transliteration + Latin gloss at FIRST mention in the body, e.g. 达尔巴斯玛（Dar Basma）, then the Chinese form alone; Latin brand names stay Latin, e.g. Ratio Al-Koot). If the venue is missing from the termbase, propose an entry in termbase_additions following that pattern (with source) — never translate the meaning of a name. Its published Chinese card on the index page (zh batch 14, judged) says: area «库特区——易卜拉欣宫对面» · blurb «传统客栈的餐厅——拱廊环绕的庭院中，餐桌摆在玻璃顶下。» · image alt «Al-Koot Heritage Hotel 的内院，拱廊环绕，上覆玻璃顶». The card blurb is printed directly above this body on the same page, so the body must not contradict it and must not repeat it verbatim. District key «alkoot» — published Chinese district name «库特区» (DISTRICT_NAMES.zh), use it verbatim wherever the body names this district. The Arabic column is the authority on every fact; the English is the source and sets the scope — an extra Arabic sentence is NOT added, but where English and Arabic contradict each other on a fact, follow the Arabic and report it as a source defect.",
+      "_meta": {
+        "coll": "dining",
+        "id": "alkoot-hotel",
+        "slug_en": "alkoot-hotel",
+        "name_en": "Al-Koot Heritage Hotel & Restaurant",
+        "name_ar": "فندق ومطعم الكوت التراثي",
+        "kind": "restaurant",
+        "district": "alkoot",
+        "paras": 1,
+        "card_zh": {
+          "area": "库特区——易卜拉欣宫对面",
+          "blurb": "传统客栈的餐厅——拱廊环绕的庭院中，餐桌摆在玻璃顶下。",
+          "alt": "Al-Koot Heritage Hotel 的内院，拱廊环绕，上覆玻璃顶"
+        }
+      }
+    },
+    "alhawi.body": {
+      "en": "Al Hawy is a breakfast restaurant in Al-Khalidiyah, Hofuf, across from King Faisal University. It opened in 2018. The name comes from a local word: al-hawi is the courtyard, the open outdoor space of a house — the hawi of the home. In some places the word zawara is attached to the name as well, drawn from ziyara, a visit. Breakfast is how the restaurant presents itself before anything else: its accounts run under the name Futoor Al Hawy — breakfast at Al Hawy — rather than the more commonly used \"Al Hawy Restaurant\", and the first thing its links page points to is the breakfast menu. Its location in Al-Khalidiyah places it in the same neighbourhood as Khunaina and Greasy Fingers from this list, a residential and university neighbourhood rather than a heritage one — so a visit here is a visit for the breakfast itself, not a tour of old Hofuf.",
+      "ar": "فطور الحوي مطعم فطور في حي الخالدية بالهفوف، مقابل جامعة الملك فيصل، افتُتح عام 2018.\n\nواسمه من مفردة محلية: «الحوي» هو الفناء أو المساحة المكشوفة في المنزل — حوي البيت. ويلحق باسمه في مواضع لفظ «زوارة»، وهو من الزيارة.\n\nويعرّف نفسه بالفطور قبل غيره: حساباته باسم «فطور الحوي» — لا «مطعم الحوي» كما يشيع — وأول ما تحيل إليه صفحة روابطه قائمة الفطور.\n\nوموقعه في الخالدية يضعه في الحي نفسه الذي يضم مطعم خنينة وقريسي فينقرز من هذه القائمة، وهو حيّ سكني وجامعي لا حيّ تراثي — فالقصد إليه قصدٌ إلى الفطور نفسه لا إلى جولة في الهفوف القديمة.",
+      "ctx": "/zh/restaurants-cafes/alhawi/ (single venue page, DiningDetailView.astro): the full body text of the page for the Restaurant «Al Hawy» (ar «فطور الحوي»). RENDERED AS PLAIN TEXT, paragraph by paragraph — no Markdown, no links, no emphasis (the template puts each paragraph in its own <p>). Keep the paragraph split of the English source exactly: 1 paragraph(s), separated by one blank line (\\n\\n). The page H1 above the body is the venue's Latin name «Al Hawy» (as it names itself — CLAUDE.md). Inside the body the name follows the zh termbase exactly (batch-indexes pattern: Arabic-word names = Chinese transliteration + Latin gloss at FIRST mention in the body, e.g. 达尔巴斯玛（Dar Basma）, then the Chinese form alone; Latin brand names stay Latin, e.g. Ratio Al-Koot). If the venue is missing from the termbase, propose an entry in termbase_additions following that pattern (with source) — never translate the meaning of a name. Its published Chinese card on the index page (zh batch 14, judged) says: area «哈利迪亚区——费萨尔国王大学对面» · blurb «传统早餐铺在棕榈叶编织席上，一盘挨着一盘。» · image alt «Al Hawy 餐厅里的传统早餐，各式菜肴摆成一席». The card blurb is printed directly above this body on the same page, so the body must not contradict it and must not repeat it verbatim. District key «khalidiyah» — published Chinese district name «哈利迪亚区» (DISTRICT_NAMES.zh), use it verbatim wherever the body names this district. The Arabic column is the authority on every fact; the English is the source and sets the scope — an extra Arabic sentence is NOT added, but where English and Arabic contradict each other on a fact, follow the Arabic and report it as a source defect.",
+      "_meta": {
+        "coll": "dining",
+        "id": "alhawi",
+        "slug_en": "alhawi",
+        "name_en": "Al Hawy",
+        "name_ar": "فطور الحوي",
+        "kind": "restaurant",
+        "district": "khalidiyah",
+        "paras": 1,
+        "card_zh": {
+          "area": "哈利迪亚区——费萨尔国王大学对面",
+          "blurb": "传统早餐铺在棕榈叶编织席上，一盘挨着一盘。",
+          "alt": "Al Hawy 餐厅里的传统早餐，各式菜肴摆成一席"
+        }
+      }
+    },
+    "sinyar.body": {
+      "en": "Sinyar stands on Al-Khaleej Road in Al-Uwaimriyah, Hofuf, and presents itself as a seafood restaurant — its line on its own accounts reads \"a sea voyage in every dish\", and its name on X is Sinyar Seafood Restaurant. The word sinyar comes from the maritime heritage of the Gulf. It is used for the many vessels moored together in a harbour, and also for two ships that agree to sail in company so that each may watch over the other's safety; its use is not confined to the sea, extending to the travel of caravans overland. The same word gives its name to a diving and pearl-fishing festival in Qatar. The restaurant itself has not stated why it chose the name. It has more than one location in Al-Ahsa, and this page is about the Al-Uwaimriyah branch.",
+      "ar": "على طريق الخليج في العويمرية بالهفوف يقع مطعم سنيار، ويعرّف نفسه بالمأكولات البحرية — وشعاره على حساباته «رحلة بحرية في كل طبق»، واسمه على منصة إكس «مطعم سنيار للمأكولات البحرية».\n\nو«سنيار» كلمة من التراث البحري الخليجي: تُطلق على السفن الكثيرة الراسية في ميناء، وتُطلق كذلك على سفينتين تتّفقان على السير معاً ليطمئنّ كلٌّ منهما على سلامة الأخرى، ولا يقتصر استعمالها على البحر بل يمتد إلى ارتحال القوافل. وقد حمل الاسم نفسه مهرجانٌ للغوص وصيد اللؤلؤ في قطر. ولم يصرّح المطعم بسبب اختياره الاسم.\n\nوللمطعم أكثر من موقع في الأحساء، وهذه الصفحة عن فرع العويمرية.",
+      "ctx": "/zh/restaurants-cafes/sinyar/ (single venue page, DiningDetailView.astro): the full body text of the page for the Restaurant «Sinyar» (ar «مطعم سنيار»). RENDERED AS PLAIN TEXT, paragraph by paragraph — no Markdown, no links, no emphasis (the template puts each paragraph in its own <p>). Keep the paragraph split of the English source exactly: 1 paragraph(s), separated by one blank line (\\n\\n). The page H1 above the body is the venue's Latin name «Sinyar» (as it names itself — CLAUDE.md). Inside the body the name follows the zh termbase exactly (batch-indexes pattern: Arabic-word names = Chinese transliteration + Latin gloss at FIRST mention in the body, e.g. 达尔巴斯玛（Dar Basma）, then the Chinese form alone; Latin brand names stay Latin, e.g. Ratio Al-Koot). If the venue is missing from the termbase, propose an entry in termbase_additions following that pattern (with source) — never translate the meaning of a name. Its published Chinese card on the index page (zh batch 14, judged) says: area «海湾路——欧韦米里亚区» · blurb «泥土色的建筑，传统风格中透着现代气息，店名用阿拉伯书法写成。» · image alt «傍晚 Sinyar 的泥土色门面与阿拉伯书法招牌». The card blurb is printed directly above this body on the same page, so the body must not contradict it and must not repeat it verbatim. District key «uwaimriyah» — published Chinese district name «欧韦米里亚区» (DISTRICT_NAMES.zh), use it verbatim wherever the body names this district. The Arabic column is the authority on every fact; the English is the source and sets the scope — an extra Arabic sentence is NOT added, but where English and Arabic contradict each other on a fact, follow the Arabic and report it as a source defect.",
+      "_meta": {
+        "coll": "dining",
+        "id": "sinyar",
+        "slug_en": "sinyar",
+        "name_en": "Sinyar",
+        "name_ar": "مطعم سنيار",
+        "kind": "restaurant",
+        "district": "uwaimriyah",
+        "paras": 1,
+        "card_zh": {
+          "area": "海湾路——欧韦米里亚区",
+          "blurb": "泥土色的建筑，传统风格中透着现代气息，店名用阿拉伯书法写成。",
+          "alt": "傍晚 Sinyar 的泥土色门面与阿拉伯书法招牌"
+        }
+      }
+    },
+    "alkoot-heritage.body": {
+      "en": "In Hofuf's Al-Koot district, directly opposite Qasr Ibrahim, guests stay inside a palace close to two hundred years old that was restored into a heritage inn. The 963-square-metre building follows the old Hasawi architectural style, and was restored as a personal initiative by Abdulaziz bin Mohammed Al-Abdulqader. It opened in 1439 AH (2018 CE) at the hands of Prince Sultan bin Salman and Prince Saud bin Nayef, and was the first heritage hotel in the governorate to be licensed by the Saudi Commission for Tourism and National Heritage. The rooms are eight suites set beneath ceilings of palm trunks and fronds, their walls cut with arched niches and hung with sadu weaving. Antique pieces are displayed in the entrance hall, and an upper-floor library holds books on the history of Al-Ahsa and Al-Koot in several languages. Qasr Ibrahim stands a few steps from the door, and Qaisariyah Souq and Al-Fawaris Souq about half a kilometre away — a stay inside the historic city rather than on its edge.",
+      "ar": "في حي الكوت بالهفوف، مقابل قصر إبراهيم، يقيم الزائر داخل قصرٍ يقارب عمره مئتي عام رُمّم ليصير نُزلاً تراثياً. المبنى على النمط العمراني الأحسائي القديم وتبلغ مساحته 963 متراً مربعاً، رمّمه عبدالعزيز بن محمد العبدالقادر بمبادرة شخصية. وافتُتح عام 1439هـ (2018م) على يد الأمير سلطان بن سلمان والأمير سعود بن نايف، وهو أول فندق تراثي في المحافظة يُرخَّص من الهيئة العامة للسياحة والتراث الوطني.\n\nالغرف ثمانية أجنحة تحت أسقفٍ من جذوع النخل وجريده، في جدرانها كوىً مقوّسة ونسيج سدو معلّق. وفي بهو الدخول قطعٌ أثرية معروضة، وفي الطابق العلوي مكتبةٌ تحمل كتباً عن تاريخ الأحساء والكوت بعدة لغات. ومن باب النُزل خطواتٌ إلى قصر إبراهيم، ونحو نصف كيلومتر إلى سوق القيصرية وسوق الفوارس — فالنزيل هنا داخل المدينة التاريخية لا على أطرافها.",
+      "ctx": "/zh/stay/alkoot-heritage-hotel/ (single place-to-stay page, StayDetailView.astro): the full body text of the page for the Heritage inn «Al-Koot Heritage Hotel» (ar «فندق الكوت التراثي»). RENDERED AS PLAIN TEXT, paragraph by paragraph — no Markdown, no links, no emphasis (the template puts each paragraph in its own <p>). Keep the paragraph split of the English source exactly: 1 paragraph(s), separated by one blank line (\\n\\n). The page H1 above the body is the venue's Latin name «Al-Koot Heritage Hotel» (as it names itself — CLAUDE.md). Inside the body the name follows the zh termbase exactly (batch-indexes pattern: Arabic-word names = Chinese transliteration + Latin gloss at FIRST mention in the body, e.g. 达尔巴斯玛（Dar Basma）, then the Chinese form alone; Latin brand names stay Latin, e.g. Ratio Al-Koot). If the venue is missing from the termbase, propose an entry in termbase_additions following that pattern (with source) — never translate the meaning of a name. Its published Chinese card on the index page (zh batch 14, judged) says: area «库特区——易卜拉欣宫对面» · blurb «客房设在一座修复后改作传统客栈的宫殿里，顶棚由椰枣树干与枝叶搭成。» · image alt «Al-Koot Heritage Hotel 的一间客房，椰枣树干顶棚、拱形壁龛与萨杜织物». The card blurb is printed directly above this body on the same page, so the body must not contradict it and must not repeat it verbatim. The Arabic column is the authority on every fact; the English is the source and sets the scope — an extra Arabic sentence is NOT added, but where English and Arabic contradict each other on a fact, follow the Arabic and report it as a source defect.",
+      "_meta": {
+        "coll": "stay",
+        "id": "alkoot-heritage",
+        "slug_en": "alkoot-heritage-hotel",
+        "name_en": "Al-Koot Heritage Hotel",
+        "name_ar": "فندق الكوت التراثي",
+        "kind": "heritage-inn",
+        "district": null,
+        "paras": 1,
+        "card_zh": {
+          "area": "库特区——易卜拉欣宫对面",
+          "blurb": "客房设在一座修复后改作传统客栈的宫殿里，顶棚由椰枣树干与枝叶搭成。",
+          "alt": "Al-Koot Heritage Hotel 的一间客房，椰枣树干顶棚、拱形壁龛与萨杜织物"
+        }
+      }
+    }
+  }
+}

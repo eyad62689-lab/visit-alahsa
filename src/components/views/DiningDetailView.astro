@@ -30,13 +30,15 @@ const ar = lang === 'ar';
 const ru = lang === 'ru';
 // والألمانية (ج7): البوابة body_de في de/restaurants-cafes/[slug]، وحقول البطاقة *_de من ج6.
 const de = lang === 'de';
+// والصينية (د1): البوابة body_zh في zh/restaurants-cafes/[slug]، وحقول البطاقة *_zh من الدفعة 14.
+const zh = lang === 'zh';
 const d = entry.data;
 const { Content } = await render(entry);
 
 const name = ar ? d.name : d.name_en;
-const area = ar ? d.area : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en;
-const blurb = ar ? d.blurb : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
-const alTxt = ar ? d.alt : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
+const area = ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en;
+const blurb = ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en;
+const alTxt = ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
@@ -44,7 +46,7 @@ const hours = hoursFor(lv, lang);
 const hoursData = hoursDataFor(lv);
 // المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
 // «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.
-const bodyEnParas = (de && d.body_de?.trim() ? d.body_de : ru && d.body_ru?.trim() ? d.body_ru : d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+const bodyEnParas = (zh && d.body_zh?.trim() ? d.body_zh : de && d.body_de?.trim() ? d.body_de : ru && d.body_ru?.trim() ? d.body_ru : d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 // «معالم قريبة في الحيّ» (الخطوة 9 من خطة التفاعل العالمي): المعالم التي تحمل مفتاح حيّ
 // المنشأة نفسه (district — مشتقّ من نصّ area في ملف المعلم، يفرضه المخطط). بلا حيّ لا قسم.
@@ -52,7 +54,7 @@ const sights = d.district
   ? (await getCollection('attractions'))
       .filter((e) => e.data.district === d.district)
       .sort((x, y) => x.data.order - y.data.order)
-      .map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
+      .map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
   : [];
 
 const C = localize(lang, {
@@ -114,6 +116,26 @@ const C = localize(lang, {
     indexName: 'Restaurants und Cafés',
     sightsH: 'Sehenswürdigkeiten in der Nähe: {district}',
   },
+  // الكتلة الصينية — خط zh-translation-pipeline (دفعة zh-dind-1، المرحلة د1). المقفلات (أوقات العمل
+  // وصيغ خرائط Google وعنوان الفهرس وعنوان صندوق المنهج) منسوخة من كتلة ZH المنشورة في فهرس المطاعم.
+  zh: {
+    kindLabel: d.kind === 'cafe' ? '咖啡馆' : d.kind === 'bakery' ? '烘焙坊' : '餐厅',
+    backLabel: '全部餐厅与咖啡馆',
+    openMaps: t('det.openMaps'),
+    newWindow: '（在新窗口中打开谷歌地图）',
+    hoursH: '营业时间',
+    hoursNote: '营业时间来自谷歌地图，可能随时变动，请以各场所谷歌地图页面的最新信息为准。',
+    ratingLabel: '谷歌地图评分',
+    openNow: '营业中',
+    closedNow: '已打烊',
+    closedPerm: '已永久停业（据谷歌地图）',
+    closedTemp: '已暂停营业（据谷歌地图）',
+    areaH: '位置',
+    noteH: '关于本页',
+    noteP: '名称与位置均直接取自谷歌地图；评分与营业时间会随每次网站更新从谷歌地图获取，可能有所变动。本页不展示价格，也不推荐特定菜品。',
+    indexName: '餐厅与咖啡馆',
+    sightsH: '{district}附近的景点',
+  },
   // الروسية — خط ru-translation-pipeline (دفعة ru-dining-detail-1)؛ ما يطابق كتلة RU في الفهرس منسوخٌ منها.
   ru: {
     kindLabel: d.kind === 'cafe' ? 'Кафе' : d.kind === 'bakery' ? 'Пекарня' : 'Ресторан',
@@ -134,17 +156,17 @@ const C = localize(lang, {
     sightsH: 'Достопримечательности поблизости: {district}',
   },
 });
-const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : de ? 'de' : ru ? 'ru' : 'en'][d.district]) : '';
+const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : 'en'][d.district]) : '';
 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/مطاعم-ومقاهي/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
+const indexHref = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
 const siteUrl = SITE;
 const selfUrl = absUrl(diningHref(d, lang), siteUrl);
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
     { name: C.indexName, path: indexHref },
     { name, path: diningHref(d, lang) },
   ], siteUrl),

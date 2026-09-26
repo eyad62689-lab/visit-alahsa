@@ -6,7 +6,7 @@ import PalmMotif from '../PalmMotif.astro';
 import ShareButton from '../ShareButton.astro';
 import { getCollection } from 'astro:content';
 import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
-import { attractionHref } from '../../lib/routes';
+import { attractionHref, staticHref } from '../../lib/routes';
 import { srcsetFor } from '../../lib/images';
 import { DIST_LABELS } from '../../lib/distance';
 import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
@@ -109,8 +109,7 @@ const jsonLd = [
         </div>
         {/* الخريطة التضاريسية — صفحة مستقلة (تحسين تدريجي)؛ هذه الصفحة تبقى كما هي.
             خارج مجموعة الفلاتر: رابط تنقّل لا فلتر، وكان شكله يوهم أنه أحدها. */}
-        {/* لا نسخة صينية ولا ألمانية ولا روسية للتضاريسية بعد (المرحلة هـ) — روابطها تقصد الإنجليزية */}
-        <a class="map-terrain-link" href={ar ? '/خريطة-تضاريس/' : '/en/terrain-map/'}>{t('map.terrain')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+        <a class="map-terrain-link" href={staticHref('terrainMap', lang)}>{t('map.terrain')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
         {/* «بالقرب مني» (الخطوة 7): تحديد الموقع بطلب صريح؛ يرتّب القائمة بالمسافة ويضع علامة
             الزائر بلا تخزين. أيقونة وحدها في كل اللغات بتسمية aria (zh تتراجع للإنجليزية حتى تمرّ بالخط). */}
         <button class="map-locate" id="map-locate" type="button" aria-label={t('map.locate')} title={t('map.locate')} aria-pressed="false">

@@ -3,6 +3,7 @@ import Wordmark from './Wordmark.astro';
 import PalmMotif from './PalmMotif.astro';
 import { useTranslations, titleSep } from '../i18n/utils';
 import { catLabel } from '../lib/categories';
+import { staticHref } from '../lib/routes';
 import type { Lang } from '../i18n/ui';
 interface Props { lang?: Lang; }
 const { lang = 'ar' } = Astro.props;
@@ -47,12 +48,11 @@ const cols = [
     h: t('foot.col.site'),
     links: [
       { label: t('foot.l.about'), href: ar ? '/#name' : zh ? '/zh/#name' : '/en/#name' },
-      // صفحة مكوّنات اليونسكو عربية/إنجليزية فقط (الخطوة 8) — لا تُربط من zh/de/ru: تسميتها
-      // الإنجليزية رفعت /zh/map/ (9 كتل نصّ) فوق عتبة C22 (22%)، والصفحة تُربط منها حين تُترجم.
-      ...(ar || lang === 'en' ? [{ label: t('foot.l.unesco'), href: ar ? '/اليونسكو/' : '/en/unesco/' }] : []),
+      // صفحة مكوّنات اليونسكو بلغاتها الخمس منذ المرحلة هـ (2026-09-26)
+      { label: t('foot.l.unesco'), href: staticHref('unesco', lang) },
       { label: t('foot.l.brand'), href: '/brand/' },
-      { label: t('foot.l.privacy'), href: ar ? '/السياسات/' : '/en/legal/' },
-      { label: t('foot.l.report'), href: ar ? '/أبلغ/' : '/en/report/' },
+      { label: t('foot.l.privacy'), href: staticHref('legal', lang) },
+      { label: t('foot.l.report'), href: staticHref('report', lang) },
       { label: t('foot.l.contact'), href: 'mailto:info@visit-alahsa.com' },
       // واتساب: الرقم لا يُعرض كنص — مضمَّن في رابط wa.me فقط (طلب إياد 2026-07-23)
       { label: t('foot.l.whatsapp'), href: 'https://wa.me/966532482544', external: true, icon: 'whatsapp' },
