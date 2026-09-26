@@ -1,0 +1,96 @@
+---
+// فهرس المسارات المقترحة — /trails/ و/en/trails/ (عربي/إنجليزي فقط، 2026-09-26).
+// المحتوى كله من src/data/trails.json (ملف المالك المدقَّق) بلا إعادة صوغ؛ ونصوص الواجهة
+// من القاموس. الإسناد (meta.attribution) في رأس الصفحة إلزامي: المسارات مقترحة من الموقع
+// وليست صادرة عن جهة رسمية — يحرسه C27 على dist.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { TRAILS, TRAIL_META } from '../../data/trails';
+import { trailHref, type TrailLang } from '../../lib/trails';
+import { absUrl, breadcrumb } from '../../lib/schema';
+
+interface Props { lang: TrailLang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const cards = TRAILS.map((tr) => ({
+  slug: tr.slug,
+  order: tr.order,
+  href: trailHref(tr, lang),
+  title: tr[lang].title,
+  tagline: tr[lang].tagline,
+  duration: t(`trails.duration.${tr.suggestedDuration}` as const),
+  mode: t(`trails.mode.${tr.mode}` as const),
+  stops: tr.stops.length,
+  unesco: tr.stops.filter((s) => s.unesco).length,
+}));
+
+const title = t('trails.title');
+const seoDesc = ar
+  ? `${cards.length} مسارات مقترحة بين معالم الأحساء: ${cards.map((c) => c.title).join('، ')}.`
+  : `${cards.length} suggested trails across Al-Ahsa’s landmarks: ${cards.map((c) => c.title).join(', ')}.`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'ItemList', name: title, numberOfItems: cards.length,
+    itemListElement: cards.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.title, url: absUrl(c.href) })),
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: title, path: altHref(alt, lang) },
+  ]),
+];
+---
+<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={t('nav.trails')} title={title} lead={t('trails.lead')} leadWidth={60} motif="center" lang={lang}>
+      <p class="tr-attr" data-trail-attribution>{TRAIL_META.attribution[lang]}</p>
+    </PageHero>
+
+    <section class="container tr-list">
+      <ol class="tr-grid">
+        {cards.map((c) => (
+          <li>
+            <a class="card card--lift tr-card" href={c.href} data-trail-card={c.slug}>
+              <span class="tr-num" aria-hidden="true">{String(c.order).padStart(2, '0')}</span>
+              <h2 class="tr-t">{c.title}</h2>
+              <p class="tr-d">{c.tagline}</p>
+              <dl class="tr-meta">
+                <div><dt>{t('trails.duration')}</dt><dd>{c.duration}</dd></div>
+                <div><dt>{t('trails.mode')}</dt><dd>{c.mode}</dd></div>
+                <div><dt>{t('trails.stopsCount')}</dt><dd><bdi>{c.stops}</bdi></dd></div>
+                <div><dt>{t('trails.unescoCount')}</dt><dd><bdi>{c.unesco}</bdi></dd></div>
+              </dl>
+              <span class="tr-go">{t('trails.view')} <span aria-hidden="true">{ar ? '←' : '→'}</span></span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <p class="tr-note" data-unesco-note>{TRAIL_META.unescoNote[lang]}</p>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .tr-attr { margin-block-start: var(--s-4); max-inline-size: 68ch; font-size: var(--t-sm); line-height: 1.8; color: rgba(247,243,234,.88); border-inline-start: 2px solid var(--c-gold); padding-inline-start: var(--s-3); }
+  .tr-list { padding-block: var(--s-6) var(--s-8); }
+  .tr-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+  @media (max-width: 1000px) { .tr-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 760px) { .tr-grid { grid-template-columns: 1fr; } }
+  .tr-grid > li { display: flex; }
+  .tr-card { flex: 1; padding: var(--s-4) var(--s-4) var(--s-5); gap: var(--s-2); }
+  .tr-num { font-family: var(--font-latin); font-weight: 600; font-size: var(--t-xl); line-height: 1; color: var(--c-turq); }
+  .tr-t { font-size: var(--t-lg); line-height: 1.35; color: var(--c-turq-deep); margin: 0; }
+  .tr-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; margin: 0; }
+  .tr-meta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-3); margin: var(--s-2) 0 0; padding-block-start: var(--s-3); border-block-start: 1px solid var(--c-line); }
+  .tr-meta dt { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); }
+  .tr-meta dd { margin: 0; font-size: var(--t-sm); color: var(--c-ink); }
+  .tr-go { margin-block-start: auto; padding-block-start: var(--s-3); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); }
+  .tr-note { margin-block-start: var(--s-5); max-inline-size: 70ch; font-size: var(--t-sm); line-height: 1.8; color: var(--c-ink-soft); }
+</style>

@@ -37,6 +37,9 @@ const routes = {
 };
 const nav = [
   { href: routes.attractions, label: t('nav.attractions') },
+  // المسارات المقترحة (2026-09-26): عربي/إنجليزي فقط — لا صفحات zh/de/ru لها، فترويسات
+  // تلك اللغات بلا تغيير (ولا يتغيّر عرضها المقيس). العرض اللازم لـar/en أُعيد قياسه.
+  ...(ar || lang === 'en' ? [{ href: ar ? '/trails/' : '/en/trails/', label: t('nav.trails') }] : []),
   { href: routes.leisure, label: t('nav.leisure') },
   { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },
@@ -211,6 +214,20 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     /* الزرّ الذهبي مخفيّ هنا، فرابط الخطة داخل القائمة هو الطريق الوحيد إليها */
     .nav .nav-plan { display: block; }
+  }
+  /* الإنجليزية تنهار عند 1281px لا 1227 (2026-09-26): رابط «Trails» العاشر (ar/en وحدهما)
+     رفع اللازم مقيساً بـtools/measure-header-fit.mjs إلى ar ‏1183px · en ‏1242 — فأدنى نافذة
+     للعربية 1223px (ما زالت تحت 1227 فتبقى عتبتها المشتركة) وللإنجليزية 1282px. رفعُ العتبة
+     المشتركة كان سيُسقط شريط العربية والصينية بلا سبب، فالكتلة محصورة بالإنجليزية كسابقة
+     الألمانية والروسية أدناه. لا تعدّل إحدى الكتل دون الأخرى. */
+  @media (max-width: 1281px) {
+    :global([lang='en']) .hd-actions .btn-gold { display: none; }
+    :global([lang='en']) .burger { display: flex; }
+    :global([lang='en']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='en']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='en']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='en']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='en']) .nav .nav-plan { display: block; }
   }
   /* الألمانية والروسية تنهاران أعلى: تسمياتهما أطول بنيةً حتى بعد تقصيرها عبر خط الترجمة
      (‏Sehenswertes · Termine · Souqs & Parks، اعتماد الحاكم 91/100)، واللازم لها

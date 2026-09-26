@@ -13,6 +13,7 @@ import { attractionHref, blogHref } from '../lib/routes';
 import { isThinAttraction } from '../lib/publish';
 import { LANG_META } from '../i18n/langs';
 import { ui } from '../i18n/ui';
+import { TRAILS } from '../data/trails';
 import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
 
 const SITE = 'https://visit-alahsa.com';
@@ -59,6 +60,7 @@ export const GET: APIRoute = async () => {
 - [خطط لرحلتك](${SITE}/خطط/) | [Plan your trip](${SITE}/en/plan-your-trip/): كيفية الوصول ومسارات مقترحة وأسئلة شائعة.
 - [دليل الحصول على تأشيرة السياحة والزيارة للسعودية](${SITE}${VISA_GUIDE_PATH})
 - [واحة الأحساء في اليونسكو](${SITE}/اليونسكو/) | [UNESCO World Heritage](${SITE}/en/unesco/): ${unescoCount} من مكوّنات موقع التراث العالمي 1563 (الاثني عشر) بصفحات مفردة.
+- [مسارات مقترحة (${TRAILS.length} مسارات)](${SITE}/trails/) | [Suggested trails](${SITE}/en/trails/): ${TRAILS.map((t) => t.ar.title).join('، ')}.
 - [خريطة المعالم](${SITE}/خريطة/) | [Map](${SITE}/en/map/) — و[الخريطة التضاريسية 3D](${SITE}/خريطة-تضاريس/) | [Terrain map](${SITE}/en/terrain-map/)
 
 ## Main sections (English mirror)
@@ -73,6 +75,7 @@ export const GET: APIRoute = async () => {
 - [Blog](${SITE}/en/blog/) — ${topicCount} topics in Arabic and English: 24- and 48-hour itineraries, handicrafts, gifts, and whether Al-Ahsa is worth the visit.
 - [Plan your trip](${SITE}/en/plan-your-trip/) — getting there, suggested routes, FAQ, and a table of verified hours and fees.
 - [UNESCO World Heritage](${SITE}/en/unesco/) — ${unescoCount} of the twelve components of site 1563 (inscribed 2018) with their own pages.
+- [Suggested trails](${SITE}/en/trails/) — ${TRAILS.length} suggested itineraries curated by Visit Al-Ahsa: ${TRAILS.map((t) => t.en.title).join(', ')}.
 - [Map](${SITE}/en/map/) and [Terrain map](${SITE}/en/terrain-map/)
 
 ## ${LANG_META.zh.native} — ${ui.zh['nav.attractions']}
