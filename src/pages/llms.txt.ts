@@ -75,7 +75,7 @@ export const GET: APIRoute = async () => {
 - [Blog](${SITE}/en/blog/) — ${topicCount} topics in Arabic and English: 24- and 48-hour itineraries, handicrafts, gifts, and whether Al-Ahsa is worth the visit.
 - [Plan your trip](${SITE}/en/plan-your-trip/) — getting there, suggested routes, FAQ, and a table of verified hours and fees.
 - [UNESCO World Heritage](${SITE}/en/unesco/) — ${unescoCount} of the twelve components of site 1563 (inscribed 2018) with their own pages.
-- [Suggested trails](${SITE}/en/trails/) — ${TRAILS.length} suggested itineraries curated by Visit Al-Ahsa: ${TRAILS.map((t) => t.en.title).join(', ')}.
+- [Suggested trails](${SITE}/en/trails/) — ${TRAILS.length} suggested itineraries: ${TRAILS.map((t) => t.en.title).join(', ')}.
 - [Map](${SITE}/en/map/) and [Terrain map](${SITE}/en/terrain-map/)
 
 ## ${LANG_META.zh.native} — ${ui.zh['nav.attractions']}
