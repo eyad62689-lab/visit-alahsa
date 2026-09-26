@@ -757,9 +757,12 @@ async function main() {
       }
     }
     const chunksOf = (html) => {
-      const body = html.replace(/<head[\s\S]*?<\/head>/, '').replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<!--[\s\S]*?-->/g, '');
+      let body = stripUntilStable(html, /<head\b[^>]*>[\s\S]*?<\/head\b[^>]*>/gi);
+      body = stripUntilStable(body, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
+      body = stripUntilStable(body, /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi);
+      body = stripUntilStable(body, /<!--[\s\S]*?--!?>/g);
       const attrs = [...body.matchAll(/(?:alt|aria-label|placeholder)="([^"]{3,})"/g)].map((m) => m[1]);
-      return [...body.replace(/<[^>]+>/g, '\n').split(/\n+/), ...attrs]
+      return [...stripTags(body, '\n').split(/\n+/), ...attrs]
         // «&» والفاصلة العليا تُفكّان قبل إسقاط بقية الكيانات: الاسم «Al-Koot Heritage Hotel &amp; Restaurant»
         // أو «Bayt Al-Bay&#39;ah» كان يصير «… Hotel Restaurant» فلا يطابق مجموعة الأسماء المستثناة (POL-DE-55).
         // تمريرةٌ واحدة: فكّ «&amp;» قبل غيره يفكّ «&amp;lt;» مرتين (CodeQL js/double-escaping)
