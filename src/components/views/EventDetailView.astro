@@ -256,7 +256,7 @@ if (ev.faq?.length) {
     mainEntity: ev.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
 }
 ---
-<Base title={`${ev.seoTitle ?? ev.name} ${titleSep(lang)} ${t('site.name')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
+<Base title={`${ev.seoTitle ?? ev.name} ${titleSep(lang)} ${t('site.brand')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
   <Header lang={lang} alt={alt} />
   <main id="main"
     data-ev-edition={raw.after && raw.endISO ? '' : undefined}

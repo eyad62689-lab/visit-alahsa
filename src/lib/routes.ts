@@ -99,6 +99,11 @@ const STATIC_LATIN: Record<keyof typeof STATIC_AR, string> = {
 };
 export type StaticPage = keyof typeof STATIC_AR;
 
+/** صفحة «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط، فلا تدخل STATIC_AR
+ *  (نظائرها الخمس ستعلن zh/de/ru غير مبنية). تُترجم عبر خطوط الترجمة متى قُرّر. */
+export const ABOUT_ALT = { ar: '/من-نحن/', en: '/en/about/' } as const;
+export const aboutHref = (lang: Lang): string => (lang === 'ar' ? ABOUT_ALT.ar : ABOUT_ALT.en);
+
 /** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. */
 export const staticHref = (page: StaticPage, lang: Lang): string =>
   lang === 'ar' ? STATIC_AR[page] : `/${lang}/${STATIC_LATIN[page]}`;

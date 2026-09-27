@@ -88,7 +88,7 @@ const jsonLd = [
     itemListElement: items.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: pickTitle(i.data), url: new URL(attractionHref(i.data, hrefLang(i.data)), siteUrl).href })) },
 ];
 ---
-<Base title={`${tx('title')} ${titleSep(lang)} ${t('site.name')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
+<Base title={`${tx('title')} ${titleSep(lang)} ${t('site.brand')}`} description={tx('lead')} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage={heroImg}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={tx('eyebrow')} title={tx('title')} lead={tx('lead')} leadWidth={56}
