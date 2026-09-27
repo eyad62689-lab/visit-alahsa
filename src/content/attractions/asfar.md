@@ -36,6 +36,7 @@ area: "شمال شرق الواحة"
 area_en: "Northeast of the oasis"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 bestTime_en: "At sunset, when the water glows and the flocks of birds return."
+openSite: true
 practical:
   - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", label_de: "Eintritt", value_de: "Kostenlos – frei zugängliches Naturgelände", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-03", verified: true }
 fee: { free: true }
