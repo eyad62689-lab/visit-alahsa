@@ -1,8 +1,11 @@
 # ============================================================================
 # Unified security scanning — CodeQL + Semgrep
 # ----------------------------------------------------------------------------
-# Runs two independent scanners in parallel and reports every finding to
-# the same place: this repository's Security tab -> Code scanning alerts.
+# Runs two independent scanners in parallel. Where GitHub code scanning is
+# available (public repository), findings are uploaded to the Security tab ->
+# Code scanning alerts. In a private repository without code scanning, the
+# upload is skipped and the job fails itself on security findings instead,
+# so the gate keeps working either way.
 #
 # Actions are pinned to commit SHAs, not moving tags: a tag can be repointed
 # by whoever controls the action's repository, which would silently change
@@ -24,7 +27,12 @@ on:
     branches: ["main"]
   schedule:
     - cron: "0 3 * * 1"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      simulate_private:
+        description: "Run the no-code-scanning path (testing only)"
+        type: boolean
+        default: false
 
 concurrency:
   group: security-${{ github.workflow }}-${{ github.ref }}
@@ -47,6 +55,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      # Visibility is read from the API: schedule events carry no repository payload.
+      - name: Detect repository visibility
+        id: vis
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ inputs.simulate_private }}" = "true" ]; then echo "private=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          echo "private=$(gh api repos/${{ github.repository }} --jq .private)" >> "$GITHUB_OUTPUT"
       - name: Initialize CodeQL
         uses: github/codeql-action/init@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
         with:
@@ -57,6 +73,29 @@ jobs:
         uses: github/codeql-action/analyze@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
         with:
           category: "/language:${{ matrix.language }}"
+          upload: ${{ steps.vis.outputs.private == 'true' && 'never' || 'always' }}
+          output: codeql-results
+      # Without code scanning: fail on results whose rule carries a security
+      # severity of 4.0 or higher (medium and above), excluding the rule/path
+      # pairs listed in .github/codeql-known-findings.json — the same
+      # "new findings only" behaviour code scanning applies to pull requests.
+      - name: Fail on new security findings (no code scanning)
+        if: steps.vis.outputs.private == 'true'
+        run: |
+          jq -r --slurpfile known .github/codeql-known-findings.json '
+            ($known[0] | map("\(.rule)|\(.path)")) as $skip
+            | .runs[] as $run
+            | ([$run.tool.driver.rules[]?, ($run.tool.extensions[]?.rules[]?)]
+               | map({key: .id, value: ((.properties["security-severity"] // "0") | tonumber)})
+               | from_entries) as $sev
+            | $run.results[]
+            | select(($sev[.ruleId] // 0) >= 4.0)
+            | select(("\(.ruleId)|\(.locations[0].physicalLocation.artifactLocation.uri)") as $k | ($skip | index($k)) == null)
+            | "\($sev[.ruleId]) \(.ruleId) \(.locations[0].physicalLocation.artifactLocation.uri):\(.locations[0].physicalLocation.region.startLine)"
+          ' codeql-results/*.sarif | tee codeql-findings.txt
+          n=$(wc -l < codeql-findings.txt)
+          echo "New CodeQL security findings (severity >= 4.0): $n"
+          test "$n" -eq 0
 
   semgrep:
     name: Semgrep
@@ -71,6 +110,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      # The semgrep image has no gh CLI; the visibility is read with python alone.
+      - name: Detect repository visibility
+        id: vis
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SIMULATE: ${{ inputs.simulate_private }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          req = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['REPO']}",
+              headers={"Authorization": f"Bearer {os.environ['GH_TOKEN']}", "Accept": "application/vnd.github+json"},
+          )
+          private = os.environ.get("SIMULATE") == "true" or json.load(urllib.request.urlopen(req))["private"]
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write(f"private={str(private).lower()}\n")
+          PY
       - name: Run Semgrep
         continue-on-error: true
         run: semgrep scan --config=auto --sarif --output=semgrep.sarif
@@ -78,11 +135,25 @@ jobs:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
       # الرفع يتسامح مع غياب SARIF حتى لا يصبغ الفحص المستودع بالأحمر كما فعل Snyk
       - name: Upload Semgrep results
-        if: always() && hashFiles('semgrep.sarif') != ''
+        if: always() && hashFiles('semgrep.sarif') != '' && steps.vis.outputs.private != 'true'
         uses: github/codeql-action/upload-sarif@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
         with:
           sarif_file: semgrep.sarif
           category: semgrep
+      # Without code scanning: fail on error-level results, and print them.
+      - name: Fail on error-level findings (no code scanning)
+        if: always() && hashFiles('semgrep.sarif') != '' && steps.vis.outputs.private == 'true'
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          data = json.load(open("semgrep.sarif"))
+          hits = [r for run in data.get("runs", []) for r in run.get("results", []) if r.get("level") == "error"]
+          for r in hits:
+              loc = r["locations"][0]["physicalLocation"]
+              print(r.get("ruleId"), f'{loc["artifactLocation"]["uri"]}:{loc.get("region", {}).get("startLine")}')
+          print(f"Semgrep error-level findings: {len(hits)}")
+          sys.exit(1 if hits else 0)
+          PY
 
   summary:
     name: Post summary comment
@@ -105,6 +176,9 @@ jobs:
               .map(([tool, r]) => `| ${tool} | ${icon(r)} ${r} |`)
               .join("\n");
             const marker = "<!-- security-scan-summary -->";
+            const where = context.payload.repository && context.payload.repository.private
+              ? "Full findings: the failing job's log."
+              : "Full findings: **Security** tab -> **Code scanning**.";
             const body = [
               marker,
               "### 🛡️ Security scan summary",
@@ -113,7 +187,7 @@ jobs:
               "|---|---|",
               rows,
               "",
-              "Full findings: **Security** tab -> **Code scanning**."
+              where
             ].join("\n");
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
