@@ -8,8 +8,9 @@
 // قبل أي نمط عام)، وأول تطابق يفوز.
 //   answer   = وكيل إجابة يستدعيه مستخدم فعلي أو يفهرس للإجابات — أهمّها
 //   search   = زاحف بحث تقليدي تتغذّى منه المحركات (Bingbot بوابة Copilot)
-//   training = زاحف جمع بيانات تدريب، وكلّه محجوب في robots.txt — فتسجيله
-//              يكشف من يتجاهل الحجب، وهي معلومة لا تُرى بغير هذا السجل
+//   training = زاحف جمع بيانات تدريب. منذ 2026-09-27 مسموح منه GPTBot وClaudeBot
+//              وanthropic-ai وGoogle-Extended (قرار المالك بعد تدقيق الظهور)،
+//              والباقي محجوب في robots.txt — فتسجيله يكشف من يتجاهل الحجب
 const BOT_KINDS = [
   [/OAI-SearchBot/i, 'openai-search', 'answer'],
   [/ChatGPT-User/i, 'chatgpt-user', 'answer'],
