@@ -28,8 +28,12 @@ export const EXPECT = {
 };
 
 // محطة بحيرة الأصفر: مصدرها واس، ورابط الصحيفة القديم منقطع (404) فلا يُعاد
-const RETIRED_SOURCE = /aawsat\.com/i;
+const RETIRED_HOST = 'aawsat.com';
 const ASFAR_SPA_URL = 'https://www.spa.gov.sa/1901639';
+const hostOf = (u) => { try { return new URL(u).hostname.toLowerCase(); } catch { return ''; } };
+const isRetired = (u) => { const h = hostOf(u); return h === RETIRED_HOST || h.endsWith(`.${RETIRED_HOST}`); };
+/** كل الروابط المطلقة في مقطع HTML (بعد فكّ الكيانات) */
+const urlsIn = (html) => [...decode(html).matchAll(/https?:\/\/[^\s"'<>]+/g)].map((m) => m[0]);
 
 const FORBIDDEN_AR = ['المعتمدة', 'الرسمية', 'من روح السعودية'];
 const FORBIDDEN_EN = [/\bofficial\b/i, /\bapproved\b/i];
@@ -65,7 +69,7 @@ export function checkTrailsSource(data) {
     }
   }
   for (const [k, src] of Object.entries(data.sources ?? {})) {
-    if (RETIRED_SOURCE.test(src.url)) problems.push(`sources.${k}: رابط منقطع (aawsat)`);
+    if (isRetired(src.url)) problems.push(`sources.${k}: رابط منقطع (aawsat)`);
     if (typeof src.title !== 'string' && !(src.title?.ar && src.title?.en)) problems.push(`sources.${k}: عنوان ناقص بإحدى اللغتين`);
   }
   for (const l of langs) {
@@ -162,8 +166,9 @@ export function checkTrails(data, pages) {
         }
         // مصادر محطة الأصفر: رابط الصحيفة المنقطع لا يعود، ومصدر واس حاضر
         if (s.key === 'al-asfar-lake') {
-          if (RETIRED_SOURCE.test(body)) problems.push(`${rel}/${s.key}: رابط مصدر منقطع (aawsat) منشور`);
-          if (!body.includes(ASFAR_SPA_URL)) problems.push(`${rel}/${s.key}: مصدر واس غائب`);
+          const urls = urlsIn(body);
+          if (urls.some(isRetired)) problems.push(`${rel}/${s.key}: رابط مصدر منقطع (aawsat) منشور`);
+          if (!urls.some((u) => u === ASFAR_SPA_URL)) problems.push(`${rel}/${s.key}: مصدر واس غائب`);
         }
       });
       // الإسناد في ذيل الصفحة: بعد آخر محطة
