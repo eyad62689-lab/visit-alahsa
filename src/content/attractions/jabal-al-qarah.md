@@ -47,6 +47,7 @@ sameAs:
   - https://en.wikipedia.org/wiki/Al-Qarah_Mountain_(Saudi_Arabia)
   - https://ar.wikipedia.org/wiki/جبل_القارة_(السعودية)
 mapUrl: https://goo.gl/maps/bx9DyKazun2bffcP6
+operatorUrl: "https://www.instagram.com/landofcivi/"
 featured: true
 order: 1
 bestTime: الصباح الباكر أو قبيل الغروب، حين يلين الضوء وتعتدل الحرارة.

@@ -46,6 +46,7 @@ featured: true
 order: 3
 bestTime: قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء.
 bestTime_en: "Just before sunset, when the white sands glow against the blue of the water."
+openSite: true
 practical:
   - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 tags: ["ساحل", "تاريخ", "بحر"]
@@ -53,13 +54,13 @@ tags: ["ساحل", "تاريخ", "بحر"]
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
 faq:
   - q: "هل دخول العُقير برسوم؟"
-    a: "لا، العُقير موقع عام مفتوح بلا رسوم دخول، بتأكيد فريق «زوروا الأحساء»."
+    a: "لا، العُقير موقع عام مفتوح بلا رسوم دخول."
     q_en: "Is there an entry fee at Al-Uqair?"
-    a_en: "No. Al-Uqair is an open public site with no entry fee, as confirmed by the Visit Al-Ahsa team."
+    a_en: "No. Al-Uqair is an open public site with no entry fee."
     q_zh: "去乌盖尔要门票吗？"
-    a_zh: "不需要。乌盖尔是开放的公共区域，免收门票；此信息已由本站编辑团队确认。"
+    a_zh: "不需要。乌盖尔是开放的公共区域，免收门票。"
     q_ru: "Сколько стоит вход в Эль-Укайр?"
-    a_ru: "Вход свободный: Эль-Укайр — открытая общедоступная территория, что подтверждает редакция этого сайта."
+    a_ru: "Вход свободный: Эль-Укайр — открытая общедоступная территория."
   - q: "أين يقع العُقير؟"
     a: "على ساحل الخليج العربي شرق الأحساء."
     q_en: "Where is Al-Uqair?"

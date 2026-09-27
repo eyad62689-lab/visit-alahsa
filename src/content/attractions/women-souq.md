@@ -47,7 +47,7 @@ faq:
     q_en: "What are the opening hours of the Women’s Folk Souq?"
     a_en: "Daily from 8:00 am to 11:00 pm."
     q_zh: "妇女民俗市集的开放时间是几点到几点？"
-    a_zh: "每日 8:00–23:00；此信息已由本站编辑团队确认。"
+    a_zh: "每日 8:00–23:00。"
     q_de: "Wie sind die Öffnungszeiten des Frauen-Souks?"
     a_de: "Täglich von 8:00 bis 23:00 Uhr."
     q_ru: "В какие часы открыт Женский народный рынок?"
