@@ -126,6 +126,9 @@ const attractions = defineCollection({
     // رابط الجهة المشغّلة للموقع (حسابها أو صفحتها): حين يوجد تصير كلمة «المشغّل» في سطر
     // المواعيد والرسوم تحت بطاقة الزيارة رابطاً إليه، وتبقى نصاً عادياً في غيره.
     operatorUrl: z.string().url().optional(),
+    // موقع مفتوح للعموم بلا رسوم دخول أو مفتوح على مدار الساعة: لا يُعرض تحت بطاقته سطر
+    // المواعيد والرسوم (لا مشغّل يُراجَع ولا تذكرة). لا يجتمع مع operatorUrl.
+    openSite: z.boolean().default(false),
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)
     gallery: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
@@ -157,6 +160,8 @@ const attractions = defineCollection({
     message: 'hoursSpec يلزمه بند practical موثّق للمواعيد — لا مواعيد مبنيَنة بلا بند موثّق',
   }).refine((a) => !a.fee || a.practical.some((p) => p.verified && /الرسوم|الدخول/.test(p.label)), {
     message: 'fee يلزمه بند practical موثّق للرسوم أو الدخول — لا رسم مبنيَن بلا بند موثّق',
+  }).refine((a) => !(a.openSite && a.operatorUrl), {
+    message: 'openSite وoperatorUrl لا يجتمعان — الموقع المفتوح بلا مشغّل يُراجَع',
   }).refine((a) => Boolean(a.answer) === Boolean(a.answer_en), {
     message: 'answer وanswer_en معاً أو لا شيء — فقرة الإجابة بلغتي الموقع الكاملتين',
   }).refine((a) => [a.answer, a.answer_en].every((s) => !s || (wc(s) >= 35 && wc(s) <= 45)), {

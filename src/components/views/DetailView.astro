@@ -143,7 +143,8 @@ const practicalItems = shownPractical.map((p) => ({
 // (لا حين يوجد البند بلغة أخرى فقط). كلمة «المشغّل» تصير رابطاً إلى حساب الجهة المشغّلة
 // متى حمل المعلم operatorUrl، وتبقى نصاً عادياً في غيره.
 // حقول source/source_*/sourceUrl/verifiedAt في بنود practical بيانات داخلية لا تُصيَّر.
-const showsHoursFee = shownPractical.some((p) => /المواعيد|الرسوم/.test(p.label));
+// والموقع المفتوح (openSite) لا سطر له: لا مشغّل يُراجَع ولا تذكرة.
+const showsHoursFee = !a.openSite && shownPractical.some((p) => /المواعيد|الرسوم/.test(p.label));
 const [noticeBefore, noticeAfter] = t('det.hoursNotice').split('{op}');
 const noticeOp = t('det.hoursNotice.op');
 

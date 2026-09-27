@@ -8,10 +8,13 @@
 //   ٢. داخل البطاقة لا رابط خارجي إلا رابط الخريطة ورابط المشغّل (وخرائط 高德 في zh).
 //   ٣. سطر المواعيد والرسوم الموحَّد يظهر مرة واحدة بالضبط حين تعرض البطاقة بلغة الصفحة
 //      بند مواعيد أو رسوم، ويغيب حين لا تعرضه؛ ونصّه يطابق قاموس اللغة حرفياً.
+//      والمعلم الموسوم openSite: true لا سطر له بأي لغة.
 //   ٤. حين يحمل المعلم operatorUrl تصير كلمة المشغّل رابطاً إليه (target=_blank rel=noopener)،
 //      ولا رابط داخل السطر في غيره.
 
 export const LANGS = ['ar', 'en', 'zh', 'de', 'ru'];
+// أدنى عدد لمعالم openSite (المفتوحة للعموم بلا رسوم أو على مدار الساعة)
+export const MIN_OPEN_SITES = 10;
 
 // عبارات إسناد وتحقق ومراجعة بكل لغات الموقع (تسميات السطر القديم وصيغه المعروفة).
 export const ATTRIBUTION_PHRASES = [
@@ -83,6 +86,8 @@ export function expectFromSource(raw) {
   };
   const items = fm.split('\n').filter((l) => /^\s*-\s*\{\s*label:/.test(l) && l.includes('verified: true'));
   const hoursFee = items.filter((l) => /label: "[^"]*(المواعيد|الرسوم)/.test(l));
+  // الموقع المفتوح (openSite: true) لا سطر له بأي لغة
+  const openSite = /^openSite:\s*true\s*$/m.test(fm);
   const shows = {
     ar: hoursFee.length > 0,
     en: hoursFee.some((l) => l.includes('label_en: "') && l.includes('value_en: "')),
@@ -90,6 +95,7 @@ export function expectFromSource(raw) {
     de: hoursFee.some((l) => l.includes('label_de: "') && l.includes('value_de: "')),
     ru: hoursFee.some((l) => l.includes('label_ru: "') && l.includes('value_ru: "')),
   };
+  if (openSite) for (const l of LANGS) shows[l] = false;
   const sources = new Set();
   for (const l of items) for (const m of l.matchAll(/\bsource(?:_(?:en|zh|de|ru))?: "([^"]+)"/g)) sources.add(m[1]);
   return {
@@ -98,6 +104,7 @@ export function expectFromSource(raw) {
     langs: LANGS.filter((l) => l === 'ar' || l === 'en' || new RegExp(`^title_${l}:`, 'm').test(fm)),
     shows,
     operatorUrl: val('operatorUrl'),
+    openSite,
     mapUrl: val('mapUrl'),
     sources,
   };
@@ -107,7 +114,7 @@ export function expectFromSource(raw) {
 export function checkVisitCards(expects, pages, strings) {
   const attr = [];   // إسناد/تحقق/مراجعة منشورة أو رابط مصدر في البطاقة
   const notice = []; // سطر المواعيد والرسوم ورابط المشغّل
-  const stats = { pages: 0, notice: Object.fromEntries(LANGS.map((l) => [l, 0])), operatorLinks: Object.fromEntries(LANGS.map((l) => [l, 0])) };
+  const stats = { pages: 0, notice: Object.fromEntries(LANGS.map((l) => [l, 0])), operatorLinks: Object.fromEntries(LANGS.map((l) => [l, 0])), openSiteClean: 0 };
   const allSources = new Set();
   for (const e of expects) for (const s of e.sources) allSources.add(s);
   const phrases = [...ATTRIBUTION_PHRASES, ...allSources];
@@ -167,8 +174,11 @@ export function checkVisitCards(expects, pages, strings) {
           notice.push(`${key}: رابط داخل سطر المواعيد والرسوم بلا operatorUrl في المصدر`);
         }
       } else if (notes.length) {
-        notice.push(`${key}: سطر المواعيد والرسوم ظاهر والبطاقة لا تعرض مواعيد ولا رسوماً بهذه اللغة`);
+        notice.push(e.openSite
+          ? `${key}: سطر المواعيد والرسوم ظاهر في موقع مفتوح (openSite)`
+          : `${key}: سطر المواعيد والرسوم ظاهر والبطاقة لا تعرض مواعيد ولا رسوماً بهذه اللغة`);
       }
+      if (e.openSite && notes.length === 0) stats.openSiteClean++;
     }
   }
 
@@ -181,5 +191,10 @@ export function checkVisitCards(expects, pages, strings) {
   }
   const operatorPages = expects.filter((e) => e.operatorUrl).length;
   if (operatorPages < 2) notice.push(`معالم بـoperatorUrl: ${operatorPages} والمتوقَّع 2 على الأقل`);
-  return { attr, notice, problems: [...attr, ...notice], stats, operatorPages };
+  // حارس إيجابي للمواقع المفتوحة: عددها لا ينزل عن الحدّ، وكل صفحاتها المبنية بلا سطر
+  const openSites = expects.filter((e) => e.openSite);
+  const openPages = openSites.reduce((n, e) => n + e.langs.filter((l) => pages.has(`${l}:${e.slugEn}`)).length, 0);
+  if (openSites.length < MIN_OPEN_SITES) notice.push(`معالم بـopenSite: ${openSites.length} والمتوقَّع ${MIN_OPEN_SITES} على الأقل`);
+  if (stats.openSiteClean !== openPages) notice.push(`صفحات المواقع المفتوحة بلا سطر: ${stats.openSiteClean} من ${openPages}`);
+  return { attr, notice, problems: [...attr, ...notice], stats, operatorPages, openSites: openSites.length, openPages };
 }

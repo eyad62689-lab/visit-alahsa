@@ -31,6 +31,7 @@ heroImage: /img/delfoon-lake
 order: 43
 area: "قرب بحيرة الحبيل — شمال الأحساء"
 area_en: "Near Al-Hubail Lake — north of Al-Ahsa"
+openSite: true
 practical:
   - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.8130215, lng: 49.8498148 }

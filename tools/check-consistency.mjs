@@ -260,7 +260,8 @@ async function main() {
   // C12 يُفشل البناء إن ظهر في أي صفحة معلم بأي لغة سطرُ .info-src أو عبارة إسناد/تحقق/مراجعة
   // معروفة أو أيّ قيمة source من ملفات المعالم (نصاً مرئياً أو JSON-LD أو سمةً)، أو رابطٌ خارجي
   // في البطاقة غير الخريطة والمشغّل. C13 يشترط السطر الموحَّد مرة واحدة بالضبط بنصّ القاموس
-  // حيث تعرض البطاقة بلغة الصفحة مواعيد أو رسوماً، وغيابه حيث لا تعرضها، ورابطَ المشغّل على
+  // حيث تعرض البطاقة بلغة الصفحة مواعيد أو رسوماً ما لم يكن المعلم openSite، وغيابه حيث لا تعرضها
+  // وفي كل صفحات المواقع المفتوحة (مع حدّ أدنى لعددها)، ورابطَ المشغّل على
   // المعالم الحاملة operatorUrl، مع حارس إيجابي لكل لغة. المنطق في tools/check-visit-card.mjs
   // (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة).
   {
@@ -276,7 +277,7 @@ async function main() {
         if (existsSync(p)) pages.set(`${l}:${e.slugEn}`, await readText(p));
       }
     }
-    const { attr, notice, stats, operatorPages } = checkVisitCards(expects, pages, strings);
+    const { attr, notice, stats, operatorPages, openSites, openPages } = checkVisitCards(expects, pages, strings);
     if (attr.length) fail('C12', `${attr.length} إسناد منشور في صفحات المعالم: ${attr.slice(0, 3).join(' · ')}`);
     else pass('C12', `لا سطر إسناد ولا تاريخ تحقق ولا ملاحظة مراجعة في ${stats.pages} صفحة معلم بخمس لغات (نصاً وJSON-LD وسمات)، ولا رابط مصدر في البطاقة`);
 
@@ -290,7 +291,7 @@ async function main() {
 
     const per = ['ar', 'en', 'zh', 'de', 'ru'].map((l) => `${l} ${stats.notice[l]}`).join(' · ');
     if (notice.length) fail('C13', `${notice.length} إخفاقاً في سطر المواعيد والرسوم: ${notice.slice(0, 3).join(' · ')}`);
-    else pass('C13', `سطر المواعيد والرسوم الموحَّد مرة واحدة حيث تعرض البطاقة مواعيد أو رسوماً (${per}) وغائب في سواها، ورابط المشغّل في ${operatorPages} معلمين بكل لغة مبنية، وبلون يبلغ AA`);
+    else pass('C13', `سطر المواعيد والرسوم الموحَّد مرة واحدة حيث تعرض البطاقة مواعيد أو رسوماً (${per}) وغائب في سواها وفي ${openSites} موقعاً مفتوحاً (${openPages} صفحة)، ورابط المشغّل في ${operatorPages} معلمين بكل لغة مبنية، وبلون يبلغ AA`);
 
     // ── C14: تسمية «Beste Tageszeit» الألمانية تطابق ما تحتها ──────────────
     // حكم خط de-translation-pipeline (2026-09-03) اختار «Tageszeit» (وقت النهار)
