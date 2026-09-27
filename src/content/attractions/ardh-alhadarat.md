@@ -42,6 +42,7 @@ answer_en: "Land of Civilisations is a heritage village and exhibition at the fo
 district: qarah
 location: { lat: 25.41184, lng: 49.6927 }
 mapUrl: "https://maps.app.goo.gl/uCahvRZfgCzKpkxc7"
+operatorUrl: "https://www.instagram.com/landofcivi/"
 heroImage: /img/earth-of-civilization
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-08، الدفعة ru-attr-10 — السجل في ru-translation/memory/scores.csv).

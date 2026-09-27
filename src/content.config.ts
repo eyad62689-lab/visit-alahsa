@@ -123,6 +123,9 @@ const attractions = defineCollection({
     }).refine((p) => !p.verified || (p.source && p.source_en && p.verifiedAt), {
       message: 'البند الموثّق (verified: true) يلزمه source وsource_en وverifiedAt — لا معلومة تشغيلية بلا إسناد بلغة قارئها',
     })).default([]),
+    // رابط الجهة المشغّلة للموقع (حسابها أو صفحتها): حين يوجد تصير كلمة «المشغّل» في سطر
+    // المواعيد والرسوم تحت بطاقة الزيارة رابطاً إليه، وتبقى نصاً عادياً في غيره.
+    operatorUrl: z.string().url().optional(),
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)
     gallery: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),

@@ -12,6 +12,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { checkTrails, EXPECT } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
+import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -253,52 +254,43 @@ async function main() {
     }
   }
 
-  // ── C12: كل بند موثّق مقرون بمصدره وتاريخ تحققه في الصفحة المنشورة ───────
-  // المخطط يرفض البناء إن نقص الحقلان، وهذا يتحقق من وصولهما إلى القارئ فعلاً:
-  // بطاقة فيها بنود موثّقة بلا سطر إسناد = توثيقٌ في المصدر لا يراه أحد.
+  // ── C12: لا سطر إسناد ولا تاريخ تحقق ولا ملاحظة مراجعة في صفحات المعالم ──────
+  // ── C13: سطر المواعيد والرسوم الموحَّد ورابط المشغّل ──────────────────────
+  // حقول source/source_*/sourceUrl/verifiedAt في بنود practical بيانات داخلية لا تُصيَّر.
+  // C12 يُفشل البناء إن ظهر في أي صفحة معلم بأي لغة سطرُ .info-src أو عبارة إسناد/تحقق/مراجعة
+  // معروفة أو أيّ قيمة source من ملفات المعالم (نصاً مرئياً أو JSON-LD أو سمةً)، أو رابطٌ خارجي
+  // في البطاقة غير الخريطة والمشغّل. C13 يشترط السطر الموحَّد مرة واحدة بالضبط بنصّ القاموس
+  // حيث تعرض البطاقة بلغة الصفحة مواعيد أو رسوماً، وغيابه حيث لا تعرضها، ورابطَ المشغّل على
+  // المعالم الحاملة operatorUrl، مع حارس إيجابي لكل لغة. المنطق في tools/check-visit-card.mjs
+  // (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة).
   {
-    const missing = [];
-    let withSource = 0;
-    for (const f of mdFiles) {
-      const raw = await readText(path.join(SRC_ATTRACTIONS, f));
-      const slug = raw.match(/^slug_ar:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
-      if (!slug) continue;
-      const verified = raw.split('\n').filter((l) => /^\s*-\s*\{\s*label:/.test(l) && l.includes('verified: true'));
-      if (verified.length === 0) continue;
-      const page = path.join(DIST, AR_ATTRACTIONS_DIR, slug, 'index.html');
-      if (!existsSync(page)) { missing.push(`${slug}: الصفحة غير مبنية`); continue; }
-      const html = await readText(page);
-      const hasBlock = /class="info-src"/.test(html);
-      const hasTime = /<time datetime="\d{4}-\d{2}-\d{2}"/.test(html);
-      if (!hasBlock || !hasTime) { missing.push(`${slug}: بلا سطر إسناد مقروء`); continue; }
-      withSource++;
-
-      // النظير الإنجليزي: اسم المصدر يجب أن يكون إنجليزياً لا عربياً — وهو
-      // العطب الذي ظهر أول تنفيذ (اسم عربي داخل صفحة إنجليزية، 2026-08-31).
-      const slugEn = raw.match(/^slug_en:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
-      const pageEn = slugEn && path.join(DIST, 'en', 'attractions', slugEn, 'index.html');
-      if (pageEn && existsSync(pageEn)) {
-        const htmlEn = await readText(pageEn);
-        const block = htmlEn.match(/class="info-src"[^>]*>([\s\S]*?)<\/p>/);
-        if (!block) missing.push(`${slugEn} (en): بلا سطر إسناد`);
-        else if (/[؀-ۿ]/.test(stripTags(block[1]))) {
-          missing.push(`${slugEn} (en): اسم المصدر بالعربية داخل الصفحة الإنجليزية`);
-        }
+    const expects = [];
+    for (const f of mdFiles) expects.push(expectFromSource(await readText(path.join(SRC_ATTRACTIONS, f))));
+    const strings = noticeStrings(await readText(path.join(ROOT, 'src/i18n/ui.ts')));
+    const pages = new Map();
+    for (const e of expects) {
+      for (const l of e.langs) {
+        const p = l === 'ar'
+          ? path.join(DIST, AR_ATTRACTIONS_DIR, e.slugAr ?? '', 'index.html')
+          : path.join(DIST, l, 'attractions', e.slugEn ?? '', 'index.html');
+        if (existsSync(p)) pages.set(`${l}:${e.slugEn}`, await readText(p));
       }
     }
-    if (missing.length === 0) pass('C12', `الإسناد بلغة القارئ ظاهر في ${withSource} صفحة موثّقة (عربية + إنجليزية)`);
-    else fail('C12', `${missing.length} إخفاق إسناد: ${missing.slice(0, 3).join(' · ')}`);
+    const { attr, notice, stats, operatorPages } = checkVisitCards(expects, pages, strings);
+    if (attr.length) fail('C12', `${attr.length} إسناد منشور في صفحات المعالم: ${attr.slice(0, 3).join(' · ')}`);
+    else pass('C12', `لا سطر إسناد ولا تاريخ تحقق ولا ملاحظة مراجعة في ${stats.pages} صفحة معلم بخمس لغات (نصاً وJSON-LD وسمات)، ولا رابط مصدر في البطاقة`);
 
-    // ── C13: تباين سطر الإسناد يبلغ AA ─────────────────────────────────────
-    // قيس أول مرة في المتصفح فكان --c-ink-60 يعطي 4.36:1 — دون العتبة 4.5.
-    // الفحص يمنع عودة أي رمز لون خافت إلى هذا السطر بلا قياس.
-    const css = (await readText(path.join(ROOT, 'src/components/views/DetailView.astro')));
-    const rule = css.match(/\.info-src\s*\{[^}]*\}/);
+    // تباين السطر ورابطه يبقى AA على خلفية البطاقة (قيس --c-ink-60 سابقاً 4.36:1 — دون العتبة)
+    const css = await readText(path.join(ROOT, 'src/components/views/DetailView.astro'));
+    const rules = [...css.matchAll(/\.info-note(?:\s+a(?::hover)?)?\s*\{[^}]*\}/g)].map((m) => m[0]);
     const banned = ['--c-ink-60', '--c-gold-deep', '--c-gold'];
-    const used = rule ? banned.filter((t) => rule[0].includes(t)) : [];
-    if (!rule) fail('C13', 'تعذّر العثور على قاعدة .info-src');
-    else if (used.length) fail('C13', `لون دون AA في سطر الإسناد: ${used.join(', ')} — قِس قبل التغيير`);
-    else pass('C13', 'سطر الإسناد بلون يبلغ AA على خلفية البطاقة (ink-soft ‏8:1)');
+    const used = banned.filter((t) => rules.some((r) => r.includes(`${t})`) || r.includes(`${t};`)));
+    if (!rules.length) notice.push('تعذّر العثور على قاعدة .info-note');
+    else if (used.length) notice.push(`لون دون AA في سطر المواعيد والرسوم: ${used.join(', ')} — قِس قبل التغيير`);
+
+    const per = ['ar', 'en', 'zh', 'de', 'ru'].map((l) => `${l} ${stats.notice[l]}`).join(' · ');
+    if (notice.length) fail('C13', `${notice.length} إخفاقاً في سطر المواعيد والرسوم: ${notice.slice(0, 3).join(' · ')}`);
+    else pass('C13', `سطر المواعيد والرسوم الموحَّد مرة واحدة حيث تعرض البطاقة مواعيد أو رسوماً (${per}) وغائب في سواها، ورابط المشغّل في ${operatorPages} معلمين بكل لغة مبنية، وبلون يبلغ AA`);
 
     // ── C14: تسمية «Beste Tageszeit» الألمانية تطابق ما تحتها ──────────────
     // حكم خط de-translation-pipeline (2026-09-03) اختار «Tageszeit» (وقت النهار)

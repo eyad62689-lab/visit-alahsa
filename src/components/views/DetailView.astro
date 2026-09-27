@@ -9,7 +9,6 @@ import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
 import { attractionHref, staticHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
-import { formatDate } from '../../lib/dates';
 import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ui, type Lang } from '../../i18n/ui';
@@ -140,44 +139,13 @@ const practicalItems = shownPractical.map((p) => ({
   label: ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : ru ? p.label_ru! : p.label_en!,
   value: ar ? p.value : zh ? p.value_zh! : de ? p.value_de! : ru ? p.value_ru! : p.value_en!,
 }));
-const hasTimeFee = a.practical.some((p) => p.verified && /المواعيد|الرسوم/.test(p.label));
-
-// ── الإسناد (2026-08-31) ──────────────────────────────────────────────────
-// كانت البطاقة تحمل ملاحظة واحدة «روجعت في يونيو 2026م» تسري على كل البنود
-// بتاريخٍ واحد مكتوبٍ يدوياً — تتقادم بصمت ولا تقول من أين جاءت المعلومة.
-// صارت تُشتقّ من حقلَي source/verifiedAt الإلزاميين لكل بند موثّق (المخطط
-// يرفض البناء بدونهما)، وتُجمَّع البنود المتشاركة في المصدر والتاريخ نفسه
-// فلا يتكرّر السطر تحت كل صف.
-const sourceGroups = [...shownPractical
-  .reduce((m, p) => {
-    // اسم المصدر بلغة الصفحة — الصينية تتراجع للإنجليزية على سلسلة الموقع
-    const name = ar ? p.source! : zh ? (p.source_zh ?? p.source_en!) : de ? (p.source_de ?? p.source_en!) : ru ? (p.source_ru ?? p.source_en!) : p.source_en!;
-    const key = `${name}|${p.verifiedAt}|${p.sourceUrl ?? ''}`;
-    if (!m.has(key)) m.set(key, { source: name, verifiedAt: p.verifiedAt!, sourceUrl: p.sourceUrl, labels: [] as string[] });
-    m.get(key)!.labels.push(ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : ru ? p.label_ru! : p.label_en!);
-    return m;
-  }, new Map<string, { source: string; verifiedAt: string; sourceUrl?: string; labels: string[] }>())
-  .values()];
-
-// سلاسل مضمّنة خارج القاموس — كل لغة جديدة تحتاج فرعاً هنا يدوياً، **والفشل
-// صامت**: مفاتيح القاموس تبدو مكتملة بينما الصفحة تعرض الإنجليزية (رصدته
-// المرحلتان 1 و3 من دفعة الواجهة الألمانية 2026-09-03).
-// فروع ru من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05، الحاكم 91/100) —
-// كانت قبلها بالقيمة الإنجليزية عمداً كي تُرى بالبحث عن «ru ?» لا أن تختفي في
-// التراجع الصامت (الدواء لعطب «مفاتيح القاموس تبدو مكتملة بينما الصفحة تعرض الإنجليزية»).
-const srcLabel = ar ? 'المصدر' : zh ? '来源' : de ? 'Quelle' : ru ? 'Источник' : 'Source';
-const verifiedLabel = ar ? 'تاريخ التحقق' : zh ? '核实日期' : de ? 'Zuletzt geprüft' : ru ? 'Проверено' : 'Verified';
-// الصيني من خط zh-translation-pipeline (misc.reviewNote — دورة 2026-08-29)
-// والألماني من خط de-translation-pipeline (دفعة الواجهة — الحاكم 90/100)
-const reviewNote = ar
-  ? 'المواعيد والرسوم قابلة للتغيير في المواسم والأعياد.'
-  : zh
-    ? '开放时间与门票价格可能随季节和节假日变动。'
-    : de
-      ? 'Öffnungszeiten und Eintritt können sich je nach Saison und an Feiertagen ändern.'
-      : ru
-        ? 'Часы работы и стоимость входа могут меняться по сезонам и в праздники.'
-        : 'Hours and fees can change in seasons and holidays.';
+// سطر المواعيد والرسوم الموحَّد: يظهر حين تعرض البطاقة بلغة الصفحة بند مواعيد أو رسوم
+// (لا حين يوجد البند بلغة أخرى فقط). كلمة «المشغّل» تصير رابطاً إلى حساب الجهة المشغّلة
+// متى حمل المعلم operatorUrl، وتبقى نصاً عادياً في غيره.
+// حقول source/source_*/sourceUrl/verifiedAt في بنود practical بيانات داخلية لا تُصيَّر.
+const showsHoursFee = shownPractical.some((p) => /المواعيد|الرسوم/.test(p.label));
+const [noticeBefore, noticeAfter] = t('det.hoursNotice').split('{op}');
+const noticeOp = t('det.hoursNotice.op');
 
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم — kmBetween وdistLabel في src/lib/distance.ts (مشتركة مع الخريطة
@@ -263,23 +231,8 @@ const inTrails = isTrailLang(lang)
               <><dt>{p.label}</dt><dd>{p.value}</dd></>
             ))}
           </dl>
-          {practicalItems.length > 0 && hasTimeFee && (
-            <p class="info-note">{reviewNote}</p>
-          )}
-          {sourceGroups.length > 0 && (
-            <p class="info-src">
-              {sourceGroups.map((g) => (
-                <span class="src-line">
-                  <span class="src-k">{srcLabel}:</span>{' '}
-                  {g.sourceUrl
-                    ? <a href={g.sourceUrl} target="_blank" rel="noopener">{g.source}</a>
-                    : g.source}
-                  {' · '}
-                  <span class="src-k">{verifiedLabel}:</span>{' '}
-                  <time datetime={g.verifiedAt}>{formatDate(new Date(g.verifiedAt), lang)}</time>
-                </span>
-              ))}
-            </p>
+          {showsHoursFee && (
+            <p class="info-note" data-hours-notice>{noticeBefore}{a.operatorUrl ? <a href={a.operatorUrl} target="_blank" rel="noopener" data-operator-link>{noticeOp}</a> : noticeOp}{noticeAfter}</p>
           )}
           {/* رابط الخريطة: أيقونة صغيرة داخل البطاقة نفسها بدل اللوحة الخضراء الكبيرة
               التي كانت تحتلّ العمود (تغيير بطلب إياد 2026-07-22) */}
@@ -487,13 +440,11 @@ const inTrails = isTrailLang(lang)
   .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
   .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
   .info-note { font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-3); }
+  .info-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .info-note a:hover { color: var(--c-turq); }
   /* سطر الإسناد: يُفصل بخطٍّ ويصغر حجمه، لكن لونه --c-ink-soft لا --c-ink-60.
      قيس فعلياً على خلفية البطاقة #EFE8D6 (2026-08-31): ink-60 يعطي 4.36:1
      ودون AA، وink-soft يعطي 8:1. الإسناد بيان مصداقية يُقرأ لا زخرفة تُلمح. */
-  .info-src { display: grid; gap: 2px; font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-2); padding-block-start: var(--s-2); border-block-start: 1px solid var(--c-line); }
-  .info-src .src-k { font-weight: 600; }
-  .info-src a { color: inherit; text-underline-offset: 2px; }
-  .info-src a:hover { color: var(--c-turq); }
   /* رابط الخريطة — سطر صغير بأيقونة دبوس، لا لوحة صورة */
   .map-link { display: inline-flex; align-items: center; gap: 6px; margin-block-start: var(--s-3);
     font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq-deep);
