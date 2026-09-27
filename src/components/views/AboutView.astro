@@ -1,0 +1,184 @@
+---
+// صفحة «عن زوروا الأحساء» — هوية الموقع كما قرّرها المالك (2026-09-27): مبادرة مستقلة،
+// بلا اسم شخص ولا جهة. أُنشئت بعد تدقيق الظهور في ستة محركات إجابة توليدية: كانت
+// النماذج تُرجّح المصادر مجهولة الهوية بحذر في أسئلة «ما هذا الموقع؟» و«الأفضل».
+// كل ما هنا مستمدّ من قواعد المستودع (CLAUDE.md) والصفحات القائمة — لا وعد بما لا يُنفَّذ.
+// عربي/إنجليزي فقط؛ zh/de/ru عبر خطوط الترجمة متى قُرّر.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import { localize, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { staticHref } from '../../lib/routes';
+import { ORG_ID, SITE, breadcrumb } from '../../lib/schema';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const email = 'info@visit-alahsa.com';
+const selfPath = ar ? '/من-نحن/' : '/en/about/';
+
+const C = localize(lang, {
+  ar: {
+    title: 'عن زوروا الأحساء',
+    seoTitle: 'عن زوروا الأحساء — مبادرة مستقلة',
+    seoDesc: 'زوروا الأحساء (visit-alahsa.com) مبادرة مستقلة لدليل سياحي رقمي عن محافظة الأحساء، ليست جهة حكومية ولا تمثل أي هيئة رسمية. منهج التحقق، الأقسام، اللغات، وطريقة التواصل.',
+    lead: 'زوروا الأحساء مبادرة مستقلة: دليل سياحي رقمي عن محافظة الأحساء في المنطقة الشرقية بالسعودية، أكبر واحة في العالم وموقع تراث عالمي مسجل في اليونسكو منذ 2018. ليست جهة حكومية، ولا تمثل أي هيئة رسمية، ولا تبيع شيئاً.',
+    sections: [
+      {
+        h: 'ما هذه المبادرة',
+        ps: [
+          'موقع إرشادي يجمع في مكان واحد ما يحتاجه زائر الأحساء: المعالم، والأسواق والمنتزهات والمزارع، والفعاليات والمواسم، وثمار الواحة، والمطبخ الأحسائي، والمطاعم والمقاهي، وأماكن الإقامة، ومسارات مقترحة، وخريطة تفاعلية، وصفحة للتخطيط للرحلة.',
+          'الموقع مستقل: لا يتبع وزارة السياحة ولا هيئة تطوير الأحساء ولا أمانة الأحساء ولا أي جهة رسمية أخرى، ولا ينطق باسمها. المصادر الرسمية تُذكر وتُربط حيث اعتُمد عليها، والقرار الأخير في أي زيارة يعود إلى إعلانات الجهة المنظمة نفسها.',
+        ],
+      },
+      {
+        h: 'كيف نتحقق',
+        ps: ['قاعدة واحدة تحكم كل صفحة: لا تُنشر معلومة بلا مصدر.'],
+        list: [
+          'المواعيد والرسوم والمسافات والتواريخ لا تُنشر إلا بعد التحقق من مصدر معتمد، وما لم يتأكد يُوسم «بانتظار التأكيد» ويُحجب من الصفحة تلقائياً حتى يتأكد.',
+          'مواعيد نسخ الفعاليات تُنشر عند تأكيدها رسمياً فقط؛ الموسم يُذكر، والتاريخ لا يُخمَّن.',
+          'أسماء المطاعم والمقاهي وأماكن الإقامة تؤخذ كما تسمّي المنشأة نفسها في خرائط قوقل، وبطاقاتها وصفية: لا أسعار ولا أحكام جودة.',
+          'الأسماء الشائعة تُقرن بالموثقة في الصفحة نفسها، والرقم الواحد للحقيقة الواحدة عبر الموقع كله.',
+          'صفحات المعالم تحمل تاريخ آخر تحقق ومصدره، وما يرد فيها من مواعيد ورسوم مبنيٌّ آلياً في بيانات الصفحة نفسها.',
+        ],
+      },
+      {
+        h: 'اللغات',
+        ps: [
+          'النسخة العربية هي الأصل، وتليها نسخة إنجليزية كاملة. النسخ الصينية والألمانية والروسية جزئية وتُنشر صفحة بصفحة بعد أن تجتاز مراجعة لغوية بعتبة اعتماد، ولا تُعرض صفحة بلغةٍ ما لم تكن مترجمة فعلاً إليها.',
+        ],
+      },
+      {
+        h: 'صحّح لنا',
+        ps: [
+          'إن وجدت موعداً تغيّر، أو رسماً اختلف، أو معلماً أُغلق، فهذه الصفحة أهم ما في الموقع: أبلغنا عبر صفحة الإبلاغ عن خطأ أو بالبريد، ونصحّح بعد التحقق ونؤرّخ التصحيح.',
+        ],
+        report: 'الإبلاغ عن خطأ',
+      },
+      {
+        h: 'الاستخدام والحقوق',
+        ps: [
+          'المحتوى محمي بحقوق النشر لزوروا الأحساء. الاقتباس القصير مع ذكر المصدر والرابط مرحّب به، والاستخراج الآلي بالجملة غير مسموح إلا بإذن؛ أما محركات البحث ووكلاء الإجابة التي تخدم زائراً فعلياً فمرحّب بها، ويخدمها ملف llms.txt. التفاصيل في صفحة السياسات والشروط.',
+        ],
+        legal: 'السياسات والشروط',
+      },
+    ],
+    contactH: 'التواصل',
+    contactPre: 'البريد الرسمي للمبادرة: ',
+    copyright: 'جميع الحقوق محفوظة © 2026 — زوروا الأحساء | visit-alahsa.com',
+  },
+  en: {
+    title: 'About Visit Al-Ahsa',
+    seoTitle: 'About Visit Al-Ahsa — an independent initiative',
+    seoDesc: 'Visit Al-Ahsa (visit-alahsa.com) is an independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia. Not a government body and not affiliated with any official authority. How we verify, sections, languages and contact.',
+    lead: 'Visit Al-Ahsa is an independent initiative: a digital travel guide to Al-Ahsa Governorate in Saudi Arabia’s Eastern Province, the largest oasis in the world and a UNESCO World Heritage Site since 2018. It is not a government body, does not represent any official authority, and sells nothing.',
+    sections: [
+      {
+        h: 'What this initiative is',
+        ps: [
+          'A visitor guide that gathers in one place what a traveller to Al-Ahsa needs: attractions, souqs, parks and farms, events and seasons, oasis fruits, Hasawi cuisine, restaurants and cafés, places to stay, suggested trails, an interactive map and a trip-planning page.',
+          'The site is independent: it is not part of the Ministry of Tourism, the Al-Ahsa Development Authority, Al-Ahsa Municipality or any other official body, and does not speak for them. Official sources are named and linked wherever they are relied on, and the final word on any visit belongs to the organiser’s own announcements.',
+        ],
+      },
+      {
+        h: 'How we verify',
+        ps: ['One rule governs every page: nothing is published without a source.'],
+        list: [
+          'Opening hours, fees, distances and dates are published only after verification against an approved source; anything unconfirmed is marked “pending confirmation” and automatically withheld from the page until it is confirmed.',
+          'Dates of an event edition are published only once officially confirmed; the season is stated, the date is never guessed.',
+          'Restaurants, cafés and places to stay are named as the venue names itself on Google Maps, and their cards are descriptive: no prices and no quality verdicts.',
+          'Common names are paired with the documented name on the same page, and one figure serves one fact across the whole site.',
+          'Attraction pages carry the date and source of their last verification, and the hours and fees they show are generated from the page’s own data.',
+        ],
+      },
+      {
+        h: 'Languages',
+        ps: [
+          'Arabic is the original edition, followed by a complete English edition. The Chinese, German and Russian editions are partial and are published page by page after passing a linguistic review with an acceptance threshold; no page is shown in a language it has not actually been translated into.',
+        ],
+      },
+      {
+        h: 'Correct us',
+        ps: [
+          'If you find a changed opening time, a different fee or a closed site, this is the most valuable page on the site: tell us through the error-report page or by email, and we correct after verification and date the correction.',
+        ],
+        report: 'Report an error',
+      },
+      {
+        h: 'Use and rights',
+        ps: [
+          'Content is copyright of Visit Al-Ahsa. Short quotation with attribution and a link is welcome; bulk automated extraction is not permitted without consent, while search engines and answer agents serving a real visitor are welcome and served by the llms.txt file. Details are in the Policies & Terms page.',
+        ],
+        legal: 'Policies & Terms',
+      },
+    ],
+    contactH: 'Contact',
+    contactPre: 'The initiative’s official email: ',
+    copyright: '© 2026 Visit Al-Ahsa. All rights reserved. | visit-alahsa.com',
+  },
+});
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: C.title,
+    description: C.seoDesc,
+    url: `${SITE}${encodeURI(selfPath)}`,
+    mainEntity: { '@id': ORG_ID },
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : `/${lang}/` },
+    { name: C.title, path: selfPath },
+  ]),
+];
+---
+<Base title={C.seoTitle} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <section class="container ab-body">
+      <header class="ab-head">
+        <h1 class="ab-title">{C.title}</h1>
+        <p class="ab-lead">{C.lead}</p>
+      </header>
+
+      {C.sections.map((s) => (
+        <section class="ab-sec">
+          <h2 class="ab-h2">{s.h}</h2>
+          {s.ps.map((p) => <p class="ab-p">{p}</p>)}
+          {s.list && <ul class="ab-list">{s.list.map((li) => <li>{li}</li>)}</ul>}
+          {s.report && <p class="ab-p"><a class="ab-link" href={staticHref('report', lang)}>{s.report}</a></p>}
+          {s.legal && <p class="ab-p"><a class="ab-link" href={staticHref('legal', lang)}>{s.legal}</a></p>}
+        </section>
+      ))}
+
+      <section class="ab-sec ab-contact">
+        <h2 class="ab-h2">{C.contactH}</h2>
+        <p class="ab-p">{C.contactPre}<a href={`mailto:${email}`} class="ab-mail">{email}</a></p>
+      </section>
+
+      <p class="ab-copy">{C.copyright}</p>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .ab-body { padding-block: var(--s-7) var(--s-8); max-inline-size: 80ch; }
+  .ab-head { border-block-end: 1px solid var(--c-line); padding-block-end: var(--s-5); margin-block-end: var(--s-5); }
+  .ab-title { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-3xl); color: var(--c-turq-deep); line-height: 1.15; }
+  .ab-lead { margin-block-start: var(--s-3); color: var(--c-ink); font-size: var(--t-lg); line-height: 1.8; }
+  .ab-sec { margin-block-start: var(--s-6); }
+  .ab-h2 { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.25; margin-block-end: var(--s-3); }
+  .ab-p { color: var(--c-ink-soft); line-height: 1.9; }
+  .ab-p + .ab-p { margin-block-start: var(--s-2); }
+  .ab-list { margin-block-start: var(--s-3); padding-inline-start: var(--s-4); display: flex; flex-direction: column; gap: var(--s-2); }
+  .ab-list li { color: var(--c-ink-soft); line-height: 1.85; padding-inline-start: var(--s-2); position: relative; list-style: none; }
+  .ab-list li::before { content: ''; position: absolute; inset-inline-start: calc(-1 * var(--s-3)); inset-block-start: .7em; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--c-gold); }
+  .ab-link { color: var(--c-turq-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .ab-contact { border-block-start: 1px solid var(--c-line); padding-block-start: var(--s-5); }
+  .ab-mail { font-family: var(--font-latin); letter-spacing: .02em; color: var(--c-turq-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .ab-copy { margin-block-start: var(--s-6); padding-block-start: var(--s-4); border-block-start: 1px solid var(--c-line); font-size: var(--t-sm); color: var(--c-ink-soft); text-align: center; }
+</style>

@@ -3,7 +3,7 @@ import Wordmark from './Wordmark.astro';
 import PalmMotif from './PalmMotif.astro';
 import { useTranslations, titleSep } from '../i18n/utils';
 import { catLabel } from '../lib/categories';
-import { staticHref } from '../lib/routes';
+import { staticHref, aboutHref } from '../lib/routes';
 import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
 import type { Lang } from '../i18n/ui';
 interface Props { lang?: Lang; }
@@ -53,6 +53,9 @@ const cols = [
     h: t('foot.col.site'),
     links: [
       { label: t('foot.l.about'), href: ar ? '/#name' : zh ? '/zh/#name' : '/en/#name' },
+      // «عن زوروا الأحساء» عربي/إنجليزي فقط (2026-09-27) — لا تُربط من zh/de/ru كالمسارات:
+      // تسميتها الإنجليزية ترفع نسبة الكتل غير المترجمة فوق عتبة C22 (قيست 21–25%)
+      ...(ar || lang === 'en' ? [{ label: t('foot.l.aboutSite'), href: aboutHref(lang) }] : []),
       // صفحة مكوّنات اليونسكو بلغاتها الخمس منذ المرحلة هـ (2026-09-26)
       { label: t('foot.l.unesco'), href: staticHref('unesco', lang) },
       { label: t('foot.l.privacy'), href: staticHref('legal', lang) },
@@ -94,8 +97,8 @@ const year = new Date().getFullYear();
   </div>
 
   {/* أُزيل نموذج «النشرة البريدية» بطلب إياد (2026-07-13) — لا تجميع للإيميلات */}
-  {/* سطر الاستقلالية: رابط إلى صفحة السياسات بلغة الصفحة */}
-  <p class="container ft-indep"><a href={staticHref('legal', lang)}>{t('foot.independence')}</a></p>
+  {/* سطر الاستقلالية: يقود إلى «عن زوروا الأحساء» (ar/en)، وإلى السياسات بلغة الصفحة لبقية اللغات */}
+  <p class="container ft-indep"><a href={ar || lang === 'en' ? aboutHref(lang) : staticHref('legal', lang)}>{t('foot.independence')}</a></p>
 
   <div class="container ft-bar">
     {/* الفاصل رمزٌ لا محرف: الألمانية U+2013 لا U+2014 — يحرسه C17 */}

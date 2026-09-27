@@ -15,12 +15,27 @@ export const brandName = (lang: Lang): string => useTranslations(lang)('site.bra
 
 /** الجهة الناشرة وحاملة الحقوق — العقدة نفسها في كل صفحة (@id ثابت). */
 export const ORG_ID = `${SITE}/#org`;
+// هوية الكيان (قرار المالك 2026-09-27 بعد تدقيق الظهور في محركات الإجابة): «مبادرة
+// مستقلة» بلا اسم شخص ولا جهة؛ الاسمان معاً في alternateName حتى يلتقي البحث بالعربية
+// والإنجليزية على العقدة نفسها، والوصف والبريد وصفحة «من نحن» تعطي النماذج جواب «ما هذا الموقع؟».
+const ORG_DESC: Record<Lang, string> = {
+  ar: 'مبادرة مستقلة: دليل سياحي رقمي عن محافظة الأحساء في السعودية — ليست جهة حكومية ولا تمثل أي هيئة رسمية.',
+  en: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
+  zh: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
+  de: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
+  ru: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
+};
+export const ORG_EMAIL = 'info@visit-alahsa.com';
 export const orgNode = (lang: Lang) => ({
   '@type': 'Organization',
   '@id': ORG_ID,
   name: brandName(lang),
+  alternateName: lang === 'ar' ? ['Visit Al-Ahsa', 'visit-alahsa.com'] : ['زوروا الأحساء', 'visit-alahsa.com'],
+  description: ORG_DESC[lang],
   url: `${SITE}/`,
   logo: `${SITE}/icon-512.png`,
+  email: ORG_EMAIL,
+  mainEntityOfPage: `${SITE}${lang === 'ar' ? encodeURI('/من-نحن/') : '/en/about/'}`,
 });
 
 /** الموقع ككيان — تشير إليه WebPage في Base عبر isPartOf. */
