@@ -9,7 +9,7 @@ import HeroVideo from '../HeroVideo.astro';
 import SeasonNow from '../SeasonNow.astro';
 import { getCollection } from 'astro:content';
 import { attractionHref } from '../../lib/routes';
-import { SITE, ORG, WEBSITE, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
+import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
 import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
@@ -91,8 +91,8 @@ const siteUrl = SITE;
 // الجهة والموقع من lib/schema.ts بمعرّفَي @id ثابتين — العقدتان نفساهما اللتان
 // تشير إليهما WebPage في Base على كل صفحة، فلا يتفرّق الاسم بين الصفحات.
 const jsonLd = [
-  { '@context': 'https://schema.org', ...ORG },
-  { '@context': 'https://schema.org', ...WEBSITE, inLanguage: lang },
+  { '@context': 'https://schema.org', ...orgNode(lang) },
+  { '@context': 'https://schema.org', ...websiteNode(lang), inLanguage: lang },
   {
     '@context': 'https://schema.org', '@type': 'TouristDestination',
     // الاسم الروسي من معجم ru-translation حرفياً (مدخل «Al-Ahsa» = Аль-Ахса)

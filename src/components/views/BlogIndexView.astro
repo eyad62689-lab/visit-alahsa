@@ -8,7 +8,7 @@ import PageHero from '../PageHero.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import { formatDate } from '../../lib/dates';
-import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
+import { SITE, orgNode, absUrl, breadcrumb } from '../../lib/schema';
 import { blogHref } from '../../lib/routes';
 import { htmlLang, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { BLOG_INDEX } from '../../lib/blog';
@@ -41,8 +41,8 @@ const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'Blog',
     name: t('blog.title'), description: t('blog.lead'), url: pageUrl, inLanguage: htmlLang(lang),
-    // الناشر هو الجهة نفسها (ORG) التي تحمل مقالات المدونة والحقوق في Base
-    publisher: ORG,
+    // الناشر هو الجهة نفسها (orgNode) التي تحمل مقالات المدونة والحقوق في Base
+    publisher: orgNode(lang),
   },
   breadcrumb([
     { name: t('crumb.home'), path: ar ? '/' : `/${lang}/` },

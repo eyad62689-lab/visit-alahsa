@@ -477,8 +477,8 @@ async function main() {
   // فعلاً في عنوان /de/attractions/ أول ما بُنيت.
   // وسطر الحقوق المرئي في التذييل (`.ft-bar span`) كان محرفاً حرفياً أيضاً
   // فمرّ من الحارس الأول وظهر في كل صفحة ألمانية (2026-09-19). خارج النطاق عمداً:
-  // `<meta name="copyright">` و`copyrightNotice` في JSON-LD — بيانات علامة
-  // ثنائية اللغة موحّدة للموقع كله لا نصٌّ ألماني.
+  // `<meta name="copyright">` و`copyrightNotice` في JSON-LD — يُبنيان من titleSep نفسه
+  // الذي يبني سطر التذييل، فلا يُفحصان مرتين.
   {
     const deFiles = htmlFiles.filter((f) => {
       const rel = path.relative(DIST, f).split(path.sep);
@@ -748,6 +748,7 @@ async function main() {
     const THRESHOLD = 20;
     const unlistedSrc = await readText(path.join(ROOT, 'src/i18n/unlisted.ts'));
     const unlisted = [...unlistedSrc.matchAll(/\{\s*path:\s*'([^']+)',\s*noindex:\s*(true|false)/g)].map((m) => ({ path: m[1], noindex: m[2] === 'true' }));
+    const COPYRIGHT_LINE = /^© \d{4} Visit Al-Ahsa [–—] visit-alahsa\.com$/;
     const names = new Set(['Visit Al-Ahsa', 'Al-Ahsa', 'VISIT AL-AHSA', 'visit-alahsa.com', 'Ctrl K', 'Esc']);
     for (const dir of ['src/content/attractions', 'src/content/dining', 'src/content/stay']) {
       for (const f of (await readdir(path.join(ROOT, dir))).filter((n) => n.endsWith('.md'))) {
@@ -769,7 +770,8 @@ async function main() {
         // أو «Bayt Al-Bay&#39;ah» كان يصير «… Hotel Restaurant» فلا يطابق مجموعة الأسماء المستثناة (POL-DE-55).
         // تمريرةٌ واحدة: فكّ «&amp;» قبل غيره يفكّ «&amp;lt;» مرتين (CodeQL js/double-escaping)
         .map((t) => t.replace(/&[a-z]+;|&#x?[\da-f]+;/gi, (e) => (e === '&amp;' ? '&' : /^&(#39|#x27|apos);$/i.test(e) ? "'" : ' ')).replace(/\s+/g, ' ').trim())
-        .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t));
+        // سطر الحقوق في التذييل اسم علامة وسنة ونطاق فقط — لا نصّ قابل للترجمة — فيُستثنى كالأسماء.
+        .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t) && !COPYRIGHT_LINE.test(t));
     };
     const smXml = existsSync(smPath) ? await readText(smPath) : '';
     const problems = [];

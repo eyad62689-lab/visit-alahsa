@@ -3,31 +3,34 @@
 // كانت كتلتا Organization وWebSite تُكتبان يدوياً في الرئيسية، ومنشئ المدونة
 // وحامل الحقوق في Base بأسماء متفاوتة («الأحساء»، «زوروا الأحساء»، «Visit
 // Al-Ahsa»…). هنا كيان واحد بمعرّف @id ثابت تشير إليه كل الصفحات فتتطابق.
-// الاسم ثنائي اللغة عمداً: الكيان القانوني واحد لا يتغيّر بلغة الصفحة.
+// المعرّف @id واحد لكل اللغات، والاسم اسم العلامة بلغة الصفحة (site.brand).
 
 import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 
 export const SITE = 'https://visit-alahsa.com';
 
-export const ORG_NAME = 'زوروا الأحساء — Visit Al-Ahsa';
+/** اسم العلامة بلغة الصفحة — «زوروا الأحساء» في العربية و«Visit Al-Ahsa» في بقية اللغات (مفتاح site.brand). */
+export const brandName = (lang: Lang): string => useTranslations(lang)('site.brand');
 
 /** الجهة الناشرة وحاملة الحقوق — العقدة نفسها في كل صفحة (@id ثابت). */
-export const ORG = {
+export const ORG_ID = `${SITE}/#org`;
+export const orgNode = (lang: Lang) => ({
   '@type': 'Organization',
-  '@id': `${SITE}/#org`,
-  name: ORG_NAME,
+  '@id': ORG_ID,
+  name: brandName(lang),
   url: `${SITE}/`,
   logo: `${SITE}/icon-512.png`,
-} as const;
+});
 
 /** الموقع ككيان — تشير إليه WebPage في Base عبر isPartOf. */
-export const WEBSITE = {
+export const websiteNode = (lang: Lang) => ({
   '@type': 'WebSite',
   '@id': `${SITE}/#website`,
-  name: ORG_NAME,
+  name: brandName(lang),
   url: `${SITE}/`,
-  publisher: { '@id': ORG['@id'] },
-} as const;
+  publisher: { '@id': ORG_ID },
+});
 
 // ── واحة الأحساء ككيان خارجي (بند 3.1 — 2026-09-04) ─────────────────────────
 // الوجهة في الرئيسية والمكوّنات في صفحات المعالم تشير إلى الكيان نفسه: Wikidata

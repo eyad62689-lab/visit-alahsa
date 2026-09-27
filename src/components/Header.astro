@@ -1,7 +1,6 @@
 ---
 // الترويسة — ثنائية اللغة: تنقّل مترجم، مبدّل لغة يربط النظير، RTL/LTR تلقائي.
 import Wordmark from './Wordmark.astro';
-import NationalDayRibbon from './NationalDayRibbon.astro';
 import Search from './Search.astro';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
@@ -70,7 +69,6 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     ...LANG_META[l],
   }));
 ---
-<NationalDayRibbon lang={lang} />
 <header class="site-header" id="top" data-pagefind-ignore>
   <div class="container hd-in">
     <a href={home} class="brand">
