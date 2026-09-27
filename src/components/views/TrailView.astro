@@ -15,7 +15,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
-import { TRAIL_META, TRAIL_SOURCES, type Trail } from '../../data/trails';
+import { TRAIL_META, TRAIL_SOURCES, sourceTitle, type Trail } from '../../data/trails';
 import { stopAttraction, trailsIndexHref, type TrailLang } from '../../lib/trails';
 import { attractionHref } from '../../lib/routes';
 import { absUrl, breadcrumb } from '../../lib/schema';
@@ -52,7 +52,7 @@ const stops = trail.stops.map((s, i) => {
     unesco: s.unesco,
     href: att ? attractionHref(att.data, lang) : undefined,
     loc: att?.data.location,
-    sources: s.sources.map((k) => ({ key: k, ...TRAIL_SOURCES[k] })),
+    sources: s.sources.map((k) => ({ key: k, url: TRAIL_SOURCES[k].url, title: sourceTitle(TRAIL_SOURCES[k].title, lang) })),
   };
 });
 const pins = stops.filter((s) => s.loc && s.href).map((s) => ({ n: s.n, name: s.name, href: s.href!, lat: s.loc!.lat, lng: s.loc!.lng }));

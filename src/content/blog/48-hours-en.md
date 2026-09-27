@@ -41,7 +41,7 @@ Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the 
 
 ### Midday: Jawatha Mosque
 
-Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. Be mindful of prayer times and the sanctity of the place; visitors of other faiths are welcome, with modest dress.
+Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. Be mindful of prayer times and the sanctity of the place; the mosque is open to visitors, with respect for prayer times, modest dress and the sanctity of the place.
 
 ### Afternoon: The Green of the Farms
 
