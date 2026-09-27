@@ -220,7 +220,7 @@ const inTrails = isTrailLang(lang)
   ? trailsForAttraction(a.slug_en, await getCollection('attractions')).map((tr) => ({ href: trailHref(tr, lang), title: tr[lang].title, tagline: tr[lang].tagline, slug: tr.slug }))
   : [];
 ---
-<Base title={`${title} ${titleSep(lang)} ${t('site.name')}`} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
+<Base title={`${title} ${titleSep(lang)} ${t('site.brand')}`} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>

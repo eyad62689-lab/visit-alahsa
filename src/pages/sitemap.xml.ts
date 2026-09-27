@@ -6,7 +6,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH } from '../data/events';
-import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, ABOUT_ALT } from '../lib/routes';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
 import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
@@ -47,6 +47,8 @@ export const GET: APIRoute = async ({ site }) => {
     // دليل التأشيرات عربي فقط (2026-09-26) — بلا en فلا hreflang، على سابقة المقال بلا نظير
     { ar: VISA_GUIDE_PATH, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.md') },
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
+    // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
+    { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },
     // المسارات المقترحة (2026-09-26) — عربي/إنجليزي فقط، التاريخ من ملف البيانات وقالبها
     { ar: trailsIndexHref('ar'), en: trailsIndexHref('en'), lastmod: dateOf(`${V}TrailsIndexView.astro`, 'src/data/trails.json') },
     ...TRAILS.map((tr) => ({ ...trailAlt(tr), lastmod: dateOf(`${V}TrailView.astro`, 'src/data/trails.json') })),
