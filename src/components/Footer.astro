@@ -55,7 +55,6 @@ const cols = [
       { label: t('foot.l.about'), href: ar ? '/#name' : zh ? '/zh/#name' : '/en/#name' },
       // صفحة مكوّنات اليونسكو بلغاتها الخمس منذ المرحلة هـ (2026-09-26)
       { label: t('foot.l.unesco'), href: staticHref('unesco', lang) },
-      { label: t('foot.l.brand'), href: '/brand/' },
       { label: t('foot.l.privacy'), href: staticHref('legal', lang) },
       { label: t('foot.l.report'), href: staticHref('report', lang) },
       { label: t('foot.l.contact'), href: 'mailto:info@visit-alahsa.com' },
@@ -95,9 +94,12 @@ const year = new Date().getFullYear();
   </div>
 
   {/* أُزيل نموذج «النشرة البريدية» بطلب إياد (2026-07-13) — لا تجميع للإيميلات */}
+  {/* سطر الاستقلالية: رابط إلى صفحة السياسات بلغة الصفحة */}
+  <p class="container ft-indep"><a href={staticHref('legal', lang)}>{t('foot.independence')}</a></p>
+
   <div class="container ft-bar">
     {/* الفاصل رمزٌ لا محرف: الألمانية U+2013 لا U+2014 — يحرسه C17 */}
-    <span>© {year} {t('site.name')} {titleSep(lang)} {t('foot.rights')}</span>
+    <span>© {year} {t('site.brand')} {titleSep(lang)} visit-alahsa.com</span>
     <a href="mailto:info@visit-alahsa.com" class="ft-mail">info@visit-alahsa.com</a>
   </div>
 </footer>
@@ -119,6 +121,9 @@ const year = new Date().getFullYear();
      تنزل سطراً مستقلاً فوق التسمية (svg عنصر كتلي في الإعداد العامّ). */
   .ft-col a.ft-icon-link { display: inline-flex; align-items: center; gap: .4em; }
   .ft-wa { flex: none; opacity: .85; }
+  .ft-indep { margin-block-start: var(--s-6); font-size: var(--t-sm); }
+  .ft-indep a { color: rgba(247,243,234,.74); text-decoration: underline; text-underline-offset: .2em; text-decoration-color: rgba(247,243,234,.35); }
+  .ft-indep a:hover { color: var(--c-gold-bright); }
   .ft-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-block-start: var(--s-6); padding-block-start: var(--s-4); border-block-start: 1px solid rgba(247,243,234,.14); font-size: var(--t-sm); color: rgba(247,243,234,.72); flex-wrap: wrap; }
   /* تباين AA: الذهبي على الفيروزي الداكن ≈ 3.7:1 فلا يصلح للنص الصغير — رملي أساساً وذهبي عند التحويم */
   .ft-mail { font-family: var(--font-latin); letter-spacing: .04em; color: var(--c-sand); text-decoration: none; }

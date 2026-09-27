@@ -7,7 +7,7 @@ import Footer from '../Footer.astro';
 import PalmMotif from '../PalmMotif.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { formatDate } from '../../lib/dates';
-import { SITE, ORG, absUrl, breadcrumb } from '../../lib/schema';
+import { SITE, orgNode, absUrl, breadcrumb } from '../../lib/schema';
 import { htmlLang, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { BLOG_INDEX } from '../../lib/blog';
 import { staticHref } from '../../lib/routes';
@@ -29,7 +29,7 @@ const siteUrl = SITE;
 const pageUrl = absUrl(Astro.url.pathname, siteUrl);
 const ogImage = p.heroImage ? `${p.heroImage}.jpg` : ogDefault(lang);
 
-// الكاتب والناشر هما الجهة نفسها (ORG في lib/schema.ts) بمعرّف @id يطابق حامل
+// الكاتب والناشر هما الجهة نفسها (orgNode في lib/schema.ts) بمعرّف @id يطابق حامل
 // الحقوق في Base والرئيسية — كان الاسم يختلف بين الصفحات.
 const jsonLd: object[] = [
   {
@@ -40,8 +40,8 @@ const jsonLd: object[] = [
     datePublished: p.pubDate.toISOString().slice(0, 10),
     ...(p.updatedDate ? { dateModified: p.updatedDate.toISOString().slice(0, 10) } : {}),
     mainEntityOfPage: pageUrl,
-    author: ORG,
-    publisher: ORG,
+    author: orgNode(lang),
+    publisher: orgNode(lang),
   },
   breadcrumb([
     { name: t('crumb.home'), path: homeHref },

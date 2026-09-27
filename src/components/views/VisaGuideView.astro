@@ -23,7 +23,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { titleSep, useTranslations } from '../../i18n/utils';
-import { ORG, breadcrumb, absUrl } from '../../lib/schema';
+import { ORG_ID, breadcrumb, absUrl } from '../../lib/schema';
 import { VISA_GUIDE_PATH, VISA_UPDATED_LINE, VISA_PREVIEW_NOTE, UNVERIFIED } from '../../lib/visa-guide.mjs';
 
 const lang = 'ar' as const;
@@ -67,7 +67,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'Article',
     headline: title, inLanguage: 'ar', dateModified: '2026-09-26',
-    mainEntityOfPage: absUrl(VISA_GUIDE_PATH), publisher: { '@id': ORG['@id'] },
+    mainEntityOfPage: absUrl(VISA_GUIDE_PATH), publisher: { '@id': ORG_ID },
   },
   breadcrumb([
     { name: t('crumb.home'), path: '/' },

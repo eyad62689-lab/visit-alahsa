@@ -31,9 +31,9 @@ import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
 import LangSuggest from '../components/LangSuggest.astro';
 import { srcsetFor } from '../lib/images';
-import { ORG, WEBSITE } from '../lib/schema';
+import { orgNode, websiteNode, brandName } from '../lib/schema';
 import { AI_REFERRER_HOSTS } from '../lib/ai-referrers.mjs';
-import { dir, htmlLang, useTranslations, type AltLinks } from '../i18n/utils';
+import { dir, htmlLang, titleSep, useTranslations, type AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -83,7 +83,8 @@ const pageId = createHash('sha256')
   .digest('hex')
   .slice(0, 12);
 const copyrightYear = new Date().getFullYear();
-const copyrightNotice = `© ${copyrightYear} زوروا الأحساء — visit-alahsa.com — جميع الحقوق محفوظة / All rights reserved`;
+// سطر الحقوق نفسه المعروض في التذييل: اسم العلامة بلغة الصفحة والنطاق، والفاصل titleSep.
+const copyrightNotice = `© ${copyrightYear} ${brandName(lang)} ${titleSep(lang)} visit-alahsa.com`;
 const ownershipLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -92,8 +93,8 @@ const ownershipLd = {
   inLanguage: htmlLang(lang),
   // العقدتان من lib/schema.ts بمعرّفَي @id ثابتين — هما نفس Organization/WebSite
   // المعلنتين في الرئيسية وناشر المدونة، فتلتقي كل الصفحات على كيان واحد.
-  isPartOf: WEBSITE,
-  copyrightHolder: ORG,
+  isPartOf: websiteNode(lang),
+  copyrightHolder: orgNode(lang),
   copyrightYear,
   copyrightNotice,
   license: new URL(staticHref('legal', lang), site).href,

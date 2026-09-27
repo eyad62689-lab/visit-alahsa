@@ -28,6 +28,17 @@
 [[plugins]]
   package = "./netlify/plugins/indexnow"
 
+# تحويل دائم: صفحة السياسات الإنجليزية مسارها /en/legal/.
+[[redirects]]
+  from = "/en/policies/"
+  to = "/en/legal/"
+  status = 301
+
+[[redirects]]
+  from = "/en/policies"
+  to = "/en/legal/"
+  status = 301
+
 # تخزين مؤقت طويل للأصول المُبصَّمة وغير المتغيّرة (يحسّن السرعة وLCP)
 [[headers]]
   for = "/fonts/*"
