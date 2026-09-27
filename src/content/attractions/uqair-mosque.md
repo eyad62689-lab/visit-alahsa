@@ -26,7 +26,7 @@ heroImage: /img/uqair-mosque
 kicker: "موقع ديني"
 summary: "المسجد التاريخي ضمن مباني ميناء العقير، من المرافق التي طوّرها الملك عبدالعزيز."
 summary_en: "The historic mosque within the Al-Uqair port complex, among the facilities developed under King Abdulaziz."
-body_en: "On the Arabian Gulf coast east of Al-Ahsa, within the complex of the historic Al-Uqair port — the oldest seaport in Saudi Arabia — stands the port's historic mosque, where sailors, merchants and travellers once prayed at Najd's old gateway to the sea. It is counted among the port facilities built and developed in the reign of King Abdulaziz, alongside the fort, the khan, the emirate building and the customs house, in the days when Al-Uqair was Al-Ahsa's commercial artery. The mosque was restored under the historic mosques restoration programme, with the support of the Royal Commission for Jubail and Yanbu, among a group of Al-Ahsa's historic mosques. Today it stands within the site, part of the full story the old port tells its visitors. The site is undergoing restoration work, and some parts may be closed."
+body_en: "On the Arabian Gulf coast east of Al-Ahsa, within the complex of the historic Al-Uqair port — the oldest seaport in Saudi Arabia — stands the port's historic mosque, where sailors, merchants and travellers once prayed at Najd's old gateway to the sea. It is counted among the port facilities built and developed in the reign of King Abdulaziz, alongside the fort, the khan, the emirate building and the customs house, in the days when Al-Uqair was Al-Ahsa's commercial artery. The mosque was restored under the historic mosques restoration programme, with the support of the Royal Commission for Jubail and Yanbu, among a group of Al-Ahsa's historic mosques. Today it stands within the historic port site, part of the full story the old port tells its visitors. The site is undergoing restoration work, and some parts may be closed."
 area: ميناء العقير — ساحل الخليج شرق الأحساء
 area_en: "Al-Uqair port — the Gulf coast east of Al-Ahsa"
 featured: false
@@ -47,6 +47,6 @@ mapUrl: "https://maps.app.goo.gl/wAMAUNZGFsYo4JaJ7"
 جانب الحصن والخان ومبنى الإمارة والجمارك، أيام كان العقير شريان الأحساء
 التجاري. رُمم المسجد ضمن برنامج إعمار المساجد التاريخية بدعم من الهيئة
 الملكية للجبيل وينبع ضمن مجموعة من مساجد الأحساء التاريخية. واليوم يقع
-ضمن الموقع، جزءاً من حكاية
+ضمن موقع الميناء التاريخي، جزءاً من حكاية
 الميناء القديم التي يرويها لزائريه. يشهد الموقع أعمال ترميم، وقد تكون
 بعض أجزائه مغلقة.
