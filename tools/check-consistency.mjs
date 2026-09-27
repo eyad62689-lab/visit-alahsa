@@ -13,7 +13,7 @@ import path from 'node:path';
 import { checkTrails, EXPECT } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
 import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
-import { checkMosqueCards, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
+import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -265,9 +265,12 @@ async function main() {
   // وفي كل صفحات المواقع المفتوحة (مع حدّ أدنى لعددها)، ورابطَ المشغّل على
   // المعالم الحاملة operatorUrl، مع حارس إيجابي لكل لغة. المنطق في tools/check-visit-card.mjs
   // (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة).
-  // ── C29: بند «الزيارة» في بطاقات المساجد — منشور حرفياً بكل لغة يحمل ترجمتها، والصيغة
-  // السابقة التي كانت تفرّق بين الزوار بحسب الدين غائبة عن المصدر وعن كل بطاقة وبكل لغة.
-  // المنطق في tools/check-mosque-card.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+  // ── C29: بند «الزيارة» في بطاقات المساجد — منشور حرفياً بصيغته المعتمدة بكل لغة يحمل
+  // ترجمتها، والصيغ السابقة (التي كانت تفرّق بين الزوار بحسب الدين، والتي كانت تقصر الزيارة
+  // على خارج أوقات الصلاة) غائبة عن المصدر وعن كل بطاقة وبكل لغة. ويمتدّ إلى صفحات المدونة:
+  // لا عبارة تفرّق بين الزوار بحسب الدين (نصاً وJSON-LD)، وعبارة الزيارة المعتمدة منشورة في
+  // مقالَي 24 و48 ساعة بكل لغة. المنطق في tools/check-mosque-card.mjs (دالتان نقيتان يُختبر
+  // كسرهما في الذاكرة).
   {
     const sources = [];
     const byFile = new Map();
@@ -301,9 +304,25 @@ async function main() {
       }
     }
     const { problems, stats } = checkMosqueCards(sources, pagesFor, allPages);
+    // صفحات المدونة المنشورة بكل اللغات، مقرونةً بمفتاح المقال من ترويسته
+    const blogDir = path.join(ROOT, 'src/content/blog');
+    const blogPages = [];
+    for (const f of (await readdir(blogDir)).filter((x) => x.endsWith('.md'))) {
+      const head = (await readText(path.join(blogDir, f))).split('\n---')[0];
+      const val = (k) => head.match(new RegExp(`^${k}:\\s*"?([^"\\n]+?)"?\\s*$`, 'm'))?.[1];
+      if (val('draft') === 'true') continue;
+      const lang = val('lang'), slug = val('slug');
+      const p = lang === 'ar'
+        ? path.join(DIST, decodeURIComponent('%D9%85%D8%AF%D9%88%D9%86%D8%A9'), slug ?? '', 'index.html')
+        : path.join(DIST, lang ?? '', 'blog', slug ?? '', 'index.html');
+      if (!existsSync(p)) { problems.push(`المدونة: ${f} غير منشور في ${path.relative(DIST, p)}`); continue; }
+      blogPages.push({ rel: `blog/${f}`, lang, key: val('key'), html: await readText(p) });
+    }
+    const blog = checkBlogVisitWording(blogPages);
+    problems.push(...blog.problems);
     const per = Object.entries(stats).map(([l, n]) => `${l} ${n}`).join(' · ');
-    if (problems.length) fail('C29', `بند الزيارة في بطاقات المساجد: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C29', `بند «الزيارة» منشور حرفياً في بطاقات المساجد (${per}؛ الحدّ الأدنى ${MOSQUE_EXPECT.minPages})، والصيغة السابقة غائبة عن المصدر وعن بطاقات ${allPages.length} صفحة معلم`);
+    if (problems.length) fail('C29', `بند الزيارة وعبارة المدونة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C29', `بند «الزيارة» منشور حرفياً بصيغته المعتمدة في بطاقات المساجد (${per}؛ الحدّ الأدنى ${MOSQUE_EXPECT.minPages})، والصيغ السابقة غائبة عن المصدر وعن بطاقات ${allPages.length} صفحة معلم؛ وفي ${blog.stats.pages} صفحة مدونة لا عبارة تفرّق بين الزوار بحسب الدين، وعبارة الزيارة المعتمدة في ${blog.stats.clauses} صفحات`);
   }
   {
     const expects = [];
