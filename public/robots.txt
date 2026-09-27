@@ -4,16 +4,13 @@ Allow: /
 # حجبها زحفياً يمنع جوجل من قراءة noindex أصلاً (تدقيق 2026-08-28)،
 # والنظيرة الإنجليزية /en/plan/ لم تكن محجوبة أساساً.
 
-# --- حماية المحتوى (2026-08-29): قواعد صريحة لزواحف تدريب الذكاء الاصطناعي ---
-# تُحجب زواحف جمع بيانات التدريب فقط. زواحف البحث تبقى مرحّباً بها كما هي،
-# وكذلك وكلاء الإجابة التي يستدعيها مستخدم فعلياً (ChatGPT-User وأمثاله) —
-# فهي قناة وصول زوّار تخدمها llms.txt، لا جمعَ تدريبٍ بالجملة.
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
+# --- سياسة الزواحف (تحديث 2026-09-27 بقرار المالك) ---
+# زواحف البحث ووكلاء الإجابة مرحّب بها كلها (Googlebot، Bingbot، OAI-SearchBot،
+# ChatGPT-User، PerplexityBot، Claude-User وأمثالها) — قناة وصول زوّار تخدمها llms.txt.
+# رُفع الحجب عن زواحف تدريب مزوّدي المساعدات الرئيسيين (GPTBot، ClaudeBot،
+# anthropic-ai، Google-Extended) بعد تدقيق الظهور في محركات الإجابة (2026-09-27):
+# الحجب كان يُبقي الموقع خارج ذاكرة نماذج ChatGPT وClaude وGemini القادمة،
+# وهي القناة التي تعمل بلا بحث. يبقى الحجب على زواحف الجمع بالجملة والتجارية.
 
 User-agent: CCBot
 Disallow: /
@@ -28,12 +25,6 @@ User-agent: FacebookBot
 Disallow: /
 
 User-agent: Applebot-Extended
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: ClaudeBot
 Disallow: /
 
 User-agent: omgili
