@@ -13,6 +13,7 @@ import path from 'node:path';
 import { checkTrails, EXPECT } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
 import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
+import { checkMosqueCards, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -264,6 +265,46 @@ async function main() {
   // وفي كل صفحات المواقع المفتوحة (مع حدّ أدنى لعددها)، ورابطَ المشغّل على
   // المعالم الحاملة operatorUrl، مع حارس إيجابي لكل لغة. المنطق في tools/check-visit-card.mjs
   // (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة).
+  // ── C29: بند «الزيارة» في بطاقات المساجد — منشور حرفياً بكل لغة يحمل ترجمتها، والصيغة
+  // السابقة التي كانت تفرّق بين الزوار بحسب الدين غائبة عن المصدر وعن كل بطاقة وبكل لغة.
+  // المنطق في tools/check-mosque-card.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+  {
+    const sources = [];
+    const byFile = new Map();
+    for (const f of mdFiles) {
+      const text = await readText(path.join(SRC_ATTRACTIONS, f));
+      sources.push({ file: f, text });
+      const head = text.split('\n---')[0];
+      byFile.set(f, {
+        slugAr: head.match(/^slug_ar:\s*"?([^"\n]+?)"?\s*$/m)?.[1],
+        slugEn: head.match(/^slug_en:\s*"?([^"\n]+?)"?\s*$/m)?.[1],
+      });
+    }
+    const pageCache = new Map();
+    const pagesFor = (file, l) => {
+      const e = byFile.get(file);
+      const p = l === 'ar'
+        ? path.join(DIST, AR_ATTRACTIONS_DIR, e?.slugAr ?? '', 'index.html')
+        : path.join(DIST, l, 'attractions', e?.slugEn ?? '', 'index.html');
+      return pageCache.get(p) ?? null;
+    };
+    const allPages = [];
+    for (const [file, e] of byFile) {
+      for (const l of ['ar', 'en', 'zh', 'de', 'ru']) {
+        const p = l === 'ar'
+          ? path.join(DIST, AR_ATTRACTIONS_DIR, e.slugAr ?? '', 'index.html')
+          : path.join(DIST, l, 'attractions', e.slugEn ?? '', 'index.html');
+        if (!existsSync(p)) continue;
+        const html = await readText(p);
+        pageCache.set(p, html);
+        allPages.push({ rel: `${l}/${file}`, html });
+      }
+    }
+    const { problems, stats } = checkMosqueCards(sources, pagesFor, allPages);
+    const per = Object.entries(stats).map(([l, n]) => `${l} ${n}`).join(' · ');
+    if (problems.length) fail('C29', `بند الزيارة في بطاقات المساجد: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C29', `بند «الزيارة» منشور حرفياً في بطاقات المساجد (${per}؛ الحدّ الأدنى ${MOSQUE_EXPECT.minPages})، والصيغة السابقة غائبة عن المصدر وعن بطاقات ${allPages.length} صفحة معلم`);
+  }
   {
     const expects = [];
     for (const f of mdFiles) expects.push(expectFromSource(await readText(path.join(SRC_ATTRACTIONS, f))));

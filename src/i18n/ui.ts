@@ -254,7 +254,7 @@ export const ui = {
     'det.faq': 'أسئلة شائعة',
     // متجر منتجات الفعالية (صفحة الفعالية) — لغة بلا هذا المفتاح تعرض الأيقونة
     // وحدها كزرّ المشاركة، فلا نصّ بـzh/de/ru خارج خطوط الترجمة.
-    'ev.shop': 'تسوّق منتجات المعرض',
+    'ev.shop': 'تسوّق منتجات المعرض — متجر غرفة الأحساء (رابط خارجي) ↗',
     // نبذة الزرّ في بطاقة القائمة — وصفٌ لفئات ما يعرضه المتجر فعلاً كما شوهدت
     // في صفحته (2026-09-21): اللومي بأشكاله (مشمّس · جميد · شطة · بودرة)،
     // ومأكولات (مكسرات · شيبس · خلّ التمر)، ومستحضرات عناية (صابون · شامبو ·
@@ -498,7 +498,7 @@ export const ui = {
     'det.nearby.note': 'Distances are approximate, in a straight line.',
     'det.report': 'Spotted something inaccurate? Tell us',
     'det.faq': 'Frequently asked questions',
-    'ev.shop': 'Shop the exhibition products',
+    'ev.shop': 'Shop the exhibition’s products — Al-Ahsa Chamber store (external link) ↗',
     'ev.shopNote': 'Lomi products, foods and care items from the establishments taking part in the exhibition.',
     'foot.l.report': 'Report an error',
     // Blog
@@ -740,7 +740,7 @@ export const ui = {
     'det.mentions.h': '相关文章',
     'foot.l.unesco': '联合国教科文组织世界遗产',
     // زرّ متجر معرض اللومي — خط zh-translation-pipeline (دفعة zh-dind-2، المرحلة د1)
-    'ev.shop': '选购展品',
+    'ev.shop': '选购展会产品——哈萨商会商店（外部链接） ↗',
     'ev.shopNote': '青柠产品、食品与个人护理用品，均来自参展商家。',
     // ── الخريطة التضاريسية (خط zh-translation-pipeline (المرحلة هـ، 2026-09-26)) ──
     'tmap.title': "地形图",
@@ -951,7 +951,7 @@ export const ui = {
     'map.empty': 'Keine Ergebnisse – versuchen Sie ein anderes Wort oder eine andere Kategorie.',
     'map.terrain': '3D-Geländekarte',
     'map.locate': 'Mein Standort auf der Karte',
-    'ev.shop': 'Kaufen Sie die Ausstellungsprodukte',
+    'ev.shop': 'Kaufen Sie die Produkte der Ausstellung – Shop der Al-Ahsa-Handelskammer (externer Link) ↗',
     'ev.shopNote': 'Lomi-Produkte, Lebensmittel und Pflegeprodukte der teilnehmenden Aussteller.',
     // ── دفعة صفحتَي الخطة (ج9) — خط de-translation-pipeline، 2026-09-23 ──
     // 25 مفتاح plan.* لصفحة /de/plan/. المنشوران سابقاً في هذه الكتلة ولا يُكرَّران:
@@ -1228,7 +1228,7 @@ export const ui = {
     'blog.lead': 'Практические путеводители и истории из оазиса — планы поездок, впечатления и всё, что сделает вашу поездку насыщеннее.',
     'blog.empty': 'Статьи скоро появятся — загляните к нам позже.',
     // ── زرّ متجر معرض اللومي (ru-evshop 2026-09-25، الحاكم 94/100) ──
-    'ev.shop': 'Купить товары выставки',
+    'ev.shop': 'Купить товары выставки — магазин Торгово-промышленной палаты Аль-Ахсы (внешняя ссылка) ↗',
     'ev.shopNote': 'Продукция из лайма, продукты питания и уходовые средства — от заведений-участников выставки.',
     // ── الخريطة التضاريسية (خط ru-translation-pipeline (المرحلة هـ، 2026-09-26)) ──
     'tmap.title': "Карта рельефа",

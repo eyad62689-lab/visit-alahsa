@@ -15,6 +15,8 @@
 //       رأس الفهرس وذيل كل مسار (بعد آخر محطة)؛ نص كل محطة منشور حرفياً (التشكيل كما هو)؛
 //       المصادر تحت كل محطة بعناوينها وروابطها وtarget=_blank rel=noopener؛ لا وصف رسمي في
 //       <title> والوصف وog/twitter وh1؛ hreflang عربي/إنجليزي فقط.
+//   (ج) عنوان المصدر نصٌّ واحد أو { ar, en } ويُقارَن المنشور بعنوان لغة الصفحة؛ ولا رابط
+//       aawsat.com في أي مصدر، ومحطة بحيرة الأصفر منشورة بمصدر واس وبلا رابط aawsat.
 
 export const EXPECT = {
   trails: 5,
@@ -24,6 +26,10 @@ export const EXPECT = {
   // المحطات المرتبطة بصفحة معلم (التلميح الحرفي + جدول src/lib/trails.ts) — 11 من 13
   unlinkedStops: ['oasis-farms', 'natural-springs'],
 };
+
+// محطة بحيرة الأصفر: مصدرها واس، ورابط الصحيفة القديم منقطع (404) فلا يُعاد
+const RETIRED_SOURCE = /aawsat\.com/i;
+const ASFAR_SPA_URL = 'https://www.spa.gov.sa/1901639';
 
 const FORBIDDEN_AR = ['المعتمدة', 'الرسمية', 'من روح السعودية'];
 const FORBIDDEN_EN = [/\bofficial\b/i, /\bapproved\b/i];
@@ -57,6 +63,10 @@ export function checkTrailsSource(data) {
       if (ar.includes('المسرح الروماني') && !ar.includes('لا أثر روماني')) problems.push(`${t.slug}/${s.key}: «المسرح الروماني» بلا «لا أثر روماني»`);
       if (/roman theatre/i.test(en) && !en.includes('not a Roman antiquity')) problems.push(`${t.slug}/${s.key}: "Roman Theatre" بلا "not a Roman antiquity"`);
     }
+  }
+  for (const [k, src] of Object.entries(data.sources ?? {})) {
+    if (RETIRED_SOURCE.test(src.url)) problems.push(`sources.${k}: رابط منقطع (aawsat)`);
+    if (typeof src.title !== 'string' && !(src.title?.ar && src.title?.en)) problems.push(`sources.${k}: عنوان ناقص بإحدى اللغتين`);
   }
   for (const l of langs) {
     if (!data.meta?.attribution?.[l]) problems.push(`meta.attribution.${l} فارغ`);
@@ -147,7 +157,13 @@ export function checkTrails(data, pages) {
           const href = decode(m[1].match(/href="([^"]*)"/)?.[1] ?? '');
           if (href !== src.url) problems.push(`${rel}/${s.key}: رابط ${m[2]} ≠ المصدر`);
           if (!/target="_blank"/.test(m[1]) || !/rel="noopener"/.test(m[1])) problems.push(`${rel}/${s.key}: رابط ${m[2]} بلا target=_blank rel=noopener`);
-          if (decode(strip(m[3])).trim() !== src.title) problems.push(`${rel}/${s.key}: عنوان ${m[2]} ≠ المصدر`);
+          const want = typeof src.title === 'string' ? src.title : src.title[l];
+          if (decode(strip(m[3])).trim() !== want) problems.push(`${rel}/${s.key}: عنوان ${m[2]} ≠ المصدر`);
+        }
+        // مصادر محطة الأصفر: رابط الصحيفة المنقطع لا يعود، ومصدر واس حاضر
+        if (s.key === 'al-asfar-lake') {
+          if (RETIRED_SOURCE.test(body)) problems.push(`${rel}/${s.key}: رابط مصدر منقطع (aawsat) منشور`);
+          if (!body.includes(ASFAR_SPA_URL)) problems.push(`${rel}/${s.key}: مصدر واس غائب`);
         }
       });
       // الإسناد في ذيل الصفحة: بعد آخر محطة

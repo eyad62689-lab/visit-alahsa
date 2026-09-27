@@ -26,7 +26,8 @@ export const TrailsSchema = z.strictObject({
     editorialRules: z.array(z.string()),
   }),
   sources: z.record(z.string(), z.strictObject({
-    title: z.string().min(1),
+    // عنوان واحد للغتين، أو عنوان بكل لغة ({ ar, en })
+    title: z.union([z.string().min(1), Bi]),
     url: z.url(),
     tier: z.enum(['official', 'secondary', 'press']),
   })),
@@ -63,3 +64,6 @@ export const TRAILS_DATA: TrailsData = TrailsSchema.parse(raw);
 export const TRAILS: Trail[] = [...TRAILS_DATA.trails].sort((a, b) => a.order - b.order);
 export const TRAIL_META = TRAILS_DATA.meta;
 export const TRAIL_SOURCES = TRAILS_DATA.sources;
+/** عنوان المصدر بلغة الصفحة */
+export const sourceTitle = (title: TrailsData['sources'][string]['title'], lang: 'ar' | 'en'): string =>
+  typeof title === 'string' ? title : title[lang];
