@@ -28,6 +28,16 @@
 [[plugins]]
   package = "./netlify/plugins/indexnow"
 
+# تحويل دائم على مستوى المضيف: النطاق الفرعي الافتراضي على Netlify كان يُخدم بـ200
+# و«index, follow» فتزاحم نسخته النطاقَ الرسمي في نتائج محركات الإجابة. المطابقة على
+# المضيف حرفياً، فلا تمسّ معاينات النشر (deploy-preview-N--visit-ahsa.netlify.app).
+# تُبقي :splat المسار والاستعلام كما هما، وforce يقدّمها على الملفات الموجودة.
+[[redirects]]
+  from = "https://visit-ahsa.netlify.app/*"
+  to = "https://visit-alahsa.com/:splat"
+  status = 301
+  force = true
+
 # تحويل دائم: صفحة السياسات الإنجليزية مسارها /en/legal/.
 [[redirects]]
   from = "/en/policies/"
