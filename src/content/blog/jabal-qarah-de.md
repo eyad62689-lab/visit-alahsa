@@ -14,7 +14,7 @@ faq:
   - q: "Wo liegt der Jabal al-Qarah, und wie komme ich dorthin?"
     a: "Der Berg ragt mitten aus der Al-Ahsa-Oase auf, östlich von Hofuf beim Dorf Al-Qarah. Das Auto ist die praktische Wahl für die Anfahrt, und die Seite „Meine Reise“ dieser Website macht aus dem Berg und seiner Umgebung eine fertige Route, die sich in Google Maps öffnet."
   - q: "Ist für die Höhlen ein Ticket nötig?"
-    a: "Ja – die Tickets gibt es im Kulturerbe-Dorf „Land of Civilisations“ am Fuß des Jabal al-Qarah, und sie schließen das Höhlenerlebnis ein. Die geprüften Angaben zu Öffnungszeiten und Eintritt stehen auf unserer Seite zum Berg, und das letzte Wort haben die offiziellen Kanäle."
+    a: "Ja – die Tickets gibt es im Kulturerbe-Dorf „Land of Civilisations“ am Fuß des Jabal al-Qarah, und sie schließen das Höhlenerlebnis ein. Die Angaben zu Öffnungszeiten und Eintritt stehen auf unserer Seite zum Berg, und das letzte Wort haben die offiziellen Kanäle."
 ---
 
 Im Herzen von Al-Ahsa – der größten Oase der Welt, seit 2018 UNESCO-Welterbe – ragt [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (der Qarah-Berg) zwischen den Hainen auf wie ein uralter Wächter. Doch das Geheimnis des Berges liegt nicht in seiner Höhe, sondern in seinem Inneren: Höhlen und Gänge durchziehen sein Gestein. Im Hochsommer bewahren sie sanfte Kühle, und im tiefsten Winter halten sie stille Wärme – ein Naturphänomen, das den Einheimischen seit jeher Zuflucht geboten hat und den Berg heute zur bekanntesten Sehenswürdigkeit der Oase macht.
@@ -44,7 +44,7 @@ Die beste Zeit für den Aufstieg: **am frühen Morgen oder kurz vor Sonnenunterg
 ## Praktische Hinweise
 
 - **Lage:** östlich von Hofuf, beim Dorf Al-Qarah – auf der [Seite der Sehenswürdigkeit](/de/attractions/jabal-al-qarah/) finden Sie den Kartenlink und die Koordinaten.
-- **Öffnungszeiten und Eintritt:** Die geprüften Angaben stehen auf der [Seite der Sehenswürdigkeit](/de/attractions/jabal-al-qarah/); die Tickets gibt es über „Land of Civilisations“, und sie schließen das Höhlenerlebnis ein. Die Öffnungszeiten ändern sich je nach Saison und an Feiertagen, und das letzte Wort haben die offiziellen Kanäle.
+- **Öffnungszeiten und Eintritt:** Die Angaben stehen auf der [Seite der Sehenswürdigkeit](/de/attractions/jabal-al-qarah/); die Tickets gibt es über „Land of Civilisations“, und sie schließen das Höhlenerlebnis ein. Die Öffnungszeiten ändern sich je nach Saison und an Feiertagen, und das letzte Wort haben die offiziellen Kanäle.
 - **In Ihrem Reiseplan:** Der Berg ist die natürliche erste Station jedes Besuchs – mit ihm beginnen sowohl die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) als auch die [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit [„Meine Reise“](/de/plan/).
 
 ## Fazit

@@ -46,7 +46,7 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
   if (!rows.length || !hoursHead || !feesHead) return null;
   return {
     id: 'practical',
-    caption: lang === 'ar' ? 'المواعيد والرسوم الموثّقة — كما وردت في بطاقة كل معلم' : lang === 'en' ? 'Verified hours and fees — as shown on each attraction’s visit card' : undefined,
+    caption: lang === 'ar' ? 'المواعيد والرسوم — كما وردت في بطاقة كل معلم' : lang === 'en' ? 'Hours and fees — as shown on each attraction’s visit card' : undefined,
     head: [nameHead, hoursHead, feesHead],
     rows,
   };
