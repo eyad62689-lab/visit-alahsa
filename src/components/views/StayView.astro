@@ -227,10 +227,12 @@ const C = localize(lang, {
 
 // العنوان والوصف الصينيان من الكتلة الصينية المعتمدة (title وheroSum) بدل السقوط على
 // الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
+// ar/en: الكلمات المفتاحية ثم اسم العلامة كبقية القوالب (كانت العلامة غائبة عن هذا العنوان)؛
+// نوع المنشأتين باقٍ في الوصف.
 const pageTitle = ar
-  ? 'أماكن الإقامة في الأحساء — نُزل تراثية وفنادق'
+  ? `أماكن الإقامة في الأحساء ${titleSep(lang)} ${t('site.brand')}`
   : zh || de || ru ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
-  : 'Where to Stay in Al Ahsa — Heritage Inns & Hotels';
+  : `Where to Stay in Al Ahsa ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
   ? 'أماكن الإقامة في الأحساء: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
   : zh || de || ru ? C.heroSum

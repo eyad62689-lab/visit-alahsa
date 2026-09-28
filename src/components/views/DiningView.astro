@@ -452,10 +452,11 @@ const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 // عنوان ووصف بكلمات السيو المعتمدة (≤60 و≤160 حرفاً) — بلا سنة حتى لا يتقادم
 // العنوان والوصف الصينيان من الكتلة الصينية المعتمدة (title وheroSum) بدل السقوط على
 // الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
+// ar/en: الكلمات المفتاحية ثم اسم العلامة كبقية القوالب (كانت العلامة غائبة عن هذا العنوان).
 const pageTitle = ar
-  ? 'مطاعم ومقاهي الأحساء — دليلك لتجارب الأكل في الهفوف'
+  ? `مطاعم ومقاهي الأحساء في الهفوف ${titleSep(lang)} ${t('site.brand')}`
   : zh || de || ru ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
-  : 'Al Ahsa Restaurants & Cafés — Where to Eat in Hofuf';
+  : `Al Ahsa Restaurants & Cafés in Hofuf ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
   ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
   : zh || de || ru ? C.heroSum
