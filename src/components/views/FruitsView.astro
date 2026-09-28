@@ -15,7 +15,6 @@ import { fruitsTable } from '../../lib/tables';
 import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_DE, FRUIT_GROUPS_RU } from '../../data/fruits';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { reviewedLabel } from '../../data/meta';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -62,7 +61,7 @@ const ZH = {
   countPrefix: '当前显示：',
   methodH: '关于信息准确性',
   methodP1: '本页内容取自官方与权威农业来源，每条信息在发布前都经过核实。',
-  methodP2: `果实成熟期每年随天气略有变化；本页信息于 ${reviewedLabel('fruits', 'zh')} 完成复核。`,
+  methodP2: `果实成熟期每年随天气略有变化。`,
   groups: FRUIT_GROUPS_ZH,
 };
 
@@ -96,7 +95,7 @@ const RU = {
   countPrefix: 'Показано плодов: ',
   methodH: 'О точности сведений',
   methodP1: 'Эта страница опирается на надёжные официальные и сельскохозяйственные источники, и каждый факт мы проверяем перед публикацией.',
-  methodP2: `Сроки созревания немного смещаются из года в год в зависимости от погоды. Сведения проверены: ${reviewedLabel('fruits', 'ru')}`,
+  methodP2: `Сроки созревания немного смещаются из года в год в зависимости от погоды.`,
   groups: FRUIT_GROUPS_RU,
 };
 
@@ -133,7 +132,7 @@ const DE = {
   countPrefix: 'Angezeigte Früchte: ',
   methodH: 'Über die Genauigkeit dieser Seite',
   methodP1: 'Diese Seite stützt sich auf vertrauenswürdige offizielle und landwirtschaftliche Quellen, und wir prüfen jede Angabe sorgfältig, bevor wir sie veröffentlichen.',
-  methodP2: `Die Reifezeiten verschieben sich je nach Witterung leicht von Saison zu Saison; diese Angaben wurden im ${reviewedLabel('fruits', 'de')} überprüft.`,
+  methodP2: `Die Reifezeiten verschieben sich je nach Witterung leicht von Saison zu Saison.`,
   groups: FRUIT_GROUPS_DE,
 };
 
@@ -167,7 +166,7 @@ const C = localize(lang, {
     countPrefix: 'عدد الثمار المعروضة: ',
     methodH: 'حول دقة المعلومات',
     methodP1: 'اعتمدنا في هذه الصفحة على مصادر رسمية وزراعية موثوقة، وحرصنا على التحقّق من كل معلومة قبل نشرها.',
-    methodP2: `تختلف مواعيد النضج قليلاً من موسم لآخر بحسب الأحوال الجوية؛ رُوجعت هذه المعلومات في ${reviewedLabel('fruits', 'ar')}.`,
+    methodP2: `تختلف مواعيد النضج قليلاً من موسم لآخر بحسب الأحوال الجوية.`,
     groups: FRUIT_GROUPS_AR,
   },
   en: {
@@ -198,7 +197,7 @@ const C = localize(lang, {
     countPrefix: 'Fruits shown: ',
     methodH: 'About the accuracy of this page',
     methodP1: 'This page draws on trusted official and agricultural sources, and we take care to verify every fact before publishing it.',
-    methodP2: `Ripening dates shift slightly from season to season with the weather; this information was reviewed in ${reviewedLabel('fruits', 'en')}.`,
+    methodP2: `Ripening dates shift slightly from season to season with the weather.`,
     groups: FRUIT_GROUPS_EN,
   },
   zh: ZH,
