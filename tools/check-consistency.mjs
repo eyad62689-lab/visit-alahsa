@@ -14,6 +14,7 @@ import { checkTrails, EXPECT } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
 import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
+import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -323,6 +324,21 @@ async function main() {
     const per = Object.entries(stats).map(([l, n]) => `${l} ${n}`).join(' · ');
     if (problems.length) fail('C29', `بند الزيارة وعبارة المدونة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C29', `بند «الزيارة» منشور حرفياً بصيغته المعتمدة في بطاقات المساجد (${per}؛ الحدّ الأدنى ${MOSQUE_EXPECT.minPages})، والصيغ السابقة غائبة عن المصدر وعن بطاقات ${allPages.length} صفحة معلم؛ وفي ${blog.stats.pages} صفحة مدونة لا عبارة تفرّق بين الزوار بحسب الدين، وعبارة الزيارة المعتمدة في ${blog.stats.clauses} صفحات`);
+  }
+  // ── C30: جمعة جواثا على لفظ الحديث (حكم إياد 2026-09-29) — لا مسجد الجمعة في أي صفحة تذكر
+  // جواثا، ولا «ثاني» في صفحتَي المسجد والمنتزه، وإيجاباً المسجد النبوي فيهما بكل لغة مبنية.
+  // المنطق في tools/check-jawatha-friday.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+  {
+    const pages = [];
+    for (const f of htmlFiles) {
+      const rel = path.relative(DIST, f).split(path.sep).join('/');
+      const lang = /^(en|zh|de|ru)\//.exec(rel)?.[1] ?? 'ar';
+      pages.push({ rel, lang, html: await readText(f) });
+    }
+    const { problems, stats } = checkJawathaFriday(pages);
+    const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+    if (problems.length) fail('C30', `جمعة جواثا: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C30', `جمعة جواثا على لفظ الحديث: المسجد النبوي في صفحتَي المسجد والمنتزه (${per}؛ الحدّ الأدنى ${JAWATHA_EXPECT.minPages}) بلا «ثاني»، ولا مسجد الجمعة في ${stats.jawathaPages} صفحة تذكر جواثا`);
   }
   {
     const expects = [];
