@@ -4,22 +4,22 @@ title_en: "Al-Asfar Lake"
 # الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 6 بدرجة 92/100 (2026-09-02)
 title_zh: 阿斯法湖
 kicker_zh: 自然景观
-summary_zh: "海湾地区最大的天然湖泊之一，也是吸引候鸟与自然爱好者的保护区。"
-body_zh: "阿斯法湖（黄湖）是海湾地区最大的天然湖泊之一。哈萨绿洲列入联合国教科文组织世界遗产名录的十二处组成部分，这片湖也名列其中。这片沙漠中央难得一见的水域，如今成了候鸟的栖息地，也吸引着寻求宁静与开阔视野的人们。湖泊位于绿洲东北部，最美莫过于日落时分：水面染上一层金色，那也是摄影师与自然爱好者最钟爱的时刻。"
+summary_zh: "海湾地区最大的水域之一，也是吸引候鸟与自然爱好者的保护区。"
+body_zh: "阿斯法湖（黄湖）是海湾地区最大的水域之一。哈萨绿洲列入联合国教科文组织世界遗产名录的十二处组成部分，这片湖也名列其中。这片沙漠中央难得一见的水域，如今成了候鸟的栖息地，也吸引着寻求宁静与开阔视野的人们。湖泊位于绿洲东北部，最美莫过于日落时分：水面染上一层金色，那也是摄影师与自然爱好者最钟爱的时刻。"
 area_zh: 绿洲东北部
 bestTime_zh: "日落时分，水面熠熠生辉，鸟群陆续归来。"
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-2 بدرجة 91/100 (2026-09-11، الدورة 3 من 3)
 title_de: "Al-Asfar-See"
 kicker_de: "Naturlandschaft"
-summary_de: "Einer der größten natürlichen Seen der Golfregion – ein Schutzgebiet, das Zugvögel und Naturfreunde anzieht."
-body_de: "Der Al-Asfar-See (Gelber See) ist einer der größten natürlichen Seen der Golfregion und einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die in die Welterbeliste der UNESCO aufgenommen wurde. Als seltene Wasserfläche mitten in der Wüste ist er zum Rückzugsort für Zugvögel geworden und zum Ziel für alle, die Ruhe und einen weiten Horizont suchen. Der See liegt nordöstlich der Oase. Seine schönste Stunde ist der Sonnenuntergang, wenn sich die Wasseroberfläche golden färbt – die Lieblingszeit von Fotografen und Naturfreunden."
+summary_de: "Eines der größten Gewässer der Golfregion – ein Schutzgebiet, das Zugvögel und Naturfreunde anzieht."
+body_de: "Der Al-Asfar-See (Gelber See) ist eines der größten Gewässer der Golfregion und einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die in die Welterbeliste der UNESCO aufgenommen wurde. Als seltene Wasserfläche mitten in der Wüste ist er zum Rückzugsort für Zugvögel geworden und zum Ziel für alle, die Ruhe und einen weiten Horizont suchen. Der See liegt nordöstlich der Oase. Seine schönste Stunde ist der Sonnenuntergang, wenn sich die Wasseroberfläche golden färbt – die Lieblingszeit von Fotografen und Naturfreunden."
 area_de: "Nordöstlich der Oase"
 bestTime_de: "Bei Sonnenuntergang, wenn das Wasser leuchtet und die Vogelschwärme zurückkehren."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 6 بدرجة 91/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Озеро Эль-Асфар"
 kicker_ru: "Природная достопримечательность"
-summary_ru: "Одно из крупнейших природных озёр в регионе Залива — охраняемая территория, которая привлекает перелётных птиц и любителей природы."
-body_ru: "Озеро Эль-Асфар — одно из крупнейших природных озёр в регионе Залива и один из двенадцати компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО. Водная гладь, редкая посреди пустыни, стала приютом для перелётных птиц и местом, куда едут за тишиной и широким горизонтом. Озеро лежит к северо-востоку от оазиса. Лучший час здесь — закат, когда вода заливается золотым светом. Это любимое время фотографов и любителей природы."
+summary_ru: "Один из крупнейших водоёмов в регионе Залива — охраняемая территория, которая привлекает перелётных птиц и любителей природы."
+body_ru: "Озеро Эль-Асфар — один из крупнейших водоёмов в регионе Залива и один из двенадцати компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО. Водная гладь, редкая посреди пустыни, стала приютом для перелётных птиц и местом, куда едут за тишиной и широким горизонтом. Озеро лежит к северо-востоку от оазиса. Лучший час здесь — закат, когда вода заливается золотым светом. Это любимое время фотографов и любителей природы."
 area_ru: "К северо-востоку от оазиса"
 bestTime_ru: "На закате, когда светится вода и возвращаются птичьи стаи."
 slug_ar: "بحيرة-الأصفر"
@@ -27,9 +27,9 @@ slug_en: "asfar"
 category: nature
 heroImage: /img/asfar
 kicker: "معلم طبيعي"
-summary: "من أكبر البحيرات الطبيعية في الخليج العربي، ومحمية تستقطب الطيور المهاجرة وعشّاق الطبيعة."
-summary_en: "One of the largest natural lakes in the Arabian Gulf, a reserve drawing migratory birds and nature lovers."
-body_en: "One of the largest natural lakes in the Arabian Gulf, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a haven for migratory birds and a destination for anyone seeking quiet and a wide horizon. The lake lies northeast of the oasis. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
+summary: "من أكبر التجمعات المائية في منطقة الخليج العربي، ومحمية تستقطب الطيور المهاجرة وعشّاق الطبيعة."
+summary_en: "One of the largest bodies of water in the Gulf region, a reserve drawing migratory birds and nature lovers."
+body_en: "One of the largest bodies of water in the Gulf region, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a haven for migratory birds and a destination for anyone seeking quiet and a wide horizon. The lake lies northeast of the oasis. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
 featured: false
 order: 39
 area: "شمال شرق الواحة"
@@ -40,8 +40,8 @@ openSite: true
 practical:
   - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", label_de: "Eintritt", value_de: "Kostenlos – frei zugängliches Naturgelände", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-03", verified: true }
 fee: { free: true }
-answer: "بحيرة الأصفر شمال شرق واحة الأحساء من أكبر البحيرات الطبيعية في الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي. مسطّح مائي نادر وسط الصحراء صار موئلاً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
-answer_en: "Al-Asfar Lake, northeast of the oasis, is among the largest natural lakes in the Arabian Gulf and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: an expanse of water in the desert sheltering migratory birds. Finest at sunset; no fee."
+answer: "بحيرة الأصفر شمال شرق واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع الواحة على قائمة اليونسكو للتراث العالمي. مسطّح مائي نادر وسط الصحراء صار موئلاً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
+answer_en: "Al-Asfar Lake, northeast of the oasis, is among the Gulf region's largest bodies of water and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: an expanse of water in the desert sheltering migratory birds. Finest at sunset; no fee."
 location: { lat: 25.525252, lng: 49.808672 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12196225
@@ -94,7 +94,7 @@ faq:
     a_ru: "На закате, когда светится вода и возвращаются птичьи стаи."
 ---
 
-من أكبر البحيرات الطبيعية في الخليج العربي، وأحد **المكوّنات الاثني عشر** المُدرجة
+من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد **المكوّنات الاثني عشر** المُدرجة
 ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي. مسطّحٌ مائيٌّ نادر وسط
 الصحراء، صار موئلاً للطيور المهاجرة ووجهةً لمن يطلب الهدوء واتّساع الأفق.
 

@@ -15,6 +15,7 @@ import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa
 import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
+import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -339,6 +340,21 @@ async function main() {
     const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
     if (problems.length) fail('C30', `جمعة جواثا: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C30', `جمعة جواثا على لفظ الحديث: المسجد النبوي في صفحتَي المسجد والمنتزه (${per}؛ الحدّ الأدنى ${JAWATHA_EXPECT.minPages}) بلا «ثاني»، ولا مسجد الجمعة في ${stats.jawathaPages} صفحة تذكر جواثا`);
+  }
+  // ── C31: بحيرة الأصفر بصياغة واس «من أكبر التجمعات المائية في منطقة الخليج العربي» (حكم إياد
+  // 2026-09-29) — لا دعوى «أكبر البحيرات الطبيعية» في أي صفحة بأي لغة، وإيجاباً صياغة واس في صفحة
+  // الأصفر بكل لغة مبنية. المنطق في tools/check-asfar-wording.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+  {
+    const pages = [];
+    for (const f of htmlFiles) {
+      const rel = path.relative(DIST, f).split(path.sep).join('/');
+      const lang = /^(en|zh|de|ru)\//.exec(rel)?.[1] ?? 'ar';
+      pages.push({ rel, lang, html: await readText(f) });
+    }
+    const { problems, stats } = checkAsfarWording(pages);
+    const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+    if (problems.length) fail('C31', `صياغة بحيرة الأصفر: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C31', `بحيرة الأصفر بصياغة واس في صفحتها بكل لغة (${per}؛ الحدّ الأدنى ${ASFAR_EXPECT.minPages})، ولا دعوى «أكبر البحيرات الطبيعية» في ${stats.scanned} صفحة`);
   }
   {
     const expects = [];
