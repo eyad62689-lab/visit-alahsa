@@ -25,7 +25,7 @@ Dieser Reiseführer bündelt, was Sie vor dem Besuch brauchen: was Sie in den H�
 
 Wasser und Wind haben das Gestein des Berges über Jahrtausende geformt und Gänge hineingeschnitten, die so eng sind, dass der Fels beinahe Ihre Schultern streift. Dann weitet sich der Weg plötzlich zu einer hohen Halle, in die ein schmaler Lichtstrahl dringt. Die tiefe Gesteinsmasse hält **ganzjährig eine gleichbleibende Temperatur von rund 20 °C**: Wenn Sie mittags im August eintreten, empfängt Sie eine unerwartete Kühle; wenn Sie in einer Winternacht eintreten, fühlt es sich darin warm an.
 
-Dabei ist der Berg kein einziger durchgehender Gang. In ihm liegen **zwölf Höhlen** von unterschiedlicher Form, darunter die Höhlen Naqah, Eid und Mahyoub. Und er ist größer, als seine Silhouette vermuten lässt: Seine Basis bedeckt rund 14 km², und von Norden nach Süden erstreckt er sich über etwa tausend Meter.
+Dabei ist der Berg kein einziger durchgehender Gang. In ihm liegen **zwölf Höhlen** von unterschiedlicher Form, darunter die Höhlen Naqah, Eid und Mahyoub. Und er ist größer, als seine Silhouette vermuten lässt: In seinem Inneren verlaufen 28 sehr hohe Längsgänge, die sich auf einer Länge von 1,5 Kilometern erstrecken.
 
 ## Was es zu sehen gibt
 
