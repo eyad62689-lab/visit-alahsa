@@ -16,6 +16,7 @@ import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
+import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -355,6 +356,15 @@ async function main() {
     const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
     if (problems.length) fail('C31', `صياغة بحيرة الأصفر: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C31', `بحيرة الأصفر بصياغة واس في صفحتها بكل لغة (${per}؛ الحدّ الأدنى ${ASFAR_EXPECT.minPages})، ولا دعوى «أكبر البحيرات الطبيعية» في ${stats.scanned} صفحة`);
+    // ── C32: بيت البيعة بُني عام 1203هـ/1788م (حكم إياد 2026-09-30، بسند الدارة وسعوديبيديا) — لا
+    // «1789» في صفحة تذكر 1203، وإيجاباً 1203…1788 في صفحة المعلم بكل لغة. المنطق في
+    // tools/check-baiah-year.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+    {
+      const { problems, stats } = checkBaiahYear(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C32', `سنة بيت البيعة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C32', `بيت البيعة 1203هـ/1788م في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${BAIAH_EXPECT.minPages})، ولا «1789» في ${stats.hijriPages} صفحة تذكر 1203`);
+    }
   }
   {
     const expects = [];

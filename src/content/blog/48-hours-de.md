@@ -27,7 +27,7 @@ Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (
 
 ### Vormittag: Das Al-Koot-Viertel und das Gedächtnis der Stadt
 
-Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1789 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient.
+Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1788 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient.
 
 ### Abend: Der Qaisariyah-Souk
 
