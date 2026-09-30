@@ -27,9 +27,9 @@ slug_en: qasr-ibrahim
 category: historic
 heroImage: /img/qasr-ibrahim
 kicker: قلعة تاريخية
-summary: الطين والحجر يلتقيان في حصنٍ يجمع المسجد والثكنة والبرج.
-summary_en: "Mud and stone meet in a fortress that gathers mosque, garrison and tower."
-body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. Two schools of building sit side by side — the solidity of stone and the warmth of local mud that breathes with the climate. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
+summary: جدرانٌ من الطين وأسقفٌ من جذوع النخل في حصنٍ يجمع المسجد والثكنة والبرج.
+summary_en: "Mud walls and palm-trunk roofs in a fortress that gathers mosque, garrison and tower."
+body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. It was built from the oasis’s own materials: walls of mud mixed with straw, roofs of palm trunks, chandal wood and stone, and a minaret reached by a spiral stone staircase. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
 area: وسط الهفوف — الأحساء
 area_en: "Central Hofuf — Al-Ahsa"
 hoursSpec:
@@ -38,8 +38,8 @@ hoursSpec:
   - { days: "Sa", opens: "09:00", closes: "13:00" }
   - { days: "Sa", opens: "16:00", closes: "20:00" }
 fee: { free: true }
-answer: "قصر إبراهيم حصنٌ تاريخي في قلب الهفوف يجمع تحت سوره مسجداً بقبّة أنيقة وثكنات وأبراج مراقبة وإسطبلات ومخازن، بُني من الحجر والطين المحلي، وهو جزء من موقع واحة الأحساء المسجّل في اليونسكو عام 2018. الدخول مجاني، والزيارة تستغرق ساعة إلى ساعتين."
-answer_en: "Qasr Ibrahim is a fortress in central Hofuf gathering a domed mosque, barracks, watchtowers, stables and stores, built of stone and local mud. Part of the Al-Ahsa Oasis site inscribed by UNESCO in 2018, it is free to enter; allow one to two hours."
+answer: "قصر إبراهيم حصنٌ تاريخي في قلب الهفوف يجمع تحت سوره مسجداً بقبّة وثكنات وأبراج مراقبة وإسطبلات ومخازن، بُنيت جدرانه من الطين المخلوط بالقش وأسقفه من جذوع النخل، وهو جزء من موقع واحة الأحساء المسجّل في اليونسكو عام 2018. الدخول مجاني، والزيارة تستغرق ساعة إلى ساعتين."
+answer_en: "Qasr Ibrahim is a fortress in central Hofuf gathering a domed mosque, barracks, watchtowers, stables and stores, with mud-and-straw walls and palm-trunk roofs. Part of the Al-Ahsa Oasis site inscribed by UNESCO in 2018, it is free to enter; allow one to two hours."
 district: downtown
 location: { lat: 25.378866, lng: 49.586894 }
 sameAs:
@@ -98,8 +98,8 @@ faq:
 المترف، بل **حصنٌ** جمع تحت سوره ما لا يجتمع عادةً: مسجدٌ بقبّةٍ أنيقة، وثكناتٌ
 عسكرية، وأبراجٌ تراقب الأفق، وإسطبلاتٌ ومخازن.
 
-تتجاور فيه مدرستان من البناء: متانة الحجر، ودفء الطين المحلّي الذي يتنفّس مع
-المناخ. تَجوّل في فنائه الواسع وتأمّل القبّة وهي تظلّل المحراب، وستقرأ في جدرانه
+بُني من مواد الواحة نفسها: جدرانٌ من الطين المخلوط بالقش، وأسقفٌ من جذوع النخل
+والشندل والحجارة، ومئذنةٌ يُصعد إليها بسلّمٍ حلزونيٍّ من الحجر. تَجوّل في فنائه الواسع وتأمّل القبّة وهي تظلّل المحراب، وستقرأ في جدرانه
 طبقاتٍ من التاريخ تراكمت جيلاً بعد جيل.
 
 القصر اليوم أحد أبرز معالم الأحساء التراثية، وجزءٌ من نسيجٍ عمرانيٍّ جعل الواحة
