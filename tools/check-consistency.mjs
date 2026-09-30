@@ -17,6 +17,7 @@ import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
 import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
+import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passages.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -364,6 +365,15 @@ async function main() {
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C32', `سنة بيت البيعة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C32', `بيت البيعة 1203هـ/1788م في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${BAIAH_EXPECT.minPages})، ولا «1789» في ${stats.hijriPages} صفحة تذكر 1203`);
+    }
+    // ── C33: ممرات جبل القارة «28 ممراً… 1.5 كيلومتر» (إفادة إياد 2026-09-30) — لا «14 كم²» بأي لغة،
+    // ولا «ألف متر» في صفحة المعلم العربية ومقال الدليل، وإيجاباً 28…1.5 فيها. المنطق في
+    // tools/check-qarah-passages.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+    {
+      const { problems, stats } = checkQarahPassages(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C33', `ممرات جبل القارة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C33', `جبل القارة 28 ممراً و1.5 كم في المتن العربي ومقال الدليل (${per}؛ الحدّ الأدنى ${QARAH_EXPECT.minPages})، ولا «14 كم²» في ${stats.scanned} صفحة`);
     }
   }
   {
