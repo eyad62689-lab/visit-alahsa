@@ -14,7 +14,7 @@ faq:
   - q: "Where is Jabal Al-Qarah and how do I get there?"
     a: "The mountain rises from the middle of the oasis east of Hofuf, by Al-Qarah village. A car is the practical way to reach it, and the site's My Trip tool turns the mountain and its surroundings into a ready route that opens in Google Maps."
   - q: "Do the caves require a ticket?"
-    a: "Yes — tickets are issued through the Land of Civilisations centre at the foot of the mountain and include the caves experience. Hours and fees live on the landmark's page, and official channels have the final word."
+    a: "Yes — tickets are issued through the Land of Civilisations heritage village at the foot of the mountain and include the caves experience. Hours and fees live on the landmark's page, and official channels have the final word."
 ---
 
 At the centre of the largest oasis on earth — inscribed on the UNESCO World Heritage list in 2018 — [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) rises from among the groves like an ancient guardian. But the mountain's secret is not its height; it is its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth in the depth of winter — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity, and that makes the mountain the oasis's most famous landmark today.
@@ -44,7 +44,7 @@ The best time to climb: **early morning or just before sunset**, when the light 
 ## The Practical Side
 
 - **Location:** east of Hofuf, by Al-Qarah village — the [landmark page](/en/attractions/jabal-al-qarah/) carries the map link and coordinates.
-- **Hours and fees:** details live on the [landmark page](/en/attractions/jabal-al-qarah/); tickets are issued through the Land of Civilisations centre and include the caves experience. Hours change with seasons and holidays, and official channels have the final word.
+- **Hours and fees:** details live on the [landmark page](/en/attractions/jabal-al-qarah/); tickets are issued through the Land of Civilisations heritage village and include the caves experience. Hours change with seasons and holidays, and official channels have the final word.
 - **In your itinerary:** the mountain is the natural first stop of any visit — it opens both the [one-day itinerary](/en/blog/one-day-in-al-ahsa/) and the [two-day itinerary](/en/blog/48-hours-in-al-ahsa/). Plan your stops with the [attractions map](/en/map/) and the [My Trip](/en/plan/) tool.
 
 ## The Verdict
