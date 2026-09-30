@@ -29,7 +29,7 @@ Im Folgenden lesen Sie, was diesen Ort wirklich auszeichnet – und wie Sie beur
 
 **Lebendiges Handwerk, keine Nachstellung.** In [Dougha Al-Gharash](/de/attractions/duqat-algharash/) am Fuß des Qarah-Bergs dreht die Familie Al-Gharash noch immer den Ton – in einer der bekanntesten Stätten des Töpferhandwerks in Saudi-Arabien.
 
-**Wo die Wüste auf das Meer trifft.** In [Al-Uqair](/de/attractions/al-uqair/), dem ältesten Hafen der Region, hebt sich der weiße Sand kurz vor Sonnenuntergang leuchtend vom Blau des Golfs ab.
+**Wo die Wüste auf das Meer trifft.** In [Al-Uqair](/de/attractions/al-uqair/), dem ersten Seehafen an der Ostküste Saudi-Arabiens, hebt sich der weiße Sand kurz vor Sonnenuntergang leuchtend vom Blau des Golfs ab.
 
 ## Wie sich Al-Ahsa in eine Saudi-Arabien-Reise einfügt
 

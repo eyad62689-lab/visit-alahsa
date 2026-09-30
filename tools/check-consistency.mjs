@@ -18,6 +18,7 @@ import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-fr
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
 import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
 import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passages.mjs';
+import { checkUqairPort, EXPECT as UQAIR_EXPECT } from './check-uqair-port.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -374,6 +375,15 @@ async function main() {
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C33', `ممرات جبل القارة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C33', `جبل القارة 28 ممراً و1.5 كم في المتن العربي ومقال الدليل (${per}؛ الحدّ الأدنى ${QARAH_EXPECT.minPages})، ولا «14 كم²» في ${stats.scanned} صفحة`);
+    }
+    // ── C34: ميناء العقير «أول ميناء بحري شرق المملكة» بصياغة الدارة (حكم إياد 2026-09-30) — لا
+    // «أقدم/أول موانئ المنطقة/أول ميناء في المملكة» ونظائرها بأي لغة، وإيجاباً الصياغة المعتمدة في
+    // صفحات المعالم الثلاثة ومقالَي الدليل ومسار الساحل. المنطق في tools/check-uqair-port.mjs.
+    {
+      const { problems, stats } = checkUqairPort(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C34', `ميناء العقير: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C34', `العقير «أول ميناء بحري شرق المملكة» في صفحاته بكل لغة (${per}؛ الحدّ الأدنى ${UQAIR_EXPECT.minPages})، ولا دعوى «أقدم» في ${stats.scanned} صفحة`);
     }
   }
   {

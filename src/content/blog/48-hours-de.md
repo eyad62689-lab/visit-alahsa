@@ -49,7 +49,7 @@ Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison.
 
 ### Sonnenuntergang: Al-Uqair
 
-Beenden Sie Ihre Reise an der Golfküste östlich von Al-Ahsa bei [Al-Uqair](/de/attractions/al-uqair/), dem ältesten Hafen der Region, wo der Wüstensand auf das Blau des Golfs trifft. Kurz vor Sonnenuntergang leuchtet der weiße Sand vor dem Wasser – ein passender Abschluss für zwei Tage in der Oase.
+Beenden Sie Ihre Reise an der Golfküste östlich von Al-Ahsa bei [Al-Uqair](/de/attractions/al-uqair/), dem ersten Seehafen an der Ostküste Saudi-Arabiens, wo der Wüstensand auf das Blau des Golfs trifft. Kurz vor Sonnenuntergang leuchtet der weiße Sand vor dem Wasser – ein passender Abschluss für zwei Tage in der Oase.
 
 ## Praktische Hinweise
 

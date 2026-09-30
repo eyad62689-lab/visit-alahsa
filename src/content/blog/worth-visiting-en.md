@@ -29,7 +29,7 @@ What follows is what actually sets the place apart, and how to judge whether it 
 
 **Living craft, not reenactment.** At [Dougha Al-Gharash](/en/attractions/duqat-algharash/), by the foot of Jabal Al-Qarah, the Al-Gharash family still turns clay in one of the Kingdom's best-known homes of pottery.
 
-**Desert meeting sea.** At [Al-Uqair](/en/attractions/al-uqair/), the region's oldest port, white sands glow against the blue of the Gulf just before sunset.
+**Desert meeting sea.** At [Al-Uqair](/en/attractions/al-uqair/), Saudi Arabia's first seaport on its eastern coast, white sands glow against the blue of the Gulf just before sunset.
 
 ## How Al-Ahsa Fits a Saudi Itinerary
 
