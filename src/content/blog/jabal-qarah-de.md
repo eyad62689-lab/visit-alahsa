@@ -31,7 +31,7 @@ Dabei ist der Berg kein einziger durchgehender Gang. In ihm liegen **zwölf Höh
 
 **Die Höhlen und Gänge.** Das Herzstück des Besuchs: Sie gehen durch die engen Gänge, während Licht, Schatten und Temperatur von einer Halle zur nächsten wechseln. Die Höhlen eignen sich für Familien ebenso wie für Fotografen – besonders an heißen Tagen.
 
-**Der Aussichtspunkt über dem Palmenmeer.** Vom Gipfel aus entfaltet sich die Oase wie ein Meer aus Dattelpalmen, dessen Ende das Auge kaum erreicht: Mehr als 2,5 Millionen Palmen breiten sich unter Ihnen aus. Es ist dieser Anblick, der begreiflich macht, warum Al-Ahsa zur größten Oase der Welt wurde.
+**Der Aussichtspunkt über dem Palmenmeer.** Vom Gipfel aus entfaltet sich die Oase wie ein Meer aus Dattelpalmen, dessen Ende das Auge kaum erreicht – und doch sehen Sie nur einen Teil davon. Die ganze Oase zählt mehr als 2,5 Millionen Dattelpalmen. Es ist dieser Anblick, der begreiflich macht, warum Al-Ahsa zur größten Oase der Welt wurde.
 
 **[„Land of Civilisations“](/de/attractions/ardh-alhadarat/).** Ein Kulturerbe-Dorf und eine Ausstellung am Fuß des Berges: Hier werden die Kulturepochen der Region gezeigt, und dank Pfaden, Einrichtungen und Aussichtspunkten lassen sich Dorf und Berg in einem Besuch verbinden. Auch die Tickets werden hier ausgegeben, und sie schließen das Höhlenerlebnis ein.
 
