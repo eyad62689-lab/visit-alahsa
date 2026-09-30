@@ -4,22 +4,22 @@ title_en: Qasr Ibrahim
 # الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-08-29)
 title_zh: 易卜拉欣宫
 kicker_zh: 历史古堡
-summary_zh: 泥砖与石材在此相遇：同一道围墙里，清真寺、军营与瞭望塔比邻而立。
-body_zh: "易卜拉欣宫立在胡富夫市中心，几百年的变迁在这里层层落定。说是宫，其实是一座城堡——同一道围墙之内，容纳了平日难得共处的空间：穹顶秀雅的清真寺、军营、瞭望塔、马厩与仓廪。两种建筑传统在此并肩：石材硬朗，本地泥砖温厚，随气候而呼吸。走进开阔的庭院，看穹顶在米哈拉布（礼拜朝向壁龛）上投下荫影，一代代累积的历史便清晰可感。如今，它是哈萨最重要的遗产地标之一，也是老城肌理的一部分——2018 年，这片绿洲正是凭这片肌理列入联合国教科文组织世界遗产名录。"
+summary_zh: 泥墙筑就、椰枣树干盖顶的城堡里，清真寺、军营与瞭望塔比邻而立。
+body_zh: "易卜拉欣宫立在胡富夫市中心，几百年的变迁在这里层层落定。说是宫，其实是一座城堡——同一道围墙之内，容纳了平日难得共处的空间：穹顶秀雅的清真寺、军营、瞭望塔、马厩与仓廪。城堡用的是绿洲传统建材：墙体以草拌泥筑成，屋顶用椰枣树干、尚达尔木杆（chandal，海湾传统建筑常用的进口木料）与石块铺成；登清真寺的宣礼塔，要走一道石砌的螺旋楼梯。走进开阔的庭院，看穹顶在米哈拉布（礼拜朝向壁龛）上投下荫影，一代代累积的历史便清晰可感。如今，它是哈萨最重要的遗产地标之一，也是老城肌理的一部分——2018 年，这片绿洲正是凭这片肌理列入联合国教科文组织世界遗产名录。"
 area_zh: 胡富夫市中心——哈萨
 bestTime_zh: 白天前来最好，建筑细节与庭院的光线都看得最清楚。
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 (2026-09-04)
 title_de: "Qasr Ibrahim"
 kicker_de: "Historische Festung"
-summary_de: "Lehm und Stein treffen in einer Festung zusammen, die Moschee, Kaserne und Turm vereint."
+summary_de: "Eine Festung mit Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kaserne und Turm."
 area_de: "Zentrum von Hofuf – Al-Ahsa"
 bestTime_de: "Tagsüber, um die Details der Architektur und das Licht des Innenhofs zu sehen."
-body_de: "Im Herzen von Hofuf steht Qasr Ibrahim als Zeuge jahrhundertelangen Wandels. Kein Palast im prunkvollen Sinne, sondern eine Festung, die hinter einer einzigen Mauer vereinte, was selten zusammenkommt: eine Moschee mit anmutiger Kuppel, eine Kaserne, Wachtürme, Ställe und Lagerräume. Zwei Bauweisen stehen hier nebeneinander – die Festigkeit des Steins und die Wärme des heimischen Lehms, der mit dem Klima atmet. Gehen Sie durch den weiten Hof, sehen Sie, wie die Kuppel den Mihrab (die Gebetsnische) beschattet, und Sie lesen Schichten von Geschichte, die sich Generation für Generation angesammelt haben. Heute zählt die Festung zu den bedeutendsten Kulturdenkmälern Al-Ahsas und gehört zu jenem städtischen Gefüge, dem die Oase ihre Aufnahme in die Welterbeliste der UNESCO im Jahr 2018 verdankt."
+body_de: "Im Herzen von Hofuf steht Qasr Ibrahim als Zeuge jahrhundertelangen Wandels. Kein Palast im prunkvollen Sinne, sondern eine Festung, die hinter einer einzigen Mauer vereinte, was selten zusammenkommt: eine Moschee mit anmutiger Kuppel, eine Kaserne, Wachtürme, Ställe und Lagerräume. Erbaut wurde die Festung aus den Baustoffen der Oase selbst: Die Mauern bestehen aus strohvermischtem Lehm, die Dächer aus Palmstämmen, Chandal-Holz und Steinen; zum Minarett führt eine steinerne Wendeltreppe hinauf. Gehen Sie durch den weiten Hof, sehen Sie, wie die Kuppel den Mihrab (die Gebetsnische) beschattet, und Sie lesen Schichten von Geschichte, die sich Generation für Generation angesammelt haben. Heute zählt die Festung zu den bedeutendsten Kulturdenkmälern Al-Ahsas und gehört zu jenem städtischen Gefüge, dem die Oase ihre Aufnahme in die Welterbeliste der UNESCO im Jahr 2018 verdankt."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-09-05، السجل في ru-translation/memory/scores.csv)
 title_ru: "Каср-Ибрахим"
 kicker_ru: "Историческая крепость"
-summary_ru: "Глина и камень сходятся в крепости, вместившей мечеть, казармы и сторожевые башни."
-body_ru: "В сердце Эль-Хуфуфа стоит Каср-Ибрахим (в переводе — дворец Ибрахима), свидетель столетий перемен. Это не роскошный дворец, а крепость, собравшая за одной стеной то, что редко встречается вместе: мечеть с изящным куполом, казармы, сторожевые башни, конюшни и склады. Здесь соседствуют две строительные традиции — прочность камня и тепло местной глины, которая дышит в лад с климатом. Пройдитесь по просторному двору, посмотрите, как купол затеняет михраб (молитвенную нишу), и вы прочтете на стенах слои истории, которые копились поколение за поколением. Сегодня крепость — один из главных исторических памятников Аль-Ахсы и часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО."
+summary_ru: "Крепость с глиняными стенами и кровлей из пальмовых стволов вмещает мечеть, казармы и башню."
+body_ru: "В сердце Эль-Хуфуфа стоит Каср-Ибрахим (в переводе — дворец Ибрахима), свидетель столетий перемен. Это не роскошный дворец, а крепость, собравшая за одной стеной то, что редко встречается вместе: мечеть с изящным куполом, казармы, сторожевые башни, конюшни и склады. Ее возвели из материалов самого оазиса: стены сложены из глины, смешанной с соломой, кровля — из пальмовых стволов, дерева шандаль и камня. На минарет мечети ведет каменная винтовая лестница. Пройдитесь по просторному двору, посмотрите, как купол затеняет михраб (молитвенную нишу), и вы прочтете на стенах слои истории, которые копились поколение за поколением. Сегодня крепость — один из главных исторических памятников Аль-Ахсы и часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО."
 area_ru: "Центр Эль-Хуфуфа, Аль-Ахса"
 bestTime_ru: "Днем, чтобы увидеть детали архитектуры и свет во внутреннем дворе."
 slug_ar: قصر-إبراهيم
@@ -27,9 +27,9 @@ slug_en: qasr-ibrahim
 category: historic
 heroImage: /img/qasr-ibrahim
 kicker: قلعة تاريخية
-summary: الطين والحجر يلتقيان في حصنٍ يجمع المسجد والثكنة والبرج.
-summary_en: "Mud and stone meet in a fortress that gathers mosque, garrison and tower."
-body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. Two schools of building sit side by side — the solidity of stone and the warmth of local mud that breathes with the climate. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
+summary: جدرانٌ من الطين وأسقفٌ من جذوع النخل في حصنٍ يجمع المسجد والثكنة والبرج.
+summary_en: "Mud walls and palm-trunk roofs in a fortress that gathers mosque, garrison and tower."
+body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. It was built from the oasis’s own materials: walls of mud mixed with straw, roofs of palm trunks, chandal wood and stone, and a minaret reached by a spiral stone staircase. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
 area: وسط الهفوف — الأحساء
 area_en: "Central Hofuf — Al-Ahsa"
 hoursSpec:
@@ -38,8 +38,8 @@ hoursSpec:
   - { days: "Sa", opens: "09:00", closes: "13:00" }
   - { days: "Sa", opens: "16:00", closes: "20:00" }
 fee: { free: true }
-answer: "قصر إبراهيم حصنٌ تاريخي في قلب الهفوف يجمع تحت سوره مسجداً بقبّة أنيقة وثكنات وأبراج مراقبة وإسطبلات ومخازن، بُني من الحجر والطين المحلي، وهو جزء من موقع واحة الأحساء المسجّل في اليونسكو عام 2018. الدخول مجاني، والزيارة تستغرق ساعة إلى ساعتين."
-answer_en: "Qasr Ibrahim is a fortress in central Hofuf gathering a domed mosque, barracks, watchtowers, stables and stores, built of stone and local mud. Part of the Al-Ahsa Oasis site inscribed by UNESCO in 2018, it is free to enter; allow one to two hours."
+answer: "قصر إبراهيم حصنٌ تاريخي في قلب الهفوف يجمع تحت سوره مسجداً بقبّة وثكنات وأبراج مراقبة وإسطبلات ومخازن، بُنيت جدرانه من الطين المخلوط بالقش وأسقفه من جذوع النخل، وهو جزء من موقع واحة الأحساء المسجّل في اليونسكو عام 2018. الدخول مجاني، والزيارة تستغرق ساعة إلى ساعتين."
+answer_en: "Qasr Ibrahim is a fortress in central Hofuf gathering a domed mosque, barracks, watchtowers, stables and stores, with mud-and-straw walls and palm-trunk roofs. Part of the Al-Ahsa Oasis site inscribed by UNESCO in 2018, it is free to enter; allow one to two hours."
 district: downtown
 location: { lat: 25.378866, lng: 49.586894 }
 sameAs:
@@ -98,8 +98,8 @@ faq:
 المترف، بل **حصنٌ** جمع تحت سوره ما لا يجتمع عادةً: مسجدٌ بقبّةٍ أنيقة، وثكناتٌ
 عسكرية، وأبراجٌ تراقب الأفق، وإسطبلاتٌ ومخازن.
 
-تتجاور فيه مدرستان من البناء: متانة الحجر، ودفء الطين المحلّي الذي يتنفّس مع
-المناخ. تَجوّل في فنائه الواسع وتأمّل القبّة وهي تظلّل المحراب، وستقرأ في جدرانه
+بُني من مواد الواحة نفسها: جدرانٌ من الطين المخلوط بالقش، وأسقفٌ من جذوع النخل
+والشندل والحجارة، ومئذنةٌ يُصعد إليها بسلّمٍ حلزونيٍّ من الحجر. تَجوّل في فنائه الواسع وتأمّل القبّة وهي تظلّل المحراب، وستقرأ في جدرانه
 طبقاتٍ من التاريخ تراكمت جيلاً بعد جيل.
 
 القصر اليوم أحد أبرز معالم الأحساء التراثية، وجزءٌ من نسيجٍ عمرانيٍّ جعل الواحة

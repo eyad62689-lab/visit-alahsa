@@ -20,6 +20,7 @@ import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
 import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passages.mjs';
 import { checkUqairPort, EXPECT as UQAIR_EXPECT } from './check-uqair-port.mjs';
 import { checkQarahPalms, EXPECT as PALMS_EXPECT } from './check-qarah-palms.mjs';
+import { checkIbrahimMaterials, EXPECT as IBRAHIM_EXPECT } from './check-ibrahim-materials.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -394,6 +395,15 @@ async function main() {
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C35', `مطلّ جبل القارة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C35', `الـ2.5 مليون نخلة للواحة لا للمشهد في مقال جبل القارة بكل لغة (${per}؛ الحدّ الأدنى ${PALMS_EXPECT.minPages})، ولا صياغة المشهد القديمة في ${stats.scanned} صفحة`);
+    }
+    // ── C36: مواد بناء قصر إبراهيم بتقرير واس (حكم إياد 2026-09-30) — لا «مدرستان من البناء» ولا
+    // «التقاء الطين والحجر» بأي لغة، وإيجاباً «جدران من الطين المخلوط بالقش» في صفحة القصر بكل لغة.
+    // المنطق في tools/check-ibrahim-materials.mjs.
+    {
+      const { problems, stats } = checkIbrahimMaterials(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C36', `مواد قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C36', `قصر إبراهيم بجدران الطين المخلوط بالقش في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${IBRAHIM_EXPECT.minPages})، ولا «مدرستان من البناء» في ${stats.scanned} صفحة`);
     }
   }
   {
