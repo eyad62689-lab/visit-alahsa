@@ -27,13 +27,13 @@ gallery: [/img/uqair-castle-02, /img/uqair-castle-03]
 kicker: "معلم تاريخي"
 summary: "قلعة تاريخية تحرس الميناء، شاهدة على ازدهار العقير التجاري قديماً."
 summary_en: "A historic castle guarding the port, a witness to Al-Uqair's old commercial prosperity."
-body_en: "On the Arabian Gulf coast east of Al-Ahsa, Al-Uqair Castle stands among the buildings of the historic Al-Uqair port — the oldest seaport in Saudi Arabia and, in earlier times, Najd's gateway to the sea, where archaeological finds attest to trade stretching back to remote antiquity. The structures seen today include the castle, the khan, the emirate building, the customs house and the mosque, and it was on the port's grounds that the Uqair Protocol demarcating borders was signed in 1341 AH / 1922 CE. The port's role faded after Dammam's port rose in the mid-twentieth century, leaving its buildings as witnesses to an entire era. They were restored in the late 1990s. The site is undergoing restoration work, and some parts may be closed."
+body_en: "On the Arabian Gulf coast east of Al-Ahsa, Al-Uqair Castle stands among the buildings of the historic Al-Uqair port — the first seaport on Saudi Arabia’s eastern coast and, in earlier times, Najd's gateway to the sea, where archaeological finds attest to trade stretching back to remote antiquity. The structures seen today include the castle, the khan, the emirate building, the customs house and the mosque, and it was on the port's grounds that the Uqair Protocol demarcating borders was signed in 1341 AH / 1922 CE. The port's role faded after Dammam's port rose in the mid-twentieth century, leaving its buildings as witnesses to an entire era. They were restored in the late 1990s. The site is undergoing restoration work, and some parts may be closed."
 area: ميناء العقير — ساحل الخليج شرق الأحساء
 area_en: "Al-Uqair port — the Gulf coast east of Al-Ahsa"
 featured: false
 order: 17
-answer: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي، أقدم الموانئ البحرية في المملكة وبوابة نجد إلى البحر قديماً. تشمل المباني القائمة القلعة والخان ومبنى الإمارة والجمارك والمسجد، وعلى أرض الميناء وُقّع بروتوكول العقير عام 1341هـ/1922م. يشهد الموقع أعمال ترميم، وقد تكون بعض أجزائه مغلقة."
-answer_en: "Al-Uqair Castle stands among the buildings of the historic Al-Uqair port east of Al-Ahsa, the oldest seaport in Saudi Arabia and once Najd’s gateway to the sea. The castle, khan, emirate building, customs house and mosque survive; the Uqair Protocol was signed here in 1922."
+answer: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي، أول ميناء بحري شرق المملكة على ساحل الخليج العربي، وبوابة نجد إلى البحر قديماً. تشمل المباني القائمة القلعة والخان ومبنى الإمارة والجمارك والمسجد، وعلى أرض الميناء وُقّع بروتوكول العقير عام 1341هـ/1922م. يشهد الموقع أعمال ترميم، وقد تكون بعض أجزائه مغلقة."
+answer_en: "Al-Uqair Castle stands among the buildings of the historic Al-Uqair port east of Al-Ahsa, the first seaport on Saudi Arabia’s eastern Arabian Gulf coast and once Najd’s gateway to the sea. The castle, khan, emirate building, customs house and mosque survive; the Uqair Protocol was signed here in 1922."
 practical:
   - { label: "المواعيد", value: "متاح للزيارة الخارجية", label_en: "Hours", value_en: "Open for exterior visits", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
   - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
@@ -42,7 +42,7 @@ mapUrl: "https://maps.app.goo.gl/pQj9N6Dq75yekPTK8"
 ---
 
 على ساحل الخليج العربي شرقي الأحساء تقوم قلعة العقير ضمن مباني **ميناء
-العقير التاريخي**، أقدم الموانئ البحرية في المملكة وبوابة نجد إلى البحر
+العقير التاريخي**، أول ميناء بحري شرق المملكة وبوابة نجد إلى البحر
 قديماً، حيث تشهد المكتشفات الأثرية على نشاط تجاري يمتد إلى عصور موغلة في
 القدم. المباني القائمة اليوم تشمل القلعة والخان ومبنى الإمارة والجمارك والمسجد،
 وعلى أرض الميناء وُقّع بروتوكول العقير لترسيم الحدود عام 1341هـ/1922م. تراجع دور
