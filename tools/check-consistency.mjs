@@ -21,6 +21,7 @@ import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passag
 import { checkUqairPort, EXPECT as UQAIR_EXPECT } from './check-uqair-port.mjs';
 import { checkQarahPalms, EXPECT as PALMS_EXPECT } from './check-qarah-palms.mjs';
 import { checkIbrahimMaterials, EXPECT as IBRAHIM_EXPECT } from './check-ibrahim-materials.mjs';
+import { checkAsfarNotes, EXPECT as ASFAR_NOTES_EXPECT } from './check-asfar-notes.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -404,6 +405,15 @@ async function main() {
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C36', `مواد قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C36', `قصر إبراهيم بجدران الطين المخلوط بالقش في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${IBRAHIM_EXPECT.minPages})، ولا «مدرستان من البناء» في ${stats.scanned} صفحة`);
+    }
+    // ── C37: ملاحظات القرّاء العميان على الأصفر (أحكام إياد 2026-10-01) — لا «الطبيعة والمغارات»
+    // بأي لغة، وفي صفحة الأصفر: «شمال شرق نخيل الواحة» وجملة إعلان المحمية 2019. المنطق في
+    // tools/check-asfar-notes.mjs.
+    {
+      const { problems, stats } = checkAsfarNotes(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C37', `ملاحظات الأصفر: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C37', `الأصفر شمال شرق نخيل الواحة ومحميتها منسوبة لإعلان 2019 بكل لغة (${per}؛ الحدّ الأدنى ${ASFAR_NOTES_EXPECT.minPages})، ولا «الطبيعة والمغارات» في ${stats.scanned} صفحة`);
     }
   }
   {
