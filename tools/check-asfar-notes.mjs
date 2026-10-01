@@ -45,7 +45,42 @@ export const RESERVE_2019 = {
   ru: /В\s+2019\s+году\s+Министерство\s+окружающей\s+среды,\s+водных\s+ресурсов\s+и\s+сельского\s+хозяйства\s+объявило,\s+что\s+озеро\s+станет\s+охраняемой\s+территорией/,
 };
 
-const TARGET = /^(?:معالم\/بحيرة-الأصفر|(?:en|zh|de|ru)\/attractions\/asfar)\/index\.html$/;
+// عبور الطيور مرتين في العام (واس، مارس 2019) وبند الوصول بسيارات الدفع الرباعي (تأكيد إياد 2026-10-01)
+export const BIRDS = {
+  ar: /وتعبرها\s+الطيور\s+المهاجرة\s+مرتين\s+في\s+العام/,
+  en: /Migratory\s+birds\s+pass\s+through\s+twice\s+a\s+year/,
+  zh: /候鸟每年两度途经这里/,
+  de: /Zweimal\s+im\s+Jahr\s+ziehen\s+die\s+Vögel\s+hier\s+durch/,
+  ru: /Птицы\s+пролетают\s+здесь\s+дважды\s+в\s+год/i,
+};
+
+// الدفع الرباعي شرطٌ لا توصية (حكم إياد 2026-10-01)
+export const ACCESS = {
+  ar: /بسيارات\s+الدفع\s+الرباعي\s+فقط/,
+  en: /Four-wheel-drive\s+vehicles\s+only/,
+  zh: /只能乘坐四驱车前往/,
+  de: /Nur\s+mit\s+Allradfahrzeug/,
+  ru: /Только\s+на\s+полноприводных\s+автомобилях/,
+};
+
+// البحيرة «محطة» للطيور المهاجرة لا «موئل» (حكم إياد 2026-10-01، بلفظ واس «محطة لتجمع الطيور المهاجرة»)
+export const STOPOVER = {
+  ar: /صار\s+محطةً?\s+للطيور\s+المهاجرة/,
+  en: /stopover\s+for\s+migratory\s+birds/i,
+  zh: /候鸟迁徙途中的歇脚地/,
+  de: /Rastplatz\s+für\s+Zugvögel/,
+  ru: /местом,\s+где\s+останавлива[а-яё]+\s+перелётн[а-яё]+\s+птиц/i,
+};
+
+export const OLD_HAVEN = {
+  ar: /موئلاً\s+للطيور/,
+  en: /haven\s+for\s+migratory\s+birds|sheltering\s+migratory\s+birds/i,
+  zh: /候鸟的栖息地/,
+  de: /Rückzugsort\s+für\s+Zugvögel/,
+  ru: /приютом\s+для\s+перелётных\s+птиц/i,
+};
+
+const TARGET =/^(?:معالم\/بحيرة-الأصفر|(?:en|zh|de|ru)\/attractions\/asfar)\/index\.html$/;
 
 /**
  * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
@@ -68,6 +103,11 @@ export function checkAsfarNotes(pages) {
     if (a) problems.push(`${rel}: الموقع القديم ⇐ «${snip(html, a.index)}»`);
     if (!GROVES[lang].test(html)) problems.push(`${rel}: «نخيل الواحة» غائبة`);
     if (!RESERVE_2019[lang].test(html)) problems.push(`${rel}: جملة إعلان المحمية 2019 غائبة`);
+    if (!BIRDS[lang].test(html)) problems.push(`${rel}: جملة عبور الطيور غائبة`);
+    if (!ACCESS[lang].test(html)) problems.push(`${rel}: بند الوصول بالدفع الرباعي غائب`);
+    if (!STOPOVER[lang].test(html)) problems.push(`${rel}: «محطة للطيور المهاجرة» غائبة`);
+    const hv = OLD_HAVEN[lang].exec(html);
+    if (hv) problems.push(`${rel}: «موئل» القديمة ⇐ «${snip(html, hv.index)}»`);
   }
   if (targets < EXPECT.minPages) problems.push(`صفحات الأصفر المفحوصة ${targets} — الحدّ الأدنى ${EXPECT.minPages}`);
   return { problems, stats: { targets, perLang, scanned: pages.length } };
