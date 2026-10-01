@@ -29,19 +29,19 @@ heroImage: /img/asfar
 kicker: "معلم طبيعي"
 summary: "من أكبر التجمعات المائية في منطقة الخليج العربي، ومحمية تستقطب الطيور المهاجرة وعشّاق الطبيعة."
 summary_en: "One of the largest bodies of water in the Gulf region, a reserve drawing migratory birds and nature lovers."
-body_en: "One of the largest bodies of water in the Gulf region, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a haven for migratory birds and a destination for anyone seeking quiet and a wide horizon. The lake lies northeast of the oasis. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
+body_en: "One of the largest bodies of water in the Gulf region, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a haven for migratory birds and a destination for anyone seeking quiet and a wide horizon. The lake lies northeast of the oasis palm groves. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
 featured: false
 order: 39
-area: "شمال شرق الواحة"
-area_en: "Northeast of the oasis"
+area: "شمال شرق نخيل الواحة"
+area_en: "Northeast of the oasis palm groves"
 bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
 bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 openSite: true
 practical:
   - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", label_de: "Eintritt", value_de: "Kostenlos – frei zugängliches Naturgelände", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-03", verified: true }
 fee: { free: true }
-answer: "بحيرة الأصفر شمال شرق واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع الواحة على قائمة اليونسكو للتراث العالمي. مسطّح مائي نادر وسط الصحراء صار موئلاً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
-answer_en: "Al-Asfar Lake, northeast of the oasis, is among the Gulf region's largest bodies of water and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: an expanse of water in the desert sheltering migratory birds. Finest at sunset; no fee."
+answer: "بحيرة الأصفر شمال شرق نخيل واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع الواحة على قائمة اليونسكو للتراث العالمي. مسطّح مائي وسط الصحراء صار موئلاً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
+answer_en: "Al-Asfar Lake, northeast of the oasis palm groves, is among the Gulf region's largest bodies of water and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: a desert expanse of water sheltering migratory birds. Finest at sunset; no fee."
 location: { lat: 25.525252, lng: 49.808672 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12196225
@@ -63,9 +63,9 @@ faq:
     q_ru: "Нужно ли платить за посещение озера Эль-Асфар?"
     a_ru: "Нет. Озеро Эль-Асфар — открытая природная территория, вход свободный."
   - q: "أين تقع بحيرة الأصفر؟"
-    a: "شمال شرق الواحة."
+    a: "شمال شرق نخيل واحة الأحساء؛ ولموقعها الدقيق استخدم زر «افتح في خرائط جوجل» في بطاقة معلومات الزيارة."
     q_en: "Where is Al-Asfar Lake?"
-    a_en: "Northeast of the oasis."
+    a_en: "Northeast of the Al-Ahsa Oasis palm groves; for the exact location, use the “Open in Google Maps” button in the Visit information card."
     q_zh: "阿斯法湖在哪里？"
     a_zh: "在绿洲东北部。"
     q_de: "Wo liegt der Al-Asfar-See?"
@@ -98,5 +98,5 @@ faq:
 ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي. مسطّحٌ مائيٌّ نادر وسط
 الصحراء، صار موئلاً للطيور المهاجرة ووجهةً لمن يطلب الهدوء واتّساع الأفق.
 
-تقع البحيرة شمال شرق الواحة، وأجمل أوقاتها عند الغروب،
+تقع البحيرة شمال شرق نخيل الواحة، وأجمل أوقاتها عند الغروب،
 حين يتلوّن سطح الماء بالضوء الذهبي — وهو وقت المصوّرين وهواة الطبيعة المفضّل.
