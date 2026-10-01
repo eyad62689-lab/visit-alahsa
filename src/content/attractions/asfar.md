@@ -5,21 +5,21 @@ title_en: "Al-Asfar Lake"
 title_zh: 阿斯法湖
 kicker_zh: 自然景观
 summary_zh: "海湾地区最大的水域之一，吸引着候鸟与自然爱好者。"
-body_zh: "阿斯法湖（黄湖）是联合国教科文组织世界遗产“哈萨绿洲”的十二处组成部分之一。这片沙漠中央难得一见的水域，如今成了候鸟迁徙途中的歇脚地，也吸引着寻求宁静、向往开阔天际的人们。候鸟每年两度途经这里，往返于南北之间。从入冬到次年 5 月，湖上有候鸟栖居。2019 年，沙特环境水务与农业部宣布将这片湖辟为自然保护区。湖泊位于绿洲椰枣林的东北方，最美莫过于日落时分：水面染上一层金色，那也是摄影师与自然爱好者最钟爱的时刻。"
+body_zh: "阿斯法湖（黄湖）是联合国教科文组织世界遗产“哈萨绿洲”的十二处组成部分之一。这片沙漠中央难得一见的水域，如今吸引着寻求宁静、向往开阔天际的人们。湖泊是候鸟迁徙途中的歇脚地，它们每年两度途经这里，往返于南北之间。从入冬到次年 5 月，湖上有候鸟栖居。2019 年，沙特环境水务与农业部宣布将这片湖辟为自然保护区。湖泊位于绿洲椰枣林的东北方，最美莫过于日落时分：水面染上一层金色，那也是摄影师与自然爱好者最钟爱的时刻。"
 area_zh: 绿洲椰枣林东北方
 bestTime_zh: "日落时分，水面熠熠生辉，鸟群陆续归来。"
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-2 بدرجة 91/100 (2026-09-11، الدورة 3 من 3)
 title_de: "Al-Asfar-See"
 kicker_de: "Naturlandschaft"
 summary_de: "Eines der größten Gewässer der Golfregion, das Zugvögel und Naturfreunde anzieht."
-body_de: "Der Al-Asfar-See (Gelber See) ist einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die in die Welterbeliste der UNESCO aufgenommen wurde. Als seltene Wasserfläche mitten in der Wüste ist er zum Rastplatz für Zugvögel geworden und zum Ziel für alle, die Ruhe und einen weiten Horizont suchen. Zweimal im Jahr ziehen die Vögel hier durch – auf dem Weg nach Süden und zurück nach Norden. Vom Frühwinter bis Mai halten sich Zugvögel am See auf. 2019 gab das Ministerium für Umwelt, Wasser und Landwirtschaft die Umwandlung des Sees in ein Naturreservat bekannt. Er liegt nordöstlich der Palmenhaine der Oase. Seine schönste Stunde ist der Sonnenuntergang, wenn sich die Wasseroberfläche golden färbt – die Lieblingszeit von Fotografen und Naturfreunden."
+body_de: "Der Al-Asfar-See (Gelber See) ist einer der zwölf Bestandteile der Stätte Oase Al-Ahsa, die in die Welterbeliste der UNESCO aufgenommen wurde. Als seltene Wasserfläche mitten in der Wüste ist er zum Ziel für alle geworden, die Ruhe und einen weiten Horizont suchen. Der See ist ein Rastplatz für Zugvögel: Zweimal im Jahr ziehen sie hier durch – auf dem Weg nach Süden und zurück nach Norden. Vom Frühwinter bis Mai halten sich Zugvögel am See auf. 2019 gab das Ministerium für Umwelt, Wasser und Landwirtschaft die Umwandlung des Sees in ein Naturreservat bekannt. Er liegt nordöstlich der Palmenhaine der Oase. Seine schönste Stunde ist der Sonnenuntergang, wenn sich die Wasseroberfläche golden färbt – die Lieblingszeit von Fotografen und Naturfreunden."
 area_de: "Nordöstlich der Palmenhaine der Oase"
 bestTime_de: "Bei Sonnenuntergang, wenn das Wasser leuchtet und die Vogelschwärme zurückkehren."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 6 بدرجة 91/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Озеро Эль-Асфар"
 kicker_ru: "Природная достопримечательность"
 summary_ru: "Один из крупнейших водоёмов в регионе Залива, привлекающий перелётных птиц и любителей природы."
-body_ru: "Озеро Эль-Асфар — один из двенадцати компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО. Водная гладь, редкая посреди пустыни, стала местом, где останавливаются перелётные птицы и куда едут за тишиной и простором. Птицы пролетают здесь дважды в год — по пути с севера на юг и обратно. А с начала зимы до мая на озере держатся перелётные птицы. В 2019 году Министерство окружающей среды, водных ресурсов и сельского хозяйства объявило, что озеро станет охраняемой территорией. Озеро лежит к северо-востоку от пальмовых рощ оазиса. Лучший час здесь — закат, когда вода заливается золотым светом. Это любимое время фотографов и любителей природы."
+body_ru: "Озеро Эль-Асфар — один из двенадцати компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО. Водная гладь, редкая посреди пустыни, стала местом, куда едут за тишиной и простором. Озеро служит местом, где останавливаются перелётные птицы: они пролетают здесь дважды в год — по пути с севера на юг и обратно. А с начала зимы до мая на озере держатся перелётные птицы. В 2019 году Министерство окружающей среды, водных ресурсов и сельского хозяйства объявило, что озеро станет охраняемой территорией. Озеро лежит к северо-востоку от пальмовых рощ оазиса. Лучший час здесь — закат, когда вода заливается золотым светом. Это любимое время фотографов и любителей природы."
 area_ru: "К северо-востоку от пальмовых рощ оазиса"
 bestTime_ru: "На закате, когда светится вода и возвращаются птичьи стаи."
 slug_ar: "بحيرة-الأصفر"
@@ -29,7 +29,7 @@ heroImage: /img/asfar
 kicker: "معلم طبيعي"
 summary: "من أكبر التجمعات المائية في منطقة الخليج العربي، تستقطب الطيور المهاجرة وعشّاق الطبيعة."
 summary_en: "One of the largest bodies of water in the Gulf region, drawing migratory birds and nature lovers."
-body_en: "Al-Asfar Lake is one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List: a rare expanse of water in the middle of the desert that has become a stopover for migratory birds and a destination for anyone seeking quiet and a wide horizon. Migratory birds pass through twice a year, on their journeys between north and south. Migratory birds stay here from the onset of winter until May. In 2019 the Ministry of Environment, Water and Agriculture announced its conversion into a nature reserve. The lake lies northeast of the oasis palm groves. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
+body_en: "Al-Asfar Lake is one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List: a rare expanse of water in the middle of the desert that has become a destination for anyone seeking quiet and a wide horizon. The lake is a stopover for migratory birds, which pass through twice a year on their journeys between north and south. Migratory birds stay here from the onset of winter until May. In 2019 the Ministry of Environment, Water and Agriculture announced its conversion into a nature reserve. The lake lies northeast of the oasis palm groves. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
 featured: false
 order: 39
 area: "شمال شرق نخيل الواحة"
@@ -97,8 +97,8 @@ faq:
 
 بحيرة الأصفر أحد **المكوّنات الاثني عشر** المُدرجة ضمن موقع واحة الأحساء
 على قائمة اليونسكو للتراث العالمي، ومسطّحٌ مائيٌّ نادر وسط الصحراء
-صار محطةً للطيور المهاجرة ووجهةً لمن يطلب الهدوء واتّساع الأفق.
-وتعبرها الطيور المهاجرة مرتين في العام، في رحلتيها بين الشمال والجنوب.
+صار وجهةً لمن يطلب الهدوء واتّساع الأفق.
+والبحيرة محطةٌ للطيور المهاجرة، تعبرها مرتين في العام في رحلتيها بين الشمال والجنوب.
 وتستقرّ فيها الطيور المهاجرة من مطلع الشتاء حتى مايو.
 وأعلنت وزارة البيئة والمياه والزراعة عام 2019 تحويلها إلى محمية طبيعية.
 

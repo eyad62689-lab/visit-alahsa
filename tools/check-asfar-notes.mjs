@@ -46,12 +46,13 @@ export const RESERVE_2019 = {
 };
 
 // عبور الطيور مرتين في العام (واس، مارس 2019) وبند الوصول بسيارات الدفع الرباعي (تأكيد إياد 2026-10-01)
+// العبور مدموج في جملة «المحطة» نفسها كي لا يتكرر ذكر الطيور بعد الملخص (حكم إياد 2026-10-01)
 export const BIRDS = {
-  ar: /وتعبرها\s+الطيور\s+المهاجرة\s+مرتين\s+في\s+العام/,
-  en: /Migratory\s+birds\s+pass\s+through\s+twice\s+a\s+year/,
-  zh: /候鸟每年两度途经这里/,
-  de: /Zweimal\s+im\s+Jahr\s+ziehen\s+die\s+Vögel\s+hier\s+durch/,
-  ru: /Птицы\s+пролетают\s+здесь\s+дважды\s+в\s+год/i,
+  ar: /تعبرها\s+مرتين\s+في\s+العام/,
+  en: /pass\s+through\s+twice\s+a\s+year/,
+  zh: /每年两度途经这里/,
+  de: /Zweimal\s+im\s+Jahr\s+ziehen\s+sie\s+hier\s+durch/,
+  ru: /пролетают\s+здесь\s+дважды\s+в\s+год/i,
 };
 
 // الدفع الرباعي شرطٌ لا توصية (حكم إياد 2026-10-01)
@@ -65,7 +66,7 @@ export const ACCESS = {
 
 // البحيرة «محطة» للطيور المهاجرة لا «موئل» (حكم إياد 2026-10-01، بلفظ واس «محطة لتجمع الطيور المهاجرة»)
 export const STOPOVER = {
-  ar: /صار\s+محطةً?\s+للطيور\s+المهاجرة/,
+  ar: /والبحيرة\s+محطة[ًٌ]?\s+للطيور\s+المهاجرة/,
   en: /stopover\s+for\s+migratory\s+birds/i,
   zh: /候鸟迁徙途中的歇脚地/,
   de: /Rastplatz\s+für\s+Zugvögel/,
