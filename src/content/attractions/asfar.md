@@ -27,9 +27,9 @@ slug_en: "asfar"
 category: nature
 heroImage: /img/asfar
 kicker: "معلم طبيعي"
-summary: "من أكبر التجمعات المائية في منطقة الخليج العربي، ومحمية تستقطب الطيور المهاجرة وعشّاق الطبيعة."
-summary_en: "One of the largest bodies of water in the Gulf region, a reserve drawing migratory birds and nature lovers."
-body_en: "One of the largest bodies of water in the Gulf region, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a haven for migratory birds and a destination for anyone seeking quiet and a wide horizon. The lake lies northeast of the oasis palm groves. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
+summary: "من أكبر التجمعات المائية في منطقة الخليج العربي، تستقطب الطيور المهاجرة وعشّاق الطبيعة."
+summary_en: "One of the largest bodies of water in the Gulf region, drawing migratory birds and nature lovers."
+body_en: "One of the largest bodies of water in the Gulf region, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a haven for migratory birds and a destination for anyone seeking quiet and a wide horizon. In 2019 the Ministry of Environment, Water and Agriculture announced its conversion into a nature reserve. The lake lies northeast of the oasis palm groves. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
 featured: false
 order: 39
 area: "شمال شرق نخيل الواحة"
@@ -97,6 +97,7 @@ faq:
 من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد **المكوّنات الاثني عشر** المُدرجة
 ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي. مسطّحٌ مائيٌّ نادر وسط
 الصحراء، صار موئلاً للطيور المهاجرة ووجهةً لمن يطلب الهدوء واتّساع الأفق.
+وأعلنت وزارة البيئة والمياه والزراعة عام 2019 تحويلها إلى محمية طبيعية.
 
 تقع البحيرة شمال شرق نخيل الواحة، وأجمل أوقاتها عند الغروب،
 حين يتلوّن سطح الماء بالضوء الذهبي — وهو وقت المصوّرين وهواة الطبيعة المفضّل.
