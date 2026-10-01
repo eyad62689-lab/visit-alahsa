@@ -29,7 +29,7 @@ heroImage: /img/asfar
 kicker: "معلم طبيعي"
 summary: "من أكبر التجمعات المائية في منطقة الخليج العربي، تستقطب الطيور المهاجرة وعشّاق الطبيعة."
 summary_en: "One of the largest bodies of water in the Gulf region, drawing migratory birds and nature lovers."
-body_en: "One of the largest bodies of water in the Gulf region, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a haven for migratory birds and a destination for anyone seeking quiet and a wide horizon. Migratory birds pass through twice a year, on their journeys between north and south. In 2019 the Ministry of Environment, Water and Agriculture announced its conversion into a nature reserve. The lake lies northeast of the oasis palm groves. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
+body_en: "One of the largest bodies of water in the Gulf region, and one of the twelve components inscribed as part of the Al-Ahsa Oasis site on the UNESCO World Heritage List. A rare expanse of water in the middle of the desert, it has become a stopover for migratory birds and a destination for anyone seeking quiet and a wide horizon. Migratory birds pass through twice a year, on their journeys between north and south. In 2019 the Ministry of Environment, Water and Agriculture announced its conversion into a nature reserve. The lake lies northeast of the oasis palm groves. Its finest hour is sunset, when the surface of the water takes on a golden light — the favourite time of photographers and nature lovers."
 featured: false
 order: 39
 area: "شمال شرق نخيل الواحة"
@@ -39,10 +39,10 @@ bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 openSite: true
 practical:
   - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", label_de: "Eintritt", value_de: "Kostenlos – frei zugängliches Naturgelände", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-03", verified: true }
-  - { label: "الوصول", value: "بسيارات الدفع الرباعي", label_en: "Access", label_de: "Zufahrt", value_de: "Mit Allradfahrzeug", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", label_zh: "交通", value_zh: "需乘坐四驱车前往", source_zh: "本站编辑团队确认", value_en: "By four-wheel-drive vehicle", label_ru: "Подъезд к озеру", value_ru: "На полноприводных автомобилях", source_ru: "Подтверждено редакцией этого сайта", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-10-01", verified: true }
+  - { label: "الوصول", value: "بسيارات الدفع الرباعي فقط", label_en: "Access", label_de: "Zufahrt", value_de: "Mit Allradfahrzeug", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", label_zh: "交通", value_zh: "需乘坐四驱车前往", source_zh: "本站编辑团队确认", value_en: "Four-wheel-drive vehicles only", label_ru: "Подъезд к озеру", value_ru: "На полноприводных автомобилях", source_ru: "Подтверждено редакцией этого сайта", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-10-01", verified: true }
 fee: { free: true }
-answer: "بحيرة الأصفر شمال شرق نخيل واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع الواحة على قائمة اليونسكو للتراث العالمي. مسطّح مائي وسط الصحراء صار موئلاً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
-answer_en: "Al-Asfar Lake, northeast of the oasis palm groves, is among the Gulf region's largest bodies of water and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: a desert expanse of water sheltering migratory birds. Finest at sunset; no fee."
+answer: "بحيرة الأصفر شمال شرق نخيل واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع الواحة على قائمة اليونسكو للتراث العالمي. مسطّح مائي وسط الصحراء صار محطةً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
+answer_en: "Al-Asfar Lake, northeast of the oasis palm groves, is among the Gulf region's largest bodies of water and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: a desert lake and stopover for migratory birds. Finest at sunset; no fee."
 location: { lat: 25.525252, lng: 49.808672 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12196225
@@ -97,7 +97,7 @@ faq:
 
 من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد **المكوّنات الاثني عشر** المُدرجة
 ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي. مسطّحٌ مائيٌّ نادر وسط
-الصحراء، صار موئلاً للطيور المهاجرة ووجهةً لمن يطلب الهدوء واتّساع الأفق.
+الصحراء، صار محطةً للطيور المهاجرة ووجهةً لمن يطلب الهدوء واتّساع الأفق.
 وتعبرها الطيور المهاجرة مرتين في العام، في رحلتيها بين الشمال والجنوب.
 وأعلنت وزارة البيئة والمياه والزراعة عام 2019 تحويلها إلى محمية طبيعية.
 
