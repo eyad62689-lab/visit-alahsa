@@ -45,7 +45,24 @@ export const RESERVE_2019 = {
   ru: /В\s+2019\s+году\s+Министерство\s+окружающей\s+среды,\s+водных\s+ресурсов\s+и\s+сельского\s+хозяйства\s+объявило,\s+что\s+озеро\s+станет\s+охраняемой\s+территорией/,
 };
 
-const TARGET = /^(?:معالم\/بحيرة-الأصفر|(?:en|zh|de|ru)\/attractions\/asfar)\/index\.html$/;
+// عبور الطيور مرتين في العام (واس، مارس 2019) وبند الوصول بسيارات الدفع الرباعي (تأكيد إياد 2026-10-01)
+export const BIRDS = {
+  ar: /وتعبرها\s+الطيور\s+المهاجرة\s+مرتين\s+في\s+العام/,
+  en: /Migratory\s+birds\s+pass\s+through\s+twice\s+a\s+year/,
+  zh: /候鸟每年两度途经这里/,
+  de: /Zweimal\s+im\s+Jahr\s+ziehen\s+die\s+Vögel\s+hier\s+durch/,
+  ru: /Птицы\s+пролетают\s+здесь\s+дважды\s+в\s+год/i,
+};
+
+export const ACCESS = {
+  ar: /بسيارات\s+الدفع\s+الرباعي/,
+  en: /By\s+four-wheel-drive\s+vehicle/,
+  zh: /需乘坐四驱车前往/,
+  de: /Mit\s+Allradfahrzeug/,
+  ru: /На\s+полноприводных\s+автомобилях/,
+};
+
+const TARGET =/^(?:معالم\/بحيرة-الأصفر|(?:en|zh|de|ru)\/attractions\/asfar)\/index\.html$/;
 
 /**
  * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
@@ -68,6 +85,8 @@ export function checkAsfarNotes(pages) {
     if (a) problems.push(`${rel}: الموقع القديم ⇐ «${snip(html, a.index)}»`);
     if (!GROVES[lang].test(html)) problems.push(`${rel}: «نخيل الواحة» غائبة`);
     if (!RESERVE_2019[lang].test(html)) problems.push(`${rel}: جملة إعلان المحمية 2019 غائبة`);
+    if (!BIRDS[lang].test(html)) problems.push(`${rel}: جملة عبور الطيور غائبة`);
+    if (!ACCESS[lang].test(html)) problems.push(`${rel}: بند الوصول بالدفع الرباعي غائب`);
   }
   if (targets < EXPECT.minPages) problems.push(`صفحات الأصفر المفحوصة ${targets} — الحدّ الأدنى ${EXPECT.minPages}`);
   return { problems, stats: { targets, perLang, scanned: pages.length } };
