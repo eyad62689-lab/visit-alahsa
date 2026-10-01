@@ -15,7 +15,11 @@
 
 export const EXPECT = { minPages: 5 };
 
-export const OLD_LABEL = /الطبيعة\s+والمغارات|Nature\s+(?:&|&amp;)\s+caves|自然与洞穴|Natur\s+und\s+Höhlen|Природа\s+и\s+пещеры/i;
+// «بحيرة شرق العمران» في مسار الأصفر كانت مُسنَدة إلى خبر عن «مدينة الأصفر» المخطّطة شرق العمران
+// لا عن البحيرة (حكم إياد 2026-10-01: تُحذف).
+export const OLD_UMRAN = /بحيرة\s+شرق\s+العمران|lake\s+east\s+of\s+Al-(?:Umran|Omran)/i;
+
+export const OLD_LABEL =/الطبيعة\s+والمغارات|Nature\s+(?:&|&amp;)\s+caves|自然与洞穴|Natur\s+und\s+Höhlen|Природа\s+и\s+пещеры/i;
 
 export const OLD_AREA = {
   ar: /شمال\s+شرق\s+الواحة/,
@@ -55,6 +59,8 @@ export function checkAsfarNotes(pages) {
   for (const { rel, lang, html } of pages) {
     const m = OLD_LABEL.exec(html);
     if (m) problems.push(`${rel}: تسمية الفئة القديمة ⇐ «${snip(html, m.index)}»`);
+    const u = OLD_UMRAN.exec(html);
+    if (u) problems.push(`${rel}: «شرق العمران» غير المُسنَدة ⇐ «${snip(html, u.index)}»`);
     if (!TARGET.test(rel)) continue;
     targets++;
     perLang[lang] = (perLang[lang] ?? 0) + 1;
