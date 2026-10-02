@@ -22,14 +22,14 @@ export const EXPECT = { minPages: 11, minBlogPages: 40, minRestoration: 1 };
 
 // حكم إياد 2026-10-02: بطاقة مسجد ميناء العقير تقول ترميم مجمّع الميناء لا «متاحة»، بتسمية «حالة
 // الموقع» لا «الزيارة» — وجملة الترميم في البطاقة وحدها، فخرجت من المتن (لا تُقرأ مرتين).
-export const RESTORATION_LABEL = { ar: 'حالة الموقع', en: 'Site status', zh: '__ZH_PENDING__', de: '__DE_PENDING__', ru: '__RU_PENDING__' };
+export const RESTORATION_LABEL = { ar: 'حالة الموقع', en: 'Site status', zh: '现场状况', de: 'Situation vor Ort', ru: 'Текущий статус' };
 export const UNDER_RESTORATION = {
   'uqair-mosque.md': {
     ar: 'يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة',
     en: 'The port complex is undergoing restoration work, and some parts may be closed',
-    zh: '__ZH_PENDING__',
-    de: '__DE_PENDING__',
-    ru: '__RU_PENDING__',
+    zh: '港口建筑群正在整修，部分区域可能暂不开放',
+    de: 'Im Hafenkomplex von Al-Uqair laufen derzeit Restaurierungsarbeiten, und einige Bereiche können geschlossen sein',
+    ru: 'В портовом комплексе идут реставрационные работы, и некоторые его участки могут быть закрыты',
   },
 };
 

@@ -1,0 +1,34 @@
+{
+  "batch": "uqair-restoration",
+  "lang": "zh",
+  "stage": "06",
+  "round": 2,
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 19,
+    "cultural_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "rulings": {
+    "a": "Is the mosque itself affected? Raised by all three round-2 readers. Eyad does not know; source wording (port complex, some parts may be closed) stays. Not a translation defect; recorded as a known open question. The zh value keeps the port complex as subject and adds nothing beyond the source.",
+    "b": "zh-specific: 修缮 in the card echoed the programme name 历史清真寺修缮计划 in body_zh, so the reader took the mosque as being restored again. Translation-level issue; minimal judge edit made: 港口建筑群内正在开展修缮工作 -> 港口建筑群正在整修. 整修 (refurbishment/restoration of a site, standard on heritage-site notices) keeps the restoration sense, avoids both 修缮 (programme) and 修复 (body: the mosque 完成修复), and puts the complex itself as subject as in the source. 施工 rejected: reads as construction, loses restoration. 修复 rejected: echoes 完成修复 directly.",
+    "c": "No final 。 (site convention); internal full-width ， only; no ASCII punctuation; U+0020 only in the YAML."
+  },
+  "notes": [
+    "Accuracy 29: 整修 for restoration work is a near-equivalent (slightly broader); may be closed -> 可能暂不开放 faithful.",
+    "Nativeness 27: notice-style register natural; 现场状况 as label reads as a status heading.",
+    "Termbase/style 19: no conflict with 历史清真寺修缮计划 or 哈萨历史清真寺官方名录; -1 because 现场状况 has no termbase entry yet (proposed: {ar:حالة الموقع, en:Site status, zh:现场状况}).",
+    "Cultural 9, Structure 10: only label_zh/value_zh changed on line 36 (verified with node); CRLF preserved by line-wise apply.",
+    "Out of scope: ru/de rows on the same line still Посещение/Besuch (own pipelines); round-2 zh out-of-scope list (summary/body repetition, 纳季德 vs 内志, 首座, 这一机构 etc.) for a later polish batch."
+  ],
+  "final": {
+    "label_zh": "现场状况",
+    "value_zh": "港口建筑群正在整修，部分区域可能暂不开放"
+  },
+  "scores_row": "\"uqair-restoration (zh): uqair-mosque practical row label_zh 游览 -> 现场状况, value_zh 开放参观… -> 港口建筑群正在整修，部分区域可能暂不开放\",2026-10-02,2,94,\"APPROVE (29/27/19/9/10; judge edit 港口建筑群内正在开展修缮工作 -> 港口建筑群正在整修: round-2 zh reader read 修缮 as echo of 历史清真寺修缮计划 in body_zh = mosque restored again; 整修 renders restoration work without echoing 修缮/修复; R1 repetition and label-as-visiting-answer resolved by Eyad's source change; is-the-mosque-itself-closed raised as known, source wording kept per Eyad (not a translation defect); 现场状况 candidate termbase entry for Site status)\"",
+  "crlf_in_source": true
+}
