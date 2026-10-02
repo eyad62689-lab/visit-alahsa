@@ -1,0 +1,114 @@
+{
+ "batch": "zh-uqair-notes",
+ "stage": "06-judge",
+ "date": "2026-10-02",
+ "threshold": 90,
+ "score": 95,
+ "lowest_site": "zh-uqair-castle-8 / zh-uqair-mosque-8 (tie)",
+ "breakdown": {
+  "lowest": {
+   "accuracy": 29,
+   "nativeness": 27,
+   "termbase_style": 20,
+   "cultural_fit": 9,
+   "structure": 10,
+   "total": 95
+  },
+  "per_site": {
+   "zh-al-uqair-8": {
+    "accuracy": 29,
+    "nativeness": 29,
+    "termbase_style": 20,
+    "cultural_fit": 10,
+    "structure": 10,
+    "total": 98
+   },
+   "zh-uqair-castle-8": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95,
+    "why": "乌盖尔港 in adjacent sentences after the subject fix; 纳季德 (termbase) vs reader 内志 = cultural -1"
+   },
+   "zh-uqair-mosque-8": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95,
+    "why": "这座清真寺 now twice in the closing sentence (accepted for clarity); 纳季德 -1"
+   },
+   "zh-blog-48-hours-52": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_style": 20,
+    "cultural_fit": 10,
+    "structure": 10,
+    "total": 97
+   },
+   "zh-blog-worth-visiting-32": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_style": 20,
+    "cultural_fit": 10,
+    "structure": 10,
+    "total": 97
+   }
+  },
+  "accuracy_note": "-1 everywhere: 第一座 keeps the source ordinal and with it the source-level ambiguity (first of the kingdom vs earliest); not a translation defect"
+ },
+ "rulings": {
+  "a_reader_item_1": {
+   "decision": "NO judge edit; 第一座海港 kept byte-identical in all five sites",
+   "reason": "ar «أول ميناء بحري شرق المملكة» / en \"Saudi Arabia’s first seaport on its eastern coast\" is an ordinal \"first\", not \"oldest\". 最早的海港 would assert a chronology claim (earliest port on the eastern coast) that the source does not make and that is historically doubtful (Darin/Qatif are older Gulf ports) = fabrication under the no-invention rule. 第一座 (classifier ordinal) removes the batch target reading of 首座 as foremost/chief; the remaining earliest-vs-first-of-the-state ambiguity is inherited from ar/en, and the reader’s third reading (first one met from Al-Ahsa) is not supported by the text. Raised to Eyad as a source question."
+  },
+  "b_reader_item_11": {
+   "decision": "IN scope; judge edit 在这里签署 -> 在这座港口签署 (castle line 8)",
+   "reason": "same line already edited, same defect class (unclear 这里 after a list of buildings incl. the castle), source-faithful: ar «وعلى أرض الميناء وُقّع» / en \"on the port’s grounds\". Minimal noun substitution, no addition."
+  },
+  "b_reader_item_16": {
+   "decision": "IN scope; judge edit 也有它的一页 -> 也有这座清真寺的一页 (mosque line 8; the reader’s own referent)",
+   "reason": "same line, same defect class (它 between 老港口 and 这座清真寺), source-faithful: en \"Today it [the mosque] stands … part of the full story the old port tells its visitors\". Reader-proposed referent, so the wording is reader-validated."
+  },
+  "b_reader_item_18": {
+   "decision": "OUT of scope",
+   "reason": "48-hours-zh.md line 18 is a different line, not in BRIEF and not seen by stages 1–5; the brief requires every other line byte-identical. Defect is real (它 nearest antecedent 胡富夫; ar «اليوم الثاني لمائها وخضرتها وساحلها» = the oasis’s) -> next zh polish batch, candidate fix 第二天留给绿洲的水、绿意与海岸."
+  },
+  "c_raise_to_eyad_later": [
+   "Source question: does «أول ميناء بحري شرق المملكة» mean the first port of the Saudi state or the oldest? zh keeps the ordinal 第一座 pending this.",
+   "Item 18 (48-hours-zh:18 它 -> 绿洲) for the next polish batch.",
+   "Item 2 海湾 unnamed; 3/7/13 name variation 乌盖尔/乌盖尔港 and 老堡垒/城堡/要塞; 9 纳季德 vs common 内志 (termbase decision); 10 乌盖尔议定书 without parties; 5 残迹 vs 已修复; 4 乌盖尔海滩 12 公里 (verify); 17 entry for non-Muslims (do not answer without confirmation); 24/33 Al-Qarah best-time contradiction; 28/37 noon/summer vs heat advice; 25 最古老…之一 repeated; 35/36 这里/它 on other lines; 12/14/15/19/20/21/22/26/27/29/30/31/32/34/38 style notes (see 06-blind.md)."
+  ]
+ },
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "judge_edits": [
+  {
+   "id": "zh-uqair-castle-8",
+   "from": "在这里签署",
+   "to": "在这座港口签署"
+  },
+  {
+   "id": "zh-uqair-mosque-8",
+   "from": "也有它的一页",
+   "to": "也有这座清真寺的一页"
+  }
+ ],
+ "verification": "node: each current equals its file line (CR stripped) exactly once and at the stated line; lines CRLF; 第一座海港 once per proposal, 首座 absent; no CR/LF/NBSP/U+3000; NFC; no ASCII punctuation adjacent to Han; markdown links identical.",
+ "scores_row": "\"zh-uqair-notes (zh): 首座海港 -> 第一座海港 in 5 sites (al-uqair summary, uqair-castle/uqair-mosque body, 48-hours:52, worth-visiting:32); castle 这里是 -> 乌盖尔港是 and 在这里签署 -> 在这座港口签署; mosque 在此礼拜 -> 在寺中礼拜 and 也有它的一页 -> 也有这座清真寺的一页; 48h 用它 -> 以这一幕; worth-visiting comma splice split (这里的白沙)\",2026-10-02,1,95,\"APPROVE (lowest castle/mosque 29/27/20/9/10; reader item 1 第一座 ambiguity = source-level ordinal, 最早 rejected as unsourced chronology claim (raised to Eyad); items 11/16 judge edits same line same defect class; item 18 out of scope (48-hours:18) -> next polish batch)\"",
+ "tm_update": {
+  "action": "replace pairs[140] (page uqair-mosque, field body) in zh-translation/memory/tm.json",
+  "reason": "TM still holds 首座海港 / 在此礼拜 / 也有它的一页, the obsolete en \"the oldest seaport in Saudi Arabia\" and a trailing restoration sentence no longer in body_en/body_zh",
+  "new_pair": {
+   "en": "On the Arabian Gulf coast east of Al-Ahsa, within the complex of the historic Al-Uqair port — the first seaport on Saudi Arabia’s eastern coast — stands the port's historic mosque, where sailors, merchants and travellers once prayed at Najd's old gateway to the sea. It is counted among the port facilities built and developed in the reign of King Abdulaziz, alongside the fort, the khan, the emirate building and the customs house, in the days when Al-Uqair was Al-Ahsa's commercial artery. The mosque was restored under the historic mosques restoration programme, with the support of the Royal Commission for Jubail and Yanbu, among a group of Al-Ahsa's historic mosques. Today it stands within the historic port site, part of the full story the old port tells its visitors.",
+   "zh": "乌盖尔港清真寺位于哈萨以东的海湾沿岸，就在历史悠久的乌盖尔港（Al-Uqair）建筑群之中。乌盖尔港是沙特阿拉伯东部沿海的第一座海港，昔日也是纳季德（沙特中部地区）通往大海的门户；当年往来于此的水手、商人与旅客，都曾在寺中礼拜。与要塞、商队客栈、埃米尔府和海关楼一样，这座清真寺也是阿卜杜勒阿齐兹国王在位期间兴建并发展起来的港口建筑之一——那时的乌盖尔港，正是哈萨对外贸易的命脉。该寺与哈萨的另一批历史清真寺一同在“历史清真寺修缮计划”中完成修复，修复工程由朱拜勒与延布皇家委员会这一机构提供支持。如今，这座清真寺坐落在这片遗址之中，老港口向来访者讲述的完整往事里，也有这座清真寺的一页。",
+   "page": "uqair-mosque",
+   "field": "body",
+   "date": "2026-10-02"
+  },
+  "also_add": "optional new pairs for the other four final.json segments; none of them currently holds 首座 in tm.json"
+ }
+}

@@ -26,6 +26,7 @@ import { checkQarahSilhouette, EXPECT as SILHOUETTE_EXPECT } from './check-qarah
 import { checkIbrahimTowers, EXPECT as TOWERS_EXPECT } from './check-ibrahim-towers.mjs';
 import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-ibrahim-materials-intro.mjs';
 import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
+import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -453,6 +454,13 @@ async function main() {
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C41', `شرح الشندل في الحبيش: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C41', `شرح الشندل في صفحة الحبيش بكل لغة (${per}؛ الحدّ الأدنى ${HUBAISH_EXPECT.minPages})`);
+    }
+    // ── C42: علل القرّاء الصينيين على العقير (2026-10-02) — لا «首座海港» ولا الضمائر الملتبسة المصلَحة
+    // في أي صفحة صينية، و«第一座海港» في صفحات العقير الثلاث. المنطق في tools/check-zh-uqair.mjs.
+    {
+      const { problems, stats } = checkZhUqair(pages);
+      if (problems.length) fail('C42', `صيغ العقير الصينية: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C42', `«第一座海港» في صفحات العقير الصينية (${stats.targets}؛ الحدّ الأدنى ${ZH_UQAIR_EXPECT.minPages})، ولا صيغة سابقة ملتبسة`);
     }
   }
   {
