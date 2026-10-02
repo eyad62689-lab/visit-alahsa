@@ -29,7 +29,7 @@ heroImage: /img/qasr-ibrahim
 kicker: قلعة تاريخية
 summary: جدرانٌ من الطين وأسقفٌ من جذوع النخل في حصنٍ يجمع المسجد والثكنات والأبراج.
 summary_en: "Mud walls and palm-trunk roofs in a fortress that gathers mosque, barracks and towers."
-body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. It was built in the local building tradition: walls of mud mixed with straw, roofs of palm trunks, chandal wood and stone, and a minaret reached by a spiral stone staircase. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
+body_en: "In the heart of Hofuf, Qasr Ibrahim stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. It was built in the local building tradition: walls of mud mixed with straw, roofs of palm trunks, chandal wood (timber once imported to the Gulf) and stone, and a minaret reached by a spiral stone staircase. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
 area: وسط الهفوف — الأحساء
 area_en: "Central Hofuf — Al-Ahsa"
 hoursSpec:
@@ -99,7 +99,7 @@ faq:
 عسكرية، وأبراجٌ تراقب الأفق، وإسطبلاتٌ ومخازن.
 
 بُني على طريقة العمارة المحلية: جدرانٌ من الطين المخلوط بالقش، وأسقفٌ من جذوع النخل
-والشندل والحجارة، ومئذنةٌ يُصعد إليها بسلّمٍ حلزونيٍّ من الحجر. تَجوّل في فنائه الواسع وتأمّل القبّة وهي تظلّل المحراب، وستقرأ في جدرانه
+والشندل (خشبٌ كان يُجلب إلى الخليج) والحجارة، ومئذنةٌ يُصعد إليها بسلّمٍ حلزونيٍّ من الحجر. تَجوّل في فنائه الواسع وتأمّل القبّة وهي تظلّل المحراب، وستقرأ في جدرانه
 طبقاتٍ من التاريخ تراكمت جيلاً بعد جيل.
 
 القصر اليوم أحد أبرز معالم الأحساء التراثية، وجزءٌ من نسيجٍ عمرانيٍّ جعل الواحة
