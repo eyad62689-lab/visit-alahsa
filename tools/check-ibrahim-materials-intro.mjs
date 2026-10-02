@@ -1,4 +1,4 @@
-// C40 — تمهيد جملة المواد في متن قصر إبراهيم: «مواد العمارة المحلية» (حكم إياد 2026-10-02).
+// C40 — تمهيد جملة المواد في متن قصر إبراهيم: «على طريقة العمارة المحلية» (حكم إياد 2026-10-02).
 //
 // دالة نقية بلا قراءة ملفات: يستدعيها check-consistency.mjs بصفحات dist، ويستدعيها اختبار
 // الكسر بنسخ معدَّلة في الذاكرة. يكمّل C36 (tools/check-ibrahim-materials.mjs) الذي يحرس
@@ -6,7 +6,8 @@
 //
 // كان المتن يقول «بُني من مواد الواحة نفسها: … جذوع النخل والشندل والحجارة»، والشندل ليس من
 // الواحة (المتن الصيني نفسه يصفه خشباً مستورداً 进口木料)، فالتمهيد ينفي ما تقوله القائمة بعده.
-// صار «من مواد العمارة المحلية» — مواد التقليد البنائي، لا مواد محلية المنشأ.
+// صار «على طريقة العمارة المحلية» (حكم إياد بعد أن قرأ ثلاثة قرّاء عميان «مواد العمارة المحلية» موادَّ
+// محلية المنشأ): «المحلي» صفة للطريقة لا للمواد، فلا تقول الجملة شيئاً عن مصدر أي مادة.
 //
 // يحرس:
 //   (أ) لا تمهيد «مواد الواحة نفسها» ولا نظيره في أي صفحة بأي لغة.
@@ -23,8 +24,8 @@ export const OLD = [
 ];
 
 export const OK = {
-  ar: /مواد\s+العمارة\s+المحلية/,
-  en: /materials\s+of\s+the\s+local\s+building\s+tradition/i,
+  ar: /على\s+طريقة\s+العمارة\s+المحلية/,
+  en: /built\s+in\s+the\s+local\s+building\s+tradition/i,
   de: /__DE_PENDING__/,
   ru: /__RU_PENDING__/,
   zh: /__ZH_PENDING__/,
@@ -49,7 +50,7 @@ export function checkIbrahimMaterialsIntro(pages) {
     if (!TARGET.test(rel)) continue;
     targets++;
     perLang[lang] = (perLang[lang] ?? 0) + 1;
-    if (!OK[lang].test(html)) problems.push(`${rel}: تمهيد «مواد العمارة المحلية» غائب`);
+    if (!OK[lang].test(html)) problems.push(`${rel}: تمهيد «على طريقة العمارة المحلية» غائب`);
   }
   if (targets < EXPECT.minPages) problems.push(`صفحات قصر إبراهيم المفحوصة ${targets} — الحدّ الأدنى ${EXPECT.minPages}`);
   return { problems, stats: { targets, perLang, scanned: pages.length } };
