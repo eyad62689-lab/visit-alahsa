@@ -71,10 +71,16 @@ export const RETIRED = [
   '请留意礼拜时间', '清真寺全天开放',
   'Rücksicht auf die Gebetszeiten', 'zu den Gebetszeiten geöffnet', 'Moschee: ganztägig',
   'учитывайте время молитв', 'Мечеть: открыта весь день', 'Мечеть открыта весь день',
-  // جملة ترميم العقير في المتن (صارت في البطاقة وحدها) — 2026-10-02
-  'يشهد الموقع أعمال ترميم', 'The site is undergoing restoration work', '遗址内正在开展修缮工作',
-  'Derzeit laufen auf dem Gelände Restaurierungsarbeiten', 'Сейчас здесь идут реставрационные работы',
 ];
+
+// صيغ سابقة تُمنع في ملف بعينه لا في كل المعالم: جملة ترميم مسجد العقير في متنه صارت في بطاقته وحدها
+// (2026-10-02)، والجملة نفسها تبقى مشروعة في صفحة قلعة العقير.
+export const RETIRED_IN = {
+  'uqair-mosque.md': [
+    'يشهد الموقع أعمال ترميم', 'The site is undergoing restoration work', '遗址内正在开展修缮工作',
+    'Derzeit laufen auf dem Gelände Restaurierungsarbeiten', 'Сейчас здесь идут реставрационные работы',
+  ],
+};
 
 // عبارات تفرّق بين الزوار بحسب الدين — ممنوعة في صفحات المدونة بكل لغة
 export const BLOG_RETIRED = ['غير المسلمين', 'other faiths', 'non-Muslim', 'Non-Muslim', '非穆斯林', 'Nichtmuslim', 'немусульман'];
@@ -111,6 +117,7 @@ export function checkMosqueCards(sources, pagesFor, allPages) {
   for (const l of LANGS) if (/^__/.test(VISIT_VALUE[l])) problems.push(`VISIT_VALUE.${l} غير معبّأ`);
   for (const { file, text } of sources) {
     for (const r of RETIRED) if (text.includes(r)) problems.push(`${file}: المصدر يحمل صيغة سابقة «${r}»`);
+    for (const r of RETIRED_IN[file] ?? []) if (text.includes(r)) problems.push(`${file}: المصدر يحمل صيغة سابقة «${r}»`);
     const line = text.split('\n').find((l) => l.includes(`label: "${VISIT_LABEL.ar}", value: "${VISIT_VALUE.ar}"`));
     if (!line) continue;
     const f = rowFields(line);
