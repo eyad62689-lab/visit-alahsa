@@ -43,10 +43,10 @@ mapUrl: https://goo.gl/maps/NfRxmGxvUnTatBzJ8
 featured: true
 order: 4
 practical:
-  - { label: "مواعيد المنتزه المحيط", value: "8 ص–12 منتصف الليل", label_en: "Surrounding park hours", value_en: "8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Мечеть: открыта весь день · окружающий парк: 8:00–24:00", label_de: "Öffnungszeiten", value_de: "Moschee: ganztägig · umliegender Park: 8–24 Uhr", label_zh: "开放时间", value_zh: "清真寺全天开放 · 周边公园 8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مواعيد المنتزه المحيط", value: "8 ص–12 منتصف الليل", label_en: "Surrounding park hours", value_en: "8 am – 12 midnight", label_ru: "Часы работы окружающего парка", value_ru: "8:00–24:00", label_de: "Öffnungszeiten des umliegenden Parks", value_de: "8–24 Uhr", label_zh: "周边公园开放时间", value_zh: "8:00–24:00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15", label_ru: "Стоимость входа", value_ru: "Мечеть: бесплатно · вход в парк: 10–15 саудовских риялов (SAR)", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   # بند الزيارة: الصيغة نفسها في صفحات المساجد بلغاتها الخمس.
-  - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; учитывайте время молитв, приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请留意礼拜时间，注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte mit Rücksicht auf die Gebetszeiten, in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-10", verified: true }
+  - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-10", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
@@ -63,10 +63,10 @@ faq:
     a: "يُفتح المنتزه المحيط بالمسجد من 8 ص إلى 12 منتصف الليل."
     q_en: "What are the opening hours of the park around Jawatha Mosque?"
     a_en: "The park around the mosque is open from 8 am to 12 midnight."
-    q_zh: "贾瓦塔清真寺的开放时间是几点到几点？"
-    a_zh: "清真寺全天开放，周边公园开放时间为 8:00–24:00；参观时请尊重礼拜时间与场所的神圣。"
-    q_ru: "В какие часы открыта мечеть Джавата?"
-    a_ru: "Мечеть открыта весь день, окружающий парк — 8:00–24:00; учитывайте время молитв и уважайте святость места."
+    q_zh: "贾瓦塔清真寺周边公园的开放时间是几点到几点？"
+    a_zh: "清真寺周边公园的开放时间为 8:00–24:00。"
+    q_ru: "В какие часы открыт парк вокруг мечети Джавата?"
+    a_ru: "Парк вокруг мечети открыт с 8:00 до 24:00."
   - q: "لماذا يُعدّ مسجد جواثا مهماً؟"
     a: "هو من أقدم المساجد في الإسلام، ويُذكر أنّه أوّل موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس."
     q_en: "Why is Jawatha Mosque significant?"

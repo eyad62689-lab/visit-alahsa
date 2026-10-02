@@ -23,9 +23,9 @@ export const VISIT_LABEL = { ar: 'الزيارة', en: 'Visiting', zh: '游览',
 export const VISIT_VALUE = {
   ar: 'متاحة، مع اللباس المحتشم واحترام حرمة المكان',
   en: 'Open to visitors, with modest dress and respect for the sanctity of the place',
-  zh: '__ZH_PENDING__',
-  de: '__DE_PENDING__',
-  ru: '__RU_PENDING__',
+  zh: '开放参观，请注意衣着端庄，尊重场所的神圣',
+  de: 'Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes',
+  ru: 'Открыто для посетителей; приходите в скромной одежде и уважайте святость места',
 };
 
 // عبارة الزيارة في المقالين (مفتاح المقال ← لغة ← العبارة كما تُنشر)
@@ -33,12 +33,12 @@ export const BLOG_CLAUSE = {
   '24-hours-itinerary': {
     ar: 'وزيارته متاحة، مع اللباس المحتشم واحترام حرمة المكان',
     en: 'it is open to visitors, with modest dress and respect for the sanctity of the place',
-    zh: '__ZH_PENDING__', de: '__DE_PENDING__', ru: '__RU_PENDING__',
+    zh: '这里对游客开放，参观时请注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места',
   },
   '48-hours-itinerary': {
     ar: 'زيارة المسجد متاحة، مع اللباس المحتشم واحترام حرمة المكان',
     en: 'The mosque is open to visitors, with modest dress and respect for the sanctity of the place',
-    zh: '__ZH_PENDING__', de: '__DE_PENDING__', ru: '__RU_PENDING__',
+    zh: '清真寺向游客开放，入寺请注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места',
   },
 };
 

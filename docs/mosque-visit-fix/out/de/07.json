@@ -1,0 +1,50 @@
+{
+ "lang": "de",
+ "stage": "07",
+ "batch": "mosque-visit-times",
+ "score": 93,
+ "pass_threshold": 90,
+ "score_rule": "batch = lowest position",
+ "breakdown": {
+  "lowest_position": "Besuch formula x12 (the two blog closings carry the same clause)",
+  "per_position_group": {
+   "Besuch x12 (practical value_de)": {"accuracy": 30, "nativeness": 26, "termbase_style": 19, "traveller_fit": 8, "structure": 10, "total": 93, "why": "Accurate to ar «متاحة، مع اللباس المحتشم واحترام حرمة المكان» / en 'Open to visitors, with modest dress and respect for the sanctity of the place'; nothing about time. -4 nativeness: 'bitte in bedeckender Kleidung und mit Respekt vor …' is an elliptical signage construction that reads translated (blind reader 4); it predates the batch, see ruling c. -1 termbase: entries 61.superseded_by, 173, 189 now stale (update owed, not a text defect). -2 fit: no visiting time, by Eyad's decision (ruling a)."},
+   "Eintritt x5 (label_de + value_de, after judge edit)": {"accuracy": 30, "nativeness": 27, "termbase_style": 19, "traveller_fit": 8, "structure": 10, "total": 94},
+   "jawatha-mosque:46 park hours": {"accuracy": 30, "nativeness": 28, "termbase_style": 20, "traveller_fit": 9, "structure": 10, "total": 97, "why": "'Öffnungszeiten des umliegenden Parks · 8–24 Uhr' mirrors 'Surrounding park hours'; mosque time removed; '8–24 Uhr' as BRIEF mandates (notation vs jawatha-park '8:00–24:00 Uhr' raised, not scored)."},
+   "blog 24-hours:38 / 48-hours:44": {"accuracy": 30, "nativeness": 27, "termbase_style": 19, "traveller_fit": 9, "structure": 10, "total": 95, "why": "Links untouched; 48h drops the duplicated 'Beachten Sie die Gebetszeiten …' sentence exactly as ar/en did; both close with the same clause."}
+  },
+  "checks": "Node: all 20 'current' match their file line exactly once (CR ignored); proposed lines carry no CR/LF, U+2014 or U+00A0; no retired string (Gebetszeit, ganztägig, Öffnungszeiten und, Souq); in attraction rows only label_de/value_de differ; shared formulas byte-identical: Besuch 12/12, Eintritt 5/5, blog clause 2/2. No other de 'Gebetszeit' left in src/."
+ },
+ "judge_edits": [
+  {"ids": ["de-abubakr-mosque-35", "de-dibs-35", "de-hubaish-35", "de-jabri-mosque-36", "de-umzurainiq-35"], "field": "value_de", "from": "Für das Gebet genutzt – kein Eintrittsgeld", "to": "Für das Gebet genutzte Moschee – kein Eintrittsgeld", "reason": "Blind reader 2: the bare participle has no head noun and does not read as a status under 'Eintritt'. Restoring the noun of the source ('A working mosque' / «مسجد عامل») gives the established sibling shape 'Frei zugängliches Gelände – kein Eintrittsgeld' (x7 published): status noun phrase – fee answer. Order kept as in ar/en; 'aktive Moschee' stays barred (termbase 189); 'kein Eintrittsgeld' kept (termbase 189: 'kein Eintritt' reads as no admission)."}
+ ],
+ "rulings": {
+  "a_items_3_5_22_47": "Not a translation defect. The absence of any visiting time (cards, the itineraries' promise of verified details on each page, 'Mittag: Die Jawatha-Moschee', whether the park hours bind the mosque) follows Eyad's 2026-10-02 decision verbatim in ar/en; adding any time or 'außerhalb der Gebetszeiten' would breach the fence. Rejected as edits; raised to Eyad as a known consequence of the decision (-2 traveller fit only).",
+  "b_item_2": "Applied in modified form (judge edit above). The reader's proposal 'Kostenlos (aktive Moschee)' is rejected: 'aktive Moschee' is barred by termbase 189. Minimal edit within the changed field: head noun restored, source order kept.",
+  "c_item_4": "Rejected for this batch; logged as a later item. The construction predates the batch (only the prayer-time clause was removed, per BRIEF 'minimal edit'); it is a shared 14-site formula, so a rewording is its own batch. The reader's 'Würde des Ortes' would also break the TM pair 'Heiligkeit des Ortes' (tm.json 2026-09-10) and weaken «حرمة». Candidate for the later item: 'Für Besucher offen – bitte bedeckende Kleidung tragen und die Heiligkeit des Ortes respektieren' (keeps the TM term).",
+  "d_items_1_39": "Source-level, raised to Eyad: (1) the 'Eintritt' row exists on only 5 of the 12 mosque pages in ar/en as well; the reader asks whether the others charge a fee or are not working mosques. (39) uqair-mosque card says open to visitors while body text says restoration works may close some areas.",
+  "other_items": "Unscored, raise to Eyad later: 9/10/11 Bubakr Ribat (sanctity of a lodging, can one stay, naming); 25/36 whether Jawatha / Tahimiyah East are prayed in (no 'Für das Gebet genutzt' row); 31 Qubba mosque inside the palace (palace ticket/hours); 23/24 Jawatha 'Eintritt 10–15 SAR' for what, 'beim Betreiber' who; 43 Jawatha in the one-day blog without park/hours; 6/7/15/16/18/19/41 naming and transliteration variants; 12/13/17/27/29/30/33/34/37/38/40/44/46/50/51 pre-existing style points; 42/48 'nach Medina' without 'der Überlieferung nach'; 45/49 'offizielle Kanäle'; 20 empty 'Fotos vom Ort'; 14 Chandal (handled by #113); 21/26/28/32/35 location lines and references."
+ },
+ "blind_reader_rulings_summary": "In-batch: 2 applied (modified); 4 rejected for this batch (later item); 3/5/22/47 rejected (owner decision); 1/39 source-level. All other numbered items out of scope, unscored.",
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "final_shared_formulas": {
+  "visit": {"label_de": "Besuch", "value_de": "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes"},
+  "entry": {"label_de": "Eintritt", "value_de": "Für das Gebet genutzte Moschee – kein Eintrittsgeld"},
+  "jawatha_park_row": {"label_de": "Öffnungszeiten des umliegenden Parks", "value_de": "8–24 Uhr"},
+  "check_mosque_card_de": {
+   "VISIT_VALUE.de": "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes",
+   "BLOG_CLAUSE.24-hours-itinerary.de": "Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes",
+   "BLOG_CLAUSE.48-hours-itinerary.de": "Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes"
+  }
+ },
+ "tm_pairs_to_append": [
+  {"en": "Open to visitors, with modest dress and respect for the sanctity of the place", "ar": "متاحة، مع اللباس المحتشم واحترام حرمة المكان", "de": "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", "page": "mosque attraction pages (12) incl. bubakr-ribat", "field": "practical[Visiting].value_de", "date": "2026-10-02"},
+  {"en": "Entry · A working mosque, no entry fee", "ar": "الدخول · مسجد عامل، بلا رسوم دخول", "de": "Eintritt · Für das Gebet genutzte Moschee – kein Eintrittsgeld", "page": "abubakr-mosque, dibs, hubaish, jabri-mosque, umzurainiq", "field": "practical[Entry]", "date": "2026-10-02"},
+  {"en": "Surrounding park hours · 8 am – 12 midnight", "ar": "مواعيد المنتزه المحيط · 8 ص–12 منتصف الليل", "de": "Öffnungszeiten des umliegenden Parks · 8–24 Uhr", "page": "jawatha-mosque", "field": "practical[0]", "date": "2026-10-02"},
+  {"en": "it is open to visitors, with modest dress and respect for the sanctity of the place", "ar": "وزيارته متاحة، مع اللباس المحتشم واحترام حرمة المكان", "de": "Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", "page": "24-hours-de.md · 48-hours-de.md", "field": "body (Jawatha)", "date": "2026-10-02"}
+ ],
+ "termbase_updates_owed": "Entry 61 superseded_by -> the Besuch formula above (current pointer 'Außerhalb der Gebetszeiten möglich …' contradicts 2026-10-02); entry 173 note ('zu den Gebetszeiten geöffnet') stale; entry 189 -> 'Entry · A working mosque, no entry fee' = 'Eintritt · Für das Gebet genutzte Moschee – kein Eintrittsgeld'.",
+ "notes": "Memory files (tm.json, scores.csv, termbase) not written by the judge per caller instruction; pairs and row supplied here for the caller to append. ru/zh residue on jawatha-mosque.md:46 and the ru/zh hours FAQ is outside this de batch.",
+ "scores_csv_row": "\"mosque-visit-times (de): 20 positions - Besuch x12 drops Gebetszeiten clause; Eintritt x5 label Öffnungszeiten und Eintritt -> Eintritt, value -> Für das Gebet genutzte Moschee – kein Eintrittsgeld; jawatha park-hours row without mosque time; 24/48-hours blog clause\",2026-10-02,1,93,\"APPROVE (min 93 Besuch formula: 30/26/19/8/10; judge edit Eintritt value restores head noun Moschee (blind 2; aktive Moschee barred by termbase 189); blind 3/5/22/47 rejected - no visiting time is Eyad's decision, raised as known consequence; blind 4 wording predates batch, later item (Heiligkeit TM pair kept); 1/39 source-level raised to Eyad; rest unscored)\""
+}
