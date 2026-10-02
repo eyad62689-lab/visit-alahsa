@@ -23,7 +23,7 @@ One note before you start: the stops here are arranged by the **rhythm of the da
 
 ### Morning: Qasr Ibrahim
 
-Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress of mud walls and palm-trunk roofs, gathering mosque, garrison and tower beneath one wall. The first light of day is the best time to take in the architecture and the inner courtyard.
+Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress of mud walls and palm-trunk roofs, gathering mosque, barracks and towers beneath one wall. The first light of day is the best time to take in the architecture and the inner courtyard.
 
 ### Mid-morning: Al-Koot District and the City's Memory
 

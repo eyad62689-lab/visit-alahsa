@@ -25,7 +25,7 @@ Start your day east of Hofuf at [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/
 
 ## Mid-morning: Qasr Ibrahim and the Al-Koot District
 
-Return to central Hofuf for [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) — the fortress that gathers mosque, garrison and tower beneath one wall; the mid-morning light brings out its architecture and inner courtyard. Close by lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1788 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum.
+Return to central Hofuf for [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) — the fortress that gathers mosque, barracks and towers beneath one wall; the mid-morning light brings out its architecture and inner courtyard. Close by lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1788 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum.
 
 For lunch, with the city centre around you, the restaurants and cafés are gathered in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
 
