@@ -24,6 +24,7 @@ import { checkIbrahimMaterials, EXPECT as IBRAHIM_EXPECT } from './check-ibrahim
 import { checkAsfarNotes, EXPECT as ASFAR_NOTES_EXPECT } from './check-asfar-notes.mjs';
 import { checkQarahSilhouette, EXPECT as SILHOUETTE_EXPECT } from './check-qarah-silhouette.mjs';
 import { checkIbrahimTowers, EXPECT as TOWERS_EXPECT } from './check-ibrahim-towers.mjs';
+import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-ibrahim-materials-intro.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -434,6 +435,15 @@ async function main() {
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C39', `مرافق قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C39', `مرافق قصر إبراهيم بالجمع في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${TOWERS_EXPECT.minPages})، ولا صيغة مفردة في ${stats.scanned} صفحة`);
+    }
+    // ── C40: تمهيد مواد قصر إبراهيم «على الطريقة التقليدية في عمارة الخليج» (حكم إياد 2026-10-02) — لا «مواد الواحة
+    // نفسها» ونظائرها بأي لغة (الشندل ليس من الواحة)، وإيجاباً التمهيد الجديد في صفحة القصر بكل لغة.
+    // المنطق في tools/check-ibrahim-materials.mjs.
+    {
+      const { problems, stats } = checkIbrahimMaterialsIntro(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C40', `تمهيد مواد قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C40', `تمهيد «على الطريقة التقليدية في عمارة الخليج» في صفحة قصر إبراهيم بكل لغة (${per}؛ الحدّ الأدنى ${MATERIALS_EXPECT.minPages})، ولا «مواد الواحة» في ${stats.scanned} صفحة`);
     }
   }
   {

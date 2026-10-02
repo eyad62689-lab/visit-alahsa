@@ -1,0 +1,31 @@
+{
+ "lang": "ru",
+ "stage": "01",
+ "batch": "local-materials",
+ "round": 4,
+ "sites": [
+  {
+   "id": "ru-qasr-ibrahim-body-22",
+   "file": "src/content/attractions/qasr-ibrahim.md",
+   "line": 22,
+   "current": "body_ru: \"В сердце Эль-Хуфуфа стоит Каср-Ибрахим (в переводе — дворец Ибрахима), свидетель столетий перемен. Это не роскошный дворец, а крепость, собравшая за одной стеной то, что редко встречается вместе: мечеть с изящным куполом, казармы, сторожевые башни, конюшни и склады. Ее возвели из материалов самого оазиса: стены сложены из глины, смешанной с соломой, кровля — из пальмовых стволов, дерева шандаль и камня. На минарет мечети ведет каменная винтовая лестница. Пройдитесь по просторному двору, посмотрите, как купол затеняет михраб (молитвенную нишу), и вы прочтете на стенах слои истории, которые копились поколение за поколением. Сегодня крепость — один из главных исторических памятников Аль-Ахсы и часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО.\"",
+   "proposed": "body_ru: \"В сердце Эль-Хуфуфа стоит Каср-Ибрахим (в переводе — дворец Ибрахима), свидетель столетий перемен. Это не роскошный дворец, а крепость, собравшая за одной стеной то, что редко встречается вместе: мечеть с изящным куполом, казармы, сторожевые башни, конюшни и склады. Ее возвели в традициях зодчества Залива: стены сложены из глины, смешанной с соломой, кровля — из пальмовых стволов, дерева шандаль (его когда-то привозили в регион Залива) и камня. На минарет мечети ведет каменная винтовая лестница. Пройдитесь по просторному двору, посмотрите, как купол затеняет михраб (молитвенную нишу), и вы прочтете на стенах слои истории, которые копились поколение за поколением. Сегодня крепость — один из главных исторических памятников Аль-Ахсы и часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО.\"",
+   "decision_note": "Only the lead-in changes vs the approved round-3 proposal (out-round3/ru/05.json): «Ее возвели в традициях местного зодчества:» -> «Ее возвели в традициях зодчества Залива:». ar «بُني على الطريقة التقليدية في عمارة الخليج» / en «built in the traditional Gulf manner»: «в традициях» = الطريقة التقليدية/traditional manner, «зодчества Залива» = عمارة الخليج/Gulf (architecture). «местного» removed — it is what the round-3 blind reader set against «привозили». Now both the building tradition and the import share one frame (Gulf): built the Gulf way, with timber brought into the Gulf — no local/imported opposition. «Залив» per termbase entry «the Gulf» (capitalised, genitive Залива); no «Персидский/Арабский залив». Repetition: «Залива» now occurs twice in the sentence, but «регион» only once (in the gloss, unchanged); the bare «зодчества Залива» in the lead-in avoids a double «регион Залива» and the echo of «Залива» is the intended link. The phrase qualifies the method (традиции зодчества), not the materials, and says nothing of their origin (BRIEF). Minimal edit: one word removed, one added; «Ее» kept; gloss and everything else byte-identical to round 3. Verified with node: diff vs round-3 proposed is exactly «местного зодчества» -> «зодчества Залива»; no CR, NFC, U+0020 only, U+2014 count 3 unchanged, no «местн», no «Персидск» (u-flag regexes with [а-яё]).",
+   "rejected_alternatives": [
+    {
+     "text": "Ее возвели так, как традиционно строили в регионе Залива:",
+     "reason": "Faithful and fluent, but «регион Залива» then occurs twice within one sentence (lead-in and gloss) — heavy repetition the brief warns about; also longer and turns the nominal «طريقة… عمارة» into a clause."
+    },
+    {
+     "text": "Ее возвели в традиционной манере, принятой в странах Залива:",
+     "reason": "«страны Залива» narrows a historical regional building tradition to modern states (same objection the round-3 judge raised for the gloss); «принятой» adds bureaucratic weight."
+    }
+   ]
+  }
+ ],
+ "observations": [
+  "current = line 22 of src/content/attractions/qasr-ibrahim.md read with node (CR stripped); identical to the round-3 current and to docs/materials-fix/ru.json current — src still holds the pre-batch text.",
+  "Gloss «(его когда-то привозили в регион Залива)» kept byte-identical per BRIEF round 4; the termbase «шандаль» note «بلا گلوس» remains stale (flagged in round 3, outside stage-1 scope).",
+  "Possible residual for the blind reader: «зодчества Залива … в регион Залива» — the double «Залива» is deliberate (shared Gulf frame); if a judge finds it heavy, the gloss is locked, so only the lead-in could vary (e.g. «традиционным для Залива способом»)."
+ ]
+}
