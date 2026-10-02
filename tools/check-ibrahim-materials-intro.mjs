@@ -29,9 +29,9 @@ export const OLD = [
 export const OK = {
   ar: /على\s+الطريقة\s+التقليدية\s+في\s+عمارة\s+الخليج[\s\S]{0,300}?الشندل\s+\(خشبٌ\s+كان\s+يُجلب\s+إلى\s+الخليج\)/,
   en: /built\s+in\s+the\s+traditional\s+Gulf\s+manner[\s\S]{0,300}?chandal\s+wood\s+\(timber\s+once\s+imported\s+to\s+the\s+Gulf\)/i,
-  de: /__DE_PENDING__/,
-  ru: /__RU_PENDING__/,
-  zh: /__ZH_PENDING__/,
+  de: /in\s+der\s+traditionellen\s+Bauweise\s+der\s+Golfregion[\s\S]{0,300}?Chandal-Holz\s+\(Bauholz,\s+das\s+früher\s+in\s+die\s+Golfregion\s+eingeführt\s+wurde\)/,
+  ru: /в\s+традициях\s+зодчества\s+Залива[\s\S]{0,300}?шандаль\s+\(его\s+когда-то\s+привозили\s+в\s+регион\s+Залива\)/u,
+  zh: /沿袭海湾地区的营造传统[\s\S]{0,300}?海湾传统建筑常用的进口木料/,
 };
 
 const TARGET = /^(?:معالم\/قصر-إبراهيم|(?:en|zh|de|ru)\/attractions\/qasr-ibrahim)\/index\.html$/;
