@@ -14,8 +14,22 @@
 //   (ج) صفحات المدونة بكل لغة (نصاً وJSON-LD وسمات): لا عبارة تفرّق بين الزوار بحسب الدين،
 //       وعبارة الزيارة المعتمدة (BLOG_CLAUSE) منشورة في مقالَي 24 و48 ساعة بكل لغة، مع حدّ
 //       أدنى لعدد صفحات المدونة المفحوصة.
+//   (د) مساجد قيد الترميم (UNDER_RESTORATION): بند «الزيارة» فيها صيغة الترميم المعتمدة لا صيغة
+//       الزيارة المتاحة، منشورةً في البطاقة بكل لغة — فلا تعود البطاقة تعد بزيارة متاحة.
 
-export const EXPECT = { minPages: 12, minBlogPages: 40 };
+// 11 بطاقة بصيغة الزيارة: المساجد الاثنا عشر عدا مسجد ميناء العقير (قيد الترميم، البند (د)).
+export const EXPECT = { minPages: 11, minBlogPages: 40, minRestoration: 1 };
+
+// حكم إياد 2026-10-02: بطاقة مسجد ميناء العقير تقول الترميم (كما يقول متنها) لا «متاحة».
+export const UNDER_RESTORATION = {
+  'uqair-mosque.md': {
+    ar: 'يشهد الموقع أعمال ترميم، وقد تكون بعض أجزائه مغلقة',
+    en: 'The site is undergoing restoration work, and some parts may be closed',
+    zh: '__ZH_PENDING__',
+    de: '__DE_PENDING__',
+    ru: '__RU_PENDING__',
+  },
+};
 
 // حكم إياد 2026-10-02: لا يُشار إلى وقت زيارة المساجد العاملة لا نفياً ولا تأكيداً — فخرج «مراعاة
 // أوقات الصلاة» من البند ومن عبارة المدونة، وخرجت صفوف «المواعيد» (أوقات الصلوات) ووقت مسجد جواثا.
@@ -114,6 +128,24 @@ export function checkMosqueCards(sources, pagesFor, allPages) {
     for (const r of RETIRED) if (card.includes(r)) problems.push(`${rel}: البطاقة تنشر صيغة سابقة «${r}»`);
   }
   if (stats.ar < EXPECT.minPages) problems.push(`الحارس صار فارغاً: ${stats.ar} صفحة عربية تنشر البند — المتوقع ≥${EXPECT.minPages}`);
+  // (د) مساجد قيد الترميم
+  let restoration = 0;
+  for (const [file, want] of Object.entries(UNDER_RESTORATION)) {
+    const src = sources.find((s) => s.file === file);
+    if (!src) { problems.push(`${file}: غائب عن المصدر`); continue; }
+    const line = src.text.split('\n').find((l) => l.includes(`label: "${VISIT_LABEL.ar}", value: "${want.ar}"`));
+    if (!line) { problems.push(`${file}: بند «${VISIT_LABEL.ar}» لا يحمل صيغة الترميم المعتمدة`); continue; }
+    const f = rowFields(line);
+    for (const l of LANGS) {
+      if (/^__/.test(want[l])) { problems.push(`UNDER_RESTORATION.${file}.${l} غير معبّأ`); continue; }
+      if (f[l].value !== want[l]) { problems.push(`${file} [${l}]: صيغة الترميم في المصدر لا تطابق المعتمدة`); continue; }
+      if (l !== 'ar' && l !== 'en' && !new RegExp(`^title_${l}:`, 'm').test(src.text)) continue;
+      const card = cardOf(pagesFor(file, l) ?? '');
+      if (!card || !card.includes(`<dd>${want[l]}</dd>`)) problems.push(`${file} [${l}]: صيغة الترميم غير منشورة في البطاقة`);
+    }
+    restoration++;
+  }
+  if (restoration < EXPECT.minRestoration) problems.push(`مساجد الترميم المفحوصة ${restoration} — المتوقع ≥${EXPECT.minRestoration}`);
   return { problems, stats };
 }
 
