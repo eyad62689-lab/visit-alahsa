@@ -31,7 +31,7 @@ body_en: "Jawatha Mosque holds a standing few landmarks can match: it is among t
 area: قرية الكلابية — شمال شرق الأحساء
 area_en: "Al-Kilabiyah village — northeast of Al-Ahsa"
 fee: { free: true }
-answer: "مسجد جواثا في الكلابية شمال شرق الأحساء من أقدم مساجد الإسلام، ويُذكر أنه أول موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس. المسجد مفتوح طوال اليوم ومجاناً، والمنتزه المحيط من 8 ص إلى 12 منتصف الليل بـ10–15 ريالاً."
+answer: "مسجد جواثا في الكلابية شمال شرق الأحساء من أقدم مساجد الإسلام، ويُذكر أنه أول موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس. الدخول مجاني، والمنتزه المحيط من 8 ص إلى 12 منتصف الليل بـ10–15 ريالاً."
 answer_en: "Jawatha Mosque in Al-Kilabiyah, northeast of Al-Ahsa, is among the oldest mosques in Islam, said to be the first place Friday prayer was held after the Prophet's Mosque. Entry is free; the park around it opens 8 am to midnight for SAR 10–15."
 location: { lat: 25.469801, lng: 49.678502 }
 sameAs:
