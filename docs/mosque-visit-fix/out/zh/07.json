@@ -1,0 +1,96 @@
+{
+  "lang": "zh",
+  "stage": "06",
+  "batch": "mosque-visit-times",
+  "date": "2026-10-02",
+  "loop": 1,
+  "score": 94,
+  "breakdown_rule": "batch score = lowest position score; rubric 06-judge.md (accuracy 30 / nativeness 30 / termbase+style 20 / cultural 10 / structure 10); threshold 90 (config.json)",
+  "breakdown": {
+    "shared visit row x12 (label 游览)": {
+      "accuracy": 30,
+      "nativeness": 27,
+      "termbase": 19,
+      "cultural": 9,
+      "structure": 10,
+      "total": 95,
+      "note": "clause-for-clause match of corrected en; only 请留意礼拜时间 removed; -3 nativeness: 神圣 used as a noun (pre-existing, see ruling b); -1 termbase: no active termbase entry yet carries the new formula and the superseded entry still points to the retired 礼拜时间以外 wording (governor update, not a translation defect); -1 cultural: no visiting-time guidance (deliberate, ruling a)"
+    },
+    "jawatha-mosque:46 park-hours row": {
+      "accuracy": 30,
+      "nativeness": 29,
+      "termbase": 20,
+      "cultural": 9,
+      "structure": 10,
+      "total": 98,
+      "note": "周边公园开放时间 / 8:00–24:00 matches en \"Surrounding park hours · 8 am – 12 midnight\"; mosque time gone; 8:00–24:00 as published on the park page"
+    },
+    "jawatha-mosque:66-67 FAQ": {
+      "accuracy": 30,
+      "nativeness": 29,
+      "termbase": 20,
+      "cultural": 9,
+      "structure": 10,
+      "total": 98,
+      "note": "q/a match the corrected en; prayer-time tail and 全天开放 gone"
+    },
+    "24-hours-zh:38": {
+      "accuracy": 30,
+      "nativeness": 27,
+      "termbase": 19,
+      "cultural": 9,
+      "structure": 10,
+      "total": 95,
+      "note": "same clause as the card; link and preceding facts byte-identical"
+    },
+    "48-hours-zh:44": {
+      "accuracy": 29,
+      "nativeness": 27,
+      "termbase": 19,
+      "cultural": 9,
+      "structure": 10,
+      "total": 94,
+      "note": "duplicate prayer-time warning merged away as in ar/en; -1 accuracy: 入寺 slightly narrows \"open to visitors\" to entering (acceptable, not a new fact); 神圣 noun as above. LOWEST POSITION"
+    }
+  },
+  "verification": [
+    "node: all 17 current == src line byte-for-byte (CRLF files)",
+    "node: practical rows differ from current only in label_zh/value_zh; value_zh byte-identical across the 12 游览 rows",
+    "node: no retired string (请留意礼拜时间, 清真寺全天开放, 礼拜时间以外开放参观, 非穆斯林游客, 欢迎参观，请注意衣着端庄, 礼拜时) in any proposed line; no NBSP/ideographic space/tab",
+    "grep src: these 17 positions are the only zh mosque visiting-time references; mosque body_zh fields carry no visiting time",
+    "5 الدخول rows carry no zh fields; DetailView hides rows without label_zh/value_zh, so nothing English leaks onto /zh/ pages"
+  ],
+  "rulings": {
+    "a": "Items 2, 23, 42/50, 46 (when can I visit? / mosque itself when? / blog paragraphs without times / 正午 visit during prayer): NOT translation defects. The absence of any mosque visiting time, affirmative or negative, is Eyad's decision of 2026-10-02 and the zh text mirrors the corrected ar/en exactly. Raised to Eyad as a known consequence: Chinese readers are left asking whether they can enter at prayer time (sharpest at the 48-hours itinerary slot 正午：贾瓦塔清真寺, which falls on Dhuhr, and on Fridays on Jumu'ah); any guidance must come from the source in ar/en first.",
+    "b": "Item 1 (尊重场所的神圣 → …的神圣性 / 尊重宗教场所): no edit in this batch; queued as a later polish item. Reasons: (1) the wording predates the batch and was approved by the judge on 2026-09-27; the brief mandates the minimal edit that removes time references only; (2) 尊重/维护…的神圣 with 神圣 as a noun is attested usage, so this is a nativeness deduction (-3), not an error; (3) a judge edit here would be unseen by the blind reader and would touch 14 positions plus the C29 constant. Recommended later item: 尊重场所的神圣 → 尊重场所的神圣性 (one character, all 12 rows + both blog clauses byte-identical, C29 VISIT_VALUE/BLOG_CLAUSE zh updated in the same commit, blind-reader round required).",
+    "c": "Item 37 (Uqair: card 开放参观 vs body 部分区域可能暂不开放): source-level — en carries the same restoration sentence (\"some parts may be closed\"). Raise to Eyad; no zh change."
+  },
+  "judge_edits": "none — all 17 stage-05 proposals approved unchanged",
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "published": {
+    "shared_visit_value_zh": "开放参观，请注意衣着端庄，尊重场所的神圣",
+    "shared_visit_label_zh": "游览",
+    "blog_clause_24_hours_zh": "这里对游客开放，参观时请注意衣着端庄，尊重场所的神圣",
+    "blog_clause_48_hours_zh": "清真寺向游客开放，入寺请注意衣着端庄，尊重场所的神圣",
+    "note": "for tools/check-mosque-card.mjs: VISIT_VALUE.zh and BLOG_CLAUSE[24-hours-itinerary|48-hours-itinerary].zh (clauses without the closing 。, mirroring the en clauses)"
+  },
+  "scores_csv_row": "\"mosque-visit-times (zh): 12 游览 rows value_zh 开放参观，请注意衣着端庄，尊重场所的神圣 (请留意礼拜时间 removed); jawatha park-hours row 周边公园开放时间 · 8:00–24:00; jawatha FAQ q/a park only; 24/48-hours Jawatha clauses without prayer time\",2026-10-02,1,94,\"APPROVE (lowest 48-hours:44 29/27/19/9/10; card rows 95, park row and FAQ 98; blind reader: items 2/23/42/50/46 = consequence of the no-visiting-time decision, not defects; 神圣 as noun (item 1) deferred to a polish batch (神圣性); item 37 Uqair card vs restoration text is source-level for Eyad)\"",
+  "governor_followups": [
+    "termbase.json: add an active entry for the 游览 formula 开放参观，请注意衣着端庄，尊重场所的神圣 and update superseded_by of the 非穆斯林游客 entry (it still names the retired 礼拜时间以外… wording)",
+    "tm.json: retire/replace the stale mosque prayer-time pairs listed in 05.json observations",
+    "append the scores_csv_row to zh-translation/memory/scores.csv and the new pairs to tm.json (not done by the judge: instructed to write only 07.json/final.json)",
+    "set VISIT_VALUE.zh and BLOG_CLAUSE zh in tools/check-mosque-card.mjs from published.*"
+  ],
+  "raise_to_eyad_later_unscored": [
+    "2/23/42/50/46: visiting-time questions left open by decision (see ruling a)",
+    "37: Uqair card says open while text says parts may be closed (restoration)",
+    "3: 运营方 appears only on Jawatha with no named operator",
+    "24-25: park fee shown as a 10–15 range without explanation; are 周边公园 and 贾瓦塔公园 (nearby) the same place? does reaching the mosque require entering/paying for the park?",
+    "29: Qubba mosque inside Ibrahim Palace: palace ticket/hours needed?",
+    "6/13: 「最古老的…之一」 applied to mosques of very different ages (Hubaish 19th c.)",
+    "16/19: restoration project names inconsistent; Jalaniyah 2009 royal commission vs Crown Prince project",
+    "reader out-of-scope notes 4, 5, 7–12, 14, 15, 17, 18, 20–22, 26–28, 30–36, 38–41, 43, 45, 47–49 (wording/polish; e.g. 纳季德 → 内志, 又称东清真寺 ambiguity, 实地照片 empty) — for a later zh polish batch",
+    "5 Entry rows (abubakr-mosque, dibs, hubaish, jabri-mosque, umzurainiq) have no zh fields, so /zh/ pages show no entry/fee line for them (pre-existing gap)"
+  ]
+}

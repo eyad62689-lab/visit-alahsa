@@ -1,0 +1,221 @@
+{
+  "lang": "ru",
+  "stage": "07",
+  "batch": "mosque-visit-times",
+  "date": "2026-10-02",
+  "pass_threshold": 90,
+  "score": 96,
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "breakdown": {
+    "mosque cards x11 (abubakr-mosque, bubakr-ribat, dibs, hubaish, jabri-mosque, jalaniyah, qubba-mosque, tahimiyah-e, tahimiyah-s, umzurainiq, uqair-mosque)": {
+      "accuracy": 30,
+      "nativeness": 28,
+      "termbase_orthography": 20,
+      "traveller_fit": 9,
+      "structure": 10,
+      "total": 97
+    },
+    "jawatha-mosque (rows 46, 49; FAQ 68-69)": {
+      "accuracy": 30,
+      "nativeness": 27,
+      "termbase_orthography": 20,
+      "traveller_fit": 9,
+      "structure": 10,
+      "total": 96
+    },
+    "24-hours-ru (line 38)": {
+      "accuracy": 30,
+      "nativeness": 28,
+      "termbase_orthography": 20,
+      "traveller_fit": 9,
+      "structure": 10,
+      "total": 97
+    },
+    "48-hours-ru (line 44)": {
+      "accuracy": 30,
+      "nativeness": 28,
+      "termbase_orthography": 20,
+      "traveller_fit": 9,
+      "structure": 10,
+      "total": 97
+    }
+  },
+  "breakdown_notes": [
+    "Accuracy 30 everywhere: each changed field carries exactly the corrected ar/en elements (open to visitors · modest dress · respect for sanctity; park hours only), nothing added, every visiting-time/prayer-time wording removed (RETIRED ru strings absent from all 17 lines).",
+    "Nativeness: card «Посещение — Открыто для посетителей; приходите … и уважайте …» and blog «Мечеть открыта для посетителей — приходите … и уважайте …» are natural reference-style Russian (-2: the card joins a stative and two imperatives with a semicolon, slightly list-like). jawatha-mosque -3: label «Часы работы окружающего парка» is heavier than the site's two-word labels, and the page now names the park two ways («окружающий парк» in the fees row / FAQ 1, «парк вокруг мечети» in FAQ 2) — both mirror en (Surrounding park / park around) and ar, so faithful, not a defect.",
+    "Termbase/orthography 20: «мечети Джавата» declined per termbase; U+2013 ranges without spaces in the card, U+2014 with spaces in blogs; U+0020 only; вы lower-case imperatives; no ё issue in changed text.",
+    "Fit 9: the traveller gets no guidance on when to come — Eyad's deliberate decision (BRIEF 2026-10-02), not a translation defect; -1 recorded as known consequence only.",
+    "Structure 10: only label_ru/value_ru differ on practical rows (source_* and other languages byte-identical), FAQ keys intact, blog links byte-identical, CRLF handled by apply.mjs."
+  ],
+  "rulings": {
+    "a_items_1_22_45_49_no_times": "NOT a translation defect. The absence of any visiting time (card, Jawatha FAQ, 24h paragraph, «Полдень: мечеть Джавата» in the 24h itinerary) is the direct, intended effect of Eyad's ruling «لا نشير لا بالنفي ولا بالتأكيد». Any repair (time, «вне времени молитв», «весь день», park hours imported into the blog) would breach the fence and the ruling. Raised to Eyad as a known consequence: the blind reader could not tell when to come (item 1), nor whether one stays inside during the midday prayer (item 49).",
+    "b_item_1_final_period": "REJECTED. Site convention for card values is no final period: 0 of 41 value_ru, 0 of 119 value_en, 0 of 46 value_de, 0 of 42 value_zh and 0 of 119 Arabic values in src/content/attractions end with a period; the ar/en source of this row has none. Shared value kept without period. The blog clauses are prose sentences and keep their period.",
+    "c_item_27_time_format": "CONFIRMED stage 4. Card row (line 46) keeps the dash range «8:00–24:00» (card format; matches published jawatha-park card «Ежедневно 8:00–24:00» and BRIEF). FAQ answer (line 69) uses «с 8:00 до 24:00» — mirrors the source from…to (ar «من … إلى», en «from … to») and the published jawatha-park FAQ «Ежедневно с 8:00 до 24:00.». «до полуночи» rejected: breaks the site-wide published 24:00 notation and the BRIEF format line; stylistic only.",
+    "d_item_41_uqair": "SOURCE DEFECT, raised to Eyad. The uqair-mosque card says open to visitors while the body says restoration is under way and some parts may be closed — the same tension exists in ar («بعض أجزائه مغلقة») and en («The site is undergoing restoration work, and some parts may be closed»). Russian keeps faith with both fields; not applied, not rejected."
+  },
+  "blind_reader_rulings": [
+    {
+      "item": 1,
+      "ruling": "split",
+      "detail": "no-final-period: rejected (convention, ruling b). when-can-I-come: known consequence of the decision, logged for Eyad (ruling a)."
+    },
+    {
+      "item": 9,
+      "ruling": "source",
+      "detail": "Abu Bakr ribat (working student residence) carries the shared mosque formula; whether it is visitable and what «sanctity» means for a residence is a source question — logged for Eyad."
+    },
+    {
+      "item": 22,
+      "ruling": "out of scope / source",
+      "detail": "Park-only hours = decision (ruling a). Park fee to reach the mosque, 10–15 range, «у администрации», «Парк Джавата» vs «окружающий парк» sit in unchanged fields — logged for later."
+    },
+    {
+      "item": 27,
+      "ruling": "rejected",
+      "detail": "ruling c."
+    },
+    {
+      "item": 29,
+      "ruling": "out of scope / source",
+      "detail": "Qubba access via the palace, «Каср-Ибрахим — менее 1 км» in Nearby while the mosque is inside it — unchanged fields; logged for Eyad."
+    },
+    {
+      "item": 41,
+      "ruling": "source",
+      "detail": "ruling d."
+    },
+    {
+      "item": 45,
+      "ruling": "rejected",
+      "detail": "Adding park hours/fees to the 24h paragraph would add a fact the source line does not carry (fence)."
+    },
+    {
+      "item": 49,
+      "ruling": "known consequence",
+      "detail": "ruling a."
+    },
+    {
+      "items": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        28,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        46,
+        47,
+        48,
+        50,
+        51,
+        52,
+        53
+      ],
+      "ruling": "out of batch scope",
+      "detail": "None touches a changed field; not scored. Kept on the unscored \"raise to Eyad later\" list below."
+    }
+  ],
+  "source_defects": [
+    "uqair-mosque: card «open to visitors» vs body «restoration under way, some parts may be closed» (ar+en) — item 41.",
+    "bubakr-ribat: shared mosque visiting formula on a working student residence — item 9.",
+    "qubba-mosque: Nearby lists Qasr Ibrahim (<1 km) although the mosque stands inside it — item 29.",
+    "qubba-mosque: founding chronology reads as contradictory (979 vs built five years earlier) — item 28."
+  ],
+  "known_consequences_for_eyad": [
+    "With no time stated, readers ask when they may come (any time? outside prayers?) and whether they may be inside during the midday prayer (24h itinerary «Полдень: мечеть Джавата»). Intended by the 2026-10-02 ruling; logged so Eyad sees how it reads."
+  ],
+  "raise_to_eyad_later_unscored": [
+    "22: Jawatha — is the park fee needed to reach the mosque? what drives 10–15 SAR? which «администрация»?",
+    "2: date formats vary («1555 год н. э.»); 3/48-hours «Ее»: ё not unified site-wide",
+    "4 «Аль Абу Бакр аль-Мулла» hyphenation; 10 three names for the ribat; 13 «Восточный минарет»; 7 «Восточной» confusable with Et-Tahimiya East",
+    "12/14 «дворец/крепость» alternation; 15/18 restoration-project names (Royal Commission vs Prince Mohammed bin Salman project at Jalaniyah)",
+    "19 empty «Фотографии этого места»; 20/21/33/36/37 inconsistent distance references; 38 «214» without unit; 39 30 vs 214 m²",
+    "23 «по преданию» missing in summary and itineraries; 26 «1563-009» shown bare; 30 «сульс» unglossed; 32 «Абу-н-Нууш» dangling; 35 «Эль-Кара/Джабаль-эль-Кара»; 43 «Неджд»; 48 «Дуга-эль-Гараш»",
+    "46/50 contradictory best time for the palace; 47/53 navigation page names; 52 first half-day missing in an itinerary",
+    "5, 6, 8, 11, 16, 17, 24, 25, 31, 34, 40, 42, 44, 51: style/repetition notes (from 06-blind.md)"
+  ],
+  "judge_edits": "None. All 17 stage-5 proposals adopted byte-for-byte; no change was needed within the rubric.",
+  "published": {
+    "visit_label": "Посещение",
+    "visit_value_shared_x12": "Открыто для посетителей; приходите в скромной одежде и уважайте святость места",
+    "jawatha_park_row": {
+      "label_ru": "Часы работы окружающего парка",
+      "value_ru": "8:00–24:00"
+    },
+    "jawatha_faq": {
+      "q_ru": "В какие часы открыт парк вокруг мечети Джавата?",
+      "a_ru": "Парк вокруг мечети открыт с 8:00 до 24:00."
+    },
+    "blog_clause_24_hours_itinerary": "Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места",
+    "blog_clause_48_hours_itinerary": "Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места",
+    "c29_constants": {
+      "VISIT_VALUE.ru": "Открыто для посетителей; приходите в скромной одежде и уважайте святость места",
+      "BLOG_CLAUSE['24-hours-itinerary'].ru": "Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места",
+      "BLOG_CLAUSE['48-hours-itinerary'].ru": "Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места"
+    }
+  },
+  "memory_followups": [
+    "scores.csv: append scores_csv_row (not written by the judge in this run — orchestrator commits).",
+    "tm.json: append tm_pairs_to_append; the earlier pairs carrying «учитывайте время молитв» / «Мечеть открыта весь день» (e.g. lines ~1419, 1506, 3904, 8659, 8667) are now RETIRED and should be marked superseded so they are not reused."
+  ],
+  "tm_pairs_to_append": [
+    {
+      "ar": "متاحة، مع اللباس المحتشم واحترام حرمة المكان",
+      "en": "Open to visitors, with modest dress and respect for the sanctity of the place",
+      "ru": "Открыто для посетителей; приходите в скромной одежде и уважайте святость места"
+    },
+    {
+      "ar": "زيارة المسجد متاحة، مع اللباس المحتشم واحترام حرمة المكان.",
+      "en": "The mosque is open to visitors, with modest dress and respect for the sanctity of the place.",
+      "ru": "Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места."
+    },
+    {
+      "ar": "مواعيد المنتزه المحيط · 8 ص–12 منتصف الليل",
+      "en": "Surrounding park hours · 8 am – 12 midnight",
+      "ru": "Часы работы окружающего парка · 8:00–24:00"
+    },
+    {
+      "ar": "ما مواعيد المنتزه المحيط بمسجد جواثا؟",
+      "en": "What are the opening hours of the park around Jawatha Mosque?",
+      "ru": "В какие часы открыт парк вокруг мечети Джавата?"
+    },
+    {
+      "ar": "يُفتح المنتزه المحيط بالمسجد من 8 ص إلى 12 منتصف الليل.",
+      "en": "The park around the mosque is open from 8 am to 12 midnight.",
+      "ru": "Парк вокруг мечети открыт с 8:00 до 24:00."
+    }
+  ],
+  "scores_csv_row": "\"mosque-visit-times (ru): 17 positions — visit formula without prayer times x12 cards («Открыто для посетителей; приходите в скромной одежде и уважайте святость места»), Jawatha park-only hours row + FAQ, 24h/48h blog clauses («Мечеть открыта для посетителей — …»; 48h duplicate advice deleted)\",2026-10-02,1,96,\"APPROVE (min 96: jawatha-mosque 30/27/20/9/10, cards/blogs 97; judge edits none; blind reader: 1 no-period rejected (0/41 ru card values end with a period), 27 «до полуночи» rejected (24:00 notation; FAQ с…до, card dash), 45 rejected (adds fact); 1/22/45/49 no-time = Eyad's 2026-10-02 decision, known consequence; source issues for Eyad: 41 Uqair open vs restoration closures, 9 ribat formula, 29 Qubba nearby)\""
+}

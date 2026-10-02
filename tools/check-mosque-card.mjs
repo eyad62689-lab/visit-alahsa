@@ -17,36 +17,44 @@
 
 export const EXPECT = { minPages: 12, minBlogPages: 40 };
 
+// حكم إياد 2026-10-02: لا يُشار إلى وقت زيارة المساجد العاملة لا نفياً ولا تأكيداً — فخرج «مراعاة
+// أوقات الصلاة» من البند ومن عبارة المدونة، وخرجت صفوف «المواعيد» (أوقات الصلوات) ووقت مسجد جواثا.
 export const VISIT_LABEL = { ar: 'الزيارة', en: 'Visiting', zh: '游览', de: 'Besuch', ru: 'Посещение' };
 export const VISIT_VALUE = {
-  ar: 'متاحة، مع مراعاة أوقات الصلاة واللباس المحتشم واحترام حرمة المكان',
-  en: 'Open to visitors, with respect for prayer times, modest dress and the sanctity of the place',
-  zh: '开放参观，请留意礼拜时间，注意衣着端庄，尊重场所的神圣',
-  de: 'Für Besucher offen – bitte mit Rücksicht auf die Gebetszeiten, in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes',
-  ru: 'Открыто для посетителей; учитывайте время молитв, приходите в скромной одежде и уважайте святость места',
+  ar: 'متاحة، مع اللباس المحتشم واحترام حرمة المكان',
+  en: 'Open to visitors, with modest dress and respect for the sanctity of the place',
+  zh: '开放参观，请注意衣着端庄，尊重场所的神圣',
+  de: 'Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes',
+  ru: 'Открыто для посетителей; приходите в скромной одежде и уважайте святость места',
 };
 
 // عبارة الزيارة في المقالين (مفتاح المقال ← لغة ← العبارة كما تُنشر)
 export const BLOG_CLAUSE = {
   '24-hours-itinerary': {
-    ar: 'وزيارته متاحة، مع مراعاة أوقات الصلاة واللباس المحتشم واحترام حرمة المكان',
-    en: 'it is open to visitors, with respect for prayer times, modest dress and the sanctity of the place',
-    zh: '这里对游客开放，参观时请留意礼拜时间，注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte mit Rücksicht auf die Gebetszeiten, in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — учитывайте время молитв, приходите в скромной одежде и уважайте святость места',
+    ar: 'وزيارته متاحة، مع اللباس المحتشم واحترام حرمة المكان',
+    en: 'it is open to visitors, with modest dress and respect for the sanctity of the place',
+    zh: '这里对游客开放，参观时请注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места',
   },
   '48-hours-itinerary': {
-    ar: 'وزيارة المسجد متاحة، مع مراعاة أوقات الصلاة واللباس المحتشم واحترام حرمة المكان',
-    en: 'the mosque is open to visitors, with respect for prayer times, modest dress and the sanctity of the place',
-    zh: '清真寺向游客开放，入寺请注意衣着端庄，礼拜时间与场所的神圣还请时刻放在心上', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit derselben Rücksicht auf die Gebetszeiten und die Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде, помня о времени молитв и о святости места',
+    ar: 'زيارة المسجد متاحة، مع اللباس المحتشم واحترام حرمة المكان',
+    en: 'The mosque is open to visitors, with modest dress and respect for the sanctity of the place',
+    zh: '清真寺向游客开放，入寺请注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места',
   },
 };
 
-// الصيغ السابقة للبند بلغاتها الخمس — تسمياتٍ وقيماً
+// الصيغ السابقة للبند بلغاتها الخمس — تسمياتٍ وقيماً — ومعها كل صيغة لوقت زيارة المسجد (2026-10-02)
 export const RETIRED = [
   'زيارة غير المسلمين', 'متاحة، مع المحافظة على اللباس المحتشم', 'متاحة خارج أوقات الصلاة',
   'Visitors of other faiths', 'Welcome, with modest dress', 'Open outside prayer times',
   '非穆斯林游客', '欢迎参观，请注意衣着端庄', '礼拜时间以外开放参观',
   'Nichtmuslimische Besucher', 'Willkommen – bedeckende Kleidung vorausgesetzt', 'Außerhalb der Gebetszeiten möglich',
   'Вход для немусульман', 'Открыт при условии скромной одежды', 'Доступно вне времени молитв',
+  // وقت الزيارة: البند السابق، وصفوف المواعيد، ووقت مسجد جواثا
+  'مع مراعاة أوقات الصلاة', 'يُفتح لأوقات الصلوات', 'يومياً خلال أوقات الصلوات', 'المسجد طوال اليوم', 'المسجد مفتوح طوال اليوم',
+  'with respect for prayer times', 'open at prayer times', 'at the five prayer times', 'Mosque: all day', 'The mosque is open all day',
+  '请留意礼拜时间', '清真寺全天开放',
+  'Rücksicht auf die Gebetszeiten', 'zu den Gebetszeiten geöffnet', 'Moschee: ganztägig',
+  'учитывайте время молитв', 'Мечеть: открыта весь день', 'Мечеть открыта весь день',
 ];
 
 // عبارات تفرّق بين الزوار بحسب الدين — ممنوعة في صفحات المدونة بكل لغة

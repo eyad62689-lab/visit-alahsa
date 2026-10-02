@@ -35,7 +35,7 @@ End your day at [Qaisariyah Souq](/en/attractions/qaisariyah/), about half a kil
 
 ## If Time Allows
 
-- [Jawatha Mosque](/en/attractions/jawatha-mosque/) in the village of Al-Kilabiyah, northeast of the oasis — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina; it is open to visitors, with respect for prayer times, modest dress and the sanctity of the place.
+- [Jawatha Mosque](/en/attractions/jawatha-mosque/) in the village of Al-Kilabiyah, northeast of the oasis — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina; it is open to visitors, with modest dress and respect for the sanctity of the place.
 - The [Souqs, Parks & Farms](/en/souqs-parks-farms/) page gathers the oasis's folk souqs, parks and farms — pick one close to your route.
 
 ## Practical Tips
