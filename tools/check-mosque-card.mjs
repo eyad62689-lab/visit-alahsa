@@ -20,11 +20,13 @@
 // 11 بطاقة بصيغة الزيارة: المساجد الاثنا عشر عدا مسجد ميناء العقير (قيد الترميم، البند (د)).
 export const EXPECT = { minPages: 11, minBlogPages: 40, minRestoration: 1 };
 
-// حكم إياد 2026-10-02: بطاقة مسجد ميناء العقير تقول الترميم (كما يقول متنها) لا «متاحة».
+// حكم إياد 2026-10-02: بطاقة مسجد ميناء العقير تقول ترميم مجمّع الميناء لا «متاحة»، بتسمية «حالة
+// الموقع» لا «الزيارة» — وجملة الترميم في البطاقة وحدها، فخرجت من المتن (لا تُقرأ مرتين).
+export const RESTORATION_LABEL = { ar: 'حالة الموقع', en: 'Site status', zh: '__ZH_PENDING__', de: '__DE_PENDING__', ru: '__RU_PENDING__' };
 export const UNDER_RESTORATION = {
   'uqair-mosque.md': {
-    ar: 'يشهد الموقع أعمال ترميم، وقد تكون بعض أجزائه مغلقة',
-    en: 'The site is undergoing restoration work, and some parts may be closed',
+    ar: 'يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة',
+    en: 'The port complex is undergoing restoration work, and some parts may be closed',
     zh: '__ZH_PENDING__',
     de: '__DE_PENDING__',
     ru: '__RU_PENDING__',
@@ -69,6 +71,9 @@ export const RETIRED = [
   '请留意礼拜时间', '清真寺全天开放',
   'Rücksicht auf die Gebetszeiten', 'zu den Gebetszeiten geöffnet', 'Moschee: ganztägig',
   'учитывайте время молитв', 'Мечеть: открыта весь день', 'Мечеть открыта весь день',
+  // جملة ترميم العقير في المتن (صارت في البطاقة وحدها) — 2026-10-02
+  'يشهد الموقع أعمال ترميم', 'The site is undergoing restoration work', '遗址内正在开展修缮工作',
+  'Derzeit laufen auf dem Gelände Restaurierungsarbeiten', 'Сейчас здесь идут реставрационные работы',
 ];
 
 // عبارات تفرّق بين الزوار بحسب الدين — ممنوعة في صفحات المدونة بكل لغة
@@ -133,15 +138,15 @@ export function checkMosqueCards(sources, pagesFor, allPages) {
   for (const [file, want] of Object.entries(UNDER_RESTORATION)) {
     const src = sources.find((s) => s.file === file);
     if (!src) { problems.push(`${file}: غائب عن المصدر`); continue; }
-    const line = src.text.split('\n').find((l) => l.includes(`label: "${VISIT_LABEL.ar}", value: "${want.ar}"`));
-    if (!line) { problems.push(`${file}: بند «${VISIT_LABEL.ar}» لا يحمل صيغة الترميم المعتمدة`); continue; }
+    const line = src.text.split('\n').find((l) => l.includes(`label: "${RESTORATION_LABEL.ar}", value: "${want.ar}"`));
+    if (!line) { problems.push(`${file}: بند «${RESTORATION_LABEL.ar}» لا يحمل صيغة الترميم المعتمدة`); continue; }
     const f = rowFields(line);
     for (const l of LANGS) {
-      if (/^__/.test(want[l])) { problems.push(`UNDER_RESTORATION.${file}.${l} غير معبّأ`); continue; }
-      if (f[l].value !== want[l]) { problems.push(`${file} [${l}]: صيغة الترميم في المصدر لا تطابق المعتمدة`); continue; }
+      if (/^__/.test(want[l]) || /^__/.test(RESTORATION_LABEL[l])) { problems.push(`UNDER_RESTORATION.${file}.${l} غير معبّأ`); continue; }
+      if (f[l].label !== RESTORATION_LABEL[l] || f[l].value !== want[l]) { problems.push(`${file} [${l}]: صيغة الترميم في المصدر لا تطابق المعتمدة`); continue; }
       if (l !== 'ar' && l !== 'en' && !new RegExp(`^title_${l}:`, 'm').test(src.text)) continue;
       const card = cardOf(pagesFor(file, l) ?? '');
-      if (!card || !card.includes(`<dd>${want[l]}</dd>`)) problems.push(`${file} [${l}]: صيغة الترميم غير منشورة في البطاقة`);
+      if (!card || !card.includes(`<dt>${RESTORATION_LABEL[l]}</dt><dd>${want[l]}</dd>`)) problems.push(`${file} [${l}]: صيغة الترميم غير منشورة في البطاقة`);
     }
     restoration++;
   }
