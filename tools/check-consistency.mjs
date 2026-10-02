@@ -25,6 +25,7 @@ import { checkAsfarNotes, EXPECT as ASFAR_NOTES_EXPECT } from './check-asfar-not
 import { checkQarahSilhouette, EXPECT as SILHOUETTE_EXPECT } from './check-qarah-silhouette.mjs';
 import { checkIbrahimTowers, EXPECT as TOWERS_EXPECT } from './check-ibrahim-towers.mjs';
 import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-ibrahim-materials-intro.mjs';
+import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -438,12 +439,20 @@ async function main() {
     }
     // ── C40: تمهيد مواد قصر إبراهيم «على الطريقة التقليدية في عمارة الخليج» (حكم إياد 2026-10-02) — لا «مواد الواحة
     // نفسها» ونظائرها بأي لغة (الشندل ليس من الواحة)، وإيجاباً التمهيد الجديد في صفحة القصر بكل لغة.
-    // المنطق في tools/check-ibrahim-materials.mjs.
+    // المنطق في tools/check-ibrahim-materials-intro.mjs.
     {
       const { problems, stats } = checkIbrahimMaterialsIntro(pages);
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C40', `تمهيد مواد قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C40', `تمهيد «على الطريقة التقليدية في عمارة الخليج» في صفحة قصر إبراهيم بكل لغة (${per}؛ الحدّ الأدنى ${MATERIALS_EXPECT.minPages})، ولا «مواد الواحة» في ${stats.scanned} صفحة`);
+    }
+    // ── C41: شرح الشندل في متن مسجد الحبيش (حكم إياد 2026-10-02) — «خشبٌ كان يُجلب إلى الخليج» بكل لغة،
+    // نظير شرط الشرح في C40. المنطق في tools/check-hubaish-chandal.mjs.
+    {
+      const { problems, stats } = checkHubaishChandal(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C41', `شرح الشندل في الحبيش: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C41', `شرح الشندل في صفحة الحبيش بكل لغة (${per}؛ الحدّ الأدنى ${HUBAISH_EXPECT.minPages})`);
     }
   }
   {
