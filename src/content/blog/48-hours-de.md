@@ -23,7 +23,7 @@ Eine Anmerkung vorab: Öffnungszeiten und Eintritt ändern sich je nach Saison. 
 
 ### Morgen: Qasr Ibrahim
 
-Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast). Diese Palastfestung mit ihren Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kaserne und Turm hinter einem einzigen Mauerring. Architektur und Innenhof zeigen sich im ersten Tageslicht am besten.
+Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast). Diese Palastfestung mit ihren Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kasernen und Türme hinter einem einzigen Mauerring. Architektur und Innenhof zeigen sich im ersten Tageslicht am besten.
 
 ### Vormittag: Das Al-Koot-Viertel und das Gedächtnis der Stadt
 

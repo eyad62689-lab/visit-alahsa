@@ -23,6 +23,7 @@ import { checkQarahPalms, EXPECT as PALMS_EXPECT } from './check-qarah-palms.mjs
 import { checkIbrahimMaterials, EXPECT as IBRAHIM_EXPECT } from './check-ibrahim-materials.mjs';
 import { checkAsfarNotes, EXPECT as ASFAR_NOTES_EXPECT } from './check-asfar-notes.mjs';
 import { checkQarahSilhouette, EXPECT as SILHOUETTE_EXPECT } from './check-qarah-silhouette.mjs';
+import { checkIbrahimTowers, EXPECT as TOWERS_EXPECT } from './check-ibrahim-towers.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -424,6 +425,15 @@ async function main() {
       const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (problems.length) fail('C38', `هيئة جبل القارة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C38', `حجم جبل القارة بهيئته من الخارج في مقال الدليل بكل لغة (${per}؛ الحدّ الأدنى ${SILHOUETTE_EXPECT.minPages})، ولا مقارنة بالاسم في ${stats.scanned} صفحة`);
+    }
+    // ── C39: مرافق قصر إبراهيم بالجمع (حكم إياد 2026-10-02) — لا «المسجد والثكنة والبرج» ولا
+    // نظائرها المفردة بأي لغة، وإيجاباً صيغة الجمع في صفحة القصر بكل لغة ذات عدد نحوي.
+    // المنطق في tools/check-ibrahim-towers.mjs.
+    {
+      const { problems, stats } = checkIbrahimTowers(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C39', `مرافق قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C39', `مرافق قصر إبراهيم بالجمع في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${TOWERS_EXPECT.minPages})، ولا صيغة مفردة في ${stats.scanned} صفحة`);
     }
   }
   {

@@ -25,7 +25,7 @@ What follows is what actually sets the place apart, and how to judge whether it 
 
 **One of the oldest stories in Islam.** At [Jawatha Mosque](/en/attractions/jawatha-mosque/), mud walls mark the first place a Friday prayer was held after Medina.
 
-**A souq that never became a museum.** [Qaisariyah Souq](/en/attractions/qaisariyah/) has traded for more than two centuries, and its cloaks are still embroidered by local hands. Nearby, the fortress of [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) gathers mosque, garrison and tower beneath one wall.
+**A souq that never became a museum.** [Qaisariyah Souq](/en/attractions/qaisariyah/) has traded for more than two centuries, and its cloaks are still embroidered by local hands. Nearby, the fortress of [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) gathers mosque, barracks and towers beneath one wall.
 
 **Living craft, not reenactment.** At [Dougha Al-Gharash](/en/attractions/duqat-algharash/), by the foot of Jabal Al-Qarah, the Al-Gharash family still turns clay in one of the Kingdom's best-known homes of pottery.
 
