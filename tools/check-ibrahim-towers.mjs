@@ -24,8 +24,8 @@ export const OLD = [
 export const OK = {
   ar: /المسجد\s+والثكنات\s+والأبراج/,
   en: /mosque,\s+barracks\s+and\s+towers/i,
-  de: /__DE_PENDING__/,
-  ru: /__RU_PENDING__/,
+  de: /Moschee,\s+Kasernen\s+und\s+Türme(?![a-zäöü])/,
+  ru: /мечеть,\s+казармы\s+и\s+башни(?![а-яё])/iu,
 };
 
 const TARGET = /^(?:معالم\/قصر-إبراهيم|(?:en|de|ru)\/attractions\/qasr-ibrahim)\/index\.html$/;

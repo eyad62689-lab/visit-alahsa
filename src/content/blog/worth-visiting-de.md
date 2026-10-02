@@ -25,7 +25,7 @@ Im Folgenden lesen Sie, was diesen Ort wirklich auszeichnet – und wie Sie beur
 
 **Eine der ältesten Geschichten des Islams.** In der [Jawatha-Moschee](/de/attractions/jawatha-mosque/) markieren die Lehmmauern den Ort, an dem das erste Freitagsgebet nach dem von Medina stattfand.
 
-**Ein Souk, der nie zum Museum wurde.** Im [Qaisariyah-Souk](/de/attractions/qaisariyah/) wird seit mehr als zwei Jahrhunderten gehandelt, und seine Umhänge, auch Hasawi-Bischt genannt, werden noch immer von einheimischen Händen bestickt. In der Nähe steht [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (der Ibrahim-Palast): Die Palastfestung vereint Moschee, Kaserne und Turm hinter einer einzigen Mauer.
+**Ein Souk, der nie zum Museum wurde.** Im [Qaisariyah-Souk](/de/attractions/qaisariyah/) wird seit mehr als zwei Jahrhunderten gehandelt, und seine Umhänge, auch Hasawi-Bischt genannt, werden noch immer von einheimischen Händen bestickt. In der Nähe steht [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (der Ibrahim-Palast): Die Palastfestung vereint Moschee, Kasernen und Türme hinter einer einzigen Mauer.
 
 **Lebendiges Handwerk, keine Nachstellung.** In [Dougha Al-Gharash](/de/attractions/duqat-algharash/) am Fuß des Qarah-Bergs dreht die Familie Al-Gharash noch immer den Ton – in einer der bekanntesten Stätten des Töpferhandwerks in Saudi-Arabien.
 

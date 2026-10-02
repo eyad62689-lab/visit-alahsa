@@ -11,14 +11,14 @@ bestTime_zh: 白天前来最好，建筑细节与庭院的光线都看得最清�
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 (2026-09-04)
 title_de: "Qasr Ibrahim"
 kicker_de: "Historische Festung"
-summary_de: "Eine Festung mit Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kaserne und Turm."
+summary_de: "Eine Festung mit Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kasernen und Türme."
 area_de: "Zentrum von Hofuf – Al-Ahsa"
 bestTime_de: "Tagsüber, um die Details der Architektur und das Licht des Innenhofs zu sehen."
 body_de: "Im Herzen von Hofuf steht Qasr Ibrahim als Zeuge jahrhundertelangen Wandels. Kein Palast im prunkvollen Sinne, sondern eine Festung, die hinter einer einzigen Mauer vereinte, was selten zusammenkommt: eine Moschee mit anmutiger Kuppel, eine Kaserne, Wachtürme, Ställe und Lagerräume. Erbaut wurde die Festung aus den Baustoffen der Oase selbst: Die Mauern bestehen aus strohvermischtem Lehm, die Dächer aus Palmstämmen, Chandal-Holz und Steinen; zum Minarett führt eine steinerne Wendeltreppe hinauf. Gehen Sie durch den weiten Hof, sehen Sie, wie die Kuppel den Mihrab (die Gebetsnische) beschattet, und Sie lesen Schichten von Geschichte, die sich Generation für Generation angesammelt haben. Heute zählt die Festung zu den bedeutendsten Kulturdenkmälern Al-Ahsas und gehört zu jenem städtischen Gefüge, dem die Oase ihre Aufnahme in die Welterbeliste der UNESCO im Jahr 2018 verdankt."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-09-05، السجل في ru-translation/memory/scores.csv)
 title_ru: "Каср-Ибрахим"
 kicker_ru: "Историческая крепость"
-summary_ru: "Крепость с глиняными стенами и кровлей из пальмовых стволов вмещает мечеть, казармы и башню."
+summary_ru: "Крепость с глиняными стенами и кровлей из пальмовых стволов вмещает мечеть, казармы и башни."
 body_ru: "В сердце Эль-Хуфуфа стоит Каср-Ибрахим (в переводе — дворец Ибрахима), свидетель столетий перемен. Это не роскошный дворец, а крепость, собравшая за одной стеной то, что редко встречается вместе: мечеть с изящным куполом, казармы, сторожевые башни, конюшни и склады. Ее возвели из материалов самого оазиса: стены сложены из глины, смешанной с соломой, кровля — из пальмовых стволов, дерева шандаль и камня. На минарет мечети ведет каменная винтовая лестница. Пройдитесь по просторному двору, посмотрите, как купол затеняет михраб (молитвенную нишу), и вы прочтете на стенах слои истории, которые копились поколение за поколением. Сегодня крепость — один из главных исторических памятников Аль-Ахсы и часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО."
 area_ru: "Центр Эль-Хуфуфа, Аль-Ахса"
 bestTime_ru: "Днем, чтобы увидеть детали архитектуры и свет во внутреннем дворе."
