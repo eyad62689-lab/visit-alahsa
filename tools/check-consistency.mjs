@@ -613,6 +613,11 @@ async function main() {
       // الروسية أُضيفت مع دفعة ui.ru (2026-09-05): رصدت المرحلة 4 أن /ru/ كانت بلا حارس
       // (‏\w لا تطابق السيريلية في JS بلا علم u، فالمقاطع بـ[а-яё] صراحةً)
       { lang: 'ru', re: /крупнейш[а-яё]+\s+(?:пальмов[а-яё]+|фиников[а-яё]+|природн[а-яё]+)\s+оазис/i },
+      // الواحة واحدة: شعار الرئيسية والتذييل «بين الواحات والنخيل» صار «بين البساتين والنخيل» (قرار إياد 2026-10-03)
+      { lang: 'ar', re: /بين\s+الواحات\s+والنخيل/ },
+      { lang: 'en', re: /among\s+(?:the|its)\s+oases\s+and\s+palms/i },
+      { lang: 'de', re: /zwischen\s+Oasen\s+und\s+Dattelpalmen/ },
+      { lang: 'ru', re: /среди\s+оазисов\s+и\s+пальм/i },
     ];
     const OK_CLAIM = /أكبر واحة[ٍ]? (?:في العالم|على وجه الأرض)|largest oasis (?:on earth|in the world)|最大的绿洲|größten Oase der Welt|крупнейш[а-яё]+\s+оазис[а-яё]*\s+(?:в\s+мире|мира)/i;
     const offenders = [];
@@ -625,7 +630,7 @@ async function main() {
       if (OK_CLAIM.test(html)) carriers++;
     }
     if (offenders.length) {
-      fail('C15', `دعوى «واحة نخيل» عادت في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — غينيس تقول «Largest oasis»`);
+      fail('C15', `دعوى «واحة نخيل» أو جمع «الواحات» عاد في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — غينيس تقول «Largest oasis»`);
     } else if (carriers === 0) {
       fail('C15', 'لا صفحة تحمل دعوى «أكبر واحة في العالم» — الحارس صار فارغاً، تحقّق من الصياغة');
     } else {
