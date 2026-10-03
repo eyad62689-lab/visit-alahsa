@@ -1,0 +1,53 @@
+{
+  "batch": "polish-six",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-03",
+  "threshold": 90,
+  "score": 96,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 96
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "ru-home-facts-L58",
+      "file": "src/components/views/HomeView.astro",
+      "line": 58,
+      "from": "ru ? '2,5 млн+'",
+      "to": "ru ? 'Более 2,5 млн'",
+      "reason": "Blind item 34 applied: postfix «+» after «млн» reads as foreign infographic notation; «Более 2,5 млн» is the stage-5 alternative and matches «более чем 2,5 млн» in ru home.hero.lead and «пальм…» label (genitive after млн holds). Capitalised as the card display line (sibling «Тысячи»; de «Über 2,5 Mio.»). Width: 13 characters, same as the approved de card «Über 2,5 Mio.» in the same 4-column .fact-n (t-2xl) grid; collapses to 2 and 1 columns on narrow viewports. Accepted."
+    }
+  ],
+  "blind_disposition": {
+    "25": "Inserted «предвечерние часы, когда спадает жара» drew no stumble; kept. Repetition of «лайм Аль-Ахсы», «сюда», «ферма лайма» inherited (termbase name), out of scope.",
+    "34": "APPLIED (judge edit: «2,5 млн+» -> «Более 2,5 млн»). Reader note that extraction glued number to label: page structure, not a defect."
+  },
+  "source_defects": [
+    "Items 1-2: home route timings (Qarah sunset day 1 / Qaisariyah noon) contradict the 48-hours article (Qarah morning day 2 / Qaisariyah evening; farm late afternoon). Source-level, raised to Eyad."
+  ],
+  "out_of_scope": [
+    "Items 3-24, 26-33, 35-41: outside batch scope (day-2 heading kept by Eyad decision; «Рассвет» for the palace; transliterations read as Russian words; Залив; UI labels; ё), unscored, raised to Eyad."
+  ],
+  "positions": [
+    {
+      "id": "ru-48h-L48",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 48,
+      "current": "Если поездка выпадет на сезон лайма Аль-Ахсы — летом, с середины июня, — посвятите вторую половину дня [ферме лайма Аль-Ахсы](/ru/attractions/lemon-farm/): сюда приезжают, чтобы в сезон собирать знаменитый лайм Аль-Ахсы. Вне сезона загляните на страницу [«Рынки, парки и фермы»](/ru/souqs-parks-farms/) и выберите парк или сад ближе к своему маршруту.",
+      "proposed": "Если поездка выпадет на сезон лайма Аль-Ахсы — летом, с середины июня, — посвятите предвечерние часы, когда спадает жара, [ферме лайма Аль-Ахсы](/ru/attractions/lemon-farm/): сюда приезжают, чтобы в сезон собирать знаменитый лайм Аль-Ахсы. Вне сезона загляните на страницу [«Рынки, парки и фермы»](/ru/souqs-parks-farms/) и выберите парк или сад ближе к своему маршруту."
+    },
+    {
+      "id": "ru-home-facts-L58",
+      "file": "src/components/views/HomeView.astro",
+      "line": 58,
+      "current": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2,5 млн' : '2.5M+', l: t('fact.palms.l') },",
+      "proposed": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? 'Более 2,5 млн' : '2.5M+', l: t('fact.palms.l') },"
+    }
+  ]
+}

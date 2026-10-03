@@ -1,0 +1,54 @@
+{
+  "batch": "polish-six",
+  "lang": "de",
+  "stage": 7,
+  "date": "2026-10-03",
+  "threshold": 90,
+  "score": 96,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 96
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "de-1",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 48,
+      "from": ", auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken.",
+      "to": ". Dort pflücken Besucher die berühmte Hasawi-Limette (Lomi).",
+      "reason": "Blind item 40 applied minimally: the inserted wenn-clause left three stacked subordinate layers (Fällt…, wenn…, auf der…) and a garden-path dative «der Hasawi-Limettenfarm». Splitting the trailing relative clause into its own sentence removes one layer; the wenn-clause stays attached to «der späte Nachmittag» (ar آخر العصر، حين ينكسر الحرّ apposition). «Dort» renders ar حيث. All facts kept (late afternoon, heat easing, farm + link, visitors pick, Hasawi-Limette, Lomi); no TM pair touched (tm.json has no pair for this sentence)."
+    }
+  ],
+  "blind_disposition": {
+    "4": "Hainen und Dattelpalmen settled in orchards-tagline (Haine = site term for البساتين); no action.",
+    "35": "inherited Qarah line, not touched by batch; out of scope.",
+    "40": "APPLIED (judge edit de-1: split relative clause into new sentence «Dort pflücken …»).",
+    "Über 2,5 Mio.": "no stumble; kept."
+  },
+  "out_of_scope": [
+    "Item 20 (source-level, for Eyad): home route timings vs 48-hours article (Qarah sunset day 1 vs morning day 2; Qaisariyah noon vs evening; farm «Mittag» on home route vs «später Nachmittag» in article). Not a translation defect; German keeps faith with each source.",
+    "Items 1-3, 5-19, 21-34, 36-39, 41-46: outside batch scope, unscored, raised to Eyad.",
+    "FruitsView.astro line 110 «2,5 Mio.» without «über» (stage-5 observation): parity with home card is an owner call."
+  ],
+  "positions": [
+    {
+      "id": "de-1",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 48,
+      "current": "Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der Nachmittag der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.",
+      "proposed": "Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der späte Nachmittag, wenn die Hitze nachlässt, der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/). Dort pflücken Besucher die berühmte Hasawi-Limette (Lomi). Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route."
+    },
+    {
+      "id": "de-2",
+      "file": "src/components/views/HomeView.astro",
+      "line": 58,
+      "current": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2,5 млн' : '2.5M+', l: t('fact.palms.l') },",
+      "proposed": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? 'Über 2,5 Mio.' : ru ? '2,5 млн' : '2.5M+', l: t('fact.palms.l') },"
+    }
+  ]
+}

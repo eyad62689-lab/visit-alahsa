@@ -1,0 +1,27 @@
+{
+  "lang": "de",
+  "stage": "01-05",
+  "batch": "polish-six",
+  "positions": [
+    {
+      "id": "de-1",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 48,
+      "current": "Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der Nachmittag der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.",
+      "proposed": "Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der späte Nachmittag, wenn die Hitze nachlässt, der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), auf der Besucher die berühmte Hasawi-Limette (Lomi) pflücken. Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.",
+      "notes": "«آخر العصر، حين ينكسر الحرّ» / 'the late afternoon, when the heat eases' → „der späte Nachmittag, wenn die Hitze nachlässt“. Minimal insertion; rest of line byte-identical. Phrasing mirrors published German wording „wenn … die Hitze nachlässt“ / „am späten Nachmittag“ elsewhere in the corpus (neighbour binds phrasing). Dative „der Hasawi-Limettenfarm“ unchanged; termbase name untouched. Heading line 46 „### Nachmittag: Das Grün der Farmen“ stays (Arabic heading «العصر» unchanged). No new facts; stage-4 fence: nothing added beyond the source clause. Stage 5: Sie-Anrede, ß (außerhalb), comma-delimited Nebensatz – PASS."
+    },
+    {
+      "id": "de-2",
+      "file": "src/components/views/HomeView.astro",
+      "line": 58,
+      "current": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2,5 млн' : '2.5M+', l: t('fact.palms.l') },",
+      "proposed": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? 'Über 2,5 Mio.' : ru ? '2,5 млн' : '2.5M+', l: t('fact.palms.l') },",
+      "notes": "de branch only: '2,5 Mio.' → 'Über 2,5 Mio.'. Matches „mehr als 2,5 Millionen Dattelpalmen“ in de home.hero.lead; German stat cards express a floor with „über“, not a „+“ sign (a leading „+“ reads as growth in German infographics, a trailing one is unidiomatic). Capitalized because the figure stands alone as the card's display line (sibling card „Tausende“). Decimal comma kept; 'Mio.' abbreviation kept as before (label 'Dattelpalmen – …' follows). Plain U+0020 per batch constraint."
+    }
+  ],
+  "observations": [
+    "src/components/views/FruitsView.astro line 110 has { n: '2,5 Mio.', l: 'Dattelpalmen in der Oase' } – same figure without „über“; out of this batch's scope, flagged for consistency with the home card if the owner wants parity.",
+    "HomeView.astro is CRLF (not LF); `current` strings were extracted with the trailing \r stripped and verified with split-count = 1 anchor match."
+  ]
+}
