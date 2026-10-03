@@ -39,7 +39,7 @@ Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a her
 
 Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. Early morning is its finest hour, when the light is soft and the heat is mild. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
 
-### Midday: Jawatha Mosque
+### Mid-morning: Jawatha Mosque
 
 Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. The mosque is open to visitors, with modest dress and respect for the sanctity of the place.
 
