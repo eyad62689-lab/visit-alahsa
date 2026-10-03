@@ -1,0 +1,205 @@
+{
+  "batch": "itinerary-times",
+  "lang": "zh",
+  "stage": 6,
+  "date": "2026-10-03",
+  "threshold": 90,
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 19,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 94
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "zh-05",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 15,
+      "from": "卡拉山宜在白天游览，而凯撒利亚集市的店铺上午和傍晚营业，中午歇业。",
+      "to": "卡拉山宜在白天游览；凯撒利亚集市的店铺中午歇业，到下午才重新开门，宜上午或傍晚前往。",
+      "reason": "blind r2 items 3+4: 中午歇业 alone reads as a short noon closure (card 12:00–15:30); afternoon reopening stated from the same-page card; order fact-then-advice per the reader (店铺中午歇业，宜上午或傍晚前往)."
+    },
+    {
+      "id": "zh-08",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 34,
+      "from": "上午或傍晚是它最好的时候，因为店铺中午歇业；而傍晚来逛，",
+      "to": "店铺中午歇业，到下午才重新开门，宜上午或傍晚前来；傍晚来逛，",
+      "reason": "blind r2 item 4: reversed causal 因为 clause replaced by fact-then-advice; closure spans midday into the afternoon. No hours in blog prose."
+    },
+    {
+      "id": "zh-09",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 34,
+      "from": "上午或傍晚是它最好的时候，因为店铺中午歇业。",
+      "to": "店铺中午歇业，到下午才重新开门，宜上午或傍晚前来。",
+      "reason": "blind r2 item 4 (as zh-08)."
+    },
+    {
+      "id": "zh-15",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 10,
+      "from": "上午或傍晚前往；店铺中午歇业。",
+      "to": "上午或傍晚前往；店铺中午歇业，到下午才重新开门。",
+      "reason": "blind r2 item 3: closure duration; card 8:00–12:00、15:30–22:00 on the same page."
+    },
+    {
+      "id": "zh-16",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 93,
+      "from": "上午或傍晚前往；店铺中午歇业。",
+      "to": "上午或傍晚前往；店铺中午歇业，到下午才重新开门。",
+      "reason": "blind r2 item 3 (as zh-15)."
+    }
+  ],
+  "blind_disposition": "R2 zh: item 2 (白天 slot between 上午 and 傍晚; repeated by 白天登高) REJECTED - owner's literal «النهار»; 白天 is the plain daytime word; the repetition mirrors ar «اصعد في النهار». Item 3 (傍晚 narrows 15:30–22:00; noon closure) APPLIED in part - afternoon reopening stated (到下午才重新开门) in zh-05/08/09/15/16; 傍晚 is the published evening term for المساء in both blog headings, not re-litigated here. Item 4 (reversed causal 因为) APPLIED - zh-05/08/09 now 店铺中午歇业，…，宜上午或傍晚前往/前来. Item 6 (到了季节的哈萨青柠农场) inherited, unscored. Item 8 (terse 白天前往。) REJECTED - equals «فترة النهار.». Item 9 sound. Items 1, 5, 7 raised to owner. 24 h 早上 vs 48 h 上午 for الصباح accepted as reasoned in 05 (24 h 上午 already = الضحى), -1 style.",
+  "out_of_scope": [
+    "Home route places Jabal al-Qarah on day 1 (daytime slot) while the 24/48-hours articles and the Qarah guide put it at the morning start / day 2 - owner decision (home-route swap), not a translation defect.",
+    "Home-route daytime slot read as midday/afternoon between morning and evening - owner's literal decision «النهار».",
+    "Winter night («ليلة شتاء») in the Qarah guide - source wording, question for the owner (C16).",
+    "Qaisariyah on Friday is evening-only (card); neither itinerary warns about it.",
+    "Home-route lime-farm card has no season caveat; the season has no stated end.",
+    "Qasr Ibrahim «first light» (48 h) vs «late-morning light» (24 h), with no published opening before 8:00.",
+    "No driving time to Al-Uqair before sunset on day 2."
+  ],
+  "positions": [
+    {
+      "id": "zh-01",
+      "file": "src/i18n/ui.ts",
+      "line": 560,
+      "current": "    'home.route.time.noon': '正午',",
+      "proposed": "    'home.route.time.day': '白天',\r\n    'home.route.time.lateAfternoon': '下午晚些时候',\r\n    'home.route.time.evening': '傍晚',"
+    },
+    {
+      "id": "zh-02",
+      "file": "src/i18n/ui.ts",
+      "line": 571,
+      "current": "    'home.route.s3.d': '趁天光转柔时登高，脚下椰枣林如海铺展。',",
+      "proposed": "    'home.route.s3.d': '白天登高，看脚下椰枣林如海铺展。',"
+    },
+    {
+      "id": "zh-03",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 3,
+      "current": "description: \"哈萨一日紧凑行程：清晨卡拉山的洞穴，上午易卜拉欣宫与库特区，傍晚凯撒利亚集市。\"",
+      "proposed": "description: \"哈萨一日紧凑行程：早上卡拉山的洞穴，上午易卜拉欣宫与库特区，傍晚凯撒利亚集市。\""
+    },
+    {
+      "id": "zh-04",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 13,
+      "current": "    a: \"一天足以领略哈萨的精华：清晨走进卡拉山的洞穴，上午看一座历史古堡与一片遗产街区，傍晚逛凯撒利亚集市。若想跟着绿洲自己的节奏，细看它的水、海岸与农场，那就得留宿一晚——本站博客的两日行程正好涵盖这些。\"",
+      "proposed": "    a: \"一天足以领略哈萨的精华：早上走进卡拉山的洞穴，上午看一座历史古堡与一片遗产街区，傍晚逛凯撒利亚集市。若想跟着绿洲自己的节奏，细看它的水、海岸与农场，那就得留宿一晚——本站博客的两日行程正好涵盖这些。\""
+    },
+    {
+      "id": "zh-05",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 15,
+      "current": "    a: \"可以。最合适的顺序是一早游山、傍晚逛集市：清晨是卡拉山最好的时候，光线柔和，暑气尚轻；而凯撒利亚集市傍晚开门迎客，也正是最热闹的时候。\"",
+      "proposed": "    a: \"可以。最合适的顺序是早上游山、傍晚逛集市：卡拉山宜在白天游览；凯撒利亚集市的店铺中午歇业，到下午才重新开门，宜上午或傍晚前往。\""
+    },
+    {
+      "id": "zh-06",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 22,
+      "current": "## 清晨：卡拉山的洞穴与加拉什家族杜加陶坊",
+      "proposed": "## 早上：卡拉山的洞穴与加拉什家族杜加陶坊"
+    },
+    {
+      "id": "zh-07",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 24,
+      "current": "一天从胡富夫以东的[卡拉山](/zh/attractions/jabal-al-qarah/)开始——绿洲腹地的一处地质奇观，山中的洞穴**盛夏时节凉爽，隆冬之际温暖**。清晨最宜前来：光线柔和，暑气尚轻。山脚下的卡拉村里坐落着[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。",
+      "proposed": "一天从胡富夫以东的[卡拉山](/zh/attractions/jabal-al-qarah/)开始——绿洲腹地的一处地质奇观，山中的洞穴**盛夏时节凉爽，隆冬之际温暖**。山脚下的卡拉村里坐落着[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。"
+    },
+    {
+      "id": "zh-08",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 34,
+      "current": "一天的最后留给[凯撒利亚集市](/zh/attractions/qaisariyah/)——距易卜拉欣宫约半公里，是一座已有 200 多年历史的遗产市集：巷子里香水气息弥漫，黄铜泛着光泽，比什特长袍上的刺绣出自哈萨本地人之手。傍晚是它最好的时候：店铺一家家开门，人气一点点旺起来——在离开哈萨之前，为这紧凑的一天画上一个恰到好处的句号。",
+      "proposed": "一天的最后留给[凯撒利亚集市](/zh/attractions/qaisariyah/)——距易卜拉欣宫约半公里，是一座已有 200 多年历史的遗产市集：巷子里香水气息弥漫，黄铜泛着光泽，比什特长袍上的刺绣出自哈萨本地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来；傍晚来逛，正好在离开哈萨之前，为这紧凑的一天画上一个恰到好处的句号。"
+    },
+    {
+      "id": "zh-09",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 34,
+      "current": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。傍晚是它最好的时候：店铺陆续开门，市集渐渐热闹起来。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。",
+      "proposed": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。"
+    },
+    {
+      "id": "zh-10",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 38,
+      "current": "### 清晨：卡拉山与加拉什家族杜加陶坊",
+      "proposed": "### 上午：卡拉山与加拉什家族杜加陶坊"
+    },
+    {
+      "id": "zh-11",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 40,
+      "current": "从胡富夫向东，前往[卡拉山](/zh/attractions/jabal-al-qarah/)——这处地质奇观的洞穴由岁月在绿洲深处凿成，盛夏时节凉爽，隆冬之际温暖。清晨最宜前来：光线柔和，暑气尚轻。山脚下的卡拉村里，不妨顺道走进[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。",
+      "proposed": "从胡富夫向东，前往[卡拉山](/zh/attractions/jabal-al-qarah/)——这处地质奇观的洞穴由岁月在绿洲深处凿成，盛夏时节凉爽，隆冬之际温暖。山脚下的卡拉村里，不妨顺道走进[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。"
+    },
+    {
+      "id": "zh-12",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 46,
+      "current": "### 下午：农场的绿意",
+      "proposed": "### 下午晚些时候：农场的绿意"
+    },
+    {
+      "id": "zh-13",
+      "file": "src/content/attractions/jabal-al-qarah.md",
+      "line": 11,
+      "current": "bestTime_zh: 清晨或傍晚日落前——光线转柔、暑气渐退的时刻，也最宜取景拍摄。",
+      "proposed": "bestTime_zh: 白天前往。"
+    },
+    {
+      "id": "zh-14",
+      "file": "src/content/attractions/jabal-al-qarah.md",
+      "line": 94,
+      "current": "    a_zh: \"清晨或傍晚日落前——光线转柔、暑气渐退的时刻，也最宜取景拍摄。\"",
+      "proposed": "    a_zh: \"白天前往。\""
+    },
+    {
+      "id": "zh-15",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 10,
+      "current": "bestTime_zh: 傍晚最佳：店铺陆续开门，市集也热闹起来。",
+      "proposed": "bestTime_zh: 上午或傍晚前往；店铺中午歇业，到下午才重新开门。"
+    },
+    {
+      "id": "zh-16",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 93,
+      "current": "    a_zh: \"傍晚最佳：店铺陆续开门，市集也热闹起来。\"",
+      "proposed": "    a_zh: \"上午或傍晚前往；店铺中午歇业，到下午才重新开门。\""
+    },
+    {
+      "id": "zh-17",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 8,
+      "current": "body_zh: \"这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；傍晚最热闹。\"",
+      "proposed": "body_zh: \"这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；上午或傍晚前来最宜。\""
+    },
+    {
+      "id": "zh-18",
+      "file": "src/content/blog/jabal-qarah-zh.md",
+      "line": 42,
+      "current": "登山最好的时候是**清晨或傍晚日落前**——光线转柔、暑气渐退；而日落时分的观景处，值得您围绕它来安排一天的行程。至于洞穴本身，内部凉爽，即便夏日正午也是理想的避暑之处：哈萨应对暑热的办法，就是把露天的景点留给清晨和日落，把洞穴留给中间的那几个钟头。",
+      "proposed": "登山最好的时候是**白天**。至于洞穴本身，内部凉爽，即便夏日正午也是理想的避暑之处。"
+    },
+    {
+      "id": "zh-19",
+      "file": "src/content/blog/jabal-qarah-zh.md",
+      "line": 48,
+      "current": "- **在行程里**：这座山是任何一趟哈萨之行的天然第一站——[一日行程](/zh/blog/one-day-in-al-ahsa/)与[两日行程](/zh/blog/48-hours-in-al-ahsa/)都从它开始。用[景点地图](/zh/map/)和[“我的行程”](/zh/plan/)把站点安排好。",
+      "proposed": "- **在行程里**：[一日行程](/zh/blog/one-day-in-al-ahsa/)从这座山开始，[两日行程](/zh/blog/48-hours-in-al-ahsa/)的第二天也从它开始。用[景点地图](/zh/map/)和[“我的行程”](/zh/plan/)把站点安排好。"
+    }
+  ],
+  "termbase_edits": []
+}

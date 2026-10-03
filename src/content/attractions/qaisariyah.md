@@ -5,23 +5,23 @@ title_en: "Qaisariyah Souq"
 title_zh: 凯撒利亚集市
 kicker_zh: 遗产市集
 summary_zh: 可上溯 200 多年的老市集，海湾地区最古老的传统集市之一，手工艺与本地物产都在这里挑选。
-body_zh: "这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；傍晚最热闹。"
+body_zh: "这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；上午或傍晚前来最宜。"
 area_zh: 胡富夫，里法阿区
-bestTime_zh: 傍晚最佳：店铺陆续开门，市集也热闹起来。
+bestTime_zh: 上午或傍晚前往；店铺中午歇业，到下午才重新开门。
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 بدرجة 93/100 (2026-09-11، الدورة 2 من 3)
 title_de: "Qaisariyah-Souk"
 kicker_de: "Traditioneller Souk"
 summary_de: "Ein traditioneller Souk, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht – einer der ältesten seiner Art und ein Ziel für Handwerk und einheimische Erzeugnisse."
-body_de: "Der Qaisariyah-Souk gehört zu den ältesten und traditionsreichsten Souks der Golfregion: Seine Geschichte reicht mehr als zwei Jahrhunderte zurück. Unverwechselbar ist seine Architektur, und die dicht an dicht stehenden Geschäfte führen Sie durch Gassen, in denen es nach Gewürzen, Kupfer und Parfüm duftet – hier schlägt das Herz des traditionellen Einkaufs in Al-Ahsa. Der Souk ist der ideale Ort, um den berühmten Hasawi-Bischt zu erwerben – den Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen. Die „Hasawi-Weberei“ zeichnet sich durch die Feinheit ihrer Handstickerei mit Zari-Fäden aus, die mit Gold oder Silber überzogen sind. Dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter. Neben dem Bischt finden Sie einheimisches Kunsthandwerk aus Palmblättern und Keramik sowie Datteln aller Sorten, Kaffee und Gewürze. Öffnungszeiten und Eintritt stehen weiter unten bei „Besuchsinformationen“; die beste Zeit ist der Abend."
+body_de: "Der Qaisariyah-Souk gehört zu den ältesten und traditionsreichsten Souks der Golfregion: Seine Geschichte reicht mehr als zwei Jahrhunderte zurück. Unverwechselbar ist seine Architektur, und die dicht an dicht stehenden Geschäfte führen Sie durch Gassen, in denen es nach Gewürzen, Kupfer und Parfüm duftet – hier schlägt das Herz des traditionellen Einkaufs in Al-Ahsa. Der Souk ist der ideale Ort, um den berühmten Hasawi-Bischt zu erwerben – den Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen. Die „Hasawi-Weberei“ zeichnet sich durch die Feinheit ihrer Handstickerei mit Zari-Fäden aus, die mit Gold oder Silber überzogen sind. Dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter. Neben dem Bischt finden Sie einheimisches Kunsthandwerk aus Palmblättern und Keramik sowie Datteln aller Sorten, Kaffee und Gewürze. Öffnungszeiten und Eintritt stehen weiter unten bei „Besuchsinformationen“; die beste Zeit ist der Morgen oder der Abend."
 area_de: "Hofuf, Al-Rifaa-Viertel"
-bestTime_de: "Am Abend, wenn die Geschäfte ihre Türen öffnen und der Souk zu pulsieren beginnt."
+bestTime_de: "Am Morgen oder am Abend, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 10 بدرجة 91/100 (2026-09-08، السجل في ru-translation/memory/scores.csv)
 title_ru: "Рынок Эль-Кайсария"
 kicker_ru: "Традиционный рынок"
 summary_ru: "Традиционный рынок, которому более двух веков: один из старейших народных рынков и место, куда приходят за ремесленными изделиями и местными товарами."
-body_ru: "Один из старейших и самых прославленных рынков в регионе Залива: ему более двух веков. Его архитектурный облик своеобразен, а тесно стоящие лавки ведут вас по проходам, где пахнет специями, медью и духами, — здесь бьётся сердце традиционной торговли Аль-Ахсы. Рынок — идеальное место, чтобы приобрести знаменитый бишт Аль-Ахсы: накидку, которую надевают по торжественным случаям как знак высокого положения. «Ткачество Аль-Ахсы» отличается точностью ручной вышивки нитями «зари», покрытыми золотом или серебром. Семьи Аль-Ахсы передают это ремесло из поколения в поколение. Помимо бишта вы найдёте здесь местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже, а лучшее время здесь — вечер."
+body_ru: "Один из старейших и самых прославленных рынков в регионе Залива: ему более двух веков. Его архитектурный облик своеобразен, а тесно стоящие лавки ведут вас по проходам, где пахнет специями, медью и духами, — здесь бьётся сердце традиционной торговли Аль-Ахсы. Рынок — идеальное место, чтобы приобрести знаменитый бишт Аль-Ахсы: накидку, которую надевают по торжественным случаям как знак высокого положения. «Ткачество Аль-Ахсы» отличается точностью ручной вышивки нитями «зари», покрытыми золотом или серебром. Семьи Аль-Ахсы передают это ремесло из поколения в поколение. Помимо бишта вы найдёте здесь местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже, а лучшее время здесь — утро или вечер."
 area_ru: "Эль-Хуфуф, район Эр-Рифаа"
-bestTime_ru: "Вечером, когда лавки открывают двери и рынок оживает."
+bestTime_ru: "Утром или вечером: в полдень лавки закрываются и вновь открываются лишь во второй половине дня."
 slug_ar: "سوق-القيصرية"
 slug_en: "qaisariyah"
 category: market
@@ -90,11 +90,11 @@ faq:
     q_en: "What is the best time to visit Qaisariyah Souq?"
     a_en: "The morning or the evening, as the shops close at midday."
     q_zh: "什么时候去凯撒利亚集市最好？"
-    a_zh: "傍晚最佳：店铺陆续开门，市集也热闹起来。"
+    a_zh: "上午或傍晚前往；店铺中午歇业，到下午才重新开门。"
     q_de: "Wann besuche ich den Qaisariyah-Souk am besten?"
-    a_de: "Am Abend, wenn die Geschäfte ihre Türen öffnen und der Souk zu pulsieren beginnt."
+    a_de: "Am Morgen oder am Abend, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen."
     q_ru: "Когда лучше посетить рынок Эль-Кайсария?"
-    a_ru: "Вечером, когда лавки открывают двери и рынок оживает."
+    a_ru: "Утром или вечером: в полдень лавки закрываются и вновь открываются лишь во второй половине дня."
   - q: "كم عمر سوق القيصرية؟"
     a: "يعود لأكثر من قرنين، وهو من أقدم أسواق الخليج وأعرقها."
     q_en: "How old is Qaisariyah Souq?"
