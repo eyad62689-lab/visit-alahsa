@@ -31,13 +31,13 @@ Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah]
 
 ### Evening: Qaisariyah Souq
 
-Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands. Its best hours are the morning or the evening, when the shops open their doors. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
+Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands. Its best hours are the morning or the evening, as the shops close at midday. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
 
 ## Day Two: Water, Green and the Coast
 
 ### Morning: Jabal Al-Qarah and Dougha Al-Gharash
 
-Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. Visit it during the daytime. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
+Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
 
 ### Mid-morning: Jawatha Mosque
 

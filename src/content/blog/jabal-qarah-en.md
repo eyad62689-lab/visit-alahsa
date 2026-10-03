@@ -45,7 +45,7 @@ The best time to climb: **during the daytime**. The caves themselves, with their
 
 - **Location:** east of Hofuf, by Al-Qarah village — the [landmark page](/en/attractions/jabal-al-qarah/) carries the map link and coordinates.
 - **Hours and fees:** details live on the [landmark page](/en/attractions/jabal-al-qarah/); tickets are issued through the Land of Civilisations heritage village and include the caves experience. Hours change with seasons and holidays, and official channels have the final word.
-- **In your itinerary:** the mountain is the natural first stop of any visit — it opens both the [one-day itinerary](/en/blog/one-day-in-al-ahsa/) and the [two-day itinerary](/en/blog/48-hours-in-al-ahsa/). Plan your stops with the [attractions map](/en/map/) and the [My Trip](/en/plan/) tool.
+- **In your itinerary:** the mountain opens the [one-day itinerary](/en/blog/one-day-in-al-ahsa/) and the second day of the [two-day itinerary](/en/blog/48-hours-in-al-ahsa/). Plan your stops with the [attractions map](/en/map/) and the [My Trip](/en/plan/) tool.
 
 ## The Verdict
 
