@@ -85,6 +85,11 @@ export const RETIRED_IN = {
 // عبارات تفرّق بين الزوار بحسب الدين — ممنوعة في صفحات المدونة بكل لغة
 export const BLOG_RETIRED = ['غير المسلمين', 'other faiths', 'non-Muslim', 'Non-Muslim', '非穆斯林', 'Nichtmuslim', 'немусульман'];
 
+// خانة مسجد جواثا في «48 ساعة»: كانت الظهيرة (وقت صلاة) فصارت الضحى بعد القارة (2026-10-03)
+export const BLOG_RETIRED_SLOT = [
+  'الظهيرة: مسجد جواثا', 'Midday: Jawatha Mosque', '正午：贾瓦塔清真寺', 'Mittag: Die Jawatha-Moschee', 'Полдень: мечеть Джавата',
+];
+
 const LANGS = ['ar', 'en', 'zh', 'de', 'ru'];
 const decode = (s) => s
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
@@ -171,6 +176,7 @@ export function checkBlogVisitWording(blogPages) {
   for (const { rel, lang, key, html } of blogPages) {
     const page = decode(html);
     for (const r of BLOG_RETIRED) if (page.includes(r)) problems.push(`${rel}: المدونة تنشر عبارة تفرّق بين الزوار بحسب الدين «${r}»`);
+    for (const r of BLOG_RETIRED_SLOT) if (page.includes(r)) problems.push(`${rel}: خانة جواثا السابقة «${r}»`);
     const want = BLOG_CLAUSE[key]?.[lang];
     if (!want) continue;
     if (/^__/.test(want)) { problems.push(`BLOG_CLAUSE.${key}.${lang} غير معبّأ`); continue; }

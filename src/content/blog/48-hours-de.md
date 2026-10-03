@@ -39,7 +39,7 @@ Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) au
 
 Fahren Sie von Hofuf aus nach Osten zum [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (dem Qarah-Berg), dem geologischen Wunder im Herzen der Oase, dessen Höhlen von der Zeit gemeißelt wurden: im Sommer kühl, im Winter warm. Der frühe Morgen ist seine beste Zeit: Dann ist das Licht weich und die Hitze mild. Am Fuß des Berges, im Dorf Al-Qarah, machen Sie Halt bei [Dougha Al-Gharash](/de/attractions/duqat-algharash/), dem traditionellen Töpferhaus, das die Familie Al-Gharash über Generationen weitergegeben hat und das zu den bekanntesten Stätten dieses Handwerks in Saudi-Arabien zählt.
 
-### Mittag: Die Jawatha-Moschee
+### Vormittag: Die Jawatha-Moschee
 
 Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/attractions/jawatha-mosque/) – eine der ältesten Moscheen des Islams und der erste Ort nach Medina, an dem ein Freitagsgebet stattfand. Die Lehmmauern tragen eine der ältesten Geschichten des Islams. Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes.
 
