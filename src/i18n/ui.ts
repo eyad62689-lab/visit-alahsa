@@ -534,7 +534,7 @@ export const ui = {
     'lang.menu': '语言',
     // الرئيسية + فهرس المعالم — دفعة 2026-08-29 (درجة الحاكم 92/100 مع تطبيق ملاحظاته)
     'home.hero.eyebrow': '联合国教科文组织世界遗产 · 2018',
-    'home.hero.title': '漫步绿洲，穿行椰枣林间',
+    'home.hero.title': '漫步果园，穿行椰枣林间',
     'home.hero.lead': '哈萨——全球最大的绿洲。数千年来，水在沙下静静流淌，滋养着 250 多万棵椰枣树，生生不息。',
     'home.hero.cta1': '走进哈萨的故事',
     'home.hero.cta2': '探索景点',
@@ -648,7 +648,7 @@ export const ui = {
     'video.play': '播放背景视频',
     'fav.add': '加入我的行程',
     'fav.added': '已加入行程 ✓',
-    'foot.tagline': '一片有故事的绿洲。漫步在椰枣林间。',
+    'foot.tagline': '一片有故事的绿洲。漫步在果园与椰枣林间。',
     'foot.col.discover': '探索',
     'foot.col.plan': '行程规划',
     'foot.col.site': '关于本站',
@@ -777,7 +777,7 @@ export const ui = {
     // فتُترجم مع بنائها لا قبله (وتتراجع للإنجليزية حتى ذلك الحين).
     'site.name': 'Al-Ahsa',
     'home.hero.eyebrow': 'UNESCO-Welterbestätte · 2018',
-    'home.hero.title': 'Unterwegs zwischen Oasen und Dattelpalmen',
+    'home.hero.title': 'Unterwegs zwischen Hainen und Dattelpalmen',
     'home.hero.lead': 'Al-Ahsa – die größte Oase der Welt. Hier fließt seit Jahrtausenden Wasser unter dem Sand, und zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert das Leben.',
     'home.hero.cta1': 'Die Geschichte beginnen',
     'home.hero.cta2': 'Zu den Sehenswürdigkeiten',
@@ -862,7 +862,7 @@ export const ui = {
     'nav.planVisit': 'Besuch planen',
     'nav.leisure': 'Souks & Parks',
     'nav.blog': 'Blog',
-    'foot.tagline': 'Eine Oase, die eine Geschichte erzählt. Unterwegs zwischen Oasen und Dattelpalmen.',
+    'foot.tagline': 'Eine Oase, die eine Geschichte erzählt. Unterwegs zwischen ihren Hainen und Dattelpalmen.',
     'foot.col.discover': 'Entdecken',
     'foot.col.plan': 'Planen',
     'foot.col.site': 'Website',
@@ -1013,7 +1013,7 @@ export const ui = {
     'site.name': 'Аль-Ахса',
     // الصفحة الرئيسية
     'home.hero.eyebrow': 'Объект Всемирного наследия ЮНЕСКО · 2018',
-    'home.hero.title': 'Побродите среди оазисов и пальм',
+    'home.hero.title': 'Побродите среди садов и пальм',
     'home.hero.lead': 'Аль-Ахса (или Эль-Хаса) — крупнейший оазис в мире. Здесь вода тысячелетиями течет под песком, а среди более чем 2,5 млн финиковых пальм кипит жизнь.',
     'home.hero.cta1': 'Начать историю',
     'home.hero.cta2': 'К достопримечательностям',
@@ -1104,7 +1104,7 @@ export const ui = {
     'nav.leisure': 'Рынки и парки',
     'nav.blog': 'Блог',
     // التذييل
-    'foot.tagline': 'Оазис со своей историей. Побродите среди оазисов и пальм.',
+    'foot.tagline': 'Оазис со своей историей. Побродите среди его садов и пальм.',
     'foot.col.discover': 'Путеводитель',
     'foot.col.plan': 'Планирование',
     'foot.col.site': 'Сайт',

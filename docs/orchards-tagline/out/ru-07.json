@@ -1,0 +1,41 @@
+{
+  "batch": "orchards-tagline",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-03",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 27,
+    "termbase_style": 19,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "blind_disposition": "Item 1 («Побродите среди садов и пальм» smooth, no stumble; optional «…и пальмовых рощ») REJECTED: source says palms (النخيل/palms); «пальмовая роща» is reserved in the termbase for palm grove (#28) and would stack two grove words («садов и пальмовых рощ»). Item 27 («со своей историей» may hint at a shady past; footer nearly repeats the hero) LOGGED, not applied: first sentence inherited and outside the batch; the repeat is the source's deliberate structure (source-level, not a defect). Reader raised no objection to «садов» or «его». Other items (2-26, 28-33) out of scope, raised to Eyad unscored.",
+  "out_of_scope": [
+    "Blind items 2-26, 28-33 (home page /ru/) inherited, outside this batch.",
+    "No termbase entry for groves/orchards of the oasis (البساتين); «сады» rests on published corpus (hasawi-lomi-history «садов оазиса», hasawi-lomi «садах Аль-Ахсы», souvenirs «садов Аль-Ахсы»). Recommend adding entry «البساتين / groves, orchards (of the oasis) -> сады (оазиса)», delimited from «пальмовая роща» and «пальмовый сад». -1 termbase.",
+    "memory/tm.json still holds the old ui.home.hero.title and ui.foot.tagline pairs; replace on merge.",
+    "Earlier judge note (jameed-fix n58) on «Побродите» register not acted on: verb change not requested in this batch."
+  ],
+  "positions": [
+    {
+      "id": "ru-home.hero.title",
+      "file": "src/i18n/ui.ts",
+      "line": 1016,
+      "current": "    'home.hero.title': 'Побродите среди оазисов и пальм',",
+      "proposed": "    'home.hero.title': 'Побродите среди садов и пальм',"
+    },
+    {
+      "id": "ru-foot.tagline",
+      "file": "src/i18n/ui.ts",
+      "line": 1107,
+      "current": "    'foot.tagline': 'Оазис со своей историей. Побродите среди оазисов и пальм.',",
+      "proposed": "    'foot.tagline': 'Оазис со своей историей. Побродите среди его садов и пальм.',"
+    }
+  ]
+}
