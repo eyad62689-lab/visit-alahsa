@@ -34,6 +34,9 @@ export const OK = {
   zh: /沿袭海湾地区的营造传统[\s\S]{0,300}?海湾传统建筑常用的进口木料/,
 };
 
+// الألمانية: «Kein Palast» تنفي معنى اسم لا يعرفه القارئ ما لم يُشرح «Qasr» عند أول ذكر (دفعة ibrahim-gloss، 2026-10-03)
+export const DE_NAME_GLOSS = /Qasr\s+Ibrahim\s+\(der\s+Ibrahim-Palast\)[\s\S]{0,120}?Kein\s+Palast\s+im\s+prunkvollen\s+Sinne/;
+
 const TARGET = /^(?:معالم\/قصر-إبراهيم|(?:en|zh|de|ru)\/attractions\/qasr-ibrahim)\/index\.html$/;
 
 /**
@@ -54,6 +57,7 @@ export function checkIbrahimMaterialsIntro(pages) {
     targets++;
     perLang[lang] = (perLang[lang] ?? 0) + 1;
     if (!OK[lang].test(html)) problems.push(`${rel}: تمهيد «على الطريقة التقليدية في عمارة الخليج» أو شرح الشندل غائب`);
+    if (lang === 'de' && !DE_NAME_GLOSS.test(html)) problems.push(`${rel}: شرح الاسم «(der Ibrahim-Palast)» قبل «Kein Palast» غائب`);
   }
   if (targets < EXPECT.minPages) problems.push(`صفحات قصر إبراهيم المفحوصة ${targets} — الحدّ الأدنى ${EXPECT.minPages}`);
   return { problems, stats: { targets, perLang, scanned: pages.length } };
