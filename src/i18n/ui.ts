@@ -571,7 +571,7 @@ export const ui = {
     'home.route.s5.d': '林荫深深，柑橘飘香；应季时还能亲手采摘哈萨青柠。',
     // العنوان بالاسم الصيني وحده (قاعدة romanization) — الگلوس اللاتيني في متن صفحة المعلم
     'home.route.s6.n': '乌盖尔',
-    'home.route.s6.d': '行程在这座古港收尾——黄沙在这里与海湾的蔚蓝相遇。',
+    'home.route.s6.d': '行程在这座古港收尾——大漠的沙在这里与海湾的蔚蓝相遇。',
     'home.why.eyebrow': '为什么是哈萨',
     'home.why.title': '用数字读懂这片绿洲',
     'home.plan.eyebrow': '下一步',
