@@ -88,6 +88,9 @@ export const BLOG_RETIRED = ['غير المسلمين', 'other faiths', 'non-Mus
 // خانة مسجد جواثا في «48 ساعة»: كانت الظهيرة (وقت صلاة) فصارت الضحى بعد القارة (2026-10-03)
 export const BLOG_RETIRED_SLOT = [
   'الظهيرة: مسجد جواثا', 'Midday: Jawatha Mosque', '正午：贾瓦塔清真寺', 'Mittag: Die Jawatha-Moschee', 'Полдень: мечеть Джавата',
+  // جبل القارة في فترة النهار لا «الصباح الباكر» (قرار إياد 2026-10-03)، ولا يتصدّر جدول اليومين
+  'الصباح الباكر: جبل القارة', 'الصباح الباكر: كهوف جبل القارة', 'Early Morning: Jabal Al-Qarah', 'Early Morning: The Caves of Jabal Al-Qarah',
+  'المحطة الأولى الطبيعية في أي زيارة', 'natural first stop of any visit',
 ];
 
 const LANGS = ['ar', 'en', 'zh', 'de', 'ru'];
@@ -176,7 +179,7 @@ export function checkBlogVisitWording(blogPages) {
   for (const { rel, lang, key, html } of blogPages) {
     const page = decode(html);
     for (const r of BLOG_RETIRED) if (page.includes(r)) problems.push(`${rel}: المدونة تنشر عبارة تفرّق بين الزوار بحسب الدين «${r}»`);
-    for (const r of BLOG_RETIRED_SLOT) if (page.includes(r)) problems.push(`${rel}: خانة جواثا السابقة «${r}»`);
+    for (const r of BLOG_RETIRED_SLOT) if (page.includes(r)) problems.push(`${rel}: خانة سابقة في جداول المدونة «${r}»`);
     const want = BLOG_CLAUSE[key]?.[lang];
     if (!want) continue;
     if (/^__/.test(want)) { problems.push(`BLOG_CLAUSE.${key}.${lang} غير معبّأ`); continue; }
