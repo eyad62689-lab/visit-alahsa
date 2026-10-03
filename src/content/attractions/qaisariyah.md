@@ -34,8 +34,8 @@ featured: false
 order: 58
 area: "الهفوف، حي الرفعة"
 area_en: "Hofuf, Al-Rifaa district"
-bestTime: "الفترة المسائية، حين تفتح المتاجر أبوابها ويشتدّ نبض السوق."
-bestTime_en: "The evening, when the shops open their doors and the souq comes alive."
+bestTime: "الصباح أو المساء، حين تفتح المتاجر أبوابها."
+bestTime_en: "The morning or the evening, when the shops open their doors."
 practical:
   - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00 (по пятницам — только вечером)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", label_de: "Öffnungszeiten", value_de: "8:00–12:00 und 15:30–22:00 Uhr (freitags nur abends)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_zh: "费用", value_zh: "免费", label_de: "Eintritt", value_de: "Kostenlos", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
@@ -86,9 +86,9 @@ faq:
     q_ru: "Что купить на рынке Эль-Кайсария?"
     a_ru: "Знаменитый бишт Аль-Ахсы, местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи."
   - q: "ما أفضل وقت لزيارة سوق القيصرية؟"
-    a: "الفترة المسائية، حين تفتح المتاجر أبوابها ويشتدّ نبض السوق."
+    a: "الصباح أو المساء، حين تفتح المتاجر أبوابها."
     q_en: "What is the best time to visit Qaisariyah Souq?"
-    a_en: "The evening, when the shops open their doors and the souq comes alive."
+    a_en: "The morning or the evening, when the shops open their doors."
     q_zh: "什么时候去凯撒利亚集市最好？"
     a_zh: "傍晚最佳：店铺陆续开门，市集也热闹起来。"
     q_de: "Wann besuche ich den Qaisariyah-Souk am besten?"
@@ -116,4 +116,4 @@ faq:
 أو الفضة، وقد توارثت عائلاتٌ أحسائية هذه المهنة جيلاً بعد جيل. وإلى جانب البشت
 تجد الحِرف المحلية من الخوص والفخار، والتمور بأصنافها، والقهوة والبهارات.
 
-المواعيد والرسوم في بطاقة «معلومات الزيارة» أدناه، وأفضل أوقاته الفترة المسائية.
+المواعيد والرسوم في بطاقة «معلومات الزيارة» أدناه، وأفضل أوقاته الصباح أو المساء.

@@ -31,19 +31,19 @@ Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah]
 
 ### Evening: Qaisariyah Souq
 
-Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands. Evening is its best hour, when the shops open their doors and the souq finds its pulse. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
+Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands. Its best hours are the morning or the evening, when the shops open their doors. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
 
 ## Day Two: Water, Green and the Coast
 
-### Early Morning: Jabal Al-Qarah and Dougha Al-Gharash
+### Morning: Jabal Al-Qarah and Dougha Al-Gharash
 
-Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. Early morning is its finest hour, when the light is soft and the heat is mild. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
+Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. Visit it during the daytime. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
 
 ### Mid-morning: Jawatha Mosque
 
 Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. The mosque is open to visitors, with modest dress and respect for the sanctity of the place.
 
-### Afternoon: The Green of the Farms
+### Late Afternoon: The Green of the Farms
 
 If your visit falls in the Hasawi lime season, in summer from mid-June, give the late afternoon, when the heat eases, to the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
 

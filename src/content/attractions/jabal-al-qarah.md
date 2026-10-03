@@ -50,8 +50,8 @@ mapUrl: https://goo.gl/maps/bx9DyKazun2bffcP6
 operatorUrl: "https://www.instagram.com/landofcivi/"
 featured: true
 order: 1
-bestTime: الصباح الباكر أو قبيل الغروب، حين يلين الضوء وتعتدل الحرارة.
-bestTime_en: "Early morning or just before sunset, when the light softens and the heat eases."
+bestTime: فترة النهار.
+bestTime_en: "During the daytime."
 practical:
   - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_zh: "开放时间", value_zh: "每日 8:00 至 22:00（节假日可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–22:00 Uhr (an Feiertagen möglicherweise länger)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–22:00 (в праздники может быть открыто дольше)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "50 ريالاً للبالغين — التذاكر عبر «أرض الحضارات»", label_en: "Fees", value_en: "SAR 50 for adults — tickets via the “Land of Civilisations” heritage village", label_zh: "门票", value_zh: "成人每位 50 沙特里亚尔（SAR），在“文明之地”（Land of Civilisations）遗产村落购票", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene – Tickets über „Land of Civilisations“", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых; билеты — через этнографическую деревню «Земля цивилизаций» (Land of Civilisations)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
@@ -87,9 +87,9 @@ faq:
   - q: "كم عدد مغارات جبل القارة؟"
     a: "اثنتا عشرة مغارة متباينة الأشكال، منها كهف الناقة وكهف العيد وكهف المهيوب."
   - q: "ما أفضل وقت لزيارة جبل القارة؟"
-    a: "الصباح الباكر أو قبيل الغروب، حين يلين الضوء وتعتدل الحرارة."
+    a: "فترة النهار."
     q_en: "What is the best time to visit Jabal Al-Qarah?"
-    a_en: "Early morning or just before sunset, when the light softens and the heat eases."
+    a_en: "During the daytime."
     q_zh: "什么时候去卡拉山最好？"
     a_zh: "清晨或傍晚日落前——光线转柔、暑气渐退的时刻，也最宜取景拍摄。"
     q_ru: "Когда лучше посетить Джабаль-эль-Кара?"
