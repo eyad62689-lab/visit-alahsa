@@ -31,7 +31,8 @@ export const OK = {
       `|Saudi\\s+Arabia${APOS}s\\s+first\\s+seaport\\s+on\\s+its\\s+eastern`,
     'i',
   ),
-  zh: /沙特阿拉伯东部沿海的首座海港/,
+  // «首座» كانت تحتمل «الرئيسي» فصارت «第一座» (دفعة zh-uqair-notes، 2026-10-02؛ يحرس C42 ألّا تعود)
+  zh: /沙特阿拉伯东部沿海的第一座海港/,
   de: /(?:[Dd]er|des|dem)\s+ersten?\s+Seehafens?\s+an\s+der\s+Ostküste\s+Saudi-Arabiens/,
   ru: /исторически\s+перв[а-яё]+\s+морск[а-яё]+\s+порт[а-яё]*\s+на\s+востоке\s+Саудовской\s+Аравии/i,
 };
