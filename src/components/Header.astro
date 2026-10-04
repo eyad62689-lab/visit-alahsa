@@ -148,7 +148,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
      · «أماكن الإقامة» · «المطاعم والمقاهي» · «خطّط لرحلتك») فطال الشريط في كل لغة. بدل رفع
      العتبات إلى 1349–1506px (أي برغر على أغلب الحواسيب) صُغِّر خط الشريط وفجوته في الوضع
      المبسوط وحده، بقيم مقيسة بـtools/measure-header-fit.mjs (MODE=fit): ar ‏14/12 ← 1231px
-     · zh ‏14/12 ← 1128 · en ‏13.5/10 ← 1323 · de ‏13/10 ← 1345 · ru ‏13/10 ← 1396. */
+     · zh ‏14/12 ← 1128 · en ‏13.5/10 ← 1323 · de ‏12.5/8 ← 1386 · ru ‏13/10 ← 1477 (بعد «Sehenswürdigkeiten/Veranstaltungen» و«Достопримечательности»، 2026-10-04). */
   @media (min-width: 1271px) {
     :global([lang='ar']) .nav, :global([lang='zh']) .nav { gap: 12px; }
     :global([lang='ar']) .nav a, :global([lang='zh']) .nav a { font-size: .875rem; }
@@ -166,17 +166,17 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav { gap: 10px; }
     :global([lang='en']) .nav a { font-size: .84375rem; }
   }
-  @media (min-width: 1385px) {
+  @media (min-width: 1427px) {
     /* وسقفُ حاويتها أوسع من 1280px: عند تجاوز السقف لا ينكسر الشريط ظاهراً بل
        **ينضغط** — الفليكس يقلّص أدوات الشريط فيلتفّ «Meine Reise» سطرين ويصير الشريط
        69px بدل 68. لذلك لا يكفي قياس التراكب وحده حكماً على الاتّساع؛ الحارس يشترط
-       الارتفاع 68px والسطر الواحد معاً. اللازم: de ‏1345px، ru ‏1396px. */
-    :global([lang='de']) .hd-in { inline-size: min(100% - var(--s-3), 1360px); }
-    :global([lang='de']) .nav { gap: 10px; }
-    :global([lang='de']) .nav a { font-size: .8125rem; }
+       الارتفاع 68px والسطر الواحد معاً. اللازم: de ‏1386px (12.5/8)، ru ‏1477px (13/10). */
+    :global([lang='de']) .hd-in { inline-size: min(100% - var(--s-3), 1400px); }
+    :global([lang='de']) .nav { gap: 8px; }
+    :global([lang='de']) .nav a { font-size: .78125rem; }
   }
-  @media (min-width: 1436px) {
-    :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1400px); }
+  @media (min-width: 1518px) {
+    :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1490px); }
     :global([lang='ru']) .nav { gap: 10px; }
     :global([lang='ru']) .nav a { font-size: .8125rem; }
   }
@@ -237,9 +237,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='en']) .nav .nav-plan { display: block; }
   }
-  /* الألمانية تنهار عند 1384px والروسية عند 1435px (اللازم 1345 و1396 بخط 13px وفجوة 10px).
+  /* الألمانية تنهار عند 1426px (اللازم 1386 بخط 12.5px وفجوة 8px) والروسية عند 1517px (اللازم 1477 بخط 13px وفجوة 10px؛ أصغر من 13px يُضعف القراءة).
      تكرار الكتلة مقصود ومحصور كي لا تخسر العربية والصينية شريطهما بلا سبب. */
-  @media (max-width: 1384px) {
+  @media (max-width: 1426px) {
     :global([lang='de']) .hd-actions .btn-gold, :global([lang='ru']) .hd-actions .btn-gold { display: none; }
     :global([lang='de']) .burger, :global([lang='ru']) .burger { display: flex; }
     :global([lang='de']) .nav-toggle, :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -248,7 +248,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='de']) .nav-toggle:checked ~ .nav, :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='de']) .nav .nav-plan, :global([lang='ru']) .nav .nav-plan { display: block; }
   }
-  @media (max-width: 1435px) {
+  @media (max-width: 1517px) {
     :global([lang='ru']) .hd-actions .btn-gold { display: none; }
     :global([lang='ru']) .burger { display: flex; }
     :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
