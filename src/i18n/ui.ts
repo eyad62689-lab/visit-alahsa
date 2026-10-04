@@ -396,7 +396,7 @@ export const ui = {
     'home.route.s1.n': 'Qasr Ibrahim',
     'home.route.s1.d': 'Begin at the fortress that gathers mosque, barracks and towers beneath one wall.',
     'home.route.s2.n': 'Qaisariyah Souq',
-    'home.route.s2.d': 'Passages fragrant with perfume and copper, and cloaks embroidered by local hands.',
+    'home.route.s2.d': 'Passages fragrant with perfume and gleaming with copper, and cloaks embroidered by local hands.',
     'home.route.s3.n': 'Jabal Al-Qarah',
     'home.route.s3.d': 'Climb by day, and watch the sea of palms unfold below you.',
     'home.route.s4.n': 'Jawatha Mosque',
