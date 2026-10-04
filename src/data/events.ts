@@ -661,7 +661,7 @@ const TEXT_DE: EventTexts = {
     ],
     faq: [
       { q: 'Wo findet die Ausstellung statt?', a: 'Im Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf – die Karte finden Sie auf dieser Seite.' },
-      { q: 'Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?', a: 'Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Hasawi-Küche verwendet.' },
+      { q: 'Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?', a: 'Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Küche Al-Ahsas verwendet.' },
       { q: 'Gibt es Aktivitäten für Kinder?', a: 'Ja – die Ausstellung bietet eine Kinderecke, dazu Live-Kochvorführungen, landwirtschaftliche Workshops und familiäres Beisammensein.' },
     ],
     related: [

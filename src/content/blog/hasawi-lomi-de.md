@@ -36,11 +36,11 @@ Die Saison der Lomi ist der Sommer; sie reicht **von etwa Mitte Juni bis Ende Au
 
 ## Vom Baum in die Speisekammer: „Jameed“, der sonnengetrocknete Lomi-Saft
 
-Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und haltbar zu machen. Was dabei entsteht, heißt **„Jameed“**: Der Lomi-Saft trocknet in der Sonne und reift in Glasgefäßen – ein Vorrat für das ganze Jahr. Verwendet wird die Lomi frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte der Hasawi-Küche und der Golfregion.
+Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und haltbar zu machen. Was dabei entsteht, heißt **„Jameed“**: Der Lomi-Saft trocknet in der Sonne und reift in Glasgefäßen – ein Vorrat für das ganze Jahr. Verwendet wird die Lomi frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte Al-Ahsas und der Golfregion.
 
-## In der Hasawi-Küche
+## In der Küche Al-Ahsas
 
-Heben Sie den Deckel eines Topfes in Al-Ahsa, und die Lomi ist da: Der [Hasawi-Reis](/de/food/) – eines der bekanntesten Gerichte Al-Ahsas – köchelt mit seinen Gewürzen aus Lomi, Zimt und Kardamom, bis er seine rotbraune Farbe annimmt. Das traditionelle Gericht **Mufallaq** wiederum ist Weizenschrot, mit Lomi gewürzt, mit Datteln und gekochten Eiern garniert. Den vollständigen Rundgang durch die Gerichte finden Sie auf der Seite [Hasawi-Küche](/de/food/).
+Heben Sie den Deckel eines Topfes in Al-Ahsa, und die Lomi ist da: Der [Hasawi-Reis](/de/food/) – eines der bekanntesten Gerichte Al-Ahsas – köchelt mit seinen Gewürzen aus Lomi, Zimt und Kardamom, bis er seine rotbraune Farbe annimmt. Das traditionelle Gericht **Mufallaq** wiederum ist Weizenschrot, mit Lomi gewürzt, mit Datteln und gekochten Eiern garniert. Den vollständigen Rundgang durch die Gerichte finden Sie auf der Seite [Küche aus Al-Ahsa](/de/food/).
 
 ## Die Hasawi-Lomi-Ausstellung: Ein jährliches Fest für die Frucht
 

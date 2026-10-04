@@ -23,7 +23,7 @@ In der größten Oase der Welt ist die Dattel das Geschenk, das unangefochten an
 
 ## Die Hasawi-Limette und die Speisekammer der Oase
 
-Die **Hasawi-Limette** (die Limette aus Al-Ahsa), auch Bin Zuhairi genannt, gehört zu den bekanntesten Erzeugnissen aus den Hainen der Oase. Frisch hat sie im Sommer Saison; getrocknet parfümiert sie die Hasawi-Küche das ganze Jahr über. Aus derselben Speisekammer kommen **Dattelsirup**, der die einheimischen Gerichte süßt, und **Dattelbrot**, bestreut mit Schwarzkümmel. Welchen Platz jedes davon auf dem Tisch einnimmt, zeigt die Seite [Hasawi-Küche](/de/food/).
+Die **Hasawi-Limette** (die Limette aus Al-Ahsa), auch Bin Zuhairi genannt, gehört zu den bekanntesten Erzeugnissen aus den Hainen der Oase. Frisch hat sie im Sommer Saison; getrocknet parfümiert sie die Küche Al-Ahsas das ganze Jahr über. Aus derselben Speisekammer kommen **Dattelsirup**, der die einheimischen Gerichte süßt, und **Dattelbrot**, bestreut mit Schwarzkümmel. Welchen Platz jedes davon auf dem Tisch einnimmt, zeigt die Seite [Küche aus Al-Ahsa](/de/food/).
 
 ## Kunsthandwerk: Was die Reise überdauert
 
