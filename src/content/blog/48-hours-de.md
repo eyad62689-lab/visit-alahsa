@@ -31,19 +31,19 @@ Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/a
 
 ### Abend: Der Qaisariyah-Souk
 
-Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Der Abend ist seine beste Zeit, wenn die Geschäfte ihre Türen öffnen und der Souk zu pulsieren beginnt. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
+Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
 
 ## Tag 2: Wasser, Grün und Küste
 
-### Früher Morgen: Jabal al-Qarah und Dougha Al-Gharash
+### Morgen: Jabal al-Qarah und Dougha Al-Gharash
 
-Fahren Sie von Hofuf aus nach Osten zum [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (dem Qarah-Berg), dem geologischen Wunder im Herzen der Oase, dessen Höhlen von der Zeit gemeißelt wurden: im Sommer kühl, im Winter warm. Der frühe Morgen ist seine beste Zeit: Dann ist das Licht weich und die Hitze mild. Am Fuß des Berges, im Dorf Al-Qarah, machen Sie Halt bei [Dougha Al-Gharash](/de/attractions/duqat-algharash/), dem traditionellen Töpferhaus, das die Familie Al-Gharash über Generationen weitergegeben hat und das zu den bekanntesten Stätten dieses Handwerks in Saudi-Arabien zählt.
+Fahren Sie von Hofuf aus nach Osten zum [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (dem Qarah-Berg), dem geologischen Wunder im Herzen der Oase, dessen Höhlen von der Zeit gemeißelt wurden: im Sommer kühl, im Winter warm. Am Fuß des Berges, im Dorf Al-Qarah, machen Sie Halt bei [Dougha Al-Gharash](/de/attractions/duqat-algharash/), dem traditionellen Töpferhaus, das die Familie Al-Gharash über Generationen weitergegeben hat und das zu den bekanntesten Stätten dieses Handwerks in Saudi-Arabien zählt.
 
 ### Vormittag: Die Jawatha-Moschee
 
 Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/attractions/jawatha-mosque/) – eine der ältesten Moscheen des Islams und der erste Ort nach Medina, an dem ein Freitagsgebet stattfand. Die Lehmmauern tragen eine der ältesten Geschichten des Islams. Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes.
 
-### Nachmittag: Das Grün der Farmen
+### Später Nachmittag: Das Grün der Farmen
 
 Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der späte Nachmittag, wenn die Hitze nachlässt, der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/). Dort pflücken Besucher die berühmte Hasawi-Limette (Lomi). Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
 

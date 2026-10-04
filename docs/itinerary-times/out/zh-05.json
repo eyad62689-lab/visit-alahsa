@@ -1,0 +1,167 @@
+{
+  "lang": "zh",
+  "stage": "01-05",
+  "batch": "itinerary-times",
+  "positions": [
+    {
+      "id": "zh-01",
+      "file": "src/i18n/ui.ts",
+      "line": 560,
+      "current": "    'home.route.time.noon': '正午',",
+      "proposed": "    'home.route.time.day': '白天',\r\n    'home.route.time.lateAfternoon': '下午晚些时候',\r\n    'home.route.time.evening': '傍晚',",
+      "notes": "Delete noon slot in zh block; add day/lateAfternoon/evening in the same order as ar/en. 白天 = النهار/Daytime; 下午晚些时候 mirrors the page's own 上午晚些时候 (mid-morning) pattern and the farm body's 日头偏西 slot; 傍晚 = Evening as in the published blog headings 傍晚：凯撒利亚集市."
+    },
+    {
+      "id": "zh-02",
+      "file": "src/i18n/ui.ts",
+      "line": 571,
+      "current": "    'home.route.s3.d': '趁天光转柔时登高，脚下椰枣林如海铺展。',",
+      "proposed": "    'home.route.s3.d': '白天登高，看脚下椰枣林如海铺展。',",
+      "notes": "Source: «اصعد في النهار، وشاهد بحر النخيل يمتدّ تحتك.» / 'Climb by day, and watch the sea of palms unfold below you.' Softening-light timing removed; image of the palm sea kept verbatim."
+    },
+    {
+      "id": "zh-03",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 3,
+      "current": "description: \"哈萨一日紧凑行程：清晨卡拉山的洞穴，上午易卜拉欣宫与库特区，傍晚凯撒利亚集市。\"",
+      "proposed": "description: \"哈萨一日紧凑行程：早上卡拉山的洞穴，上午易卜拉欣宫与库特区，傍晚凯撒利亚集市。\"",
+      "notes": "'early morning' → 'morning'. 早上 (not 上午) because this page already renders the mid-morning slot as 上午 (heading 上午：易卜拉欣宫与库特区); 上午 twice would merge two slots."
+    },
+    {
+      "id": "zh-04",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 13,
+      "current": "    a: \"一天足以领略哈萨的精华：清晨走进卡拉山的洞穴，上午看一座历史古堡与一片遗产街区，傍晚逛凯撒利亚集市。若想跟着绿洲自己的节奏，细看它的水、海岸与农场，那就得留宿一晚——本站博客的两日行程正好涵盖这些。\"",
+      "proposed": "    a: \"一天足以领略哈萨的精华：早上走进卡拉山的洞穴，上午看一座历史古堡与一片遗产街区，傍晚逛凯撒利亚集市。若想跟着绿洲自己的节奏，细看它的水、海岸与农场，那就得留宿一晚——本站博客的两日行程正好涵盖这些。\"",
+      "notes": "FAQ 1: 'early morning' → 'morning'; same 早上/上午 split as the description."
+    },
+    {
+      "id": "zh-05",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 15,
+      "current": "    a: \"可以。最合适的顺序是一早游山、傍晚逛集市：清晨是卡拉山最好的时候，光线柔和，暑气尚轻；而凯撒利亚集市傍晚开门迎客，也正是最热闹的时候。\"",
+      "proposed": "    a: \"可以。最合适的顺序是早上游山、傍晚逛集市：卡拉山宜在白天游览，而凯撒利亚集市的店铺上午和傍晚营业，中午歇业。\"",
+      "notes": "FAQ 2 per be6a558: mountain in the morning, souq in the evening; Qarah visited during the daytime; Qaisariyah's shops open in the morning and the evening and close at midday."
+    },
+    {
+      "id": "zh-06",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 22,
+      "current": "## 清晨：卡拉山的洞穴与加拉什家族杜加陶坊",
+      "proposed": "## 早上：卡拉山的洞穴与加拉什家族杜加陶坊",
+      "notes": "Heading 'Early Morning' → 'Morning' (الصباح). 早上 kept distinct from the next heading 上午 (mid-morning / الضحى)."
+    },
+    {
+      "id": "zh-07",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 24,
+      "current": "一天从胡富夫以东的[卡拉山](/zh/attractions/jabal-al-qarah/)开始——绿洲腹地的一处地质奇观，山中的洞穴**盛夏时节凉爽，隆冬之际温暖**。清晨最宜前来：光线柔和，暑气尚轻。山脚下的卡拉村里坐落着[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。",
+      "proposed": "一天从胡富夫以东的[卡拉山](/zh/attractions/jabal-al-qarah/)开始——绿洲腹地的一处地质奇观，山中的洞穴**盛夏时节凉爽，隆冬之际温暖**。山脚下的卡拉村里坐落着[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。",
+      "notes": "Round 2 (be6a558): the daytime sentence under the Morning heading is deleted in ar/en, so the old early-morning sentence is simply removed with nothing in its place."
+    },
+    {
+      "id": "zh-08",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 34,
+      "current": "一天的最后留给[凯撒利亚集市](/zh/attractions/qaisariyah/)——距易卜拉欣宫约半公里，是一座已有 200 多年历史的遗产市集：巷子里香水气息弥漫，黄铜泛着光泽，比什特长袍上的刺绣出自哈萨本地人之手。傍晚是它最好的时候：店铺一家家开门，人气一点点旺起来——在离开哈萨之前，为这紧凑的一天画上一个恰到好处的句号。",
+      "proposed": "一天的最后留给[凯撒利亚集市](/zh/attractions/qaisariyah/)——距易卜拉欣宫约半公里，是一座已有 200 多年历史的遗产市集：巷子里香水气息弥漫，黄铜泛着光泽，比什特长袍上的刺绣出自哈萨本地人之手。上午或傍晚是它最好的时候，因为店铺中午歇业；而傍晚来逛，正好在离开哈萨之前，为这紧凑的一天画上一个恰到好处的句号。",
+      "notes": "'Its best hours are the morning or the evening, as the shops close at midday, and the evening makes a close worthy of a concentrated day before you leave.' Closing image kept verbatim. Round 2 (be6a558): «حين تفتح المتاجر أبوابها» → «فالمتاجر تغلق ظهراً» / \"as the shops close at midday\"; 中午歇业 states the closure plainly (card: 8:00–12:00、15:30–22:00)."
+    },
+    {
+      "id": "zh-09",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 34,
+      "current": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。傍晚是它最好的时候：店铺陆续开门，市集渐渐热闹起来。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。",
+      "proposed": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。上午或傍晚是它最好的时候，因为店铺中午歇业。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。",
+      "notes": "'Its best hours are the morning or the evening, as the shops close at midday.' Round 2 (be6a558): «حين تفتح المتاجر أبوابها» → «فالمتاجر تغلق ظهراً» / \"as the shops close at midday\"; 中午歇业 states the closure plainly (card: 8:00–12:00、15:30–22:00)."
+    },
+    {
+      "id": "zh-10",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 38,
+      "current": "### 清晨：卡拉山与加拉什家族杜加陶坊",
+      "proposed": "### 上午：卡拉山与加拉什家族杜加陶坊",
+      "notes": "Heading 'Early Morning' → 'Morning'. 上午 = the page's own label for الصباح (### 上午：易卜拉欣宫, and home route 上午); Day 2's mid-morning slot here is already 上午晚些时候, so no clash."
+    },
+    {
+      "id": "zh-11",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 40,
+      "current": "从胡富夫向东，前往[卡拉山](/zh/attractions/jabal-al-qarah/)——这处地质奇观的洞穴由岁月在绿洲深处凿成，盛夏时节凉爽，隆冬之际温暖。清晨最宜前来：光线柔和，暑气尚轻。山脚下的卡拉村里，不妨顺道走进[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。",
+      "proposed": "从胡富夫向东，前往[卡拉山](/zh/attractions/jabal-al-qarah/)——这处地质奇观的洞穴由岁月在绿洲深处凿成，盛夏时节凉爽，隆冬之际温暖。山脚下的卡拉村里，不妨顺道走进[加拉什家族的杜加陶坊](/zh/attractions/duqat-algharash/)（Dougha Al-Gharash）——这座传统陶坊由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。",
+      "notes": "Round 2 (be6a558): daytime sentence deleted in ar/en; the early-morning sentence is removed with no replacement."
+    },
+    {
+      "id": "zh-12",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 46,
+      "current": "### 下午：农场的绿意",
+      "proposed": "### 下午晚些时候：农场的绿意",
+      "notes": "Heading 'Afternoon' → 'Late Afternoon' (آخر العصر), parallel to 上午晚些时候 on the same page; body already says 日头偏西、暑热稍退的时分 (unchanged)."
+    },
+    {
+      "id": "zh-13",
+      "file": "src/content/attractions/jabal-al-qarah.md",
+      "line": 11,
+      "current": "bestTime_zh: 清晨或傍晚日落前——光线转柔、暑气渐退的时刻，也最宜取景拍摄。",
+      "proposed": "bestTime_zh: 白天前往。",
+      "notes": "bestTime 'During the daytime.' / «فترة النهار.» Card label 最佳游览时间 → value 白天前往。 Photography clause dropped with the timing (source has no reason clause now)."
+    },
+    {
+      "id": "zh-14",
+      "file": "src/content/attractions/jabal-al-qarah.md",
+      "line": 94,
+      "current": "    a_zh: \"清晨或傍晚日落前——光线转柔、暑气渐退的时刻，也最宜取景拍摄。\"",
+      "proposed": "    a_zh: \"白天前往。\"",
+      "notes": "FAQ 'best time' answer, identical to bestTime_zh as ar/en are identical."
+    },
+    {
+      "id": "zh-15",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 10,
+      "current": "bestTime_zh: 傍晚最佳：店铺陆续开门，市集也热闹起来。",
+      "proposed": "bestTime_zh: 上午或傍晚前往；店铺中午歇业。",
+      "notes": "'The morning or the evening, as the shops close at midday.' Unquoted YAML value stays unquoted (no colon-space). Round 2 (be6a558): «حين تفتح المتاجر أبوابها» → «فالمتاجر تغلق ظهراً» / \"as the shops close at midday\"; 中午歇业 states the closure plainly (card: 8:00–12:00、15:30–22:00)."
+    },
+    {
+      "id": "zh-16",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 93,
+      "current": "    a_zh: \"傍晚最佳：店铺陆续开门，市集也热闹起来。\"",
+      "proposed": "    a_zh: \"上午或傍晚前往；店铺中午歇业。\"",
+      "notes": "FAQ 'best time' answer, identical to bestTime_zh. Round 2 (be6a558): «حين تفتح المتاجر أبوابها» → «فالمتاجر تغلق ظهراً» / \"as the shops close at midday\"; 中午歇业 states the closure plainly (card: 8:00–12:00、15:30–22:00)."
+    },
+    {
+      "id": "zh-17",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 8,
+      "current": "body_zh: \"这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；傍晚最热闹。\"",
+      "proposed": "body_zh: \"这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；上午或傍晚前来最宜。\"",
+      "notes": "Body closing: «وأفضل أوقاته الصباح أو المساء.» (was الفترة المسائية). Rendered as the best time, not 'liveliest'. Round 2: the Arabic body line was not changed by be6a558 (still «وأفضل أوقاته الصباح أو المساء.», no midday clause), so this proposal is unchanged."
+    },
+    {
+      "id": "zh-18",
+      "file": "src/content/blog/jabal-qarah-zh.md",
+      "line": 42,
+      "current": "登山最好的时候是**清晨或傍晚日落前**——光线转柔、暑气渐退；而日落时分的观景处，值得您围绕它来安排一天的行程。至于洞穴本身，内部凉爽，即便夏日正午也是理想的避暑之处：哈萨应对暑热的办法，就是把露天的景点留给清晨和日落，把洞穴留给中间的那几个钟头。",
+      "proposed": "登山最好的时候是**白天**。至于洞穴本身，内部凉爽，即便夏日正午也是理想的避暑之处。",
+      "notes": "Source d13591c: 'The best time to climb: **during the daytime**. The caves themselves, with their inner coolness, are an ideal refuge even at a summer noon.' / «أفضل وقت للصعود: **فترة النهار**. …». Bold markup kept on the time phrase as in the file's convention; light/heat clause, sunset-lookout clause and the heat-rule sentence removed as in ar/en; cave sentence kept verbatim up to 避暑之处, closed with 。. 白天 matches the home route label and 宜在白天前来 in 24/48-hours-zh. Only line in this file stating Qarah's best time (grep for 清晨/日落/傍晚/最好/最佳/观景: line 13 is about heat refuge, line 34 a lookout description without timing — unchanged)."
+    },
+    {
+      "id": "zh-19",
+      "file": "src/content/blog/jabal-qarah-zh.md",
+      "line": 48,
+      "current": "- **在行程里**：这座山是任何一趟哈萨之行的天然第一站——[一日行程](/zh/blog/one-day-in-al-ahsa/)与[两日行程](/zh/blog/48-hours-in-al-ahsa/)都从它开始。用[景点地图](/zh/map/)和[“我的行程”](/zh/plan/)把站点安排好。",
+      "proposed": "- **在行程里**：[一日行程](/zh/blog/one-day-in-al-ahsa/)从这座山开始，[两日行程](/zh/blog/48-hours-in-al-ahsa/)的第二天也从它开始。用[景点地图](/zh/map/)和[“我的行程”](/zh/plan/)把站点安排好。",
+      "notes": "be6a558: 'the mountain opens the [one-day itinerary] and the second day of the [two-day itinerary]' / «الجبل يتصدّر جدول اليوم الواحد، ويفتتح اليوم الثاني من جدول اليومين». The 'natural first stop of any visit' claim is removed. Bold label, links and the trailing map/My Trip sentence unchanged."
+    }
+  ],
+  "observations": [
+    "jabal-qarah-zh.md line 42 now covered by zh-18 after source commit d13591c (ar/en best time = daytime).",
+    "24-hours-zh uses 早上 for الصباح/Morning while 48-hours-zh and the home route use 上午: in 24-hours-zh the mid-morning slot (الضحى) is already published as 上午 (heading 上午：易卜拉欣宫与库特区, and 上午的光线正好), so reusing 上午 would merge two slots; 48-hours-zh renders mid-morning as 上午晚些时候, so 上午 fits there. Alternative if one word is required site-wide: retitle 24h mid-morning to 上午晚些时候 (extra edits beyond the source diff).",
+    "Home route evening label 傍晚 follows the published blog headings (傍晚：凯撒利亚集市); late-afternoon label 下午晚些时候 is long for a chip — shorter option 日头偏西 (from the approved farm body) if the layout clips.",
+    "48-hours-zh line 26 (Qasr Ibrahim, 清晨第一缕天光下) left untouched: source for that stop did not change.",
+    "Termbase: no time-of-day entries exist; proper nouns used (卡拉山, 凯撒利亚集市) are the existing termbase forms. No retired strings (C29 BLOG_RETIRED_SLOT, C42 RETIRED) introduced; full-width punctuation only.",
+    "Round 2 (be6a558): 宜在白天前来 dropped under both Morning headings (zh-07, zh-11); Qaisariyah 'shops close at midday' → 中午歇业 in zh-05/08/09/15/16; zh-19 added for jabal-qarah-zh.md line 48. Home-route items 4–5 of blind round 1 (Qarah on day one of the home route vs day two in the article; 'Daytime' chip read as afternoon) are owner decisions and stay as rendered (白天)."
+  ]
+}

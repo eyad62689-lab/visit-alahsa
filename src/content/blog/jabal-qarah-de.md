@@ -39,13 +39,13 @@ Dabei ist der Berg kein einziger durchgehender Gang. In ihm liegen **zwölf Höh
 
 ## Wann Sie am besten kommen
 
-Die beste Zeit für den Aufstieg: **am frühen Morgen oder kurz vor Sonnenuntergang**, wenn das Licht weicher wird und die Hitze nachlässt. Für den Aussichtspunkt bei Sonnenuntergang lohnt es sich, den Tag um ihn herum zu planen. Die Höhlen selbst sind mit ihrer inneren Kühle ein idealer Rückzugsort sogar zur Mittagszeit im Sommer. Für die Hitze gilt in Al-Ahsa: Stationen unter freiem Himmel auf den Morgen und den Sonnenuntergang legen, die Höhlen auf die Stunden dazwischen.
+Die beste Zeit für den Aufstieg: **tagsüber**. Die Höhlen selbst sind mit ihrer inneren Kühle ein idealer Rückzugsort sogar zur Mittagszeit im Sommer.
 
 ## Praktische Hinweise
 
 - **Lage:** östlich von Hofuf, beim Dorf Al-Qarah – auf der [Seite der Sehenswürdigkeit](/de/attractions/jabal-al-qarah/) finden Sie den Kartenlink und die Koordinaten.
 - **Öffnungszeiten und Eintritt:** Die Angaben stehen auf der [Seite der Sehenswürdigkeit](/de/attractions/jabal-al-qarah/); die Tickets gibt es über „Land of Civilisations“, und sie schließen das Höhlenerlebnis ein. Die Öffnungszeiten ändern sich je nach Saison und an Feiertagen, und das letzte Wort haben die offiziellen Kanäle.
-- **In Ihrem Reiseplan:** Der Berg ist die natürliche erste Station jedes Besuchs – mit ihm beginnen sowohl die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) als auch die [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit [„Meine Reise“](/de/plan/).
+- **In Ihrem Reiseplan:** Mit dem Berg beginnen die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) und der zweite Tag der [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit [„Meine Reise“](/de/plan/).
 
 ## Fazit
 
