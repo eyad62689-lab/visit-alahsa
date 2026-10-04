@@ -12,7 +12,7 @@ faq:
   - q: "Is one day enough to visit Al-Ahsa?"
     a: "One day covers the heart of the experience: the caves of Jabal Al-Qarah in the morning, a historic fortress and heritage district in the mid-morning, and Qaisariyah Souq in the evening. The oasis at its own pace — its water, coast and farms — needs an overnight stay; the two-day itinerary on this blog covers it."
   - q: "Can I combine Jabal Al-Qarah and Qaisariyah Souq in one day?"
-    a: "Yes — and the best order is the mountain in the morning and the souq in the evening: Jabal Al-Qarah is visited during the daytime, while Qaisariyah's shops open in the morning and the evening and close at midday."
+    a: "Yes — and the best order is the mountain in the morning and the souq in the evening: Jabal Al-Qarah is visited during the daytime, while Qaisariyah's shops open in the morning and the evening and close at midday; on Fridays they open in the evening only."
 ---
 
 In Al-Ahsa for a single day? This itinerary distils the heart of the oasis — the largest oasis on earth, a UNESCO World Heritage Site since 2018 — into one day: a cave-riddled mountain, a fortress and a heritage district, and a souq more than two centuries old.
