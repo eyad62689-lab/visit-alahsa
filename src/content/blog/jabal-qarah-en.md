@@ -12,7 +12,7 @@ faq:
   - q: "Is visiting the Jabal Al-Qarah caves a good idea in summer?"
     a: "Yes — it is one of Al-Ahsa's best stops for hot days. The caves hold a steady temperature of around 20°C all year, staying cool at the height of summer and warm in the depth of winter."
   - q: "Where is Jabal Al-Qarah and how do I get there?"
-    a: "The mountain rises from the middle of the oasis east of Hofuf, by Al-Qarah village. A car is the practical way to reach it, and the site's My Trip tool turns the mountain and its surroundings into a ready route that opens in Google Maps."
+    a: "The mountain rises from the middle of the oasis east of Hofuf, by Al-Qarah village. A car is the practical way to reach it, and the site's “My saved places” tool turns the mountain and its surroundings into a ready route that opens in Google Maps."
   - q: "Do the caves require a ticket?"
     a: "Yes — tickets are issued through the Land of Civilisations heritage village at the foot of the mountain and include the caves experience. Hours and fees live on the landmark's page, and official channels have the final word."
 ---
@@ -45,7 +45,7 @@ The best time to climb: **during the daytime**. The caves themselves, with their
 
 - **Location:** east of Hofuf, by Al-Qarah village — the [landmark page](/en/attractions/jabal-al-qarah/) carries the map link and coordinates.
 - **Hours and fees:** details live on the [landmark page](/en/attractions/jabal-al-qarah/); tickets are issued through the Land of Civilisations heritage village and include the caves experience. Hours change with seasons and holidays, and official channels have the final word.
-- **In your itinerary:** the mountain opens the [one-day itinerary](/en/blog/one-day-in-al-ahsa/) and the second day of the [two-day itinerary](/en/blog/48-hours-in-al-ahsa/). Plan your stops with the [attractions map](/en/map/) and the [My Trip](/en/plan/) tool.
+- **In your itinerary:** the mountain opens the [one-day itinerary](/en/blog/one-day-in-al-ahsa/) and the second day of the [two-day itinerary](/en/blog/48-hours-in-al-ahsa/). Plan your stops with the [attractions map](/en/map/) and the [My saved places](/en/plan/) tool.
 
 ## The Verdict
 

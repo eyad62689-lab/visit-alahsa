@@ -12,7 +12,7 @@ faq:
   - q: "How many days should I spend in Al-Ahsa?"
     a: "Two days cover the foremost landmarks — the heritage heart of Hofuf on one day, the oasis's nature, water and coast on the other. A single well-planned day covers the essential core; three days give room for the museums, parks and weekly souqs."
   - q: "Do I need a car to visit Al-Ahsa?"
-    a: "A car is the practical way to explore: some landmarks sit in central Hofuf, others at the edges of the oasis and on the Gulf coast. The site's My Trip tool turns your chosen stops into a ready route that opens in Google Maps."
+    a: "A car is the practical way to explore: some landmarks sit in central Hofuf, others at the edges of the oasis and on the Gulf coast. The site's “My saved places” tool turns your chosen stops into a ready route that opens in Google Maps."
 ---
 
 The short answer: **yes** — and for reasons no other destination in Saudi Arabia can copy. Al-Ahsa is the **largest oasis on earth**, inscribed on the **UNESCO World Heritage list in 2018**, where life thrives among more than 2.5 million date palms and water has run beneath the sand for millennia. The name itself tells the story: *Al-Ahsa* is the plural of *hisy* — sweet water gathered beneath a thin layer of sand, springing up where no one expects it.
@@ -38,7 +38,7 @@ Al-Ahsa doesn't compete with Riyadh's skyline or AlUla's rock-cut monuments — 
 ## The Practical Side
 
 - **Time needed:** the essential core fits [one concentrated day](/en/blog/one-day-in-al-ahsa/); the full picture — heritage heart plus water, farms and coast — fits [two days](/en/blog/48-hours-in-al-ahsa/).
-- **Getting around:** a car is the practical choice; plan stops with the [attractions map](/en/map/) and the [My Trip](/en/plan/) tool.
+- **Getting around:** a car is the practical choice; plan stops with the [attractions map](/en/map/) and the [My saved places](/en/plan/) tool.
 - **Heat strategy:** summers are hot, but the Al-Qarah caves stay cool inside — keep open-air stops for morning and sunset, and the souq for evening.
 - **Hours and fees:** they change with seasons and holidays; verified details live on each landmark's page, and official channels have the final word.
 - **Where to eat:** the [Restaurants & Cafés](/en/restaurants-cafes/) guide and the [Hasawi cuisine](/en/food/) page cover the table — from the oasis's dates and famous Hasawi lime (lomi) to its traditional dishes.
