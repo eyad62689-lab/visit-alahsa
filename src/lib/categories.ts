@@ -7,7 +7,7 @@ import type { Lang } from '../i18n/ui';
 
 export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { ar: Record<string, string>; en: Record<string, string> } = {
   ar: {
-    historic: 'المعالم',
+    historic: 'المعالم التاريخية',
     museum: 'المتاحف',
     religious: 'المساجد والمواقع الدينية',
     nature: 'الطبيعة',
@@ -19,7 +19,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     events: 'الفعاليات والمواسم',
   },
   en: {
-    historic: 'Landmarks',
+    historic: 'Historic landmarks',
     museum: 'Museums',
     religious: 'Mosques & religious sites',
     nature: 'Nature',
@@ -57,7 +57,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
   },
   // الروسية من خط ru-translation-pipeline (دفعة نصوص الواجهة 2026-09-05، الحاكم 91/100).
   ru: {
-    historic: 'Исторические места',
+    historic: 'Исторические достопримечательности',
     museum: 'Музеи',
     religious: 'Мечети и религиозные места',
     nature: 'Природа',

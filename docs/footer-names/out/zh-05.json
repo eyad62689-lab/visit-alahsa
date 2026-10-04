@@ -1,0 +1,69 @@
+{
+  "lang": "zh",
+  "stage": "01-05",
+  "batch": "footer-names",
+  "positions": [
+    {
+      "id": "zh-cat-historic-label",
+      "file": "src/lib/categories.ts",
+      "line": 34,
+      "current": "    historic: '历史古迹',",
+      "proposed": "    historic: '历史古迹',",
+      "notes": "No change. Brief §1: zh category label and home card cat.historic.t are already identical (历史古迹) and distinct from the header section nav.attractions 景点, so the ar/en collision being fixed does not exist in zh."
+    },
+    {
+      "id": "zh-cat-historic-card",
+      "file": "src/i18n/ui.ts",
+      "line": 727,
+      "current": "    'cat.historic.t': \"历史古迹\",",
+      "proposed": "    'cat.historic.t': \"历史古迹\",",
+      "notes": "No change; already equal to categories.ts zh.historic (§1)."
+    },
+    {
+      "id": "zh-cat-nature-card",
+      "file": "src/i18n/ui.ts",
+      "line": 729,
+      "current": "    'cat.nature.t': \"自然与农场\",",
+      "proposed": "    'cat.nature.t': \"自然风光\",",
+      "notes": "Brief §1: card opens the nature category only; copy categories.ts zh.nature (line 37 '自然风光') verbatim. Old 自然与农场 promised farms the link does not show. Stage 5: simplified only, no punctuation, quote style (double quotes) kept as in neighbouring cat.* lines."
+    },
+    {
+      "id": "zh-foot-col-plan",
+      "file": "src/i18n/ui.ts",
+      "line": 659,
+      "current": "    'foot.col.plan': '行程规划',",
+      "proposed": "    'foot.col.plan': '出行指南',",
+      "notes": "Brief §4: column heading duplicated its first link nav.plan 行程规划 (termbase-bound page name, line 614, kept). Column holds 行程规划 / 交通指南 / 我的行程 / 地图 — practical travel tools, so 出行指南 (\"travel essentials/guide\") covers all four as a portal-style section heading and shares no word with the link beneath. Rejected: 规划 (bare, still echoes the link); 行前准备 (pre-departure only — fits 交通指南 but not 地图/我的行程 used on the ground); 出行规划 (repeats 规划). Note 指南 also appears in child links 交通指南 and 住宿指南 (other column) — acceptable as heading/children family; if the reviewer wants zero overlap, fallback is 行前准备."
+    }
+  ],
+  "termbase_edits": [
+    {
+      "action": "add",
+      "entry": {
+        "en": "Nature (category name; also home card cat.nature.t)",
+        "ar": "الطبيعة",
+        "zh": "自然风光",
+        "source": "src/lib/categories.ts zh.nature (published); batch footer-names §1 binds cat.nature.t to it.",
+        "note": "Card and category must read identically.",
+        "added": "2026-10-04"
+      }
+    },
+    {
+      "action": "add",
+      "entry": {
+        "en": "Plan (footer column heading foot.col.plan)",
+        "ar": "خطّط",
+        "zh": "出行指南",
+        "source": "batch footer-names §4",
+        "note": "Must differ from the page name 行程规划 (nav.plan) listed beneath it.",
+        "added": "2026-10-04"
+      }
+    }
+  ],
+  "observations": [
+    "foot.col.site zh is already 关于本站 (\"About this site\") — matches the §3 intent (site-only column); no change proposed.",
+    "foot.l.historic (line 662, 历史古迹) and foot.l.nature (line 663, 自然与农场) in zh are not referenced by Footer.astro (Discover column uses catLabel). foot.l.nature carries the obsolete \"& farms\" wording in all languages (en 'Nature & farms' too); harmless while unused, but candidates for deletion or alignment in a code batch.",
+    "nav.attractions zh 景点 unchanged; no header-length impact from this zh batch (header strings untouched).",
+    "Both files are CRLF throughout (ui.ts 1259 CRLF, categories.ts 80 CRLF, 0 bare LF); current strings verified by splitting on \r\n."
+  ]
+}

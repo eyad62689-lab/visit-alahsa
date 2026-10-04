@@ -1,0 +1,66 @@
+{
+  "batch": "footer-names",
+  "lang": "zh",
+  "stage": 6,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 96,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 96
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "rulings": "foot.col.plan «出行指南» APPROVED: a portal-style heading that covers all four links (行程规划 · 交通指南 · 我的行程 · 地图) and no longer repeats its first link 行程规划; 行前准备 rejected (pre-departure only, does not cover 我的行程/地图 used on the ground), 规划/出行规划 rejected (echo the link); sharing 指南 with the child link 交通指南 is a heading/child family, acceptable. cat.nature.t «自然风光» = categories.ts zh.nature verbatim (owner decision). historic 历史古迹 already identical in card and category - no change. foot.col.site 关于本站 already says «about this site» - no change.",
+  "blind_disposition": "No objection from the blind reader: «自然风光» and «出行指南» read as natural. Nothing to apply or reject. Remaining points are source-level IA questions in ar too (events naming, taste/crafts cards, plan guide vs tool, Discover column, souqs+parks+farms) - logged for Eyad, unscored.",
+  "out_of_scope": [
+    "Blind-reader IA points raised to Eyad, unscored (source-level, in ar too): events under two names (header/footer vs card vs H1); taste card now opens the cuisine page under another name; crafts card has no header/footer counterpart and opens all attractions; plan guide vs my-trip tool and column «Plan» over link «Plan your trip»; long mixed Discover column (ru reader proposes an «About Al-Ahsa» column); souqs+parks+farms header door vs three footer links (owner decision).",
+    "Dead keys foot.l.historic / foot.l.nature (all five languages; en still «Nature & farms») are not read by Footer.astro (Discover column uses catLabel) - remove or align in a code batch."
+  ],
+  "positions": [
+    {
+      "id": "zh-cat-historic-label",
+      "file": "src/lib/categories.ts",
+      "line": 34,
+      "current": "    historic: '历史古迹',",
+      "proposed": "    historic: '历史古迹',"
+    },
+    {
+      "id": "zh-cat-historic-card",
+      "file": "src/i18n/ui.ts",
+      "line": 727,
+      "current": "    'cat.historic.t': \"历史古迹\",",
+      "proposed": "    'cat.historic.t': \"历史古迹\","
+    },
+    {
+      "id": "zh-cat-nature-card",
+      "file": "src/i18n/ui.ts",
+      "line": 729,
+      "current": "    'cat.nature.t': \"自然与农场\",",
+      "proposed": "    'cat.nature.t': \"自然风光\","
+    },
+    {
+      "id": "zh-foot-col-plan",
+      "file": "src/i18n/ui.ts",
+      "line": 659,
+      "current": "    'foot.col.plan': '行程规划',",
+      "proposed": "    'foot.col.plan': '出行指南',"
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "zh-translation/glossary/termbase.json",
+      "before": "\r\n    }\r\n  ],\r\n  \"style_rules_additions\"",
+      "after": "\r\n    },\r\n    {\r\n      \"en\": \"Nature (category name; also home card cat.nature.t)\",\r\n      \"ar\": \"الطبيعة\",\r\n      \"zh\": \"自然风光\",\r\n      \"source\": \"`src/lib/categories.ts` zh.nature (منشورة)؛ دفعة footer-names §1 (قرار إياد 2026-10-04) تربط `cat.nature.t` بها حرفياً؛ اعتمده الحاكم 96/100.\",\r\n      \"note\": \"البطاقة والفئة سلسلة واحدة. «自然与农场» القديمة مرفوضة: البطاقة تفتح فئة الطبيعة وحدها فلا تَعِد بالمزارع (للمزارع فئتها). المفتاح `foot.l.nature` ميت (التذييل يعرض `catLabel`).\",\r\n      \"added\": \"2026-10-04\",\r\n      \"batch\": \"footer-names\"\r\n    },\r\n    {\r\n      \"en\": \"Plan (footer column heading foot.col.plan)\",\r\n      \"ar\": \"خطّط\",\r\n      \"zh\": \"出行指南\",\r\n      \"source\": \"دفعة footer-names §4 (قرار إياد 2026-10-04: العنوان كان يكرّر رابطه الأول `nav.plan` 行程规划)؛ القارئ الأعمى (06-blind) عدّه طبيعياً؛ اعتمده الحاكم 96/100.\",\r\n      \"note\": \"عنوان عمود يضم 行程规划 · 交通指南 · 我的行程 · 地图 — أدوات السفر العملية، فـ«出行指南» تسعها كلها ولا تشارك رابطها الأول لفظاً. يجب أن يخالف اسم الصفحة 行程规划. مرفوضة: 规划 (تردّد الرابط) · 出行规划 (تكرّر 规划) · 行前准备 (ما قبل السفر وحده، لا تسع 我的行程 و地图). مشاركة 指南 مع الرابط 交通指南 تحته مقبولة (عنوان وأبناؤه).\",\r\n      \"added\": \"2026-10-04\",\r\n      \"batch\": \"footer-names\"\r\n    }\r\n  ],\r\n  \"style_rules_additions\""
+    },
+    {
+      "file": "zh-translation/memory/tm.json",
+      "before": "\r\n    }\r\n  ]\r\n}",
+      "after": "\r\n    },\r\n    {\r\n      \"en\": \"Nature\",\r\n      \"zh\": \"自然风光\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"cat.nature.t\",\r\n      \"date\": \"2026-10-04\"\r\n    },\r\n    {\r\n      \"en\": \"Plan\",\r\n      \"zh\": \"出行指南\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"foot.col.plan\",\r\n      \"date\": \"2026-10-04\"\r\n    }\r\n  ]\r\n}"
+    }
+  ]
+}

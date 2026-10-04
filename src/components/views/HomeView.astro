@@ -46,7 +46,8 @@ const catCards = [
   { key: 'historic', cat: 'historic', href: null, img: '/img/qasr-ibrahim' },
   { key: 'nature', cat: 'nature', href: null, img: '/img/jabal-al-qarah' },
   { key: 'crafts', cat: null, href: null, img: '/img/craftsmen-souq' },
-  { key: 'taste', cat: null, href: `${leisureBase}?cat=farm`, img: '/img/hasawi-lemon-farm' },
+  // «المذاق والتمور» يقود إلى صفحة المطبخ الأحسائي لا إلى فئة المزارع (حكم إياد 2026-10-04)
+  { key: 'taste', cat: null, href: ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : '/en/food/', img: '/img/hasawi-lemon-farm' },
   { key: 'market', cat: null, href: `${leisureBase}?cat=market`, img: '/img/qaisariyah' },
   { key: 'events', cat: null, href: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
