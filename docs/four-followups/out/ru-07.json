@@ -1,0 +1,119 @@
+{
+  "batch": "four-followups",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "ru-48h-qaisariyah-friday",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 34,
+      "from": "в полдень лавки закрываются и вновь",
+      "to": "в полдень лавки закрываются на долгий перерыв и вновь",
+      "reason": "blind (closing «в полдень» and reopening «во второй половине дня» nearly coincide): «на долгий перерыв» separates the two – faithful to the card break 12:00–15:30, no hour or new fact; «ближе к вечеру» rejected (15:30 is not toward evening)."
+    },
+    {
+      "id": "ru-24h-qaisariyah-friday",
+      "file": "src/content/blog/24-hours-ru.md",
+      "line": 34,
+      "from": "в полдень лавки закрываются и вновь",
+      "to": "в полдень лавки закрываются на долгий перерыв и вновь",
+      "reason": "as ru-48h-qaisariyah-friday (same sentence)."
+    },
+    {
+      "id": "ru-24h-faq-friday",
+      "file": "src/content/blog/24-hours-ru.md",
+      "line": 15,
+      "from": "в полдень они закрываются и вновь открываются лишь во второй половине дня.\"",
+      "to": "в полдень они закрываются на долгий перерыв и вновь открываются лишь во второй половине дня, а по пятницам открыты только вечером.\"",
+      "reason": "new position: b9f2245 adds the Friday rule to the ar/en FAQ («ويوم الجمعة لا تفتح إلا مساءً» / «on Fridays they open in the evening only»); subject = the shops, as in ar/en; Friday wording = this language's body positions/card. «на долгий перерыв» carried over from the body ruling for the same clause."
+    }
+  ],
+  "blind_disposition": "Winter: no ru position (jabal-qarah-ru line 26 already «в разгар зимы»); parallelism «— и здесь тепло» vs «— и вас встретит неожиданная прохлада» NOT APPLIED - the line is outside this batch's positions and was approved in an earlier batch; logged as an optional polish. Friday: «вторая половина дня» right after «в полдень … закрываются» APPLIED - «закрываются на долгий перерыв и вновь открываются лишь во второй половине дня» in both itineraries and the new FAQ position; faithful to the card break 12:00–15:30 without restating hours; «ближе к вечеру» rejected (15:30 is not toward evening), dropping the reopening clause rejected (loses the approved span from itinerary-times). Subject shift лавки -> рынок in the bodies kept (= ar «يفتح» masc. / en «it»); FAQ uses the shops as ar/en do. Shared gap (24-hours FAQ) resolved in source b9f2245 and carried by ru-24h-faq-friday. Lime season and Qasr Ibrahim («в светлое время суток»): no stumble.",
+  "out_of_scope": [
+    "Home route places Jabal al-Qarah differently from the 24/48-hours articles (order) - owner decision.",
+    "Hedge «تقريباً» (approximately) on the lime-season start in the hasawi-lomi article only, while 48-hours, fruits.ts and the home route state the range flatly - source-level, raised to Eyad.",
+    "Qasr Ibrahim in 24-hours (line 28, «ضوء الضحى» / mid-morning light) is outside decision 4, which touched 48-hours only - raised to Eyad.",
+    "Qaisariyah attraction page (src/content/attractions/qaisariyah.md lines 24 bestTime_ru and 97 a_ru) still reads «в полдень лавки закрываются и вновь открываются лишь во второй половине дня» - align with «на долгий перерыв» in a follow-up batch.",
+    "Grape card in fruits.ts ru «Урожай … с приходом лета — вместе с лаймом» - raised to Eyad.",
+    "Cave FAQ/heading «why are the caves cool?» while the answer also covers winter warmth - source structure, raised to Eyad.",
+    "jabal-qarah-ru line 26 «— и здесь тепло» parallelism (optional polish, not in this batch).",
+    "content-fingerprints.json id da1467a859cd (ru 48-hours) prefix diverges from line 48 - regenerate if fingerprints are checked literally."
+  ],
+  "positions": [
+    {
+      "id": "ru-48h-qasr-ibrahim",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 26,
+      "current": "Начните с [крепости Каср-Ибрахим](/ru/attractions/qasr-ibrahim/) в центре Эль-Хуфуфа: здесь стены сложены из глины, кровля — из пальмовых стволов, а в одном кольце крепостных стен собраны мечеть, казармы и башни. Рассвет — лучшее время, чтобы рассмотреть архитектуру и внутренний двор.",
+      "proposed": "Начните с [крепости Каср-Ибрахим](/ru/attractions/qasr-ibrahim/) в центре Эль-Хуфуфа: здесь стены сложены из глины, кровля — из пальмовых стволов, а в одном кольце крепостных стен собраны мечеть, казармы и башни. Архитектуру и внутренний двор лучше всего рассматривать в светлое время суток."
+    },
+    {
+      "id": "ru-48h-qaisariyah-friday",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 34,
+      "current": "Завершите первый день на [рынке Эль-Кайсария](/ru/attractions/qaisariyah/): этому традиционному рынку более двух веков, в его проходах пахнет духами и медью, а его накидки расшиты руками местных жителей. Приходить сюда лучше утром или вечером: в полдень лавки закрываются и вновь открываются лишь во второй половине дня. Где поужинать в городе, смотрите в путеводителе [«Рестораны и кафе»](/ru/restaurants-cafes/).",
+      "proposed": "Завершите первый день на [рынке Эль-Кайсария](/ru/attractions/qaisariyah/): этому традиционному рынку более двух веков, в его проходах пахнет духами и медью, а его накидки расшиты руками местных жителей. Приходить сюда лучше утром или вечером: в полдень лавки закрываются на долгий перерыв и вновь открываются лишь во второй половине дня; по пятницам рынок открыт только вечером. Где поужинать в городе, смотрите в путеводителе [«Рестораны и кафе»](/ru/restaurants-cafes/)."
+    },
+    {
+      "id": "ru-24h-qaisariyah-friday",
+      "file": "src/content/blog/24-hours-ru.md",
+      "line": 34,
+      "current": "Завершите день на [рынке Эль-Кайсария](/ru/attractions/qaisariyah/), примерно в полукилометре от крепости Каср-Ибрахим: этому традиционному рынку более двух веков, в его проходах пахнет духами и блестит медь, а накидки здесь расшиты руками самих жителей Аль-Ахсы. Приходить сюда лучше утром или вечером: в полдень лавки закрываются и вновь открываются лишь во второй половине дня. А вечер — достойное завершение насыщенного дня перед отъездом.",
+      "proposed": "Завершите день на [рынке Эль-Кайсария](/ru/attractions/qaisariyah/), примерно в полукилометре от крепости Каср-Ибрахим: этому традиционному рынку более двух веков, в его проходах пахнет духами и блестит медь, а накидки здесь расшиты руками самих жителей Аль-Ахсы. Приходить сюда лучше утром или вечером: в полдень лавки закрываются на долгий перерыв и вновь открываются лишь во второй половине дня; по пятницам рынок открыт только вечером. А вечер — достойное завершение насыщенного дня перед отъездом."
+    },
+    {
+      "id": "ru-48h-lime-season",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 48,
+      "current": "Если поездка выпадет на сезон лайма Аль-Ахсы — летом, с середины июня, — посвятите предвечерние часы, когда спадает жара, [ферме лайма Аль-Ахсы](/ru/attractions/lemon-farm/): сюда приезжают, чтобы в сезон собирать знаменитый лайм Аль-Ахсы. Вне сезона загляните на страницу [«Рынки, парки и фермы»](/ru/souqs-parks-farms/) и выберите парк или сад ближе к своему маршруту.",
+      "proposed": "Если поездка выпадет на сезон лайма Аль-Ахсы — летом, с середины июня до конца августа, — посвятите предвечерние часы, когда спадает жара, [ферме лайма Аль-Ахсы](/ru/attractions/lemon-farm/): сюда приезжают, чтобы в сезон собирать знаменитый лайм Аль-Ахсы. Вне сезона загляните на страницу [«Рынки, парки и фермы»](/ru/souqs-parks-farms/) и выберите парк или сад ближе к своему маршруту."
+    },
+    {
+      "id": "ru-lomi-faq-season",
+      "file": "src/content/blog/hasawi-lomi-ru.md",
+      "line": 16,
+      "current": "    a: \"Сезон летний, начинается примерно с середины июня — в тот же сезон семьи Аль-Ахсы собираются, чтобы выжать и заготовить его на весь год.\"",
+      "proposed": "    a: \"Сезон летний, длится примерно с середины июня до конца августа — в тот же сезон семьи Аль-Ахсы собираются, чтобы выжать и заготовить его на весь год.\""
+    },
+    {
+      "id": "ru-lomi-body-season",
+      "file": "src/content/blog/hasawi-lomi-ru.md",
+      "line": 35,
+      "current": "Сезон лайма — летний, начинается **примерно с середины июня** — в разгар зноя, как раз когда сады оазиса заняты летним рутабом — финиками на стадии перед полной спелостью. Чтобы застать плод прямо на дереве, отправляйтесь на [«Ферму лайма Аль-Ахсы»](/ru/attractions/lemon-farm/) — цитрусовую ферму, где в сезон посетители собирают знаменитый лайм Аль-Ахсы (ломи). А что приносит оазис в каждый сезон, смотрите в полном обзоре на странице [«Плоды оазиса»](/ru/fruits/).",
+      "proposed": "Сезон лайма — летний, длится **примерно с середины июня до конца августа** — в разгар зноя, как раз когда сады оазиса заняты летним рутабом — финиками на стадии перед полной спелостью. Чтобы застать плод прямо на дереве, отправляйтесь на [«Ферму лайма Аль-Ахсы»](/ru/attractions/lemon-farm/) — цитрусовую ферму, где в сезон посетители собирают знаменитый лайм Аль-Ахсы (ломи). А что приносит оазис в каждый сезон, смотрите в полном обзоре на странице [«Плоды оазиса»](/ru/fruits/)."
+    },
+    {
+      "id": "ru-fruits-lomi-season",
+      "file": "src/data/fruits.ts",
+      "line": 418,
+      "current": "        season: 'Лето: с середины июня', seasons: 'summer',",
+      "proposed": "        season: 'Лето: с середины июня до конца августа', seasons: 'summer',"
+    },
+    {
+      "id": "ru-home-route-s5",
+      "file": "src/i18n/ui.ts",
+      "line": 1060,
+      "current": "    'home.route.s5.d': 'Зелень и ароматные цитрусовые, а в сезон — сбор лайма Аль-Ахсы.',",
+      "proposed": "    'home.route.s5.d': 'Зелень и ароматные цитрусовые, а в сезон (с середины июня до конца августа) — сбор лайма Аль-Ахсы.',"
+    },
+    {
+      "id": "ru-24h-faq-friday",
+      "file": "src/content/blog/24-hours-ru.md",
+      "line": 15,
+      "current": "    a: \"Да, и лучший порядок такой: гора — утром, рынок — вечером. Джабаль-эль-Кара посещают в светлое время суток, а лавки рынка Эль-Кайсария работают утром и вечером: в полдень они закрываются и вновь открываются лишь во второй половине дня.\"",
+      "proposed": "    a: \"Да, и лучший порядок такой: гора — утром, рынок — вечером. Джабаль-эль-Кара посещают в светлое время суток, а лавки рынка Эль-Кайсария работают утром и вечером: в полдень они закрываются на долгий перерыв и вновь открываются лишь во второй половине дня, а по пятницам открыты только вечером.\""
+    }
+  ]
+}

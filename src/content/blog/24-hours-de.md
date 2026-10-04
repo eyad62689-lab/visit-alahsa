@@ -12,7 +12,7 @@ faq:
   - q: "Reicht ein Tag für einen Besuch in Al-Ahsa?"
     a: "Ein Tag reicht für das Wesentliche: am Morgen die Höhlen des Jabal al-Qarah, am Vormittag eine historische Festung und ein historisches Viertel sowie am Abend der Qaisariyah-Souk. Die Oase in ihrem eigenen Tempo – ihr Wasser, ihre Küste und ihre Farmen – erleben Sie erst mit einer Übernachtung; dafür gibt es in diesem Blog die Zwei-Tage-Route."
   - q: "Lassen sich Jabal al-Qarah und der Qaisariyah-Souk an einem Tag verbinden?"
-    a: "Ja, und am besten besuchen Sie den Berg am Morgen und den Souk am Abend: Den Jabal al-Qarah erleben Sie bei Tageslicht, und die Geschäfte im Qaisariyah-Souk haben morgens und abends geöffnet, über Mittag bis in den Nachmittag aber geschlossen."
+    a: "Ja, und am besten besuchen Sie den Berg am Morgen und den Souk am Abend: Den Jabal al-Qarah erleben Sie bei Tageslicht, und die Geschäfte im Qaisariyah-Souk haben morgens und abends geöffnet, über Mittag bis in den Nachmittag aber geschlossen; freitags öffnen sie nur abends."
 ---
 
 Nur ein Tag in Al-Ahsa? Diese Route verdichtet das Herz der Oase – der größten Oase der Welt, seit 2018 UNESCO-Welterbe – auf einen Tag: einen Berg voller Höhlen, eine Festung und ein historisches Viertel sowie einen mehr als zwei Jahrhunderte alten Souk.
@@ -31,7 +31,7 @@ Zum Mittagessen sind Sie bereits mitten in der Stadt: Die Adressen finden Sie ge
 
 ## Abend: Der Qaisariyah-Souk
 
-Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/), einem traditionellen Markt, mehr als zwei Jahrhunderte alt und etwa einen halben Kilometer von Qasr Ibrahim entfernt. In seinen Gassen duftet es nach Parfüm, das Kupfer glänzt, und die Einheimischen besticken den Bischt (den traditionellen Umhang) von Hand. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen – und der Abend ist ein würdiger Abschluss für einen vollen Tag, bevor Sie abreisen.
+Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/), einem traditionellen Markt, mehr als zwei Jahrhunderte alt und etwa einen halben Kilometer von Qasr Ibrahim entfernt. In seinen Gassen duftet es nach Parfüm, das Kupfer glänzt, und die Einheimischen besticken den Bischt (den traditionellen Umhang) von Hand. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen; freitags öffnen sie nur abends. Der Abend ist ein würdiger Abschluss für einen vollen Tag, bevor Sie abreisen.
 
 ## Wenn die Zeit reicht
 

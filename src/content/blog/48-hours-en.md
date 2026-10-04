@@ -23,7 +23,7 @@ One note before you start: the stops here are arranged by the **rhythm of the da
 
 ### Morning: Qasr Ibrahim
 
-Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress of mud walls and palm-trunk roofs, gathering mosque, barracks and towers beneath one wall. The first light of day is the best time to take in the architecture and the inner courtyard.
+Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress of mud walls and palm-trunk roofs, gathering mosque, barracks and towers beneath one wall. Daytime is the best time to take in the architecture and the inner courtyard.
 
 ### Mid-morning: Al-Koot District and the City's Memory
 
@@ -31,7 +31,7 @@ Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah]
 
 ### Evening: Qaisariyah Souq
 
-Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands. Its best hours are the morning or the evening, as the shops close at midday. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
+Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands. Its best hours are the morning or the evening, as the shops close at midday; on Fridays it opens in the evening only. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
 
 ## Day Two: Water, Green and the Coast
 
@@ -45,7 +45,7 @@ Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](
 
 ### Late Afternoon: The Green of the Farms
 
-If your visit falls in the Hasawi lime season, in summer from mid-June, give the late afternoon, when the heat eases, to the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
+If your visit falls in the Hasawi lime season, in summer from mid-June to the end of August, give the late afternoon, when the heat eases, to the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
 
 ### Sunset: Al-Uqair
 

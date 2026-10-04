@@ -647,6 +647,12 @@ async function main() {
       { lang: 'en', re: /(?:peak|height)\s+of\s+summer[^]{0,80}?night/i },
       { lang: 'zh', re: /盛夏[^]{0,60}?(?:入夜|夜间|夜里)/ },
       { lang: 'de', re: /Hochsommer[^]{0,100}?Nacht/i },
+      // دليل الجبل: «تدخلها في ليلة شتاء فتجدها دافئة» صارت «في الشتاء» (حكم إياد 2026-10-04)
+      { lang: 'ar', re: /ليلة\s+شتاء[^]{0,30}?داف/ },
+      { lang: 'en', re: /winter\s+night[^]{0,30}?warm/i },
+      { lang: 'zh', re: /冬夜[^]{0,20}?暖/ },
+      { lang: 'de', re: /Winternacht[^]{0,60}?warm/i },
+      { lang: 'ru', re: /зимн[а-яё]*\s+ноч[а-яё]*[^]{0,60}?тепл/i },
     ];
     const OK_WINTER = /قلب الشتاء|depth of winter|隆冬|tiefsten Winter/;
     const offenders = [];
