@@ -1,0 +1,62 @@
+{
+  "lang": "de",
+  "stage": "01-05",
+  "batch": "style-four",
+  "positions": [
+    {
+      "id": "de-nav-dining",
+      "file": "src/i18n/ui.ts",
+      "line": 864,
+      "current": "    'nav.dining': 'Gastronomie',",
+      "proposed": "    'nav.dining': 'Restaurants und Cafés',",
+      "notes": "Item 1: verbatim copy of nav.dine and the published H1 of /de/restaurants-cafes/ (dist: „Restaurants und Cafés“). No new translation."
+    },
+    {
+      "id": "de-nav-stayShort",
+      "file": "src/i18n/ui.ts",
+      "line": 866,
+      "current": "    'nav.stayShort': 'Übernachten',",
+      "proposed": "    'nav.stayShort': 'Unterkünfte',",
+      "notes": "Item 1: verbatim H1 of /de/stay/ (dist: „Unterkünfte“). nav.stay (footer, line 865) is already „Unterkünfte“ — matches, unchanged."
+    },
+    {
+      "id": "de-nav-planVisit",
+      "file": "src/i18n/ui.ts",
+      "line": 870,
+      "current": "    'nav.planVisit': 'Besuch planen',",
+      "proposed": "    'nav.planVisit': 'Reise planen',",
+      "notes": "Item 1: verbatim value of nav.plan (line 868), mirroring en 'Plan your trip' = nav.plan."
+    },
+    {
+      "id": "de-nav-leisure",
+      "file": "src/i18n/ui.ts",
+      "line": 871,
+      "current": "    'nav.leisure': 'Souks & Parks',",
+      "proposed": "    'nav.leisure': 'Souks, Parks und Farmen',",
+      "notes": "Item 1: verbatim list2.title (line 844) = published H1 of /de/souqs-parks-farms/ (dist). Restores the dropped farms; „&“ replaced by „und“ as in the H1."
+    },
+    {
+      "id": "de-cat-crafts-d",
+      "file": "src/i18n/ui.ts",
+      "line": 851,
+      "current": "    'cat.crafts.d': 'Von der Dattelernte bis zu Umhängen, die Einheimische von Hand weben.',",
+      "proposed": "    'cat.crafts.d': 'Von der Dattelernte bis zu Umhängen, die Einheimische von Hand besticken.',",
+      "notes": "Item 4: weben → besticken (track term „bestickt“; ar تطريز, en embroidering). Minimal change keeps the approved sentence frame. Deliberately avoids „von einheimischen Händen bestickt“, recorded as a known stock defect in termbase _meta.batch_rulings.de-blog-8; precedent for the verb form: blog 24-hours-de „besticken den Bischt … von Hand“. „Umhänge“ (not Bischt) per terms.46 note for short cards."
+    },
+    {
+      "id": "de-cat-market-d",
+      "file": "src/i18n/ui.ts",
+      "line": 855,
+      "current": "    'cat.market.d': 'Der Qaisariyah-Souk und der Duft von Parfüm, Gold und Kupfer.',",
+      "proposed": "    'cat.market.d': 'Der Qaisariyah-Souk – mit dem Duft von Parfüm und dem Glanz von Gold und Kupfer.',",
+      "notes": "Item 3: scent belongs to perfume only; gold and copper gleam (en 'the scent of perfume and the gleam of gold and copper'). „der Qaisariyah-Souk“ per termbase terms.15 (Durchkopplung). Halbgeviertstrich with spaces per style rules. Duft/Glanz pairing parallels the published de precedent „duftet es nach Parfüm, das Kupfer glänzt“. No fact added."
+    }
+  ],
+  "observations": [
+    "Item 2 (ru Эль-/Аль-) is Russian-only — skipped for de.",
+    "nav.stay (footer) already equals the /de/stay/ H1 „Unterkünfte“; after this change nav.stay and nav.stayShort are identical, as in ar/en.",
+    "Header width: the three new header labels are longer than the old short forms (Gastronomie 11 → Restaurants und Cafés 21; Souks & Parks 13 → Souks, Parks und Farmen 23). Worth a visual check of the de header at desktop breakpoints for wrapping/overflow — layout, not translation.",
+    "nav.planVisit is the header CTA (routes.plan); it now reads „Reise planen“ like nav.plan, mirroring en. No H1 involved.",
+    "Stock defect noted, not touched (out of scope): „von einheimischen Händen bestickt“ remains in two content pairs per termbase _meta.batch_rulings.de-blog-8."
+  ]
+}
