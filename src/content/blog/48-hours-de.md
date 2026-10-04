@@ -31,7 +31,7 @@ Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/a
 
 ### Abend: Der Qaisariyah-Souk
 
-Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen; freitags öffnen sie nur abends. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
+Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, in denen es nach Parfüm duftet und Kupferwaren glänzen, dazu Umhänge, von einheimischen Händen bestickt. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen; freitags öffnen sie nur abends. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
 
 ## Tag 2: Wasser, Grün und Küste
 
