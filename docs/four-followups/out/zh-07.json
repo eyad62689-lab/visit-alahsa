@@ -1,0 +1,122 @@
+{
+  "batch": "four-followups",
+  "lang": "zh",
+  "stage": 6,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_style": 19,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "zh-03",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 34,
+      "from": "到下午才重新开门（周五仅傍晚营业），宜上午或傍晚前来。",
+      "to": "到下午才重新开门，宜上午或傍晚前来（周五仅傍晚营业）。",
+      "reason": "blind: the note before 宜上午 read as an invitation to come on Friday morning; moved after the recommendation as its caveat. Card wording kept verbatim."
+    },
+    {
+      "id": "zh-05",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 34,
+      "from": "到下午才重新开门（周五仅傍晚营业），宜上午或傍晚前来；",
+      "to": "到下午才重新开门，宜上午或傍晚前来（周五仅傍晚营业）；",
+      "reason": "as zh-03."
+    },
+    {
+      "id": "zh-10",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 15,
+      "from": "到下午才重新开门，宜上午或傍晚前往。\"",
+      "to": "到下午才重新开门，宜上午或傍晚前往（周五仅傍晚营业）。\"",
+      "reason": "new position: b9f2245 adds the Friday rule to the ar/en FAQ («ويوم الجمعة لا تفتح إلا مساءً» / «on Fridays they open in the evening only»); subject = the shops, as in ar/en; Friday wording = this language's body positions/card."
+    }
+  ],
+  "blind_disposition": "Winter (zh-01): 冬夜 -> 冬天 consistent; 留在身上 -> 迎面而来 REJECTED - not a defect: inside the sentence 走进去，留在身上的却是一层暖意 reads as warmth settling on you while inside, the image is approved inherited wording, and 迎面 would repeat the cool clause's 迎面是一阵…清凉. Friday: note before 宜上午 read as «come Friday morning» APPLIED - moved after the recommendation: 宜上午或傍晚前来（周五仅傍晚营业） in zh-03 and zh-05, and 宜上午或傍晚前往（周五仅傍晚营业） in the new FAQ position zh-10; card wording verbatim. Shared gap (24-hours FAQ) resolved in source b9f2245 and carried by zh-10. Lime season and Qasr Ibrahim (白天): no stumble.",
+  "out_of_scope": [
+    "Home route places Jabal al-Qarah differently from the 24/48-hours articles (order) - owner decision.",
+    "Hedge «تقريباً» (approximately) on the lime-season start in the hasawi-lomi article only, while 48-hours, fruits.ts and the home route state the range flatly - source-level, raised to Eyad.",
+    "Qasr Ibrahim in 24-hours (line 28, «ضوء الضحى» / mid-morning light) is outside decision 4, which touched 48-hours only - raised to Eyad.",
+    "PlanTripView FAQ uses 周五仅晚间营业 vs card 周五仅傍晚营业 - harmonise in a follow-up."
+  ],
+  "positions": [
+    {
+      "id": "zh-01",
+      "file": "src/content/blog/jabal-qarah-zh.md",
+      "line": 26,
+      "current": "数千年来，水与风雕琢着山中的岩石，凿出一道道狭窄的石廊——两侧岩壁几乎触及肩头；转过一道弯，眼前豁然开朗，一线天光自石厅高处漏下。厚重的岩体让洞内**全年恒温约 20 摄氏度**：八月正午走进去，迎面是一阵意想不到的清凉；冬夜走进去，留在身上的却是一层暖意。",
+      "proposed": "数千年来，水与风雕琢着山中的岩石，凿出一道道狭窄的石廊——两侧岩壁几乎触及肩头；转过一道弯，眼前豁然开朗，一线天光自石厅高处漏下。厚重的岩体让洞内**全年恒温约 20 摄氏度**：八月正午走进去，迎面是一阵意想不到的清凉；冬天走进去，留在身上的却是一层暖意。"
+    },
+    {
+      "id": "zh-02",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 26,
+      "current": "一天从胡富夫市中心的[易卜拉欣宫](/zh/attractions/qasr-ibrahim/)开始——说是宫，其实是一座泥墙筑就、椰枣树干盖顶的城堡：同一道围墙之内，清真寺、军营与瞭望塔比邻而立。清晨第一缕天光下，最适合细看它的建筑与内院。",
+      "proposed": "一天从胡富夫市中心的[易卜拉欣宫](/zh/attractions/qasr-ibrahim/)开始——说是宫，其实是一座泥墙筑就、椰枣树干盖顶的城堡：同一道围墙之内，清真寺、军营与瞭望塔比邻而立。白天最适合细看它的建筑与内院。"
+    },
+    {
+      "id": "zh-03",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 34,
+      "current": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。",
+      "proposed": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来（周五仅傍晚营业）。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。"
+    },
+    {
+      "id": "zh-04",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 48,
+      "current": "若您到访时正逢哈萨青柠季（夏季，6 月中旬起），就把日头偏西、暑热稍退的时分留给[哈萨青柠农场](/zh/attractions/lemon-farm/)——应季时可以亲手采摘著名的哈萨青柠（当地称 lomi）。若不在青柠季，可到[传统市集、公园与农场](/zh/souqs-parks-farms/)这一页，另挑一处离您路线近的公园或农场。",
+      "proposed": "若您到访时正逢哈萨青柠季（夏季，6 月中旬至 8 月底），就把日头偏西、暑热稍退的时分留给[哈萨青柠农场](/zh/attractions/lemon-farm/)——应季时可以亲手采摘著名的哈萨青柠（当地称 lomi）。若不在青柠季，可到[传统市集、公园与农场](/zh/souqs-parks-farms/)这一页，另挑一处离您路线近的公园或农场。"
+    },
+    {
+      "id": "zh-05",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 34,
+      "current": "一天的最后留给[凯撒利亚集市](/zh/attractions/qaisariyah/)——距易卜拉欣宫约半公里，是一座已有 200 多年历史的遗产市集：巷子里香水气息弥漫，黄铜泛着光泽，比什特长袍上的刺绣出自哈萨本地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来；傍晚来逛，正好在离开哈萨之前，为这紧凑的一天画上一个恰到好处的句号。",
+      "proposed": "一天的最后留给[凯撒利亚集市](/zh/attractions/qaisariyah/)——距易卜拉欣宫约半公里，是一座已有 200 多年历史的遗产市集：巷子里香水气息弥漫，黄铜泛着光泽，比什特长袍上的刺绣出自哈萨本地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来（周五仅傍晚营业）；傍晚来逛，正好在离开哈萨之前，为这紧凑的一天画上一个恰到好处的句号。"
+    },
+    {
+      "id": "zh-06",
+      "file": "src/content/blog/hasawi-lomi-zh.md",
+      "line": 16,
+      "current": "    a: \"时令在夏季，大约从 6 月中旬开始——也正是在这个季节，哈萨的家家户户聚在一起榨汁封存，备下全年的用量。\"",
+      "proposed": "    a: \"时令在夏季，大约从 6 月中旬持续到 8 月底——也正是在这个季节，哈萨的家家户户聚在一起榨汁封存，备下全年的用量。\""
+    },
+    {
+      "id": "zh-07",
+      "file": "src/content/blog/hasawi-lomi-zh.md",
+      "line": 35,
+      "current": "青柠的时令在夏季，**大约从 6 月中旬开始**——正赶上暑热最盛的时候，绿洲的果园里也正是夏天软熟鲜椰枣（Rutab）的时节。想在枝头见它一面，就去[哈萨青柠农场](/zh/attractions/lemon-farm/)——一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠（当地称 lomi）。想知道绿洲每个季节各产什么，[哈萨时令水果](/zh/fruits/)页面上有完整的一趟巡礼。",
+      "proposed": "青柠的时令在夏季，**大约从 6 月中旬持续到 8 月底**——正赶上暑热最盛的时候，绿洲的果园里也正是夏天软熟鲜椰枣（Rutab）的时节。想在枝头见它一面，就去[哈萨青柠农场](/zh/attractions/lemon-farm/)——一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠（当地称 lomi）。想知道绿洲每个季节各产什么，[哈萨时令水果](/zh/fruits/)页面上有完整的一趟巡礼。"
+    },
+    {
+      "id": "zh-08",
+      "file": "src/i18n/ui.ts",
+      "line": 577,
+      "current": "    'home.route.s5.d': '林荫深深，柑橘飘香；应季时还能亲手采摘哈萨青柠。',",
+      "proposed": "    'home.route.s5.d': '林荫深深，柑橘飘香；应季时（6 月中旬至 8 月底）还能亲手采摘哈萨青柠。',"
+    },
+    {
+      "id": "zh-09",
+      "file": "src/data/fruits.ts",
+      "line": 300,
+      "current": "        season: '夏季：6 月中旬起', seasons: 'summer',",
+      "proposed": "        season: '夏季：6 月中旬至 8 月底', seasons: 'summer',"
+    },
+    {
+      "id": "zh-10",
+      "file": "src/content/blog/24-hours-zh.md",
+      "line": 15,
+      "current": "    a: \"可以。最合适的顺序是早上游山、傍晚逛集市：卡拉山宜在白天游览；凯撒利亚集市的店铺中午歇业，到下午才重新开门，宜上午或傍晚前往。\"",
+      "proposed": "    a: \"可以。最合适的顺序是早上游山、傍晚逛集市：卡拉山宜在白天游览；凯撒利亚集市的店铺中午歇业，到下午才重新开门，宜上午或傍晚前往（周五仅傍晚营业）。\""
+    }
+  ]
+}

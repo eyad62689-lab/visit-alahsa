@@ -23,7 +23,7 @@ Eine Anmerkung vorab: Öffnungszeiten und Eintritt ändern sich je nach Saison. 
 
 ### Morgen: Qasr Ibrahim
 
-Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast). Diese Palastfestung mit ihren Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kasernen und Türme hinter einem einzigen Mauerring. Architektur und Innenhof zeigen sich im ersten Tageslicht am besten.
+Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast). Diese Palastfestung mit ihren Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kasernen und Türme hinter einem einzigen Mauerring. Architektur und Innenhof zeigen sich tagsüber am besten.
 
 ### Vormittag: Das Al-Koot-Viertel und das Gedächtnis der Stadt
 
@@ -31,7 +31,7 @@ Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/a
 
 ### Abend: Der Qaisariyah-Souk
 
-Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
+Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen; freitags öffnen sie nur abends. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
 
 ## Tag 2: Wasser, Grün und Küste
 
@@ -45,7 +45,7 @@ Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/att
 
 ### Später Nachmittag: Das Grün der Farmen
 
-Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer ab Mitte Juni Saison. Fällt Ihr Besuch in diese Zeit, gehört der späte Nachmittag, wenn die Hitze nachlässt, der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/). Dort pflücken Besucher die berühmte Hasawi-Limette (Lomi). Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
+Die Hasawi-Limette (die Limette aus Al-Ahsa) hat im Sommer von Mitte Juni bis Ende August Saison. Fällt Ihr Besuch in diese Zeit, gehört der späte Nachmittag, wenn die Hitze nachlässt, der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/). Dort pflücken Besucher die berühmte Hasawi-Limette (Lomi). Stöbern Sie außerhalb der Saison auf der Seite [Souks, Parks und Farmen](/de/souqs-parks-farms/) und wählen Sie einen Park oder eine Farm nahe Ihrer Route.
 
 ### Sonnenuntergang: Al-Uqair
 

@@ -13,7 +13,7 @@ faq:
   - q: "Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone oder Limette?"
     a: "Sie ist kleiner, dünnschaliger, saftiger und weitaus aromatischer als andere Zitrusfrüchte. In der Küche von Al-Ahsa und der Golfregion wird sie frisch, als Saft und getrocknet verwendet."
   - q: "Wann hat die Hasawi-Limette (Lomi) Saison?"
-    a: "Ihre Saison ist der Sommer und beginnt etwa Mitte Juni – dieselbe Zeit, in der die Familien in Al-Ahsa zusammenkommen, um die Frucht zu pressen und als Vorrat für das ganze Jahr haltbar zu machen."
+    a: "Ihre Saison ist der Sommer und reicht von etwa Mitte Juni bis Ende August – dieselbe Zeit, in der die Familien in Al-Ahsa zusammenkommen, um die Frucht zu pressen und als Vorrat für das ganze Jahr haltbar zu machen."
   - q: "Was ist „Jameed“?"
     a: "Das ist sonnengetrockneter Limettensaft: ein liebgewonnener Brauch in Al-Ahsa, bei dem die Familien in der Sommersaison zusammenkommen, um die Hasawi-Limette zu pressen. Der Saft reift danach in Glasgefäßen – ein Vorrat, der übers ganze Jahr reicht."
   - q: "Wann und wo findet die Hasawi-Lomi-Ausstellung statt?"
@@ -32,7 +32,7 @@ Die Hasawi-Lomi – vor Ort auch **Bin Zuhairi** genannt – ist eine kleine, du
 
 ## Ihre Saison: Der Sommer der Oase
 
-Die Saison der Lomi ist der Sommer; sie beginnt **etwa Mitte Juni** – also auf dem Höhepunkt der Hitze, wenn die Haine der Oase zugleich Rutab tragen, die frische Sommerdattel. Der Frucht an ihrem Baum begegnen Sie auf der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), einer Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken. Was die Oase in jeder Jahreszeit hervorbringt, zeigt der vollständige Rundgang auf der Seite [Oasenfrüchte](/de/fruits/).
+Die Saison der Lomi ist der Sommer; sie reicht **von etwa Mitte Juni bis Ende August** – also auf dem Höhepunkt der Hitze, wenn die Haine der Oase zugleich Rutab tragen, die frische Sommerdattel. Der Frucht an ihrem Baum begegnen Sie auf der [Hasawi-Limettenfarm](/de/attractions/lemon-farm/), einer Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken. Was die Oase in jeder Jahreszeit hervorbringt, zeigt der vollständige Rundgang auf der Seite [Oasenfrüchte](/de/fruits/).
 
 ## Vom Baum in die Speisekammer: „Jameed“, der sonnengetrocknete Lomi-Saft
 
