@@ -15,8 +15,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'الأسواق التراثية',
     farm: 'المزارع والنخيل',
     experience: 'التجارب والحِرف',
-    taste: 'المذاق والتمور',
-    events: 'الفعاليات والمواسم',
+    taste: 'المطبخ الأحسائي',
+    events: 'الفعاليات',
   },
   en: {
     historic: 'Historic landmarks',
@@ -27,8 +27,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'Heritage souqs',
     farm: 'Farms & palms',
     experience: 'Experiences & crafts',
-    taste: 'Cuisine & dates',
-    events: 'Events & seasons',
+    taste: 'Hasawi Cuisine',
+    events: 'Events',
   },
   zh: {
     historic: '历史古迹',
