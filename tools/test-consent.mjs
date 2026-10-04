@@ -58,8 +58,12 @@ async function fresh() {
   await page.setViewport({ width: 1280, height: 900 });
   const ga = [];
   await page.setRequestInterception(true);
+  // المضيف لا تعبير نمطي على الرابط (CodeQL js/regex/missing-regexp-anchor)
+  const isGa = (h) => h === 'googletagmanager.com' || h.endsWith('.googletagmanager.com') || h === 'google-analytics.com' || h.endsWith('.google-analytics.com');
   page.on('request', (r) => {
-    if (/googletagmanager\.com|google-analytics\.com/.test(r.url())) { ga.push(r.url()); r.abort(); } else r.continue();
+    let host = '';
+    try { host = new URL(r.url()).hostname; } catch { /* data: وأمثاله */ }
+    if (isGa(host)) { ga.push(r.url()); r.abort(); } else r.continue();
   });
   return { ctx, page, ga };
 }
