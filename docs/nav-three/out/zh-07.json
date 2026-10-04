@@ -1,0 +1,60 @@
+{
+  "batch": "nav-three",
+  "stage": 6,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "lang": "zh",
+  "score": 96,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_style": 20,
+    "traveller_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "tm": "zh-translation/memory/tm.json",
+      "pair": "ui-chrome cat.taste.d",
+      "reason": "new en/zh pair added (no prior pair for this field); text unchanged from stage 5"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "obs": "description natural",
+      "ruling": "no change",
+      "reason": "—"
+    },
+    {
+      "obs": "«哈里斯» reads as a person name, «穆法拉格» opaque; suggested a short parenthetical gloss from termbase 130/131",
+      "ruling": "rejected",
+      "reason": "the approved glosses in 130/131 are Latin （Harees）/（Mufallaq）, a search handle for body first mention, not an explanation — they would not tell the reader what the dish is and would double the teaser with Latin. Term 130 note: no classifier (麦粥) is appended to 哈里斯 on any page; a context word suffices for a cold introduction — here 家常美味 + colon list types the items as dishes, which rules out the person-name reading. Brief: names as published in DISH_GROUPS_ZH name fields (no gloss there); ar/en cards unglossed; the food page carries the glosses."
+    },
+    {
+      "obs": "footer fine",
+      "ruling": "no change",
+      "reason": "no defect"
+    }
+  ],
+  "out_of_scope": [
+    "Transliterated dish names on teaser surfaces stay unglossed in all languages; food page carries the glosses. Raised to Eyad unscored.",
+    "Heritage-souqs card opens the souq filter only — consistent with the category-name decision."
+  ],
+  "positions": [
+    {
+      "id": "cat.taste.d",
+      "file": "src/i18n/ui.ts",
+      "line": 734,
+      "current": "    'cat.taste.d': \"热气腾腾的家常美味，以及端上世界餐桌的椰枣。\",",
+      "proposed": "    'cat.taste.d': \"热气腾腾的家常美味：哈萨焖饭、哈里斯、穆法拉格和椰枣面包。\","
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "zh-translation/memory/tm.json",
+      "before": "\"field\": \"foot.col.plan\",\r\n      \"date\": \"2026-10-04\"\r\n    }\r\n  ]",
+      "after": "\"field\": \"foot.col.plan\",\r\n      \"date\": \"2026-10-04\"\r\n    },\r\n    {\r\n      \"en\": \"A warm kitchen: Hasawi rice, harees, mufallaq and date bread.\",\r\n      \"zh\": \"热气腾腾的家常美味：哈萨焖饭、哈里斯、穆法拉格和椰枣面包。\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"cat.taste.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three (29df30f). Dish names = DISH_GROUPS_ZH name fields; no Latin gloss on the card: head noun 家常美味 + colon list types the items as dishes (term 130 note: context word suffices for a cold introduction); the gloss （Harees）/（Mufallaq） stays on the food page body first mention.\"\r\n    }\r\n  ]"
+    }
+  ]
+}

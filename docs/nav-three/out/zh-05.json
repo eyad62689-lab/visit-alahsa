@@ -1,0 +1,27 @@
+{
+  "lang": "zh",
+  "stage": "01-05",
+  "batch": "nav-three",
+  "positions": [
+    {
+      "id": "cat.taste.d",
+      "file": "src/i18n/ui.ts",
+      "line": 734,
+      "current": "    'cat.taste.d': \"热气腾腾的家常美味，以及端上世界餐桌的椰枣。\",",
+      "proposed": "    'cat.taste.d': \"热气腾腾的家常美味：哈萨焖饭、哈里斯、穆法拉格和椰枣面包。\",",
+      "notes": "Source (29df30f): ar «مطبخٌ دافئ: الأرز الأحسائي والهريس والمفلق وخبز التمر.» / en «A warm kitchen: Hasawi rice, harees, mufallaq and date bread.». Dish names copied literally from the name fields of DISH_GROUPS_ZH in src/data/dishes.ts (哈萨焖饭 / 哈里斯 / 穆法拉格 / 椰枣面包), no Latin glosses (brief: names exactly as published on the food page; romanization rule glosses body first mention only, this is a card). 哈萨焖饭 is the dish (term 127), not 哈萨大米 or 哈萨红米 (term 179). Lead phrase 热气腾腾的家常美味 kept from the previously judged rendering (94/100) of the same source \"مطبخٌ دافئ\"; the dropped clause about exported dates is gone in both sources. Full-width colon, 、 enumeration with 和 before the last item, full-width full stop. Stage 2-4: no 翻译腔 residue; stage 5 checks PASS: punctuation full-width, termbase 100% (127/130/131/135 name forms as on the page), simplified only, no misparse (上海/北京/中国), no 哈萨维/哈萨人."
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "src/i18n/ui.ts",
+      "before": "    'cat.taste.d': \"热气腾腾的家常美味，以及端上世界餐桌的椰枣。\",",
+      "after": "    'cat.taste.d': \"热气腾腾的家常美味：哈萨焖饭、哈里斯、穆法拉格和椰枣面包。\","
+    }
+  ],
+  "observations": [
+    "Only cat.taste.d changed for zh; cat.taste.t (哈萨美食) already matches term 125 after nav-four. Item 1 (footer) is code-only; item 2 is German-only.",
+    "Termbase 130/131 carry Latin glosses 哈里斯（Harees）/穆法拉格（Mufallaq） for body first mention, and TM dining.faq1.a glosses 哈里斯（Harees）; the card follows the food page name fields instead (no glosses), per the brief. A blind reader may not recognise 哈里斯/穆法拉格 as dishes without the gloss; the 家常美味 head noun and the card link to the food page carry that.",
+    "ui.ts is CRLF; the edit is a single-line in-place string replacement (U+0020 indentation unchanged). Stage 6 judge (>=90) still pending before publish."
+  ]
+}

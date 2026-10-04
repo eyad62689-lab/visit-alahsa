@@ -148,7 +148,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
      · «أماكن الإقامة» · «المطاعم والمقاهي» · «خطّط لرحلتك») فطال الشريط في كل لغة. بدل رفع
      العتبات إلى 1349–1506px (أي برغر على أغلب الحواسيب) صُغِّر خط الشريط وفجوته في الوضع
      المبسوط وحده، بقيم مقيسة بـtools/measure-header-fit.mjs (MODE=fit): ar ‏14/12 ← 1304px
-     · zh ‏14/12 ← 1128 · en ‏13.5/10 ← 1381 · de ‏12.5/8 ← 1370 · ru ‏13/10 ← 1530 (بعد «Sehenswürdigkeiten/Veranstaltungen» و«Достопримечательности»، 2026-10-04). */
+     · zh ‏14/12 ← 1128 · en ‏13.5/10 ← 1381 · de ‏12.5/8 ← 1393 · ru ‏13/10 ← 1530 (بعد «Sehenswürdigkeiten/Veranstaltungen» و«Достопримечательности»، 2026-10-04). */
   @media (min-width: 1271px) {
     :global([lang='ar']) .nav, :global([lang='zh']) .nav { gap: 12px; }
     :global([lang='ar']) .nav a, :global([lang='zh']) .nav a { font-size: .875rem; }
@@ -170,7 +170,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav { gap: 10px; }
     :global([lang='en']) .nav a { font-size: .84375rem; }
   }
-  @media (min-width: 1410px) {
+  @media (min-width: 1433px) {
     /* وسقفُ حاويتها أوسع من 1280px: عند تجاوز السقف لا ينكسر الشريط ظاهراً بل
        **ينضغط** — الفليكس يقلّص أدوات الشريط فيلتفّ «Meine Reise» سطرين ويصير الشريط
        69px بدل 68. لذلك لا يكفي قياس التراكب وحده حكماً على الاتّساع؛ الحارس يشترط
@@ -250,9 +250,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='en']) .nav .nav-plan { display: block; }
   }
-  /* الألمانية تنهار عند 1409px (اللازم 1370 بخط 12.5px وفجوة 8px، «Merkliste») والروسية عند 1569px (اللازم 1530 بخط 13px وفجوة 10px، «Сохранённые места»؛ أصغر من 13px يُضعف القراءة).
+  /* الألمانية تنهار عند 1432px (اللازم 1393 بخط 12.5px وفجوة 8px، «Merkliste» و«Küche aus Al-Ahsa») والروسية عند 1569px (اللازم 1530 بخط 13px وفجوة 10px، «Сохранённые места»؛ أصغر من 13px يُضعف القراءة).
      تكرار الكتلة مقصود ومحصور كي لا تخسر العربية والصينية شريطهما بلا سبب. */
-  @media (max-width: 1409px) {
+  @media (max-width: 1432px) {
     :global([lang='de']) .hd-actions .btn-gold, :global([lang='ru']) .hd-actions .btn-gold { display: none; }
     :global([lang='de']) .burger, :global([lang='ru']) .burger { display: flex; }
     :global([lang='de']) .nav-toggle, :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

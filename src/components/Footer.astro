@@ -26,7 +26,8 @@ const cols = [
     links: [
       // الأسواق والمنتزهات والمزارع في صفحتها المستقلة (فُصلت 2026-07-13)
       ...['historic', 'nature'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
-      ...['market', 'parks', 'farm'].map((c) => ({ label: catLabel(c, lang), href: `${leisureBase}?cat=${c}` })),
+      // صفحة واحدة باسمها كالترويسة، لا مرشّحاتها الثلاثة (حكم إياد 2026-10-04: قرأها القرّاء ثلاث صفحات)
+      { label: t('nav.leisure'), href: leisureBase },
       { label: t('nav.fruits'), href: ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : '/en/fruits/' },
       { label: t('nav.food'), href: ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : '/en/food/' },
       { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/' },

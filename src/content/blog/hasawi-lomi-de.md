@@ -56,4 +56,4 @@ Frisch in ihrer Saison oder getrocknet rund ums Jahr: Die Lomi gehört zum Beste
 
 ## Fazit
 
-Die Dattel ist Al-Ahsas Aushängeschild, die Lomi seine sommerliche Handschrift: eine kleine Frucht, die den Geschmack der Oase so sehr verdichtet, dass sie eine eigene Ausstellung verdient hat. Lernen Sie die Frucht auf der Seite [Oasenfrüchte](/de/fruits/) kennen, kosten Sie sie in den [Gerichten der Hasawi-Küche](/de/food/), und wenn Ihre Reise in die Ausstellungssaison fällt, lassen Sie sich [einen Besuch](/de/events/hasawi-lomi-exhibition/) nicht entgehen.
+Die Dattel ist Al-Ahsas Aushängeschild, die Lomi seine sommerliche Handschrift: eine kleine Frucht, die den Geschmack der Oase so sehr verdichtet, dass sie eine eigene Ausstellung verdient hat. Lernen Sie die Frucht auf der Seite [Oasenfrüchte](/de/fruits/) kennen, kosten Sie sie in den Gerichten auf der Seite [Küche aus Al-Ahsa](/de/food/), und wenn Ihre Reise in die Ausstellungssaison fällt, lassen Sie sich [einen Besuch](/de/events/hasawi-lomi-exhibition/) nicht entgehen.

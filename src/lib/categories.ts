@@ -52,7 +52,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'Traditionelle Souks',
     farm: 'Farmen und Dattelpalmen',
     experience: 'Erlebnisse und Handwerk',
-    taste: 'Hasawi-Küche',
+    taste: 'Küche aus Al-Ahsa',
     events: 'Veranstaltungen',
   },
   // الروسية من خط ru-translation-pipeline (دفعة نصوص الواجهة 2026-09-05، الحاكم 91/100).
