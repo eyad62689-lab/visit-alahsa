@@ -1,0 +1,170 @@
+{
+  "lang": "de",
+  "stage": "01-05",
+  "batch": "nav-three",
+  "positions": [
+    {
+      "id": "nav.food",
+      "file": "src/i18n/ui.ts",
+      "line": 862,
+      "current": "    'nav.food': 'Hasawi-Küche',",
+      "proposed": "    'nav.food': 'Küche aus Al-Ahsa',",
+      "notes": "Seitenname in Kopfleiste und Fußzeile (Item 2). Herkunftsangabe statt der für deutsche Leser undurchsichtigen Vorsilbe Hasawi-; keine Glosse in der Navigation nötig (gloss_regel), weil der Name sich selbst erklärt. Länge 12 → 17 Zeichen: Kopfleiste nachmessen."
+    },
+    {
+      "id": "cat.taste.t",
+      "file": "src/i18n/ui.ts",
+      "line": 852,
+      "current": "    'cat.taste.t': 'Hasawi-Küche',",
+      "proposed": "    'cat.taste.t': 'Küche aus Al-Ahsa',",
+      "notes": "Karte = Seitenname wörtlich (Regel nav-four: Karte und Kategorie tragen den Namen der Seite)."
+    },
+    {
+      "id": "cat.taste.d",
+      "file": "src/i18n/ui.ts",
+      "line": 853,
+      "current": "    'cat.taste.d': 'Eine Küche voller Wärme – und Datteln, die in alle Welt exportiert werden.',",
+      "proposed": "    'cat.taste.d': 'Eine Küche voller Wärme: Hasawi-Reis, Harees, Mufallaq und Dattelbrot.',",
+      "notes": "Item 3. Gerichtnamen wörtlich aus DISH_GROUPS_DE (src/data/dishes.ts:126/130/132/140, name-Felder): Hasawi-Reis, Harees, Mufallaq, Dattelbrot. „Eine Küche voller Wärme“ ist die freigegebene Wiedergabe von „A warm kitchen“ (TM cat.taste.d 2026-09-03); „Eine warme Küche“ verworfen, weil es im Deutschen den beheizten Raum meint. Doppelpunkt wie Quelle, ohne serielles Komma. Der Datteln-Export entfällt mit der Quelle (29df30f)."
+    },
+    {
+      "id": "categories.taste",
+      "file": "src/lib/categories.ts",
+      "line": 55,
+      "current": "    taste: 'Hasawi-Küche',",
+      "proposed": "    taste: 'Küche aus Al-Ahsa',",
+      "notes": "Kategorie = Seitenname (Regel nav-four). Artikelloser Singular neben „Natur“ – Ausnahme wie bisher akzeptiert."
+    },
+    {
+      "id": "food.title",
+      "file": "src/components/views/FoodView.astro",
+      "line": 65,
+      "current": "  title: 'Hasawi-Küche',",
+      "proposed": "  title: 'Küche aus Al-Ahsa',",
+      "notes": "Seitentitel (H1, <title>, BreadcrumbList name) – alle speisen sich aus C.title. Kommentar „العنوان = nav.food المنشور (حكم F6)“ bleibt wahr."
+    },
+    {
+      "id": "food.heroSum",
+      "file": "src/components/views/FoodView.astro",
+      "line": 66,
+      "current": "  heroSum: 'Die Hasawi-Küche schöpft aus den Gaben der Oase: aus einheimischem Hasawi-Reis (dem Reis aus Al-Ahsa), Dattelsirup, getrockneter Limette (Lomi) und geschrotetem Weizen – so entstehen warme Gerichte, die von Generation zu Generation an den Tischen weitergegeben werden.',",
+      "proposed": "  heroSum: 'Die Küche Al-Ahsas schöpft aus den Gaben der Oase: aus einheimischem Hasawi-Reis (dem Reis aus Al-Ahsa), Dattelsirup, getrockneter Limette (Lomi) und geschrotetem Weizen – so entstehen warme Gerichte, die von Generation zu Generation an den Tischen weitergegeben werden.',",
+      "notes": "Beschreibend, steht aber direkt unter dem H1 – zwei Namen für dieselbe Sache im selben Blickfeld. „Die Küche aus Al-Ahsa schöpft aus …“ verworfen (doppeltes „aus“); Genitiv „Al-Ahsas“ nach freigegebenem Muster („Gerichte Al-Ahsas“). Quelle EN „Al-Ahsa’s kitchen“ – jetzt näher an der Quelle. Glosse „Hasawi-Reis (dem Reis aus Al-Ahsa)“ bleibt erste Erwähnung im Fließtext."
+    },
+    {
+      "id": "food.description",
+      "file": "src/components/views/FoodView.astro",
+      "line": 122,
+      "current": "      ? 'Eine Tour durch die Hasawi-Küche: Hasawi-Reis, Mandi, Harees, Mufallaq, Balaleet mit Dattelsirup, Dattel-Asida, Sago und Dattelbrot.'",
+      "proposed": "      ? 'Eine Tour durch die Küche aus Al-Ahsa: Hasawi-Reis, Mandi, Harees, Mufallaq, Balaleet mit Dattelsirup, Dattel-Asida, Sago und Dattelbrot.'",
+      "notes": "Meta-Description wiederholt den Seitennamen → Seitenname. „Hasawi-Reis“ bleibt (Gerichtname)."
+    },
+    {
+      "id": "dining.faq0.link",
+      "file": "src/components/views/DiningView.astro",
+      "line": 180,
+      "current": "      linkText: 'Mehr zu den Gerichten auf der Seite Hasawi-Küche →',",
+      "proposed": "      linkText: 'Mehr zu den Gerichten auf der Seite „Küche aus Al-Ahsa“ →',",
+      "notes": "Verweis auf die Seite mit ihrem Namen. Mehrwortiger Name ohne Linkmarkup braucht „…“ (Muster events.ts related: Seite „Oasenfrüchte“); ohne Anführungszeichen liest sich „auf der Seite Küche aus Al-Ahsa“ als Satzteil."
+    },
+    {
+      "id": "dining.faq3.link",
+      "file": "src/components/views/DiningView.astro",
+      "line": 194,
+      "current": "      linkText: 'Mehr zu Dattelbrot auf der Seite Hasawi-Küche →',",
+      "proposed": "      linkText: 'Mehr zu Dattelbrot auf der Seite „Küche aus Al-Ahsa“ →',",
+      "notes": "wie dining.faq0.link."
+    },
+    {
+      "id": "blog.worth-visiting.44",
+      "file": "src/content/blog/worth-visiting-de.md",
+      "line": 44,
+      "current": "- **Wo Sie essen:** Die Seite [Restaurants und Cafés](/de/restaurants-cafes/) und die Seite [Hasawi-Küche](/de/food/) decken ab, was auf den Tisch kommt – von den Datteln der Oase und ihrer berühmten Hasawi-Limette (der Limette aus Al-Ahsa, dort Lomi genannt) bis zu den traditionellen Gerichten Al-Ahsas.",
+      "proposed": "- **Wo Sie essen:** Die Seite [Restaurants und Cafés](/de/restaurants-cafes/) und die Seite [Küche aus Al-Ahsa](/de/food/) decken ab, was auf den Tisch kommt – von den Datteln der Oase und ihrer berühmten Hasawi-Limette (der Limette aus Al-Ahsa, dort Lomi genannt) bis zu den traditionellen Gerichten Al-Ahsas.",
+      "notes": "Linktext = Seitenname (termbase-Regel: Linktext = veröffentlichter Titel der Zielseite). Linkmarkup grenzt den Namen ab, daher ohne Anführungszeichen – parallel zu „[Restaurants und Cafés]“ im selben Satz."
+    },
+    {
+      "id": "blog.hasawi-lomi.59",
+      "file": "src/content/blog/hasawi-lomi-de.md",
+      "line": 59,
+      "current": "Die Dattel ist Al-Ahsas Aushängeschild, die Lomi seine sommerliche Handschrift: eine kleine Frucht, die den Geschmack der Oase so sehr verdichtet, dass sie eine eigene Ausstellung verdient hat. Lernen Sie die Frucht auf der Seite [Oasenfrüchte](/de/fruits/) kennen, kosten Sie sie in den [Gerichten der Hasawi-Küche](/de/food/), und wenn Ihre Reise in die Ausstellungssaison fällt, lassen Sie sich [einen Besuch](/de/events/hasawi-lomi-exhibition/) nicht entgehen.",
+      "proposed": "Die Dattel ist Al-Ahsas Aushängeschild, die Lomi seine sommerliche Handschrift: eine kleine Frucht, die den Geschmack der Oase so sehr verdichtet, dass sie eine eigene Ausstellung verdient hat. Lernen Sie die Frucht auf der Seite [Oasenfrüchte](/de/fruits/) kennen, kosten Sie sie in den Gerichten auf der Seite [Küche aus Al-Ahsa](/de/food/), und wenn Ihre Reise in die Ausstellungssaison fällt, lassen Sie sich [einen Besuch](/de/events/hasawi-lomi-exhibition/) nicht entgehen.",
+      "notes": "Link auf die Seite → Linktext = Seitenname; zugleich parallel zum vorangehenden „auf der Seite [Oasenfrüchte](/de/fruits/)“. „[Gerichten der Küche aus Al-Ahsa]“ verworfen: Seitenname nicht erkennbar. Keine neue Tatsache."
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Die Hasawi-Küche schöpft aus den Gaben der Oase:",
+      "after": "\"de\": \"Die Küche Al-Ahsas schöpft aus den Gaben der Oase:"
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Eine Tour durch die Hasawi-Küche: Hasawi-Reis,",
+      "after": "\"de\": \"Eine Tour durch die Küche aus Al-Ahsa: Hasawi-Reis,"
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Mehr zu den Gerichten auf der Seite Hasawi-Küche →\"",
+      "after": "\"de\": \"Mehr zu den Gerichten auf der Seite „Küche aus Al-Ahsa“ →\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Mehr zu Dattelbrot auf der Seite Hasawi-Küche →\"",
+      "after": "\"de\": \"Mehr zu Dattelbrot auf der Seite „Küche aus Al-Ahsa“ →\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "und die Seite Hasawi-Küche decken ab",
+      "after": "und die Seite Küche aus Al-Ahsa decken ab"
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Eine Küche voller Wärme – und Datteln, die in alle Welt exportiert werden.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"cat.taste.d\",\r\n      \"date\": \"2026-09-03\"",
+      "after": "\"de\": \"Eine Küche voller Wärme: Hasawi-Reis, Harees, Mufallaq und Dattelbrot.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"cat.taste.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three; en (29df30f): A warm kitchen: Hasawi rice, harees, mufallaq and date bread. Ersetzt: Eine Küche voller Wärme – und Datteln, die in alle Welt exportiert werden.\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Hasawi-Küche\",\r\n      \"page\": \"home\",\r\n      \"field\": \"cat.taste.t\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"",
+      "after": "\"de\": \"Küche aus Al-Ahsa\",\r\n      \"page\": \"home\",\r\n      \"field\": \"cat.taste.t\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three (ersetzt nav-four „Hasawi-Küche“)\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Hasawi-Küche\",\r\n      \"page\": \"categories\",\r\n      \"field\": \"categories.taste\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },",
+      "after": "\"de\": \"Küche aus Al-Ahsa\",\r\n      \"page\": \"categories\",\r\n      \"field\": \"categories.taste\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three (ersetzt nav-four „Hasawi-Küche“)\"\r\n    },\r\n    {\r\n      \"en\": \"Hasawi Cuisine\",\r\n      \"de\": \"Küche aus Al-Ahsa\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"nav.food\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three\"\r\n    },\r\n    {\r\n      \"en\": \"Hasawi Cuisine\",\r\n      \"de\": \"Küche aus Al-Ahsa\",\r\n      \"page\": \"food\",\r\n      \"field\": \"ui.title\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three\"\r\n    },\r\n    {\r\n      \"en\": \"taste it in the dishes of Hasawi cuisine\",\r\n      \"de\": \"kosten Sie sie in den Gerichten auf der Seite [Küche aus Al-Ahsa](/de/food/)\",\r\n      \"page\": \"hasawi-lomi-lime\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three; Linkstelle /de/food/ trägt den Seitennamen\"\r\n    },"
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"de\": \"die Hasawi-Küche\",",
+      "after": "\"de\": \"die Küche aus Al-Ahsa (Seitenname) · im Fließtext beschreibend auch „die Küche Al-Ahsas“ / „die Hasawi-Küche“\","
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"note\": \"`nav.food`. الشرطة إلزامية. **أول متن ألماني يذكر النسبة هو موضع الگلوس الواجب**",
+      "after": "\"note\": \"**nav-three (حكم إياد 2026-10-04):** اسم الصفحة/القسم «Küche aus Al-Ahsa» حيثما سُمّيت الصفحة — `nav.food` و`cat.taste.t` و`categories.ts` taste وعنوان FoodView ووصفها، وكل إحالة إلى الصفحة باسمها (DiningView، worth-visiting-de، hasawi-lomi-de). الإحالة النصية بلا رابط تحمل الاسم بين „…“. «Hasawi-Küche» تبقى جائزةً وصفاً في المتن (souvenirs-de، dar-basma، sharq-alqaisariah، FAQ اللومي في events.ts، عنوان hasawi-lomi-de «In der Hasawi-Küche»)، وأسماء الأصناف (Hasawi-Reis، Hasawi-Limette، Hasawi-Bischt) لا تُمسّ. «Die Küche aus Al-Ahsa schöpft aus …» مرفوضة لتكرار «aus»: في المتن «die Küche Al-Ahsas». — السابق: `nav.food`. الشرطة إلزامية. **أول متن ألماني يذكر النسبة هو موضع الگلوس الواجب**"
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "Farmen und Dattelpalmen · Erlebnisse und Handwerk · Hasawi-Küche · Veranstaltungen\"",
+      "after": "Farmen und Dattelpalmen · Erlebnisse und Handwerk · Küche aus Al-Ahsa · Veranstaltungen\""
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "taste = `nav.food` «Hasawi-Küche»",
+      "after": "taste = `nav.food` «Küche aus Al-Ahsa» (nav-three 2026-10-04، خلفاً لـ«Hasawi-Küche»)"
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "«Hasawi-Küche» مفردٌ بلا أداة: كسرُ الجمع مقبول",
+      "after": "«Küche aus Al-Ahsa» مفردٌ بلا أداة: كسرُ الجمع مقبول"
+    }
+  ],
+  "observations": [
+    "Beschreibende Vorkommen bewusst NICHT geändert (Brief: Sorten/Gerichte bleiben, Beschreibung nach Kontext): src/content/blog/souvenirs-de.md:26 („parfümiert sie die Hasawi-Küche“, im selben Satz glossiert); src/content/blog/hasawi-lomi-de.md:41 (H2 „In der Hasawi-Küche“ – Abschnittsüberschrift, keine Seitenbezeichnung, Anker-Slug bleibt stabil) und :39 („Gerichte der Hasawi-Küche und der Golfregion“); src/data/events.ts:664 (Lomi-FAQ „in der Hasawi-Küche verwendet“; dieselbe Seite sagt „Hasawi- und Golfküche“); src/content/dining/dar-basma.md:31 und sharq-alqaisariah.md:31 (body_de, Konzept der Restaurants). Falls Einheitlichkeit gewünscht: hasawi-lomi-de.md:41 → „## In der Küche Al-Ahsas“ ist die einzige Kandidatin mit Überschriftsgewicht.",
+    "Kopfleiste: „Küche aus Al-Ahsa“ hat 17 statt 12 Zeichen (+5) – Header-Breite nach dem Build messen (Brief).",
+    "cat.taste.d nennt „Hasawi-Reis“ auf der Startseite ohne Glosse; der Kartentitel „Küche aus Al-Ahsa“ direkt darüber löst die Vorsilbe sinngemäß auf. EN/AR glossieren ebenfalls nicht; wörtliche Übernahme der Gerichtnamen war Vorgabe.",
+    "termbase.json zitiert „Hasawi-Küche“ noch als Bildungsmuster in anderen Einträgen (Hasawi bisht ~Z.626, Hasawi house ~Z.1113, Hasawi architectural motifs ~Z.1953 „feste Marken (Hasawi-Küche …)“). Als Bildungsmuster weiter korrekt; nicht geändert.",
+    "Kein Check in tools/ bewacht „Hasawi-Küche“ (grep leer). TM-Paare 575/940/972/985 (events-FAQ, souvenirs, lomi-H2, lomi-body) bleiben, weil ihre Quellstellen unverändert bleiben.",
+    "Stufen 1–5: (1) termbase/TM angewandt; (2) Redaktion: „Eine warme Küche“ → „Eine Küche voller Wärme“ (TM-Wiederverwendung), „Küche Al-Ahsas“ im Fließtext statt doppeltem „aus“; (3) Lokalisierung: Herkunftsname statt opaker Vorsilbe, keine Tatsache hinzugefügt; (4) Faktenzaun: nichts hinzugefügt, Datteln-Export entfällt mit der Quelle; (5) Korrektur: „…“ U+201E/U+201C, Genitiv „Al-Ahsas“ ohne Apostroph, kein serielles Komma, Sie-Form unberührt, Leerzeichen U+0020 – PASS."
+  ]
+}

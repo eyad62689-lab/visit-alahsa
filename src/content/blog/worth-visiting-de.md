@@ -41,7 +41,7 @@ Al-Ahsa konkurriert weder mit der Skyline Riads noch mit den in den Fels gehauen
 - **Unterwegs:** Das Auto ist die praktische Wahl; planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und der [Merkliste](/de/plan/).
 - **Strategie gegen die Hitze:** Die Sommer sind heiß, doch die Höhlen des Qarah-Bergs bleiben innen kühl – legen Sie die Stationen unter freiem Himmel auf den Morgen und den Sonnenuntergang, den Souk auf den Abend.
 - **Öffnungszeiten und Eintritt:** Beides ändert sich je nach Saison und an Feiertagen; die geprüften Angaben stehen auf der Seite jeder Sehenswürdigkeit dieser Website, und das letzte Wort haben die offiziellen Kanäle.
-- **Wo Sie essen:** Die Seite [Restaurants und Cafés](/de/restaurants-cafes/) und die Seite [Hasawi-Küche](/de/food/) decken ab, was auf den Tisch kommt – von den Datteln der Oase und ihrer berühmten Hasawi-Limette (der Limette aus Al-Ahsa, dort Lomi genannt) bis zu den traditionellen Gerichten Al-Ahsas.
+- **Wo Sie essen:** Die Seite [Restaurants und Cafés](/de/restaurants-cafes/) und die Seite [Küche aus Al-Ahsa](/de/food/) decken ab, was auf den Tisch kommt – von den Datteln der Oase und ihrer berühmten Hasawi-Limette (der Limette aus Al-Ahsa, dort Lomi genannt) bis zu den traditionellen Gerichten Al-Ahsas.
 
 ## Das Fazit
 

@@ -1,0 +1,73 @@
+{
+  "batch": "nav-three",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "lang": "ru",
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "traveller_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "cat.taste.d",
+      "file": "src/i18n/ui.ts",
+      "line": 1095,
+      "from": "Душевная кухня:",
+      "to": "Душевные блюда:",
+      "reason": "blind: «кухня» repeated with the card title «Кухня Аль-Ахсы». «Душевн-» = approved TM rendering of «warm» (kept, carries مطبخٌ دافئ); «блюда» is published wording of the cuisine page (FoodView heroSum «домашние блюда»); blind «Домашние блюда» not taken verbatim only because it drops «warm». The colon list is the four dishes, so «блюда» names exactly what follows and adds no fact; it also puts a genus noun in the sentence (P8 mitigation), which makes «муфаллак» read as a dish."
+    },
+    {
+      "tm": "ru-translation/memory/tm.json",
+      "pair": "ui-chrome ui.cat.taste.d",
+      "reason": "obsolete 2026-09-05 pair (old source) replaced by the new en/ru pair"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "obs": "«Кухня» repeated in title and description; suggested «Домашние блюда:»",
+      "ruling": "applied (variant)",
+      "reason": "«Душевные блюда:» — removes the repetition, keeps the approved «warm»"
+    },
+    {
+      "obs": "«хариса из пшеницы» read first as the sauce; suggested «пшеничная хариса»",
+      "ruling": "rejected",
+      "reason": "«хариса из пшеницы» is the termbase F2 example (✓) and the wording already published in the food ui.description; «пшеничная хариса» is unpublished wording. With «блюда» now heading the list the sauce reading is closed before «хариса» is reached."
+    },
+    {
+      "obs": "«муфаллак» opaque — needs a short gloss from termbase/page, or drop it",
+      "ruling": "partly applied",
+      "reason": "the genus noun «блюда» now types it as a dish. No gloss added: the only published type gloss is «из дроблёной пшеницы» (alt/pre), which would put «пшеница» twice in a 4-item line next to «хариса из пшеницы». Not dropped or swapped: the source line (ar/en) names these four dishes; no deviation needed for comprehension once «блюда» is present. List stays faithful to the source."
+    },
+    {
+      "obs": "footer fine",
+      "ruling": "no change",
+      "reason": "no defect"
+    }
+  ],
+  "out_of_scope": [
+    "Transliterated dish names on teaser surfaces stay unglossed in all languages (ar/en too); the food page carries the glosses. Raised to Eyad unscored.",
+    "Heritage-souqs card opens the souq filter only — consistent with the category-name decision."
+  ],
+  "positions": [
+    {
+      "id": "cat.taste.d",
+      "file": "src/i18n/ui.ts",
+      "line": 1095,
+      "current": "    'cat.taste.d': 'Душевная кухня и финики, которые вывозят на столы всего мира.',",
+      "proposed": "    'cat.taste.d': 'Душевные блюда: рис Аль-Ахсы, хариса из пшеницы, муфаллак и финиковый хлеб.',"
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"A warm kitchen and dates exported to the world’s tables.\",\r\n      \"ru\": \"Душевная кухня и финики, которые вывозят на столы всего мира.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.cat.taste.d\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"A warm kitchen: Hasawi rice, harees, mufallaq and date bread.\",\r\n      \"ru\": \"Душевные блюда: рис Аль-Ахсы, хариса из пшеницы, муфаллак и финиковый хлеб.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.cat.taste.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-three (29df30f). Replaces «Душевная кухня и финики, которые вывозят на столы всего мира.» (source changed). «Душевные» = approved rendering of «warm»; «блюда» (FoodView heroSum «домашние блюда») instead of «кухня», which repeated the card title «Кухня Аль-Ахсы», and gives the list a genus noun (P8) so муфаллак reads as a dish; «хариса из пшеницы» = F2 / food ui.description (blind «пшеничная хариса» rejected: unpublished wording).\""
+    }
+  ]
+}
