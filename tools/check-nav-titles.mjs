@@ -8,9 +8,12 @@
 //
 // يحرس في الرئيسية بكل لغة:
 //   (أ) نصّ رابط الترويسة إلى المطاعم والإقامة والأسواق = H1 صفحته حرفياً؛
-//   (ب) نصّ الزرّ الذهبي = نصّ رابط الخطة داخل القائمة (وجهة واحدة باسم واحد).
+//   (ب) نصّ الزرّ الذهبي = نصّ رابط الخطة داخل القائمة (وجهة واحدة باسم واحد)؛
+//   (ج) رابط أداة المحفوظات لا يحمل اسمها السابق «رحلتي» بأي لغة (حكم إياد 2026-10-04: كان يلتبس بـ«خطّط لرحلتك»).
 
 export const EXPECT = { minLangs: 5 };
+
+export const RETIRED_TOOL_NAMES = ['رحلتي', 'My Trip', 'Meine Reise', 'Моя поездка', '我的行程'];
 
 const HOME = { ar: 'index.html', en: 'en/index.html', de: 'de/index.html', ru: 'ru/index.html', zh: 'zh/index.html' };
 const SECTIONS = {
@@ -69,6 +72,9 @@ export function checkNavTitles(pages) {
     const plan = links.find((a) => /\bnav-plan\b/.test(a.cls));
     if (!gold || !plan) problems.push(`${lang}: الزرّ الذهبي أو رابط الخطة غائب`);
     else if (gold.text !== plan.text) problems.push(`${lang}: الزرّ «${gold.text}» ≠ رابط الخطة «${plan.text}»`);
+    const tool = links.find((a) => /\bplan-link\b/.test(a.cls));
+    if (!tool) problems.push(`${lang}: رابط أداة المحفوظات غائب`);
+    else for (const r of RETIRED_TOOL_NAMES) if (tool.text.includes(r)) problems.push(`${lang}: أداة المحفوظات باسمها السابق «${r}»`);
   }
   if (langs < EXPECT.minLangs) problems.push(`لغات الترويسة المفحوصة ${langs} — الحدّ الأدنى ${EXPECT.minLangs}`);
   return { problems, stats: { langs } };
