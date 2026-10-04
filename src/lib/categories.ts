@@ -15,8 +15,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'الأسواق التراثية',
     farm: 'المزارع والنخيل',
     experience: 'التجارب والحِرف',
-    taste: 'المذاق والتمور',
-    events: 'الفعاليات والمواسم',
+    taste: 'المطبخ الأحسائي',
+    events: 'الفعاليات',
   },
   en: {
     historic: 'Historic landmarks',
@@ -27,8 +27,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'Heritage souqs',
     farm: 'Farms & palms',
     experience: 'Experiences & crafts',
-    taste: 'Cuisine & dates',
-    events: 'Events & seasons',
+    taste: 'Hasawi Cuisine',
+    events: 'Events',
   },
   zh: {
     historic: '历史古迹',
@@ -39,8 +39,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: '传统市集',
     farm: '农场与椰枣林',
     experience: '体验与手工艺',
-    taste: '美食与椰枣',
-    events: '活动与节庆',
+    taste: '哈萨美食',
+    events: '活动',
   },
   // الألمانية من خط de-translation-pipeline (دفعة نصوص الواجهة 2026-09-03، الحاكم 90/100).
   de: {
@@ -52,8 +52,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'Traditionelle Souks',
     farm: 'Farmen und Dattelpalmen',
     experience: 'Erlebnisse und Handwerk',
-    taste: 'Küche und Datteln',
-    events: 'Veranstaltungen und Saisonales',
+    taste: 'Hasawi-Küche',
+    events: 'Veranstaltungen',
   },
   // الروسية من خط ru-translation-pipeline (دفعة نصوص الواجهة 2026-09-05، الحاكم 91/100).
   ru: {
@@ -65,8 +65,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'Традиционные рынки',
     farm: 'Фермы и пальмы',
     experience: 'Впечатления и ремёсла',
-    taste: 'Кухня и финики',
-    events: 'События и сезоны',
+    taste: 'Кухня Аль-Ахсы',
+    events: 'События',
   },
 };
 

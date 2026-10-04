@@ -12,7 +12,7 @@ faq:
   - q: "Wie viele Tage sollte ich für Al-Ahsa einplanen?"
     a: "Zwei Tage decken die wichtigsten Sehenswürdigkeiten ab: an einem Tag das historische Herz der Stadt Hofuf, am anderen Natur, Wasser und Küste der Oase Al-Ahsa. Ein einzelner, gut geplanter Tag reicht für das Wesentliche; drei Tage lassen Raum für Museen, Parks und wöchentliche Souks."
   - q: "Brauche ich ein Auto für einen Besuch in Al-Ahsa?"
-    a: "Das Auto ist die praktische Wahl, um Al-Ahsa zu erkunden: Manche Sehenswürdigkeiten liegen mitten in Hofuf, andere am Rand der Oase und an der Golfküste Saudi-Arabiens. Die Seite „Meine Reise“ dieser Website macht aus Ihren gewählten Stationen eine fertige Route, die sich in Google Maps öffnet."
+    a: "Das Auto ist die praktische Wahl, um Al-Ahsa zu erkunden: Manche Sehenswürdigkeiten liegen mitten in Hofuf, andere am Rand der Oase und an der Golfküste Saudi-Arabiens. Die Merkliste dieser Website macht aus Ihren gewählten Stationen eine fertige Route, die sich in Google Maps öffnet."
 ---
 
 Die kurze Antwort: **ja** – und zwar aus Gründen, die kein anderes Reiseziel in Saudi-Arabien vorweisen kann. Al-Ahsa ist die **größte Oase der Welt** und wurde **2018 in die UNESCO-Welterbeliste aufgenommen**. Zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert hier das Leben, und unter dem Sand fließt seit Jahrtausenden Wasser. Schon der Name erzählt die Geschichte: *Al-Ahsa* ist der Plural von *hisy* – dem Süßwasser, das sich unter einer dünnen Sandschicht sammelt und dort hervorquillt, wo es niemand erwartet.
@@ -38,7 +38,7 @@ Al-Ahsa konkurriert weder mit der Skyline Riads noch mit den in den Fels gehauen
 ## Die praktische Seite
 
 - **Zeitbedarf:** Das Wesentliche passt in einen kompakten Tag ([24-Stunden-Route](/de/blog/one-day-in-al-ahsa/)); das ganze Bild – das historische Herz samt Wasser, Farmen und Küste – passt in zwei Tage ([Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/)).
-- **Unterwegs:** Das Auto ist die praktische Wahl; planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und der Seite [„Meine Reise“](/de/plan/).
+- **Unterwegs:** Das Auto ist die praktische Wahl; planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und der [Merkliste](/de/plan/).
 - **Strategie gegen die Hitze:** Die Sommer sind heiß, doch die Höhlen des Qarah-Bergs bleiben innen kühl – legen Sie die Stationen unter freiem Himmel auf den Morgen und den Sonnenuntergang, den Souk auf den Abend.
 - **Öffnungszeiten und Eintritt:** Beides ändert sich je nach Saison und an Feiertagen; die geprüften Angaben stehen auf der Seite jeder Sehenswürdigkeit dieser Website, und das letzte Wort haben die offiziellen Kanäle.
 - **Wo Sie essen:** Die Seite [Restaurants und Cafés](/de/restaurants-cafes/) und die Seite [Hasawi-Küche](/de/food/) decken ab, was auf den Tisch kommt – von den Datteln der Oase und ihrer berühmten Hasawi-Limette (der Limette aus Al-Ahsa, dort Lomi genannt) bis zu den traditionellen Gerichten Al-Ahsas.

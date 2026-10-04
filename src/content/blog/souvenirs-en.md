@@ -42,4 +42,4 @@ The full craft tour — where each is made and how to see it live — is in the 
 
 ## Make Shopping the Close of Your Day
 
-The heritage souqs come alive in the evening — which is why the [itineraries](/en/blog/48-hours-in-al-ahsa/) place them at the day's end: daylight landmarks first, then Qaisariyah and its neighbours as the shops open their doors. Add your stops to [My Trip](/en/plan/) and end the journey with a suitcase that carries the oasis home.
+The heritage souqs come alive in the evening — which is why the [itineraries](/en/blog/48-hours-in-al-ahsa/) place them at the day's end: daylight landmarks first, then Qaisariyah and its neighbours as the shops open their doors. Add your stops to [My saved places](/en/plan/) and end the journey with a suitcase that carries the oasis home.

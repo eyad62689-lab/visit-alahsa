@@ -12,7 +12,7 @@ faq:
   - q: "Are two days enough to visit Al-Ahsa?"
     a: "Two days are enough to feel the spirit of the oasis and cover its foremost landmarks: the heritage heart of Hofuf on day one, and the oasis's nature, water and coast on day two. If you want more, the attractions pages on this site hold museums, parks and folk souqs enough to fill a third day."
   - q: "How do I get between the stops on this itinerary?"
-    a: "A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's My Trip page to get a ready-made route that opens in Google Maps."
+    a: "A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's “My saved places” page to get a ready-made route that opens in Google Maps."
 ---
 
 Two days are enough to feel the spirit of Al-Ahsa — the largest oasis on earth, a UNESCO World Heritage Site since 2018, where life thrives among more than 2.5 million date palms. This itinerary splits the visit the way the oasis itself is split: **day one for its heritage heart in Hofuf**, **day two for its water, green and coast**.
@@ -53,6 +53,6 @@ End your trip on the Gulf coast east of Al-Ahsa at [Al-Uqair](/en/attractions/al
 
 ## Practical Tips
 
-- **Arrange your route before you set out**: add stops to [My Trip](/en/plan/) from each landmark's page and get a ready-made route that opens in Google Maps.
+- **Arrange your route before you set out**: add stops to [My saved places](/en/plan/) from each landmark's page and get a ready-made route that opens in Google Maps.
 - **Use the map**: the [attractions map](/en/map/) shows every stop in its place and helps you judge the order of your day.
 - **First time in Al-Ahsa?** The [Plan your trip](/en/plan-your-trip/) page gathers the essentials of getting there and getting around.

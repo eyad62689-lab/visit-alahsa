@@ -941,8 +941,17 @@
       "en": "Hasawi Cuisine",
       "ar": "المطبخ الأحسائي",
       "zh": "哈萨美食",
-      "note": "نمط 哈萨+الاسم (قاعدة Hasawi adjective) — عنوان صفحة الأكلات ومفتاح nav.food",
+      "note": "نمط 哈萨+الاسم (قاعدة Hasawi adjective) — عنوان صفحة الأكلات ومفتاح nav.food. ومنذ nav-four (2026-10-04) هو أيضاً حرفياً بطاقة الفئة cat.taste.t وتسمية الفئة taste في src/lib/categories.ts (كانت 美食与椰枣، مرفوضة).",
       "source": "batch-food-map 2026-09-02 (verified)"
+    },
+    {
+      "en": "Events (nav / category card / category label)",
+      "ar": "الفعاليات",
+      "zh": "活动",
+      "source": "دفعة nav-four §1 (قرار إياد 2026-10-04: اسم واحد للفعاليات)؛ ui.ts nav.events بالصينية.",
+      "note": "cat.events.t وتسمية الفئة events في src/lib/categories.ts = nav.events حرفياً. مرفوضة: 活动与节庆 (الاسم القديم «الفعاليات والمواسم»).",
+      "added": "2026-10-04",
+      "batch": "nav-four"
     },
     {
       "en": "Hasawi Rice (dish)",
@@ -2762,16 +2771,28 @@
       "source": "batch-11 2026-09-03؛ مرحلة 4: صياغة داخلية متسقة مع kickers الموقع القائمة"
     },
     {
-      "en": "My Trip (page / feature name)",
-      "zh": "我的行程",
-      "source": "approved ui.ts nav.myTrip / fav.add / home.route.link; batch-13 plan.title 2026-09-03",
-      "note": "Quoted inside “ ” whenever referred to in prose (plan.empty.d, plan.shared.d). The user's action on a sight is 加入(我的)行程 / status 已加入行程 — not 收藏 or 保存 (judge ruling batch-13)."
+      "en": "My saved places (page / feature name, /zh/plan/; formerly My Trip)",
+      "ar": "معالمي المحفوظة",
+      "zh": "我的收藏",
+      "source": "دفعة nav-four §4 (قرار إياد 2026-10-04: «رحلتي» ← «معالمي المحفوظة» تمييزاً للأداة عن «خطّط لرحلتك»)؛ ui.ts nav.myTrip / plan.title / ctaTrip.",
+      "note": "Header label — keep short. Quoted inside “ ” whenever referred to in prose and blog link text ([“我的收藏”](/zh/plan/)). Must share no character with nav.plan 行程规划. Rejected: 我的行程 (old name; reads as 行程规划), 收藏的景点 / 我收藏的景点 (too long for the header), 已保存 / 保存 (file-saving register). The batch-13 ruling «not 收藏» is superseded: it guarded the old trip metaphor.",
+      "added": "2026-10-04",
+      "batch": "nav-four"
+    },
+    {
+      "en": "Save this place / Saved ✓ (fav.add / fav.added button on sight pages, card heart aria-label, map popup)",
+      "ar": "احفظ المعلم / محفوظ ✓",
+      "zh": "收藏景点 / 已收藏 ✓",
+      "source": "دفعة nav-four §4 (2026-10-04).",
+      "note": "Half-width space before ✓. Quoted verbatim in plan.empty.d (“收藏景点”). Count chip follows the same verb: «N 处景点已收藏».",
+      "added": "2026-10-04",
+      "batch": "nav-four"
     },
     {
       "en": "sights saved (count chip, number-first)",
-      "zh": "处景点已加入行程",
-      "source": "batch-13 judge ruling 2026-09-03 — mainland chip pattern «N 人已报名»; classifier 处 per fact.sites.l",
-      "note": "Rendered «N 处景点已加入行程» with a half-width space after the digit; the four plan.saved* keys are byte-identical. Replaces Stage 4's 处景点已收藏 (verb aligned with fav.added 已加入行程 ✓)."
+      "zh": "处景点已收藏",
+      "source": "batch-13 judge ruling 2026-09-03 — mainland chip pattern «N 人已报名»; classifier 处 per fact.sites.l; verb re-aligned in nav-four 2026-10-04",
+      "note": "Rendered «N 处景点已收藏» with a half-width space after the digit; the four plan.saved* keys are byte-identical. Verb aligned with fav.added 已收藏 ✓ (nav-four 2026-10-04; was 处景点已加入行程 while the tool was 我的行程)."
     },
     {
       "en": "Location ↗ (card link to the sight's Google Maps pin)",
@@ -2789,7 +2810,7 @@
       "en": "list (My Trip saved-sights list, UI)",
       "zh": "列表",
       "source": "Google Maps zh-Hans help support.google.com/maps/answer/7280933 (新建列表 / 您的列表 / 删除列表)",
-      "note": "Not 清单; 清空列表 / 打印列表 / 行程列表 / 景点列表 / 您的列表."
+      "note": "Not 清单; 清空列表 / 打印列表 / 收藏列表 / 景点列表 / 您的列表 / 您的专属列表 (plan.eyebrow). 行程列表 retired in nav-four 2026-10-04 (tool is 我的收藏)."
     },
     {
       "en": "share link / Copy share link / Link copied ✓",
@@ -2810,10 +2831,10 @@
       "note": "分享给您的景点列表 rejected — segments as an imperative (分享/给您的列表). 他人 makes the passive explicit without naming who."
     },
     {
-      "en": "Add to my trip (import a whole shared list)",
-      "zh": "全部加入我的行程",
+      "en": "Add to my saved places (import a whole shared list)",
+      "zh": "全部加入我的收藏",
       "source": "batch-13 judge ruling 2026-09-03 — Arabic أضفها (object = the list) differs from the card label أضف",
-      "note": "Distinct from fav.add 加入我的行程 (one sight). 全部 renders the pronoun's referent; the import handler merges the entire shared list."
+      "note": "Distinct from fav.add 收藏景点 (one sight). 全部 renders the pronoun's referent; the import handler merges the entire shared list. Renamed from 全部加入我的行程 in nav-four 2026-10-04."
     },
     {
       "en": "Times and fees can change — confirm via official channels before visiting (print/blog disclaimer)",
@@ -4184,7 +4205,7 @@
       "ar": "خطّط",
       "zh": "出行指南",
       "source": "دفعة footer-names §4 (قرار إياد 2026-10-04: العنوان كان يكرّر رابطه الأول `nav.plan` 行程规划)؛ القارئ الأعمى (06-blind) عدّه طبيعياً؛ اعتمده الحاكم 96/100.",
-      "note": "عنوان عمود يضم 行程规划 · 交通指南 · 我的行程 · 地图 — أدوات السفر العملية، فـ«出行指南» تسعها كلها ولا تشارك رابطها الأول لفظاً. يجب أن يخالف اسم الصفحة 行程规划. مرفوضة: 规划 (تردّد الرابط) · 出行规划 (تكرّر 规划) · 行前准备 (ما قبل السفر وحده، لا تسع 我的行程 و地图). مشاركة 指南 مع الرابط 交通指南 تحته مقبولة (عنوان وأبناؤه).",
+      "note": "عنوان عمود يضم 行程规划 · 交通指南 · 我的收藏 · 地图 — أدوات السفر العملية، فـ«出行指南» تسعها كلها ولا تشارك رابطها الأول لفظاً (والأداة 我的行程 صارت 我的收藏 في nav-four 2026-10-04). يجب أن يخالف اسم الصفحة 行程规划. مرفوضة: 规划 (تردّد الرابط) · 出行规划 (تكرّر 规划) · 行前准备 (ما قبل السفر وحده، لا تسع 我的收藏 و地图). مشاركة 指南 مع الرابط 交通指南 تحته مقبولة (عنوان وأبناؤه).",
       "added": "2026-10-04",
       "batch": "footer-names"
     }

@@ -35,4 +35,4 @@ In the heart of historic Hofuf, the [Craftsmen Souq](/en/attractions/craftsmen-s
 
 ## Make It a Day
 
-The three stops fit together naturally: the Dougha by Jabal Al-Qarah in daylight, then the Craftsmen Souq and Qaisariyah in central Hofuf in the evening, when the shops open their doors. Add them to [My Trip](/en/plan/) for a ready route, or fold them into the [two-day itinerary](/en/blog/48-hours-in-al-ahsa/). And what deserves a place in your suitcase from this tour is covered in the [souvenirs guide](/en/blog/al-ahsa-souvenirs-guide/).
+The three stops fit together naturally: the Dougha by Jabal Al-Qarah in daylight, then the Craftsmen Souq and Qaisariyah in central Hofuf in the evening, when the shops open their doors. Add them to [My saved places](/en/plan/) for a ready route, or fold them into the [two-day itinerary](/en/blog/48-hours-in-al-ahsa/). And what deserves a place in your suitcase from this tour is covered in the [souvenirs guide](/en/blog/al-ahsa-souvenirs-guide/).

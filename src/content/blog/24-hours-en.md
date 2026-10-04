@@ -41,6 +41,6 @@ End your day at [Qaisariyah Souq](/en/attractions/qaisariyah/), about half a kil
 ## Practical Tips
 
 - **A car** is the practical way between stops — some sit in central Hofuf, others at the edges of the oasis.
-- Add your stops to [My Trip](/en/plan/) from each landmark's page for a ready-made route that opens in Google Maps, and use the [attractions map](/en/map/) to order your day.
+- Add your stops to [My saved places](/en/plan/) from each landmark's page for a ready-made route that opens in Google Maps, and use the [attractions map](/en/map/) to order your day.
 - **Staying the night?** Step up to the [two-day itinerary (48 hours)](/en/blog/48-hours-in-al-ahsa/) — it adds the Amiriah School, the Hasawi Lemon Farm in season and the Al-Uqair coast.
 - First time in Al-Ahsa? The [Plan your trip](/en/plan-your-trip/) page gathers the essentials of getting there and getting around.

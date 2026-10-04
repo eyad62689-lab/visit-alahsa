@@ -12,7 +12,7 @@ faq:
   - q: "Reichen zwei Tage für einen Besuch in Al-Ahsa?"
     a: "Zwei Tage genügen, um den Geist der Oase zu spüren und ihre bedeutendsten Sehenswürdigkeiten zu besuchen: am ersten Tag das historische Herz von Hofuf, am zweiten Tag ihre Natur, ihr Wasser und ihre Küste. Wer mehr möchte, findet unter den Sehenswürdigkeiten auf dieser Website Museen, Parks und traditionelle Souks – genug für einen dritten Tag."
   - q: "Wie bewege ich mich zwischen den Stationen dieser Route?"
-    a: "Das Auto ist die praktische Wahl: Manche Stationen liegen in Hofuf selbst, andere am Rand der Oase und an der Küste. Stellen Sie Ihre Stationen auf der Seite „Meine Reise“ zusammen; Sie erhalten eine fertige Route, die sich in Google Maps öffnet."
+    a: "Das Auto ist die praktische Wahl: Manche Stationen liegen in Hofuf selbst, andere am Rand der Oase und an der Küste. Stellen Sie Ihre Stationen auf Ihrer Merkliste zusammen; Sie erhalten eine fertige Route, die sich in Google Maps öffnet."
 ---
 
 Zwei Tage genügen, um den Geist von Al-Ahsa zu spüren – der größten Oase der Welt, seit 2018 UNESCO-Welterbe. Zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert hier das Leben. Diese Route teilt den Besuch so, wie die Oase selbst geteilt ist: **Tag eins gehört ihrem historischen Herzen in Hofuf**, **Tag zwei ihrem Wasser, ihrem Grün und ihrer Küste**.
@@ -53,6 +53,6 @@ Beenden Sie Ihre Reise an der Golfküste östlich von Al-Ahsa bei [Al-Uqair](/de
 
 ## Praktische Hinweise
 
-- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/de/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet.
+- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu Ihrer [Merkliste](/de/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet.
 - **Nutzen Sie die Karte**: Die [Karte der Sehenswürdigkeiten](/de/map/) zeigt jede Station an ihrem Ort und hilft Ihnen, die Reihenfolge Ihres Tages zu planen.
 - **Zum ersten Mal in Al-Ahsa?** Die Seite [Reise planen](/de/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.

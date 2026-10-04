@@ -364,10 +364,10 @@
     },
     {
       "en": "attraction category labels (عشر فئات — عائلة مغلقة)",
-      "de": "Historische Stätten · Museen · Moscheen und religiöse Stätten · Natur · Parks und Gärten · Traditionelle Souks · Farmen und Dattelpalmen · Erlebnisse und Handwerk · Küche und Datteln · Veranstaltungen und Saisonales",
+      "de": "Historische Stätten · Museen · Moscheen und religiöse Stätten · Natur · Parks und Gärten · Traditionelle Souks · Farmen und Dattelpalmen · Erlebnisse und Handwerk · Hasawi-Küche · Veranstaltungen",
       "artikel": "die (Pl.)",
       "source": "دفعة نصوص الواجهة 2026-09-03 (اعتماد الحاكم 90/100)",
-      "note": "جمعٌ بلا أداة وبلا فعل — التوازي شرط تجاورها. أربعٌ مقفلة من A (market/experience/taste/events). استثناء «Natur» (2026-10-01): أسقط المصدر «المغارات» (11 من 12 معلماً في الفئة بلا كهوف) فصارت الفئة اسمَ جنسٍ مفرداً غير معدود — بلا أداة وبلا فعل كأخواتها، وكسرُ الجمع وحده مقبولٌ عمداً. لا يُرمَّم بجمعٍ يزيد معنى («Naturlandschaften» تكرّر kicker المعالم، «Naturstätten» توحي بمواقع محمية) ولا بإعادة «Höhlen». توحيد البطاقة والفئة (قرار إياد 2026-10-04، دفعة footer-names): بطاقتا الرئيسية `cat.historic.t` و`cat.nature.t` تحملان اسمَي الفئتين حرفياً — «Historische Stätten» و«Natur»؛ البطاقة والفئة اسم واحد. «Historische Sehenswürdigkeiten» لم تعد مقبولة لـhistoric: تُقرأ جزءاً من «Sehenswürdigkeiten» اسمِ القسم في الشريط، والمصدر فصل اسم الفئة عن اسم القسم («المعالم التاريخية» / «المعالم»). المفتاح `foot.l.historic` ميت (التذييل يعرض `catLabel`)."
+      "note": "جمعٌ بلا أداة وبلا فعل — التوازي شرط تجاورها. أربعٌ مقفلة من A (market/experience/taste/events). استثناء «Natur» (2026-10-01): أسقط المصدر «المغارات» (11 من 12 معلماً في الفئة بلا كهوف) فصارت الفئة اسمَ جنسٍ مفرداً غير معدود — بلا أداة وبلا فعل كأخواتها، وكسرُ الجمع وحده مقبولٌ عمداً. لا يُرمَّم بجمعٍ يزيد معنى («Naturlandschaften» تكرّر kicker المعالم، «Naturstätten» توحي بمواقع محمية) ولا بإعادة «Höhlen». توحيد البطاقة والفئة (قرار إياد 2026-10-04، دفعة footer-names): بطاقتا الرئيسية `cat.historic.t` و`cat.nature.t` تحملان اسمَي الفئتين حرفياً — «Historische Stätten» و«Natur»؛ البطاقة والفئة اسم واحد. «Historische Sehenswürdigkeiten» لم تعد مقبولة لـhistoric: تُقرأ جزءاً من «Sehenswürdigkeiten» اسمِ القسم في الشريط، والمصدر فصل اسم الفئة عن اسم القسم («المعالم التاريخية» / «المعالم»). المفتاح `foot.l.historic` ميت (التذييل يعرض `catLabel`). taste/events (قرار إياد 2026-10-04، دفعة nav-four، الالتزامان f647e0e وb292fd8): الفئة والبطاقة = اسم الصفحة حرفياً — taste = `nav.food` «Hasawi-Küche»، وevents = `nav.events` «Veranstaltungen» (في `src/lib/categories.ts` و`cat.taste.t`/`cat.events.t`). «Hasawi-Küche» مفردٌ بلا أداة: كسرُ الجمع مقبول كاستثناء «Natur». بلا گلوس في التسمية (gloss_regel). المفتاح `foot.l.taste` ميت (لا يُستدعى في أي .astro) فلم يُمسّ. «Küche und Datteln» و«Veranstaltungen und Saisonales» متقاعدتان."
     },
     {
       "en": "Getting there (كيف تصل)",
@@ -398,11 +398,11 @@
       "note": "**شرط القلب**: أول قيمة موسمية في `bestTime_de` تُعيد التسمية إلى «Beste Besuchszeit» — والشرط ينتقل إلى حارس آلي في `check-consistency.mjs`."
     },
     {
-      "en": "My Trip / رحلتي",
-      "de": "„Meine Reise“",
+      "en": "My saved places / معالمي المحفوظة (the saved-sights tool at /de/plan/; formerly My Trip / رحلتي)",
+      "de": "die Merkliste",
       "artikel": "die",
-      "source": "دفعة نصوص الواجهة 2026-09-03 (اعتماد الحاكم 90/100)",
-      "note": "بلا أقواس في `nav.myTrip`، وبالأقواس الألمانية حيث يُحال إليها."
+      "source": "دفعة nav-four 2026-10-04 (قرار إياد: «رحلتي» ← «معالمي المحفوظة» / “My saved places”، الالتزام f647e0e). Duden: „Merkliste, die“ (Substantiv, feminin). Register: German-language DMO portals label their saved-items tool „Merkliste“.",
+      "note": "اسم الأداة في الترويسة والتذييل وعنوان الصفحة: «Merkliste» بلا أداة ولا أقواس (`nav.myTrip`، `plan.title`)؛ وزرّ `ctaTrip` في دليل الخطة «Zur Merkliste» (نمط أزرار التنقل الألمانية، بجوار «Sehenswürdigkeiten entdecken» — حكم المرحلة 7). في المتن اسمٌ عام يُصرَّف بلا أقواس: «Ihre Merkliste» / «auf Ihre Merkliste setzen» / «zu Ihrer Merkliste hinzufügen» (لا «… auf der Seite jeder Sehenswürdigkeit Ihrer Merkliste hinzufügen»: المجرور بلا حرف يُقرأ مضافاً إليه — حكم المرحلة 7) / «mit der Merkliste». زرّ الحفظ `fav.add` «Diesen Ort merken» وحالته `fav.added` «Gemerkt ✓» — فعل الاسم نفسه. مرفوضات: „Meine Reise“ (تلتبس بـ«Reise planen» = خطّط لرحلتك، وهو سبب القرار) · «Gespeicherte Orte» (17 حرفاً في الشريط مقابل 9) · «Meine Orte» (لا تدلّ على الحفظ) · «Meine Merkliste» (أطول بلا زيادة معنى) · «Favoriten» (تُقرأ تفضيلاً لا قائمةَ زيارة)."
     },
     {
       "en": "suggested route(s) (مسارات مقترحة)",
@@ -437,7 +437,7 @@
       "de": "Veranstaltungen",
       "artikel": "die (Pl.)",
       "source": "دفعة تقصير شريط التنقّل 2026-09-04 (اعتماد الحاكم 91/100، سبع مراحل، دورة واحدة)",
-      "note": "سلسلة واحدة في `nav.events` و`foot.l.events` — الوجهة واحدة فالاسم واحد. **«Veranstaltungen»** (قرار إياد 2026-10-04، دفعة footer-names، اعتماد الحاكم 95/100): أُسقطت «Termine» لأنها تُفهم مواعيدَ محدَّدة بينما تسع فعاليات من عشر بمواسم تقريبية (تحفّظ القارئ الأعمى B23)، و«Veranstaltungen» صحيحة لغةً وهي ما تحمله البوّابات الألمانية/النمساوية الخمس المفحوصة في ملاحتها. عرضها 106.8px حُلّ بالقياس والعتبات (28de9e8) لا بالتسمية. **«Events» مرفوضة** (Duden: Jargon). تبقى «Veranstaltungen und Saisonales» تسميةَ **الفئة** (مقفلة من العربية، مدخل 41) — فئة ≠ صفحة. مرفوضات سابقة: Termine (تَعِد بتواريخ) · Feste/Festivals (تُسقطان المعارض والمواسم) · Kalender (أشدّ وعداً بالتحديد) · Anlässe (لا تميّز شيئاً)."
+      "note": "سلسلة واحدة في `nav.events` و`foot.l.events` و`cat.events.t` وتسمية الفئة events في `src/lib/categories.ts` (دفعة nav-four 2026-10-04) — الوجهة واحدة فالاسم واحد. **«Veranstaltungen»** (قرار إياد 2026-10-04، دفعة footer-names، اعتماد الحاكم 95/100): أُسقطت «Termine» لأنها تُفهم مواعيدَ محدَّدة بينما تسع فعاليات من عشر بمواسم تقريبية (تحفّظ القارئ الأعمى B23)، و«Veranstaltungen» صحيحة لغةً وهي ما تحمله البوّابات الألمانية/النمساوية الخمس المفحوصة في ملاحتها. عرضها 106.8px حُلّ بالقياس والعتبات (28de9e8) لا بالتسمية. **«Events» مرفوضة** (Duden: Jargon). «Veranstaltungen und Saisonales» تقاعدت تسميةً للفئة (nav-four 2026-10-04، b292fd8): الفئة صارت «Veranstaltungen» كالصفحة. مرفوضات سابقة: Termine (تَعِد بتواريخ) · Feste/Festivals (تُسقطان المعارض والمواسم) · Kalender (أشدّ وعداً بالتحديد) · Anlässe (لا تميّز شيئاً)."
     },
     {
       "en": "Al-Koot District",

@@ -42,4 +42,4 @@ Wo jedes dieser Handwerke entsteht und wie Sie dabei zusehen können, steht im [
 
 ## Machen Sie den Einkauf zum Ausklang Ihres Tages
 
-Die traditionellen Souks erwachen am Abend zum Leben – deshalb setzen die [Reiserouten](/de/blog/48-hours-in-al-ahsa/) sie ans Ende des Tages: zuerst die Sehenswürdigkeiten bei Tageslicht, dann der Qaisariyah-Souk und seine Nachbarn, wenn die Geschäfte ihre Türen öffnen. Fügen Sie Ihre Stationen zu [„Meine Reise“](/de/plan/) hinzu und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt.
+Die traditionellen Souks erwachen am Abend zum Leben – deshalb setzen die [Reiserouten](/de/blog/48-hours-in-al-ahsa/) sie ans Ende des Tages: zuerst die Sehenswürdigkeiten bei Tageslicht, dann der Qaisariyah-Souk und seine Nachbarn, wenn die Geschäfte ihre Türen öffnen. Setzen Sie Ihre Stationen auf Ihre [Merkliste](/de/plan/) und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt.
