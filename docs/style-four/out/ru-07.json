@@ -1,0 +1,86 @@
+{
+  "batch": "style-four",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "ru-2",
+      "file": "src/i18n/ui.ts",
+      "line": 1030,
+      "from": "На этом сайте арабский артикль в названиях мест пишется «Эль-» (Эль-Хуфуф, Эль-Кара), как в русских справочниках, а название оазиса сохраняет форму, принятую ЮНЕСКО, — «Аль-Ахса».",
+      "to": "На этом сайте арабский артикль в названиях мест пишется «Эль-» (Эль-Хуфуф, Эль-Укайр), а название оазиса дано в форме ЮНЕСКО — «Аль-Ахса», хотя в русских справочниках его пишут и «Эль-Хаса».",
+      "reason": "blind (examples, third form, vague source): examples now both appear on the page as written (Эль-Хуфуф = termbase head of the Hufuf entries, Эль-Укайр shown twice on the home page; Эль-Кара appears only inside Джабаль-эль-Кара); the hero gloss «Аль-Ахса (или Эль-Хаса)» is now explained in the same sentence (Эль-Хаса = ru.wikipedia/reference form per termbase head_name), which also gives «в русских справочниках» a concrete referent instead of a vague appeal; «дано в форме ЮНЕСКО» lighter than «сохраняет форму, принятую ЮНЕСКО, —». Still one sentence, same paragraph (owner placement); rule unchanged."
+    },
+    {
+      "id": "ru-3",
+      "file": "src/i18n/ui.ts",
+      "line": 1097,
+      "from": "'Эль-Кайсария — аромат духов и блеск золота и меди.'",
+      "to": "'Рынок Эль-Кайсария: аромат духов, блеск золота и меди.'",
+      "reason": "blind applied: «и … и» chain removed; head «рынок Эль-Кайсария» per termbase #19 and B8-3 (published corpus uses the generic noun, as the home route «Рынок Эль-Кайсария»); colon + asyndeton keeps scent for perfume only and gleam for gold and copper (= en)."
+    }
+  ],
+  "blind_disposition": "Section names: owner decision, not a defect; H1 copies verified (Рестораны и кафе, Где остановиться, Рынки, парки и фермы; nav.planVisit already = nav.plan). Article sentence: (1) editorial tone - kept short and plain, one sentence, owner chose this paragraph; (2) Эль-Кара vs Джабаль-эль-Кара APPLIED - examples Эль-Хуфуф, Эль-Укайр; (3) unexplained third form Эль-Хаса APPLIED - explained in the same sentence; (4) vague «как в русских справочниках» APPLIED - now tied to Эль-Хаса (termbase head_name: ru.wikipedia titles the oasis «Эль-Хаса»). Market: reader proposal APPLIED verbatim («Рынок Эль-Кайсария: аромат духов, блеск золота и меди.»). Cloaks: «накидка» vagueness inherited from termbase - not changed (no «бишт»: en does not name it).",
+  "out_of_scope": [
+    "home.route.s2.d keeps the scent of copper/brass (ar «عابقة بالعطر والنحاس», same metaphor) in de/ru/zh - decision 3 covered cat.market.d only; raised to Eyad.",
+    "Footer column names vs home cards / header (Sehenswertes, «Что увидеть», «Сайт»/Website) - outside the four items.",
+    "«Плоды оазиса» - outside the four items.",
+    "«Что увидеть» / «Сайт» footer and header labels - outside the four items."
+  ],
+  "positions": [
+    {
+      "id": "ru-2",
+      "file": "src/i18n/ui.ts",
+      "line": 1030,
+      "current": "    'home.name.body': '«Аль-Ахса» — множественное число от слова «хиси»: пресная вода, которая течет и скапливается под тонким слоем песка; разгребите его рукой — и вода забьет ключом. Такой эта земля была всегда: щедрый оазис, обещающий жизнь там, где ее никто не ждет. Пройдите вдоль ее источников и каналов — и вы поймете, откуда взялось это название.',",
+      "proposed": "    'home.name.body': '«Аль-Ахса» — множественное число от слова «хиси»: пресная вода, которая течет и скапливается под тонким слоем песка; разгребите его рукой — и вода забьет ключом. Такой эта земля была всегда: щедрый оазис, обещающий жизнь там, где ее никто не ждет. Пройдите вдоль ее источников и каналов — и вы поймете, откуда взялось это название. На этом сайте арабский артикль в названиях мест пишется «Эль-» (Эль-Хуфуф, Эль-Укайр), а название оазиса дано в форме ЮНЕСКО — «Аль-Ахса», хотя в русских справочниках его пишут и «Эль-Хаса».',"
+    },
+    {
+      "id": "ru-4",
+      "file": "src/i18n/ui.ts",
+      "line": 1093,
+      "current": "    'cat.crafts.d': 'От сбора фиников до накидок, которые местные жители ткут вручную.',",
+      "proposed": "    'cat.crafts.d': 'От сбора фиников до накидок, расшитых руками местных жителей.',"
+    },
+    {
+      "id": "ru-3",
+      "file": "src/i18n/ui.ts",
+      "line": 1097,
+      "current": "    'cat.market.d': 'Эль-Кайсария и ароматы духов, золота и меди.',",
+      "proposed": "    'cat.market.d': 'Рынок Эль-Кайсария: аромат духов, блеск золота и меди.',"
+    },
+    {
+      "id": "ru-1a",
+      "file": "src/i18n/ui.ts",
+      "line": 1107,
+      "current": "    'nav.dining': 'Где поесть',",
+      "proposed": "    'nav.dining': 'Рестораны и кафе',"
+    },
+    {
+      "id": "ru-1b",
+      "file": "src/i18n/ui.ts",
+      "line": 1109,
+      "current": "    'nav.stayShort': 'Ночлег',",
+      "proposed": "    'nav.stayShort': 'Где остановиться',"
+    },
+    {
+      "id": "ru-1c",
+      "file": "src/i18n/ui.ts",
+      "line": 1114,
+      "current": "    'nav.leisure': 'Рынки и парки',",
+      "proposed": "    'nav.leisure': 'Рынки, парки и фермы',"
+    }
+  ]
+}
