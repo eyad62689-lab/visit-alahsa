@@ -18,8 +18,9 @@ import { VISA_GUIDE_PATH, VISA_UPDATED_LINE, VISA_PREVIEW_NOTE, UNVERIFIED } fro
 
 export { VISA_GUIDE_PATH, VISA_PREVIEW_NOTE };
 
-/** أدنى عدد مقبول لـ«لم يُتحقَّق» وللروابط في المصدر — كي لا يصير الحارس فارغاً بصمت. */
-export const EXPECT_MIN = { unverified: 30, links: 90 };
+/** أدنى عدد مقبول لـ«لم يُتحقَّق» وللروابط في المصدر — كي لا يصير الحارس فارغاً بصمت.
+ *  ‏30 → 25 (2026-10-04): حُذف صف «التأشيرة عند الوصول» وقسمه (أربعة ورودٍ) بقرار إياد، فصار العدد 29. */
+export const EXPECT_MIN = { unverified: 25, links: 90 };
 
 const DEC = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ' };
 const decode = (t) => t.replace(/&(?:amp|quot|#39|#x27|lt|gt|nbsp);/g, (e) => DEC[e]);

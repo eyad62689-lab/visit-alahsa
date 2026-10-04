@@ -67,6 +67,7 @@ const options = LANGS
     window.__vaLangSuggest = true;
     var KEY = 'va-lang-suggest';        // localStorage: 'off' = لا تقترح ثانيةً
     var SEEN = 'va-lang-suggest-seen';  // sessionStorage: قُيِّم مرة في هذه الجلسة
+    var waiting = false;                // مستمع va-consent واحد مهما تعدّدت التنقّلات
     function isOff() { try { return localStorage.getItem(KEY) === 'off'; } catch (e) { return false; } }
     function setOff() { try { localStorage.setItem(KEY, 'off'); } catch (e) {} }
     // zh-CN وzh-Hans وzh-TW كلها إلى zh (النسخة المبسّطة أقرب للقارئ من الإنجليزية)
@@ -84,8 +85,14 @@ const options = LANGS
     function show() {
       var host = document.getElementById('lang-suggest');
       if (!host || host.dataset.wired) return;
-      host.dataset.wired = '1';
       if (isOff()) return;
+      // شريط موافقة التحليلات (ConsentBar.astro) يشغل الموضع نفسه: ننتظر القرار ثم نُقيَّم
+      var c = window.__vaConsent ? window.__vaConsent.get() : 'granted';
+      if (c !== 'granted' && c !== 'denied') {
+        if (!waiting) { waiting = true; document.addEventListener('va-consent', function () { waiting = false; show(); }, { once: true }); }
+        return;
+      }
+      host.dataset.wired = '1';
       try { if (sessionStorage.getItem(SEEN)) return; sessionStorage.setItem(SEEN, '1'); } catch (e) {}
       var target = pick(host.getAttribute('data-lang'), function (l) { return !!host.querySelector('.ls-opt[data-for="' + l + '"]'); });
       if (!target) return;

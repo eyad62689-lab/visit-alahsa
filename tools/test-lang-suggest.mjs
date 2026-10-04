@@ -42,6 +42,9 @@ async function fresh(langs) {
   await page.evaluateOnNewDocument((ls) => {
     Object.defineProperty(navigator, 'languages', { get: () => ls });
     Object.defineProperty(navigator, 'language', { get: () => ls[0] });
+    // الاقتراح ينتظر قرار موافقة التحليلات (2026-10-04)؛ هذا الفحص لمنطق الاقتراح فيبدأ بقرارٍ
+    // متّخذ، وانتظارُ القرار نفسه يفحصه tools/test-consent.mjs
+    try { if (!localStorage.getItem('va-analytics-consent')) localStorage.setItem('va-analytics-consent', 'denied'); } catch (e) { /* تخزين محجوب */ }
   }, langs);
   // حجب GA عبر CDP (لا اعتراض طلبات — انظر test-analytics-events.mjs)
   const cdp = await page.createCDPSession();

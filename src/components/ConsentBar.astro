@@ -1,0 +1,78 @@
+---
+// شريط موافقة التحليلات (2026-10-04، قرار إياد: منع كامل حتى القبول).
+//
+// Google Analytics لا يُحمَّل ولا يُرسل شيئاً قبل «قبول»: البوابة في سكربت GA داخل
+// Base.astro (window.__vaConsent). أحداث الصفحة قبل القرار تُصفّ في dataLayer داخل
+// المتصفح وحده، فإن قَبِل الزائر حُقنت المكتبة وعالجتها؛ وإن رفض لا تغادر الجهاز.
+//
+// غير حاجب، ثابت أسفل الشاشة (لا CLS)، و«قبول» و«رفض» بوزن بصري واحد. الاختيار في
+// localStorage، ويُعاد فتح الشريط من رابط «إعدادات التحليلات» في التذييل
+// ([data-consent-open]). شريط اقتراح اللغة ينتظر القرار (LangSuggest.astro) كي لا يتراكبا.
+import { staticHref } from '../lib/routes';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<div id="consent-bar" class="consent-bar" role="region" aria-label={t('consent.label')} data-pagefind-ignore hidden>
+  <div class="cb-box">
+    <p class="cb-tx">{t('consent.text')} <a href={staticHref('legal', lang)}>{t('foot.l.privacy')}</a></p>
+    <div class="cb-act">
+      <button type="button" class="cb-btn" data-consent="granted">{t('consent.accept')}</button>
+      <button type="button" class="cb-btn" data-consent="denied">{t('consent.reject')}</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    if (window.__vaConsentBar) return;
+    window.__vaConsentBar = true;
+    function bar() { return document.getElementById('consent-bar'); }
+    function decided() {
+      var c = window.__vaConsent ? window.__vaConsent.get() : null;
+      return c === 'granted' || c === 'denied';
+    }
+    function sync() { var b = bar(); if (b && !decided()) b.hidden = false; }
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      if (t.closest('[data-consent-open]')) {
+        e.preventDefault();
+        var b = bar();
+        if (b) { b.hidden = false; var first = b.querySelector('[data-consent]'); if (first) first.focus(); }
+        return;
+      }
+      var btn = t.closest('#consent-bar [data-consent]');
+      if (btn && window.__vaConsent) {
+        window.__vaConsent.set(btn.getAttribute('data-consent'));
+        var h = bar(); if (h) h.hidden = true;
+      }
+    });
+    document.addEventListener('astro:page-load', sync);
+    if (document.readyState !== 'loading') sync(); else document.addEventListener('DOMContentLoaded', sync);
+  })();
+</script>
+
+<style>
+  .consent-bar { position: fixed; inset-inline: 0; inset-block-end: 0; z-index: 71; display: flex; justify-content: center; padding: 0 var(--s-3) calc(var(--s-3) + env(safe-area-inset-bottom, 0px)); pointer-events: none; }
+  .consent-bar[hidden] { display: none; }
+  .cb-box { pointer-events: auto; display: flex; align-items: center; gap: var(--s-3); max-inline-size: 640px; inline-size: 100%; padding: 10px var(--s-3) 10px var(--s-4); background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); border-inline-start: 4px solid var(--c-turq); border-radius: var(--radius); box-shadow: 0 12px 32px rgba(0, 42, 37, .18); font-family: var(--font-body); font-size: var(--t-sm); }
+  .cb-tx { flex: 1; min-inline-size: 0; margin: 0; line-height: 1.5; }
+  .cb-tx a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .cb-act { flex-shrink: 0; display: flex; gap: var(--s-2); }
+  /* الزرّان بوزن واحد عمداً — لا دفع نحو القبول */
+  .cb-btn { min-block-size: 44px; min-inline-size: 76px; padding-inline: var(--s-3); font: inherit; font-weight: 700; color: var(--c-turq-deep); background: #fff; border: 1.5px solid var(--c-turq-deep); border-radius: var(--radius); cursor: pointer; }
+  .cb-btn:hover { background: var(--c-sand-2); }
+  .cb-btn:focus-visible, .cb-tx a:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .cb-box { animation: cb-in .35s var(--ease) both; }
+    @keyframes cb-in { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+  }
+  @media (max-width: 560px) {
+    .cb-box { flex-direction: column; align-items: stretch; gap: var(--s-2); font-size: var(--t-xs, .8125rem); }
+    .cb-act > .cb-btn { flex: 1; }
+  }
+</style>
