@@ -110,6 +110,7 @@ export const LEGAL_SECTIONS_AR: LegalSection[] = [
       { h: '3. خيارات التحكم والتعطيل',
         before: ['تملكون كامل الحرية في إدارة ملفات تعريف الارتباط أو تعطيلها من خلال الخيارات التالية:'],
         list: [
+          'شريط موافقة التحليلات: لا يُفعَّل Google Analytics إلا بعد اختياركم «قبول» في الشريط الذي يظهر أسفل الصفحة، فإن اخترتم «رفض» لم يُحمَّل ولم تُرسَل إليه أي بيانات. ويُحفظ اختياركم في متصفحكم، ويمكنكم تغييره في أي وقت من رابط «إعدادات التحليلات» في تذييل الموقع، والرفض بعد قبول سابق يعطّل الخدمة ويحذف ملفات تعريف الارتباط الخاصة بها.',
           'إعدادات المتصفح: تتيح جميع المتصفحات الحديثة (Chrome، Safari، Firefox، Edge) حذف ملفات تعريف الارتباط أو حظرها كليًا أو جزئيًا من خلال إعدادات الخصوصية.',
           'أداة إلغاء الاشتراك من Google Analytics: يمكنكم تثبيت الإضافة الرسمية Google Analytics Opt-out Browser Add-on لمنع مشاركة بيانات تصفحكم مع الخدمة.',
           'وضع التصفح الخاص: يحد استخدام وضع التصفح الخفي أو الخاص من تخزين ملفات التتبع على جهازكم.',
@@ -257,6 +258,7 @@ export const LEGAL_SECTIONS_EN: LegalSection[] = [
       { h: '3. Control and disabling options',
         before: ['You have full freedom to manage or disable cookies through the following options:'],
         list: [
+          'Analytics consent bar: Google Analytics is switched on only after you choose “Accept” in the bar shown at the bottom of the page; if you choose “Decline”, it is not loaded and no data is sent to it. Your choice is saved in your browser, and you can change it at any time from the “Analytics settings” link in the site footer; declining after an earlier acceptance switches the service off and deletes its cookies.',
           'Browser settings: all modern browsers (Chrome, Safari, Firefox, Edge) allow you to delete or block cookies wholly or partly through the privacy settings.',
           'Google Analytics opt-out tool: you can install the official Google Analytics Opt-out Browser Add-on to prevent your browsing data being shared with the service.',
           'Private browsing mode: using incognito or private mode limits the storage of tracking files on your device.',
@@ -443,6 +445,7 @@ export const LEGAL_SECTIONS_ZH: LegalSection[] = [
           "您可通过以下方式自由管理或关闭 Cookie：",
         ],
         list: [
+          "访问统计授权提示栏：只有在您选择页面底部提示栏中的“同意”后，Google Analytics 才会启用；如选择“拒绝”，相关统计代码不会加载，Google Analytics 也不会收到任何数据。您的选择会保存在当前浏览器中，您可随时点击网站页脚的“访问统计设置”链接进行更改；如果您之前选择了同意，之后又改为拒绝，该服务将被停用，它设置的 Cookie 也会被删除。",
           "浏览器设置：所有主流浏览器（Chrome、Safari、Firefox、Edge）均可通过隐私设置全部或部分删除或屏蔽 Cookie。",
           "Google Analytics 停用工具：您可安装官方的 Google Analytics Opt-out Browser Add-on，以阻止您的浏览数据与该服务共享。",
           "隐私浏览模式：使用无痕或隐私模式可减少跟踪类文件在您设备上的存储。",
@@ -643,6 +646,7 @@ export const LEGAL_SECTIONS_DE: LegalSection[] = [
           "Sie haben die volle Freiheit, Cookies über die folgenden Optionen zu verwalten oder zu deaktivieren:",
         ],
         list: [
+          "Zustimmungsleiste zur Webanalyse: Google Analytics wird erst aktiviert, wenn Sie in der Leiste unten auf der Seite auf „Zustimmen“ klicken. Klicken Sie auf „Ablehnen“, wird Google Analytics nicht geladen, und an den Dienst werden keine Daten übermittelt. Ihre Entscheidung wird in Ihrem Browser gespeichert; Sie können sie jederzeit über den Link „Einstellungen zur Webanalyse“ in der Fußzeile der Website ändern. Widerrufen Sie eine zuvor erteilte Zustimmung, wird der Dienst deaktiviert, und die von Google Analytics gesetzten Cookies werden gelöscht.",
           "Browsereinstellungen: Alle modernen Browser (Chrome, Safari, Firefox, Edge) ermöglichen es Ihnen, Cookies über die Datenschutzeinstellungen ganz oder teilweise zu löschen oder zu blockieren.",
           "Google-Analytics-Opt-out-Tool: Sie können das offizielle Google Analytics Opt-out Browser Add-on installieren, um zu verhindern, dass Ihre Browserdaten an den Dienst weitergegeben werden.",
           "Privater Browsermodus: Die Nutzung des Inkognito- oder privaten Modus schränkt die Speicherung von Tracking-Dateien auf Ihrem Gerät ein.",
@@ -843,6 +847,7 @@ export const LEGAL_SECTIONS_RU: LegalSection[] = [
           "Вы вправе свободно управлять файлами cookie или отключать их с помощью следующих способов:",
         ],
         list: [
+          "Панель согласия на аналитику: Google Analytics включается только после того, как вы нажмёте «Принять» на панели, которая появляется внизу страницы; если вы нажмёте «Отклонить», сервис не будет загружен и не получит никаких данных. Ваш выбор сохраняется в браузере, и вы можете изменить его в любой момент по ссылке «Настройки аналитики» в подвале сайта; если вы отзовёте ранее данное согласие, сервис будет отключён, а его файлы cookie — удалены.",
           "Настройки браузера: все современные браузеры (Chrome, Safari, Firefox, Edge) позволяют полностью или частично удалять или блокировать файлы cookie через настройки конфиденциальности.",
           "Инструмент отказа от Google Analytics: вы можете установить официальное расширение для браузера — Google Analytics Opt-out Browser Add-on, чтобы предотвратить передачу данных о вашем просмотре в этот сервис.",
           "Режим приватного просмотра: использование режима инкогнито или приватного просмотра ограничивает сохранение файлов отслеживания на вашем устройстве.",
