@@ -1,0 +1,127 @@
+{
+  "batch": "footer-names",
+  "lang": "de",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "rulings": "foot.col.site «Service» APPROVED over Über uns (promises an about page de does not have - foot.l.aboutSite is ar/en only), Über diese Website (long, same flaw), Info & Kontakt / Kontakt & Rechtliches (repeat the «Kontakt» link below), Website (owner: readers stumbled); «Service» is the standard German footer heading for contact/terms/report links, Duden word, not on denglisch_verboten. cat.historic.t unified on «Historische Stätten» APPROVED: the categories.ts value inside the closed ten-label family (termbase #39) feeding chips, footer links and detail eyebrows, so the card moves, not the family; «Historische Sehenswürdigkeiten» would read as a subset of the new header label «Sehenswürdigkeiten», re-merging the category with the section the source just split («المعالم التاريخية» / «المعالم»); verified on dist: eyebrow on /de/attractions/qasr-ibrahim/ = «Historische Stätten», one line at 375px. Natur, Sehenswürdigkeiten, Veranstaltungen (nav + footer identical) = owner decisions applied verbatim; header widths already absorbed by 28de9e8 (de 12.5/8).",
+  "blind_disposition": "No objection from the blind reader to any new name (Historische Stätten, Natur, Sehenswürdigkeiten, Veranstaltungen, Service - read as consistent): nothing to apply or reject. «Richtlinien und Nutzungsbedingungen» under «Service» is the inherited policies page name - outside this batch. Remaining points are source-level IA questions in ar too (events naming, taste/crafts cards, plan guide vs tool, Discover column length, souqs+parks+farms) - logged for Eyad, unscored. «Hasawi-Küche», «Oasenfrüchte», «Wege» for categories - outside the batch.",
+  "out_of_scope": [
+    "Blind-reader IA points raised to Eyad, unscored (source-level, in ar too): events under two names (header/footer vs card vs H1); taste card now opens the cuisine page under another name; crafts card has no header/footer counterpart and opens all attractions; plan guide vs my-trip tool and column «Plan» over link «Plan your trip»; long mixed Discover column (ru reader proposes an «About Al-Ahsa» column); souqs+parks+farms header door vs three footer links (owner decision).",
+    "Dead keys foot.l.historic / foot.l.nature (all five languages; en still «Nature & farms») are not read by Footer.astro (Discover column uses catLabel) - remove or align in a code batch.",
+    "termbase #48 «Souks & Parks» (nav.leisure/crumb.leisure/det.allLeisure) may be stale after style-four renamed the header door - check the entry against ui.ts in a termbase-hygiene pass.",
+    "Nativeness 27/30: «Service» is serviceable but generic for a column whose content is contact, terms and error report - acceptable, not a defect."
+  ],
+  "positions": [
+    {
+      "id": "de-cat-historic-t",
+      "file": "src/i18n/ui.ts",
+      "line": 846,
+      "current": "    'cat.historic.t': 'Historische Sehenswürdigkeiten',",
+      "proposed": "    'cat.historic.t': 'Historische Stätten',"
+    },
+    {
+      "id": "de-cat-nature-t",
+      "file": "src/i18n/ui.ts",
+      "line": 848,
+      "current": "    'cat.nature.t': 'Natur und Farmen',",
+      "proposed": "    'cat.nature.t': 'Natur',"
+    },
+    {
+      "id": "de-nav-attractions",
+      "file": "src/i18n/ui.ts",
+      "line": 858,
+      "current": "    'nav.attractions': 'Sehenswertes',",
+      "proposed": "    'nav.attractions': 'Sehenswürdigkeiten',"
+    },
+    {
+      "id": "de-nav-events",
+      "file": "src/i18n/ui.ts",
+      "line": 860,
+      "current": "    'nav.events': 'Termine',",
+      "proposed": "    'nav.events': 'Veranstaltungen',"
+    },
+    {
+      "id": "de-foot-col-site",
+      "file": "src/i18n/ui.ts",
+      "line": 876,
+      "current": "    'foot.col.site': 'Website',",
+      "proposed": "    'foot.col.site': 'Service',"
+    },
+    {
+      "id": "de-foot-l-events",
+      "file": "src/i18n/ui.ts",
+      "line": 885,
+      "current": "    'foot.l.events': 'Termine',",
+      "proposed": "    'foot.l.events': 'Veranstaltungen',"
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "ولا بإعادة «Höhlen».\"",
+      "after": "ولا بإعادة «Höhlen». توحيد البطاقة والفئة (قرار إياد 2026-10-04، دفعة footer-names): بطاقتا الرئيسية `cat.historic.t` و`cat.nature.t` تحملان اسمَي الفئتين حرفياً — «Historische Stätten» و«Natur»؛ البطاقة والفئة اسم واحد. «Historische Sehenswürdigkeiten» لم تعد مقبولة لـhistoric: تُقرأ جزءاً من «Sehenswürdigkeiten» اسمِ القسم في الشريط، والمصدر فصل اسم الفئة عن اسم القسم («المعالم التاريخية» / «المعالم»). المفتاح `foot.l.historic` ميت (التذييل يعرض `catLabel`).\""
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"en\": \"Attractions (nav label only)\",",
+      "after": "\"en\": \"Attractions (nav label = breadcrumb = index)\","
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"de\": \"Sehenswertes\",\r\n      \"artikel\": \"das (substantiviertes Adjektiv)\",",
+      "after": "\"de\": \"Sehenswürdigkeiten\",\r\n      \"artikel\": \"die (Pl.)\","
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"note\": \"**في `nav.attractions` وحدها.** كل ما عداها يبقى «Sehenswürdigkeiten»: الفتات والفهرس و`det.allSights` و`foot.l.historic` و17 وروداً في المتون. الانقسام **نحويّ لا أسلوبي** — «Alle Sehenswertes» غير نحوية — وله سابقتان: مدخل 38 (Übernachten/Unterkünfte) وmuenchen.de التي تحمل «Sehenswertes» في شريطها و«Sehenswürdigkeiten» في صفحاتها. والباعث ميزانية عرض مقيسة: 90.8px مقابل 133.1px، والفارق يقرّر شاشات 1366px. ممنوع: Highlights (denglisch_verboten) · Attraktionen (سجل مدن الملاهي) · أي اختصار بنقطة. **لا تُوحَّد الصيغتان في دفعة قادمة بحسن نيّة.**\"",
+      "after": "\"note\": \"**سلسلة واحدة في كل مكان** (قرار إياد 2026-10-04، دفعة footer-names، اعتماد الحاكم 95/100): `nav.attractions` = الفتات والفهرس و`det.allSights` والمتون = «Sehenswürdigkeiten». أُلغي انقسام 2026-09-04 («Sehenswertes» في الشريط وحده لميزانية عرض 90.8px مقابل 133.1px): العرض يُحلّ بقياس الشريط (`tools/measure-header-fit.mjs`) وعتباته في الكود (28de9e8: de 12.5/8، الشريط باقٍ عند 1440px) لا بتقصير الاسم. ممنوع: Highlights (denglisch_verboten) · Attraktionen (سجل مدن الملاهي) · أي اختصار بنقطة · العودة إلى «Sehenswertes» بلا قرار من إياد.\""
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"de\": \"Termine\",",
+      "after": "\"de\": \"Veranstaltungen\","
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"note\": \"سلسلة واحدة في `nav.events` و`foot.l.events` — الوجهة واحدة فالاسم واحد. **«Events» مرفوضة**: Duden يسمها Jargon، وخمس بوّابات وجهات ألمانية/نمساوية من خمس تستعمل «Veranstaltungen» في ملاحتها، وأمسكها القارئ الأعمى بلا مصدر ولا بديل («الصفحة تناقض نفسها» — التذييل يعرف الكلمة الألمانية ويستعملها). **«Veranstaltungen» صحيحة لغةً وغير قابلة للتطبيق في الشريط**: 106.8px ترفع أدنى نافذة إلى 1392px فتُنزل البرغر على شاشات 1366px — لا تُعَد إلا بقياس جديد. تبقى «Veranstaltungen und Saisonales» تسميةَ **الفئة** (مقفلة من العربية، مدخل 41)، والتمايز مقصود: فئة ≠ صفحة. **تحفّظ مسعَّر (ملاحظة القارئ الأعمى B23، وهي علّة 27/30 في محور الدقّة)**: «Termine» تَعِد بمواعيد محدَّدة بينما تسع فعاليات من عشر بمواسم تقريبية — فمتى بُنيت `/de/events/` وجب أن يقول صدرُها صراحةً إن المواعيد تقريبية. المرشّحات المقيسة المرفوضة: Feste 34.5 وFestivals 55.3 (تُسقطان المعارض والمواسم فتخرقان سياج الوقائع) · Kalender 58.7 (أشدّ وعداً بالتحديد) · Anlässe 48.9 (لا تميّز شيئاً).\"",
+      "after": "\"note\": \"سلسلة واحدة في `nav.events` و`foot.l.events` — الوجهة واحدة فالاسم واحد. **«Veranstaltungen»** (قرار إياد 2026-10-04، دفعة footer-names، اعتماد الحاكم 95/100): أُسقطت «Termine» لأنها تُفهم مواعيدَ محدَّدة بينما تسع فعاليات من عشر بمواسم تقريبية (تحفّظ القارئ الأعمى B23)، و«Veranstaltungen» صحيحة لغةً وهي ما تحمله البوّابات الألمانية/النمساوية الخمس المفحوصة في ملاحتها. عرضها 106.8px حُلّ بالقياس والعتبات (28de9e8) لا بالتسمية. **«Events» مرفوضة** (Duden: Jargon). تبقى «Veranstaltungen und Saisonales» تسميةَ **الفئة** (مقفلة من العربية، مدخل 41) — فئة ≠ صفحة. مرفوضات سابقة: Termine (تَعِد بتواريخ) · Feste/Festivals (تُسقطان المعارض والمواسم) · Kalender (أشدّ وعداً بالتحديد) · Anlässe (لا تميّز شيئاً).\""
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\r\n    }\r\n  ]\r\n}",
+      "after": "\r\n    },\r\n    {\r\n      \"en\": \"Footer column heading: Site (foot.col.site)\",\r\n      \"ar\": \"الموقع\",\r\n      \"de\": \"Service\",\r\n      \"artikel\": \"der\",\r\n      \"status\": \"verified\",\r\n      \"source\": \"دفعة footer-names 2026-10-04، BRIEF §3 (قرار إياد: «Website» تعثّر فيها القرّاء). محتوى العمود في de: Richtlinien und Nutzungsbedingungen · Fehler melden · Kontakt · WhatsApp (رابط `foot.l.aboutSite` لا يُعرض في de). القارئ الأعمى (06-blind) قبلها بلا اعتراض؛ اعتمدها الحاكم 95/100.\",\r\n      \"note\": \"عنوان عمود فقط — «Service» العنوان الألماني المعتاد لمجموعة التواصل والشروط والإبلاغ في تذييلات المواقع، كلمة Duden قياسية وليست في denglisch_verboten. مرفوضات: Website (لا تصف شيئاً) · Über uns (تَعِد بصفحة تعريف لا وجود لها في de) · Über diese Website (طويلة، والعلّة نفسها) · Info & Kontakt / Kontakt & Rechtliches (تكرّر رابط «Kontakt» تحته). إن بُنيت `aboutSite` للألمانية بقيت «Service» صالحة.\",\r\n      \"added\": \"2026-10-04\",\r\n      \"batch\": \"footer-names\"\r\n    }\r\n  ]\r\n}"
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Sehenswertes\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"nav.attractions\",\r\n      \"date\": \"2026-09-04\"",
+      "after": "\"de\": \"Sehenswürdigkeiten\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"nav.attractions\",\r\n      \"date\": \"2026-10-04\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Termine\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"nav.events\",\r\n      \"date\": \"2026-09-04\"",
+      "after": "\"de\": \"Veranstaltungen\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"nav.events\",\r\n      \"date\": \"2026-10-04\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Termine\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"foot.l.events\",\r\n      \"date\": \"2026-09-04\"",
+      "after": "\"de\": \"Veranstaltungen\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"foot.l.events\",\r\n      \"date\": \"2026-10-04\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\r\n    }\r\n  ]\r\n}",
+      "after": "\r\n    },\r\n    {\r\n      \"en\": \"Historic landmarks\",\r\n      \"de\": \"Historische Stätten\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"cat.historic.t\",\r\n      \"date\": \"2026-10-04\"\r\n    },\r\n    {\r\n      \"en\": \"Nature\",\r\n      \"de\": \"Natur\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"cat.nature.t\",\r\n      \"date\": \"2026-10-04\"\r\n    },\r\n    {\r\n      \"en\": \"Site\",\r\n      \"de\": \"Service\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"foot.col.site\",\r\n      \"date\": \"2026-10-04\"\r\n    }\r\n  ]\r\n}"
+    }
+  ]
+}

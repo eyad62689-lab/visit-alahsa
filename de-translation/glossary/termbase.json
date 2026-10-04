@@ -367,7 +367,7 @@
       "de": "Historische Stätten · Museen · Moscheen und religiöse Stätten · Natur · Parks und Gärten · Traditionelle Souks · Farmen und Dattelpalmen · Erlebnisse und Handwerk · Küche und Datteln · Veranstaltungen und Saisonales",
       "artikel": "die (Pl.)",
       "source": "دفعة نصوص الواجهة 2026-09-03 (اعتماد الحاكم 90/100)",
-      "note": "جمعٌ بلا أداة وبلا فعل — التوازي شرط تجاورها. أربعٌ مقفلة من A (market/experience/taste/events). استثناء «Natur» (2026-10-01): أسقط المصدر «المغارات» (11 من 12 معلماً في الفئة بلا كهوف) فصارت الفئة اسمَ جنسٍ مفرداً غير معدود — بلا أداة وبلا فعل كأخواتها، وكسرُ الجمع وحده مقبولٌ عمداً. لا يُرمَّم بجمعٍ يزيد معنى («Naturlandschaften» تكرّر kicker المعالم، «Naturstätten» توحي بمواقع محمية) ولا بإعادة «Höhlen»."
+      "note": "جمعٌ بلا أداة وبلا فعل — التوازي شرط تجاورها. أربعٌ مقفلة من A (market/experience/taste/events). استثناء «Natur» (2026-10-01): أسقط المصدر «المغارات» (11 من 12 معلماً في الفئة بلا كهوف) فصارت الفئة اسمَ جنسٍ مفرداً غير معدود — بلا أداة وبلا فعل كأخواتها، وكسرُ الجمع وحده مقبولٌ عمداً. لا يُرمَّم بجمعٍ يزيد معنى («Naturlandschaften» تكرّر kicker المعالم، «Naturstätten» توحي بمواقع محمية) ولا بإعادة «Höhlen». توحيد البطاقة والفئة (قرار إياد 2026-10-04، دفعة footer-names): بطاقتا الرئيسية `cat.historic.t` و`cat.nature.t` تحملان اسمَي الفئتين حرفياً — «Historische Stätten» و«Natur»؛ البطاقة والفئة اسم واحد. «Historische Sehenswürdigkeiten» لم تعد مقبولة لـhistoric: تُقرأ جزءاً من «Sehenswürdigkeiten» اسمِ القسم في الشريط، والمصدر فصل اسم الفئة عن اسم القسم («المعالم التاريخية» / «المعالم»). المفتاح `foot.l.historic` ميت (التذييل يعرض `catLabel`)."
     },
     {
       "en": "Getting there (كيف تصل)",
@@ -419,11 +419,11 @@
       "note": "غير مستعمل في هذه الدفعة: كل ورودات البشت بطاقاتٌ 40–46ch لا تحتمل گلوساً، والمعتمد فيها «die Umhänge». يُبتّ عند متون القيصرية والحرف والمدونة — وحينها يُذكر أن العربية توثّق **النسج والتطريز معاً** (`qaisariyah.md:37`)."
     },
     {
-      "en": "Attractions (nav label only)",
-      "de": "Sehenswertes",
-      "artikel": "das (substantiviertes Adjektiv)",
+      "en": "Attractions (nav label = breadcrumb = index)",
+      "de": "Sehenswürdigkeiten",
+      "artikel": "die (Pl.)",
       "source": "دفعة تقصير شريط التنقّل 2026-09-04 (اعتماد الحاكم 91/100، سبع مراحل، دورة واحدة)",
-      "note": "**في `nav.attractions` وحدها.** كل ما عداها يبقى «Sehenswürdigkeiten»: الفتات والفهرس و`det.allSights` و`foot.l.historic` و17 وروداً في المتون. الانقسام **نحويّ لا أسلوبي** — «Alle Sehenswertes» غير نحوية — وله سابقتان: مدخل 38 (Übernachten/Unterkünfte) وmuenchen.de التي تحمل «Sehenswertes» في شريطها و«Sehenswürdigkeiten» في صفحاتها. والباعث ميزانية عرض مقيسة: 90.8px مقابل 133.1px، والفارق يقرّر شاشات 1366px. ممنوع: Highlights (denglisch_verboten) · Attraktionen (سجل مدن الملاهي) · أي اختصار بنقطة. **لا تُوحَّد الصيغتان في دفعة قادمة بحسن نيّة.**"
+      "note": "**سلسلة واحدة في كل مكان** (قرار إياد 2026-10-04، دفعة footer-names، اعتماد الحاكم 95/100): `nav.attractions` = الفتات والفهرس و`det.allSights` والمتون = «Sehenswürdigkeiten». أُلغي انقسام 2026-09-04 («Sehenswertes» في الشريط وحده لميزانية عرض 90.8px مقابل 133.1px): العرض يُحلّ بقياس الشريط (`tools/measure-header-fit.mjs`) وعتباته في الكود (28de9e8: de 12.5/8، الشريط باقٍ عند 1440px) لا بتقصير الاسم. ممنوع: Highlights (denglisch_verboten) · Attraktionen (سجل مدن الملاهي) · أي اختصار بنقطة · العودة إلى «Sehenswertes» بلا قرار من إياد."
     },
     {
       "en": "Souqs & Parks (leisure index)",
@@ -434,10 +434,10 @@
     },
     {
       "en": "Events (page label: header + footer)",
-      "de": "Termine",
+      "de": "Veranstaltungen",
       "artikel": "die (Pl.)",
       "source": "دفعة تقصير شريط التنقّل 2026-09-04 (اعتماد الحاكم 91/100، سبع مراحل، دورة واحدة)",
-      "note": "سلسلة واحدة في `nav.events` و`foot.l.events` — الوجهة واحدة فالاسم واحد. **«Events» مرفوضة**: Duden يسمها Jargon، وخمس بوّابات وجهات ألمانية/نمساوية من خمس تستعمل «Veranstaltungen» في ملاحتها، وأمسكها القارئ الأعمى بلا مصدر ولا بديل («الصفحة تناقض نفسها» — التذييل يعرف الكلمة الألمانية ويستعملها). **«Veranstaltungen» صحيحة لغةً وغير قابلة للتطبيق في الشريط**: 106.8px ترفع أدنى نافذة إلى 1392px فتُنزل البرغر على شاشات 1366px — لا تُعَد إلا بقياس جديد. تبقى «Veranstaltungen und Saisonales» تسميةَ **الفئة** (مقفلة من العربية، مدخل 41)، والتمايز مقصود: فئة ≠ صفحة. **تحفّظ مسعَّر (ملاحظة القارئ الأعمى B23، وهي علّة 27/30 في محور الدقّة)**: «Termine» تَعِد بمواعيد محدَّدة بينما تسع فعاليات من عشر بمواسم تقريبية — فمتى بُنيت `/de/events/` وجب أن يقول صدرُها صراحةً إن المواعيد تقريبية. المرشّحات المقيسة المرفوضة: Feste 34.5 وFestivals 55.3 (تُسقطان المعارض والمواسم فتخرقان سياج الوقائع) · Kalender 58.7 (أشدّ وعداً بالتحديد) · Anlässe 48.9 (لا تميّز شيئاً)."
+      "note": "سلسلة واحدة في `nav.events` و`foot.l.events` — الوجهة واحدة فالاسم واحد. **«Veranstaltungen»** (قرار إياد 2026-10-04، دفعة footer-names، اعتماد الحاكم 95/100): أُسقطت «Termine» لأنها تُفهم مواعيدَ محدَّدة بينما تسع فعاليات من عشر بمواسم تقريبية (تحفّظ القارئ الأعمى B23)، و«Veranstaltungen» صحيحة لغةً وهي ما تحمله البوّابات الألمانية/النمساوية الخمس المفحوصة في ملاحتها. عرضها 106.8px حُلّ بالقياس والعتبات (28de9e8) لا بالتسمية. **«Events» مرفوضة** (Duden: Jargon). تبقى «Veranstaltungen und Saisonales» تسميةَ **الفئة** (مقفلة من العربية، مدخل 41) — فئة ≠ صفحة. مرفوضات سابقة: Termine (تَعِد بتواريخ) · Feste/Festivals (تُسقطان المعارض والمواسم) · Kalender (أشدّ وعداً بالتحديد) · Anlässe (لا تميّز شيئاً)."
     },
     {
       "en": "Al-Koot District",
@@ -4366,6 +4366,17 @@
       "batch": "asfar-wording",
       "origin": "المرحلة 1 (دفعة asfar-wording) — حكم إياد 2026-09-29؛ أقرّته المرحلتان 2 و3، وتحقّقت منه المرحلة 4 بالويب ودقّقته المرحلة 5، واعتمده الحاكم 94/100 (المرحلة 7)",
       "verified_source": "Duden online, Lemma „Gewässer, das“ (https://www.duden.de/rechtschreibung/Gewaesser, abgerufen 2026-09-29 in Stufe 4): Gen. des Gewässers, Pl. die Gewässer, „größere natürliche Ansammlung von Wasser“. DWDS, Lemma „Gewässer“ (https://www.dwds.de/wb/Gewässer, abgerufen 2026-09-29): Substantiv (Neutrum), „Sammelbezeichnung für Meer, See, Fluss, Bach, Kanal“. WHG § 3 Nr. 1 und 4 (https://www.gesetze-im-internet.de/whg_2009/__3.html). unesco.at, Presseartikel zur Welterbetagung Bahrain 2018 (https://www.unesco.at/presse/artikel/article/unesco-welterbetagung-bahrain-2018-19-neue-staetten-in-die-welterbeliste-aufgenommen): „Golfregion“. SPA (https://www.spa.gov.sa/1901639, mit Browser-UA abgerufen 2026-09-29): Datum „الموافق 20 مارس 2019 م“, Wortlaut «التي تعد من أكبر التجمعات المائية في منطقة الخليج العربي» geprüft. ICOMOS-Evaluierung 2018 (https://whc.unesco.org/document/168727): „Al-Asfar Lake is a drainage zone collecting the waters from the oasis“; Nominierung, Executive Summary, SCTH, Januar 2017 (https://whc.unesco.org/document/160479): „Al-Asfar Lake, a drainage zone collecting the waters from the oasis and sheltering a unique natural ecosystem“ — beide Wortlaute geprüft."
+    },
+    {
+      "en": "Footer column heading: Site (foot.col.site)",
+      "ar": "الموقع",
+      "de": "Service",
+      "artikel": "der",
+      "status": "verified",
+      "source": "دفعة footer-names 2026-10-04، BRIEF §3 (قرار إياد: «Website» تعثّر فيها القرّاء). محتوى العمود في de: Richtlinien und Nutzungsbedingungen · Fehler melden · Kontakt · WhatsApp (رابط `foot.l.aboutSite` لا يُعرض في de). القارئ الأعمى (06-blind) قبلها بلا اعتراض؛ اعتمدها الحاكم 95/100.",
+      "note": "عنوان عمود فقط — «Service» العنوان الألماني المعتاد لمجموعة التواصل والشروط والإبلاغ في تذييلات المواقع، كلمة Duden قياسية وليست في denglisch_verboten. مرفوضات: Website (لا تصف شيئاً) · Über uns (تَعِد بصفحة تعريف لا وجود لها في de) · Über diese Website (طويلة، والعلّة نفسها) · Info & Kontakt / Kontakt & Rechtliches (تكرّر رابط «Kontakt» تحته). إن بُنيت `aboutSite` للألمانية بقيت «Service» صالحة.",
+      "added": "2026-10-04",
+      "batch": "footer-names"
     }
   ]
 }
