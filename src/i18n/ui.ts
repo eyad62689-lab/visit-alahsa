@@ -155,7 +155,7 @@ export const ui = {
     'cat.historic.t': 'المعالم التاريخية', 'cat.historic.d': 'قِلاعٌ وقصورٌ ومساجد تروي قروناً من الحكاية.',
     'cat.nature.t': 'الطبيعة', 'cat.nature.d': 'جبالٌ وكهوفٌ وبساتين نخيلٍ لا ينتهي خضارها.',
     'cat.crafts.t': 'التجارب والحِرف', 'cat.crafts.d': 'من قطف التمر إلى تطريز البشوت بأيدي أهلها.',
-    'cat.taste.t': 'المطبخ الأحسائي', 'cat.taste.d': 'مطبخٌ دافئٌ وتمرٌ يُصدَّر إلى موائد العالم.',
+    'cat.taste.t': 'المطبخ الأحسائي', 'cat.taste.d': 'مطبخٌ دافئ: الأرز الأحسائي والهريس والمفلق وخبز التمر.',
     'cat.market.t': 'الأسواق التراثية', 'cat.market.d': 'القيصرية وعبق العطر والذهب والنحاس.',
     'cat.events.t': 'الفعاليات', 'cat.events.d': 'مهرجاناتٌ تُحيي التراث على مدار العام.',
     // حقائق
@@ -414,7 +414,7 @@ export const ui = {
     'cat.historic.t': 'Historic landmarks', 'cat.historic.d': 'Forts, palaces and mosques recounting centuries of story.',
     'cat.nature.t': 'Nature', 'cat.nature.d': 'Mountains, caves and palm groves of endless green.',
     'cat.crafts.t': 'Experiences & crafts', 'cat.crafts.d': 'From harvesting dates to embroidering cloaks by local hands.',
-    'cat.taste.t': 'Hasawi Cuisine', 'cat.taste.d': 'A warm kitchen and dates exported to the world’s tables.',
+    'cat.taste.t': 'Hasawi Cuisine', 'cat.taste.d': 'A warm kitchen: Hasawi rice, harees, mufallaq and date bread.',
     'cat.market.t': 'Heritage souqs', 'cat.market.d': 'Al-Qaisariyah, with the scent of perfume and the gleam of gold and copper.',
     'cat.events.t': 'Events', 'cat.events.d': 'Festivals reviving the heritage all year round.',
     'fact.palms.l': 'palms — the largest oasis on earth',
