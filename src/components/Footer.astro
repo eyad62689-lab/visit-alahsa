@@ -36,6 +36,10 @@ const cols = [
       ...(ar || lang === 'en' ? [{ label: t('nav.trails'), href: ar ? '/trails/' : '/en/trails/' }] : []),
       // المدونة في التذييل لا الهيدر: الشريط مقيس على ثمانية روابط بلا التفاف (2026-08-22)
       { label: t('nav.blog'), href: ar ? '/مدونة/' : zh ? '/zh/blog/' : de ? '/de/blog/' : ru ? '/ru/blog/' : '/en/blog/' },
+      // عن المكان لا عن الموقع: نُقلا من عمود «الموقع» (حكم إياد 2026-10-04)
+      { label: t('foot.l.about'), href: ar ? '/#name' : zh ? '/zh/#name' : de ? '/de/#name' : ru ? '/ru/#name' : '/en/#name' },
+      // صفحة مكوّنات اليونسكو بلغاتها الخمس منذ المرحلة هـ (2026-09-26)
+      { label: t('foot.l.unesco'), href: staticHref('unesco', lang) },
     ],
   },
   {
@@ -52,12 +56,9 @@ const cols = [
   {
     h: t('foot.col.site'),
     links: [
-      { label: t('foot.l.about'), href: ar ? '/#name' : zh ? '/zh/#name' : '/en/#name' },
       // «عن زوروا الأحساء» عربي/إنجليزي فقط (2026-09-27) — لا تُربط من zh/de/ru كالمسارات:
       // تسميتها الإنجليزية ترفع نسبة الكتل غير المترجمة فوق عتبة C22 (قيست 21–25%)
       ...(ar || lang === 'en' ? [{ label: t('foot.l.aboutSite'), href: aboutHref(lang) }] : []),
-      // صفحة مكوّنات اليونسكو بلغاتها الخمس منذ المرحلة هـ (2026-09-26)
-      { label: t('foot.l.unesco'), href: staticHref('unesco', lang) },
       { label: t('foot.l.privacy'), href: staticHref('legal', lang) },
       { label: t('foot.l.report'), href: staticHref('report', lang) },
       { label: t('foot.l.contact'), href: 'mailto:info@visit-alahsa.com' },

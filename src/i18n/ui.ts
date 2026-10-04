@@ -153,7 +153,7 @@ export const ui = {
     'home.plan.cta': 'جهّز خطّتك',
     // فئات الرئيسية (6)
     'cat.historic.t': 'المعالم التاريخية', 'cat.historic.d': 'قِلاعٌ وقصورٌ ومساجد تروي قروناً من الحكاية.',
-    'cat.nature.t': 'الطبيعة والمزارع', 'cat.nature.d': 'جبالٌ وكهوفٌ وبساتين نخيلٍ لا ينتهي خضارها.',
+    'cat.nature.t': 'الطبيعة', 'cat.nature.d': 'جبالٌ وكهوفٌ وبساتين نخيلٍ لا ينتهي خضارها.',
     'cat.crafts.t': 'التجارب والحِرف', 'cat.crafts.d': 'من قطف التمر إلى تطريز البشوت بأيدي أهلها.',
     'cat.taste.t': 'المذاق والتمور', 'cat.taste.d': 'مطبخٌ دافئٌ وتمرٌ يُصدَّر إلى موائد العالم.',
     'cat.market.t': 'الأسواق التراثية', 'cat.market.d': 'القيصرية وعبق العطر والذهب والنحاس.',
@@ -412,7 +412,7 @@ export const ui = {
     'home.plan.lead': 'Gather your favourite sights, arrange your days, and enjoy the oasis. We have set up your starting point.',
     'home.plan.cta': 'Build your plan',
     'cat.historic.t': 'Historic landmarks', 'cat.historic.d': 'Forts, palaces and mosques recounting centuries of story.',
-    'cat.nature.t': 'Nature & farms', 'cat.nature.d': 'Mountains, caves and palm groves of endless green.',
+    'cat.nature.t': 'Nature', 'cat.nature.d': 'Mountains, caves and palm groves of endless green.',
     'cat.crafts.t': 'Experiences & crafts', 'cat.crafts.d': 'From harvesting dates to embroidering cloaks by local hands.',
     'cat.taste.t': 'Cuisine & dates', 'cat.taste.d': 'A warm kitchen and dates exported to the world’s tables.',
     'cat.market.t': 'Heritage souqs', 'cat.market.d': 'Al-Qaisariyah, with the scent of perfume and the gleam of gold and copper.',

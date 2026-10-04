@@ -7,7 +7,7 @@ import type { Lang } from '../i18n/ui';
 
 export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { ar: Record<string, string>; en: Record<string, string> } = {
   ar: {
-    historic: 'المعالم',
+    historic: 'المعالم التاريخية',
     museum: 'المتاحف',
     religious: 'المساجد والمواقع الدينية',
     nature: 'الطبيعة',
@@ -19,7 +19,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     events: 'الفعاليات والمواسم',
   },
   en: {
-    historic: 'Landmarks',
+    historic: 'Historic landmarks',
     museum: 'Museums',
     religious: 'Mosques & religious sites',
     nature: 'Nature',
