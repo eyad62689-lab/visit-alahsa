@@ -19,8 +19,23 @@ const SECTIONS = {
   leisure: { ar: 'أسواق-ومنتزهات-ومزارع', other: 'souqs-parks-farms' },
 };
 
-const decode = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-const text = (h) => decode(h.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+// فكّ الكيانات في مرور واحد (لا سلسلة replace: تفكّ &amp;lt; مرتين)
+const ENT = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>' };
+const decode = (s) => s.replace(/&(?:amp|quot|#39|lt|gt);/g, (m) => ENT[m]);
+// نصّ المقطع بماسح محرفاً محرفاً لا بتعبير نمطي على الوسوم (يحترم الاقتباس داخل السمات)
+const stripTags = (h) => {
+  let out = '';
+  for (let i = 0; i < h.length; i++) {
+    if (h[i] !== '<') { out += h[i]; continue; }
+    let q = '';
+    for (i++; i < h.length; i++) {
+      const c = h[i];
+      if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') break;
+    }
+  }
+  return out;
+};
+const text = (h) => decode(stripTags(h)).replace(/\s+/g, ' ').trim();
 const h1Of = (html) => { const m = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/); return m ? text(m[1]) : null; };
 const headerOf = (html) => { const i = html.indexOf('<header'); const j = html.indexOf('</header>', i); return i === -1 || j === -1 ? '' : html.slice(i, j); };
 const anchors = (html) => [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)].map(([, attrs, inner]) => ({
