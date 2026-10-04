@@ -27,6 +27,7 @@ import { checkIbrahimTowers, EXPECT as TOWERS_EXPECT } from './check-ibrahim-tow
 import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-ibrahim-materials-intro.mjs';
 import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
 import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
+import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -461,6 +462,13 @@ async function main() {
       const { problems, stats } = checkZhUqair(pages);
       if (problems.length) fail('C42', `صيغ العقير الصينية: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C42', `«第一座海港» في صفحات العقير الصينية (${stats.targets}؛ الحدّ الأدنى ${ZH_UQAIR_EXPECT.minPages})، ولا صيغة سابقة ملتبسة`);
+    }
+    // ── C43: اسم القسم في الترويسة = عنوان صفحته (حكم إياد 2026-10-04)، والزرّ الذهبي = رابط الخطة.
+    // المنطق في tools/check-nav-titles.mjs.
+    {
+      const { problems, stats } = checkNavTitles(pages);
+      if (problems.length) fail('C43', `أسماء الأقسام في الترويسة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C43', `أسماء المطاعم والإقامة والأسواق في الترويسة تطابق عناوين صفحاتها، والزرّ الذهبي يطابق رابط الخطة، في ${stats.langs} لغات (الحدّ الأدنى ${NAV_TITLES_EXPECT.minLangs})`);
     }
   }
   {
