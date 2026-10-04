@@ -12,7 +12,7 @@ faq:
   - q: "Lohnt sich ein Besuch der Höhlen des Jabal al-Qarah im Sommer?"
     a: "Ja – an heißen Tagen gehören die Höhlen zu den besten Stationen in Al-Ahsa. Ganzjährig halten sie eine gleichbleibende Temperatur von rund 20 °C: Im Hochsommer bleibt es darin kühl, im tiefsten Winter warm."
   - q: "Wo liegt der Jabal al-Qarah, und wie komme ich dorthin?"
-    a: "Der Berg ragt mitten aus der Al-Ahsa-Oase auf, östlich von Hofuf beim Dorf Al-Qarah. Das Auto ist die praktische Wahl für die Anfahrt, und die Seite „Meine Reise“ dieser Website macht aus dem Berg und seiner Umgebung eine fertige Route, die sich in Google Maps öffnet."
+    a: "Der Berg ragt mitten aus der Al-Ahsa-Oase auf, östlich von Hofuf beim Dorf Al-Qarah. Das Auto ist die praktische Wahl für die Anfahrt, und die Merkliste dieser Website macht aus dem Berg und seiner Umgebung eine fertige Route, die sich in Google Maps öffnet."
   - q: "Ist für die Höhlen ein Ticket nötig?"
     a: "Ja – die Tickets gibt es im Kulturerbe-Dorf „Land of Civilisations“ am Fuß des Jabal al-Qarah, und sie schließen das Höhlenerlebnis ein. Die Angaben zu Öffnungszeiten und Eintritt stehen auf unserer Seite zum Berg, und das letzte Wort haben die offiziellen Kanäle."
 ---
@@ -45,7 +45,7 @@ Die beste Zeit für den Aufstieg: **tagsüber**. Die Höhlen selbst sind mit ihr
 
 - **Lage:** östlich von Hofuf, beim Dorf Al-Qarah – auf der [Seite der Sehenswürdigkeit](/de/attractions/jabal-al-qarah/) finden Sie den Kartenlink und die Koordinaten.
 - **Öffnungszeiten und Eintritt:** Die Angaben stehen auf der [Seite der Sehenswürdigkeit](/de/attractions/jabal-al-qarah/); die Tickets gibt es über „Land of Civilisations“, und sie schließen das Höhlenerlebnis ein. Die Öffnungszeiten ändern sich je nach Saison und an Feiertagen, und das letzte Wort haben die offiziellen Kanäle.
-- **In Ihrem Reiseplan:** Mit dem Berg beginnen die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) und der zweite Tag der [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit [„Meine Reise“](/de/plan/).
+- **In Ihrem Reiseplan:** Mit dem Berg beginnen die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) und der zweite Tag der [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit der [Merkliste](/de/plan/).
 
 ## Fazit
 
