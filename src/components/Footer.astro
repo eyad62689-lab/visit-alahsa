@@ -61,8 +61,6 @@ const cols = [
       // تسميتها الإنجليزية ترفع نسبة الكتل غير المترجمة فوق عتبة C22 (قيست 21–25%)
       ...(ar || lang === 'en' ? [{ label: t('foot.l.aboutSite'), href: aboutHref(lang) }] : []),
       { label: t('foot.l.privacy'), href: staticHref('legal', lang) },
-      // يعيد فتح شريط موافقة التحليلات (ConsentBar.astro) — الهدف #consent-bar في كل صفحة
-      { label: t('foot.l.consent'), href: '#consent-bar', consent: true },
       { label: t('foot.l.report'), href: staticHref('report', lang) },
       { label: t('foot.l.contact'), href: 'mailto:info@visit-alahsa.com' },
       // واتساب: الرقم لا يُعرض كنص — مضمَّن في رابط wa.me فقط (طلب إياد 2026-07-23)
@@ -87,7 +85,6 @@ const year = new Date().getFullYear();
             href={l.href}
             class={l.icon ? 'ft-icon-link' : undefined}
             {...(l.external ? { target: '_blank', rel: 'noopener' } : {})}
-            {...(l.consent ? { 'data-consent-open': '' } : {})}
           >
             {l.icon === 'whatsapp' && (
               <svg class="ft-wa" viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">

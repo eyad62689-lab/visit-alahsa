@@ -30,7 +30,6 @@ import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
 import LangSuggest from '../components/LangSuggest.astro';
-import ConsentBar from '../components/ConsentBar.astro';
 import { srcsetFor } from '../lib/images';
 import { orgNode, websiteNode, brandName } from '../lib/schema';
 import { AI_REFERRER_HOSTS } from '../lib/ai-referrers.mjs';
@@ -227,43 +226,16 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
           page_location: location.href,
         });
       }
-      // بوابة الموافقة (2026-10-04، قرار إياد: منع كامل حتى القبول): المكتبة لا تُحقن إلا
-      // بعد «قبول» في شريط الموافقة (ConsentBar.astro). قبل ذلك تبقى الأحداث في dataLayer
-      // داخل المتصفح ولا يغادر شيء الجهاز. «رفض» بعد قبولٍ سابق يعطّل GA بمفتاح التعطيل
-      // الرسمي ويحذف ملفات _ga.
       (function loadGtagLazily() {
-        var KEY = 'va-analytics-consent';
         var injected = false;
         function inject() {
           if (injected) return;
           injected = true;
-          window['ga-disable-' + GA_ID] = false;
           var s = document.createElement('script');
           s.async = true;
           s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
           document.head.appendChild(s);
         }
-        function read() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
-        window.__vaConsent = {
-          get: read,
-          set: function (v) {
-            if (v !== 'granted' && v !== 'denied') return;
-            try { localStorage.setItem(KEY, v); } catch (e) { /* تخزين محجوب: القرار لهذه الصفحة وحدها */ }
-            if (v === 'granted') inject();
-            else {
-              window['ga-disable-' + GA_ID] = true;
-              document.cookie.split(';').forEach(function (c) {
-                var name = c.split('=')[0].trim();
-                if (name.indexOf('_ga') === 0) {
-                  document.cookie = name + '=; Max-Age=0; path=/';
-                  document.cookie = name + '=; Max-Age=0; path=/; domain=.' + location.hostname.replace(/^www\./, '');
-                }
-              });
-            }
-            document.dispatchEvent(new CustomEvent('va-consent', { detail: v }));
-          },
-        };
-        if (read() !== 'granted') return;
         function afterLoad() {
           if ('requestIdleCallback' in window) requestIdleCallback(inject, { timeout: 4000 });
           else setTimeout(inject, 2000);
@@ -319,7 +291,6 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
       if (document.readyState !== 'loading') window.VAPlan.sync();
       else document.addEventListener('DOMContentLoaded', () => window.VAPlan.sync());
     </script>
-    <ConsentBar lang={lang} />
     {alt && langSuggest && <LangSuggest lang={lang} alt={alt} />}
     <CopyGuard />
     {/* طبقة القياس الموحّدة (وحدة مُجمَّعة تُنفَّذ مرة واحدة): الأحداث العشرة
