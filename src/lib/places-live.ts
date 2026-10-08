@@ -54,7 +54,17 @@ const SCRIPT_OF: Partial<Record<Lang, RegExp>> = {
   ar: /[؀-ۿ]/,
   zh: /[一-鿿]/,
 };
+/** فترة تفتح بعد منتصف الليل بقليل (12:01–4:59 ص) وتغلق في اليوم نفسه بعد الظهر:
+ *  خلطُ ص/م في إدخال المنشأة على قوقل لا دوامٌ فعلي — السهر الحقيقي يعبر منتصف
+ *  الليل إلى اليوم التالي، والدوام الكامل فترةٌ بلا إغلاق. يومٌ واحد بهذا النمط
+ *  يُسقط أوقات المنشأة كلها (النصوص والشارة): ما لا يوثق به يُعامَل كغير متوفر
+ *  ولا يُصحَّح تخميناً. */
+export const hoursImplausible = (lv?: Live): boolean =>
+  !!lv?.periods?.some(([od, om, cd, cm]) =>
+    od !== null && od === cd && om !== null && om > 0 && om < 300 && cm !== null && cm >= 720);
+
 export const hoursFor = (lv: Live | undefined, lang: Lang): string[] | undefined => {
+  if (hoursImplausible(lv)) return undefined;
   const list = lang === 'ar' ? lv?.hoursAr : lang === 'zh' ? lv?.hoursZh : lang === 'en' ? lv?.hoursEn : undefined;
   if (!list?.length) return undefined;
   const script = SCRIPT_OF[lang];
@@ -68,7 +78,7 @@ export const hoursFor = (lv: Live | undefined, lang: Lang): string[] | undefined
  *  يكلّف ~42KB في الصفحة لأن كل اقتباس يُهرَّب إلى &quot; داخل سمة HTML.
  *  اليوم الفارغ = null (فترة بلا إغلاق ⇒ 24 ساعة). */
 export const hoursData = (lv?: Live): string | null =>
-  lv?.periods?.length && typeof lv.utcOffset === 'number'
+  lv?.periods?.length && typeof lv.utcOffset === 'number' && !hoursImplausible(lv)
     ? `${lv.utcOffset}|${lv.periods.map((x) => x.join(',')).join(';')}`
     : null;
 
