@@ -43,7 +43,7 @@ const C = localize(lang, {
     faqH: 'أسئلة شائعة',
     relatedH: 'اقرأ أيضاً',
     mapH: 'الموقع على الخريطة',
-    mapOpen: 'افتح في خرائط جوجل',
+    mapOpen: 'افتح في خرائط قوقل',
     mapNone: 'لم تُعلن الجهة المنظّمة موقعاً دقيقاً لهذه الفعالية بعد، فلم نضع لها خريطة.',
     mapFrameTitle: 'خريطة موقع الفعالية',
     noticeH: 'قبل أن تحضر',
@@ -234,7 +234,7 @@ const desc = ev.seoDesc ?? (ru
   : de
     ? `${ev.name} – ${ev.place}. ${ev.season} · ${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`
     : `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`);
-// Event schema للنسخ المؤكدة فقط: جوجل يشترط startDate محدداً، ومواسمنا تقريبية
+// Event schema للنسخ المؤكدة فقط: قوقل يشترط startDate محدداً، ومواسمنا تقريبية
 // بقرار محتوى ملزم — فلا تُضاف إلا حين يوثّق المصدر الرسمي تاريخين دقيقين (startISO/endISO).
 if (ev.startISO && ev.endISO) {
   jsonLd.push({

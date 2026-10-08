@@ -32,7 +32,7 @@ order: 59
 area: "الهفوف — وسط المدينة التاريخي"
 area_en: "Hofuf — the historic town centre"
 practical:
-  - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_ru: "Часы работы", value_ru: "Ежедневно 7:30–24:00 (по воскресеньям и понедельникам с 7:00 · по пятницам с 14:30)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", label_de: "Öffnungszeiten", value_de: "Täglich 7:30–24:00 Uhr (sonntags und montags ab 7:00 Uhr · freitags ab 14:30 Uhr)", source: "خرائط جوجل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_ru: "Google Карты — часы работы, обновлённые самим рынком", source_zh: "谷歌地图（营业时间由商家更新）", source_de: "Google Maps – vom Betrieb selbst aktualisierte Öffnungszeiten", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
+  - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_ru: "Часы работы", value_ru: "Ежедневно 7:30–24:00 (по воскресеньям и понедельникам с 7:00 · по пятницам с 14:30)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", label_de: "Öffnungszeiten", value_de: "Täglich 7:30–24:00 Uhr (sonntags und montags ab 7:00 Uhr · freitags ab 14:30 Uhr)", source: "خرائط قوقل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_ru: "Google Карты — часы работы, обновлённые самим рынком", source_zh: "谷歌地图（营业时间由商家更新）", source_de: "Google Maps – vom Betrieb selbst aktualisierte Öffnungszeiten", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
 hoursSpec:
   - { days: "Tu We Th Sa", opens: "07:30", closes: "23:59" }
   - { days: "Su Mo", opens: "07:00", closes: "23:59" }
@@ -45,7 +45,7 @@ mapUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA"
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-08، الدفعة ru-attr-10 — السجل في ru-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد سوق الحرفيين؟"
-    a: "يومياً من 7:30 ص إلى 12 منتصف الليل، والأحد والاثنين من 7 ص، والجمعة من 2:30 م — بحسب الساعات التي حدّثتها المؤسسة في خرائط جوجل."
+    a: "يومياً من 7:30 ص إلى 12 منتصف الليل، والأحد والاثنين من 7 ص، والجمعة من 2:30 م — بحسب الساعات التي حدّثتها المؤسسة في خرائط قوقل."
     q_en: "What are the opening hours of the Craftsmen Souq?"
     a_en: "Daily from 7:30 am to midnight; Sunday and Monday from 7:00 am, and Friday from 2:30 pm, according to the hours updated by the business on Google Maps."
     q_zh: "手工艺人市集的开放时间是几点到几点？"

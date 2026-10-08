@@ -57,7 +57,7 @@ const attractions = defineCollection({
     bestTime: z.string().optional(),           // أفضل وقت للزيارة (توصية عامة)
     bestTime_en: z.string().optional(),        // أفضل وقت بالإنجليزية
     location: z.object({ lat: z.number(), lng: z.number() }).optional(), // إحداثيات (للمرحلة ٣)
-    mapUrl: z.url().optional(),               // رابط خرائط جوجل
+    mapUrl: z.url().optional(),               // رابط خرائط قوقل
     // ── الهوية الخارجية (بند 3.1 — 2026-09-04) ────────────────────────────
     // sameAs: روابط الكيان نفسه في مراجع خارجية (Wikidata + ويكيبيديا) تُصدَّر في
     // TouristAttraction فتلتقي محركات البحث والإجابة على هوية واحدة لا تلتبس.
