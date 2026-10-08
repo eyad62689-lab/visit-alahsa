@@ -186,7 +186,7 @@ export const ui = {
     'det.area': 'المنطقة',
     'det.bestTime': 'أفضل وقت',
     'det.coords': 'الإحداثيات',
-    'det.openMaps': 'افتح في خرائط جوجل ↗',
+    'det.openMaps': 'افتح في خرائط قوقل ↗',
     'det.openAmap': 'افتح في خرائط Amap ↗',   // لا يُعرض إلا في /zh/ (قرار المالك 6ب)؛ الصينية عبر الخط
     'det.fromPlace': 'من المكان',
     'det.allSights': '← كل المعالم',
@@ -229,7 +229,7 @@ export const ui = {
     'plan.savedFew': 'معالم محفوظة',
     'plan.clearConfirm': 'أتريد إفراغ قائمة معالمك المحفوظة كاملةً؟',
     'plan.routeLimit': 'خرائط قوقل تقبل 10 محطات في المسار الواحد، فيُفتح المسار بأول 10 معالم في قائمتك.',
-    'plan.route': 'افتح المسار في خرائط جوجل',
+    'plan.route': 'افتح المسار في خرائط قوقل',
     'plan.clear': 'أفرغ القائمة',
     'plan.remove': 'إزالة',
     'plan.location': 'الموقع ↗',

@@ -256,7 +256,7 @@ const jsonLd = [
     { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
     { name: C.title, path: altHref(alt, lang) },
   ]),
-  // ItemList فقط — لا Event schema عمداً: جوجل يشترط startDate محدداً للأهلية،
+  // ItemList فقط — لا Event schema عمداً: قوقل يشترط startDate محدداً للأهلية،
   // ومواسمنا تقريبية بقرار محتوى ملزم (لا تواريخ دقيقة)، فأي startDate سيكون مختلقاً.
   { '@context': 'https://schema.org', '@type': 'ItemList',
     name: C.title, url: absUrl(altHref(alt, lang), siteUrl),

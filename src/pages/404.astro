@@ -12,7 +12,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PalmMotif from '../components/PalmMotif.astro';
 import { LANG_META, LANGS } from '../i18n/langs';
-import { useTranslations } from '../i18n/utils';
+import { titleSep, useTranslations } from '../i18n/utils';
+import { brandName } from '../lib/schema';
 import type { Lang } from '../i18n/ui';
 
 const alt = { ar: '/', en: '/en/' };
@@ -24,7 +25,7 @@ const blocks = LANGS.map((l) => {
   return {
     lang: l, code: LANG_META[l].code, dir: LANG_META[l].dir,
     home: HOME[l], list: LIST[l], homeLabel: t('crumb.home'), listLabel: t('nav.attractions'),
-    title: l === 'ar' ? 'الصفحة غير موجودة — الأحساء' : l === 'en' ? 'Page not found — Al-Ahsa' : `404 — ${t('site.name')}`,
+    title: `${l === 'ar' ? 'الصفحة غير موجودة' : l === 'en' ? 'Page not found' : '404'} ${titleSep(l)} ${brandName(l)}`,
     heading: l === 'ar' ? 'يبدو أنّك خرجت عن مسار الواحة' : l === 'en' ? 'Looks like you wandered off the oasis trail' : null,
     text: l === 'ar' ? 'الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:' : l === 'en' ? EN_LINE : null,
     // العربية والإنجليزية ظاهرتان بلا JS (السلوك السابق)؛ البقية تُكشف بالسكربت
@@ -32,7 +33,7 @@ const blocks = LANGS.map((l) => {
   };
 });
 ---
-<Base title="الصفحة غير موجودة — الأحساء" description="لم نعثر على هذه الصفحة." lang="ar" alt={alt} noindex={true} langSuggest={false}>
+<Base title={blocks.find((b) => b.lang === 'ar')!.title} description="لم نعثر على هذه الصفحة." lang="ar" alt={alt} noindex={true} langSuggest={false}>
   <Header lang="ar" alt={alt} />
   <main id="main" data-pagefind-ignore>
     <section class="container nf">
