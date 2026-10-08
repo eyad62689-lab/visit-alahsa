@@ -6,19 +6,19 @@ title_zh: 贾瓦塔公园
 kicker_zh: 公园
 summary_zh: 与古老的贾瓦塔清真寺相邻的绿地公园，适合一家人出游。
 body_zh: "基拉比亚的一片开阔绿地，自然与历史在此交叠：园内有古老的贾瓦塔清真寺——继麦地那的先知清真寺之后最早举行主麻日聚礼的地方——以及贾瓦塔考古遗址。公园适合全家出游；开放时间与门票见下方“游览信息”卡片。"
-area_zh: 基拉比亚——哈萨东北部
+area_zh: 基拉比亚——胡富夫东北方向
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-5 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
 title_de: "Jawatha-Park"
 kicker_de: "Park"
 summary_de: "Ein grüner Park neben der historischen Jawatha-Moschee – ein Ziel für Familienausflüge."
 body_de: "In der Ortschaft Al-Kilabiyah verbindet ein weitläufiger grüner Park Natur und Geschichte: Auf seinem Gelände liegen die alte Jawatha-Moschee und die archäologische Stätte Jawatha. Die Moschee ist der erste Ort nach der Prophetenmoschee in Medina, an dem ein Freitagsgebet abgehalten wurde. Ein passendes Ziel für Familienausflüge; Öffnungszeiten und Eintritt stehen weiter unten bei „Besuchsinformationen“."
-area_de: "Al-Kilabiyah – nordöstlich von Al-Ahsa"
+area_de: "Al-Kilabiyah – nordöstlich von Hofuf"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 7 بدرجة 91/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Парк Джавата"
 kicker_ru: "Парк"
 summary_ru: "Зелёный парк рядом с исторической мечетью Джавата — место для семейного отдыха."
 body_ru: "Просторный зелёный парк в посёлке Эль-Килабия соединяет природу с историей: в его границах — древняя мечеть Джавата и археологический памятник Джавата. Мечеть — первое место после мечети Пророка в Медине, где совершили пятничную молитву. Парк подходит для семейного отдыха. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже."
-area_ru: "Эль-Килабия, к северо-востоку от Аль-Ахсы"
+area_ru: "Эль-Килабия, к северо-востоку от Эль-Хуфуфа"
 slug_ar: "منتزه-جواثا-السياحي"
 slug_en: "jawatha-park"
 category: parks
@@ -79,11 +79,11 @@ faq:
     q_en: "Where is Jawatha Park?"
     a_en: "In the town of Al-Kilabiyah, northeast of Hofuf."
     q_zh: "贾瓦塔公园在哪里？"
-    a_zh: "在哈萨东北部的基拉比亚。"
+    a_zh: "在胡富夫东北方向的基拉比亚村。"
     q_de: "Wo liegt der Jawatha-Park?"
-    a_de: "In der Ortschaft Al-Kilabiyah, nordöstlich von Al-Ahsa."
+    a_de: "In der Ortschaft Al-Kilabiyah, nordöstlich von Hofuf."
     q_ru: "Где находится парк Джавата?"
-    a_ru: "В посёлке Эль-Килабия, к северо-востоку от Аль-Ахсы."
+    a_ru: "В посёлке Эль-Килабия, к северо-востоку от Эль-Хуфуфа."
 ---
 
 منتزهٌ أخضر واسع في بلدة الكلابية، يجمع الطبيعة بالتاريخ: ففي نطاقه يقع **مسجد
