@@ -36,9 +36,10 @@ const routes = {
 };
 const nav = [
   { href: routes.attractions, label: t('nav.attractions') },
-  // المسارات المقترحة (2026-09-26): عربي/إنجليزي فقط — لا صفحات zh/de/ru لها، فترويسات
-  // تلك اللغات بلا تغيير (ولا يتغيّر عرضها المقيس). العرض اللازم لـar/en أُعيد قياسه.
-  ...(ar || lang === 'en' ? [{ href: ar ? '/trails/' : '/en/trails/', label: t('nav.trails') }] : []),
+  // المسارات المقترحة: في شريط ar/en/zh. الألمانية والروسية خارجه بالقياس لا بالتقدير
+  // (tools/measure-header-fit.mjs: رابط تاسع يلزمه 1443px و1608px فيتراكب عند كل عرض) —
+  // رابطهما في التذييل كالمدونة.
+  ...(de || ru ? [] : [{ href: ar ? '/trails/' : `/${lang}/trails/`, label: t('nav.trails') }]),
   { href: routes.leisure, label: t('nav.leisure') },
   { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },

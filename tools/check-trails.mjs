@@ -1,4 +1,5 @@
-// C27 — سلامة المسارات المقترحة (/trails/ و/en/trails/، 2026-09-26).
+// C27 — سلامة المسارات المقترحة (/trails/ بلغاته الخمس؛ ar/en من trails.json، وzh/de/ru
+// من ملفات خطوط الترجمة src/data/trails.<lang>.json).
 //
 // دالة نقية بلا قراءة ملفات: يستدعيها check-consistency.mjs بالمصدر (src/data/trails.json)
 // وصفحات dist، ويستدعيها اختبار الكسر بنسخ معدَّلة في الذاكرة — فيُثبَت أن كل حارس يُخفق
@@ -14,7 +15,9 @@
 //       المحطات الخمس المسمّاة وحدها؛ ملاحظة اليونسكو مرة واحدة في كل صفحة؛ الإسناد في
 //       رأس الفهرس وذيل كل مسار (بعد آخر محطة)؛ نص كل محطة منشور حرفياً (التشكيل كما هو)؛
 //       المصادر تحت كل محطة بعناوينها وروابطها وtarget=_blank rel=noopener؛ لا وصف رسمي في
-//       <title> والوصف وog/twitter وh1؛ hreflang عربي/إنجليزي فقط.
+//       <title> والوصف وog/twitter وh1؛ hreflang باللغات الخمس.
+//   (د) zh/de/ru: ملف كل لغة يحمل مسارات trails.json ومحطاتها ومصادرها بلا نقص ولا زيادة،
+//       ويُفحص منشورُها بالقواعد نفسها مقارَناً بنص ملفها حرفياً.
 //   (ج) عنوان المصدر نصٌّ واحد أو { ar, en } ويُقارَن المنشور بعنوان لغة الصفحة؛ ولا رابط
 //       aawsat.com في أي مصدر، ومحطة بحيرة الأصفر منشورة بمصدر واس وبلا رابط aawsat.
 
@@ -37,7 +40,65 @@ const urlsIn = (html) => [...decode(html).matchAll(/https?:\/\/[^\s"'<>]+/g)].ma
 
 const FORBIDDEN_AR = ['المعتمدة', 'الرسمية', 'من روح السعودية'];
 const FORBIDDEN_EN = [/\bofficial\b/i, /\bapproved\b/i];
-const hasForbidden = (s) => FORBIDDEN_AR.filter((w) => s.includes(w)).concat(FORBIDDEN_EN.filter((re) => re.test(s)).map(String));
+// نظائر «المعتمدة/الرسمية» في لغات الخطوط — تُفحص في حقول المسار ورأس صفحته بلغتها
+const FORBIDDEN_L10N = {
+  zh: ['官方', '正式', '认证', '批准', '认可'],
+  de: [/\boffiziell/i, /\bamtlich/i, /\bgenehmigt/i, /\banerkannt/i],
+  ru: [/официальн/i, /утвержд/i, /одобренн/i],
+};
+const hasForbidden = (s, l) => FORBIDDEN_AR.filter((w) => s.includes(w))
+  .concat(FORBIDDEN_EN.filter((re) => re.test(s)).map(String))
+  .concat((FORBIDDEN_L10N[l] ?? []).filter((w) => (typeof w === 'string' ? s.includes(w) : w.test(s))).map(String));
+
+// «المسرح الروماني» بلغات الخطوط: التسمية المحلية ونفيُ الأثر الروماني في النص نفسه
+const ROMAN_L10N = {
+  zh: [/罗马剧场/, '并非古罗马遗迹'],
+  de: [/Römische[sn]? Theater/, 'kein antikes römisches Bauwerk'],
+  ru: [/Римск[а-яё]* театр/, 'не памятник римской эпохи'],
+};
+
+export const L10N_LANGS = ['zh', 'de', 'ru'];
+const same = (a, b) => [...a].sort().join('\n') === [...b].sort().join('\n');
+// قارئات النص بلغة الصفحة: ar/en من trails.json، وغيرهما من ملف لغته
+const isBase = (l) => l === 'ar' || l === 'en';
+const stopTx = (l10n, t, s, l) => (isBase(l) ? s[l] : l10n?.[l]?.trails?.[t.slug]?.stops?.[s.key]);
+const metaTx = (data, l10n, f, l) => (isBase(l) ? data.meta?.[f]?.[l] : l10n?.[l]?.meta?.[f]);
+const srcTitle = (data, l10n, k, l) => {
+  if (!isBase(l)) return l10n?.[l]?.sources?.[k];
+  const title = data.sources[k].title;
+  return typeof title === 'string' ? title : title[l];
+};
+
+/** الفحص على ملفات zh/de/ru وحدها: اكتمال المفاتيح ولا وصف رسمي */
+export function checkTrailsL10n(data, l10n) {
+  const problems = [];
+  for (const l of L10N_LANGS) {
+    const d = l10n?.[l];
+    if (!d) { problems.push(`${l}: ملف الترجمة غائب`); continue; }
+    for (const f of ['attribution', 'unescoNote']) if (!d.meta?.[f]?.trim()) problems.push(`${l}: meta.${f} فارغ`);
+    if (!same(Object.keys(d.sources ?? {}), Object.keys(data.sources ?? {}))) problems.push(`${l}: مفاتيح المصادر لا تطابق trails.json`);
+    for (const [k, v] of Object.entries(d.sources ?? {})) if (!String(v ?? '').trim()) problems.push(`${l}: عنوان المصدر ${k} فارغ`);
+    if (!same(Object.keys(d.trails ?? {}), (data.trails ?? []).map((t) => t.slug))) problems.push(`${l}: المسارات لا تطابق trails.json`);
+    for (const t of data.trails ?? []) {
+      const tx = d.trails?.[t.slug];
+      if (!tx) continue;
+      for (const f of ['title', 'tagline', 'intro']) {
+        if (!tx[f]?.trim()) problems.push(`${l}/${t.slug}: ${f} فارغ`);
+        else { const bad = hasForbidden(tx[f], l); if (bad.length) problems.push(`${l}/${t.slug}: ${f} يحمل وصفاً رسمياً (${bad.join('، ')})`); }
+      }
+      if (!same(Object.keys(tx.stops ?? {}), t.stops.map((s) => s.key))) problems.push(`${l}/${t.slug}: المحطات لا تطابق trails.json`);
+      for (const s of t.stops) for (const f of ['name', 'text']) {
+        if (tx.stops?.[s.key] && !tx.stops[s.key][f]?.trim()) problems.push(`${l}/${t.slug}/${s.key}: ${f} فارغ`);
+      }
+      for (const s of t.stops) {
+        const text = tx.stops?.[s.key]?.text ?? '';
+        const [needle, must] = ROMAN_L10N[l];
+        if (needle.test(text) && !text.includes(must)) problems.push(`${l}/${t.slug}/${s.key}: «المسرح الروماني» بلا نفي الأثر الروماني («${must}»)`);
+      }
+    }
+  }
+  return problems;
+}
 
 const decode = (s) => s
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
@@ -90,11 +151,12 @@ const headTexts = (html) => {
 };
 
 /**
- * pages: { ar: { index: html, trails: Map(slug → html) }, en: {...} }
+ * pages: { ar: { index: html, trails: Map(slug → html) }, en: {...}, zh: {...}, de: {...}, ru: {...} }
+ * l10n: { zh, de, ru } — محتوى src/data/trails.<lang>.json
  * يعيد { problems, stats }
  */
-export function checkTrails(data, pages) {
-  const problems = checkTrailsSource(data);
+export function checkTrails(data, pages, l10n) {
+  const problems = [...checkTrailsSource(data), ...checkTrailsL10n(data, l10n)];
   const stats = {};
   const trails = [...(data.trails ?? [])].sort((a, b) => a.order - b.order);
   const allStops = trails.flatMap((t) => t.stops);
@@ -103,17 +165,18 @@ export function checkTrails(data, pages) {
   const srcUnesco = allStops.filter((s) => s.unesco).map((s) => s.key).sort().join(',');
   if (srcUnesco !== [...EXPECT.unescoStops].sort().join(',')) problems.push(`محطات اليونسكو في المصدر [${srcUnesco}] ≠ المتوقع`);
 
-  for (const l of ['ar', 'en']) {
+  for (const l of ['ar', 'en', ...L10N_LANGS]) {
+    if (!isBase(l) && !l10n?.[l]) continue;
     const P = pages?.[l];
     if (!P?.index) { problems.push(`${l}: فهرس المسارات غير منشور`); continue; }
     const st = { pages: P.trails.size, stops: 0, badges: 0, landmarks: 0, sources: 0 };
     stats[l] = st;
-    const attr = data.meta.attribution[l];
-    const note = data.meta.unescoNote[l];
+    const attr = metaTx(data, l10n, 'attribution', l) ?? '';
+    const note = metaTx(data, l10n, 'unescoNote', l) ?? '';
     const checkHead = (rel, html) => {
-      for (const [k, v] of headTexts(html)) { const bad = hasForbidden(v); if (bad.length) problems.push(`${rel}: ${k} يحمل وصفاً رسمياً (${bad.join('، ')})`); }
+      for (const [k, v] of headTexts(html)) { const bad = hasForbidden(v, l); if (bad.length) problems.push(`${rel}: ${k} يحمل وصفاً رسمياً (${bad.join('، ')})`); }
       const langs = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)"/g)].map((m) => m[1]).sort().join(',');
-      if (langs !== 'ar,en,x-default') problems.push(`${rel}: hreflang [${langs}] — المسارات عربي/إنجليزي فقط`);
+      if (langs !== 'ar,de,en,ru,x-default,zh') problems.push(`${rel}: hreflang [${langs}] — المتوقع اللغات الخمس وx-default`);
       const notes = count(html, 'data-unesco-note');
       if (notes !== 1) problems.push(`${rel}: ملاحظة اليونسكو ${notes} مرة — المطلوب مرة واحدة`);
       else if (!decode(html).includes(note)) problems.push(`${rel}: نص ملاحظة اليونسكو لا يطابق المصدر`);
@@ -150,7 +213,7 @@ export function checkTrails(data, pages) {
         if (badge) st.badges++;
         if (badge !== s.unesco) problems.push(`${rel}/${s.key}: شارة اليونسكو ${badge ? 'ظاهرة' : 'غائبة'} و unesco=${s.unesco}`);
         const text = body.match(/<p class="trd-text"[^>]*>([\s\S]*?)<\/p>/)?.[1];
-        if (text === undefined || decode(strip(text)) !== s[l].text) problems.push(`${rel}/${s.key}: نص المحطة المنشور لا يطابق المصدر حرفياً`);
+        if (text === undefined || decode(strip(text)) !== stopTx(l10n, t, s, l)?.text) problems.push(`${rel}/${s.key}: نص المحطة المنشور لا يطابق المصدر حرفياً`);
         if (body.includes('data-landmark-link')) st.landmarks++;
         const links = [...body.matchAll(/<a\b([^>]*\bdata-source="([^"]+)"[^>]*)>([\s\S]*?)<\/a>/g)];
         st.sources += links.length;
@@ -161,7 +224,7 @@ export function checkTrails(data, pages) {
           const href = decode(m[1].match(/href="([^"]*)"/)?.[1] ?? '');
           if (href !== src.url) problems.push(`${rel}/${s.key}: رابط ${m[2]} ≠ المصدر`);
           if (!/target="_blank"/.test(m[1]) || !/rel="noopener"/.test(m[1])) problems.push(`${rel}/${s.key}: رابط ${m[2]} بلا target=_blank rel=noopener`);
-          const want = typeof src.title === 'string' ? src.title : src.title[l];
+          const want = srcTitle(data, l10n, m[2], l);
           if (decode(strip(m[3])).trim() !== want) problems.push(`${rel}/${s.key}: عنوان ${m[2]} ≠ المصدر`);
         }
         // مصادر محطة الأصفر: رابط الصحيفة المنقطع لا يعود، ومصدر واس حاضر

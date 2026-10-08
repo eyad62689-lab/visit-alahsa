@@ -1,7 +1,8 @@
 ---
-// صفحة المسار المقترح — /trails/<slug>/ و/en/trails/<slug>/ (عربي/إنجليزي فقط، 2026-09-26).
+// صفحة المسار المقترح — /trails/<slug>/ بلغاته الخمس (zh/de/ru تحت بادئة لغتها).
 //
-// النصوص كلها من src/data/trails.json حرفياً (ملف المالك المدقَّق) — لا مسافات ولا مواعيد
+// النصوص كلها من src/data/trails.json حرفياً (ملف المالك المدقَّق)، وzh/de/ru من ملفات خطوط
+// الترجمة (trails.<lang>.json) حرفياً — لا مسافات ولا مواعيد
 // ولا رسوم في متن المسار (editorialRules): البيان التشغيلي في صفحة المعلم، ورابطها تحت
 // كل محطة مطابَقة. شارة اليونسكو حيث unesco: true وحده، وملاحظتها مرة واحدة في الصفحة.
 // الإسناد (meta.attribution) في ذيل الصفحة إلزامي — والكل يحرسه C27 على dist.
@@ -15,7 +16,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
-import { TRAIL_META, TRAIL_SOURCES, sourceTitle, type Trail } from '../../data/trails';
+import { TRAIL_SOURCES, sourceTitle, stopText, trailAttribution, trailText, trailUnescoNote, type Trail } from '../../data/trails';
 import { stopAttraction, trailsIndexHref, type TrailLang } from '../../lib/trails';
 import { attractionHref } from '../../lib/routes';
 import { absUrl, breadcrumb } from '../../lib/schema';
@@ -24,7 +25,8 @@ interface Props { trail: Trail; lang: TrailLang; alt: AltLinks; }
 const { trail, lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
-const tx = trail[lang];
+const tx = trailText(trail, lang);
+const homeHref = ar ? '/' : `/${lang}/`;
 const all = await getCollection('attractions');
 
 // نصّ الحديث في محطة جواثى مضمَّن وسط الجملة بين «…»: يُعزل في <q> بلا أي تغيير في
@@ -43,16 +45,17 @@ const splitQuote = (text: string): [string, string, string] | null => {
 
 const stops = trail.stops.map((s, i) => {
   const att = stopAttraction(s, all);
+  const st = stopText(trail, s, lang);
   return {
     n: i + 1,
     key: s.key,
-    name: s[lang].name,
-    text: s[lang].text,
-    quote: splitQuote(s[lang].text),
+    name: st.name,
+    text: st.text,
+    quote: splitQuote(st.text),
     unesco: s.unesco,
     href: att ? attractionHref(att.data, lang) : undefined,
     loc: att?.data.location,
-    sources: s.sources.map((k) => ({ key: k, url: TRAIL_SOURCES[k].url, title: sourceTitle(TRAIL_SOURCES[k].title, lang) })),
+    sources: s.sources.map((k) => ({ key: k, url: TRAIL_SOURCES[k].url, title: sourceTitle(k, lang) })),
   };
 });
 const pins = stops.filter((s) => s.loc && s.href).map((s) => ({ n: s.n, name: s.name, href: s.href!, lat: s.loc!.lat, lng: s.loc!.lng }));
@@ -84,7 +87,7 @@ const jsonLd = [
     },
   },
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('crumb.home'), path: homeHref },
     { name: t('trails.title'), path: idxHref },
     { name: tx.title, path: altHref(alt, lang) },
   ]),
@@ -135,7 +138,7 @@ const jsonLd = [
           </li>
         ))}
       </ol>
-      <p class="trd-note" data-unesco-note>{TRAIL_META.unescoNote[lang]}</p>
+      <p class="trd-note" data-unesco-note>{trailUnescoNote(lang)}</p>
     </section>
 
     {pins.length > 0 && (
@@ -147,7 +150,7 @@ const jsonLd = [
     )}
 
     <section class="container trd-foot">
-      <p class="trd-attr" data-trail-attribution>{TRAIL_META.attribution[lang]}</p>
+      <p class="trd-attr" data-trail-attribution>{trailAttribution(lang)}</p>
       <a href={idxHref} class="btn btn--turq">{t('trails.all')}</a>
     </section>
   </main>

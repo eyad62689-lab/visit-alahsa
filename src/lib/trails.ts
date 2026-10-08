@@ -2,16 +2,20 @@
 // وقسم «ضمن المسارات» في صفحة المعلم وsitemap وllms.txt.
 import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n/ui';
-import { TRAILS, type Trail, type TrailStop } from '../data/trails';
+import { TRAILS, type Trail, type TrailLang, type TrailStop } from '../data/trails';
 
-/** المسارات عربي/إنجليزي فقط. المسار المحدَّد من المالك: /trails/ و/en/trails/
- *  (لا slug عربي كبقية الأقسام — طلبٌ صريح). بشرطة ختامية دائماً (تطابق canonical). */
-export type TrailLang = 'ar' | 'en';
-export const isTrailLang = (lang: Lang): lang is TrailLang => lang === 'ar' || lang === 'en';
-export const trailsIndexHref = (lang: TrailLang) => (lang === 'ar' ? '/trails/' : '/en/trails/');
-export const trailHref = (t: Pick<Trail, 'slug'>, lang: TrailLang) =>
-  lang === 'ar' ? `/trails/${t.slug}/` : `/en/trails/${t.slug}/`;
-export const trailAlt = (t: Pick<Trail, 'slug'>) => ({ ar: trailHref(t, 'ar'), en: trailHref(t, 'en') });
+export type { TrailLang };
+const TRAIL_LANGS = ['ar', 'en', 'zh', 'de', 'ru'] as const satisfies readonly Lang[];
+
+/** المسار المحدَّد من المالك: /trails/ و/en/trails/ (لا slug عربي كبقية الأقسام — طلبٌ
+ *  صريح)، وzh/de/ru تحت بادئة لغتها بالـslug نفسه. بشرطة ختامية دائماً (تطابق canonical). */
+export const trailsIndexHref = (lang: TrailLang) => (lang === 'ar' ? '/trails/' : `/${lang}/trails/`);
+export const trailHref = (t: Pick<Trail, 'slug'>, lang: TrailLang) => `${trailsIndexHref(lang)}${t.slug}/`;
+const altOf = (href: (lang: TrailLang) => string) =>
+  Object.fromEntries(TRAIL_LANGS.map((l) => [l, href(l)])) as Record<TrailLang, string>;
+/** نظائر فهرس المسارات وصفحة المسار بلغاتها الخمس — مصدر hreflang ومبدّل اللغة وsitemap */
+export const trailsIndexAlt = () => altOf(trailsIndexHref);
+export const trailAlt = (t: Pick<Trail, 'slug'>) => altOf((l) => trailHref(t, l));
 
 // ── ربط المحطة بالمعلم ──────────────────────────────────────────────────────
 // landmarkSlugHint في المصدر تلميح لا مفتاح: يطابق حرفياً ثلاثة ملفات فقط
@@ -51,6 +55,6 @@ export const stopAttraction = (s: TrailStop, all: Att[]): Att | undefined => {
   return slug ? all.find((e) => e.data.slug_en === slug) : undefined;
 };
 
-/** المسارات التي تمرّ بمعلم ما — لقسم «ضمن المسارات» في صفحة المعلم (ar/en فقط) */
+/** المسارات التي تمرّ بمعلم ما — لقسم «ضمن المسارات» في صفحة المعلم */
 export const trailsForAttraction = (slugEn: string, all: Att[]): Trail[] =>
   TRAILS.filter((t) => t.stops.some((s) => stopAttraction(s, all)?.data.slug_en === slugEn));
