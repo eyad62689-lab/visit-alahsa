@@ -30,7 +30,7 @@ body_en: "A broad green park in the town of Al-Kilabiyah, joining nature to hist
 featured: false
 order: 44
 area: "الكلابية — شمال شرق الأحساء"
-area_en: "Al-Kilabiyah — northeast of Al-Ahsa"
+area_en: "Al-Kilabiyah — northeast of Hofuf"
 practical:
   - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–24:00", label_zh: "开放时间", value_zh: "每日 8:00–24:00", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–24:00 Uhr", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", label_ru: "Стоимость входа", value_ru: "10–15 саудовских риялов (SAR) · посещение мечети бесплатно", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", label_de: "Eintritt", value_de: "10–15 Saudi-Riyal (SAR) · Besuch der Moschee kostenlos", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
@@ -77,7 +77,7 @@ faq:
   - q: "أين يقع منتزه جواثا؟"
     a: "في بلدة الكلابية شمال شرق الأحساء."
     q_en: "Where is Jawatha Park?"
-    a_en: "In the town of Al-Kilabiyah, northeast of Al-Ahsa."
+    a_en: "In the town of Al-Kilabiyah, northeast of Hofuf."
     q_zh: "贾瓦塔公园在哪里？"
     a_zh: "在哈萨东北部的基拉比亚。"
     q_de: "Wo liegt der Jawatha-Park?"

@@ -45,7 +45,7 @@ Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](
 
 ### Late Afternoon: The Green of the Farms
 
-If your visit falls in the Hasawi lime season, in summer from mid-June to the end of August, give the late afternoon, when the heat eases, to the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
+If your visit falls in the Hasawi lime season, in summer from mid-June to the end of August, give the late afternoon, when the heat eases, to the [Hasawi Lime Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
 
 ### Sunset: Al-Uqair
 
