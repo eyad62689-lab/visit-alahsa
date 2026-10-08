@@ -12,7 +12,7 @@ import { isThinAttraction } from '../lib/publish';
 import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
 import { isUnlisted } from '../i18n/unlisted';
 import { TRAILS } from '../data/trails';
-import { trailAlt, trailsIndexHref } from '../lib/trails';
+import { trailAlt, trailsIndexAlt } from '../lib/trails';
 
 type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; lastmod?: string };
 
@@ -26,6 +26,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // ملفات مصدر كل صفحة قائمة — تاريخها أحدث ما بين قالبها وبيانات محتواها
   const V = 'src/components/views/';
+  const TRAIL_FILES = ['src/data/trails.json', 'src/data/trails.zh.json', 'src/data/trails.de.json', 'src/data/trails.ru.json'];
   const attractionFiles = items.map((e) => e.filePath).filter((p): p is string => Boolean(p));
   const dateOf = (...paths: string[]) => newestDate(paths);
 
@@ -49,9 +50,9 @@ export const GET: APIRoute = async ({ site }) => {
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
     { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },
-    // المسارات المقترحة (2026-09-26) — عربي/إنجليزي فقط، التاريخ من ملف البيانات وقالبها
-    { ar: trailsIndexHref('ar'), en: trailsIndexHref('en'), lastmod: dateOf(`${V}TrailsIndexView.astro`, 'src/data/trails.json') },
-    ...TRAILS.map((tr) => ({ ...trailAlt(tr), lastmod: dateOf(`${V}TrailView.astro`, 'src/data/trails.json') })),
+    // المسارات المقترحة بلغاتها الخمس — التاريخ من ملفات البيانات وقالبها
+    { ...trailsIndexAlt(), lastmod: dateOf(`${V}TrailsIndexView.astro`, ...TRAIL_FILES) },
+    ...TRAILS.map((tr) => ({ ...trailAlt(tr), lastmod: dateOf(`${V}TrailView.astro`, ...TRAIL_FILES) })),
     { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
     // مقالات المدونة — الاقتران بحقل key المشترك بين لغاته (ar/en/zh/de/ru منذ الخطوة 10).
     // التاريخ من ترويسة المقال نفسه (أحدث نسخة): هو إعلان الكاتب، وأوثق من تاريخ الالتزام.

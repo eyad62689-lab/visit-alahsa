@@ -16,7 +16,8 @@ import { ogDefault } from '../../lib/og';
 import { kmBetween, distLabel } from '../../lib/distance';
 import ShareButton from '../ShareButton.astro';
 import { mentionsOf } from '../../lib/related';
-import { isTrailLang, trailHref, trailsForAttraction } from '../../lib/trails';
+import { trailHref, trailsForAttraction } from '../../lib/trails';
+import { trailText } from '../../data/trails';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -183,11 +184,10 @@ const nearby = a.location
       }))
   : [];
 
-// «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم — عربي/إنجليزي فقط
-// (لا صفحات مسارات بلغات أخرى). الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
-const inTrails = isTrailLang(lang)
-  ? trailsForAttraction(a.slug_en, await getCollection('attractions')).map((tr) => ({ href: trailHref(tr, lang), title: tr[lang].title, tagline: tr[lang].tagline, slug: tr.slug }))
-  : [];
+// «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم، بلغة الصفحة.
+// الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
+const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
+  .map((tr) => ({ href: trailHref(tr, lang), title: trailText(tr, lang).title, tagline: trailText(tr, lang).tagline, slug: tr.slug }));
 ---
 <Base title={`${title} ${titleSep(lang)} ${t('site.brand')}`} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />

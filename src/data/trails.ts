@@ -1,15 +1,21 @@
-// المسارات المقترحة (مسارات) — مصدر الحقيقة الوحيد لقسم /trails/ و/en/trails/.
+// المسارات المقترحة (مسارات) — مصدر الحقيقة الوحيد لقسم /trails/ بلغاته الخمس.
 //
 // المحتوى في trails.json **منسوخ بايتاً ببايت** من ملف المالك المدقَّق (md5
 // cd1b8636bff88434658b144e97250044، 2026-09-26) — لا يُعاد صوغ أي نص ولا تُضاف واقعة.
 // المخطط أدناه صارم (strictObject): أي حقل زائد أو ناقص يُفشل البناء لحظة الاستيراد،
 // فيستحيل أن تتسلل حقيقة غير مدقَّقة عبر حقل جديد لا يعرفه القالب.
 //
-// عربي/إنجليزي فقط (meta.languages) — لا صفحات zh/de/ru لهذا القسم، ولا hreflang إليها.
+// ملف المالك عربي/إنجليزي (meta.languages). نصوص zh/de/ru في ملفات مستقلة
+// (trails.zh.json · trails.de.json · trails.ru.json) تكتبها خطوط الترجمة حصراً، بالمفاتيح
+// نفسها (slug المسار ومفتاح المحطة ومفتاح المصدر) — فلا يُمسّ ملف المالك، ومخططها يرفض أي
+// مسار أو محطة أو مصدر ناقص أو زائد فلا تُبنى صفحة بلغةٍ نصفها إنجليزي.
 // المسارات **مقترحة من الموقع لا رسمية**: meta.attribution تُعرض في رأس الفهرس وذيل كل
 // مسار، ويحرس C27 ألا تحمل العناوين والتسميات والمقدّمات وصف «المعتمدة/الرسمية/official/approved».
 import { z } from 'astro/zod';
 import raw from './trails.json';
+import rawZh from './trails.zh.json';
+import rawDe from './trails.de.json';
+import rawRu from './trails.ru.json';
 
 const Bi = z.strictObject({ ar: z.string().min(1), en: z.string().min(1) });
 const TrailText = z.strictObject({ title: z.string().min(1), tagline: z.string().min(1), intro: z.string().min(1) });
@@ -64,6 +70,57 @@ export const TRAILS_DATA: TrailsData = TrailsSchema.parse(raw);
 export const TRAILS: Trail[] = [...TRAILS_DATA.trails].sort((a, b) => a.order - b.order);
 export const TRAIL_META = TRAILS_DATA.meta;
 export const TRAIL_SOURCES = TRAILS_DATA.sources;
+
+// ── نصوص zh/de/ru ───────────────────────────────────────────────────────────
+export type TrailLang = 'ar' | 'en' | 'zh' | 'de' | 'ru';
+type L10nLang = Exclude<TrailLang, 'ar' | 'en'>;
+
+const sameKeys = (a: string[], b: string[]) => a.length === b.length && [...a].sort().join('\n') === [...b].sort().join('\n');
+const L10nSchema = z.strictObject({
+  meta: z.strictObject({ attribution: z.string().min(1), unescoNote: z.string().min(1) }),
+  // وصف فهرس المسارات: {n} عددها و{titles} عناوينها موصولة بـlistSep
+  seoDesc: z.string().regex(/\{n\}/).regex(/\{titles\}/),
+  listSep: z.string().min(1),
+  sources: z.record(z.string(), z.string().min(1)),
+  trails: z.record(z.string(), z.strictObject({
+    title: z.string().min(1), tagline: z.string().min(1), intro: z.string().min(1),
+    stops: z.record(z.string(), StopText),
+  })),
+}).superRefine((d, ctx) => {
+  if (!sameKeys(Object.keys(d.sources), Object.keys(TRAILS_DATA.sources))) ctx.addIssue({ code: 'custom', path: ['sources'], message: 'مفاتيح المصادر لا تطابق trails.json' });
+  if (!sameKeys(Object.keys(d.trails), TRAILS.map((t) => t.slug))) ctx.addIssue({ code: 'custom', path: ['trails'], message: 'المسارات لا تطابق trails.json' });
+  for (const t of TRAILS) {
+    if (d.trails[t.slug] && !sameKeys(Object.keys(d.trails[t.slug].stops), t.stops.map((s) => s.key))) ctx.addIssue({ code: 'custom', path: ['trails', t.slug, 'stops'], message: 'المحطات لا تطابق trails.json' });
+  }
+});
+const L10N: Record<L10nLang, z.infer<typeof L10nSchema>> = {
+  zh: L10nSchema.parse(rawZh),
+  de: L10nSchema.parse(rawDe),
+  ru: L10nSchema.parse(rawRu),
+};
+const isBase = (lang: TrailLang): lang is 'ar' | 'en' => lang === 'ar' || lang === 'en';
+
+/** عنوان المسار وتسميته ومقدّمته بلغة الصفحة */
+export const trailText = (t: Trail, lang: TrailLang): z.infer<typeof TrailText> => {
+  if (isBase(lang)) return t[lang];
+  const { title, tagline, intro } = L10N[lang].trails[t.slug];
+  return { title, tagline, intro };
+};
+/** اسم المحطة ونصها بلغة الصفحة */
+export const stopText = (t: Trail, s: TrailStop, lang: TrailLang): z.infer<typeof StopText> =>
+  isBase(lang) ? s[lang] : L10N[lang].trails[t.slug].stops[s.key];
+export const trailAttribution = (lang: TrailLang): string => (isBase(lang) ? TRAIL_META.attribution[lang] : L10N[lang].meta.attribution);
+export const trailUnescoNote = (lang: TrailLang): string => (isBase(lang) ? TRAIL_META.unescoNote[lang] : L10N[lang].meta.unescoNote);
 /** عنوان المصدر بلغة الصفحة */
-export const sourceTitle = (title: TrailsData['sources'][string]['title'], lang: 'ar' | 'en'): string =>
-  typeof title === 'string' ? title : title[lang];
+export const sourceTitle = (key: string, lang: TrailLang): string => {
+  if (!isBase(lang)) return L10N[lang].sources[key];
+  const title = TRAIL_SOURCES[key].title;
+  return typeof title === 'string' ? title : title[lang];
+};
+/** وصف صفحة الفهرس (meta description) بلغة الصفحة */
+export const trailsSeoDesc = (lang: TrailLang): string => {
+  const titles = TRAILS.map((t) => trailText(t, lang).title);
+  if (lang === 'ar') return `${titles.length} مسارات مقترحة بين معالم الأحساء: ${titles.join('، ')}.`;
+  if (lang === 'en') return `${titles.length} suggested trails across Al-Ahsa’s landmarks: ${titles.join(', ')}.`;
+  return L10N[lang].seoDesc.replace('{n}', String(titles.length)).replace('{titles}', titles.join(L10N[lang].listSep));
+};
