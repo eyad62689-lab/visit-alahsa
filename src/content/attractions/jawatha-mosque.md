@@ -28,10 +28,10 @@ kicker: إرثٌ نادر
 summary: من أقدم المساجد في الإسلام، وأوّل ما أُقيمت فيه جمعةٌ بعد المدينة.
 summary_en: "One of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina."
 body_en: "Jawatha Mosque holds a standing few landmarks can match: it is among the oldest mosques in Islam, and is said to be the first place where Friday prayer was held after the Prophet's Mosque in Medina, by the Banu Abd al-Qais who settled this land. What remains of its humble mud structure carries a dignity beyond its size. Stand before its arches and walls and you summon centuries of prayer and gathering in an oasis whose people were among the earliest to embrace Islam. The mosque was restored under the Prince Mohammed bin Salman Project for the Development of Historic Mosques, together with the Jalaniyah, Sheikh Muhammad bin Abi Bakr Al-Mulla and Hubaish mosques in Al-Ahsa. To visit it is a journey through time more than a visit to a building — a moment that connects you to a deep root of the place’s history."
-area: قرية الكلابية — شمال شرق الأحساء
+area: قرية الكلابية — شمال شرق الهفوف
 area_en: "Al-Kilabiyah village — northeast of Hofuf"
 fee: { free: true }
-answer: "مسجد جواثا في الكلابية شمال شرق الأحساء من أقدم مساجد الإسلام، ويُذكر أنه أول موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس. الدخول مجاني، والمنتزه المحيط من 8 ص إلى 12 منتصف الليل بـ10–15 ريالاً."
+answer: "مسجد جواثا في الكلابية شمال شرق الهفوف من أقدم مساجد الإسلام، ويُذكر أنه أول موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس. الدخول مجاني، والمنتزه المحيط من 8 ص إلى 12 منتصف الليل بـ10–15 ريالاً."
 answer_en: "Jawatha Mosque in Al-Kilabiyah, northeast of Hofuf, is among the oldest mosques in Islam, said to be the first place Friday prayer was held after the Prophet's Mosque. Entry is free; the park around it opens 8 am to midnight for SAR 10–15."
 location: { lat: 25.469801, lng: 49.678502 }
 sameAs:
@@ -76,7 +76,7 @@ faq:
     q_ru: "Почему мечеть Джавата так важна?"
     a_ru: "Это одна из старейших мечетей ислама; по преданию, именно здесь племя Абд аль-Кайс совершило пятничную молитву — первую после той, что прошла в мечети Пророка в Медине."
   - q: "أين يقع مسجد جواثا؟"
-    a: "في قرية الكلابية شمال شرق الأحساء."
+    a: "في قرية الكلابية شمال شرق الهفوف."
     q_en: "Where is Jawatha Mosque?"
     a_en: "In Al-Kilabiyah village, northeast of Hofuf."
     q_zh: "贾瓦塔清真寺在哪里？"

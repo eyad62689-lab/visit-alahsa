@@ -29,7 +29,7 @@ summary_en: "A green park beside the historic Jawatha Mosque, a destination for 
 body_en: "A broad green park in the town of Al-Kilabiyah, joining nature to history: within its grounds stand the ancient Jawatha Mosque — the first place where Friday prayer was held after the Prophet's Mosque in Medina — and the Jawatha archaeological site. A fitting destination for family outings; opening hours and fees are listed in the visit-information card below."
 featured: false
 order: 44
-area: "الكلابية — شمال شرق الأحساء"
+area: "الكلابية — شمال شرق الهفوف"
 area_en: "Al-Kilabiyah — northeast of Hofuf"
 practical:
   - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–24:00", label_zh: "开放时间", value_zh: "每日 8:00–24:00", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–24:00 Uhr", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
@@ -75,7 +75,7 @@ faq:
     q_ru: "Что можно увидеть в парке Джавата?"
     a_ru: "Древнюю мечеть Джавата и археологический памятник Джавата. Мечеть — первое место после мечети Пророка в Медине, где совершили пятничную молитву."
   - q: "أين يقع منتزه جواثا؟"
-    a: "في بلدة الكلابية شمال شرق الأحساء."
+    a: "في بلدة الكلابية شمال شرق الهفوف."
     q_en: "Where is Jawatha Park?"
     a_en: "In the town of Al-Kilabiyah, northeast of Hofuf."
     q_zh: "贾瓦塔公园在哪里？"
