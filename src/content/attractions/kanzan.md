@@ -6,19 +6,19 @@ title_zh: 坎赞山
 kicker_zh: 自然景观
 summary_zh: "绿洲东北部的一片山体，史书中称作“坎赞”。1915 年，那场著名的坎赞战役就发生在这里。"
 body_zh: "坎赞山（Kanzan）绵延在北部绿洲的东缘，距胡富夫东北方向约 15 公里。“坎赞”是史书所记的名字，今天人们更常叫它舒阿巴山（Al-Shu'bah）。山体是一列由沉积岩和沙土构成的丘陵，毗邻舒阿巴、基拉比亚、巴塔利亚和朱尔恩四座村庄，西侧连着古老的贾瓦塔清真寺一带。伊斯兰历 1333 年（公元 1915 年），阿卜杜勒阿齐兹国王时代那场著名的坎赞战役就在这一带打响，国王在此役中负伤，其弟萨阿德王子阵亡。如今，这里沙地洁净细软，深受人们喜爱，是郊游、驾车冲沙和远眺椰枣林海的好去处。哈萨市政局也正在山上开发一座大型休闲公园。"
-area_zh: 舒阿巴村与基拉比亚村附近——绿洲东北部
+area_zh: 舒阿巴村与基拉比亚村附近——胡富夫东北方向
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-7 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
 title_de: "Kanzan-Berg"
 kicker_de: "Naturlandschaft"
 summary_de: "Ein Bergmassiv nordöstlich der Oase, in den Geschichtsbüchern als Kanzan bekannt – Schauplatz der Schlacht von Kanzan im Jahr 1915."
 body_de: "Am östlichen Rand der nördlichen Oase, rund 15 Kilometer nordöstlich von Hofuf, erstreckt sich das Massiv des Kanzan-Bergs. Kanzan ist der Name, unter dem ihn die Geschichtsbücher kennen; heute heißt er meist Al-Shu'bah-Berg. Der Berg ist eine Kette aus Sediment- und Sandhügeln. Er grenzt an die Dörfer Al-Shu'bah, Al-Kilabiyah, Al-Battaliyah und Al-Jurn und reicht im Westen bis an das Umfeld der alten Jawatha-Moschee. In der Gegend von Kanzan wurde die berühmte Schlacht von Kanzan geschlagen – 1333 nach der Hidschra (1915 n. Chr.), zur Zeit von König Abdulaziz. Der König wurde dabei verwundet, sein Bruder Prinz Saad fiel. Der feine, saubere Sand hat den Berg zu einem beliebten Ziel gemacht: für Ausflüge, für Dünenfahrten und für den Blick über das Meer aus Dattelpalmen. Auf dem Massiv entwickelt die Kommunalverwaltung von Al-Ahsa einen großen Erholungspark."
-area_de: "Nordöstlich der Oase – nahe den Dörfern Al-Shu'bah und Al-Kilabiyah"
+area_de: "Nordöstlich von Hofuf – nahe den Dörfern Al-Shu'bah und Al-Kilabiyah"
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 5 بدرجة 91/100 (2026-09-06، السجل في ru-translation/memory/scores.csv)
 title_ru: "Гора Канзан"
 kicker_ru: "Природная достопримечательность"
 summary_ru: "Горный массив к северо-востоку от оазиса, в исторических сочинениях известный как Канзан, — здесь в 1915 году произошла битва при Канзане."
 body_ru: "На восточном краю северной части оазиса, примерно в пятнадцати километрах к северо-востоку от Эль-Хуфуфа, тянется массив горы Канзан (по-арабски — Джабаль-Канзан). Это имя гора носит в исторических сочинениях, а сегодня ее чаще зовут горой Эш-Шууба. Массив — цепь осадочных и песчаных холмов. Он соседствует с деревнями Эш-Шууба, Эль-Килабия, Эль-Батталия и Эль-Джурн, а с запада подходит к окрестностям древней мечети Джавата. В этих местах в 1333 году хиджры (1915 год н. э.), во времена короля Абдул-Азиза, произошла знаменитая битва при Канзане. Король был в ней ранен, а его брат принц Саад погиб. Чистые мягкие пески сделали Канзан любимым местом прогулок: сюда приезжают кататься по дюнам и смотреть на пальмовые рощи. На массиве муниципалитет Аль-Ахсы обустраивает большой парк отдыха."
-area_ru: "К северо-востоку от оазиса, близ деревень Эш-Шууба и Эль-Килабия"
+area_ru: "К северо-востоку от Эль-Хуфуфа, близ деревень Эш-Шууба и Эль-Килабия"
 slug_ar: "جبل-كنزان"
 slug_en: "kanzan"
 category: nature
@@ -26,8 +26,8 @@ kicker: "معلم طبيعي"
 summary: "كتلة جبلية شمال شرق الواحة عرفتها كتب التاريخ باسم كنزان، وعندها وقعت معركة كنزان عام 1915م."
 summary_en: "A mountain massif north-east of the oasis, known in the history books as Kanzan — site of the 1915 Battle of Kanzan."
 body_en: "On the eastern rim of the northern oasis, some fifteen kilometres north-east of Hofuf, stretches the massif of Kanzan Mountain — the name the history books know it by, though today it is commonly called Al-Shu'bah Mountain. A chain of sedimentary and sandy hills, it neighbours the villages of Al-Shu'bah, Al-Kilabiyah, Al-Battaliyah and Al-Jurn, and adjoins the surroundings of the ancient Jawatha Mosque on its western side. In the Kanzan area, in 1333 AH / 1915 CE, the famous Battle of Kanzan was fought in the era of King Abdulaziz, in which the King was wounded and his brother Prince Saad fell. Its clean, soft sands have made it a favourite spot for outings, dune driving and gazing over the palm groves, and Al-Ahsa Municipality is developing a major recreational park on the massif."
-area: شمال شرق الواحة — قرب قرى الشعبة والكلابية
-area_en: "Northeast of the oasis — near the villages of Al-Shu'bah and Al-Kilabiyah"
+area: شمال شرق الهفوف — قرب قرى الشعبة والكلابية
+area_en: "Northeast of Hofuf — near the villages of Al-Shu'bah and Al-Kilabiyah"
 featured: false
 order: 34
 openSite: true
