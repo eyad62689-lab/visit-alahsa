@@ -280,5 +280,10 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     .plan-link { padding-inline: 6px; }
     .lang { padding: 6px 9px; }
     .burger { inline-size: 40px; }
+    /* الروسية: كلمة «Сохранённые» وحدها 101.7px فتفيض أدوات الشريط 29px عند 320px
+       (و28px أخرى متى ظهرت شارة العدّاد). خطّ التنقّل المضغوط نفسه، والشارة تُعلَّق على
+       زاوية الرابط فلا تأخذ عرضاً، والكسر بواصلة ملاذٌ أخير حين لا يتّسع السطر للكلمة. */
+    :global([lang='ru']) .plan-link { font-size: .8125rem; hyphens: auto; overflow-wrap: anywhere; }
+    :global([lang='ru']) .plan-badge { position: absolute; inset-block-start: -2px; inset-inline-end: -6px; }
   }
 </style>

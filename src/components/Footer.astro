@@ -132,5 +132,14 @@ const year = new Date().getFullYear();
   /* تباين AA: الذهبي على الفيروزي الداكن ≈ 3.7:1 فلا يصلح للنص الصغير — رملي أساساً وذهبي عند التحويم */
   .ft-mail { font-family: var(--font-latin); letter-spacing: .04em; color: var(--c-sand); text-decoration: none; }
   .ft-mail:hover { color: var(--c-gold-bright); }
-  @media (max-width: 760px) { .ft-grid { grid-template-columns: 1fr 1fr; } .ft-brand { grid-column: 1 / -1; } }
+  @media (max-width: 760px) {
+    .ft-grid { grid-template-columns: 1fr 1fr; }
+    .ft-brand { grid-column: 1 / -1; }
+    /* الروسية flex لا grid: مسار `1fr` لا ينزل دون أعرض كلمة في عموده، فكان عموداها
+       (179.7 + 159.8 + فجوة 32 = 371.5px) يدفعان الشبكة خارج حاوية 343px عند 375px.
+       بالالتفاف ينزل العمود الذي لا يتّسع سطراً مستقلاً، والأساس نصف الحاوية كما في الشبكة. */
+    :global([lang='ru']) .ft-grid { display: flex; flex-wrap: wrap; }
+    :global([lang='ru']) .ft-brand { flex: 0 0 100%; }
+    :global([lang='ru']) .ft-col { flex: 0 1 calc(50% - var(--s-6) / 2); }
+  }
 </style>
