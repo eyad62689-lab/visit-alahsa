@@ -229,6 +229,10 @@ const jsonLd = [
     /* عنوان القسم كان يبقى 30px على الجوال فينكسر 3 أسطر («المساجد والمواقع
        الدينية»)؛ الخطّ الفاصل يزاحمه على العرض فيُخفى هنا ويُضيَّق الفراغ */
     .cat-sec-t { font-size: var(--t-lg); }
+    /* كلمة أعرض من المتاح للعنوان («достопримечательности» ‏267.9px من 240 عند 375px)
+       كانت تدفع العدّاد والشيفرون خارج الشاشة: تُكسر بواصلة، وبلا قاموس وصلٍ حيث تنتهي */
+    .cat-sec-t { overflow-wrap: anywhere; }
+    :global([lang='ru']) .cat-sec-t { hyphens: auto; }
     summary.cat-sec-head { gap: var(--s-2); }
     .cat-sec-head::after { display: none; }
   }
