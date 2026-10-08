@@ -10,7 +10,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { checkTrails, EXPECT } from './check-trails.mjs';
+import { checkTrails, EXPECT, L10N_LANGS } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
 import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
@@ -1403,11 +1403,18 @@ async function main() {
 
   // ── C27: المسارات المقترحة (2026-09-26) ─────────────────────────────────
   // المنطق في tools/check-trails.mjs (دالة نقية يختبرها الكسر في الذاكرة)؛ هنا القراءة فقط:
-  // المصدر src/data/trails.json وصفحات /trails/ و/en/trails/ في dist.
+  // المصدر src/data/trails.json وملفات zh/de/ru، وصفحات /trails/ بلغاتها الخمس في dist.
   {
     const data = JSON.parse(await readText(path.join(ROOT, 'src/data/trails.json')));
+    const l10n = {};
+    for (const l of L10N_LANGS) {
+      const fp = path.join(ROOT, `src/data/trails.${l}.json`);
+      if (existsSync(fp)) l10n[l] = JSON.parse(await readText(fp));
+    }
     const pages = {};
-    for (const [l, base] of [['ar', 'trails'], ['en', path.join('en', 'trails')]]) {
+    const LANGS = ['ar', 'en', ...L10N_LANGS];
+    for (const l of LANGS) {
+      const base = l === 'ar' ? 'trails' : path.join(l, 'trails');
       const dir = path.join(DIST, base);
       const idxPath = path.join(dir, 'index.html');
       const trails = new Map();
@@ -1417,9 +1424,10 @@ async function main() {
       }
       pages[l] = { index: existsSync(idxPath) ? await readText(idxPath) : null, trails };
     }
-    const { problems, stats } = checkTrails(data, pages);
+    const { problems, stats } = checkTrails(data, pages, l10n);
+    const per = (f) => LANGS.map((l) => stats[l]?.[f] ?? 0).join('/');
     if (problems.length) fail('C27', `المسارات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C27', `المسارات: ${EXPECT.trails} صفحات بكل لغة (ar/en) و${stats.ar.stops}/${stats.en.stops} محطة و${stats.ar.badges}/${stats.en.badges} شارة يونسكو على المحطات المسمّاة وحدها و${stats.ar.landmarks}/${stats.en.landmarks} رابط معلم و${stats.ar.sources}/${stats.en.sources} مصدراً بـtarget=_blank rel=noopener؛ النصوص حرفية والإسناد في رأس الفهرس وذيل كل مسار وملاحظة اليونسكو مرة واحدة ولا وصف رسمي في العناوين والوسوم`);
+    else pass('C27', `المسارات: ${EXPECT.trails} صفحات بكل لغة (${LANGS.join('/')}) و${per('stops')} محطة و${per('badges')} شارة يونسكو على المحطات المسمّاة وحدها و${per('landmarks')} رابط معلم و${per('sources')} مصدراً بـtarget=_blank rel=noopener؛ النصوص حرفية والإسناد في رأس الفهرس وذيل كل مسار وملاحظة اليونسكو مرة واحدة ولا وصف رسمي في العناوين والوسوم`);
   }
 
   // ── C28: دليل التأشيرات — النص حرفياً من المصدر، و«لم يُتحقَّق» موسومة، والروابط كما هي (2026-09-26) ──

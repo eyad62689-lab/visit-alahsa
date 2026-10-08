@@ -1,6 +1,5 @@
 ---
 import TrailsIndexView from '../../../components/views/TrailsIndexView.astro';
-import { trailsIndexHref } from '../../../lib/trails';
-const alt = { ar: trailsIndexHref('ar'), en: trailsIndexHref('en') };
+import { trailsIndexAlt } from '../../../lib/trails';
 ---
-<TrailsIndexView lang="en" alt={alt} />
+<TrailsIndexView lang="en" alt={trailsIndexAlt()} />
