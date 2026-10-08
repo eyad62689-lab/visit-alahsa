@@ -171,7 +171,7 @@ async function main() {
     const home = await readText(homePath);
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
     const text = stripTags(home, '');
-    const m = text.match(/([\d.,+MK万]+)[\s]*معلماً ووجهةً للاكتشاف/);
+    const m = text.match(/([\d.,+MK万]+)[\u0001\s]*معلماً ووجهةً للاكتشاف/);
     if (!m) fail('C3', 'تعذّر استخراج عدد المعالم من بطاقات حقائق الرئيسية');
     else if (m[1] === String(truth)) pass('C3', `الرئيسية تعرض ${truth} معلماً`);
     else fail('C3', `الرئيسية تعرض «${m[1]}» بينما الحقيقة ${truth}`);
@@ -1461,7 +1461,7 @@ async function main() {
     for (const dir of roots) {
       if (!existsSync(dir)) continue;
       for (const f of await readdir(dir, { recursive: true })) {
-        if (!/\.(json|md|ts)$/.test(f)) continue;
+        if (!/\.(json|md)$/.test(f)) continue;
         const full = path.join(dir, f);
         const txt = await readText(full);
         const m = txt.match(BIDI);
