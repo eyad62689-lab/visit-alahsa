@@ -15,6 +15,7 @@
 مقروءاً بـgrep عند الحاجة (المراحل مأمورةٌ بذلك في الموجز).
 """
 import json, os, re, sys
+from _safe_paths import lang_code, slug, under
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -25,22 +26,22 @@ ALWAYS = {'ui', 'home', '24-hours-itinerary', '48-hours-itinerary'}
 
 def source_text(page):
     if page.startswith('blog:'):
-        stem = page.split(':', 1)[1]
-        return open(os.path.join(ROOT, f'src/content/blog/{stem}-en.md'), encoding='utf-8').read()
-    return open(os.path.join(ROOT, f'src/content/attractions/{page}.md'), encoding='utf-8').read()
+        stem = slug(page.split(':', 1)[1], 'stem')
+        return open(under(ROOT, f'src/content/blog/{stem}-en.md'), encoding='utf-8').read()
+    return open(under(ROOT, f'src/content/attractions/{slug(page, "page")}.md'), encoding='utf-8').read()
 
 
 def main():
-    lang, batch, pages = sys.argv[1], sys.argv[2], sys.argv[3:]
+    lang, batch, pages = lang_code(sys.argv[1]), slug(sys.argv[2], 'اسم الدفعة'), sys.argv[3:]
     if not pages:
         raise SystemExit('لا صفحات — مرّر اسم ملفٍ واحداً على الأقل')
-    out_dir = os.path.join(ROOT, f'{lang}-translation/output/{batch}')
+    out_dir = under(ROOT, f'{lang}-translation/output/{batch}')
     os.makedirs(out_dir, exist_ok=True)
 
     blob = '\n'.join(source_text(p) for p in pages)
     low = blob.lower()
 
-    tb = json.load(open(os.path.join(ROOT, f'{lang}-translation/glossary/termbase.json'), encoding='utf-8'))
+    tb = json.load(open(under(ROOT, f'{lang}-translation/glossary/termbase.json'), encoding='utf-8'))
     hits, seen = [], set()
     for t in tb['terms']:
         en = (t.get('en') or '').strip()
@@ -56,7 +57,7 @@ def main():
     with open(os.path.join(out_dir, 'termbase-extract.json'), 'w', encoding='utf-8') as fh:
         json.dump(out_tb, fh, ensure_ascii=False, indent=1)
 
-    tm = json.load(open(os.path.join(ROOT, f'{lang}-translation/memory/tm.json'), encoding='utf-8'))['pairs']
+    tm = json.load(open(under(ROOT, f'{lang}-translation/memory/tm.json'), encoding='utf-8'))['pairs']
     keep = ALWAYS | {p.split(':', 1)[-1] for p in pages}
     norm = lambda s: re.sub(r'\s+', ' ', (s or '').strip().lower())
     nblob = norm(blob)
