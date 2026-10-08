@@ -1,0 +1,83 @@
+{
+  "unit": "src/components/SeasonNow.astro · zh · seasons[summer].items[0] · judge, correction loop 2",
+  "threshold": 90,
+  "decision": "FLAG",
+  "score": 88,
+  "best_text": "正值鲜软椰枣与早熟椰枣的时节",
+  "self_correction": "The provisional 91 given in zh-07.json for 正值鲜软椰枣与早熟品种的时节 is withdrawn. It rested on the assumption that an adjacent 椰枣 anchors 品种; the loop-2 blind reader shows it does not (66, below the 72 of the wording it replaced). The required change of loop 1 made the line worse and should be reverted.",
+  "candidates": [
+    {
+      "id": "a",
+      "text": "正值鲜软椰枣与早熟品种的时节",
+      "status": "current text in file; blind-read loop 2 = 66",
+      "score": 85,
+      "per_criterion": { "accuracy_30": 28, "nativeness_30": 22, "termbase_style_20": 16, "cultural_fit_10": 9, "structural_integrity_10": 10 },
+      "note": "品种 dangles for a real reader (variety of what?), so the line is not self-sufficient; the dangling also costs a point of accuracy because the referent of البواكير is no longer recoverable from the line. Slightly closer to the termbase head noun for Bawakir, hence 16."
+    },
+    {
+      "id": "b",
+      "text": "正值鲜软椰枣与早熟椰枣的时节",
+      "status": "loop-1 wording; blind-read loop 1 = 72",
+      "score": 88,
+      "per_criterion": { "accuracy_30": 29, "nativeness_30": 25, "termbase_style_20": 15, "cultural_fit_10": 9, "structural_integrity_10": 10 },
+      "note": "Self-sufficient, both items land on a named fruit, no fact added. Remaining reader objection (one category or two; relation to the spring card) is inherited from the source pair أول بواكير الرطب / الرطب والبواكير and cannot be removed without stating something the source does not state."
+    },
+    {
+      "id": "c1",
+      "text": "鲜软椰枣与早熟椰枣品种正当时",
+      "status": "reader-suggested structure; not blind-read",
+      "score": 87,
+      "per_criterion": { "accuracy_30": 29, "nativeness_30": 23, "termbase_style_20": 16, "cultural_fit_10": 9, "structural_integrity_10": 10 },
+      "note": "Anchors 品种, but coordinates a fruit with 'varieties' (category mismatch), keeps the doubled 椰枣, and 正当时 sits directly above the next bullet's 正当季 — two near-identical predicates in consecutive lines."
+    },
+    {
+      "id": "c2",
+      "text": "正值鲜软椰枣与椰枣早熟品种的时节",
+      "status": "not blind-read",
+      "score": 87,
+      "per_criterion": { "accuracy_30": 29, "nativeness_30": 23, "termbase_style_20": 16, "cultural_fit_10": 9, "structural_integrity_10": 10 },
+      "note": "Anchored and accurate, but 椰枣与椰枣 back to back is the heaviest reading of all forms and it is the longest line in the card."
+    },
+    {
+      "id": "c3",
+      "text": "鲜软椰枣季，早熟椰枣品种正当时",
+      "status": "subordinating form; not blind-read",
+      "score": 84,
+      "per_criterion": { "accuracy_30": 26, "nativeness_30": 24, "termbase_style_20": 15, "cultural_fit_10": 9, "structural_integrity_10": 10 },
+      "note": "Every word is in the source, but the two-clause split asserts a relation (a rutab season within which the early varieties peak) that the flat coordination الرطب والبواكير does not assert. No subordinating form was found that avoids this: any subordination has to say how the two relate, and the source does not say."
+    }
+  ],
+  "per_criterion": {
+    "accuracy_30": { "score": 29, "note": "Best text (b). Faithful to the ar arbiter; nothing added; removed claim stays out. -1 for presenting a variety category as a second fruit kind." },
+    "nativeness_30": { "score": 25, "note": "Idiomatic frame, self-sufficient; doubled 椰枣 and the unexplained pairing keep it at 25. Two independent blind reads (72, then 66 for the variant) confirm the line is acceptable but not fluent enough to offset the termbase loss." },
+    "termbase_style_20": { "score": 15, "note": "鲜软椰枣 instead of binding 软熟鲜椰枣 (-4); Bawakir short form without the termbase head noun (-1)." },
+    "cultural_fit_10": { "score": 9, "note": "Clear seasonal cue; no misleading association." },
+    "structural_integrity_10": { "score": 10, "note": "Plain string, no markup or trailing punctuation." }
+  },
+  "blind_reader_assessment": "Loop 2 evidence is accepted in full on the dangling 品种: that was a defect introduced by this judge's own required change. The second half of the objection (cannot tell one category from two; spring says 早熟的鲜软椰枣) is the same objection as in loop 1 and survived a wording change, which confirms it is source-inherent: the ar/en give a bare coordination in summer and a modifier construction in spring, and no zh wording can reconcile them without adding a fact. The nativeness ceiling for this bullet is therefore about 25-26 of 30 whatever the wording, and the remaining gap to the threshold is the termbase deviation, not the phrasing.",
+  "termbase_note": "With 鲜软椰枣 scored as a deviation from a binding termbase (-4), the best fact-free wording tops out at 88. No rewording closes a 2-point gap on nativeness alone, and this judge will not waive a binding-termbase penalty on its own authority. The item is blocked on the owner's decision, not on translation work.",
+  "required_change": "No further rewording loop. (1) Interim, recommended: revert the bullet to the loop-1 wording 正值鲜软椰枣与早熟椰枣的时节, which is the best blind-tested form (72 vs 66 for the current text); it is not approved, only the least-bad published state. (2) Log the item to zh-translation/memory/flagged.md and put the termbase question to the owner.",
+  "owner_decision_needed": {
+    "question": "In SeasonNow (spring and summer bullets), is rutab to stay 鲜软椰枣 or become the termbase form 软熟鲜椰枣?",
+    "option_1": {
+      "decision": "Ratify 鲜软椰枣 in the termbase as a permitted short UI form for rutab (termbase edit by the owner/pipeline, not by the judge).",
+      "resulting_text": "正值鲜软椰枣与早熟椰枣的时节",
+      "score_with_decision": 92,
+      "breakdown": { "accuracy_30": 29, "nativeness_30": 25, "termbase_style_20": 19, "cultural_fit_10": 9, "structural_integrity_10": 10 },
+      "outcome": "APPROVE as is; no change to the spring bullet."
+    },
+    "option_2": {
+      "decision": "Enforce the termbase form component-wide.",
+      "resulting_text": "正值软熟鲜椰枣与早熟椰枣的时节",
+      "score_with_decision": 91,
+      "breakdown": { "accuracy_30": 29, "nativeness_30": 24, "termbase_style_20": 19, "cultural_fit_10": 9, "structural_integrity_10": 10 },
+      "outcome": "Estimate only, needs a blind read; the spring bullet 头茬早熟的鲜软椰枣上市 must be re-run through the pipeline in the same change (早熟的软熟鲜椰枣 is awkward and needs its own wording), otherwise the component carries two names for rutab."
+    }
+  },
+  "alternative": {
+    "text": "正值鲜软椰枣与早熟椰枣的时节",
+    "score": 88,
+    "note": "Same as best_text; no untested wording is offered as a pass this time."
+  },
+  "notes": "Not approved: nothing written to memory/tm.json or memory/scores.csv. src/ and zh-translation/ untouched by this stage."
+}

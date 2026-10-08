@@ -1,0 +1,36 @@
+{
+  "unit": "src/components/SeasonNow.astro · zh · seasons[summer].items[0]",
+  "source_en": "Rutab and early-harvest season",
+  "arbiter_ar": "موسم الرطب والبواكير",
+  "published_zh_before": "鲜软椰枣与早收季——哈萨在沙特阿拉伯率先开摘",
+  "stage1": {
+    "output": "鲜软椰枣与早收季",
+    "notes": "Translator. The corrected EN is exactly the pre-dash half of the previously published EN, so the already-published and approved zh rendering of that half is reused verbatim and the dash clause (\"Al-Ahsa picks first in Saudi Arabia\") is dropped together with its dash. No proper noun in the string. tm.json has no pair for this component (grep for rutab/early/鲜软椰枣/早收/早熟: only the fruits-page patterns 软熟鲜果（Rutab） and 软熟鲜椰枣, plus souvenirs 软熟鲜椰枣（Rutab）). Nothing added, no new fact."
+  },
+  "stage2": {
+    "output": "鲜软椰枣与早收季",
+    "notes": "Native editor. Read as a list bullet next to its siblings: winter has a bare noun-phrase bullet too (\"绿洲果园新鲜采摘的毛叶枣与香橼\"), so a noun-phrase bullet is an established shape in this list and needs no verb. Considered and rejected: \"鲜软椰枣上市，早收季开启\" (adds two predicates; \"开启\" asserts a start that the source does not state, and June-August is not when rutab starts per the spring card's late May), \"鲜软椰枣季与早收季\" (clearer bracketing but doubles 季 and reads heavier than the original for no gain), \"鲜软椰枣与早熟品种当季\" (imports the fruits-page category Bawakir, which the EN source does not name). The 7-character phrase is rhythmically fine; unchanged."
+  },
+  "stage3": {
+    "output": "鲜软椰枣与早收季",
+    "notes": "Localizer. No unit, currency, date or cultural reference to convert. \"椰枣\" is present inside the term, so the jujube ambiguity that the termbase warns about for bare 鲜枣 does not arise. \"早收\" is transparent to a mainland reader (as in 早收品种). No gloss added: a parenthetical （Rutab） would be new visible content in a card that has never carried it, and the spring card just above introduces the same fruit without one."
+  },
+  "stage4": {
+    "output": "鲜软椰枣与早收季",
+    "notes": "Benchmarker. No translationese left once the dash clause is gone; the removed clause was the only part with a claim-like, promotional register. Changed sentences: \"鲜软椰枣与早收季——哈萨在沙特阿拉伯率先开摘\" -> \"鲜软椰枣与早收季\". Terminology check against termbase.json: the entry `rutab (ripeness stage)` gives 软熟鲜果（Rutab）, with the judge's rule that a first mention with no 椰枣 nearby is written 软熟鲜椰枣. The published component uses the older wording 鲜软椰枣 in two places (spring card and this bullet); this wording is not in the termbase. See stage 5 and open_questions. No web lookup needed (no proper noun)."
+  },
+  "stage5": {
+    "output": "鲜软椰枣与早收季",
+    "notes": "Proofreader checklist. (1) Punctuation: PASS - the full-width dash was removed with its clause, no trailing punctuation, matching sibling bullets. (2) Termbase compliance: NOT FIXED, flagged - 鲜软椰枣 is a pre-existing legacy rendering of rutab that differs from the termbase form 软熟鲜椰枣. It was deliberately left as is because (a) the brief limits this edit to dropping the unsourced claim, (b) the spring card 8 lines above (\"5 月下旬：头茬早熟的鲜软椰枣上市\", declared out of scope) uses the same wording, and changing only one of the two would show the reader two names for one fruit in adjacent cards. The deviation predates this edit and is not introduced by it. (3) Numbers/units: PASS - none in the string. (4) Grammar / script: PASS - Simplified only, no redundant particles. (5) Structure: PASS - plain string, no markup, no link; JSON quoting unchanged."
+  },
+  "final_zh": "鲜软椰枣与早收季",
+  "termbase_terms_used": [
+    "rutab (ripeness stage) -> termbase: 软熟鲜果（Rutab） / first mention 软熟鲜椰枣 - NOT applied; legacy 鲜软椰枣 kept for consistency with the spring card (see open_questions)",
+    "Bawakir (early-season dates, category) -> termbase: 早熟与本地品种（Bawakir） - consulted, not applicable: the EN source says \"early-harvest season\", not the category name"
+  ],
+  "open_questions": [
+    "Termbase deviation (pre-existing): SeasonNow.astro zh uses 鲜软椰枣 for rutab in two bullets (spring items[2] and summer items[0]); the termbase form is 软熟鲜椰枣, as used in FruitsView, PlanTripView, hasawi-lomi-zh and souvenirs-zh. Recommended: migrate both bullets together in a separate terminology pass. Strictly termbase-compliant alternative for this bullet, if the owner prefers to fix it now: \"软熟鲜椰枣与早收季\" (then the spring bullet should become \"5 月下旬：头茬早熟的软熟鲜椰枣上市\" in the same change).",
+    "Arabic arbiter says \"البواكير\" (the early-variety category, termbase 早熟与本地品种（Bawakir）) while the EN source says \"early-harvest season\". zh follows EN as the pipeline requires; the two are compatible, but the zh/EN are less specific than the Arabic. No action taken.",
+    "Stages 6.5 (blind reader) and 6 (judge) were not run - out of scope for this task (stages 1-5 only). tm.json and scores.csv were not updated."
+  ]
+}
