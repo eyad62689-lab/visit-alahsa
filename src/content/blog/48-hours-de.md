@@ -41,7 +41,7 @@ Fahren Sie von Hofuf aus nach Osten zum [Jabal al-Qarah](/de/attractions/jabal-a
 
 ### Vormittag: Die Jawatha-Moschee
 
-Nordöstlich der Oase, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/attractions/jawatha-mosque/) – eine der ältesten Moscheen des Islams und der erste Ort nach Medina, an dem ein Freitagsgebet stattfand. Die Lehmmauern tragen eine der ältesten Geschichten des Islams. Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes.
+Nordöstlich von Hofuf, im Dorf Al-Kilabiyah, steht die [Jawatha-Moschee](/de/attractions/jawatha-mosque/) – eine der ältesten Moscheen des Islams und der erste Ort nach Medina, an dem ein Freitagsgebet stattfand. Die Lehmmauern tragen eine der ältesten Geschichten des Islams. Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes.
 
 ### Später Nachmittag: Das Grün der Farmen
 
