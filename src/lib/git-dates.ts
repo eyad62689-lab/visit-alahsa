@@ -62,5 +62,5 @@ export function gitDates(): Map<string, string> {
 export function newestDate(paths: string[]): string | undefined {
   const m = gitDates();
   const found = paths.map((p) => m.get(p)).filter((d): d is string => Boolean(d));
-  return found.length ? found.sort().at(-1) : undefined;
+  return found.length ? found.sort((a, b) => a.localeCompare(b)).at(-1) : undefined;
 }

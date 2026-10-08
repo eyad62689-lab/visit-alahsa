@@ -75,7 +75,7 @@ export const TRAIL_SOURCES = TRAILS_DATA.sources;
 export type TrailLang = 'ar' | 'en' | 'zh' | 'de' | 'ru';
 type L10nLang = Exclude<TrailLang, 'ar' | 'en'>;
 
-const sameKeys = (a: string[], b: string[]) => a.length === b.length && [...a].sort().join('\n') === [...b].sort().join('\n');
+const sameKeys = (a: string[], b: string[]) => a.length === b.length && [...a].sort((a, b) => a.localeCompare(b)).join('\n') === [...b].sort((a, b) => a.localeCompare(b)).join('\n');
 const L10nSchema = z.strictObject({
   meta: z.strictObject({ attribution: z.string().min(1), unescoNote: z.string().min(1) }),
   // وصف فهرس المسارات: {n} عددها و{titles} عناوينها موصولة بـlistSep

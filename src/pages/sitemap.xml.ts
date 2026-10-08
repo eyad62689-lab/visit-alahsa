@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ site }) => {
     // التاريخ من ترويسة المقال نفسه (أحدث نسخة): هو إعلان الكاتب، وأوثق من تاريخ الالتزام.
     ...[...new Set(posts.map((p) => p.data.key))].map((key) => {
       const by = new Map(posts.filter((p) => p.data.key === key).map((p) => [p.data.lang, p]));
-      const lastmod = [...by.values()].map((p) => (p.data.updatedDate ?? p.data.pubDate).toISOString().slice(0, 10)).sort().at(-1);
+      const lastmod = [...by.values()].map((p) => (p.data.updatedDate ?? p.data.pubDate).toISOString().slice(0, 10)).sort((a, b) => a.localeCompare(b)).at(-1);
       const href = (l: 'ar' | 'en' | 'zh' | 'de' | 'ru') => { const p = by.get(l); return p ? blogHref(p.data) : undefined; };
       // مقال بلا نسخة عربية يدخل بحقل ar (الحقل الإلزامي للرابط) بنسخته الإنجليزية بلا hreflang
       return by.has('ar')
