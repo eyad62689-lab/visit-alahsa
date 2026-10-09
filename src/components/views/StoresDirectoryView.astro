@@ -1,0 +1,192 @@
+---
+// دليل متاجر الأحساء الإلكترونية — معاينة داخلية عربية (2026-10-09).
+//
+// المحتوى كله من src/data/stores-directory.ar.json عبر src/lib/stores.ts: لا اسم ولا
+// وصف ولا رابط يُكتب هنا يدوياً. الترتيب بحقل order (الشراع للتمور أول بطاقة بقرار
+// صاحب المشروع)، والبطاقة المميّزة لا تحمل معاملة بصرية — موقعها الأول هو تمييزها.
+// الصفحة noindex حتى يُقرّ النشر؛ لا نسخة إنجليزية ولا hreflang ولا إدراج في الخريطة.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import Photo from '../Photo.astro';
+import { sortedStores, storeSections, storeFaq, storeSeo, countsBySection } from '../../lib/stores';
+import { STORES_AR } from '../../lib/routes';
+import { titleSep, useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+const lang: Lang = 'ar';
+const t = useTranslations(lang);
+const stores = sortedStores;
+const counts = countsBySection(stores);
+const total = stores.length;
+
+// السطر التعريفي: العدد محسوب من البيانات لا مكتوب يدوياً
+const lead = `${total} متجراً إلكترونياً من الأحساء في مكان واحد: تمور، حرف يدوية، ومنتجات محلية — يأخذك كل رابط إلى المتجر مباشرة.`;
+
+const siteUrl = 'https://visit-alahsa.com';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: storeFaq.map((f) => ({
+      '@type': 'Question', name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'ItemList',
+    name: storeSeo.h1, numberOfItems: total,
+    itemListElement: stores.map((s, n) => ({ '@type': 'ListItem', position: n + 1, name: s.name, url: s.url })),
+  },
+];
+const pageTitle = `${storeSeo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
+---
+<Base title={pageTitle} description={storeSeo.meta_description} lang={lang} noindex={true} jsonLd={jsonLd}>
+  <Header lang={lang} />
+  <main id="main">
+    <PageHero title={storeSeo.h1} lead={lead} leadWidth={62} lang={lang} motif="center" />
+
+    <section class="container stores-body">
+      <div class="stores-tools">
+        <div class="chips" id="stores-chips" role="group" aria-label={t('stores.filterLabel')}>
+          <button class="chip is-active" type="button" data-section="all" aria-pressed="true">
+            {t('stores.all')} <span class="chip-n">{total}</span>
+          </button>
+          {storeSections.map((sec) => (
+            <button class="chip" type="button" data-section={sec.id} aria-pressed="false">
+              {sec.title} <span class="chip-n">{counts[sec.id]}</span>
+            </button>
+          ))}
+        </div>
+        <input class="stores-search" id="stores-search" type="search" placeholder={t('stores.search')} aria-label={t('stores.searchLabel')} autocomplete="off" />
+      </div>
+
+      <div id="stores-list">
+        {storeSections.map((sec) => (
+          <section class="stores-sec" id={`sec-${sec.id}`} aria-labelledby={`h-${sec.id}`}>
+            <h2 class="stores-sec-t" id={`h-${sec.id}`}>
+              {sec.title} <span class="stores-sec-n">{counts[sec.id]}</span>
+            </h2>
+            <div class="stores-grid">
+              {stores.filter((s) => s.section === sec.id).map((s, idx) => (
+                <article class="card card--lift store-card" data-section={s.section} data-search={`${s.name} ${s.description}`.toLowerCase()} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+                  <Photo src={s.image} label={`واجهة متجر ${s.name}`} class="store-shot" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+                  <div class="store-body">
+                    <div class="store-head">
+                      <img class="store-logo" src={s.logo} alt={`شعار ${s.name}`} width="48" height="48" loading="lazy" decoding="async" />
+                      <h3 class="store-t">{s.name}</h3>
+                    </div>
+                    <span class="store-platform"><span class="sr-only">{t('stores.platform')}: </span>{s.platform}</span>
+                    <p class="store-d">{s.description}</p>
+                    {s.instagram && <p class="store-note">{t('stores.directOrder')}</p>}
+                    <a class="btn btn--turq store-cta" href={s.url} target="_blank" rel="noopener noreferrer nofollow">
+                      {s.instagram ? t('stores.visitAccount') : t('stores.visit')}
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+      <p class="stores-empty" id="stores-empty" hidden>{t('stores.empty')}</p>
+
+      <p class="stores-disclaimer">{t('stores.disclaimer')}</p>
+
+      <section class="stores-faq" aria-labelledby="h-faq">
+        <h2 class="stores-sec-t" id="h-faq">{t('stores.faq')}</h2>
+        {storeFaq.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<script is:inline>
+  // تصفية بالقسم وبحث بالاسم والوصف في المتصفح بلا إعادة تحميل. تعمل بلوحة المفاتيح
+  // (أزرار أصلية) وتحدّث aria-pressed. حارس dataset.wired + astro:page-load (ClientRouter).
+  function initStoresFilter() {
+    const root = document.getElementById('stores-list');
+    const search = document.getElementById('stores-search');
+    const chips = document.querySelectorAll('#stores-chips .chip');
+    const empty = document.getElementById('stores-empty');
+    if (!root || !search || search.dataset.wired) return;
+    const cards = root.querySelectorAll('.store-card');
+    const secs = root.querySelectorAll('.stores-sec');
+    let section = 'all';
+    function apply() {
+      const q = (search.value || '').trim().toLowerCase();
+      let shown = 0;
+      cards.forEach((card) => {
+        const inSection = section === 'all' || card.getAttribute('data-section') === section;
+        const ok = inSection && (!q || (card.getAttribute('data-search') || '').includes(q));
+        card.hidden = !ok; if (ok) shown++;
+      });
+      secs.forEach((sec) => { sec.hidden = !sec.querySelector('.store-card:not([hidden])'); });
+      if (empty) empty.hidden = shown !== 0;
+    }
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        section = chip.getAttribute('data-section') || 'all';
+        chips.forEach((o) => { const on = o === chip; o.classList.toggle('is-active', on); o.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        apply();
+      });
+    });
+    search.dataset.wired = '1';
+    search.addEventListener('input', apply);
+  }
+  document.addEventListener('astro:page-load', initStoresFilter);
+  if (document.readyState !== 'loading') initStoresFilter(); else document.addEventListener('DOMContentLoaded', initStoresFilter);
+</script>
+
+<style>
+  .stores-body { padding-block: var(--s-6) var(--s-8); }
+  .stores-tools { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-5); }
+  .chip-n { font-size: var(--t-xs); font-weight: 700; background: color-mix(in srgb, currentColor 12%, transparent); border-radius: 999px; padding: 1px 8px; }
+  /* على الشريحة الفعّالة: رملي على تركواز داكن (كان رملي على تركواز 4.43:1 — دون AA للنصّ الصغير) */
+  .chip.is-active .chip-n { background: var(--c-sand); color: var(--c-turq-deep); }
+  /* 16px حدّ أدنى: سفاري iOS يزوّم الصفحة عند لمس حقل أصغر */
+  .stores-search { font-family: var(--font-body); font-size: 16px; color: var(--c-ink);
+    background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 9px 18px; min-inline-size: 240px; }
+  .stores-search::placeholder { color: var(--c-ink-60); }
+
+  .stores-sec { margin-block-end: var(--s-7); }
+  .stores-sec[hidden] { display: none; }
+  .stores-sec-t { display: flex; align-items: center; gap: var(--s-3); font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-4); }
+  .stores-sec-t::after { content: ''; flex: 1; block-size: 1px; background: var(--c-line); }
+  .stores-sec-n { font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 2px 10px; }
+
+  /* عمود واحد على الجوال، اثنان على اللوحي، ثلاثة على سطح المكتب (حاوية 1120px) */
+  .stores-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-4); }
+  .store-card { display: flex; flex-direction: column; }
+  .store-card[hidden] { display: none; }
+  /* نسبة اللقطة في global.css (.photo.store-shot) — الصنف يُمرَّر إلى Photo فلا يصله النمط المحصور */
+  .store-body { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-3) var(--s-4) var(--s-4); flex: 1; }
+  .store-head { display: flex; align-items: center; gap: var(--s-3); }
+  .store-logo { inline-size: 48px; block-size: 48px; object-fit: contain; border-radius: var(--radius-sm); background: #fff; border: 1px solid var(--c-line); flex: 0 0 auto; }
+  .store-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin: 0; }
+  .store-platform { align-self: flex-start; font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); background: #fff; border: 1px solid var(--c-line); border-radius: 999px; padding: 2px 10px; } /* أبيض لا رملي-2: الذهبي الداكن على الرملي 4.45:1 فقط */
+  .store-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; margin: 0; }
+  .store-note { font-size: var(--t-xs); color: var(--c-ink-soft); margin: 0; }
+  .store-cta { margin-block-start: auto; align-self: flex-start; }
+
+  .stores-empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }
+  .stores-disclaimer { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8; background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-3) var(--s-4); margin-block: var(--s-6); }
+  .stores-faq { margin-block-start: var(--s-6); }
+  .faq-item { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); }
+  .faq-item summary { cursor: pointer; padding: var(--s-3) var(--s-4); font-weight: 600; color: var(--c-ink); }
+  .faq-item summary:hover { color: var(--c-turq); }
+  .faq-item p { padding: 0 var(--s-4) var(--s-3); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
+
+  @media (max-width: 760px) {
+    .stores-tools { flex-direction: column; align-items: stretch; }
+    /* شريط الشرائح يتمرّر أفقياً داخل عرضه لا خارج الصفحة: min-inline-size:0 يمنع عنصر flex من التمدّد بمحتواه nowrap */
+    .chips { min-inline-size: 0; max-inline-size: 100%; }
+    .stores-search { inline-size: 100%; }
+  }
+</style>
