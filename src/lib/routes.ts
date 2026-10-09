@@ -92,6 +92,14 @@ export type StaticPage = keyof typeof STATIC_AR;
 export const ABOUT_ALT = { ar: '/من-نحن/', en: '/en/about/' } as const;
 export const aboutHref = (lang: Lang): string => (lang === 'ar' ? ABOUT_ALT.ar : ABOUT_ALT.en);
 
+/** دليل المتاجر الإلكترونية (معاينة noindex، 2026-10-09) — النظائر الخمس؛ المبنيّ منها فعلاً
+ *  يقرّره وجود ملف الترجمة (src/lib/stores.ts storesLangs). لا إدراج في الخريطة قبل قرار النشر. */
+export const STORES_ALT = {
+  ar: '/متاجر-الأحساء-الإلكترونية/', en: '/en/online-stores/', zh: '/zh/online-stores/', de: '/de/online-stores/', ru: '/ru/online-stores/',
+} as const;
+export const STORES_AR = STORES_ALT.ar;
+export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[lang];
+
 /** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. */
 export const staticHref = (page: StaticPage, lang: Lang): string =>
   lang === 'ar' ? STATIC_AR[page] : `/${lang}/${STATIC_LATIN[page]}`;
