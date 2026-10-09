@@ -103,7 +103,7 @@ export function checkTrailsL10n(data, l10n) {
 const decode = (s) => s
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
   .replace(/&#0*39;|&#x0*27;|&apos;/gi, "'").replace(/&amp;/g, '&');
-const strip = (s) => { let p; do { p = s; s = s.replace(/<[^>]*>/g, ''); } while (s !== p); return s; };
+const strip = (s) => { let p; do { p = s; s = s.replace(/<[^<>]*>/g, ''); } while (s !== p); return s; };
 const count = (s, needle) => s.split(needle).length - 1;
 
 /** الفحص على المصدر وحده */

@@ -33,10 +33,10 @@ function plainText(md) {
   return md
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\[\]]+)\]\([^()]*\)/g, '$1')
     // أسطر العناوين تُسقط كلياً (لا يُزال الوسم فقط): إبقاء نصها يلصقه
     // بالفقرة التالية بعد ضم الفراغات فتنتج عبارة لا وجود لها في الصفحة
-    .replace(/^#{1,6}\s+.*$/gm, ' ')
+    .replace(/^#{1,6}[ \t]+[^\n]*$/gm, ' ')
     .replace(/^>\s?/gm, '')
     .replace(/\*\*([^*]+)\*\*/g, '$1')
     .replace(/\*([^*]+)\*/g, '$1')
@@ -70,7 +70,7 @@ function pickPhrase(text, taken, fromMarkdown = false, ordinalDots = false) {
       s = s.slice(0, Math.max(s.lastIndexOf(' '), 60)).trim()
     }
     // إزالة علامة الترقيم الختامية — بعض المحركات تتحسس منها في البحث المقتبس
-    s = s.replace(/[.!؟?…،,]+$/, '').trim()
+    s = s.replace(/(?<![.!؟?…،,])[.!؟?…،,]+$/, '').trim()
     if (fromMarkdown && /['"]|--|\.\.\./.test(s)) continue
     if (s.length >= 60 && !taken.has(s)) { taken.add(s); return s }
   }
@@ -96,7 +96,7 @@ function pickPhraseZh(text, taken) {
       const m = cut.search(/[，、：；）][^，、：；）]*$/u)
       s = m >= 20 ? cut.slice(0, m + 1) : cut
     }
-    s = s.replace(/[。！？；，、：\s]+$/u, '').trim()
+    s = s.replace(/(?<![。！？；，、：\s])[。！？；，、：\s]+$/u, '').trim()
     if (s.length >= 20 && !taken.has(s)) { taken.add(s); return s }
   }
   return null
@@ -209,7 +209,7 @@ async function main() {
       // الجملة الحاملة لنصّ الحديث المشكول تُستبعد: نصٌّ منقول في آلاف المواقع لا يصلح بصمةً
       // (كل من يقتبس الحديث سيبدو ناسخاً)
       const text = [t[lang].intro, ...t.stops.map((s) => s[lang].text)].join(' ').replace(/\s+/g, ' ').trim()
-        .split(/(?<=[.!؟?…])\s+/).filter((s) => !(s.match(/«[^»]*»/g) ?? []).some((q) => [...q].some((c) => c.charCodeAt(0) >= 0x64b && c.charCodeAt(0) <= 0x652))).join(' ')
+        .split(/(?<=[.!؟?…])\s+/).filter((s) => !(s.match(/«[^«»]*»/g) ?? []).some((q) => [...q].some((c) => c.charCodeAt(0) >= 0x64b && c.charCodeAt(0) <= 0x652))).join(' ')
       push({ id: id(url), type: 'trail', lang, title: t[lang].title, url, phrase: pickPhrase(text, taken) })
     }
   }

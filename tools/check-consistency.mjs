@@ -34,6 +34,16 @@ import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.
 // مثل /^hoursSpec:\n/ كانت تقرأ الترويسة فارغةً محلياً فيُخفق C24 هنا وينجح هناك (2026-09-16).
 // التوحيد عند القراءة لا في كل نمط: فحصٌ قادم يُكتب بـ\n فيسلك على المنصتين سلوكاً واحداً.
 const readText = async (p) => (await readFile(p, 'utf8')).replace(/\r\n?/g, '\n');
+// قيمة حقل frontmatter من سطر واحد «key: value» أو «key: "value"» — بلا تعابير نمطية
+// متراجعة: قراءة خطية للسطر الأول الذي يبدأ بالمفتاح، مع نزع علامات الاقتباس المحيطة.
+const fmField = (head, key, quotes = '"') => {
+  const line = head.split(/\r?\n/).find((l) => l.startsWith(key + ':'));
+  if (line === undefined) return undefined;
+  let v = line.slice(key.length + 1).trim();
+  if (v && quotes.includes(v[0])) v = v.slice(1);
+  if (v && quotes.includes(v[v.length - 1])) v = v.slice(0, -1);
+  return v || undefined;
+};
 
 // وجود الرقم num في النص بحدود رقمية لا ترقيمية (لا رقم قبله ولا «رقم:» أو «رقم.» قبله، ولا رقم
 // بعده ولو بعد فاصل)، دون بناء تعبير نمطي من مدخل — «2018.» آخر الجملة رقم صحيح، أما «18» فلا تُقبل
@@ -108,8 +118,29 @@ const stripUntilStable = (html, re, sep = '') => {
 
 const stripTags = (html, sep = '') => {
   let prev;
-  do { prev = html; html = html.replace(/<[^>]*>/g, sep); } while (html !== prev);
+  do { prev = html; html = html.replace(/<[^<>]*>/g, sep); } while (html !== prev);
   return html;
+};
+// يحذف كل عنصر يحمل lang="en" حتى أول وسم إغلاق باسمه (كما كان التعبير النمطي
+// بالإرجاع الخلفي يفعل) لكن بمسح خطي: وسم الفتح بلا «<» داخله، والإغلاق بـindexOf.
+const stripLangEnElements = (html) => {
+  const open = /<(\w+)([^<>]*)>/g;
+  let out = html;
+  for (;;) {
+    open.lastIndex = 0;
+    let removed = false;
+    let m;
+    while ((m = open.exec(out))) {
+      if (!/\blang="en"/i.test(m[2])) continue;
+      const closeTag = '</' + m[1].toLowerCase() + '>';
+      const close = out.toLowerCase().indexOf(closeTag, m.index + m[0].length);
+      if (close < 0) continue;
+      out = out.slice(0, m.index) + out.slice(close + closeTag.length);
+      removed = true;
+      break;
+    }
+    if (!removed) return out;
+  }
 };
 
 async function listHtml(dir) {
@@ -171,7 +202,7 @@ async function main() {
     const home = await readText(homePath);
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
     const text = stripTags(home, '');
-    const m = text.match(/([\d.,+MK万]+)[\u0001\s]*معلماً ووجهةً للاكتشاف/);
+    const m = text.match(/(?<![\d.,+MK万])([\d.,+MK万]+)[\u0001\s]*معلماً ووجهةً للاكتشاف/);
     if (!m) fail('C3', 'تعذّر استخراج عدد المعالم من بطاقات حقائق الرئيسية');
     else if (m[1] === String(truth)) pass('C3', `الرئيسية تعرض ${truth} معلماً`);
     else fail('C3', `الرئيسية تعرض «${m[1]}» بينما الحقيقة ${truth}`);
@@ -223,7 +254,7 @@ async function main() {
   for (const f of mdFiles) {
     const raw = await readText(path.join(SRC_ATTRACTIONS, f));
     // بعض الملفات تكتب الرابط بين علامتَي اقتباس فتُنزع
-    const slug = raw.match(/^slug_ar:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
+    const slug = fmField(raw, 'slug_ar', '"\'');
     if (!slug) continue;
     const lines = raw.split('\n').filter((l) => /^\s*-\s*\{\s*label:/.test(l));
     const verifiedCount = lines.filter((l) => l.includes('verified: true')).length;
@@ -293,8 +324,8 @@ async function main() {
       sources.push({ file: f, text });
       const head = text.split('\n---')[0];
       byFile.set(f, {
-        slugAr: head.match(/^slug_ar:\s*"?([^"\n]+?)"?\s*$/m)?.[1],
-        slugEn: head.match(/^slug_en:\s*"?([^"\n]+?)"?\s*$/m)?.[1],
+        slugAr: fmField(head, 'slug_ar'),
+        slugEn: fmField(head, 'slug_en'),
       });
     }
     const pageCache = new Map();
@@ -737,7 +768,7 @@ async function main() {
       const html = await readText(f);
       let text = stripUntilStable(html, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
       text = stripUntilStable(text, /<link[^>]*>/gi);
-      text = stripUntilStable(text, /<(\w+)[^>]*\blang="en"[^>]*>[\s\S]*?<\/\1>/gi);
+      text = stripLangEnElements(text);
       text = stripTags(text, ' ');
       if (/\bSouqs?\b/.test(text)) offenders.push(path.relative(DIST, f));
     }
@@ -767,9 +798,9 @@ async function main() {
     const problems = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const unesco = head.match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugEn = fmField(head, 'slug_en');
+      const slugAr = fmField(head, 'slug_ar');
+      const unesco = fmField(head, 'unesco');
       const block = head.match(/^sameAs:[ \t]*\r?\n((?:[ \t]+-[ \t]+\S[^\r\n]*(?:\r?\n|$))+)/m)?.[1] ?? '';
       const sameAs = [...block.matchAll(/^[ \t]+-[ \t]+"?(\S+?)"?[ \t]*$/gm)].map((m) => m[1]);
       if (!sameAs.length && !unesco) continue;
@@ -895,8 +926,8 @@ async function main() {
       if (items.some((it) => !it.q || !it.a)) problems.push(`${f}: بند faq بلا q أو a بالعربية`);
       expected.push({
         f, items,
-        slugEn: head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
-        slugAr: head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+        slugEn: fmField(head, 'slug_en'),
+        slugAr: fmField(head, 'slug_ar'),
         hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head),
       });
     }
@@ -1055,8 +1086,8 @@ async function main() {
     const thinSlugs = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) { problems.push(`${f}: بلا slug`); continue; }
       const pages = [
         ['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`],
@@ -1163,8 +1194,8 @@ async function main() {
     let hoursPages = 0, feePages = 0, attrPages = 0;
     for (const f of attrFiles) {
       const head = heads[f];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue; // يبلّغ عنه C23
       const hoursSrc = head.match(/^hoursSpec:\n([\s\S]*?)(?=^\S)/m)?.[1];
       const feeSrc = head.match(/^fee:.*$/m)?.[0];
@@ -1213,8 +1244,8 @@ async function main() {
     let answerPages = 0;
     for (const f of attrFiles) {
       const head = heads[f];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
       const src = { ar: head.match(/^answer:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^answer_en:\s*"(.*)"\s*$/m)?.[1] };
       if (Boolean(src.ar) !== Boolean(src.en)) problems.push(`${f}: answer بلغة واحدة`);
@@ -1242,8 +1273,8 @@ async function main() {
     // (د) صفحة مكوّنات اليونسكو بلغاتها الخمس (المرحلة هـ)، تحمل كل ما يحمل unesco في المصدر (عدداً
     //     ومعرّفات ورابطاً لكل صفحة معلم)، وItemList بعددها، وhreflang متبادل، وداخل sitemap.
     const comps = attrFiles.map((f) => ({
-      f, id: heads[f].match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
-      slugAr: heads[f].match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1], slugEn: heads[f].match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+      f, id: fmField(heads[f], 'unesco'),
+      slugAr: fmField(heads[f], 'slug_ar'), slugEn: fmField(heads[f], 'slug_en'),
     })).filter((c) => c.id).sort((a, b) => a.id.localeCompare(b.id));
     const smXml24 = existsSync(smPath) ? await readText(smPath) : '';
     for (const [l, p] of [['ar', '/اليونسكو/'], ['en', '/en/unesco/'], ['zh', '/zh/unesco/'], ['de', '/de/unesco/'], ['ru', '/ru/unesco/']]) {
@@ -1306,8 +1337,8 @@ async function main() {
     let withMentions = 0, mentionLinks = 0;
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
       const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
         .map(([l, slug, p]) => [l, slug, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , , fp]) => existsSync(fp));
@@ -1328,18 +1359,18 @@ async function main() {
     const attrByDistrict = new Map();
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const dist = fmField(head, 'district');
       if (!dist) continue;
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       (attrByDistrict.get(dist) ?? attrByDistrict.set(dist, []).get(dist)).push({ ar: `/${AR_ATTRACTIONS_DIR}/${slugAr}/`, en: `/en/attractions/${slugEn}/` });
     }
     let diningWith = 0, diningChecked = 0;
     for (const f of (await readdir(SRC_DINING)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_DINING, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const dist = fmField(head, 'district');
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
       const pages = [['ar', `/مطاعم-ومقاهي/${slugAr}/`], ['en', `/en/restaurants-cafes/${slugEn}/`]]
         .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
