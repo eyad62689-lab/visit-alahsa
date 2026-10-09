@@ -678,6 +678,7 @@ export const ui = {
     // 住宿 من عنوان صفحة الإقامة المعتمد (دفعة indexes 2026-09-02، الحاكم 94/100)
     'nav.stay': '住宿',
     'nav.stayShort': '住宿',
+    'nav.stores': '网店',
     'nav.discover': '探索',
     'nav.plan': '行程规划',
     'nav.myTrip': '我的收藏',
@@ -968,6 +969,7 @@ export const ui = {
     'nav.dining': 'Restaurants und Cafés',
     'nav.stay': 'Unterkünfte',
     'nav.stayShort': 'Unterkünfte',
+    'nav.stores': 'Online-Shops',
     'nav.discover': 'Entdecken',
     'nav.plan': 'Reise planen',
     'nav.myTrip': 'Merkliste',
@@ -1247,6 +1249,7 @@ export const ui = {
     'nav.dining': 'Рестораны и кафе',
     'nav.stay': 'Где остановиться',
     'nav.stayShort': 'Где остановиться',
+    'nav.stores': 'Интернет-магазины',
     'nav.discover': 'Путеводитель',
     'nav.plan': 'План поездки',
     'nav.myTrip': 'Сохранённые места',
