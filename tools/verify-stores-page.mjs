@@ -9,7 +9,7 @@
 // التشغيل: node tools/verify-stores-page.mjs            (كل اللغات المبنية)
 //          node tools/verify-stores-page.mjs <lang>     (لغة واحدة)
 
-import { readFile, readdir, access } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -17,14 +17,40 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PATHS = { ar: 'متاجر-الأحساء-الإلكترونية', en: 'en/online-stores', zh: 'zh/online-stores', de: 'de/online-stores', ru: 'ru/online-stores' };
 
 const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const decode = (s) => s.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-const stripTags = (s) => s.replace(/<(script|style)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ');
+// فكّ الكيانات في مرور واحد (لا سلسلة replace: تفكّ &amp;lt; مرتين — js/double-escaping)
+const ENT = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>' };
+const decode = (s) => s.replace(/&(?:amp|quot|#39|lt|gt);/g, (m) => ENT[m]);
+// نصّ المقطع بماسح محرفاً محرفاً لا بتعبير نمطي على الوسوم: يحترم الاقتباس داخل السمات،
+// ويتخطّى script/style بمحتواهما إلى وسم إغلاقهما بالاسم (js/incomplete-multi-character-sanitization)
+const stripTags = (h) => {
+  let out = '';
+  for (let i = 0; i < h.length; i++) {
+    if (h[i] !== '<') { out += h[i]; continue; }
+    const rest = h.slice(i + 1, i + 7).toLowerCase();
+    const skip = rest.startsWith('script') ? '</script>' : rest.startsWith('style') ? '</style>' : null;
+    if (skip) {
+      const close = h.toLowerCase().indexOf(skip, i);
+      i = close < 0 ? h.length : close + skip.length - 1;
+      out += ' ';
+      continue;
+    }
+    let q = '';
+    for (i++; i < h.length; i++) {
+      const c = h[i];
+      if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') break;
+    }
+    out += ' ';
+  }
+  return out;
+};
 const fill = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
 
 /** مفاتيح stores.* من كتلة لغة في ui.ts */
 function uiStrings(uiSrc, lang) {
-  const start = uiSrc.search(new RegExp(`^  ${lang}: \\{\\r?$`, 'm'));
-  if (start < 0) throw new Error(`لا كتلة ${lang} في ui.ts`);
+  // بحث نصّي لا تعبير نمطي مبني من المدخل (js/regex-injection)؛ اللغة من قائمة PATHS المغلقة
+  if (!Object.hasOwn(PATHS, lang)) throw new Error(`لغة غير معروفة: ${lang}`);
+  const start = uiSrc.indexOf(`\n  ${lang}: {`) + 1;
+  if (start < 1) throw new Error(`لا كتلة ${lang} في ui.ts`);
   // نهاية الكتلة = بداية كتلة اللغة التالية أو خاتمة الكائن (كتل zh/de/ru تُغلق بـ"} as Record<...>,")
   const next = /\r?\n(?:  [a-z]{2}: \{|\} as const)/g;
   next.lastIndex = start + 4;
@@ -61,7 +87,7 @@ export function verify(html, X) {
   const mainText = stripTags(main);
   const dMain = decode(main);
   ok(main.length > 0, 'لا <main> في الصفحة');
-  ok(new RegExp(`<html lang="${X.lang === 'zh' ? 'zh-CN' : X.lang}" dir="${X.lang === 'ar' ? 'rtl' : 'ltr'}"`).test(html), 'lang/dir على <html>');
+  ok(html.includes(`<html lang="${X.lang === 'zh' ? 'zh-CN' : X.lang}" dir="${X.lang === 'ar' ? 'rtl' : 'ltr'}"`), 'lang/dir على <html>');
 
   const cards = [...html.matchAll(/<article class="[^"]*store-card[^"]*"[^>]*data-section="([^"]+)"[\s\S]*?<\/article>/g)];
   const stores = X.stores;
@@ -75,7 +101,7 @@ export function verify(html, X) {
   ok(chipN.all === stores.length, `عدّاد «الكل» ${chipN.all} ≠ ${stores.length}`);
   for (const sec of ['dates', 'crafts', 'other']) ok(chipN[sec] === X.counts[sec], `عدّاد ${sec} في الشريط ${chipN[sec]} ≠ ${X.counts[sec]}`);
   // عناوين الأقسام بلغة الصفحة
-  for (const sec of X.sections) ok(new RegExp(`<h2 class="stores-sec-t"[^>]*id="h-${sec.id}"[^>]*>\\s*${esc(sec.title)}\\s*<span`).test(dMain), `عنوان قسم ${sec.id} «${sec.title}»`);
+  for (const sec of X.sections) ok(new RegExp(`<h2 class="stores-sec-t"[^>]*id="h-${esc(sec.id)}"[^>]*>\\s*${esc(sec.title)}\\s*<span`).test(dMain), `عنوان قسم ${sec.id} «${sec.title}»`);
 
   const hrefs = cards.map((c) => decode(/store-cta"[^>]*href="([^"]+)"/.exec(c[0])?.[1] ?? ''));
   const names = cards.map((c) => decode(/<h3 class="store-t"[^>]*>([^<]+)<\/h3>/.exec(c[0])?.[1] ?? '').trim());
@@ -146,10 +172,14 @@ if (isMain) {
   const langs = only ? [only] : ['ar', ...(await readdir(join(ROOT, 'src/data'))).map((f) => /^stores-directory\.([a-z]{2})\.json$/.exec(f)?.[1]).filter((l) => l && l !== 'ar')];
   let failed = 0;
   for (const lang of langs) {
+    if (!Object.hasOwn(PATHS, lang)) { console.log(`✗ لغة غير معروفة: ${lang}`); failed++; continue; }
     const page = join(ROOT, 'dist', PATHS[lang], 'index.html');
-    try { await access(page); } catch { console.log(`✗ ${lang}: الصفحة غير مبنية (${PATHS[lang]})`); failed++; continue; }
+    // قراءة مباشرة بلا access() قبلها (js/file-system-race): الغياب يُلتقط من الخطأ نفسه
+    let html;
+    try { html = await readFile(page, 'utf8'); }
+    catch (e) { if (e.code !== 'ENOENT') throw e; console.log(`✗ ${lang}: الصفحة غير مبنية (${PATHS[lang]})`); failed++; continue; }
     const X = await loadExpectations(lang);
-    const fails = verify(await readFile(page, 'utf8'), X);
+    const fails = verify(html, X);
     if (fails.length) { failed++; console.log(`✗ ${lang}: ${fails.length} خلل`); for (const f of fails) console.log('    ' + f); }
     else console.log(`✓ ${lang}: ${X.stores.length} بطاقة، الروابط مطابقة، noindex، FAQ وItemList سليمتان.`);
   }

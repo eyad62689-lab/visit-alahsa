@@ -56,11 +56,22 @@ function readZip(buf) {
   };
 }
 
-const xmlText = (s) => s
-  .replace(/<w:tab\/>/g, ' ')
-  .replace(/<[^>]+>/g, '')
-  .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
-  .trim();
+// نصّ خلية XML: ماسح محرفاً محرفاً للوسوم (لا تعبير نمطي عليها) + فكّ الكيانات في مرور واحد
+const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&apos;': "'" };
+const xmlText = (s) => {
+  let out = '';
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] !== '<') { out += s[i]; continue; }
+    const tag = s.slice(i + 1, i + 7);
+    let q = '';
+    for (i++; i < s.length; i++) {
+      const c = s[i];
+      if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') break;
+    }
+    if (tag.startsWith('w:tab')) out += ' ';
+  }
+  return out.replace(/&(?:amp|lt|gt|quot|apos);/g, (m) => ENT[m]).trim();
+};
 
 async function main() {
   const zip = readZip(await readFile(docxPath));

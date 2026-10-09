@@ -9,7 +9,7 @@
 //
 // التشغيل: node tools/apply-stores-unit.mjs <unit.json>
 
-import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -92,9 +92,9 @@ await writeFile(uiPath, ui, 'utf8');
 // ── 3) ملف المسار ──
 const routeDir = join(ROOT, `src/pages/${lang}/online-stores`);
 const routeFile = join(routeDir, 'index.astro');
-try { await access(routeFile); }
-catch {
-  await mkdir(routeDir, { recursive: true });
-  await writeFile(routeFile, `---${EOL}import StoresDirectoryView from '../../../components/views/StoresDirectoryView.astro';${EOL}---${EOL}<StoresDirectoryView lang="${lang}" />${EOL}`, 'utf8');
-}
+// إنشاء بعلم wx (يفشل إن وُجد) بدل access() ثم كتابة — لا نافذة سباق (js/file-system-race)
+await mkdir(routeDir, { recursive: true });
+try {
+  await writeFile(routeFile, `---${EOL}import StoresDirectoryView from '../../../components/views/StoresDirectoryView.astro';${EOL}---${EOL}<StoresDirectoryView lang="${lang}" />${EOL}`, { encoding: 'utf8', flag: 'wx' });
+} catch (e) { if (e.code !== 'EEXIST') throw e; }
 console.log(`✓ ${lang}: data + ${Object.keys(entries).length} مفتاح ui + ${routeFile.replace(ROOT, '')}`);
