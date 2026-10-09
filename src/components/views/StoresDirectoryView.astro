@@ -4,7 +4,7 @@
 // المحتوى كله من src/data/stores-directory.<lang>.json عبر src/lib/stores.ts: لا اسم ولا
 // وصف ولا رابط يُكتب هنا يدوياً. الترتيب بحقل order (الشراع للتمور أول بطاقة بقرار
 // صاحب المشروع)، والبطاقة المميّزة لا تحمل معاملة بصرية — موقعها الأول هو تمييزها.
-// الصفحة noindex حتى يُقرّ النشر؛ لا hreflang ولا إدراج في الخريطة. نصوص الواجهة في ui.ts،
+// معلَنة منذ 2026-10-09 (كانت معاينة noindex): hreflang بين لغاتها المبنية، وفي الخريطة والتذييل. نصوص الواجهة في ui.ts،
 // والترجمات zh/de/ru عبر خطوط الترجمة حصراً.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
@@ -55,7 +55,7 @@ const jsonLd = [
 ];
 const pageTitle = `${seo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
 ---
-<Base title={pageTitle} description={seo.meta_description} lang={lang} alt={alt} noindex={true} jsonLd={jsonLd}>
+<Base title={pageTitle} description={seo.meta_description} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero title={seo.h1} lead={lead} leadWidth={62} lang={lang} motif="center" />
