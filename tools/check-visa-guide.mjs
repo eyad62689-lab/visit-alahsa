@@ -67,7 +67,7 @@ function scan(html) {
 export function expectFromSource(md) {
   const src = md.replace(/\r\n?/g, '\n');
   const links = [];
-  for (const m of src.matchAll(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s|)]+)/g)) {
+  for (const m of src.matchAll(/\[([^[\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s|)]+)/g)) {
     links.push(m[3] ? { href: m[3], text: m[3] } : { href: m[2], text: m[1] });
   }
   const text = src.split('\n')
@@ -76,7 +76,7 @@ export function expectFromSource(md) {
     .map((l) => l
       .replace(/^#{1,6}\s+/, '')
       .replace(/^\s*(?:[-*]|\d+\.)\s+/, '')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '$1')
+      .replace(/\[([^[\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '$1')
       .replace(/\*\*/g, '')
       .replace(/\|/g, ' '))
     .join('\n');

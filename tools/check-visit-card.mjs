@@ -36,7 +36,7 @@ const decodeEntities = (s) => s
 
 const stripTags = (html) => {
   let prev;
-  do { prev = html; html = html.replace(/<[^>]*>/g, ''); } while (html !== prev);
+  do { prev = html; html = html.replace(/<[^<>]*>/g, ''); } while (html !== prev);
   return html;
 };
 
