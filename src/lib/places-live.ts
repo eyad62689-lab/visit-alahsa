@@ -65,7 +65,8 @@ export const hoursImplausible = (lv?: Live): boolean =>
 
 export const hoursFor = (lv: Live | undefined, lang: Lang): string[] | undefined => {
   if (hoursImplausible(lv)) return undefined;
-  const list = lang === 'ar' ? lv?.hoursAr : lang === 'zh' ? lv?.hoursZh : lang === 'en' ? lv?.hoursEn : undefined;
+  const byLang = { ar: lv?.hoursAr, zh: lv?.hoursZh, en: lv?.hoursEn };
+  const list = lang === 'ar' || lang === 'zh' || lang === 'en' ? byLang[lang] : undefined;
   if (!list?.length) return undefined;
   const script = SCRIPT_OF[lang];
   return !script || list.every((l) => script.test(l)) ? list : undefined;

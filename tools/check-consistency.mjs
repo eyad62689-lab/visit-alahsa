@@ -795,7 +795,7 @@ async function main() {
         const rel = path.relative(DIST, p);
         if (!node) { problems.push(`${rel}: لا TouristAttraction`); continue; }
         pagesChecked++;
-        const got = Array.isArray(node.sameAs) ? node.sameAs : node.sameAs ? [node.sameAs] : [];
+        const got = Array.isArray(node.sameAs) ? node.sameAs : [node.sameAs].filter(Boolean);
         if (JSON.stringify(got) !== JSON.stringify(e.sameAs)) problems.push(`${rel}: sameAs المنشور لا يطابق المصدر`);
         const ident = node.identifier?.value;
         if ((ident ?? undefined) !== (e.unesco ?? undefined)) problems.push(`${rel}: معرّف اليونسكو ${ident ?? 'غائب'} ≠ ${e.unesco ?? 'لا شيء'}`);
@@ -980,7 +980,7 @@ async function main() {
         // «&» والفاصلة العليا تُفكّان قبل إسقاط بقية الكيانات: الاسم «Al-Koot Heritage Hotel &amp; Restaurant»
         // أو «Bayt Al-Bay&#39;ah» كان يصير «… Hotel Restaurant» فلا يطابق مجموعة الأسماء المستثناة (POL-DE-55).
         // تمريرةٌ واحدة: فكّ «&amp;» قبل غيره يفكّ «&amp;lt;» مرتين (CodeQL js/double-escaping)
-        .map((t) => t.replace(/&[a-z]+;|&#x?[\da-f]+;/gi, (e) => (e === '&amp;' ? '&' : /^&(#39|#x27|apos);$/i.test(e) ? "'" : ' ')).replace(/\s+/g, ' ').trim())
+        .map((t) => t.replace(/&[a-z]+;|&#x?[\da-f]+;/gi, (e) => { if (e === '&amp;') return '&'; return /^&(#39|#x27|apos);$/i.test(e) ? "'" : ' '; }).replace(/\s+/g, ' ').trim())
         // سطر الحقوق في التذييل اسم علامة وسنة ونطاق فقط — لا نصّ قابل للترجمة — فيُستثنى كالأسماء.
         .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t) && !COPYRIGHT_LINE.test(t));
     };

@@ -2,7 +2,7 @@ import { ui, type Lang } from './ui';
 
 export function getLangFromUrl(url: URL): Lang {
   const [, seg] = url.pathname.split('/');
-  return seg === 'en' ? 'en' : seg === 'zh' ? 'zh' : seg === 'de' ? 'de' : seg === 'ru' ? 'ru' : 'ar';
+  return (['en', 'zh', 'de', 'ru'] as const).find((l) => l === seg) ?? 'ar';
 }
 
 export function useTranslations(lang: Lang) {
@@ -40,15 +40,11 @@ export const localize = <T,>(
   lang: Lang,
   blocks: { ar: T; en: T; zh?: T; de?: T; ru?: T },
 ): T =>
-  lang === 'ar' ? blocks.ar
-  : lang === 'zh' ? (blocks.zh ?? blocks.en)
-  : lang === 'de' ? (blocks.de ?? blocks.en)
-  : lang === 'ru' ? (blocks.ru ?? blocks.en)
-  : blocks.en;
+  lang === 'ar' ? blocks.ar : (blocks[lang] ?? blocks.en);
 
 export const dir = (lang: Lang) => (lang === 'ar' ? 'rtl' : 'ltr');
 export const htmlLang = (lang: Lang) =>
-  lang === 'ar' ? 'ar' : lang === 'zh' ? 'zh-CN' : lang === 'de' ? 'de' : lang === 'ru' ? 'ru' : 'en';
+  ({ ar: 'ar', en: 'en', zh: 'zh-CN', de: 'de', ru: 'ru' } as const)[lang];
 
 // مسارات النظائر باللغات الأخرى (للمبدّل وhreflang). تمرَّر لكل صفحة.
 // zh وde وru اختيارية: لا تُدرج لغة إلا حين توجد نسخة فعلية للصفحة بها

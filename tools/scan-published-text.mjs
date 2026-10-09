@@ -237,7 +237,7 @@ async function main() {
       files: r ? r.files.size : 0,
       hits: r ? r.hits : 0,
       channels: r ? [...r.channels].sort((a, b) => a.localeCompare(b)) : [],
-      sample: r ? (REDACT ? { file: r.sample.file, channel: r.sample.channel } : r.sample) : null,
+      sample: r && REDACT ? { file: r.sample.file, channel: r.sample.channel } : (r?.sample ?? null),
     }));
     console.log(`## ${TITLES[g] ?? g} — ${hitRows.length}/${rows.length} terms found\n`);
     console.log('| term | files | hits | channels | sample page |');
