@@ -80,7 +80,8 @@ if (process.argv[1]?.endsWith('submit.mjs')) {
   const dryRun = process.argv.includes('--dry-run');
   const cwd = process.cwd();
   try {
-    console.log(await run({ distDir: path.join(cwd, 'dist'), cwd, dryRun }));
+    const msg = await run({ distDir: path.join(cwd, 'dist'), cwd, dryRun });
+    console.log(String(msg).replace(/[\r\n]+/g, ' '));
   } catch (err) {
     console.error(err);
     process.exitCode = 1;
