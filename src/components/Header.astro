@@ -7,6 +7,7 @@ import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
 import { LANG_META } from '../i18n/langs';
 import { listedAlt } from '../i18n/unlisted';
+import { storesHref } from '../lib/routes';
 
 interface Props { lang?: Lang; alt?: AltLinks; }
 const { lang = 'ar', alt } = Astro.props;
@@ -46,6 +47,9 @@ const nav = [
   { href: routes.food, label: t('nav.food') },
   { href: routes.dine, label: t('nav.dining') },
   { href: routes.stay, label: t('nav.stayShort') },
+  // دليل المتاجر الإلكترونية (2026-10-09): في شريط ar/en وحدهما — zh/de/ru في التذييل بعنوان
+  // صفحتها المعتمد، فلا تسمية شريط لها قبل أن تمرّ بخطوط الترجمة. العتبتان أُعيد قياسهما.
+  ...(ar || lang === 'en' ? [{ href: storesHref(lang), label: t('nav.stores') }] : []),
   // رابط الخطة مكرَّر عمداً في البنية لا في العرض: زرّ الدعوة الذهبي يقصد
   // routes.plan نفسه، فيصير في الشريط رابطان لوجهة واحدة بتسميتين متقاربتين
   // (‏«خطّط لرحلتك» و«خطّط زيارتك») — تكرارٌ يبتلع ~100px من أضيق شريط في
@@ -163,12 +167,13 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
   .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
   /* كل لغة تُضيَّق في الوضع المبسوط وحده (من عتبة انهيارها فما فوق)، فلا يسري التضييق
      داخل القائمة المطويّة — المساحة هناك رأسية والتضييق خسارة خالصة. */
-  /* العربية: «معالمي المحفوظة» في أدوات الشريط رفع اللازم إلى 1304px — أوسع من السقف المشترك 1280 */
-  @media (min-width: 1344px) {
-    :global([lang='ar']) .hd-in { inline-size: min(100% - var(--s-3), 1320px); }
+  /* العربية: «معالمي المحفوظة» في الأدوات ثم «المتاجر» في الشريط (2026-10-09) رفعا اللازم إلى 1354px — أوسع من السقف المشترك 1280 */
+  @media (min-width: 1394px) {
+    :global([lang='ar']) .hd-in { inline-size: min(100% - var(--s-3), 1380px); }
   }
-  @media (min-width: 1421px) {
-    :global([lang='en']) .hd-in { inline-size: min(100% - var(--s-3), 1400px); }
+  /* الإنجليزية بعد «Online Stores» (2026-10-09): اللازم 1476px بخط 13.5px وفجوة 10px */
+  @media (min-width: 1516px) {
+    :global([lang='en']) .hd-in { inline-size: min(100% - var(--s-3), 1500px); }
     :global([lang='en']) .nav { gap: 10px; }
     :global([lang='en']) .nav a { font-size: .84375rem; }
   }
@@ -214,7 +219,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
   /* عتبة الانهيار مشتقّة من قياس، لا مختارة: أدنى عرض نافذة = العرض الجوهري
      اللازم + هامش أمان 24px + var(--s-3). بعد إخفاء رابط الخطة المكرَّر وتضييق
      الفجوة صار اللازم بعد تسمية الأقسام بعناوين صفحاتها وتسمية الأداة «معالمي المحفوظة» (2026-10-04):
-     zh ‏1128px (خط 14px وفجوة 12px) — فالعتبة المشتركة 1270px؛ والعربية ‏1304 فلها كتلتها عند 1343. */
+     zh ‏1128px (خط 14px وفجوة 12px) — فالعتبة المشتركة 1270px؛ والعربية ‏1354 فلها كتلتها عند 1393 (بعد «المتاجر»، 2026-10-09). */
   @media (max-width: 1270px) {
     .hd-actions .btn-gold { display: none; }
     .burger { display: flex; }
@@ -231,10 +236,11 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     /* الزرّ الذهبي مخفيّ هنا، فرابط الخطة داخل القائمة هو الطريق الوحيد إليها */
     .nav .nav-plan { display: block; }
   }
-  /* العربية تنهار عند 1343px (اللازم 1304) والإنجليزية عند 1420px (اللازم 1381 بخط 13.5px وفجوة 10px):
-     عشرة روابط بعناوين الصفحات و«معالمي المحفوظة/My saved places» في الأدوات. الكتلة محصورة بالإنجليزية كي لا تُسقط شريط العربية
+  /* العربية تنهار عند 1393px (اللازم 1354) والإنجليزية عند 1515px (اللازم 1476 بخط 13.5px وفجوة 10px):
+     عشرة روابط ظاهرة بعناوين الصفحات مع «المتاجر/Online Stores» (2026-10-09، كانتا 1343 و1420 قبله)
+     و«معالمي المحفوظة/My saved places» في الأدوات. الكتلة محصورة بالإنجليزية كي لا تُسقط شريط العربية
      والصينية بلا سبب. لا تعدّل إحدى الكتل دون الأخرى. */
-  @media (max-width: 1343px) {
+  @media (max-width: 1393px) {
     :global([lang='ar']) .hd-actions .btn-gold { display: none; }
     :global([lang='ar']) .burger { display: flex; }
     :global([lang='ar']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -243,7 +249,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='ar']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='ar']) .nav .nav-plan { display: block; }
   }
-  @media (max-width: 1420px) {
+  @media (max-width: 1515px) {
     :global([lang='en']) .hd-actions .btn-gold { display: none; }
     :global([lang='en']) .burger { display: flex; }
     :global([lang='en']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
