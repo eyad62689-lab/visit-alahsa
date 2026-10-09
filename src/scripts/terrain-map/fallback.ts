@@ -58,7 +58,9 @@ export async function initLeafletFallback(host: HTMLElement, cfg: TmapCfg, opts:
     spiderfyOnMaxZoom: true,
     iconCreateFunction: (c: any) => {
       const n = c.getChildCount();
-      const size = n < 10 ? 34 : n < 25 ? 40 : 46;
+      let size = 46;
+      if (n < 10) size = 34;
+      else if (n < 25) size = 40;
       return L.divIcon({ html: '<span>' + n + '</span>', className: 'va-cluster', iconSize: [size, size], iconAnchor: [size / 2, size / 2] });
     },
   });

@@ -725,7 +725,7 @@ export const EVENTS_RU: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_RU[id]));
 
 /** فعاليات لغة الصفحة */
 export const eventsFor = (lang: Lang): Ev[] =>
-  lang === 'ar' ? EVENTS_AR : lang === 'zh' ? EVENTS_ZH : lang === 'de' ? EVENTS_DE : lang === 'ru' ? EVENTS_RU : EVENTS_EN;
+  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU } satisfies Record<Lang, Ev[]>)[lang];
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>

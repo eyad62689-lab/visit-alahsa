@@ -606,4 +606,5 @@ export const FRUIT_GROUPS_DE: Group[] = [
 ];
 
 // @de-fruits:end
-export const fruitGroupsFor = (lang: string): Group[] => (lang === 'ar' ? FRUIT_GROUPS_AR : lang === 'zh' ? FRUIT_GROUPS_ZH : lang === 'de' ? FRUIT_GROUPS_DE : lang === 'ru' ? FRUIT_GROUPS_RU : FRUIT_GROUPS_EN);
+const FRUIT_GROUPS_BY_LANG: Record<string, Group[]> = { ar: FRUIT_GROUPS_AR, zh: FRUIT_GROUPS_ZH, de: FRUIT_GROUPS_DE, ru: FRUIT_GROUPS_RU };
+export const fruitGroupsFor = (lang: string): Group[] => FRUIT_GROUPS_BY_LANG[lang] ?? FRUIT_GROUPS_EN;

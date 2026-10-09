@@ -20,11 +20,14 @@ const FEES_RE = /الرسوم/;
 export async function practicalTable(lang: Lang): Promise<Table | null> {
   const items = (await getCollection('attractions')).sort((a, b) => a.data.order - b.data.order);
   const pickL = (p: { label: string; label_en?: string; label_zh?: string; label_de?: string; label_ru?: string }) =>
-    lang === 'ar' ? p.label : lang === 'zh' ? p.label_zh : lang === 'de' ? p.label_de : lang === 'ru' ? p.label_ru : p.label_en;
+    ({ ar: p.label, en: p.label_en, zh: p.label_zh, de: p.label_de, ru: p.label_ru })[lang];
   const pickV = (p: { value: string; value_en?: string; value_zh?: string; value_de?: string; value_ru?: string }) =>
-    lang === 'ar' ? p.value : lang === 'zh' ? p.value_zh : lang === 'de' ? p.value_de : lang === 'ru' ? p.value_ru : p.value_en;
-  const title = (d: (typeof items)[number]['data']) =>
-    lang === 'ar' ? d.title : lang === 'zh' ? (d.title_zh ?? d.title_en ?? d.title) : lang === 'de' ? (d.title_de ?? d.title_en ?? d.title) : lang === 'ru' ? (d.title_ru ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+    ({ ar: p.value, en: p.value_en, zh: p.value_zh, de: p.value_de, ru: p.value_ru })[lang];
+  const title = (d: (typeof items)[number]['data']) => {
+    if (lang === 'ar') return d.title;
+    const local = { en: d.title_en, zh: d.title_zh, de: d.title_de, ru: d.title_ru }[lang];
+    return local ?? d.title_en ?? d.title;
+  };
   // رؤوس الأعمدة من تسميات البنود المعتمدة نفسها (المواعيد/Hours/开放时间 …)
   let hoursHead: string | undefined, feesHead: string | undefined;
   const rows: Table['rows'] = [];
@@ -46,7 +49,7 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
   if (!rows.length || !hoursHead || !feesHead) return null;
   return {
     id: 'practical',
-    caption: lang === 'ar' ? 'المواعيد والرسوم — كما وردت في بطاقة كل معلم' : lang === 'en' ? 'Hours and fees — as shown on each attraction’s visit card' : undefined,
+    caption: ({ ar: 'المواعيد والرسوم — كما وردت في بطاقة كل معلم', en: 'Hours and fees — as shown on each attraction’s visit card' } as Partial<Record<Lang, string>>)[lang],
     head: [nameHead, hoursHead, feesHead],
     rows,
   };
@@ -57,7 +60,7 @@ export function eventsTable(lang: Lang, heads: { name: string; place: string; ti
   const list = eventsFor(lang).map((e) => evView(e)).sort((a, b) => a.start - b.start);
   return {
     id: 'events',
-    caption: lang === 'ar' ? 'روزنامة مواسم الفعاليات — مواعيد تقريبية تعود سنوياً' : lang === 'en' ? 'Seasonal calendar of events — approximate, recurring annually' : lang === 'de' ? 'Saisonaler Kalender der Veranstaltungen – ungefähre Angaben, jährlich wiederkehrend' : lang === 'ru' ? 'Календарь сезонных мероприятий — даты приблизительны и повторяются ежегодно' : undefined,
+    caption: ({ ar: 'روزنامة مواسم الفعاليات — مواعيد تقريبية تعود سنوياً', en: 'Seasonal calendar of events — approximate, recurring annually', de: 'Saisonaler Kalender der Veranstaltungen – ungefähre Angaben, jährlich wiederkehrend', ru: 'Календарь сезонных мероприятий — даты приблизительны и повторяются ежегодно' } as Partial<Record<Lang, string>>)[lang],
     head: [heads.name, heads.place, heads.time],
     rows: list.map((e) => ({ cells: [{ text: e.name, href: `${base}${e.slug}/` }, e.place, `${e.season} · ${e.time}`] })),
   };
@@ -74,7 +77,7 @@ export function fruitsTable(lang: Lang, heads: { fruit: string; season: string; 
   }
   return {
     id: 'fruits',
-    caption: lang === 'ar' ? 'مواسم ثمار الواحة — كما في بطاقات الثمار' : lang === 'en' ? 'Oasis fruit seasons — as on the fruit cards' : lang === 'de' ? 'Saisons der Oasenfrüchte – wie auf den Fruchtkarten' : lang === 'ru' ? 'Сезоны плодов оазиса — те же, что на карточках' : undefined,
+    caption: ({ ar: 'مواسم ثمار الواحة — كما في بطاقات الثمار', en: 'Oasis fruit seasons — as on the fruit cards', de: 'Saisons der Oasenfrüchte – wie auf den Fruchtkarten', ru: 'Сезоны плодов оазиса — те же, что на карточках' } as Partial<Record<Lang, string>>)[lang],
     head: [heads.fruit, heads.season, heads.group],
     rows,
   };

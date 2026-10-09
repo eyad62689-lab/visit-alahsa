@@ -46,7 +46,12 @@ const CPU_MULT = process.env.CPU_MULT ?? 'auto';       // «auto» = معاير�
 const median = (xs) => { const a = [...xs].sort((x, y) => x - y); return a[Math.floor(a.length / 2)]; };
 const round1 = (x) => Math.round(x * 10) / 10;
 // صيغة حاسبة Lighthouse الرسمية (انظر الرأس). دون 150 لا يُحاكى جوال أصلاً: 1x مع تحذير.
-const multiplierFor = (bi) => bi >= 1300 ? 3 + (bi - 1300) / 233 : bi >= 800 ? 2 + (bi - 800) / 500 : bi >= 150 ? 1 + (bi - 150) / 650 : 1;
+const multiplierFor = (bi) => {
+  if (bi >= 1300) return 3 + (bi - 1300) / 233;
+  if (bi >= 800) return 2 + (bi - 800) / 500;
+  if (bi >= 150) return 1 + (bi - 150) / 650;
+  return 1;
+};
 
 let lighthouse, chromeLauncher, puppeteer, pageFunctions;
 try {

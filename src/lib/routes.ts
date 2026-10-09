@@ -11,11 +11,7 @@ type AttractionSlugs = { slug_ar: string; slug_en: string; title_zh?: string; ti
 /** رابط صفحة المعلم بلغة الطلب — بشرطة ختامية دائماً (تطابق canonical).
  *  zh وde وru تشارك الإنجليزية الـslug اللاتيني تحت /zh/ و/de/ و/ru/. */
 export const attractionHref = (d: AttractionSlugs, lang: Lang): string =>
-  lang === 'ar' ? `/معالم/${d.slug_ar}/`
-  : lang === 'zh' ? `/zh/attractions/${d.slug_en}/`
-  : lang === 'de' ? `/de/attractions/${d.slug_en}/`
-  : lang === 'ru' ? `/ru/attractions/${d.slug_en}/`
-  : `/en/attractions/${d.slug_en}/`;
+  lang === 'ar' ? `/معالم/${d.slug_ar}/` : `/${lang}/attractions/${d.slug_en}/`;
 
 /** روابط المعلم بلغاته — لحقول alt (مصدر hreflang ومبدّل اللغة).
  *  zh يُدرج فقط حين يحمل المعلم ترجمة صينية معتمدة (title_zh)، وde حين يحمل
@@ -33,11 +29,7 @@ type DiningSlugs = { slug_ar: string; slug_en: string; body_zh?: string; body_ru
 
 /** رابط صفحة المنشأة (مطعم/مقهى) — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
 export const diningHref = (d: DiningSlugs, lang: Lang): string =>
-  lang === 'ar' ? `/مطاعم-ومقاهي/${d.slug_ar}/`
-  : lang === 'zh' ? `/zh/restaurants-cafes/${d.slug_en}/`
-  : lang === 'de' ? `/de/restaurants-cafes/${d.slug_en}/`
-  : lang === 'ru' ? `/ru/restaurants-cafes/${d.slug_en}/`
-  : `/en/restaurants-cafes/${d.slug_en}/`;
+  lang === 'ar' ? `/مطاعم-ومقاهي/${d.slug_ar}/` : `/${lang}/restaurants-cafes/${d.slug_en}/`;
 
 /** روابط المنشأة بلغاتها — مصدر hreflang ومبدّل اللغة. الصينية والألمانية والروسية
  *  تُدرج كلٌّ منها متى حملت المنشأة body_zh/body_de/body_ru المعتمد (بوابة صفحتها،
@@ -54,11 +46,7 @@ type StaySlugs = { slug_ar: string; slug_en: string; body_zh?: string; body_ru?:
 
 /** رابط صفحة مكان الإقامة — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
 export const stayHref = (d: StaySlugs, lang: Lang): string =>
-  lang === 'ar' ? `/إقامة/${d.slug_ar}/`
-  : lang === 'zh' ? `/zh/stay/${d.slug_en}/`
-  : lang === 'de' ? `/de/stay/${d.slug_en}/`
-  : lang === 'ru' ? `/ru/stay/${d.slug_en}/`
-  : `/en/stay/${d.slug_en}/`;
+  lang === 'ar' ? `/إقامة/${d.slug_ar}/` : `/${lang}/stay/${d.slug_en}/`;
 
 /** روابط مكان الإقامة بلغاتها — مصدر hreflang ومبدّل اللغة. الصينية والألمانية
  *  والروسية تُدرج كلٌّ منها متى حمل المكان body_zh/body_de/body_ru المعتمد (بوابة
