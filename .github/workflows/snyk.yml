@@ -79,7 +79,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.gate.outputs.enabled == 'true'
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       # الإصدار مثبّت لا `@latest`: مسار تنفيذ ثابت بدل حزمة متغيّرة
       - name: Run Snyk (official CLI, pinned)
