@@ -47,9 +47,9 @@ const nav = [
   { href: routes.food, label: t('nav.food') },
   { href: routes.dine, label: t('nav.dining') },
   { href: routes.stay, label: t('nav.stayShort') },
-  // دليل المتاجر الإلكترونية (2026-10-09): في شريط ar/en وحدهما — zh/de/ru في التذييل بعنوان
-  // صفحتها المعتمد، فلا تسمية شريط لها قبل أن تمرّ بخطوط الترجمة. العتبتان أُعيد قياسهما.
-  ...(ar || lang === 'en' ? [{ href: storesHref(lang), label: t('nav.stores') }] : []),
+  // دليل المتاجر الإلكترونية (2026-10-09) بكل اللغات: تسميات zh/de/ru مرّت بخطوطها (docs/nav-stores).
+  // العتبات أُعيد قياسها بعده.
+  { href: storesHref(lang), label: t('nav.stores') },
   // رابط الخطة مكرَّر عمداً في البنية لا في العرض: زرّ الدعوة الذهبي يقصد
   // routes.plan نفسه، فيصير في الشريط رابطان لوجهة واحدة بتسميتين متقاربتين
   // (‏«خطّط لرحلتك» و«خطّط زيارتك») — تكرارٌ يبتلع ~100px من أضيق شريط في
@@ -177,17 +177,18 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav { gap: 10px; }
     :global([lang='en']) .nav a { font-size: .84375rem; }
   }
-  @media (min-width: 1433px) {
+  @media (min-width: 1521px) {
     /* وسقفُ حاويتها أوسع من 1280px: عند تجاوز السقف لا ينكسر الشريط ظاهراً بل
        **ينضغط** — الفليكس يقلّص أدوات الشريط فيلتفّ «Meine Reise» سطرين ويصير الشريط
        69px بدل 68. لذلك لا يكفي قياس التراكب وحده حكماً على الاتّساع؛ الحارس يشترط
-       الارتفاع 68px والسطر الواحد معاً. اللازم: de ‏1386px (12.5/8)، ru ‏1477px (13/10). */
-    :global([lang='de']) .hd-in { inline-size: min(100% - var(--s-3), 1400px); }
+       الارتفاع 68px والسطر الواحد معاً. اللازم بعد «Online-Shops» (2026-10-09): de ‏1481px (12.5/8). */
+    :global([lang='de']) .hd-in { inline-size: min(100% - var(--s-3), 1500px); }
     :global([lang='de']) .nav { gap: 8px; }
     :global([lang='de']) .nav a { font-size: .78125rem; }
   }
-  @media (min-width: 1570px) {
-    :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1550px); }
+  /* الروسية بعد «Интернет-магазины» (2026-10-09): اللازم 1668px بخط 13px وفجوة 10px */
+  @media (min-width: 1708px) {
+    :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1690px); }
     :global([lang='ru']) .nav { gap: 10px; }
     :global([lang='ru']) .nav a { font-size: .8125rem; }
   }
@@ -258,9 +259,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='en']) .nav .nav-plan { display: block; }
   }
-  /* الألمانية تنهار عند 1432px (اللازم 1393 بخط 12.5px وفجوة 8px، «Merkliste» و«Küche aus Al-Ahsa») والروسية عند 1569px (اللازم 1530 بخط 13px وفجوة 10px، «Сохранённые места»؛ أصغر من 13px يُضعف القراءة).
+  /* الألمانية تنهار عند 1520px (اللازم 1481 بخط 12.5px وفجوة 8px، «Merkliste» و«Küche aus Al-Ahsa» و«Online-Shops») والروسية عند 1707px (اللازم 1668 بخط 13px وفجوة 10px، «Сохранённые места» و«Интернет-магазины»؛ أصغر من 13px يُضعف القراءة). كانتا 1432 و1569 قبل رابط المتاجر (2026-10-09).
      تكرار الكتلة مقصود ومحصور كي لا تخسر العربية والصينية شريطهما بلا سبب. */
-  @media (max-width: 1432px) {
+  @media (max-width: 1520px) {
     :global([lang='de']) .hd-actions .btn-gold, :global([lang='ru']) .hd-actions .btn-gold { display: none; }
     :global([lang='de']) .burger, :global([lang='ru']) .burger { display: flex; }
     :global([lang='de']) .nav-toggle, :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -269,7 +270,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='de']) .nav-toggle:checked ~ .nav, :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='de']) .nav .nav-plan, :global([lang='ru']) .nav .nav-plan { display: block; }
   }
-  @media (max-width: 1569px) {
+  @media (max-width: 1707px) {
     :global([lang='ru']) .hd-actions .btn-gold { display: none; }
     :global([lang='ru']) .burger { display: flex; }
     :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
