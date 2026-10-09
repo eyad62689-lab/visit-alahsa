@@ -6,7 +6,8 @@
 لا ينشر شيئاً بلا حكم معتمد — التأكيد في أول السكربت.
 """
 import json, os, re, sys
-lang = sys.argv[1]; today = '2026-09-10'
+from _safe_paths import lang_code, slug, under
+lang = lang_code(sys.argv[1]); today = '2026-09-10'
 root = '/home/user/visit-alahsa'; B = f'{root}/{lang}-translation/output/batch-20260910'
 judge = json.load(open(f'{B}/judge.json', encoding='utf-8'))
 assert judge['decision'] == 'APPROVE' and judge['batch_score'] >= 90, judge['decision']

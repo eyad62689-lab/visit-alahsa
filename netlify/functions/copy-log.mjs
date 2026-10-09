@@ -9,7 +9,7 @@
 // الجلسة (يُحتسب التكرار في الخادم أيضاً — عدّاد المتصفح قابل للتلاعب).
 
 import { getStore } from '@netlify/blobs'
-import { createHash } from 'node:crypto'
+import { createHash, randomUUID } from 'node:crypto'
 
 const SUSPICIOUS_LENGTH = 400
 const SUSPICIOUS_REPEATS = 5
@@ -74,7 +74,7 @@ export default async (req, context) => {
 
   // مفتاح شهري يسهّل التجميع في تقرير theft-scan والتنظيف الدوري.
   // لاحقة عشوائية إلزامية: حدثان في نفس الميلي ثانية يتصادمان بدونها فيضيع أحدهما.
-  const key = `${now.toISOString().slice(0, 7)}/${now.getTime()}-${session.slice(0, 8)}-${Math.random().toString(36).slice(2, 8)}`
+  const key = `${now.toISOString().slice(0, 7)}/${now.getTime()}-${session.slice(0, 8)}-${randomUUID().slice(0, 8)}`
   await store.setJSON(key, event)
 
   return new Response(null, { status: 204 })

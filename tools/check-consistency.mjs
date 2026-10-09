@@ -171,7 +171,7 @@ async function main() {
     const home = await readText(homePath);
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
     const text = stripTags(home, '');
-    const m = text.match(/([\d.,+MK万]+)[\s]*معلماً ووجهةً للاكتشاف/);
+    const m = text.match(/([\d.,+MK万]+)[\u0001\s]*معلماً ووجهةً للاكتشاف/);
     if (!m) fail('C3', 'تعذّر استخراج عدد المعالم من بطاقات حقائق الرئيسية');
     else if (m[1] === String(truth)) pass('C3', `الرئيسية تعرض ${truth} معلماً`);
     else fail('C3', `الرئيسية تعرض «${m[1]}» بينما الحقيقة ${truth}`);
@@ -770,7 +770,7 @@ async function main() {
       const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
       const unesco = head.match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const block = head.match(/^sameAs:\s*\r?\n((?:[ \t]+-[ \t]+\S.*\r?\n?)+)/m)?.[1] ?? '';
+      const block = head.match(/^sameAs:[ \t]*\r?\n((?:[ \t]+-[ \t]+\S[^\r\n]*(?:\r?\n|$))+)/m)?.[1] ?? '';
       const sameAs = [...block.matchAll(/^[ \t]+-[ \t]+"?(\S+?)"?[ \t]*$/gm)].map((m) => m[1]);
       if (!sameAs.length && !unesco) continue;
       if (!sameAs.length || !WD.test(sameAs[0])) problems.push(`${f}: أول sameAs ليس كيان Wikidata`);
@@ -879,7 +879,7 @@ async function main() {
     const expected = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const block = head.match(/^faq:[ \t]*\r?\n((?:[ \t]+\S.*\r?\n?)+)/m)?.[1];
+      const block = head.match(/^faq:[ \t]*\r?\n((?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+)/m)?.[1];
       if (!block) continue;
       const items = [];
       for (const raw of block.split(/\r?\n/)) {
@@ -1450,6 +1450,24 @@ async function main() {
       if (problems.length) fail('C28', `دليل التأشيرات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C28', `دليل التأشيرات: ${stats.tokens} كلمة منشورة تطابق المصدر حرفياً، و${stats.marks} «لم يُتحقَّق» موسومة من ${stats.unverified} في المصدر، و${stats.links} رابطاً بـhref ونصّ حرفيين وtarget=_blank rel=noopener، وسطر التحديث حاضر، وملاحظة المعاينة ${!context || context === 'production' ? 'غائبة (إنتاج)' : `حاضرة (${context})`}، وعربية فقط بلا hreflang`);
     }
+  }
+
+  // ── C44: لا أحرف تحكّم اتجاهية (U+200E/U+200F، U+202A–U+202E، U+2066–U+2069) في بيانات المصدر ──
+  // بقايا نسخ من خرائط قوقل تُربك المحلّلات وتُرسَل إلى Places API كجزء من الاستعلام.
+  {
+    const BIDI = /[\u200E\u200F\u202A-\u202E\u2066-\u2069]/;
+    const roots = [path.join(ROOT, 'src/data'), path.join(ROOT, 'src/content')];
+    const hits = [];
+    const lists = await Promise.all(roots.filter((d) => existsSync(d)).map(async (dir) =>
+      (await readdir(dir, { recursive: true })).filter((f) => /\.(json|md)$/.test(f)).map((f) => path.join(dir, f))));
+    const files = lists.flat();
+    const texts = await Promise.all(files.map((f) => readText(f)));
+    files.forEach((full, i) => {
+      const m = texts[i].match(BIDI);
+      if (m) hits.push(`${path.relative(ROOT, full)} (U+${m[0].codePointAt(0).toString(16).toUpperCase()})`);
+    });
+    if (hits.length) fail('C44', `أحرف تحكّم اتجاهية في ${hits.length} ملفاً: ${hits.slice(0, 4).join(' · ')}`);
+    else pass('C44', 'لا أحرف تحكّم اتجاهية في src/data وsrc/content');
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────
