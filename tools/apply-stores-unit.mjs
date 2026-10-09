@@ -7,19 +7,23 @@
 //   src/i18n/ui.ts                          — مفاتيح stores.* في كتلة اللغة (تُضاف أو تُحدَّث)
 //   src/pages/<lang>/online-stores/index.astro — ملف المسار إن لم يوجد
 //
-// التشغيل: node tools/apply-stores-unit.mjs <unit.json>
+// التشغيل: node tools/apply-stores-unit.mjs <en|zh|de|ru>   (الوحدة في tools/stores-units/<lang>.json)
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const file = process.argv[2];
-if (!file) { console.error('الاستعمال: node tools/apply-stores-unit.mjs <unit.json>'); process.exit(1); }
+// الوسيط رمز لغة من قائمة مغلقة لا مساراً حراً: الوحدة المعتمدة تُودَع في tools/stores-units/<lang>.json
+// (لا مسار من سطر الأوامر يصل إلى readFile — Path Traversal)
+const LANGS = ['en', 'zh', 'de', 'ru'];
+const langArg = process.argv[2];
+if (!LANGS.includes(langArg)) { console.error(`الاستعمال: node tools/apply-stores-unit.mjs <${LANGS.join('|')}>`); process.exit(1); }
+const lang = LANGS[LANGS.indexOf(langArg)];
+const file = join(ROOT, 'tools', 'stores-units', `${lang}.json`);
 
 const unit = JSON.parse(await readFile(file, 'utf8'));
-const lang = unit.lang;
-if (!['en', 'zh', 'de', 'ru'].includes(lang)) throw new Error(`لغة غير مدعومة: ${lang}`);
+if (unit.lang !== lang) throw new Error(`الوحدة ${file} تحمل lang=${unit.lang}`);
 const master = JSON.parse(await readFile(join(ROOT, 'src/data/stores-directory.ar.json'), 'utf8'));
 
 // ── تحقق بنيوي قبل أي كتابة ──

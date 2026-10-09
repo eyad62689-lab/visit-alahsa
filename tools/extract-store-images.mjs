@@ -10,11 +10,11 @@
 //   public/img/stores/<logo>               webp داخل مربع 256×256 (contain، بلا مطّ ولا قص)
 // ثم شغّل: node tools/gen-image-widths.mjs  لتوليد عروض 400/800 لبطاقات Photo.astro.
 //
-// التشغيل: node tools/extract-store-images.mjs "<مسار الملف.docx>"
+// التشغيل: ضع الملف في tools/stores-units/ ثم: node tools/extract-store-images.mjs <name.docx>
 
 import sharp from 'sharp';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { join, dirname } from 'node:path';
+import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inflateRawSync } from 'node:zlib';
 
@@ -23,8 +23,12 @@ const OUT = join(ROOT, 'public', 'img', 'stores');
 const DATA = join(ROOT, 'src', 'data', 'stores-directory.ar.json');
 const MAX_WEBP_BYTES = 150 * 1024;
 
-const docxPath = process.argv[2];
-if (!docxPath) { console.error('الاستعمال: node tools/extract-store-images.mjs <file.docx>'); process.exit(1); }
+// الملف يوضع في tools/stores-units/ (مجلد ثابت، *.docx غير ملتزم) ويُمرَّر اسمه فقط:
+// basename يقطع أي مسار، فلا Path Traversal من سطر الأوامر
+const UNITS_DIR = join(ROOT, 'tools', 'stores-units');
+const docxName = basename(process.argv[2] ?? '');
+if (!docxName.toLowerCase().endsWith('.docx')) { console.error('الاستعمال: node tools/extract-store-images.mjs <name.docx>  (الملف داخل tools/stores-units/)'); process.exit(1); }
+const docxPath = join(UNITS_DIR, docxName);
 
 // ── قارئ zip بسيط (المجلد المركزي) — يكفي لملفات docx (deflate أو مخزَّن) ──
 function readZip(buf) {
@@ -58,17 +62,24 @@ function readZip(buf) {
 
 // نصّ خلية XML: ماسح محرفاً محرفاً للوسوم (لا تعبير نمطي عليها) + فكّ الكيانات في مرور واحد
 const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&apos;': "'" };
+/** موضع نهاية الوسم الذي يبدأ عند from (يحترم الاقتباس داخل السمات) */
+const tagEnd = (s, from) => {
+  let q = '';
+  let i = from;
+  while (i < s.length) {
+    const c = s[i];
+    if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') return i;
+    i++;
+  }
+  return s.length;
+};
 const xmlText = (s) => {
   let out = '';
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] !== '<') { out += s[i]; continue; }
-    const tag = s.slice(i + 1, i + 7);
-    let q = '';
-    for (i++; i < s.length; i++) {
-      const c = s[i];
-      if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') break;
-    }
-    if (tag.startsWith('w:tab')) out += ' ';
+  let i = 0;
+  while (i < s.length) {
+    if (s[i] !== '<') { out += s[i]; i++; continue; }
+    if (s.startsWith('<w:tab', i)) out += ' ';
+    i = tagEnd(s, i + 1) + 1;
   }
   return out.replace(/&(?:amp|lt|gt|quot|apos);/g, (m) => ENT[m]).trim();
 };

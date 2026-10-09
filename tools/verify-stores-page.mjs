@@ -22,24 +22,31 @@ const ENT = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>
 const decode = (s) => s.replace(/&(?:amp|quot|#39|lt|gt);/g, (m) => ENT[m]);
 // نصّ المقطع بماسح محرفاً محرفاً لا بتعبير نمطي على الوسوم: يحترم الاقتباس داخل السمات،
 // ويتخطّى script/style بمحتواهما إلى وسم إغلاقهما بالاسم (js/incomplete-multi-character-sanitization)
+const tagEnd = (h, from) => {
+  let q = '';
+  let i = from;
+  while (i < h.length) {
+    const c = h[i];
+    if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') return i;
+    i++;
+  }
+  return h.length;
+};
+const SKIP_TAGS = [['<script', '</script>'], ['<style', '</style>']];
 const stripTags = (h) => {
+  const lower = h.toLowerCase();
   let out = '';
-  for (let i = 0; i < h.length; i++) {
-    if (h[i] !== '<') { out += h[i]; continue; }
-    const rest = h.slice(i + 1, i + 7).toLowerCase();
-    const skip = rest.startsWith('script') ? '</script>' : rest.startsWith('style') ? '</style>' : null;
-    if (skip) {
-      const close = h.toLowerCase().indexOf(skip, i);
-      i = close < 0 ? h.length : close + skip.length - 1;
-      out += ' ';
-      continue;
-    }
-    let q = '';
-    for (i++; i < h.length; i++) {
-      const c = h[i];
-      if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') break;
-    }
+  let i = 0;
+  while (i < h.length) {
+    if (h[i] !== '<') { out += h[i]; i++; continue; }
+    const skip = SKIP_TAGS.find(([open]) => lower.startsWith(open, i));
     out += ' ';
+    if (skip) {
+      const close = lower.indexOf(skip[1], i);
+      i = close < 0 ? h.length : close + skip[1].length;
+    } else {
+      i = tagEnd(h, i + 1) + 1;
+    }
   }
   return out;
 };
@@ -83,7 +90,10 @@ export function expectations(master, unit, ui, lang) {
 export function verify(html, X) {
   const fails = [];
   const ok = (cond, msg) => { if (!cond) fails.push(msg); };
-  const main = /<main[\s\S]*?<\/main>/.exec(html)?.[0] ?? '';
+  // قصّ <main> بالفهرسة لا بتعبير نمطي كسول عبر الصفحة كلها (تراجع فائق)
+  const mainStart = html.indexOf('<main');
+  const mainEnd = mainStart < 0 ? -1 : html.indexOf('</main>', mainStart);
+  const main = mainStart < 0 || mainEnd < 0 ? '' : html.slice(mainStart, mainEnd + '</main>'.length);
   const mainText = stripTags(main);
   const dMain = decode(main);
   ok(main.length > 0, 'لا <main> في الصفحة');
@@ -118,7 +128,10 @@ export function verify(html, X) {
   cards.forEach((c, i) => {
     const s = stores[i]; if (!s) return;
     const card = decode(c[0]);
-    const label = (/store-cta"[^>]*>\s*([^<]+?)\s*<\/a>/.exec(card)?.[1] ?? '').trim();
+    const ctaAt = card.indexOf('store-cta"');
+    const ctaOpen = ctaAt < 0 ? -1 : card.indexOf('>', ctaAt);
+    const ctaClose = ctaOpen < 0 ? -1 : card.indexOf('</a>', ctaOpen);
+    const label = ctaOpen < 0 || ctaClose < 0 ? '' : card.slice(ctaOpen + 1, ctaClose).trim();
     ok(label === (s.instagram ? X.ui.visitAccount : X.ui.visit), `البطاقة ${i + 1}: نص الزر «${label}»`);
     ok(card.includes(X.ui.directOrder) === s.instagram, `البطاقة ${i + 1}: سطر الطلب المباشر ${s.instagram ? 'غائب' : 'حاضر خطأً'}`);
     ok(card.includes(s.description), `البطاقة ${i + 1}: الوصف ليس كاملاً`);
