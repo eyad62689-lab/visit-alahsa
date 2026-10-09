@@ -34,7 +34,7 @@ async function logRequest(request, context, ua, isBot) {
     country: context.geo?.country?.code || null,
   }
   // مفتاح يومي — يسهّل على theft-scan قصر التحليل على أيام الأسبوع الأخير
-  const key = `${now.toISOString().slice(0, 10)}/${now.getTime()}-${Math.random().toString(36).slice(2, 8)}`
+  const key = `${now.toISOString().slice(0, 10)}/${now.getTime()}-${crypto.randomUUID().slice(0, 8)}`
   await store.setJSON(key, entry)
 }
 
