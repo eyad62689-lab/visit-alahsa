@@ -79,7 +79,10 @@ export async function run({ distDir, cwd, dryRun }) {
 if (process.argv[1]?.endsWith('submit.mjs')) {
   const dryRun = process.argv.includes('--dry-run');
   const cwd = process.cwd();
-  run({ distDir: path.join(cwd, 'dist'), cwd, dryRun })
-    .then((msg) => console.log(msg))
-    .catch((err) => { console.error(err); process.exitCode = 1; });
+  try {
+    console.log(await run({ distDir: path.join(cwd, 'dist'), cwd, dryRun }));
+  } catch (err) {
+    console.error(err);
+    process.exitCode = 1;
+  }
 }
