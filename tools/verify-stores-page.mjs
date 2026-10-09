@@ -3,7 +3,7 @@
 // لكل لغة لها ملف src/data/stores-directory.<lang>.json (والعربية من المصدر): يقارن HTML
 // الناتج بالبيانات: عدد البطاقات وأعدادها بالأقسام، ترتيب الشراع، تطابق كل رابط «زيارة»
 // مع url في المصدر العربي، الأسماء والأوصاف والمنصات بلغة الصفحة، نصوص الأزرار من ui.ts،
-// غياب الحقول الداخلية وصفوف الملحق والعبارات الممنوعة (داخل <main>)، noindex، h1 واحد،
+// غياب الحقول الداخلية وصفوف الملحق والعبارات الممنوعة (داخل <main>)، الفهرسة وhreflang (أُعلنت 2026-10-09)، h1 واحد،
 // تسلسل العناوين، وFAQ JSON-LD مطابقة للنص الظاهر. الوسوم تحمل data-astro-cid-* فكل
 // مطابقة تسمح بسمات بعد الصنف.
 // التشغيل: node tools/verify-stores-page.mjs            (كل اللغات المبنية)
@@ -146,11 +146,12 @@ export function verify(html, X) {
   ok(!/(^|[^\d])84([^\d]|$)/.test(mainText), 'العدد 84 يظهر في النص');
   ok(!/[٠-٩]/.test(mainText), 'أرقام عربية-هندية في النص');
 
-  ok(html.includes('<meta name="robots" content="noindex, nofollow">'), 'noindex غائب');
+  // معلَنة منذ 2026-10-09: لا noindex، وhreflang إلى كل لغة مبنية (ونفسها) — التبادل يحرسه C26
+  ok(!/<meta name="robots" content="noindex/.test(html), 'noindex ما زال على الصفحة');
   ok((html.match(/<h1[\s>]/g) || []).length === 1, 'h1 ليس واحداً');
   ok(new RegExp(`<h1 class="pgh-title"[^>]*>${esc(X.seo.h1)}</h1>`).test(decode(html)), 'h1 لا يطابق seo.h1');
   // <link rel="alternate" hreflang> فقط — روابط مبدّل اللغة في الترويسة تحمل hreflang كسمة وهذا مقبول
-  ok(!/<link rel="alternate" hreflang=/.test(html), 'hreflang موجود على صفحة noindex');
+  for (const l of X.langs ?? []) ok(new RegExp(`<link rel="alternate" hreflang="${l}" href="[^"]*/${esc(encodeURI(PATHS[l]))}/"`).test(html), `hreflang=${l} غائب`);
   const title = decode(/<title>([^<]+)<\/title>/.exec(html)?.[1] ?? '');
   ok(title.startsWith(X.seo.title_tag), `العنوان «${title}»`);
   ok(decode(html).includes(`content="${X.seo.meta_description}"`), 'meta description لا تطابق');
@@ -182,7 +183,8 @@ export async function loadExpectations(lang) {
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {
   const only = process.argv[2];
-  const langs = only ? [only] : ['ar', ...(await readdir(join(ROOT, 'src/data'))).map((f) => /^stores-directory\.([a-z]{2})\.json$/.exec(f)?.[1]).filter((l) => l && l !== 'ar')];
+  const built = ['ar', ...(await readdir(join(ROOT, 'src/data'))).map((f) => /^stores-directory\.([a-z]{2})\.json$/.exec(f)?.[1]).filter((l) => l && l !== 'ar')];
+  const langs = only ? [only] : built;
   let failed = 0;
   for (const lang of langs) {
     if (!Object.hasOwn(PATHS, lang)) { console.log(`✗ لغة غير معروفة: ${lang}`); failed++; continue; }
@@ -191,10 +193,10 @@ if (isMain) {
     let html;
     try { html = await readFile(page, 'utf8'); }
     catch (e) { if (e.code !== 'ENOENT') throw e; console.log(`✗ ${lang}: الصفحة غير مبنية (${PATHS[lang]})`); failed++; continue; }
-    const X = await loadExpectations(lang);
+    const X = { ...(await loadExpectations(lang)), langs: built };
     const fails = verify(html, X);
     if (fails.length) { failed++; console.log(`✗ ${lang}: ${fails.length} خلل`); for (const f of fails) console.log('    ' + f); }
-    else console.log(`✓ ${lang}: ${X.stores.length} بطاقة، الروابط مطابقة، noindex، FAQ وItemList سليمتان.`);
+    else console.log(`✓ ${lang}: ${X.stores.length} بطاقة، الروابط مطابقة، مفهرسة بـhreflang، FAQ وItemList سليمتان.`);
   }
   process.exit(failed ? 1 : 0);
 }

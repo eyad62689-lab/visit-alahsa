@@ -6,7 +6,8 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH } from '../data/events';
-import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, ABOUT_ALT } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, ABOUT_ALT, STORES_ALT } from '../lib/routes';
+import { storesLangs } from '../lib/stores';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
 import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
@@ -50,6 +51,8 @@ export const GET: APIRoute = async ({ site }) => {
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
     { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },
+    // دليل المتاجر الإلكترونية (أُعلن 2026-10-09) — اللغات المبنية فعلاً من ملفات ترجمته
+    { ...Object.fromEntries(storesLangs.map((l) => [l, STORES_ALT[l]])) as Pair, lastmod: dateOf(`${V}StoresDirectoryView.astro`, ...storesLangs.map((l) => `src/data/stores-directory.${l}.json`)) },
     // المسارات المقترحة بلغاتها الخمس — التاريخ من ملفات البيانات وقالبها
     { ...trailsIndexAlt(), lastmod: dateOf(`${V}TrailsIndexView.astro`, ...TRAIL_FILES) },
     ...TRAILS.map((tr) => ({ ...trailAlt(tr), lastmod: dateOf(`${V}TrailView.astro`, ...TRAIL_FILES) })),
