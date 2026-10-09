@@ -73,7 +73,7 @@ export function setupTerrainMap() {
 
   if (!small && hasWebGL2 && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); start(); }
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); void start(); }
     }, { rootMargin: '240px' });
     io.observe(host);
   }
@@ -85,7 +85,7 @@ export function setupTerrainMap() {
       if (!id) return;
       bus.pendingLocate = id;
       bus.onLocate?.(id);
-      start();
+      void start();
       host.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
     });
   });

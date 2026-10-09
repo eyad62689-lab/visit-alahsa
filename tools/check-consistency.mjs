@@ -265,7 +265,7 @@ async function main() {
       if (badFormat.length) fail('C8', `صيغة تاريخ غير صالحة: ${badFormat.slice(0, 3).join(', ')}`);
       else if (future.length) fail('C8', `${future.length} تاريخاً في المستقبل: ${future.slice(0, 3).join(', ')}`);
       else if (distinct === 1 && mods.length > 5) fail('C8', `كل الروابط بتاريخ واحد (${mods[0]}) — مؤشّر استنساخ ضحل`);
-      else pass('C8', `${mods.length} lastmod من ${locs.length} رابطاً، ${distinct} تاريخاً مميزاً، أحدثها ${mods.slice().sort().at(-1)}`);
+      else pass('C8', `${mods.length} lastmod من ${locs.length} رابطاً، ${distinct} تاريخاً مميزاً، أحدثها ${mods.slice().sort((a, b) => a.localeCompare(b)).at(-1)}`);
     }
   }
 
