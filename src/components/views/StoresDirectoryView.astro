@@ -1,50 +1,64 @@
 ---
-// دليل متاجر الأحساء الإلكترونية — معاينة داخلية عربية (2026-10-09).
+// دليل متاجر الأحساء الإلكترونية — معاينة داخلية (2026-10-09).
 //
-// المحتوى كله من src/data/stores-directory.ar.json عبر src/lib/stores.ts: لا اسم ولا
+// المحتوى كله من src/data/stores-directory.<lang>.json عبر src/lib/stores.ts: لا اسم ولا
 // وصف ولا رابط يُكتب هنا يدوياً. الترتيب بحقل order (الشراع للتمور أول بطاقة بقرار
 // صاحب المشروع)، والبطاقة المميّزة لا تحمل معاملة بصرية — موقعها الأول هو تمييزها.
-// الصفحة noindex حتى يُقرّ النشر؛ لا نسخة إنجليزية ولا hreflang ولا إدراج في الخريطة.
+// الصفحة noindex حتى يُقرّ النشر؛ لا hreflang ولا إدراج في الخريطة. نصوص الواجهة في ui.ts،
+// والترجمات zh/de/ru عبر خطوط الترجمة حصراً.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
-import { sortedStores, storeSections, storeFaq, storeSeo, countsBySection } from '../../lib/stores';
-import { STORES_AR } from '../../lib/routes';
-import { titleSep, useTranslations } from '../../i18n/utils';
+import { storesPage, storesLangs, countsBySection } from '../../lib/stores';
+import { STORES_ALT } from '../../lib/routes';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
-const lang: Lang = 'ar';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
 const t = useTranslations(lang);
-const stores = sortedStores;
+const page = storesPage(lang);
+const { seo, sections, stores, faq } = page;
 const counts = countsBySection(stores);
 const total = stores.length;
 
-// السطر التعريفي: العدد محسوب من البيانات لا مكتوب يدوياً
-const lead = `${total} متجراً إلكترونياً من الأحساء في مكان واحد: تمور، حرف يدوية، ومنتجات محلية — يأخذك كل رابط إلى المتجر مباشرة.`;
+// مبدّل اللغة يعرض اللغات المبنية فعلاً (ملف ترجمة موجود) — لا خيار يقود إلى 404
+const has = (l: Lang) => storesLangs.includes(l);
+const alt: AltLinks = {
+  ar: STORES_ALT.ar,
+  // نظير إنجليزي غائب = سلسلة فارغة: Header يستبعد الخيار الفارغ فلا يقود إلى 404
+  en: has('en') ? STORES_ALT.en : '',
+  ...(has('zh') ? { zh: STORES_ALT.zh } : {}),
+  ...(has('de') ? { de: STORES_ALT.de } : {}),
+  ...(has('ru') ? { ru: STORES_ALT.ru } : {}),
+};
 
-const siteUrl = 'https://visit-alahsa.com';
+// السطر التعريفي: العدد محسوب من البيانات لا مكتوب يدوياً
+const fill = (s: string, vars: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+const lead = fill(t('stores.lead'), { n: total });
+
 const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: storeFaq.map((f) => ({
+    mainEntity: faq.map((f) => ({
       '@type': 'Question', name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   },
   {
     '@context': 'https://schema.org', '@type': 'ItemList',
-    name: storeSeo.h1, numberOfItems: total,
+    name: seo.h1, numberOfItems: total,
     itemListElement: stores.map((s, n) => ({ '@type': 'ListItem', position: n + 1, name: s.name, url: s.url })),
   },
 ];
-const pageTitle = `${storeSeo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
+const pageTitle = `${seo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
 ---
-<Base title={pageTitle} description={storeSeo.meta_description} lang={lang} noindex={true} jsonLd={jsonLd}>
-  <Header lang={lang} />
+<Base title={pageTitle} description={seo.meta_description} lang={lang} alt={alt} noindex={true} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
   <main id="main">
-    <PageHero title={storeSeo.h1} lead={lead} leadWidth={62} lang={lang} motif="center" />
+    <PageHero title={seo.h1} lead={lead} leadWidth={62} lang={lang} motif="center" />
 
     <section class="container stores-body">
       <div class="stores-tools">
@@ -52,7 +66,7 @@ const pageTitle = `${storeSeo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
           <button class="chip is-active" type="button" data-section="all" aria-pressed="true">
             {t('stores.all')} <span class="chip-n">{total}</span>
           </button>
-          {storeSections.map((sec) => (
+          {sections.map((sec) => (
             <button class="chip" type="button" data-section={sec.id} aria-pressed="false">
               {sec.title} <span class="chip-n">{counts[sec.id]}</span>
             </button>
@@ -62,7 +76,7 @@ const pageTitle = `${storeSeo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
       </div>
 
       <div id="stores-list">
-        {storeSections.map((sec) => (
+        {sections.map((sec) => (
           <section class="stores-sec" id={`sec-${sec.id}`} aria-labelledby={`h-${sec.id}`}>
             <h2 class="stores-sec-t" id={`h-${sec.id}`}>
               {sec.title} <span class="stores-sec-n">{counts[sec.id]}</span>
@@ -70,10 +84,10 @@ const pageTitle = `${storeSeo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
             <div class="stores-grid">
               {stores.filter((s) => s.section === sec.id).map((s, idx) => (
                 <article class="card card--lift store-card" data-section={s.section} data-search={`${s.name} ${s.description}`.toLowerCase()} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
-                  <Photo src={s.image} label={`واجهة متجر ${s.name}`} class="store-shot" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+                  <Photo src={s.image} label={fill(t('stores.shotAlt'), { name: s.name })} class="store-shot" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
                   <div class="store-body">
                     <div class="store-head">
-                      <img class="store-logo" src={s.logo} alt={`شعار ${s.name}`} width="48" height="48" loading="lazy" decoding="async" />
+                      <img class="store-logo" src={s.logo} alt={fill(t('stores.logoAlt'), { name: s.name })} width="48" height="48" loading="lazy" decoding="async" />
                       <h3 class="store-t">{s.name}</h3>
                     </div>
                     <span class="store-platform"><span class="sr-only">{t('stores.platform')}: </span>{s.platform}</span>
@@ -95,7 +109,7 @@ const pageTitle = `${storeSeo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
 
       <section class="stores-faq" aria-labelledby="h-faq">
         <h2 class="stores-sec-t" id="h-faq">{t('stores.faq')}</h2>
-        {storeFaq.map((f) => (
+        {faq.map((f) => (
           <details class="faq-item">
             <summary>{f.q}</summary>
             <p>{f.a}</p>
