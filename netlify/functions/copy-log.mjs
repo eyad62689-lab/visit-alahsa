@@ -9,8 +9,7 @@
 // الجلسة (يُحتسب التكرار في الخادم أيضاً — عدّاد المتصفح قابل للتلاعب).
 
 import { getStore } from '@netlify/blobs'
-import { randomUUID } from 'node:crypto'
-import { createHash } from 'node:crypto'
+import { createHash, randomUUID } from 'node:crypto'
 
 const SUSPICIOUS_LENGTH = 400
 const SUSPICIOUS_REPEATS = 5

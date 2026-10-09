@@ -1458,16 +1458,14 @@ async function main() {
     const BIDI = /[\u200E\u200F\u202A-\u202E\u2066-\u2069]/;
     const roots = [path.join(ROOT, 'src/data'), path.join(ROOT, 'src/content')];
     const hits = [];
-    for (const dir of roots) {
-      if (!existsSync(dir)) continue;
-      for (const f of await readdir(dir, { recursive: true })) {
-        if (!/\.(json|md)$/.test(f)) continue;
-        const full = path.join(dir, f);
-        const txt = await readText(full);
-        const m = txt.match(BIDI);
-        if (m) hits.push(`${path.relative(ROOT, full)} (U+${m[0].codePointAt(0).toString(16).toUpperCase()})`);
-      }
-    }
+    const lists = await Promise.all(roots.filter((d) => existsSync(d)).map(async (dir) =>
+      (await readdir(dir, { recursive: true })).filter((f) => /\.(json|md)$/.test(f)).map((f) => path.join(dir, f))));
+    const files = lists.flat();
+    const texts = await Promise.all(files.map((f) => readText(f)));
+    files.forEach((full, i) => {
+      const m = texts[i].match(BIDI);
+      if (m) hits.push(`${path.relative(ROOT, full)} (U+${m[0].codePointAt(0).toString(16).toUpperCase()})`);
+    });
     if (hits.length) fail('C44', `أحرف تحكّم اتجاهية في ${hits.length} ملفاً: ${hits.slice(0, 4).join(' · ')}`);
     else pass('C44', 'لا أحرف تحكّم اتجاهية في src/data وsrc/content');
   }
