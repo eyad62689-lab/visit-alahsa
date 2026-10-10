@@ -27,7 +27,7 @@
 
 ## المرحلة ب — الترجمة
 
-- [ ] en
+- [x] en 2026-10-10 `src/content/blog/tarafa-ibn-al-abd-en.md` (slug `tarafa-ibn-al-abd-and-al-ahsa`)؛ مطابقة النسخة الجولة 1: «مُجاز» بأربع ملاحظات اختيارية لم تُطبَّق (`reviews/en-match-round-1-facts.md`). اصطلاحات تُحمل إلى zh/de/ru: البحرين = الإقليم القديم (al-Bahrayn لا الدولة)، عامل = governor، قاعدة = chief town، قصبة = principal town؛ الأبيات بنصها العربي ثم ترجمة معناها.
 - [ ] zh
 - [ ] de
 - [ ] ru
