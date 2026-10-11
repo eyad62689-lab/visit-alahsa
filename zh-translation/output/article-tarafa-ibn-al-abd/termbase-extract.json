@@ -1,0 +1,935 @@
+{
+ "style_rules": {
+  "punctuation": "علامات الترقيم الصينية كاملة العرض: ，。、；：（）《》“”‘’",
+  "numbers": "الأرقام الغربية 1 2 3 للتواريخ والمسافات والأسعار",
+  "units": "كم = 公里، م = 米، درجة حرارة = °C مع 摄氏 عند أول ذكر",
+  "currency": "沙特里亚尔（SAR）عند أول ذكر ثم 里亚尔",
+  "tone": "صيغة مخاطبة 您 في الدعوات المباشرة، وأسلوب وصفي جمالي في السرد"
+ },
+ "style_rules_additions": {
+  "calendar": "نُقّح بدفعة 3 (ملاحظة القارئ الأعمى — 公历 اسم النظام و公元 للتأريخ): أول ذكر في الصفحة 伊斯兰历 XXXX 年（公元 YYYY 年）وما بعده 伊历 XXXX 年（公元 YYYY 年）— قوسان لا شرطة مائلة. القرن: 伊斯兰历 12 世纪末（约公元 1790—1800 年）. دفعة 2 وُفّقت رجعياً",
+  "romanization": "قاعدة موحدة (قرار ما بعد دفعة 2): العنوان title_zh بالاسم الصيني وحده؛ الگلوس اللاتيني عند أول ذكر في المتن فقط، وللمصطلحات الموسومة به في القاعدة",
+  "misparse_sweep": "فحص إلزامي في المرحلة 5: لا 上海/北京/中国 عابرة لحدود الكلمات (وقعت مرتين: 遇上海湾 و接上海湾)، ولا 环卫 بمعنى الحراسة؛ ودفعة 3 أضافت: 东北约 (الناتو)، 时下، 日更",
+  "legal_carveout": "……，但……的除外。 — This is a style ruling, not a term (suggested for style_rules_additions). 本规定/本条不适用于 inside a numbered list reads as scoping the whole section. The comma-joined 但……的除外 can only qualify the act in its own sentence. (House precedent in src/data/legal.ts LEGAL_SECTIONS_ZH (privacy rights item: 「……请求删除该数据，但存在法律依据需保留的除外。」); mainland statutory pattern 「但……的除外」; legal-s4i4 2026-09-28)"
+ },
+ "terms": [
+  {
+   "en": "Al-Ahsa",
+   "zh": "哈萨",
+   "note": "وفق اليونسكو. تحقق المقارن المرجعي 2026-08-29: گلوس 艾赫萨 غير موثّق في UNESCO zh ولا VisitSaudi zh — لا يُستخدم؛ 哈萨 وحدها في كل المواضع",
+   "source": "UNESCO whc.unesco.org/zh/list/1563 + visitsaudi.cn/zh"
+  },
+  {
+   "en": "Al-Ahsa Oasis",
+   "zh": "哈萨绿洲",
+   "source": "UNESCO",
+   "note": "حدائق الواحة (batch-12 · 2026-09-03): نص القيمة العالمية في UNESCO zh يسمّي حدائق الواحة 花园 (由花园、运河、泉眼、水井、排水湖……组成). في الموقع: حدائق (gardens) في النبذ والتسميات → 园林 (ملزمة عبر تسمية المجموعة 公园与园林 في فهرس الأسواق والمنتزهات)، والمنتزهات (parks) → 公园. تُستعمل 花园 فقط حين تُقتبس أو تُعاد صياغة عبارة اليونسكو نفسها — لا كلمة ثالثة للمفهوم الواحد في الصفحة الواحدة."
+  },
+  {
+   "en": "Al-Ahsa Oasis, an Evolving Cultural Landscape",
+   "zh": "哈萨绿洲，变迁的文化景观",
+   "source": "UNESCO",
+   "usage_note": "داخل جملة جارية يجوز الاسم المختصر بين علامتي تنصيص «世界遗产“哈萨绿洲”» حين يكسر الاسم الكامل (بفاصلته الداخلية) الجملة — القارئ الأعمى قرأ «“哈萨绿洲，变迁的文化景观”的十二处组成部分» شيئين معطوفين (asfar-body-opening 2026-10-01، الحاكم 93). الاسم الكامل يبقى الصيغة الأولى في النبذات (sahood · khuzam)."
+  },
+  {
+   "en": "Al-Qarah Mountain",
+   "zh": "卡拉山",
+   "source": "VisitSaudi zh"
+  },
+  {
+   "en": "Jawatha Mosque",
+   "zh": "贾瓦塔清真寺",
+   "source": "VisitSaudi zh"
+  },
+  {
+   "en": "Qaisariah Souq",
+   "zh": "凯撒利亚集市",
+   "source": "VisitSaudi zh — عنوان مقال «凯撒利亚集市寻宝 - Visit Saudi官方网站» (visitsaudi.cn/zh/do/culture/souq-al-qaisariya-s-hidden-gems)",
+   "note": "قرار إياد 2026-09-03 (الدفعة 13): اعتماد تهجئة VisitSaudi zh 凯撒利亚集市 بدل الصيغة البيتية السابقة 凯萨利亚市集 (الدفعات 1–12، رُصد التباين في مرحلة 4 من الدفعة 12: الصيغة البيتية غير مشهودة على الويب المفتوح). هوجرت في دفعة واحدة عبر المصدر وtm.json وهذه القاعدة. الاسم العلم فقط يأخذ 集市؛ اسم الجنس «سوق» في أسماء الأسواق الأخرى (哈米迪耶市集، 手工艺人市集، 妇女市集) والتصنيف 传统市集 بقي كما هو — توحيد رأس الكلمة قرار لاحق إن رغب إياد."
+  },
+  {
+   "en": "Visit Al-Ahsa",
+   "zh": "游览哈萨（Visit Al-Ahsa）",
+   "note": "اسم العلامة يبقى لاتينياً بعد أول ذكر مترجم",
+   "source": "brand decision"
+  },
+  {
+   "en": "people of Al-Ahsa",
+   "zh": "当地居民",
+   "note": "قرار المدقق 2026-08-29: 哈萨人 ملبس لقارئ البر الصيني (يستدعي 哈萨克族 الكازاخ) — تُستخدم 当地居民 أو 哈萨居民 ولا يُستخدم 哈萨人 أبداً",
+   "source": "proofreader decision loop2 jabal-al-qarah"
+  },
+  {
+   "en": "Al-Uqair",
+   "ar": "العقير",
+   "zh": "乌盖尔（Al-Uqair）",
+   "note": "گلوس لاتيني عند أول ذكر في الصفحة؛ لا يُستخدم 欧盖尔",
+   "source": "transliteration, home batch 2026-08-29",
+   "verify": true
+  },
+  {
+   "en": "Banu Abd al-Qais",
+   "ar": "بنو عبد القيس",
+   "zh": "阿卜杜·盖斯部落",
+   "note": "بنو → 部落 وفق العرف التاريخي الصيني، لا 巴努 الصوتية",
+   "source": "batch-1 2026-08-29"
+  },
+  {
+   "en": "Al-Kilabiyah",
+   "ar": "الكلابية",
+   "zh": "基拉比亚",
+   "note": "قرية في كل الصفحات (قرار المالك 2026-10-08): 基拉比亚村 حيث يسمّي المصدر نوع التجمّع، و基拉比亚 مجردةً حيث يرد الاسم مجرداً؛ لا 镇",
+   "source": "batch-1 2026-08-29"
+  },
+  {
+   "en": "Jawatha Park",
+   "ar": "منتزه جواثا السياحي",
+   "zh": "贾瓦塔公园",
+   "note": "المنتزه بجوار مسجد جواثا لا يحيط به ولا يحتويه (قرار المالك 2026-10-08): 相邻 في التسميات والملخّص، 一旁 في المتن، 旁边 في الأسئلة الشائعة؛ لا 园内 ولا 周边公园",
+   "source": "batch-1 2026-08-29"
+  },
+  {
+   "en": "Jawatha archaeological site",
+   "ar": "موقع جواثى الأثري",
+   "zh": "贾瓦塔考古遗址",
+   "source": "batch-1 2026-08-29"
+  },
+  {
+   "en": "Jumu'ah Mosque (Medina)",
+   "ar": "مسجد الجمعة بالمدينة",
+   "zh": "主麻清真寺",
+   "source": "batch-1 2026-08-29 · annotated jawatha-friday 2026-09-29 (owner ruling) — ar.wikipedia «مسجد الجمعة» (https://ar.wikipedia.org/wiki/%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9) فتحته المرحلة 4 في 2026-09-29: أول جمعة بعد الهجرة أُقيمت فيه، أي أن الجمعة أُقيمت في المدينة قبل المسجد النبوي — علّة رفض «ثاني»",
+   "note": "مسجدٌ آخر غير المسجد النبوي: مسجد الجمعة في ديار بني سالم بن عوف، حيث صلّى النبي ﷺ أول جمعة بعد الهجرة في طريقه من قباء إلى المدينة (ar.wikipedia «مسجد الجمعة»). لا يُستعمل مرجعاً لدعوى جمعة جواثا — مرجعها المسجد النبوي 先知清真寺 بلفظ الحديث (حكم إياد 2026-09-29، الدفعة jawatha-friday)، ولا تُوصف جواثا بـ«第二/ثاني» في أي لغة. كان المصدران العربي والإنجليزي يسمّيانه مرجعاً للدعوى في jawatha-mosque (المتن وfaq[2].a) فورثته الصينية من batch-1 حتى صُحّح المصدر 2026-09-29. يحرسه C30 (/主麻清真寺/ سلباً في أي صفحة تذكر 贾瓦塔). / A different mosque (Banu Salim ibn Awf), where the Prophet led the first Friday prayer after the Hijra. Never the referent of the Jawatha Friday-prayer claim (use 先知清真寺), and Jawatha is never 第二 (second)."
+  },
+  {
+   "en": "Amiriah School",
+   "ar": "المدرسة الأميرية",
+   "zh": "阿米里亚学校",
+   "source": "batch-2 2026-08-29"
+  },
+  {
+   "en": "Al-Mazrouiyah district",
+   "ar": "حي المزروعية",
+   "zh": "马兹鲁伊亚区",
+   "source": "batch-3 2026-08-29"
+  },
+  {
+   "en": "Bayt Al-Bay'ah",
+   "ar": "بيت البيعة",
+   "zh": "效忠之家（拜特·拜阿）",
+   "note": "العنوان 效忠之家 والمتن يذكر النقحرة عند أول ذكر",
+   "source": "batch-3 2026-08-29"
+  },
+  {
+   "en": "Al-Uqair Castle",
+   "ar": "قلعة العقير",
+   "zh": "乌盖尔城堡",
+   "note": "الگلوس: 乌盖尔城堡（Al-Uqair）— اللاتيني بعد الاسم كاملاً لا داخله",
+   "source": "batch-3 2026-08-29"
+  },
+  {
+   "en": "Uqair Protocol (1922)",
+   "ar": "بروتوكول العقير",
+   "zh": "《乌盖尔议定书》",
+   "note": "أطراف الترسيم غير محددة في المصدر — لا تُضاف",
+   "source": "batch-3 2026-08-29"
+  },
+  {
+   "en": "Al-Battaliyah village",
+   "ar": "قرية البطالية",
+   "zh": "巴塔利亚村",
+   "source": "batch-3 2026-08-29"
+  },
+  {
+   "en": "Princess Hibah bint Abdullah bin Ali Al-Uyuni",
+   "ar": "الأميرة هبة بنت عبدالله بن علي العيوني",
+   "zh": "希芭公主（希芭·宾特·阿卜杜拉·本·阿里·乌尤尼）",
+   "note": "الاسم المختصر أولاً والكامل في القوس — ضبط القارئ الأعمى",
+   "source": "batch-3 2026-08-29"
+  },
+  {
+   "en": "balah / bisr (early stage)",
+   "ar": "البلح (البسر)",
+   "zh": "半熟阶段（balah/bisr）",
+   "source": "batch-fruits 2026-09-02 (verified)"
+  },
+  {
+   "en": "Palms and Dates Center in Al-Ahsa",
+   "ar": "مركز النخيل والتمور بالأحساء",
+   "zh": "哈萨棕榈与椰枣中心",
+   "source": "batch-fruits 2026-09-02 (verified)"
+  },
+  {
+   "en": "Dome Mosque (Qubbah Mosque)",
+   "ar": "مسجد القبة",
+   "zh": "圆顶清真寺",
+   "note": "عند أول ذكر يجوز إتباعها بالنقحرة أو الگلوس اللاتيني (Qubbah)",
+   "source": "قرار تسمية معتمد — أمر جلسة إياد 2026-09-02 (يُعمَّم على كل الدفعات)"
+  },
+  {
+   "en": "Yaqut al-Hamawi",
+   "ar": "ياقوت الحموي",
+   "zh": "雅库特",
+   "note": "الجغرافي المؤرخ؛ الاسم الكامل عند أول ذكر: 雅库特·哈马维 ثم 雅库特",
+   "source": "قرار تسمية معتمد — أمر جلسة إياد 2026-09-02 (يُعمَّم على كل الدفعات)"
+  },
+  {
+   "en": "Al-Hamidiyah",
+   "ar": "الحميدية",
+   "zh": "哈米迪耶",
+   "source": "قرار تسمية معتمد — أمر جلسة إياد 2026-09-02 (يُعمَّم على كل الدفعات)"
+  },
+  {
+   "en": "Mufallaq",
+   "ar": "المفلق",
+   "zh": "穆法拉格（Mufallaq）",
+   "note": "لا صيغة صينية متداولة — نقحرة + گلوس عند أول ذكر",
+   "source": "batch-food-map 2026-09-02 (verified)"
+  },
+  {
+   "en": "dallah (coffee pot)",
+   "ar": "الدلة",
+   "zh": "阿拉伯咖啡壶",
+   "note": "دلالية — النقحرة 达拉 غير مألوفة ولا تلزم في alt",
+   "source": "batch-food-map 2026-09-02 (verified)"
+  },
+  {
+   "en": "King Abdullah Environmental Park",
+   "ar": "منتزه الملك عبدالله البيئي",
+   "zh": "阿卜杜拉国王环境公园",
+   "note": "تحقق ويب 2026-09-02: 环境公园 هي الصيغة المتداولة لهذا المنتزه بعينه في الهفوف على Ctrip و6renyou — رُفضت 生态公园 المقترحة لعدم توثقها",
+   "source": "batch-events 2026-09-02 (web-verified: gs.ctrip.com/html5/you/sight/hofuf1700270/133540500.html + 6renyou.com)"
+  },
+  {
+   "en": "Ministry of Culture",
+   "ar": "وزارة الثقافة",
+   "zh": "文化部",
+   "note": "داخل قوس بعد 沙特遗产委员会 فلا حاجة لسابقة 沙特 ثانية",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Uqair Beach Park",
+   "ar": "منتزه شاطئ العقير",
+   "zh": "乌盖尔海滩公园",
+   "note": "متسقة مع 乌盖尔 المعتمدة",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Wafrah district",
+   "ar": "حي الوفرة",
+   "zh": "瓦夫拉区",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Processed Dates Festival",
+   "ar": "مهرجان التمور المصنّعة",
+   "zh": "椰枣制品节",
+   "note": "سابقة بطاقات المواسم — ثُبّتت",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Qaisariyah Nights",
+   "ar": "ليالي القيصرية",
+   "zh": "凯撒利亚集市之夜",
+   "note": "متسقة مع 凯撒利亚集市 المعتمدة عن VisitSaudi zh",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Uqair Winter",
+   "ar": "شتاء العقير",
+   "zh": "乌盖尔之冬",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Wafrah Winter",
+   "ar": "شتاء الوفرة",
+   "zh": "瓦夫拉之冬",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Creative Al-Ahsa Festival",
+   "ar": "مهرجان الأحساء المبدعة",
+   "zh": "创意哈萨节",
+   "source": "batch-events 2026-09-02 (verified)"
+  },
+  {
+   "en": "Bahrain",
+   "ar": "البحرين / مملكة البحرين",
+   "zh": "巴林",
+   "note": "巴林王国 حيث تقول العربية «مملكة البحرين»، و巴林 وحدها فيما عداه",
+   "source": "standard, batch-plan-trip 2026-09-02"
+  },
+  {
+   "en": "Dates Festival (generic mention)",
+   "ar": "مهرجان التمور",
+   "zh": "椰枣节",
+   "note": "ذكر عابر بلا اسم رسمي معلن — إن ظهر الاسم الرسمي للفعالية يُعتمد هو؛ يُميَّز عن 椰枣制品节 (مهرجان التمور المصنّعة)",
+   "source": "batch-plan-trip 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Raf'ah North",
+   "ar": "الرفعة الشمالية",
+   "zh": "里法阿北区",
+   "note": "متسقة مع 里法阿区 (حي الرفعة) في القاعدة",
+   "source": "batch-indexes 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Khalidiyah district",
+   "ar": "الخالدية",
+   "zh": "哈利迪亚区",
+   "note": "نقحرة",
+   "source": "batch-indexes 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Rawdah district (Hofuf)",
+   "ar": "الروضة",
+   "zh": "拉乌达区",
+   "note": "نقحرة — لا ترجمة دلالية 花园区. بحث المقارن 2026-09-02: لا اصطلاح منصات غالب — ثُبّتت 拉乌达 الأسلم صوتياً",
+   "source": "batch-indexes 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Uwaimriyah district",
+   "ar": "العويمرية",
+   "zh": "欧韦米里亚区",
+   "note": "نقحرة",
+   "source": "batch-indexes 2026-09-02 (verified)"
+  },
+  {
+   "en": "Al-Qarah (village/area)",
+   "ar": "القارة",
+   "zh": "卡拉",
+   "note": "متسقة مع 卡拉山 (جبل القارة)؛ بلا لاحقة 区 في فلاتر الأحياء لأنها قرية/منطقة شرق الواحة",
+   "source": "batch-indexes 2026-09-02 (verified)"
+  },
+  {
+   "en": "Ottoman governor / Ottoman era",
+   "ar": "الوالي العثماني / العهد العثماني",
+   "zh": "奥斯曼总督 / 奥斯曼时期",
+   "note": "奥斯曼 الصيغة القياسية؛ الوالي = 总督 (لا 州长 الحديثة)؛ الطراز: 早期奥斯曼清真寺的样式",
+   "source": "batch-4 2026-09-02 — 奥斯曼帝国/总督 قياسية في zh.wikipedia وbaike (مدخل 帕夏: «总督、将军及高官»)"
+  },
+  {
+   "en": "Sheikh Abdullah bin Abi Bakr Al-Mulla",
+   "ar": "الشيخ عبدالله بن أبي بكر الملا",
+   "zh": "谢赫阿卜杜拉·本·阿比·伯克尔·穆拉",
+   "note": "谢赫 مع گلوس（“谢赫”是宗教学者的尊称）بعد الاسم الكامل عند أول ذكر في الصفحة — على نمط 谢赫阿卜杜勒拉赫曼·本·奥马尔·穆拉 المعتمد (رُفض نقل القوس إلى ما بعد 谢赫 مباشرةً حفاظاً على اتساق السابقة)",
+   "source": "batch-4 2026-09-02 — لا ذكر صيني؛ 阿卜杜拉 نقحرة قياسية لعبدالله، والبقية اتساق مع القاعدة"
+  },
+  {
+   "en": "Al-Ruwaidah quarter",
+   "ar": "محلة الرويضة",
+   "zh": "鲁维达街区",
+   "note": "محلة = 街区 (وحدة أصغر داخل 库特区)؛ نقحرة الرويضة 鲁维达",
+   "source": "batch-4 2026-09-02 — لا ذكر صيني (بحث zh)؛ نقحرة دلالية"
+  },
+  {
+   "en": "Al-Tahimiyah village",
+   "ar": "قرية التهيمية",
+   "zh": "塔希米亚村（Al-Tahimiyah）",
+   "note": "الگلوس اللاتيني عند أول ذكر في المتن ثم 塔希米亚村 وحدها",
+   "source": "batch-4 2026-09-02 — لا ذكر صيني (بحث UNESCO zh/visitsaudi zh/عام)؛ نقحرة"
+  },
+  {
+   "en": "Al-Tahimiyah West Mosque",
+   "ar": "مسجد التهيمية الغربي",
+   "zh": "塔希米亚西清真寺",
+   "note": "ملف tahimiyah-s.md (slug_en: tahimiyah-w)؛ في المتن يُصرَّح أن هذا المسجد هو «الغربي» المدرج: «其中本寺（西清真寺）与东清真寺已列入…» (مسنَد للمصدر: «مسجدان مدرجان… هما الشرقي والغربي»)",
+   "source": "batch-4 2026-09-02 — لا ذكر صيني؛ اشتقاق من مدخل القرية"
+  },
+  {
+   "en": "Al-Tahimiyah East Mosque",
+   "ar": "مسجد التهيمية الشرقي",
+   "zh": "塔希米亚东清真寺",
+   "source": "batch-4 2026-09-02 — لا ذكر صيني؛ اشتقاق من مدخل القرية"
+  },
+  {
+   "en": "First Tahimiyah Mosque",
+   "ar": "مسجد التهيمية الأول",
+   "zh": "塔希米亚第一清真寺",
+   "source": "batch-4 2026-09-02 — لا ذكر صيني؛ ترجمة دلالية"
+  },
+  {
+   "en": "funeral prayer (salat al-janazah)",
+   "ar": "صلاة الجنازة",
+   "zh": "殡礼",
+   "note": "المصطلح الجاري عند مسلمي الصين (ويُقال أيضاً 站礼/者那则)؛ لا 葬礼祈祷 الحرفية",
+   "source": "batch-4 2026-09-02 — 殡礼 موثّقة في مواقع مسلمي الصين (muslimwww.com، sohu «穆斯林葬礼相关习俗»، sxyslj.com)، و者那则 النقحرة الشائعة"
+  },
+  {
+   "en": "Dome Mosque (Qubbah Mosque) — gloss form",
+   "ar": "مسجد القبة",
+   "zh": "圆顶清真寺（Qubbah，意为“穹顶”）",
+   "note": "تكملة للمدخل المعتمد 圆顶清真寺: حكم الحاكم (دفعة 4) — إذا وُضع الگلوس اللاتيني عند أول ذكر فيُذيَّل بمعناه （Qubbah，意为“穹顶”） لأن القارئ الأعمى (#2) ظنه اسماً أجنبياً للمسجد لا كلمة «قبة»",
+   "source": "batch-4 2026-09-02 — قرار تسمية إياد 2026-09-02 يجيز الگلوس؛ صيغة المعنى من القارئ الأعمى"
+  },
+  {
+   "en": "Al-Uqair port",
+   "ar": "ميناء العقير",
+   "zh": "乌盖尔港",
+   "note": "سابقة معتمدة في area_zh ومتن صفحة قلعة العقير؛ الگلوس 乌盖尔港（Al-Uqair）عند أول ذكر للميناء في المتن فقط (اسم المسجد 乌盖尔港清真寺 مصطلح آخر لا يحمل الگلوس). مطابقة لجدول النقحرة (عُ→乌، قَي→盖، ر→尔). لم يُعثر على صيغة 欧盖尔 في أي مصدر",
+   "source": "batch-5 2026-09-02؛ مرحلة 4: Saudipedia zh صفحة «哈萨县» تدرج 乌盖尔 مركزاً إدارياً (بحسب مقتطف البحث؛ الصفحة نفسها 404 عند الجلب المباشر). Saudipedia لا يملك صفحة صينية للميناء التاريخي (hreflang ar/en فقط)؛ VisitSaudi zh لا يذكره"
+  },
+  {
+   "en": "Al-Uqair Port Mosque",
+   "ar": "مسجد ميناء العقير",
+   "zh": "乌盖尔港清真寺",
+   "note": "عنوان الصفحة؛ اشتقاق من 乌盖尔港؛ بلا گلوس لاتيني",
+   "source": "batch-5 2026-09-02؛ مرحلة 4: اشتقاق داخلي"
+  },
+  {
+   "en": "port facilities (Al-Uqair — the mosque counted among them)",
+   "ar": "مرافق الميناء",
+   "zh": "港口建筑",
+   "note": "حكم الحاكم (دفعة 5): القارئ الأعمى (丙#1/#3) وجد وصف المسجد بـ港口设施 غريباً (设施 توحي بأرصفة ومستودعات) — اعتُمد 港口建筑 حين يكون المعدود مسجداً أو مبنى؛ 设施 تبقى لمرافق الخدمة العامة",
+   "source": "batch-5 2026-09-02؛ حكم المرحلة 6"
+  },
+  {
+   "en": "customs house (Al-Uqair)",
+   "ar": "الجمارك / مبنى الجمارك",
+   "zh": "海关楼",
+   "note": "سابقة معتمدة في صفحة قلعة العقير (城堡、商队客栈、埃米尔府、海关楼与清真寺) — تثبيت. 海关 وحدها تُقرأ جهةً/إدارةً؛ 楼 يصرّح بالمبنى، وهو ما تعنيه الجمارك ضمن قائمة مرافق",
+   "source": "batch-5 2026-09-02؛ مرحلة 4: Saudipedia en يسمّيه customs building — يؤيد 楼"
+  },
+  {
+   "en": "fort (Al-Uqair port fort)",
+   "ar": "الحصن",
+   "zh": "城堡",
+   "note": "قرار إياد 2026-10-03 (دفعة polish-six): حصن ميناء العقير هو المعلم نفسه 乌盖尔城堡 — 城堡 مجرّدة حين يجاورها اسم 乌盖尔، و乌盖尔城堡 كاملاً وإلا. 要塞 و老堡垒 متقاعدتان للعقير (要塞 لقصر خزام khuzam خارج هذا القرار)",
+   "source": "batch-5 2026-09-02؛ مرحلة 4: تثبيت سابقة؛ polish-six 2026-10-03: قرار إياد 要塞 ← 城堡"
+  },
+  {
+   "en": "Bahrain (historic sense — the eastern coastlands)",
+   "ar": "البحرين (بالمعنى التاريخي)",
+   "zh": "巴林（此处指历史上的东部沿海地区）",
+   "note": "الاسم نفسه 巴林 المعتمد مع گلوس المعنى التاريخي داخل النقل عن ياقوت — يحفظ التوضيح المعقوف في المصدر؛ لا يُخلط بمملكة البحرين الحديثة. حكم الحاكم (دفعة 5): القارئ الأعمى (戊#9a) سأل «شرق ماذا؟» — لا يُضاف 阿拉伯半岛 لأن المصدر لا يذكره",
+   "source": "batch-5 2026-09-02؛ مرحلة 4: تثبيت على مدخل 巴林 المعتمد"
+  },
+  {
+   "en": "Al-Shu'bah Mountain",
+   "ar": "جبل الشعبة",
+   "zh": "舒阿巴山（Al-Shu'bah）",
+   "note": "نقحرة (شُ→舒، عْبَة→阿巴 — العين تُعلَّم بـ阿 على نمط 萨阿德/里法阿)؛ الگلوس عند أول ذكر في المتن ثم 舒阿巴山. الاسم الشائع اليوم لجبل كنزان",
+   "source": "batch-6 2026-09-02؛ مرحلة 4: لا صيغة صينية منشورة (بحث 舒阿巴/舒巴 بلا نتائج)؛ Saudipedia en (Al-Ahsa Governorate) يذكر al-Shuaba Mountain ضمن جبال الأحساء السياحية فالمعلم موثق؛ الحكم بالجدول: ش+ـُ→舒، ع ساكنة→阿، ب+ـَ→巴"
+  },
+  {
+   "en": "Al-Shu'bah village",
+   "ar": "قرية الشعبة",
+   "zh": "舒阿巴村",
+   "note": "اشتقاق من مدخل الجبل؛ بلا گلوس (قرية مجاورة لا موضوع الصفحة). حكم الحاكم (دفعة 6): أسماء القرى المجاورة في سرد واحد تبقى بلا گلوس لاتيني (ملاحظة القارئ 甲-7 مردودة — الگلوس للمصطلحات الموسومة به في القاعدة فقط)",
+   "source": "batch-6 2026-09-02؛ مرحلة 4: اشتقاق داخلي من مدخل الجبل — لا حاجة لمصدر خارجي"
+  },
+  {
+   "en": "desert trips (rihlat barriyah)",
+   "ar": "الرحلات البرية",
+   "zh": "沙漠出游",
+   "note": "حكم الحاكم (دفعة 6): «رحلات برية» في سياق الخليج = رحلات صحراوية (الإنجليزية desert trips) — تُترجم 沙漠出游 لا 野外出游 (حرفية outing، نبّه عليها القارئ الأعمى 乙-1 ثلاث مرات) ولا 户外出游 (اقتراحه — يُسقط الصحراء). التخييم 露营 والهايكنج 徒步 والمشي 漫步 مصطلحات مستقلة",
+   "source": "batch-6 2026-09-02؛ حاكم: ترجمة دلالية من المصدر العربي (arbaa/thulaim) — لا حاجة لمصدر خارجي"
+  },
+  {
+   "en": "Al-Uqair Beach",
+   "ar": "شاطئ العقير",
+   "zh": "乌盖尔海滩",
+   "note": "اشتقاق من 乌盖尔（Al-Uqair） المعتمدة ومتسقة مع 乌盖尔海滩公园 (batch-events). الگلوس عند أول ذكر في المتن بعد الاسم كاملاً على نمط قلعة العقير: 乌盖尔海滩（Al-Uqair）؛ العنوان بلا گلوس. في الصفحة نفسها يبقى 乌盖尔港 بلا گلوس — الگلوس اللاتيني (Al-Uqair) مرة واحدة لكل صفحة. في المتن 乌盖尔古港 صفة سردية على نمط صفحة 乌盖尔 (这座海湾之滨的古港) لا اسماً جديداً. مرحلة 4: Agoda zh يكتب 乌凯尔海滩 (صيغة تجارية وحيدة، لا رسمية) — تُرفض لأن 乌盖尔 ملزمة في القاعدة ومتسقة عبر خمس صفحات. الحاكم (دفعة 7): القارئ الأعمى اقترح موضع الگلوس 乌盖尔（Al-Uqair）海滩 — رُفض حفاظاً على نمط الموقع (卡拉山（Jabal Al-Qarah）، 苏莱姆山（Al-Thulaim）)",
+   "source": "batch-7 2026-09-02؛ مرحلة 4 (تحقق ويب): لا صيغة على VisitSaudi zh (الصفحة 502) ولا Saudipedia zh؛ agoda.com/zh-cn (sun-and-sand guide) يذكر «Uqair 海滩 / 乌凯尔海滩» — غير معتمدة؛ الحكم بالاشتقاق من 乌盖尔 (UNESCO-consistent, home batch)"
+  },
+  {
+   "en": "Al-Jafurah desert",
+   "ar": "صحراء الجافورة",
+   "zh": "贾富拉沙漠",
+   "note": "贾富拉 هي الصيغة الرسمية لأرامكو السعودية بالصينية لحقل الجافورة (china.aramco.com/zh-cn: «贾富拉（Jafurah）气田») ومتداولة في الإعلام الاقتصادي الصيني (搜狐/腾讯/中国化工信息周刊) — تُعتمد للصحراء التي تحمل الاسم نفسه. الجدول يعطي 杰 لمقطع جا في أسماء الأماكن، لكن الصيغة المنشورة أولى (قاعدة 萨尔瓦). الگلوس 贾富拉沙漠（Jafurah）عند أول ذكر في المتن (بعد الاسم كاملاً على نمط الموقع؛ اقتراح القارئ 贾富拉（Jafurah）沙漠 مرفوض)",
+   "source": "batch-7 2026-09-02؛ مرحلة 4 (تحقق ويب): china.aramco.com/zh-cn/news-media/global-news/2021/aramco-awards-contracts-for-vast-jafurah-field-development — «贾富拉（Jafurah）气田»؛ m.sohu.com/a/815317786 و chemnews.com.cn تستعمل الصيغة نفسها"
+  },
+  {
+   "en": "Al-Ahsa Governorate",
+   "ar": "محافظة الأحساء",
+   "zh": "哈萨县",
+   "note": "حكم المرحلة 4: 哈萨县 لا 哈萨省 — Saudipedia zh (منصة وزارة الإعلام) تعنون مقال المحافظة «哈萨县» تحت تصنيف 地理/省市، وتحصر 省 في المنطقة (东部省 المعتمدة في القاعدة)؛ فالمحافظة وحدة دون المنطقة و省 خطأ تراتبي. لا سابقة أخرى في الموقع (البحث في src وtm.json لا يعطي إلا 东部省). تُستعمل للتبعية الإدارية (在行政上隶属哈萨县) ولجهة الإصدار في الإسناد (哈萨县……官方公告). ثلاثة مرجعيات مختلفة تبقى متمايزة: 哈萨 (الأحساء مجردة/اليونسكو)، 哈萨县 (المحافظة)، 哈萨市政局 (الأمانة)، و«البلدية» غير المسماة = 市政部门. ملاحظة: صفحة Saudipedia تعيد 404 عند الجلب المباشر (كما في دفعة 5) والعنوان مثبت من فهرس البحث مرتين",
+   "source": "batch-7 2026-09-02؛ مرحلة 4 (تحقق ويب): saudipedia.com/ch/article/945/地理/省市/哈萨县 — العنوان «哈萨县 - Saudipedia» (فهرس البحث؛ الجلب المباشر 404)؛ Saudipedia en: «Al-Ahsa Governorate is one of the governorates of the Eastern Province»"
+  },
+  {
+   "en": "Al-Ahsa Governorate's official announcement of the caravan-site service (source attribution)",
+   "ar": "إعلان محافظة الأحساء الرسمي عن خدمة موقع الكرفانات",
+   "zh": "哈萨县关于房车营地服务的官方公告",
+   "note": "سطر إسناد بند practical في صفحة شاطئ العقير — صيغة ثابتة مبنية على مدخلَي 哈萨县 و房车营地؛ تتبع حكم 哈萨县 (لا 省). لا تُضاف 政府 (المصدر العربي «محافظة الأحساء» بلا «حكومة»)",
+   "source": "batch-7 2026-09-02؛ مرحلة 4: اشتقاق داخلي من مدخلين محققين"
+  },
+  {
+   "en": "Jawatha Forest",
+   "ar": "غابة جواثا",
+   "zh": "贾瓦塔森林",
+   "note": "Derived from 贾瓦塔公园 / 贾瓦塔清真寺 (batch-1); no Latin gloss — neighbouring name in narrative. Stage 4: the project and its two-million-tree target are attested (hasanews.com 6474375 «للوصول إلى 2 مليون شجرة .. غابة جواثا»; alwatan.com.sa 357131); no zh form published",
+   "source": "batch-8 2026-09-02; stage 4: internal derivation from approved 贾瓦塔; facts corroborated by hasanews/alwatan (Arabic)"
+  },
+  {
+   "en": "pledge of allegiance (bay'ah)",
+   "ar": "البيعة / بايع",
+   "zh": "宣誓效忠",
+   "note": "Consistent with 效忠之家 (Bayt Al-Bay'ah, batch-3) and the baiah page body (向他宣誓效忠)",
+   "source": "batch-8 2026-09-02; stage 4: internal precedent (baiah page) — no external source needed"
+  },
+  {
+   "en": "Al-Mushaqar Park",
+   "ar": "منتزه المشقر",
+   "zh": "穆沙卡尔公园",
+   "note": "Transliteration of المُشَقَّر per the place-name column (مُ→穆, شَ→沙, قَّ→卡 as in 卡拉 Qarah / 卡塔尔 Qatar, ر→尔); Latin gloss (Al-Mushaqar Park) at first mention in body; title 穆沙卡尔公园 (the Arabic title is bare «المشقر» — 公园 added so the title is not opaque). Stage 4: no zh form published (searches 穆沙卡尔 / 穆沙加尔 / 穆沙格尔 empty); the park, its former name and the palace are attested in Arabic (alyaum 6607042, bayut.sa, X account «المُشقّر | منتزه الشيباني»)",
+   "source": "batch-8 2026-09-02; stage 4 (web-verified): no zh attestation — GB/T 17693.6 table; Arabic facts from alyaum.com 6607042 and ar.wikipedia قصر المشقر"
+  },
+  {
+   "en": "Mushaqar fortress (pre-Islamic)",
+   "ar": "حصن المشقر",
+   "zh": "穆沙卡尔堡",
+   "note": "堡 for حصن in the ancient-fort sense (distinct from 城堡 used for the Al-Uqair castle/fort since owner decision 2026-10-03); pre-Islamic = 伊斯兰教兴起前 (no 贾希利叶 / 蒙昧时期 transliteration on the site). Stage 4: the fort, its old name «حصن هجر», the pre-Islamic market and the Battaliyah/Jawatha/Qarah dispute are all attested (qpedia.org 12449; ar.wikipedia قصر المشقر; Saudipedia en Al-Ahsa Governorate: 'Al-Mushaqqar … one of the main markets of the region in pre-Islamic times')",
+   "source": "batch-8 2026-09-02; stage 4 (web-verified): qpedia.org/topics/12449, saudipedia.com/en/al-ahsa-governorate"
+  },
+  {
+   "en": "fort of Hajar (old-source name of Mushaqar)",
+   "ar": "حصن هجر",
+   "zh": "“哈杰尔堡”",
+   "note": "Transliteration of هَجَر (هَ→哈, جَ→杰, ر→尔 — same syllables as the established 哈杰尔山脉 for Al-Hajar) in Chinese quotes as a quoted historical name; no Latin gloss and no explanatory tail — the source does not explain Hajar",
+   "source": "batch-8 2026-09-02; stage 4: old name attested (qpedia.org 12449 «حصن هجر الأشهر في العصر الجاهلي»); transliteration by table"
+  },
+  {
+   "en": "Mushaqar market (pre-Islamic Arab fair)",
+   "ar": "سوق المشقر",
+   "zh": "穆沙卡尔集市",
+   "note": "集市 for the historical seasonal fair (not 传统市集, which is reserved for a present-day souq). Attested as a pre-Islamic market of Hajar (qpedia 12449; Saudipedia en)",
+   "source": "batch-8 2026-09-02; stage 4 (web-verified): qpedia.org/topics/12449, saudipedia.com/en/al-ahsa-governorate"
+  },
+  {
+   "en": "Mushaqar Palace (modern building in the park)",
+   "ar": "قصر المشقر",
+   "zh": "“穆沙卡尔宫”",
+   "note": "In Chinese quotes as in the Arabic «قصر المشقر»; a modern building, so no 古 qualifier. Attested: ar.wikipedia قصر المشقر; alyaum 6607042. Judge (batch-8): «شُيّد استلهاماً له» = 以古堡为灵感建成 (not 取意于, which the blind reader could not parse; not 仿照/蓝本, which would over-claim a copy)",
+   "source": "batch-8 2026-09-02; stage 4 (web-verified): ar.wikipedia.org/wiki/قصر_المشقر"
+  },
+  {
+   "en": "Al-Qarah village",
+   "ar": "قرية القارة",
+   "zh": "卡拉村",
+   "note": "Derived from the binding 卡拉山 (VisitSaudi zh); 村 because the Arabic says «قرية». Used on the mushaqar page (body + area)",
+   "source": "batch-8 2026-09-02; stage 4: internal derivation from termbase 卡拉山"
+  },
+  {
+   "en": "Kanzan Mountain Park (Al-Shu'bah)",
+   "ar": "منتزه جبل كنزان (الشعبة)",
+   "zh": "坎赞山公园（舒阿巴）",
+   "note": "Page title, built on 坎赞山 and 舒阿巴山 (batch-6); the parenthesis mirrors the Arabic title (Chinese parentheses, Chinese alias — not a Latin gloss, so allowed in title_zh); official project name is a separate entry",
+   "source": "batch-8 2026-09-02; stage 4: internal derivation from approved 坎赞山 / 舒阿巴山"
+  },
+  {
+   "en": "Shu'bah Mountain Park (official project name)",
+   "ar": "منتزه جبل الشعبة",
+   "zh": "“舒阿巴山公园”",
+   "note": "In Chinese quotes when cited as the official name (项目的官方名称为“舒阿巴山公园”); derived from 舒阿巴山. Stage 4: official name «منتزه جبل الشعبة» confirmed by SPA (spa.gov.sa/2396767 «بدء التشغيل الجزئي لمتنزه جبل الشعبة», spa.gov.sa/1961911 المرحلة الرابعة); no zh form published",
+   "source": "batch-8 2026-09-02; stage 4 (web-verified): spa.gov.sa/2396767, alyaum.com 6430285"
+  },
+  {
+   "en": "Al-Ahsa Museum",
+   "ar": "متحف الأحساء",
+   "zh": "哈萨博物馆",
+   "note": "عنوان الصفحة (قاعدة 哈萨)؛ المتن يربطه بالاسم الكامل: 哈萨博物馆全称“哈萨考古与民俗遗产博物馆”（Al-Ahsa Museum for Archaeology and Folk Heritage）. «المتحف الحكومي الرسمي للواحة» → 哈萨绿洲的官方博物馆，由政府开办 (حكم الحاكم دفعة 9: لا 政府官方 متلاصقين)؛ «المتحف الإقليمي الرسمي» في النبذة → 哈萨地区的官方博物馆. المرحلة 4: Saudipedia en تسميه Al-Ahsa Archaeological and Heritage Museum — لا صفحة صينية له",
+   "source": "batch-9 2026-09-02; stage 4 (web-verified): saudipedia.com/en/al-ahsa-archaeological-and-heritage-museum — no zh attestation"
+  },
+  {
+   "en": "Al-Ahsa Museum for Archaeology and Folk Heritage",
+   "ar": "متحف الأحساء للآثار والتراث الشعبي",
+   "zh": "哈萨考古与民俗遗产博物馆",
+   "note": "الاسم الرسمي الكامل بالعربية (المصدر الفيصل)؛ 民俗遗产 لـ«التراث الشعبي»؛ 与 داخل الاسم (لا 、) ليُقرأ جهة واحدة. الگلوس الإنجليزي عند أول ذكر في المتن. المرحلة 4: لا صيغة صينية منشورة",
+   "source": "batch-9 2026-09-02; stage 4: semantic — no zh attestation (saudipedia.com/ch article 258 unreachable)"
+  },
+  {
+   "en": "Hasawi coffee pots (dallah)",
+   "ar": "الدلال الأحسائية",
+   "zh": "哈萨咖啡壶",
+   "note": "قاعدة 哈萨+الاسم مطبقة على 阿拉伯咖啡壶 (dallah)؛ الدلال المطلقة تبقى 阿拉伯咖啡壶 (كما في متحف الخليفة)",
+   "source": "batch-9 2026-09-02; stage 4: termbase rule — no external source needed"
+  },
+  {
+   "en": "Al-Shurufiyah district (Al-Mubarraz)",
+   "ar": "حي الشروفية",
+   "zh": "舒鲁菲亚区",
+   "note": "نقحرة (شُ→舒، رُو→鲁، فِ→菲، يَة→亚)؛ حي = 区؛ بلا گلوس. في السرد 穆巴拉兹的舒鲁菲亚区 (بـ的 — حكم الحاكم دفعة 9). المرحلة 4: الحي مؤكد في Saudipedia en؛ لا صيغة صينية",
+   "source": "batch-9 2026-09-02; stage 4 (web-verified): saudipedia.com/en/article/3595 — no zh attestation"
+  },
+  {
+   "en": "folk souq echoing the Qaisariyah",
+   "ar": "سوق شعبي يحاكي القيصرية",
+   "zh": "仿照凯撒利亚集市布置成的民俗市集",
+   "note": "民俗市集 المعتمدة (batch-8) + 凯撒利亚集市 الملزمة (لا 集市)؛ «القيصرية القديمة» → 老凯撒利亚集市 (المتن)، وفي النبذة بلا 老 تبعاً للعربية. حكم الحاكم دفعة 9: 布置成仿……市集的民俗市集 استُبدلت بـ仿照凯撒利亚集市布置成一座民俗市集. المرحلة 4: المحاكاة مؤكدة (Saudipedia en)",
+   "source": "batch-9 2026-09-02; stage 4 (web-verified): saudipedia.com/en/article/3595 — internal derivation"
+  },
+  {
+   "en": "diwaniyah (Hasawi)",
+   "ar": "الديوانية الأحسائية",
+   "zh": "“迪瓦尼亚”（diwaniyah，传统的待客聚会厅）",
+   "note": "المرحلة 4 (حكم): 迪瓦尼亚 هي الصيغة الصينية المستقرة (新华 环球 2025، سفارة الصين بالكويت). ذيل المعنى 传统的待客聚会厅 (لا 会客厅) كي لا يذوب في مدخل 会客厅 = مجلس. في المتن: 一间会客厅，按哈萨“迪瓦尼亚”（…）的样式布置 — بلا 传统 خارج القوس (حكم الحاكم دفعة 9 لتجنب التكرار)",
+   "source": "batch-9 2026-09-02; stage 4 (web-verified): news.cn/globe/20251029/506af4fe8d7e40d0bf75dec9e2936346/c.html; kw.china-embassy.gov.cn/kwtgk/gkly/201901/t20190122_1647621.htm"
+  },
+  {
+   "en": "desert life (badiyah)",
+   "ar": "البادية",
+   "zh": "沙漠生活",
+   "note": "بلا 游牧/贝都因 (لم يذكرهما المصدر)؛ قسم في متحف الخليفة",
+   "source": "batch-9 2026-09-02; stage 4: semantic — no external source needed"
+  },
+  {
+   "en": "Al-Mansurah (town, east of the oasis)",
+   "ar": "بلدة المنصورة",
+   "zh": "曼苏拉镇",
+   "note": "曼苏拉 الصيغة المستقرة للاسم العربي «المنصورة» (كما في مدينة المنصورة المصرية في zh.wikipedia)؛ 镇 لأن العربية «بلدة»؛ في النبذة مجردة 曼苏拉 كما في المصدر",
+   "source": "batch-10 · stage 4 web-verified 2026-09-03: 曼苏拉 is the zh.wikipedia form for المنصورة (Egypt) — same Arabic name, same table; Alwatan 2017-05-13 places the museum in بلدة المنصورة بالأحساء"
+  },
+  {
+   "en": "Ministry of Culture (standalone sentence form)",
+   "ar": "وزارة الثقافة",
+   "zh": "沙特文化部",
+   "note": "تكملة لمدخل 文化部 (batch-events) الذي حُذفت منه السابقة 沙特 لأنه ورد داخل قوس بعد 沙特遗产委员会؛ عند الورود مستقلاً (博物馆持有沙特文化部颁发的许可) تُضاف السابقة على نمط 沙特遗产委员会/沙特博物馆委员会",
+   "source": "batch-10 · stage 4 web-verified 2026-09-03: extends bound 文化部; standalone prefix 沙特 follows the 沙特遗产委员会 / 沙特博物馆委员会 pattern. The licence itself is not on ar.wikipedia — kept on the authority of the site source"
+  },
+  {
+   "en": "traditional coffee house (qahwa sha'biyah)",
+   "ar": "قهوة شعبية",
+   "zh": "传统咖啡馆",
+   "note": "دلالية؛ لا 民俗咖啡馆 (民俗 محجوزة لـ民俗市集)",
+   "source": "batch-10 · stage 4 web-verified 2026-09-03: facility listed by SPA (قهوة شعبية); 传统咖啡馆 semantic, 民俗 reserved for 民俗市集"
+  },
+  {
+   "en": "Al-Uqair road",
+   "ar": "طريق العقير",
+   "zh": "乌盖尔路",
+   "note": "تغيير المرحلة 4: 通往乌盖尔的公路 → 乌盖尔路، اتساقاً مع المدخل الموازي المعتمد 海湾路 لـ«طريق الخليج». الگلوس 乌盖尔路（Al-Uqair）عند أول ذكر في المتن على نمط 乌盖尔港（Al-Uqair）؛ في النبذة بلا گلوس. «القطف الموسمي» تُرجم 到了季节可以亲手采摘 في هذه الصفحة (ملاحظة 乙-3: 应季时 ظرفاً وحده مستثقلة) — صفحة 哈萨青柠农场 المنشورة تحتفظ بصيغتها 应季时",
+   "source": "batch-11 2026-09-03؛ مرحلة 4: اشتقاق داخلي من مدخلين معتمدين — 乌盖尔（Al-Uqair）(UNESCO/home batch) و海湾路 (batch-indexes verified). لا صيغة صينية منشورة للطريق"
+  },
+  {
+   "en": "Al-Hamidiyah Souq",
+   "ar": "سوق الحميدية",
+   "zh": "哈米迪耶市集",
+   "note": "على مدخل 哈米迪耶 الملزم (قرار تسمية إياد 2026-09-02) + 市集 على نمط 凯撒利亚集市/手工艺人市集. الگلوس (Al-Hamidiyah Souq) عند أول ذكر في المتن. حكم الحاكم (دفعة 11): جملة إعادة البناء يجب أن تحمل فاعلاً صريحاً للمشروع (同一项目还重建了……并新建了……) وإلا قرأ القارئ أن سوق الحميدية هو من أعاد بناء القيصرية (戊-1، خطأ دلالي لا أسلوبي)؛ و«منظومة الأسواق المتجاورة» تُرجم 彼此相邻，连成一片 (أُسقطت 自成一体 لأنها تفيد الاستقلال عن المحيط، عكس المقصود — 戊-3)",
+   "source": "batch-11 2026-09-03؛ مرحلة 4: اشتقاق داخلي من مدخل 哈米迪耶 المعتمد. لا صيغة صينية منشورة للسوق"
+  },
+  {
+   "en": "King Abdullah Road",
+   "ar": "طريق الملك عبدالله",
+   "zh": "阿卜杜拉国王路",
+   "source": "batch-14 2026-09-03 · stage 4: not attested as a road name on the open zh web; pattern attested (阿卜杜拉国王港 mofcom.gov.cn, 阿卜杜拉国王科技大学 bic.cas.cn) — house form on bound 法赫德国王路 / 阿卜杜勒阿齐兹国王路",
+   "note": "نمط 国王路 القياسي؛ متسق مع 阿卜杜拉国王环境公园 المعتمدة"
+  },
+  {
+   "en": "Sharq Restaurant (operating inside the Al-Hamidiyah Souq building)",
+   "zh": "沙尔格餐厅",
+   "source": "已发布的 hamidiyah-souq body_zh 与 practical value_zh（إياد 2026-09-04 裁定：沙尔格 而非 沙尔克（后者是沙尔克04足球俱乐部的既定译名，会被读成欧洲名）、亦非意译 东方餐厅；zh 规则要求专名音译）；项目 CLAUDE.md 记录该裁定 · batch-16 2026-09-05 (faq zh)",
+   "ar": "مطعم شرق",
+   "note": "登记而非新造：termbase 尚无此条，仅 tm.json 有餐厅页 alt 的拉丁名 Sharq Al-Qaisariyah。FAQ 内只写 沙尔格餐厅，不带（Sharq Restaurant）括注——body_zh 已在首次出现处承担括注。谷歌地图名 مطعم شرق القيصرية 为方位描述（位于凯撒利亚集市以东的哈米迪耶市集旧址），非另一家餐厅。"
+  },
+  {
+   "en": "Al-Jalaniyah Mosque",
+   "zh": "贾拉尼亚清真寺",
+   "source": "已发布的 jawatha-mosque body_zh（batch-1，2026-08-29 通过）；termbase 备注中已两次以“سابقة جلانية”引用该页写法，但无独立词条 · batch-16 2026-09-05 (faq zh)",
+   "ar": "مسجد الجعلانية",
+   "note": "登记以便 FAQ 与 body_zh 逐字一致；日后若翻译 jalaniyah 专页，以此条为准。"
+  },
+  {
+   "en": "townswoman (in contrast with Bedouin)",
+   "zh": "城镇 (وفي هذه الصفحة بالحذف: 城镇的؛ والصيغة الكاملة عند الحاجة 城镇妇女)",
+   "note": "الطرف الأول من المقابلة، وحكم ZH-W1 مطبَّق: المصدر يقول إن البائعات جميعاً «نساءٌ من الأحساء» ثم يقسمهنّ، فترجمة هذا الطرف بـ本地/当地 تنشئ واقعةً كاذبة داخل الجملة نفسها. و城镇 وصفُ مكانٍ لا نمطِ عيش فلا يخالف منعَ 定居/游牧. تحفّظ مسعَّر يُسجَّل ولا يُكتم: 城镇 في الصينية المعاصرة نصفُ ثنائيةٍ إحصائية 城镇/农村، فالمركّب الكامل 城镇妇女 يجرّ صدىً تعدادياً (حضر مقابل ريف) لا صدىً بدوياً؛ والحذفُ إلى 城镇的 يخفّف هذا الصدى لأن الطرف المقابل 贝都因的 يعيّن القطبَ فوراً. ورُفض 城里的 لأن 城里人/乡下人 ثنائيةٌ ذات صدىً طبقيّ أثقل.",
+   "source": "اشتقاق داخلي — لا مصدر خارجي. المرحلة 4 فتحت zh.wikipedia «贝都因人» (النسختين التقليدية والمبسّطة) فتبيّن أن ما نسبته المرحلتان 1 و3 إليها ليس فيها: لا سلسلة «在农场工作或住在城镇的» ولا سلسلة «贝都因妇女». والقطب الذي فيها فعلاً «城市» لا «城镇» («为享受最大限度的自由，他们宁愿过艰苦的游牧生活，也不肯过定居的城市生活»)، وهي جملة تكتب 定居 و游牧 الممنوعين، فلا يُنقل منها لفظ. فيبقى المدخل اشتقاقاً معلَناً بلا سند. · الدفعة zh-fix-women-souq 2026-09-09",
+   "verified": false
+  },
+  {
+   "en": "Heritage & Crafts (blog topic label)",
+   "ar": "ثقافة وحرف",
+   "zh": "文化与手工艺",
+   "source": "صياغة المرحلة 1 من دفعة 19 (2026-09-10) على نمط التسمية العلوية المعتمدة `Itineraries` = `行程攻略`؛ ومصطلح 手工艺 ملزمٌ سلفاً في القاعدة (手工艺人市集 · 传授手工艺的学院 · 传统手工艺).",
+   "note": "الفيصل عند اختلاف المصدرين: الإنجليزية «Heritage» والعربية «ثقافة» — والعربية أصلُ الموقع فحُملت على 文化. ولا تُستعمل 遗产 هنا بحكم دفعة 10 (‏遗产 محجوزة للمركّبات المجرّدة: 民俗遗产/遗产博物馆/遗产市集)، والحرفةُ فعلٌ لا كيانٌ تراثيّ مسمّى — وهي علّةُ اختيار 传统手工艺 لـkicker «حرفة تراثية». تظهر التسمية شارةً (‏`t-caption`) في بطاقة الفهرس وeyebrow فوق عنوان المقال، فقُصِرت على ستة محارف. ‏— المرحلة 4 (2026-09-10): أُقرّ بلا تعديل.",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Naqah Cave (Jabal Al-Qarah)",
+   "ar": "كهف الناقة",
+   "zh": "“纳卡”（Naqah）",
+   "source": "مصدر الاسم الموقعُ نفسُه: `src/content/attractions/jabal-al-qarah.md` (المتن العربي «منها كهف الناقة وكهف العيد وكهف المهيوب» + faq «كم عدد مغارات جبل القارة؟»)، والمصدر الإنجليزي للمقال `jabal-qarah-en.md` («among them the Naqah, Eid and Mahyoub caves»). بحث ويب 2026-09-10 باستعلامَين محايدَين لا يحملان أي صيغة صينية مقترحة (امتثالاً لـZH-W7): «沙特 哈萨 卡拉山 洞穴 十二 名称» و«Al-Qarah mountain caves Naqah Eid Mahyoub 中文 介绍» — لا صيغة صينية منشورة لأيٍّ من الثلاثة (النتائج كلها إنجليزية: Saudipedia · showcaves.com · en.wikipedia · VisitSaudi en). نقحرة داخلية بجدول أسماء القاعدة.",
+   "note": "**بانتظار تحقق الويب** — على سابقة `AlUla` و`沙特文物与博物馆局` و`沙特国庆日`. النقحرة: نا→纳، قة→卡 على سابقتَي 卡拉 (القارة) و艾因卡纳斯 (قناص) في القاعدة؛ و盖 لا تصلح هنا لأنها محجوزة لـ«قَيْ» (乌盖尔 · 布盖格). النمط: علامتا اقتباس صينيتان + گلوس لاتيني عند أول ذكر، على سابقة `“乌姆·苏莱姆”（Umm Sulaim）` في `fruits.ts`؛ ولفظ الجنس (洞穴) يأتي من السياق لا يُلصق بالاسم — صيغة المقال: «山中有十二座洞穴，形态各异——其中就有“纳卡”（Naqah）、“伊德”（Eid）与“迈赫尤布”（Mahyoub）三座。». **تنبيهٌ مرفوع للمرحلة 4:** 纳卡 هي الاختصار الإعلامي الصيني الجاري لإقليم ناغورني قره باغ (纳戈尔诺-卡拉巴赫)؛ خُفِّف الالتباس بعلامتَي الاقتباس والگلوس اللاتيني وبسياقٍ لا يحتمل غير الكهوف (ثلاثة أسماء متتابعة يذيّلها 三座 عائداً على 洞穴)، ويبقى مرشَّحاً لمراجعةٍ إن رأت المرحلة 4 صيغةً أبعد عن الالتباس. ‏— المرحلة 4 (2026-09-10): **الحكم: تُبقى 纳卡.** والحجّةُ الحاكمة سابقةٌ في القاعدة نفسِها لا اجتهادٌ جديد: مدخل `艾因卡纳斯（Ain Qannas）` وقع في التصادم عينِه (‏卡纳斯 وحدها تستدعي بحيرة 喀纳斯 في شينجيانغ)، وحكمت فيه المرحلة 4 من الدفعة 9 — وأقرّه الحاكم — بإبقاء النقحرة الأمينة و**إلزام الگلوس اللاتيني** مقبضاً للتمييز والبحث، لا بتحريف المحارف. فأيُّ بديلٍ هنا يخرق جدولَ أسماء القاعدة (‏نا→纳 و ق→卡 مثبتتان في 卡拉 و艾因卡纳斯 و卡塔尔)، أو يزيد مقطعاً لا يقوله العربي (‏تاء التأنيث في «ناقة» ساكنة فلا تُنقحَر 赫). ولذلك: تبقى الصيغة، ويُرفع الگلوس （Naqah）من «عند أول ذكر» إلى **إلزامٍ منصوصٍ بعلّته** (‏纳卡 وحدها تستدعي إقليم ناغورني قره باغ 纳戈尔诺-卡拉巴赫)، على نصّ مدخل 艾因卡纳斯 حرفاً. والسياقُ في المقال (ثلاثةُ أسماءٍ متتابعة يذيّلها 三座 عائداً على 洞穴) يُغلق الالتباس قبل أن يُفتح. ‏— المرحلة 4، الدفعة الفرعية B (2026-09-10): **الحكم قائم بلا تغيير، وشاهدُ المدخل مُصوَّب.** النصُّ المقتبس أعلاه («山中有十二座洞穴，形态各异——其中就有……三座») هو صيغةُ المرحلة 1؛ والنصُّ النهائيُّ في `jabal-qarah-guide.stage4.md` هو: «山中有**十二座洞穴**，形态各异，其中三座名为“纳卡”（Naqah）、“伊德”（Eid）与“迈赫尤布”（Mahyoub）。» — أي أن فعلَ التسمية (‏名为) والعددَ المعدودَ (‏其中三座 عائدةً على 洞穴) صارا **يسبقان** أوّلَ نقحرةٍ بدل أن يلحقاها. فحجّةُ «السياقُ يُغلق الالتباس قبل أن يُفتح» صارت مقيسةً في النصّ لا مأمولةً منه، والگلوسُ （Naqah）يبقى إلزامياً بعلّته.",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Eid Cave (Jabal Al-Qarah)",
+   "ar": "كهف العيد",
+   "zh": "“伊德”（Eid）",
+   "source": "المصدر نفسه (متن وfaq صفحة المعلم العربية + `jabal-qarah-en.md`)؛ البحثان المحايدان أعلاه بلا نتيجة صينية.",
+   "note": "**بانتظار تحقق الويب**. 伊德 هي النقحرة المحايدة لـ«عيد» في أسماء الأعلام العربية (قياسُ 赛义德 لسعيد). لم تُستعمل 尔德 لأنها في العرف الصيني الإسلامي لفظُ العيدَين نفسِهما (开斋节 / 尔德节) فتُقرأ اسمَ مناسبةٍ دينية لا اسمَ كهف. أُسقطت أداةُ التعريف كما تُسقطها القاعدة في 卡拉 (القارة) و乌盖尔 (العقير)، ومطابقةً للمصدر الإنجليزي «Eid». ‏— المرحلة 4 (2026-09-10): أُقرّ. (ورفعُ الگلوس إلى الإلزام في مدخل `Naqah` يسري على الثلاثة معاً لأنها ترد في نسقٍ واحد.)",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Mahyoub Cave (Jabal Al-Qarah)",
+   "ar": "كهف المهيوب",
+   "zh": "“迈赫尤布”（Mahyoub）",
+   "source": "المصدر نفسه (متن وfaq صفحة المعلم العربية + `jabal-qarah-en.md`)؛ البحثان المحايدان أعلاه بلا نتيجة صينية.",
+   "note": "**بانتظار تحقق الويب**. النقحرة بجدول الأسماء: مَ→迈، هـ→赫 (سابقة 谢赫 و阿卜杜勒拉赫曼 في المنشور)، يو→尤، ب→布. أُسقطت أداةُ التعريف مطابقةً للمصدر الإنجليزي «Mahyoub». ‏— المرحلة 4 (2026-09-10): أُقرّ. (ورفعُ الگلوس إلى الإلزام في مدخل `Naqah` يسري على الثلاثة معاً لأنها ترد في نسقٍ واحد.)",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "cracked wheat (mufallaq)",
+   "ar": "الجريش",
+   "zh": "碎麦",
+   "source": "‏`src/data/dishes.ts` zh المنشورة: «碎麦（jareesh）与香料同煮».",
+   "note": "المنشور يحمل الگلوس اللاتيني （jareesh）لأن المصدر الإنجليزي لصفحة الأكلات يسمّي الطبقَ المحلي؛ ومصدرُ هذا المقال يقول «cracked wheat» وحدها بلا الاسم المحلي، فكُتبت 碎麦 عاريةً — لا يُزاد اسمٌ محليٌّ لا يقوله المصدر. ‏— المرحلة 4 (2026-09-10): أُقرّ بلا تعديل.",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Qatif (the oasis) / the Qatifi lime",
+   "zh": "盖提夫 · 盖提夫青柠",
+   "source": "ملخّصُ بحثٍ محايد (الاستعلام باللاتيني `Qatif` لا بالصيغة الصينية) أعاد: «Qatif — 盖提夫Qatif 或 Al-Qatif，阿拉伯语：القطيف（也可译为“卡提夫”）» و«许多沙特史书……把东部省称作哈萨(Hasaa)和卡提夫(Qatif)». **بانتظار تحقق الويب** — zh.wikipedia محجوبة ولم تُفتح صفحة.\n\n**تحقُّقُ المرحلة 4 (2026-09-11، الدفعة الفرعية C)** — استعلاماتٌ محايدةٌ لا تحمل الصيغةَ المطلوبَ إثباتُها (ZH-W7): الاستعلام «Qatif 沙特阿拉伯 东部省 绿洲 城市 中文 译名» (لا يحمل «盖提夫» ولا «卡提夫») أعاد: «Qatif（Al-Qatif）的中文常见译名为“盖提夫”，也有另一种译法是“卡提夫”». **فالصيغةُ المختارةُ مؤكَّدةٌ بوصفها الشائعة**، والثانيةُ مسجَّلةٌ بديلاً متداولاً — وهو عينُ ما قرّرته المرحلة 1، ويوافق جدولَ نقحرة الموقع (‏乌盖尔 · 布盖格). **تنبيهٌ مسجَّل:** الملخَّصُ نفسُه يستعمل `波斯湾`، وهي **ممنوعةٌ منعاً باتّاً** بمدخل `the Gulf`؛ لم يُنقل منه حرفٌ إلى المقال، والحارسُ السادسُ لهذه الصفحة يفحصها. **ويبقى الوسمُ مع ذلك**: الشاهدُ ملخَّصُ نتيجةٍ لا صفحةٌ مفتوحة، وZH-W7 لا يرفع الوسمَ إلا بفتح الصفحة — وإن كان الملخَّصُ هنا **مقبولاً بيّنةً** لأن الاستعلامَ لم يحمل أيّاً من الصيغتين فلا صدى فيه.",
+   "note": "الصيغتان تتداولان (‏盖提夫 · 卡提夫)، فاختِيرت **盖提夫** لموافقتها جدولَ النقحرة الذي تمشي عليه القاعدة في هذا الموقع: قَ→盖 كما في `乌盖尔` (العقير) و`布盖格` (بقيق) — وهو عينُ التعليل الذي حجز 盖 عن «قة» في مدخل `Naqah Cave`. والگلوس: لمّا كان أولُ ورودٍ داخل اقتباسٍ من المصدر («也叫盖提夫青柠……») وُضع الگلوسُ على المركّب كما يسمّيه المصدرُ نفسُه — **（Qatifi lime）** — فلا يُقحَم قوسٌ داخل نصٍّ مقتبس، ولا يبقى الاسمُ بلا مقبضٍ للبحث. **مرشَّحٌ لمراجعة المرحلة 4.**",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Saudipedia",
+   "zh": "沙特百科（Saudipedia）",
+   "source": "ترجمةٌ دلاليةٌ على نمط 维基百科 (‏Wikipedia) للبناء نفسِه (‏Saudi + -pedia)؛ والمنصّةُ منصّةُ وزارة الإعلام السعودية ولها نسخةٌ صينية (‏saudipedia.com/ch) تستشهد بها القاعدةُ في ستة مداخل. **بانتظار تحقق الويب** — ‏saudipedia.com محجوبة من بيئة التنفيذ فلم أفتح النسخةَ الصينية لأرى تسميتَها لنفسها (‏ZH-W7).\n\n**تحقُّقُ المرحلة 4 (2026-09-11، الدفعة الفرعية C)** — استعلاماتٌ محايدةٌ لا تحمل الصيغةَ المطلوبَ إثباتُها (ZH-W7): الاستعلام «Saudipedia 沙特阿拉伯 官方 信息 平台 中文版 介绍» (لا يحمل «沙特百科») **لم يُعِد أيَّ صيغةٍ صينيةٍ لهذه المنصّة**، ومحاولةُ فتح `saudipedia.com/ch` ردّت حجباً من بوّابة البيئة (‏EGRESS_BLOCKED). **فالنتيجةُ سلبيةٌ مسجَّلة**: لا شاهدَ منشورٌ يخالف الصيغةَ ولا يؤيّدها، فتبقى على قياسها الاشتقاقيّ (‏维基百科 للبناء نفسِه) **وتبقى موسومةً «بانتظار تحقق الويب»** حتى تُفتح النسخةُ الصينية.",
+   "note": "أولُ ذكرٍ في المتن بگلوسٍ لاتينيّ واحد، ثم 沙特百科 وحدها (وفي قائمة المصادر نصَّ رابطٍ بلا گلوس). **تنبيهٌ للمرحلة 4:** إن فتحت النسخةَ الصينية ووجدتها تسمّي نفسَها باسمٍ آخر فهو المقدَّم — المدخلُ `verify` لا `translate`.\n\n**‏2026-09-11 (المرحلة 4):** بُحث فلم يُوجد شاهد — النتيجةُ السلبيةُ مسجَّلةٌ في `source`، والوسمُ باقٍ.",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Al-Mu'jam Al-Wasit (the dictionary) · dictionary of foreign loanwords in Arabic",
+   "zh": "《瓦西特词典》（Al-Mu'jam Al-Wasit）· 《阿拉伯语外来词词典》",
+   "source": "‏瓦西特 هي النقحرةُ الصينيةُ المستقرة لـ«واسط/Wasit» — 瓦西特省 في العراق (‏百度百科 مدخل 瓦西特省 · xzqh.org صفحة العراق). والثاني ترجمةٌ دلالية لاسمٍ وصفيّ («معجم الألفاظ الأعجمية» — يكتبه المصدرُ الإنجليزيُّ بحرفٍ صغير وصفاً لا عَلَماً).\n\n**تحقُّقُ المرحلة 4 (2026-09-11، الدفعة الفرعية C)** — استعلاماتٌ محايدةٌ لا تحمل الصيغةَ المطلوبَ إثباتُها (ZH-W7): استعلامان محايدان — «阿拉伯语 权威 词典 开罗 阿拉伯语 学会 编纂 中文 介绍» و«مجمع اللغة العربية بالقاهرة المعجم الوسيط 中文 译名 阿拉伯语言学会» (لا يحمل أيٌّ منهما «瓦西特») — **لم يُعيدا صيغةً صينيةً منشورةً لهذا المعجم**؛ وما أعاده الأولُ معاجمُ عربية-صينية من إنشاء الجامعات الصينية (‏《阿拉伯语汉语词典》·《汉语阿拉伯语词典》) لا هذا المعجم. **فالنتيجةُ سلبيةٌ مسجَّلة**، والصيغةُ تبقى على قياسها (‏瓦西特 نقحرةُ «واسط» المستقرّة + لفظُ الجنس 词典) **موسومةً «بانتظار تحقق الويب»**. وسقوطُ الگلوس في `hasawi-lomi-history` علّتُه المذكورةُ في المدخل السابق: أولُ ورودٍ نصُّ رابطٍ.",
+   "note": "‏«المعجم الوسيط» اسمُ عَلَمٍ لمعجمِ مجمع اللغة العربية بالقاهرة، فنُقحر رأسُه وأُلحق به لفظُ الجنس الصينيُّ 词典 (نمط ZH-W2)، والگلوسُ اللاتيني عند أول ذكر. **بانتظار تحقق الويب** — لم أجد صيغةً صينيةً منشورةً لهذا المعجم، والصيغُ الدلالية (‏《中型阿拉伯语词典》) اقترحها ملخّصُ بحثٍ لا مصدرٌ منشور فلم تُعتمد. ولا يُخلط بـ«المعجم الأوسط» للطبراني (‏`Al-Mu'jam al-Awsat` — ظهر في نتائج البحث وهو كتابُ حديثٍ لا معجمُ لغة).\n\n**‏2026-09-11 (المرحلة 4):** بُحث باستعلامين محايدين فلم يُوجد شاهد — النتيجةُ السلبيةُ مسجَّلةٌ في `source`، والوسمُ باقٍ.",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Manzil Al-Afsah",
+   "ar": "منزل الأفسح",
+   "zh": "曼齐勒阿夫萨赫（Manzil Al-Afsah）",
+   "source": "pack.json dar-basma.body (en/ar) — batch zh-dind-1 stage 1",
+   "note": "اسم البيت القديم الذي يشغله مطعم دار بسمة؛ نقحرة جديدة على نمط 拜特库特（Bait Al-Koot）، ولا تُترجم دلالة الاسم (الأفسح) لأن المصدر لا يشرحها. أقرّه الحاكم دون تعديل.",
+   "added": "2026-09-25",
+   "batch": "zh-dind-1"
+  },
+  {
+   "en": "Diriyah",
+   "ar": "الدرعية",
+   "zh": "迪里耶（Diriyah）",
+   "source": "web-verified 2026-09-25: zh.wikipedia.org/wiki/迪里耶",
+   "note": "الصيغة المعتمدة في ويكيبيديا الصينية للمكان؛ گلوس عند أول ذكر ثم الصيغة الصينية وحدها",
+   "added": "2026-09-25",
+   "batch": "zh-dind-2"
+  },
+  {
+   "en": "Samhaniyah branch (Diriyah)",
+   "ar": "فرع السمحانية",
+   "zh": "萨姆哈尼耶（Samhaniyah）",
+   "source": "batch zh-dind-2 2026-09-25 — لم يُعثر على نقحرة صينية منشورة لهذا الحيّ",
+   "note": "نقحرة بيتية من الرسم العربي؛ غير مشهودة على الويب المفتوح — تحتاج مراجعة إياد إن أُتيح مصدر رسمي لاحقاً",
+   "added": "2026-09-25",
+   "batch": "zh-dind-2"
+  },
+  {
+   "en": "Bethanah Chalet (a different Al-Ahsa business, not to be confused with Baithana café)",
+   "ar": "شالية بيذانه",
+   "zh": "Bethanah Chalet",
+   "source": "batch zh-dind-2 2026-09-25",
+   "note": "نفس الجذر العربي «بيذانه» المنقحر 拜扎纳 لمقهى Baithana موضوع الصفحة، لكن المصدر يشترط صراحة عدم الخلط بينهما؛ نقحرة صينية من نفس الجذر ستتطابق مع 拜扎纳 وتبطل التمييز الذي يقصده المصدر — أُبقي الاسم لاتينياً بحرفه بوصفه منشأة أخرى مذكورة عرضاً. يحتاج قرار مالك إن رغب في نقحرة مائزة",
+   "added": "2026-09-25",
+   "batch": "zh-dind-2"
+  },
+  {
+   "en": "Qaisariyah (used in the source as the name of this Sharq Restaurant branch, distinct from the souq complex)",
+   "ar": "القيصرية",
+   "zh": "凯撒利亚（Qaisariyah）",
+   "source": "batch zh-dind-2 2026-09-25",
+   "note": "المصدر صريح بأن «القيصرية» تسمية هذا الفرع لا جزء من اسم العلامة، وليست إحالة لمعلم «凯撒利亚集市» المقفل في القاعدة (سطر 188) — استُعمل الجذر وحده بلا لاحقة 集市؛ گلوس عند أول (ووحيد) ذكر",
+   "added": "2026-09-25",
+   "batch": "zh-dind-2"
+  },
+  {
+   "en": "Al-Hillah (old Hofuf quarter)",
+   "ar": "الحلة",
+   "zh": "希拉（Al-Hillah）",
+   "source": "zh-dind-3 pack.json alsayed.body en/ar",
+   "note": "نقحرة داخلية + گلوس عند أول ذكر، كالسابقين.",
+   "added": "2026-09-25",
+   "batch": "zh-dind-3"
+  },
+  {
+   "en": "balilah",
+   "ar": "البليلة",
+   "zh": "巴利拉（balilah）",
+   "source": "zh-dind-3 pack.json alsayed.body en/ar",
+   "note": "طبق شعبي مختلف عن البلاليط (balaleet) المثبتة سلفاً — لا خلط بينهما. نقحرة + گلوس عند أول ذكر ثم الصينية وحدها.",
+   "added": "2026-09-25",
+   "batch": "zh-dind-3"
+  },
+  {
+   "en": "al-kindiyyah (seating-area name)",
+   "ar": "الكندية",
+   "zh": "金迪耶（al-kindiyyah）",
+   "source": "zh-dind-3 pack.json ratio-alkoot.body en/ar",
+   "note": "اسم قديم لجزء من المسكن الأحسائي تستعمله جلسات ريشيو الكوت — نقحرة + گلوس عند أول ذكر.",
+   "added": "2026-09-25",
+   "batch": "zh-dind-3"
+  },
+  {
+   "en": "Al-Ghassaniyah (district, Al-Mubarraz)",
+   "ar": "الغسانية",
+   "zh": "加萨尼耶（Al-Ghassaniyah）",
+   "source": "zh-dind-4 pack.json (soulaf body: second branch location)",
+   "note": "نقحرة صوتية لحيّ الغسانية بالمبرز (CROSS.md ح2)؛ لا صيغة صينية سابقة موثّقة في الفهرس أو المعجم؛ مذكور بصفة موقع الفرع الثاني لا كحيّ مستقل في هذه الصفحة.",
+   "added": "2026-09-25",
+   "batch": "zh-dind-4"
+  },
+  {
+   "en": "Jeddah",
+   "ar": "جدة",
+   "zh": "吉达",
+   "source": "standard zh transliteration; used in zh-dind-4 pack.json (baking-up body: branch city list) — added for completeness though not batch-specific",
+   "note": "نقحرة قياسية شائعة لمدينة جدة، غير موجودة سابقاً في هذا المعجم.",
+   "added": "2026-09-25",
+   "batch": "zh-dind-4"
+  },
+  {
+   "en": "Royal Decree No. (M/19) dated 9/2/1443 AH (16 September 2021)",
+   "ar": "المرسوم الملكي رقم (م/19) وتاريخ 1443/2/9هـ (الموافق 16 سبتمبر 2021م)",
+   "zh": "第（M/19）号王室法令（伊斯兰历 1443 年 2 月 9 日，即公元 2021 年 9 月 16 日）",
+   "source": "legal document (ar/en owner-approved, 2026-09-26) — تاريخ 9 صفر 1443هـ = 16 سبتمبر 2021م محقَّق بتقويم أم القرى وبالنشر الرسمي",
+   "note": "يستبدل مدخل zh-legal-1 (رقم ~543: الهجري وحده «第（M/19）号王室法令（伊斯兰历 1443 年 2 月 9 日）» بلا مقابل ميلادي). حكم الحاكم (مرحلة ٦): حكم المعجم العام لاقتران التقويمين هو قوسان متداخلان «伊斯兰历 XXXX 年（公元 YYYY 年）»، لكن هذا المرجع يقع أصلاً داخل قوس واحد يتبع «第（M/19）号» (قوس مُتداخل بالفعل حول رقم المرسوم)، فتطبيق النمط المزدوج القياسي هنا كان يُنتج ثلاث طبقات أقواس متتالية ونهايتين مغلقتين متلاصقتين «))» — وهو ما رصده القارئ الأعمى في ملاحظته #4 (إرهاق قرائي من تعشيش الأقواس). استُبدل بإدراج الحرف الرابط «即» (أي) قبل «公元» داخل القوس الموجود نفسه: يُزيل غموض القارئ الأعمى #3 (توهّم تاريخين منفصلين بدل معادلة تقويمية واحدة) دون فتح قوس جديد ودون إضافة أي واقعة لم ترد في المصدرين المعتمدين.",
+   "added": "2026-09-26",
+   "batch": "zh-legal-date",
+   "supersedes": "termbase entry #543 (batch zh-legal-1)"
+  },
+  {
+   "en": "King Abdulaziz Foundation (Darah)",
+   "ar": "دارة الملك عبدالعزيز",
+   "zh": "阿卜杜勒阿齐兹国王基金会",
+   "note": "Saudipedia zh titles the article 阿卜杜勒-阿齐兹国王研究和档案基金会 and uses the short form 阿卜杜勒-阿齐兹国王基金会 in the body. The Arabic here has no 'research and archives', so the short form is the faithful one; the king's name follows the binding termbase spelling 阿卜杜勒阿齐兹 (no hyphen). In source titles write it in full, never 该基金会. [verified]",
+   "source": "Opened: saudipedia.com/ch/阿卜杜勒-阿齐兹国王研究和档案基金会 (title + body short form). No Xinhua / embassy page found.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Muharram (first Hijri month)",
+   "ar": "محرم",
+   "zh": "穆哈兰姆月",
+   "note": "Was 穆哈兰月 in stages 1-3. zh.wikipedia months table gives 穆哈兰姆月; it outranks an unattested house form. Pattern in text: 伊历 1360 年 1 月（穆哈兰姆月）. [changed]",
+   "source": "Opened: zh.wikipedia.org/wiki/伊斯兰历 (months table). A neutral web query for the China Islamic Association list returned no Chinese page.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Year 7 AH",
+   "ar": "السنة السابعة للهجرة",
+   "zh": "伊斯兰历 7 年",
+   "note": "House calendar formula (伊斯兰历 = zh.wikipedia article title for the calendar). No CE year because the Arabic gives none. [house-derived]",
+   "source": "Opened: zh.wikipedia.org/wiki/伊斯兰历 (title). Formula itself is house style.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Ain Al-Harrah (spring)",
+   "ar": "عين الحارة",
+   "zh": "艾因哈拉泉",
+   "note": "حا = 哈, رّة = 拉; article dropped as in the binding 艾因胡杜德泉 (الخدود). [house-derived]",
+   "source": "No zh attestation: saudipedia.com/ch/哈萨县 (opened) prints it in Latin, 'Al-Harrah'. Derived from Arabic spelling.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Uqair Conference (1922)",
+   "ar": "مؤتمر العقير",
+   "zh": "乌盖尔会议",
+   "note": "Built on the binding 乌盖尔 + 会议 (Arabic says مؤتمر, conference, not protocol). Saudipedia zh spells the place 阿凯尔 (阿凯尔港); the termbase form 乌盖尔 stays binding on this site. [house-derived]",
+   "source": "Negative: zh.wikipedia has no article for the Uqair Protocol (interwiki URL 404); neutral queries returned English pages only. saudipedia.com/ch/哈萨县 opened (place name only).",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Passports building (Al-Uqair port)",
+   "ar": "الجوازات",
+   "zh": "护照楼",
+   "note": "Descriptive, parallel to the binding 海关楼. [house-derived]",
+   "source": "No zh attestation found; descriptive rendering.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Al-Furda (the wharf / landing, Al-Uqair)",
+   "ar": "الفرضة",
+   "zh": "码头",
+   "note": "Common noun; in the source title «فرضة العقير ومبانيها» = 乌盖尔码头及其建筑. [house-derived]",
+   "source": "No zh attestation found; descriptive rendering.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "'Roman Theatre' (local nickname) / open-air amphitheatre",
+   "ar": "المسرح الروماني / مدرّج مكشوف",
+   "zh": "“罗马剧场” / 露天阶梯剧场",
+   "note": "Nickname always in quotation marks and always with the disclaimer 它是一处当代设施，并非古罗马遗迹 in the same text. [house-derived]",
+   "source": "No zh attestation found; descriptive rendering.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Al-Eqtisadiah (newspaper)",
+   "ar": "الاقتصادية",
+   "zh": "《经济报》",
+   "note": "Attested: Chinese MFA writes 沙《利雅得报》、《经济报》、《生活报》. [verified]",
+   "source": "Opened: mfa.gov.cn/web/dszlsjt_673036/201609/t20160901_5336618.shtml.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "Al-Jazirah (Saudi newspaper, Riyadh)",
+   "ar": "الجزيرة",
+   "zh": "《半岛报》",
+   "note": "Semantic name in 《》. Not to be confused with Qatar's 半岛电视台 or The Peninsula; the URL in the source list disambiguates. [house-derived]",
+   "source": "Negative: saudipedia.com/ch/《半岛报》 = 404; queries returned no Chinese page for the Saudi paper. Convention-derived.",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "the 'Al-Ahsa Oasis' World Heritage property — referent form in stop texts",
+   "ar": "من المكونات المسجلة في قائمة التراث العالمي",
+   "zh": "“哈萨绿洲”列入《世界遗产名录》的组成部分（之一）",
+   "note": "صيغة محطات المسارات: يُصرَّح بالمرجع بالاسم المختصر للممتلك بعد أن قرأ قارئان أعميان «组成部分» بلا صاحب (×4). العربية لا تسمّي الممتلك في نص المحطة لكنه مسمّى في ملاحظة الشارة على الصفحة نفسها. بانتظار تأكيد المالك؛ التراجع حذف “哈萨绿洲” من أربع سلاسل. [house-derived]",
+   "source": "حكم الحاكم الثاني (zh-judge-2)",
+   "added": "2026-10-08",
+   "batch": "trails-zh"
+  },
+  {
+   "en": "store: Hajar Orchards Dates Factory",
+   "ar": "مصنع بساتين هجر للتمور",
+   "zh": "哈杰尔果园椰枣厂",
+   "note": "اسم متجر — نقحرة من الاسم العربي لا من الإنجليزية: هجر→哈杰尔 كما في 哈杰尔堡 المعتمد. [house-derived]",
+   "source": "الاسم العلم من موقع المتجر نفسه: https://tmrna.com/",
+   "added": "2026-10-09",
+   "batch": "stores-zh"
+  },
+  {
+   "en": "store: Qaitan (Ahmed Abdullah Al-Qattan Mashalih)",
+   "ar": "قيطان (مشالح أحمد عبدالله القطان)",
+   "zh": "盖坦（艾哈迈德·阿卜杜拉·卡坦长袍）",
+   "note": "اسم متجر — نقحرة من الاسم العربي لا من الإنجليزية: قيطان→盖坦؛ القطان→卡坦؛ مشالح→长袍. [house-derived]",
+   "source": "الاسم العلم من موقع المتجر نفسه: https://alqattansa.com/",
+   "added": "2026-10-09",
+   "batch": "stores-zh"
+  },
+  {
+   "en": "store: Al-Jubarah Markets",
+   "ar": "أسواق الجباره",
+   "zh": "贾巴拉市场",
+   "note": "اسم متجر — نقحرة من الاسم العربي لا من الإنجليزية: الجباره→贾巴拉. [house-derived]",
+   "source": "الاسم العلم من موقع المتجر نفسه: https://aljubarahmarket.com",
+   "added": "2026-10-09",
+   "batch": "stores-zh"
+  },
+  {
+   "en": "mashlah / mashalih (traditional cloaks)",
+   "ar": "المشالح",
+   "zh": "长袍",
+   "note": "«传统长袍» عند ورودها بعد بشت؛ «皇家长袍» لـ«مشالح ملكية»؛ لا 斗篷 (مدخل Hasawi bisht). [house-derived]",
+   "source": "حكم الحاكم الإنجليزي رقم 6",
+   "added": "2026-10-09",
+   "batch": "stores-zh"
+  }
+ ]
+}
