@@ -7,6 +7,7 @@ import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
 import { LANG_META } from '../i18n/langs';
 import { listedAlt } from '../i18n/unlisted';
+import { storesHref } from '../lib/routes';
 
 interface Props { lang?: Lang; alt?: AltLinks; }
 const { lang = 'ar', alt } = Astro.props;
@@ -36,15 +37,19 @@ const routes = {
 };
 const nav = [
   { href: routes.attractions, label: t('nav.attractions') },
-  // المسارات المقترحة (2026-09-26): عربي/إنجليزي فقط — لا صفحات zh/de/ru لها، فترويسات
-  // تلك اللغات بلا تغيير (ولا يتغيّر عرضها المقيس). العرض اللازم لـar/en أُعيد قياسه.
-  ...(ar || lang === 'en' ? [{ href: ar ? '/trails/' : '/en/trails/', label: t('nav.trails') }] : []),
+  // المسارات المقترحة: في شريط ar/en/zh. الألمانية والروسية خارجه بالقياس لا بالتقدير
+  // (tools/measure-header-fit.mjs: رابط تاسع يلزمه 1443px و1608px فيتراكب عند كل عرض) —
+  // رابطهما في التذييل كالمدونة.
+  ...(de || ru ? [] : [{ href: ar ? '/trails/' : `/${lang}/trails/`, label: t('nav.trails') }]),
   { href: routes.leisure, label: t('nav.leisure') },
   { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },
   { href: routes.food, label: t('nav.food') },
   { href: routes.dine, label: t('nav.dining') },
   { href: routes.stay, label: t('nav.stayShort') },
+  // دليل المتاجر الإلكترونية (2026-10-09) بكل اللغات: تسميات zh/de/ru مرّت بخطوطها (docs/nav-stores).
+  // العتبات أُعيد قياسها بعده.
+  { href: storesHref(lang), label: t('nav.stores') },
   // رابط الخطة مكرَّر عمداً في البنية لا في العرض: زرّ الدعوة الذهبي يقصد
   // routes.plan نفسه، فيصير في الشريط رابطان لوجهة واحدة بتسميتين متقاربتين
   // (‏«خطّط لرحلتك» و«خطّط زيارتك») — تكرارٌ يبتلع ~100px من أضيق شريط في
@@ -89,7 +94,8 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
       <Search lang={lang} />
       <a href={routes.myTrip} class="plan-link" aria-label={t('nav.myTrip')}>{t('nav.myTrip')} <span class="plan-badge" data-plan-count>0</span></a>
       <details class="lang-menu" data-lang-menu>
-        <summary class="lang" aria-label={t('lang.menu')}>
+        {/* الاسم المتاح يحوي النص المرئي (رمز اللغة) — WCAG 2.5.3، يفحصه axe بـlabel-content-name-mismatch */}
+        <summary class="lang" aria-label={`${t('lang.menu')} ${LANG_META[lang].short}`}>
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15.6 15.6 0 0 1 0 18a15.6 15.6 0 0 1 0-18Z" />
           </svg>
@@ -144,28 +150,47 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
   /* 16px لا 20px: ثمان فجوات × 4px = 32px موفَّرة في كل لغة، وهي وحدها تكفي
      لردّ العربية إلى داخل الحاوية. الشريط يبقى متنفّساً بصرياً عند 16px. */
   .nav { display: flex; gap: 16px; margin-inline: auto; min-inline-size: 0; }
+  /* أسماء الأقسام صارت عناوين صفحاتها (حكم إياد 2026-10-04: «الأسواق والمنتزهات والمزارع»
+     · «أماكن الإقامة» · «المطاعم والمقاهي» · «خطّط لرحلتك») فطال الشريط في كل لغة. بدل رفع
+     العتبات إلى 1349–1506px (أي برغر على أغلب الحواسيب) صُغِّر خط الشريط وفجوته في الوضع
+     المبسوط وحده، بقيم مقيسة بـtools/measure-header-fit.mjs (MODE=fit): ar ‏14/12 ← 1304px
+     · zh ‏14/12 ← 1128 · en ‏13.5/10 ← 1381 · de ‏12.5/8 ← 1393 · ru ‏13/10 ← 1530 (بعد «Sehenswürdigkeiten/Veranstaltungen» و«Достопримечательности»، 2026-10-04). */
+  @media (min-width: 1271px) {
+    :global([lang='ar']) .nav, :global([lang='zh']) .nav { gap: 12px; }
+    :global([lang='ar']) .nav a, :global([lang='zh']) .nav a { font-size: .875rem; }
+  }
   /* مخفيّ حيث يظهر الزرّ الذهبي (وجهتهما واحدة)، ويظهر داخل القائمة المطويّة */
   .nav .nav-plan { display: none; }
   .nav a { font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); text-decoration: none; padding-block: var(--s-2); position: relative; white-space: nowrap; transition: color var(--dur) var(--ease); }
   .nav a::after { content: ''; position: absolute; inset-block-end: 0; inset-inline: 0; block-size: 2px; background: var(--c-gold); transform: scaleX(0); transform-origin: inline-end; transition: transform var(--dur) var(--ease); }
   .nav a:hover { color: var(--c-turq); }
   .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
-  /* الألمانية والروسية في الشريط الأفقي (الروسية انضمّت 2026-09-05: تسمياتها الطبيعية
-     تلزمها 1291px مقيسةً تحت هذه الكتلة، مقابل 1188 للإنجليزية):
-     14px تشتري 41px مقيسة، و12px فجوةً تشتري
-     28px أخرى — ومجموعهما هو الفرق بين انهيارٍ عند 1449px وانهيارٍ عند 1339px،
-     أي بين شاشة 1366px تعرض برغراً وأخرى تعرض الشريط. لا يسريان داخل القائمة
-     المطويّة — فالمساحة هناك رأسية والتضييق خسارة خالصة. */
-  @media (min-width: 1339px) {
-    /* وسقفُ حاويتها 1360px لا 1280px: اللازم للألمانية 1299px مقيسة، أي أوسع
-       من السقف المشترك — وعند تجاوزه لا ينكسر الشريط ظاهراً بل **ينضغط**:
-       الفليكس يقلّص أدوات الشريط فيلتفّ «Meine Reise» سطرين ويصير الشريط 69px
-       بدل 68. لذلك لا يكفي قياس التراكب وحده حكماً على الاتّساع؛ الحارس يشترط
-       الارتفاع 68px والسطر الواحد معاً. بقية اللغات تبقى على 1280px (اللازم
-       لأطولها 1188px) فلا يتغيّر عرض ترويستها. */
-    :global([lang='de']) .hd-in, :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1360px); }
-    :global([lang='de']) .nav, :global([lang='ru']) .nav { gap: 12px; }
-    :global([lang='de']) .nav a, :global([lang='ru']) .nav a { font-size: .875rem; }
+  /* كل لغة تُضيَّق في الوضع المبسوط وحده (من عتبة انهيارها فما فوق)، فلا يسري التضييق
+     داخل القائمة المطويّة — المساحة هناك رأسية والتضييق خسارة خالصة. */
+  /* العربية: «معالمي المحفوظة» في الأدوات ثم «المتاجر» في الشريط (2026-10-09) رفعا اللازم إلى 1354px — أوسع من السقف المشترك 1280 */
+  @media (min-width: 1394px) {
+    :global([lang='ar']) .hd-in { inline-size: min(100% - var(--s-3), 1380px); }
+  }
+  /* الإنجليزية بعد «Online Stores» (2026-10-09): اللازم 1476px بخط 13.5px وفجوة 10px */
+  @media (min-width: 1516px) {
+    :global([lang='en']) .hd-in { inline-size: min(100% - var(--s-3), 1500px); }
+    :global([lang='en']) .nav { gap: 10px; }
+    :global([lang='en']) .nav a { font-size: .84375rem; }
+  }
+  @media (min-width: 1521px) {
+    /* وسقفُ حاويتها أوسع من 1280px: عند تجاوز السقف لا ينكسر الشريط ظاهراً بل
+       **ينضغط** — الفليكس يقلّص أدوات الشريط فيلتفّ «Meine Reise» سطرين ويصير الشريط
+       69px بدل 68. لذلك لا يكفي قياس التراكب وحده حكماً على الاتّساع؛ الحارس يشترط
+       الارتفاع 68px والسطر الواحد معاً. اللازم بعد «Online-Shops» (2026-10-09): de ‏1481px (12.5/8). */
+    :global([lang='de']) .hd-in { inline-size: min(100% - var(--s-3), 1500px); }
+    :global([lang='de']) .nav { gap: 8px; }
+    :global([lang='de']) .nav a { font-size: .78125rem; }
+  }
+  /* الروسية بعد «Интернет-магазины» (2026-10-09): اللازم 1668px بخط 13px وفجوة 10px */
+  @media (min-width: 1708px) {
+    :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1690px); }
+    :global([lang='ru']) .nav { gap: 10px; }
+    :global([lang='ru']) .nav a { font-size: .8125rem; }
   }
   .hd-actions { display: flex; align-items: center; gap: var(--s-3); }
   /* بوزن حبّة البحث المجاورة: كان الحدّ --c-line (‏1.1:1) غير مرئي عملياً
@@ -194,10 +219,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
   .burger span { inline-size: 24px; block-size: 2px; background: var(--c-ink); border-radius: 2px; transition: var(--dur); }
   /* عتبة الانهيار مشتقّة من قياس، لا مختارة: أدنى عرض نافذة = العرض الجوهري
      اللازم + هامش أمان 24px + var(--s-3). بعد إخفاء رابط الخطة المكرَّر وتضييق
-     الفجوة إلى 16px صار اللازم ar ‏1123px · en ‏1188 · zh ‏1023 — فأعلاها
-     الإنجليزية عند 1228px، والعتبة 1227px أدناها. (كانت 1199px وهي مقيسة على
-     ثمانية روابط قبل إضافة التاسع، فصارت تكذب على العربية والإنجليزية معاً.) */
-  @media (max-width: 1227px) {
+     الفجوة صار اللازم بعد تسمية الأقسام بعناوين صفحاتها وتسمية الأداة «معالمي المحفوظة» (2026-10-04):
+     zh ‏1128px (خط 14px وفجوة 12px) — فالعتبة المشتركة 1270px؛ والعربية ‏1354 فلها كتلتها عند 1393 (بعد «المتاجر»، 2026-10-09). */
+  @media (max-width: 1270px) {
     .hd-actions .btn-gold { display: none; }
     .burger { display: flex; }
     /* على الجوال: الصندوق في مسار التبويب، مخفي بصرياً بقصّ لا بـhidden */
@@ -213,12 +237,20 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     /* الزرّ الذهبي مخفيّ هنا، فرابط الخطة داخل القائمة هو الطريق الوحيد إليها */
     .nav .nav-plan { display: block; }
   }
-  /* الإنجليزية تنهار عند 1281px لا 1227 (2026-09-26): رابط «Trails» العاشر (ar/en وحدهما)
-     رفع اللازم مقيساً بـtools/measure-header-fit.mjs إلى ar ‏1183px · en ‏1242 — فأدنى نافذة
-     للعربية 1223px (ما زالت تحت 1227 فتبقى عتبتها المشتركة) وللإنجليزية 1282px. رفعُ العتبة
-     المشتركة كان سيُسقط شريط العربية والصينية بلا سبب، فالكتلة محصورة بالإنجليزية كسابقة
-     الألمانية والروسية أدناه. لا تعدّل إحدى الكتل دون الأخرى. */
-  @media (max-width: 1281px) {
+  /* العربية تنهار عند 1393px (اللازم 1354) والإنجليزية عند 1515px (اللازم 1476 بخط 13.5px وفجوة 10px):
+     عشرة روابط ظاهرة بعناوين الصفحات مع «المتاجر/Online Stores» (2026-10-09، كانتا 1343 و1420 قبله)
+     و«معالمي المحفوظة/My saved places» في الأدوات. الكتلة محصورة بالإنجليزية كي لا تُسقط شريط العربية
+     والصينية بلا سبب. لا تعدّل إحدى الكتل دون الأخرى. */
+  @media (max-width: 1393px) {
+    :global([lang='ar']) .hd-actions .btn-gold { display: none; }
+    :global([lang='ar']) .burger { display: flex; }
+    :global([lang='ar']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='ar']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='ar']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='ar']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='ar']) .nav .nav-plan { display: block; }
+  }
+  @media (max-width: 1515px) {
     :global([lang='en']) .hd-actions .btn-gold { display: none; }
     :global([lang='en']) .burger { display: flex; }
     :global([lang='en']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -227,12 +259,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='en']) .nav .nav-plan { display: block; }
   }
-  /* الألمانية والروسية تنهاران أعلى: تسمياتهما أطول بنيةً حتى بعد تقصيرها عبر خط الترجمة
-     (‏Sehenswertes · Termine · Souqs & Parks، اعتماد الحاكم 91/100)، واللازم لها
-     1339px نافذةً بهامش الأمان نفسه. تكرار الكتلة مقصود ومحصور: لو وُحِّدت العتبة
-     عند 1338px لخسرت العربية والصينية شريطهما على شاشات 1280px بلا سبب (اللازم
-     لهما 1163 و1063). لا تعدّل إحدى الكتلتين دون الأخرى. */
-  @media (max-width: 1338px) {
+  /* الألمانية تنهار عند 1520px (اللازم 1481 بخط 12.5px وفجوة 8px، «Merkliste» و«Küche aus Al-Ahsa» و«Online-Shops») والروسية عند 1707px (اللازم 1668 بخط 13px وفجوة 10px، «Сохранённые места» و«Интернет-магазины»؛ أصغر من 13px يُضعف القراءة). كانتا 1432 و1569 قبل رابط المتاجر (2026-10-09).
+     تكرار الكتلة مقصود ومحصور كي لا تخسر العربية والصينية شريطهما بلا سبب. */
+  @media (max-width: 1520px) {
     :global([lang='de']) .hd-actions .btn-gold, :global([lang='ru']) .hd-actions .btn-gold { display: none; }
     :global([lang='de']) .burger, :global([lang='ru']) .burger { display: flex; }
     :global([lang='de']) .nav-toggle, :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -240,6 +269,15 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='de']) .nav a, :global([lang='ru']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
     :global([lang='de']) .nav-toggle:checked ~ .nav, :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='de']) .nav .nav-plan, :global([lang='ru']) .nav .nav-plan { display: block; }
+  }
+  @media (max-width: 1707px) {
+    :global([lang='ru']) .hd-actions .btn-gold { display: none; }
+    :global([lang='ru']) .burger { display: flex; }
+    :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='ru']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='ru']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='ru']) .nav .nav-plan { display: block; }
   }
   /* هواتف 360px وما دونها: مجموع الوردمارك والبرغر وأدوات الشريط كان يفيض عن
      الحاوية بـ28px فيُقصّ مبدّل اللغة وينزلق الوردمارك خارج الشاشة. */
@@ -249,5 +287,10 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     .plan-link { padding-inline: 6px; }
     .lang { padding: 6px 9px; }
     .burger { inline-size: 40px; }
+    /* الروسية: كلمة «Сохранённые» وحدها 101.7px فتفيض أدوات الشريط 29px عند 320px
+       (و28px أخرى متى ظهرت شارة العدّاد). خطّ التنقّل المضغوط نفسه، والشارة تُعلَّق على
+       زاوية الرابط فلا تأخذ عرضاً، والكسر بواصلة ملاذٌ أخير حين لا يتّسع السطر للكلمة. */
+    :global([lang='ru']) .plan-link { font-size: .8125rem; hyphens: auto; overflow-wrap: anywhere; }
+    :global([lang='ru']) .plan-badge { position: absolute; inset-block-start: -2px; inset-inline-end: -6px; }
   }
 </style>

@@ -1,0 +1,109 @@
+{
+  "batch": "copper-hasawi",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "traveller_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "ru-1a",
+      "file": "src/i18n/ui.ts",
+      "line": 1054,
+      "from": "блестит медь,",
+      "to": "блестит медная утварь,",
+      "reason": "blind: bare «медь» reads as raw metal; «медная утварь» = copper wares of a souq (broader than посуда, so nothing narrowed)"
+    },
+    {
+      "id": "ru-1b",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 34,
+      "from": "в его проходах пахнет духами и блестит медь, а его накидки расшиты",
+      "to": "в его проходах пахнет духами и блестит медная утварь, а накидки здесь расшиты",
+      "reason": "blind: «медная утварь» as above; «его накидки» (the market's cloaks) -> «накидки здесь» = published 24-hours-ru wording"
+    },
+    {
+      "id": "ru-1c",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 22,
+      "from": "а тесно стоящие лавки ведут вас по проходам, где пахнет специями и духами и блестит медь, —",
+      "to": "а между тесно стоящими лавками тянутся проходы, где пахнет специями и духами и блестит медная утварь, —",
+      "reason": "blind: «лавки ведут вас» odd personification; the passages now run between the close-packed shops (nothing added); «медная утварь» as above"
+    },
+    {
+      "tm": "ru-translation/memory/tm.json",
+      "reason": "file_edits carry the judged wording (afters updated; date 2026-10-04 + note)"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "obs": "Copper read as raw metal; suggested «медная утварь/посуда»",
+      "ruling": "applied",
+      "reason": "«медная утварь» on all three lines (утварь is broader than посуда, so the source is not narrowed to dishware)"
+    },
+    {
+      "obs": "Qaisariyah «лавки ведут вас по проходам» odd personification, long sentence",
+      "ruling": "applied",
+      "reason": "same line: «а между тесно стоящими лавками тянутся проходы, где пахнет специями и духами и блестит медная утварь, —»"
+    },
+    {
+      "obs": "48-hours «его накидки» (the market's cloaks)",
+      "ruling": "applied",
+      "reason": "same line: «а накидки здесь расшиты руками местных жителей» = published 24-hours-ru wording"
+    }
+  ],
+  "out_of_scope": [
+    "Gold appears only in the home market card cat.market.d (ar «عبق العطر والذهب والنحاس»), not on the Qaisariyah page or the route card - raised to Eyad unscored.",
+    "Qaisariyah FAQ «what to buy» lists neither perfume nor copper though the description promises both - raised to Eyad unscored.",
+    "Published 24-hours-ru:34 «блестит медь» and cat.market.d «блеск золота и меди» keep bare metal - follow-up if «медная утварь» is to be uniform site-wide.",
+    "tm.json line ~8148 (another post) also carries «а его накидки до сих пор …» - same possessive pattern, outside this batch."
+  ],
+  "positions": [
+    {
+      "id": "ru-1a",
+      "file": "src/i18n/ui.ts",
+      "line": 1054,
+      "current": "    'home.route.s2.d': 'Проходы, где пахнет духами и медью, и накидки, расшитые руками местных жителей.',",
+      "proposed": "    'home.route.s2.d': 'Проходы, где пахнет духами и блестит медная утварь, и накидки, расшитые руками местных жителей.',"
+    },
+    {
+      "id": "ru-1b",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 34,
+      "current": "Завершите первый день на [рынке Эль-Кайсария](/ru/attractions/qaisariyah/): этому традиционному рынку более двух веков, в его проходах пахнет духами и медью, а его накидки расшиты руками местных жителей. Приходить сюда лучше утром или вечером: в полдень лавки закрываются на долгий перерыв и вновь открываются лишь во второй половине дня; по пятницам рынок открыт только вечером. Где поужинать в городе, смотрите в путеводителе [«Рестораны и кафе»](/ru/restaurants-cafes/).",
+      "proposed": "Завершите первый день на [рынке Эль-Кайсария](/ru/attractions/qaisariyah/): этому традиционному рынку более двух веков, в его проходах пахнет духами и блестит медная утварь, а накидки здесь расшиты руками местных жителей. Приходить сюда лучше утром или вечером: в полдень лавки закрываются на долгий перерыв и вновь открываются лишь во второй половине дня; по пятницам рынок открыт только вечером. Где поужинать в городе, смотрите в путеводителе [«Рестораны и кафе»](/ru/restaurants-cafes/)."
+    },
+    {
+      "id": "ru-1c",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 22,
+      "current": "body_ru: \"Один из старейших и самых прославленных рынков в регионе Залива: ему более двух веков. Его архитектурный облик своеобразен, а тесно стоящие лавки ведут вас по проходам, где пахнет специями, медью и духами, — здесь бьётся сердце традиционной торговли Аль-Ахсы. Рынок — идеальное место, чтобы приобрести знаменитый бишт Аль-Ахсы: накидку, которую надевают по торжественным случаям как знак высокого положения. «Ткачество Аль-Ахсы» отличается точностью ручной вышивки нитями «зари», покрытыми золотом или серебром. Семьи Аль-Ахсы передают это ремесло из поколения в поколение. Помимо бишта вы найдёте здесь местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже, а лучшее время здесь — утро или вечер.\"",
+      "proposed": "body_ru: \"Один из старейших и самых прославленных рынков в регионе Залива: ему более двух веков. Его архитектурный облик своеобразен, а между тесно стоящими лавками тянутся проходы, где пахнет специями и духами и блестит медная утварь, — здесь бьётся сердце традиционной торговли Аль-Ахсы. Рынок — идеальное место, чтобы приобрести знаменитый бишт Аль-Ахсы: накидку, которую надевают по торжественным случаям как знак высокого положения. «Ткачество Аль-Ахсы» отличается точностью ручной вышивки нитями «зари», покрытыми золотом или серебром. Семьи Аль-Ахсы передают это ремесло из поколения в поколение. Помимо бишта вы найдёте здесь местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже, а лучшее время здесь — утро или вечер.\""
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "      \"en\": \"Passages fragrant with perfume and copper, and cloaks embroidered by local hands.\",\r\n      \"ru\": \"Проходы, где пахнет духами и медью, и накидки, расшитые руками местных жителей.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.home.route.s2.d\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "      \"en\": \"Passages fragrant with perfume and gleaming with copper, and cloaks embroidered by local hands.\",\r\n      \"ru\": \"Проходы, где пахнет духами и блестит медная утварь, и накидки, расшитые руками местных жителей.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.home.route.s2.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"copper-hasawi 2026-10-04: perfume is smelled, copperware gleams (blind: медная утварь)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    }\r\n  ]\r\n}",
+      "after": "      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    },\r\n    {\r\n      \"en\": \"Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and gleaming with copper, its cloaks embroidered by local hands. Its best hours are the morning or the evening, as the shops close at midday; on Fridays it opens in the evening only. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.\",\r\n      \"ru\": \"Завершите первый день на [рынке Эль-Кайсария](/ru/attractions/qaisariyah/): этому традиционному рынку более двух веков, в его проходах пахнет духами и блестит медная утварь, а накидки здесь расшиты руками местных жителей. Приходить сюда лучше утром или вечером: в полдень лавки закрываются на долгий перерыв и вновь открываются лишь во второй половине дня; по пятницам рынок открыт только вечером. Где поужинать в городе, смотрите в путеводителе [«Рестораны и кафе»](/ru/restaurants-cafes/).\",\r\n      \"page\": \"48-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"copper-hasawi 2026-10-04: perfume is smelled, copperware gleams (blind: медная утварь)\"\r\n    }\r\n  ]\r\n}"
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "      \"en\": \"One of the oldest and most storied souqs in the Gulf, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices, copper and perfume — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices. Opening hours and fees are listed in the visit-information card below, and its best hours are in the evening.\",\r\n      \"ru\": \"Один из старейших и самых прославленных рынков в регионе Залива: ему более двух веков. Его архитектурный облик своеобразен, а тесно стоящие лавки ведут вас по проходам, где пахнет специями, медью и духами, — здесь бьётся сердце традиционной торговли Аль-Ахсы. Рынок — идеальное место, чтобы приобрести знаменитый бишт Аль-Ахсы: накидку, которую надевают по торжественным случаям как знак высокого положения. «Ткачество Аль-Ахсы» отличается точностью ручной вышивки нитями «зари», покрытыми золотом или серебром. Семьи Аль-Ахсы передают это ремесло из поколения в поколение. Помимо бишта вы найдёте здесь местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже, а лучшее время здесь — вечер.\",\r\n      \"page\": \"qaisariyah\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-09-08\"",
+      "after": "      \"en\": \"One of the oldest and most storied souqs in the Gulf, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices. Opening hours and fees are listed in the visit-information card below, and its best hours are in the evening.\",\r\n      \"ru\": \"Один из старейших и самых прославленных рынков в регионе Залива: ему более двух веков. Его архитектурный облик своеобразен, а между тесно стоящими лавками тянутся проходы, где пахнет специями и духами и блестит медная утварь, — здесь бьётся сердце традиционной торговли Аль-Ахсы. Рынок — идеальное место, чтобы приобрести знаменитый бишт Аль-Ахсы: накидку, которую надевают по торжественным случаям как знак высокого положения. «Ткачество Аль-Ахсы» отличается точностью ручной вышивки нитями «зари», покрытыми золотом или серебром. Семьи Аль-Ахсы передают это ремесло из поколения в поколение. Помимо бишта вы найдёте здесь местные ремесленные изделия из пальмовых листьев и керамики, финики всех сортов, кофе и специи. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже, а лучшее время здесь — утро или вечер.\",\r\n      \"page\": \"qaisariyah\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"copper-hasawi 2026-10-04: spices and perfume are smelled, copperware gleams, passages run between the shops (blind); en/ru synced to current page (best time: morning or evening)\""
+    }
+  ]
+}

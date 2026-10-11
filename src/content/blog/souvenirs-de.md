@@ -23,7 +23,7 @@ In der größten Oase der Welt ist die Dattel das Geschenk, das unangefochten an
 
 ## Die Hasawi-Limette und die Speisekammer der Oase
 
-Die **Hasawi-Limette** (die Limette aus Al-Ahsa), auch Bin Zuhairi genannt, gehört zu den bekanntesten Erzeugnissen aus den Hainen der Oase. Frisch hat sie im Sommer Saison; getrocknet parfümiert sie die Hasawi-Küche das ganze Jahr über. Aus derselben Speisekammer kommen **Dattelsirup**, der die einheimischen Gerichte süßt, und **Dattelbrot**, bestreut mit Schwarzkümmel. Welchen Platz jedes davon auf dem Tisch einnimmt, zeigt die Seite [Hasawi-Küche](/de/food/).
+Die **Hasawi-Limette** (die Limette aus Al-Ahsa), auch Bin Zuhairi genannt, gehört zu den bekanntesten Erzeugnissen aus den Hainen der Oase. Frisch hat sie im Sommer Saison; getrocknet parfümiert sie die Küche Al-Ahsas das ganze Jahr über. Aus derselben Speisekammer kommen **Dattelsirup**, der die einheimischen Gerichte süßt, und **Dattelbrot**, bestreut mit Schwarzkümmel. Welchen Platz jedes davon auf dem Tisch einnimmt, zeigt die Seite [Küche aus Al-Ahsa](/de/food/).
 
 ## Kunsthandwerk: Was die Reise überdauert
 
@@ -42,4 +42,4 @@ Wo jedes dieser Handwerke entsteht und wie Sie dabei zusehen können, steht im [
 
 ## Machen Sie den Einkauf zum Ausklang Ihres Tages
 
-Die traditionellen Souks erwachen am Abend zum Leben – deshalb setzen die [Reiserouten](/de/blog/48-hours-in-al-ahsa/) sie ans Ende des Tages: zuerst die Sehenswürdigkeiten bei Tageslicht, dann der Qaisariyah-Souk und seine Nachbarn, wenn die Geschäfte ihre Türen öffnen. Fügen Sie Ihre Stationen zu [„Meine Reise“](/de/plan/) hinzu und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt.
+Die traditionellen Souks erwachen am Abend zum Leben – deshalb setzen die [Reiserouten](/de/blog/48-hours-in-al-ahsa/) sie ans Ende des Tages: zuerst die Sehenswürdigkeiten bei Tageslicht, dann der Qaisariyah-Souk und seine Nachbarn, wenn die Geschäfte ihre Türen öffnen. Setzen Sie Ihre Stationen auf Ihre [Merkliste](/de/plan/) und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt.

@@ -1,0 +1,55 @@
+{
+ "lang": "de",
+ "stage": "07",
+ "batch": "kasernen-body",
+ "pass_threshold": 90,
+ "page": "/de/attractions/qasr-ibrahim/ (body_de السطر 17)",
+ "score": 97,
+ "breakdown": {
+  "accuracy": 30,
+  "nativeness": 28,
+  "compliance": 20,
+  "fit": 9,
+  "structure": 10
+ },
+ "breakdown_why": "الدقة 30: «Kasernen» جمعاً يطابق الفيصل العربي في المتن (98-99 «وثكناتٌ عسكرية») وFAQ (88 «وثكنات عسكرية») وbody_en (32 «military barracks»)، ويطابق summary_de المنشور (14 «Kasernen und Türme») — تحقّقتُ بنفسي. سقوط «عسكرية» لا يُسقط دلالة: Kaserne عسكرية بالتعريف؛ ولا كمّ مضاف (رفض mehrere/einige صحيح). الأصالة 28: التعداد «eine Moschee mit anmutiger Kuppel, Kasernen, Wachtürme, Ställe und Lagerräume» سليم وطبيعي (أداة النكرة صفرية في الجمع)، والخصم نقطتان لتراكيب موروثة خارج النطاق («Gehen Sie …, sehen Sie …, und Sie lesen …»، «strohvermischtem»). الامتثال 20: Duden، Sie، termbase، لا U+2014 (C17)، لا Souq (C18)، NFC، U+0020 حصراً. الملاءمة 9: زال التناقض العددي بين الملخص والمتن (أكّده القارئ الأعمى مستقلاً)، ونقطة لـ«Chandal-Holz» بلا شرح و«Kein Palast» الموروثين. البنية 10: المفتاح والتنصيص محفوظان، 910 ← 906 بايت، استبدال وحيد. يطابق تقدير الحاكم السابق (towers-plural: «تُرفع الصفحة إلى 97 إن أُصلح body_de»).",
+ "rulings": {
+  "scope": "الفارق الوحيد «eine Kaserne, » ← «Kasernen, » كما يأذن البريف؛ بقية السطر حرفياً كما هو منشور.",
+  "form": "«Kasernen» بلا أداة هو أدنى صيغة نحوية سليمة: حذف «eine» لازم بالجمع، ولا صفة ولا كمّ مضافان.",
+  "c39": "tools/check-ibrahim-towers.mjs لا يتأثر: نمط OLD الألماني /Moschee,s+Kasernes+unds+Turm/ ونمط OK /Moschee,s+Kasernens+unds+Türme/ يخصّان الصيغة الثلاثية لا تعداد المتن.",
+  "stages_4_5": "أُصدّق: changed_from_stage3 false، والبنود العشرة في المرحلة 5 مطابقة لفحصي."
+ },
+ "blind_reader_rulings": [
+  {
+   "n": "خلاصة الموضوع",
+   "verdict": "applied",
+   "reason": "القارئ لم يرصد تناقضاً عددياً بعد التصحيح ولم يتعثّر في التعداد؛ هذا هو الدليل المستقل على نجاح الدفعة."
+  },
+  {
+   "n": "1-18",
+   "verdict": "raise_to_eyad_later (غير محسوبة)",
+   "reason": "لا شيء منها يمسّ الكلمة المتغيرة ولا عددها؛ البند 4 و6 يخصّان بقية السطر 17 الذي يمنع البريف مسّه، والباقي حقول أو صفحات أخرى."
+  }
+ ],
+ "raise_to_eyad_later": [
+  "الملخص/سطر البحث بلا اسم ولا مكان؛ «Palmstämme» وحدها في الملخص مقابل ثلاث مواد في المتن؛ «vereint» (الملخص) مقابل «vereinte» (المتن) (1).",
+  "«Bestandteil der UNESCO-Welterbestätte · 1563-004»: الموقع غير مسمّى والرقم بلا معنى للقارئ (2).",
+  "«Kein Palast im prunkvollen Sinne» ينفي ما لم يُشرح (معنى Qasr) (3).",
+  "«Chandal-Holz» بلا شرح؛ «Dächer aus … Steinen»؛ «strohvermischtem Lehm» ← «mit Stroh vermischtem Lehm» (4).",
+  "الدرج الحلزوني بعد الفاصلة المنقوطة (5).",
+  "«Gehen Sie …, sehen Sie …, und Sie lesen …» أشدّ تعثّر (الأطبع «… dann lesen Sie …»)؛ «beschattet den Mihrab» (6).",
+  "«jenem städtischen Gefüge» يحيل إلى ما لم يُذكر (7).",
+  "«Beste Tageszeit: Tagsüber» والجمعة 16:00 (8)؛ «beim Betreiber» بلا جهة (9)؛ «Kostenlos/frei» (10)؛ «Melden Sie es uns» بلا نقطة (11).",
+  "«Den Tag abrunden» وسطره الفرعي (12)؛ تسميات التنقّل المزدوجة (13)؛ «Hasawi-Küche» (14)؛ «Termine/Veranstaltungen» (15)؛ عنوان التذييل «Website» (16)؛ «Eine Oase … zwischen Oasen» (17)؛ «keine Regierungsstelle» (18)."
+ ],
+ "machine_checks_by_judge": {
+  "current_matches_file": "نعم — node: current === السطر 17 بعد حذف \r، ويرد في الملف مرة واحدة.",
+  "single_replacement": "نعم — proposed === current.replace(«eine Kaserne, », «Kasernen, »)، والمرساة فريدة؛ 910 ← 906 بايت.",
+  "nfc_and_chars": "NFC؛ صفر U+00A0/U+2009/U+202F/U+2007/U+2014/tab؛ صفر Souq؛ صفر du/dein."
+ },
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "changed_by_judge": [],
+ "scores_csv_row": "\"kasernen-body (de): qasr-ibrahim body_de line 17 eine Kaserne -> Kasernen (plural per AR ثكنات/EN military barracks; matches summary_de)\",2026-10-02,1,97,\"APPROVE (30/28/20/9/10; single replacement, rest of line untouched per brief; blind reader: no number conflict left; 18 observations out of scope, raised to Eyad unscored)\"",
+ "notes": "لم يغيّر الحاكم حرفاً؛ final.json = موضع 05.json كما هو. ثنائية tm.json للسطر المصحّح يُلحقها المنسّق."
+}

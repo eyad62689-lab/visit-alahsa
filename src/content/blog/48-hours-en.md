@@ -12,7 +12,7 @@ faq:
   - q: "Are two days enough to visit Al-Ahsa?"
     a: "Two days are enough to feel the spirit of the oasis and cover its foremost landmarks: the heritage heart of Hofuf on day one, and the oasis's nature, water and coast on day two. If you want more, the attractions pages on this site hold museums, parks and folk souqs enough to fill a third day."
   - q: "How do I get between the stops on this itinerary?"
-    a: "A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's My Trip page to get a ready-made route that opens in Google Maps."
+    a: "A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's “My saved places” page to get a ready-made route that opens in Google Maps."
 ---
 
 Two days are enough to feel the spirit of Al-Ahsa — the largest oasis on earth, a UNESCO World Heritage Site since 2018, where life thrives among more than 2.5 million date palms. This itinerary splits the visit the way the oasis itself is split: **day one for its heritage heart in Hofuf**, **day two for its water, green and coast**.
@@ -23,36 +23,36 @@ One note before you start: the stops here are arranged by the **rhythm of the da
 
 ### Morning: Qasr Ibrahim
 
-Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress where mud and stone meet, gathering mosque, garrison and tower beneath one wall. The first light of day is the best time to take in the architecture and the inner courtyard.
+Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress of mud walls and palm-trunk roofs, gathering mosque, barracks and towers beneath one wall. Daytime is the best time to take in the architecture and the inner courtyard.
 
 ### Mid-morning: Al-Koot District and the City's Memory
 
-Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1789 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum. Then continue east to the [Amiriah School](/en/attractions/ameeriah/), Al-Ahsa's first formal government school (1937), whose historic building now serves as a house of culture.
+Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1788 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum. Then continue east to the [Amiriah School](/en/attractions/ameeriah/), Al-Ahsa's first formal government school (1937), whose historic building now serves as a house of culture.
 
 ### Evening: Qaisariyah Souq
 
-Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands. Evening is its best hour, when the shops open their doors and the souq finds its pulse. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
+Close your first day at [Qaisariyah Souq](/en/attractions/qaisariyah/) — a heritage market over two centuries old, its passages fragrant with perfume and gleaming with copper, its cloaks embroidered by local hands. Its best hours are the morning or the evening, as the shops close at midday; on Fridays it opens in the evening only. For dinner, browse the city's options in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
 
 ## Day Two: Water, Green and the Coast
 
-### Early Morning: Jabal Al-Qarah and Dougha Al-Gharash
+### Morning: Jabal Al-Qarah and Dougha Al-Gharash
 
-Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. Early morning is its finest hour, when the light is soft and the heat is mild. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
+Head east of Hofuf to [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) — the geological wonder whose caves, carved by time at the heart of the oasis, stay cool in summer and warm in winter. At the mountain's foot in Al-Qarah village, stop by [Dougha Al-Gharash](/en/attractions/duqat-algharash/) — the heritage pottery house handed down through the Al-Gharash family, one of Saudi Arabia's best-known homes of the craft.
 
-### Midday: Jawatha Mosque
+### Mid-morning: Jawatha Mosque
 
-Northeast of the oasis, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. Be mindful of prayer times and the sanctity of the place; the mosque is open to visitors, with respect for prayer times, modest dress and the sanctity of the place.
+Northeast of Hofuf, in the village of Al-Kilabiyah, stands [Jawatha Mosque](/en/attractions/jawatha-mosque/) — one of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina. Its mud walls carry one of the oldest stories in Islam. The mosque is open to visitors, with modest dress and respect for the sanctity of the place.
 
-### Afternoon: The Green of the Farms
+### Late Afternoon: The Green of the Farms
 
-If your visit falls in the Hasawi lime season, in summer from mid-June, give the afternoon to the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
+If your visit falls in the Hasawi lime season, in summer from mid-June to the end of August, give the late afternoon, when the heat eases, to the [Hasawi Lime Farm](/en/attractions/lemon-farm/), where visitors pick the famous Hasawi lime (lomi) in season. Outside the season, browse the [Souqs, Parks & Farms](/en/souqs-parks-farms/) page and pick a park or farm close to your route.
 
 ### Sunset: Al-Uqair
 
-End your trip on the Gulf coast east of Al-Ahsa at [Al-Uqair](/en/attractions/al-uqair/) — the region's oldest port, where desert sands meet the blue of the Gulf. Just before sunset the white sands glow against the water — a fitting close to two days in the oasis.
+End your trip on the Gulf coast east of Al-Ahsa at [Al-Uqair](/en/attractions/al-uqair/) — Saudi Arabia's first seaport on its eastern coast, where desert sands meet the blue of the Gulf. Just before sunset the white sands glow against the water — a fitting close to two days in the oasis.
 
 ## Practical Tips
 
-- **Arrange your route before you set out**: add stops to [My Trip](/en/plan/) from each landmark's page and get a ready-made route that opens in Google Maps.
+- **Arrange your route before you set out**: add stops to [My saved places](/en/plan/) from each landmark's page and get a ready-made route that opens in Google Maps.
 - **Use the map**: the [attractions map](/en/map/) shows every stop in its place and helps you judge the order of your day.
 - **First time in Al-Ahsa?** The [Plan your trip](/en/plan-your-trip/) page gathers the essentials of getting there and getting around.

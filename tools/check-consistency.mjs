@@ -10,18 +10,40 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { checkTrails, EXPECT } from './check-trails.mjs';
+import { checkTrails, EXPECT, L10N_LANGS } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
 import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
+import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
+import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passages.mjs';
+import { checkUqairPort, EXPECT as UQAIR_EXPECT } from './check-uqair-port.mjs';
+import { checkQarahPalms, EXPECT as PALMS_EXPECT } from './check-qarah-palms.mjs';
+import { checkIbrahimMaterials, EXPECT as IBRAHIM_EXPECT } from './check-ibrahim-materials.mjs';
+import { checkAsfarNotes, EXPECT as ASFAR_NOTES_EXPECT } from './check-asfar-notes.mjs';
+import { checkQarahSilhouette, EXPECT as SILHOUETTE_EXPECT } from './check-qarah-silhouette.mjs';
+import { checkIbrahimTowers, EXPECT as TOWERS_EXPECT } from './check-ibrahim-towers.mjs';
+import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-ibrahim-materials-intro.mjs';
+import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
+import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
+import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
 // مثل /^hoursSpec:\n/ كانت تقرأ الترويسة فارغةً محلياً فيُخفق C24 هنا وينجح هناك (2026-09-16).
 // التوحيد عند القراءة لا في كل نمط: فحصٌ قادم يُكتب بـ\n فيسلك على المنصتين سلوكاً واحداً.
 const readText = async (p) => (await readFile(p, 'utf8')).replace(/\r\n?/g, '\n');
+// قيمة حقل frontmatter من سطر واحد «key: value» أو «key: "value"» — بلا تعابير نمطية
+// متراجعة: قراءة خطية للسطر الأول الذي يبدأ بالمفتاح، مع نزع علامات الاقتباس المحيطة.
+const fmField = (head, key, quotes = '"') => {
+  const line = head.split(/\r?\n/).find((l) => l.startsWith(key + ':'));
+  if (line === undefined) return undefined;
+  let v = line.slice(key.length + 1).trim();
+  if (v && quotes.includes(v[0])) v = v.slice(1);
+  if (v && quotes.includes(v[v.length - 1])) v = v.slice(0, -1);
+  return v || undefined;
+};
 
 // وجود الرقم num في النص بحدود رقمية لا ترقيمية (لا رقم قبله ولا «رقم:» أو «رقم.» قبله، ولا رقم
 // بعده ولو بعد فاصل)، دون بناء تعبير نمطي من مدخل — «2018.» آخر الجملة رقم صحيح، أما «18» فلا تُقبل
@@ -96,8 +118,29 @@ const stripUntilStable = (html, re, sep = '') => {
 
 const stripTags = (html, sep = '') => {
   let prev;
-  do { prev = html; html = html.replace(/<[^>]*>/g, sep); } while (html !== prev);
+  do { prev = html; html = html.replace(/<[^<>]*>/g, sep); } while (html !== prev);
   return html;
+};
+// يحذف كل عنصر يحمل lang="en" حتى أول وسم إغلاق باسمه (كما كان التعبير النمطي
+// بالإرجاع الخلفي يفعل) لكن بمسح خطي: وسم الفتح بلا «<» داخله، والإغلاق بـindexOf.
+const stripLangEnElements = (html) => {
+  const open = /<(\w+)((?:[\s/][^<>]*)?)>/g;
+  let out = html;
+  for (;;) {
+    open.lastIndex = 0;
+    let removed = false;
+    let m;
+    while ((m = open.exec(out))) {
+      if (!/\blang="en"/i.test(m[2])) continue;
+      const closeTag = '</' + m[1].toLowerCase() + '>';
+      const close = out.toLowerCase().indexOf(closeTag, m.index + m[0].length);
+      if (close < 0) continue;
+      out = out.slice(0, m.index) + out.slice(close + closeTag.length);
+      removed = true;
+      break;
+    }
+    if (!removed) return out;
+  }
 };
 
 async function listHtml(dir) {
@@ -159,7 +202,7 @@ async function main() {
     const home = await readText(homePath);
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
     const text = stripTags(home, '');
-    const m = text.match(/([\d.,+MK万]+)[\s]*معلماً ووجهةً للاكتشاف/);
+    const m = text.match(/(?<![\d.,+MK万])([\d.,+MK万]+)[\p{Cc}\s]*معلماً ووجهةً للاكتشاف/u);
     if (!m) fail('C3', 'تعذّر استخراج عدد المعالم من بطاقات حقائق الرئيسية');
     else if (m[1] === String(truth)) pass('C3', `الرئيسية تعرض ${truth} معلماً`);
     else fail('C3', `الرئيسية تعرض «${m[1]}» بينما الحقيقة ${truth}`);
@@ -211,7 +254,7 @@ async function main() {
   for (const f of mdFiles) {
     const raw = await readText(path.join(SRC_ATTRACTIONS, f));
     // بعض الملفات تكتب الرابط بين علامتَي اقتباس فتُنزع
-    const slug = raw.match(/^slug_ar:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '');
+    const slug = fmField(raw, 'slug_ar', '"\'');
     if (!slug) continue;
     const lines = raw.split('\n').filter((l) => /^\s*-\s*\{\s*label:/.test(l));
     const verifiedCount = lines.filter((l) => l.includes('verified: true')).length;
@@ -253,7 +296,7 @@ async function main() {
       if (badFormat.length) fail('C8', `صيغة تاريخ غير صالحة: ${badFormat.slice(0, 3).join(', ')}`);
       else if (future.length) fail('C8', `${future.length} تاريخاً في المستقبل: ${future.slice(0, 3).join(', ')}`);
       else if (distinct === 1 && mods.length > 5) fail('C8', `كل الروابط بتاريخ واحد (${mods[0]}) — مؤشّر استنساخ ضحل`);
-      else pass('C8', `${mods.length} lastmod من ${locs.length} رابطاً، ${distinct} تاريخاً مميزاً، أحدثها ${mods.slice().sort().at(-1)}`);
+      else pass('C8', `${mods.length} lastmod من ${locs.length} رابطاً، ${distinct} تاريخاً مميزاً، أحدثها ${mods.slice().sort((a, b) => a.localeCompare(b)).at(-1)}`);
     }
   }
 
@@ -281,8 +324,8 @@ async function main() {
       sources.push({ file: f, text });
       const head = text.split('\n---')[0];
       byFile.set(f, {
-        slugAr: head.match(/^slug_ar:\s*"?([^"\n]+?)"?\s*$/m)?.[1],
-        slugEn: head.match(/^slug_en:\s*"?([^"\n]+?)"?\s*$/m)?.[1],
+        slugAr: fmField(head, 'slug_ar'),
+        slugEn: fmField(head, 'slug_en'),
       });
     }
     const pageCache = new Map();
@@ -355,6 +398,109 @@ async function main() {
     const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
     if (problems.length) fail('C31', `صياغة بحيرة الأصفر: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C31', `بحيرة الأصفر بصياغة واس في صفحتها بكل لغة (${per}؛ الحدّ الأدنى ${ASFAR_EXPECT.minPages})، ولا دعوى «أكبر البحيرات الطبيعية» في ${stats.scanned} صفحة`);
+    // ── C32: بيت البيعة بُني عام 1203هـ/1788م (حكم إياد 2026-09-30، بسند الدارة وسعوديبيديا) — لا
+    // «1789» في صفحة تذكر 1203، وإيجاباً 1203…1788 في صفحة المعلم بكل لغة. المنطق في
+    // tools/check-baiah-year.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+    {
+      const { problems, stats } = checkBaiahYear(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C32', `سنة بيت البيعة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C32', `بيت البيعة 1203هـ/1788م في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${BAIAH_EXPECT.minPages})، ولا «1789» في ${stats.hijriPages} صفحة تذكر 1203`);
+    }
+    // ── C33: ممرات جبل القارة «28 ممراً… 1.5 كيلومتر» (إفادة إياد 2026-09-30) — لا «14 كم²» بأي لغة،
+    // ولا «ألف متر» في صفحة المعلم العربية ومقال الدليل، وإيجاباً 28…1.5 فيها. المنطق في
+    // tools/check-qarah-passages.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+    {
+      const { problems, stats } = checkQarahPassages(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C33', `ممرات جبل القارة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C33', `جبل القارة 28 ممراً و1.5 كم في المتن العربي ومقال الدليل (${per}؛ الحدّ الأدنى ${QARAH_EXPECT.minPages})، ولا «14 كم²» في ${stats.scanned} صفحة`);
+    }
+    // ── C34: ميناء العقير «أول ميناء بحري شرق المملكة» بصياغة الدارة (حكم إياد 2026-09-30) — لا
+    // «أقدم/أول موانئ المنطقة/أول ميناء في المملكة» ونظائرها بأي لغة، وإيجاباً الصياغة المعتمدة في
+    // صفحات المعالم الثلاثة ومقالَي الدليل ومسار الساحل. المنطق في tools/check-uqair-port.mjs.
+    {
+      const { problems, stats } = checkUqairPort(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C34', `ميناء العقير: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C34', `العقير «أول ميناء بحري شرق المملكة» في صفحاته بكل لغة (${per}؛ الحدّ الأدنى ${UQAIR_EXPECT.minPages})، ولا دعوى «أقدم» في ${stats.scanned} صفحة`);
+    }
+    // ── C35: مطلّ جبل القارة — الـ2.5 مليون نخلة عددُ الواحة لا مدى النظر (حكم إياد 2026-09-30) — لا
+    // «نخلة تمتد تحتك» ونظائرها بأي لغة، وإيجاباً «طرفٌ من واحةٍ تضمّ…» في مقال الدليل بكل لغة.
+    // المنطق في tools/check-qarah-palms.mjs.
+    {
+      const { problems, stats } = checkQarahPalms(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C35', `مطلّ جبل القارة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C35', `الـ2.5 مليون نخلة للواحة لا للمشهد في مقال جبل القارة بكل لغة (${per}؛ الحدّ الأدنى ${PALMS_EXPECT.minPages})، ولا صياغة المشهد القديمة في ${stats.scanned} صفحة`);
+    }
+    // ── C36: مواد بناء قصر إبراهيم بتقرير واس (حكم إياد 2026-09-30) — لا «مدرستان من البناء» ولا
+    // «التقاء الطين والحجر» بأي لغة، وإيجاباً «جدران من الطين المخلوط بالقش» في صفحة القصر بكل لغة.
+    // المنطق في tools/check-ibrahim-materials.mjs.
+    {
+      const { problems, stats } = checkIbrahimMaterials(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C36', `مواد قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C36', `قصر إبراهيم بجدران الطين المخلوط بالقش في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${IBRAHIM_EXPECT.minPages})، ولا «مدرستان من البناء» في ${stats.scanned} صفحة`);
+    }
+    // ── C37: ملاحظات القرّاء العميان على الأصفر (أحكام إياد 2026-10-01) — لا «الطبيعة والمغارات»
+    // بأي لغة، وفي صفحة الأصفر: «شمال شرق نخيل الواحة» وجملة إعلان المحمية 2019. المنطق في
+    // tools/check-asfar-notes.mjs.
+    {
+      const { problems, stats } = checkAsfarNotes(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C37', `ملاحظات الأصفر: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C37', `الأصفر شمال شرق نخيل الواحة ومحميتها منسوبة لإعلان 2019 بكل لغة (${per}؛ الحدّ الأدنى ${ASFAR_NOTES_EXPECT.minPages})، ولا «الطبيعة والمغارات» في ${stats.scanned} صفحة`);
+    }
+    // ── C38: حجم جبل القارة يُقاس بهيئته من الخارج لا باسمه (حكم إياد 2026-10-01) — لا «أكبر مما
+    // يوحي به اسمه» ولا «по её названию» بأي لغة، وإيجاباً صيغة الهيئة في مقال الدليل بكل لغة.
+    // المنطق في tools/check-qarah-silhouette.mjs.
+    {
+      const { problems, stats } = checkQarahSilhouette(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C38', `هيئة جبل القارة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C38', `حجم جبل القارة بهيئته من الخارج في مقال الدليل بكل لغة (${per}؛ الحدّ الأدنى ${SILHOUETTE_EXPECT.minPages})، ولا مقارنة بالاسم في ${stats.scanned} صفحة`);
+    }
+    // ── C39: مرافق قصر إبراهيم بالجمع (حكم إياد 2026-10-02) — لا «المسجد والثكنة والبرج» ولا
+    // نظائرها المفردة بأي لغة، وإيجاباً صيغة الجمع في صفحة القصر بكل لغة ذات عدد نحوي.
+    // المنطق في tools/check-ibrahim-towers.mjs.
+    {
+      const { problems, stats } = checkIbrahimTowers(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C39', `مرافق قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C39', `مرافق قصر إبراهيم بالجمع في صفحته بكل لغة (${per}؛ الحدّ الأدنى ${TOWERS_EXPECT.minPages})، ولا صيغة مفردة في ${stats.scanned} صفحة`);
+    }
+    // ── C40: تمهيد مواد قصر إبراهيم «على الطريقة التقليدية في عمارة الخليج» (حكم إياد 2026-10-02) — لا «مواد الواحة
+    // نفسها» ونظائرها بأي لغة (الشندل ليس من الواحة)، وإيجاباً التمهيد الجديد في صفحة القصر بكل لغة.
+    // المنطق في tools/check-ibrahim-materials-intro.mjs.
+    {
+      const { problems, stats } = checkIbrahimMaterialsIntro(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C40', `تمهيد مواد قصر إبراهيم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C40', `تمهيد «على الطريقة التقليدية في عمارة الخليج» في صفحة قصر إبراهيم بكل لغة (${per}؛ الحدّ الأدنى ${MATERIALS_EXPECT.minPages})، ولا «مواد الواحة» في ${stats.scanned} صفحة`);
+    }
+    // ── C41: شرح الشندل في متن مسجد الحبيش (حكم إياد 2026-10-02) — «خشبٌ كان يُجلب إلى الخليج» بكل لغة،
+    // نظير شرط الشرح في C40. المنطق في tools/check-hubaish-chandal.mjs.
+    {
+      const { problems, stats } = checkHubaishChandal(pages);
+      const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (problems.length) fail('C41', `شرح الشندل في الحبيش: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C41', `شرح الشندل في صفحة الحبيش بكل لغة (${per}؛ الحدّ الأدنى ${HUBAISH_EXPECT.minPages})`);
+    }
+    // ── C42: علل القرّاء الصينيين على العقير (2026-10-02) — لا «首座海港» ولا الضمائر الملتبسة المصلَحة
+    // في أي صفحة صينية، و«第一座海港» في صفحات العقير الثلاث. المنطق في tools/check-zh-uqair.mjs.
+    {
+      const { problems, stats } = checkZhUqair(pages);
+      if (problems.length) fail('C42', `صيغ العقير الصينية: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C42', `«第一座海港» في صفحات العقير الصينية (${stats.targets}؛ الحدّ الأدنى ${ZH_UQAIR_EXPECT.minPages})، ولا صيغة سابقة ملتبسة`);
+    }
+    // ── C43: اسم القسم في الترويسة = عنوان صفحته (حكم إياد 2026-10-04)، والزرّ الذهبي = رابط الخطة.
+    // المنطق في tools/check-nav-titles.mjs.
+    {
+      const { problems, stats } = checkNavTitles(pages);
+      if (problems.length) fail('C43', `أسماء الأقسام في الترويسة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C43', `أسماء المطاعم والإقامة والأسواق في الترويسة تطابق عناوين صفحاتها، والزرّ الذهبي يطابق رابط الخطة، في ${stats.langs} لغات (الحدّ الأدنى ${NAV_TITLES_EXPECT.minLangs})`);
+    }
   }
   {
     const expects = [];
@@ -506,6 +652,11 @@ async function main() {
       // الروسية أُضيفت مع دفعة ui.ru (2026-09-05): رصدت المرحلة 4 أن /ru/ كانت بلا حارس
       // (‏\w لا تطابق السيريلية في JS بلا علم u، فالمقاطع بـ[а-яё] صراحةً)
       { lang: 'ru', re: /крупнейш[а-яё]+\s+(?:пальмов[а-яё]+|фиников[а-яё]+|природн[а-яё]+)\s+оазис/i },
+      // الواحة واحدة: شعار الرئيسية والتذييل «بين الواحات والنخيل» صار «بين البساتين والنخيل» (قرار إياد 2026-10-03)
+      { lang: 'ar', re: /بين\s+الواحات\s+والنخيل/ },
+      { lang: 'en', re: /among\s+(?:the|its)\s+oases\s+and\s+palms/i },
+      { lang: 'de', re: /zwischen\s+Oasen\s+und\s+Dattelpalmen/ },
+      { lang: 'ru', re: /среди\s+оазисов\s+и\s+пальм/i },
     ];
     const OK_CLAIM = /أكبر واحة[ٍ]? (?:في العالم|على وجه الأرض)|largest oasis (?:on earth|in the world)|最大的绿洲|größten Oase der Welt|крупнейш[а-яё]+\s+оазис[а-яё]*\s+(?:в\s+мире|мира)/i;
     const offenders = [];
@@ -518,7 +669,7 @@ async function main() {
       if (OK_CLAIM.test(html)) carriers++;
     }
     if (offenders.length) {
-      fail('C15', `دعوى «واحة نخيل» عادت في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — غينيس تقول «Largest oasis»`);
+      fail('C15', `دعوى «واحة نخيل» أو جمع «الواحات» عاد في ${offenders.length} صفحة: ${offenders.slice(0, 4).join(', ')} — غينيس تقول «Largest oasis»`);
     } else if (carriers === 0) {
       fail('C15', 'لا صفحة تحمل دعوى «أكبر واحة في العالم» — الحارس صار فارغاً، تحقّق من الصياغة');
     } else {
@@ -535,6 +686,12 @@ async function main() {
       { lang: 'en', re: /(?:peak|height)\s+of\s+summer[^]{0,80}?night/i },
       { lang: 'zh', re: /盛夏[^]{0,60}?(?:入夜|夜间|夜里)/ },
       { lang: 'de', re: /Hochsommer[^]{0,100}?Nacht/i },
+      // دليل الجبل: «تدخلها في ليلة شتاء فتجدها دافئة» صارت «في الشتاء» (حكم إياد 2026-10-04)
+      { lang: 'ar', re: /ليلة\s+شتاء[^]{0,30}?داف/ },
+      { lang: 'en', re: /winter\s+night[^]{0,30}?warm/i },
+      { lang: 'zh', re: /冬夜[^]{0,20}?暖/ },
+      { lang: 'de', re: /Winternacht[^]{0,60}?warm/i },
+      { lang: 'ru', re: /зимн[а-яё]*\s+ноч[а-яё]*[^]{0,60}?тепл/i },
     ];
     const OK_WINTER = /قلب الشتاء|depth of winter|隆冬|tiefsten Winter/;
     const offenders = [];
@@ -611,7 +768,7 @@ async function main() {
       const html = await readText(f);
       let text = stripUntilStable(html, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
       text = stripUntilStable(text, /<link[^>]*>/gi);
-      text = stripUntilStable(text, /<(\w+)[^>]*\blang="en"[^>]*>[\s\S]*?<\/\1>/gi);
+      text = stripLangEnElements(text);
       text = stripTags(text, ' ');
       if (/\bSouqs?\b/.test(text)) offenders.push(path.relative(DIST, f));
     }
@@ -641,10 +798,10 @@ async function main() {
     const problems = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const unesco = head.match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const block = head.match(/^sameAs:\s*\r?\n((?:[ \t]+-[ \t]+\S.*\r?\n?)+)/m)?.[1] ?? '';
+      const slugEn = fmField(head, 'slug_en');
+      const slugAr = fmField(head, 'slug_ar');
+      const unesco = fmField(head, 'unesco');
+      const block = head.match(/^sameAs:[ \t]*\r?\n((?:[ \t]+-[ \t]+\S[^\r\n]*(?:\r?\n|$))+)/m)?.[1] ?? '';
       const sameAs = [...block.matchAll(/^[ \t]+-[ \t]+"?(\S+?)"?[ \t]*$/gm)].map((m) => m[1]);
       if (!sameAs.length && !unesco) continue;
       if (!sameAs.length || !WD.test(sameAs[0])) problems.push(`${f}: أول sameAs ليس كيان Wikidata`);
@@ -669,7 +826,7 @@ async function main() {
         const rel = path.relative(DIST, p);
         if (!node) { problems.push(`${rel}: لا TouristAttraction`); continue; }
         pagesChecked++;
-        const got = Array.isArray(node.sameAs) ? node.sameAs : node.sameAs ? [node.sameAs] : [];
+        const got = Array.isArray(node.sameAs) ? node.sameAs : [node.sameAs].filter(Boolean);
         if (JSON.stringify(got) !== JSON.stringify(e.sameAs)) problems.push(`${rel}: sameAs المنشور لا يطابق المصدر`);
         const ident = node.identifier?.value;
         if ((ident ?? undefined) !== (e.unesco ?? undefined)) problems.push(`${rel}: معرّف اليونسكو ${ident ?? 'غائب'} ≠ ${e.unesco ?? 'لا شيء'}`);
@@ -753,7 +910,7 @@ async function main() {
     const expected = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const block = head.match(/^faq:[ \t]*\r?\n((?:[ \t]+\S.*\r?\n?)+)/m)?.[1];
+      const block = head.match(/^faq:[ \t]*\r?\n((?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+)/m)?.[1];
       if (!block) continue;
       const items = [];
       for (const raw of block.split(/\r?\n/)) {
@@ -769,8 +926,8 @@ async function main() {
       if (items.some((it) => !it.q || !it.a)) problems.push(`${f}: بند faq بلا q أو a بالعربية`);
       expected.push({
         f, items,
-        slugEn: head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
-        slugAr: head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+        slugEn: fmField(head, 'slug_en'),
+        slugAr: fmField(head, 'slug_ar'),
         hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head),
       });
     }
@@ -854,7 +1011,7 @@ async function main() {
         // «&» والفاصلة العليا تُفكّان قبل إسقاط بقية الكيانات: الاسم «Al-Koot Heritage Hotel &amp; Restaurant»
         // أو «Bayt Al-Bay&#39;ah» كان يصير «… Hotel Restaurant» فلا يطابق مجموعة الأسماء المستثناة (POL-DE-55).
         // تمريرةٌ واحدة: فكّ «&amp;» قبل غيره يفكّ «&amp;lt;» مرتين (CodeQL js/double-escaping)
-        .map((t) => t.replace(/&[a-z]+;|&#x?[\da-f]+;/gi, (e) => (e === '&amp;' ? '&' : /^&(#39|#x27|apos);$/i.test(e) ? "'" : ' ')).replace(/\s+/g, ' ').trim())
+        .map((t) => t.replace(/&[a-z]+;|&#x?[\da-f]+;/gi, (e) => { if (e === '&amp;') return '&'; return /^&(#39|#x27|apos);$/i.test(e) ? "'" : ' '; }).replace(/\s+/g, ' ').trim())
         // سطر الحقوق في التذييل اسم علامة وسنة ونطاق فقط — لا نصّ قابل للترجمة — فيُستثنى كالأسماء.
         .filter((t) => t.split(' ').length >= 2 && !/^[\d\s.,:%+\-–—/·]+$/.test(t) && !names.has(t) && !COPYRIGHT_LINE.test(t));
     };
@@ -929,8 +1086,8 @@ async function main() {
     const thinSlugs = [];
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) { problems.push(`${f}: بلا slug`); continue; }
       const pages = [
         ['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`],
@@ -1037,8 +1194,8 @@ async function main() {
     let hoursPages = 0, feePages = 0, attrPages = 0;
     for (const f of attrFiles) {
       const head = heads[f];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue; // يبلّغ عنه C23
       const hoursSrc = head.match(/^hoursSpec:\n([\s\S]*?)(?=^\S)/m)?.[1];
       const feeSrc = head.match(/^fee:.*$/m)?.[0];
@@ -1087,8 +1244,8 @@ async function main() {
     let answerPages = 0;
     for (const f of attrFiles) {
       const head = heads[f];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
       const src = { ar: head.match(/^answer:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^answer_en:\s*"(.*)"\s*$/m)?.[1] };
       if (Boolean(src.ar) !== Boolean(src.en)) problems.push(`${f}: answer بلغة واحدة`);
@@ -1116,8 +1273,8 @@ async function main() {
     // (د) صفحة مكوّنات اليونسكو بلغاتها الخمس (المرحلة هـ)، تحمل كل ما يحمل unesco في المصدر (عدداً
     //     ومعرّفات ورابطاً لكل صفحة معلم)، وItemList بعددها، وhreflang متبادل، وداخل sitemap.
     const comps = attrFiles.map((f) => ({
-      f, id: heads[f].match(/^unesco:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
-      slugAr: heads[f].match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1], slugEn: heads[f].match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1],
+      f, id: fmField(heads[f], 'unesco'),
+      slugAr: fmField(heads[f], 'slug_ar'), slugEn: fmField(heads[f], 'slug_en'),
     })).filter((c) => c.id).sort((a, b) => a.id.localeCompare(b.id));
     const smXml24 = existsSync(smPath) ? await readText(smPath) : '';
     for (const [l, p] of [['ar', '/اليونسكو/'], ['en', '/en/unesco/'], ['zh', '/zh/unesco/'], ['de', '/de/unesco/'], ['ru', '/ru/unesco/']]) {
@@ -1180,8 +1337,8 @@ async function main() {
     let withMentions = 0, mentionLinks = 0;
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
       const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
         .map(([l, slug, p]) => [l, slug, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , , fp]) => existsSync(fp));
@@ -1202,18 +1359,18 @@ async function main() {
     const attrByDistrict = new Map();
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const dist = fmField(head, 'district');
       if (!dist) continue;
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       (attrByDistrict.get(dist) ?? attrByDistrict.set(dist, []).get(dist)).push({ ar: `/${AR_ATTRACTIONS_DIR}/${slugAr}/`, en: `/en/attractions/${slugEn}/` });
     }
     let diningWith = 0, diningChecked = 0;
     for (const f of (await readdir(SRC_DINING)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_DINING, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const dist = head.match(/^district:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugAr = head.match(/^slug_ar:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
-      const slugEn = head.match(/^slug_en:\s*"?([^"\r\n]+?)"?\s*$/m)?.[1];
+      const dist = fmField(head, 'district');
+      const slugAr = fmField(head, 'slug_ar');
+      const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
       const pages = [['ar', `/مطاعم-ومقاهي/${slugAr}/`], ['en', `/en/restaurants-cafes/${slugEn}/`]]
         .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
@@ -1277,11 +1434,18 @@ async function main() {
 
   // ── C27: المسارات المقترحة (2026-09-26) ─────────────────────────────────
   // المنطق في tools/check-trails.mjs (دالة نقية يختبرها الكسر في الذاكرة)؛ هنا القراءة فقط:
-  // المصدر src/data/trails.json وصفحات /trails/ و/en/trails/ في dist.
+  // المصدر src/data/trails.json وملفات zh/de/ru، وصفحات /trails/ بلغاتها الخمس في dist.
   {
     const data = JSON.parse(await readText(path.join(ROOT, 'src/data/trails.json')));
+    const l10n = {};
+    for (const l of L10N_LANGS) {
+      const fp = path.join(ROOT, `src/data/trails.${l}.json`);
+      if (existsSync(fp)) l10n[l] = JSON.parse(await readText(fp));
+    }
     const pages = {};
-    for (const [l, base] of [['ar', 'trails'], ['en', path.join('en', 'trails')]]) {
+    const LANGS = ['ar', 'en', ...L10N_LANGS];
+    for (const l of LANGS) {
+      const base = l === 'ar' ? 'trails' : path.join(l, 'trails');
       const dir = path.join(DIST, base);
       const idxPath = path.join(dir, 'index.html');
       const trails = new Map();
@@ -1291,9 +1455,10 @@ async function main() {
       }
       pages[l] = { index: existsSync(idxPath) ? await readText(idxPath) : null, trails };
     }
-    const { problems, stats } = checkTrails(data, pages);
+    const { problems, stats } = checkTrails(data, pages, l10n);
+    const per = (f) => LANGS.map((l) => stats[l]?.[f] ?? 0).join('/');
     if (problems.length) fail('C27', `المسارات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C27', `المسارات: ${EXPECT.trails} صفحات بكل لغة (ar/en) و${stats.ar.stops}/${stats.en.stops} محطة و${stats.ar.badges}/${stats.en.badges} شارة يونسكو على المحطات المسمّاة وحدها و${stats.ar.landmarks}/${stats.en.landmarks} رابط معلم و${stats.ar.sources}/${stats.en.sources} مصدراً بـtarget=_blank rel=noopener؛ النصوص حرفية والإسناد في رأس الفهرس وذيل كل مسار وملاحظة اليونسكو مرة واحدة ولا وصف رسمي في العناوين والوسوم`);
+    else pass('C27', `المسارات: ${EXPECT.trails} صفحات بكل لغة (${LANGS.join('/')}) و${per('stops')} محطة و${per('badges')} شارة يونسكو على المحطات المسمّاة وحدها و${per('landmarks')} رابط معلم و${per('sources')} مصدراً بـtarget=_blank rel=noopener؛ النصوص حرفية والإسناد في رأس الفهرس وذيل كل مسار وملاحظة اليونسكو مرة واحدة ولا وصف رسمي في العناوين والوسوم`);
   }
 
   // ── C28: دليل التأشيرات — النص حرفياً من المصدر، و«لم يُتحقَّق» موسومة، والروابط كما هي (2026-09-26) ──
@@ -1316,6 +1481,24 @@ async function main() {
       if (problems.length) fail('C28', `دليل التأشيرات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C28', `دليل التأشيرات: ${stats.tokens} كلمة منشورة تطابق المصدر حرفياً، و${stats.marks} «لم يُتحقَّق» موسومة من ${stats.unverified} في المصدر، و${stats.links} رابطاً بـhref ونصّ حرفيين وtarget=_blank rel=noopener، وسطر التحديث حاضر، وملاحظة المعاينة ${!context || context === 'production' ? 'غائبة (إنتاج)' : `حاضرة (${context})`}، وعربية فقط بلا hreflang`);
     }
+  }
+
+  // ── C44: لا أحرف تحكّم اتجاهية (U+200E/U+200F، U+202A–U+202E، U+2066–U+2069) في بيانات المصدر ──
+  // بقايا نسخ من خرائط قوقل تُربك المحلّلات وتُرسَل إلى Places API كجزء من الاستعلام.
+  {
+    const BIDI = /[\u200E\u200F\u202A-\u202E\u2066-\u2069]/;
+    const roots = [path.join(ROOT, 'src/data'), path.join(ROOT, 'src/content')];
+    const hits = [];
+    const lists = await Promise.all(roots.filter((d) => existsSync(d)).map(async (dir) =>
+      (await readdir(dir, { recursive: true })).filter((f) => /\.(json|md)$/.test(f)).map((f) => path.join(dir, f))));
+    const files = lists.flat();
+    const texts = await Promise.all(files.map((f) => readText(f)));
+    files.forEach((full, i) => {
+      const m = texts[i].match(BIDI);
+      if (m) hits.push(`${path.relative(ROOT, full)} (U+${m[0].codePointAt(0).toString(16).toUpperCase()})`);
+    });
+    if (hits.length) fail('C44', `أحرف تحكّم اتجاهية في ${hits.length} ملفاً: ${hits.slice(0, 4).join(' · ')}`);
+    else pass('C44', 'لا أحرف تحكّم اتجاهية في src/data وsrc/content');
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

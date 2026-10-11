@@ -1,0 +1,28 @@
+{
+  "lang": "ru",
+  "stage": "01-05",
+  "batch": "polish-six",
+  "positions": [
+    {
+      "id": "ru-48h-L48",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 48,
+      "current": "Если поездка выпадет на сезон лайма Аль-Ахсы — летом, с середины июня, — посвятите вторую половину дня [ферме лайма Аль-Ахсы](/ru/attractions/lemon-farm/): сюда приезжают, чтобы в сезон собирать знаменитый лайм Аль-Ахсы. Вне сезона загляните на страницу [«Рынки, парки и фермы»](/ru/souqs-parks-farms/) и выберите парк или сад ближе к своему маршруту.",
+      "proposed": "Если поездка выпадет на сезон лайма Аль-Ахсы — летом, с середины июня, — посвятите предвечерние часы, когда спадает жара, [ферме лайма Аль-Ахсы](/ru/attractions/lemon-farm/): сюда приезжают, чтобы в сезон собирать знаменитый лайм Аль-Ахсы. Вне сезона загляните на страницу [«Рынки, парки и фермы»](/ru/souqs-parks-farms/) и выберите парк или сад ближе к своему маршруту.",
+      "notes": "«آخر العصر، حين ينكسر الحرّ» / «late afternoon, when the heat eases»: «вторую половину дня» ⇒ «предвечерние часы, когда спадает жара,» (minimal: one phrase; heading L46 «Вторая половина дня: зелень ферм» kept — предвечерние часы sit inside it). «жара спадает» is now licensed by the source itself (cf. earlier SD32/B8-4 leak concern, which was about using it where the source did not say it). Commas close the inserted clause before the link; no new names, no new facts; е-practice unchanged (no ё needed). Stage 4 fact fence: zero additions. Stage 5: no U+00A0, no U+2013, existing U+2014 untouched, CRLF preserved by line-level replacement."
+    },
+    {
+      "id": "ru-home-facts-L58",
+      "file": "src/components/views/HomeView.astro",
+      "line": 58,
+      "current": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2,5 млн' : '2.5M+', l: t('fact.palms.l') },",
+      "proposed": "  { n: ar ? '\\u2066+2.5\\u2069 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2,5 млн+' : '2.5M+', l: t('fact.palms.l') },",
+      "notes": "Russian branch only: «2,5 млн» ⇒ «2,5 млн+» — matches «более чем 2,5 млн» in ru home.hero.lead (ui.ts L1017) and EN «2.5M+»; decimal comma kept; postfix «+» is the established Russian stat-card convention («100+», «1 млн+») and reads with the label «пальм в крупнейшем оазисе мира». Kept compact because .fact-n is t-2xl in a 4-column grid (the sibling card is one word «Тысячи»). Alternative if a word is preferred over the sign: «Более 2,5 млн» (may wrap to two lines at desktop width). File is CRLF."
+    }
+  ],
+  "observations": [
+    "Brief forbids U+2014 in new text while prompts 01/05 prescribe it for parentheticals; neither proposal adds a dash, existing dashes on L48 untouched.",
+    "Prior batch note SD32 (farm on a June afternoon) is now addressed by the Arabic source itself («حين ينكسر الحرّ»); the Russian follows it, nothing added.",
+    "No termbase or tm.json change needed: no new proper noun; the lime-farm name and link are unchanged."
+  ]
+}

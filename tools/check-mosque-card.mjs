@@ -14,43 +14,84 @@
 //   (ج) صفحات المدونة بكل لغة (نصاً وJSON-LD وسمات): لا عبارة تفرّق بين الزوار بحسب الدين،
 //       وعبارة الزيارة المعتمدة (BLOG_CLAUSE) منشورة في مقالَي 24 و48 ساعة بكل لغة، مع حدّ
 //       أدنى لعدد صفحات المدونة المفحوصة.
+//   (د) مساجد قيد الترميم (UNDER_RESTORATION): بند «الزيارة» فيها صيغة الترميم المعتمدة لا صيغة
+//       الزيارة المتاحة، منشورةً في البطاقة بكل لغة — فلا تعود البطاقة تعد بزيارة متاحة.
 
-export const EXPECT = { minPages: 12, minBlogPages: 40 };
+// 11 بطاقة بصيغة الزيارة: المساجد الاثنا عشر عدا مسجد ميناء العقير (قيد الترميم، البند (د)).
+export const EXPECT = { minPages: 11, minBlogPages: 40, minRestoration: 1 };
 
+// حكم إياد 2026-10-02: بطاقة مسجد ميناء العقير تقول ترميم مجمّع الميناء لا «متاحة»، بتسمية «حالة
+// الموقع» لا «الزيارة» — وجملة الترميم في البطاقة وحدها، فخرجت من المتن (لا تُقرأ مرتين).
+export const RESTORATION_LABEL = { ar: 'حالة الموقع', en: 'Site status', zh: '现场状况', de: 'Situation vor Ort', ru: 'Текущий статус' };
+export const UNDER_RESTORATION = {
+  'uqair-mosque.md': {
+    ar: 'يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة',
+    en: 'The port complex is undergoing restoration work, and some parts may be closed',
+    zh: '港口建筑群正在整修，部分区域可能暂不开放',
+    de: 'Im Hafenkomplex von Al-Uqair laufen derzeit Restaurierungsarbeiten, und einige Bereiche können geschlossen sein',
+    ru: 'В портовом комплексе идут реставрационные работы, и некоторые его участки могут быть закрыты',
+  },
+};
+
+// حكم إياد 2026-10-02: لا يُشار إلى وقت زيارة المساجد العاملة لا نفياً ولا تأكيداً — فخرج «مراعاة
+// أوقات الصلاة» من البند ومن عبارة المدونة، وخرجت صفوف «المواعيد» (أوقات الصلوات) ووقت مسجد جواثا.
 export const VISIT_LABEL = { ar: 'الزيارة', en: 'Visiting', zh: '游览', de: 'Besuch', ru: 'Посещение' };
 export const VISIT_VALUE = {
-  ar: 'متاحة، مع مراعاة أوقات الصلاة واللباس المحتشم واحترام حرمة المكان',
-  en: 'Open to visitors, with respect for prayer times, modest dress and the sanctity of the place',
-  zh: '开放参观，请留意礼拜时间，注意衣着端庄，尊重场所的神圣',
-  de: 'Für Besucher offen – bitte mit Rücksicht auf die Gebetszeiten, in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes',
-  ru: 'Открыто для посетителей; учитывайте время молитв, приходите в скромной одежде и уважайте святость места',
+  ar: 'متاحة، مع اللباس المحتشم واحترام حرمة المكان',
+  en: 'Open to visitors, with modest dress and respect for the sanctity of the place',
+  zh: '开放参观，请注意衣着端庄，尊重场所的神圣',
+  de: 'Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes',
+  ru: 'Открыто для посетителей; приходите в скромной одежде и уважайте святость места',
 };
 
 // عبارة الزيارة في المقالين (مفتاح المقال ← لغة ← العبارة كما تُنشر)
 export const BLOG_CLAUSE = {
   '24-hours-itinerary': {
-    ar: 'وزيارته متاحة، مع مراعاة أوقات الصلاة واللباس المحتشم واحترام حرمة المكان',
-    en: 'it is open to visitors, with respect for prayer times, modest dress and the sanctity of the place',
-    zh: '这里对游客开放，参观时请留意礼拜时间，注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte mit Rücksicht auf die Gebetszeiten, in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — учитывайте время молитв, приходите в скромной одежде и уважайте святость места',
+    ar: 'وزيارته متاحة، مع اللباس المحتشم واحترام حرمة المكان',
+    en: 'it is open to visitors, with modest dress and respect for the sanctity of the place',
+    zh: '这里对游客开放，参观时请注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места',
   },
   '48-hours-itinerary': {
-    ar: 'وزيارة المسجد متاحة، مع مراعاة أوقات الصلاة واللباس المحتشم واحترام حرمة المكان',
-    en: 'the mosque is open to visitors, with respect for prayer times, modest dress and the sanctity of the place',
-    zh: '清真寺向游客开放，入寺请注意衣着端庄，礼拜时间与场所的神圣还请时刻放在心上', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit derselben Rücksicht auf die Gebetszeiten und die Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде, помня о времени молитв и о святости места',
+    ar: 'زيارة المسجد متاحة، مع اللباس المحتشم واحترام حرمة المكان',
+    en: 'The mosque is open to visitors, with modest dress and respect for the sanctity of the place',
+    zh: '清真寺向游客开放，入寺请注意衣着端庄，尊重场所的神圣', de: 'Die Moschee steht Besuchern offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes', ru: 'Мечеть открыта для посетителей — приходите в скромной одежде и уважайте святость места',
   },
 };
 
-// الصيغ السابقة للبند بلغاتها الخمس — تسمياتٍ وقيماً
+// الصيغ السابقة للبند بلغاتها الخمس — تسمياتٍ وقيماً — ومعها كل صيغة لوقت زيارة المسجد (2026-10-02)
 export const RETIRED = [
   'زيارة غير المسلمين', 'متاحة، مع المحافظة على اللباس المحتشم', 'متاحة خارج أوقات الصلاة',
   'Visitors of other faiths', 'Welcome, with modest dress', 'Open outside prayer times',
   '非穆斯林游客', '欢迎参观，请注意衣着端庄', '礼拜时间以外开放参观',
   'Nichtmuslimische Besucher', 'Willkommen – bedeckende Kleidung vorausgesetzt', 'Außerhalb der Gebetszeiten möglich',
   'Вход для немусульман', 'Открыт при условии скромной одежды', 'Доступно вне времени молитв',
+  // وقت الزيارة: البند السابق، وصفوف المواعيد، ووقت مسجد جواثا
+  'مع مراعاة أوقات الصلاة', 'يُفتح لأوقات الصلوات', 'يومياً خلال أوقات الصلوات', 'المسجد طوال اليوم', 'المسجد مفتوح طوال اليوم',
+  'with respect for prayer times', 'open at prayer times', 'at the five prayer times', 'Mosque: all day', 'The mosque is open all day',
+  '请留意礼拜时间', '清真寺全天开放',
+  'Rücksicht auf die Gebetszeiten', 'zu den Gebetszeiten geöffnet', 'Moschee: ganztägig',
+  'учитывайте время молитв', 'Мечеть: открыта весь день', 'Мечеть открыта весь день',
 ];
+
+// صيغ سابقة تُمنع في ملف بعينه لا في كل المعالم: جملة ترميم مسجد العقير في متنه صارت في بطاقته وحدها
+// (2026-10-02)، والجملة نفسها تبقى مشروعة في صفحة قلعة العقير.
+export const RETIRED_IN = {
+  'uqair-mosque.md': [
+    'يشهد الموقع أعمال ترميم', 'The site is undergoing restoration work', '遗址内正在开展修缮工作',
+    'Derzeit laufen auf dem Gelände Restaurierungsarbeiten', 'Сейчас здесь идут реставрационные работы',
+  ],
+};
 
 // عبارات تفرّق بين الزوار بحسب الدين — ممنوعة في صفحات المدونة بكل لغة
 export const BLOG_RETIRED = ['غير المسلمين', 'other faiths', 'non-Muslim', 'Non-Muslim', '非穆斯林', 'Nichtmuslim', 'немусульман'];
+
+// خانة مسجد جواثا في «48 ساعة»: كانت الظهيرة (وقت صلاة) فصارت الضحى بعد القارة (2026-10-03)
+export const BLOG_RETIRED_SLOT = [
+  'الظهيرة: مسجد جواثا', 'Midday: Jawatha Mosque', '正午：贾瓦塔清真寺', 'Mittag: Die Jawatha-Moschee', 'Полдень: мечеть Джавата',
+  // جبل القارة في فترة النهار لا «الصباح الباكر» (قرار إياد 2026-10-03)، ولا يتصدّر جدول اليومين
+  'الصباح الباكر: جبل القارة', 'الصباح الباكر: كهوف جبل القارة', 'Early Morning: Jabal Al-Qarah', 'Early Morning: The Caves of Jabal Al-Qarah',
+  'المحطة الأولى الطبيعية في أي زيارة', 'natural first stop of any visit',
+];
 
 const LANGS = ['ar', 'en', 'zh', 'de', 'ru'];
 const decode = (s) => s
@@ -84,6 +125,7 @@ export function checkMosqueCards(sources, pagesFor, allPages) {
   for (const l of LANGS) if (/^__/.test(VISIT_VALUE[l])) problems.push(`VISIT_VALUE.${l} غير معبّأ`);
   for (const { file, text } of sources) {
     for (const r of RETIRED) if (text.includes(r)) problems.push(`${file}: المصدر يحمل صيغة سابقة «${r}»`);
+    for (const r of RETIRED_IN[file] ?? []) if (text.includes(r)) problems.push(`${file}: المصدر يحمل صيغة سابقة «${r}»`);
     const line = text.split('\n').find((l) => l.includes(`label: "${VISIT_LABEL.ar}", value: "${VISIT_VALUE.ar}"`));
     if (!line) continue;
     const f = rowFields(line);
@@ -106,6 +148,24 @@ export function checkMosqueCards(sources, pagesFor, allPages) {
     for (const r of RETIRED) if (card.includes(r)) problems.push(`${rel}: البطاقة تنشر صيغة سابقة «${r}»`);
   }
   if (stats.ar < EXPECT.minPages) problems.push(`الحارس صار فارغاً: ${stats.ar} صفحة عربية تنشر البند — المتوقع ≥${EXPECT.minPages}`);
+  // (د) مساجد قيد الترميم
+  let restoration = 0;
+  for (const [file, want] of Object.entries(UNDER_RESTORATION)) {
+    const src = sources.find((s) => s.file === file);
+    if (!src) { problems.push(`${file}: غائب عن المصدر`); continue; }
+    const line = src.text.split('\n').find((l) => l.includes(`label: "${RESTORATION_LABEL.ar}", value: "${want.ar}"`));
+    if (!line) { problems.push(`${file}: بند «${RESTORATION_LABEL.ar}» لا يحمل صيغة الترميم المعتمدة`); continue; }
+    const f = rowFields(line);
+    for (const l of LANGS) {
+      if (/^__/.test(want[l]) || /^__/.test(RESTORATION_LABEL[l])) { problems.push(`UNDER_RESTORATION.${file}.${l} غير معبّأ`); continue; }
+      if (f[l].label !== RESTORATION_LABEL[l] || f[l].value !== want[l]) { problems.push(`${file} [${l}]: صيغة الترميم في المصدر لا تطابق المعتمدة`); continue; }
+      if (l !== 'ar' && l !== 'en' && !new RegExp(`^title_${l}:`, 'm').test(src.text)) continue;
+      const card = cardOf(pagesFor(file, l) ?? '');
+      if (!card || !card.includes(`<dt>${RESTORATION_LABEL[l]}</dt><dd>${want[l]}</dd>`)) problems.push(`${file} [${l}]: صيغة الترميم غير منشورة في البطاقة`);
+    }
+    restoration++;
+  }
+  if (restoration < EXPECT.minRestoration) problems.push(`مساجد الترميم المفحوصة ${restoration} — المتوقع ≥${EXPECT.minRestoration}`);
   return { problems, stats };
 }
 
@@ -119,6 +179,7 @@ export function checkBlogVisitWording(blogPages) {
   for (const { rel, lang, key, html } of blogPages) {
     const page = decode(html);
     for (const r of BLOG_RETIRED) if (page.includes(r)) problems.push(`${rel}: المدونة تنشر عبارة تفرّق بين الزوار بحسب الدين «${r}»`);
+    for (const r of BLOG_RETIRED_SLOT) if (page.includes(r)) problems.push(`${rel}: خانة سابقة في جداول المدونة «${r}»`);
     const want = BLOG_CLAUSE[key]?.[lang];
     if (!want) continue;
     if (/^__/.test(want)) { problems.push(`BLOG_CLAUSE.${key}.${lang} غير معبّأ`); continue; }

@@ -236,15 +236,15 @@ async function main() {
       term: REDACT ? undefined : term,
       files: r ? r.files.size : 0,
       hits: r ? r.hits : 0,
-      channels: r ? [...r.channels].sort() : [],
-      sample: r ? (REDACT ? { file: r.sample.file, channel: r.sample.channel } : r.sample) : null,
+      channels: r ? [...r.channels].sort((a, b) => a.localeCompare(b)) : [],
+      sample: r && REDACT ? { file: r.sample.file, channel: r.sample.channel } : (r?.sample ?? null),
     }));
     console.log(`## ${TITLES[g] ?? g} — ${hitRows.length}/${rows.length} terms found\n`);
     console.log('| term | files | hits | channels | sample page |');
     console.log('|---|---:|---:|---|---|');
     for (const [term, r] of rows) {
       if (!r) console.log(`| ${label(term)} | 0 | 0 | | |`);
-      else console.log(`| ${label(term)} | ${r.files.size} | ${r.hits} | ${[...r.channels].sort().join(', ')} | ${r.sample.file} |`);
+      else console.log(`| ${label(term)} | ${r.files.size} | ${r.hits} | ${[...r.channels].sort((a, b) => a.localeCompare(b)).join(', ')} | ${r.sample.file} |`);
     }
     console.log('');
   }

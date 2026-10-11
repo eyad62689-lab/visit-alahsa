@@ -1,0 +1,81 @@
+// C43 — اسم القسم في الترويسة = عنوان صفحته (حكم إياد 2026-10-04).
+//
+// دالة نقية بلا قراءة ملفات: يستدعيها check-consistency.mjs بصفحات dist، ويستدعيها اختبار
+// الكسر بنسخ معدَّلة في الذاكرة.
+//
+// كانت الترويسة تختصر («مطاعم ومقاهي» · «الإقامة» · «أسواق ومنتزهات» · «خطّط زيارتك») والتذييل
+// والمقالات تسمّي الأقسام بعناوين صفحاتها، فقرأها القرّاء العميان أبواباً مختلفة.
+//
+// يحرس في الرئيسية بكل لغة:
+//   (أ) نصّ رابط الترويسة إلى المطاعم والإقامة والأسواق = H1 صفحته حرفياً؛
+//   (ب) نصّ الزرّ الذهبي = نصّ رابط الخطة داخل القائمة (وجهة واحدة باسم واحد)؛
+//   (ج) رابط أداة المحفوظات لا يحمل اسمها السابق «رحلتي» بأي لغة (حكم إياد 2026-10-04: كان يلتبس بـ«خطّط لرحلتك»).
+
+export const EXPECT = { minLangs: 5 };
+
+export const RETIRED_TOOL_NAMES = ['رحلتي', 'My Trip', 'Meine Reise', 'Моя поездка', '我的行程'];
+
+const HOME = { ar: 'index.html', en: 'en/index.html', de: 'de/index.html', ru: 'ru/index.html', zh: 'zh/index.html' };
+const SECTIONS = {
+  dine: { ar: 'مطاعم-ومقاهي', other: 'restaurants-cafes' },
+  stay: { ar: 'إقامة', other: 'stay' },
+  leisure: { ar: 'أسواق-ومنتزهات-ومزارع', other: 'souqs-parks-farms' },
+};
+
+// فكّ الكيانات في مرور واحد (لا سلسلة replace: تفكّ &amp;lt; مرتين)
+const ENT = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>' };
+const decode = (s) => s.replace(/&(?:amp|quot|#39|lt|gt);/g, (m) => ENT[m]);
+// نصّ المقطع بماسح محرفاً محرفاً لا بتعبير نمطي على الوسوم (يحترم الاقتباس داخل السمات)
+const stripTags = (h) => {
+  let out = '';
+  for (let i = 0; i < h.length; i++) {
+    if (h[i] !== '<') { out += h[i]; continue; }
+    let q = '';
+    for (i++; i < h.length; i++) {
+      const c = h[i];
+      if (q) { if (c === q) q = ''; } else if (c === '"' || c === "'") q = c; else if (c === '>') break;
+    }
+  }
+  return out;
+};
+const text = (h) => decode(stripTags(h)).replace(/\s+/g, ' ').trim();
+const h1Of = (html) => { const m = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/); return m ? text(m[1]) : null; };
+const headerOf = (html) => { const i = html.indexOf('<header'); const j = html.indexOf('</header>', i); return i === -1 || j === -1 ? '' : html.slice(i, j); };
+const anchors = (html) => [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)].map(([, attrs, inner]) => ({
+  href: (() => { const h = attrs.match(/href="([^"]*)"/)?.[1] ?? ''; try { return decodeURI(h); } catch { return h; } })(),
+  cls: attrs.match(/class="([^"]*)"/)?.[1] ?? '',
+  text: text(inner),
+}));
+
+/**
+ * @param {{rel: string, lang: string, html: string}[]} pages كل صفحات dist (rel بشرطة أمامية)
+ */
+export function checkNavTitles(pages) {
+  const problems = [];
+  const byRel = new Map(pages.map((p) => [p.rel.replace(/\\/g, '/'), p.html]));
+  let langs = 0;
+  for (const [lang, homeRel] of Object.entries(HOME)) {
+    const home = byRel.get(homeRel);
+    if (!home) continue;
+    langs++;
+    const links = anchors(headerOf(home));
+    for (const [key, slug] of Object.entries(SECTIONS)) {
+      const path = lang === 'ar' ? `/${slug.ar}/` : `/${lang}/${slug.other}/`;
+      const target = byRel.get(`${path.slice(1)}index.html`);
+      const h1 = target && h1Of(target);
+      if (!h1) { problems.push(`${lang}: صفحة ${key} بلا H1 (${path})`); continue; }
+      const link = links.find((a) => a.href === path);
+      if (!link) problems.push(`${lang}: لا رابط في الترويسة إلى ${path}`);
+      else if (link.text !== h1) problems.push(`${lang}: ${key} في الترويسة «${link.text}» ≠ عنوان الصفحة «${h1}»`);
+    }
+    const gold = links.find((a) => /\bbtn-gold\b/.test(a.cls));
+    const plan = links.find((a) => /\bnav-plan\b/.test(a.cls));
+    if (!gold || !plan) problems.push(`${lang}: الزرّ الذهبي أو رابط الخطة غائب`);
+    else if (gold.text !== plan.text) problems.push(`${lang}: الزرّ «${gold.text}» ≠ رابط الخطة «${plan.text}»`);
+    const tool = links.find((a) => /\bplan-link\b/.test(a.cls));
+    if (!tool) problems.push(`${lang}: رابط أداة المحفوظات غائب`);
+    else for (const r of RETIRED_TOOL_NAMES) if (tool.text.includes(r)) problems.push(`${lang}: أداة المحفوظات باسمها السابق «${r}»`);
+  }
+  if (langs < EXPECT.minLangs) problems.push(`لغات الترويسة المفحوصة ${langs} — الحدّ الأدنى ${EXPECT.minLangs}`);
+  return { problems, stats: { langs } };
+}

@@ -13,7 +13,7 @@ faq:
   - q: "How does the Hasawi lomi differ from a regular lemon or lime?"
     a: "It is smaller, thinner-skinned, juicier and far more aromatic than other citrus, and it is used fresh, as juice, and dried in Hasawi and Gulf cooking."
   - q: "When is the Hasawi lime in season?"
-    a: "Its season is summer, starting from around mid-June — the same season in which Hasawi families gather to press and preserve it for the whole year."
+    a: "Its season is summer, running from around mid-June to the end of August — the same season in which Hasawi families gather to press and preserve it for the whole year."
   - q: "What is jameed?"
     a: "It is sun-dried lime juice: a cherished Hasawi custom in which families gather in the summer season to press the lomi, then sun-dry and age the juice in glass jars as a supply used throughout the year."
   - q: "When and where is the Hasawi Lomi Exhibition held?"
@@ -32,7 +32,7 @@ The Hasawi lomi — known locally as **Bin Zuhairi** — is a small, dark-green,
 
 ## Its Season: The Oasis Summer
 
-The lomi's season is summer, starting **from around mid-June** — arriving at the height of the heat, just as the oasis's groves are also busy with summer rutab. To meet the fruit on its tree, there is the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), a citrus farm where visitors pick the famous Hasawi lime (lomi) in season. For what the oasis bears in every season, take the full tour on the [seasonal fruits page](/en/fruits/).
+The lomi's season is summer, running **from around mid-June to the end of August** — arriving at the height of the heat, just as the oasis's groves are also busy with summer rutab. To meet the fruit on its tree, there is the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), a citrus farm where visitors pick the famous Hasawi lime (lomi) in season. For what the oasis bears in every season, take the full tour on the [seasonal fruits page](/en/fruits/).
 
 ## From Tree to Pantry: Jameed, the Sun-Dried Lime Juice
 

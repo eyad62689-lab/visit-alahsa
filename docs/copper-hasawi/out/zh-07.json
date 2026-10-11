@@ -1,0 +1,94 @@
+{
+  "batch": "copper-hasawi",
+  "lang": "zh",
+  "stage": 6,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 96,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_style": 20,
+    "traveller_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "zh-ui-home-route-s2-d",
+      "file": "src/i18n/ui.ts",
+      "line": 571,
+      "from": "黄铜泛着光泽",
+      "to": "铜器泛着光泽",
+      "reason": "blind: 黄铜 reads as raw metal (and is brass, not copper); 铜器 = copper wares, same word as published cat.market.d 黄金与铜器"
+    },
+    {
+      "id": "zh-48h-l34",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 34,
+      "from": "黄铜泛着光泽",
+      "to": "铜器泛着光泽",
+      "reason": "same as home.route.s2.d"
+    },
+    {
+      "id": "zh-attr-qaisariyah-body",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 8,
+      "from": "店铺一间挨一间，把人引进香料与香水气息弥漫、黄铜泛着光泽的巷道",
+      "to": "店铺一间挨一间，排列在香料与香水气息弥漫、铜器泛着光泽的巷道两旁",
+      "reason": "blind: 把人引进…的巷道 stilted; shops now line both sides of the passages (close-packed shops + passages kept); 铜器 as above"
+    },
+    {
+      "tm": "zh-translation/memory/tm.json",
+      "reason": "file_edits carry the judged wording (afters updated; date 2026-10-04 + note)"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "obs": "Copper read as raw metal; suggested 黄铜器皿",
+      "ruling": "applied (as 铜器)",
+      "reason": "铜器 = copper wares, the word already published in cat.market.d (黄金与铜器); 黄铜 is brass and 器皿 narrows to vessels"
+    },
+    {
+      "obs": "Qaisariyah 把人引进…的巷道 stilted",
+      "ruling": "applied",
+      "reason": "same line: 店铺一间挨一间，排列在香料与香水气息弥漫、铜器泛着光泽的巷道两旁"
+    }
+  ],
+  "out_of_scope": [
+    "Gold appears only in the home market card cat.market.d (ar «عبق العطر والذهب والنحاس»), not on the Qaisariyah page or the route card - raised to Eyad unscored.",
+    "Qaisariyah FAQ «what to buy» lists neither perfume nor copper though the description promises both - raised to Eyad unscored.",
+    "Published 24-hours-zh:34 keeps 黄铜泛着光泽 (brass, bare metal) - follow-up to align on 铜器 site-wide.",
+    "No TM pairs for 48-hours-zh:34 and qaisariyah body_zh (none existed; not appended, to avoid tail-of-file conflicts with parallel batches)."
+  ],
+  "positions": [
+    {
+      "id": "zh-ui-home-route-s2-d",
+      "file": "src/i18n/ui.ts",
+      "line": 571,
+      "current": "    'home.route.s2.d': '巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。',",
+      "proposed": "    'home.route.s2.d': '巷子里香水气息弥漫，铜器泛着光泽，比什特长袍上的刺绣出自当地人之手。',"
+    },
+    {
+      "id": "zh-48h-l34",
+      "file": "src/content/blog/48-hours-zh.md",
+      "line": 34,
+      "current": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来（周五仅傍晚营业）。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。",
+      "proposed": "第一天在[凯撒利亚集市](/zh/attractions/qaisariyah/)收尾——逛一逛这座可上溯 200 多年的遗产市集，巷子里香水气息弥漫，铜器泛着光泽，比什特长袍上的刺绣出自当地人之手。店铺中午歇业，到下午才重新开门，宜上午或傍晚前来（周五仅傍晚营业）。晚餐想吃点什么？不妨到[餐厅与咖啡馆](/zh/restaurants-cafes/)指南里挑一家。"
+    },
+    {
+      "id": "zh-attr-qaisariyah-body",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 8,
+      "current": "body_zh: \"这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，把人引进香料、黄铜与香水气味交织的巷道；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；上午或傍晚前来最宜。\"",
+      "proposed": "body_zh: \"这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，排列在香料与香水气息弥漫、铜器泛着光泽的巷道两旁；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；上午或傍晚前来最宜。\""
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "zh-translation/memory/tm.json",
+      "before": "      \"en\": \"Passages fragrant with perfume and copper, and cloaks embroidered by local hands.\",\r\n      \"zh\": \"巷子里飘着香水与黄铜的气味，比什特长袍上的刺绣出自当地人之手。\",\r\n      \"page\": \"home\",\r\n      \"field\": \"home.route.s2.d\",\r\n      \"date\": \"2026-09-10\"",
+      "after": "      \"en\": \"Passages fragrant with perfume and gleaming with copper, and cloaks embroidered by local hands.\",\r\n      \"zh\": \"巷子里香水气息弥漫，铜器泛着光泽，比什特长袍上的刺绣出自当地人之手。\",\r\n      \"page\": \"home\",\r\n      \"field\": \"home.route.s2.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"copper-hasawi: perfume is smelled, copper gleams (EN 6c67045). Copperware 铜器 as in cat.market.d (blind: 黄铜 read as raw metal); also applied to 48-hours-zh line 34 and qaisariyah body_zh.\""
+    }
+  ]
+}

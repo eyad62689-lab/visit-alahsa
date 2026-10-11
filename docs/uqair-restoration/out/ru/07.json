@@ -1,0 +1,60 @@
+{
+ "lang": "ru",
+ "stage": "07",
+ "batch": "uqair-restoration",
+ "round": 2,
+ "score": 94,
+ "pass_threshold": 90,
+ "breakdown": {
+  "accuracy": 29,
+  "nativeness": 27,
+  "termbase_style": 19,
+  "cultural_fit": 9,
+  "structural": 10
+ },
+ "breakdown_notes": {
+  "accuracy": "-1. Value carries every element of ar «يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة» / en «The port complex is undergoing restoration work, and some parts may be closed»: В портовом комплексе = مجمّع الميناء (mosque not named, per BRIEF), идут реставрационные работы = يشهد أعمال ترميم (progressive), некоторые его участки = بعض أجزائه («его» binds to the complex as the Arabic pronoun does), могут быть закрыты = قد تكون مغلقة. Nothing added. -1 for the label: «Текущий статус» adds a temporal specifier and drops «الموقع/Site»; harmless (the value is present-progressive) but not 1:1.",
+  "nativeness": "-3. «идут реставрационные работы» is the standard Russian notice register (lighter than «ведутся»), no канцелярит; comma before «и» correct (two independent clauses, no shared secondary member: the locative does not govern the second clause, «его» re-points to it). «участки» natural for parts of a site. Deduction for slight notice-board formality of «реставрационные работы» and two-clause length for a card value.",
+  "termbase_style": "-1. Label reuses the sourced B12-3 entry «Текущий статус» rather than minting a new one; the entry lists only «الوضع الحالي»/«Current status» (hamidiyah-souq) as source and must gain «حالة الموقع»/«Site status» (uqair-mosque) as a second source at integration. First-word capital only, no final period (0/41 ru card values end with a period), U+0020 only; «реставрационные работы» for ongoing works consistent with body «отреставрировали» for the completed programme.",
+  "cultural_fit": "-1. A Russian traveller still cannot tell whether the mosque itself is enterable during the works (blind readers, all three languages). Known source-level open question (Eyad 2026-10-02: unknown, keep wording), not a translation defect, but it limits the card as practical guidance.",
+  "structural": "No deduction. current verified byte-for-byte against line 36 (CRLF stripped); proposed differs from current only in label_ru/value_ru; source_*, verifiedAt and other-language fields untouched; no non-U+0020 whitespace."
+ },
+ "rulings": {
+  "a_mosque_itself_affected": "Logged as source defect / open question, neither applied nor rejected. Eyad does not know whether the mosque is among the closed parts; the source says «مجمّع الميناء», the Russian says «портовом комплексе» and does not name the mosque. Writing «реставрация мечети завершена, работы идут в остальной части комплекса» would add an unconfirmed fact (fence outranks fluency).",
+  "b_label": "KEEP «Текущий статус»; «Ситуация на месте» rejected; no judge edit. (1) The ru blind reader raised no observation on the label in round 2: it reads as a status notice and no longer promises an access answer (round-1 finding 2 resolved). (2) It is an existing sourced termbase entry (B12-3); the two Arabic labels name the same card function (a state-of-site notice), so one Russian label for both erases no distinction a Russian reader needs, and reuse beats minting a parallel label. (3) «Ситуация на месте» carries a news/incident register in Russian («ситуация на месте происшествия») that alarms more than the source does, and would be an unsourced new entry chosen on taste. Integration task: add «حالة الموقع»/«Site status» (uqair-mosque) as second source of the «Текущий статус» entry.",
+  "c_final_period": "No final period: confirmed (site convention, 0/41 ru card values end with a period)."
+ },
+ "blind_reader_rulings": [
+  {
+   "obs": "all three: is the mosque itself closed / enterable? (body: restored; card: restoration under way)",
+   "ruling": "source_defect",
+   "reason": "Eyad: unknown, keep wording. Russian keeps faith with the source and does not name the mosque."
+  },
+  {
+   "obs": "ru: no observation on the label «Текущий статус»",
+   "ruling": "noted",
+   "reason": "Supports keeping the label."
+  },
+  {
+   "obs": "zh: avoid 修缮 in card (same word as the body programme)",
+   "ruling": "n/a for ru",
+   "reason": "Russian body uses past «отреставрировали» for the completed programme; the card has a different subject (the complex) and the ru reader did not report the confusion."
+  },
+  {
+   "obs": "ru out-of-scope items (действующая ли мечеть, часть истории, созданных/возвели, исторически первый, Залива, Неджд, здание эмирата, Эль-Джубайль, Эль-Укайр — менее 1 км, среди оазисов, nav duplication, Esc закрыть)",
+   "ruling": "unscored, out of scope",
+   "reason": "Outside this one-row batch; raised to Eyad."
+  }
+ ],
+ "source_defects": [
+  "Whether the mosque itself is open/enterable during the port-complex restoration is unknown (Eyad 2026-10-02); the card cannot answer the access question."
+ ],
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "final": {
+  "label_ru": "Текущий статус",
+  "value_ru": "В портовом комплексе идут реставрационные работы, и некоторые его участки могут быть закрыты"
+ },
+ "scores_csv_row": "\"uqair-restoration (ru): uqair-mosque practical row line 36 label_ru «Посещение» -> «Текущий статус», value_ru -> «В портовом комплексе идут реставрационные работы, и некоторые его участки могут быть закрыты» (port complex under restoration, some parts may be closed)\",2026-10-02,2,94,\"APPROVE (29/27/19/9/10; round 2 after round-1 return (duplicate sentence, label promising access); label «Текущий статус» kept over «Ситуация на месте» (ru reader silent, sourced B12-3 entry reused, alternative has incident register), termbase entry to gain حالة الموقع/Site status as second source; mosque-itself-closed = source-level open question, Eyad unknown, not a defect; no final period; judge edits none)\"",
+ "notes": "Judge edits none. memory/scores.csv, tm.json and termbase not written here (output files only, per caller); append scores_csv_row and the termbase second source at integration."
+}

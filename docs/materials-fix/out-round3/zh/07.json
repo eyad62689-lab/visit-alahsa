@@ -1,0 +1,53 @@
+{
+ "lang": "zh",
+ "stage": "06",
+ "batch": "local-materials",
+ "round": 3,
+ "score": 93,
+ "pass_threshold": 90,
+ "breakdown": {
+  "accuracy": 28,
+  "nativeness": 26,
+  "termbase_style": 20,
+  "cultural_fit": 9,
+  "structural": 10
+ },
+ "breakdown_notes": {
+  "accuracy": "-2: 「沿袭当地的营造传统」 renders ar «بُني على طريقة العمارة المحلية» / en «built in the local building tradition» exactly — 当地 qualifies the tradition (method), not the materials. The existing gloss carries both elements of the new source gloss (输入海湾 = 进口+海湾); «once/كان» is only implicit via 传统建筑常用 (no explicit 旧时), and the gloss adds the use clause 传统建筑常用 that the source gloss lacks (pre-existing, locked, factual per termbase sources). No origin added — BRIEF fence respected.",
+  "nativeness": "-4: the lead-in reads as native Chinese; the bracket remains heavy (Latin + long attributive) and the blind reader paused at 当地/进口 (ruled informative below, but a pause still costs reading flow).",
+  "termbase_style": "20: locked termbase entry 尚达尔木杆（chandal，海湾传统建筑常用的进口木料） kept verbatim; consistent with hubaish.md first mention; Chinese punctuation and U+0020 unchanged; plain text.",
+  "cultural_fit": "-1: 「营造传统」 is idiomatic for a Chinese heritage reader; 进口 carries a faint modern-trade tint.",
+  "structural": "10: single position, only the lead-in clause changed relative to the repo line; byte-identical to the round-2 text that passed stages 2–5; current matches line 8 (CR ignored)."
+ },
+ "rulings": [
+  {
+   "item": "blind reader R2 item 7 (pause between 当地 and 进口)",
+   "ruling": "FAITHFUL — informative pairing intended by the source; no fallback.",
+   "reason": "Round 3 changed the sources themselves so that ar/en now state the same pairing: «على طريقة العمارة المحلية … والشندل (خشبٌ كان يُجلب إلى الخليج)» / «in the local building tradition … chandal wood (timber once imported to the Gulf)». An en/ar reader meets exactly the same juxtaposition — a local way of building that relied on a timber brought into the Gulf — and that is the point the owner added (BRIEF round 3: readers asked whether chandal was local or imported; the answer is now explicit). The Chinese reader's pause is therefore the source's own information landing, not a defect introduced by translation. It is also not a logical contradiction in Chinese: 当地 modifies 营造传统 (a method), and the gloss itself states that Gulf traditional building commonly used this imported timber, which resolves the pause within the same sentence. Blind-reader remedy (b) 「当地传统上依靠进口」 adds a judgment (依靠) absent from the source; remedy (a) replaces source «local» with «Gulf» and reopens the locked lead-in — both rejected."
+  },
+  {
+   "item": "fallback gloss 「旧时输入海湾、为传统建筑所常用的木料」",
+   "ruling": "NOT REQUIRED — rejected for this batch.",
+   "reason": "It would improve the literal match to «once» marginally, but it edits a locked termbase gloss whose first mention is also in hubaish.md, breaking the one-position scope of this batch, and lengthens a bracket the reader already found heavy. The -2 accuracy for implicit «once» does not bring the score near the threshold. If the owner wants explicit 旧时, it belongs in a separate termbase batch touching termbase.json + hubaish.md + qasr-ibrahim.md together."
+  },
+  {
+   "item": "other blind-reader items (1–6, 8–17)",
+   "ruling": "OUT OF SCOPE, unscored.",
+   "reason": "Outside the changed clause; BRIEF requires byte-for-byte preservation. Listed below for the owner."
+  }
+ ],
+ "raise_to_eyad_later": [
+  "荫影 → 阴影 (typo, item 9)",
+  "与石块铺成: reader asks whether the roof is stone (item 8; mirrors source «roofs of palm trunks, chandal wood and stone»)",
+  "mihrab not visible from the courtyard (item 9; source «watch the dome shade the mihrab»)",
+  "十二处组成部分之一 · 1563-004 without site name; 十二 in characters (item 1)",
+  "宫 vs 城堡 naming between title and summary (item 2)",
+  "层层落定 / 立在 / 平日 / 秀雅 / 仓廪 / 肌理 / 这片…这片 wording (items 3–6, 10)",
+  "practical/FAQ items 11–17 (白天 vs Fri/Sat, 运营方, FAQ repeats body, 一日/24 小时, 为什么是哈萨, 穹顶/圆顶 and nearby domed mosque, English-only landmark name)",
+  "optional termbase batch: explicit 旧时 in the chandal gloss (termbase + hubaish.md + qasr-ibrahim.md)"
+ ],
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "notes": "Score 93 >= 90. Round-3 proposal is byte-identical to the round-2 text approved through stages 2–5; the round-3 source change (chandal gloss) is already carried by the locked Chinese gloss, so no Chinese change is due. Orchestrator: append the scores_row to zh-translation/memory/scores.csv and the sentence pair (en S3 / zh S3) to memory/tm.json per SKILL step 19; judge did not edit memory or src.",
+ "scores_row": "\"qasr-ibrahim-local-materials (zh): qasr-ibrahim body_zh lead-in 城堡用的是绿洲传统建材 -> 城堡沿袭当地的营造传统 (built in the local building tradition); chandal gloss （chandal，海湾传统建筑常用的进口木料） kept (locked termbase, carries timber once imported to the Gulf)\",2026-10-02,3,93,\"APPROVE (28/26/20/9/10; R1 local materials read as locally sourced by de/ru/zh readers -> lead-in moved to the method; R2 reader paused at 当地/进口 -> R3 source gained the same pairing (local tradition + timber once imported to the Gulf), pause ruled informative not defect; fallback gloss 旧时输入海湾 rejected (locked termbase, shared with hubaish.md); other blind items out of scope, raised for Eyad: 荫影 typo, stone roof, mihrab visibility, naming)\""
+}

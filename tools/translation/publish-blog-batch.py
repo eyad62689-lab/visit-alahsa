@@ -18,6 +18,7 @@
     وكل هدف داخلي يقصد بادئة لغة الملف (يحرسه check-links في البناء أيضاً).
 """
 import json, os, re, sys
+from _safe_paths import lang_code, slug, under
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ARABIC_INDIC = re.compile('[٠-٩۰-۹]')
@@ -55,10 +56,10 @@ def check_post(text, key, lang, en_path, src_path):
 
 
 def main():
-    lang = sys.argv[1]
-    batch = sys.argv[2]
+    lang = lang_code(sys.argv[1])
+    batch = slug(sys.argv[2], 'اسم الدفعة')
     dry = '--dry' in sys.argv
-    B = os.path.join(ROOT, f'{lang}-translation/output/{batch}')
+    B = under(ROOT, f'{lang}-translation/output/{batch}')
     posts = json.load(open(os.path.join(B, 'posts.json'), encoding='utf-8'))
     judge = json.load(open(os.path.join(B, 'judge.json'), encoding='utf-8'))
     assert judge.get('decision') == 'APPROVE', f"الحكم {judge.get('decision')} — لا نشر"
@@ -66,10 +67,10 @@ def main():
 
     written = []
     for p in posts:
-        key, stem = p['key'], p['stem']
-        src = os.path.join(B, f'{key}.final.md')
-        dst = os.path.join(ROOT, f'src/content/blog/{stem}-{lang}.md')
-        en_path = os.path.join(ROOT, f'src/content/blog/{stem}-en.md')
+        key, stem = slug(p['key'], 'key'), slug(p['stem'], 'stem')
+        src = under(B, f'{key}.final.md')
+        dst = under(ROOT, f'src/content/blog/{stem}-{lang}.md')
+        en_path = under(ROOT, f'src/content/blog/{stem}-en.md')
         text = open(src, encoding='utf-8').read()
         check_post(text, key, lang, en_path, src)
         if not text.endswith('\n'):
@@ -83,7 +84,7 @@ def main():
     # لو طُبّقت بعد الإضافة لابتلعت زوجاً جديداً يحمل المفتاح نفسه)
     tp = os.path.join(B, 'tm-additions.json')
     if os.path.exists(tp):
-        tmp = os.path.join(ROOT, f'{lang}-translation/memory/tm.json')
+        tmp = under(ROOT, f'{lang}-translation/memory/tm.json')
         tm = json.load(open(tmp, encoding='utf-8'))
         pairs = tm['pairs']
         add = json.load(open(tp, encoding='utf-8'))
@@ -121,7 +122,7 @@ def main():
     rp = os.path.join(B, 'scores-row.txt')
     if os.path.exists(rp):
         row = open(rp, encoding='utf-8').read().strip()
-        sc = os.path.join(ROOT, f'{lang}-translation/memory/scores.csv')
+        sc = under(ROOT, f'{lang}-translation/memory/scores.csv')
         s = open(sc, encoding='utf-8').read()
         if row and row not in s and not dry:
             open(sc, 'a', encoding='utf-8').write(('' if s.endswith('\n') else '\n') + row + '\n')
@@ -134,7 +135,7 @@ def main():
     if os.path.exists(ap):
         adds = json.load(open(ap, encoding='utf-8'))
         entries = adds.get('additions', adds) if isinstance(adds, dict) else adds
-        tbp = os.path.join(ROOT, f'{lang}-translation/glossary/termbase.json')
+        tbp = under(ROOT, f'{lang}-translation/glossary/termbase.json')
         tb = json.load(open(tbp, encoding='utf-8'))
         ens = {t['en'] for t in tb['terms']}
         k = 0

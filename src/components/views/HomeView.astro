@@ -45,8 +45,10 @@ const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/z
 const catCards = [
   { key: 'historic', cat: 'historic', href: null, img: '/img/qasr-ibrahim' },
   { key: 'nature', cat: 'nature', href: null, img: '/img/jabal-al-qarah' },
-  { key: 'crafts', cat: null, href: null, img: '/img/craftsmen-souq' },
-  { key: 'taste', cat: null, href: `${leisureBase}?cat=farm`, img: '/img/hasawi-lemon-farm' },
+  // «التجارب والحِرف» إلى مقال الحرف في المدونة: لا معلم في فئة التجارب (حكم إياد 2026-10-04)
+  { key: 'crafts', cat: null, href: ar ? '/مدونة/حرف-الأحساء-اليدوية/' : zh ? '/zh/blog/al-ahsa-traditional-crafts/' : de ? '/de/blog/al-ahsa-traditional-crafts/' : ru ? '/ru/blog/al-ahsa-traditional-crafts/' : '/en/blog/al-ahsa-traditional-crafts/', img: '/img/craftsmen-souq' },
+  // «المذاق والتمور» يقود إلى صفحة المطبخ الأحسائي لا إلى فئة المزارع (حكم إياد 2026-10-04)
+  { key: 'taste', cat: null, href: ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : '/en/food/', img: '/img/hasawi-lemon-farm' },
   { key: 'market', cat: null, href: `${leisureBase}?cat=market`, img: '/img/qaisariyah' },
   { key: 'events', cat: null, href: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
@@ -54,7 +56,8 @@ const facts = [
   // أرقام مضمّنة خارج القاموس: كل لغة تحتاج فرعاً يدوياً هنا، والفشل صامت
   // (فاصلة عشرية ألمانية — دفعة الواجهة الألمانية 2026-09-03).
   // الرقم الروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05) — فاصلة عشرية روسية.
-  { n: ar ? '2.5 مليون' : zh ? '250 万' : de ? '2,5 Mio.' : ru ? '2,5 млн' : '2.5M', l: t('fact.palms.l') },
+  // «+» يطابق «أكثر من 2.5 مليون» في المقدمة (2026-10-03)؛ في العربية معزولة اتجاهياً (LRI…PDI) لتبقى قبل الرقم
+  { n: ar ? '\u2066+2.5\u2069 مليون' : zh ? '250 多万' : de ? 'Über 2,5 Mio.' : ru ? 'Более 2,5 млн' : '2.5M+', l: t('fact.palms.l') },
   { n: '2018', l: t('fact.unesco.l') },
   // العدد يُشتقّ من المجموعة لا يُكتب يدوياً: كان مثبَّتاً «+60» بينما المنشور 58،
   // فتضاربت الرئيسية مع الخريطة وllms.txt (تدقيق 2026-08-30). أرقام لاتينية بحكم قاعدة الموقع.
@@ -73,15 +76,15 @@ const routeDays = [
     k: 'd1',
     stops: [
       { k: 's1', time: 'morning', ar: 'قصر-إبراهيم', en: 'qasr-ibrahim' },
-      { k: 's2', time: 'noon', ar: 'سوق-القيصرية', en: 'qaisariyah' },
-      { k: 's3', time: 'sunset', ar: 'جبل-القارة', en: 'jabal-al-qarah' },
+      { k: 's3', time: 'day', ar: 'جبل-القارة', en: 'jabal-al-qarah' },
+      { k: 's2', time: 'evening', ar: 'سوق-القيصرية', en: 'qaisariyah' },
     ],
   },
   {
     k: 'd2',
     stops: [
       { k: 's4', time: 'morning', ar: 'مسجد-جواثا', en: 'jawatha-mosque' },
-      { k: 's5', time: 'noon', ar: 'مزرعة-الليمون-الحساوي', en: 'lemon-farm' },
+      { k: 's5', time: 'lateAfternoon', ar: 'مزرعة-الليمون-الحساوي', en: 'lemon-farm' },
       { k: 's6', time: 'sunset', ar: 'العقير', en: 'al-uqair' },
     ],
   },

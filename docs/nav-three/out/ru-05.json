@@ -1,0 +1,29 @@
+{
+  "lang": "ru",
+  "stage": "01-05",
+  "batch": "nav-three",
+  "positions": [
+    {
+      "id": "cat.taste.d",
+      "file": "src/i18n/ui.ts",
+      "line": 1095,
+      "current": "    'cat.taste.d': 'Душевная кухня и финики, которые вывозят на столы всего мира.',",
+      "proposed": "    'cat.taste.d': 'Душевная кухня: рис Аль-Ахсы, хариса из пшеницы, муфаллак и финиковый хлеб.',",
+      "notes": "Source: 29df30f ar «مطبخٌ دافئ: الأرز الأحسائي والهريس والمفلق وخبز التمر.» / en «A warm kitchen: Hasawi rice, harees, mufallaq and date bread.» (Arabic authority; ar and en agree on all four dishes and their order). Dish names taken byte-for-byte from DISH_GROUPS_RU name fields in src/data/dishes.ts («Рис Аль-Ахсы», «Хариса», «Муфаллак», «Финиковый хлеб»), lowercased at the head of each item because they run inside a sentence — the same form the published food SEO description uses (TM page food / ui.description: «рис Аль-Ахсы, … хариса из пшеницы, муфаллак, … и финиковый хлеб»). «Душевная кухня» = the approved TM rendering of «A warm kitchen» (TM ui.cat.taste.d 2026-09-05), reused; a calque «Тёплая кухня» reads as a heated room. Termbase: рис Аль-Ахсы (no colour — «красный» only where the source says red; here it does not), хариса ж, муфаллак м, финиковый хлеб м — all in nominative, rod/sklonenie satisfied. «из пшеницы»: required by termbase ru-food F1/F2 — the card description is a separate surface (index card) and a bare enumeration with no generic noun, exactly the surface where «хариса» was read by the blind reader as the pepper sauce «харисса»; F2 licenses only a short determiner taken from the cuisine page itself (dish card: «Пшеница и мясо…»), and this is the identical wording already published in the food SEO description (E5). Not a new fact; no warning about «харисса» (REJ-2). Name itself unchanged. Colon kept as in source; no serial comma; no U+00A0; 75 chars (peers cat.*.d 68–93). C5b unaffected (alias is «красный хлеб» → canonical «финиковый хлеб»; this adds only the canonical). Checklist 1–11: PASS (no Вы/ты, no anglicisms, no gloss needed on a card, no heading)."
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "src/i18n/ui.ts",
+      "before": "    'cat.taste.d': 'Душевная кухня и финики, которые вывозят на столы всего мира.',",
+      "after": "    'cat.taste.d': 'Душевная кухня: рис Аль-Ахсы, хариса из пшеницы, муфаллак и финиковый хлеб.',"
+    }
+  ],
+  "observations": [
+    "`current` verified with node: line 1095 of src/i18n/ui.ts, the `before` string occurs exactly once; file is uniformly CRLF (1259/1259) — apply the edit preserving the trailing \\r.",
+    "Decision point for the judge/owner: the brief says dish names «حرفياً». The four names are verbatim; the only addition is the determiner «из пшеницы» on хариса, which termbase F1/F2 makes mandatory on a bare-enumeration surface. If the owner prefers the strict four-word list, the fallback is «Душевная кухня: рис Аль-Ахсы, хариса, муфаллак и финиковый хлеб.» — but that reopens the F1 defect the ru-food stage 7 blind reader already scored against.",
+    "TM: after approval, replace the 2026-09-05 TM entry for ui.cat.taste.d (en «A warm kitchen and dates exported to the world’s tables.») with the new en/ru pair; the old pair is obsolete because the source changed in 29df30f.",
+    "Item 1 (footer) is code-only and item 2 is German-only — no Russian positions. ru nav.food / cat.taste.t «Кухня Аль-Ахсы» already avoids the Hasawi-adjective issue (prompt 01 bans a coined relative adjective), so nothing to mirror from item 2.",
+    "Stages 6–7 (blind reader, judge ≥90) not run here; not publishable until they pass."
+  ]
+}

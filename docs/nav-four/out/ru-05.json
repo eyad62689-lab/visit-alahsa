@@ -1,0 +1,368 @@
+{
+  "lang": "ru",
+  "stage": "01-05",
+  "batch": "nav-four",
+  "positions": [
+    {
+      "id": "RU-NF-01",
+      "file": "src/i18n/ui.ts",
+      "line": 1098,
+      "current": "    'cat.events.t': 'События и сезоны',",
+      "proposed": "    'cat.events.t': 'События',",
+      "notes": "Item 1: cat.events.t = nav.events (ru) verbatim «События»."
+    },
+    {
+      "id": "RU-NF-02",
+      "file": "src/i18n/ui.ts",
+      "line": 1094,
+      "current": "    'cat.taste.t': 'Кухня и финики',",
+      "proposed": "    'cat.taste.t': 'Кухня Аль-Ахсы',",
+      "notes": "Item 2: cat.taste.t = nav.food (ru) verbatim «Кухня Аль-Ахсы». cat.taste.d unchanged. Home card title, not a title template, so termbase F6 (site name doubled in tab title) does not apply here."
+    },
+    {
+      "id": "RU-NF-03",
+      "file": "src/i18n/ui.ts",
+      "line": 1112,
+      "current": "    'nav.myTrip': 'Моя поездка',",
+      "proposed": "    'nav.myTrip': 'Сохранённые места',",
+      "notes": "nav.myTrip — header tool name. 17 chars vs 11 for «Моя поездка»; header must be re-measured (tools/measure-header-fit.mjs). Fallback if it fails: «Избранное» (9 chars, Russian UI convention for a saved list, but loses «места»). «Мои сохранённые места» (21) rejected as too long for the bar."
+    },
+    {
+      "id": "RU-NF-04",
+      "file": "src/i18n/ui.ts",
+      "line": 1213,
+      "current": "    'plan.title': 'Моя поездка',",
+      "proposed": "    'plan.title': 'Сохранённые места',",
+      "notes": "plan.title = nav.myTrip."
+    },
+    {
+      "id": "RU-NF-05",
+      "file": "src/i18n/ui.ts",
+      "line": 1185,
+      "current": "    'fav.add': 'Добавить в поездку',",
+      "proposed": "    'fav.add': 'Сохранить место',",
+      "notes": "fav.add: ar «احفظ المعلم» / en «Save this place». Also used as aria-label on attraction cards and map popup. «место» echoes the tool name «Сохранённые места»."
+    },
+    {
+      "id": "RU-NF-06",
+      "file": "src/i18n/ui.ts",
+      "line": 1186,
+      "current": "    'fav.added': 'В моей поездке ✓',",
+      "proposed": "    'fav.added': 'Сохранено ✓',",
+      "notes": "fav.added: ar «محفوظ ✓» / en «Saved ✓»; neuter agrees with «место»."
+    },
+    {
+      "id": "RU-NF-07",
+      "file": "src/i18n/ui.ts",
+      "line": 1041,
+      "current": "    'home.route.link': 'Соберите свой маршрут в разделе «Моя поездка»',",
+      "proposed": "    'home.route.link': 'Соберите свой маршрут в разделе «Сохранённые места»',",
+      "notes": "home.route.link; name stays nominative in quotes after the generic «в разделе»."
+    },
+    {
+      "id": "RU-NF-08",
+      "file": "src/i18n/ui.ts",
+      "line": 1226,
+      "current": "    'plan.empty.d': 'Просмотрите достопримечательности и нажмите «Добавить в поездку», чтобы собрать здесь места, которые хотите посетить, а затем получите готовый маршрут.',",
+      "proposed": "    'plan.empty.d': 'Просмотрите достопримечательности и нажмите «Сохранить место», чтобы собрать здесь всё, что хотите посетить, а затем получите готовый маршрут.',",
+      "notes": "plan.empty.d: button label follows fav.add. «места, которые» → «всё, что» to avoid «место … места» echo right after the new button name; meaning unchanged (en «gather your destinations here»)."
+    },
+    {
+      "id": "RU-NF-09",
+      "file": "src/i18n/ui.ts",
+      "line": 1232,
+      "current": "    'plan.waText': 'Моя поездка в Аль-Ахсу — список достопримечательностей:',",
+      "proposed": "    'plan.waText': 'Мои сохранённые места в Аль-Ахсе:',",
+      "notes": "plan.waText: follows ar authority «معالمي المحفوظة في الأحساء:» (WhatsApp text sent by the user — first person «Мои»). en aligned in b292fd8: «My saved places in Al-Ahsa:». Case: в Аль-Ахсе (prepositional, termbase declension)."
+    },
+    {
+      "id": "RU-NF-10",
+      "file": "src/i18n/ui.ts",
+      "line": 1234,
+      "current": "    'plan.shared.d': 'Этот список пришёл к вам по ссылке — просмотрите его или добавьте в свой раздел «Моя поездка».',",
+      "proposed": "    'plan.shared.d': 'Этот список пришёл к вам по ссылке — просмотрите его или добавьте в свой раздел «Сохранённые места».',",
+      "notes": "plan.shared.d; «свой раздел» kept (en «your own»)."
+    },
+    {
+      "id": "RU-NF-11",
+      "file": "src/i18n/ui.ts",
+      "line": 1235,
+      "current": "    'plan.shared.import': 'Добавить в поездку',",
+      "proposed": "    'plan.shared.import': 'Добавить в сохранённые места',",
+      "notes": "plan.shared.import: ar «أضفها إلى معالمي المحفوظة» / en «Add to my saved places». Lowercase inside a button phrase (generic noun, declined accusative = nominative pl.)."
+    },
+    {
+      "id": "RU-NF-12",
+      "file": "src/i18n/ui.ts",
+      "line": 1236,
+      "current": "    'plan.shared.mine': 'Просмотреть свою поездку',",
+      "proposed": "    'plan.shared.mine': 'Открыть мои сохранённые места',",
+      "notes": "plan.shared.mine: ar «اعرض معالمي المحفوظة» / en «View my saved places». «Открыть» chosen as the navigation verb (the button leaves the shared list for the user's own list); «мои» marks the contrast with the shared list."
+    },
+    {
+      "id": "RU-NF-13",
+      "file": "src/i18n/ui.ts",
+      "line": 1219,
+      "current": "    'plan.clearConfirm': 'Очистить весь список поездки?',",
+      "proposed": "    'plan.clearConfirm': 'Очистить весь список сохранённых мест?',",
+      "notes": "plan.clearConfirm: source changed in b292fd8 — ar «أتريد إفراغ قائمة معالمك المحفوظة كاملةً؟» / en «Clear all your saved places?». «весь список» carries «كاملةً/all»."
+    },
+    {
+      "id": "RU-NF-14",
+      "file": "src/lib/categories.ts",
+      "line": 68,
+      "current": "    taste: 'Кухня и финики',",
+      "proposed": "    taste: 'Кухня Аль-Ахсы',",
+      "notes": "Category label taste = ru nav.food verbatim (b292fd8: ar «المطبخ الأحسائي» / en «Hasawi Cuisine»)."
+    },
+    {
+      "id": "RU-NF-15",
+      "file": "src/lib/categories.ts",
+      "line": 69,
+      "current": "    events: 'События и сезоны',",
+      "proposed": "    events: 'События',",
+      "notes": "Category label events = ru nav.events verbatim (b292fd8: ar «الفعاليات» / en «Events»)."
+    },
+    {
+      "id": "RU-NF-16",
+      "file": "src/components/views/EventsView.astro",
+      "line": 203,
+      "current": "    ctaD: 'Свяжите фестиваль с окрестными достопримечательностями оазиса и соберите свой маршрут в разделе «Моя поездка».',",
+      "proposed": "    ctaD: 'Свяжите фестиваль с окрестными достопримечательностями оазиса и соберите свой маршрут в разделе «Сохранённые места».',",
+      "notes": "ru ctaD (mirrors ar/en change)."
+    },
+    {
+      "id": "RU-NF-17",
+      "file": "src/components/views/PlanTripView.astro",
+      "line": 253,
+      "current": "      { q: 'Какие лучшие места стоит посетить в Аль-Ахсе?', a: 'Среди главных: Джабаль-эль-Кара с его пещерами и этнографической деревней «Земля цивилизаций», исторический Каср-Ибрахим, старинный рынок Эль-Кайсария, мечеть Джавата (одна из старейших мечетей ислама), озеро Эль-Асфар и дворец Сахуд в Эль-Мубарразе. Полный список вы найдёте на странице «Достопримечательности» — оттуда их можно добавить в раздел «Моя поездка».' },",
+      "proposed": "      { q: 'Какие лучшие места стоит посетить в Аль-Ахсе?', a: 'Среди главных: Джабаль-эль-Кара с его пещерами и этнографической деревней «Земля цивилизаций», исторический Каср-Ибрахим, старинный рынок Эль-Кайсария, мечеть Джавата (одна из старейших мечетей ислама), озеро Эль-Асфар и дворец Сахуд в Эль-Мубарразе. Полный список вы найдёте на странице «Достопримечательности» — оттуда их можно добавить в раздел «Сохранённые места».' },",
+      "notes": "faq[1].a (mirrors ar/en)."
+    },
+    {
+      "id": "RU-NF-18",
+      "file": "src/components/views/PlanTripView.astro",
+      "line": 267,
+      "current": "    ctaD: 'Просмотрите достопримечательности, добавьте понравившиеся в раздел «Моя поездка» и получите готовый маршрут в Google Картах.',",
+      "proposed": "    ctaD: 'Просмотрите достопримечательности, добавьте понравившиеся в раздел «Сохранённые места» и получите готовый маршрут в Google Картах.',",
+      "notes": "ctaD (mirrors ar/en)."
+    },
+    {
+      "id": "RU-NF-19",
+      "file": "src/components/views/PlanTripView.astro",
+      "line": 269,
+      "current": "    ctaTrip: 'Моя поездка',",
+      "proposed": "    ctaTrip: 'Сохранённые места',",
+      "notes": "ctaTrip button = nav.myTrip."
+    },
+    {
+      "id": "RU-NF-20",
+      "file": "src/content/blog/24-hours-ru.md",
+      "line": 44,
+      "current": "- Со страницы каждой достопримечательности добавьте свои остановки в раздел [«Моя поездка»](/ru/plan/) — и получите готовый маршрут, который откроется в Google Картах. А [карта достопримечательностей](/ru/map/) поможет спланировать день.",
+      "proposed": "- Со страницы каждой достопримечательности добавьте свои остановки в раздел [«Сохранённые места»](/ru/plan/) — и получите готовый маршрут, который откроется в Google Картах. А [карта достопримечательностей](/ru/map/) поможет спланировать день.",
+      "notes": "Body; link /ru/plan/ unchanged."
+    },
+    {
+      "id": "RU-NF-21",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 15,
+      "current": "    a: \"Машина — практичный способ передвижения между остановками: часть из них — в самом Эль-Хуфуфе, часть — на окраинах оазиса и на побережье. Соберите свои остановки в разделе «Моя поездка» на этом сайте — и получите готовый маршрут, который откроется в Google Картах.\"",
+      "proposed": "    a: \"Машина — практичный способ передвижения между остановками: часть из них — в самом Эль-Хуфуфе, часть — на окраинах оазиса и на побережье. Соберите свои остановки в разделе «Сохранённые места» на этом сайте — и получите готовый маршрут, который откроется в Google Картах.\"",
+      "notes": "faq[1].a (frontmatter YAML double-quoted string; «» are not YAML-significant)."
+    },
+    {
+      "id": "RU-NF-22",
+      "file": "src/content/blog/48-hours-ru.md",
+      "line": 56,
+      "current": "- **Соберите маршрут заранее**: со страницы каждой достопримечательности добавьте остановки в раздел [«Моя поездка»](/ru/plan/) — и готовый маршрут откроется в Google Картах.",
+      "proposed": "- **Соберите маршрут заранее**: со страницы каждой достопримечательности добавьте остановки в раздел [«Сохранённые места»](/ru/plan/) — и готовый маршрут откроется в Google Картах.",
+      "notes": "Body tip; link unchanged."
+    },
+    {
+      "id": "RU-NF-23",
+      "file": "src/content/blog/crafts-ru.md",
+      "line": 38,
+      "current": "Три остановки складываются в естественный маршрут: Дуга у Джабаль-эль-Кара — днём, а Рынок ремесленников и рынок Эль-Кайсария в центре Эль-Хуфуфа — вечером, когда лавки открывают двери. Добавьте их в раздел [«Моя поездка»](/ru/plan/) для готового маршрута или включите их в [маршрут на два дня](/ru/blog/48-hours-in-al-ahsa/). [Гид по сувенирам](/ru/blog/al-ahsa-souvenirs-guide/) подскажет, что из этой поездки достойно места в вашем чемодане.",
+      "proposed": "Три остановки складываются в естественный маршрут: Дуга у Джабаль-эль-Кара — днём, а Рынок ремесленников и рынок Эль-Кайсария в центре Эль-Хуфуфа — вечером, когда лавки открывают двери. Добавьте их в раздел [«Сохранённые места»](/ru/plan/) для готового маршрута или включите их в [маршрут на два дня](/ru/blog/48-hours-in-al-ahsa/). [Гид по сувенирам](/ru/blog/al-ahsa-souvenirs-guide/) подскажет, что из этой поездки достойно места в вашем чемодане.",
+      "notes": "Body; link unchanged."
+    },
+    {
+      "id": "RU-NF-24",
+      "file": "src/content/blog/jabal-qarah-ru.md",
+      "line": 15,
+      "current": "    a: \"Гора поднимается из центра оазиса, к востоку от Эль-Хуфуфа, у деревни Эль-Кара. Практичнее всего добираться на машине: сервис «Моя поездка» на сайте собирает гору с её окрестностями в готовый маршрут, который открывается в Google Картах.\"",
+      "proposed": "    a: \"Гора поднимается из центра оазиса, к востоку от Эль-Хуфуфа, у деревни Эль-Кара. Практичнее всего добираться на машине: сервис «Сохранённые места» на сайте собирает гору с её окрестностями в готовый маршрут, который открывается в Google Картах.\"",
+      "notes": "faq[1].a: «сервис «Сохранённые места» на сайте собирает…» — subject is «сервис», verb agreement unchanged."
+    },
+    {
+      "id": "RU-NF-25",
+      "file": "src/content/blog/jabal-qarah-ru.md",
+      "line": 48,
+      "current": "- **В маршруте:** с горы начинается [маршрут на один день](/ru/blog/one-day-in-al-ahsa/), а в [маршруте на два дня](/ru/blog/48-hours-in-al-ahsa/) она открывает второй день. Спланируйте остановки с помощью [карты достопримечательностей](/ru/map/) и сервиса [«Моя поездка»](/ru/plan/).",
+      "proposed": "- **В маршруте:** с горы начинается [маршрут на один день](/ru/blog/one-day-in-al-ahsa/), а в [маршруте на два дня](/ru/blog/48-hours-in-al-ahsa/) она открывает второй день. Спланируйте остановки с помощью [карты достопримечательностей](/ru/map/) и сервиса [«Сохранённые места»](/ru/plan/).",
+      "notes": "Body; «сервиса [«…»]» — name stays nominative after the generic."
+    },
+    {
+      "id": "RU-NF-26",
+      "file": "src/content/blog/souvenirs-ru.md",
+      "line": 45,
+      "current": "Исторические рынки оживают к вечеру — поэтому в [маршрутах](/ru/blog/48-hours-in-al-ahsa/) их оставляют на конец дня: сначала дневные достопримечательности, а затем рынок Эль-Кайсария и его соседи, когда лавки открывают двери. Добавьте свои точки в раздел [«Моя поездка»](/ru/plan/) и завершите путешествие чемоданом, который увозит с собой оазис.",
+      "proposed": "Исторические рынки оживают к вечеру — поэтому в [маршрутах](/ru/blog/48-hours-in-al-ahsa/) их оставляют на конец дня: сначала дневные достопримечательности, а затем рынок Эль-Кайсария и его соседи, когда лавки открывают двери. Добавьте свои точки в раздел [«Сохранённые места»](/ru/plan/) и завершите путешествие чемоданом, который увозит с собой оазис.",
+      "notes": "Body; link unchanged."
+    },
+    {
+      "id": "RU-NF-27",
+      "file": "src/content/blog/worth-visiting-ru.md",
+      "line": 15,
+      "current": "    a: \"Машина — практичный способ передвижения: одни достопримечательности расположены в центре Эль-Хуфуфа, другие — на окраинах оазиса и на побережье Залива. Раздел «Моя поездка» на сайте превращает выбранные вами остановки в готовый маршрут, который откроется в Google Картах.\"",
+      "proposed": "    a: \"Машина — практичный способ передвижения: одни достопримечательности расположены в центре Эль-Хуфуфа, другие — на окраинах оазиса и на побережье Залива. Раздел «Сохранённые места» на сайте превращает выбранные вами остановки в готовый маршрут, который откроется в Google Картах.\"",
+      "notes": "faq[1].a: «Раздел «Сохранённые места» на сайте превращает…» — subject «Раздел» (m. sg.), verb unchanged."
+    },
+    {
+      "id": "RU-NF-28",
+      "file": "src/content/blog/worth-visiting-ru.md",
+      "line": 41,
+      "current": "- **Передвижение:** машина — практичный выбор; планируйте остановки с помощью [карты достопримечательностей](/ru/map/) и раздела [«Моя поездка»](/ru/plan/).",
+      "proposed": "- **Передвижение:** машина — практичный выбор; планируйте остановки с помощью [карты достопримечательностей](/ru/map/) и раздела [«Сохранённые места»](/ru/plan/).",
+      "notes": "Body; link unchanged."
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Arrange your own route in “My Trip”\",\r\n      \"ru\": \"Соберите свой маршрут в разделе «Моя поездка»\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.home.route.link\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Arrange your own route in “My saved places”\",\r\n      \"ru\": \"Соберите свой маршрут в разделе «Сохранённые места»\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.home.route.link\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Cuisine & dates\",\r\n      \"ru\": \"Кухня и финики\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.cat.taste.t\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Hasawi Cuisine\",\r\n      \"ru\": \"Кухня Аль-Ахсы\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.cat.taste.t\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»); cat.taste.t = nav.food\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Events & seasons\",\r\n      \"ru\": \"События и сезоны\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.cat.events.t\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Events\",\r\n      \"ru\": \"События\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.cat.events.t\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»); cat.events.t = nav.events\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"My Trip\",\r\n      \"ru\": \"Моя поездка\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.nav.myTrip\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"My saved places\",\r\n      \"ru\": \"Сохранённые места\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.nav.myTrip\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Add to my trip\",\r\n      \"ru\": \"Добавить в поездку\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.fav.add\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Save this place\",\r\n      \"ru\": \"Сохранить место\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.fav.add\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"In my trip ✓\",\r\n      \"ru\": \"В моей поездке ✓\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.fav.added\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Saved ✓\",\r\n      \"ru\": \"Сохранено ✓\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.fav.added\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Add your stops to My Trip for a ready-made route that opens in Google Maps, and use the attractions map to order your day.\",\r\n      \"ru\": \"Добавьте свои остановки в раздел «Моя поездка» — и получите готовый маршрут, который откроется в Google Картах. А карта достопримечательностей поможет спланировать день.\",\r\n      \"page\": \"24-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-09-10\"",
+      "after": "\"en\": \"Add your stops to My saved places for a ready-made route that opens in Google Maps, and use the attractions map to order your day.\",\r\n      \"ru\": \"Добавьте свои остановки в раздел «Сохранённые места» — и получите готовый маршрут, который откроется в Google Картах. А карта достопримечательностей поможет спланировать день.\",\r\n      \"page\": \"24-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's My Trip page to get a ready-made route that opens in Google Maps.\",\r\n      \"ru\": \"Машина — практичный способ передвижения между остановками: часть из них — в самом Эль-Хуфуфе, часть — на окраинах оазиса и на побережье. Соберите свои остановки в разделе «Моя поездка» на этом сайте — и получите готовый маршрут, который откроется в Google Картах.\",\r\n      \"page\": \"48-hours-itinerary\",\r\n      \"field\": \"faq[1].a\",\r\n      \"date\": \"2026-09-10\"",
+      "after": "\"en\": \"A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's “My saved places” page to get a ready-made route that opens in Google Maps.\",\r\n      \"ru\": \"Машина — практичный способ передвижения между остановками: часть из них — в самом Эль-Хуфуфе, часть — на окраинах оазиса и на побережье. Соберите свои остановки в разделе «Сохранённые места» на этом сайте — и получите готовый маршрут, который откроется в Google Картах.\",\r\n      \"page\": \"48-hours-itinerary\",\r\n      \"field\": \"faq[1].a\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Arrange your route before you set out: add stops to My Trip from each landmark's page and get a ready-made route that opens in Google Maps.\",\r\n      \"ru\": \"Соберите маршрут заранее: со страницы каждой достопримечательности добавьте остановки в раздел «Моя поездка» — и готовый маршрут откроется в Google Картах.\",\r\n      \"page\": \"48-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-09-10\"",
+      "after": "\"en\": \"Arrange your route before you set out: add stops to My saved places from each landmark's page and get a ready-made route that opens in Google Maps.\",\r\n      \"ru\": \"Соберите маршрут заранее: со страницы каждой достопримечательности добавьте остановки в раздел «Сохранённые места» — и готовый маршрут откроется в Google Картах.\",\r\n      \"page\": \"48-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Add your stops to My Trip from each landmark's page for a ready-made route that opens in Google Maps, and use the attractions map to order your day.\",\r\n      \"ru\": \"Со страницы каждой достопримечательности добавьте свои остановки в раздел «Моя поездка» — и получите готовый маршрут, который откроется в Google Картах. А карта достопримечательностей поможет спланировать день.\",\r\n      \"page\": \"24-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-09-10\"",
+      "after": "\"en\": \"Add your stops to My saved places from each landmark's page for a ready-made route that opens in Google Maps, and use the attractions map to order your day.\",\r\n      \"ru\": \"Со страницы каждой достопримечательности добавьте свои остановки в раздел «Сохранённые места» — и получите готовый маршрут, который откроется в Google Картах. А карта достопримечательностей поможет спланировать день.\",\r\n      \"page\": \"24-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Pair the festival with the oasis sights around it, and build your route in “My Trip”.\",\r\n      \"ru\": \"Свяжите фестиваль с окрестными достопримечательностями оазиса и соберите свой маршрут в разделе «Моя поездка».\",\r\n      \"page\": \"events\",\r\n      \"field\": \"ui.ctaD\",\r\n      \"date\": \"2026-09-17\"",
+      "after": "\"en\": \"Pair the festival with the oasis sights around it, and build your route in “My saved places”.\",\r\n      \"ru\": \"Свяжите фестиваль с окрестными достопримечательностями оазиса и соберите свой маршрут в разделе «Сохранённые места».\",\r\n      \"page\": \"events\",\r\n      \"field\": \"ui.ctaD\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"My Trip\",\r\n      \"ru\": \"Моя поездка\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.title\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"My saved places\",\r\n      \"ru\": \"Сохранённые места\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.title\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Clear your whole trip list?\",\r\n      \"ru\": \"Очистить весь список поездки?\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.clearConfirm\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"Clear all your saved places?\",\r\n      \"ru\": \"Очистить весь список сохранённых мест?\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.clearConfirm\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»); source changed in b292fd8\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Browse the attractions and tap “Add to my trip” to gather your destinations here, then get a ready route.\",\r\n      \"ru\": \"Просмотрите достопримечательности и нажмите «Добавить в поездку», чтобы собрать здесь места, которые хотите посетить, а затем получите готовый маршрут.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.empty.d\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"Browse the attractions and tap “Save this place” to gather your destinations here, then get a ready route.\",\r\n      \"ru\": \"Просмотрите достопримечательности и нажмите «Сохранить место», чтобы собрать здесь всё, что хотите посетить, а затем получите готовый маршрут.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.empty.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"My Al-Ahsa trip — the sights list:\",\r\n      \"ru\": \"Моя поездка в Аль-Ахсу — список достопримечательностей:\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.waText\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"My saved places in Al-Ahsa:\",\r\n      \"ru\": \"Мои сохранённые места в Аль-Ахсе:\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.waText\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»); en aligned in b292fd8\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Cuisine & dates\",\r\n      \"ru\": \"Кухня и финики\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"category.taste\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Hasawi Cuisine\",\r\n      \"ru\": \"Кухня Аль-Ахсы\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"category.taste\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»); category label = nav.food (b292fd8)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Events & seasons\",\r\n      \"ru\": \"События и сезоны\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"category.events\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Events\",\r\n      \"ru\": \"События\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"category.events\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»); category label = nav.events (b292fd8)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"This list reached you via a share link — browse it, or add it to your own “My Trip”.\",\r\n      \"ru\": \"Этот список пришёл к вам по ссылке — просмотрите его или добавьте в свой раздел «Моя поездка».\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.shared.d\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"This list reached you via a share link — browse it, or add it to your own “My saved places”.\",\r\n      \"ru\": \"Этот список пришёл к вам по ссылке — просмотрите его или добавьте в свой раздел «Сохранённые места».\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.shared.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Add to my trip\",\r\n      \"ru\": \"Добавить в поездку\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.shared.import\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"Add to my saved places\",\r\n      \"ru\": \"Добавить в сохранённые места\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.shared.import\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"View my own trip\",\r\n      \"ru\": \"Просмотреть свою поездку\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.shared.mine\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"View my saved places\",\r\n      \"ru\": \"Открыть мои сохранённые места\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"plan.shared.mine\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Browse the attractions, add what you like to “My Trip”, then get a ready-made route in Google Maps.\",\r\n      \"ru\": \"Просмотрите достопримечательности, добавьте понравившиеся в раздел «Моя поездка» и получите готовый маршрут в Google Картах.\",\r\n      \"page\": \"plan-your-trip\",\r\n      \"field\": \"ctaD\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"Browse the attractions, add what you like to “My saved places”, then get a ready-made route in Google Maps.\",\r\n      \"ru\": \"Просмотрите достопримечательности, добавьте понравившиеся в раздел «Сохранённые места» и получите готовый маршрут в Google Картах.\",\r\n      \"page\": \"plan-your-trip\",\r\n      \"field\": \"ctaD\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"My Trip\",\r\n      \"ru\": \"Моя поездка\",\r\n      \"page\": \"plan-your-trip\",\r\n      \"field\": \"ctaTrip\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"My saved places\",\r\n      \"ru\": \"Сохранённые места\",\r\n      \"page\": \"plan-your-trip\",\r\n      \"field\": \"ctaTrip\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” centre, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My Trip”.\",\r\n      \"ru\": \"Среди главных: Джабаль-эль-Кара с его пещерами и этнографической деревней «Земля цивилизаций», исторический Каср-Ибрахим, старинный рынок Эль-Кайсария, мечеть Джавата (одна из старейших мечетей ислама), озеро Эль-Асфар и дворец Сахуд в Эль-Мубарразе. Полный список вы найдёте на странице «Достопримечательности» — оттуда их можно добавить в раздел «Моя поездка».\",\r\n      \"page\": \"plan-your-trip\",\r\n      \"field\": \"faq.1.a\",\r\n      \"date\": \"2026-09-18\"",
+      "after": "\"en\": \"Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” centre, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My saved places”.\",\r\n      \"ru\": \"Среди главных: Джабаль-эль-Кара с его пещерами и этнографической деревней «Земля цивилизаций», исторический Каср-Ибрахим, старинный рынок Эль-Кайсария, мечеть Джавата (одна из старейших мечетей ислама), озеро Эль-Асфар и дворец Сахуд в Эль-Мубарразе. Полный список вы найдёте на странице «Достопримечательности» — оттуда их можно добавить в раздел «Сохранённые места».\",\r\n      \"page\": \"plan-your-trip\",\r\n      \"field\": \"faq.1.a\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: tool renamed «Моя поездка» → «Сохранённые места» (ar «معالمي المحفوظة», en «My saved places»)\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\r\n    }\r\n  ]\r\n}",
+      "after": "\r\n    },\r\n    {\r\n      \"en\": \"The three stops fit together naturally: the Dougha by Jabal Al-Qarah in daylight, then the Craftsmen Souq and Qaisariyah in central Hofuf in the evening, when the shops open their doors. Add them to My saved places for a ready route, or fold them into the two-day itinerary. And what deserves a place in your suitcase from this tour is covered in the souvenirs guide.\",\r\n      \"ru\": \"Три остановки складываются в естественный маршрут: Дуга у Джабаль-эль-Кара — днём, а Рынок ремесленников и рынок Эль-Кайсария в центре Эль-Хуфуфа — вечером, когда лавки открывают двери. Добавьте их в раздел «Сохранённые места» для готового маршрута или включите их в маршрут на два дня. Гид по сувенирам подскажет, что из этой поездки достойно места в вашем чемодане.\",\r\n      \"page\": \"blog/al-ahsa-traditional-crafts\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    },\r\n    {\r\n      \"en\": \"The mountain rises from the middle of the oasis east of Hofuf, by Al-Qarah village. A car is the practical way to reach it, and the site's “My saved places” tool turns the mountain and its surroundings into a ready route that opens in Google Maps.\",\r\n      \"ru\": \"Гора поднимается из центра оазиса, к востоку от Эль-Хуфуфа, у деревни Эль-Кара. Практичнее всего добираться на машине: сервис «Сохранённые места» на сайте собирает гору с её окрестностями в готовый маршрут, который открывается в Google Картах.\",\r\n      \"page\": \"blog/jabal-al-qarah-guide\",\r\n      \"field\": \"faq[1].a\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    },\r\n    {\r\n      \"en\": \"In your itinerary: the mountain opens the one-day itinerary and the second day of the two-day itinerary. Plan your stops with the attractions map and the My saved places tool.\",\r\n      \"ru\": \"В маршруте: с горы начинается маршрут на один день, а в маршруте на два дня она открывает второй день. Спланируйте остановки с помощью карты достопримечательностей и сервиса «Сохранённые места».\",\r\n      \"page\": \"blog/jabal-al-qarah-guide\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    },\r\n    {\r\n      \"en\": \"The heritage souqs come alive in the evening — which is why the itineraries place them at the day's end: daylight landmarks first, then Qaisariyah and its neighbours as the shops open their doors. Add your stops to My saved places and end the journey with a suitcase that carries the oasis home.\",\r\n      \"ru\": \"Исторические рынки оживают к вечеру — поэтому в маршрутах их оставляют на конец дня: сначала дневные достопримечательности, а затем рынок Эль-Кайсария и его соседи, когда лавки открывают двери. Добавьте свои точки в раздел «Сохранённые места» и завершите путешествие чемоданом, который увозит с собой оазис.\",\r\n      \"page\": \"blog/al-ahsa-souvenirs-guide\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    },\r\n    {\r\n      \"en\": \"A car is the practical way to explore: some landmarks sit in central Hofuf, others at the edges of the oasis and on the Gulf coast. The site's “My saved places” tool turns your chosen stops into a ready route that opens in Google Maps.\",\r\n      \"ru\": \"Машина — практичный способ передвижения: одни достопримечательности расположены в центре Эль-Хуфуфа, другие — на окраинах оазиса и на побережье Залива. Раздел «Сохранённые места» на сайте превращает выбранные вами остановки в готовый маршрут, который откроется в Google Картах.\",\r\n      \"page\": \"blog/is-al-ahsa-worth-visiting\",\r\n      \"field\": \"faq[1].a\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    },\r\n    {\r\n      \"en\": \"Getting around: a car is the practical choice; plan stops with the attractions map and the My saved places tool.\",\r\n      \"ru\": \"Передвижение: машина — практичный выбор; планируйте остановки с помощью карты достопримечательностей и раздела «Сохранённые места».\",\r\n      \"page\": \"blog/is-al-ahsa-worth-visiting\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four 2026-10-04: added with the tool rename\"\r\n    }\r\n  ]\r\n}"
+    },
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "    {\r\n      \"en\": \"Al-Ahsa — the ru.wikipedia variant",
+      "after": "    {\r\n      \"en\": \"UI tool name: My saved places (/ru/plan/; formerly My Trip)\",\r\n      \"ar\": \"معالمي المحفوظة\",\r\n      \"ru\": \"Сохранённые места\",\r\n      \"rod\": \"мн.\",\r\n      \"sklonenie\": \"بعد اسم جنس وبين «ёлочки» يبقى بالرفع: в раздел «Сохранённые места» · в разделе «Сохранённые места» · сервиса «Сохранённые места»؛ وخارج العلامتين يُصرَّف طبيعياً: список сохранённых мест · Добавить в сохранённые места · Открыть мои сохранённые места. حرف كبير للكلمة الأولى فقط، و«ё» مكتوبة اتّساقاً مع الموقع (пришёл، найдёте).\",\r\n      \"source\": \"قرار إياد 2026-10-04 (دفعة nav-four، `docs/nav-four/BRIEF.md` البند 4): «رحلتي» ← «معالمي المحفوظة» / «My saved places» — اسمٌ يدلّ على الحفظ تمييزاً عن «План поездки» (`nav.plan`). صياغة المراحل 1–5: اسم جنس معجمي لا اسم علم، مطابقٌ لـ«saved places» في المصدر الإنجليزي.\",\r\n      \"status\": \"pending\",\r\n      \"note\": \"المفاتيح: `nav.myTrip` و`plan.title` و`ctaTrip` (PlanTripView). الزرّ `fav.add` «Сохранить место» وحالته `fav.added` «Сохранено ✓»؛ الاستيراد `plan.shared.import` «Добавить в сохранённые места». «Моя поездка» و«Добавить в поездку» مرفوضتان بعد القرار (تلتبسان بـ«План поездки»). «Мои сохранённые места» (21 حرفاً) مرفوضة لطول الرأس؛ و«Избранное» (9 أحرف) بديلٌ احتياطي وحده إن أخفق قياس `tools/measure-header-fit.mjs` — عُرفُ الواجهات الروسية للقائمة المحفوظة لكنه يُسقط «места».\",\r\n      \"added\": \"2026-10-04\",\r\n      \"batch\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Al-Ahsa — the ru.wikipedia variant"
+    }
+  ],
+  "observations": [
+    "Resolved in b292fd8: en plan.waText is now «My saved places in Al-Ahsa:»; ru «Мои сохранённые места в Аль-Ахсе:» matches ar and en.",
+    "Resolved in b292fd8: plan.clearConfirm changed in ar/en («…معالمك المحفوظة…» / «Clear all your saved places?»); RU-NF-13 and TM pair 1048 kept.",
+    "src/lib/categories.ts ru taste/events now positions RU-NF-14/15 (= nav.food «Кухня Аль-Ахсы» / nav.events «События»), TM pairs 159/160 updated. foot.l.taste («Кухня и финики») left as is: unused in the footer, per coordinator.",
+    "Header fit: nav.myTrip grows from 11 chars («Моя поездка») to 17 («Сохранённые места»); run tools/measure-header-fit.mjs on the ru bar after build. Fallback recorded in the termbase entry: «Избранное».",
+    "fav.add «Сохранить место» is also the aria-label of the corner save button on attraction cards (AttractionsView.astro:125) and the map popup (MapView.astro:57) — wording works in all three contexts.",
+    "Sweep after applying all positions: zero residual matches of «Моя поездк|Моей поездк|Мою поездк|в поездку|свою поездку|моей поездке|список поездки» in the ui.ts ru block, EventsView/PlanTripView and all *-ru.md blog files. Generic «поездка» uses (План поездки, перед поездкой, blog.lead) are not the tool name and were left.",
+    "All `current` values verified byte-exact by node against the files (CRLF files; `current`/`proposed` carry no \r). No U+00A0 in proposed text. file_edits use \r\n to match CRLF in tm.json and termbase.json; applied in sequence each `before` is unique and both files re-parse as JSON (tm 1240 → 1246 pairs, 23 pairs updated in place; termbase 440 → 441 terms).",
+    "Stage 3 (localizer) and stage 4 fact fence: no facts added or removed — every change is a name substitution or the button label, plus one de-duplication rewrite in plan.empty.d («места, которые» → «всё, что»). Stage 4: no proper nouns introduced; Аль-Ахсе declined per termbase. Stage 5 checklist: орфография (ё consistent) PASS; дефис PASS; грамматика (name nominative in quotes after generic; Сохранено neuter; Добавить в сохранённые места acc. pl.) PASS; обращение PASS; заголовки (first-word capital only) PASS; termbase PASS; пунктуация («ёлочки», em dash) PASS; числа n/a; англицизмы PASS; глоссирование n/a; структура (links /ru/plan/, YAML quoting) PASS."
+  ]
+}

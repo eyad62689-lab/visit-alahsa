@@ -1,0 +1,385 @@
+{
+  "batch": "nav-four",
+  "lang": "de",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "48-hours-de.md:56",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 56,
+      "from": " Ihrer [Merkliste](/de/plan/) hinzu",
+      "to": " zu Ihrer [Merkliste](/de/plan/) hinzu",
+      "reason": "blind: after «auf der Seite jeder Sehenswürdigkeit» the bare dative «Ihrer Merkliste» reads as a genitive attribute (the page of each sight of your list), leaving «hinzufügen» without a target. «zu Ihrer Merkliste hinzufügen» cannot be read as genitive and matches plan.shared.import/plan.shared.d. Minimal: one preposition."
+    },
+    {
+      "id": "24-hours-de.md:44",
+      "file": "src/content/blog/24-hours-de.md",
+      "line": 44,
+      "from": " Ihrer [Merkliste](/de/plan/) hinzu",
+      "to": " zu Ihrer [Merkliste](/de/plan/) hinzu",
+      "reason": "same construction and same ambiguity as 48-hours line 56 (blind flagged 48h; 24h is the identical sentence) - fixed together so the two itineraries stay one wording."
+    },
+    {
+      "id": "PlanTripView.astro:220",
+      "file": "src/components/views/PlanTripView.astro",
+      "line": 220,
+      "from": "ctaTrip: 'Merkliste',",
+      "to": "ctaTrip: 'Zur Merkliste',",
+      "reason": "blind: bare noun as the second CTA button beside the verb button «Sehenswürdigkeiten entdecken» reads as a label, not an action. «Zur Merkliste» is the established German navigation-button pattern (Zum Warenkorb / Zur Merkliste), keeps the tool name intact and adds 4 characters. Header/page title stay bare «Merkliste»."
+    },
+    {
+      "id": "ui.ts:971",
+      "file": "src/i18n/ui.ts",
+      "line": 971,
+      "from": "Ihr eigener Plan",
+      "to": "Ihre eigene Liste",
+      "reason": "new position: 3cc11dd changes the source eyebrow to «قائمتك الخاصة» / “Your own list” (no plan word; blind: «Plan» re-opened the guide/tool confusion). «Liste» = the page vocabulary already live (Ihre Liste ist noch leer · Liste leeren · Liste drucken)."
+    },
+    {
+      "id": "ui.ts:830",
+      "file": "src/i18n/ui.ts",
+      "line": 830,
+      "from": "Reiseplan erstellen",
+      "to": "Reise planen",
+      "reason": "new position: 3cc11dd makes home.plan.cta the guide name («خطّط لرحلتك» / “Plan your trip” = nav.plan); de nav.plan «Reise planen» copied verbatim (the button opens /de/plan-your-trip/)."
+    }
+  ],
+  "blind_disposition": "APPLIED: (1) eyebrow «Ihr eigener Plan» and home button «Reiseplan erstellen» re-opened the guide/tool confusion → source fixed in 3cc11dd; de follows with «Ihre eigene Liste» and «Reise planen» (= nav.plan). (2) 48-hours «… auf der Seite jeder Sehenswürdigkeit Ihrer Merkliste hinzu» read as genitive → «zu Ihrer Merkliste hinzu»; same fix in 24-hours line 44 (identical sentence) and its TM pair. (3) ctaTrip bare «Merkliste» as a button → «Zur Merkliste». CONFIRMED (no change): «Merkliste» + «Diesen Ort merken» / «Gemerkt ✓» read clearly as one feature; «Veranstaltungen» and «Hasawi-Küche» cards match the header. NOT APPLIED, out of batch: «Küche» twice in the taste card (cat.taste.d kept per BRIEF), page names unquoted in bodies, «Hasawi» unexplained.",
+  "out_of_scope": [
+    "Raised to Eyad, unscored (source-level, in ar too): souqs+parks+farms one header door vs three footer links (owner decision); crafts card has no header/footer counterpart (now opens the crafts article); «كيف تصل» anchor link beside the guide.",
+    "cat.taste.d still opens with «Eine Küche voller Wärme» under the title «Hasawi-Küche» (and still mentions dates) - BRIEF keeps the description; a description pass may vary the noun.",
+    "Page names of other site pages appear unquoted in de bodies (blind) - inherited style, not part of this batch.",
+    "Header width: de label 9 chars, shorter than before; thresholds already re-measured in 50f4f60 (de 1409)."
+  ],
+  "positions": [
+    {
+      "id": "ui.ts:803",
+      "file": "src/i18n/ui.ts",
+      "line": 803,
+      "current": "    'home.route.link': 'Ihre Route in „Meine Reise“ zusammenstellen',",
+      "proposed": "    'home.route.link': 'Ihre Route mit der Merkliste zusammenstellen',"
+    },
+    {
+      "id": "ui.ts:852",
+      "file": "src/i18n/ui.ts",
+      "line": 852,
+      "current": "    'cat.taste.t': 'Küche und Datteln',",
+      "proposed": "    'cat.taste.t': 'Hasawi-Küche',"
+    },
+    {
+      "id": "ui.ts:856",
+      "file": "src/i18n/ui.ts",
+      "line": 856,
+      "current": "    'cat.events.t': 'Veranstaltungen und Saisonales',",
+      "proposed": "    'cat.events.t': 'Veranstaltungen',"
+    },
+    {
+      "id": "ui.ts:869",
+      "file": "src/i18n/ui.ts",
+      "line": 869,
+      "current": "    'nav.myTrip': 'Meine Reise',",
+      "proposed": "    'nav.myTrip': 'Merkliste',"
+    },
+    {
+      "id": "ui.ts:939",
+      "file": "src/i18n/ui.ts",
+      "line": 939,
+      "current": "    'fav.add': 'Zu „Meine Reise“ hinzufügen',",
+      "proposed": "    'fav.add': 'Diesen Ort merken',"
+    },
+    {
+      "id": "ui.ts:940",
+      "file": "src/i18n/ui.ts",
+      "line": 940,
+      "current": "    'fav.added': 'In „Meine Reise“ ✓',",
+      "proposed": "    'fav.added': 'Gemerkt ✓',"
+    },
+    {
+      "id": "ui.ts:972",
+      "file": "src/i18n/ui.ts",
+      "line": 972,
+      "current": "    'plan.title': 'Meine Reise',",
+      "proposed": "    'plan.title': 'Merkliste',"
+    },
+    {
+      "id": "ui.ts:978",
+      "file": "src/i18n/ui.ts",
+      "line": 978,
+      "current": "    'plan.clearConfirm': 'Möchten Sie Ihre gesamte Liste leeren?',",
+      "proposed": "    'plan.clearConfirm': 'Möchten Sie Ihre gesamte Merkliste leeren?',"
+    },
+    {
+      "id": "ui.ts:985",
+      "file": "src/i18n/ui.ts",
+      "line": 985,
+      "current": "    'plan.empty.d': 'Durchstöbern Sie die Sehenswürdigkeiten, und klicken oder tippen Sie auf „Zu ‚Meine Reise‘ hinzufügen“, um Ihre Ziele hier zu sammeln. Anschließend erhalten Sie eine fertige Route.',",
+      "proposed": "    'plan.empty.d': 'Durchstöbern Sie die Sehenswürdigkeiten, und klicken oder tippen Sie auf „Diesen Ort merken“, um Ihre Ziele hier zu sammeln. Anschließend erhalten Sie eine fertige Route.',"
+    },
+    {
+      "id": "ui.ts:991",
+      "file": "src/i18n/ui.ts",
+      "line": 991,
+      "current": "    'plan.waText': 'Meine Al-Ahsa-Reise – die Liste der Sehenswürdigkeiten:',",
+      "proposed": "    'plan.waText': 'Meine Merkliste für Al-Ahsa:',"
+    },
+    {
+      "id": "ui.ts:993",
+      "file": "src/i18n/ui.ts",
+      "line": 993,
+      "current": "    'plan.shared.d': 'Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.',",
+      "proposed": "    'plan.shared.d': 'Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen Merkliste hinzu.',"
+    },
+    {
+      "id": "ui.ts:994",
+      "file": "src/i18n/ui.ts",
+      "line": 994,
+      "current": "    'plan.shared.import': 'Zu „Meine Reise“ hinzufügen',",
+      "proposed": "    'plan.shared.import': 'Zu meiner Merkliste hinzufügen',"
+    },
+    {
+      "id": "ui.ts:995",
+      "file": "src/i18n/ui.ts",
+      "line": 995,
+      "current": "    'plan.shared.mine': 'Meine eigene Reise ansehen',",
+      "proposed": "    'plan.shared.mine': 'Meine Merkliste ansehen',"
+    },
+    {
+      "id": "categories.ts:55",
+      "file": "src/lib/categories.ts",
+      "line": 55,
+      "current": "    taste: 'Küche und Datteln',",
+      "proposed": "    taste: 'Hasawi-Küche',"
+    },
+    {
+      "id": "categories.ts:56",
+      "file": "src/lib/categories.ts",
+      "line": 56,
+      "current": "    events: 'Veranstaltungen und Saisonales',",
+      "proposed": "    events: 'Veranstaltungen',"
+    },
+    {
+      "id": "EventsView.astro:166",
+      "file": "src/components/views/EventsView.astro",
+      "line": 166,
+      "current": "    ctaD: 'Verbinden Sie den Festivalbesuch mit den nahegelegenen Sehenswürdigkeiten der Oase, und stellen Sie Ihre Route in „Meine Reise“ zusammen.',",
+      "proposed": "    ctaD: 'Verbinden Sie den Festivalbesuch mit den nahegelegenen Sehenswürdigkeiten der Oase, und stellen Sie Ihre Route mit der Merkliste zusammen.',"
+    },
+    {
+      "id": "PlanTripView.astro:204",
+      "file": "src/components/views/PlanTripView.astro",
+      "line": 204,
+      "current": "      { q: 'Was sind die bedeutendsten Sehenswürdigkeiten in Al-Ahsa?', a: 'Zu den bedeutendsten zählen der Qarah-Berg mit seinen Höhlen und dem Kulturerbe-Dorf „Land of Civilisations“, der historische Qasr Ibrahim, der traditionsreiche Qaisariyah-Souk, die Jawatha-Moschee (eine der ältesten Moscheen des Islam), der Al-Asfar-See und der Sahood-Palast (Qasr Sahood) in Al-Mubarraz. Auf der Seite „Sehenswürdigkeiten“ finden Sie die vollständige Liste, die Sie zu „Meine Reise“ hinzufügen können.' },",
+      "proposed": "      { q: 'Was sind die bedeutendsten Sehenswürdigkeiten in Al-Ahsa?', a: 'Zu den bedeutendsten zählen der Qarah-Berg mit seinen Höhlen und dem Kulturerbe-Dorf „Land of Civilisations“, der historische Qasr Ibrahim, der traditionsreiche Qaisariyah-Souk, die Jawatha-Moschee (eine der ältesten Moscheen des Islam), der Al-Asfar-See und der Sahood-Palast (Qasr Sahood) in Al-Mubarraz. Auf der Seite „Sehenswürdigkeiten“ finden Sie die vollständige Liste, die Sie auf Ihre Merkliste setzen können.' },"
+    },
+    {
+      "id": "PlanTripView.astro:218",
+      "file": "src/components/views/PlanTripView.astro",
+      "line": 218,
+      "current": "    ctaD: 'Durchstöbern Sie die Sehenswürdigkeiten, fügen Sie, was Ihnen gefällt, zu „Meine Reise“ hinzu, und erhalten Sie anschließend eine fertige Route in Google Maps.',",
+      "proposed": "    ctaD: 'Durchstöbern Sie die Sehenswürdigkeiten, setzen Sie, was Ihnen gefällt, auf Ihre Merkliste, und erhalten Sie anschließend eine fertige Route in Google Maps.',"
+    },
+    {
+      "id": "PlanTripView.astro:220",
+      "file": "src/components/views/PlanTripView.astro",
+      "line": 220,
+      "current": "    ctaTrip: 'Meine Reise',",
+      "proposed": "    ctaTrip: 'Zur Merkliste',"
+    },
+    {
+      "id": "24-hours-de.md:44",
+      "file": "src/content/blog/24-hours-de.md",
+      "line": 44,
+      "current": "- Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/de/plan/) hinzu: Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der [Karte der Sehenswürdigkeiten](/de/map/) bringen Sie Ihren Tag in die richtige Reihenfolge.",
+      "proposed": "- Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu Ihrer [Merkliste](/de/plan/) hinzu: Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der [Karte der Sehenswürdigkeiten](/de/map/) bringen Sie Ihren Tag in die richtige Reihenfolge."
+    },
+    {
+      "id": "48-hours-de.md:15",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 15,
+      "current": "    a: \"Das Auto ist die praktische Wahl: Manche Stationen liegen in Hofuf selbst, andere am Rand der Oase und an der Küste. Stellen Sie Ihre Stationen auf der Seite „Meine Reise“ zusammen; Sie erhalten eine fertige Route, die sich in Google Maps öffnet.\"",
+      "proposed": "    a: \"Das Auto ist die praktische Wahl: Manche Stationen liegen in Hofuf selbst, andere am Rand der Oase und an der Küste. Stellen Sie Ihre Stationen auf Ihrer Merkliste zusammen; Sie erhalten eine fertige Route, die sich in Google Maps öffnet.\""
+    },
+    {
+      "id": "48-hours-de.md:56",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 56,
+      "current": "- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu [„Meine Reise“](/de/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet.",
+      "proposed": "- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu Ihrer [Merkliste](/de/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet."
+    },
+    {
+      "id": "crafts-de.md:38",
+      "file": "src/content/blog/crafts-de.md",
+      "line": 38,
+      "current": "Die drei Stationen ergänzen einander wie von selbst: Dougha Al-Gharash am Jabal al-Qarah bei Tageslicht, dann der Handwerker-Souk und der Qaisariyah-Souk im Zentrum von Hofuf am Abend, wenn die Geschäfte ihre Türen öffnen. Fügen Sie alle drei zu [„Meine Reise“](/de/plan/) hinzu: Daraus wird eine fertige Route. Oder nehmen Sie sie in die [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/) auf. Und was von diesem Rundgang einen Platz in Ihrem Koffer verdient, zeigt Ihnen der [Ratgeber für Geschenke und Souvenirs](/de/blog/al-ahsa-souvenirs-guide/).",
+      "proposed": "Die drei Stationen ergänzen einander wie von selbst: Dougha Al-Gharash am Jabal al-Qarah bei Tageslicht, dann der Handwerker-Souk und der Qaisariyah-Souk im Zentrum von Hofuf am Abend, wenn die Geschäfte ihre Türen öffnen. Setzen Sie alle drei auf Ihre [Merkliste](/de/plan/): Daraus wird eine fertige Route. Oder nehmen Sie sie in die [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/) auf. Und was von diesem Rundgang einen Platz in Ihrem Koffer verdient, zeigt Ihnen der [Ratgeber für Geschenke und Souvenirs](/de/blog/al-ahsa-souvenirs-guide/)."
+    },
+    {
+      "id": "jabal-qarah-de.md:15",
+      "file": "src/content/blog/jabal-qarah-de.md",
+      "line": 15,
+      "current": "    a: \"Der Berg ragt mitten aus der Al-Ahsa-Oase auf, östlich von Hofuf beim Dorf Al-Qarah. Das Auto ist die praktische Wahl für die Anfahrt, und die Seite „Meine Reise“ dieser Website macht aus dem Berg und seiner Umgebung eine fertige Route, die sich in Google Maps öffnet.\"",
+      "proposed": "    a: \"Der Berg ragt mitten aus der Al-Ahsa-Oase auf, östlich von Hofuf beim Dorf Al-Qarah. Das Auto ist die praktische Wahl für die Anfahrt, und die Merkliste dieser Website macht aus dem Berg und seiner Umgebung eine fertige Route, die sich in Google Maps öffnet.\""
+    },
+    {
+      "id": "jabal-qarah-de.md:48",
+      "file": "src/content/blog/jabal-qarah-de.md",
+      "line": 48,
+      "current": "- **In Ihrem Reiseplan:** Mit dem Berg beginnen die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) und der zweite Tag der [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit [„Meine Reise“](/de/plan/).",
+      "proposed": "- **In Ihrem Reiseplan:** Mit dem Berg beginnen die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) und der zweite Tag der [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit der [Merkliste](/de/plan/)."
+    },
+    {
+      "id": "souvenirs-de.md:45",
+      "file": "src/content/blog/souvenirs-de.md",
+      "line": 45,
+      "current": "Die traditionellen Souks erwachen am Abend zum Leben – deshalb setzen die [Reiserouten](/de/blog/48-hours-in-al-ahsa/) sie ans Ende des Tages: zuerst die Sehenswürdigkeiten bei Tageslicht, dann der Qaisariyah-Souk und seine Nachbarn, wenn die Geschäfte ihre Türen öffnen. Fügen Sie Ihre Stationen zu [„Meine Reise“](/de/plan/) hinzu und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt.",
+      "proposed": "Die traditionellen Souks erwachen am Abend zum Leben – deshalb setzen die [Reiserouten](/de/blog/48-hours-in-al-ahsa/) sie ans Ende des Tages: zuerst die Sehenswürdigkeiten bei Tageslicht, dann der Qaisariyah-Souk und seine Nachbarn, wenn die Geschäfte ihre Türen öffnen. Setzen Sie Ihre Stationen auf Ihre [Merkliste](/de/plan/) und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt."
+    },
+    {
+      "id": "worth-visiting-de.md:15",
+      "file": "src/content/blog/worth-visiting-de.md",
+      "line": 15,
+      "current": "    a: \"Das Auto ist die praktische Wahl, um Al-Ahsa zu erkunden: Manche Sehenswürdigkeiten liegen mitten in Hofuf, andere am Rand der Oase und an der Golfküste Saudi-Arabiens. Die Seite „Meine Reise“ dieser Website macht aus Ihren gewählten Stationen eine fertige Route, die sich in Google Maps öffnet.\"",
+      "proposed": "    a: \"Das Auto ist die praktische Wahl, um Al-Ahsa zu erkunden: Manche Sehenswürdigkeiten liegen mitten in Hofuf, andere am Rand der Oase und an der Golfküste Saudi-Arabiens. Die Merkliste dieser Website macht aus Ihren gewählten Stationen eine fertige Route, die sich in Google Maps öffnet.\""
+    },
+    {
+      "id": "worth-visiting-de.md:41",
+      "file": "src/content/blog/worth-visiting-de.md",
+      "line": 41,
+      "current": "- **Unterwegs:** Das Auto ist die praktische Wahl; planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und der Seite [„Meine Reise“](/de/plan/).",
+      "proposed": "- **Unterwegs:** Das Auto ist die praktische Wahl; planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und der [Merkliste](/de/plan/)."
+    },
+    {
+      "id": "ui.ts:971",
+      "file": "src/i18n/ui.ts",
+      "line": 971,
+      "current": "    'plan.eyebrow': 'Ihr eigener Plan',",
+      "proposed": "    'plan.eyebrow': 'Ihre eigene Liste',"
+    },
+    {
+      "id": "ui.ts:830",
+      "file": "src/i18n/ui.ts",
+      "line": 830,
+      "current": "    'home.plan.cta': 'Reiseplan erstellen',",
+      "proposed": "    'home.plan.cta': 'Reise planen',"
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "      \"en\": \"My Trip / رحلتي\",\r\n      \"de\": \"„Meine Reise“\",\r\n      \"artikel\": \"die\",\r\n      \"source\": \"دفعة نصوص الواجهة 2026-09-03 (اعتماد الحاكم 90/100)\",\r\n      \"note\": \"بلا أقواس في `nav.myTrip`، وبالأقواس الألمانية حيث يُحال إليها.\"",
+      "after": "      \"en\": \"My saved places / معالمي المحفوظة (the saved-sights tool at /de/plan/; formerly My Trip / رحلتي)\",\r\n      \"de\": \"die Merkliste\",\r\n      \"artikel\": \"die\",\r\n      \"source\": \"دفعة nav-four 2026-10-04 (قرار إياد: «رحلتي» ← «معالمي المحفوظة» / “My saved places”، الالتزام f647e0e). Duden: „Merkliste, die“ (Substantiv, feminin). Register: German-language DMO portals label their saved-items tool „Merkliste“.\",\r\n      \"note\": \"اسم الأداة في الترويسة والتذييل وعنوان الصفحة: «Merkliste» بلا أداة ولا أقواس (`nav.myTrip`، `plan.title`)؛ وزرّ `ctaTrip` في دليل الخطة «Zur Merkliste» (نمط أزرار التنقل الألمانية، بجوار «Sehenswürdigkeiten entdecken» — حكم المرحلة 7). في المتن اسمٌ عام يُصرَّف بلا أقواس: «Ihre Merkliste» / «auf Ihre Merkliste setzen» / «zu Ihrer Merkliste hinzufügen» (لا «… auf der Seite jeder Sehenswürdigkeit Ihrer Merkliste hinzufügen»: المجرور بلا حرف يُقرأ مضافاً إليه — حكم المرحلة 7) / «mit der Merkliste». زرّ الحفظ `fav.add` «Diesen Ort merken» وحالته `fav.added` «Gemerkt ✓» — فعل الاسم نفسه. مرفوضات: „Meine Reise“ (تلتبس بـ«Reise planen» = خطّط لرحلتك، وهو سبب القرار) · «Gespeicherte Orte» (17 حرفاً في الشريط مقابل 9) · «Meine Orte» (لا تدلّ على الحفظ) · «Meine Merkliste» (أطول بلا زيادة معنى) · «Favoriten» (تُقرأ تفضيلاً لا قائمةَ زيارة).\""
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"de\": \"Historische Stätten · Museen · Moscheen und religiöse Stätten · Natur · Parks und Gärten · Traditionelle Souks · Farmen und Dattelpalmen · Erlebnisse und Handwerk · Küche und Datteln · Veranstaltungen und Saisonales\",",
+      "after": "\"de\": \"Historische Stätten · Museen · Moscheen und religiöse Stätten · Natur · Parks und Gärten · Traditionelle Souks · Farmen und Dattelpalmen · Erlebnisse und Handwerk · Hasawi-Küche · Veranstaltungen\","
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "المفتاح `foot.l.historic` ميت (التذييل يعرض `catLabel`).\"",
+      "after": "المفتاح `foot.l.historic` ميت (التذييل يعرض `catLabel`). taste/events (قرار إياد 2026-10-04، دفعة nav-four، الالتزامان f647e0e وb292fd8): الفئة والبطاقة = اسم الصفحة حرفياً — taste = `nav.food` «Hasawi-Küche»، وevents = `nav.events` «Veranstaltungen» (في `src/lib/categories.ts` و`cat.taste.t`/`cat.events.t`). «Hasawi-Küche» مفردٌ بلا أداة: كسرُ الجمع مقبول كاستثناء «Natur». بلا گلوس في التسمية (gloss_regel). المفتاح `foot.l.taste` ميت (لا يُستدعى في أي .astro) فلم يُمسّ. «Küche und Datteln» و«Veranstaltungen und Saisonales» متقاعدتان.\""
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"note\": \"سلسلة واحدة في `nav.events` و`foot.l.events` — الوجهة واحدة فالاسم واحد.",
+      "after": "\"note\": \"سلسلة واحدة في `nav.events` و`foot.l.events` و`cat.events.t` وتسمية الفئة events في `src/lib/categories.ts` (دفعة nav-four 2026-10-04) — الوجهة واحدة فالاسم واحد."
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "تبقى «Veranstaltungen und Saisonales» تسميةَ **الفئة** (مقفلة من العربية، مدخل 41) — فئة ≠ صفحة.",
+      "after": "«Veranstaltungen und Saisonales» تقاعدت تسميةً للفئة (nav-four 2026-10-04، b292fd8): الفئة صارت «Veranstaltungen» كالصفحة."
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's My Trip page to get a ready-made route that opens in Google Maps.\",\r\n      \"de\": \"Das Auto ist die praktische Wahl: Manche Stationen liegen in Hofuf selbst, andere am Rand der Oase und an der Küste. Stellen Sie Ihre Stationen auf der Seite „Meine Reise“ zusammen; Sie erhalten eine fertige Route, die sich in Google Maps öffnet.\",",
+      "after": "      \"en\": \"A car is the practical way to move between these stops — some sit inside Hofuf, others at the edges of the oasis and on the coast. Arrange your stops on the site's “My saved places” page to get a ready-made route that opens in Google Maps.\",\r\n      \"de\": \"Das Auto ist die praktische Wahl: Manche Stationen liegen in Hofuf selbst, andere am Rand der Oase und an der Küste. Stellen Sie Ihre Stationen auf Ihrer Merkliste zusammen; Sie erhalten eine fertige Route, die sich in Google Maps öffnet.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Add your stops to My Trip from each landmark's page for a ready-made route that opens in Google Maps, and use the attractions map to order your day.\",\r\n      \"de\": \"Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu „Meine Reise“ hinzu: Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der Karte der Sehenswürdigkeiten bringen Sie Ihren Tag in die richtige Reihenfolge.\",",
+      "after": "      \"en\": \"Add your stops to My saved places from each landmark's page for a ready-made route that opens in Google Maps, and use the attractions map to order your day.\",\r\n      \"de\": \"Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu Ihrer Merkliste hinzu: Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der Karte der Sehenswürdigkeiten bringen Sie Ihren Tag in die richtige Reihenfolge.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Pair the festival with the oasis sights around it, and build your route in “My Trip”.\",\r\n      \"de\": \"Verbinden Sie den Festivalbesuch mit den nahegelegenen Sehenswürdigkeiten der Oase, und stellen Sie Ihre Route in „Meine Reise“ zusammen.\",",
+      "after": "      \"en\": \"Pair the festival with the oasis sights around it, and build your route in “My saved places”.\",\r\n      \"de\": \"Verbinden Sie den Festivalbesuch mit den nahegelegenen Sehenswürdigkeiten der Oase, und stellen Sie Ihre Route mit der Merkliste zusammen.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"My Trip\",\r\n      \"de\": \"Meine Reise\",",
+      "after": "      \"en\": \"My saved places\",\r\n      \"de\": \"Merkliste\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Browse the attractions and tap “Add to my trip” to gather your destinations here, then get a ready route.\",\r\n      \"de\": \"Durchstöbern Sie die Sehenswürdigkeiten, und klicken oder tippen Sie auf „Zu ‚Meine Reise‘ hinzufügen“, um Ihre Ziele hier zu sammeln. Anschließend erhalten Sie eine fertige Route.\",",
+      "after": "      \"en\": \"Browse the attractions and tap “Save this place” to gather your destinations here, then get a ready route.\",\r\n      \"de\": \"Durchstöbern Sie die Sehenswürdigkeiten, und klicken oder tippen Sie auf „Diesen Ort merken“, um Ihre Ziele hier zu sammeln. Anschließend erhalten Sie eine fertige Route.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"My Al-Ahsa trip — the sights list:\",\r\n      \"de\": \"Meine Al-Ahsa-Reise – die Liste der Sehenswürdigkeiten:\",",
+      "after": "      \"en\": \"My saved places in Al-Ahsa:\",\r\n      \"de\": \"Meine Merkliste für Al-Ahsa:\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Clear your whole trip list?\",\r\n      \"de\": \"Möchten Sie Ihre gesamte Liste leeren?\",",
+      "after": "      \"en\": \"Clear all your saved places?\",\r\n      \"de\": \"Möchten Sie Ihre gesamte Merkliste leeren?\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"This list reached you via a share link — browse it, or add it to your own “My Trip”.\",\r\n      \"de\": \"Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen „Meine Reise“ hinzu.\",",
+      "after": "      \"en\": \"This list reached you via a share link — browse it, or add it to your own “My saved places”.\",\r\n      \"de\": \"Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen Merkliste hinzu.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Add to my trip\",\r\n      \"de\": \"Zu „Meine Reise“ hinzufügen\",",
+      "after": "      \"en\": \"Add to my saved places\",\r\n      \"de\": \"Zu meiner Merkliste hinzufügen\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"View my own trip\",\r\n      \"de\": \"Meine eigene Reise ansehen\",",
+      "after": "      \"en\": \"View my saved places\",\r\n      \"de\": \"Meine Merkliste ansehen\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Browse the attractions, add what you like to “My Trip”, then get a ready-made route in Google Maps.\",\r\n      \"de\": \"Durchstöbern Sie die Sehenswürdigkeiten, fügen Sie, was Ihnen gefällt, zu „Meine Reise“ hinzu, und erhalten Sie anschließend eine fertige Route in Google Maps.\",",
+      "after": "      \"en\": \"Browse the attractions, add what you like to “My saved places”, then get a ready-made route in Google Maps.\",\r\n      \"de\": \"Durchstöbern Sie die Sehenswürdigkeiten, setzen Sie, was Ihnen gefällt, auf Ihre Merkliste, und erhalten Sie anschließend eine fertige Route in Google Maps.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” centre, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My Trip”.\",\r\n      \"de\": \"Zu den bedeutendsten zählen der Qarah-Berg mit seinen Höhlen und dem Kulturerbe-Dorf „Land of Civilisations“, der historische Qasr Ibrahim, der traditionsreiche Qaisariyah-Souk, die Jawatha-Moschee (eine der ältesten Moscheen des Islam), der Al-Asfar-See und der Sahood-Palast (Qasr Sahood) in Al-Mubarraz. Auf der Seite „Sehenswürdigkeiten“ finden Sie die vollständige Liste, die Sie zu „Meine Reise“ hinzufügen können.\",",
+      "after": "      \"en\": \"Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” centre, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My saved places”.\",\r\n      \"de\": \"Zu den bedeutendsten zählen der Qarah-Berg mit seinen Höhlen und dem Kulturerbe-Dorf „Land of Civilisations“, der historische Qasr Ibrahim, der traditionsreiche Qaisariyah-Souk, die Jawatha-Moschee (eine der ältesten Moscheen des Islam), der Al-Asfar-See und der Sahood-Palast (Qasr Sahood) in Al-Mubarraz. Auf der Seite „Sehenswürdigkeiten“ finden Sie die vollständige Liste, die Sie auf Ihre Merkliste setzen können.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Add your stops to My Trip and end the journey with a suitcase that carries the oasis home.\",\r\n      \"de\": \"Fügen Sie Ihre Stationen zu „Meine Reise“ hinzu und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt.\",",
+      "after": "      \"en\": \"Add your stops to My saved places and end the journey with a suitcase that carries the oasis home.\",\r\n      \"de\": \"Setzen Sie Ihre Stationen auf Ihre Merkliste und beschließen Sie die Reise mit einem Koffer, der die Oase mit Ihnen nach Hause trägt.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"The mountain rises from the middle of the oasis east of Hofuf, by Al-Qarah village. A car is the practical way to reach it, and the site's My Trip tool turns the mountain and its surroundings into a ready route that opens in Google Maps.\",\r\n      \"de\": \"Der Berg ragt mitten aus der Al-Ahsa-Oase auf, östlich von Hofuf beim Dorf Al-Qarah. Das Auto ist die praktische Wahl für die Anfahrt, und die Seite „Meine Reise“ dieser Website macht aus dem Berg und seiner Umgebung eine fertige Route, die sich in Google Maps öffnet.\",",
+      "after": "      \"en\": \"The mountain rises from the middle of the oasis east of Hofuf, by Al-Qarah village. A car is the practical way to reach it, and the site's “My saved places” tool turns the mountain and its surroundings into a ready route that opens in Google Maps.\",\r\n      \"de\": \"Der Berg ragt mitten aus der Al-Ahsa-Oase auf, östlich von Hofuf beim Dorf Al-Qarah. Das Auto ist die praktische Wahl für die Anfahrt, und die Merkliste dieser Website macht aus dem Berg und seiner Umgebung eine fertige Route, die sich in Google Maps öffnet.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"page\": \"footer-names\",\r\n      \"field\": \"foot.col.site\",\r\n      \"date\": \"2026-10-04\"\r\n    }\r\n  ]\r\n}",
+      "after": "      \"page\": \"footer-names\",\r\n      \"field\": \"foot.col.site\",\r\n      \"date\": \"2026-10-04\"\r\n    },\r\n    {\r\n      \"en\": \"My saved places\",\r\n      \"de\": \"Merkliste\",\r\n      \"page\": \"nav\",\r\n      \"field\": \"nav.myTrip\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Save this place\",\r\n      \"de\": \"Diesen Ort merken\",\r\n      \"page\": \"attraction\",\r\n      \"field\": \"fav.add\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Saved ✓\",\r\n      \"de\": \"Gemerkt ✓\",\r\n      \"page\": \"attraction\",\r\n      \"field\": \"fav.added\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Arrange your own route in “My saved places”\",\r\n      \"de\": \"Ihre Route mit der Merkliste zusammenstellen\",\r\n      \"page\": \"home\",\r\n      \"field\": \"home.route.link\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Hasawi Cuisine\",\r\n      \"de\": \"Hasawi-Küche\",\r\n      \"page\": \"home\",\r\n      \"field\": \"cat.taste.t\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Events\",\r\n      \"de\": \"Veranstaltungen\",\r\n      \"page\": \"home\",\r\n      \"field\": \"cat.events.t\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Hasawi Cuisine\",\r\n      \"de\": \"Hasawi-Küche\",\r\n      \"page\": \"categories\",\r\n      \"field\": \"categories.taste\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    },\r\n    {\r\n      \"en\": \"Events\",\r\n      \"de\": \"Veranstaltungen\",\r\n      \"page\": \"categories\",\r\n      \"field\": \"categories.events\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four\"\r\n    }\r\n  ]\r\n}"
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "      \"en\": \"Your own plan\",\r\n      \"de\": \"Ihr eigener Plan\",\r\n      \"page\": \"plan\",\r\n      \"field\": \"plan.eyebrow\",\r\n      \"date\": \"2026-09-23\"\r\n    },",
+      "after": "      \"en\": \"Your own list\",\r\n      \"de\": \"Ihre eigene Liste\",\r\n      \"page\": \"plan\",\r\n      \"field\": \"plan.eyebrow\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four (3cc11dd: «خطّتك الخاصة» → «قائمتك الخاصة»)\"\r\n    },\r\n    {\r\n      \"en\": \"Plan your trip\",\r\n      \"de\": \"Reise planen\",\r\n      \"page\": \"home\",\r\n      \"field\": \"home.plan.cta\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four (3cc11dd): = nav.plan verbatim; the button opens the guide\"\r\n    },\r\n    {\r\n      \"en\": \"My saved places\",\r\n      \"de\": \"Zur Merkliste\",\r\n      \"page\": \"plan-your-trip\",\r\n      \"field\": \"ctaTrip\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"nav-four judge: navigation button form of the tool name\"\r\n    },"
+    }
+  ]
+}

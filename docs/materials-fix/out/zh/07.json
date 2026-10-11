@@ -1,0 +1,54 @@
+{
+ "lang": "zh",
+ "stage": "06",
+ "batch": "local-materials",
+ "round": 4,
+ "score": 93,
+ "pass_threshold": 90,
+ "breakdown": {
+  "accuracy": 28,
+  "nativeness": 26,
+  "termbase_style": 20,
+  "cultural_fit": 9,
+  "structural": 10
+ },
+ "breakdown_notes": {
+  "accuracy": "-2: 「城堡沿袭海湾地区的营造传统：」 renders ar «بُني على الطريقة التقليدية في عمارة الخليج» (line 101) / en «It was built in the traditional Gulf manner» (body_en line 32) exactly: it qualifies the method, says nothing about where materials come from, and the old 绿洲传统建材 (local-materials implication) is gone. Residual -2 is the pre-existing locked gloss: «once/كان» only implicit via 传统建筑常用, and the use clause 传统建筑常用 is not in the source gloss (factual per termbase sources, unchanged since R3). No origin added.",
+  "nativeness": "-4: lead-in reads as native written Chinese (沿袭……营造传统). The bracket is still heavy (Latin + long attributive inside a list), 海湾/传统 recur within ~25 characters (lead-in and gloss), and the reader again paused at tradition/imported (ruled not a defect below, but a pause still costs flow).",
+  "termbase_style": "20: 海湾地区 per termbase 'the Gulf' entry (no 波斯湾/阿拉伯湾); chandal first mention 尚达尔木杆（chandal，海湾传统建筑常用的进口木料） verbatim per termbase line 1724 and identical to hubaish.md line 8; Chinese punctuation, U+0020 only, no CR, simplified only, plain text.",
+  "cultural_fit": "-1: 营造传统 idiomatic for a Chinese heritage reader; 进口 keeps a faint modern-trade tint.",
+  "structural": "10: single position; diff vs repo line 8 is exactly 用的是绿洲传统建材 -> 沿袭海湾地区的营造传统, everything else byte-identical; current matches line 8 once (CR ignored)."
+ },
+ "rulings": [
+  {
+   "item": "R4 blind item 5(a): reader reads 沿袭海湾传统 as 'local tradition' and asks why imported timber",
+   "ruling": "NOT A TRANSLATION DEFECT — stable reader inference from a true, sourced pairing the source itself states; consistent with the R3 zh judge.",
+   "reason": "Across four rounds the tension decayed while the wording changed: R1 'local materials' vs imported = explicit contradiction (a real defect, fixed at source); R2/R3 'local tradition' vs imported = pause; R4 'Gulf tradition' vs imported = a 'why' question, no longer a contradiction. The Chinese lead-in is now exactly the source's (traditional Gulf manner), and ar/en readers meet the identical pairing: Gulf tradition + timber once imported to the Gulf. The gloss itself already says this imported timber was commonly used in Gulf traditional building, so tradition-with-imported-material is stated, not contradictory. Answering 'why imported' (timber scarcity, trade routes) would need causal facts the source does not state — the fact fence forbids adding them. Whatever any intro said, readers paired 'tradition' with 'imported'; that is the content, not the rendering. Chinese mirrors the source; no change."
+  },
+  {
+   "item": "R4 blind item 5(b): move the gloss out of the list — 「……屋顶以椰枣树干和尚达尔木杆铺成（尚达尔木是海湾传统建筑常用的进口木料）……」",
+   "ruling": "REJECTED — not a warranted minimal change for this batch.",
+   "reason": "(1) BRIEF round 4: the intro alone changes, the gloss stays in its approved R3 form. (2) The first-mention form 尚达尔木杆（chandal，海湾传统建筑常用的进口木料） is termbase-locked and shared with hubaish.md; restructuring it here breaks cross-page consistency and the one-position scope. (3) The suggested text drops 与石块 (stone) — an omission of a source fact (roofs of palm trunks, chandal wood and stone) — and drops the Latin chandal tag. (4) It would not answer (a): the content (tradition + imported) is identical. If the owner wants a lighter first-mention pattern, it belongs in a separate termbase batch (termbase.json + hubaish.md + qasr-ibrahim.md together)."
+  },
+  {
+   "item": "other R4 blind items (1–4, 6–13, and the stone-roof / Latin-bracket sub-points of 5)",
+   "ruling": "OUT OF SCOPE, unscored — listed in raise_to_eyad_later.",
+   "reason": "Outside the changed clause; BRIEF requires byte-for-byte preservation."
+  }
+ ],
+ "raise_to_eyad_later": [
+  "summary_zh (line 7) 泥墙筑就、椰枣树干盖顶 names palm trunks only, so the summary looks all-local while the body mentions imported timber (reader item 5 sub-point / item 1) — source-level question for summary in all languages",
+  "荫影 -> 阴影 (typo, item 7)",
+  "与石块铺成: reader asks how a roof is laid with stone (mirrors source «roofs of palm trunks, chandal wood and stone»; source question)",
+  "mihrab not visible from the courtyard (item 7; source «watch the dome shade the mihrab»), 清晰可感",
+  "十二处组成部分之一 · 1563-004 without site name; 十二 in characters (item 2)",
+  "宫 vs 城堡 naming (item 13)",
+  "层层落定 / 立在 / 平日难得共处 / 仓廪 / 秀雅 / 肌理 twice / 这片 twice / 正是凭 vs one of 12 components (items 3, 4, 8)",
+  "three 最; 白天 vs Fri/Sat hours; 运营方 without named body; FAQ repeats body; nearby 圆顶清真寺 confusable; search line without name/place (items 1, 9–12)",
+  "optional termbase batch: chandal first-mention form (explicit 旧时, lighter Latin bracket / gloss after the list) across termbase + hubaish.md + qasr-ibrahim.md"
+ ],
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "notes": "Score 93 >= 90. Only the lead-in changed (用的是绿洲传统建材 -> 沿袭海湾地区的营造传统), matching the R4 source exactly; locked gloss untouched. Judge did not edit src or memory: orchestrator appends scores_row to zh-translation/memory/scores.csv and the en S3 / zh S3 pair to memory/tm.json.",
+ "scores_row": "\"qasr-ibrahim-local-materials (zh): qasr-ibrahim body_zh lead-in 城堡用的是绿洲传统建材 -> 城堡沿袭海湾地区的营造传统 (built in the traditional Gulf manner); chandal gloss （chandal，海湾传统建筑常用的进口木料） kept (locked termbase, shared with hubaish.md)\",2026-10-02,4,93,\"APPROVE (28/26/20/9/10; four reader rounds: R1 local materials vs imported = contradiction (fixed at source), R2/R3 local tradition vs imported = pause, R4 Gulf tradition vs imported = why-question; ruled stable inference from the sourced pairing, not a defect; reader proposal to move gloss after the list rejected (brief allows intro only, locked termbase shared with hubaish.md, drops stone); out of scope for Eyad: summary names palm trunks only, 荫影 typo, stone roof, mihrab visibility, naming)\""
+}

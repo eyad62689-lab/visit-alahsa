@@ -19,7 +19,7 @@ export type Ev = {
   slug: string;
   name: string; place: string; season: string; time: string;
   span: string; org: string; acts: string[]; img: string; start: number;
-  map?: string; // رابط خرائط جوجل (اختياري)
+  map?: string; // رابط خرائط قوقل (اختياري)
   ticket?: string; // رابط حجز التذاكر الرسمي (اختياري) — لا يُضاف إلا لفعالية أعلنت الحجز فعلاً
   /** المتجر الإلكتروني الرسمي لمنتجات الفعالية (اختياري) — لا يُضاف إلا لمتجرٍ تديره
    *  الجهة المنظّمة نفسها (مطابقة org) وتحقّقنا أنه يفتح ويعرض منتجات.
@@ -29,7 +29,7 @@ export type Ev = {
    *  تسقطه تلقائياً كما يسقط الحجز. */
   shop?: string;
   /** إحداثيات الدبوس حين لا يكون المكان معلماً في الموقع — تُستخرج من رابط خرائط
-   *  قدّمه إياد لا بالتقدير، ويبقى رابطه الأصلي في map لزرّ «افتح في خرائط جوجل». */
+   *  قدّمه إياد لا بالتقدير، ويبقى رابطه الأصلي في map لزرّ «افتح في خرائط قوقل». */
   coords?: { lat: number; lng: number };
   /** ساعات العمل اليومية — لا تُذكر إلا منقولةً من مصدر رسمي */
   hours?: string;
@@ -661,7 +661,7 @@ const TEXT_DE: EventTexts = {
     ],
     faq: [
       { q: 'Wo findet die Ausstellung statt?', a: 'Im Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf – die Karte finden Sie auf dieser Seite.' },
-      { q: 'Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?', a: 'Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Hasawi-Küche verwendet.' },
+      { q: 'Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?', a: 'Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Küche Al-Ahsas verwendet.' },
       { q: 'Gibt es Aktivitäten für Kinder?', a: 'Ja – die Ausstellung bietet eine Kinderecke, dazu Live-Kochvorführungen, landwirtschaftliche Workshops und familiäres Beisammensein.' },
     ],
     related: [
@@ -725,7 +725,7 @@ export const EVENTS_RU: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_RU[id]));
 
 /** فعاليات لغة الصفحة */
 export const eventsFor = (lang: Lang): Ev[] =>
-  lang === 'ar' ? EVENTS_AR : lang === 'zh' ? EVENTS_ZH : lang === 'de' ? EVENTS_DE : lang === 'ru' ? EVENTS_RU : EVENTS_EN;
+  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU } satisfies Record<Lang, Ev[]>)[lang];
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>

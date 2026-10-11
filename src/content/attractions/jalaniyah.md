@@ -7,7 +7,7 @@ title_zh: 贾拉尼亚清真寺
 kicker_zh: 宗教场所
 summary_zh: 巴塔利亚村内一座乌尤尼王朝时期的清真寺，又称巴塔利亚清真寺。
 body_zh: "贾拉尼亚清真寺坐落在巴塔利亚村西区，距胡富夫东北方约 12 公里；它又称巴塔利亚清真寺，是哈萨最负盛名的历史清真寺之一。寺的历史可上溯至乌尤尼王朝时期，约在伊斯兰历 5 世纪（公元 11 世纪前后）；相传得名于王朝创建者之女希芭公主（希芭·宾特·阿卜杜拉·本·阿里·乌尤尼）。寺以石块与泥土砌筑，屋顶覆以椰枣树干与枝叶；最特别之处，是指向麦加方向的朝拜墙上并列着两座米哈拉布（礼拜朝向的壁龛）。成排的立柱托起尖拱，全寺可容纳逾千名礼拜者。朱拜勒与延布皇家委员会主持了修复，工程于伊历 1430 年（公元 2009 年）竣工；2017 年，它正式列入哈萨历史清真寺官方名录。"
-area_zh: 巴塔利亚村——胡富夫东北
+area_zh: 巴塔利亚村——胡富夫东北方向
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-4 بدرجة 92/100 (2026-09-12، الدورة 2 من 3)
 title_de: "Al-Jalaniyah-Moschee"
 kicker_de: "Religiöse Stätte"
@@ -33,8 +33,7 @@ featured: false
 order: 21
 practical:
   # بند الزيارة: الصيغة نفسها في صفحات المساجد بلغاتها الخمس.
-  - { label: "الزيارة", value: "متاحة، مع مراعاة أوقات الصلاة واللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with respect for prayer times, modest dress and the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; учитывайте время молитв, приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请留意礼拜时间，注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte mit Rücksicht auf die Gebetszeiten, in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
-  - { label: "المواعيد", value: "يومياً خلال أوقات الصلوات الخمس", label_en: "Hours", value_en: "Daily, at the five prayer times", source: "تحقق مباشر من وزارة الشؤون الإسلامية", source_en: "Verified directly with the Ministry of Islamic Affairs", sourceUrl: "https://moia.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
   - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من وزارة الشؤون الإسلامية", source_en: "Verified directly with the Ministry of Islamic Affairs", sourceUrl: "https://moia.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.431233, lng: 49.625652 }
 mapUrl: "https://maps.app.goo.gl/x3Hq8z6hfpoQnBjD7"

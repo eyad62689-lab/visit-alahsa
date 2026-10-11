@@ -63,7 +63,7 @@ try {
   ok(await p.$('#map .va-me'), 'علامة الزائر على الخريطة');
   const after = await p.$$eval('#map-list > li', (lis) => lis.slice(0, 5).map((l) => ({ t: l.querySelector('.ms-t').textContent.trim(), d: (l.querySelector('[data-dist]') || {}).textContent || '', hidden: l.hidden })));
   ok(after.every((x) => /km/.test(x.d)), 'المسافة مكتوبة على العناصر', after.map((x) => `${x.t}${x.d}`).join(' | '));
-  const dists = after.map((x) => (x.d.match(/(\d+) km/) ? Number(x.d.match(/(\d+) km/)[1]) : 0));
+  const dists = after.map((x) => { const m = x.d.match(/(?<!\d)(\d+) km/); return m ? Number(m[1]) : 0; });
   ok(dists.every((d, i) => i === 0 || d >= dists[i - 1]), 'القائمة مرتّبة من الأقرب', dists.join(' ≤ '));
   ok(JSON.stringify(before) !== JSON.stringify(after.slice(0, 3).map((x) => x.t)), 'الترتيب تغيّر عن الأبجدي');
   ok((await p.$eval('#map-locate', (b) => b.getAttribute('aria-pressed'))) === 'true', 'الزر في حالة مفعّلة');

@@ -1,0 +1,55 @@
+{
+  "lang": "zh",
+  "stage": "01-05",
+  "batch": "style-four",
+  "positions": [
+    {
+      "id": "zh-01-nav.dining",
+      "file": "src/i18n/ui.ts",
+      "line": 609,
+      "current": "    'nav.dining': '餐饮',",
+      "proposed": "    'nav.dining': '餐厅与咖啡馆',",
+      "notes": "Item 1: verbatim copy of the published H1 / nav.dine (line 608). No new translation."
+    },
+    {
+      "id": "zh-02-nav.planVisit",
+      "file": "src/i18n/ui.ts",
+      "line": 644,
+      "current": "    'nav.planVisit': '行前准备',",
+      "proposed": "    'nav.planVisit': '行程规划',",
+      "notes": "Item 1: verbatim copy of nav.plan (line 614). Old 行前准备 dropped."
+    },
+    {
+      "id": "zh-03-nav.leisure",
+      "file": "src/i18n/ui.ts",
+      "line": 645,
+      "current": "    'nav.leisure': '传统市集与公园',",
+      "proposed": "    'nav.leisure': '传统市集、公园与农场',",
+      "notes": "Item 1: verbatim copy of the published H1 = list2.title (line 601); restores the farms the short label dropped. Enumeration comma 、 full-width."
+    },
+    {
+      "id": "zh-04-cat.crafts.d",
+      "file": "src/i18n/ui.ts",
+      "line": 732,
+      "current": "    'cat.crafts.d': \"从采摘椰枣到织造比什特长袍，皆出自当地人之手。\",",
+      "proposed": "    'cat.crafts.d': \"从采摘椰枣到为比什特长袍刺绣，皆出自当地人之手。\",",
+      "notes": "Item 4: 织造 (weaving) -> 刺绣 (embroidery), the approved route term (home.route.s2.d line 571: 比什特长袍上的刺绣出自当地人之手). 比什特长袍 per termbase (Hasawi bisht). Prepositional 为……刺绣 keeps the verb-object natural in Chinese."
+    },
+    {
+      "id": "zh-05-cat.market.d",
+      "file": "src/i18n/ui.ts",
+      "line": 736,
+      "current": "    'cat.market.d': \"凯撒利亚集市里，香水、黄金与铜器的气息交织。\",",
+      "proposed": "    'cat.market.d': \"凯撒利亚集市里，香水芬芳四溢，黄金与铜器熠熠生辉。\",",
+      "notes": "Item 3: scent only for perfume (芬芳四溢), gold and copper gleam (熠熠生辉) — mirrors new EN 'the scent of perfume and the gleam of gold and copper'. 凯撒利亚集市 per termbase (VisitSaudi zh). Keeps 铜器 from the previous zh line (EN 'copper'); not 黄铜 (brass)."
+    }
+  ],
+  "observations": [
+    "nav.stayShort (line 612) is already '住宿' = published H1 of the stay page and = nav.stay (line 611, footer); no change needed, so no position.",
+    "nav.stay (footer, line 611) '住宿' matches the H1 — verified.",
+    "nav.dine (line 608) '餐厅与咖啡馆' and list2.title (line 601) '传统市集、公园与农场' are the H1 sources and stay unchanged.",
+    "Item 2 (ru Эль-/Аль- line) is Russian-only — skipped.",
+    "Length: nav.leisure becomes 10 characters (传统市集、公园与农场) in the header; owner decision says verbatim copy, but the header layout at narrow widths should be checked in the build.",
+    "Stage 5 checks: full-width punctuation only (，。、), simplified characters only, termbase compliance PASS (比什特长袍, 凯撒利亚集市), no numbers, U+0020 indentation and quoting style of each original line preserved."
+  ]
+}

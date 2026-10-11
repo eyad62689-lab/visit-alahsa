@@ -1,0 +1,20 @@
+{
+  "lang": "zh",
+  "stage": "01-05",
+  "batch": "uqair-restoration",
+  "round": 2,
+  "positions": [
+    {
+      "id": "zh-uqair-status",
+      "file": "src/content/attractions/uqair-mosque.md",
+      "line": 36,
+      "current": "  - { label: \"حالة الموقع\", value: \"يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة\", label_en: \"Site status\", value_en: \"The port complex is undergoing restoration work, and some parts may be closed\", label_ru: \"Посещение\", value_ru: \"Открыто для посетителей; приходите в скромной одежде и уважайте святость места\", label_zh: \"游览\", value_zh: \"开放参观，请注意衣着端庄，尊重场所的神圣\", label_de: \"Besuch\", value_de: \"Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes\", source: \"تأكيد فريق «زوروا الأحساء»\", source_en: \"Confirmed by the Visit Al-Ahsa team\", source_ru: \"Подтверждено редакцией этого сайта\", source_zh: \"本站编辑团队确认\", source_de: \"Bestätigung durch das Redaktionsteam von Visit Al-Ahsa\", verifiedAt: \"2026-09-12\", verified: true }",
+      "proposed": "  - { label: \"حالة الموقع\", value: \"يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة\", label_en: \"Site status\", value_en: \"The port complex is undergoing restoration work, and some parts may be closed\", label_ru: \"Посещение\", value_ru: \"Открыто для посетителей; приходите в скромной одежде и уважайте святость места\", label_zh: \"现场状况\", value_zh: \"港口建筑群内正在开展修缮工作，部分区域可能暂不开放\", label_de: \"Besuch\", value_de: \"Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes\", source: \"تأكيد فريق «زوروا الأحساء»\", source_en: \"Confirmed by the Visit Al-Ahsa team\", source_ru: \"Подтверждено редакцией этого сайта\", source_zh: \"本站编辑团队确认\", source_de: \"Bestätigung durch das Redaktionsteam von Visit Al-Ahsa\", verifiedAt: \"2026-09-12\", verified: true }",
+      "notes": "label: 现场状况 — the round-1 zh blind reader's proposal; renders «حالة الموقع»/\"Site status\" as the state of the site, not a visiting answer; kept distinct from 现状 (hamidiyah-souq, ar «الوضع الحالي»/\"Current status\"). value: subject is 港口建筑群 (the port complex, matching body_zh 乌盖尔港建筑群) so the restored mosque is not implied to be closed; 修缮 consistent with termbase “历史清真寺修缮计划” and distinct from the mosque's past 完成修复; round-1 basis 正在开展修缮工作 / 部分区域可能暂不开放 kept; 遗址内 replaced by 港口建筑群内. Full-width ，, no final 。, no ASCII punctuation in the value, no proper noun added beyond the source. Stages 2-5: no 翻译腔 found; termbase PASS; punctuation PASS; simplified only PASS; structure PASS (only label_zh/value_zh differ)."
+    }
+  ],
+  "observations": [
+    "Out of scope, ru/de rows on the same line still carry the old visiting label/value (Посещение / Besuch) — handled by their own pipelines.",
+    "现场状况 is a new label string site-wide; if a termbase entry for «حالة الموقع»/\"Site status\" is wanted, add {ar:\"حالة الموقع\",en:\"Site status\",zh:\"现场状况\"} after the judge round."
+  ]
+}

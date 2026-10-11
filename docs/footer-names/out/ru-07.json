@@ -1,0 +1,113 @@
+{
+  "batch": "footer-names",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "rulings": "historic «Исторические достопримечательности» APPROVED over «Исторические места»: renders «المعالم التاريخية / Historic landmarks», is the plural of the verified kicker «Историческая достопримечательность», and is set apart from the section name «Достопримечательности» by its adjective exactly as ar sets «المعالم التاريخية» apart from «المعالم». Length checked on dist with headless Chrome: detail eyebrow .ah-k on /ru/attractions/qasr-ibrahim/ one line (305px of 343px at 375px viewport), card kicker .lc-k on /ru/attractions/ one line at 375px and 1440px; reads naturally as a category eyebrow above a site name (= de/ar plural). The section heading «Исторические достопримечательности» under H1 «Достопримечательности» reads as subset → set, intended. nav.attractions «Достопримечательности» and foot.col.site «О сайте» = owner decisions; header width absorbed by 28de9e8 (ru bar from 1518).",
+  "blind_disposition": "No objection from the blind reader to any new name (Исторические достопримечательности, Природа, Достопримечательности, О сайте): nothing to apply or reject; «О сайте» is the reader's own earlier proposal. Remaining points are source-level IA questions in ar too (events naming, taste/crafts cards, plan guide vs tool, Discover column - reader proposes an «Об Аль-Ахсе» column, souqs+parks+farms) - logged for Eyad, unscored. «Начать историю», «Моя поездка 0» (counter) - outside the batch.",
+  "out_of_scope": [
+    "Blind-reader IA points raised to Eyad, unscored (source-level, in ar too): events under two names (header/footer vs card vs H1); taste card now opens the cuisine page under another name; crafts card has no header/footer counterpart and opens all attractions; plan guide vs my-trip tool and column «Plan» over link «Plan your trip»; long mixed Discover column (ru reader proposes an «About Al-Ahsa» column); souqs+parks+farms header door vs three footer links (owner decision).",
+    "Dead keys foot.l.historic / foot.l.nature (all five languages; en still «Nature & farms») are not read by Footer.astro (Discover column uses catLabel) - remove or align in a code batch.",
+    "termbase entry 56 note cites «Политика сайта…» as repeating the column title «Сайт» - column is now «О сайте»; the rejection still holds (repeats сайт), wording stale only.",
+    "Nativeness 27/30: the 34-character category label is heavy in chips/eyebrows but fits one line everywhere measured."
+  ],
+  "positions": [
+    {
+      "id": "ru-1",
+      "file": "src/lib/categories.ts",
+      "line": 60,
+      "current": "    historic: 'Исторические места',",
+      "proposed": "    historic: 'Исторические достопримечательности',"
+    },
+    {
+      "id": "ru-2",
+      "file": "src/i18n/ui.ts",
+      "line": 1090,
+      "current": "    'cat.nature.t': 'Природа и фермы',",
+      "proposed": "    'cat.nature.t': 'Природа',"
+    },
+    {
+      "id": "ru-3",
+      "file": "src/i18n/ui.ts",
+      "line": 1101,
+      "current": "    'nav.attractions': 'Что увидеть',",
+      "proposed": "    'nav.attractions': 'Достопримечательности',"
+    },
+    {
+      "id": "ru-4",
+      "file": "src/i18n/ui.ts",
+      "line": 1120,
+      "current": "    'foot.col.site': 'Сайт',",
+      "proposed": "    'foot.col.site': 'О сайте',"
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "\"en\": \"UI nav label: Attractions (top bar) — measured split\",",
+      "after": "\"en\": \"UI nav label: Attractions (top bar)\","
+    },
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "\"ru\": \"Что увидеть\",\r\n      \"rod\": \"—\",\r\n      \"sklonenie\": \"صيغة ثابتة لا تُصرَّف (جملة اسمية على رابط)\",",
+      "after": "\"ru\": \"Достопримечательности\",\r\n      \"rod\": \"ж (мн.)\",\r\n      \"sklonenie\": \"склоняется: достопримечательностей; на ссылке — именительный падеж, «Все достопримечательности» грамматична\","
+    },
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "\"note\": \"**انقسام مقصود ومقيس على سابقة `Sehenswertes`/`Sehenswürdigkeiten` الألمانية**: الشريط وحده يحمل «Что увидеть»، بينما `crumb.attractions` و`det.allSights` و`home.feat.all` و`list.title` و`cat.historic.t` و`foot.l.historic` تحمل «Достопримечательности» — وعلّته عرضية ونحوية معاً: «Все что увидеть» غير نحوية. **تحفّظ مسجَّل من المرحلة 4**: البوّابتان المفحوصتان (visit-kaliningrad.ru · welcome-novosibirsk.ru) **لا تحملان السلسلة عينها** — المحقَّق هو النمط لا اللفظ، وأقرب ما فيهما «Интересные места» (‏أعرض من الميزانية) و«Чем заняться». فالحكم النهائي على طبيعيّتها للقارئ الأعمى في المرحلة 6. **ولا تُعاد «Что посмотреть» إلا بقياس جديد** (فرقها 26,3px هو بالضبط ما أدخل الشريط الميزانية).\",",
+      "after": "\"note\": \"**قرار إياد 2026-10-04 (دفعة footer-names، اعتماد الحاكم 95/100): أُلغي الانقسام المقيس.** الشريط يحمل «Достопримечательности» كـ`crumb.attractions` و`det.allSights` و`home.feat.all` و`list.title` — اسم القسم واحد في الرأس والفتات والفهرس. «Что увидеть» (2026-09-05، 82px مقابل 181,2px) باقية تاريخاً في `source`؛ العرض يُحلّ بقياس الشريط (`tools/measure-header-fit.mjs`) وعتباته في الكود (28de9e8: شريط ru من 1518px) لا بتقصير الاسم. اسم الفئة `historic` «Исторические достопримечательности» يتميّز عنه بالصفة كما تتميّز «المعالم التاريخية» عن «المعالم». لا تُعاد «Что увидеть» ولا «Что посмотреть» إلا بقرار من إياد.\","
+    },
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "= «Исторические места» — فُحص",
+      "after": "= «Исторические места» — فُحص (2026-09-08)؛ صارت «Исторические достопримечательности» في دفعة footer-names (2026-10-04)"
+    },
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "و«Историческое место» تصطدم بتسمية الفئة",
+      "after": "و«Историческое место» أبهت وأعمّ (وكان جمعها تسميةَ الفئة حتى 2026-10-04)"
+    },
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "معلم تراثي ⇐ Историческое место ✗ (تصطدم بتسمية الفئة)",
+      "after": "معلم تراثي ⇐ Историческое место ✗ (أبهت من достопримечательность؛ وكان جمعها تسميةَ الفئة حتى 2026-10-04)"
+    },
+    {
+      "file": "ru-translation/glossary/termbase.json",
+      "before": "\r\n    }\r\n  ]\r\n}",
+      "after": "\r\n    },\r\n    {\r\n      \"en\": \"Category: historic (categories.ts + home card cat.historic.t)\",\r\n      \"ar\": \"المعالم التاريخية\",\r\n      \"ru\": \"Исторические достопримечательности\",\r\n      \"rod\": \"ж (мн.)\",\r\n      \"sklonenie\": \"склоняется: исторических достопримечательностей\",\r\n      \"status\": \"verified\",\r\n      \"source\": \"BRIEF footer-names §1 (قرار إياد 2026-10-04: اسم واحد للفئة والبطاقة)؛ جمعُ الـkicker المعتمد «Историческая достопримечательность» (معلم تاريخي)؛ كانت `CATEGORY_LABELS.ru.historic` «Исторические места» والبطاقة «Исторические достопримечательности» — اختير المنشور الأطبع. اعتمده الحاكم 95/100.\",\r\n      \"note\": \"سلسلة واحدة في `CATEGORY_LABELS.ru.historic` و`cat.historic.t` ورابط التذييل (عبر `catLabel`) وشارة صفحة المعلم (`.ah-k`) وشارة البطاقة (`.lc-k`). قيس في المرحلة 7 على dist: سطر واحد في `.ah-k` و`.lc-k` عند 375px و1440px. مرفوضة: «Исторические места» (أعمّ وأبهت، تسمية الفئة السابقة). تتميّز عن اسم القسم «Достопримечательности» بالصفة (= «المعالم التاريخية» / «المعالم»).\",\r\n      \"added\": \"2026-10-04\",\r\n      \"batch\": \"footer-names\"\r\n    },\r\n    {\r\n      \"en\": \"Footer column heading: Site (foot.col.site)\",\r\n      \"ar\": \"الموقع\",\r\n      \"ru\": \"О сайте\",\r\n      \"rod\": \"—\",\r\n      \"sklonenie\": \"صيغة ثابتة (عنوان عمود)\",\r\n      \"status\": \"verified\",\r\n      \"source\": \"BRIEF footer-names §3/§4 (قرار إياد 2026-10-04) + اقتراح القارئ الأعمى؛ محتوى العمود في ru: Правила и условия использования · Сообщить об ошибке · Свяжитесь с нами · WhatsApp. اعتمده الحاكم 95/100.\",\r\n      \"note\": \"العنوان الروسي المعتاد لهذه المجموعة في تذييلات المواقع. مرفوضة: «Сайт» (اسم مجرّد تعثّر فيه القرّاء) · «Информация» (أعمّ من محتوى العمود).\",\r\n      \"added\": \"2026-10-04\",\r\n      \"batch\": \"footer-names\"\r\n    }\r\n  ]\r\n}"
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"ru\": \"Что увидеть\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.nav.attractions\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"ru\": \"Достопримечательности\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"ui.nav.attractions\",\r\n      \"date\": \"2026-10-04\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Nature & farms\",\r\n      \"ru\": \"Природа и фермы\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.cat.nature.t\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Nature\",\r\n      \"ru\": \"Природа\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"ui.cat.nature.t\",\r\n      \"date\": \"2026-10-04\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"ru\": \"Сайт\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"ui.foot.col.site\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"ru\": \"О сайте\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"ui.foot.col.site\",\r\n      \"date\": \"2026-10-04\""
+    },
+    {
+      "file": "ru-translation/memory/tm.json",
+      "before": "\"en\": \"Landmarks\",\r\n      \"ru\": \"Исторические места\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"category.historic\",\r\n      \"date\": \"2026-09-05\"",
+      "after": "\"en\": \"Historic landmarks\",\r\n      \"ru\": \"Исторические достопримечательности\",\r\n      \"page\": \"footer-names\",\r\n      \"field\": \"category.historic\",\r\n      \"date\": \"2026-10-04\""
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+{
+ "round": 1,
+ "date": "2026-10-11",
+ "batch_score": 85,
+ "decision": "RETURN",
+ "return_to_stage": 2,
+ "pages": [
+  {
+   "key": "tarafa-ibn-al-abd",
+   "score": 85,
+   "breakdown": {
+    "accuracy": 27,
+    "nativeness": 21,
+    "termbase_style": 19,
+    "cultural_fit": 8,
+    "structure": 10
+   }
+  }
+ ],
+ "must_fix": [
+  {
+   "id": "M1",
+   "where": "„Statthalter über“ – 8 Stellen: FAQ 1 „an dessen Statthalter über al-Bahrain und Hajar gerichtet war“ · FAQ 3 „an seinen Statthalter über al-Bahrain“ · Abschnitt 2, Punkt 1 „an seinen Statthalter über al-Bahrain und Hajar“ · Abschnitt 3 „der für sie an seinen Statthalter über al-Bahrain und Hajar schrieb“ · Abschnitt 3 „schickte der König einen anderen Statthalter über al-Bahrain“ · Fazit, Punkt 3 „an dessen Statthalter über al-Bahrain und Hajar gerichtet“ · Quellen 8 „an seinen Statthalter über al-Bahrain“ · Quellen 9 „der Brief an den Statthalter über al-Bahrain und Hajar“",
+   "problem": "Holzweg: nach „Brief … an …“ bindet der Leser „über“ an den Brief (ein Brief über al-Bahrain). Die Fügung ist eine Lehnübersetzung von «عامله على» / „governor over“ und stolpert an jeder der 8 Stellen. Das Arabische macht zwischen «عامله على البحرين» und «عامل البحرين» keinen Sachunterschied; der Text führt „Statthalter von al-Bahrain“ selbst schon im Zitat der Begegnung.",
+   "fix": "Durchgehend „Statthalter von …“: „an dessen Statthalter von al-Bahrain und Hajar gerichtet“ · „an seinen Statthalter von al-Bahrain und Hajar“ · „an den Statthalter von al-Bahrain und Hajar“; an der einen Stelle mit „schicken“: „schickte der König einen anderen Statthalter nach al-Bahrain“. Nicht „in“ (würde mit der Ortsangabe „der sich in Hajar aufhielt“ verschwimmen, auf der der Artikel aufbaut). Zählung Statthalter 20 = governor 20 bleibt. Hinweis im Eintrag „governor (عامل)“ in termbase-additions.stage4.json mitziehen (dort steht „Statthalter über al-Bahrain und Hajar“).",
+   "return_to": 2
+  },
+  {
+   "id": "M2",
+   "where": "„Der Vater von Tarafa war gestorben“ · „aus der Ode von Tarafa“ · „der Onkel von Tarafa mütterlicherseits“ · „das Grab von Tarafa liege“ · Quellen 1 „die Abstammung von Tarafa“ · Quellen 9 „die Weigerung von Tarafa, das Siegel zu brechen“ · Quellen 15 „die Antwort von Tarafa an seinen Onkel“ · Abschnitt 6 „Zwei Namen aus dem Text von Yaqut“",
+   "problem": "Gehäuftes „von“ + Name statt Genitiv liest sich als Übersetzung. „unflektiert“ gilt für mehrgliedrige arabische Namen (Yaqut al-Hamawi, Amr ibn Hind), nicht für das einwortige „Tarafa“/„Yaqut“, die im Deutschen regulär ein Genitiv-s nehmen.",
+   "fix": "„Tarafas Vater war gestorben, als Tarafa noch klein war“ · „aus Tarafas Ode“ · „Tarafas Onkel mütterlicherseits“ · „Tarafas Grab liege“ · „Tarafas Abstammung“ · „Tarafas Weigerung, das Siegel zu brechen“ · „Tarafas Antwort an seinen Onkel“ · „Zwei Namen aus Yaquts Text“. Unverändert bleiben die Stellen mit vollem Namen (FAQ 1 „Geburtsort von Tarafa ibn al-Abd“, FAQ-4-Frage, Überschrift und erster Satz von Abschnitt 5) sowie „von Amr ibn Hind“. Hinweis im Eintrag „Tarafa ibn al-Abd“ der Stufe-4-Ergänzungen („Genitiv mit von“) auf „Kurzname: Tarafas; voller Name: von“ ändern.",
+   "return_to": 2
+  },
+  {
+   "id": "M3",
+   "where": "FAQ 3: „Ibn Qutaiba berichtet, Amr ibn Hind habe für Tarafa einen Brief an seinen Statthalter über al-Bahrain geschrieben und ihn glauben lassen, der Brief enthalte eine Belohnung; Tarafa habe ihn dorthin getragen und sei getötet worden.“",
+   "problem": "„für Tarafa einen Brief schreiben“ wird als „an Tarafas Stelle / in seinem Auftrag“ gelesen (so der Blindleser); gemeint ist «كتب لطرفة إلى عامله». Das Feld wird losgelöst ausgespielt, der Fließtext kann es nicht retten.",
+   "fix": "„Ibn Qutaiba berichtet, Amr ibn Hind habe Tarafa einen Brief an seinen Statthalter von al-Bahrain mitgegeben und ihn glauben lassen, der Brief enthalte eine Belohnung; Tarafa habe ihn dorthin getragen und sei getötet worden.“ (Das Tragen steht im selben Satz der Quelle; kein Zusatz.)",
+   "return_to": 2
+  },
+  {
+   "id": "M4",
+   "where": "FAQ 1: „Überliefert ist dort, dass der Brief von Amr ibn Hind an dessen Statthalter über al-Bahrain und Hajar gerichtet war – al-Bahrain ist hier die alte Region zwischen Basra und Oman mit Hajar als Hauptort –, dass Tarafa zu dem Statthalter kam, als dieser sich in Hajar aufhielt, und dass das Grab des Dichters in Hajar liegt, wie es im Kommentar von Ibn al-Anbari steht.“",
+   "problem": "Drei dass-Sätze, ein Einschub zwischen Gedankenstrichen mitten in der Kette und ein Nachtrag; der Leser verliert den Faden am Einschub.",
+   "fix": "Einschub hinter die Kette stellen, keine Aussage ändern: „Überliefert ist dort, dass der Brief von Amr ibn Hind an dessen Statthalter von al-Bahrain und Hajar gerichtet war, dass Tarafa zu dem Statthalter kam, als dieser sich in Hajar aufhielt, und dass das Grab des Dichters in Hajar liegt, wie es im Kommentar von Ibn al-Anbari steht. Al-Bahrain ist hier die alte Region zwischen Basra und Oman mit Hajar als Hauptort.“",
+   "return_to": 2
+  },
+  {
+   "id": "M5",
+   "where": "description: „Sein Ende und sein Grab nach Ibn Qutaiba und Ibn al-Anbari, die Bedeutung von Hajar und al-Bahrain (den historischen Ostküstenlanden) bei Yaqut al-Hamawi und was Besucher heute vorfinden.“",
+   "problem": "„sein Grab nach Ibn Qutaiba“ wird zeitlich gelesen (nach = später als); Quelle: „as told by“ / «كما يرويها».",
+   "fix": "„Sein Ende und sein Grab, wie Ibn Qutaiba und Ibn al-Anbari sie überliefern, die Bedeutung von Hajar und al-Bahrain (den historischen Ostküstenlanden) bei Yaqut al-Hamawi und was Besucher heute vorfinden.“",
+   "return_to": 2
+  },
+  {
+   "id": "M6",
+   "where": "„für ein einziges Gedicht der beste Dichter von allen“ – 3 Stellen: Abschnitt 1 (Zitat Ibn Sallam, Linktext), Fazit Punkt 1, Quellen 6",
+   "problem": "«أشعر الناس واحدة»: „für ein einziges Gedicht“ ist im Deutschen nicht deutbar (der Blindleser schwankt zwischen zwei Lesarten).",
+   "fix": "An allen drei Stellen wortgleich: Abschnitt 1 „Was Tarafa angeht, so ist er, gemessen an einem einzigen Gedicht, der beste Dichter von allen“; Fazit und Quellen 6: „gemessen an einem einzigen Gedicht der beste Dichter von allen“.",
+   "return_to": 2
+  },
+  {
+   "id": "M7",
+   "where": "„Er ist der Beste unter ihnen in einer langen Ode.“ – 3 Stellen: Abschnitt 1 (Zitat Ibn Qutaiba), Fazit Punkt 1 „der Beste unter ihnen in einer langen Ode“, Quellen 7",
+   "problem": "«أجودهم طويلة»: „in einer langen Ode“ ist kein deutscher Ausdruck (Lehnübersetzung von „in a long ode“).",
+   "fix": "Abschnitt 1: „Mit einer langen Ode ist er der Beste unter ihnen.“; Fazit und Quellen 7: „mit einer langen Ode der Beste unter ihnen“. An allen drei Stellen gleich.",
+   "return_to": 2
+  },
+  {
+   "id": "M8",
+   "where": "Abschnitt 4: „und zitiert zu ihren Orten Abu Ubaida: „al-Khatt, Qatif, al-Ara, Hajar, Bainuna, al-Zara, Jawatha, al-Sabur, Darin und al-Ghaba“; er fügt hinzu, dass „die wichtigste Stadt von Hajar al-Safa und al-Mushaqar ist“.“",
+   "problem": "Zuschreibung verschoben und Kongruenzfehler. Das Arabische (Schiedsinstanz) stellt beide Aussagen unter «وينقل عن أبي عبيدة مواضعه: … وأن قصبة هجر الصفا والمشقّر»: auch der zweite Satz ist von Abu Ubaida überliefert. Semikolon + „er fügt hinzu“ macht daraus eine eigene Aussage Yaquts. Außerdem verlangt das Deutsche bei pluralischem Prädikativ den Plural („ist“ ⇒ „sind“); der Blindleser hat genau das als Widerspruch gemeldet.",
+   "fix": "„… und zitiert Abu Ubaida zu ihren Orten: „al-Khatt, Qatif, al-Ara, Hajar, Bainuna, al-Zara, Jawatha, al-Sabur, Darin und al-Ghaba“, und dazu, dass „die wichtigste Stadt von Hajar al-Safa und al-Mushaqar sind“.“",
+   "return_to": 2
+  },
+  {
+   "id": "M9",
+   "where": "Abschnitt 5: „Nach der einen sind die Schiffe nach einer Insel namens Adawla benannt, unterhalb von Awal; nach einer anderen heißen sie „nach Leuten, die sich in Hajar niederzulassen pflegten“. Dann sagt er: „Und Ibn Yamin: ebenfalls ein Seemann von den Leuten von Hajar.““ · Fazit Punkt 6 „ein Seemann von den Leuten von Hajar“",
+   "problem": "(a) „nach“ viermal in drei Bedeutungen. (b) „niederzulassen pflegten“ ist schief; «كانوا ينزلون بهجر». (c) Skopus: «ملاح من أهل هجر أيضا» – „ebenfalls“ gehört zur Herkunft (auch er aus Hajar, wie die eben genannten Leute), nicht zu „Seemann“; so fragt der Leser nach einem ersten Seemann, den es nicht gibt. (d) „von den Leuten von“ doppelt.",
+   "fix": "„Der einen zufolge sind die Schiffe nach einer Insel namens Adawla benannt, unterhalb von Awal; einer anderen zufolge heißen sie „nach Leuten, die in Hajar ansässig waren“. Dann sagt er: „Und Ibn Yamin: ein Seemann, ebenfalls einer von den Leuten aus Hajar.““ Fazit: „ein Seemann von den Leuten aus Hajar“.",
+   "return_to": 2
+  },
+  {
+   "id": "M10",
+   "where": "Abschnitt 3: „Al-Mutalammis gab seinen Brief einem der Jungen von al-Hira, der ihn vorlas, und al-Mutalammis warf den Brief in den Fluss von al-Hira und floh in die Levante.“",
+   "problem": "„who read it to him“ / «فقرأها له» ist verkürzt (das „ihm“ fehlt); „einem der Jungen von al-Hira“ klingt fremd («غلام من غلمان الحيرة»).",
+   "fix": "„Al-Mutalammis gab seinen Brief einem Jungen aus al-Hira, der ihn ihm vorlas, und [al-Mutalammis warf den Brief in den Fluss von al-Hira und floh in die Levante](…).“ Linktext und Ziel unverändert.",
+   "return_to": 2
+  },
+  {
+   "id": "M11",
+   "where": "Abschnitt 4: „Er hält fest, dass der Mann, der es ausbaute und befestigte, es zur „Qasaba von Hajar“ machte, das heißt zu dessen wichtigster Stadt, und dass es zu seiner eigenen Zeit „eine berühmte, blühende Stadt“ war.“",
+   "problem": "„zu seiner eigenen Zeit“ bezieht der Leser auf „den Mann“; gemeint ist Yaquts Zeit («في زمنه»). Dazu „es … es“ in Folge.",
+   "fix": "„Er hält fest, dass derjenige, der die Stadt ausbaute und befestigte, sie zur „Qasaba von Hajar“ machte, das heißt zu dessen wichtigster Stadt, und dass sie zu Yaquts eigener Zeit „eine berühmte, blühende Stadt“ war.“",
+   "return_to": 2
+  },
+  {
+   "id": "M12",
+   "where": "Abschnitt 2: „Yaqut al-Hamawi (gest. 626 n. H.) hält fest, was al-Bahrain vor seiner Eroberung beherbergte: „sehr viele Menschen …“",
+   "problem": "„seiner“ wird zuerst auf Yaqut bezogen; „beherbergte“ ist gesucht.",
+   "fix": "„[Yaqut al-Hamawi](…) (gest. 626 n. H.) hält fest, wer vor dessen Eroberung in al-Bahrain lebte: „sehr viele Menschen von den Abd al-Qais, den Bakr ibn Wa'il und den Tamim, die in seinem offenen Land lebten“.“ – oder, um „lebte … lebten“ zu vermeiden: „… wer al-Bahrain vor dessen Eroberung bewohnte: …“.",
+   "return_to": 2
+  },
+  {
+   "id": "M13",
+   "where": "Abschnitt 2: „und stellen ihr das Schweigen der frühen Quellen zur Seite.“",
+   "problem": "„jemandem etwas zur Seite stellen“ heißt im Deutschen: zur Unterstützung beigeben. Gemeint ist das bloße Danebenstellen («ونضع بجانبه»).",
+   "fix": "„und stellen das Schweigen der frühen Quellen daneben.“",
+   "return_to": 2
+  },
+  {
+   "id": "M14",
+   "where": "Einleitung: „Woran sich weniger erinnern: Die klassischen arabischen Quellen lassen …“",
+   "problem": "„weniger“ wird als Gradadverb gelesen (woran man sich weniger erinnert).",
+   "fix": "„Was viele nicht mehr wissen: Die klassischen arabischen Quellen lassen …“ (deckt «ما لا يذكره كثيرون»).",
+   "return_to": 2
+  },
+  {
+   "id": "M15",
+   "where": "Einleitung: „Dieser Artikel beantwortet aus diesen Quellen selbst drei Fragen: ob …“",
+   "problem": "Adverbiale steht quer im Satz.",
+   "fix": "„Dieser Artikel beantwortet drei Fragen aus eben diesen Quellen: ob …“",
+   "return_to": 2
+  },
+  {
+   "id": "M16",
+   "where": "Abschnitt 2, Liste: „Drei Stellen tragen diese Verbindung:“ · „der Statthalter ist der Mann, den er über beide gesetzt hatte“ · „**Wo sie einander begegneten**“ · „„Heute“ meint hier den Tag des Erzählers, nicht unseren.“",
+   "problem": "Vier Lehnfügungen in einer Liste: „tragen“ (carry); „beide“ wird auf Tarafa und al-Mutalammis bezogen; „sie“ in der Punktüberschrift zeigt auf Tarafa und al-Mutalammis statt auf Tarafa und den Statthalter («موضع اللقاء»); „Tag des Erzählers“ («يوم الراوي»).",
+   "fix": "„Drei Stellen belegen diese Verbindung:“ · „der Statthalter ist der Mann, den er dort eingesetzt hatte“ · „**Der Ort der Begegnung**“ · „„Heute“ meint hier die Zeit des Erzählers, nicht unsere.“",
+   "return_to": 2
+  },
+  {
+   "id": "M17",
+   "where": "Abschnitt 1: „Seine Abstammung lautet bei [Ibn Sallam al-Jumahi](…), gest. 232 nach der Hidschra (n. H.): Tarafa ibn al-Abd ibn Sufyan …; [al-Baghdadi](…) (gest. 1093 n. H.) führt sie bis zu Bakr ibn Wa'il hinauf.“",
+   "problem": "Eine Abstammung „lautet“ nicht; „hinaufführen“ ist Lehnübersetzung von „carries it up to“.",
+   "fix": "„Seinen Stammbaum gibt [Ibn Sallam al-Jumahi](…), gest. 232 nach der Hidschra (n. H.), so an: Tarafa ibn al-Abd ibn Sufyan …; [al-Baghdadi](…) (gest. 1093 n. H.) führt ihn bis auf Bakr ibn Wa'il zurück.“ „Abstammung“ an den übrigen Stellen (Abschnitt 2, Quellen 1 und 2) bleibt.",
+   "return_to": 2
+  },
+  {
+   "id": "M18",
+   "where": "Abschnitt 3: „durch einen Brief, den er mit eigener Hand vom König zu dessen Statthalter in Hajar trug“ · „die Sahifa ist der versiegelte Brief, den Tarafa und al-Mutalammis jeder bei sich trugen“",
+   "problem": "„mit eigener Hand tragen“ ist kein Deutsch; im zweiten Satz liest man einen Brief, den zwei Leute jeder tragen.",
+   "fix": "„durch einen Brief, den er eigenhändig vom König zu dessen Statthalter in Hajar brachte“ · „die Sahifa ist der versiegelte Brief, von dem Tarafa und al-Mutalammis je einen bei sich trugen“.",
+   "return_to": 2
+  },
+  {
+   "id": "M19",
+   "where": "Abschnitt 3: „So wurde Tarafa eingesperrt;“ · „… und befahl ihm, Tarafa zu töten; der, der ihn tötete, war ein Mann von den Abd al-Qais.“",
+   "problem": "„So“ wird modal gelesen (auf diese Weise) und folgt nicht aus dem Vorsatz («فحُبس»). „der, der ihn tötete“ holpert.",
+   "fix": "„Daraufhin wurde Tarafa eingesperrt;“ · „… und befahl ihm, Tarafa zu töten; getötet hat ihn ein Mann von den Abd al-Qais.“",
+   "return_to": 2
+  },
+  {
+   "id": "M20",
+   "where": "Abschnitt 3: „und [entnimmt der Geschichte dann](…): „dass al-Bahrain in jener Zeit dem König von al-Hira unterstand und dass sein Herrscher ein Statthalter von Amr ibn Hind war“.“",
+   "problem": "Doppelpunkt vor einem mit „dass“ beginnenden Zitat.",
+   "fix": "„und [entnimmt der Geschichte dann](…), „dass al-Bahrain in jener Zeit dem König von al-Hira unterstand und dass sein Herrscher ein Statthalter des Amr ibn Hind war“.“ (Genitiv mit Artikel wie „des al-Mutalammis“, „des Ibn Yamin“.)",
+   "return_to": 2
+  },
+  {
+   "id": "M21",
+   "where": "Abschnitt 3: „Es ist, als hätte er sich selbst beschrieben, als er sagte:“",
+   "problem": "„als … als“ in zwei Funktionen in einem Satz.",
+   "fix": "„Es ist, als habe er sich selbst beschrieben mit dem Vers:“",
+   "return_to": 2
+  },
+  {
+   "id": "M22",
+   "where": "Abschnitt 4: „nimmt an, gemeint sei ein anderes Land als Al-Ahsa. Gemeint ist eine weite alte Region.“ · „Sammelnamen für Länder an der Küste des Indischen Meeres“ (Abschnitt 4) und „Sammelname für Länder an der Küste des Indischen Meeres“ (FAQ 2)",
+   "problem": "„Land“/„Länder“ liest der Deutsche als Staat(en); «أرض» und «بلاد» meinen hier Landstriche. Zwischen den beiden Sätzen fehlt die Wendung.",
+   "fix": "„nimmt an, gemeint sei ein anderer Landstrich als Al-Ahsa. Gemeint ist aber eine weite alte Region.“ · an beiden Stellen „Sammelname(n) für Landstriche an der Küste des Indischen Meeres zwischen Basra und Oman“.",
+   "return_to": 2
+  },
+  {
+   "id": "M23",
+   "where": "Abschnitt 4: „Die Stadt Al-Ahsa selbst erscheint bei Yaqut mit ihrem Namen als die wichtigste Stadt von Hajar, nicht als Ort im Bericht über den Dichter.“",
+   "problem": "„mit ihrem Namen erscheinen“ ist schwerfällig («باسمها مذكورة»).",
+   "fix": "„Die Stadt Al-Ahsa selbst wird bei Yaqut unter ihrem Namen als die wichtigste Stadt von Hajar genannt, nicht als Ort im Bericht über den Dichter.“",
+   "return_to": 2
+  },
+  {
+   "id": "M24",
+   "where": "Abschnitt 5: „Hajar am nächsten kommt die Mu'allaqa von Tarafa ibn al-Abd in einem Seefahrtsbild nahe ihrem Anfang, in dem er die Kamelsänften der abziehenden Frauen mit Schiffen vergleicht:“",
+   "problem": "Holzweg am Satzanfang (wer kommt wem nahe?); „in dem er“ springt vom Bild zum Dichter.",
+   "fix": "„Am nächsten kommt die Mu'allaqa von Tarafa ibn al-Abd Hajar in einem Bild aus der Seefahrt nahe ihrem Anfang, wo der Dichter die Kamelsänften der fortziehenden Frauen mit Schiffen vergleicht:“",
+   "return_to": 2
+  },
+  {
+   "id": "M25",
+   "where": "Abschnitt 5, Versübersetzung: „große Schiffe in den breiten Wasserrinnen von Dad“",
+   "problem": "„Wasserrinnen“ sind Rinnsale oder Dachrinnen, kein Wasser für große Schiffe («النواصف» / „broad channels“).",
+   "fix": "„große Schiffe in den breiten Wasserläufen von Dad“. Quellen 25 ist nicht betroffen.",
+   "return_to": 2
+  },
+  {
+   "id": "M26",
+   "where": "Abschnitt 5: „Den dritten Vers, den vom Bug des Schiffes, der das Wasser durchschneidet, zählt [Ibn Qutaiba](…) zu dem, „was Tarafa als Erster sagte und was andere von ihm nahmen“, und vermerkt, dass Labid und al-Tirimmah ihn übernahmen.“",
+   "problem": "Relativsatz doppeldeutig (Vers oder Bug); „von ihm nahmen“ ist Lehnübersetzung und steht neben „übernahmen“ im selben Satz und im Fazit.",
+   "fix": "„Den dritten Vers, in dem der Bug des Schiffes das Wasser durchschneidet, zählt [Ibn Qutaiba](…) zu dem, „was Tarafa als Erster sagte und andere von ihm übernahmen“, und vermerkt, dass Labid und al-Tirimmah ihn übernahmen.“",
+   "return_to": 2
+  },
+  {
+   "id": "M27",
+   "where": "Abschnitt 5: „ein Bild, das zu einer Region passt, in der der Sand auf die Küste trifft.“",
+   "problem": "„in der der“ und schiefes Bild («تلتقي فيه الرمال بالساحل»).",
+   "fix": "„ein Bild, das zu einer Region passt, in der Sand und Küste aufeinandertreffen.“ Der Satz selbst bleibt (Quelle).",
+   "return_to": 2
+  },
+  {
+   "id": "M28",
+   "where": "FAQ 4: „der Bericht legt die Stelle aber nicht fest, deshalb führen wir Besucher zu keinem Grab“ · Abschnitt 6: „und legen keine Stelle fest; es gibt also kein Grab, zu dem wir Sie führen könnten“ · Fazit Punkt 7: „Es gibt heute kein bestimmtes Grab“",
+   "problem": "„festlegen“ heißt bestimmen/beschließen, nicht angeben («لا تعيّن موضعاً»); „zu keinem Grab führen“ und „kein bestimmtes Grab“ sind schief («لا قبر معيّناً»).",
+   "fix": "FAQ 4: „der Bericht bezeichnet die Stelle aber nicht näher, deshalb zeigen wir Besuchern kein Grab“ · Abschnitt 6: „und bezeichnen keine Stelle näher; es gibt also kein Grab, das wir Ihnen zeigen könnten“ · Fazit: „Es gibt heute kein Grab, dessen Stelle bezeichnet wäre, und keine dauerhafte Sehenswürdigkeit, die seinen Namen trägt, soweit wir es feststellen konnten;“",
+   "return_to": 2
+  },
+  {
+   "id": "M29",
+   "where": "Abschnitt 6: „Belegt ist eine einzige Spur, und sie ist vergangen:“ · FAQ 4: „es ist beendet.“",
+   "problem": "Eine Spur „vergeht“ nicht; „es ist beendet“ klingt für ein Festival von 2023 amtlich («وقد مضى» / «وقد انتهى»).",
+   "fix": "„Belegt ist eine einzige Spur, und sie gehört der Vergangenheit an:“ · FAQ 4: „es ist vorüber.“",
+   "return_to": 2
+  },
+  {
+   "id": "M30",
+   "where": "Abschnitt 6: „um die Persönlichkeit des Dichters und sein Leben in der Dichtung vorzustellen“",
+   "problem": "„sein Leben in der Dichtung“ ist doppeldeutig («سيرته الشعرية»).",
+   "fix": "„um die Persönlichkeit des Dichters und sein Leben als Dichter vorzustellen“.",
+   "return_to": 2
+  },
+  {
+   "id": "M31",
+   "where": "Abschnitt 6: „Wir verknüpfen Namen mit Namen und behaupten nicht, …“ · „[Al-Uqair](…), eine Verbindung der Szenerie, nicht der Überlieferung.“",
+   "problem": "Beide Fügungen sind wörtlich übertragen und für den Leser rätselhaft («نربط الاسم بالاسم» · «صلة مشهد لا صلة خبر»).",
+   "fix": "„Wir verknüpfen nur Name mit Name und behaupten nicht, …“ · „[Al-Uqair](…): Die Verbindung liegt in der Szenerie, nicht in der Überlieferung.“ (Satz statt Apposition; kein Absatz ändert sich.)",
+   "return_to": 2
+  },
+  {
+   "id": "M32",
+   "where": "Abschnitt 6: „Und wenn Sie die kulturelle Seite der Oase anzieht, rundet unser Artikel …“",
+   "problem": "„Sie“ wird zuerst als Subjekt gelesen (wenn Sie … anziehen).",
+   "fix": "„Und wenn die kulturelle Seite der Oase Sie reizt, rundet unser Artikel über [die lebendigen Handwerke Al-Ahsas](…) das Bild ab.“",
+   "return_to": 2
+  },
+  {
+   "id": "M33",
+   "where": "Fazit Punkt 1: „Tarafa ibn al-Abd gehörte zu den Bakr ibn Wa'il, war bei Ibn Sallam „…“ und bei Ibn Qutaiba „…““",
+   "problem": "„war bei Ibn Sallam“ ist Lehnübersetzung von „in Ibn Sallam“ («عند»).",
+   "fix": "„Tarafa ibn al-Abd gehörte zu den Bakr ibn Wa'il, galt Ibn Sallam als „gemessen an einem einzigen Gedicht der beste Dichter von allen“ und Ibn Qutaiba als „mit einer langen Ode der Beste unter ihnen“.“ (mit M6 und M7 abgestimmt)",
+   "return_to": 2
+  },
+  {
+   "id": "M34",
+   "where": "Quellen 17: „seine Beschreibung vom Ende der Geschichte“ · Quellen 25: „der Text vom Anfang der Mu'allaqa und der beiden Verse über die Sänften und das Durchschneiden des Wassers“",
+   "problem": "„Beschreibung vom“, „Text vom“: umgangssprachliches „von“ statt Genitiv in einem Quellenverzeichnis.",
+   "fix": "„seine Beschreibung des Endes der Geschichte“ · „der Wortlaut des Anfangs der Mu'allaqa und der beiden Verse über die Sänften und das Durchschneiden des Wassers“. Die Zahl „beiden“ bleibt (Quelle, siehe owner_flags).",
+   "return_to": 2
+  }
+ ],
+ "optional": [
+  {
+   "where": "Abschnitt 1: „war ein Dichter der Dschahiliyya, das heißt einer der Dichter der vorislamischen Zeit“",
+   "problem": "Doppelung „ein Dichter der …, das heißt einer der Dichter der …“ (Blindleser 19).",
+   "fix": "„war ein Dichter der Dschahiliyya, das heißt der vorislamischen Zeit“ – Struktur Wort + Erklärung bleibt, kein Inhalt entfällt."
+  },
+  {
+   "where": "Abschnitt 1: „und seine Mutter sei Warda gewesen“ · „den er dichtete“",
+   "problem": "Leicht fremd; Indikativ in indirekter Rede.",
+   "fix": "„und seine Mutter habe Warda geheißen“ · „den er gedichtet habe“."
+  },
+  {
+   "where": "Abschnitt 3: „kühn darin, sie zu schmähen und andere zu schmähen“",
+   "problem": "Viermal „schmäh-“ in drei Zeilen.",
+   "fix": "„kühn darin, sie und andere zu schmähen“."
+  },
+  {
+   "where": "Abschnitt 3: „der Statthalter hielt es für unter seiner Würde, ihn zu töten“",
+   "problem": "Deckt „held himself above killing him“ / «تكرّم عن قتله» sachlich, klingt aber nach Verachtung für Tarafa.",
+   "fix": "„der Statthalter wollte sich nicht dazu hergeben, ihn zu töten“ – nur, wenn der Redakteur es für treffender hält; keine Pflicht."
+  },
+  {
+   "where": "Versübersetzung Abschnitt 3: „des knauserigen Geizhalses“ · Abschnitt 5: „die Kräuselung des Wassers“",
+   "problem": "Pleonasmus (aus „tight-fisted miser“); „Kräuselung“ etwas technisch.",
+   "fix": "„des hartherzigen Geizhalses“ nur, wenn es das Arabische «الفاحش المتشدّد» deckt (Stufe 2 prüft); „das gekräuselte Wasser“."
+  },
+  {
+   "where": "Abschnitt 4: „sodass die Araber danach graben und es heraufholen“",
+   "problem": "„sodass“ ist logisch schwach («فتحفر العرب عنه»).",
+   "fix": "„; die Araber graben danach und holen es herauf“."
+  },
+  {
+   "where": "Quellen 2 und 3: „die Überlieferung von 26 Jahren“ / „von 20 Jahren“ · Quellen 10: „und wie er eingesperrt wurde“ · Quellen 22: „die sprachliche Bedeutung von Al-Ahsa“",
+   "problem": "Nominalstil der Vorlage.",
+   "fix": "„die Angabe von 26 Jahren“ / „von 20 Jahren“ · „und seine Gefangensetzung“ · „die Wortbedeutung von Al-Ahsa“."
+  },
+  {
+   "where": "Abschnitt 5, Vers: „die Sänften der Frau von den Malik“",
+   "problem": "Fremd im Klang, aber durch den Stufe-4-Eintrag gedeckt („Malikitin“ läse sich als Rechtsschule; Bau wie „ein Mann von den Abd al-Qais“).",
+   "fix": "Keine Änderung in dieser Runde; siehe owner_flags."
+  }
+ ],
+ "blind_reader": [
+  {"n": 1, "ruling": "rejected", "reason": "Struktur: Titel folgt dem englischen Titel; gloss_regel verbietet Erklärungen im Titel."},
+  {"n": 2, "ruling": "rejected", "reason": "Gebundener Termbase-Gloss „die historischen Ostküstenlande“ (veröffentlicht in shaban.md); „Arabische Halbinsel“ wäre ein Zusatz. An den Eigentümer gemeldet."},
+  {"n": 3, "ruling": "applied", "reason": "M5 („nach“ ⇒ „wie … überliefern“). Die verblose Reihung ist die der Quelle."},
+  {"n": 4, "ruling": "rejected", "reason": "Tag entspricht dem englischen Tag „Mu'allaqat“ (Plural, Termbase-Ergänzung); Tags tragen keine Erklärung."},
+  {"n": 5, "ruling": "applied", "reason": "M1: „Statthalter über“ an allen 8 Stellen ersetzt."},
+  {"n": 6, "ruling": "rejected", "reason": "Faktenzaun/Struktur: Die FAQ-Antwort der Quelle führt Amr ibn Hind ebenso ohne Titel ein; kein Zusatz im losgelösten Feld."},
+  {"n": 7, "ruling": "applied", "reason": "M4: Einschub hinter die dass-Kette gestellt."},
+  {"n": 8, "ruling": "rejected", "reason": "Widerspruch der Quelle, nicht der Übersetzung: AR «هجر مدينة هي قاعدة البحرين، والأحساء مدينة بالبحرين جُعلت قصبة هجر» und EN identisch; die dritte Zuordnung ist das Saudipedia-Zitat. Wird getragen, wie es ist; an den Eigentümer gemeldet."},
+  {"n": 9, "ruling": "rejected", "reason": "Yaquts Wortlaut «بحر الهند»; brief.md verbietet die Modernisierung und den Golfnamen."},
+  {"n": 10, "ruling": "applied", "reason": "M3 („mitgegeben“)."},
+  {"n": 11, "ruling": "applied", "reason": "M29 („es ist vorüber“); der Vorschlag „nur dieses eine Mal“ wäre ein Zusatz."},
+  {"n": 12, "ruling": "applied", "reason": "M28 („zeigen wir Besuchern kein Grab“; nicht „können“, die Quelle sagt „do not“)."},
+  {"n": 13, "ruling": "applied", "reason": "M14."},
+  {"n": 14, "ruling": "applied", "reason": "M15."},
+  {"n": 15, "ruling": "rejected", "reason": "Faktenzaun: keine Jahreszahl n. Chr., kein Jahrhundert; die Quelle gibt für den Dichter keine Zeitangabe außer „vorislamisch“ (brief.md, begründete Ausnahme)."},
+  {"n": 16, "ruling": "rejected", "reason": "Faktenzaun: keine Verortung, die die Quelle nicht trägt; „Gouvernorat“, „Stadt“, „Oase“ stehen je an der Stelle der Quelle."},
+  {"n": 17, "ruling": "rejected", "reason": "Wortlaut der Quelle („these books“ / «هذه الكتب»), Bezug „die klassischen arabischen Quellen“ zwei Sätze davor."},
+  {"n": 18, "ruling": "rejected", "reason": "Faktenzaun: Die Quelle erklärt Mu'allaqa nur als seine lange Ode."},
+  {"n": 19, "ruling": "applied", "reason": "Als optional aufgenommen (Kürzung der Doppelung ohne Inhaltsverlust)."},
+  {"n": 20, "ruling": "rejected", "reason": "Gebunden: „Hajar“, „Jawatha“ sind veröffentlichte Termbase-Formen; „Hidschra“ ist style_rules.hidschra; „Dschahiliyya“ nennt brief.md ausdrücklich als etablierte deutsche Form; Werktitel bleiben wörtlich (brief.md, Abschnitt Quellen). Der Befund ist berechtigt, in dieser Charge aber nicht ohne Bruch einer Bindung heilbar; an den Eigentümer gemeldet."},
+  {"n": 21, "ruling": "applied", "reason": "M17. Der Einschub „gest. 232 nach der Hidschra (n. H.)“ ist von brief.md vorgeschrieben und bleibt."},
+  {"n": 22, "ruling": "rejected", "reason": "Protokollierte Umschriftregel der Stufe 4 (ay ⇒ ai im ganzen Stammbaum; Apostroph trennt von „Dubai“)."},
+  {"n": 23, "ruling": "rejected", "reason": "Faktenzaun: Die Quelle nennt den Vers nicht; der Name Amr steht so in der Quelle."},
+  {"n": 24, "ruling": "applied", "reason": "Als optional aufgenommen."},
+  {"n": 25, "ruling": "applied", "reason": "M2: Genitiv „Tarafas“ / „Yaquts“ an 8 Stellen; M20 „des Amr ibn Hind“."},
+  {"n": 26, "ruling": "rejected", "reason": "Wörtliches Zitat Ibn Qutaibas; «ماله» ist im Arabischen ebenso offen, eine Festlegung wäre Deutung."},
+  {"n": 27, "ruling": "rejected", "reason": "Reihenfolge und Beleg der Quelle; wer Abu Ja'far ist, sagt die Quelle nicht (Faktenzaun)."},
+  {"n": 28, "ruling": "rejected", "reason": "Faktenzaun/Struktur: „vierte Klasse“ ist Ibn Sallams Begriff, die Quelle lässt sein Zitat den Rang erklären; Satzbau wie die Quelle."},
+  {"n": 29, "ruling": "applied", "reason": "M6 und M7 (beide Zitate an je 3 Stellen)."},
+  {"n": 30, "ruling": "rejected", "reason": "Faktenzaun (keine Vorstellung von Labid und Imru' al-Qais), Reihenfolge der Quelle, und die Ziffer in „der 20-Jährige“ ist Hausregel (zitierte Zahl, C4, brief.md)."},
+  {"n": 31, "ruling": "applied", "reason": "M16."},
+  {"n": 32, "ruling": "rejected", "reason": "Struktur: Die Quelle bringt die drei Stellen vor der Erzählung; keine Umstellung, keine Vorab-Einführung."},
+  {"n": 33, "ruling": "applied", "reason": "M16 („den er dort eingesetzt hatte“). Der Satz selbst ist ein Gloss der Quelle und bleibt."},
+  {"n": 34, "ruling": "applied", "reason": "M16 („Der Ort der Begegnung“)."},
+  {"n": 35, "ruling": "applied", "reason": "M16."},
+  {"n": 36, "ruling": "applied", "reason": "M12 für den Bezug von „seiner“. Abgelehnt bleibt: wer eroberte und wann (Faktenzaun); „offenes Land“ ist die Wiedergabe von «باديتها» / „open country“."},
+  {"n": 37, "ruling": "rejected", "reason": "Faktenzaun: Die Quelle spricht den Zusammenhang nicht aus und grenzt ihn selbst ein."},
+  {"n": 38, "ruling": "applied", "reason": "M13 („daneben“, nicht „gegenüber“: die Quelle stellt nebeneinander, sie setzt nicht entgegen)."},
+  {"n": 39, "ruling": "applied", "reason": "M18. Dass der König hier namenlos ist, entspricht der Quelle."},
+  {"n": 40, "ruling": "applied", "reason": "M18 („je einen“). Warum die Geschichte nach al-Mutalammis heißt, sagt die Quelle nicht."},
+  {"n": 41, "ruling": "applied", "reason": "Als optional aufgenommen (Verb zusammengezogen). Der Grund der Schmähung fehlt in der Quelle (Faktenzaun)."},
+  {"n": 42, "ruling": "applied", "reason": "M10 für „einem Jungen aus al-Hira, der ihn ihm vorlas“. Abgelehnt bleibt der Inhalt des Briefs: Weder die englische noch die arabische Fassung nennt ihn (Faktenzaun)."},
+  {"n": 43, "ruling": "rejected", "reason": "Struktur: Erzählfolge der Quelle («وكان المتلمس قد حذّر طرفة»); das Plusquamperfekt trägt den Rückgriff."},
+  {"n": 44, "ruling": "applied", "reason": "M19 für „So“ ⇒ „Daraufhin“. „unter seiner Würde“ deckt «تكرّم عن قتله»; Alternative als optional."},
+  {"n": 45, "ruling": "applied", "reason": "M19 und M1. Welcher Statthalter gemeint ist, lässt die Quelle offen; keine Festlegung."},
+  {"n": 46, "ruling": "rejected", "reason": "Satz der Quelle; eine Zuspitzung („nicht als gesicherte Tatsache“) wäre eine Aussage, die die Quelle nicht macht."},
+  {"n": 47, "ruling": "applied", "reason": "M20."},
+  {"n": 48, "ruling": "applied", "reason": "M21 für „als … als“; Pleonasmus als optional. Inwiefern der Vers ihn beschreibt, sagt die Quelle nicht."},
+  {"n": 49, "ruling": "rejected", "reason": "Satz der Quelle; nichts wird gestrichen."},
+  {"n": 50, "ruling": "rejected", "reason": "Struktur: Wiederholung der Quelle (FAQ, Abschnitt, Fazit)."},
+  {"n": 51, "ruling": "applied", "reason": "M22 („Landstrich“, „aber“). Der heutige Staat wird nicht genannt (brief.md verbietet es)."},
+  {"n": 52, "ruling": "applied", "reason": "M8 für Kongruenz und Zuschreibung. Wie al-Safa/al-Mushaqar und Al-Ahsa zusammengehen, sagt die Quelle nicht (Faktenzaun)."},
+  {"n": 53, "ruling": "rejected", "reason": "Widerspruch der Quelle: AR «فهي تتحدث عن قاعدة هذا الإقليم» gegen «وقيل: ناحية البحرين كلها هجر، وهو الصواب» und «اسمٌ قديم لهذه الناحية»; EN identisch. Die Übersetzung hat nichts hinzugefügt und darf nichts glätten. An den Eigentümer gemeldet."},
+  {"n": 54, "ruling": "rejected", "reason": "Zitat (Abu Ubaida bei Yaqut); keine Kürzung."},
+  {"n": 55, "ruling": "applied", "reason": "M11. Welcher Mann und wann, sagt die Quelle nicht."},
+  {"n": 56, "ruling": "rejected", "reason": "Wörtliches Yaqut-Zitat («الماء الذي تنشفه الأرض من الرمل»); „sodass“ als optional."},
+  {"n": 57, "ruling": "rejected", "reason": "Faktenzaun: Die Wortbedeutung von „al-Bahrain“ steht nicht in der Quelle."},
+  {"n": 58, "ruling": "applied", "reason": "M23."},
+  {"n": 59, "ruling": "applied", "reason": "M24."},
+  {"n": 60, "ruling": "applied", "reason": "M25 für „Wasserrinnen“ ⇒ „Wasserläufen“. Abgelehnt bleiben: „Frau von den Malik“ (Stufe-4-Eintrag, begründet), „Dad“ (Ortsname), Erklärung des Fiyal-Spiels (Faktenzaun)."},
+  {"n": 61, "ruling": "applied", "reason": "M9 (dreimal „nach“, „niederzulassen pflegten“, Skopus von „ebenfalls“). Awal bleibt unerklärt (Faktenzaun)."},
+  {"n": 62, "ruling": "applied", "reason": "M26. al-Tirimmah wird nicht vorgestellt (Faktenzaun)."},
+  {"n": 63, "ruling": "applied", "reason": "M27 für „in der der Sand auf die Küste trifft“. Satz, Ton und verblose Form sind die der Quelle und bleiben."},
+  {"n": 64, "ruling": "applied", "reason": "M29."},
+  {"n": 65, "ruling": "applied", "reason": "M30 für „Leben in der Dichtung“. „Gäste empfing“ und „geografischen Stätten“ sind Saudipedias Wortlaut und bleiben."},
+  {"n": 66, "ruling": "rejected", "reason": "Faktenzaun: kein Wort darüber, was an den Orten zu sehen ist, und keine Beschreibung der Orte, die die Quelle nicht gibt; die Einschränkungen stehen Punkt für Punkt in der Quelle. Die Namen sind auf der gebauten Seite verlinkt."},
+  {"n": 67, "ruling": "applied", "reason": "M31."},
+  {"n": 68, "ruling": "applied", "reason": "M32."},
+  {"n": 69, "ruling": "rejected", "reason": "Gebundenes tm-Paar und veröffentlichter Titel des Zielartikels (crafts-de.md)."},
+  {"n": 70, "ruling": "rejected", "reason": "Struktur: Fazit spiegelt die Quelle Punkt für Punkt."},
+  {"n": 71, "ruling": "rejected", "reason": "Wortlaut der Quelle (AR «في شرح معلقته ملّاح من أهل هجر، وبيت في السفينة سبق إليه»; EN identisch). An den Eigentümer gemeldet."},
+  {"n": 72, "ruling": "applied", "reason": "M33 („galt … als“) und M28 („kein Grab, dessen Stelle bezeichnet wäre“)."},
+  {"n": 73, "ruling": "rejected", "reason": "Faktenzaun: Burqat Thahmad wird in der Quelle nicht verortet."},
+  {"n": 74, "ruling": "rejected", "reason": "Zahl der Quelle (AR «وبيتَي الحدوج وشقّ الماء», EN „the two verses“). An den Eigentümer gemeldet."},
+  {"n": 75, "ruling": "applied", "reason": "M34 für Quellen 17 und 25; Quellen 2, 3, 10, 22 als optional."},
+  {"n": 76, "ruling": "rejected", "reason": "Namen der Quelle; Erläuterungen zu Stämmen und Personen wären Zusätze (Faktenzaun)."}
+ ],
+ "rejected_reader_notes": [1, 2, 4, 6, 8, 9, 15, 16, 17, 18, 20, 22, 23, 26, 27, 28, 30, 32, 37, 43, 46, 49, 50, 53, 54, 56, 57, 66, 69, 70, 71, 73, 74, 76],
+ "owner_flags": [
+  "Quelle (AR + EN): Hajar ist nacheinander „Stadt und Hauptort von al-Bahrain“, „die ganze Gegend von al-Bahrain … die richtige Ansicht“, im Schluss von Abschnitt 4 „Hauptort dieser Region“ und im Schlusssatz „ein alter Name für eben diese Gegend“; dazu Saudipedia „früher als Hajar bekannt“. Der deutsche Blindleser hat das zweimal als schwer gemeldet (8, 53). Ein klärender Satz gehört in den arabischen Artikel, nicht in die Übersetzung.",
+  "Quelle (AR + EN): Fazit Punkt 6 legt den Schiffsvers und „als Erster“ dem Kommentar zur Mu'allaqa bei; im Abschnitt steht der Vers in der Mu'allaqa und das Urteil bei Ibn Qutaiba (Blindleser 71).",
+  "Quelle (AR + EN): Quellen 25 spricht von „den beiden Versen“, der Abschnitt zeigt drei (Blindleser 74).",
+  "Gloss „die historischen Ostküstenlande“ (gebunden, veröffentlicht): der Blindleser fragt „Ostküste wovon?“. Eine Fassung mit „der Arabischen Halbinsel“ müsste termbaseweit entschieden werden.",
+  "Umschrift: „Dschahiliyya“ im Fließtext gegen „al-Jahiliyyat“ im Werktitel (11-mal in den Quellen) und j-Formen in Hajar/Jawatha/Jawad neben „Hidschra“. Stufe 4 hat die Regel protokolliert; „Dschahiliyya“ ist noch nirgends veröffentlicht. Entscheid des Eigentümers: so lassen oder „Jahiliyya“ nach Hausumschrift.",
+  "„die Levante“ für «الشام» gegen „Syrien“ (EN, de.wikipedia): Entscheid aus brief.md, offen wie in der chinesischen Charge.",
+  "„die Frau von den Malik“ (المالكية) und „Dubai'a“: Stufe-4-Entscheide, vom Blindleser als fremd bzw. als „Dubai“ gelesen; nicht geändert.",
+  "Stufe-4-Ergänzungen: Hinweise in den Einträgen „governor (عامل)“ („Statthalter über …“) und „Tarafa ibn al-Abd“ („Genitiv mit von“) widersprechen M1 und M2 und müssen vor der Veröffentlichung nachgezogen werden."
+ ],
+ "notes": "Score 85 < 90 (pass_threshold in de-translation/config.json): RETURN to stage 2 (editor) for the 34 must_fix items; afterwards stage 4 updates the two notes in termbase-additions.stage4.json (governor, Tarafa genitive) and stage 5 re-runs its 49 automatic checks (56 + 6 links, 25 source lines, quote pairs, Statthalter 20 = governor 20, Hauptort 10, wichtigste Stadt 6, al-Bahrain 33, no U+00A0 / U+2014, C22 block count). Measured by this judge on stage5.md: 62 links = 62, external list identical in order, 6 internal links all /de/…/, 8 headings, 25 numbered lines, 14 bullets, 49 blocks = 49, n. Chr. = 0, „Statthalter über“ 8, „von Tarafa“ 11 (3 with full name stay). Accuracy 27/30: every sentence read against EN with AR as arbiter; no fact added or dropped, no CE year, no identification beyond the source, all reservations kept (keinen Text gefunden, wie es heißt, Es heißt auch, nach einer Aussage, Wir entscheiden nicht, soweit wir es feststellen konnten, ohne dass wir eine Verbindung behaupten), verses verbatim. Three points lost: the Abu Ubaida attribution moved to Yaqut by „er fügt hinzu“ (M8), scope of „ebenfalls“ (M9), dropped „to him“ in the reading of the letter (M10), plus the misreadable „für Tarafa … geschrieben“ in a detached FAQ field (M3) and the ambiguous „zu seiner eigenen Zeit“ (M11). Nativeness 21/30: after discarding every reader request the fact fence forbids, some thirty real calques or garden paths remain, several of them serial (Statthalter über ×8, von Tarafa ×8, the two critics' quotations ×3 each, festlegen ×2); the text is correct but reads as translated in every section. Termbase/style 19/20: all bound entries, genders, glosses, quotation marks, dashes, Hijri-only dates and the 71 stage-4 additions respected; one point for the agreement error „ist“ with a plural predicate and „Länder“ for «بلاد». Cultural fit 8/10: sober feuilleton register, Sie, no marketing; the remaining opacity (names, undated poet) is the source's and fenced. Structure 10/10. None of the must_fix items adds or removes a fact, number, link, paragraph, heading or gloss; multi-occurrence items (M1, M2, M6, M7, M22, M28) must be changed in every listed place so that quotations stay identical between body, Fazit and Quellen. The repaired sentences will be read as new in round 2 (ruling U4); with the list applied cleanly the page should reach 91-93."
+}

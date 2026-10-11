@@ -15,6 +15,7 @@ frontmatter، ولا اسم حقل، ولا هدف رابط، ولا حرفٍ م
 `SECTION_FALLBACK` أدناه — لا من الإنجليزية، وإلا سرّبنا لغة المصدر إلى القارئ.
 """
 import json, os, re, sys
+from _safe_paths import lang_code, slug, under
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -76,14 +77,14 @@ def kicker_is_rendered(page):
     الأعمى تعثّر في لصيقةِ صفحةٍ غير مميَّزة، فصدر أمرُ تصحيحٍ كاملٌ على نصٍّ لا
     يراه زائر. فما لا يُعرَض لا يُعطى للقارئ.
     """
-    p = os.path.join(ROOT, 'src/content/attractions', f'{page}.md')
+    p = under(ROOT, 'src/content/attractions', f'{slug(page, "page")}.md')
     if not os.path.exists(p):
         return True                                  # ليس معلماً — لا نحجب بالظنّ
     return bool(re.search(r'^featured:\s*true\s*$', open(p, encoding='utf-8').read(), re.M))
 
 
 def main():
-    src, lang, dst = sys.argv[1], sys.argv[2], sys.argv[3]
+    src, lang, dst = sys.argv[1], lang_code(sys.argv[2]), sys.argv[3]
     data = json.load(open(src, encoding='utf-8'))
     S = lambda k: label(lang, k)
     sfx = f'_{lang}'

@@ -18,8 +18,9 @@ import { VISA_GUIDE_PATH, VISA_UPDATED_LINE, VISA_PREVIEW_NOTE, UNVERIFIED } fro
 
 export { VISA_GUIDE_PATH, VISA_PREVIEW_NOTE };
 
-/** أدنى عدد مقبول لـ«لم يُتحقَّق» وللروابط في المصدر — كي لا يصير الحارس فارغاً بصمت. */
-export const EXPECT_MIN = { unverified: 30, links: 90 };
+/** أدنى عدد مقبول لـ«لم يُتحقَّق» وللروابط في المصدر — كي لا يصير الحارس فارغاً بصمت.
+ *  ‏30 → 25 (2026-10-04): حُذف صف «التأشيرة عند الوصول» وقسمه (أربعة ورودٍ) بقرار إياد، فصار العدد 29. */
+export const EXPECT_MIN = { unverified: 25, links: 90 };
 
 const DEC = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ' };
 const decode = (t) => t.replace(/&(?:amp|quot|#39|#x27|lt|gt|nbsp);/g, (e) => DEC[e]);
@@ -66,7 +67,7 @@ function scan(html) {
 export function expectFromSource(md) {
   const src = md.replace(/\r\n?/g, '\n');
   const links = [];
-  for (const m of src.matchAll(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s|)]+)/g)) {
+  for (const m of src.matchAll(/\[([^[\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s|)]+)/g)) {
     links.push(m[3] ? { href: m[3], text: m[3] } : { href: m[2], text: m[1] });
   }
   const text = src.split('\n')
@@ -75,7 +76,7 @@ export function expectFromSource(md) {
     .map((l) => l
       .replace(/^#{1,6}\s+/, '')
       .replace(/^\s*(?:[-*]|\d+\.)\s+/, '')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '$1')
+      .replace(/\[([^[\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '$1')
       .replace(/\*\*/g, '')
       .replace(/\|/g, ' '))
     .join('\n');

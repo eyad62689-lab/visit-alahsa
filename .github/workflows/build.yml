@@ -60,7 +60,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Build with all checks
         run: npm run build
@@ -72,9 +72,9 @@ jobs:
       # اللغة و404 وبيانات التطبيق، ويشغّل axe-core (صفر مخالفات) على الصفحات المعنية.
       - name: Acceptance — browser checks on dist (analytics, language suggestion)
         run: |
-          (npx astro preview --host 127.0.0.1 --port 4399 > /tmp/preview.log 2>&1 &)
+          (npm exec --no -- astro preview --host 127.0.0.1 --port 4399 > /tmp/preview.log 2>&1 &)
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:4399/en/ && break; sleep 1; done
-          mkdir -p /tmp/pptr && cd /tmp/pptr && npm init -y > /dev/null && npm i puppeteer-core@24 axe-core@4 --no-audit --no-fund > /dev/null && cd -
+          mkdir -p /tmp/pptr && cd /tmp/pptr && npm init -y > /dev/null && npm i puppeteer-core@24.43.1 axe-core@4.14.0 --ignore-scripts --no-audit --no-fund > /dev/null && cd -
           CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser)"
           export PUPPETEER_DIR=/tmp/pptr CHROME BASE=http://127.0.0.1:4399
           node tools/test-analytics-events.mjs
@@ -86,7 +86,7 @@ jobs:
       # /ru/، سقف الخطوط، لا فيديو قبل LCP) وحارسَي محاكاة خشنين — الأرقام الميدانية من web_vitals.
       - name: Acceptance — performance budgets (Lighthouse, mobile simulation)
         run: |
-          mkdir -p /tmp/lh && cd /tmp/lh && npm init -y > /dev/null && npm i lighthouse@12 --no-audit --no-fund > /dev/null && cd -
+          mkdir -p /tmp/lh && cd /tmp/lh && npm init -y > /dev/null && npm i lighthouse@12.8.2 --ignore-scripts --no-audit --no-fund > /dev/null && cd -
           CHROME_PATH="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser)"
           LH_DIR=/tmp/lh CHROME_PATH="$CHROME_PATH" BASE=http://127.0.0.1:4399 node tools/lighthouse-gate.mjs
 

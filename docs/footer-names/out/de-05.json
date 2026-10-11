@@ -1,0 +1,96 @@
+{
+  "lang": "de",
+  "stage": "01-05",
+  "batch": "footer-names",
+  "positions": [
+    {
+      "id": "de-cat-historic-t",
+      "file": "src/i18n/ui.ts",
+      "line": 846,
+      "current": "    'cat.historic.t': 'Historische Sehenswürdigkeiten',",
+      "proposed": "    'cat.historic.t': 'Historische Stätten',",
+      "notes": "Ein Name für Kategorie und Startseitenkarte (BRIEF §1). Gewählt wird der Wert aus categories.ts (de.historic = „Historische Stätten“, Zeile 47 unverändert), nicht „Historische Sehenswürdigkeiten“: (1) termbase #39 sperrt die zehn Kategorienamen als geschlossene Familie (Richterfreigabe 90/100) – categories.ts speist Filterchips und Footer-Links, die Karte nur sich selbst, also kleinste Streuung; (2) „historische Stätten“ ist feste deutsche Wendung für Burgen, Paläste, Moscheen (passt zu cat.historic.d); (3) neben dem neuen Kopfzeilenlabel „Sehenswürdigkeiten“ würde „Historische Sehenswürdigkeiten“ als bloße Teilmenge desselben Wortes gelesen – das BRIEF will den Kategorienamen gerade vom Gesamtbereich trennen. Keine Änderung an categories.ts nötig."
+    },
+    {
+      "id": "de-cat-nature-t",
+      "file": "src/i18n/ui.ts",
+      "line": 848,
+      "current": "    'cat.nature.t': 'Natur und Farmen',",
+      "proposed": "    'cat.nature.t': 'Natur',",
+      "notes": "Wörtliche Kopie von categories.ts de.nature (Zeile 50) gemäß BRIEF §1; „und Farmen“ entfällt, weil die Karte nur die Kategorie nature öffnet (Farmen sind eigene Kategorie „Farmen und Dattelpalmen“). termbase #39 (Ausnahme „Natur“, 2026-10-01) deckt die Singularform."
+    },
+    {
+      "id": "de-nav-attractions",
+      "file": "src/i18n/ui.ts",
+      "line": 858,
+      "current": "    'nav.attractions': 'Sehenswertes',",
+      "proposed": "    'nav.attractions': 'Sehenswürdigkeiten',",
+      "notes": "Eigentümerentscheid (BRIEF §4) hebt termbase #47 („Sehenswertes“ nur in nav.attractions, Breitenbudget 90.8px vs. 133.1px) auf. Damit eine Form überall: Breadcrumb, Index, det.allSights, llms.txt-Überschrift (ui.de['nav.attractions']) und 404-listLabel tragen nun dieselbe Form. Breite +42px – siehe observations (Kopfzeilen-Neumessung Pflicht)."
+    },
+    {
+      "id": "de-nav-events",
+      "file": "src/i18n/ui.ts",
+      "line": 860,
+      "current": "    'nav.events': 'Termine',",
+      "proposed": "    'nav.events': 'Veranstaltungen',",
+      "notes": "Eigentümerentscheid (BRIEF §4): „Termine“ wird als Terminkalender/feste Daten gelesen (Vorbehalt B23 in termbase #49 – neun von zehn Einträgen sind nur saisonal datiert). „Veranstaltungen“ ist laut termbase #49 selbst sprachlich richtig und Navigationsstandard der fünf geprüften DACH-Portale. Seite ≠ Kategorie bleibt gewahrt: Kategorie und Karte heißen weiter „Veranstaltungen und Saisonales“. Wirkt auch auf den Tabellenkopf in EventsView (name-Spalte) – dort ebenfalls passend."
+    },
+    {
+      "id": "de-foot-col-site",
+      "file": "src/i18n/ui.ts",
+      "line": 876,
+      "current": "    'foot.col.site': 'Website',",
+      "proposed": "    'foot.col.site': 'Service',",
+      "notes": "Spalte enthält in de: Richtlinien und Nutzungsbedingungen · Fehler melden · Kontakt · WhatsApp (foot.l.aboutSite wird in de nicht ausgespielt). „Website“ als Überschrift beschreibt nichts (Leser stolperten, BRIEF §3). „Service“ ist die übliche deutsche Footer-Überschrift genau für diese Linkgruppe (Kontakt, rechtliche Hinweise, Meldung), Duden-Standardwort, nicht auf der Denglisch-Liste. Abgelehnt: „Über uns“ – verspricht eine Selbstdarstellungsseite, die es in de nicht gibt (kein aboutSite-Link); „Über diese Website“ – lang, gleiche Schwäche; „Info & Kontakt“ – doppelt den Link „Kontakt“ darunter. Falls aboutSite später für de gebaut wird, bleibt „Service“ tragfähig."
+    },
+    {
+      "id": "de-foot-l-events",
+      "file": "src/i18n/ui.ts",
+      "line": 885,
+      "current": "    'foot.l.events': 'Termine',",
+      "proposed": "    'foot.l.events': 'Veranstaltungen',",
+      "notes": "Muss mit nav.events identisch bleiben (termbase #49: gleiches Ziel = gleicher Name). Im Footer kein Breitenproblem (Spalte bricht um)."
+    }
+  ],
+  "termbase_edits": [
+    {
+      "entry_index": 47,
+      "en": "Attractions (nav label only)",
+      "action": "replace",
+      "de_old": "Sehenswertes",
+      "de_new": "Sehenswürdigkeiten",
+      "note_new": "Eigentümerentscheid 2026-10-04 (Batch footer-names): nav.attractions = „Sehenswürdigkeiten“ wie Breadcrumb, Index, det.allSights und Fließtext – eine Form überall. Die frühere Spaltung „Sehenswertes“ (Breitenbudget 90.8px vs. 133.1px) ist aufgehoben; die Breite wird durch Neumessung der Kopfzeile (tools/measure-header-fit.mjs) und ggf. Schwellenanpassung im Code gelöst, nicht durch das Label. Weiter verboten: Highlights · Attraktionen · Abkürzung mit Punkt."
+    },
+    {
+      "entry_index": 49,
+      "en": "Events (page label: header + footer)",
+      "action": "replace",
+      "de_old": "Termine",
+      "de_new": "Veranstaltungen",
+      "note_new": "Eigentümerentscheid 2026-10-04 (Batch footer-names): eine Zeichenkette in nav.events und foot.l.events. „Termine“ verworfen, weil sie feste Daten verspricht (Vorbehalt B23: neun von zehn Einträgen saisonal). „Events“ bleibt verboten (Duden: Jargon). Kategorie und Startseitenkarte bleiben „Veranstaltungen und Saisonales“ – Seite ≠ Kategorie. Breite 106.8px: Kopfzeile neu messen."
+    },
+    {
+      "entry_index": 39,
+      "en": "attraction category labels",
+      "action": "append_note",
+      "note_append": "2026-10-04 (footer-names): Die Startseitenkarten cat.historic.t und cat.nature.t tragen wörtlich die Kategorienamen „Historische Stätten“ und „Natur“ – Karte und Kategorie haben einen Namen. „Historische Sehenswürdigkeiten“ ist für historic nicht mehr zulässig."
+    },
+    {
+      "entry_index": null,
+      "en": "Footer column „Site“ (foot.col.site)",
+      "action": "add",
+      "de": "Service",
+      "artikel": "der",
+      "source": "Batch footer-names 2026-10-04, BRIEF §3 (Eigentümer: „Website“ stolpert); Spalteninhalt de: Richtlinien und Nutzungsbedingungen · Fehler melden · Kontakt · WhatsApp.",
+      "note": "Nur Spaltenüberschrift. Abgelehnt: Website (leer) · Über uns (keine Über-uns-Seite in de) · Über diese Website (lang) · Info & Kontakt (doppelt den Link Kontakt)."
+    }
+  ],
+  "observations": [
+    "Kopfzeilenbreite: nav.attractions +42px (90.8→133.1px) und nav.events (Termine→Veranstaltungen 106.8px; termbase #49 maß für diese allein eine Mindestfensterbreite von 1392px). Zusammen braucht die de-Kopfzeile deutlich mehr als 1392px – der Burger greift dann auf 1366er (wahrscheinlich auch 1440er) Bildschirmen. Nach dem Anwenden ist tools/measure-header-fit.mjs Pflicht (BRIEF); die Lösung liegt in Schwellen/Code, nicht in erneuter Kürzung des Labels (Eigentümer hat entschieden).",
+    "Keine Änderung an src/lib/categories.ts (de): historic bleibt „Historische Stätten“, nature bleibt „Natur“ – die Vereinheitlichung erfolgt in ui.ts. Footer.astro verwendet catLabel() für die historic/nature-Links, die Footer-Spalte „Entdecken“ zeigt also bereits „Historische Stätten“ / „Natur“.",
+    "Tote Schlüssel: foot.l.historic („Historische Sehenswürdigkeiten“, Z. 878) und foot.l.nature („Natur und Farmen“, Z. 879) werden in src/ nirgends gelesen (Footer nutzt catLabel). Sie widersprechen nun der Einheitsregel, ebenso ar/en foot.l.nature. Nicht in diesem Batch geändert (außerhalb des BRIEF) – Empfehlung: in allen Sprachen entfernen oder angleichen.",
+    "foot.col.plan „Planen“ über dem Link nav.plan „Reise planen“: keine wörtliche Dopplung wie in zh, daher unverändert.",
+    "Seiteneffekte: nav.events → Header und EventsView-Tabellenkopf; nav.attractions → Header, 404-Seite (listLabel), llms.txt (de-Abschnittsüberschrift). Alle mit „Sehenswürdigkeiten“/„Veranstaltungen“ korrekt; Konstruktionen wie „Alle Sehenswürdigkeiten“ jetzt durchgehend grammatisch.",
+    "Stufe 3/4: keine Fakten hinzugefügt oder entfernt (reine Labels). Stufe 5: Rechtschreibung PASS, Termbase PASS nach den vorgeschlagenen termbase_edits, Denglisch PASS („Service“ nicht auf der Verbotsliste), Struktur PASS (Schlüssel, 4 Leerzeichen Einrückung, U+0027-Quotes, nur U+0020). Zeilenenden: ui.ts und categories.ts CRLF – current ohne \\r."
+  ]
+}

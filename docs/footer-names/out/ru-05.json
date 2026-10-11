@@ -1,0 +1,83 @@
+{
+  "lang": "ru",
+  "stage": "01-05",
+  "batch": "footer-names",
+  "positions": [
+    {
+      "id": "ru-1",
+      "file": "src/lib/categories.ts",
+      "line": 60,
+      "current": "    historic: 'Исторические места',",
+      "proposed": "    historic: 'Исторические достопримечательности',",
+      "notes": "BRIEF §1: one name for CATEGORY_LABELS.ru.historic and cat.historic.t. Chose the published «Исторические достопримечательности» over «Исторические места»: it renders the new source «المعالم التاريخية / Historic landmarks» exactly, is the plural of the verified kicker «Историческая достопримечательность» (معلم تاريخي), and is already what foot.l.historic and the home card carry. «Исторические места» is vaguer (any historical place) and was the weaker of the two. Distinct from the section name «Достопримечательности» by its adjective, mirroring ar «المعالم» vs «المعالم التاريخية». cat.historic.t (ui.ts 1088) already equals it — no edit there. Length: 34 chars vs 19, shown as detail-hero eyebrow (.ah-k), listing card kicker (.lc-k), section heading on /ru/attractions/ and footer link — wrap check after apply."
+    },
+    {
+      "id": "ru-2",
+      "file": "src/i18n/ui.ts",
+      "line": 1090,
+      "current": "    'cat.nature.t': 'Природа и фермы',",
+      "proposed": "    'cat.nature.t': 'Природа',",
+      "notes": "BRIEF §1: the card opens the nature category only; copied CATEGORY_LABELS.ru.nature «Природа» verbatim (= ar «الطبيعة», en «Nature»). cat.nature.d unchanged (mountains, caves, palm groves — no farms claim)."
+    },
+    {
+      "id": "ru-3",
+      "file": "src/i18n/ui.ts",
+      "line": 1101,
+      "current": "    'nav.attractions': 'Что увидеть',",
+      "proposed": "    'nav.attractions': 'Достопримечательности',",
+      "notes": "BRIEF §4 owner ruling (2026-10-04) overrides the termbase measured split «Что увидеть» (entry «UI nav label: Attractions (top bar)»). Now identical to crumb.attractions, so header, breadcrumb and list.title agree. Width: measured 2026-09-05 at 181,2px vs 82px (+99,2px) in the compressed header block — run tools/measure-header-fit.mjs after apply; this is the main risk of the batch."
+    },
+    {
+      "id": "ru-4",
+      "file": "src/i18n/ui.ts",
+      "line": 1120,
+      "current": "    'foot.col.site': 'Сайт',",
+      "proposed": "    'foot.col.site': 'О сайте',",
+      "notes": "BRIEF §3/§4: column now holds only site matters (Правила и условия использования, Сообщить об ошибке, Свяжитесь с нами, WhatsApp). «О сайте» is the standard Russian footer heading for this group and the blind reader’s own proposal; bare «Сайт» read as a noun label, not a heading. Short (7 chars), no width risk."
+    }
+  ],
+  "termbase_edits": [
+    {
+      "entry": "UI nav label: Attractions (top bar) — measured split",
+      "field": "ru",
+      "from": "Что увидеть",
+      "to": "Достопримечательности",
+      "note": "Owner ruling 2026-10-04 (batch footer-names): the measured split is withdrawn; the bar now carries the same word as crumb.attractions/list.title/det.allSights. Rename en to «UI nav label: Attractions (top bar)», drop «measured split», keep the 2026-09-05 width figures as history, add that header fit is re-measured after this batch. Status stays verified only after measure-header-fit passes."
+    },
+    {
+      "entry": "B12-2 (sources)",
+      "field": "sources[1]",
+      "from": "`src/lib/categories.ts`: `CATEGORY_LABELS.ru.historic` = «Исторические места» — فُحص",
+      "to": "`src/lib/categories.ts`: `CATEGORY_LABELS.ru.historic` = «Исторические достопримечательности» (footer-names 2026-10-04)",
+      "note": "The rejection of «Историческое место» for the kicker stays valid (vague); its stated reason «collides with the category label» no longer holds literally — reword to «vaguer than достопримечательность and formerly the category label»."
+    },
+    {
+      "entry": "NEW: UI label: Site (footer column)",
+      "field": "ru",
+      "to": "О сайте",
+      "rod": "—",
+      "sklonenie": "صيغة ثابتة (عنوان عمود)",
+      "source": "BRIEF footer-names §4 (owner ruling 2026-10-04) + blind-reader proposal",
+      "note": "Rejected: «Сайт» (bare noun, readers stumbled), «Информация» (too broad)."
+    },
+    {
+      "entry": "NEW: Category: historic (categories.ts + cat.historic.t)",
+      "field": "ru",
+      "to": "Исторические достопримечательности",
+      "rod": "ж (мн.)",
+      "sklonenie": "склоняется: исторических достопримечательностей",
+      "source": "BRIEF footer-names §1; plural of verified kicker «Историческая достопримечательность»",
+      "note": "Single name across CATEGORY_LABELS.ru.historic, cat.historic.t, footer link (via catLabel). Rejected «Исторические места» (vague; the former category label)."
+    }
+  ],
+  "observations": [
+    "Both files are CRLF throughout (categories.ts 80/80, ui.ts 1259/1259 CRLF/LF); every `current` above is verified as the exact line without \\r.",
+    "cat.historic.t (ui.ts 1088) already reads «Исторические достопримечательности» — only categories.ts changes for §1.",
+    "ru-translation/memory/tm.json line 565 holds «Что увидеть» — update the TM entry when the batch is applied so later batches do not reuse it.",
+    "foot.l.historic / foot.l.nature (ui.ts 1122–1123, ru «Исторические достопримечательности» / «Природа и фермы») are not referenced anywhere: Footer.astro renders those two links through catLabel(). Dead keys in all five languages (en still «Nature & farms»); not touched here — candidate for removal in code, not a translation item.",
+    "Footer Discover column will now show «Исторические достопримечательности» and «Природа» (from catLabel), matching the home cards.",
+    "Width checks after apply: header (nav.attractions +~99px per the 2026-09-05 measurement) and the 34-char category label in .ah-k eyebrow and .lc-k card kicker.",
+    "No other ru string in ui.ts contains «Что увидеть», «Исторические места» or «Сайт» as a whole value. §2 and §3 link moves need no ru text; foot.l.about «Об Аль-Ахсе» and foot.l.unesco «Всемирное наследие ЮНЕСКО» read correctly in the Discover column.",
+    "Stage 5 checklist on the four strings: spelling PASS; capitalisation (first word only) PASS; no U+00A0, ordinary U+0020 only PASS; termbase compliance PASS after the edits above; nothing invented PASS."
+  ]
+}

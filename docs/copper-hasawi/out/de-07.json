@@ -1,0 +1,217 @@
+{
+  "batch": "copper-hasawi",
+  "lang": "de",
+  "stage": 7,
+  "date": "2026-10-04",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "traveller_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "de-ui-home-route-s2-d",
+      "file": "src/i18n/ui.ts",
+      "line": 816,
+      "from": "in denen Parfüm duftet und Kupfer glänzt",
+      "to": "in denen es nach Parfüm duftet und Kupferwaren glänzen",
+      "reason": "blind: bare «Kupfer» reads as raw metal; «Kupferwaren» = copper goods of a souq (faithful reading of النحاس in a market); impersonal «es duftet» keeps perfume as the scent, copperware gets its own verb"
+    },
+    {
+      "id": "de-48h-l34",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 34,
+      "from": "in denen Parfüm duftet und Kupfer glänzt",
+      "to": "in denen es nach Parfüm duftet und Kupferwaren glänzen",
+      "reason": "same segment as home.route.s2.d (one TM unit)"
+    },
+    {
+      "id": "de-dar-basma-body",
+      "file": "src/content/dining/dar-basma.md",
+      "line": 31,
+      "from": "und sie als zeitgenössische Marke zu präsentieren",
+      "to": "und sie unter einer zeitgenössischen Marke zu präsentieren",
+      "reason": "blind: the cuisine is not itself a brand; en «presenting it under a contemporary brand»"
+    },
+    {
+      "id": "de-qaisariyah-body",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 15,
+      "from": "und die dicht an dicht stehenden Geschäfte führen Sie durch Gassen, in denen es nach Gewürzen und Parfüm duftet und Kupfer glänzt",
+      "to": "und zwischen den dicht an dicht stehenden Geschäften verlaufen Gassen, in denen es nach Gewürzen und Parfüm duftet und Kupferwaren glänzen",
+      "reason": "blind: «die Geschäfte führen Sie durch Gassen» odd personification; shops now line the passages (close-packed shops + passages kept, nothing added); «Kupferwaren» as above"
+    },
+    {
+      "tm": "de-translation/glossary/termbase.json, de-translation/memory/tm.json",
+      "reason": "file_edits carry the judged wording (afters updated; date 2026-10-04 + note)"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "obs": "Copper read as raw metal (all three readers); suggested «Kupferwaren»",
+      "ruling": "applied",
+      "reason": "judge edits home.route.s2.d, 48-hours-de:34, qaisariyah body_de; wares is the faithful reading of النحاس in a souq, no fact added"
+    },
+    {
+      "obs": "«Gassen, in denen es nach Parfüm duftet und Kupferwaren glänzen» more natural",
+      "ruling": "applied",
+      "reason": "exact wording adopted on the home card and 48-hours-de:34 (one TM unit)"
+    },
+    {
+      "obs": "Qaisariyah: «die Geschäfte führen Sie durch Gassen» odd personification; jump from «es» to «Kupfer» stumbles",
+      "ruling": "applied",
+      "reason": "same line as the copper clause: «zwischen den dicht an dicht stehenden Geschäften verlaufen Gassen, in denen es nach Gewürzen und Parfüm duftet und Kupferwaren glänzen» - plural subject with its own verb resolves the stumble"
+    },
+    {
+      "obs": "Heading «In der Küche Al-Ahsas» may read as the room; genitive heavy",
+      "ruling": "rejected",
+      "reason": "termbase descriptive form «die Küche Al-Ahsas» (used in 5 places this batch); in an H2 of a food article «Küche» reads as cuisine (cf. «die Küche Italiens»), and the paragraph under it opens with a cooking pot; ar «في المطبخ الأحسائي»"
+    },
+    {
+      "obs": "Unquoted page name «auf der Seite Küche aus Al-Ahsa» (lomi article)",
+      "ruling": "rejected",
+      "reason": "both occurrences in batch lines (hasawi-lomi-de:43, souvenirs-de:26) are link labels; the link marks the name, as with [Restaurants und Cafés] elsewhere; no plain-text page-name mention on the batch lines"
+    },
+    {
+      "obs": "Dar Basma «als zeitgenössische Marke» - the cuisine as a brand?",
+      "ruling": "applied",
+      "reason": "judge edit «unter einer zeitgenössischen Marke» = en «under a contemporary brand»"
+    },
+    {
+      "obs": "«Küche aus Al-Ahsa» first reads as a kitchen made in Al-Ahsa; suggested «Küche von Al-Ahsa» / «Essen in Al-Ahsa»",
+      "ruling": "rejected (raised to Eyad)",
+      "reason": "owner decision binds the page name verbatim"
+    }
+  ],
+  "out_of_scope": [
+    "Gold appears only in the home market card cat.market.d (ar «عبق العطر والذهب والنحاس»), not on the Qaisariyah page or the route card - raised to Eyad unscored.",
+    "Qaisariyah FAQ «what to buy» lists neither perfume nor copper though the description promises both - raised to Eyad unscored.",
+    "Qaisariyah body_de «Die „Hasawi-Weberei“ zeichnet sich durch die Feinheit ihrer Handstickerei … aus» (weaving distinguished by embroidery) - not on the changed clause; raised to Eyad unscored.",
+    "Blind reader objects to the page name «Küche aus Al-Ahsa» (reads first as a kitchen made in Al-Ahsa) - owner decision, kept; raised to Eyad.",
+    "Published 24-hours-de:34 keeps «das Kupfer glänzt» and cat.market.d «Glanz von Gold und Kupfer» (bare metal) - follow-up if «Kupferwaren» is to be uniform site-wide."
+  ],
+  "positions": [
+    {
+      "id": "de-ui-home-route-s2-d",
+      "file": "src/i18n/ui.ts",
+      "line": 816,
+      "current": "    'home.route.s2.d': 'Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt.',",
+      "proposed": "    'home.route.s2.d': 'Gassen, in denen es nach Parfüm duftet und Kupferwaren glänzen, dazu Umhänge, von einheimischen Händen bestickt.',"
+    },
+    {
+      "id": "de-48h-l34",
+      "file": "src/content/blog/48-hours-de.md",
+      "line": 34,
+      "current": "Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen; freitags öffnen sie nur abends. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).",
+      "proposed": "Lassen Sie Ihren ersten Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/) ausklingen, einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, in denen es nach Parfüm duftet und Kupferwaren glänzen, dazu Umhänge, von einheimischen Händen bestickt. Am besten kommen Sie morgens oder abends, denn über Mittag bis in den Nachmittag sind die Geschäfte geschlossen; freitags öffnen sie nur abends. Zum Abendessen finden Sie die Adressen der Stadt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/)."
+    },
+    {
+      "id": "de-lomi-l39",
+      "file": "src/content/blog/hasawi-lomi-de.md",
+      "line": 39,
+      "current": "Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und haltbar zu machen. Was dabei entsteht, heißt **„Jameed“**: Der Lomi-Saft trocknet in der Sonne und reift in Glasgefäßen – ein Vorrat für das ganze Jahr. Verwendet wird die Lomi frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte der Hasawi-Küche und der Golfregion.",
+      "proposed": "Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und haltbar zu machen. Was dabei entsteht, heißt **„Jameed“**: Der Lomi-Saft trocknet in der Sonne und reift in Glasgefäßen – ein Vorrat für das ganze Jahr. Verwendet wird die Lomi frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte Al-Ahsas und der Golfregion."
+    },
+    {
+      "id": "de-lomi-l41-h2",
+      "file": "src/content/blog/hasawi-lomi-de.md",
+      "line": 41,
+      "current": "## In der Hasawi-Küche",
+      "proposed": "## In der Küche Al-Ahsas"
+    },
+    {
+      "id": "de-lomi-l43-link",
+      "file": "src/content/blog/hasawi-lomi-de.md",
+      "line": 43,
+      "current": "Heben Sie den Deckel eines Topfes in Al-Ahsa, und die Lomi ist da: Der [Hasawi-Reis](/de/food/) – eines der bekanntesten Gerichte Al-Ahsas – köchelt mit seinen Gewürzen aus Lomi, Zimt und Kardamom, bis er seine rotbraune Farbe annimmt. Das traditionelle Gericht **Mufallaq** wiederum ist Weizenschrot, mit Lomi gewürzt, mit Datteln und gekochten Eiern garniert. Den vollständigen Rundgang durch die Gerichte finden Sie auf der Seite [Hasawi-Küche](/de/food/).",
+      "proposed": "Heben Sie den Deckel eines Topfes in Al-Ahsa, und die Lomi ist da: Der [Hasawi-Reis](/de/food/) – eines der bekanntesten Gerichte Al-Ahsas – köchelt mit seinen Gewürzen aus Lomi, Zimt und Kardamom, bis er seine rotbraune Farbe annimmt. Das traditionelle Gericht **Mufallaq** wiederum ist Weizenschrot, mit Lomi gewürzt, mit Datteln und gekochten Eiern garniert. Den vollständigen Rundgang durch die Gerichte finden Sie auf der Seite [Küche aus Al-Ahsa](/de/food/)."
+    },
+    {
+      "id": "de-souvenirs-l26",
+      "file": "src/content/blog/souvenirs-de.md",
+      "line": 26,
+      "current": "Die **Hasawi-Limette** (die Limette aus Al-Ahsa), auch Bin Zuhairi genannt, gehört zu den bekanntesten Erzeugnissen aus den Hainen der Oase. Frisch hat sie im Sommer Saison; getrocknet parfümiert sie die Hasawi-Küche das ganze Jahr über. Aus derselben Speisekammer kommen **Dattelsirup**, der die einheimischen Gerichte süßt, und **Dattelbrot**, bestreut mit Schwarzkümmel. Welchen Platz jedes davon auf dem Tisch einnimmt, zeigt die Seite [Hasawi-Küche](/de/food/).",
+      "proposed": "Die **Hasawi-Limette** (die Limette aus Al-Ahsa), auch Bin Zuhairi genannt, gehört zu den bekanntesten Erzeugnissen aus den Hainen der Oase. Frisch hat sie im Sommer Saison; getrocknet parfümiert sie die Küche Al-Ahsas das ganze Jahr über. Aus derselben Speisekammer kommen **Dattelsirup**, der die einheimischen Gerichte süßt, und **Dattelbrot**, bestreut mit Schwarzkümmel. Welchen Platz jedes davon auf dem Tisch einnimmt, zeigt die Seite [Küche aus Al-Ahsa](/de/food/)."
+    },
+    {
+      "id": "de-events-lomi-faq4-a",
+      "file": "src/data/events.ts",
+      "line": 664,
+      "current": "      { q: 'Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?', a: 'Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Hasawi-Küche verwendet.' },",
+      "proposed": "      { q: 'Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?', a: 'Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Küche Al-Ahsas verwendet.' },"
+    },
+    {
+      "id": "de-dar-basma-body",
+      "file": "src/content/dining/dar-basma.md",
+      "line": 31,
+      "current": "body_de: \"Im historischen Herzen von Hofuf, am Rand des Qasr-Ibrahim-Parks, ist Dar Basma in einem alten Haus untergebracht, das als Manzil Al-Afsah bekannt ist; sein Alter beziffert das Restaurant selbst auf über hundert Jahre. Das Haus wurde mit zeitgenössischen Akzenten restauriert, die seinen Charakter bewahrten, und seine Merkmale sind weiterhin sichtbar: handgefertigte Fliesen auf der Treppe, gewölbte Fenster, Oberlichter und restaurierte Gipswände, die traditionelle Stücke tragen. Das Restaurant wurde 2018 unter dem Motto „der Geschmack von Zuhause“ mit der Idee gegründet, die Hasawi-Küche wiederzubeleben und sie als zeitgenössische Marke zu präsentieren. Die hauseigene Speisekarte hebt Hasawi-Reis von lokalen Farmen, langsam gegarte Brühen und saisonale Datteln hervor. Im Anschluss an Al-Ahsa expandierte die Marke nach Medina, und eine Filiale in Mekka wurde angekündigt. Die Sitzplätze im Freien zwischen den Palmen liegen am Rand des Parks.\"",
+      "proposed": "body_de: \"Im historischen Herzen von Hofuf, am Rand des Qasr-Ibrahim-Parks, ist Dar Basma in einem alten Haus untergebracht, das als Manzil Al-Afsah bekannt ist; sein Alter beziffert das Restaurant selbst auf über hundert Jahre. Das Haus wurde mit zeitgenössischen Akzenten restauriert, die seinen Charakter bewahrten, und seine Merkmale sind weiterhin sichtbar: handgefertigte Fliesen auf der Treppe, gewölbte Fenster, Oberlichter und restaurierte Gipswände, die traditionelle Stücke tragen. Das Restaurant wurde 2018 unter dem Motto „der Geschmack von Zuhause“ mit der Idee gegründet, die Küche Al-Ahsas wiederzubeleben und sie unter einer zeitgenössischen Marke zu präsentieren. Die hauseigene Speisekarte hebt Hasawi-Reis von lokalen Farmen, langsam gegarte Brühen und saisonale Datteln hervor. Im Anschluss an Al-Ahsa expandierte die Marke nach Medina, und eine Filiale in Mekka wurde angekündigt. Die Sitzplätze im Freien zwischen den Palmen liegen am Rand des Parks.\""
+    },
+    {
+      "id": "de-sharq-body",
+      "file": "src/content/dining/sharq-alqaisariah.md",
+      "line": 31,
+      "current": "body_de: \"Sharq Restaurant ist im Al-Rifaa-Nord-Viertel von Hofuf im Gebäude des historischen Al-Hamidiyah-Souks untergebracht. Die erste Filiale der Marke entstand in Al-Ahsa und ging der Samhaniyah-Filiale in Diriyah voraus, die im Januar 2024 eröffnet wurde. Das Restaurant bietet die Hasawi-Küche in zeitgenössischem Stil: Vorspeisen wie Harees-Bällchen (nicht zu verwechseln mit der Gewürzpaste Harissa) und Garnelen-Fatteh; Hauptgerichte, die es unter dem Wort „aysh“ zusammenfasst, darunter Hasawi-Reis (der Reis aus Al-Ahsa), Sleeq-Lammhaxen und Hasawi-Majboos; einen Frühstücksbereich, den es Rayouq Sharq nennt; sowie Süßspeisen wie Balaleet und Dattelkuchen. Der offizielle Name der Marke lautet schlicht Sharq Restaurant – Qaisariyah ist nur die Bezeichnung dieser Filiale und kein Teil des Namens selbst. Die Marke betreibt heute neben Al-Ahsa auch Filialen in Diriyah und Abha; ihre andere Filiale in Al-Ahsa – The Valley – wurde geschlossen.\"",
+      "proposed": "body_de: \"Sharq Restaurant ist im Al-Rifaa-Nord-Viertel von Hofuf im Gebäude des historischen Al-Hamidiyah-Souks untergebracht. Die erste Filiale der Marke entstand in Al-Ahsa und ging der Samhaniyah-Filiale in Diriyah voraus, die im Januar 2024 eröffnet wurde. Das Restaurant bietet die Küche Al-Ahsas in zeitgenössischem Stil: Vorspeisen wie Harees-Bällchen (nicht zu verwechseln mit der Gewürzpaste Harissa) und Garnelen-Fatteh; Hauptgerichte, die es unter dem Wort „aysh“ zusammenfasst, darunter Hasawi-Reis (der Reis aus Al-Ahsa), Sleeq-Lammhaxen und Hasawi-Majboos; einen Frühstücksbereich, den es Rayouq Sharq nennt; sowie Süßspeisen wie Balaleet und Dattelkuchen. Der offizielle Name der Marke lautet schlicht Sharq Restaurant – Qaisariyah ist nur die Bezeichnung dieser Filiale und kein Teil des Namens selbst. Die Marke betreibt heute neben Al-Ahsa auch Filialen in Diriyah und Abha; ihre andere Filiale in Al-Ahsa – The Valley – wurde geschlossen.\""
+    },
+    {
+      "id": "de-qaisariyah-body",
+      "file": "src/content/attractions/qaisariyah.md",
+      "line": 15,
+      "current": "body_de: \"Der Qaisariyah-Souk gehört zu den ältesten und traditionsreichsten Souks der Golfregion: Seine Geschichte reicht mehr als zwei Jahrhunderte zurück. Unverwechselbar ist seine Architektur, und die dicht an dicht stehenden Geschäfte führen Sie durch Gassen, in denen es nach Gewürzen, Kupfer und Parfüm duftet – hier schlägt das Herz des traditionellen Einkaufs in Al-Ahsa. Der Souk ist der ideale Ort, um den berühmten Hasawi-Bischt zu erwerben – den Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen. Die „Hasawi-Weberei“ zeichnet sich durch die Feinheit ihrer Handstickerei mit Zari-Fäden aus, die mit Gold oder Silber überzogen sind. Dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter. Neben dem Bischt finden Sie einheimisches Kunsthandwerk aus Palmblättern und Keramik sowie Datteln aller Sorten, Kaffee und Gewürze. Öffnungszeiten und Eintritt stehen weiter unten bei „Besuchsinformationen“; die beste Zeit ist der Morgen oder der Abend.\"",
+      "proposed": "body_de: \"Der Qaisariyah-Souk gehört zu den ältesten und traditionsreichsten Souks der Golfregion: Seine Geschichte reicht mehr als zwei Jahrhunderte zurück. Unverwechselbar ist seine Architektur, und zwischen den dicht an dicht stehenden Geschäften verlaufen Gassen, in denen es nach Gewürzen und Parfüm duftet und Kupferwaren glänzen – hier schlägt das Herz des traditionellen Einkaufs in Al-Ahsa. Der Souk ist der ideale Ort, um den berühmten Hasawi-Bischt zu erwerben – den Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen. Die „Hasawi-Weberei“ zeichnet sich durch die Feinheit ihrer Handstickerei mit Zari-Fäden aus, die mit Gold oder Silber überzogen sind. Dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter. Neben dem Bischt finden Sie einheimisches Kunsthandwerk aus Palmblättern und Keramik sowie Datteln aller Sorten, Kaffee und Gewürze. Öffnungszeiten und Eintritt stehen weiter unten bei „Besuchsinformationen“; die beste Zeit ist der Morgen oder der Abend.\""
+    }
+  ],
+  "file_edits": [
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "\"de\": \"die Küche aus Al-Ahsa (Seitenname) · im Fließtext beschreibend auch „die Küche Al-Ahsas“ / „die Hasawi-Küche“\",",
+      "after": "\"de\": \"die Küche aus Al-Ahsa (Seitenname) · im Fließtext beschreibend „die Küche Al-Ahsas“\","
+    },
+    {
+      "file": "de-translation/glossary/termbase.json",
+      "before": "«Hasawi-Küche» تبقى جائزةً وصفاً في المتن (souvenirs-de، dar-basma، sharq-alqaisariah، FAQ اللومي في events.ts، عنوان hasawi-lomi-de «In der Hasawi-Küche»)، وأسماء الأصناف (Hasawi-Reis، Hasawi-Limette، Hasawi-Bischt) لا تُمسّ.",
+      "after": "**copper-hasawi (حكم إياد 2026-10-04):** «Hasawi-Küche» الوصفية متقاعدة من المتون كلها — الوصف «die Küche Al-Ahsas» (souvenirs-de، dar-basma، sharq-alqaisariah، FAQ اللومي في events.ts، عنوان hasawi-lomi-de «In der Küche Al-Ahsas»)، و«die Gerichte Al-Ahsas» حيث يتكرر المضاف إليه (hasawi-lomi-de «Gerichte Al-Ahsas und der Golfregion»). كل رابط إلى /de/food/ يحمل اسم الصفحة «Küche aus Al-Ahsa» (souvenirs-de، hasawi-lomi-de السطر 43). وأسماء الأصناف (Hasawi-Reis، Hasawi-Limette، Hasawi-Lomi، Hasawi-Bischt، Hasawi-Sommerbrauch) لا تُمسّ."
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"en\": \"Passages fragrant with perfume and copper, and cloaks embroidered by local hands.\",\r\n      \"de\": \"Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"home.route.s2.d\",\r\n      \"date\": \"2026-09-03\"",
+      "after": "\"en\": \"Passages fragrant with perfume and gleaming with copper, and cloaks embroidered by local hands.\",\r\n      \"de\": \"Gassen, in denen es nach Parfüm duftet und Kupferwaren glänzen, dazu Umhänge, von einheimischen Händen bestickt.\",\r\n      \"page\": \"ui-chrome\",\r\n      \"field\": \"home.route.s2.d\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"copper-hasawi: perfume is smelled, copperware gleams (EN 6c67045)\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"en\": \"a heritage market over two centuries old, its passages fragrant with perfume and copper, its cloaks embroidered by local hands\",\r\n      \"de\": \"einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, die nach Parfüm und Kupfer duften, dazu Umhänge, von einheimischen Händen bestickt\",\r\n      \"page\": \"24-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-09-10\"",
+      "after": "\"en\": \"a heritage market over two centuries old, its passages fragrant with perfume and gleaming with copper, its cloaks embroidered by local hands\",\r\n      \"de\": \"einem traditionellen Markt, dessen Geschichte mehr als zwei Jahrhunderte zurückreicht: Gassen, in denen es nach Parfüm duftet und Kupferwaren glänzen, dazu Umhänge, von einheimischen Händen bestickt\",\r\n      \"page\": \"24-hours-itinerary\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"copper-hasawi: segment of 48-hours-de:34 (EN 6c67045)\""
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Hasawi-Küche verwendet.\",",
+      "after": "\"de\": \"Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Küche Al-Ahsas verwendet.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "getrocknet parfümiert sie die Hasawi-Küche das ganze Jahr über.\",",
+      "after": "getrocknet parfümiert sie die Küche Al-Ahsas das ganze Jahr über.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"de\": \"In der Hasawi-Küche\",",
+      "after": "\"de\": \"In der Küche Al-Ahsas\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "so parfümiert sie rund ums Jahr die Gerichte der Hasawi-Küche und der Golfregion.\",",
+      "after": "so parfümiert sie rund ums Jahr die Gerichte Al-Ahsas und der Golfregion.\","
+    },
+    {
+      "file": "de-translation/memory/tm.json",
+      "before": "\"en\": \"its close-packed shops lead you through passages fragrant with spices, copper and perfume\",\r\n      \"de\": \"die dicht an dicht stehenden Geschäfte führen Sie durch Gassen, in denen es nach Gewürzen, Kupfer und Parfüm duftet\",\r\n      \"page\": \"qaisariyah\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-09-11\"",
+      "after": "\"en\": \"its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper\",\r\n      \"de\": \"zwischen den dicht an dicht stehenden Geschäften verlaufen Gassen, in denen es nach Gewürzen und Parfüm duftet und Kupferwaren glänzen\",\r\n      \"page\": \"qaisariyah\",\r\n      \"field\": \"body\",\r\n      \"date\": \"2026-10-04\",\r\n      \"note\": \"copper-hasawi: copperware gleams (EN 4531810); shops line the passages instead of leading the visitor (blind)\""
+    }
+  ]
+}

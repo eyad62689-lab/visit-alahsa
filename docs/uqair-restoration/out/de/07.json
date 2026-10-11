@@ -1,0 +1,68 @@
+{
+  "batch": "uqair-restoration",
+  "lang": "de",
+  "round": 2,
+  "stage": "07-judge",
+  "date": "2026-10-02",
+  "score": 93,
+  "pass_threshold": 90,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 26,
+    "termbase_style": 20,
+    "traveller_fit": 8,
+    "structure": 10
+  },
+  "rulings": {
+    "a_mosque_itself": "Known, not a translation defect. value_de names the port complex as subject exactly as ar مجمّع الميناء / en the port complex; it does not imply the mosque is closed nor that it is open. Eyad (2026-10-02): unknown, source wording stays. Raised as known open question (-1 traveller fit, not chargeable to translation).",
+    "b_label": "Situation vor Ort kept. Aktueller Hinweis rejected: it names a notice type, not the state of the site, and erases the status sense of حالة الموقع / Site status. Aktueller Status is taken by hamidiyah-souq for a different ar label (الوضع الحالي / Current status) - reusing it would merge two source labels. Aktueller Stand: same collision in sense. Zustand des Geländes: suggests physical dilapidation. Lage vor Ort: Lage article/Standort trap from round 1. Situation vor Ort is idiomatic German (vor Ort = at the site) and fits the card label pattern (information type). Slight news-register colour noted (-1 nativeness, no better candidate).",
+    "c_final_period": "Confirmed: value_de has no final period."
+  },
+  "blind_reader_rulings": [
+    {
+      "id": "all-1",
+      "obs": "Is the mosque itself closed / can it be entered?",
+      "ruling": "rejected",
+      "reason": "Answering would add a fact the source does not carry (fact fence); Eyad: unknown, wording stays. Raised as known."
+    },
+    {
+      "id": "de-1",
+      "obs": "Situation vor Ort sounds odd as a heading; suggest Aktueller Hinweis",
+      "ruling": "rejected",
+      "reason": "Would erase the status distinction of ar حالة الموقع; see ruling b."
+    },
+    {
+      "id": "de-2",
+      "obs": "Gebäudekomplex in body vs Hafenkomplex on card",
+      "ruling": "rejected (out of scope)",
+      "reason": "body_de is frozen approved text outside this position; both denote the same port complex; card matches summary_de verbatim. Raised to Eyad for a later body pass."
+    },
+    {
+      "id": "de-oos",
+      "obs": "Out-of-scope body/nav items (die in area line, historisch x2, Sie reference, Nadschd, Emirat, Handelsader, ganzen Geschichte, Al-Uqair – unter 1 km, Hasawi-Küche/Termine)",
+      "ruling": "unscored, out of scope",
+      "reason": "Not in this position; raised to Eyad."
+    },
+    {
+      "id": "zh-only",
+      "obs": "修缮 overlap",
+      "ruling": "n/a for de",
+      "reason": "zh-specific."
+    }
+  ],
+  "checks": [
+    "current matches line 36 exactly once (ignoring \r)",
+    "only label_de/value_de differ",
+    "no U+2014, no U+00A0",
+    "Al-Uqair per termbase (never bare Uqair)",
+    "restoration sentence absent from body_de (0 occurrences of Restaurierungsarbeiten outside the card row before apply)"
+  ],
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "final": {
+    "label_de": "Situation vor Ort",
+    "value_de": "Im Hafenkomplex von Al-Uqair laufen derzeit Restaurierungsarbeiten, und einige Bereiche können geschlossen sein"
+  },
+  "scores_csv_row": "\"uqair-restoration R2 (de): uqair-mosque practical[0] label_de Besuch -> Situation vor Ort, value_de -> Im Hafenkomplex von Al-Uqair laufen derzeit Restaurierungsarbeiten, und einige Bereiche können geschlossen sein\",2026-10-02,2,93,\"APPROVE (29/26/20/8/10; label kept: Aktueller Hinweis rejected - erases the status sense of ar حالة الموقع / en Site status, Aktueller Status reserved for hamidiyah الوضع الحالي; mosque-itself question source-level, Eyad: unknown, wording stays, raised as known; Gebäudekomplex/Hafenkomplex body_de out of scope, card matches summary_de; no final period)\"",
+  "notes": "memory/tm.json and memory/scores.csv not appended by the judge in this run (caller manages commits); append scores_csv_row and the TM pair on apply."
+}
