@@ -1,0 +1,29 @@
+{
+  "source_lang": "en",
+  "authority_lang": "ar",
+  "target_lang": "ur-PK",
+  "html_lang": "ur",
+  "dir": "rtl",
+  "url_prefix": "/ur/",
+  "pass_threshold": 90,
+  "max_correction_loops": 3,
+  "output_path_pattern": "src/pages/ur/{slug}",
+  "content_field_suffix": "_ur",
+  "batch_size": 5,
+  "address_form": "آپ (تعظیمی صیغہ — عام قاری سے خطاب)؛ لا «تم» ولا «تو» إطلاقاً",
+  "orthography": "حروف الأوردو لا العربية: ی U+06CC لا ي U+064A · ک U+06A9 لا ك U+0643 · ہ U+06C1 للهاء الختامية · ے U+06D2 · ں U+06BA · ھ U+06BE للمهموسات · ٹ ڈ ڑ. الوقفة ۔ U+06D4، الفاصلة ،، الاستفهام ؟، الاقتباس “…”. المراجع: اردو لغت بورڈ (udb.gov.pk) وRekhta.",
+  "numerals": "لاتينية 0-9 بقاعدة الموقع (الفحص C4) — لا الأرقام الفارسية ۰–۹ (U+06F0–06F9) وإن كانت عرف الأوردو؛ يُتحقَّق أن C4 يرفض هذا النطاق قبل أول صفحة.",
+  "transliteration_source": "النقحرة تُبنى من الرسم العربي (الحقول العربية) لا من title_en — بحروف أوردية، ولكل اسم مصدر في termbase.",
+  "font_stack": "@fontsource/noto-nastaliq-urdu — حزمة جديدة (قرار إياد 2026-10-11: نستعليق لا نسخ)",
+  "font_note": "أول لغة في الموقع بخط جديد وأول RTL بعد العربية. تُضاف الحزمة بإجراء npm-junction-safe-add (تحديث القفل + نسخ يدوي، وإيقاف المعاينة قبل robocopy)، ويُعلَن الوجه في fonts.css بـunicode-range كالسيريلية (لا استيراد fontsource المجرّد)، ويُضاف تجاوز :root:lang(ur) في tokens.css بجوار تجاوز zh-CN مع line-height ≥ 1.9 وتكبير المقاس. يُقاس LCP على /ur/ بـlighthouse-gate.mjs قبل أي preload. إن أخفقت ميزانية الترويسة يُستثنى شريط التنقّل بالنسخ القائم (IBM Plex Sans Arabic).",
+  "score_rule": "درجة الدفعة = أدنى درجة صفحة فيها (سابقة الخطوط الثلاثة)",
+  "stages": [
+    "01-translator",
+    "02-editor",
+    "03-localizer",
+    "04-benchmarker",
+    "05-proofreader",
+    "06-blind-reader",
+    "07-judge"
+  ]
+}
