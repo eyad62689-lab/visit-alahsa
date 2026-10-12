@@ -1,0 +1,27 @@
+---
+// إخلاء مسؤولية دليل المرشدين — النص من مصدره الواحد (src/data/guides.ts) بلا تحرير.
+// يظهر مرة في رأس الفهرس، وبجوار أزرار التواصل في صفحة كل مرشد؛ والفاحص على dist
+// يُفشل البناء إن غاب عن صفحة من صفحات الدليل أو خالف نصّه.
+import { GUIDES_DISCLAIMER } from '../data/guides';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; label: 'before' | 'role'; lift?: boolean; }
+const { lang, label, lift = false } = Astro.props;
+const t = useTranslations(lang);
+const text = GUIDES_DISCLAIMER[lang === 'ar' ? 'ar' : 'en'];
+---
+<p class:list={['gd-disc', { 'gd-disc--lift': lift }]} role="note">
+  <b>{t(label === 'before' ? 'guides.disc.before' : 'guides.disc.role')}</b>{' '}<span data-guides-disclaimer>{text}</span>
+</p>
+
+<style>
+  .gd-disc {
+    background: #fff; color: var(--c-ink-soft); font-size: var(--t-sm); line-height: 1.8;
+    border: 1px solid var(--c-line); border-inline-start: 4px solid var(--c-gold);
+    border-radius: var(--radius-sm); padding: var(--s-3) var(--s-4);
+  }
+  .gd-disc b { color: var(--c-ink); font-weight: 600; }
+  /* فوق حافة الهيرو كما في النموذج المعتمد */
+  .gd-disc--lift { position: relative; z-index: 3; margin-block-start: calc(-1 * var(--s-5)); box-shadow: var(--shadow); }
+</style>

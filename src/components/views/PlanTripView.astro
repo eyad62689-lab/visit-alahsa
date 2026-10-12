@@ -10,12 +10,16 @@ import type { Lang } from '../../i18n/ui';
 import DataTable from '../DataTable.astro';
 import { practicalTable } from '../../lib/tables';
 import { VISA_GUIDE_PATH } from '../../lib/visa-guide.mjs';
+import { guidesHref } from '../../lib/routes';
+import { guidesListed } from '../../lib/guides';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const practical = await practicalTable(lang);
 const ar = lang === 'ar';
+// دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
+const showGuides = (ar || lang === 'en') && (await guidesListed());
 
 /* أيقونات خطّية بلغة أيقونات فئات المعالم نفسها. كانت إيموجي (✈ 🚗 🚆) تُصيَّرها
    ويندوز ملوّنةً — السيارة حمراء والقطار بنفسجي — فتصير الألوان المشبعة الوحيدة
@@ -343,6 +347,15 @@ const jsonLd = [
             </li>
           ))}
         </ol>
+        {showGuides && (
+          <aside class="pt-guides" data-reveal>
+            <div>
+              <h3 class="pt-guides-h">{t('guides.plan.h')}</h3>
+              <p class="pt-guides-d">{t('guides.plan.p')}</p>
+            </div>
+            <a class="btn btn--turq" href={guidesHref(lang)} data-track="related_click" data-track-kind="guides" data-track-item-id="tour-guides">{t('guides.others.all')}</a>
+          </aside>
+        )}
       </div>
     </section>
 
@@ -397,6 +410,10 @@ const jsonLd = [
     background: var(--c-turq); color: var(--c-sand); font-family: var(--font-heading); font-weight: 700; }
   .tip-h { font-size: var(--t-lg); color: var(--c-ink); margin-block-end: var(--s-1); }
   .tip-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+  .pt-guides { margin-block-start: var(--s-6); display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap;
+    background: #fff; border: 1px solid var(--c-line); border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); padding: var(--s-4); }
+  .pt-guides-h { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-1); }
+  .pt-guides-d { font-size: var(--t-sm); color: var(--c-ink-soft); max-inline-size: 60ch; }
   /* القيد على القائمة لا على الحاوية: بوضعه على .faq-in (وهي نفسها .container
      ذات margin-inline:auto) كانت الكتلة كلّها تتوسّط الصفحة بينما كل قسم آخر
      مرتكزٌ على حافة البداية. */

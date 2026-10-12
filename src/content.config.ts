@@ -2,6 +2,7 @@
 // مصدر الحقيقة لكل صفحات المعالم. الحقول العملية موسومة وتُملأ بعد التحقق.
 import { defineCollection } from 'astro:content';
 import { DISTRICTS, DISTRICT_MENTION } from './data/districts';
+import { GUIDE_SPECIALTIES, GUIDE_LANGUAGES } from './data/guides';
 // z من astro/zod لا astro:content: التصدير القديم مهمل في Astro 7 (38 تحذيراً في astro check)
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
@@ -333,4 +334,85 @@ const stay = defineCollection({
   }),
 });
 
-export const collections = { attractions, blog, dining, stay };
+// المرشدون السياحيون المرخّصون — دليل تعريفي يتيح التواصل المباشر، والموقع ليس طرفاً في
+// أي اتفاق أو دفع. الضمان الوحيد رخصة إرشاد سارية يتحقق منها الفريق من صورة الرخصة
+// (الصورة لا تُنشر ولا تُودَع في المستودع). بوابة النشر في src/lib/guides.ts: المسودة
+// ومن انتهت رخصته لا تُبنى صفحته ولا يظهر في الفهرس ولا في sitemap.
+//
+// عربي وإنجليزي معاً لكل حقل نصّي — نمط الحقول `_en` كبقية المجموعات، والمتن العربي
+// (النبذة) في جسم الملف ونظيره في bio_en. لا تقييم ولا سعر ولا عدد جولات ولا مستوى
+// لغة في المخطط عمداً: ما لا حقل له لا يُنشر.
+const isoDay = (d: Date) => d.toISOString().slice(0, 10);
+const pair = (a?: string, b?: string) => Boolean(a?.trim()) === Boolean(b?.trim());
+
+const guides = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/guides' }),
+  schema: z.object({
+    name: z.string().min(1),                   // الاسم العربي كما في الرخصة
+    name_en: z.string().min(1),
+    slug_ar: z.string().regex(/^[ء-ي]+(?:-[ء-ي]+)*$/, 'slug_ar بحروف عربية وشرطات فقط'),
+    slug_en: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug_en بحروف لاتينية صغيرة وأرقام وشرطات'),
+    gender: z.enum(['male', 'female']),        // لصيغة «مرشد مرخّص» / «مرشدة مرخّصة»
+    photo: z.string().regex(/^\/img\/guides\/[a-z0-9-]+$/, 'photo مسار أساسي بلا امتداد تحت /img/guides/').optional(),
+    tagline: z.string().min(1),                // سطر التعريف — بإفادة المرشد
+    tagline_en: z.string().min(1),
+    specialties: z.array(z.enum(GUIDE_SPECIALTIES)).min(1),
+    languages: z.array(z.enum(GUIDE_LANGUAGES)).min(1),
+    // نطاق العمل: مدن وبلدات لا أحياء، فمفاتيح districts.ts (أحياء الهفوف) لا تصلح له
+    areas: z.array(z.object({ ar: z.string().min(1), en: z.string().min(1) })).min(1),
+    license: z.object({
+      number: z.string().min(1),
+      expires: z.coerce.date(),                // آخر يوم سريان — بوابة النشر
+      verifiedAt: z.coerce.date(),             // يوم طابق الفريق صورة الرخصة
+    }),
+    // وسائل التواصل تُصيَّر أزراراً فقط (wa.me / tel: / mailto:) ولا تُعرض نصاً أبداً
+    contact: z.object({
+      whatsapp: z.string().regex(/^[1-9]\d{7,14}$/, 'whatsapp أرقام دولية بلا + ولا مسافات').optional(),
+      phone: z.string().regex(/^\+[1-9]\d{7,14}$/, 'phone بصيغة دولية تبدأ بـ+ بلا مسافات').optional(),
+      email: z.email().optional(),
+    }).refine((c) => Boolean(c.whatsapp || c.phone || c.email), {
+      message: 'contact يلزمه وسيلة تواصل واحدة على الأقل (whatsapp أو phone أو email)',
+    }),
+    // الجولات بإفادة المرشد. attractions مفاتيح slug_en لمعالم قائمة — يتحقق منها
+    // src/lib/guides.ts عند البناء (مفتاح غير موجود يُفشل البناء).
+    tours: z.array(z.object({
+      title: z.string().min(1),
+      title_en: z.string().min(1),
+      duration: z.string().optional(),
+      duration_en: z.string().optional(),
+      groupSize: z.string().optional(),
+      groupSize_en: z.string().optional(),
+      attractions: z.array(z.string()).default([]),
+    }).refine((t) => pair(t.duration, t.duration_en) && pair(t.groupSize, t.groupSize_en), {
+      message: 'duration وgroupSize في الجولة: العربي والإنجليزي معاً أو لا شيء',
+    })).default([]),
+    // تفاصيل الخدمة بإفادة المرشد — كل بند بلغتيه أو لا يُكتب
+    service: z.object({
+      tourLength: z.string().optional(),
+      tourLength_en: z.string().optional(),
+      groupSize: z.string().optional(),
+      groupSize_en: z.string().optional(),
+      meetingPoint: z.string().optional(),
+      meetingPoint_en: z.string().optional(),
+      contactHours: z.string().optional(),
+      contactHours_en: z.string().optional(),
+    }).refine((s) => pair(s.tourLength, s.tourLength_en) && pair(s.groupSize, s.groupSize_en)
+      && pair(s.meetingPoint, s.meetingPoint_en) && pair(s.contactHours, s.contactHours_en), {
+      message: 'بنود service: العربي والإنجليزي معاً أو لا شيء',
+    }).optional(),
+    // صور يملك المرشد حق نشرها — المسار الأساسي بلا امتداد تحت /img/guides/
+    gallery: z.array(z.object({
+      src: z.string().regex(/^\/img\/guides\/[a-z0-9-]+$/),
+      alt: z.string().min(1),
+      alt_en: z.string().min(1),
+    })).default([]),
+    bio_en: z.string().min(1),                 // النبذة الإنجليزية (العربية في جسم الملف)
+    // موافقة المرشد المكتوبة على النشر — بدونها يرفض المخطط الملف
+    consent: z.literal(true, { message: 'consent: true إلزامي — لا يُنشر مرشد بلا موافقته المكتوبة' }),
+    draft: z.boolean().default(false),
+  }).refine((g) => isoDay(g.license.verifiedAt) <= isoDay(g.license.expires), {
+    message: 'license.verifiedAt لا يتأخر عن license.expires',
+  }),
+});
+
+export const collections = { attractions, blog, dining, stay, guides };

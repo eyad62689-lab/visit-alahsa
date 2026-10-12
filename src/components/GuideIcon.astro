@@ -1,0 +1,19 @@
+---
+// أيقونات دليل المرشدين — خطّية بلغة أيقونات الموقع (لا إيموجي ولا أعلام).
+interface Props { name: 'wa' | 'tel' | 'mail' | 'badge' | 'ok' | 'x' | 'flag'; size?: number; }
+const { name, size = 20 } = Astro.props;
+const PATHS: Record<Props['name'], string> = {
+  wa: '<path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 19L4 20z"/><path d="M9.5 9.5c0 2.5 2.5 5 5 5"/>',
+  tel: '<path d="M6 4h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4 6a2 2 0 0 1 2-2z"/>',
+  mail: '<rect x="3.5" y="6" width="17" height="12" rx="2"/><path d="M4 7.5l8 6 8-6"/>',
+  badge: '<circle cx="12" cy="10" r="5.5"/><path d="M9 15l-1.5 5.5L12 18l4.5 2.5L15 15"/>',
+  ok: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  x: '<path d="M6 6l12 12M18 6L6 18"/>',
+  flag: '<path d="M6 21V4M6 5h11l-2 4 2 4H6"/>',
+};
+---
+<svg class="gd-ic" viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><Fragment set:html={PATHS[name]} /></svg>
+
+<style>
+  .gd-ic { flex: none; }
+</style>
