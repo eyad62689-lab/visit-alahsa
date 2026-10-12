@@ -12,7 +12,12 @@
 // عبر خطوط الترجمة حصراً.
 import type { AltLinks } from './utils';
 
-export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: string }> = [
+type Unlisted = { path: string; noindex: boolean; why: string };
+// السجلّ يُبنى بدالة لا بمصفوفة حرفية: يفرغ حين تُعلَن كل الصفحات (كما هو اليوم)، والمساعدات أدناه
+// صحيحة في الحالين — مدخلٌ يُضاف هنا وسيطاً بالصيغة نفسها `{ path, noindex, why }` التي يقرؤها C22.
+const registry = (...entries: Unlisted[]): ReadonlyArray<Unlisted> => entries;
+
+export const UNLISTED = registry(
   // صفحات /ur/ الثلاث (الرئيسية، فهرس المعالم، جبل القارة) أُخرجت 2026-10-12 بدفعة نصوص الواجهة ui.ur
   // (161 سلسلة، الحاكم 90/100) ودفعتَي المعالم الأوليين (عشرة معالم). القياس بمنطق C22 نفسِه: الرئيسية
   // 2% (2/126) · فهرس المعالم 15% (30/200) · جبل القارة 4% (4/100) — والعتبة 20%؛ وكانت حين أُدرجت 89% و94% و71%
@@ -42,7 +47,7 @@ export const UNLISTED: ReadonlyArray<{ path: string; noindex: boolean; why: stri
   // قياسٍ لا نصٌّ إنجليزيّ (POL-DE-55: الفاحصُ يُسقط الفاصلةَ العليا عند تطبيع
   // كيانات HTML فلا يطابق الاسمَ المستثنى)، والأخرى نبذةُ صفحةٍ سقط تحفُّظُها
   // في القرار نفسِه.
-];
+);
 
 const SET = new Set(UNLISTED.map((u) => u.path));
 
