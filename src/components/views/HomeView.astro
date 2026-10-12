@@ -61,14 +61,13 @@ const facts = [
   // (فاصلة عشرية ألمانية — دفعة الواجهة الألمانية 2026-09-03).
   // الرقم الروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05) — فاصلة عشرية روسية.
   // «+» يطابق «أكثر من 2.5 مليون» في المقدمة (2026-10-03)؛ في العربية معزولة اتجاهياً (LRI…PDI) لتبقى قبل الرقم
-  // فرعا ur بالقيمة الإنجليزية عمداً: لصيقة البطاقة نفسها إنجليزية حتى تمرّ دفعة ui.ur بخطها،
-  // والمقياس الأوردي للأعداد الكبيرة (ملین أم لاکھ) بند معايرة مفتوح لا يُحسم هنا.
-  { n: ar ? '\u2066+2.5\u2069 مليون' : zh ? '250 多万' : de ? 'Über 2,5 Mio.' : ru ? 'Более 2,5 млн' : /* ur→en */ '2.5M+', l: t('fact.palms.l') },
+  // الرقم الأوردي من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12): بالمقياس الأوردي «لاکھ».
+  { n: ar ? '\u2066+2.5\u2069 مليون' : zh ? '250 多万' : de ? 'Über 2,5 Mio.' : ru ? 'Более 2,5 млн' : ur ? '25 لاکھ+' : '2.5M+', l: t('fact.palms.l') },
   { n: '2018', l: t('fact.unesco.l') },
   // العدد يُشتقّ من المجموعة لا يُكتب يدوياً: كان مثبَّتاً «+60» بينما المنشور 58،
   // فتضاربت الرئيسية مع الخريطة وllms.txt (تدقيق 2026-08-30). أرقام لاتينية بحكم قاعدة الموقع.
   { n: String(allEntries.length), l: t('fact.sites.l') },
-  { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : ru ? 'Тысячи' : /* ur→en */ 'Thousands', l: t('fact.springs.l') },
+  { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : ru ? 'Тысячи' : ur ? 'ہزاروں' : 'Thousands', l: t('fact.springs.l') },
 ];
 // الصينية: كل هذه الصفحات لها نسخة /zh/ (رحلتي أُضيفت في الدفعة 13 — 2026-09-03)
 const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
@@ -109,8 +108,8 @@ const jsonLd = [
     name: ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : ur ? 'الاحساء' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + ogDefault(lang),
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
-    // اسم الدولة بالأوردو ليس في معجم ur-translation بعد — فرعه بالإنجليزية صراحةً
-    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : ru ? 'Саудовская Аравия' : /* ur→en */ 'Saudi Arabia' },
+    // اسم الدولة بالأوردو من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12)
+    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : ru ? 'Саудовская Аравия' : ur ? 'سعودی عرب' : 'Saudi Arabia' },
     // هوية الوجهة خارج الموقع (بند 3.1 — 2026-09-04): Wikidata Q311341 وقائمة
     // اليونسكو 1563 وويكيبيديا الأربع — الكيان واحد بكل لغة فالقائمة لا تتبدّل.
     sameAs: OASIS_SAMEAS,
@@ -123,8 +122,7 @@ const jsonLd = [
 // والروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05، الحاكم 91/100) — الفاصل U+2014 كالإنجليزية.
 // اسم العلامة في عنوان الرئيسية (2026-09-27): سؤال «ما موقع زوروا الأحساء؟» كان يعيد
 // الموقع في المرتبة 8 بالعربية و5 بالإنجليزية في ChatGPT لأن العلامة غائبة عن العناوين.
-// فرعا ur في العنوان والوصف بالقيمة الإنجليزية عمداً: هيكل الرئيسية الأوردية إنجليزي حتى
-// تمرّ دفعة ui.ur بخطها، ويُستبدلان بمخرجه فيها.
+// والأوردي من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12، الحاكم 90/100).
 const title = ar
   ? 'زوروا الأحساء — دليلك السياحي لأكبر واحة في العالم'
   : zh
@@ -133,8 +131,7 @@ const title = ar
       ? 'Al-Ahsa-Reiseführer – die größte Oase der Welt'
       : ru
         ? 'Аль-Ахса — путеводитель по крупнейшему оазису в мире'
-        // ur→en: القيمة الإنجليزية حتى دفعة ui.ur
-        : 'Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis';
+        : ur ? 'الاحساء: دنیا کے سب سے بڑے نخلستان کا سیاحتی رہنما' : 'Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis';
 const description = ar
   ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
   : zh
@@ -143,8 +140,7 @@ const description = ar
       ? 'Ihr Al-Ahsa-Reiseführer: Jabal al-Qarah, Qasr Ibrahim, Qaisariyah-Souk und Al-Uqair – Karten, Routen, Veranstaltungen und Restaurants im UNESCO-Welterbe.'
       : ru
         ? 'Путеводитель по Аль-Ахсе, оазису из списка ЮНЕСКО: Джабаль-эль-Кара, Каср-Ибрахим, рынок Эль-Кайсария и Эль-Укайр — карты, маршруты, события и рестораны.'
-        // ur→en: القيمة الإنجليزية حتى دفعة ui.ur
-        : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
+        : ur ? 'الاحساء کا سیاحتی رہنما: جبل القارہ، قصر ابراہیم، سوق القیصریہ اور العقیر۔ یونیسکو کے عالمی ورثے میں شامل اس نخلستان کے نقشے، سیر کے راستے، تقریبات اور کھانا پینا۔' : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} />
@@ -376,6 +372,13 @@ const description = ar
   /* الأوردو (نستعليق): لصيقة البطاقة وعنوانها ونبذتها بارتفاع سطر يسع حبر الخط — القياس في DetailView */
   :global([lang='ur']) .att-t { line-height: 1.6; }
   :global([lang='ur']) .att-k, :global([lang='ur']) .att-d { line-height: 2.45; }
+  /* أرقام «بالأرقام»: بارتفاع 1 ينزل حبر النستعليق («ہزاروں»، «25 لاکھ+») تحت صندوقه فيلامس التسمية
+     تحته (مقيس على الصفحة المبنية: 10px عند 28px)؛ والتسمية سطران فيلزمها ارتفاع نص البطاقة. وتسمية
+     اليوم في المسار المقترح بلا تباعد حروف: التباعد يفكّ وصل النستعليق. */
+  :global([lang='ur']) .fact-n { line-height: 1.6; }
+  :global([lang='ur']) .fact-l { line-height: 2.3; }
+  :global([lang='ur']) .route-k { letter-spacing: 0; }
+  :global([lang='ur']) .route-n { line-height: 1.6; }
   .att-more { text-align: center; margin-block-start: var(--s-5); }
   /* مسار «يومان في الواحة» — بطاقتان بيضاوان على الرملي، كلّ محطّة سطرٌ بشارة وقت */
   .route-link { display: inline-flex; align-items: center; gap: var(--s-2); margin-block-start: var(--s-3); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: none; border-block-end: 1.5px solid var(--c-gold); padding-block-end: 2px; transition: color var(--dur) var(--ease); }

@@ -68,6 +68,15 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     taste: 'Кухня Аль-Ахсы',
     events: 'События',
   },
+  // الأوردية من خط ur-translation-pipeline (دفعة نصوص الواجهة 2026-10-12، الحاكم 90/100).
+  ur: {
+    historic: 'تاریخی مقامات',
+    museum: 'عجائب گھر',
+    religious: 'مساجد اور مذہبی مقامات',
+    nature: 'قدرتی مقامات',
+    parks: 'تفریح گاہیں اور باغات',
+    market: 'روایتی بازار',
+  },
 };
 
 export const CATEGORY_ORDER = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'];

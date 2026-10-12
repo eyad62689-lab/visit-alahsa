@@ -19,8 +19,8 @@ export const DIST_LABELS: Record<Lang, { under: string; about: string }> = {
   zh: { under: '不足 1 公里', about: '约 {n} 公里' },
   de: { under: 'unter 1 km', about: 'ca. {n} km' },
   ru: { under: 'менее 1 км', about: 'около {n} км' },
-  // الأوردو بالصياغة الإنجليزية عمداً حتى تمرّ صياغتها بخط ur-translation-pipeline
-  ur: { under: 'under 1 km', about: '~{n} km' },
+  // الأوردية من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12)
+  ur: { under: '1 کلومیٹر سے کم', about: 'تقریباً {n} کلومیٹر' },
 };
 
 export const distLabel = (km: number, lang: Lang): string =>

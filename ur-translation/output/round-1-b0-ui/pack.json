@@ -1,0 +1,5611 @@
+{
+  "batch": "b0-ui",
+  "kind": "ui",
+  "generated_by": "tools/mkpack-ui.mjs",
+  "built_from": "a trace build of a scratch copy of the worktree (_scratch/ui-trace/dist) + src/i18n/ui.ts + src/lib/categories.ts + the inline sites listed in tools/lib/inline-sites.mjs + ur-translation/memory/tm.json",
+  "worktree_ui_sha256": "ed48775970bbb9be0958ed861499ed2106512c71c204ae4411aa497ef72c20b8",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings. Arabic-only content is not imported. precedent = the approved ru / de / zh values of the same string: reference, never source.",
+  "scope_rule": "A string is in the batch because a built page shows it, not because a dictionary lists it. tier \"rendered\" = on the /ur/ home page, attractions index, calibration detail page, or the Urdu block of 404.html. tier \"detail-template\" = not on the calibration detail page, but rendered by the same detail template on attraction pages of batches b1 / b2 (measured on a trace build that gave those ten pages a placeholder title). tier \"other-language-pages\" = in the language-suggestion bar that other languages' pages show a visitor whose browser asks for Urdu — it appears once /ur/ pages are listed (measured on a trace build with the three pages listed). Every other ui.ts key renders only on pages that have no /ur/ version yet and is listed under later_rounds.",
+  "stage_file_shape": "stage files carry strings = { \"<id>\": \"<Urdu>\" } with exactly the ids of this pack's strings, in this order. See tools/README.md.",
+  "placeholder_rule": "A placeholder listed for a string ({op}, {n}) is kept exactly once, untouched. det.openMaps keeps its trailing space + U+2197. Digits that stand in the English stay Latin digits.",
+  "pages": [
+    {
+      "id": "home",
+      "url": "/ur/",
+      "file": "dist/ur/index.html"
+    },
+    {
+      "id": "attractions-index",
+      "url": "/ur/attractions/",
+      "file": "dist/ur/attractions/index.html"
+    },
+    {
+      "id": "detail",
+      "url": "/ur/attractions/jabal-al-qarah/",
+      "file": "dist/ur/attractions/jabal-al-qarah/index.html"
+    },
+    {
+      "id": "404-ur-block",
+      "url": "(any missing /ur/… path)",
+      "file": "dist/404.html"
+    }
+  ],
+  "header_budget": {
+    "rule": "Navigation labels are bound by measurement, not by taste (CLAUDE.md: the header is measured, never estimated). After any change to a navigation label, tools/measure-header-fit.mjs must pass; it requires no overlap, ONE row and a header height of exactly 68px.",
+    "facts": {
+      "measured": "2026-10-12, worktree dist at fce37cf (feat/ur-round-1), headless Chrome via tools/measure-header-fit.mjs (MODE=fit and verify) and a per-link probe",
+      "tool_output_fit": {
+        "ar": {
+          "links": 10,
+          "nav_px": 781,
+          "need_px": 1353,
+          "min_window_px": 1393
+        },
+        "en": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1476,
+          "min_window_px": 1516
+        },
+        "zh": {
+          "links": 10,
+          "nav_px": 684,
+          "need_px": 1220,
+          "min_window_px": 1260
+        },
+        "de": {
+          "links": 9,
+          "nav_px": 924,
+          "need_px": 1481,
+          "min_window_px": 1521
+        },
+        "ru": {
+          "links": 9,
+          "nav_px": 1014,
+          "need_px": 1668,
+          "min_window_px": 1708
+        },
+        "ur": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1478,
+          "min_window_px": 1518
+        }
+      },
+      "tool_output_verify": {
+        "widths_probed": 26,
+        "languages": 6,
+        "failing_cells": 0,
+        "all_cells_pass": true,
+        "exit_code": 0
+      },
+      "ur_today": {
+        "labels": "English fall-back labels (ui.ur is empty), Latin font 13.5px Lora",
+        "bar_shown_from_px": 1518,
+        "collapsed_to_burger_below_px": 1518,
+        "container_cap_px": 1500,
+        "header_height_px": 68,
+        "header_gap_px": 16,
+        "nav_gap_px": 10,
+        "nav_font": "13.5px Lora",
+        "nav_line_height": "23.625px",
+        "brand_px": 71.6,
+        "actions_px": 509.2,
+        "nav_links": [
+          {
+            "en": "Attractions",
+            "px": 70.1,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Trails",
+            "px": 34.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Souqs, Parks & Farms",
+            "px": 133.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Events",
+            "px": 41.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Oasis Fruits",
+            "px": 74.2,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Hasawi Cuisine",
+            "px": 95.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Restaurants & Cafés",
+            "px": 125.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Places to Stay",
+            "px": 86.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Online Stores",
+            "px": 85.5,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Plan your trip",
+            "px": 0,
+            "shown_in_bar": false
+          },
+          {
+            "en": "Map",
+            "px": 27.4,
+            "shown_in_bar": true
+          }
+        ],
+        "action_parts": [
+          {
+            "what": "button.hd-search-btn",
+            "text": "",
+            "px": 95.9
+          },
+          {
+            "what": "a.plan-link",
+            "text": "My saved places 0",
+            "px": 141.8
+          },
+          {
+            "what": "details.lang-menu",
+            "text": "URالعربيةEnglish中文（简体）DeutschРусскийاردو",
+            "px": 85.1
+          },
+          {
+            "what": "a.btn-gold",
+            "text": "Plan your trip",
+            "px": 138.4
+          }
+        ],
+        "nav_links_sum_px": 774.4,
+        "nav_intrinsic_px": 864.4,
+        "need_px": 1478
+      }
+    },
+    "what_the_labels_must_fit": "With the present [lang=\"ur\"] block in Header.astro the bar is shown from a 1518px window and is collapsed into the burger below it (so on 1280-1536px laptop screens the Urdu header is the burger menu, whatever the labels). For that threshold to stay valid the bar may need at most 1478px: brand 71.6 + nav + actions + 2 x 16 gap, i.e. nav (ten labels and nine 10px gaps) plus actions (search button, saved-places link with its counter, language button, gold button) of at most 1374.4px — today 1373.6px with the English labels in a Latin face at 13.5px. The Urdu labels will be set in the Nastaliq face, which is wider and taller: the widths below are the English ones and are a reference, not a prediction. If the Urdu labels need more, the thresholds of the [lang=\"ur\"] block are re-measured and moved (an engineering step for the coordinator), or shorter labels are chosen — measured either way.",
+    "nav_label_ids": [
+      "nav.attractions",
+      "nav.trails",
+      "nav.leisure",
+      "nav.events",
+      "nav.fruits",
+      "nav.food",
+      "nav.dining",
+      "nav.stayShort",
+      "nav.stores",
+      "nav.plan",
+      "nav.map",
+      "nav.myTrip",
+      "data.langShort",
+      "nav.planVisit"
+    ]
+  },
+  "totals": {
+    "strings": 161,
+    "by_tier": {
+      "rendered": 154,
+      "detail-template": 4,
+      "other-language-pages": 3
+    },
+    "by_kind": {
+      "inline string (per-language branch in a view)": 9,
+      "ui.ts key": 142,
+      "data module (per-language table)": 4,
+      "category label": 6
+    },
+    "navigation_labels": 14,
+    "navigation_labels_in_bar": 11,
+    "with_candidate_from_calibration": 9,
+    "with_placeholder": 2,
+    "later_rounds": 121
+  },
+  "strings": {
+    "inline.home.title": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/components/views/HomeView.astro",
+        "anchor": "const title =",
+        "renders_today": "Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis"
+      },
+      "tier": "rendered",
+      "en": "Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis",
+      "ar": "زوروا الأحساء — دليلك السياحي لأكبر واحة في العالم",
+      "placeholders": [],
+      "renders": [
+        "home: head title",
+        "home: head meta @og:title",
+        "home: head meta @twitter:title",
+        "home: head jsonld @name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Аль-Ахса — путеводитель по крупнейшему оазису в мире",
+        "de": "Al-Ahsa-Reiseführer – die größte Oase der Welt",
+        "zh": "哈萨旅游指南——全球最大的绿洲"
+      },
+      "where_it_renders": "home page <title>, og:title, twitter:title and the WebPage name in JSON-LD",
+      "note": "Page title of the home page. No final stop. The English and Arabic lead with the brand name (see owner_questions.brand); the zh/de/ru titles do not."
+    },
+    "inline.home.description": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/components/views/HomeView.astro",
+        "anchor": "const description =",
+        "renders_today": "Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis."
+      },
+      "tier": "rendered",
+      "en": "Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.",
+      "ar": "دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.",
+      "placeholders": [],
+      "renders": [
+        "home: head meta @description",
+        "home: head meta @og:description",
+        "home: head meta @twitter:description"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Путеводитель по Аль-Ахсе, оазису из списка ЮНЕСКО: Джабаль-эль-Кара, Каср-Ибрахим, рынок Эль-Кайсария и Эль-Укайр — карты, маршруты, события и рестораны.",
+        "de": "Ihr Al-Ahsa-Reiseführer: Jabal al-Qarah, Qasr Ibrahim, Qaisariyah-Souk und Al-Uqair – Karten, Routen, Veranstaltungen und Restaurants im UNESCO-Welterbe.",
+        "zh": "沙特阿拉伯哈萨旅游指南：卡拉山、易卜拉欣宫、凯撒利亚集市、乌盖尔（Al-Uqair）。在这片列入联合国教科文组织世界遗产名录的绿洲，查看地图与行程，了解活动与美食。"
+      },
+      "where_it_renders": "home page meta description, og:description, twitter:description",
+      "note": "Search-result snippet: about 150-160 characters in the other languages. Names four attractions (termbase names)."
+    },
+    "home.hero.lead": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.hero.lead"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa — the largest oasis on earth. Where water has run beneath the sand for millennia, and life thrives among more than 2.5 million date palms.",
+      "ar": "الأحساء — أكبر واحةٍ في العالم. حيث يجري الماءُ تحت الرمل منذ آلاف السنين، وتنبض الحياة بين أكثر من 2.5 مليون نخلة.",
+      "placeholders": [],
+      "renders": [
+        "home: head jsonld @description",
+        "home: main text"
+      ],
+      "element": [
+        "p.hero-lead"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Аль-Ахса (или Эль-Хаса) — крупнейший оазис в мире. Здесь вода тысячелетиями течет под песком, а среди более чем 2,5 млн финиковых пальм кипит жизнь.",
+        "de": "Al-Ahsa – die größte Oase der Welt. Hier fließt seit Jahrtausenden Wasser unter dem Sand, und zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert das Leben.",
+        "zh": "哈萨——全球最大的绿洲。数千年来，水在沙下静静流淌，滋养着 250 多万棵椰枣树，生生不息。"
+      }
+    },
+    "inline.home.country": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/components/views/HomeView.astro",
+        "anchor": "name:",
+        "renders_today": "Saudi Arabia"
+      },
+      "tier": "rendered",
+      "en": "Saudi Arabia",
+      "ar": "المملكة العربية السعودية",
+      "placeholders": [],
+      "renders": [
+        "home: head jsonld @name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Саудовская Аравия",
+        "de": "Saudi-Arabien",
+        "zh": "沙特阿拉伯"
+      },
+      "where_it_renders": "home page JSON-LD: TouristDestination.containedInPlace.name (search engines only)",
+      "note": "Country name for structured data. Needs a termbase entry (PLAN: written the day the name enters the termbase)."
+    },
+    "a11y.skip": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "a11y.skip"
+      },
+      "tier": "rendered",
+      "en": "Skip to content",
+      "ar": "تخطَّ إلى المحتوى",
+      "placeholders": [],
+      "renders": [
+        "home: body text",
+        "attractions-index: body text",
+        "detail: body text",
+        "detail:qasr-ibrahim: body text",
+        "detail:al-uqair: body text",
+        "detail:jawatha-mosque: body text",
+        "detail:sahood: body text",
+        "detail:ameeriah: body text",
+        "detail:muhairis: body text",
+        "detail:khuzam: body text",
+        "detail:baiah: body text",
+        "detail:uqair-castle: body text",
+        "detail:jabri-mosque: body text"
+      ],
+      "element": [
+        "a.skip-link"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Перейти к содержимому",
+        "de": "Zum Hauptinhalt springen",
+        "zh": "跳至主要内容"
+      }
+    },
+    "a11y.menu": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "a11y.menu"
+      },
+      "tier": "rendered",
+      "en": "Menu",
+      "ar": "القائمة",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "attractions-index: header attr @aria-label",
+        "detail: header attr @aria-label",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:sahood: header attr @aria-label",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:muhairis: header attr @aria-label",
+        "detail:khuzam: header attr @aria-label",
+        "detail:baiah: header attr @aria-label",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:jabri-mosque: header attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Меню",
+        "de": "Menü",
+        "zh": "菜单"
+      }
+    },
+    "a11y.mainNav": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "a11y.mainNav"
+      },
+      "tier": "rendered",
+      "en": "Main navigation",
+      "ar": "التنقل الرئيسي",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "attractions-index: header attr @aria-label",
+        "detail: header attr @aria-label",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:sahood: header attr @aria-label",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:muhairis: header attr @aria-label",
+        "detail:khuzam: header attr @aria-label",
+        "detail:baiah: header attr @aria-label",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:jabri-mosque: header attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Основная навигация",
+        "de": "Hauptnavigation",
+        "zh": "主导航"
+      }
+    },
+    "nav.attractions": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.attractions"
+      },
+      "tier": "rendered",
+      "en": "Attractions",
+      "ar": "المعالم",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "attractions-index: header text",
+        "detail: header text",
+        "404-ur-block: body text",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header text",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header text",
+        "detail:khuzam: header text",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "a",
+        "a.btn.btn--ghost-nf"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Достопримечательности",
+        "de": "Sehenswürdigkeiten",
+        "zh": "景点"
+      },
+      "same_source_as": [
+        "crumb.attractions"
+      ],
+      "header_px_today": 70.1
+    },
+    "nav.trails": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.trails"
+      },
+      "tier": "rendered",
+      "en": "Trails",
+      "ar": "مسارات",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "home: footer text",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail: header text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: header text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: header text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: header text",
+        "detail:khuzam: footer text",
+        "detail:baiah: header text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Маршруты",
+        "de": "Routen",
+        "zh": "路线"
+      },
+      "header_px_today": 34.9
+    },
+    "nav.leisure": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.leisure"
+      },
+      "tier": "rendered",
+      "en": "Souqs, Parks & Farms",
+      "ar": "الأسواق والمنتزهات والمزارع",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "home: footer text",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail: header text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: header text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: header text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: header text",
+        "detail:khuzam: footer text",
+        "detail:baiah: header text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рынки, парки и фермы",
+        "de": "Souks, Parks und Farmen",
+        "zh": "传统市集、公园与农场"
+      },
+      "header_px_today": 133.3
+    },
+    "nav.events": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.events"
+      },
+      "tier": "rendered",
+      "en": "Events",
+      "ar": "الفعاليات",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "attractions-index: header text",
+        "detail: header text",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header text",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header text",
+        "detail:khuzam: header text",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "События",
+        "de": "Veranstaltungen",
+        "zh": "活动"
+      },
+      "same_source_as": [
+        "cat.events.t",
+        "foot.l.events"
+      ],
+      "header_px_today": 41.9
+    },
+    "nav.fruits": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.fruits"
+      },
+      "tier": "rendered",
+      "en": "Oasis Fruits",
+      "ar": "ثمار الواحة",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "home: footer text",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail: header text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: header text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: header text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: header text",
+        "detail:khuzam: footer text",
+        "detail:baiah: header text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Плоды оазиса",
+        "de": "Oasenfrüchte",
+        "zh": "绿洲水果"
+      },
+      "header_px_today": 74.2
+    },
+    "nav.food": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.food"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Cuisine",
+      "ar": "المطبخ الأحسائي",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "home: footer text",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail: header text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: header text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: header text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: header text",
+        "detail:khuzam: footer text",
+        "detail:baiah: header text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Кухня Аль-Ахсы",
+        "de": "Küche aus Al-Ahsa",
+        "zh": "哈萨美食"
+      },
+      "same_source_as": [
+        "cat.taste.t"
+      ],
+      "header_px_today": 95.4
+    },
+    "nav.dining": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.dining"
+      },
+      "tier": "rendered",
+      "en": "Restaurants & Cafés",
+      "ar": "المطاعم والمقاهي",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "attractions-index: header text",
+        "detail: header text",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header text",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header text",
+        "detail:khuzam: header text",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рестораны и кафе",
+        "de": "Restaurants und Cafés",
+        "zh": "餐厅与咖啡馆"
+      },
+      "same_source_as": [
+        "nav.dine"
+      ],
+      "header_px_today": 125.3
+    },
+    "nav.stayShort": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.stayShort"
+      },
+      "tier": "rendered",
+      "en": "Places to Stay",
+      "ar": "أماكن الإقامة",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "attractions-index: header text",
+        "detail: header text",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header text",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header text",
+        "detail:khuzam: header text",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Где остановиться",
+        "de": "Unterkünfte",
+        "zh": "住宿"
+      },
+      "same_source_as": [
+        "nav.stay"
+      ],
+      "header_px_today": 86.4
+    },
+    "nav.stores": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.stores"
+      },
+      "tier": "rendered",
+      "en": "Online Stores",
+      "ar": "المتاجر",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "attractions-index: header text",
+        "detail: header text",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header text",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header text",
+        "detail:khuzam: header text",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Интернет-магазины",
+        "de": "Online-Shops",
+        "zh": "网店"
+      },
+      "header_px_today": 85.5
+    },
+    "nav.plan": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.plan"
+      },
+      "tier": "rendered",
+      "en": "Plan your trip",
+      "ar": "خطّط لرحلتك",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "home: footer text",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail: header text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: header text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: header text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: header text",
+        "detail:khuzam: footer text",
+        "detail:baiah: header text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a.nav-plan",
+        "a"
+      ],
+      "nav": "bar (collapsed menu only)",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "План поездки",
+        "de": "Reise planen",
+        "zh": "行程规划"
+      },
+      "same_source_as": [
+        "nav.planVisit",
+        "home.plan.cta"
+      ],
+      "header_px_today": 0
+    },
+    "nav.map": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.map"
+      },
+      "tier": "rendered",
+      "en": "Map",
+      "ar": "الخريطة",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "home: footer text",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail: header text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: header text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: header text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: header text",
+        "detail:khuzam: footer text",
+        "detail:baiah: header text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Карта",
+        "de": "Karte",
+        "zh": "地图"
+      },
+      "header_px_today": 27.4
+    },
+    "search.open": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.open"
+      },
+      "tier": "rendered",
+      "en": "Search the site",
+      "ar": "ابحث في الموقع",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "attractions-index: header attr @aria-label",
+        "detail: header attr @aria-label",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:sahood: header attr @aria-label",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:muhairis: header attr @aria-label",
+        "detail:khuzam: header attr @aria-label",
+        "detail:baiah: header attr @aria-label",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:jabri-mosque: header attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Искать по сайту",
+        "de": "Website durchsuchen",
+        "zh": "站内搜索"
+      }
+    },
+    "search.label": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.label"
+      },
+      "tier": "rendered",
+      "en": "Site search",
+      "ar": "بحث في الموقع",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "attractions-index: header attr @aria-label",
+        "detail: header attr @aria-label",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:sahood: header attr @aria-label",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:muhairis: header attr @aria-label",
+        "detail:khuzam: header attr @aria-label",
+        "detail:baiah: header attr @aria-label",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:jabri-mosque: header attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Поиск по сайту",
+        "de": "Website-Suche",
+        "zh": "站内搜索"
+      }
+    },
+    "search.placeholder": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.placeholder"
+      },
+      "tier": "rendered",
+      "en": "Search sights, experiences, places…",
+      "ar": "ابحث عن معلم أو تجربة أو مكان…",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "home: header attr @placeholder",
+        "attractions-index: header attr @aria-label",
+        "attractions-index: header attr @placeholder",
+        "detail: header attr @aria-label",
+        "detail: header attr @placeholder",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:qasr-ibrahim: header attr @placeholder",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:al-uqair: header attr @placeholder",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:jawatha-mosque: header attr @placeholder",
+        "detail:sahood: header attr @aria-label",
+        "detail:sahood: header attr @placeholder",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:ameeriah: header attr @placeholder",
+        "detail:muhairis: header attr @aria-label",
+        "detail:muhairis: header attr @placeholder",
+        "detail:khuzam: header attr @aria-label",
+        "detail:khuzam: header attr @placeholder",
+        "detail:baiah: header attr @aria-label",
+        "detail:baiah: header attr @placeholder",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:uqair-castle: header attr @placeholder",
+        "detail:jabri-mosque: header attr @aria-label",
+        "detail:jabri-mosque: header attr @placeholder"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Искать достопримечательности, впечатления, места…",
+        "de": "Sehenswürdigkeiten, Erlebnisse, Orte suchen…",
+        "zh": "搜索景点、体验或地点…"
+      }
+    },
+    "search.close": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.close"
+      },
+      "tier": "rendered",
+      "en": "Close search",
+      "ar": "إغلاق البحث",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "attractions-index: header attr @aria-label",
+        "detail: header attr @aria-label",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:sahood: header attr @aria-label",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:muhairis: header attr @aria-label",
+        "detail:khuzam: header attr @aria-label",
+        "detail:baiah: header attr @aria-label",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:jabri-mosque: header attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Закрыть поиск",
+        "de": "Suche schließen",
+        "zh": "关闭搜索"
+      }
+    },
+    "search.idle": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.idle"
+      },
+      "tier": "rendered",
+      "en": "Type to search Al-Ahsa’s sights and pages.",
+      "ar": "اكتب للبحث في معالم الأحساء وصفحاتها.",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "home: header script",
+        "attractions-index: header text",
+        "attractions-index: header script",
+        "detail: header text",
+        "detail: header script",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: header script",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: header script",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: header script",
+        "detail:sahood: header text",
+        "detail:sahood: header script",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: header script",
+        "detail:muhairis: header text",
+        "detail:muhairis: header script",
+        "detail:khuzam: header text",
+        "detail:khuzam: header script",
+        "detail:baiah: header text",
+        "detail:baiah: header script",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: header script",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: header script"
+      ],
+      "element": [
+        "p#sm-idle.sm-msg"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Введите слово, чтобы искать по достопримечательностям и страницам Аль-Ахсы.",
+        "de": "Geben Sie einen Suchbegriff ein, um Sehenswürdigkeiten und Seiten zu Al-Ahsa zu durchsuchen.",
+        "zh": "输入关键词，查找哈萨的景点与页面。"
+      }
+    },
+    "search.escHint": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.escHint"
+      },
+      "tier": "rendered",
+      "en": "to close · arrows to move · Enter to open",
+      "ar": "للإغلاق · الأسهم للتنقّل · Enter لفتح النتيجة",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "attractions-index: header text",
+        "detail: header text",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header text",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header text",
+        "detail:khuzam: header text",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "p.sm-foot"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "latin_allowed": [
+        "Enter"
+      ],
+      "latin_allowed_note": "the name printed on a key, like the <kbd>Esc</kbd> that precedes this text in the search dialog",
+      "precedent": {
+        "ru": "закрыть · стрелки — переход · Enter — открыть",
+        "de": "zum Schließen · Pfeiltasten zum Navigieren · Enter zum Öffnen",
+        "zh": "关闭 · 方向键选择 · Enter 打开"
+      }
+    },
+    "search.empty": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.empty"
+      },
+      "tier": "rendered",
+      "en": "No matches — try another word.",
+      "ar": "لا نتائج مطابقة — جرّب كلمة أخرى.",
+      "placeholders": [],
+      "renders": [
+        "home: header script",
+        "attractions-index: header script",
+        "detail: header script",
+        "detail:qasr-ibrahim: header script",
+        "detail:al-uqair: header script",
+        "detail:jawatha-mosque: header script",
+        "detail:sahood: header script",
+        "detail:ameeriah: header script",
+        "detail:muhairis: header script",
+        "detail:khuzam: header script",
+        "detail:baiah: header script",
+        "detail:uqair-castle: header script",
+        "detail:jabri-mosque: header script"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Ничего не найдено — попробуйте другое слово.",
+        "de": "Keine Ergebnisse – versuchen Sie ein anderes Wort.",
+        "zh": "未找到相关结果，换个关键词试试。"
+      }
+    },
+    "search.searching": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.searching"
+      },
+      "tier": "rendered",
+      "en": "Searching…",
+      "ar": "جارٍ البحث…",
+      "placeholders": [],
+      "renders": [
+        "home: header script",
+        "attractions-index: header script",
+        "detail: header script",
+        "detail:qasr-ibrahim: header script",
+        "detail:al-uqair: header script",
+        "detail:jawatha-mosque: header script",
+        "detail:sahood: header script",
+        "detail:ameeriah: header script",
+        "detail:muhairis: header script",
+        "detail:khuzam: header script",
+        "detail:baiah: header script",
+        "detail:uqair-castle: header script",
+        "detail:jabri-mosque: header script"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ищем…",
+        "de": "Suche läuft…",
+        "zh": "搜索中…"
+      }
+    },
+    "search.results": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "search.results"
+      },
+      "tier": "rendered",
+      "en": "Results",
+      "ar": "النتائج",
+      "placeholders": [],
+      "renders": [
+        "home: header script",
+        "attractions-index: header script",
+        "detail: header script",
+        "detail:qasr-ibrahim: header script",
+        "detail:al-uqair: header script",
+        "detail:jawatha-mosque: header script",
+        "detail:sahood: header script",
+        "detail:ameeriah: header script",
+        "detail:muhairis: header script",
+        "detail:khuzam: header script",
+        "detail:baiah: header script",
+        "detail:uqair-castle: header script",
+        "detail:jabri-mosque: header script"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Результаты",
+        "de": "Ergebnisse",
+        "zh": "搜索结果"
+      }
+    },
+    "nav.myTrip": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.myTrip"
+      },
+      "tier": "rendered",
+      "en": "My saved places",
+      "ar": "معالمي المحفوظة",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "home: header text",
+        "home: footer text",
+        "attractions-index: header attr @aria-label",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail: header attr @aria-label",
+        "detail: header text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:qasr-ibrahim: header text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:al-uqair: header text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:jawatha-mosque: header text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: header attr @aria-label",
+        "detail:sahood: header text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:ameeriah: header text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: header attr @aria-label",
+        "detail:muhairis: header text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: header attr @aria-label",
+        "detail:khuzam: header text",
+        "detail:khuzam: footer text",
+        "detail:baiah: header attr @aria-label",
+        "detail:baiah: header text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:uqair-castle: header text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: header attr @aria-label",
+        "detail:jabri-mosque: header text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a.plan-link",
+        "a"
+      ],
+      "nav": "actions",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сохранённые места",
+        "de": "Merkliste",
+        "zh": "我的收藏"
+      },
+      "header_px_today": 141.8
+    },
+    "lang.menu": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "lang.menu"
+      },
+      "tier": "rendered",
+      "en": "Language",
+      "ar": "اللغة",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "attractions-index: header attr @aria-label",
+        "detail: header attr @aria-label",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:sahood: header attr @aria-label",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:muhairis: header attr @aria-label",
+        "detail:khuzam: header attr @aria-label",
+        "detail:baiah: header attr @aria-label",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:jabri-mosque: header attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Язык",
+        "de": "Sprache",
+        "zh": "语言"
+      }
+    },
+    "data.langShort": {
+      "kind": "data module (per-language table)",
+      "source": {
+        "file": "src/i18n/langs.ts",
+        "anchor": "short:",
+        "renders_today": "UR"
+      },
+      "tier": "rendered",
+      "en": "EN",
+      "ar": "ع",
+      "placeholders": [],
+      "renders": [
+        "home: header attr @aria-label",
+        "home: header text",
+        "attractions-index: header attr @aria-label",
+        "attractions-index: header text",
+        "detail: header attr @aria-label",
+        "detail: header text",
+        "detail:qasr-ibrahim: header attr @aria-label",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header attr @aria-label",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header attr @aria-label",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header attr @aria-label",
+        "detail:sahood: header text",
+        "detail:ameeriah: header attr @aria-label",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header attr @aria-label",
+        "detail:muhairis: header text",
+        "detail:khuzam: header attr @aria-label",
+        "detail:khuzam: header text",
+        "detail:baiah: header attr @aria-label",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header attr @aria-label",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header attr @aria-label",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "summary.lang"
+      ],
+      "nav": "actions",
+      "final_stop_in_english": false,
+      "latin_allowed": [
+        "UR"
+      ],
+      "latin_allowed_note": "the Latin code the button shows today; en / de / ru show a Latin code too",
+      "precedent": {
+        "ru": "RU",
+        "de": "DE",
+        "zh": "中文"
+      },
+      "where_it_renders": "header, every /ur/ page: the text of the language button (and inside its aria-label, after lang.menu)",
+      "note": "Set to the Latin code UR by the structural core. Arabic shows one native letter, Chinese a native word, en/de/ru a Latin code. Whether the Urdu button shows a native abbreviation is this batch's call; it sits in the header actions and counts against the header budget."
+    },
+    "nav.planVisit": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.planVisit"
+      },
+      "tier": "rendered",
+      "en": "Plan your trip",
+      "ar": "خطّط لرحلتك",
+      "placeholders": [],
+      "renders": [
+        "home: header text",
+        "attractions-index: header text",
+        "detail: header text",
+        "detail:qasr-ibrahim: header text",
+        "detail:al-uqair: header text",
+        "detail:jawatha-mosque: header text",
+        "detail:sahood: header text",
+        "detail:ameeriah: header text",
+        "detail:muhairis: header text",
+        "detail:khuzam: header text",
+        "detail:baiah: header text",
+        "detail:uqair-castle: header text",
+        "detail:jabri-mosque: header text"
+      ],
+      "element": [
+        "a.btn-gold"
+      ],
+      "nav": "actions",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "План поездки",
+        "de": "Reise planen",
+        "zh": "行程规划"
+      },
+      "same_source_as": [
+        "nav.plan",
+        "home.plan.cta"
+      ],
+      "header_px_today": 0
+    },
+    "video.pause": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "video.pause"
+      },
+      "tier": "rendered",
+      "en": "Pause background video",
+      "ar": "أوقف فيديو الخلفية",
+      "placeholders": [],
+      "renders": [
+        "home: main attr @aria-label",
+        "home: main data @data-label-pause",
+        "attractions-index: main attr @aria-label",
+        "attractions-index: main data @data-label-pause"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Приостановить фоновое видео",
+        "de": "Hintergrundvideo pausieren",
+        "zh": "暂停背景视频"
+      }
+    },
+    "video.play": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "video.play"
+      },
+      "tier": "rendered",
+      "en": "Play background video",
+      "ar": "شغّل فيديو الخلفية",
+      "placeholders": [],
+      "renders": [
+        "home: main data @data-label-play",
+        "attractions-index: main data @data-label-play"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Запустить фоновое видео",
+        "de": "Hintergrundvideo abspielen",
+        "zh": "播放背景视频"
+      }
+    },
+    "home.hero.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.hero.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "UNESCO World Heritage Site · 2018",
+      "ar": "موقع تراث عالمي · اليونسكو 2018",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Объект Всемирного наследия ЮНЕСКО · 2018",
+        "de": "UNESCO-Welterbestätte · 2018",
+        "zh": "联合国教科文组织世界遗产 · 2018"
+      }
+    },
+    "home.hero.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.hero.title"
+      },
+      "tier": "rendered",
+      "en": "Wander among the orchards and palms",
+      "ar": "تجوّل بين البساتين والنخيل",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h1.hero-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Побродите среди садов и пальм",
+        "de": "Unterwegs zwischen Hainen und Dattelpalmen",
+        "zh": "漫步果园，穿行椰枣林间"
+      }
+    },
+    "home.hero.cta1": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.hero.cta1"
+      },
+      "tier": "rendered",
+      "en": "Begin the story",
+      "ar": "ابدأ الحكاية",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.btn.btn--gold"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Начать историю",
+        "de": "Die Geschichte beginnen",
+        "zh": "走进哈萨的故事"
+      }
+    },
+    "home.hero.cta2": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.hero.cta2"
+      },
+      "tier": "rendered",
+      "en": "See the sights",
+      "ar": "شاهد المعالم",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.btn.btn--ghost"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "К достопримечательностям",
+        "de": "Zu den Sehenswürdigkeiten",
+        "zh": "探索景点"
+      }
+    },
+    "a11y.scrollDown": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "a11y.scrollDown"
+      },
+      "tier": "rendered",
+      "en": "Scroll to content",
+      "ar": "انزل إلى المحتوى",
+      "placeholders": [],
+      "renders": [
+        "home: main attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Прокрутить к содержимому",
+        "de": "Zum Inhalt scrollen",
+        "zh": "向下滚动查看更多"
+      }
+    },
+    "home.name.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.name.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "The meaning of the name",
+      "ar": "معنى الاسم",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.eyebrow"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Значение названия",
+        "de": "Die Bedeutung des Namens",
+        "zh": "名字的由来"
+      }
+    },
+    "home.name.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.name.title"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa… where the sand hides its water",
+      "ar": "الأحساء... حيث يُخبّئ الرملُ ماءه",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h2.name-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Аль-Ахса… где песок прячет свою воду",
+        "de": "Al-Ahsa – wo der Sand sein Wasser verbirgt",
+        "zh": "哈萨，沙下藏水之地"
+      }
+    },
+    "home.name.body": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.name.body"
+      },
+      "tier": "rendered",
+      "en": "“Al-Ahsa” is the plural of “hisy” — the sweet water that runs and gathers beneath a thin layer of sand; brush it away and it springs up. So this land has always been: a generous oasis promising life where no one expects it. Walk beside its springs and channels, and you will understand how it earned its name.",
+      "ar": "«الأحساء» جمعُ «حِسْي»: الماء العذب الذي يجري ويُختزَن تحت طبقةٍ رقيقةٍ من الرمل، تكشفه يدُك فلا يلبث أن يفور. هكذا كانت هذه الأرض دائماً — واحةٌ سخيّةٌ تَعِد بالحياة حيث لا يتوقّعها أحد. امشِ قرب عيونها وأفلاجها، وستفهم لماذا حملت اسمها.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.name-body"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "«Аль-Ахса» — множественное число от слова «хиси»: пресная вода, которая течет и скапливается под тонким слоем песка; разгребите его рукой — и вода забьет ключом. Такой эта земля была всегда: щедрый оазис, обещающий жизнь там, где ее никто не ждет. Пройдите вдоль ее источников и каналов — и вы поймете, откуда взялось это название. На этом сайте арабский артикль в названиях мест пишется «Эль-» (Эль-Хуфуф, Эль-Укайр), а название оазиса дано в форме ЮНЕСКО — «Аль-Ахса», хотя в русских справочниках его пишут и «Эль-Хаса».",
+        "de": "„Al-Ahsa“ ist der Plural von „hisy“ – dem Süßwasser, das unter einer dünnen Sandschicht fließt und sich sammelt; streichen Sie den Sand beiseite, und es quillt hervor. So war dieses Land seit jeher: eine großzügige Oase, die Leben verspricht, wo es niemand erwartet. Gehen Sie an ihren Quellen und Kanälen entlang, dann verstehen Sie, woher der Name stammt.",
+        "zh": "“哈萨”（Al-Ahsa）是“希斯”（hisy）的复数——指薄薄一层沙土之下汇聚流淌的甘甜泉水；轻轻拨开沙子，水便涌了上来。这片土地向来如此：总在人们意想不到的地方涌出泉水，长出一片慷慨的绿洲。沿着这里的泉眼与水渠走一走，您就会明白这个名字的由来。"
+      }
+    },
+    "home.cats.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.cats.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Where to begin",
+      "ar": "من أين تبدأ",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.eyebrow"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "С чего начать",
+        "de": "Der Einstieg",
+        "zh": "从哪里开始"
+      }
+    },
+    "home.cats.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.cats.title"
+      },
+      "tier": "rendered",
+      "en": "Choose your path through the oasis",
+      "ar": "اختر طريقك في الواحة",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h2.sec-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Выберите свой путь по оазису",
+        "de": "Wählen Sie Ihren Weg durch die Oase",
+        "zh": "选一条属于您的绿洲之路"
+      }
+    },
+    "home.cats.lead": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.cats.lead"
+      },
+      "tier": "rendered",
+      "en": "Paths that distil Al-Ahsa — each with its own story and rhythm; begin with whatever draws you.",
+      "ar": "مساراتٌ تختصر لك الأحساء — لكلٍّ منها حكايتها وإيقاعها، فابدأ بما يناسب شغفك.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.lead"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Пути, которые вбирают в себя суть Аль-Ахсы: у каждого своя история и свой ритм. Начните с того, что вам ближе.",
+        "de": "Wege, die Ihnen das Wesentliche von Al-Ahsa zeigen – jeder mit eigener Geschichte und eigenem Rhythmus. Beginnen Sie mit dem, was Sie am meisten reizt.",
+        "zh": "每一条都是哈萨的一面，各有故事，各有节奏；从最打动您的那条开始。"
+      }
+    },
+    "cat.historic.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.historic.t"
+      },
+      "tier": "rendered",
+      "en": "Historic landmarks",
+      "ar": "المعالم التاريخية",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.cat-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Исторические достопримечательности",
+        "de": "Historische Stätten",
+        "zh": "历史古迹"
+      },
+      "same_source_as": [
+        "CATEGORY_LABELS.historic"
+      ]
+    },
+    "cat.historic.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.historic.d"
+      },
+      "tier": "rendered",
+      "en": "Forts, palaces and mosques recounting centuries of story.",
+      "ar": "قِلاعٌ وقصورٌ ومساجد تروي قروناً من الحكاية.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.cat-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Крепости, дворцы и мечети, которым есть что рассказать о минувших веках.",
+        "de": "Festungen, Paläste und Moscheen, die von Jahrhunderten erzählen.",
+        "zh": "城堡、宫殿与清真寺，诉说数百年的往事。"
+      }
+    },
+    "cat.nature.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.nature.t"
+      },
+      "tier": "rendered",
+      "en": "Nature",
+      "ar": "الطبيعة",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.cat-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Природа",
+        "de": "Natur",
+        "zh": "自然风光"
+      },
+      "same_source_as": [
+        "CATEGORY_LABELS.nature"
+      ]
+    },
+    "cat.nature.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.nature.d"
+      },
+      "tier": "rendered",
+      "en": "Mountains, caves and palm groves of endless green.",
+      "ar": "جبالٌ وكهوفٌ وبساتين نخيلٍ لا ينتهي خضارها.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.cat-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Горы, пещеры и пальмовые рощи, где зелень не кончается.",
+        "de": "Berge, Höhlen und Palmenhaine in endlosem Grün.",
+        "zh": "山峦、洞穴，还有一望无际的椰枣林。"
+      }
+    },
+    "cat.crafts.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.crafts.t"
+      },
+      "tier": "rendered",
+      "en": "Experiences & crafts",
+      "ar": "التجارب والحِرف",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.cat-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Впечатления и ремёсла",
+        "de": "Erlebnisse und Handwerk",
+        "zh": "体验与手工艺"
+      }
+    },
+    "cat.crafts.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.crafts.d"
+      },
+      "tier": "rendered",
+      "en": "From harvesting dates to embroidering cloaks by local hands.",
+      "ar": "من قطف التمر إلى تطريز البشوت بأيدي أهلها.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.cat-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "От сбора фиников до накидок, расшитых руками местных жителей.",
+        "de": "Von der Dattelernte bis zu Umhängen, die Einheimische von Hand besticken.",
+        "zh": "从采摘椰枣到为比什特长袍刺绣，皆出自当地人之手。"
+      }
+    },
+    "cat.taste.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.taste.t"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Cuisine",
+      "ar": "المطبخ الأحسائي",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.cat-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Кухня Аль-Ахсы",
+        "de": "Küche aus Al-Ahsa",
+        "zh": "哈萨美食"
+      },
+      "same_source_as": [
+        "nav.food"
+      ]
+    },
+    "cat.taste.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.taste.d"
+      },
+      "tier": "rendered",
+      "en": "A warm kitchen: Hasawi rice, harees, mufallaq and date bread.",
+      "ar": "مطبخٌ دافئ: الأرز الأحسائي والهريس والمفلق وخبز التمر.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.cat-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Душевные блюда: рис Аль-Ахсы, хариса из пшеницы, муфаллак и финиковый хлеб.",
+        "de": "Eine Küche voller Wärme: Hasawi-Reis, Harees, Mufallaq und Dattelbrot.",
+        "zh": "热气腾腾的家常美味：哈萨焖饭、哈里斯、穆法拉格和椰枣面包。"
+      }
+    },
+    "cat.market.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.market.t"
+      },
+      "tier": "rendered",
+      "en": "Heritage souqs",
+      "ar": "الأسواق التراثية",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.cat-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Традиционные рынки",
+        "de": "Traditionelle Souks",
+        "zh": "传统市集"
+      },
+      "same_source_as": [
+        "CATEGORY_LABELS.market"
+      ]
+    },
+    "cat.market.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.market.d"
+      },
+      "tier": "rendered",
+      "en": "Al-Qaisariyah, with the scent of perfume and the gleam of gold and copper.",
+      "ar": "القيصرية وعبق العطر والذهب والنحاس.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.cat-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Рынок Эль-Кайсария: аромат духов, блеск золота и меди.",
+        "de": "Der Qaisariyah-Souk – mit Parfümduft und dem Glanz von Gold und Kupfer.",
+        "zh": "凯撒利亚集市里，香水芬芳四溢，黄金与铜器熠熠生辉。"
+      }
+    },
+    "cat.events.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.events.t"
+      },
+      "tier": "rendered",
+      "en": "Events",
+      "ar": "الفعاليات",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.cat-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "События",
+        "de": "Veranstaltungen",
+        "zh": "活动"
+      },
+      "same_source_as": [
+        "nav.events",
+        "foot.l.events"
+      ]
+    },
+    "cat.events.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "cat.events.d"
+      },
+      "tier": "rendered",
+      "en": "Festivals reviving the heritage all year round.",
+      "ar": "مهرجاناتٌ تُحيي التراث على مدار العام.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.cat-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Фестивали, которые круглый год оживляют наследие.",
+        "de": "Festivals, die das ganze Jahr über das Erbe lebendig halten.",
+        "zh": "节庆贯穿全年，让传统在今天焕发生机。"
+      }
+    },
+    "home.feat.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.feat.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Not to be missed",
+      "ar": "معالم لا تُفوَّت",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.eyebrow"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Не пропустите",
+        "de": "Nicht verpassen",
+        "zh": "不容错过"
+      }
+    },
+    "home.feat.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.feat.title"
+      },
+      "tier": "rendered",
+      "en": "The oasis’s foremost landmarks",
+      "ar": "أبرزُ معالم الواحة",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h2.sec-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Главные достопримечательности оазиса",
+        "de": "Die bedeutendsten Sehenswürdigkeiten der Oase",
+        "zh": "绿洲的标志性景点"
+      }
+    },
+    "home.feat.lead": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.feat.lead"
+      },
+      "tier": "rendered",
+      "en": "From a cave-riddled mountain to a port on the Gulf — four landmarks that capture the spirit of the place.",
+      "ar": "من جبلٍ مأهولٍ بالكهوف إلى ميناءٍ على الخليج — أربعةُ معالمَ تختصر روح المكان.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.lead"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "От горы, изрытой пещерами, до порта на берегу Залива — четыре достопримечательности, которые передают дух этих мест.",
+        "de": "Von einem Berg voller Höhlen bis zu einem Hafen am Golf – vier Sehenswürdigkeiten, die den Geist dieses Ortes einfangen.",
+        "zh": "从遍布洞穴的山峦，到海湾之滨的古港——四个地标，勾勒出这片土地的模样。"
+      }
+    },
+    "home.feat.all": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.feat.all"
+      },
+      "tier": "rendered",
+      "en": "See all attractions",
+      "ar": "شاهد كل المعالم",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.btn.btn--turq"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Все достопримечательности",
+        "de": "Alle Sehenswürdigkeiten",
+        "zh": "查看全部景点"
+      }
+    },
+    "home.route.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Suggested route",
+      "ar": "مسار مقترح",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.eyebrow"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рекомендуемый маршрут",
+        "de": "Empfohlene Route",
+        "zh": "推荐路线"
+      }
+    },
+    "home.route.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.title"
+      },
+      "tier": "rendered",
+      "en": "Two days in the oasis",
+      "ar": "يومان في الواحة",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h2.sec-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Два дня в оазисе",
+        "de": "Zwei Tage in der Oase",
+        "zh": "绿洲两日行"
+      }
+    },
+    "home.route.lead": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.lead"
+      },
+      "tier": "rendered",
+      "en": "Two days are enough to feel the oasis — its heritage heart first, then its water and green. Take the route as it stands, or swap its stops as you please.",
+      "ar": "يومان يكفيان لتلمس روح الواحة — قلبها التراثي أوّلاً، ثم ماؤها وخضرتها. خذ المسار كما هو، أو بدّل محطّاته كما يحلو لك.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.lead"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Двух дней хватит, чтобы почувствовать оазис: сначала историческое сердце, потом вода и зелень. Пройдите маршрут как он есть или поменяйте остановки на свой вкус.",
+        "de": "Zwei Tage genügen, um die Oase zu spüren: zuerst ihr historisches Herz, dann ihr Wasser und ihr Grün. Folgen Sie der Route, wie sie ist, oder tauschen Sie die Stationen nach Belieben.",
+        "zh": "两天，足以读懂这片绿洲：第一天走进遗产腹地，第二天看水与绿。可以照着走，也可以随意调换其中的站点。"
+      }
+    },
+    "home.route.link": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.link"
+      },
+      "tier": "rendered",
+      "en": "Arrange your own route in “My saved places”",
+      "ar": "رتّب مسارك في «معالمي المحفوظة»",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.route-link"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Соберите свой маршрут в разделе «Сохранённые места»",
+        "de": "Ihre Route mit der Merkliste zusammenstellen",
+        "zh": "在“我的收藏”中定制专属路线"
+      }
+    },
+    "home.route.d1.k": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.d1.k"
+      },
+      "tier": "rendered",
+      "en": "Day one",
+      "ar": "اليوم الأول",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.route-k"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "День первый",
+        "de": "Tag 1",
+        "zh": "第 1 天"
+      }
+    },
+    "home.route.d1.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.d1.t"
+      },
+      "tier": "rendered",
+      "en": "The heritage heart",
+      "ar": "قلب التراث",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.route-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Историческое сердце",
+        "de": "Das historische Herz",
+        "zh": "遗产腹地"
+      }
+    },
+    "home.route.time.morning": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.time.morning"
+      },
+      "tier": "rendered",
+      "en": "Morning",
+      "ar": "الصباح",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.route-time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Утро",
+        "de": "Vormittag",
+        "zh": "上午"
+      }
+    },
+    "home.route.s1.n": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s1.n"
+      },
+      "tier": "rendered",
+      "en": "Qasr Ibrahim",
+      "ar": "قصر إبراهيم",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.route-n"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Каср-Ибрахим",
+        "de": "Qasr Ibrahim",
+        "zh": "易卜拉欣宫"
+      }
+    },
+    "home.route.s1.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s1.d"
+      },
+      "tier": "rendered",
+      "en": "Begin at the fortress that gathers mosque, barracks and towers beneath one wall.",
+      "ar": "ابدأ من الحصن الذي يجمع المسجد والثكنات والأبراج تحت سورٍ واحد.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.route-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Начните с крепости, которая собрала за одной стеной мечеть, казармы и башни.",
+        "de": "Beginnen Sie bei der Festung: Sie vereint Moschee, Kasernen und Türme hinter einer einzigen Mauer.",
+        "zh": "从这座城堡开始：同一道围墙之内，清真寺、军营与瞭望塔比邻而立。"
+      }
+    },
+    "home.route.time.day": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.time.day"
+      },
+      "tier": "rendered",
+      "en": "Daytime",
+      "ar": "النهار",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.route-time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "В светлое время",
+        "de": "Tagsüber",
+        "zh": "白天"
+      }
+    },
+    "home.route.s3.n": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s3.n"
+      },
+      "tier": "rendered",
+      "en": "Jabal Al-Qarah",
+      "ar": "جبل القارة",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.route-n"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Джабаль-эль-Кара",
+        "de": "Jabal al-Qarah",
+        "zh": "卡拉山"
+      },
+      "tm_approved": [
+        {
+          "ur": "جبل القارہ",
+          "page": "jabal-al-qarah",
+          "field": "title"
+        }
+      ],
+      "termbase_key": [
+        "جبل القارہ"
+      ]
+    },
+    "home.route.s3.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s3.d"
+      },
+      "tier": "rendered",
+      "en": "Climb by day, and watch the sea of palms unfold below you.",
+      "ar": "اصعد في النهار، وشاهد بحر النخيل يمتدّ تحتك.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.route-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Поднимитесь при свете дня и посмотрите, как под вами расстилается море пальм.",
+        "de": "Steigen Sie tagsüber hinauf und sehen Sie das Meer aus Dattelpalmen unter sich.",
+        "zh": "白天登高，看脚下椰枣林如海铺展。"
+      }
+    },
+    "home.route.time.evening": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.time.evening"
+      },
+      "tier": "rendered",
+      "en": "Evening",
+      "ar": "المساء",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.route-time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Вечер",
+        "de": "Abend",
+        "zh": "傍晚"
+      }
+    },
+    "home.route.s2.n": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s2.n"
+      },
+      "tier": "rendered",
+      "en": "Qaisariyah Souq",
+      "ar": "سوق القيصرية",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.route-n"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рынок Эль-Кайсария",
+        "de": "Qaisariyah-Souk",
+        "zh": "凯撒利亚集市"
+      }
+    },
+    "home.route.s2.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s2.d"
+      },
+      "tier": "rendered",
+      "en": "Passages fragrant with perfume and gleaming with copper, and cloaks embroidered by local hands.",
+      "ar": "ممرّاتٌ عابقة بالعطر والنحاس، وبشوتٌ تُطرَّز بأيدي أهلها.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.route-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Проходы, где пахнет духами и блестит медная утварь, и накидки, расшитые руками местных жителей.",
+        "de": "Gassen, in denen es nach Parfüm duftet und Kupferwaren glänzen, dazu Umhänge, von einheimischen Händen bestickt.",
+        "zh": "巷子里香水气息弥漫，铜器泛着光泽，比什特长袍上的刺绣出自当地人之手。"
+      }
+    },
+    "home.route.d2.k": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.d2.k"
+      },
+      "tier": "rendered",
+      "en": "Day two",
+      "ar": "اليوم الثاني",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.route-k"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "День второй",
+        "de": "Tag 2",
+        "zh": "第 2 天"
+      }
+    },
+    "home.route.d2.t": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.d2.t"
+      },
+      "tier": "rendered",
+      "en": "Water and green",
+      "ar": "الماء والخضرة",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h3.route-t"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Вода и зелень",
+        "de": "Wasser und Grün",
+        "zh": "水与绿"
+      }
+    },
+    "home.route.s4.n": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s4.n"
+      },
+      "tier": "rendered",
+      "en": "Jawatha Mosque",
+      "ar": "مسجد جواثا",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.route-n"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Мечеть Джавата",
+        "de": "Jawatha-Moschee",
+        "zh": "贾瓦塔清真寺"
+      }
+    },
+    "home.route.s4.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s4.d"
+      },
+      "tier": "rendered",
+      "en": "Mud walls carrying one of the oldest stories in Islam.",
+      "ar": "جدرانٌ من طينٍ تحمل واحدةً من أقدم حكايات الإسلام.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.route-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Глинобитные стены, хранящие одну из древнейших историй ислама.",
+        "de": "Lehmmauern, die eine der ältesten Geschichten des Islams tragen.",
+        "zh": "泥土砌成的墙垣，承载着伊斯兰史上最古老的故事之一。"
+      }
+    },
+    "home.route.time.lateAfternoon": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.time.lateAfternoon"
+      },
+      "tier": "rendered",
+      "en": "Late afternoon",
+      "ar": "آخر العصر",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.route-time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Предвечерние часы",
+        "de": "Später Nachmittag",
+        "zh": "下午晚些时候"
+      }
+    },
+    "home.route.s5.n": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s5.n"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Lime Farm",
+      "ar": "مزرعة الليمون الحساوي",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.route-n"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ферма лайма Аль-Ахсы",
+        "de": "Hasawi-Limettenfarm",
+        "zh": "哈萨青柠农场"
+      }
+    },
+    "home.route.s5.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s5.d"
+      },
+      "tier": "rendered",
+      "en": "Green groves and fragrant citrus, with Hasawi lime picking in season, from mid-June to the end of August.",
+      "ar": "خضرةٌ وحمضياتٌ يفوح عطرها، وقطفُ الليمون الأحسائي في موسمه من منتصف يونيو إلى نهاية أغسطس.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.route-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Зелень и ароматные цитрусовые, а в сезон (с середины июня до конца августа) — сбор лайма Аль-Ахсы.",
+        "de": "Grün und Zitrusduft, in der Saison von Mitte Juni bis Ende August das Pflücken der Hasawi-Limetten.",
+        "zh": "林荫深深，柑橘飘香；应季时（6 月中旬至 8 月底）还能亲手采摘哈萨青柠。"
+      }
+    },
+    "home.route.time.sunset": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.time.sunset"
+      },
+      "tier": "rendered",
+      "en": "Sunset",
+      "ar": "الغروب",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.route-time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Закат",
+        "de": "Sonnenuntergang",
+        "zh": "日落"
+      }
+    },
+    "home.route.s6.n": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s6.n"
+      },
+      "tier": "rendered",
+      "en": "Al-Uqair",
+      "ar": "العُقير",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.route-n"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Эль-Укайр",
+        "de": "Al-Uqair",
+        "zh": "乌盖尔"
+      }
+    },
+    "home.route.s6.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.route.s6.d"
+      },
+      "tier": "rendered",
+      "en": "Close at an ancient port where desert sands meet the blue of the Gulf.",
+      "ar": "اختم بميناءٍ قديم حيث تلامس رمالُ الصحراء زرقةَ الخليج.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.route-d"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Завершите маршрут в старинном порту, где пески пустыни встречаются с синевой Залива.",
+        "de": "Zum Abschluss ein alter Hafen, an dem der Wüstensand auf das Blau des Golfs trifft.",
+        "zh": "行程在这座古港收尾——大漠的沙在这里与海湾的蔚蓝相遇。"
+      }
+    },
+    "home.why.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.why.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Why Al-Ahsa",
+      "ar": "لماذا الأحساء",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Почему Аль-Ахса",
+        "de": "Warum Al-Ahsa",
+        "zh": "为什么是哈萨"
+      }
+    },
+    "home.why.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.why.title"
+      },
+      "tier": "rendered",
+      "en": "Numbers that tell the oasis",
+      "ar": "أرقامٌ تروي الواحة",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h2.sec-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Цифры, которые рассказывают об оазисе",
+        "de": "Zahlen, die von der Oase erzählen",
+        "zh": "用数字读懂这片绿洲"
+      }
+    },
+    "inline.home.fact.palms.n": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/components/views/HomeView.astro",
+        "anchor": "{ n:",
+        "renders_today": "2.5M+"
+      },
+      "tier": "rendered",
+      "en": "2.5M+",
+      "ar": "⁦+2.5⁩ مليون",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "bdi"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Более 2,5 млн",
+        "de": "Über 2,5 Mio.",
+        "zh": "250 多万"
+      },
+      "where_it_renders": "home page, \"Why Al-Ahsa\" band: the big figure above fact.palms.l",
+      "note": "A NUMBER with its scale word. Open item P10 (large-number scale) bites here: it is not settled silently. Read together with fact.palms.l, which follows it on the card."
+    },
+    "fact.palms.l": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "fact.palms.l"
+      },
+      "tier": "rendered",
+      "en": "palms — the largest oasis on earth",
+      "ar": "نخلة — أكبر واحةٍ في العالم",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.fact-l"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "пальм в крупнейшем оазисе мира",
+        "de": "Dattelpalmen – die größte Oase der Welt",
+        "zh": "棵椰枣树，全球最大的绿洲"
+      }
+    },
+    "fact.unesco.l": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "fact.unesco.l"
+      },
+      "tier": "rendered",
+      "en": "inscribed on UNESCO World Heritage",
+      "ar": "تسجيل اليونسكو للتراث العالمي",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.fact-l"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "год включения в Список всемирного наследия ЮНЕСКО",
+        "de": "Aufnahme in die UNESCO-Welterbeliste",
+        "zh": "年列入联合国教科文组织世界遗产名录"
+      }
+    },
+    "fact.sites.l": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "fact.sites.l"
+      },
+      "tier": "rendered",
+      "en": "sites and destinations to discover",
+      "ar": "معلماً ووجهةً للاكتشاف",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.fact-l"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "мест и направлений, которые стоит открыть для себя",
+        "de": "Sehenswürdigkeiten und Ziele zum Entdecken",
+        "zh": "处景点，等您逐一探索"
+      }
+    },
+    "inline.home.fact.springs.n": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/components/views/HomeView.astro",
+        "anchor": "{ n:",
+        "renders_today": "Thousands"
+      },
+      "tier": "rendered",
+      "en": "Thousands",
+      "ar": "آلاف",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "bdi"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Тысячи",
+        "de": "Tausende",
+        "zh": "数千"
+      },
+      "where_it_renders": "home page, \"Why Al-Ahsa\" band: the word above fact.springs.l",
+      "note": "One word standing where the other cards carry a figure. Read together with fact.springs.l."
+    },
+    "fact.springs.l": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "fact.springs.l"
+      },
+      "tier": "rendered",
+      "en": "springs and channels water the land",
+      "ar": "العيون والأفلاج تروي الأرض",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.fact-l"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "источников и каналов питают эту землю",
+        "de": "Quellen und Kanäle bewässern das Land",
+        "zh": "处泉眼与水渠，滋养着这片土地"
+      }
+    },
+    "home.plan.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.plan.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Next step",
+      "ar": "الخطوة التالية",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "span.eyebrow"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Следующий шаг",
+        "de": "Der nächste Schritt",
+        "zh": "下一步"
+      }
+    },
+    "home.plan.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.plan.title"
+      },
+      "tier": "rendered",
+      "en": "Your journey to Al-Ahsa starts now",
+      "ar": "رحلتُك إلى الأحساء تبدأ الآن",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "h2.plan-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ваше путешествие в Аль-Ахсу начинается сейчас",
+        "de": "Ihre Reise nach Al-Ahsa beginnt jetzt",
+        "zh": "您的哈萨之旅，此刻启程"
+      }
+    },
+    "home.plan.lead": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.plan.lead"
+      },
+      "tier": "rendered",
+      "en": "Gather your favourite sights, arrange your days, and enjoy the oasis. We have set up your starting point.",
+      "ar": "اجمع معالمك المفضّلة، ورتّب أيامك، واستمتع بالواحة. جهّزنا لك نقطة البداية.",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "p.lead.plan-lead"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Соберите любимые места, распределите их по дням и наслаждайтесь оазисом. Отправную точку мы уже подготовили.",
+        "de": "Sammeln Sie Ihre liebsten Sehenswürdigkeiten, planen Sie Ihre Tage und genießen Sie die Oase. Den Ausgangspunkt haben wir für Sie vorbereitet.",
+        "zh": "收藏心仪的景点，安排好每一天，把时间留给绿洲。第一步，从这里开始。"
+      }
+    },
+    "home.plan.cta": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "home.plan.cta"
+      },
+      "tier": "rendered",
+      "en": "Plan your trip",
+      "ar": "خطّط لرحلتك",
+      "placeholders": [],
+      "renders": [
+        "home: main text"
+      ],
+      "element": [
+        "a.btn.btn--gold"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "План поездки",
+        "de": "Reise planen",
+        "zh": "行程规划"
+      },
+      "same_source_as": [
+        "nav.plan",
+        "nav.planVisit"
+      ]
+    },
+    "foot.tagline": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.tagline"
+      },
+      "tier": "rendered",
+      "en": "An oasis with a story. Wander among its orchards and palms.",
+      "ar": "واحةٌ لها حكاية. تجوّل بين البساتين والنخيل.",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "p.ft-tag"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Оазис со своей историей. Побродите среди его садов и пальм.",
+        "de": "Eine Oase, die eine Geschichte erzählt. Unterwegs zwischen ihren Hainen und Dattelpalmen.",
+        "zh": "一片有故事的绿洲。漫步在果园与椰枣林间。"
+      }
+    },
+    "foot.col.discover": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.col.discover"
+      },
+      "tier": "rendered",
+      "en": "Discover",
+      "ar": "اكتشف",
+      "placeholders": [],
+      "renders": [
+        "home: footer attr @aria-label",
+        "home: footer text",
+        "attractions-index: footer attr @aria-label",
+        "attractions-index: footer text",
+        "detail: footer attr @aria-label",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer attr @aria-label",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer attr @aria-label",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer attr @aria-label",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer attr @aria-label",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer attr @aria-label",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer attr @aria-label",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer attr @aria-label",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer attr @aria-label",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer attr @aria-label",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer attr @aria-label",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "h2.ft-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Путеводитель",
+        "de": "Entdecken",
+        "zh": "探索"
+      }
+    },
+    "CATEGORY_LABELS.historic": {
+      "kind": "category label",
+      "source": {
+        "file": "src/lib/categories.ts",
+        "key": "CATEGORY_LABELS.ur.historic"
+      },
+      "tier": "rendered",
+      "en": "Historic landmarks",
+      "ar": "المعالم التاريخية",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: main text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: head jsonld @touristType",
+        "detail:qasr-ibrahim: main text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: head jsonld @touristType",
+        "detail:al-uqair: main text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: head jsonld @touristType",
+        "detail:sahood: main text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: head jsonld @touristType",
+        "detail:ameeriah: main text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: head jsonld @touristType",
+        "detail:muhairis: main text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: head jsonld @touristType",
+        "detail:khuzam: main text",
+        "detail:khuzam: footer text",
+        "detail:baiah: head jsonld @touristType",
+        "detail:baiah: main text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: head jsonld @touristType",
+        "detail:uqair-castle: main text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a",
+        "h2#h-historic.cat-sec-t",
+        "span.t-caption.lc-k",
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Исторические достопримечательности",
+        "de": "Historische Stätten",
+        "zh": "历史古迹"
+      },
+      "same_source_as": [
+        "cat.historic.t"
+      ]
+    },
+    "CATEGORY_LABELS.nature": {
+      "kind": "category label",
+      "source": {
+        "file": "src/lib/categories.ts",
+        "key": "CATEGORY_LABELS.ur.nature"
+      },
+      "tier": "rendered",
+      "en": "Nature",
+      "ar": "الطبيعة",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: main text",
+        "attractions-index: footer text",
+        "detail: head jsonld @touristType",
+        "detail: main text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: main text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: main text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: main text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a",
+        "h2#h-nature.cat-sec-t",
+        "span.t-caption.lc-k",
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Природа",
+        "de": "Natur",
+        "zh": "自然风光"
+      },
+      "candidate": {
+        "ur": "فطرت",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.cat.nature)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27); weighed: «فطرت» (in the text) / «قدرت» / «قدرتی مقامات»"
+      },
+      "same_source_as": [
+        "cat.nature.t"
+      ]
+    },
+    "nav.dine": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.dine"
+      },
+      "tier": "rendered",
+      "en": "Restaurants & Cafés",
+      "ar": "المطاعم والمقاهي",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рестораны и кафе",
+        "de": "Restaurants und Cafés",
+        "zh": "餐厅与咖啡馆"
+      },
+      "same_source_as": [
+        "nav.dining"
+      ]
+    },
+    "nav.stay": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.stay"
+      },
+      "tier": "rendered",
+      "en": "Places to Stay",
+      "ar": "أماكن الإقامة",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Где остановиться",
+        "de": "Unterkünfte",
+        "zh": "住宿"
+      },
+      "same_source_as": [
+        "nav.stayShort"
+      ]
+    },
+    "foot.l.events": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.events"
+      },
+      "tier": "rendered",
+      "en": "Events",
+      "ar": "الفعاليات",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "События",
+        "de": "Veranstaltungen",
+        "zh": "活动"
+      },
+      "same_source_as": [
+        "nav.events",
+        "cat.events.t"
+      ]
+    },
+    "nav.blog": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.blog"
+      },
+      "tier": "rendered",
+      "en": "Blog",
+      "ar": "المدونة",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Блог",
+        "de": "Blog",
+        "zh": "博客"
+      }
+    },
+    "foot.l.about": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.about"
+      },
+      "tier": "rendered",
+      "en": "About Al-Ahsa",
+      "ar": "عن الأحساء",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Об Аль-Ахсе",
+        "de": "Über Al-Ahsa",
+        "zh": "关于哈萨"
+      }
+    },
+    "foot.l.unesco": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.unesco"
+      },
+      "tier": "rendered",
+      "en": "UNESCO World Heritage",
+      "ar": "واحة الأحساء في اليونسكو",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Всемирное наследие ЮНЕСКО",
+        "de": "UNESCO-Welterbe",
+        "zh": "联合国教科文组织世界遗产"
+      }
+    },
+    "foot.col.plan": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.col.plan"
+      },
+      "tier": "rendered",
+      "en": "Plan",
+      "ar": "خطّط",
+      "placeholders": [],
+      "renders": [
+        "home: footer attr @aria-label",
+        "home: footer text",
+        "attractions-index: footer attr @aria-label",
+        "attractions-index: footer text",
+        "detail: footer attr @aria-label",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer attr @aria-label",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer attr @aria-label",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer attr @aria-label",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer attr @aria-label",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer attr @aria-label",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer attr @aria-label",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer attr @aria-label",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer attr @aria-label",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer attr @aria-label",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer attr @aria-label",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "h2.ft-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Планирование",
+        "de": "Planen",
+        "zh": "出行指南"
+      }
+    },
+    "foot.l.getThere": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.getThere"
+      },
+      "tier": "rendered",
+      "en": "Getting there",
+      "ar": "كيف تصل",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Как добраться",
+        "de": "Anreise",
+        "zh": "交通指南"
+      }
+    },
+    "foot.col.site": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.col.site"
+      },
+      "tier": "rendered",
+      "en": "Site",
+      "ar": "الموقع",
+      "placeholders": [],
+      "renders": [
+        "home: footer attr @aria-label",
+        "home: footer text",
+        "attractions-index: footer attr @aria-label",
+        "attractions-index: footer text",
+        "detail: footer attr @aria-label",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer attr @aria-label",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer attr @aria-label",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer attr @aria-label",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer attr @aria-label",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer attr @aria-label",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer attr @aria-label",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer attr @aria-label",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer attr @aria-label",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer attr @aria-label",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer attr @aria-label",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "h2.ft-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "О сайте",
+        "de": "Service",
+        "zh": "关于本站"
+      }
+    },
+    "foot.l.privacy": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.privacy"
+      },
+      "tier": "rendered",
+      "en": "Policies & Terms",
+      "ar": "السياسات والشروط",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Правила и условия использования",
+        "de": "Richtlinien und Nutzungsbedingungen",
+        "zh": "政策与条款"
+      }
+    },
+    "foot.l.report": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.report"
+      },
+      "tier": "rendered",
+      "en": "Report an error",
+      "ar": "أبلغ عن خطأ",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сообщить об ошибке",
+        "de": "Fehler melden",
+        "zh": "内容纠错"
+      }
+    },
+    "foot.l.contact": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.contact"
+      },
+      "tier": "rendered",
+      "en": "Contact us",
+      "ar": "تواصل معنا",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Свяжитесь с нами",
+        "de": "Kontakt",
+        "zh": "联系我们"
+      }
+    },
+    "foot.l.whatsapp": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.l.whatsapp"
+      },
+      "tier": "rendered",
+      "en": "WhatsApp",
+      "ar": "واتساب",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a.ft-icon-link"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "WhatsApp",
+        "de": "WhatsApp",
+        "zh": "WhatsApp"
+      }
+    },
+    "foot.independence": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "foot.independence"
+      },
+      "tier": "rendered",
+      "en": "Visit Al-Ahsa is an independent visitor guide. It is not a government body and does not represent any official authority.",
+      "ar": "زوروا الأحساء موقع إرشادي مستقل، ليس جهة حكومية ولا يمثل أي هيئة رسمية.",
+      "placeholders": [],
+      "renders": [
+        "home: footer text",
+        "attractions-index: footer text",
+        "detail: footer text",
+        "detail:qasr-ibrahim: footer text",
+        "detail:al-uqair: footer text",
+        "detail:jawatha-mosque: footer text",
+        "detail:sahood: footer text",
+        "detail:ameeriah: footer text",
+        "detail:muhairis: footer text",
+        "detail:khuzam: footer text",
+        "detail:baiah: footer text",
+        "detail:uqair-castle: footer text",
+        "detail:jabri-mosque: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Visit Al-Ahsa — независимый сайт-путеводитель. Он не является государственным органом и не выступает от имени какой-либо официальной инстанции.",
+        "de": "Visit Al-Ahsa ist ein unabhängiger Online-Reiseführer. Die Website ist keine Regierungsstelle und vertritt keine offizielle Behörde.",
+        "zh": "Visit Al-Ahsa 是独立的游览指南网站，并非政府机构，也不代表任何官方部门。"
+      }
+    },
+    "list.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.title"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Attractions",
+      "ar": "معالم الأحساء",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: head title",
+        "attractions-index: head meta @og:title",
+        "attractions-index: head meta @twitter:title",
+        "attractions-index: head jsonld @name",
+        "attractions-index: main text"
+      ],
+      "element": [
+        "h1.pgh-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Достопримечательности Аль-Ахсы",
+        "de": "Sehenswürdigkeiten in Al-Ahsa",
+        "zh": "哈萨景点"
+      }
+    },
+    "list.lead": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.lead"
+      },
+      "tier": "rendered",
+      "en": "From a cave-riddled mountain to a port on the Gulf — pick a category and start exploring.",
+      "ar": "من جبلٍ مأهولٍ بالكهوف إلى ميناءٍ على الخليج — اختر فئةً وابدأ الاكتشاف.",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: head meta @description",
+        "attractions-index: head meta @og:description",
+        "attractions-index: head meta @twitter:description",
+        "attractions-index: main text"
+      ],
+      "element": [
+        "p.pgh-lead"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "От горы, изрытой пещерами, до порта на берегу Залива — выберите категорию и начните знакомство с оазисом.",
+        "de": "Von einem Berg voller Höhlen bis zu einem Hafen am Golf – wählen Sie eine Kategorie und gehen Sie auf Entdeckungsreise.",
+        "zh": "从遍布洞穴的山峦，到海湾之滨的古港——选一个类别，开始探索。"
+      }
+    },
+    "crumb.home": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "crumb.home"
+      },
+      "tier": "rendered",
+      "en": "Home",
+      "ar": "الرئيسية",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: head jsonld @name",
+        "detail: head jsonld @name",
+        "detail: main text",
+        "404-ur-block: body text",
+        "detail:qasr-ibrahim: head jsonld @name",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: head jsonld @name",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: head jsonld @name",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: head jsonld @name",
+        "detail:sahood: main text",
+        "detail:ameeriah: head jsonld @name",
+        "detail:ameeriah: main text",
+        "detail:muhairis: head jsonld @name",
+        "detail:muhairis: main text",
+        "detail:khuzam: head jsonld @name",
+        "detail:khuzam: main text",
+        "detail:baiah: head jsonld @name",
+        "detail:baiah: main text",
+        "detail:uqair-castle: head jsonld @name",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: head jsonld @name",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "a",
+        "a.btn.btn--gold"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Главная",
+        "de": "Startseite",
+        "zh": "首页"
+      }
+    },
+    "list.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Visit guide",
+      "ar": "دليل الزيارة",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main text"
+      ],
+      "element": [
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Путеводитель",
+        "de": "Reiseführer",
+        "zh": "游览指南"
+      }
+    },
+    "list.map": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.map"
+      },
+      "tier": "rendered",
+      "en": "View on the map",
+      "ar": "استعرض على الخريطة",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main text"
+      ],
+      "element": [
+        "a.btn.btn--gold"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Посмотреть на карте",
+        "de": "Auf der Karte ansehen",
+        "zh": "在地图上查看"
+      }
+    },
+    "inline.attractions.groupsHint": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/components/views/AttractionsView.astro",
+        "anchor": "const groupsHint =",
+        "renders_today": "Search by name, or browse the groups below."
+      },
+      "tier": "rendered",
+      "en": "Search by name, or browse the groups below.",
+      "ar": "ابحث بالاسم، أو تصفّح المجموعات أدناه.",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main text"
+      ],
+      "element": [
+        "p.list-hint"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Ищите по названию или просматривайте группы ниже.",
+        "de": "Suchen Sie nach einem Namen oder stöbern Sie unten in den Gruppen.",
+        "zh": "可按名称搜索，或浏览下方分类。"
+      },
+      "where_it_renders": "attractions index: the hint line above the search box",
+      "note": "A full sentence; ends with a stop."
+    },
+    "list.searchLabel": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.searchLabel"
+      },
+      "tier": "rendered",
+      "en": "Search the attractions",
+      "ar": "ابحث في المعالم",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Поиск по достопримечательностям",
+        "de": "Sehenswürdigkeiten durchsuchen",
+        "zh": "搜索景点"
+      }
+    },
+    "list.search": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.search"
+      },
+      "tier": "rendered",
+      "en": "Search attractions…",
+      "ar": "ابحث عن معلم…",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main attr @placeholder"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Искать достопримечательность…",
+        "de": "Sehenswürdigkeiten suchen…",
+        "zh": "搜索景点…"
+      }
+    },
+    "fav.add": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "fav.add"
+      },
+      "tier": "rendered",
+      "en": "Save this place",
+      "ar": "احفظ المعلم",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main attr @aria-label",
+        "detail: main data @data-tx-off",
+        "detail: main text",
+        "detail:qasr-ibrahim: main data @data-tx-off",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main data @data-tx-off",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main data @data-tx-off",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main data @data-tx-off",
+        "detail:sahood: main text",
+        "detail:ameeriah: main data @data-tx-off",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main data @data-tx-off",
+        "detail:muhairis: main text",
+        "detail:khuzam: main data @data-tx-off",
+        "detail:khuzam: main text",
+        "detail:baiah: main data @data-tx-off",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main data @data-tx-off",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main data @data-tx-off",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сохранить место",
+        "de": "Diesen Ort merken",
+        "zh": "收藏景点"
+      }
+    },
+    "CATEGORY_LABELS.museum": {
+      "kind": "category label",
+      "source": {
+        "file": "src/lib/categories.ts",
+        "key": "CATEGORY_LABELS.ur.museum"
+      },
+      "tier": "rendered",
+      "en": "Museums",
+      "ar": "المتاحف",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main text",
+        "detail:sahood: main text",
+        "detail:muhairis: main text"
+      ],
+      "element": [
+        "h2#h-museum.cat-sec-t",
+        "span.t-caption.lc-k",
+        "span.t-caption.nb-k"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Музеи",
+        "de": "Museen",
+        "zh": "博物馆"
+      }
+    },
+    "CATEGORY_LABELS.religious": {
+      "kind": "category label",
+      "source": {
+        "file": "src/lib/categories.ts",
+        "key": "CATEGORY_LABELS.ur.religious"
+      },
+      "tier": "rendered",
+      "en": "Mosques & religious sites",
+      "ar": "المساجد والمواقع الدينية",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main text",
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: head jsonld @touristType",
+        "detail:jawatha-mosque: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: head jsonld @touristType",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "h2#h-religious.cat-sec-t",
+        "span.t-caption.lc-k",
+        "span.t-caption.nb-k",
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Мечети и религиозные места",
+        "de": "Moscheen und religiöse Stätten",
+        "zh": "清真寺与宗教场所"
+      }
+    },
+    "list.empty": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.empty"
+      },
+      "tier": "rendered",
+      "en": "No matching attractions yet.",
+      "ar": "لا توجد معالم مطابقة بعد.",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main text"
+      ],
+      "element": [
+        "p#empty.empty"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Подходящих достопримечательностей пока нет.",
+        "de": "Noch keine passenden Sehenswürdigkeiten.",
+        "zh": "暂无符合条件的景点。"
+      }
+    },
+    "crumb.attractions": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "crumb.attractions"
+      },
+      "tier": "rendered",
+      "en": "Attractions",
+      "ar": "المعالم",
+      "placeholders": [],
+      "renders": [
+        "detail: head jsonld @name",
+        "detail: main text",
+        "detail:qasr-ibrahim: head jsonld @name",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: head jsonld @name",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: head jsonld @name",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: head jsonld @name",
+        "detail:sahood: main text",
+        "detail:ameeriah: head jsonld @name",
+        "detail:ameeriah: main text",
+        "detail:muhairis: head jsonld @name",
+        "detail:muhairis: main text",
+        "detail:khuzam: head jsonld @name",
+        "detail:khuzam: main text",
+        "detail:baiah: head jsonld @name",
+        "detail:baiah: main text",
+        "detail:uqair-castle: head jsonld @name",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: head jsonld @name",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Достопримечательности",
+        "de": "Sehenswürdigkeiten",
+        "zh": "景点"
+      },
+      "same_source_as": [
+        "nav.attractions"
+      ]
+    },
+    "a11y.crumbs": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "a11y.crumbs"
+      },
+      "tier": "rendered",
+      "en": "Breadcrumb",
+      "ar": "مسار الصفحة",
+      "placeholders": [],
+      "renders": [
+        "detail: main attr @aria-label",
+        "detail:qasr-ibrahim: main attr @aria-label",
+        "detail:al-uqair: main attr @aria-label",
+        "detail:jawatha-mosque: main attr @aria-label",
+        "detail:sahood: main attr @aria-label",
+        "detail:ameeriah: main attr @aria-label",
+        "detail:muhairis: main attr @aria-label",
+        "detail:khuzam: main attr @aria-label",
+        "detail:baiah: main attr @aria-label",
+        "detail:uqair-castle: main attr @aria-label",
+        "detail:jabri-mosque: main attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Навигационная цепочка",
+        "de": "Pfadnavigation",
+        "zh": "面包屑导航"
+      }
+    },
+    "fav.added": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "fav.added"
+      },
+      "tier": "rendered",
+      "en": "Saved ✓",
+      "ar": "محفوظ ✓",
+      "placeholders": [],
+      "renders": [
+        "detail: main data @data-tx-on",
+        "detail:qasr-ibrahim: main data @data-tx-on",
+        "detail:al-uqair: main data @data-tx-on",
+        "detail:jawatha-mosque: main data @data-tx-on",
+        "detail:sahood: main data @data-tx-on",
+        "detail:ameeriah: main data @data-tx-on",
+        "detail:muhairis: main data @data-tx-on",
+        "detail:khuzam: main data @data-tx-on",
+        "detail:baiah: main data @data-tx-on",
+        "detail:uqair-castle: main data @data-tx-on",
+        "detail:jabri-mosque: main data @data-tx-on"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сохранено ✓",
+        "de": "Gemerkt ✓",
+        "zh": "已收藏 ✓"
+      }
+    },
+    "plan.copied": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "plan.copied"
+      },
+      "tier": "rendered",
+      "en": "Link copied ✓",
+      "ar": "نُسخ الرابط ✓",
+      "placeholders": [],
+      "renders": [
+        "detail: main data @data-copied",
+        "detail:qasr-ibrahim: main data @data-copied",
+        "detail:al-uqair: main data @data-copied",
+        "detail:jawatha-mosque: main data @data-copied",
+        "detail:sahood: main data @data-copied",
+        "detail:ameeriah: main data @data-copied",
+        "detail:muhairis: main data @data-copied",
+        "detail:khuzam: main data @data-copied",
+        "detail:baiah: main data @data-copied",
+        "detail:uqair-castle: main data @data-copied",
+        "detail:jabri-mosque: main data @data-copied"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ссылка скопирована ✓",
+        "de": "Link kopiert ✓",
+        "zh": "链接已复制 ✓"
+      }
+    },
+    "share.btn": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "share.btn"
+      },
+      "tier": "rendered",
+      "en": "Share",
+      "ar": "مشاركة",
+      "placeholders": [],
+      "renders": [
+        "detail: main data @data-share-label",
+        "detail: main text",
+        "detail:qasr-ibrahim: main data @data-share-label",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main data @data-share-label",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main data @data-share-label",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main data @data-share-label",
+        "detail:sahood: main text",
+        "detail:ameeriah: main data @data-share-label",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main data @data-share-label",
+        "detail:muhairis: main text",
+        "detail:khuzam: main data @data-share-label",
+        "detail:khuzam: main text",
+        "detail:baiah: main data @data-share-label",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main data @data-share-label",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main data @data-share-label",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "span.share-tx"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Поделиться",
+        "de": "Teilen",
+        "zh": "分享"
+      }
+    },
+    "det.visitInfo": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.visitInfo"
+      },
+      "tier": "rendered",
+      "en": "Visit information",
+      "ar": "معلومات الزيارة",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "h2.info-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Практическая информация",
+        "de": "Besuchsinformationen",
+        "zh": "游览信息"
+      },
+      "candidate": {
+        "ur": "سیاحوں کے لیے معلومات",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.visitInfo)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27)"
+      }
+    },
+    "det.area": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.area"
+      },
+      "tier": "rendered",
+      "en": "Area",
+      "ar": "المنطقة",
+      "placeholders": [],
+      "renders": [
+        "detail: main text"
+      ],
+      "element": [
+        "dt"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Расположение",
+        "de": "Lage",
+        "zh": "所在区域"
+      },
+      "candidate": {
+        "ur": "علاقہ",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.area)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27); weighed: «علاقہ» (in the text) / «مقام»"
+      }
+    },
+    "det.bestTime": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.bestTime"
+      },
+      "tier": "rendered",
+      "en": "Best time",
+      "ar": "أفضل وقت",
+      "placeholders": [],
+      "renders": [
+        "detail: main text"
+      ],
+      "element": [
+        "dt"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Лучшее время дня",
+        "de": "Beste Tageszeit",
+        "zh": "最佳游览时间"
+      },
+      "candidate": {
+        "ur": "بہترین وقت",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.bestTime)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27)"
+      }
+    },
+    "det.hoursNotice": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.hoursNotice"
+      },
+      "tier": "rendered",
+      "en": "Hours and fees may change — confirm with {op} before visiting.",
+      "ar": "المواعيد والرسوم قابلة للتغيير — تأكد من {op} قبل الزيارة.",
+      "placeholders": [
+        "{op}"
+      ],
+      "renders": [
+        "detail: main text"
+      ],
+      "element": [
+        "p.info-note"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Часы работы и стоимость входа могут меняться — перед посещением уточните их у {op}.",
+        "de": "Öffnungszeiten und Eintritt können sich ändern – erkundigen Sie sich vor Ihrem Besuch beim {op}.",
+        "zh": "开放时间与费用可能变动，参观前请先向{op}确认。"
+      },
+      "candidate": {
+        "ur": "اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے {op} سے تصدیق کر لیں۔",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.hoursNotice)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27)"
+      }
+    },
+    "det.hoursNotice.op": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.hoursNotice.op"
+      },
+      "tier": "rendered",
+      "en": "the operator",
+      "ar": "المشغّل",
+      "placeholders": [],
+      "renders": [
+        "detail: main text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "администрации",
+        "de": "Betreiber",
+        "zh": "运营方"
+      },
+      "candidate": {
+        "ur": "وہاں کی انتظامیہ",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.hoursNotice.op)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27); weighed: «وہاں کی انتظامیہ» (in the text) / «انتظامیہ»"
+      }
+    },
+    "data.dist.under": {
+      "kind": "data module (per-language table)",
+      "source": {
+        "file": "src/lib/distance.ts",
+        "anchor": "under:",
+        "renders_today": "under 1 km"
+      },
+      "tier": "rendered",
+      "en": "under 1 km",
+      "ar": "أقل من كيلومتر",
+      "placeholders": [],
+      "renders": [
+        "detail: main data @data-under",
+        "detail: main text",
+        "detail:qasr-ibrahim: main data @data-under",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main data @data-under",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main data @data-under",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main data @data-under",
+        "detail:ameeriah: main data @data-under",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main data @data-under",
+        "detail:khuzam: main data @data-under",
+        "detail:khuzam: main text",
+        "detail:baiah: main data @data-under",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main data @data-under",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main data @data-under",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "span.nb-dist"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "менее 1 км",
+        "de": "unter 1 km",
+        "zh": "不足 1 公里"
+      },
+      "where_it_renders": "detail page: distance on \"nearby\" cards and the result of the \"How far from me?\" button when under 1 km",
+      "note": "Keep the figure 1. Unit as the termbase style rule for units says (metric, written out).",
+      "divergence_auto": "numbers differ — English [1], Arabic []"
+    },
+    "data.dist.about": {
+      "kind": "data module (per-language table)",
+      "source": {
+        "file": "src/lib/distance.ts",
+        "anchor": "about:",
+        "renders_today": "~{n} km"
+      },
+      "tier": "rendered",
+      "en": "~{n} km",
+      "ar": "نحو {n} كم",
+      "placeholders": [
+        "{n}"
+      ],
+      "renders": [
+        "detail: main data @data-about",
+        "detail:qasr-ibrahim: main data @data-about",
+        "detail:al-uqair: main data @data-about",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main data @data-about",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main data @data-about",
+        "detail:sahood: main text",
+        "detail:ameeriah: main data @data-about",
+        "detail:muhairis: main data @data-about",
+        "detail:muhairis: main text",
+        "detail:khuzam: main data @data-about",
+        "detail:khuzam: main text",
+        "detail:baiah: main data @data-about",
+        "detail:uqair-castle: main data @data-about",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main data @data-about"
+      ],
+      "element": [
+        "span.nb-dist"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "no_digits": true,
+      "precedent": {
+        "ru": "около {n} км",
+        "de": "ca. {n} km",
+        "zh": "约 {n} 公里"
+      },
+      "where_it_renders": "detail page: distance on \"nearby\" cards and the result of the \"How far from me?\" button; {n} is a whole number of kilometres",
+      "note": "Keep {n} exactly once. The page script also builds this string by replacing a digit, so {n} must stand alone, not glued to a letter."
+    },
+    "map.locate.err": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "map.locate.err"
+      },
+      "tier": "rendered",
+      "en": "Could not get your location — check the browser’s location permission.",
+      "ar": "تعذّر تحديد موقعك — تحقق من إذن الموقع في المتصفح.",
+      "placeholders": [],
+      "renders": [
+        "detail: main data @data-err",
+        "detail:qasr-ibrahim: main data @data-err",
+        "detail:al-uqair: main data @data-err",
+        "detail:jawatha-mosque: main data @data-err",
+        "detail:sahood: main data @data-err",
+        "detail:ameeriah: main data @data-err",
+        "detail:muhairis: main data @data-err",
+        "detail:khuzam: main data @data-err",
+        "detail:baiah: main data @data-err",
+        "detail:uqair-castle: main data @data-err",
+        "detail:jabri-mosque: main data @data-err"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Не удалось определить ваше местоположение — проверьте разрешение на геолокацию в браузере.",
+        "de": "Ihr Standort konnte nicht ermittelt werden – prüfen Sie die Standortberechtigung Ihres Browsers.",
+        "zh": "无法获取您的位置，请检查浏览器的位置权限。"
+      }
+    },
+    "det.distance": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.distance"
+      },
+      "tier": "rendered",
+      "en": "How far from me?",
+      "ar": "كم يبعد عني؟",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "span"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Как далеко от меня?",
+        "de": "Wie weit ist es von mir entfernt?",
+        "zh": "距我多远？"
+      }
+    },
+    "det.openMaps": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.openMaps"
+      },
+      "tier": "rendered",
+      "en": "Open in Google Maps ↗",
+      "ar": "افتح في خرائط قوقل ↗",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "a.map-link"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Открыть в Google Картах ↗",
+        "de": "In Google Maps öffnen ↗",
+        "zh": "在谷歌地图中打开 ↗"
+      },
+      "candidate": {
+        "ur": "گوگل میپس پر دیکھیں ↗",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.openMaps)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27); weighed: «گوگل میپس پر دیکھیں ↗» (in the text) / «گوگل میپس میں کھولیں ↗»"
+      }
+    },
+    "det.report": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.report"
+      },
+      "tier": "rendered",
+      "en": "Spotted something inaccurate? Tell us",
+      "ar": "لاحظت معلومة غير دقيقة؟ أبلغنا",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "a.report-link"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Заметили неточность? Напишите нам",
+        "de": "Etwas Ungenaues entdeckt? Melden Sie es uns",
+        "zh": "发现信息有误？告诉我们"
+      },
+      "candidate": {
+        "ur": "کوئی غلطی نظر آئی؟ ہمیں بتائیں",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.report)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27)"
+      }
+    },
+    "det.faq": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.faq"
+      },
+      "tier": "rendered",
+      "en": "Frequently asked questions",
+      "ar": "أسئلة شائعة",
+      "placeholders": [],
+      "renders": [
+        "detail: main text"
+      ],
+      "element": [
+        "h2.faq-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Часто задаваемые вопросы",
+        "de": "Häufige Fragen",
+        "zh": "常见问题"
+      },
+      "candidate": {
+        "ur": "عمومی سوالات",
+        "status": "candidate",
+        "from": "ur-translation/memory/tm.json (frame.det.faq)",
+        "note": "template string seen by the blind readers on the calibration page — NOT approved UI; input for the ui.ur batch (P27)"
+      }
+    },
+    "det.nearby.h": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.nearby.h"
+      },
+      "tier": "rendered",
+      "en": "Complete your day",
+      "ar": "أكمل يومك",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "h2.nb-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Дополните свой день",
+        "de": "Den Tag abrunden",
+        "zh": "让这一天更完整"
+      }
+    },
+    "det.nearby.d": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.nearby.d"
+      },
+      "tier": "rendered",
+      "en": "Nearby sights to round out your route.",
+      "ar": "معالم قريبة من هنا تُكمل بها جولتك.",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "p.nb-lead"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Достопримечательности рядом — ими можно продолжить маршрут.",
+        "de": "Sehenswürdigkeiten in der Nähe, die Ihre Route ergänzen.",
+        "zh": "附近还有这些景点，方便串联成一条路线。"
+      }
+    },
+    "CATEGORY_LABELS.parks": {
+      "kind": "category label",
+      "source": {
+        "file": "src/lib/categories.ts",
+        "key": "CATEGORY_LABELS.ur.parks"
+      },
+      "tier": "rendered",
+      "en": "Parks & gardens",
+      "ar": "المتنزّهات والحدائق",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:muhairis: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "span.t-caption.nb-k"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Парки и сады",
+        "de": "Parks und Gärten",
+        "zh": "公园与园林"
+      }
+    },
+    "CATEGORY_LABELS.market": {
+      "kind": "category label",
+      "source": {
+        "file": "src/lib/categories.ts",
+        "key": "CATEGORY_LABELS.ur.market"
+      },
+      "tier": "rendered",
+      "en": "Heritage souqs",
+      "ar": "الأسواق التراثية",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:ameeriah: main text"
+      ],
+      "element": [
+        "span.t-caption.nb-k"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Традиционные рынки",
+        "de": "Traditionelle Souks",
+        "zh": "传统市集"
+      },
+      "same_source_as": [
+        "cat.market.t"
+      ]
+    },
+    "det.nearby.note": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.nearby.note"
+      },
+      "tier": "rendered",
+      "en": "Distances are approximate, in a straight line.",
+      "ar": "المسافات تقريبية بخطٍّ مستقيم.",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "p.nb-note"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Расстояния приблизительные, по прямой.",
+        "de": "Die Entfernungen sind Näherungswerte in Luftlinie.",
+        "zh": "距离为直线估算，仅供参考。"
+      }
+    },
+    "trails.partOf": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "trails.partOf"
+      },
+      "tier": "rendered",
+      "en": "Part of these trails",
+      "ar": "ضمن المسارات",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:ameeriah: main text",
+        "detail:baiah: main text"
+      ],
+      "element": [
+        "h2.mn-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Входит в маршруты",
+        "de": "Station auf empfohlenen Routen",
+        "zh": "所属路线"
+      }
+    },
+    "det.allSights": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.allSights"
+      },
+      "tier": "rendered",
+      "en": "All attractions →",
+      "ar": "← كل المعالم",
+      "placeholders": [],
+      "renders": [
+        "detail: main text",
+        "detail:qasr-ibrahim: main text",
+        "detail:al-uqair: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:ameeriah: main text",
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:baiah: main text",
+        "detail:uqair-castle: main text",
+        "detail:jabri-mosque: main text"
+      ],
+      "element": [
+        "a.btn.btn--turq"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Все достопримечательности →",
+        "de": "Alle Sehenswürdigkeiten →",
+        "zh": "全部景点 →"
+      }
+    },
+    "inline.404.title": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/pages/404.astro",
+        "anchor": "title: `${",
+        "renders_today": "404"
+      },
+      "tier": "rendered",
+      "en": "Page not found",
+      "ar": "الصفحة غير موجودة",
+      "placeholders": [],
+      "renders": [
+        "404-ur-block: body data @data-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": null,
+        "de": null,
+        "zh": null
+      },
+      "where_it_renders": "404 page, Urdu block: becomes document.title when the missing path starts with /ur/ (followed by the title separator and the brand)",
+      "note": "zh/de/ru precedent: the bare figure 404 (no sentence was written outside their lines). No final stop."
+    },
+    "inline.404.heading": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/pages/404.astro",
+        "anchor": "heading:",
+        "renders_today": "Page not found"
+      },
+      "tier": "rendered",
+      "en": "Looks like you wandered off the oasis trail",
+      "ar": "يبدو أنّك خرجت عن مسار الواحة",
+      "placeholders": [],
+      "renders": [
+        "404-ur-block: body text"
+      ],
+      "element": [
+        "h1.nf-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": null,
+        "de": null,
+        "zh": null
+      },
+      "where_it_renders": "404 page, Urdu block: the h1",
+      "note": "zh/de/ru precedent: left to the English h1 \"Page not found\" (tagged lang=\"en\"). A heading: no final stop."
+    },
+    "inline.404.text": {
+      "kind": "inline string (per-language branch in a view)",
+      "source": {
+        "file": "src/pages/404.astro",
+        "anchor": "text:",
+        "renders_today": "This page doesn’t exist or has moved. Try the home page or the attractions below."
+      },
+      "tier": "rendered",
+      "en": "This page doesn’t exist or has moved. Try the home page or the attractions below.",
+      "ar": "الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:",
+      "placeholders": [],
+      "renders": [
+        "404-ur-block: body text"
+      ],
+      "element": [
+        "p.nf-d.nf-en"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": null,
+        "de": null,
+        "zh": null
+      },
+      "where_it_renders": "404 page, Urdu block: the paragraph above the two buttons (crumb.home, nav.attractions)",
+      "note": "zh/de/ru precedent: left to the English line (tagged lang=\"en\"). The Arabic ends with a colon that leads into the buttons; the English is a sentence."
+    },
+    "data.oasisName": {
+      "kind": "data module (per-language table)",
+      "source": {
+        "file": "src/lib/schema.ts",
+        "anchor": "ur:",
+        "renders_today": "Al-Ahsa Oasis"
+      },
+      "tier": "detail-template",
+      "en": "Al-Ahsa Oasis",
+      "ar": "واحة الأحساء",
+      "placeholders": [],
+      "renders": [
+        "detail:qasr-ibrahim: head jsonld @name",
+        "detail:jawatha-mosque: head jsonld @name",
+        "detail:sahood: head jsonld @name",
+        "detail:khuzam: head jsonld @name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "оазис Аль-Ахса",
+        "de": "Al-Ahsa-Oase",
+        "zh": "哈萨绿洲"
+      },
+      "where_it_renders": "JSON-LD of every attraction that is a UNESCO component: isPartOf Place name (search engines only)",
+      "note": "Name of the oasis as a World Heritage property. Needs a termbase entry: the termbase has the head name and the word for oasis as two entries and no compound name (PLAN: written the day the name enters the termbase)."
+    },
+    "det.unesco": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.unesco"
+      },
+      "tier": "detail-template",
+      "en": "A component of the UNESCO World Heritage site",
+      "ar": "من مكوّنات موقع اليونسكو للتراث العالمي",
+      "placeholders": [],
+      "renders": [
+        "detail:qasr-ibrahim: main text",
+        "detail:jawatha-mosque: main text",
+        "detail:sahood: main text",
+        "detail:khuzam: main text"
+      ],
+      "element": [
+        "a.ah-unesco"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Компонент объекта Всемирного наследия ЮНЕСКО",
+        "de": "Bestandteil der UNESCO-Welterbestätte",
+        "zh": "联合国教科文组织世界遗产十二处组成部分之一"
+      }
+    },
+    "det.fromPlace": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.fromPlace"
+      },
+      "tier": "detail-template",
+      "en": "From the place",
+      "ar": "من المكان",
+      "placeholders": [],
+      "renders": [
+        "detail:muhairis: main text",
+        "detail:khuzam: main text",
+        "detail:uqair-castle: main text"
+      ],
+      "element": [
+        "h2.gal-h"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фотографии этого места",
+        "de": "Fotos vom Ort",
+        "zh": "实地照片"
+      }
+    },
+    "det.photo": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.photo"
+      },
+      "tier": "detail-template",
+      "en": "photo",
+      "ar": "صورة",
+      "placeholders": [],
+      "renders": [
+        "detail:muhairis: main attr @alt",
+        "detail:khuzam: main attr @alt",
+        "detail:uqair-castle: main attr @alt"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "фото",
+        "de": "Foto",
+        "zh": "照片"
+      }
+    },
+    "lang.suggest.text": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "lang.suggest.text"
+      },
+      "tier": "other-language-pages",
+      "en": "This page is available in English",
+      "ar": "هذه الصفحة متاحة بالعربية",
+      "placeholders": [],
+      "renders": [
+        "suggest-bar:ar-home: body text",
+        "suggest-bar:en-home: body text"
+      ],
+      "element": [
+        "span.ls-tx"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Эта страница доступна на русском",
+        "de": "Diese Seite ist auf Deutsch verfügbar",
+        "zh": "本页提供中文版"
+      }
+    },
+    "lang.suggest.cta": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "lang.suggest.cta"
+      },
+      "tier": "other-language-pages",
+      "en": "Read in English",
+      "ar": "اقرأها بالعربية",
+      "placeholders": [],
+      "renders": [
+        "suggest-bar:ar-home: body text",
+        "suggest-bar:en-home: body text"
+      ],
+      "element": [
+        "a.ls-cta"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Читать на русском",
+        "de": "Auf Deutsch lesen",
+        "zh": "阅读中文版"
+      }
+    },
+    "lang.suggest.close": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "lang.suggest.close"
+      },
+      "tier": "other-language-pages",
+      "en": "Dismiss",
+      "ar": "إغلاق",
+      "placeholders": [],
+      "renders": [
+        "suggest-bar:ar-home: body attr @aria-label",
+        "suggest-bar:en-home: body attr @aria-label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Закрыть",
+        "de": "Schließen",
+        "zh": "关闭"
+      }
+    }
+  },
+  "owner_questions": [
+    {
+      "id": "brand",
+      "what": "How the brand line is written on /ur/ pages — unanswered since ruling P2 and carried to this batch. It decides site.brand (page titles \"… — brand\", og:site_name, the footer copyright line), the Arabic line of the wordmark (today tagged lang=\"ar\" and excluded from the Urdu letterform guard), and the brand name inside foot.independence and the home-page title.",
+      "state_today": "site.brand is defined for ar and en only; zh, de and ru leave it undefined and render the Latin \"Visit Al-Ahsa\". The root CLAUDE.md fixes og:site_name as the Arabic brand on Arabic pages and the Latin one on Latin-script pages, and says nothing about a third script.",
+      "for_the_stages": "site.brand is in the batch because it renders. Do not settle the question in the text: keep the provisional form the earlier lines chose (leave the key out, i.e. the Latin brand) or raise it; a brand inside an Urdu sentence (foot.independence) meets the site rule \"no Latin-script name inside an Urdu sentence\" and must be raised, not smoothed over."
+    },
+    {
+      "id": "P10",
+      "what": "Large-number scale (open item P10) bites on inline.home.fact.palms.n (\"2.5M+\") and on home.hero.lead (\"more than 2.5 million date palms\").",
+      "for_the_stages": "Keep the digits exactly as the English writes them and raise the item; do not convert."
+    },
+    {
+      "id": "P27",
+      "what": "The nine template strings judged on the calibration page are candidates, not approved interface (open item P27). The recommendation carried with them: for the category label of nature a longer form if the header and card measurement allow it, otherwise the candidate; \"area\" has a second registered candidate.",
+      "for_the_stages": "They go through the chain like any other string. Each carries its candidate pair under \"candidate\"."
+    }
+  ],
+  "not_in_this_batch": {
+    "held_for_owner": {
+      "rule": "Rendered on the three pages, but the wording is the site owner's to decide (owner_questions.brand). Not in strings: stage files carry no value for it. zh, de and ru leave the key undefined.",
+      "strings": {
+        "site.brand": {
+          "kind": "ui.ts key",
+          "source": {
+            "file": "src/i18n/ui.ts",
+            "key": "site.brand"
+          },
+          "tier": "rendered",
+          "en": "Visit Al-Ahsa",
+          "ar": "زوروا الأحساء",
+          "placeholders": [],
+          "renders": [
+            "home: head meta @og:site_name",
+            "home: head jsonld @name",
+            "home: head jsonld @copyrightNotice",
+            "home: head meta @copyright",
+            "home: head meta @rights",
+            "home: footer text",
+            "attractions-index: head title",
+            "attractions-index: head meta @og:site_name",
+            "attractions-index: head meta @og:title",
+            "attractions-index: head meta @twitter:title",
+            "attractions-index: head jsonld @name",
+            "attractions-index: head jsonld @copyrightNotice",
+            "attractions-index: head meta @copyright",
+            "attractions-index: head meta @rights",
+            "attractions-index: footer text",
+            "detail: head title",
+            "detail: head meta @og:site_name",
+            "detail: head meta @og:title",
+            "detail: head meta @twitter:title",
+            "detail: head jsonld @name",
+            "detail: head jsonld @copyrightNotice",
+            "detail: head meta @copyright",
+            "detail: head meta @rights",
+            "detail: footer text",
+            "404-ur-block: body data @data-title",
+            "detail:qasr-ibrahim: head title",
+            "detail:qasr-ibrahim: head meta @og:site_name",
+            "detail:qasr-ibrahim: head meta @og:title",
+            "detail:qasr-ibrahim: head meta @twitter:title",
+            "detail:qasr-ibrahim: head jsonld @name",
+            "detail:qasr-ibrahim: head jsonld @copyrightNotice",
+            "detail:qasr-ibrahim: head meta @copyright",
+            "detail:qasr-ibrahim: head meta @rights",
+            "detail:qasr-ibrahim: footer text",
+            "detail:al-uqair: head title",
+            "detail:al-uqair: head meta @og:site_name",
+            "detail:al-uqair: head meta @og:title",
+            "detail:al-uqair: head meta @twitter:title",
+            "detail:al-uqair: head jsonld @name",
+            "detail:al-uqair: head jsonld @copyrightNotice",
+            "detail:al-uqair: head meta @copyright",
+            "detail:al-uqair: head meta @rights",
+            "detail:al-uqair: footer text",
+            "detail:jawatha-mosque: head title",
+            "detail:jawatha-mosque: head meta @og:site_name",
+            "detail:jawatha-mosque: head meta @og:title",
+            "detail:jawatha-mosque: head meta @twitter:title",
+            "detail:jawatha-mosque: head jsonld @name",
+            "detail:jawatha-mosque: head jsonld @copyrightNotice",
+            "detail:jawatha-mosque: head meta @copyright",
+            "detail:jawatha-mosque: head meta @rights",
+            "detail:jawatha-mosque: footer text",
+            "detail:sahood: head title",
+            "detail:sahood: head meta @og:site_name",
+            "detail:sahood: head meta @og:title",
+            "detail:sahood: head meta @twitter:title",
+            "detail:sahood: head jsonld @name",
+            "detail:sahood: head jsonld @copyrightNotice",
+            "detail:sahood: head meta @copyright",
+            "detail:sahood: head meta @rights",
+            "detail:sahood: footer text",
+            "detail:ameeriah: head title",
+            "detail:ameeriah: head meta @og:site_name",
+            "detail:ameeriah: head meta @og:title",
+            "detail:ameeriah: head meta @twitter:title",
+            "detail:ameeriah: head jsonld @name",
+            "detail:ameeriah: head jsonld @copyrightNotice",
+            "detail:ameeriah: head meta @copyright",
+            "detail:ameeriah: head meta @rights",
+            "detail:ameeriah: footer text",
+            "detail:muhairis: head title",
+            "detail:muhairis: head meta @og:site_name",
+            "detail:muhairis: head meta @og:title",
+            "detail:muhairis: head meta @twitter:title",
+            "detail:muhairis: head jsonld @name",
+            "detail:muhairis: head jsonld @copyrightNotice",
+            "detail:muhairis: head meta @copyright",
+            "detail:muhairis: head meta @rights",
+            "detail:muhairis: footer text",
+            "detail:khuzam: head title",
+            "detail:khuzam: head meta @og:site_name",
+            "detail:khuzam: head meta @og:title",
+            "detail:khuzam: head meta @twitter:title",
+            "detail:khuzam: head jsonld @name",
+            "detail:khuzam: head jsonld @copyrightNotice",
+            "detail:khuzam: head meta @copyright",
+            "detail:khuzam: head meta @rights",
+            "detail:khuzam: footer text",
+            "detail:baiah: head title",
+            "detail:baiah: head meta @og:site_name",
+            "detail:baiah: head meta @og:title",
+            "detail:baiah: head meta @twitter:title",
+            "detail:baiah: head jsonld @name",
+            "detail:baiah: head jsonld @copyrightNotice",
+            "detail:baiah: head meta @copyright",
+            "detail:baiah: head meta @rights",
+            "detail:baiah: footer text",
+            "detail:uqair-castle: head title",
+            "detail:uqair-castle: head meta @og:site_name",
+            "detail:uqair-castle: head meta @og:title",
+            "detail:uqair-castle: head meta @twitter:title",
+            "detail:uqair-castle: head jsonld @name",
+            "detail:uqair-castle: head jsonld @copyrightNotice",
+            "detail:uqair-castle: head meta @copyright",
+            "detail:uqair-castle: head meta @rights",
+            "detail:uqair-castle: footer text",
+            "detail:jabri-mosque: head title",
+            "detail:jabri-mosque: head meta @og:site_name",
+            "detail:jabri-mosque: head meta @og:title",
+            "detail:jabri-mosque: head meta @twitter:title",
+            "detail:jabri-mosque: head jsonld @name",
+            "detail:jabri-mosque: head jsonld @copyrightNotice",
+            "detail:jabri-mosque: head meta @copyright",
+            "detail:jabri-mosque: head meta @rights",
+            "detail:jabri-mosque: footer text"
+          ],
+          "element": [
+            "span"
+          ],
+          "nav": null,
+          "final_stop_in_english": false,
+          "precedent": {
+            "ru": null,
+            "de": null,
+            "zh": null
+          }
+        }
+      }
+    },
+    "english_in_scripts_by_precedent": [
+      {
+        "file": "src/components/CopyGuard.astro",
+        "text": "Source: Visit Al-Ahsa — <page URL>",
+        "renders": "appended to any copied selection longer than 150 characters, on every non-Arabic page",
+        "note": "The component knows two languages only (Arabic / everything else): zh, de and ru pages append the English line too. Carries the brand (owner_questions.brand)."
+      }
+    ],
+    "later_rounds": {
+      "rule": "ui.ts keys and category labels that no built /ur/ page (and no round-1 attraction page) renders. They belong to the rounds that build their pages.",
+      "count": 121,
+      "ui_keys": [
+        "site.name",
+        "trails.title",
+        "trails.lead",
+        "trails.duration",
+        "trails.duration.half-day",
+        "trails.duration.full-day",
+        "trails.mode",
+        "trails.mode.walking",
+        "trails.mode.driving",
+        "trails.mode.4x4",
+        "trails.stopsCount",
+        "trails.unescoCount",
+        "trails.view",
+        "trails.stopsH",
+        "trails.stop",
+        "trails.unesco",
+        "trails.sources",
+        "trails.landmark",
+        "trails.mapH",
+        "trails.mapNote",
+        "trails.all",
+        "nav.discover",
+        "lang.switch",
+        "lang.switchLabel",
+        "map.locate",
+        "det.mentions.h",
+        "form.honeypot",
+        "foot.l.historic",
+        "foot.l.nature",
+        "foot.l.crafts",
+        "foot.l.taste",
+        "foot.l.stay",
+        "foot.l.routes",
+        "foot.l.aboutSite",
+        "list.all",
+        "stores.all",
+        "stores.filterLabel",
+        "stores.search",
+        "stores.searchLabel",
+        "stores.empty",
+        "stores.visit",
+        "stores.visitAccount",
+        "stores.directOrder",
+        "stores.platform",
+        "stores.disclaimer",
+        "stores.faq",
+        "stores.lead",
+        "stores.shotAlt",
+        "stores.logoAlt",
+        "list2.eyebrow",
+        "list2.title",
+        "list2.lead",
+        "crumb.leisure",
+        "det.allLeisure",
+        "det.coords",
+        "det.openAmap",
+        "det.allStays",
+        "det.verifyNote",
+        "map.eyebrow",
+        "map.title",
+        "map.lead.a",
+        "map.pop.view",
+        "map.search.ph",
+        "map.count",
+        "map.list.aria",
+        "map.filter.aria",
+        "map.empty",
+        "map.terrain",
+        "tmap.title",
+        "tmap.lead",
+        "tmap.open",
+        "tmap.loading",
+        "tmap.3d.on",
+        "tmap.3d.off",
+        "tmap.locate",
+        "tmap.list.title",
+        "tmap.classic",
+        "tmap.gest.win",
+        "tmap.gest.mac",
+        "tmap.gest.touch",
+        "plan.eyebrow",
+        "plan.title",
+        "plan.lead",
+        "plan.savedSuffix",
+        "plan.savedOne",
+        "plan.savedTwo",
+        "plan.savedFew",
+        "plan.clearConfirm",
+        "plan.routeLimit",
+        "plan.route",
+        "plan.clear",
+        "plan.remove",
+        "plan.location",
+        "plan.empty.h",
+        "plan.empty.d",
+        "plan.empty.browse",
+        "plan.empty.map",
+        "plan.share",
+        "plan.copy",
+        "plan.print",
+        "plan.waText",
+        "plan.shared.h",
+        "plan.shared.d",
+        "plan.shared.import",
+        "plan.shared.mine",
+        "plan.printNote",
+        "ev.shop",
+        "ev.shopNote",
+        "crumb.blog",
+        "blog.eyebrow",
+        "blog.title",
+        "blog.lead",
+        "blog.empty",
+        "blog.published",
+        "blog.updated",
+        "blog.back",
+        "blog.faq"
+      ],
+      "category_labels": [
+        "farm",
+        "experience",
+        "taste",
+        "events"
+      ]
+    },
+    "english_by_precedent": [
+      {
+        "id": "data.orgDesc",
+        "file": "src/lib/schema.ts",
+        "en": "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.",
+        "ar": "مبادرة مستقلة: دليل سياحي رقمي عن محافظة الأحساء في السعودية — ليست جهة حكومية ولا تمثل أي هيئة رسمية.",
+        "renders": "JSON-LD Organization.description on every page (search engines only)",
+        "note": "zh, de and ru all carry the ENGLISH sentence here: the earlier lines never translated it.",
+        "values_today": {
+          "zh": "(the English sentence)",
+          "de": "(the English sentence)",
+          "ru": "(the English sentence)"
+        }
+      }
+    ],
+    "not_text": "The .eyebrow letter-spacing, the OG card image, the header thresholds, the unlisted table and the build guards are engineering steps, not strings. The OG card (public/og-default-ur.png) is generated from home.hero.eyebrow, and the web-app manifest description from home.hero.lead: both are strings of this batch."
+  },
+  "english_that_stays_on_the_three_pages_after_this_batch": {
+    "note": "Measured on the trace build: Latin text on the four pages that no string of this batch replaces. It keeps counting against the 20% threshold of build check C22 until its own batches land.",
+    "content_of_untranslated_attractions": {
+      "distinct_strings": 68,
+      "attractions": 40,
+      "why": "titles and summaries of attractions with no title_ur, on the index cards, the home featured cards, the \"nearby\" cards and the ItemList JSON-LD"
+    },
+    "trails_section": {
+      "distinct_strings": 2,
+      "strings": [
+        "Al-Qarah & Jawatha Trail",
+        "Caves, pottery and early Islamic heritage in the eastern villages"
+      ],
+      "why": "titles and taglines of suggested trails (src/data/trails.json): the trails have no Urdu version; the section heading itself (trails.partOf) is in the batch"
+    },
+    "brand": [
+      "© 2026 — visit-alahsa.com"
+    ],
+    "organization_description": [
+      "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority."
+    ],
+    "other_languages_by_design": [
+      "VISIT AL-AHSA",
+      "English",
+      "Deutsch",
+      "This page is available in English",
+      "Read in English",
+      "Dismiss",
+      "Diese Seite ist auf Deutsch verfügbar",
+      "Auf Deutsch lesen",
+      "Schließen",
+      "Land of Civilisations",
+      "Al-Tahimiyah East Mosque",
+      "Dougha Al-Gharash Pottery"
+    ],
+    "keyboard_key": [
+      "Esc"
+    ],
+    "untraced": []
+  }
+}

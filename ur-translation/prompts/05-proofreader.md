@@ -16,4 +16,6 @@ You are a ur-PK proofreader. Check mechanically, fix, and report each item as PA
 
 The numbered rulings in `_meta.calibration_rulings` are part of this checklist: where a ruling names a guard, run it and report it under the item it belongs to.
 
+Round 1 (2026-10-12) rulings amend these items where they say so: read item 1 with P22a (`ڑھ` joins the aspirates), items 2 and 10 with P3c / P3c-labels / N14 (glossing by case, interface labels, palace titles), item 7 with N13 (a range between two figures is written with `سے`; U+2013 only between the two years of a lifespan in brackets), N16 (quotation marks) and N33 (no `؛` on an attraction page), item 8 with P10 (the Urdu scale for large numbers) and the date and clock forms of N7–N12 and N19–N23, item 9 with P16-test (the loan test and the loans it admitted) and P6. Where an item and one of these rulings differ, the ruling binds.
+
 **Output:** the corrected page + the eleven-item checklist, each PASS or FIXED (with what was fixed); item 1 always carries the explicit list of code points found, or the word "none".

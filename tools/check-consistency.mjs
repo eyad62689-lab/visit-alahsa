@@ -28,7 +28,7 @@ import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-
 import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
 import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
 import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
-import { checkUrLetterforms, checkUrRulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
+import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
@@ -1521,6 +1521,38 @@ async function main() {
       const [id, label, ok] = RULING_CHECKS[r.id];
       if (r.problems.length) fail(id, `${label} (حكم المعايرة ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
       else pass(id, `${label} (حكم المعايرة ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);
+    }
+
+    // ── C54–C60: حرّاس أحكام الجولة 1 (دفعة الواجهة ودفعتا المعالم الأوليان) ──
+    // عنوانا كل معلم من المصدر لقاعدة عنوان القصور؛ وخانة رسوم جبل القارة المعتمدة قبل الحكم N33
+    // تحمل «؛» فتُستثنى باسمها حتى يغيّرها خط الترجمة — ويُخفق الفحص يوم لا يطابق الاستثناء نصاً.
+    const titles = [];
+    let calibFee = '';
+    for (const f of mdFiles) {
+      const text = await readText(path.join(SRC_ATTRACTIONS, f));
+      const head = text.split('\n---')[0];
+      titles.push({ file: f, ar: fmField(head, 'title'), ur: fmField(head, 'title_ur') });
+      if (f === 'jabal-al-qarah.md') {
+        const lines = head.split('\n');
+        const at = lines.findIndex((l) => l.trimEnd() === 'practical:');
+        const rows = [];
+        for (let k = at + 1; at >= 0 && k < lines.length && (lines[k].startsWith('  - {') || lines[k].startsWith('  #')); k++) if (lines[k].startsWith('  - {')) rows.push(lines[k]);
+        calibFee = rows[1]?.match(/(?:^|[{,\s])value_ur: "([^"]*)"/)?.[1] ?? '';
+      }
+    }
+    const ROUND1_CHECKS = {
+      P5: ['C54', 'الخليج بلا وصف', (s) => `لا «خليج» موصوفاً، والاسم المجرّد وارد في ${s.carriers} صفحة`],
+      P6: ['C55', 'اسم الثمرة لا الدخيل', () => 'لا دخيل لاسم الليمون في نصّ /ur/'],
+      P9: ['C56', 'المدينتان بوصفهما', (s) => `${s.mentions} ذكراً للمدينتين، كلٌّ بوصفه بعده`],
+      P10: ['C57', 'المقياس الأوردي للأعداد', (s) => `لا مقياس دخيلاً، ومقياس اللاکھ وارد في ${s.carriers} صفحة`],
+      N13: ['C58', 'الشرطة بين رقمين', (s) => `لا U+2013 خارج سنتَي عمر بين قوسين (${s.lifespans} موضعاً)`],
+      N14: ['C59', 'عناوين القصور', (s) => `${s.titles} عنواناً أوردياً لقصر يبدأ كلٌّ منها بالاسم العام، ولا صيغة مسحوبة`],
+      N33: ['C60', 'الفاصلة المنقوطة في صفحات المعالم', (s) => `لا «؛» في ${s.pages} صفحة معلم (استثناء واحد باسمه طابق ${s.exempt} موضعاً: خانة رسوم جبل القارة حتى يغيّرها الخط)`],
+    };
+    for (const r of checkUrRound1Rulings(urPages, termbase, { titles, semicolonExempt: [{ rel: 'ur/attractions/jabal-al-qarah/index.html', text: calibFee }] })) {
+      const [id, label, ok] = ROUND1_CHECKS[r.id];
+      if (r.problems.length) fail(id, `${label} (حكم الجولة 1 ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
+      else pass(id, `${label} (حكم الجولة 1 ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);
     }
   }
 
