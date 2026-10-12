@@ -266,6 +266,90 @@ const ATTRACTION_PAGE = /^ur\/attractions\/[^/]+\/index\.html$/;
 // سنتا الميلاد والوفاة بين قوسين: الموضع الوحيد الذي تُكتب فيه الشرطة U+2013 (الحكم N13)
 const LIFESPAN = /\(\d{4}–\d{4}\)/g;
 
+// كلٌّ من الدوال الآتية يفحص كتلة نصّ واحدة لحكم واحد، ويضيف مشكلاته إلى نتيجة الحكم r.
+
+// P5 — الخليج بلا وصف. يعيد true إن ورد الاسم المجرّد في الكتلة.
+function gulfIn(b, rel, r) {
+  for (const f of GULF_QUALIFIED) {
+    const i = b.indexOf(f);
+    if (i !== -1) r.problems.push(`${rel}: الخليج موصوفاً «${f}» ⇐ «${snip(b, i, f.length)}»`);
+  }
+  return wordAt(b, GULF) !== -1;
+}
+
+// P6 — اسم الثمرة لا الدخيل
+function limeIn(b, rel, r) {
+  const i = wordAt(b, LIME_LOAN);
+  if (i !== -1) r.problems.push(`${rel}: دخيل «${LIME_LOAN}» ⇐ «${snip(b, i, LIME_LOAN.length)}»`);
+}
+
+// P9 — المدينتان بوصفهما عند كل ذكر
+function citiesIn(b, rel, r) {
+  for (const [city, epithet] of HOLY_CITIES) {
+    for (let i = wordAt(b, city); i !== -1; i = wordAt(b, city, i + 1)) {
+      r.stats.mentions++;
+      const rest = b.slice(i + city.length);
+      const bare = !rest.startsWith(' ' + epithet) || LETTER.test(rest[epithet.length + 1] ?? ' ');
+      if (bare) r.problems.push(`${rel}: «${city}» بلا «${epithet}» بعدها ⇐ «${snip(b, i, city.length)}»`);
+    }
+  }
+}
+
+// P10 — المقياس الأوردي لا الدخيلان. يعيد true إن وردت كلمة المقياس في الكتلة.
+function scaleIn(b, rel, r) {
+  for (const w of SCALE_LOANS) {
+    const i = wordAt(b, w);
+    if (i !== -1) r.problems.push(`${rel}: مقياس دخيل «${w}» ⇐ «${snip(b, i, w.length)}»`);
+  }
+  return wordAt(b, SCALE_WORD) !== -1;
+}
+
+// N13 — الشرطة U+2013 بين سنتَي عمرٍ داخل قوسين وحدها
+function dashIn(b, rel, r) {
+  const free = b.replace(LIFESPAN, () => { r.stats.lifespans++; return ' '; });
+  const i = free.indexOf(EN_DASH);
+  if (i !== -1) r.problems.push(`${rel}: شرطة U+2013 خارج سنتَي عمر بين قوسين ⇐ «${snip(free, i)}»`);
+}
+
+// N14 — صيغ «… محل» لا تُكتب لعناوين القصور
+function palaceIn(b, rel, r) {
+  for (const f of PALACE_FORBIDDEN) {
+    const i = b.indexOf(f);
+    if (i !== -1) r.problems.push(`${rel}: صيغة عنوان مسحوبة «${f}» ⇐ «${snip(b, i, f.length)}»`);
+  }
+}
+
+// N14 — عنوانٌ عربيه يبدأ بـ«قصر » يبدأ أورديُّه بها (من المصدر)
+function palaceTitles(titles, r) {
+  for (const t of titles) {
+    if (!t.ur || !t.ar?.startsWith(PALACE_GENERIC + ' ')) continue;
+    r.stats.titles++;
+    if (!t.ur.startsWith(PALACE_GENERIC + ' ')) r.problems.push(`${t.file}: عنوان أوردي لا يبدأ بـ«${PALACE_GENERIC} » ⇐ «${t.ur}»`);
+  }
+}
+
+// N33 — لا «؛» في صفحة معلم، إلا خانةً مستثناة باسمها (يُعدّ ما طابقه كل استثناء في hits)
+function semicolonIn(b, rel, r, exempt, hits) {
+  let free = b;
+  exempt.forEach((e, k) => {
+    if (e.rel === rel && e.text && free.includes(e.text)) { free = free.split(e.text).join(' '); hits[k]++; }
+  });
+  const i = free.indexOf(SEMICOLON);
+  if (i !== -1) r.problems.push(`${rel}: «${SEMICOLON}» في صفحة معلم ⇐ «${snip(free, i)}»`);
+}
+
+// حرّاس إيجابيون: الفحص ليس فارغاً، والاستثناء ما زال لازماً
+function round1Emptiness(out, exempt, hits) {
+  if (out.gulf.stats.carriers === 0) out.gulf.problems.push(`«${GULF}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+  if (out.cities.stats.mentions === 0) out.cities.problems.push('لا ذكر لأيٍّ من المدينتين في صفحات /ur/ — الحارس صار فارغاً');
+  if (out.scale.stats.carriers === 0) out.scale.problems.push(`«${SCALE_WORD}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+  if (out.palace.stats.titles === 0) out.palace.problems.push('لا عنوان قصر أوردياً في المصدر — الحارس صار فارغاً');
+  if (out.semicolon.stats.pages === 0) out.semicolon.problems.push('لا صفحة معلم أوردية في المخرج — الحارس صار فارغاً');
+  exempt.forEach((e, k) => {
+    if (hits[k] === 0) out.semicolon.problems.push(`استثناء «${SEMICOLON}» في ${e.rel} لا يطابق نصاً منشوراً — الخانة تغيّرت، فاحذف الاستثناء`);
+  });
+}
+
 /**
  * C59–C65. @param {{ rel: string, html: string }[]} pages صفحات /ur/ المبنية
  * @param {object} termbase المعجم محلَّلاً
@@ -294,71 +378,28 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [], semicolonEx
     urduBlocks += blocks.length;
     const isAttraction = ATTRACTION_PAGE.test(rel);
     if (isAttraction) out.semicolon.stats.pages++;
-    let hasGulf = false, hasScale = false;
+    let hasGulf = false;
+    let hasScale = false;
     for (const b of blocks) {
-      // P5 — الخليج بلا وصف
-      for (const f of GULF_QUALIFIED) { const i = b.indexOf(f); if (i !== -1) out.gulf.problems.push(`${rel}: الخليج موصوفاً «${f}» ⇐ «${snip(b, i, f.length)}»`); }
-      if (wordAt(b, GULF) !== -1) hasGulf = true;
-
-      // P6 — اسم الثمرة لا الدخيل
-      { const i = wordAt(b, LIME_LOAN); if (i !== -1) out.lime.problems.push(`${rel}: دخيل «${LIME_LOAN}» ⇐ «${snip(b, i, LIME_LOAN.length)}»`); }
-
-      // P9 — المدينتان بوصفهما عند كل ذكر
-      for (const [city, epithet] of HOLY_CITIES) {
-        for (let i = wordAt(b, city); i !== -1; i = wordAt(b, city, i + 1)) {
-          out.cities.stats.mentions++;
-          const rest = b.slice(i + city.length);
-          if (!rest.startsWith(' ' + epithet) || LETTER.test(rest[epithet.length + 1] ?? ' ')) out.cities.problems.push(`${rel}: «${city}» بلا «${epithet}» بعدها ⇐ «${snip(b, i, city.length)}»`);
-        }
-      }
-
-      // P10 — المقياس الأوردي لا الدخيلان
-      for (const w of SCALE_LOANS) { const i = wordAt(b, w); if (i !== -1) out.scale.problems.push(`${rel}: مقياس دخيل «${w}» ⇐ «${snip(b, i, w.length)}»`); }
-      if (wordAt(b, SCALE_WORD) !== -1) hasScale = true;
-
-      // N13 — الشرطة U+2013 بين سنتَي عمرٍ داخل قوسين وحدها
-      {
-        const free = b.replace(LIFESPAN, () => { out.dash.stats.lifespans++; return ' '; });
-        const i = free.indexOf(EN_DASH);
-        if (i !== -1) out.dash.problems.push(`${rel}: شرطة U+2013 خارج سنتَي عمر بين قوسين ⇐ «${snip(free, i)}»`);
-      }
-
-      // N14 — صيغ «… محل» لا تُكتب لعناوين القصور
-      for (const f of PALACE_FORBIDDEN) { const i = b.indexOf(f); if (i !== -1) out.palace.problems.push(`${rel}: صيغة عنوان مسحوبة «${f}» ⇐ «${snip(b, i, f.length)}»`); }
-
-      // N33 — لا «؛» في صفحة معلم
-      if (isAttraction) {
-        let free = b;
-        semicolonExempt.forEach((e, k) => {
-          if (e.rel === rel && e.text && free.includes(e.text)) { free = free.split(e.text).join(' '); exemptHits[k]++; }
-        });
-        const i = free.indexOf(SEMICOLON);
-        if (i !== -1) out.semicolon.problems.push(`${rel}: «${SEMICOLON}» في صفحة معلم ⇐ «${snip(free, i)}»`);
-      }
+      hasGulf = gulfIn(b, rel, out.gulf) || hasGulf;
+      limeIn(b, rel, out.lime);
+      citiesIn(b, rel, out.cities);
+      hasScale = scaleIn(b, rel, out.scale) || hasScale;
+      dashIn(b, rel, out.dash);
+      palaceIn(b, rel, out.palace);
+      if (isAttraction) semicolonIn(b, rel, out.semicolon, semicolonExempt, exemptHits);
     }
     if (hasGulf) out.gulf.stats.carriers++;
     if (hasScale) out.scale.stats.carriers++;
   }
-
-  // N14 — عنوانٌ عربيه يبدأ بـ«قصر » يبدأ أورديُّه بها (من المصدر)
-  for (const t of titles) {
-    if (!t.ur || !t.ar?.startsWith(PALACE_GENERIC + ' ')) continue;
-    out.palace.stats.titles++;
-    if (!t.ur.startsWith(PALACE_GENERIC + ' ')) out.palace.problems.push(`${t.file}: عنوان أوردي لا يبدأ بـ«${PALACE_GENERIC} » ⇐ «${t.ur}»`);
-  }
+  palaceTitles(titles, out.palace);
   out.semicolon.stats.exempt = exemptHits.reduce((a, n) => a + n, 0);
 
-  // حرّاس إيجابيون: الفحص ليس فارغاً، والاستثناء ما زال لازماً
-  if (!pages.length || urduBlocks === 0) {
-    for (const r of Object.values(out)) r.problems.push('لا نصّ أوردياً في صفحات /ur/ — الحارس صار فارغاً');
-  } else {
-    if (out.gulf.stats.carriers === 0) out.gulf.problems.push(`«${GULF}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
-    if (out.cities.stats.mentions === 0) out.cities.problems.push('لا ذكر لأيٍّ من المدينتين في صفحات /ur/ — الحارس صار فارغاً');
-    if (out.scale.stats.carriers === 0) out.scale.problems.push(`«${SCALE_WORD}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
-    if (out.palace.stats.titles === 0) out.palace.problems.push('لا عنوان قصر أوردياً في المصدر — الحارس صار فارغاً');
-    if (out.semicolon.stats.pages === 0) out.semicolon.problems.push('لا صفحة معلم أوردية في المخرج — الحارس صار فارغاً');
-    semicolonExempt.forEach((e, k) => { if (exemptHits[k] === 0) out.semicolon.problems.push(`استثناء «${SEMICOLON}» في ${e.rel} لا يطابق نصاً منشوراً — الخانة تغيّرت، فاحذف الاستثناء`); });
+  const empty = !pages.length || urduBlocks === 0;
+  for (const r of Object.values(out)) {
+    if (empty) r.problems.push('لا نصّ أوردياً في صفحات /ur/ — الحارس صار فارغاً');
+    r.stats.blocks = urduBlocks;
   }
-  for (const r of Object.values(out)) r.stats.blocks = urduBlocks;
+  if (!empty) round1Emptiness(out, semicolonExempt, exemptHits);
   return Object.values(out);
 }

@@ -1536,8 +1536,10 @@ async function main() {
       if (f === 'jabal-al-qarah.md') {
         const lines = head.split('\n');
         const at = lines.findIndex((l) => l.trimEnd() === 'practical:');
-        const rows = [];
-        for (let k = at + 1; at >= 0 && k < lines.length && (lines[k].startsWith('  - {') || lines[k].startsWith('  #')); k++) if (lines[k].startsWith('  - {')) rows.push(lines[k]);
+        // صفوف البطاقة: ما يلي «practical:» من صفوف وتعليقات YAML بينها، حتى أول سطر غيرهما
+        const block = at < 0 ? [] : lines.slice(at + 1);
+        const stop = block.findIndex((l) => !l.startsWith('  - {') && !l.startsWith('  #'));
+        const rows = (stop < 0 ? block : block.slice(0, stop)).filter((l) => l.startsWith('  - {'));
         calibFee = rows[1]?.match(/(?:^|[{,\s])value_ur: "([^"]*)"/)?.[1] ?? '';
       }
     }
