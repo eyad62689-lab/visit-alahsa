@@ -19,6 +19,7 @@ const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
+const ur = lang === 'ur';
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة food-map 2026-09-02، الحاكم 94/100).
 // dineHref يقصد فهرس المطاعم الصيني منذ صدوره (دفعة indexes 2026-09-02).
@@ -128,7 +129,7 @@ const siteUrl = 'https://visit-alahsa.com';
 const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : '/en/food/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];

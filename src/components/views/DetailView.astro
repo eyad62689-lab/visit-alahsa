@@ -7,7 +7,7 @@ import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
-import { attractionHref, staticHref } from '../../lib/routes';
+import { attractionHref, builtLang, staticHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
 import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
@@ -29,13 +29,14 @@ const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
+const ur = lang === 'ur';
 
-// اختيار الحقل بلغة الصفحة — zh/de/ru تتراجع للإنجليزية فالعربية عند الغياب
-const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined, deV?: T, ruV?: T): T =>
-  ar ? arV : zh ? (zhV ?? enV ?? arV) : de ? (deV ?? enV ?? arV) : ru ? (ruV ?? enV ?? arV) : (enV ?? arV);
+// اختيار الحقل بلغة الصفحة — zh/de/ru/ur تتراجع للإنجليزية فالعربية عند الغياب
+const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined, deV?: T, ruV?: T, urV?: T): T =>
+  ar ? arV : zh ? (zhV ?? enV ?? arV) : de ? (deV ?? enV ?? arV) : ru ? (ruV ?? enV ?? arV) : ur ? (urV ?? enV ?? arV) : (enV ?? arV);
 
-const title = pick(a.title, a.title_en, a.title_zh, a.title_de, a.title_ru);
-const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summary_ru);
+const title = pick(a.title, a.title_en, a.title_zh, a.title_de, a.title_ru, a.title_ur);
+const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summary_ru, a.summary_ur);
 // فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي): 35–45 كلمة من المتن والبطاقة تتصدّر المتن
 // وتكون وصف الصفحة — عربي/إنجليزي فقط (zh/de/ru عبر خطوط الترجمة حصراً)، ويحرسها C24.
 const answer = ar ? a.answer : lang === 'en' ? a.answer_en : undefined;
@@ -46,6 +47,7 @@ const unescoHref = a.unesco ? staticHref('unesco', lang) : undefined;
 const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : de ? (a.body_de ?? a.body_en ?? '')
   : ru ? (a.body_ru ?? a.body_en ?? '')
+  : ur ? (a.body_ur ?? a.body_en ?? '')
   : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
 // «مقالات تذكر هذا المعلم» — الفهرس العكسي بلغة الصفحة (الخطوة 9)؛ [] حين لا مقال بها
@@ -55,25 +57,27 @@ const mentions = await mentionsOf(a, lang);
 // الصينية: الفهرسان صينيان (الأسواق والمنتزهات أُضيفت في الدفعة 12 — 2026-09-03)
 // الروسية (3d26cf1، 2026-09-09) والألمانية (ج1، 2026-09-18): الفهرسان مبنيّان كذلك —
 // وصلٌ بلا ترجمة، فمعالم النطاق كلها تحمل title_* ونصوص list2.* في القاموس.
+// الأوردو: فهرس المعالم مبنيّ تحت /ur/، وفهرس الأسواق والمنتزهات يقع على الفرع الإنجليزي.
 const isLeisure = ['market', 'parks', 'farm'].includes(a.category);
 const attractionsHref = isLeisure
   ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : '/en/souqs-parks-farms/')
-  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/');
+  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/');
 const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
 const DAY_NAME: Record<string, string> = { Mo: 'Monday', Tu: 'Tuesday', We: 'Wednesday', Th: 'Thursday', Fr: 'Friday', Sa: 'Saturday', Su: 'Sunday' };
-const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
+const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/';
 // اسم المنطقة في السكيما بلغة الصفحة — الروسية من معجم ru-translation حرفياً
-// (مدخل «Al-Ahsa» = Аль-Ахса)؛ والألمانية تبقى لاتينية بحكم سياسة أعلامها.
-const regionName = ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : 'Al-Ahsa';
+// (مدخل «Al-Ahsa» = Аль-Ахса)؛ والألمانية تبقى لاتينية بحكم سياسة أعلامها؛
+// والأوردية من معجم ur-translation حرفياً (مفتاح المدخل «Al-Ahsa»).
+const regionName = ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : ur ? 'الاحساء' : 'Al-Ahsa';
 const jsonLd: object[] = [
   {
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
     name: title, description, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : ogDefault(lang)),
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
-    address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh, a.area_de, a.area_ru) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
+    address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh, a.area_de, a.area_ru, a.area_ur) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
     // alt[lang] هنا هو رابط صفحة المعلم نفسه — فكانت السكيما تقول إن المعلم جزءٌ
     // من نفسه في 116 صفحة (تدقيق 2026-08-28). الوجهة هي الرئيسية بلغة الصفحة.
@@ -115,10 +119,10 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : undefined;
 // والقسم المرئي أدناه يطابقها حرفياً (قوقل تشترط ظهور المحتوى المنظَّم للزائر).
 // يحرسها C21: المنشور = المصدر، ولا رقم في سؤال أو جواب من خارج الصفحة.
 const faqItems = a.faq
-  .filter((f) => ar || (zh ? f.q_zh && f.a_zh : de ? f.q_de && f.a_de : ru ? f.q_ru && f.a_ru : f.q_en && f.a_en))
+  .filter((f) => ar || (zh ? f.q_zh && f.a_zh : de ? f.q_de && f.a_de : ru ? f.q_ru && f.a_ru : ur ? f.q_ur && f.a_ur : f.q_en && f.a_en))
   .map((f) => ({
-    q: ar ? f.q : zh ? f.q_zh! : de ? f.q_de! : ru ? f.q_ru! : f.q_en!,
-    a: ar ? f.a : zh ? f.a_zh! : de ? f.a_de! : ru ? f.a_ru! : f.a_en!,
+    q: ar ? f.q : zh ? f.q_zh! : de ? f.q_de! : ru ? f.q_ru! : ur ? f.q_ur! : f.q_en!,
+    a: ar ? f.a : zh ? f.a_zh! : de ? f.a_de! : ru ? f.a_ru! : ur ? f.a_ur! : f.a_en!,
   }));
 if (faqItems.length > 0) {
   jsonLd.push({
@@ -132,13 +136,13 @@ if (faqItems.length > 0) {
 
 // بطاقة معلومات الزيارة بلغة الصفحة: البند لا يظهر إلا إن وُجدت ترجمته للغة
 // الصفحة (label_en/value_en أو label_zh/value_zh) — لا نعرض لغةً داخل صفحة أخرى.
-const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : de ? (a.area_de ?? null) : ru ? (a.area_ru ?? null) : (a.area_en ?? null);
-const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : de ? (a.bestTime_de ?? null) : ru ? (a.bestTime_ru ?? null) : (a.bestTime_en ?? null);
+const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : de ? (a.area_de ?? null) : ru ? (a.area_ru ?? null) : ur ? (a.area_ur ?? null) : (a.area_en ?? null);
+const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : de ? (a.bestTime_de ?? null) : ru ? (a.bestTime_ru ?? null) : ur ? (a.bestTime_ur ?? null) : (a.bestTime_en ?? null);
 const shownPractical = a.practical
-  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : de ? p.label_de && p.value_de : ru ? p.label_ru && p.value_ru : p.label_en && p.value_en)));
+  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : de ? p.label_de && p.value_de : ru ? p.label_ru && p.value_ru : ur ? p.label_ur && p.value_ur : p.label_en && p.value_en)));
 const practicalItems = shownPractical.map((p) => ({
-  label: ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : ru ? p.label_ru! : p.label_en!,
-  value: ar ? p.value : zh ? p.value_zh! : de ? p.value_de! : ru ? p.value_ru! : p.value_en!,
+  label: ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : ru ? p.label_ru! : ur ? p.label_ur! : p.label_en!,
+  value: ar ? p.value : zh ? p.value_zh! : de ? p.value_de! : ru ? p.value_ru! : ur ? p.value_ur! : p.value_en!,
 }));
 // سطر المواعيد والرسوم الموحَّد: يظهر حين تعرض البطاقة بلغة الصفحة بند مواعيد أو رسوم
 // (لا حين يوجد البند بلغة أخرى فقط). كلمة «المشغّل» تصير رابطاً إلى حساب الجهة المشغّلة
@@ -159,16 +163,17 @@ const nearby = a.location
         // البطاقة القريبة بلغة الصفحة، وعنوانها يتراجع للإنجليزية إن غابت
         // ترجمته الصينية — لكن رابطها يقصد صفحة اللغة الحالية إن وُجدت،
         // وإلا فالإنجليزية (لا رابط لصفحة /zh/ غير مولّدة).
-        href: attractionHref(e.data, (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) ? 'en' : lang),
+        href: attractionHref(e.data, (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) || (ur && !e.data.title_ur) ? 'en' : lang),
         title: ar ? e.data.title
           : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title)
           : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title)
           : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title)
+          : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title)
           : (e.data.title_en ?? e.data.title),
         cat: catLabel(e.data.category, lang),
         // العنوان المتراجع للإنجليزية يُوسم lang="en" فيقرؤه قارئ الشاشة بلغته،
         // ويستثنيه الحارس C18 (تهجئة Souk الألمانية) من نصّ الصفحة الألماني.
-        titleLang: (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) ? 'en' : undefined,
+        titleLang: (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) || (ur && !e.data.title_ur) ? 'en' : undefined,
         id: e.data.slug_en,
         img: e.data.heroImage,
         km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
@@ -185,9 +190,11 @@ const nearby = a.location
   : [];
 
 // «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم، بلغة الصفحة.
-// الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
+// الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح). المسارات بلا نسخة أوردية بعد:
+// صفحة /ur/ تعرضها بعنوانها الإنجليزي ورابطها الإنجليزي (builtLang) لا رابطاً إلى /ur/trails/.
+const trailLang = builtLang(lang);
 const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
-  .map((tr) => ({ href: trailHref(tr, lang), title: trailText(tr, lang).title, tagline: trailText(tr, lang).tagline, slug: tr.slug }));
+  .map((tr) => ({ href: trailHref(tr, trailLang), title: trailText(tr, trailLang).title, tagline: trailText(tr, trailLang).tagline, slug: tr.slug }));
 ---
 <Base title={`${title} ${titleSep(lang)} ${t('site.brand')}`} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
@@ -440,6 +447,11 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .info-list { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-3); margin: 0; }
   .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
   .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
+  /* الأوردو: عمود التسميات (auto وبلا التفاف) يأخذ عرض أطول تسمية، فيبقى للقيمة نحو نصف البطاقة
+     وتنكسر قيمتا المواعيد والرسوم أربعة أسطر إلى ستة بسطر النستعليق العالي. التسمية فوق قيمتها
+     فتأخذ القيمة عرض البطاقة كله — في العمود الجانبي وعلى الجوال سواء. */
+  :global([lang='ur']) .info-list { grid-template-columns: 1fr; row-gap: 0; }
+  :global([lang='ur']) .info-list dt:not(:first-child) { margin-block-start: var(--s-2); }
   .info-note { font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.7; margin-block-start: var(--s-3); }
   .info-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
   .info-note a:hover { color: var(--c-turq); }
@@ -473,6 +485,13 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .faq-item summary { cursor: pointer; padding: var(--s-3) var(--s-4); font-weight: 600; color: var(--c-ink); }
   .faq-item summary:hover { color: var(--c-turq); }
   .faq-item p { padding: 0 var(--s-4) var(--s-3); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
+  /* الأوردو (نستعليق): حبر السطر يعلو صندوق المحرف ويهبط عنه أكثر من النسخ، فارتفاعات السطر أعلاه
+     تُلاصق الأسطر وتُركِب العنوان على ما حوله. المقيس على النص المعتمد بالخط نفسه (حبر كل سطر
+     كما يُصيَّر، نسبةً إلى حجم الخط): سطر العنوان 1.51، وتتابُع سطرين حتى 2.43 في المتن و2.25
+     في النبذة و2.15 في الأجوبة. يسري على النص الإنجليزي المتراجَع إليه في العناصر نفسها. */
+  :global([lang='ur']) .ah-title { line-height: 1.6; }
+  :global([lang='ur']) .ah-sum, :global([lang='ur']) .prose, :global([lang='ur']) .faq-item p { line-height: 2.45; }
+  :global([lang='ur']) .info-list dt, :global([lang='ur']) .info-list dd, :global([lang='ur']) .faq-item summary { line-height: 2.3; }
   .gallery-sec { padding-block: 0 var(--s-6); }
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }

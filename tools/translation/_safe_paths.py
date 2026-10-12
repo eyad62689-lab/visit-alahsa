@@ -6,7 +6,7 @@
 import os
 import re
 
-LANGS = ('zh', 'de', 'ru')
+LANGS = ('zh', 'de', 'ru', 'ur')
 _SLUG = re.compile(r'^[a-z0-9][a-z0-9-]*$')
 
 

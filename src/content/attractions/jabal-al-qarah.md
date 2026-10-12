@@ -25,6 +25,14 @@ summary_ru: "Пещеры, высеченные временем в сердце
 body_ru: "Джабаль-эль-Кара (в переводе — гора Эль-Кара) поднимается посреди оазиса, словно древний страж, но тайна горы не в высоте, а в недрах. Скала пронизана пещерами и ходами: в самый зной в них держится мягкая прохлада, а в разгар зимы — спокойное тепло. Это природное явление с древности привлекало сюда жителей Аль-Ахсы — здесь они находили укрытие. Пройдите по узким коридорам, где камень почти касается плеч, и вдруг перед вами откроется высокий зал, куда пробивается тонкий луч света. С вершины оазис расстилается морем пальм — и отсюда понятно, почему Аль-Ахса стала крупнейшим оазисом в мире."
 area_ru: "К востоку от Эль-Хуфуфа, Аль-Ахса"
 bestTime_ru: "В светлое время суток."
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-12،
+# ثلاث دورات — صفحة المعايرة؛ السجل في ur-translation/memory/scores.csv).
+title_ur: جبل القارہ
+kicker_ur: ارضیاتی عجوبہ
+summary_ur: "نخلستان کے قلب میں وقت کے تراشے ہوئے غار، جو گرمیوں میں ٹھنڈے رہتے ہیں اور سردیوں میں گرم۔"
+body_ur: "الاحساء کے نخلستان کے بیچوں بیچ جبل القارہ کسی قدیم نگہبان کی طرح سر اٹھائے کھڑا ہے، مگر اس کا راز بلندی میں نہیں، اس کے اندر چھپا ہے۔ چٹانوں میں غار ہیں اور بل کھاتے راستے۔ جب گرمی عروج پر ہو تو ان میں خوشگوار ٹھنڈک رہتی ہے، اور عین سردیوں میں ہلکی سی گرمائش۔ اسی قدرتی خوبی کی وجہ سے الاحساء کے لوگ قدیم زمانے سے یہاں پناہ لیتے آئے ہیں۔ پہاڑ کی تنگ راہداریوں سے گزریں تو چٹانیں کندھوں کو چھوتے چھوتے رہ جاتی ہیں، پھر اچانک راستہ اونچی چھت والی کشادہ جگہ میں جا نکلتا ہے، جہاں روشنی کی ایک باریک کرن چھن کر آتی ہے۔ چوٹی سے نخلستان یوں پھیلا دکھائی دیتا ہے جیسے کھجور کے درختوں کا سمندر ہو۔ یہی ایک منظر بتا دیتا ہے کہ الاحساء دنیا کا سب سے بڑا نخلستان کیوں بنا۔"
+area_ur: "الاحساء، ہفوف کے مشرق میں"
+bestTime_ur: "دن میں"
 slug_ar: جبل-القارة
 slug_en: jabal-al-qarah
 category: nature
@@ -53,12 +61,13 @@ order: 1
 bestTime: فترة النهار.
 bestTime_en: "During the daytime."
 practical:
-  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_zh: "开放时间", value_zh: "每日 8:00 至 22:00（节假日可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–22:00 Uhr (an Feiertagen möglicherweise länger)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–22:00 (в праздники может быть открыто дольше)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "50 ريالاً للبالغين — التذاكر عبر «أرض الحضارات»", label_en: "Fees", value_en: "SAR 50 for adults — tickets via the “Land of Civilisations” heritage village", label_zh: "门票", value_zh: "成人每位 50 沙特里亚尔（SAR），在“文明之地”（Land of Civilisations）遗产村落购票", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene – Tickets über „Land of Civilisations“", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых; билеты — через этнографическую деревню «Земля цивилизаций» (Land of Civilisations)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
-  - { label: "مناسب لـ", value: "العائلات · التصوير · الأجواء الحارّة", label_en: "Good for", value_en: "Families · photography · hot days", label_zh: "适合", value_zh: "家庭出游、摄影、酷暑出行", label_de: "Geeignet für", value_de: "Familien · Fotografie · Heiße Tage", label_ru: "Подходит для", value_ru: "семей · фотосъёмки · жарких дней", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_zh: "开放时间", value_zh: "每日 8:00 至 22:00（节假日可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–22:00 Uhr (an Feiertagen möglicherweise länger)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–22:00 (в праздники может быть открыто дольше)", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 10 بجے تک (چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "50 ريالاً للبالغين — التذاكر عبر «أرض الحضارات»", label_en: "Fees", value_en: "SAR 50 for adults — tickets via the “Land of Civilisations” heritage village", label_zh: "门票", value_zh: "成人每位 50 沙特里亚尔（SAR），在“文明之地”（Land of Civilisations）遗产村落购票", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene – Tickets über „Land of Civilisations“", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых; билеты — через этнографическую деревню «Земля цивилизаций» (Land of Civilisations)", label_ur: "فیس", value_ur: "بڑوں کے لیے 50 سعودی ریال؛ ٹکٹ “ارض الحضارات” (تہذیبوں کی سرزمین) نامی ثقافتی گاؤں سے ملتے ہیں", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مناسب لـ", value: "العائلات · التصوير · الأجواء الحارّة", label_en: "Good for", value_en: "Families · photography · hot days", label_zh: "适合", value_zh: "家庭出游、摄影、酷暑出行", label_de: "Geeignet für", value_de: "Familien · Fotografie · Heiße Tage", label_ru: "Подходит для", value_ru: "семей · фотосъёмки · жарких дней", label_ur: "کس کے لیے موزوں", value_ur: "خاندان · تصویر کشی · گرم دن", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 tags: ["كهوف", "طبيعة", "تصوير"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
+# أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-12، صفحة المعايرة — السجل في ur-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد زيارة جبل القارة؟"
     a: "يومياً من 8:00 ص إلى 10:00 م، وقد تُمدّد في العطلات."
@@ -68,6 +77,8 @@ faq:
     a_zh: "每日 8:00 至 22:00，节假日可能延长。"
     q_ru: "В какие часы открыт вход на Джабаль-эль-Кара?"
     a_ru: "Ежедневно 8:00–22:00; в праздники может быть открыто дольше."
+    q_ur: "جبل القارہ کب سے کب تک کھلا رہتا ہے؟"
+    a_ur: "روزانہ صبح 8 بجے سے رات 10 بجے تک۔ چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے۔"
   - q: "كم رسوم دخول جبل القارة؟"
     a: "50 ريالاً للبالغين، والتذاكر عبر «أرض الحضارات»."
     q_en: "How much is entry to Jabal Al-Qarah?"
@@ -76,6 +87,8 @@ faq:
     a_zh: "成人每位 50 沙特里亚尔，在“文明之地”遗产村落购票。"
     q_ru: "Сколько стоит вход на Джабаль-эль-Кара?"
     a_ru: "50 саудовских риялов для взрослых; билеты — через этнографическую деревню «Земля цивилизаций»."
+    q_ur: "جبل القارہ میں داخلے کی فیس کتنی ہے؟"
+    a_ur: "بڑوں کے لیے 50 سعودی ریال۔ ٹکٹ “ارض الحضارات” نامی ثقافتی گاؤں سے ملتے ہیں۔"
   - q: "لماذا تشتهر كهوف جبل القارة باعتدال حرارتها؟"
     a: "تحافظ مغاراته على اعتدال حراري يقارب 20°م طوال العام، فتحتفظ ببرودة لطيفة في ذروة القيظ ودفء هادئ في قلب الشتاء."
     q_en: "Why are the Jabal Al-Qarah caves known for their mild temperature?"
@@ -84,6 +97,8 @@ faq:
     a_zh: "洞内温度全年宜人：盛夏时节凉爽，隆冬之际温暖。正因如此，当地居民自古便在此栖身。"
     q_ru: "Чем славятся пещеры Джабаль-эль-Кара?"
     a_ru: "Умеренной температурой круглый год: в самый зной в них держится мягкая прохлада, а в разгар зимы — спокойное тепло."
+    q_ur: "جبل القارہ کے غار کس وجہ سے مشہور ہیں؟"
+    a_ur: "ان غاروں کا درجہ حرارت سال بھر معتدل رہتا ہے: جب گرمی عروج پر ہو تو خوشگوار ٹھنڈک رہتی ہے، اور عین سردیوں میں ہلکی سی گرمائش۔"
   - q: "كم عدد مغارات جبل القارة؟"
     a: "اثنتا عشرة مغارة متباينة الأشكال، منها كهف الناقة وكهف العيد وكهف المهيوب."
   - q: "ما أفضل وقت لزيارة جبل القارة؟"
@@ -94,6 +109,8 @@ faq:
     a_zh: "白天前往。"
     q_ru: "Когда лучше посетить Джабаль-эль-Кара?"
     a_ru: "В светлое время суток."
+    q_ur: "جبل القارہ کی سیر کے لیے بہترین وقت کون سا ہے؟"
+    a_ur: "دن کا وقت۔"
 ---
 
 يرتفع جبل القارة من وسط الواحة كأنّه حارسٌ قديم، لكنّ سرّه ليس في علوّه بل في

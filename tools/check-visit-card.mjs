@@ -12,7 +12,11 @@
 //   ٤. حين يحمل المعلم operatorUrl تصير كلمة المشغّل رابطاً إليه (target=_blank rel=noopener)،
 //      ولا رابط داخل السطر في غيره.
 
-export const LANGS = ['ar', 'en', 'zh', 'de', 'ru'];
+export const LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur'];
+// لغاتٌ لم تمرّ دفعة واجهتها بخط ترجمتها بعد: الموقع ينشر فيها السطر بنصّه الإنجليزي (تراجع
+// useTranslations: اللغة ← en)، فالمتوقَّع فيها مفتاح قاموسها إن وُجد وإلا الإنجليزي. بقية
+// اللغات تبقى ملزمة بمفتاحَيها في قاموسها نفسه — غيابهما هناك إخفاق لا تراجع.
+export const EN_FALLBACK_LANGS = ['ur'];
 // أدنى عدد لمعالم openSite (المفتوحة للعموم بلا رسوم أو على مدار الساعة)
 export const MIN_OPEN_SITES = 10;
 
@@ -41,7 +45,7 @@ const stripTags = (html) => {
 };
 
 // مقاطع <script>/<style> تُقطع بالبحث عن الوسوم لا بتعبير نمطي على HTML: الناتج نصّ للفحص لا للعرض.
-function cutBlocks(html, tag, keep) {
+export function cutBlocks(html, tag, keep) {
   const lower = html.toLowerCase();
   const open = `<${tag}`, close = `</${tag}`;
   let out = '', i = 0;
@@ -61,7 +65,7 @@ function cutBlocks(html, tag, keep) {
 }
 const ldJsonBlocks = (html) => cutBlocks(html, 'script', (openTag) => openTag.includes('application/ld+json')).kept;
 const visibleText = (html) => stripTags(cutBlocks(cutBlocks(html, 'script').out, 'style').out);
-const textAttributes = (html) => [...html.matchAll(/\s(?:alt|title|aria-label|content)="([^"]*)"/g)].map((m) => m[1]);
+export const textAttributes = (html) => [...html.matchAll(/\s(?:alt|title|aria-label|content)="([^"]*)"/g)].map((m) => m[1]);
 
 // سلاسل القاموس: det.hoursNotice وdet.hoursNotice.op من كل كتلة لغة في src/i18n/ui.ts
 export function noticeStrings(uiText) {
@@ -69,11 +73,12 @@ export function noticeStrings(uiText) {
   const out = {};
   let cur = null;
   for (const l of lines) {
-    const b = l.match(/^ {2}(ar|en|zh|de|ru): \{$/);
+    const b = l.match(/^ {2}(ar|en|zh|de|ru|ur): \{$/);
     if (b) { cur = b[1]; out[cur] = {}; continue; }
     const m = cur && l.match(/^ {4}'(det\.hoursNotice(?:\.op)?)': '((?:[^'\\]|\\.)*)',$/);
     if (m) out[cur][m[1]] = m[2].replace(/\\(.)/g, '$1');
   }
+  for (const l of EN_FALLBACK_LANGS) out[l] = { ...out.en, ...out[l] };
   return out;
 }
 
@@ -94,6 +99,7 @@ export function expectFromSource(raw) {
     zh: hoursFee.some((l) => l.includes('label_zh: "') && l.includes('value_zh: "')),
     de: hoursFee.some((l) => l.includes('label_de: "') && l.includes('value_de: "')),
     ru: hoursFee.some((l) => l.includes('label_ru: "') && l.includes('value_ru: "')),
+    ur: hoursFee.some((l) => l.includes('label_ur: "') && l.includes('value_ur: "')),
   };
   if (openSite) for (const l of LANGS) shows[l] = false;
   const sources = new Set();

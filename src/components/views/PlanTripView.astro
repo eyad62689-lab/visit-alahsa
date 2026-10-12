@@ -275,7 +275,8 @@ const C = localize(lang, {
 const zh = lang === 'zh';
 const ru = lang === 'ru';
 const de = lang === 'de';
-const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : de ? '/de/attractions/' : '/en/attractions/';
+const ur = lang === 'ur';
+const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : de ? '/de/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
 const tripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : ru ? '/ru/plan/' : de ? '/de/plan/' : '/en/plan/';
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
@@ -287,7 +288,7 @@ const jsonLd = [
     })),
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : de ? '/de/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : de ? '/de/' : ur ? '/ur/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: t('nav.plan'), item: new URL(altHref(alt, lang), siteUrl).href },
   ] },
 ];

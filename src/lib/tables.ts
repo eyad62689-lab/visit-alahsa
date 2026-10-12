@@ -19,13 +19,13 @@ const FEES_RE = /الرسوم/;
 /** المواعيد والرسوم الموثّقة — صف لكل معلم يحمل بنداً موثّقاً منهما بلغة الطلب. */
 export async function practicalTable(lang: Lang): Promise<Table | null> {
   const items = (await getCollection('attractions')).sort((a, b) => a.data.order - b.data.order);
-  const pickL = (p: { label: string; label_en?: string; label_zh?: string; label_de?: string; label_ru?: string }) =>
-    ({ ar: p.label, en: p.label_en, zh: p.label_zh, de: p.label_de, ru: p.label_ru })[lang];
-  const pickV = (p: { value: string; value_en?: string; value_zh?: string; value_de?: string; value_ru?: string }) =>
-    ({ ar: p.value, en: p.value_en, zh: p.value_zh, de: p.value_de, ru: p.value_ru })[lang];
+  const pickL = (p: { label: string; label_en?: string; label_zh?: string; label_de?: string; label_ru?: string; label_ur?: string }) =>
+    ({ ar: p.label, en: p.label_en, zh: p.label_zh, de: p.label_de, ru: p.label_ru, ur: p.label_ur })[lang];
+  const pickV = (p: { value: string; value_en?: string; value_zh?: string; value_de?: string; value_ru?: string; value_ur?: string }) =>
+    ({ ar: p.value, en: p.value_en, zh: p.value_zh, de: p.value_de, ru: p.value_ru, ur: p.value_ur })[lang];
   const title = (d: (typeof items)[number]['data']) => {
     if (lang === 'ar') return d.title;
-    const local = { en: d.title_en, zh: d.title_zh, de: d.title_de, ru: d.title_ru }[lang];
+    const local = { en: d.title_en, zh: d.title_zh, de: d.title_de, ru: d.title_ru, ur: d.title_ur }[lang];
     return local ?? d.title_en ?? d.title;
   };
   // رؤوس الأعمدة من تسميات البنود المعتمدة نفسها (المواعيد/Hours/开放时间 …)
@@ -38,15 +38,17 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
     if (!h && !f) continue;
     if (h && !hoursHead && /^(المواعيد|Hours|开放时间|Öffnungszeiten|Часы работы)$/.test(pickL(h) ?? '')) hoursHead = pickL(h);
     if (f && !feesHead) feesHead = pickL(f);
-    const hasOwn = lang === 'ar' || lang === 'en' || (lang === 'zh' && e.data.title_zh) || (lang === 'de' && e.data.title_de) || (lang === 'ru' && e.data.title_ru);
+    const hasOwn = lang === 'ar' || lang === 'en' || (lang === 'zh' && e.data.title_zh) || (lang === 'de' && e.data.title_de) || (lang === 'ru' && e.data.title_ru) || (lang === 'ur' && e.data.title_ur);
     rows.push({ cells: [
       { text: title(e.data), href: attractionHref(e.data, hasOwn ? lang : 'en') },
       h ? (pickV(h) as string) : '—',
       f ? (pickV(f) as string) : '—',
     ] });
   }
-  const nameHead = { ar: 'المعلم', en: 'Attraction', zh: '景点', de: 'Sehenswürdigkeit', ru: 'Достопримечательность' }[lang];
-  if (!rows.length || !hoursHead || !feesHead) return null;
+  // لا رأس عمود أوردياً معتمداً بعد (ولا «اوقات» في نمط hoursHead أعلاه): الجدول لا يُبنى بالأوردو
+  // حتى تمرّ رؤوسه بخط ur-translation-pipeline — قاعدة رأس الملف.
+  const nameHead = ({ ar: 'المعلم', en: 'Attraction', zh: '景点', de: 'Sehenswürdigkeit', ru: 'Достопримечательность' } as Partial<Record<Lang, string>>)[lang];
+  if (!rows.length || !nameHead || !hoursHead || !feesHead) return null;
   return {
     id: 'practical',
     caption: ({ ar: 'المواعيد والرسوم — كما وردت في بطاقة كل معلم', en: 'Hours and fees — as shown on each attraction’s visit card' } as Partial<Record<Lang, string>>)[lang],

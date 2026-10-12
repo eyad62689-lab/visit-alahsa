@@ -1,7 +1,9 @@
 import type { Lang } from '../i18n/ui';
 
 // محليّات Intl لكل لغة؛ العربية بتقويم ميلادي وأرقام لاتينية صراحةً.
-const LOCALE: Record<Lang, string> = { ar: 'ar-u-ca-gregory-nu-latn', en: 'en-GB', zh: 'zh-CN', de: 'de-DE', ru: 'ru-RU' };
+// والأوردو بأرقام لاتينية صراحةً كذلك: ur-PK تعطيها افتراضاً، لكن ur-IN تعطي U+06F0–06F9
+// (مقيس على ICU 78)، فلا يُترك رقم الموقع اللاتيني لافتراض المحليّة.
+const LOCALE: Record<Lang, string> = { ar: 'ar-u-ca-gregory-nu-latn', en: 'en-GB', zh: 'zh-CN', de: 'de-DE', ru: 'ru-RU', ur: 'ur-PK-u-nu-latn' };
 
 // تاريخ ميلادي بأرقام لاتينية دائماً (قاعدة الموقع 2026-07-21) باللغتين.
 // ca-gregory صريحة: بعض اللهجات العربية (ar-SA) تفترض التقويم الهجري.

@@ -45,8 +45,9 @@ export const PROPHET = {
   ru: /мечет[а-яё]* Пророка/,
 };
 
-// الصفحتان المعنيّتان بكل لغة (المسار النسبي في dist بفواصل /)
-const TARGET = /^(?:(?:en|zh|de|ru)\/attractions\/jawatha-(?:mosque|park)|معالم\/(?:مسجد-جواثا|منتزه-جواثا-السياحي))\/index\.html$/;
+// الصفحتان المعنيّتان بكل لغة (المسار النسبي في dist بفواصل /). ur داخلة في الهدف بلا نمط في
+// PROPHET بعد: صفحتها الأوردية يوم تُبنى تُخفق حتى يُضاف نمطها من خط ترجمتها — لا تفلت صامتة.
+const TARGET = /^(?:(?:en|zh|de|ru|ur)\/attractions\/jawatha-(?:mosque|park)|معالم\/(?:مسجد-جواثا|منتزه-جواثا-السياحي))\/index\.html$/;
 
 const decode = (s) => s
   .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))

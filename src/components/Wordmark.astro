@@ -1,8 +1,14 @@
 ---
 // الوردمارك الرسمي: «الأحساء» بخط العناوين (Cairo) + «VISIT AL-AHSA» بـCormorant Garamond.
 // قاعدة حرجة: لا تباعد حروف في العربية. التباعد على اللاتيني فقط (.42em).
-interface Props { variant?: 'ink' | 'turq' | 'sand'; align?: 'start' | 'center'; size?: 'sm' | 'md' | 'lg'; }
-const { variant = 'turq', align = 'start', size = 'md' } = Astro.props;
+import type { Lang } from '../i18n/ui';
+import { isRtl } from '../i18n/utils';
+interface Props { variant?: 'ink' | 'turq' | 'sand'; align?: 'start' | 'center'; size?: 'sm' | 'md' | 'lg'; pageLang?: Lang; }
+const { variant = 'turq', align = 'start', size = 'md', pageLang = 'ar' } = Astro.props;
+// في صفحة RTL غير عربية (الأوردو) يُوسم السطر العربي lang="ar": بدونه يُصيَّر بخط الصفحة
+// (نستعليق) ويُقرأ نصّاً بلغتها — والوسم هو ما يُبقيه بخط العلامة (tokens.css) ويعزله
+// عن فحص حروف الصفحة. صيغة سطر العلامة في /ur/ نفسها قرار مؤجَّل لدفعة واجهتها.
+const arLineLang = pageLang !== 'ar' && isRtl(pageLang) ? 'ar' : undefined;
 const color = variant === 'sand' ? 'var(--c-sand)' : variant === 'ink' ? 'var(--c-ink)' : 'var(--c-turq)';
 // النص اللاتيني الصغير على خلفية فاتحة: ذهبي داكن (4.9:1 على الرملي — WCAG AA)
 // بدل الذهبي الفاتح الذي يفشل التباين للنص الصغير. على الداكن (sand): رملي شفاف.
@@ -11,7 +17,7 @@ const sub = variant === 'sand' ? 'rgba(247,243,234,.78)' : 'var(--c-gold-deep)';
 const arSize = size === 'lg' ? 'var(--t-display)' : size === 'sm' ? '1.3rem' : 'var(--t-2xl)';
 ---
 <span class={`wm wm-${size}`} style={`--wm:${color};--wm-sub:${sub};font-size:${arSize};text-align:${align};`}>
-  <span class="wm-ar">الأحساء</span>
+  <span class="wm-ar" lang={arLineLang}>الأحساء</span>
   <span class="wm-en" lang="en">VISIT AL-AHSA</span>
 </span>
 

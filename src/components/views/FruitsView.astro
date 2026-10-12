@@ -23,6 +23,7 @@ const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
+const ur = lang === 'ur';
 // رؤوس جدول المواسم (الخطوة 8 من خطة التفاعل العالمي) — عربي/إنجليزي فقط؛ الصيني بانتظار خط الترجمة فلا يُبنى جدوله
 // @de-fruits:heads:start
 // رؤوس جدول المواسم الألمانية — من خط de-translation-pipeline (دفعة de-fruits-1)
@@ -30,7 +31,8 @@ const DE_HEADS = { fruit: 'Frucht', season: 'Saison', group: 'Gruppe' };
 // @de-fruits:heads:end
 // رؤوس جدول المواسم الروسية — من خط ru-translation-pipeline (دفعة ru-fruits)
 const RU_HEADS = { fruit: 'Плод', season: 'Сезон', group: 'Группа' };
-const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : de ? DE_HEADS : ru ? RU_HEADS : { fruit: 'Fruit', season: 'Season', group: 'Group' };
+// فرع ur بالرؤوس الإنجليزية عمداً حتى تمرّ رؤوسه بخط ur-translation-pipeline
+const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : de ? DE_HEADS : ru ? RU_HEADS : /* ur→en */ { fruit: 'Fruit', season: 'Season', group: 'Group' };
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة fruits 2026-09-02، الحاكم 94/100)
 const ZH = {
@@ -220,7 +222,7 @@ const siteUrl = 'https://visit-alahsa.com';
 const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : '/en/fruits/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];

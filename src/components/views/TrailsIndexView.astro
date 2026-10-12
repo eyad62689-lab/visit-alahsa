@@ -7,7 +7,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
-import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import { TRAILS, trailAttribution, trailText, trailUnescoNote, trailsSeoDesc } from '../../data/trails';
 import { trailHref, type TrailLang } from '../../lib/trails';
 import { absUrl, breadcrumb } from '../../lib/schema';
@@ -16,6 +16,8 @@ interface Props { lang: TrailLang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+// اتجاه الأسهم من اتجاه الصفحة لا من كونها عربية
+const rtl = isRtl(lang);
 
 const cards = TRAILS.map((tr) => ({
   slug: tr.slug,
@@ -64,7 +66,7 @@ const jsonLd = [
                 <div><dt>{t('trails.stopsCount')}</dt><dd><bdi>{c.stops}</bdi></dd></div>
                 <div><dt>{t('trails.unescoCount')}</dt><dd><bdi>{c.unesco}</bdi></dd></div>
               </dl>
-              <span class="tr-go">{t('trails.view')} <span aria-hidden="true">{ar ? '←' : '→'}</span></span>
+              <span class="tr-go">{t('trails.view')} <span aria-hidden="true">{rtl ? '←' : '→'}</span></span>
             </a>
           </li>
         ))}

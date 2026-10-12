@@ -12,6 +12,7 @@ import { EVENTS_AR } from '../data/events';
 import { attractionHref, blogHref } from '../lib/routes';
 import { isThinAttraction } from '../lib/publish';
 import { LANG_META } from '../i18n/langs';
+import { isUnlisted } from '../i18n/unlisted';
 import { ui } from '../i18n/ui';
 import { TRAILS } from '../data/trails';
 import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
@@ -26,6 +27,11 @@ export const GET: APIRoute = async () => {
   const zhCount = attractions.filter((e) => e.data.title_zh).length;
   const deCount = attractions.filter((e) => e.data.title_de).length;
   const ruCount = attractions.filter((e) => e.data.title_ru).length;
+  // الأوردو: العدد مشتقّ من title_ur، ويُحسب المعلَن وحده — صفحةٌ في src/i18n/unlisted.ts لا تُذكر
+  // هنا كما لا تُذكر في hreflang ولا sitemap، فيظهر سطر النسخة الأوردية وقسمها يوم تُعلَن أول صفحة.
+  const urListed = attractions.filter((e) => e.data.title_ur && !isThinAttraction(e) && !isUnlisted(attractionHref(e.data, 'ur')));
+  const urCount = urListed.length;
+  const urIndexes = ['/ur/', '/ur/attractions/'].filter((p) => !isUnlisted(p));
   const diningCount = (await getCollection('dining')).length;
   const stayCount = (await getCollection('stay')).length;
   const eventCount = EVENTS_AR.length;
@@ -35,8 +41,8 @@ export const GET: APIRoute = async () => {
   // قوائم النسخ الجزئية (الخطوة 8): الصفحات المعلَنة فقط — بعنوان معتمد من خط الترجمة
   // ودون عتبة الصفحة الرقيقة (المحجوبة noindex في C23) — مرتبةً كترتيب الفهرس.
   const listed = attractions.filter((e) => !isThinAttraction(e)).sort((a, b) => a.data.order - b.data.order);
-  const langList = (lang: 'zh' | 'de' | 'ru') => [
-    ...listed.filter((e) => e.data[`title_${lang}`]).map((e) => `- [${e.data[`title_${lang}`]}](${SITE}${encodeURI(attractionHref(e.data, lang))})`),
+  const langList = (lang: 'zh' | 'de' | 'ru' | 'ur') => [
+    ...listed.filter((e) => e.data[`title_${lang}`] && !isUnlisted(attractionHref(e.data, lang))).map((e) => `- [${e.data[`title_${lang}`]}](${SITE}${encodeURI(attractionHref(e.data, lang))})`),
     // مقالات المدونة بتلك اللغة (الخطوة 10) — بعناوينها المعتمدة من خط ترجمتها
     ...posts.filter((p) => p.data.lang === lang && !p.data.draft).map((p) => `- [${p.data.title}](${SITE}${encodeURI(blogHref(p.data))})`),
   ].join('\n');
@@ -47,7 +53,7 @@ export const GET: APIRoute = async () => {
 
 زوروا الأحساء مبادرة مستقلة — ليست جهة حكومية ولا تمثل أي هيئة رسمية. Visit Al-Ahsa is an independent initiative, not a government body. من نحن: ${SITE}/من-نحن/ | About: ${SITE}/en/about/ | البريد: info@visit-alahsa.com
 
-النسخة العربية على الجذر، والإنجليزية تحت \`/en/\`، ونسخة صينية جزئية تحت \`/zh/\` (${zhCount} معلماً حتى الآن)، ونسخة ألمانية جزئية تحت \`/de/\` (${deCount} ${deCount === 1 ? 'معلم' : 'معلماً'} حتى الآن)، ونسخة روسية جزئية تحت \`/ru/\` (${ruCount} ${ruCount === 1 ? 'معلم' : 'معلماً'} حتى الآن).
+النسخة العربية على الجذر، والإنجليزية تحت \`/en/\`، ونسخة صينية جزئية تحت \`/zh/\` (${zhCount} معلماً حتى الآن)، ونسخة ألمانية جزئية تحت \`/de/\` (${deCount} ${deCount === 1 ? 'معلم' : 'معلماً'} حتى الآن)، ونسخة روسية جزئية تحت \`/ru/\` (${ruCount} ${ruCount === 1 ? 'معلم' : 'معلماً'} حتى الآن)${urCount ? `، ونسخة أوردية جزئية تحت \`/ur/\` (${urCount} ${urCount === 1 ? 'معلم' : 'معلماً'} حتى الآن)` : ''}.
 
 ## الأقسام الرئيسية — Main sections
 
@@ -94,7 +100,11 @@ ${langList('de')}
 
 - [${SITE}/ru/](${SITE}/ru/) · [${SITE}/ru/attractions/](${SITE}/ru/attractions/)
 ${langList('ru')}
+${urCount || urIndexes.length ? `
+## ${LANG_META.ur.native}
 
+${urIndexes.length ? `- ${urIndexes.map((p) => `[${SITE}${p}](${SITE}${p})`).join(' · ')}\n` : ''}${langList('ur')}
+` : ''}
 ## حقائق أساسية — Key facts
 
 - الأحساء: أكثر من 2.5 مليون نخلة، تراث اليونسكو العالمي 2018، مدينتاها الرئيسيتان الهفوف والمبرز.

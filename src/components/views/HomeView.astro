@@ -10,7 +10,7 @@ import SeasonNow from '../SeasonNow.astro';
 import { getCollection } from 'astro:content';
 import { attractionHref } from '../../lib/routes';
 import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
-import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, isRtl, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 
@@ -21,15 +21,18 @@ const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
+const ur = lang === 'ur';
+// اتجاه الأسهم من اتجاه الصفحة لا من كونها عربية: الأوردو RTL كذلك
+const rtl = isRtl(lang);
 
 // اختيار حقل المحتوى بلغة الصفحة (اللغات غير العربية تتراجع للإنجليزية عند
 // الغياب)، ورابط المعلم يقصد صفحة اللغة الحالية إن وُجدت وإلا فالإنجليزية.
-const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string; title_ru?: string }) =>
-  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : ru ? (d.title_ru ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
-const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string; summary_ru?: string }) =>
-  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : ru ? (d.summary_ru ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
-const hrefLang = (d: { title_zh?: string; title_de?: string; title_ru?: string }) =>
-  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : ru && !d.title_ru ? 'en' : lang;
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string; title_ru?: string; title_ur?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : ru ? (d.title_ru ?? d.title_en ?? d.title) : ur ? (d.title_ur ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string; summary_ru?: string; summary_ur?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : ru ? (d.summary_ru ?? d.summary_en ?? d.summary) : ur ? (d.summary_ur ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string; title_de?: string; title_ru?: string; title_ur?: string }) =>
+  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : ru && !d.title_ru ? 'en' : ur && !d.title_ur ? 'en' : lang;
 
 const allEntries = await getCollection('attractions');
 const featuredEntries = allEntries
@@ -39,6 +42,7 @@ const bySlugEn = new Map(allEntries.map((e) => [e.data.slug_en, e.data]));
 
 // key = مفتاح النصّ في القاموس؛ cat = فئة حقيقية في المجموعة تُفتح مفلترة،
 // والفئات التي لا معالم لها بعد تقود إلى القائمة الكاملة.
+// الأوردو: روابط الأقسام غير المبنية تحت /ur/ تقع على الفرع الإنجليزي الأخير في كل سطر.
 // فئتا farm وmarket تقودان إلى صفحة الأسواق والمنتزهات المستقلة (2026-07-13).
 // img = صورة الفئة من المكتبة الجاهزة — بطاقات الفئات صارت photo-first (إعادة تصميم 2026-07).
 const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : '/en/souqs-parks-farms/';
@@ -57,15 +61,17 @@ const facts = [
   // (فاصلة عشرية ألمانية — دفعة الواجهة الألمانية 2026-09-03).
   // الرقم الروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05) — فاصلة عشرية روسية.
   // «+» يطابق «أكثر من 2.5 مليون» في المقدمة (2026-10-03)؛ في العربية معزولة اتجاهياً (LRI…PDI) لتبقى قبل الرقم
-  { n: ar ? '\u2066+2.5\u2069 مليون' : zh ? '250 多万' : de ? 'Über 2,5 Mio.' : ru ? 'Более 2,5 млн' : '2.5M+', l: t('fact.palms.l') },
+  // فرعا ur بالقيمة الإنجليزية عمداً: لصيقة البطاقة نفسها إنجليزية حتى تمرّ دفعة ui.ur بخطها،
+  // والمقياس الأوردي للأعداد الكبيرة (ملین أم لاکھ) بند معايرة مفتوح لا يُحسم هنا.
+  { n: ar ? '\u2066+2.5\u2069 مليون' : zh ? '250 多万' : de ? 'Über 2,5 Mio.' : ru ? 'Более 2,5 млн' : /* ur→en */ '2.5M+', l: t('fact.palms.l') },
   { n: '2018', l: t('fact.unesco.l') },
   // العدد يُشتقّ من المجموعة لا يُكتب يدوياً: كان مثبَّتاً «+60» بينما المنشور 58،
   // فتضاربت الرئيسية مع الخريطة وllms.txt (تدقيق 2026-08-30). أرقام لاتينية بحكم قاعدة الموقع.
   { n: String(allEntries.length), l: t('fact.sites.l') },
-  { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : ru ? 'Тысячи' : 'Thousands', l: t('fact.springs.l') },
+  { n: ar ? 'آلاف' : zh ? '数千' : de ? 'Tausende' : ru ? 'Тысячи' : /* ur→en */ 'Thousands', l: t('fact.springs.l') },
 ];
 // الصينية: كل هذه الصفحات لها نسخة /zh/ (رحلتي أُضيفت في الدفعة 13 — 2026-09-03)
-const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
+const allHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
 const planTripHref = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : '/en/plan-your-trip/';
 const myTripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : '/en/plan/';
 
@@ -98,11 +104,13 @@ const jsonLd = [
   { '@context': 'https://schema.org', ...websiteNode(lang), inLanguage: lang },
   {
     '@context': 'https://schema.org', '@type': 'TouristDestination',
-    // الاسم الروسي من معجم ru-translation حرفياً (مدخل «Al-Ahsa» = Аль-Ахса)
-    name: ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + ogDefault(lang),
+    // الاسم الروسي من معجم ru-translation حرفياً (مدخل «Al-Ahsa» = Аль-Ахса)،
+    // والأوردي من معجم ur-translation حرفياً (مفتاح المدخل «Al-Ahsa»)
+    name: ar ? 'الأحساء' : zh ? '哈萨' : ru ? 'Аль-Ахса' : ur ? 'الاحساء' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + ogDefault(lang),
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
-    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : ru ? 'Саудовская Аравия' : 'Saudi Arabia' },
+    // اسم الدولة بالأوردو ليس في معجم ur-translation بعد — فرعه بالإنجليزية صراحةً
+    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : zh ? '沙特阿拉伯' : de ? 'Saudi-Arabien' : ru ? 'Саудовская Аравия' : /* ur→en */ 'Saudi Arabia' },
     // هوية الوجهة خارج الموقع (بند 3.1 — 2026-09-04): Wikidata Q311341 وقائمة
     // اليونسكو 1563 وويكيبيديا الأربع — الكيان واحد بكل لغة فالقائمة لا تتبدّل.
     sameAs: OASIS_SAMEAS,
@@ -115,6 +123,8 @@ const jsonLd = [
 // والروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05، الحاكم 91/100) — الفاصل U+2014 كالإنجليزية.
 // اسم العلامة في عنوان الرئيسية (2026-09-27): سؤال «ما موقع زوروا الأحساء؟» كان يعيد
 // الموقع في المرتبة 8 بالعربية و5 بالإنجليزية في ChatGPT لأن العلامة غائبة عن العناوين.
+// فرعا ur في العنوان والوصف بالقيمة الإنجليزية عمداً: هيكل الرئيسية الأوردية إنجليزي حتى
+// تمرّ دفعة ui.ur بخطها، ويُستبدلان بمخرجه فيها.
 const title = ar
   ? 'زوروا الأحساء — دليلك السياحي لأكبر واحة في العالم'
   : zh
@@ -123,6 +133,7 @@ const title = ar
       ? 'Al-Ahsa-Reiseführer – die größte Oase der Welt'
       : ru
         ? 'Аль-Ахса — путеводитель по крупнейшему оазису в мире'
+        // ur→en: القيمة الإنجليزية حتى دفعة ui.ur
         : 'Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis';
 const description = ar
   ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
@@ -132,6 +143,7 @@ const description = ar
       ? 'Ihr Al-Ahsa-Reiseführer: Jabal al-Qarah, Qasr Ibrahim, Qaisariyah-Souk und Al-Uqair – Karten, Routen, Veranstaltungen und Restaurants im UNESCO-Welterbe.'
       : ru
         ? 'Путеводитель по Аль-Ахсе, оазису из списка ЮНЕСКО: Джабаль-эль-Кара, Каср-Ибрахим, рынок Эль-Кайсария и Эль-Укайр — карты, маршруты, события и рестораны.'
+        // ur→en: القيمة الإنجليزية حتى دفعة ui.ur
         : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
@@ -177,8 +189,8 @@ const description = ar
                 <h3 class="cat-t">{t(`cat.${c.key}.t` as any)}</h3>
                 <p class="cat-d">{t(`cat.${c.key}.d` as any)}</p>
               </div>
-              {/* اتجاه السهم كرابط المسار أدناه: في العربية يشير إلى جهة التقدّم (يسار) */}
-              <span class="cat-go" aria-hidden="true">{ar ? '←' : '→'}</span>
+              {/* اتجاه السهم كرابط المسار أدناه: في صفحات RTL يشير إلى جهة التقدّم (يسار) */}
+              <span class="cat-go" aria-hidden="true">{rtl ? '←' : '→'}</span>
             </a>
           ))}
         </div>
@@ -200,7 +212,7 @@ const description = ar
               <Photo src={e.data.heroImage} label={pickTitle(e.data)} class="att-photo" sizes={i === 0 ? "(max-width: 1000px) 100vw, 1120px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 33vw"} />
               <div class="att-body">
                 {/* التسمية العلوية عربية/صينية فقط — لا عنصر فارغ في الإنجليزية */}
-                {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : de ? (e.data.kicker_de ?? '') : ru ? (e.data.kicker_ru ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}
+                {(() => { const k = ar ? e.data.kicker : zh ? (e.data.kicker_zh ?? '') : de ? (e.data.kicker_de ?? '') : ru ? (e.data.kicker_ru ?? '') : ur ? (e.data.kicker_ur ?? '') : ''; return k ? <span class="t-caption att-k">{k}</span> : null; })()}
                 <h3 class="att-t">{pickTitle(e.data)}</h3>
                 <p class="att-d">{pickSummary(e.data)}</p>
               </div>
@@ -217,7 +229,7 @@ const description = ar
           <span class="eyebrow">{t('home.route.eyebrow')}</span>
           <h2 class="sec-title">{t('home.route.title')}</h2>
           <p class="lead">{t('home.route.lead')}</p>
-          <a href={myTripHref} class="route-link">{t('home.route.link')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+          <a href={myTripHref} class="route-link">{t('home.route.link')} <span aria-hidden="true">{rtl ? '←' : '→'}</span></a>
         </header>
         <div class="route-grid">
           {routeDays.map((d, i) => (
@@ -241,9 +253,9 @@ const description = ar
       </div>
     </section>
 
-    {/* كتلة الموسم بلا نسخة ألمانية أو روسية بعد (تُترجم عبر الخطين) — إخفاؤها أهون من
+    {/* كتلة الموسم بلا نسخة ألمانية أو روسية أو أوردية بعد (تُترجم عبر خطوطها) — إخفاؤها أهون من
         عرضها إنجليزية داخل صفحة معلَنة بلغة أخرى (بوابة C22، الخطوة 5) */}
-    {!(de || ru) && <SeasonNow lang={lang} />}
+    {!(de || ru || ur) && <SeasonNow lang={lang} />}
 
     <section class="why on-dark cv-auto">
       <PalmMotif size={360} class="why-wm" />
@@ -361,6 +373,9 @@ const description = ar
   .att-card--lead .att-t { font-size: var(--t-xl); }
   .att-card--lead .att-d { font-size: var(--t-base); }
   .att-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; max-inline-size: 60ch; }
+  /* الأوردو (نستعليق): لصيقة البطاقة وعنوانها ونبذتها بارتفاع سطر يسع حبر الخط — القياس في DetailView */
+  :global([lang='ur']) .att-t { line-height: 1.6; }
+  :global([lang='ur']) .att-k, :global([lang='ur']) .att-d { line-height: 2.45; }
   .att-more { text-align: center; margin-block-start: var(--s-5); }
   /* مسار «يومان في الواحة» — بطاقتان بيضاوان على الرملي، كلّ محطّة سطرٌ بشارة وقت */
   .route-link { display: inline-flex; align-items: center; gap: var(--s-2); margin-block-start: var(--s-3); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: none; border-block-end: 1.5px solid var(--c-gold); padding-block-end: 2px; transition: color var(--dur) var(--ease); }

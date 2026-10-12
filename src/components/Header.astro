@@ -7,7 +7,7 @@ import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
 import { LANG_META } from '../i18n/langs';
 import { listedAlt } from '../i18n/unlisted';
-import { storesHref } from '../lib/routes';
+import { storesHref, builtLang } from '../lib/routes';
 
 interface Props { lang?: Lang; alt?: AltLinks; }
 const { lang = 'ar', alt } = Astro.props;
@@ -21,9 +21,13 @@ const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
-const home = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
+// الأوردو: النواة وحدها مبنيّة (الرئيسية وفهرس المعالم)، فلها فرعان صريحان هنا؛ وبقية
+// الأقسام تقع على الفرع الأخير (الإنجليزي) في كل سطر أدناه — تسمية إنجليزية لصفحة
+// إنجليزية حتى يُبنى القسم تحت /ur/ فيُضاف فرعه.
+const ur = lang === 'ur';
+const home = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/';
 const routes = {
-  attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/',
+  attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/',
   leisure: ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : '/en/souqs-parks-farms/',
   map: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : '/en/map/',
   events: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/',
@@ -40,7 +44,7 @@ const nav = [
   // المسارات المقترحة: في شريط ar/en/zh. الألمانية والروسية خارجه بالقياس لا بالتقدير
   // (tools/measure-header-fit.mjs: رابط تاسع يلزمه 1443px و1608px فيتراكب عند كل عرض) —
   // رابطهما في التذييل كالمدونة.
-  ...(de || ru ? [] : [{ href: ar ? '/trails/' : `/${lang}/trails/`, label: t('nav.trails') }]),
+  ...(de || ru ? [] : [{ href: ar ? '/trails/' : `/${builtLang(lang)}/trails/`, label: t('nav.trails') }]),
   { href: routes.leisure, label: t('nav.leisure') },
   { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },
@@ -66,8 +70,8 @@ const nav = [
 // LANG_META من src/i18n/langs.ts (مصدر واحد مع شريط اقتراح اللغة وصفحة 404)
 // الصفحات غير المعلَنة (unlisted.ts) لا تظهر خياراً في المبدّل — كما لا تظهر في hreflang
 const altL = alt ? listedAlt(alt) : undefined;
-const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
-  .filter((l) => l === lang || (altL ? Boolean(altL[l]) : l !== 'zh' && l !== 'de' && l !== 'ru'))
+const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur'] as Lang[])
+  .filter((l) => l === lang || (altL ? Boolean(altL[l]) : l === 'ar' || l === 'en'))
   .map((l) => ({
     current: l === lang,
     href: l === lang ? null : (altL?.[l] ?? (l === 'ar' ? '/' : '/en/')),
@@ -77,7 +81,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
 <header class="site-header" id="top" data-pagefind-ignore>
   <div class="container hd-in">
     <a href={home} class="brand">
-      <Wordmark variant="turq" size="sm" />
+      <Wordmark variant="turq" size="sm" pageLang={lang} />
     </a>
 
     {/* الصندوق نفسه هو عنصر الإتاحة (بؤرة + مسافة + حالة محددة أصلية)، والملصق
@@ -177,6 +181,14 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav { gap: 10px; }
     :global([lang='en']) .nav a { font-size: .84375rem; }
   }
+  /* الأوردو ما دامت تسمياتها الإنجليزية المتراجَع إليها (كتلة ui.ur فارغة): المقيس بلا كتلة 1618px
+     (خط 15px وفجوة 16px)، وبخط الإنجليزية وفجوتها 1478px — فعتبتها 1518px لا 1516. تُقاس من جديد
+     يوم تدخل تسميات ui.ur: النستعليق يغيّر عرض التسميات وارتفاعها. */
+  @media (min-width: 1518px) {
+    :global([lang='ur']) .hd-in { inline-size: min(100% - var(--s-3), 1500px); }
+    :global([lang='ur']) .nav { gap: 10px; }
+    :global([lang='ur']) .nav a { font-size: .84375rem; }
+  }
   @media (min-width: 1521px) {
     /* وسقفُ حاويتها أوسع من 1280px: عند تجاوز السقف لا ينكسر الشريط ظاهراً بل
        **ينضغط** — الفليكس يقلّص أدوات الشريط فيلتفّ «Meine Reise» سطرين ويصير الشريط
@@ -258,6 +270,17 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru'] as Lang[])
     :global([lang='en']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
     :global([lang='en']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='en']) .nav .nav-plan { display: block; }
+  }
+  /* والأوردو تنهار عند 1517px (اللازم 1478 بخط الإنجليزية وفجوتها) — كتلتها نسخة كتلة الإنجليزية
+     بعتبتها المقيسة، ولا تعدَّل إحداهما دون قياس الأخرى. */
+  @media (max-width: 1517px) {
+    :global([lang='ur']) .hd-actions .btn-gold { display: none; }
+    :global([lang='ur']) .burger { display: flex; }
+    :global([lang='ur']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='ur']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='ur']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='ur']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='ur']) .nav .nav-plan { display: block; }
   }
   /* الألمانية تنهار عند 1520px (اللازم 1481 بخط 12.5px وفجوة 8px، «Merkliste» و«Küche aus Al-Ahsa» و«Online-Shops») والروسية عند 1707px (اللازم 1668 بخط 13px وفجوة 10px، «Сохранённые места» و«Интернет-магазины»؛ أصغر من 13px يُضعف القراءة). كانتا 1432 و1569 قبل رابط المتاجر (2026-10-09).
      تكرار الكتلة مقصود ومحصور كي لا تخسر العربية والصينية شريطهما بلا سبب. */

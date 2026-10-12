@@ -139,7 +139,10 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         والروسية بلا preload كذلك، بقياسٍ لا بإهمال: الملف المحمَّل مسبقاً هنا
         هو plex-lat-400 ومداه U+0000-00FF (لاتيني) فلا يحمل سيريلياً أصلاً،
         ومتن /ru/ يُصيَّر من Lora cyrillic — أصلٌ ببصمة يولّدها fontsource وقت
-        البناء، فلا يُحمَّل مسبقاً بلا قياس LCP على /ru/ يبرّره. */}
+        البناء، فلا يُحمَّل مسبقاً بلا قياس LCP على /ru/ يبرّره.
+        والأوردو بلا preload كذلك (الشرط هنا على العربية تحديداً لا على اتجاه RTL): وجه
+        النستعليق المشذَّب 118 كيلوبايت، ولا يُحمَّل مسبقاً بلا قياس LCP على /ur/
+        بـtools/lighthouse-gate.mjs يبرّره — وميزانية الخطوط هناك تسعه بهامش ضيّق. */}
     {lang === 'ar' ? (
       <link rel="preload" href="/fonts/plex-ar-400.woff2" as="font" type="font/woff2" crossorigin />
     ) : lang === 'en' ? (

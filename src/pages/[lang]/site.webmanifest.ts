@@ -3,11 +3,12 @@
 // الموقع من صفحة إنجليزية أو صينية يعود إلى العربية عند فتحه. العربي يبقى ملفاً
 // ثابتاً في public/ كما هو؛ وهنا نظيره لكل من en وzh وde وru بنصوص من قواميسها
 // المعتمدة (site.name وhome.hero.lead موجودان في اللغات الخمس) والأيقونات نفسها.
+// والأوردو: وصفه يتراجع للإنجليزية حتى تمرّ دفعة واجهتها، واتجاهه من LANG_META.
 import type { APIRoute, GetStaticPaths } from 'astro';
 import type { Lang } from '../../i18n/ui';
-import { htmlLang, useTranslations } from '../../i18n/utils';
+import { dir, htmlLang, useTranslations } from '../../i18n/utils';
 
-const LANGS: Lang[] = ['en', 'zh', 'de', 'ru'];
+const LANGS: Lang[] = ['en', 'zh', 'de', 'ru', 'ur'];
 
 export const getStaticPaths: GetStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 
@@ -20,7 +21,7 @@ export const GET: APIRoute = ({ params }) => {
     short_name: 'Visit Al-Ahsa',
     description: t('home.hero.lead'),
     lang: htmlLang(lang),
-    dir: 'ltr',
+    dir: dir(lang),
     id: `/${lang}/`,
     start_url: `/${lang}/`,
     scope: '/',

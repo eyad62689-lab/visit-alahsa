@@ -114,6 +114,17 @@ try {
   ok(bar && bar.to === 'ru' && bar.href === '/ru/terrain-map/', 'روسي على /en/terrain-map/ → اقتراح /ru/terrain-map/ (المرحلة هـ)', bar && bar.href); await p.done();
   p = await fresh(['fr-FR', 'fr', 'de']); await p.goto2('/'); bar = await p.bar();
   ok(bar && bar.to === 'de', 'فرنسي ثم ألماني على الجذر → تُتخطّى اللغة غير المدعومة إلى التالية', bar && bar.to); await p.done();
+  // الأوردو (ur · ur-PK · ur-IN): تُقترح باسمها الأصلي وحده (لا مفاتيح lang.suggest.* أوردية بعد)
+  // حين تحمل الصفحة نظيراً أوردياً معلَناً؛ وما دامت صفحات /ur/ في src/i18n/unlisted.ts فلا خيار
+  // أوردياً في الشريط فتُتخطّى إلى اللغة التالية. الحالة تُقرأ من الصفحة نفسها لا تُفترض.
+  for (const tag of ['ur', 'ur-PK', 'ur-IN']) {
+    p = await fresh([tag, 'en']); await p.goto2('/معالم/جبل-القارة/');
+    const listed = (await p.$('#lang-suggest .ls-opt[data-for="ur"]')) !== null;
+    bar = await p.bar();
+    if (listed) ok(bar && bar.to === 'ur' && bar.href === '/ur/attractions/jabal-al-qarah/' && bar.lang === 'ur' && bar.dir === 'rtl' && bar.text === '' && bar.cta.length > 0, `${tag} على صفحة عربية لها نظير أوردي معلَن → اقتراح /ur/ باسم اللغة وحده وباتجاه RTL`, JSON.stringify(bar));
+    else ok(bar && bar.to === 'en', `${tag} ثم إنجليزي والنظير الأوردي غير معلَن → تُتخطّى الأوردو إلى الإنجليزية`, bar && bar.to);
+    await p.done();
+  }
 
   console.log('\n── الرفض يُحفظ ويُقاس ──');
   p = await fresh(['en']); await p.goto2('/معالم/'); bar = await p.bar();
@@ -127,7 +138,7 @@ try {
 
   console.log('\n── صفحة 404 بلغة بادئة المسار ──');
   p = await fresh(['en']);
-  for (const [path, want, label] of [['/de/does-not-exist/', 'de', 'Startseite'], ['/zh/nope/', 'zh', '首页'], ['/ru/nope/', 'ru', 'Главная'], ['/en/nope/', 'en', 'Home'], ['/لا-وجود/', 'ar', 'الرئيسية']]) {
+  for (const [path, want, label] of [['/de/does-not-exist/', 'de', 'Startseite'], ['/zh/nope/', 'zh', '首页'], ['/ru/nope/', 'ru', 'Главная'], ['/ur/nope/', 'ur', 'Home'], ['/en/nope/', 'en', 'Home'], ['/لا-وجود/', 'ar', 'الرئيسية']]) {
     const res = await p.goto2(path);
     const vis = await p.$$eval('.nf-block', (bs) => bs.filter((b) => !b.hidden).map((b) => ({ lang: b.getAttribute('data-lang'), home: b.querySelector('a.btn--gold').textContent.trim(), href: b.querySelector('a.btn--gold').getAttribute('href') })));
     ok(res.status() === 404 && vis.length === 1 && vis[0].lang === want && vis[0].home === label && vis[0].href === (want === 'ar' ? '/' : `/${want}/`), `404 على ${path} → كتلة ${want}`, `${res.status()} · ${JSON.stringify(vis)}`);
@@ -137,12 +148,18 @@ try {
 
   console.log('\n── بيان التطبيق لكل لغة ──');
   p = await fresh(['en']);
-  for (const [path, lang, start] of [['/en/site.webmanifest', 'en', '/en/'], ['/zh/site.webmanifest', 'zh-CN', '/zh/'], ['/de/site.webmanifest', 'de', '/de/'], ['/ru/site.webmanifest', 'ru', '/ru/'], ['/site.webmanifest', 'ar', '/']]) {
+  for (const [path, lang, start] of [['/en/site.webmanifest', 'en', '/en/'], ['/zh/site.webmanifest', 'zh-CN', '/zh/'], ['/de/site.webmanifest', 'de', '/de/'], ['/ru/site.webmanifest', 'ru', '/ru/'], ['/ur/site.webmanifest', 'ur', '/ur/'], ['/site.webmanifest', 'ar', '/']]) {
     const res = await p.goto2(path);
     let m = null; try { m = JSON.parse(await res.text()); } catch {}
     ok(res.ok() && m && m.lang === lang && m.start_url === start && Array.isArray(m.icons) && m.icons.length === 3, `${path} → lang ${lang} · start_url ${start}`, m ? m.name : String(res.status()));
   }
-  for (const [path, href] of [['/en/', '/en/site.webmanifest'], ['/zh/attractions/', '/zh/site.webmanifest'], ['/', '/site.webmanifest']]) {
+  // اتجاه البيان من اتجاه لغته: الأوردو rtl وسائر البيانات المولَّدة ltr
+  for (const [path, want] of [['/ur/site.webmanifest', 'rtl'], ['/en/site.webmanifest', 'ltr'], ['/ru/site.webmanifest', 'ltr']]) {
+    const res = await p.goto2(path);
+    let m = null; try { m = JSON.parse(await res.text()); } catch {}
+    ok(m && m.dir === want, `${path} → dir ${want}`, m ? m.dir : String(res.status()));
+  }
+  for (const [path, href] of [['/en/', '/en/site.webmanifest'], ['/zh/attractions/', '/zh/site.webmanifest'], ['/ur/', '/ur/site.webmanifest'], ['/', '/site.webmanifest']]) {
     await p.goto2(path);
     const got = await p.$eval('link[rel="manifest"]', (l) => l.getAttribute('href'));
     ok(got === href, `${path} يربط ${href}`, got);

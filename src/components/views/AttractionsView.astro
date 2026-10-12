@@ -19,21 +19,23 @@ const ar = lang === 'ar';
 const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
+const ur = lang === 'ur';
 const leisure = scope === 'leisure';
 
 // اختيار الحقل بلغة الصفحة، ورابط البطاقة يتراجع للإنجليزية لمعلم بلا ترجمة بلغتها
-const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string; title_ru?: string }) =>
-  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : ru ? (d.title_ru ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
-const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string; summary_ru?: string }) =>
-  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : ru ? (d.summary_ru ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
-const hrefLang = (d: { title_zh?: string; title_de?: string; title_ru?: string }) =>
-  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : ru && !d.title_ru ? 'en' : lang;
+const pickTitle = (d: { title: string; title_en?: string; title_zh?: string; title_de?: string; title_ru?: string; title_ur?: string }) =>
+  ar ? d.title : zh ? (d.title_zh ?? d.title_en ?? d.title) : de ? (d.title_de ?? d.title_en ?? d.title) : ru ? (d.title_ru ?? d.title_en ?? d.title) : ur ? (d.title_ur ?? d.title_en ?? d.title) : (d.title_en ?? d.title);
+const pickSummary = (d: { summary: string; summary_en?: string; summary_zh?: string; summary_de?: string; summary_ru?: string; summary_ur?: string }) =>
+  ar ? d.summary : zh ? (d.summary_zh ?? d.summary_en ?? d.summary) : de ? (d.summary_de ?? d.summary_en ?? d.summary) : ru ? (d.summary_ru ?? d.summary_en ?? d.summary) : ur ? (d.summary_ur ?? d.summary_en ?? d.summary) : (d.summary_en ?? d.summary);
+const hrefLang = (d: { title_zh?: string; title_de?: string; title_ru?: string; title_ur?: string }) =>
+  zh && !d.title_zh ? 'en' : de && !d.title_de ? 'en' : ru && !d.title_ru ? 'en' : ur && !d.title_ur ? 'en' : lang;
 
 // أرقام العدّادات بالأرقام العربية‑الهندية في النسخة العربية اتّساقاً مع سائر الموقع.
 // الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
 const num = (n: number) => String(n);
 
-const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : '/en/attractions/';
+// الأوردو: فهرس المعالم وحده مبنيّ تحت /ur/؛ الخريطة وصفحة الأسواق تقعان على الفرع الإنجليزي الأخير
+const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
 const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : '/en/map/';
 
 // نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
@@ -75,10 +77,11 @@ const groupsHint = ar
       ? 'Suchen Sie nach einem Namen oder stöbern Sie unten in den Gruppen.'
       : ru
         ? 'Ищите по названию или просматривайте группы ниже.'
+        // ur→en: القيمة الإنجليزية حتى دفعة ui.ur
         : 'Search by name, or browse the groups below.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/';
+const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(homeHref, siteUrl).href },
@@ -113,7 +116,7 @@ const jsonLd = [
             </summary>
             <div class="list-grid">
               {g.list.map((i, idx) => (
-                <article class="card card--lift att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''} ${i.data.title_zh ?? ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
+                <article class="card card--lift att-card" data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''} ${i.data.title_zh ?? ''}${ur && i.data.title_ur ? ` ${i.data.title_ur}` : ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
                   <a class="lc-link" href={attractionHref(i.data, hrefLang(i.data))}>
                     <Photo src={i.data.heroImage} label={pickTitle(i.data)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
                     <div class="lc-body">
@@ -221,6 +224,9 @@ const jsonLd = [
   .lc-k { color: var(--c-gold-deep); }
   .lc-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-1) var(--s-2); }
   .lc-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
+  /* الأوردو (نستعليق): عنوان البطاقة ونبذتها بارتفاع سطر يسع حبر الخط — القياس في DetailView */
+  :global([lang='ur']) .lc-t { line-height: 1.6; }
+  :global([lang='ur']) .lc-d { line-height: 2.45; }
   .empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }
   @media (max-width: 760px) {
     .list-tools { flex-direction: column; align-items: stretch; }
