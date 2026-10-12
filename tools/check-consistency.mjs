@@ -30,6 +30,7 @@ import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
 import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
 import { checkUrLetterforms, checkUrRulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
+import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -1543,6 +1544,56 @@ async function main() {
     });
     if (problems.length) fail('C53', `وجه النستعليق المشذَّب: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C53', `وجه النستعليق المشذَّب (${Math.round(stats.bytes / 1024)} كيلوبايت من ${Math.round(stats.sourceBytes / 1024)}) يطابق ${NASTALIQ_PACKAGE}@${pkgVersion} والنطاق المعلَن: ${stats.codePoints} محرفاً = محارف المصدر في النطاق تماماً (${stats.declaredWithoutGlyph} من ${stats.declared} محرفاً في النطاق لا يحملها الخط نفسه)، وجه واحد بمدى وزن 400–700، وجداول التشكيل حاضرة`);
+  }
+
+  // ── C54–C58: دليل المرشدين السياحيين المرخّصين ───────────────────────────────────────────
+  // المنطق في tools/check-guides.mjs (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة)؛ هنا
+  // القراءة فقط: ملفات src/content/guides، وفهرسا الدليل وصفحات المرشدين وصفحتا السياسات من
+  // dist، وخريطة الموقع، وكل صفحة خارج الدليل تذكر فهرسه. بلا مرشد منشور تبقى الحرّاس عاملة:
+  // تثبت أن الفهرس الفارغ noindex وخارج الخريطة ولا رابط إليه.
+  {
+    const srcDir = path.join(ROOT, 'src/content/guides');
+    const srcFiles = existsSync(srcDir) ? (await readdir(srcDir, { recursive: true })).filter((f) => f.endsWith('.md')) : [];
+    const sources = [];
+    for (const f of srcFiles) sources.push(parseGuideSource(await readText(path.join(srcDir, f)), `src/content/guides/${f.split(path.sep).join('/')}`));
+    const page = async (...seg) => { const p = path.join(DIST, ...seg, 'index.html'); return existsSync(p) ? readText(p) : null; };
+    const dirs = { ar: path.join(DIST, GUIDES_AR_DIR), en: path.join(DIST, ...GUIDES_EN_DIR.split('/')) };
+    const details = [];
+    for (const lang of ['ar', 'en']) {
+      let entries = [];
+      try { entries = await readdir(dirs[lang], { withFileTypes: true }); } catch { /* الفهرس غائب: يُبلَّغ في C56 */ }
+      for (const e of entries) {
+        if (!e.isDirectory()) continue;
+        const html = await page(...path.relative(DIST, dirs[lang]).split(path.sep), e.name);
+        if (html) details.push({ lang, slug: e.name, rel: `${lang === 'ar' ? GUIDES_AR_DIR : GUIDES_EN_DIR}/${e.name}/index.html`, html });
+      }
+    }
+    const inbound = [];
+    for (const f of htmlFiles) {
+      if (f.startsWith(dirs.ar + path.sep) || f.startsWith(dirs.en + path.sep)) continue;
+      if (mentionsGuidesIndex(await readText(f))) inbound.push(path.relative(DIST, f).split(path.sep).join('/'));
+    }
+    const { problems, stats } = checkGuides({
+      today: riyadhDay(),
+      sources,
+      index: { ar: await page(GUIDES_AR_DIR), en: await page(...GUIDES_EN_DIR.split('/')) },
+      details,
+      legal: { ar: await page(decodeURIComponent('%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B3%D8%A7%D8%AA')), en: await page('en', 'legal') },
+      sitemap: existsSync(smPath) ? await readText(smPath) : '',
+      inbound,
+    });
+    const state = stats.listed ? `${stats.publishable} مرشداً منشوراً` : 'بلا مرشد منشور';
+    const OK = {
+      C54: `وسائل تواصل المرشدين أزرار لا نصوص: ${stats.contactButtons} زر تواصل في ${stats.pages} صفحة من الدليل كلها بـdata-track، ولا رقم ولا بريد مرشد في نصّ أو سمة أو JSON-LD`,
+      C55: `لا تقييم ولا سعر في ${stats.pages} صفحة من الدليل: لا مخطط تقييم أو عرض، ولا نجوم، ولا مبلغ بعملة، ولا عبارة ترتيب بالأفضلية`,
+      C56: `إخلاء المسؤولية بنصّه في فهرسَي الدليل وصفحتَي السياسات، و${stats.details} صفحة مرشد تعرض رقم رخصتها كما في مصدره والجهة المرخِّصة؛ اللفظ «مرخّص» لا «معتمد»`,
+      C57: `بوابة الرخصة: ${stats.sources} ملف مرشد في المصدر، ${stats.publishable} منشور و${stats.withheld} محجوب (مسودة أو رخصة منتهية) — المبنيّ والفهرس والخريطة تطابق المنشور، ولا رخصة منتهية في dist`,
+      C58: `حالة الدليل مشتقة من العدّ (${state}): ${stats.listed ? `الفهرس مفهرَس وفي الخريطة ومربوط من ${stats.inbound} صفحة عربية وإنجليزية، ولا رابط من لغة أخرى` : 'الفهرس مبنيّ بحالته الفارغة، noindex، بلا hreflang، خارج الخريطة، ولا صفحة تربط إليه'}`,
+    };
+    for (const id of Object.keys(OK)) {
+      if (problems[id].length) fail(id, `دليل المرشدين: ${problems[id].length} مشكلة — ${problems[id].slice(0, 4).join(' · ')}`);
+      else pass(id, OK[id]);
+    }
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

@@ -1,0 +1,16 @@
+---
+// صفحة المرشد العربية. البوابة في src/lib/guides.ts: لا تُولَّد صفحة لمسودة ولا لمن
+// انتهت رخصته يوم البناء — وبلا مرشد منشور لا مسار هنا أصلاً.
+import GuideView from '../../components/views/GuideView.astro';
+import { guideAlt } from '../../lib/routes';
+import { publishedGuides } from '../../lib/guides';
+
+export async function getStaticPaths() {
+  return (await publishedGuides()).map((entry) => ({
+    params: { slug: entry.data.slug_ar },
+    props: { entry, alt: guideAlt(entry.data) },
+  }));
+}
+const { entry, alt } = Astro.props;
+---
+<GuideView entry={entry} lang="ar" alt={alt} />

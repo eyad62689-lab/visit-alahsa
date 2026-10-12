@@ -1,0 +1,16 @@
+---
+// English guide page. Same publication gate as the Arabic route (src/lib/guides.ts):
+// drafts and guides whose licence has expired on the build day get no page.
+import GuideView from '../../../components/views/GuideView.astro';
+import { guideAlt } from '../../../lib/routes';
+import { publishedGuides } from '../../../lib/guides';
+
+export async function getStaticPaths() {
+  return (await publishedGuides()).map((entry) => ({
+    params: { slug: entry.data.slug_en },
+    props: { entry, alt: guideAlt(entry.data) },
+  }));
+}
+const { entry, alt } = Astro.props;
+---
+<GuideView entry={entry} lang="en" alt={alt} />

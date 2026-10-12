@@ -3,7 +3,9 @@ import Wordmark from './Wordmark.astro';
 import PalmMotif from './PalmMotif.astro';
 import { useTranslations, titleSep } from '../i18n/utils';
 import { catLabel } from '../lib/categories';
-import { staticHref, aboutHref, storesHref, builtLang } from '../lib/routes';
+import { staticHref, aboutHref, storesHref, builtLang, guidesHref } from '../lib/routes';
+import { guidesListed } from '../lib/guides';
+import { ORG_EMAIL, ORG_WHATSAPP_URL } from '../lib/schema';
 import { storesPage, storesLangs } from '../lib/stores';
 import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
 import type { Lang } from '../i18n/ui';
@@ -21,6 +23,8 @@ const ru = lang === 'ru';
 // الأوردو: الرئيسية وفهرس المعالم وحدهما تحت /ur/ (فرعان صريحان: listBase ورابط #name)،
 // وكل رابط آخر يقع على الفرع الإنجليزي الأخير في سطره حتى يُبنى قسمه.
 const ur = lang === 'ur';
+// دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
+const showGuides = (ar || lang === 'en') && (await guidesListed());
 const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
 const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : '/en/souqs-parks-farms/';
 const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : '/en/plan-your-trip/';
@@ -56,6 +60,7 @@ const cols = [
       { label: t('foot.l.getThere'), href: planTrip + '#getting-there' },
       // دليل التأشيرات عربي فقط حتى الآن (2026-09-26) — لا رابط في تذييل اللغات الأخرى
       ...(ar ? [{ label: t('foot.l.visa'), href: VISA_GUIDE_PATH }] : []),
+      ...(showGuides ? [{ label: t('guides.nav'), href: guidesHref(lang) }] : []),
       { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : '/en/plan/' },
       { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : '/en/map/' },
     ],
@@ -68,9 +73,9 @@ const cols = [
       ...(ar || lang === 'en' ? [{ label: t('foot.l.aboutSite'), href: aboutHref(lang) }] : []),
       { label: t('foot.l.privacy'), href: staticHref('legal', lang) },
       { label: t('foot.l.report'), href: staticHref('report', lang) },
-      { label: t('foot.l.contact'), href: 'mailto:info@visit-alahsa.com' },
+      { label: t('foot.l.contact'), href: `mailto:${ORG_EMAIL}` },
       // واتساب: الرقم لا يُعرض كنص — مضمَّن في رابط wa.me فقط (طلب إياد 2026-07-23)
-      { label: t('foot.l.whatsapp'), href: 'https://wa.me/966532482544', external: true, icon: 'whatsapp' },
+      { label: t('foot.l.whatsapp'), href: ORG_WHATSAPP_URL, external: true, icon: 'whatsapp' },
     ],
   },
 ];

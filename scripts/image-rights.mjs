@@ -129,6 +129,8 @@ async function collect(dir, out = []) {
     if (e.isDirectory()) await collect(p, out)
     // img/stores: لقطات وشعارات متاجر الغير — ملكيتها لأصحابها فلا تُختم بحقوق الموقع
     else if (/[\\/]stores[\\/]/.test(p)) continue
+    // img/guides: صور المرشدين وجولاتهم — حقّها لأصحابها فلا تُختم بحقوق الموقع
+    else if (/[\\/]guides[\\/]/.test(p)) continue
     else if (/\.(jpe?g|webp)$/i.test(e.name)) out.push(p)
   }
   return out

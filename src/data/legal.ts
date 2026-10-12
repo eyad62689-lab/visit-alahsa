@@ -3,6 +3,9 @@
 // اعتمدها إياد (docx، آخر تحديث 10 يوليو 2026م) والإنجليزية ترجمة أمينة لها —
 // **لا يُعدَّل أي بند إلا بوثيقة معتمدة جديدة من إياد.** تكيّف وحيد معتمد
 // (2026-07-10): مرجع «صفحة اتصل بنا» غير الموجودة → البريد الرسمي.
+// وبند «دليل المرشدين السياحيين» في قسم إخلاء المسؤولية (عربي/إنجليزي فقط) نصّه من
+// مصدره الواحد في src/data/guides.ts — لا يُكتب لـzh/de/ru إلا عبر خطوط الترجمة.
+import { GUIDES_DISCLAIMER } from './guides';
 
 export type LegalSub = { h: string; before?: string[]; list?: string[]; after?: string[] };
 export type LegalSection = { n: string; h: string; lead?: string; subs: LegalSub[] };
@@ -92,6 +95,8 @@ export const LEGAL_SECTIONS_AR: LegalSection[] = [
         ] },
       { h: '3. المحتوى الإرشادي لا الاستشاري',
         before: ['المحتوى المنشور في الموقع محتوى تعريفي وإرشادي عام، ولا يُعد استشارة متخصصة من أي نوع. وعلى المستخدم بذل العناية الشخصية اللازمة والتحقق المستقل قبل اتخاذ أي قرار يستند إلى محتوى الموقع.'] },
+      { h: '4. دليل المرشدين السياحيين',
+        before: [GUIDES_DISCLAIMER.ar] },
     ],
   },
   {
@@ -239,6 +244,8 @@ export const LEGAL_SECTIONS_EN: LegalSection[] = [
         ] },
       { h: '3. Guidance, not specialised advice',
         before: ['The content published on the site is general introductory and guidance content and does not constitute specialised advice of any kind. The user must exercise the necessary personal care and independent verification before taking any decision based on the site’s content.'] },
+      { h: '4. Tour guides directory',
+        before: [GUIDES_DISCLAIMER.en] },
     ],
   },
   {
