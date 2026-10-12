@@ -33,7 +33,8 @@ const LH_DIR = (process.env.LH_DIR ?? '.').replace(/\\/g, '/');
 // المحاكاة على أثر فعلي تتقلّب أزمنة CPU فيه. هدف الجودة (LCP ≤ 2.5 ث) يُقرأ ميدانياً
 // من حدث web_vitals (الخطوة 1)، وهذه البوابة تحرس **الأسباب** التي أُصلحت بميزانيات
 // حتمية لا تتقلّب: لا CSS حاجب، لا وجه سيريلي خارج /ru/، سقف عدد الخطوط وحجمها،
-// لا فيديو قبل LCP، وصورة LCP محمَّلة مسبقاً لا كسولة، ولا صورة eager تحت الطيّة.
+// لا فيديو قبل LCP، وصورة LCP محمَّلة مسبقاً لا كسولة، ولا صورة eager تحت الطيّة، ولا وجه
+// نستعليق يُطلب قبل LCP (صفحات /ur/ تُرجئه بسكربت Base.astro إلى ما بعد رسم صورة الهيرو).
 const LCP_MAX = Number(process.env.LCP_MAX ?? 4000);   // مللي ثانية — حارس كارثة (محاكاة)
 const PERF_MIN = Number(process.env.PERF_MIN ?? 80);   // درجة الأداء الدنيا (محاكاة)
 const FONT_FILES_MAX = Number(process.env.FONT_FILES_MAX ?? 12);
@@ -166,6 +167,9 @@ try {
     const m = a['metrics']?.details?.items?.[0] ?? {};
     const obsLcp = m.observedLargestContentfulPaint ?? Infinity;
     const video = reqs.filter((i) => /\.mp4(\?|$)/.test(i.url)).sort((x, y) => x.networkRequestTime - y.networkRequestTime)[0];
+    // وجه النستعليق (118KB) إن اكتمل قبل LCP المرصود دخل مخططَي Lantern وكان آخر ما ينتهي فيهما:
+    // الرئيسية الأوردية 4660ms في كل تشغيل دخل فيه، و2560–3090 في عشرة تشغيلات بعد إرجائه (2026-10-12).
+    const nastaliq = reqs.filter((i) => /nastaliq/.test(i.url)).sort((x, y) => x.networkRequestTime - y.networkRequestTime)[0];
     // ما بدأ قبل LCP المرصود يدخل في مخطط Lantern التشاؤمي لـLCP: الصور الكسولة التي يقرّر كروم
     // جلبها مبكراً (مسافة التحميل الكسول تتبع نوع الشبكة المُعلَن) تزاحم صورة LCP في المحاكاة.
     const lcpSrc = (a['largest-contentful-paint-element']?.details?.items?.[0]?.items?.[0]?.node?.snippet ?? '').match(/\bsrc="([^"]+)"/)?.[1];
@@ -178,6 +182,7 @@ try {
       blocking: (a['render-blocking-resources']?.details?.items ?? []).length === 0 ? 1 : 0,
       fontKb: Math.round(fontReqs.reduce((t, i) => t + (i.transferSize || 0), 0) / 1024),
       videoBeforeLcp: video && video.networkRequestTime < obsLcp ? 0 : 1,
+      nastaliqBeforeLcp: nastaliq && nastaliq.networkRequestTime < obsLcp ? 0 : 1,
       lcpImageOk: (a['lcp-lazy-loaded']?.score ?? 1) === 1 && (a['prioritize-lcp-image']?.score ?? 1) === 1 ? 1 : 0,
       lcp: Math.round(a['largest-contentful-paint'].numericValue),
       fcp: Math.round(a['first-contentful-paint'].numericValue),
@@ -194,6 +199,7 @@ try {
       obsLoad: Math.round(m.observedLoad ?? 0),
       traceEnd: Math.round(m.observedTraceEnd ?? 0),
       videoAt: video ? Math.round(video.networkRequestTime) : -1,
+      nastaliqAt: nastaliq ? Math.round(nastaliq.networkRequestTime) : -1,
       videoKb: video ? Math.round((video.transferSize || 0) / 1024) : 0,
       bi: lhr.environment?.benchmarkIndex ?? 0,
       preN: preLcp.length, preKb: kb(preLcp), preImgN: preImgs.length, preImgKb: kb(preImgs),
@@ -216,6 +222,7 @@ try {
       [`خطوط ≤ ${FONT_FILES_MAX}`]: row.fonts <= FONT_FILES_MAX,
       [`خطوط ≤ ${FONT_KB_MAX}KB`]: row.fontKb <= FONT_KB_MAX,
       'فيديو قبل LCP': row.videoBeforeLcp === 1,
+      'نستعليق قبل LCP': row.nastaliqBeforeLcp === 1,
       'صورة LCP محمَّلة مسبقاً': row.lcpImageOk === 1,
       'لا صورة eager تحت الطيّة': eagerBelow.length === 0,
     };
@@ -229,12 +236,12 @@ try {
     const lcpEl = lhr.audits['largest-contentful-paint-element']?.details?.items ?? [];
     const snippet = (lcpEl[0]?.items?.[0]?.node?.snippet ?? '—').replace(/\s+/g, ' ').slice(0, 110);
     const phases = (lcpEl[1]?.items ?? []).map((p) => `${p.phase} ${Math.round(p.timing)}`).join(' · ');
-    console.log(`    LCP: ${snippet}${phases ? `\n    مراحل LCP (آخر تشغيل): ${phases}` : ''}\n    الأثر الفعلي (وسيط): FCP ${row.obsFcp}ms · LCP ${row.obsLcp}ms · load ${row.obsLoad}ms · نهاية الأثر ${row.traceEnd}ms · TBT محاكى ${row.tbt}ms · فيديو ${row.videoAt < 0 ? 'لم يبدأ داخل الأثر' : `بدأ عند ${row.videoAt}ms (${row.videoKb}KB)`} · benchmarkIndex ${row.bi}\n    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): ${row.preN} (${row.preKb}KB) منها صور غير LCP ${row.preImgN} (${row.preImgKb}KB)${warnings.size ? `\n    تحذيرات Lighthouse: ${[...warnings].join(' | ')}` : ''}`);
+    console.log(`    LCP: ${snippet}${phases ? `\n    مراحل LCP (آخر تشغيل): ${phases}` : ''}\n    الأثر الفعلي (وسيط): FCP ${row.obsFcp}ms · LCP ${row.obsLcp}ms · load ${row.obsLoad}ms · نهاية الأثر ${row.traceEnd}ms · TBT محاكى ${row.tbt}ms · فيديو ${row.videoAt < 0 ? 'لم يبدأ داخل الأثر' : `بدأ عند ${row.videoAt}ms (${row.videoKb}KB)`}${row.nastaliqAt < 0 ? '' : ` · نستعليق طُلب عند ${row.nastaliqAt}ms`} · benchmarkIndex ${row.bi}\n    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): ${row.preN} (${row.preKb}KB) منها صور غير LCP ${row.preImgN} (${row.preImgKb}KB)${warnings.size ? `\n    تحذيرات Lighthouse: ${[...warnings].join(' | ')}` : ''}`);
     if (!row.ok && lastPre.length) console.log(`    أكبر ما بدأ قبل LCP (آخر تشغيل):\n      ${lastPre.join('\n      ')}`);
     if (eagerBelow.length) console.log(`    صور غير كسولة تحت الطيّة (412×823): ${eagerBelow.map((i) => `${i.src} @${i.top}px`).join(' · ')}`);
   }
 } finally {
   await chrome.kill();
 }
-console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · لا نستعليق خارج /ur/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
+console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · لا نستعليق خارج /ur/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو ولا نستعليق قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
 if (failed) process.exit(1);

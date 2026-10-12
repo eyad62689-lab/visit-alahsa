@@ -30,6 +30,7 @@ import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
 import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
 import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
+import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
@@ -1578,6 +1579,18 @@ async function main() {
     });
     if (problems.length) fail('C53', `وجه النستعليق المشذَّب: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C53', `وجه النستعليق المشذَّب (${Math.round(stats.bytes / 1024)} كيلوبايت من ${Math.round(stats.sourceBytes / 1024)}) يطابق ${NASTALIQ_PACKAGE}@${pkgVersion} والنطاق المعلَن: ${stats.codePoints} محرفاً = محارف المصدر في النطاق تماماً (${stats.declaredWithoutGlyph} من ${stats.declared} محرفاً في النطاق لا يحملها الخط نفسه)، وجه واحد بمدى وزن 400–700، وجداول التشكيل حاضرة`);
+  }
+
+  // ── C66: وجه النستعليق لا يُطلب قبل رسم صورة الهيرو في صفحات /ur/ ─────────────────────────
+  // سكربت في الرأس يضع الصنف nq-wait وقت التحليل الأول ويرفعه عند مدخل LCP لصورة الهيرو، وقاعدة
+  // في tokens.css تُبقي سلسلتَي الخط على خط النظام ما دام الصنف. المنطق في
+  // tools/check-nastaliq-deferral.mjs (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة)؛ هنا القراءة فقط.
+  {
+    const pages = [];
+    for (const f of htmlFiles) pages.push({ rel: path.relative(DIST, f).split(path.sep).join('/'), html: await readText(f) });
+    const { problems, stats } = checkNastaliqDeferral(pages);
+    if (problems.length) fail('C66', `إرجاء وجه النستعليق: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C66', `${stats.deferred} من ${stats.urPages} صفحة /ur/ تحمّل صورة الهيرو مسبقاً وتُرجئ وجه النستعليق إلى ما بعد رسمها (السكربت ينتظر الصورة المحمَّلة نفسها، وقاعدة الانتظار بلا الوجه وبلا خط عربي مستضاف)، ولا سكربت إرجاء في ${stats.otherPages} صفحة خارج /ur/`);
   }
 
   // ── C54–C58: دليل المرشدين السياحيين المرخّصين ───────────────────────────────────────────
