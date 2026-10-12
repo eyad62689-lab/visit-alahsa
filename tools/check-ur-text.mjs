@@ -245,7 +245,7 @@ export function checkUrRulings(pages, termbase) {
   return Object.values(out);
 }
 
-// ── C54–C60: حرّاس أحكام الجولة 1 ─────────────────────────────────────────────────────────
+// ── C59–C65: حرّاس أحكام الجولة 1 ─────────────────────────────────────────────────────────
 // أحكام حاكمي دفعة الواجهة ودفعتَي المعالم الأوليين (2026-10-12) التي يسمّي كلٌّ منها فحص بناء؛
 // نصّ كل حكم في المعجم (_meta.calibration_rulings) بمعرّفه، وسلاسله هنا منسوخة منه ويُعاد التحقق
 // عند كل تشغيل أنها ما زالت واردة فيه حرفياً.
@@ -267,7 +267,7 @@ const ATTRACTION_PAGE = /^ur\/attractions\/[^/]+\/index\.html$/;
 const LIFESPAN = /\(\d{4}–\d{4}\)/g;
 
 /**
- * C54–C60. @param {{ rel: string, html: string }[]} pages صفحات /ur/ المبنية
+ * C59–C65. @param {{ rel: string, html: string }[]} pages صفحات /ur/ المبنية
  * @param {object} termbase المعجم محلَّلاً
  * @param {{ titles?: { file: string, ar?: string, ur?: string }[], semicolonExempt?: { rel: string, text: string }[] }} [opts]
  *   titles: عنوانا كل معلم في المصدر (العربي والأوردي) لقاعدة عنوان القصور؛ semicolonExempt: خانات
