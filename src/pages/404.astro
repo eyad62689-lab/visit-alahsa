@@ -2,11 +2,12 @@
 // صفحة 404 — تستنتج لغة الزائر من بادئة المسار (الخطوة 2 من خطة التفاعل العالمي).
 //
 // Netlify يقدّم dist/404.html لأي مسار مفقود فلا يعرف الخادم لغة الزائر؛ السكربت
-// المضمّن أدناه يكشف الكتلة المطابقة للبادئة (/en/ أو /zh/ أو /de/ أو /ru/) ويخفي
+// المضمّن أدناه يكشف الكتلة المطابقة للبادئة (/en/ أو /zh/ أو /de/ أو /ru/ أو /ur/) ويخفي
 // البقية، وبلا بادئة تبقى العربية. بلا جافاسكربت تظهر العربية والإنجليزية معاً كما
 // كانتا. نصوص الصينية والألمانية والروسية من مفاتيح قواميسها المعتمدة حصراً
 // (crumb.home وnav.attractions) — لا جملة جديدة خارج خطوط الترجمة، فتُكمَّل بالسطر
-// الإنجليزي. شريط اقتراح اللغة معطَّل هنا لأن الصفحة تتولى لغتها بنفسها.
+// الإنجليزي. والأوردو بلا مفتاح معتمد بعد، فزرّاها بتسميتيهما الإنجليزيتين (تراجع القاموس)
+// حتى تمرّ دفعة واجهتها. شريط اقتراح اللغة معطَّل هنا لأن الصفحة تتولى لغتها بنفسها.
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -17,8 +18,8 @@ import { brandName } from '../lib/schema';
 import type { Lang } from '../i18n/ui';
 
 const alt = { ar: '/', en: '/en/' };
-const HOME: Record<Lang, string> = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/' };
-const LIST: Record<Lang, string> = { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/' };
+const HOME: Record<Lang, string> = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/' };
+const LIST: Record<Lang, string> = { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/', ur: '/ur/attractions/' };
 const EN_LINE = 'This page doesn’t exist or has moved. Try the home page or the attractions below.';
 const blocks = LANGS.map((l) => {
   const t = useTranslations(l);
@@ -57,7 +58,7 @@ const blocks = LANGS.map((l) => {
 
 <script is:inline>
   (function () {
-    var m = location.pathname.match(/^\/(en|zh|de|ru)(\/|$)/);
+    var m = location.pathname.match(/^\/(en|zh|de|ru|ur)(\/|$)/);
     var want = m ? m[1] : 'ar';
     var blocks = document.querySelectorAll('.nf-block');
     if (!blocks.length) return;

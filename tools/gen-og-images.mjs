@@ -4,10 +4,13 @@
 // صفحة إنجليزية ببطاقة عربية. هنا نسخة لكل من en وzh وde وru بالوردمارك اللاتيني
 // وسطر «موقع تراث عالمي · اليونسكو 2018» من مفتاح home.hero.eyebrow المعتمد في
 // قاموس كل لغة (لا نصّ جديد خارج خطوط الترجمة). العربية تبقى الأصل كما هي.
+// الأوردو بلا هذا المفتاح في قاموسها بعد: بطاقتها بالسطر الإنجليزي (taglineFrom) — تراجع
+// القاموس نفسه — حتى تمرّ دفعة واجهتها بخطها فيُحذف الحقل وتُعاد توليدها.
 //
 // يعمل محلياً لا في البناء: تصيير النصّ يحتاج خطوطاً مثبّتة في النظام (Cormorant
 // وLora للاتيني والسيريلي، Noto Sans CJK للصينية) والمخرجات تُودَع في public/.
 // التشغيل: node tools/gen-og-images.mjs   (يتطلب sharp — مثبّتة أصلاً)
+//          node tools/gen-og-images.mjs ur   لتوليد لغات بعينها دون إعادة كتابة البقية
 import sharp from 'sharp';
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -41,7 +44,11 @@ const LANGS = {
   de: { font: "'Lora', serif" },
   ru: { font: "'Lora', serif" },
   zh: { font: "'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" },
+  ur: { font: "'Lora', serif", taglineFrom: 'en' },
 };
+const only = process.argv.slice(2);
+const unknown = only.filter((l) => !(l in LANGS));
+if (unknown.length) throw new Error(`لغة غير معرَّفة: ${unknown.join(', ')}`);
 // موتيف السعف كما في PalmMotif.astro (نفس المسارات) — باهت في الزاوية كما في الأصل العربي
 const PALM = `
   <g transform="translate(40 60) scale(4.6)" fill="none" stroke="#F3EFE5" stroke-opacity=".28" stroke-linecap="round">
@@ -56,8 +63,8 @@ const PALM = `
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-for (const [lang, cfg] of Object.entries(LANGS)) {
-  const tagline = uiValue(lang, 'home.hero.eyebrow');
+for (const [lang, cfg] of Object.entries(LANGS).filter(([l]) => !only.length || only.includes(l))) {
+  const tagline = uiValue(cfg.taglineFrom ?? lang, 'home.hero.eyebrow');
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">

@@ -102,6 +102,27 @@ function pickPhraseZh(text, taken) {
   return null
 }
 
+// النظير الأوردي: الجملة تنتهي بالوقفة U+06D4 لا بالنقطة اللاتينية، فقاطف اللاتيني يعدّ المتن
+// كله جملة واحدة ويقصّه عند 180 حرفاً عابراً حدود الجمل. هنا الفصل على الوقفة والاستفهام العربي
+// والتعجب، والنطاق نفسه (60–180 حرفاً). حقول body_ur تُصيَّر نصاً خاماً داخل <p> واحدة فلا
+// تحويلات smartypants تُخشى.
+function pickPhraseUr(text, taken) {
+  const sentences = text
+    .split(/(?<=[\u06D4\u061F!])\s+/u)
+    .map((s) => s.trim())
+    .filter((s) => s.length >= 60)
+    .sort((a, b) => b.length - a.length)
+  for (let s of sentences) {
+    if (s.length > 180) {
+      s = s.slice(0, 180)
+      s = s.slice(0, Math.max(s.lastIndexOf(' '), 60)).trim()
+    }
+    s = s.replace(/(?<![\u06D4\u061F\u060C!])[\u06D4\u061F\u060C!]+$/u, '').trim()
+    if (s.length >= 60 && !taken.has(s)) { taken.add(s); return s }
+  }
+  return null
+}
+
 // نفس الاشتقاق في Base.astro (معرّف التعليق المخفي) — تطبيع: فك ترميز النسب
 // المئوية للمسارات العربية + إسقاط الشرطة الختامية، كي يتطابق المعرّفان دوماً.
 const id = (url) => createHash('sha256').update(`visit-alahsa:${decodeURI(url).replace(/\/$/, '')}`).digest('hex').slice(0, 12)
@@ -143,6 +164,13 @@ async function main() {
     if (bodyRu && fmField(fm, 'title_ru')) {
       const urlRu = `${SITE}/ru/attractions/${slugEn}/`
       push({ id: id(urlRu), type: 'attraction', lang: 'ru', title: fmField(fm, 'title_ru'), url: urlRu, phrase: pickPhrase(bodyRu.replace(/\s+/g, ' ').trim(), taken) })
+    }
+    // الأوردو: البوابة title_ur (نفس ur/attractions/[slug].astro)، والمتن body_ur يُصيَّر نصاً
+    // خاماً داخل <p> واحدة — بقاطف الوقفة الأوردية أعلاه.
+    const bodyUr = fmField(fm, 'body_ur')
+    if (bodyUr && fmField(fm, 'title_ur')) {
+      const urlUr = `${SITE}/ur/attractions/${slugEn}/`
+      push({ id: id(urlUr), type: 'attraction', lang: 'ur', title: fmField(fm, 'title_ur'), url: urlUr, phrase: pickPhraseUr(bodyUr.replace(/\s+/g, ' ').trim(), taken) })
     }
   }
 
@@ -226,7 +254,7 @@ async function main() {
   const out = { generated: new Date().toISOString(), site: SITE, count: fingerprints.length, fingerprints }
   await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8')
   const n = (lang) => fingerprints.filter((x) => x.lang === lang).length
-  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${n('ar')} | إنجليزي: ${n('en')} | صيني: ${n('zh')} | ألماني: ${n('de')} | روسي: ${n('ru')})`)
+  console.log(`بصمات مولَّدة: ${fingerprints.length} (عربي: ${n('ar')} | إنجليزي: ${n('en')} | صيني: ${n('zh')} | ألماني: ${n('de')} | روسي: ${n('ru')} | أوردي: ${n('ur')})`)
   console.log(`المخرج: ${OUT}`)
 }
 

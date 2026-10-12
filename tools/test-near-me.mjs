@@ -108,6 +108,15 @@ try {
   await p.waitForFunction(() => document.querySelector('[data-dist-out]')?.textContent.trim().length > 0, { timeout: 8000 }).catch(() => {});
   const outRu = await p.$eval('[data-dist-out]', (o) => o.textContent.trim());
   ok(/^около \d+ км$|^менее 1 км$/.test(outRu), 'النتيجة بصياغة الروسية المعتمدة', outRu);
+  // الأوردو: لا مفتاح det.distance في قاموسها بعد — الزر أيقونة وحدها بتسمية aria إنجليزية،
+  // والنتيجة بالصياغة الإنجليزية (DIST_LABELS.ur) حتى تمرّ صياغتها بخط ترجمتها.
+  await p.goto2('/ur/attractions/jabal-al-qarah/');
+  const ur = await p.$eval('[data-dist-btn]', (b) => ({ text: b.textContent.trim(), aria: b.getAttribute('aria-label') }));
+  ok(ur.text === '' && ur.aria === 'Distance', 'الزر الأوردي أيقونة وحدها بتسمية aria (لا مفتاح det.distance أوردي بعد)', JSON.stringify(ur));
+  await p.click('[data-dist-btn]');
+  await p.waitForFunction(() => document.querySelector('[data-dist-out]')?.textContent.trim().length > 0, { timeout: 8000 }).catch(() => {});
+  const outUr = await p.$eval('[data-dist-out]', (o) => o.textContent.trim());
+  ok(/^~\d+ km$|^under 1 km$/.test(outUr), 'النتيجة على صفحة /ur/ بالصياغة الإنجليزية', outUr);
   await p.done();
 } finally {
   await browser.close();

@@ -12,7 +12,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { checkTrails, EXPECT, L10N_LANGS } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
-import { checkVisitCards, expectFromSource, noticeStrings } from './check-visit-card.mjs';
+import { checkVisitCards, expectFromSource, noticeStrings, LANGS as VISIT_LANGS } from './check-visit-card.mjs';
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
@@ -28,6 +28,8 @@ import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-
 import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
 import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
 import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
+import { checkUrLetterforms, checkUrRulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
+import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -123,25 +125,9 @@ const stripTags = (html, sep = '') => {
 };
 // يحذف كل عنصر يحمل lang="en" حتى أول وسم إغلاق باسمه (كما كان التعبير النمطي
 // بالإرجاع الخلفي يفعل) لكن بمسح خطي: وسم الفتح بلا «<» داخله، والإغلاق بـindexOf.
-const stripLangEnElements = (html) => {
-  const open = /<(\w+)((?:[\s/][^<>]*)?)>/g;
-  let out = html;
-  for (;;) {
-    open.lastIndex = 0;
-    let removed = false;
-    let m;
-    while ((m = open.exec(out))) {
-      if (!/\blang="en"/i.test(m[2])) continue;
-      const closeTag = '</' + m[1].toLowerCase() + '>';
-      const close = out.toLowerCase().indexOf(closeTag, m.index + m[0].length);
-      if (close < 0) continue;
-      out = out.slice(0, m.index) + out.slice(close + closeTag.length);
-      removed = true;
-      break;
-    }
-    if (!removed) return out;
-  }
-};
+// المسح نفسه في tools/check-ur-text.mjs (stripLangElements) بشرط اللغة وسيطاً — تنفيذ واحد
+// يستعمله هذا الحارس وحرّاس نص /ur/.
+const stripLangEnElements = (html) => stripLangElements(html, (code) => code === 'en').html;
 
 async function listHtml(dir) {
   const out = [];
@@ -209,6 +195,8 @@ async function main() {
   }
 
   // ── C4: لا أرقام عربية-هندية في أي صفحة مبنية ────────────────────────────
+  // النمط يحمل النطاقين معاً: U+0660–0669 (العربية-الهندية) وU+06F0–06F9 (الفارسية، وهي عرف
+  // الأوردو) — فصفحات /ur/ داخلة فيه بلا فرع خاص.
   const htmlFiles = await listHtml(DIST);
   const indicDigits = /[٠-٩۰-۹]/;
   const withIndic = [];
@@ -338,7 +326,7 @@ async function main() {
     };
     const allPages = [];
     for (const [file, e] of byFile) {
-      for (const l of ['ar', 'en', 'zh', 'de', 'ru']) {
+      for (const l of ['ar', 'en', 'zh', 'de', 'ru', 'ur']) {
         const p = l === 'ar'
           ? path.join(DIST, AR_ATTRACTIONS_DIR, e.slugAr ?? '', 'index.html')
           : path.join(DIST, l, 'attractions', e.slugEn ?? '', 'index.html');
@@ -376,7 +364,7 @@ async function main() {
     const pages = [];
     for (const f of htmlFiles) {
       const rel = path.relative(DIST, f).split(path.sep).join('/');
-      const lang = /^(en|zh|de|ru)\//.exec(rel)?.[1] ?? 'ar';
+      const lang = /^(en|zh|de|ru|ur)\//.exec(rel)?.[1] ?? 'ar';
       pages.push({ rel, lang, html: await readText(f) });
     }
     const { problems, stats } = checkJawathaFriday(pages);
@@ -391,7 +379,7 @@ async function main() {
     const pages = [];
     for (const f of htmlFiles) {
       const rel = path.relative(DIST, f).split(path.sep).join('/');
-      const lang = /^(en|zh|de|ru)\//.exec(rel)?.[1] ?? 'ar';
+      const lang = /^(en|zh|de|ru|ur)\//.exec(rel)?.[1] ?? 'ar';
       pages.push({ rel, lang, html: await readText(f) });
     }
     const { problems, stats } = checkAsfarWording(pages);
@@ -517,7 +505,7 @@ async function main() {
     }
     const { attr, notice, stats, operatorPages, openSites, openPages } = checkVisitCards(expects, pages, strings);
     if (attr.length) fail('C12', `${attr.length} إسناد منشور في صفحات المعالم: ${attr.slice(0, 3).join(' · ')}`);
-    else pass('C12', `لا سطر إسناد ولا تاريخ تحقق ولا ملاحظة مراجعة في ${stats.pages} صفحة معلم بخمس لغات (نصاً وJSON-LD وسمات)، ولا رابط مصدر في البطاقة`);
+    else pass('C12', `لا سطر إسناد ولا تاريخ تحقق ولا ملاحظة مراجعة في ${stats.pages} صفحة معلم بـ${VISIT_LANGS.length} لغات (نصاً وJSON-LD وسمات)، ولا رابط مصدر في البطاقة`);
 
     // تباين السطر ورابطه يبقى AA على خلفية البطاقة (قيس --c-ink-60 سابقاً 4.36:1 — دون العتبة)
     const css = await readText(path.join(ROOT, 'src/components/views/DetailView.astro'));
@@ -527,7 +515,7 @@ async function main() {
     if (!rules.length) notice.push('تعذّر العثور على قاعدة .info-note');
     else if (used.length) notice.push(`لون دون AA في سطر المواعيد والرسوم: ${used.join(', ')} — قِس قبل التغيير`);
 
-    const per = ['ar', 'en', 'zh', 'de', 'ru'].map((l) => `${l} ${stats.notice[l]}`).join(' · ');
+    const per = VISIT_LANGS.map((l) => `${l} ${stats.notice[l]}`).join(' · ');
     if (notice.length) fail('C13', `${notice.length} إخفاقاً في سطر المواعيد والرسوم: ${notice.slice(0, 3).join(' · ')}`);
     else pass('C13', `سطر المواعيد والرسوم الموحَّد مرة واحدة حيث تعرض البطاقة مواعيد أو رسوماً (${per}) وغائب في سواها وفي ${openSites} موقعاً مفتوحاً (${openPages} صفحة)، ورابط المشغّل في ${operatorPages} معلمين بكل لغة مبنية، وبلون يبلغ AA`);
 
@@ -808,7 +796,7 @@ async function main() {
       if (sameAs.some((u) => !u.startsWith('https://'))) problems.push(`${f}: رابط sameAs بلا https`);
       if (sameAs.length) { const q = sameAs[0]; if (qOwner.has(q)) problems.push(`${f} و${qOwner.get(q)} يتقاسمان ${q.split('/').pop()}`); else qOwner.set(q, f); }
       if (unesco) { if (uOwner.has(unesco)) problems.push(`${f} و${uOwner.get(unesco)} يتقاسمان مكوّن اليونسكو ${unesco}`); else uOwner.set(unesco, f); }
-      expected.push({ f, slugEn, slugAr, sameAs: sameAs.map((u) => encodeURI(u)), unesco, hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head) });
+      expected.push({ f, slugEn, slugAr, sameAs: sameAs.map((u) => encodeURI(u)), unesco, hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head), hasUr: /^title_ur:/m.test(head) });
     }
     let pagesChecked = 0;
     for (const e of expected) {
@@ -818,6 +806,7 @@ async function main() {
         ...(e.hasZh ? [path.join(DIST, 'zh', 'attractions', e.slugEn, 'index.html')] : []),
         ...(e.hasDe ? [path.join(DIST, 'de', 'attractions', e.slugEn, 'index.html')] : []),
         ...(e.hasRu ? [path.join(DIST, 'ru', 'attractions', e.slugEn, 'index.html')] : []),
+        ...(e.hasUr ? [path.join(DIST, 'ur', 'attractions', e.slugEn, 'index.html')] : []),
       ];
       for (const p of pages) {
         let html;
@@ -836,7 +825,7 @@ async function main() {
         }
       }
     }
-    for (const home of ['', 'en', 'zh', 'de', 'ru']) {
+    for (const home of ['', 'en', 'zh', 'de', 'ru', 'ur']) {
       const p = path.join(DIST, home, 'index.html');
       let html;
       try { html = await readText(p); } catch { problems.push(`الرئيسية /${home} مفقودة`); continue; }
@@ -852,7 +841,7 @@ async function main() {
     const withU = expected.filter((e) => e.unesco).length;
     if (withQ < 10 || withU < 6) fail('C19', `الحارس صار فارغاً: ${withQ} معلماً بـsameAs و${withU} بمكوّن يونسكو — المتوقع ≥10 و≥6`);
     else if (problems.length) fail('C19', `sameAs/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C19', `sameAs في ${withQ} معلماً (${pagesChecked} صفحة) ومكوّنات اليونسكو ${withU} — المنشور يطابق المصدر، ولا كيان مشترك، والرئيسيات الخمس تحمل هوية الواحة`);
+    else pass('C19', `sameAs في ${withQ} معلماً (${pagesChecked} صفحة) ومكوّنات اليونسكو ${withU} — المنشور يطابق المصدر، ولا كيان مشترك، والرئيسيات الست تحمل هوية الواحة`);
   }
 
   // ── C20: انقسام أداة التعريف في الروسية (حكم المعايرة P1 — 2026-09-05) ────
@@ -915,7 +904,7 @@ async function main() {
       const items = [];
       for (const raw of block.split(/\r?\n/)) {
         if (!raw.trim()) continue;
-        const m = raw.match(/^[ \t]+(-[ \t]+)?(q|a)(_en|_zh|_de|_ru)?:[ \t]*(".*")[ \t]*$/);
+        const m = raw.match(/^[ \t]+(-[ \t]+)?(q|a)(_en|_zh|_de|_ru|_ur)?:[ \t]*(".*")[ \t]*$/);
         if (!m) { problems.push(`${f}: سطر faq خارج الصيغة المحدَّدة — ${raw.trim().slice(0, 40)}`); continue; }
         if (m[1]) items.push({});
         if (!items.length) { problems.push(`${f}: حقل faq قبل أول بند`); continue; }
@@ -928,7 +917,7 @@ async function main() {
         f, items,
         slugEn: fmField(head, 'slug_en'),
         slugAr: fmField(head, 'slug_ar'),
-        hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head),
+        hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head), hasUr: /^title_ur:/m.test(head),
       });
     }
     const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -940,6 +929,7 @@ async function main() {
         ...(e.hasZh ? [['_zh', path.join(DIST, 'zh', 'attractions', e.slugEn, 'index.html')]] : []),
         ...(e.hasDe ? [['_de', path.join(DIST, 'de', 'attractions', e.slugEn, 'index.html')]] : []),
         ...(e.hasRu ? [['_ru', path.join(DIST, 'ru', 'attractions', e.slugEn, 'index.html')]] : []),
+        ...(e.hasUr ? [['_ur', path.join(DIST, 'ur', 'attractions', e.slugEn, 'index.html')]] : []),
       ];
       for (const [sfx, p] of pages) {
         const want = e.items.filter((it) => it['q' + sfx] && it['a' + sfx]).map((it) => ({ q: it['q' + sfx], a: it['a' + sfx] }));
@@ -979,8 +969,8 @@ async function main() {
     else pass('C21', `أسئلة شائعة في ${expected.length} معلماً (${pagesChecked} صفحة، ${questions} سؤالاً منشوراً) — FAQPage والقسم المرئي يطابقان المصدر، وكل رقم فيها من متن الصفحة أو بطاقتها`);
   }
 
-  // ── C22: سلامة اللغة في النسخ الصينية والألمانية والروسية (الخطوة 5 من خطة التفاعل العالمي) ──
-  // كل صفحة zh/de/ru **معلَنة** (تحمل hreflang) يجب أن يبقى نصّها غير المترجم دون 20%:
+  // ── C22: سلامة اللغة في النسخ الصينية والألمانية والروسية والأوردية (الخطوة 5 من خطة التفاعل العالمي) ──
+  // كل صفحة zh/de/ru/ur **معلَنة** (تحمل hreflang) يجب أن يبقى نصّها غير المترجم دون 20%:
   // المقياس = كتل نصّ من كلمتين لاتينيتين فأكثر مطابقة حرفياً لكتلة في النظيرة
   // الإنجليزية، مقسومة على كل كتل الصفحة من كلمتين فأكثر بأي كتابة — بعد استثناء
   // أسماء الأعلام من المصدر (title/title_en/name_en/area_en/kicker_en تبقى لاتينية
@@ -1019,11 +1009,13 @@ async function main() {
     const problems = [];
     const worst = {};
     let advertised = 0;
-    for (const lang of ['zh', 'de', 'ru']) {
+    for (const lang of ['zh', 'de', 'ru', 'ur']) {
       worst[lang] = { pct: 0, page: '' };
       for (const fp of await listHtml(path.join(DIST, lang))) {
         const html = await readText(fp);
-        const pagePath = '/' + path.relative(DIST, fp).replace(/index\.html$/, '');
+        // فواصل المسار تُوحَّد على «/»: على ويندوز كان المسار «/ur\attractions\» فلا يطابق مدخل
+        // unlisted.ts ولا صفّ sitemap، فيسقط فرع غير المعلَنة محلياً ويعمل على CI وحده.
+        const pagePath = '/' + path.relative(DIST, fp).split(path.sep).join('/').replace(/index\.html$/, '');
         const isUnlisted = unlisted.some((u) => u.path === pagePath);
         const hasHreflang = /<link rel="alternate" hreflang=/.test(html);
         const noindex = /<meta name="robots" content="noindex/.test(html);
@@ -1055,10 +1047,10 @@ async function main() {
         if (html.includes(`hreflang="${u.path.split('/')[1]}" href="https://visit-alahsa.com${u.path}"`)) problems.push(`${path.relative(DIST, fp)}: hreflang يشير إلى غير المعلَنة ${u.path}`);
       }
     }
-    const summary = ['zh', 'de', 'ru'].map((l) => `${l} ≤ ${worst[l].pct}% (${worst[l].page || '—'})`).join(' · ');
+    const summary = ['zh', 'de', 'ru', 'ur'].map((l) => `${l} ≤ ${worst[l].pct}% (${worst[l].page || '—'})`).join(' · ');
     if (advertised < 50) fail('C22', `الحارس صار فارغاً: ${advertised} صفحة معلَنة مفحوصة — المتوقع ≥50`);
     else if (problems.length) fail('C22', `سلامة اللغة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C22', `${advertised} صفحة zh/de/ru معلَنة كلها دون ${THRESHOLD}% إنجليزية (الأعلى: ${summary})؛ و${unlisted.length} صفحة غير معلَنة بلا hreflang وخارج sitemap`);
+    else pass('C22', `${advertised} صفحة zh/de/ru/ur معلَنة كلها دون ${THRESHOLD}% إنجليزية (الأعلى: ${summary})؛ و${unlisted.length} صفحة غير معلَنة بلا hreflang وخارج sitemap`);
   }
 
   // ── C23: عتبة نشر المعالم وبطاقات المشاركة بلغة الصفحة (الخطوة 4 من خطة التفاعل العالمي) ──
@@ -1068,7 +1060,9 @@ async function main() {
   //     وداخل الخريطة. الحكم على ما يراه الزاحف في dist لا على المصدر.
   // (ب) كل صفحة قابلة للفهرسة تحمل og:image بلغتها: صورة محتوى، أو الافتراضية
   //     بلغة الصفحة (og-default.png للعربية وog-default-{lang}.png لغيرها) — لا
-  //     بطاقة عربية لصفحة أجنبية. والملفات الخمسة موجودة في dist.
+  //     بطاقة عربية لصفحة أجنبية. والملفات الستة موجودة في dist.
+  // صفحات /ur/ خارج (أ) ما دامت في src/i18n/unlisted.ts: غير المعلَنة بلا hreflang وخارج الخريطة
+  // بحكم C22 لا رقّةً، فشرط «غير الرقيقة معلَنة» لا يصدق عليها حتى تخرج من القائمة.
   {
     const THIN = 40;
     const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
@@ -1112,7 +1106,7 @@ async function main() {
       }
     }
     // (ب) بطاقات المشاركة
-    const ogFiles = ['og-default.png', 'og-default-en.png', 'og-default-zh.png', 'og-default-de.png', 'og-default-ru.png'];
+    const ogFiles = ['og-default.png', 'og-default-en.png', 'og-default-zh.png', 'og-default-de.png', 'og-default-ru.png', 'og-default-ur.png'];
     for (const o of ogFiles) if (!existsSync(path.join(DIST, o))) problems.push(`${o} غير موجودة في dist`);
     let ogChecked = 0, ogDefault = 0;
     for (const fp of await listHtml(DIST)) {
@@ -1199,7 +1193,7 @@ async function main() {
       if (!slugAr || !slugEn) continue; // يبلّغ عنه C23
       const hoursSrc = head.match(/^hoursSpec:\n([\s\S]*?)(?=^\S)/m)?.[1];
       const feeSrc = head.match(/^fee:.*$/m)?.[0];
-      const pages = [`/${AR_ATTRACTIONS_DIR}/${slugAr}/`, `/en/attractions/${slugEn}/`, ...['zh', 'de', 'ru'].map((l) => `/${l}/attractions/${slugEn}/`)]
+      const pages = [`/${AR_ATTRACTIONS_DIR}/${slugAr}/`, `/en/attractions/${slugEn}/`, ...['zh', 'de', 'ru', 'ur'].map((l) => `/${l}/attractions/${slugEn}/`)]
         .map((p) => [p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, fp]) => existsSync(fp));
       for (const [p, fp] of pages) {
         attrPages++;
@@ -1249,7 +1243,7 @@ async function main() {
       if (!slugAr || !slugEn) continue;
       const src = { ar: head.match(/^answer:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^answer_en:\s*"(.*)"\s*$/m)?.[1] };
       if (Boolean(src.ar) !== Boolean(src.en)) problems.push(`${f}: answer بلغة واحدة`);
-      const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
+      const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
         .map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
       for (const [l, p, fp] of pages) {
         const html = await readText(fp);
@@ -1340,7 +1334,7 @@ async function main() {
       const slugAr = fmField(head, 'slug_ar');
       const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
-      const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
+      const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
         .map(([l, slug, p]) => [l, slug, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , , fp]) => existsSync(fp));
       for (const [l, slug, p, fp] of pages) {
         const html = await readText(fp);
@@ -1499,6 +1493,56 @@ async function main() {
     });
     if (hits.length) fail('C44', `أحرف تحكّم اتجاهية في ${hits.length} ملفاً: ${hits.slice(0, 4).join(' · ')}`);
     else pass('C44', 'لا أحرف تحكّم اتجاهية في src/data وsrc/content');
+  }
+
+  // ── C45–C52: نصّ صفحات /ur/ — حروف الأوردو لا العربية، وحرّاس أحكام المعايرة ──────────
+  // المنطق في tools/check-ur-text.mjs (دوالّ نقية يُختبر كسرها على نسخة dist في الذاكرة)؛ هنا
+  // القراءة فقط: كل صفحات dist/ur، والمعجم ur-translation/glossary/termbase.json الذي نُسخت منه
+  // سلاسل الحرّاس ويُتحقَّق عند كل تشغيل أنها ما زالت واردة فيه. لكل حكم سطر نتيجة برقمه.
+  {
+    const urPages = [];
+    for (const f of await listHtml(path.join(DIST, 'ur'))) urPages.push({ rel: path.relative(DIST, f).split(path.sep).join('/'), html: await readText(f) });
+    const hex = (cp) => 'U+' + cp.toString(16).toUpperCase().padStart(4, '0');
+    const lf = checkUrLetterforms(urPages);
+    if (lf.problems.length) fail('C45', `حروف عربية في نصّ أوردي: ${lf.problems.length} مشكلة — ${lf.problems.slice(0, 4).join(' · ')}`);
+    else pass('C45', `لا ${FORBIDDEN_LETTERS.map(hex).join(' · ')} في نصّ ${lf.stats.pages} صفحة /ur/ (${lf.stats.blocks} كتلة نصّ وسمة، بعد إسقاط ${lf.stats.foreign} عنصراً موسوماً بلغة أخرى)، و${lf.stats.carriers} منها تحمل ${REQUIRED_LETTERS.map(hex).join(' و')} معاً`);
+
+    const termbase = JSON.parse(await readText(path.join(ROOT, 'ur-translation/glossary/termbase.json')));
+    const RULING_CHECKS = {
+      P1: ['C46', 'أعلام الأماكن بصيغها المعتمدة', (s) => `لا صيغة صحفية محظورة لعلم مكان، والصيغ المعتمدة واردة في ${s.carriers} صفحة`],
+      P2: ['C47', 'رأس الاسم', (s) => `رأس الاسم بهمزته الختامية في ${s.carriers} صفحة، ولا صيغة بلا همزة`],
+      P7: ['C48', 'العملة', (s) => `لا رمز SAR في نصّ أوردي، وأول مبلغ في كل حقل يحمل اسم العملة كاملاً (${s.amounts} حقلاً)`],
+      P8: ['C49', 'علامة الإضافة', (s) => `لا U+0650 ولا U+06C2 خارج مركّب مسجّل في المعجم (${s.registered} مركّباً مسجّلاً)`],
+      P12: ['C50', 'جمع «غار»', () => 'لا جمع مؤنث لـ«غار» في نصّ /ur/'],
+      P13: ['C51', 'صيغة الساعة', (s) => `${s.times} وقتاً بنظام 12 ساعة مع جزء اليوم — لا «:00» ولا ساعة 13 فأكثر ولا شرطة بين وقتين`],
+      P16: ['C52', 'الدخيل المسحوب', () => 'لا دخيل مسحوب في نصّ /ur/'],
+    };
+    for (const r of checkUrRulings(urPages, termbase)) {
+      const [id, label, ok] = RULING_CHECKS[r.id];
+      if (r.problems.length) fail(id, `${label} (حكم المعايرة ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
+      else pass(id, `${label} (حكم المعايرة ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);
+    }
+  }
+
+  // ── C53: وجه النستعليق المشذَّب المودَع يطابق الحزمة المثبّتة والنطاق المعلَن ─────────────
+  // الملف في public/vendor ناتجُ tools/gen-nastaliq-subset.mjs (أداة خارج البناء)، فيتقادم بصمت إن
+  // رُفعت الحزمة أو غُيّر unicode-range بلا إعادة توليد. المنطق في tools/check-nastaliq-subset.mjs
+  // (دالة نقية يُختبر كسرها في الذاكرة)؛ هنا القراءة فقط: fonts.css وملف القفل وملف الحزمة
+  // المثبّتة والملف كما نُشر في dist.
+  {
+    const lockPath = path.join(ROOT, 'tools/nastaliq-subset.lock.json');
+    const lock = existsSync(lockPath) ? JSON.parse(await readText(lockPath)) : null;
+    const pkgDir = path.join(ROOT, 'node_modules', NASTALIQ_PACKAGE);
+    const pkgVersion = JSON.parse(await readText(path.join(pkgDir, 'package.json'))).version;
+    const read = async (p) => (existsSync(p) ? readFile(p) : null);
+    const { problems, stats } = checkNastaliqSubset({
+      fontsCss: await readText(path.join(ROOT, 'src/styles/fonts.css')),
+      lock, pkgVersion,
+      sourceBuf: lock ? await read(path.join(pkgDir, lock.source)) : null,
+      subsetBuf: lock ? await read(path.join(DIST, lock.file)) : null,
+    });
+    if (problems.length) fail('C53', `وجه النستعليق المشذَّب: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C53', `وجه النستعليق المشذَّب (${Math.round(stats.bytes / 1024)} كيلوبايت من ${Math.round(stats.sourceBytes / 1024)}) يطابق ${NASTALIQ_PACKAGE}@${pkgVersion} والنطاق المعلَن: ${stats.codePoints} محرفاً = محارف المصدر في النطاق تماماً (${stats.declaredWithoutGlyph} من ${stats.declared} محرفاً في النطاق لا يحملها الخط نفسه)، وجه واحد بمدى وزن 400–700، وجداول التشكيل حاضرة`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

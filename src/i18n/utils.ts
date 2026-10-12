@@ -1,15 +1,17 @@
 import { ui, type Lang } from './ui';
+import { LANG_META } from './langs';
 
 export function getLangFromUrl(url: URL): Lang {
   const [, seg] = url.pathname.split('/');
-  return (['en', 'zh', 'de', 'ru'] as const).find((l) => l === seg) ?? 'ar';
+  return (['en', 'zh', 'de', 'ru', 'ur'] as const).find((l) => l === seg) ?? 'ar';
 }
 
 export function useTranslations(lang: Lang) {
   return function t(key: keyof typeof ui['ar']): string {
     // تراجع الصينية والألمانية والروسية إلى الإنجليزية: قواميس zh وde وru
     // جزئية عمداً (تُملأ صفحةً بعد صفحة عبر خطوط الإنتاج الثلاثة)، والزائر يقرأ
-    // الإنجليزية أينما غابت الترجمة بدل أن يرى مفتاحاً خاماً.
+    // الإنجليزية أينما غابت الترجمة بدل أن يرى مفتاحاً خاماً. والأوردو كذلك:
+    // كتلتها فارغة حتى تمرّ دفعة واجهتها بخطها.
     return (
       (ui[lang] as Record<string, string>)[key] ??
       (ui.en as Record<string, string>)[key] ??
@@ -35,24 +37,30 @@ export function useTranslations(lang: Lang) {
  *  خمسة وسائط من النوع نفسه تتجاوز ما تحتمله القراءة». الروسية هي الخامسة.
  *  والصيغة الموضعية **أُزيلت ولم تُبقَ للتوافق**: واجهتان لدالة واحدة تعنيان أن
  *  الترتيب يظل مكتوباً في مئات المواضع بلا مفاتيح — وهو عين ما نُقض. المواضع
- *  الثلاثة عشر كلها مُرحَّلة. */
+ *  الثلاثة عشر كلها مُرحَّلة.
+ *
+ *  كتلة ur اختيارية كذلك، ولا تُكتب إلا من مخرج معتمد لخط الترجمة الأوردي. */
 export const localize = <T,>(
   lang: Lang,
-  blocks: { ar: T; en: T; zh?: T; de?: T; ru?: T },
+  blocks: { ar: T; en: T; zh?: T; de?: T; ru?: T; ur?: T },
 ): T =>
   lang === 'ar' ? blocks.ar : (blocks[lang] ?? blocks.en);
 
-export const dir = (lang: Lang) => (lang === 'ar' ? 'rtl' : 'ltr');
+/** اتجاه الكتابة من LANG_META وحدها: الأوردو RTL كالعربية، فمقارنة اللغة بـ'ar'
+ *  لا تصلح حكماً على الاتجاه. ما يخصّ «العربية تحديداً» (نصّ عربي، خط عربي) يبقى
+ *  على مقارنته باللغة، وما يخصّ الاتجاه يمرّ من هنا أو من isRtl. */
+export const dir = (lang: Lang): 'rtl' | 'ltr' => LANG_META[lang].dir;
+export const isRtl = (lang: Lang): boolean => LANG_META[lang].dir === 'rtl';
 export const htmlLang = (lang: Lang) =>
-  ({ ar: 'ar', en: 'en', zh: 'zh-CN', de: 'de', ru: 'ru' } as const)[lang];
+  ({ ar: 'ar', en: 'en', zh: 'zh-CN', de: 'de', ru: 'ru', ur: 'ur' } as const)[lang];
 
 // مسارات النظائر باللغات الأخرى (للمبدّل وhreflang). تمرَّر لكل صفحة.
-// zh وde وru اختيارية: لا تُدرج لغة إلا حين توجد نسخة فعلية للصفحة بها
+// zh وde وru وur اختيارية: لا تُدرج لغة إلا حين توجد نسخة فعلية للصفحة بها
 // — hreflang ومبدّل اللغة يظهرانها عند وجودها فقط، فلا خيار يقود إلى 404.
-export interface AltLinks { ar: string; en: string; zh?: string; de?: string; ru?: string; }
+export interface AltLinks { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; }
 
-/** رابط الصفحة بلغة الطلب من alt — مع تراجع zh/de/ru للإنجليزية إن غاب نظيرها
- *  (الثلاثة اختيارية في AltLinks، وبدون هذا المساعد يصير alt[lang] قابلاً
+/** رابط الصفحة بلغة الطلب من alt — مع تراجع zh/de/ru/ur للإنجليزية إن غاب نظيرها
+ *  (الأربعة اختيارية في AltLinks، وبدون هذا المساعد يصير alt[lang] قابلاً
  *  للغياب نوعياً في كل موضع استهلاك). */
 export const altHref = (alt: AltLinks, lang: Lang): string => alt[lang] ?? alt.en;
 

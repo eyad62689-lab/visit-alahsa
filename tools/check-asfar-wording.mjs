@@ -44,8 +44,9 @@ export const SPA_WORDING = {
   ru: /крупнейших водоём[а-яё]* в регионе Залива/,
 };
 
-// صفحة الأصفر بكل لغة (المسار النسبي في dist بفواصل /)
-const TARGET = /^(?:(?:en|zh|de|ru)\/attractions\/asfar|معالم\/بحيرة-الأصفر)\/index\.html$/;
+// صفحة الأصفر بكل لغة (المسار النسبي في dist بفواصل /). ur داخلة في الهدف بلا نمط في
+// SPA_WORDING بعد: صفحتها الأوردية يوم تُبنى تُخفق حتى يُضاف نمطها من خط ترجمتها.
+const TARGET = /^(?:(?:en|zh|de|ru|ur)\/attractions\/asfar|معالم\/بحيرة-الأصفر)\/index\.html$/;
 
 const decode = (s) => s
   .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))

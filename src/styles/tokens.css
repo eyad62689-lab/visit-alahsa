@@ -106,3 +106,24 @@ html[dir='ltr'] { --hero-scrim-dir: 105deg; } /* إنجليزي LTR — الظل
   --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --font-body:    'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
+
+/* --- النسخة الأوردية (ur-PK) — نستعليق ---------------------------------- */
+/* Noto Nastaliq Urdu (fonts.css) يدخل السلسلتين قبل خطَّي العربية: اللاتيني يبقى على
+   Playfair وLora كما في سائر الصفحات (الوجه بنطاق عربي الرسم وحده)، وخطّا العربية بعده
+   احتياطٌ مقروء ريثما يُحمَّل أو إن تعذّر. */
+:root:lang(ur) {
+  --font-heading: 'Playfair Display', 'Noto Nastaliq Urdu', 'Cairo', 'Cairo AR Fallback', 'Amiri', 'Marcellus', Georgia, serif;
+  --font-body:    'Lora', 'Lora Fallback', 'Noto Nastaliq Urdu', 'IBM Plex Sans Arabic', 'Plex AR Fallback', system-ui, sans-serif;
+}
+/* ارتفاع السطر الموروث في متن صفحات الأوردو: حبر النستعليق يلزمه بين سطرين متتاليين 2.15–2.43
+   من حجم الخط (مقيس على النص المعتمد لصفحة جبل القارة)، و1.75 الموروثة تُلاصق الأسطر. الموروث
+   هنا 2 لنصوص المتن القصيرة، والعناصر التي تحمل ارتفاعها الخاص تُضبط في مكوّناتها بكتل
+   [lang='ur']. على main لا على body: الترويسة والتذييل يبقيان على ارتفاعهما المقيس (بـ2 صار شريط
+   الجوال 76px بدل 68) حتى تدخل تسمياتهما الأوردية فتُقاسا بها. */
+:root:lang(ur) main { line-height: 2; }
+/* ما وُسم عربياً داخل صفحة أوردية (سطر العلامة، و«العربية» في مبدّل اللغة وشريط الاقتراح)
+   نصٌّ عربي لا أوردي: يعود إلى سلسلتَي :root — وهما منسوختان هنا حرفياً، فأي تعديل هناك يُكرَّر هنا. */
+:root:lang(ur) :lang(ar) {
+  --font-heading: 'Playfair Display', 'Cairo', 'Cairo AR Fallback', 'Amiri', 'Marcellus', Georgia, serif;
+  --font-body:    'Lora', 'Lora Fallback', 'IBM Plex Sans Arabic', 'Plex AR Fallback', system-ui, sans-serif;
+}

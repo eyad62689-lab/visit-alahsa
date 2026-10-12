@@ -23,6 +23,7 @@
 //   ≥1300: 3 + (bi − 1300)/233 · ≥800: 2 + (bi − 800)/500 · ≥150: 1 + (bi − 150)/650
 // فيتساوى الهدف المحاكى (جوال متوسط) على كل مضيف، وتبقى الميزانيات الحتمية كما هي.
 import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
 import { writeFileSync, mkdirSync } from 'node:fs';
 
 const BASE = process.env.BASE ?? 'http://127.0.0.1:4399';
@@ -38,7 +39,7 @@ const PERF_MIN = Number(process.env.PERF_MIN ?? 80);   // درجة الأداء 
 const FONT_FILES_MAX = Number(process.env.FONT_FILES_MAX ?? 12);
 const FONT_KB_MAX = Number(process.env.FONT_KB_MAX ?? 270);   // كان 365 كيلوبايت على الرئيسية العربية قبل الخطوة 3
 const OUT = process.env.LH_OUT ?? '';                  // مجلد اختياري لحفظ تقارير JSON
-const PAGES = (process.env.PAGES ?? '/,/en/,/ru/,/en/attractions/jabal-al-qarah/').split(',').map((s) => s.trim()).filter(Boolean);
+const PAGES = (process.env.PAGES ?? '/,/en/,/ru/,/ur/,/en/attractions/jabal-al-qarah/,/ur/attractions/jabal-al-qarah/').split(',').map((s) => s.trim()).filter(Boolean);
 // وسيط N تشغيلات لكل صفحة: المحاكاة تُبنى على أثر فعلي تتقلّب أزمنة CPU فيه بين تشغيل
 // وآخر (فرق 1.5 ثانية في LCP للصفحة نفسها على آلة مشغولة)، والوسيط يمتصّ ذلك.
 const RUNS = Math.max(1, Number(process.env.RUNS ?? 3));
@@ -56,10 +57,12 @@ const multiplierFor = (bi) => {
 let lighthouse, chromeLauncher, puppeteer, pageFunctions;
 try {
   const require = createRequire(`${LH_DIR}/x.js`);
-  lighthouse = (await import(require.resolve('lighthouse'))).default;
-  chromeLauncher = await import(require.resolve('chrome-launcher'));
-  puppeteer = (await import(require.resolve('puppeteer-core'))).default;        // تبعية lighthouse نفسها
-  pageFunctions = (await import(require.resolve('lighthouse/core/lib/page-functions.js'))).pageFunctions;
+  // import() لا يقبل مساراً مطلقاً على ويندوز («c:» يُقرأ بروتوكولاً) — يُحوَّل إلى file://
+  const load = (id) => import(pathToFileURL(require.resolve(id)).href);
+  lighthouse = (await load('lighthouse')).default;
+  chromeLauncher = await load('chrome-launcher');
+  puppeteer = (await load('puppeteer-core')).default;        // تبعية lighthouse نفسها
+  pageFunctions = (await load('lighthouse/core/lib/page-functions.js')).pageFunctions;
 } catch (e) {
   console.error('لم أجد lighthouse. ثبّته في مجلد خارج المستودع ومرّر مساره في LH_DIR.', e.message);
   process.exit(2);
@@ -183,6 +186,8 @@ try {
       kb: Math.round(a['total-byte-weight'].numericValue / 1024),
       fonts: fontReqs.length,
       cyrillic: reqs.filter((i) => /cyrillic/.test(i.url)).length,
+      nastaliq: reqs.filter((i) => /nastaliq/.test(i.url)).length,
+      nastaliqKb: Math.round(reqs.filter((i) => /nastaliq/.test(i.url)).reduce((t, i) => t + (i.transferSize || 0), 0) / 1024),
       // تشخيص (لا يُحكم به): الأثر الفعلي غير المحاكى، وتوقيت الفيديو، ومؤشر المضيف كما قاسه Lighthouse
       obsFcp: Math.round(m.observedFirstContentfulPaint ?? 0),
       obsLcp: Math.round(obsLcp === Infinity ? 0 : obsLcp),
@@ -202,9 +207,12 @@ try {
     row.lcpSpread = `${Math.min(...samples.map((s) => s.lcp))}–${Math.max(...samples.map((s) => s.lcp))}`;
     // خارج /ru/ لا يجوز تنزيل وجه سيريلي واحد (unicode-range في fonts.css)
     row.cyrOk = path.startsWith('/ru/') || row.cyrillic === 0;
+    // وخارج /ur/ لا يجوز تنزيل وجه نستعليق واحد (unicode-range في fonts.css، والسلسلة في tokens.css لصفحات ur وحدها)
+    row.nastOk = path.startsWith('/ur/') || row.nastaliq === 0;
     row.budget = {
       'CSS حاجب': row.blocking === 1,
       'سيريلي': row.cyrOk,
+      'نستعليق': row.nastOk,
       [`خطوط ≤ ${FONT_FILES_MAX}`]: row.fonts <= FONT_FILES_MAX,
       [`خطوط ≤ ${FONT_KB_MAX}KB`]: row.fontKb <= FONT_KB_MAX,
       'فيديو قبل LCP': row.videoBeforeLcp === 1,
@@ -216,7 +224,7 @@ try {
     if (!row.ok) failed = true;
     rows.push(row);
     if (OUT) { mkdirSync(OUT, { recursive: true }); writeFileSync(`${OUT}/${path.replace(/[^a-z0-9]+/gi, '_') || 'root'}.json`, JSON.stringify(lhr)); }
-    console.log(`${row.ok ? '✓' : '✗'} ${path.padEnd(36)} أداء ${String(row.perf).padStart(3)} · LCP ${String(row.lcp).padStart(4)}ms (وسيط ${row.runs}: ${row.lcpSpread}) · FCP ${row.fcp}ms · CLS ${row.cls} · ${row.kb}KB · خطوط ${row.fonts}/${row.fontKb}KB (سيريلي ${row.cyrillic})${row.budgetFail.length ? ' · ميزانية مخالَفة: ' + row.budgetFail.join('، ') : ''}`);
+    console.log(`${row.ok ? '✓' : '✗'} ${path.padEnd(36)} أداء ${String(row.perf).padStart(3)} · LCP ${String(row.lcp).padStart(4)}ms (وسيط ${row.runs}: ${row.lcpSpread}) · FCP ${row.fcp}ms · CLS ${row.cls} · ${row.kb}KB · خطوط ${row.fonts}/${row.fontKb}KB (سيريلي ${row.cyrillic} · نستعليق ${row.nastaliq}/${row.nastaliqKb}KB)${row.budgetFail.length ? ' · ميزانية مخالَفة: ' + row.budgetFail.join('، ') : ''}`);
     // سطر التشخيص: عنصر LCP ومراحله من آخر تشغيل، والأثر الفعلي (غير المحاكى) وسيطاً
     const lcpEl = lhr.audits['largest-contentful-paint-element']?.details?.items ?? [];
     const snippet = (lcpEl[0]?.items?.[0]?.node?.snippet ?? '—').replace(/\s+/g, ' ').slice(0, 110);
@@ -228,5 +236,5 @@ try {
 } finally {
   await chrome.kill();
 }
-console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
+console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · لا نستعليق خارج /ur/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
 if (failed) process.exit(1);

@@ -18,16 +18,19 @@ import { getCollection } from 'astro:content';
 import { stayHref } from '../../lib/routes';
 import { liveFor, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
-import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+// اتجاه الأسهم من اتجاه الصفحة لا من كونها عربية
+const rtl = isRtl(lang);
 const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
+const ur = lang === 'ur';
 
 // التقييمات من Google Places API — نفس آلية صفحة المطاعم (القارئ الموحّد في
 // lib/places-live.ts)، ونفس التدهور الرشيق حين يغيب المفتاح.
@@ -47,11 +50,11 @@ const PLACES = entries.map((e) => {
     img: d.img, maps: d.maps, kind: d.kind,
     // الاسم لا يُترجم للصينية؛ النبذة والموقع والنص البديل من *_zh (الدفعة 14) بتراجع للإنجليزية
     name: ar ? d.name : d.name_en,
-    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : d.area_en,
-    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : d.alt_en,
-    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : d.blurb_en,
+    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : d.area_en,
+    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : d.alt_en,
+    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : d.blurb_en,
     // الصينية والألمانية والروسية تقصد كلٌّ منها صفحتها متى حمل المكان body_zh/body_de/body_ru، وإلا النظير الإنجليزي
-    href: hasPage ? stayHref(d, zh ? (d.body_zh?.trim() ? 'zh' : 'en') : de ? (d.body_de?.trim() ? 'de' : 'en') : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : lang) : d.maps,
+    href: hasPage ? stayHref(d, zh ? (d.body_zh?.trim() ? 'zh' : 'en') : de ? (d.body_de?.trim() ? 'de' : 'en') : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : ur ? (d.body_ur?.trim() ? 'ur' : 'en') : lang) : d.maps,
     internal: hasPage,
   };
 });
@@ -239,7 +242,7 @@ const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru 
 // الآلي هو الفحص C10 في tools/check-consistency.mjs.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
@@ -294,7 +297,7 @@ const jsonLd = [
                   <span class="sc-maps">
                     {p.internal ? C.moreLabel : C.openMaps}
                     {p.internal ? (
-                      <span class="sc-arrow" aria-hidden="true">{ar ? '←' : '→'}</span>
+                      <span class="sc-arrow" aria-hidden="true">{rtl ? '←' : '→'}</span>
                     ) : (
                       <>
                         <svg class="sc-ext" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

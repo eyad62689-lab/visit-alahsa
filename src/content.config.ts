@@ -43,6 +43,15 @@ const attractions = defineCollection({
     body_ru: z.string().optional(),
     area_ru: z.string().optional(),
     bestTime_ru: z.string().optional(),
+    // الحقول الأوردية (ur-PK): تُملأ حصراً من مخرجات خط ur-translation-pipeline
+    // المعتمدة (درجة الحاكم ≥ العتبة). وجود title_ur هو مفتاح توليد صفحة /ur/
+    // وإدراج hreflang وخيار «اردو» في مبدّل اللغة — على سابقة title_zh.
+    title_ur: z.string().optional(),
+    kicker_ur: z.string().optional(),
+    summary_ur: z.string().optional(),
+    body_ur: z.string().optional(),
+    area_ur: z.string().optional(),
+    bestTime_ur: z.string().optional(),
     slug_ar: z.string(),                       // الرابط العربي (النسخة العربية)
     slug_en: z.string(),                       // الرابط اللاتيني (النسخة الإنجليزية)
     category: z.enum(CATEGORIES),
@@ -80,13 +89,14 @@ const attractions = defineCollection({
     // يحرسه C21 على dist: كل رقم في سؤال أو جواب يجب أن يرد في متن الصفحة أو
     // بطاقتها، والمنشور (FAQPage + القسم المرئي) يطابق المصدر لكل لغة.
     // حقول اللغات على نمط _en: البند لا يظهر في لغة بلا ترجمته — والصينية
-    // والألمانية والروسية عبر خطوط الترجمة الثلاثة حصراً، لا ترجمة عابرة.
+    // والألمانية والروسية والأوردو عبر خطوط ترجمتها حصراً، لا ترجمة عابرة.
     faq: z.array(z.object({
       q: z.string(), a: z.string(),
       q_en: z.string().optional(), a_en: z.string().optional(),
       q_zh: z.string().optional(), a_zh: z.string().optional(),
       q_de: z.string().optional(), a_de: z.string().optional(),
       q_ru: z.string().optional(), a_ru: z.string().optional(),
+      q_ur: z.string().optional(), a_ur: z.string().optional(),
     })).default([]),
     // معلومات عملية موسومة: verified=false تعني بحاجة لتأكيد قبل النشر.
     // label_en/value_en ترجمة البند للإنجليزية — بدونهما لا يظهر البند في الصفحة الإنجليزية.
@@ -104,6 +114,9 @@ const attractions = defineCollection({
       // label_ru/value_ru ترجمة البند للروسية — بدونهما لا يظهر البند في صفحة /ru/
       label_ru: z.string().optional(),
       value_ru: z.string().optional(),
+      // label_ur/value_ur ترجمة البند للأوردو — بدونهما لا يظهر البند في صفحة /ur/
+      label_ur: z.string().optional(),
+      value_ur: z.string().optional(),
       verified: z.boolean().default(false),
       // ── التوثيق (2026-08-31) ───────────────────────────────────────────
       // بند دراسة التطوير: «لا معلومة تشغيلية دون مصدر وتاريخ تحقق».
@@ -113,6 +126,7 @@ const attractions = defineCollection({
       // اسم المصدر بلغة كل نسخة: بدونه يظهر اسمٌ عربي داخل الصفحة الإنجليزية —
       // وهي المخالفة نفسها التي يحرسها فلتر label_en/value_en أعلاه.
       // zh وde وru تتراجع للإنجليزية على سلسلة الموقع (اللغة ← en ← ar).
+      // لا source_ur عمداً: الحقل بيانات داخلية لا تُعرض، ولا يُترجم إلى الأوردو.
       source_en: z.string().optional(),
       source_zh: z.string().optional(),
       source_de: z.string().optional(),
@@ -181,8 +195,9 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),                   // وصف الميتا وبطاقة الفهرس
-    // zh/de/ru منذ الخطوة 10 من خطة التفاعل العالمي — لا يُكتب مقال بها إلا عبر خط ترجمتها (حاكم ≥ 90)
-    lang: z.enum(['ar', 'en', 'zh', 'de', 'ru']),
+    // zh/de/ru منذ الخطوة 10 من خطة التفاعل العالمي — لا يُكتب مقال بها إلا عبر خط ترجمتها (حاكم ≥ 90).
+    // وur مقبولة في المخطط بلا مسار /ur/blog/ بعد: مقال أوردي قبل بناء مساره يُفشل C29 (غير منشور).
+    lang: z.enum(['ar', 'en', 'zh', 'de', 'ru', 'ur']),
     key: z.string(),                           // معرّف مشترك يقرن الترجمتين
     slug: z.string(),                          // رابط المقال بلغة الملف
     topic: z.string(),                         // التسمية العلوية (eyebrow) بلغة الملف
@@ -244,6 +259,10 @@ const dining = defineCollection({
     blurb_de: z.string().optional(),
     area_de: z.string().optional(),
     alt_de: z.string().optional(),
+    // الأوردو: الحقول نفسها بوابةً لدفعتها من خط ur-translation-pipeline حصراً.
+    blurb_ur: z.string().optional(),
+    area_ur: z.string().optional(),
+    alt_ur: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),
@@ -255,6 +274,8 @@ const dining = defineCollection({
     body_de: z.string().optional(),
     // والصيني من خط zh-translation-pipeline حصراً — بوابة صفحة /zh/restaurants-cafes/<slug>/ (د1)
     body_zh: z.string().optional(),
+    // والأوردي من خط ur-translation-pipeline حصراً — بوابة صفحة /ur/restaurants-cafes/<slug>/ متى بُني مسارها
+    body_ur: z.string().optional(),
   }),
 });
 
@@ -293,6 +314,10 @@ const stay = defineCollection({
     blurb_de: z.string().optional(),
     area_de: z.string().optional(),
     alt_de: z.string().optional(),
+    // الأوردو من خط ur-translation-pipeline حصراً — الفرع نفسه بحرفه
+    blurb_ur: z.string().optional(),
+    area_ur: z.string().optional(),
+    alt_ur: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
     order: z.number().default(99),
@@ -303,6 +328,8 @@ const stay = defineCollection({
     body_de: z.string().optional(),
     // والصيني بوابة صفحة /zh/stay/<slug>/ بالآلية نفسها (د1)
     body_zh: z.string().optional(),
+    // والأوردي بوابة صفحة /ur/stay/<slug>/ بالآلية نفسها متى بُني مسارها
+    body_ur: z.string().optional(),
   }),
 });
 

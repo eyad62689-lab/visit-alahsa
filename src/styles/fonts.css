@@ -135,3 +135,19 @@
   src: url('/fonts/cormorant-garamond-cyrillic-600-normal.woff2') format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
+
+/* ---------- النستعليق (ur-PK) — Noto Nastaliq Urdu، وجه واحد مشذَّب ----------
+   وجهٌ واحد يخدم مدى الوزن 400–700: العناوين الأوردية تُصيَّر بالوزن العادي نفسه — لا ملف
+   ثانٍ يُنزَّل ولا عريض يصطنعه المتصفح. الملف مشذَّب إلى محارف النطاق المعلَن أدناه تماماً
+   (كتلة العربية وعلامات الوصل والشرطتان، وما يحمله الخط من أشكال العرض أ) مع كل جداول التشكيل وميزاتها،
+   يولّده tools/gen-nastaliq-subset.mjs من ملف حزمة @fontsource/noto-nastaliq-urdu المثبّتة،
+   ويُودَع في public/vendor/ بإصدار الحزمة في مساره (كاش سنة). تغيير النطاق أو رفع الحزمة
+   يستلزم إعادة التوليد وتحديث المسار هنا — يحرسه الفحص C53 فيُفشل البناء وإلا.
+   القياس قبل وبعد: وجها الحزمة الكاملان 310 كيلوبايت وخطوط صفحة المعلم الأوردية 436 مقابل
+   ميزانية 270 في tools/lighthouse-gate.mjs. والنطاق يحصر التنزيل في صفحات تُصيَّر فيها محارف
+   عربية الرسم بخطٍّ يسمّيه — صفحات /ur/ وحدها (tokens.css). */
+@font-face {
+  font-family: 'Noto Nastaliq Urdu'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('/vendor/noto-nastaliq-urdu-5.3.0/noto-nastaliq-urdu-arabic-400-subset.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+FBB2-FBC1, U+FD3E-FD3F, U+FDF2, U+FDF4, U+FDFA-FDFD;
+}

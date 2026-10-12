@@ -5,7 +5,7 @@ description: خط إنتاج الترجمة الأوردية لموقع زورو
 
 # خط إنتاج الترجمة الأوردية — ur-translation-pipeline
 
-> **حال الخط (2026-10-12): اجتاز المعايرة — صفحة جبل القارة 92/100 بعد ثلاث دورات (90 ← 93 ← 92).** 22 حكماً ملزماً في `termbase._meta.calibration_rulings` و8 بنود باقية في `open_items`؛ التقرير في `ur-translation/تقرير-المعايرة.md` والنص المعتمد في `ur-translation/output/attractions/jabal-al-qarah.md`. **لم يُكتب شيء في `src/` بعد**: لا `title_ur` في أي معلم، ولا مسار `/ur/`، ولا `ur` في `Lang`. التالي **قائمة التكامل الهيكلي** في `ur-translation/PLAN.md §٦` مرة واحدة، ومعها حرّاس الأحكام (§٦ ⑥) وتحديث فاحص المراحل (التقرير §٨).
+> **حال الخط (2026-10-12): اجتاز المعايرة — صفحة جبل القارة 92/100 بعد ثلاث دورات (90 ← 93 ← 92).** 22 حكماً ملزماً في `termbase._meta.calibration_rulings` و8 بنود باقية في `open_items`؛ التقرير في `ur-translation/تقرير-المعايرة.md` والنص المعتمد في `ur-translation/output/attractions/jabal-al-qarah.md`. **النواة الهيكلية نُفّذت 2026-10-12**: ثلاث صفحات `/ur/` مبنية وغير معلَنة (`src/i18n/unlisted.ts`) حتى دفعة `ui.ur`؛ الحال وما بقي في `ur-translation/PLAN.md §٦`. التالي دفعة `ui.ur`، ومعها تحديث فاحص المراحل (التقرير §٨).
 
 ## قبل أي تنفيذ
 1. اقرأ `ur-translation/PLAN.md` و `ur-translation/config.json`.

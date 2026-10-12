@@ -28,7 +28,15 @@ SECTION_FALLBACK = {
            'det.area': '位置', 'det.faq': '常见问题'},
     'ru': {'det.visitInfo': 'Информация для посетителей', 'det.bestTime': 'Лучшее время',
            'det.area': 'Расположение', 'det.faq': 'Частые вопросы'},
+    # الأوردو: سلاسل القالب المرشّحة كما قرأها القراء العميان في المعايرة (ui_ur_candidates في
+    # ur-translation/output/attractions/jabal-al-qarah.md) — لنسخة القارئ وحدها، وليست واجهة منشورة.
+    'ur': {'det.visitInfo': 'سیاحوں کے لیے معلومات', 'det.bestTime': 'بہترین وقت',
+           'det.area': 'علاقہ', 'det.faq': 'عمومی سوالات'},
 }
+
+# حروف العربية التي لا تُكتب في نصّ أوردي (ي ك ة ه ى أ إ، والتاء U+06C3) — نظير حارس البناء
+# على /ur/ في tools/check-ur-text.mjs.
+ARABIC_ONLY_LETTERS = '\u064A\u0643\u0629\u0647\u0649\u0623\u0625\u06C3'
 
 
 def ui_value(lang, key):
@@ -125,11 +133,15 @@ def main():
     out = '\n'.join(parts).rstrip() + '\n'
     open(dst, 'w', encoding='utf-8', newline='\n').write(out)
 
-    # حارس تسريب: لا حرف عربي، ولا اسم حقل، ولا مسار صفحة في نسخة القارئ
+    # حارس تسريب: لا حرف عربي، ولا اسم حقل، ولا مسار صفحة في نسخة القارئ.
+    # الأوردو تُكتب بالحرف العربي نفسه، فحارسها حروف العربية التي لا تُكتب في نصّ أوردي.
     leaks = []
-    if re.search(r'[؀-ۿ]', out):
+    if lang == 'ur':
+        if any(c in out for c in ARABIC_ONLY_LETTERS):
+            leaks.append('حرف عربي في نصّ أوردي')
+    elif re.search(r'[؀-ۿ]', out):
         leaks.append('حرف عربي')
-    if re.search(r'\b[a-zA-Z]+_(?:de|zh|ru|en)\b', out):
+    if re.search(r'\b[a-zA-Z]+_(?:de|zh|ru|ur|en)\b', out):
         leaks.append('اسم حقل')
     if re.search(r'\((?:/|https?://)', out):
         leaks.append('هدف رابط')

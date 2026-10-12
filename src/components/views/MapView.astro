@@ -9,18 +9,21 @@ import { catLabel, CATEGORY_ORDER } from '../../lib/categories';
 import { attractionHref, staticHref } from '../../lib/routes';
 import { srcsetFor } from '../../lib/images';
 import { DIST_LABELS } from '../../lib/distance';
-import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+// اتجاه الأسهم من اتجاه الصفحة لا من كونها عربية
+const rtl = isRtl(lang);
 // الصينية: العنوان والنبذة يتراجعان للإنجليزية لمعلمٍ بلا ترجمة معتمدة —
 // سابقة فهرس المعالم (AttractionsView)، وattractionHref يقصد /zh/ للمترجم وحده.
 const zh = lang === 'zh';
 // الروسية (ب7): المعالم الـ58 كلها تحمل title_ru، والتراجع للإنجليزية حارسٌ لمعلم يُضاف بلا ترجمة.
 const ru = lang === 'ru';
+const ur = lang === 'ur';
 // الألمانية (ج8): المعالم الـ58 كلها تحمل title_de — والتراجع حارسٌ لمعلم يُضاف بلا ترجمة.
 const de = lang === 'de';
 
@@ -32,25 +35,25 @@ const items = await getCollection('attractions');
 const points = items
   .filter((e) => e.data.location)
   .map((e) => ({
-    title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title),
+    title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title),
     cat: e.data.category,
     catLabel: catLabel(e.data.category, lang),
     // معلم بلا ترجمة صينية معتمدة: رابطه يقصد النسخة الإنجليزية (سابقة الفهرس)
-    href: attractionHref(e.data, (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) ? 'en' : lang),
+    href: attractionHref(e.data, (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) || (ur && !e.data.title_ur) ? 'en' : lang),
     fav: e.data.slug_ar,
     // معرّف الرابط العميق (#slug) — لاتيني في كل اللغات (الخطوة 6 من خطة التفاعل العالمي)
     id: e.data.slug_en,
-    summary: ar ? e.data.summary : zh ? (e.data.summary_zh ?? e.data.summary_en ?? e.data.summary) : de ? (e.data.summary_de ?? e.data.summary_en ?? e.data.summary) : ru ? (e.data.summary_ru ?? e.data.summary_en ?? e.data.summary) : (e.data.summary_en ?? e.data.summary),
+    summary: ar ? e.data.summary : zh ? (e.data.summary_zh ?? e.data.summary_en ?? e.data.summary) : de ? (e.data.summary_de ?? e.data.summary_en ?? e.data.summary) : ru ? (e.data.summary_ru ?? e.data.summary_en ?? e.data.summary) : ur ? (e.data.summary_ur ?? e.data.summary_en ?? e.data.summary) : (e.data.summary_en ?? e.data.summary),
     img: e.data.heroImage ?? null,
     // مصغّر القائمة (72px) والبطاقة المنبثقة: أصغر نسخة مولَّدة لا الأصل الكامل.
     // 400w أول درجة في سلّم gen-image-widths فوجود أي نسخة يضمن وجودها.
     thumb: e.data.heroImage ? `${e.data.heroImage}${srcsetFor(e.data.heroImage) ? '-400w' : ''}.webp` : null,
     popImg: e.data.heroImage ? `${e.data.heroImage}${(srcsetFor(e.data.heroImage)?.webp ?? '').includes('-800w') ? '-800w' : ''}.webp` : null,
     // نصّ البحث: الاسمان معاً + المنطقة، فيجد الزائر المعلم بأي لغة
-    q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.title_zh ?? ''} ${e.data.title_de ?? ''} ${e.data.title_ru ?? ''} ${e.data.area ?? ''} ${e.data.area_en ?? ''}${de ? ` ${e.data.area_de ?? ''}` : ''}${ru ? ` ${e.data.area_ru ?? ''}` : ''}`,
+    q: `${e.data.title} ${e.data.title_en ?? ''} ${e.data.title_zh ?? ''} ${e.data.title_de ?? ''} ${e.data.title_ru ?? ''} ${e.data.area ?? ''} ${e.data.area_en ?? ''}${de ? ` ${e.data.area_de ?? ''}` : ''}${ru ? ` ${e.data.area_ru ?? ''}` : ''}${ur ? ` ${e.data.title_ur ?? ''} ${e.data.area_ur ?? ''}` : ''}`,
     lat: e.data.location!.lat, lng: e.data.location!.lng,
   }))
-  .sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : 'en'));
+  .sort((a, b) => a.title.localeCompare(b.title, ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : ur ? 'ur' : 'en'));
 const usedCats = CATEGORY_ORDER.filter((c) => points.some((p) => p.cat === c));
 const catCounts = Object.fromEntries(usedCats.map((c) => [c, points.filter((p) => p.cat === c).length]));
 const labels = {
@@ -81,7 +84,7 @@ const leadText = leadParts ? leadParts.join(String(points.length)) : `${points.l
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: t('map.title'), item: new URL(altHref(alt, lang), siteUrl).href },
   ] },
 ];
@@ -109,7 +112,7 @@ const jsonLd = [
         </div>
         {/* الخريطة التضاريسية — صفحة مستقلة (تحسين تدريجي)؛ هذه الصفحة تبقى كما هي.
             خارج مجموعة الفلاتر: رابط تنقّل لا فلتر، وكان شكله يوهم أنه أحدها. */}
-        <a class="map-terrain-link" href={staticHref('terrainMap', lang)}>{t('map.terrain')} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+        <a class="map-terrain-link" href={staticHref('terrainMap', lang)}>{t('map.terrain')} <span aria-hidden="true">{rtl ? '←' : '→'}</span></a>
         {/* «بالقرب مني» (الخطوة 7): تحديد الموقع بطلب صريح؛ يرتّب القائمة بالمسافة ويضع علامة
             الزائر بلا تخزين. أيقونة وحدها في كل اللغات بتسمية aria (zh تتراجع للإنجليزية حتى تمرّ بالخط). */}
         <button class="map-locate" id="map-locate" type="button" aria-label={t('map.locate')} title={t('map.locate')} aria-pressed="false">

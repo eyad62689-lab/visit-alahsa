@@ -723,9 +723,10 @@ export const EVENTS_ZH: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_ZH[id]));
 export const EVENTS_DE: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_DE[id]));
 export const EVENTS_RU: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_RU[id]));
 
-/** فعاليات لغة الصفحة */
+/** فعاليات لغة الصفحة. الأوردو بلا كتلة نصوص بعد (لا TEXT_UR خارج خط ترجمتها) فتتراجع
+ *  للإنجليزية صراحةً؛ وeventAlt أدناه يبقى بلغاته الخمس: لا صفحة /ur/events/ يُربط إليها. */
 export const eventsFor = (lang: Lang): Ev[] =>
-  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU } satisfies Record<Lang, Ev[]>)[lang];
+  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU, ur: EVENTS_EN } satisfies Record<Lang, Ev[]>)[lang];
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>

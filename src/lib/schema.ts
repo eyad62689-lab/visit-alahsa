@@ -24,6 +24,7 @@ const ORG_DESC: Record<Lang, string> = {
   zh: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
   de: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
   ru: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
+  ur: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
 };
 export const ORG_EMAIL = 'info@visit-alahsa.com';
 export const orgNode = (lang: Lang) => ({
@@ -71,8 +72,10 @@ export const UNESCO_WHS_ID = {
 // اسم الواحة بلغة الصفحة: الصينية من معجم zh (哈萨绿洲) والألمانية بالـDurchkopplung
 // (Al-Ahsa-Oase) لا صيغة اليونسكو الوصفية «Oase Al-Ahsa» — تلك للاقتباس وحده.
 // والروسية من معجم ru حرفياً (مدخل «Al-Ahsa Oasis») — لا نقحرة مرتجلة.
+// والأوردو بالإنجليزية عمداً: معجم ur يحمل «Al-Ahsa» و«oasis» مدخلين منفصلين ولا مدخل
+// لاسم الواحة مركّباً، والاسم لا يُركَّب هنا — يُكتب يوم يدخل المعجم.
 const OASIS_NAME: Record<Lang, string> = {
-  ar: 'واحة الأحساء', en: 'Al-Ahsa Oasis', zh: '哈萨绿洲', de: 'Al-Ahsa-Oase', ru: 'оазис Аль-Ахса',
+  ar: 'واحة الأحساء', en: 'Al-Ahsa Oasis', zh: '哈萨绿洲', de: 'Al-Ahsa-Oase', ru: 'оазис Аль-Ахса', ur: 'Al-Ahsa Oasis',
 };
 
 /** عقدة الواحة كموقع تراث عالمي — تُدرج في isPartOf لكل معلم يحمل معرّف مكوّن. */

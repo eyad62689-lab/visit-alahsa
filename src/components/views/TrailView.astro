@@ -15,7 +15,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
-import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import { TRAIL_SOURCES, sourceTitle, stopText, trailAttribution, trailText, trailUnescoNote, type Trail } from '../../data/trails';
 import { stopAttraction, trailsIndexHref, type TrailLang } from '../../lib/trails';
 import { attractionHref } from '../../lib/routes';
@@ -25,6 +25,8 @@ interface Props { trail: Trail; lang: TrailLang; alt: AltLinks; }
 const { trail, lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+// اتجاه الأسهم من اتجاه الصفحة لا من كونها عربية
+const rtl = isRtl(lang);
 const tx = trailText(trail, lang);
 const homeHref = ar ? '/' : `/${lang}/`;
 const all = await getCollection('attractions');
@@ -124,7 +126,7 @@ const jsonLd = [
                 ? <>{s.quote[0]}<q class="trd-quote">{s.quote[1]}</q>{s.quote[2]}</>
                 : s.text}</p>
               {s.href && (
-                <p class="trd-land"><a href={s.href} data-landmark-link>{labels.landmark} <span aria-hidden="true">{ar ? '←' : '→'}</span></a></p>
+                <p class="trd-land"><a href={s.href} data-landmark-link>{labels.landmark} <span aria-hidden="true">{rtl ? '←' : '→'}</span></a></p>
               )}
               <div class="trd-src">
                 <h4 class="trd-src-h">{t('trails.sources')}</h4>

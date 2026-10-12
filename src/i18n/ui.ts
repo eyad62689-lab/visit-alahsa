@@ -5,7 +5,9 @@
 // إنتاج zh-translation-pipeline حصراً (لا ترجمة عابرة خارج السلسلة).
 // والألمانية (de-DE) قاموس جزئي كذلك، وخطها de-translation-pipeline.
 // والروسية (ru-RU) قاموس جزئي كذلك (دفعة الواجهة 2026-09-05)، وخطها ru-translation-pipeline.
-export type Lang = 'ar' | 'en' | 'zh' | 'de' | 'ru';
+// والأوردو (ur-PK) كتلتها فارغة عمداً حتى تمرّ دفعة واجهتها بخط ur-translation-pipeline:
+// كل مفتاح يتراجع للإنجليزية (ur ← en ← ar).
+export type Lang = 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur';
 
 export const ui = {
   ar: {
@@ -1398,5 +1400,11 @@ export const ui = {
     'tmap.gest.win': "Используйте Ctrl + прокрутку, чтобы приблизить карту",
     'tmap.gest.mac': "Используйте ⌘ + прокрутку, чтобы приблизить карту",
     'tmap.gest.touch': "Используйте два пальца, чтобы передвигать карту",
+  } as Record<string, string>,
+  // الأوردو (ur-PK) — كتلة فارغة عمداً: لا مفتاح يُكتب هنا إلا من مخرج معتمد لخط
+  // ur-translation-pipeline (دفعة نصوص الواجهة تلي قياس الترويسة). حتى ذلك الحين يتراجع
+  // كل مفتاح للإنجليزية في useTranslations، والسلاسل المضمّنة في الواجهات تحمل فرع ur
+  // صريحاً يعطي الإنجليزية — فالمتبقّي مرئيّ ببحث عن «ur:» و«ur ?».
+  ur: {
   } as Record<string, string>,
 } as const;
