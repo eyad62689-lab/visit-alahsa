@@ -16,8 +16,9 @@ Rule each of the blind reader's observations **applied** or **rejected**, with t
 - add a fact the source does not carry (the fence outranks fluency), or
 - erase a distinction the Arabic makes, or
 - break a pair already recorded in `memory/tm.json`, or
-- overrule a sourced termbase entry on taste alone.
-Otherwise apply it. A page cannot be approved with observations left unruled. An observation that points at a defect in the **source** (English or Arabic) is neither applied nor rejected: it is logged for the site owner, and the Urdu keeps faith with the source. An observation whose remedy would settle an item still listed in `_meta.open_items` (the article, the head-name spelling, the pending-confirmation phrase, izafat versus possessive) is likewise not ruled here: it is logged in `notes` for the calibration page.
+- overrule a sourced termbase entry on taste alone, or
+- change how the site states one of its own claims, or trade the content of a field's only source for a better register, whatever the number of readers (P24, P25 in `_meta.calibration_rulings`): such a repair is recorded as a one-line option for the site owner.
+Otherwise apply it. A page cannot be approved with observations left unruled. An observation that points at a defect in the **source** (English or Arabic) is neither applied nor rejected: it is logged for the site owner, and the Urdu keeps faith with the source. The one exception is a repair that changes form and not content, under the three conditions of ruling P23. An observation whose remedy would settle an item still listed in `_meta.open_items` (today the gloss form for an opaque generic, the pending-confirmation phrase, the Gulf, the lime, the titles of Makkah and Madinah, large-number scale, the `ہ` / `ھ` pronouns and the template strings: P3c, P4, P5, P6, P9, P10, P22, P27) is likewise not settled silently in the text: it is logged in `notes` with both candidate forms, to be ruled as a numbered item and entered in `_meta.calibration_rulings`.
 
 ## Decision rules — apply literally
 - The threshold is the number in `config.json` (`pass_threshold`). **A judge who has scored below the threshold does not have the option of APPROVE.** The comparison is binding.
