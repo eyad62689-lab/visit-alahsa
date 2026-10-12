@@ -7,6 +7,8 @@
 // وحالة الدليل كله مشتقة من العدّ نفسه بلا راية يدوية: بلا مرشد منشور يبقى الفهرس مبنياً
 // (ليُوجَّه المرشدون إلى دعوة الانضمام) لكنه noindex وخارج sitemap ولا رابط إليه من الموقع؛
 // وبأول مرشد منشور يُفهرَس ويدخل sitemap ويظهر رابطه في «خطّط لرحلتك» والتذييل.
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export type GuideEntry = CollectionEntry<'guides'>;
@@ -27,7 +29,10 @@ export const isPublishableGuide = (
 let cache: Promise<GuideEntry[]> | undefined;
 
 async function load(): Promise<GuideEntry[]> {
-  const [all, attractions] = await Promise.all([getCollection('guides'), getCollection('attractions')]);
+  const [stored, attractions] = await Promise.all([getCollection('guides'), getCollection('attractions')]);
+  // مخزن المحتوى المحفوظ بين البناءات لا يُفرَّغ حين يخلو المجلد من الملفات (المحمّل يعود مبكراً
+  // بـ«No files found»)، فيبقى فيه مرشد حُذف ملفه. الملف على القرص هو الفيصل لا المخزن.
+  const all = stored.filter((g) => g.filePath && existsSync(join(process.cwd(), g.filePath)));
   const known = new Set(attractions.map((a) => a.data.slug_en));
   // التحقق على كل الملفات لا المنشور وحده: خطأ في ملف مسودة يُكشف قبل نشره
   const seen = { slug_ar: new Map<string, string>(), slug_en: new Map<string, string>(), license: new Map<string, string>() };
