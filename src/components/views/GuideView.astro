@@ -1,0 +1,369 @@
+---
+// صفحة المرشد السياحي المرخّص — عربي/إنجليزي فقط.
+//
+// الموقع يضمن شيئاً واحداً: رخصة إرشاد سارية تحقق منها الفريق (بطاقة الرخصة). كل ما عداها
+// — النبذة والجولات وتفاصيل الخدمة — بإفادة المرشد وموسوم بذلك. وسائل التواصل أزرار فقط
+// (wa.me / tel: / mailto:) ولا يُكتب رقم ولا بريد نصاً في الصفحة ولا في JSON-LD؛ ولا تقييم
+// ولا سعر ولا مستوى لغة. يحرس ذلك كله فاحص dist.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import Photo from '../Photo.astro';
+import ShareButton from '../ShareButton.astro';
+import GuideIcon from '../GuideIcon.astro';
+import GuideDisclaimer from '../GuideDisclaimer.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { attractionHref, guideHref, guidesHref, staticHref } from '../../lib/routes';
+import { attractionsBySlug, isoDay, publishedGuides, sortGuides, type GuideEntry } from '../../lib/guides';
+import { GUIDE_LANGUAGE_NAMES, GUIDE_LICENSE_ISSUER, GUIDE_SPECIALTY_NAMES } from '../../data/guides';
+import { absUrl, breadcrumb } from '../../lib/schema';
+
+interface Props { entry: GuideEntry; lang: Lang; alt: AltLinks; }
+const { entry, lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const L = ar ? 'ar' : 'en';
+const d = entry.data;
+const female = d.gender === 'female';
+const g = (key: 'guides.badge' | 'guides.contact.h' | 'guides.bio.h') => t(`${key}.${female ? 'f' : 'm'}`);
+const fill = (s: string, name: string) => s.replace('{name}', name);
+
+const name = ar ? d.name : d.name_en;
+const otherName = ar ? d.name_en : d.name;
+const tagline = ar ? d.tagline : d.tagline_en;
+const langs = d.languages.map((k) => GUIDE_LANGUAGE_NAMES[L][k]);
+const areas = d.areas.map((a) => (ar ? a.ar : a.en));
+const expires = isoDay(d.license.expires);
+const verifiedAt = isoDay(d.license.verifiedAt);
+const year = d.license.expires.getUTCFullYear();
+
+// النبذة فقرات نصّية بلا ماركداون ولا روابط: لا مدخل لرقم أو رابط خارج أزرار التواصل
+const bio = ((ar ? entry.body : d.bio_en) ?? '').split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+
+const bySlug = await attractionsBySlug();
+const tours = d.tours.map((tour) => {
+  const sites = tour.attractions.map((slug) => bySlug.get(slug)!).map((a) => ({
+    id: a.data.slug_en,
+    title: ar ? a.data.title : (a.data.title_en ?? a.data.title),
+    href: attractionHref(a.data, lang),
+    image: a.data.heroImage,
+  }));
+  return {
+    title: ar ? tour.title : tour.title_en,
+    meta: [ar ? tour.duration : tour.duration_en, ar ? tour.groupSize : tour.groupSize_en].filter(Boolean).join(' · '),
+    sites,
+    lead: sites.find((s) => s.image),
+  };
+});
+
+const s = d.service;
+const service = [
+  { k: t('guides.service.length'), v: ar ? s?.tourLength : s?.tourLength_en },
+  { k: t('guides.facts.group'), v: ar ? s?.groupSize : s?.groupSize_en },
+  { k: t('guides.service.meeting'), v: ar ? s?.meetingPoint : s?.meetingPoint_en },
+  { k: t('guides.service.hours'), v: ar ? s?.contactHours : s?.contactHours_en },
+].filter((r): r is { k: string; v: string } => Boolean(r.v));
+const groupSize = ar ? s?.groupSize : s?.groupSize_en;
+
+const facts = [
+  { k: t('guides.card.langs'), v: langs.join(' · ') },
+  { k: t('guides.card.areas'), v: areas.join(' · ') },
+  ...(groupSize ? [{ k: t('guides.facts.group'), v: groupSize }] : []),
+  { k: t('guides.facts.prices'), v: t('guides.facts.pricesV') },
+];
+
+// مرشدون آخرون: التالون له في الترتيب الأبجدي دائرياً — لا يتصدّر أحدٌ كل الصفحات
+const all = sortGuides(await publishedGuides(), lang);
+const at = all.findIndex((x) => x.id === entry.id);
+const others = all.slice(at + 1).concat(all.slice(0, Math.max(at, 0))).slice(0, 4);
+
+const selfPath = guideHref(d, lang);
+const jsonLd = [
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('nav.plan'), path: ar ? '/خطط/' : '/en/plan-your-trip/' },
+    { name: t('guides.nav'), path: guidesHref(lang) },
+    { name, path: selfPath },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    jobTitle: g('guides.badge'),
+    knowsLanguage: d.languages,
+    areaServed: areas,
+    url: absUrl(selfPath),
+  },
+];
+const track = (kind: string) => ({ 'data-track': 'guide_contact', 'data-track-kind': kind, 'data-track-item-id': d.slug_en });
+---
+<Base title={`${name} ${titleSep(lang)} ${g('guides.badge')} ${titleSep(lang)} ${t('site.brand')}`}
+  description={`${name}: ${g('guides.badge')} · ${t('guides.place')}. ${tagline}`}
+  image={d.photo ? `${d.photo}.jpg` : undefined} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main" data-guide-page={d.slug_en}>
+    <div class="gp-band on-dark">
+      <nav class="container gp-crumbs" aria-label={t('a11y.crumbs')}>
+        <a href={ar ? '/' : '/en/'}>{t('crumb.home')}</a><span aria-hidden="true">/</span>
+        <a href={ar ? '/خطط/' : '/en/plan-your-trip/'}>{t('nav.plan')}</a><span aria-hidden="true">/</span>
+        <a href={guidesHref(lang)}>{t('guides.nav')}</a><span aria-hidden="true">/</span>
+        <b aria-current="page">{name}</b>
+      </nav>
+    </div>
+
+    <div class="container gp-wrap">
+      <section class="gp-card gp-prof">
+        <div class="gp-photo">
+          <Photo src={d.photo} label={d.photo ? fill(t('guides.photoAlt'), name) : name} class="gd-portrait" eager sizes="170px" />
+        </div>
+        <div class="gp-head">
+          <span class="eyebrow">{g('guides.badge')} · {t('guides.place')}</span>
+          <h1 class="gp-name">{name}</h1>
+          <p class="gp-other" lang={ar ? 'en' : 'ar'} dir={ar ? 'ltr' : 'rtl'}>{otherName}</p>
+          <p class="gp-tag">{tagline}</p>
+          <div class="gp-chips">
+            <span class="gp-chip gp-chip--lic"><GuideIcon name="badge" size={16} />{t('guides.chip.valid').replace('{year}', String(year))}</span>
+            <span class="gp-chip">{langs.join(' · ')}</span>
+          </div>
+        </div>
+        <div class="gp-cta">
+          <p class="gp-cta-t">{g('guides.contact.h')}</p>
+          {d.contact.whatsapp && (
+            <a class="gp-btn gp-btn--pri" href={`https://wa.me/${d.contact.whatsapp}`} target="_blank" rel="noopener" {...track('whatsapp')}><GuideIcon name="wa" />{t('guides.contact.wa')}</a>
+          )}
+          {d.contact.phone && (
+            <a class:list={['gp-btn', { 'gp-btn--pri': !d.contact.whatsapp }]} href={`tel:${d.contact.phone}`} {...track('phone')}><GuideIcon name="tel" />{t('guides.contact.tel')}</a>
+          )}
+          {d.contact.email && (
+            <a class:list={['gp-btn', { 'gp-btn--pri': !d.contact.whatsapp && !d.contact.phone }]} href={`mailto:${d.contact.email}`} {...track('email')}><GuideIcon name="mail" />{t('guides.contact.mail')}</a>
+          )}
+          <small class="gp-cta-n">{t('guides.contact.short')}</small>
+          <ShareButton lang={lang} contentType="guide" itemId={d.slug_en} class="gp-share" />
+        </div>
+      </section>
+
+      <dl class="gp-card gp-facts">
+        {facts.map((f) => <div><dt>{f.k}</dt><dd>{f.v}</dd></div>)}
+      </dl>
+
+      <div class="gp-sec"><GuideDisclaimer lang={lang} label="role" /></div>
+
+      <div class="gp-cols gp-sec">
+        <div class="gp-stack">
+          <section class="gp-card" aria-labelledby="gp-lic-h">
+            <div class="gp-sec-h"><h2 id="gp-lic-h">{t('guides.lic.h')}</h2><span class="gp-note">{t('guides.lic.checked')}</span></div>
+            <dl class="gp-lic">
+              <div><dt>{t('guides.lic.number')}</dt><dd class="gp-ltr" dir="ltr" data-guide-license>{d.license.number}</dd></div>
+              <div><dt>{t('guides.lic.issuer')}</dt><dd>{GUIDE_LICENSE_ISSUER[L]}</dd></div>
+              <div><dt>{t('guides.lic.expires')}</dt><dd class="gp-ltr" dir="ltr"><time datetime={expires} data-guide-expires>{expires}</time></dd></div>
+              <div><dt>{t('guides.lic.verifiedAt')}</dt><dd class="gp-ltr" dir="ltr"><time datetime={verifiedAt}>{verifiedAt}</time></dd></div>
+            </dl>
+            <p class="gp-small">{t('guides.lic.note')}</p>
+          </section>
+
+          <section class="gp-card" aria-labelledby="gp-bio-h">
+            <div class="gp-sec-h"><h2 id="gp-bio-h">{g('guides.bio.h')}</h2><span class="gp-note">{t('guides.stated')}</span></div>
+            <div class="gp-bio">{bio.map((p) => <p>{p}</p>)}</div>
+            <ul class="gp-chips gp-specs">
+              {d.specialties.map((k) => <li class="gp-chip">{GUIDE_SPECIALTY_NAMES[L][k]}</li>)}
+            </ul>
+          </section>
+
+          {tours.length > 0 && (
+            <section class="gp-card" aria-labelledby="gp-tours-h">
+              <div class="gp-sec-h"><h2 id="gp-tours-h">{t('guides.tours.h')}</h2><span class="gp-note">{t('guides.stated')}</span></div>
+              <div class="gp-tours">
+                {tours.map((tour) => (
+                  <article class="gp-tour">
+                    {tour.lead && <Photo src={tour.lead.image} label={tour.lead.title} class="gd-tour-photo" sizes="(max-width: 760px) 100vw, 260px" />}
+                    <div class="gp-tour-b">
+                      <h3>{tour.title}</h3>
+                      {tour.meta && <p class="gp-tour-meta">{tour.meta}</p>}
+                      {tour.sites.length > 0 && (
+                        <ul class="gp-tour-links">
+                          {tour.sites.map((site) => (
+                            <li><a href={site.href} data-track="related_click" data-track-kind="attraction" data-track-item-id={site.id}>{site.title}</a></li>
+                          ))}
+                        </ul>
+                      )}
+                      <p class="gp-agree">{t('guides.tours.price')}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {d.gallery.length > 0 && (
+            <section class="gp-card" aria-labelledby="gp-gal-h">
+              <div class="gp-sec-h"><h2 id="gp-gal-h">{t('guides.gallery.h')}</h2><span class="gp-note">{t('guides.gallery.note')}</span></div>
+              <div class="gp-gal">
+                {d.gallery.map((ph) => <Photo src={ph.src} label={ar ? ph.alt : ph.alt_en} class="gd-gal-photo" sizes="(max-width: 760px) 50vw, 240px" />)}
+              </div>
+            </section>
+          )}
+        </div>
+
+        <aside class="gp-stack gp-side">
+          <section class="gp-card" aria-labelledby="gp-svc-h">
+            <h2 id="gp-svc-h">{t('guides.service.h')}</h2>
+            <dl class="gp-kv">
+              {service.map((r) => <div><dt>{r.k}</dt><dd>{r.v}</dd></div>)}
+              <div><dt>{t('guides.facts.prices')}</dt><dd>{t('guides.facts.pricesV')}</dd></div>
+            </dl>
+            {service.length > 0 && <p class="gp-small">{t('guides.service.note')}</p>}
+          </section>
+
+          <section class="gp-card" aria-labelledby="gp-langs-h">
+            <h2 id="gp-langs-h">{t('guides.card.langs')}</h2>
+            <ul class="gp-chips">{langs.map((l) => <li class="gp-chip">{l}</li>)}</ul>
+          </section>
+
+          <section class="gp-card gp-about on-dark" aria-labelledby="gp-about-h">
+            <h2 id="gp-about-h">{t('guides.about.h')}</h2>
+            <ul>
+              <li><GuideIcon name="ok" />{t('guides.about.1')}</li>
+              <li><GuideIcon name="ok" />{t('guides.about.2')}</li>
+              <li><GuideIcon name="ok" />{t('guides.about.3')}</li>
+            </ul>
+          </section>
+
+          <a class="gp-report" href={`${staticHref('report', lang)}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}><GuideIcon name="flag" />{t('guides.report')}</a>
+        </aside>
+      </div>
+
+      {others.length > 0 && (
+        <section class="gp-sec" aria-labelledby="gp-others-h">
+          <div class="gp-sec-h"><h2 id="gp-others-h">{t('guides.others.h')}</h2><a class="gp-more" href={guidesHref(lang)}>{t('guides.others.all')}</a></div>
+          <div class="gp-others">
+            {others.map((o) => {
+              const on = ar ? o.data.name : o.data.name_en;
+              return (
+                <a class="card card--lift gp-other-card" href={guideHref(o.data, lang)} data-track="related_click" data-track-kind="guide" data-track-item-id={o.data.slug_en}>
+                  {o.data.photo
+                    ? <span class="gp-av"><Photo src={o.data.photo} label="" class="gd-portrait" sizes="54px" /></span>
+                    : <span class="gp-av" aria-hidden="true">{[...on][0]}</span>}
+                  <span class="gp-other-b">
+                    <strong>{on}</strong>
+                    <span>{ar ? o.data.tagline : o.data.tagline_en}</span>
+                    <span>{o.data.languages.map((k) => GUIDE_LANGUAGE_NAMES[L][k]).join(ar ? '، ' : ', ')}</span>
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .gp-band { padding-block: var(--s-4) var(--s-8); }
+  .gp-crumbs { display: flex; flex-wrap: wrap; gap: var(--s-2); font-size: var(--t-sm); color: rgba(247, 243, 234, .8); }
+  .gp-crumbs a { color: rgba(247, 243, 234, .88); text-decoration: none; }
+  .gp-crumbs a:hover { color: var(--c-gold-bright); text-decoration: underline; }
+  .gp-crumbs b { color: var(--c-gold-bright); font-weight: 600; }
+
+  .gp-wrap { padding-block-end: var(--s-8); }
+  .gp-sec { margin-block-start: var(--s-5); }
+  .gp-card { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-4); }
+  .gp-card h2 { font-size: 1.4375rem; color: var(--c-turq-deep); line-height: 1.3; }
+  .gp-sec-h { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-3); }
+  .gp-sec-h h2 { border-inline-start: 4px solid var(--c-gold); padding-inline-start: 12px; }
+  .gp-note { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); background: rgba(201, 154, 74, .14); border-radius: var(--radius-pill); padding: 2px 10px; }
+  .gp-small { margin-block-start: var(--s-3); font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8; }
+  .gp-ltr { unicode-bidi: isolate; }
+
+  /* رأس الصفحة: الصورة · الهوية · أزرار التواصل — مرفوع فوق الشريط الداكن */
+  .gp-prof { position: relative; z-index: 2; margin-block-start: calc(-1 * var(--s-7)); box-shadow: var(--shadow);
+    display: grid; grid-template-columns: 170px minmax(0, 1fr) 300px; gap: var(--s-5); align-items: start; }
+  .gp-photo { inline-size: 170px; block-size: 210px; border: 2px solid var(--c-gold); border-radius: var(--radius-sm); overflow: hidden; }
+  .gp-name { font-size: clamp(1.75rem, 4vw, 2.625rem); color: var(--c-ink); line-height: 1.2; margin-block: var(--s-1) 2px; }
+  .gp-other { font-family: var(--font-heading); font-weight: 700; font-size: 1.1875rem; color: var(--c-turq); text-align: start; }
+  /* الاسم بالخط الآخر يحمل اتجاهه، فتُثبَّت محاذاته على حافة بداية الصفحة لا بداية اتجاهه */
+  :global([dir='rtl']) .gp-other[dir='ltr'] { text-align: right; }
+  :global([dir='ltr']) .gp-other[dir='rtl'] { text-align: left; }
+  .gp-tag { color: var(--c-ink-soft); margin-block: var(--s-2) var(--s-3); }
+  .gp-chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .gp-chip { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-sm); color: var(--c-ink);
+    background: var(--c-sand); border: 1px solid var(--c-line); border-radius: var(--radius-pill); padding: 4px 14px; }
+  .gp-chip--lic { background: rgba(0, 110, 97, .09); border-color: rgba(0, 110, 97, .3); color: var(--c-turq-deep); font-weight: 600; }
+  .gp-specs { margin-block-start: var(--s-3); }
+
+  .gp-cta { display: grid; gap: 10px; }
+  .gp-cta-t { font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); text-align: center; }
+  .gp-btn { display: flex; align-items: center; justify-content: center; gap: var(--s-2); min-block-size: 48px; padding: 12px 20px;
+    font-weight: 600; text-decoration: none; color: var(--c-turq); border: 1.5px solid var(--c-turq); border-radius: var(--radius-pill);
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .gp-btn:hover { background: rgba(0, 110, 97, .08); }
+  .gp-btn--pri { background: var(--c-turq); color: var(--c-sand); }
+  .gp-btn--pri:hover { background: var(--c-turq-deep); }
+  .gp-cta-n { font-size: var(--t-xs); color: var(--c-ink-soft); text-align: center; line-height: 1.7; }
+  .gp-cta :global(.gp-share) { justify-self: center; }
+
+  .gp-facts { margin-block-start: var(--s-5); padding: 0; overflow: hidden; background: var(--c-line);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; }
+  .gp-facts > div { background: #fff; padding: 18px 20px; }
+  .gp-facts dt { font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .gp-facts dd { font-family: var(--font-heading); font-weight: 700; font-size: 1.125rem; color: var(--c-turq-deep); line-height: 1.5; }
+
+  .gp-cols { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: var(--s-5); align-items: start; }
+  .gp-stack { display: grid; gap: var(--s-5); min-inline-size: 0; }
+  .gp-lic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
+  .gp-lic dt, .gp-kv dt { font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .gp-lic dd { font-weight: 600; overflow-wrap: anywhere; }
+  /* قيمة لاتينية (dir=ltr) داخل صفحة RTL: تُحاذى إلى بداية عمودها العربي */
+  :global([dir='rtl']) .gp-lic dd[dir='ltr'] { text-align: right; }
+  .gp-bio { display: grid; gap: 10px; }
+
+  .gp-tours { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--s-3); }
+  .gp-tour { border: 1px solid var(--c-line); border-radius: var(--radius-sm); overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+  .gp-tour-b { padding: var(--s-3); display: grid; gap: var(--s-2); }
+  .gp-tour h3 { font-size: 1.125rem; line-height: 1.35; }
+  .gp-tour-meta { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .gp-tour-links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px var(--s-3); }
+  .gp-tour-links a { font-size: var(--t-sm); font-weight: 600; color: var(--c-turq); display: inline-block; padding-block: 4px; }
+  .gp-agree { font-size: var(--t-xs); color: var(--c-ink-soft); border-block-start: 1px dashed var(--c-line); padding-block-start: var(--s-2); }
+  .gp-gal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+
+  .gp-side h2 { font-size: 1.25rem; margin-block-end: 12px; }
+  .gp-kv { display: grid; gap: 6px; font-size: var(--t-sm); }
+  .gp-kv div { display: flex; justify-content: space-between; gap: var(--s-3); border-block-start: 1px dashed var(--c-line); padding-block-start: 6px; }
+  .gp-kv dt { font-size: var(--t-sm); }
+  .gp-kv dd { font-weight: 600; text-align: end; }
+  /* .gp-card الأبيض يغلب عقد .on-dark العام تخصيصاً، فتُعاد الخلفية الداكنة هنا صراحةً */
+  .gp-about { border: 0; background: var(--c-turq-deep); color: var(--c-sand); }
+  .gp-about h2 { color: var(--c-gold-bright); }
+  .gp-about ul { list-style: none; padding: 0; display: grid; gap: var(--s-2); font-size: var(--t-sm); }
+  .gp-about li { display: flex; gap: var(--s-2); align-items: flex-start; }
+  .gp-about li :global(svg) { color: var(--c-gold-bright); margin-block-start: 4px; }
+  .gp-report { display: inline-flex; gap: 6px; align-items: center; min-block-size: 44px; font-size: var(--t-sm); font-weight: 600; color: var(--c-turq); }
+
+  .gp-more { font-size: var(--t-sm); font-weight: 600; color: var(--c-turq); }
+  .gp-sec > .gp-sec-h h2 { font-size: var(--t-xl); color: var(--c-turq-deep); line-height: 1.3; }
+  .gp-others { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
+  .gp-other-card { flex-direction: row; align-items: center; gap: 12px; padding: var(--s-3); border: 1px solid var(--c-line); }
+  .gp-av { inline-size: 54px; block-size: 54px; flex: none; border-radius: 50%; overflow: hidden; display: grid; place-items: center;
+    background: rgba(0, 110, 97, .1); color: var(--c-turq-deep); border: 2px solid var(--c-gold);
+    font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; line-height: 1; }
+  .gp-other-b { display: grid; min-inline-size: 0; font-size: var(--t-xs); color: var(--c-ink-soft); line-height: 1.6; }
+  .gp-other-b strong { font-family: var(--font-heading); font-size: 1.0625rem; color: var(--c-ink); }
+
+  @media (max-width: 1000px) {
+    .gp-prof { grid-template-columns: 140px minmax(0, 1fr); }
+    .gp-photo { inline-size: 140px; block-size: 174px; }
+    .gp-cta { grid-column: 1 / -1; }
+    .gp-cols { grid-template-columns: 1fr; }
+    .gp-others { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .gp-prof { grid-template-columns: 1fr; gap: var(--s-4); }
+    .gp-photo { inline-size: 120px; block-size: 150px; }
+    .gp-lic { grid-template-columns: 1fr 1fr; }
+    .gp-gal { grid-template-columns: 1fr 1fr; }
+    .gp-others { grid-template-columns: 1fr; }
+  }
+</style>

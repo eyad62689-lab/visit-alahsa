@@ -112,6 +112,25 @@ export const STORES_ALT = {
 export const STORES_AR = STORES_ALT.ar;
 export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[builtLang(lang)];
 
+/** دليل المرشدين السياحيين المرخّصين — عربي/إنجليزي فقط (كصفحة «عن زوروا الأحساء»)،
+ *  فلا يدخل STATIC_AR. اللغات الأخرى تقصد الفهرس الإنجليزي حيث يلزم رابط، ولا رابط
+ *  إليه أصلاً من صفحاتها. إدراجه في sitemap والتذييل تقرّره src/lib/guides.ts من عدد
+ *  المرشدين المنشورين. */
+export const GUIDES_ALT = { ar: '/مرشدون-سياحيون/', en: '/en/tour-guides/' } as const;
+export const guidesHref = (lang: Lang): string => (lang === 'ar' ? GUIDES_ALT.ar : GUIDES_ALT.en);
+
+type GuideSlugs = { slug_ar: string; slug_en: string };
+
+/** رابط صفحة المرشد — بشرطة ختامية دائماً. غير العربية تقصد الصفحة الإنجليزية. */
+export const guideHref = (d: GuideSlugs, lang: Lang): string =>
+  lang === 'ar' ? `${GUIDES_ALT.ar}${d.slug_ar}/` : `${GUIDES_ALT.en}${d.slug_en}/`;
+
+/** نظيرا صفحة المرشد — مصدر hreflang ومبدّل اللغة. */
+export const guideAlt = (d: GuideSlugs): { ar: string; en: string } => ({
+  ar: guideHref(d, 'ar'),
+  en: guideHref(d, 'en'),
+});
+
 /** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. الأوردو تقصد الإنجليزية (builtLang). */
 export const staticHref = (page: StaticPage, lang: Lang): string =>
   lang === 'ar' ? STATIC_AR[page] : `/${builtLang(lang)}/${STATIC_LATIN[page]}`;

@@ -166,6 +166,12 @@ picture.photo { display: block; }
    تدرّج .photo العامّ يتراكم فوقه فتبلغ العتامة أسفل البطاقة ~95% — تُطمس الصورة
    وتتشابه البطاقات الستّ. نُلغي الطبقة العامّة هنا ونكتفي بتدرّج البطاقة. */
 .photo.cat-photo::after { content: none; }
+/* دليل المرشدين: صورة المرشد الشخصية تملأ إطارها بلا ظلّ الصور العامّ (وجهٌ لا مشهد)،
+   وصورة المعلم في بطاقة الجولة وصور المعرض بنسبتيهما. */
+.photo.gd-portrait { inline-size: 100%; block-size: 100%; }
+.photo.gd-portrait.photo--img::after { content: none; }
+.photo.gd-tour-photo { aspect-ratio: 16 / 10; }
+.photo.gd-gal-photo { aspect-ratio: 4 / 3; border-radius: var(--radius-sm); }
 /* طبقة صورة خلفية لأقسام الهيرو (الصفحة الرئيسية وصفحة المعلم) */
 .photo-bg { position: absolute; inset: 0; z-index: 0; display: block; pointer-events: none; }
 .photo-bg > img {

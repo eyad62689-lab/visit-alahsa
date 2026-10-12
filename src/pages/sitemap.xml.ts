@@ -6,7 +6,8 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH } from '../data/events';
-import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, ABOUT_ALT, STORES_ALT } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT } from '../lib/routes';
+import { publishedGuides } from '../lib/guides';
 import { storesLangs } from '../lib/stores';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
@@ -24,6 +25,7 @@ export const GET: APIRoute = async ({ site }) => {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   const places = await getCollection('dining');
   const stays = await getCollection('stay');
+  const guides = await publishedGuides();
 
   // ملفات مصدر كل صفحة قائمة — تاريخها أحدث ما بين قالبها وبيانات محتواها
   const V = 'src/components/views/';
@@ -52,6 +54,12 @@ export const GET: APIRoute = async ({ site }) => {
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
     { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },
+    // دليل المرشدين (عربي/إنجليزي): الفهرس وصفحاته تدخل الخريطة متى وُجد مرشد منشور — بلا مرشد
+    // يبقى الفهرس مبنياً لكنه noindex فلا يُعلَن هنا (src/lib/guides.ts)
+    ...(guides.length ? [
+      { ...GUIDES_ALT, lastmod: dateOf(`${V}GuidesView.astro`, ...guides.map((e) => e.filePath!).filter(Boolean)) },
+      ...guides.map((e) => ({ ...guideAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath, `${V}GuideView.astro`) : undefined })),
+    ] : []),
     // دليل المتاجر الإلكترونية (أُعلن 2026-10-09) — اللغات المبنية فعلاً من ملفات ترجمته
     { ...Object.fromEntries(storesLangs.filter((l): l is keyof typeof STORES_ALT => l in STORES_ALT).map((l) => [l, STORES_ALT[l]])) as Pair, lastmod: dateOf(`${V}StoresDirectoryView.astro`, ...storesLangs.map((l) => `src/data/stores-directory.${l}.json`)) },
     // المسارات المقترحة بلغاتها الخمس — التاريخ من ملفات البيانات وقالبها

@@ -1,0 +1,295 @@
+---
+// فهرس دليل المرشدين السياحيين المرخّصين — عربي/إنجليزي فقط.
+//
+// الموقع يعرض المرشدين ويتيح التواصل المباشر ولا شيء غيره: لا تقييم ولا سعر ولا ترتيب
+// بالأفضلية (أبجدي بالاسم)، ووسائل التواصل أزرار لا نصوص. حالة الصفحة مشتقة من عدد
+// المرشدين المنشورين (src/lib/guides.ts): بلا مرشد تُبنى بحالة فارغة صريحة ودعوة الانضمام
+// وهي noindex وخارج sitemap وبلا رابط إليها؛ وبأول مرشد تُفهرَس.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import Photo from '../Photo.astro';
+import GuideIcon from '../GuideIcon.astro';
+import GuideDisclaimer from '../GuideDisclaimer.astro';
+import { titleSep, useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { GUIDES_ALT, guideHref, guidesHref } from '../../lib/routes';
+import { publishedGuides, sortGuides } from '../../lib/guides';
+import { GUIDE_LANGUAGES, GUIDE_LANGUAGE_NAMES, GUIDE_SPECIALTIES, GUIDE_SPECIALTY_NAMES } from '../../data/guides';
+import { ORG_EMAIL, ORG_WHATSAPP_URL, breadcrumb } from '../../lib/schema';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const L = ar ? 'ar' : 'en';
+
+const guides = sortGuides(await publishedGuides(), lang);
+const listed = guides.length > 0;
+
+// شرائح التصفية: ما يحمله مرشد منشور فقط، بترتيب القائمة المرجعية
+const langKeys = GUIDE_LANGUAGES.filter((k) => guides.some((g) => g.data.languages.includes(k)));
+const specKeys = GUIDE_SPECIALTIES.filter((k) => guides.some((g) => g.data.specialties.includes(k)));
+const sep = ar ? '، ' : ', ';
+const fill = (s: string, name: string) => s.replace('{name}', name);
+
+const jsonLd = [
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('nav.plan'), path: ar ? '/خطط/' : '/en/plan-your-trip/' },
+    { name: t('guides.nav'), path: guidesHref(lang) },
+  ]),
+];
+---
+<Base title={`${t('guides.title')} ${titleSep(lang)} ${t('site.brand')}`} description={t('guides.seoDesc')}
+  lang={lang} alt={GUIDES_ALT} noindex={!listed} jsonLd={jsonLd}>
+  <Header lang={lang} alt={GUIDES_ALT} />
+  <main id="main" data-guides-index data-guides-count={guides.length} {...(listed ? {} : { 'data-pagefind-ignore': 'all' })}>
+    <PageHero eyebrow={t('nav.plan')} title={t('guides.title')} lead={t('guides.lead')} leadWidth={58} lang={lang} motif="center" />
+
+    <div class="container gd-wrap">
+      <GuideDisclaimer lang={lang} label="before" lift />
+
+      {listed ? (
+        <div data-gd-root>
+          {(langKeys.length > 1 || specKeys.length > 1) && (
+            <section class="gd-panel gd-filters" aria-label={`${t('guides.filter.lang')} · ${t('guides.filter.spec')}`}>
+              {langKeys.length > 1 && (
+                <div class="gd-frow" data-gd-group="lang">
+                  <span class="gd-flbl" id="gd-f-lang">{t('guides.filter.lang')}</span>
+                  <div class="chips" role="group" aria-labelledby="gd-f-lang">
+                    <button type="button" class="chip is-active" aria-pressed="true" data-gd-chip="" data-track="filter_use" data-track-ui="guides" data-track-group="lang" data-track-value="all">{t('guides.filter.all')}</button>
+                    {langKeys.map((k) => (
+                      <button type="button" class="chip" aria-pressed="false" data-gd-chip={k} data-track="filter_use" data-track-ui="guides" data-track-group="lang" data-track-value={k}>{GUIDE_LANGUAGE_NAMES[L][k]}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {specKeys.length > 1 && (
+                <div class="gd-frow" data-gd-group="spec">
+                  <span class="gd-flbl" id="gd-f-spec">{t('guides.filter.spec')}</span>
+                  <div class="chips" role="group" aria-labelledby="gd-f-spec">
+                    <button type="button" class="chip is-active" aria-pressed="true" data-gd-chip="" data-track="filter_use" data-track-ui="guides" data-track-group="spec" data-track-value="all">{t('guides.filter.all')}</button>
+                    {specKeys.map((k) => (
+                      <button type="button" class="chip" aria-pressed="false" data-gd-chip={k} data-track="filter_use" data-track-ui="guides" data-track-group="spec" data-track-value={k}>{GUIDE_SPECIALTY_NAMES[L][k]}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
+          <section class="gd-sec" aria-labelledby="gd-list-h">
+            <div class="gd-sec-h">
+              <h2 id="gd-list-h">{t('guides.list.h')} <span class="gd-count" data-gd-count aria-live="polite">{guides.length}</span></h2>
+              <span class="gd-note">{t('guides.list.order')}</span>
+            </div>
+            <div class="gd-grid">
+              {guides.map((g) => {
+                const d = g.data;
+                const name = ar ? d.name : d.name_en;
+                const female = d.gender === 'female';
+                const wa = d.contact.whatsapp;
+                return (
+                  <article class="card gd-card" data-gd-card data-gd-langs={d.languages.join(' ')} data-gd-specs={d.specialties.join(' ')}>
+                    <div class="gd-top">
+                      {d.photo
+                        ? <span class="gd-av gd-av--img"><Photo src={d.photo} label={fill(t('guides.photoAlt'), name)} class="gd-portrait" sizes="76px" /></span>
+                        : <span class="gd-av" aria-hidden="true">{[...name][0]}</span>}
+                      <div class="gd-id">
+                        <h3 class="gd-name"><a href={guideHref(d, lang)}>{name}</a></h3>
+                        <span class="gd-lic"><GuideIcon name="badge" size={16} />{t(female ? 'guides.badge.f' : 'guides.badge.m')}</span>
+                      </div>
+                    </div>
+                    <p class="gd-tag">{ar ? d.tagline : d.tagline_en}</p>
+                    <dl class="gd-dl">
+                      <div><dt>{t('guides.card.langs')}</dt><dd>{d.languages.map((k) => GUIDE_LANGUAGE_NAMES[L][k]).join(sep)}</dd></div>
+                      <div><dt>{t('guides.card.areas')}</dt><dd>{d.areas.map((a) => (ar ? a.ar : a.en)).join(' · ')}</dd></div>
+                      <div><dt>{t('guides.card.valid')}</dt><dd>{d.license.expires.getUTCFullYear()}</dd></div>
+                    </dl>
+                    <div class="gd-acts">
+                      <a class="gd-btn gd-btn--pri" href={guideHref(d, lang)} data-track="related_click" data-track-kind="guide" data-track-item-id={d.slug_en}>{t(female ? 'guides.card.page.f' : 'guides.card.page.m')}</a>
+                      {wa ? (
+                        <a class="gd-btn gd-btn--icon" href={`https://wa.me/${wa}`} target="_blank" rel="noopener" aria-label={fill(t('guides.contact.waAria'), name)}
+                          data-track="guide_contact" data-track-kind="whatsapp" data-track-item-id={d.slug_en}><GuideIcon name="wa" /></a>
+                      ) : d.contact.phone ? (
+                        <a class="gd-btn gd-btn--icon" href={`tel:${d.contact.phone}`} aria-label={fill(t('guides.contact.telAria'), name)}
+                          data-track="guide_contact" data-track-kind="phone" data-track-item-id={d.slug_en}><GuideIcon name="tel" /></a>
+                      ) : (
+                        <a class="gd-btn gd-btn--icon" href={`mailto:${d.contact.email}`} aria-label={fill(t('guides.contact.mailAria'), name)}
+                          data-track="guide_contact" data-track-kind="email" data-track-item-id={d.slug_en}><GuideIcon name="mail" /></a>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+            <p class="gd-none" data-gd-none hidden>{t('guides.filter.none')}</p>
+          </section>
+        </div>
+      ) : (
+        <section class="gd-panel gd-empty" data-guides-empty>
+          <h2>{t('guides.empty.h')}</h2>
+          <p>{t('guides.empty.p')}</p>
+        </section>
+      )}
+
+      <section class="gd-panel gd-sec" aria-labelledby="gd-how-h">
+        <div class="gd-sec-h"><h2 id="gd-how-h">{t('guides.how.h')}</h2></div>
+        <ol class="gd-steps">
+          <li><span class="gd-n" aria-hidden="true">1</span><h3>{t('guides.how.1.h')}</h3><p>{t('guides.how.1.p')}</p></li>
+          <li><span class="gd-n" aria-hidden="true">2</span><h3>{t('guides.how.2.h')}</h3><p>{t('guides.how.2.p')}</p></li>
+          <li><span class="gd-n" aria-hidden="true">3</span><h3>{t('guides.how.3.h')}</h3><p>{t('guides.how.3.p')}</p></li>
+        </ol>
+      </section>
+
+      <section class="gd-two gd-sec">
+        <div class="gd-panel gd-yes">
+          <h2>{t('guides.yes.h')}</h2>
+          <ul>
+            <li><GuideIcon name="ok" />{t('guides.yes.1')}</li>
+            <li><GuideIcon name="ok" />{t('guides.yes.2')}</li>
+          </ul>
+        </div>
+        <div class="gd-panel gd-no">
+          <h2>{t('guides.no.h')}</h2>
+          <ul>
+            <li><GuideIcon name="x" />{t('guides.no.1')}</li>
+            <li><GuideIcon name="x" />{t('guides.no.2')}</li>
+            <li><GuideIcon name="x" />{t('guides.no.3')}</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="gd-join gd-sec on-dark" id="join" aria-labelledby="gd-join-h">
+        <div>
+          <h2 id="gd-join-h">{t('guides.join.h')}</h2>
+          <p>{t('guides.join.p')}</p>
+        </div>
+        <div class="gd-join-btns">
+          <a class="gd-jbtn gd-jbtn--pri" href={ORG_WHATSAPP_URL} target="_blank" rel="noopener" data-track="guide_join" data-track-kind="whatsapp"><GuideIcon name="wa" />{t('guides.join.wa')}</a>
+          <a class="gd-jbtn" href={`mailto:${ORG_EMAIL}`} aria-label={t('guides.join.mailAria')} data-track="guide_join" data-track-kind="email"><GuideIcon name="mail" /><span class="gd-ltr" lang="en" dir="ltr">{ORG_EMAIL}</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+{/* التصفية بتفويض واحد على document (حارس مرة واحدة) فتصمد عبر تنقّلات ClientRouter؛
+    الحالة في DOM الصفحة نفسها (aria-pressed)، فكل صفحة جديدة تبدأ من «الكل». */}
+<script is:inline>
+  (function () {
+    if (window.__vaGuidesFilter) return;
+    window.__vaGuidesFilter = true;
+    document.addEventListener('click', function (e) {
+      var chip = e.target.closest && e.target.closest('[data-gd-chip]');
+      if (!chip) return;
+      var root = chip.closest('[data-gd-root]');
+      var group = chip.closest('[data-gd-group]');
+      if (!root || !group) return;
+      group.querySelectorAll('[data-gd-chip]').forEach(function (c) {
+        var on = c === chip;
+        c.classList.toggle('is-active', on);
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      var sel = { lang: '', spec: '' };
+      root.querySelectorAll('[data-gd-group]').forEach(function (g) {
+        var active = g.querySelector('[data-gd-chip][aria-pressed="true"]');
+        sel[g.getAttribute('data-gd-group')] = active ? active.getAttribute('data-gd-chip') : '';
+      });
+      var has = function (list, key) { return !key || (' ' + list + ' ').indexOf(' ' + key + ' ') !== -1; };
+      var shown = 0;
+      root.querySelectorAll('[data-gd-card]').forEach(function (card) {
+        var ok = has(card.getAttribute('data-gd-langs'), sel.lang) && has(card.getAttribute('data-gd-specs'), sel.spec);
+        card.hidden = !ok;
+        if (ok) shown++;
+      });
+      var count = root.querySelector('[data-gd-count]');
+      if (count) count.textContent = String(shown);
+      var none = root.querySelector('[data-gd-none]');
+      if (none) none.hidden = shown !== 0;
+    });
+  })();
+</script>
+
+<style>
+  .gd-wrap { padding-block-end: var(--s-8); }
+  .gd-sec { margin-block-start: var(--s-5); }
+  .gd-panel { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-4); }
+  .gd-filters { margin-block-start: var(--s-5); display: grid; gap: var(--s-3); }
+  .gd-frow { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+  .gd-flbl { font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); min-inline-size: 6em; }
+  .gd-frow .chip { background: var(--c-sand); }
+  .gd-frow .chip.is-active { background: var(--c-turq); }
+
+  .gd-sec-h { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-block-end: var(--s-3); }
+  .gd-sec-h h2, .gd-empty h2 { font-size: var(--t-xl); color: var(--c-turq-deep); border-inline-start: 4px solid var(--c-gold); padding-inline-start: 12px; line-height: 1.3; }
+  .gd-count { font-family: var(--font-heading); color: var(--c-gold-deep); margin-inline-start: var(--s-1); }
+  .gd-note { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); background: rgba(201, 154, 74, .14); border-radius: var(--radius-pill); padding: 2px 10px; white-space: nowrap; }
+
+  .gd-grid { display: grid; gap: var(--s-4); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gd-card { gap: var(--s-3); padding: var(--s-4); border: 1px solid var(--c-line); }
+  .gd-top { display: flex; gap: var(--s-3); align-items: center; }
+  .gd-av { inline-size: 76px; block-size: 76px; flex: none; border-radius: 50%; overflow: hidden; display: grid; place-items: center;
+    background: rgba(0, 110, 97, .1); color: var(--c-turq-deep); border: 2px solid var(--c-gold);
+    font-family: var(--font-heading); font-weight: 700; font-size: 1.75rem; line-height: 1; }
+  .gd-id { min-inline-size: 0; display: grid; gap: 6px; justify-items: start; }
+  .gd-name { font-size: 1.25rem; line-height: 1.3; }
+  .gd-name a { color: var(--c-ink); text-decoration: none; }
+  .gd-name a:hover { color: var(--c-turq); }
+  .gd-lic { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-xs); font-weight: 600; color: var(--c-turq-deep);
+    background: rgba(0, 110, 97, .09); border: 1px solid rgba(0, 110, 97, .3); border-radius: var(--radius-pill); padding: 3px 12px; }
+  .gd-tag { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
+  .gd-dl { display: grid; gap: 6px; font-size: var(--t-sm); }
+  .gd-dl div { display: flex; justify-content: space-between; gap: var(--s-3); border-block-start: 1px dashed var(--c-line); padding-block-start: 6px; }
+  .gd-dl dt { color: var(--c-ink-soft); }
+  .gd-dl dd { font-weight: 600; text-align: end; }
+  .gd-acts { display: grid; grid-template-columns: 1fr auto; gap: var(--s-2); margin-block-start: auto; }
+  .gd-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); min-block-size: 44px; padding: 8px 16px;
+    font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); text-decoration: none;
+    color: var(--c-turq); background: transparent; border: 1.5px solid var(--c-turq); border-radius: var(--radius-pill);
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .gd-btn:hover { background: rgba(0, 110, 97, .08); }
+  .gd-btn--pri { background: var(--c-turq); color: var(--c-sand); }
+  .gd-btn--pri:hover { background: var(--c-turq-deep); }
+  .gd-btn--icon { inline-size: 44px; padding: 0; }
+  .gd-none { margin-block-start: var(--s-4); color: var(--c-ink-soft); }
+
+  .gd-empty { margin-block-start: var(--s-5); display: grid; gap: var(--s-3); }
+  .gd-empty p { color: var(--c-ink-soft); max-inline-size: 70ch; }
+
+  .gd-steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); }
+  .gd-n { display: block; font-family: var(--font-heading); font-weight: 700; font-size: 2.125rem; color: var(--c-turq); line-height: 1; }
+  .gd-steps h3 { font-size: 1.1875rem; margin-block: var(--s-2) var(--s-1); }
+  .gd-steps p, .gd-two li { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.75; }
+
+  .gd-two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  .gd-two h2 { font-size: 1.1875rem; margin-block-end: var(--s-2); }
+  .gd-two ul { list-style: none; padding: 0; display: grid; gap: var(--s-2); }
+  .gd-two li { display: flex; gap: var(--s-2); align-items: flex-start; }
+  .gd-two li :global(svg) { margin-block-start: 4px; }
+  .gd-yes :global(svg) { color: var(--c-turq); }
+  .gd-no :global(svg) { color: var(--c-gold-deep); }
+
+  .gd-join { border-radius: var(--radius); padding: var(--s-5); display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--s-5); align-items: center; }
+  .gd-join h2 { font-size: var(--t-xl); color: var(--c-gold-bright); margin-block-end: var(--s-2); line-height: 1.3; }
+  .gd-join p { color: rgba(247, 243, 234, .92); }
+  .gd-join-btns { display: grid; gap: 10px; }
+  .gd-jbtn { display: flex; align-items: center; justify-content: center; gap: var(--s-2); min-block-size: 48px; padding: 12px 20px;
+    font-weight: 600; text-decoration: none; color: var(--c-sand); border: 1.5px solid var(--c-sand); border-radius: var(--radius-pill);
+    transition: background var(--dur) var(--ease); }
+  .gd-jbtn:hover { background: rgba(247, 243, 234, .1); }
+  .gd-jbtn--pri { background: var(--c-sand); color: var(--c-turq-deep); }
+  .gd-jbtn--pri:hover { background: #fff; }
+  .gd-jbtn:focus-visible { outline: 2px solid var(--c-gold-bright); outline-offset: 2px; }
+  .gd-ltr { unicode-bidi: isolate; overflow-wrap: anywhere; }
+
+  @media (max-width: 1000px) { .gd-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 760px) {
+    .gd-grid, .gd-steps, .gd-two, .gd-join { grid-template-columns: 1fr; }
+    .gd-frow { display: grid; gap: var(--s-2); }
+    .gd-join { padding: var(--s-4); }
+  }
+</style>

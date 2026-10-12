@@ -27,6 +27,8 @@ const ORG_DESC: Record<Lang, string> = {
   ur: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
 };
 export const ORG_EMAIL = 'info@visit-alahsa.com';
+/** واتساب الموقع — الرقم لا يُعرض نصاً في أي صفحة، يُضمَّن في الرابط فقط. */
+export const ORG_WHATSAPP_URL = 'https://wa.me/966532482544';
 export const orgNode = (lang: Lang) => ({
   '@type': 'Organization',
   '@id': ORG_ID,
