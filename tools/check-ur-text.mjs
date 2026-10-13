@@ -452,7 +452,7 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [], counterpart
     if (empty) r.problems.push('لا نصّ أوردياً في صفحات /ur/ — الحارس صار فارغاً');
     r.stats.blocks = urduBlocks;
   }
-  if (!empty) round1Emptiness(out, counterparts !== null);
+  if (!empty) round1Emptiness(out, Boolean(counterparts));
   return Object.values(out);
 }
 
