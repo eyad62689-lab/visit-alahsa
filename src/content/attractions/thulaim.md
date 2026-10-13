@@ -19,6 +19,12 @@ kicker_ru: "Природная достопримечательность"
 summary_ru: "Первая достопримечательность на въезде в Аль-Ахсу с севера, чуть западнее города Эль-Уюн."
 body_ru: "У северного въезда в Аль-Ахсу, примерно в километре к западу от города Эль-Уюн, поднимается гора Эс-Сулайм (по-арабски — Джабаль-эс-Сулайм) — первое, что встречает путников, приезжающих в оазис с севера. Это отдельно стоящая скала — один из осадочных пустынных холмов, которые разбросаны по краям оазиса. Гора стоит рядом с Эль-Уюном, у северной дороги оазиса, — отсюда удобно выезжать в пустыню и ходить пешком. Местные жители предлагали превратить гору в северные туристические ворота Аль-Ахсы, но дальше идей дело пока не пошло."
 area_ru: "К западу от Эль-Уюна, на севере Аль-Ахсы"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-13، الدفعة b5 — السجل في ur-translation/memory/scores.csv).
+title_ur: "جبل الثلیم"
+kicker_ur: "قدرتی مقام"
+summary_ur: "الاحساء میں شمال سے داخل ہونے والے راستے پر سب سے پہلا مقام، العیون شہر کے ذرا مغرب میں۔"
+body_ur: "الاحساء میں شمال سے داخل ہونے والے راستے پر، العیون شہر سے تقریباً ایک کلومیٹر مغرب میں، جبل الثلیم کھڑا ہے۔ شمال سے الاحساء کے نخلستان میں آنے والے مسافروں کا استقبال سب سے پہلے یہی مقام کرتا ہے۔ یہ پہاڑ ایک الگ تھلگ چٹانی ٹیلہ ہے، اور ان رسوبی صحرائی ٹیلوں میں سے ایک ہے جو نخلستان کے کناروں پر بکھرے ہوئے ہیں۔ یہ العیون کے پہلو میں اور نخلستان کی شمالی سڑک کے کنارے ہے، اس لیے صحرا کی سیر اور چہل قدمی کے لیے یہاں آنا آسان ہے۔ مقامی لوگوں نے یہ تجاویز دی ہیں کہ اسے الاحساء کے شمالی سیاحتی دروازے کے طور پر تیار کیا جائے، مگر ابھی یہ صرف ایک خیال ہے۔"
+area_ur: "العیون شہر کے مغرب میں، الاحساء کے شمالی حصے میں"
 slug_ar: "جبل-الثليم"
 slug_en: "thulaim"
 category: nature
@@ -32,9 +38,9 @@ featured: false
 order: 37
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 25.60932, lng: 49.531818 }
 mapUrl: "https://maps.app.goo.gl/MUgsdWiBE6LNA5mY7"

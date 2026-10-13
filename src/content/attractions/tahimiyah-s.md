@@ -19,6 +19,12 @@ kicker_de: "Religiöse Stätte"
 summary_de: "Eine der alten Lehmmoscheen im Dorf Al-Tahimiyah."
 body_de: "Das Dorf Al-Tahimiyah gehört zu den östlichen Dörfern Al-Ahsas, in der Nähe des Jabal al-Qarah (des Qarah-Bergs). Diese Moschee zählt zu den erhaltenen alten Lehmmoscheen des Dorfes, das einst als „das Dorf der vierzig Moscheen“ berühmt war – davon sind nur noch etwa elf erhalten. Die Moscheen Al-Tahimiyahs sind traditionelle Bauten aus Lehm und Palmstämmen, und zwei von ihnen – die Ost- und die West-Moschee – sind in die Liste der amtlich registrierten historischen Moscheen Al-Ahsas aufgenommen."
 area_de: "Dorf Al-Tahimiyah – die östlichen Dörfer, Al-Ahsa"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 95/100 (2026-10-13، الدفعة b3 — السجل في ur-translation/memory/scores.csv).
+title_ur: "التہیمیہ کی مغربی مسجد"
+kicker_ur: "مذہبی مقام"
+summary_ur: "التہیمیہ گاؤں میں مٹی کی قدیم مساجد میں سے ایک۔"
+body_ur: "التہیمیہ گاؤں جبل القارہ کے قریب ہے اور الاحساء کے مشرقی دیہات میں سے ہے۔ یہ مسجد اس گاؤں کی ان قدیم مساجد میں سے ایک ہے جو مٹی سے بنی ہیں اور آج تک باقی ہیں۔ یہ گاؤں کبھی “چالیس مساجد کا گاؤں” کے نام سے مشہور تھا، اور ان مساجد میں سے اب تقریباً گیارہ ہی باقی ہیں۔ التہیمیہ کی مساجد مٹی اور کھجور کے تنوں کی روایتی عمارتیں ہیں، اور ان میں سے دو، مشرقی اور مغربی مسجد، الاحساء کی تاریخی مساجد کی سرکاری فہرست میں درج ہیں۔"
+area_ur: "الاحساء، مشرقی دیہات میں التہیمیہ گاؤں"
 slug_ar: "مسجد-التهيمية-الغربي"
 slug_en: "tahimiyah-w"
 category: religious
@@ -33,9 +39,9 @@ order: 25
 practical:
   # بند الزيارة: الصيغة نفسها في صفحات المساجد بلغاتها الخمس.
   # الحقول الألمانية لا تُعرض حتى تُترجم الصفحة (لا title_de).
-  - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
-  - { label: "المواعيد", value: "متاح للزيارة طوال ساعات النهار", label_en: "Hours", value_en: "Open to visitors during daylight hours", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", label_ur: "زیارت", value_ur: "زائرین کے لیے کھلی ہے۔ مناسب لباس پہن کر آئیں اور اس مقام کے تقدس کا خیال رکھیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
+  - { label: "المواعيد", value: "متاح للزيارة طوال ساعات النهار", label_en: "Hours", value_en: "Open to visitors during daylight hours", label_ur: "اوقات", value_ur: "دن بھر زائرین کے لیے کھلی رہتی ہے", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.402082, lng: 49.690285 }
 mapUrl: "https://maps.app.goo.gl/4Ubt8aZJsY6AtGLj7"
 heroImage: /img/tahimiyah

@@ -22,7 +22,8 @@ export const EXPECT = { minPages: 11, minBlogPages: 40, minRestoration: 1 };
 
 // حكم إياد 2026-10-02: بطاقة مسجد ميناء العقير تقول ترميم مجمّع الميناء لا «متاحة»، بتسمية «حالة
 // الموقع» لا «الزيارة» — وجملة الترميم في البطاقة وحدها، فخرجت من المتن (لا تُقرأ مرتين).
-export const RESTORATION_LABEL = { ar: 'حالة الموقع', en: 'Site status', zh: '现场状况', de: 'Situation vor Ort', ru: 'Текущий статус' };
+// الأوردو: التسمية والقيمة من النص المعتمد في خط ترجمتها حرفياً (الحكم N55-site-status-row في معجمها).
+export const RESTORATION_LABEL = { ar: 'حالة الموقع', en: 'Site status', zh: '现场状况', de: 'Situation vor Ort', ru: 'Текущий статус', ur: 'مقام کی حالت' };
 export const UNDER_RESTORATION = {
   'uqair-mosque.md': {
     ar: 'يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة',
@@ -30,14 +31,14 @@ export const UNDER_RESTORATION = {
     zh: '港口建筑群正在整修，部分区域可能暂不开放',
     de: 'Im Hafenkomplex von Al-Uqair laufen derzeit Restaurierungsarbeiten, und einige Bereiche können geschlossen sein',
     ru: 'В портовом комплексе идут реставрационные работы, и некоторые его участки могут быть закрыты',
+    ur: 'بندرگاہ کے احاطے میں مرمت کا کام جاری ہے، اور ممکن ہے کہ اس کے کچھ حصے بند ہوں',
   },
 };
 
 // حكم إياد 2026-10-02: لا يُشار إلى وقت زيارة المساجد العاملة لا نفياً ولا تأكيداً — فخرج «مراعاة
 // أوقات الصلاة» من البند ومن عبارة المدونة، وخرجت صفوف «المواعيد» (أوقات الصلوات) ووقت مسجد جواثا.
 // الأوردو: التسمية والقيمة من النص المعتمد في خط ترجمتها حرفياً. عبارة اللباس في القيمة الأوردية
-// **مؤقتة** (البند المفتوح VISITING-ROW-dress-phrase في معجمها): يغيّرها تجاوزٌ من المالك يبدّل
-// النص وهذه القيمة معاً، ولا يُشتق منها شيء لصفحات مساجد أخرى قبل ذلك.
+// حُسمت 2026-10-13 (الحكم VISITING-ROW في معجمها): سطر واحد لكل صفحات المساجد.
 export const VISIT_LABEL = { ar: 'الزيارة', en: 'Visiting', zh: '游览', de: 'Besuch', ru: 'Посещение', ur: 'زیارت' };
 export const VISIT_VALUE = {
   ar: 'متاحة، مع اللباس المحتشم واحترام حرمة المكان',
@@ -45,7 +46,7 @@ export const VISIT_VALUE = {
   zh: '开放参观，请注意衣着端庄，尊重场所的神圣',
   de: 'Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes',
   ru: 'Открыто для посетителей; приходите в скромной одежде и уважайте святость места',
-  ur: 'زائرین کے لیے کھلی ہے۔ جسم ڈھانپنے والا لباس پہن کر آئیں اور اس مقام کے تقدس کا خیال رکھیں',
+  ur: 'زائرین کے لیے کھلی ہے۔ مناسب لباس پہن کر آئیں اور اس مقام کے تقدس کا خیال رکھیں',
 };
 
 // عبارة الزيارة في المقالين (مفتاح المقال ← لغة ← العبارة كما تُنشر)
@@ -75,14 +76,18 @@ export const RETIRED = [
   '请留意礼拜时间', '清真寺全天开放',
   'Rücksicht auf die Gebetszeiten', 'zu den Gebetszeiten geöffnet', 'Moschee: ganztägig',
   'учитывайте время молитв', 'Мечеть: открыта весь день', 'Мечеть открыта весь день',
+  // عبارة اللباس الأوردية السابقة في البند (2026-10-13)
+  'جسم ڈھانپنے والا لباس',
 ];
 
 // صيغ سابقة تُمنع في ملف بعينه لا في كل المعالم: جملة ترميم مسجد العقير في متنه صارت في بطاقته وحدها
 // (2026-10-02)، والجملة نفسها تبقى مشروعة في صفحة قلعة العقير.
+// الأوردو: الشطر الأول من الجملة كما يقف في متن القلعة المعتمد، نظير ما تحمله اللغات الأخرى هنا.
 export const RETIRED_IN = {
   'uqair-mosque.md': [
     'يشهد الموقع أعمال ترميم', 'The site is undergoing restoration work', '遗址内正在开展修缮工作',
     'Derzeit laufen auf dem Gelände Restaurierungsarbeiten', 'Сейчас здесь идут реставрационные работы',
+    'اس مقام پر مرمت کا کام جاری ہے',
   ],
 };
 
@@ -161,7 +166,7 @@ export function checkMosqueCards(sources, pagesFor, allPages) {
     if (!line) { problems.push(`${file}: بند «${RESTORATION_LABEL.ar}» لا يحمل صيغة الترميم المعتمدة`); continue; }
     const f = rowFields(line);
     for (const l of LANGS) {
-      // لغةٌ بلا صيغة ترميم معتمدة بعد (الأوردو): لا تُفحص ما دامت صفحتها غير مبنية، وتُخفق يوم
+      // لغةٌ بلا صيغة ترميم معتمدة: لا تُفحص ما دامت صفحتها غير مبنية، وتُخفق يوم
       // يحمل الملف عنوانها بلا صيغة من خط ترجمتها — لا تفلت صامتة.
       if (want[l] === undefined || RESTORATION_LABEL[l] === undefined) {
         if (new RegExp(`^title_${l}:`, 'm').test(src.text)) problems.push(`UNDER_RESTORATION.${file}.${l} غير معبّأ`);

@@ -1,0 +1,1511 @@
+{
+  "batch": "b4",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b4",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, area, [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 5,
+    "fields": 53,
+    "per_page": {
+      "tahimiyah-e": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "hubaish": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "umzurainiq": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "uqair-mosque": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "abubakr-mosque": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "tahimiyah-e",
+      "file": "src/content/attractions/tahimiyah-e.md",
+      "file_sha256": "e3c29969c6ba3305507ca64607fdc6b2dc67e32257277e2b2042c2055255292e",
+      "order": 26,
+      "category": "religious",
+      "category_label": {
+        "en": "Mosques & religious sites",
+        "ar": "المساجد والمواقع الدينية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Tahimiyah East Mosque",
+          "ar": "مسجد التهيمية الشرقي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "موقع ديني",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "An old mud-built mosque in Al-Tahimiyah, the village once famed for its forty mosques.",
+          "ar": "مسجد طيني أثري في قرية التهيمية التي اشتهرت قديماً بقرية الأربعين مسجداً.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the village of Al-Tahimiyah, among Al-Ahsa's eastern villages some twelve kilometres from Hofuf, stands the Al-Tahimiyah East Mosque — also known as the First Tahimiyah Mosque, and in earlier times as Abu Al-Nu'ush Mosque, where funeral prayers were held before burial in the nearby cemetery. Its history goes back centuries; the village itself was once famed as 'the village of forty mosques', of which only around eleven remain. It is a modest mud structure of three arcades around an inner courtyard, enclosed by an outer wall and roofed with palm trunks, holding about fifty worshippers, built on the banks of the old Zuhairi stream with the slopes of Al-Qarah Mountain close by. In 2017 it was listed among Al-Ahsa's officially registered historic mosques, and its setting near Al-Qarah Mountain makes it an easy stop for visitors to the area.",
+          "ar": "في قرية التهيمية من القرى الشرقية للأحساء، على نحو اثني عشر كيلومتراً من\nالهفوف، يقوم مسجد التهيمية الشرقي — ويُعرف أيضاً بمسجد التهيمية الأول،\nوعُرف قديماً بمسجد **أبو النعوش** لأن صلاة الجنازة كانت تُقام فيه قبل\nالدفن بالمقبرة المجاورة. يعود تاريخه إلى قرون مضت، والقرية نفسها\nاشتهرت قديماً بلقب «قرية الأربعين مسجداً» ولم يبقَ\nمنها سوى نحو أحد عشر مسجداً. وهو بناء طيني متواضع من ثلاثة أروقة وباحة\nداخلية يحيط بها سور خارجي، سقفه من جذوع النخل، يتسع لنحو خمسين مصلياً،\nوقد بُني على ضفاف نهر الزهيري وتحاذي بعض جوانبه سفوح جبل القارة. أُدرج عام\n2017م ضمن قائمة المساجد التاريخية المسجلة رسمياً في الأحساء، وقربه من جبل\nالقارة يجعله محطة سهلة لزوار المنطقة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Tahimiyah village — the eastern villages, Al-Ahsa",
+          "ar": "قرية التهيمية — القرى الشرقية، الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Open to visitors, with modest dress and respect for the sanctity of the place",
+              "ar": "متاحة، مع اللباس المحتشم واحترام حرمة المكان"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open to visitors during daylight hours",
+              "ar": "متاح للزيارة طوال ساعات النهار"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.religious",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Восточная мечеть Эт-Тахимии",
+          "kicker": "Религиозное место",
+          "summary": "Старинная глинобитная мечеть в Эт-Тахимии — деревне, которая когда-то славилась сорока мечетями.",
+          "body": "В деревне Эт-Тахимия, среди восточных деревень Аль-Ахсы, примерно в двенадцати километрах от Эль-Хуфуфа, стоит Восточная мечеть Эт-Тахимии. Ее называют также Первой мечетью Эт-Тахимии, а в прежние времена звали мечетью Абу-н-Нууш: здесь совершали погребальную молитву перед похоронами на соседнем кладбище. История мечети насчитывает не одно столетие. Когда-то за деревней закрепилось прозвище «деревня сорока мечетей», а сегодня их осталось около одиннадцати. Это скромная глинобитная постройка: три галереи вокруг внутреннего двора, внешняя стена и кровля из пальмовых стволов. Мечеть вмещает около 50 молящихся. Ее построили на берегу старой реки Эз-Зухайри, у склонов горы Эль-Кара. В 2017 году мечеть внесли в официальный реестр исторических мечетей Аль-Ахсы. Близость горы делает мечеть удобной остановкой для тех, кто приехал в эти места.",
+          "area": "Деревня Эт-Тахимия, восточные деревни Аль-Ахсы",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Посещение",
+              "value": "Открыто для посетителей; приходите в скромной одежде и уважайте святость места"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Tahimiyah-Ost-Moschee",
+          "kicker": "Religiöse Stätte",
+          "summary": "Eine alte Moschee aus Lehm in Al-Tahimiyah, dem Dorf, das einst für seine vierzig Moscheen berühmt war.",
+          "body": "Im Dorf Al-Tahimiyah, das zu den östlichen Dörfern Al-Ahsas gehört und rund zwölf Kilometer von Hofuf entfernt liegt, steht die Al-Tahimiyah-Ost-Moschee – auch als Erste Moschee von Al-Tahimiyah bekannt und früher Abu-Al-Nu'ush-Moschee genannt. Hier wurde vor der Bestattung auf dem nahen Friedhof das Totengebet gesprochen. Ihre Geschichte reicht Jahrhunderte zurück; das Dorf selbst war einst als „das Dorf der vierzig Moscheen“ berühmt, von denen nur noch etwa elf erhalten sind. Sie ist ein schlichter Lehmbau mit drei Arkadengängen um einen Innenhof, den eine Außenmauer umschließt; ihr Dach besteht aus Palmstämmen, und sie bietet etwa 50 Betenden Platz. Erbaut wurde sie am Ufer des alten Zuhairi-Flusses, dicht bei den Hängen des Jabal al-Qarah (des Qarah-Bergs). 2017 wurde sie in die Liste der amtlich registrierten historischen Moscheen Al-Ahsas aufgenommen, und ihre Lage nahe dem Jabal al-Qarah macht sie zu einem leicht erreichbaren Halt für Besucher der Gegend.",
+          "area": "Dorf Al-Tahimiyah – die östlichen Dörfer, Al-Ahsa",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Besuch",
+              "value": "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "塔希米亚东清真寺",
+          "kicker": "宗教场所",
+          "summary": "昔日以“四十座清真寺之村”闻名的塔希米亚村里，一座古老的泥筑清真寺。",
+          "body": "塔希米亚东清真寺坐落在哈萨东部的塔希米亚村（Al-Tahimiyah），离胡富夫约 12 公里。它又名塔希米亚第一清真寺，早年间也称阿布·努乌什清真寺（“努乌什”意为灵柩），因为昔日逝者葬入邻近墓地之前，殡礼都在这里举行。寺的历史可上溯数百年；而这座曾以“四十座清真寺之村”闻名的村庄，如今只剩下约 11 座清真寺。这是一座朴素的泥筑建筑：三道拱廊围着内院，外有围墙，屋顶以椰枣树干铺成，可容纳约 50 名礼拜者。寺建在一条名为祖海里的河流岸边，部分墙体与卡拉山的山坡相邻。2017 年，它正式列入哈萨历史清真寺官方名录。这里离卡拉山很近，游览这一带时不妨顺道一访。",
+          "area": "塔希米亚村——哈萨东部村落",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "游览",
+              "value": "开放参观，请注意衣着端庄，尊重场所的神圣"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Abu Al-Nu'ush Mosque",
+          "ar": "مسجد أبو النعوش",
+          "ru": "Абу-н-Нууш",
+          "de": "die Abu-Al-Nu'ush-Moschee",
+          "zh": "阿布·努乌什清真寺",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Qarah",
+          "ar": "القارة",
+          "ru": "Эль-Кара",
+          "de": "Al-Qarah",
+          "zh": "卡拉",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qarah Mountain",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "卡拉山",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Tahimiyah",
+          "ar": null,
+          "ru": "Эт-Тахимия",
+          "de": "Al-Tahimiyah · die Al-Tahimiyah-Ost-Moschee",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Tahimiyah East Mosque",
+          "ar": "مسجد التهيمية الشرقي",
+          "ru": null,
+          "de": null,
+          "zh": "塔希米亚东清真寺",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Tahimiyah village",
+          "ar": "قرية التهيمية",
+          "ru": null,
+          "de": null,
+          "zh": "塔希米亚村（Al-Tahimiyah）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "First Tahimiyah Mosque",
+          "ar": "مسجد التهيمية الأول",
+          "ru": "Первая мечеть Эт-Тахимии",
+          "de": null,
+          "zh": "塔希米亚第一清真寺",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "listed among Al-Ahsa's officially registered historic mosques",
+          "ar": null,
+          "ru": null,
+          "de": "in die Liste der amtlich registrierten historischen Moscheen Al-Ahsas aufgenommen",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the old Zuhairi stream",
+          "ar": null,
+          "ru": null,
+          "de": "der alte Zuhairi-Fluss",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Zuhairi stream",
+          "ar": "نهر الزهيري",
+          "ru": null,
+          "de": null,
+          "zh": "祖海里河",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 658 characters, 1 bold phrase(s), 0 link(s); English 4 sentence(s), 851 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Tahimiyah East Mosque' — AR 'the eastern mosque of Al-Tahimiyah' (مسجد التهيمية الشرقي); the sister page (file tahimiyah-s, batch b3) is 'West' in the same pattern, and its Urdu title comes first.",
+          "summary: EN 'the village once famed for its forty mosques' — AR 'famed of old as the Village of Forty Mosques' (بقرية الأربعين مسجداً): a byname in AR, a count in EN. The body has the byname in quotation marks in both languages.",
+          "body: EN 'the First Tahimiyah Mosque', without the article the title has — AR (مسجد التهيمية الأول).",
+          "body: EN 'Abu Al-Nu'ush Mosque, where funeral prayers were held before burial' — AR 'because the funeral prayer used to be held in it' (لأن صلاة الجنازة كانت تُقام فيه): AR gives the prayers as the reason for the name (أبو النعوش), EN as a description; neither language says what the name means.",
+          "body: EN 'of which only around eleven remain' — AR (ولم يبقَ منها سوى), where the sister page's AR says 'of its mosques'; the EN sentence is the same on both pages. 'Forty', 'around eleven', 'some twelve kilometres' and 'about fifty' (خمسين) are words in both languages; 2017 is digits.",
+          "body: EN 'three arcades around an inner courtyard, enclosed by an outer wall' — AR 'of three arcades and an inner courtyard, surrounded by an outer wall' (من ثلاثة أروقة وباحة داخلية يحيط بها سور خارجي): 'around' is EN-only (a statement about the plan).",
+          "body: EN 'the old Zuhairi stream' — AR 'the river Al-Zuhairi' (نهر الزهيري): 'old' is EN-only, a stream in EN and a river in AR, and the EN drops the article of the name. The Russian body has 'the old river'.",
+          "body: EN 'with the slopes of Al-Qarah Mountain close by' — AR 'and some of its sides adjoin the slopes of Jabal Al-Qarah' (وتحاذي بعض جوانبه سفوح جبل القارة): adjoining in AR, close by in EN. The EN translates the generic of the calibrated name twice on this page (Jabal Al-Qarah, the termbase key; rulings P1 and P3a).",
+          "body: 'visitors to the area' (لزوار المنطقة) are visitors of the district, on a mosque page: rulings N17 and N29 give two words for visitors by the kind of page.",
+          "body vs tahimiyah-s: this page puts the village 'some twelve kilometres from Hofuf' (على نحو اثني عشر كيلومتراً من الهفوف) and says the mosque was listed in 2017 'among Al-Ahsa's officially registered historic mosques' (قائمة المساجد التاريخية المسجلة رسمياً); the sister page gives no distance and no year and words the register differently.",
+          "area: 'Al-Tahimiyah village — the eastern villages, Al-Ahsa', identical on both tahimiyah pages: three levels with the largest place last, where ruling P20 leads with the larger place.",
+          "practical[0] vs practical[1]: the fixed 'Visiting' row stands above an 'Hours' row whose value is 'Open to visitors during daylight hours' — AR 'available for visiting throughout the daylight hours' (متاح للزيارة طوال ساعات النهار). No clock time under the Hours label; access stated twice; a visiting time on a mosque page. The page does not say whether prayers are held here. Both languages agree; the same two rows stand on tahimiyah-s.",
+          "practical[2].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling, build check C29 (tools/check-mosque-card.mjs): the 'Visiting' row, practical[0] (متاحة، مع اللباس المحتشم واحترام حرمة المكان), is in Urdu ONE fixed string for every mosque page, final by the site owner's decision of 2026-10-13 (termbase _meta.calibration_rulings id VISITING-ROW; the label is ruling N17). Label and value are the `ur` of the pairs in ur-translation/memory/tm.json whose `en` are 'Visiting' and 'Open to visitors, with modest dress and respect for the sanctity of the place'. They are copied byte for byte: not translated, not reworded, nothing added at the end. No wording that distinguishes visitors by religion, and none that ties visiting to prayer times. C29 ALREADY TARGETS Urdu and already carries this label and value (VISIT_LABEL.ur, VISIT_VALUE.ur): no Urdu pattern is to be added for this row. The guard reads label_ur and value_ur from the Arabic row's own source line and fails the build if either differs from its table by one byte, or if the /ur/ card does not print them literally.",
+        "Root CLAUDE.md, pending with the owner: whether working mosques may be entered outside prayer times is NOT answered — the Urdu states no visiting time for the mosque, neither affirming nor denying.",
+        "The page's own 'Hours' row (practical[1]) is source content: it is rendered as the source has it, and nothing is added to it, inferred from it, tied to prayer times or carried into the body or another row. Its tension with the rule above is flagged in the divergences and is the owner's to settle.",
+        "The EN 'Al-Qarah Mountain' is the calibrated name Jabal Al-Qarah: its termbase key stands whole, and the Urdu generic is never appended to it (rulings P1 and P3a). The page names the mountain only; build checks C15 (largest oasis) and C16 (cave warmth) are not touched by it."
+      ]
+    },
+    {
+      "page": "hubaish",
+      "file": "src/content/attractions/hubaish.md",
+      "file_sha256": "856797e37e48960912253ca65a10aebe97bf273fa252023cbbeb13be34cbccdf",
+      "order": 27,
+      "category": "religious",
+      "category_label": {
+        "en": "Mosques & religious sites",
+        "ar": "المساجد والمواقع الدينية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Hubaish Mosque",
+          "ar": "مسجد الحبيش",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "موقع ديني",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A thirteenth-century AH mosque in South Al-Rifaa that hosted the lessons of Sheikh Abdulaziz Al-Alji.",
+          "ar": "مسجد من القرن الثالث عشر الهجري في الرفعة الجنوبية، احتضن دروس الشيخ عبدالعزيز العلجي.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the South Al-Rifaa district in central Hofuf stands Al-Hubaish Mosque, one of Al-Ahsa's oldest historic mosques, dating to the thirteenth century AH (around the nineteenth century CE). It is also known as the Mosque of Sheikh Abdulaziz Al-Alji, after one of Al-Ahsa's leading scholars of fiqh and grammar whose lessons it hosted. Built of limestone and mud and roofed with chandal wood (timber once imported to the Gulf), bamboo and woven mats, it is distinguished by an arcade of rounded arches, a square minaret at its north-eastern corner and a total area of about 318 square metres holding some ninety worshippers. Rehabilitated in 2020 within the first phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques, it regained its life as a working mosque while keeping its original features.",
+          "ar": "في حي الرفعة الجنوبية وسط الهفوف يقوم مسجد الحبيش، أحد أقدم مساجد الأحساء\nالتاريخية، ويعود إنشاؤه إلى القرن الثالث عشر الهجري (نحو القرن التاسع عشر\nالميلادي). يُعرف أيضاً بمسجد **الشيخ عبدالعزيز العلجي**، نسبةً إلى أحد كبار\nعلماء الأحساء في الفقه والنحو الذي احتضن المسجد دروسه. شُيّد من الحجر\nالجيري والطين وسُقف بخشب الشندل (كان يُجلب إلى الخليج) وأعواد البامبو والحصير، ويتميز برواقٍ ذي\nعقود دائرية ومئذنة مربعة في ركنه الشمالي الشرقي، على مساحة تقارب 318 متراً\nمربعاً تتسع لنحو تسعين مصلياً. أُعيد تأهيله عام 2020م ضمن المرحلة الأولى من\n**مشروع الأمير محمد بن سلمان لتطوير المساجد التاريخية**، فعادت إليه الحياة\nمحافظاً على ملامحه الأصيلة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "South Al-Rifaa district — central Hofuf",
+          "ar": "حي الرفعة الجنوبية — وسط الهفوف",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Entry",
+              "ar": "الدخول"
+            },
+            "value": {
+              "en": "A working mosque, no entry fee",
+              "ar": "مسجد عامل، بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Open to visitors, with modest dress and respect for the sanctity of the place",
+              "ar": "متاحة، مع اللباس المحتشم واحترام حرمة المكان"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.religious",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Мечеть Эль-Хубайш",
+          "kicker": "Религиозное место",
+          "summary": "Мечеть XIII века хиджры (около XIX века н. э.) в районе Эр-Рифаа аль-Джанубия — здесь проходили уроки шейха Абдул-Азиза аль-Альджи.",
+          "body": "В районе Эр-Рифаа аль-Джанубия, в центре Эль-Хуфуфа, стоит мечеть Эль-Хубайш — ее построили в XIII веке хиджры (около XIX века н. э.). Это одна из старейших исторических мечетей Аль-Ахсы. Ее называют также мечетью шейха Абдул-Азиза аль-Альджи, одного из виднейших в Аль-Ахсе знатоков фикха (мусульманского права) и грамматики. Он вел здесь свои уроки. Мечеть сложена из известняка и глины, а кровля — из дерева шандаль (его когда-то привозили в регион Залива), бамбука и плетеных циновок. Здание отличают галерея с округлыми арками и квадратный минарет в северо-восточном углу. Общая площадь — около 318 квадратных метров, и мечеть вмещает примерно 90 молящихся. В 2020 году ее восстановили в рамках первого этапа Проекта принца Мухаммеда ибн Салмана по развитию исторических мечетей. Мечеть снова стала действующей и сохранила прежние черты.",
+          "area": "Район Эр-Рифаа аль-Джанубия, центр Эль-Хуфуфа",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 1,
+              "label": "Посещение",
+              "value": "Открыто для посетителей; приходите в скромной одежде и уважайте святость места"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Hubaish-Moschee",
+          "kicker": "Religiöse Stätte",
+          "summary": "Eine Moschee aus dem 13. Jahrhundert nach der Hidschra (etwa dem 19. Jahrhundert n. Chr.) im Al-Rifaa-Süd-Viertel, in der Scheich Abdulaziz Al-Alji unterrichtete.",
+          "body": "Im Al-Rifaa-Süd-Viertel im Zentrum von Hofuf steht die Al-Hubaish-Moschee, eine der ältesten historischen Moscheen Al-Ahsas; sie stammt aus dem 13. Jahrhundert nach der Hidschra (etwa dem 19. Jahrhundert n. Chr.). Bekannt ist sie auch als Moschee des Scheichs Abdulaziz Al-Alji, eines der führenden Gelehrten des Fiqh (islamische Rechtswissenschaft) und der Grammatik in Al-Ahsa, der hier seine Lehrstunden hielt. Erbaut aus Kalkstein und Lehm, gedeckt mit Chandal-Holz (Bauholz, das früher in die Golfregion eingeführt wurde), Bambus und geflochtenen Matten, zeichnet sie sich durch einen Arkadengang mit Rundbögen und ein quadratisches Minarett an ihrer Nordostecke aus. Auf rund 318 Quadratmetern bietet sie etwa 90 Betenden Platz. In der ersten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie 2020 instand gesetzt: Sie wird wieder für das Gebet genutzt und hat ihre ursprünglichen Merkmale bewahrt.",
+          "area": "Al-Rifaa-Süd-Viertel – Zentrum von Hofuf",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Eintritt",
+              "value": "Für das Gebet genutzte Moschee – kein Eintrittsgeld"
+            },
+            {
+              "i": 1,
+              "label": "Besuch",
+              "value": "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "胡拜什清真寺",
+          "kicker": "宗教场所",
+          "summary": "里法阿南区一座清真寺，建于伊斯兰历 13 世纪（约公元 19 世纪），谢赫阿卜杜勒阿齐兹·阿勒吉曾在此讲学。",
+          "body": "胡拜什清真寺坐落在胡富夫市中心的里法阿南区，是哈萨最古老的历史清真寺之一，建于伊历 13 世纪（约公元 19 世纪）。该寺又名谢赫阿卜杜勒阿齐兹·阿勒吉清真寺（“谢赫”是宗教学者的尊称）。这位哈萨大学者精于教法学与阿拉伯语语法学，当年正是在此讲学授课，清真寺便以他为名。寺以石灰石与泥土筑成，屋顶用尚达尔木杆（chandal，海湾传统建筑常用的进口木料）、竹竿与草席铺就。最具特色的是一道圆拱柱廊，以及东北角的一座方形宣礼塔。全寺面积约 318 平方米，可容纳约 90 名礼拜者。2020 年，该寺在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”第一期中完成修复，原有风貌得以保留，如今已恢复日常礼拜。",
+          "area": "里法阿南区——胡富夫市中心",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 1,
+              "label": "游览",
+              "value": "开放参观，请注意衣着端庄，尊重场所的神圣"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Hubaish Mosque",
+          "ar": "مسجد الحبيش",
+          "ru": "мечеть Эль-Хубайш",
+          "de": "die Al-Hubaish-Moschee",
+          "zh": "胡拜什清真寺",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Rifaa district",
+          "ar": "حي الرفعة",
+          "ru": "район Эр-Рифаа",
+          "de": null,
+          "zh": "里法阿区",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Prince Mohammed bin Salman Project for the Development of Historic Mosques",
+          "ar": "مشروع الأمير محمد بن سلمان لتطوير المساجد التاريخية",
+          "ru": "Проект принца Мухаммеда ибн Салмана по развитию исторических мечетей",
+          "de": "das Projekt von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen",
+          "zh": "穆罕默德·本·萨勒曼王子历史清真寺发展项目",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Sheikh Abdulaziz Al-Alji",
+          "ar": "الشيخ عبدالعزيز العلجي",
+          "ru": "шейх Абдул-Азиз аль-Альджи",
+          "de": "Scheich Abdulaziz Al-Alji",
+          "zh": "谢赫阿卜杜勒阿齐兹·阿勒吉",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "South Al-Rifaa district",
+          "ar": "حي الرفعة الجنوبية",
+          "ru": "район Эр-Рифаа аль-Джанубия",
+          "de": null,
+          "zh": "里法阿南区",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Gulf",
+          "ar": null,
+          "ru": "Залив / регион Залива",
+          "de": null,
+          "zh": "海湾",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "Hijri years: rulings N12 (a year in both calendars), N19 (a full date), N20 (a decade), N22 (a span of years); a Hijri CENTURY stands here: rulings N11 and N21",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 643 characters, 2 bold phrase(s), 0 link(s); English 4 sentence(s), 827 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "summary: 'A thirteenth-century AH mosque' with no Gregorian century in either language (من القرن الثالث عشر الهجري); the body adds 'around the nineteenth century CE' (نحو القرن التاسع عشر الميلادي). The Chinese, German and Russian summaries add the body's Gregorian century. Ruling N11: a century in the other calendar is never supplied where the source gives none. The pair of centuries with 'around' is the form flagged on jalaniyah.",
+          "summary / body / area: EN 'South Al-Rifaa' translates part of the district's name — AR (الرفعة الجنوبية); the Russian line transliterates the whole name, the German translates 'South'. The summary has the name without 'district' in both languages.",
+          "body: 'one of Al-Ahsa's oldest historic mosques' (أحد أقدم مساجد الأحساء التاريخية), of a mosque the same sentence dates to the thirteenth century AH (around the nineteenth CE); jabri-mosque (ninth century AH) and abubakr-mosque (some three centuries) carry the same 'one of the oldest'. Both languages agree. A superlative follows the Arabic (ruling P19).",
+          "body: EN 'chandal wood (timber once imported to the Gulf)' — AR 'chandal wood (it used to be brought to the Gulf)' (كان يُجلب إلى الخليج): the AR bracket has no noun here; on qasr-ibrahim the AR bracket begins with the word for timber. Owner-ruled explanation, build check C41; the Urdu of the same explanation is approved on qasr-ibrahim.",
+          "body: EN 'bamboo and woven mats' — AR 'bamboo canes and matting' (وأعواد البامبو والحصير): 'woven' is EN-only, 'canes' is AR-only.",
+          "body: EN 'an arcade of rounded arches' — AR 'round arches' (عقود دائرية); EN 'a total area of about 318 square metres' — AR 'on an area of nearly 318 square metres' (على مساحة تقارب 318 متراً مربعاً): 'total' is EN-only. 'Some ninety worshippers' is words in both.",
+          "body: EN 'it regained its life as a working mosque' — AR 'and life returned to it' (فعادت إليه الحياة): 'as a working mosque' is EN-only in the body; the card says it in both languages (مسجد عامل).",
+          "body vs abubakr-mosque: the first phase of the same project is dated 'in 2020' here, Gregorian only (عام 2020م), and '1441 AH / 2020 CE' on abubakr-mosque. Ruling N12: a year the source gives in one calendar stays bare.",
+          "body: the project's full name stands here as on jawatha-mosque (already translated; ruling N16, point 3 a); the jawatha-mosque page lists this mosque among those the project restored.",
+          "area: 'South Al-Rifaa district — central Hofuf' names no larger place as a bare name (open item N30).",
+          "practical[0] and practical[2]: 'Entry: a working mosque, no entry fee' and 'Fees: free entry' say the same thing twice, in both languages; the three rows are the three rows of jabri-mosque, value for value.",
+          "practical[1].value: owner-fixed wording (build check C29), identical to jabri-mosque practical[1].",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling of 2026-10-02, build check C41 (tools/check-hubaish-chandal.mjs): in the body, chandal is explained in place, in a bracket directly after the word — 'chandal wood (timber once imported to the Gulf)' (كان يُجلب إلى الخليج) — with the explanation approved for qasr-ibrahim (build check C40); the wood's place of origin is not named. C41 does NOT target /ur/ today: its TARGET lists en|zh|de|ru and the Arabic page, its OK table has no `ur`, and EXPECT.minPages is 5, so the Urdu page builds unguarded. To add after the batch: `ur` in TARGET, an OK.ur pattern derived from the approved Urdu body (the termbase key for chandal followed by the bracketed explanation, as approved on qasr-ibrahim), and EXPECT.minPages raised to 6. The Gulf is written bare (ruling P5).",
+        "Owner ruling, build check C29 (tools/check-mosque-card.mjs): the 'Visiting' row, practical[1] (متاحة، مع اللباس المحتشم واحترام حرمة المكان), is in Urdu ONE fixed string for every mosque page, final by the site owner's decision of 2026-10-13 (termbase _meta.calibration_rulings id VISITING-ROW; the label is ruling N17). Label and value are the `ur` of the pairs in ur-translation/memory/tm.json whose `en` are 'Visiting' and 'Open to visitors, with modest dress and respect for the sanctity of the place'. They are copied byte for byte: not translated, not reworded, nothing added at the end. No wording that distinguishes visitors by religion, and none that ties visiting to prayer times. C29 ALREADY TARGETS Urdu and already carries this label and value (VISIT_LABEL.ur, VISIT_VALUE.ur): no Urdu pattern is to be added for this row. The guard reads label_ur and value_ur from the Arabic row's own source line and fails the build if either differs from its table by one byte, or if the /ur/ card does not print them literally.",
+        "Root CLAUDE.md, pending with the owner: whether working mosques may be entered outside prayer times is NOT answered — the Urdu states no visiting time for the mosque, neither affirming nor denying.",
+        "The 'Entry' row ('A working mosque, no entry fee') and the 'Fees' row ('Free entry') recur from jabri-mosque: the approved pairs of tm.json are reused verbatim (RUNBOOK, rule 3). 'A working mosque' names no time at which a visitor may come (ruling N26).",
+        "The name of the mosque is already a termbase key (entered from the jawatha-mosque page): the title and every mention are byte-identical to it (RUNBOOK, rule 2).",
+        "Root CLAUDE.md: invent nothing — the summary gives the Hijri century alone; no Gregorian century is supplied there (ruling N11), although the Chinese, German and Russian summaries add the body's. The rehabilitation is dated 2020 in the Gregorian calendar only; no Hijri year is supplied."
+      ]
+    },
+    {
+      "page": "umzurainiq",
+      "file": "src/content/attractions/umzurainiq.md",
+      "file_sha256": "82d68660f91981571e87b0c5298ebc6da72ab107c72c20947960e8c7fdd76f25",
+      "order": 28,
+      "category": "religious",
+      "category_label": {
+        "en": "Mosques & religious sites",
+        "ar": "المساجد والمواقع الدينية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Umm Zurainiq Mosque",
+          "ar": "مسجد أم زرينيق",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "موقع ديني",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A historic mosque in Al-Uwaimriyah named after the adjoining cemetery, restored under the historic mosques project.",
+          "ar": "مسجد تاريخي في حي العويمرية سُمي نسبة للمقبرة المجاورة، رُمم ضمن مشروع المساجد التاريخية.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the Al-Uwaimriyah district — one of the oldest quarters of central Hofuf — stands Umm Zurainiq Mosque, a small historic mosque more than a century old, named after the old cemetery beside it. Built in the traditional way from mud, gypsum and palm trunks, it is distinguished by its cylindrical minaret with a wooden balcony, a hallmark of the Eastern Province's mosque architecture, and by interior plaster ornament on its walls, windows and arches. After prayers had lapsed there for a period, it was rehabilitated within the second phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques, expanding it from a mere thirty square metres to around 214, with room for some 94 worshippers — returning a working mosque to the neighbourhood.",
+          "ar": "في حي العويمرية، أحد أقدم أحياء الهفوف، يقوم مسجد أم زرينيق، مسجد تاريخي\nصغير يزيد عمره على مائة عام، سُمي نسبةً إلى المقبرة القديمة المجاورة له.\nبُني على الطريقة التقليدية من الطين والجص وجذوع النخيل، ويتميز بمئذنته\nالأسطوانية ذات الشرفة الخشبية — وهي سمة عمارة مساجد المنطقة الشرقية —\nوبزخارف جصية داخلية على جدرانه ونوافذه وعقوده. وبعد أن تعطلت الصلاة فيه\nفترةً، أُعيد تأهيله ضمن المرحلة الثانية من **مشروع الأمير محمد بن سلمان\nلتطوير المساجد التاريخية**، فاتسع من ثلاثين متراً مربعاً فقط إلى نحو 214\nمتراً تستوعب نحو 94 مصلياً، وعادت إليه الحياة مسجداً عامراً في حيّه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Uwaimriyah district — central Hofuf",
+          "ar": "حي العويمرية — وسط الهفوف",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Entry",
+              "ar": "الدخول"
+            },
+            "value": {
+              "en": "A working mosque, no entry fee",
+              "ar": "مسجد عامل، بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Open to visitors, with modest dress and respect for the sanctity of the place",
+              "ar": "متاحة، مع اللباس المحتشم واحترام حرمة المكان"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.religious",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Мечеть Умм-Зурайник",
+          "kicker": "Религиозное место",
+          "summary": "Историческая мечеть в районе Эль-Увеймирия — она носит имя соседнего кладбища, а восстановили ее в рамках проекта развития исторических мечетей.",
+          "body": "В районе Эль-Увеймирия, одном из старейших кварталов центра Эль-Хуфуфа, стоит небольшая историческая мечеть Умм-Зурайник, которой больше ста лет. Название пошло от старого кладбища по соседству. Мечеть сложена традиционным способом, из глины, гипса и пальмовых стволов. Отличает ее цилиндрический минарет с деревянным балконом — характерная черта архитектуры мечетей Восточной провинции. Стены, окна и арки внутри украшает гипсовая лепнина. Какое-то время здесь не молились, а затем мечеть восстановили в рамках второго этапа Проекта принца Мухаммеда ибн Салмана по развитию исторических мечетей. Мечеть занимала всего 30 квадратных метров, а после восстановления ее площадь выросла примерно до 214, и теперь она вмещает около 94 молящихся. Так в этом квартале снова появилась действующая мечеть.",
+          "area": "Район Эль-Увеймирия, центр Эль-Хуфуфа",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 1,
+              "label": "Посещение",
+              "value": "Открыто для посетителей; приходите в скромной одежде и уважайте святость места"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Umm-Zurainiq-Moschee",
+          "kicker": "Religiöse Stätte",
+          "summary": "Eine historische Moschee im Al-Uwaimriyah-Viertel, benannt nach dem angrenzenden Friedhof und im Rahmen des Projekts für historische Moscheen restauriert.",
+          "body": "Im Al-Uwaimriyah-Viertel, einem der ältesten Teile des Zentrums von Hofuf, steht die Umm-Zurainiq-Moschee, eine kleine historische Moschee, mehr als hundert Jahre alt und benannt nach dem alten Friedhof neben ihr. Auf traditionelle Weise aus Lehm, Gips und Palmstämmen erbaut, zeichnet sie sich durch ihr zylindrisches Minarett mit hölzernem Balkon aus, ein Kennzeichen der Moscheearchitektur der Ostprovinz (asch-Scharqiyya). Im Inneren schmücken Stuckornamente Wände, Fenster und Bögen. Eine Zeit lang wurde dort nicht mehr gebetet. In der zweiten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie dann instand gesetzt und dabei von nur 30 auf rund 214 Quadratmeter erweitert; heute bietet sie etwa 94 Betenden Platz. So kehrte in das Viertel eine Moschee zurück, in der wieder gebetet wird.",
+          "area": "Al-Uwaimriyah-Viertel – Zentrum von Hofuf",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Eintritt",
+              "value": "Für das Gebet genutzte Moschee – kein Eintrittsgeld"
+            },
+            {
+              "i": 1,
+              "label": "Besuch",
+              "value": "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "乌姆·祖赖尼格清真寺",
+          "kicker": "宗教场所",
+          "summary": "欧韦米里亚区的一座老清真寺，因紧邻墓地而得名，已在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”中完成修复。",
+          "body": "乌姆·祖赖尼格清真寺坐落在胡富夫最古老的街区之一——欧韦米里亚区。这座小巧的清真寺已有百余年历史，因紧邻一片老墓地而得名。寺以泥土、石膏与椰枣树干按传统工艺筑成。最引人注目的是一座圆柱形宣礼塔，塔身带木制阳台，这正是东部省清真寺建筑的标志性样式；室内墙面、窗户与拱券上还留有石膏装饰纹样。寺内礼拜曾一度中断。其后，该寺在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”第二期中完成修复，面积由原先仅 30 平方米扩展到约 214 平方米，可容纳约 94 名礼拜者，重新成为街区里一座日常礼拜之所。",
+          "area": "欧韦米里亚区——胡富夫市中心",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 1,
+              "label": "游览",
+              "value": "开放参观，请注意衣着端庄，尊重场所的神圣"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Uwaimriyah district",
+          "ar": "العويمرية",
+          "ru": "район Эль-Увеймирия",
+          "de": null,
+          "zh": "欧韦米里亚区",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Eastern Province",
+          "ar": null,
+          "ru": "Восточная провинция",
+          "de": "die Ostprovinz (asch-Scharqiyya)",
+          "zh": "东部省",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Prince Mohammed bin Salman Project for the Development of Historic Mosques",
+          "ar": "مشروع الأمير محمد بن سلمان لتطوير المساجد التاريخية",
+          "ru": "Проект принца Мухаммеда ибн Салмана по развитию исторических мечетей",
+          "de": "das Projekt von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen",
+          "zh": "穆罕默德·本·萨勒曼王子历史清真寺发展项目",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Umm Zurainiq Mosque",
+          "ar": "مسجد أم زرينيق",
+          "ru": "мечеть Умм-Зурайник",
+          "de": "die Umm-Zurainiq-Moschee",
+          "zh": "乌姆·祖赖尼格清真寺",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 572 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 771 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title vs slug: the title is 'Umm Zurainiq Mosque' in both languages; the Arabic slug says 'the mosque of the Umm Zurainiq cemetery' (مسجد-مقبرة-أم-زرينيق). The text says the mosque is named after the cemetery beside it and never says in so many words that the cemetery is called Umm Zurainiq. Both languages agree.",
+          "summary vs body: summary 'after the adjoining cemetery' (للمقبرة المجاورة), body 'the old cemetery beside it' (المقبرة القديمة المجاورة له): 'old' in the body only, in both languages.",
+          "summary vs body: the summary says 'restored' (رُمم) 'under the historic mosques project' (مشروع المساجد التاريخية); the body says 'rehabilitated' (أُعيد تأهيله) 'within the second phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques'. A short name and one verb in the summary, the full name and another verb in the body, in both languages. The full name is already translated on jawatha-mosque (ruling N16, point 3 a).",
+          "summary: EN 'in Al-Uwaimriyah' — AR 'in the Al-Uwaimriyah district' (حي العويمرية).",
+          "body: EN 'one of the oldest quarters of central Hofuf' — AR 'one of the oldest quarters of Hofuf' (أحد أقدم أحياء الهفوف): 'central' is EN-only in the body (the area line has it in both).",
+          "body: 'more than a century old' — AR 'older than a hundred years' (يزيد عمره على مائة عام); no year of building in either language.",
+          "body: EN 'a hallmark of the Eastern Province's mosque architecture' — AR 'a feature of the architecture of the mosques of the Eastern Province' (وهي سمة عمارة مساجد المنطقة الشرقية): 'hallmark' is stronger than the AR. The Eastern Province is not yet a termbase name.",
+          "body: EN 'gypsum' for the building material and 'plaster' for the ornament — AR one word for both (الجص) (زخارف جصية).",
+          "body: EN 'from a mere thirty square metres to around 214, with room for some 94 worshippers' — AR (ثلاثين متراً مربعاً فقط) (إلى نحو 214 متراً تستوعب نحو 94 مصلياً): the second figure has no unit in EN and 'metres' without 'square' in AR; 'thirty' is words in both, 214 and 94 are digits in both.",
+          "body: EN 'returning a working mosque to the neighbourhood' — AR 'and life returned to it, a mosque in use in its quarter' (مسجداً عامراً في حيّه); the card's 'working mosque' is another Arabic word (مسجد عامل).",
+          "body vs hubaish / abubakr-mosque: the second phase of the project (المرحلة الثانية) has no year here; the first phase is dated on the two sister pages. Nothing is supplied.",
+          "area: 'Al-Uwaimriyah district — central Hofuf' names no larger place as a bare name (open item N30).",
+          "practical[0] and practical[2]: 'Entry: a working mosque, no entry fee' and 'Fees: free entry' say the same thing twice, in both languages; the three rows are the three rows of jabri-mosque, value for value.",
+          "practical[1].value: owner-fixed wording (build check C29), identical to jabri-mosque practical[1].",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling, build check C29 (tools/check-mosque-card.mjs): the 'Visiting' row, practical[1] (متاحة، مع اللباس المحتشم واحترام حرمة المكان), is in Urdu ONE fixed string for every mosque page, final by the site owner's decision of 2026-10-13 (termbase _meta.calibration_rulings id VISITING-ROW; the label is ruling N17). Label and value are the `ur` of the pairs in ur-translation/memory/tm.json whose `en` are 'Visiting' and 'Open to visitors, with modest dress and respect for the sanctity of the place'. They are copied byte for byte: not translated, not reworded, nothing added at the end. No wording that distinguishes visitors by religion, and none that ties visiting to prayer times. C29 ALREADY TARGETS Urdu and already carries this label and value (VISIT_LABEL.ur, VISIT_VALUE.ur): no Urdu pattern is to be added for this row. The guard reads label_ur and value_ur from the Arabic row's own source line and fails the build if either differs from its table by one byte, or if the /ur/ card does not print them literally.",
+        "Root CLAUDE.md, pending with the owner: whether working mosques may be entered outside prayer times is NOT answered — the Urdu states no visiting time for the mosque, neither affirming nor denying.",
+        "The 'Entry' row ('A working mosque, no entry fee') and the 'Fees' row ('Free entry') recur from jabri-mosque: the approved pairs of tm.json are reused verbatim (RUNBOOK, rule 3). 'A working mosque' names no time at which a visitor may come (ruling N26).",
+        "Root CLAUDE.md: invent nothing — the page gives no year of building and no year for the rehabilitation (second phase of the project); none is supplied from a sister page."
+      ]
+    },
+    {
+      "page": "uqair-mosque",
+      "file": "src/content/attractions/uqair-mosque.md",
+      "file_sha256": "ccd7fb28db44f05f9c5a6399da4d80e4c01108e8ca09f3cf7393f57639a3d786",
+      "order": 29,
+      "category": "religious",
+      "category_label": {
+        "en": "Mosques & religious sites",
+        "ar": "المساجد والمواقع الدينية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Uqair Port Mosque",
+          "ar": "مسجد ميناء العقير",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "موقع ديني",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The historic mosque within the Al-Uqair port complex, among the facilities developed under King Abdulaziz.",
+          "ar": "المسجد التاريخي ضمن مباني ميناء العقير، من المرافق التي طوّرها الملك عبدالعزيز.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "On the Arabian Gulf coast east of Al-Ahsa, within the complex of the historic Al-Uqair port — the first seaport on Saudi Arabia’s eastern coast — stands the port's historic mosque, where sailors, merchants and travellers once prayed at Najd's old gateway to the sea. It is counted among the port facilities built and developed in the reign of King Abdulaziz, alongside the fort, the khan, the emirate building and the customs house, in the days when Al-Uqair was Al-Ahsa's commercial artery. The mosque was restored under the historic mosques restoration programme, with the support of the Royal Commission for Jubail and Yanbu, among a group of Al-Ahsa's historic mosques. Today it stands within the historic port site, part of the full story the old port tells its visitors.",
+          "ar": "على ساحل الخليج العربي شرقي الأحساء، ضمن مجمع مباني **ميناء العقير\nالتاريخي** — أول ميناء بحري شرق المملكة — يقوم مسجد الميناء التاريخي\nالذي كان يصلي فيه البحارة والتجار وعابرو بوابة نجد البحرية القديمة. يُعدّ\nالمسجد من مرافق الميناء التي أُنشئت وطُوّرت في عهد الملك عبدالعزيز إلى\nجانب الحصن والخان ومبنى الإمارة والجمارك، أيام كان العقير شريان الأحساء\nالتجاري. رُمم المسجد ضمن برنامج إعمار المساجد التاريخية بدعم من الهيئة\nالملكية للجبيل وينبع ضمن مجموعة من مساجد الأحساء التاريخية. واليوم يقع\nضمن موقع الميناء التاريخي، جزءاً من حكاية\nالميناء القديم التي يرويها لزائريه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Uqair port — the Gulf coast east of Al-Ahsa",
+          "ar": "ميناء العقير — ساحل الخليج شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Site status",
+              "ar": "حالة الموقع"
+            },
+            "value": {
+              "en": "The port complex is undergoing restoration work, and some parts may be closed",
+              "ar": "يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.religious",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Мечеть порта Эль-Укайр",
+          "kicker": "Религиозное место",
+          "summary": "Историческая мечеть в комплексе порта Эль-Укайр — одно из сооружений, созданных здесь при короле Абдул-Азизе.",
+          "body": "На побережье Залива к востоку от Аль-Ахсы, среди построек старого порта Эль-Укайр, стоит историческая мечеть. Сам порт — исторически первый морской порт на востоке Саудовской Аравии. Когда-то в мечети молились моряки, торговцы и те, кто проходил через старые морские ворота Неджда. Она — одна из построек, которые возвели и обустроили в правление короля Абдул-Азиза, наряду с крепостью, караван-сараем, зданием эмирата и таможней. Тогда Эль-Укайр был торговой артерией Аль-Ахсы. Мечеть вошла в программу восстановления исторических мечетей: ее отреставрировали вместе с другими мечетями Аль-Ахсы при поддержке Королевской комиссии по Эль-Джубайлю и Янбу. Сегодня мечеть находится в портовом комплексе и остается частью истории, которую старый порт рассказывает посетителям.",
+          "area": "Порт Эль-Укайр, побережье Залива к востоку от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Текущий статус",
+              "value": "В портовом комплексе идут реставрационные работы, и некоторые его участки могут быть закрыты"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Uqair-Hafen-Moschee",
+          "kicker": "Religiöse Stätte",
+          "summary": "Die historische Moschee im Hafenkomplex von Al-Uqair – eine der Anlagen, die unter König Abdulaziz ausgebaut wurden.",
+          "body": "An der Golfküste östlich von Al-Ahsa steht die historische Moschee im Gebäudekomplex des historischen Hafens Al-Uqair – des ersten Seehafens an der Ostküste Saudi-Arabiens. Hier beteten einst Seeleute, Kaufleute und Reisende am alten Tor Nadschds zum Meer. Sie zählt zu den Hafenanlagen, die in der Regierungszeit von König Abdulaziz errichtet und ausgebaut wurden – neben der Festung, dem Khan (der Karawanserei), dem Gebäude des Emirats und dem Zollhaus. Damals war Al-Uqair die Handelsader Al-Ahsas. Im Rahmen des Programms zur Wiederherstellung historischer Moscheen wurde sie mit Unterstützung der Königlichen Kommission für Jubail und Yanbu restauriert, gemeinsam mit einer Reihe weiterer historischer Moscheen Al-Ahsas. Heute steht sie auf dem Hafengelände – ein Teil der ganzen Geschichte, die der alte Hafen seinen Besuchern erzählt.",
+          "area": "Hafen Al-Uqair – die Golfküste östlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Situation vor Ort",
+              "value": "Im Hafenkomplex von Al-Uqair laufen derzeit Restaurierungsarbeiten, und einige Bereiche können geschlossen sein"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "乌盖尔港清真寺",
+          "kicker": "宗教场所",
+          "summary": "乌盖尔港建筑群中的历史清真寺，是阿卜杜勒阿齐兹国王时期发展起来的港口建筑之一。",
+          "body": "乌盖尔港清真寺位于哈萨以东的海湾沿岸，就在历史悠久的乌盖尔港（Al-Uqair）建筑群之中。乌盖尔港是沙特阿拉伯东部沿海的第一座海港，昔日也是内志（沙特中部地区）通往大海的门户；当年往来于此的水手、商人与旅客，都曾在寺中礼拜。与城堡、商队客栈、埃米尔府和海关楼一样，这座清真寺也是阿卜杜勒阿齐兹国王在位期间兴建并发展起来的港口建筑之一——那时的乌盖尔港，正是哈萨对外贸易的命脉。该寺与哈萨的另一批历史清真寺一同在“历史清真寺修缮计划”中完成修复，修复工程由朱拜勒与延布皇家委员会这一机构提供支持。如今，这座清真寺坐落在这片遗址之中，老港口向来访者讲述的完整往事里，也有这座清真寺的一页。",
+          "area": "乌盖尔港——哈萨以东的海湾沿岸",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "现场状况",
+              "value": "港口建筑群正在整修，部分区域可能暂不开放"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair",
+          "ar": "العقير",
+          "ru": "Эль-Укайр",
+          "de": "Al-Uqair",
+          "zh": "乌盖尔（Al-Uqair）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair port",
+          "ar": "ميناء العقير",
+          "ru": null,
+          "de": null,
+          "zh": "乌盖尔港",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Uqair Port Mosque",
+          "ar": "مسجد ميناء العقير",
+          "ru": "мечеть порта Эль-Укайр",
+          "de": "die Al-Uqair-Hafen-Moschee",
+          "zh": "乌盖尔港清真寺",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Jubail",
+          "ar": null,
+          "ru": "Эль-Джубайль",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Najd",
+          "ar": "نجد",
+          "ru": "Неджд",
+          "de": "Nadschd",
+          "zh": "内志（沙特中部地区）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Najd's old gateway to the sea",
+          "ar": "بوابة نجد البحرية القديمة",
+          "ru": null,
+          "de": null,
+          "zh": "内志（沙特中部地区）昔日通往大海的门户",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Royal Commission for Jubail and Yanbu",
+          "ar": "الهيئة الملكية للجبيل وينبع",
+          "ru": "Королевская комиссия по Эль-Джубайлю и Янбу",
+          "de": null,
+          "zh": "朱拜勒与延布皇家委员会",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Saudi Arabia",
+          "ar": null,
+          "ru": "Саудовская Аравия",
+          "de": "Saudi-Arabien",
+          "zh": "沙特阿拉伯",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Arabian Gulf coast",
+          "ar": null,
+          "ru": null,
+          "de": "die Golfküste",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Gulf",
+          "ar": null,
+          "ru": "Залив / регион Залива",
+          "de": null,
+          "zh": "海湾",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Royal Commission for Jubail and Yanbu",
+          "ar": null,
+          "ru": null,
+          "de": "die Königliche Kommission für Jubail und Yanbu",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Yanbu",
+          "ar": null,
+          "ru": "Янбу",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 572 characters, 1 bold phrase(s), 0 link(s); English 4 sentence(s), 776 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: AR (مسجد ميناء العقير) without the damma that the al-uqair page writes on the name, as on uqair-castle. One termbase name covers the three pages.",
+          "summary vs body: summary 'among the facilities developed under King Abdulaziz' — AR 'among the facilities that King Abdulaziz developed' (من المرافق التي طوّرها الملك عبدالعزيز): the King is the agent in AR. Body: 'built and developed in the reign of King Abdulaziz' (أُنشئت وطُوّرت في عهد الملك عبدالعزيز), in both languages. 'Developed' in the summary, 'built and developed' in the body. The Russian summary says 'created'.",
+          "summary: EN 'within the Al-Uqair port complex' — AR 'among the buildings of the Al-Uqair port' (ضمن مباني ميناء العقير).",
+          "body: EN 'the first seaport on Saudi Arabia's eastern coast' — AR 'the first seaport in the east of the Kingdom' (أول ميناء بحري شرق المملكة); owner-ruled wording, build check C34, as on al-uqair and uqair-castle (already translated).",
+          "body vs area: body 'On the Arabian Gulf coast' (ساحل الخليج العربي), area 'the Gulf coast' (ساحل الخليج شرق الأحساء) — the qualifier in one field and not in the other, in both languages; ruling P5 writes the Gulf bare. The area line is identical in both languages to uqair-castle's, already translated.",
+          "body and area: 'east of Al-Ahsa' treats Al-Ahsa as a point, not a region, as flagged on al-uqair in round 1.",
+          "body: the mosque is never named by the page's title; it is 'the port's historic mosque' (مسجد الميناء التاريخي) in both languages.",
+          "body: EN 'where sailors, merchants and travellers once prayed at Najd's old gateway to the sea' — AR 'in which the sailors, the merchants and those passing through Najd's old sea gateway used to pray' (وعابرو بوابة نجد البحرية القديمة): in AR the gateway is what the third group passes through; in EN it is where all three prayed.",
+          "body: the port is 'Najd's old gateway to the sea' and, in the next sentence, 'Al-Ahsa's commercial artery' (شريان الأحساء التجاري); uqair-castle has 'Najd's gateway to the sea' and al-uqair 'Al-Ahsa's gateway to the world'. Both languages agree within each page.",
+          "body vs uqair-castle: the list of the port's buildings names 'the fort' here (الحصن) and 'the castle' on the uqair-castle page, whose title is the castle: one building. The other items are the same on both pages; the emirate building (ومبنى الإمارة) is ruled (N35).",
+          "body: EN 'the historic mosques restoration programme' — AR (برنامج إعمار المساجد التاريخية), with no year. jabri-mosque names 'the historic mosques care programme' and four other pages the Prince Mohammed bin Salman Project; jalaniyah names the same Royal Commission as the restorer itself, with a year. Whether these are one programme is not said by any page.",
+          "body vs practical[0]: the body says the mosque 'was restored'; the card says 'The port complex is undergoing restoration work, and some parts may be closed'. Both languages agree. The card row is an owner ruling of 2026-10-02 (build check C29): the restoration under way is said in the card only.",
+          "practical[0]: the label is 'Site status' (حالة الموقع) and the value speaks of the port complex; whether the mosque itself can be entered is not said, and this is the one mosque page of the round without the fixed 'Visiting' row.",
+          "body: EN 'part of the full story the old port tells its visitors' — AR 'part of the story of the old port' (جزءاً من حكاية الميناء القديم): 'full' is EN-only.",
+          "practical[1].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling of 2026-10-02, build check C29, clause (d) (tools/check-mosque-card.mjs): this mosque's card does NOT carry the fixed 'Visiting' row. Its first row is 'Site status' with the restoration wording 'The port complex is undergoing restoration work, and some parts may be closed' (يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة). The fixed visiting string is not written on this page, and the card never promises an open visit. C29 (d) WILL FAIL THE BUILD once the file has title_ur: RESTORATION_LABEL has no `ur` and UNDER_RESTORATION['uqair-mosque.md'] has no `ur` (the guard then reports UNDER_RESTORATION.uqair-mosque.md.ur as not filled). To add after the batch, from the approved text, byte for byte: RESTORATION_LABEL.ur = the approved label_ur of practical[0]; UNDER_RESTORATION['uqair-mosque.md'].ur = the approved value_ur of practical[0]. The guard reads both from the Arabic row's own source line and requires the /ur/ card to print them literally.",
+        "Same ruling, table RETIRED_IN['uqair-mosque.md']: the sentence that the site is undergoing restoration work (يشهد الموقع أعمال ترميم) left this page's body and lives in its card only; it stays legitimate on uqair-castle. The table has no Urdu entry, so nothing stops an Urdu body from carrying it: body_ur says nothing of restoration under way (the source body has no such sentence), and the Urdu of the retired sentence — the last sentence of the approved uqair-castle body_ur — is to be added to RETIRED_IN['uqair-mosque.md'] after the batch.",
+        "Owner ruling, build check C34 (tools/check-uqair-port.mjs): Al-Uqair is 'the first seaport in the east of the Kingdom' (أول ميناء بحري شرق المملكة) — never 'the oldest port', never 'the first seaport in the Kingdom'. One Urdu wording carries the claim on the three Al-Uqair pages: the one approved on al-uqair and uqair-castle. C34 does NOT target /ur/ today, for this page or for the two already translated: TARGET lists en|zh|de|ru for the three attraction pages, and OK and OLD have no `ur`. To add after the batch: `ur` in the attractions alternative of TARGET, an OK.ur pattern derived from the approved Urdu wording, an OLD entry for an Urdu 'oldest port', and EXPECT.minPages (27) raised by the number of /ur/ pages then targeted.",
+        "Root CLAUDE.md: King Abdulaziz Palace at Al-Uqair was removed from the site for good — it is not named or brought back. The body's list of the port's buildings (the fort, the khan, the emirate building, the customs house) is the source's and nothing is added to it; the King himself is named, as the source names him.",
+        "Root CLAUDE.md, pending with the owner: whether working mosques may be entered outside prayer times is NOT answered — the Urdu states no visiting time for the mosque, neither affirming nor denying. This page has no visiting row and none is supplied.",
+        "The Gulf is written bare in Urdu (ruling P5, final) although the body writes 'Arabian Gulf'. The emirate building of the port is ruled (N35, which binds any later page that names it)."
+      ]
+    },
+    {
+      "page": "abubakr-mosque",
+      "file": "src/content/attractions/abubakr-mosque.md",
+      "file_sha256": "99e5fbbe5f29b7c186ada39e72e91f203c73606288cd9e725979a1d86556a2d6",
+      "order": 30,
+      "category": "religious",
+      "category_label": {
+        "en": "Mosques & religious sites",
+        "ar": "المساجد والمواقع الدينية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Sheikh Muhammad bin Abi Bakr Al-Mulla Mosque",
+          "ar": "مسجد الشيخ محمد بن أبي بكر الملا",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "موقع ديني",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A heritage mosque of some three centuries in the heart of the Al-Koot district, tied to the scholarly Al-Mulla family.",
+          "ar": "مسجد تراثي عمره نحو ثلاثة قرون في قلب حي الكوت، ارتبط بأسرة آل أبي بكر الملا العلمية.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the heart of Hofuf's historic Al-Koot district, near the house and religious schools of the Al-Mulla family, stands the Mosque of Sheikh Muhammad bin Abi Bakr Al-Mulla — also known as the Eastern Mosque — one of Al-Ahsa's oldest heritage mosques, dating back some three centuries. Built of mud, gravel and palm trunks, it long served as a centre of learning where lessons in fiqh, Quranic exegesis and grammar were held, its imams drawn generation after generation from the Al-Mulla scholarly family. It was rehabilitated in the first phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques, completed in 1441 AH / 2020 CE, preserving its traditional character while accommodating around 125 worshippers.",
+          "ar": "في قلب حي الكوت التاريخي بالهفوف، قرب بيت الشيخ أبي بكر ومدارسه الشرعية،\nيقوم مسجد الشيخ محمد بن أبي بكر الملا — ويُعرف أيضاً\nبـ**المسجد الشرقي** — وهو من أقدم مساجد الأحساء التراثية، إذ يعود تاريخه\nإلى نحو ثلاثة قرون. شُيّد من الطين والحصى وجذوع النخيل، وكان منارة علمية\nتُعقد فيه دروس الفقه والتفسير والنحو، وتوارث إمامته مشايخ من أسرة آل أبي\nبكر الملا جيلاً بعد جيل. أُعيد تأهيله ضمن المرحلة الأولى من **مشروع الأمير\nمحمد بن سلمان لتطوير المساجد التاريخية** المنجزة عام 1441هـ/2020م، محافظاً\nعلى طابعه القديم ومتسعاً لنحو 125 مصلياً.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Koot district — Hofuf",
+          "ar": "حي الكوت — الهفوف",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Entry",
+              "ar": "الدخول"
+            },
+            "value": {
+              "en": "A working mosque, no entry fee",
+              "ar": "مسجد عامل، بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Open to visitors, with modest dress and respect for the sanctity of the place",
+              "ar": "متاحة، مع اللباس المحتشم واحترام حرمة المكان"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.religious",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Мечеть шейха Мухаммеда ибн Абу Бакра аль-Муллы",
+          "kicker": "Религиозное место",
+          "summary": "Старинная мечеть в сердце района Эль-Кут — ей около трех веков, а ее история связана с ученой семьей Аль Абу Бакр аль-Мулла.",
+          "body": "В сердце исторического района Эль-Кут в Эль-Хуфуфе, неподалеку от дома шейха Абу Бакра и его религиозных школ, стоит мечеть шейха Мухаммеда ибн Абу Бакра аль-Муллы. Эту мечеть в Эль-Куте называют также Восточной. Это одна из старейших исторических мечетей Аль-Ахсы: ей около трех веков. Сложили ее из глины, гравия и пальмовых стволов. Долгое время мечеть была средоточием учености: здесь преподавали фикх (мусульманское право), толкование Корана и грамматику. Имамами из поколения в поколение становились шейхи из семьи Аль Абу Бакр аль-Мулла. Мечеть восстановили в рамках первого этапа Проекта принца Мухаммеда ибн Салмана по развитию исторических мечетей; этот этап завершился в 1441 году хиджры (2020 год н. э.). Она сохранила прежний облик и вмещает около 125 молящихся.",
+          "area": "Район Эль-Кут, Эль-Хуфуф",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 1,
+              "label": "Посещение",
+              "value": "Открыто для посетителей; приходите в скромной одежде и уважайте святость места"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Moschee des Scheichs Muhammad bin Abi Bakr Al-Mulla",
+          "kicker": "Religiöse Stätte",
+          "summary": "Eine rund drei Jahrhunderte alte Kulturerbe-Moschee im Herzen des Al-Koot-Viertels, verbunden mit der Gelehrtenfamilie Al-Mulla.",
+          "body": "Im Herzen des historischen Al-Koot-Viertels von Hofuf, nahe dem Haus und den religiösen Schulen der Familie Al-Mulla, steht die Moschee des Scheichs Muhammad bin Abi Bakr Al-Mulla, auch Östliche Moschee genannt. Sie zählt zu den ältesten Kulturerbe-Moscheen Al-Ahsas, und ihre Geschichte reicht rund drei Jahrhunderte zurück. Erbaut aus Lehm, Kies und Palmstämmen, war sie lange ein Zentrum der Gelehrsamkeit: Hier wurden Fiqh (islamische Rechtswissenschaft), Koranauslegung und Grammatik unterrichtet, und ihre Imame stammten Generation für Generation aus der Gelehrtenfamilie Al-Mulla. In der ersten Phase des Projekts von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen wurde sie instand gesetzt; diese Phase wurde 1441 nach der Hidschra (2020 n. Chr.) abgeschlossen. Dabei blieb ihr traditioneller Charakter erhalten, und heute bietet sie rund 125 Betenden Platz.",
+          "area": "Al-Koot-Viertel – Hofuf",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Eintritt",
+              "value": "Für das Gebet genutzte Moschee – kein Eintrittsgeld"
+            },
+            {
+              "i": 1,
+              "label": "Besuch",
+              "value": "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "谢赫穆罕默德·本·阿比·伯克尔·穆拉清真寺",
+          "kicker": "宗教场所",
+          "summary": "库特区中心一座约有 300 年历史的传统清真寺，与学者世家阿比·伯克尔·穆拉家族渊源深厚。",
+          "body": "谢赫穆罕默德·本·阿比·伯克尔·穆拉清真寺（“谢赫”是宗教学者的尊称）又称东清真寺，位于胡富夫历史悠久的库特区中心，紧邻谢赫阿比·伯克尔的宅邸与宗教学校。该寺是哈萨最古老的传统清真寺之一，已有约 300 年历史。寺以泥土、砾石与椰枣树干筑成，长期是讲授教法学、《古兰经》经注学与阿拉伯语语法学的重地；一代又一代的伊玛目（领拜人），均出自阿比·伯克尔·穆拉这个学者世家——寺名里的“阿比·伯克尔·穆拉”，正是这一家族之名。在“穆罕默德·本·萨勒曼王子历史清真寺发展项目”第一期中，该寺的修复工程于伊斯兰历 1441 年（公元 2020 年）完成，旧貌得以保留，可容纳约 125 名礼拜者。",
+          "area": "库特区——胡富夫",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 1,
+              "label": "游览",
+              "value": "开放参观，请注意衣着端庄，尊重场所的神圣"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Koot district",
+          "ar": "حي الكوت",
+          "ru": "район Эль-Кут",
+          "de": null,
+          "zh": "库特区",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Mulla",
+          "ar": null,
+          "ru": null,
+          "de": "Al-Mulla",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Mulla family",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "穆拉家族",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Eastern Mosque",
+          "ar": "المسجد الشرقي",
+          "ru": null,
+          "de": null,
+          "zh": "东清真寺",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Prince Mohammed bin Salman Project for the Development of Historic Mosques",
+          "ar": "مشروع الأمير محمد بن سلمان لتطوير المساجد التاريخية",
+          "ru": "Проект принца Мухаммеда ибн Салмана по развитию исторических мечетей",
+          "de": "das Projekt von Prinz Mohammed bin Salman zur Entwicklung historischer Moscheen",
+          "zh": "穆罕默德·本·萨勒曼王子历史清真寺发展项目",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Quranic exegesis",
+          "ar": "التفسير",
+          "ru": null,
+          "de": "die Koranauslegung",
+          "zh": "《古兰经》经注学",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Sheikh Muhammad bin Abi Bakr Al-Mulla Mosque",
+          "ar": "مسجد الشيخ محمد بن أبي بكر الملا",
+          "ru": "мечеть шейха Мухаммеда ибн Абу Бакра аль-Муллы",
+          "de": "Moschee des Scheichs Muhammad bin Abi Bakr Al-Mulla",
+          "zh": "谢赫穆罕默德·本·阿比·伯克尔·穆拉清真寺",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Al-Mulla family",
+          "ar": null,
+          "ru": "семья аль-Мулла",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Eastern Mosque",
+          "ar": null,
+          "ru": "Восточная мечеть",
+          "de": "die Östliche Moschee",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "Hijri years: rulings N12 (a year in both calendars), N19 (a full date), N20 (a decade), N22 (a span of years)",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 536 characters, 2 bold phrase(s), 0 link(s); English 3 sentence(s), 739 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title vs slug: the title is 'Sheikh Muhammad bin Abi Bakr Al-Mulla Mosque' in both languages; the Arabic slug says 'Sheikh Abu Bakr Mosque' (مسجد-الشيخ-أبو-بكر). The name is already a termbase key, entered from the jawatha-mosque page.",
+          "summary / body: EN 'the Al-Mulla family' three times — AR 'the family of Al Abi Bakr Al-Mulla' (بأسرة آل أبي بكر الملا العلمية), the long name, as in the title of bubakr-ribat (batch b3). The termbase holds a name for 'the Al-Mulla family' from the baiah page; whether the two are one family is not said by any page.",
+          "body: EN 'near the house and religious schools of the Al-Mulla family' — AR 'near the house of Sheikh Abi Bakr and his religious schools' (قرب بيت الشيخ أبي بكر ومدارسه الشرعية): a person in AR, the family in EN. Arabic is the authority on the fact.",
+          "body: 'also known as the Eastern Mosque' (المسجد الشرقي): a second name that is an Arabic phrase with a meaning, translated in the EN.",
+          "summary vs body: summary 'A heritage mosque of some three centuries'; body 'one of Al-Ahsa's oldest heritage mosques' (من أقدم مساجد الأحساء التراثية), 'dating back some three centuries' (إذ يعود تاريخه إلى نحو ثلاثة قرون). hubaish and jabri-mosque carry the same 'one of the oldest' for other ages. Both languages agree.",
+          "body: EN 'it long served as a centre of learning' — AR 'it was a beacon of learning' (منارة علمية): 'long' is EN-only; the same Arabic phrase is 'a beacon' in the EN of jabri-mosque.",
+          "body: EN 'its imams drawn generation after generation from the Al-Mulla scholarly family' — AR 'sheikhs of the family of Al Abi Bakr Al-Mulla inherited its imamate' (وتوارث إمامته مشايخ من أسرة آل أبي بكر الملا): 'sheikhs' is AR-only, 'scholarly' is EN-only here.",
+          "body: EN 'the first phase of the … Project …, completed in 1441 AH / 2020 CE' — in AR the participle is feminine and can only qualify the phase (المنجزة عام 1441هـ/2020م); in EN 'completed' can also be read of the project or of the rehabilitation. hubaish dates the same phase 'in 2020' only.",
+          "body: EN 'preserving its traditional character' — AR 'its old character' (طابعه القديم).",
+          "area: 'Al-Koot district — Hofuf', identical in both languages to the area of jabri-mosque (already translated) and of dibs (batch b3).",
+          "practical[0] and practical[2]: 'Entry: a working mosque, no entry fee' and 'Fees: free entry' say the same thing twice, in both languages; the three rows are the three rows of jabri-mosque, value for value.",
+          "practical[1].value: owner-fixed wording (build check C29), identical to jabri-mosque practical[1].",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling, build check C29 (tools/check-mosque-card.mjs): the 'Visiting' row, practical[1] (متاحة، مع اللباس المحتشم واحترام حرمة المكان), is in Urdu ONE fixed string for every mosque page, final by the site owner's decision of 2026-10-13 (termbase _meta.calibration_rulings id VISITING-ROW; the label is ruling N17). Label and value are the `ur` of the pairs in ur-translation/memory/tm.json whose `en` are 'Visiting' and 'Open to visitors, with modest dress and respect for the sanctity of the place'. They are copied byte for byte: not translated, not reworded, nothing added at the end. No wording that distinguishes visitors by religion, and none that ties visiting to prayer times. C29 ALREADY TARGETS Urdu and already carries this label and value (VISIT_LABEL.ur, VISIT_VALUE.ur): no Urdu pattern is to be added for this row. The guard reads label_ur and value_ur from the Arabic row's own source line and fails the build if either differs from its table by one byte, or if the /ur/ card does not print them literally.",
+        "Root CLAUDE.md, pending with the owner: whether working mosques may be entered outside prayer times is NOT answered — the Urdu states no visiting time for the mosque, neither affirming nor denying.",
+        "The 'Entry' row ('A working mosque, no entry fee') and the 'Fees' row ('Free entry') recur from jabri-mosque: the approved pairs of tm.json are reused verbatim (RUNBOOK, rule 3). 'A working mosque' names no time at which a visitor may come (ruling N26).",
+        "The name of the mosque is already a termbase key (entered from the jawatha-mosque page): the title and every mention are byte-identical to it (RUNBOOK, rule 2)."
+      ]
+    }
+  ]
+}

@@ -19,6 +19,12 @@ kicker_ru: "Природная достопримечательность"
 summary_ru: "Гора с прохладными гротами и скальными образованиями к северу от Эт-Тувайсира, среди восточных деревень."
 body_ru: "Гора Абу-Хусайс (по-арабски — Джабаль-Абу-Хусайс) поднимается в районе Эль-Ку, к северу от деревни Эт-Тувайсир — в поясе восточных деревень Аль-Ахсы, примерно в двадцати километрах к востоку от Эль-Хуфуфа. С запада к горе подступают пальмовые рощи Эт-Тувайсира и Эль-Кары. Гора известна узкими гротами, из которых круглый год тянет прохладой: так ведут себя осадочные холмы Аль-Ахсы. Славится она и скалами, которые выточил ветер, и пологими склонами, по которым нетрудно подняться. В 2024 году муниципалитет Аль-Ахсы подписал инвестиционный договор: на площади в 100 000 квадратных метров гору обустроят под туристический курорт с экологичными сельскими домиками и будут им управлять."
 area_ru: "Деревня Эт-Тувайсир, восточные деревни Аль-Ахсы"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-13، الدفعة b5 — السجل في ur-translation/memory/scores.csv).
+title_ur: "جبل ابو حصیص"
+kicker_ur: "قدرتی مقام"
+summary_ur: "چٹانوں اور ٹھنڈے غاروں والا ایک پہاڑ، التویثیر کے شمال میں، مشرقی دیہات کے بیچ۔"
+body_ur: "التویثیر گاؤں کے شمال میں، محلہ القوع میں، جبل ابو حصیص کھڑا ہے۔ یہ جگہ ہفوف سے تقریباً بیس کلومیٹر مشرق میں، الاحساء کے مشرقی دیہات کی پٹی کے بیچ ہے۔ اس کے مغرب میں التویثیر اور القارہ کے کھجور کے باغات ہیں۔ یہ پہاڑ اپنے تنگ غاروں کے لیے مشہور ہے، جن سے سال بھر ٹھنڈی ہوا کے جھونکے آتے رہتے ہیں۔ یہ الاحساء کے رسوبی ٹیلوں کی ایک خاصیت ہے۔ ہوا کی تراشی ہوئی چٹانیں اور ایسی ڈھلانیں بھی اس کی پہچان ہیں جن پر آسانی سے چڑھا جا سکتا ہے۔ 2024 میں الاحساء کی بلدیہ نے سرمایہ کاری کے ایک معاہدے پر دستخط کیے۔ اس کا مقصد یہ ہے کہ 100,000 مربع میٹر کے رقبے پر اس پہاڑ کو ایک سیاحتی تفریح گاہ بنا کر چلایا جائے، جس میں ماحول دوست دیہی قیام گاہیں ہوں۔"
+area_ur: "الاحساء، مشرقی دیہات میں التویثیر گاؤں"
 slug_ar: "جبل-أبو-حصيص"
 slug_en: "tuwaither"
 category: nature
@@ -33,9 +39,9 @@ featured: false
 order: 38
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 25.423566, lng: 49.691958 }
 mapUrl: "https://maps.app.goo.gl/NCjJF7bsuFv66CDVA"

@@ -16,7 +16,7 @@
 //   (أ) لا تمهيد «مواد الواحة نفسها» ولا نظيره في أي صفحة بأي لغة.
 //   (ب) إيجاباً: التمهيد الجديد في صفحة القصر بكل لغة، ولا يقلّ عددها عن EXPECT.minPages.
 
-export const EXPECT = { minPages: 5 };
+export const EXPECT = { minPages: 6 };
 
 export const OLD = [
   { lang: 'ar', re: /مواد\s+الواحة\s+نفسها/ },
@@ -32,15 +32,17 @@ export const OK = {
   de: /in\s+der\s+traditionellen\s+Bauweise\s+der\s+Golfregion[\s\S]{0,300}?Chandal-Holz\s+\(Bauholz,\s+das\s+früher\s+in\s+die\s+Golfregion\s+eingeführt\s+wurde\)/,
   ru: /в\s+традициях\s+зодчества\s+Залива[\s\S]{0,300}?шандаль\s+\(его\s+когда-то\s+привозили\s+в\s+регион\s+Залива\)/u,
   zh: /沿袭海湾地区的营造传统[\s\S]{0,300}?海湾传统建筑常用的进口木料/,
+  // الأوردو إيجاباً فقط: الصيغة السابقة لم تُنشر بها قط، فلا نمط لها في OLD
+  ur: /اسے\s+خلیجی\s+خطے\s+کے\s+روایتی\s+انداز\s+میں\s+تعمیر\s+کیا\s+گیا[\s\S]{0,300}?شندل\s+نامی\s+لکڑی\s+\(جو\s+کبھی\s+خلیجی\s+خطے\s+میں\s+درآمد\s+کی\s+جاتی\s+تھی\)/,
 };
 
 // الألمانية: «Kein Palast» تنفي معنى اسم لا يعرفه القارئ ما لم يُشرح «Qasr» عند أول ذكر (دفعة ibrahim-gloss، 2026-10-03)
 export const DE_NAME_GLOSS = /Qasr\s+Ibrahim\s+\(der\s+Ibrahim-Palast\)[\s\S]{0,120}?Kein\s+Palast\s+im\s+prunkvollen\s+Sinne/;
 
-const TARGET = /^(?:معالم\/قصر-إبراهيم|(?:en|zh|de|ru)\/attractions\/qasr-ibrahim)\/index\.html$/;
+const TARGET = /^(?:معالم\/قصر-إبراهيم|(?:en|zh|de|ru|ur)\/attractions\/qasr-ibrahim)\/index\.html$/;
 
 /**
- * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
+ * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru'|'ur', html: string}[]} pages كل صفحات dist
  * @returns {{problems: string[], stats: {targets: number, perLang: Record<string, number>, scanned: number}}}
  */
 export function checkIbrahimMaterialsIntro(pages) {

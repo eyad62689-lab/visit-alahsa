@@ -19,6 +19,12 @@ kicker_ru: "Природная достопримечательность"
 summary_ru: "Отдельно стоящая скалистая гора близ Эт-Тувайсира, известная также как «Аба-эль-Кабари»; в старых источниках имя Эш-Шабаан носила соседняя гора Эль-Кара."
 body_ru: "Гора, которую сегодня зовут Эш-Шабаан (по-арабски — Джабаль-эш-Шабаан), — скалистая возвышенность в стороне от горы Эль-Кара, близ деревни Эт-Тувайсир к востоку от Эль-Хуфуфа. Есть у нее и второе, местное имя — «Аба-эль-Кабари». Однако в старых исторических источниках имя Эш-Шабаан носила сама гора Эль-Кара. О ней географ Якут аль-Хамави записал: «Гора в Бахрейне [историческое название восточного побережья], в пещерах которой ищут прохлады». А само имя Эш-Шабаан — в переводе «сытый» — связывают с пальмами и водами, которые когда-то окружали гору Эль-Кара со всех сторон. За знаменитой горой закрепилось имя Эль-Кара — по названию соседнего с ней города, а имя Эш-Шабаан осталось за возвышенностью близ Эт-Тувайсира. О пещерах горы Эль-Кара и о том, как ее посетить, читайте на ее странице."
 area_ru: "Близ Эт-Тувайсира, к востоку от Эль-Хуфуфа"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-13، الدفعة b5 — السجل في ur-translation/memory/scores.csv).
+title_ur: "جبل الشبعان"
+kicker_ur: "قدرتی مقام"
+summary_ur: "التویثیر کے قریب الگ تھلگ کھڑا ایک چٹانی پہاڑ، جسے “ابا الکباری” بھی کہتے ہیں۔ قدیم تحریروں میں “الشبعان” جبل القارہ کا نام تھا۔"
+body_ur: "آج جس پہاڑ کو جبل الشبعان کہتے ہیں، وہ جبل القارہ سے ہٹ کر کھڑا ایک چٹانی ٹیلہ ہے۔ یہ ہفوف کے مشرق میں التویثیر گاؤں کے قریب ہے، اور اس کا ایک اور مقامی نام بھی ہے: “ابا الکباری”۔ لیکن قدیم تاریخی تحریروں میں “الشبعان” خود جبل القارہ کا ایک نام تھا۔ جغرافیہ دان یاقوت الحموی نے اسی نام سے جبل القارہ کا ذکر یوں کیا ہے: “بحرین کا ایک پہاڑ، جس کے غاروں میں لوگ ٹھنڈک ڈھونڈتے ہیں”۔ یہاں بحرین سے مراد مشرقی ساحل کا تاریخی علاقہ ہے۔ “الشبعان” کے معنی “شکم سیر” ہیں۔ کہتے ہیں کہ یہ نام کھجور کے ان درختوں اور اس پانی کی وجہ سے پڑا جو کبھی جبل القارہ کو گھیرے ہوئے تھے۔ جب اس مشہور پہاڑ کے لیے “القارہ” کا نام رائج ہو گیا تو “الشبعان” کا نام اس پڑوسی ٹیلے کا ہو کر رہ گیا۔ جبل القارہ کے غاروں اور سیر کی تفصیلات کے لیے جبل القارہ کا صفحہ دیکھیں۔"
+area_ur: "التویثیر کے قریب، ہفوف کے مشرق میں"
 slug_ar: "جبل-الشبعان"
 slug_en: "shaban"
 category: nature
@@ -33,9 +39,9 @@ featured: false
 order: 32
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 25.401341, lng: 49.631127 }
 mapUrl: "https://maps.app.goo.gl/f89hEVunAiJo8Bhv6"
