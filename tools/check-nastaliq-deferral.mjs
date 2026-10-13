@@ -14,6 +14,8 @@
 //       عربياً مستضافاً (وإلا نُزّل بديلاً مؤقتاً عن الوجه).
 //   (د) القاعدة الأصلية ما زالت تسمّي الوجه في السلسلتين (وإلا لا يظهر بعد رفع الصنف).
 //   (هـ) لا صفحة خارج /ur/ تحمل السكربت.
+//   (و) السكربت يحمّل الوجه (document.fonts.load) قبل رفع الصنف، وبمهلة ترفعه إن لم يصل: رفعٌ مباشر
+//       يصيّر النص بخط العربية الاحتياطي ريثما يصل الوجه، فيتحرّك التخطيط مرتين.
 
 export const WAIT_CLASS = 'nq-wait';
 export const FAMILY = 'Noto Nastaliq Urdu';
@@ -102,6 +104,15 @@ export function checkNastaliqDeferral(pages) {
     else if (!preloads.some((a) => a.href === `${hero}.webp`)) problems.push(`${rel}: السكربت ينتظر «${hero}» والمحمَّل مسبقاً ${preloads.map((a) => `«${a.href}»`).join('، ')}`);
     if (!script.includes(`classList.add('${WAIT_CLASS}')`) || !script.includes(`classList.remove('${WAIT_CLASS}')`)) problems.push(`${rel}: السكربت لا يضع الصنف ${WAIT_CLASS} ويرفعه`);
     if (!/setTimeout\(\s*release\s*,\s*\d+\s*\)/.test(script)) problems.push(`${rel}: السكربت بلا مهلة ترفع الصنف إن لم يصل مدخل LCP`);
+    const load = script.match(/document\.fonts\.load\(\s*"[^"]*'([^']+)'"[^)]*\)\.then\(\s*(\w+)\s*,\s*(\w+)\s*\)/);
+    if (!load || load[1] !== FAMILY) problems.push(`${rel}: السكربت لا يحمّل وجه «${FAMILY}» قبل رفع الصنف`);
+    else {
+      const drop = load[2];
+      if (load[3] !== drop) problems.push(`${rel}: إخفاق تحميل الوجه لا يرفع الصنف`);
+      if (!new RegExp(`function\\s+${drop}\\s*\\(\\)\\s*\\{[^}]*classList\\.remove\\('${WAIT_CLASS}'\\)`).test(script)) problems.push(`${rel}: ما يُستدعى بعد تحميل الوجه لا يرفع الصنف ${WAIT_CLASS}`);
+      if (!new RegExp(`setTimeout\\(\\s*${drop}\\s*,\\s*\\d+\\s*\\)`).test(script)) problems.push(`${rel}: تحميل الوجه بلا مهلة ترفع الصنف إن لم يصل`);
+      if (script.split(`classList.remove('${WAIT_CLASS}')`).length !== 2) problems.push(`${rel}: الصنف يُرفع من أكثر من موضع — رفعٌ لا يسبقه تحميل الوجه`);
+    }
 
     const wait = ruleBody(html, `:root:lang(ur).${WAIT_CLASS}`);
     if (wait === null) problems.push(`${rel}: قاعدة :root:lang(ur).${WAIT_CLASS} غائبة عن أنماط الصفحة`);
