@@ -1526,23 +1526,12 @@ async function main() {
     }
 
     // ── C59–C65: حرّاس أحكام الجولة 1 (دفعة الواجهة ودفعتا المعالم الأوليان) ──
-    // عنوانا كل معلم من المصدر لقاعدة عنوان القصور؛ وخانة رسوم جبل القارة المعتمدة قبل الحكم N33
-    // تحمل «؛» فتُستثنى باسمها حتى يغيّرها خط الترجمة — ويُخفق الفحص يوم لا يطابق الاستثناء نصاً.
+    // عنوانا كل معلم من المصدر لقاعدة عنوان القصور
     const titles = [];
-    let calibFee = '';
     for (const f of mdFiles) {
       const text = await readText(path.join(SRC_ATTRACTIONS, f));
       const head = text.split('\n---')[0];
       titles.push({ file: f, ar: fmField(head, 'title'), ur: fmField(head, 'title_ur') });
-      if (f === 'jabal-al-qarah.md') {
-        const lines = head.split('\n');
-        const at = lines.findIndex((l) => l.trimEnd() === 'practical:');
-        // صفوف البطاقة: ما يلي «practical:» من صفوف وتعليقات YAML بينها، حتى أول سطر غيرهما
-        const block = at < 0 ? [] : lines.slice(at + 1);
-        const stop = block.findIndex((l) => !l.startsWith('  - {') && !l.startsWith('  #'));
-        const rows = (stop < 0 ? block : block.slice(0, stop)).filter((l) => l.startsWith('  - {'));
-        calibFee = rows[1]?.match(/(?:^|[{,\s])value_ur: "([^"]*)"/)?.[1] ?? '';
-      }
     }
     const ROUND1_CHECKS = {
       P5: ['C59', 'الخليج بلا وصف', (s) => `لا «خليج» موصوفاً، والاسم المجرّد وارد في ${s.carriers} صفحة`],
@@ -1551,9 +1540,9 @@ async function main() {
       P10: ['C62', 'المقياس الأوردي للأعداد', (s) => `لا مقياس دخيلاً، ومقياس اللاکھ وارد في ${s.carriers} صفحة`],
       N13: ['C63', 'الشرطة بين رقمين', (s) => `لا U+2013 خارج سنتَي عمر بين قوسين (${s.lifespans} موضعاً)`],
       N14: ['C64', 'عناوين القصور', (s) => `${s.titles} عنواناً أوردياً لقصر يبدأ كلٌّ منها بالاسم العام، ولا صيغة مسحوبة`],
-      N33: ['C65', 'الفاصلة المنقوطة في صفحات المعالم', (s) => `لا «؛» في ${s.pages} صفحة معلم (استثناء واحد باسمه طابق ${s.exempt} موضعاً: خانة رسوم جبل القارة حتى يغيّرها الخط)`],
+      N33: ['C65', 'الفاصلة المنقوطة في صفحات المعالم', (s) => `لا «؛» في ${s.pages} صفحة معلم`],
     };
-    for (const r of checkUrRound1Rulings(urPages, termbase, { titles, semicolonExempt: [{ rel: 'ur/attractions/jabal-al-qarah/index.html', text: calibFee }] })) {
+    for (const r of checkUrRound1Rulings(urPages, termbase, { titles })) {
       const [id, label, ok] = ROUND1_CHECKS[r.id];
       if (r.problems.length) fail(id, `${label} (حكم الجولة 1 ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
       else pass(id, `${label} (حكم الجولة 1 ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);
