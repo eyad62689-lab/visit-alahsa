@@ -28,8 +28,9 @@ import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-
 import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
 import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
 import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
-import { checkUrLetterforms, checkUrRulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
+import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
+import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
@@ -1523,6 +1524,40 @@ async function main() {
       if (r.problems.length) fail(id, `${label} (حكم المعايرة ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
       else pass(id, `${label} (حكم المعايرة ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);
     }
+
+    // ── C59–C65: حرّاس أحكام الجولة 1 (دفعة الواجهة ودفعتا المعالم الأوليان) ──
+    // عنوانا كل معلم من المصدر لقاعدة عنوان القصور؛ وخانة رسوم جبل القارة المعتمدة قبل الحكم N33
+    // تحمل «؛» فتُستثنى باسمها حتى يغيّرها خط الترجمة — ويُخفق الفحص يوم لا يطابق الاستثناء نصاً.
+    const titles = [];
+    let calibFee = '';
+    for (const f of mdFiles) {
+      const text = await readText(path.join(SRC_ATTRACTIONS, f));
+      const head = text.split('\n---')[0];
+      titles.push({ file: f, ar: fmField(head, 'title'), ur: fmField(head, 'title_ur') });
+      if (f === 'jabal-al-qarah.md') {
+        const lines = head.split('\n');
+        const at = lines.findIndex((l) => l.trimEnd() === 'practical:');
+        // صفوف البطاقة: ما يلي «practical:» من صفوف وتعليقات YAML بينها، حتى أول سطر غيرهما
+        const block = at < 0 ? [] : lines.slice(at + 1);
+        const stop = block.findIndex((l) => !l.startsWith('  - {') && !l.startsWith('  #'));
+        const rows = (stop < 0 ? block : block.slice(0, stop)).filter((l) => l.startsWith('  - {'));
+        calibFee = rows[1]?.match(/(?:^|[{,\s])value_ur: "([^"]*)"/)?.[1] ?? '';
+      }
+    }
+    const ROUND1_CHECKS = {
+      P5: ['C59', 'الخليج بلا وصف', (s) => `لا «خليج» موصوفاً، والاسم المجرّد وارد في ${s.carriers} صفحة`],
+      P6: ['C60', 'اسم الثمرة لا الدخيل', () => 'لا دخيل لاسم الليمون في نصّ /ur/'],
+      P9: ['C61', 'المدينتان بوصفهما', (s) => `${s.mentions} ذكراً للمدينتين، كلٌّ بوصفه بعده`],
+      P10: ['C62', 'المقياس الأوردي للأعداد', (s) => `لا مقياس دخيلاً، ومقياس اللاکھ وارد في ${s.carriers} صفحة`],
+      N13: ['C63', 'الشرطة بين رقمين', (s) => `لا U+2013 خارج سنتَي عمر بين قوسين (${s.lifespans} موضعاً)`],
+      N14: ['C64', 'عناوين القصور', (s) => `${s.titles} عنواناً أوردياً لقصر يبدأ كلٌّ منها بالاسم العام، ولا صيغة مسحوبة`],
+      N33: ['C65', 'الفاصلة المنقوطة في صفحات المعالم', (s) => `لا «؛» في ${s.pages} صفحة معلم (استثناء واحد باسمه طابق ${s.exempt} موضعاً: خانة رسوم جبل القارة حتى يغيّرها الخط)`],
+    };
+    for (const r of checkUrRound1Rulings(urPages, termbase, { titles, semicolonExempt: [{ rel: 'ur/attractions/jabal-al-qarah/index.html', text: calibFee }] })) {
+      const [id, label, ok] = ROUND1_CHECKS[r.id];
+      if (r.problems.length) fail(id, `${label} (حكم الجولة 1 ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
+      else pass(id, `${label} (حكم الجولة 1 ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);
+    }
   }
 
   // ── C53: وجه النستعليق المشذَّب المودَع يطابق الحزمة المثبّتة والنطاق المعلَن ─────────────
@@ -1544,6 +1579,18 @@ async function main() {
     });
     if (problems.length) fail('C53', `وجه النستعليق المشذَّب: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C53', `وجه النستعليق المشذَّب (${Math.round(stats.bytes / 1024)} كيلوبايت من ${Math.round(stats.sourceBytes / 1024)}) يطابق ${NASTALIQ_PACKAGE}@${pkgVersion} والنطاق المعلَن: ${stats.codePoints} محرفاً = محارف المصدر في النطاق تماماً (${stats.declaredWithoutGlyph} من ${stats.declared} محرفاً في النطاق لا يحملها الخط نفسه)، وجه واحد بمدى وزن 400–700، وجداول التشكيل حاضرة`);
+  }
+
+  // ── C66: وجه النستعليق لا يُطلب قبل رسم صورة الهيرو في صفحات /ur/ ─────────────────────────
+  // سكربت في الرأس يضع الصنف nq-wait وقت التحليل الأول ويرفعه عند مدخل LCP لصورة الهيرو، وقاعدة
+  // في tokens.css تُبقي سلسلتَي الخط على خط النظام ما دام الصنف. المنطق في
+  // tools/check-nastaliq-deferral.mjs (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة)؛ هنا القراءة فقط.
+  {
+    const pages = [];
+    for (const f of htmlFiles) pages.push({ rel: path.relative(DIST, f).split(path.sep).join('/'), html: await readText(f) });
+    const { problems, stats } = checkNastaliqDeferral(pages);
+    if (problems.length) fail('C66', `إرجاء وجه النستعليق: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C66', `${stats.deferred} من ${stats.urPages} صفحة /ur/ تحمّل صورة الهيرو مسبقاً وتُرجئ وجه النستعليق إلى ما بعد رسمها (السكربت ينتظر الصورة المحمَّلة نفسها، وقاعدة الانتظار بلا الوجه وبلا خط عربي مستضاف)، ولا سكربت إرجاء في ${stats.otherPages} صفحة خارج /ur/`);
   }
 
   // ── C54–C58: دليل المرشدين السياحيين المرخّصين ───────────────────────────────────────────

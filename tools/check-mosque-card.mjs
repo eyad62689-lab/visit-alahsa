@@ -35,13 +35,17 @@ export const UNDER_RESTORATION = {
 
 // حكم إياد 2026-10-02: لا يُشار إلى وقت زيارة المساجد العاملة لا نفياً ولا تأكيداً — فخرج «مراعاة
 // أوقات الصلاة» من البند ومن عبارة المدونة، وخرجت صفوف «المواعيد» (أوقات الصلوات) ووقت مسجد جواثا.
-export const VISIT_LABEL = { ar: 'الزيارة', en: 'Visiting', zh: '游览', de: 'Besuch', ru: 'Посещение' };
+// الأوردو: التسمية والقيمة من النص المعتمد في خط ترجمتها حرفياً. عبارة اللباس في القيمة الأوردية
+// **مؤقتة** (البند المفتوح VISITING-ROW-dress-phrase في معجمها): يغيّرها تجاوزٌ من المالك يبدّل
+// النص وهذه القيمة معاً، ولا يُشتق منها شيء لصفحات مساجد أخرى قبل ذلك.
+export const VISIT_LABEL = { ar: 'الزيارة', en: 'Visiting', zh: '游览', de: 'Besuch', ru: 'Посещение', ur: 'زیارت' };
 export const VISIT_VALUE = {
   ar: 'متاحة، مع اللباس المحتشم واحترام حرمة المكان',
   en: 'Open to visitors, with modest dress and respect for the sanctity of the place',
   zh: '开放参观，请注意衣着端庄，尊重场所的神圣',
   de: 'Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes',
   ru: 'Открыто для посетителей; приходите в скромной одежде и уважайте святость места',
+  ur: 'زائرین کے لیے کھلی ہے۔ جسم ڈھانپنے والا لباس پہن کر آئیں اور اس مقام کے تقدس کا خیال رکھیں',
 };
 
 // عبارة الزيارة في المقالين (مفتاح المقال ← لغة ← العبارة كما تُنشر)
@@ -93,7 +97,7 @@ export const BLOG_RETIRED_SLOT = [
   'المحطة الأولى الطبيعية في أي زيارة', 'natural first stop of any visit',
 ];
 
-const LANGS = ['ar', 'en', 'zh', 'de', 'ru'];
+const LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur'];
 const decode = (s) => s
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
   .replace(/&#0*39;|&#x0*27;|&apos;/gi, "'").replace(/&amp;/g, '&');
@@ -157,6 +161,12 @@ export function checkMosqueCards(sources, pagesFor, allPages) {
     if (!line) { problems.push(`${file}: بند «${RESTORATION_LABEL.ar}» لا يحمل صيغة الترميم المعتمدة`); continue; }
     const f = rowFields(line);
     for (const l of LANGS) {
+      // لغةٌ بلا صيغة ترميم معتمدة بعد (الأوردو): لا تُفحص ما دامت صفحتها غير مبنية، وتُخفق يوم
+      // يحمل الملف عنوانها بلا صيغة من خط ترجمتها — لا تفلت صامتة.
+      if (want[l] === undefined || RESTORATION_LABEL[l] === undefined) {
+        if (new RegExp(`^title_${l}:`, 'm').test(src.text)) problems.push(`UNDER_RESTORATION.${file}.${l} غير معبّأ`);
+        continue;
+      }
       if (/^__/.test(want[l]) || /^__/.test(RESTORATION_LABEL[l])) { problems.push(`UNDER_RESTORATION.${file}.${l} غير معبّأ`); continue; }
       if (f[l].label !== RESTORATION_LABEL[l] || f[l].value !== want[l]) { problems.push(`${file} [${l}]: صيغة الترميم في المصدر لا تطابق المعتمدة`); continue; }
       if (l !== 'ar' && l !== 'en' && !new RegExp(`^title_${l}:`, 'm').test(src.text)) continue;

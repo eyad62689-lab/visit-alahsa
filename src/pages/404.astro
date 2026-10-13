@@ -6,8 +6,8 @@
 // البقية، وبلا بادئة تبقى العربية. بلا جافاسكربت تظهر العربية والإنجليزية معاً كما
 // كانتا. نصوص الصينية والألمانية والروسية من مفاتيح قواميسها المعتمدة حصراً
 // (crumb.home وnav.attractions) — لا جملة جديدة خارج خطوط الترجمة، فتُكمَّل بالسطر
-// الإنجليزي. والأوردو بلا مفتاح معتمد بعد، فزرّاها بتسميتيهما الإنجليزيتين (تراجع القاموس)
-// حتى تمرّ دفعة واجهتها. شريط اقتراح اللغة معطَّل هنا لأن الصفحة تتولى لغتها بنفسها.
+// الإنجليزي. والأوردو بنصوصها المعتمدة من دفعة واجهتها (2026-10-12): العنوان والسطر والزرّان.
+// شريط اقتراح اللغة معطَّل هنا لأن الصفحة تتولى لغتها بنفسها.
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -26,9 +26,9 @@ const blocks = LANGS.map((l) => {
   return {
     lang: l, code: LANG_META[l].code, dir: LANG_META[l].dir,
     home: HOME[l], list: LIST[l], homeLabel: t('crumb.home'), listLabel: t('nav.attractions'),
-    title: `${l === 'ar' ? 'الصفحة غير موجودة' : l === 'en' ? 'Page not found' : '404'} ${titleSep(l)} ${brandName(l)}`,
-    heading: l === 'ar' ? 'يبدو أنّك خرجت عن مسار الواحة' : l === 'en' ? 'Looks like you wandered off the oasis trail' : null,
-    text: l === 'ar' ? 'الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:' : l === 'en' ? EN_LINE : null,
+    title: `${l === 'ar' ? 'الصفحة غير موجودة' : l === 'en' ? 'Page not found' : l === 'ur' ? 'صفحہ نہیں ملا' : '404'} ${titleSep(l)} ${brandName(l)}`,
+    heading: l === 'ar' ? 'يبدو أنّك خرجت عن مسار الواحة' : l === 'en' ? 'Looks like you wandered off the oasis trail' : l === 'ur' ? 'لگتا ہے آپ نخلستان کے راستے سے بھٹک گئے ہیں' : null,
+    text: l === 'ar' ? 'الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:' : l === 'en' ? EN_LINE : l === 'ur' ? 'یہ صفحہ موجود نہیں یا کہیں اور منتقل ہو گیا ہے۔ نیچے سے صفحہ اول یا سیاحتی مقامات پر جائیں۔' : null,
     // العربية والإنجليزية ظاهرتان بلا JS (السلوك السابق)؛ البقية تُكشف بالسكربت
     initiallyHidden: l !== 'ar' && l !== 'en',
   };

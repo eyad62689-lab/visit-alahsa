@@ -29,6 +29,7 @@ export const WRONG_MOSQUE = {
   // (?![а-яё]): اسم المسجد لا يُصرَّف في المعجم («в мечети аль-Джумах»)، والنسبة «аль-Джумахи»
   // (ابن سلام الجمحي) اسم شخص لا مسجد.
   ru: /аль-Джумах(?![а-яё])/i,
+  ur: /مسجد ?جمعہ|جمعہ مسجد/,
 };
 export const SECOND = {
   ar: /ثاني (?:موضع|مسجد)/,
@@ -36,6 +37,7 @@ export const SECOND = {
   zh: /第二处/,
   de: /zweite[nrs]? (?:Ort|Moschee)/i,
   ru: /втор(?:ое|ая|ой|ым|ом|ого)(?![а-яё])/i,
+  ur: /دوسر[یا] (?:جگہ|مسجد|مقام)/,
 };
 export const PROPHET = {
   ar: /المسجد النبوي/,
@@ -43,10 +45,13 @@ export const PROPHET = {
   zh: /先知清真寺/,
   de: /Prophetenmoschee/,
   ru: /мечет[а-яё]* Пророка/,
+  ur: /مسجد نبوی/,
 };
 
-// الصفحتان المعنيّتان بكل لغة (المسار النسبي في dist بفواصل /). ur داخلة في الهدف بلا نمط في
-// PROPHET بعد: صفحتها الأوردية يوم تُبنى تُخفق حتى يُضاف نمطها من خط ترجمتها — لا تفلت صامتة.
+// الصفحتان المعنيّتان بكل لغة (المسار النسبي في dist بفواصل /). نمط PROPHET الأوردي من نص صفحة
+// المسجد المعتمد في خط ترجمتها حرفياً؛ ونمطا WRONG_MOSQUE وSECOND الأورديان مبنيان من ألفاظ
+// الجملة المعتمدة نفسها («جگہ»، «مسجد»، «جمعہ») لصيغٍ لا ترد فيها. صفحة المنتزه الأوردية يوم تُبنى
+// تخضع للأنماط نفسها.
 const TARGET = /^(?:(?:en|zh|de|ru|ur)\/attractions\/jawatha-(?:mosque|park)|معالم\/(?:مسجد-جواثا|منتزه-جواثا-السياحي))\/index\.html$/;
 
 const decode = (s) => s
@@ -55,7 +60,7 @@ const decode = (s) => s
   .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
 
 /**
- * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
+ * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru'|'ur', html: string}[]} pages كل صفحات dist
  * @returns {{problems: string[], stats: {targets: number, perLang: Record<string, number>, jawathaPages: number}}}
  */
 export function checkJawathaFriday(pages) {

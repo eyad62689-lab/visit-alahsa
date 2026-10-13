@@ -4,13 +4,18 @@
 // صفحة إنجليزية ببطاقة عربية. هنا نسخة لكل من en وzh وde وru بالوردمارك اللاتيني
 // وسطر «موقع تراث عالمي · اليونسكو 2018» من مفتاح home.hero.eyebrow المعتمد في
 // قاموس كل لغة (لا نصّ جديد خارج خطوط الترجمة). العربية تبقى الأصل كما هي.
-// الأوردو بلا هذا المفتاح في قاموسها بعد: بطاقتها بالسطر الإنجليزي (taglineFrom) — تراجع
-// القاموس نفسه — حتى تمرّ دفعة واجهتها بخطها فيُحذف الحقل وتُعاد توليدها.
+// الأوردو بسطرها المعتمد من دفعة واجهتها، بالنستعليق ومن اليمين إلى اليسار.
 //
 // يعمل محلياً لا في البناء: تصيير النصّ يحتاج خطوطاً مثبّتة في النظام (Cormorant
 // وLora للاتيني والسيريلي، Noto Sans CJK للصينية) والمخرجات تُودَع في public/.
 // التشغيل: node tools/gen-og-images.mjs   (يتطلب sharp — مثبّتة أصلاً)
 //          node tools/gen-og-images.mjs ur   لتوليد لغات بعينها دون إعادة كتابة البقية
+// النستعليق ليس خطّ نظام، فسطر الأوردو يُصيَّر من ملف الخط مباشرةً (Pango). وبطاقتها تُبنى على
+// البطاقة الإنجليزية المودَعة (base): يُستبدل شريط السطر وحده بخلفيته بلا نصّ ثم يُركَّب السطر
+// الأوردي — فتبقى الوردمارك والنطاق مطابقَين لسائر البطاقات بكسلاً ببكسل، حتى على جهاز لا يحمل
+// خطوطها. حوّل ملف الحزمة (@fontsource/noto-nastaliq-urdu، الوجه العربي 400) إلى TTF خارج
+// المستودع (fonttools: TTFont(woff2).flavor = None ثم save)، ثم:
+//          OG_UR_FONTFILE=<مسار الـTTF> node tools/gen-og-images.mjs ur
 import sharp from 'sharp';
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -44,7 +49,8 @@ const LANGS = {
   de: { font: "'Lora', serif" },
   ru: { font: "'Lora', serif" },
   zh: { font: "'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" },
-  ur: { font: "'Lora', serif", taglineFrom: 'en' },
+  // السطر من ملف الخط (fontfileEnv) لا من خطوط النظام؛ الحجم بالبكسل عند dpi 72
+  ur: { font: 'Noto Nastaliq Urdu', size: 36, fontfileEnv: 'OG_UR_FONTFILE', base: 'en' },
 };
 const only = process.argv.slice(2);
 const unknown = only.filter((l) => !(l in LANGS));
@@ -64,7 +70,7 @@ const PALM = `
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 for (const [lang, cfg] of Object.entries(LANGS).filter(([l]) => !only.length || only.includes(l))) {
-  const tagline = uiValue(cfg.taglineFrom ?? lang, 'home.hero.eyebrow');
+  const tagline = uiValue(lang, 'home.hero.eyebrow');
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -75,11 +81,27 @@ for (const [lang, cfg] of Object.entries(LANGS).filter(([l]) => !only.length || 
   ${PALM}
   <text x="${W / 2}" y="292" text-anchor="middle" font-family="'Cormorant Garamond', 'Marcellus', serif" font-weight="600" font-size="96" letter-spacing="14" fill="#F3EFE5">VISIT AL-AHSA</text>
   <rect x="${W / 2 - 54}" y="336" width="108" height="3" fill="#C99A4A"/>
-  <text x="${W / 2}" y="412" text-anchor="middle" font-family="${cfg.font}" font-size="40" fill="#C99A4A">${esc(tagline)}</text>
+  ${cfg.fontfileEnv ? '' : `<text x="${W / 2}" y="412" text-anchor="middle" font-family="${cfg.font}" font-size="40" fill="#C99A4A">${esc(tagline)}</text>`}
   <text x="${W / 2}" y="560" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="30" letter-spacing="6" fill="#F3EFE5" fill-opacity=".72">visit-alahsa.com</text>
 </svg>`;
   const out = path.join(ROOT, 'public', `og-default-${lang}.png`);
-  const buf = await sharp(Buffer.from(svg)).png({ compressionLevel: 9, palette: true }).toBuffer();
+  let card = sharp(Buffer.from(svg));
+  if (cfg.fontfileEnv) {
+    const fontfile = process.env[cfg.fontfileEnv];
+    if (!fontfile) throw new Error(`${cfg.fontfileEnv} غير معيَّن: مسار ملف خط ${cfg.font} (TTF) — انظر رأس الملف`);
+    // سطر اللغة من ملف الخط: اتجاهه من أول حرف قوي فيه (يمين لليسار)، ويتوسّط موضع السطر في سائر البطاقات
+    const line = await sharp({ text: { text: `<span foreground="#C99A4A">${esc(tagline)}</span>`, font: `${cfg.font} ${cfg.size}`, fontfile, rgba: true, dpi: 72 } }).png().toBuffer({ resolveWithObject: true });
+    // الشريط بين الخط الذهبي (ينتهي عند 339) وسطر النطاق: خلفيته بلا نصّ من هذا التصيير نفسه
+    const BAND = { top: 350, height: 110 };
+    const lineTop = Math.round(398 - line.info.height / 2);
+    if (lineTop < BAND.top || lineTop + line.info.height > BAND.top + BAND.height || line.info.width > W - 120) throw new Error(`سطر ${lang} (${line.info.width}×${line.info.height}) لا يسعه شريط السطر`);
+    const bare = await card.extract({ left: 0, top: BAND.top, width: W, height: BAND.height }).png().toBuffer();
+    card = sharp(path.join(ROOT, 'public', `og-default-${cfg.base}.png`)).composite([
+      { input: bare, left: 0, top: BAND.top },
+      { input: line.data, left: Math.round((W - line.info.width) / 2), top: lineTop },
+    ]);
+  }
+  const buf = await card.png({ compressionLevel: 9, palette: true }).toBuffer();
   writeFileSync(out, buf);
   console.log(`✓ og-default-${lang}.png — ${Math.round(buf.length / 1024)} كيلوبايت · «${tagline}»`);
 }

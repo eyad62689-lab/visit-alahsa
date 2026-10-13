@@ -140,9 +140,10 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         هو plex-lat-400 ومداه U+0000-00FF (لاتيني) فلا يحمل سيريلياً أصلاً،
         ومتن /ru/ يُصيَّر من Lora cyrillic — أصلٌ ببصمة يولّدها fontsource وقت
         البناء، فلا يُحمَّل مسبقاً بلا قياس LCP على /ru/ يبرّره.
-        والأوردو بلا preload كذلك (الشرط هنا على العربية تحديداً لا على اتجاه RTL): وجه
-        النستعليق المشذَّب 118 كيلوبايت، ولا يُحمَّل مسبقاً بلا قياس LCP على /ur/
-        بـtools/lighthouse-gate.mjs يبرّره — وميزانية الخطوط هناك تسعه بهامش ضيّق. */}
+        والأوردو بلا preload كذلك (الشرط هنا على العربية تحديداً لا على اتجاه RTL)، بقياس:
+        وجه النستعليق المشذَّب 118 كيلوبايت، وتحميله مسبقاً يُدخله مخطط محاكاة LCP مع صورة
+        الهيرو في كل تشغيل (LCP المحاكى على الرئيسية الأوردية 4660–4740 مللي ثانية في خمسة
+        تشغيلات، مقابل 2560–3090 في عشرة حين يُطلب بعد رسم الصورة). طلبُه يُرجأ بالسكربت أدناه. */}
     {lang === 'ar' ? (
       <link rel="preload" href="/fonts/plex-ar-400.woff2" as="font" type="font/woff2" crossorigin />
     ) : lang === 'en' ? (
@@ -158,6 +159,43 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         imagesrcset={preloadSet?.webp}
         imagesizes={preloadSet ? preloadSizes : undefined}
       />
+    )}
+
+    {/* وجه النستعليق لا يُطلب قبل رسم صورة الهيرو (صفحات /ur/ ذات الهيرو المحمَّل مسبقاً).
+        المتصفح يطلب الوجه حين تنتهي خطوط اللاتيني الأولى، وعلى شبكة سريعة يكتمل تنزيله قبل
+        أن يُعرض الإطار الذي يحمل الصورة، فيدخل مخطط محاكاة LCP ويزاحمها. المقيس بشبكة مخنوقة
+        فعلاً (150 مللي ثانية، 1.6 ميغابت، أربعة تشغيلات لكلٍّ): على صفحة جبل القارة تُرسم الصورة
+        عند 2300–2352 مللي ثانية والوجه يُنزَّل معها، و2152–2172 بعد الإرجاء، ويكتمل الوجه عند
+        3046–3106 بدل 2697–2713؛ والرئيسية لا تتغيّر (الصورة عند 868–912 والوجه يُطلب بعد 1490).
+        الآلية: صنف `nq-wait` على الجذر وقت التحليل الأول يُبقي سلسلتَي الأوردو على خط النظام
+        (tokens.css) حتى يصل مدخل LCP لصورة الهيرو نفسها، أو 2.5 ثانية، أو يُخفى التبويب.
+        بلا سكربت أو بلا واجهة LCP لا صنف ولا إرجاء. والتنقّل الداخلي (ClientRouter) يعيد
+        تنفيذ السكربت والمستند مكتمل، فلا يُرجأ شيء والوجه محمَّل أصلاً.
+        يحرسه C66 في check-consistency وميزانية «نستعليق قبل LCP» في lighthouse-gate. */}
+    {lang === 'ur' && preloadImage && (
+      <script is:inline define:vars={{ HERO: preloadImage }}>
+        (function () {
+          if (document.readyState !== 'loading') return;
+          var TYPE = 'largest-contentful-paint';
+          var root = document.documentElement;
+          if (!window.PerformanceObserver || (PerformanceObserver.supportedEntryTypes || []).indexOf(TYPE) < 0) return;
+          if (document.visibilityState === 'hidden') return;
+          var released = false;
+          function release() { if (released) return; released = true; root.classList.remove('nq-wait'); }
+          root.classList.add('nq-wait');
+          try {
+            var po = new PerformanceObserver(function (list) {
+              var entries = list.getEntries();
+              for (var i = 0; i < entries.length; i++) {
+                if (entries[i].url && entries[i].url.indexOf(HERO) >= 0) { po.disconnect(); release(); return; }
+              }
+            });
+            po.observe({ type: TYPE, buffered: true });
+          } catch (e) { release(); return; }
+          setTimeout(release, 2500);
+          document.addEventListener('visibilitychange', release, { once: true });
+        })();
+      </script>
     )}
 
     {/* Google Analytics 4 — يُحمّل بالكود بدل حقن Netlify. مع ClientRouter (تحولات
