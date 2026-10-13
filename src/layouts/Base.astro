@@ -169,6 +169,10 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
         3046–3106 بدل 2697–2713؛ والرئيسية لا تتغيّر (الصورة عند 868–912 والوجه يُطلب بعد 1490).
         الآلية: صنف `nq-wait` على الجذر وقت التحليل الأول يُبقي سلسلتَي الأوردو على خط النظام
         (tokens.css) حتى يصل مدخل LCP لصورة الهيرو نفسها، أو 2.5 ثانية، أو يُخفى التبويب.
+        ورفع الصنف يسبقه تحميل الوجه (document.fonts.load، ومهلة 3 ثوانٍ): لو رُفع الصنف والوجه لم
+        يصل بعدُ لصُيِّر النص مؤقتاً بخط العربية الاحتياطي في السلسلة، فتحرّك التخطيط مرتين ونُزّل
+        خطّان بلا حاجة. المقيس على فهرس المعالم المبني (شبكة مخنوقة): CLS ‏0.125 برفعٍ مباشر،
+        و0.061 بلا إرجاء أصلاً، و0.002 بتحميل الوجه أولاً.
         بلا سكربت أو بلا واجهة LCP لا صنف ولا إرجاء. والتنقّل الداخلي (ClientRouter) يعيد
         تنفيذ السكربت والمستند مكتمل، فلا يُرجأ شيء والوجه محمَّل أصلاً.
         يحرسه C66 في check-consistency وميزانية «نستعليق قبل LCP» في lighthouse-gate. */}
@@ -181,7 +185,13 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
           if (!window.PerformanceObserver || (PerformanceObserver.supportedEntryTypes || []).indexOf(TYPE) < 0) return;
           if (document.visibilityState === 'hidden') return;
           var released = false;
-          function release() { if (released) return; released = true; root.classList.remove('nq-wait'); }
+          function drop() { root.classList.remove('nq-wait'); }
+          function release() {
+            if (released) return; released = true;
+            if (!document.fonts || !document.fonts.load) { drop(); return; }
+            setTimeout(drop, 3000);
+            document.fonts.load("1em 'Noto Nastaliq Urdu'", 'ی').then(drop, drop);
+          }
           root.classList.add('nq-wait');
           try {
             var po = new PerformanceObserver(function (list) {
