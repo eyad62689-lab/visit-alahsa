@@ -16,6 +16,11 @@ title_ru: "Экологический парк короля Абдаллы"
 kicker_ru: "Парк"
 summary_ru: "Обширный экологический парк для прогулок и семейного отдыха."
 body_ru: "Обширный экологический парк для прогулок и семейного отдыха."
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-13، الدفعة b6 — السجل في ur-translation/memory/scores.csv).
+title_ur: "شاہ عبد اللہ ماحولیاتی تفریح گاہ"
+kicker_ur: "تفریح گاہ"
+summary_ur: "چہل قدمی اور خاندان کے ساتھ گھومنے پھرنے کے لیے ایک وسیع ماحولیاتی تفریح گاہ۔"
+body_ur: "چہل قدمی اور خاندان کے ساتھ گھومنے پھرنے کے لیے ایک وسیع ماحولیاتی تفریح گاہ۔"
 slug_ar: "منتزه-الملك-عبدالله-البيئي"
 slug_en: "king-abdullah-park"
 category: parks
@@ -26,7 +31,7 @@ body_en: "A vast environmental park for walking and family outings."
 featured: false
 order: 42
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل (عروض النافورة من بعد المغرب)", label_en: "Hours", value_en: "Daily 4:00 pm – midnight (fountain shows after sunset)", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل (عروض النافورة من بعد المغرب)", label_en: "Hours", value_en: "Daily 4:00 pm – midnight (fountain shows after sunset)", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 12 بجے تک (فوارے کی نمائش غروب آفتاب کے بعد)", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.321457, lng: 49.558356 }
 mapUrl: "https://goo.gl/maps/XBJEVnW23eQz96db8"
 heroImage: /img/king-abdullah-ecopark

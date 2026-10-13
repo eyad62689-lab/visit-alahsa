@@ -1,0 +1,91 @@
+{
+ "batch": "b6",
+ "made_by": "stage 4 (benchmarker), b6/s45-ui.mjs",
+ "read_from": "src/i18n/ui.ts of the worktree (read only)",
+ "why": "king-abdullah-park is the first page of category parks. DetailView.astro takes the breadcrumb label from crumb.leisure and the back link from det.allLeisure when the page is a leisure page; the ur block has neither key, so both fall back to English on the built /ur/ page and mk-blind stops.",
+ "keys": [
+  {
+   "key": "crumb.leisure",
+   "values": {
+    "ar": "الأسواق والمنتزهات",
+    "en": "Souqs & parks",
+    "zh": "传统市集与公园",
+    "de": "Souks & Parks",
+    "ru": "Рынки и парки"
+   },
+   "ur_siblings": {
+    "crumb.home": "صفحہ اول",
+    "crumb.attractions": "سیاحتی مقامات",
+    "nav.leisure": "بازار، تفریح گاہیں اور زرعی فارم",
+    "list.title": "الاحساء کے سیاحتی مقامات"
+   },
+   "candidates": [
+    {
+     "id": "A",
+     "ur": "بازار اور تفریح گاہیں",
+     "note": "The two nouns of nav.leisure, in its approved words and order, joined by «اور»: 'souqs and parks'. The farms of nav.leisure are left out, as the five other languages leave them out of this key."
+    },
+    {
+     "id": "B",
+     "ur": "بازار، تفریح گاہیں",
+     "note": "The same two nouns with the Urdu comma only: two characters shorter, but it reads as the head of a list that was cut off (nav.leisure continues «… اور زرعی فارم»)."
+    }
+   ],
+   "recommendation": "A",
+   "reasoning": "It is the first two members of the approved menu label with their own conjunction, so the breadcrumb and the menu name the section in the same words; no new term enters (ruling N5 fixed «بازار» and «تفریح گاہیں» there, ruling N69 the park's noun). A breadcrumb is not in the measured header bar; even so this is the shortest wording that is a complete phrase."
+  },
+  {
+   "key": "det.allLeisure",
+   "values": {
+    "ar": "← كل الأسواق والمنتزهات",
+    "en": "All souqs & parks →",
+    "zh": "全部传统市集与公园 →",
+    "de": "Alle Souks & Parks →",
+    "ru": "Все рынки и парки →"
+   },
+   "ur_siblings": {
+    "det.allSights": "تمام مقامات ←",
+    "nav.leisure": "بازار، تفریح گاہیں اور زرعی فارم",
+    "crumb.attractions": "سیاحتی مقامات"
+   },
+   "candidates": [
+    {
+     "id": "A",
+     "ur": "تمام بازار اور تفریح گاہیں ←",
+     "note": "Built on the approved sibling det.allSights: the same quantifier «تمام», the nouns of candidate A of crumb.leisure, the same arrow at the same end (the arrow is copied from the sibling by the reader of this file, not retyped: see arrow_of_sibling)."
+    },
+    {
+     "id": "B",
+     "ur": "سب بازار اور تفریح گاہیں ←",
+     "note": "With the everyday quantifier «سب». Shorter by two letters; breaks the pair with det.allSights, which a reader meets on the neighbouring pages."
+    }
+   ],
+   "recommendation": "A",
+   "reasoning": "One frame for the two back links of the detail template («تمام مقامات ←» / «تمام بازار اور تفریح گاہیں ←»), and the same noun pair as the breadcrumb above it on the page."
+  }
+ ],
+ "arrow_of_sibling": {
+  "det.allSights": "تمام مقامات ←",
+  "last_code_point": "U+2190",
+  "candidate_A_ends_with_the_same": true
+ },
+ "template": [
+  {
+   "file": "src/components/views/DetailView.astro",
+   "line": 65,
+   "text": "const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');"
+  },
+  {
+   "file": "src/components/views/DetailView.astro",
+   "line": 66,
+   "text": "const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');"
+  }
+ ],
+ "status": "PROPOSAL for the coordinator: not approved interface text. The two strings were read by no blind reader; they go through the interface chain or the coordinator's decision before they are written into ui.ts. No Latin letter, Urdu letterforms only (checked below).",
+ "letterform_check": {
+  "leisureA": "clean",
+  "leisureB": "clean",
+  "allA": "clean",
+  "allB": "clean"
+ }
+}
