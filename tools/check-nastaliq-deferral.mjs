@@ -105,12 +105,12 @@ export function checkNastaliqDeferral(pages) {
     if (!script.includes(`classList.add('${WAIT_CLASS}')`) || !script.includes(`classList.remove('${WAIT_CLASS}')`)) problems.push(`${rel}: السكربت لا يضع الصنف ${WAIT_CLASS} ويرفعه`);
     if (!/setTimeout\(\s*release\s*,\s*\d+\s*\)/.test(script)) problems.push(`${rel}: السكربت بلا مهلة ترفع الصنف إن لم يصل مدخل LCP`);
     const load = script.match(/document\.fonts\.load\(\s*"[^"]*'([^']+)'"[^)]*\)\.then\(\s*(\w+)\s*,\s*(\w+)\s*\)/);
-    if (!load || load[1] !== FAMILY) problems.push(`${rel}: السكربت لا يحمّل وجه «${FAMILY}» قبل رفع الصنف`);
+    if (load?.[1] !== FAMILY) problems.push(`${rel}: السكربت لا يحمّل وجه «${FAMILY}» قبل رفع الصنف`);
     else {
       const drop = load[2];
       if (load[3] !== drop) problems.push(`${rel}: إخفاق تحميل الوجه لا يرفع الصنف`);
-      if (!new RegExp(`function\\s+${drop}\\s*\\(\\)\\s*\\{[^}]*classList\\.remove\\('${WAIT_CLASS}'\\)`).test(script)) problems.push(`${rel}: ما يُستدعى بعد تحميل الوجه لا يرفع الصنف ${WAIT_CLASS}`);
-      if (!new RegExp(`setTimeout\\(\\s*${drop}\\s*,\\s*\\d+\\s*\\)`).test(script)) problems.push(`${rel}: تحميل الوجه بلا مهلة ترفع الصنف إن لم يصل`);
+      if (!new RegExp(String.raw`function\s+${drop}\s*\(\)\s*\{[^}]*classList\.remove\('${WAIT_CLASS}'\)`).test(script)) problems.push(`${rel}: ما يُستدعى بعد تحميل الوجه لا يرفع الصنف ${WAIT_CLASS}`);
+      if (!new RegExp(String.raw`setTimeout\(\s*${drop}\s*,\s*\d+\s*\)`).test(script)) problems.push(`${rel}: تحميل الوجه بلا مهلة ترفع الصنف إن لم يصل`);
       if (script.split(`classList.remove('${WAIT_CLASS}')`).length !== 2) problems.push(`${rel}: الصنف يُرفع من أكثر من موضع — رفعٌ لا يسبقه تحميل الوجه`);
     }
 
