@@ -328,37 +328,29 @@ function palaceTitles(titles, r) {
   }
 }
 
-// N33 — لا «؛» في صفحة معلم، إلا خانةً مستثناة باسمها (يُعدّ ما طابقه كل استثناء في hits)
-function semicolonIn(b, rel, r, exempt, hits) {
-  let free = b;
-  exempt.forEach((e, k) => {
-    if (e.rel === rel && e.text && free.includes(e.text)) { free = free.split(e.text).join(' '); hits[k]++; }
-  });
-  const i = free.indexOf(SEMICOLON);
-  if (i !== -1) r.problems.push(`${rel}: «${SEMICOLON}» في صفحة معلم ⇐ «${snip(free, i)}»`);
+// N33 — لا «؛» في صفحة معلم
+function semicolonIn(b, rel, r) {
+  const i = b.indexOf(SEMICOLON);
+  if (i !== -1) r.problems.push(`${rel}: «${SEMICOLON}» في صفحة معلم ⇐ «${snip(b, i)}»`);
 }
 
-// حرّاس إيجابيون: الفحص ليس فارغاً، والاستثناء ما زال لازماً
-function round1Emptiness(out, exempt, hits) {
+// حرّاس إيجابيون: الفحص ليس فارغاً
+function round1Emptiness(out) {
   if (out.gulf.stats.carriers === 0) out.gulf.problems.push(`«${GULF}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
   if (out.cities.stats.mentions === 0) out.cities.problems.push('لا ذكر لأيٍّ من المدينتين في صفحات /ur/ — الحارس صار فارغاً');
   if (out.scale.stats.carriers === 0) out.scale.problems.push(`«${SCALE_WORD}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
   if (out.palace.stats.titles === 0) out.palace.problems.push('لا عنوان قصر أوردياً في المصدر — الحارس صار فارغاً');
   if (out.semicolon.stats.pages === 0) out.semicolon.problems.push('لا صفحة معلم أوردية في المخرج — الحارس صار فارغاً');
-  exempt.forEach((e, k) => {
-    if (hits[k] === 0) out.semicolon.problems.push(`استثناء «${SEMICOLON}» في ${e.rel} لا يطابق نصاً منشوراً — الخانة تغيّرت، فاحذف الاستثناء`);
-  });
 }
 
 /**
  * C59–C65. @param {{ rel: string, html: string }[]} pages صفحات /ur/ المبنية
  * @param {object} termbase المعجم محلَّلاً
- * @param {{ titles?: { file: string, ar?: string, ur?: string }[], semicolonExempt?: { rel: string, text: string }[] }} [opts]
- *   titles: عنوانا كل معلم في المصدر (العربي والأوردي) لقاعدة عنوان القصور؛ semicolonExempt: خانات
- *   معتمدة قبل الحكم N33 تحمل «؛» وتُستثنى باسمها حتى يغيّرها خط الترجمة — استثناء لا يطابق شيئاً يُخفق.
+ * @param {{ titles?: { file: string, ar?: string, ur?: string }[] }} [opts]
+ *   titles: عنوانا كل معلم في المصدر (العربي والأوردي) لقاعدة عنوان القصور
  * @returns {{ id: string, problems: string[], stats: Record<string, number> }[]}
  */
-export function checkUrRound1Rulings(pages, termbase, { titles = [], semicolonExempt = [] } = {}) {
+export function checkUrRound1Rulings(pages, termbase, { titles = [] } = {}) {
   const tbText = JSON.stringify(termbase);
   const drift = ROUND1_TOKENS.filter((t) => !tbText.includes(t)).map((t) => `سلسلة حارس غائبة عن المعجم: «${t}»`);
   const out = {
@@ -368,9 +360,8 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [], semicolonEx
     scale: { id: 'P10', problems: [], stats: { carriers: 0 } },
     dash: { id: 'N13', problems: [], stats: { lifespans: 0 } },
     palace: { id: 'N14', problems: [], stats: { titles: 0 } },
-    semicolon: { id: 'N33', problems: [], stats: { pages: 0, exempt: 0 } },
+    semicolon: { id: 'N33', problems: [], stats: { pages: 0 } },
   };
-  const exemptHits = semicolonExempt.map(() => 0);
   let urduBlocks = 0;
 
   for (const { rel, html } of pages) {
@@ -387,19 +378,18 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [], semicolonEx
       hasScale = scaleIn(b, rel, out.scale) || hasScale;
       dashIn(b, rel, out.dash);
       palaceIn(b, rel, out.palace);
-      if (isAttraction) semicolonIn(b, rel, out.semicolon, semicolonExempt, exemptHits);
+      if (isAttraction) semicolonIn(b, rel, out.semicolon);
     }
     if (hasGulf) out.gulf.stats.carriers++;
     if (hasScale) out.scale.stats.carriers++;
   }
   palaceTitles(titles, out.palace);
-  out.semicolon.stats.exempt = exemptHits.reduce((a, n) => a + n, 0);
 
   const empty = !pages.length || urduBlocks === 0;
   for (const r of Object.values(out)) {
     if (empty) r.problems.push('لا نصّ أوردياً في صفحات /ur/ — الحارس صار فارغاً');
     r.stats.blocks = urduBlocks;
   }
-  if (!empty) round1Emptiness(out, semicolonExempt, exemptHits);
+  if (!empty) round1Emptiness(out);
   return Object.values(out);
 }
