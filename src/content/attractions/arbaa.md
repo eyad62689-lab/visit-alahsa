@@ -19,6 +19,12 @@ kicker_ru: "Природная достопримечательность"
 summary_ru: "Четыре соседних конических холма к юго-востоку от Эль-Хуфуфа — излюбленное место для отдыха с палатками и поездок по пустыне."
 body_ru: "Примерно в 22 километрах к юго-востоку от Эль-Хуфуфа, у дороги на Сальву и Катар, поднимается гора Эль-Арба (по-арабски — Джабаль-эль-Арба): четыре соседних конических холма из красноватой осадочной породы. Считается, что когда-то это был единый холм, который разделила эрозия. Холмов стало четыре — отсюда и имя: Эль-Арба значит «четыре». Посёлок Эт-Тараф лежит примерно в шести километрах к северу от горы Эль-Арба. А сама Эль-Арба — одно из самых известных мест юга Аль-Ахсы для отдыха с палатками, поездок по пустыне и пеших походов. Муниципалитет Аль-Ахсы начал проект благоустройства дороги к горе Эль-Арба — добраться до нее станет проще."
 area_ru: "К юго-востоку от Эль-Хуфуфа, близ Эт-Тарафа"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-13، الدفعة b5 — السجل في ur-translation/memory/scores.csv).
+title_ur: "جبل الاربع"
+kicker_ur: "قدرتی مقام"
+summary_ur: "ہفوف کے جنوب مشرق میں ساتھ ساتھ کھڑے چار مخروطی ٹیلے، جو خیمہ زنی اور صحرا کی سیر کے لیے پسندیدہ مقام ہیں۔"
+body_ur: "ہفوف سے تقریباً 22 کلومیٹر جنوب مشرق میں، سلویٰ اور قطر کی طرف جانے والی سڑک پر، جبل الاربع کے ٹیلے سر اٹھائے کھڑے ہیں۔ یہ سرخی مائل رسوبی چٹان کے چار مخروطی ٹیلے ہیں جو ساتھ ساتھ کھڑے ہیں۔ خیال ہے کہ یہ کبھی ایک ہی ٹیلہ تھا جسے کٹاؤ نے الگ الگ کر دیا۔ اسی سے اس پہاڑ کو یہ نام ملا، جس کا مطلب “چار” ہے۔ الطرف نامی قصبہ اس کے شمال میں تقریباً چھ کلومیٹر دور ہے۔ خیمہ زنی، صحرا کی سیر اور پیدل سفر کے لیے یہ پہاڑ الاحساء کے جنوبی حصے کے مشہور ترین مقامات میں سے ایک ہے۔ الاحساء کی بلدیہ نے جبل الاربع کی سڑک کو لوگوں کے لیے بہتر بنانے کا ایک منصوبہ شروع کیا ہے، تاکہ اس مقام تک پہنچنا آسان ہو جائے۔"
+area_ur: "ہفوف کے جنوب مشرق میں، الطرف نامی قصبے کے قریب"
 slug_ar: "جبل-الأربع"
 slug_en: "arbaa"
 category: nature
@@ -32,9 +38,9 @@ featured: false
 order: 35
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 25.288764, lng: 49.716349 }
 sameAs:

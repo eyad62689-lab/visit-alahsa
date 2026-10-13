@@ -19,6 +19,12 @@ kicker_ru: "Природная достопримечательность"
 summary_ru: "Горный массив к северо-востоку от оазиса, в исторических сочинениях известный как Канзан, — здесь в 1915 году произошла битва при Канзане."
 body_ru: "На восточном краю северной части оазиса, примерно в пятнадцати километрах к северо-востоку от Эль-Хуфуфа, тянется массив горы Канзан (по-арабски — Джабаль-Канзан). Это имя гора носит в исторических сочинениях, а сегодня ее чаще зовут горой Эш-Шууба. Массив — цепь осадочных и песчаных холмов. Он соседствует с деревнями Эш-Шууба, Эль-Килабия, Эль-Батталия и Эль-Джурн, а с запада подходит к окрестностям древней мечети Джавата. В этих местах в 1333 году хиджры (1915 год н. э.), во времена короля Абдул-Азиза, произошла знаменитая битва при Канзане. Король был в ней ранен, а его брат принц Саад погиб. Чистые мягкие пески сделали Канзан любимым местом прогулок: сюда приезжают кататься по дюнам и смотреть на пальмовые рощи. На массиве муниципалитет Аль-Ахсы обустраивает большой парк отдыха."
 area_ru: "К северо-востоку от Эль-Хуфуфа, близ деревень Эш-Шууба и Эль-Килабия"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-13، الدفعة b5 — السجل في ur-translation/memory/scores.csv).
+title_ur: "جبل کنزان"
+kicker_ur: "قدرتی مقام"
+summary_ur: "الاحساء کے نخلستان کے شمال مشرق میں ایک پہاڑی سلسلہ، جس کا ذکر تاریخ کی کتابوں میں کنزان کے نام سے ملتا ہے۔ 1915 میں کنزان کی لڑائی یہیں ہوئی۔"
+body_ur: "الاحساء کے شمالی نخلستان کے مشرقی کنارے پر، ہفوف سے تقریباً پندرہ کلومیٹر شمال مشرق میں، جبل کنزان کا پہاڑی سلسلہ پھیلا ہوا ہے۔ تاریخ کی کتابوں میں اس پہاڑ کا یہی نام ہے، البتہ آج یہ عام طور پر جبل الشعبہ کہلاتا ہے۔ یہ رسوبی اور ریتلے ٹیلوں کی ایک قطار ہے۔ الشعبہ، الکلابیہ، البطالیہ اور الجرن گاؤں اس کے پڑوس میں ہیں، اور مغرب کی طرف یہ قدیم مسجد جواثا کے آس پاس کے علاقے سے جا ملتا ہے۔ کنزان کی مشہور لڑائی 1333 ہجری (1915 عیسوی) میں، شاہ عبد العزیز کے دور میں، کنزان کے علاقے میں لڑی گئی۔ اس میں شاہ عبد العزیز زخمی ہوئے اور ان کے بھائی شہزادہ سعد مارے گئے۔ یہاں کی ریت صاف ستھری اور نرم ہے، اسی لیے سیر و تفریح، ریت کے ٹیلوں پر گاڑی دوڑانے اور کھجور کے باغات کا نظارہ کرنے کے لیے یہ لوگوں کی پسندیدہ جگہ ہے۔ الاحساء کی بلدیہ اس پہاڑی سلسلے پر ایک بڑی تفریح گاہ بنا رہی ہے۔"
+area_ur: "ہفوف کے شمال مشرق میں، الشعبہ اور الکلابیہ گاؤں کے قریب"
 slug_ar: "جبل-كنزان"
 slug_en: "kanzan"
 category: nature
@@ -32,9 +38,9 @@ featured: false
 order: 34
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 25.472262, lng: 49.639016 }
 mapUrl: "https://maps.app.goo.gl/cZW3oLwKQkGJqERQA"

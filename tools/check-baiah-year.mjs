@@ -13,7 +13,7 @@
 //   (ب) إيجاباً: صفحة بيت البيعة بكل لغة مبنية تقرن 1203 بـ1788، ولا يقلّ عددها عن
 //       EXPECT.minPages — فلا يصير الحارس فارغاً.
 
-export const EXPECT = { minPages: 5 };
+export const EXPECT = { minPages: 6 };
 
 // 1203 ثم 1788 في حدود 40 محرفاً بلا رقم بينهما: «1203هـ/1788م» · «1203 AH / 1788 CE» ·
 // «1203 年（公元 1788 年）» · «1203 nach der Hidschra (1788» · «1203 году хиджры (1788».
@@ -22,10 +22,10 @@ export const HIJRI = /(?<!\d)1203(?!\d)/;
 export const OLD_YEAR = /(?<!\d)1789(?!\d)/;
 
 // صفحة بيت البيعة بكل لغة (المسار النسبي في dist بفواصل /)
-const TARGET = /^(?:(?:en|zh|de|ru)\/attractions\/baiah|معالم\/بيت-البيعة)\/index\.html$/;
+const TARGET = /^(?:(?:en|zh|de|ru|ur)\/attractions\/baiah|معالم\/بيت-البيعة)\/index\.html$/;
 
 /**
- * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
+ * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru'|'ur', html: string}[]} pages كل صفحات dist
  * @returns {{problems: string[], stats: {targets: number, perLang: Record<string, number>, hijriPages: number}}}
  */
 export function checkBaiahYear(pages) {

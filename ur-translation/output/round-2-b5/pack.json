@@ -1,0 +1,1482 @@
+{
+  "batch": "b5",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b5",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, area, [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 5,
+    "fields": 55,
+    "per_page": {
+      "shaban": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "kanzan": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "arbaa": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "thulaim": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "tuwaither": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "shaban",
+      "file": "src/content/attractions/shaban.md",
+      "file_sha256": "24ede8975d115ab06b47df9a789c8bb67ff5183a3dbf0b930f3d174b6961c132",
+      "order": 32,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Shaban Mountain",
+          "ar": "جبل الشبعان",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم طبيعي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A free-standing rocky mountain near Al-Tuwaither, also called 'Aba Al-Kabari'; the old sources applied its name to Al-Qarah Mountain.",
+          "ar": "جبل صخري مستقل قرب التويثير، يُعرف أيضاً بـ«أبا الكباري»، وكان اسمه قديماً يُطلق على جبل القارة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "The mountain known today as Al-Shaban is a rocky rise standing apart from Al-Qarah Mountain, near the village of Al-Tuwaither east of Hofuf, and it carries another local name: 'Aba Al-Kabari'. In the old historical sources, however, 'Al-Shaban' was a name of Al-Qarah Mountain itself: the geographer Yaqut al-Hamawi recorded it as 'a mountain in Bahrain [the historic eastern coastlands], in whose caves one seeks the cool', and it is said the name — 'the sated one' — came from the palms and waters that once encircled it. As the name 'Al-Qarah' prevailed for that famous mountain, the name Al-Shaban settled on this neighbouring rise. For the caves and visiting details of the famous mountain, see the Al-Qarah Mountain page.",
+          "ar": "الجبل المعروف اليوم باسم الشبعان جبلٌ صخري مستقل عن جبل القارة، يقع قرب\nقرية التويثير شرق الهفوف، وله تسمية محلية أخرى هي **«أبا الكباري»**.\n\nأما في المصادر التاريخية القديمة فكان «الشبعان» اسماً لجبل القارة نفسه؛\nذكره ياقوت الحموي بقوله: «الشبعان: جبلٌ بالبحرين، يتبرّد بكهافه»، وقيل\nسُمي بذلك لأن النخيل والمياه أحاطت به من كل جانب حتى شبع. وبعدما غلبت\nعلى ذلك الجبل الشهير تسمية «القارة» نسبةً إلى البلدة المجاورة، استقر اسم\nالشبعان علماً على هذا الجبل المجاور. ولمعرفة قصة كهوف الجبل الشهير\nوتفاصيل زيارته، انظر صفحة **جبل القارة**.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Near Al-Tuwaither — east of Hofuf",
+          "ar": "قرب التويثير — شرق الهفوف",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours & entry",
+              "ar": "المواعيد والدخول"
+            },
+            "value": {
+              "en": "Open public site — no entry fee",
+              "ar": "موقع عام مفتوح — بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Гора Эш-Шабаан",
+          "kicker": "Природная достопримечательность",
+          "summary": "Отдельно стоящая скалистая гора близ Эт-Тувайсира, известная также как «Аба-эль-Кабари»; в старых источниках имя Эш-Шабаан носила соседняя гора Эль-Кара.",
+          "body": "Гора, которую сегодня зовут Эш-Шабаан (по-арабски — Джабаль-эш-Шабаан), — скалистая возвышенность в стороне от горы Эль-Кара, близ деревни Эт-Тувайсир к востоку от Эль-Хуфуфа. Есть у нее и второе, местное имя — «Аба-эль-Кабари». Однако в старых исторических источниках имя Эш-Шабаан носила сама гора Эль-Кара. О ней географ Якут аль-Хамави записал: «Гора в Бахрейне [историческое название восточного побережья], в пещерах которой ищут прохлады». А само имя Эш-Шабаан — в переводе «сытый» — связывают с пальмами и водами, которые когда-то окружали гору Эль-Кара со всех сторон. За знаменитой горой закрепилось имя Эль-Кара — по названию соседнего с ней города, а имя Эш-Шабаан осталось за возвышенностью близ Эт-Тувайсира. О пещерах горы Эль-Кара и о том, как ее посетить, читайте на ее странице.",
+          "area": "Близ Эт-Тувайсира, к востоку от Эль-Хуфуфа",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы и вход",
+              "value": "Открытая общедоступная территория — вход свободный"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Shaban-Berg",
+          "kicker": "Naturlandschaft",
+          "summary": "Ein freistehender Felsberg nahe Al-Tuwaither, auch „Aba Al-Kabari“ genannt; in den alten Quellen trug der Jabal al-Qarah den Namen „Al-Shaban“.",
+          "body": "Der Al-Shaban-Berg, wie er heute heißt, ist ein freistehender Felsberg abseits des Jabal al-Qarah (des Qarah-Bergs), nahe dem Dorf Al-Tuwaither östlich von Hofuf; örtlich trägt er einen zweiten Namen: „Aba Al-Kabari“. In den alten historischen Quellen dagegen war „Al-Shaban“ ein Name des Qarah-Bergs selbst: Der Geograph Yaqut al-Hamawi verzeichnete ihn als „einen Berg in Bahrain [den historischen Ostküstenlanden], in dessen Höhlen man Kühlung sucht“. Der Name – „der Satte“ – soll von den Palmen und dem Wasser stammen, die den Qarah-Berg einst von allen Seiten umgaben. Als sich für jenen berühmten Berg der Name „Al-Qarah“ nach dem Nachbarort durchsetzte, wurde der Name „Al-Shaban“ zum Eigennamen dieser benachbarten Erhebung. Mehr über die Höhlen des berühmten Bergs und Hinweise für einen Besuch finden Sie auf der Seite zum Jabal al-Qarah.",
+          "area": "Nahe Al-Tuwaither – östlich von Hofuf",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten und Eintritt",
+              "value": "Frei zugängliches Gelände – kein Eintrittsgeld"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "沙巴安山",
+          "kicker": "自然景观",
+          "summary": "图韦西尔村附近一座孤立的岩石山丘，又名“阿巴·卡巴里”；而在古代史籍中，“沙巴安”原本指的是卡拉山。",
+          "body": "今天所说的沙巴安山（Al-Shaban），是一座独立于卡拉山之外的岩石山丘，位于胡富夫以东的图韦西尔村（Al-Tuwaither）附近，当地人也称它“阿巴·卡巴里”。不过在古代史籍中，“沙巴安”原是卡拉山本身的名字。地理学家雅库特·哈马维记载：“沙巴安，巴林（此处指历史上的东部沿海地区）的一座山，人们在山中洞穴避暑纳凉。”相传此名意为“饱足者”：昔日椰枣林与流水四面环绕，这座山因而得以“饱足”。后来，邻近村镇的名字“卡拉”渐渐成了那座名山的通称，“沙巴安”便成了旁边这座山丘的专名。那座名山的洞穴故事与游览详情，详见卡拉山页面。",
+          "area": "图韦西尔村附近——胡富夫以东",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间与门票",
+              "value": "开放的公共区域，免收门票"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Aba Al-Kabari",
+          "ar": "أبا الكباري",
+          "ru": "Аба-эль-Кабари",
+          "de": "Aba Al-Kabari",
+          "zh": "“阿巴·卡巴里”",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qarah",
+          "ar": "القارة",
+          "ru": "Эль-Кара",
+          "de": "Al-Qarah",
+          "zh": "卡拉",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qarah Mountain",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "卡拉山",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Shaban Mountain",
+          "ar": "جبل الشبعان",
+          "ru": "гора Эш-Шабаан / Джабаль-эш-Шабаан",
+          "de": "der Al-Shaban-Berg",
+          "zh": "沙巴安山",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Tuwaither",
+          "ar": null,
+          "ru": "Эт-Тувайсир",
+          "de": "Al-Tuwaither",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Bahrain",
+          "ar": "البحرين / مملكة البحرين",
+          "ru": "Бахрейн",
+          "de": null,
+          "zh": "巴林",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Yaqut",
+          "ar": "ياقوت",
+          "ru": "Якут аль-Хамави (полная форма во всех местах)",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Yaqut al-Hamawi",
+          "ar": "ياقوت الحموي",
+          "ru": "Якут аль-Хамави",
+          "de": "Yaqut al-Hamawi",
+          "zh": "雅库特",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 536 characters, 2 bold phrase(s), 0 link(s); English 4 sentence(s), 727 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Shaban Mountain' translates the generic and does not show the ain of the Arabic name (جبل الشبعان); the Russian title shows it ('Гора Эш-Шабаан'). The calibration page keeps the Arabic generic in its own English title ('Jabal Al-Qarah'); the five titles of this batch translate it. A jabal title: ground of ruling P3a.",
+          "kicker: Arabic only, 'a natural landmark' (معلم طبيعي); there is no kicker_en, and the built English page prints the category label 'Nature' in its place. The five pages of the batch carry the same Arabic kicker: one Urdu kicker serves the five, built from the Arabic. The calibration page, a mountain too, has another kicker (ruling P24).",
+          "summary / body: 'Al-Qarah Mountain' four times in the EN of this page (جبل القارة) — the calibrated name, whose own page is titled 'Jabal Al-Qarah' in English and whose termbase key stands whole (rulings P1 and P3a). The last sentence sends the reader to 'the Al-Qarah Mountain page' (انظر صفحة), a page that carries another English title; the reference is bold text in the AR and plain text in the EN, a link in neither.",
+          "summary / body: EN summary 'A free-standing rocky mountain' — AR 'an independent rocky mountain' (جبل صخري مستقل); the body says what it stands apart from (مستقل عن جبل القارة). The EN body then calls the page's subject 'a rocky rise' and 'this neighbouring rise' where the AR says 'mountain' each time (هذا الجبل المجاور): one AR noun, two EN nouns.",
+          "summary: EN 'the old sources applied its name to Al-Qarah Mountain' — AR 'and its name was of old applied to Jabal Al-Qarah' (وكان اسمه قديماً يُطلق على جبل القارة): 'the old sources' is EN-only in the summary; the body has them in both languages (في المصادر التاريخية القديمة).",
+          "summary / body: the second name, 'Aba Al-Kabari', stands in quotation marks in both languages (أبا الكباري); the Arabic keeps the accusative form of its first word inside the name. Neither language says what the name means.",
+          "body: EN 'the geographer Yaqut al-Hamawi' — AR names him without a description (ياقوت الحموي): 'the geographer' is EN-only. The EN writes his article in lower case ('al-Hamawi') where every place name of the page has 'Al-'.",
+          "body, the quotation: EN \"recorded it as 'a mountain in Bahrain [the historic eastern coastlands], in whose caves one seeks the cool'\" — AR quotes the entry with its headword (الشبعان: جبلٌ بالبحرين، يتبرّد بكهافه). The headword is inside the AR quotation and outside the EN one; the square-bracket gloss of 'Bahrain' is EN-only, an editorial gloss set inside a quotation, and the AR leaves the historical sense of the name unexplained. The Chinese, German and Russian lines keep the gloss. A quotation from a medieval Arabic source, translated by the EN. The quoted text has an old plural for 'caves'; the page's own sentence has the usual one (قصة كهوف الجبل الشهير).",
+          "body: EN \"it is said the name — 'the sated one' — came from the palms and waters that once encircled it\" — AR 'it was so named because palms and waters surrounded it on every side until it was sated' (لأن النخيل والمياه أحاطت به من كل جانب حتى شبع): the EN gives the meaning as a gloss of the name, the AR by its verb; 'on every side' is AR-only, 'once' is EN-only. 'It' is Jabal Al-Qarah, the mountain of the sentence before, not the page's own (the German and Russian lines name it). A name that is an Arabic word with a meaning (ground of rulings P3b and N39).",
+          "body: EN \"As the name 'Al-Qarah' prevailed for that famous mountain\" — AR 'after the name Al-Qarah had prevailed for that famous mountain, after the neighbouring town' (نسبةً إلى البلدة المجاورة): that the mountain took its name from the town is AR-only; the Chinese, German and Russian lines carry it. EN 'as', AR 'after'. The bare 'Al-Qarah' in quotation marks is the second word of the calibrated name.",
+          "body: EN 'the name Al-Shaban settled on this neighbouring rise' — AR 'settled as a proper name on this neighbouring mountain' (استقر اسم الشبعان علماً على هذا الجبل المجاور): 'as a proper name' is AR-only.",
+          "body: EN 'For the caves and visiting details of the famous mountain' — AR 'to learn the story of the caves of the famous mountain and the details of visiting it' (وتفاصيل زيارته): 'the story' is AR-only.",
+          "body vs jabal-al-qarah: this page says of the caves of Jabal Al-Qarah only, inside the quotation, that one seeks the cool in them; the calibration page (already translated) says they stay cool in summer and warm in winter. This page calls the other mountain 'famous' twice (الجبل الشهير) and tells of its own nothing but rock, place and names. Both languages agree.",
+          "summary / body / area: 'near Al-Tuwaither' in the summary and the area line, 'near the village of Al-Tuwaither' in the body (قرية التويثير), in both languages. The tuwaither page of this batch (Abu Husais Mountain) lies north of the same village and gives a distance from Hofuf; this page gives none. Nothing is carried from one page to the other.",
+          "area: 'Near Al-Tuwaither — east of Hofuf' (قرب التويثير — شرق الهفوف): two positions, and no place named with its generic; the area line of the tuwaither page names the same village in another build ('Al-Tuwaither village — the eastern villages, Al-Ahsa'). Ruling P20 leads with a larger bare place and ruling N30 with a place and its generic; this line has neither.",
+          "practical[0], [1] and [2]: 'Hours & entry: Open public site — no entry fee', 'Hours: Open 24 hours' and 'Fees: Free entry' state the access twice and the absence of a fee twice, in both languages; the five pages of the batch carry the same three rows, value for value. The al-uqair page (already translated) has the first row alone. The Chinese, German and Russian lines translated the first row only: rows [1] and [2] have no precedent in an earlier line.",
+          "practical[1].value: EN 'Open 24 hours' — AR 'open round the clock' (مفتوح على مدار الساعة) with the figure in a bracket of its own (24 ساعة): two statements of one fact in the AR, one in the EN. The value has no approved Urdu pair; it recurs on four pages of later rounds (koot-park, musa-park, stadium-park, salwa-beach).",
+          "practical[2].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Ruling P3a (termbase; stage checker, and item 10 of the stage-5 checklist): the title is a jabal name (جبل الشبعان). It is transliterated whole from the Arabic spelling, in title and body; its generic is not translated as part of the name and is not repeated after it; no bracket follows it, and the title carries none. The Urdu common noun for a mountain stands at least once on its own in the body, away from the name. The EN 'Mountain' is not the source of the name's form. No build check reads the page for this.",
+        "The EN 'Al-Qarah Mountain' is the calibrated name Jabal Al-Qarah: its termbase key stands whole, and the Urdu generic is never appended to it (rulings P1 and P3a). Build check C46 (ruling P1; PLACE_NAMES and PLACE_FORBIDDEN in tools/check-ur-text.mjs) ALREADY TARGETS every /ur/ page and fails on the press variants of the name: no pattern is to be added. The last sentence of the body sends the reader to that mountain's page: the page is named by its approved Urdu title, which is the same key, in plain text with no link and no Markdown (RUNBOOK, rule 5). The bare 'Al-Qarah' in quotation marks (the name that prevailed) is the second word of the key and is given no other spelling.",
+        "Ruling N33, build check C65 (SEMICOLON in tools/check-ur-text.mjs): no Arabic semicolon (U+061B) stands in an Urdu attraction page. C65 ALREADY TARGETS /ur/; no pattern is to be added. The EN summary of this page turns on a semicolon and the AR body has one: the Urdu joins or divides the two halves otherwise.",
+        "Site-wide build checks C15 ('the largest oasis in the world', never a palm oasis or a natural oasis) and C16 (the warmth of the Jabal Al-Qarah caves is winter's, never night's) read every built page (tools/check-consistency.mjs). Their per-language tables (PALM_CLAIM and OK_CLAIM; NIGHT_WARMTH and OK_WINTER) have no Urdu entry. This page carries neither claim: of the caves it says only, inside the quotation, that one seeks the cool in them, and the summer-and-winter sentence of the jabal-al-qarah page is not brought in. No Urdu pattern is owed by this batch; the missing Urdu entries concern pages that are already live (the calibration page, the home page).",
+        "Root CLAUDE.md: invent nothing — the quotation is the source's and is not lengthened, completed or referenced (no title of a work, no date for the geographer); the gloss of the historical 'Bahrain' is the EN's own bracket, and no further explanation, link or modern equivalent is added; neither source says what the second name means and no gloss is supplied for it. That the famous mountain was named after the neighbouring town is in the AR only (نسبةً إلى البلدة المجاورة): Arabic-only content is not imported (RUNBOOK, rule 4).",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is openSite: true, so the unified hours-and-fees notice line is printed in no language. C13 ALREADY TARGETS Urdu (its LANGS lists ur and it reads label_ur and value_ur): no Urdu pattern is to be added. C12: the `source`, `source_en`, `sourceUrl` and `verifiedAt` of the card rows are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of 'Confirmed by the Visit Al-Ahsa team' or 'Verified directly with Al-Ahsa Municipality' enters a label, a value or the body. C12 scans the /ur/ page too, but its tables (ATTRIBUTION_PHRASES, CARD_LABELS) and its reader of `source_*` values have no Urdu entry: an Urdu attribution line would pass it unguarded. Nothing is owed by this batch, because none is written.",
+        "Card rows (RUNBOOK, rule 3): practical[0], 'Hours & entry' / 'Open public site — no entry fee', recurs from al-uqair, and the labels 'Hours' and 'Fees' and the value 'Free entry' recur from round 1: the approved pairs of ur-translation/memory/tm.json are reused verbatim. practical[1].value, 'Open 24 hours' (مفتوح على مدار الساعة), has no approved pair: it is ONE Urdu string on the five pages of the batch, value for value. Its 24 is a length of time, not a clock time: it takes neither the clock word nor a part of the day (ruling P13; build check C51 in tools/check-ur-text.mjs ALREADY TARGETS /ur/ and fails an hour of 13 or more written before the clock word). Root CLAUDE.md: invent nothing — no hours, season or advice beyond the three rows. The page is not a mosque: it has no 'Visiting' row and no 'Site status' row, and none is supplied."
+      ]
+    },
+    {
+      "page": "kanzan",
+      "file": "src/content/attractions/kanzan.md",
+      "file_sha256": "5365153805948918e16c1912feab8db12e60560f5bef4ccb4342c84ed8498795",
+      "order": 34,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Kanzan Mountain",
+          "ar": "جبل كنزان",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم طبيعي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A mountain massif north-east of the oasis, known in the history books as Kanzan — site of the 1915 Battle of Kanzan.",
+          "ar": "كتلة جبلية شمال شرق الواحة عرفتها كتب التاريخ باسم كنزان، وعندها وقعت معركة كنزان عام 1915م.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "On the eastern rim of the northern oasis, some fifteen kilometres north-east of Hofuf, stretches the massif of Kanzan Mountain — the name the history books know it by, though today it is commonly called Al-Shu'bah Mountain. A chain of sedimentary and sandy hills, it neighbours the villages of Al-Shu'bah, Al-Kilabiyah, Al-Battaliyah and Al-Jurn, and adjoins the surroundings of the ancient Jawatha Mosque on its western side. In the Kanzan area, in 1333 AH / 1915 CE, the famous Battle of Kanzan was fought in the era of King Abdulaziz, in which the King was wounded and his brother Prince Saad fell. Its clean, soft sands have made it a favourite spot for outings, dune driving and gazing over the palm groves, and Al-Ahsa Municipality is developing a major recreational park on the massif.",
+          "ar": "على الحافة الشرقية للواحة الشمالية، على نحو 15 كيلومتراً شمال شرق الهفوف،\nتمتد كتلة جبل كنزان — وهو الاسم الذي عرفته به كتب التاريخ، بينما يشتهر\nاليوم باسم **جبل الشعبة**. وهو سلسلة تلال رسوبية ورملية تجاور قرى الشعبة\nوالكلابية والبطالية والجرن، وتلاصق من جهتها الغربية محيط مسجد جواثا\nالأثري. وفي منطقة كنزان وقعت عام 1333هـ/1915م **معركة كنزان** الشهيرة في\nعهد الملك عبدالعزيز، وفيها جُرح الملك واستشهد أخوه الأمير سعد. رماله\nالناعمة النظيفة جعلته وجهة مفضلة للتنزه والتطعيس ومشاهدة بحر النخيل،\nوتطوّر أمانة الأحساء فوق الكتلة منتزهاً ترفيهياً كبيراً.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Northeast of Hofuf — near the villages of Al-Shu'bah and Al-Kilabiyah",
+          "ar": "شمال شرق الهفوف — قرب قرى الشعبة والكلابية",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours & entry",
+              "ar": "المواعيد والدخول"
+            },
+            "value": {
+              "en": "Open public site — no entry fee",
+              "ar": "موقع عام مفتوح — بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Гора Канзан",
+          "kicker": "Природная достопримечательность",
+          "summary": "Горный массив к северо-востоку от оазиса, в исторических сочинениях известный как Канзан, — здесь в 1915 году произошла битва при Канзане.",
+          "body": "На восточном краю северной части оазиса, примерно в пятнадцати километрах к северо-востоку от Эль-Хуфуфа, тянется массив горы Канзан (по-арабски — Джабаль-Канзан). Это имя гора носит в исторических сочинениях, а сегодня ее чаще зовут горой Эш-Шууба. Массив — цепь осадочных и песчаных холмов. Он соседствует с деревнями Эш-Шууба, Эль-Килабия, Эль-Батталия и Эль-Джурн, а с запада подходит к окрестностям древней мечети Джавата. В этих местах в 1333 году хиджры (1915 год н. э.), во времена короля Абдул-Азиза, произошла знаменитая битва при Канзане. Король был в ней ранен, а его брат принц Саад погиб. Чистые мягкие пески сделали Канзан любимым местом прогулок: сюда приезжают кататься по дюнам и смотреть на пальмовые рощи. На массиве муниципалитет Аль-Ахсы обустраивает большой парк отдыха.",
+          "area": "К северо-востоку от Эль-Хуфуфа, близ деревень Эш-Шууба и Эль-Килабия",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы и вход",
+              "value": "Открытая общедоступная территория — вход свободный"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Kanzan-Berg",
+          "kicker": "Naturlandschaft",
+          "summary": "Ein Bergmassiv nordöstlich der Oase, in den Geschichtsbüchern als Kanzan bekannt – Schauplatz der Schlacht von Kanzan im Jahr 1915.",
+          "body": "Am östlichen Rand der nördlichen Oase, rund 15 Kilometer nordöstlich von Hofuf, erstreckt sich das Massiv des Kanzan-Bergs. Kanzan ist der Name, unter dem ihn die Geschichtsbücher kennen; heute heißt er meist Al-Shu'bah-Berg. Der Berg ist eine Kette aus Sediment- und Sandhügeln. Er grenzt an die Dörfer Al-Shu'bah, Al-Kilabiyah, Al-Battaliyah und Al-Jurn und reicht im Westen bis an das Umfeld der alten Jawatha-Moschee. In der Gegend von Kanzan wurde die berühmte Schlacht von Kanzan geschlagen – 1333 nach der Hidschra (1915 n. Chr.), zur Zeit von König Abdulaziz. Der König wurde dabei verwundet, sein Bruder Prinz Saad fiel. Der feine, saubere Sand hat den Berg zu einem beliebten Ziel gemacht: für Ausflüge, für Dünenfahrten und für den Blick über das Meer aus Dattelpalmen. Auf dem Massiv entwickelt die Kommunalverwaltung von Al-Ahsa einen großen Erholungspark.",
+          "area": "Nordöstlich von Hofuf – nahe den Dörfern Al-Shu'bah und Al-Kilabiyah",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten und Eintritt",
+              "value": "Frei zugängliches Gelände – kein Eintrittsgeld"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "坎赞山",
+          "kicker": "自然景观",
+          "summary": "绿洲东北部的一片山体，史书中称作“坎赞”。1915 年，那场著名的坎赞战役就发生在这里。",
+          "body": "坎赞山（Kanzan）绵延在北部绿洲的东缘，距胡富夫东北方向约 15 公里。“坎赞”是史书所记的名字，今天人们更常叫它舒阿巴山（Al-Shu'bah）。山体是一列由沉积岩和沙土构成的丘陵，毗邻舒阿巴、基拉比亚、巴塔利亚和朱尔恩四座村庄，西侧连着古老的贾瓦塔清真寺一带。伊斯兰历 1333 年（公元 1915 年），阿卜杜勒阿齐兹国王时代那场著名的坎赞战役就在这一带打响，国王在此役中负伤，其弟萨阿德王子阵亡。如今，这里沙地洁净细软，深受人们喜爱，是郊游、驾车冲沙和远眺椰枣林海的好去处。哈萨市政局也正在山上开发一座大型休闲公园。",
+          "area": "舒阿巴村与基拉比亚村附近——胡富夫东北方向",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间与门票",
+              "value": "开放的公共区域，免收门票"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Battaliyah",
+          "ar": null,
+          "ru": "Эль-Батталия",
+          "de": "Al-Battaliyah · die Al-Battaliyah-Moschee",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Jurn",
+          "ar": null,
+          "ru": "Эль-Джурн",
+          "de": "Al-Jurn",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Kilabiyah",
+          "ar": "الكلابية",
+          "ru": "Эль-Килабия",
+          "de": "Al-Kilabiyah",
+          "zh": "基拉比亚",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Shu'bah",
+          "ar": null,
+          "ru": "Эш-Шууба",
+          "de": "Al-Shu'bah",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Shu'bah Mountain",
+          "ar": "جبل الشعبة",
+          "ru": null,
+          "de": "der Al-Shu'bah-Berg",
+          "zh": "舒阿巴山（Al-Shu'bah）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Battle of Kanzan",
+          "ar": "معركة كنزان",
+          "ru": "битва при Канзане",
+          "de": "die Schlacht von Kanzan",
+          "zh": "坎赞战役",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jawatha",
+          "ar": "جواثا",
+          "ru": "Джавата",
+          "de": "Jawatha",
+          "zh": "贾瓦塔",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Jawatha Mosque",
+          "ar": null,
+          "ru": "мечеть Джавата",
+          "de": "die Jawatha-Moschee",
+          "zh": "贾瓦塔清真寺",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Kanzan Mountain",
+          "ar": "جبل كنزان",
+          "ru": "гора Канзан / Джабаль-Канзан",
+          "de": "der Kanzan-Berg",
+          "zh": "坎赞山（Kanzan）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Prince Saad",
+          "ar": "الأمير سعد",
+          "ru": "принц Саад",
+          "de": "Prinz Saad",
+          "zh": "萨阿德王子",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "Hijri years: rulings N12 (a year in both calendars), N19 (a full date), N20 (a decade), N22 (a span of years)",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [], only in Arabic [15]",
+          "body: Arabic 1 paragraph(s), 553 characters, 2 bold phrase(s), 0 link(s); English 4 sentence(s), 792 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Kanzan Mountain' translates the generic — AR (جبل كنزان). A jabal title: ground of ruling P3a. The page is filed under the name of the history books; the body says the mountain goes by another name today.",
+          "kicker: Arabic only, 'a natural landmark' (معلم طبيعي); there is no kicker_en, and the built English page prints the category label 'Nature' in its place. The five pages of the batch carry the same Arabic kicker: one Urdu kicker serves the five, built from the Arabic. The calibration page, a mountain too, has another kicker (ruling P24).",
+          "summary: EN '— site of the 1915 Battle of Kanzan' — AR 'and at it the battle of Kanzan took place in 1915 CE' (وعندها وقعت معركة كنزان عام 1915م): the Gregorian year alone in the summary, in both languages; the body gives the pair '1333 AH / 1915 CE' (عام 1333هـ/1915م). Ruling N12: a year the source gives in one calendar stays bare.",
+          "summary vs body: the summary puts the massif 'north-east of the oasis' (شمال شرق الواحة); the body puts it 'on the eastern rim of the northern oasis' (على الحافة الشرقية للواحة الشمالية) and north-east of Hofuf. Outside the oasis in one field, on its edge in the other; both languages agree. 'The northern oasis' is a part of the oasis that no page translated so far has named.",
+          "summary / body: the oasis is mentioned in both fields and named in neither; the page names Al-Ahsa only inside 'Al-Ahsa Municipality' (أمانة الأحساء). Ruling N47 of round 2: a page that mentions the oasis names it at least once in its own text.",
+          "summary / body: one feature, four nouns, in both languages — 'a mountain massif' (كتلة جبلية), 'the massif of Kanzan Mountain' (كتلة جبل كنزان), 'a chain of sedimentary and sandy hills' (سلسلة تلال رسوبية ورملية) and 'the mountain' of the title.",
+          "body: EN 'some fifteen kilometres' in words — AR in digits (نحو 15 كيلومتراً).",
+          "body: EN 'though today it is commonly called Al-Shu'bah Mountain' — AR 'while today it is well known by the name Jabal Al-Shu'bah' (بينما يشتهر): a second jabal name, whose generic the EN translates as well; the village of the same name follows in the next sentence. 'Commonly' is the EN's word for the AR's 'well known'.",
+          "body: four villages are named (قرى الشعبة والكلابية والبطالية والجرن): Al-Kilabiyah is a termbase key from the jawatha-mosque page and Al-Battaliyah a key approved in batch b3 (the jalaniyah page); Al-Shu'bah and Al-Jurn are new. The area line names two of the four.",
+          "body: EN 'the ancient Jawatha Mosque' — AR (مسجد جواثا الأثري): the same Arabic adjective is 'historic' in the EN of jalaniyah and 'old' on the tahimiyah pages (batches b3 and b4). The mosque's name is a termbase key; its own page (already translated) mentions neither this mountain nor the battle.",
+          "body: EN 'adjoins the surroundings of the ancient Jawatha Mosque on its western side' — AR 'and on its western side it touches the surroundings of' (وتلاصق من جهتها الغربية محيط): the side is the massif's in the AR, by the pronoun; in the EN it can be read as the mosque's.",
+          "body: EN 'in the era of King Abdulaziz' (في عهد الملك عبدالعزيز) — the same Arabic phrase is 'in the reign of' on uqair-mosque (batch b4). The King's name is a termbase key.",
+          "body: EN 'his brother Prince Saad fell' — AR 'was martyred' (واستشهد أخوه الأمير سعد): the AR's word is the religious one, the EN's is neutral; the German and Russian lines follow the EN. The prince has no fuller name in either language.",
+          "body: 'the famous Battle of Kanzan' is bold in the AR (معركة كنزان) and capitalised in the EN; neither language says who fought whom or how it ended. It was fought 'in the Kanzan area' (وفي منطقة كنزان): the page's name is there the name of a district, not of the mountain.",
+          "body: EN 'gazing over the palm groves' — AR 'viewing the sea of palms' (ومشاهدة بحر النخيل): the image is AR-only here; the EN of the calibration page keeps it ('the oasis unfolds like a sea of palms'), and that page is already translated. The German line follows the AR, the Russian the EN.",
+          "body: EN 'outings, dune driving' — AR (للتنزه والتطعيس): the second is a local word for driving over dunes, which the EN explains by translating it.",
+          "body: EN 'Al-Ahsa Municipality is developing a major recreational park on the massif' — AR (وتطوّر أمانة الأحساء فوق الكتلة منتزهاً ترفيهياً كبيراً): present tense, with no date and no name for the park, in both languages. The municipality is named on three pages of the batch (kanzan, arbaa, tuwaither) and is not yet a termbase name; the Arabic word for a park here is one the termbase already renders.",
+          "body vs jalaniyah: this page puts the mountain some fifteen kilometres north-east of Hofuf, beside Al-Battaliyah; the jalaniyah page (batch b3) puts Al-Battaliyah village some twelve kilometres north-east of Hofuf. Both languages agree within each page.",
+          "area: 'Northeast of Hofuf — near the villages of Al-Shu'bah and Al-Kilabiyah' (شمال شرق الهفوف — قرب قرى الشعبة والكلابية): two positions, with no larger bare place and no place with its generic leading (rulings P20 and N30 each word another build). 'North-east' in summary and body, 'Northeast' in the area line: one AR phrase, two EN spellings, as on jalaniyah.",
+          "practical[0], [1] and [2]: 'Hours & entry: Open public site — no entry fee', 'Hours: Open 24 hours' and 'Fees: Free entry' state the access twice and the absence of a fee twice, in both languages; the five pages of the batch carry the same three rows, value for value. The al-uqair page (already translated) has the first row alone. The Chinese, German and Russian lines translated the first row only: rows [1] and [2] have no precedent in an earlier line.",
+          "practical[1].value: EN 'Open 24 hours' — AR 'open round the clock' (مفتوح على مدار الساعة) with the figure in a bracket of its own (24 ساعة): two statements of one fact in the AR, one in the EN. The value has no approved Urdu pair; it recurs on four pages of later rounds (koot-park, musa-park, stadium-park, salwa-beach).",
+          "practical[2].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Ruling P3a (termbase; stage checker, and item 10 of the stage-5 checklist): the title is a jabal name (جبل كنزان). It is transliterated whole from the Arabic spelling, in title and body; its generic is not translated as part of the name and is not repeated after it; no bracket follows it, and the title carries none. The Urdu common noun for a mountain stands at least once on its own in the body, away from the name. The EN 'Mountain' is not the source of the name's form. The second name in the body, 'Al-Shu'bah Mountain' (جبل الشعبة), is a jabal name too and takes the same form. No build check reads the page for this.",
+        "Ruling N47 of round 2 (the judge files of b3 and b4; not yet in the termbase): a page that mentions the oasis names it at least once in its own text, in the termbase form of the Al-Ahsa Oasis. This page mentions the oasis in the summary and in the body and names it in no field. Not machine-read: a point for the proofreader.",
+        "The names of the Jawatha Mosque, Al-Kilabiyah and King Abdulaziz are termbase keys, and Al-Battaliyah is a key approved in batch b3: each is byte-identical to its key, with the generic its entry gives it (RUNBOOK, rule 2). The Arabic word for a park in the last sentence has a termbase key.",
+        "Ruling N12: the summary gives the year of the battle in the Gregorian calendar alone, and no Hijri year is supplied there; the body's pair (عام 1333هـ/1915م) takes the ruled form of a year given in both calendars.",
+        "Site-wide build checks C15 ('the largest oasis in the world', never a palm oasis or a natural oasis) and C16 (the warmth of the Jabal Al-Qarah caves is winter's, never night's) read every built page (tools/check-consistency.mjs). Their per-language tables (PALM_CLAIM and OK_CLAIM; NIGHT_WARMTH and OK_WINTER) have no Urdu entry. This page carries neither claim: it speaks of the oasis and of a view over its palms, with no superlative, and of no cave. No Urdu pattern is owed by this batch; the missing Urdu entries concern pages that are already live (the calibration page, the home page).",
+        "Root CLAUDE.md: invent nothing — the prince is given no fuller name, the battle no parties and no outcome, and the park no name, date or opening; the municipality's work on the park is under way in the source and is not written as finished.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is openSite: true, so the unified hours-and-fees notice line is printed in no language. C13 ALREADY TARGETS Urdu (its LANGS lists ur and it reads label_ur and value_ur): no Urdu pattern is to be added. C12: the `source`, `source_en`, `sourceUrl` and `verifiedAt` of the card rows are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of 'Confirmed by the Visit Al-Ahsa team' or 'Verified directly with Al-Ahsa Municipality' enters a label, a value or the body. C12 scans the /ur/ page too, but its tables (ATTRIBUTION_PHRASES, CARD_LABELS) and its reader of `source_*` values have no Urdu entry: an Urdu attribution line would pass it unguarded. Nothing is owed by this batch, because none is written.",
+        "Card rows (RUNBOOK, rule 3): practical[0], 'Hours & entry' / 'Open public site — no entry fee', recurs from al-uqair, and the labels 'Hours' and 'Fees' and the value 'Free entry' recur from round 1: the approved pairs of ur-translation/memory/tm.json are reused verbatim. practical[1].value, 'Open 24 hours' (مفتوح على مدار الساعة), has no approved pair: it is ONE Urdu string on the five pages of the batch, value for value. Its 24 is a length of time, not a clock time: it takes neither the clock word nor a part of the day (ruling P13; build check C51 in tools/check-ur-text.mjs ALREADY TARGETS /ur/ and fails an hour of 13 or more written before the clock word). Root CLAUDE.md: invent nothing — no hours, season or advice beyond the three rows. The page is not a mosque: it has no 'Visiting' row and no 'Site status' row, and none is supplied."
+      ]
+    },
+    {
+      "page": "arbaa",
+      "file": "src/content/attractions/arbaa.md",
+      "file_sha256": "6b5ae40b9db5c02fd69a695137904255cbe039093a8a15b041b20c7cc9475de3",
+      "order": 35,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Arba Mountain",
+          "ar": "جبل الأربع",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم طبيعي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "Four adjoining conical hills south-east of Hofuf, a favourite camping and desert-trip destination.",
+          "ar": "أربع هضاب مخروطية متجاورة جنوب شرق الهفوف، وجهة تخييم ورحلات برية شهيرة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Some 22 kilometres south-east of Hofuf, on the road heading towards Salwa and Qatar, rise the hills of Jabal Al-Arba — four adjoining conical formations of reddish sedimentary rock, thought to have once been a single hill split apart by erosion, which is how the mountain earned its name ('the Four'). The town of Al-Taraf lies about six kilometres to its north, and the mountain is one of southern Al-Ahsa's best-known spots for camping, desert trips and hiking. Al-Ahsa Municipality has launched a project to humanise the Jabal Al-Arba road, making the landmark easier to reach.",
+          "ar": "على نحو 22 كيلومتراً جنوب شرق الهفوف، على الطريق المتجه نحو سلوى وقطر،\nتبرز هضاب جبل الأربع — **أربعة تكوينات مخروطية متجاورة** من الصخور\nالرسوبية المحمرّة، يُرجَّح أنها كانت تلّة واحدة فرّقتها عوامل التعرية،\nومن هنا جاء الاسم. تقع بلدة الطرف شماله على بعد نحو ستة كيلومترات، وهو\nمن أشهر وجهات التخييم والرحلات البرية والهايكنج في جنوب الأحساء. وقد\nأطلقت أمانة الأحساء مشروعاً لأنسنة طريق جبل الأربع ييسّر الوصول إليه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Southeast of Hofuf — near Al-Taraf",
+          "ar": "جنوب شرق الهفوف — قرب بلدة الطرف",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours & entry",
+              "ar": "المواعيد والدخول"
+            },
+            "value": {
+              "en": "Open public site — no entry fee",
+              "ar": "موقع عام مفتوح — بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Гора Эль-Арба",
+          "kicker": "Природная достопримечательность",
+          "summary": "Четыре соседних конических холма к юго-востоку от Эль-Хуфуфа — излюбленное место для отдыха с палатками и поездок по пустыне.",
+          "body": "Примерно в 22 километрах к юго-востоку от Эль-Хуфуфа, у дороги на Сальву и Катар, поднимается гора Эль-Арба (по-арабски — Джабаль-эль-Арба): четыре соседних конических холма из красноватой осадочной породы. Считается, что когда-то это был единый холм, который разделила эрозия. Холмов стало четыре — отсюда и имя: Эль-Арба значит «четыре». Посёлок Эт-Тараф лежит примерно в шести километрах к северу от горы Эль-Арба. А сама Эль-Арба — одно из самых известных мест юга Аль-Ахсы для отдыха с палатками, поездок по пустыне и пеших походов. Муниципалитет Аль-Ахсы начал проект благоустройства дороги к горе Эль-Арба — добраться до нее станет проще.",
+          "area": "К юго-востоку от Эль-Хуфуфа, близ Эт-Тарафа",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы и вход",
+              "value": "Открытая общедоступная территория — вход свободный"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Arba-Berg",
+          "kicker": "Naturlandschaft",
+          "summary": "Vier benachbarte kegelförmige Hügel südöstlich von Hofuf – ein bekanntes Ziel für Camping und Ausflüge in die Wüste.",
+          "body": "Rund 22 Kilometer südöstlich von Hofuf, an der Straße Richtung Salwa und Katar, erheben sich die Hügel des Al-Arba-Bergs (Jabal Al-Arba): vier benachbarte kegelförmige Formationen aus rötlichem Sedimentgestein. Vermutlich waren sie einst ein einziger Hügel, den die Erosion zerteilt hat – daher der Name „die Vier“. Der Ort Al-Taraf liegt etwa sechs Kilometer nördlich davon. Für Camping, Wüstenausflüge und Wanderungen gehört der Berg zu den bekanntesten Zielen im Süden Al-Ahsas. Die Kommunalverwaltung von Al-Ahsa hat ein Projekt zur Humanisierung der Straße zum Al-Arba-Berg gestartet, das den Zugang erleichtert.",
+          "area": "Südöstlich von Hofuf – nahe Al-Taraf",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten und Eintritt",
+              "value": "Frei zugängliches Gelände – kein Eintrittsgeld"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "阿尔巴山",
+          "kicker": "自然景观",
+          "summary": "胡富夫东南方向四座相连的锥形山丘，是远近闻名的露营与沙漠出游目的地。",
+          "body": "阿尔巴山（Jabal Al-Arba）位于胡富夫东南约 22 公里处，就在通往萨尔瓦与卡塔尔的公路旁，塔拉夫镇（Al-Taraf）在其北面约 6 公里处。整座山由四座相连的锥形山丘组成，均为泛红的沉积岩。据推测，这四座山丘原本是一座，后来因侵蚀而分开，“阿尔巴”（意为“四”）这个名字正由此而来。这里是哈萨南部最有名的露营、沙漠出游和徒步去处之一。哈萨市政局已启动阿尔巴山道路“人性化”改造工程，好让这处景点更方便到达。",
+          "area": "塔拉夫镇附近——胡富夫东南方向",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间与门票",
+              "value": "开放的公共区域，免收门票"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Arba Mountain",
+          "ar": "جبل الأربع",
+          "ru": "гора Эль-Арба / Джабаль-эль-Арба",
+          "de": null,
+          "zh": "阿尔巴山（Jabal Al-Arba）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Taraf",
+          "ar": "الطرف",
+          "ru": "Эт-Тараф",
+          "de": "Al-Taraf",
+          "zh": "塔拉夫（Al-Taraf）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Qatar",
+          "ar": "قطر",
+          "ru": "Катар",
+          "de": "Katar",
+          "zh": "卡塔尔",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Salwa",
+          "ar": "سلوى",
+          "ru": "Сальва",
+          "de": "Salwa",
+          "zh": "萨尔瓦",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 418 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 580 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title / body: three EN forms of one name — the title 'Al-Arba Mountain', the body 'Jabal Al-Arba' twice, the file and slug 'arbaa'; AR one form (جبل الأربع). Neither the title nor the body shows the ain of the Arabic name. A jabal title: ground of ruling P3a.",
+          "kicker: Arabic only, 'a natural landmark' (معلم طبيعي); there is no kicker_en, and the built English page prints the category label 'Nature' in its place. The five pages of the batch carry the same Arabic kicker: one Urdu kicker serves the five, built from the Arabic. The calibration page, a mountain too, has another kicker (ruling P24).",
+          "summary: EN 'a favourite camping and desert-trip destination' — AR 'a famous destination' (وجهة تخييم ورحلات برية شهيرة); the body has 'one of southern Al-Ahsa's best-known spots' for the same Arabic root (من أشهر وجهات التخييم). 'Favourite' is not the AR's word.",
+          "summary / body: 'four adjoining conical hills' in the summary (أربع هضاب مخروطية متجاورة); in the body 'the hills', 'four adjoining conical formations' (أربعة تكوينات مخروطية متجاورة), 'a single hill' (تلّة واحدة) and 'the mountain': four nouns for one feature in both languages, and two AR words where the EN says 'hill'.",
+          "body: EN \"which is how the mountain earned its name ('the Four')\" — AR 'and from here came the name' (ومن هنا جاء الاسم): the gloss of the name is EN-only; the AR leaves the meaning to its reader. In both languages 'hence the name' follows the clause about erosion, not the count. A name that is an Arabic word with a meaning (ground of rulings P3b and N39); the Russian line explains the name in a sentence of its own.",
+          "body: 'some 22 kilometres' in digits in both languages (على نحو 22 كيلومتراً); 'about six kilometres' in words in both (نحو ستة كيلومترات). Two forms of a distance in one body.",
+          "body: EN 'on the road heading towards Salwa and Qatar' (على الطريق المتجه نحو سلوى وقطر): a town and a country, neither yet a termbase name.",
+          "body / area: 'the town of Al-Taraf' in the body (بلدة الطرف); the area line has 'near Al-Taraf' in the EN and 'near the town of Al-Taraf' in the AR (قرب بلدة الطرف): 'town' is AR-only in the area line.",
+          "body: EN 'camping, desert trips and hiking' — the AR writes the third as the English word in Arabic letters (والهايكنج). The thulaim page of this batch has 'desert outings' for the Arabic phrase that is 'desert trips' here (الرحلات البرية), and an Arabic word for walking.",
+          "body: EN 'southern Al-Ahsa' — AR 'in the south of Al-Ahsa' (في جنوب الأحساء): Al-Ahsa is a region here; the area line of the thulaim page has 'north of Al-Ahsa'.",
+          "body: EN 'a project to humanise the Jabal Al-Arba road, making the landmark easier to reach' — AR (مشروعاً لأنسنة طريق جبل الأربع ييسّر الوصول إليه): 'humanise' renders the Arabic planning term word for word; the German line keeps it, the Russian says 'improvement'. 'The landmark' is EN-only (AR: 'reaching it'). No date for the project in either language; it has been launched, and neither language says it is finished.",
+          "area: 'Southeast of Hofuf — near Al-Taraf' (جنوب شرق الهفوف — قرب بلدة الطرف): two positions, with no larger bare place and no place with its generic leading (rulings P20 and N30 each word another build). 'South-east' in summary and body, 'Southeast' in the area line.",
+          "practical[0], [1] and [2]: 'Hours & entry: Open public site — no entry fee', 'Hours: Open 24 hours' and 'Fees: Free entry' state the access twice and the absence of a fee twice, in both languages; the five pages of the batch carry the same three rows, value for value. The al-uqair page (already translated) has the first row alone. The Chinese, German and Russian lines translated the first row only: rows [1] and [2] have no precedent in an earlier line.",
+          "practical[1].value: EN 'Open 24 hours' — AR 'open round the clock' (مفتوح على مدار الساعة) with the figure in a bracket of its own (24 ساعة): two statements of one fact in the AR, one in the EN. The value has no approved Urdu pair; it recurs on four pages of later rounds (koot-park, musa-park, stadium-park, salwa-beach).",
+          "practical[2].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Ruling P3a (termbase; stage checker, and item 10 of the stage-5 checklist): the title is a jabal name (جبل الأربع). It is transliterated whole from the Arabic spelling, in title and body; its generic is not translated as part of the name and is not repeated after it; no bracket follows it, and the title carries none. The Urdu common noun for a mountain stands at least once on its own in the body, away from the name. The EN 'Mountain' is not the source of the name's form. The EN body writes the name transliterated ('Jabal Al-Arba'): one Urdu form serves title and body. No build check reads the page for this.",
+        "Root CLAUDE.md: invent nothing — the gloss of the name ('the Four') is the EN's and nothing is added to it; the two distances are the source's (some 22 kilometres from Hofuf, about six from Al-Taraf) and are not rounded, converted or completed; the road project has no date, and it is launched, not finished.",
+        "RUNBOOK, rule 7 (owner's decision): no English loan where a common Urdu word exists. The AR itself writes the English word for hiking in Arabic letters (والهايكنج); the Urdu does not copy it, and any loan passes the loan test of ruling P16.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is openSite: true, so the unified hours-and-fees notice line is printed in no language. C13 ALREADY TARGETS Urdu (its LANGS lists ur and it reads label_ur and value_ur): no Urdu pattern is to be added. C12: the `source`, `source_en`, `sourceUrl` and `verifiedAt` of the card rows are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of 'Confirmed by the Visit Al-Ahsa team' or 'Verified directly with Al-Ahsa Municipality' enters a label, a value or the body. C12 scans the /ur/ page too, but its tables (ATTRIBUTION_PHRASES, CARD_LABELS) and its reader of `source_*` values have no Urdu entry: an Urdu attribution line would pass it unguarded. Nothing is owed by this batch, because none is written.",
+        "Card rows (RUNBOOK, rule 3): practical[0], 'Hours & entry' / 'Open public site — no entry fee', recurs from al-uqair, and the labels 'Hours' and 'Fees' and the value 'Free entry' recur from round 1: the approved pairs of ur-translation/memory/tm.json are reused verbatim. practical[1].value, 'Open 24 hours' (مفتوح على مدار الساعة), has no approved pair: it is ONE Urdu string on the five pages of the batch, value for value. Its 24 is a length of time, not a clock time: it takes neither the clock word nor a part of the day (ruling P13; build check C51 in tools/check-ur-text.mjs ALREADY TARGETS /ur/ and fails an hour of 13 or more written before the clock word). Root CLAUDE.md: invent nothing — no hours, season or advice beyond the three rows. The page is not a mosque: it has no 'Visiting' row and no 'Site status' row, and none is supplied."
+      ]
+    },
+    {
+      "page": "thulaim",
+      "file": "src/content/attractions/thulaim.md",
+      "file_sha256": "054b5cf4944a80c5d7fe0394649cc8afd59ef9c90eacb7c739fb2aabad2ced7b",
+      "order": 37,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Thulaim Mountain",
+          "ar": "جبل الثليم",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم طبيعي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The first of Al-Ahsa's landmarks at its northern gateway, just west of Al-Oyoun city.",
+          "ar": "أول معالم الأحساء عند مدخلها الشمالي، غربي مدينة العيون.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "At Al-Ahsa's northern gateway, about a kilometre west of the city of Al-Oyoun, rises Al-Thulaim Mountain — the first landmark to greet travellers arriving at the oasis from the north. It is a solitary rocky formation, one of the sedimentary desert hills scattered around the oasis's fringes. Its position beside Al-Oyoun and the northern oasis road makes it an easy destination for desert outings and walking, and community proposals have been floated to develop it as a northern tourist gateway for Al-Ahsa — ideas that remain at the proposal stage.",
+          "ar": "عند المدخل الشمالي للأحساء، غربي مدينة العيون بنحو كيلومتر واحد، يقوم\nجبل الثليم — أول معلم يستقبل القادمين إلى الواحة من الشمال. وهو تكوين\nصخري منفرد من التلال الرسوبية الصحراوية المنتشرة على أطراف الواحة. موقعه\nبجوار العيون وطريق الواحة الشمالي يجعله وجهة سهلة للرحلات البرية والمشي،\nوقد طُرحت مقترحات أهلية لتطويره بوابةً سياحية شمالية للأحساء ما تزال في\nإطار الأفكار.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "West of Al-Oyoun — north of Al-Ahsa",
+          "ar": "غرب مدينة العيون — شمال الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours & entry",
+              "ar": "المواعيد والدخول"
+            },
+            "value": {
+              "en": "Open public site — no entry fee",
+              "ar": "موقع عام مفتوح — بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Гора Эс-Сулайм",
+          "kicker": "Природная достопримечательность",
+          "summary": "Первая достопримечательность на въезде в Аль-Ахсу с севера, чуть западнее города Эль-Уюн.",
+          "body": "У северного въезда в Аль-Ахсу, примерно в километре к западу от города Эль-Уюн, поднимается гора Эс-Сулайм (по-арабски — Джабаль-эс-Сулайм) — первое, что встречает путников, приезжающих в оазис с севера. Это отдельно стоящая скала — один из осадочных пустынных холмов, которые разбросаны по краям оазиса. Гора стоит рядом с Эль-Уюном, у северной дороги оазиса, — отсюда удобно выезжать в пустыню и ходить пешком. Местные жители предлагали превратить гору в северные туристические ворота Аль-Ахсы, но дальше идей дело пока не пошло.",
+          "area": "К западу от Эль-Уюна, на севере Аль-Ахсы",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы и вход",
+              "value": "Открытая общедоступная территория — вход свободный"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Thulaim-Berg",
+          "kicker": "Naturlandschaft",
+          "summary": "Das erste Wahrzeichen Al-Ahsas am nördlichen Zugang zur Oase, gleich westlich der Stadt Al-Oyoun.",
+          "body": "Am nördlichen Zugang zu Al-Ahsa, rund einen Kilometer westlich der Stadt Al-Oyoun, erhebt sich der Al-Thulaim-Berg – das erste Wahrzeichen, das alle empfängt, die von Norden in die Oase kommen. Er ist eine freistehende Felsformation und gehört zu den Sedimenthügeln der Wüste, die über die Ränder der Oase verstreut liegen. Seine Lage neben Al-Oyoun und an der nördlichen Oasenstraße macht ihn zu einem leicht erreichbaren Ziel für Ausflüge in die Wüste und für Spaziergänge. Aus der Bevölkerung kamen Vorschläge, ihn zum touristischen Eingangstor im Norden Al-Ahsas auszubauen; über das Ideenstadium sind sie bisher nicht hinausgekommen.",
+          "area": "Westlich von Al-Oyoun – nördlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten und Eintritt",
+              "value": "Frei zugängliches Gelände – kein Eintrittsgeld"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "苏莱姆山",
+          "kicker": "自然景观",
+          "summary": "哈萨北部入口处的第一座地标，就在乌尤恩市西侧。",
+          "body": "苏莱姆山（Al-Thulaim）位于乌尤恩市（Al-Oyoun）以西约 1 公里，正当哈萨的北部入口。从北面进入绿洲的旅人，最先迎面看到的地标就是这座山。这是一座孤立的岩石山体，也是散布在绿洲边缘的沙漠沉积丘陵之一。这里既靠近乌尤恩，又靠近绿洲北侧的公路，去沙漠出游或漫步都很方便。当地民间也曾提议把它开发成哈萨北部的旅游门户，不过目前还只停留在设想阶段。",
+          "area": "乌尤恩市以西——哈萨北部",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间与门票",
+              "value": "开放的公共区域，免收门票"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Oyoun",
+          "ar": "مدينة العيون",
+          "ru": "Эль-Уюн",
+          "de": null,
+          "zh": "乌尤恩市（Al-Oyoun）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Thulaim Mountain",
+          "ar": "جبل الثليم",
+          "ru": "гора Эс-Сулайм / Джабаль-эс-Сулайм",
+          "de": "der Al-Thulaim-Berg",
+          "zh": "苏莱姆山（Al-Thulaim）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the city of Al-Oyoun",
+          "ar": null,
+          "ru": null,
+          "de": "die Stadt Al-Oyoun",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 371 characters, 0 bold phrase(s), 0 link(s); English 3 sentence(s), 550 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Thulaim Mountain' translates the generic — AR (جبل الثليم). A jabal title: ground of ruling P3a.",
+          "kicker: Arabic only, 'a natural landmark' (معلم طبيعي); there is no kicker_en, and the built English page prints the category label 'Nature' in its place. The five pages of the batch carry the same Arabic kicker: one Urdu kicker serves the five, built from the Arabic. The calibration page, a mountain too, has another kicker (ruling P24).",
+          "summary: EN 'just west of Al-Oyoun city' — AR 'west of the city of Al-Oyoun' (غربي مدينة العيون): 'just' is EN-only; the body gives the distance, 'about a kilometre' (بنحو كيلومتر واحد).",
+          "summary / body: 'the first of Al-Ahsa's landmarks' (أول معالم الأحساء) and 'the first landmark to greet travellers arriving at the oasis from the north' (أول معلم يستقبل القادمين إلى الواحة من الشمال): first in order on the way in, not in rank; both languages agree. A claim worded with 'first' follows the Arabic (ruling P19).",
+          "summary / body: EN 'gateway' for two AR words — the mountain stands 'at Al-Ahsa's northern gateway', AR 'entrance' (عند المدخل الشمالي للأحساء), and there are proposals to develop it 'as a northern tourist gateway', AR 'gate' (بوابةً سياحية شمالية للأحساء). In the EN it stands at a gateway and may become one.",
+          "summary / body / area: EN 'Al-Oyoun city', 'the city of Al-Oyoun', 'beside Al-Oyoun' and, in the area line, 'West of Al-Oyoun'; AR 'the city of Al-Oyoun' in summary, body and area (مدينة العيون) and the bare name once (بجوار العيون): 'city' is AR-only in the area line. The name is new to the termbase; the EN spells with 'Oyoun' the Arabic word it spells 'Uyun' in 'the Uyunid state' on jalaniyah (batch b3).",
+          "body: EN 'the northern oasis road' — AR 'the oasis's northern road' (وطريق الواحة الشمالي): the adjective is the road's in the AR; the EN can be read as the road of 'the northern oasis', a term the kanzan page of this batch does use.",
+          "body: the oasis is mentioned three times and named nowhere; the page names Al-Ahsa as a region ('Al-Ahsa's northern gateway'). Ruling N47 of round 2: a page that mentions the oasis names it at least once in its own text. The German summary adds 'to the oasis' where neither source has it.",
+          "body: EN 'a solitary rocky formation, one of the sedimentary desert hills scattered around the oasis's fringes' (تكوين صخري منفرد) (على أطراف الواحة): a mountain in the title, a formation and a hill in the body, in both languages.",
+          "body: EN 'desert outings and walking' (للرحلات البرية والمشي): the first phrase is 'desert trips' on the arbaa page of this batch.",
+          "body: EN 'community proposals have been floated … — ideas that remain at the proposal stage' — AR 'proposals from local people have been put forward …, which are still within the frame of ideas' (ما تزال في إطار الأفكار): the EN says 'proposal' twice, the AR 'proposals' and then 'ideas'; 'community' renders the AR's adjective (مقترحات أهلية). No date and no author of the proposals in either language.",
+          "body: no distance from Hofuf, where three pages of the batch give one (kanzan, arbaa, tuwaither); nothing is supplied.",
+          "area: EN 'West of Al-Oyoun — north of Al-Ahsa' (غرب مدينة العيون — شمال الأحساء): 'north of Al-Ahsa' puts the mountain outside Al-Ahsa, while summary and body put it at Al-Ahsa's own northern entrance. The AR phrase can also be read 'the north of Al-Ahsa': the Russian line reads it so ('in the north of Al-Ahsa'), the German follows the EN, and the arbaa page of this batch says 'in the south of Al-Ahsa' with a preposition. Arabic is the authority on the fact. Two positions, with no larger bare place leading (rulings P20 and N30 each word another build).",
+          "practical[0], [1] and [2]: 'Hours & entry: Open public site — no entry fee', 'Hours: Open 24 hours' and 'Fees: Free entry' state the access twice and the absence of a fee twice, in both languages; the five pages of the batch carry the same three rows, value for value. The al-uqair page (already translated) has the first row alone. The Chinese, German and Russian lines translated the first row only: rows [1] and [2] have no precedent in an earlier line.",
+          "practical[1].value: EN 'Open 24 hours' — AR 'open round the clock' (مفتوح على مدار الساعة) with the figure in a bracket of its own (24 ساعة): two statements of one fact in the AR, one in the EN. The value has no approved Urdu pair; it recurs on four pages of later rounds (koot-park, musa-park, stadium-park, salwa-beach).",
+          "practical[2].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Ruling P3a (termbase; stage checker, and item 10 of the stage-5 checklist): the title is a jabal name (جبل الثليم). It is transliterated whole from the Arabic spelling, in title and body; its generic is not translated as part of the name and is not repeated after it; no bracket follows it, and the title carries none. The Urdu common noun for a mountain stands at least once on its own in the body, away from the name. The EN 'Mountain' is not the source of the name's form. No build check reads the page for this.",
+        "Ruling N47 of round 2 (the judge files of b3 and b4; not yet in the termbase): a page that mentions the oasis names it at least once in its own text, in the termbase form of the Al-Ahsa Oasis. This page mentions the oasis three times in the body and names it in no field; it names Al-Ahsa as a region. Not machine-read: a point for the proofreader.",
+        "Ruling P19: a claim worded with a superlative or an absolute follows the Arabic. The mountain is the first landmark to receive those who arrive from the north (أول معلم يستقبل القادمين إلى الواحة من الشمال) — first in order, not in rank; the Urdu does not turn it into a rank.",
+        "Root CLAUDE.md: invent nothing — the proposals to develop the mountain are still ideas (ما تزال في إطار الأفكار): the Urdu names no project, plan, body or date and does not strengthen them. The page gives no distance from Hofuf and none is supplied; the distance from the city of Al-Oyoun is the source's 'about a kilometre'.",
+        "Site-wide build checks C15 ('the largest oasis in the world', never a palm oasis or a natural oasis) and C16 (the warmth of the Jabal Al-Qarah caves is winter's, never night's) read every built page (tools/check-consistency.mjs). Their per-language tables (PALM_CLAIM and OK_CLAIM; NIGHT_WARMTH and OK_WINTER) have no Urdu entry. This page carries neither claim: it speaks of the oasis with no superlative, and of no cave. No Urdu pattern is owed by this batch; the missing Urdu entries concern pages that are already live (the calibration page, the home page).",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is openSite: true, so the unified hours-and-fees notice line is printed in no language. C13 ALREADY TARGETS Urdu (its LANGS lists ur and it reads label_ur and value_ur): no Urdu pattern is to be added. C12: the `source`, `source_en`, `sourceUrl` and `verifiedAt` of the card rows are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of 'Confirmed by the Visit Al-Ahsa team' or 'Verified directly with Al-Ahsa Municipality' enters a label, a value or the body. C12 scans the /ur/ page too, but its tables (ATTRIBUTION_PHRASES, CARD_LABELS) and its reader of `source_*` values have no Urdu entry: an Urdu attribution line would pass it unguarded. Nothing is owed by this batch, because none is written.",
+        "Card rows (RUNBOOK, rule 3): practical[0], 'Hours & entry' / 'Open public site — no entry fee', recurs from al-uqair, and the labels 'Hours' and 'Fees' and the value 'Free entry' recur from round 1: the approved pairs of ur-translation/memory/tm.json are reused verbatim. practical[1].value, 'Open 24 hours' (مفتوح على مدار الساعة), has no approved pair: it is ONE Urdu string on the five pages of the batch, value for value. Its 24 is a length of time, not a clock time: it takes neither the clock word nor a part of the day (ruling P13; build check C51 in tools/check-ur-text.mjs ALREADY TARGETS /ur/ and fails an hour of 13 or more written before the clock word). Root CLAUDE.md: invent nothing — no hours, season or advice beyond the three rows. The page is not a mosque: it has no 'Visiting' row and no 'Site status' row, and none is supplied."
+      ]
+    },
+    {
+      "page": "tuwaither",
+      "file": "src/content/attractions/tuwaither.md",
+      "file_sha256": "c66190866fa74c0bcbd955b1003958bf0a0f385cc6460bcda7c44595bb3f679a",
+      "order": 38,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Abu Husais Mountain",
+          "ar": "جبل أبو حصيص",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم طبيعي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A mountain of cool grottoes and rock formations north of Al-Tuwaither, amid the eastern villages.",
+          "ar": "جبل بمغارات باردة وتشكيلات صخرية شمالي التويثير، وسط حزام القرى الشرقية.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the Al-Qou' quarter north of Al-Tuwaither village, amid the belt of Al-Ahsa's eastern villages some twenty kilometres east of Hofuf, rises Abu Husais Mountain, bordered on the west by the palm groves of Al-Tuwaither and Al-Qarah. The mountain is famed for its narrow grottoes, from which cool draughts flow year-round — a trait of Al-Ahsa's sedimentary hills — and for wind-carved rock formations and slopes easy enough for casual climbing. In 2024, Al-Ahsa Municipality signed an investment contract to develop and operate the mountain as a tourist resort with eco-friendly rural lodges over an area of 100,000 square metres.",
+          "ar": "في حي القوع شمالي قرية التويثير، وسط حزام القرى الشرقية وعلى نحو عشرين\nكيلومتراً شرق الهفوف، يقوم جبل أبو حصيص الذي تجاوره نخيل التويثير\nوالقارة من الغرب. اشتهر الجبل **بمغاراته الضيقة** التي تنساب منها نسمات\nباردة على مدار العام — على عادة تلال الأحساء الرسوبية — وبتشكيلاته\nالصخرية التي نحتتها الرياح وسفوحه السهلة على المتسلقين. وفي عام 2024م\nوقّعت أمانة الأحساء عقداً استثمارياً لتطوير الجبل وتشغيله منتجعاً سياحياً\nبنُزل ريفية صديقة للبيئة على مساحة مائة ألف متر مربع.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Tuwaither village — the eastern villages, Al-Ahsa",
+          "ar": "قرية التويثير — القرى الشرقية، الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours & entry",
+              "ar": "المواعيد والدخول"
+            },
+            "value": {
+              "en": "Open public site — no entry fee",
+              "ar": "موقع عام مفتوح — بلا رسوم دخول"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "practical[2] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Гора Абу-Хусайс",
+          "kicker": "Природная достопримечательность",
+          "summary": "Гора с прохладными гротами и скальными образованиями к северу от Эт-Тувайсира, среди восточных деревень.",
+          "body": "Гора Абу-Хусайс (по-арабски — Джабаль-Абу-Хусайс) поднимается в районе Эль-Ку, к северу от деревни Эт-Тувайсир — в поясе восточных деревень Аль-Ахсы, примерно в двадцати километрах к востоку от Эль-Хуфуфа. С запада к горе подступают пальмовые рощи Эт-Тувайсира и Эль-Кары. Гора известна узкими гротами, из которых круглый год тянет прохладой: так ведут себя осадочные холмы Аль-Ахсы. Славится она и скалами, которые выточил ветер, и пологими склонами, по которым нетрудно подняться. В 2024 году муниципалитет Аль-Ахсы подписал инвестиционный договор: на площади в 100 000 квадратных метров гору обустроят под туристический курорт с экологичными сельскими домиками и будут им управлять.",
+          "area": "Деревня Эт-Тувайсир, восточные деревни Аль-Ахсы",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы и вход",
+              "value": "Открытая общедоступная территория — вход свободный"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Abu-Husais-Berg",
+          "kicker": "Naturlandschaft",
+          "summary": "Ein Berg mit kühlen Grotten und Felsformationen nördlich von Al-Tuwaither, mitten im Gürtel der östlichen Dörfer.",
+          "body": "Im Viertel Al-Qou' nördlich des Dorfes Al-Tuwaither erhebt sich der Abu-Husais-Berg – mitten im Gürtel der östlichen Dörfer Al-Ahsas, rund zwanzig Kilometer östlich von Hofuf. Im Westen grenzen die Palmenhaine von Al-Tuwaither und Al-Qarah an ihn. Bekannt ist der Berg für seine engen Grotten, für seine vom Wind gemeißelten Felsformationen und für Hänge, die sich leicht erklimmen lassen. Aus den Grotten strömt das ganze Jahr über kühle Luft – eine Eigenheit der Sedimenthügel Al-Ahsas. Im Jahr 2024 unterzeichnete die Kommunalverwaltung von Al-Ahsa einen Investitionsvertrag, um den Berg auf einer Fläche von 100.000 Quadratmetern als touristische Ferienanlage mit umweltfreundlichen ländlichen Unterkünften zu entwickeln und zu betreiben.",
+          "area": "Dorf Al-Tuwaither – die östlichen Dörfer, Al-Ahsa",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten und Eintritt",
+              "value": "Frei zugängliches Gelände – kein Eintrittsgeld"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "阿布·胡赛斯山",
+          "kicker": "自然景观",
+          "summary": "图韦西尔村以北、东部村落地带中央的一座山，以清凉的岩洞和岩石造型著称。",
+          "body": "阿布·胡赛斯山（Abu Husais）位于图韦西尔村（Al-Tuwaither）以北的古阿区，地处哈萨东部村落地带的中央，在胡富夫以东约 20 公里处。山的西侧紧挨着图韦西尔和卡拉两地的椰枣林。这座山以狭窄的岩洞闻名，洞里终年有凉风吹出——这是哈萨沉积丘陵的共同特点。山上还有风蚀而成的岩石造型，山坡平缓，易于攀登。2024 年，哈萨市政局签署了一份投资合同，拟将这座山开发为占地 10 万平方米的旅游度假区并投入运营，配以环保型乡村旅舍。",
+          "area": "图韦西尔村——哈萨东部村落",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间与门票",
+              "value": "开放的公共区域，免收门票"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Abu Husais Mountain",
+          "ar": "جبل أبو حصيص",
+          "ru": "гора Абу-Хусайс / Джабаль-Абу-Хусайс",
+          "de": "der Abu-Husais-Berg",
+          "zh": "阿布·胡赛斯山（Abu Husais）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qarah",
+          "ar": "القارة",
+          "ru": "Эль-Кара",
+          "de": "Al-Qarah",
+          "zh": "卡拉",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qou'",
+          "ar": null,
+          "ru": "Эль-Ку",
+          "de": "Al-Qou'",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qou' quarter",
+          "ar": "حي القوع",
+          "ru": null,
+          "de": null,
+          "zh": "古阿区",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Tuwaither",
+          "ar": null,
+          "ru": "Эт-Тувайсир",
+          "de": "Al-Tuwaither",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Tuwaither village",
+          "ar": "قرية التويثير",
+          "ru": null,
+          "de": null,
+          "zh": "图韦西尔村（Al-Tuwaither）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P10 (ruled, round 1): a large number — apply termbase _meta.calibration_rulings P10 (the Urdu scale; a figure below one lakh)",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [100,000], only in Arabic []",
+          "body: Arabic 1 paragraph(s), 473 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 629 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "file name and slug vs title: the file is tuwaither.md and its slug_en is 'tuwaither', the name of the village; the title is the mountain's name, 'Abu Husais Mountain' (جبل أبو حصيص), and the Arabic slug has the mountain's name. The page key of the pack is the file name; the page's address ends in tuwaither. The shaban page of this batch lies near the same village.",
+          "title: EN 'Abu Husais Mountain' translates the generic. The AR keeps the nominative form of the first word of the name after the generic, in title and body alike (يقوم جبل أبو حصيص). Neither language says what the name means. A jabal title: ground of ruling P3a.",
+          "kicker: Arabic only, 'a natural landmark' (معلم طبيعي); there is no kicker_en, and the built English page prints the category label 'Nature' in its place. The five pages of the batch carry the same Arabic kicker: one Urdu kicker serves the five, built from the Arabic. The calibration page, a mountain too, has another kicker (ruling P24).",
+          "summary: EN 'amid the eastern villages' — AR 'amid the belt of the eastern villages' (وسط حزام القرى الشرقية): 'belt' is missing from the EN summary; the EN body has it and adds 'Al-Ahsa's', which the AR body does not carry.",
+          "summary / body: 'north of Al-Tuwaither' in the summary (شمالي التويثير), 'north of Al-Tuwaither village' in the body (شمالي قرية التويثير), in both languages.",
+          "body: EN 'In the Al-Qou' quarter' — AR (في حي القوع): the Arabic generic is the one the EN renders 'district' on the pages already translated ('Al-Koot district'); 'quarter' was the EN for another Arabic generic on bubakr-ribat (ruling N45). The name is new to the termbase.",
+          "body: EN '100,000 square metres' in digits — AR in words (مائة ألف متر مربع). The figure is exactly one lakh: ruling P10 writes a figure below one lakh in digits grouped as the EN groups it and begins the Urdu scale at one lakh, and no page so far has carried a figure of exactly that size, nor a measure rather than a count. 'Some twenty kilometres' is words in both languages (نحو عشرين); 2024 is digits in both.",
+          "body: EN 'bordered on the west by the palm groves of Al-Tuwaither and Al-Qarah' — AR 'which the palms of Al-Tuwaither and Al-Qarah adjoin from the west' (تجاوره نخيل التويثير): 'Al-Qarah' is here the settlement, a bare name that is also the second word of the calibrated mountain name; 'palm groves' renders the AR's 'palms'.",
+          "body vs tahimiyah-e and jabal-al-qarah: this mountain is put 'some twenty kilometres east of Hofuf', beside the palms of Al-Qarah; the tahimiyah-e page (batch b4) puts its village, in the same belt of villages and against the slopes of Jabal Al-Qarah, 'some twelve kilometres from Hofuf'. The calibration page gives no distance. Both languages agree within each page.",
+          "summary / body: 'cool grottoes' (بمغارات باردة) and 'narrow grottoes' (بمغاراته الضيقة): the shaban page and the calibration page say 'caves', with another Arabic word; the termbase has one Urdu word for both Arabic words.",
+          "body: EN 'cool draughts flow year-round — a trait of Al-Ahsa's sedimentary hills' — AR 'cool breezes … throughout the year — as is the way of Al-Ahsa's sedimentary hills' (على عادة تلال الأحساء الرسوبية): a general statement about the hills of Al-Ahsa. The calibration page says of the caves of Jabal Al-Qarah that they are cool in summer and warm in winter (owner ruling, build check C16); here the air is cool all year. Both languages agree within each page, and neither page refers to the other.",
+          "body: EN 'slopes easy enough for casual climbing' — AR 'its slopes, easy for climbers' (وسفوحه السهلة على المتسلقين): 'casual' is EN-only.",
+          "body: EN 'signed an investment contract to develop and operate the mountain as a tourist resort with eco-friendly rural lodges' (عقداً استثمارياً لتطوير الجبل وتشغيله منتجعاً سياحياً) (بنُزل ريفية صديقة للبيئة): a contract signed in 2024, the Gregorian year alone (وفي عام 2024م); neither language says whether work has begun.",
+          "body vs card: the body reports a contract to operate the mountain as a resort; the card says 'Open public site — no entry fee', 'Open 24 hours' and 'Free entry'. Neither language says what becomes of public access. Both languages agree.",
+          "area: 'Al-Tuwaither village — the eastern villages, Al-Ahsa' (قرية التويثير — القرى الشرقية، الأحساء): the build of the area line of both tahimiyah pages (batches b3 and b4), three levels with the largest place last; their Urdu is approved. The shaban page names the same village in a line of another build.",
+          "practical[0], [1] and [2]: 'Hours & entry: Open public site — no entry fee', 'Hours: Open 24 hours' and 'Fees: Free entry' state the access twice and the absence of a fee twice, in both languages; the five pages of the batch carry the same three rows, value for value. The al-uqair page (already translated) has the first row alone. The Chinese, German and Russian lines translated the first row only: rows [1] and [2] have no precedent in an earlier line.",
+          "practical[1].value: EN 'Open 24 hours' — AR 'open round the clock' (مفتوح على مدار الساعة) with the figure in a bracket of its own (24 ساعة): two statements of one fact in the AR, one in the EN. The value has no approved Urdu pair; it recurs on four pages of later rounds (koot-park, musa-park, stadium-park, salwa-beach).",
+          "practical[2].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Route: the file is tuwaither.md and the page is built at /ur/attractions/tuwaither/ (slug_en equals the file name). The slug is the village's name and the title the mountain's (جبل أبو حصيص); the page name in packs and stage files is the file name.",
+        "Ruling P3a (termbase; stage checker, and item 10 of the stage-5 checklist): the title is a jabal name (جبل أبو حصيص). It is transliterated whole from the Arabic spelling, in title and body; its generic is not translated as part of the name and is not repeated after it; no bracket follows it, and the title carries none. The Urdu common noun for a mountain stands at least once on its own in the body, away from the name. The EN 'Mountain' is not the source of the name's form. No build check reads the page for this.",
+        "Ruling P10, build check C62 (tools/check-ur-text.mjs; it ALREADY TARGETS /ur/ and fails the two scale loanwords; no pattern is to be added): the area of the planned resort is 100,000 square metres in the EN and in words in the AR (مائة ألف متر مربع) — exactly one lakh. The ruling begins the Urdu scale at one lakh and writes a figure below it in digits grouped as the EN groups it; it names no figure of exactly this size and no measure. The stage checker compares by value only a figure followed by million / M, so this one is not machine-checked: stage 1 proposes a form built on the ruling, stage 4 raises it, the judge rules (DECISIONS, 'Forms the rulings do not yet cover'). The digits are Latin and the value is not changed.",
+        "Site-wide build check C16 (tools/check-consistency.mjs): the warmth of the Jabal Al-Qarah caves is winter's, never night's. Its NIGHT_WARMTH and OK_WINTER tables have no Urdu entry. This page says that cool air flows from the grottoes all year (على مدار العام) and attributes nothing to night, to summer or to winter: the Urdu adds no season and no time of day and does not borrow the summer-and-winter sentence of the jabal-al-qarah page. No Urdu pattern is owed by this batch. The termbase word for a cave serves the Arabic word of this page too; its retired plural fails build check C50 (ruling P12), which ALREADY TARGETS /ur/.",
+        "The bare 'Al-Qarah' of the body (the palms of Al-Tuwaither and Al-Qarah) is the settlement: the mountain's termbase key is not written in its place, and the name is given no other spelling than the key's second word. The area line has the build of both tahimiyah pages, whose Urdu is approved: ruling N30 names that build as the case of ruling P20, in which the larger bare place leads.",
+        "Root CLAUDE.md: invent nothing — the contract is signed (2024, in the Gregorian calendar alone; no Hijri year is supplied, ruling N12) and the resort is its purpose: the Urdu does not say that a resort exists, is being built or is open, and carries nothing from the body into the card or from the card into the body. Neither source says what the mountain's name means; no gloss is supplied.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is openSite: true, so the unified hours-and-fees notice line is printed in no language. C13 ALREADY TARGETS Urdu (its LANGS lists ur and it reads label_ur and value_ur): no Urdu pattern is to be added. C12: the `source`, `source_en`, `sourceUrl` and `verifiedAt` of the card rows are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of 'Confirmed by the Visit Al-Ahsa team' or 'Verified directly with Al-Ahsa Municipality' enters a label, a value or the body. C12 scans the /ur/ page too, but its tables (ATTRIBUTION_PHRASES, CARD_LABELS) and its reader of `source_*` values have no Urdu entry: an Urdu attribution line would pass it unguarded. Nothing is owed by this batch, because none is written.",
+        "Card rows (RUNBOOK, rule 3): practical[0], 'Hours & entry' / 'Open public site — no entry fee', recurs from al-uqair, and the labels 'Hours' and 'Fees' and the value 'Free entry' recur from round 1: the approved pairs of ur-translation/memory/tm.json are reused verbatim. practical[1].value, 'Open 24 hours' (مفتوح على مدار الساعة), has no approved pair: it is ONE Urdu string on the five pages of the batch, value for value. Its 24 is a length of time, not a clock time: it takes neither the clock word nor a part of the day (ruling P13; build check C51 in tools/check-ur-text.mjs ALREADY TARGETS /ur/ and fails an hour of 13 or more written before the clock word). Root CLAUDE.md: invent nothing — no hours, season or advice beyond the three rows. The page is not a mosque: it has no 'Visiting' row and no 'Site status' row, and none is supplied."
+      ]
+    }
+  ]
+}

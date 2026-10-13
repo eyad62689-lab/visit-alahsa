@@ -393,3 +393,116 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [] } = {}) {
   if (!empty) round1Emptiness(out);
   return Object.values(out);
 }
+
+// ── C67–C70: حرّاس أحكام الجولة 2 ─────────────────────────────────────────────────────────
+// أحكام حاكمي دفعات المعالم الثلاث التالية (2026-10-13) المصوغة في المعجم حظراً حرفياً أو قاعدة
+// موضع؛ نصّ كل حكم في المعجم (_meta.calibration_rulings) بمعرّفه، وسلاسله هنا منسوخة منه آلياً
+// ويُعاد التحقق عند كل تشغيل أنها ما زالت واردة فيه حرفياً.
+// الضمائر الأربعة برسمها المعتمد (الهاء U+06C1) ورسمها المحظور (U+06BE) كما يسردهما الحكم P22.
+// الضمير الخامس في عنوان الحكم أُخرج منه فلا يُفحص.
+export const PRONOUNS = ['جنہیں', 'انہیں', 'انہوں', 'جنہوں'];
+export const PRONOUNS_BANNED = ['جنھیں', 'انھیں', 'انھوں', 'جنھوں'];
+// سجلّ المساجد التاريخية: اسمه المعتمد، وصياغة جملة الصلة المسحوبة (الحكم N46)
+export const REGISTER_NAME = 'الاحساء کی تاریخی مساجد کی سرکاری فہرست';
+export const REGISTER_WITHDRAWN = 'جو سرکاری طور پر درج ہیں';
+// اسم ثانٍ يضعه المصدر بين علامتَي تنصيص ولا يحمل اسماً عاماً أوردياً (الحكم N72)
+export const SECOND_NAME = 'ابا الکباری';
+export const QUOTE_OPEN = '“';
+export const QUOTE_CLOSE = '”';
+// اسم منقحر ينتهي رسمه العربي بألف مقصورة: U+06CC ثم الألف الخنجرية U+0670، والمفتاح بلاها مسحوب (الحكم N82)
+export const MAQSURA_NAME = 'سلویٰ';
+export const MAQSURA_NAME_RETIRED = 'سلوی';
+export const ROUND2_TOKENS = [...PRONOUNS, ...PRONOUNS_BANNED, REGISTER_NAME, REGISTER_WITHDRAWN, SECOND_NAME, MAQSURA_NAME, MAQSURA_NAME_RETIRED];
+
+const HEH_GOAL = 'ہ';
+const HEH_DOACHASHMEE = 'ھ';
+const SUPERSCRIPT_ALEF = 'ٰ';
+
+// P22 — الضمائر الأربعة لا تُكتب بـU+06BE، أينما ورد الرسم (ومعه ما بُني عليها)
+function pronounsIn(b, rel, r) {
+  for (const f of PRONOUNS_BANNED) {
+    const i = b.indexOf(f);
+    if (i !== -1) r.problems.push(`${rel}: ضمير برسم U+06BE «${f}» ⇐ «${snip(b, i, f.length)}»`);
+  }
+  if (PRONOUNS.some((p) => b.includes(p))) r.stats.written++;
+}
+
+// N46 — صياغة جملة الصلة المسحوبة. يعيد true إن ورد اسم السجلّ المعتمد في الكتلة.
+function registerIn(b, rel, r) {
+  const i = b.indexOf(REGISTER_WITHDRAWN);
+  if (i !== -1) r.problems.push(`${rel}: صياغة مسحوبة «${REGISTER_WITHDRAWN}» ⇐ «${snip(b, i, REGISTER_WITHDRAWN.length)}»`);
+  return b.includes(REGISTER_NAME);
+}
+
+// N72 — الاسم الثاني بين U+201C وU+201D عند كل ذكر
+function secondNameIn(b, rel, r) {
+  for (let i = b.indexOf(SECOND_NAME); i !== -1; i = b.indexOf(SECOND_NAME, i + 1)) {
+    r.stats.mentions++;
+    const marked = b[i - 1] === QUOTE_OPEN && b[i + SECOND_NAME.length] === QUOTE_CLOSE;
+    if (!marked) r.problems.push(`${rel}: «${SECOND_NAME}» بلا علامتَي التنصيص ⇐ «${snip(b, i, SECOND_NAME.length)}»`);
+  }
+}
+
+// N82 — المفتاح بلا الألف الخنجرية كلمةً كاملة. يعيد true إن ورد الاسم بعلامته في الكتلة.
+function maqsuraIn(b, rel, r) {
+  const i = wordAt(b, MAQSURA_NAME_RETIRED);
+  if (i !== -1) r.problems.push(`${rel}: اسم بلا الألف الخنجرية «${MAQSURA_NAME_RETIRED}» ⇐ «${snip(b, i, MAQSURA_NAME_RETIRED.length)}»`);
+  return wordAt(b, MAQSURA_NAME) !== -1;
+}
+
+// السلاسل واردة في المعجم، والمحظور مشتقّ من المعتمد حرفاً بحرف — وإلا انحرفت القائمة عن مصدرها
+function round2Drift(termbase) {
+  const tbText = JSON.stringify(termbase);
+  const drift = ROUND2_TOKENS.filter((t) => !tbText.includes(t)).map((t) => `سلسلة حارس غائبة عن المعجم: «${t}»`);
+  PRONOUNS.forEach((p, i) => {
+    if (!p.includes(HEH_GOAL) || p.split(HEH_GOAL).join(HEH_DOACHASHMEE) !== PRONOUNS_BANNED[i]) drift.push(`الرسم المحظور «${PRONOUNS_BANNED[i]}» ليس «${p}» بـU+06BE`);
+  });
+  if (PRONOUNS.length !== PRONOUNS_BANNED.length) drift.push('قائمتا الضمائر مختلفتا الطول');
+  if (MAQSURA_NAME !== MAQSURA_NAME_RETIRED + SUPERSCRIPT_ALEF) drift.push(`«${MAQSURA_NAME}» ليس «${MAQSURA_NAME_RETIRED}» متبوعاً بـU+0670`);
+  return drift;
+}
+
+// حرّاس إيجابيون: الفحص ليس فارغاً
+function round2Emptiness(out) {
+  if (out.register.stats.carriers === 0) out.register.problems.push(`«${REGISTER_NAME}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+  if (out.secondName.stats.mentions === 0) out.secondName.problems.push(`«${SECOND_NAME}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+  if (out.maqsura.stats.carriers === 0) out.maqsura.problems.push(`«${MAQSURA_NAME}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+}
+
+/**
+ * C67–C70. @param {{ rel: string, html: string }[]} pages صفحات /ur/ المبنية
+ * @param {object} termbase المعجم محلَّلاً
+ * @returns {{ id: string, problems: string[], stats: Record<string, number> }[]}
+ */
+export function checkUrRound2Rulings(pages, termbase) {
+  const out = {
+    pronouns: { id: 'P22', problems: round2Drift(termbase), stats: { written: 0 } },
+    register: { id: 'N46', problems: [], stats: { carriers: 0 } },
+    secondName: { id: 'N72', problems: [], stats: { mentions: 0 } },
+    maqsura: { id: 'N82', problems: [], stats: { carriers: 0 } },
+  };
+  let urduBlocks = 0;
+
+  for (const { rel, html } of pages) {
+    const blocks = urTextBlocks(html).blocks.filter((b) => ARABIC_SCRIPT.test(b));
+    urduBlocks += blocks.length;
+    let hasRegister = false;
+    let hasMaqsura = false;
+    for (const b of blocks) {
+      pronounsIn(b, rel, out.pronouns);
+      hasRegister = registerIn(b, rel, out.register) || hasRegister;
+      secondNameIn(b, rel, out.secondName);
+      hasMaqsura = maqsuraIn(b, rel, out.maqsura) || hasMaqsura;
+    }
+    if (hasRegister) out.register.stats.carriers++;
+    if (hasMaqsura) out.maqsura.stats.carriers++;
+  }
+
+  const empty = !pages.length || urduBlocks === 0;
+  for (const r of Object.values(out)) {
+    if (empty) r.problems.push('لا نصّ أوردياً في صفحات /ur/ — الحارس صار فارغاً');
+    r.stats.blocks = urduBlocks;
+  }
+  if (!empty) round2Emptiness(out);
+  return Object.values(out);
+}

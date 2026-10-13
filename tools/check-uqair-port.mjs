@@ -12,7 +12,7 @@
 //   (أ) لا دعوى قديمة («أقدم/أول موانئ المنطقة/أول ميناء في المملكة» ونظائرها) في أي صفحة بأي لغة.
 //   (ب) إيجاباً: الصياغة المعتمدة في كل صفحة مستهدفة، ولا يقلّ عددها عن EXPECT.minPages.
 
-export const EXPECT = { minPages: 27 };
+export const EXPECT = { minPages: 30 };
 
 const APOS = `(?:['’]|&#39;|&#x27;)`;
 
@@ -22,6 +22,7 @@ export const OLD = [
   { lang: 'zh', re: /最古老的(?:海)?港/ },
   { lang: 'de', re: /ältest[a-z]*\s+(?:See)?hafen/i },
   { lang: 'ru', re: /старейш[а-яё]*\s+(?:морск[а-яё]*\s+)?порт/i },
+  { lang: 'ur', re: /قدیم\s+ترین\s+(?:سمندری\s+)?بندرگاہ|سب\s+سے\s+(?:قدیم|پرانی)\s+(?:سمندری\s+)?بندرگاہ/ },
 ];
 
 export const OK = {
@@ -35,23 +36,25 @@ export const OK = {
   zh: /沙特阿拉伯东部沿海的第一座海港/,
   de: /(?:[Dd]er|des|dem)\s+ersten?\s+Seehafens?\s+an\s+der\s+Ostküste\s+Saudi-Arabiens/,
   ru: /исторически\s+перв[а-яё]+\s+морск[а-яё]+\s+порт[а-яё]*\s+на\s+востоке\s+Саудовской\s+Аравии/i,
+  ur: /سعودی\s+عرب\s+کے\s+مشرقی\s+ساحل\s+کی\s+پہلی\s+سمندری\s+بندرگاہ/,
 };
 
 // صفحات المعالم الثلاثة ومقالا الدليل بكل لغة، وصفحة مسار ساحل العقير (ar/en فقط)
+// الأوردو: صفحات المعالم الثلاثة وحدها (لا مقال دليل أوردياً بعد).
 const TARGET = new RegExp(
   '^(?:' +
     [
       'معالم/(?:العقير|قلعة-العقير|مسجد-ميناء-العقير)',
       'مدونة/(?:48-ساعة-في-الأحساء|هل-تستحق-الأحساء-الزيارة)',
       '(?:en/)?trails/al-uqair-coast',
-      '(?:en|zh|de|ru)/attractions/(?:al-uqair|uqair-castle|uqair-mosque)',
+      '(?:en|zh|de|ru|ur)/attractions/(?:al-uqair|uqair-castle|uqair-mosque)',
       '(?:en|zh|de|ru)/blog/(?:48-hours-in-al-ahsa|is-al-ahsa-worth-visiting)',
     ].join('|') +
     ')/index\\.html$',
 );
 
 /**
- * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
+ * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru'|'ur', html: string}[]} pages كل صفحات dist
  * @returns {{problems: string[], stats: {targets: number, perLang: Record<string, number>, scanned: number}}}
  */
 export function checkUqairPort(pages) {

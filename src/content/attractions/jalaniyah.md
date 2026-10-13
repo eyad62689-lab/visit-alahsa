@@ -20,6 +20,12 @@ kicker_ru: "Религиозное место"
 summary_ru: "Мечеть эпохи Уюнидов в деревне Эль-Батталия; ее второе название — мечеть Эль-Батталия."
 body_ru: "В западном квартале деревни Эль-Батталия, примерно в двенадцати километрах к северо-востоку от Эль-Хуфуфа, стоит одна из самых известных исторических мечетей Аль-Ахсы — Эль-Джаалания, она же мечеть Эль-Батталия. Ее построили в эпоху государства Уюнидов, в V веке хиджры (около XI века н. э.). Имя мечети связывают с принцессой Хибой бинт Абдулла ибн Али аль-Уюни, дочерью основателя династии, — ей же приписывают и саму мечеть. Она сложена из камня и глины, а кровля — из пальмовых стволов и ветвей. Ее отличают ряды колонн со стрельчатыми арками и два михраба (молитвенные ниши) в стене киблы. Мечеть вмещает более тысячи молящихся. Здание отреставрировала Королевская комиссия по Эль-Джубайлю и Янбу — работы завершились в 1430 году хиджры (2009 год н. э.). В 2017 году мечеть внесли в официальный реестр исторических мечетей Аль-Ахсы."
 area_ru: "Деревня Эль-Батталия, к северо-востоку от Эль-Хуфуфа"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-13، الدفعة b3 — السجل في ur-translation/memory/scores.csv).
+title_ur: "مسجد الجعلانیہ"
+kicker_ur: "مذہبی مقام"
+summary_ur: "البطالیہ گاؤں میں عیونی ریاست کے دور کی ایک مسجد، جو مسجد البطالیہ کے نام سے بھی معروف ہے۔"
+body_ur: "ہفوف سے تقریباً بارہ کلومیٹر شمال مشرق میں، البطالیہ گاؤں کے مغربی محلے میں مسجد الجعلانیہ واقع ہے۔ اسے مسجد البطالیہ بھی کہتے ہیں، اور یہ الاحساء کی مشہور ترین تاریخی مساجد میں سے ایک ہے۔ یہ عیونی ریاست کے دور میں، پانچویں صدی ہجری (تقریباً گیارہویں صدی عیسوی) میں تعمیر ہوئی۔ اس کا نام شہزادی ہبہ بنت عبد اللہ بن علی العیونی سے جڑا ہے۔ وہ اس ریاست کے بانی کی بیٹی تھیں، اور یہ مسجد ان سے منسوب ہے۔ یہ پتھر اور مٹی سے بنی ہے، اور اس کی چھت کھجور کے تنوں اور پتوں کی ہے۔ ستونوں کی قطاروں پر نوک دار محرابیں ٹکی ہیں۔ قبلے کی دیوار میں دو محرابیں اس مسجد کو منفرد بناتی ہیں۔ اس میں ایک ہزار سے زیادہ نمازیوں کی گنجائش ہے۔ الجبیل اور ینبع کے شاہی کمیشن نے اس کی مرمت کی، اور یہ کام 1430 ہجری (2009 عیسوی) میں مکمل ہوا۔ 2017 میں یہ الاحساء کی تاریخی مساجد کی سرکاری فہرست میں شامل ہوئی۔"
+area_ur: "البطالیہ گاؤں، ہفوف کے شمال مشرق میں"
 slug_ar: "مسجد-الجعلانية"
 slug_en: "jalaniyah"
 category: religious
@@ -33,8 +39,8 @@ featured: false
 order: 21
 practical:
   # بند الزيارة: الصيغة نفسها في صفحات المساجد بلغاتها الخمس.
-  - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من وزارة الشؤون الإسلامية", source_en: "Verified directly with the Ministry of Islamic Affairs", sourceUrl: "https://moia.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", label_ur: "زیارت", value_ur: "زائرین کے لیے کھلی ہے۔ مناسب لباس پہن کر آئیں اور اس مقام کے تقدس کا خیال رکھیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-12", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من وزارة الشؤون الإسلامية", source_en: "Verified directly with the Ministry of Islamic Affairs", sourceUrl: "https://moia.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.431233, lng: 49.625652 }
 mapUrl: "https://maps.app.goo.gl/x3Hq8z6hfpoQnBjD7"
 heroImage: /img/jalaniyah-01

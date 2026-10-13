@@ -12,7 +12,7 @@
 //   (أ) لا عبارة «المدرستين» ولا «التقاء الطين والحجر» في أي صفحة بأي لغة.
 //   (ب) إيجاباً: جملة المواد الجديدة في صفحة القصر بكل لغة، ولا يقلّ عددها عن EXPECT.minPages.
 
-export const EXPECT = { minPages: 5 };
+export const EXPECT = { minPages: 6 };
 
 export const OLD = [
   { lang: 'ar', re: /مدرستان\s+من\s+البناء|يلتقي(?:ان)?\s+فيه\s+الطين\s+والحجر|الطين\s+والحجر\s+يلتقيان|يتنفّس\s+مع\s+المناخ/ },
@@ -28,12 +28,14 @@ export const OK = {
   zh: /墙体以草拌泥筑成/,
   de: /Mauern\s+bestehen\s+aus\s+strohvermischtem\s+Lehm/,
   ru: /стены\s+сложены\s+из\s+глины,\s+смешанной\s+с\s+соломой/i,
+  // الأوردو إيجاباً فقط: الصيغة السابقة لم تُنشر بها قط، فلا نمط لها في OLD
+  ur: /دیواریں\s+بھوسا\s+ملی\s+مٹی\s+کی\s+ہیں/,
 };
 
-const TARGET = /^(?:معالم\/قصر-إبراهيم|(?:en|zh|de|ru)\/attractions\/qasr-ibrahim)\/index\.html$/;
+const TARGET = /^(?:معالم\/قصر-إبراهيم|(?:en|zh|de|ru|ur)\/attractions\/qasr-ibrahim)\/index\.html$/;
 
 /**
- * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
+ * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru'|'ur', html: string}[]} pages كل صفحات dist
  * @returns {{problems: string[], stats: {targets: number, perLang: Record<string, number>, scanned: number}}}
  */
 export function checkIbrahimMaterials(pages) {
