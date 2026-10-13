@@ -1537,12 +1537,18 @@ async function main() {
       P5: ['C59', 'الخليج بلا وصف', (s) => `لا «خليج» موصوفاً، والاسم المجرّد وارد في ${s.carriers} صفحة`],
       P6: ['C60', 'اسم الثمرة لا الدخيل', () => 'لا دخيل لاسم الليمون في نصّ /ur/'],
       P9: ['C61', 'المدينتان بوصفهما', (s) => `${s.mentions} ذكراً للمدينتين، كلٌّ بوصفه بعده`],
-      P10: ['C62', 'المقياس الأوردي للأعداد', (s) => `لا مقياس دخيلاً، ومقياس اللاکھ وارد في ${s.carriers} صفحة`],
+      P10: ['C62', 'المقياس الأوردي للأعداد', (s) => `لا مقياس دخيلاً، ومقياس اللاکھ وارد في ${s.carriers} صفحة، و${s.compared} رقماً بكلمة مقياس يساوي كلٌّ منها رقماً في صفحته الإنجليزية، ولا رقم مجرّداً من لاك فأكثر`],
       N13: ['C63', 'الشرطة بين رقمين', (s) => `لا U+2013 خارج سنتَي عمر بين قوسين (${s.lifespans} موضعاً)`],
       N14: ['C64', 'عناوين القصور', (s) => `${s.titles} عنواناً أوردياً لقصر يبدأ كلٌّ منها بالاسم العام، ولا صيغة مسحوبة`],
       N33: ['C65', 'الفاصلة المنقوطة في صفحات المعالم', (s) => `لا «؛» في ${s.pages} صفحة معلم`],
     };
-    for (const r of checkUrRound1Rulings(urPages, termbase, { titles })) {
+    // الصفحة الإنجليزية المقابلة لكل صفحة /ur/ (المسار نفسه تحت /en/) لمقارنة أرقام المقياس بالقيمة
+    const counterparts = new Map();
+    for (const { rel } of urPages) {
+      const fp = path.join(DIST, 'en', rel.slice('ur/'.length));
+      if (existsSync(fp)) counterparts.set(rel, await readText(fp));
+    }
+    for (const r of checkUrRound1Rulings(urPages, termbase, { titles, counterparts })) {
       const [id, label, ok] = ROUND1_CHECKS[r.id];
       if (r.problems.length) fail(id, `${label} (حكم الجولة 1 ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
       else pass(id, `${label} (حكم الجولة 1 ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);

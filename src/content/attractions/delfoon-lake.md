@@ -19,6 +19,12 @@ kicker_ru: "Сезонное озеро"
 summary_ru: "Небольшие сезонные озёра близ озера Эль-Хубайль, которые появляются в дождливые периоды, — любимое место для поездок в пустыню."
 body_ru: "Эд-Дильфун (Delfoon) — это несколько небольших сезонных озёр близ озера Эль-Хубайль, к северу от Аль-Ахсы: они появляются в дождливые периоды, когда вода собирается в низинах. В такие сезоны сюда едут те, кто любит вылазки в пустыню и прогулки на природе. Об остальном информация уточняется по надёжным источникам."
 area_ru: "Близ озера Эль-Хубайль, к северу от Аль-Ахсы"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-13، الدفعة b6 — السجل في ur-translation/memory/scores.csv).
+title_ur: "جھیل الدیلفوون"
+kicker_ur: "موسمی جھیل"
+summary_ur: "جھیل الحبیل کے قریب چھوٹی چھوٹی موسمی جھیلیں، جو بارشوں کے دنوں میں بنتی ہیں۔ صحرا کی سیر کے لیے یہ ایک پسندیدہ مقام ہے۔"
+body_ur: "الدیلفوون چھوٹی چھوٹی موسمی جھیلوں کا ایک مجموعہ ہے، جو الاحساء کے شمال میں جھیل الحبیل کے قریب ہے۔ یہ جھیلیں اس وقت بنتی ہیں جب بارش کا پانی نشیبی زمین میں جمع ہو جاتا ہے۔ بارشوں کے دنوں میں یہ صحرا کی سیر اور تفریح کے لیے ایک پسندیدہ مقام بن جاتی ہیں۔ مزید تفصیلات کی معتبر ذرائع سے تصدیق ابھی باقی ہے۔"
+area_ur: "جھیل الحبیل کے قریب، الاحساء کے شمال میں"
 slug_ar: "بحيرة-الديلفوون"
 slug_en: "delfoon-lake"
 category: nature
@@ -33,11 +39,12 @@ area: "قرب بحيرة الحبيل — شمال الأحساء"
 area_en: "Near Al-Hubail Lake — north of Al-Ahsa"
 openSite: true
 practical:
-  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
+  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", label_ur: "سیر", value_ur: "کھلا عوامی قدرتی مقام، کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.8130215, lng: 49.8498148 }
 mapUrl: "https://maps.app.goo.gl/zN7Z8fyjrrdkYwUk9"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-07، الدفعة ru-attr-7 — السجل في ru-translation/memory/scores.csv).
+# أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-13، الدفعة b6 — السجل في ur-translation/memory/scores.csv).
 faq:
   - q: "هل بحيرة الديلفوون دائمة؟"
     a: "لا، هي بحيرات صغيرة موسمية تنشأ في فترات الأمطار حين تتجمّع المياه في منخفضات الأرض."
@@ -49,6 +56,8 @@ faq:
     a_de: "Nein. Delfoon ist eine Gruppe kleiner saisonaler Seen; sie bilden sich in regenreichen Zeiten, wenn sich das Wasser in den Senken sammelt."
     q_ru: "Существует ли озеро Эд-Дильфун круглый год?"
     a_ru: "Нет. Эд-Дильфун — это несколько небольших сезонных озёр: они появляются в дождливые периоды, когда вода собирается в низинах."
+    q_ur: "کیا جھیل الدیلفوون مستقل جھیل ہے؟"
+    a_ur: "نہیں۔ یہ چھوٹی چھوٹی موسمی جھیلوں کا ایک مجموعہ ہے، جو بارشوں کے دنوں میں بنتی ہیں، جب پانی نشیبی زمین میں جمع ہو جاتا ہے۔"
   - q: "أين تقع بحيرة الديلفوون؟"
     a: "قرب بحيرة الحبيل شمال الأحساء."
     q_en: "Where is Delfoon Lake?"
@@ -59,6 +68,8 @@ faq:
     a_de: "Nahe dem Al-Hubail-See, nördlich von Al-Ahsa."
     q_ru: "Где находится озеро Эд-Дильфун?"
     a_ru: "Близ озера Эль-Хубайль, к северу от Аль-Ахсы."
+    q_ur: "جھیل الدیلفوون کہاں ہے؟"
+    a_ur: "جھیل الحبیل کے قریب، الاحساء کے شمال میں۔"
   - q: "هل لزيارة بحيرة الديلفوون رسوم؟"
     a: "لا، موقع طبيعي عام مفتوح بلا رسوم."
     q_en: "Is there a fee to visit Delfoon Lake?"
@@ -69,6 +80,8 @@ faq:
     a_de: "Nein. Delfoon ist ein öffentlich zugängliches Naturgelände; der Eintritt ist kostenlos."
     q_ru: "Нужно ли платить за посещение озера Эд-Дильфун?"
     a_ru: "Нет. Это открытая общедоступная природная территория, вход свободный."
+    q_ur: "کیا جھیل الدیلفوون کی سیر کی کوئی فیس ہے؟"
+    a_ur: "نہیں۔ یہ ایک کھلا عوامی قدرتی مقام ہے جہاں کوئی فیس نہیں۔"
 ---
 
 الديلفوون بحيرات صغيرة موسمية تنشأ في فترات الأمطار قرب بحيرة الحبيل

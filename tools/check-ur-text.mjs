@@ -254,13 +254,17 @@ export const GULF_QUALIFIED = ['خلیج فارس', 'خلیج عرب'];
 export const LIME_LOAN = 'لائم';
 export const SCALE_LOANS = ['ملین', 'بلین'];
 export const SCALE_WORD = 'لاکھ';
+// كلمات المقياس الثلاث كما يعرّفها الحكم P10: الكلمة، وأُسّها العشري، وعبارة الحكم التي تسبقها حرفياً
+export const SCALE_WORDS = [[SCALE_WORD, 5, 'million = 10'], ['کروڑ', 7, 'ten million = 1'], ['ارب', 9, 'a thousand million = 1']];
+// الحكم N66: الرقم المجرّد من أول كلمات المقياس فصاعداً يُكتب بها — جملته في المعجم شرط سريان الفحص
+export const SCALE_BARE_RULE = 'A figure of one lakh or more is written in the Urdu scale';
 // المدينتان ووصفهما اللازم بعدهما
 export const HOLY_CITIES = [['مدینہ', 'منورہ'], ['مکہ', 'مکرمہ']];
 export const PALACE_GENERIC = 'قصر';
 export const PALACE_FORBIDDEN = ['صاہود محل', 'خزام محل', 'محیرس محل', 'ابراہیم محل'];
 export const SEMICOLON = '؛';
 export const EN_DASH = '–';
-export const ROUND1_TOKENS = [GULF, ...GULF_QUALIFIED, LIME_LOAN, ...SCALE_LOANS, SCALE_WORD, ...HOLY_CITIES.flat(), PALACE_GENERIC, ...PALACE_FORBIDDEN];
+export const ROUND1_TOKENS = [GULF, ...GULF_QUALIFIED, LIME_LOAN, ...SCALE_LOANS, ...SCALE_WORDS.map(([w]) => w), ...HOLY_CITIES.flat(), PALACE_GENERIC, ...PALACE_FORBIDDEN];
 
 const ATTRACTION_PAGE = /^ur\/attractions\/[^/]+\/index\.html$/;
 // سنتا الميلاد والوفاة بين قوسين: الموضع الوحيد الذي تُكتب فيه الشرطة U+2013 (الحكم N13)
@@ -295,11 +299,62 @@ function citiesIn(b, rel, r) {
   }
 }
 
+// رقمٌ مكتوب: أرقام لاتينية بفاصلة آلاف وكسر عشري اختياريين
+const FIGURE = '\\d+(?:,\\d{3})*(?:\\.\\d+)?';
+const BARE_FIGURE = new RegExp(FIGURE, 'g');
+// قيمة الرقم مضروباً في 10^exp مفتاحاً قانونياً بلا حساب عائم: «25» بأُس 5 و«2.5» بأُس 6
+// و«2,500,000» بأُس 0 كلها «25e5»
+const valueKey = (figure, exp = 0) => {
+  const [int, frac = ''] = figure.split(',').join('').split('.');
+  let digits = (int + frac).replace(/^0+(?=\d)/, '');
+  let e = exp - frac.length;
+  while (digits.length > 1 && digits.endsWith('0')) { digits = digits.slice(0, -1); e++; }
+  return `${digits}e${e}`;
+};
+const SCALE_EXP = new Map(SCALE_WORDS.map(([w, exp]) => [w, exp]));
+const SCALE_FROM = Math.min(...SCALE_EXP.values());
+// رقمٌ بعده إحدى كلمات المقياس كلمةً كاملة
+const SCALED_UR = new RegExp(`(${FIGURE}) ?(${SCALE_WORDS.map(([w]) => w).join('|')})(?![\\p{L}\\p{M}])`, 'gu');
+// نظيره في الصفحة الإنجليزية: million / billion بعد الرقم، أو M ملتصقةً به
+const SCALED_EN = [
+  [new RegExp(`(${FIGURE})\\s?million\\b`, 'gi'), 6],
+  [new RegExp(`(${FIGURE})\\s?billion\\b`, 'gi'), 9],
+  [new RegExp(`(${FIGURE})M(?![A-Za-z])`, 'g'), 6],
+];
+
+/**
+ * قيم أرقام صفحة مبنية (الإنجليزية المقابلة لصفحة /ur/): كل رقم مجرّد، وكل رقم بمقياسه.
+ * @param {string} html
+ * @returns {Set<string>} مفاتيح valueKey
+ */
+export function figureValues(html) {
+  const bare = cutBlocks(cutBlocks(html, 'script').out, 'style').out;
+  const text = decode([tagsToBreaks(bare), ...textAttributes(bare)].join('\n'));
+  const out = new Set();
+  for (const [re, exp] of SCALED_EN) for (const m of text.matchAll(re)) out.add(valueKey(m[1], exp));
+  for (const m of text.matchAll(BARE_FIGURE)) out.add(valueKey(m[0]));
+  return out;
+}
+
 // P10 — المقياس الأوردي لا الدخيلان. يعيد true إن وردت كلمة المقياس في الكتلة.
-function scaleIn(b, rel, r) {
+// source: قيم أرقام الصفحة الإنجليزية المقابلة، أو null حيث لا مقابل (فلا مقارنة).
+function scaleIn(b, rel, r, source) {
   for (const w of SCALE_LOANS) {
     const i = wordAt(b, w);
     if (i !== -1) r.problems.push(`${rel}: مقياس دخيل «${w}» ⇐ «${snip(b, i, w.length)}»`);
+  }
+  // الرقم بكلمة مقياسه يُقابَل بالقيمة: «1» بكلمة 10^5 = «100,000» في الإنجليزية
+  const rest = b.replace(SCALED_UR, (whole, figure, word, i) => {
+    if (source) {
+      r.stats.compared++;
+      if (!source.has(valueKey(figure, SCALE_EXP.get(word)))) r.problems.push(`${rel}: «${whole}» لا يساويه رقم في الصفحة الإنجليزية المقابلة ⇐ «${snip(b, i, whole.length)}»`);
+    }
+    return ' '.repeat(whole.length);
+  });
+  // N66: الرقم المجرّد من أول المقياس فصاعداً يُكتب بكلمته (سلسلة تبدأ بصفر ليست عدداً بهذا القدر)
+  for (const m of rest.matchAll(BARE_FIGURE)) {
+    const int = m[0].split('.')[0].split(',').join('');
+    if (int.length > SCALE_FROM && !int.startsWith('0')) r.problems.push(`${rel}: رقم مجرّد «${m[0]}» بلا كلمة مقياس (من «1 ${SCALE_WORD}» فصاعداً) ⇐ «${snip(rest, m.index, m[0].length)}»`);
   }
   return wordAt(b, SCALE_WORD) !== -1;
 }
@@ -334,11 +389,12 @@ function semicolonIn(b, rel, r) {
   if (i !== -1) r.problems.push(`${rel}: «${SEMICOLON}» في صفحة معلم ⇐ «${snip(b, i)}»`);
 }
 
-// حرّاس إيجابيون: الفحص ليس فارغاً
-function round1Emptiness(out) {
+// حرّاس إيجابيون: الفحص ليس فارغاً. compares: الصفحات الإنجليزية المقابلة مُرِّرت للمقارنة بالقيمة.
+function round1Emptiness(out, compares) {
   if (out.gulf.stats.carriers === 0) out.gulf.problems.push(`«${GULF}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
   if (out.cities.stats.mentions === 0) out.cities.problems.push('لا ذكر لأيٍّ من المدينتين في صفحات /ur/ — الحارس صار فارغاً');
   if (out.scale.stats.carriers === 0) out.scale.problems.push(`«${SCALE_WORD}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+  if (compares && out.scale.stats.compared === 0) out.scale.problems.push('لا رقم بكلمة مقياس قوبل بصفحته الإنجليزية — الحارس صار فارغاً');
   if (out.palace.stats.titles === 0) out.palace.problems.push('لا عنوان قصر أوردياً في المصدر — الحارس صار فارغاً');
   if (out.semicolon.stats.pages === 0) out.semicolon.problems.push('لا صفحة معلم أوردية في المخرج — الحارس صار فارغاً');
 }
@@ -346,18 +402,23 @@ function round1Emptiness(out) {
 /**
  * C59–C65. @param {{ rel: string, html: string }[]} pages صفحات /ur/ المبنية
  * @param {object} termbase المعجم محلَّلاً
- * @param {{ titles?: { file: string, ar?: string, ur?: string }[] }} [opts]
+ * @param {{ titles?: { file: string, ar?: string, ur?: string }[], counterparts?: Map<string, string> }} [opts]
  *   titles: عنوانا كل معلم في المصدر (العربي والأوردي) لقاعدة عنوان القصور
+ *   counterparts: لكل صفحة /ur/ (بمفتاح rel) نصّ HTML لصفحتها الإنجليزية المقابلة، لمقارنة
+ *   الأرقام المكتوبة بكلمة مقياس بالقيمة؛ بغيابها لا مقارنة
  * @returns {{ id: string, problems: string[], stats: Record<string, number> }[]}
  */
-export function checkUrRound1Rulings(pages, termbase, { titles = [] } = {}) {
+export function checkUrRound1Rulings(pages, termbase, { titles = [], counterparts = null } = {}) {
   const tbText = JSON.stringify(termbase);
   const drift = ROUND1_TOKENS.filter((t) => !tbText.includes(t)).map((t) => `سلسلة حارس غائبة عن المعجم: «${t}»`);
+  // كل كلمة مقياس بعبارة الحكم التي تعرّف قدرها، وجملة حكم الرقم المجرّد، واردتان في المعجم حرفياً
+  const scaleDrift = SCALE_WORDS.filter(([w, , clause]) => !tbText.includes(`${clause} «${w}»`)).map(([w, , clause]) => `عبارة الحكم «${clause} «${w}»» غائبة عن المعجم`);
+  if (!tbText.includes(SCALE_BARE_RULE)) scaleDrift.push(`جملة الحكم «${SCALE_BARE_RULE}» غائبة عن المعجم`);
   const out = {
     gulf: { id: 'P5', problems: [...drift], stats: { carriers: 0 } },
     lime: { id: 'P6', problems: [], stats: {} },
     cities: { id: 'P9', problems: [], stats: { mentions: 0 } },
-    scale: { id: 'P10', problems: [], stats: { carriers: 0 } },
+    scale: { id: 'P10', problems: scaleDrift, stats: { carriers: 0, compared: 0 } },
     dash: { id: 'N13', problems: [], stats: { lifespans: 0 } },
     palace: { id: 'N14', problems: [], stats: { titles: 0 } },
     semicolon: { id: 'N33', problems: [], stats: { pages: 0 } },
@@ -371,11 +432,12 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [] } = {}) {
     if (isAttraction) out.semicolon.stats.pages++;
     let hasGulf = false;
     let hasScale = false;
+    const source = counterparts?.has(rel) ? figureValues(counterparts.get(rel)) : null;
     for (const b of blocks) {
       hasGulf = gulfIn(b, rel, out.gulf) || hasGulf;
       limeIn(b, rel, out.lime);
       citiesIn(b, rel, out.cities);
-      hasScale = scaleIn(b, rel, out.scale) || hasScale;
+      hasScale = scaleIn(b, rel, out.scale, source) || hasScale;
       dashIn(b, rel, out.dash);
       palaceIn(b, rel, out.palace);
       if (isAttraction) semicolonIn(b, rel, out.semicolon);
@@ -390,7 +452,7 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [] } = {}) {
     if (empty) r.problems.push('لا نصّ أوردياً في صفحات /ur/ — الحارس صار فارغاً');
     r.stats.blocks = urduBlocks;
   }
-  if (!empty) round1Emptiness(out);
+  if (!empty) round1Emptiness(out, counterparts !== null);
   return Object.values(out);
 }
 

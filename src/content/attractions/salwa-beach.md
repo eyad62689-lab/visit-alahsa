@@ -19,6 +19,12 @@ kicker_ru: "Природная достопримечательность"
 summary_ru: "Тихий пляж у города Сальва на крайнем юго-востоке Аль-Ахсы, недалеко от границы с Катаром."
 body_ru: "Город Сальва лежит на крайнем юго-востоке Аль-Ахсы, у сухопутных ворот Саудовской Аравии в Катар. Здесь вдоль берега Залива тянется пляж Сальва — примерно в 150 км от Эль-Хуфуфа. Сам город относится к мухафазе (административному округу) Аль-Ахса. Местный песок называют одним из лучших на побережье Залива. С запада к пляжу подступают дюны пустыни Эль-Джафура, а в окрестностях много птиц. Пляж известен морской рыбалкой, и это тихое место для семейного отдыха и прогулок вдоль воды. Муниципалитет благоустроил пляж и парк при нём: появились навесы, игровые площадки, прогулочная дорожка и уличные тренажёры."
 area_ru: "Сальва, крайний юго-восток Аль-Ахсы"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 90/100 (2026-10-13، الدفعة b6 — السجل في ur-translation/memory/scores.csv).
+title_ur: "سلویٰ کا ساحل سمندر"
+kicker_ur: "قدرتی مقام"
+summary_ur: "الاحساء کے جنوب مشرقی سرے پر، سلویٰ قصبے میں ایک پرسکون ساحل سمندر، جو قطر کی سرحد کے قریب ہے۔"
+body_ur: "الاحساء کے جنوب مشرقی سرے پر سلویٰ قصبہ ہے، جہاں خشکی کے راستے سعودی عرب کا دروازہ قطر کی طرف کھلتا ہے۔ یہیں، ہفوف سے تقریباً 150 کلومیٹر دور، سلویٰ کا ساحل سمندر خلیج کے کنارے پھیلا ہوا ہے۔ سلویٰ انتظامی طور پر الاحساء کے تحت آتا ہے۔ کہتے ہیں کہ اس کے ساحل کی ریت خلیج کی سب سے خوبصورت ریت میں شمار ہوتی ہے۔ مغربی جانب الجافورہ صحرا کے ریت کے ٹیلے اس ساحل سے آ ملتے ہیں، اور اس علاقے میں پرندوں کی بہتات ہے۔ سمندر میں مچھلی کے شکار کے لیے یہ ساحل مشہور ہے، اور خاندان کے ساتھ مل بیٹھنے اور کنارے کنارے چہل قدمی کے لیے ایک پرسکون مقام بھی ہے۔ بلدیہ نے اس ساحل اور اس کے باغ میں ترقیاتی کام کیے ہیں: یہاں سائبان، کھیل کے میدان اور چہل قدمی کا راستہ بنایا ہے، اور کھلی فضا میں ورزش کے آلات لگائے ہیں۔"
+area_ur: "سلویٰ قصبہ، الاحساء کے جنوب مشرقی سرے پر"
 slug_ar: "شاطئ-سلوى"
 slug_en: "salwa-beach"
 category: nature
@@ -33,9 +39,9 @@ featured: false
 order: 41
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من بلدية سلوى", source_en: "Verified directly with Salwa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من بلدية سلوى", source_en: "Verified directly with Salwa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من بلدية سلوى", source_en: "Verified directly with Salwa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من بلدية سلوى", source_en: "Verified directly with Salwa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 24.765501, lng: 50.751494 }
 mapUrl: "https://maps.app.goo.gl/iz6mDtRQ4RVGztHt7"

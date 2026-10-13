@@ -19,6 +19,12 @@ kicker_ru: "Озеро"
 summary_ru: "Озеро к северу от Аль-Ахсы, образовавшееся из дренажных вод с ферм оазиса."
 body_ru: "Озеро Эль-Хубайль лежит к северу от Аль-Ахсы. Оно образовалось со временем: здесь скопились дренажные воды с ферм оазиса. Об остальном — о протяжённости озера и удобствах для посетителей — информация уточняется по надёжным источникам."
 area_ru: "К северу от Аль-Ахсы"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 90/100 (2026-10-13، الدفعة b6 — السجل في ur-translation/memory/scores.csv).
+title_ur: "جھیل الحبیل"
+kicker_ur: "جھیل"
+summary_ur: "الاحساء کے شمال میں ایک جھیل، جو نخلستان کے کھیتوں سے آنے والے زرعی نکاسی کے پانی سے بنی ہے۔"
+body_ur: "جھیل الحبیل پانی کا ایک پھیلاؤ ہے جو الاحساء کے شمال میں ہے۔ یہاں الاحساء کے نخلستان کے کھیتوں سے آنے والا زرعی نکاسی کا پانی وقت کے ساتھ ساتھ جمع ہوتا گیا، اور یوں یہ جھیل بن گئی۔ جھیل کے بارے میں مزید تفصیلات کی معتبر ذرائع سے تصدیق ابھی باقی ہے: یہ کتنی بڑی ہے اور یہاں سیاحوں کے لیے کوئی سہولت ہے یا نہیں۔"
+area_ur: "الاحساء کے شمال میں"
 slug_ar: "بحيرة-الحبيل"
 slug_en: "hubail-lake"
 category: nature
@@ -33,11 +39,12 @@ area: "شمال الأحساء"
 area_en: "North of Al-Ahsa"
 openSite: true
 practical:
-  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
+  - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", label_ur: "سیر", value_ur: "کھلا عوامی قدرتی مقام، کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 location: { lat: 25.7607843, lng: 49.7626523 }
 mapUrl: "https://maps.app.goo.gl/tepZoP6zNeRqmmCfA"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-07، الدفعة ru-attr-6 — السجل في ru-translation/memory/scores.csv).
+# أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 90/100 (2026-10-13، الدفعة b6 — السجل في ur-translation/memory/scores.csv).
 faq:
   - q: "كيف تكوّنت بحيرة الحبيل؟"
     a: "تكوّنت بمرور الوقت من تجمّع مياه الصرف الزراعي لمزارع الواحة."
@@ -49,6 +56,8 @@ faq:
     a_de: "Er ist mit der Zeit entstanden: Hier sammelte sich das landwirtschaftliche Drainagewasser der Farmen in der Oase."
     q_ru: "Как образовалось озеро Эль-Хубайль?"
     a_ru: "Оно образовалось со временем: здесь скопились дренажные воды с ферм оазиса."
+    q_ur: "جھیل الحبیل کیسے بنی؟"
+    a_ur: "نخلستان کے کھیتوں سے آنے والا زرعی نکاسی کا پانی وقت کے ساتھ ساتھ یہاں جمع ہوتا گیا، اور یوں یہ جھیل بن گئی۔"
   - q: "أين تقع بحيرة الحبيل؟"
     a: "شمال الأحساء."
     q_en: "Where is Al-Hubail Lake?"
@@ -59,6 +68,8 @@ faq:
     a_de: "Nördlich von Al-Ahsa."
     q_ru: "Где находится озеро Эль-Хубайль?"
     a_ru: "К северу от Аль-Ахсы."
+    q_ur: "جھیل الحبیل کہاں ہے؟"
+    a_ur: "الاحساء کے شمال میں۔"
   - q: "هل لزيارة بحيرة الحبيل رسوم؟"
     a: "لا، موقع طبيعي عام مفتوح بلا رسوم."
     q_en: "Is there a fee to visit Al-Hubail Lake?"
@@ -69,6 +80,8 @@ faq:
     a_de: "Nein. Der Al-Hubail-See ist ein öffentlich zugängliches Naturgelände; der Eintritt ist kostenlos."
     q_ru: "Нужно ли платить за посещение озера Эль-Хубайль?"
     a_ru: "Нет. Это открытая общедоступная природная территория, вход свободный."
+    q_ur: "کیا جھیل الحبیل کی سیر کی کوئی فیس ہے؟"
+    a_ur: "نہیں۔ یہ ایک کھلا عوامی قدرتی مقام ہے جہاں کوئی فیس نہیں۔"
 ---
 
 بحيرة الحبيل مسطح مائي يقع شمال الأحساء، تكوّن بمرور الوقت من تجمّع

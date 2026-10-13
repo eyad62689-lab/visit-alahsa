@@ -13,7 +13,9 @@
 //   (أ) لا تسمية الفئة القديمة في أي صفحة بأي لغة.
 //   (ب) في صفحة الأصفر بكل لغة: لا «شمال شرق الواحة» القديمة، وإيجاباً «نخيل الواحة» وجملة 2019.
 
-export const EXPECT = { minPages: 5 };
+// الأنماط الأوردية من نص الصفحة المعتمد في خط ترجمتها (النبذة والمتن وبطاقة الزيارة)، بلا تسمية
+// فئة قديمة لها: الفئة لم تحمل بالأوردية غير تسميتها الحالية.
+export const EXPECT = { minPages: 6 };
 
 // «بحيرة شرق العمران» في مسار الأصفر كانت مُسنَدة إلى خبر عن «مدينة الأصفر» المخطّطة شرق العمران
 // لا عن البحيرة (حكم إياد 2026-10-01: تُحذف).
@@ -27,6 +29,7 @@ export const OLD_AREA = {
   zh: /在绿洲东北部|绿洲东北部/,
   de: /Nordöstlich\s+der\s+Oase(?![-\w])/,
   ru: /к\s+северо-востоку\s+от\s+оазиса/i,
+  ur: /نخلستان\s+کے\s+شمال\s+مشرق/,
 };
 
 export const GROVES = {
@@ -35,6 +38,7 @@ export const GROVES = {
   zh: /椰枣林(?:的)?东北方/,
   de: /nordöstlich\s+der\s+Palmenhaine/i,
   ru: /к\s+северо-востоку\s+от\s+пальмовых\s+рощ/i,
+  ur: /کھجور\s+کے\s+باغات\s+کے\s+شمال\s+مشرق\s+میں/,
 };
 
 export const RESERVE_2019 = {
@@ -43,6 +47,7 @@ export const RESERVE_2019 = {
   zh: /2019\s*年，沙特环境水务与农业部宣布将这片湖辟为自然保护区/,
   de: /2019\s+gab\s+das\s+Ministerium\s+für\s+Umwelt,\s+Wasser\s+und\s+Landwirtschaft\s+die\s+Umwandlung\s+des\s+Sees\s+in\s+ein\s+Naturreservat\s+bekannt/,
   ru: /В\s+2019\s+году\s+Министерство\s+окружающей\s+среды,\s+водных\s+ресурсов\s+и\s+сельского\s+хозяйства\s+объявило,\s+что\s+озеро\s+станет\s+охраняемой\s+территорией/,
+  ur: /2019\s+میں\s+ماحولیات،\s+پانی\s+اور\s+زراعت\s+کی\s+وزارت\s+نے\s+اسے\s+محفوظ\s+قدرتی\s+علاقہ\s+بنانے\s+کا\s+اعلان\s+کیا/,
 };
 
 // عبور الطيور مرتين في العام (واس، مارس 2019) وبند الوصول بسيارات الدفع الرباعي (تأكيد إياد 2026-10-01)
@@ -53,6 +58,7 @@ export const BIRDS = {
   zh: /每年两度途经这里/,
   de: /Zweimal\s+im\s+Jahr\s+ziehen\s+sie\s+hier\s+durch/,
   ru: /пролетают\s+здесь\s+дважды\s+в\s+год/i,
+  ur: /سال\s+میں\s+دو\s+بار\s+یہاں\s+سے\s+گزرتے\s+ہیں/,
 };
 
 // الدفع الرباعي شرطٌ لا توصية (حكم إياد 2026-10-01)
@@ -62,6 +68,7 @@ export const ACCESS = {
   zh: /只能乘坐四驱车前往/,
   de: /Nur\s+mit\s+Allradfahrzeug/,
   ru: /Только\s+на\s+полноприводных\s+автомобилях/,
+  ur: /صرف\s+فور\s+وہیل\s+ڈرائیو\s+گاڑی\s+سے/,
 };
 
 // البحيرة «محطة» للطيور المهاجرة لا «موئل» (حكم إياد 2026-10-01، بلفظ واس «محطة لتجمع الطيور المهاجرة»)
@@ -71,6 +78,7 @@ export const STOPOVER = {
   zh: /候鸟迁徙途中的歇脚地/,
   de: /Rastplatz\s+für\s+Zugvögel/,
   ru: /местом,\s+где\s+останавлива[а-яё]+\s+перелётн[а-яё]+\s+птиц/i,
+  ur: /مہاجر\s+پرندوں\s+کا\s+پڑاؤ/,
 };
 
 export const OLD_HAVEN = {
@@ -79,12 +87,13 @@ export const OLD_HAVEN = {
   zh: /候鸟的栖息地/,
   de: /Rückzugsort\s+für\s+Zugvögel/,
   ru: /приютом\s+для\s+перелётных\s+птиц/i,
+  ur: /پرندوں\s+(?:کی\s+پناہ\s+گاہ|کا\s+مسکن)/,
 };
 
-const TARGET =/^(?:معالم\/بحيرة-الأصفر|(?:en|zh|de|ru)\/attractions\/asfar)\/index\.html$/;
+const TARGET =/^(?:معالم\/بحيرة-الأصفر|(?:en|zh|de|ru|ur)\/attractions\/asfar)\/index\.html$/;
 
 /**
- * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru', html: string}[]} pages كل صفحات dist
+ * @param {{rel: string, lang: 'ar'|'en'|'zh'|'de'|'ru'|'ur', html: string}[]} pages كل صفحات dist
  * @returns {{problems: string[], stats: {targets: number, perLang: Record<string, number>, scanned: number}}}
  */
 export function checkAsfarNotes(pages) {
