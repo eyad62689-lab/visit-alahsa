@@ -1,0 +1,1416 @@
+{
+  "batch": "b8",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b8",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, [area], [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 6,
+    "fields": 47,
+    "per_page": {
+      "musa-park": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "stadium-park": {
+        "fields": 8,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "ahsa-museum": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "ahsa-house-museum": {
+        "fields": 7,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "khalifa-museum": {
+        "fields": 7,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "abdulrazaq-museum": {
+        "fields": 7,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "musa-park",
+      "file": "src/content/attractions/musa-park.md",
+      "file_sha256": "8560c98785aee2708942ebfaa4105dc713ead8c34293b6aa29e9b7526f54b48a",
+      "order": 49,
+      "category": "parks",
+      "category_label": {
+        "en": "Parks & gardens",
+        "ar": "المتنزّهات والحدائق"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Moosa Park",
+          "ar": "حديقة الموسى",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A family park in Al-Mubarraz built by Almoosa Specialist Hospital, with inclusive play equipment uniting children with disabilities and their peers.",
+          "ar": "حديقة عائلية في حي الفيصل بالمبرز ضمن مبادرة «نلعب معاً»، بألعاب تدمج الأطفال ذوي الإعاقة مع أقرانهم.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the Faisal district of Al-Mubarraz lies Al-Moosa Park, opened in late November 2019 as the second park of the 'We Play Together' (Nalaab Ma'an) initiative — a community partnership between Al-Muhaidib for Community Service and Almoosa Specialist Hospital. The park was conceived around a simple idea rare in the Kingdom at the time: play equipment specially designed so that children with disabilities and their peers play side by side, making inclusion something children live rather than are taught. Spread over some 2,200 square metres, it holds more than twelve specialised inclusive play units, following the initiative's first park in Khobar.",
+          "ar": "في حي الفيصل بالمبرز تقع حديقة الموسى، التي افتُتحت أواخر نوفمبر 2019م\nثانيةَ حدائق مبادرة **«نلعب معاً»** — شراكة مجتمعية بين المهيدب لخدمة\nالمجتمع ومستشفى الموسى التخصصي.\n\nقامت الحديقة على فكرة كانت نادرة في المملكة حينها: ألعاب مصممة خصيصاً\nليلعب فيها **الأطفال ذوو الإعاقة مع أقرانهم** جنباً إلى جنب، فيعيش\nالأطفال قيم الدمج عيشاً لا تلقيناً. تمتد على مساحة تزيد على 2200 متر\nمربع وتضم أكثر من اثنتي عشرة لعبة متخصصة في الدمج، وقد سبقتها حديقة\nالمبادرة الأولى في الخبر.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Faisal district — Al-Mubarraz",
+          "ar": "حي الفيصل — المبرز",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.parks",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Парк Эль-Муса",
+          "kicker": "Парк",
+          "summary": "Семейный парк в Эль-Мубарразе, в районе Эль-Фейсал, — часть инициативы «Играем вместе»: игровое оборудование объединяет детей с инвалидностью и их сверстников.",
+          "body": "В районе Эль-Фейсал в Эль-Мубарразе разбит парк Эль-Муса, который открылся в конце ноября 2019 года как второй парк инициативы «Играем вместе». Эта инициатива — общественное партнёрство между «Эль-Мухайдиб для служения обществу» и специализированной больницей Эль-Муса. Парк вырос из простой мысли, которая в то время была редкой в Королевстве: игровое оборудование спроектировали так, чтобы дети с инвалидностью и их сверстники играли бок о бок и жили ценностями инклюзии, а не заучивали их. Он занимает больше 2 200 квадратных метров и включает более двенадцати специализированных игровых элементов для инклюзии. Ему предшествовал первый парк инициативы в Эль-Хубаре.",
+          "area": "Район Эль-Фейсал, Эль-Мубарраз",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Moosa-Park",
+          "kicker": "Park",
+          "summary": "Ein Park für Familien im Al-Faisal-Viertel von Al-Mubarraz, Teil der Initiative „Wir spielen gemeinsam“: Seine Spielgeräte bringen Kinder mit Behinderung und ihre Altersgenossen zusammen.",
+          "body": "Im Al-Faisal-Viertel von Al-Mubarraz liegt der Al-Moosa-Park. Er wurde Ende November 2019 als zweiter Park der Initiative „Wir spielen gemeinsam“ (Nalaab Ma'an) eröffnet – einer gesellschaftlichen Partnerschaft zwischen Al-Muhaidib für den Dienst an der Gemeinschaft und dem Almoosa Specialist Hospital. Der Park ging aus einem einfachen Gedanken hervor, der im Königreich damals selten war: Spielgeräte, eigens so entworfen, dass Kinder mit Behinderung und ihre Altersgenossen Seite an Seite spielen. So leben die Kinder die Werte der Inklusion, statt sie nur vermittelt zu bekommen. Auf mehr als 2.200 Quadratmetern vereint der Park mehr als zwölf spezielle Spielgeräte für Inklusion. Vorausgegangen war ihm der erste Park der Initiative in Khobar.",
+          "area": "Al-Faisal-Viertel – Al-Mubarraz",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "穆萨公园",
+          "kicker": "公园",
+          "summary": "位于穆巴拉兹的费萨尔区，是“我们一起玩”倡议下的一座家庭公园，游乐设施让残障儿童与同龄伙伴一起玩耍、彼此融合。",
+          "body": "穆萨公园（Al-Moosa Park）位于穆巴拉兹的费萨尔区，2019 年 11 月下旬开放，是“我们一起玩”（Nalaab Ma'an）倡议建成的第二座公园，第一座此前已落户胡拜尔。该倡议由穆海迪卜社区服务机构与穆萨专科医院携手推动，是两家机构在社区层面的合作。公园的构想在当时的沙特阿拉伯还很少见：游乐设施经过专门设计，让残障儿童与同龄伙伴并肩玩耍，孩子们由此在游戏中亲身体会融合的价值，而不是靠说教去懂得它。公园占地 2200 多平方米，设有 12 套以上专门的融合游乐设施。",
+          "area": "费萨尔区——穆巴拉兹",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "'We Play Together'",
+          "ar": "مبادرة «نلعب معاً»",
+          "ru": null,
+          "de": null,
+          "zh": "“我们一起玩”（Nalaab Ma'an）倡议",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Faisal district",
+          "ar": "حي الفيصل",
+          "ru": "район Эль-Фейсал",
+          "de": "das Al-Faisal-Viertel",
+          "zh": "费萨尔区",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Moosa Park",
+          "ar": "حديقة الموسى",
+          "ru": "парк Эль-Муса",
+          "de": "der Al-Moosa-Park",
+          "zh": "穆萨公园",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Mubarraz",
+          "ar": "المبرز",
+          "ru": "Эль-Мубарраз",
+          "de": "Al-Mubarraz",
+          "zh": "穆巴拉兹",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Muhaidib",
+          "ar": "المهيدب",
+          "ru": null,
+          "de": null,
+          "zh": "穆海迪卜",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Muhaidib for Community Service",
+          "ar": "المهيدب لخدمة المجتمع",
+          "ru": "«Эль-Мухайдиб для служения обществу»",
+          "de": "Al-Muhaidib für den Dienst an der Gemeinschaft",
+          "zh": "穆海迪卜社区服务机构",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Almoosa Specialist Hospital",
+          "ar": "مستشفى الموسى التخصصي",
+          "ru": "специализированная больница Эль-Муса",
+          "de": "das Almoosa Specialist Hospital",
+          "zh": "穆萨专科医院",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Faisal",
+          "ar": "الفيصل",
+          "ru": "Фейсал",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Khobar",
+          "ar": "الخبر",
+          "ru": "Эль-Хубар",
+          "de": "Khobar",
+          "zh": "胡拜尔",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the 'We Play Together'",
+          "ar": null,
+          "ru": null,
+          "de": "die Initiative „Wir spielen gemeinsam“ (Nalaab Ma'an)",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Kingdom",
+          "ar": null,
+          "ru": null,
+          "de": "das Königreich",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P10 (ruled, round 1): a large number — apply termbase _meta.calibration_rulings P10 (the Urdu scale; a figure below one lakh)",
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [2,200], only in Arabic [2200]",
+          "body: Arabic 2 paragraph(s), 473 characters, 2 bold phrase(s), 0 link(s); English 3 sentence(s), 651 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "stadium-park",
+      "file": "src/content/attractions/stadium-park.md",
+      "file_sha256": "42a251e2cdade17a536fa2a4d804045a5a9a81d07ca1b0b9b725679b2f5a9475",
+      "order": 50,
+      "category": "parks",
+      "category_label": {
+        "en": "Parks & gardens",
+        "ar": "المتنزّهات والحدائق"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Sports Stadium Park",
+          "ar": "حديقة الاستاد الرياضي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A public park beside the sports stadium in Hofuf.",
+          "ar": "حديقة عامة بجوار الاستاد الرياضي بالهفوف.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "A public park beside the sports stadium in Hofuf.",
+          "ar": "حديقة عامة بجوار الاستاد الرياضي بالهفوف.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "area": "The page has no area in any language: nothing to translate, the row does not render.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.parks",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Парк спортивного стадиона",
+          "kicker": "Парк",
+          "summary": "Общественный парк рядом со спортивным стадионом в Эль-Хуфуфе.",
+          "body": "Общественный парк рядом со спортивным стадионом в Эль-Хуфуфе.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Sportstadion-Park",
+          "kicker": "Park",
+          "summary": "Ein öffentlicher Park neben dem Sportstadion in Hofuf.",
+          "body": "Ein öffentlicher Park neben dem Sportstadion in Hofuf.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "体育场公园",
+          "kicker": "公园",
+          "summary": "胡富夫的一座公共公园，位于体育场旁。",
+          "body": "体育场公园（Sports Stadium Park）是胡富夫的一座公共公园，紧邻体育场。",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Sports Stadium Park",
+          "ar": "حديقة الاستاد الرياضي",
+          "ru": null,
+          "de": "der Sportstadion-Park",
+          "zh": "体育场公园",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 41 characters, 0 bold phrase(s), 0 link(s); English 1 sentence(s), 49 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "ahsa-museum",
+      "file": "src/content/attractions/ahsa-museum.md",
+      "file_sha256": "6d5743ab941d526ec62293dfe423b1249b7467dedc513e7b59385567c80064e1",
+      "order": 51,
+      "category": "museum",
+      "category_label": {
+        "en": "Museums",
+        "ar": "المتاحف"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Ahsa Museum",
+          "ar": "متحف الأحساء",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم تاريخي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The official regional museum; presents Al-Ahsa's history and antiquities across the ages.",
+          "ar": "المتحف الإقليمي الرسمي؛ يعرض تاريخ الأحساء وآثارها عبر العصور.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In Hofuf sits the Al-Ahsa Museum for Archaeology and Folk Heritage, the oasis's official government museum, opened in the early 1980s (1404 AH) on a site of roughly four thousand square metres. It holds archaeological and heritage pieces telling the region's story in chronological sequence, beginning with Stone Age finds from sites such as Ain Qannas, through the civilisations of Dilmun and Gerrha, to the Islamic eras and the First and Second Saudi States. Alongside the main exhibition hall are a reception gallery with maps of archaeological sites and historic photographs of Al-Ahsa from the 1930s and 1940s, a lecture hall and a conservation section. It makes an ideal starting point for understanding the oasis's depth before touring its landmarks.",
+          "ar": "في مدينة الهفوف يقع متحف الأحساء للآثار والتراث الشعبي، المتحف الحكومي\nالرسمي للواحة، وقد افتُتح أوائل الثمانينيات الميلادية (1404هـ) على مساحة\nتقارب أربعة آلاف متر مربع. يضم قطعاً أثرية وتراثية تروي حكاية\nالمنطقة في تسلسل زمني يبدأ من العصور الحجرية بمكتشفات مواقع مثل عين قناص،\nمروراً بحضارات دلمون والجرهاء، وصولاً إلى العصور الإسلامية والدولتين\nالسعوديتين الأولى والثانية. وإلى جانب صالة العرض الرئيسية، فيه صالة استقبال\nبخرائط المواقع الأثرية وصور تاريخية للأحساء من ثلاثينيات القرن العشرين\nوأربعينياته، وقاعة محاضرات وقسم للترميم. وهو نقطة انطلاق مثالية لفهم عمق\nالواحة قبل جولتك على معالمها.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Hofuf — Al-Ahsa",
+          "ar": "الهفوف — الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Sunday–Thursday 8:00 am – 2:30 pm (closed Friday & Saturday)",
+              "ar": "الأحد - الخميس: 8:00 ص - 2:30 م (مغلق الجمعة والسبت)"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.museum",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": true,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Музей Аль-Ахсы",
+          "kicker": "Историческая достопримечательность",
+          "summary": "Официальный региональный музей: история и древности Аль-Ахсы от эпохи к эпохе.",
+          "body": "В Эль-Хуфуфе находится Музей археологии и народного наследия Аль-Ахсы — официальный государственный музей оазиса. Он открылся в начале 1980-х годов (1404 год хиджры) и занимает участок около 4 000 квадратных метров. Здесь собраны предметы археологии и народного наследия: они рассказывают историю края в хронологическом порядке — от находок каменного века на таких археологических памятниках, как Айн-Каннас, через цивилизации Дильмуна и Герры к исламским эпохам и к Первому и Второму Саудовским государствам. Помимо главного выставочного зала, в музее — приёмный зал с картами археологических памятников и историческими снимками Аль-Ахсы 1930-х и 1940-х годов, а также лекционный зал и отдел реставрации. Это идеальная отправная точка: здесь вы поймёте глубину оазиса, прежде чем отправитесь осматривать его достопримечательности.",
+          "area": "Эль-Хуфуф, Аль-Ахса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Ahsa-Museum",
+          "kicker": "Historische Stätte",
+          "summary": "Das offizielle Regionalmuseum: Es zeigt Geschichte und Altertümer Al-Ahsas über die Epochen hinweg.",
+          "body": "In Hofuf liegt das Al-Ahsa-Museum für Archäologie und Volkskultur, das offizielle staatliche Museum der Oase. Es wurde Anfang der 1980er-Jahre (1404 nach der Hidschra) eröffnet und steht auf einem Gelände von rund 4.000 Quadratmetern. Seine Bestände aus Archäologie und Kulturerbe erzählen die Geschichte der Region in zeitlicher Folge: von Funden der Steinzeit an archäologischen Stätten wie Ain Qannas über die Kulturen von Dilmun und Gerrha bis zu den islamischen Epochen und zum ersten und zweiten saudischen Staat. Neben dem Hauptausstellungssaal gibt es einen Empfangssaal mit Karten der archäologischen Stätten und mit historischen Fotografien Al-Ahsas aus den 1930er- und 1940er-Jahren, dazu einen Vortragssaal und eine Restaurierungsabteilung. Das Museum ist ein idealer Ausgangspunkt: Hier verstehen Sie die Tiefe der Oase, bevor Sie ihre Sehenswürdigkeiten besuchen.",
+          "area": "Hofuf – Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "哈萨博物馆",
+          "kicker": "历史地标",
+          "summary": "哈萨地区的官方博物馆，呈现这片土地各个时代的历史与文物。",
+          "body": "哈萨博物馆全称“哈萨考古与民俗遗产博物馆”（Al-Ahsa Museum for Archaeology and Folk Heritage），位于胡富夫市，是哈萨绿洲的官方博物馆，由政府开办。博物馆于 20 世纪 80 年代初（伊斯兰历 1404 年）开馆，占地约 4000 平方米。馆内的考古与文化遗产藏品按时间顺序讲述本地区的故事：从艾因卡纳斯（Ain Qannas）等遗址出土的石器时代文物开始，经迪尔蒙（Dilmun）与格拉（Gerrha）文明时期，直至伊斯兰时代的各个时期以及第一、第二沙特王国。主展厅之外还有一间接待厅，陈列着考古遗址地图和 20 世纪 30 至 40 年代的哈萨历史照片；馆内另设讲堂与文物修复部门。在游览各处地标之前，先来这里读懂这片绿洲的深厚底蕴，再合适不过。",
+          "area": "胡富夫——哈萨",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Ain Qannas",
+          "ar": "عين قناص",
+          "ru": "Айн-Каннас",
+          "de": "Ain Qannas",
+          "zh": "艾因卡纳斯（Ain Qannas）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Museum",
+          "ar": "متحف الأحساء",
+          "ru": "Музей Аль-Ахсы",
+          "de": null,
+          "zh": "哈萨博物馆",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Ahsa Museum for Archaeology and Folk Heritage",
+          "ar": "متحف الأحساء للآثار والتراث الشعبي",
+          "ru": "Музей археологии и народного наследия Аль-Ахсы",
+          "de": null,
+          "zh": "哈萨考古与民俗遗产博物馆",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Dilmun",
+          "ar": "دلمون",
+          "ru": "Дильмун",
+          "de": "Dilmun",
+          "zh": "迪尔蒙（Dilmun）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Gerrha",
+          "ar": "الجرهاء",
+          "ru": "Герра",
+          "de": "Gerrha",
+          "zh": "格拉（Gerrha）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Islamic eras",
+          "ar": "العصور الإسلامية",
+          "ru": null,
+          "de": null,
+          "zh": "伊斯兰时代的各个时期",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Stone Age",
+          "ar": "العصور الحجرية",
+          "ru": "каменный век",
+          "de": null,
+          "zh": "石器时代",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3c / P3c-labels / N14 (ruled, round 1): a name with an opaque or false-friend Arabic generic (qasr / souq / ain / bayt) — apply the rulings of termbase _meta.calibration_rulings as written",
+        "P10 (ruled, round 1): a large number — apply termbase _meta.calibration_rulings P10 (the Urdu scale; a figure below one lakh)",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "N7 (OPEN, termbase _meta.open_items): a range between weekday names — keep the provisional form of the entry and raise it",
+        "Hijri years: rulings N12 (a year in both calendars), N19 (a full date), N20 (a decade), N22 (a span of years)",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [1980, 1930, 1940], only in Arabic []",
+          "body: Arabic 1 paragraph(s), 598 characters, 0 bold phrase(s), 0 link(s); English 4 sentence(s), 757 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "ahsa-house-museum",
+      "file": "src/content/attractions/ahsa-house-museum.md",
+      "file_sha256": "14a95cd3aea6a01f2300166bcf55e3b5b194883fbd907c36b93483090eeb3d2e",
+      "order": 52,
+      "category": "museum",
+      "category_label": {
+        "en": "Museums",
+        "ar": "المتاحف"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Ahsa House Museum",
+          "ar": "متحف البيت الأحسائي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "متحف خاص",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The 'Naathel' museum — an old Hasawi house with its majlis rooms, kitchen and bridal chamber, founded by Sulaiman Al-Majed.",
+          "ar": "متحف «النعاثل» — بيت أحسائي قديم بمجالسه ومطبخه وغرفة عروسه، أسسه سليمان الماجد.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In Hofuf, the Al-Ahsa House Museum — known as the Naathel Museum — recreates the old Hasawi home room by room. It was established by Sulaiman bin Mohammed Al-Majed in the outer courtyard of his own house, over an area of some 180 square metres. Its rooms follow the layout of traditional life: a men's majlis with Hasawi coffee pots and roasting tools, a women's majlis with its old furnishings, a kitchen with stone hand-mills and copper dishes, a bridal chamber with dress and jewellery, and a children's room with vintage toys — alongside manuscripts, coins, old photographs and farming tools. The museum also hosts heritage gatherings and workshops, keeping the old house alive rather than merely displayed.",
+          "ar": "في الهفوف يحاكي متحف البيت الأحسائي — المعروف بمتحف **«النعاثل»** —\nالبيت الأحسائي القديم غرفةً غرفة. أسسه **سليمان بن محمد الماجد**\nفي الفناء الخارجي لمنزله على مساحة تقارب\n180 متراً مربعاً. تتوزع أركانه على نسق الحياة التقليدية: مجلس الرجال\nبدلاله الأحسائية وأدوات تحميص القهوة وطحنها، ومجلس النساء بأثاثه القديم،\nوالمطبخ برحاه الحجرية وصحونه النحاسية، وغرفة العروس بملابسها وحليّها،\nوغرفة الأطفال بألعابها العتيقة — إلى جانب مخطوطات وعملات وصور قديمة\nوأدوات زراعية. ويستضيف المتحف ملتقيات وورشاً تراثية تُبقي البيت القديم\nحياً لا معروضاً فحسب.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Hofuf — Al-Ahsa",
+          "ar": "الهفوف — الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 4:00–10:00 pm",
+              "ar": "يومياً: 4:00 م - 10:00 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.museum",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Музей традиционного дома Аль-Ахсы",
+          "kicker": "Частный музей",
+          "summary": "Музей «Эн-Наасиль» — старый дом Аль-Ахсы с меджлисами, кухней и комнатой невесты; основал его Сулейман аль-Маджид.",
+          "body": "В Эль-Хуфуфе Музей традиционного дома Аль-Ахсы, известный как Музей «Эн-Наасиль», воссоздаёт старое жилище оазиса комната за комнатой. Основал его Сулейман ибн Мухаммед аль-Маджид во внешнем дворе собственного дома, и музей занимает около 180 квадратных метров. Комнаты воспроизводят традиционный уклад жизни: мужской меджлис (приёмный зал) с кофейниками Аль-Ахсы и утварью для обжарки и помола кофе, женский меджлис со старой обстановкой, кухня с каменными ручными мельницами и медной посудой, комната невесты с одеждой и украшениями, детская со старинными игрушками. Здесь же — рукописи, монеты, старые фотографии и земледельческие орудия. В музее проходят встречи и мастер-классы, посвящённые наследию, — так старый дом остаётся живым, а не просто экспонатом.",
+          "area": "Эль-Хуфуф, Аль-Ахса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Ahsa-Hausmuseum",
+          "kicker": "Privatmuseum",
+          "summary": "Das „Naathel“-Museum – ein altes Wohnhaus Al-Ahsas mit Empfangsräumen, Küche und Brautzimmer, von Sulaiman Al-Majed gegründet.",
+          "body": "In Hofuf bildet das Al-Ahsa-Hausmuseum, bekannt als „Naathel“-Museum, Raum für Raum das alte Wohnhaus Al-Ahsas nach. Sulaiman bin Mohammed Al-Majed gründete es im äußeren Hof seines eigenen Hauses, auf einer Fläche von rund 180 Quadratmetern. Die Räume folgen der Ordnung des traditionellen Lebens: ein Madschlis (Empfangsraum) für Männer mit Kaffeekannen aus Al-Ahsa und Geräten zum Rösten und Mahlen des Kaffees, ein Madschlis für Frauen mit seiner alten Einrichtung, eine Küche mit steinernen Handmühlen und kupfernem Geschirr, ein Brautzimmer mit Kleidung und Schmuck sowie ein Kinderzimmer mit Spielzeug von einst. Dazu kommen Handschriften, Münzen, alte Fotografien und landwirtschaftliches Gerät. Außerdem veranstaltet das Museum Treffen und Werkstätten zum Kulturerbe und hält das alte Haus so lebendig, statt es nur auszustellen.",
+          "area": "Hofuf – Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "哈萨民居博物馆",
+          "kicker": "私人博物馆",
+          "summary": "人称“纳阿西勒”博物馆，由苏莱曼·马吉德创办，按哈萨老宅的样式布置，会客厅、厨房与新娘房一应俱全。",
+          "body": "哈萨民居博物馆位于胡富夫，人称“纳阿西勒”博物馆（Naathel Museum），逐间再现哈萨传统老宅。博物馆由苏莱曼·本·穆罕默德·马吉德创办，设在他自家住宅的外院，占地约 180 平方米。各个房间按传统生活的格局布置：男宾会客厅里摆着哈萨咖啡壶，以及烘焙、研磨咖啡的器具；女宾会客厅保留着旧日陈设；厨房里有石磨和铜盘；新娘房里陈列着嫁衣与首饰；儿童房里则是老式玩具。此外还有手稿、钱币、老照片和农具。博物馆还举办传统文化聚会与工作坊，让这座老宅不只是静态的陈列，而是依然“活”着。",
+          "area": "胡富夫——哈萨",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa House Museum",
+          "ar": "متحف البيت الأحسائي",
+          "ru": "Музей традиционного дома Аль-Ахсы",
+          "de": null,
+          "zh": "哈萨民居博物馆",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi coffee pots",
+          "ar": "الدلال الأحسائية",
+          "ru": null,
+          "de": null,
+          "zh": "哈萨咖啡壶",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi house",
+          "ar": "البيت الأحسائي",
+          "ru": null,
+          "de": null,
+          "zh": "哈萨传统民居",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Naathel Museum",
+          "ar": "متحف «النعاثل»",
+          "ru": null,
+          "de": null,
+          "zh": "“纳阿西勒”博物馆（Naathel Museum）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Sulaiman bin Mohammed Al-Majed",
+          "ar": "سليمان بن محمد الماجد",
+          "ru": "Сулейман ибн Мухаммед аль-Маджид",
+          "de": "Sulaiman bin Mohammed Al-Majed",
+          "zh": "苏莱曼·本·穆罕默德·马吉德",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 546 characters, 2 bold phrase(s), 0 link(s); English 4 sentence(s), 711 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "khalifa-museum",
+      "file": "src/content/attractions/khalifa-museum.md",
+      "file_sha256": "3ccf1004374ef68a217d52552596b6f63daf0d52d386640a03f9a904aa2b1831",
+      "order": 53,
+      "category": "museum",
+      "category_label": {
+        "en": "Museums",
+        "ar": "المتاحف"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Khalifa Heritage Museum",
+          "ar": "متحف الخليفة التراثي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "متحف خاص",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A private museum built like a folk souq echoing the Qaisariyah, its heritage displays spanning Al-Ahsa's old crafts and daily life.",
+          "ar": "متحف خاص على هيئة سوق شعبي يحاكي القيصرية، بمعروضات تراثية تغطي مهن الأحساء وحياتها القديمة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "North of Al-Mubarraz, between the villages of Al-Shu'bah and Al-Qurain, stands the Al-Khalifa Heritage Museum, one of Al-Ahsa's most prominent private museums, licensed by the Museums Commission. Its founder, Hussain Ali Al-Khalifa, began it in his home garden in Al-Mubarraz's Shurufiyah district and built the collection over some twenty years, until the museum grew into its present form: a folk souq echoing the old Qaisariyah, with over twenty little shops recreating the historic crafts and trades. Its displays span weapons, coffee pots and cooking vessels, farming tools, women's dress and jewellery, old teaching materials, sections on the Hasawi house, farming, desert and seafaring life, a corner for the Aramco era, and a majlis done up as a traditional Hasawi diwaniyah.",
+          "ar": "شمال المبرز، بين بلدتي الشعبة والقرين، يقوم متحف الخليفة التراثي، أحد\nأبرز المتاحف الخاصة في الأحساء والمرخصة من هيئة المتاحف. بدأه مؤسسه\n**حسين علي الخليفة** في حديقة منزله بحي الشروفية بالمبرز، وجمع مقتنياته\nعلى مدى نحو عشرين عاماً حتى اتخذ المتحف شكله الحالي: **سوق شعبي يحاكي\nالقيصرية** بأكثر من عشرين دكاناً تمثل المهن والحرف التاريخية. تتوزع\nمعروضاته على أركان الأسلحة ودلال القهوة وأواني\nالطبخ والمستلزمات الزراعية والملابس والحلي النسائية وأدوات التعليم\nالقديمة، وأقسام للبيت الأحسائي والفلاحة والبادية والبحّارة، وركن لحقبة\nأرامكو، ومجلس يحاكي الديوانية الأحسائية.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "North of Al-Mubarraz — between Al-Shu'bah and Al-Qurain",
+          "ar": "شمال المبرز — بين الشعبة والقرين",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 4:00–9:30 pm",
+              "ar": "يومياً: 4:00 م - 9:30 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.museum",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Музей наследия Эль-Халифа",
+          "kicker": "Частный музей",
+          "summary": "Частный музей, выстроенный как народный рынок по образцу рынка Эль-Кайсария: его экспонаты рассказывают о старых ремёслах и быте Аль-Ахсы.",
+          "body": "К северу от Эль-Мубарраза, между посёлками Эш-Шууба и Эль-Курайн, находится Музей наследия Эль-Халифа — один из самых известных частных музеев Аль-Ахсы. Лицензию ему выдала Комиссия по музеям. Основатель музея Хусейн Али аль-Халифа начал его в саду своего дома в Эль-Мубарразе, в районе Эш-Шуруфия, и собирал коллекцию около двадцати лет — пока музей не принял нынешний вид: народный рынок по образцу старого рынка Эль-Кайсария, где более двадцати лавок воссоздают исторические ремёсла и промыслы. Экспонаты распределены по уголкам: оружие, кофейники и посуда для готовки, земледельческие орудия, женская одежда и украшения, старые учебные принадлежности; отдельные разделы — о доме Аль-Ахсы, земледелии, жизни в пустыне и жизни моряков. Есть здесь и уголок эпохи Арамко, и меджлис (приёмный зал), оформленный как традиционная диванийя Аль-Ахсы.",
+          "area": "К северу от Эль-Мубарраза, между посёлками Эш-Шууба и Эль-Курайн",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Khalifa-Kulturerbe-Museum",
+          "kicker": "Privatmuseum",
+          "summary": "Ein Privatmuseum, gebaut wie ein traditioneller Souk nach dem Vorbild des Qaisariyah-Souks: Seine Exponate zum Kulturerbe zeigen die alten Berufe Al-Ahsas und den Alltag von einst.",
+          "body": "Nördlich von Al-Mubarraz, zwischen den Dörfern Al-Shu'bah und Al-Qurain, liegt das Al-Khalifa-Kulturerbe-Museum, eines der bekanntesten Privatmuseen Al-Ahsas, von der Museumskommission lizenziert. Sein Gründer Hussain Ali Al-Khalifa begann damit im Garten seines Hauses im Shurufiyah-Viertel von Al-Mubarraz und trug die Sammlung über rund 20 Jahre zusammen. So fand das Museum seine heutige Gestalt: die eines traditionellen Souks nach dem Vorbild des alten Qaisariyah-Souks. Mehr als 20 kleine Läden bilden darin die historischen Berufe und Handwerke nach. Die Exponate verteilen sich auf Ecken für Waffen, Kaffeekannen und Kochgefäße, landwirtschaftliches Gerät, Kleidung und Schmuck der Frauen sowie alte Lehrmittel. Dazu kommen Abteilungen zum Wohnhaus in Al-Ahsa, zur Landwirtschaft, zum Leben in der Wüste und zum Leben der Seefahrer, eine Ecke zur Aramco-Ära und ein Madschlis (Empfangsraum), der einer Diwaniyya aus Al-Ahsa nachempfunden ist.",
+          "area": "Nördlich von Al-Mubarraz – zwischen Al-Shu'bah und Al-Qurain",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "哈利法遗产博物馆",
+          "kicker": "私人博物馆",
+          "summary": "一座私人博物馆，仿照凯撒利亚集市布置成一座民俗市集，馆藏文物涵盖哈萨的旧日行当与生活。",
+          "body": "哈利法遗产博物馆（Al-Khalifa Heritage Museum）位于穆巴拉兹以北、舒阿巴与古赖恩两镇之间，是哈萨最著名的私人博物馆之一，并持有沙特博物馆委员会颁发的许可。创办人侯赛因·阿里·哈利法起初在穆巴拉兹的舒鲁菲亚区自家住宅的花园里办起这座博物馆，前后用了约 20 年收集藏品，才有了今天的模样：一座仿照老凯撒利亚集市的民俗市集，由 20 多间小店铺重现昔日的行当与手艺。馆内展品分区陈列：兵器、阿拉伯咖啡壶与炊具、农具、女装与首饰，还有旧时的教学用具。此外还设有哈萨传统民居、农耕、沙漠生活与航海生活等专区，以及一处呈现阿美石油公司（Aramco）时期的展区；另有一间会客厅，按哈萨“迪瓦尼亚”（diwaniyah，传统的待客聚会厅）的样式布置。",
+          "area": "穆巴拉兹以北——舒阿巴与古赖恩之间",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Khalifa Heritage Museum",
+          "ar": "متحف الخليفة التراثي",
+          "ru": "Музей наследия Эль-Халифа",
+          "de": "das Al-Khalifa-Kulturerbe-Museum",
+          "zh": "哈利法遗产博物馆",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Mubarraz",
+          "ar": "المبرز",
+          "ru": "Эль-Мубарраз",
+          "de": "Al-Mubarraz",
+          "zh": "穆巴拉兹",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Qurain",
+          "ar": "القرين",
+          "ru": "Эль-Курайн",
+          "de": "Al-Qurain",
+          "zh": "古赖恩",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Shu'bah",
+          "ar": null,
+          "ru": "Эш-Шууба",
+          "de": "Al-Shu'bah",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Aramco",
+          "ar": null,
+          "ru": "Арамко",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Aramco era",
+          "ar": "حقبة أرامكو",
+          "ru": null,
+          "de": null,
+          "zh": "阿美石油公司（Aramco）时期",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "folk souq echoing the Qaisariyah",
+          "ar": "سوق شعبي يحاكي القيصرية",
+          "ru": null,
+          "de": null,
+          "zh": "仿照凯撒利亚集市布置成的民俗市集",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi house",
+          "ar": "البيت الأحسائي",
+          "ru": null,
+          "de": null,
+          "zh": "哈萨传统民居",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hussain Ali Al-Khalifa",
+          "ar": "حسين علي الخليفة",
+          "ru": "Хусейн Али аль-Халифа",
+          "de": "Hussain Ali Al-Khalifa",
+          "zh": "侯赛因·阿里·哈利法",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Museums Commission",
+          "ar": "هيئة المتاحف",
+          "ru": "Комиссия по музеям",
+          "de": null,
+          "zh": "沙特博物馆委员会",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Qaisariyah",
+          "ar": "القيصرية",
+          "ru": null,
+          "de": null,
+          "zh": "凯撒利亚（Qaisariyah）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Shurufiyah district",
+          "ar": null,
+          "ru": null,
+          "de": "das Shurufiyah-Viertel",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Hasawi house",
+          "ar": null,
+          "ru": null,
+          "de": "das Wohnhaus in Al-Ahsa",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Museums Commission",
+          "ar": null,
+          "ru": null,
+          "de": "die Museumskommission",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 573 characters, 2 bold phrase(s), 0 link(s); English 3 sentence(s), 783 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "abdulrazaq-museum",
+      "file": "src/content/attractions/abdulrazaq-museum.md",
+      "file_sha256": "5da5bf4037c009879ebeac722f2b1425770d839a56f129bc79535c7e56c9b0cd",
+      "order": 54,
+      "category": "museum",
+      "category_label": {
+        "en": "Museums",
+        "ar": "المتاحف"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Abdulrazaq Al-Arab Museum",
+          "ar": "متحف عبد الرزاق العرب",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "متحف خاص",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A private museum in Hofuf famed for its rare collection of old Saudi school curricula.",
+          "ar": "متحف خاص في الهفوف يشتهر بمجموعته النادرة من المناهج الدراسية السعودية القديمة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In Hofuf stands the museum of Abdulrazaq Al-Arab, a private museum gathering Al-Ahsa's folk heritage, best known for its documented speciality: the history of education in Saudi Arabia, with a rare collection of the Kingdom's earliest school curricula and teaching materials. Its holdings drew official attention — in 2019 the Al-Ahsa office of the tourism and national heritage authority launched an electronic archiving project inside the museum, digitising more than 150 old curricula over some 750 hours of work. Alongside the education collection, the museum displays pieces of the local folk heritage, making it a distinctive stop for visitors tracing how learning began in the Kingdom.",
+          "ar": "في الهفوف يقع متحف عبد الرزاق العرب، متحف خاص يجمع الموروث الشعبي\nالأحسائي، ويشتهر بتخصصه الموثق في **تاريخ التعليم في المملكة**: مجموعة\nنادرة من أقدم المناهج الدراسية السعودية ومستلزمات التعليم الأولى. وقد\nحظيت مقتنياته باهتمام رسمي، إذ دشّن مكتب هيئة السياحة والتراث الوطني\nبالأحساء عام 2019م مشروعاً لأرشفة المناهج إلكترونياً داخل المتحف، رُقمن\nفيه أكثر من 150 منهجاً قديماً في نحو 750 ساعة عمل. وإلى جانب ركن\nالتعليم، يعرض المتحف قطعاً من الموروث الشعبي المحلي، فيقدّم للزائر محطة\nمميزة لتتبّع بدايات التعليم في المملكة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Hofuf — Al-Ahsa",
+          "ar": "الهفوف — الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Evenings 4:30–9:30 pm, by prior arrangement",
+              "ar": "الفترة المسائية: 4:30 م - 9:30 م (بالاتصال المسبق)"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.museum",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Музей Абдурраззака аль-Араба",
+          "kicker": "Частный музей",
+          "summary": "Частный музей в Эль-Хуфуфе, известный редкой коллекцией старых саудовских школьных программ.",
+          "body": "Музей Абдурраззака аль-Араба в Эль-Хуфуфе собирает народное наследие Аль-Ахсы, но известен прежде всего одной темой — историей образования в Саудовской Аравии: здесь хранится редкая коллекция самых ранних школьных программ Королевства и первых учебных принадлежностей. Собрание музея привлекло официальное внимание — в 2019 году отделение Комиссии по туризму и национальному наследию в Аль-Ахсе запустило в самом музее проект электронной архивации: более 150 старых программ оцифровали примерно за 750 часов работы. Кроме этой коллекции, в музее показывают предметы местного народного наследия. Если вы хотите проследить, с чего начиналось образование в Королевстве, этот музей заслуживает внимания.",
+          "area": "Эль-Хуфуф, Аль-Ахса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Abdulrazaq-Al-Arab-Museum",
+          "kicker": "Privatmuseum",
+          "summary": "Ein Privatmuseum in Hofuf, bekannt für seine seltene Sammlung alter saudischer Schullehrpläne.",
+          "body": "In Hofuf liegt das Museum von Abdulrazaq Al-Arab, ein Privatmuseum, das Zeugnisse der Volkskultur Al-Ahsas versammelt. Bekannt ist es vor allem für seinen dokumentierten Schwerpunkt: die Geschichte des Bildungswesens in Saudi-Arabien, mit einer seltenen Sammlung der frühesten Schullehrpläne und der ersten Lehrmittel des Königreichs. Seine Bestände fanden auch offizielle Beachtung: 2019 startete das Al-Ahsa-Büro der Kommission für Tourismus und Nationalerbe im Museum selbst ein Projekt zur elektronischen Archivierung, bei dem in rund 750 Arbeitsstunden mehr als 150 alte Lehrpläne digitalisiert wurden. Neben der Sammlung zum Bildungswesen zeigt das Museum Stücke der örtlichen Volkskultur. Wer den Anfängen des Lernens im Königreich nachgehen möchte, findet hier eine besondere Station.",
+          "area": "Hofuf – Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "阿卜杜勒拉扎克·阿拉卜博物馆",
+          "kicker": "私人博物馆",
+          "summary": "位于胡富夫的私人博物馆，以收藏珍稀的沙特旧时学校课本闻名。",
+          "body": "阿卜杜勒拉扎克·阿拉卜博物馆（Abdulrazaq Al-Arab Museum）位于胡富夫，是一座汇集哈萨民俗遗产的私人博物馆，其中最为人称道的，是沙特阿拉伯教育史这一有据可查的专题收藏。馆内藏有沙特最早的学校课本和早期教学用具，是一批珍稀的藏品。这些藏品也得到官方关注：2019 年，沙特旅游与国家遗产总局哈萨办事处在馆内启动了课本电子归档项目，该项目耗时约 750 个工时，将 150 多本旧课本数字化。除教育专区之外，博物馆还陈列着各类本地民俗文物。对想追溯沙特教育起点的游客来说，这里是一处别具一格的驻足之地。",
+          "area": "胡富夫——哈萨",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Abdulrazaq Al-Arab",
+          "ar": "عبد الرزاق العرب",
+          "ru": "Абдурраззак аль-Араб",
+          "de": null,
+          "zh": "阿卜杜勒拉扎克·阿拉卜",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Abdulrazaq Al-Arab Museum",
+          "ar": "متحف عبد الرزاق العرب",
+          "ru": "Музей Абдурраззака аль-Араба",
+          "de": "das Abdulrazaq-Al-Arab-Museum · das Museum von Abdulrazaq Al-Arab",
+          "zh": "阿卜杜勒拉扎克·阿拉卜博物馆",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Arab",
+          "ar": "العرب (اسم عائلة)",
+          "ru": null,
+          "de": null,
+          "zh": "阿拉卜",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "old Saudi school curricula",
+          "ar": "المناهج الدراسية السعودية القديمة",
+          "ru": null,
+          "de": null,
+          "zh": "沙特旧时学校课本",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Saudi Arabia",
+          "ar": null,
+          "ru": "Саудовская Аравия",
+          "de": "Saudi-Arabien",
+          "zh": "沙特阿拉伯",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Kingdom",
+          "ar": null,
+          "ru": null,
+          "de": "das Königreich",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 524 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 692 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    }
+  ]
+}
