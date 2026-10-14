@@ -177,6 +177,33 @@ const C = localize(lang, {
   },
 });
 
+// نصوص الفعالية المؤقتة (oneOff) — عربية وإنجليزية فقط: صفحاتها لا تُبنى بغيرهما
+// (events.ts)، فلا كتلة zh/de/ru هنا خارج خطوط الترجمة.
+const O = localize(lang, {
+  ar: {
+    eyebrow: 'فعالية مؤقتة',
+    notice: 'فعالية مؤقتة تُقام مرة واحدة في موعدها المعلن، والمعلومات هنا منقولة من إعلانها الرسمي. يُرجى التأكد من الجهة المنظّمة قبل الزيارة.',
+    whatsapp: 'للحجز والاستفسار عبر واتساب',
+    posterAlt: 'الإعلان الرسمي',
+    posterCap: 'الإعلان الرسمي للفعالية',
+    ended: 'انتهت الفعالية',
+  },
+  en: {
+    eyebrow: 'Limited-time event',
+    notice: 'A one-off event held on its announced dates; the details here are taken from its official announcement. Please confirm with the organisers before visiting.',
+    whatsapp: 'Bookings & enquiries on WhatsApp',
+    posterAlt: 'Official announcement',
+    posterCap: 'The event’s official announcement',
+    ended: 'Event has ended',
+  },
+});
+// العدّاد وتحوّل ما بعد الختام: للنسخة المؤكدة ذات الموسم (after) وللفعالية المؤقتة —
+// وهذه لا موسم تعود إليه، فبعد الختام تُوسم «انتهت» وتُخفى بنودها حتى يحذفها البناء التالي.
+const edition = !!raw.endISO && (!!raw.after || !!raw.oneOff);
+const afterJson = raw.after
+  ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
+  : raw.oneOff ? JSON.stringify({ oneOff: true, status: 'tba', label: O.ended }) : undefined;
+
 // تسمية زرّ المتجر من قاموس لغة الصفحة نفسها (‏ev.shop) — لا من t() لأن تراجعه
 // يعطي الإنجليزية. لغة بلا المفتاح تعرض **الأيقونة وحدها** بتسمية aria إنجليزية من
 // كلمة واحدة، على سابقة ShareButton حرفياً: قاعدة CLAUDE.md تمنع نصّاً بـzh/de/ru
@@ -257,17 +284,17 @@ if (ev.faq?.length) {
     mainEntity: ev.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
 }
 ---
-<Base title={`${ev.seoTitle ?? ev.name} ${titleSep(lang)} ${t('site.brand')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={ev.img || undefined}>
+<Base title={`${ev.seoTitle ?? ev.name} ${titleSep(lang)} ${t('site.brand')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={(!ev.poster && ev.img) || undefined}>
   <Header lang={lang} alt={alt} />
   <main id="main"
-    data-ev-edition={raw.after && raw.endISO ? '' : undefined}
-    data-ev-start={raw.after && raw.startISO ? raw.startISO : undefined}
-    data-ev-end={raw.after && raw.endISO ? raw.endISO : undefined}
-    data-ev-after={raw.after && raw.endISO
-      ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
-      : undefined}>
-    <section class={`evd-hero on-dark ${ev.img ? '' : 'evd-hero--plain'}`}>
-      {ev.img && <HeroPoster src={ev.img} class="evd-poster" />}
+    data-ev-edition={edition ? '' : undefined}
+    data-ev-start={edition && raw.startISO ? raw.startISO : undefined}
+    data-ev-end={edition ? raw.endISO : undefined}
+    data-ev-after={edition ? afterJson : undefined}>
+    {/* بإعلان رسمي (poster) يبقى الهيرو سادة: نصوص الإعلان تحت العنوان تتزاحم معه، والإعلان
+        يُعرض كاملاً بجانب المتن */}
+    <section class={`evd-hero on-dark ${ev.img && !ev.poster ? '' : 'evd-hero--plain'}`}>
+      {ev.img && !ev.poster && <HeroPoster src={ev.img} class="evd-poster" />}
       <PalmMotif size={320} class="evd-wm" />
       <div class="container evd-in">
         <nav class="crumbs" aria-label={t('a11y.crumbs')}>
@@ -275,7 +302,7 @@ if (ev.faq?.length) {
           <a href={listHref}>{C.crumb}</a><span>/</span>
           <span aria-current="page">{ev.name}</span>
         </nav>
-        <span class="eyebrow gold-on-dark">{C.eyebrow}</span>
+        <span class="eyebrow gold-on-dark">{ev.oneOff ? O.eyebrow : C.eyebrow}</span>
         <h1 class="evd-title">{ev.name}</h1>
         <ShareButton lang={lang} contentType="event" itemId={ev.id} dark class="evd-share" />
         <p class="evd-when">
@@ -292,7 +319,7 @@ if (ev.faq?.length) {
       </div>
     </section>
 
-    <div class="container evd-layout">
+    <div class:list={['container evd-layout', { 'evd-layout--poster': ev.poster }]}>
       <article class="evd-main" data-reveal>
         {ev.intro && <p class="evd-intro">{ev.intro}</p>}
         <dl class="evd-facts">
@@ -313,8 +340,19 @@ if (ev.faq?.length) {
           {ev.acts.map((a) => <li class="evd-act">{a}</li>)}
         </ul>
 
-        {(ev.ticket || ev.shop) && (
+        {(ev.ticket || ev.shop || ev.whatsapp) && (
           <div class="ev-btns evd-cta">
+            {/* واتساب الإعلان زرّاً لا نصّاً، وخاص بالنسخة فيسقط بختامها */}
+            {ev.whatsapp && (
+              <a class="ev-ticket" href={`https://wa.me/${ev.whatsapp}`} target="_blank" rel="noopener noreferrer"
+                data-ev-dated data-track="event_contact" data-track-kind="whatsapp" data-track-item-id={ev.id}>
+                <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6L4.5 19.5Z" />
+                  <path d="M9.3 8.8c.2 2.6 3.2 5.6 5.9 5.9l1-1.2-1.8-1-1 .8c-1-.4-2.1-1.5-2.5-2.5l.8-1-1-1.8-1.4.8Z" />
+                </svg>
+                {O.whatsapp}
+              </a>
+            )}
             {ev.ticket && (
               <a class="ev-ticket" href={ev.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
                 <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -394,7 +432,7 @@ if (ev.faq?.length) {
 
         <aside class="evd-notice">
           <h2 class="evd-notice-h">{C.noticeH}</h2>
-          <p>{C.notice}</p>
+          <p>{ev.oneOff ? O.notice : C.notice}</p>
         </aside>
 
         {ev.related?.length ? (
@@ -408,6 +446,16 @@ if (ev.faq?.length) {
 
         <a class="btn btn--turq evd-back" href={listHref}>{C.back}</a>
       </article>
+      {ev.poster && (
+        <aside class="evd-ad">
+          <figure class="evd-ad-fig">
+            <a href={`${ev.poster}.jpg`} target="_blank" rel="noopener">
+              <Photo src={ev.poster} label={`${O.posterAlt}: ${ev.name}`} class="evd-ad-img" sizes="(max-width: 1000px) 100vw, 360px" />
+            </a>
+            <figcaption class="evd-ad-cap">{O.posterCap}</figcaption>
+          </figure>
+        </aside>
+      )}
     </div>
 
     <section class="evd-more">
@@ -467,6 +515,20 @@ if (ev.faq?.length) {
   /* المتن */
   .evd-layout { padding-block: var(--s-7); }
   .evd-main { max-inline-size: 72ch; }
+  /* الإعلان الرسمي بجانب المتن، ثابتاً عند التمرير على الشاشات العريضة، وفوقه على الجوال */
+  .evd-layout--poster { display: grid; grid-template-columns: minmax(0, 72ch) minmax(260px, 360px);
+    gap: var(--s-7); align-items: start; justify-content: space-between; }
+  .evd-ad { position: sticky; inset-block-start: calc(var(--s-7) + 68px); }
+  .evd-ad-fig { margin: 0; }
+  .evd-ad-fig a { display: block; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--c-line); box-shadow: var(--shadow); }
+  :global(.photo.evd-ad-img) { aspect-ratio: 2 / 3; border-radius: 0; }
+  .evd-ad-cap { font-size: var(--t-xs); color: var(--c-ink-soft); margin-block-start: var(--s-2); text-align: center; }
+  @media (max-width: 1000px) {
+    .evd-layout--poster { grid-template-columns: 1fr; gap: var(--s-5); }
+    /* الإعلان هو صورة الصفحة: على الجوال يتقدّم المتن لا يتذيّله */
+    .evd-ad { position: static; order: -1; max-inline-size: 420px; inline-size: 100%; margin-inline: auto; }
+  }
   .evd-facts { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3) var(--s-4); margin: 0 0 var(--s-6); }
   .evd-row { display: contents; }
   .evd-facts dt { font-size: var(--t-xs); font-weight: 600; color: var(--c-ink-soft); }

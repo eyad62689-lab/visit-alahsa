@@ -235,6 +235,16 @@ for (const { raw } of cards) { if (eagerIds.size >= 2) break; eagerIds.add(raw.i
 
 // الصينية: صفحات الفعاليات لها نسخ /zh/ (توسعة 2026-09-02)؛ «خطط» لم تُترجم بعد
 const zh = lang === 'zh';
+// الفعالية المؤقتة (oneOff) عربية وإنجليزية فقط (events.ts) — فلا كتلة zh/de/ru لنصوصها.
+const O = localize(lang, {
+  ar: { badge: 'فعالية مؤقتة', ended: 'انتهت الفعالية' },
+  en: { badge: 'Limited-time event', ended: 'Event has ended' },
+});
+// العدّاد والتحوّل بعد الختام: للنسخة ذات الموسم (after) وللمؤقتة (تُخفى بطاقتها بعد ختامها)
+const editionOf = (raw: Ev) => !!raw.endISO && (!!raw.after || !!raw.oneOff);
+const afterOf = (raw: Ev) => raw.after
+  ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
+  : raw.oneOff ? JSON.stringify({ oneOff: true, status: 'tba', label: O.ended }) : undefined;
 // تسمية زرّ المتجر من قاموس لغة الصفحة نفسها (‏ev.shop) لا من t() — تراجعه يعطي
 // الإنجليزية. لغة بلا المفتاح تعرض الأيقونة وحدها بتسمية aria إنجليزية من كلمة
 // واحدة، كما في الصفحة التفصيلية وزرّ المشاركة: لا نصّ بـzh/de/ru خارج الخطوط.
@@ -283,15 +293,13 @@ const jsonLd = [
           {cards.map(({ raw, e }, i) => (
             <article class="card ev-card" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}
               data-start={e.start} data-end={e.end ?? ''} data-ramadan={e.ramadan ? '1' : ''}
-              data-ev-edition={raw.after && raw.endISO ? '' : undefined}
-              data-ev-start={raw.after && raw.startISO ? raw.startISO : undefined}
-              data-ev-end={raw.after && raw.endISO ? raw.endISO : undefined}
-              data-ev-after={raw.after && raw.endISO
-                ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
-                : undefined}>
+              data-ev-edition={editionOf(raw) ? '' : undefined}
+              data-ev-start={editionOf(raw) && raw.startISO ? raw.startISO : undefined}
+              data-ev-end={editionOf(raw) ? raw.endISO : undefined}
+              data-ev-after={editionOf(raw) ? afterOf(raw) : undefined}>
               <div class="ev-media">
                 <Photo src={e.img} label={e.name} class="ev-photo" eager={eagerIds.has(raw.id)} sizes="(max-width: 760px) 100vw, (max-width: 1120px) 50vw, 360px" />
-                <span class="ev-season">{e.season}</span>
+                <span class:list={['ev-season', { 'ev-season--once': e.oneOff }]}>{e.oneOff ? O.badge : e.season}</span>
                 <span class={`ev-status ev-status--${e.status ?? 'expected'}`} data-ev-status>{C.statusL[e.status ?? 'expected']}</span>
                 <span class="ev-now" data-ev-now hidden>{C.nowBadge}</span>
                 {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
@@ -495,6 +503,9 @@ const jsonLd = [
     background: color-mix(in srgb, var(--c-turq-deep) 92%, transparent); backdrop-filter: blur(4px);
     border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); }
   .ev-media { position: relative; }
+  /* .card تفرض display:flex فتغلب سمة hidden — بطاقة الفعالية المؤقتة بعد ختامها */
+  .ev-card[hidden] { display: none; }
+  .ev-season--once { color: var(--c-sand); background: color-mix(in srgb, var(--c-gold-deep) 94%, transparent); }
   :global(.ev-photo) { border-radius: 0; }
   .ev-season { position: absolute; inset-block-start: var(--s-3); inset-inline-start: var(--s-3); z-index: 2;
     font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep);

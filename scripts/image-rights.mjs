@@ -131,6 +131,8 @@ async function collect(dir, out = []) {
     else if (/[\\/]stores[\\/]/.test(p)) continue
     // img/guides: صور المرشدين وجولاتهم — حقّها لأصحابها فلا تُختم بحقوق الموقع
     else if (/[\\/]guides[\\/]/.test(p)) continue
+    // img/event-posters: الإعلانات الرسمية للفعاليات المؤقتة — حقّها لجهاتها المنظّمة
+    else if (/[\\/]event-posters[\\/]/.test(p)) continue
     else if (/\.(jpe?g|webp)$/i.test(e.name)) out.push(p)
   }
   return out

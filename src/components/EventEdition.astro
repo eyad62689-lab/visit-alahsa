@@ -11,7 +11,8 @@
 // العقد مع الواجهات (بالسمات لا بالأصناف):
 //   [data-ev-edition]                جذر النطاق، وعليه:
 //     data-ev-start / data-ev-end    تاريخا النسخة المؤكدة ISO
-//     data-ev-after                  JSON: { time, span, status, label }
+//     data-ev-after                  JSON: { time, span, status, label } — أو للفعالية المؤقتة
+//                                    { oneOff: true, status, label } (بطاقتها تُخفى بعد الختام)
 //   داخله:
 //     [data-ev-cd]                   وعاء العدّاد (hidden ابتداءً)
 //     [data-ev-field="time"|"span"]  نصّ يُستبدل بقيمة after عند الانقضاء
@@ -49,6 +50,8 @@ const { cd } = Astro.props;
       });
       root.querySelectorAll('[data-ev-dated]').forEach(function (el) { el.hidden = true; });
       root.setAttribute('data-ev-over', '1');
+      // الفعالية المؤقتة لا موسم تعود إليه: بطاقتها تُخفى من القائمة حتى يحذفها البناء التالي
+      if (after.oneOff && root.classList.contains('ev-card')) root.hidden = true;
     }
 
     function tick(root) {
