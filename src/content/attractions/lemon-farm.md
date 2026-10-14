@@ -19,6 +19,11 @@ title_ru: "Ферма лайма Аль-Ахсы"
 kicker_ru: "Ферма и пальмы"
 summary_ru: "Цитрусовая ферма, куда в сезон приезжают посетители, чтобы собрать знаменитый лайм Аль-Ахсы."
 body_ru: "Цитрусовая ферма, куда в сезон приезжают посетители, чтобы собрать знаменитый лайм Аль-Ахсы."
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 94/100 (2026-10-14، الدفعة b10 — السجل في ur-translation/memory/scores.csv).
+title_ur: "حساوی لیموں کا باغ"
+kicker_ur: "زرعی فارم اور کھجور کے درخت"
+summary_ur: "ترشاوہ پھلوں کا ایک باغ، جہاں موسم آنے پر سیاح الاحساء کے مشہور لیموں توڑتے ہیں۔"
+body_ur: "ترشاوہ پھلوں کا ایک باغ، جہاں موسم آنے پر سیاح الاحساء کے مشہور لیموں توڑتے ہیں۔"
 slug_ar: "مزرعة-الليمون-الحساوي"
 slug_en: "lemon-farm"
 category: farm
@@ -29,7 +34,7 @@ body_en: "A citrus farm where visitors pick the famous Hasawi lime (lomi) in sea
 featured: false
 order: 61
 practical:
-  - { label: "المواعيد", value: "يومياً في المواسم الزراعية: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily in the growing seasons, 4:00–9:30 pm", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً في المواسم الزراعية: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily in the growing seasons, 4:00–9:30 pm", label_ur: "اوقات", value_ur: "زرعی موسموں میں روزانہ شام 4 بجے سے رات 9:30 بجے تک", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.382611, lng: 49.605278 }
 mapUrl: "https://maps.app.goo.gl/P24d8Cya5Fg2ChTi6"
 heroImage: /img/hasawi-lemon-farm

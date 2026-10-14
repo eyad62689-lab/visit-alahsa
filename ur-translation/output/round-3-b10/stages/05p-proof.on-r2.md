@@ -1,0 +1,75 @@
+RESULT: must-fix=0 should-fix=3 note=6
+
+Proof pass (stage-5 role, report only) on b10 judge round 2 (`stages/07-judge.round2.json`, sha256 e0e36ef4…). Nothing in the batch, the worktree or the tools was modified. Previous text: `07-judge.round1.json`. Pack: `b10/pack.json`. Rulings in force: worktree termbase (177 rulings), `b0-ui/stages/07-judge.round3.json`, `b9/stages/07-judge.round1.json` with its addendum. Approved pages read from the worktree `src/content/attractions/*.md`, including `baiah.md`. Helper scripts (read-only): `b10/s5p2-dump.mjs`, `s5p2-caldiff.mjs`, `s5p2-verify.mjs`, `s5p2-scan2.mjs`; outputs `b10/s5p2-*.txt`.
+
+Checker (the existing `07-judge.round2.json.check.txt`, written after the judge file; not re-run), verbatim: `RESULT [b10 07-judge round 2]: 0 mandated, 0 extra, 0 ruling finding(s), 2 note(s) | 6 page(s), 47 strings, 3983 code points | changes=2 over 2 leaf(s) | scores 93/94/95/93/93/92 batch_score=92 threshold=90 decision=APPROVE | rulings=43 proof_rulings=9 | termbase_final=19 | selftest PASS`. The 2 NOTEs are P20 on duqat-algharash::area and taraf-zoo::area. They are the N30 order, which N153's guard says to expect.
+
+Replay and identity (`s5p2-dump.mjs`, `s5p2-verify.mjs`): there are 47 leaves in both r1 and r2. Exactly two leaves differ: sawsan-gardens::summary and sawsan-gardens::body. Each `before` occurs once in its leaf, and replaying the two changes on r1 gives r2 exactly (0 differences). Summary and body are still one string (74 code points), as both sources have it. The blind page `blind-input.on-r2.md` carries `stage_sha256` = this file's sha256, and every rendered leaf of r2 stands verbatim in it. The kickers are not rendered: no page is featured. The new sentence shows twice, under the title and as the body. `CATEGORY_LABELS.ur.farm` in the worktree is «زرعی فارم اور کھجور کے باغات» (N161 C). It shows once on each of the four farm-category pages.
+
+## Eleven-item checklist (r2 text, all 47 leaves; the 2 changed leaves read in place)
+- 1 Letterforms: PASS. A scan for `[يكةهىأإۃ]` over every leaf finds none, and the 19 termbase_final keys are clean too. There is no U+06F0–06F9 or U+0660–0669 digit, no NBSP, no zero-width or bidi mark, and no Latin letter. Code points of the new clause: «جہاں» ہ U+06C1 / ں U+06BA; «پرندے» ے U+06D2; «کے لیے» ک U+06A9, ی U+06CC; «رکھے» ھ U+06BE (an aspirate after ک); «ہیں» ہ U+06C1, ی U+06CC, ں U+06BA; the stop is U+06D4. I also scanned the 420 «…» spans of the record (calibration, termbase notes, rulings, notes): 20 spans hold Arabic letterforms, and every one is an Arabic source quotation (AR titles, «أجواء», «محطة سياحية», «حديقة لعرض الطيور», …). None is an Urdu form.
+- 2 Name forms: PASS. All six titles are keys byte for byte. «حساوی لیموں کا باغ» and «فارم» are already in the worktree termbase; the rest are new in termbase_final. All 19 termbase_final keys stand in the text. No key is retired in b0-ui r3, b9 r1, b10 r1 or b10 r2 (`termbase_keys_retired` is empty in all four). The edit touches no name.
+- 3 Grammar: PASS. «پرندے» is the direct masculine plural, and «رکھے ہیں» is the masculine plural stative perfect with no expressed agent. This frame stands on approved pages for a masculine plural, and for animals: dar-alturath has «ایسے جانور بھی رکھے ہیں», and ahsa-house-museum and najim-museum have «… بھی رکھے ہیں». The baiah frame the judge cites is the feminine «چیزیں نمائش کے لیے رکھی ہیں». «ماحول» is correctly oblique before «میں». See "Cells read in place".
+- 4 Address: PASS. There is no «تم/تمہارا/تیرا» and no particle «تو»; the edit has no address.
+- 5 Headings: PASS. No title, kicker or label ends in «۔», and no bracket or gloss stands in a title.
+- 6 Termbase compliance: PASS (100 %).
+- 7 Punctuation: PASS. No ASCII stop or comma follows an Urdu letter, and no space stands before «۔ ، ؟». There is no «؛», no guillemet, no straight quote, no double space and no edge space. The new sentence keeps «،» before «جہاں» and closes with «۔», as a summary/body must. No card value ends in «۔».
+- 8 Numbers and clock: PASS. The text is unchanged from r1, which the r1 proof checked row by row. The sawsan card «روزانہ سہ پہر 3:30 بجے سے رات 10:30 بجے تک» = 'Daily 3:30–10:30 pm'.
+- 9 Loans: PASS. «فارم», «فیس» and «اسٹرابیری» (N155, pending) cite P16. The edit brings no loan, and «موجود ہے/ہیں» is absent.
+- 10 Gloss: PASS. Nothing changed: «(یعنی » stands once, straight after the page's own title, on duqat-algharash and on hamidiyah-souq. «سوق القیصریہ نامی بازار» comes first in its list. «الطرف نامی قصبہ/قصبے» appears at every mention, and the title key stands bare.
+- 11 Structure: PASS. The shape matches the checker, and no source key is present. det.hoursNotice appears on the four pages whose card shows hours or fees and is absent from hamidiyah-souq (C12).
+
+## Cells read in place (the changed string, and every cell it must agree with)
+- sawsan-gardens::summary = body: «الاحساء کے نخلستان کے ماحول میں ایک باغ، جہاں پرندے نمائش کے لیے رکھے ہیں۔». The seam «ایک باغ، جہاں …» is unchanged since stage 2, and the relative adverb takes the garden as its place. Agreement holds: «پرندے … رکھے ہیں» (plural masculine). «نمائش کے لیے» is a purpose phrase («نمائش» feminine, governed by «کے لیے»; nothing agrees with it). No word repeats inside the sentence. N47's «الاحساء کے نخلستان» and N166's «ماحول» are kept.
+- Cells compared: the title «السوسن کے پرندوں کے باغات» (oblique «پرندوں» there, direct «پرندے» in the clause: both correct), the eyebrow «زرعی فارم اور کھجور کے باغات», and the card. duqat-algharash's «نمائشوں» is 'exhibitions' (events), which is a different sense in another page. Within sawsan the sense is now display, unambiguous by «کے لیے».
+- A ruled form applied on one page and not another: N168 binds sawsan only, and «پرندے/رکھے» occur nowhere else in the batch. N166: «فضا» occurs 0 times and «ماحول» only in sawsan. N167: «سیاحوں کی ایک منزل» occurs 0 times. No approved page carries "tourist stop/destination" in its English except duqat-algharash itself, so N167's 'every later' collides with no approved page.
+
+## Meaning of the edit (against English and Arabic)
+- EN 'A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis'; AR «حديقة لعرض الطيور وسط أجواء واحة الأحساء».
+- IN: «پرندے نمائش کے لیے رکھے ہیں», 'birds are kept (there) for display'. The source's purpose («لعرض», 'for displaying') is back.
+- OUT: round 1's «پرندوں کی نمائش ہوتی ہے», 'a bird show/exhibition takes place', an event the source does not state.
+- 'Kept' explicates what 'displaying birds' entails. It adds no fact: no species, no cages, no times. The stage 2–5 wording carried it too.
+- The purpose now hangs on the birds rather than on the garden ('a garden where birds are kept for display' ≈ 'a garden for displaying birds'). No fact moves.
+- Faithful. Whether it now reads as a standing collection rather than a show is for the fresh reader. The second reader's question (item 25: "a permanent aviary or an occasional show") is the test.
+
+## Guarded claims and statuses (field by field against the pack)
+- sawsan-gardens: the summary and body are as above. The card 'Daily 3:30–10:30 pm' matches. No area, fee or bird species is supplied (source silent, source_defects 7).
+- The other 45 leaves are byte-identical to r1. The r1 proof checked them field by field against the pack: the duqat hours/free entry, lemon-farm without months/area/fee and with the fresh «لیموں», strawberry-farm without 'daily', taraf-zoo's area with «نامی», and hamidiyah-souq's status row whole, with N99's fixed part byte for byte and no link. No status moved.
+
+## Round-1 proof items, as the round-2 proof_rulings say
+- Item 1 (should-fix): applied, change 0/1. Verified in the text and in the blind page.
+- Item 2 (should-fix): applied. N161 now quotes N5's binds and reason exactly («nav.leisure; the category label of the farm group …», 'the label's three groups would read as two', 'an orchard or a palm grove is «باغ / باغات»'), matching the worktree N5 byte for byte. It quotes the «باغ» entry's sentence exactly. The «فارم» entry carries the line; the base is byte-identical to the worktree, with one line appended. The N5 line is deferred to apply (note 6).
+- Item 3: applied. N166's scope excludes 'open air' and names stage 2's reason, which is verified in the 02-editor why: «ماحول» 'says environment'.
+- Item 4: applied. N167 now applies only where the source says 'tourist', and the relative-clause clause is struck.
+- Items 5 and 6: recorded.
+- Item 7: strings_affected now lists both keys, and gender is recorded as a default. The restated precedent is wrong (should-fix 1).
+- Item 8: applied. The base line of «یادگار» now quotes «ہفوف کے ورثے کی یادگار», and the kicker in the text is exactly that.
+- Item 9: applied. Fit is 10 on lemon-farm, sawsan-gardens and taraf-zoo. Arithmetic: 29+26+19+9+10=93 · 29+26+19+10+10=94 · 30+27+18+10+10=95 · 29+25+19+10+10=93 · 29+25+19+10+10=93 · 29+25+19+9+10=92. The batch score is 92, the lowest page.
+
+## Items
+1. Should-fix, calibration N155 (a round-2 correction), internal consistency: the new sentence "(b9's loans «اسکاؤٹ» and «فرنیچر» were admitted lacking condition (3), a headword; this one lacks condition (2) — a different gap.)" misstates P16-test and the b9 rulings it cites.
+   - P16-test's condition (3) reads "the loan has a dictionary headword OR solid reference attestation".
+   - N145 says of «اسکاؤٹ»: "Condition (3) by reference attestation only (no headword) … flagged for the owner, whose P16 asks for a headword". N146 says the same of «فرنیچر».
+   - So b9's loans MET condition (3). What they lacked was the headword the owner's P16 asks for. «اسٹرابیری» has that headword (rekhta) and lacks P16-test (2).
+   - The wording comes from the round-1 proof's own note 7, which put it the same loose way. It is corrected here.
+   - Smallest cure (no string moves): "(b9's «اسکاؤٹ» and «فرنیچر» met condition (3) by reference attestation only, without the headword the owner's P16 asks for; this one has the headword and lacks condition (2) — a different gap.)"
+2. Should-fix, termbase_final «حساوی لیموں کا باغ» (since round 1; missed by the round-1 proof), loses data on apply.
+   - `apply.mjs` (section 2, line 155) replaces a worktree entry WHOLE when its key is in termbase_final. This entry's `source` reads "existing key (b0-ui), unchanged; ur.wikipedia «لیموں کا باغ» 0 pages (…)", but the worktree source is different, and it would be lost.
+   - What would be lost from the worktree source: the press «’لومی حساوی‘» and «لیموں» ×13 (urdunews node/589211); rekhta «لِیمُوں — اسم، مذکر» and «باغ — اسم، مذکر»; ur.wikipedia «لیموں کے باغات» 2 pages.
+   - The worktree's b0-ui note would also be lost: the three readers' remarks, and "Masculine by «باغ» (dictionary page)", which is the only recorded basis of the entry's gender.
+   - The «فارم» entry in the same file was built the right way: the worktree fields byte for byte, with the b10 line appended.
+   - Cure (record only, no string moves): rebuild this entry the same way. Take the worktree `source` and `note` verbatim and append the STAGE 4 / STAGE 7 (round 1, round 2) lines. Then the word "unchanged" stays true.
+3. Should-fix, termbase_final «فارم» (the entry corrected this round), internal consistency.
+   - The base note, kept verbatim, still says "The qualified form has been read by no blind reader in place". The round-2 line appended to it does not correct this.
+   - In b10, three readers read «زرعی فارم …» in place, on four eyebrows each: on-05 in the provisional A («زرعی فارم اور کھجور کے درخت», item 6), and on-r1 and on-r2 in C. N161 in the same file cites two of them ("round 1 item 6", "round 2 item 12"). None read «فارم» as the form one fills in.
+   - As applied, the termbase would contradict N161 and lose the very evidence the qualifier was waiting for.
+   - Cure (record only): add to the round-2 line, "the qualified form is now read in place in the farm category label by three b10 readers (on-05, on-r1, on-r2), with no remark on «فارم»".
+4. Note, N168 evidence (the new ruling): the ruling rests on baiah's FEMININE «چیزیں نمائش کے لیے رکھی ہیں». The approved text already carries the exact masculine-plural, animate form of the same stative frame: dar-alturath «ایسے جانور بھی رکھے ہیں» (also ahsa-house-museum and najim-museum «… بھی رکھے ہیں»). Citing it would let N168 stand on its own form, not on an analogy. The ruling is right that the wording is UNREAD: the fresh reader is its test, and D is the fallback. The guard's "the birds are the subject" is loose: grammatically «پرندے» is the agreeing object of an agentless perfect. It is harmless for a proofreader's guard.
+5. Note, stale tense in two round-1 entries carried into round 2: N166 candidate A says "(stage 1; in the text since this round)" and N167 candidate A says "(the reader's; in the text since this round)". Both entered in round 1, and read in the round-2 file (and after apply) "this round" points the wrong way. N168's "since this round" is correct. Write "since round 1" in both.
+6. Note, the N5 line: N161 and proof ruling 2 say "on apply N5 takes it too", but no wording for N5 is written anywhere in the file. Only the «فارم» entry carries a line. The coordinator's `ap-meta.json` must draft the N5 amendment, ideally the «فارم» line verbatim, with N161 as its authority. Otherwise N5 (in `_meta`) keeps "«باغات» is refused for the group" while the live label carries «کھجور کے باغات».
+7. Note, the withdrawn fallbacks.
+   - The judge's reading of P3c-labels holds. Its guard says "a generic after «نامی», in running text, is not next to the name", so in a title it is next to the name and barred.
+   - Notes item 4 says "N157's fallback B and N156's C are withdrawn as batch fallbacks". N156's fallback was B (stage-4 recommendation), not C: C was a candidate never ruled or offered as a fallback. N156's own ROUND 2 line and blind ruling 23 ("N156's C, kept on record") say it correctly.
+   - N157's `stage4_recommendation` and the «الطرف کا چڑیا گھر» note still say "B … the fallback". The appended round-2 lines supersede both, so this is record only.
+8. Note, «اسٹرابیری» entry: the base note still says "Pending until a blind reader has read it (P16-test (2))". That reads (2) as a reader having read the LOAN, and two readers now have. The round-2 line says "CORRECTED" and gives the right reading (a stumble on the native word) but does not strike the old clause. Read alone, the entry has two conditions for leaving pending. Say in the round-2 line that the base clause is withdrawn.
+9. Note, scoring: taraf-zoo keeps accuracy −1 for 'family destination' («خاندانوں کے لیے»), while blind ruling 30 logs the families-only reading as a source defect. The accuracy text frames it as the Urdu's choice ('for families', chosen to avoid 'family-owned'), and it is charged once, as round-1 proof note 9 (b) asked. This is consistent; recorded only. Every other score why matches its rulings, and APPROVE does not depend on any of these items.
