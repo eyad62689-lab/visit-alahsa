@@ -39,12 +39,12 @@ area: "الكلابية — شمال شرق الهفوف"
 area_en: "Al-Kilabiyah — northeast of Hofuf"
 practical:
   - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–24:00", label_zh: "开放时间", value_zh: "每日 8:00–24:00", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–24:00 Uhr", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 12 بجے تک", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "10–15 ريالاً · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 · visiting the mosque is free", label_ru: "Стоимость входа", value_ru: "10–15 саудовских риялов (SAR) · посещение мечети бесплатно", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", label_de: "Eintritt", value_de: "10–15 Saudi-Riyal (SAR) · Besuch der Moschee kostenlos", label_ur: "فیس", value_ur: "10 سے 15 سعودی ریال · مسجد کی زیارت مفت ہے", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "10–15 ريالاً للفرد · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 per person · visiting the mosque is free", label_ru: "Стоимость входа", value_ru: "10–15 саудовских риялов (SAR) · посещение мечети бесплатно", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", label_de: "Eintritt", value_de: "10–15 Saudi-Riyal (SAR) · Besuch der Moschee kostenlos", label_ur: "فیس", value_ur: "فی کس 10 سے 15 سعودی ریال · مسجد کی زیارت مفت ہے", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:59" }
 fee: { min: 10, max: 15, currency: SAR }
-answer: "منتزه جواثا السياحي منتزه أخضر في قرية الكلابية، يجمع الطبيعة بالتاريخ: فبجواره مسجد جواثا الأثري، أول موضع أُقيمت فيه الجمعة بعد المسجد النبوي، وموقع جواثا الأثري. وجهة للنزهات العائلية تفتح يومياً من 8 ص إلى 12 منتصف الليل، والدخول 10–15 ريالاً وزيارة المسجد مجانية."
-answer_en: "Jawatha Park, a green park in Al-Kilabiyah, joins nature to history: beside it stand the Jawatha Mosque, the first place Friday prayer was held after the Prophet's Mosque, and the Jawatha archaeological site. Open daily 8 am to midnight; entry SAR 10–15, mosque free."
+answer: "منتزه جواثا السياحي منتزه أخضر في قرية الكلابية، يجمع الطبيعة بالتاريخ: فبجواره مسجد جواثا الأثري، أول موضع أُقيمت فيه الجمعة بعد المسجد النبوي، وموقع جواثا الأثري. وجهة للنزهات العائلية تفتح يومياً من 8 ص إلى 12 منتصف الليل، والدخول 10–15 ريالاً للفرد والمسجد مجاناً."
+answer_en: "Jawatha Park, a green park in Al-Kilabiyah, joins nature to history: beside it stand Jawatha Mosque, the first place Friday prayer was held after the Prophet's Mosque, and the Jawatha archaeological site. Open daily 8 am to midnight; entry SAR 10–15 per person, mosque free."
 location: { lat: 25.471156, lng: 49.677408 }
 mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
@@ -64,9 +64,9 @@ faq:
     q_ur: "جواثا کی تفریح گاہ کب سے کب تک کھلی رہتی ہے؟"
     a_ur: "روزانہ صبح 8 بجے سے رات 12 بجے تک۔"
   - q: "كم رسوم دخول منتزه جواثا؟"
-    a: "من 10 إلى 15 ريالاً، وزيارة المسجد مجانية."
+    a: "من 10 إلى 15 ريالاً للفرد، وزيارة المسجد مجانية."
     q_en: "How much is entry to Jawatha Park?"
-    a_en: "SAR 10–15, and visiting the mosque is free."
+    a_en: "SAR 10–15 per person, and visiting the mosque is free."
     q_zh: "贾瓦塔公园门票多少钱？"
     a_zh: "10–15 沙特里亚尔，参观贾瓦塔清真寺免费。"
     q_de: "Was kostet der Eintritt in den Jawatha-Park?"
@@ -74,7 +74,7 @@ faq:
     q_ru: "Сколько стоит вход в парк Джавата?"
     a_ru: "10–15 саудовских риялов; посещение мечети бесплатно."
     q_ur: "جواثا کی تفریح گاہ میں داخلے کی فیس کتنی ہے؟"
-    a_ur: "10 سے 15 سعودی ریال، اور مسجد کی زیارت مفت ہے۔"
+    a_ur: "فی کس 10 سے 15 سعودی ریال، اور مسجد کی زیارت مفت ہے۔"
   - q: "ماذا يوجد بجوار منتزه جواثا؟"
     a: "مسجد جواثا الأثري، أوّل موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، وموقع جواثا الأثري."
     q_en: "What is next to Jawatha Park?"
