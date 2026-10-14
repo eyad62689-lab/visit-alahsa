@@ -20,6 +20,12 @@ kicker_ru: "Этнографическая деревня"
 summary_ru: "Этнографическая деревня и выставка у горы Эль-Кара: здесь показаны этапы цивилизации этого края."
 body_ru: "Этнографическая деревня и выставка у подножия горы Эль-Кара: здесь прослеживают этапы цивилизации этого края. Тропы, смотровые площадки и инфраструктура для посетителей объединяют деревню, гору и её пещеры в одно посещение. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже, а в билет входит и посещение пещер горы Эль-Кара."
 area_ru: "Эль-Умран, к востоку от Эль-Хуфуфа — у горы Эль-Кара"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-14، الدفعة b9 — السجل في ur-translation/memory/scores.csv).
+title_ur: "“ارض الحضارات”"
+kicker_ur: "ثقافتی گاؤں"
+summary_ur: "جبل القارہ کے پاس ایک ثقافتی گاؤں اور نمائش، جہاں اس خطے کی تہذیب کے مراحل دکھائے گئے ہیں۔"
+body_ur: "“ارض الحضارات” (تہذیبوں کی سرزمین) نامی ثقافتی گاؤں اور نمائش جبل القارہ کے دامن میں ہے، جہاں اس خطے کی تہذیب کے مراحل دکھائے گئے ہیں۔ پگڈنڈیاں، سہولیات اور نظارے کی جگہیں اسے پہاڑ اور اس کے غاروں کی سیر سے جوڑ دیتی ہیں۔ اوقات اور فیس نیچے “سیاحوں کے لیے معلومات” والے حصے میں درج ہیں، اور ٹکٹ میں جبل القارہ کے غاروں کی سیر بھی شامل ہے۔"
+area_ur: "العمران شہر، ہفوف کے مشرق میں، جبل القارہ کے پاس"
 slug_ar: "أرض-الحضارات"
 slug_en: "ardh-alhadarat"
 category: parks
@@ -32,8 +38,8 @@ order: 59
 area: "مدينة العمران، شرق الهفوف — عند جبل القارة"
 area_en: "Al-Omran, east of Hofuf — by Al-Qarah Mountain"
 practical:
-  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–22:00 (в праздники может быть открыто дольше)", label_zh: "开放时间", value_zh: "每日 8:00–22:00（节假日与旺季可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–22:00 Uhr (an Feiertagen möglicherweise länger)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "50 ريالاً للبالغين", label_en: "Fees", value_en: "SAR 50 for adults", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых", label_zh: "门票", value_zh: "成人 50 沙特里亚尔（SAR）", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–22:00 (в праздники может быть открыто дольше)", label_zh: "开放时间", value_zh: "每日 8:00–22:00（节假日与旺季可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–22:00 Uhr (an Feiertagen möglicherweise länger)", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 10 بجے تک (چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "50 ريالاً للبالغين", label_en: "Fees", value_en: "SAR 50 for adults", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых", label_zh: "门票", value_zh: "成人 50 沙特里亚尔（SAR）", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene", label_ur: "فیس", value_ur: "بڑوں کے لیے 50 سعودی ریال", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "22:00" }
 fee: { amount: 50, currency: SAR }
@@ -46,6 +52,7 @@ operatorUrl: "https://www.instagram.com/landofcivi/"
 heroImage: /img/earth-of-civilization
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-08، الدفعة ru-attr-10 — السجل في ru-translation/memory/scores.csv).
+# أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-14، الدفعة b9 — السجل في ur-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد أرض الحضارات؟"
     a: "يومياً من 8:00 ص إلى 10:00 م، وقد تُمدّد في العطلات."
@@ -57,6 +64,8 @@ faq:
     a_de: "Täglich von 8:00 bis 22:00 Uhr; an Feiertagen möglicherweise länger."
     q_ru: "В какие часы открыта «Земля цивилизаций»?"
     a_ru: "Ежедневно 8:00–22:00; в праздники может быть открыто дольше."
+    q_ur: "“ارض الحضارات” کب سے کب تک کھلا رہتا ہے؟"
+    a_ur: "روزانہ صبح 8 بجے سے رات 10 بجے تک۔ چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے۔"
   - q: "كم رسوم دخول أرض الحضارات؟"
     a: "50 ريالاً للبالغين، والتذاكر تشمل تجربة كهوف جبل القارة."
     q_en: "How much is entry to the Land of Civilisations?"
@@ -67,6 +76,8 @@ faq:
     a_de: "50 SAR für Erwachsene; das Ticket schließt das Höhlenerlebnis am Jabal al-Qarah ein."
     q_ru: "Сколько стоит вход в «Землю цивилизаций»?"
     a_ru: "50 саудовских риялов для взрослых, а в билет входит и посещение пещер горы Эль-Кара."
+    q_ur: "“ارض الحضارات” میں داخلے کی فیس کتنی ہے؟"
+    a_ur: "بڑوں کے لیے 50 سعودی ریال، اور ٹکٹ میں جبل القارہ کے غاروں کی سیر بھی شامل ہے۔"
   - q: "ما أرض الحضارات؟"
     a: "قرية تراثية ومعرض عند سفح جبل القارة، تستعرض مراحل الحضارة في المنطقة."
     q_en: "What is the Land of Civilisations?"
@@ -77,6 +88,8 @@ faq:
     a_de: "Ein Kulturerbe-Dorf und eine Ausstellung am Fuß des Jabal al-Qarah: Hier werden die Kulturepochen der Region gezeigt."
     q_ru: "Что такое «Земля цивилизаций»?"
     a_ru: "Этнографическая деревня и выставка у подножия горы Эль-Кара: здесь прослеживают этапы цивилизации этого края."
+    q_ur: "“ارض الحضارات” کیا ہے؟"
+    a_ur: "جبل القارہ کے دامن میں ایک ثقافتی گاؤں اور نمائش، جہاں اس خطے کی تہذیب کے مراحل دکھائے گئے ہیں۔"
   - q: "أين تقع أرض الحضارات؟"
     a: "في مدينة العمران شرق الهفوف، عند جبل القارة."
     q_en: "Where is the Land of Civilisations?"
@@ -87,6 +100,8 @@ faq:
     a_de: "In Al-Omran, östlich von Hofuf, am Jabal al-Qarah."
     q_ru: "Где находится «Земля цивилизаций»?"
     a_ru: "В Эль-Умране, к востоку от Эль-Хуфуфа, у горы Эль-Кара."
+    q_ur: "“ارض الحضارات” کہاں ہے؟"
+    a_ur: "العمران شہر میں، ہفوف کے مشرق میں، جبل القارہ کے پاس۔"
 ---
 
 قرية تراثية ومعرضٌ عند سفح جبل القارة، تستعرض مراحل الحضارة في المنطقة، وتتكامل
