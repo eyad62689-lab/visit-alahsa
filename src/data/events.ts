@@ -151,10 +151,10 @@ const EVENT_META = {
   'horse-racing': { img: '/img/event-horse-racing', start: 11, end: 2 },
   'creative-ahsa': { img: '/img/event-creative-ahsa', start: 3, end: 4 },
   // معرض الأعراس والجمال (W&B Expo) — فعالية مؤقتة أضافها إياد (2026-10-14) بإعلانها الرسمي
-  // ورابط خرائطه. كل حقل منقول من الإعلان حرفاً: الموعد 3–7 ديسمبر 2026، والمكان «أحد فنادق
-  // الخمس نجوم في الأحساء» (الإعلان لا يسمّي الفندق، والدبوس في رابط الخرائط وحده — لا
-  // إحداثيات هنا لأن الرابط المختصر لم يُفكّ)، وأقسام المعرض الثمانية، وواتساب «للحجز
-  // والاستفسار». لا ساعات ولا رسوم: الإعلان لا يذكرهما.
+  // ورابط خرائطه. من الإعلان حرفاً: الموعد 3–7 ديسمبر 2026، وأقسام المعرض الثمانية، وواتساب
+  // «للحجز والاستفسار». ومن إياد في اليوم نفسه: المكان «فندق مكان» (الإعلان يقول «أحد فنادق
+  // الخمس نجوم») والجهة المنظّمة «شركة كراز تري للمعارض والمؤتمرات» (من وثيقة المنظّم). لا
+  // إحداثيات (الرابط المختصر لم يُفكّ، فالدبوس في رابط الخرائط وحده)، ولا ساعات ولا رسوم.
   'wb-expo-2026': {
     img: '/img/event-posters/wb-expo-2026', poster: '/img/event-posters/wb-expo-2026-poster',
     start: 12, end: 12,
@@ -306,22 +306,22 @@ const TEXT_AR: EventTexts = {
   },
   'wb-expo-2026': {
     slug: 'معرض-الأعراس-والجمال-2026',
-    name: 'معرض الأعراس والجمال', place: 'أحد فنادق الخمس نجوم في الأحساء',
+    name: 'معرض الأعراس والجمال', place: 'فندق مكان، الأحساء',
     season: 'الشتاء', time: '3 – 7 ديسمبر 2026م', span: '5 أيام',
-    org: 'W&B Expo',
+    org: 'شركة كراز تري للمعارض والمؤتمرات',
     acts: ['الأزياء والفخامة', 'مستلزمات الزفاف', 'الجمال والعناية', 'الزهور والديكور', 'الصالونات والعطور', 'العيادات التجميلية', 'التصوير والمونتاج', 'الضيافة والحلويات'],
-    intro: 'معرض الأعراس والجمال (W&B Expo) فعالية مؤقتة تُقام في الأحساء من 3 إلى 7 ديسمبر 2026م في أحد فنادق الخمس نجوم، ويجمع في مكان واحد ما يحتاجه المقبلون على الزواج: الأزياء ومستلزمات الزفاف، والجمال والعناية، والزهور والديكور، والصالونات والعطور، والعيادات التجميلية، والتصوير والمونتاج، والضيافة والحلويات.',
+    intro: 'معرض الأعراس والجمال (W&B Expo) فعالية مؤقتة تُقام في الأحساء من 3 إلى 7 ديسمبر 2026م في فندق مكان، وتنظّمه شركة كراز تري للمعارض والمؤتمرات، ويجمع في مكان واحد ما يحتاجه المقبلون على الزواج: الأزياء ومستلزمات الزفاف، والجمال والعناية، والزهور والديكور، والصالونات والعطور، والعيادات التجميلية، والتصوير والمونتاج، والضيافة والحلويات.',
     faq: [
       { q: 'متى يُقام المعرض؟', a: 'من 3 إلى 7 ديسمبر 2026م بحسب الإعلان الرسمي للمعرض.' },
-      { q: 'أين يُقام المعرض؟', a: 'في أحد فنادق الخمس نجوم في الأحساء كما يذكر الإعلان الرسمي، وموقعه على خرائط قوقل من زرّ الخريطة في هذه الصفحة.' },
+      { q: 'أين يُقام المعرض؟', a: 'في فندق مكان بالأحساء، وموقعه على خرائط قوقل من زرّ الخريطة في هذه الصفحة.' },
       { q: 'كيف أحجز أو أستفسر؟', a: 'عبر واتساب المعرض من زرّ «للحجز والاستفسار» في هذه الصفحة.' },
     ],
     related: [
       { label: 'أماكن الإقامة في الأحساء', href: '/إقامة/' },
       { label: 'خطّط لرحلتك إلى الأحساء', href: '/خطط/' },
     ],
-    seoTitle: 'معرض الأعراس والجمال W&B Expo في الأحساء — 3–7 ديسمبر 2026',
-    seoDesc: 'معرض الأعراس والجمال (W&B Expo) في الأحساء من 3 إلى 7 ديسمبر 2026م: الأزياء ومستلزمات الزفاف والجمال والزهور والتصوير والضيافة في مكان واحد.',
+    seoTitle: 'معرض الأعراس والجمال W&B Expo في فندق مكان بالأحساء — 3–7 ديسمبر 2026',
+    seoDesc: 'معرض الأعراس والجمال (W&B Expo) في فندق مكان بالأحساء من 3 إلى 7 ديسمبر 2026م: الأزياء ومستلزمات الزفاف والجمال والزهور والتصوير والضيافة في مكان واحد.',
   },
 };
 
@@ -442,22 +442,22 @@ const TEXT_EN: EventTexts = {
   },
   'wb-expo-2026': {
     slug: 'weddings-beauty-expo-2026',
-    name: 'Weddings & Beauty Expo', place: 'A five-star hotel in Al-Ahsa',
+    name: 'Weddings & Beauty Expo', place: 'Makan Hotel, Al-Ahsa',
     season: 'Winter', time: '3–7 December 2026', span: '5 days',
-    org: 'W&B Expo',
+    org: 'Karaz Tree Exhibitions & Conferences Company',
     acts: ['Fashion & luxury', 'Wedding essentials', 'Beauty & care', 'Flowers & décor', 'Salons & perfumes', 'Cosmetic clinics', 'Photography & video editing', 'Catering & sweets'],
-    intro: 'The Weddings & Beauty Expo (W&B Expo) is a limited-time event held in Al-Ahsa from 3 to 7 December 2026 at a five-star hotel. It brings together under one roof what couples need before their wedding: fashion and wedding essentials, beauty and care, flowers and décor, salons and perfumes, cosmetic clinics, photography and video editing, and catering and sweets.',
+    intro: 'The Weddings & Beauty Expo (W&B Expo) is a limited-time event held in Al-Ahsa from 3 to 7 December 2026 at Makan Hotel, organised by Karaz Tree Exhibitions & Conferences Company. It brings together under one roof what couples need before their wedding: fashion and wedding essentials, beauty and care, flowers and décor, salons and perfumes, cosmetic clinics, photography and video editing, and catering and sweets.',
     faq: [
       { q: 'When is the expo held?', a: 'From 3 to 7 December 2026, according to the expo’s official announcement.' },
-      { q: 'Where is the expo held?', a: 'At a five-star hotel in Al-Ahsa, as the official announcement states; use the map button on this page to open its location in Google Maps.' },
+      { q: 'Where is the expo held?', a: 'At Makan Hotel in Al-Ahsa; use the map button on this page to open its location in Google Maps.' },
       { q: 'How do I book or ask a question?', a: 'Through the expo’s WhatsApp, using the “Bookings & enquiries” button on this page.' },
     ],
     related: [
       { label: 'Where to stay in Al-Ahsa', href: '/en/stay/' },
       { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
     ],
-    seoTitle: 'Weddings & Beauty Expo (W&B Expo) in Al-Ahsa — 3–7 December 2026',
-    seoDesc: 'The Weddings & Beauty Expo (W&B Expo) in Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers, photography and catering in one place.',
+    seoTitle: 'Weddings & Beauty Expo (W&B Expo) at Makan Hotel, Al-Ahsa — 3–7 Dec 2026',
+    seoDesc: 'The Weddings & Beauty Expo (W&B Expo) at Makan Hotel, Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers, photography and catering in one place.',
   },
 };
 
