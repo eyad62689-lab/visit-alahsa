@@ -1,0 +1,1067 @@
+{
+  "batch": "b11",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b11",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, [area], [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 3,
+    "fields": 44,
+    "per_page": {
+      "women-souq": {
+        "fields": 17,
+        "practical_rows": 1,
+        "faq_items": 5,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "zaki-alsalem-farm": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "uqair-beach": {
+        "fields": 16,
+        "practical_rows": 1,
+        "faq_items": 4,
+        "bestTime": true,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "women-souq",
+      "file": "src/content/attractions/women-souq.md",
+      "file_sha256": "c60550fa884f17ac5f3cb55d6d110fedfd18ad7e4e28d8327b942b28e10b8ded",
+      "order": 67,
+      "category": "market",
+      "category_label": {
+        "en": "Heritage souqs",
+        "ar": "الأسواق التراثية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Women's Folk Souq",
+          "ar": "سوق النساء الشعبي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "سوق شعبي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A traditional stall market in the South Al-Rifaa district of central Hofuf whose sellers are women of Al-Ahsa — hence the name — and one of the city's living folk-trade scenes.",
+          "ar": "سوقُ بسطاتٍ تراثي في حي الرفعة الجنوبية وسط الهفوف، بائعاته نساءٌ من الأحساء ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women of Al-Ahsa, both townswomen and Bedouin, offering a range of goods, some of them their own handiwork. The souq is open to everyone, women and men alike. It stands on King Abdulaziz Road in central Hofuf. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more.",
+          "ar": "في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقُ بسطاتٍ تراثي وسط\nمنطقة سوق السويق القديمة. وسُمّي بذلك لأن البائعات فيه نساء — نساءٌ من الأحساء، محليّاتٌ وبدويات، يبعن منتجاتٍ مختلفة بعضها من صنع أيديهنّ. والسوق مفتوح للجميع، نساءً ورجالاً. ويقع على طريق الملك عبدالعزيز وسط الهفوف.\n\nنفّذت أمانة الأحساء أعمال تطوير للسوق، وهو أحد مشاهد التجارة الشعبية\nالحيّة في الهفوف، تُباع فيه الملابس والسمن والإقط وغيرها.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Hofuf, South Al-Rifaa district",
+          "ar": "الهفوف، حي الرفعة الجنوبية",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 8:00 am – 11:00 pm",
+              "ar": "يومياً 8 ص – 11 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "What are the opening hours of the Women’s Folk Souq?",
+              "ar": "ما مواعيد سوق النساء الشعبي؟"
+            },
+            "a": {
+              "en": "Daily from 8:00 am to 11:00 pm.",
+              "ar": "يومياً من 8 ص إلى 11 م."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "Where is the Women’s Folk Souq?",
+              "ar": "أين يقع سوق النساء الشعبي؟"
+            },
+            "a": {
+              "en": "In the South Al-Rifaa district of Hofuf, on King Abdulaziz Road at the heart of the old Suwaiq market area.",
+              "ar": "في حي الرفعة الجنوبية بالهفوف، على طريق الملك عبدالعزيز وسط منطقة سوق السويق القديمة."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "Why is it called the Women’s Folk Souq?",
+              "ar": "لماذا سُمّي سوق النساء الشعبي بهذا الاسم؟"
+            },
+            "a": {
+              "en": "Because the sellers there are women of Al-Ahsa — both townswomen and Bedouin.",
+              "ar": "لأن البائعات فيه نساءٌ من الأحساء، محليّاتٌ وبدويات."
+            }
+          },
+          {
+            "i": 3,
+            "q": {
+              "en": "Is the Women’s Folk Souq open only to women?",
+              "ar": "هل دخول سوق النساء الشعبي مقتصر على النساء؟"
+            },
+            "a": {
+              "en": "No — the souq is open to everyone, women and men alike; it is the sellers who are women.",
+              "ar": "لا، السوق مفتوح للجميع نساءً ورجالاً؛ والنساء هنّ البائعات فيه."
+            }
+          },
+          {
+            "i": 4,
+            "q": {
+              "en": "What is sold at the Women’s Folk Souq?",
+              "ar": "ماذا يُباع في سوق النساء الشعبي؟"
+            },
+            "a": {
+              "en": "Clothes, ghee, aqit (dried yoghurt) and more.",
+              "ar": "الملابس والسمن والإقط وغيرها."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.market",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "faq[3] q / a",
+        "faq[4] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Женский народный рынок",
+          "kicker": "Народный рынок",
+          "summary": "Традиционный рынок с лотками в районе Эр-Рифаа аль-Джанубия, в центре Эль-Хуфуфа: торгуют здесь женщины из Аль-Ахсы, отсюда и название. Это одно из мест в городе, где жива народная торговля.",
+          "body": "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, расположен Женский народный рынок — традиционный рынок с лотками в сердце старого рыночного квартала Эс-Сувайк. Своё название он получил, потому что торгуют на нём женщины из Аль-Ахсы, как горожанки, так и бедуинки. Они предлагают разные товары, часть которых делают сами. Рынок открыт для всех — и для женщин, и для мужчин. Он расположен у дороги короля Абдул-Азиза. Муниципалитет Аль-Ахсы провёл работы по развитию рынка. Это одно из мест в Эль-Хуфуфе, где жива народная торговля: здесь продают одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары.",
+          "area": "Эль-Хуфуф, район Эр-Рифаа аль-Джанубия",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы",
+              "value": "Ежедневно 8:00–23:00"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "В какие часы открыт Женский народный рынок?",
+              "a": "Ежедневно с 8:00 до 23:00."
+            },
+            {
+              "i": 1,
+              "q": "Где находится Женский народный рынок?",
+              "a": "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, у дороги короля Абдул-Азиза, в сердце старого рыночного квартала Эс-Сувайк."
+            },
+            {
+              "i": 2,
+              "q": "Почему Женский народный рынок так называется?",
+              "a": "Потому что торгуют на нём женщины из Аль-Ахсы, как горожанки, так и бедуинки."
+            },
+            {
+              "i": 3,
+              "q": "Вход на Женский народный рынок только для женщин?",
+              "a": "Нет. Рынок открыт для всех — и для женщин, и для мужчин, а торгуют на нём женщины."
+            },
+            {
+              "i": 4,
+              "q": "Что продают на Женском народном рынке?",
+              "a": "Одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары."
+            }
+          ]
+        },
+        "de": {
+          "title": "Frauen-Souk",
+          "kicker": "Traditioneller Markt",
+          "summary": "Ein traditioneller Markt mit Ständen im Zentrum von Hofuf, im Al-Rifaa-Süd-Viertel: Hier verkaufen Frauen aus Al-Ahsa – daher der Name. Der Souk zählt zu den Orten, an denen der traditionelle Handel der Stadt weiterlebt.",
+          "body": "Im Al-Rifaa-Süd-Viertel von Hofuf liegt der Frauen-Souk, ein traditioneller Markt mit Ständen im Herzen des alten Marktviertels Suwaiq. Seinen Namen verdankt er denen, die hier verkaufen: Es sind Frauen aus Al-Ahsa, Städterinnen wie Beduininnen, die verschiedene Waren anbieten – manche davon aus eigener Herstellung. Der Souk steht allen offen, Frauen wie Männern. Er liegt an der König-Abdulaziz-Straße im Zentrum von Hofuf. Die Kommunalverwaltung von Al-Ahsa hat Arbeiten zur Entwicklung des Souks durchgeführt. Er ist einer der Orte, an denen der traditionelle Handel in Hofuf lebendig geblieben ist: Hier finden Sie Kleidung, Butterschmalz, Aqit (getrockneter Joghurt) und anderes mehr.",
+          "area": "Hofuf, Al-Rifaa-Süd-Viertel",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten",
+              "value": "Täglich 8:00–23:00 Uhr"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Wie sind die Öffnungszeiten des Frauen-Souks?",
+              "a": "Täglich von 8:00 bis 23:00 Uhr."
+            },
+            {
+              "i": 1,
+              "q": "Wo liegt der Frauen-Souk?",
+              "a": "Im Al-Rifaa-Süd-Viertel von Hofuf, an der König-Abdulaziz-Straße im Herzen des alten Marktviertels Suwaiq."
+            },
+            {
+              "i": 2,
+              "q": "Warum heißt der Markt Frauen-Souk?",
+              "a": "Weil dort Frauen aus Al-Ahsa verkaufen – Städterinnen wie Beduininnen."
+            },
+            {
+              "i": 3,
+              "q": "Ist der Frauen-Souk nur für Frauen zugänglich?",
+              "a": "Nein, der Souk steht allen offen, Frauen wie Männern; verkauft wird dort von Frauen."
+            },
+            {
+              "i": 4,
+              "q": "Was wird im Frauen-Souk verkauft?",
+              "a": "Kleidung, Butterschmalz, Aqit und anderes mehr."
+            }
+          ]
+        },
+        "zh": {
+          "title": "妇女民俗市集",
+          "kicker": "民俗市集",
+          "summary": "胡富夫市中心里法阿南区的一座传统摊位市集，商贩都是哈萨的妇女，市集也因此得名，至今仍是城里鲜活的民间商贸一景。",
+          "body": "妇女民俗市集（Women's Folk Souq）位于胡富夫的里法阿南区，是一座传统摊位市集，就在老苏韦格市集区的中心。市集的名字来自这里的商贩：都是哈萨的妇女，既有城镇的，也有贝都因的。她们出售各式货品，其中有些是亲手制作的。市集坐落在胡富夫市中心的阿卜杜勒阿齐兹国王路上，对所有人开放，无论男女。哈萨市政局对这座市集做过改造提升。如今这里的民间商贸依旧鲜活，售卖衣物、酥油、干制酸奶等。",
+          "area": "胡富夫，里法阿南区",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间",
+              "value": "每日 8:00–23:00"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "妇女民俗市集的开放时间是几点到几点？",
+              "a": "每日 8:00–23:00。"
+            },
+            {
+              "i": 1,
+              "q": "妇女民俗市集在哪里？",
+              "a": "在胡富夫的里法阿南区，阿卜杜勒阿齐兹国王路上，就在老苏韦格市集区的中心。"
+            },
+            {
+              "i": 2,
+              "q": "妇女民俗市集为什么叫这个名字？",
+              "a": "因为这里的商贩都是哈萨的妇女，既有城镇的，也有贝都因的。"
+            },
+            {
+              "i": 3,
+              "q": "妇女民俗市集只对女性开放吗？",
+              "a": "不是。市集对所有人开放，无论男女；只是这里的商贩都是妇女。"
+            },
+            {
+              "i": 4,
+              "q": "在妇女民俗市集能买到什么？",
+              "a": "这里卖的是衣物、酥油、干制酸奶等货品。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Rifaa district",
+          "ar": "حي الرفعة",
+          "ru": "район Эр-Рифаа",
+          "de": null,
+          "zh": "里法阿区",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz Road",
+          "ar": "طريق الملك عبدالعزيز",
+          "ru": "дорога короля Абдул-Азиза",
+          "de": "die König-Abdulaziz-Straße",
+          "zh": "阿卜杜勒阿齐兹国王路",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Souq",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "传统市集",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "South Al-Rifaa district",
+          "ar": "حي الرفعة الجنوبية",
+          "ru": "район Эр-Рифаа аль-Джанубия",
+          "de": null,
+          "zh": "里法阿南区",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Suwaiq",
+          "ar": null,
+          "ru": "Эс-Сувайк",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Suwaiq market area",
+          "ar": "منطقة سوق السويق القديمة",
+          "ru": null,
+          "de": null,
+          "zh": "苏韦格市集",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the old Suwaiq market area",
+          "ar": null,
+          "ru": null,
+          "de": "das alte Marktviertel Suwaiq",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "women of Al-Ahsa",
+          "ar": null,
+          "ru": "женщины из Аль-Ахсы",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Women's Folk Souq",
+          "ar": "سوق النساء الشعبي",
+          "ru": "Женский народный рынок",
+          "de": "der Frauen-Souk",
+          "zh": "妇女民俗市集",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3c / P3c-labels / N14 (ruled, round 1): a name with an opaque or false-friend Arabic generic (qasr / souq / ain / bayt) — apply the rulings of termbase _meta.calibration_rulings as written",
+        "P9 (ruled, round 1): Makkah / Madinah — apply termbase _meta.calibration_rulings P9",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "practical[0].value: numbers differ — only in English [00, 00], only in Arabic []",
+          "faq[0].a: numbers differ — only in English [00, 00], only in Arabic []",
+          "body: Arabic 2 paragraph(s), 420 characters, 0 bold phrase(s), 0 link(s); English 5 sentence(s), 582 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "zaki-alsalem-farm",
+      "file": "src/content/attractions/zaki-alsalem-farm.md",
+      "file_sha256": "b101ad5af9dd7951420417a687482795de0ad5a6e825cd9ef95ecdc078470319",
+      "order": 68,
+      "category": "farm",
+      "category_label": {
+        "en": "Farms & palms",
+        "ar": "المزارع والنخيل"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Zaki Al-Salem Farm",
+          "ar": "مزرعة زكي السالم",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "مزرعة",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "One of the largest Hasawi rice farms in Al-Ahsa — famed for its harvest-season celebrations, with a sulphur-water spring and countryside chalets.",
+          "ar": "من أكبر مزارع الأرز الأحسائي في الأحساء — تشتهر باحتفالات موسم الحصاد، وفيها نبع مياه كبريتية وأكواخ ريفية.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "On Al-Khaleej Road east of the oasis lies Zaki Al-Salem Farm, one of the largest farms growing Hasawi red rice in Al-Ahsa, alongside other crops of the oasis. Each year the harvest season is marked with celebrations that draw visitors to the farm with festival-like experiences around the Hasawi rice crop. The farm also has a natural sulphur-water spring rising from the ground, around which countryside chalets known as 'Aryaf Zaki' have been built, letting guests bathe in the mineral-rich warm water amid the greenery.",
+          "ar": "على طريق الخليج تقع مزرعة زكي السالم، **من أكبر مزارع الأرز الأحسائي**\nفي الأحساء، إلى جانب محاصيل أخرى من محاصيل الواحة.\n\nتشتهر المزرعة **باحتفالات موسم حصاد** الأرز الأحسائي التي تقام كل عام\nويقصدها الزوار بأجوائها الكرنفالية. وفيها **نبع مياه كبريتية** طبيعي من\nباطن الأرض، أقيمت حوله أكواخ ريفية تُعرف بـ«أرياف زكي»، يستحمّ فيها\nالزوار بالمياه المعدنية الدافئة وسط الخضرة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Khaleej Road — Al-Ahsa",
+          "ar": "طريق الخليج — الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Thursday, Friday and Saturday 3:30–10:00 pm",
+              "ar": "الخميس والجمعة والسبت: 3:30 م - 10:00 م"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "SAR 25 per person",
+              "ar": "25 ريال للفرد"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Pending confirmation",
+              "ar": "بانتظار التأكيد"
+            },
+            "verified": false
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render.",
+        "practical[2] (render)": "verified is not true: the template hides the row in every language; pending-confirmation wording is open item P4."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.farm",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Ферма Заки ас-Салема",
+          "kicker": "Ферма",
+          "summary": "Одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы. Она славится праздниками сбора урожая, а ещё здесь серный источник и сельские домики.",
+          "body": "У дороги Эль-Халидж раскинулась ферма Заки ас-Салема — одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы, а вместе с ним и другие здешние культуры. Ферма славится праздниками, которые каждый год устраивают в сезон сбора риса Аль-Ахсы: посетители едут на них за карнавальной атмосферой. Здесь же из-под земли бьёт природный серный источник. Вокруг него построили сельские домики, известные как «Арияф Заки». В них посетители купаются в тёплой минеральной воде этого источника среди зелени.",
+          "area": "Дорога Эль-Халидж, Аль-Ахса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Zaki-Al-Salem-Farm",
+          "kicker": "Farm",
+          "summary": "Eine der größten Farmen für Hasawi-Reis in Al-Ahsa – bekannt für ihre Feste zur Erntezeit, mit einer Schwefelquelle und ländlichen Hütten.",
+          "body": "An der Al-Khaleej-Straße liegt die Zaki-Al-Salem-Farm, eine der größten Farmen der Oase für den Anbau von Hasawi-Reis – dem Reis aus Al-Ahsa. Daneben wachsen hier weitere Kulturpflanzen der Oase. Bekannt ist sie für die Feste, die jedes Jahr zur Ernte des Hasawi-Reises stattfinden: Die ausgelassene Stimmung zieht Besucher auf die Farm. Zudem tritt hier eine natürliche Schwefelquelle aus dem Boden; rund um sie sind ländliche Hütten entstanden, bekannt als „Aryaf Zaki“. Dort baden die Gäste im warmen, mineralreichen Wasser inmitten des Grüns.",
+          "area": "Al-Khaleej-Straße – Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "扎基·萨利姆农场",
+          "kicker": "农场",
+          "summary": "种植哈萨红米规模最大的农场之一，以收获季的庆典闻名，农场里有一处硫磺泉和乡村小屋。",
+          "body": "扎基·萨利姆农场（Zaki Al-Salem Farm）坐落在海湾路旁，是当地种植哈萨红米规模最大的农场之一，此外还种有绿洲出产的其他作物。农场以每年的哈萨红米收获季庆典闻名，庆典期间气氛如同过节，游客也会专程前来。农场里还有一眼从地下涌出的天然硫磺泉，泉眼周围建起了乡村小屋，名叫“扎基田园”（Aryaf Zaki）。游客可以在一片绿意里泡一泡温热的泉水，水中富含矿物质。",
+          "area": "海湾路——哈萨",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 2,
+              "label": "游览",
+              "value": "待确认（信息更新中）"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Khaleej Road",
+          "ar": "طريق الخليج",
+          "ru": "дорога Эль-Халидж",
+          "de": "die Al-Khaleej-Straße",
+          "zh": "海湾路",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Aryaf Zaki",
+          "ar": "أرياف زكي",
+          "ru": "«Арияф Заки»",
+          "de": null,
+          "zh": "“扎基田园”（Aryaf Zaki）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi red rice",
+          "ar": "الأرز الأحسائي الأحمر",
+          "ru": null,
+          "de": null,
+          "zh": "哈萨红米",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi rice",
+          "ar": "الأرز الأحسائي المحلي (المكوّن)",
+          "ru": "рис Аль-Ахсы",
+          "de": "der Hasawi-Reis · Glosse: „der Reis aus Al-Ahsa“",
+          "zh": "哈萨大米",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Zaki Al-Salem",
+          "ar": null,
+          "ru": "Заки ас-Салем",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Zaki Al-Salem Farm",
+          "ar": "مزرعة زكي السالم",
+          "ru": "Ферма Заки ас-Салема",
+          "de": "die Zaki-Al-Salem-Farm · „Aryaf Zaki“",
+          "zh": "扎基·萨利姆农场",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P7 (ruled): currency — the amount, then the full currency name at the first mention in each field (termbase _meta.style_rules.currency), never the code SAR",
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 376 characters, 3 bold phrase(s), 0 link(s); English 3 sentence(s), 522 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "uqair-beach",
+      "file": "src/content/attractions/uqair-beach.md",
+      "file_sha256": "5a0ba83aced3c5ea696141689a468662e3c7529384e338a23c121deda6a42b98",
+      "order": 40,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Uqair Beach",
+          "ar": "شاطئ العقير",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم طبيعي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A beach of clear shallow waters and white sand, one of the Gulf's oldest summer destinations.",
+          "ar": "شاطئ بمياه ضحلة صافية ورمال بيضاء، من أقدم وجهات الاصطياف على الخليج.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Along the Arabian Gulf coast stretches the historic Al-Uqair Beach, with its calm shallow waters, white sand and dunes — one of the oldest summer destinations on the Gulf, and beside it the historic Al-Uqair port that was Al-Ahsa’s gateway to the sea. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors.",
+          "ar": "على ساحل الخليج العربي يمتدّ شاطئ العقير التاريخي بمياهه الهادئة الضحلة ورماله\nالبيضاء وكثبانه — من أقدم وجهات الاصطياف على الخليج، وبجواره ميناء العقير\nالتاريخي الذي كان بوّابة الأحساء البحرية.\n\nالشاطئ مناسبٌ للعائلات وهواة التصوير، ويجاور مظلّاتٍ ومرافق مخصّصة للزوّار.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Uqair coast — east of Al-Ahsa",
+          "ar": "ساحل العقير — شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "bestTime": {
+          "en": "Early morning, or late afternoon onwards, away from the peak heat.",
+          "ar": "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ.",
+          "note": "Card value (P26: no final stop, even where the English is a sentence)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Caravans",
+              "ar": "عربات الكرفان"
+            },
+            "value": {
+              "en": "The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online",
+              "ar": "للشاطئ موقعٌ مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "Can I stay in a caravan at Al-Uqair Beach?",
+              "ar": "هل يمكن المبيت بعربات الكرفان في شاطئ العقير؟"
+            },
+            "a": {
+              "en": "Yes. The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online.",
+              "ar": "نعم، للشاطئ موقع مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "What is the best time to visit Al-Uqair Beach?",
+              "ar": "ما أفضل وقت لزيارة شاطئ العقير؟"
+            },
+            "a": {
+              "en": "Early morning, or late afternoon onwards, away from the peak heat.",
+              "ar": "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "Is Al-Uqair Beach suitable for families?",
+              "ar": "هل شاطئ العقير مناسب للعائلات؟"
+            },
+            "a": {
+              "en": "Yes. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors.",
+              "ar": "نعم، الشاطئ مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق مخصّصة للزوّار."
+            }
+          },
+          {
+            "i": 3,
+            "q": {
+              "en": "Where is Al-Uqair Beach?",
+              "ar": "أين يقع شاطئ العقير؟"
+            },
+            "a": {
+              "en": "On the Al-Uqair coast east of Al-Ahsa, beside the historic Al-Uqair port.",
+              "ar": "على ساحل العقير شرق الأحساء، بجوار ميناء العقير التاريخي."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "det.bestTime: bestTime",
+        "practical[0] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "faq[3] q / a",
+        "det.fromPlace (h2) + 1 photo(s); alt = title + \" — \" + det.photo + \" \" + n",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "trails.partOf (h2) + trail titles and taglines (no Urdu trails yet: English, linked to /en/trails/)",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": true,
+        "mentions": false,
+        "nearby": true,
+        "trails": true
+      },
+      "precedent": {
+        "ru": {
+          "title": "Пляж Эль-Укайр",
+          "kicker": "Природная достопримечательность",
+          "summary": "Пляж с прозрачным мелководьем и белым песком — одно из старейших мест летнего отдыха в регионе Залива.",
+          "body": "Исторический пляж Эль-Укайр тянется вдоль берега Залива: спокойное мелководье, белый песок и дюны. Это одно из старейших мест летнего отдыха в регионе Залива. Рядом находится исторический порт Эль-Укайр, который был морскими воротами Аль-Ахсы. Пляж подходит семьям и любителям фотографии. По соседству устроены навесы и другие удобства для посетителей.",
+          "area": "Побережье Эль-Укайр, к востоку от Аль-Ахсы",
+          "bestTime": "Ранним утром или ближе к вечеру, не в часы самого сильного зноя.",
+          "practical": [
+            {
+              "i": 0,
+              "label": "Дома на колёсах",
+              "value": "Муниципалитет Аль-Ахсы устроил на пляже площадку для домов на колёсах — места для стоянки, точки заправки водой и точки слива, бронирование онлайн"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Можно ли остановиться на пляже Эль-Укайр в доме на колёсах?",
+              "a": "Да. Муниципалитет Аль-Ахсы устроил на пляже площадку для домов на колёсах — места для стоянки, точки заправки водой и точки слива, бронирование онлайн."
+            },
+            {
+              "i": 1,
+              "q": "Когда лучше посетить пляж Эль-Укайр?",
+              "a": "Ранним утром или ближе к вечеру, не в часы самого сильного зноя."
+            },
+            {
+              "i": 2,
+              "q": "Подходит ли пляж Эль-Укайр для семейного отдыха?",
+              "a": "Да. Пляж подходит семьям и любителям фотографии, а по соседству устроены навесы и другие удобства для посетителей."
+            },
+            {
+              "i": 3,
+              "q": "Где находится пляж Эль-Укайр?",
+              "a": "На побережье Эль-Укайр к востоку от Аль-Ахсы, рядом с историческим портом Эль-Укайр."
+            }
+          ]
+        },
+        "de": {
+          "title": "Al-Uqair-Strand",
+          "kicker": "Naturlandschaft",
+          "summary": "Ein Strand mit klarem, flachem Wasser und weißem Sand – eines der ältesten Sommerziele am Golf.",
+          "body": "An der Golfküste erstreckt sich der historische Al-Uqair-Strand mit ruhigem, flachem Wasser, weißem Sand und Dünen – eines der ältesten Sommerziele am Golf. Daneben liegt der historische Hafen von Al-Uqair, einst das Tor Al-Ahsas zum Meer. Der Strand eignet sich für Familien und für alle, die gern fotografieren; in direkter Nachbarschaft finden Sie Schattendächer und Einrichtungen für Besucher.",
+          "area": "Küste von Al-Uqair – östlich von Al-Ahsa",
+          "bestTime": "Am frühen Morgen oder ab dem späten Nachmittag – außerhalb der größten Tageshitze.",
+          "practical": [
+            {
+              "i": 0,
+              "label": "Caravans",
+              "value": "Der Strand hat einen eigenen Caravanstellplatz mit Stellflächen, Frischwasser- und Entsorgungsstationen, den die Kommunalverwaltung von Al-Ahsa eingerichtet hat; der Platz lässt sich online buchen"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Kann ich am Al-Uqair-Strand im Caravan übernachten?",
+              "a": "Ja. Der Strand hat einen eigenen Caravanstellplatz mit Stellflächen, Frischwasser- und Entsorgungsstationen, den die Kommunalverwaltung von Al-Ahsa eingerichtet hat; der Platz lässt sich online buchen."
+            },
+            {
+              "i": 1,
+              "q": "Wann besuche ich den Al-Uqair-Strand am besten?",
+              "a": "Am frühen Morgen oder ab dem späten Nachmittag – außerhalb der größten Tageshitze."
+            },
+            {
+              "i": 2,
+              "q": "Ist der Al-Uqair-Strand für Familien geeignet?",
+              "a": "Ja. Der Strand eignet sich für Familien und für alle, die gern fotografieren; in direkter Nachbarschaft finden Sie Schattendächer und Einrichtungen für Besucher."
+            },
+            {
+              "i": 3,
+              "q": "Wo liegt der Al-Uqair-Strand?",
+              "a": "An der Küste von Al-Uqair östlich von Al-Ahsa, neben dem historischen Hafen von Al-Uqair."
+            }
+          ]
+        },
+        "zh": {
+          "title": "乌盖尔海滩",
+          "kicker": "自然景观",
+          "summary": "海水清浅、沙滩洁白，是海湾沿岸最古老的夏日度假胜地之一。",
+          "body": "乌盖尔海滩（Al-Uqair）历史悠久，在海湾之滨铺展。这里海水清浅平静，沙滩洁白，沙丘相伴，是海湾沿岸历史最久的夏日度假地之一。一旁的乌盖尔古港，曾是哈萨通向大海的门户。海滩既适合家庭出游，也适合摄影爱好者取景，紧邻处还设有专供游客使用的遮阳棚与配套设施。",
+          "area": "乌盖尔海岸——哈萨以东",
+          "bestTime": "清晨或下午稍晚以后，避开一天中最热的时段。",
+          "practical": [
+            {
+              "i": 0,
+              "label": "房车",
+              "value": "海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "乌盖尔海滩可以房车露营吗？",
+              "a": "可以。海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订。"
+            },
+            {
+              "i": 1,
+              "q": "什么时候去乌盖尔海滩最好？",
+              "a": "清晨或下午稍晚以后，避开一天中最热的时段。"
+            },
+            {
+              "i": 2,
+              "q": "乌盖尔海滩适合带孩子吗？",
+              "a": "适合。乌盖尔海滩是家庭出游和摄影取景的好去处，紧邻处还设有专供游客使用的遮阳棚与配套设施。"
+            },
+            {
+              "i": 3,
+              "q": "乌盖尔海滩在哪里？",
+              "a": "在哈萨以东的乌盖尔海岸，一旁就是乌盖尔古港。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair",
+          "ar": "العقير",
+          "ru": "Эль-Укайр",
+          "de": "Al-Uqair",
+          "zh": "乌盖尔（Al-Uqair）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair Beach",
+          "ar": "شاطئ العقير",
+          "ru": "пляж Эль-Укайр",
+          "de": null,
+          "zh": "乌盖尔海滩",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair port",
+          "ar": "ميناء العقير",
+          "ru": null,
+          "de": null,
+          "zh": "乌盖尔港",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Arabian Gulf coast",
+          "ar": null,
+          "ru": null,
+          "de": "die Golfküste",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Gulf",
+          "ar": null,
+          "ru": "Залив / регион Залива",
+          "de": null,
+          "zh": "海湾",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 271 characters, 0 bold phrase(s), 0 link(s); English 2 sentence(s), 363 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Uqair Beach' — AR (شاطئ العقير): the generic translated, the place name a termbase key (the al-uqair page, already translated, has the bare name as its title). The first beach title of the line: the termbase has no entry for a beach and none for a coast. The approved pages render 'coast' with one Urdu noun (the area lines of al-uqair and uqair-castle); this page has both source nouns in one sentence, 'Along the Arabian Gulf coast stretches the historic Al-Uqair Beach' (على ساحل الخليج العربي يمتدّ شاطئ العقير التاريخي).",
+          "kicker: Arabic only, 'a natural landmark' (معلم طبيعي); there is no kicker_en, and the detail page prints the category label ('Nature') above the title instead. Three pages of the batch carry this Arabic kicker (asfar, uqair-beach, salwa-beach); it is the kicker of the five pages of b5, for which ruling N67 fixed one Urdu string, held by the translation memory under its Arabic. The page is not featured: the kicker is rendered nowhere today.",
+          "summary / body: 'clear shallow waters' in the summary (بمياه ضحلة صافية), 'calm shallow waters' in the body (بمياهه الهادئة الضحلة): clear in one field, calm in the other, in both languages; the dunes are in the body only (وكثبانه).",
+          "summary / body: 'one of the Gulf's oldest summer destinations' (من أقدم وجهات الاصطياف على الخليج), in both fields and both languages: among the oldest, not the oldest (ruling P19: a superlative follows the Arabic). The Gulf is 'the Arabian Gulf' once in the body, in both languages (ساحل الخليج العربي), and bare elsewhere (ruling P5).",
+          "body: EN 'the historic Al-Uqair port that was Al-Ahsa’s gateway to the sea' — AR 'which was Al-Ahsa's sea gate' (الذي كان بوّابة الأحساء البحرية). The pages already translated say of the same port that Al-Uqair was 'Al-Ahsa’s gateway to the world' (al-uqair) and 'Najd's gateway to the sea' (uqair-castle; uqair-mosque in nearly the same words): three wordings of the sources, each on its own page, and their Urdu is approved. The port is 'historic' here, and this page says nothing of its rank or age (build check C34 guards that claim on three other pages).",
+          "body: 'The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors' (ويجاور مظلّاتٍ ومرافق مخصّصة للزوّار): the sentence is faq[2].a after 'Yes.', word for word in the EN; the AR answer differs from the AR body only in its case endings. The beach 'adjoins' the shades and facilities in both languages: they are beside it. The visitors are those of a page that is not a mosque (ruling N29).",
+          "body vs card: summary and body do not mention caravans; the card row, faq[0] and the Arabic and English answer paragraphs (not translated) do.",
+          "area: 'Al-Uqair coast — east of Al-Ahsa' (ساحل العقير — شرق الأحساء): the build of the approved area line of al-uqair ('The Arabian Gulf coast — east of Al-Ahsa') with the coast called after the place instead of the Gulf — a look-alike, not the same string. faq[3].a says it as a sentence and adds the port, 'beside the historic Al-Uqair port' (بجوار ميناء العقير التاريخي). No larger bare place leads (rulings P20 and N30).",
+          "bestTime = faq[1].a: one EN string in two places, 'Early morning, or late afternoon onwards, away from the peak heat.' — AR 'the early morning, or the afternoon and what follows it' (الصباح الباكر أو العصر وما بعده): 'late' is EN-only; the AR's word for the afternoon is also the name of the afternoon prayer. No clock time in either language. One string as a card value and as an answer (ruling P26). The al-uqair page (already translated), on the same shore, gives another best time ('Just before sunset …'); nothing is carried from one page to the other.",
+          "practical[0].value = faq[0].a after 'Yes.': 'The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online' — AR 'in it are parking places and points for water supply and drainage' (فيه مواقف ونقاط تزويد بالمياه وتصريف): 'fresh' is EN-only, and 'bays' renders the AR's 'parking places'. One string as a card value and as an answer (ruling P26). A comment in the source file says the wording is limited to what was announced, with no numbers, fees or hours (بلا أعداد ولا رسوم ولا مواعيد). The Chinese, German and Russian lines have the row. The row's internal source, never rendered, names the governorate as the announcer; the value names the municipality as the builder.",
+          "practical[0].label / faq[0].q: label 'Caravans' (عربات الكرفان) — the AR itself writes the loanword in Arabic letters. faq[0].q: EN 'Can I stay in a caravan at Al-Uqair Beach?' — AR 'is it possible to spend the night in caravans' (هل يمكن المبيت بعربات الكرفان): the night is AR-only; the German question follows the AR.",
+          "card: one row, and it is neither hours nor fees. The page says nothing about opening hours or an entry fee in either language, where the al-uqair page (already translated) has the row 'Open public site — no entry fee'; this page is not openSite. Nothing is carried from that page.",
+          "faq[1].q, faq[3].q: 'What is the best time to visit Al-Uqair Beach?' and 'Where is Al-Uqair Beach?' — the approved questions of al-uqair with the beach's name in place of the bare name ('What is the best time to visit Al-Uqair?', 'Where is Al-Uqair?'): the frames recur, the strings do not."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Title (termbase style rule titel_regel; RUNBOOK): the English translates the generic, so the Urdu translates it; the name is built from the Arabic spelling. The termbase has no entry for a beach and no ruling words such a title: stage 1 verifies the generic and the name on the web, proposes both with gender, plural and source, and uses ONE generic and one title pattern for the pages of the batch that share the kind; stage 4 raises the pattern as a new open item (N83 onwards). The gender of the title's entry is the gender the page's verbs agree with. Two titles of the batch are beach titles (uqair-beach, salwa-beach). The place name is the termbase key of Al-Uqair (rulings P1 and P17: its article kept, no vowel sign).",
+        "Ruling N67: the Arabic kicker of this page (معلم طبيعي) has ONE Urdu string, the kicker of the five pages of b5; it is copied byte for byte from the translation memory (the pair is keyed by its Arabic, since there is no English kicker). No final stop, no gloss.",
+        "Names (RUNBOOK, rule 2): Al-Uqair is a termbase key; the port has an approved wording on three pages (al-uqair, uqair-castle, uqair-mosque) and its generic is a termbase key; Al-Ahsa Municipality is the key ruled in N68 (feminine agreement, no quotation marks, inflected); 'online' is a termbase key. Each is byte-identical to its key. The 'coast' of the body and the area line has an approved rendering in the area lines of al-uqair and uqair-castle; the termbase has no entry for it or for a beach, and this page needs the two nouns side by side.",
+        "Build check C34 (tools/check-uqair-port.mjs): its TARGET does not list this page (it lists al-uqair, uqair-castle and uqair-mosque), so no approved sentence about the port is owed here. Its OLD table reads EVERY page and ALREADY HAS an Urdu entry that fails 'the oldest port' in Urdu. This page says 'one of the oldest summer destinations' of the beach and 'historic' of the port: the superlative stays with the destination (ruling P19: among the oldest, as the Arabic has it) and is never set against the word for the port. No pattern is to be added.",
+        "Ruling P5, build check C59 (GULF and GULF_QUALIFIED in tools/check-ur-text.mjs): the Gulf is written bare, also where a source writes 'the Arabian Gulf' (ساحل الخليج العربي). C59 ALREADY TARGETS /ur/ and fails both qualified forms: no pattern is to be added.",
+        "Ruling P16 and the owner's rule on loans (RUNBOOK, rule 7), build check C52 (LOAN_WHOLE_WORD and LOAN_ANYWHERE in tools/check-ur-text.mjs): C52 ALREADY TARGETS /ur/ and fails the withdrawn loans, among them the loans for 'family' and 'photography'; the approved card value of the calibration page has the Urdu words for both. This page's English invites both ('families and photography enthusiasts', in the body and in faq[2]). The AR writes the caravan as a loanword (عربات الكرفان): whatever the Urdu writes for it passes the loan test of ruling P16 and is proposed as a term.",
+        "Shared strings (RUNBOOK, rule 3; ruling P26): bestTime and faq[1].a are one English string; practical[0].value is faq[0].a after 'Yes.'; the body's second sentence is faq[2].a after 'Yes.'. Each pair has one Urdu wording; a card value ends without a stop and an answer keeps its own. The questions of faq[1] and faq[3] follow the approved frames of al-uqair with this page's title.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs): the page is not openSite, and its one card row is neither hours nor fees, so the unified hours-and-fees notice line is printed in no language (C13 expects it only where a verified hours or fees row carries the page's language). C13 ALREADY TARGETS Urdu: no pattern is to be added. C12: the row's `source` values are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of the governorate's announcement enters the label, the value or the body.",
+        "Root CLAUDE.md: invent nothing — the caravan row is limited to what was announced (a dedicated site, bays, water and waste points, online booking): no number of bays, no fee, no hours, no booking address. The page gives no opening hours, no entry fee and no distance, and none is supplied or borrowed from the al-uqair page. The best time has no clock time and gets none, and it is tied to no prayer; 'late' is the EN's and Arabic is the authority on the fact."
+      ]
+    }
+  ]
+}
