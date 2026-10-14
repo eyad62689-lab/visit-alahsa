@@ -235,6 +235,16 @@ for (const { raw } of cards) { if (eagerIds.size >= 2) break; eagerIds.add(raw.i
 
 // الصينية: صفحات الفعاليات لها نسخ /zh/ (توسعة 2026-09-02)؛ «خطط» لم تُترجم بعد
 const zh = lang === 'zh';
+// الفعالية المؤقتة (oneOff) عربية وإنجليزية فقط (events.ts) — فلا كتلة zh/de/ru لنصوصها.
+const O = localize(lang, {
+  ar: { badge: 'فعالية مؤقتة', ended: 'انتهت الفعالية', whatsapp: 'للحجز والاستفسار عبر واتساب' },
+  en: { badge: 'Limited-time event', ended: 'Event has ended', whatsapp: 'Bookings & enquiries on WhatsApp' },
+});
+// العدّاد والتحوّل بعد الختام: للنسخة ذات الموسم (after) وللمؤقتة (تُخفى بطاقتها بعد ختامها)
+const editionOf = (raw: Ev) => !!raw.endISO && (!!raw.after || !!raw.oneOff);
+const afterOf = (raw: Ev) => raw.after
+  ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
+  : raw.oneOff ? JSON.stringify({ oneOff: true, status: 'tba', label: O.ended }) : undefined;
 // تسمية زرّ المتجر من قاموس لغة الصفحة نفسها (‏ev.shop) لا من t() — تراجعه يعطي
 // الإنجليزية. لغة بلا المفتاح تعرض الأيقونة وحدها بتسمية aria إنجليزية من كلمة
 // واحدة، كما في الصفحة التفصيلية وزرّ المشاركة: لا نصّ بـzh/de/ru خارج الخطوط.
@@ -283,15 +293,13 @@ const jsonLd = [
           {cards.map(({ raw, e }, i) => (
             <article class="card ev-card" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}
               data-start={e.start} data-end={e.end ?? ''} data-ramadan={e.ramadan ? '1' : ''}
-              data-ev-edition={raw.after && raw.endISO ? '' : undefined}
-              data-ev-start={raw.after && raw.startISO ? raw.startISO : undefined}
-              data-ev-end={raw.after && raw.endISO ? raw.endISO : undefined}
-              data-ev-after={raw.after && raw.endISO
-                ? JSON.stringify({ time: raw.after.time, span: raw.after.span, status: raw.after.status, label: C.statusL[raw.after.status] })
-                : undefined}>
+              data-ev-edition={editionOf(raw) ? '' : undefined}
+              data-ev-start={editionOf(raw) && raw.startISO ? raw.startISO : undefined}
+              data-ev-end={editionOf(raw) ? raw.endISO : undefined}
+              data-ev-after={editionOf(raw) ? afterOf(raw) : undefined}>
               <div class="ev-media">
                 <Photo src={e.img} label={e.name} class="ev-photo" eager={eagerIds.has(raw.id)} sizes="(max-width: 760px) 100vw, (max-width: 1120px) 50vw, 360px" />
-                <span class="ev-season">{e.season}</span>
+                <span class:list={['ev-season', { 'ev-season--once': e.oneOff }]}>{e.oneOff ? O.badge : e.season}</span>
                 <span class={`ev-status ev-status--${e.status ?? 'expected'}`} data-ev-status>{C.statusL[e.status ?? 'expected']}</span>
                 <span class="ev-now" data-ev-now hidden>{C.nowBadge}</span>
                 {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
@@ -323,8 +331,19 @@ const jsonLd = [
               <ul class="ev-acts">
                 {e.acts.map((a) => <li class="ev-act">{a}</li>)}
               </ul>
-              {(e.ticket || e.shop) && (
+              {(e.ticket || e.shop || e.whatsapp) && (
                 <div class="ev-btns ev-btns--card">
+                  {/* واتساب الإعلان زرّاً لا نصّاً، وخاص بالنسخة فيسقط بختامها */}
+                  {e.whatsapp && (
+                    <a class="ev-ticket" href={`https://wa.me/${e.whatsapp}`} target="_blank" rel="noopener noreferrer"
+                      data-ev-dated data-track="event_contact" data-track-kind="whatsapp" data-track-item-id={e.id}>
+                      <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6L4.5 19.5Z" />
+                        <path d="M9.3 8.8c.2 2.6 3.2 5.6 5.9 5.9l1-1.2-1.8-1-1 .8c-1-.4-2.1-1.5-2.5-2.5l.8-1-1-1.8-1.4.8Z" />
+                      </svg>
+                      {O.whatsapp}
+                    </a>
+                  )}
                   {e.shop && shopNote && <p class="ev-shop-note">{shopNote}</p>}
                   {e.ticket && (
                     <a class="ev-ticket" href={e.ticket} target="_blank" rel="noopener noreferrer" data-ev-dated>
@@ -495,6 +514,9 @@ const jsonLd = [
     background: color-mix(in srgb, var(--c-turq-deep) 92%, transparent); backdrop-filter: blur(4px);
     border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); }
   .ev-media { position: relative; }
+  /* .card تفرض display:flex فتغلب سمة hidden — بطاقة الفعالية المؤقتة بعد ختامها */
+  .ev-card[hidden] { display: none; }
+  .ev-season--once { color: var(--c-sand); background: color-mix(in srgb, var(--c-gold-deep) 94%, transparent); }
   :global(.ev-photo) { border-radius: 0; }
   .ev-season { position: absolute; inset-block-start: var(--s-3); inset-inline-start: var(--s-3); z-index: 2;
     font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep);

@@ -66,6 +66,17 @@ export type Ev = {
    *  لو تأخّر النشر التالي. إلزامي مع كل status: 'confirmed' — يفرضه النوع
    *  على مستوى المصدر (EventMeta/EventTexts أدناه). */
   after?: { time: string; span: string; status: 'expected' | 'tba'; seoTitle?: string; seoDesc?: string };
+  /** فعالية مؤقتة تُقام مرة واحدة (معرض تجاري مثلاً) لا موسم يتكرّر: لا after لها، وبعد
+   *  endISO تخرج من القائمة والصفحات وsitemap في البناء التالي (EVENT_IDS أدناه)، ويخفيها
+   *  متصفّح الزائر قبله (EventEdition). عربية وإنجليزية فقط: لا نصّ لها بـzh/de/ru إلا عبر
+   *  خطوط الترجمة، ولا تدخل روزنامة المواسم السنوية (tables.ts) ولا عدّها في llms.txt. */
+  oneOff?: true;
+  /** الإعلان الرسمي كاملاً (مسار بلا امتداد تحت /img/event-posters/ — حقّه لجهته فلا
+   *  يُختم بحقوق الموقع) يُعرض بجانب متن الصفحة؛ وimg عندها قصاصة منه للبطاقة. */
+  poster?: string;
+  /** واتساب «للحجز والاستفسار» كما في الإعلان الرسمي — أرقام دولية بلا + ولا يُعرض نصاً،
+   *  زرّاً فقط (wa.me) يحمل data-track. خاص بالنسخة فيسقط بانقضائها. */
+  whatsapp?: string;
 };
 
 /** انقضت النسخة المؤكدة؟ — بنهاية اليوم الأخير بتوقيت السعودية (UTC+3، بلا توقيت صيفي) */
@@ -92,12 +103,14 @@ export function evView(ev: Ev, now: Date = new Date()): Ev {
 
 // ── الحقول البنيوية — مرة واحدة لكل فعالية ──────────────────────────────────
 /** ما يشترك فيه كل الأنواع (انظر Ev لشرح كل حقل). */
-type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'coords' | 'priceRange' | 'venue'>;
+type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp'>;
 /** النسخة المؤكدة تلزمها تواريخ ISO وحالةُ ما بعد الانقضاء؛ وسواها لا تحمل شيئاً منها.
  *  اتحادٌ مميَّز: لا يمكن كتابة status: 'confirmed' بلا afterStatus، ولا تواريخ ISO بلا تأكيد. */
 type EventMeta = MetaCommon & (
-  | { status: 'confirmed'; startISO: string; endISO: string; afterStatus: 'expected' | 'tba' }
-  | { status?: 'expected' | 'tba'; startISO?: undefined; endISO?: undefined; afterStatus?: undefined }
+  | { status: 'confirmed'; startISO: string; endISO: string; afterStatus: 'expected' | 'tba'; oneOff?: undefined }
+  // فعالية مؤقتة: مؤكدة بتاريخيها ولا موسم تعود إليه (لا afterStatus ولا نصّ after)
+  | { status: 'confirmed'; startISO: string; endISO: string; oneOff: true; afterStatus?: undefined }
+  | { status?: 'expected' | 'tba'; startISO?: undefined; endISO?: undefined; afterStatus?: undefined; oneOff?: undefined }
 );
 
 // ترتيب المفاتيح هنا هو ترتيب القائمة الافتراضي (EVENTS_AR/EN) — لا يُغيَّر عبثاً.
@@ -137,20 +150,46 @@ const EVENT_META = {
   'wafrah-winter': { img: '', start: 11, end: 2, map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8' },
   'horse-racing': { img: '/img/event-horse-racing', start: 11, end: 2 },
   'creative-ahsa': { img: '/img/event-creative-ahsa', start: 3, end: 4 },
+  // معرض الأعراس والجمال (W&B Expo) — فعالية مؤقتة أضافها إياد (2026-10-14) بإعلانها الرسمي
+  // ورابط خرائطه. من الإعلان حرفاً: الموعد 3–7 ديسمبر 2026، وأقسام المعرض الثمانية، وواتساب
+  // «للحجز والاستفسار». ومن إياد في اليوم نفسه: المكان «فندق مكان» (الإعلان يقول «أحد فنادق
+  // الخمس نجوم») — وهو بالإنجليزية Somewhere Hotel بموقعه الرسمي ksa.somewhere-hotels.com
+  // (من إياد) — والجهة المنظّمة «شركة كراز تري للمعارض والمؤتمرات» (من وثيقة المنظّم). لا
+  // إحداثيات (الرابط المختصر لم يُفكّ، فالدبوس في رابط الخرائط وحده)، ولا ساعات ولا رسوم.
+  'wb-expo-2026': {
+    img: '/img/event-posters/wb-expo-2026', poster: '/img/event-posters/wb-expo-2026-poster',
+    start: 12, end: 12,
+    status: 'confirmed', oneOff: true,
+    startISO: '2026-12-03', endISO: '2026-12-07',
+    map: 'https://maps.app.goo.gl/dyuzzUe6zwySqV75A',
+    whatsapp: '966532345832',
+  },
 } as const satisfies Record<string, EventMeta>;
 
 export type EventId = keyof typeof EVENT_META;
-const EVENT_IDS = Object.keys(EVENT_META) as EventId[];
+/** الفعاليات المؤقتة — عربية وإنجليزية فقط (انظر oneOff في Ev). */
+type OneOffId = { [K in EventId]: (typeof EVENT_META)[K] extends { oneOff: true } ? K : never }[EventId];
+/** المواسم المتكرّرة — وحدها لها نصوص zh/de/ru من خطوط الترجمة. */
+type RecurringId = Exclude<EventId, OneOffId>;
+const isOneOff = (id: EventId): boolean => (EVENT_META[id] as EventMeta).oneOff === true;
+// الفعالية المؤقتة تخرج بعد ختامها من كل ما يُبنى (القائمة، صفحتها، sitemap) — البناء
+// بتاريخه، ومتصفّح الزائر يخفي بطاقتها قبل البناء التالي (EventEdition).
+const oneOffOver = (id: EventId): boolean =>
+  isOneOff(id) && Date.now() > Date.parse(`${(EVENT_META[id] as EventMeta).endISO}T23:59:59+03:00`);
+const EVENT_IDS = (Object.keys(EVENT_META) as EventId[]).filter((id) => !oneOffOver(id));
+const RECURRING_IDS = EVENT_IDS.filter((id): id is RecurringId => !isOneOff(id));
 
 // ── النصوص — لكل لغة نسخة ────────────────────────────────────────────────────
 type AfterText = { time: string; span: string; seoTitle?: string; seoDesc?: string };
 type EvTextBase = Pick<Ev, 'slug' | 'name' | 'place' | 'season' | 'time' | 'span' | 'org' | 'acts'
   | 'hours' | 'intro' | 'sections' | 'faq' | 'related' | 'seoTitle' | 'seoDesc'>;
 /** نصّ after إلزامي لكل فعالية مؤكدة في EVENT_META وممنوع لسواها — يفرضه النوع. */
-type TextFor<K extends EventId> = (typeof EVENT_META)[K] extends { status: 'confirmed' }
+type TextFor<K extends EventId> = (typeof EVENT_META)[K] extends { afterStatus: 'expected' | 'tba' }
   ? EvTextBase & { after: AfterText }
   : EvTextBase & { after?: never };
 type EventTexts = { [K in EventId]: TextFor<K> };
+/** نصوص لغات الخطوط (zh/de/ru): المواسم المتكرّرة وحدها، فلا تُلزَم ترجمةٌ لفعالية مؤقتة. */
+type TranslatedTexts = { [K in RecurringId]: TextFor<K> };
 
 const TEXT_AR: EventTexts = {
   bisht: {
@@ -265,6 +304,25 @@ const TEXT_AR: EventTexts = {
     season: 'الربيع', time: 'مارس – أبريل', span: 'نحو أسبوع',
     org: 'أمانة الأحساء',
     acts: ['صناعة الفخار', 'الخوصيات', 'النجارة التقليدية', 'فنون تشكيلية', 'عروض شعبية'],
+  },
+  'wb-expo-2026': {
+    slug: 'معرض-الأعراس-والجمال-2026',
+    name: 'معرض الأعراس والجمال', place: 'فندق مكان، الأحساء',
+    season: 'الشتاء', time: '3 – 7 ديسمبر 2026م', span: '5 أيام',
+    org: 'شركة كراز تري للمعارض والمؤتمرات',
+    acts: ['الأزياء والفخامة', 'مستلزمات الزفاف', 'الجمال والعناية', 'الزهور والديكور', 'الصالونات والعطور', 'العيادات التجميلية', 'التصوير والمونتاج', 'الضيافة والحلويات'],
+    intro: 'معرض الأعراس والجمال (W&B Expo) فعالية مؤقتة تُقام في الأحساء من 3 إلى 7 ديسمبر 2026م في فندق مكان، وتنظّمه شركة كراز تري للمعارض والمؤتمرات، ويجمع في مكان واحد ما يحتاجه المقبلون على الزواج: الأزياء ومستلزمات الزفاف، والجمال والعناية، والزهور والديكور، والصالونات والعطور، والعيادات التجميلية، والتصوير والمونتاج، والضيافة والحلويات.',
+    faq: [
+      { q: 'متى يُقام المعرض؟', a: 'من 3 إلى 7 ديسمبر 2026م بحسب الإعلان الرسمي للمعرض.' },
+      { q: 'أين يُقام المعرض؟', a: 'في فندق مكان بالأحساء، وموقعه على خرائط قوقل من زرّ الخريطة في هذه الصفحة.' },
+      { q: 'كيف أحجز أو أستفسر؟', a: 'عبر واتساب المعرض من زرّ «للحجز والاستفسار» في هذه الصفحة.' },
+    ],
+    related: [
+      { label: 'أماكن الإقامة في الأحساء', href: '/إقامة/' },
+      { label: 'خطّط لرحلتك إلى الأحساء', href: '/خطط/' },
+    ],
+    seoTitle: 'معرض الأعراس والجمال W&B Expo في فندق مكان بالأحساء — 3–7 ديسمبر 2026',
+    seoDesc: 'معرض الأعراس والجمال (W&B Expo) في فندق مكان بالأحساء من 3 إلى 7 ديسمبر 2026م: الأزياء ومستلزمات الزفاف والجمال والزهور والتصوير والضيافة في مكان واحد.',
   },
 };
 
@@ -383,13 +441,32 @@ const TEXT_EN: EventTexts = {
     org: 'Al-Ahsa Municipality',
     acts: ['Pottery making', 'Palm-frond crafts', 'Traditional carpentry', 'Fine arts', 'Folk performances'],
   },
+  'wb-expo-2026': {
+    slug: 'weddings-beauty-expo-2026',
+    name: 'Weddings & Beauty Expo', place: 'Somewhere Hotel, Al-Ahsa',
+    season: 'Winter', time: '3–7 December 2026', span: '5 days',
+    org: 'Karaz Tree Exhibitions & Conferences Company',
+    acts: ['Fashion & luxury', 'Wedding essentials', 'Beauty & care', 'Flowers & décor', 'Salons & perfumes', 'Cosmetic clinics', 'Photography & video editing', 'Catering & sweets'],
+    intro: 'The Weddings & Beauty Expo (W&B Expo) is a limited-time event held in Al-Ahsa from 3 to 7 December 2026 at Somewhere Hotel, organised by Karaz Tree Exhibitions & Conferences Company. It brings together under one roof what couples need before their wedding: fashion and wedding essentials, beauty and care, flowers and décor, salons and perfumes, cosmetic clinics, photography and video editing, and catering and sweets.',
+    faq: [
+      { q: 'When is the expo held?', a: 'From 3 to 7 December 2026, according to the expo’s official announcement.' },
+      { q: 'Where is the expo held?', a: 'At Somewhere Hotel in Al-Ahsa; use the map button on this page to open its location in Google Maps.' },
+      { q: 'How do I book or ask a question?', a: 'Through the expo’s WhatsApp, using the “Bookings & enquiries” button on this page.' },
+    ],
+    related: [
+      { label: 'Where to stay in Al-Ahsa', href: '/en/stay/' },
+      { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
+    ],
+    seoTitle: 'Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa — 3–7 Dec 2026',
+    seoDesc: 'The Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers, photography and catering in one place.',
+  },
 };
 
 // النسخة الصينية — خط zh-translation-pipeline حصراً (دفعة events 2026-09-02،
 // الحاكم 94/100 بعد القارئ الأعمى). المقاطع slug تشارك الإنجليزية (سابقة صفحات
 // المعالم الصينية)، والأسماء من termbase (أسماء الفعاليات السبعة مثبتة من بطاقات
 // المواسم). أعلام dated كما في العربية — عليها تقوم آلية evView/EventEdition.
-const TEXT_ZH: EventTexts = {
+const TEXT_ZH: TranslatedTexts = {
   bisht: {
     slug: 'hasawi-bisht-festival',
     name: '哈萨比什特长袍节', place: '胡富夫历史悠久的易卜拉欣宫',
@@ -502,7 +579,7 @@ const TEXT_ZH: EventTexts = {
 // النسخة الروسية — خط ru-translation-pipeline حصراً (المرحلة ب من خطة إكمال اللغات).
 // المقاطع slug تشارك الإنجليزية كالصينية. بُنيت بخمس دفعات (ru-ev-2…5) واكتملت الفعاليات
 // العشر، فشُدِّدت إلى EventTexts: فعالية جديدة بلا نصّ روسي تُفشل البناء لا تتراجع صامتةً.
-const TEXT_RU: EventTexts = {
+const TEXT_RU: TranslatedTexts = {
   // دفعة ru-ev-2 2026-09-17 — خط ru-translation-pipeline، الحاكم 94/100 · APPROVE (دورتان)
   bisht: {
     slug: 'hasawi-bisht-festival',
@@ -607,7 +684,7 @@ const TEXT_RU: EventTexts = {
 // النسخة الألمانية — خط de-translation-pipeline حصراً (دفعات de-ev-1…5، ج4 من خطة إكمال اللغات).
 // بنود نسخة 2026 المنتهية من معرض اللومي (dated، والساعات، وعنوان النسخة ووصفها) لا تُترجم:
 // لا تُصيَّر بعد 13 سبتمبر (evView)، على سابقة TEXT_RU. والرابط إلى الثمار يقصد /de/fruits/.
-const TEXT_DE: EventTexts = {
+const TEXT_DE: TranslatedTexts = {
   bisht: {
     slug: 'hasawi-bisht-festival',
     name: 'Hasawi-Bischt-Festival', place: 'Historischer Qasr Ibrahim, Hofuf',
@@ -709,19 +786,20 @@ const TEXT_DE: EventTexts = {
 function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
   const m: EventMeta = EVENT_META[id];
   const { after, ...t } = text;
-  if (m.status === 'confirmed') {
+  if (m.status === 'confirmed' && !m.oneOff) {
     // afterStatus حقل مصدرٍ لا يخرج في Ev — يذوب في after.status
-    const { afterStatus, ...meta } = m;
+    const { afterStatus, oneOff: _o, ...meta } = m;
     return { id, ...t, ...meta, after: { ...after!, status: afterStatus } };
   }
-  return { id, ...t, ...m };
+  const { afterStatus: _a, ...meta } = m;
+  return { id, ...t, ...meta };
 }
 
 export const EVENTS_AR: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_AR[id]));
 export const EVENTS_EN: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_EN[id]));
-export const EVENTS_ZH: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_ZH[id]));
-export const EVENTS_DE: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_DE[id]));
-export const EVENTS_RU: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_RU[id]));
+export const EVENTS_ZH: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_ZH[id]));
+export const EVENTS_DE: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_DE[id]));
+export const EVENTS_RU: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_RU[id]));
 
 /** فعاليات لغة الصفحة. الأوردو بلا كتلة نصوص بعد (لا TEXT_UR خارج خط ترجمتها) فتتراجع
  *  للإنجليزية صراحةً؛ وeventAlt أدناه يبقى بلغاته الخمس: لا صفحة /ur/events/ يُربط إليها. */
@@ -733,11 +811,16 @@ export const counterpart = (id: string, lang: Lang): Ev | undefined =>
   (lang === 'ar' ? EVENTS_EN : EVENTS_AR).find((e) => e.id === id);
 
 /** روابط الفعالية بلغاتها — مصدر alt (hreflang ومبدّل اللغة) لصفحاتها المفردة.
- *  الصينية والألمانية والروسية كاملة (الفعاليات العشر). */
-export const eventAlt = (id: string): { ar: string; en: string; zh: string; de: string; ru: string } => ({
-  ar: `/فعاليات/${EVENTS_AR.find((e) => e.id === id)!.slug}/`,
-  en: `/en/events/${EVENTS_EN.find((e) => e.id === id)!.slug}/`,
-  zh: `/zh/events/${EVENTS_ZH.find((e) => e.id === id)!.slug}/`,
-  de: `/de/events/${EVENTS_DE.find((e) => e.id === id)!.slug}/`,
-  ru: `/ru/events/${EVENTS_RU.find((e) => e.id === id)!.slug}/`,
-});
+ *  الصينية والألمانية والروسية للمواسم العشرة كاملة؛ والفعالية المؤقتة عربية وإنجليزية فقط،
+ *  فلا تُدرج لها لغة بلا صفحة (لا خيار يقود إلى 404). */
+export const eventAlt = (id: string): { ar: string; en: string; zh?: string; de?: string; ru?: string } => {
+  const slugIn = (list: Ev[]) => list.find((e) => e.id === id)?.slug;
+  const zh = slugIn(EVENTS_ZH), de = slugIn(EVENTS_DE), ru = slugIn(EVENTS_RU);
+  return {
+    ar: `/فعاليات/${slugIn(EVENTS_AR)!}/`,
+    en: `/en/events/${slugIn(EVENTS_EN)!}/`,
+    ...(zh ? { zh: `/zh/events/${zh}/` } : {}),
+    ...(de ? { de: `/de/events/${de}/` } : {}),
+    ...(ru ? { ru: `/ru/events/${ru}/` } : {}),
+  };
+};
