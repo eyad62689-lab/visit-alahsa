@@ -153,7 +153,8 @@ const EVENT_META = {
   // معرض الأعراس والجمال (W&B Expo) — فعالية مؤقتة أضافها إياد (2026-10-14) بإعلانها الرسمي
   // ورابط خرائطه. من الإعلان حرفاً: الموعد 3–7 ديسمبر 2026، وأقسام المعرض الثمانية، وواتساب
   // «للحجز والاستفسار». ومن إياد في اليوم نفسه: المكان «فندق مكان» (الإعلان يقول «أحد فنادق
-  // الخمس نجوم») والجهة المنظّمة «شركة كراز تري للمعارض والمؤتمرات» (من وثيقة المنظّم). لا
+  // الخمس نجوم») — وهو بالإنجليزية Somewhere Hotel بموقعه الرسمي ksa.somewhere-hotels.com
+  // (من إياد) — والجهة المنظّمة «شركة كراز تري للمعارض والمؤتمرات» (من وثيقة المنظّم). لا
   // إحداثيات (الرابط المختصر لم يُفكّ، فالدبوس في رابط الخرائط وحده)، ولا ساعات ولا رسوم.
   'wb-expo-2026': {
     img: '/img/event-posters/wb-expo-2026', poster: '/img/event-posters/wb-expo-2026-poster',
@@ -442,22 +443,22 @@ const TEXT_EN: EventTexts = {
   },
   'wb-expo-2026': {
     slug: 'weddings-beauty-expo-2026',
-    name: 'Weddings & Beauty Expo', place: 'Makan Hotel, Al-Ahsa',
+    name: 'Weddings & Beauty Expo', place: 'Somewhere Hotel, Al-Ahsa',
     season: 'Winter', time: '3–7 December 2026', span: '5 days',
     org: 'Karaz Tree Exhibitions & Conferences Company',
     acts: ['Fashion & luxury', 'Wedding essentials', 'Beauty & care', 'Flowers & décor', 'Salons & perfumes', 'Cosmetic clinics', 'Photography & video editing', 'Catering & sweets'],
-    intro: 'The Weddings & Beauty Expo (W&B Expo) is a limited-time event held in Al-Ahsa from 3 to 7 December 2026 at Makan Hotel, organised by Karaz Tree Exhibitions & Conferences Company. It brings together under one roof what couples need before their wedding: fashion and wedding essentials, beauty and care, flowers and décor, salons and perfumes, cosmetic clinics, photography and video editing, and catering and sweets.',
+    intro: 'The Weddings & Beauty Expo (W&B Expo) is a limited-time event held in Al-Ahsa from 3 to 7 December 2026 at Somewhere Hotel, organised by Karaz Tree Exhibitions & Conferences Company. It brings together under one roof what couples need before their wedding: fashion and wedding essentials, beauty and care, flowers and décor, salons and perfumes, cosmetic clinics, photography and video editing, and catering and sweets.',
     faq: [
       { q: 'When is the expo held?', a: 'From 3 to 7 December 2026, according to the expo’s official announcement.' },
-      { q: 'Where is the expo held?', a: 'At Makan Hotel in Al-Ahsa; use the map button on this page to open its location in Google Maps.' },
+      { q: 'Where is the expo held?', a: 'At Somewhere Hotel in Al-Ahsa; use the map button on this page to open its location in Google Maps.' },
       { q: 'How do I book or ask a question?', a: 'Through the expo’s WhatsApp, using the “Bookings & enquiries” button on this page.' },
     ],
     related: [
       { label: 'Where to stay in Al-Ahsa', href: '/en/stay/' },
       { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
     ],
-    seoTitle: 'Weddings & Beauty Expo (W&B Expo) at Makan Hotel, Al-Ahsa — 3–7 Dec 2026',
-    seoDesc: 'The Weddings & Beauty Expo (W&B Expo) at Makan Hotel, Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers, photography and catering in one place.',
+    seoTitle: 'Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa — 3–7 Dec 2026',
+    seoDesc: 'The Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers, photography and catering in one place.',
   },
 };
 
