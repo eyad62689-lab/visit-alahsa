@@ -34,7 +34,8 @@ export const GET: APIRoute = async () => {
   const urIndexes = ['/ur/', '/ur/attractions/'].filter((p) => !isUnlisted(p));
   const diningCount = (await getCollection('dining')).length;
   const stayCount = (await getCollection('stay')).length;
-  const eventCount = EVENTS_AR.length;
+  // المواسم المتكرّرة وحدها — النصّ أدناه يصفها بالتكرار، والفعالية المؤقتة ليست منها
+  const eventCount = EVENTS_AR.filter((e) => !e.oneOff).length;
   const unescoCount = attractions.filter((e) => e.data.unesco).length;
   // المقالات تُعدّ بالموضوع لا بالملف (لكل موضوع ملف عربي وآخر إنجليزي)
   const topicCount = new Set(posts.filter((p) => !p.data.draft).map((p) => p.data.key)).size;

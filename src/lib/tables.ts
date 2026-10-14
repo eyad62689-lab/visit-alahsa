@@ -59,7 +59,8 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
 
 /** روزنامة الفعاليات: الاسم والموقع والتوقيت التقريبي (النسخة المؤكدة ما دامت قائمة). */
 export function eventsTable(lang: Lang, heads: { name: string; place: string; time: string }, base: string): Table {
-  const list = eventsFor(lang).map((e) => evView(e)).sort((a, b) => a.start - b.start);
+  // الروزنامة للمواسم المتكرّرة سنوياً وحدها (عنوانها يقول ذلك) — الفعالية المؤقتة خارجها
+  const list = eventsFor(lang).filter((e) => !e.oneOff).map((e) => evView(e)).sort((a, b) => a.start - b.start);
   return {
     id: 'events',
     caption: ({ ar: 'روزنامة مواسم الفعاليات — مواعيد تقريبية تعود سنوياً', en: 'Seasonal calendar of events — approximate, recurring annually', de: 'Saisonaler Kalender der Veranstaltungen – ungefähre Angaben, jährlich wiederkehrend', ru: 'Календарь сезонных мероприятий — даты приблизительны и повторяются ежегодно' } as Partial<Record<Lang, string>>)[lang],
