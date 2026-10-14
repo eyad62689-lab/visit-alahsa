@@ -16,6 +16,11 @@ title_ru: "Птичьи сады Эс-Саусан"
 kicker_ru: "Ферма и пальмы"
 summary_ru: "Сад, где в атмосфере оазиса Аль-Ахса собраны птицы."
 body_ru: "Сад, где в атмосфере оазиса Аль-Ахса собраны птицы."
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-14، الدفعة b10 — السجل في ur-translation/memory/scores.csv).
+title_ur: "السوسن کے پرندوں کے باغات"
+kicker_ur: "زرعی فارم اور کھجور کے درخت"
+summary_ur: "الاحساء کے نخلستان کے ماحول میں ایک باغ، جہاں پرندے نمائش کے لیے رکھے گئے ہیں۔"
+body_ur: "الاحساء کے نخلستان کے ماحول میں ایک باغ، جہاں پرندے نمائش کے لیے رکھے گئے ہیں۔"
 slug_ar: "حدائق-السوسن-للطيور"
 slug_en: "sawsan-gardens"
 category: farm
@@ -26,7 +31,7 @@ body_en: "A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis
 featured: false
 order: 64
 practical:
-  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", label_ur: "اوقات", value_ur: "روزانہ سہ پہر 3:30 بجے سے رات 10:30 بجے تک", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.36264, lng: 49.69037 }
 mapUrl: "https://maps.app.goo.gl/jrkvGmKumQ6s9q2k6"
 heroImage: /img/al-sousan-bird-park

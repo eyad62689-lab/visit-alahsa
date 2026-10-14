@@ -76,6 +76,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     nature: 'قدرتی مقامات',
     parks: 'تفریح گاہیں اور باغات',
     market: 'روایتی بازار',
+    farm: 'زرعی فارم اور کھجور کے باغات',
   },
 };
 

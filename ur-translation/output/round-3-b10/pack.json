@@ -1,0 +1,1336 @@
+{
+  "batch": "b10",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b10",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, [area], [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 6,
+    "fields": 47,
+    "per_page": {
+      "duqat-algharash": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "lemon-farm": {
+        "fields": 6,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "strawberry-farm": {
+        "fields": 6,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "sawsan-gardens": {
+        "fields": 6,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "taraf-zoo": {
+        "fields": 7,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "hamidiyah-souq": {
+        "fields": 13,
+        "practical_rows": 1,
+        "faq_items": 3,
+        "bestTime": false,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "duqat-algharash",
+      "file": "src/content/attractions/duqat-algharash.md",
+      "file_sha256": "311c30a888697fd1bfbc386c94ff87b9c6d7a1912b145c0de20cb30b900cc795",
+      "order": 60,
+      "category": "market",
+      "category_label": {
+        "en": "Heritage souqs",
+        "ar": "الأسواق التراثية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Dougha Al-Gharash Pottery",
+          "ar": "دوغة الغراش",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "حرفة تراثية",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A heritage pottery house by Al-Qarah Mountain, handed down through the Al-Gharash family — one of the Kingdom's best-known homes of the craft.",
+          "ar": "بيت فخار تراثي عند جبل القارة توارثته أسرة الغراش، من أشهر مواقع الحرفة في المملكة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "At the foot of Al-Qarah Mountain in Al-Qarah village stands Dougha Al-Gharash, a heritage pottery house where vessels are still shaped from clay by hand in the old way and fired in its kilns. The craft has been handed down through the Al-Gharash family generation after generation, and press accounts record that pottery has endured on this spot for more than six hundred years, making it one of the Kingdom's most celebrated homes of the folk craft. Its potters have shown their work at exhibitions in France, the United States and Canada, and the dougha is today a tourist stop where visitors watch the stages of the craft — from kneading the clay to the wheel to the kiln — and take home its wares.",
+          "ar": "عند سفح جبل القارة في قرية القارة تقع دوغة الغراش، بيت فخار تراثي ما تزال\nالأواني تُشكَّل فيه من الطين بالطريقة اليدوية القديمة ثم تُحرق في أفرانه.\nتوارثت أسرة **الغراش** هذه الحرفة جيلاً بعد جيل، وتذكر التغطيات الصحفية أن\nصناعة الفخار صمدت في هذا المكان لأكثر من ستمائة عام، مما يجعله من أشهر\nبيوت الحرفة الشعبية في المملكة. شارك حرفيوه في معارض دولية في فرنسا\nوالولايات المتحدة وكندا، والدوغة اليوم محطة سياحية يشاهد فيها الزائر\nمراحل الصناعة — من عجن الطين إلى الدولاب إلى الفرن — ويقتني من منتجاتها.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Qarah village — by Al-Qarah Mountain, east of Al-Ahsa",
+          "ar": "قرية القارة — عند جبل القارة، شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 8:00 am – 12:00 noon and 3:00–7:30 pm",
+              "ar": "يومياً: 8:00 ص - 12:00 ظهراً | 3:00 م - 7:30 م"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "الدخول مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.market",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "trails.partOf (h2) + trail titles and taglines (no Urdu trails yet: English, linked to /en/trails/)",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": true,
+        "nearby": true,
+        "trails": true
+      },
+      "precedent": {
+        "ru": {
+          "title": "Гончарная мастерская Дуга-эль-Гараш",
+          "kicker": "Традиционное ремесло",
+          "summary": "Традиционная гончарная мастерская у горы Эль-Кара, которую семья аль-Гараш передаёт из поколения в поколение, — одно из самых известных мест ремесла в Королевстве.",
+          "body": "У подножия горы Эль-Кара, в деревне Эль-Кара, стоит Дуга-эль-Гараш — традиционная гончарная мастерская, где посуду по-прежнему лепят из глины старым ручным способом и обжигают в здешних печах. В семье аль-Гараш ремесло передают из поколения в поколение. По сообщениям прессы, гончарное дело сохраняется на этом месте более 600 лет, и это одно из самых известных мест народного ремесла в Королевстве. Гончары мастерской показывали свои работы на выставках во Франции, США и Канаде. Сегодня сюда приезжают туристы: они наблюдают за этапами ремесла — от замеса глины до гончарного круга и печи — и увозят с собой что-нибудь из изделий мастерской.",
+          "area": "Деревня Эль-Кара — у горы Эль-Кара, к востоку от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Dougha Al-Gharash",
+          "kicker": "Traditionelles Handwerk",
+          "summary": "Ein traditionelles Töpferhaus am Jabal al-Qarah, von der Familie Al-Gharash über Generationen weitergegeben – eine der bekanntesten Stätten des Töpferhandwerks in Saudi-Arabien.",
+          "body": "Am Fuß des Jabal al-Qarah (des Qarah-Bergs), im Dorf Al-Qarah, steht Dougha Al-Gharash, ein traditionelles Töpferhaus. Die Gefäße werden hier noch immer von Hand und auf die alte Art aus Ton geformt und in den Brennöfen des Hauses gebrannt. Die Familie Al-Gharash hat ihr Handwerk über Generationen weitergegeben. Presseberichten zufolge besteht das Töpferhandwerk an diesem Ort seit mehr als 600 Jahren fort; damit zählt Dougha Al-Gharash zu den berühmtesten Stätten dieses Volkshandwerks in Saudi-Arabien. Die Töpfer des Hauses haben ihre Arbeiten in Frankreich, den Vereinigten Staaten und Kanada ausgestellt. Heute ist das Töpferhaus eine Station für Besucher: Hier verfolgen Sie die Schritte des Handwerks – vom Kneten des Tons über die Töpferscheibe bis zum Brennofen – und nehmen eines der Erzeugnisse des Hauses mit.",
+          "area": "Dorf Al-Qarah – am Jabal al-Qarah, östlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "加拉什家族杜加陶坊",
+          "kicker": "传统手工艺",
+          "summary": "卡拉山下的一座传统陶坊，由加拉什家族世代相传，是沙特阿拉伯最有名的制陶之地之一。",
+          "body": "加拉什家族的杜加陶坊（Dougha Al-Gharash）坐落在卡拉村，就在卡拉山脚下。坊里的器皿至今仍用黏土手工塑成，再入窑烧制，做法一如从前。这门手艺在加拉什家族中代代相传。媒体报道称，此地制陶已延续 600 多年，这里也因此成为沙特阿拉伯最有名的民间手工艺作坊之一。坊里的陶艺人曾在法国、美国和加拿大的国际展览上展出作品。如今陶坊也成了游客游览的一站，从揉泥、陶轮拉坯到入窑烧制，制陶的各道工序都能看到，坊里的陶器也能选一件带走。",
+          "area": "卡拉村——毗邻卡拉山，哈萨东部",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Gharash",
+          "ar": null,
+          "ru": "аль-Гараш",
+          "de": "Al-Gharash",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Gharash family",
+          "ar": "أسرة الغراش",
+          "ru": null,
+          "de": null,
+          "zh": "加拉什家族",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qarah",
+          "ar": "القارة",
+          "ru": "Эль-Кара",
+          "de": "Al-Qarah",
+          "zh": "卡拉",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Qarah Mountain",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "卡拉山",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qarah village",
+          "ar": "قرية القارة",
+          "ru": null,
+          "de": null,
+          "zh": "卡拉村",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Canada",
+          "ar": null,
+          "ru": null,
+          "de": "Kanada",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Dougha Al-Gharash",
+          "ar": null,
+          "ru": null,
+          "de": "Dougha Al-Gharash",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Dougha Al-Gharash Pottery",
+          "ar": "دوغة الغراش",
+          "ru": "Гончарная мастерская Дуга-эль-Гараш",
+          "de": "Dougha Al-Gharash",
+          "zh": "加拉什家族杜加陶坊",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "France",
+          "ar": null,
+          "ru": null,
+          "de": "Frankreich",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Kingdom",
+          "ar": null,
+          "ru": null,
+          "de": "das Königreich",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the United States",
+          "ar": null,
+          "ru": null,
+          "de": "die Vereinigten Staaten",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 503 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 701 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "lemon-farm",
+      "file": "src/content/attractions/lemon-farm.md",
+      "file_sha256": "d28b49c86ad03ce9f76b6e681e7800ce54e5f438bd9fdca7bde254dcfe79f7f5",
+      "order": 61,
+      "category": "farm",
+      "category_label": {
+        "en": "Farms & palms",
+        "ar": "المزارع والنخيل"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Hasawi Lime Farm",
+          "ar": "مزرعة الليمون الحساوي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "مزرعة ونخيل",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season.",
+          "ar": "مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season.",
+          "ar": "مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily in the growing seasons, 4:00–9:30 pm",
+              "ar": "يومياً في المواسم الزراعية: 4:00 م - 9:30 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "area": "The page has no area in any language: nothing to translate, the row does not render.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.farm",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": true,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Ферма лайма Аль-Ахсы",
+          "kicker": "Ферма и пальмы",
+          "summary": "Цитрусовая ферма, куда в сезон приезжают посетители, чтобы собрать знаменитый лайм Аль-Ахсы.",
+          "body": "Цитрусовая ферма, куда в сезон приезжают посетители, чтобы собрать знаменитый лайм Аль-Ахсы.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Hasawi-Limettenfarm",
+          "kicker": "Farm und Dattelpalmen",
+          "summary": "Eine Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken – die Limette aus Al-Ahsa.",
+          "body": "Eine Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken – die Limette aus Al-Ahsa.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "哈萨青柠农场",
+          "kicker": "农场与椰枣林",
+          "summary": "一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠。",
+          "body": "一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠。",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi lime",
+          "ar": null,
+          "ru": "лайм",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 63 characters, 0 bold phrase(s), 0 link(s); English 1 sentence(s), 74 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "strawberry-farm",
+      "file": "src/content/attractions/strawberry-farm.md",
+      "file_sha256": "6dc005112f310c71347dff1a87e74dcda866ec5deaed163d873501bfaea4af1d",
+      "order": 63,
+      "category": "farm",
+      "category_label": {
+        "en": "Farms & palms",
+        "ar": "المزارع والنخيل"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Strawberry Farm",
+          "ar": "مزرعة الفراولة",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "مزرعة ونخيل",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A strawberry farm on the Al-Uqair road offering seasonal picking.",
+          "ar": "مزرعة فراولة على طريق العقير تتيح القطف الموسمي.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "A strawberry farm on the Al-Uqair road offering seasonal picking.",
+          "ar": "مزرعة فراولة على طريق العقير تتيح القطف الموسمي.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Winter and spring season, 3:30–9:30 pm",
+              "ar": "الموسم الشتوي والربيعي: 3:30 م - 9:30 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "area": "The page has no area in any language: nothing to translate, the row does not render.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.farm",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Клубничная ферма",
+          "kicker": "Ферма и пальмы",
+          "summary": "Клубничная ферма у дороги на Эль-Укайр: в сезон здесь можно собирать ягоды.",
+          "body": "Клубничная ферма у дороги на Эль-Укайр: в сезон здесь можно собирать ягоды.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Erdbeerfarm",
+          "kicker": "Farm und Dattelpalmen",
+          "summary": "Eine Erdbeerfarm an der Straße nach Al-Uqair: In der Saison können Besucher hier selbst pflücken.",
+          "body": "Eine Erdbeerfarm an der Straße nach Al-Uqair: In der Saison können Besucher hier selbst pflücken.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "草莓农场",
+          "kicker": "农场与椰枣林",
+          "summary": "乌盖尔路旁的一座草莓农场，到了季节可以亲手采摘。",
+          "body": "草莓农场坐落在乌盖尔路（Al-Uqair）旁，到了季节可以亲手采摘。",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Uqair",
+          "ar": "العقير",
+          "ru": "Эль-Укайр",
+          "de": "Al-Uqair",
+          "zh": "乌盖尔（Al-Uqair）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair road",
+          "ar": "طريق العقير",
+          "ru": null,
+          "de": null,
+          "zh": "乌盖尔路",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Strawberry Farm",
+          "ar": "مزرعة الفراولة",
+          "ru": "Клубничная ферма",
+          "de": "die Erdbeerfarm",
+          "zh": "草莓农场",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Al-Uqair road",
+          "ar": null,
+          "ru": "дорога на Эль-Укайр",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 48 characters, 0 bold phrase(s), 0 link(s); English 1 sentence(s), 65 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "sawsan-gardens",
+      "file": "src/content/attractions/sawsan-gardens.md",
+      "file_sha256": "d40b1d368d68b789f65c5c45e38938b1ef687683a9e216a9862ca1ac7609b55f",
+      "order": 64,
+      "category": "farm",
+      "category_label": {
+        "en": "Farms & palms",
+        "ar": "المزارع والنخيل"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Sawsan Bird Gardens",
+          "ar": "حدائق السوسن للطيور",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "مزرعة ونخيل",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis.",
+          "ar": "حديقة لعرض الطيور وسط أجواء واحة الأحساء.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis.",
+          "ar": "حديقة لعرض الطيور وسط أجواء واحة الأحساء.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 3:30–10:30 pm",
+              "ar": "يومياً: 3:30 م - 10:30 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "area": "The page has no area in any language: nothing to translate, the row does not render.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.farm",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Птичьи сады Эс-Саусан",
+          "kicker": "Ферма и пальмы",
+          "summary": "Сад, где в атмосфере оазиса Аль-Ахса собраны птицы.",
+          "body": "Сад, где в атмосфере оазиса Аль-Ахса собраны птицы.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Sawsan-Vogelgärten",
+          "kicker": "Farm und Dattelpalmen",
+          "summary": "Ein Garten, in dem Vögel gezeigt werden – in der Atmosphäre der Al-Ahsa-Oase.",
+          "body": "Ein Garten, in dem Vögel gezeigt werden – in der Atmosphäre der Al-Ahsa-Oase.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "苏珊鸟园",
+          "kicker": "农场与椰枣林",
+          "summary": "一座展示鸟类的花园，就在哈萨绿洲之中。",
+          "body": "苏珊鸟园（Al-Sawsan Bird Gardens）是一座展示鸟类的花园，坐落在哈萨绿洲之中。",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Sawsan",
+          "ar": null,
+          "ru": "Эс-Саусан",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Sawsan Bird Gardens",
+          "ar": "حدائق السوسن للطيور",
+          "ru": "Птичьи сады Эс-Саусан",
+          "de": "die Al-Sawsan-Vogelgärten",
+          "zh": "苏珊鸟园",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 41 characters, 0 bold phrase(s), 0 link(s); English 1 sentence(s), 71 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "taraf-zoo",
+      "file": "src/content/attractions/taraf-zoo.md",
+      "file_sha256": "bf5e81515edafc4d2fa54ba523adc14ba42105d84286b106fab8057aceb4a584",
+      "order": 65,
+      "category": "farm",
+      "category_label": {
+        "en": "Farms & palms",
+        "ar": "المزارع والنخيل"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Taraf Zoo",
+          "ar": "حديقة حيوانات الطرف",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "وجهة عائلية",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A family zoo in the town of Al-Taraf east of Hofuf.",
+          "ar": "حديقة حيوانات عائلية في بلدة الطرف شرقي الهفوف.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the town of Al-Taraf, east of Hofuf among the oasis villages, lies Al-Taraf Zoo, a family destination where children get to see a variety of animals up close. It is one of the area's simple, unhurried family outings, easily combined with a visit to the nearby Al-Taraf countryside and the southern reaches of the oasis. Check locally before planning the trip.",
+          "ar": "في بلدة الطرف شرقي الهفوف، بين قرى الواحة، تقع حديقة حيوانات الطرف،\nوجهة عائلية يشاهد فيها الصغار طيفاً من الحيوانات عن قرب. وهي من الجولات\nالعائلية الهادئة في المنطقة، ويسهل جمعها مع زيارة أرياف الطرف وجنوب\nالواحة. ويُستحسن التحقق محلياً قبل التخطيط للرحلة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Taraf — east of Hofuf",
+          "ar": "بلدة الطرف — شرق الهفوف",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 3:30–10:30 pm",
+              "ar": "يومياً: 3:30 م - 10:30 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.farm",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Зоопарк Эт-Тараф",
+          "kicker": "Семейный отдых",
+          "summary": "Семейный зоопарк в посёлке Эт-Тараф к востоку от Эль-Хуфуфа — о посещении информация уточняется.",
+          "body": "В посёлке Эт-Тараф к востоку от Эль-Хуфуфа, среди деревень оазиса, расположен зоопарк Эт-Тараф — место для семейного отдыха, где дети могут вблизи увидеть самых разных животных. Это одно из спокойных мест для семейной прогулки в этих краях, и её легко совместить с поездкой по сельской округе Эт-Тарафа и по югу оазиса. Впрочем, об основании зоопарка, о том, кто им управляет и каков сегодня порядок посещения, информация уточняется — прежде чем планировать поездку, эти сведения стоит проверить на месте.",
+          "area": "Эт-Тараф — к востоку от Эль-Хуфуфа",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Taraf-Zoo",
+          "kicker": "Familienausflugsziel",
+          "summary": "Ein Familienzoo im Ort Al-Taraf, östlich von Hofuf.",
+          "body": "Im Ort Al-Taraf, östlich von Hofuf, inmitten der Dörfer der Oase, liegt der Al-Taraf-Zoo, ein Familienausflugsziel, in dem Kinder eine Vielfalt an Tieren aus nächster Nähe sehen können. Er zählt zu den ruhigen Familienausflügen der Gegend und lässt sich gut mit einem Besuch der nahen ländlichen Umgebung von Al-Taraf sowie des südlichen Teils der Oase verbinden. Erkundigen Sie sich lokal, bevor Sie die Reise planen.",
+          "area": "Al-Taraf – östlich von Hofuf",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "塔拉夫动物园",
+          "kicker": "家庭出游去处",
+          "summary": "塔拉夫镇的一座动物园，就在胡富夫以东，适合全家出游。",
+          "body": "塔拉夫动物园（Al-Taraf Zoo）位于胡富夫以东的塔拉夫镇，坐落在绿洲的村落之间。动物园适合全家同行，孩子们可以近距离看到各种动物。这是当地一处清静的家庭出游去处，也方便和塔拉夫的乡野、绿洲南部安排在同一趟行程里。出行前请先在当地核实。",
+          "area": "塔拉夫镇——胡富夫以东",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Taraf",
+          "ar": "الطرف",
+          "ru": "Эт-Тараф",
+          "de": "Al-Taraf",
+          "zh": "塔拉夫（Al-Taraf）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Taraf Zoo",
+          "ar": "حديقة حيوانات الطرف",
+          "ru": "зоопарк Эт-Тараф",
+          "de": "der Al-Taraf-Zoo",
+          "zh": "塔拉夫动物园",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 258 characters, 0 bold phrase(s), 0 link(s); English 3 sentence(s), 362 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "hamidiyah-souq",
+      "file": "src/content/attractions/hamidiyah-souq.md",
+      "file_sha256": "fc661171393fdac478f86bf7c0c9af39432c38db7e708f175e86cb30c5659baa",
+      "order": 66,
+      "category": "market",
+      "category_label": {
+        "en": "Heritage souqs",
+        "ar": "الأسواق التراثية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": false,
+      "content_fields": {
+        "title": {
+          "en": "Al-Hamidiyah Souq",
+          "ar": "سوق الحميدية",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم تراثي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The heritage souq building in central Hofuf, rebuilt as part of the historic downtown development — no longer trading as a souq; Sharq Restaurant occupies it today.",
+          "ar": "مبنى السوق التراثي في وسط الهفوف، أُعيد بناؤه ضمن تطوير المدينة التاريخية — ولم يعد يعمل سوقاً، والنشاط القائم فيه اليوم مطعم شرق.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Al-Hamidiyah Souq is a building in central Hofuf, in the North Al-Rifaa district on King Abdulaziz Road. It was rebuilt as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq, joining the cluster of heritage souq buildings at the city's core. Today it is a heritage landmark rather than a working souq: it no longer trades as a folk market, and the activity in its building is Sharq Restaurant. Further details of the building and its history are pending confirmation from reliable sources before being published here.",
+          "ar": "سوق الحميدية مبنىً في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك\nعبدالعزيز. أُعيد بناؤه ضمن مشاريع تطوير وسط الهفوف التاريخي، إلى جانب\nإعادة بناء سوق القيصرية وإنشاء سوق الحرفيين، فصار جزءاً من منظومة\nالأسواق التراثية المتجاورة في قلب المدينة.\n\nوهو اليوم **معلم تراثي لا سوق عامل**: توقّف نشاطه بوصفه سوقاً شعبياً،\nوالنشاط القائم في مبناه الآن [مطعم شرق](/مطاعم-ومقاهي/مطعم-شرق/).",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Hofuf, North Al-Rifaa district",
+          "ar": "الهفوف، حي الرفعة الشمالية",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Current status",
+              "ar": "الوضع الحالي"
+            },
+            "value": {
+              "en": "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it",
+              "ar": "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "Is Al-Hamidiyah Souq still a working souq?",
+              "ar": "هل سوق الحميدية سوق عامل اليوم؟"
+            },
+            "a": {
+              "en": "No. It is a heritage landmark that no longer trades as a folk market; Sharq Restaurant operates in its building today.",
+              "ar": "لا، هو معلم تراثي توقّف نشاطه بوصفه سوقاً شعبياً، والنشاط القائم في مبناه اليوم مطعم شرق."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "Where is Al-Hamidiyah Souq?",
+              "ar": "أين يقع سوق الحميدية؟"
+            },
+            "a": {
+              "en": "In central Hofuf, in the North Al-Rifaa district on King Abdulaziz Road.",
+              "ar": "في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك عبدالعزيز."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "How does Al-Hamidiyah Souq relate to the neighbouring heritage souqs?",
+              "ar": "ما علاقة سوق الحميدية بالأسواق التراثية المجاورة؟"
+            },
+            "a": {
+              "en": "It was rebuilt as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq.",
+              "ar": "أُعيد بناؤه ضمن تطوير وسط الهفوف التاريخي، إلى جانب إعادة بناء سوق القيصرية وإنشاء سوق الحرفيين."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.market",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Рынок Эль-Хамидия",
+          "kicker": "Историческая достопримечательность",
+          "summary": "Здание традиционного рынка в центре Эль-Хуфуфа, отстроенное заново в рамках развития исторического города: как рынок оно больше не работает, и сегодня в нём — ресторан «Шарк».",
+          "body": "Рынок Эль-Хамидия — здание в центре Эль-Хуфуфа, в районе Эр-Рифаа аш-Шамалия, у дороги короля Абдул-Азиза. Его отстроили заново в рамках проектов по развитию исторического центра Эль-Хуфуфа — вместе с ним заново отстроили рынок Эль-Кайсария и создали Рынок ремесленников. Так рынок Эль-Хамидия вошёл в число традиционных рынков, соседствующих друг с другом в сердце города. Сегодня это историческая достопримечательность, а не действующий рынок: он перестал работать как народный рынок, и в его здании теперь ресторан «Шарк». Об остальном — о здании и его истории — информация уточняется по надёжным источникам и появится здесь только после этого.",
+          "area": "Эль-Хуфуф, район Эр-Рифаа аш-Шамалия",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Текущий статус",
+              "value": "Историческая достопримечательность — как рынок не работает; в его здании действует ресторан «Шарк»"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Действует ли сегодня рынок Эль-Хамидия?",
+              "a": "Нет. Это историческая достопримечательность: он перестал работать как народный рынок, а в его здании теперь ресторан «Шарк»."
+            },
+            {
+              "i": 1,
+              "q": "Где находится рынок Эль-Хамидия?",
+              "a": "В центре Эль-Хуфуфа, в районе Эр-Рифаа аш-Шамалия, у дороги короля Абдул-Азиза."
+            },
+            {
+              "i": 2,
+              "q": "Как рынок Эль-Хамидия связан с соседними традиционными рынками?",
+              "a": "Его отстроили заново в рамках развития исторического центра Эль-Хуфуфа — вместе с ним заново отстроили рынок Эль-Кайсария и создали Рынок ремесленников."
+            }
+          ]
+        },
+        "de": {
+          "title": "Al-Hamidiyah-Souk",
+          "kicker": "Historische Stätte",
+          "summary": "Das Souk-Gebäude im Zentrum von Hofuf gehört zum kulturellen Erbe der Stadt und wurde im Rahmen der Entwicklung der historischen Innenstadt wiederaufgebaut. Als Souk ist es nicht mehr in Betrieb; heute ist darin das Sharq-Restaurant untergebracht.",
+          "body": "Der Al-Hamidiyah-Souk ist ein Gebäude im Zentrum von Hofuf, im Al-Rifaa-Nord-Viertel an der König-Abdulaziz-Straße. Er wurde im Rahmen der Entwicklung der historischen Innenstadt wiederaufgebaut, ebenso wie der Qaisariyah-Souk; dabei entstand auch der Handwerker-Souk. So wurde er im Herzen der Stadt Teil des Ensembles benachbarter Souk-Gebäude, die zum kulturellen Erbe Hofufs gehören. Heute ist er kein Souk mehr, sondern eine Sehenswürdigkeit dieses Erbes: Der Betrieb als traditioneller Markt ist eingestellt, und im Gebäude ist das Sharq-Restaurant untergebracht. Weitere Angaben zum Gebäude und zu seiner Geschichte werden noch bestätigt und erscheinen hier erst, wenn verlässliche Quellen sie belegen.",
+          "area": "Hofuf, Al-Rifaa-Nord-Viertel",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Aktueller Status",
+              "value": "Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört – als Souk nicht mehr in Betrieb; im Gebäude ist das Sharq-Restaurant"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Wird der Al-Hamidiyah-Souk heute noch als Souk betrieben?",
+              "a": "Nein. Er ist eine Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört; der Betrieb als traditioneller Markt ist eingestellt, und in seinem Gebäude ist heute das Sharq-Restaurant untergebracht."
+            },
+            {
+              "i": 1,
+              "q": "Wo liegt der Al-Hamidiyah-Souk?",
+              "a": "Im Zentrum von Hofuf, im Al-Rifaa-Nord-Viertel an der König-Abdulaziz-Straße."
+            },
+            {
+              "i": 2,
+              "q": "In welchem Verhältnis steht der Al-Hamidiyah-Souk zu den benachbarten Kulturerbe-Souks?",
+              "a": "Er wurde im Rahmen der Entwicklung der historischen Innenstadt von Hofuf wiederaufgebaut, ebenso wie der Qaisariyah-Souk; dabei entstand auch der Handwerker-Souk."
+            }
+          ]
+        },
+        "zh": {
+          "title": "哈米迪耶市集",
+          "kicker": "遗产地标",
+          "summary": "胡富夫市中心的遗产市集建筑，在历史城区开发项目中重建；如今已不再作为市集营业，其中经营的是沙尔格餐厅。",
+          "body": "哈米迪耶市集（Al-Hamidiyah Souq）是胡富夫市中心的一座建筑，坐落在里法阿北区的阿卜杜勒阿齐兹国王路上。它在胡富夫历史城区的开发项目中重建，同一项目还重建了凯撒利亚集市，并新建了手工艺人市集，使它成为老城中心相邻的遗产市集群的一部分。如今它是一处遗产地标，而不是仍在营业的市集：它已不再作为民俗市集经营，目前在其建筑内经营的是沙尔格餐厅（Sharq Restaurant）。",
+          "area": "胡富夫，里法阿北区",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "现状",
+              "value": "遗产地标——不再作为市集营业；目前在其建筑内经营的是沙尔格餐厅"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "哈米迪耶市集现在还是营业中的市集吗？",
+              "a": "不是。哈米迪耶市集如今是一处遗产地标，已不再作为民俗市集经营；目前在其建筑内经营的是沙尔格餐厅。"
+            },
+            {
+              "i": 1,
+              "q": "哈米迪耶市集在哪里？",
+              "a": "在胡富夫市中心，里法阿北区的阿卜杜勒阿齐兹国王路上。"
+            },
+            {
+              "i": 2,
+              "q": "哈米迪耶市集与相邻的几座遗产市集有什么关系？",
+              "a": "哈米迪耶市集是在胡富夫历史城区开发项目中重建的，同一项目还重建了凯撒利亚集市，并新建了手工艺人市集。哈米迪耶市集由此成为老城中心彼此相邻的一片遗产市集的一部分。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Hamidiyah",
+          "ar": "الحميدية",
+          "ru": null,
+          "de": null,
+          "zh": "哈米迪耶",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Hamidiyah Souq",
+          "ar": "سوق الحميدية",
+          "ru": "рынок Эль-Хамидия",
+          "de": "der Al-Hamidiyah-Souk",
+          "zh": "哈米迪耶市集",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Rifaa district",
+          "ar": "حي الرفعة",
+          "ru": "район Эр-Рифаа",
+          "de": null,
+          "zh": "里法阿区",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Craftsmen Souq",
+          "ar": "سوق الحرفيين",
+          "ru": "Рынок ремесленников",
+          "de": "der Handwerker-Souk",
+          "zh": "手工艺人市集",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz Road",
+          "ar": "طريق الملك عبدالعزيز",
+          "ru": "дорога короля Абдул-Азиза",
+          "de": "die König-Abdulaziz-Straße",
+          "zh": "阿卜杜勒阿齐兹国王路",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "North Al-Rifaa district",
+          "ar": null,
+          "ru": "район Эр-Рифаа аш-Шамалия",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Qaisariyah",
+          "ar": "القيصرية",
+          "ru": null,
+          "de": null,
+          "zh": "凯撒利亚（Qaisariyah）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Qaisariyah Souq",
+          "ar": null,
+          "ru": "рынок Эль-Кайсария",
+          "de": "der Qaisariyah-Souk",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Sharq Restaurant",
+          "ar": "مطعم شرق",
+          "ru": null,
+          "de": "das Sharq-Restaurant",
+          "zh": "沙尔格餐厅",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Souq",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "传统市集",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3c / P3c-labels / N14 (ruled, round 1): a name with an opaque or false-friend Arabic generic (qasr / souq / ain / bayt) — apply the rulings of termbase _meta.calibration_rulings as written",
+        "P9 (ruled, round 1): Makkah / Madinah — apply termbase _meta.calibration_rulings P9",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 384 characters, 1 bold phrase(s), 1 link(s); English 4 sentence(s), 605 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    }
+  ]
+}
