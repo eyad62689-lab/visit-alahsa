@@ -16,6 +16,11 @@ title_ru: "Парк спортивного стадиона"
 kicker_ru: "Парк"
 summary_ru: "Общественный парк рядом со спортивным стадионом в Эль-Хуфуфе."
 body_ru: "Общественный парк рядом со спортивным стадионом в Эль-Хуфуфе."
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 97/100 (2026-10-14، الدفعة b8 — السجل في ur-translation/memory/scores.csv).
+title_ur: "کھیلوں کے اسٹیڈیم کی تفریح گاہ"
+kicker_ur: "تفریح گاہ"
+summary_ur: "ہفوف میں کھیلوں کے اسٹیڈیم کے پہلو میں ایک عوامی تفریح گاہ۔"
+body_ur: "ہفوف میں کھیلوں کے اسٹیڈیم کے پہلو میں ایک عوامی تفریح گاہ۔"
 slug_ar: "حديقة-الاستاد-الرياضي"
 slug_en: "stadium-park"
 category: parks
@@ -27,8 +32,8 @@ featured: false
 order: 50
 openSite: true
 practical:
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلی رہتی ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.309695, lng: 49.611511 }
 mapUrl: "https://goo.gl/maps/SasB8ksT1gdzCiC99"
 heroImage: /img/stadium-park
