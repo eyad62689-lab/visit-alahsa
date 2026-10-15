@@ -1,0 +1,66 @@
+{
+  "stage": "01-translator",
+  "batch": "b13-ui",
+  "strings": {
+    "list2.title": "بازار، پارک اور زرعی فارم",
+    "nav.leisure": "بازار، پارک اور زرعی فارم",
+    "list2.eyebrow": "سیاحتی معلومات",
+    "CATEGORY_LABELS.parks": "پارک اور باغات",
+    "list.eyebrow": "سیاحتی معلومات",
+    "crumb.leisure": "بازار اور پارک",
+    "det.allLeisure": "تمام بازار اور پارک ←",
+    "det.unescoNo": "یونیسکو کے عالمی ورثے کا حصہ نمبر {n}"
+  },
+  "notes": [
+    {
+      "item": "list2.title",
+      "text": "approved_today «بازار، تفریح گاہیں اور زرعی فارم» → «بازار، پارک اور زرعی فارم». One change: «تفریح گاہیں» → «پارک», the direct plural of the loan (DECISIONS «Batch b13-ui»: the owner reverses N119 and the park generic of N69/N101/N121 where it is «تفریح گاہ»; direct plural «پارک», like «فارم» under N5). No agreeing word in the string, so nothing else follows. «بازار» and «زرعی فارم» (N5's qualified form) untouched. Byte-identical to nav.leisure (b12 rule: the page title does not contradict the header label). No final stop (heading)."
+    },
+    {
+      "item": "nav.leisure",
+      "text": "approved_today «بازار، تفریح گاہیں اور زرعی فارم» → «بازار، پارک اور زرعی فارم»; same single replacement and same decision as list2.title, which it stays identical to. HEADER: the replacement itself shortens the label (one short word for a two-word plural), so the measured bar can only gain. Shorter alternative: none that is natural and within the rulings — dropping «زرعی» gives the bare «فارم» N5 refuses in this very label (two readers read it as a form to fill in); «پارکس» is the English plural, refused as «فارمز» is under N5. Recorded for the measurement: alt_short = none beyond the text."
+    },
+    {
+      "item": "list2.eyebrow",
+      "text": "approved_today «سیاحتی رہنما» → «سیاحتی معلومات» (N190 amended, owner 2026-10-15: one native wording for both index eyebrows that names the guide section, not a person; both b12 readers read «رہنما» as a person). Byte-identical to list.eyebrow. CHOSEN: «سیاحتی معلومات» ('tourist information'): it names content, so it cannot be read as a person, and it keeps the approved adjective «سیاحتی» — only the noun changes. It is used as the label of such a section: ur.wikipedia exact phrase «سیاحتی معلومات» 5 pages (HTTP 200, 2026-10-15, s1-wiki-count.json), e.g. «سیاحتی معلومات کی ویب گاہ» in the link lists of تسکانہ and کنین — counts for the form's use, not for style. The same count confirms the readers: «سیاحتی رہنما» 5 pages, all a person or 'in the form of a guide book' (نزاکت احمد علی شاہ «ایک … سیاحتی رہنما ہے»). COST: 'information' is a little flatter than 'guide' (Arabic «دليل الزيارة»). OTHER CANDIDATE, recorded: «سیر کی رہنمائی» ('guidance for the outing'): closer to 'guide' and echoes list.lead's «سیر شروع کریں», but 0 pages on ur.wikipedia for the exact phrase (same query), «سیر کی» + abstract noun is not a set label, and «رہنمائی» shares the stem that both readers read as a person — the risk the decision is meant to remove. A third form considered and not written: «سیاحتی رہنمائی» (the minimal one-suffix change), 0 pages, same stem risk. Never «گائیڈ»; «رہنما» does not stand alone."
+    },
+    {
+      "item": "CATEGORY_LABELS.parks",
+      "text": "approved_today «تفریح گاہیں اور باغات» → «پارک اور باغات». One change: «تفریح گاہیں» → «پارک» (direct plural), by the owner's reversal of N119 (DECISIONS «Batch b13-ui»). The gardens stay «باغات» as the decision requires (a garden stays a garden; entry «باغ»). No agreeing word in the label. The exact pair is an established Urdu category heading: ur.wikipedia «پارک اور باغات» (the list article «لاہور کے پارک اور باغات کی فہرست»; HTTP 200, 2026-10-15) — attestation of the bare direct plural beside «باغات», not a style argument. It is also the JSON-LD touristType on park pages (not read by the blind reader)."
+    },
+    {
+      "item": "list.eyebrow",
+      "text": "approved_today «سیاحتی رہنما» → «سیاحتی معلومات», byte-identical to list2.eyebrow (N190 amended: both sister eyebrows move together in one interface batch). Reasoning and the recorded alternative «سیر کی رہنمائی»: see the list2.eyebrow note. The two tm.json pairs of 'Visit guide' are replaced together on apply."
+    },
+    {
+      "item": "crumb.leisure",
+      "text": "approved_today «بازار اور تفریح گاہیں» → «بازار اور پارک». One change: «تفریح گاہیں» → «پارک» (owner's reversal of N119; N96's frame otherwise kept: the same nouns as the menu, farms left out as in the other five languages). No agreeing word. For stage 4/the reader: with a direct plural that equals the singular, the crumb could be read 'souqs and a park'; the menu above it and «تمام» in det.allLeisure fix the plural on the same page, and N5's «فارم» works the same way. Not a reason to deviate from the decision."
+    },
+    {
+      "item": "det.allLeisure",
+      "text": "approved_today «تمام بازار اور تفریح گاہیں ←» → «تمام بازار اور پارک ←». One change: «تفریح گاہیں» → «پارک» (owner's reversal of N119); N97's frame kept, the same noun pair as crumb.leisure. The arrow is exactly approved_today's: one space, then U+2190, at the end. No agreeing word («تمام» does not inflect)."
+    },
+    {
+      "item": "det.unescoNo",
+      "text": "NEW (owner 2026-10-15, 'keep the number WITH a short explanation'; source amended in cb36334). «یونیسکو کے عالمی ورثے کا حصہ نمبر {n}» — 'UNESCO World Heritage part no. {n}'. Built on the approved det.unesco «یونیسکو کے عالمی ورثے کا حصہ» byte for byte (termbase «یونیسکو», «عالمی ورثہ» oblique «عالمی ورثے» by N2; the entry itself lists «یونیسکو کے عالمی ورثے کا حصہ»), then «نمبر {n}»: 'component' is «حصہ» as the approved texts say it (N16: «اس کے بارہ حصوں میں سے ایک»), and «نمبر» before the figure is the ordinary Urdu way to number an item (a dictionary word in common use, not a new loan for a function). {n} kept once, untouched, at the end, where it renders as e.g. 1563-005 (Latin digits; in RTL the hyphen between two digit runs stays inside the number by bidi rule W4). English and Arabic agree (Arabic 'component no. {n} of the UNESCO World Heritage site'); the word 'site' is not rendered, as N16 (1) rules and as det.unesco already does. Short: a badge line, no final stop. Alternative recorded, not written: «یونیسکو کے عالمی ورثے کا جزو نمبر {n}» («جزو» is more formal; it would part from det.unesco's «حصہ»)."
+    },
+    {
+      "item": "batch",
+      "text": "The «پارک» gender (masculine) is not exercised in any of the eight strings: no verb, adjective or postposition agrees with it. Its oblique «پارکوں» does not occur here. No open item (P4, BRAND) is touched. Nothing outside the eight ids is changed. No source divergence: English and Arabic agree on every string («المنتزهات» = parks, «الحدائق» = gardens, «دليل الزيارة» = visit guide). The park pages' own titles and bodies (still «تفریح گاہ», e.g. «الاحساء کی قومی تفریح گاہ» on the national-park page the reader sees) are b14/b15's and are not touched here: the blind reader will meet «پارک» in the interface and «تفریح گاہ» in that page's text."
+    }
+  ],
+  "termbase_additions": [
+    {
+      "key": "پارک",
+      "ar": "منتزه",
+      "en": "park",
+      "gender": "مذکر",
+      "plural": "پارک",
+      "kind": "generic",
+      "gloss": null,
+      "source": "owner's decision 2026-10-15 (DECISIONS «Batch b13-ui»: N119 reversed; the loan «پارک» for 'park' everywhere in /ur/). Gender by usage: ur.wikipedia exact phrases, masculine agreeing forms 34 hits, feminine 0 (coord/r4-b13-park-gender-wiki.json, HTTP 200, 2026-10-15); rekhta entries carry no gender label; udb.gov.pk attests «پارْک» in this sense (Urdu Lughat defines it through «تفریح گاہ», quoted in that entry). Bare direct plural and oblique attested: ur.wikipedia «لاہور کے پارک اور باغات کی فہرست», «لاڑکانہ کے پارکوں اور باغات» (HTTP 200, 2026-10-15, b13-ui/s1-wiki-count.json).",
+      "status": "verified",
+      "note": "Replaces «تفریح گاہ» as the park generic (P16 overridden for this word by the owner; no stage reverts to «تفریح گاہ»; a reader's remark on the loan goes to the owner). Masculine; direct plural «پارک» (never «پارکس», as «فارم» never «فارمز», N5); oblique plural «پارکوں». A garden stays «باغ / باغات». In this batch: nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks; not exercised for gender here. The entry «تفریح گاہ» and the park title keys (N101's six, the national park of N119) are amended by stage 4 / the judge and the park-page batches (b14, b15), not here."
+    }
+  ]
+}

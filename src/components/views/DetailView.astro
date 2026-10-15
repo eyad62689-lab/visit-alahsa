@@ -43,6 +43,11 @@ const answer = ar ? a.answer : lang === 'en' ? a.answer_en : undefined;
 const description = answer ?? summary;
 // المعلم الحامل لمعرّف مكوّن يونسكو يربط صفحة المكوّنات بلغة الصفحة (بلغاتها الخمس منذ المرحلة هـ)
 const unescoHref = a.unesco ? staticHref('unesco', lang) : undefined;
+// الشارة برقم المكوّن وشرحه حيث يحمل قاموس اللغة det.unescoNo؛ وإلا الصيغة السابقة (التسمية · الرقم)
+// والرقم في عزل اتجاه يساري (<bdi dir="ltr">): بعد حروف عربية الرسم كان 1563-004 يُعرض 004-1563
+const [unescoPre, unescoPost] = a.unesco
+  ? (Object.hasOwn(ui[lang], 'det.unescoNo') ? t('det.unescoNo').split('{n}') : [t('det.unesco') + ' · ', ''])
+  : ['', ''];
 // متون اللغات غير العربية تُصيَّر نصّاً خاماً في <p> — لا ماركداون (قاعدة الموقع)
 const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : de ? (a.body_de ?? a.body_en ?? '')
@@ -213,7 +218,7 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
         <span class="eyebrow gold-on-dark ah-k">{catLabel(a.category, lang)}</span>
         <h1 class="ah-title">{title}</h1>
         <p class="ah-sum">{summary}</p>
-        {unescoHref && <a class="ah-unesco" href={unescoHref}>{t('det.unesco')} · {a.unesco}</a>}
+        {unescoHref && <a class="ah-unesco" href={unescoHref}>{unescoPre}<bdi dir="ltr">{a.unesco}</bdi>{unescoPost}</a>}
         <div class="ah-actions">
           <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
             <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>

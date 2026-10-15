@@ -68,6 +68,8 @@ export const ui = {
     'map.locate.err': 'تعذّر تحديد موقعك — تحقق من إذن الموقع في المتصفح.',
     'det.distance': 'كم يبعد عني؟',
     'det.unesco': 'من مكوّنات موقع اليونسكو للتراث العالمي',
+    // شارة المكوّن برقمه وشرحه (قرار المالك 2026-10-15)؛ لغة بلا هذا المفتاح تبقى على det.unesco · الرقم حتى يمرّ بخطها
+    'det.unescoNo': 'المكوّن رقم {n} في موقع اليونسكو للتراث العالمي',
     'det.mentions.h': 'مقالات تذكر هذا المعلم',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
@@ -438,6 +440,7 @@ export const ui = {
     'map.locate.err': 'Could not get your location — check the browser’s location permission.',
     'det.distance': 'How far from me?',
     'det.unesco': 'A component of the UNESCO World Heritage site',
+    'det.unescoNo': 'UNESCO World Heritage component no. {n}',
     'det.mentions.h': 'Articles that mention this place',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
@@ -1576,6 +1579,7 @@ export const ui = {
   ur: {
     // الأوردو (ur-PK): معتمدة من خط ur-translation-pipeline — الدفعة b0-ui بدرجة 90/100 (2026-10-12).
     // الأوردو (ur-PK): معتمدة من خط ur-translation-pipeline — الدفعة b12-ui بدرجة 93/100 (2026-10-15).
+    // الأوردو (ur-PK): معتمدة من خط ur-translation-pipeline — الدفعة b13-ui بدرجة 93/100 (2026-10-15).
     'nav.attractions': 'سیاحتی مقامات',
     'nav.trails': 'سیر کے راستے',
     'trails.partOf': 'ان راستوں میں شامل',
@@ -1599,6 +1603,7 @@ export const ui = {
     'map.locate.err': 'معلوم نہیں ہو سکا کہ آپ کہاں ہیں۔ براؤزر میں دیکھ لیں کہ اس ویب سائٹ کو یہ جاننے کی اجازت ہے یا نہیں۔',
     'det.distance': 'مجھ سے کتنی دور؟',
     'det.unesco': 'یونیسکو کے عالمی ورثے کا حصہ',
+    'det.unescoNo': 'یونیسکو کے عالمی ورثے کا حصہ نمبر {n}',
     'a11y.skip': 'سیدھے مواد پر جائیں',
     'a11y.menu': 'مینو',
     'a11y.mainNav': 'مرکزی مینو',
@@ -1682,19 +1687,19 @@ export const ui = {
     'fact.unesco.l': 'یونیسکو کے عالمی ورثے میں شمولیت',
     'fact.sites.l': 'سیر کے لیے مقامات اور منزلیں',
     'fact.springs.l': 'چشمے اور نہریں اس زمین کو سیراب کرتی ہیں',
-    'list.eyebrow': 'سیاحتی رہنما',
+    'list.eyebrow': 'سیاحتی معلومات',
     'list.title': 'الاحساء کے سیاحتی مقامات',
     'list.lead': 'غاروں سے بھرے پہاڑ سے لے کر خلیج کے کنارے کی بندرگاہ تک: کوئی زمرہ چنیں اور سیر شروع کریں۔',
     'list.map': 'نقشے پر دیکھیں',
     'list.empty': 'تلاش کے مطابق کوئی مقام ابھی نہیں ملا۔',
     'list.search': 'مقام تلاش کریں…',
     'list.searchLabel': 'مقامات میں تلاش کریں',
-    'nav.leisure': 'بازار، تفریح گاہیں اور زرعی فارم',
-    'list2.eyebrow': 'سیاحتی رہنما',
-    'list2.title': 'بازار، تفریح گاہیں اور زرعی فارم',
+    'nav.leisure': 'بازار، پارک اور زرعی فارم',
+    'list2.eyebrow': 'سیاحتی معلومات',
+    'list2.title': 'بازار، پارک اور زرعی فارم',
     'list2.lead': 'تاریخی سوق القیصریہ سے لے کر نخلستان کے باغوں اور فارموں تک: خریداری کریں، چہل قدمی کریں اور الاحساء کی نعمتوں کا ذائقہ لیں۔',
-    'crumb.leisure': 'بازار اور تفریح گاہیں',
-    'det.allLeisure': 'تمام بازار اور تفریح گاہیں ←',
+    'crumb.leisure': 'بازار اور پارک',
+    'det.allLeisure': 'تمام بازار اور پارک ←',
     'det.visitInfo': 'سیاحوں کے لیے معلومات',
     'det.hoursNotice': 'اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے {op} سے تصدیق کر لیں۔',
     'det.hoursNotice.op': 'اس مقام کی انتظامیہ',

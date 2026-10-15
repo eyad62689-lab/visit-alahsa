@@ -1,0 +1,97 @@
+{
+  "stage": "05-proofreader",
+  "batch": "b13-ui",
+  "strings": {
+    "list2.title": "بازار، پارک اور زرعی فارم",
+    "nav.leisure": "بازار، پارک اور زرعی فارم",
+    "list2.eyebrow": "سیاحتی معلومات",
+    "CATEGORY_LABELS.parks": "پارک اور باغات",
+    "list.eyebrow": "سیاحتی معلومات",
+    "crumb.leisure": "بازار اور پارک",
+    "det.allLeisure": "تمام بازار اور پارک ←",
+    "det.unescoNo": "یونیسکو کے عالمی ورثے کا حصہ نمبر {n}"
+  },
+  "checklist": [
+    {
+      "n": 1,
+      "name": "letterforms (huruf)",
+      "result": "PASS",
+      "detail": "Own scan (b13-ui/s45-scan.mjs, output s45-scan.txt) of every code point of the eight strings (164) against U+064A, U+0643, U+0629, U+0647, U+0649, U+0623, U+0625, U+06C3, U+0660-0669, U+06F0-06F9, harakat U+064B-065F, Latin letters and digits, NBSP, ZWJ/ZWNJ, LRM/RLM/ALM, bidi embeddings and isolates (U+202A-202E, U+2066-2069), ASCII comma/stop/straight quote, guillemets, U+061B. Hits: none, apart from the Latin n inside the placeholder {n} (det.unescoNo, by design; the pack's placeholder). Urdu letters present: ی U+06CC x9, ک U+06A9 x8, ہ U+06C1 x1 («حصہ»), ے U+06D2 x2 («کے», «ورثے»), پ U+067E x5; U+06BE and U+06BA: zero (no aspirate, no nasal in the text). Arabic-script letters shared with Urdu only (ا ب ت ث ح ر ز س ص ع غ ف ل م ن و). Other: 25 spaces, 2 x U+060C, 1 x U+2190, the braces of {n}."
+    },
+    {
+      "n": 2,
+      "name": "name forms (naql-e harfi)",
+      "result": "PASS",
+      "detail": "«یونیسکو» is byte for byte its termbase key; «عالمی ورثے» is the oblique the entry «عالمی ورثہ» records (N2: «یونیسکو کے عالمی ورثے کا حصہ»). No toponym and no Latin name in any string. No pleonasm, no banned press variant: «پارکس» (urdunews) and «عالمی ثقافتی ورثہ» do not occur."
+    },
+    {
+      "n": 3,
+      "name": "grammar and agreement (qawaid)",
+      "result": "PASS",
+      "detail": "See agreement_checked. Only one string has agreement to check: det.unescoNo («کے» before the oblique masculine «عالمی ورثے», «کا» with the masculine «حصہ»). The seven labels carry no verb, participle or agreeing adjective: «پارک» (masculine by its proposed entry) and «نمبر» (masculine, proposed) govern nothing here; «زرعی», «سیاحتی» and «تمام» are invariable. Number: «پارک» is the direct plural (= singular, by the decision; N192 raises the cost), «باغات» the plural N5 writes, «معلومات» a plural noun (Rekhta: masculine plural)."
+    },
+    {
+      "n": 4,
+      "name": "address (khitab)",
+      "result": "PASS",
+      "detail": "No string addresses the reader: no imperative, no «آپ». «تم», «تمہارا», «تیرا» and «تو» occur zero times."
+    },
+    {
+      "n": 5,
+      "name": "headings (unwanat)",
+      "result": "PASS",
+      "detail": "All eight are headings, labels or a badge: none ends in «۔» (last characters: «م», «م», «ت», «ت», «ت», «ک», U+2190, «}»); no gloss and no bracket in any. No case check applies."
+    },
+    {
+      "n": 6,
+      "name": "termbase compliance",
+      "result": "PASS",
+      "detail": "100% against the termbase plus the chain's proposals. Entries used: «یونیسکو» (verified), «عالمی ورثہ» (verified, oblique «عالمی ورثے»), «باغ» (verified; «باغات» as N5 writes the plural for gardens), «فارم» (verified; P16 loan, N5), «پارک» (stage 1 addition, confirmed at stage 4 in termbase_updates; the owner's decision of 2026-10-15), «نمبر» (proposed at stage 4, pending, N193). «تفریح گاہ» no longer occurs (the decision; its entry amended in stage 4's termbase_updates). Guards run: N190 — list.eyebrow and list2.eyebrow byte-identical («سیاحتی معلومات»), no «گائیڈ»; N185/N5 — «زرعی» before the unqualified list item «فارم» in nav.leisure and list2.title; the b12 rule — list2.title byte-identical to nav.leisure; N119 — «نیشنل پارک» does not occur; N2 — «عالمی ثقافتی» does not occur; N16 — «“الاحساء کا نخلستان”» and «اس مقام “» do not occur, and the word 'site' is not rendered. N96 and N97 name the old values («بازار اور تفریح گاہیں», «تمام بازار اور تفریح گاہیں ←») as their guard strings: the owner's decision supersedes them; their new values keep the rulings' frames (same nouns as the menu, farms left out; the arrow U+2190 after one space). The guard texts of N96/N97 (and N5's quoted nav.leisure, N185's quoted nav.leisure) need amending by the judge — recorded, not a text change."
+    },
+    {
+      "n": 7,
+      "name": "punctuation (rumuz)",
+      "result": "PASS",
+      "detail": "«،» U+060C twice (list2.title, nav.leisure), no U+002C. No «۔» (no string is a sentence; the English has no final stop in any). No U+002E, U+00A0, straight quote, «», U+061B, dash or colon. No space before «،»; no double, leading or trailing space. det.allLeisure ends in one space + U+2190, byte-for-byte the frame of approved_today."
+    },
+    {
+      "n": 8,
+      "name": "numbers, dates, currency, hijri",
+      "result": "PASS",
+      "detail": "No digit of any script in the strings, no date, clock time, currency or Hijri year. The figure of det.unescoNo is the placeholder {n}, filled from the page's data (e.g. qasr-ibrahim unesco: 1563-004) in Latin digits; the Urdu adds no digit. Rendering: in an RTL line the code shows as 004-1563 (measured, s45-bidi.txt) — the same as the live Urdu and Arabic badges; raised by stage 4 as N196 (an engineering fix in the template, not in the string)."
+    },
+    {
+      "n": 9,
+      "name": "anglicisms, arabisms, hindi-leaning, officialese",
+      "result": "PASS",
+      "detail": "English loans in Urdu letters: «فارم» (termbase entry citing P16, N5); «پارک» (the owner's decision of 2026-10-15 overrides P16 for this word; entry in the chain); «نمبر» — REPORTED: no termbase entry today; stage 4 proposes one (pending) citing P16 with udb.gov.pk headword evidence and raises the admission as N193 for the judge after the blind read; not changed here, since both alternatives on record are worse («شمارہ» reads as a magazine issue; dropping it loses the source's 'no.'). None of the banned lists: no «گائیڈ», «لوکیشن», «فیملی», «فوٹوگرافی», «ہال», «شیئر», «پارکس». No «موجود ہے» chain, no verbal-noun passive. «معلومات» and «حصہ» are ordinary Urdu nouns of Arabic origin with dictionary entries (stage 4 log), not arabisms."
+    },
+    {
+      "n": 10,
+      "name": "glossing (gloss)",
+      "result": "PASS",
+      "detail": "No bracket, no «یعنی», no gloss in any string. No entry with a non-null gloss is used. The badge explains the number by its words before it (the owner's 'number with a short explanation'), not by a gloss."
+    },
+    {
+      "n": 11,
+      "name": "structure",
+      "result": "PASS",
+      "detail": "Exactly the pack's eight ids, in pack order (list2.title, nav.leisure, list2.eyebrow, CATEGORY_LABELS.parks, list.eyebrow, crumb.leisure, det.allLeisure, det.unescoNo). Placeholder {n} exactly once in det.unescoNo, untouched, at the end; no placeholder elsewhere. Consistency on the same pages: list2.title = nav.leisure (header label of the leisure index); the crumb and the back link shorten the menu's nouns («بازار اور پارک»); the two eyebrows are one string; CATEGORY_LABELS.parks «پارک اور باغات» beside the approved «روایتی بازار» and «زرعی فارم» in the leisure index's filters. Structured data never seen by the blind reader: list2.title is also the JSON-LD name (with the brand after it) and CATEGORY_LABELS.parks the JSON-LD touristType of park pages — this pass and the judge are their only check; both follow the visible strings exactly. Known mix until b14/b15 (stage 4, N195): park pages still say «تفریح گاہ» in their own text under the interface's «پارک»."
+    }
+  ],
+  "codepoints_found": "none",
+  "agreement_checked": [
+    "det.unescoNo: «یونیسکو کے عالمی ورثے» — the possessive agrees with the following noun, not the name (entry «یونیسکو»); «عالمی ورثہ» is masculine and stands in the oblique before «کا», so «کے» and the oblique «ورثے» (N2).",
+    "det.unescoNo: «عالمی ورثے کا حصہ» — «حصہ» is masculine direct (rekhtadictionary.com/meaning-of-hissa, stage 4 log), so «کا».",
+    "det.unescoNo: «حصہ نمبر {n}» — «نمبر» (masculine, proposed entry) follows the noun it numbers, as in «حصہ نمبر 13» (ur.wikipedia, stage 4 log); nothing agrees with it.",
+    "list2.title / nav.leisure: «بازار، پارک اور زرعی فارم» — three direct plurals with no agreeing word; «زرعی» is invariable; «پارک» and «فارم» keep the singular form in the direct plural (decision; N5).",
+    "CATEGORY_LABELS.parks: «پارک اور باغات» — «باغ» masculine, plural «باغات» as N5 writes it; no agreeing word.",
+    "crumb.leisure / det.allLeisure: «بازار اور پارک», «تمام بازار اور پارک ←» — «تمام» is invariable and marks both nouns plural; no verb.",
+    "list.eyebrow / list2.eyebrow: «سیاحتی معلومات» — «سیاحتی» invariable; «معلومات» masculine plural (Rekhta); no verb."
+  ],
+  "changes": [],
+  "checker_result_lines": [
+    "RESULT [b13-ui 04-benchmarker]: 0 mandated, 0 extra, 0 ruling finding(s), 5 note(s) | 1 unit (interface), 8 strings, 164 code points | changed_sentences=0 over 0 leaf(s) | facts_removed=0 facts_restored=0 kept=8 open_items=6 untouched=2 termbase_updates=3 verification_log=17 | selftest PASS",
+    "RESULT [b13-ui 05-proofreader]: 0 mandated, 0 extra, 0 ruling finding(s), 5 note(s) | 1 unit (interface), 8 strings, 164 code points | changes=0 over 0 leaf(s) | checklist PASS=11 FIXED=0 | selftest PASS"
+  ]
+}
