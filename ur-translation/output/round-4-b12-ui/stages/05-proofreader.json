@@ -1,0 +1,92 @@
+{
+  "stage": "05-proofreader",
+  "batch": "b12-ui",
+  "strings": {
+    "list2.title": "بازار، تفریح گاہیں اور زرعی فارم",
+    "list2.lead": "تاریخی سوق القیصریہ سے لے کر نخلستان کے باغوں اور فارموں تک: خریداری کریں، چہل قدمی کریں اور الاحساء کی نعمتوں کا ذائقہ لیں۔",
+    "list2.eyebrow": "سیاحتی رہنما"
+  },
+  "checklist": [
+    {
+      "n": 1,
+      "name": "letterforms (huruf)",
+      "result": "PASS",
+      "detail": "Own scan (b12-ui/s45-scan.mjs, output s45-scan.txt): every code point of the three strings (168) was checked against U+064A, U+0643, U+0629, U+0647, U+0649, U+0623, U+0625, U+06C3, the U+0660-0669 and U+06F0-06F9 digits, Latin letters, NBSP, ZWJ/ZWNJ, bidi marks, harakat and Latin punctuation. Hits: none. Every character is in U+0600-06FF, plus 29 spaces and one ASCII colon (see item 7). Urdu letters present: ی U+06CC x16, ک U+06A9 x7, ہ U+06C1 x5, ے U+06D2 x3, ں U+06BA x7, گ U+06AF x1, چ U+0686 x1. U+06BE: zero; no aspirate in the text after stage 4 removed «چکھیں». The hamza U+0621 is the final hamza of the termbase key «الاحساء», and U+0626 is the hamza-yeh of «ذائقہ» as Rekhta spells it («ذَائِقَہ»)."
+    },
+    {
+      "n": 2,
+      "name": "name forms (naql-e harfi)",
+      "result": "PASS",
+      "detail": "«سوق القیصریہ» and «الاحساء» are byte for byte their termbase keys. «الاحسا» (P2) does not occur, nor does «جبل قارہ», and there is no Latin name. «سوق القیصریہ» carries no «بازار» next to it, so there is no pleonasm. The word «بازار» opens the h1 in the neighbouring line, which P3c-labels allows."
+    },
+    {
+      "n": 3,
+      "name": "grammar and agreement (qawaid)",
+      "result": "PASS",
+      "detail": "See agreement_checked. Feminine «نعمتوں» takes «کی»; masculine «ذائقہ» takes «کا»; the masculine oblique plurals «باغوں» and «فارموں» take «کے» through «نخلستان کے»; the feminine plural «تفریح گاہیں» follows its entry. «فارم» stays «فارم» in the plural and «فارموں» in the oblique, never «فارمز». No gender of a name is exercised: «سوق القیصریہ» and «الاحساء» govern no verb or adjective here. «سے لے کر … تک» is the government the approved list.lead uses."
+    },
+    {
+      "n": 4,
+      "name": "address (khitab)",
+      "result": "PASS",
+      "detail": "Three honorific imperatives: «خریداری کریں», «چہل قدمی کریں», «… لیں». «تم», «تمہارا», «تیرا» and the word «تو» occur zero times, and there is no non-honorific form."
+    },
+    {
+      "n": 5,
+      "name": "headings (unwanat)",
+      "result": "PASS",
+      "detail": "list2.title (h1, tab, og and twitter title, JSON-LD name) ends in «م» and list2.eyebrow ends in «ا»: neither has a final «۔», a gloss or a bracket. Urdu has no case, so no case check applies."
+    },
+    {
+      "n": 6,
+      "name": "termbase compliance",
+      "result": "PASS",
+      "detail": "100%. The entries used are «سوق القیصریہ» (masc.), «الاحساء» (masc.), «نخلستان» (masc.), «باغ» (masc., plural «باغ», oblique «باغوں»), «فارم» (masc., plural «فارم», P16 loan admitted by N5), and «تفریح گاہ» (fem., plural «تفریح گاہیں»). «بازار» is the plain Urdu generic, cited as the gender source in the «سوق القیصریہ» entry; it has no key of its own and is not a name. N5: «زرعی فارم» in the title, which is a label. N115: no adjective is formed from Al-Ahsa. N166 and N167: not met."
+    },
+    {
+      "n": 7,
+      "name": "punctuation (rumuz)",
+      "result": "PASS",
+      "detail": "The lead closes with «۔» U+06D4, as a sentence (its English ends with a stop). «،» U+060C is used twice (title and lead) and there is no U+002C. There is no U+002E, U+00A0, straight quote, «», U+061B or dash. There is no space before «،», «۔» or «:» and no double space. The ASCII colon after «تک» renders the source's em dash, as in the approved sister list.lead («… بندرگاہ تک: کوئی زمرہ چنیں …»), with the same spacing. That is consistent with approved text, and N33 has the colon stand where a clause explains what comes before it."
+    },
+    {
+      "n": 8,
+      "name": "numbers, dates, currency, hijri",
+      "result": "PASS",
+      "detail": "There is no figure, date, clock time, currency or Hijri year in any string, and no digit of any script."
+    },
+    {
+      "n": 9,
+      "name": "anglicisms, arabisms, hindi-leaning, officialese",
+      "result": "PASS",
+      "detail": "The only English loan is «فارم», which has a termbase entry citing P16 (N5). There is no «فیملی», «فوٹوگرافی», «گائیڈ», «لوکیشن» or «ہال». There is no «موجود ہے» chain and no verbal-noun passive. «نعمت» and «ذائقہ» are ordinary Urdu words of Arabic origin with Rekhta entries (stage 4 log). They are not arabisms of the «واحہ» kind."
+    },
+    {
+      "n": 10,
+      "name": "glossing (gloss)",
+      "result": "PASS",
+      "detail": "There is no bracket and no «(یعنی» in any string. «سوق القیصریہ» stands bare in the lead under P3c-labels (the string is the meta description) and as cat.market.d does. The running-text reading (P3c point 2, «نامی بازار») is NOT settled here: stage 4 raised it as N184, and the judge rules it. There is no gloss in the title or the eyebrow."
+    },
+    {
+      "n": 11,
+      "name": "structure",
+      "result": "PASS",
+      "detail": "The strings carry exactly the pack's three ids, in pack order (list2.title, list2.lead, list2.eyebrow). There are no placeholders and no Latin letters. The meta, og and twitter description (the lead) follows the same rules as the visible text. Consistency with neighbouring approved strings (from the ur block of src/i18n/ui.ts, read by s45-scan.mjs): list2.title is byte-identical to nav.leisure (the header label on the same page) and to its tm.json pair; the crumb «بازار اور تفریح گاہیں» and det.allLeisure «تمام بازار اور تفریح گاہیں ←» shorten the same words with no contradiction. list2.eyebrow is byte-identical to list.eyebrow and its tm.json pair. The lead's frame and colon mirror list.lead. The JSON-LD name (list2.title + brand) is never seen by the blind reader: this pass and the judge are its only check."
+    }
+  ],
+  "codepoints_found": "none",
+  "agreement_checked": [
+    "list2.lead: «الاحساء کی نعمتوں» - نعمت is feminine (rekhta, HTTP 200, stage 4 log), oblique plural after the postposition, so the possessive is «کی».",
+    "list2.lead: «نعمتوں کا ذائقہ لیں» - ذائقہ is masculine direct (rekhta), so the possessive is «کا»; «لیں» is the honorific imperative of the compound verb «ذائقہ لینا».",
+    "list2.lead: «نخلستان کے باغوں اور فارموں تک» - نخلستان (masc.) possessor; باغ and فارم are masculine, oblique plural before «تک», so the possessive is «کے»; فارم forms its oblique as «فارموں», as on approved zaki-alsalem-farm.",
+    "list2.lead: «تاریخی سوق القیصریہ سے لے کر» - the adjective تاریخی is invariable; the name is masculine (entry), and no verb agrees with it.",
+    "list2.lead: «خریداری کریں، چہل قدمی کریں» - the compound verbs take the honorific imperative «کریں» (خریداری and چہل قدمی are feminine nouns, but an imperative does not agree).",
+    "list2.title: «بازار، تفریح گاہیں اور زرعی فارم» - تفریح گاہ is feminine, plural «تفریح گاہیں» (entry); فارم is plural unchanged (entry); the adjective زرعی is invariable.",
+    "list2.eyebrow: «سیاحتی رہنما» - the adjective سیاحتی is invariable; رہنما is masculine; there is no verb."
+  ],
+  "changes": [],
+  "checker_result_lines": [
+    "RESULT [b12-ui 04-benchmarker]: 0 mandated, 0 extra, 0 ruling finding(s), 0 note(s) | 1 unit (interface), 3 strings, 168 code points | changed_sentences=1 over 1 leaf(s) | facts_removed=0 facts_restored=0 kept=6 open_items=4 untouched=2 termbase_updates=0 verification_log=5 | selftest PASS",
+    "RESULT [b12-ui 05-proofreader]: 0 mandated, 0 extra, 0 ruling finding(s), 0 note(s) | 1 unit (interface), 3 strings, 168 code points | changes=0 over 0 leaf(s) | checklist PASS=11 FIXED=0 | selftest PASS"
+  ]
+}

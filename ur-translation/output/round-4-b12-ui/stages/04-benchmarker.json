@@ -1,0 +1,164 @@
+{
+  "stage": "04-benchmarker",
+  "batch": "b12-ui",
+  "strings": {
+    "list2.title": "بازار، تفریح گاہیں اور زرعی فارم",
+    "list2.lead": "تاریخی سوق القیصریہ سے لے کر نخلستان کے باغوں اور فارموں تک: خریداری کریں، چہل قدمی کریں اور الاحساء کی نعمتوں کا ذائقہ لیں۔",
+    "list2.eyebrow": "سیاحتی رہنما"
+  },
+  "changed_sentences": [
+    {
+      "field": "list2.lead",
+      "before": "الاحساء کی نعمتوں کا ذائقہ چکھیں۔",
+      "after": "الاحساء کی نعمتوں کا ذائقہ لیں۔",
+      "why": "Stage 2 brought in «ذائقہ چکھیں» to avoid «مزہ چکھنا», which idiomatically means suffering the consequences. The dictionary records the same double sense for «ذائقہ چکھنا»: rekhtadictionary.com/meaning-of-zaaiqa-chakhnaa (HTTP 200) is an idiom entry glossed 'taste, relish' AND 'suffer the consequences, to face an unpleasant experience' (Hindi gloss «नतीजा भुगतना»), and «ذائقہ چکھانا» is 'to punish'. So the stage-2 form keeps the risk it was chosen to remove. «ذائقہ لینا» (rekhtadictionary.com/meaning-of-zaaiqa-lenaa, HTTP 200, compound verb) is glossed only in the good sense: «مزہ لینا، مزے کی چیز کھا کر لطف اٹھانا، چٹخارے بھرنا، لذّت حاصل کرنا». The verb still says 'taste' (AR «ذُق»), stage 2's object «نعمتوں کا ذائقہ» stays, and the string gets one letter shorter. Nothing enters or leaves. Raised as N183 so the judge can rule it."
+    }
+  ],
+  "facts_removed": [],
+  "facts_restored": [],
+  "fence_checked_and_kept": [
+    {
+      "field": "list2.lead",
+      "phrase": "تاریخی سوق القیصریہ",
+      "why_it_is_in_the_source": "EN 'the storied Qaisariyah', AR «القيصرية العريقة». «تاریخی» is evaluative, not a superlative or absolute (P19); the press uses it as its own epithet for this market (termbase entry «سوق القیصریہ»: urdunews.com/node/599631 headline). The name is byte for byte its termbase key: the English and Arabic shorten it, and the full key is written as cat.market.d already does."
+    },
+    {
+      "field": "list2.lead",
+      "phrase": "نخلستان کے باغوں اور فارموں",
+      "why_it_is_in_the_source": "EN 'the oasis gardens and farms', AR «حدائق الواحة ومزارعها». Both nouns are governed by the oasis, as in both sources. The bare «نخلستان» is the source's 'the oasis' (see N182)."
+    },
+    {
+      "field": "list2.lead",
+      "phrase": "خریداری کریں، چہل قدمی کریں",
+      "why_it_is_in_the_source": "EN 'shop, stroll', AR «تسوّق وتنزّه»: the source's first two activities, in the same order. «چہل قدمی» is the approved park vocabulary (king-abdullah-park, koot-park, muhairis)."
+    },
+    {
+      "field": "list2.lead",
+      "phrase": "الاحساء کی نعمتوں",
+      "why_it_is_in_the_source": "EN 'the bounty of Al-Ahsa', AR «خيرات الأحساء». rekhtadictionary.com/meaning-of-nemat (HTTP 200) gives «نعمت» as a feminine noun, one of whose senses is «لذیذ چیز، مزیدار کھانا», so it says the land's good things to eat. No 'God's' or blessing formula is added. The head name takes the Urdu possessive (P8; no adjective coined, N115)."
+    },
+    {
+      "field": "list2.title",
+      "phrase": "بازار، تفریح گاہیں اور زرعی فارم",
+      "why_it_is_in_the_source": "EN 'Souqs, Parks & Farms', AR «الأسواق والمنتزهات والمزارع». It is the approved tm.json pair of nav.leisure for the same English, reused verbatim. It matches the header label on the same page word for word, and the crumb «بازار اور تفریح گاہیں» shortens the same words, so nothing contradicts it."
+    },
+    {
+      "field": "list2.eyebrow",
+      "phrase": "سیاحتی رہنما",
+      "why_it_is_in_the_source": "EN 'Visit guide', AR «دليل الزيارة». It is the approved tm.json pair of list.eyebrow for the same English, reused verbatim."
+    }
+  ],
+  "open_items": [
+    {
+      "id": "N182",
+      "candidates": [
+        "A (in the text): the bare noun, as the source says 'the oasis': «… سے لے کر نخلستان کے باغوں اور فارموں تک: … اور الاحساء کی نعمتوں کا ذائقہ لیں۔»",
+        "B (stages 1-3's drafted alternative, with this stage's verb): the oasis named, with 'Al-Ahsa' at the close becoming 'here': «تاریخی سوق القیصریہ سے لے کر الاحساء کے نخلستان کے باغوں اور فارموں تک: خریداری کریں، چہل قدمی کریں اور یہاں کی نعمتوں کا ذائقہ لیں۔»",
+        "C (not recommended): name the oasis and keep the closing name, so «الاحساء» appears twice in one sentence: «… الاحساء کے نخلستان کے باغوں … اور الاحساء کی نعمتوں کا ذائقہ لیں۔»"
+      ],
+      "evidence": "Ruling N47-the-oasis-on-a-page-that-has-not-named-it binds 'only where a page mentions the oasis and no field of it names it', and says it is 'NOT a rule about the first mention and NOT a rule about a summary read on its own'. Its guard asks for «الاحساء کے نخلستان» in at least one field of the page. The rendered index page already has it: on the trace build (_scratch/ui-trace-b12-ui/dist/ur/souqs-parks-farms/index.html) the sawsan-gardens card reads «الاحساء کے نخلستان کے ماحول میں ایک باغ، …» (one hit on the page, read by s45-probe.mjs). The lead also ties the oasis to the place in the same sentence («الاحساء کی نعمتوں»). The open question is one of scope. An interface page has no 'fields' of its own: its only naming of the oasis is a card summary that belongs to another page and changes with it, and the lead is also the meta description, read alone in a search snippet (and the ruling expressly does not cover a summary read alone). Cost of B: it moves the source's closing 'Al-Ahsa' to 'here' (a change of wording, no change of fact), and the snippet then names the place at the front. Cost of A: the string depends on a card for its naming. Precedent: on the calibration page the bare noun in the summary is neither changed nor failed.",
+      "strings_affected": [
+        "list2.lead"
+      ],
+      "recommendation": "A. The ruling's guard is met by the page as rendered, its text excludes 'a summary read on its own', and A keeps the source's wording. If the judge reads 'page' as the string itself (an interface page has no fields of its own), B is the form, worded exactly as above."
+    },
+    {
+      "id": "N183",
+      "candidates": [
+        "A (in the text, stage 4): «الاحساء کی نعمتوں کا ذائقہ لیں»",
+        "B (stage 2): «الاحساء کی نعمتوں کا ذائقہ چکھیں»",
+        "C (stage 1): «الاحساء کی نعمتیں چکھیں»"
+      ],
+      "evidence": "The line has no precedent for any of the three: «چکھ», «ذائقہ» and «نعمت» occur nowhere in the approved ur block of ui.ts or in the approved attraction pages (s45-probe.mjs). Rekhta, all HTTP 200: «ذائقہ چکھنا» is an idiom with two senses, 'taste, relish' and 'suffer the consequences, to face an unpleasant experience' (meaning-of-zaaiqa-chakhnaa); «مزہ چکھنا» likewise, 'learn a lesson, face the music' (meaning-of-mazaa-chakhnaa), which is why stage 1 and stage 2 avoided it; «ذائقہ لینا» is a compound verb with only the good sense, «مزہ لینا، مزے کی چیز کھا کر لطف اٹھانا، چٹخارے بھرنا، لذّت حاصل کرنا» (meaning-of-zaaiqa-lenaa); «ذائقہ» is a masculine noun, 'taste, flavour, savour' (meaning-of-zaaiqa). Stage 2's objection to C stands: «چکھنا» with the abstract «نعمتیں» as its direct object is the English 'taste the bounty' carried over word for word. With «نعمتوں» as the object, B's bad sense is unlikely, but the dictionary records it for this very collocation.",
+      "strings_affected": [
+        "list2.lead"
+      ],
+      "recommendation": "A. It keeps the verb 'taste' and stage 2's object, and it carries no recorded bad sense. The blind reader is the test: if A reads as stilted, B is the fallback, and C the shortest."
+    },
+    {
+      "id": "N184",
+      "candidates": [
+        "A (in the text): the name bare, byte for byte its key: «تاریخی سوق القیصریہ سے لے کر …»",
+        "B: the running-text form of P3c point (2), «تاریخی سوق القیصریہ نامی بازار سے لے کر …»"
+      ],
+      "evidence": "Two rulings meet in one string. P3c point (2) is for running text: a name met in passing whose generic is not an Urdu word is followed by «نامی» and its Urdu generic. P3c-labels covers places where no gloss is possible: 'in a label, a list, a title and a meta description the name stands bare … the plain Urdu generic may stand in the neighbouring line'. list2.lead is rendered as the page's lead paragraph AND as its meta, og and twitter description. The neighbouring line (the h1 and the snippet title) is «بازار، تفریح گاہیں اور زرعی فارم», which opens with «بازار». The approved interface sentence cat.market.d writes the name bare («سوق القیصریہ، جہاں …»). The termbase entry records one b0-ui reader who stopped at «سوق» (at a glance like «شوق»), and a third reader who did not. B lengthens the snippet, and since the name is the second member of no list, it needs no reordering.",
+      "strings_affected": [
+        "list2.lead"
+      ],
+      "recommendation": "A, under P3c-labels (the string is a meta description) and the cat.market.d precedent. It is raised only because the same string is also running text on the page."
+    },
+    {
+      "id": "N185",
+      "candidates": [
+        "A (in the text): «نخلستان کے باغوں اور فارموں تک»",
+        "B (stage 1's recorded alternative): «نخلستان کے باغوں اور زرعی فارموں تک»"
+      ],
+      "evidence": "Ruling N5 asks for the qualifier «زرعی» 'where the word stands alone in a label'. In running text, approved zaki-alsalem-farm writes the bare oblique plural («سب سے بڑے فارموں میں سے ایک»). Here the word stands in a sentence beside «باغوں», governed by «نخلستان کے», directly under an h1 that reads «زرعی فارم». Two b0-ui readers read the bare word in a LABEL as the form one fills in. Three b10 readers read the qualified form in place without a remark (termbase entry «فارم»).",
+      "strings_affected": [
+        "list2.lead"
+      ],
+      "recommendation": "A: in running text the context fixes the sense, and N5's qualifier is a label rule. B if the blind reader stops at «فارموں»."
+    }
+  ],
+  "untouched_items": [
+    {
+      "id": "P4",
+      "why": "None of the three strings carries an unconfirmed value or a 'pending confirmation' form."
+    },
+    {
+      "id": "BRAND",
+      "why": "No string of the batch carries the brand. site.brand is held out of the pack (not_in_this_batch.held_for_owner), and the ' — Visit Al-Ahsa' part of the tab and og titles is that key's, not list2.title's. The Latin wordmark renders as before; nothing is coined."
+    }
+  ],
+  "termbase_updates": [],
+  "verification_log": [
+    {
+      "claim": "«ذائقہ چکھنا» is an idiom with a bad sense besides 'taste': suffering the consequences.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-zaaiqa-chakhnaa",
+      "verbatim": "zaa.iqa chakhnaa — Idiom — taste, relish — suffer the consequences, to face an unpleasant experience",
+      "obtained": true
+    },
+    {
+      "claim": "«ذائقہ لینا» is a compound verb with only the good sense, enjoying something tasty.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-zaaiqa-lenaa",
+      "verbatim": "ذَائِقَہ لینا — عربی، ہندی - فعل مرکب — مزہ لینا، مزے کی چیز کھا کر لطف اٹھانا، چٹخارے بھرنا، لذّت حاصل کرنا",
+      "obtained": true
+    },
+    {
+      "claim": "«ذائقہ» is a masculine noun, 'taste, flavour'.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-zaaiqa",
+      "verbatim": "zaa.iqa — taste, flavour, savour — اسم، مذکر",
+      "obtained": true
+    },
+    {
+      "claim": "«نعمت» is a feminine noun, and one of its senses is a delicious thing or tasty food.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-nemat",
+      "verbatim": "نِعمَت — اسم، مؤنث، واحد — … لذیذ چیز، مزیدار کھانا — مثال • کھانے کے بعد بھاپ اڑاتی مہکتی چائے ایک نعمت ہے",
+      "obtained": true
+    },
+    {
+      "claim": "«مزہ چکھنا» carries the sense of facing punishment, which is why stages 1 and 2 avoided it.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-mazaa-chakhnaa",
+      "verbatim": "maza chakhnaa — learn a lesson, face the music; mazaa chakhnaa — … حظ اُٹھانا ، لطف لینا ؛ سزا پانا ۔",
+      "obtained": true
+    }
+  ],
+  "notes": [
+    {
+      "item": "batch",
+      "text": "Fence: stage 3 made no change and added no fact (facts_added empty). Each phrase of the lead was diffed against the English and the Arabic; every one is in the source (kept list). Nothing was removed. English and Arabic agree on every fact of the three strings, so there is no source defect to log."
+    },
+    {
+      "item": "batch",
+      "text": "Translation smell: the lead was read for a stranded verb, «موجود ہے» chains, participle stacks, calqued postpositions, article-demonstratives and a carried passive. None is there. The frame «… سے لے کر … تک:» and the colon for the source's em dash are those of the approved sister list.lead. The one change is the verb (N183). Letterform spot check: no U+064A, U+0643, U+0629, U+0647 in the three strings (the exhaustive scan is stage 5's)."
+    },
+    {
+      "item": "batch",
+      "text": "Names: «سوق القیصریہ», «الاحساء», «نخلستان», «باغ», «فارم», «تفریح گاہ» and «بازار» are termbase entries, written as recorded. No new name and no termbase proposal. Not verified: rekhtadictionary.com/meaning-of-mazaa-lenaa answered 503, so nothing from it is logged."
+    },
+    {
+      "item": "list2.title",
+      "text": "Kept. The tab, og and twitter titles and the JSON-LD name render this string followed by the brand. The JSON-LD name is never seen by the blind reader, so the proofreader and the judge are its only check (DECISIONS, structured-data names)."
+    }
+  ]
+}

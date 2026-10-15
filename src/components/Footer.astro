@@ -20,13 +20,13 @@ const zh = lang === 'zh';
 // النظير الإنجليزي — تسمية إنجليزية لصفحة إنجليزية.
 const de = lang === 'de';
 const ru = lang === 'ru';
-// الأوردو: الرئيسية وفهرس المعالم وحدهما تحت /ur/ (فرعان صريحان: listBase ورابط #name)،
+// الأوردو: الرئيسية وفهرسا المعالم والأسواق تحت /ur/ (فروع صريحة: listBase وleisureBase ورابط #name)،
 // وكل رابط آخر يقع على الفرع الإنجليزي الأخير في سطره حتى يُبنى قسمه.
 const ur = lang === 'ur';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
 const showGuides = (ar || lang === 'en') && (await guidesListed());
 const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
-const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : '/en/souqs-parks-farms/';
+const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : ur ? '/ur/souqs-parks-farms/' : '/en/souqs-parks-farms/';
 const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : '/en/plan-your-trip/';
 const cols = [
   {
