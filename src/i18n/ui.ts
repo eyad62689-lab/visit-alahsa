@@ -68,6 +68,8 @@ export const ui = {
     'map.locate.err': 'تعذّر تحديد موقعك — تحقق من إذن الموقع في المتصفح.',
     'det.distance': 'كم يبعد عني؟',
     'det.unesco': 'من مكوّنات موقع اليونسكو للتراث العالمي',
+    // شارة المكوّن برقمه وشرحه (قرار المالك 2026-10-15)؛ لغة بلا هذا المفتاح تبقى على det.unesco · الرقم حتى يمرّ بخطها
+    'det.unescoNo': 'المكوّن رقم {n} في موقع اليونسكو للتراث العالمي',
     'det.mentions.h': 'مقالات تذكر هذا المعلم',
     // أزرار الحفظ
     // زر فيديو الهيرو (WCAG 2.2.2 — كل حركة تلقائية تحتاج آلية إيقاف)
@@ -438,6 +440,7 @@ export const ui = {
     'map.locate.err': 'Could not get your location — check the browser’s location permission.',
     'det.distance': 'How far from me?',
     'det.unesco': 'A component of the UNESCO World Heritage site',
+    'det.unescoNo': 'UNESCO World Heritage component no. {n}',
     'det.mentions.h': 'Articles that mention this place',
     'a11y.skip': 'Skip to content',
     'a11y.menu': 'Menu',
