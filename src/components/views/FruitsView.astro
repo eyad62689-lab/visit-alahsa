@@ -12,7 +12,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import DataTable from '../DataTable.astro';
 import { fruitsTable } from '../../lib/tables';
-import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_DE, FRUIT_GROUPS_RU } from '../../data/fruits';
+import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_DE, FRUIT_GROUPS_RU, FRUIT_GROUPS_UR } from '../../data/fruits';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -31,8 +31,9 @@ const DE_HEADS = { fruit: 'Frucht', season: 'Saison', group: 'Gruppe' };
 // @de-fruits:heads:end
 // رؤوس جدول المواسم الروسية — من خط ru-translation-pipeline (دفعة ru-fruits)
 const RU_HEADS = { fruit: 'Плод', season: 'Сезон', group: 'Группа' };
-// فرع ur بالرؤوس الإنجليزية عمداً حتى تمرّ رؤوسه بخط ur-translation-pipeline
-const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : de ? DE_HEADS : ru ? RU_HEADS : /* ur→en */ { fruit: 'Fruit', season: 'Season', group: 'Group' };
+// رؤوس جدول المواسم الأوردية — من خط ur-translation-pipeline (دفعة b18-ui)
+const UR_HEADS = { fruit: 'پھل', season: 'موسم', group: 'زمرہ' };
+const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : de ? DE_HEADS : ru ? RU_HEADS : ur ? UR_HEADS : { fruit: 'Fruit', season: 'Season', group: 'Group' };
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة fruits 2026-09-02، الحاكم 94/100)
 const ZH = {
@@ -139,6 +140,40 @@ const DE = {
 };
 
 // @de-fruits:end
+// الكتلة الأوردية — خط ur-translation-pipeline (دفعة b18-ui، صفحة /ur/fruits/).
+// رؤوس الجدول وعنوانه من الخط نفسه، فيُبنى جدول المواسم بالأوردية لا بالإنجليزية.
+const UR = {
+  heroEyebrow: 'نخلستان کی نعمتیں',
+  title: 'الاحساء کے موسمی پھل',
+  heroSum: 'دنیا کے سب سے بڑے نخلستان میں باغوں پر ایک کے بعد ایک موسم آتا ہے، اور ہر موسم سیاحوں کے لیے ایک نیا پھل اور نیا ذائقہ لاتا ہے: گرمیوں کے سنہری رطب اور نخلستان کے مشہور لیموں سے لے کر سردیوں کے کنار تک۔ رطب تازہ پکی کھجوروں کو کہتے ہیں، اور کنار بیر کو۔',
+  stats: [
+    { n: '25 لاکھ', l: 'نخلستان میں کھجور کے درخت' },
+    { n: '4 لاکھ', l: 'کھجور کے درختوں کے علاوہ پھل دار درخت' },
+  ],
+  statsSrc: 'گنیز ورلڈ ریکارڈز کے اندراج (اکتوبر 2020) اور ماحولیات، پانی اور زراعت کی وزارت کے اعداد و شمار کے مطابق۔',
+  frEyebrow: 'پھلوں کا تعارف',
+  frH: 'ہر موسم کا ایک پھل',
+  frLead: 'اپنی سیر کا موسم چنیں اور اس کے پھل دیکھیں:',
+  chipsAria: 'پھلوں کو موسم کے لحاظ سے چھانٹیں',
+  chips: [
+    { f: 'all', l: 'تمام موسم' },
+    { f: 'winter', l: 'سردیاں' },
+    { f: 'spring', l: 'بہار' },
+    { f: 'summer', l: 'گرمیاں' },
+    { f: 'autumn', l: 'خزاں' },
+  ],
+  // وسم «بانتظار التأكيد» لا يُترجم (القرار 8 وقرار 2026-09-16، سابقة الألمانية): لا ثمرة ولا مجموعة تحمله اليوم.
+  pending: '',
+  rare: 'تقریباً ناپید',
+  more: 'مزید پڑھیں',
+  less: 'تفصیل چھپائیں',
+  emptyMsg: 'اس موسم کے لیے ابھی کوئی پھل درج نہیں کیا گیا۔',
+  countPrefix: 'دکھائے گئے پھل: ',
+  methodH: 'اس صفحے کی معلومات کی درستی',
+  methodP1: 'یہ صفحہ قابل اعتماد سرکاری اور زرعی ذرائع پر مبنی ہے، اور ہم ہر بات شائع کرنے سے پہلے اس کی تصدیق ضرور کرتے ہیں۔',
+  methodP2: 'پھل پکنے کا وقت موسمی حالات کے مطابق سال بہ سال تھوڑا آگے پیچھے ہو جاتا ہے۔',
+  groups: FRUIT_GROUPS_UR,
+};
 const C = localize(lang, {
   ar: {
     heroEyebrow: 'من خيرات الواحة',
@@ -205,6 +240,7 @@ const C = localize(lang, {
   zh: ZH,
   de: DE,
   ru: RU,
+  ur: UR,
 });
 
 const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.brand')}`;
@@ -216,10 +252,10 @@ const description = ar
       ? 'Die Früchte der Al-Ahsa-Oase Saison für Saison: Datteln und Rutab, Hasawi-Limette, gelbe Melone, Feigen, Kanar und mehr – nach offiziellen Quellen geprüft.'
     : ru
       ? 'Плоды оазиса Аль-Ахса по сезонам: финики и рутаб, лайм Аль-Ахсы, жёлтая дыня, инжир, канар и другие — с проверенными сведениями из официальных источников.'
-      : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
+      : ur ? 'الاحساء کے نخلستان کے پھلوں کا موسم بہ موسم تعارف: کھجوریں اور رطب، الاحساء کے لیموں، پیلا خربوزہ، انجیر، کنار اور دوسرے پھل، سرکاری ذرائع سے تصدیق شدہ معلومات کے ساتھ۔' : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : '/en/fruits/';
+const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : ur ? '/ur/fruits/' : '/en/fruits/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/', siteUrl).href },

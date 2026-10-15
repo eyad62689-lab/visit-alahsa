@@ -315,11 +315,13 @@ const SCALE_EXP = new Map(SCALE_WORDS.map(([w, exp]) => [w, exp]));
 const SCALE_FROM = Math.min(...SCALE_EXP.values());
 // رقمٌ بعده إحدى كلمات المقياس كلمةً كاملة
 const SCALED_UR = new RegExp(`(${FIGURE}) ?(${SCALE_WORDS.map(([w]) => w).join('|')})(?![\\p{L}\\p{M}])`, 'gu');
-// نظيره في الصفحة الإنجليزية: million / billion بعد الرقم، أو M ملتصقةً به
+// نظيره في الصفحة الإنجليزية: million / billion بعد الرقم، أو M ملتصقةً به، أو K للألف (صفحة الثمار:
+// «400K» = «4 لاکھ»)
 const SCALED_EN = [
   [new RegExp(`(${FIGURE})\\s?million\\b`, 'gi'), 6],
   [new RegExp(`(${FIGURE})\\s?billion\\b`, 'gi'), 9],
   [new RegExp(`(${FIGURE})M(?![A-Za-z])`, 'g'), 6],
+  [new RegExp(`(${FIGURE})K(?![A-Za-z])`, 'g'), 3],
 ];
 
 /**
