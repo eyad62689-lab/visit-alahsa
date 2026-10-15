@@ -1,4 +1,4 @@
-<!-- tuwaither · ur-PK · 91/100 · APPROVE · 2026-10-13 · batch b5 (judge rounds: 91 / 91) -->
+<!-- tuwaither · ur-PK · 91/100 · APPROVE · 2026-10-15 · batch b15 (judge rounds: 91) -->
 <!-- No source_ur on any row (ruling P14). The numbers in the comments are the indexes of the items in the attraction file. -->
 
 title_ur: "جبل ابو حصیص"

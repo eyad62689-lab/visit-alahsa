@@ -20,7 +20,7 @@ kicker_ru: "Редкое наследие"
 summary_ru: "Одна из старейших мечетей ислама и первое место после Медины, где совершили пятничную молитву."
 body_ru: "Мало какой памятник сравнится с мечетью Джавата: это одна из старейших мечетей ислама, и, по преданию, именно здесь племя Абд аль-Кайс, заселившее эти земли, совершило пятничную молитву — первую после той, что прошла в мечети Пророка в Медине. В том, что уцелело от скромной глинобитной постройки, больше достоинства, чем размера. Постойте перед ее арками и стенами — и за ними проступят столетия молитв и собраний в оазисе, жители которого одними из первых приняли ислам. Мечеть отреставрировали в рамках Проекта принца Мухаммеда ибн Салмана по развитию исторических мечетей — вместе с другими мечетями Аль-Ахсы: Эль-Джаалания, Эль-Хубайш и мечетью шейха Мухаммеда ибн Абу Бакра аль-Муллы. Побывать здесь — скорее путешествие во времени, чем осмотр здания: мгновение, которое связывает вас с глубокими корнями истории этого места."
 area_ru: "Деревня Эль-Килабия, к северо-востоку от Эль-Хуфуфа"
-# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 90/100 (2026-10-12، الدفعة b1 — السجل في ur-translation/memory/scores.csv).
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-15، الدفعة b15 — السجل في ur-translation/memory/scores.csv).
 title_ur: "مسجد جواثا"
 kicker_ur: "نایاب ورثہ"
 summary_ur: "اسلام کی قدیم ترین مساجد میں سے ایک، اور مدینہ منورہ کے بعد پہلی جگہ جہاں جمعہ کی نماز ادا کی گئی۔"
@@ -49,14 +49,14 @@ mapUrl: https://goo.gl/maps/NfRxmGxvUnTatBzJ8
 featured: true
 order: 4
 practical:
-  - { label: "مواعيد المنتزه المجاور", value: "8 ص–12 منتصف الليل", label_en: "Adjacent park hours", value_en: "8 am – 12 midnight", label_ru: "Часы работы соседнего парка", value_ru: "8:00–24:00", label_de: "Öffnungszeiten des benachbarten Parks", value_de: "8–24 Uhr", label_zh: "相邻公园开放时间", value_zh: "8:00–24:00", label_ur: "ساتھ والی تفریح گاہ کے اوقات", value_ur: "صبح 8 بجے سے رات 12 بجے تک", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً للفرد", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15 per person", label_ru: "Стоимость входа", value_ru: "Мечеть: бесплатно · вход в парк: 10–15 саудовских риялов (SAR)", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", label_ur: "فیس", value_ur: "مسجد: مفت · تفریح گاہ میں داخلہ: فی کس 10 سے 15 سعودی ریال", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مواعيد المنتزه المجاور", value: "8 ص–12 منتصف الليل", label_en: "Adjacent park hours", value_en: "8 am – 12 midnight", label_ru: "Часы работы соседнего парка", value_ru: "8:00–24:00", label_de: "Öffnungszeiten des benachbarten Parks", value_de: "8–24 Uhr", label_zh: "相邻公园开放时间", value_zh: "8:00–24:00", label_ur: "ساتھ والے پارک کے اوقات", value_ur: "صبح 8 بجے سے رات 12 بجے تک", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً للفرد", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15 per person", label_ru: "Стоимость входа", value_ru: "Мечеть: бесплатно · вход в парк: 10–15 саудовских риялов (SAR)", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", label_ur: "فیس", value_ur: "مسجد: مفت · پارک میں داخلہ: فی کس 10 سے 15 سعودی ریال", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   # بند الزيارة: الصيغة نفسها في صفحات المساجد بلغاتها الخمس.
   - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", label_ur: "زیارت", value_ur: "زائرین کے لیے کھلی ہے۔ مناسب لباس پہن کر آئیں اور اس مقام کے تقدس کا خیال رکھیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-10", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
-# أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 90/100 (2026-10-12، الدفعة b1 — السجل في ur-translation/memory/scores.csv).
+# أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-15، الدفعة b15 — السجل في ur-translation/memory/scores.csv).
 faq:
   - q: "هل دخول مسجد جواثا برسوم؟"
     a: "لا، زيارة المسجد مجانية، أمّا دخول المنتزه المجاور له فمن 10 إلى 15 ريالاً للفرد."
@@ -67,7 +67,7 @@ faq:
     q_ru: "Сколько стоит вход в мечеть Джавата?"
     a_ru: "Вход в мечеть свободный, а в соседний парк — 10–15 саудовских риялов."
     q_ur: "کیا مسجد جواثا کی زیارت کی کوئی فیس ہے؟"
-    a_ur: "نہیں۔ مسجد کی زیارت مفت ہے۔ ساتھ والی تفریح گاہ میں داخلے کی فیس فی کس 10 سے 15 سعودی ریال ہے۔"
+    a_ur: "نہیں۔ مسجد کی زیارت مفت ہے۔ ساتھ والے پارک میں داخلے کی فیس فی کس 10 سے 15 سعودی ریال ہے۔"
   - q: "ما مواعيد المنتزه المجاور لمسجد جواثا؟"
     a: "يُفتح المنتزه المجاور للمسجد من 8 ص إلى 12 منتصف الليل."
     q_en: "What are the opening hours of the park beside Jawatha Mosque?"
@@ -76,8 +76,8 @@ faq:
     a_zh: "清真寺旁边的公园开放时间为 8:00–24:00。"
     q_ru: "В какие часы открыт парк рядом с мечетью Джавата?"
     a_ru: "Парк рядом с мечетью открыт с 8:00 до 24:00."
-    q_ur: "مسجد جواثا کے ساتھ والی تفریح گاہ کب سے کب تک کھلی رہتی ہے؟"
-    a_ur: "مسجد کے ساتھ والی تفریح گاہ صبح 8 بجے سے رات 12 بجے تک کھلی رہتی ہے۔"
+    q_ur: "مسجد جواثا کے ساتھ والا پارک کب سے کب تک کھلا رہتا ہے؟"
+    a_ur: "مسجد کے ساتھ والا پارک صبح 8 بجے سے رات 12 بجے تک کھلا رہتا ہے۔"
   - q: "لماذا يُعدّ مسجد جواثا مهماً؟"
     a: "هو من أقدم المساجد في الإسلام، ويُذكر أنّه أوّل موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس."
     q_en: "Why is Jawatha Mosque significant?"

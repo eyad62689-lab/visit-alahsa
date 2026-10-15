@@ -1,0 +1,2117 @@
+{
+  "batch": "b16",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b16",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, [area], [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 7,
+    "fields": 85,
+    "per_page": {
+      "al-uqair": {
+        "fields": 16,
+        "practical_rows": 1,
+        "faq_items": 4,
+        "bestTime": true,
+        "kicker_rendered": true
+      },
+      "uqair-castle": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "uqair-mosque": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "uqair-beach": {
+        "fields": 16,
+        "practical_rows": 1,
+        "faq_items": 4,
+        "bestTime": true,
+        "kicker_rendered": false
+      },
+      "hubail-lake": {
+        "fields": 13,
+        "practical_rows": 1,
+        "faq_items": 3,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "delfoon-lake": {
+        "fields": 13,
+        "practical_rows": 1,
+        "faq_items": 3,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "najim-museum": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "al-uqair",
+      "file": "src/content/attractions/al-uqair.md",
+      "file_sha256": "f4f1d05e741615a0838547a5918a338ea597aee927e90c062dd4daa1ae27dc61",
+      "order": 3,
+      "category": "historic",
+      "category_label": {
+        "en": "Historic landmarks",
+        "ar": "المعالم التاريخية"
+      },
+      "featured": true,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Uqair",
+          "ar": "العُقير",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "ميناء ورمال",
+          "rendered": true,
+          "note": "No English kicker exists in the repo: translate from the Arabic. Rendered on the home-page featured card (above the title); never on the detail page."
+        },
+        "summary": {
+          "en": "Saudi Arabia’s first seaport on its eastern coast, where desert sands meet the blue of the Gulf.",
+          "ar": "أوّل ميناء بحري شرق المملكة، حيث تلامس رمالُ الصحراء زرقةَ الخليج.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Before the roads were paved, Al-Uqair was Al-Ahsa’s gateway to the world. An ancient port on the Arabian Gulf, where vessels moored laden with dates and goods, and through which news and trade entered the heart of the peninsula. Today two rare scenes meet at Al-Uqair: soft white sands stretching in from the desert, and the clear blue of the Gulf beginning where the sand ends. The remains of mud buildings and the old fort still guard the place, reminding the visitor that this quiet shore was once the heart of restless movement. A site for history and contemplation alike — you walk in the trace of caravans, and sit on sand that touches the sea.",
+          "ar": "قبل أن تُعبّد الطرق، كان العُقير بوّابة الأحساء إلى العالم. ميناءٌ قديمٌ على ساحل\nالخليج العربي، رست عنده المراكب محمّلةً بالتمر والبضائع، وعبره دخلت الأخبار\nوالتجارة إلى عمق الجزيرة.\n\nاليوم تلتقي عند العُقير لوحتان نادراً ما تجتمعان: رمالٌ بيضاء ناعمة تمتدّ من\nالصحراء، وزرقةٌ صافيةٌ للخليج تبدأ حيث تنتهي الرمال. بقايا المباني الطينية\nوالحصن القديم ما زالت تحرس المكان، تذكّر الزائر بأنّ هذا الشاطئ الهادئ كان يوماً\nقلب حركةٍ لا تهدأ.\n\nموقعٌ للتاريخ والتأمّل معاً — تمشي فيه على أثر القوافل، وتجلس على رملٍ يلامس\nالبحر.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "The Arabian Gulf coast — eastern Al-Ahsa",
+          "ar": "ساحل الخليج العربي — شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "bestTime": {
+          "en": "Just before sunset, when the white sands glow against the blue of the water.",
+          "ar": "قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء.",
+          "note": "Card value (P26: no final stop, even where the English is a sentence)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours & entry",
+              "ar": "المواعيد والدخول"
+            },
+            "value": {
+              "en": "Open public site — no entry fee",
+              "ar": "موقع عام مفتوح — بلا رسوم دخول"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "Is there an entry fee at Al-Uqair?",
+              "ar": "هل دخول العُقير برسوم؟"
+            },
+            "a": {
+              "en": "No. Al-Uqair is an open public site with no entry fee.",
+              "ar": "لا، العُقير موقع عام مفتوح بلا رسوم دخول."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "Where is Al-Uqair?",
+              "ar": "أين يقع العُقير؟"
+            },
+            "a": {
+              "en": "On the Arabian Gulf coast, in eastern Al-Ahsa.",
+              "ar": "على ساحل الخليج العربي في شرق الأحساء."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "What is the best time to visit Al-Uqair?",
+              "ar": "ما أفضل وقت لزيارة العُقير؟"
+            },
+            "a": {
+              "en": "Just before sunset, when the white sands glow against the blue of the water.",
+              "ar": "قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء."
+            }
+          },
+          {
+            "i": 3,
+            "q": {
+              "en": "What can I see at Al-Uqair?",
+              "ar": "ماذا يمكن أن أرى في العُقير؟"
+            },
+            "a": {
+              "en": "The remains of the old port’s mud buildings and its fort, and soft white sand that meets the waters of the Gulf.",
+              "ar": "بقايا المباني الطينية والحصن القديم للميناء التاريخي، ورمالاً بيضاء ناعمة تلامس مياه الخليج."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.historic",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "det.bestTime: bestTime",
+        "practical[0] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "faq[3] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "trails.partOf (h2) + trail titles and taglines (no Urdu trails yet: English, linked to /en/trails/)",
+        "det.allSights (back button)",
+        "(kicker: home-page featured card only)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": true,
+        "nearby": true,
+        "trails": true
+      },
+      "precedent": {
+        "ru": {
+          "title": "Эль-Укайр",
+          "kicker": "Порт и пески",
+          "summary": "Исторически первый морской порт на востоке Саудовской Аравии, где пески пустыни встречаются с синевой Залива.",
+          "body": "Еще до того, как проложили асфальтированные дороги, Эль-Укайр (или Укайр) был воротами Аль-Ахсы в мир — древним портом на побережье Залива, где швартовались суда с финиками и товарами и откуда новости и торговля шли в глубь полуострова. Сегодня в Эль-Укайре сходятся две картины, которые редко увидишь рядом: мягкий белый песок тянется сюда из пустыни, а там, где он кончается, начинается чистая синева Залива. Остатки глинобитных построек и старая крепость по-прежнему охраняют это место и напоминают гостю: этот тихий берег был когда-то сердцем неутихающего движения. В Эль-Укайре можно и прикоснуться к истории, и просто предаться созерцанию: вы идете по следам караванов и сидите на песке, которого касается море.",
+          "area": "Побережье Залива, к востоку от Аль-Ахсы",
+          "bestTime": "Незадолго до заката, когда белые пески светятся на фоне синей воды.",
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы и вход",
+              "value": "Открытая общедоступная территория — вход свободный"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Сколько стоит вход в Эль-Укайр?",
+              "a": "Вход свободный: Эль-Укайр — открытая общедоступная территория."
+            },
+            {
+              "i": 1,
+              "q": "Где находится Эль-Укайр?",
+              "a": "На побережье Залива, к востоку от Аль-Ахсы."
+            },
+            {
+              "i": 2,
+              "q": "Когда лучше посетить Эль-Укайр?",
+              "a": "Незадолго до заката, когда белые пески светятся на фоне синей воды."
+            },
+            {
+              "i": 3,
+              "q": "Что можно увидеть в Эль-Укайре?",
+              "a": "Остатки глинобитных построек старого порта и его крепость, а также мягкий белый песок, который встречается с водами Залива."
+            }
+          ]
+        },
+        "de": {
+          "title": "Al-Uqair",
+          "kicker": "Hafen und Sand",
+          "summary": "Der erste Seehafen an der Ostküste Saudi-Arabiens, wo der Wüstensand auf das Blau des Golfs trifft.",
+          "body": "Bevor es asphaltierte Straßen gab, war Al-Uqair das Tor Al-Ahsas zur Welt. Ein alter Hafen am Golf, an dem Schiffe festmachten, beladen mit Datteln und Waren, und durch den Nachrichten und Handel ins Herz der Halbinsel gelangten. Heute treffen in Al-Uqair zwei seltene Bilder aufeinander: weicher weißer Sand, der aus der Wüste heranreicht, und das klare Blau des Golfs, das dort beginnt, wo der Sand endet. Die Reste der Lehmbauten und die alte Festung wachen noch immer über den Ort und erinnern daran, dass diese stille Küste einst das Herz rastloser Bewegung war. Ein Ort für Geschichte und Besinnung zugleich – Sie gehen auf den Spuren der Karawanen und sitzen auf Sand, der das Meer berührt.",
+          "area": "Die Golfküste – östlich von Al-Ahsa",
+          "bestTime": "Kurz vor Sonnenuntergang, wenn der weiße Sand vor dem Blau des Wassers leuchtet.",
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten und Eintritt",
+              "value": "Frei zugängliches Gelände – kein Eintrittsgeld"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "乌盖尔",
+          "kicker": "港口与白沙",
+          "summary": "沙特阿拉伯东部沿海的第一座海港，沙漠在此止步，与海湾的湛蓝相接。",
+          "body": "在公路修通之前，乌盖尔（Al-Uqair）是哈萨通往世界的门户。这座海湾之滨的古港，曾泊满装载椰枣与货物的船只，半岛腹地的物资与消息也由此进出。如今，乌盖尔仍留着一处难得的景致：沙漠一路铺展而来的洁白细沙，到水边忽然收住，海湾清澈的蓝就从这里开始。土坯房舍的残迹与城堡依旧守在岸边，提醒着每个到访的人：今天这道安静的海岸，当年是往来不绝的枢纽。这里适合访古，也适合什么都不做：沿着当年商队的足迹走一段，然后在海与沙相接处坐下来。",
+          "area": "海湾沿岸——哈萨以东",
+          "bestTime": "日落前的那段时间，白沙映着海水，泛起柔光。",
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间与门票",
+              "value": "开放的公共区域，免收门票"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "去乌盖尔要门票吗？",
+              "a": "不需要。乌盖尔是开放的公共区域，免收门票。"
+            },
+            {
+              "i": 1,
+              "q": "乌盖尔在哪里？",
+              "a": "在海湾沿岸，哈萨以东。"
+            },
+            {
+              "i": 2,
+              "q": "什么时候去乌盖尔最好？",
+              "a": "日落前的那段时间，白沙映着海水，泛起柔光。"
+            },
+            {
+              "i": 3,
+              "q": "在乌盖尔能看到什么？",
+              "a": "古港遗留的土坯房舍残迹和城堡，还有从沙漠一路铺展到海湾水边的洁白细沙。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair",
+          "ar": "العقير",
+          "ru": "Эль-Укайр",
+          "de": "Al-Uqair",
+          "zh": "乌盖尔（Al-Uqair）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Saudi Arabia",
+          "ar": null,
+          "ru": "Саудовская Аравия",
+          "de": "Saudi-Arabien",
+          "zh": "沙特阿拉伯",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Arabian Gulf coast",
+          "ar": null,
+          "ru": null,
+          "de": "die Golfküste",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Gulf",
+          "ar": null,
+          "ru": "Залив / регион Залива",
+          "de": null,
+          "zh": "海湾",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 3 paragraph(s), 521 characters, 0 bold phrase(s), 0 link(s); English 5 sentence(s), 650 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [
+          "title and every field: the AR name is written with a damma (العُقير, U+064F); the AR of uqair-castle writes the same name without it (العقير). One termbase name must cover both pages.",
+          "summary: EN 'Saudi Arabia's first seaport on its eastern coast' — AR 'the first seaport in the east of the Kingdom' (أوّل ميناء بحري شرق المملكة): EN names the country and says 'coast', AR says 'the Kingdom' and 'east'. The wording is an owner ruling guarded by build check C34 (never 'oldest port').",
+          "body: EN 'two rare scenes meet' — AR 'two tableaux that rarely come together' (لوحتان نادراً ما تجتمعان): the EN moves the rarity from the meeting to the scenes.",
+          "body (first mention) / area / faq[1].a: both languages write 'Arabian Gulf' (الخليج العربي) with its qualifier; the summary, the later body mention and faq[3].a write 'the Gulf' bare. The founding Urdu decision is the bare form (open item P5, not yet tested on a page).",
+          "body: EN 'into the heart of the peninsula' — AR 'into the depth of the Peninsula' (عمق الجزيرة); no termbase entry for the Arabian Peninsula yet.",
+          "area and faq[1].a: 'east of Al-Ahsa' in both languages treats Al-Ahsa as a point, not a region (logged as a source defect by the Russian line); the P20 pattern 'larger place first' has no larger place here to lead with.",
+          "faq[3].a: EN 'the remains of the old port's mud buildings and its fort' — AR 'the remains of the mud buildings and the old fort of the historic port': 'old' qualifies the port in EN and the fort in AR, and 'historic' is in the AR only."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling, build check C34 (tools/check-uqair-port.mjs): Al-Uqair is 'the first seaport in the east of the Kingdom, on the Arabian Gulf coast' (أول ميناء بحري شرق المملكة) — never 'the oldest port', never 'the first seaport in the Kingdom'.",
+        "Root CLAUDE.md: King Abdulaziz Palace at Al-Uqair was removed from the site for good — it is not named or brought back.",
+        "openSite page: no hours-and-fees notice line is rendered, in any language.",
+        "The Gulf is written bare in Urdu (open item P5: founding decision, untested) although both sources write 'Arabian Gulf' here."
+      ]
+    },
+    {
+      "page": "uqair-castle",
+      "file": "src/content/attractions/uqair-castle.md",
+      "file_sha256": "31671a8c540eb11acbe8d91070438a4df635537c090b1b9497c1819cfab6d3b1",
+      "order": 17,
+      "category": "historic",
+      "category_label": {
+        "en": "Historic landmarks",
+        "ar": "المعالم التاريخية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Uqair Castle",
+          "ar": "قلعة العقير",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم تاريخي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A historic castle guarding the port, a witness to Al-Uqair's old commercial prosperity.",
+          "ar": "قلعة تاريخية تحرس الميناء، شاهدة على ازدهار العقير التجاري قديماً.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "On the Arabian Gulf coast of eastern Al-Ahsa, Al-Uqair Castle stands among the buildings of the historic Al-Uqair port — the first seaport on Saudi Arabia’s eastern coast and, in earlier times, Najd's gateway to the sea, where archaeological finds attest to trade stretching back to remote antiquity. The structures seen today include the castle, the khan, the emirate building, the customs house and the mosque, and it was on the port's grounds that the Uqair Protocol demarcating borders was signed in 1341 AH / 1922 CE. The port's role faded after Dammam's port rose in the mid-twentieth century, leaving its buildings as witnesses to an entire era. They were restored in the late 1990s. The site is undergoing restoration work, and some parts may be closed.",
+          "ar": "على ساحل الخليج العربي شرقي الأحساء تقوم قلعة العقير ضمن مباني **ميناء\nالعقير التاريخي**، أول ميناء بحري شرق المملكة وبوابة نجد إلى البحر\nقديماً، حيث تشهد المكتشفات الأثرية على نشاط تجاري يمتد إلى عصور موغلة في\nالقدم. المباني القائمة اليوم تشمل القلعة والخان ومبنى الإمارة والجمارك والمسجد،\nوعلى أرض الميناء وُقّع بروتوكول العقير لترسيم الحدود عام 1341هـ/1922م. تراجع دور\nالميناء بعد قيام ميناء الدمام منتصف القرن العشرين، فبقيت مبانيه شاهداً على\nحقبة كاملة. رُمّمت أواخر التسعينيات الميلادية.\nيشهد الموقع أعمال ترميم، وقد تكون بعض أجزائه مغلقة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Uqair port — the Gulf coast of eastern Al-Ahsa",
+          "ar": "ميناء العقير — ساحل الخليج شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open for exterior visits",
+              "ar": "متاح للزيارة الخارجية"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.historic",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.fromPlace (h2) + 2 photo(s); alt = title + \" — \" + det.photo + \" \" + n",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": true,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Крепость Эль-Укайр",
+          "kicker": "Историческая достопримечательность",
+          "summary": "Историческая крепость на страже порта — свидетель былого торгового расцвета Эль-Укайра.",
+          "body": "На побережье Залива к востоку от Аль-Ахсы, среди построек исторического порта, поднимается крепость Эль-Укайр. Сам порт — исторически первый морской порт на востоке Саудовской Аравии; в прежние времена он был воротами Неджда к морю. Археологические находки говорят о торговле, которая уходит в глубокую древность. Сегодня здесь стоят крепость, караван-сарай, здание эмирата, таможня и мечеть. На земле порта в 1341 году хиджры (1922 год н. э.) подписали Укайрский договор, определивший границы. Когда в середине XX века вырос порт Даммама, Эль-Укайр утратил свое значение, а его постройки остались свидетелями целой эпохи. В конце 1990-х годов их отреставрировали. Сейчас здесь идут реставрационные работы, и некоторые участки могут быть закрыты.",
+          "area": "Порт Эль-Укайр, побережье Залива к востоку от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Uqair-Festung",
+          "kicker": "Historische Stätte",
+          "summary": "Eine historische Festung, die den Hafen bewacht – Zeugin der einstigen Handelsblüte von Al-Uqair.",
+          "body": "An der Golfküste östlich von Al-Ahsa steht die Al-Uqair-Festung im Gebäudekomplex des historischen Hafens Al-Uqair – des ersten Seehafens an der Ostküste Saudi-Arabiens. In früherer Zeit war er das Tor Nadschds zum Meer; archäologische Funde belegen hier einen Handel, der bis in ferne Vorzeit zurückreicht. Erhalten sind heute unter anderem die Festung, der Khan (die Karawanserei), das Gebäude des Emirats, das Zollhaus und die Moschee. Auf dem Hafengelände wurde 1341 nach der Hidschra (1922 n. Chr.) das Uqair-Protokoll unterzeichnet, das die Grenzen festlegte. Mitte des 20. Jahrhunderts entstand der Hafen von Dammam; danach verlor Al-Uqair als Hafen an Bedeutung, und seine Bauten blieben als Zeugen einer ganzen Epoche zurück. Ende der 1990er-Jahre wurden sie restauriert. Derzeit laufen auf dem Gelände Restaurierungsarbeiten, und einige Bereiche können geschlossen sein.",
+          "area": "Hafen Al-Uqair – die Golfküste östlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "乌盖尔城堡",
+          "kicker": "历史地标",
+          "summary": "一座扼守港口的历史城堡，见证乌盖尔昔日的商贸繁华。",
+          "body": "在哈萨以东的海湾沿岸，乌盖尔城堡（Al-Uqair）立于乌盖尔港的历史建筑群之间。乌盖尔港是沙特阿拉伯东部沿海的第一座海港，昔日也是内志（沙特中部地区）通往大海的门户；考古发现表明，这里的贸易往来可上溯到久远的年代。今日所见的建筑包括城堡、商队客栈、埃米尔府、海关楼与清真寺；划定边界的《乌盖尔议定书》，正是于伊斯兰历 1341 年（公元 1922 年）在这座港口签署。20 世纪中叶达曼港兴起之后，乌盖尔港的角色渐渐淡去，只留下这片建筑，成为一个时代的见证。20 世纪 90 年代末，这批建筑得到修复。目前，遗址内正在开展修缮工作，部分区域可能暂不开放。",
+          "area": "乌盖尔港——哈萨以东的海湾沿岸",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair",
+          "ar": "العقير",
+          "ru": "Эль-Укайр",
+          "de": "Al-Uqair",
+          "zh": "乌盖尔（Al-Uqair）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair Castle",
+          "ar": "قلعة العقير",
+          "ru": "крепость Эль-Укайр",
+          "de": null,
+          "zh": "乌盖尔城堡",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair port",
+          "ar": "ميناء العقير",
+          "ru": null,
+          "de": null,
+          "zh": "乌盖尔港",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Dammam",
+          "ar": "الدمام",
+          "ru": "Даммам",
+          "de": "Dammam",
+          "zh": "达曼",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Najd",
+          "ar": "نجد",
+          "ru": "Неджд",
+          "de": "Nadschd",
+          "zh": "内志（沙特中部地区）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Saudi Arabia",
+          "ar": null,
+          "ru": "Саудовская Аравия",
+          "de": "Saudi-Arabien",
+          "zh": "沙特阿拉伯",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Arabian Gulf coast",
+          "ar": null,
+          "ru": null,
+          "de": "die Golfküste",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Gulf",
+          "ar": null,
+          "ru": "Залив / регион Залива",
+          "de": null,
+          "zh": "海湾",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Uqair Protocol",
+          "ar": "بروتوكول العقير",
+          "ru": "Укайрский договор",
+          "de": "das Uqair-Protokoll",
+          "zh": "《乌盖尔议定书》",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "Hijri years: rulings N12 (a year in both calendars), N19 (a full date), N20 (a decade), N22 (a span of years)",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [1990], only in Arabic []",
+          "body: Arabic 1 paragraph(s), 545 characters, 1 bold phrase(s), 0 link(s); English 5 sentence(s), 761 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [
+          "title: AR 'قلعة العقير' without the damma that the al-uqair page writes (العُقير).",
+          "body: EN 'the first seaport on Saudi Arabia's eastern coast' — AR 'the first seaport in the east of the Kingdom' (أول ميناء بحري شرق المملكة); owner-ruled wording, build check C34.",
+          "body vs area: body 'On the Arabian Gulf coast' (ساحل الخليج العربي), area 'the Gulf coast' (ساحل الخليج) — qualifier in one field and not in the other, in both languages (open item P5).",
+          "body: 'the late 1990s' is digits in EN and words in AR (أواخر التسعينيات الميلادية).",
+          "body vs al-uqair: here the port is 'Najd's gateway to the sea'; the al-uqair page calls it 'Al-Ahsa's gateway to the world'. Both languages agree within each page.",
+          "practical[0]: the label is 'Hours' (المواعيد) and the value is a status, 'Open for exterior visits' (متاح للزيارة الخارجية): no hours are given under the hours label, in either language.",
+          "body: the last sentence ('The site is undergoing restoration work, and some parts may be closed') and practical[0] ('Open for exterior visits') describe access twice, differently.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling, build check C34 (tools/check-uqair-port.mjs): 'the first seaport in the east of the Kingdom' — never 'the oldest port'.",
+        "Root CLAUDE.md: King Abdulaziz Palace at Al-Uqair was removed from the site for good — it is not named or brought back.",
+        "The Gulf is written bare in Urdu (open item P5: founding decision, untested)."
+      ]
+    },
+    {
+      "page": "uqair-mosque",
+      "file": "src/content/attractions/uqair-mosque.md",
+      "file_sha256": "a7d3494b2d96730e396ce7fbb93ea3f72429915dbe63ad2a2b568cfe78735586",
+      "order": 29,
+      "category": "religious",
+      "category_label": {
+        "en": "Mosques & religious sites",
+        "ar": "المساجد والمواقع الدينية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Uqair Port Mosque",
+          "ar": "مسجد ميناء العقير",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "موقع ديني",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The historic mosque within the Al-Uqair port complex, among the facilities developed under King Abdulaziz.",
+          "ar": "المسجد التاريخي ضمن مباني ميناء العقير، من المرافق التي طوّرها الملك عبدالعزيز.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "On the Arabian Gulf coast of eastern Al-Ahsa, within the complex of the historic Al-Uqair port — the first seaport on Saudi Arabia’s eastern coast — stands the port's historic mosque, where sailors, merchants and travellers once prayed at Najd's old gateway to the sea. It is counted among the port facilities built and developed in the reign of King Abdulaziz, alongside the fort, the khan, the emirate building and the customs house, in the days when Al-Uqair was Al-Ahsa's commercial artery. The mosque was restored under the historic mosques restoration programme, with the support of the Royal Commission for Jubail and Yanbu, among a group of Al-Ahsa's historic mosques. Today it stands within the historic port site, part of the full story the old port tells its visitors.",
+          "ar": "على ساحل الخليج العربي شرقي الأحساء، ضمن مجمع مباني **ميناء العقير\nالتاريخي** — أول ميناء بحري شرق المملكة — يقوم مسجد الميناء التاريخي\nالذي كان يصلي فيه البحارة والتجار وعابرو بوابة نجد البحرية القديمة. يُعدّ\nالمسجد من مرافق الميناء التي أُنشئت وطُوّرت في عهد الملك عبدالعزيز إلى\nجانب الحصن والخان ومبنى الإمارة والجمارك، أيام كان العقير شريان الأحساء\nالتجاري. رُمم المسجد ضمن برنامج إعمار المساجد التاريخية بدعم من الهيئة\nالملكية للجبيل وينبع ضمن مجموعة من مساجد الأحساء التاريخية. واليوم يقع\nضمن موقع الميناء التاريخي، جزءاً من حكاية\nالميناء القديم التي يرويها لزائريه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Uqair port — the Gulf coast of eastern Al-Ahsa",
+          "ar": "ميناء العقير — ساحل الخليج شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Site status",
+              "ar": "حالة الموقع"
+            },
+            "value": {
+              "en": "The port complex is undergoing restoration work, and some parts may be closed",
+              "ar": "يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.religious",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Мечеть порта Эль-Укайр",
+          "kicker": "Религиозное место",
+          "summary": "Историческая мечеть в комплексе порта Эль-Укайр — одно из сооружений, созданных здесь при короле Абдул-Азизе.",
+          "body": "На побережье Залива к востоку от Аль-Ахсы, среди построек старого порта Эль-Укайр, стоит историческая мечеть. Сам порт — исторически первый морской порт на востоке Саудовской Аравии. Когда-то в мечети молились моряки, торговцы и те, кто проходил через старые морские ворота Неджда. Она — одна из построек, которые возвели и обустроили в правление короля Абдул-Азиза, наряду с крепостью, караван-сараем, зданием эмирата и таможней. Тогда Эль-Укайр был торговой артерией Аль-Ахсы. Мечеть вошла в программу восстановления исторических мечетей: ее отреставрировали вместе с другими мечетями Аль-Ахсы при поддержке Королевской комиссии по Эль-Джубайлю и Янбу. Сегодня мечеть находится в портовом комплексе и остается частью истории, которую старый порт рассказывает посетителям.",
+          "area": "Порт Эль-Укайр, побережье Залива к востоку от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Текущий статус",
+              "value": "В портовом комплексе идут реставрационные работы, и некоторые его участки могут быть закрыты"
+            }
+          ],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Uqair-Hafen-Moschee",
+          "kicker": "Religiöse Stätte",
+          "summary": "Die historische Moschee im Hafenkomplex von Al-Uqair – eine der Anlagen, die unter König Abdulaziz ausgebaut wurden.",
+          "body": "An der Golfküste östlich von Al-Ahsa steht die historische Moschee im Gebäudekomplex des historischen Hafens Al-Uqair – des ersten Seehafens an der Ostküste Saudi-Arabiens. Hier beteten einst Seeleute, Kaufleute und Reisende am alten Tor Nadschds zum Meer. Sie zählt zu den Hafenanlagen, die in der Regierungszeit von König Abdulaziz errichtet und ausgebaut wurden – neben der Festung, dem Khan (der Karawanserei), dem Gebäude des Emirats und dem Zollhaus. Damals war Al-Uqair die Handelsader Al-Ahsas. Im Rahmen des Programms zur Wiederherstellung historischer Moscheen wurde sie mit Unterstützung der Königlichen Kommission für Jubail und Yanbu restauriert, gemeinsam mit einer Reihe weiterer historischer Moscheen Al-Ahsas. Heute steht sie auf dem Hafengelände – ein Teil der ganzen Geschichte, die der alte Hafen seinen Besuchern erzählt.",
+          "area": "Hafen Al-Uqair – die Golfküste östlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Situation vor Ort",
+              "value": "Im Hafenkomplex von Al-Uqair laufen derzeit Restaurierungsarbeiten, und einige Bereiche können geschlossen sein"
+            }
+          ],
+          "faq": []
+        },
+        "zh": {
+          "title": "乌盖尔港清真寺",
+          "kicker": "宗教场所",
+          "summary": "乌盖尔港建筑群中的历史清真寺，是阿卜杜勒阿齐兹国王时期发展起来的港口建筑之一。",
+          "body": "乌盖尔港清真寺位于哈萨以东的海湾沿岸，就在历史悠久的乌盖尔港（Al-Uqair）建筑群之中。乌盖尔港是沙特阿拉伯东部沿海的第一座海港，昔日也是内志（沙特中部地区）通往大海的门户；当年往来于此的水手、商人与旅客，都曾在寺中礼拜。与城堡、商队客栈、埃米尔府和海关楼一样，这座清真寺也是阿卜杜勒阿齐兹国王在位期间兴建并发展起来的港口建筑之一——那时的乌盖尔港，正是哈萨对外贸易的命脉。该寺与哈萨的另一批历史清真寺一同在“历史清真寺修缮计划”中完成修复，修复工程由朱拜勒与延布皇家委员会这一机构提供支持。如今，这座清真寺坐落在这片遗址之中，老港口向来访者讲述的完整往事里，也有这座清真寺的一页。",
+          "area": "乌盖尔港——哈萨以东的海湾沿岸",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "现场状况",
+              "value": "港口建筑群正在整修，部分区域可能暂不开放"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair",
+          "ar": "العقير",
+          "ru": "Эль-Укайр",
+          "de": "Al-Uqair",
+          "zh": "乌盖尔（Al-Uqair）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair port",
+          "ar": "ميناء العقير",
+          "ru": null,
+          "de": null,
+          "zh": "乌盖尔港",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Uqair Port Mosque",
+          "ar": "مسجد ميناء العقير",
+          "ru": "мечеть порта Эль-Укайр",
+          "de": "die Al-Uqair-Hafen-Moschee",
+          "zh": "乌盖尔港清真寺",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jubail",
+          "ar": null,
+          "ru": "Эль-Джубайль",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Najd",
+          "ar": "نجد",
+          "ru": "Неджд",
+          "de": "Nadschd",
+          "zh": "内志（沙特中部地区）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Najd's old gateway to the sea",
+          "ar": "بوابة نجد البحرية القديمة",
+          "ru": null,
+          "de": null,
+          "zh": "内志（沙特中部地区）昔日通往大海的门户",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Royal Commission for Jubail and Yanbu",
+          "ar": "الهيئة الملكية للجبيل وينبع",
+          "ru": "Королевская комиссия по Эль-Джубайлю и Янбу",
+          "de": null,
+          "zh": "朱拜勒与延布皇家委员会",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Saudi Arabia",
+          "ar": null,
+          "ru": "Саудовская Аравия",
+          "de": "Saudi-Arabien",
+          "zh": "沙特阿拉伯",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Arabian Gulf coast",
+          "ar": null,
+          "ru": null,
+          "de": "die Golfküste",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Gulf",
+          "ar": null,
+          "ru": "Залив / регион Залива",
+          "de": null,
+          "zh": "海湾",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Royal Commission for Jubail and Yanbu",
+          "ar": null,
+          "ru": null,
+          "de": "die Königliche Kommission für Jubail und Yanbu",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Yanbu",
+          "ar": null,
+          "ru": "Янбу",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 572 characters, 1 bold phrase(s), 0 link(s); English 4 sentence(s), 779 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: AR (مسجد ميناء العقير) without the damma that the al-uqair page writes on the name, as on uqair-castle. One termbase name covers the three pages.",
+          "summary vs body: summary 'among the facilities developed under King Abdulaziz' — AR 'among the facilities that King Abdulaziz developed' (من المرافق التي طوّرها الملك عبدالعزيز): the King is the agent in AR. Body: 'built and developed in the reign of King Abdulaziz' (أُنشئت وطُوّرت في عهد الملك عبدالعزيز), in both languages. 'Developed' in the summary, 'built and developed' in the body. The Russian summary says 'created'.",
+          "summary: EN 'within the Al-Uqair port complex' — AR 'among the buildings of the Al-Uqair port' (ضمن مباني ميناء العقير).",
+          "body: EN 'the first seaport on Saudi Arabia's eastern coast' — AR 'the first seaport in the east of the Kingdom' (أول ميناء بحري شرق المملكة); owner-ruled wording, build check C34, as on al-uqair and uqair-castle (already translated).",
+          "body vs area: body 'On the Arabian Gulf coast' (ساحل الخليج العربي), area 'the Gulf coast' (ساحل الخليج شرق الأحساء) — the qualifier in one field and not in the other, in both languages; ruling P5 writes the Gulf bare. The area line is identical in both languages to uqair-castle's, already translated.",
+          "body and area: 'east of Al-Ahsa' treats Al-Ahsa as a point, not a region, as flagged on al-uqair in round 1.",
+          "body: the mosque is never named by the page's title; it is 'the port's historic mosque' (مسجد الميناء التاريخي) in both languages.",
+          "body: EN 'where sailors, merchants and travellers once prayed at Najd's old gateway to the sea' — AR 'in which the sailors, the merchants and those passing through Najd's old sea gateway used to pray' (وعابرو بوابة نجد البحرية القديمة): in AR the gateway is what the third group passes through; in EN it is where all three prayed.",
+          "body: the port is 'Najd's old gateway to the sea' and, in the next sentence, 'Al-Ahsa's commercial artery' (شريان الأحساء التجاري); uqair-castle has 'Najd's gateway to the sea' and al-uqair 'Al-Ahsa's gateway to the world'. Both languages agree within each page.",
+          "body vs uqair-castle: the list of the port's buildings names 'the fort' here (الحصن) and 'the castle' on the uqair-castle page, whose title is the castle: one building. The other items are the same on both pages; the emirate building (ومبنى الإمارة) is ruled (N35).",
+          "body: EN 'the historic mosques restoration programme' — AR (برنامج إعمار المساجد التاريخية), with no year. jabri-mosque names 'the historic mosques care programme' and four other pages the Prince Mohammed bin Salman Project; jalaniyah names the same Royal Commission as the restorer itself, with a year. Whether these are one programme is not said by any page.",
+          "body vs practical[0]: the body says the mosque 'was restored'; the card says 'The port complex is undergoing restoration work, and some parts may be closed'. Both languages agree. The card row is an owner ruling of 2026-10-02 (build check C29): the restoration under way is said in the card only.",
+          "practical[0]: the label is 'Site status' (حالة الموقع) and the value speaks of the port complex; whether the mosque itself can be entered is not said, and this is the one mosque page of the round without the fixed 'Visiting' row.",
+          "body: EN 'part of the full story the old port tells its visitors' — AR 'part of the story of the old port' (جزءاً من حكاية الميناء القديم): 'full' is EN-only.",
+          "practical[1].value: EN 'Free entry' — AR 'free' (مجاني), as on five pages of round 1.",
+          "no bestTime and no FAQ in any language."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Owner ruling of 2026-10-02, build check C29, clause (d) (tools/check-mosque-card.mjs): this mosque's card does NOT carry the fixed 'Visiting' row. Its first row is 'Site status' with the restoration wording 'The port complex is undergoing restoration work, and some parts may be closed' (يشهد مجمّع الميناء أعمال ترميم، وقد تكون بعض أجزائه مغلقة). The fixed visiting string is not written on this page, and the card never promises an open visit. C29 (d) WILL FAIL THE BUILD once the file has title_ur: RESTORATION_LABEL has no `ur` and UNDER_RESTORATION['uqair-mosque.md'] has no `ur` (the guard then reports UNDER_RESTORATION.uqair-mosque.md.ur as not filled). To add after the batch, from the approved text, byte for byte: RESTORATION_LABEL.ur = the approved label_ur of practical[0]; UNDER_RESTORATION['uqair-mosque.md'].ur = the approved value_ur of practical[0]. The guard reads both from the Arabic row's own source line and requires the /ur/ card to print them literally.",
+        "Same ruling, table RETIRED_IN['uqair-mosque.md']: the sentence that the site is undergoing restoration work (يشهد الموقع أعمال ترميم) left this page's body and lives in its card only; it stays legitimate on uqair-castle. The table has no Urdu entry, so nothing stops an Urdu body from carrying it: body_ur says nothing of restoration under way (the source body has no such sentence), and the Urdu of the retired sentence — the last sentence of the approved uqair-castle body_ur — is to be added to RETIRED_IN['uqair-mosque.md'] after the batch.",
+        "Owner ruling, build check C34 (tools/check-uqair-port.mjs): Al-Uqair is 'the first seaport in the east of the Kingdom' (أول ميناء بحري شرق المملكة) — never 'the oldest port', never 'the first seaport in the Kingdom'. One Urdu wording carries the claim on the three Al-Uqair pages: the one approved on al-uqair and uqair-castle. C34 does NOT target /ur/ today, for this page or for the two already translated: TARGET lists en|zh|de|ru for the three attraction pages, and OK and OLD have no `ur`. To add after the batch: `ur` in the attractions alternative of TARGET, an OK.ur pattern derived from the approved Urdu wording, an OLD entry for an Urdu 'oldest port', and EXPECT.minPages (27) raised by the number of /ur/ pages then targeted.",
+        "Root CLAUDE.md: King Abdulaziz Palace at Al-Uqair was removed from the site for good — it is not named or brought back. The body's list of the port's buildings (the fort, the khan, the emirate building, the customs house) is the source's and nothing is added to it; the King himself is named, as the source names him.",
+        "Root CLAUDE.md, pending with the owner: whether working mosques may be entered outside prayer times is NOT answered — the Urdu states no visiting time for the mosque, neither affirming nor denying. This page has no visiting row and none is supplied.",
+        "The Gulf is written bare in Urdu (ruling P5, final) although the body writes 'Arabian Gulf'. The emirate building of the port is ruled (N35, which binds any later page that names it)."
+      ]
+    },
+    {
+      "page": "uqair-beach",
+      "file": "src/content/attractions/uqair-beach.md",
+      "file_sha256": "da7ab8ef08a2d69c2855fb8ccea1dc3356a70dcaa7e26a7523ed507612da49c1",
+      "order": 40,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Uqair Beach",
+          "ar": "شاطئ العقير",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم طبيعي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A beach of clear shallow waters and white sand, one of the Gulf's oldest summer destinations.",
+          "ar": "شاطئ بمياه ضحلة صافية ورمال بيضاء، من أقدم وجهات الاصطياف على الخليج.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Along the Arabian Gulf coast stretches the historic Al-Uqair Beach, with its calm shallow waters, white sand and dunes — one of the oldest summer destinations on the Gulf, and beside it the historic Al-Uqair port that was Al-Ahsa’s gateway to the sea. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors.",
+          "ar": "على ساحل الخليج العربي يمتدّ شاطئ العقير التاريخي بمياهه الهادئة الضحلة ورماله\nالبيضاء وكثبانه — من أقدم وجهات الاصطياف على الخليج، وبجواره ميناء العقير\nالتاريخي الذي كان بوّابة الأحساء البحرية.\n\nالشاطئ مناسبٌ للعائلات وهواة التصوير، ويجاور مظلّاتٍ ومرافق مخصّصة للزوّار.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Uqair coast — eastern Al-Ahsa",
+          "ar": "ساحل العقير — شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "bestTime": {
+          "en": "Early morning, or late afternoon onwards, away from the peak heat.",
+          "ar": "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ.",
+          "note": "Card value (P26: no final stop, even where the English is a sentence)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Caravans",
+              "ar": "عربات الكرفان"
+            },
+            "value": {
+              "en": "The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online",
+              "ar": "للشاطئ موقعٌ مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "Can I stay in a caravan at Al-Uqair Beach?",
+              "ar": "هل يمكن المبيت بعربات الكرفان في شاطئ العقير؟"
+            },
+            "a": {
+              "en": "Yes. The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online.",
+              "ar": "نعم، للشاطئ موقع مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "What is the best time to visit Al-Uqair Beach?",
+              "ar": "ما أفضل وقت لزيارة شاطئ العقير؟"
+            },
+            "a": {
+              "en": "Early morning, or late afternoon onwards, away from the peak heat.",
+              "ar": "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "Is Al-Uqair Beach suitable for families?",
+              "ar": "هل شاطئ العقير مناسب للعائلات؟"
+            },
+            "a": {
+              "en": "Yes. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors.",
+              "ar": "نعم، الشاطئ مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق مخصّصة للزوّار."
+            }
+          },
+          {
+            "i": 3,
+            "q": {
+              "en": "Where is Al-Uqair Beach?",
+              "ar": "أين يقع شاطئ العقير؟"
+            },
+            "a": {
+              "en": "On the Al-Uqair coast of eastern Al-Ahsa, beside the historic Al-Uqair port.",
+              "ar": "على ساحل العقير في شرق الأحساء، بجوار ميناء العقير التاريخي."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "det.bestTime: bestTime",
+        "practical[0] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "faq[3] q / a",
+        "det.fromPlace (h2) + 1 photo(s); alt = title + \" — \" + det.photo + \" \" + n",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "trails.partOf (h2) + trail titles and taglines (no Urdu trails yet: English, linked to /en/trails/)",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": true,
+        "mentions": false,
+        "nearby": true,
+        "trails": true
+      },
+      "precedent": {
+        "ru": {
+          "title": "Пляж Эль-Укайр",
+          "kicker": "Природная достопримечательность",
+          "summary": "Пляж с прозрачным мелководьем и белым песком — одно из старейших мест летнего отдыха в регионе Залива.",
+          "body": "Исторический пляж Эль-Укайр тянется вдоль берега Залива: спокойное мелководье, белый песок и дюны. Это одно из старейших мест летнего отдыха в регионе Залива. Рядом находится исторический порт Эль-Укайр, который был морскими воротами Аль-Ахсы. Пляж подходит семьям и любителям фотографии. По соседству устроены навесы и другие удобства для посетителей.",
+          "area": "Побережье Эль-Укайр, к востоку от Аль-Ахсы",
+          "bestTime": "Ранним утром или ближе к вечеру, не в часы самого сильного зноя.",
+          "practical": [
+            {
+              "i": 0,
+              "label": "Дома на колёсах",
+              "value": "Муниципалитет Аль-Ахсы устроил на пляже площадку для домов на колёсах — места для стоянки, точки заправки водой и точки слива, бронирование онлайн"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Можно ли остановиться на пляже Эль-Укайр в доме на колёсах?",
+              "a": "Да. Муниципалитет Аль-Ахсы устроил на пляже площадку для домов на колёсах — места для стоянки, точки заправки водой и точки слива, бронирование онлайн."
+            },
+            {
+              "i": 1,
+              "q": "Когда лучше посетить пляж Эль-Укайр?",
+              "a": "Ранним утром или ближе к вечеру, не в часы самого сильного зноя."
+            },
+            {
+              "i": 2,
+              "q": "Подходит ли пляж Эль-Укайр для семейного отдыха?",
+              "a": "Да. Пляж подходит семьям и любителям фотографии, а по соседству устроены навесы и другие удобства для посетителей."
+            },
+            {
+              "i": 3,
+              "q": "Где находится пляж Эль-Укайр?",
+              "a": "На побережье Эль-Укайр к востоку от Аль-Ахсы, рядом с историческим портом Эль-Укайр."
+            }
+          ]
+        },
+        "de": {
+          "title": "Al-Uqair-Strand",
+          "kicker": "Naturlandschaft",
+          "summary": "Ein Strand mit klarem, flachem Wasser und weißem Sand – eines der ältesten Sommerziele am Golf.",
+          "body": "An der Golfküste erstreckt sich der historische Al-Uqair-Strand mit ruhigem, flachem Wasser, weißem Sand und Dünen – eines der ältesten Sommerziele am Golf. Daneben liegt der historische Hafen von Al-Uqair, einst das Tor Al-Ahsas zum Meer. Der Strand eignet sich für Familien und für alle, die gern fotografieren; in direkter Nachbarschaft finden Sie Schattendächer und Einrichtungen für Besucher.",
+          "area": "Küste von Al-Uqair – östlich von Al-Ahsa",
+          "bestTime": "Am frühen Morgen oder ab dem späten Nachmittag – außerhalb der größten Tageshitze.",
+          "practical": [
+            {
+              "i": 0,
+              "label": "Caravans",
+              "value": "Der Strand hat einen eigenen Caravanstellplatz mit Stellflächen, Frischwasser- und Entsorgungsstationen, den die Kommunalverwaltung von Al-Ahsa eingerichtet hat; der Platz lässt sich online buchen"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Kann ich am Al-Uqair-Strand im Caravan übernachten?",
+              "a": "Ja. Der Strand hat einen eigenen Caravanstellplatz mit Stellflächen, Frischwasser- und Entsorgungsstationen, den die Kommunalverwaltung von Al-Ahsa eingerichtet hat; der Platz lässt sich online buchen."
+            },
+            {
+              "i": 1,
+              "q": "Wann besuche ich den Al-Uqair-Strand am besten?",
+              "a": "Am frühen Morgen oder ab dem späten Nachmittag – außerhalb der größten Tageshitze."
+            },
+            {
+              "i": 2,
+              "q": "Ist der Al-Uqair-Strand für Familien geeignet?",
+              "a": "Ja. Der Strand eignet sich für Familien und für alle, die gern fotografieren; in direkter Nachbarschaft finden Sie Schattendächer und Einrichtungen für Besucher."
+            },
+            {
+              "i": 3,
+              "q": "Wo liegt der Al-Uqair-Strand?",
+              "a": "An der Küste von Al-Uqair östlich von Al-Ahsa, neben dem historischen Hafen von Al-Uqair."
+            }
+          ]
+        },
+        "zh": {
+          "title": "乌盖尔海滩",
+          "kicker": "自然景观",
+          "summary": "海水清浅、沙滩洁白，是海湾沿岸最古老的夏日度假胜地之一。",
+          "body": "乌盖尔海滩（Al-Uqair）历史悠久，在海湾之滨铺展。这里海水清浅平静，沙滩洁白，沙丘相伴，是海湾沿岸历史最久的夏日度假地之一。一旁的乌盖尔古港，曾是哈萨通向大海的门户。海滩既适合家庭出游，也适合摄影爱好者取景，紧邻处还设有专供游客使用的遮阳棚与配套设施。",
+          "area": "乌盖尔海岸——哈萨以东",
+          "bestTime": "清晨或下午稍晚以后，避开一天中最热的时段。",
+          "practical": [
+            {
+              "i": 0,
+              "label": "房车",
+              "value": "海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "乌盖尔海滩可以房车露营吗？",
+              "a": "可以。海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订。"
+            },
+            {
+              "i": 1,
+              "q": "什么时候去乌盖尔海滩最好？",
+              "a": "清晨或下午稍晚以后，避开一天中最热的时段。"
+            },
+            {
+              "i": 2,
+              "q": "乌盖尔海滩适合带孩子吗？",
+              "a": "适合。乌盖尔海滩是家庭出游和摄影取景的好去处，紧邻处还设有专供游客使用的遮阳棚与配套设施。"
+            },
+            {
+              "i": 3,
+              "q": "乌盖尔海滩在哪里？",
+              "a": "在哈萨以东的乌盖尔海岸，一旁就是乌盖尔古港。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair",
+          "ar": "العقير",
+          "ru": "Эль-Укайр",
+          "de": "Al-Uqair",
+          "zh": "乌盖尔（Al-Uqair）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair Beach",
+          "ar": "شاطئ العقير",
+          "ru": "пляж Эль-Укайр",
+          "de": null,
+          "zh": "乌盖尔海滩",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Uqair port",
+          "ar": "ميناء العقير",
+          "ru": null,
+          "de": null,
+          "zh": "乌盖尔港",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Arabian Gulf coast",
+          "ar": null,
+          "ru": null,
+          "de": "die Golfküste",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Gulf",
+          "ar": null,
+          "ru": "Залив / регион Залива",
+          "de": null,
+          "zh": "海湾",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 271 characters, 0 bold phrase(s), 0 link(s); English 2 sentence(s), 363 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Uqair Beach' — AR (شاطئ العقير): the generic translated, the place name a termbase key (the al-uqair page, already translated, has the bare name as its title). The first beach title of the line: the termbase has no entry for a beach and none for a coast. The approved pages render 'coast' with one Urdu noun (the area lines of al-uqair and uqair-castle); this page has both source nouns in one sentence, 'Along the Arabian Gulf coast stretches the historic Al-Uqair Beach' (على ساحل الخليج العربي يمتدّ شاطئ العقير التاريخي).",
+          "kicker: Arabic only, 'a natural landmark' (معلم طبيعي); there is no kicker_en, and the detail page prints the category label ('Nature') above the title instead. Three pages of the batch carry this Arabic kicker (asfar, uqair-beach, salwa-beach); it is the kicker of the five pages of b5, for which ruling N67 fixed one Urdu string, held by the translation memory under its Arabic. The page is not featured: the kicker is rendered nowhere today.",
+          "summary / body: 'clear shallow waters' in the summary (بمياه ضحلة صافية), 'calm shallow waters' in the body (بمياهه الهادئة الضحلة): clear in one field, calm in the other, in both languages; the dunes are in the body only (وكثبانه).",
+          "summary / body: 'one of the Gulf's oldest summer destinations' (من أقدم وجهات الاصطياف على الخليج), in both fields and both languages: among the oldest, not the oldest (ruling P19: a superlative follows the Arabic). The Gulf is 'the Arabian Gulf' once in the body, in both languages (ساحل الخليج العربي), and bare elsewhere (ruling P5).",
+          "body: EN 'the historic Al-Uqair port that was Al-Ahsa’s gateway to the sea' — AR 'which was Al-Ahsa's sea gate' (الذي كان بوّابة الأحساء البحرية). The pages already translated say of the same port that Al-Uqair was 'Al-Ahsa’s gateway to the world' (al-uqair) and 'Najd's gateway to the sea' (uqair-castle; uqair-mosque in nearly the same words): three wordings of the sources, each on its own page, and their Urdu is approved. The port is 'historic' here, and this page says nothing of its rank or age (build check C34 guards that claim on three other pages).",
+          "body: 'The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors' (ويجاور مظلّاتٍ ومرافق مخصّصة للزوّار): the sentence is faq[2].a after 'Yes.', word for word in the EN; the AR answer differs from the AR body only in its case endings. The beach 'adjoins' the shades and facilities in both languages: they are beside it. The visitors are those of a page that is not a mosque (ruling N29).",
+          "body vs card: summary and body do not mention caravans; the card row, faq[0] and the Arabic and English answer paragraphs (not translated) do.",
+          "area: 'Al-Uqair coast — east of Al-Ahsa' (ساحل العقير — شرق الأحساء): the build of the approved area line of al-uqair ('The Arabian Gulf coast — east of Al-Ahsa') with the coast called after the place instead of the Gulf — a look-alike, not the same string. faq[3].a says it as a sentence and adds the port, 'beside the historic Al-Uqair port' (بجوار ميناء العقير التاريخي). No larger bare place leads (rulings P20 and N30).",
+          "bestTime = faq[1].a: one EN string in two places, 'Early morning, or late afternoon onwards, away from the peak heat.' — AR 'the early morning, or the afternoon and what follows it' (الصباح الباكر أو العصر وما بعده): 'late' is EN-only; the AR's word for the afternoon is also the name of the afternoon prayer. No clock time in either language. One string as a card value and as an answer (ruling P26). The al-uqair page (already translated), on the same shore, gives another best time ('Just before sunset …'); nothing is carried from one page to the other.",
+          "practical[0].value = faq[0].a after 'Yes.': 'The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online' — AR 'in it are parking places and points for water supply and drainage' (فيه مواقف ونقاط تزويد بالمياه وتصريف): 'fresh' is EN-only, and 'bays' renders the AR's 'parking places'. One string as a card value and as an answer (ruling P26). A comment in the source file says the wording is limited to what was announced, with no numbers, fees or hours (بلا أعداد ولا رسوم ولا مواعيد). The Chinese, German and Russian lines have the row. The row's internal source, never rendered, names the governorate as the announcer; the value names the municipality as the builder.",
+          "practical[0].label / faq[0].q: label 'Caravans' (عربات الكرفان) — the AR itself writes the loanword in Arabic letters. faq[0].q: EN 'Can I stay in a caravan at Al-Uqair Beach?' — AR 'is it possible to spend the night in caravans' (هل يمكن المبيت بعربات الكرفان): the night is AR-only; the German question follows the AR.",
+          "card: one row, and it is neither hours nor fees. The page says nothing about opening hours or an entry fee in either language, where the al-uqair page (already translated) has the row 'Open public site — no entry fee'; this page is not openSite. Nothing is carried from that page.",
+          "faq[1].q, faq[3].q: 'What is the best time to visit Al-Uqair Beach?' and 'Where is Al-Uqair Beach?' — the approved questions of al-uqair with the beach's name in place of the bare name ('What is the best time to visit Al-Uqair?', 'Where is Al-Uqair?'): the frames recur, the strings do not."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Title (termbase style rule titel_regel; RUNBOOK): the English translates the generic, so the Urdu translates it; the name is built from the Arabic spelling. The termbase has no entry for a beach and no ruling words such a title: stage 1 verifies the generic and the name on the web, proposes both with gender, plural and source, and uses ONE generic and one title pattern for the pages of the batch that share the kind; stage 4 raises the pattern as a new open item (N83 onwards). The gender of the title's entry is the gender the page's verbs agree with. Two titles of the batch are beach titles (uqair-beach, salwa-beach). The place name is the termbase key of Al-Uqair (rulings P1 and P17: its article kept, no vowel sign).",
+        "Ruling N67: the Arabic kicker of this page (معلم طبيعي) has ONE Urdu string, the kicker of the five pages of b5; it is copied byte for byte from the translation memory (the pair is keyed by its Arabic, since there is no English kicker). No final stop, no gloss.",
+        "Names (RUNBOOK, rule 2): Al-Uqair is a termbase key; the port has an approved wording on three pages (al-uqair, uqair-castle, uqair-mosque) and its generic is a termbase key; Al-Ahsa Municipality is the key ruled in N68 (feminine agreement, no quotation marks, inflected); 'online' is a termbase key. Each is byte-identical to its key. The 'coast' of the body and the area line has an approved rendering in the area lines of al-uqair and uqair-castle; the termbase has no entry for it or for a beach, and this page needs the two nouns side by side.",
+        "Build check C34 (tools/check-uqair-port.mjs): its TARGET does not list this page (it lists al-uqair, uqair-castle and uqair-mosque), so no approved sentence about the port is owed here. Its OLD table reads EVERY page and ALREADY HAS an Urdu entry that fails 'the oldest port' in Urdu. This page says 'one of the oldest summer destinations' of the beach and 'historic' of the port: the superlative stays with the destination (ruling P19: among the oldest, as the Arabic has it) and is never set against the word for the port. No pattern is to be added.",
+        "Ruling P5, build check C59 (GULF and GULF_QUALIFIED in tools/check-ur-text.mjs): the Gulf is written bare, also where a source writes 'the Arabian Gulf' (ساحل الخليج العربي). C59 ALREADY TARGETS /ur/ and fails both qualified forms: no pattern is to be added.",
+        "Ruling P16 and the owner's rule on loans (RUNBOOK, rule 7), build check C52 (LOAN_WHOLE_WORD and LOAN_ANYWHERE in tools/check-ur-text.mjs): C52 ALREADY TARGETS /ur/ and fails the withdrawn loans, among them the loans for 'family' and 'photography'; the approved card value of the calibration page has the Urdu words for both. This page's English invites both ('families and photography enthusiasts', in the body and in faq[2]). The AR writes the caravan as a loanword (عربات الكرفان): whatever the Urdu writes for it passes the loan test of ruling P16 and is proposed as a term.",
+        "Shared strings (RUNBOOK, rule 3; ruling P26): bestTime and faq[1].a are one English string; practical[0].value is faq[0].a after 'Yes.'; the body's second sentence is faq[2].a after 'Yes.'. Each pair has one Urdu wording; a card value ends without a stop and an answer keeps its own. The questions of faq[1] and faq[3] follow the approved frames of al-uqair with this page's title.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs): the page is not openSite, and its one card row is neither hours nor fees, so the unified hours-and-fees notice line is printed in no language (C13 expects it only where a verified hours or fees row carries the page's language). C13 ALREADY TARGETS Urdu: no pattern is to be added. C12: the row's `source` values are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of the governorate's announcement enters the label, the value or the body.",
+        "Root CLAUDE.md: invent nothing — the caravan row is limited to what was announced (a dedicated site, bays, water and waste points, online booking): no number of bays, no fee, no hours, no booking address. The page gives no opening hours, no entry fee and no distance, and none is supplied or borrowed from the al-uqair page. The best time has no clock time and gets none, and it is tied to no prayer; 'late' is the EN's and Arabic is the authority on the fact."
+      ]
+    },
+    {
+      "page": "hubail-lake",
+      "file": "src/content/attractions/hubail-lake.md",
+      "file_sha256": "e3c117cb636d5b765cb4a6999c2c2497aa7853d896774354da0c8013dc5006ff",
+      "order": 42,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Hubail Lake",
+          "ar": "بحيرة الحبيل",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "بحيرة",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A lake in northern Al-Ahsa formed by the oasis farms' agricultural drainage water.",
+          "ar": "بحيرة في شمال الأحساء تكوّنت من مياه الصرف الزراعي لمزارع الواحة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Al-Hubail Lake is a body of water in northern Al-Ahsa, formed over time by the gathering of agricultural drainage water from the oasis farms. Further details about the lake — its extent and any visitor facilities — are pending confirmation from reliable sources.",
+          "ar": "بحيرة الحبيل مسطح مائي يقع في شمال الأحساء، تكوّن بمرور الوقت من تجمّع\nمياه الصرف الزراعي لمزارع الواحة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Northern Al-Ahsa",
+          "ar": "شمال الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Open public natural site — no fee",
+              "ar": "موقع طبيعي عام مفتوح — بلا رسوم"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "How did Al-Hubail Lake form?",
+              "ar": "كيف تكوّنت بحيرة الحبيل؟"
+            },
+            "a": {
+              "en": "It formed over time from the gathering of agricultural drainage water from the oasis farms.",
+              "ar": "تكوّنت بمرور الوقت من تجمّع مياه الصرف الزراعي لمزارع الواحة."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "Where is Al-Hubail Lake?",
+              "ar": "أين تقع بحيرة الحبيل؟"
+            },
+            "a": {
+              "en": "In northern Al-Ahsa.",
+              "ar": "في شمال الأحساء."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "Is there a fee to visit Al-Hubail Lake?",
+              "ar": "هل لزيارة بحيرة الحبيل رسوم؟"
+            },
+            "a": {
+              "en": "No. It is an open public natural site with no fee.",
+              "ar": "لا، موقع طبيعي عام مفتوح بلا رسوم."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Озеро Эль-Хубайль",
+          "kicker": "Озеро",
+          "summary": "Озеро к северу от Аль-Ахсы, образовавшееся из дренажных вод с ферм оазиса.",
+          "body": "Озеро Эль-Хубайль лежит к северу от Аль-Ахсы. Оно образовалось со временем: здесь скопились дренажные воды с ферм оазиса. Об остальном — о протяжённости озера и удобствах для посетителей — информация уточняется по надёжным источникам.",
+          "area": "К северу от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Посещение",
+              "value": "Открытая общедоступная природная территория — вход свободный"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Как образовалось озеро Эль-Хубайль?",
+              "a": "Оно образовалось со временем: здесь скопились дренажные воды с ферм оазиса."
+            },
+            {
+              "i": 1,
+              "q": "Где находится озеро Эль-Хубайль?",
+              "a": "К северу от Аль-Ахсы."
+            },
+            {
+              "i": 2,
+              "q": "Нужно ли платить за посещение озера Эль-Хубайль?",
+              "a": "Нет. Это открытая общедоступная природная территория, вход свободный."
+            }
+          ]
+        },
+        "de": {
+          "title": "Al-Hubail-See",
+          "kicker": "See",
+          "summary": "Ein See nördlich von Al-Ahsa, entstanden aus dem landwirtschaftlichen Drainagewasser der Farmen in der Oase.",
+          "body": "Der Al-Hubail-See ist eine Wasserfläche nördlich von Al-Ahsa. Er ist mit der Zeit entstanden: Hier sammelte sich das landwirtschaftliche Drainagewasser der Farmen in der Oase. Weitere Angaben werden noch bestätigt, sobald verlässliche Quellen vorliegen – zur Ausdehnung des Sees und zu Einrichtungen für Besucher.",
+          "area": "Nördlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Besuch",
+              "value": "Öffentlich zugängliches Naturgelände – kostenlos"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Wie ist der Al-Hubail-See entstanden?",
+              "a": "Er ist mit der Zeit entstanden: Hier sammelte sich das landwirtschaftliche Drainagewasser der Farmen in der Oase."
+            },
+            {
+              "i": 1,
+              "q": "Wo liegt der Al-Hubail-See?",
+              "a": "Nördlich von Al-Ahsa."
+            },
+            {
+              "i": 2,
+              "q": "Muss ich für den Al-Hubail-See Eintritt zahlen?",
+              "a": "Nein. Der Al-Hubail-See ist ein öffentlich zugängliches Naturgelände; der Eintritt ist kostenlos."
+            }
+          ]
+        },
+        "zh": {
+          "title": "胡拜勒湖",
+          "kicker": "湖泊",
+          "summary": "哈萨北部的一座湖泊，由绿洲农田的排水汇聚而成。",
+          "body": "胡拜勒湖（Al-Hubail）是哈萨北部的一片水域，由绿洲农田的排水长年汇聚而成。",
+          "area": "哈萨北部",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "游览",
+              "value": "开放的公共自然景点，免收门票"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "胡拜勒湖是怎样形成的？",
+              "a": "由绿洲农田排出的水长年汇聚而成。"
+            },
+            {
+              "i": 1,
+              "q": "胡拜勒湖在哪里？",
+              "a": "在哈萨北部。"
+            },
+            {
+              "i": 2,
+              "q": "去胡拜勒湖要门票吗？",
+              "a": "不需要。胡拜勒湖是开放的公共自然景点，免收门票。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Hubail Lake",
+          "ar": "بحيرة الحبيل",
+          "ru": null,
+          "de": "der Al-Hubail-See",
+          "zh": "胡拜勒湖",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 104 characters, 0 bold phrase(s), 0 link(s); English 2 sentence(s), 262 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Hubail Lake' — AR (بحيرة الحبيل): the generic translated, the name new to the termbase; no entry for a lake (see asfar). The same name stands on the delfoon-lake page of this batch in four leaves (summary, body, area, faq[1].a): one Urdu form serves both pages, letter for letter. The name differs by its last letter from that of Al-Hubaish Mosque, a termbase key of b4. Neither source says what the name means.",
+          "kicker: Arabic only, 'a lake' (بحيرة): the kicker is the generic of the page's own title. There is no kicker_en; the Chinese, German and Russian lines each translated it. A kicker no translated page has carried, and no pair of the translation memory holds it. The page is not featured: the kicker is rendered nowhere today.",
+          "summary / body / area / faq[1].a: 'north of Al-Ahsa' (شمال الأحساء) in the four leaves: the EN puts the lake outside Al-Ahsa; the AR phrase can also be read 'the north of Al-Ahsa'. The Chinese line reads it so, in all four; the German and Russian follow the EN. Ruling N74 met the same two wordings on thulaim's area line and followed the Arabic reading, on the ground that thulaim's own text placed the mountain inside Al-Ahsa; this page says nothing else about where the lake lies. Arabic is the authority on the fact. The delfoon-lake page of this batch has the phrase in three leaves.",
+          "summary / body / faq[0].a: 'the oasis farms' in the three leaves (لمزارع الواحة): the oasis is mentioned and is named in no field of the page (ruling N47). They are the oasis's working farms, whose drainage water formed the lake; ruling N5 fixed one word for farms that receive visitors and kept another for a cultivated field in running text.",
+          "summary / body: summary 'formed by the oasis farms' agricultural drainage water'; body 'formed over time by the gathering of agricultural drainage water' (تكوّن بمرور الوقت من تجمّع): 'over time' and 'the gathering' are in the body and in faq[0].a and not in the summary, in both languages. EN body 'a body of water' (مسطح مائي): the AR noun that the asfar page of this batch has for its English 'expanse of water'; asfar's 'bodies of water' is another AR noun.",
+          "body: the last EN sentence — 'Further details about the lake — its extent and any visitor facilities — are pending confirmation from reliable sources.' — has no Arabic: the AR body ends before it (لمزارع الواحة). The German and Russian lines translated the sentence; the Chinese line left it out. It is the site's own 'pending confirmation' statement written into a page's text. The fixed Urdu wording of that statement is open item P4 of the termbase, which has no provisional form, says it is not to be worded before it is ruled, and names any page whose own text carries such a note as its first bite: hubail-lake and delfoon-lake are that first bite. The delfoon-lake sentence is this one without its middle part.",
+          "area = faq[1].a: 'North of Al-Ahsa' (شمال الأحساء) is the whole area line; the answer is the same words with a stop (ruling P26 gives a card value and an answer their own endings). One position, with the larger place as its reference and no other place named.",
+          "practical[0]: the one card row, and the same row as on delfoon-lake, label and value, in both languages — 'Visiting' (الزيارة), 'Open public natural site — no fee' (موقع طبيعي عام مفتوح — بلا رسوم). The label is the label of the owner's fixed visiting row of the mosque pages, and the one approved Urdu pair for 'Visiting' is that row's label, the word ruling N17 keeps for visiting a mosque. The value is a look-alike of the approved 'Open public site — no entry fee' (al-uqair, salwa-beach, the five pages of b5): it adds 'natural' and says 'fee' where that one says 'entry fee'; and of the asfar value of this batch ('No fee — open natural site'). The Chinese, German and Russian lines gave the row the label they give the mosque row.",
+          "faq[2]: 'Is there a fee to visit Al-Hubail Lake?' / 'No. It is an open public natural site with no fee.' — the AR answer has no subject (لا، موقع طبيعي عام مفتوح بلا رسوم). The answer is the answer of delfoon-lake faq[2], word for word in both languages; the question is the question of asfar faq[0] and of delfoon-lake faq[2] with another name. The approved answer of al-uqair ('No. Al-Uqair is an open public site with no entry fee.') is another string. The Chinese and German answers name the lake where the sources do not.",
+          "faq[0]: 'How did Al-Hubail Lake form?' (كيف تكوّنت بحيرة الحبيل؟) — the answer is the second half of the body's first sentence, in both languages.",
+          "no bestTime in any language. The page gives no distance, no size and no way of access; the page is openSite: true."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "OPEN ITEM P4 (termbase _meta.open_items; style rule pending_phrase): the fixed Urdu wording of the site's 'pending confirmation' statement is not ruled, has no provisional form, and by its style rule is not to be worded before it is ruled. The last sentence of the English body is that statement, and it is rendered text: the English is the translation source (RUNBOOK, rule 4), so the sentence is not dropped because the Arabic lacks it. Stage 1 writes it in a wording it marks as provisional and names in its notes; stage 4 RAISES P4 with candidates (it is not left among the untouched items); the judge rules it. hubail-lake and delfoon-lake carry ONE wording for the part of the sentence they share. Nothing is added to what the sentence says is pending. The site's Arabic phrase (بانتظار التأكيد) is named in tools/check-consistency.mjs under C6 as wording that legitimately stands in texts; C6 compares card rows only and reads no body: no build check reads this sentence in any language.",
+        "Title (termbase style rule titel_regel; RUNBOOK): the English translates the generic, so the Urdu translates it; the name is built from the Arabic spelling. The termbase has no entry for a lake and no ruling words such a title: stage 1 verifies the generic and the name on the web, proposes both with gender, plural and source, and uses ONE generic and one title pattern for the pages of the batch that share the kind; stage 4 raises the pattern as a new open item (N83 onwards). The gender of the title's entry is the gender the page's verbs agree with. The title is one form with the name of this lake on delfoon-lake (four leaves there). The name is checked letter by letter against the Arabic: it is one letter away from the name of Al-Hubaish Mosque, a termbase key. Neither source says what the name means: no gloss is supplied.",
+        "The kicker has no English source and is translated from the Arabic (DECISIONS; ruling P24: the register of a kicker does not override the content of its only source). It is one word of the page's own title: the Urdu kicker uses the Urdu generic the title uses, with no final stop and no gloss. Not rendered today.",
+        "Ruling N74 (with rulings P20 and N30): where the English and the Arabic of an area line differ on a fact, the Arabic is the authority. 'North of Al-Ahsa' (شمال الأحساء) is the wording N74 ruled on thulaim — there on the ground that the page's own text placed the mountain inside Al-Ahsa. This page gives no second statement of where the lake lies, so that ground is not in its text: stage 1 follows the Arabic, records which reading it took and on what evidence, and stage 4 raises it; ONE reading stands in the four leaves of this page (summary, body, area, faq[1].a) and on the other lake page of the batch. A position ends in a postposition and is not followed by a bare place name (ruling N30); the stage checker's note of ruling P20 on such a line is expected.",
+        "Ruling N47: this page mentions the oasis in three leaves (summary, body, faq[0].a) and names it in no field: the Urdu names it at one of those mentions at least, in the termbase form of the Al-Ahsa Oasis. Not machine-read: a point for the proofreader. Ruling N5 fixed the word for farms that receive visitors and kept another word for a cultivated field in running text: the farms here are the oasis's working farms (لمزارع الواحة); stage 1 chooses on the ruling, records it, and writes one word in the three leaves.",
+        "Ruling N17, build check C29 (VISIT_LABEL and VISIT_VALUE in tools/check-mosque-card.mjs): the card label 'Visiting' (الزيارة) is in the sources the label of the mosque pages' fixed row, and its approved Urdu — the pair of the translation memory, and VISIT_LABEL — is the word ruling N17 keeps for visiting a mosque; everywhere else the ruling writes its other word. C29 reads only a row whose Arabic value is the owner's fixed mosque value (متاحة، مع اللباس المحتشم واحترام حرمة المكان): it does NOT read this row, in any language, and no pattern is owed. The label of a lake's row is therefore a NEW string, proposed by stage 1 on ruling N17, raised at stage 4, and equal on hubail-lake and delfoon-lake; the memory's pair for 'Visiting' is NOT reused because the English is the same. Visitors of a page that is not a mosque take the word of ruling N29.",
+        "Shared strings (RUNBOOK, rule 3): practical[0].value is ONE Urdu string on hubail-lake and delfoon-lake, and faq[2].a ONE string on both; faq[2].q is one frame on asfar, hubail-lake and delfoon-lake. None of them is the approved pair of 'Open public site — no entry fee' or the approved answer of al-uqair, and none is asfar's fee value: 'natural' is kept, and no 'entry' is added. The value ends without a stop and the answer keeps its own (ruling P26). The fee word is the termbase key.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is openSite: true, so the unified hours-and-fees notice line is printed in no language. C13 ALREADY TARGETS Urdu (its LANGS lists ur and it reads label_ur and value_ur): no Urdu pattern is to be added. C12: the `source`, `source_en`, `sourceUrl` and `verifiedAt` of the card rows are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of 'Confirmed by the Visit Al-Ahsa team' enters a label, a value or the body. C12 scans the /ur/ page too, but its tables (ATTRIBUTION_PHRASES, CARD_LABELS) and its reader of `source_*` values have no Urdu entry: an Urdu attribution line would pass it unguarded. Nothing is owed by this batch, because none is written.",
+        "Root CLAUDE.md: invent nothing — no size, depth, distance, road or season; nothing on the quality of the water, on swimming, fishing, birds or facilities; the origin of the lake in agricultural drainage water is the source's and is neither softened nor explained. The page has no bestTime and none is supplied. Site-wide build check C15 ('the largest oasis in the world') has no Urdu entry in its tables; this page carries no superlative and none is brought in."
+      ]
+    },
+    {
+      "page": "delfoon-lake",
+      "file": "src/content/attractions/delfoon-lake.md",
+      "file_sha256": "cd63eecda3c15e95e7bec28a4913b1526d712eca7ae85fd638714dd15691c2b8",
+      "order": 43,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Delfoon Lake",
+          "ar": "بحيرة الديلفوون",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "بحيرة موسمية",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "Small seasonal pools near Al-Hubail Lake that form in the rainy spells — a favourite spot for desert outings.",
+          "ar": "بحيرات صغيرة موسمية قرب بحيرة الحبيل تنشأ في فترات الأمطار، وجهة محببة للرحلات البرية.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Delfoon is a cluster of small seasonal lakes near Al-Hubail Lake, in northern Al-Ahsa, forming when the rains gather in the low ground. In the wet spells they make a lovely destination for desert trips and outings. Further details are pending confirmation from reliable sources.",
+          "ar": "الديلفوون بحيرات صغيرة موسمية تنشأ في فترات الأمطار قرب بحيرة الحبيل\nفي شمال الأحساء، حين تتجمع المياه في منخفضات الأرض. وتكون في مواسم\nالأمطار وجهة محببة لهواة **الرحلات البرية** والتنزه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Near Al-Hubail Lake — northern Al-Ahsa",
+          "ar": "قرب بحيرة الحبيل — شمال الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Open public natural site — no fee",
+              "ar": "موقع طبيعي عام مفتوح — بلا رسوم"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "Is Delfoon Lake permanent?",
+              "ar": "هل بحيرة الديلفوون دائمة؟"
+            },
+            "a": {
+              "en": "No. It is a cluster of small seasonal lakes that form in the rainy spells, when the water gathers in the low ground.",
+              "ar": "لا، هي بحيرات صغيرة موسمية تنشأ في فترات الأمطار حين تتجمّع المياه في منخفضات الأرض."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "Where is Delfoon Lake?",
+              "ar": "أين تقع بحيرة الديلفوون؟"
+            },
+            "a": {
+              "en": "Near Al-Hubail Lake, in northern Al-Ahsa.",
+              "ar": "قرب بحيرة الحبيل في شمال الأحساء."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "Is there a fee to visit Delfoon Lake?",
+              "ar": "هل لزيارة بحيرة الديلفوون رسوم؟"
+            },
+            "a": {
+              "en": "No. It is an open public natural site with no fee.",
+              "ar": "لا، موقع طبيعي عام مفتوح بلا رسوم."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Озеро Эд-Дильфун",
+          "kicker": "Сезонное озеро",
+          "summary": "Небольшие сезонные озёра близ озера Эль-Хубайль, которые появляются в дождливые периоды, — любимое место для поездок в пустыню.",
+          "body": "Эд-Дильфун (Delfoon) — это несколько небольших сезонных озёр близ озера Эль-Хубайль, к северу от Аль-Ахсы: они появляются в дождливые периоды, когда вода собирается в низинах. В такие сезоны сюда едут те, кто любит вылазки в пустыню и прогулки на природе. Об остальном информация уточняется по надёжным источникам.",
+          "area": "Близ озера Эль-Хубайль, к северу от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Посещение",
+              "value": "Открытая общедоступная природная территория — вход свободный"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Существует ли озеро Эд-Дильфун круглый год?",
+              "a": "Нет. Эд-Дильфун — это несколько небольших сезонных озёр: они появляются в дождливые периоды, когда вода собирается в низинах."
+            },
+            {
+              "i": 1,
+              "q": "Где находится озеро Эд-Дильфун?",
+              "a": "Близ озера Эль-Хубайль, к северу от Аль-Ахсы."
+            },
+            {
+              "i": 2,
+              "q": "Нужно ли платить за посещение озера Эд-Дильфун?",
+              "a": "Нет. Это открытая общедоступная природная территория, вход свободный."
+            }
+          ]
+        },
+        "de": {
+          "title": "Delfoon-See",
+          "kicker": "Saisonaler See",
+          "summary": "Kleine saisonale Seen nahe dem Al-Hubail-See, die sich in regenreichen Zeiten bilden – ein beliebtes Ziel für Ausflüge in die Wüste.",
+          "body": "Delfoon ist eine Gruppe kleiner saisonaler Seen nahe dem Al-Hubail-See, nördlich von Al-Ahsa. Sie entstehen erst, wenn sich Regenwasser in den Senken des Geländes sammelt. In regenreichen Zeiten sind sie ein schönes Ziel für Ausflüge in die Wüste und für Spaziergänge. Weitere Angaben werden noch bestätigt, sobald verlässliche Quellen vorliegen.",
+          "area": "Nahe dem Al-Hubail-See – nördlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Besuch",
+              "value": "Öffentlich zugängliches Naturgelände – kostenlos"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Gibt es den Delfoon-See das ganze Jahr über?",
+              "a": "Nein. Delfoon ist eine Gruppe kleiner saisonaler Seen; sie bilden sich in regenreichen Zeiten, wenn sich das Wasser in den Senken sammelt."
+            },
+            {
+              "i": 1,
+              "q": "Wo liegt der Delfoon-See?",
+              "a": "Nahe dem Al-Hubail-See, nördlich von Al-Ahsa."
+            },
+            {
+              "i": 2,
+              "q": "Muss ich für den Delfoon-See Eintritt zahlen?",
+              "a": "Nein. Delfoon ist ein öffentlich zugängliches Naturgelände; der Eintritt ist kostenlos."
+            }
+          ]
+        },
+        "zh": {
+          "title": "迪勒丰湖",
+          "kicker": "季节性湖泊",
+          "summary": "胡拜勒湖附近的一片季节性小湖群，雨季时成形，是沙漠出游爱好者喜爱的目的地。",
+          "body": "迪勒丰湖（Delfoon）位于哈萨北部的胡拜勒湖附近，实为一片季节性小湖群。雨水汇入低洼地带时，湖泊便会成形。每逢雨季，这里就成了沙漠出游、郊游爱好者喜爱的好地方。",
+          "area": "胡拜勒湖附近——哈萨北部",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "游览",
+              "value": "开放的公共自然景点，免收门票"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "迪勒丰湖是常年有水的湖吗？",
+              "a": "不是。迪勒丰湖其实是一片季节性小湖群，只有到了雨季，雨水汇入低洼地带后才会成形。"
+            },
+            {
+              "i": 1,
+              "q": "迪勒丰湖在哪里？",
+              "a": "在哈萨北部的胡拜勒湖附近。"
+            },
+            {
+              "i": 2,
+              "q": "去迪勒丰湖要门票吗？",
+              "a": "不需要。迪勒丰湖是开放的公共自然景点，免收门票。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Hubail Lake",
+          "ar": "بحيرة الحبيل",
+          "ru": null,
+          "de": "der Al-Hubail-See",
+          "zh": "胡拜勒湖",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Delfoon Lake",
+          "ar": "بحيرة الديلفوون",
+          "ru": "озеро Эд-Дильфун",
+          "de": "der Delfoon-See",
+          "zh": "迪勒丰湖",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 188 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 278 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Delfoon Lake', without an article — AR (بحيرة الديلفوون), with the article and a doubled long vowel; the Russian title keeps the article, the German and Chinese follow the EN. Arabic is the only source of the name's spelling. The name is new to the termbase, and neither source says what it means or where it comes from. The body's first word is the bare name in both languages, 'Delfoon' (الديلفوون بحيرات صغيرة موسمية), without the generic.",
+          "kicker: Arabic only, 'a seasonal lake' (بحيرة موسمية): the generic of the page's title with an adjective. There is no kicker_en; the Chinese, German and Russian lines each translated it. A kicker no translated page has carried, and no pair of the translation memory holds it. The page is not featured: the kicker is rendered nowhere today.",
+          "title vs summary / body / faq[0]: the title and the three questions say 'Lake', one lake; the text says several — 'small seasonal pools' in the EN summary and 'a cluster of small seasonal lakes' in the body and in faq[0].a, for one AR phrase (بحيرات صغيرة موسمية). 'Pools' is the EN summary's word alone; 'a cluster of' is EN-only in both places. faq[0] asks of the one lake whether it is permanent and answers of the several, in both languages (هي بحيرات صغيرة موسمية). The German and Russian bodies drop the generic from the name where the plural follows.",
+          "summary / body: summary 'that form in the rainy spells — a favourite spot for desert outings' (تنشأ في فترات الأمطار، وجهة محببة للرحلات البرية); body 'In the wet spells they make a lovely destination for desert trips and outings' — AR 'and in the rain seasons they are a well-liked destination for those fond of desert trips and of outings' (وتكون في مواسم الأمطار وجهة محببة لهواة). One AR adjective is 'favourite' in the summary and 'lovely' in the body; 'those fond of' is AR-only; 'rainy spells' and 'wet spells' stand for two AR phrases (فترات الأمطار) (مواسم الأمطار). The AR's desert trips (الرحلات البرية) are 'desert outings' in the summary and 'desert trips' in the body, and the body's 'outings' is another AR word (والتنزه); the approved pages of b5 have one Urdu phrase for 'desert trips' and for 'desert outings' (arbaa, thulaim). Bold in the AR, plain in the EN.",
+          "body: EN 'forming when the rains gather in the low ground' — AR 'they arise in the periods of rain …, when the water gathers in the depressions of the ground' (حين تتجمع المياه في منخفضات الأرض): the EN body folds the AR's two statements into one and says 'the rains' where the AR says 'the water'; faq[0].a has both statements and 'the water', in both languages.",
+          "summary / body / area / faq[1].a: the position is given by the neighbouring lake, 'near Al-Hubail Lake' (قرب بحيرة الحبيل), in the four leaves — the title of the hubail-lake page of this batch, which does not mention this page. 'North of Al-Ahsa' (شمال الأحساء) in body, area and faq[1].a: the EN puts the lakes outside Al-Ahsa, the AR phrase can also be read 'the north of Al-Ahsa'; the Chinese line reads it so, the German and Russian follow the EN (see hubail-lake; ruling N74).",
+          "body: the last EN sentence — 'Further details are pending confirmation from reliable sources.' — has no Arabic: the AR body ends before it (والتنزه). The German and Russian lines translated the sentence; the Chinese line left it out. It is the site's own 'pending confirmation' statement written into a page's text. The fixed Urdu wording of that statement is open item P4 of the termbase, which has no provisional form, says it is not to be worded before it is ruled, and names any page whose own text carries such a note as its first bite: hubail-lake and delfoon-lake are that first bite. The sentence is the hubail-lake sentence without its middle part ('about the lake — its extent and any visitor facilities').",
+          "area: 'Near Al-Hubail Lake — north of Al-Ahsa' (قرب بحيرة الحبيل — شمال الأحساء): two positions and no larger bare place leading (rulings P20 and N30); faq[1].a is the same with a comma and a stop.",
+          "practical[0]: the one card row, and the same row as on hubail-lake, label and value, in both languages — 'Visiting' (الزيارة), 'Open public natural site — no fee' (موقع طبيعي عام مفتوح — بلا رسوم). The label is the label of the owner's fixed visiting row of the mosque pages, and the one approved Urdu pair for 'Visiting' is that row's label, the word ruling N17 keeps for visiting a mosque. The value is a look-alike of the approved 'Open public site — no entry fee' (al-uqair, salwa-beach, the five pages of b5): it adds 'natural' and says 'fee' where that one says 'entry fee'; and of the asfar value of this batch ('No fee — open natural site'). The Chinese, German and Russian lines gave the row the label they give the mosque row.",
+          "faq[2]: 'Is there a fee to visit Delfoon Lake?' / 'No. It is an open public natural site with no fee.' — the AR answer has no subject (لا، موقع طبيعي عام مفتوح بلا رسوم). The answer is the answer of hubail-lake faq[2], word for word in both languages; the question is the question of asfar faq[0] and of hubail-lake faq[2] with another name. The approved answer of al-uqair ('No. Al-Uqair is an open public site with no entry fee.') is another string. The Chinese and German answers name the lake where the sources do not.",
+          "no bestTime in any language, although summary and body say when the lakes exist (the rain seasons). No month, no year, no number of lakes and no distance in either language; the page is openSite: true."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "OPEN ITEM P4 (termbase _meta.open_items; style rule pending_phrase): the fixed Urdu wording of the site's 'pending confirmation' statement is not ruled, has no provisional form, and by its style rule is not to be worded before it is ruled. The last sentence of the English body is that statement, and it is rendered text: the English is the translation source (RUNBOOK, rule 4), so the sentence is not dropped because the Arabic lacks it. Stage 1 writes it in a wording it marks as provisional and names in its notes; stage 4 RAISES P4 with candidates (it is not left among the untouched items); the judge rules it. hubail-lake and delfoon-lake carry ONE wording for the part of the sentence they share. Nothing is added to what the sentence says is pending. The site's Arabic phrase (بانتظار التأكيد) is named in tools/check-consistency.mjs under C6 as wording that legitimately stands in texts; C6 compares card rows only and reads no body: no build check reads this sentence in any language.",
+        "Rulings P1 and P17, RUNBOOK rule 4: the name is built from the Arabic spelling with its article, in the title and in the body (الديلفوون); the EN 'Delfoon' is not the source of its form, and no Latin-script form stands in the text (the Chinese and Russian bodies add one in a bracket: theirs). Stage 1 verifies the name on the web before use and proposes it with gender and source; nothing is said of its meaning or origin. The name of the neighbouring lake is byte for byte the title of hubail-lake, in four leaves (summary, body, area, faq[1].a).",
+        "Title (termbase style rule titel_regel; RUNBOOK): the English translates the generic, so the Urdu translates it; the name is built from the Arabic spelling. The termbase has no entry for a lake and no ruling words such a title: stage 1 verifies the generic and the name on the web, proposes both with gender, plural and source, and uses ONE generic and one title pattern for the pages of the batch that share the kind; stage 4 raises the pattern as a new open item (N83 onwards). The gender of the title's entry is the gender the page's verbs agree with. The title follows the pattern of asfar and hubail-lake.",
+        "The kicker has no English source and is translated from the Arabic (DECISIONS; ruling P24: the register of a kicker does not override the content of its only source). It is one word of the page's own title: the Urdu kicker uses the Urdu generic the title uses, with no final stop and no gloss. Not rendered today.",
+        "One lake in the title and the questions, several in the text: the Urdu follows each field's own source — the title and the three questions in the singular, the summary, the body and faq[0].a in the plural — and does not even them out; the defect is logged (ruling P23 lets a defect of the source be repaired only where form alone changes, and then logged and read blind). 'A cluster of' is the EN's and stays; the AR's 'those fond of' is not imported (RUNBOOK, rule 4).",
+        "Ruling N74 (with rulings P20 and N30): where the English and the Arabic of an area line differ on a fact, the Arabic is the authority. 'North of Al-Ahsa' (شمال الأحساء) is the wording N74 ruled on thulaim — there on the ground that the page's own text placed the mountain inside Al-Ahsa. This page gives no second statement of where the lake lies, so that ground is not in its text: stage 1 follows the Arabic, records which reading it took and on what evidence, and stage 4 raises it; ONE reading stands in the three leaves of this page (body, area, faq[1].a) and on the other lake page of the batch. A position ends in a postposition and is not followed by a bare place name (ruling N30); the stage checker's note of ruling P20 on such a line is expected.",
+        "Ruling N17, build check C29 (VISIT_LABEL and VISIT_VALUE in tools/check-mosque-card.mjs): the card label 'Visiting' (الزيارة) is in the sources the label of the mosque pages' fixed row, and its approved Urdu — the pair of the translation memory, and VISIT_LABEL — is the word ruling N17 keeps for visiting a mosque; everywhere else the ruling writes its other word. C29 reads only a row whose Arabic value is the owner's fixed mosque value (متاحة، مع اللباس المحتشم واحترام حرمة المكان): it does NOT read this row, in any language, and no pattern is owed. The label of a lake's row is therefore a NEW string, proposed by stage 1 on ruling N17, raised at stage 4, and equal on hubail-lake and delfoon-lake; the memory's pair for 'Visiting' is NOT reused because the English is the same. Visitors of a page that is not a mosque take the word of ruling N29.",
+        "Shared strings (RUNBOOK, rule 3): practical[0].value is ONE Urdu string on hubail-lake and delfoon-lake, and faq[2].a ONE string on both; faq[2].q is one frame on asfar, hubail-lake and delfoon-lake. None of them is the approved pair of 'Open public site — no entry fee' or the approved answer of al-uqair, and none is asfar's fee value: 'natural' is kept, and no 'entry' is added. The value ends without a stop and the answer keeps its own (ruling P26). The fee word is the termbase key.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is openSite: true, so the unified hours-and-fees notice line is printed in no language. C13 ALREADY TARGETS Urdu (its LANGS lists ur and it reads label_ur and value_ur): no Urdu pattern is to be added. C12: the `source`, `source_en`, `sourceUrl` and `verifiedAt` of the card rows are internal data and are never rendered; there is no `source_ur` (ruling P14), and nothing of 'Confirmed by the Visit Al-Ahsa team' enters a label, a value or the body. C12 scans the /ur/ page too, but its tables (ATTRIBUTION_PHRASES, CARD_LABELS) and its reader of `source_*` values have no Urdu entry: an Urdu attribution line would pass it unguarded. Nothing is owed by this batch, because none is written.",
+        "Root CLAUDE.md: invent nothing — no month or season name for the rains, no year, no number of lakes, no size, no road or distance; the lakes are not said to hold water now. The page has no bestTime and none is made from the body's rain seasons. The oasis is not mentioned on this page and is not brought in."
+      ]
+    },
+    {
+      "page": "najim-museum",
+      "file": "src/content/attractions/najim-museum.md",
+      "file_sha256": "fe247cd17e39d3922ccc62dc944a675509ed5c68dcb789f60f079b90e0a1b385",
+      "order": 57,
+      "category": "museum",
+      "category_label": {
+        "en": "Museums",
+        "ar": "المتاحف"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Walid Al-Najim Museum",
+          "ar": "متحف وليد الناجم",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "متحف خاص",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A private museum in Al-Jafr whose collection fills twenty-six themed corners recreating old Hasawi life.",
+          "ar": "متحف خاص في الجفر تتوزع مقتنياته على ستة وعشرين ركناً متخصصاً تستعيد حياة الأحساء القديمة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the town of Al-Jafr, east of the oasis, sits the museum of Walid Al-Najim, one of the region's most notable private museums, its collection arranged over some 400 square metres in twenty-six themed corners. The museum is licensed by the Ministry of Culture, and its corners recreate whole scenes of old Hasawi life: a vintage grocery shop, a bridal chamber, a historic classroom, men's and women's majlis rooms, craftsmen's corners for blacksmithing, carpentry and jewellery-making, along with old Saudi coins and stamps, antique furniture, dress and early machines. Officials of the tourism and heritage authority have praised it as a private museum of notable heritage value.",
+          "ar": "في بلدة الجفر شرقي الواحة يقع متحف وليد الناجم، أحد أبرز المتاحف الخاصة\nفي المنطقة، تتوزع مقتنياته على نحو 400 متر مربع في ستة وعشرين ركناً\nمتخصصاً. المتحف مرخص من وزارة الثقافة،\nوتستعيد أركانه مشاهد كاملة من حياة الأحساء القديمة: بقالة قديمة، وغرفة\nعروس، وفصل دراسي تاريخي، ومجلسا رجال ونساء، وأركان حرف الحدادة والنجارة\nوالصياغة، إلى جانب العملات السعودية القديمة والطوابع والأثاث والملابس\nالعتيقة والآلات الأولى. وقد أشاد مسؤولو هيئة السياحة والتراث بالمتحف\nبوصفه ذا قيمة تراثية كبيرة بين المتاحف الخاصة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Jafr — eastern Al-Ahsa",
+          "ar": "بلدة الجفر — شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Evenings, by prior arrangement",
+              "ar": "الفترة المسائية (بالاتصال والتنسيق المسبق)"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "SAR 15",
+              "ar": "15 ريال"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.museum",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Музей Валида ан-Наджима",
+          "kicker": "Частный музей",
+          "summary": "Частный музей в Эль-Джафре: его собрание разместилось в двадцати шести тематических уголках, которые воссоздают старый быт Аль-Ахсы.",
+          "body": "В посёлке Эль-Джафр, к востоку от оазиса, находится Музей Валида ан-Наджима — один из самых известных частных музеев региона. Его собрание занимает около 400 квадратных метров и распределено по двадцати шести тематическим уголкам. Лицензию музею выдало Министерство культуры, и его уголки воссоздают целые сцены старого быта Аль-Ахсы: бакалейная лавка былых лет, комната невесты, школьный класс прежних времён, мужской и женский меджлисы (приёмные залы), уголки кузнечного, столярного и ювелирного ремёсел, а также старые саудовские монеты и марки, старинная мебель, одежда и первые механизмы. Представители Комиссии по туризму и национальному наследию хвалили его как частный музей большой историко-культурной ценности.",
+          "area": "Эль-Джафр — к востоку от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Walid-Al-Najim-Museum",
+          "kicker": "Privatmuseum",
+          "summary": "Ein Privatmuseum in Al-Jafr: Seine Sammlung füllt 26 thematische Ecken, die das alte Leben in Al-Ahsa nachbilden.",
+          "body": "Im Ort Al-Jafr, östlich der Oase, liegt das Museum von Walid Al-Najim, eines der bedeutendsten Privatmuseen der Region: Seine Sammlung ist auf rund 400 Quadratmetern in 26 thematischen Ecken untergebracht. Das Museum ist vom Kulturministerium lizenziert. Seine Ecken bilden ganze Szenen des alten Lebens in Al-Ahsa nach: ein Lebensmittelladen von einst, ein Brautzimmer, ein historisches Klassenzimmer, ein Madschlis (Empfangsraum) für Männer und einer für Frauen, Handwerkerecken für Schmiede-, Tischler- und Goldschmiedearbeit, dazu alte saudische Münzen und Briefmarken, antike Möbel und Kleidung sowie die ersten Maschinen. Vertreter der Kommission für Tourismus und Kulturerbe haben es als Privatmuseum von bedeutendem Wert für das kulturelle Erbe gelobt.",
+          "area": "Al-Jafr – östlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "瓦利德·纳吉姆博物馆",
+          "kicker": "私人博物馆",
+          "summary": "位于贾夫尔的私人博物馆，藏品分布于 26 个专题展区，重现哈萨旧日生活。",
+          "body": "瓦利德·纳吉姆博物馆（Walid Al-Najim Museum）位于绿洲东部的贾夫尔镇，是本地区最具代表性的私人博物馆之一，约 400 平方米的空间里分设了 26 个专题展区。各展区完整重现哈萨旧日生活的场景：老式杂货铺、新娘房、昔日课堂、男宾会客厅与女宾会客厅，还有打铁、木工与首饰制作等手艺专区。此外还陈列着沙特早年的钱币与邮票、老家具、旧式服饰和早期机械。博物馆持有沙特文化部颁发的许可，沙特旅游与国家遗产总局的官员也曾称赞这座博物馆，认为它是文化遗产价值很高的一座私人博物馆。",
+          "area": "贾夫尔镇——哈萨东部",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Jafr",
+          "ar": "بلدة الجفر",
+          "ru": "Эль-Джафр",
+          "de": "Al-Jafr",
+          "zh": "贾夫尔镇",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Ministry of Culture",
+          "ar": "وزارة الثقافة",
+          "ru": "Министерство культуры",
+          "de": null,
+          "zh": "文化部",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Ministry of Culture",
+          "ar": null,
+          "ru": null,
+          "de": "das Kulturministerium",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Walid Al-Najim",
+          "ar": "وليد الناجم",
+          "ru": "Валид ан-Наджим",
+          "de": null,
+          "zh": "瓦利德·纳吉姆",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Walid Al-Najim Museum",
+          "ar": "متحف وليد الناجم",
+          "ru": "Музей Валида ан-Наджима",
+          "de": "das Walid-Al-Najim-Museum · das Museum von Walid Al-Najim",
+          "zh": "瓦利德·纳吉姆博物馆",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P7 (ruled): currency — the amount, then the full currency name at the first mention in each field (termbase _meta.style_rules.currency), never the code SAR",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 507 characters, 0 bold phrase(s), 0 link(s); English 3 sentence(s), 680 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1428 @@
+{
+  "batch": "b17",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b17",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, [area], [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 5,
+    "fields": 57,
+    "per_page": {
+      "hamidiyah-souq": {
+        "fields": 13,
+        "practical_rows": 1,
+        "faq_items": 3,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "zaki-alsalem-farm": {
+        "fields": 11,
+        "practical_rows": 3,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "women-souq": {
+        "fields": 17,
+        "practical_rows": 1,
+        "faq_items": 5,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "lemon-farm": {
+        "fields": 7,
+        "practical_rows": 1,
+        "faq_items": 0,
+        "bestTime": true,
+        "kicker_rendered": false
+      },
+      "dar-alturath": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "hamidiyah-souq",
+      "file": "src/content/attractions/hamidiyah-souq.md",
+      "file_sha256": "0b933ab0d31bf80a75a3007974d389133944d01b54614696fb131f9631d9fbca",
+      "order": 66,
+      "category": "historic",
+      "category_label": {
+        "en": "Historic landmarks",
+        "ar": "المعالم التاريخية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Hamidiyah Souq",
+          "ar": "سوق الحميدية",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "معلم تراثي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The heritage souq building in central Hofuf, restored as part of the historic downtown development — no longer trading as a souq; Sharq Restaurant occupies it today.",
+          "ar": "مبنى السوق التراثي في وسط الهفوف، رُمِّم ضمن تطوير المدينة التاريخية — ولم يعد يعمل سوقاً، والنشاط القائم فيه اليوم مطعم شرق.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Al-Hamidiyah Souq is a building in central Hofuf, in the North Al-Rifaa district on King Abdulaziz Road. It was restored as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq, joining the cluster of heritage souq buildings at the city's core. Today it is a heritage landmark rather than a working souq: it no longer trades as a folk market, and the activity in its building is Sharq Restaurant. Further details of the building and its history are pending confirmation from reliable sources before being published here.",
+          "ar": "سوق الحميدية مبنىً في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك\nعبدالعزيز. رُمِّم ضمن مشاريع تطوير وسط الهفوف التاريخي، إلى جانب\nإعادة بناء سوق القيصرية وإنشاء سوق الحرفيين، فصار جزءاً من منظومة\nالأسواق التراثية المتجاورة في قلب المدينة.\n\nوهو اليوم **معلم تراثي لا سوق عامل**: توقّف نشاطه بوصفه سوقاً شعبياً،\nوالنشاط القائم في مبناه الآن [مطعم شرق](/مطاعم-ومقاهي/مطعم-شرق/).",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Hofuf, North Al-Rifaa district",
+          "ar": "الهفوف، حي الرفعة الشمالية",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Current status",
+              "ar": "الوضع الحالي"
+            },
+            "value": {
+              "en": "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it",
+              "ar": "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "Is Al-Hamidiyah Souq still a working souq?",
+              "ar": "هل سوق الحميدية سوق عامل اليوم؟"
+            },
+            "a": {
+              "en": "No. It is a heritage landmark that no longer trades as a folk market; Sharq Restaurant operates in its building today.",
+              "ar": "لا، هو معلم تراثي توقّف نشاطه بوصفه سوقاً شعبياً، والنشاط القائم في مبناه اليوم مطعم شرق."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "Where is Al-Hamidiyah Souq?",
+              "ar": "أين يقع سوق الحميدية؟"
+            },
+            "a": {
+              "en": "In central Hofuf, in the North Al-Rifaa district on King Abdulaziz Road.",
+              "ar": "في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك عبدالعزيز."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "How does Al-Hamidiyah Souq relate to the neighbouring heritage souqs?",
+              "ar": "ما علاقة سوق الحميدية بالأسواق التراثية المجاورة؟"
+            },
+            "a": {
+              "en": "It was restored as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq.",
+              "ar": "رُمِّم ضمن تطوير وسط الهفوف التاريخي، إلى جانب إعادة بناء سوق القيصرية وإنشاء سوق الحرفيين."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.historic",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Рынок Эль-Хамидия",
+          "kicker": "Историческая достопримечательность",
+          "summary": "Здание традиционного рынка в центре Эль-Хуфуфа, отстроенное заново в рамках развития исторического города: как рынок оно больше не работает, и сегодня в нём — ресторан «Шарк».",
+          "body": "Рынок Эль-Хамидия — здание в центре Эль-Хуфуфа, в районе Эр-Рифаа аш-Шамалия, у дороги короля Абдул-Азиза. Его отстроили заново в рамках проектов по развитию исторического центра Эль-Хуфуфа — вместе с ним заново отстроили рынок Эль-Кайсария и создали Рынок ремесленников. Так рынок Эль-Хамидия вошёл в число традиционных рынков, соседствующих друг с другом в сердце города. Сегодня это историческая достопримечательность, а не действующий рынок: он перестал работать как народный рынок, и в его здании теперь ресторан «Шарк». Об остальном — о здании и его истории — информация уточняется по надёжным источникам и появится здесь только после этого.",
+          "area": "Эль-Хуфуф, район Эр-Рифаа аш-Шамалия",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Текущий статус",
+              "value": "Историческая достопримечательность — как рынок не работает; в его здании действует ресторан «Шарк»"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Действует ли сегодня рынок Эль-Хамидия?",
+              "a": "Нет. Это историческая достопримечательность: он перестал работать как народный рынок, а в его здании теперь ресторан «Шарк»."
+            },
+            {
+              "i": 1,
+              "q": "Где находится рынок Эль-Хамидия?",
+              "a": "В центре Эль-Хуфуфа, в районе Эр-Рифаа аш-Шамалия, у дороги короля Абдул-Азиза."
+            },
+            {
+              "i": 2,
+              "q": "Как рынок Эль-Хамидия связан с соседними традиционными рынками?",
+              "a": "Его отстроили заново в рамках развития исторического центра Эль-Хуфуфа — вместе с ним заново отстроили рынок Эль-Кайсария и создали Рынок ремесленников."
+            }
+          ]
+        },
+        "de": {
+          "title": "Al-Hamidiyah-Souk",
+          "kicker": "Historische Stätte",
+          "summary": "Das Souk-Gebäude im Zentrum von Hofuf gehört zum kulturellen Erbe der Stadt und wurde im Rahmen der Entwicklung der historischen Innenstadt wiederaufgebaut. Als Souk ist es nicht mehr in Betrieb; heute ist darin das Sharq-Restaurant untergebracht.",
+          "body": "Der Al-Hamidiyah-Souk ist ein Gebäude im Zentrum von Hofuf, im Al-Rifaa-Nord-Viertel an der König-Abdulaziz-Straße. Er wurde im Rahmen der Entwicklung der historischen Innenstadt wiederaufgebaut, ebenso wie der Qaisariyah-Souk; dabei entstand auch der Handwerker-Souk. So wurde er im Herzen der Stadt Teil des Ensembles benachbarter Souk-Gebäude, die zum kulturellen Erbe Hofufs gehören. Heute ist er kein Souk mehr, sondern eine Sehenswürdigkeit dieses Erbes: Der Betrieb als traditioneller Markt ist eingestellt, und im Gebäude ist das Sharq-Restaurant untergebracht. Weitere Angaben zum Gebäude und zu seiner Geschichte werden noch bestätigt und erscheinen hier erst, wenn verlässliche Quellen sie belegen.",
+          "area": "Hofuf, Al-Rifaa-Nord-Viertel",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Aktueller Status",
+              "value": "Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört – als Souk nicht mehr in Betrieb; im Gebäude ist das Sharq-Restaurant"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Wird der Al-Hamidiyah-Souk heute noch als Souk betrieben?",
+              "a": "Nein. Er ist eine Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört; der Betrieb als traditioneller Markt ist eingestellt, und in seinem Gebäude ist heute das Sharq-Restaurant untergebracht."
+            },
+            {
+              "i": 1,
+              "q": "Wo liegt der Al-Hamidiyah-Souk?",
+              "a": "Im Zentrum von Hofuf, im Al-Rifaa-Nord-Viertel an der König-Abdulaziz-Straße."
+            },
+            {
+              "i": 2,
+              "q": "In welchem Verhältnis steht der Al-Hamidiyah-Souk zu den benachbarten Kulturerbe-Souks?",
+              "a": "Er wurde im Rahmen der Entwicklung der historischen Innenstadt von Hofuf wiederaufgebaut, ebenso wie der Qaisariyah-Souk; dabei entstand auch der Handwerker-Souk."
+            }
+          ]
+        },
+        "zh": {
+          "title": "哈米迪耶市集",
+          "kicker": "遗产地标",
+          "summary": "胡富夫市中心的遗产市集建筑，在历史城区开发项目中重建；如今已不再作为市集营业，其中经营的是沙尔格餐厅。",
+          "body": "哈米迪耶市集（Al-Hamidiyah Souq）是胡富夫市中心的一座建筑，坐落在里法阿北区的阿卜杜勒阿齐兹国王路上。它在胡富夫历史城区的开发项目中重建，同一项目还重建了凯撒利亚集市，并新建了手工艺人市集，使它成为老城中心相邻的遗产市集群的一部分。如今它是一处遗产地标，而不是仍在营业的市集：它已不再作为民俗市集经营，目前在其建筑内经营的是沙尔格餐厅（Sharq Restaurant）。",
+          "area": "胡富夫，里法阿北区",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "现状",
+              "value": "遗产地标——不再作为市集营业；目前在其建筑内经营的是沙尔格餐厅"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "哈米迪耶市集现在还是营业中的市集吗？",
+              "a": "不是。哈米迪耶市集如今是一处遗产地标，已不再作为民俗市集经营；目前在其建筑内经营的是沙尔格餐厅。"
+            },
+            {
+              "i": 1,
+              "q": "哈米迪耶市集在哪里？",
+              "a": "在胡富夫市中心，里法阿北区的阿卜杜勒阿齐兹国王路上。"
+            },
+            {
+              "i": 2,
+              "q": "哈米迪耶市集与相邻的几座遗产市集有什么关系？",
+              "a": "哈米迪耶市集是在胡富夫历史城区开发项目中重建的，同一项目还重建了凯撒利亚集市，并新建了手工艺人市集。哈米迪耶市集由此成为老城中心彼此相邻的一片遗产市集的一部分。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Hamidiyah",
+          "ar": "الحميدية",
+          "ru": null,
+          "de": null,
+          "zh": "哈米迪耶",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Hamidiyah Souq",
+          "ar": "سوق الحميدية",
+          "ru": "рынок Эль-Хамидия",
+          "de": "der Al-Hamidiyah-Souk",
+          "zh": "哈米迪耶市集",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Rifaa district",
+          "ar": "حي الرفعة",
+          "ru": "район Эр-Рифаа",
+          "de": null,
+          "zh": "里法阿区",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Craftsmen Souq",
+          "ar": "سوق الحرفيين",
+          "ru": "Рынок ремесленников",
+          "de": "der Handwerker-Souk",
+          "zh": "手工艺人市集",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz Road",
+          "ar": "طريق الملك عبدالعزيز",
+          "ru": "дорога короля Абдул-Азиза",
+          "de": "die König-Abdulaziz-Straße",
+          "zh": "阿卜杜勒阿齐兹国王路",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "North Al-Rifaa district",
+          "ar": null,
+          "ru": "район Эр-Рифаа аш-Шамалия",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Qaisariyah",
+          "ar": "القيصرية",
+          "ru": null,
+          "de": null,
+          "zh": "凯撒利亚（Qaisariyah）",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Qaisariyah Souq",
+          "ar": null,
+          "ru": "рынок Эль-Кайсария",
+          "de": "der Qaisariyah-Souk",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Sharq Restaurant",
+          "ar": "مطعم شرق",
+          "ru": null,
+          "de": "das Sharq-Restaurant",
+          "zh": "沙尔格餐厅",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Souq",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "传统市集",
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3c / P3c-labels / N14 (ruled, round 1): a name with an opaque or false-friend Arabic generic (qasr / souq / ain / bayt) — apply the rulings of termbase _meta.calibration_rulings as written",
+        "P9 (ruled, round 1): Makkah / Madinah — apply termbase _meta.calibration_rulings P9",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 379 characters, 1 bold phrase(s), 1 link(s); English 4 sentence(s), 606 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "zaki-alsalem-farm",
+      "file": "src/content/attractions/zaki-alsalem-farm.md",
+      "file_sha256": "d1c19dce033cee221507d1d6f595800d526c8a05ec16edd17197f1b74ea3e20a",
+      "order": 68,
+      "category": "farm",
+      "category_label": {
+        "en": "Farms",
+        "ar": "المزارع"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Zaki Al-Salem Farm",
+          "ar": "مزرعة زكي السالم",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "مزرعة",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "One of the largest Hasawi rice farms in Al-Ahsa — famed for its harvest-season celebrations, with a sulphur-water spring and traditional palm-frond huts.",
+          "ar": "من أكبر مزارع الأرز الأحسائي في الأحساء — تشتهر باحتفالات موسم الحصاد، وفيها نبع مياه كبريتية وأكواخ تراثية من السعف.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "On Al-Khaleej Road east of the oasis lies Zaki Al-Salem Farm, one of the largest farms growing Hasawi red rice in Al-Ahsa, alongside other crops of the oasis. Each year the harvest season is marked with celebrations that draw visitors to the farm with festival-like experiences around the Hasawi rice crop. The farm also has a natural sulphur-water spring rising from the ground, around which traditional palm-frond huts known as 'Aryaf Zaki' have been built, letting guests bathe in the mineral-rich warm water amid the greenery.",
+          "ar": "على طريق الخليج تقع مزرعة زكي السالم، **من أكبر مزارع الأرز الأحسائي**\nفي الأحساء، إلى جانب محاصيل أخرى من محاصيل الواحة.\n\nتشتهر المزرعة **باحتفالات موسم حصاد** الأرز الأحسائي التي تقام كل عام\nويقصدها الزوار بأجوائها الكرنفالية. وفيها **نبع مياه كبريتية** طبيعي من\nباطن الأرض، أقيمت حوله أكواخ تراثية من السعف تُعرف بـ«أرياف زكي»، يستحمّ فيها\nالزوار بالمياه المعدنية الدافئة وسط الخضرة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Khaleej Road — Al-Ahsa",
+          "ar": "طريق الخليج — الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Thursday, Friday and Saturday 3:30–10:00 pm",
+              "ar": "الخميس والجمعة والسبت: 3:30 م - 10:00 م"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "SAR 25 per person",
+              "ar": "25 ريال للفرد"
+            },
+            "verified": true
+          },
+          {
+            "i": 2,
+            "label": {
+              "en": "Visiting",
+              "ar": "الزيارة"
+            },
+            "value": {
+              "en": "Pending confirmation",
+              "ar": "بانتظار التأكيد"
+            },
+            "verified": false
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render.",
+        "practical[2] (render)": "verified is not true: the template hides the row in every language; pending-confirmation wording is open item P4."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.farm",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Ферма Заки ас-Салема",
+          "kicker": "Ферма",
+          "summary": "Одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы. Она славится праздниками сбора урожая, а ещё здесь серный источник и сельские домики.",
+          "body": "У дороги Эль-Халидж раскинулась ферма Заки ас-Салема — одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы, а вместе с ним и другие здешние культуры. Ферма славится праздниками, которые каждый год устраивают в сезон сбора риса Аль-Ахсы: посетители едут на них за карнавальной атмосферой. Здесь же из-под земли бьёт природный серный источник. Вокруг него построили сельские домики, известные как «Арияф Заки». В них посетители купаются в тёплой минеральной воде этого источника среди зелени.",
+          "area": "Дорога Эль-Халидж, Аль-Ахса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Zaki-Al-Salem-Farm",
+          "kicker": "Farm",
+          "summary": "Eine der größten Farmen für Hasawi-Reis in Al-Ahsa – bekannt für ihre Feste zur Erntezeit, mit einer Schwefelquelle und ländlichen Hütten.",
+          "body": "An der Al-Khaleej-Straße liegt die Zaki-Al-Salem-Farm, eine der größten Farmen der Oase für den Anbau von Hasawi-Reis – dem Reis aus Al-Ahsa. Daneben wachsen hier weitere Kulturpflanzen der Oase. Bekannt ist sie für die Feste, die jedes Jahr zur Ernte des Hasawi-Reises stattfinden: Die ausgelassene Stimmung zieht Besucher auf die Farm. Zudem tritt hier eine natürliche Schwefelquelle aus dem Boden; rund um sie sind ländliche Hütten entstanden, bekannt als „Aryaf Zaki“. Dort baden die Gäste im warmen, mineralreichen Wasser inmitten des Grüns.",
+          "area": "Al-Khaleej-Straße – Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "扎基·萨利姆农场",
+          "kicker": "农场",
+          "summary": "种植哈萨红米规模最大的农场之一，以收获季的庆典闻名，农场里有一处硫磺泉和乡村小屋。",
+          "body": "扎基·萨利姆农场（Zaki Al-Salem Farm）坐落在海湾路旁，是当地种植哈萨红米规模最大的农场之一，此外还种有绿洲出产的其他作物。农场以每年的哈萨红米收获季庆典闻名，庆典期间气氛如同过节，游客也会专程前来。农场里还有一眼从地下涌出的天然硫磺泉，泉眼周围建起了乡村小屋，名叫“扎基田园”（Aryaf Zaki）。游客可以在一片绿意里泡一泡温热的泉水，水中富含矿物质。",
+          "area": "海湾路——哈萨",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 2,
+              "label": "游览",
+              "value": "待确认（信息更新中）"
+            }
+          ],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Khaleej Road",
+          "ar": "طريق الخليج",
+          "ru": "дорога Эль-Халидж",
+          "de": "die Al-Khaleej-Straße",
+          "zh": "海湾路",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Aryaf Zaki",
+          "ar": "أرياف زكي",
+          "ru": "«Арияф Заки»",
+          "de": null,
+          "zh": "“扎基田园”（Aryaf Zaki）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi red rice",
+          "ar": "الأرز الأحسائي الأحمر",
+          "ru": null,
+          "de": null,
+          "zh": "哈萨红米",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi rice",
+          "ar": "الأرز الأحسائي المحلي (المكوّن)",
+          "ru": "рис Аль-Ахсы",
+          "de": "der Hasawi-Reis · Glosse: „der Reis aus Al-Ahsa“",
+          "zh": "哈萨大米",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Zaki Al-Salem",
+          "ar": null,
+          "ru": "Заки ас-Салем",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Zaki Al-Salem Farm",
+          "ar": "مزرعة زكي السالم",
+          "ru": "Ферма Заки ас-Салема",
+          "de": "die Zaki-Al-Salem-Farm · „Aryaf Zaki“",
+          "zh": "扎基·萨利姆农场",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P5 (ruled, round 1): the Gulf is named — apply termbase _meta.calibration_rulings P5",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P7 (ruled): currency — the amount, then the full currency name at the first mention in each field (termbase _meta.style_rules.currency), never the code SAR",
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 386 characters, 3 bold phrase(s), 0 link(s); English 3 sentence(s), 530 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "women-souq",
+      "file": "src/content/attractions/women-souq.md",
+      "file_sha256": "a637d61179ce0ef37336b62815586c3a045da40d8910af6c85272c29dbff99e6",
+      "order": 67,
+      "category": "market",
+      "category_label": {
+        "en": "Heritage souqs",
+        "ar": "الأسواق التراثية"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Women's Folk Souq",
+          "ar": "سوق النساء الشعبي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "سوق شعبي",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A traditional stall market in the South Al-Rifaa district of central Hofuf whose sellers are women of Al-Ahsa — hence the name — and one of the city's living folk-trade scenes.",
+          "ar": "سوقُ بسطاتٍ تراثي في حي الرفعة الجنوبية وسط الهفوف، بائعاته نساءٌ من الأحساء ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women of Al-Ahsa, both local women and Bedouin, offering a range of goods, some of them their own handiwork. The souq is open to everyone, women and men alike. It stands on King Abdulaziz Road in central Hofuf. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more.",
+          "ar": "في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقُ بسطاتٍ تراثي وسط\nمنطقة سوق السويق القديمة. وسُمّي بذلك لأن البائعات فيه نساء — نساءٌ من الأحساء، محليّاتٌ وبدويات، يبعن منتجاتٍ مختلفة بعضها من صنع أيديهنّ. والسوق مفتوح للجميع، نساءً ورجالاً. ويقع على طريق الملك عبدالعزيز وسط الهفوف.\n\nنفّذت أمانة الأحساء أعمال تطوير للسوق، وهو أحد مشاهد التجارة الشعبية\nالحيّة في الهفوف، تُباع فيه الملابس والسمن والإقط وغيرها.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Hofuf, South Al-Rifaa district",
+          "ar": "الهفوف، حي الرفعة الجنوبية",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 8:00 am – 11:00 pm",
+              "ar": "يومياً 8 ص – 11 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "What are the opening hours of the Women’s Folk Souq?",
+              "ar": "ما مواعيد سوق النساء الشعبي؟"
+            },
+            "a": {
+              "en": "Daily from 8:00 am to 11:00 pm.",
+              "ar": "يومياً من 8 ص إلى 11 م."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "Where is the Women’s Folk Souq?",
+              "ar": "أين يقع سوق النساء الشعبي؟"
+            },
+            "a": {
+              "en": "In the South Al-Rifaa district of Hofuf, on King Abdulaziz Road at the heart of the old Suwaiq market area.",
+              "ar": "في حي الرفعة الجنوبية بالهفوف، على طريق الملك عبدالعزيز وسط منطقة سوق السويق القديمة."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "Why is it called the Women’s Folk Souq?",
+              "ar": "لماذا سُمّي سوق النساء الشعبي بهذا الاسم؟"
+            },
+            "a": {
+              "en": "Because the sellers there are women of Al-Ahsa — both local women and Bedouin.",
+              "ar": "لأن البائعات فيه نساءٌ من الأحساء، محليّاتٌ وبدويات."
+            }
+          },
+          {
+            "i": 3,
+            "q": {
+              "en": "Is the Women’s Folk Souq open only to women?",
+              "ar": "هل دخول سوق النساء الشعبي مقتصر على النساء؟"
+            },
+            "a": {
+              "en": "No — the souq is open to everyone, women and men alike; it is the sellers who are women.",
+              "ar": "لا، السوق مفتوح للجميع نساءً ورجالاً؛ والنساء هنّ البائعات فيه."
+            }
+          },
+          {
+            "i": 4,
+            "q": {
+              "en": "What is sold at the Women’s Folk Souq?",
+              "ar": "ماذا يُباع في سوق النساء الشعبي؟"
+            },
+            "a": {
+              "en": "Clothes, ghee, aqit (dried yoghurt) and more.",
+              "ar": "الملابس والسمن والإقط وغيرها."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.market",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "faq[3] q / a",
+        "faq[4] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Женский народный рынок",
+          "kicker": "Народный рынок",
+          "summary": "Традиционный рынок с лотками в районе Эр-Рифаа аль-Джанубия, в центре Эль-Хуфуфа: торгуют здесь женщины из Аль-Ахсы, отсюда и название. Это одно из мест в городе, где жива народная торговля.",
+          "body": "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, расположен Женский народный рынок — традиционный рынок с лотками в сердце старого рыночного квартала Эс-Сувайк. Своё название он получил, потому что торгуют на нём женщины из Аль-Ахсы, как горожанки, так и бедуинки. Они предлагают разные товары, часть которых делают сами. Рынок открыт для всех — и для женщин, и для мужчин. Он расположен у дороги короля Абдул-Азиза. Муниципалитет Аль-Ахсы провёл работы по развитию рынка. Это одно из мест в Эль-Хуфуфе, где жива народная торговля: здесь продают одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары.",
+          "area": "Эль-Хуфуф, район Эр-Рифаа аль-Джанубия",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы",
+              "value": "Ежедневно 8:00–23:00"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "В какие часы открыт Женский народный рынок?",
+              "a": "Ежедневно с 8:00 до 23:00."
+            },
+            {
+              "i": 1,
+              "q": "Где находится Женский народный рынок?",
+              "a": "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, у дороги короля Абдул-Азиза, в сердце старого рыночного квартала Эс-Сувайк."
+            },
+            {
+              "i": 2,
+              "q": "Почему Женский народный рынок так называется?",
+              "a": "Потому что торгуют на нём женщины из Аль-Ахсы, как горожанки, так и бедуинки."
+            },
+            {
+              "i": 3,
+              "q": "Вход на Женский народный рынок только для женщин?",
+              "a": "Нет. Рынок открыт для всех — и для женщин, и для мужчин, а торгуют на нём женщины."
+            },
+            {
+              "i": 4,
+              "q": "Что продают на Женском народном рынке?",
+              "a": "Одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары."
+            }
+          ]
+        },
+        "de": {
+          "title": "Frauen-Souk",
+          "kicker": "Traditioneller Markt",
+          "summary": "Ein traditioneller Markt mit Ständen im Zentrum von Hofuf, im Al-Rifaa-Süd-Viertel: Hier verkaufen Frauen aus Al-Ahsa – daher der Name. Der Souk zählt zu den Orten, an denen der traditionelle Handel der Stadt weiterlebt.",
+          "body": "Im Al-Rifaa-Süd-Viertel von Hofuf liegt der Frauen-Souk, ein traditioneller Markt mit Ständen im Herzen des alten Marktviertels Suwaiq. Seinen Namen verdankt er denen, die hier verkaufen: Es sind Frauen aus Al-Ahsa, Städterinnen wie Beduininnen, die verschiedene Waren anbieten – manche davon aus eigener Herstellung. Der Souk steht allen offen, Frauen wie Männern. Er liegt an der König-Abdulaziz-Straße im Zentrum von Hofuf. Die Kommunalverwaltung von Al-Ahsa hat Arbeiten zur Entwicklung des Souks durchgeführt. Er ist einer der Orte, an denen der traditionelle Handel in Hofuf lebendig geblieben ist: Hier finden Sie Kleidung, Butterschmalz, Aqit (getrockneter Joghurt) und anderes mehr.",
+          "area": "Hofuf, Al-Rifaa-Süd-Viertel",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten",
+              "value": "Täglich 8:00–23:00 Uhr"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Wie sind die Öffnungszeiten des Frauen-Souks?",
+              "a": "Täglich von 8:00 bis 23:00 Uhr."
+            },
+            {
+              "i": 1,
+              "q": "Wo liegt der Frauen-Souk?",
+              "a": "Im Al-Rifaa-Süd-Viertel von Hofuf, an der König-Abdulaziz-Straße im Herzen des alten Marktviertels Suwaiq."
+            },
+            {
+              "i": 2,
+              "q": "Warum heißt der Markt Frauen-Souk?",
+              "a": "Weil dort Frauen aus Al-Ahsa verkaufen – Städterinnen wie Beduininnen."
+            },
+            {
+              "i": 3,
+              "q": "Ist der Frauen-Souk nur für Frauen zugänglich?",
+              "a": "Nein, der Souk steht allen offen, Frauen wie Männern; verkauft wird dort von Frauen."
+            },
+            {
+              "i": 4,
+              "q": "Was wird im Frauen-Souk verkauft?",
+              "a": "Kleidung, Butterschmalz, Aqit und anderes mehr."
+            }
+          ]
+        },
+        "zh": {
+          "title": "妇女民俗市集",
+          "kicker": "民俗市集",
+          "summary": "胡富夫市中心里法阿南区的一座传统摊位市集，商贩都是哈萨的妇女，市集也因此得名，至今仍是城里鲜活的民间商贸一景。",
+          "body": "妇女民俗市集（Women's Folk Souq）位于胡富夫的里法阿南区，是一座传统摊位市集，就在老苏韦格市集区的中心。市集的名字来自这里的商贩：都是哈萨的妇女，既有城镇的，也有贝都因的。她们出售各式货品，其中有些是亲手制作的。市集坐落在胡富夫市中心的阿卜杜勒阿齐兹国王路上，对所有人开放，无论男女。哈萨市政局对这座市集做过改造提升。如今这里的民间商贸依旧鲜活，售卖衣物、酥油、干制酸奶等。",
+          "area": "胡富夫，里法阿南区",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间",
+              "value": "每日 8:00–23:00"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "妇女民俗市集的开放时间是几点到几点？",
+              "a": "每日 8:00–23:00。"
+            },
+            {
+              "i": 1,
+              "q": "妇女民俗市集在哪里？",
+              "a": "在胡富夫的里法阿南区，阿卜杜勒阿齐兹国王路上，就在老苏韦格市集区的中心。"
+            },
+            {
+              "i": 2,
+              "q": "妇女民俗市集为什么叫这个名字？",
+              "a": "因为这里的商贩都是哈萨的妇女，既有城镇的，也有贝都因的。"
+            },
+            {
+              "i": 3,
+              "q": "妇女民俗市集只对女性开放吗？",
+              "a": "不是。市集对所有人开放，无论男女；只是这里的商贩都是妇女。"
+            },
+            {
+              "i": 4,
+              "q": "在妇女民俗市集能买到什么？",
+              "a": "这里卖的是衣物、酥油、干制酸奶等货品。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Rifaa district",
+          "ar": "حي الرفعة",
+          "ru": "район Эр-Рифаа",
+          "de": null,
+          "zh": "里法阿区",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz Road",
+          "ar": "طريق الملك عبدالعزيز",
+          "ru": "дорога короля Абдул-Азиза",
+          "de": "die König-Abdulaziz-Straße",
+          "zh": "阿卜杜勒阿齐兹国王路",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Souq",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "传统市集",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "South Al-Rifaa district",
+          "ar": "حي الرفعة الجنوبية",
+          "ru": "район Эр-Рифаа аль-Джанубия",
+          "de": null,
+          "zh": "里法阿南区",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Suwaiq",
+          "ar": null,
+          "ru": "Эс-Сувайк",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Suwaiq market area",
+          "ar": "منطقة سوق السويق القديمة",
+          "ru": null,
+          "de": null,
+          "zh": "苏韦格市集",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the old Suwaiq market area",
+          "ar": null,
+          "ru": null,
+          "de": "das alte Marktviertel Suwaiq",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "women of Al-Ahsa",
+          "ar": null,
+          "ru": "женщины из Аль-Ахсы",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Women's Folk Souq",
+          "ar": "سوق النساء الشعبي",
+          "ru": "Женский народный рынок",
+          "de": "der Frauen-Souk",
+          "zh": "妇女民俗市集",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3c / P3c-labels / N14 (ruled, round 1): a name with an opaque or false-friend Arabic generic (qasr / souq / ain / bayt) — apply the rulings of termbase _meta.calibration_rulings as written",
+        "P9 (ruled, round 1): Makkah / Madinah — apply termbase _meta.calibration_rulings P9",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "practical[0].value: numbers differ — only in English [00, 00], only in Arabic []",
+          "faq[0].a: numbers differ — only in English [00, 00], only in Arabic []",
+          "body: Arabic 2 paragraph(s), 420 characters, 0 bold phrase(s), 0 link(s); English 5 sentence(s), 583 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "lemon-farm",
+      "file": "src/content/attractions/lemon-farm.md",
+      "file_sha256": "8346c10ad565eddc952a4548d6d1dcd833469c339eda72fc90fd41ecd88b2b17",
+      "order": 61,
+      "category": "farm",
+      "category_label": {
+        "en": "Farms",
+        "ar": "المزارع"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Hasawi Lime Farm",
+          "ar": "مزرعة الليمون الحساوي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "مزرعة ونخيل",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season.",
+          "ar": "مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season.",
+          "ar": "مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "bestTime": {
+          "en": "From mid-June to August, the lime-picking season.",
+          "ar": "من منتصف يونيو إلى أغسطس، موسم قطف الليمون.",
+          "note": "Card value (P26: no final stop, even where the English is a sentence)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily in the growing seasons, 4:00–9:30 pm",
+              "ar": "يومياً في المواسم الزراعية: 4:00 م - 9:30 م"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "area": "The page has no area in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.farm",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.bestTime: bestTime",
+        "practical[0] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": true,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Ферма лайма Аль-Ахсы",
+          "kicker": "Ферма и пальмы",
+          "summary": "Цитрусовая ферма, куда в сезон приезжают посетители, чтобы собрать знаменитый лайм Аль-Ахсы.",
+          "body": "Цитрусовая ферма, куда в сезон приезжают посетители, чтобы собрать знаменитый лайм Аль-Ахсы.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Hasawi-Limettenfarm",
+          "kicker": "Farm und Dattelpalmen",
+          "summary": "Eine Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken – die Limette aus Al-Ahsa.",
+          "body": "Eine Zitrusfarm, auf der Besucher in der Saison die berühmte Hasawi-Limette (Lomi) pflücken – die Limette aus Al-Ahsa.",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "哈萨青柠农场",
+          "kicker": "农场与椰枣林",
+          "summary": "一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠。",
+          "body": "一座柑橘农场，应季时可以亲手采摘著名的哈萨青柠。",
+          "area": null,
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hasawi lime",
+          "ar": null,
+          "ru": "лайм",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 63 characters, 0 bold phrase(s), 0 link(s); English 1 sentence(s), 74 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    },
+    {
+      "page": "dar-alturath",
+      "file": "src/content/attractions/dar-alturath.md",
+      "file_sha256": "b3a9a39b62d3c15fc26cde04ead343c94a30bff2e2c4f9df8f825f2290a59047",
+      "order": 55,
+      "category": "museum",
+      "category_label": {
+        "en": "Museums",
+        "ar": "المتاحف"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Dar Al-Turath (Heritage House)",
+          "ar": "دار التراث",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "متحف خاص",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A house in the old Hasawi style amid Al-Mansurah's farms, holding rare heritage and historical pieces.",
+          "ar": "دار على الطراز الأحسائي القديم وسط مزارع المنصورة، تضم مقتنيات تراثية وتاريخية نادرة.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Amid the palm farms of Al-Mansurah, east of the oasis, stands Dar Al-Turath — the Heritage House — a private museum built in the old Hasawi architectural style. Its founder, Jafar Al-Khawaher, gathered its collection over more than twenty-five years from within Al-Ahsa and beyond, carrying on a family legacy of collecting heritage, and the house was inaugurated in its developed form in May 2017. Its holdings include rare heritage and historical pieces: manuscripts, coins, old photographs, cooking vessels and coffee pots, and weapons — swords and military helmets some of which go back more than three hundred years — along with fossilised animals. The building itself, in the old local style amid the greenery, is part of the exhibit.",
+          "ar": "وسط مزارع النخيل في بلدة المنصورة شرقي الواحة تقوم دار التراث، متحف خاص\nبُني على **الطراز المعماري الأحسائي القديم**. جمع مؤسسه **جعفر الخواهر**\nمقتنياته على مدى أكثر من خمسة وعشرين عاماً من داخل الأحساء وخارجها،\nامتداداً لإرث عائلي في اقتناء التراث، ودُشنت الدار بحلّتها المطورة في\nمايو 2017م. تضم معروضاتها قطعاً تراثية وتاريخية نادرة: مخطوطات وعملات\nوصوراً قديمة وأواني طهي ودلال قهوة وأسلحة وسيوفاً وخوذاً عسكرية يعود\nبعضها لأكثر من ثلاثمائة عام،\nإلى جانب حيوانات متحجرة. والمبنى نفسه، بطرازه المحلي القديم وسط الخضرة،\nجزء من المعرض.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Mansurah — east of the oasis",
+          "ar": "بلدة المنصورة — شرق الواحة",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 4:00–10:30 pm",
+              "ar": "يومياً: 4:00 م - 10:30 م"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "SAR 20 per person",
+              "ar": "20 ريال للفرد"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.museum",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Дар ат-Турас",
+          "kicker": "Частный музей",
+          "summary": "Дом в старом стиле Аль-Ахсы среди садов Эль-Мансуры хранит редкие предметы наследия и исторические ценности.",
+          "body": "Дар ат-Турас (в переводе — Дом наследия) — частный музей среди пальмовых садов Эль-Мансуры, к востоку от оазиса. Дом построили в старом архитектурном стиле Аль-Ахсы. Основатель музея Джафар аль-Хавахир собирал коллекцию более двадцати пяти лет — и в самой Аль-Ахсе, и за её пределами; в его семье этим занимались и до него. В обновлённом виде дом открыли в мае 2017 года. В собрании — редкие предметы наследия и исторические ценности: рукописи, монеты, старые фотографии, посуда для готовки и кофейники, оружие, а также окаменелости животных. Среди оружия есть мечи и военные шлемы, некоторым из которых более 300 лет. Само здание, в старом местном стиле посреди зелени, тоже часть экспозиции.",
+          "area": "Эль-Мансура, к востоку от оазиса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Dar Al-Turath",
+          "kicker": "Privatmuseum",
+          "summary": "Ein Haus im alten Baustil Al-Ahsas zwischen den Farmen von Al-Mansurah: Es bewahrt seltene Objekte des Kulturerbes und historische Stücke.",
+          "body": "Zwischen den Palmenfarmen von Al-Mansurah, östlich der Oase, steht Dar Al-Turath (das Kulturerbe-Haus), ein Privatmuseum im alten Baustil Al-Ahsas. Sein Gründer Jafar Al-Khawaher trug die Sammlung über mehr als 25 Jahre zusammen, aus Al-Ahsa selbst wie von außerhalb, und setzte damit eine Familientradition fort, die dem Kulturerbe gilt. Im Mai 2017 wurde das Haus in seiner weiterentwickelten Form eingeweiht. Zu den Beständen zählen seltene Objekte des Kulturerbes und historische Stücke: Handschriften, Münzen, alte Fotografien, Kochgefäße und Kaffeekannen sowie Waffen, darunter Schwerter und Militärhelme, von denen einige mehr als 300 Jahre alt sind. Dazu kommen versteinerte Tiere. Das Gebäude selbst, im alten örtlichen Stil und mitten im Grün, gehört zur Ausstellung.",
+          "area": "Al-Mansurah – östlich der Oase",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "遗产之家",
+          "kicker": "私人博物馆",
+          "summary": "一座按哈萨旧式风格建造的宅院，坐落在曼苏拉的农田之间，收藏着珍稀的传统文物与历史器物。",
+          "body": "遗产之家（Dar Al-Turath）坐落在绿洲东部曼苏拉镇的椰枣园之间，是一座按哈萨旧式建筑风格建造的私人博物馆。创办人贾法尔·哈瓦希尔承袭家族收藏文物的传统，前后花了 25 年多的时间，从哈萨内外搜罗藏品。宅院经改造升级后，于 2017 年 5 月以新面貌揭幕。馆藏有各类珍稀的传统文物与历史器物：手稿、钱币、老照片、炊具和阿拉伯咖啡壶，还有刀剑、军用头盔等兵器，其中一些已有 300 多年历史；此外还有动物化石。这座掩映在绿荫中的本地旧式宅院，本身就是展览的一部分。",
+          "area": "曼苏拉镇——绿洲东部",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Mansurah",
+          "ar": "بلدة المنصورة",
+          "ru": "Эль-Мансура",
+          "de": "Al-Mansurah",
+          "zh": "曼苏拉镇",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Dar Al-Turath",
+          "ar": "دار التراث",
+          "ru": "Дар ат-Турас",
+          "de": "Dar Al-Turath (das Kulturerbe-Haus)",
+          "zh": "遗产之家",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hasawi",
+          "ar": null,
+          "ru": null,
+          "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+          "zh": "哈萨 + الاسم مباشرة",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Jafar Al-Khawaher",
+          "ar": "جعفر الخواهر",
+          "ru": "Джафар аль-Хавахир",
+          "de": "Jafar Al-Khawaher",
+          "zh": "贾法尔·哈瓦希尔",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P7 (ruled): currency — the amount, then the full currency name at the first mention in each field (termbase _meta.style_rules.currency), never the code SAR",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 537 characters, 2 bold phrase(s), 0 link(s); English 4 sentence(s), 740 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    }
+  ]
+}
