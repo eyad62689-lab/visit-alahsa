@@ -1,0 +1,322 @@
+{
+  "stage": "04-benchmarker",
+  "batch": "b13-ui",
+  "strings": {
+    "list2.title": "بازار، پارک اور زرعی فارم",
+    "nav.leisure": "بازار، پارک اور زرعی فارم",
+    "list2.eyebrow": "سیاحتی معلومات",
+    "CATEGORY_LABELS.parks": "پارک اور باغات",
+    "list.eyebrow": "سیاحتی معلومات",
+    "crumb.leisure": "بازار اور پارک",
+    "det.allLeisure": "تمام بازار اور پارک ←",
+    "det.unescoNo": "یونیسکو کے عالمی ورثے کا حصہ نمبر {n}"
+  },
+  "changed_sentences": [],
+  "facts_removed": [],
+  "facts_restored": [],
+  "fence_checked_and_kept": [
+    {
+      "field": "list2.title",
+      "phrase": "بازار، پارک اور زرعی فارم",
+      "why_it_is_in_the_source": "EN 'Souqs, Parks & Farms', AR «الأسواق والمنتزهات والمزارع». approved_today with the one change the owner's decision of 2026-10-15 requires («تفریح گاہیں» → «پارک», direct plural). «زرعی فارم» is N5's label form for the unqualified list item (N185 guard). Byte-identical to nav.leisure (b12 rule)."
+    },
+    {
+      "field": "nav.leisure",
+      "phrase": "بازار، پارک اور زرعی فارم",
+      "why_it_is_in_the_source": "Same English and Arabic as list2.title; same single change; identical string. Shorter than approved_today by one word; the header measurement after stage 5 is the coordinator's."
+    },
+    {
+      "field": "list2.eyebrow",
+      "phrase": "سیاحتی معلومات",
+      "why_it_is_in_the_source": "EN 'Visit guide', AR «دليل الزيارة». One of the owner's two candidates (N190 amended); it names the section's content, not a person. 'Information' for 'guide' changes the word, not a fact (no fact, number or claim enters). Raised as N191."
+    },
+    {
+      "field": "CATEGORY_LABELS.parks",
+      "phrase": "پارک اور باغات",
+      "why_it_is_in_the_source": "EN 'Parks & gardens', AR «المتنزّهات والحدائق». The decision's one change; the gardens stay «باغات». Also the JSON-LD touristType of park pages (never seen by the blind reader: stage 5 and the judge are its only check)."
+    },
+    {
+      "field": "list.eyebrow",
+      "phrase": "سیاحتی معلومات",
+      "why_it_is_in_the_source": "Same English and Arabic as list2.eyebrow; byte-identical as N190 requires."
+    },
+    {
+      "field": "crumb.leisure",
+      "phrase": "بازار اور پارک",
+      "why_it_is_in_the_source": "EN 'Souqs & parks', AR «الأسواق والمنتزهات». N96's frame (the menu's nouns, farms left out as in the five other languages) with the decision's one change. Raised as N192 (the plural that looks singular)."
+    },
+    {
+      "field": "det.allLeisure",
+      "phrase": "تمام بازار اور پارک ←",
+      "why_it_is_in_the_source": "EN 'All souqs & parks →', AR «← كل الأسواق والمنتزهات». N97's frame with the decision's one change; arrow U+2190 after one space, as approved_today."
+    },
+    {
+      "field": "det.unescoNo",
+      "phrase": "یونیسکو کے عالمی ورثے کا حصہ نمبر",
+      "why_it_is_in_the_source": "EN 'UNESCO World Heritage component no. {n}', AR «المكوّن رقم {n} في موقع اليونسكو للتراث العالمي». The approved det.unesco «یونیسکو کے عالمی ورثے کا حصہ» byte for byte (N2), then «نمبر» for 'no.'/«رقم». The word 'site' («موقع») is not rendered, as N16 (1) rules and det.unesco already does: no fact leaves (the listed property is the same). Nothing added: no year, no oasis name (stage 3 rightly refused both). Raised as N193 (the loan «نمبر») and N194 (the frame)."
+    }
+  ],
+  "open_items": [
+    {
+      "id": "N191",
+      "candidates": [
+        "A (in the text): «سیاحتی معلومات» in list.eyebrow and list2.eyebrow",
+        "B (the owner's other candidate): «سیر کی رہنمائی»",
+        "C (stage 1's third form, not written): «سیاحتی رہنمائی»"
+      ],
+      "evidence": "ur.wikipedia exact phrases (API, HTTP 200, 2026-10-15, b13-ui/s45-web.json): «سیاحتی معلومات» 5 pages, used as the label of an information source (تسکانہ «سیاحتی معلومات کی ویب گاہ», کنین, سولین «انگریزی میں سیاحتی معلومات کے ساتھ», a company's 'multilingual tourist information kiosks'); «سیر کی رہنمائی» 0; «سیاحتی رہنمائی» 0; «سیاحتی رہنما» 5, every hit a PERSON or 'in the form of a guide' (نزاکت احمد علی شاہ «… تاجر اور سیاحتی رہنما ہے», «نوئیڈا کا ایک سیاحتی رہنما مثبت پایا گیا») — the readers' reading of the old eyebrow confirmed by usage. Dictionaries (entry pages, HTTP 200): rekhtadictionary.com/meaning-of-maaluumaat «مَعْلُومات — Noun, Masculine, Plural — knowledge, information»; udb.gov.pk result page for «معلومات»: «مَعلُومات — ۱۔ واقفیت … ۲۔ جانے ہوئے امور ، علم ، آگاہی ، اطلاعات ، خبریں»; rekhtadictionary.com/meaning-of-rahnumaaii «رَہْنُمائی — Noun, Feminine — guidance, leadership» (an act, not a person, but the same stem the readers took for a person, and its second sense is 'leadership'). COST of A, raised and not acted against: (1) 'information' is flatter than 'guide' (AR «دليل»); (2) on the attractions index the eyebrow stands over the h1 «الاحساء کے سیاحتی مقامات», so «سیاحتی» is read twice in two lines — the same repetition the approved «سیاحتی رہنما» had, not new. The two eyebrows stay byte-identical whichever form is ruled (N190 amended).",
+      "strings_affected": [
+        "list.eyebrow",
+        "list2.eyebrow"
+      ],
+      "recommendation": "A: attested as a section label, cannot be read as a person, keeps the approved adjective. C is the fallback if the blind reader finds A flat (it says 'guidance', but is unattested and shares the stem); B is a phrase rather than a label and is unattested."
+    },
+    {
+      "id": "N192",
+      "candidates": [
+        "A (in the text): crumb.leisure «بازار اور پارک», det.allLeisure «تمام بازار اور پارک ←»",
+        "B (not recommended): the crumb names the whole section as the menu does, «بازار، پارک اور زرعی فارم» (departs from N96, from the English 'Souqs & parks' and from the five other languages)"
+      ],
+      "evidence": "The direct plural of «پارک» equals the singular (decision; like «فارم», N5), so the crumb alone may be read 'souqs and a park'. The same is already true of «بازار» in the approved crumb «بازار اور تفریح گاہیں»: a masculine noun ending in a consonant has no distinct direct plural in Urdu, and context gives the number. Attestation of the bare phrase read as a plural: ur.wikipedia (HTTP 200) «بازار اور پارک» 1 page, «تبریز بازار»: «… شمس تبریزی بازار اور پارک تعمیر کیے» (plural verb); «پارک اور باغات» 448 pages incl. the list «لاہور کے پارک اور باغات کی فہرست»; oblique «پارکوں» 368. Press usage (urdunews.com/tags/پارک, HTTP 200): «120 پارکوں کی تزئین و آرائش», «پارکوں اور تفریحی مقامات کا رخ» — and also «سرسبز پارکس» / «300 سے زائد پارکس»: the press writes the English plural, which the owner's decision bars («پارکس» never); recorded for search only. On the same page the menu label above the crumb and «تمام» on the back link carry the plural.",
+      "strings_affected": [
+        "crumb.leisure",
+        "det.allLeisure"
+      ],
+      "recommendation": "A. The cost is real but is the decision's, already borne by «بازار» in the approved crumb; the blind reader is the test. «پارکس» is not a candidate (owner's decision)."
+    },
+    {
+      "id": "N193",
+      "candidates": [
+        "A (in the text): the loan «نمبر» — «… کا حصہ نمبر {n}» — entered in the termbase citing P16 (proposal in termbase_updates, pending)",
+        "B: the native «شمارہ» — «… کا حصہ، شمارہ {n}»",
+        "C: no counting word — «یونیسکو کے عالمی ورثے کا حصہ {n}»"
+      ],
+      "evidence": "«نمبر» is an English loan in Urdu letters with no termbase entry and no occurrence in the approved ur block of ui.ts or in the approved attraction pages (b13-ui/s45-style.mjs, grep): checklist item 9 of stage 5 and P16 require an entry. P16-test: (1) the native words are not what an item's number is called — udb.gov.pk result page for «نمبر» (HTTP 200) has the headword «نَمبَر — ۔ نشان ، لمبر ؛ ہندسہ ، عدد ؛ تعداد ، گنتی | ۲۔ (i) باری ، نوبت (ii) ترتیب» with a family of Urdu idioms («نَمبَر ایک — پہلا نمبر», «نَمبَر آنا», «نَمبَر اَندازی — نمبر ڈالنا ، عدد لکھنا ، درجہ بندی کرنا»); Rekhta's result page for «نمبر» (HTTP 200) lists «number se — ازروئے ترتیب», «number-plate», «number denaa — mark with a number or assign a number to», and «number-shumaar — گنتی میں ترتیب کا عدد … سیریل نمبر»; rekhtadictionary.com/meaning-of-shumaara (HTTP 200): «شُمارَہ — Noun, Masculine — enumeration, issue (of a periodical), number (of a magazine)», i.e. B would read as a magazine issue; ur.wikipedia exact «نمبر» 65,703 pages (HTTP 200: «ٹیلی فون نمبر», «گاڑی نمبر پلیٹ», «کنٹرول نمبر»). (2) No reader has met either form yet: condition (2) is unmet, so the entry is proposed PENDING, the admission the judge's to rule after the blind read. (3) udb.gov.pk headword (above). C drops the source's 'no.' (EN) / «رقم» (AR): the code would hang after «حصہ» with nothing to say it is a number. Gender (for the entry): masculine by agreement in the dictionary examples («پہلا نمبر», «دوسرے نمبر پر»); not exercised in this string.",
+      "strings_affected": [
+        "det.unescoNo"
+      ],
+      "recommendation": "A, with the termbase entry «نمبر» (pending) citing P16 and this evidence; the judge rules the admission on the blind read. B misleads (a periodical's issue); C loses the source's 'no.'."
+    },
+    {
+      "id": "N194",
+      "candidates": [
+        "A (in the text): «یونیسکو کے عالمی ورثے کا حصہ نمبر {n}»",
+        "B: «یونیسکو کے عالمی ورثے کا جزو نمبر {n}»",
+        "C (the Arabic's «في»): «یونیسکو کے عالمی ورثے میں حصہ نمبر {n}»",
+        "D: «یونیسکو کے عالمی ورثے کا حصہ، نمبر {n}»"
+      ],
+      "evidence": "'component' as «حصہ» is what the approved texts say: det.unesco «یونیسکو کے عالمی ورثے کا حصہ» (live, read by the readers of b1/b2 without remark on the term) and N16 (2) «اس کے بارہ حصوں میں سے ایک». rekhtadictionary.com/meaning-of-hissa (HTTP 200): «حِصَّہ — Noun, Masculine — part, portion, division, share, segment, chapter of book» (masculine: «کا» agrees). rekhtadictionary.com/meaning-of-juzv (HTTP 200, result list): «juzv — part, ingredient, a part of a book consisting of eight leaves, portion» — more formal, and B would part from det.unesco. ur.wikipedia (HTTP 200): «حصہ نمبر» 1 page (a military unit: «حصہ نمبر 13 سکواڈرن»), «جزو نمبر» 0, «عالمی ورثے کا حصہ» 1 («یونیسکو نے اسے عالمی ورثے کا حصہ قرار دیا»), «عالمی ورثے میں شامل» 5. C: «… میں حصہ» leans towards «حصہ لینا» 'taking part' (stage 2's note). D splits the badge into a claim and a bare number, against the owner's 'the number WITH a short explanation'. Cost of A: «حصہ» also means 'share'; with «نمبر» and a code after it, the 'part no.' reading is the natural one.",
+      "strings_affected": [
+        "det.unescoNo"
+      ],
+      "recommendation": "A: the approved phrase byte for byte plus the number; nothing re-derived."
+    },
+    {
+      "id": "N195",
+      "candidates": [
+        "A: apply b13-ui on its own; the park pages keep «تفریح گاہ» in their titles, bodies and cards until b14/b15 land",
+        "B: hold the apply of the park strings of b13-ui (nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks) until b14/b15 are ready, and release them together"
+      ],
+      "evidence": "A cost of the owner's decision, raised and not acted against. On a park page between the two releases the reader meets both nouns in one view: the category eyebrow «پارک اور باغات» directly over the title «الاحساء کی قومی تفریح گاہ», the crumb «بازار اور پارک» before it, the menu «بازار، پارک اور زرعی فارم» above it (pack page detail-park; the page text is still the old one, DECISIONS «Batch b13-ui»). Nothing is wrong in either string; the two words name one thing. The blind read of this batch will see the mix and should not be charged for it as a defect of the interface.",
+      "strings_affected": [
+        "nav.leisure",
+        "list2.title",
+        "crumb.leisure",
+        "det.allLeisure",
+        "CATEGORY_LABELS.parks"
+      ],
+      "recommendation": "A, with the interval kept short (the coordinator's sequencing). B only if b14/b15 are close enough that one release costs nothing; the eyebrow and the UNESCO badge do not depend on it either way."
+    },
+    {
+      "id": "N196",
+      "candidates": [
+        "A (engineering, for the coordinator; no string changes): the template isolates the code as left-to-right on RTL pages, e.g. DetailView renders {n} inside <bdi dir=\"ltr\">…</bdi> (or a span with dir=\"ltr\") — for ur and ar alike",
+        "B (refused for a ui string): the Urdu value carries U+2066 … U+2069 round {n}",
+        "C: leave it as it renders"
+      ],
+      "evidence": "Rendered in headless Chrome (b13-ui/s45-bidi.html, result s45-bidi.txt, measured with Range rects): in an RTL Urdu line the code 1563-004 after «نمبر» is SHOWN as 004-1563 left to right (case 1); the same holds for the badge live today on /ur/ («… کا حصہ · 1563-004», case 2) and on /ar/ («المكوّن رقم 1563-004 في …», case 3); with an LTR isolate round the code it shows 1563-004 (case 4). The reason is the bidi algorithm: after Arabic-script letters (AL) the digits become Arabic numbers (W2), and the hyphen-minus (ES) between two Arabic numbers is not absorbed (W4 joins only a CS between them), so it resolves to R and the two digit groups swap visually. Stage 3's note («the hyphen … stays inside the number by bidi rule W4») holds for Hebrew-script context, not for Arabic script: corrected here. An RTL reader reading right to left still meets 1563 first, but the code no longer looks like the one on the UNESCO page the badge links to. Not introduced by this batch (the old badge and the Arabic do it today). B puts invisible controls into a translation string (stage 5 scans for bidi marks; the placeholder rule keeps {n} untouched).",
+      "strings_affected": [
+        "det.unescoNo"
+      ],
+      "recommendation": "A, as an engineering step outside the translation (for ar too); the Urdu string stays as it is. Until then C is what renders, and it is the same as the Arabic page."
+    }
+  ],
+  "untouched_items": [
+    {
+      "id": "P4",
+      "why": "No string of the batch carries an unconfirmed value or a 'pending confirmation' form."
+    },
+    {
+      "id": "BRAND",
+      "why": "No string of the batch carries the brand; site.brand stays out of the pack and the Latin wordmark renders as before."
+    }
+  ],
+  "termbase_updates": [
+    {
+      "key": "پارک",
+      "ar": "منتزه",
+      "en": "park",
+      "gender": "مذکر",
+      "plural": "پارک",
+      "kind": "generic",
+      "gloss": null,
+      "source": "owner's decision 2026-10-15 (DECISIONS «Batch b13-ui»: N119 reversed; the loan «پارک» for 'park' everywhere in /ur/). Gender by usage: ur.wikipedia exact phrases, masculine agreeing forms 34 hits, feminine 0 (coord/r4-b13-park-gender-wiki.json, HTTP 200, 2026-10-15); rekhta entries carry no gender label; udb.gov.pk attests «پارْک» in this sense (Urdu Lughat defines it through «تفریح گاہ», quoted in that entry). Bare direct plural and oblique attested: ur.wikipedia «لاہور کے پارک اور باغات کی فہرست», «لاڑکانہ کے پارکوں اور باغات» (HTTP 200, 2026-10-15, b13-ui/s1-wiki-count.json). ‖ STAGE 4 (2026-10-15, HTTP 200, b13-ui/s45-web.json, s45-web3.json): ur.wikipedia exact «پارک اور باغات» 448 pages, «پارکوں» 368, «بازار اور پارک» 1 («… بازار اور پارک تعمیر کیے», plural verb); rekhtadictionary.com/urdu-meaning-of-park (result page): 'park — baaG'; urdunews.com/tags/پارک (press usage only): «پارکوں کی تزئین و آرائش», «الجوف کے پارکوں اور میدانوں کا رخ», and the press variant «پارکس» («سرسبز پارکس», «300 سے زائد پارکس»).",
+      "status": "verified",
+      "note": "Replaces «تفریح گاہ» as the park generic (P16 overridden for this word by the owner; no stage reverts to «تفریح گاہ»; a reader's remark on the loan goes to the owner). Masculine; direct plural «پارک» (never «پارکس», as «فارم» never «فارمز», N5); oblique plural «پارکوں». A garden stays «باغ / باغات». In this batch: nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks; not exercised for gender here. The entry «تفریح گاہ» and the park title keys (N101's six, the national park of N119) are amended by stage 4 / the judge and the park-page batches (b14, b15), not here. ‖ STAGE 4: CONFIRMED as stage 1 entered it. PRESS VARIANT recorded for search and never written: «پارکس» (urdunews.com; barred by the owner's decision). The plural that looks singular in a two-noun label is raised as N192; the mixed nouns on park pages between b13-ui and b14/b15 as N195."
+    },
+    {
+      "key": "تفریح گاہ",
+      "ar": "منتزه",
+      "en": "park",
+      "gender": "مؤنث",
+      "plural": "تفریح گاہیں",
+      "kind": "generic",
+      "gloss": null,
+      "source": "rekhtadictionary.com/meaning-of-tafriih-gaah — entry page «تَفْرِیح گاہ — فارسی، عربی - اسم، مؤنث — سیر تماشے کی جگہ ، تفریح کا مقام» (read at stage 4, 2026-10-12); the interface batch's log: Urdu Lughat defines the loan itself through this word («پارْک — آبادی کے اندر یا اس سے متصل وہ تفریح گاہ …»)",
+      "status": "verified",
+      "note": "P16: the native word is written, not the loan; the interface batch uses the same word in its category label and navigation. It will carry the titles of the park pages of later rounds. Feminine, exercised: «تفریح گاہ … کھلی رہتی ہے», «ساتھ والی تفریح گاہ». Since b1 round 1: one wording for the park beside the mosque in its four leaves, «ساتھ والی تفریح گاہ» (the card label, one question and both answers), where the text had followed the English's 'adjacent' and 'beside'; the second reader passed it. b1 round 3: all three blind readers of b1 ask what kind of place is meant beside the mosque (a park, a garden, rides), and b2's third asks the same of the one beside its fort: the Arabic's word is as wide, and no body describes the place. Recorded for the round that writes a park page; the loan the readers have in mind would have to pass the loan test of ruling P16 there. ‖ STAGE 4 (b13-ui, 2026-10-15): OWNER DECIDED 2026-10-15 — N119 reversed: «پارک» (its own entry) replaces this word as the PARK generic everywhere in /ur/. From b13-ui the interface no longer writes «تفریح گاہ» (nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks). The park pages (titles, bodies, cards, the N101 title keys, «ساتھ والی تفریح گاہ» on jawatha-mosque) still carry it until b14/b15 change them; whether this entry then stays for another sense (the resort of N69, «سیاحتی تفریح گاہ») or is retired is for those batches' judges. Not to be written for a park in new text."
+    },
+    {
+      "key": "نمبر",
+      "ar": "رقم",
+      "en": "number (no.)",
+      "gender": "مذکر",
+      "plural": "نمبر",
+      "kind": "generic",
+      "gloss": null,
+      "source": "udb.gov.pk/result.php?search=نمبر (HTTP 200, 2026-10-15): headword «نَمبَر — ۔ نشان ، لمبر ؛ ہندسہ ، عدد ؛ تعداد ، گنتی | ۲۔ (i) باری ، نوبت (ii) ترتیب», with «نَمبَر ایک — پہلا نمبر» and «نَمبَر اَندازی — نمبر ڈالنا ، عدد لکھنا ، درجہ بندی کرنا»; rekhtadictionary.com/urdu-meaning-of-number and /search?keyword=نمبر (HTTP 200, result lists): «number two — قیادت میں دوسرے نمبر پر», «number-shumaar — گنتی میں ترتیب کا عدد … سیریل نمبر», «number denaa — mark with a number or assign a number to»; ur.wikipedia exact «نمبر» 65,703 pages (HTTP 200: «ٹیلی فون نمبر», «گاڑی نمبر پلیٹ»); the native «شمارہ» is 'issue (of a periodical)' (rekhtadictionary.com/meaning-of-shumaara, HTTP 200).",
+      "status": "pending",
+      "note": "P16: an English loan proposed for admission on the test of P16-test, raised as N193 — (1) the native words («عدد», «شمارہ») are not what an item's number is called (udb headword and idioms; «شمارہ» reads as a magazine issue); (2) not yet met: no reader has read the badge; the judge rules after the blind read; (3) udb.gov.pk headword. Masculine by agreement in the dictionary examples («پہلا نمبر», «دوسرے نمبر پر»); not exercised in this batch. Plural «نمبر», oblique «نمبروں». Used in det.unescoNo «یونیسکو کے عالمی ورثے کا حصہ نمبر {n}» only."
+    }
+  ],
+  "verification_log": [
+    {
+      "claim": "«سیاحتی معلومات» is used on ur.wikipedia as the label of a tourist-information source.",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=5&srwhat=text&srsearch=%22%D8%B3%DB%8C%D8%A7%D8%AD%D8%AA%DB%8C%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%22",
+      "verbatim": "HTTP 200, totalhits 5 (تسکانہ, یاگاماتا پریفیکچر, کنین, سولین, نبیلا خشوگی): «تسکانہ۔ سیاحتی معلومات کی ویب گاہ»; «کثیر لسانی سیاحتی معلومات کے کیوسک»",
+      "obtained": true
+    },
+    {
+      "claim": "«سیر کی رہنمائی» and «سیاحتی رہنمائی» are unattested on ur.wikipedia.",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=5&srwhat=text&srsearch=%22%D8%B3%DB%8C%D8%B1%20%DA%A9%DB%8C%20%D8%B1%DB%81%D9%86%D9%85%D8%A7%D8%A6%DB%8C%22",
+      "verbatim": "HTTP 200, totalhits 0 (and HTTP 200, totalhits 0 for «سیاحتی رہنمائی», same query form)",
+      "obtained": true
+    },
+    {
+      "claim": "«سیاحتی رہنما» on ur.wikipedia names a person (the b12 readers' reading).",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=5&srwhat=text&srsearch=%22%D8%B3%DB%8C%D8%A7%D8%AD%D8%AA%DB%8C%20%D8%B1%DB%81%D9%86%D9%85%D8%A7%22",
+      "verbatim": "HTTP 200, totalhits 5: «نزاکت احمد علی شاہ ، ایک کشمیری تاجر اور سیاحتی رہنما ہے»; «نوئیڈا کا ایک سیاحتی رہنما مثبت پایا گیا»",
+      "obtained": true
+    },
+    {
+      "claim": "«معلومات» is a masculine plural noun meaning knowledge, information.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-maaluumaat",
+      "verbatim": "مَعْلُومات — Origin: Arabic — Noun, Masculine, Plural — knowledge, information, search, research, inquiry",
+      "obtained": true
+    },
+    {
+      "claim": "Urdu Lughat glosses «معلومات» as known matters, knowledge, information.",
+      "url": "https://udb.gov.pk/result.php?search=%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA",
+      "verbatim": "مَعلُومات — ۱۔ واقفیت ، تجربہ ، علمی لیاقت ۔ ۲۔ جانے ہوئے امور ، علم ، آگاہی ، اطلاعات ، خبریں",
+      "obtained": true
+    },
+    {
+      "claim": "«رہنمائی» is a feminine noun, 'guidance, leadership' (an act, not a person).",
+      "url": "https://www.rekhtadictionary.com/meaning-of-rahnumaaii",
+      "verbatim": "رَہْنُمائی — Origin: Persian — Noun, Feminine — guidance, leadership",
+      "obtained": true
+    },
+    {
+      "claim": "The bare direct plural «پارک» stands beside «باغات» and in «بازار اور پارک» with a plural reading; the oblique «پارکوں» is common.",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=5&srwhat=text&srsearch=%22%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1%20%D8%A7%D9%88%D8%B1%20%D9%BE%D8%A7%D8%B1%DA%A9%22",
+      "verbatim": "HTTP 200, totalhits 1 (تبریز بازار): «… شمس تبریزی بازار اور پارک تعمیر کیے»; same query form: «پارک اور باغات» 448 (لاہور کے پارک اور باغات کی فہرست), «پارکوں» 368 («الماتی میں پارکوں کی کثرت ہے»)",
+      "obtained": true
+    },
+    {
+      "claim": "Press usage of «پارک» in Urdu News: oblique «پارکوں», and the English plural «پارکس» (not to be written).",
+      "url": "https://www.urdunews.com/tags/%D9%BE%D8%A7%D8%B1%DA%A9",
+      "verbatim": "HTTP 200: «الباحہ عید الفطر کے استقبال کے لیے تیار، 120 پارکوں کی تزئین و آرائش»; «سرسبز پارکس، باغات اور واک ویز»; «مکہ میں 300 سے زائد پارکس سیاحت کے فروغ کےلیے اہم»",
+      "obtained": true
+    },
+    {
+      "claim": "Rekhta's English-Urdu result for 'park' gives «باغ»; no Urdu headword page for «پارک» (meaning-of-paark redirects to the home page).",
+      "url": "https://www.rekhtadictionary.com/urdu-meaning-of-park",
+      "verbatim": "HTTP 200: 'Showing results for \"park\" — park baaG — park karnaa موٹر کو موٹروں کے چوک یا میدان میں کھڑا کرنا'; meaning-of-paark: HTTP 200 but final URL https://www.rekhtadictionary.com/ (no entry)",
+      "obtained": true
+    },
+    {
+      "claim": "«نمبر» is a headword of Urdu Lughat, glossed sign, numeral, count; turn; order.",
+      "url": "https://udb.gov.pk/result.php?search=%D9%86%D9%85%D8%A8%D8%B1",
+      "verbatim": "تقرباََ ۴۹ نتائج — نَمبَر — ۔ نشان ، لمبر ؛ ہندسہ ، عدد ؛ تعداد ، گنتی | ۲۔ (i) باری ، نوبت | (ii) ترتیب | Number — نَمبَر اَندازی — نمبر ڈالنا ، عدد لکھنا ، درجہ بندی کرنا — نَمبَر ایک — پہلا نمبر ، اوّلین درجہ یا حیثیت",
+      "obtained": true
+    },
+    {
+      "claim": "Rekhta lists Urdu compounds and idioms of «نمبر» (no headword page reached: meaning-of-nambar, -numbar, -nanbar redirect to the home page).",
+      "url": "https://www.rekhtadictionary.com/search?keyword=%D9%86%D9%85%D8%A8%D8%B1",
+      "verbatim": "HTTP 200: 'Showing results for \"نمبر\"' — number se: ازروئے ترتیب ، ترتیب وار — number-plate — number denaa: mark with a number or assign a number to; urdu-meaning-of-number: number two: قیادت میں دوسرے نمبر پر — number-shumaar: گنتی میں ترتیب کا عدد ، گنتی کا عدد ، سیریل نمبر",
+      "obtained": true
+    },
+    {
+      "claim": "The native «شمارہ» means enumeration or the issue of a periodical.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-shumaara",
+      "verbatim": "شُمارَہ — Origin: Persian — Noun, Masculine — enumeration, issue (of a periodical), number (of a magazine)",
+      "obtained": true
+    },
+    {
+      "claim": "«نمبر» is in very wide reference use on ur.wikipedia.",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=5&srwhat=text&srsearch=%22%D9%86%D9%85%D8%A8%D8%B1%22",
+      "verbatim": "HTTP 200, totalhits 65703: ٹیلی فون نمبرنگ پلان, گاڑی نمبر پلیٹ, کتب خانہ کانگریس کنٹرول نمبر",
+      "obtained": true
+    },
+    {
+      "claim": "«حصہ» is a masculine noun, 'part, portion, division'.",
+      "url": "https://www.rekhtadictionary.com/meaning-of-hissa",
+      "verbatim": "حِصَّہ — Origin: Arabic — Noun, Masculine — part, portion, division, share, segment, chapter of book",
+      "obtained": true
+    },
+    {
+      "claim": "«جزو» is 'part, ingredient, a part of a book' (the formal alternative).",
+      "url": "https://www.rekhtadictionary.com/meaning-of-juzv",
+      "verbatim": "HTTP 200 (result list): juzv — part, ingredient, a part of a book consisting of eight leaves, portion",
+      "obtained": true
+    },
+    {
+      "claim": "Counts of the badge frames on ur.wikipedia.",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=5&srwhat=text&srsearch=%22%D8%AD%D8%B5%DB%81%20%D9%86%D9%85%D8%A8%D8%B1%22",
+      "verbatim": "HTTP 200: «حصہ نمبر» 1 («حصہ نمبر 13 سکواڈرن»); same query form: «جزو نمبر» 0; «عالمی ورثے کا حصہ» 1 («1985 میں یونیسکو نے اسے عالمی ورثے کا حصہ قرار دیا»); «عالمی ورثے میں شامل» 5",
+      "obtained": true
+    },
+    {
+      "claim": "In an RTL Urdu or Arabic line the component code 1563-004 is displayed as 004-1563 unless isolated as LTR.",
+      "url": "file:///C:/Users/truyr/node-store/va-scratch/ur-r1/b13-ui/s45-bidi.html",
+      "verbatim": "headless Chrome (--dump-dom), Range rects: case 1 (Urdu badge with «نمبر») left(1563)=506 left(004)=476 SHOWN AS 004-1563; case 2 (live Urdu badge «… · 1563-004») same; case 3 (live Arabic «المكوّن رقم 1563-004 في …») same; case 4 (LRI/PDI round the code) left(1563)=476 left(004)=514 reads 1563-004",
+      "obtained": true
+    }
+  ],
+  "notes": [
+    {
+      "item": "batch",
+      "text": "No change to any string. Fence: stage 3 added nothing (facts_added empty) and changed nothing; each string was diffed against its English and Arabic and against approved_today: the seven reopened strings differ from approved_today only by the owner's decisions (the park noun; the eyebrow), and det.unescoNo carries nothing the source does not (the word 'site' not rendered by N16 (1), as det.unesco). Nothing removed or restored."
+    },
+    {
+      "item": "batch",
+      "text": "Bound by DECISIONS «Batch b13-ui» and kept: «پارک» not reverted, never «پارکس»; the two eyebrows byte-identical; nav.leisure = list2.title; gardens «باغات»; {n} once, untouched, in det.unescoNo. Every cost of a decision is raised (N191 eyebrow, N192 the plural, N195 the interval before b14/b15), none acted against."
+    },
+    {
+      "item": "batch",
+      "text": "Translation smell: eight labels with no verb, participle, «موجود ہے» chain, calqued postposition or article-demonstrative. Names and terms checked against the termbase: «یونیسکو», «عالمی ورثہ» (oblique «عالمی ورثے», N2), «باغ» (plural «باغات» as N5 writes it), «فارم» (N5/N185: «زرعی» before the unqualified list item), «بازار» (plain generic). New: «پارک» (stage 1's entry, confirmed) and «نمبر» (proposed, pending, N193). Letterform spot check of the eight strings: no U+064A, U+0643, U+0629, U+0647 (the exhaustive scan is stage 5's)."
+    },
+    {
+      "item": "det.unescoNo",
+      "text": "CORRECTION of stage 3's note (inferred there, measured here): the hyphen of the code does NOT stay inside the number in an Urdu line; after Arabic-script letters the code renders as 004-1563 (s45-bidi.txt). It is the same today for the live Urdu and Arabic badges. Raised as N196 for an engineering fix in the template (both RTL languages); the string is not touched. The code itself (a.unesco, e.g. qasr-ibrahim 1563-004) is the page's data, not the string's."
+    },
+    {
+      "item": "list2.title",
+      "text": "Also the tab, og and twitter title and the JSON-LD name of the leisure index (with the brand after it); CATEGORY_LABELS.parks is also the JSON-LD touristType of park pages. Neither JSON-LD value is seen by the blind reader: the proofreader and the judge are their only check (DECISIONS, structured-data names)."
+    },
+    {
+      "item": "batch",
+      "text": "Not verified: no Urdu headword page for «پارک» or «نمبر» on rekhtadictionary.com (the meaning-of pages tried redirect to the home page; only result lists were reached); udb.gov.pk for «پارک» was not fetched at this stage (the coordinator's capture coord/r4-b13-udb-park.txt is cited, not re-read). Inferred, not measured: that a reader takes «بازار اور پارک» as plural from the menu and «تمام» (N192) — the blind read is the test."
+    }
+  ]
+}

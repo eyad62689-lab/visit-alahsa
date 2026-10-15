@@ -1,0 +1,574 @@
+{
+  "stage": "final",
+  "batch": "b13-ui",
+  "built_from": {
+    "tool": "tools/mk-final.mjs",
+    "built": "2026-10-15T06:11:37.907Z",
+    "judge_file": "07-judge.round2.json",
+    "judge_sha256": "8de57ad93a8b0b6dc9b13b257fb3aee3ed6f1b5158ac8075d2c444f91e3a4c1d",
+    "pack_sha256": "2eb5faeea3923632ec6f02dfef7a820b2512fb9e9826122c53c2a49ae50bad14",
+    "owner_overrides_sha256": null,
+    "termbase_sha256_at_build": "11cecd18365d01088d9fb5aaa9e4444832bd38ee5f970e8108c35e655ce8ab93"
+  },
+  "judge": {
+    "rounds": [
+      {
+        "round": 1,
+        "batch_score": 94,
+        "decision": "APPROVE",
+        "scores": {
+          "ui": 94
+        }
+      },
+      {
+        "round": 2,
+        "batch_score": 93,
+        "decision": "APPROVE",
+        "scores": {
+          "ui": 93
+        }
+      }
+    ],
+    "decision": "APPROVE",
+    "batch_score": 93
+  },
+  "score": 93,
+  "breakdown": {
+    "accuracy": {
+      "points": 27,
+      "max": 30,
+      "why": "Unchanged text: the eight strings carry every fact of both sources and add none. Three points off, each a cost on record: (1) «سیاحتی معلومات» says 'information' where the source says 'guide' / «دليل» (N191); (2) the badge does not render the Arabic's «موقع» ('site', which the Arabic of det.unescoNo carries and its English does not; N16 (1)); (3) «زرعی فارم» says 'agricultural' where the source says 'farms' (N5's qualifier)."
+    },
+    "nativeness": {
+      "points": 27,
+      "max": 30,
+      "why": "Two readers have now read the strings in place; neither stumbled on grammar, on the loan «پارک» or its bare plural, or on «نمبر», and neither read the eyebrow as a person. Three points off. Two for the eyebrow: both readers read «سیاحتی معلومات» as the label of an information section or desk (on-05 item 5 minor, on-r1 item 2 moderate), and the site's own practical-information heading det.visitInfo is the near-twin «سیاحوں کے لیے معلومات» on the same detail pages (proof item 5), so the reading is a misleading one, not merely flat. One for the badge: both readers stopped at «… کا حصہ نمبر» + code ('part of what', 'part number', the code as a year: on-05 item 41, on-r1 item 41, both moderate); most of it is the source's explanation naming no property and the owner's choice to show the code (logged), but the Urdu frame contributes. The loan «پارک» is the owner's decision and is not charged."
+    },
+    "compliance": {
+      "points": 20,
+      "max": 20,
+      "why": "Urdu letterforms only (proof on r1, checklist 1: no hit in any string); «،» only, no final stop on a label; «یونیسکو» byte for byte its key, «عالمی ورثے» the oblique N2 records; «باغات» and «زرعی فارم» as N5 writes them; «پارک» direct plural «پارک», never «پارکس»; «نمبر» admitted on P16 with its entry (N193, ground corrected this round); the two eyebrows byte-identical; list2.title = nav.leisure; {n} once."
+    },
+    "fit": {
+      "points": 9,
+      "max": 10,
+      "why": "The menu label, the parks group and the badge (code now in UNESCO's order, N196) serve a traveller. One point off: the eyebrow sends a reader to think he is in an information section (two readers). The section's three names (on-05 item 33, on-r1 item 9), the badge's code read as a year and its unnamed property (item 41 twice), and the collapsed groups' bare counts (on-r1 item 11) are SOURCE or owner-decided matters, logged and not charged."
+    },
+    "structure": {
+      "points": 10,
+      "max": 10,
+      "why": "Exactly the pack's eight ids in pack order; {n} once; det.allLeisure ends in one space + U+2190; no bracket or final stop in a label. Structured data (never seen by a reader) checked: list2.title = h1 = nav.leisure in the tab/og/twitter title and JSON-LD name; CATEGORY_LABELS.parks = the JSON-LD touristType. Header measured on the reader's build: every cell of six languages passes; the Urdu bar stands from 1518px with an overlap of -50px (50px clear) (coord/r4-b13-header-fit.05.txt; the r1 text equals the 05 text)."
+    }
+  },
+  "strings": {
+    "list2.title": "بازار، پارک اور زرعی فارم",
+    "nav.leisure": "بازار، پارک اور زرعی فارم",
+    "list2.eyebrow": "سیاحتی معلومات",
+    "CATEGORY_LABELS.parks": "پارک اور باغات",
+    "list.eyebrow": "سیاحتی معلومات",
+    "crumb.leisure": "بازار اور پارک",
+    "det.allLeisure": "تمام بازار اور پارک ←",
+    "det.unescoNo": "یونیسکو کے عالمی ورثے کا حصہ نمبر {n}"
+  },
+  "owner_overrides": [],
+  "termbase_final": {
+    "پارک": {
+      "ar": "منتزه",
+      "en": "park",
+      "gender": "مذکر",
+      "plural": "پارک",
+      "kind": "generic",
+      "gloss": null,
+      "source": "owner's decision 2026-10-15 (DECISIONS «Batch b13-ui»: N119 reversed; the loan «پارک» for 'park' everywhere in /ur/). Gender by usage: ur.wikipedia exact phrases, masculine agreeing forms 34 hits, feminine 0 (coord/r4-b13-park-gender-wiki.json, HTTP 200, 2026-10-15); rekhta entries carry no gender label; udb.gov.pk attests «پارْک» in this sense (Urdu Lughat defines it through «تفریح گاہ», quoted in that entry). Bare direct plural and oblique attested: ur.wikipedia «لاہور کے پارک اور باغات کی فہرست», «لاڑکانہ کے پارکوں اور باغات» (HTTP 200, 2026-10-15, b13-ui/s1-wiki-count.json). ‖ STAGE 4 (2026-10-15, HTTP 200, b13-ui/s45-web.json, s45-web3.json): ur.wikipedia exact «پارک اور باغات» 448 pages, «پارکوں» 368, «بازار اور پارک» 1 («… بازار اور پارک تعمیر کیے», plural verb); rekhtadictionary.com/urdu-meaning-of-park (result page): 'park — baaG'; urdunews.com/tags/پارک (press usage only): «پارکوں کی تزئین و آرائش», «الجوف کے پارکوں اور میدانوں کا رخ», and the press variant «پارکس» («سرسبز پارکس», «300 سے زائد پارکس»). ‖ JUDGE ROUND 2 (b13-ui): the source spells the Arabic stem two ways, «المنتزهات» (nav.leisure, list2.title, crumb.leisure, det.allLeisure) and «المتنزّهات» (CATEGORY_LABELS.parks); both are standard.",
+      "status": "verified",
+      "note": "Replaces «تفریح گاہ» as the park generic (P16 overridden for this word by the owner; no stage reverts to «تفریح گاہ»; a reader's remark on the loan goes to the owner). Masculine; direct plural «پارک» (never «پارکس», as «فارم» never «فارمز», N5); oblique plural «پارکوں». A garden stays «باغ / باغات». In this batch: nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks; not exercised for gender here. The entry «تفریح گاہ» and the park title keys (N101's six, the national park of N119) are amended by stage 4 / the judge and the park-page batches (b14, b15), not here. ‖ STAGE 4: CONFIRMED as stage 1 entered it. PRESS VARIANT recorded for search and never written: «پارکس» (urdunews.com; barred by the owner's decision). The plural that looks singular in a two-noun label is raised as N192; the mixed nouns on park pages between b13-ui and b14/b15 as N195. ‖ STAGE 7 (b13-ui, round 1): CONFIRMED. Read in place in all five interface strings on four pages by the on-05 reader: no remark on the loan, and he did not take the direct plural for a singular (N192). Gender still not exercised in the interface; the park pages of b14/b15 exercise it. ‖ JUDGE ROUND 2 (b13-ui): the clause 'The entry «تفریح گاہ» … amended … not here' is superseded: «تفریح گاہ» is amended in this batch's termbase_final (withdrawn as the park word). Read in place by a second reader (on-r1) without a remark on the loan or its plural."
+    },
+    "تفریح گاہ": {
+      "ar": "منتزه",
+      "en": "park — WITHDRAWN as the park word since b13-ui (owner, 2026-10-15); the key stays for the approved park pages until b14/b15 and for the resort of N69",
+      "gender": "مؤنث",
+      "plural": "تفریح گاہیں",
+      "kind": "generic",
+      "gloss": null,
+      "source": "rekhtadictionary.com/meaning-of-tafriih-gaah — entry page «تَفْرِیح گاہ — فارسی، عربی - اسم، مؤنث — سیر تماشے کی جگہ ، تفریح کا مقام» (read at stage 4, 2026-10-12); the interface batch's log: Urdu Lughat defines the loan itself through this word («پارْک — آبادی کے اندر یا اس سے متصل وہ تفریح گاہ …»)",
+      "status": "verified",
+      "note": "STATUS (b13-ui, judge round 2): WITHDRAWN AS THE PARK WORD by the owner's decision of 2026-10-15 (N119 reversed); the park word is «پارک» (its entry). The key is NOT retired: the approved park pages carry it until b14/b15 reword them, and the resort of N69 («سیاحتی تفریح گاہ») is for the judge who meets it. Not to be written for a park in new text. The history below stands as a record. ‖ P16: the native word is written, not the loan; the interface batch uses the same word in its category label and navigation. It will carry the titles of the park pages of later rounds. Feminine, exercised: «تفریح گاہ … کھلی رہتی ہے», «ساتھ والی تفریح گاہ». Since b1 round 1: one wording for the park beside the mosque in its four leaves, «ساتھ والی تفریح گاہ» (the card label, one question and both answers), where the text had followed the English's 'adjacent' and 'beside'; the second reader passed it. b1 round 3: all three blind readers of b1 ask what kind of place is meant beside the mosque (a park, a garden, rides), and b2's third asks the same of the one beside its fort: the Arabic's word is as wide, and no body describes the place. Recorded for the round that writes a park page; the loan the readers have in mind would have to pass the loan test of ruling P16 there. ‖ STAGE 4 (b13-ui, 2026-10-15): OWNER DECIDED 2026-10-15 — N119 reversed: «پارک» (its own entry) replaces this word as the PARK generic everywhere in /ur/. From b13-ui the interface no longer writes «تفریح گاہ» (nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks). The park pages (titles, bodies, cards, the N101 title keys, «ساتھ والی تفریح گاہ» on jawatha-mosque) still carry it until b14/b15 change them; whether this entry then stays for another sense (the resort of N69, «سیاحتی تفریح گاہ») or is retired is for those batches' judges. Not to be written for a park in new text. ‖ STAGE 7 (b13-ui, round 1): CONFIRMED as stage 4 amended it. Not written for a park in new text (N119 as amended); the park pages keep it only until b14/b15 reword them. The reader of b13-ui read it on the park cards as 'an amusement spot or a resort' (item 10): recorded for those batches."
+    },
+    "نمبر": {
+      "ar": "رقم",
+      "en": "number (no.)",
+      "gender": "مذکر",
+      "plural": "نمبر",
+      "kind": "generic",
+      "gloss": null,
+      "source": "udb.gov.pk/result.php?search=نمبر (HTTP 200, 2026-10-15): headword «نَمبَر — ۔ نشان ، لمبر ؛ ہندسہ ، عدد ؛ تعداد ، گنتی | ۲۔ (i) باری ، نوبت (ii) ترتیب», with «نَمبَر ایک — پہلا نمبر» and «نَمبَر اَندازی — نمبر ڈالنا ، عدد لکھنا ، درجہ بندی کرنا»; rekhtadictionary.com/urdu-meaning-of-number and /search?keyword=نمبر (HTTP 200, result lists): «number two — قیادت میں دوسرے نمبر پر», «number-shumaar — گنتی میں ترتیب کا عدد … سیریل نمبر», «number denaa — mark with a number or assign a number to»; ur.wikipedia exact «نمبر» 65,703 pages (HTTP 200: «ٹیلی فون نمبر», «گاڑی نمبر پلیٹ»); the native «شمارہ» is 'issue (of a periodical)' (rekhtadictionary.com/meaning-of-shumaara, HTTP 200).",
+      "status": "verified",
+      "note": "P16: an English loan proposed for admission on the test of P16-test, raised as N193 — (1) the native words («عدد», «شمارہ») are not what an item's number is called (udb headword and idioms; «شمارہ» reads as a magazine issue); (2) not yet met: no reader has read the badge; the judge rules after the blind read; (3) udb.gov.pk headword. Masculine by agreement in the dictionary examples («پہلا نمبر», «دوسرے نمبر پر»); not exercised in this batch. Plural «نمبر», oblique «نمبروں». Used in det.unescoNo «یونیسکو کے عالمی ورثے کا حصہ نمبر {n}» only. ‖ STAGE 7 (b13-ui, round 1): ADMITTED (N193 A): condition (2) of P16-test met — read in place by the on-05 reader without a remark on the word (item 41); status verified. ‖ JUDGE ROUND 2 (b13-ui), correcting round 1: the base clause '(2) not yet met' stands — P16-test condition (2) is NOT met (no native candidate was read). The admission rests on P16 itself (N193 as corrected): no common Urdu word names an item's number, and the entry cites Urdu Lughat. A reader passing the loan without a stumble (two readers here) is recorded and is no ground for admission."
+    },
+    "باغ": {
+      "ar": "حديقة",
+      "en": "garden; a park's garden",
+      "gender": "مذکر",
+      "plural": "باغ",
+      "kind": "generic",
+      "gloss": null,
+      "source": "approved text: muhairis practical[0].value («باغ اور چہل قدمی کا راستہ»); ruling N5 («an orchard or a palm grove is باغ / باغات»)",
+      "status": "verified",
+      "note": "The noun the approved pages already write, now entered: salwa-beach «اس ساحل اور اس کے باغ میں». «کھجور کے باغات» stays the rendering of palm groves. Not the key for a park («تفریح گاہ»). ‖ STAGE 4: CONFIRMED from approved text. On salwa-beach it is the beach's own garden («اس ساحل اور اس کے باغ میں»), not the key for a park. ‖ STAGE 7 (round 1): Unchanged. The first reader asked \"which garden?\" on salwa-beach (his item 35): the source's \"its park\", with no earlier mention. ‖ STAGE 7 (round 2): Both readers asked which garden: the source's 'its park', with no earlier mention. ‖ JUDGE ROUND 2 (b13-ui): the clause 'Not the key for a park («تفریح گاہ»)' now reads: not the key for a park, which is «پارک» since b13-ui (owner, 2026-10-15). A garden stays «باغ / باغات» (CATEGORY_LABELS.parks «پارک اور باغات»; koot-park «الکوت کا باغ», N121)."
+    },
+    "فارم": {
+      "ar": "مزرعة",
+      "en": "farm",
+      "gender": "مذکر",
+      "plural": "فارم",
+      "kind": "generic",
+      "gloss": null,
+      "source": "udb.gov.pk result list — headword «فارَم — ۱. وہ قطعۂ اراضی جو کاشت کے لیے مخصوص کیا جائے اور ایک منتظمہ کے ما تحت ہو» (stage 4, 2026-10-12); rekhtadictionary.com/urdu-meaning-of-farm — «مزرعہ، کھیت، فارم», and the dictionary's result list: «فارم کھولنا — کاشت کے لیے انگریزی طریقہ پر رقبہ مخصوص کردینا» (re-read by the judge); press: urdunews.com/node/589211 «یہاں کا کوئی زرعی فارم ایسا نہیں جس میں لیموں نہ اگتے ہوں», node/903042 «ریجن کی سب سے بڑے فارم کی مالک», node/755251 «اپنے زرعی فارم کا آغاز»",
+      "status": "verified",
+      "note": "P16: a loan admitted in b0-ui on the three conditions of item P16-test (item N5) — «کھیت» is a cultivated field, not a farm one visits; the first blind reader could not tell what the label offers; a headword of Urdu Lughat. The word for the category of farms that receive visitors. Standing alone in a label it is written with the press's qualifier, «زرعی فارم» («بازار، تفریح گاہیں اور زرعی فارم», nav.leisure): the second and the third reader both read the bare word first as the form one fills in — the same letters spell that loan («فارم پُر کرنا») — and the third names «زرعی فارم» among the words he expects. The qualified form has been read by no blind reader in place. Masculine by the agreement of the press («بڑے فارم کی», «اپنے زرعی فارم کا»), no printed label read and not exercised; plural «فارم», never «فارمز». «کھیت» remains a field in running text; an orchard is «باغ»; «باغات» is refused for the group (the 'gardens' of the parks label). ‖ STAGE 7 (b10, round 2): the farm CATEGORY label (CATEGORY_LABELS.ur.farm, N5's 'category label of the farm group') is «زرعی فارم اور کھجور کے باغات» (N161 C): the group is named by «زرعی فارم»; «باغات» stands there only qualified, «کھجور کے باغات», rendering the source's 'palms' by N5's own palm-grove clause — it is not the group's word, which stays refused. Cost: the shared word with the parks label in the index filters. ‖ STAGE 7 (b10, round 3): the qualified form «زرعی فارم» HAS NOW BEEN READ IN PLACE, in the farm category label, by three b10 readers (on-05, on-r1, on-r2), none of whom read «فارم» as a form to fill in: the base clause 'The qualified form has been read by no blind reader in place' is superseded. ‖ JUDGE ROUND 2 (b13-ui): the example label is now «بازار، پارک اور زرعی فارم» (nav.leisure since b13-ui; before it «بازار، تفریح گاہیں اور زرعی فارم»), and the farm CATEGORY label is «زرعی فارم» alone since #175 (N161 as amended); the clauses quoting the older values are superseded."
+    }
+  },
+  "termbase_keys_dropped": [],
+  "calibration": [
+    {
+      "id": "P4",
+      "question": "The short fixed form for 'pending confirmation' (a card value or a tag).",
+      "evidence": "No string of this batch carries an unconfirmed value or a pending form (stage 4, untouched).",
+      "status": "untouched",
+      "ruling_or_recommendation": "Not exercised in this batch. For the record: the owner APPROVED «تصدیق باقی ہے» on 2026-10-15 (DECISIONS «Owner's answers on 2026-10-15»: 'P4 closes; the candidate tm pair becomes approved'). Closing the open item in the termbase and the tm pair's status are the coordinator's meta step, not this batch's text.",
+      "next_bites": "none in the translation line (closed by the owner); the coordinator enters the closure."
+    },
+    {
+      "id": "BRAND",
+      "question": "How is the brand line itself written on /ur/ pages?",
+      "evidence": "No string of the batch carries the brand; the ' — Visit Al-Ahsa' of the leisure index's tab and og titles is site.brand's, held out of the pack (stage 4).",
+      "status": "untouched",
+      "ruling_or_recommendation": "Not ruled by the translation line.",
+      "next_bites": "the owner"
+    },
+    {
+      "id": "N191",
+      "question": "The eyebrow of both indexes (list.eyebrow, list2.eyebrow; 'Visit guide' / «دليل الزيارة»), reworded by the owner's decision: which wording?",
+      "candidates": [
+        "A (in the text): «سیاحتی معلومات» in list.eyebrow and list2.eyebrow",
+        "B (the owner's other candidate): «سیر کی رہنمائی»",
+        "C (stage 1's third form, not written): «سیاحتی رہنمائی»"
+      ],
+      "evidence": "ur.wikipedia exact phrases (API, HTTP 200, 2026-10-15, b13-ui/s45-web.json): «سیاحتی معلومات» 5 pages, used as the label of an information source (تسکانہ «سیاحتی معلومات کی ویب گاہ», کنین, سولین «انگریزی میں سیاحتی معلومات کے ساتھ», a company's 'multilingual tourist information kiosks'); «سیر کی رہنمائی» 0; «سیاحتی رہنمائی» 0; «سیاحتی رہنما» 5, every hit a PERSON or 'in the form of a guide' (نزاکت احمد علی شاہ «… تاجر اور سیاحتی رہنما ہے», «نوئیڈا کا ایک سیاحتی رہنما مثبت پایا گیا») — the readers' reading of the old eyebrow confirmed by usage. Dictionaries (entry pages, HTTP 200): rekhtadictionary.com/meaning-of-maaluumaat «مَعْلُومات — Noun, Masculine, Plural — knowledge, information»; udb.gov.pk result page for «معلومات»: «مَعلُومات — ۱۔ واقفیت … ۲۔ جانے ہوئے امور ، علم ، آگاہی ، اطلاعات ، خبریں»; rekhtadictionary.com/meaning-of-rahnumaaii «رَہْنُمائی — Noun, Feminine — guidance, leadership» (an act, not a person, but the same stem the readers took for a person, and its second sense is 'leadership'). COST of A, raised and not acted against: (1) 'information' is flatter than 'guide' (AR «دليل»); (2) on the attractions index the eyebrow stands over the h1 «الاحساء کے سیاحتی مقامات», so «سیاحتی» is read twice in two lines — the same repetition the approved «سیاحتی رہنما» had, not new. The two eyebrows stay byte-identical whichever form is ruled (N190 amended). ‖ STAGE 7: read in place on both indexes by the on-05 reader (blind-input.on-05 lines 38 and 179). He did NOT read it as a person; his one remark (item 5, minor) is that 'tourist information' over a list of places reads like the label of a practical-information section. B and C remain unread and unattested. ‖ ROUND 2: the on-r1 reader read it on both indexes as the name of a section, 'a tourist-information desk or page', and wondered whether he had landed in an information area (item 2, moderate). The proof on r1 (item 5) adds a near-twin: det.visitInfo «سیاحوں کے لیے معلومات», the heading of the practical-information card on every detail page (blind-input lines 416, 471). Two readers of two read A as an information-section label. Neither read it as a person.",
+      "stage4_recommendation": "A: attested as a section label, cannot be read as a person, keeps the approved adjective. C is the fallback if the blind reader finds A flat (it says 'guidance', but is unattested and shares the stem); B is a phrase rather than a label and is unattested.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A: «سیاحتی معلومات» in list.eyebrow and list2.eyebrow, byte-identical (N190 as amended). It does what the owner asked — it names the guide's content, not a person — and it is the only candidate attested as a section label. Cost on record and charged (accuracy: 'information' for 'guide'; nativeness/fit: item 5). C «سیاحتی رہنمائی» is the fallback if a later reader finds A misleading rather than flat; B is a phrase, not a label. Never «گائیڈ», never «رہنما» alone. ‖ ROUND 2: A KEPT, with the cost raised from flat to misleading and charged (nativeness two points, fit one). Not switched to B or C: both are unread and unattested, «رہنمائی» invites the reading of a guidance service as readily as A that of an information desk, and the owner's aim (no person) is met. THE CHOICE IS PUT TO THE OWNER between his two candidates with this evidence; a switch goes through the line and is read in place. The near-twin with det.visitInfo is a cost of A, recorded. The round-1 clause that made C the fallback 'if a later reader finds A misleading' is superseded: C is no better evidenced than A, and the choice between the owner's candidates is his.",
+      "binds": "list.eyebrow, list2.eyebrow, and every later index eyebrow whose English is 'Visit guide'.",
+      "guard": "For the proofreader, not machine-read: an index eyebrow whose English is 'Visit guide' is byte for byte «سیاحتی معلومات», the same in every index; the person-noun «سیاحتی رہنما» is no eyebrow (foot.independence, an approved description of the site, keeps it and is not this ruling's).",
+      "strings_affected": [
+        "list.eyebrow",
+        "list2.eyebrow"
+      ]
+    },
+    {
+      "id": "N192",
+      "question": "crumb.leisure and det.allLeisure: the bare «پارک», whose direct plural equals the singular, in a two-noun label.",
+      "candidates": [
+        "A (in the text): crumb.leisure «بازار اور پارک», det.allLeisure «تمام بازار اور پارک ←»",
+        "B (not recommended): the crumb names the whole section as the menu does, «بازار، پارک اور زرعی فارم» (departs from N96, from the English 'Souqs & parks' and from the five other languages)"
+      ],
+      "evidence": "The direct plural of «پارک» equals the singular (decision; like «فارم», N5), so the crumb alone may be read 'souqs and a park'. The same is already true of «بازار» in the approved crumb «بازار اور تفریح گاہیں»: a masculine noun ending in a consonant has no distinct direct plural in Urdu, and context gives the number. Attestation of the bare phrase read as a plural: ur.wikipedia (HTTP 200) «بازار اور پارک» 1 page, «تبریز بازار»: «… شمس تبریزی بازار اور پارک تعمیر کیے» (plural verb); «پارک اور باغات» 448 pages incl. the list «لاہور کے پارک اور باغات کی فہرست»; oblique «پارکوں» 368. Press usage (urdunews.com/tags/پارک, HTTP 200): «120 پارکوں کی تزئین و آرائش», «پارکوں اور تفریحی مقامات کا رخ» — and also «سرسبز پارکس» / «300 سے زائد پارکس»: the press writes the English plural, which the owner's decision bars («پارکس» never); recorded for search only. On the same page the menu label above the crumb and «تمام» on the back link carry the plural. ‖ STAGE 7: read in place on national-park (blind-input.on-05 lines 404 and 447). The reader quotes both and does not read a singular; his remark (item 33, moderate) is that the crumb names the section otherwise than the menu — the source's two names, logged as a source defect. ‖ ROUND 2 CORRECTION (proof on r1, item 10): the menu label above the crumb carries the same bare «پارک» and suggests a plural only through its three-item list; only «تمام» on the back link marks the plural. The on-r1 reader, like the first, did not take «پارک» for a singular (item 9).",
+      "stage4_recommendation": "A. The cost is real but is the decision's, already borne by «بازار» in the approved crumb; the blind reader is the test. «پارکس» is not a candidate (owner's decision).",
+      "status": "ruled",
+      "ruling_or_recommendation": "A: crumb.leisure «بازار اور پارک», det.allLeisure «تمام بازار اور پارک ←» — N96/N97's frame with the decision's one change. B (the menu name in the crumb, Urdu alone) is refused: it departs from the English, the Arabic and five languages; the same change in all languages is the owner's option (source_defects). «پارکس» is never written (owner's decision).",
+      "binds": "crumb.leisure, det.allLeisure; every Urdu label where «پارک» stands as a direct plural.",
+      "guard": "Stage checker: the string «پارکس» does not occur. For the proofreader, not machine-read: the direct plural of «پارک» is «پارک», the oblique «پارکوں».",
+      "strings_affected": [
+        "crumb.leisure",
+        "det.allLeisure"
+      ]
+    },
+    {
+      "id": "N193",
+      "question": "det.unescoNo: the loan «نمبر» for 'no.' / «رقم».",
+      "candidates": [
+        "A (in the text): the loan «نمبر» — «… کا حصہ نمبر {n}» — entered in the termbase citing P16 (proposal in termbase_updates, pending)",
+        "B: the native «شمارہ» — «… کا حصہ، شمارہ {n}»",
+        "C: no counting word — «یونیسکو کے عالمی ورثے کا حصہ {n}»"
+      ],
+      "evidence": "«نمبر» is an English loan in Urdu letters with no termbase entry and no occurrence in the approved ur block of ui.ts or in the approved attraction pages (b13-ui/s45-style.mjs, grep): checklist item 9 of stage 5 and P16 require an entry. P16-test: (1) the native words are not what an item's number is called — udb.gov.pk result page for «نمبر» (HTTP 200) has the headword «نَمبَر — ۔ نشان ، لمبر ؛ ہندسہ ، عدد ؛ تعداد ، گنتی | ۲۔ (i) باری ، نوبت (ii) ترتیب» with a family of Urdu idioms («نَمبَر ایک — پہلا نمبر», «نَمبَر آنا», «نَمبَر اَندازی — نمبر ڈالنا ، عدد لکھنا ، درجہ بندی کرنا»); Rekhta's result page for «نمبر» (HTTP 200) lists «number se — ازروئے ترتیب», «number-plate», «number denaa — mark with a number or assign a number to», and «number-shumaar — گنتی میں ترتیب کا عدد … سیریل نمبر»; rekhtadictionary.com/meaning-of-shumaara (HTTP 200): «شُمارَہ — Noun, Masculine — enumeration, issue (of a periodical), number (of a magazine)», i.e. B would read as a magazine issue; ur.wikipedia exact «نمبر» 65,703 pages (HTTP 200: «ٹیلی فون نمبر», «گاڑی نمبر پلیٹ», «کنٹرول نمبر»). (2) No reader has met either form yet: condition (2) is unmet, so the entry is proposed PENDING, the admission the judge's to rule after the blind read. (3) udb.gov.pk headword (above). C drops the source's 'no.' (EN) / «رقم» (AR): the code would hang after «حصہ» with nothing to say it is a number. Gender (for the entry): masculine by agreement in the dictionary examples («پہلا نمبر», «دوسرے نمبر پر»); not exercised in this string. ‖ STAGE 7: condition (2) of P16-test is now met: the on-05 reader read «حصہ نمبر» in place (item 41) and stopped at what the part belongs to and at the code, not at the word; his own wording keeps «نمبر» («حوالہ نمبر»). ‖ ROUND 2 CORRECTION (proof on r1, item 1): P16-test condition (2) is NOT met — no native candidate was read by a reader; the reader's silence on the loan is no condition of that test. The evidence for (1) is dictionaries and ur.wikipedia usage, not the interfaces or the press. The on-r1 reader also read «حصہ نمبر» without stopping at the word (item 41).",
+      "stage4_recommendation": "A, with the termbase entry «نمبر» (pending) citing P16 and this evidence; the judge rules the admission on the blind read. B misleads (a periodical's issue); C loses the source's 'no.'.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A: «نمبر» is admitted on P16 itself (an English loan enters with a dictionary-cited entry, and only where no common Urdu word has the sense): «عدد» is a numeral, «شمارہ» a periodical's issue, and no common native word names an item's number; «نمبر» is a headword of Urdu Lughat with Urdu idioms (udb.gov.pk) and the ordinary word in reference usage (ur.wikipedia «ٹیلی فون نمبر», «گاڑی نمبر پلیٹ»). P16-test, made for a function the interfaces name with a loan, is not its ground: its condition (2) is not met and is not claimed. Two readers read it in place without a stumble on the word; that is recorded, and sets no precedent for admitting a loan a reader passes. Entry verified (termbase_final). Masculine; plural «نمبر», oblique «نمبروں». B misleads; C drops the source's 'no.'. (Round 1 said 'all three conditions met': corrected here.)",
+      "binds": "det.unescoNo; every later string that numbers an item.",
+      "guard": "For the proofreader, not machine-read: «نمبر» follows the noun it numbers («حصہ نمبر {n}»); «شمارہ» is not used for an item's number.",
+      "strings_affected": [
+        "det.unescoNo"
+      ]
+    },
+    {
+      "id": "N194",
+      "question": "det.unescoNo: the frame of the badge for 'UNESCO World Heritage component no. {n}'.",
+      "candidates": [
+        "A (in the text): «یونیسکو کے عالمی ورثے کا حصہ نمبر {n}»",
+        "B: «یونیسکو کے عالمی ورثے کا جزو نمبر {n}»",
+        "C (the Arabic's «في»): «یونیسکو کے عالمی ورثے میں حصہ نمبر {n}»",
+        "D: «یونیسکو کے عالمی ورثے کا حصہ، نمبر {n}»"
+      ],
+      "evidence": "'component' as «حصہ» is what the approved texts say: det.unesco «یونیسکو کے عالمی ورثے کا حصہ» (live, read by the readers of b1/b2 without remark on the term) and N16 (2) «اس کے بارہ حصوں میں سے ایک». rekhtadictionary.com/meaning-of-hissa (HTTP 200): «حِصَّہ — Noun, Masculine — part, portion, division, share, segment, chapter of book» (masculine: «کا» agrees). rekhtadictionary.com/meaning-of-juzv (HTTP 200, result list): «juzv — part, ingredient, a part of a book consisting of eight leaves, portion» — more formal, and B would part from det.unesco. ur.wikipedia (HTTP 200): «حصہ نمبر» 1 page (a military unit: «حصہ نمبر 13 سکواڈرن»), «جزو نمبر» 0, «عالمی ورثے کا حصہ» 1 («یونیسکو نے اسے عالمی ورثے کا حصہ قرار دیا»), «عالمی ورثے میں شامل» 5. C: «… میں حصہ» leans towards «حصہ لینا» 'taking part' (stage 2's note). D splits the badge into a claim and a bare number, against the owner's 'the number WITH a short explanation'. Cost of A: «حصہ» also means 'share'; with «نمبر» and a code after it, the 'part no.' reading is the natural one. ‖ STAGE 7: read in place on qasr-ibrahim (blind-input.on-05 line 463). Item 41 (moderate): 'part of what, numbered by whom?' and the code 'means nothing to a visitor'. Neither source names the property (the Arabic's «موقع» is unnamed; N16 (1) does not render the word), so no frame of A–D answers 'of what' without adding the oasis name; the number itself is the owner's decision of 2026-10-15. ‖ ROUND 2: the on-r1 reader (item 41, moderate) read «حصہ نمبر» as 'part number' and 1563-004 as a year ('something happened in 1563') or an extension. Two readers of two. His wordings replace 'component' with 'reference' or drop the number the owner kept.",
+      "stage4_recommendation": "A: the approved phrase byte for byte plus the number; nothing re-derived.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A: «یونیسکو کے عالمی ورثے کا حصہ نمبر {n}» — the approved det.unesco phrase byte for byte, then «نمبر» and the code. Cost on record (accuracy: 'site' not rendered, N16 (1); nativeness: item 41). The remedy the reader asks for is a SOURCE change (name the property, all languages) and is logged for the owner; if the source changes, this frame takes the property name by N16 (1) («الاحساء کے نخلستان کا …» in the oblique), through the line. ‖ ROUND 2: A KEPT. The two readers' trouble is the code shown (the owner's decision) and the property unnamed (both sources); put to the owner with higher weight.",
+      "binds": "det.unescoNo.",
+      "guard": "For the proofreader, not machine-read: det.unescoNo begins with det.unesco's Urdu byte for byte and carries {n} once at its end; no oasis name and no year enters without the source.",
+      "strings_affected": [
+        "det.unescoNo"
+      ]
+    },
+    {
+      "id": "N195",
+      "question": "The interval between b13-ui and b14/b15: park pages show «تفریح گاہ» in their own text under the interface's «پارک».",
+      "candidates": [
+        "A: apply b13-ui on its own; the park pages keep «تفریح گاہ» in their titles, bodies and cards until b14/b15 land",
+        "B: hold the apply of the park strings of b13-ui (nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks) until b14/b15 are ready, and release them together"
+      ],
+      "evidence": "A cost of the owner's decision, raised and not acted against. On a park page between the two releases the reader meets both nouns in one view: the category eyebrow «پارک اور باغات» directly over the title «الاحساء کی قومی تفریح گاہ», the crumb «بازار اور پارک» before it, the menu «بازار، پارک اور زرعی فارم» above it (pack page detail-park; the page text is still the old one, DECISIONS «Batch b13-ui»). Nothing is wrong in either string; the two words name one thing. The blind read of this batch will see the mix and should not be charged for it as a defect of the interface. ‖ STAGE 7: the reader met it (item 10, minor): under «پارک اور باغات» almost every card name says «تفریح گاہ», and he stopped to check they are the same thing. Not a defect of either string; a cost of the interval. ‖ ROUND 2: the on-r1 reader met it too (item 10, moderate): heading «پارک», names «تفریح گاہ».",
+      "stage4_recommendation": "A, with the interval kept short (the coordinator's sequencing). B only if b14/b15 are close enough that one release costs nothing; the eyebrow and the UNESCO badge do not depend on it either way.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A: b13-ui is applied on its own; the reader's stop is charged to neither batch's text and is the reason to keep the interval short (the coordinator's sequencing). b14/b15 replace the park noun in the park pages' titles, bodies and cards.",
+      "binds": "the release order of b13-ui, b14, b15.",
+      "guard": "For the coordinator, not machine-read: b14/b15 follow b13-ui without another batch between them where possible.",
+      "strings_affected": [
+        "nav.leisure",
+        "list2.title",
+        "crumb.leisure",
+        "det.allLeisure",
+        "CATEGORY_LABELS.parks"
+      ]
+    },
+    {
+      "id": "N196",
+      "question": "The component code {n} in an RTL line shows as 004-1563.",
+      "candidates": [
+        "A (engineering, for the coordinator; no string changes): the template isolates the code as left-to-right on RTL pages, e.g. DetailView renders {n} inside <bdi dir=\"ltr\">…</bdi> (or a span with dir=\"ltr\") — for ur and ar alike",
+        "B (refused for a ui string): the Urdu value carries U+2066 … U+2069 round {n}",
+        "C: leave it as it renders"
+      ],
+      "evidence": "Rendered in headless Chrome (b13-ui/s45-bidi.html, result s45-bidi.txt, measured with Range rects): in an RTL Urdu line the code 1563-004 after «نمبر» is SHOWN as 004-1563 left to right (case 1); the same holds for the badge live today on /ur/ («… کا حصہ · 1563-004», case 2) and on /ar/ («المكوّن رقم 1563-004 في …», case 3); with an LTR isolate round the code it shows 1563-004 (case 4). The reason is the bidi algorithm: after Arabic-script letters (AL) the digits become Arabic numbers (W2), and the hyphen-minus (ES) between two Arabic numbers is not absorbed (W4 joins only a CS between them), so it resolves to R and the two digit groups swap visually. Stage 3's note («the hyphen … stays inside the number by bidi rule W4») holds for Hebrew-script context, not for Arabic script: corrected here. An RTL reader reading right to left still meets 1563 first, but the code no longer looks like the one on the UNESCO page the badge links to. Not introduced by this batch (the old badge and the Arabic do it today). B puts invisible controls into a translation string (stage 5 scans for bidi marks; the placeholder rule keeps {n} untouched). ‖ STAGE 7: DONE as engineering (commit fb0015a): the template renders the code inside <bdi dir=\"ltr\"> in every language; det.unescoNo is unchanged. The reader's page was built after that commit and he quotes the code as 1563-004 (item 41), in UNESCO's order. ‖ ROUND 2: the on-r1 reader also quotes the code as 1563-004.",
+      "stage4_recommendation": "A, as an engineering step outside the translation (for ar too); the Urdu string stays as it is. Until then C is what renders, and it is the same as the Arabic page.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A, done: the isolation is the template's, never the string's; B (bidi controls in a translation string) stays refused.",
+      "binds": "DetailView (the badge), every RTL language.",
+      "guard": "For the coordinator, not machine-read: the badge's code stands inside an LTR isolate in the template; the Urdu string carries no bidi control (stage 5's scan).",
+      "strings_affected": [
+        "det.unescoNo"
+      ]
+    },
+    {
+      "id": "N96-crumb-leisure",
+      "question": "The breadcrumb of a page in the parks section: interface key crumb.leisure (\"Souqs & parks\", Arabic «الأسواق والمنتزهات»), missing from the Urdu block.",
+      "evidence": "The first page of category parks takes its breadcrumb from this key; without it the built /ur/ page falls back to English. A is the first two nouns of the approved menu label nav.leisure («بازار، تفریح گاہیں اور زرعی فارم») with their own conjunction; ruling N5 fixed the nouns there and ruling N69 the park's noun. THE FIRST READER read A in place, in the breadcrumb of king-abdullah-park («صفحہ اول / بازار اور تفریح گاہیں / شاہ عبد اللہ ماحولیاتی تفریح گاہ»). His item 46 (minor): the section name \"lumps markets with parks, so «تفریح گاہ» is both the section word and this park's own name. Neither stopped me.\" No remark on the wording. That markets and parks share a section is the site's structure in every language. The string has had no proof pass as interface text; a breadcrumb is outside the measured header bar. ‖ STAGE 7, ROUND 2: THE SECOND READER read it in place (his item 43, minor): the section is named one way in the breadcrumb and the back link and another in the small category label above the title, and a park filed under bazaars 'made me look twice' — the site's structure, not the wording. THE PROOF PASS (finding 22): the value in the ur block of ui.ts is byte for byte this string. ‖ STAGE 7, ROUND 3: read in place by the third reader (his item 49, minor): the path 'puts a park under bazaars, while the label says «تفریح گاہیں اور باغات»; I noticed but was not confused'. The label is the name of the parks category in src/lib/categories.ts (traced in round 3). ‖ b13-ui: stage 4 named this guard as quoting the old value. Both b13 readers read the new value in place without taking «پارک» for a singular; both asked why the crumb names the section otherwise than the menu (on-05 item 33, on-r1 item 9): the source's two names, logged for the owner.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A CONFIRMED: crumb.leisure = «بازار اور تفریح گاہیں». Read in place by one blind reader without a stumble; the same nouns as the menu, so breadcrumb and menu name the section in the same words; no new term. The farms of the menu label are left out, as the five other languages leave them out of this key. B is refused (it reads as a list cut short). ROUND 2: CONFIRMED; read in place by two readers and compared with ui.ts by the proof pass, which was the proof it still lacked. ROUND 3: CONFIRMED on three readers. ‖ AMENDED IN b13-ui (judge round 1): OWNER DECIDED 2026-10-15 (N119 reversed; DECISIONS «Owner's answers on 2026-10-15», «Batch b13-ui»): the park noun is «پارک», so crumb.leisure = «بازار اور پارک» — the same frame (the menu's nouns, the farms left out as in the five other languages), the decision's one change (N192 A). Read in place by the b13-ui reader, who did not take «پارک» for a singular; his remark that the crumb names the section otherwise than the menu is the source's two names, logged for the owner. The value «بازار اور تفریح گاہیں» is withdrawn.",
+      "binds": "src/i18n/ui.ts, ur block, key crumb.leisure: every /ur/ page of a leisure category (parks, souqs).",
+      "guard": "For the coordinator, not machine-read by the stage checker: the value in ui.ts is byte for byte «بازار اور پارک» (since b13-ui).",
+      "strings_affected": [
+        "crumb.leisure"
+      ],
+      "ruled_by": "Round 3 judge, b6 round 3, 2026-10-13; amended by the b13-ui judge, round 1, 2026-10-15 (owner's decision)"
+    },
+    {
+      "id": "N97-det-all-leisure",
+      "question": "The back link of a page in the parks section: interface key det.allLeisure (\"All souqs & parks →\"), missing from the Urdu block.",
+      "evidence": "A is built on the approved sibling det.allSights («تمام مقامات ←»): the same quantifier, the nouns of N96, the same arrow (U+2190) at the same end. THE FIRST READER read it in place as the last line of king-abdullah-park and has no remark on it; he read the sibling on the five other pages, also without remark. ‖ STAGE 7, ROUND 2: read in place by the second reader without a remark on its wording (his item 43 is on the section's two names). THE PROOF PASS (finding 22): byte for byte the string of ui.ts, ending in a space and U+2190 like its sibling. ‖ STAGE 7, ROUND 3: read in place by the third reader without a remark on its wording. ‖ b13-ui: read in place by both b13 readers; their remark is the section's two names (on-05 item 33, on-r1 item 9).",
+      "status": "ruled",
+      "ruling_or_recommendation": "A CONFIRMED: det.allLeisure = «تمام بازار اور تفریح گاہیں ←». One frame for the two back links of the detail template and the same noun pair as the breadcrumb of N96. B breaks the pair with the sibling for two letters. ROUND 2: CONFIRMED. ROUND 3: CONFIRMED on three readers. ‖ AMENDED IN b13-ui (judge round 1): OWNER DECIDED 2026-10-15 (N119 reversed; DECISIONS «Owner's answers on 2026-10-15», «Batch b13-ui»): det.allLeisure = «تمام بازار اور پارک ←», the same noun pair as crumb.leisure (N96 as amended) and the same arrow after one space; the value «تمام بازار اور تفریح گاہیں ←» is withdrawn.",
+      "binds": "src/i18n/ui.ts, ur block, key det.allLeisure.",
+      "guard": "For the coordinator, not machine-read by the stage checker: the value ends in one space + U+2190 like its sibling and is byte for byte «تمام بازار اور پارک ←» (since b13-ui).",
+      "strings_affected": [
+        "det.allLeisure"
+      ],
+      "ruled_by": "Round 3 judge, b6 round 3, 2026-10-13; amended by the b13-ui judge, round 1, 2026-10-15 (owner's decision)"
+    },
+    {
+      "id": "N5",
+      "question": "Farms one visits: «کھیت», «فارم» or «باغات»?",
+      "evidence": "The reader could not tell what «کھیت» offers (observation 3), as stages 2, 3 and 4 had each feared. B is the press word for these farms and a headword of Urdu Lughat. C is already 'gardens' in the parks label. Round 2: the second reader read «فارم» first as the form one fills in on a website and as farms on the second pass, and asked for «باغات» (observation 3, moderate), pointing to «حساوی لیموں کا باغ» and to the label «تفریح گاہیں اور باغات» — which is the parks group, not the farms. The two readers disagree: the first could make nothing of «کھیت». The group holds a citrus farm, a strawberry farm, a rice farm, a bird garden and a zoo. Measured: «بازار، تفریح گاہیں اور زرعی فارم» is 155.8px (the bar would need 1457px with «رہائش»). Round 3: the third reader, like the second, read «فارم» first as a form to fill in (observation 2, moderate) and named «زرعی فارم» among the words he would accept. The record of the slot: «کھیت» failed with the one reader who saw it, the bare «فارم» with both who saw it; no wording has been passed. ‖ b13-ui: the on-05 reader read «بازار، پارک اور زرعی فارم» in the header and footer of four pages and found «زرعی فارم» doubled (item 2, minor); he did not read the bare form; the on-r1 reader quoted the label without a remark on «فارم» (items 1, 9). Header measured on that build (coord/r4-b13-header-fit.05.txt).",
+      "status": "ruled",
+      "ruling_or_recommendation": "B, with the press's qualifier where the word stands alone in a label: the category of farms that receive visitors is «فارم» (masculine; plural «فارم», never «فارمز»), and in the label of the menu and the footer (nav.leisure) it is written «زرعی فارم» — «بازار، پارک اور زرعی فارم» (b13-ui; before it «بازار، تفریح گاہیں اور زرعی فارم») — because two readers in a row read the bare word there as the form one fills in. «باغات» is refused for the group: it is the 'gardens' of the parks label, the label's three groups would read as two, and a rice or strawberry farm is not a «باغ». «کھیت» remains the word for a cultivated field in running text; an orchard or a palm grove is «باغ / باغات». The lime farm keeps «باغ» in its name until the round that writes its page settles the name (entry pending). ‖ AMENDED IN b10 (item N161): the category label of the farm group is «زرعی فارم اور کھجور کے باغات» — the group named by «زرعی فارم»; «باغات» stands there only qualified, «کھجور کے باغات», rendering the source's 'palms' by this ruling's own palm-grove clause; it is not the group's word, which stays refused. The qualified form has been read in place by four b10 blind readers without a remark on «فارم». SETTLED IN b10 (item N154 A): the lime farm keeps «باغ» in its name, «حساوی لیموں کا باغ»; the clause 'until the round that writes its page settles the name' is fulfilled. ‖ AMENDED IN b13-ui (judge round 1): OWNER DECIDED 2026-10-15 (N119 reversed; DECISIONS «Owner's answers on 2026-10-15», «Batch b13-ui»): the label's park noun is «پارک»; nav.leisure = list2.title = «بازار، پارک اور زرعی فارم». The qualifier «زرعی» stays (a third reader's 'doubled' is taste against the two readers who read the bare word as a form; not reopened). Since #175 the farm category label is «زرعی فارم» alone (the owner's 'Farms'), so the qualified «کھجور کے باغات» of the b10 amendment no longer stands in it; «باغات» stays refused as the farm group's word.",
+      "binds": "nav.leisure; the category label of the farm group and the souqs-parks-farms page when their rounds come. ‖ b13-ui: the souqs-parks-farms page has been live since b12-ui (list2.title = nav.leisure).",
+      "guard": "The header measurement (the label is in the bar): on a build of b13-ui's stage-5 text the repository's tools/measure-header-fit.mjs passes every cell of the six languages; the Urdu bar stands from 1518px with an overlap of -50px (50px clear) (coord/r4-b13-header-fit.05.txt). Any later change to nav.leisure is measured again before its judge.",
+      "strings_affected": [
+        "nav.leisure",
+        "list2.title"
+      ],
+      "ruled_by": "Round 1 judge, b0-ui round 3, 2026-10-12; amended by the b13-ui judge, round 1, 2026-10-15 (owner's decision)"
+    },
+    {
+      "id": "N185",
+      "question": "list2.lead: «فارموں» bare in running text, or «زرعی فارموں» (N5's label form)?",
+      "evidence": "The reader quoted «نخلستان کے باغوں اور فارموں» (item 4) and read it without a remark; he did not read 'forms'. ‖ ROUND 2: the on-r1 reader read «نخلستان کے باغوں اور فارموں» and found it clear (item 4); neither reader read 'forms'. ‖ b13-ui: stage 4 named this ruling as quoting the old nav.leisure; only the quotation is amended (round 1), its reasoning and forms unchanged. ROUND 2: strings_affected restored to list2.lead (proof on r1, item 2).",
+      "status": "ruled",
+      "ruling_or_recommendation": "A. N5's qualifier «زرعی» is owed where «فارم» stands UNQUALIFIED as a label or a list item, as in nav.leisure «بازار، پارک اور زرعی فارم», where two readers read the bare word as the form one fills in. It is not owed where a possessive or an attribute already qualifies the word, because that context fixes the sense. Here «فارموں» is qualified by «نخلستان کے» («نخلستان کے باغوں اور فارموں»), so the bare oblique stands. This is the ground of the approved texts too: «زکی السالم کا فارم», «اسٹرابیری کا فارم», and «… کاشت کرنے والے سب سے بڑے فارموں» on zaki-alsalem-farm. The kind of string (lead, meta description, heading) does not decide it. A string ruled a meta description under N184 is not, by that alone, owed the qualifier. This agrees with N5 and changes none of its forms. ‖ AMENDED IN b13-ui (judge round 1): the nav.leisure it quotes is the value since b13-ui (OWNER DECIDED 2026-10-15 (N119 reversed; DECISIONS «Owner's answers on 2026-10-15», «Batch b13-ui»)); the reasoning and forms of the ruling are unchanged.",
+      "binds": "list2.lead; running text generally.",
+      "guard": "For the proofreader: «زرعی» before «فارم» where the word stands unqualified as a label or a list item (N5: nav.leisure «بازار، پارک اور زرعی فارم», the farm category label «زرعی فارم»). It is not required where a possessive or an attribute qualifies it («… کا فارم», «نخلستان کے … فارموں», «… والے … فارموں»). A bare «فارم» as a label or list item is a finding; a qualified one is not.",
+      "strings_affected": [
+        "list2.lead"
+      ],
+      "ruled_by": "Judge round2, b12-ui (round 4), 2026-10-15; record corrected by the judge's addendum to that round; quotation amended by the b13-ui judge, round 1, 2026-10-15"
+    },
+    {
+      "id": "N190",
+      "question": "list2.eyebrow: keep «سیاحتی رہنما» (the approved list.eyebrow, live on the sister attractions index) although the reader first read it as a person?",
+      "evidence": "Reader item 1 (moderate): first read as a tour guide, understood only at the footer «یہ ویب سائٹ ایک آزاد سیاحتی رہنما ہے». The b0-ui judge charged the same personal reading under nativeness with no wording offered. B uses the banned loan «گائیڈ». C would give the two sister indexes different eyebrows for the same English ('Visit guide'), which ru/de/zh do not do, and would break the approved tm.json pair. ‖ ROUND 2: the on-r1 reader also read it first as a person, a guide one could hire (item 2, moderate), and it made sense to him only at the footer. Two of two readers now; the b0-ui readers did the same. ‖ b13-ui: the owner decided on 2026-10-15 to reword both together. Neither b13 reader read the new eyebrow as a person (on-05 item 5, on-r1 item 2); both read it as an information-section label (N191).",
+      "status": "owner_decision",
+      "ruling_or_recommendation": "A. The two sister eyebrows stay one string; the cost is charged under nativeness and fit. A rewording, if ever taken, moves list.eyebrow and list2.eyebrow (and their tm.json pairs) together in one interface batch and is read in place; never «گائیڈ». Two readers now, so the cost is real, and a reworded pair is a standing option for a later interface batch (never «گائیڈ»). ‖ OWNER DECIDED 2026-10-15: reword both together. Done in b13-ui: list.eyebrow = list2.eyebrow = «سیاحتی معلومات» (item N191 A, the owner's own candidate), read in place on both indexes; the tm.json pairs of «سیاحتی رہنما» for both keys are replaced at apply.",
+      "binds": "list.eyebrow, list2.eyebrow and every later index eyebrow of the same English.",
+      "guard": "For the proofreader: an index eyebrow whose English is 'Visit guide' is byte-identical to list.eyebrow («سیاحتی معلومات» since b13-ui, N191); «گائیڈ» is a banned loan (stage checker); never «رہنما» alone.",
+      "strings_affected": [
+        "list.eyebrow",
+        "list2.eyebrow"
+      ],
+      "ruled_by": "Judge round2, b12-ui (round 4), 2026-10-15; owner decided 2026-10-15, carried by the b13-ui judge, round 1"
+    },
+    {
+      "id": "N119-national-park-loan-or-native",
+      "question": "Does a NATIONAL PARK take the loan on /ur/ — «نیشنل پارک» — or the native wording of ruling N69 that stands in the title, «الاحساء کی قومی تفریح گاہ»?",
+      "evidence": "THE TWO READERS. The first (his item 11, moderate): 'I did not recognise this as a national park until well into the paragraph; every Urdu speaker says «نیشنل پارک». «قومی تفریح گاہ» sounds like a state amusement ground.' The second (his item 8, moderate): '«قومی تفریح گاہ» read to me as the national amusement place; only the summary told me it is what we call a «نیشنل پارک». The title and the summary seemed to describe two different kinds of place.' And on all six pages (his item 1, minor): 'in my Urdu a place with lawns and play areas is a «پارک»; «تفریح گاہ» is vaguer.' THE LOAN TEST of ruling P16-test, as round 1 argued it in its notes: (1) the native wording is shown not to be what the thing is called — ur.wikipedia exact phrase (HTTP 200, read by round 1's judge, b7/s7-web.wiki.out.txt): «نیشنل پارک» 1306 pages, «قومی پارک» 701, «قومی تفریح گاہ» 1; (2) two blind readers of two did not recognise the place from its title; (3) the loan «پارک» is a dictionary headword (Urdu Lughat defines it through the native noun, as the entry of «تفریح گاہ» records). For a park in general the native noun IS a common word, which is why ruling N69 chose it; the question here is the national park. ‖ b13-ui: DECISIONS «Owner's answers on 2026-10-15»: «تفریح گاہ» → «پارک» SITE-WIDE, the owner reversing N119 (and the park generic of N69 / N101 / N121 where it is «تفریح گاہ»). «پارک» masculine by usage (coord/r4-b13-park-gender-wiki.json). Both b13 readers recognised «پارک» / «نیشنل پارک», not «قومی تفریح گاہ» (on-05 item 34, on-r1 item 10).",
+      "status": "owner_decision",
+      "ruling_or_recommendation": "THE WORDING, kept for the text until the owner answers: A, «الاحساء کی قومی تفریح گاہ», by ruling N69 and item N101; a batch judge reopens neither, and the owner's rule on loans (P16) is his. THE NAME OF THE THING is the OWNER'S DECISION: does a national park take the loan on /ur/? If yes: B, «الاحساء نیشنل پارک» (the reference's order; no possessive in the compound, as ruling N85 builds a compound title), in the title and where the body's first sentence names the park by its title, with the agreeing verb there following the gender the dictionary gives the loan; a termbase entry citing P16 and this evidence; and a proof pass and a blind read of the page. The body's other mentions of a park («ایک عوامی تفریح گاہ», «اس تفریح گاہ») keep ruling N69's noun. C is on record. THE JUDGE'S RECOMMENDATION: B for the national park alone — all three conditions of the test are met, and two readers of two missed what the place is from its title. Whether a park as such takes the loan is a wider question that ruling N69 answers today, and this item does not touch it. ‖ ENTERED ON APPLY (2026-10-14) AS AN OWNER DECISION, OPEN. The wording ruled above is what the text carries until the owner answers; no leaf waits on the answer. THE QUESTION, as the list for the owner in the judge file words it (its note FOR THE OWNER, decision 3): N119 (NEW): does a national park take the loan, «الاحساء نیشنل پارک»? Two readers of two did not recognise the place from its title; the judge recommends yes, for the national park alone. ‖ OWNER DECIDED 2026-10-14: the native title stands: «الاحساء کی قومی تفریح گاہ»; no loan «نیشنل پارک». The \"if yes\" of this entry does not apply. ‖ OWNER REVERSED 2026-10-15: the loan «پارک» for 'park' everywhere in /ur/, replacing «تفریح گاہ»; the answer of 2026-10-14 above ('the native title stands') is withdrawn, and with it the park generic of N69, N101 and N121 where it is «تفریح گاہ» (a garden stays «باغ»; the resort of N69 is not a park and is for the judge who meets it). «پارک» is masculine (its own entry): every agreeing verb and adjective follows. Done in the interface in b13-ui (nav.leisure, list2.title, crumb.leisure, det.allLeisure, CATEGORY_LABELS.parks). national-park's title and body, and every park page's titles, bodies and cards, are worded through the line in b14/b15 (N195). What the owner admitted is the noun «پارک»; the adjective stays «قومی» unless the b14/b15 judge admits «نیشنل» under P16-test. ‖ ROUND 2 (proof on r1, item 9): the rulings that still name «تفریح گاہ» as the park generic in their text or guard (N65, N69, N85, N101, N102, N103, N112, N117, N121, N122, N124, P3a) are withdrawn on that point by this entry and are amended by the b14/b15 judges where they reword the park pages; the guards of this file bind interface batches only.",
+      "binds": "Every /ur/ string that names a park: done for the interface in b13-ui; national-park::title, ::body and the park pages in b14/b15.",
+      "guard": "Stage checker (read from this entry by R/tools/lib/rulings.mjs): «نیشنل پارک» is not an admitted loan. For the proofreader, not machine-read: «تفریح گاہ» is not written for a park in new text; «پارکس» is never written.",
+      "strings_affected": [
+        "nav.leisure",
+        "list2.title",
+        "crumb.leisure",
+        "det.allLeisure",
+        "CATEGORY_LABELS.parks"
+      ],
+      "ruled_by": "Round 2 judge, b7 round 2, 2026-10-14; owner reversed 2026-10-15, carried by the b13-ui judge, round 1"
+    },
+    {
+      "id": "N161",
+      "question": "Interface nomination: CATEGORY_LABELS.ur.farm ('Farms & palms').",
+      "evidence": "Proof on b13-ui r1, item 4: the one ruling besides those amended in round 1 that quotes a value this batch (or #175) replaced. The worktree carries CATEGORY_LABELS.ur.farm «زرعی فارم» (src/lib/categories.ts) since #175, on the owner's decision of 2026-10-15 ('Farms' alone in all six languages).",
+      "status": "ruled",
+      "ruling_or_recommendation": "C: CATEGORY_LABELS.ur.farm = «زرعی فارم اور کھجور کے باغات» (written by the coordinator; in the worktree since round 1). SCOPE OF N5, quoted exactly: N5 binds 'nav.leisure; the category label of the farm group …' — THIS label — and refuses «باغات» as the word for the GROUP of farms ('the label's three groups would read as two'). C stays inside N5: the group is still named by its farm word, «زرعی فارم», first in the label; «کھجور کے باغات» renders the source's 'palms' («النخيل») by N5's own clause, 'an orchard or a palm grove is «باغ / باغات»', and by the entry «باغ» ('«کھجور کے باغات» stays the rendering of palm groves'; ur.wikipedia 25 pages, HTTP 200). EVIDENCE: the first reader found «کھجور کے درخت» odd as a category and expected «کھجور کے باغات» (round 1 item 6); the second read C as meant, 'farms and date-palm gardens', and objected only to the zoo and the bird garden being filed under it (round 2 item 12, the source's category). COST: the label shares «باغات» with the parks label «تفریح گاہیں اور باغات» in the index filters, and on sawsan-gardens it stands above a title that also ends «… کے باغات» (proof note 6). The kicker of the three farm pages («مزرعة ونخيل», not rendered) keeps «زرعی فارم اور کھجور کے درخت» — a farm and its palm trees — so one source pair has two renderings, recorded. The «فارم» entry carries the same line (termbase_final); on apply N5 takes it too. ‖ ROUND 3: Unchanged; the third reader read the label as meant and objected only to the zoo and the bird garden under it (items 27, 32: the source's filing). THE QUALIFIED FORM «زرعی فارم» HAS NOW BEEN READ IN PLACE by three b10 readers (on-05 in A, on-r1 and on-r2 in C), none of whom read «فارم» as a form to fill in. LINE DRAFTED FOR N5 (for the coordinator's ap-meta, with this item as its authority): 'AMENDED IN b10 (item N161): the category label of the farm group is «زرعی فارم اور کھجور کے باغات» — the group named by «زرعی فارم»; «باغات» stands there only qualified, «کھجور کے باغات», rendering the source's 'palms' by this ruling's own palm-grove clause; it is not the group's word, which stays refused. The qualified form has been read in place by three blind readers without a remark on «فارم».' ‖ SUPERSEDED IN PART (b13-ui, judge round 2): by the owner's decision of 2026-10-15 ('Farms' alone) and #175 the farm label is «زرعی فارم» — the group's farm word, which this ruling put first, now stands alone; «کھجور کے باغات» left with the source's 'palms'. The parks label it quotes in its COST is «پارک اور باغات» since b13-ui (N119 as amended). «باغات» is still never the farm group's word.",
+      "binds": "src/lib/categories.ts CATEGORY_LABELS.ur.farm (the eyebrow of every /ur/ farm page, the neighbour cards, JSON-LD touristType).",
+      "guard": "For the coordinator: the label written byte for byte, «زرعی فارم» (since #175). For the proofreader: not a leaf; «باغات» is never the farm group's own word.",
+      "strings_affected": [
+        "CATEGORY_LABELS.farm (not a batch string)"
+      ],
+      "ruled_by": "Round 3 judge, b10 round 3, 2026-10-14; superseded in part by the owner's decision of 2026-10-15 (#175), recorded by the b13-ui judge, round 2"
+    },
+    {
+      "id": "P16-test",
+      "question": "When may an English loan enter, where the owner's rule (no loan where a common Urdu equivalent exists) meets a function that Urdu interfaces name with the loan?",
+      "evidence": "Proof on b13-ui r1, item 12: the lists of admitted loans lag.",
+      "status": "ruled",
+      "ruling_or_recommendation": "The owner's rule stands as written. A loan is admitted only when all three hold: (1) the native wording is shown not to be what the function or thing is called — by the localized interfaces or the press, not by taste; (2) a blind reader stumbled on it or was misled by it; (3) the loan has a dictionary headword or solid reference attestation. Each admission is a termbase entry that cites P16 with its evidence. Where the native word is common it stays, whatever the reader would have preferred. ADMITTED in this batch, final after three readings: «مینو», «لنک», «کاپی», «فارم» (in the bar label as «زرعی فارم»), «براؤزر» (pending: reference attestation only). REFUSED: «شیئر» (the function is «اشتراک کریں» on Android and Chrome; no dictionary entry; the native verb passed two readers), «لوکیشن» (the owner's banned list), «گائیڈ» (the owner's banned list), «فوٹوگرافی» (the owner's decision), «ہوٹل» (the native «رہائش» stands and passed the reader who saw it), «پروگرام» (a headword, but «راستہ» is the common word and nothing but taste is against it), «بلاگ» (no dictionary entry; «مضامین» passed all three readers), «ریستوراں» / «کیفے» («کھانے پینے کی جگہیں» passed all three), «بٹن» (not needed). The judge does not open the owner's lists; that all three readers write «گائیڈ», «لوکیشن» and «فوٹوگرافی» is recorded for him. ‖ RECORDED IN b13-ui (judge round 2), beside the list: «پارک» — admitted by the OWNER'S DECISION of 2026-10-15 for 'park' everywhere in /ur/ (P16 overridden for this word; its entry); «نمبر» — admitted on P16 itself (N193: no common native word for an item's number, Urdu Lughat headword), not on this test, whose condition (2) it does not meet.",
+      "binds": "Every later interface batch and page: the test, and the two lists.",
+      "guard": "Proofreader, checklist item 9: the admitted loans are the termbase entries whose note cites P16; any other English loan in Urdu letters is reported. Stage checker: «شیئر» and «لوکیشن» join the banned list.",
+      "strings_affected": [
+        "det.unescoNo",
+        "nav.leisure",
+        "list2.title",
+        "crumb.leisure",
+        "det.allLeisure",
+        "CATEGORY_LABELS.parks"
+      ],
+      "ruled_by": "Round 1 judge, b0-ui round 3, 2026-10-12; list recorded by the b13-ui judge, round 2, 2026-10-15"
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "crumb.leisure / det.allLeisure against nav.leisure, every language (item 33)",
+      "defect": "The section is named twice in the source: 'Souqs, Parks & Farms' in the menu and the page title, 'Souqs & parks' in the breadcrumb and the back link (AR «الأسواق والمنتزهات والمزارع» / «الأسواق والمنتزهات»).",
+      "effect_on_urdu": "A reader wonders whether «بازار اور پارک» is another page. Option for the owner: the breadcrumb and back link carry the menu name, in all languages at once."
+    },
+    {
+      "where": "det.unescoNo source string, every language (item 41)",
+      "defect": "The explanation names no property: 'UNESCO World Heritage component no. {n}' / «المكوّن رقم {n} في موقع اليونسكو للتراث العالمي».",
+      "effect_on_urdu": "The reader asks 'part of what?' and first reads 1563 as a year. Option for the owner: 'component no. {n} of the Al-Ahsa Oasis World Heritage property'."
+    },
+    {
+      "where": "kanzan-park summary (item 29, graded serious)",
+      "defect": "'The mountain park Al-Ahsa Municipality is building … — mountain slides, suspended bridges and waterfalls': under construction and its features in one line, no status.",
+      "effect_on_urdu": "A family cannot tell whether the park is open now. The owner ruled the body (history) on 2026-10-14; the summary is the reader's point."
+    },
+    {
+      "where": "AttractionsView template, both indexes (item 6)",
+      "defect": "Collapsed groups show a heading and a count with no visible control.",
+      "effect_on_urdu": "At first view the groups look empty, or the count looks like a page number."
+    },
+    {
+      "where": "qaisariyah summary (item 8)",
+      "defect": "'one of the oldest folk markets' gives no scope.",
+      "effect_on_urdu": "The Urdu keeps the unscoped claim."
+    },
+    {
+      "where": "al-uqair summary (item 18)",
+      "defect": "'first seaport' can be first in time or in rank.",
+      "effect_on_urdu": "The Urdu «پہلی» carries the same two readings."
+    },
+    {
+      "where": "muhairis summary (item 21)",
+      "defect": "'on the edge of Al-Mubarraz' names no side.",
+      "effect_on_urdu": "The reader asks which edge."
+    },
+    {
+      "where": "shaban summary (item 26)",
+      "defect": "'the old sources applied its name to Al-Qarah Mountain' leaves which mountain the card is about unclear.",
+      "effect_on_urdu": "The card seems to undo its own heading."
+    },
+    {
+      "where": "thulaim summary (item 27)",
+      "defect": "Says only that it is the first landmark at the northern gateway; not what it is.",
+      "effect_on_urdu": "The reader cannot tell what he would see."
+    },
+    {
+      "where": "bubakr-ribat summary (item 31)",
+      "defect": "1280 AH with no Gregorian year, in both sources.",
+      "effect_on_urdu": "The date cannot be placed; other cards give both."
+    },
+    {
+      "where": "national-park body, last sentence (item 36)",
+      "defect": "The Jawatha forest is introduced and left with no follow-up.",
+      "effect_on_urdu": "The paragraph ends on an unexplained name."
+    },
+    {
+      "where": "nearby suggestions, qasr-ibrahim (item 44)",
+      "defect": "qubba-mosque, which stands inside the fort, is suggested as a nearby stop under 1 km (computed from coordinates).",
+      "effect_on_urdu": "The reader wonders whether there are two mosques."
+    },
+    {
+      "where": "stadium-park (on-r1 item 18)",
+      "defect": "Neither source names the stadium.",
+      "effect_on_urdu": "The reader cannot find or tell it apart."
+    },
+    {
+      "where": "kanzan-park category and name (on-r1 item 33)",
+      "defect": "A municipal park filed under nature; the name carries a slash «الشعبة/كنزان».",
+      "effect_on_urdu": "The reader is unsure of its kind and its name."
+    },
+    {
+      "where": "qasr-ibrahim bestTime vs Friday hours (on-r1 item 44)",
+      "defect": "'Best time: daytime' while Friday opens 4–8 pm.",
+      "effect_on_urdu": "The advice does not help for the Gulf weekend day."
+    }
+  ],
+  "notes": [
+    {
+      "item": "decision",
+      "text": "APPROVE at 93 (threshold 90), NO text change. The text is letter for letter the stage-5 text: read blind twice (on-05, on-r1; byte-identical pages) and proofed once (on r1: must-fix 0). This round corrects the record only (proof items 1–13). Since no string moved, the proof on r1 and the on-r1 read are on exactly this text."
+    },
+    {
+      "item": "what changed my view",
+      "text": "The second reader confirms the round-1 view on «پارک», its bare plural, «نمبر» and N196, and the source matters (crumb vs menu, kanzan-park's summary, the badge). It moves two costs: the eyebrow is now two readers of two plus the det.visitInfo near-twin (misleading, not flat: charged two points under nativeness), and the badge is two of two (still the source's and the owner's, put to him with more weight). Neither required a text change within the owner's decisions: no wording on record fixes them without leaving the decision or entering the unread."
+    },
+    {
+      "item": "FOR THE OWNER",
+      "text": "(1) EYEBROW: two readers of two read «سیاحتی معلومات» as an information-section/desk label, and the detail pages' practical card is headed «سیاحوں کے لیے معلومات». Keep it, or switch to your other candidate «سیر کی رہنمائی» (unread; would go through the line)? (2) SECTION NAME: two readers of two asked why menu, breadcrumb and back link name the list differently ('Souqs, Parks & Farms' vs 'Souqs & parks', every language). One name everywhere? (3) UNESCO BADGE: two readers of two read 1563-004 as a year or an extension, and «حصہ نمبر» as a part number. Name the property in the source ('component no. {n} of the Al-Ahsa Oasis World Heritage property'), or reconsider showing the code? (4) kanzan-park SUMMARY: graded SERIOUS by both readers ('is being built' + its features): a plain status? (5) Recorded: «زرعی فارم» found doubled (one reader); the «UR» button (one reader)."
+    },
+    {
+      "item": "for the coordinator",
+      "text": "The «پارکس» and «نیشنل پارک» guards in this file bind interface batches only (lib/rulings.mjs). b14/b15 need them in their own judge files or in style_rules.anglicisms. The rulings that still name «تفریح گاہ» as the park generic (N65, N69, N85, N101, N102, N103, N112, N117, N121, N122, N124, P3a) are for the b14/b15 judges; N119 as amended is their authority. P4: closed by the owner (meta step). P16's Arabic list of admitted loans: add «پارک» (owner) and «نمبر» (N193) in the meta step, as P16-test now records."
+    },
+    {
+      "item": "for b14/b15",
+      "text": "Open items from both readers: the park noun on cards and titles (on-r1 10, 16, 17; on-05 10, 11, 15, 34); national-park body: «یہ باڑیں» (on-r1 36, on-05 35) and the centre's long name losing the subject (on-r1 37). Gender of «پارک» (masculine) is first exercised there."
+    },
+    {
+      "item": "for a later pass over approved text",
+      "text": "Interface: footer «حکومتی»/«سرکاری» (3 readers), list.empty / search «ابھی» (3), det.nearby.h (2), trails.partOf (2, now moderate), det.allSights (2), nav.fruits scope (2), «UR». Attractions: women-souq word order (3), the qasr-ibrahim minaret (2), kanzan mountain's circular sentence (on-r1 28), sawsan-gardens plural/singular (3)."
+    },
+    {
+      "item": "termbase",
+      "text": "termbase_final: «پارک» (new, verified; second Arabic spelling recorded), «تفریح گاہ» (withdrawn as the park word, key kept), «نمبر» (verified on P16, ground corrected), «باغ» and «فارم» (notes amended). Calibration adds N161 (superseded in part) and P16-test (list recorded)."
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Souqs, Parks & Farms",
+      "ur": "بازار، پارک اور زرعی فارم",
+      "page": "ui",
+      "field": "list2.title",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "Souqs, Parks & Farms",
+      "ur": "بازار، پارک اور زرعی فارم",
+      "page": "ui",
+      "field": "nav.leisure",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "Visit guide",
+      "ur": "سیاحتی معلومات",
+      "page": "ui",
+      "field": "list2.eyebrow",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "Parks & gardens",
+      "ur": "پارک اور باغات",
+      "page": "ui",
+      "field": "CATEGORY_LABELS.parks",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "Visit guide",
+      "ur": "سیاحتی معلومات",
+      "page": "ui",
+      "field": "list.eyebrow",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "Souqs & parks",
+      "ur": "بازار اور پارک",
+      "page": "ui",
+      "field": "crumb.leisure",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "All souqs & parks →",
+      "ur": "تمام بازار اور پارک ←",
+      "page": "ui",
+      "field": "det.allLeisure",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "UNESCO World Heritage component no. {n}",
+      "ur": "یونیسکو کے عالمی ورثے کا حصہ نمبر {n}",
+      "page": "ui",
+      "field": "det.unescoNo",
+      "date": "2026-10-15"
+    }
+  ],
+  "scores_rows": [
+    {
+      "page": "ui (b13-ui: 8 interface strings)",
+      "date": "2026-10-15",
+      "loop": 1,
+      "score": 94,
+      "decision": "APPROVE (batch 94, lowest page; axes 27/28/20/9/10; blind reader 46 items: 0 applied, 29 rejected, 12 source defects, 5 open items; 0 edits)"
+    },
+    {
+      "page": "ui (b13-ui: 8 interface strings)",
+      "date": "2026-10-15",
+      "loop": 2,
+      "score": 93,
+      "decision": "APPROVE (batch 93, lowest page; axes 27/27/20/9/10; blind reader 47 items: 0 applied, 28 rejected, 14 source defects, 5 open items; 0 edits; 13 proof items ruled)"
+    }
+  ],
+  "evidence": {
+    "text_sha256": "42b5ec5653d866cbc02aeecdbbecdb54a479b4e1d0f0ff44d232b87d2264bb90",
+    "proof": {
+      "on": "r1",
+      "file": "05p-proof.on-r1.md",
+      "sha256": "b8018f0e83dfdf6c0824e76016640f65790c2dbf56ba83d0bfea3f5910d947bd",
+      "items": 13
+    },
+    "blind": {
+      "on": "r1",
+      "file": "06-blind-reader.on-r1.md",
+      "sha256": "60536c428dec70a39f1fa5a23c0027129a6846429ef8f7e15b59ec477a9e701e",
+      "items": 47
+    }
+  }
+}

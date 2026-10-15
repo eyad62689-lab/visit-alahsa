@@ -1,0 +1,876 @@
+{
+  "batch": "b13-ui",
+  "kind": "ui",
+  "generated_by": "tools/mkpack-ui.mjs",
+  "built_from": "a trace build of a scratch copy of the worktree (_scratch/ui-trace-b13-ui/dist) + src/i18n/ui.ts + src/lib/categories.ts + the inline sites listed in tools/lib/inline-sites.mjs + ur-translation/memory/tm.json",
+  "worktree_ui_sha256": "da9358390607b7308d2effc8ba0d9c352842373177cf129b079cd163df6511f5",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings. Arabic-only content is not imported. precedent = the approved ru / de / zh values of the same string: reference, never source.",
+  "scope_rule": "A string is in the batch because a built page shows it, not because a dictionary lists it. tier \"rendered\" = on the /ur/ page(s) /ur/souqs-parks-farms/, /ur/attractions/, /ur/attractions/national-park/, /ur/attractions/qasr-ibrahim/. tier \"detail-template\" = not on the calibration detail page, but rendered by the same detail template on attraction pages of batches b1 / b2 (measured on a trace build that gave those ten pages a placeholder title). tier \"other-language-pages\" = in the language-suggestion bar that other languages' pages show a visitor whose browser asks for Urdu — it appears once /ur/ pages are listed (measured on a trace build with the three pages listed). Every other ui.ts key renders only on pages that have no /ur/ version yet and is listed under later_rounds.",
+  "stage_file_shape": "stage files carry strings = { \"<id>\": \"<Urdu>\" } with exactly the ids of this pack's strings, in this order. See tools/README.md.",
+  "placeholder_rule": "A placeholder listed for a string ({op}, {n}) is kept exactly once, untouched. det.openMaps keeps its trailing space + U+2197. Digits that stand in the English stay Latin digits.",
+  "pages": [
+    {
+      "id": "leisure-index",
+      "url": "/ur/souqs-parks-farms/",
+      "file": "dist/ur/souqs-parks-farms/index.html"
+    },
+    {
+      "id": "attractions-index",
+      "url": "/ur/attractions/",
+      "file": "dist/ur/attractions/index.html"
+    },
+    {
+      "id": "detail-park",
+      "url": "/ur/attractions/national-park/",
+      "file": "dist/ur/attractions/national-park/index.html"
+    },
+    {
+      "id": "detail-unesco",
+      "url": "/ur/attractions/qasr-ibrahim/",
+      "file": "dist/ur/attractions/qasr-ibrahim/index.html"
+    }
+  ],
+  "header_budget": {
+    "rule": "Navigation labels are bound by measurement, not by taste (CLAUDE.md: the header is measured, never estimated). After any change to a navigation label, tools/measure-header-fit.mjs must pass; it requires no overlap, ONE row and a header height of exactly 68px.",
+    "facts": {
+      "measured": "2026-10-12, worktree dist at fce37cf (feat/ur-round-1), headless Chrome via tools/measure-header-fit.mjs (MODE=fit and verify) and a per-link probe",
+      "tool_output_fit": {
+        "ar": {
+          "links": 10,
+          "nav_px": 781,
+          "need_px": 1353,
+          "min_window_px": 1393
+        },
+        "en": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1476,
+          "min_window_px": 1516
+        },
+        "zh": {
+          "links": 10,
+          "nav_px": 684,
+          "need_px": 1220,
+          "min_window_px": 1260
+        },
+        "de": {
+          "links": 9,
+          "nav_px": 924,
+          "need_px": 1481,
+          "min_window_px": 1521
+        },
+        "ru": {
+          "links": 9,
+          "nav_px": 1014,
+          "need_px": 1668,
+          "min_window_px": 1708
+        },
+        "ur": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1478,
+          "min_window_px": 1518
+        }
+      },
+      "tool_output_verify": {
+        "widths_probed": 26,
+        "languages": 6,
+        "failing_cells": 0,
+        "all_cells_pass": true,
+        "exit_code": 0
+      },
+      "ur_today": {
+        "labels": "English fall-back labels (ui.ur is empty), Latin font 13.5px Lora",
+        "bar_shown_from_px": 1518,
+        "collapsed_to_burger_below_px": 1518,
+        "container_cap_px": 1500,
+        "header_height_px": 68,
+        "header_gap_px": 16,
+        "nav_gap_px": 10,
+        "nav_font": "13.5px Lora",
+        "nav_line_height": "23.625px",
+        "brand_px": 71.6,
+        "actions_px": 509.2,
+        "nav_links": [
+          {
+            "en": "Attractions",
+            "px": 70.1,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Trails",
+            "px": 34.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Souqs, Parks & Farms",
+            "px": 133.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Events",
+            "px": 41.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Oasis Fruits",
+            "px": 74.2,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Hasawi Cuisine",
+            "px": 95.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Restaurants & Cafés",
+            "px": 125.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Places to Stay",
+            "px": 86.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Online Stores",
+            "px": 85.5,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Plan your trip",
+            "px": 0,
+            "shown_in_bar": false
+          },
+          {
+            "en": "Map",
+            "px": 27.4,
+            "shown_in_bar": true
+          }
+        ],
+        "action_parts": [
+          {
+            "what": "button.hd-search-btn",
+            "text": "",
+            "px": 95.9
+          },
+          {
+            "what": "a.plan-link",
+            "text": "My saved places 0",
+            "px": 141.8
+          },
+          {
+            "what": "details.lang-menu",
+            "text": "URالعربيةEnglish中文（简体）DeutschРусскийاردو",
+            "px": 85.1
+          },
+          {
+            "what": "a.btn-gold",
+            "text": "Plan your trip",
+            "px": 138.4
+          }
+        ],
+        "nav_links_sum_px": 774.4,
+        "nav_intrinsic_px": 864.4,
+        "need_px": 1478
+      }
+    },
+    "what_the_labels_must_fit": "With the present [lang=\"ur\"] block in Header.astro the bar is shown from a 1518px window and is collapsed into the burger below it (so on 1280-1536px laptop screens the Urdu header is the burger menu, whatever the labels). For that threshold to stay valid the bar may need at most 1478px: brand 71.6 + nav + actions + 2 x 16 gap, i.e. nav (ten labels and nine 10px gaps) plus actions (search button, saved-places link with its counter, language button, gold button) of at most 1374.4px — today 1373.6px with the English labels in a Latin face at 13.5px. The Urdu labels will be set in the Nastaliq face, which is wider and taller: the widths below are the English ones and are a reference, not a prediction. If the Urdu labels need more, the thresholds of the [lang=\"ur\"] block are re-measured and moved (an engineering step for the coordinator), or shorter labels are chosen — measured either way.",
+    "nav_label_ids": [
+      "nav.leisure"
+    ]
+  },
+  "totals": {
+    "strings": 8,
+    "by_tier": {
+      "rendered": 8,
+      "detail-template": 0,
+      "other-language-pages": 0
+    },
+    "by_kind": {
+      "ui.ts key": 7,
+      "category label": 1
+    },
+    "navigation_labels": 1,
+    "navigation_labels_in_bar": 1,
+    "with_candidate_from_calibration": 0,
+    "with_placeholder": 1,
+    "later_rounds": 198
+  },
+  "strings": {
+    "list2.title": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list2.title"
+      },
+      "tier": "rendered",
+      "en": "Souqs, Parks & Farms",
+      "ar": "الأسواق والمنتزهات والمزارع",
+      "placeholders": [],
+      "renders": [
+        "leisure-index: head title",
+        "leisure-index: head meta @og:title",
+        "leisure-index: head meta @twitter:title",
+        "leisure-index: head jsonld @name",
+        "leisure-index: main text"
+      ],
+      "element": [
+        "h1.pgh-title"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рынки, парки и фермы",
+        "de": "Souks, Parks und Farmen",
+        "zh": "传统市集、公园与农场"
+      },
+      "approved_today": "بازار، تفریح گاہیں اور زرعی فارم",
+      "reopened_by": "owner decided 2026-10-15: N119 is REVERSED — the loan «پارک» for \"park\" everywhere in /ur/, replacing «تفریح گاہ» (and the park generic of N69 / N101 / N121 where it is «تفریح گاہ»). «پارک» is masculine — by usage (ur.wikipedia exact phrases, HTTP 200, 2026-10-15: masculine agreeing forms 34 hits, feminine 0; coord/r4-b13-park-gender-wiki.json); the Rekhta entries for it (public-park, the English-Urdu page) carry no gender label, and udb.gov.pk attests the word «پارْک» in this sense without one: every agreeing word follows. A garden «باغ» stays a garden.",
+      "tm_approved": [
+        {
+          "ur": "بازار، تفریح گاہیں اور زرعی فارم",
+          "page": "ui",
+          "field": "nav.leisure"
+        },
+        {
+          "ur": "بازار، تفریح گاہیں اور زرعی فارم",
+          "page": "ui",
+          "field": "list2.title"
+        }
+      ],
+      "same_source_as": [
+        "nav.leisure"
+      ]
+    },
+    "nav.leisure": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "nav.leisure"
+      },
+      "tier": "rendered",
+      "en": "Souqs, Parks & Farms",
+      "ar": "الأسواق والمنتزهات والمزارع",
+      "placeholders": [],
+      "renders": [
+        "leisure-index: header text",
+        "leisure-index: footer text",
+        "attractions-index: header text",
+        "attractions-index: footer text",
+        "detail-park: header text",
+        "detail-park: footer text",
+        "detail-unesco: header text",
+        "detail-unesco: footer text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": "bar",
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рынки, парки и фермы",
+        "de": "Souks, Parks und Farmen",
+        "zh": "传统市集、公园与农场"
+      },
+      "approved_today": "بازار، تفریح گاہیں اور زرعی فارم",
+      "reopened_by": "owner decided 2026-10-15: N119 is REVERSED — the loan «پارک» for \"park\" everywhere in /ur/, replacing «تفریح گاہ» (and the park generic of N69 / N101 / N121 where it is «تفریح گاہ»). «پارک» is masculine — by usage (ur.wikipedia exact phrases, HTTP 200, 2026-10-15: masculine agreeing forms 34 hits, feminine 0; coord/r4-b13-park-gender-wiki.json); the Rekhta entries for it (public-park, the English-Urdu page) carry no gender label, and udb.gov.pk attests the word «پارْک» in this sense without one: every agreeing word follows. A garden «باغ» stays a garden.",
+      "tm_approved": [
+        {
+          "ur": "بازار، تفریح گاہیں اور زرعی فارم",
+          "page": "ui",
+          "field": "nav.leisure"
+        },
+        {
+          "ur": "بازار، تفریح گاہیں اور زرعی فارم",
+          "page": "ui",
+          "field": "list2.title"
+        }
+      ],
+      "same_source_as": [
+        "list2.title"
+      ],
+      "header_px_today": 133.3
+    },
+    "list2.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list2.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Visit guide",
+      "ar": "دليل الزيارة",
+      "placeholders": [],
+      "renders": [
+        "leisure-index: main text"
+      ],
+      "element": [
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Путеводитель",
+        "de": "Reiseführer",
+        "zh": "游览指南"
+      },
+      "approved_today": "سیاحتی رہنما",
+      "reopened_by": "owner decided 2026-10-15 (N190 amended): change the eyebrow on BOTH indexes together, to a native wording that names the guide, not a person (both readers of b12 read «سیاحتی رہنما» as a person). Candidates for stage 1: «سیر کی رہنمائی» · «سیاحتی معلومات».",
+      "tm_approved": [
+        {
+          "ur": "سیاحتی رہنما",
+          "page": "ui",
+          "field": "list.eyebrow"
+        },
+        {
+          "ur": "سیاحتی رہنما",
+          "page": "ui",
+          "field": "list2.eyebrow"
+        }
+      ],
+      "same_source_as": [
+        "list.eyebrow"
+      ]
+    },
+    "CATEGORY_LABELS.parks": {
+      "kind": "category label",
+      "source": {
+        "file": "src/lib/categories.ts",
+        "key": "CATEGORY_LABELS.ur.parks"
+      },
+      "tier": "rendered",
+      "en": "Parks & gardens",
+      "ar": "المتنزّهات والحدائق",
+      "placeholders": [],
+      "renders": [
+        "leisure-index: main text",
+        "detail-park: head jsonld @touristType",
+        "detail-park: main text",
+        "detail-unesco: main text"
+      ],
+      "element": [
+        "h2#h-parks.cat-sec-t",
+        "span.t-caption.lc-k",
+        "span.eyebrow.gold-on-dark",
+        "span.t-caption.nb-k"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Парки и сады",
+        "de": "Parks und Gärten",
+        "zh": "公园与园林"
+      },
+      "approved_today": "تفریح گاہیں اور باغات",
+      "reopened_by": "owner decided 2026-10-15: N119 is REVERSED — the loan «پارک» for \"park\" everywhere in /ur/, replacing «تفریح گاہ» (and the park generic of N69 / N101 / N121 where it is «تفریح گاہ»). «پارک» is masculine — by usage (ur.wikipedia exact phrases, HTTP 200, 2026-10-15: masculine agreeing forms 34 hits, feminine 0; coord/r4-b13-park-gender-wiki.json); the Rekhta entries for it (public-park, the English-Urdu page) carry no gender label, and udb.gov.pk attests the word «پارْک» in this sense without one: every agreeing word follows. A garden «باغ» stays a garden.",
+      "tm_approved": [
+        {
+          "ur": "تفریح گاہیں اور باغات",
+          "page": "ui",
+          "field": "CATEGORY_LABELS.parks"
+        }
+      ]
+    },
+    "list.eyebrow": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "list.eyebrow"
+      },
+      "tier": "rendered",
+      "en": "Visit guide",
+      "ar": "دليل الزيارة",
+      "placeholders": [],
+      "renders": [
+        "attractions-index: main text"
+      ],
+      "element": [
+        "span.eyebrow.gold-on-dark"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Путеводитель",
+        "de": "Reiseführer",
+        "zh": "游览指南"
+      },
+      "approved_today": "سیاحتی رہنما",
+      "reopened_by": "owner decided 2026-10-15 (N190 amended): change the eyebrow on BOTH indexes together, to a native wording that names the guide, not a person (both readers of b12 read «سیاحتی رہنما» as a person). Candidates for stage 1: «سیر کی رہنمائی» · «سیاحتی معلومات».",
+      "tm_approved": [
+        {
+          "ur": "سیاحتی رہنما",
+          "page": "ui",
+          "field": "list.eyebrow"
+        },
+        {
+          "ur": "سیاحتی رہنما",
+          "page": "ui",
+          "field": "list2.eyebrow"
+        }
+      ],
+      "same_source_as": [
+        "list2.eyebrow"
+      ]
+    },
+    "crumb.leisure": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "crumb.leisure"
+      },
+      "tier": "rendered",
+      "en": "Souqs & parks",
+      "ar": "الأسواق والمنتزهات",
+      "placeholders": [],
+      "renders": [
+        "detail-park: head jsonld @name",
+        "detail-park: main text"
+      ],
+      "element": [
+        "a"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рынки и парки",
+        "de": "Souks & Parks",
+        "zh": "传统市集与公园"
+      },
+      "approved_today": "بازار اور تفریح گاہیں",
+      "reopened_by": "owner decided 2026-10-15: N119 is REVERSED — the loan «پارک» for \"park\" everywhere in /ur/, replacing «تفریح گاہ» (and the park generic of N69 / N101 / N121 where it is «تفریح گاہ»). «پارک» is masculine — by usage (ur.wikipedia exact phrases, HTTP 200, 2026-10-15: masculine agreeing forms 34 hits, feminine 0; coord/r4-b13-park-gender-wiki.json); the Rekhta entries for it (public-park, the English-Urdu page) carry no gender label, and udb.gov.pk attests the word «پارْک» in this sense without one: every agreeing word follows. A garden «باغ» stays a garden."
+    },
+    "det.allLeisure": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.allLeisure"
+      },
+      "tier": "rendered",
+      "en": "All souqs & parks →",
+      "ar": "← كل الأسواق والمنتزهات",
+      "placeholders": [],
+      "renders": [
+        "detail-park: main text"
+      ],
+      "element": [
+        "a.btn.btn--turq"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Все рынки и парки →",
+        "de": "Alle Souks & Parks →",
+        "zh": "全部传统市集与公园 →"
+      },
+      "approved_today": "تمام بازار اور تفریح گاہیں ←",
+      "reopened_by": "owner decided 2026-10-15: N119 is REVERSED — the loan «پارک» for \"park\" everywhere in /ur/, replacing «تفریح گاہ» (and the park generic of N69 / N101 / N121 where it is «تفریح گاہ»). «پارک» is masculine — by usage (ur.wikipedia exact phrases, HTTP 200, 2026-10-15: masculine agreeing forms 34 hits, feminine 0; coord/r4-b13-park-gender-wiki.json); the Rekhta entries for it (public-park, the English-Urdu page) carry no gender label, and udb.gov.pk attests the word «پارْک» in this sense without one: every agreeing word follows. A garden «باغ» stays a garden."
+    },
+    "det.unescoNo": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "det.unescoNo"
+      },
+      "tier": "rendered",
+      "en": "UNESCO World Heritage component no. {n}",
+      "ar": "المكوّن رقم {n} في موقع اليونسكو للتراث العالمي",
+      "placeholders": [
+        "{n}"
+      ],
+      "renders": [
+        "detail-unesco: main text"
+      ],
+      "element": [
+        "a.ah-unesco"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": null,
+        "de": null,
+        "zh": null
+      }
+    }
+  },
+  "owner_questions": [],
+  "not_in_this_batch": {
+    "held_for_owner": {
+      "rule": "Rendered on the three pages, but the wording is the site owner's to decide (owner_questions.brand). Not in strings: stage files carry no value for it. zh, de and ru leave the key undefined.",
+      "strings": {}
+    },
+    "english_in_scripts_by_precedent": [
+      {
+        "file": "src/components/CopyGuard.astro",
+        "text": "Source: Visit Al-Ahsa — <page URL>",
+        "renders": "appended to any copied selection longer than 150 characters, on every non-Arabic page",
+        "note": "The component knows two languages only (Arabic / everything else): zh, de and ru pages append the English line too. Carries the brand (owner_questions.brand)."
+      }
+    ],
+    "later_rounds": {
+      "rule": "ui.ts keys and category labels that no built /ur/ page (and no round-1 attraction page) renders. They belong to the rounds that build their pages.",
+      "count": 198,
+      "ui_keys": [
+        "site.name",
+        "site.brand",
+        "trails.title",
+        "trails.lead",
+        "trails.duration",
+        "trails.duration.half-day",
+        "trails.duration.full-day",
+        "trails.mode",
+        "trails.mode.walking",
+        "trails.mode.driving",
+        "trails.mode.4x4",
+        "trails.stopsCount",
+        "trails.unescoCount",
+        "trails.view",
+        "trails.stopsH",
+        "trails.stop",
+        "trails.unesco",
+        "trails.sources",
+        "trails.landmark",
+        "trails.mapH",
+        "trails.mapNote",
+        "trails.all",
+        "nav.discover",
+        "lang.switch",
+        "lang.switchLabel",
+        "map.locate",
+        "det.mentions.h",
+        "form.honeypot",
+        "foot.l.historic",
+        "foot.l.nature",
+        "foot.l.crafts",
+        "foot.l.taste",
+        "foot.l.stay",
+        "foot.l.routes",
+        "foot.l.aboutSite",
+        "list.all",
+        "stores.all",
+        "stores.filterLabel",
+        "stores.search",
+        "stores.searchLabel",
+        "stores.empty",
+        "stores.visit",
+        "stores.visitAccount",
+        "stores.directOrder",
+        "stores.platform",
+        "stores.disclaimer",
+        "stores.faq",
+        "stores.lead",
+        "stores.shotAlt",
+        "stores.logoAlt",
+        "det.coords",
+        "det.openAmap",
+        "det.allStays",
+        "det.verifyNote",
+        "map.eyebrow",
+        "map.title",
+        "map.lead.a",
+        "map.pop.view",
+        "map.search.ph",
+        "map.count",
+        "map.list.aria",
+        "map.filter.aria",
+        "map.empty",
+        "map.terrain",
+        "tmap.title",
+        "tmap.lead",
+        "tmap.open",
+        "tmap.loading",
+        "tmap.3d.on",
+        "tmap.3d.off",
+        "tmap.locate",
+        "tmap.list.title",
+        "tmap.classic",
+        "tmap.gest.win",
+        "tmap.gest.mac",
+        "tmap.gest.touch",
+        "plan.eyebrow",
+        "plan.title",
+        "plan.lead",
+        "plan.savedSuffix",
+        "plan.savedOne",
+        "plan.savedTwo",
+        "plan.savedFew",
+        "plan.clearConfirm",
+        "plan.routeLimit",
+        "plan.route",
+        "plan.clear",
+        "plan.remove",
+        "plan.location",
+        "plan.empty.h",
+        "plan.empty.d",
+        "plan.empty.browse",
+        "plan.empty.map",
+        "plan.share",
+        "plan.copy",
+        "plan.print",
+        "plan.waText",
+        "plan.shared.h",
+        "plan.shared.d",
+        "plan.shared.import",
+        "plan.shared.mine",
+        "plan.printNote",
+        "ev.shop",
+        "ev.shopNote",
+        "crumb.blog",
+        "blog.eyebrow",
+        "blog.title",
+        "blog.lead",
+        "blog.empty",
+        "blog.published",
+        "blog.updated",
+        "blog.back",
+        "blog.faq",
+        "guides.nav",
+        "guides.title",
+        "guides.seoDesc",
+        "guides.lead",
+        "guides.disc.before",
+        "guides.disc.role",
+        "guides.filter.lang",
+        "guides.filter.spec",
+        "guides.filter.all",
+        "guides.filter.none",
+        "guides.list.h",
+        "guides.list.order",
+        "guides.empty.h",
+        "guides.empty.p",
+        "guides.badge.m",
+        "guides.badge.f",
+        "guides.place",
+        "guides.card.langs",
+        "guides.card.areas",
+        "guides.card.valid",
+        "guides.card.page.m",
+        "guides.card.page.f",
+        "guides.contact.h.m",
+        "guides.contact.h.f",
+        "guides.contact.wa",
+        "guides.contact.tel",
+        "guides.contact.mail",
+        "guides.contact.waAria",
+        "guides.contact.telAria",
+        "guides.contact.mailAria",
+        "guides.contact.short",
+        "guides.how.h",
+        "guides.how.1.h",
+        "guides.how.1.p",
+        "guides.how.2.h",
+        "guides.how.2.p",
+        "guides.how.3.h",
+        "guides.how.3.p",
+        "guides.yes.h",
+        "guides.yes.1",
+        "guides.yes.2",
+        "guides.no.h",
+        "guides.no.1",
+        "guides.no.2",
+        "guides.no.3",
+        "guides.join.h",
+        "guides.join.p",
+        "guides.join.wa",
+        "guides.join.mailAria",
+        "guides.chip.valid",
+        "guides.facts.group",
+        "guides.facts.prices",
+        "guides.facts.pricesV",
+        "guides.lic.h",
+        "guides.lic.checked",
+        "guides.lic.number",
+        "guides.lic.issuer",
+        "guides.lic.expires",
+        "guides.lic.verifiedAt",
+        "guides.lic.note",
+        "guides.stated",
+        "guides.bio.h.m",
+        "guides.bio.h.f",
+        "guides.tours.h",
+        "guides.tours.price",
+        "guides.gallery.h",
+        "guides.gallery.note",
+        "guides.service.h",
+        "guides.service.length",
+        "guides.service.meeting",
+        "guides.service.hours",
+        "guides.service.note",
+        "guides.about.h",
+        "guides.about.1",
+        "guides.about.2",
+        "guides.about.3",
+        "guides.report",
+        "guides.others.h",
+        "guides.others.all",
+        "guides.photoAlt",
+        "guides.plan.h",
+        "guides.plan.p"
+      ],
+      "category_labels": [
+        "experience",
+        "taste",
+        "events"
+      ]
+    },
+    "english_by_precedent": [
+      {
+        "id": "data.orgDesc",
+        "file": "src/lib/schema.ts",
+        "en": "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.",
+        "ar": "مبادرة مستقلة: دليل سياحي رقمي عن محافظة الأحساء في السعودية — ليست جهة حكومية ولا تمثل أي هيئة رسمية.",
+        "renders": "JSON-LD Organization.description on every page (search engines only)",
+        "note": "zh, de and ru all carry the ENGLISH sentence here: the earlier lines never translated it.",
+        "values_today": {
+          "zh": "(the English sentence)",
+          "de": "(the English sentence)",
+          "ru": "(the English sentence)"
+        }
+      }
+    ],
+    "already_in_urdu": {
+      "rule": "Rendered on the pages of the batch, outside the batch ids, and the code already carries their Urdu: approved text, not reopened here.",
+      "ui_keys_and_labels": [
+        "list2.lead",
+        "crumb.home",
+        "a11y.skip",
+        "a11y.menu",
+        "a11y.mainNav",
+        "nav.attractions",
+        "nav.trails",
+        "nav.events",
+        "nav.fruits",
+        "nav.food",
+        "nav.dining",
+        "nav.stayShort",
+        "nav.stores",
+        "nav.plan",
+        "nav.map",
+        "search.open",
+        "search.label",
+        "search.placeholder",
+        "search.close",
+        "search.idle",
+        "search.escHint",
+        "search.empty",
+        "search.searching",
+        "search.results",
+        "nav.myTrip",
+        "lang.menu",
+        "nav.planVisit",
+        "list.map",
+        "list.searchLabel",
+        "list.search",
+        "CATEGORY_LABELS.market",
+        "fav.add",
+        "CATEGORY_LABELS.farm",
+        "list.empty",
+        "foot.tagline",
+        "foot.col.discover",
+        "CATEGORY_LABELS.historic",
+        "CATEGORY_LABELS.nature",
+        "nav.dine",
+        "nav.stay",
+        "foot.l.events",
+        "nav.blog",
+        "foot.l.about",
+        "foot.l.unesco",
+        "foot.col.plan",
+        "foot.l.getThere",
+        "foot.col.site",
+        "foot.l.privacy",
+        "foot.l.report",
+        "foot.l.contact",
+        "foot.l.whatsapp",
+        "foot.independence",
+        "list.title",
+        "list.lead",
+        "video.pause",
+        "video.play",
+        "CATEGORY_LABELS.museum",
+        "CATEGORY_LABELS.religious",
+        "a11y.crumbs",
+        "fav.added",
+        "plan.copied",
+        "share.btn",
+        "det.visitInfo",
+        "det.area",
+        "det.hoursNotice",
+        "det.hoursNotice.op",
+        "map.locate.err",
+        "det.distance",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h",
+        "det.nearby.d",
+        "det.nearby.note",
+        "trails.partOf",
+        "crumb.attractions",
+        "det.bestTime",
+        "det.faq",
+        "det.allSights"
+      ],
+      "inline_sites": [
+        "inline.home.title",
+        "inline.home.description",
+        "inline.home.fact.palms.n",
+        "inline.home.fact.springs.n",
+        "inline.home.country",
+        "inline.attractions.groupsHint",
+        "inline.404.title",
+        "inline.404.heading",
+        "inline.404.text",
+        "data.dist.under",
+        "data.dist.about",
+        "data.oasisName",
+        "data.langShort"
+      ]
+    },
+    "outside_ids_without_urdu": {
+      "rule": "Rendered on the pages of the batch with no Urdu in the code, but not named by the batch row: for a later batch.",
+      "ui_keys_and_labels": [
+        "site.brand"
+      ]
+    },
+    "not_text": "The .eyebrow letter-spacing, the OG card image, the header thresholds, the unlisted table and the build guards are engineering steps, not strings. The OG card (public/og-default-ur.png) is generated from home.hero.eyebrow, and the web-app manifest description from home.hero.lead: both are strings of this batch."
+  },
+  "english_that_stays_on_the_three_pages_after_this_batch": {
+    "note": "Measured on the trace build: Latin text on the four pages that no string of this batch replaces. It keeps counting against the 20% threshold of build check C22 until its own batches land.",
+    "content_of_untranslated_attractions": {
+      "distinct_strings": 0,
+      "attractions": 0,
+      "why": "titles and summaries of attractions with no title_ur, on the index cards, the home featured cards, the \"nearby\" cards and the ItemList JSON-LD"
+    },
+    "trails_section": {
+      "distinct_strings": 4,
+      "strings": [
+        "Al-Asfar Lake & National Park Trail",
+        "A forest that held back the sands, and a lake among the dunes",
+        "Historic Hofuf Trail",
+        "Urban heritage at the heart of the old city"
+      ],
+      "why": "titles and taglines of suggested trails (src/data/trails.json): the trails have no Urdu version; the section heading itself (trails.partOf) is in the batch"
+    },
+    "brand": [
+      "© 2026 — visit-alahsa.com"
+    ],
+    "organization_description": [
+      "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority."
+    ],
+    "other_languages_by_design": [
+      "VISIT AL-AHSA",
+      "English",
+      "Deutsch",
+      "This page is available in English",
+      "Read in English",
+      "Dismiss",
+      "Diese Seite ist auf Deutsch verfügbar",
+      "Auf Deutsch lesen",
+      "Schließen"
+    ],
+    "keyboard_key": [
+      "Esc"
+    ],
+    "untraced": []
+  }
+}

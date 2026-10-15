@@ -1,0 +1,49 @@
+{
+  "stage": "03-localizer",
+  "batch": "b13-ui",
+  "strings": {
+    "list2.title": "بازار، پارک اور زرعی فارم",
+    "nav.leisure": "بازار، پارک اور زرعی فارم",
+    "list2.eyebrow": "سیاحتی معلومات",
+    "CATEGORY_LABELS.parks": "پارک اور باغات",
+    "list.eyebrow": "سیاحتی معلومات",
+    "crumb.leisure": "بازار اور پارک",
+    "det.allLeisure": "تمام بازار اور پارک ←",
+    "det.unescoNo": "یونیسکو کے عالمی ورثے کا حصہ نمبر {n}"
+  },
+  "changes": [],
+  "facts_added": [],
+  "tempted_but_not_added": [
+    {
+      "what": "Making the UNESCO badge say what the number belongs to for a reader who knows nothing of Al-Ahsa: the listed property named («الاحساء کے نخلستان کا حصہ نمبر …») or the inscription year 2018.",
+      "why_not": "Neither the English nor the Arabic of det.unescoNo names the oasis or a year; the badge is a link to the UNESCO page that carries both, and the attraction page itself states the listing in its own text (N16). Adding them is a fact the string's source does not carry. Fence of role file 03."
+    },
+    {
+      "what": "Glossing the UNESCO vocabulary in the badge (what «عالمی ورثہ» is, or what the code 1563-005 means), since role file 03 names the UNESCO vocabulary among what this reader may not know.",
+      "why_not": "The gloss rule is for the first mention in running text, never in a heading or a label (gloss_regel; P3c-labels); the badge is a label. «یونیسکو» and «عالمی ورثہ» are approved terms read without remark (N2). The explanation the owner asked for is the words before the number, which the string already carries."
+    },
+    {
+      "what": "A planning cue in the park strings (shade, family outings, evenings in the parks) for the Gulf-resident reader.",
+      "why_not": "Navigation, crumb, button and category labels carry no such content in any source language; it would be an added fact and a change outside what the owner's decisions require. Fence."
+    }
+  ],
+  "notes": [
+    {
+      "item": "batch",
+      "text": "No change. The eight strings are labels (a menu item, a heading, two eyebrows, a category heading, a crumb, a button, a badge): the localizer's tools (foregrounding what the reader plans around, glossing at first mention in running text) do not apply to labels, and the fence bars any added content. The audience reads all eight without help: «بازار», «پارک», «باغات», «زرعی فارم», «سیاحتی معلومات» are everyday Urdu for a Pakistani or Indian reader in the Gulf, and «پارک» is the word this reader uses (the reason for the owner's decision). Bound and kept: «پارک» not reverted; the two eyebrows byte-identical; nav.leisure = list2.title; «باغات» kept; {n} once in det.unescoNo. No termbase addition beyond stage 1's «پارک» (carried in 01, not repeated)."
+    },
+    {
+      "item": "det.unescoNo",
+      "text": "For this reader the badge is clear as written: «یونیسکو» and «عالمی ورثہ» are the approved terms (N2), and «حصہ نمبر» says plainly that the code numbers a part of the listing, which is the owner's 'number WITH a short explanation'. The number renders after «نمبر» in Latin digits; in the RTL line the hyphen between two digit runs stays inside the code (bidi W4), so 1563-005 reads in its own order (inferred from the bidi rule and the template's plain replace of {n}; not seen on a build at this stage). What the code refers to is on the UNESCO page the badge links to; not added here (see tempted_but_not_added)."
+    },
+    {
+      "item": "list2.eyebrow",
+      "text": "«سیاحتی معلومات» suits this audience: it is the label a Gulf-resident Urdu reader meets on information sections of official and travel sites, and it does not read as a person. Kept byte-identical in list.eyebrow."
+    },
+    {
+      "item": "crumb.leisure",
+      "text": "Stage 2's recorded cost stands (the direct plural «پارک» equals the singular); for this reader the plural is carried by the menu label and «تمام» on the button of the same page. Not acted on: the decision fixes the word, and «پارکس» is refused."
+    }
+  ],
+  "termbase_additions": []
+}

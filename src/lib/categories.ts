@@ -69,12 +69,13 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     events: 'События',
   },
   // الأوردية من خط ur-translation-pipeline (دفعة نصوص الواجهة 2026-10-12، الحاكم 90/100).
+  // الأوردية من خط ur-translation-pipeline (دفعة نصوص الواجهة 2026-10-15، الحاكم 93/100).
   ur: {
     historic: 'تاریخی مقامات',
     museum: 'عجائب گھر',
     religious: 'مساجد اور مذہبی مقامات',
     nature: 'قدرتی مقامات',
-    parks: 'تفریح گاہیں اور باغات',
+    parks: 'پارک اور باغات',
     market: 'روایتی بازار',
     farm: 'زرعی فارم',
   },
