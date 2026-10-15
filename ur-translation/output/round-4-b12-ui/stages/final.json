@@ -1,0 +1,309 @@
+{
+  "stage": "final",
+  "batch": "b12-ui",
+  "built_from": {
+    "tool": "tools/mk-final.mjs",
+    "built": "2026-10-15T03:33:32.352Z",
+    "judge_file": "07-judge.round2.json",
+    "judge_sha256": "f1ebbcacac24d042c41eb42e01ca2e71ba2f1981a765cdc032e7c424bded2a1d",
+    "pack_sha256": "b69e096c0817dd5de8af1aadf82fb48e3ecfc6e58323f24b1587a41501e8dc07",
+    "owner_overrides_sha256": null,
+    "termbase_sha256_at_build": "101bf80a924dae3d0a65b1b05cb6c45c8ed3af915f27885242de075ae0e8f9bc"
+  },
+  "judge": {
+    "rounds": [
+      {
+        "round": 1,
+        "batch_score": 93,
+        "decision": "APPROVE",
+        "scores": {
+          "ui": 93
+        }
+      },
+      {
+        "round": 2,
+        "batch_score": 93,
+        "decision": "APPROVE",
+        "scores": {
+          "ui": 93
+        }
+      }
+    ],
+    "decision": "APPROVE",
+    "batch_score": 93
+  },
+  "score": 93,
+  "breakdown": {
+    "accuracy": {
+      "points": 29,
+      "max": 30,
+      "why": "The three strings carry every fact of both sources and add none. The lead again closes on the source's own words: 'taste' / «ذُق» as «ذائقہ لیں» and 'the bounty of Al-Ahsa' / «خيرات الأحساء» as «الاحساء کی نعمتوں» («نعمت»: a good thing, also a delicious thing to eat, Rekhta meaning-of-nemat). The round-1 word «سوغاتیں» brought in the sense of a gift or present brought back from a place (Rekhta meaning-of-saugaat: 'gift or present, especially one brought from a far-off land'; the on-r1 reader: 'a gift you bring home') and lost the abundance of 'bounty'; it is withdrawn. One point off: the title's «زرعی فارم» says 'agricultural' where the source says 'farms' (the approved nav.leisure pair, N5)."
+    },
+    "nativeness": {
+      "points": 25,
+      "max": 30,
+      "why": "Both readers found the title clear and the lead's opening clear («… سے لے کر … تک»). Five points off. (1) «سیاحتی رہنما» was read first as a person by both readers (on-05 item 1, on-r1 item 2, both moderate); it is kept so that the two sister indexes carry one eyebrow (N190). (2) «تفریح گاہیں» was bookish to both (on-05 minor, on-r1 moderate). It is the line's approved park word (P16, nav.leisure, the owner's N119). (3) The closing clause «نعمتوں کا ذائقہ لیں» was heard by the on-05 reader as brochure language (minor). No closing wording has yet passed a reader clean; this one's fault is register, not meaning."
+    },
+    "compliance": {
+      "points": 20,
+      "max": 20,
+      "why": "«سوق القیصریہ» and «الاحساء» are byte for byte their termbase keys, and «نخلستان», «باغ», «فارم» (oblique «فارموں») and «تفریح گاہ» stand as entered. The title and eyebrow are byte-identical to their approved tm.json pairs. Only Urdu letterforms, only «،» and «۔», and the colon for the source's dash as in the approved list.lead. No Latin letter and no digit; honorific imperatives. Agreement: «الاحساء کی نعمتوں» (feminine) and «کا ذائقہ» (masculine), as stage 5 recorded. The lead is the stage-5 text, letter for letter."
+    },
+    "fit": {
+      "points": 9,
+      "max": 10,
+      "why": "The lead tells a traveller who knows nothing of Al-Ahsa what the page holds and what to do there. As a search snippet it names the place and its best-known market. One point off: to a reader who takes the eyebrow for a person, it says nothing about this page. The page's grouping, its missing hours and fees, and the date-palm heading are SOURCE defects (logged below, no point taken)."
+    },
+    "structure": {
+      "points": 10,
+      "max": 10,
+      "why": "Exactly the pack's three ids, in pack order, with no placeholder. The title and eyebrow carry no bracket and no final stop; the lead closes with «۔» as its English closes with a stop. The JSON-LD name (list2.title + brand) is never seen by the blind reader. Checked here: it is identical to the h1 and to nav.leisure, with no Latin name inside it."
+    }
+  },
+  "strings": {
+    "list2.title": "بازار، تفریح گاہیں اور زرعی فارم",
+    "list2.lead": "تاریخی سوق القیصریہ سے لے کر نخلستان کے باغوں اور فارموں تک: خریداری کریں، چہل قدمی کریں اور الاحساء کی نعمتوں کا ذائقہ لیں۔",
+    "list2.eyebrow": "سیاحتی رہنما"
+  },
+  "owner_overrides": [],
+  "termbase_final": {},
+  "termbase_keys_dropped": [],
+  "calibration": [
+    {
+      "id": "P4",
+      "question": "The short fixed form for 'pending confirmation'.",
+      "status": "untouched",
+      "evidence": "None of the three strings carries an unconfirmed value or a pending form (stage 4).",
+      "ruling_or_recommendation": "Not worded here.",
+      "guard": "None in this batch.",
+      "next_bites": "the first rendered card value or tag marked pending"
+    },
+    {
+      "id": "BRAND",
+      "question": "How is the brand line itself written on /ur/ pages?",
+      "status": "untouched",
+      "evidence": "No string of the batch carries the brand; the ' — Visit Al-Ahsa' of the tab and og titles is site.brand's, held out of the pack (stage 4).",
+      "ruling_or_recommendation": "Not ruled by the translation line.",
+      "guard": "None.",
+      "next_bites": "the owner"
+    },
+    {
+      "id": "N182",
+      "question": "list2.lead: the bare «نخلستان» for 'the oasis', or the oasis named («الاحساء کے نخلستان»), given that the lead is also the meta description?",
+      "candidates": [
+        "A (in the text): the bare noun, as the source says",
+        "B: «… الاحساء کے نخلستان کے باغوں اور فارموں تک … یہاں کی …»",
+        "C: the name twice"
+      ],
+      "evidence": "N47 binds a page that mentions the oasis and names it nowhere, and is expressly no rule about a summary read on its own. The rendered index names it («الاحساء کے نخلستان کے ماحول میں ایک باغ،», bird-garden card), and the lead itself closes on «الاحساء». The reader read the snippet and the lead (items 3, 4) and did not ask which oasis. ‖ ROUND 2: the on-r1 reader read the same opening clause and found it clear (item 4). Neither reader asked which oasis was meant.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A. An interface lead that says 'the oasis' as its source does keeps the bare «نخلستان», on two conditions. (1) The same sentence names «الاحساء». (2) N47-the-oasis-on-a-page-that-has-not-named-it is met on the rendered page: at least one field shown on it says «الاحساء کے نخلستان» / «الاحساء کا نخلستان». On this page the bird-garden card does. Condition (1) never stands in for (2). B, which moves the source's closing name, is not needed here.",
+      "binds": "list2.lead; any later interface lead of the same build.",
+      "guard": "For the proofreader, not machine-read: a lead with the bare «نخلستان» names «الاحساء» in the same sentence, AND N47 still applies to the page. If no field the page shows names «الاحساء کے/کا نخلستان», the lead takes B's form.",
+      "strings_affected": [
+        "list2.lead"
+      ]
+    },
+    {
+      "id": "N183",
+      "question": "list2.lead: the closing clause for 'taste the bounty of Al-Ahsa' / «ذُق خيرات الأحساء».",
+      "candidates": [
+        "A (stage 4; in the text again from round 2): «الاحساء کی نعمتوں کا ذائقہ لیں»",
+        "B (stage 2): «الاحساء کی نعمتوں کا ذائقہ چکھیں»",
+        "C (stage 1): «الاحساء کی نعمتیں چکھیں»",
+        "D (on-05 reader; in the text in round 1 only): «الاحساء کی سوغاتیں چکھیں»"
+      ],
+      "evidence": "READERS SIDE BY SIDE on the closing clause of list2.lead. A was read by the on-05 reader, who called it brochure language translated word for word: 'ذائقہ لیں with نعمتیں is not how we would put it' (item 3, minor). D was read by the on-r1 reader: «سوغات» is 'a gift you bring home from a trip', so 'taste the souvenirs' sounded odd (item 3, minor). B and C have been read by no reader. Each read wording is CONTESTED BY ONE reader, and none has passed a reader clean. The rest of the lead was passed by both readers (on-05 item 3 'reads smoothly up to the last clause'; on-r1 item 4 'reads well'). DICTIONARY (Rekhta, HTTP 200): «سَوْغات» is a feminine noun meaning 'gift or present, especially one brought from a far-off land', «تحفہ، ہدیہ», with no food or speciality sense given. «نِعمَت» is a feminine noun, among whose senses is «لذیذ چیز، مزیدار کھانا». «ذائقہ لینا» is a compound verb in the good sense only. «ذائقہ چکھنا» and «مزہ چکھنا» are idioms that also mean 'suffer the consequences'.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A: «… اور الاحساء کی نعمتوں کا ذائقہ لیں۔». Both read wordings are contested by one reader, so the tie is broken by the kind of fault. A's fault is register. D's fault is meaning: it brought in a gift brought back from a place, which neither source carries, and lost the abundance of 'bounty' / «خيرات». The dictionary confirms the reader on that, and the fence outranks fluency. B is withdrawn because of the idiom. C is not taken: «چکھنا» with the abstract «نعمتیں» as object is the English carried over (stage 2), and no reader has read it, so it stays on record as unread. D is withdrawn. A new native wording would have to keep both 'taste' and 'bounty' and be read in place before it replaces A.",
+      "binds": "list2.lead.",
+      "guard": "For the proofreader, not machine-read. For a pleasant tasting the line uses neither «مزہ چکھ…» nor «ذائقہ چکھ…». «سوغات» does not render 'bounty' / «خيرات».",
+      "strings_affected": [
+        "list2.lead"
+      ]
+    },
+    {
+      "id": "N184",
+      "question": "list2.lead: «سوق القیصریہ» bare (P3c-labels: the string is a meta description) or with the running-text form «نامی بازار» (P3c point 2)?",
+      "candidates": [
+        "A (in the text): the name bare, byte for byte its key",
+        "B: «تاریخی سوق القیصریہ نامی بازار سے لے کر …»"
+      ],
+      "evidence": "The reader named «سوق القیصریہ» in the lead without a pause (item 4); his item 29 finds the mix of «سوق» names and translated «بازار» names understandable. The h1 above opens with «بازار». cat.market.d writes the name bare. ‖ ROUND 2: the on-r1 reader found «سوق» fine, though he thought a reader at home might pause on it (item 4). His optional «تاریخی بازار سوق القیصریہ» puts the generic next to the name, which A bars.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A. A string that is both a lead and a meta description follows P3c-labels: the name stands bare; the plain generic stands in the neighbouring line (the h1).",
+      "binds": "list2.lead; every interface string that doubles as a meta description.",
+      "guard": "Stage checker, as today: no bracket and no Urdu generic next to a name that carries its Arabic generic in such a string.",
+      "strings_affected": [
+        "list2.lead"
+      ]
+    },
+    {
+      "id": "N185",
+      "question": "list2.lead: «فارموں» bare in running text, or «زرعی فارموں» (N5's label form)?",
+      "candidates": [
+        "A (in the text): «نخلستان کے باغوں اور فارموں تک»",
+        "B: «… باغوں اور زرعی فارموں تک»"
+      ],
+      "evidence": "The reader quoted «نخلستان کے باغوں اور فارموں» (item 4) and read it without a remark; he did not read 'forms'. ‖ ROUND 2: the on-r1 reader read «نخلستان کے باغوں اور فارموں» and found it clear (item 4); neither reader read 'forms'.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A. N5's qualifier «زرعی» is owed where «فارم» stands alone. Here it does not: it stands beside «باغوں», under «نخلستان کے», directly under an h1 that reads «زرعی فارم». So the bare oblique «فارموں» stands, as on zaki-alsalem-farm. The ground is the word's company, not the kind of string, so a string ruled a meta description under N184 is not, by that alone, owed the qualifier.",
+      "binds": "list2.lead; running text generally.",
+      "guard": "For the proofreader: «زرعی» before «فارم» wherever the word stands alone (a label, a heading, or a list of one). Beside another noun of the same list, as here, it is not required.",
+      "strings_affected": [
+        "list2.lead"
+      ]
+    },
+    {
+      "id": "N190",
+      "question": "list2.eyebrow: keep «سیاحتی رہنما» (the approved list.eyebrow, live on the sister attractions index) although the reader first read it as a person?",
+      "candidates": [
+        "A (in the text): «سیاحتی رہنما», identical to list.eyebrow",
+        "B (reader): «سیاحتی گائیڈ» / «الاحساء گائیڈ»",
+        "C: a new native wording here only"
+      ],
+      "evidence": "Reader item 1 (moderate): first read as a tour guide, understood only at the footer «یہ ویب سائٹ ایک آزاد سیاحتی رہنما ہے». The b0-ui judge charged the same personal reading under nativeness with no wording offered. B uses the banned loan «گائیڈ». C would give the two sister indexes different eyebrows for the same English ('Visit guide'), which ru/de/zh do not do, and would break the approved tm.json pair. ‖ ROUND 2: the on-r1 reader also read it first as a person, a guide one could hire (item 2, moderate), and it made sense to him only at the footer. Two of two readers now; the b0-ui readers did the same.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A. The two sister eyebrows stay one string; the cost is charged under nativeness and fit. A rewording, if ever taken, moves list.eyebrow and list2.eyebrow (and their tm.json pairs) together in one interface batch and is read in place; never «گائیڈ». Two readers now, so the cost is real, and a reworded pair is a standing option for a later interface batch (never «گائیڈ»).",
+      "binds": "list.eyebrow, list2.eyebrow and every later index eyebrow of the same English.",
+      "guard": "For the proofreader: an index eyebrow whose English is 'Visit guide' is byte-identical to list.eyebrow; «گائیڈ» is a banned loan (stage checker).",
+      "strings_affected": [
+        "list2.eyebrow"
+      ]
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "AttractionsView template, leisure index (item 5)",
+      "defect": "The parks and farms groups open collapsed with a count and no visible control that says how to reveal them; at first view the page looks half-loaded.",
+      "effect_on_urdu": "None; the Urdu labels translate the template as every language does."
+    },
+    {
+      "where": "qaisariyah summary (item 6)",
+      "defect": "'one of the oldest of its kind' gives no scope (city, kingdom, Gulf).",
+      "effect_on_urdu": "The Urdu keeps the unscoped claim."
+    },
+    {
+      "where": "src/lib/categories.ts: hamidiyah-souq (item 7)",
+      "defect": "Filed under Traditional souqs while its own summary says it no longer works as a market and houses a restaurant.",
+      "effect_on_urdu": "The card tag says market and the summary says it is not one."
+    },
+    {
+      "where": "src/lib/categories.ts: dougha (item 8)",
+      "defect": "A pottery workshop filed under Traditional souqs.",
+      "effect_on_urdu": "The card tag says market."
+    },
+    {
+      "where": "women-souq (item 10)",
+      "defect": "Neither source says whether men or families may enter or shop.",
+      "effect_on_urdu": "A family reader is left asking; nothing is added."
+    },
+    {
+      "where": "src/lib/categories.ts: zoo, bird gardens, Land of Civilizations (item 14)",
+      "defect": "The zoo and the bird garden sit under Farms & Date Gardens; the cultural village and exhibition under Parks & Gardens.",
+      "effect_on_urdu": "A reader looking for the zoo under parks does not find it."
+    },
+    {
+      "where": "farms group heading 'Farms & Date Gardens' / «المزارع وحدائق النخيل» (item 15)",
+      "defect": "The heading promises date-palm gardens; none of the five entries is one.",
+      "effect_on_urdu": "The Urdu heading carries the same promise."
+    },
+    {
+      "where": "leisure index, all cards (item 23)",
+      "defect": "Nothing on the page says that Hofuf and Al-Mubarraz are towns of Al-Ahsa.",
+      "effect_on_urdu": "A first-time reader guesses the relation."
+    },
+    {
+      "where": "zaki-alsalem-farm card (item 27)",
+      "defect": "No image, so no linked name/image line like the other cards (image pending with the owner).",
+      "effect_on_urdu": "The card looks different and its link is unclear."
+    },
+    {
+      "where": "all cards of the index (item 30)",
+      "defect": "No opening hours or entry fees; most pages still lack them (pending with the owner).",
+      "effect_on_urdu": "A family cannot plan from the page."
+    },
+    {
+      "where": "header vs footer navigation (item 31)",
+      "defect": "The two navigations name and list the sections differently (owner's navigation queue).",
+      "effect_on_urdu": "The reader is unsure they lead to the same sections."
+    },
+    {
+      "where": "list2.lead source ('taste the bounty of Al-Ahsa' / «ذُق خيرات الأحساء»; on-r1 item 3)",
+      "defect": "The lead invites the visitor to taste, but no place on the index offers anything to taste; the farms are for picking fruit.",
+      "effect_on_urdu": "The Urdu keeps the invitation as the source has it."
+    }
+  ],
+  "notes": [
+    {
+      "item": "decision",
+      "text": "APPROVE at 93 (threshold 90). TEXT CHANGE in this round: list2.lead's closing clause goes back from «الاحساء کی سوغاتیں چکھیں۔» (round 1) to «الاحساء کی نعمتوں کا ذائقہ لیں۔». The whole lead is letter for letter the stage-5 text, which the on-05 blind reader read in place (blind-input.on-05 lines 3 and 40). It still needs a proof report on exactly this text before mk-final: no 05p-proof file exists for the stage-5 / round-2 text. The blind read on-05 is on this text."
+    },
+    {
+      "item": "records",
+      "text": "Round 1's file is left as written. Its change log and its fit note ('one clause shorter') describe round 1's text. The proof's correction of them (items 1 and 5) is recorded here and in N183. N182, N183 and N185 are rewritten to stand alone (proof items 2, 3 and 4)."
+    },
+    {
+      "item": "outside the batch",
+      "text": "For a later pass over approved attraction text (not reopened here): the women-souq word order (on-05 item 9), the musa-park summary (on-05 item 18, on-r1 item 17), «زمانہ جاہلیت» without the izafat mark (on-r1 item 24), and «اب … اور آج» on hamidiyah-souq (on-r1 item 5)."
+    },
+    {
+      "item": "termbase",
+      "text": "No term added or amended. P4 and BRAND are untouched."
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Souqs, Parks & Farms",
+      "ur": "بازار، تفریح گاہیں اور زرعی فارم",
+      "page": "ui",
+      "field": "list2.title",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "From the storied Qaisariyah to the oasis gardens and farms — shop, stroll and taste the bounty of Al-Ahsa.",
+      "ur": "تاریخی سوق القیصریہ سے لے کر نخلستان کے باغوں اور فارموں تک: خریداری کریں، چہل قدمی کریں اور الاحساء کی نعمتوں کا ذائقہ لیں۔",
+      "page": "ui",
+      "field": "list2.lead",
+      "date": "2026-10-15"
+    },
+    {
+      "en": "Visit guide",
+      "ur": "سیاحتی رہنما",
+      "page": "ui",
+      "field": "list2.eyebrow",
+      "date": "2026-10-15"
+    }
+  ],
+  "scores_rows": [
+    {
+      "page": "ui (b12-ui: 3 interface strings)",
+      "date": "2026-10-15",
+      "loop": 1,
+      "score": 93,
+      "decision": "APPROVE (batch 93, lowest page; axes 28/26/20/9/10; blind reader 33 items: 1 applied, 21 rejected, 11 source defects, 0 open items; 1 edits)"
+    },
+    {
+      "page": "ui (b12-ui: 3 interface strings)",
+      "date": "2026-10-15",
+      "loop": 2,
+      "score": 93,
+      "decision": "APPROVE (batch 93, lowest page; axes 29/25/20/9/10; blind reader 29 items: 1 applied, 23 rejected, 5 source defects, 0 open items; 1 edits; 9 proof items ruled)"
+    }
+  ],
+  "evidence": {
+    "text_sha256": "9b84b877d269dea7ea8a3cca1a8b5796008d25ffc743a8c8e8433a3b2d34233a",
+    "proof": {
+      "on": "r2",
+      "file": "05p-proof.on-r2.md",
+      "sha256": "e621e67f2ad5335bffb33a29201bc630d9fa69c4720137e63e61cc3aef2b14cf",
+      "items": 9
+    },
+    "blind": {
+      "on": "05",
+      "file": "06-blind-reader.on-05.md",
+      "sha256": "34b6bd48e40943d1a247fe598484352944312348d58174119d434a9968805e9f",
+      "items": 33
+    }
+  }
+}
