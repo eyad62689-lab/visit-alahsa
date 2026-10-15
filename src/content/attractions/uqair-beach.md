@@ -40,10 +40,10 @@ body_en: "Along the Arabian Gulf coast stretches the historic Al-Uqair Beach, wi
 featured: false
 order: 40
 area: "ساحل العقير — شرق الأحساء"
-area_en: "Al-Uqair coast — east of Al-Ahsa"
+area_en: "Al-Uqair coast — eastern Al-Ahsa"
 bestTime: "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
 bestTime_en: "Early morning, or late afternoon onwards, away from the peak heat."
-answer: "شاطئ العقير التاريخي على ساحل الخليج العربي شرق الأحساء، بمياهه الهادئة الضحلة ورماله البيضاء وكثبانه، من أقدم وجهات الاصطياف على الخليج، وبجواره ميناء العقير التاريخي الذي كان بوّابة الأحساء البحرية. مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق للزوّار وموقعاً مخصّصاً لعربات الكرفان يُحجز إلكترونياً."
+answer: "شاطئ العقير التاريخي على ساحل الخليج العربي في شرق الأحساء، بمياهه الهادئة الضحلة ورماله البيضاء وكثبانه، من أقدم وجهات الاصطياف على الخليج، وبجواره ميناء العقير التاريخي الذي كان بوّابة الأحساء البحرية. مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق للزوّار وموقعاً مخصّصاً لعربات الكرفان يُحجز إلكترونياً."
 answer_en: "Al-Uqair Beach stretches along the Arabian Gulf coast with calm shallow waters, white sand and dunes, one of the oldest summer destinations on the Gulf, beside the historic Al-Uqair port. It suits families and photographers, with shades, facilities and a caravan site booked online."
 location: { lat: 25.746988, lng: 50.194863 }
 mapUrl: "https://maps.app.goo.gl/nwATsMpiUuzqxwXw7"
@@ -97,9 +97,9 @@ faq:
     q_ur: "کیا العقیر کا ساحل سمندر خاندان کے ساتھ آنے کے لیے موزوں ہے؟"
     a_ur: "جی ہاں۔ یہ ساحل خاندان کے ساتھ آنے والوں اور تصویر کشی کے شوقین لوگوں کے لیے موزوں ہے، اور اس کے برابر میں سیاحوں کے لیے مخصوص سائبان اور سہولتیں ہیں۔"
   - q: "أين يقع شاطئ العقير؟"
-    a: "على ساحل العقير شرق الأحساء، بجوار ميناء العقير التاريخي."
+    a: "على ساحل العقير في شرق الأحساء، بجوار ميناء العقير التاريخي."
     q_en: "Where is Al-Uqair Beach?"
-    a_en: "On the Al-Uqair coast east of Al-Ahsa, beside the historic Al-Uqair port."
+    a_en: "On the Al-Uqair coast of eastern Al-Ahsa, beside the historic Al-Uqair port."
     q_zh: "乌盖尔海滩在哪里？"
     a_zh: "在哈萨以东的乌盖尔海岸，一旁就是乌盖尔古港。"
     q_de: "Wo liegt der Al-Uqair-Strand?"

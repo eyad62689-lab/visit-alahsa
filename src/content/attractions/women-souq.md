@@ -31,7 +31,7 @@ category: market
 kicker: "سوق شعبي"
 summary: "سوقُ بسطاتٍ تراثي في حي الرفعة الجنوبية وسط الهفوف، بائعاته نساءٌ من الأحساء ومن ذلك اسمه، وهو من مشاهد التجارة الشعبية الحيّة في المدينة."
 summary_en: "A traditional stall market in the South Al-Rifaa district of central Hofuf whose sellers are women of Al-Ahsa — hence the name — and one of the city's living folk-trade scenes."
-body_en: "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women of Al-Ahsa, both townswomen and Bedouin, offering a range of goods, some of them their own handiwork. The souq is open to everyone, women and men alike. It stands on King Abdulaziz Road in central Hofuf. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more."
+body_en: "In the South Al-Rifaa district of Hofuf lies the Women's Folk Souq, a traditional stall market at the heart of the old Suwaiq market area. It takes its name from its traders: the sellers here are women of Al-Ahsa, both local women and Bedouin, offering a range of goods, some of them their own handiwork. The souq is open to everyone, women and men alike. It stands on King Abdulaziz Road in central Hofuf. Al-Ahsa Municipality has carried out development works on the souq, which remains one of Hofuf's living folk-trade scenes, selling clothes, ghee, aqit (dried yoghurt) and more."
 heroImage: /img/women-souq
 featured: false
 order: 67
@@ -76,7 +76,7 @@ faq:
   - q: "لماذا سُمّي سوق النساء الشعبي بهذا الاسم؟"
     a: "لأن البائعات فيه نساءٌ من الأحساء، محليّاتٌ وبدويات."
     q_en: "Why is it called the Women’s Folk Souq?"
-    a_en: "Because the sellers there are women of Al-Ahsa — both townswomen and Bedouin."
+    a_en: "Because the sellers there are women of Al-Ahsa — both local women and Bedouin."
     q_zh: "妇女民俗市集为什么叫这个名字？"
     a_zh: "因为这里的商贩都是哈萨的妇女，既有城镇的，也有贝都因的。"
     q_de: "Warum heißt der Markt Frauen-Souk?"

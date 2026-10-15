@@ -27,7 +27,7 @@ body_ur: "ہفوف کے مشرق میں الاحساء کے نخلستان کے 
 area_ur: "الطرف نامی قصبہ، ہفوف کے مشرق میں"
 slug_ar: "حديقة-حيوانات-الطرف"
 slug_en: "taraf-zoo"
-category: farm
+category: parks
 kicker: "وجهة عائلية"
 summary: "حديقة حيوانات عائلية في بلدة الطرف شرقي الهفوف."
 summary_en: "A family zoo in the town of Al-Taraf east of Hofuf."

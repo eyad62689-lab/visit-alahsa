@@ -7,7 +7,7 @@ slug_ar: "فندق-كونتننت-العقير"
 slug_en: "continent-hotel-al-uqayr"
 kind: hotel
 area: "ساحل العقير — شرق الأحساء"
-area_en: "Al-Uqair coast — east of Al-Ahsa"
+area_en: "Al-Uqair coast — eastern Al-Ahsa"
 blurb: "مبنىً رمليّ اللون بشُرفاتٍ مسنّنة وفتحاتٍ ضيقة، يطلّ على مسطّحٍ أخضر قرب الساحل."
 blurb_en: "A sand-coloured building with crenellated parapets and narrow slot openings, facing a lawn near the shore."
 alt: "مبنى فندق كونتننت العقير بشُرفاته المسنّنة والمسطّح الأخضر أمامه"

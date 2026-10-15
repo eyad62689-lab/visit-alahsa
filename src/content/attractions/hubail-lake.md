@@ -29,14 +29,14 @@ slug_ar: "بحيرة-الحبيل"
 slug_en: "hubail-lake"
 category: nature
 kicker: "بحيرة"
-summary: "بحيرة شمال الأحساء تكوّنت من مياه الصرف الزراعي لمزارع الواحة."
-summary_en: "A lake north of Al-Ahsa formed by the oasis farms' agricultural drainage water."
-body_en: "Al-Hubail Lake is a body of water north of Al-Ahsa, formed over time by the gathering of agricultural drainage water from the oasis farms. Further details about the lake — its extent and any visitor facilities — are pending confirmation from reliable sources."
+summary: "بحيرة في شمال الأحساء تكوّنت من مياه الصرف الزراعي لمزارع الواحة."
+summary_en: "A lake in northern Al-Ahsa formed by the oasis farms' agricultural drainage water."
+body_en: "Al-Hubail Lake is a body of water in northern Al-Ahsa, formed over time by the gathering of agricultural drainage water from the oasis farms. Further details about the lake — its extent and any visitor facilities — are pending confirmation from reliable sources."
 featured: false
 heroImage: /img/hubail-lake
 order: 42
 area: "شمال الأحساء"
-area_en: "North of Al-Ahsa"
+area_en: "Northern Al-Ahsa"
 openSite: true
 practical:
   - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", label_ur: "سیر", value_ur: "کھلا عوامی قدرتی مقام، کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
@@ -59,9 +59,9 @@ faq:
     q_ur: "جھیل الحبیل کیسے بنی؟"
     a_ur: "نخلستان کے کھیتوں سے آنے والا زرعی نکاسی کا پانی وقت کے ساتھ ساتھ یہاں جمع ہوتا گیا، اور یوں یہ جھیل بن گئی۔"
   - q: "أين تقع بحيرة الحبيل؟"
-    a: "شمال الأحساء."
+    a: "في شمال الأحساء."
     q_en: "Where is Al-Hubail Lake?"
-    a_en: "North of Al-Ahsa."
+    a_en: "In northern Al-Ahsa."
     q_zh: "胡拜勒湖在哪里？"
     a_zh: "在哈萨北部。"
     q_de: "Wo liegt der Al-Hubail-See?"
@@ -84,5 +84,5 @@ faq:
     a_ur: "نہیں۔ یہ ایک کھلا عوامی قدرتی مقام ہے جہاں کوئی فیس نہیں۔"
 ---
 
-بحيرة الحبيل مسطح مائي يقع شمال الأحساء، تكوّن بمرور الوقت من تجمّع
+بحيرة الحبيل مسطح مائي يقع في شمال الأحساء، تكوّن بمرور الوقت من تجمّع
 مياه الصرف الزراعي لمزارع الواحة.
