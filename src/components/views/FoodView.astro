@@ -8,7 +8,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
-import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_DE, DISH_GROUPS_RU } from '../../data/dishes';
+import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_DE, DISH_GROUPS_RU, DISH_GROUPS_UR } from '../../data/dishes';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -78,6 +78,23 @@ const DE = {
 };
 // @de-food:end
 
+// الكتلة الأوردية — خط ur-translation-pipeline (دفعة b19-ui، صفحة /ur/food/).
+// dineHref يقصد فهرس المطاعم الإنجليزي: لا صفحة مطاعم أوردية بعد (سابقة الروسية والألمانية).
+const UR = {
+  heroEyebrow: 'نخلستان کے دسترخوان سے',
+  title: 'الاحساء کے پکوان',
+  heroSum: 'الاحساء کے کھانوں کی بنیاد نخلستان کی نعمتوں پر ہے: الاحساء کے مقامی چاول، کھجور کا شیرہ، خشک لیموں اور دلی ہوئی گندم۔ انہی سے وہ اپنائیت بھرے پکوان بنتے ہیں جو نسل در نسل دسترخوانوں پر چلے آ رہے ہیں۔',
+  listEyebrow: 'ذائقوں کی سیر',
+  listH: 'نخلستان کے قلب سے آٹھ پکوان',
+  more: 'مزید پڑھیں',
+  less: 'تفصیل چھپائیں',
+  methodH: 'اس صفحے کے بارے میں',
+  methodP1: 'یہاں دی گئی تفصیلات روایتی پکوانوں اور ان کے معروف اجزا کا تعارف کراتی ہیں، ٹھیک ٹھیک ترکیبیں نہیں بتاتیں۔ مقداریں اور نام گھر گھر اور علاقے علاقے مختلف ہوتے ہیں۔',
+  methodP2: 'اس صفحے کے چار پکوانوں کے تعارف میں کسی موقع یا موسم کا ذکر آیا ہے، یعنی رمضان، سردیوں کی راتیں، شادی کی دعوتیں اور مہمان نوازی کے دسترخوان۔ یہ ذکر الاحساء کے دسترخوان کی روایات میں ان پکوانوں کا مقام بتاتا ہے، یہ نہیں بتاتا کہ سیاحوں کو وہ کب پیش کیے جاتے ہیں۔ البتہ الاحساء کی کھانے پینے کی جگہوں میں اس صفحے کے پکوان سال بھر پیش کیے جاتے ہیں۔',
+  dineCta: 'یہ پکوان کہاں چکھیں؟ کھانے پینے کی جگہیں دیکھیں ←',
+  dineHref: '/en/restaurants-cafes/',
+  groups: DISH_GROUPS_UR,
+};
 const C = localize(lang, {
   ar: {
     heroEyebrow: 'من موائد الواحة',
@@ -112,6 +129,7 @@ const C = localize(lang, {
   zh: ZH,
   de: DE,
   ru: RU,
+  ur: UR,
 });
 
 const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.brand')}`;
@@ -123,10 +141,10 @@ const description = ar
       ? 'Eine Tour durch die Küche aus Al-Ahsa: Hasawi-Reis, Mandi, Harees, Mufallaq, Balaleet mit Dattelsirup, Dattel-Asida, Sago und Dattelbrot.'
     : ru
       ? 'Кухня Аль-Ахсы в восьми блюдах: рис Аль-Ахсы, манди, хариса из пшеницы, муфаллак, балалит с финиковой патокой, финиковая асида, саго и финиковый хлеб.'
-      : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
+      : ur ? 'الاحساء کے پکوانوں کی سیر: الاحساء کے چاول، مندی، ہریس، مفلق، کھجور کے شیرے کے ساتھ بلالیط، کھجور کا عصیدہ، ساگودانہ اور کھجور کی روٹی۔' : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : '/en/food/';
+const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : ur ? '/ur/food/' : '/en/food/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/', siteUrl).href },

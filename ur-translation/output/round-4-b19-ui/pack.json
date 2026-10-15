@@ -1,0 +1,1438 @@
+{
+  "batch": "b19-ui",
+  "kind": "ui",
+  "generated_by": "tools/mkpack-ui.mjs",
+  "built_from": "a trace build of a scratch copy of the worktree (_scratch/ui-trace-b19-ui/dist) + src/i18n/ui.ts + src/lib/categories.ts + the inline sites listed in tools/lib/inline-sites.mjs + ur-translation/memory/tm.json",
+  "worktree_ui_sha256": "a94895e838c2655bc4f7c9d0454e437a85b7b42c21617be855deb5a49ef1c169",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings. Arabic-only content is not imported. precedent = the approved ru / de / zh values of the same string: reference, never source.",
+  "scope_rule": "A string is in the batch because a built page shows it, not because a dictionary lists it. tier \"rendered\" = on the /ur/ page(s) /ur/food/. tier \"detail-template\" = not on the calibration detail page, but rendered by the same detail template on attraction pages of batches b1 / b2 (measured on a trace build that gave those ten pages a placeholder title). tier \"other-language-pages\" = in the language-suggestion bar that other languages' pages show a visitor whose browser asks for Urdu — it appears once /ur/ pages are listed (measured on a trace build with the three pages listed). Every other ui.ts key renders only on pages that have no /ur/ version yet and is listed under later_rounds.",
+  "stage_file_shape": "stage files carry strings = { \"<id>\": \"<Urdu>\" } with exactly the ids of this pack's strings, in this order. See tools/README.md.",
+  "placeholder_rule": "A placeholder listed for a string ({op}, {n}) is kept exactly once, untouched. det.openMaps keeps its trailing space + U+2197. Digits that stand in the English stay Latin digits.",
+  "pages": [
+    {
+      "id": "food",
+      "url": "/ur/food/",
+      "file": "dist/ur/food/index.html"
+    }
+  ],
+  "header_budget": {
+    "rule": "Navigation labels are bound by measurement, not by taste (CLAUDE.md: the header is measured, never estimated). After any change to a navigation label, tools/measure-header-fit.mjs must pass; it requires no overlap, ONE row and a header height of exactly 68px.",
+    "facts": {
+      "measured": "2026-10-12, worktree dist at fce37cf (feat/ur-round-1), headless Chrome via tools/measure-header-fit.mjs (MODE=fit and verify) and a per-link probe",
+      "tool_output_fit": {
+        "ar": {
+          "links": 10,
+          "nav_px": 781,
+          "need_px": 1353,
+          "min_window_px": 1393
+        },
+        "en": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1476,
+          "min_window_px": 1516
+        },
+        "zh": {
+          "links": 10,
+          "nav_px": 684,
+          "need_px": 1220,
+          "min_window_px": 1260
+        },
+        "de": {
+          "links": 9,
+          "nav_px": 924,
+          "need_px": 1481,
+          "min_window_px": 1521
+        },
+        "ru": {
+          "links": 9,
+          "nav_px": 1014,
+          "need_px": 1668,
+          "min_window_px": 1708
+        },
+        "ur": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1478,
+          "min_window_px": 1518
+        }
+      },
+      "tool_output_verify": {
+        "widths_probed": 26,
+        "languages": 6,
+        "failing_cells": 0,
+        "all_cells_pass": true,
+        "exit_code": 0
+      },
+      "ur_today": {
+        "labels": "English fall-back labels (ui.ur is empty), Latin font 13.5px Lora",
+        "bar_shown_from_px": 1518,
+        "collapsed_to_burger_below_px": 1518,
+        "container_cap_px": 1500,
+        "header_height_px": 68,
+        "header_gap_px": 16,
+        "nav_gap_px": 10,
+        "nav_font": "13.5px Lora",
+        "nav_line_height": "23.625px",
+        "brand_px": 71.6,
+        "actions_px": 509.2,
+        "nav_links": [
+          {
+            "en": "Attractions",
+            "px": 70.1,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Trails",
+            "px": 34.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Souqs, Parks & Farms",
+            "px": 133.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Events",
+            "px": 41.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Oasis Fruits",
+            "px": 74.2,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Hasawi Cuisine",
+            "px": 95.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Restaurants & Cafés",
+            "px": 125.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Places to Stay",
+            "px": 86.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Online Stores",
+            "px": 85.5,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Plan your trip",
+            "px": 0,
+            "shown_in_bar": false
+          },
+          {
+            "en": "Map",
+            "px": 27.4,
+            "shown_in_bar": true
+          }
+        ],
+        "action_parts": [
+          {
+            "what": "button.hd-search-btn",
+            "text": "",
+            "px": 95.9
+          },
+          {
+            "what": "a.plan-link",
+            "text": "My saved places 0",
+            "px": 141.8
+          },
+          {
+            "what": "details.lang-menu",
+            "text": "URالعربيةEnglish中文（简体）DeutschРусскийاردو",
+            "px": 85.1
+          },
+          {
+            "what": "a.btn-gold",
+            "text": "Plan your trip",
+            "px": 138.4
+          }
+        ],
+        "nav_links_sum_px": 774.4,
+        "nav_intrinsic_px": 864.4,
+        "need_px": 1478
+      }
+    },
+    "what_the_labels_must_fit": "With the present [lang=\"ur\"] block in Header.astro the bar is shown from a 1518px window and is collapsed into the burger below it (so on 1280-1536px laptop screens the Urdu header is the burger menu, whatever the labels). For that threshold to stay valid the bar may need at most 1478px: brand 71.6 + nav + actions + 2 x 16 gap, i.e. nav (ten labels and nine 10px gaps) plus actions (search button, saved-places link with its counter, language button, gold button) of at most 1374.4px — today 1373.6px with the English labels in a Latin face at 13.5px. The Urdu labels will be set in the Nastaliq face, which is wider and taller: the widths below are the English ones and are a reference, not a prediction. If the Urdu labels need more, the thresholds of the [lang=\"ur\"] block are re-measured and moved (an engineering step for the coordinator), or shorter labels are chosen — measured either way.",
+    "nav_label_ids": []
+  },
+  "totals": {
+    "strings": 39,
+    "by_tier": {
+      "rendered": 39,
+      "detail-template": 0,
+      "other-language-pages": 0
+    },
+    "by_kind": {
+      "page module (food)": 39
+    },
+    "navigation_labels": 0,
+    "navigation_labels_in_bar": 0,
+    "with_candidate_from_calibration": 0,
+    "with_placeholder": 0,
+    "later_rounds": 197
+  },
+  "strings": {
+    "food.description": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.",
+      "ar": "جولة في المطبخ الأحسائي: الأرز الأحسائي، المندي، الهريس، المفلق، البلاليط بالدبس، عصيدة التمر، الساقو، وخبز التمر.",
+      "placeholders": [],
+      "renders": [
+        "meta description, og:description, twitter:description (search-result snippet)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Кухня Аль-Ахсы в восьми блюдах: рис Аль-Ахсы, манди, хариса из пшеницы, муфаллак, балалит с финиковой патокой, финиковая асида, саго и финиковый хлеб.",
+        "de": "Eine Tour durch die Küche aus Al-Ahsa: Hasawi-Reis, Mandi, Harees, Mufallaq, Balaleet mit Dattelsirup, Dattel-Asida, Sago und Dattelbrot.",
+        "zh": "走进哈萨美食：哈萨焖饭、曼迪、哈里斯、穆法拉格、椰枣糖浆巴拉利特、椰枣阿西达、西米羹与椰枣面包。"
+      },
+      "note": "Search-result snippet. Lists the eight dishes of the page by the names their cards carry."
+    },
+    "food.title": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Cuisine",
+      "ar": "المطبخ الأحسائي",
+      "placeholders": [],
+      "renders": [
+        "Page heading (h1) and page title (browser tab, og:title, the breadcrumb name in JSON-LD)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Кухня Аль-Ахсы",
+        "de": "Küche aus Al-Ahsa",
+        "zh": "哈萨美食"
+      },
+      "note": "Page heading (h1) and page title (browser tab, og:title, the breadcrumb name in JSON-LD). No final stop. The English names the cuisine by the nisba \"Hasawi\" (Arabic «المطبخ الأحسائي»).",
+      "tm_approved": [
+        {
+          "ur": "الاحساء کے پکوان",
+          "page": "ui",
+          "field": "nav.food"
+        },
+        {
+          "ur": "الاحساء کے پکوان",
+          "page": "ui",
+          "field": "cat.taste.t"
+        }
+      ]
+    },
+    "food.heroEyebrow": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "From the oasis table",
+      "ar": "من موائد الواحة",
+      "placeholders": [],
+      "renders": [
+        "Small label above the page heading"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Стол оазиса",
+        "de": "Von der Oasentafel",
+        "zh": "来自绿洲的餐桌"
+      },
+      "note": "Small label above the page heading. No final stop."
+    },
+    "food.heroSum": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa’s kitchen rests on the bounty of the oasis: local Hasawi rice, date syrup, dried lime and cracked wheat — giving rise to warm dishes handed down the tables generation after generation.",
+      "ar": "يقوم المطبخ الأحسائي على خيرات الواحة: الأرز الأحسائي المحلي، ودبس التمر، واللومي، والقمح المجروش — فتولد أطباقٌ دافئة توارثتها الموائد جيلاً بعد جيل.",
+      "placeholders": [],
+      "renders": [
+        "Lead under the page heading"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Кухня Аль-Ахсы держится на дарах оазиса: местный рис Аль-Ахсы, финиковая патока, сушёный лайм и дроблёная пшеница. Из них и рождаются домашние блюда, которые переходят от поколения к поколению.",
+        "de": "Die Küche Al-Ahsas schöpft aus den Gaben der Oase: einheimischem Hasawi-Reis (dem Reis aus Al-Ahsa), Dattelsirup, getrockneter Limette (Lomi) und geschrotetem Weizen – so entstehen warme Gerichte, die von Generation zu Generation an den Tischen weitergegeben werden.",
+        "zh": "哈萨美食，源自绿洲的慷慨馈赠：本地哈萨大米、椰枣糖浆、青柠与碎麦——在一代代人的餐桌上，化作暖意融融的家常滋味。"
+      },
+      "note": "Lead under the page heading."
+    },
+    "food.listEyebrow": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A taste tour",
+      "ar": "جولة المذاق",
+      "placeholders": [],
+      "renders": [
+        "Small label above the section heading of the dish cards"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Путешествие по вкусам",
+        "de": "Eine Geschmackstour",
+        "zh": "风味之旅"
+      },
+      "note": "Small label above the section heading of the dish cards. No final stop."
+    },
+    "food.listH": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Eight dishes from the heart of the oasis",
+      "ar": "ثمانية أطباق من قلب الواحة",
+      "placeholders": [],
+      "renders": [
+        "Section heading of the dish cards (eight cards)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Восемь блюд из сердца оазиса",
+        "de": "Acht Gerichte aus dem Herzen der Oase",
+        "zh": "绿洲深处的八道佳肴"
+      },
+      "note": "Section heading of the dish cards (eight cards). No final stop."
+    },
+    "food.kicker.main-dish": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Main dish",
+      "ar": "طبق رئيسي",
+      "placeholders": [],
+      "renders": [
+        "the small label above a card name — on every card whose English label is «Main dish»"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Основное блюдо",
+        "de": "Hauptgericht",
+        "zh": "主菜"
+      },
+      "note": "Card kicker (the dish's kind). One string for all cards that carry this English label. No final stop."
+    },
+    "food.g0.d0.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Rice",
+      "ar": "الأرز الأحسائي",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рис Аль-Ахсы",
+        "de": "Hasawi-Reis",
+        "zh": "哈萨焖饭"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d0.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hasawi rice stirred in a clay pot over a wood fire",
+      "ar": "قِدر الأرز الأحسائي يُقلَّب على نار الحطب",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Рис Аль-Ахсы помешивают в глиняном котле на дровяном огне",
+        "de": "Hasawi-Reis, der in einem Tontopf über dem Holzfeuer gerührt wird",
+        "zh": "柴火上翻搅陶锅中的哈萨焖饭"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d0.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "One of Al-Ahsa’s best-known dishes: local Hasawi rice cooked with meat or chicken, tomato sauce and spices (dried lime, cinnamon, cardamom) until it takes on its reddish-brown colour and rich flavour. Served at celebrations and on tables of hospitality.",
+      "ar": "من أشهر أطباق الأحساء: أرزٌ أحسائي محلي يُطهى مع اللحم أو الدجاج وصلصة الطماطم والبهارات (لومي وقرفة وهيل) حتى يكتسب لونه البني المحمّر ونكهته الغنية. يُقدَّم في المناسبات وموائد الضيافة.",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Одно из самых известных блюд Аль-Ахсы: местный рис Аль-Ахсы, который готовят с мясом или курицей, томатным соусом и специями (сушёный лайм, корица, кардамон), пока он не приобретёт красновато-коричневый цвет и насыщенный вкус. Его подают на торжествах и когда принимают гостей.",
+        "de": "Eines der bekanntesten Gerichte Al-Ahsas: einheimischer Hasawi-Reis, gekocht mit Fleisch oder Hähnchen, Tomatensauce und Gewürzen (Lomi, Zimt, Kardamom), bis er seine rotbraune Farbe und seinen kräftigen Geschmack annimmt. Serviert bei Festen und auf den Tafeln der Gastfreundschaft.",
+        "zh": "哈萨最负盛名的菜肴之一：本地哈萨大米配肉类或鸡肉，与番茄酱汁和香料（干青柠、肉桂、小豆蔻）同锅慢火焖煮，直至染上红褐色泽、滋味浓郁。节庆宴席与待客的餐桌上，总少不了它。"
+      },
+      "note": "The card description."
+    },
+    "food.g0.d1.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Mandi",
+      "ar": "المندي",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Манди",
+        "de": "Mandi",
+        "zh": "曼迪"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d1.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A mandi dish beside a glowing tannour pit",
+      "ar": "صحن المندي بجوار فوهة التنور المتّقدة",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Блюдо манди рядом с раскалённой горловиной тандыра",
+        "de": "Ein Mandi-Gericht neben einer glühenden Tanur-Grube",
+        "zh": "一盘曼迪，旁边是炭火正旺的泥炉"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d1.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "In Al-Ahsa, mandi is not so much cooked as entrusted to the earth, the way secrets are. Meat draws in the breath of the clay tannour for long hours, and rice carries the scent of palm and smoke — a dish that tells the story of an oasis that knew generosity before it had words for it.",
+      "ar": "في الأحساء، المندي لا يُطهى … بل يُستودَع في باطن الأرض كما تُستودَع الأسرار. لحمٌ يتشرّب أنفاس التنور الطيني ساعاتٍ طوال، وأرزٌ يحمل عبق النخيل والدخان، ليقدَّم إليك طبقًا يروي حكاية واحةٍ عرفت الكرم قبل أن تعرفه الكلمات.",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "В Аль-Ахсе манди не столько готовят, сколько доверяют земле — так доверяют тайны. Мясо часами вбирает дыхание глиняного тандыра, а рис несёт запах пальм и дыма. В этом блюде — история оазиса, который знал щедрость раньше, чем нашёл для неё слова.",
+        "de": "In Al-Ahsa wird Mandi weniger gekocht als der Erde anvertraut – so wie man Geheimnisse anvertraut. Stundenlang nimmt das Fleisch den Atem des tönernen Tanurs (Lehmofen) in sich auf, und der Reis trägt den Duft von Palmen und Rauch – ein Gericht, das von einer Oase erzählt, die Großzügigkeit kannte, noch bevor sie Worte dafür hatte.",
+        "zh": "在哈萨，曼迪（Mandi）与其说是烹煮，不如说是像秘密一样托付给大地：肉在坦努尔泥炉深处静置数小时，吸足炉火的热气与烟香；米饭则浸染着椰枣树与炊烟交织的气息。端上桌的这一盘，便是这片绿洲自古好客的见证。"
+      },
+      "note": "The card description."
+    },
+    "food.g0.d2.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Harees",
+      "ar": "الهريس",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Хариса",
+        "de": "Harees",
+        "zh": "哈里斯"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d2.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A pot of harees stirred over a wood fire",
+      "ar": "قِدر الهريس يُقلَّب على نار الحطب",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Харису помешивают в котле на дровяном огне",
+        "de": "Ein Topf Harees, gerührt über dem Holzfeuer",
+        "zh": "柴火上翻搅的一锅哈里斯"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d2.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "When wheat and meat blend for long hours until they become a single soul, harees is born. The foremost dish of generosity at Al-Ahsa’s banquets and weddings, and a long-standing companion of Ramadan tables.",
+      "ar": "حين يمتزج القمح باللحم حتى يصيرا روحًا واحدة، يولد الهريس. طبق الكرم الأول في ولائم الأحساء وأفراحها، ورفيق موائد رمضان منذ القدم.",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Пшеница и мясо часами соединяются, пока не станут единой душой, — так рождается хариса. Это главное угощение на пирах и свадьбах Аль-Ахсы, и с давних пор его подают за столом в Рамадан.",
+        "de": "Wenn Weizen und Fleisch stundenlang verschmelzen, bis sie eine einzige Seele werden, entsteht Harees (ein Weizen-Fleisch-Brei – nicht zu verwechseln mit der ähnlich klingenden Gewürzpaste Harissa). Es ist das erste Gericht der Großzügigkeit bei den Festmählern und Hochzeiten Al-Ahsas und seit jeher Begleiter der Ramadan-Tafeln.",
+        "zh": "当小麦与肉经过漫长的文火熬煮，融为一体、难分彼此，哈里斯（Harees）便由此诞生。它是哈萨宴席与婚礼上的待客首选，也是斋月餐桌上相伴已久的老味道。"
+      },
+      "note": "The card description."
+    },
+    "food.g0.d3.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Mufallaq",
+      "ar": "المفلق",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Муфаллак",
+        "de": "Mufallaq",
+        "zh": "穆法拉格"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d3.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A pot of mufallaq — cracked wheat with dates — cooking over a wood fire in the oasis",
+      "ar": "قِدر المفلق بالجريش والتمر يُطهى على نار الحطب في الواحة",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Муфаллак из дроблёной пшеницы с финиками готовят в котле на дровяном огне в оазисе",
+        "de": "Ein Topf Mufallaq – Weizenschrot mit Datteln – kocht über dem Holzfeuer in der Oase",
+        "zh": "绿洲柴火上炖煮的一锅碎麦椰枣穆法拉格"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d3.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A traditional Hasawi dish of cracked wheat (jareesh) cooked with spices and dried lime, then garnished with dates and boiled eggs — a hearty plate gathering the flavours of the oasis.",
+      "ar": "من الأطباق التراثية الأحسائية: قمحٌ مجروش (جريش) يُطهى بالبهارات ويُنكَّه باللومي، ثم يُزيَّن بالتمر والبيض المسلوق. طبقٌ دسمٌ يجمع نكهات الواحة.",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Традиционное блюдо Аль-Ахсы из дроблёной пшеницы (джариш): её готовят со специями и сушёным лаймом, а потом украшают финиками и варёными яйцами. Это сытное кушанье, в котором сошлись вкусы оазиса.",
+        "de": "Ein traditionelles Gericht aus Al-Ahsa: Weizenschrot (Jareesh), gekocht mit Gewürzen und Lomi, anschließend garniert mit Datteln und gekochten Eiern – ein herzhaftes Gericht, das die Aromen der Oase vereint.",
+        "zh": "哈萨的传统菜式穆法拉格（Mufallaq）：碎麦（jareesh）与香料同煮，以干青柠提味增香，再缀上椰枣与水煮蛋——厚实丰盛的一盘，将绿洲的种种风味收于一处。"
+      },
+      "note": "The card description."
+    },
+    "food.kicker.sweet": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Sweet",
+      "ar": "حلى",
+      "placeholders": [],
+      "renders": [
+        "the small label above a card name — on every card whose English label is «Sweet»"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Десерт",
+        "de": "Süßspeise",
+        "zh": "甜点"
+      },
+      "note": "Card kicker (the dish's kind). One string for all cards that carry this English label. No final stop."
+    },
+    "food.g0.d4.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Balaleet with Date Syrup",
+      "ar": "البلاليط بالدبس",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Балалит с финиковой патокой",
+        "de": "Balaleet mit Dattelsirup",
+        "zh": "椰枣糖浆巴拉利特"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d4.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Balaleet vermicelli toasting over a wood fire beside an omelette pan",
+      "ar": "تحميص شعيرية البلاليط على نار الحطب مع مقلاة العجة",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Вермишель для балалита обжаривают на дровяном огне рядом со сковородой для омлета",
+        "de": "Balaleet-Fadennudeln rösten über dem Holzfeuer neben einer Omelettpfanne",
+        "zh": "柴火上烘炒巴拉利特细面，一旁是煎蛋锅"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d4.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Golden vermicelli scented with saffron and cardamom, sweetened the Hasawi way with date syrup; from a land that is the capital of the palm, the sweetness comes from the date itself.",
+      "ar": "شعيريةٌ ذهبية معطّرة بالزعفران والهيل، تتحلّى على الطريقة الأحسائية بدبس التمر؛ فمن أرضٍ هي عاصمة النخيل، يأتي الحلا من التمر ذاته.",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Золотистая вермишель с ароматом шафрана и кардамона. Подслащивают её финиковой патокой — так принято в Аль-Ахсе. В краю, который и есть столица пальм, сладость даёт сам финик.",
+        "de": "Goldene Fadennudeln, parfümiert mit Safran und Kardamom, werden nach Art von Al-Ahsa mit Dattelsirup gesüßt. Aus einem Land, das die Hauptstadt der Dattelpalme ist, kommt die Süße von der Dattel selbst.",
+        "zh": "巴拉利特（Balaleet）：金黄的细面浸润着藏红花与小豆蔻的芬芳，再按哈萨的传统淋上椰枣糖浆——在这座椰枣之都，甜味本就来自椰枣。"
+      },
+      "note": "The card description."
+    },
+    "food.g0.d5.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Date Asida",
+      "ar": "عصيدة التمر",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Финиковая асида",
+        "de": "Dattel-Asida",
+        "zh": "椰枣阿西达"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d5.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A plate of date asida with a well of dibs at its centre, with dates and a coffee pot",
+      "ar": "صحن عصيدة التمر وحفرة الدبس في وسطها مع التمر والدلة",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Тарелка финиковой асиды: в середине лунка финиковой патоки, рядом финики и кофейник",
+        "de": "Ein Teller Dattel-Asida mit einer Mulde aus Dibs (Dattelsirup) in der Mitte, dazu Datteln und eine Kaffeekanne",
+        "zh": "一盘椰枣阿西达，中央凹陷处盛着椰枣糖浆，旁边是椰枣与阿拉伯咖啡壶"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d5.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa’s own dates melt into wheat flour over a gentle flame, stirred patiently until the asida thickens and gleams with saffron, then crowned with ghee and a scatter of black pepper that kindles its warmth. The Hasawi winter sweet a family gathers around on cold nights.",
+      "ar": "تمرُ الأحساء ذاته يذوب مع دقيق البرّ على نارٍ هادئة، وتُقلَّب العصيدة بصبرٍ حتى تتماسك وتلمع بالزعفران، ثم تُتوَّج بالسمن ورشّة فلفلٍ أسود تُشعل دفأها. حلا الشتاء الأحسائي الذي تلتفّ حوله العائلة في الليالي الباردة.",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Финики самой Аль-Ахсы тают в пшеничной муке на тихом огне. Асиду терпеливо помешивают, пока она не загустеет и не заблестит от шафрана, а потом венчают топлёным маслом и щепоткой чёрного перца — он и придаёт асиде тепла. Это зимнее лакомство Аль-Ахсы: вокруг него семья собирается в холодные ночи.",
+        "de": "Al-Ahsas eigene Datteln zerschmelzen bei sanfter Flamme mit Weizenmehl. Geduldig gerührt, bis die Asida eindickt und mit Safran erstrahlt, wird sie mit Butterschmalz und einer Prise schwarzem Pfeffer gekrönt. Die Prise entfacht ihre Wärme. Die winterliche Süßspeise aus Al-Ahsa, um die sich die Familie in kalten Nächten versammelt.",
+        "zh": "哈萨本地的椰枣与小麦面粉在文火上慢慢交融，耐心搅拌至稠滑光亮、泛着藏红花的色泽，最后浇上酥油，再撒一撮黑胡椒，暖意顿生。这道椰枣阿西达（Asida）是哈萨的冬日甜点——寒夜里，一家人围坐着分食一盘。"
+      },
+      "note": "The card description."
+    },
+    "food.g0.d6.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Sago",
+      "ar": "الساقو",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Саго",
+        "de": "Sago",
+        "zh": "西米羹"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d6.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Sago garnished with walnuts and pistachios",
+      "ar": "الساقو مزيّناً بالجوز والفستق",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Саго, украшенное грецкими орехами и фисташками",
+        "de": "Sago, garniert mit Walnüssen und Pistazien",
+        "zh": "缀以核桃与开心果的西米羹"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d6.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Small grains that melt over the flame until they turn into a translucent jewel shimmering with saffron and cardamom. The Al-Ahsa sweet that heads Ramadan tables — delicate in texture, long-established in presence, its preparation handed down among the people of the oasis.",
+      "ar": "حبيباتٌ صغيرة تذوب على النار حتى تصير جوهرًا شفافًا يتلألأ بالزعفران والهيل. حلوى الأحساء التي تتصدّر موائد رمضان، رقيقةُ القوام، عريقةُ الحضور، توارث أهل الواحة طريقة إعدادها.",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Зёрнышки тают на огне и превращаются в прозрачную драгоценность, которая мерцает шафраном и кардамоном. Это лакомство Аль-Ахсы царит на столах Рамадана — нежное по консистенции, с давней историей. Способ его приготовления жители оазиса передают из поколения в поколение.",
+        "de": "Kleine Körner, die über der Flamme zerschmelzen, bis sie zu einem durchscheinenden Juwel werden, das im Schimmer von Safran und Kardamom erstrahlt. Al-Ahsas Süßspeise an der Spitze der Ramadan-Tafeln – zart in der Konsistenz, seit langem verwurzelt, ihre Zubereitung wird von den Bewohnern der Oase weitergegeben.",
+        "zh": "细小的西米在火上慢慢煮至晶莹剔透，化作透亮的甜羹，透着藏红花的色泽、小豆蔻的清香。这道当地称作“萨古”（Sago）的甜点是哈萨斋月餐桌上的主角——口感细腻、历史悠久，做法在绿洲人家代代相传。"
+      },
+      "note": "The card description."
+    },
+    "food.kicker.bread": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Bread",
+      "ar": "خبز",
+      "placeholders": [],
+      "renders": [
+        "the small label above a card name — on every card whose English label is «Bread»"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Хлеб",
+        "de": "Brot",
+        "zh": "面包"
+      },
+      "note": "Card kicker (the dish's kind). One string for all cards that carry this English label. No final stop."
+    },
+    "food.g0.d7.name": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Date Bread",
+      "ar": "خبز التمر",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its name (h3)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Финиковый хлеб",
+        "de": "Dattelbrot",
+        "zh": "椰枣面包"
+      },
+      "note": "Card heading. No final stop. Names are spelled from the Arabic."
+    },
+    "food.g0.d7.alt": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Date bread on a griddle before a glowing clay oven",
+      "ar": "خبز التمر على الصاج أمام فرن الطين المشتعل",
+      "placeholders": [],
+      "renders": [
+        "a dish card: the description of its photo (read aloud, shown when the image fails)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Финиковый хлеб на сковороде перед пылающей глиняной печью",
+        "de": "Dattelbrot auf dem Blech vor einem glühenden Tanur",
+        "zh": "炉火正旺的泥炉前，烤盘上的椰枣面包"
+      },
+      "note": "Image description. No final stop."
+    },
+    "food.g0.d7.pre": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/data/dishes.ts",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A local bread kneaded or filled with date paste and sprinkled with black seed (nigella), uniting good bread with the sweetness of dates. Served with Arabic coffee. Also known as “red bread” (khubz ahmar).",
+      "ar": "خبزٌ محليٌّ يُعجن أو يُحشى بمعجون التمر ويُرشُّ بحبّة البركة (الحبّة السوداء)، فيجمع بين طيّبِ الخبز وحلاوةِ التمر. يُقدَّم مع القهوة العربية. ويُسمّى أيضاً «الخبز الأحمر».",
+      "placeholders": [],
+      "renders": [
+        "a dish card: its description (folded until the reader presses the card button)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Местный хлеб: финиковую пасту вмешивают в тесто или кладут внутрь, а сверху посыпают чёрным тмином (чернушкой) — так соединяются добрый хлеб и сладость фиников. Его подают с арабским кофе. Ещё его называют «красным хлебом» (хубз ахмар).",
+        "de": "Dieses Dattelbrot – ein lokales Brot, geknetet oder gefüllt mit Dattelpaste und bestreut mit Schwarzkümmel – vereint gutes Brot mit der Süße der Dattel. Serviert mit arabischem Kaffee. Auch als „rotes Brot“ (khubz ahmar) bekannt.",
+        "zh": "一种本地面包：把椰枣泥揉进面团或作为馅料，再撒上黑种草籽，让面包的麦香与椰枣的甘甜合为一体，配阿拉伯咖啡最是相宜。当地也称它为“红面包”（khubz ahmar）。"
+      },
+      "note": "The card description."
+    },
+    "food.more": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Read more",
+      "ar": "اقرأ النبذة",
+      "placeholders": [],
+      "renders": [
+        "Label of the button that opens a card's description (the descriptions are folded until pressed)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Подробнее",
+        "de": "Mehr anzeigen",
+        "zh": "展开简介"
+      },
+      "note": "Label of the button that opens a card's description (the descriptions are folded until pressed).",
+      "tm_approved": [
+        {
+          "ur": "مزید پڑھیں",
+          "page": "ui",
+          "field": "fruits.more"
+        }
+      ]
+    },
+    "food.less": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hide description",
+      "ar": "إخفاء النبذة",
+      "placeholders": [],
+      "renders": [
+        "The same button's label once the description is open"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Свернуть",
+        "de": "Weniger anzeigen",
+        "zh": "收起简介"
+      },
+      "note": "The same button's label once the description is open.",
+      "tm_approved": [
+        {
+          "ur": "تفصیل چھپائیں",
+          "page": "ui",
+          "field": "fruits.less"
+        }
+      ]
+    },
+    "food.methodH": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "About this page",
+      "ar": "حول هذه الصفحة",
+      "placeholders": [],
+      "renders": [
+        "Heading of the note at the foot of the page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Об этой странице",
+        "de": "Über diese Seite",
+        "zh": "关于本页"
+      },
+      "note": "Heading of the note at the foot of the page. No final stop."
+    },
+    "food.methodP1": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The descriptions here introduce the traditional dishes and their well-known ingredients rather than exact recipes; measures and names vary from one household and region to the next.",
+      "ar": "الأوصاف هنا للتعريف بالأطباق الشعبية ومكوّناتها المعروفة، لا وصفاتٍ دقيقة؛ إذ تتفاوت المقادير والمسمّيات من بيتٍ لآخر ومن منطقةٍ لأخرى.",
+      "placeholders": [],
+      "renders": [
+        "First paragraph of the note at the foot of the page"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Эти описания знакомят с традиционными блюдами и их хорошо известными ингредиентами, а не дают точных рецептов: и пропорции, и названия меняются от дома к дому и от одной местности к другой.",
+        "de": "Die Beschreibungen hier stellen die traditionellen Gerichte und ihre bekannten Zutaten vor, keine genauen Rezepte. Mengenangaben und Bezeichnungen unterscheiden sich von Haushalt zu Haushalt und von Region zu Region.",
+        "zh": "本页旨在介绍各道传统菜肴及其常见食材，并非精确食谱；用料与叫法因家庭与地区而异。"
+      },
+      "note": "First paragraph of the note at the foot of the page."
+    },
+    "food.methodP2": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Where four of the cards mention an occasion or a season — Ramadan, winter nights, wedding feasts, tables of hospitality — they describe the dish’s place in the traditions of the Hasawi table, not when it is served to visitors. In Al-Ahsa’s restaurants, though, the dishes on this page are served all year round.",
+      "ar": "وما تذكره أربعُ بطاقاتٍ من مناسبةٍ أو موسم — رمضان، أو ليالي الشتاء، أو ولائم الأعراس وموائد الضيافة — يصف موضعَ الطبق في تقاليد الموائد الأحسائية، لا موعدَ تقديمه للزائر؛ أمّا في مطاعم الأحساء فتُقدَّم أطباقُ هذه الصفحة على مدار السنة.",
+      "placeholders": [],
+      "renders": [
+        "Second paragraph of the note: it speaks of four of the cards (Ramadan, winter nights, wedding feasts, tables of hospitality are named on them)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Четыре карточки упоминают Рамадан, зимние ночи, свадебные пиры или приём гостей: такие поводы и времена года говорят о месте этих блюд в застольных традициях Аль-Ахсы, а не о том, когда их подают туристам. А в ресторанах Аль-Ахсы описанные на этой странице блюда подают круглый год.",
+        "de": "Wo vier der Karten einen Anlass oder eine Jahreszeit nennen – Ramadan, Winternächte, Hochzeitsfeste, Tafeln der Gastfreundschaft –, beschreiben sie den Platz des Gerichts in den Tafeltraditionen Al-Ahsas, nicht den Zeitpunkt, zu dem es Besuchern serviert wird. In den Restaurants Al-Ahsas jedoch werden die Gerichte dieser Seite das ganze Jahr über serviert.",
+        "zh": "有四张菜品卡片提到斋月、冬日寒夜、宴席与婚礼、待客的餐桌等场合与时令，这些描述讲的是菜肴在哈萨餐桌传统中扮演的角色，而不是何时向游客供应。不过在哈萨的餐厅里，本页介绍的八道菜肴全年供应。"
+      },
+      "note": "Second paragraph of the note: it speaks of four of the cards (Ramadan, winter nights, wedding feasts, tables of hospitality are named on them)."
+    },
+    "food.dineCta": {
+      "kind": "page module (food)",
+      "source": {
+        "file": "src/components/views/FoodView.astro",
+        "id_scheme": "tools/lib/food-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Looking for somewhere to try it? Browse the restaurants & cafés →",
+      "ar": "تبحث عن مكانٍ تجرّب فيه؟ تصفّح المطاعم والمقاهي ←",
+      "placeholders": [],
+      "renders": [
+        "A link at the foot of the note"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ищете, где это попробовать? Посмотрите список ресторанов и кафе →",
+        "de": "Suchen Sie einen Ort, um sie zu probieren? Entdecken Sie die Restaurants und Cafés →",
+        "zh": "想找地方一饱口福？浏览餐厅与咖啡馆 →"
+      },
+      "note": "A link at the foot of the note. On /ur/ it leads to the ENGLISH restaurants & cafés index (no Urdu page yet; the Russian precedent). The English ends with an arrow \"→\" that points forward in reading order."
+    }
+  },
+  "owner_questions": [],
+  "not_in_this_batch": {
+    "held_for_owner": {
+      "rule": "Rendered on the three pages, but the wording is the site owner's to decide (owner_questions.brand). Not in strings: stage files carry no value for it. zh, de and ru leave the key undefined.",
+      "strings": {
+        "site.brand": {
+          "kind": "ui.ts key",
+          "source": {
+            "file": "src/i18n/ui.ts",
+            "key": "site.brand"
+          },
+          "tier": "rendered",
+          "en": "Visit Al-Ahsa",
+          "ar": "زوروا الأحساء",
+          "placeholders": [],
+          "renders": [
+            "food: head title",
+            "food: head meta @og:site_name",
+            "food: head meta @og:title",
+            "food: head meta @twitter:title",
+            "food: head jsonld @name",
+            "food: head jsonld @copyrightNotice",
+            "food: head meta @copyright",
+            "food: head meta @rights",
+            "food: footer text"
+          ],
+          "element": [
+            "span"
+          ],
+          "nav": null,
+          "final_stop_in_english": false,
+          "precedent": {
+            "ru": null,
+            "de": null,
+            "zh": null
+          }
+        }
+      }
+    },
+    "english_in_scripts_by_precedent": [
+      {
+        "file": "src/components/CopyGuard.astro",
+        "text": "Source: Visit Al-Ahsa — <page URL>",
+        "renders": "appended to any copied selection longer than 150 characters, on every non-Arabic page",
+        "note": "The component knows two languages only (Arabic / everything else): zh, de and ru pages append the English line too. Carries the brand (owner_questions.brand)."
+      }
+    ],
+    "later_rounds": {
+      "rule": "ui.ts keys and category labels that no built /ur/ page (and no round-1 attraction page) renders. They belong to the rounds that build their pages.",
+      "count": 197,
+      "ui_keys": [
+        "site.name",
+        "trails.title",
+        "trails.lead",
+        "trails.duration",
+        "trails.duration.half-day",
+        "trails.duration.full-day",
+        "trails.mode",
+        "trails.mode.walking",
+        "trails.mode.driving",
+        "trails.mode.4x4",
+        "trails.stopsCount",
+        "trails.unescoCount",
+        "trails.view",
+        "trails.stopsH",
+        "trails.stop",
+        "trails.unesco",
+        "trails.sources",
+        "trails.landmark",
+        "trails.mapH",
+        "trails.mapNote",
+        "trails.all",
+        "nav.discover",
+        "lang.switch",
+        "lang.switchLabel",
+        "map.locate",
+        "det.mentions.h",
+        "form.honeypot",
+        "foot.l.historic",
+        "foot.l.nature",
+        "foot.l.crafts",
+        "foot.l.taste",
+        "foot.l.stay",
+        "foot.l.routes",
+        "foot.l.aboutSite",
+        "list.all",
+        "stores.all",
+        "stores.filterLabel",
+        "stores.search",
+        "stores.searchLabel",
+        "stores.empty",
+        "stores.visit",
+        "stores.visitAccount",
+        "stores.directOrder",
+        "stores.platform",
+        "stores.disclaimer",
+        "stores.faq",
+        "stores.lead",
+        "stores.shotAlt",
+        "stores.logoAlt",
+        "det.coords",
+        "det.openAmap",
+        "det.allStays",
+        "det.verifyNote",
+        "map.eyebrow",
+        "map.title",
+        "map.lead.a",
+        "map.pop.view",
+        "map.search.ph",
+        "map.count",
+        "map.list.aria",
+        "map.filter.aria",
+        "map.empty",
+        "map.terrain",
+        "tmap.title",
+        "tmap.lead",
+        "tmap.open",
+        "tmap.loading",
+        "tmap.3d.on",
+        "tmap.3d.off",
+        "tmap.locate",
+        "tmap.list.title",
+        "tmap.classic",
+        "tmap.gest.win",
+        "tmap.gest.mac",
+        "tmap.gest.touch",
+        "plan.eyebrow",
+        "plan.title",
+        "plan.lead",
+        "plan.savedSuffix",
+        "plan.savedOne",
+        "plan.savedTwo",
+        "plan.savedFew",
+        "plan.clearConfirm",
+        "plan.routeLimit",
+        "plan.route",
+        "plan.clear",
+        "plan.remove",
+        "plan.location",
+        "plan.empty.h",
+        "plan.empty.d",
+        "plan.empty.browse",
+        "plan.empty.map",
+        "plan.share",
+        "plan.copy",
+        "plan.print",
+        "plan.waText",
+        "plan.shared.h",
+        "plan.shared.d",
+        "plan.shared.import",
+        "plan.shared.mine",
+        "plan.printNote",
+        "ev.shop",
+        "ev.shopNote",
+        "crumb.blog",
+        "blog.eyebrow",
+        "blog.title",
+        "blog.lead",
+        "blog.empty",
+        "blog.published",
+        "blog.updated",
+        "blog.back",
+        "blog.faq",
+        "guides.nav",
+        "guides.title",
+        "guides.seoDesc",
+        "guides.lead",
+        "guides.disc.before",
+        "guides.disc.role",
+        "guides.filter.lang",
+        "guides.filter.spec",
+        "guides.filter.all",
+        "guides.filter.none",
+        "guides.list.h",
+        "guides.list.order",
+        "guides.empty.h",
+        "guides.empty.p",
+        "guides.badge.m",
+        "guides.badge.f",
+        "guides.place",
+        "guides.card.langs",
+        "guides.card.areas",
+        "guides.card.valid",
+        "guides.card.page.m",
+        "guides.card.page.f",
+        "guides.contact.h.m",
+        "guides.contact.h.f",
+        "guides.contact.wa",
+        "guides.contact.tel",
+        "guides.contact.mail",
+        "guides.contact.waAria",
+        "guides.contact.telAria",
+        "guides.contact.mailAria",
+        "guides.contact.short",
+        "guides.how.h",
+        "guides.how.1.h",
+        "guides.how.1.p",
+        "guides.how.2.h",
+        "guides.how.2.p",
+        "guides.how.3.h",
+        "guides.how.3.p",
+        "guides.yes.h",
+        "guides.yes.1",
+        "guides.yes.2",
+        "guides.no.h",
+        "guides.no.1",
+        "guides.no.2",
+        "guides.no.3",
+        "guides.join.h",
+        "guides.join.p",
+        "guides.join.wa",
+        "guides.join.mailAria",
+        "guides.chip.valid",
+        "guides.facts.group",
+        "guides.facts.prices",
+        "guides.facts.pricesV",
+        "guides.lic.h",
+        "guides.lic.checked",
+        "guides.lic.number",
+        "guides.lic.issuer",
+        "guides.lic.expires",
+        "guides.lic.verifiedAt",
+        "guides.lic.note",
+        "guides.stated",
+        "guides.bio.h.m",
+        "guides.bio.h.f",
+        "guides.tours.h",
+        "guides.tours.price",
+        "guides.gallery.h",
+        "guides.gallery.note",
+        "guides.service.h",
+        "guides.service.length",
+        "guides.service.meeting",
+        "guides.service.hours",
+        "guides.service.note",
+        "guides.about.h",
+        "guides.about.1",
+        "guides.about.2",
+        "guides.about.3",
+        "guides.report",
+        "guides.others.h",
+        "guides.others.all",
+        "guides.photoAlt",
+        "guides.plan.h",
+        "guides.plan.p"
+      ],
+      "category_labels": [
+        "experience",
+        "taste",
+        "events"
+      ]
+    },
+    "english_by_precedent": [
+      {
+        "id": "data.orgDesc",
+        "file": "src/lib/schema.ts",
+        "en": "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.",
+        "ar": "مبادرة مستقلة: دليل سياحي رقمي عن محافظة الأحساء في السعودية — ليست جهة حكومية ولا تمثل أي هيئة رسمية.",
+        "renders": "JSON-LD Organization.description on every page (search engines only)",
+        "note": "zh, de and ru all carry the ENGLISH sentence here: the earlier lines never translated it.",
+        "values_today": {
+          "zh": "(the English sentence)",
+          "de": "(the English sentence)",
+          "ru": "(the English sentence)"
+        }
+      }
+    ],
+    "already_in_urdu": {
+      "rule": "Rendered on the pages of the batch, and the code already carries their Urdu: approved text of an earlier batch, not reopened here.",
+      "ui_keys_and_labels": [
+        "crumb.home",
+        "a11y.skip",
+        "a11y.menu",
+        "a11y.mainNav",
+        "nav.attractions",
+        "nav.trails",
+        "nav.leisure",
+        "nav.events",
+        "nav.fruits",
+        "nav.food",
+        "nav.dining",
+        "nav.stayShort",
+        "nav.stores",
+        "nav.plan",
+        "nav.map",
+        "search.open",
+        "search.label",
+        "search.placeholder",
+        "search.close",
+        "search.idle",
+        "search.escHint",
+        "search.empty",
+        "search.searching",
+        "search.results",
+        "nav.myTrip",
+        "lang.menu",
+        "nav.planVisit",
+        "video.pause",
+        "video.play",
+        "foot.tagline",
+        "foot.col.discover",
+        "CATEGORY_LABELS.historic",
+        "CATEGORY_LABELS.nature",
+        "nav.dine",
+        "nav.stay",
+        "foot.l.events",
+        "nav.blog",
+        "foot.l.about",
+        "foot.l.unesco",
+        "foot.col.plan",
+        "foot.l.getThere",
+        "foot.col.site",
+        "foot.l.privacy",
+        "foot.l.report",
+        "foot.l.contact",
+        "foot.l.whatsapp",
+        "foot.independence"
+      ],
+      "inline_sites": [
+        "inline.home.title",
+        "inline.home.description",
+        "inline.home.fact.palms.n",
+        "inline.home.fact.springs.n",
+        "inline.home.country",
+        "inline.attractions.groupsHint",
+        "inline.404.title",
+        "inline.404.heading",
+        "inline.404.text",
+        "data.dist.under",
+        "data.dist.about",
+        "data.oasisName",
+        "data.langShort"
+      ]
+    },
+    "not_text": "The .eyebrow letter-spacing, the OG card image, the header thresholds, the unlisted table and the build guards are engineering steps, not strings. The OG card (public/og-default-ur.png) is generated from home.hero.eyebrow, and the web-app manifest description from home.hero.lead: both are strings of this batch."
+  },
+  "english_that_stays_on_the_three_pages_after_this_batch": {
+    "note": "Measured on the trace build: Latin text on the four pages that no string of this batch replaces. It keeps counting against the 20% threshold of build check C22 until its own batches land.",
+    "content_of_untranslated_attractions": {
+      "distinct_strings": 0,
+      "attractions": 0,
+      "why": "titles and summaries of attractions with no title_ur, on the index cards, the home featured cards, the \"nearby\" cards and the ItemList JSON-LD"
+    },
+    "trails_section": {
+      "distinct_strings": 0,
+      "strings": [],
+      "why": "titles and taglines of suggested trails (src/data/trails.json): the trails have no Urdu version; the section heading itself (trails.partOf) is in the batch"
+    },
+    "brand": [
+      "© 2026 — visit-alahsa.com"
+    ],
+    "organization_description": [
+      "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority."
+    ],
+    "other_languages_by_design": [
+      "VISIT AL-AHSA",
+      "English",
+      "Deutsch",
+      "This page is available in English",
+      "Read in English",
+      "Dismiss",
+      "Diese Seite ist auf Deutsch verfügbar",
+      "Auf Deutsch lesen",
+      "Schließen"
+    ],
+    "keyboard_key": [
+      "Esc"
+    ],
+    "untraced": []
+  }
+}
