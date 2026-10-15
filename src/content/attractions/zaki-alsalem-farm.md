@@ -19,6 +19,12 @@ kicker_ru: "Ферма"
 summary_ru: "Одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы. Она славится праздниками сбора урожая, а ещё здесь серный источник и сельские домики."
 body_ru: "У дороги Эль-Халидж раскинулась ферма Заки ас-Салема — одна из крупнейших в оазисе ферм, где выращивают рис Аль-Ахсы, а вместе с ним и другие здешние культуры. Ферма славится праздниками, которые каждый год устраивают в сезон сбора риса Аль-Ахсы: посетители едут на них за карнавальной атмосферой. Здесь же из-под земли бьёт природный серный источник. Вокруг него построили сельские домики, известные как «Арияф Заки». В них посетители купаются в тёплой минеральной воде этого источника среди зелени."
 area_ru: "Дорога Эль-Халидж, Аль-Ахса"
+# الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 94/100 (2026-10-14، الدفعة b11 — السجل في ur-translation/memory/scores.csv).
+title_ur: "زکی السالم کا فارم"
+kicker_ur: "زرعی فارم"
+summary_ur: "الاحساء کے چاول کی کاشت کرنے والے سب سے بڑے فارموں میں سے ایک، جو کٹائی کے موسم کی تقریبات کے لیے مشہور ہے۔ یہاں گندھک والے پانی کا ایک چشمہ اور دیہی جھونپڑیاں بھی ہیں۔"
+body_ur: "الخلیج سڑک پر زکی السالم کا فارم واقع ہے۔ یہ الاحساء کے سرخ چاول کی کاشت کرنے والے سب سے بڑے فارموں میں سے ایک ہے، اور یہاں الاحساء کے نخلستان کی دوسری فصلیں بھی اگتی ہیں۔ ہر سال چاول کی کٹائی کے موسم میں یہاں تقریبات ہوتی ہیں۔ ان میں میلے کا سا ماحول ہوتا ہے، جو سیاحوں کو اس فارم کی طرف کھینچ لاتا ہے۔ فارم میں گندھک والے پانی کا ایک قدرتی چشمہ بھی ہے جو زمین سے پھوٹتا ہے۔ اس کے گرد دیہی جھونپڑیاں بنائی گئی ہیں جو “اریاف زکی” (زکی کا دیہی علاقہ) کہلاتی ہیں۔ ان میں سیاح ہریالی کے بیچ معدنیات سے بھرپور گرم پانی میں نہاتے ہیں۔"
+area_ur: "الاحساء، الخلیج سڑک پر"
 slug_ar: "مزرعة-زكي-السالم"
 slug_en: "zaki-alsalem-farm"
 category: farm
@@ -31,9 +37,9 @@ order: 68
 area: "طريق الخليج — الأحساء"
 area_en: "Al-Khaleej Road — Al-Ahsa"
 practical:
-  - { label: "المواعيد", value: "الخميس والجمعة والسبت: 3:30 م - 10:00 م", label_en: "Hours", value_en: "Thursday, Friday and Saturday 3:30–10:00 pm", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "25 ريال للفرد", label_en: "Fees", value_en: "SAR 25 per person", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", verified: false }
+  - { label: "المواعيد", value: "الخميس والجمعة والسبت: 3:30 م - 10:00 م", label_en: "Hours", value_en: "Thursday, Friday and Saturday 3:30–10:00 pm", label_ur: "اوقات", value_ur: "جمعرات، جمعہ اور ہفتہ سہ پہر 3:30 بجے سے رات 10 بجے تک", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "25 ريال للفرد", label_en: "Fees", value_en: "SAR 25 per person", label_ur: "فیس", value_ur: "فی کس 25 سعودی ریال", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", label_ur: "سیر", value_ur: "تصدیق باقی ہے", verified: false }
 location: { lat: 25.2985879, lng: 49.6605849 }
 mapUrl: "https://maps.app.goo.gl/S3QhpmWT7b3ge6DKA"
 ---
