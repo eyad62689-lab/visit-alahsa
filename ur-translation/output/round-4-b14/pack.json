@@ -1,0 +1,1848 @@
+{
+  "batch": "b14",
+  "kind": "attractions",
+  "generated_by": "tools/mkpack-attractions.mjs b14",
+  "built_from": "src/content/attractions/*.md + dist/en/attractions/*/index.html (section gates) + src/lib/categories.ts",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings (transliteration). Arabic-only content (sentences or facts the English field does not carry) is NOT imported into the Urdu.",
+  "precedent_rule": "precedent = the approved ru / de / zh values of the same fields. They show how the earlier lines handled glosses, names and source divergences on this very page. They are reference, never source: nothing is translated from them.",
+  "divergence_rule": "divergences are flags for the stages (raise them, log them as source defects where they are defects). They are not resolved in the pack and are not repaired in the Urdu. divergences.resolved holds flags the site owner has since settled in the source (date and reason beside each): they are history, not flags.",
+  "amendment_rule": "source_amendments (per page) lists what the source lost after the pack was first built. The leaves named there are no longer translated; amend-source.mjs took them out of the stage files, which record the removal under amendments.",
+  "stage_file_shape": "stage files carry pages[] = { page, fields } with fields = { title, kicker, summary, body, [area], [bestTime], practical[{i,label,value}], faq[{i,q,a}] } — exactly the leaves of content_fields, list items addressed by i. See tools/README.md.",
+  "totals": {
+    "pages": 6,
+    "fields": 62,
+    "per_page": {
+      "national-park": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "jawatha-park": {
+        "fields": 17,
+        "practical_rows": 2,
+        "faq_items": 4,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "najm-park": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "mushaqar": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "kanzan-park": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      },
+      "musa-park": {
+        "fields": 9,
+        "practical_rows": 2,
+        "faq_items": 0,
+        "bestTime": false,
+        "kicker_rendered": false
+      }
+    }
+  },
+  "pages": [
+    {
+      "page": "national-park",
+      "file": "src/content/attractions/national-park.md",
+      "file_sha256": "79548cab1b211aee5ce561ce62586225de7c47c474303432a5c94271376d2a2d",
+      "order": 43,
+      "category": "parks",
+      "category_label": {
+        "en": "Parks & gardens",
+        "ar": "المتنزّهات والحدائق"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Ahsa National Park",
+          "ar": "منتزه الأحساء الوطني",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A man-made forest born of a 1962 sand-control project — millions of tamarisk trees, shaded seating and trails.",
+          "ar": "غابة اصطناعية نشأت من مشروع حجز الرمال عام 1962م — ملايين أشجار الأثل ومظلات وممرات.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "North-east of the oasis at the city of Al-Omran, close to Al-Qarah Mountain, spreads Al-Ahsa National Park — a story that began in 1382 AH / 1962 CE as a Ministry of Agriculture project to hold back the sands creeping over the oasis villages. Millions of trees were planted, most of them tamarisk, over an area of some 4,500 hectares with a belt running twenty kilometres, and over time the sand barriers grew into a lush man-made forest, then a public park with shaded seating, trails and family facilities. Today it is overseen by the National Center for Vegetation Cover Development and Combating Desertification, which continues its rehabilitation projects, and within its bounds the Jawatha Forest was launched with two million trees of salt-tolerant native species.",
+          "ar": "شمال شرق الواحة عند مدينة العمران، على مقربة من جبل القارة، يمتد منتزه\nالأحساء الوطني الذي بدأت قصته عام 1382هـ/1962م **مشروعاً لحجز الرمال**\nأطلقته وزارة الزراعة لحماية قرى الواحة من الزحف الرملي. زُرعت فيه ملايين\nالأشجار غالبيتها الأثل، على مساحة تقارب 4500 هكتار وحزام يمتد عشرين\nكيلومتراً، فتحوّلت مصدات الرمال مع الوقت غابةً اصطناعية وارفة ثم منتزهاً\nعاماً بمظلات وممرات ومرافق عائلية. ويشرف عليه اليوم المركز الوطني لتنمية\nالغطاء النباتي ومكافحة التصحر الذي يواصل مشاريع تأهيله، وداخل نطاقه\nدُشّنت **غابة جواثا** بمليوني شجرة من الأصناف المحلية المقاومة للملوحة.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Omran — northeast of the oasis",
+          "ar": "العمران — شمال شرق الواحة",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 6:00 am – 6:00 pm",
+              "ar": "يومياً: 6:00 ص - 6:00 م"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.parks",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "trails.partOf (h2) + trail titles and taglines (no Urdu trails yet: English, linked to /en/trails/)",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": true
+      },
+      "precedent": {
+        "ru": {
+          "title": "Национальный парк Аль-Ахсы",
+          "kicker": "Парк",
+          "summary": "Рукотворный лес, выросший из проекта 1962 года по сдерживанию песков: миллионы тамарисков, навесы и дорожки.",
+          "body": "К северо-востоку от оазиса, у города Эль-Умран и неподалёку от горы Эль-Кара, раскинулся Национальный парк Аль-Ахсы. Его история началась в 1382 году хиджры (1962 год н. э.), когда Министерство сельского хозяйства взялось за проект по сдерживанию песков, наступавших на деревни оазиса. Здесь высадили миллионы деревьев, в основном тамарисков, на площади около 4 500 га. Пояс насаждений протянулся на двадцать километров. Со временем песчаные заслоны превратились в густой рукотворный лес, а затем и в общественный парк — с навесами, дорожками и местами для семейного отдыха. Сегодня за парк отвечает Национальный центр развития растительного покрова и борьбы с опустыниванием, который продолжает восстановительные работы. В границах парка заложили лес Джавата — два миллиона деревьев местных пород, устойчивых к засолению.",
+          "area": "Эль-Умран, к северо-востоку от оазиса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Ahsa-Nationalpark",
+          "kicker": "Park",
+          "summary": "Ein künstlich angelegter Wald, hervorgegangen aus einem Projekt zur Sandeindämmung von 1962 – Millionen Tamarisken, Schattendächer und Wege.",
+          "body": "Nordöstlich der Oase, bei der Stadt Al-Omran und unweit des Jabal al-Qarah (des Qarah-Bergs), erstreckt sich der Al-Ahsa-Nationalpark. Seine Geschichte begann 1382 nach der Hidschra (1962 n. Chr.) als Projekt, mit dem das Landwirtschaftsministerium die Dörfer der Oase vor dem vordringenden Sand schützen wollte. Auf einer Fläche von rund 4.500 Hektar wurden Millionen Bäume gepflanzt, überwiegend Tamarisken; ein Gürtel zieht sich über zwanzig Kilometer. Mit der Zeit wuchsen die Sandbarrieren zu einem üppigen, künstlich angelegten Wald heran. Später wurde daraus ein öffentlicher Park mit Schattendächern, Wegen und Einrichtungen für Familien. Heute steht der Park unter der Aufsicht des Nationalen Zentrums für die Entwicklung der Vegetationsdecke und die Bekämpfung der Wüstenbildung, das die Projekte zu seiner Wiederherstellung fortführt. In den Grenzen des Parks wurde der Jawatha-Wald mit zwei Millionen Bäumen heimischer, salztoleranter Arten ins Leben gerufen.",
+          "area": "Al-Omran – nordöstlich der Oase",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "哈萨国家公园",
+          "kicker": "公园",
+          "summary": "这片人工林源于 1962 年的固沙工程，栽有数百万棵柽柳，林间设有遮阳凉棚与步道。",
+          "body": "哈萨国家公园（Al-Ahsa National Park）位于绿洲东北部的欧姆兰市，距卡拉山不远。公园的由来可追溯到伊斯兰历 1382 年（公元 1962 年）：那一年，沙特农业部启动了一项固沙工程，以保护绿洲村庄免受流沙侵袭。工程栽下了数百万棵树，以柽柳为主，造林面积约 4500 公顷，防护林带绵延 20 公里。随着时间推移，这些防沙屏障渐渐长成一片葱郁的人工林，继而辟为公共公园，设有遮阳凉棚、步道与家庭休闲设施。如今，公园由沙特国家植被发展与荒漠化防治中心负责管理，该中心至今仍在推进园区的修复项目。园区范围内还启动了贾瓦塔森林项目，栽种耐盐本地树木 200 万棵。",
+          "area": "欧姆兰市——绿洲东北部",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa National Park",
+          "ar": "منتزه الأحساء الوطني",
+          "ru": "Национальный парк Аль-Ахсы",
+          "de": "der Al-Ahsa-Nationalpark",
+          "zh": "哈萨国家公园",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Omran",
+          "ar": "العمران",
+          "ru": "Эль-Умран",
+          "de": "Al-Omran",
+          "zh": "欧姆兰镇",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Qarah",
+          "ar": "القارة",
+          "ru": "Эль-Кара",
+          "de": "Al-Qarah",
+          "zh": "卡拉",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Qarah Mountain",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "卡拉山",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Jawatha",
+          "ar": "جواثا",
+          "ru": "Джавата",
+          "de": "Jawatha",
+          "zh": "贾瓦塔",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jawatha Forest",
+          "ar": "غابة جواثا",
+          "ru": "лес Джавата",
+          "de": "der Jawatha-Wald",
+          "zh": "贾瓦塔森林",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Ministry of Agriculture",
+          "ar": "وزارة الزراعة",
+          "ru": "Министерство сельского хозяйства",
+          "de": null,
+          "zh": "沙特农业部",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "National Center for Vegetation Cover Development and Combating Desertification",
+          "ar": "المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر",
+          "ru": "Национальный центр развития растительного покрова и борьбы с опустыниванием",
+          "de": "das Nationale Zentrum für die Entwicklung der Vegetationsdecke und die Bekämpfung der Wüstenbildung",
+          "zh": "沙特国家植被发展与荒漠化防治中心",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the city of Al-Omran",
+          "ar": null,
+          "ru": null,
+          "de": "die Stadt Al-Omran",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P10 (ruled, round 1): a large number — apply termbase _meta.calibration_rulings P10 (the Urdu scale; a figure below one lakh)",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "Hijri years: rulings N12 (a year in both calendars), N19 (a full date), N20 (a decade), N22 (a span of years)",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [4,500], only in Arabic [4500]",
+          "body: Arabic 1 paragraph(s), 568 characters, 2 bold phrase(s), 0 link(s); English 3 sentence(s), 771 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Ahsa National Park' — AR (منتزه الأحساء الوطني): every word but the place name is translated; the generic is the Arabic noun whose Urdu is the termbase's key for a park (feminine, ruling N69). The page's Wikipedia link (sameAs, not rendered) spells the generic with two letters the other way round (متنزه); the file's own spelling is the title's. No approved title is a park named after a PLACE: ruling N85 words a park named in honour of a person (no possessive), ruling N43 a title whose English translates everything but a place name (the place name, the possessive, the translated words).",
+          "kicker: Arabic only, 'a park' (منتزه); there is no kicker_en, and the detail page prints the category label above the title instead. The six pages of the batch carry this one Arabic kicker; it is the kicker of king-abdullah-park (b6), whose approved Urdu the translation memory holds under its Arabic. The Chinese, German and Russian lines each translated it. The page is not featured: the kicker is rendered nowhere today.",
+          "summary / body: EN 'shaded seating and trails' in the summary and 'shaded seating, trails and family facilities' in the body — AR 'shades and paths' (ومظلات وممرات) and (بمظلات وممرات ومرافق عائلية): 'seating' is EN-only, in both fields. The Chinese, German and Russian lines have shades or canopies and no seating. The approved salwa-beach page (b6) has Urdu for 'shades' from the same AR noun.",
+          "summary / body: the summary says 'millions of tamarisk trees' (ملايين أشجار الأثل), the body 'Millions of trees were planted, most of them tamarisk' (ملايين الأشجار غالبيتها الأثل): all of them tamarisk in one field, most of them in the other, in both languages. 'Millions' carries no figure in either language.",
+          "summary / body: the year is Gregorian alone in the summary, 'a 1962 sand-control project' (عام 1962م), and in both calendars in the body, '1382 AH / 1962 CE' (عام 1382هـ/1962م). 'A man-made forest born of' — AR 'an artificial forest that arose from' (غابة اصطناعية نشأت من مشروع حجز الرمال).",
+          "body, first sentence: EN 'a story that began in 1382 AH / 1962 CE as a Ministry of Agriculture project to hold back the sands creeping over the oasis villages' — AR 'a project for holding back the sands, which the Ministry of Agriculture launched to protect the villages of the oasis from the creep of the sand' (أطلقته وزارة الزراعة لحماية قرى الواحة من الزحف الرملي): 'launched' and 'to protect' are AR-only; in the EN the sands are already creeping over the villages, in the AR the villages are being protected from it. The Chinese and German lines follow the AR ('protect'), the Russian the EN. The project is bold in the AR (مشروعاً لحجز الرمال) and plain in the EN. The Chinese line adds 'Saudi' before the ministry and before the centre; neither source has it.",
+          "body / area: 'at the city of Al-Omran' in the body (عند مدينة العمران), bare 'Al-Omran' in the area line, in both languages (العمران — شمال شرق الواحة): the generic is in one field only. The name is new to the termbase. 'Close to Al-Qarah Mountain' (على مقربة من جبل القارة): the mountain of the calibration page, whose own English title is 'Jabal Al-Qarah' — the EN names one mountain two ways on two pages; the AR has one name, and its Urdu is a termbase key.",
+          "body / area: 'the oasis' three times — 'North-east of the oasis', 'the oasis villages', and 'northeast of the oasis' in the area line — and the oasis is named in no field of the page (the place name stands only inside the park's own name). 'North-east' in the body, 'northeast' in the area line.",
+          "body: 'over an area of some 4,500 hectares' — AR without the grouping comma (تقارب 4500 هكتار); 'a belt running twenty kilometres', in words in both languages (عشرين كيلومتراً); 'two million trees', in words in both, the AR in the dual (بمليوني شجرة). The German and Russian lines keep 'two million' in words; the Chinese line writes it in its own scale with a figure.",
+          "body: EN 'over time the sand barriers grew into a lush man-made forest, then a public park' (فتحوّلت مصدات الرمال مع الوقت غابةً اصطناعية وارفة ثم منتزهاً): the same in substance. The EN joins the planting, the forest and the park in one sentence of some fifty words.",
+          "body: 'Today it is overseen by the National Center for Vegetation Cover Development and Combating Desertification, which continues its rehabilitation projects' (المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر): a named body whose name is a list of two tasks, new to the termbase. The projects are the park's in the AR, by the pronoun (مشاريع تأهيله); in the EN 'its' can be read of the centre. The card's internal source, never rendered, shortens the body's name in its English.",
+          "body, last clause: 'within its bounds the Jawatha Forest was launched' (دُشّنت): the forest's name is bold in the AR (غابة جواثا) and new to the termbase. Jawatha is the name of the mosque and of the park of the jawatha-park page of this batch, which that page puts in Al-Kilabiyah; this page puts the national park at Al-Omran and says nothing of how the two lie to each other. 'Salt-tolerant native species' (من الأصناف المحلية المقاومة للملوحة).",
+          "card: two rows, both verified, neither with a Chinese, German or Russian rendering: 'Hours: Daily 6:00 am – 6:00 pm' (يومياً: 6:00 ص - 6:00 م), 'Fees: Free entry' (مجاني). Both labels and 'Free entry' have approved Urdu pairs; the hours value has none, and no approved value has a time at 6. The page is not openSite. No bestTime and no FAQ in any language.",
+          "file: heroImage is /img/alahsa-national-park, which is not the file's name. Not rendered text."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Title (termbase style rule titel_regel): the English translates every word but the place name, so the Urdu translates them, around the termbase key for a park (feminine: the page's verbs follow the title's entry). The place name is the head name of ruling P2, byte-identical. Two rulings each word a part of such a title and neither the whole: N43 (a title whose English translates everything but a PLACE name: the name as its key, the Urdu possessive, the translated words in Urdu order) and N85 (a place named in honour of a PERSON: no possessive). The name here is a place's: stage 1 follows ruling N43, proposes the title as a term with gender and source, and stage 4 raises the title of a park named after a place as a new open item (N101 onwards). ONE pattern serves the batch's park titles that are built on a place name.",
+        "Kicker (DECISIONS; ruling P24): no English source, translated from the Arabic (منتزه). It is the kicker of king-abdullah-park, approved in b6: the Urdu is copied byte for byte from the translation memory (the pair is keyed by its Arabic, since there is no English kicker), ONE string on the six pages. No final stop, no gloss. Not rendered today.",
+        "Ruling N69 and the termbase: a park (منتزه) is ONE Urdu noun, the termbase key, feminine; the loan stays out (ruling P16). king-abdullah-park (b6) is the only approved park page, and the approved jawatha-mosque page calls a park by the same noun: read both before choosing a word of the park vocabulary (DECISIONS, b7).",
+        "Rulings N12, P10 and N66, and the `hijri` style rule: '1382 AH / 1962 CE' is the Hijri year first with its word and the Gregorian year in round brackets with its word; the summary's 1962 stands bare, as its source has it; nothing is converted or computed. 'Millions' is said in the Urdu scale and without a figure (ruling P10: the two scale loans are not written). 'Two million' stands in WORDS in both sources: stage 1 writes it in the Urdu scale and reports what the stage checker's number rule says of a figure the sources have in words; the text is not bent to the checker (RUNBOOK). 4,500 keeps the English grouping (ruling P10: below one lakh); 'twenty kilometres' stays in words, as the approved kanzan page keeps the English's 'fifteen kilometres' in words; the unit follows the figure (ruling N24).",
+        "Ruling N47: the page mentions the oasis (body, twice; the area line) and names it in no field: the Urdu names it at one of those mentions at least, in the termbase form of the Al-Ahsa Oasis; the bare noun may stand at the others. Not machine-read: a point for the proofreader. Site-wide build check C15 ('the largest oasis in the world') has no Urdu entry in its tables; this page carries no such claim and none is brought in.",
+        "Names (RUNBOOK, rule 2): the mountain is the calibrated termbase key, byte-identical, whatever the English calls it here (جبل القارة); ruling P3a's demand for the Urdu generic binds a page whose own title is a jabal name, which this page is not. Al-Omran, the Jawatha Forest, the Ministry of Agriculture and the National Center are new names: verified on the web before use and proposed with gender, plural and source. 'Jawatha' is spelled as inside the key of the mosque. A city's generic stands AFTER its name (ruling N73) and is written where a source of the field has it — in the body (عند مدينة العمران), not in the area line, where both sources are bare (ruling N61: the fence is read field by field). 'Saudi' is added to neither body (the Chinese line's is its own).",
+        "Two bodies (rulings N16, point 4, N44, N68 and N98): a named body is written with the Urdu possessive, without quotation marks, and inflects like any phrase. The Ministry of Agriculture is a ministry of ONE field (وزارة الزراعة): ruling N98, which words a ministry whose name is a list, leaves a one-field name to the page that first carries one — this page; stage 1 proposes it on ruling N98's build (the field, the possessive, the noun last), stage 4 raises it. The centre's name is a list of two tasks (المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر): the list closes before the noun, as ruling N98 has it for a list. No loan for 'center' where a common Urdu word exists (ruling P16).",
+        "RUNBOOK, rule 4 (English is the translation source; Arabic is the authority where the two differ on a fact; Arabic-only content is not imported): 'shaded seating' is the EN's and the AR has shades only, in the summary and in the body — a difference about what stands in the park: stage 1 follows the Arabic, logs it, and stage 4 lists it. The AR's 'launched' and 'to protect' are not imported into a sentence whose English lacks them. The summary's 'millions of tamarisk trees' and the body's 'most of them tamarisk' each follow their own field (the two languages agree field by field) and are not evened out; the defect is logged.",
+        "Area line (rulings P20 and N30): the source gives a place and then its position by the oasis, with no larger bare place: the Urdu keeps the source's order and ends in a postposition. The stage checker's note of ruling P20 on such a line is expected.",
+        "Rulings P13, N9, N10 and N23, build check C51 (CLOCK_WORD and DAY_PARTS in tools/check-ur-text.mjs; it ALREADY TARGETS /ur/, no pattern is to be added): the hours value is written in the 12-hour form with the part of the day at each end, as a range in the ruled words and with no dash, a whole hour without ':00', minutes with a colon. The value is 'Daily 6:00 am – 6:00 pm' (يومياً: 6:00 ص - 6:00 م): the table of ruling P13 gives the part of the day at 6 in the morning and at 6 in the evening (both hours are in the part of the table the ruling marks as proposed, not measured); 'Daily' stands first, as on the approved rows of jabal-al-qarah and king-abdullah-park. No approved value has this range. The label 'Hours' has an approved pair and is reused verbatim. The value ends without a stop (ruling P26) and carries no U+061B (rulings N8 and N33).",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is NOT openSite and has verified Hours and Fees rows, so once a row carries label_ur and value_ur the unified hours-and-fees notice line must stand exactly once on the /ur/ page, in the interface's approved Urdu (det.hoursNotice with det.hoursNotice.op; the page has no operatorUrl, so no link). C13 ALREADY TARGETS Urdu: no pattern is to be added, and the notice is not a leaf of the pack. C12: 'Verified directly with the National Center for Vegetation Cover Development' is internal data and is never rendered; there is no `source_ur` (ruling P14), and nothing of it enters a label, a value or the body.",
+        "Card rows (RUNBOOK, rule 3): the labels 'Hours' and 'Fees' and the value 'Free entry' have approved pairs in ur-translation/memory/tm.json and are reused verbatim. The page has no 'Visiting' row and none is supplied.",
+        "Interface (src/i18n/ui.ts; not leaves of the pack): the page is of category parks, so its breadcrumb and its back link are the leisure ones (crumb.leisure, det.allLeisure); both stand in the Urdu block since b6 (rulings N96 and N97), and the category label (CATEGORY_LABELS.parks) is approved Urdu. Of the ids the detail template reads, the Urdu block lacks three: site.brand (open item BRAND; the Latin wordmark renders, as in the three earlier lines), det.openAmap (read on the Chinese page only) and det.mentions.h (the heading over articles that mention the place, printed only where an article in the page's language does: there is no Urdu article). None of the three is printed on this page today.",
+        "Ruling P16 and the owner's rule on loans (RUNBOOK, rule 7), build check C52 (LOAN_WHOLE_WORD and LOAN_ANYWHERE in tools/check-ur-text.mjs): C52 ALREADY TARGETS /ur/ and fails the withdrawn loans, among them the loan for 'family'. This page's English invites it ('family facilities'); the approved pages have Urdu words for it.",
+        "Root CLAUDE.md: invent nothing — no figure for 'millions', no species beside the tamarisk, no date for the park's opening or for the forest's launch, no distance from the mountain, nothing on how the Jawatha Forest lies to the Jawatha of the neighbouring page, no entry point and no facility beyond shades, paths and family facilities."
+      ]
+    },
+    {
+      "page": "jawatha-park",
+      "file": "src/content/attractions/jawatha-park.md",
+      "file_sha256": "6e3da7995db1fc792e19a954966d555d010f52266c3b9f5123f69eb89724645f",
+      "order": 44,
+      "category": "parks",
+      "category_label": {
+        "en": "Parks & gardens",
+        "ar": "المتنزّهات والحدائق"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Jawatha Park",
+          "ar": "منتزه جواثا السياحي",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A green park beside the historic Jawatha Mosque, a destination for family outings.",
+          "ar": "منتزه أخضر بجوار مسجد جواثا التاريخي، وجهة للنزهات العائلية.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "A broad green park in the village of Al-Kilabiyah, joining nature to history: beside it stand the ancient Jawatha Mosque — the first place where Friday prayer was held after the Prophet's Mosque in Medina — and the Jawatha archaeological site. A fitting destination for family outings; opening hours and fees are listed in the visit-information card below.",
+          "ar": "منتزهٌ أخضر واسع في قرية الكلابية، يجمع الطبيعة بالتاريخ: فبجواره يقع **مسجد\nجواثا الأثري**، أوّل موضعٍ أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، وموقع جواثا الأثري.\n\nوجهةٌ مناسبة للنزهات العائلية؛ المواعيد والرسوم في بطاقة «معلومات الزيارة» أدناه.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Kilabiyah — northeast of Hofuf",
+          "ar": "الكلابية — شمال شرق الهفوف",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 8 am – 12 midnight",
+              "ar": "يومياً 8 ص – 12 منتصف الليل"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "SAR 10–15 per person · visiting the mosque is free",
+              "ar": "10–15 ريالاً للفرد · زيارة المسجد مجانية"
+            },
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "i": 0,
+            "q": {
+              "en": "What are the opening hours of Jawatha Park?",
+              "ar": "ما مواعيد منتزه جواثا؟"
+            },
+            "a": {
+              "en": "Daily from 8 am to 12 midnight.",
+              "ar": "يومياً من 8 ص إلى 12 منتصف الليل."
+            }
+          },
+          {
+            "i": 1,
+            "q": {
+              "en": "How much is entry to Jawatha Park?",
+              "ar": "كم رسوم دخول منتزه جواثا؟"
+            },
+            "a": {
+              "en": "SAR 10–15 per person, and visiting the mosque is free.",
+              "ar": "من 10 إلى 15 ريالاً للفرد، وزيارة المسجد مجانية."
+            }
+          },
+          {
+            "i": 2,
+            "q": {
+              "en": "What is next to Jawatha Park?",
+              "ar": "ماذا يوجد بجوار منتزه جواثا؟"
+            },
+            "a": {
+              "en": "The ancient Jawatha Mosque, the first place where Friday prayer was held after the Prophet's Mosque in Medina, and the Jawatha archaeological site.",
+              "ar": "مسجد جواثا الأثري، أوّل موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، وموقع جواثا الأثري."
+            }
+          },
+          {
+            "i": 3,
+            "q": {
+              "en": "Where is Jawatha Park?",
+              "ar": "أين يقع منتزه جواثا؟"
+            },
+            "a": {
+              "en": "In Al-Kilabiyah village, northeast of Hofuf.",
+              "ar": "في قرية الكلابية شمال شرق الهفوف."
+            }
+          }
+        ]
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "answer": "answer / answer_en exist for ar and en only; the schema has no answer_ur and DetailView renders the answer paragraph for ar/en alone. The Urdu page description falls back to summary_ur.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.parks",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.faq (h2)",
+        "faq[0] q / a",
+        "faq[1] q / a",
+        "faq[2] q / a",
+        "faq[3] q / a",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": true,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Парк Джавата",
+          "kicker": "Парк",
+          "summary": "Зелёный парк рядом с исторической мечетью Джавата — место для семейного отдыха.",
+          "body": "Просторный зелёный парк в деревне Эль-Килабия соединяет природу с историей: рядом с ним — древняя мечеть Джавата и археологический памятник Джавата. Мечеть — первое место после мечети Пророка в Медине, где совершили пятничную молитву. Парк подходит для семейного отдыха. Часы работы и стоимость входа указаны в карточке «Практическая информация» ниже.",
+          "area": "Эль-Килабия, к северо-востоку от Эль-Хуфуфа",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Часы работы",
+              "value": "Ежедневно 8:00–24:00"
+            },
+            {
+              "i": 1,
+              "label": "Стоимость входа",
+              "value": "10–15 саудовских риялов (SAR) · посещение мечети бесплатно"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "В какие часы открыт парк Джавата?",
+              "a": "Ежедневно с 8:00 до 24:00."
+            },
+            {
+              "i": 1,
+              "q": "Сколько стоит вход в парк Джавата?",
+              "a": "10–15 саудовских риялов; посещение мечети бесплатно."
+            },
+            {
+              "i": 2,
+              "q": "Что можно увидеть рядом с парком Джавата?",
+              "a": "Древнюю мечеть Джавата и археологический памятник Джавата. Мечеть — первое место после мечети Пророка в Медине, где совершили пятничную молитву."
+            },
+            {
+              "i": 3,
+              "q": "Где находится парк Джавата?",
+              "a": "В деревне Эль-Килабия, к северо-востоку от Эль-Хуфуфа."
+            }
+          ]
+        },
+        "de": {
+          "title": "Jawatha-Park",
+          "kicker": "Park",
+          "summary": "Ein grüner Park neben der historischen Jawatha-Moschee – ein Ziel für Familienausflüge.",
+          "body": "Im Dorf Al-Kilabiyah verbindet ein weitläufiger grüner Park Natur und Geschichte: Neben ihm liegen die alte Jawatha-Moschee und die archäologische Stätte Jawatha. Die Moschee ist der erste Ort nach der Prophetenmoschee in Medina, an dem ein Freitagsgebet abgehalten wurde. Ein passendes Ziel für Familienausflüge; Öffnungszeiten und Eintritt stehen weiter unten bei „Besuchsinformationen“.",
+          "area": "Al-Kilabiyah – nordöstlich von Hofuf",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "Öffnungszeiten",
+              "value": "Täglich 8:00–24:00 Uhr"
+            },
+            {
+              "i": 1,
+              "label": "Eintritt",
+              "value": "10–15 Saudi-Riyal (SAR) · Besuch der Moschee kostenlos"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "Welche Öffnungszeiten hat der Jawatha-Park?",
+              "a": "Täglich von 8:00 bis 24:00 Uhr."
+            },
+            {
+              "i": 1,
+              "q": "Was kostet der Eintritt in den Jawatha-Park?",
+              "a": "10–15 SAR; der Besuch der Moschee ist kostenlos."
+            },
+            {
+              "i": 2,
+              "q": "Was befindet sich neben dem Jawatha-Park?",
+              "a": "Die alte Jawatha-Moschee – der erste Ort nach der Prophetenmoschee in Medina, an dem ein Freitagsgebet abgehalten wurde – und die archäologische Stätte Jawatha."
+            },
+            {
+              "i": 3,
+              "q": "Wo liegt der Jawatha-Park?",
+              "a": "Im Dorf Al-Kilabiyah, nordöstlich von Hofuf."
+            }
+          ]
+        },
+        "zh": {
+          "title": "贾瓦塔公园",
+          "kicker": "公园",
+          "summary": "与古老的贾瓦塔清真寺相邻的绿地公园，适合一家人出游。",
+          "body": "基拉比亚村的一片开阔绿地，自然与历史在此交叠：一旁便是古老的贾瓦塔清真寺——继麦地那的先知清真寺之后最早举行主麻日聚礼的地方——以及贾瓦塔考古遗址。公园适合全家出游；开放时间与门票见下方“游览信息”卡片。",
+          "area": "基拉比亚——胡富夫东北方向",
+          "bestTime": null,
+          "practical": [
+            {
+              "i": 0,
+              "label": "开放时间",
+              "value": "每日 8:00–24:00"
+            },
+            {
+              "i": 1,
+              "label": "门票",
+              "value": "10–15 沙特里亚尔（SAR） · 参观清真寺免费"
+            }
+          ],
+          "faq": [
+            {
+              "i": 0,
+              "q": "贾瓦塔公园的开放时间是几点到几点？",
+              "a": "每日 8:00–24:00。"
+            },
+            {
+              "i": 1,
+              "q": "贾瓦塔公园门票多少钱？",
+              "a": "10–15 沙特里亚尔，参观贾瓦塔清真寺免费。"
+            },
+            {
+              "i": 2,
+              "q": "贾瓦塔公园旁边有什么？",
+              "a": "旁边有古老的贾瓦塔清真寺——继麦地那的先知清真寺之后最早举行主麻日聚礼的地方——以及贾瓦塔考古遗址；公园本身是一片适合全家出游的开阔绿地。"
+            },
+            {
+              "i": 3,
+              "q": "贾瓦塔公园在哪里？",
+              "a": "在胡富夫东北方向的基拉比亚村。"
+            }
+          ]
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Kilabiyah",
+          "ar": "الكلابية",
+          "ru": "Эль-Килабия",
+          "de": "Al-Kilabiyah",
+          "zh": "基拉比亚",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Friday prayer",
+          "ar": "صلاة الجمعة",
+          "ru": null,
+          "de": "das Freitagsgebet",
+          "zh": "主麻日聚礼",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Hofuf",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "胡富夫",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jawatha",
+          "ar": "جواثا",
+          "ru": "Джавата",
+          "de": "Jawatha",
+          "zh": "贾瓦塔",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jawatha archaeological site",
+          "ar": "موقع جواثى الأثري",
+          "ru": "археологический памятник Джавата",
+          "de": "die archäologische Stätte Jawatha",
+          "zh": "贾瓦塔考古遗址",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jawatha Mosque",
+          "ar": null,
+          "ru": "мечеть Джавата",
+          "de": "die Jawatha-Moschee",
+          "zh": "贾瓦塔清真寺",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jawatha Park",
+          "ar": "منتزه جواثا السياحي",
+          "ru": "парк Джавата",
+          "de": "der Jawatha-Park",
+          "zh": "贾瓦塔公园",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Medina",
+          "ar": "المدينة المنورة",
+          "ru": null,
+          "de": null,
+          "zh": "麦地那",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Prophet's Mosque",
+          "ar": "المسجد النبوي",
+          "ru": "мечеть Пророка",
+          "de": "die Prophetenmoschee",
+          "zh": "先知清真寺",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P9 (ruled, round 1): Makkah / Madinah — apply termbase _meta.calibration_rulings P9",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P7 (ruled): currency — the amount, then the full currency name at the first mention in each field (termbase _meta.style_rules.currency), never the code SAR; a price RANGE stands here: ruling N13",
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 2 paragraph(s), 248 characters, 1 bold phrase(s), 0 link(s); English 2 sentence(s), 356 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)",
+          "answer / answer_en: an answer paragraph exists for ar/en and has no Urdu counterpart (not rendered on /ur/)"
+        ],
+        "reviewed": [
+          "title: EN 'Jawatha Park' — AR 'Jawatha Tourist Park' (منتزه جواثا السياحي): 'tourist' is AR-only and stands in the title alone; the four AR questions say the short name, as the EN does (منتزه جواثا). The Chinese, German and Russian titles follow the EN. The generic is the park noun of ruling N69; 'Jawatha' stands in the termbase only inside the key of the mosque. The approved jawatha-mosque page speaks of this park five times (two card rows, a question and two answers) and never by a name ('the adjacent park', 'the park beside the mosque').",
+          "kicker: Arabic only, 'a park' (منتزه); there is no kicker_en, and the detail page prints the category label above the title instead. The six pages of the batch carry this one Arabic kicker; it is the kicker of king-abdullah-park (b6), whose approved Urdu the translation memory holds under its Arabic. The Chinese, German and Russian lines each translated it. The page is not featured: the kicker is rendered nowhere today.",
+          "summary / body / faq[2].a: the mosque is 'historic' in the summary (مسجد جواثا التاريخي) and 'ancient' in the body and in faq[2].a (مسجد جواثا الأثري); the AR adjective of the body is the one the same sentence gives the archaeological site (وموقع جواثا الأثري), so the EN renders one AR word two ways in one sentence. The approved kanzan page (b5) has Urdu for 'the ancient Jawatha Mosque' from the same AR words.",
+          "body / faq[2].a: the Friday-prayer claim — EN 'the first place where Friday prayer was held after the Prophet's Mosque in Medina' — AR without the city (أُقيمت فيه صلاة الجمعة بعد المسجد النبوي): 'in Medina' is EN-only, in both leaves; the Chinese, German and Russian lines have the city. The wording is the owner's and is guarded by build check C30. This page STATES the claim, in both languages and in both leaves; the approved jawatha-mosque page reports it in its body and in its faq[2].a ('is said to be the first place …') and states it in its summary: one claim, stated on one page and reported on the other.",
+          "body: two verbless openings, in both languages — 'A broad green park in the village of Al-Kilabiyah, joining nature to history: beside it stand …' (منتزهٌ أخضر واسع في قرية الكلابية) and 'A fitting destination for family outings' (وجهةٌ مناسبة للنزهات العائلية): the body never names the park. The AR body is two paragraphs, the EN one string. 'Family outings' is in the summary too, and the approved king-abdullah-park page has Urdu for it.",
+          "body, last sentence: a semicolon in both languages, and an element of the page named in the sentence — EN 'opening hours and fees are listed in the visit-information card below'; the AR quotes the card's heading (المواعيد والرسوم في بطاقة «معلومات الزيارة» أدناه), the EN does not. The Chinese, German and Russian bodies each quote the heading of their own interface. 'Opening hours' and 'fees' are the two labels of the page's card. Ruling N89 worded such a sentence on asfar.",
+          "area: 'Al-Kilabiyah — northeast of Hofuf' (الكلابية — شمال شرق الهفوف): the village is bare in both languages. The approved area line of jawatha-mosque is a look-alike with the generic ('Al-Kilabiyah village — northeast of Hofuf'), and its Urdu has the generic; this page's body and its faq[3].a have the generic too, in both languages (في قرية الكلابية). faq[3].a, 'In Al-Kilabiyah village, northeast of Hofuf.', is word for word faq[3].a of jawatha-mosque in both languages, and has an approved Urdu pair.",
+          "practical[0].value / faq[0].a: 'Daily 8 am – 12 midnight' in the card (يومياً 8 ص – 12 منتصف الليل) and 'Daily from 8 am to 12 midnight.' in the answer (يومياً من 8 ص إلى 12 منتصف الليل): one fact in two strings, in both languages. The approved row of jawatha-mosque gives the same hours for 'the adjacent park' without 'Daily' ('8 am – 12 midnight'), and its faq[1].a likewise: the two pages agree. The Chinese, German and Russian lines write 24:00.",
+          "practical[1].value / faq[1].a: 'SAR 10–15 · visiting the mosque is free' (10–15 ريالاً · زيارة المسجد مجانية) and 'SAR 10–15, and visiting the mosque is free.' (من 10 إلى 15 ريالاً، وزيارة المسجد مجانية): neither language says who pays 10 and who 15. The currency is a Latin code in the EN and a word in the AR. The approved row of jawatha-mosque says the same from the mosque's side ('Mosque: free · park entry: SAR 10–15') and its faq[0].a likewise: the two pages agree on the figures.",
+          "faq[0].q, faq[1].q, faq[3].q: 'What are the opening hours of Jawatha Park?', 'How much is entry to Jawatha Park?', 'Where is Jawatha Park?' — the frames of approved questions (jabal-al-qarah, qasr-ibrahim, jawatha-mosque) with this page's name: the frames recur, the strings do not. faq[2].q, 'What is next to Jawatha Park?' (ماذا يوجد بجوار منتزه جواثا؟), has no approved frame; its answer is the body's clause about the mosque and the site, without a verb in either language.",
+          "card: two rows, both verified, each with Chinese, German and Russian renderings. The page is not openSite, and it carries hours and fee data for machines (closing at 23:59; 10 to 15), which are not text. No bestTime in any language; four FAQ items.",
+          "not translated: the answer paragraphs (answer, answer_en) are printed on the Arabic and English pages only. They word things their own way ('8 am to midnight', 'mosque free', the claim without 'in Medina'); nothing of them is a leaf of the pack."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Build check C30 (tools/check-jawatha-friday.mjs, run by tools/check-consistency.mjs) ALREADY TARGETS /ur/attractions/jawatha-park/ and ALREADY HAS its Urdu patterns (WRONG_MOSQUE, SECOND and PROPHET each carry a `ur` entry, built from the approved jawatha-mosque sentence): no pattern is to be added, and the page is held to them from the day it is built. (1) PROPHET: the page names the Prophet's Mosque in the termbase's Urdu key, byte-identical. (2) SECOND: no 'second place', 'second mosque' or 'second site' in Urdu. (3) WRONG_MOSQUE reads the bare sequence of the Urdu word for Friday and the Urdu word for a mosque, in either order, with at most a space between: a sentence in which the word for Friday is followed directly by the name of the Prophet's Mosque FAILS the build although it names no Friday Mosque. The owner's wording (أُقيمت فيه صلاة الجمعة بعد المسجد النبوي) is therefore taken, for the clause the two pages share, byte for byte from the approved jawatha-mosque page (DECISIONS, b7: never re-derived), which passes the three patterns: the first place where Friday prayer was held after the Prophet's Mosque.",
+        "The claim is STATED on this page, in both languages, in the body and in faq[2].a; the approved mosque page reports it in its body and its faq[2].a. The shared words are copied; the mosque page's reporting clause ('is said to be') is NOT copied with them, because this page's sources do not report (ruling P25: how the site states a claim of its own is not the translation's to change). The difference between the two pages is logged for the owner as a source defect.",
+        "Ruling P9, build check C61 (HOLY_CITIES in tools/check-ur-text.mjs; ALREADY TARGETS /ur/, no pattern is to be added): the city is written with its epithet at every mention, and where the English names the city beside the mosque the Urdu keeps it — in the body and in faq[2].a, where the Arabic has no city (the approved mosque page did so from the same pair of sources). Nothing follows from it: no honorific sign after the mosque's name, no benediction.",
+        "Title (termbase style rule titel_regel): the title mirrors title_en — the name and the generic; the AR's 'tourist' (السياحي) is Arabic-only content and is not imported (RUNBOOK, rule 4). The generic is the termbase key for a park, feminine. The NAME of the park is new: the approved mosque page never names it. Which pattern it takes — the generic before the name, as the mosque's own key and ruling N83's lake titles have it for a generic that is an Urdu word, or ruling N43's possessive after the place name — is proposed by stage 1 and raised at stage 4 with the title of national-park. 'Jawatha' is spelled as inside the mosque's key.",
+        "Kicker (DECISIONS; ruling P24): no English source, translated from the Arabic (منتزه). It is the kicker of king-abdullah-park, approved in b6: the Urdu is copied byte for byte from the translation memory (the pair is keyed by its Arabic, since there is no English kicker), ONE string on the six pages. No final stop, no gloss. Not rendered today.",
+        "Ruling N69 and the termbase: a park (منتزه) is ONE Urdu noun, the termbase key, feminine; the loan stays out (ruling P16). king-abdullah-park (b6) is the only approved park page, and the approved jawatha-mosque page calls a park by the same noun: read both before choosing a word of the park vocabulary (DECISIONS, b7).",
+        "Names (RUNBOOK, rule 2; DECISIONS, b7): the mosque is its termbase key, byte-identical and feminine; 'ancient' before it follows the approved kanzan page, which has Urdu for the same Arabic words (مسجد جواثا الأثري). Al-Kilabiyah is a termbase key: with the village generic after it where a source of the field has it — the body and faq[3].a (في قرية الكلابية) — and bare in the area line, where both sources are bare (ruling N61; the look-alike line of the mosque page is NOT copied, its sources have the generic). faq[3].a is the approved faq[3].a of jawatha-mosque, the same string in both languages: its approved pair is reused verbatim from the translation memory (RUNBOOK, rule 3). Hofuf is its key. The Jawatha archaeological site is a new name (وموقع جواثا الأثري): proposed by stage 1.",
+        "Ruling N89: the last sentence of the body sends the reader to the card of the page. Its heading is quoted exactly as the Urdu interface shows it (det.visitInfo, approved), in its own pair of marks and in the frame ruling N89 fixed on asfar for a section of the page; if the interface string changes, the quotation changes with it. 'Opening hours and fees' are the card's two labels and are said with the words of their approved pairs. No Latin-script name stands in the sentence.",
+        "Ruling N33, build check C65 (SEMICOLON in tools/check-ur-text.mjs; ALREADY TARGETS /ur/, no pattern is to be added): no Arabic semicolon (U+061B) stands in an Urdu attraction page. Both sources of the body's last sentence turn on a semicolon: the Urdu ends the first statement with a full stop or joins the two otherwise.",
+        "Rulings P13, N9, N10 and N23, build check C51 (CLOCK_WORD and DAY_PARTS in tools/check-ur-text.mjs; it ALREADY TARGETS /ur/, no pattern is to be added): the hours value is written in the 12-hour form with the part of the day at each end, as a range in the ruled words and with no dash, a whole hour without ':00', minutes with a colon. practical[0].value is 'Daily 8 am – 12 midnight' (يومياً 8 ص – 12 منتصف الليل): the range is the approved value of the mosque page's row for this very park, copied byte for byte from the translation memory (the pair of '8 am – 12 midnight'), with 'Daily' before it as on the approved rows of jabal-al-qarah and king-abdullah-park. Midnight is the figure 12 with its part of the day and no word for midnight beside it (ruling N9). faq[0].a says the same range as a sentence and keeps its stop; the approved faq[1].a of the mosque page is the nearest approved sentence. The label 'Hours' has an approved pair and is reused verbatim. The value ends without a stop (ruling P26) and carries no U+061B (rulings N8 and N33).",
+        "Rulings P7 and N13, build check C48 (RIYAL, SAUDI_RIYAL and CURRENCY_CODE in tools/check-ur-text.mjs; ALREADY TARGETS /ur/): no Latin currency code; the first amount of each field carries the full name of the currency; the range between the two figures is written in the ruled words, as the approved mosque row and its answer have it (the pairs of 'Mosque: free · park entry: SAR 10–15' and of the mosque page's faq[0].a). Ruling N17: 'visiting the mosque' takes the ruling's word for visiting a MOSQUE on this page too (the proofreader's guard: the other word does not take a mosque as its object); a visit to the park takes the other word. The card value keeps the source's middle dot between its two parts and ends without a stop; the answer keeps its stop (ruling P26).",
+        "Questions (RUNBOOK, rule 3): faq[0].q, faq[1].q and faq[3].q follow the approved frames ('What are the opening hours of …?', 'How much is entry to …?', 'Where is …?') with this page's title. The hours frame is approved in both genders (masculine on jabal-al-qarah and qasr-ibrahim, feminine in the mosque page's question about this park): the verb agrees with the gender of this page's title entry. The AR questions use the short name, as the title does.",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is NOT openSite and has verified Hours and Fees rows, so once a row carries label_ur and value_ur the unified hours-and-fees notice line must stand exactly once on the /ur/ page, in the interface's approved Urdu (det.hoursNotice with det.hoursNotice.op; the page has no operatorUrl, so no link). C13 ALREADY TARGETS Urdu: no pattern is to be added, and the notice is not a leaf of the pack. C12: 'Approved draft of the Al-Ahsa tourist guide' is internal data and is never rendered; there is no `source_ur` (ruling P14), and nothing of it enters a label, a value or the body.",
+        "Not translated: the answer paragraphs (answer, answer_en) are printed on the Arabic and English pages only and are no source for any leaf; hoursSpec and fee are data for machines and stay as they are (ruling P13, point 6).",
+        "Interface (src/i18n/ui.ts; not leaves of the pack): the page is of category parks, so its breadcrumb and its back link are the leisure ones (crumb.leisure, det.allLeisure); both stand in the Urdu block since b6 (rulings N96 and N97), and the category label (CATEGORY_LABELS.parks) is approved Urdu. Of the ids the detail template reads, the Urdu block lacks three: site.brand (open item BRAND; the Latin wordmark renders, as in the three earlier lines), det.openAmap (read on the Chinese page only) and det.mentions.h (the heading over articles that mention the place, printed only where an article in the page's language does: there is no Urdu article). None of the three is printed on this page today.",
+        "Ruling P16 and the owner's rule on loans (RUNBOOK, rule 7), build check C52 (LOAN_WHOLE_WORD and LOAN_ANYWHERE in tools/check-ur-text.mjs): C52 ALREADY TARGETS /ur/ and fails the withdrawn loans, among them the loan for 'family'. This page's English invites it twice ('family outings', summary and body); the approved king-abdullah-park page has Urdu for 'family outings'.",
+        "Root CLAUDE.md: invent nothing — not who pays 10 and who 15, no opening date, no size, no distance between the park and the mosque, nothing about the archaeological site beyond its name, no clock time other than the card's. The tribe and the restoration of the mosque page are that page's and are not brought here."
+      ]
+    },
+    {
+      "page": "najm-park",
+      "file": "src/content/attractions/najm-park.md",
+      "file_sha256": "2b5c45234020724ed4b0bbc989098db2faf4d2bbef31c0c7c9adfd7c90c162c8",
+      "order": 45,
+      "category": "parks",
+      "category_label": {
+        "en": "Parks & gardens",
+        "ar": "المتنزّهات والحدائق"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Ain Najm Park",
+          "ar": "حديقة عين النجم",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A park around the historic Ain Najm west of Al-Mubarraz, the most famous of Al-Ahsa's healing sulphur springs.",
+          "ar": "منتزه حول عين النجم التاريخية غربي المبرز، أشهر عيون الأحساء الكبريتية الاستشفائية.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "West of Al-Mubarraz lies Ain Najm Park, a public park laid out by Al-Ahsa Municipality around the historic Ain Najm — one of Al-Ahsa's most famous hot sulphur springs, sought since old times for its healing waters, and described as the Kingdom's first tourist site devoted to healing and wellness. Its buildings, with their distinctive half-oval domes, were raised in 1115 AH / 1703 CE, and the spring is woven into the region's history: beside it the people of Al-Ahsa pledged allegiance to Saud bin Abdulaziz (later Imam) in 1799, and King Abdulaziz came to take its waters in 1367 AH / 1948 CE. After redevelopment, the park welcomed visitors in mid-2015 with greenery and quiet family sittings, and it is managed today by Al-Ahsa Municipality.",
+          "ar": "غربي المبرز تقع حديقة عين النجم، منتزه عام أقامته أمانة الأحساء حول\n**عين النجم** التاريخية — إحدى أشهر عيون الأحساء الكبريتية الحارة التي\nقُصدت منذ القدم للاستشفاء بمياهها، حتى وُصفت بأنها أول موقع سياحي في\nالمملكة يُعنى بالاستشفاء. شُيّدت مبانيها ذات القباب نصف البيضاوية\nالمميزة عام 1115هـ/1703م، وارتبطت العين بمحطات من تاريخ المنطقة: فعندها\nبايع أهالي الأحساء سعود بن عبدالعزيز (الإمام لاحقاً) عام 1799م، وقصدها الملك\nعبدالعزيز للتداوي بمياهها عام 1367هـ/1948م. وبعد تطويرها استقبلت\nالحديقة الزوار منتصف عام 2015م بخضرتها وجلساتها العائلية الهادئة،\nوتديرها اليوم أمانة الأحساء.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "West of Al-Mubarraz — Al-Ahsa",
+          "ar": "غرب المبرز — الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 4:00–11:30 pm",
+              "ar": "يومياً: 4:00 م - 11:30 م"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.parks",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Парк Айн-Наджм",
+          "kicker": "Парк",
+          "summary": "Парк к западу от Эль-Мубарраза, вокруг исторического Айн-Наджм — самого известного из целебных серных источников Аль-Ахсы.",
+          "body": "К западу от Эль-Мубарраза лежит общественный парк Айн-Наджм (в переводе — источник Наджм). Муниципалитет Аль-Ахсы разбил его вокруг исторического Айн-Наджм — одного из самых известных горячих серных источников Аль-Ахсы. За целебной водой сюда приходили с давних пор. Источник называют первым туристическим объектом Королевства, посвящённым лечению. Постройки с приметными полуовальными куполами возвели в 1115 году хиджры (1703 год н. э.). Сам источник вплетён в историю края: возле него в 1799 году жители Аль-Ахсы присягнули Сауду ибн Абдул-Азизу (впоследствии имаму), а в 1367 г. х. (1948 г. н. э.) сюда приезжал лечиться водами король Абдул-Азиз. После обновления парк принял посетителей в середине 2015 года — здесь зелень и тихие площадки для семейного отдыха. Сегодня им управляет муниципалитет Аль-Ахсы.",
+          "area": "К западу от Эль-Мубарраза, Аль-Ахса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Ain-Najm-Park",
+          "kicker": "Park",
+          "summary": "Ein Park rund um die historische Quelle Ain Najm westlich von Al-Mubarraz – die bekannteste der Schwefelquellen Al-Ahsas, die zur Heilung aufgesucht werden.",
+          "body": "Westlich von Al-Mubarraz liegt der Ain-Najm-Park, eine öffentliche Anlage rund um die historische Quelle Ain Najm (die Najm-Quelle). Angelegt hat ihn die Kommunalverwaltung von Al-Ahsa. Ain Najm zählt zu den bekanntesten heißen Schwefelquellen Al-Ahsas: Schon seit alter Zeit kommen Menschen hierher, um mit ihrem Wasser Heilung zu suchen. Die Quelle wird als erste touristische Stätte im Königreich beschrieben, die der Heilung gewidmet ist. Ihre Bauten mit den markanten halbovalen Kuppeln entstanden 1115 nach der Hidschra (n. H.; 1703 n. Chr.). Mit der Geschichte der Region ist sie verwoben: An ihr leisteten die Bewohner von Al-Ahsa im Jahr 1799 den Treueid auf Saud bin Abdulaziz, den späteren Imam, und König Abdulaziz suchte sie 1367 n. H. (1948 n. Chr.) auf, um sich mit ihrem Wasser behandeln zu lassen. Nach dem Ausbau empfing der Park Mitte 2015 seine Besucher – mit Grün und ruhigen Sitzplätzen für Familien. Heute führt ihn die Kommunalverwaltung von Al-Ahsa.",
+          "area": "Westlich von Al-Mubarraz – Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "艾因奈杰姆公园",
+          "kicker": "公园",
+          "summary": "艾因奈杰姆公园位于穆巴拉兹以西，环绕历史悠久的艾因奈杰姆泉而建；这眼泉是哈萨最负盛名的硫磺疗养泉。",
+          "body": "艾因奈杰姆公园（Ain Najm Park）位于穆巴拉兹以西，是哈萨市政局修建并管理的一座公共公园，环绕着历史悠久的艾因奈杰姆泉（“艾因”即阿拉伯语“泉”）。这眼泉是哈萨最负盛名的硫磺温泉之一，自古便有人专程来此泡泉疗养，因此人们称它为沙特阿拉伯第一处专为疗养而设的旅游景点。泉畔的建筑建于伊斯兰历 1115 年（公元 1703 年），以别具一格的半椭圆形穹顶著称。艾因奈杰姆泉还见证了本地区历史上的几个重要时刻：1799 年，当地居民在此向后来成为伊玛目的沙特·本·阿卜杜勒阿齐兹宣誓效忠；近一个半世纪后的伊历 1367 年（公元 1948 年），阿卜杜勒阿齐兹国王亦曾亲临此地，借泉水疗疾。公园经改造后，于 2015 年中期向游客开放，园内绿意盎然，辟有清静的家庭休憩区。",
+          "area": "穆巴拉兹以西——哈萨",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Ain Najm",
+          "ar": "عين نجم",
+          "ru": "Айн-Наджм",
+          "de": "Ain Najm (die Najm-Quelle) · der Ain-Najm-Park",
+          "zh": "艾因奈杰姆泉",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Ain Najm Park",
+          "ar": "حديقة عين النجم",
+          "ru": null,
+          "de": null,
+          "zh": "艾因奈杰姆公园",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Mubarraz",
+          "ar": "المبرز",
+          "ru": "Эль-Мубарраз",
+          "de": "Al-Mubarraz",
+          "zh": "穆巴拉兹",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "King Abdulaziz",
+          "ar": "الملك عبدالعزيز",
+          "ru": "король Абдул-Азиз",
+          "de": "König Abdulaziz",
+          "zh": "阿卜杜勒阿齐兹国王",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "people of Al-Ahsa",
+          "ar": null,
+          "ru": null,
+          "de": null,
+          "zh": "当地居民",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Saud bin Abdulaziz",
+          "ar": "سعود بن عبدالعزيز (الإمام لاحقاً)",
+          "ru": "Сауд ибн Абдул-Азиз",
+          "de": null,
+          "zh": "后来成为伊玛目的沙特·本·阿卜杜勒阿齐兹",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the Kingdom",
+          "ar": null,
+          "ru": null,
+          "de": "das Königreich",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the people of Al-Ahsa",
+          "ar": null,
+          "ru": null,
+          "de": "die Bewohner von Al-Ahsa",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P3c / P3c-labels / N14 (ruled, round 1): a name with an opaque or false-friend Arabic generic (qasr / souq / ain / bayt) — apply the rulings of termbase _meta.calibration_rulings as written",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "Hijri years: rulings N12 (a year in both calendars), N19 (a full date), N20 (a decade), N22 (a span of years)",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 582 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 747 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Ain Najm Park' — AR (حديقة عين النجم): the AR generic is the garden noun (the termbase's key for a garden, masculine), not the park noun of the kicker; the body's next words call the same place a park with the park noun, and the EN says 'park' for both — 'Ain Najm Park, a public park' (حديقة عين النجم، منتزه عام). The spring's name has the article inside the AR title and none where the spring is named for itself, in the summary and in the body (عين نجم التاريخية): two spellings of one name in the AR, one in the EN. Arabic is the only source of name spellings. Neither source says what the name means; the Chinese, German and Russian bodies each add a gloss of it.",
+          "kicker: Arabic only, 'a park' (منتزه); there is no kicker_en, and the detail page prints the category label above the title instead. The six pages of the batch carry this one Arabic kicker; it is the kicker of king-abdullah-park (b6), whose approved Urdu the translation memory holds under its Arabic. The Chinese, German and Russian lines each translated it. The page is not featured: the kicker is rendered nowhere today. Here and on koot-park the kicker's noun is not the generic of the page's own Arabic title.",
+          "summary / body: the summary says 'the most famous of Al-Ahsa's healing sulphur springs' (أشهر عيون الأحساء الكبريتية الاستشفائية), the body 'one of Al-Ahsa's most famous hot sulphur springs' (إحدى أشهر عيون الأحساء الكبريتية الحارة): THE most famous in one field and one of the most famous in the other, in both languages; 'healing' in the summary, 'hot' in the body. The German and Russian lines keep both, field by field.",
+          "summary: the EN says 'the historic Ain Najm' and tells what it is only with its last word, 'springs'; in the AR the first word of the name is itself the word for a spring. The body's EN says 'the spring' once, half-way.",
+          "body: EN 'described as the Kingdom's first tourist site devoted to healing and wellness' — AR 'so much so that it was described as the first tourist site in the Kingdom concerned with healing' (حتى وُصفت بأنها أول موقع سياحي في المملكة يُعنى بالاستشفاء): 'and wellness' is EN-only, on a claim. The claim is reported in both languages and carries a superlative. The country is 'the Kingdom' in both and is named nowhere on the page; the Chinese line names it, the German and Russian keep 'the Kingdom'.",
+          "body: 'Its buildings, with their distinctive half-oval domes, were raised in 1115 AH / 1703 CE' (شُيّدت مبانيها ذات القباب نصف البيضاوية): the buildings are the spring's in the AR, by the feminine pronoun; in the EN 'Its' follows a sentence whose subject is the park. Both calendars here and for King Abdulaziz's visit (عام 1367هـ/1948م); the pledge has the Gregorian year alone, in both languages (عام 1799م).",
+          "body: EN 'the spring is woven into the region's history' — AR 'the spring was tied to stations of the region's history' (وارتبطت العين بمحطات من تاريخ المنطقة); EN 'King Abdulaziz came to take its waters' — AR 'sought it for treatment with its waters' (للتداوي بمياهها). 'Saud bin Abdulaziz (later Imam)' with its bracket in both languages (سعود بن عبدالعزيز): the person and the king are termbase keys, and the approved muhairis page has the same bracket. The approved muhairis and khuzam pages date two acts of his to 1208 AH / 1794 CE and 1220 AH / 1805 CE, with both calendars; this page's 1799 has no Hijri year.",
+          "body: 'a public park laid out by Al-Ahsa Municipality' (أقامته أمانة الأحساء) and 'it is managed today by Al-Ahsa Municipality' (وتديرها اليوم أمانة الأحساء): the body is named twice, in both languages. EN 'After redevelopment, the park welcomed visitors in mid-2015' — AR 'after its development the garden received the visitors in the middle of the year 2015' (منتصف عام 2015م): the AR says the garden noun again, and its pronoun can also be read of the spring. 'Quiet family sittings' (وجلساتها العائلية الهادئة): the approved salwa-beach page has Urdu for 'family sittings'.",
+          "area: 'West of Al-Mubarraz — Al-Ahsa' (غرب المبرز — الأحساء): a position, then the larger place as a bare name at the END, in both languages — the reverse of the order ruling P20 gives an Urdu area line. The summary and the body give the position with another form of the AR word (غربي المبرز).",
+          "card: two rows, both verified, neither with a Chinese, German or Russian rendering: 'Hours: Daily 4:00–11:30 pm' (يومياً: 4:00 م - 11:30 م), 'Fees: Free entry' (مجاني) — the two rows of mushaqar in this batch, label for label and value for value, in both languages. Both labels and 'Free entry' have approved Urdu pairs; the hours value has none, and the approved muhairis row carries the same range after a subject of its own ('The garden and walkway daily 4:00–11:30 pm'). The page is not openSite. No bestTime and no FAQ in any language.",
+          "file: heroImage is /img/najm-park-v2 (a replaced image under the site's naming rule); the page has a district field (mubarraz) that the detail template does not read. Neither is rendered text."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Title (termbase style rule titel_regel): title_en says 'Park' where the Arabic generic is the garden noun (حديقة). The termbase has both nouns as keys of different gender: the key for a park (feminine, ruling N69) and the key for a garden (masculine), whose entry says it is not the key for a park. The title mirrors the STRUCTURE of title_en, and names come from the Arabic: stage 1 chooses ONE generic for the two titles of the batch that have this pair (this page and koot-park), records its ground, and stage 4 raises it as a new open item (N101 onwards). The gender of the title's entry is the gender the page's verbs agree with. The spring's name inside the title is built from the Arabic spelling of the TITLE, with its article (حديقة عين النجم), and the spring named for itself from the spelling of the summary and the body, without it (عين نجم التاريخية): Arabic is the only source of name spellings, the two differ, and the difference is logged and raised at stage 4, not evened out silently.",
+        "Ruling P3c with its machine-read guard, ruling P3c-labels and ruling P18: the generic of the spring's name is not an Urdu word (P3c, case a). The spring is not the page's own title, so at its first mention in the body its name is followed by the word that marks a name and by the Urdu generic (P3c, point 2); the stage checker reads exactly that of a termbase name that begins with the spring word and is not the page's title. If stage 1 holds that the gloss of point 1 is owed instead, because the page's own title carries the name, it says so and stage 4 raises it. No bracket and no generic beside the name in the title, the kicker, the summary or a label. P18: on a page whose text carries a name beginning with that word, the adverb of the same spelling is not written anywhere on the page (the stage checker reads it). No meaning of the name is supplied: neither source gives one, and the glosses of the Chinese, German and Russian bodies are theirs.",
+        "Kicker (DECISIONS; ruling P24): no English source, translated from the Arabic (منتزه). It is the kicker of king-abdullah-park, approved in b6: the Urdu is copied byte for byte from the translation memory (the pair is keyed by its Arabic, since there is no English kicker), ONE string on the six pages. No final stop, no gloss. Not rendered today.",
+        "Ruling N69 and the termbase: a park (منتزه) is ONE Urdu noun, the termbase key, feminine; the loan stays out (ruling P16). king-abdullah-park (b6) is the only approved park page, and the approved jawatha-mosque page calls a park by the same noun: read both before choosing a word of the park vocabulary (DECISIONS, b7).",
+        "Ruling P19 (a superlative or an absolute is a claim and follows the Arabic): the summary's 'the most famous' and the body's 'one of the most famous' each follow their own field — the two languages agree field by field — and are not evened out; the defect is logged. The body's 'the Kingdom's first tourist site devoted to healing' is a REPORTED claim and stays reported ('described as'); 'and wellness' is the EN's alone on a claim, where the Arabic is the authority (حتى وُصفت بأنها أول موقع سياحي في المملكة يُعنى بالاستشفاء).",
+        "Ruling N91: 'the Kingdom' on a page that never names the country — the Urdu writes the termbase key of the country at that first mention. Names (RUNBOOK, rule 2): Al-Mubarraz, Al-Ahsa, King Abdulaziz and Saud bin Abdulaziz are termbase keys, byte-identical; the bracket '(later Imam)' is worded as on the approved muhairis page (the entry of the person quotes it). The names follow ruling N27 (the first element of such a name in two words). Al-Ahsa Municipality is the key of ruling N68: feminine agreement, no quotation marks, inflected; it stands twice. Visitors of a page that is not a mosque take the word of ruling N29.",
+        "Ruling N12 and the `hijri` style rule: '1115 AH / 1703 CE' and '1367 AH / 1948 CE' are written with the Hijri year first and the Gregorian in round brackets, each with its word; the pledge's 1799 has one calendar in both sources and stays bare; nothing is converted or computed, and the Hijri years of the muhairis and khuzam pages are not brought in. A part of a year ('late 2022', 'late 2020', 'mid-2015' — three pages of the batch): rulings N11 and N20 give the words for the early, middle and late part of a century and of a decade; no ruling words them for a single year. Stage 1 builds on those words, uses ONE form on kanzan-park, koot-park and najm-park, and stage 4 raises it (N101 onwards). A year the source gives in one calendar stays bare (ruling N12).",
+        "Area line (ruling P20): the source names the larger place as a bare name (غرب المبرز — الأحساء), after the position: in the Urdu the larger place LEADS as a bare name, then the comma, then the position, which ends in a postposition.",
+        "Rulings P13, N9, N10 and N23, build check C51 (CLOCK_WORD and DAY_PARTS in tools/check-ur-text.mjs; it ALREADY TARGETS /ur/, no pattern is to be added): the hours value is written in the 12-hour form with the part of the day at each end, as a range in the ruled words and with no dash, a whole hour without ':00', minutes with a colon. The value 'Daily 4:00–11:30 pm' (يومياً: 4:00 م - 11:30 م) is ONE Urdu string on najm-park and mushaqar. Its range is the range of the approved muhairis row, copied from the translation memory (the pair of 'The garden and walkway daily 4:00–11:30 pm'; ruling N23 for the half hour), with 'Daily' first and without that row's subject. The label 'Hours' has an approved pair and is reused verbatim. The value ends without a stop (ruling P26) and carries no U+061B (rulings N8 and N33).",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is NOT openSite and has verified Hours and Fees rows, so once a row carries label_ur and value_ur the unified hours-and-fees notice line must stand exactly once on the /ur/ page, in the interface's approved Urdu (det.hoursNotice with det.hoursNotice.op; the page has no operatorUrl, so no link). C13 ALREADY TARGETS Urdu: no pattern is to be added, and the notice is not a leaf of the pack. C12: 'Verified directly with Al-Ahsa Municipality' is internal data and is never rendered; there is no `source_ur` (ruling P14), and nothing of it enters a label, a value or the body.",
+        "Card rows (RUNBOOK, rule 3): the labels 'Hours' and 'Fees' and the value 'Free entry' have approved pairs in ur-translation/memory/tm.json and are reused verbatim. The page has no 'Visiting' row and none is supplied.",
+        "Interface (src/i18n/ui.ts; not leaves of the pack): the page is of category parks, so its breadcrumb and its back link are the leisure ones (crumb.leisure, det.allLeisure); both stand in the Urdu block since b6 (rulings N96 and N97), and the category label (CATEGORY_LABELS.parks) is approved Urdu. Of the ids the detail template reads, the Urdu block lacks three: site.brand (open item BRAND; the Latin wordmark renders, as in the three earlier lines), det.openAmap (read on the Chinese page only) and det.mentions.h (the heading over articles that mention the place, printed only where an article in the page's language does: there is no Urdu article). None of the three is printed on this page today.",
+        "Ruling P16 and the owner's rule on loans (RUNBOOK, rule 7), build check C52 (LOAN_WHOLE_WORD and LOAN_ANYWHERE in tools/check-ur-text.mjs): C52 ALREADY TARGETS /ur/ and fails the withdrawn loans, among them the loan for 'family'. This page's English invites it ('quiet family sittings'); the approved salwa-beach page has Urdu for 'family sittings'.",
+        "Root CLAUDE.md: invent nothing — no temperature or composition of the water beyond 'hot' and 'sulphur', no statement that one can bathe today, no illness the water is good for, no name for the buildings, no account of the pledge beyond its year and the two parties, no entry point. Arabic-only content is not imported (RUNBOOK, rule 4)."
+      ]
+    },
+    {
+      "page": "mushaqar",
+      "file": "src/content/attractions/mushaqar.md",
+      "file_sha256": "d35fd3ed8b6faf1f0880125ac2d1cb721ad00ad679b1b8d9c3969e6018809246",
+      "order": 46,
+      "category": "parks",
+      "category_label": {
+        "en": "Parks & gardens",
+        "ar": "المتنزّهات والحدائق"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Shaibani / Al-Mushaqar Park",
+          "ar": "المشقر",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A sprawling park near Al-Qarah village bearing the name of the pre-Islamic Mushaqar fort, with a palace built in its image at its heart.",
+          "ar": "منتزه واسع قرب قرية القارة يحمل اسم حصن المشقر الجاهلي، وفي قلبه قصر شُيّد استلهاماً له.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "Near Al-Qarah village on the eastern side of the oasis spreads Al-Mushaqar Park (formerly Al-Shaibani Park), a green retreat of dense plantings with open lawns, a folk souq and family play areas. The place carries the name of the famed pre-Islamic Mushaqar fortress — known in early Arabic sources as the 'fort of Hajar', mentioned in the accounts of Arabia's celebrated battle-days and neighbour to the Mushaqar market, one of the pre-Islamic Arab fairs — though scholars still debate the original fort's location between Al-Battaliyah, Jawatha and Al-Qarah. At the park's heart stands the 'Mushaqar Palace', a modern building raised in homage to that ancient stronghold, now the park's centrepiece and icon.",
+          "ar": "قرب قرية القارة شرقي الواحة يمتد منتزه المشقر (منتزه الشيباني سابقاً)،\nمنتزهٌ واسع بين مزروعات كثيفة يضم مساحات خضراء وسوقاً شعبياً ومناطق ألعاب\nعائلية. يحمل المكان اسم **حصن المشقر** الشهير، الحصن الجاهلي الذي عرفته\nالمصادر العربية القديمة باسم «حصن هجر»، وارتبط ذكره بأيام العرب وأسواقهم —\nفقربه كانت تقام سوق المشقر، إحدى أسواق العرب في الجاهلية — أما موقع الحصن\nالأصلي فما يزال محل خلاف بين الباحثين بين البطالية وجواثا والقارة. وفي قلب\nالمنتزه يقوم مبنى «قصر المشقر»، بناء حديث شُيّد استلهاماً لذلك الحصن، فصار\nواجهة المكان وأيقونته.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Near Al-Qarah village — eastern Al-Ahsa",
+          "ar": "قرب قرية القارة — شرق الأحساء",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 4:00–11:30 pm",
+              "ar": "يومياً: 4:00 م - 11:30 م"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.parks",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.fromPlace (h2) + 1 photo(s); alt = title + \" — \" + det.photo + \" \" + n",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": true,
+        "mentions": true,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Парк Эш-Шайбани / Эль-Мушаккар",
+          "kicker": "Парк",
+          "summary": "Обширный парк близ деревни Эль-Кара носит имя доисламской крепости Эль-Мушаккар, а в его сердце стоит дворец, построенный в память о ней.",
+          "body": "Близ деревни Эль-Кара, на восточной стороне оазиса, раскинулся парк Эль-Мушаккар (прежде — парк Эш-Шайбани): густые посадки, открытые лужайки, народный рынок и игровые площадки для всей семьи. Место носит имя прославленной доисламской крепости Эль-Мушаккар — ранние арабские источники знали её как «крепость Хаджар». Её упоминают предания о знаменитых битвах арабов, а поблизости проходила ярмарка Эль-Мушаккар — одна из доисламских арабских ярмарок. Впрочем, о том, где стояла первоначальная крепость, исследователи спорят до сих пор: Эль-Батталия, Джавата или Эль-Кара. В сердце парка стоит «Дворец Эль-Мушаккар» — современное здание, возведённое в память о той древней крепости. Сегодня это лицо парка и его символ.",
+          "area": "Близ деревни Эль-Кара, к востоку от Аль-Ахсы",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Shaibani-/Al-Mushaqar-Park",
+          "kicker": "Park",
+          "summary": "Ein weitläufiger Park nahe dem Dorf Al-Qarah: Er trägt den Namen der vorislamischen Festung Mushaqar, und in seinem Herzen steht ein Palast, der ihr nachempfunden ist.",
+          "body": "Nahe dem Dorf Al-Qarah, an der Ostseite der Oase, erstreckt sich der Al-Mushaqar-Park (früher Al-Shaibani-Park): ein weitläufiger grüner Rückzugsort inmitten dichter Pflanzungen, mit offenen Grünflächen, einem Souk (traditioneller Markt) und Spielbereichen für Familien. Der Ort trägt den Namen der berühmten vorislamischen Festung Mushaqar, die in den frühen arabischen Quellen „Festung von Hajar“ heißt. Erwähnt wird sie in den Berichten über die Ayyam al-Arab (die Schlachttage der Araber). In der Nachbarschaft der Festung fand der Markt von Mushaqar statt, einer der Märkte der Araber aus vorislamischer Zeit. Wo die ursprüngliche Festung stand, ist in der Forschung bis heute umstritten: Al-Battaliyah, Jawatha oder Al-Qarah. Im Herzen des Parks steht der „Mushaqar-Palast“, ein moderner Bau, errichtet in Anlehnung an jene alte Festung – heute das Gesicht und das Wahrzeichen des Parks.",
+          "area": "Nahe dem Dorf Al-Qarah – östlich von Al-Ahsa",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "穆沙卡尔公园",
+          "kicker": "公园",
+          "summary": "卡拉村附近的一座大型公园，得名于伊斯兰教兴起前的穆沙卡尔堡。园中心的“穆沙卡尔宫”便是以这座古堡为灵感建成的。",
+          "body": "穆沙卡尔公园（Al-Mushaqar Park）旧称沙伊巴尼公园，位于绿洲东侧的卡拉村附近，是一座掩映在葱郁田园之中的大型公园，园内有开阔的绿地、一个民俗市集和几片家庭游乐区。公园得名于著名的穆沙卡尔堡。这座古堡可追溯至伊斯兰教兴起之前，古代阿拉伯文献称之为“哈杰尔堡”；穆沙卡尔堡之名既见于记述早期部落战事的“阿拉伯人的日子”（Ayyam al-Arab），也与古代阿拉伯人的集市传统有关：昔日的穆沙卡尔集市就设在堡垒附近，是那个时代阿拉伯人的集市之一。至于古堡原址究竟在巴塔利亚、贾瓦塔还是卡拉，学者们至今仍有争论。公园中心矗立着“穆沙卡尔宫”，这座现代建筑以古堡为灵感建成，如今已是公园的门面与标志。",
+          "area": "卡拉村附近——哈萨东部",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Battaliyah",
+          "ar": null,
+          "ru": "Эль-Батталия",
+          "de": "Al-Battaliyah · die Al-Battaliyah-Moschee",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Mushaqar",
+          "ar": null,
+          "ru": "Эль-Мушаккар",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Mushaqar Park",
+          "ar": "منتزه المشقر",
+          "ru": null,
+          "de": null,
+          "zh": "穆沙卡尔公园",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Qarah",
+          "ar": "القارة",
+          "ru": "Эль-Кара",
+          "de": "Al-Qarah",
+          "zh": "卡拉",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Qarah village",
+          "ar": "قرية القارة",
+          "ru": null,
+          "de": null,
+          "zh": "卡拉村",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Shaibani",
+          "ar": null,
+          "ru": "Эш-Шайбани",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Shaibani / Al-Mushaqar Park",
+          "ar": null,
+          "ru": null,
+          "de": "der Al-Shaibani-/Al-Mushaqar-Park · der Al-Mushaqar-Park · der Al-Shaibani-Park",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Shaibani Park",
+          "ar": "منتزه الشيباني",
+          "ru": null,
+          "de": null,
+          "zh": "沙伊巴尼公园",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "fort of Hajar",
+          "ar": "حصن هجر",
+          "ru": null,
+          "de": null,
+          "zh": "“哈杰尔堡”",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Hajar",
+          "ar": "هجر",
+          "ru": "Хаджар",
+          "de": "Hajar",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Jawatha",
+          "ar": "جواثا",
+          "ru": "Джавата",
+          "de": "Jawatha",
+          "zh": "贾瓦塔",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Mushaqar fortress",
+          "ar": "حصن المشقر",
+          "ru": null,
+          "de": null,
+          "zh": "穆沙卡尔堡",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Mushaqar market",
+          "ar": "سوق المشقر",
+          "ru": null,
+          "de": null,
+          "zh": "穆沙卡尔集市",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Mushaqar Palace",
+          "ar": "قصر المشقر",
+          "ru": "«Дворец Эль-Мушаккар»",
+          "de": null,
+          "zh": "“穆沙卡尔宫”",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "pre-Islamic",
+          "ar": null,
+          "ru": null,
+          "de": "vorislamisch",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the 'Mushaqar Palace'",
+          "ar": null,
+          "ru": null,
+          "de": "der „Mushaqar-Palast“",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Mushaqar market",
+          "ar": null,
+          "ru": "ярмарка Эль-Мушаккар",
+          "de": "der Markt von Mushaqar · die Märkte der Araber aus vorislamischer Zeit",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: Arabic 1 paragraph(s), 538 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 709 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Al-Shaibani / Al-Mushaqar Park' — AR one word, the bare name (المشقر): the former name, the slash and the generic are EN-only in the title. The body has both names with the generic, in both languages, the present name first and the former in a bracket (منتزه المشقر) and (منتزه الشيباني سابقاً) — the EN title has them the other way round. The Chinese title has the present name alone; the German and Russian follow the EN. The EN writes the name with its article in 'Al-Mushaqar Park' and without it in 'Mushaqar fort', 'Mushaqar fortress', 'Mushaqar market' and 'Mushaqar Palace'; the AR has the article everywhere. Both names are new to the termbase.",
+          "kicker: Arabic only, 'a park' (منتزه); there is no kicker_en, and the detail page prints the category label above the title instead. The six pages of the batch carry this one Arabic kicker; it is the kicker of king-abdullah-park (b6), whose approved Urdu the translation memory holds under its Arabic. The Chinese, German and Russian lines each translated it. The page is not featured: the kicker is rendered nowhere today.",
+          "summary / body: the palace is 'built in its image' in the EN summary and 'raised in homage to that ancient stronghold' in the EN body, for one AR wording, 'built in inspiration from it' (شُيّد استلهاماً له) and (شُيّد استلهاماً لذلك الحصن): 'in its image' states a likeness the AR does not state, and 'ancient' is EN-only. The Chinese line says 'inspired by', the German 'modelled on', the Russian 'in memory of'.",
+          "summary / body: one AR noun for the old building (حصن المشقر) — the EN has 'fort' (the summary, 'fort of Hajar', 'the original fort'), 'fortress' and 'stronghold'. The termbase has one Urdu word for fort, fortress and citadel.",
+          "body, first sentence: EN 'a green retreat of dense plantings with open lawns, a folk souq and family play areas' — AR 'a wide park among dense plantings that holds green spaces, a folk market and family play areas' (منتزهٌ واسع بين مزروعات كثيفة يضم مساحات خضراء وسوقاً شعبياً ومناطق ألعاب): 'retreat' is EN-only and 'wide' is AR-only in the body (the summary has 'sprawling' in the EN); 'open lawns' stands for the AR's 'green spaces'. The folk souq is a common noun here, not a name.",
+          "body: EN 'known in early Arabic sources as the 'fort of Hajar'' — the AR quotes the name too (حصن هجر), in its own marks. EN 'mentioned in the accounts of Arabia's celebrated battle-days and neighbour to the Mushaqar market, one of the pre-Islamic Arab fairs' — AR 'its mention was tied to the Days of the Arabs and their markets — for near it the Mushaqar market used to be held, one of the markets of the Arabs in the pre-Islamic age' (وارتبط ذكره بأيام العرب وأسواقهم) and (إحدى أسواق العرب في الجاهلية): 'the accounts' and 'celebrated' are EN-only, 'and their markets' is AR-only. The Days of the Arabs is a set term that the EN paraphrases; the German line keeps it transliterated with a gloss, the Chinese gives a gloss and the transliteration. One AR noun is 'souq', 'market' and 'fairs' in the EN. 'Hajar' is new to the termbase.",
+          "body: EN 'though scholars still debate the original fort's location between Al-Battaliyah, Jawatha and Al-Qarah' (بين البطالية وجواثا والقارة): three bare names in both languages — a village whose termbase key is written with its generic, the bare Jawatha (in the termbase only inside the mosque's key) and the settlement Al-Qarah, which the same page names with its generic in three other leaves. The page itself stands near the third. The famed fortress is bold in the AR.",
+          "body, last sentence: EN 'the 'Mushaqar Palace', a modern building raised in homage to that ancient stronghold, now the park's centrepiece and icon' — AR 'the building of' the quoted name (قصر المشقر), 'a modern construction …, so it became the front of the place and its icon' (فصار واجهة المكان وأيقونته): the name stands in quotation marks in both languages; 'centrepiece' stands for the AR's 'front'. The summary has the building as a common noun, 'a palace' (وفي قلبه قصر). The AR generic of the name is the one ruling N14 keeps in the names of the palace pages.",
+          "summary / body / area: 'Al-Qarah village' in the three leaves (قرية القارة): the settlement with its generic, in both languages. The body puts the park 'on the eastern side of the oasis' (شرقي الواحة), the area line 'east of Al-Ahsa' (شرق الأحساء): the oasis in one leaf and Al-Ahsa in the other, in both languages, and the oasis is named in no field. The AR of the area line can also be read 'the east of Al-Ahsa'; the Chinese line reads it so, the German and Russian follow the EN. It is the question of rulings N74 and N88, here for the east.",
+          "area: 'Near Al-Qarah village — east of Al-Ahsa' (قرب قرية القارة — شرق الأحساء): two positions and no larger bare place leading (rulings P20 and N30).",
+          "card: two rows, both verified, neither with a Chinese, German or Russian rendering: 'Hours: Daily 4:00–11:30 pm' (يومياً: 4:00 م - 11:30 م), 'Fees: Free entry' (مجاني) — the two rows of najm-park in this batch, label for label and value for value, in both languages. Both labels and 'Free entry' have approved Urdu pairs; the hours value has none, and the approved muhairis row carries the same range after a subject of its own ('The garden and walkway daily 4:00–11:30 pm'). The page is not openSite. No bestTime and no FAQ in any language.",
+          "gallery: the page has one gallery image, so the built page carries the gallery heading and an alternative text made of the page's title and an interface word; both are interface strings and not leaves. heroImage is /img/al-mashqar-park-01, another spelling of the name than slug_en; the district field (qarah) is not read by the detail template."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Title (termbase style rule titel_regel; rulings P1 and P17): title_en has two names, a slash and the generic where the Arabic title is the bare present name (المشقر). The Urdu title mirrors the STRUCTURE of title_en and takes every spelling from the Arabic: both names with their articles, from the body (منتزه المشقر) and (منتزه الشيباني سابقاً). No ruling words a title with two names, nor their order where title_en sets the former name first and both bodies the present one first: stage 1 follows title_en, proposes both names with gender and source, and stage 4 raises it (N101 onwards). The generic is the termbase key for a park (feminine). No bracket in a title (rulings P3a and P3c-labels).",
+        "Rulings P1 and P17: the name carries its article at EVERY mention — the park, the fort, the market and the palace — although the EN drops it in four of its five forms; the Arabic is the only source of the name's spelling. The former name likewise (الشيباني).",
+        "Kicker (DECISIONS; ruling P24): no English source, translated from the Arabic (منتزه). It is the kicker of king-abdullah-park, approved in b6: the Urdu is copied byte for byte from the translation memory (the pair is keyed by its Arabic, since there is no English kicker), ONE string on the six pages. No final stop, no gloss. Not rendered today.",
+        "Ruling N69 and the termbase: a park (منتزه) is ONE Urdu noun, the termbase key, feminine; the loan stays out (ruling P16). king-abdullah-park (b6) is the only approved park page, and the approved jawatha-mosque page calls a park by the same noun: read both before choosing a word of the park vocabulary (DECISIONS, b7).",
+        "The old building: one Arabic noun (حصن المشقر), three English ones (fort, fortress, stronghold); the termbase has ONE Urdu word for fort, fortress and citadel, and it serves all three. The fort's second name is quoted by both sources (حصن هجر): a name the source itself sets in quotation marks stands in marks (rulings N40 and N72 each ruled one kind of quoted name; this one has a generic that translates and a place name that does not) — stage 1 proposes, stage 4 raises.",
+        "The modern building: its name is quoted by both sources (قصر المشقر) and its Arabic generic is the one ruling N14 keeps, generic first, in the names of the palace pages; the summary has it as a common noun (وفي قلبه قصر). The termbase's Urdu generic for a palace stands in the text of one approved page only (its entry says where). Stage 1 writes the name on ruling N14's form inside the marks the sources give it, chooses the common noun of the summary on the entry, records it, and stage 4 raises it. Build check C64 (PALACE_GENERIC and PALACE_FORBIDDEN in tools/check-ur-text.mjs) reads TITLES that begin with that generic and four withdrawn forms: it does not read this name, and no pattern is owed.",
+        "RUNBOOK, rule 4, and ruling P19: Arabic is the authority on a fact. The palace was built 'in inspiration from' the fort (شُيّد استلهاماً له): the EN summary's 'in its image' states a likeness the Arabic does not, and is not followed. The Days of the Arabs is a set term of the Arabic (وارتبط ذكره بأيام العرب وأسواقهم) that the EN paraphrases: stage 1 verifies an Urdu form on the web and proposes it; 'and their markets' is Arabic-only and is not imported; 'celebrated' and 'ancient' are evaluative words of the EN and may stand (ruling P19).",
+        "Markets: one Arabic noun behind the EN's 'souq', 'market' and 'fairs'. The Mushaqar market is a name that begins with the souq word, whose generic is not an Urdu word (ruling P3c, case a, and point 2): at its first mention in the body it is followed by the word that marks a name and the Urdu generic, as the approved pages write the Qaisariyah Souq; the stage checker reads this of a termbase name. The folk souq of the first sentence is a common noun and takes the Urdu generic alone.",
+        "Places (rulings N61, N76 and N77): 'Al-Qarah village' has its generic in both sources in the summary, the body's first sentence and the area line (قرية القارة) — the settlement's termbase key with the village generic after it; the mountain's key is never written for the settlement. In the list of three places where the fort may have stood, all three are bare in both sources (بين البطالية وجواثا والقارة) and stay bare (the fence is read field by field); Al-Battaliyah is spelled as its key, Jawatha as inside the mosque's key.",
+        "Ruling N47: the page mentions the oasis (the body's first sentence) and names it in no field: the Urdu names it at one of those mentions at least, in the termbase form of the Al-Ahsa Oasis; the bare noun may stand at the others. Not machine-read: a point for the proofreader. Site-wide build check C15 ('the largest oasis in the world') has no Urdu entry in its tables; this page carries no such claim and none is brought in. The body gives the park's position by the oasis and the area line by Al-Ahsa; each field follows its own source.",
+        "Area line (rulings P20, N30, N74 and N88): two positions and no larger bare place leading: the Urdu keeps the source's order and ends in a postposition; the stage checker's note of ruling P20 is expected. 'East of Al-Ahsa' (شرق الأحساء) can be read as a direction from Al-Ahsa or as its eastern part; Arabic is the authority on the fact, and the page's own body puts the park at the eastern side of the oasis, by a village of the oasis. Stage 1 follows the Arabic, records which reading it took and on what in the page's text (ruling N74 decided so on thulaim; ruling N88 chose the wording that asserts least where a page's text decided nothing), and stage 4 raises it.",
+        "Rulings P13, N9, N10 and N23, build check C51 (CLOCK_WORD and DAY_PARTS in tools/check-ur-text.mjs; it ALREADY TARGETS /ur/, no pattern is to be added): the hours value is written in the 12-hour form with the part of the day at each end, as a range in the ruled words and with no dash, a whole hour without ':00', minutes with a colon. The value 'Daily 4:00–11:30 pm' (يومياً: 4:00 م - 11:30 م) is ONE Urdu string on najm-park and mushaqar. Its range is the range of the approved muhairis row, copied from the translation memory (the pair of 'The garden and walkway daily 4:00–11:30 pm'; ruling N23 for the half hour), with 'Daily' first and without that row's subject. The label 'Hours' has an approved pair and is reused verbatim. The value ends without a stop (ruling P26) and carries no U+061B (rulings N8 and N33).",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is NOT openSite and has verified Hours and Fees rows, so once a row carries label_ur and value_ur the unified hours-and-fees notice line must stand exactly once on the /ur/ page, in the interface's approved Urdu (det.hoursNotice with det.hoursNotice.op; the page has no operatorUrl, so no link). C13 ALREADY TARGETS Urdu: no pattern is to be added, and the notice is not a leaf of the pack. C12: 'Verified directly with Al-Ahsa Municipality' is internal data and is never rendered; there is no `source_ur` (ruling P14), and nothing of it enters a label, a value or the body.",
+        "Card rows (RUNBOOK, rule 3): the labels 'Hours' and 'Fees' and the value 'Free entry' have approved pairs in ur-translation/memory/tm.json and are reused verbatim. The page has no 'Visiting' row and none is supplied.",
+        "Interface (src/i18n/ui.ts; not leaves of the pack): the page is of category parks, so its breadcrumb and its back link are the leisure ones (crumb.leisure, det.allLeisure); both stand in the Urdu block since b6 (rulings N96 and N97), and the category label (CATEGORY_LABELS.parks) is approved Urdu. Of the ids the detail template reads, the Urdu block lacks three: site.brand (open item BRAND; the Latin wordmark renders, as in the three earlier lines), det.openAmap (read on the Chinese page only) and det.mentions.h (the heading over articles that mention the place, printed only where an article in the page's language does: there is no Urdu article). None of the three is printed on this page today. This page alone has a gallery image: the gallery heading (det.fromPlace) and the word of the image's alternative text (det.photo) are approved Urdu, and the alternative text carries the page's Urdu title.",
+        "Ruling P16 and the owner's rule on loans (RUNBOOK, rule 7), build check C52 (LOAN_WHOLE_WORD and LOAN_ANYWHERE in tools/check-ur-text.mjs): C52 ALREADY TARGETS /ur/ and fails the withdrawn loans, among them the loan for 'family'. This page's English invites it ('family play areas').",
+        "Root CLAUDE.md: invent nothing — the fort's site is disputed and stays disputed (no preference among the three places), no date for the fort, the market, the park or the palace, no reason for the change of the park's name, no description of the palace beyond 'modern'. The pre-Islamic age is named three times by the sources and is said with one Urdu wording."
+      ]
+    },
+    {
+      "page": "kanzan-park",
+      "file": "src/content/attractions/kanzan-park.md",
+      "file_sha256": "35475c11ffeaaa9fe141514aecc9b6e1bfba3163da2c5fba99341add9e226607",
+      "order": 47,
+      "category": "nature",
+      "category_label": {
+        "en": "Nature",
+        "ar": "الطبيعة"
+      },
+      "featured": false,
+      "openSite": false,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Kanzan Adventure Park (Al-Shu'bah)",
+          "ar": "منتزه جبل كنزان (الشعبة)",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "The mountain park Al-Ahsa Municipality is building on the Shu'bah/Kanzan massif — mountain slides, suspended bridges and waterfalls.",
+          "ar": "المنتزه الجبلي الذي تنفذه أمانة الأحساء فوق كتلة الشعبة/كنزان — تزلج جبلي وجسور معلقة وشلالات.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "On the massif of Al-Shu'bah Mountain (historically Kanzan) north-east of the oasis, Al-Ahsa Municipality is building a large mountain recreation park in phases — the project is officially known as the Shu'bah Mountain Park. Partial operation of the upper section began in late 2022, with mountain slide arenas, artificial waterfalls running some 1,100 metres, three suspended wooden bridges, a zipline, children's play areas and walking paths. Announced elements of the project also include a 1,500-metre cable car with three stations and two lakes; the remaining construction phases are still under way, and full operation is yet to be confirmed.",
+          "ar": "فوق كتلة جبل الشعبة (كنزان تاريخياً) شمال شرق الواحة، تنفّذ أمانة الأحساء\nمنتزهاً ترفيهياً جبلياً كبيراً على مراحل، ويُعرف المشروع رسمياً باسم\n**منتزه جبل الشعبة**. بدأ التشغيل الجزئي لمرافق الجزء العلوي أواخر عام\n2022م، وتشمل المرافق ساحات تزلج جبلية وشلالات صناعية بطول يقارب 1100 متر\nوثلاثة جسور خشبية معلقة والحبل الطائر وألعاب أطفال وممرات مشاة. ومن عناصر\nالمشروع المعلنة تلفريك بمسار 1500 متر بثلاث محطات وبحيرتان، وما تزال\nمراحل الإنجاز جارية.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Shu'bah Mountain — northeast of the oasis",
+          "ar": "جبل الشعبة — شمال شرق الواحة",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Daily 4:00 pm – midnight",
+              "ar": "يومياً: 4:00 م - 12:00 منتصف الليل"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.attractions / title",
+        "eyebrow: CATEGORY_LABELS.nature",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.hoursNotice with det.hoursNotice.op",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allSights (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": true,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Парк горы Канзан (Эш-Шууба)",
+          "kicker": "Парк",
+          "summary": "Горный парк, который муниципалитет Аль-Ахсы строит на массиве Эш-Шууба (или Канзан): горные спуски, подвесные мосты и водопады.",
+          "body": "К северо-востоку от оазиса, на массиве горы Эш-Шууба, муниципалитет Аль-Ахсы поэтапно строит большой горный парк отдыха. Эта гора носит историческое имя Канзан (по-арабски — Джабаль-Канзан), а сам проект официально называется «Парк горы Эш-Шууба». В конце 2022 года верхний участок парка заработал частично: здесь появились площадки для горных спусков, искусственные водопады протяжённостью около 1 100 метров, три подвесных деревянных моста, зиплайн, детские игровые площадки и пешеходные дорожки. Среди объявленных объектов проекта — канатная дорога длиной 1 500 метров с тремя станциями и два озера. Остальные этапы строительства ещё продолжаются, а о полном запуске парка информация уточняется.",
+          "area": "Гора Эш-Шууба, к северо-востоку от оазиса",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Kanzan-Bergpark (Al-Shu'bah)",
+          "kicker": "Park",
+          "summary": "Der Bergpark, den die Kommunalverwaltung von Al-Ahsa auf dem Massiv Al-Shu'bah/Kanzan baut – mit Rutschbahnen am Hang, Hängebrücken und Wasserfällen.",
+          "body": "Nordöstlich der Oase, auf dem Massiv des Al-Shu'bah-Bergs (historisch Kanzan), baut die Kommunalverwaltung von Al-Ahsa in mehreren Bauabschnitten einen großen Bergpark zur Erholung; offiziell ist das Vorhaben als Al-Shu'bah-Bergpark bekannt. Der obere Bereich ging Ende 2022 teilweise in Betrieb – mit Flächen für Rutschbahnen am Hang, künstlichen Wasserfällen von rund 1.100 Metern Länge, drei hölzernen Hängebrücken, einer Seilrutsche, Spielbereichen für Kinder und Fußwegen. Zu den angekündigten Bestandteilen des Projekts gehören außerdem zwei Seen und eine 1.500 Meter lange Seilbahn mit drei Stationen. Die übrigen Bauabschnitte dauern an; Angaben werden noch bestätigt – zur vollständigen Inbetriebnahme des Parks.",
+          "area": "Al-Shu'bah-Berg – nordöstlich der Oase",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "坎赞山公园（舒阿巴）",
+          "kicker": "公园",
+          "summary": "哈萨市政局正在舒阿巴山（史称坎赞山）上建设一座山地公园，项目包含山地滑道、悬索桥与瀑布。",
+          "body": "舒阿巴山（Al-Shu'bah）史称坎赞山（Kanzan），位于绿洲东北部。哈萨市政局正在这座山上分期建设一座大型山地休闲公园，即坎赞山公园，其官方名称为“舒阿巴山公园”。公园上部区域的设施已于 2022 年底部分投入运营，包括山地滑道场地、总长约 1100 米的一组人工瀑布、三座木制悬索桥、一条滑索、儿童游乐区和步行道。项目已公布的规划还包括一条长 1500 米、设三个站点的缆车线路，以及两个湖泊。其余各期工程仍在推进中。",
+          "area": "舒阿巴山——绿洲东北部",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "Al-Ahsa",
+          "ar": null,
+          "ru": "Аль-Ахса",
+          "de": "Al-Ahsa",
+          "zh": "哈萨",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Ahsa Municipality",
+          "ar": "أمانة الأحساء",
+          "ru": "муниципалитет Аль-Ахсы",
+          "de": "die Kommunalverwaltung von Al-Ahsa",
+          "zh": "哈萨市政局",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Shu'bah",
+          "ar": null,
+          "ru": "Эш-Шууба",
+          "de": "Al-Shu'bah",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Shu'bah Mountain",
+          "ar": "جبل الشعبة",
+          "ru": null,
+          "de": "der Al-Shu'bah-Berg",
+          "zh": "舒阿巴山（Al-Shu'bah）",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Kanzan Adventure Park",
+          "ar": null,
+          "ru": null,
+          "de": "der Kanzan-Bergpark (Al-Shu'bah)",
+          "zh": null,
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Shu'bah Mountain Park",
+          "ar": "منتزه جبل الشعبة",
+          "ru": null,
+          "de": "der Al-Shu'bah-Bergpark",
+          "zh": "“舒阿巴山公园”",
+          "in_ur_termbase": true
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P10 (ruled, round 1): a large number — apply termbase _meta.calibration_rulings P10 (the Urdu scale; a figure below one lakh)",
+        "P13, N8, N9, N10, N23 (ruled): clock times — 12-hour form with the part of the day; two ranges in one cell, \"12 midnight\", 8 pm and minutes as the round-1 rulings write them",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [1,100, 1,500], only in Arabic [1100, 1500]",
+          "practical[0].value: numbers differ — only in English [], only in Arabic [12]",
+          "body: Arabic 1 paragraph(s), 450 characters, 1 bold phrase(s), 0 link(s); English 3 sentence(s), 647 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [
+          "title: EN 'Kanzan Adventure Park (Al-Shu'bah)' — AR 'Kanzan Mountain Park' (منتزه جبل كنزان) with the same bracket (الشعبة): 'Adventure' is EN-only and 'Mountain' is AR-only; the Chinese, German and Russian titles all follow the AR. A bracket with a second name inside the title, in both languages. The mountain is a termbase key and the title of the approved kanzan page (b5); the bare name of the bracket is in the termbase as the key of a village, and the mountain's present-day name has a key of its own.",
+          "kicker: Arabic only, 'a park' (منتزه); there is no kicker_en, and the detail page prints the category label above the title instead. The six pages of the batch carry this one Arabic kicker; it is the kicker of king-abdullah-park (b6), whose approved Urdu the translation memory holds under its Arabic. The Chinese, German and Russian lines each translated it. The page is not featured: the kicker is rendered nowhere today. This page's category is nature (the label printed above its title), the other five pages' is parks.",
+          "title / body: the title names the park after Kanzan; the body says 'the project is officially known as the Shu'bah Mountain Park', bold in the AR (منتزه جبل الشعبة): the page's own title is not the official name, in both languages. The EN writes this name three ways — 'Al-Shu'bah Mountain', 'the Shu'bah/Kanzan massif', 'the Shu'bah Mountain Park' — and the AR always with its article.",
+          "summary: 'The mountain park Al-Ahsa Municipality is building on the Shu'bah/Kanzan massif' (فوق كتلة الشعبة/كنزان): a slash between the two names, in both languages. EN 'mountain slides' — AR 'mountain sliding' (تزلج جبلي), a word that also means skiing; the body has 'mountain slide arenas' (ساحات تزلج جبلية). The Chinese and German lines say slides, the Russian 'mountain descents'.",
+          "body, first sentence: 'On the massif of Al-Shu'bah Mountain (historically Kanzan) north-east of the oasis' (كنزان تاريخياً): the same in both languages. The approved kanzan page says it from the other side ('the name the history books know it by, though today it is commonly called Al-Shu'bah Mountain') and ends with this very park: 'Al-Ahsa Municipality is developing a major recreational park on the massif'. This page's AR noun phrase is that page's with one adjective more, 'mountain' (منتزهاً ترفيهياً جبلياً كبيراً), and 'in phases' (على مراحل). The oasis is named in no field of this page ('north-east of the oasis' in the body, 'northeast of the oasis' in the area line).",
+          "body: EN 'Partial operation of the upper section began in late 2022, with …' — AR 'the partial operation of the facilities of the upper part began …, and the facilities include' (بدأ التشغيل الجزئي لمرافق الجزء العلوي): the facilities are named twice in the AR and not at all in the EN. 'Artificial waterfalls running some 1,100 metres' — AR without the grouping comma (بطول يقارب 1100 متر); 'a 1,500-metre cable car' — AR 'a cable car with a route of 1500 metres' (تلفريك بمسار 1500 متر). 'Children's play areas' — AR 'children's rides' (وألعاب أطفال). 'A zipline' — AR 'the flying rope' (والحبل الطائر). The AR writes the cable car as a loanword.",
+          "body, last sentence: EN 'a 1,500-metre cable car with three stations and two lakes' — in the AR the two lakes are a second element of the project and not something the cable car has (بثلاث محطات وبحيرتان); the EN can be read either way. The Chinese, German and Russian lines set the lakes apart. A semicolon in the EN, a comma in the AR.",
+          "body, last clause: EN 'the remaining construction phases are still under way, and full operation is yet to be confirmed' — the AR body ends with 'and the phases of completion are still under way' (وما تزال مراحل الإنجاز جارية): 'remaining' is EN-only, and the clause 'and full operation is yet to be confirmed' has NO Arabic. The German and Russian lines translated the clause; the Chinese line left it out. It is the site's own reservation written into a page's text, in other words than the sentence ruling N99 fixed ('Further details … are pending confirmation from reliable sources'): the two share the idea and no wording.",
+          "area: 'Al-Shu'bah Mountain — northeast of the oasis' (جبل الشعبة — شمال شرق الواحة): a place, then its position by the oasis; no larger bare place (rulings P20 and N30). The approved area line of kanzan gives the same mountain's position by Hofuf and two villages: two pages, two reference points.",
+          "practical[0].value: EN 'Daily 4:00 pm – midnight' — AR with the figure (يومياً: 4:00 م - 12:00 منتصف الليل): midnight has its figure in the AR only. It is the approved value of king-abdullah-park (b6) without that value's bracket. practical[1]: 'Fees: Free entry' (مجاني). Neither row has a Chinese, German or Russian rendering. The page is not openSite. The approved kanzan page, of the mountain, has 'Open 24 hours' and no entry fee: two pages, two sets of hours, and neither says how the park lies to the open mountain.",
+          "page: the body says the park is being built and is in partial operation; the card gives daily hours as verified. No bestTime and no FAQ in any language. heroImage is /img/kanzan-mountain-park."
+        ],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms.",
+        "Title: the EN and the AR differ on the name — 'Adventure Park' in the EN, 'Mountain Park' in the AR (منتزه جبل كنزان). Arabic is the only source of names (RUNBOOK, rule 4), and the Chinese, German and Russian titles follow it. The mountain is a termbase key and the approved title of the kanzan page: it stands byte for byte (DECISIONS, b7), with the termbase key for a park. Stage 1 proposes the title on ruling N43's pattern (the place name as its key, the Urdu possessive, the generic), records what it did with 'Adventure', and stage 4 raises the divergence as a new open item (N101 onwards).",
+        "THE BRACKET IN THE TITLE: both sources carry a second name in a bracket inside the title (الشعبة). Rulings P3a and P3c-labels and the stage checker allow no bracket in a title; no ruling words a title with a second name. Stage 1 reports what check-s1 says of the title and does not bend the text to the checker nor edit it (RUNBOOK); stage 4 raises the second name of a title as an open item with candidates; the judge rules. The bare name is spelled as the termbase's keys spell it (the village's key; the second word of the mountain's present-day key).",
+        "Kicker (DECISIONS; ruling P24): no English source, translated from the Arabic (منتزه). It is the kicker of king-abdullah-park, approved in b6: the Urdu is copied byte for byte from the translation memory (the pair is keyed by its Arabic, since there is no English kicker), ONE string on the six pages. No final stop, no gloss. Not rendered today.",
+        "Ruling N69 and the termbase: a park (منتزه) is ONE Urdu noun, the termbase key, feminine; the loan stays out (ruling P16). king-abdullah-park (b6) is the only approved park page, and the approved jawatha-mosque page calls a park by the same noun: read both before choosing a word of the park vocabulary (DECISIONS, b7). The approved kanzan page already says, of this very park, that the municipality is building it, with the park noun and with 'massif' in an approved wording: names and shared facts are taken from that page byte for byte, never re-derived (DECISIONS, b7).",
+        "Names (RUNBOOK, rule 2): the mountain's two names are two termbase keys — the name of the history books, and the present-day name (جبل الشعبة); the bare forms of the summary (كتلة الشعبة/كنزان) are spelled as those keys spell them. Al-Ahsa Municipality is the key of ruling N68: feminine agreement, no quotation marks, inflected. The official name of the project (منتزه جبل الشعبة) is named AS a name ('officially known as'): rulings N16 and N40 word names that are named as such; stage 1 proposes its form and stage 4 lists it. Ruling P3a's demand for the Urdu generic binds a page whose own title is a jabal name.",
+        "Ruling N47: the page mentions the oasis (the body's first sentence; the area line) and names it in no field: the Urdu names it at one of those mentions at least, in the termbase form of the Al-Ahsa Oasis; the bare noun may stand at the others. Not machine-read: a point for the proofreader. Site-wide build check C15 ('the largest oasis in the world') has no Urdu entry in its tables; this page carries no such claim and none is brought in. The approved kanzan summary has Urdu for 'north-east of the oasis' with the oasis named.",
+        "THE LAST CLAUSE of the English body, 'and full operation is yet to be confirmed', has no Arabic and is rendered text: the English is the translation source, so it is translated and not dropped because the Arabic lacks it (RUNBOOK, rule 4). It is NOT the sentence ruling N99 fixed — that ruling binds, letter for letter, the sentence 'Further details … are pending confirmation from reliable sources' — and it is not the short form of open item P4 (a card value or a tag, which is not to be worded before it is ruled; style rule pending_phrase). Stage 1 translates the clause faithfully, with the predicate of ruling N99 as the nearest approved wording to read first; nothing is promised (no date, no 'will open'); stage 4 raises it as a new open item. The site's Arabic phrase for this reservation is named in tools/check-consistency.mjs under C6 (بانتظار التأكيد), which compares card rows only: no build check reads this clause in any language.",
+        "Ruling N33, build check C65 (SEMICOLON in tools/check-ur-text.mjs; ALREADY TARGETS /ur/): no Arabic semicolon in an Urdu attraction page. The EN's last sentence has one (the AR has a comma): the Urdu ends the statement about the cable car and the lakes with a full stop or joins otherwise. Arabic is the authority that the two lakes are an element of the project and not of the cable car (بثلاث محطات وبحيرتان); a lake is the termbase key, feminine.",
+        "Ruling P16 with its test (P16-test) and the precedent of ruling N90: the zipline and the cable car. The AR has a native description for the first (والحبل الطائر) and a loanword for the second (تلفريك بمسار 1500 متر). No English loan where a common Urdu word exists; a loan enters only on the three conditions of the test, as a termbase entry with its evidence. Stage 1 verifies each on the web, proposes it as a term, and stage 4 raises both. 'Mountain slides' (تزلج جبلي): the Arabic word also means skiing; nothing on the page says snow, and the Urdu says sliding on a slope, as the EN does.",
+        "Numbers (rulings P10 and N24): 1,100 and 1,500 are below one lakh and keep the English grouping; the unit follows the figure; 'three' bridges, 'three' stations and 'two' lakes stay in words as the English has them; 'some' stands before 1,100 only, as in both sources. A part of a year ('late 2022', 'late 2020', 'mid-2015' — three pages of the batch): rulings N11 and N20 give the words for the early, middle and late part of a century and of a decade; no ruling words them for a single year. Stage 1 builds on those words, uses ONE form on kanzan-park, koot-park and najm-park, and stage 4 raises it (N101 onwards). A year the source gives in one calendar stays bare (ruling N12).",
+        "Area line (rulings P20 and N30): a place, then its position by the oasis, with no larger bare place: the Urdu keeps the source's order and ends in a postposition; the stage checker's note of ruling P20 is expected. The area line of the approved kanzan page is another line and is not copied.",
+        "Rulings P13, N9, N10 and N23, build check C51 (CLOCK_WORD and DAY_PARTS in tools/check-ur-text.mjs; it ALREADY TARGETS /ur/, no pattern is to be added): the hours value is written in the 12-hour form with the part of the day at each end, as a range in the ruled words and with no dash, a whole hour without ':00', minutes with a colon. The value 'Daily 4:00 pm – midnight' (يومياً: 4:00 م - 12:00 منتصف الليل) is the approved value of king-abdullah-park up to its bracket: that part is copied byte for byte from the translation memory. Midnight is the figure 12 with its part of the day and no word for midnight beside it (ruling N9); the figure stands in the Arabic of the field, as the stage checker's number rule wants. The label 'Hours' has an approved pair and is reused verbatim. The value ends without a stop (ruling P26) and carries no U+061B (rulings N8 and N33).",
+        "Build checks C12 and C13 (tools/check-visit-card.mjs, run by tools/check-consistency.mjs): the page is NOT openSite and has verified Hours and Fees rows, so once a row carries label_ur and value_ur the unified hours-and-fees notice line must stand exactly once on the /ur/ page, in the interface's approved Urdu (det.hoursNotice with det.hoursNotice.op; the page has no operatorUrl, so no link). C13 ALREADY TARGETS Urdu: no pattern is to be added, and the notice is not a leaf of the pack. C12: 'Verified directly with Al-Ahsa Municipality' is internal data and is never rendered; there is no `source_ur` (ruling P14), and nothing of it enters a label, a value or the body.",
+        "Card rows (RUNBOOK, rule 3): the labels 'Hours' and 'Fees' and the value 'Free entry' have approved pairs in ur-translation/memory/tm.json and are reused verbatim. The page has no 'Visiting' row and none is supplied. The 'Open 24 hours' and 'Open public site' rows of the approved kanzan page are that page's and are not carried here.",
+        "Interface (src/i18n/ui.ts; not leaves of the pack): the page's category is nature, so its breadcrumb and back link are the attractions ones (crumb.attractions, det.allSights) and its category label is CATEGORY_LABELS.nature — all approved Urdu. The Urdu block lacks three ids the detail template reads (site.brand, det.openAmap, det.mentions.h); none is printed on this page today.",
+        "Root CLAUDE.md: invent nothing — no date for the full opening, no price or age limit for a ride, no height, no length for the bridges or the zipline, no number of slides or waterfalls, no statement that the cable car or the lakes exist today (they are 'announced elements'). The battle and the villages of the kanzan page are that page's and are not brought here."
+      ]
+    },
+    {
+      "page": "musa-park",
+      "file": "src/content/attractions/musa-park.md",
+      "file_sha256": "e32c339a2b25d462cd940e62f5b2984727988ec8288ab0aff7f02290bd6b7a6a",
+      "order": 49,
+      "category": "parks",
+      "category_label": {
+        "en": "Parks & gardens",
+        "ar": "المتنزّهات والحدائق"
+      },
+      "featured": false,
+      "openSite": true,
+      "unesco": null,
+      "operatorUrl": false,
+      "has_title_ur": true,
+      "content_fields": {
+        "title": {
+          "en": "Al-Moosa Park",
+          "ar": "حديقة الموسى",
+          "note": "The Urdu title mirrors the STRUCTURE of title_en (style_rules.titel_regel): where the English kept the transliteration the Urdu keeps the name transliterated (built from the Arabic spelling), where the English translated the generic the Urdu translates it. No gloss and no final stop in a title."
+        },
+        "kicker": {
+          "en": null,
+          "ar": "منتزه",
+          "rendered": false,
+          "note": "No English kicker exists in the repo: translate from the Arabic. NOT rendered anywhere today: the kicker shows only on the home-page card of a featured attraction, and this page is not featured. It is still written as kicker_ur (as zh/de/ru did), but the blind reader is not shown it."
+        },
+        "summary": {
+          "en": "A family park in the Faisal district of Al-Mubarraz, part of the 'We Play Together' initiative, with inclusive play equipment uniting children with disabilities and their peers.",
+          "ar": "حديقة عائلية في حي الفيصل بالمبرز ضمن مبادرة «نلعب معاً»، بألعاب تدمج الأطفال ذوي الإعاقة مع أقرانهم.",
+          "note": "Shown under the h1, as the meta description of the Urdu page (no answer_ur exists), on index cards and in JSON-LD."
+        },
+        "body": {
+          "en": "In the Faisal district of Al-Mubarraz lies Al-Moosa Park, opened in late November 2019 as the second park of the 'We Play Together' (Nalaab Ma'an) initiative — a community partnership between Al-Muhaidib for Community Service and Almoosa Specialist Hospital. The park was conceived around a simple idea rare in the Kingdom at the time: play equipment specially designed so that children with disabilities and their peers play side by side, making inclusion something children live rather than are taught. Spread over some 2,200 square metres, it holds more than twelve specialised inclusive play units, following the initiative's first park in Khobar.",
+          "ar": "في حي الفيصل بالمبرز تقع حديقة الموسى، التي افتُتحت أواخر نوفمبر 2019م\nثانيةَ حدائق مبادرة **«نلعب معاً»** — شراكة مجتمعية بين المهيدب لخدمة\nالمجتمع ومستشفى الموسى التخصصي.\n\nقامت الحديقة على فكرة كانت نادرة في المملكة حينها: ألعاب مصممة خصيصاً\nليلعب فيها **الأطفال ذوو الإعاقة مع أقرانهم** جنباً إلى جنب، فيعيش\nالأطفال قيم الدمج عيشاً لا تلقيناً. تمتد على مساحة تزيد على 2200 متر\nمربع وتضم أكثر من اثنتي عشرة لعبة متخصصة في الدمج، وقد سبقتها حديقة\nالمبادرة الأولى في الخبر.",
+          "note": "The Urdu body translates the ENGLISH body only. Rendered as plain text in one <p>: no Markdown, no links, no emphasis, no line breaks."
+        },
+        "area": {
+          "en": "Al-Faisal district — Al-Mubarraz",
+          "ar": "حي الفيصل — المبرز",
+          "note": "Card value (P20: larger place first, then the Urdu comma; P26: no final stop)."
+        },
+        "practical": [
+          {
+            "i": 0,
+            "label": {
+              "en": "Hours",
+              "ar": "المواعيد"
+            },
+            "value": {
+              "en": "Open 24 hours",
+              "ar": "مفتوح على مدار الساعة (24 ساعة)"
+            },
+            "verified": true
+          },
+          {
+            "i": 1,
+            "label": {
+              "en": "Fees",
+              "ar": "الرسوم"
+            },
+            "value": {
+              "en": "Free entry",
+              "ar": "مجاني"
+            },
+            "verified": true
+          }
+        ],
+        "faq": []
+      },
+      "not_translated": {
+        "practical[].source": "Internal data (source / source_* / sourceUrl / verifiedAt are never rendered). Not translated: no source_ur is written (ruling P14).",
+        "hoursSpec / fee / location / sameAs / tags": "Machine-readable or internal data; identical in every language.",
+        "bestTime": "The page has no bestTime in any language: nothing to translate, the row does not render."
+      },
+      "render_order": [
+        "crumbs: crumb.home / crumb.leisure / title",
+        "eyebrow: CATEGORY_LABELS.parks",
+        "title (h1)",
+        "summary",
+        "fav.add (button; swaps to fav.added)",
+        "share button (share.btn)",
+        "body (one paragraph)",
+        "det.visitInfo (h2)",
+        "det.area: area",
+        "practical[0] label: value",
+        "practical[1] label: value",
+        "det.distance (button; result text from DIST_LABELS)",
+        "det.openMaps",
+        "det.report",
+        "det.nearby.h (h2) / det.nearby.d / 3 cards (category label, title of the neighbour, DIST_LABELS) / det.nearby.note",
+        "det.allLeisure (back button)",
+        "(kicker: not rendered — page is not featured)"
+      ],
+      "sections_on_built_en_page": {
+        "unescoLink": false,
+        "hoursNotice": false,
+        "distance": true,
+        "mapLink": true,
+        "faq": false,
+        "gallery": false,
+        "mentions": false,
+        "nearby": true,
+        "trails": false
+      },
+      "precedent": {
+        "ru": {
+          "title": "Парк Эль-Муса",
+          "kicker": "Парк",
+          "summary": "Семейный парк в Эль-Мубарразе, в районе Эль-Фейсал, — часть инициативы «Играем вместе»: игровое оборудование объединяет детей с инвалидностью и их сверстников.",
+          "body": "В районе Эль-Фейсал в Эль-Мубарразе разбит парк Эль-Муса, который открылся в конце ноября 2019 года как второй парк инициативы «Играем вместе». Эта инициатива — общественное партнёрство между «Эль-Мухайдиб для служения обществу» и специализированной больницей Эль-Муса. Парк вырос из простой мысли, которая в то время была редкой в Королевстве: игровое оборудование спроектировали так, чтобы дети с инвалидностью и их сверстники играли бок о бок и жили ценностями инклюзии, а не заучивали их. Он занимает больше 2 200 квадратных метров и включает более двенадцати специализированных игровых элементов для инклюзии. Ему предшествовал первый парк инициативы в Эль-Хубаре.",
+          "area": "Район Эль-Фейсал, Эль-Мубарраз",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "de": {
+          "title": "Al-Moosa-Park",
+          "kicker": "Park",
+          "summary": "Ein Park für Familien im Al-Faisal-Viertel von Al-Mubarraz, Teil der Initiative „Wir spielen gemeinsam“: Seine Spielgeräte bringen Kinder mit Behinderung und ihre Altersgenossen zusammen.",
+          "body": "Im Al-Faisal-Viertel von Al-Mubarraz liegt der Al-Moosa-Park. Er wurde Ende November 2019 als zweiter Park der Initiative „Wir spielen gemeinsam“ (Nalaab Ma'an) eröffnet – einer gesellschaftlichen Partnerschaft zwischen Al-Muhaidib für den Dienst an der Gemeinschaft und dem Almoosa Specialist Hospital. Der Park ging aus einem einfachen Gedanken hervor, der im Königreich damals selten war: Spielgeräte, eigens so entworfen, dass Kinder mit Behinderung und ihre Altersgenossen Seite an Seite spielen. So leben die Kinder die Werte der Inklusion, statt sie nur vermittelt zu bekommen. Auf mehr als 2.200 Quadratmetern vereint der Park mehr als zwölf spezielle Spielgeräte für Inklusion. Vorausgegangen war ihm der erste Park der Initiative in Khobar.",
+          "area": "Al-Faisal-Viertel – Al-Mubarraz",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        },
+        "zh": {
+          "title": "穆萨公园",
+          "kicker": "公园",
+          "summary": "位于穆巴拉兹的费萨尔区，是“我们一起玩”倡议下的一座家庭公园，游乐设施让残障儿童与同龄伙伴一起玩耍、彼此融合。",
+          "body": "穆萨公园（Al-Moosa Park）位于穆巴拉兹的费萨尔区，2019 年 11 月下旬开放，是“我们一起玩”（Nalaab Ma'an）倡议建成的第二座公园，第一座此前已落户胡拜尔。该倡议由穆海迪卜社区服务机构与穆萨专科医院携手推动，是两家机构在社区层面的合作。公园的构想在当时的沙特阿拉伯还很少见：游乐设施经过专门设计，让残障儿童与同龄伙伴并肩玩耍，孩子们由此在游戏中亲身体会融合的价值，而不是靠说教去懂得它。公园占地 2200 多平方米，设有 12 套以上专门的融合游乐设施。",
+          "area": "费萨尔区——穆巴拉兹",
+          "bestTime": null,
+          "practical": [],
+          "faq": []
+        }
+      },
+      "names_registered_by_earlier_lines": [
+        {
+          "en": "'We Play Together'",
+          "ar": "مبادرة «نلعب معاً»",
+          "ru": null,
+          "de": null,
+          "zh": "“我们一起玩”（Nalaab Ma'an）倡议",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "'We Play Together' initiative",
+          "ar": null,
+          "ru": "«Играем вместе»",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Faisal district",
+          "ar": "حي الفيصل",
+          "ru": "район Эль-Фейсал",
+          "de": "das Al-Faisal-Viertel",
+          "zh": "费萨尔区",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Moosa Park",
+          "ar": "حديقة الموسى",
+          "ru": "парк Эль-Муса",
+          "de": "der Al-Moosa-Park",
+          "zh": "穆萨公园",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Mubarraz",
+          "ar": "المبرز",
+          "ru": "Эль-Мубарраз",
+          "de": "Al-Mubarraz",
+          "zh": "穆巴拉兹",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Al-Muhaidib",
+          "ar": "المهيدب",
+          "ru": null,
+          "de": null,
+          "zh": "穆海迪卜",
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Al-Muhaidib for Community Service",
+          "ar": "المهيدب لخدمة المجتمع",
+          "ru": "«Эль-Мухайдиб для служения обществу»",
+          "de": "Al-Muhaidib für den Dienst an der Gemeinschaft",
+          "zh": "穆海迪卜社区服务机构",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Almoosa Specialist Hospital",
+          "ar": "مستشفى الموسى التخصصي",
+          "ru": "специализированная больница Эль-Муса",
+          "de": "das Almoosa Specialist Hospital",
+          "zh": "穆萨专科医院",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "Faisal",
+          "ar": "الفيصل",
+          "ru": "Фейсал",
+          "de": null,
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "Khobar",
+          "ar": "الخبر",
+          "ru": "Эль-Хубар",
+          "de": "Khobar",
+          "zh": "胡拜尔",
+          "in_ur_termbase": true
+        },
+        {
+          "en": "the 'We Play Together'",
+          "ar": null,
+          "ru": null,
+          "de": "die Initiative „Wir spielen gemeinsam“ (Nalaab Ma'an)",
+          "zh": null,
+          "in_ur_termbase": false
+        },
+        {
+          "en": "the Kingdom",
+          "ar": null,
+          "ru": null,
+          "de": "das Königreich",
+          "zh": null,
+          "in_ur_termbase": false
+        }
+      ],
+      "rulings_and_open_items_touched": [
+        "P10 (ruled, round 1): a large number — apply termbase _meta.calibration_rulings P10 (the Urdu scale; a figure below one lakh)",
+        "P3b / P15 (ruled): a quoted Arabic name with a meaning stands in the body — quotation marks at every mention, the meaning gloss once, its generic after the particle the ruling names",
+        "P22 (OPEN; P22a ruled): the pronoun class named in termbase _meta.open_items P22 — keep the provisional spelling and raise the first occurrence"
+      ],
+      "divergences": {
+        "auto": [
+          "body: numbers differ — only in English [2,200], only in Arabic [2200]",
+          "body: Arabic 2 paragraph(s), 473 characters, 2 bold phrase(s), 0 link(s); English 3 sentence(s), 651 characters, one plain paragraph",
+          "kicker: Arabic only (no kicker_en)"
+        ],
+        "reviewed": [],
+        "resolved": []
+      },
+      "source_amendments": [],
+      "site_rules_that_bind_this_page": [
+        "Invent nothing: no hours, fees, distances, dates, superlatives or tips the source does not carry.",
+        "Latin digits 0-9 only.",
+        "Non-Arabic bodies are plain text: no Markdown links or emphasis.",
+        "No Latin-script name inside an Urdu sentence; names are built from the Arabic spelling in Urdu letterforms."
+      ]
+    }
+  ]
+}
