@@ -20,7 +20,7 @@ const zh = lang === 'zh';
 // النظير الإنجليزي — تسمية إنجليزية لصفحة إنجليزية.
 const de = lang === 'de';
 const ru = lang === 'ru';
-// الأوردو: الرئيسية وفهرسا المعالم والأسواق تحت /ur/ (فروع صريحة: listBase وleisureBase ورابط #name)،
+// الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحة الثمار تحت /ur/ (فروع صريحة: listBase وleisureBase ورابطا #name والثمار)،
 // وكل رابط آخر يقع على الفرع الإنجليزي الأخير في سطره حتى يُبنى قسمه.
 const ur = lang === 'ur';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
@@ -36,7 +36,7 @@ const cols = [
       ...['historic', 'nature'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
       // صفحة واحدة باسمها كالترويسة، لا مرشّحاتها الثلاثة (حكم إياد 2026-10-04: قرأها القرّاء ثلاث صفحات)
       { label: t('nav.leisure'), href: leisureBase },
-      { label: t('nav.fruits'), href: ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : '/en/fruits/' },
+      { label: t('nav.fruits'), href: ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : ur ? '/ur/fruits/' : '/en/fruits/' },
       { label: t('nav.food'), href: ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : '/en/food/' },
       { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/' },
       { label: t('nav.stay'), href: ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : '/en/stay/' },

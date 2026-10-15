@@ -80,7 +80,7 @@ export function fruitsTable(lang: Lang, heads: { fruit: string; season: string; 
   }
   return {
     id: 'fruits',
-    caption: ({ ar: 'مواسم ثمار الواحة — كما في بطاقات الثمار', en: 'Oasis fruit seasons — as on the fruit cards', de: 'Saisons der Oasenfrüchte – wie auf den Fruchtkarten', ru: 'Сезоны плодов оазиса — те же, что на карточках' } as Partial<Record<Lang, string>>)[lang],
+    caption: ({ ar: 'مواسم ثمار الواحة — كما في بطاقات الثمار', en: 'Oasis fruit seasons — as on the fruit cards', de: 'Saisons der Oasenfrüchte – wie auf den Fruchtkarten', ru: 'Сезоны плодов оазиса — те же, что на карточках', ur: 'نخلستان کے پھلوں کے موسم، جیسے اوپر پھلوں کے ساتھ درج ہیں' } as Partial<Record<Lang, string>>)[lang],
     head: [heads.fruit, heads.season, heads.group],
     rows,
   };
