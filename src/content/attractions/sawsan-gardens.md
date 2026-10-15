@@ -23,7 +23,7 @@ summary_ur: "الاحساء کے نخلستان کے ماحول میں ایک ب
 body_ur: "الاحساء کے نخلستان کے ماحول میں ایک باغ، جہاں پرندے نمائش کے لیے رکھے گئے ہیں۔"
 slug_ar: "حدائق-السوسن-للطيور"
 slug_en: "sawsan-gardens"
-category: farm
+category: parks
 kicker: "مزرعة ونخيل"
 summary: "حديقة لعرض الطيور وسط أجواء واحة الأحساء."
 summary_en: "A garden for displaying birds amid the atmosphere of the Al-Ahsa oasis."

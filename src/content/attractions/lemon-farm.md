@@ -31,6 +31,8 @@ kicker: "مزرعة ونخيل"
 summary: "مزرعة للحمضيات يُقصد فيها قطف الليمون الأحسائي الشهير في موسمه."
 summary_en: "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season."
 body_en: "A citrus farm where visitors pick the famous Hasawi lime (lomi) in season."
+bestTime: "من منتصف يونيو إلى أغسطس، موسم قطف الليمون."
+bestTime_en: "From mid-June to August, the lime-picking season."
 featured: false
 order: 61
 practical:

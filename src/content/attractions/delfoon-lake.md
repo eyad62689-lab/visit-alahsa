@@ -31,12 +31,12 @@ category: nature
 kicker: "بحيرة موسمية"
 summary: "بحيرات صغيرة موسمية قرب بحيرة الحبيل تنشأ في فترات الأمطار، وجهة محببة للرحلات البرية."
 summary_en: "Small seasonal pools near Al-Hubail Lake that form in the rainy spells — a favourite spot for desert outings."
-body_en: "Delfoon is a cluster of small seasonal lakes near Al-Hubail Lake, north of Al-Ahsa, forming when the rains gather in the low ground. In the wet spells they make a lovely destination for desert trips and outings. Further details are pending confirmation from reliable sources."
+body_en: "Delfoon is a cluster of small seasonal lakes near Al-Hubail Lake, in northern Al-Ahsa, forming when the rains gather in the low ground. In the wet spells they make a lovely destination for desert trips and outings. Further details are pending confirmation from reliable sources."
 featured: false
 heroImage: /img/delfoon-lake
 order: 43
 area: "قرب بحيرة الحبيل — شمال الأحساء"
-area_en: "Near Al-Hubail Lake — north of Al-Ahsa"
+area_en: "Near Al-Hubail Lake — northern Al-Ahsa"
 openSite: true
 practical:
   - { label: "الزيارة", value: "موقع طبيعي عام مفتوح — بلا رسوم", label_en: "Visiting", value_en: "Open public natural site — no fee", label_ru: "Посещение", value_ru: "Открытая общедоступная природная территория — вход свободный", label_de: "Besuch", value_de: "Öffentlich zugängliches Naturgelände – kostenlos", label_zh: "游览", value_zh: "开放的公共自然景点，免收门票", label_ur: "سیر", value_ur: "کھلا عوامی قدرتی مقام، کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
@@ -59,9 +59,9 @@ faq:
     q_ur: "کیا جھیل الدیلفوون مستقل جھیل ہے؟"
     a_ur: "نہیں۔ یہ چھوٹی چھوٹی موسمی جھیلوں کا ایک مجموعہ ہے، جو بارشوں کے دنوں میں بنتی ہیں، جب پانی نشیبی زمین میں جمع ہو جاتا ہے۔"
   - q: "أين تقع بحيرة الديلفوون؟"
-    a: "قرب بحيرة الحبيل شمال الأحساء."
+    a: "قرب بحيرة الحبيل في شمال الأحساء."
     q_en: "Where is Delfoon Lake?"
-    a_en: "Near Al-Hubail Lake, north of Al-Ahsa."
+    a_en: "Near Al-Hubail Lake, in northern Al-Ahsa."
     q_zh: "迪勒丰湖在哪里？"
     a_zh: "在哈萨北部的胡拜勒湖附近。"
     q_de: "Wo liegt der Delfoon-See?"
@@ -85,5 +85,5 @@ faq:
 ---
 
 الديلفوون بحيرات صغيرة موسمية تنشأ في فترات الأمطار قرب بحيرة الحبيل
-شمال الأحساء، حين تتجمع المياه في منخفضات الأرض. وتكون في مواسم
+في شمال الأحساء، حين تتجمع المياه في منخفضات الأرض. وتكون في مواسم
 الأمطار وجهة محببة لهواة **الرحلات البرية** والتنزه.

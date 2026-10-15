@@ -28,11 +28,11 @@ body_ur: "سوق الحمیدیہ (یعنی الحمیدیہ کا بازار) ہ
 area_ur: "ہفوف، محلہ شمالی الرفعہ"
 slug_ar: "سوق-الحميدية"
 slug_en: "hamidiyah-souq"
-category: market
+category: historic
 kicker: "معلم تراثي"
-summary: "مبنى السوق التراثي في وسط الهفوف، أُعيد بناؤه ضمن تطوير المدينة التاريخية — ولم يعد يعمل سوقاً، والنشاط القائم فيه اليوم مطعم شرق."
-summary_en: "The heritage souq building in central Hofuf, rebuilt as part of the historic downtown development — no longer trading as a souq; Sharq Restaurant occupies it today."
-body_en: "Al-Hamidiyah Souq is a building in central Hofuf, in the North Al-Rifaa district on King Abdulaziz Road. It was rebuilt as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq, joining the cluster of heritage souq buildings at the city's core. Today it is a heritage landmark rather than a working souq: it no longer trades as a folk market, and the activity in its building is Sharq Restaurant. Further details of the building and its history are pending confirmation from reliable sources before being published here."
+summary: "مبنى السوق التراثي في وسط الهفوف، رُمِّم ضمن تطوير المدينة التاريخية — ولم يعد يعمل سوقاً، والنشاط القائم فيه اليوم مطعم شرق."
+summary_en: "The heritage souq building in central Hofuf, restored as part of the historic downtown development — no longer trading as a souq; Sharq Restaurant occupies it today."
+body_en: "Al-Hamidiyah Souq is a building in central Hofuf, in the North Al-Rifaa district on King Abdulaziz Road. It was restored as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq, joining the cluster of heritage souq buildings at the city's core. Today it is a heritage landmark rather than a working souq: it no longer trades as a folk market, and the activity in its building is Sharq Restaurant. Further details of the building and its history are pending confirmation from reliable sources before being published here."
 heroImage: /img/hamidiyah-souq
 featured: false
 order: 66
@@ -40,8 +40,8 @@ area: "الهفوف، حي الرفعة الشمالية"
 area_en: "Hofuf, North Al-Rifaa district"
 practical:
   - { label: "الوضع الحالي", value: "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق", label_en: "Current status", value_en: "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it", label_ru: "Текущий статус", value_ru: "Историческая достопримечательность — как рынок не работает; в его здании действует ресторан «Шарк»", label_zh: "现状", value_zh: "遗产地标——不再作为市集营业；目前在其建筑内经营的是沙尔格餐厅", label_de: "Aktueller Status", value_de: "Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört – als Souk nicht mehr in Betrieb; im Gebäude ist das Sharq-Restaurant", label_ur: "موجودہ حالت", value_ur: "ہفوف کے ورثے کی ایک یادگار، جو اب بازار کے طور پر نہیں چلتی۔ اس کی عمارت میں مطعم شرق نامی کھانے پینے کی جگہ چلتی ہے", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-04", verified: true }
-answer: "سوق الحميدية مبنى تراثي في وسط الهفوف بحي الرفعة الشمالية على طريق الملك عبدالعزيز، أُعيد بناؤه ضمن مشاريع تطوير وسط الهفوف التاريخي إلى جانب سوق القيصرية وسوق الحرفيين. وهو اليوم معلم تراثي لا سوق عامل: توقّف نشاطه سوقاً شعبياً، والنشاط القائم في مبناه مطعم شرق."
-answer_en: "Al-Hamidiyah Souq is a heritage building in central Hofuf, in North Al-Rifaa on King Abdulaziz Road, rebuilt as part of the historic downtown development alongside Qaisariyah Souq and Craftsmen Souq. Today it is a landmark rather than a working souq: Sharq Restaurant occupies the building."
+answer: "سوق الحميدية مبنى تراثي في وسط الهفوف بحي الرفعة الشمالية على طريق الملك عبدالعزيز، رُمِّم ضمن مشاريع تطوير وسط الهفوف التاريخي إلى جانب سوق القيصرية وسوق الحرفيين. وهو اليوم معلم تراثي لا سوق عامل: توقّف نشاطه سوقاً شعبياً، والنشاط القائم في مبناه مطعم شرق."
+answer_en: "Al-Hamidiyah Souq is a heritage building in central Hofuf, in North Al-Rifaa on King Abdulaziz Road, restored as part of the historic downtown development alongside Qaisariyah Souq and Craftsmen Souq. Today it is a landmark rather than a working souq: Sharq Restaurant occupies the building."
 district: rafah-north
 location: { lat: 25.375159, lng: 49.5890072 }
 mapUrl: "https://maps.app.goo.gl/4KEvxVRALRYuCDYA9"
@@ -74,9 +74,9 @@ faq:
     q_ur: "سوق الحمیدیہ کہاں ہے؟"
     a_ur: "ہفوف کے وسط میں، محلہ شمالی الرفعہ میں، شاہ عبد العزیز سڑک پر۔"
   - q: "ما علاقة سوق الحميدية بالأسواق التراثية المجاورة؟"
-    a: "أُعيد بناؤه ضمن تطوير وسط الهفوف التاريخي، إلى جانب إعادة بناء سوق القيصرية وإنشاء سوق الحرفيين."
+    a: "رُمِّم ضمن تطوير وسط الهفوف التاريخي، إلى جانب إعادة بناء سوق القيصرية وإنشاء سوق الحرفيين."
     q_en: "How does Al-Hamidiyah Souq relate to the neighbouring heritage souqs?"
-    a_en: "It was rebuilt as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq."
+    a_en: "It was restored as part of the development of historic downtown Hofuf, alongside the reconstruction of Qaisariyah Souq and the creation of the Craftsmen Souq."
     q_zh: "哈米迪耶市集与相邻的几座遗产市集有什么关系？"
     a_zh: "哈米迪耶市集是在胡富夫历史城区开发项目中重建的，同一项目还重建了凯撒利亚集市，并新建了手工艺人市集。哈米迪耶市集由此成为老城中心彼此相邻的一片遗产市集的一部分。"
     q_de: "In welchem Verhältnis steht der Al-Hamidiyah-Souk zu den benachbarten Kulturerbe-Souks?"
@@ -88,7 +88,7 @@ faq:
 ---
 
 سوق الحميدية مبنىً في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك
-عبدالعزيز. أُعيد بناؤه ضمن مشاريع تطوير وسط الهفوف التاريخي، إلى جانب
+عبدالعزيز. رُمِّم ضمن مشاريع تطوير وسط الهفوف التاريخي، إلى جانب
 إعادة بناء سوق القيصرية وإنشاء سوق الحرفيين، فصار جزءاً من منظومة
 الأسواق التراثية المتجاورة في قلب المدينة.
 

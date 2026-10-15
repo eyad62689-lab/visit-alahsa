@@ -49,7 +49,7 @@ If your visit falls in the Hasawi lime season, in summer from mid-June to the en
 
 ### Sunset: Al-Uqair
 
-End your trip on the Gulf coast east of Al-Ahsa at [Al-Uqair](/en/attractions/al-uqair/) — Saudi Arabia's first seaport on its eastern coast, where desert sands meet the blue of the Gulf. Just before sunset the white sands glow against the water — a fitting close to two days in the oasis.
+End your trip on the Gulf coast of eastern Al-Ahsa at [Al-Uqair](/en/attractions/al-uqair/) — Saudi Arabia's first seaport on its eastern coast, where desert sands meet the blue of the Gulf. Just before sunset the white sands glow against the water — a fitting close to two days in the oasis.
 
 ## Practical Tips
 
