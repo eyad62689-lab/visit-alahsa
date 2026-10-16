@@ -1,0 +1,110 @@
+{
+  "stage": "01-translator",
+  "batch": "b21-ui",
+  "strings": {
+    "map.title": "سیاحتی مقامات کا نقشہ",
+    "map.lead.a": "الاحساء کے نخلستان کے نقشے پر {n} مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں، اور فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔",
+    "map.eyebrow": "سیاحتی معلومات",
+    "map.search.ph": "مقام تلاش کریں…",
+    "map.filter.aria": "زمرے کے لحاظ سے مقامات کا انتخاب",
+    "list.all": "سب",
+    "map.terrain": "زمین کے نشیب و فراز کا سہ جہتی نقشہ",
+    "map.locate": "نقشے پر میری جگہ",
+    "map.list.aria": "نقشے پر دکھائے گئے مقامات کی فہرست",
+    "map.count": "دکھائے گئے مقامات",
+    "map.empty": "کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ یا زمرہ آزمائیں۔",
+    "map.pop.view": "صفحہ دیکھیں ←"
+  },
+  "notes": [
+    {
+      "item": "map.title",
+      "text": "«سیاحتی مقامات کا نقشہ» (masculine, by «نقشہ»): the approved crumb.attractions / nav.attractions «سیاحتی مقامات» + possessive + the approved nav.map «نقشہ». It agrees with the header/footer label «نقشہ» and the index button «نقشے پر دیکھیں» around it, as the German precedent «Karte der Sehenswürdigkeiten» names the map OF the attractions; it renders as h1, tab title (+ separator + brand by the template), og/twitter title, JSON-LD name and the aria-label of the map region, and reads as a name in all of them. Arabic «خريطة المعالم» agrees. «مقامات» is the page's one word for attractions (DECISIONS b21-ui); the qualifier «سیاحتی» is taken from the approved section label so the title names the same set the header names. Shorter alternative recorded, not chosen: «مقامات کا نقشہ»."
+    },
+    {
+      "item": "map.lead.a",
+      "text": "FORM: one {n} (the template replaces it where it stands: MapView leadParts) rather than the count-first form. Reason: the natural Urdu existential sentence puts the place first and the counted noun with its number after it — «… نقشے پر {n} مقامات ہیں» — whereas the count-first form forces «58 مقامات الاحساء کے نخلستان کے نقشے پر ہیں» (a figure opening an RTL sentence, then a long locative wedged between subject and verb), or a verbless fragment «58 مقامات، …». The Russian line chose {n} for the same reason (word order). No figure is typed. Plural «مقامات» holds for the total (58 today); the string carries the page total, not the filtered count. CHECKER: the pack lists no placeholder for this key (the English has none); if check-s1 reads {n} as Latin letters or an extra placeholder, that is the checker not knowing the second form DECISIONS b21-ui allows — reported, not bent. ALTERNATIVE (count-first, recorded for stage 4): «مقامات الاحساء کے نخلستان کے نقشے پر ہیں۔ …» rendered «58 مقامات …»."
+    },
+    {
+      "item": "map.lead.a",
+      "text": "CONTENT: the three facts of the source in order — the attractions on the map of the oasis; search or pick a category; tapping a place in the list or on the map opens its card. The oasis is named by N47 / P2 / P8 as «الاحساء کے نخلستان»: no other text of this page names the oasis (the footer tagline says «ایک نخلستان» only), and this string is also the page's meta / og / twitter description read on its own. Category = «زمرہ», the approved word of list.lead («کوئی زمرہ چنیں»), reused verbatim. The em dash becomes a sentence break (role file: the dash is not an Urdu default). 'Tap' → «منتخب کریں» (select): the Arabic authority «اضغط» is device-neutral and the German judge widened 'tippen' for that reason (a laptop reader clicks); «دبائیں» was charged by two readers for a link (N89); the loans «ٹیپ» / «کلک» have no entry (P16). 'Card' → «مختصر تعارف» (short introduction): N306 refuses «کارڈ»; the popup shows the place's name and summary with a link to its page; the German line used 'Kurzinfo' for the same reason (the sentence already has «نقشہ»). «اور» keeps the source's 'and' (no 'then' implying an order the source does not state)."
+    },
+    {
+      "item": "map.eyebrow",
+      "text": "Reused byte for byte from tm_approved: list.eyebrow = list2.eyebrow «سیاحتی معلومات» (same English 'Visit guide', owner's decision in b13-ui, N190/N191). No reason to move it."
+    },
+    {
+      "item": "map.search.ph",
+      "text": "Reused byte for byte from tm_approved list.search «مقام تلاش کریں…». Here the one string is both the visible placeholder and the spoken aria-label (the index splits them into list.search and list.searchLabel «مقامات میں تلاش کریں»). The double role is not a reason to differ: «مقام تلاش کریں» spoken as the field's name says what the field does (search for a place), and the map page then shows the same placeholder as its sister index. Alternative if stage 4 judges the spoken name too terse: «مقامات میں تلاش کریں…» (list.searchLabel's wording)."
+    },
+    {
+      "item": "map.filter.aria",
+      "text": "Never seen: the aria-label of the group of category chips. Named as a function, not a sentence (brief): «زمرے کے لحاظ سے مقامات کا انتخاب» ('selection of places by category') — what the chips do (pick one category); «زمرہ» and «مقامات» as on the page. 'Filter' has no common native noun in interfaces; «چھانٹی» (sifting) was considered and not taken (it also reads 'lay-off'). Alternative recorded: the verbal label «زمرے کے لحاظ سے مقامات چھانٹیں»."
+    },
+    {
+      "item": "list.all",
+      "text": "«سب»: the 'All' chip, rendered «سب (58)» by the template. «سب» stands alone; «تمام» needs a following noun («تمام مقامات» as in det.allSights). Alternative if the chip should repeat the noun: «تمام مقامات» (longer, beside one-to-four-word category chips)."
+    },
+    {
+      "item": "map.terrain",
+      "text": "A navigation link beside the chips (the template adds the arrow) to /en/terrain-map/, which has no Urdu page: label in Urdu with no language note (N308, owner_decision). 'Terrain' = relief/landform (Arabic «تضاريسية»): «زمین کے نشیب و فراز» — Rekhta entry nasheb-o-faraaz (HTTP 200): «اسم، مذکر — (سطح زمین کے لحاظ سے) نیچی اور بلند جگہ، پست اور بلند مقام»; «زمین کے» keeps it from the figurative 'vicissitudes'. '3D' → «سہ جہتی» (chosen). No Latin letter in the Urdu (RUNBOOK 5); no figure. The link names another page and claims nothing about the classic map."
+    },
+    {
+      "item": "map.terrain",
+      "text": "'3D' CANDIDATES for ONE open item at stage 4 (P16 / P16-test). (A, chosen) «سہ جہتی»: a native Urdu headword — rekhtadictionary.com/meaning-of-sah-jihatii HTTP 200: «سَہ جِہَتی — three dimensional»; ur.wikipedia exact phrase «سہ جہتی» 41 pages (HTTP 200, 2026-10-16), incl. «سہ جہتی فلم» (Padmaavat) and «سہ جہتی تصویر». (B) the transliteration «تھری ڈی»: ur.wikipedia exact phrase 607 pages (HTTP 200) — the 40 titles read are almost all film articles ('3D computer-animated film') and product names («ایل جی آپٹیمس تھری ڈی», «تھری ڈی ایس میکس», «تھری ڈی پرنٹنگ»); the wiki also writes «3ڈی فلم» (article title, Latin digit) and «راز 3 ڈی». It is the commoner form in film and product usage, but it is spelled-out English letters with no dictionary headword found, and P16 admits a loan only with a headword where no common native word exists; P16-test (2) is not met (no reader has stumbled on «سہ جہتی»). (C) «تین جہتی»: ur.wikipedia 37 pages (HTTP 200), including the article «نقشہ» itself (maps that are two- or three-dimensional) — native, plain, the fallback if a reader finds «سہ» bookish. (D) «سہ ابعادی» (3 pages): bookish, not taken. 'Terrain map' alternatives considered: «طبعی نقشہ» (physical map; 0 exact hits on ur.wikipedia, HTTP 200) and «سطح زمین کا نقشہ» (0 hits): not taken. Press usage (urdunews.com) not checked."
+    },
+    {
+      "item": "map.locate",
+      "text": "Never seen as text: aria-label and tooltip of the icon-only locate button. «نقشے پر میری جگہ» ('my place on the map'), first person as the English 'My' and as the approved nav.myTrip «میرے محفوظ کردہ مقامات». «مقام» is NOT used here: on this page it means an attraction, and «میرا مقام» would read 'my attraction'. «جگہ» is the plain word for where one is; it pairs with the approved map.locate.err «معلوم نہیں ہو سکا کہ آپ کہاں ہیں۔ …». No storage promised. Alternative recorded: «نقشے پر میں کہاں ہوں» (closer to the error's wording, but question-shaped)."
+    },
+    {
+      "item": "map.list.aria",
+      "text": "Never seen: aria-label of the side list. «نقشے پر دکھائے گئے مقامات کی فہرست» follows the Arabic «قائمة المعالم الظاهرة على الخريطة»; a region named as a noun phrase. «دکھائے گئے مقامات» is the same phrase as map.count, so the region and its counter say one thing."
+    },
+    {
+      "item": "map.count",
+      "text": "Bare label, rendered «دکھائے گئے مقامات: 58» in role=status and spoken after every filter change. The Arabic «المعالم الظاهرة» names what is counted (authority over the English verb 'Showing'), as the German line did. No colon, no number in the string. Alternative: «نظر آنے والے مقامات» ('places in view'); «دکھائے گئے» taken to match map.list.aria."
+    },
+    {
+      "item": "map.empty",
+      "text": "The approved search.empty «کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ آزمائیں۔» kept, with the source's category branch added: «… کوئی دوسرا لفظ یا زمرہ آزمائیں۔» — «دوسرا» governs both nouns (both masculine: «لفظ», «زمرہ»). The English em dash is already a comma in the approved neighbour."
+    },
+    {
+      "item": "map.pop.view",
+      "text": "«صفحہ دیکھیں ←»: the popup link to the attraction's page; Arabic «عرض الصفحة ←». The English → becomes ← (RTL) with one ordinary space before it, as the approved Urdu links («تمام مقامات ←»). Honorific imperative as the approved «نقشے پر دیکھیں» / «تمام مقامات دیکھیں». Alternative if the bare noun reads unclear in the popup: «مقام کا صفحہ دیکھیں ←»."
+    },
+    {
+      "item": "batch",
+      "text": "One word for attraction(s) in all twelve: «مقام / مقامات» (with «سیاحتی» only in the title, as in the approved section label). No new synonym. Nothing invented: no count of categories, no oasis size, no offline claim, no 3D claim for this map. No Latin letter except the {n} of map.lead.a. Neighbours read in src/i18n/ui.ts (ur block): nav.map, list.map, list.search, list.searchLabel, search.empty, list.empty, map.locate.err, crumb.attractions, list.title, list.lead («زمرہ»), det.allSights, nav.myTrip. Web evidence: s1-web.json / s1-web2.json in the batch folder (obtained 2026-10-16); udb.gov.pk refused the connection (ECONNRESET) on every attempt, so nothing is cited from it."
+    },
+    {
+      "item": "source",
+      "text": "No source defect found in the twelve strings. Recorded only: the English 'Showing' (map.count) is a verb where the Arabic names the counted noun (the Arabic followed, as in the German line); 'tap' (map.lead.a) is touch-only where the Arabic «اضغط» is device-neutral (the Arabic followed). Neither is a fact divergence."
+    }
+  ],
+  "termbase_additions": [
+    {
+      "key": "سہ جہتی",
+      "ar": "ثلاثي الأبعاد (3D)",
+      "en": "3D, three-dimensional",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "gloss": null,
+      "source": "rekhtadictionary.com/meaning-of-sah-jihatii (HTTP 200, 2026-10-16): «سَہ جِہَتی — three dimensional»; ur.wikipedia exact phrase «سہ جہتی» 41 pages (HTTP 200, 2026-10-16)",
+      "status": "pending",
+      "note": "Adjective, invariable: it has no gender of its own and agrees with nothing. The schema requires a gender word; «مذکر» is entered as the termbase did for the adjective «آن لائن», and here it is the gender of the noun it qualifies in its one use («نقشہ»). Proposed for map.terrain ('3D terrain map') against the transliteration «تھری ڈی» (ur.wikipedia 607 pages, film and product usage, no headword found) under P16 / P16-test; ONE open item at stage 4, the judge rules. Fallback «تین جہتی» (ur.wikipedia 37, incl. the article «نقشہ»)."
+    },
+    {
+      "key": "نشیب و فراز",
+      "ar": "تضاريس",
+      "en": "terrain, relief (of the land)",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "gloss": null,
+      "source": "rekhtadictionary.com/meaning-of-nashiib-o-faraaz (HTTP 200, 2026-10-16): «نَشِیب و فَراز — اسم، مذکر — (سطح زمین کے لحاظ سے) نیچی اور بلند جگہ، پست اور بلند مقام»; ur.wikipedia exact phrase 63 pages (HTTP 200), article «نشیب و فراز»",
+      "status": "verified",
+      "note": "Written with «زمین کے» before it in map.terrain («زمین کے نشیب و فراز کا سہ جہتی نقشہ») so the literal sense (relief) is read, not the figurative 'ups and downs'."
+    }
+  ]
+}

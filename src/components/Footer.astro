@@ -20,7 +20,7 @@ const zh = lang === 'zh';
 // النظير الإنجليزي — تسمية إنجليزية لصفحة إنجليزية.
 const de = lang === 'de';
 const ru = lang === 'ru';
-// الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحتا الثمار والمطبخ تحت /ur/ (فروع صريحة: listBase وleisureBase ورابطا #name والثمار والمطبخ)،
+// الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة تحت /ur/ (فروع صريحة: listBase وleisureBase ورابطا #name والثمار والمطبخ والخريطة)،
 // وكل رابط آخر يقع على الفرع الإنجليزي الأخير في سطره حتى يُبنى قسمه.
 const ur = lang === 'ur';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
@@ -62,7 +62,7 @@ const cols = [
       ...(ar ? [{ label: t('foot.l.visa'), href: VISA_GUIDE_PATH }] : []),
       ...(showGuides ? [{ label: t('guides.nav'), href: guidesHref(lang) }] : []),
       { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : '/en/plan/' },
-      { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : '/en/map/' },
+      { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : ur ? '/ur/map/' : '/en/map/' },
     ],
   },
   {
