@@ -1,88 +1,68 @@
 ---
-// صفحة «دليل التأشيرات» — عربية فقط (قرار إياد 2026-09-26: الإنجليزية تُضاف حين يوفّر نصّها).
+// صفحة «دليل التأشيرات» — عربية وإنجليزية (إعادة كتابة 2026-10-16 بقرار إياد).
 //
-// المصدر الوحيد: src/data/visa-guide.md — «الجزء الثاني» من تقرير البحث منسوخاً حرفياً
-// (من أول عنوان «##» إلى آخر الملف). لا صياغة ولا ترجمة ولا حقيقة مضافة: هذه الواجهة
-// تُنسّق فقط. أول عنوان «##» يصير H1 الهيرو، والفقرة التي تليه نبذته، والباقي يُصيَّر
-// كما خرج من الماركداون مع تحويلات عرضٍ محصورة في هذه الصفحة (لا تمسّ ماركداون أي
-// صفحة أخرى، فلا إضافة في astro.config):
-//   1. كل رابط خارجي يُفتح في نافذة جديدة بـrel="noopener"، وhref ونصّه كما في المصدر.
-//   2. كل «لم يُتحقَّق…» يُوسم <mark class="vg-unverified"> — ظاهرٌ ومميَّز، لا يُخفى ولا يُستبدل.
-//   3. الجداول بقشرة الموقع (tbl-wrap + va-table) وتتمرّر أفقياً على الجوال. بلا data-table
-//      عمداً: C24 (أ) يحرس جداول مصادر الحقيقة الثلاثة (practical/events/fruits)، وأرقام
-//      هذه الجداول مصدرها هذا الملف — يحرسها C28 بمطابقة النص كله حرفياً.
-//   4. سطر «قدّم الآن…» زرّاً، وسطر «ج:» في الأسئلة الشائعة على سطر جديد.
-// يحرس ذلك كله C28 (tools/check-visa-guide.mjs) على dist.
+// المصدر الوحيد للنصّ: src/data/visa-guide.ts (سجلّ لكل لغة). هذه الواجهة تُنسّق فقط:
+//   1. الهيرو: H1 والنبذة وسطر الرسوم العام وسطر التحقق من المصدر الرسمي وتاريخ آخر تحديث.
+//   2. بطاقات: تمهيد الأحساء (روابط داخلية)، جدول «اختر مسارك» (4 أعمدة)، قسم لكل مسار من
+//      الثمانية ينتهي بزر المنصة الرسمية، الوصول إلى الأحساء، خطواتك بعد التأشيرة، الأسئلة
+//      الشائعة (details/summary كصفحة «خطّط»)، جدول الروابط الرسمية.
+//   3. كل رابط خارجي يُفتح في نافذة جديدة بـrel="noopener"؛ الروابط الرسمية من
+//      VISA_OFFICIAL_LINKS وحدها. الجداول بقشرة الموقع (tbl-wrap + va-table) بلا data-table
+//      عمداً: C24 يحرس جداول مصادر الحقيقة الثلاثة (practical/events/fruits) وحدها.
+//   4. JSON-LD بالآلية القائمة (jsonLd في Base): Article + FAQPage (الأسئلة المرئية نفسها)
+//      + BreadcrumbList (الرئيسية ← خطّط لرحلتك ← الدليل).
+// يحرس ذلك كله C28 (tools/check-visa-guide.mjs) على dist: صفر «لم يُتحقَّق»، صفر عملات
+// ورسوم، الروابط الرسمية حرفياً ولا سواها، الأسئلة 5–7 ومطابقة لـFAQPage، 5 روابط داخلية
+// على الأقل، سطر التحديث، hreflang بين اللغتين، والعنوان والوصف ضمن حدودهما.
 //
 // ملاحظة المعاينة «يجب فتح كل رابط يدوياً قبل النشر» لا تظهر في الإنتاج: تُصيَّر فقط حين
-// يبني Netlify بسياق غير الإنتاج (CONTEXT = deploy-preview أو branch-deploy). البناء
-// المحلي بلا CONTEXT يُعامَل إنتاجاً. C28 يُلزم الاتجاهين.
-import * as guide from '../../data/visa-guide.md';
+// يبني Netlify بسياق غير الإنتاج (CONTEXT = deploy-preview أو branch-deploy).
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
-import { titleSep, useTranslations } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ORG_ID, breadcrumb, absUrl } from '../../lib/schema';
-import { VISA_GUIDE_PATH, VISA_UPDATED_LINE, VISA_PREVIEW_NOTE, UNVERIFIED } from '../../lib/visa-guide.mjs';
+import { VISA_GUIDE_ALT, VISA_UPDATED_ISO, VISA_PREVIEW_NOTE } from '../../lib/visa-guide.mjs';
+import { visaGuide, type VisaLang, type Rich } from '../../data/visa-guide';
 
-const lang = 'ar' as const;
+interface Props { lang: VisaLang; }
+const { lang } = Astro.props;
 const t = useTranslations(lang);
+const C = visaGuide(lang);
+const alt: AltLinks = VISA_GUIDE_ALT;
+const selfPath = alt[lang];
+const planPath = lang === 'ar' ? '/خطط/' : '/en/plan-your-trip/';
 const isPreview = Boolean(process.env.CONTEXT) && process.env.CONTEXT !== 'production';
-
-const DEC: Record<string, string> = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>' };
-const decode = (s: string) => s.replace(/&(?:amp|quot|#39|lt|gt);/g, (e) => DEC[e]);
-
-const raw = await guide.compiledContent();
-const head = raw.match(/^\s*<h2 id="[^"]*">([^<]*)<\/h2>\s*<p>([^<]*)<\/p>/);
-if (!head) throw new Error('visa-guide.md: المتوقع أن يبدأ بعنوان «##» تليه فقرة تمهيد');
-const title = decode(head[1]);
-const lead = decode(head[2]);
-// أول جملة من التمهيد وصفاً للصفحة — حرفياً، بلا صياغة
-const description = lead.slice(0, lead.indexOf('.') + 1);
-
-const markUnverified = (html: string) =>
-  html.replace(new RegExp(`${UNVERIFIED}[^<.،:(\\n]*`, 'g'), (m) => {
-    const core = m.trimEnd();
-    return `<mark class="vg-unverified">${core}</mark>${m.slice(core.length)}`;
-  });
-
-const sections = raw
-  .slice(head[0].length)
-  .split(/(?=<h2 id=")/)
-  .filter((c) => c.trim())
-  .map((chunk) => {
-    const id = chunk.match(/^<h2 id="([^"]*)"/)?.[1] ?? '';
-    let html = chunk
-      .replace(/<a href="(https?:\/\/[^"]*)">/g, '<a href="$1" target="_blank" rel="noopener">')
-      .replace(/<table>/g, `<div class="tbl-wrap vg-tbl" role="region" tabindex="0" aria-labelledby="${id}"><table class="va-table">`)
-      .replace(/<\/table>/g, '</table></div>')
-      .replace(/<p><strong><a /g, '<p class="vg-cta"><strong><a ')
-      .replace(/<\/strong>(\r?\n)(ج:)/g, '</strong><br>$1$2');
-    html = markUnverified(html);
-    return { id, html };
-  });
+const isExt = (href: string) => /^https?:\/\//.test(href);
 
 const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'Article',
-    headline: title, inLanguage: 'ar', dateModified: '2026-09-26',
-    mainEntityOfPage: absUrl(VISA_GUIDE_PATH), publisher: { '@id': ORG_ID },
+    headline: C.h1, description: C.seo.description, inLanguage: lang, dateModified: VISA_UPDATED_ISO,
+    mainEntityOfPage: absUrl(selfPath), publisher: { '@id': ORG_ID },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: C.faq.items.map((f) => ({
+      '@type': 'Question', name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   },
   breadcrumb([
-    { name: t('crumb.home'), path: '/' },
-    { name: t('nav.plan'), path: '/خطط/' },
-    { name: title, path: VISA_GUIDE_PATH },
+    { name: t('crumb.home'), path: lang === 'ar' ? '/' : '/en/' },
+    { name: t('nav.plan'), path: planPath },
+    { name: C.h1, path: selfPath },
   ]),
 ];
 ---
-{/* بلا alt عمداً: لا نظير إنجليزي بعد، فلا hreflang (C26 لا يرى الصفحة) ومبدّل اللغة
-    يقصد الرئيسية الإنجليزية — التراجع القائم في Header لكل صفحة بلا نظير. */}
-<Base title={`${title} ${titleSep(lang)} ${t('site.brand')}`} description={description} lang={lang} type="article" jsonLd={jsonLd}>
-  <Header lang={lang} />
+<Base title={`${C.seo.title} ${titleSep(lang)} ${t('site.brand')}`} description={C.seo.description} lang={lang} alt={alt} type="article" jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
   <main id="main">
-    <PageHero eyebrow={t('nav.plan')} title={title} lead={lead} leadWidth={64} motif="center" lang={lang}>
-      <p class="vg-updated" data-vg-updated>{VISA_UPDATED_LINE}</p>
+    <PageHero eyebrow={t('nav.plan')} title={C.h1} lead={C.lead} leadWidth={64} motif="center" lang={lang}>
+      <p class="vg-note" data-vg-fees>{C.feesLine}</p>
+      <p class="vg-note" data-vg-verify>{C.verifyLine}</p>
+      <p class="vg-note vg-updated" data-vg-updated>{C.updatedLine}</p>
     </PageHero>
 
     <div class="container vg-wrap">
@@ -90,9 +70,76 @@ const jsonLd = [
         <p class="vg-preview-note" role="note" data-vg-preview-note data-pagefind-ignore>{VISA_PREVIEW_NOTE}</p>
       )}
       <article class="vg-body" data-vg-body>
-        {sections.map((s) => (
-          <section class="card vg-sec" aria-labelledby={s.id || undefined} set:html={s.html} />
+        <section class="card vg-sec" aria-labelledby="vg-intro">
+          <h2 id="vg-intro">{C.intro.h}</h2>
+          <p>{C.intro.parts.map((p) => typeof p === 'string' ? p : <a href={p.href}>{p.t}</a>)}</p>
+        </section>
+
+        <section class="card vg-sec" aria-labelledby="vg-table">
+          <h2 id="vg-table">{C.table.h}</h2>
+          <div class="tbl-wrap vg-tbl" role="region" tabindex="0" aria-labelledby="vg-table">
+            <table class="va-table">
+              <caption>{C.table.caption}</caption>
+              <thead><tr>{C.table.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+              <tbody>
+                {C.table.rows.map(([route, who, validity, platform]) => (
+                  <tr><th scope="row">{route}</th><td>{who}</td><td>{validity}</td><td>{platform}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {C.routes.map((r) => (
+          <section class="card vg-sec" aria-labelledby={`vg-${r.id}`} data-vg-route={r.id}>
+            <h2 id={`vg-${r.id}`}>{r.h}</h2>
+            <p>{r.who.label && <strong>{r.who.label}</strong>} {r.who.text}</p>
+            {r.validity && <p><strong>{r.validity.label}</strong> {r.validity.text}</p>}
+            <p class="vg-cta"><a href={r.cta.href} target="_blank" rel="noopener">{r.cta.label}</a></p>
+          </section>
         ))}
+
+        <section class="card vg-sec" aria-labelledby="vg-arrive">
+          <h2 id="vg-arrive">{C.arrive.h}</h2>
+          {[C.arrive.air, C.arrive.land, C.arrive.more].map((rich: Rich) => (
+            <p>{rich.map((p) => typeof p === 'string' ? p : isExt(p.href) ? <a href={p.href} target="_blank" rel="noopener">{p.t}</a> : <a href={p.href}>{p.t}</a>)}</p>
+          ))}
+        </section>
+
+        <section class="card vg-sec" aria-labelledby="vg-next">
+          <h2 id="vg-next">{C.next.h}</h2>
+          <ul>
+            {C.next.items.map((it) => (
+              <li><strong>{it.label}</strong> {it.parts.map((p) => typeof p === 'string' ? p : <a href={p.href}>{p.t}</a>)}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="card vg-sec" aria-labelledby="vg-faq" data-vg-faq>
+          <h2 id="vg-faq">{C.faq.h}</h2>
+          <div class="faq-list">
+            {C.faq.items.map((f) => (
+              <details class="faq">
+                <summary class="faq-q">{f.q}</summary>
+                <p class="faq-a">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="card vg-sec" aria-labelledby="vg-links">
+          <h2 id="vg-links">{C.links.h}</h2>
+          <div class="tbl-wrap vg-tbl" role="region" tabindex="0" aria-labelledby="vg-links">
+            <table class="va-table">
+              <thead><tr>{C.links.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+              <tbody>
+                {C.links.rows.map((row) => (
+                  <tr><th scope="row">{row.route}</th><td><a href={row.href} target="_blank" rel="noopener">{row.href}</a></td><td>{row.org}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </article>
     </div>
   </main>
@@ -100,7 +147,8 @@ const jsonLd = [
 </Base>
 
 <style>
-  .vg-updated { margin-block-start: var(--s-3); font-size: var(--t-sm); color: rgba(247,243,234,.88); }
+  .vg-note { margin-block-start: var(--s-2); font-size: var(--t-sm); color: rgba(247,243,234,.88); max-inline-size: 64ch; }
+  .vg-updated { margin-block-start: var(--s-3); }
   .vg-wrap { padding-block: var(--s-6) var(--s-7); }
   .vg-preview-note {
     margin-block-end: var(--s-4); padding: var(--s-3); border-radius: var(--radius-sm);
@@ -108,48 +156,46 @@ const jsonLd = [
   }
   .vg-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); min-inline-size: 0; }
   .vg-sec { padding: var(--s-5) var(--s-5) var(--s-4); min-inline-size: 0; font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); }
-  .vg-sec :global(h2) { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); line-height: 1.3; margin-block: 0 var(--s-3); }
-  .vg-sec :global(p) { margin-block-end: var(--s-3); max-inline-size: 72ch; }
-  .vg-sec :global(strong) { color: var(--c-turq-deep); font-weight: 700; }
-  .vg-sec :global(ul), .vg-sec :global(ol) { margin-block-end: var(--s-3); padding-inline-start: 1.4em; max-inline-size: 72ch; }
-  .vg-sec :global(ul ul) { margin-block: var(--s-1) 0; }
-  .vg-sec :global(li) { margin-block-end: var(--s-1); }
-  .vg-sec :global(li::marker) { color: var(--c-gold-deep); }
-  .vg-sec :global(a) { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-  .vg-sec :global(a:hover) { color: var(--c-gold-deep); }
+  .vg-sec h2 { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); line-height: 1.3; margin-block: 0 var(--s-3); }
+  .vg-sec p { margin-block-end: var(--s-3); max-inline-size: 72ch; }
+  .vg-sec strong { color: var(--c-turq-deep); font-weight: 700; }
+  .vg-sec ul { margin-block-end: var(--s-3); padding-inline-start: 1.4em; max-inline-size: 72ch; }
+  .vg-sec li { margin-block-end: var(--s-1); }
+  .vg-sec li::marker { color: var(--c-gold-deep); }
+  .vg-sec a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .vg-sec a:hover { color: var(--c-gold-deep); }
   /* رمز «نافذة جديدة» زخرفي — لا نصّ في الشجرة ولا يُقرأ */
-  .vg-sec :global(a[target="_blank"])::after { content: "\2197" / ""; font-size: .8em; margin-inline-start: .15em; text-decoration: none; display: inline-block; }
-  .vg-sec :global(hr) { border: 0; border-block-start: 1px solid var(--c-line); margin-block: var(--s-4) 0; }
-
-  /* «لم يُتحقَّق…»: ظاهرٌ ومميَّز — خلفية كهرمانية فاتحة ونصّ الحبر (‏15:1 تقريباً) وحدّ ذهبي داكن */
-  .vg-sec :global(mark.vg-unverified) {
-    background: #FBEBC8; color: var(--c-ink); border: 1px dashed var(--c-gold-deep);
-    border-radius: 4px; padding: 0 .3em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
-  }
-  .vg-sec :global(mark.vg-unverified)::before {
-    content: "!" / ""; display: inline-grid; place-items: center; inline-size: 1.15em; block-size: 1.15em;
-    margin-inline-end: .3em; border-radius: 50%; background: var(--c-gold-deep); color: #fff;
-    font-size: .75em; font-weight: 700; line-height: 1; vertical-align: .1em;
-  }
+  .vg-sec a[target="_blank"]::after { content: "\2197" / ""; font-size: .8em; margin-inline-start: .15em; text-decoration: none; display: inline-block; }
 
   /* الجداول: قشرة الموقع (global.css) + تمرير أفقي داخل الغلاف لا في الصفحة */
-  .vg-sec :global(.vg-tbl) { margin-block: 0 var(--s-3); max-inline-size: 100%; }
-  .vg-sec :global(.vg-tbl:focus-visible) { outline: 2px solid var(--c-turq); outline-offset: 2px; }
-  .vg-sec :global(.vg-tbl table) { min-inline-size: 760px; }
-  .vg-sec :global(.vg-tbl td) { overflow-wrap: anywhere; }
-  /* داخل الخلايا الضيقة لا ينكسر الوسم بين سطرين («لم» وحدها ثم «يُتحقَّق منه») */
-  .vg-sec :global(.vg-tbl mark.vg-unverified) { white-space: nowrap; }
+  .vg-sec .vg-tbl { margin-block: 0 var(--s-3); max-inline-size: 100%; }
+  .vg-sec .vg-tbl:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .vg-sec .vg-tbl table { min-inline-size: 760px; }
+  .vg-sec .vg-tbl td { overflow-wrap: anywhere; }
 
-  /* «قدّم الآن…»: زرّ بلغة أزرار الموقع (btn--turq) */
-  .vg-sec :global(.vg-cta) { margin-block: var(--s-4) 0; }
-  .vg-sec :global(.vg-cta a) {
+  /* زرّ المنصة الرسمية بلغة أزرار الموقع (btn--turq) */
+  .vg-sec .vg-cta { margin-block: var(--s-4) 0; }
+  .vg-sec .vg-cta a {
     display: inline-block; padding: 12px 26px; border-radius: var(--radius-pill);
     background: var(--c-turq); color: var(--c-sand); text-decoration: none; font-weight: 600;
     transition: transform .2s, box-shadow .2s;
   }
-  .vg-sec :global(.vg-cta strong) { color: inherit; font-weight: inherit; }
-  .vg-sec :global(.vg-cta a:hover) { color: var(--c-sand); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,110,97,.3); }
-  @media (prefers-reduced-motion: reduce) { .vg-sec :global(.vg-cta a:hover) { transform: none; } }
+  .vg-sec .vg-cta a::after { content: none; }
+  .vg-sec .vg-cta a:hover { color: var(--c-sand); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,110,97,.3); }
+  @media (prefers-reduced-motion: reduce) { .vg-sec .vg-cta a:hover { transform: none; } }
+
+  /* الأسئلة الشائعة — القشرة نفسها في صفحة «خطّط لرحلتك» */
+  .faq-list { max-inline-size: 72ch; }
+  .faq { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); overflow: hidden; }
+  .faq-q { cursor: pointer; font-family: var(--font-body); font-weight: 600; font-size: var(--t-base); color: var(--c-turq-deep); padding: var(--s-3) var(--s-4); list-style: none; display: flex; align-items: center; gap: var(--s-3); }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after { content: ''; margin-inline-start: auto; flex: 0 0 auto; inline-size: 9px; block-size: 9px; border-inline-end: 2px solid var(--c-turq-deep); border-block-end: 2px solid var(--c-turq-deep); transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
+  .faq[open] .faq-q::after { transform: rotate(-135deg); }
+  @media (prefers-reduced-motion: reduce) { .faq-q::after { transition: none; } }
+  .faq-q:hover { color: var(--c-gold-deep); }
+  .faq[open] .faq-q { border-block-end: 1px solid var(--c-line); }
+  .faq-a { padding: var(--s-3) var(--s-4) var(--s-4); font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8; max-inline-size: 65ch; margin-block-end: 0; }
+
   @media (max-width: 760px) {
     .vg-sec { padding: var(--s-4) var(--s-3) var(--s-3); }
   }

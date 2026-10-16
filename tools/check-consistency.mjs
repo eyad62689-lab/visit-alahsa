@@ -11,7 +11,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { checkTrails, EXPECT, L10N_LANGS } from './check-trails.mjs';
-import { checkVisaGuide, VISA_GUIDE_PATH, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
+import { checkVisaGuide, VISA_GUIDE_ALT, VISA_LANGS, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
 import { checkVisitCards, expectFromSource, noticeStrings, LANGS as VISIT_LANGS } from './check-visit-card.mjs';
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
@@ -1460,25 +1460,26 @@ async function main() {
     else pass('C27', `المسارات: ${EXPECT.trails} صفحات بكل لغة (${LANGS.join('/')}) و${per('stops')} محطة و${per('badges')} شارة يونسكو على المحطات المسمّاة وحدها و${per('landmarks')} رابط معلم و${per('sources')} مصدراً بـtarget=_blank rel=noopener؛ النصوص حرفية والإسناد في رأس الفهرس وذيل كل مسار وملاحظة اليونسكو مرة واحدة ولا وصف رسمي في العناوين والوسوم`);
   }
 
-  // ── C28: دليل التأشيرات — النص حرفياً من المصدر، و«لم يُتحقَّق» موسومة، والروابط كما هي (2026-09-26) ──
+  // ── C28: دليل التأشيرات — صفر معلومة غير مؤكدة، الروابط الرسمية حرفياً، FAQPage مطابقة (أُعيد 2026-10-16) ──
   // المنطق في tools/check-visa-guide.mjs (دالة نقية يُختبر كسرها في الذاكرة)؛ هنا القراءة فقط،
   // ومعها مسحُ كل صفحات dist: ملاحظة المعاينة لا تظهر في أي صفحة من بناء الإنتاج.
   {
     const context = process.env.CONTEXT;
-    const pagePath = path.join(DIST, VISA_GUIDE_PATH, 'index.html');
-    if (!existsSync(pagePath)) fail('C28', `صفحة ${VISA_GUIDE_PATH} غائبة عن dist`);
+    const pages = {};
+    const pagePaths = new Set();
+    for (const l of VISA_LANGS) {
+      const p = path.join(DIST, VISA_GUIDE_ALT[l], 'index.html');
+      pagePaths.add(p);
+      if (existsSync(p)) pages[l] = await readText(p);
+    }
+    const { problems, stats } = checkVisaGuide({ pages, sitemap: existsSync(smPath) ? await readText(smPath) : '', context });
+    if (!context || context === 'production') {
+      for (const f of htmlFiles) if (!pagePaths.has(f) && (await readText(f)).includes(VISA_PREVIEW_NOTE)) problems.push(`ملاحظة المعاينة في ${path.relative(DIST, f)} ببناء الإنتاج`);
+    }
+    if (problems.length) fail('C28', `دليل التأشيرات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else {
-      const { problems, stats } = checkVisaGuide({
-        md: await readText(path.join(ROOT, 'src/data/visa-guide.md')),
-        page: await readText(pagePath),
-        sitemap: existsSync(smPath) ? await readText(smPath) : '',
-        context,
-      });
-      if (!context || context === 'production') {
-        for (const f of htmlFiles) if (f !== pagePath && (await readText(f)).includes(VISA_PREVIEW_NOTE)) problems.push(`ملاحظة المعاينة في ${path.relative(DIST, f)} ببناء الإنتاج`);
-      }
-      if (problems.length) fail('C28', `دليل التأشيرات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-      else pass('C28', `دليل التأشيرات: ${stats.tokens} كلمة منشورة تطابق المصدر حرفياً، و${stats.marks} «لم يُتحقَّق» موسومة من ${stats.unverified} في المصدر، و${stats.links} رابطاً بـhref ونصّ حرفيين وtarget=_blank rel=noopener، وسطر التحديث حاضر، وملاحظة المعاينة ${!context || context === 'production' ? 'غائبة (إنتاج)' : `حاضرة (${context})`}، وعربية فقط بلا hreflang`);
+      const per = (f) => VISA_LANGS.map((l) => stats[l]?.[f] ?? 0).join('/');
+      pass('C28', `دليل التأشيرات بلغتيه (${VISA_LANGS.join('/')}): ${per('words')} كلمة بلا عبارة شك ولا رسم ولا عملة، ${per('external')} رابطاً خارجياً كلها رسمية بـtarget=_blank rel=noopener، ${per('faq')} أسئلة مطابقة لـFAQPage، ${per('internal')} روابط داخلية بشرطة ختامية، العنوان ${per('title')} والوصف ${per('desc')} حرفاً ضمن الحدود، hreflang متبادل في الصفحة وsitemap، وملاحظة المعاينة ${!context || context === 'production' ? 'غائبة (إنتاج)' : `حاضرة (${context})`}`);
     }
   }
 

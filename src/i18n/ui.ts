@@ -463,6 +463,8 @@ export const ui = {
     'foot.l.taste': 'Cuisine & dates',
     'foot.l.stay': 'Where to stay',
     'foot.l.getThere': 'Getting there',
+    'foot.l.visa': 'Visa guide',
+    'plan.visa': 'Visa guide',
     'foot.l.routes': 'Suggested routes',
     'foot.l.events': 'Events',
     'foot.l.about': 'About Al-Ahsa',
