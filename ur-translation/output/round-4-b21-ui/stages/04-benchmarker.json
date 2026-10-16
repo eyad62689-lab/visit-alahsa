@@ -1,0 +1,323 @@
+{
+  "stage": "04-benchmarker",
+  "batch": "b21-ui",
+  "strings": {
+    "map.title": "سیاحتی مقامات کا نقشہ",
+    "map.lead.a": "الاحساء کے نخلستان کے نقشے پر {n} مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں۔ فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔",
+    "map.eyebrow": "سیاحتی معلومات",
+    "map.search.ph": "مقام تلاش کریں…",
+    "map.filter.aria": "زمرے کے لحاظ سے مقامات کا انتخاب",
+    "list.all": "سب",
+    "map.terrain": "زمین کے نشیب و فراز کا سہ جہتی نقشہ",
+    "map.locate": "نقشے پر میری جگہ",
+    "map.list.aria": "نقشے پر دکھائے گئے مقامات کی فہرست",
+    "map.count": "دکھائے گئے مقامات",
+    "map.empty": "کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ یا زمرہ آزمائیں۔",
+    "map.pop.view": "صفحہ دیکھیں ←"
+  },
+  "changed_sentences": [],
+  "facts_removed": [],
+  "facts_restored": [],
+  "fence_checked_and_kept": [
+    {
+      "field": "map.title",
+      "phrase": "سیاحتی مقامات کا نقشہ",
+      "why_it_is_in_the_source": "EN \"Attractions Map\" / AR «خريطة المعالم». «سیاحتی مقامات» is the approved section name (nav.attractions = crumb.attractions); «سیاحتی» qualifies, it adds no fact. The map OF the attractions, as the German precedent «Karte der Sehenswürdigkeiten»; agrees with nav.map «نقشہ» and list.map «نقشے پر دیکھیں»."
+    },
+    {
+      "field": "map.lead.a",
+      "phrase": "الاحساء کے نخلستان کے نقشے پر",
+      "why_it_is_in_the_source": "EN \"on the map of the oasis\" / AR «على خريطة الواحة». The oasis is named by its ruled form (N47: a page that mentions the oasis names it once «الاحساء کے نخلستان»; P8; P2): the string is also the page's meta / og / twitter description, read with no other text of the page, and «نخلستان» bare would name no place. A name, not a new fact (the page is the Al-Ahsa map; the sources' «الواحة» is that oasis)."
+    },
+    {
+      "field": "map.lead.a",
+      "phrase": "{n} مقامات ہیں۔",
+      "why_it_is_in_the_source": "EN \"<count> sights on the map\" / AR «<count> معلماً على خريطة …»: the count is printed by the template (MapView leadParts: a string carrying {n} once gets the count there, in the visible lead AND in the meta description — leadText joins the parts with the count, read in MapView.astro lines 80-92). No figure is typed. The verb «ہیں» states only that the places are on the map (the source's fact)."
+    },
+    {
+      "field": "map.lead.a",
+      "phrase": "تلاش کریں یا کوئی زمرہ چنیں۔",
+      "why_it_is_in_the_source": "EN \"search or pick a category\" / AR «ابحث أو اختر فئة». «کوئی زمرہ چنیں» is the approved list.lead wording, byte for byte. No count of categories (brief)."
+    },
+    {
+      "field": "map.lead.a",
+      "phrase": "فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔",
+      "why_it_is_in_the_source": "EN \"tap any place in the list or on the map to open its card\" / AR «واضغط أي معلم في القائمة أو الخريطة لفتح بطاقته». «کسی بھی» = \"any\"; «منتخب کریں» follows the device-neutral Arabic «اضغط» (the English \"tap\" is touch-only; German judge widened it for that reason). «مختصر تعارف» for \"card\"/«بطاقة»: the popup shows the place's photo, category, name, summary and a link (MapView popup, read in the code) — a short introduction, nothing more; no «کارڈ» (N306, P16). Open item N332 records the choice."
+    },
+    {
+      "field": "map.eyebrow",
+      "phrase": "سیاحتی معلومات",
+      "why_it_is_in_the_source": "EN \"Visit guide\" / AR «دليل الزيارة»: tm_approved list.eyebrow = list2.eyebrow, byte for byte (N190 as amended, N191 A; owner decision 2026-10-15). Not moved."
+    },
+    {
+      "field": "map.search.ph",
+      "phrase": "مقام تلاش کریں…",
+      "why_it_is_in_the_source": "EN \"Search attractions…\" / AR «ابحث عن معلم…»: tm_approved list.search byte for byte. The one string is both the placeholder and the aria-label of the field (MapView line 104); spoken, «مقام تلاش کریں» names what the field does. The double role is not a reason to differ (stage 1–3 agree); the index's separate label «مقامات میں تلاش کریں» stays the recorded alternative."
+    },
+    {
+      "field": "map.filter.aria",
+      "phrase": "زمرے کے لحاظ سے مقامات کا انتخاب",
+      "why_it_is_in_the_source": "EN \"Filter attractions by category\" / AR «تصفية المعالم حسب الفئة»: the aria-label of the chip group (role=group), a noun phrase naming its function. «انتخاب» (selection) for «تصفية» names what a chip does (keeps one category); nothing added."
+    },
+    {
+      "field": "list.all",
+      "phrase": "سب",
+      "why_it_is_in_the_source": "EN \"All\" / AR «الكل»: the first chip, rendered «سب (58)»; the count is the template's."
+    },
+    {
+      "field": "map.terrain",
+      "phrase": "زمین کے نشیب و فراز کا سہ جہتی نقشہ",
+      "why_it_is_in_the_source": "EN \"3D terrain map\" / AR «الخريطة التضاريسية 3D»: «زمین کے نشیب و فراز» = terrain / relief (rekhta nasheb-o-faraaz: Noun Masculine, \"descent and ascent, height and hollow\"); «زمین کے» keeps the literal sense against the figurative \"vicissitudes\" the same entry lists. «سہ جہتی» = \"3D\" in words (pack figures_in_words; no Latin letter, RUNBOOK 5) — open item N331. It names the OTHER page; it says nothing of the classic map. No language note on the link to /en/terrain-map/ (N308, closed by the owner)."
+    },
+    {
+      "field": "map.locate",
+      "phrase": "نقشے پر میری جگہ",
+      "why_it_is_in_the_source": "EN \"My location on the map\" / AR «موقعي على الخريطة»: first person as both sources; «جگہ» (rekhta: Noun, Feminine, \"place\") — «میری» agrees. Not «مقام» (on this page an attraction). No storage promised; pairs with the approved map.locate.err «معلوم نہیں ہو سکا کہ آپ کہاں ہیں۔ …»."
+    },
+    {
+      "field": "map.list.aria",
+      "phrase": "نقشے پر دکھائے گئے مقامات کی فہرست",
+      "why_it_is_in_the_source": "EN \"List of attractions shown on the map\" / AR «قائمة المعالم الظاهرة على الخريطة»: «فہرست» (rekhta: Noun, Feminine) — «کی» agrees. Same participle phrase as map.count."
+    },
+    {
+      "field": "map.count",
+      "phrase": "دکھائے گئے مقامات",
+      "why_it_is_in_the_source": "EN \"Showing\" (verb) / AR «المعالم الظاهرة» (what is counted): the Arabic followed (authority; German precedent «Angezeigte Sehenswürdigkeiten»). Bare label; the template adds «: <number>» inside role=status."
+    },
+    {
+      "field": "map.empty",
+      "phrase": "کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ یا زمرہ آزمائیں۔",
+      "why_it_is_in_the_source": "EN \"No matches — try another word or category.\" / AR «… جرّب كلمة أخرى أو فئة مختلفة.»: the approved search.empty «کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ آزمائیں۔» with the source's category branch «یا زمرہ» added inside it; «دوسرا» governs two masculine nouns (لفظ; زمرہ rekhta Noun, Masculine)."
+    },
+    {
+      "field": "map.pop.view",
+      "phrase": "صفحہ دیکھیں ←",
+      "why_it_is_in_the_source": "EN \"View page →\" / AR «عرض الصفحة ←»: the popup link to the attraction's page; the arrow «←» (RTL) after one ordinary space, as the approved «تمام مقامات ←»."
+    }
+  ],
+  "open_items": [
+    {
+      "id": "N331",
+      "candidates": [
+        "A «سہ جہتی» — «زمین کے نشیب و فراز کا سہ جہتی نقشہ» (the text since stage 1). Native headword.",
+        "B «تھری ڈی» — «زمین کے نشیب و فراز کا تھری ڈی نقشہ». The English letters spelled out in Urdu script; the commoner form in film and product names.",
+        "C «تین جہتی» — «زمین کے نشیب و فراز کا تین جہتی نقشہ». Plain native wording; the one the reference's own article «نقشہ» uses.",
+        "D «سہ ابعادی» — «زمین کے نشیب و فراز کا سہ ابعادی نقشہ». Native, scientific register."
+      ],
+      "evidence": "Re-checked at stage 4, 2026-10-16 (b21-ui/s45-web.json, s45-web.txt; every count from an HTTP 200 answer of the ur.wikipedia search API, totalhits). A: rekhtadictionary.com/meaning-of-sah-jihatii HTTP 200, final URL the entry: «سَہ جِہَتی» — \"three dimensional\" (the entry carries no part-of-speech label); ur.wikipedia exact phrase «سہ جہتی» 41 pages (top titles: مجسمہ سازی · مساحت · تجسیمی کیمیا · پدماوت (2018ء فلم)), in encyclopedic register («ایک سہ جہتی فن پارہ» in مجسمہ سازی); «سہ جہتی نقشہ» 1 page (چندریان-2: «چاند کا سہ جہتی نقشہ تیار ہو سکے» — a 3D MAP named with A). B: «تھری ڈی» 607 pages (top titles: ایل جی آپٹیمس تھری ڈی · 3 بہادر · بلال (فلم) · تھری ڈی ایس میکس · گریویٹی (فلم)) — film formats and product names; no dictionary headword found by stage 1; «تھری ڈی نقشہ» 0 (stage 1, HTTP 200). C: «تین جہتی» 37 pages, among them the article «نقشہ» itself: «بہت سے نقشے جامد دو جہتی ہوتے ہیں، تین جہتی …» and کرہ ارض «زمین کا ایک تین جہتی پیمانہ ماڈل». D: «سہ ابعادی» 18 pages (تیز رفتار سہ ابعادی بس · مکعب · زمان و مکاں · بُعد) — mathematics and physics; CORRECTION of the stage-1 record: its \"«سہ ابعادی» 3 pages\" is the count of «سہ بعدی» (3 pages, re-counted here: سطح · دالہ کا منحنی · چندریان-2). udb.gov.pk: HTTP 500 for «سہ جہتی» and ECONNRESET for «تین جہتی» at this stage (s45-web3.json) — nothing cited from it. urdunews.com search: the result page (HTTP 200) carries no result text to count (script-filled) — press usage not obtained. Rules: RUNBOOK 5 / pack figures_in_words (the \"3\" of \"3D\" in words, no Latin letter); P16 (a loan only with a dictionary entry and where no common native word exists); P16-test (all three conditions: (1) native shown not to be what the thing is called — here the reference names 3D maps natively; (2) a blind reader stumbled — none has read the page; (3) a headword — none found for B). Precedent: ru «3D-карта рельефа», de «3D-Geländekarte», zh «3D 地形图» keep the Latin \"3D\", which the Urdu rule bars.",
+      "strings_affected": [
+        "map.terrain"
+      ],
+      "recommendation": "A «سہ جہتی» stays. It is a dictionary headword, the encyclopedic Urdu for \"three-dimensional\", and attested for exactly this object («چاند کا سہ جہتی نقشہ»). B fails P16 and P16-test on (2) and (3) today; its 607 pages are film and product names, not proof that the native word is not what a 3D map is called (the reference's map article says «تین جہتی»). C is the fallback if the blind reader finds «سہ» bookish or unknown: equally native, plainer, and the wording of the reference's article «نقشہ»; its cost is that «تین» reads as a counted number beside «نشیب و فراز». D is the most technical and is not recommended. Whatever is ruled: one word in map.terrain only (no other string of the batch says 3D); the termbase entry follows the ruling (stage 1's pending «سہ جہتی»)."
+    },
+    {
+      "id": "N332",
+      "candidates": [
+        "A (text) «فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔» — \"select\" for tap, \"short introduction\" for card.",
+        "B «… کسی بھی مقام پر کلک کریں تو اس کا مختصر تعارف کھل جائے گا۔» — the loan «کلک» for tap.",
+        "C «… کسی بھی مقام کو دبائیں تو اس کا مختصر تعارف کھل جائے گا۔» — \"press\", literal of the Arabic «اضغط».",
+        "D «… کسی بھی مقام کو منتخب کریں تو اس کی مختصر معلومات کھل جائیں گی۔» — \"short information\" for card (feminine plural agreement), echoing the eyebrow «سیاحتی معلومات»."
+      ],
+      "evidence": "Stage 4, 2026-10-16 (s45-web.json, HTTP 200). Tap: the Arabic authority «اضغط» is device-neutral; the English \"tap\" is touch-only — the German blind reader on a laptop stumbled on \"tippen\" and the German judge widened it (de-map judge, blind_reader_rulings 2). ur.wikipedia exact phrase «منتخب کریں» 45 pages, «پر کلک کریں» 47 (all instructions to click a link: «ذیل دیے گئے لنک پر کلک کریں»), «ٹیپ کریں» 0. «منتخب» rekhta entry (HTTP 200): Adjective, \"chosen, selected\". «کلک» has no termbase entry (P16: no loan without one; P16-test not met). «دبائیں»: N89 records two readers who said one does not \"press\" a link on a phone. Card: «کارڈ» refused under P16 (N306, C refused); the popup (MapView.astro, read) shows the place's photo, category, name, summary, the link «صفحہ دیکھیں ←» and the save button. «تعارف» rekhta entry meaning-of-taaaruf (HTTP 200): «تَعارُف» Noun, Masculine, \"introduction\" — agrees with «کھل جائے گا»; «مختصر تعارف» 164 pages on ur.wikipedia (mostly section headings \"short introduction\" — the sense wanted). German precedent: «Kurzinfo» for card.",
+      "strings_affected": [
+        "map.lead.a"
+      ],
+      "recommendation": "A. «منتخب کریں» serves the phone and the laptop reader alike, as the Arabic does; «مختصر تعارف» says what the popup shows without a loan. B brings an unentered loan (P16) and narrows to the mouse as \"tap\" narrows to touch; C is the verb two readers refused for links; D is acceptable Urdu but «معلومات کھل جائیں گی» is a weaker image than an introduction that opens, and it puts the eyebrow's word in a second sense on the same page. Cost of A, for the judge: «منتخب کریں» is a formal register for a tap; the blind reader is the check. The {n} form of the sentence (count inside the sentence, «… نقشے پر {n} مقامات ہیں۔») is NOT part of this item: DECISIONS b21-ui leaves it to the chain, stages 1–3 chose it for word order (place, number + noun, verb last), and the template fills it in the lead and in the meta description alike."
+    },
+    {
+      "id": "N333",
+      "candidates": [
+        "A (text) «زمین کے نشیب و فراز کا سہ جہتی نقشہ» — six words.",
+        "B «نشیب و فراز کا سہ جہتی نقشہ» — five words, without «زمین کے».",
+        "C «سہ جہتی طبعی نقشہ» — three words, \"3D physical map\"."
+      ],
+      "evidence": "The link stands in the same wrapping tool row (.map-tools, flex-wrap) as the search field, the chip group, the locate and share buttons (MapView.astro lines 103-125); it is not a chip. The approved chip labels run one to four words («سب (58)», «عجائب گھر», «تاریخی مقامات», «مساجد اور مذہبی مقامات», «پارک اور باغات», «روایتی بازار», «زرعی فارم»), so A is the longest text in the row. rekhta nasheb-o-faraaz (HTTP 200): Noun, Masculine, \"descent and ascent, height and hollow, ups and downs; (metaphorically) unevenness … vicissitudes (of fortune)\" — the bare phrase has the figurative sense on ur.wikipedia too («عجیب وغریب نشیب و فراز سے گذر رہے ہوں», 63 pages); «زمین کے نشیب و فراز» 0 exact pages (HTTP 200) — a transparent phrase, not a set term. «طبعی نقشہ» 0 pages (stage 1, HTTP 200); a \"physical map\" in cartography shows more than relief. Precedent: de «3D-Geländekarte», ru «3D-карта рельефа» (one compound / three words).",
+      "strings_affected": [
+        "map.terrain"
+      ],
+      "recommendation": "A. Both source words are kept and the literal sense is fixed by «زمین کے»; the row wraps (flex-wrap; the chips scroll sideways on a phone and the link sits outside them), so the length costs a line, not a word of the source. B is the fallback if the measured row is judged too long: the neighbouring «نقشہ» and the arrow to a map page make the figurative reading unlikely. C coins a term with no attestation and widens \"terrain\" to \"physical\". The 3D word inside it is N331's."
+    }
+  ],
+  "untouched_items": [
+    {
+      "id": "BRAND",
+      "why": "None of the twelve strings carries the brand: site.brand is held for the owner (pack not_in_this_batch.held_for_owner) and the tab title is map.title + separator + the Latin wordmark by the template, as on every /ur/ page. map.title names the page, not the site. Not touched, not settled."
+    }
+  ],
+  "termbase_updates": [
+    {
+      "key": "سہ جہتی",
+      "ar": "ثلاثي الأبعاد (3D)",
+      "en": "3D, three-dimensional",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "gloss": null,
+      "source": "rekhtadictionary.com/meaning-of-sah-jihatii (HTTP 200, 2026-10-16, re-read at stage 4; final URL the entry): «سَہ جِہَتی» — \"three dimensional\", no part-of-speech label on the entry; ur.wikipedia exact phrase «سہ جہتی» 41 pages, «سہ جہتی نقشہ» 1 page (چندریان-2, «چاند کا سہ جہتی نقشہ») (HTTP 200, 2026-10-16). b21-ui/s1-web2.json, s45-web.json",
+      "status": "pending",
+      "note": "STAGE 1 (b21-ui) proposal, carried by STAGE 4: pending until the judge rules N331 (candidates «سہ جہتی» A, «تھری ڈی» B, «تین جہتی» C, «سہ ابعادی» D). An invariable adjective: the gender field is formal (as the entry «آن لائن»); «مذکر» is the gender of the noun it qualifies in its one use, «نقشہ» (rekhta naqsha: Noun, Masculine). The entry page gives no gender and no part of speech: nothing more is claimed. Used in map.terrain only. Not a loan: P16 is not engaged unless B is ruled."
+    },
+    {
+      "key": "نشیب و فراز",
+      "ar": "تضاريس",
+      "en": "terrain, relief (of the land)",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "gloss": null,
+      "source": "rekhtadictionary.com/meaning-of-nashiib-o-faraaz → final URL meaning-of-nasheb-o-faraaz (HTTP 200, 2026-10-16, re-read at stage 4): «نَشِیب و فَراز» — Origin: Persian — Noun, Masculine — \"descent and ascent, height and hollow, ups and downs (Metaphorically) unevenness, roughness, ruggedness, vicissitudes (of fortune)\"; ur.wikipedia exact phrase 63 pages, article «نشیب و فراز» (HTTP 200, 2026-10-16). b21-ui/s1-web2.json, s45-web.json",
+      "status": "verified",
+      "note": "STAGE 1 (b21-ui) proposal, STAGE 4 verified: gender read on the entry page (Noun, Masculine) and consistent with the text («زمین کے نشیب و فراز», masculine oblique possessive before «کا»). Written with «زمین کے» before it so the literal sense (relief) is read, not the figurative \"ups and downs\" the same entry lists (N333). Persian origin, not an English loan."
+    }
+  ],
+  "verification_log": [
+    {
+      "claim": "«سہ جہتی» is a dictionary headword meaning three-dimensional",
+      "url": "https://www.rekhtadictionary.com/meaning-of-sah-jihatii",
+      "verbatim": "sah-jihatii सह-जिहती • سَہ جِہَتی English meaning of sah-jihatii three dimensional",
+      "obtained": true
+    },
+    {
+      "claim": "«نشیب و فراز» is Noun, Masculine, with the literal sense height and hollow",
+      "url": "https://www.rekhtadictionary.com/meaning-of-nasheb-o-faraaz",
+      "verbatim": "nasheb-o-faraaz नशेब-ओ-फ़राज़ • نَشِیب و فَراز Origin : Persian Vazn : 112121 English meaning of nasheb-o-faraaz Noun, Masculine descent and ascent, height and hollow, ups and downs ( Metaphorically) unevenness, roughness , ruggedness, vicissitudes (of fortune )",
+      "obtained": true
+    },
+    {
+      "claim": "«نقشہ» is Noun, Masculine, map (agreement of «کا نقشہ», «نقشے پر»)",
+      "url": "https://www.rekhtadictionary.com/meaning-of-naqsha",
+      "verbatim": "naqsha नक़्शा • نَقشَہ Vazn : 22 … English meaning of naqsha Persian, Arabic - Noun, Masculine map, chart, outline, plan",
+      "obtained": true
+    },
+    {
+      "claim": "«زمرہ» is Noun, Masculine, category (agreement of «دوسرا لفظ یا زمرہ», «زمرے کے لحاظ سے»)",
+      "url": "https://www.rekhtadictionary.com/meaning-of-zumra",
+      "verbatim": "zumra ज़ुमरा • زُمْرَہ Origin : Arabic Vazn : 22 Plural : zumre … English meaning of zumra Noun, Masculine group , class , category",
+      "obtained": true
+    },
+    {
+      "claim": "«تعارف» is Noun, Masculine, introduction (agreement of «مختصر تعارف کھل جائے گا»)",
+      "url": "https://www.rekhtadictionary.com/meaning-of-taaaruf",
+      "verbatim": "ta'aaruf त'आरुफ़ • تَعارُف Origin : Arabic Vazn : 122 Root word : 'urf … English meaning of ta'aaruf Noun, Masculine introduction , mutual acquaintance, presentation",
+      "obtained": true
+    },
+    {
+      "claim": "the slug meaning-of-taaruf is a dictionary entry",
+      "url": "https://www.rekhtadictionary.com/meaning-of-taaruf",
+      "verbatim": "(redirected to the dictionary home page; no entry)",
+      "obtained": false
+    },
+    {
+      "claim": "«جگہ» is Noun, Feminine, place (agreement of «میری جگہ»)",
+      "url": "https://www.rekhtadictionary.com/meaning-of-jagah",
+      "verbatim": "jagah जगह • جَگَہ Origin : Persian Vazn : 12 English meaning of jagah Noun, Feminine place, station, locality",
+      "obtained": true
+    },
+    {
+      "claim": "«فہرست» is Noun, Feminine, list (agreement of «مقامات کی فہرست»)",
+      "url": "https://www.rekhtadictionary.com/meaning-of-fehrist",
+      "verbatim": "fehrist फ़ेहरिस्त • فِہْرِسْت Origin : Arabic Vazn : 221 English meaning of fehrist Noun, Feminine list , index , inventory",
+      "obtained": true
+    },
+    {
+      "claim": "«منتخب» is an adjective meaning chosen, selected",
+      "url": "https://www.rekhtadictionary.com/meaning-of-muntakhab",
+      "verbatim": "muntaKHab मुंतख़ब • مُنتَخَب Origin : Arabic Vazn : 212 Plural : muntaKHabaat … English meaning of muntaKHab Adjective, Singular chosen , selected",
+      "obtained": true
+    },
+    {
+      "claim": "ur.wikipedia exact phrase «سہ جہتی»: 41 pages",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=15&srsearch=%22%D8%B3%DB%81%20%D8%AC%DB%81%D8%AA%DB%8C%22",
+      "verbatim": "totalhits 41; titles: مجسمہ سازی · مساحت · تجسیمی کیمیا · اگنی · بسمتھ · سیکنڈ لائف · خلیج میکسیکو · پدماوت (2018ء فلم); «… تخلیق پایا گیا ایک سہ جہتی فن پارہ»",
+      "obtained": true
+    },
+    {
+      "claim": "ur.wikipedia exact phrase «تھری ڈی»: 607 pages, film and product usage",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=15&srsearch=%22%D8%AA%DA%BE%D8%B1%DB%8C%20%DA%88%DB%8C%22",
+      "verbatim": "totalhits 607; titles: ایل جی آپٹیمس تھری ڈی · 3 بہادر · 3 بہادر: بابا بالام کا انتقام · بلال (فلم) · تھری ڈی ایس میکس · اسٹار وارز: دی فورس آواکنس · پدماوت (2018ء فلم) · گریویٹی (فلم)",
+      "obtained": true
+    },
+    {
+      "claim": "ur.wikipedia exact phrase «تین جہتی»: 37 pages, including the article «نقشہ»",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=15&srsearch=%22%D8%AA%DB%8C%D9%86%20%D8%AC%DB%81%D8%AA%DB%8C%22",
+      "verbatim": "totalhits 37; titles: کرہ ارض · نقشہ · تصویر · تیز رفتار سہ ابعادی بس …; «بہت سے نقشے جامد دو جہتی ہوتے ہیں، تین جہتی جو ہندسی طور پر درست …»",
+      "obtained": true
+    },
+    {
+      "claim": "ur.wikipedia exact phrase «سہ ابعادی»: 18 pages (stage 1 recorded 3: that is «سہ بعدی»)",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=15&srsearch=%22%D8%B3%DB%81%20%D8%A7%D8%A8%D8%B9%D8%A7%D8%AF%DB%8C%22",
+      "verbatim": "totalhits 18; titles: تیز رفتار سہ ابعادی بس · مکعب · مکعب نما · زمان و مکاں · بُعد · سمتی احصا · تھری ڈی ایس میکس · سٹریڈین. «سہ بعدی»: totalhits 3 (سطح · دالہ کا منحنی · چندریان-2)",
+      "obtained": true
+    },
+    {
+      "claim": "ur.wikipedia exact phrase «سہ جہتی نقشہ»: 1 page, a 3D map named with A",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=15&srsearch=%22%D8%B3%DB%81%20%D8%AC%DB%81%D8%AA%DB%8C%20%D9%86%D9%82%D8%B4%DB%81%22",
+      "verbatim": "totalhits 1; چندریان-2: «گردش کرنے والی گاڑی چاند کا نقشہ تیار کرے گی تاکہ چاند کا سہ جہتی نقشہ تیار ہو سکے»",
+      "obtained": true
+    },
+    {
+      "claim": "ur.wikipedia exact phrase «نشیب و فراز»: 63 pages, «زمین کے نشیب و فراز»: 0",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=15&srsearch=%22%D9%86%D8%B4%DB%8C%D8%A8%20%D9%88%20%D9%81%D8%B1%D8%A7%D8%B2%22",
+      "verbatim": "totalhits 63; titles: نشیب و فراز · مافوقی · ایوبیہ نیشنل پارک …; «… عجیب وغریب نشیب و فراز سے گذر رہے ہوں» (figurative). «زمین کے نشیب و فراز»: totalhits 0",
+      "obtained": true
+    },
+    {
+      "claim": "ur.wikipedia: «منتخب کریں» 45, «پر کلک کریں» 47, «ٹیپ کریں» 0, «مختصر تعارف» 164",
+      "url": "https://ur.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=15&srsearch=%22%D9%85%D9%86%D8%AA%D8%AE%D8%A8%20%DA%A9%D8%B1%DB%8C%DA%BA%22",
+      "verbatim": "totalhits 45 / 47 / 0 / 164 (four queries, each HTTP 200; s45-web.json). «پر کلک کریں»: «ذیل دیے گئے لنک پر کلک کریں»",
+      "obtained": true
+    },
+    {
+      "claim": "udb.gov.pk (Urdu Lughat Board) entry for «سہ جہتی» / «تین جہتی»",
+      "url": "https://udb.gov.pk/result.php?search=%D8%B3%DB%81%20%D8%AC%DB%81%D8%AA%DB%8C",
+      "verbatim": "HTTP 500 (page without the phrase); «تین جہتی»: ECONNRESET (s45-web3.json). Nothing cited.",
+      "obtained": false
+    },
+    {
+      "claim": "press usage of «تھری ڈی» / «سہ جہتی» / «تین جہتی» on urdunews.com",
+      "url": "https://www.urdunews.com/search?search_api_fulltext=%D8%AA%DA%BE%D8%B1%DB%8C%20%DA%88%DB%8C",
+      "verbatim": "HTTP 200 on /search/site, but the page carries no result text (script-filled): no count obtained (s45-web2.json).",
+      "obtained": false
+    },
+    {
+      "claim": "MapView fills {n} in the visible lead AND in the meta description",
+      "url": "file:src/components/views/MapView.astro (worktree, lines 80-102)",
+      "verbatim": "const leadParts = leadRaw.includes('{n}') ? leadRaw.split('{n}') : null; const leadText = leadParts ? leadParts.join(String(points.length)) : ...; <Base ... description={leadText} ...>",
+      "obtained": true
+    }
+  ],
+  "notes": [
+    {
+      "item": "stage verdict",
+      "text": "No text change. The twelve strings were benchmarked against the English, the Arabic (authority), the approved neighbours (nav.map «نقشہ», list.map «نقشے پر دیکھیں», list.search «مقام تلاش کریں…», list.searchLabel «مقامات میں تلاش کریں», search.empty, map.locate.err, crumb.attractions / nav.attractions «سیاحتی مقامات», list.title «الاحساء کے سیاحتی مقامات», list.eyebrow «سیاحتی معلومات», list.lead «کوئی زمرہ چنیں», det.allSights «تمام مقامات ←») and the German run of the same page. No translationese found: no «موجود ہے» chain, no stranded verb, no stacked participles, no English article as a demonstrative, no calqued postposition. «کے لحاظ سے» (map.filter.aria) is the plain postposition for \"by\", not the officialese of the style rules."
+    },
+    {
+      "item": "fact fence",
+      "text": "facts_removed empty: stage 3 added nothing (its facts_added is empty and its tempted_but_not_added — device claims, distances, category count, oasis size, a language note on the terrain link, a storage promise, \"full page\" — are all absent from the text; checked string by string). facts_restored empty: nothing of either source was dropped — every clause of each English string and its Arabic is in the Urdu (fence_checked_and_kept lists each). The Arabic was followed where it is more precise: map.count names what is counted («المعالم الظاهرة»), map.lead.a's action is device-neutral («اضغط»). The one name the Urdu adds, «الاحساء» in map.lead.a, is the ruled name of \"the oasis\" (N47), not a fact."
+    },
+    {
+      "item": "names",
+      "text": "The only proper noun in the batch is «الاحساء» (map.lead.a), byte-identical to its termbase key, in the ruled possessive «الاحساء کے نخلستان» (P2, P8, N47). No new name; no Arabic letterform seen (stage 5 scans exhaustively). No Gulf / Eastern Province / city exonym in the batch."
+    },
+    {
+      "item": "map.lead.a ({n})",
+      "text": "The {n} form is kept: one placeholder, which the pack lists under placeholders_optional; MapView joins the parts with the count both in the visible lead and in the meta / og / twitter description (verified in the code, verification_log). As a snippet it reads «الاحساء کے نخلستان کے نقشے پر 58 مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں۔ …»: facts first, as the brief asks. The count-first form (stage 1's recorded alternative) would open the RTL sentence with a figure and strand the locative."
+    },
+    {
+      "item": "open items",
+      "text": "Three raised: N331 (\"3D\", the one item the brief requires), N332 (the action clause of map.lead.a: \"tap\" and \"card\"), N333 (the length and wording of map.terrain). N334–N340 unused. BRAND untouched (none of the twelve strings carries it)."
+    },
+    {
+      "item": "termbase",
+      "text": "Stage 1's two proposals carried with stage-4 evidence: «سہ جہتی» pending (until N331), «نشیب و فراز» verified (gender read on the entry page). No other term needed: «نقشہ», «زمرہ», «تعارف», «جگہ», «فہرست» are common nouns whose genders were read on their entry pages for the agreement check (verification_log), not names."
+    },
+    {
+      "item": "source",
+      "text": "No source defect. Recorded, not defects: the English \"Showing\" is a verb where the Arabic names the noun counted; the English \"tap\" is touch-only where the Arabic «اضغط» is device-neutral; the Arabic keeps the Latin «3D», which the Urdu rule bars. Stage 1's record of «سہ ابعادی» as 3 pages is a mislabel of «سہ بعدی» (corrected in N331's evidence; the text is not affected)."
+    },
+    {
+      "item": "verified vs inferred",
+      "text": "Verified (HTTP 200, this stage): every count and every dictionary line in verification_log; the template's handling of {n} and the popup's content (read in MapView.astro). Inferred: that a reader of the snippet and of the popup understands «مختصر تعارف» as the popup and «سہ جہتی» as 3D — the blind reader is the check. Not obtained: udb.gov.pk (HTTP 500 / ECONNRESET), urdunews.com press counts (script-filled search page)."
+    }
+  ]
+}

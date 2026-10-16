@@ -34,9 +34,9 @@ const hrefLang = (d: { title_zh?: string; title_de?: string; title_ru?: string; 
 // الأرقام لاتينية (0-9) في اللغتين — قرار إياد 2026-07-21
 const num = (n: number) => String(n);
 
-// الأوردو: فهرسا المعالم والأسواق مبنيّان تحت /ur/؛ الخريطة تقع على الفرع الإنجليزي الأخير
+// الأوردو: فهرسا المعالم والأسواق والخريطة مبنيّة تحت /ur/ (فرع ur صريح في mapHref)
 const detailBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
-const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : '/en/map/';
+const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : ur ? '/ur/map/' : '/en/map/';
 
 // نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
 const K = leisure ? 'list2' : 'list';

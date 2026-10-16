@@ -1,0 +1,72 @@
+{
+  "stage": "02-editor",
+  "batch": "b21-ui",
+  "strings": {
+    "map.title": "سیاحتی مقامات کا نقشہ",
+    "map.lead.a": "الاحساء کے نخلستان کے نقشے پر {n} مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں۔ فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔",
+    "map.eyebrow": "سیاحتی معلومات",
+    "map.search.ph": "مقام تلاش کریں…",
+    "map.filter.aria": "زمرے کے لحاظ سے مقامات کا انتخاب",
+    "list.all": "سب",
+    "map.terrain": "زمین کے نشیب و فراز کا سہ جہتی نقشہ",
+    "map.locate": "نقشے پر میری جگہ",
+    "map.list.aria": "نقشے پر دکھائے گئے مقامات کی فہرست",
+    "map.count": "دکھائے گئے مقامات",
+    "map.empty": "کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ یا زمرہ آزمائیں۔",
+    "map.pop.view": "صفحہ دیکھیں ←"
+  },
+  "changes": [
+    {
+      "field": "map.lead.a",
+      "before": "الاحساء کے نخلستان کے نقشے پر {n} مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں، اور فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔",
+      "after": "الاحساء کے نخلستان کے نقشے پر {n} مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں۔ فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔",
+      "why": "The second sentence joined an imperative clause («… چنیں») by «اور» to a conditional clause («… منتخب کریں تو … کھل جائے گا»): two constructions in one sentence, the seam the German blind reader stumbled on in the same source sentence (de-map blind-reader item 1: three alternatives nested before the purpose is clear). Split at the seam into two finite sentences; each is now one construction. No word added, none dropped except the coordinator «اور»; the source's order of the two steps is kept and no 'then' is introduced. The string is also the meta description: three short sentences read better as a snippet."
+    }
+  ],
+  "notes": [
+    {
+      "item": "map.title",
+      "text": "Kept «سیاحتی مقامات کا نقشہ». Read in all its places: as h1 and tab title it is a name (no verb, no final stop); as the aria-label of the map region it says what the region is; it agrees with the header/footer «نقشہ» and the index button «نقشے پر دیکھیں» around it and repeats the approved section name «سیاحتی مقامات» (crumb.attractions), so the page names the same set its navigation names. The shorter «مقامات کا نقشہ» was not taken: the bare plural loses the link to the section label."
+    },
+    {
+      "item": "map.lead.a",
+      "text": "Kept the {n} form (one {n}, count inside the sentence): «… نقشے پر {n} مقامات ہیں۔» is the plain Urdu existential order (place, number + noun, verb last); the count-first form would open an RTL sentence with a figure and strand the locative. The possessive chain «الاحساء کے نخلستان کے نقشے پر» (three links) is the price of N47 / P8 (the page names the oasis once, in its ruled form) and reads without strain. Split the second sentence (change 1). «منتخب کریں» (select) kept for the device-neutral Arabic «اضغط»: it is what a phone and a laptop user both do; «دبائیں» was charged for links by two readers (N89), loans have no entry (P16). «مختصر تعارف» for 'card' kept (N306: no «کارڈ»): the popup shows the place's name, its short description and a link, which is what the phrase says."
+    },
+    {
+      "item": "map.eyebrow / map.search.ph",
+      "text": "Approved text reused byte for byte (tm_approved): «سیاحتی معلومات» (N190/N191) and «مقام تلاش کریں…» (list.search). The double role of map.search.ph (placeholder and spoken name of the field) is not a reason to differ: spoken, «مقام تلاش کریں» names the field's function as the index's placeholder does; the index's separate label «مقامات میں تلاش کریں» exists because that page has two strings for one field, this page has one."
+    },
+    {
+      "item": "map.filter.aria",
+      "text": "Kept «زمرے کے لحاظ سے مقامات کا انتخاب»: a noun phrase naming the chip group's function, as a group label should be (no imperative, no stop). «کے لحاظ سے» is the plain postposition for 'by', not the officialese the role file lists («کے حوالے سے», «کے سلسلے میں»)."
+    },
+    {
+      "item": "list.all",
+      "text": "Kept «سب»: the chip renders «سب (58)»; «سب» stands alone as a pronoun, where «تمام» needs a noun after it."
+    },
+    {
+      "item": "map.terrain",
+      "text": "Kept «زمین کے نشیب و فراز کا سہ جہتی نقشہ» (stage 1's candidate A for the one open item on '3D'; the judge rules). Word order is Urdu (adjective before its noun, possessive before both); «زمین کے» keeps «نشیب و فراز» literal. It is the longest chip-row label (six words); shortening it would drop either 'terrain' or '3D', both in the source, so it is left to stage 3 / the measurement, not cut here."
+    },
+    {
+      "item": "map.locate",
+      "text": "Kept «نقشے پر میری جگہ»: first person as the English and as nav.myTrip; «جگہ», not «مقام» (on this page «مقام» is an attraction). It pairs with the approved error «معلوم نہیں ہو سکا کہ آپ کہاں ہیں۔ …» (the error addresses the reader as آپ, the button speaks in the reader's voice, as in the English pair 'My location' / 'your location')."
+    },
+    {
+      "item": "map.list.aria / map.count",
+      "text": "Kept «نقشے پر دکھائے گئے مقامات کی فہرست» and «دکھائے گئے مقامات» (spoken «دکھائے گئے مقامات: 58» after each filter change; the Arabic noun phrase followed, as the German line did). The region and its live counter use the same participle phrase, so a screen-reader user hears one name for one set."
+    },
+    {
+      "item": "map.empty",
+      "text": "Kept: the approved search.empty byte for byte with the source's category branch added inside it, «… کوئی دوسرا لفظ یا زمرہ آزمائیں۔» («دوسرا» governs two masculine nouns)."
+    },
+    {
+      "item": "map.pop.view",
+      "text": "Kept «صفحہ دیکھیں ←»: honorific imperative as the approved «نقشے پر دیکھیں»; the arrow ← with one ordinary space, as «تمام مقامات ←». Inside the popup, under the place's name, «صفحہ» is unambiguous."
+    },
+    {
+      "item": "consistency",
+      "text": "One word for attraction(s) in all twelve: «مقام / مقامات» (with «سیاحتی» only in the title, as the approved section label). Clichés, loans, Hindi-leaning words, exclamation marks: none found. No figure typed; no Latin letter besides the {n} of map.lead.a."
+    }
+  ]
+}

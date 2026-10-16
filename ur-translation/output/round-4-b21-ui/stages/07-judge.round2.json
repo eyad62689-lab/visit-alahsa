@@ -1,0 +1,352 @@
+{
+  "stage": "07-judge",
+  "batch": "b21-ui",
+  "round": 2,
+  "score": 92,
+  "breakdown": {
+    "accuracy": {
+      "points": 28,
+      "max": 30,
+      "why": "Unchanged text, scored afresh: every clause of each English string and its Arabic is in the Urdu and nothing is added (stage 4 fence, 15 phrases; stage 3 added no fact): the attractions on the map of the oasis («الاحساء کے نخلستان», N47); search or choose a category; a place chosen in the list or on the map opens its card; the empty notice with its category branch; the counter names what it counts as the Arabic does («المعالم الظاهرة»); the locate button and the list region as the source names them; the popup link with «←». The fresh on-r1 reader read the lead as saying exactly what to do and found the category counts add up to the counter (item 17). Two points off, as in round 1: “card” is said by what it holds («مختصر تعارف», N306: no «کارڈ»; the popup does carry the summary, MapView.astro line 208, proof item 5), and the Arabic’s two verbs (choose a category / press a place) are one Urdu verb, «چنیں» — no native device-neutral verb for “press a link” is in the line’s evidence (N89, P16-test)."
+    },
+    "nativeness": {
+      "points": 25,
+      "max": 30,
+      "why": "Scored afresh on both blind reads (on-05, on-r1). Confirmed: the lead after round 1’s «چنیں» (on-r1 item 17: reads well; it answers on-05 items 7 and 19), the empty notice, the counter and the location message (on-05 21, on-r1 18); no reader raised anything on the title, eyebrow, search field, chip «سب», list label or popup link. Five points off. Three for the terrain link label «زمین کے نشیب و فراز کا تین جہتی نقشہ», now contested by TWO readers, both moderate (on-05 5 on the «سہ جہتی» wording; on-r1 14 on the r1 wording: “bookish, long”, understood as a 3D terrain map after a second read): round 1’s «سہ» → «تین» did not lift the charge, which now rests on «نشیب و فراز» and the length; no plainer native phrase for “terrain” is in the line’s evidence (the reader’s «اونچائی نیچائی» and round 1’s option «اونچ نیچ» are unattested here; his «3D» is Latin). One for the chip-group label «زمرے کے لحاظ سے مقامات کا انتخاب», minor to two readers (on-05 19, on-r1 16), never seen. One for the locate label, a bare noun phrase that does not say what the button does (on-05 8, minor; the source’s form; not raised on r1)."
+    },
+    "compliance": {
+      "points": 20,
+      "max": 20,
+      "why": "Letterforms, digits and punctuation clean (proof on r1: 402 code points, none of U+064A U+0643 U+0629 U+0647 U+0649 U+0623 U+0625 U+06C3; five U+06BE, all after aspirable letters; no Persian or Arabic-Indic digit, no NBSP); «الاحساء» byte for byte in the ruled possessive (P2, P8, N47); approved text reused byte for byte (map.eyebrow = list.eyebrow, map.search.ph = list.search, map.empty = search.empty + the category branch, «سیاحتی مقامات», «←» as det.allSights); P16 held (no «کارڈ», «ٹیپ», «کلک», «تھری ڈی», «شیئر»); N308 held; {n} once; both termbase_final keys byte for byte in map.terrain. Round 1’s point is restored on re-weighing: the masculine of «انتخاب» is now READ on its entry (rekhtadictionary.com/meaning-of-intiKHaab, HTTP 200, “Noun, Masculine, Singular”, proof p1-intikhab2.txt) and «مقامات کا انتخاب» agrees; «تین جہتی» is verified on usage attestation alone, which has precedent for a compound of two common words («مصنوعی جنگل», «مہاجر پرندے», «ریت کے ٹیلے»), and its record now claims nothing more (the false part of speech is struck, proof item 1). The record defects the proof found (proof items 1, 2) are corrected in this round; they were never in the text."
+    },
+    "fit": {
+      "points": 9,
+      "max": 10,
+      "why": "The traveller learns how many places the map holds, how to narrow them and how to open one (on-r1 item 17); the counter is spoken after every filter; the empty notice tells him what to change. One point off: the terrain link opens an English page under an Urdu label (N308, owner_decision: no language note), and the on-r1 reader could not tell whether it opens another page or changes this map (item 14); the locate label leaves its action to the button role."
+    },
+    "structure": {
+      "points": 10,
+      "max": 10,
+      "why": "Exactly the pack’s twelve ids in pack order; {n} once in map.lead.a; no colon or number in map.count; no final stop in titles, labels, chip, link or aria strings; three «۔» in map.lead.a, one «۔» and one «،» in map.empty; «…» U+2026 in map.search.ph; «←» after one ordinary space in map.pop.view; no Latin letter beyond the n of {n} (proof on r1, items 3, 4)."
+    }
+  },
+  "strings": {
+    "map.title": "سیاحتی مقامات کا نقشہ",
+    "map.lead.a": "الاحساء کے نخلستان کے نقشے پر {n} مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں۔ فہرست میں یا نقشے پر کسی بھی مقام کو چنیں تو اس کا مختصر تعارف کھل جائے گا۔",
+    "map.eyebrow": "سیاحتی معلومات",
+    "map.search.ph": "مقام تلاش کریں…",
+    "map.filter.aria": "زمرے کے لحاظ سے مقامات کا انتخاب",
+    "list.all": "سب",
+    "map.terrain": "زمین کے نشیب و فراز کا تین جہتی نقشہ",
+    "map.locate": "نقشے پر میری جگہ",
+    "map.list.aria": "نقشے پر دکھائے گئے مقامات کی فہرست",
+    "map.count": "دکھائے گئے مقامات",
+    "map.empty": "کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ یا زمرہ آزمائیں۔",
+    "map.pop.view": "صفحہ دیکھیں ←"
+  },
+  "batch_score": 92,
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "source_defect",
+      "reason": "Template effect on an approved title (as on-05 item 4): the list sorts by the title string and «“ارض الحضارات”» opens with U+201C, which sorts before every Urdu letter. The marks are ruling P15 (owner’s decision: the name in “ ”; its meaning is given once in the attraction’s own page, not in a title, P3b). The title is approved and outside this batch; not changed. Logged in source_defects; two readers now (on-05 4, on-r1 1).",
+      "change_ref": null
+    },
+    {
+      "n": 2,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). «العقیر» is the approved title of the al-uqair page (b1). Bare beside three «العقیر کا/کی …» entries: recorded for the owner (two readers now: on-05 17, on-r1 2).",
+      "change_ref": null
+    },
+    {
+      "n": 3,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). The category is site data (CATEGORY_LABELS), and the owner’s standing rule makes Souq al-Hamidiyah a heritage landmark. Recorded for the owner (two readers: on-05 1, on-r1 3).",
+      "change_ref": null
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). «سوق الحمیدیہ» / «سوق القیصریہ» are approved title_ur spellings from the Arabic (RUNBOOK 4). Recorded for the owner with the reader’s «حمیدیہ بازار» / «قیصریہ بازار» (two readers: on-05 2, on-r1 4).",
+      "change_ref": null
+    },
+    {
+      "n": 5,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). «الخلیفہ کا ورثہ عجائب گھر» is an approved museum title (N122); his «میوزیم» is a loan where «عجائب گھر» is the approved native word (P16). Recorded for the owner (two readers: on-05 13 minor, on-r1 5 moderate).",
+      "change_ref": null
+    },
+    {
+      "n": 6,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). Approved museum title («گھر … عجائب گھر»); his «میوزیم» is a loan (P16). Minor; recorded for the owner (on-05 14, on-r1 6).",
+      "change_ref": null
+    },
+    {
+      "n": 7,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). «حساوی لیموں کا باغ» is the owner-listed proper name of the lemon farm (site rule: the nisba kept in the listed names); its category is site data. Recorded (on-05 11, on-r1 7).",
+      "change_ref": null
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). Approved title of kanzan-park (N103 bracket rule) and its category (site data). Recorded for the owner (on-05 9, on-r1 8).",
+      "change_ref": null
+    },
+    {
+      "n": 9,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). The zoo’s category is site data, not translation. Minor; recorded (on-05 16, on-r1 9).",
+      "change_ref": null
+    },
+    {
+      "n": 10,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). Approved park title; which stadium is a fact the title’s sources would have to carry. Minor; recorded (on-05 15, on-r1 10).",
+      "change_ref": null
+    },
+    {
+      "n": 11,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). The mosque titles are approved, each ruled in its own batch («مسجد X» where the name is the Arabic proper name, «X کی … مسجد» where the Arabic name is descriptive). That the two orders split mosques across the alphabetical list is new on r1; recorded for the owner. Minor.",
+      "change_ref": null
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). «بیت البیعہ», «رباط آل ابی بکر الملا», «دوغہ الغراش», «مدرسہ امیریہ» are approved titles; a descriptor in a title is a gloss the rulings keep out of titles (P3a/P3b, N14; N37 for «رباط» in its page text). Recorded for the owner (on-05 3, 12; on-r1 12). Minor.",
+      "change_ref": null
+    },
+    {
+      "n": 13,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). «جھیل الدیلفوون» is an approved title transliterated from the Arabic spelling (RUNBOOK 4). The doubled «وو» read as a typo by two readers (on-05 18, on-r1 13): recorded for the owner / the name’s termbase entry to re-check against the Arabic. Minor.",
+      "change_ref": null
+    },
+    {
+      "n": 14,
+      "ruling": "rejected",
+      "reason": "In scope (map.terrain; N331, N333), weighed against both readers. The label is now contested by two (on-05 5, on-r1 14, both moderate); both decoded it correctly as a 3D terrain map after a second read. His remedy cannot be written: «3D» is Latin (RUNBOOK 5), and its native half «اونچائی نیچائی» is not in the line’s evidence, while «نشیب و فراز» is a sourced entry (Rekhta: Noun, Masculine, “unevenness … ruggedness”, termbase_final) — replacing it on a reader’s taste alone is a ground for rejection (07-judge.md). Round 1’s own change («سہ» → «تین») is not singled out by the on-r1 reader and is not reverted: the earlier wording «سہ جہتی» was itself contested (on-05 5), so no reader passed it. No count reading of «تین» after the chip count «(3)» was reported (the cost round 1 charged is not borne out). Whether it opens a new page: the arrow «←» is the template’s mark for a link, as on the site’s other links; that the page is English may not be said (N308, owner_decision). Charged: nativeness 3, fit 1. Recorded as an option for the owner and for the batch that translates the terrain page (tmap.*): a plainer native phrase for “terrain”, with its own evidence through the line.",
+      "change_ref": null
+    },
+    {
+      "n": 15,
+      "ruling": "rejected",
+      "reason": "Outside this batch: approved Urdu the batch does not reopen (DECISIONS b21-ui: twelve strings; everything else the page renders is approved and NOT reopened). «اشتراک کریں» is share.btn, ruled N3 and P16-test (REFUSED «شیئر»). A reader’s preference does not open a loan (P16). Recorded (two readers: on-05 6, on-r1 15).",
+      "change_ref": null
+    },
+    {
+      "n": 16,
+      "ruling": "rejected",
+      "reason": "In scope (map.filter.aria), weighed: never seen (the spoken name of the chip group, ▢); the batch brief asks it to name a region / a function, not a sentence, and his «زمرے کے مطابق مقامات چنیں» is an imperative sentence. «انتخاب» is now read masculine on its entry (proof item 9) and agrees. Minor to two readers (on-05 19, on-r1 16); charged under nativeness (one point).",
+      "change_ref": null
+    },
+    {
+      "n": 17,
+      "ruling": "rejected",
+      "reason": "No remark to act on: a confirmation of map.lead.a as round 1 left it (change 0 of round 1, N332 E) — “reads well and tells me exactly what to do”; the category counts add up to «دکھائے گئے مقامات: 58» (map.count).",
+      "change_ref": null
+    },
+    {
+      "n": 18,
+      "ruling": "rejected",
+      "reason": "No remark to act on: a confirmation of the approved map.locate.err (outside this batch), read as clear, natural and polite.",
+      "change_ref": null
+    }
+  ],
+  "proof_rulings": [
+    {
+      "n": 1,
+      "ruling": "kept",
+      "reason": "Accepted; record corrected, no string moves. The Rekhta part of speech “Adjective” for «سہ جہتی» is struck in the three places (N331 evidence, termbase_final «تین جہتی» source, the verified/inferred note): the entry’s meaning card (“three dimensional”) carries no part of speech, as stage 4 recorded; the “Adjective” the round-1 script matched belongs to another word on the page («jismaanii», proof p1-sah.txt; checked again by this judge on p1-rekhta.txt / p1-sah.txt). The slug count is corrected to three (meaning-of-tiin-jihatii, meaning-of-teen-jihatii, meaning-of-tiin-jahatii — all three redirect to the home page on the proof’s re-fetch, p1-rekhta.txt; the third answered HTTP 503 on round 1’s fetch). The invariable-adjective remark in the termbase note is kept as the judge’s own grammatical reading, not a dictionary claim.",
+      "change_ref": null
+    },
+    {
+      "n": 2,
+      "ruling": "kept",
+      "reason": "Accepted; record corrected, no string moves. Guard clauses of interface batches bind every LATER interface batch (lib/rulings.mjs reads every file of the same kind; proof p1-guards.txt: 24 clauses from b0-ui, b13-ui, b19-ui, b20-ui, b21-ui; tools/README corrected). N332’s clause «کسی بھی مقام کو منتخب کریں تو» is replaced by the full withdrawn sentence «فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔» (byte for byte the 05 text). Every other clause of N331–N333 checked the same way (proof item 7 included): N332’s fragments on «کلک» and «دبائیں» are replaced by the full sentences of candidates B and C, and the «ٹیپ» fragment (a reader’s remedy, never a candidate wording) leaves the machine guard — the loan stays barred by P16 for the proofreader; N331’s three clauses are the full labels A, B, D and stay; N333’s «سہ جہتی طبعی نقشہ» is candidate C’s full label and stays. The round-1 Guards note (“held to their own file only”) is corrected.",
+      "change_ref": null
+    },
+    {
+      "n": 3,
+      "ruling": "kept",
+      "reason": "Noted: check-s7 on r1 clean; the proof’s own scan agrees (letterforms, Latin, placeholder, change-log replay, ids, blind-page hash).",
+      "change_ref": null
+    },
+    {
+      "n": 4,
+      "ruling": "kept",
+      "reason": "Noted: the eleven-item checklist PASS on all twelve strings; used in the compliance and structure scores.",
+      "change_ref": null
+    },
+    {
+      "n": 5,
+      "ruling": "kept",
+      "reason": "Noted: change 0 read in place, grammatical, meaning unchanged against EN/AR, the repeated «چنیں» a deliberate parallel; the popup summary verified (MapView.astro line 208). The fresh reader confirms (on-r1 17).",
+      "change_ref": null
+    },
+    {
+      "n": 6,
+      "ruling": "kept",
+      "reason": "Noted: change 1 read in place, grammatical, register only. The count-reading risk of «تین» after «(3)» was not reported by the on-r1 reader (item 14 charges length and «نشیب و فراز» instead).",
+      "change_ref": null
+    },
+    {
+      "n": 7,
+      "ruling": "kept",
+      "reason": "Accepted, record corrected: N331’s guard now says “withdrawn (A), refused (B) or not taken (D)”; N333’s proofreader clause now names the live variant «تین جہتی طبعی نقشہ» as also not written (not machine-read: it was never a wording of the chain, and exact-wording scoping keeps it out of the machine clause).",
+      "change_ref": null
+    },
+    {
+      "n": 8,
+      "ruling": "kept",
+      "reason": "Accepted, record corrected: “no headword” for «ٹیپ کریں» / «کلک کریں» was not backed by a recorded lookup; N332 now rests B and the reader’s «ٹیپ کریں» on P16-test (1) (a native verb exists) and says no dictionary entry was sought. Round 1’s change log is not re-written (it is round 1’s record); this round’s calibration governs.",
+      "change_ref": null
+    },
+    {
+      "n": 9,
+      "ruling": "kept",
+      "reason": "Accepted: the score is set afresh, not held. Compliance regains the point: «انتخاب» read masculine on its entry; «تین جہتی» verified on usage with precedent. Nativeness loses one more point on the second reader’s moderate charge on the terrain label. 28+25+20+9+10 = 92, again; the total is the sum of fresh axes, not round 1’s number carried.",
+      "change_ref": null
+    }
+  ],
+  "source_defects": [
+    {
+      "where": "The map list (MapView, sorted by title) — blind reader item 4; blind reader on-r1 item 1 (second reader)",
+      "defect": "The approved title «“ارض الحضارات”» (ruling P15: the name inside “ ”) sorts before every Urdu letter because it begins with U+201C, so it opens the list and reads like a heading above an otherwise alphabetical list.",
+      "effect_on_urdu": "None: the title and its marks stand (P15, owner’s decision). Option for the owner / coordinator, one line: sort the list on the title with its quotation marks stripped (template change; every language with a quoted title would follow)."
+    }
+  ],
+  "changes": [],
+  "calibration": [
+    {
+      "id": "BRAND",
+      "question": "How is the brand line itself written on /ur/ pages?",
+      "evidence": "No string of the batch carries the brand (stage 4, untouched): the map page renders map.title + the template separator + the Latin wordmark, as every /ur/ page.",
+      "status": "untouched",
+      "ruling_or_recommendation": "Not ruled by the translation line.",
+      "guard": "None.",
+      "next_bites": "the owner"
+    },
+    {
+      "id": "N331",
+      "question": "map.terrain: how is “3D” said in Urdu, where no Latin letter is allowed (EN “3D terrain map”, AR «الخريطة التضاريسية 3D»)?",
+      "candidates": [
+        "A «سہ جہتی» — «زمین کے نشیب و فراز کا سہ جہتی نقشہ» (stages 1–5).",
+        "B «تھری ڈی» — the English letters spelled in Urdu script.",
+        "C «تین جہتی» — «زمین کے نشیب و فراز کا تین جہتی نقشہ».",
+        "D «سہ ابعادی»."
+      ],
+      "evidence": "Stage 4 (s45-web.json, HTTP 200): A Rekhta headword «سَہ جِہَتی» “three dimensional” (the entry carries no part-of-speech label), ur.wikipedia 41 pages, «سہ جہتی نقشہ» 1 (چندریان-2); B 607 pages, film formats and product names, no headword, «تھری ڈی نقشہ» 0; C 37 pages, among them the reference article «نقشہ» («… دو جہتی ہوتے ہیں، تین جہتی …»); D 18, mathematics and physics. Re-counted by the judge 2026-10-16 (s7-web.json, HTTP 200): «تین جہتی» 37 (top titles کرہ ارض · نقشہ · تصویر), «سہ جہتی» 41, «تین جہتی نقشہ» 0. Rekhta: no entry page for «تین جہتی» under the three slugs tried (meaning-of-tiin-jihatii, meaning-of-teen-jihatii, meaning-of-tiin-jahatii — all three redirect to the home page, proof re-fetch 2026-10-16, p1-rekhta.txt); the entry «سہ جہتی» answers (meaning-of-sah-jihatii, HTTP 200, “three dimensional”, no part of speech on its card — p1-sah.txt). Blind reader on-05 item 5 (moderate): «سہ جہتی» and «نشیب و فراز» “bookish and over-Persianized”. Blind reader on-r1 item 14 (moderate), on the C wording: “bookish, long label”, understood after a second read; he does not single out «تین جہتی», his own form writes the Latin «3D»; no count reading of «تین» after the chip count «(3)» reported.",
+      "stage4_recommendation": "A stays; C is the fallback if the blind reader finds «سہ» bookish or unknown.",
+      "status": "ruled",
+      "ruling_or_recommendation": "C: «تین جہتی» — map.terrain «زمین کے نشیب و فراز کا تین جہتی نقشہ». The on-05 reader’s charge is the condition stage 4 set for the fallback, and between two native words a reader’s stumble is evidence (the restriction of P16 is on loans). C is the plainer of the two, the wording the reference article on maps uses, and needs no Latin letter and no figure. B refused: P16-test (2) is met, but (1) is not (the reference names 3D maps natively, A and C) and (3) is not (no headword); a stumble alone never admits a loan. A withdrawn from this string; it stays a correct headword and is recorded in C’s entry for search. D not taken (technical). Cost: «تین جہتی» has no entry page of its own (both parts are common words; the compound is attested in use). ROUND 2: proofed on r1 (must-fix 0) and read blind on r1; C kept — the second reader’s charge falls on the label’s length and on «نشیب و فراز» (N333), not on «تین جہتی», and «سہ جہتی» cannot return (it was contested by the first reader).",
+      "binds": "map.terrain; every later interface string that says “3D” (tmap.* when the terrain page is translated).",
+      "guard": "Stage checker: none of «زمین کے نشیب و فراز کا سہ جہتی نقشہ», «زمین کے نشیب و فراز کا تھری ڈی نقشہ», «زمین کے نشیب و فراز کا سہ ابعادی نقشہ» occurs. For the proofreader, not machine-read: “3D” is «تین جہتی», never the Latin «3D» and never the loan «تھری ڈی». The machine clause bans exactly the three full map.terrain labels this entry withdrew (A), refused (B) or did not take (D), never the word «سہ جہتی» or «تین جہتی» elsewhere.",
+      "strings_affected": [
+        "map.terrain"
+      ],
+      "termbase_keys_retired": [],
+      "ruled_by": "Judge round 1, b21-ui (round 4), 2026-10-16; record corrected in round 2, 2026-10-16"
+    },
+    {
+      "id": "N332",
+      "question": "map.lead.a: the action clause — “tap any place … to open its card” (AR «واضغط أي معلم … لفتح بطاقته»).",
+      "candidates": [
+        "A «فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔» (stages 1–5).",
+        "B «فہرست میں یا نقشے پر کسی بھی مقام پر کلک کریں تو اس کا مختصر تعارف کھل جائے گا۔» (loan).",
+        "C «فہرست میں یا نقشے پر کسی بھی مقام کو دبائیں تو اس کا مختصر تعارف کھل جائے گا۔»",
+        "D «… منتخب کریں تو اس کی مختصر معلومات کھل جائیں گی۔»",
+        "E (judge, round 1) A with the verb of the sentence before it: «فہرست میں یا نقشے پر کسی بھی مقام کو چنیں تو اس کا مختصر تعارف کھل جائے گا۔»"
+      ],
+      "evidence": "Stage 4 (s45-web.json, HTTP 200): «منتخب کریں» 45 pages, «پر کلک کریں» 47 (link instructions), «ٹیپ کریں» 0; «کلک» has no termbase entry; «دبائیں» refused for links by two readers (N89); «تعارف» Rekhta Noun Masculine; «کارڈ» refused (N306). Stage 4 named the cost of A: «منتخب کریں» is formal for a tap; the blind reader is the check. Blind reader on-05: item 7 (moderate) — «منتخب کریں» formal, he expected «ٹیپ کریں»; item 19 (minor) — «چنیں», «انتخاب» and «منتخب کریں» for one action within a few lines. Blind reader on-r1 (on E): item 17 — “reads well and tells me exactly what to do”. Approved neighbour: list.lead «کوئی زمرہ چنیں», home.cats.title «… راہ چنیں». The popup carries the place’s photo, category, name and summary (MapView.astro line 208; stage 4, proof item 5).",
+      "stage4_recommendation": "A.",
+      "status": "ruled",
+      "ruling_or_recommendation": "E: the noun of A stands — «اس کا مختصر تعارف کھل جائے گا» (N306: no «کارڈ»; the popup does hold the place’s summary) — and the verb is «چنیں», the everyday verb of the sentence before it and of list.lead, so the lead names the reader’s action with one word. Device-neutral like the Arabic «اضغط». B refused on P16-test (1): a native verb exists (A, E); it also narrows to the mouse as “tap” narrows to touch. The on-05 reader’s «ٹیپ کریں» refused on the same test (0 pages on ur.wikipedia); no dictionary entry was sought for either loan. C refused (N89). D not taken. Cost, charged under accuracy: the Arabic’s two verbs (choose a category / press a place) become one Urdu verb; no native device-neutral verb for “press a link” is in the line’s evidence. ROUND 2: proofed on r1 (must-fix 0); the fresh on-r1 reader confirms E (item 17).",
+      "binds": "map.lead.a (its visible lead and its meta / og / twitter description).",
+      "guard": "Stage checker: none of «فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔», «فہرست میں یا نقشے پر کسی بھی مقام پر کلک کریں تو اس کا مختصر تعارف کھل جائے گا۔», «فہرست میں یا نقشے پر کسی بھی مقام کو دبائیں تو اس کا مختصر تعارف کھل جائے گا۔» occurs. For the proofreader, not machine-read: the action clause of map.lead.a is «فہرست میں یا نقشے پر کسی بھی مقام کو چنیں تو اس کا مختصر تعارف کھل جائے گا۔»; «کارڈ» is not written; the loans «ٹیپ کریں» and «کلک کریں» stay barred by P16. The machine clause bans exactly the three full withdrawn or refused sentences of map.lead.a (A, B, C), never the words «منتخب», «انتخاب», «کلک» or «دبائیں», nor any shorter span of these sentences, in a later string.",
+      "strings_affected": [
+        "map.lead.a"
+      ],
+      "termbase_keys_retired": [],
+      "ruled_by": "Judge round 1, b21-ui (round 4), 2026-10-16; record corrected in round 2, 2026-10-16"
+    },
+    {
+      "id": "N333",
+      "question": "map.terrain: the length and wording of the terrain link label.",
+      "candidates": [
+        "A «زمین کے نشیب و فراز کا … نقشہ» — six words (stages 1–5).",
+        "B «نشیب و فراز کا … نقشہ» — without «زمین کے».",
+        "C «… طبعی نقشہ» — “physical map”."
+      ],
+      "evidence": "Stage 4: the link sits in the wrapping tool row (.map-tools, flex-wrap), not among the chips; Rekhta «نَشِیب و فَراز» Persian, Noun, Masculine, “descent and ascent … unevenness … vicissitudes”; ur.wikipedia 63 pages (re-counted 2026-10-16, s7-web.json; the article «نشیب و فراز» first), mostly figurative; «زمین کے نشیب و فراز» 0 (a transparent phrase); «طبعی نقشہ» 0. Blind reader on-05 item 5: «نشیب و فراز» bookish; he understood a terrain map after a second read; his alternative (“showing mountains and sand dunes”) adds what neither source says. Blind reader on-r1 item 14 (moderate): the label “bookish, long”, understood as a 3D terrain map after a second read; unsure whether the link opens another page or changes this map; his form «زمین کی اونچائی نیچائی کا 3D نقشہ» (Latin «3D»; «اونچائی نیچائی» not in the line’s evidence).",
+      "stage4_recommendation": "A; B if the row is judged too long.",
+      "status": "ruled",
+      "ruling_or_recommendation": "A: «زمین کے نشیب و فراز کا تین جہتی نقشہ» (with N331 C). Both source words kept; «زمین کے» fixes the literal sense of «نشیب و فراز» (relief, not the ups and downs of fortune). B drops that anchor; C coins an unattested term and widens “terrain” to “physical”. ROUND 2: kept against two readers’ moderate charge of register (on-05 5, on-r1 14): both read the label correctly; the sourced entry is not replaced on taste alone, and no plainer attested native phrase for “terrain” is in the evidence. Cost charged under nativeness (three points) and fit (one). Option for the owner and for the batch that translates the terrain page (tmap.*), one line: a plainer native phrase («زمین کی اونچ نیچ», or the reader’s «اونچائی نیچائی»), each needing its own evidence through the line.",
+      "binds": "map.terrain.",
+      "guard": "Stage checker: the string «سہ جہتی طبعی نقشہ» does not occur. For the proofreader, not machine-read: the terrain link label keeps «زمین کے» before «نشیب و فراز», and is not «تین جہتی طبعی نقشہ» either (C with N331’s word; never a wording of the chain, so not in the machine clause). The machine clause bans exactly candidate C’s full label as the chain proposed it, never «طبعی نقشہ» elsewhere.",
+      "strings_affected": [
+        "map.terrain"
+      ],
+      "termbase_keys_retired": [],
+      "ruled_by": "Judge round 1, b21-ui (round 4), 2026-10-16; record corrected in round 2, 2026-10-16"
+    }
+  ],
+  "termbase_final": {
+    "تین جہتی": {
+      "ar": "ثلاثي الأبعاد (3D)",
+      "en": "3D, three-dimensional",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "gloss": null,
+      "source": "ur.wikipedia exact phrase «تین جہتی» 37 pages, top titles کرہ ارض · نقشہ · تصویر (HTTP 200, 2026-10-16, stage 4 s45-web.json and judge s7-web.json); the reference article «نقشہ» uses it of maps («بہت سے نقشے جامد دو جہتی ہوتے ہیں، تین جہتی …», stage 4). No Rekhta entry page of its own: the three slugs tried (meaning-of-tiin-jihatii, meaning-of-teen-jihatii, meaning-of-tiin-jahatii) redirect to the home page (proof re-fetch 2026-10-16, b21-ui/p1-rekhta.txt). The headword of the same sense is «سہ جہتی» (rekhtadictionary.com/meaning-of-sah-jihatii, HTTP 200, “three dimensional”; no part of speech on its card, b21-ui/p1-sah.txt). b21-ui/s7-web.json",
+      "status": "verified",
+      "note": "STAGE 7 (b21-ui, round 1): N331 C ruled, replacing the stage-1/4 proposal «سہ جہتی» in map.terrain after the on-05 blind reader called it bookish (item 5). Verified on HTTP-200 usage attestation (ur.wikipedia, the reference article on maps); no dictionary entry page of its own: nothing more is claimed. Used as an invariable adjective before «نقشہ» (the judge’s grammatical reading, not a dictionary label); the gender field is formal, «مذکر» being the gender of the noun it qualifies in its one use. Native compound, not a loan (P16 not engaged). «سہ جہتی» (Rekhta headword) is a correct synonym, recorded here for search and not used on /ur/ today; «تھری ڈی» refused (P16-test (1), (3)); the Latin «3D» is never written. Used in map.terrain only: «زمین کے نشیب و فراز کا تین جہتی نقشہ». ‖ ROUND 2: record corrected (the part of speech round 1 attributed to Rekhta struck; three slugs, not two); the on-r1 reader did not single the word out (item 14)."
+    },
+    "نشیب و فراز": {
+      "ar": "تضاريس",
+      "en": "terrain, relief (of the land)",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "gloss": null,
+      "source": "rekhtadictionary.com/meaning-of-nashiib-o-faraaz → final URL meaning-of-nasheb-o-faraaz (HTTP 200, 2026-10-16, re-read at stage 4): «نَشِیب و فَراز» — Origin: Persian — Noun, Masculine — “descent and ascent, height and hollow, ups and downs (Metaphorically) unevenness, roughness, ruggedness, vicissitudes (of fortune)”; ur.wikipedia exact phrase 63 pages, article «نشیب و فراز» (HTTP 200, 2026-10-16; re-counted by the judge, s7-web.json). b21-ui/s1-web2.json, s45-web.json",
+      "status": "verified",
+      "note": "STAGE 1 (b21-ui) proposal, STAGE 4 verified: gender read on the entry page (Noun, Masculine) and exercised in the text («زمین کے نشیب و فراز کا»). Written with «زمین کے» before it so the literal sense (relief) is read, not the figurative “ups and downs” (N333 A). Persian origin, not an English loan. ‖ STAGE 7 (b21-ui, round 1): kept; the on-05 reader called it bookish (item 5) but read the label as a 3D terrain map; no plainer attested phrase is in evidence. ‖ ROUND 2 (b21-ui): kept; a second reader (on-r1 item 14, moderate) also found the label bookish and read it correctly after a second read. A plainer phrase («زمین کی اونچ نیچ», «اونچائی نیچائی») is an option for the owner / the tmap.* batch, needing its own evidence."
+    }
+  },
+  "notes": [
+    {
+      "item": "Decision",
+      "text": "92 >= 90 (config pass_threshold): APPROVE, scored afresh (28 + 25 + 20 + 9 + 10). Round 2 changes NO text: the twelve strings are round 1’s, proofread on r1 (must-fix 0, should-fix 2, note 7) and read blind on r1 by a fresh reader. Both should-fix items were on the RECORD (a false Rekhta part of speech; an unscoped guard clause) and are corrected here; no string moved, so no further proof or blind read of the text is owed by this round."
+    },
+    {
+      "item": "Readers side by side (on-05, on-r1), every string the judge changed",
+      "text": "map.lead.a (change 0, «منتخب کریں» → «چنیں»): the 05 wording contested by the on-05 reader (items 7, 19); the judge’s wording confirmed by the on-r1 reader (item 17), contested by none. map.terrain (change 1, «سہ جہتی» → «تین جہتی»): the label contested by two (on-05 5 on the 05 wording; on-r1 14 on the r1 wording), both moderate, both reading it correctly after a second read. The on-r1 charge falls on the length and on «نشیب و فراز» (unchanged since stage 1), not on «تین جہتی»; the earlier «سہ جہتی» was itself contested, so there is no reader-passed wording to go back to. No text change: the remedy offered is Latin («3D») or unattested («اونچائی نیچائی»), and the sourced «نشیب و فراز» is not replaced on taste (07-judge.md); the cost is charged (nativeness 3, fit 1) and the option recorded."
+    },
+    {
+      "item": "Record corrected (proof items 1, 2, 7, 8)",
+      "text": "(1) «سہ جہتی» on Rekhta: “Adjective” struck in N331 evidence, termbase_final «تین جہتی» source and the verified/inferred note; three slugs tried for «تین جہتی», all redirecting home. (2) Guards scoped to full withdrawn wordings (next note). (7) N331’s guard wording: withdrawn / refused / not taken; N333 names «تین جہتی طبعی نقشہ» for the proofreader. (8) “No headword” for the loans «ٹیپ کریں» / «کلک کریں» replaced by P16-test (1) with “no dictionary entry was sought”."
+    },
+    {
+      "item": "Guards",
+      "text": "Guard clauses of interface batches bind every LATER interface batch (lib/rulings.mjs reads every file of the same kind; proof p1-guards.txt; round 1’s note “held to their own file only” was wrong). Each machine clause of N331–N333 now names only a full wording this batch withdrew, refused or did not take: N331 «زمین کے نشیب و فراز کا سہ جہتی نقشہ», «زمین کے نشیب و فراز کا تھری ڈی نقشہ», «زمین کے نشیب و فراز کا سہ ابعادی نقشہ»; N332 the three full sentences A, B, C of map.lead.a (A = «فہرست میں یا نقشے پر کسی بھی مقام کو منتخب کریں تو اس کا مختصر تعارف کھل جائے گا۔», byte for byte the 05 text; B and C the same sentence with «پر کلک کریں» and «کو دبائیں»); N333 «سہ جہتی طبعی نقشہ». The fragment clauses of round 1 («کسی بھی مقام کو منتخب کریں تو», «کسی بھی مقام پر ٹیپ کریں», «کسی بھی مقام پر کلک کریں», «کسی بھی مقام کو دبائیں») are gone; the loans stay barred by P16 for the proofreader. s7r2-make.mjs asserts that clause A stands in the 05 text and that no clause stands in the r2 text."
+    },
+    {
+      "item": "FOR THE OWNER (one line each)",
+      "text": "(1) The map list sorts «“ارض الحضارات”» first because of its opening quotation mark (P15): sort on the title without its marks? (two readers). (2) Souq al-Hamidiyah is filed under historic sites though its name says market (two readers looked for it under markets). (3) «سوق الحمیدیہ» / «سوق القیصریہ» keep «سوق» where other markets say «بازار» (readers: «حمیدیہ بازار»). (4) Bare Arabic names with nothing to say what they are: «دوغہ الغراش», «رباط آل ابی بکر الملا», «بیت البیعہ», «مدرسہ امیریہ». (5) «اشتراک کریں»: readers expect «شیئر کریں» (N3 / P16-test refused it). (6) «جبل کنزان پارک (الشعبہ)» under nature, bracket unexplained, beside «جبل کنزان». (7) «جبل» in names vs «جھیل» for lakes (P3a). (8) «الخلیفہ کا ورثہ عجائب گھر» (read as a calque, moderate on r1), «الاحساء کے روایتی گھر کا عجائب گھر», «کھیلوں کے اسٹیڈیم کا پارک» read heavy or generic. (9) The zoo under parks; «العقیر» bare beside three «العقیر کا/کی …» entries. (10) «جھیل الدیلفوون»: the doubled «وو» read as a typo by two readers — re-check against the Arabic. (11) The header «بازار، پارک اور زرعی فارم» vs the category chips (navigation queue). (12) Mosque titles in two orders («مسجد X» / «X کی مسجد») split mosques across the alphabetical list (new on r1). (13) The terrain link label «زمین کے نشیب و فراز کا تین جہتی نقشہ» read as bookish and long by two readers: a plainer native phrase for “terrain” («زمین کی اونچ نیچ», «اونچائی نیچائی») would need its own evidence — best ruled when the terrain page itself is translated (tmap.*); and readers cannot tell the link opens another (English) page (N308). (14) Option, not taken: the locate button as an action, «نقشے پر میری جگہ دکھائیں» (the source is a noun phrase)."
+    },
+    {
+      "item": "For the coordinator",
+      "text": "termbase_final: «تین جہتی» enters verified on usage attestation (source corrected: no part of speech claimed; three slugs); «نشیب و فراز» enters verified (round-2 line added). The calibration of this round supersedes round 1’s N331–N333 (the checker takes the file written last). No new ruling id was needed (N341 onwards unused). The comment at the head of tools/lib/rulings.mjs (around line 41: “the interface batch is held to its own file”) still contradicts the code and the corrected README; left as found (tools are not the judge’s to edit)."
+    },
+    {
+      "item": "Verified vs inferred",
+      "text": "Verified (HTTP 200, 2026-10-16): ur.wikipedia counts «تین جہتی» 37, «سہ جہتی» 41, «تین جہتی نقشہ» 0, «نشیب و فراز» 63 (s7-web.json); Rekhta «سہ جہتی» entry, meaning “three dimensional”, no part of speech on its card (p1-sah.txt); no Rekhta entry page for «تین جہتی» under three slugs (p1-rekhta.txt); Rekhta «انتخاب» Noun, Masculine, Singular (p1-intikhab2.txt) — the last three fetched by the proof pass and re-read here from its files. Guard scoping verified by assertion in s7r2-make.mjs and by check-s7. Taken from stage 4 / the proof (not re-fetched): the quotation from the article «نقشہ», the popup content in MapView.astro, «ٹیپ کریں» 0, «منتخب کریں» 45. Inferred: that a plainer native phrase for “terrain” exists and would read better (no evidence gathered); that the on-r1 reader’s charge falls on «نشیب و فراز» rather than «تین جہتی» (from his own rewrite, which replaces the first and keeps the 3D sense)."
+    }
+  ]
+}
