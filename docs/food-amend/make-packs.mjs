@@ -38,6 +38,9 @@ const DISHES = [[1, 'mandi', 'المندي — جملة صريحة أنه يُن
   [7, 'date-bread', 'خبز التمر — تُحذف النقحرة «(khubz ahmar)» وحدها؛ الاسم المترجم للخبز الأحمر باقٍ على البطاقة (C5b)']];
 const KEY = { de: 'DE', zh: 'ZH', ru: 'RU' };
 
+// the value as it stands inside a single-quoted TS literal: the backslash first, then the quote
+const tsEsc = (s) => String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+
 const G0 = groups(then(DATA)), G1 = groups(now(DATA));
 const V0 = then(VIEW), V1 = now(VIEW);
 for (const lg of ['de', 'zh', 'ru']) {
@@ -51,7 +54,7 @@ for (const lg of ['de', 'zh', 'ru']) {
   const positions = [];
   for (const [i, slug, role] of DISHES) {
     const cur = G1['DISH_GROUPS_' + KEY[lg]][0].dishes[i].pre;
-    const ln = lineOf(data, cur.replace(/'/g, "\\'"));
+    const ln = lineOf(data, tsEsc(cur));
     positions.push({
       id: lg + '-food-' + slug, file: DATA, line: ln, field: 'DISH_GROUPS_' + KEY[lg] + '[0].dishes[' + i + '].pre',
       role: 'نبذة بطاقة الطبق في /' + lg + '/food/ — مطويّة حتى يُضغط زر البطاقة؛ نصّ خام لا ماركداون. ' + role,
@@ -62,7 +65,7 @@ for (const lg of ['de', 'zh', 'ru']) {
   }
   const cur = methodP2(view, '\nconst ' + KEY[lg] + ' = {');
   positions.push({
-    id: lg + '-food-methodP2', file: VIEW, line: lineOf(view, cur.replace(/'/g, "\\'")), field: KEY[lg] + '.methodP2',
+    id: lg + '-food-methodP2', file: VIEW, line: lineOf(view, tsEsc(cur)), field: KEY[lg] + '.methodP2',
     role: 'الفقرة الثانية من ملاحظة «حول هذه الصفحة» أسفل /' + lg + '/food/ — نصّ خام. قرار إياد: جملة «تُقدَّم أطباق هذه الصفحة في مطاعم الأحساء على مدار السنة» أولاً، ثم المناسبات الأربع (العدد والمناسبات كما هي)',
     current: cur,
     en_before: methodP2(V0, '\n  en: {'), en_after: methodP2(V1, '\n  en: {'),
