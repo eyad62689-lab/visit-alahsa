@@ -49,3 +49,7 @@ export const VISA_FORBIDDEN_PHRASES = ['لم يُتحقَّق', 'لم يتحقق
 
 /** حدود الأسئلة الشائعة والروابط الداخلية والعنوان والوصف (قرار 2026-10-16). */
 export const VISA_LIMITS = { faqMin: 5, faqMax: 7, internalLinksMin: 5, titleMax: 60, descMin: 140, descMax: 160 };
+
+/** حدود العنوان والوصف بلغة الصفحة: الحدود العامة مُعايَرة على الحرف اللاتيني، والصينية تُعرض في
+ *  نتائج البحث بنحو 30 حرفاً للعنوان و70–80 للوصف (رصد المترجم 2026-10-17)، فحدودها أضيق. */
+export const visaLimits = (lang) => (lang === 'zh' ? { ...VISA_LIMITS, titleMax: 30, descMin: 60, descMax: 90 } : VISA_LIMITS);
