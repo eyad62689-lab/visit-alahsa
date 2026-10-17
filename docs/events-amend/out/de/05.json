@@ -1,0 +1,58 @@
+{
+  "lang": "de",
+  "stage": "05",
+  "batch": "events-amend",
+  "positions": [
+    {
+      "id": "de-ev-kafu-intro",
+      "current": "",
+      "proposed": "„Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den arabischen Ländern der Golfregion gepflegt wird.",
+      "why": "03 verbatim. Fence, register, termbase and mechanical checks all pass; no sentence smells of translation (no English word order, no es-gibt, relative clauses resolved, Satzklammer short)."
+    }
+  ],
+  "changes_from_previous_stage": [],
+  "facts_removed": [],
+  "facts_restored": [],
+  "termbase_ops": [
+    {
+      "op": "add",
+      "entry": {
+        "en": "Ghabqa (الغبقة) — Ramadan-night meal and social custom of the Gulf region",
+        "de": "die Ghabqa",
+        "artikel": "die",
+        "source": "Approved German act of the event: src/data/events.ts → TEXT_DE['kafu-nights'].acts «„Ghabqa“-Abendessen» (Umschrift, Anführungszeichen); English «“Ghabqa” dinner»; meaning from owner ruling 2026-10-17 («الغبقة وجبة وعادة اجتماعية شعبية تُقام في ليالي شهر رمضان المبارك في دول الخليج العربي»). Genus feminine: Arabic feminine noun غبقة (tāʾ marbūṭa); the German gloss heads are feminine («eine Mahlzeit», «Sitte»).",
+        "note": "Stage 5 web check 2026-10-17 (WebSearch): no German-language source (unesco.de/at, de.wikipedia) found; only English and Arabic Gulf press (e.g. dohanews.co, emaratalyoum.com) using «ghabqa/ghabga» for a late-night Ramadan meal and gathering. Spelling «Ghabqa» kept from the approved act [house-derived]. Quoted at first mention in running text («die „Ghabqa“»). The intro sentence is the gloss; no bracket gloss. Do NOT add the press detail (time between iftar and suhoor, camel-milk etymology, Qatar heritage listing) to any text: not in the source.",
+        "status": "proposed",
+        "stage": "05",
+        "batch": "events-amend",
+        "added": "2026-10-17"
+      },
+      "why": "Carried from stage 01 with the stage-5 verification result."
+    },
+    {
+      "op": "annotate",
+      "entry_en": "Kafu Nights",
+      "field": "note",
+      "append": "events-amend 2026-10-17: owner ruling supplies the meaning («كفو» from «كوفئ»: to be rewarded, to earn reward and praise). It is explained only in the intro paragraph of the event page (TEXT_DE['kafu-nights'].intro), never glossed inside the name; the name stays «die Kafu-Nächte».",
+      "why": "Carried from stage 01: the existing note («No meaning supplied for 'Kafu'») is superseded by the owner ruling and would otherwise invite a later stage to delete the intro as an added fact."
+    }
+  ],
+  "source_defects": [],
+  "checklist": [
+    { "item": "Stage 4 fact fence vs en_after (no Arabic by owner ruling)", "result": "PASS", "detail": "Every clause maps to the source: Arabic verb / „belohnt werden“ / Lohn und Lob ernten (earn reward and praise) / Höhepunkte der Nächte / „Ghabqa“ / volkstümliche Mahlzeit (popular meal) und gesellschaftliche Sitte (social custom) / gepflegt (held) / Nächte des heiligen Monats Ramadan / arabische Länder der Golfregion. Nothing added (no timing between iftar and suhoor, no etymology beyond the source, no university, no 'Gulf praise word'); nothing dropped." },
+    { "item": "Stage 4 Übersetzerdeutsch / register", "result": "PASS", "detail": "German word order, verbal style, two sentences as in the source." },
+    { "item": "Stage 4 proper nouns vs termbase (gender)", "result": "PASS", "detail": "Kafu (Latin, as in die Kafu-Nächte); die Ghabqa (new entry, feminine, spelled as approved act); Ramadan as on the page; Arab Gulf states = die arabischen Länder der Golfregion (termbase); no Persischer/Arabischer Golf." },
+    { "item": "Stage 4 exonyms / Golf", "result": "PASS", "detail": "Golfregion per entry 7." },
+    { "item": "5.1 Rechtschreibung (Duden, ß, umlauts, compounds)", "result": "PASS", "detail": "zurück, Höhepunkten, Nächte, Ländern, volkstümliche; no ss/ß word present, script found no Swiss forms." },
+    { "item": "5.2 Durchkopplung", "result": "PASS", "detail": "No proper-noun compound in the sentence." },
+    { "item": "5.3 Grammatik", "result": "PASS", "detail": "ein Verb, das … bedeutet; die „Ghabqa“, eine … Mahlzeit und … Sitte, die … gepflegt wird (fem. antecedents, singular for one concept); zu den Höhepunkten (Dat. Pl.); in den Nächten des heiligen Monats; in den arabischen Ländern." },
+    { "item": "5.4 Anrede", "result": "PASS", "detail": "No address; zero du/dein." },
+    { "item": "5.5 Termbase compliance", "result": "PASS", "detail": "100 %." },
+    { "item": "5.6 Interpunktion", "result": "PASS", "detail": "Three „…“ pairs balanced (script: 3 × U+201E, 3 × U+201C), no straight or English closing quotes; commas before both relative clauses; colon as in source; no U+2014 (not needed)." },
+    { "item": "5.7 Zahlen", "result": "PASS", "detail": "No digits in the text; no Arabic-Indic digits (script)." },
+    { "item": "5.8 Denglisch", "result": "PASS", "detail": "«Höhepunkte», equal to the page label actsK de 'Höhepunkte' (EventDetailView.astro, script-verified); no Highlight." },
+    { "item": "5.9 Glossierung", "result": "PASS", "detail": "Kafu and Ghabqa glossed once each by the sentence itself, in body text; Ramadan unglossed as elsewhere on the page." },
+    { "item": "5.10 Struktur / plain-text constraints", "result": "PASS", "detail": "Script: no U+00A0, no U+2009, no line break, no Markdown, plain U+0020 spaces only, 306 chars, unescaped (apply tool escapes)." }
+  ],
+  "notes_to_next_stage": "Stage 05 changed nothing (03 verbatim). For 06 (blind reader): cut /de/events/kafu-nights/ from dist and insert this paragraph as the intro under the H1 «Kafu-Nächte». Points a blind reader may raise, with the judge's frame: (a) «Lohn und Lob ernten» after the colon explains «belohnt werden» – source structure («to be rewarded»: to earn reward and praise); (b) «der Nächte» refers to the event named in the H1 directly above; (c) a reader may want to know when the Ghabqa is eaten – the source deliberately says nothing (BRIEF), not a defect; (d) «Sitte» vs «Brauch»: either is a faithful rendering of «custom», «Sitte» chosen for the single-gender relative clause. Termbase: one add (die Ghabqa, house-derived, no German web source) and one note annotation on «Kafu Nights»."
+}

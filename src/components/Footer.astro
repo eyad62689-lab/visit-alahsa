@@ -20,7 +20,7 @@ const zh = lang === 'zh';
 // النظير الإنجليزي — تسمية إنجليزية لصفحة إنجليزية.
 const de = lang === 'de';
 const ru = lang === 'ru';
-// الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة تحت /ur/ (فروع صريحة: listBase وleisureBase ورابطا #name والثمار والمطبخ والخريطة)،
+// الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة والفعاليات تحت /ur/ (فروع صريحة: listBase وleisureBase ورابطا #name والثمار والمطبخ والخريطة والفعاليات)،
 // وكل رابط آخر يقع على الفرع الإنجليزي الأخير في سطره حتى يُبنى قسمه.
 const ur = lang === 'ur';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
@@ -40,7 +40,7 @@ const cols = [
       { label: t('nav.food'), href: ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : ur ? '/ur/food/' : '/en/food/' },
       { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/' },
       { label: t('nav.stay'), href: ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : '/en/stay/' },
-      { label: t('foot.l.events'), href: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/' },
+      { label: t('foot.l.events'), href: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : '/en/events/' },
       { label: t('nav.trails'), href: ar ? '/trails/' : `/${builtLang(lang)}/trails/` },
       // دليل المتاجر الإلكترونية (أُعلن 2026-10-09) — في التذييل لا الترويسة: الشريط مقيس إلى حدّه.
       // التسمية عنوان الصفحة المعتمد (title_tag) بلغتها، فلا نصّ جديد يُكتب لـzh/de/ru خارج الخطوط.

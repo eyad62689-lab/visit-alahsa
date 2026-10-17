@@ -175,6 +175,46 @@ const C = localize(lang, {
     moreH: 'Другие сезоны',
     back: 'Все события',
   },
+  ur: {
+    // الكتلة الأوردية — خط ur-translation-pipeline (دفعة b22-ui)
+    eyebrow: 'نخلستان کا ایک موسم',
+    placeK: 'جگہ',
+    orgK: 'منتظمین',
+    seasonK: 'موسم',
+    timeK: 'کب',
+    spanK: 'اندازاً دورانیہ',
+    actsK: 'نمایاں سرگرمیاں',
+    ticketK: 'اپنا ٹکٹ محفوظ کرائیں',
+    hoursK: 'اوقات',
+    faqH: 'عمومی سوالات',
+    relatedH: 'یہ بھی دیکھیں',
+    mapH: 'نقشے پر',
+    mapOpen: 'گوگل میپس پر دیکھیں',
+    mapNone: 'منتظمین نے ابھی اس تقریب کی جگہ کی ٹھیک ٹھیک نشاندہی نہیں کی، اس لیے یہاں نقشہ نہیں دکھایا گیا۔',
+    mapFrameTitle: 'تقریب کی جگہ کا نقشہ',
+    noticeH: 'جانے سے پہلے',
+    notice: 'یہ تقریب ہر سال تقریباً اسی موسم میں لوٹ آتی ہے، البتہ اس کی تاریخیں اور تفصیلات سال بہ سال بدل سکتی ہیں۔ جانے سے پہلے منتظمین کے اعلانات سے تصدیق کر لیں۔',
+    statusL: {
+      confirmed: 'اس سال تصدیق شدہ',
+      expected: 'متوقع وقت',
+      tba: 'اعلان کا انتظار ہے',
+    },
+    cd: {
+      pre: {
+        one: 'آغاز کل ہوگا',
+        other: '{n} دن بعد شروع',
+      },
+      today: 'آج سے شروع',
+      last: 'آج آخری دن ہے',
+      left: {
+        one: '1 دن باقی',
+        other: '{n} دن باقی',
+      },
+    },
+    crumb: 'تقریبات',
+    moreH: 'دوسرے موسم',
+    back: 'تمام تقریبات',
+  },
 });
 
 // نصوص الفعالية المؤقتة (oneOff) — عربية وإنجليزية فقط: صفحاتها لا تُبنى بغيرهما
@@ -215,9 +255,9 @@ const zh = lang === 'zh';
 const ru = lang === 'ru';
 const ur = lang === 'ur';
 const de = lang === 'de';
-const listHref = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/';
+const listHref = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : '/en/events/';
 const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/';
-const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : '/en/events/';
+const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : '/en/events/';
 
 // الإحداثيات تُسحب من ملف المعلم الموثّق — لا تُقدَّر يدوياً (قاعدة المشروع).
 const venue = ev.venue
@@ -254,14 +294,16 @@ const jsonLd: object[] = [
 // يكفيان — ثلاثة كانت تتجاوز 160 حرفاً في بعض الفعاليات (تدقيق 2026-08-28).
 // والروسية بنقطة بين الحقول: قيم البطاقة تبدأ بحرف كبير («Зима», «Примерно в декабре»)، والحرف الكبير
 // بعد فاصلة أو شرطة خطأ إملائي في الروسية — والنقطة تحفظ القيم المعتمدة كما هي بلا تصغير آلي.
-const sep = ar ? '، ' : ', ';
+// والأوردو بفاصلتها «،» وخاتمتها «۔» (U+06D4) كمتونها المعتمدة — لا النقطة اللاتينية.
+const sep = ar || ur ? '، ' : ', ';
+const stop = ur ? '۔' : '.';
 // والألمانية بـU+2013 لا U+2014 (titleSep وC17)، والموسم والموعد بـ«·» كخلية الجدول: قيمة الموعد تبدأ بحرف
 // كبير («Etwa im Dezember») فلا تلي فاصلة.
 const desc = ev.seoDesc ?? (ru
   ? `${[ev.name, ev.place, ev.season, ev.time, ...ev.acts.slice(0, 2)].join('. ')}.`
   : de
     ? `${ev.name} – ${ev.place}. ${ev.season} · ${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`
-    : `${ev.name} — ${ev.place}. ${ev.season}${sep}${ev.time}. ${ev.acts.slice(0, 2).join(sep)}.`);
+    : `${ev.name} — ${ev.place}${stop} ${ev.season}${sep}${ev.time}${stop} ${ev.acts.slice(0, 2).join(sep)}${stop}`);
 // Event schema للنسخ المؤكدة فقط: قوقل يشترط startDate محدداً، ومواسمنا تقريبية
 // بقرار محتوى ملزم — فلا تُضاف إلا حين يوثّق المصدر الرسمي تاريخين دقيقين (startISO/endISO).
 if (ev.startISO && ev.endISO) {
