@@ -17,7 +17,8 @@
 // على الأقل، سطر التحديث، hreflang بين اللغتين، والعنوان والوصف ضمن حدودهما.
 //
 // ملاحظة المعاينة «يجب فتح كل رابط يدوياً قبل النشر» لا تظهر في الإنتاج: تُصيَّر فقط حين
-// يبني Netlify بسياق غير الإنتاج (CONTEXT = deploy-preview أو branch-deploy).
+// يبني Netlify بسياق غير الإنتاج (CONTEXT = deploy-preview أو branch-deploy)، موسومةً lang="ar"
+// لأنها نصّ عربي على صفحات بكل اللغات (حارس الأوردو C45 يستثني ما وُسم بلغة أخرى).
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
@@ -73,7 +74,7 @@ const jsonLd = [
 
     <div class="container vg-wrap">
       {isPreview && (
-        <p class="vg-preview-note" role="note" data-vg-preview-note data-pagefind-ignore>{VISA_PREVIEW_NOTE}</p>
+        <p class="vg-preview-note" role="note" lang="ar" dir="rtl" data-vg-preview-note data-pagefind-ignore>{VISA_PREVIEW_NOTE}</p>
       )}
       <article class="vg-body" data-vg-body>
         <section class="card vg-sec" aria-labelledby="vg-intro">
