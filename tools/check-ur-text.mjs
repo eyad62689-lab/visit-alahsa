@@ -570,3 +570,38 @@ export function checkUrRound2Rulings(pages, termbase) {
   if (!empty) round2Emptiness(out);
   return Object.values(out);
 }
+
+// اسم «ليالي كفو» بفتحة على الكاف تفرقه عن «کُفُو» (الكفاءة في الزواج)؛ الرسم بلا فتحة مسحوب (حكم المالك N406)
+export const KAFU_NAME = 'کَفو';
+export const KAFU_NAME_RETIRED = 'کفو';
+const FATHA = '\u064E';
+
+/**
+ * C71. @param {{ rel: string, html: string }[]} pages صفحات /ur/ المبنية
+ * @param {object} termbase المعجم محلَّلاً
+ * @returns {{ id: string, problems: string[], stats: Record<string, number> }[]}
+ */
+export function checkUrOwnerRulings(pages, termbase) {
+  const tbText = JSON.stringify(termbase);
+  const kafu = { id: 'N406', problems: [], stats: { mentions: 0, carriers: 0 } };
+  for (const t of [KAFU_NAME, KAFU_NAME_RETIRED]) if (!tbText.includes(t)) kafu.problems.push(`سلسلة حارس غائبة عن المعجم: «${t}»`);
+  if (KAFU_NAME !== KAFU_NAME_RETIRED[0] + FATHA + KAFU_NAME_RETIRED.slice(1)) kafu.problems.push(`«${KAFU_NAME}» ليس «${KAFU_NAME_RETIRED}» بفتحة U+064E على أوله`);
+  let urduBlocks = 0;
+
+  for (const { rel, html } of pages) {
+    const blocks = urTextBlocks(html).blocks.filter((b) => ARABIC_SCRIPT.test(b));
+    urduBlocks += blocks.length;
+    let has = false;
+    for (const b of blocks) {
+      const i = wordAt(b, KAFU_NAME_RETIRED);
+      if (i !== -1) kafu.problems.push(`${rel}: «${KAFU_NAME_RETIRED}» بلا فتحة ⇐ «${snip(b, i, KAFU_NAME_RETIRED.length)}»`);
+      for (let j = wordAt(b, KAFU_NAME); j !== -1; j = wordAt(b, KAFU_NAME, j + 1)) { kafu.stats.mentions++; has = true; }
+    }
+    if (has) kafu.stats.carriers++;
+  }
+
+  if (!pages.length || urduBlocks === 0) kafu.problems.push('لا نصّ أوردياً في صفحات /ur/ — الحارس صار فارغاً');
+  else if (kafu.stats.mentions === 0) kafu.problems.push(`«${KAFU_NAME}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+  kafu.stats.blocks = urduBlocks;
+  return [kafu];
+}
