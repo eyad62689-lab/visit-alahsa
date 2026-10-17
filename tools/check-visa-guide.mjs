@@ -17,13 +17,20 @@ import {
   VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_UPDATED_LINE, VISA_FEES_LINE, VISA_PREVIEW_NOTE,
   VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, VISA_LIMITS, visaLimits,
 } from '../src/lib/visa-guide.mjs';
+import { cutBlocks } from './check-visit-card.mjs';
 
 export { VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_PREVIEW_NOTE };
 
 const DEC = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ' };
 const decode = (t) => t.replace(/&(?:amp|quot|#39|#x27|lt|gt|nbsp);/g, (e) => DEC[e]);
-// إسقاط <script> و<style> بوسم إغلاق يحتمل المسافة والحالة (</script >، </SCRIPT>) ثم كل الوسوم — مرشّح وسوم كامل لا جزئي
-const strip = (html) => decode(html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, ' ').replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+// إسقاط <script> و<style> بالمسح الخطي (cutBlocks من check-visit-card.mjs، لا تعبير نمطي على HTML)
+// ثم تقشير الوسوم حتى الاستقرار — الشكل الذي لا يعدّه CodeQL js/bad-tag-filter.
+const stripTags = (html) => {
+  let prev;
+  do { prev = html; html = html.replace(/<[^<>]*>/g, ' '); } while (html !== prev);
+  return html;
+};
+const strip = (html) => decode(stripTags(cutBlocks(cutBlocks(html, 'script').out, 'style').out)).replace(/\s+/g, ' ').trim();
 const norm = (t) => decode(t).replace(/\s+/g, ' ').trim();
 
 /** كل الوصلات في قطعة HTML: href وtarget وrel ونصّها. */
