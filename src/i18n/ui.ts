@@ -1445,6 +1445,8 @@ export const ui = {
     'foot.l.taste': 'Кухня и финики',
     'foot.l.stay': 'Где остановиться',
     'foot.l.getThere': 'Как добраться',
+    'foot.l.visa': 'Как получить визу',
+    'plan.visa': 'Как получить визу',
     'foot.l.routes': 'Рекомендуемые маршруты',
     'foot.l.events': 'События',
     'foot.l.about': 'Об Аль-Ахсе',

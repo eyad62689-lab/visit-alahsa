@@ -75,25 +75,31 @@ const parseRich = (s) => {
   return parts;
 };
 
-// ── بناء السجلّ من بنية الإنجليزية ──
-const { VISA_GUIDE } = await import(path.join(ROOT, 'src/data/visa-guide.ts'));
-const C = structuredClone(VISA_GUIDE.en);
-C.seo = { title: S['seo.title'], description: S['seo.description'] };
-C.h1 = S.h1; C.lead = S.lead; C.feesLine = S.feesLine; C.verifyLine = S.verifyLine; C.updatedLine = S.updatedLine;
-C.intro = { h: S['intro.h'], parts: parseRich(S['intro.parts']) };
-C.table.h = S['table.h']; C.table.caption = S['table.caption'];
-C.table.head = C.table.head.map((_, i) => S[`table.head.${i}`]);
-C.table.rows = C.table.rows.map((r, i) => r.map((_, j) => S[`table.rows.${i}.${j}`]));
-C.routes = C.routes.map((r) => ({
-  id: r.id, h: S[`routes.${r.id}.h`],
-  who: r.who.label ? { label: S[`routes.${r.id}.who.label`], text: S[`routes.${r.id}.who.text`] } : { text: S[`routes.${r.id}.who.text`] },
-  ...(r.validity ? { validity: { label: S[`routes.${r.id}.validity.label`], text: S[`routes.${r.id}.validity.text`] } } : {}),
-  cta: { label: S[`routes.${r.id}.cta.label`], href: r.cta.href },
-}));
-C.arrive = { h: S['arrive.h'], air: parseRich(S['arrive.air']), land: parseRich(S['arrive.land']), more: parseRich(S['arrive.more']) };
-C.next = { h: S['next.h'], items: C.next.items.map((_, i) => ({ label: S[`next.items.${i}.label`], parts: parseRich(S[`next.items.${i}.parts`]) })) };
-C.faq = { h: S['faq.h'], items: C.faq.items.map((_, i) => ({ q: S[`faq.items.${i}.q`], a: S[`faq.items.${i}.a`] })) };
-C.links = { h: S['links.h'], head: C.links.head.map((_, i) => S[`links.head.${i}`]), rows: C.links.rows.map((r, i) => ({ route: S[`links.rows.${i}.route`], href: r.href, org: S[`links.rows.${i}.org`] })) };
+// ── بناء السجلّ من بنية pack.json (لا استيراد لـvisa-guide.ts: Node لا يحلّ استيراداً بلا امتداد) ──
+const ROUTE_IDS = ['tourist', 'gcc', 'umrah', 'stopover', 'family', 'business', 'package', 'uk'];
+const LINK_ROWS = ['tourist', 'gcc', 'umrah', 'stopover', 'family', 'business', 'package', 'uk', 'causeway'];
+const idx = (prefix) => [...new Set(keys.filter((k) => k.startsWith(prefix)).map((k) => Number(k.slice(prefix.length).split('.')[0])))].sort((a, b) => a - b);
+const C = {
+  seo: { title: S['seo.title'], description: S['seo.description'] },
+  h1: S.h1, lead: S.lead, feesLine: S.feesLine, verifyLine: S.verifyLine, updatedLine: S.updatedLine,
+  intro: { h: S['intro.h'], parts: parseRich(S['intro.parts']) },
+  table: {
+    h: S['table.h'], caption: S['table.caption'],
+    head: idx('table.head.').map((i) => S[`table.head.${i}`]),
+    rows: idx('table.rows.').map((i) => idx(`table.rows.${i}.`).map((j) => S[`table.rows.${i}.${j}`])),
+  },
+  routes: ROUTE_IDS.map((id) => ({
+    id, h: S[`routes.${id}.h`],
+    who: S[`routes.${id}.who.label`] ? { label: S[`routes.${id}.who.label`], text: S[`routes.${id}.who.text`] } : { text: S[`routes.${id}.who.text`] },
+    ...(S[`routes.${id}.validity.text`] ? { validity: { label: S[`routes.${id}.validity.label`], text: S[`routes.${id}.validity.text`] } } : {}),
+    cta: { label: S[`routes.${id}.cta.label`], href: VISA_OFFICIAL_LINKS[id] },
+  })),
+  arrive: { h: S['arrive.h'], air: parseRich(S['arrive.air']), land: parseRich(S['arrive.land']), more: parseRich(S['arrive.more']) },
+  next: { h: S['next.h'], items: idx('next.items.').map((i) => ({ label: S[`next.items.${i}.label`], parts: parseRich(S[`next.items.${i}.parts`]) })) },
+  faq: { h: S['faq.h'], items: idx('faq.items.').map((i) => ({ q: S[`faq.items.${i}.q`], a: S[`faq.items.${i}.a`] })) },
+  links: { h: S['links.h'], head: idx('links.head.').map((i) => S[`links.head.${i}`]), rows: LINK_ROWS.map((id, i) => ({ route: S[`links.rows.${i}.route`], href: VISA_OFFICIAL_LINKS[id], org: S[`links.rows.${i}.org`] })) },
+};
+if (C.table.rows.length !== 8 || C.faq.items.length !== 7 || C.next.items.length !== 5 || C.links.rows.length !== 9) throw new Error('بنية pack.json غير متوقعة');
 // الروابط الرسمية داخل النصوص الغنية يجب أن تبقى هي نفسها
 for (const p of [...C.arrive.land]) if (typeof p !== 'string' && /^https?:/.test(p.href) && !official.has(p.href)) throw new Error('رابط رسمي محرَّف');
 

@@ -1479,7 +1479,7 @@ async function main() {
     if (problems.length) fail('C28', `دليل التأشيرات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else {
       const per = (f) => VISA_LANGS.map((l) => stats[l]?.[f] ?? 0).join('/');
-      pass('C28', `دليل التأشيرات بلغتيه (${VISA_LANGS.join('/')}): ${per('words')} كلمة بلا عبارة شك ولا رسم ولا عملة، ${per('external')} رابطاً خارجياً كلها رسمية بـtarget=_blank rel=noopener، ${per('faq')} أسئلة مطابقة لـFAQPage، ${per('internal')} روابط داخلية بشرطة ختامية، العنوان ${per('title')} والوصف ${per('desc')} حرفاً ضمن الحدود، hreflang متبادل في الصفحة وsitemap، وملاحظة المعاينة ${!context || context === 'production' ? 'غائبة (إنتاج)' : `حاضرة (${context})`}`);
+      pass('C28', `دليل التأشيرات بلغاته (${VISA_LANGS.join('/')}): ${per('words')} كلمة بلا عبارة شك ولا رسم ولا عملة، ${per('external')} رابطاً خارجياً كلها رسمية بـtarget=_blank rel=noopener، ${per('faq')} أسئلة مطابقة لـFAQPage، ${per('internal')} روابط داخلية بشرطة ختامية، العنوان ${per('title')} والوصف ${per('desc')} حرفاً ضمن الحدود، hreflang متبادل في الصفحة وsitemap، وملاحظة المعاينة ${!context || context === 'production' ? 'غائبة (إنتاج)' : `حاضرة (${context})`}`);
     }
   }
 

@@ -8,23 +8,23 @@
 // خطوط الترجمة فلا رابط إليه ولا hreflang.
 
 /** مسارا الصفحة بلغتيها — بشرطة ختامية (تطابق canonical). مصدر hreflang ومبدّل اللغة وsitemap. */
-export const VISA_GUIDE_ALT = { ar: '/دليل-التأشيرات/', en: '/en/visa-guide/', zh: '/zh/visa-guide/' };
+export const VISA_GUIDE_ALT = { ar: '/دليل-التأشيرات/', en: '/en/visa-guide/', zh: '/zh/visa-guide/', ru: '/ru/visa-guide/', de: '/de/visa-guide/' };
 
 /** المسار العربي — يبقى باسمه القديم لمن يستورده (التذييل، «خطّط»، llms.txt، sitemap). */
 export const VISA_GUIDE_PATH = VISA_GUIDE_ALT.ar;
 
 /** اللغتان المبنيتان للصفحة. zh/de/ru/ur تُضاف هنا يوم تمرّ نصوصها بخطوط الترجمة. */
-export const VISA_LANGS = ['ar', 'en', 'zh'];
+export const VISA_LANGS = ['ar', 'en', 'zh', 'ru', 'de'];
 
 /** رابط الصفحة بلغة الطلب — غير المبنيّ يقصد الإنجليزية (لا رابط إلى صفحة غير موجودة). */
 export const visaHref = (lang) => (lang === 'ar' ? VISA_GUIDE_ALT.ar : VISA_GUIDE_ALT.en);
 
 /** تاريخ آخر تعديل على المحتوى (ISO لـdateModified) وسطره المرئي بلغتيه — حرفياً، يحرسه C28. */
 export const VISA_UPDATED_ISO = '2026-10-16';
-export const VISA_UPDATED_LINE = { ar: 'تاريخ آخر تحديث: 16 أكتوبر 2026', en: 'Last updated: 16 October 2026', zh: '最后更新：2026 年 10 月 16 日' };
+export const VISA_UPDATED_LINE = { ar: 'تاريخ آخر تحديث: 16 أكتوبر 2026', en: 'Last updated: 16 October 2026', zh: '最后更新：2026 年 10 月 16 日', ru: 'Последнее обновление: 16 октября 2026 года', de: 'Stand: 16. Oktober 2026' };
 
 /** سطر الرسوم العام — الذكر الوحيد للرسوم في الصفحة، حرفياً بكل لغة، يحرسه C28. */
-export const VISA_FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.', zh: '签证费用将在官方平台提交申请时显示。' };
+export const VISA_FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.', zh: '签证费用将在官方平台提交申请时显示。', ru: 'Размер визового сбора вы увидите при подаче заявки на официальной платформе.', de: 'Die Gebühren sehen Sie bei der Antragstellung auf der offiziellen Plattform.' };
 
 /** ملاحظة التحرير — في معاينة النشر وطلب الدمج فقط، ولا تظهر في الإنتاج (قرار إياد). */
 export const VISA_PREVIEW_NOTE = 'يجب فتح كل رابط يدوياً قبل النشر';
