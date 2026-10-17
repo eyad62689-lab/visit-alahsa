@@ -1,0 +1,87 @@
+{
+  "stage": "05-proofreader",
+  "batch": "b24-ui",
+  "strings": {
+    "ev.kafu-nights.intro": "“کفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہے۔ اسے الاحساء میں شاہ فیصل یونیورسٹی منعقد کرتی ہے، اور یہ میلہ پہلی بار 2024 میں ہوا۔ “کفو” عربی کے ایک فعل سے نکلا ہے جس کا مطلب ہے “صلہ پانا”، یعنی انعام اور تعریف حاصل کرنا۔ ان راتوں کی نمایاں سرگرمیوں میں “غبقہ” بھی شامل ہے۔ یہ خلیجی عرب ممالک میں رمضان المبارک کی راتوں کا ایک مقبول کھانا اور سماجی رسم ہے۔"
+  },
+  "checklist": [
+    {
+      "n": 1,
+      "name": "letterforms",
+      "result": "PASS",
+      "detail": "Own scan (s5-scan.mjs → s5-scan.txt), every code point of the string (360), regex [\\u064A\\u0643\\u0629\\u0647\\u0649\\u0623\\u0625\\u06C3]: zero hits. Zero U+06F0-06F9 / U+0660-0669; zero U+00A0, zero zero-width/bidi marks; zero vowel signs (the Kafu name unvowelled, P17/N82/N391); zero Latin letters. U+06BE twice, after U+0628 («بھی») and U+06A9 («کھانا»): both aspirates. Code points found: none."
+    },
+    {
+      "n": 2,
+      "name": "name forms",
+      "result": "PASS",
+      "detail": "«“کفو” کی راتیں» once, byte-identical to its key (N351, in running text; the bare «کفو کی راتیں» of the N351 guard absent); «شاہ فیصل یونیورسٹی» once, byte-identical (N353; «جامعہ شاہ فیصل» absent); «الاحساء» once (P2; no «الاحسا»). The cited word «“کفو”» in the same marks as the key (N351 proofreader clause). «“غبقہ”» and «خلیجی عرب ممالک» (N393) in the approved part, unchanged. No Latin name; the two names kept apart by «میں» (no «یونیورسٹی الاحساء» run-on)."
+    },
+    {
+      "n": 3,
+      "name": "grammar",
+      "result": "PASS",
+      "detail": "agreement_checked lists each agreement of the new sentences. «“کفو” کی راتیں … میلہ ہے»: singular copula with the event name taken as one thing (termbase: feminine, plural null); the copula does not mark gender; raised as N401 (A) for the judge — Urdu treats a name of plural form as one unit, and the English and Arabic predicate is singular. «اسے … شاہ فیصل یونیورسٹی منعقد کرتی ہے»: imperfective, no «نے», verb agrees with the feminine subject (termbase gender مؤنث). «یہ میلہ … ہوا»: masculine «میلہ» (rekhtadictionary: Noun, Masculine) with masculine «ہوا». «ایک» once in the new part, for the English \"an\" of the predicate. Approved part unchanged (b23's proof)."
+    },
+    {
+      "n": 4,
+      "name": "address",
+      "result": "PASS",
+      "detail": "Zero «تم» / «تمہارا» / «تیرا» / pronoun «تو»; the paragraph addresses nobody."
+    },
+    {
+      "n": 5,
+      "name": "headings",
+      "result": "PASS",
+      "detail": "The string is a paragraph (final_stop_in_english: true) and ends «۔». No heading in the batch."
+    },
+    {
+      "n": 6,
+      "name": "termbase compliance",
+      "result": "PASS",
+      "detail": "100 %: three keys of the repository termbase in the new sentences, each as recorded with its gender; no termbase addition or update proposed. Guards run: N351 (bare name absent), N353 (banned form absent). Open items N401–N404 stand at their stage-4 recommendations (A each); BRAND and UNESCO-LIST-PAIR untouched (not in this string)."
+    },
+    {
+      "n": 7,
+      "name": "punctuation",
+      "result": "PASS",
+      "detail": "«۔» 5 (one per sentence), «،» 2 (after «منعقد کرتی ہے» for the English semicolon, and after «“صلہ پانا”» in the approved part); quotation marks only U+201C/U+201D, 4 balanced pairs («“کفو”» twice, «“صلہ پانا”», «“غبقہ”»); no straight quote, no «»; no Latin . , ; ? ; no space before «۔» or «،»; no dash, no U+061B; no NBSP."
+    },
+    {
+      "n": 8,
+      "name": "numbers, dates, currency, Hijri",
+      "result": "PASS",
+      "detail": "One figure, «2024», Latin digits, standing in both the English and the Arabic; no date, clock time, currency or large number."
+    },
+    {
+      "n": 9,
+      "name": "anglicisms, arabisms, officialese",
+      "result": "PASS",
+      "detail": "One English loan, «یونیورسٹی», inside the admitted name (N353 scope). No «ایڈیشن» (\"edition\" rendered by «پہلی بار … ہوا», N403). No «محافظہ» (N92, N402). No «موجود ہے/ہیں», no «کیا جاتا ہے», no «کا انعقاد» (stage 1's «پہلا انعقاد … ہوا» removed at stage 2; checker officialese note 0 since)."
+    },
+    {
+      "n": 10,
+      "name": "glossing",
+      "result": "PASS",
+      "detail": "No entry with a non-null gloss; no bracket. The new sentence is itself the definition of the event (the source's sentence); no gloss added for the governorate or the university."
+    },
+    {
+      "n": 11,
+      "name": "structure",
+      "result": "PASS",
+      "detail": "Exactly the pack's one id; no placeholder in the pack; the approved three sentences follow the new ones byte for byte (script check: the string ends with a space + approved_today). The intro renders as the opening paragraph of /ur/events/kafu-nights/ (pack renders)."
+    }
+  ],
+  "codepoints_found": "none",
+  "agreement_checked": [
+    "ev.kafu-nights.intro: «“کفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہے» — «رمضان کا … میلہ» (m. sg.), «سالانہ عوامی» invariable; copula «ہے» singular with the event name as one unit (N401 A)",
+    "ev.kafu-nights.intro: «اسے الاحساء میں شاہ فیصل یونیورسٹی منعقد کرتی ہے» — «یونیورسٹی» f. (termbase) with «کرتی ہے»; «اسے» = the festival (object)",
+    "ev.kafu-nights.intro: «یہ میلہ پہلی بار 2024 میں ہوا» — «میلہ» m. with «ہوا»; «پہلی بار» («بار» f.)",
+    "ev.kafu-nights.intro: approved part — «“کفو” … نکلا ہے», «جس کا مطلب ہے», «“غبقہ” بھی شامل ہے», «ایک مقبول کھانا اور سماجی رسم ہے» unchanged from b23's proof"
+  ],
+  "changes": [],
+  "checker_result_lines": [
+    "RESULT [b24-ui 04-benchmarker]: 0 mandated, 1 extra, 0 ruling finding(s), 0 note(s) | 1 unit (interface), 1 strings, 360 code points | changed_sentences=0 over 0 leaf(s) | facts_removed=0 facts_restored=0 kept=3 open_items=4 untouched=2 termbase_updates=0 verification_log=4 | selftest FAIL",
+    "RESULT [b24-ui 05-proofreader]: 0 mandated, 1 extra, 0 ruling finding(s), 0 note(s) | 1 unit (interface), 1 strings, 360 code points | changes=0 over 0 leaf(s) | checklist PASS=11 FIXED=0 | selftest FAIL"
+  ]
+}

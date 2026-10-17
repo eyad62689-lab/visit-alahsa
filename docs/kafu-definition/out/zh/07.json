@@ -1,0 +1,124 @@
+{
+  "lang": "zh",
+  "stage": "07",
+  "role": "judge (zh-translation/prompts/06-judge.md)",
+  "batch": "kafu-definition",
+  "threshold": { "pass_threshold": 90, "read_from": "zh-translation/config.json" },
+  "scope_rule": "الدرجة تقيس الموضع الوحيد zh-ev-kafu-intro كاملاً (الجملة الأولى الجديدة + بقية المدخل المعتمد في events-amend). المأمورية الجملة الجديدة وحدها والوصل الذي تفرضه؛ بقية المدخل المعتمد لا يُعاد الحكم عليها إلا حيث مسّها الوصل. النص الصيني المعتمد خارج الحزمة (التسميات، صفوف الموسم والمدة، سطر التنبيه، القائمة، الذيل، سطر البحث) لا يُمسّ، وعيب المصدر لا يُخصم.",
+  "scores": {
+    "per_position": [
+      {
+        "id": "zh-ev-kafu-intro",
+        "score": 94,
+        "breakdown": { "accuracy": 29, "nativeness": 26, "compliance": 20, "fit": 9, "structure": 10 },
+        "why": "الدقة 29: الجملة الجديدة تقابل en_after وar_after (الفيصل) واحدةً واحدة — Kafu Nights = 卡夫之夜（Kafu Nights）، annual = 一年一度، Ramadan = 斋月، community = 社区 (مجتمعي)، festival = 节庆 (مهرجان)، organised by King Faisal University = 由费萨尔国王大学……主办، in Al-Ahsa Governorate = 在哈萨县، its first edition was held in 2024 = 首届于 2024 年举行. لا زيادة (لا عدد زوار، ولا مدة، ولا انفتاح للعموم، ولا وصف للمنتزه) ولا نقص. الخصم الواحد باقٍ من events-amend (meal = 聚餐 تظليل خفيف) لا من الجديد. الأصالة 26: «……是一年一度的……节庆，由……主办，首届于……举行» قالب إعلان فعاليات صيني أصيل؛ الخصم: 社区 تضيّق «المجتمع» إلى الحيّ السكني عند القارئ الصيني (القارئ 3)، و哈萨县 بجوار 哈萨 في بقية الموقع و胡富夫 في البطاقة أربك القارئ (القارئ 4) — كلاهما كلفة صواب لا خطأ؛ وما تبقّى من خصم events-amend (تكرار 奖赏، 神圣斋月) قائم في النص المعتمد. الالتزام 20: الأعلام كلها من المعجم وcontext حرفاً (卡夫之夜 = context.name، 费萨尔国王大学 = context.org، 哈萨县 = مدخل Al-Ahsa Governorate كما يفرض BRIEF «محافظة الأحساء بصيغة الخط المعتمدة»)، والگلوس اللاتيني عند أول ذكر في المتن التحريري وفق ملاحظة مدخل Kafu Nights، ومرة واحدة؛ 斋月 كما في الصفحة؛ قاعدة الغبقة (events-amend) محفوظة. الملاءمة 9: الجملة تجيب سؤال القرّاء «ما الفعالية ومن ينظّمها» وقد فهمها القارئ (لم يسأل ما هي ولا من ينظّمها)؛ خصم 1 لقراءة 社区节庆 «حكراً على السكان» — جزء منها يغذّيه غياب معلومات الدخول (عيب مصدر لا يُخصم)، وجزء من الكلمة نفسها. البنية 10: مبسّطة، ترقيم صيني كامل العرض، “…” متوازن (4 أزواج)، （） كاملا العرض، ثلاث مسافات U+0020 فقط (داخل Kafu Nights وحول 2024 على نمط 12 月前后)، لا U+00A0/U+2009/U+202F، رقم لاتيني، سطر واحد 148 محرفاً، لا فاصلة عليا تحتاج هروباً؛ بقية المدخل === current بعد حذف （Kafu） وحده (مقارنة سلاسل = true، مُعاد التحقق هنا)."
+      }
+    ]
+  },
+  "breakdown": { "accuracy": 29, "nativeness": 26, "compliance": 20, "fit": 9, "structure": 10 },
+  "rulings_on_new_sentence": [
+    {
+      "point": "社区节庆 — هل يوهم «للسكان المحليين وحدهم» (القارئ 3)؟",
+      "verdict": "kept",
+      "reason": "社区 مقابل أمين لـcommunity ولـ«مجتمعي» في قرار إياد، وهي تسمية الصفحة الصينية نفسها (社区聚会)، و社区文化节/社区活动 مألوفة. القراءة الضيّقة حقيقية، لكن كل بديل يعالجها (群众性 / 面向社会 / 公众) يقول ضمناً إن الفعالية مفتوحة للعموم — وهذا غير مؤكد في المصدر ولا عند إياد، فهو اختلاق بالاتجاه المعاكس. والسؤال الحقيقي للقارئ («我能不能去») عيب مصدر (SD-ZH-KD-3) لا تحلّه كلمة. خُصمت نقطة من الأصالة والملاءمة لا أكثر."
+    },
+    {
+      "point": "由费萨尔国王大学在哈萨县主办 (القارئ 4: 县 وحدة صغيرة، والموقع يقول 哈萨)",
+      "verdict": "kept",
+      "reason": "المصدر «Al-Ahsa Governorate» والعربية الفيصل «محافظة الأحساء» — الوحدة الإدارية لا الواحة. المعجم يفصل ثلاث مرجعيات: 哈萨 (الأحساء مجردة)، 哈萨县 (المحافظة، بإثبات Saudipedia zh منصة وزارة الإعلام، ولا 哈萨省 الخطأ التراتبي)، 哈萨市政局 (الأمانة)؛ والـBRIEF يلزم «محافظة الأحساء بصيغة الخط المعتمدة». اقتراح القارئ (哈萨) يُسقط «المحافظة» ويخالف المدخل. والتباس 胡富夫 (مدينة داخل المحافظة) يعود إلى context.place المعتمد خارج الحزمة. التركيب «由X在Y主办» صيني سليم، وموقع 在哈萨县 يتعلق بالتنظيم كما في العربية «تُنظمه جامعة الملك فيصل في محافظة الأحساء». كلفة أصالة خُصمت."
+    },
+    {
+      "point": "الوصل: نقل الگلوس اللاتيني إلى 卡夫之夜（Kafu Nights） وإسقاط （Kafu） من الجملة الثانية المعتمدة",
+      "verdict": "accepted",
+      "reason": "ملاحظة مدخل Kafu Nights: «الگلوس اللاتيني (Kafu Nights) عند أول ذكر في متن تحريري». بعد الجملة الجديدة صار أول ذكر في المدخل 卡夫之夜 لا “卡夫”، فالگلوس ينتقل إليه وجوباً — وإبقاء “卡夫”（Kafu） أيضاً گلوس ثانٍ للاسم نفسه في سطرين يخالف «عند أول ذكر» (لا عند كل ذكر) وسابقة المعجم «no second Latin gloss on the same page» (مدخل Ain Najm). وكلمة 卡夫 تُقرأ مقابل Kafu بلا لبس لأن القارئ رأى Kafu Nights قبل محارف قليلة، ولم يسأل القارئ الأعمى عن صلة 卡夫 بـKafu (ملاحظته 5 عن صياغة التعريف المعتمدة لا عن الاسم). وصلٌ تفرضه الجملة الجديدة، مسجَّل سببه، وبقية المدخل حرفاً. تُقرّ بعملية معجمية إلحاقية توثّق القاعدة (termbase_ops)."
+    },
+    {
+      "point": "节庆 لا 节؛ 一年一度؛ 首届于 2024 年举行؛ تكرار 卡夫之夜 في الجملة الثالثة",
+      "verdict": "kept",
+      "reason": "«斋月社区节» تُقرأ اسماً رسمياً مركّباً؛ 节庆 وصف عام يليق بـ«是一年一度的……». 一年一度 و首届 قالبا الإعلان الصيني. تكرار 卡夫之夜 في «卡夫之夜的亮点活动之一» من النص المعتمد ولم يشتكِ منه القارئ."
+    }
+  ],
+  "blind_reader_rulings": [
+    { "n": 1, "position": null, "severity": "serious", "verdict": "source_defect", "reason": "سطر التنبيه القالبي «本活动每年在大致相同的季节循环举办» نص صيني معتمد خارج الحزمة يقابل القالب الإنجليزي «recurs annually in its approximate season»، ورمضان يتقدّم نحو 11 يوماً كل عام ميلادي فيصطدم بـ«斋月期间/贯穿斋月». عيب قالب/مصدر في كل اللغات، سبق تسجيله (SD-ZH-EA-4) ويُعاد للمالك هنا بشاهد خطير — SD-ZH-KD-1. لا يُمسّ ولا يُكتب بديل في الصينية وحدها." },
+    { "n": 2, "position": null, "severity": "serious", "verdict": "source_defect", "reason": "لا تواريخ ميلادية — المصدر لا يعطيها في أي لغة، وبطاقات الفعاليات الأخرى تعطيها (12 月前后…). لا تُختلق — SD-ZH-KD-2 (امتداد SD-ZH-EA-2)." },
+    { "n": 3, "position": "zh-ev-kafu-intro", "severity": "serious", "verdict": "source_defect", "reason": "شقّ الغياب (هل يدخل الزائر/الأجنبي، رسوم أو حجز، الساعات، ملاءمة الأسر غير المسلمة) عيب مصدر: المصدر لا يقوله، ولا يُختلق ولا يُكتب «待确认» في الصينية وحدها — SD-ZH-KD-3 (امتداد SD-ZH-EA-1). شقّ الكلمة (社区节庆 تُقرأ حكراً على السكان) مردود بالحكم أعلاه: البدائل تختلق انفتاحاً غير مؤكد؛ خُصمت نقطة." },
+    { "n": 4, "position": "zh-ev-kafu-intro", "severity": "moderate", "verdict": "rejected", "reason": "哈萨县 مدخل Al-Ahsa Governorate الملزم وصيغة الـBRIEF؛ 哈萨 تُسقط «المحافظة». خُصمت كلفة الأصالة. التباس 胡富夫 من context.place خارج الحزمة (zh_followups السابقة)." },
+    { "n": 5, "position": "zh-ev-kafu-intro", "severity": "moderate", "verdict": "rejected_out_of_scope", "reason": "جملة التعريف المعتمدة في events-amend (حُكم عليها هناك: التكرار أمين لـrewarded/reward، و赞誉 من شرح إياد) — ليست مما مسّه الوصل إلا حذف （Kafu）. «لماذا يسمّى المهرجان مكافأة» — المصدر لا يقول؛ للمالك ضمن SD-ZH-KD-3." },
+    { "n": 6, "position": "zh-ev-kafu-intro", "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "神圣斋月 = «the holy month of Ramadan» في النص المعتمد؛ حُكم عليه في events-amend (holy كلمة المصدر). لا يمسّه الوصل." },
+    { "n": 7, "position": null, "severity": "moderate", "verdict": "rejected_out_of_scope", "reason": "«晚宴» رأس مدخل الغبقة 153 وقائمة acts المعتمدة؛ التوتر مع 聚餐 مسجَّل أصلاً في zh_followups (events-amend). والرسوم/الدخول ضمن SD-ZH-KD-3." },
+    { "n": 8, "position": null, "severity": "moderate", "verdict": "source_defect", "reason": "«大致时长 贯穿斋月（夜间举行）» يقابل «throughout Ramadan (nightly)» في المصدر؛ هل كل ليلة أم بعضها — للمالك ضمن SD-ZH-KD-2؛ وتسمية «时长» نص معتمد خارج الحزمة." },
+    { "n": 9, "position": null, "severity": "minor", "verdict": "source_defect", "reason": "صفّا 时节/时间 بنية المصدر في كل اللغات (Ramadan / during Ramadan) — SD-ZH-KD-2 (امتداد SD-ZH-EA-2)." },
+    { "n": 10, "position": null, "severity": "moderate", "verdict": "source_defect", "reason": "«卡夫互动厨房» اسم نشاط بلا وصف في المصدر — SD-ZH-EA-3 قائم، لا يُضاف وصف." },
+    { "n": 11, "position": null, "severity": "moderate", "verdict": "source_defect", "reason": "«以主办方公告为准» بلا قناة في أي لغة — SD-ZH-KD-1 (امتداد SD-ZH-EA-4)." },
+    { "n": 12, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "«循环举办» في سطر التنبيه المعتمد خارج الحزمة؛ مسجَّل في zh_followups (events-amend)." },
+    { "n": 13, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "شارة «预计档期» (statusL.expected) خارج الحزمة؛ مسجَّلة في zh_followups." },
+    { "n": 14, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "«绿洲的节庆时令» تسمية الباب — طابور التنقّل المعلّق عند إياد." },
+    { "n": 15, "position": null, "severity": "moderate", "verdict": "rejected_out_of_scope", "reason": "سطر البحث يُركَّب آلياً بترقيم لاتيني ويكرر الموسم — بند تقني مسجَّل (events-amend القارئ 17). اقتراح القارئ يضيف ويعيد الصياغة." },
+    { "n": 16, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "اسم الموقع «Visit Al-Ahsa» لاتيني بقاعدة الهوية (og:site_name لاتيني لغير العربية) — لا يُترجم." }
+  ],
+  "blind_reader_tally": { "total": 16, "applied": 0, "applied_in_part": 0, "rejected": 1, "rejected_out_of_scope": 8, "source_defect": 7, "serious": 3, "serious_verdict": "source_defect (3/3)؛ لا أحد منها عن الجملة الجديدة إلا شقّ 社区 في 3، وهو مردود" },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "changed_by_judge": [],
+  "termbase_ops": [
+    {
+      "op": "update",
+      "file": "zh-translation/glossary/termbase.json",
+      "target": "terms[] (مطابق بالقيمتين أدناه)",
+      "match": { "en": "Kafu Nights", "zh": "卡夫之夜" },
+      "fields": {
+        "note": {
+          "old": "نقحرة «كفو» = 卡夫؛ الگلوس اللاتيني (Kafu Nights) عند أول ذكر في متن تحريري إن وُجد — اسم البطاقة صيني وحده",
+          "new": "نقحرة «كفو» = 卡夫؛ الگلوس اللاتيني (Kafu Nights) عند أول ذكر في متن تحريري إن وُجد — اسم البطاقة صيني وحده | kafu-definition 2026-10-17: گلوس لاتيني واحد في الموضع؛ إن جاء بعد 卡夫之夜（Kafu Nights） شرحُ كلمة «كفو» فهو “卡夫”一词 بلا （Kafu） (مدخل صفحة كفو: 卡夫之夜（Kafu Nights）是……。“卡夫”一词源自阿拉伯语动词……)."
+        }
+      },
+      "unchanged_fields": ["en", "ar", "zh", "source"],
+      "why": "توثيق الوصل الذي أُقرّ: انتقل أول ذكر من “卡夫”（Kafu） إلى 卡夫之夜 فانتقل الگلوس، وسقط الثاني. إلحاق بالملاحظة الحالية حرفاً لا استبدال. لا مدخل جديد: 费萨尔国王大学 و哈萨县 و斋月 قائمة؛ 社区/节庆/首届 أسماء عامة لا أعلام."
+    }
+  ],
+  "tm_ops": [
+    {
+      "op": "replace",
+      "file": "zh-translation/memory/tm.json",
+      "match": {
+        "field": "TEXT_ZH['kafu-nights'].intro",
+        "old_en": "“Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arab Gulf states."
+      },
+      "pair": {
+        "en": "Kafu Nights is an annual Ramadan community festival organised by King Faisal University in Al-Ahsa Governorate; its first edition was held in 2024. “Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arab Gulf states.",
+        "zh": "卡夫之夜（Kafu Nights）是一年一度的斋月社区节庆，由费萨尔国王大学在哈萨县主办，首届于 2024 年举行。“卡夫”一词源自阿拉伯语动词，意为“受到奖赏”，即赢得奖赏与赞誉。卡夫之夜的亮点活动之一是“盖布加”晚宴。“盖布加”是海湾阿拉伯国家的一种民间聚餐与社交习俗，在神圣斋月的夜晚举行。",
+        "page": "events/kafu-nights",
+        "field": "TEXT_ZH['kafu-nights'].intro",
+        "note": "kafu-definition 2026-10-17 (قرار إياد بعد #186): جملة أولى تعرّف الفعالية؛ Al-Ahsa Governorate = 哈萨县؛ community = 社区 (لا ما يوحي بانفتاح غير مؤكد)؛ الگلوس اللاتيني انتقل إلى 卡夫之夜（Kafu Nights） وسقط （Kafu） من “卡夫”一词. يحلّ محل زوج events-amend 2026-10-17 للإنجليزية القديمة.",
+        "date": "2026-10-17"
+      },
+      "why": "الإنجليزية تغيّرت في الموضع نفسه، فالزوج القديم (events-amend) لم يعد مصدراً منشوراً — يُستبدل لا يُضاف إليه، كي لا يبقى في الذاكرة زوجان للحقل نفسه."
+    }
+  ],
+  "source_defects_for_owner": [
+    {
+      "id": "SD-ZH-KD-1",
+      "title": "سطر التنبيه القالبي «يتكرر كل عام في موسمه التقريبي» يناقض فعالية رمضانية، ويحيل إلى إعلانات بلا قناة",
+      "evidence": "القارئ الأعمى الصيني (1، serious): «我知道斋月按伊斯兰历算，每年在公历上会提前十来天» — فالسطر يصطدم بـ«斋月期间/贯穿斋月» حتى شكّ أن الصفحة كلها قالب؛ والقارئ (11): «以主办方公告为准» ولا دلالة على أين. امتداد SD-ZH-EA-4 (events-amend) بدرجة خطيرة الآن. النص الصيني يقابل القالب المعتمد؛ لا يُصلح في لغة وحدها.",
+      "ask": "هل يُكتب للفعاليات المرتبطة برمضان تنبيه خاص (تُقام كل عام في رمضان، وتاريخها الميلادي يتقدّم نحو 11 يوماً سنوياً) بدل القالب العام؟ وهل لجامعة الملك فيصل حساب رسمي للإعلانات يُربط؟"
+    },
+    {
+      "id": "SD-ZH-KD-2",
+      "title": "لا تواريخ ميلادية لليالي كفو، وصفوف الموسم/الوقت/المدة تكرر «رمضان»",
+      "evidence": "القارئ (2، serious): «我要订机票，没法从这页知道该看哪个月» — بقية البطاقات تعطي أشهراً ميلادية. والقارئ (8، 9): 时节/时间 مكرران، و«贯穿» مع «大致» — كل ليلة أم بعض الليالي؟ امتداد SD-ZH-EA-2.",
+      "ask": "هل لنسخة رمضان القادمة تواريخ مؤكدة (أو تقريب ميلادي مؤكد) تُعرض؟ وهل تُقام كل ليالي رمضان أم بعضها؟ وإلا تبقى «بانتظار التأكيد»."
+    },
+    {
+      "id": "SD-ZH-KD-3",
+      "title": "المدخل يعرّف الفعالية الآن لكنه لا يقول هل يدخلها الزائر ولا بكم ولا متى",
+      "evidence": "القارئ (3، serious): «游客/外国人能不能去、要不要门票或预约、晚上几点到几点、非穆斯林家庭去是否合适» — «读完这段我仍然不知道“我能不能去”». و«社区节庆» زادت ظنّه أنها داخلية؛ لم تُبدَّل الكلمة لأن البديل يختلق انفتاحاً غير مؤكد. والقارئ (5): لماذا سُمّي المهرجان «مكافأة» — المصدر لا يقول.",
+      "ask": "هل الفعالية مفتوحة للزوار (ومنهم الأجانب وغير المسلمين)، ومجانية أم برسوم/حجز، وما ساعاتها؟ بوقائع مؤكدة فقط تُضاف إلى المصدر ثم تتبعها اللغات."
+    }
+  ],
+  "zh_followups_not_in_scope": [
+    "قائمة zh_followups في docs/events-amend/out/zh/07.json قائمة كما هي (档期، 胡富夫 في context.place، 循环举办، 晚宴 مقابل 聚餐، سطر البحث بترقيم لاتيني، تسميات الباب، 哈萨 بلا تعريف، شعار الذيل) — أكّدها القارئ الحالي (4، 7، 12، 13، 14، 15)",
+    "اتساق 哈萨县/哈萨/胡富夫 على صفحة واحدة (القارئ 4): مرشّح لگلوس إداري خفيف في بند معجمي لاحق، لا هنا"
+  ],
+  "scores_csv_row": "\"kafu-definition (zh): 1 reopened position on /zh/events/kafu-nights/ - intro (TEXT_ZH['kafu-nights'].intro), new first sentence defining the event\",2026-10-17,1,94,\"APPROVE (29/26/20/9/10; no judge edit; 社区节庆 kept (faithful to community/مجتمعي; alternatives would invent public access); 哈萨县 kept (termbase Al-Ahsa Governorate + BRIEF); seam accepted: Latin gloss moved to 卡夫之夜（Kafu Nights） per first-mention note, （Kafu） dropped from approved 2nd sentence (one gloss per position); blind reader 16 items: 3 serious = source/template defects (Ramadan vs 'same season' notice, no Gregorian dates, no access/fees/hours), 1 rejected, 8 out of scope, 7 source defects; termbase 1 update (Kafu Nights note append), TM 1 replace (old events-amend pair -> new en/zh pair); owner: Ramadan-specific notice + organiser channel, dates/nightly, access/fees/hours)\"",
+  "notes": "القرار APPROVE بـ94 مقابل عتبة 90 من config.json؛ موضع واحد فدرجته درجة الدفعة. لا تعديل من الحاكم: النص النهائي = نص 05. الملاحظات الخطيرة الثلاث كلها عيوب مصدر/قالب لا تخص الجملة الجديدة، سُجّلت للمالك (SD-ZH-KD-1..3) ولم يُختلق شيء. الوصل (نقل الگلوس وإسقاط （Kafu）) أُقرّ بملاحظة مدخل Kafu Nights ووُثّق بعملية معجمية إلحاقية. لا مساس بالعربية ولا الإنجليزية ولا الأوردية ولا بأي نص صيني خارج الحزمة. يُطبَّق عبر أداة التطبيق وحدها: final.json، ثم العملية المعجمية، واستبدال زوج الذاكرة، وسطر scores.csv."
+}

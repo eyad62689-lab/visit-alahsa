@@ -1,0 +1,140 @@
+{
+  "stage": "04-benchmarker",
+  "batch": "b24-ui",
+  "strings": {
+    "ev.kafu-nights.intro": "“کفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہے۔ اسے الاحساء میں شاہ فیصل یونیورسٹی منعقد کرتی ہے، اور یہ میلہ پہلی بار 2024 میں ہوا۔ “کفو” عربی کے ایک فعل سے نکلا ہے جس کا مطلب ہے “صلہ پانا”، یعنی انعام اور تعریف حاصل کرنا۔ ان راتوں کی نمایاں سرگرمیوں میں “غبقہ” بھی شامل ہے۔ یہ خلیجی عرب ممالک میں رمضان المبارک کی راتوں کا ایک مقبول کھانا اور سماجی رسم ہے۔"
+  },
+  "changed_sentences": [],
+  "facts_removed": [],
+  "facts_restored": [],
+  "fence_checked_and_kept": [
+    {
+      "field": "ev.kafu-nights.intro",
+      "phrase": "رمضان کا ایک سالانہ عوامی میلہ",
+      "why_it_is_in_the_source": "EN \"an annual Ramadan community festival\"; AR «مهرجان رمضاني ومجتمعي سنوي». Nothing about families, students or a campus added (stage 3 tempted, not added)."
+    },
+    {
+      "field": "ev.kafu-nights.intro",
+      "phrase": "اسے الاحساء میں شاہ فیصل یونیورسٹی منعقد کرتی ہے",
+      "why_it_is_in_the_source": "EN \"organised by King Faisal University in Al-Ahsa Governorate\"; AR «تُنظمه جامعة الملك فيصل في محافظة الأحساء». The venue (the card's King Abdullah Environmental Park) is not imported here."
+    },
+    {
+      "field": "ev.kafu-nights.intro",
+      "phrase": "یہ میلہ پہلی بار 2024 میں ہوا",
+      "why_it_is_in_the_source": "EN \"its first edition was held in 2024\"; AR «وكانت أول نسخة منه سنة 2024». The figure 2024 stands in both sources; no later edition, date or count is claimed."
+    }
+  ],
+  "open_items": [
+    {
+      "id": "N401",
+      "question": "ev.kafu-nights.intro, first sentence: the event name (plural in form, «… کی راتیں») as subject of «… میلہ ہے» — singular or plural copula?",
+      "candidates": [
+        "A: «“کفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہے۔» (singular: the name taken as one event, as a plural-form title takes a singular verb)",
+        "B: «“کفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہیں۔» (plural: agreement with «راتیں»)",
+        "C: restructure with «نامی»: «“کفو” کی راتیں نامی میلہ …» (the generic «میلہ» as head of the subject)"
+      ],
+      "evidence": "Termbase entry «“کفو” کی راتیں»: gender «مؤنث», plural null, kind institution (an event name treated as one unit). The copula «ہے» does not inflect for gender, so only number is at stake. The English and the Arabic both say the name IS a festival (singular). B reads as \"these nights are a festival\" (the literal nights), which re-opens the reading the name was given marks to avoid. C adds «نامی» to a name N351 already marks, and with «میلہ» the predicate would repeat «میلہ» or turn into «تقریب», a second word for the same festival.",
+      "strings_affected": [
+        "ev.kafu-nights.intro"
+      ],
+      "recommendation": "A, as the text stands; the blind read on the season page tests it."
+    },
+    {
+      "id": "N402",
+      "question": "ev.kafu-nights.intro: how \"in Al-Ahsa Governorate\" («في محافظة الأحساء») is said.",
+      "candidates": [
+        "A: «الاحساء میں» (the Arabic generic not carried; stages 1–3)",
+        "B: «محافظہ الاحساء میں» (the generic carried)",
+        "C: «الاحساء کے ضلعے میں» / «الاحساء صوبے میں» (an Urdu administrative noun)"
+      ],
+      "evidence": "N92 (ruled): the Arabic generic is not carried into Urdu where the sentence states the fact without it; the key «محافظہ الاحساء» was retired; as the name of an administrative unit «محافظہ» has no dictionary headword and the first reader read it as another word; «ضلع» states an equivalence neither source gives (the pack rules no gloss). Approved precedent: fruits.g1.f0.pre «The governorate celebrates it annually» → «الاحساء میں ہر سال …». COST: the kind of unit is not named, as N92 charged. Word order: «الاحساء میں» before the university keeps the two names apart («شاہ فیصل یونیورسٹی الاحساء …» could read as one name).",
+      "strings_affected": [
+        "ev.kafu-nights.intro"
+      ],
+      "recommendation": "A, by N92 and the fruits-page precedent; B and C are barred by N92's ground."
+    },
+    {
+      "id": "N403",
+      "question": "ev.kafu-nights.intro: how \"its first edition was held in 2024\" is said (the line has no approved word for \"edition\").",
+      "candidates": [
+        "A: «یہ میلہ پہلی بار 2024 میں ہوا» (stages 2–3: a verb)",
+        "B: «اس کا پہلا انعقاد 2024 میں ہوا» (stage 1: verbal noun «انعقاد»)",
+        "C: «اس کا پہلا ایڈیشن 2024 میں ہوا» (loan)"
+      ],
+      "evidence": "Approved precedent avoids a noun for \"edition\": events.notice \"each edition\" → «ہر بار کے انتظامات»; ev.lomi.after.seoDesc \"the next edition\" → «اگلی نمائش» (the event noun, not an edition noun). Role file 02: a verbal noun with an auxiliary is officialese (B). C: P16 (a common Urdu wording exists). A says the same fact as both sources (AR «وكانت أول نسخة منه سنة 2024»). rekhtadictionary meaning-of-mela: «میلہ» Noun, Masculine (verification_log 1), so «ہوا» agrees and cannot take up the feminine «یونیورسٹی».",
+      "strings_affected": [
+        "ev.kafu-nights.intro"
+      ],
+      "recommendation": "A, as the text stands."
+    },
+    {
+      "id": "N404",
+      "question": "ev.kafu-nights.intro: how \"community\" (AR «مجتمعي») in \"community festival\" is said.",
+      "candidates": [
+        "A: «عوامی میلہ» (stages 1–3)",
+        "B: «سماجی میلہ»",
+        "C: «برادری کا میلہ»"
+      ],
+      "evidence": "Approved precedent on the same page set: ev.qaisariyah-nights.acts.1 \"Community gatherings\" → «مل بیٹھنے کی عوامی محفلیں». ur.wikipedia exact phrase (2026-10-17): «عوامی میلہ» 1 page, «سماجی میلہ» 0 (verification_log 2–3): neither phrase is a set term, so the choice rests on the precedent and the sense. B would echo «سماجی رسم» two sentences later (the Ghabqa, \"social custom\") and blur two different source words; C «برادری» first suggests caste/kin group (the same field as the marriage-law reading of «کفو» that N351 fights). «عوامی» = open to the public, the sense of a community festival.",
+      "strings_affected": [
+        "ev.kafu-nights.intro"
+      ],
+      "recommendation": "A, by the approved card precedent; the attestation gap stated."
+    }
+  ],
+  "untouched_items": [
+    {
+      "id": "BRAND",
+      "why": "The one string of b24-ui does not write the brand line and does not name the site."
+    },
+    {
+      "id": "UNESCO-LIST-PAIR",
+      "why": "The intro does not name UNESCO or the World Heritage List; the pair is not quoted."
+    }
+  ],
+  "termbase_updates": [],
+  "verification_log": [
+    {
+      "claim": "«میلہ» is a masculine noun (agreement «یہ میلہ … ہوا»). (read 2026-10-17)",
+      "url": "https://www.rekhtadictionary.com/meaning-of-mela",
+      "verbatim": "mela (میلہ) — Noun, Masculine — «۱. رک: میلا نیز تحتی الفاظ.»",
+      "obtained": true
+    },
+    {
+      "claim": "Attestation of «عوامی میلہ» in the reference. (read 2026-10-17)",
+      "url": "https://ur.wikipedia.org/w/index.php?search=%22%D8%B9%D9%88%D8%A7%D9%85%DB%8C+%D9%85%DB%8C%D9%84%DB%81%22&ns0=1&fulltext=1",
+      "verbatim": "«1 میں سے 1 نتیجہ» (first hit «یہ بارش کبھی نہیں رکے گی»)",
+      "obtained": true
+    },
+    {
+      "claim": "Attestation of «سماجی میلہ» in the reference. (read 2026-10-17)",
+      "url": "https://ur.wikipedia.org/w/index.php?search=%22%D8%B3%D9%85%D8%A7%D8%AC%DB%8C+%D9%85%DB%8C%D9%84%DB%81%22&ns0=1&fulltext=1",
+      "verbatim": "«استفسار کے مطابق کوئی نتیجہ برآمد نہیں ہوا۔»",
+      "obtained": true
+    },
+    {
+      "claim": "Attestation of «سالانہ میلہ» in the reference. (read 2026-10-17)",
+      "url": "https://ur.wikipedia.org/w/index.php?search=%22%D8%B3%D8%A7%D9%84%D8%A7%D9%86%DB%81+%D9%85%DB%8C%D9%84%DB%81%22&ns0=1&fulltext=1",
+      "verbatim": "«21 میں سے 1 تا 20 نتائج»",
+      "obtained": true
+    }
+  ],
+  "notes": [
+    {
+      "item": "names",
+      "text": "Checked against the termbase: «“کفو” کی راتیں» byte-identical to its key (N351/N391, no vowel sign), «شاہ فیصل یونیورسٹی» byte-identical (N353; feminine: «منعقد کرتی ہے»; the banned «جامعہ شاہ فیصل» absent), «الاحساء» (P2). «غبقہ» unchanged in the approved part (N392: not exercised; still not exercised — the new sentence does not touch it). No new name: no termbase addition."
+    },
+    {
+      "item": "register",
+      "text": "No changed sentence: the new sentences are verb-final, without a «موجود ہے» / passive chain (the checker's officialese note of stage 1 is gone since stage 2), no calqued article («ایک» stands once, for the English \"an\" of the predicate). P5 untouched (the Gulf sentence is the approved text). Letterforms spot-checked: none of ي ك ة."
+    },
+    {
+      "item": "seam",
+      "text": "No seam forced by the new sentence: the approved second sentence begins with «“کفو”», which now follows the full name «“کفو” کی راتیں» exactly as the English \"Kafu Nights … “Kafu” comes from …\"; «ان راتوں» in the third sentence still points to the nights of the name."
+    },
+    {
+      "item": "checker",
+      "text": "The stage checkers report selftest FAIL on one probe, «C16 night where the English has none»: lib/stagecheck.mjs line 95 picks a leaf whose English has no \"night\" and falls back to the base leaf when there is none; this batch's only English carries \"nights\", so the probe cannot fire by design (C16 is not a finding where the English has \"night\"). The probe should be n/a here. Reported, not worked around; the checker is not edited."
+    }
+  ]
+}

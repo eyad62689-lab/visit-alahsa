@@ -1,0 +1,34 @@
+{
+  "lang": "de",
+  "stage": "05",
+  "batch": "kafu-definition",
+  "positions": [
+    {
+      "id": "de-ev-kafu-intro",
+      "current": "„Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Kafu-Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den arabischen Ländern der Golfregion gepflegt wird.",
+      "proposed": "Die Kafu-Nächte sind ein jährliches Gemeinschaftsfestival im Ramadan, das die König-Faisal-Universität im Gouvernorat Al-Ahsa veranstaltet; erstmals fanden sie 2024 statt. „Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Kafu-Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den arabischen Ländern der Golfregion gepflegt wird.",
+      "why": "03 verbatim. Fact fence, termbase and all mechanical checks pass (script); sentences 2–3 byte-identical to `current`."
+    }
+  ],
+  "changes_from_previous_stage": [],
+  "facts_removed": [],
+  "facts_restored": [],
+  "termbase_ops": [],
+  "source_defects": [],
+  "checklist": [
+    { "item": "Stage 4 fact fence vs ar_after (authority) and en_after", "result": "PASS", "detail": "New sentence: Kafu-Nächte (ليالي كفو) / jährlich (سنوي) / Gemeinschaftsfestival (مهرجان … مجتمعي) / im Ramadan (رمضاني) / die König-Faisal-Universität veranstaltet (تُنظمه جامعة الملك فيصل) / im Gouvernorat Al-Ahsa (في محافظة الأحساء) / erstmals 2024 (أول نسخة منه سنة 2024). Nothing added (no visitor numbers, no duration, no park, no founding year of the university), nothing dropped. EN and AR agree on every fact." },
+    { "item": "Stage 4 Übersetzerdeutsch / register", "result": "PASS", "detail": "Active relative clause, «erstmals … statt» (no «Ausgabe/Edition» calque), semicolon as in the English; plural subject with singular predicate noun («Die Kafu-Nächte sind ein … Festival») is standard German (cf. «Die Bayreuther Festspiele sind ein Festival …»)." },
+    { "item": "Stage 4 proper nouns vs termbase (gender)", "result": "PASS", "detail": "die Kafu-Nächte (die, Pl.; = context.name) → plural agreement «fanden sie»; die König-Faisal-Universität (die; = context.org) in the nominative as subject of the relative clause; das Gouvernorat Al-Ahsa (das) → «im» (in dem). No name outside the termbase." },
+    { "item": "5.1 Rechtschreibung (Duden, ß, umlauts, compounds)", "result": "PASS", "detail": "Script: no ss- or ß-word in the whole intro (so no Swiss form possible); Gemeinschaftsfestival written as one compound (Fugen-s per Duden «Gemeinschafts-»); jährliches, Nächte, König, Universität with umlauts." },
+    { "item": "5.2 Durchkopplung", "result": "PASS", "detail": "Kafu-Nächte, König-Faisal-Universität hyphenated; «Gouvernorat Al-Ahsa» is the termbase apposition form, not a compound." },
+    { "item": "5.3 Grammatik", "result": "PASS", "detail": "ein jährliches Gemeinschaftsfestival (n., strong ending after ein), das … veranstaltet (relative pronoun n., Satzklammer closed by the verb), im Gouvernorat (Dat.), erstmals fanden sie … statt (separable verb closed)." },
+    { "item": "5.4 Anrede", "result": "PASS", "detail": "No address; script: zero du/dein/dich/dir." },
+    { "item": "5.5 Termbase compliance", "result": "PASS", "detail": "100 %." },
+    { "item": "5.6 Interpunktion", "result": "PASS", "detail": "Script: 3 × U+201E, 3 × U+201C, no straight/English/guillemet quotes; comma before the relative clause «das …»; semicolon between the two main clauses; no serial comma." },
+    { "item": "5.7 Zahlen", "result": "PASS", "detail": "One number, «2024», Latin digits; no Arabic-Indic digits (script)." },
+    { "item": "5.8 Denglisch", "result": "PASS", "detail": "Script: none of Spot/Location/Must-see/Hotspot/Guide/Highlight/Event/Edition; «Festival» is Duden German and the termbase word for مهرجان." },
+    { "item": "5.9 Glossierung", "result": "PASS", "detail": "Kafu and Ghabqa glossed once each by sentences 2–3 (unchanged). «Gouvernorat» unglossed by stage-3 decision (published German pages use it unglossed; the page context is Al-Ahsa) — flagged for the judge, not changed here." },
+    { "item": "5.10 Struktur / plain-text constraints", "result": "PASS", "detail": "Script: no U+00A0, no U+2009, no line break (CR/LF/U+2028/U+2029), no whitespace other than U+0020, no Markdown, 483 chars, unescaped (apply tool escapes); `current` equals the pack verbatim and the proposed text ends with ' ' + current." }
+  ],
+  "notes_to_next_stage": "Stage 05 changed nothing (03 verbatim). For 06 (blind reader): cut /de/events/kafu-nights/ from dist and replace the published intro with this paragraph under the H1 «Kafu-Nächte». Points a reader may raise, with the judge's frame: (a) «Kafu-Nächte» appears twice (sentences 1 and 3) — sentence 3's naming is the stage-7 events-amend fix and still separates the event from «den Nächten des heiligen Monats Ramadan»; (b) «Gouvernorat» unglossed — see 03; (c) «Gemeinschaftsfestival» renders مجتمعي/community; a reader may ask «for which community» — the source says no more. Termbase: no ops (all three names present and confirmed)."
+}

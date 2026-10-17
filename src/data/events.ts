@@ -212,6 +212,9 @@ const TEXT_AR: EventTexts = {
     season: 'شهر رمضان المبارك', time: 'خلال شهر رمضان', span: 'ليالٍ رمضانية ممتدة',
     org: 'جامعة الملك فيصل',
     acts: ['عروض مسرحية', 'منطقة الطفل', 'مطبخ كفو التفاعلي', 'عشاء «الغُبقة»'],
+    // تعريف الفعالية بنصّ إياد (2026-10-17)، والسنة بأرقام لاتينية (قاعدة الموقع). معنى الاسم والغبقة لا يُشرح
+    // هنا بقراره (مفهوم للعربي) — المدخل الإنجليزي وحده يحملهما.
+    intro: 'مهرجان «ليالي كفو» هو مهرجان رمضاني ومجتمعي سنوي تُنظمه جامعة الملك فيصل في محافظة الأحساء، وكانت أول نسخة منه سنة 2024.',
   },
   'dates-festival': {
     slug: 'مهرجان-التمور-المصنعة',
@@ -348,8 +351,9 @@ const TEXT_EN: EventTexts = {
     org: 'King Faisal University',
     acts: ['Theatre shows', 'Kids’ zone', 'Interactive Kafu kitchen', '“Ghabqa” dinner'],
     // معنى الاسم والغبقة — من إياد (2026-10-17): «كفو» من «كوفئ»، والغبقة وجبة وعادة اجتماعية شعبية في
-    // ليالي رمضان بدول الخليج. للقارئ غير العربي وحده بقراره: النسخة العربية بلا مدخل (الاسم مفهوم للعربي).
-    intro: '“Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arab Gulf states.',
+    // ليالي رمضان بدول الخليج. للقارئ غير العربي وحده بقراره (الاسم مفهوم للعربي). والجملة الأولى تعريف الفعالية
+    // من إياد (2026-10-17) — وهي وحدها في المدخل العربي.
+    intro: 'Kafu Nights is an annual Ramadan community festival organised by King Faisal University in Al-Ahsa Governorate; its first edition was held in 2024. “Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arab Gulf states.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -490,7 +494,7 @@ const TEXT_ZH: TranslatedTexts = {
     season: '斋月（拉马丹）', time: '斋月期间', span: '贯穿斋月（夜间举行）',
     org: '费萨尔国王大学',
     acts: ['戏剧演出', '儿童乐园', '卡夫互动厨房', '“盖布加”晚宴（斋月夜间聚餐）'],
-    intro: '“卡夫”（Kafu）一词源自阿拉伯语动词，意为“受到奖赏”，即赢得奖赏与赞誉。卡夫之夜的亮点活动之一是“盖布加”晚宴。“盖布加”是海湾阿拉伯国家的一种民间聚餐与社交习俗，在神圣斋月的夜晚举行。',
+    intro: '卡夫之夜（Kafu Nights）是一年一度的斋月社区节庆，由费萨尔国王大学在哈萨县主办，首届于 2024 年举行。“卡夫”一词源自阿拉伯语动词，意为“受到奖赏”，即赢得奖赏与赞誉。卡夫之夜的亮点活动之一是“盖布加”晚宴。“盖布加”是海湾阿拉伯国家的一种民间聚餐与社交习俗，在神圣斋月的夜晚举行。',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -605,7 +609,7 @@ const TEXT_RU: TranslatedTexts = {
     season: 'Священный месяц Рамадан', time: 'В Рамадан', span: 'Продлённые ночи Рамадана',
     org: 'Университет короля Фейсала',
     acts: ['Театральные представления', 'Детская зона', 'Интерактивная кухня Кафу', 'Ужин «Габка»'],
-    intro: 'Слово «Кафу» происходит от арабского глагола со значением «быть вознаграждённым», то есть заслужить награду и похвалу. Среди ключевых моментов этих ночей — «Габка», народная трапеза и общественный обычай: её устраивают ночами священного месяца Рамадан в арабских странах Залива.',
+    intro: '«Ночи Кафу» — ежегодный общественный фестиваль, приуроченный к Рамадану; его организует Университет короля Фейсала в мухафазе (административном округе) Аль-Ахса. Впервые фестиваль прошёл в 2024 году. Слово «Кафу» происходит от арабского глагола со значением «быть вознаграждённым», то есть заслужить награду и похвалу. Среди ключевых моментов этих ночей — «Габка», народная трапеза и общественный обычай: её устраивают ночами священного месяца Рамадан в арабских странах Залива.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -710,7 +714,7 @@ const TEXT_DE: TranslatedTexts = {
     season: 'Heiliger Ramadan', time: 'Während des Ramadan', span: 'Verlängerte Ramadan-Nächte',
     org: 'König-Faisal-Universität',
     acts: ['Theateraufführungen', 'Kinderbereich', 'Interaktive Kafu-Küche', '„Ghabqa“-Abendessen'],
-    intro: '„Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Kafu-Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den arabischen Ländern der Golfregion gepflegt wird.',
+    intro: 'Die Kafu-Nächte sind ein jährliches Gemeinschaftsfestival im Ramadan, das die König-Faisal-Universität im Gouvernorat Al-Ahsa veranstaltet; erstmals fand das Festival 2024 statt. „Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Kafu-Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den arabischen Ländern der Golfregion gepflegt wird.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -822,7 +826,7 @@ const TEXT_UR: TranslatedTexts = {
     span: 'رمضان کی کئی راتیں',
     org: 'شاہ فیصل یونیورسٹی',
     acts: ['اسٹیج ڈرامے', 'بچوں کے لیے مخصوص حصہ', '“کفو” کا باورچی خانہ', '“غبقہ” کا کھانا'],
-    intro: '“کفو” عربی کے ایک فعل سے نکلا ہے جس کا مطلب ہے “صلہ پانا”، یعنی انعام اور تعریف حاصل کرنا۔ ان راتوں کی نمایاں سرگرمیوں میں “غبقہ” بھی شامل ہے۔ یہ خلیجی عرب ممالک میں رمضان المبارک کی راتوں کا ایک مقبول کھانا اور سماجی رسم ہے۔',
+    intro: '“کفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہے۔ اسے الاحساء میں شاہ فیصل یونیورسٹی منعقد کرتی ہے، اور یہ میلہ پہلی بار 2024 میں لگا۔ “کفو” عربی کے ایک فعل سے نکلا ہے جس کا مطلب ہے “صلہ پانا”، یعنی انعام اور تعریف حاصل کرنا۔ ان راتوں کی نمایاں سرگرمیوں میں “غبقہ” بھی شامل ہے۔ یہ خلیجی عرب ممالک میں رمضان المبارک کی راتوں کا ایک مقبول کھانا اور سماجی رسم ہے۔',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
