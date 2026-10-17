@@ -14,13 +14,11 @@
 //   (ح) hreflang متبادل بين اللغتين في الصفحة وفي sitemap (xhtml:link)، وBreadcrumbList حاضر.
 //   (ط) العنوان (قبل اسم الموقع) ≤ 60 حرفاً، والوصف 140–160 حرفاً، ولا رقم عربي-هندي.
 import {
-  VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_UPDATED_LINE, VISA_PREVIEW_NOTE,
+  VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_UPDATED_LINE, VISA_FEES_LINE, VISA_PREVIEW_NOTE,
   VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, VISA_LIMITS,
 } from '../src/lib/visa-guide.mjs';
 
 export { VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_PREVIEW_NOTE };
-
-const FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.' };
 
 const DEC = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ' };
 const decode = (t) => t.replace(/&(?:amp|quot|#39|#x27|lt|gt|nbsp);/g, (e) => DEC[e]);
@@ -112,7 +110,7 @@ function checkPage(lang, page, context) {
   const updated = page.match(/data-vg-updated[^>]*>([^<]*)</)?.[1];
   if (updated === undefined || norm(updated) !== VISA_UPDATED_LINE[lang]) problems.push(`[${lang}] سطر «${VISA_UPDATED_LINE[lang]}» غائب أو محرَّف`);
   const fees = page.match(/data-vg-fees[^>]*>([^<]*)</)?.[1];
-  if (fees === undefined || norm(fees) !== FEES_LINE[lang]) problems.push(`[${lang}] سطر الرسوم العام «${FEES_LINE[lang]}» غائب أو محرَّف`);
+  if (fees === undefined || norm(fees) !== VISA_FEES_LINE[lang]) problems.push(`[${lang}] سطر الرسوم العام «${VISA_FEES_LINE[lang]}» غائب أو محرَّف`);
 
   // (ز) ملاحظة المعاينة
   const production = !context || context === 'production';

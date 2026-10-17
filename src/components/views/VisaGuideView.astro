@@ -24,15 +24,20 @@ import PageHero from '../PageHero.astro';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ORG_ID, breadcrumb, absUrl } from '../../lib/schema';
 import { VISA_GUIDE_ALT, VISA_UPDATED_ISO, VISA_PREVIEW_NOTE } from '../../lib/visa-guide.mjs';
-import { visaGuide, type VisaLang, type Rich } from '../../data/visa-guide';
+import type { Lang } from '../../i18n/ui';
+import { builtLang } from '../../lib/routes';
+import { visaGuide, type Rich } from '../../data/visa-guide';
 
-interface Props { lang: VisaLang; }
+interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const C = visaGuide(lang);
 const alt: AltLinks = VISA_GUIDE_ALT;
 const selfPath = alt[lang];
-const planPath = lang === 'ar' ? '/خطط/' : '/en/plan-your-trip/';
+if (!selfPath) throw new Error(`visa-guide: لا مسار للصفحة بلغة ${lang} في VISA_GUIDE_ALT`);
+const homePath = lang === 'ar' ? '/' : `/${lang}/`;
+// «خطّط لرحلتك» غير مبنية بالأوردو بعد، فمسار الفتات يتراجع للإنجليزية (builtLang)
+const planPath = lang === 'ar' ? '/خطط/' : `/${builtLang(lang)}/plan-your-trip/`;
 const isPreview = Boolean(process.env.CONTEXT) && process.env.CONTEXT !== 'production';
 const isExt = (href: string) => /^https?:\/\//.test(href);
 
@@ -50,7 +55,7 @@ const jsonLd = [
     })),
   },
   breadcrumb([
-    { name: t('crumb.home'), path: lang === 'ar' ? '/' : '/en/' },
+    { name: t('crumb.home'), path: homePath },
     { name: t('nav.plan'), path: planPath },
     { name: C.h1, path: selfPath },
   ]),

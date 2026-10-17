@@ -23,6 +23,9 @@ export const visaHref = (lang) => (lang === 'ar' ? VISA_GUIDE_ALT.ar : VISA_GUID
 export const VISA_UPDATED_ISO = '2026-10-16';
 export const VISA_UPDATED_LINE = { ar: 'تاريخ آخر تحديث: 16 أكتوبر 2026', en: 'Last updated: 16 October 2026' };
 
+/** سطر الرسوم العام — الذكر الوحيد للرسوم في الصفحة، حرفياً بكل لغة، يحرسه C28. */
+export const VISA_FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.' };
+
 /** ملاحظة التحرير — في معاينة النشر وطلب الدمج فقط، ولا تظهر في الإنتاج (قرار إياد). */
 export const VISA_PREVIEW_NOTE = 'يجب فتح كل رابط يدوياً قبل النشر';
 

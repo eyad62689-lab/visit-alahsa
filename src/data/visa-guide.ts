@@ -8,8 +8,11 @@
 // الروابط الرسمية من VISA_OFFICIAL_LINKS وحدها (الحارس C28 يرفض سواها).
 // الإنجليزية كُتبت مباشرةً كصفحة «عن زوروا الأحساء»؛ zh/de/ru/ur عبر خطوط الترجمة فقط.
 import { VISA_OFFICIAL_LINKS as L, VISA_UPDATED_LINE } from '../lib/visa-guide.mjs';
+import type { Lang } from '../i18n/ui';
+// @visa-lang-imports — تُدرج هنا سجلّات اللغات المعتمدة من خطوط الترجمة (tools/translation/apply-visa-guide.mjs)
 
-export type VisaLang = 'ar' | 'en';
+/** لغات الصفحة المبنية — تتبع VISA_LANGS في src/lib/visa-guide.mjs */
+export type VisaLang = Lang;
 
 /** نصّ غنيّ: سلاسل ووصلات. الوصلة الخارجية تُفتح في نافذة جديدة. */
 export type Part = string | { t: string; href: string };
@@ -303,5 +306,13 @@ const EN: VisaGuideContent = {
   },
 };
 
-export const VISA_GUIDE: Record<VisaLang, VisaGuideContent> = { ar: AR, en: EN };
-export const visaGuide = (lang: VisaLang): VisaGuideContent => VISA_GUIDE[lang];
+export const VISA_GUIDE: Partial<Record<Lang, VisaGuideContent>> = {
+  ar: AR,
+  en: EN,
+  // @visa-lang-registry
+};
+export const visaGuide = (lang: Lang): VisaGuideContent => {
+  const c = VISA_GUIDE[lang];
+  if (!c) throw new Error(`visa-guide: لا نصّ معتمداً بلغة ${lang} — لا تُبنى الصفحة قبل مرور نصّها بخط ترجمتها`);
+  return c;
+};
