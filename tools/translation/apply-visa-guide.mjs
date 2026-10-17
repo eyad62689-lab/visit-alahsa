@@ -35,7 +35,8 @@ const extra = Object.keys(S).filter((k) => !pack.strings[k]);
 if (extra.length) { console.error(`final_strings تحمل مفاتيح ليست في pack.json: ${extra.slice(0, 5).join(', ')}`); process.exit(1); }
 
 // ── فحوص السلامة على النصوص قبل أي كتابة ──
-const { VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, VISA_LIMITS } = await import(path.join(ROOT, 'src/lib/visa-guide.mjs'));
+const { VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, visaLimits } = await import(path.join(ROOT, 'src/lib/visa-guide.mjs'));
+const VISA_LIMITS = visaLimits(lang);
 const official = new Set(Object.values(VISA_OFFICIAL_LINKS));
 const problems = [];
 for (const [k, v] of Object.entries(S)) {

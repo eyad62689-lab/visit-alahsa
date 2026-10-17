@@ -15,7 +15,7 @@
 //   (ط) العنوان (قبل اسم الموقع) ≤ 60 حرفاً، والوصف 140–160 حرفاً، ولا رقم عربي-هندي.
 import {
   VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_UPDATED_LINE, VISA_FEES_LINE, VISA_PREVIEW_NOTE,
-  VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, VISA_LIMITS,
+  VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, VISA_LIMITS, visaLimits,
 } from '../src/lib/visa-guide.mjs';
 
 export { VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_PREVIEW_NOTE };
@@ -124,14 +124,15 @@ function checkPage(lang, page, context) {
     if (!re.test(page)) problems.push(`[${lang}] hreflang="${l}" غائب أو يقصد مساراً آخر`);
   }
 
-  // (ط) العنوان والوصف
+  // (ط) العنوان والوصف — بحدود لغة الصفحة
+  const LIM = visaLimits(lang);
   const title = norm(page.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? '');
   const own = title.replace(/\s[—–|]\s[^—–|]*$/, ''); // ما قبل فاصل اسم الموقع (titleSep: — أو –)
   stats.title = [...own].length;
-  if (!own || stats.title > VISA_LIMITS.titleMax) problems.push(`[${lang}] العنوان ${stats.title} حرفاً — المتوقع ≤${VISA_LIMITS.titleMax}`);
+  if (!own || stats.title > LIM.titleMax) problems.push(`[${lang}] العنوان ${stats.title} حرفاً — المتوقع ≤${LIM.titleMax}`);
   const desc = norm(page.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
   stats.desc = [...desc].length;
-  if (stats.desc < VISA_LIMITS.descMin || stats.desc > VISA_LIMITS.descMax) problems.push(`[${lang}] الوصف ${stats.desc} حرفاً — المتوقع ${VISA_LIMITS.descMin}–${VISA_LIMITS.descMax}`);
+  if (stats.desc < LIM.descMin || stats.desc > LIM.descMax) problems.push(`[${lang}] الوصف ${stats.desc} حرفاً — المتوقع ${LIM.descMin}–${LIM.descMax}`);
 
   return { problems, stats };
 }
