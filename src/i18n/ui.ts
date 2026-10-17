@@ -909,6 +909,8 @@ export const ui = {
     'foot.l.taste': '美食与椰枣',
     'foot.l.stay': '住宿指南',
     'foot.l.getThere': '交通指南',
+    'foot.l.visa': '签证指南',
+    'plan.visa': '签证指南',
     'foot.l.routes': '推荐路线',
     'foot.l.events': '活动',
     'foot.l.about': '关于哈萨',

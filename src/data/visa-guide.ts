@@ -9,6 +9,7 @@
 // الإنجليزية كُتبت مباشرةً كصفحة «عن زوروا الأحساء»؛ zh/de/ru/ur عبر خطوط الترجمة فقط.
 import { VISA_OFFICIAL_LINKS as L, VISA_UPDATED_LINE } from '../lib/visa-guide.mjs';
 import type { Lang } from '../i18n/ui';
+import { VISA_ZH } from './visa-guide.zh';
 // @visa-lang-imports — تُدرج هنا سجلّات اللغات المعتمدة من خطوط الترجمة (tools/translation/apply-visa-guide.mjs)
 
 /** لغات الصفحة المبنية — تتبع VISA_LANGS في src/lib/visa-guide.mjs */
@@ -309,6 +310,7 @@ const EN: VisaGuideContent = {
 export const VISA_GUIDE: Partial<Record<Lang, VisaGuideContent>> = {
   ar: AR,
   en: EN,
+  zh: VISA_ZH,
   // @visa-lang-registry
 };
 export const visaGuide = (lang: Lang): VisaGuideContent => {
