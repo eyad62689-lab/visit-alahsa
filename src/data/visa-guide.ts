@@ -12,6 +12,7 @@ import type { Lang } from '../i18n/ui';
 import { VISA_ZH } from './visa-guide.zh';
 import { VISA_RU } from './visa-guide.ru';
 import { VISA_DE } from './visa-guide.de';
+import { VISA_UR } from './visa-guide.ur';
 // @visa-lang-imports — تُدرج هنا سجلّات اللغات المعتمدة من خطوط الترجمة (tools/translation/apply-visa-guide.mjs)
 
 /** لغات الصفحة المبنية — تتبع VISA_LANGS في src/lib/visa-guide.mjs */
@@ -315,6 +316,7 @@ export const VISA_GUIDE: Partial<Record<Lang, VisaGuideContent>> = {
   zh: VISA_ZH,
   ru: VISA_RU,
   de: VISA_DE,
+  ur: VISA_UR,
   // @visa-lang-registry
 };
 export const visaGuide = (lang: Lang): VisaGuideContent => {
