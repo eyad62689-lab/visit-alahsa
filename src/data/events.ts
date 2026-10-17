@@ -119,7 +119,13 @@ const EVENT_META = {
   'qaisariyah-nights': { img: '/img/event-qaisariyah-nights', start: 2, end: 3, venue: 'qaisariyah' },
   'kafu-nights': { img: '/img/event-kafu-nights', start: 13, ramadan: true, venue: 'king-abdullah-park' },
   'dates-festival': { img: '/img/event-dates-festival', start: 1, end: 2 },
-  'palm-village': { img: '/img/event-palm-village', start: 1, end: 3 },
+  // قرية النخيل: الموقع من رابط الخرائط الذي قدّمه إياد (2026-10-17)، وأكّد أن القرية موسمية في مكان ثابت
+  // (قوقل يسمّيها «مغلق نهائياً» خارج موسمها). الإحداثيات من الرابط المفكوك لا بالتقدير، ولا ساعات ولا رسوم.
+  'palm-village': {
+    img: '/img/event-palm-village', start: 1, end: 3,
+    map: 'https://maps.app.goo.gl/vCS7hUUttJzbwAVTA',
+    coords: { lat: 25.4601964, lng: 49.5671153 },
+  },
   // موعد نسخة 2026 المعلن: 19 أغسطس – 5 سبتمبر (من إياد، 2026-07-22)، ثم مُدِّد
   // إلى 13 سبتمبر (من إياد، 2026-08-28) — لذلك status: 'confirmed'.
   // العودة إلى الموسم التقريبي بعد الانقضاء تلقائية عبر after (النصوص في
@@ -225,7 +231,7 @@ const TEXT_AR: EventTexts = {
   },
   'palm-village': {
     slug: 'قرية-النخيل',
-    name: 'قرية النخيل', place: 'واحة الأحساء',
+    name: 'قرية النخيل', place: 'حي محيرس، المبرز',
     season: 'الشتاء والربيع', time: 'يناير – مارس', span: 'موسم ممتد',
     org: 'المركز الوطني للنخيل والتمور',
     acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
@@ -364,7 +370,7 @@ const TEXT_EN: EventTexts = {
   },
   'palm-village': {
     slug: 'palm-village',
-    name: 'Palm Village', place: 'Al-Ahsa Oasis',
+    name: 'Palm Village', place: 'Muhairis district, Al-Mubarraz',
     season: 'Winter & spring', time: 'January – March', span: 'An extended season',
     org: 'National Center for Palms and Dates',
     acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
@@ -505,7 +511,7 @@ const TEXT_ZH: TranslatedTexts = {
   },
   'palm-village': {
     slug: 'palm-village',
-    name: '椰枣村', place: '哈萨绿洲',
+    name: '椰枣村', place: '穆巴拉兹的穆海里斯区',
     season: '冬春两季', time: '1 月至 3 月', span: '持续整季',
     org: '沙特国家棕榈和椰枣中心',
     acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品市集'],
@@ -621,7 +627,7 @@ const TEXT_RU: TranslatedTexts = {
   // دفعة ru-ev-3 2026-09-17 — خط ru-translation-pipeline، الحاكم 93/100 · APPROVE من الدورة الأولى
   'palm-village': {
     slug: 'palm-village',
-    name: 'Пальмовая деревня', place: 'Оазис Аль-Ахса',
+    name: 'Пальмовая деревня', place: 'Район Мухайрис, Эль-Мубарраз',
     season: 'Зима и весна', time: 'Январь–март', span: 'Продлённый сезон',
     org: 'Национальный центр пальм и фиников',
     acts: ['Финиковые лавки', 'Местные рестораны и кафе', 'Павильоны ремесленников (изделия из пальмовых листьев)', 'Продажа сельской продукции'],
@@ -725,7 +731,7 @@ const TEXT_DE: TranslatedTexts = {
   },
   'palm-village': {
     slug: 'palm-village',
-    name: 'Palmendorf', place: 'Al-Ahsa-Oase',
+    name: 'Palmendorf', place: 'Muhairis-Viertel, Al-Mubarraz',
     season: 'Winter und Frühling', time: 'Januar–März', span: 'Verlängerte Saison',
     org: 'Nationales Zentrum für Palmen und Datteln',
     acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
@@ -841,7 +847,7 @@ const TEXT_UR: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'کھجور کے درختوں کا گاؤں',
-    place: 'الاحساء کا نخلستان',
+    place: 'محلہ محیرس، المبرز',
     season: 'سردیاں اور بہار',
     time: 'جنوری سے مارچ تک',
     span: 'طویل موسم',
