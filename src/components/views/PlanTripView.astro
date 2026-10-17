@@ -9,7 +9,7 @@ import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../
 import type { Lang } from '../../i18n/ui';
 import DataTable from '../DataTable.astro';
 import { practicalTable } from '../../lib/tables';
-import { VISA_GUIDE_PATH } from '../../lib/visa-guide.mjs';
+import { VISA_LANGS, visaHref } from '../../lib/visa-guide.mjs';
 import { guidesHref } from '../../lib/routes';
 import { guidesListed } from '../../lib/guides';
 
@@ -314,8 +314,8 @@ const jsonLd = [
             </article>
           ))}
         </div>
-        {/* دليل التأشيرات — عربي فقط حتى الآن (2026-09-26)، فلا رابط في اللغات الأخرى */}
-        {ar && <p class="gt-visa" data-reveal><a class="btn btn--turq" href={VISA_GUIDE_PATH}>{t('plan.visa')}</a></p>}
+        {/* دليل التأشيرات — عربي وإنجليزي (2026-10-16)؛ لا رابط في لغة لم تمرّ نصوصه بخطّها */}
+        {VISA_LANGS.includes(lang) && <p class="gt-visa" data-reveal><a class="btn btn--turq" href={visaHref(lang)}>{t('plan.visa')}</a></p>}
       </div>
     </section>
 

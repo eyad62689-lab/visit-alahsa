@@ -7,7 +7,7 @@ import { staticHref, aboutHref, storesHref, builtLang, guidesHref } from '../lib
 import { guidesListed } from '../lib/guides';
 import { ORG_EMAIL, ORG_WHATSAPP_URL } from '../lib/schema';
 import { storesPage, storesLangs } from '../lib/stores';
-import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
+import { VISA_LANGS, visaHref } from '../lib/visa-guide.mjs';
 import type { Lang } from '../i18n/ui';
 interface Props { lang?: Lang; }
 const { lang = 'ar' } = Astro.props;
@@ -58,8 +58,8 @@ const cols = [
     links: [
       { label: t('nav.plan'), href: planTrip },
       { label: t('foot.l.getThere'), href: planTrip + '#getting-there' },
-      // دليل التأشيرات عربي فقط حتى الآن (2026-09-26) — لا رابط في تذييل اللغات الأخرى
-      ...(ar ? [{ label: t('foot.l.visa'), href: VISA_GUIDE_PATH }] : []),
+      // دليل التأشيرات عربي وإنجليزي (2026-10-16) — لا رابط في تذييل اللغات التي لم تمرّ نصوصه بخطوطها
+      ...(VISA_LANGS.includes(lang) ? [{ label: t('foot.l.visa'), href: visaHref(lang) }] : []),
       ...(showGuides ? [{ label: t('guides.nav'), href: guidesHref(lang) }] : []),
       { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : '/en/plan/' },
       { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : ur ? '/ur/map/' : '/en/map/' },

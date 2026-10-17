@@ -11,7 +11,7 @@ import { publishedGuides } from '../lib/guides';
 import { storesLangs } from '../lib/stores';
 import { newestDate } from '../lib/git-dates';
 import { isThinAttraction } from '../lib/publish';
-import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
+import { VISA_GUIDE_ALT } from '../lib/visa-guide.mjs';
 import { isUnlisted } from '../i18n/unlisted';
 import { TRAILS } from '../data/trails';
 import { trailAlt, trailsIndexAlt } from '../lib/trails';
@@ -49,8 +49,8 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', ur: '/ur/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
-    // دليل التأشيرات عربي فقط (2026-09-26) — بلا en فلا hreflang، على سابقة المقال بلا نظير
-    { ar: VISA_GUIDE_PATH, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.md') },
+    // دليل التأشيرات عربي وإنجليزي (2026-10-16) — نصّه في src/data/visa-guide.ts
+    { ...VISA_GUIDE_ALT, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.ts') },
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
     { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },

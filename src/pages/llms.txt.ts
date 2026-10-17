@@ -15,7 +15,7 @@ import { LANG_META } from '../i18n/langs';
 import { isUnlisted } from '../i18n/unlisted';
 import { ui } from '../i18n/ui';
 import { TRAILS } from '../data/trails';
-import { VISA_GUIDE_PATH } from '../lib/visa-guide.mjs';
+import { VISA_GUIDE_ALT } from '../lib/visa-guide.mjs';
 
 const SITE = 'https://visit-alahsa.com';
 
@@ -67,7 +67,7 @@ export const GET: APIRoute = async () => {
 - [أماكن الإقامة (${stayCount} أماكن بمواقع خرائط قوقل)](${SITE}/إقامة/) | [Places to Stay](${SITE}/en/stay/): نُزلٌ تراثي في حي الكوت وفندقٌ على ساحل العقير — بطاقات وصفية لا ترشيحات.
 - [المدونة (${topicCount} مقالات بالعربية والإنجليزية)](${SITE}/مدونة/) | [Blog](${SITE}/en/blog/): مسارات 24 و48 ساعة، الحرف اليدوية، الهدايا، وهل تستحق الأحساء الزيارة.
 - [خطط لرحلتك](${SITE}/خطط/) | [Plan your trip](${SITE}/en/plan-your-trip/): كيفية الوصول ومسارات مقترحة وأسئلة شائعة.
-- [دليل الحصول على تأشيرة السياحة والزيارة للسعودية](${SITE}${VISA_GUIDE_PATH})
+- [دليل التأشيرات: تأشيرة زيارة السعودية لرحلة الأحساء](${SITE}${VISA_GUIDE_ALT.ar}) | [Visa guide](${SITE}${VISA_GUIDE_ALT.en}): 8 مسارات، لمن كل مسار وصلاحيته ورابط التقديم الرسمي — بلا رسوم ولا معلومة غير مؤكدة.
 - [واحة الأحساء في اليونسكو](${SITE}/اليونسكو/) | [UNESCO World Heritage](${SITE}/en/unesco/): ${unescoCount} من مكوّنات موقع التراث العالمي 1563 (الاثني عشر) بصفحات مفردة.
 - [مسارات مقترحة (${TRAILS.length} مسارات)](${SITE}/trails/) | [Suggested trails](${SITE}/en/trails/): ${TRAILS.map((t) => t.ar.title).join('، ')}.
 - [خريطة المعالم](${SITE}/خريطة/) | [Map](${SITE}/en/map/) — و[الخريطة التضاريسية 3D](${SITE}/خريطة-تضاريس/) | [Terrain map](${SITE}/en/terrain-map/)
