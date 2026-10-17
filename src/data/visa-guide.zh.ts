@@ -1,4 +1,4 @@
-// مولَّد بـtools/translation/apply-visa-guide.mjs من zh-translation/output/visa-guide/judge.json (2026-10-17، الدرجة 93) — لا يُحرَّر يدوياً؛
+// مولَّد بـtools/translation/apply-visa-guide.mjs من zh-translation/output/visa-guide/judge.json (2026-10-17، الدرجة 94) — لا يُحرَّر يدوياً؛
 // أي تعديل يمرّ بخط zh-translation-pipeline ثم يُعاد التطبيق.
 import type { VisaGuideContent } from './visa-guide';
 
@@ -11,7 +11,7 @@ export const VISA_ZH: VisaGuideContent = {
   "lead": "您的哈萨之旅，从一张适合您的沙特访问签证开始。本指南将 8 种签证办理途径汇于一页，简要说明每种途径适合谁、签证有效期多长、到哪里申请，随后引导您前往政府部门的官方平台，在那里完成申请。",
   "feesLine": "签证费用将在官方平台提交申请时显示。",
   "verifyLine": "相关条件可能变动，申请前请先通过官方渠道核实。",
-  "updatedLine": "最后更新：2026 年 10 月 16 日",
+  "updatedLine": "最后更新：2026 年 10 月 17 日",
   "intro": {
     "h": "哈萨有什么值得期待？",
     "parts": [
@@ -50,7 +50,7 @@ export const VISA_ZH: VisaGuideContent = {
     "rows": [
       [
         "旅游电子签证",
-        "符合条件国家的公民，申根、美国或英国签证持有人及上述地区的永久居民，以及海湾合作委员会（海合会）国家居民",
+        "符合条件国家的公民，申根、美国或英国签证持有人，美国、欧盟或英国的永久居民，以及海湾合作委员会（海合会）国家居民",
         "有效期 1 年，多次入境，停留最长 3 个月",
         "visa.visitsaudi.com"
       ],
@@ -168,10 +168,10 @@ export const VISA_ZH: VisaGuideContent = {
       "h": "家庭与个人访问签证",
       "who": {
         "label": "这种签证适合谁？",
-        "text": "受沙特公民或居民邀请者。家庭访问面向亲属：海合会国家公民的直系亲属（父母、妻子和子女），以及居民的亲属。个人访问面向与邀请人既无亲属关系也无商务关系者。由邀请人在沙特外交部平台在线发起申请。"
+        "text": "受沙特公民或居民邀请者。家庭访问面向亲属：海合会国家公民的直系亲属（父母、配偶和子女），以及居民的亲属。个人访问面向与邀请人既无亲属关系也无商务关系者。由邀请人在沙特外交部平台在线发起申请。"
       },
       "cta": {
-        "label": "前往官方平台申请",
+        "label": "由邀请人在官方平台发起申请",
         "href": "https://visa.mofa.gov.sa/Home/Index2?service_type=2"
       }
     },
@@ -182,7 +182,7 @@ export const VISA_ZH: VisaGuideContent = {
         "text": "面向与沙特境内公司或机构有商务往来并受其邀请者。由邀请机构发起申请，随后在沙特外交部平台完成。"
       },
       "cta": {
-        "label": "前往官方平台申请",
+        "label": "由邀请人在官方平台发起申请",
         "href": "https://ksavisa.sa/visa/business-visit/apply"
       }
     },
@@ -315,7 +315,7 @@ export const VISA_ZH: VisaGuideContent = {
       },
       {
         "q": "海合会国家居民去哈萨需要签证吗？",
-        "a": "需要。海合会国家居民符合旅游途径的申请条件，可通过沙特外交部平台申请。"
+        "a": "需要。通过沙特外交部平台（ksavisa.sa）的海合会国家居民途径申请。"
       },
       {
         "q": "持旅游签证可以履行副朝吗？",
@@ -323,7 +323,7 @@ export const VISA_ZH: VisaGuideContent = {
       },
       {
         "q": "持旅游签证可以工作吗？",
-        "a": "不可以。旅游签证用于旅游、副朝和探亲，不允许工作或学习。"
+        "a": "不可以。旅游签证用于旅游、参加活动、副朝和探亲，不允许工作或学习。"
       },
       {
         "q": "如何邀请亲属来哈萨探望我？",

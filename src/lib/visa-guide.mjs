@@ -21,10 +21,10 @@ export const visaHref = (lang) => (lang === 'ar' ? VISA_GUIDE_ALT.ar : VISA_GUID
 
 /** تاريخ آخر تعديل على المحتوى (ISO لـdateModified) وسطره المرئي بلغتيه — حرفياً، يحرسه C28. */
 export const VISA_UPDATED_ISO = '2026-10-17';
-export const VISA_UPDATED_LINE = { ar: 'تاريخ آخر تحديث: 17 أكتوبر 2026', en: 'Last updated: 17 October 2026', zh: '最后更新：2026 年 10 月 16 日', ru: 'Последнее обновление: 16 октября 2026 года', de: 'Stand: 16. Oktober 2026', ur: 'آخری ترمیم: 16 اکتوبر 2026' };
+export const VISA_UPDATED_LINE = { ar: 'تاريخ آخر تحديث: 17 أكتوبر 2026', en: 'Last updated: 17 October 2026', de: 'Stand: 16. Oktober 2026', ur: 'آخری ترمیم: 16 اکتوبر 2026', zh: '最后更新：2026 年 10 月 17 日', ru: 'Последнее обновление: 17 октября 2026 года' };
 
 /** سطر الرسوم العام — الذكر الوحيد للرسوم في الصفحة، حرفياً بكل لغة، يحرسه C28. */
-export const VISA_FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.', zh: '签证费用将在官方平台提交申请时显示。', ru: 'Размер визового сбора вы увидите при подаче заявки на официальной платформе.', de: 'Die Gebühren sehen Sie bei der Antragstellung auf der offiziellen Plattform.', ur: 'فیس سرکاری ویب سائٹ پر درخواست دیتے وقت دکھائی جاتی ہے۔' };
+export const VISA_FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.', de: 'Die Gebühren sehen Sie bei der Antragstellung auf der offiziellen Plattform.', ur: 'فیس سرکاری ویب سائٹ پر درخواست دیتے وقت دکھائی جاتی ہے۔', zh: '签证费用将在官方平台提交申请时显示。', ru: 'Размер визового сбора вы увидите при подаче заявки на официальной платформе.' };
 
 /** ملاحظة التحرير — في معاينة النشر وطلب الدمج فقط، ولا تظهر في الإنتاج (قرار إياد). */
 export const VISA_PREVIEW_NOTE = 'يجب فتح كل رابط يدوياً قبل النشر';
