@@ -1,0 +1,4571 @@
+{
+  "batch": "b23-ui",
+  "kind": "ui",
+  "generated_by": "tools/mkpack-ui.mjs",
+  "built_from": "a trace build of a scratch copy of the worktree (_scratch/ui-trace-b23-ui/dist) + src/i18n/ui.ts + src/lib/categories.ts + the inline sites listed in tools/lib/inline-sites.mjs + ur-translation/memory/tm.json",
+  "worktree_ui_sha256": "91d8d97dcc6a0b32167fc741f5c7b9e6763998053a9dd0fd3499037009b309bb",
+  "source_rule": "English is the translation source. Arabic is the authority where the two diverge on a fact, and the ONLY source of name spellings. Arabic-only content is not imported. precedent = the approved ru / de / zh values of the same string: reference, never source.",
+  "scope_rule": "A string is in the batch because a built page shows it, not because a dictionary lists it. tier \"rendered\" = on the /ur/ page(s) /ur/events/, /ur/events/hasawi-bisht-festival/, /ur/events/qaisariyah-nights/, /ur/events/kafu-nights/, /ur/events/processed-dates-festival/, /ur/events/palm-village/, /ur/events/hasawi-lomi-exhibition/, /ur/events/al-uqair-winter/, /ur/events/al-wafrah-winter/, /ur/events/horse-racing-season/, /ur/events/creative-alahsa-festival/. tier \"detail-template\" = not on the calibration detail page, but rendered by the same detail template on attraction pages of batches b1 / b2 (measured on a trace build that gave those ten pages a placeholder title). tier \"other-language-pages\" = in the language-suggestion bar that other languages' pages show a visitor whose browser asks for Urdu — it appears once /ur/ pages are listed (measured on a trace build with the three pages listed). Every other ui.ts key renders only on pages that have no /ur/ version yet and is listed under later_rounds.",
+  "stage_file_shape": "stage files carry strings = { \"<id>\": \"<Urdu>\" } with exactly the ids of this pack's strings, in this order. See tools/README.md.",
+  "placeholder_rule": "A placeholder listed for a string ({op}, {n}) is kept exactly once, untouched. det.openMaps keeps its trailing space + U+2197. Digits that stand in the English stay Latin digits.",
+  "pages": [
+    {
+      "id": "events",
+      "url": "/ur/events/",
+      "file": "dist/ur/events/index.html"
+    },
+    {
+      "id": "event:hasawi-bisht-festival",
+      "url": "/ur/events/hasawi-bisht-festival/",
+      "file": "dist/ur/events/hasawi-bisht-festival/index.html"
+    },
+    {
+      "id": "event:qaisariyah-nights",
+      "url": "/ur/events/qaisariyah-nights/",
+      "file": "dist/ur/events/qaisariyah-nights/index.html"
+    },
+    {
+      "id": "event:kafu-nights",
+      "url": "/ur/events/kafu-nights/",
+      "file": "dist/ur/events/kafu-nights/index.html"
+    },
+    {
+      "id": "event:processed-dates-festival",
+      "url": "/ur/events/processed-dates-festival/",
+      "file": "dist/ur/events/processed-dates-festival/index.html"
+    },
+    {
+      "id": "event:palm-village",
+      "url": "/ur/events/palm-village/",
+      "file": "dist/ur/events/palm-village/index.html"
+    },
+    {
+      "id": "event:hasawi-lomi-exhibition",
+      "url": "/ur/events/hasawi-lomi-exhibition/",
+      "file": "dist/ur/events/hasawi-lomi-exhibition/index.html"
+    },
+    {
+      "id": "event:al-uqair-winter",
+      "url": "/ur/events/al-uqair-winter/",
+      "file": "dist/ur/events/al-uqair-winter/index.html"
+    },
+    {
+      "id": "event:al-wafrah-winter",
+      "url": "/ur/events/al-wafrah-winter/",
+      "file": "dist/ur/events/al-wafrah-winter/index.html"
+    },
+    {
+      "id": "event:horse-racing-season",
+      "url": "/ur/events/horse-racing-season/",
+      "file": "dist/ur/events/horse-racing-season/index.html"
+    },
+    {
+      "id": "event:creative-alahsa-festival",
+      "url": "/ur/events/creative-alahsa-festival/",
+      "file": "dist/ur/events/creative-alahsa-festival/index.html"
+    }
+  ],
+  "header_budget": {
+    "rule": "Navigation labels are bound by measurement, not by taste (CLAUDE.md: the header is measured, never estimated). After any change to a navigation label, tools/measure-header-fit.mjs must pass; it requires no overlap, ONE row and a header height of exactly 68px.",
+    "facts": {
+      "measured": "2026-10-12, worktree dist at fce37cf (feat/ur-round-1), headless Chrome via tools/measure-header-fit.mjs (MODE=fit and verify) and a per-link probe",
+      "tool_output_fit": {
+        "ar": {
+          "links": 10,
+          "nav_px": 781,
+          "need_px": 1353,
+          "min_window_px": 1393
+        },
+        "en": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1476,
+          "min_window_px": 1516
+        },
+        "zh": {
+          "links": 10,
+          "nav_px": 684,
+          "need_px": 1220,
+          "min_window_px": 1260
+        },
+        "de": {
+          "links": 9,
+          "nav_px": 924,
+          "need_px": 1481,
+          "min_window_px": 1521
+        },
+        "ru": {
+          "links": 9,
+          "nav_px": 1014,
+          "need_px": 1668,
+          "min_window_px": 1708
+        },
+        "ur": {
+          "links": 10,
+          "nav_px": 865,
+          "need_px": 1478,
+          "min_window_px": 1518
+        }
+      },
+      "tool_output_verify": {
+        "widths_probed": 26,
+        "languages": 6,
+        "failing_cells": 0,
+        "all_cells_pass": true,
+        "exit_code": 0
+      },
+      "ur_today": {
+        "labels": "English fall-back labels (ui.ur is empty), Latin font 13.5px Lora",
+        "bar_shown_from_px": 1518,
+        "collapsed_to_burger_below_px": 1518,
+        "container_cap_px": 1500,
+        "header_height_px": 68,
+        "header_gap_px": 16,
+        "nav_gap_px": 10,
+        "nav_font": "13.5px Lora",
+        "nav_line_height": "23.625px",
+        "brand_px": 71.6,
+        "actions_px": 509.2,
+        "nav_links": [
+          {
+            "en": "Attractions",
+            "px": 70.1,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Trails",
+            "px": 34.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Souqs, Parks & Farms",
+            "px": 133.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Events",
+            "px": 41.9,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Oasis Fruits",
+            "px": 74.2,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Hasawi Cuisine",
+            "px": 95.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Restaurants & Cafés",
+            "px": 125.3,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Places to Stay",
+            "px": 86.4,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Online Stores",
+            "px": 85.5,
+            "shown_in_bar": true
+          },
+          {
+            "en": "Plan your trip",
+            "px": 0,
+            "shown_in_bar": false
+          },
+          {
+            "en": "Map",
+            "px": 27.4,
+            "shown_in_bar": true
+          }
+        ],
+        "action_parts": [
+          {
+            "what": "button.hd-search-btn",
+            "text": "",
+            "px": 95.9
+          },
+          {
+            "what": "a.plan-link",
+            "text": "My saved places 0",
+            "px": 141.8
+          },
+          {
+            "what": "details.lang-menu",
+            "text": "URالعربيةEnglish中文（简体）DeutschРусскийاردو",
+            "px": 85.1
+          },
+          {
+            "what": "a.btn-gold",
+            "text": "Plan your trip",
+            "px": 138.4
+          }
+        ],
+        "nav_links_sum_px": 774.4,
+        "nav_intrinsic_px": 864.4,
+        "need_px": 1478
+      }
+    },
+    "what_the_labels_must_fit": "With the present [lang=\"ur\"] block in Header.astro the bar is shown from a 1518px window and is collapsed into the burger below it (so on 1280-1536px laptop screens the Urdu header is the burger menu, whatever the labels). For that threshold to stay valid the bar may need at most 1478px: brand 71.6 + nav + actions + 2 x 16 gap, i.e. nav (ten labels and nine 10px gaps) plus actions (search button, saved-places link with its counter, language button, gold button) of at most 1374.4px — today 1373.6px with the English labels in a Latin face at 13.5px. The Urdu labels will be set in the Nastaliq face, which is wider and taller: the widths below are the English ones and are a reference, not a prediction. If the Urdu labels need more, the thresholds of the [lang=\"ur\"] block are re-measured and moved (an engineering step for the coordinator), or shorter labels are chosen — measured either way.",
+    "nav_label_ids": []
+  },
+  "totals": {
+    "strings": 168,
+    "by_tier": {
+      "rendered": 168,
+      "detail-template": 0,
+      "other-language-pages": 0
+    },
+    "by_kind": {
+      "ui.ts key": 2,
+      "page module (events)": 166
+    },
+    "navigation_labels": 0,
+    "navigation_labels_in_bar": 0,
+    "with_candidate_from_calibration": 0,
+    "with_placeholder": 2,
+    "later_rounds": 183
+  },
+  "strings": {
+    "ev.shopNote": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "ev.shopNote"
+      },
+      "tier": "rendered",
+      "en": "Lomi products, foods and care items from the establishments taking part in the exhibition.",
+      "ar": "منتجات اللومي ومأكولات ومستحضرات عناية من المؤسسات المشاركة في المعرض.",
+      "placeholders": [],
+      "renders": [
+        "events: main text"
+      ],
+      "element": [
+        "p.ev-shop-note"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Продукция из лайма, продукты питания и уходовые средства — от заведений-участников выставки.",
+        "de": "Lomi-Produkte, Lebensmittel und Pflegeprodukte der teilnehmenden Aussteller.",
+        "zh": "青柠产品、食品与个人护理用品，均来自参展商家。"
+      }
+    },
+    "ev.shop": {
+      "kind": "ui.ts key",
+      "source": {
+        "file": "src/i18n/ui.ts",
+        "key": "ev.shop"
+      },
+      "tier": "rendered",
+      "en": "Shop the exhibition’s products — Al-Ahsa Chamber store (external link) ↗",
+      "ar": "تسوّق منتجات المعرض — متجر غرفة الأحساء (رابط خارجي) ↗",
+      "placeholders": [],
+      "renders": [
+        "events: main text",
+        "event:hasawi-lomi-exhibition: main text"
+      ],
+      "element": [
+        "a.ev-ticket"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Купить товары выставки — магазин Торгово-промышленной палаты Аль-Ахсы (внешняя ссылка) ↗",
+        "de": "Kaufen Sie die Produkte der Ausstellung – Shop der Al-Ahsa-Handelskammer (externer Link) ↗",
+        "zh": "选购展会产品——哈萨商会商店（外部链接） ↗"
+      }
+    },
+    "events.eyebrow": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Seasons of the oasis",
+      "ar": "مواسم الواحة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Small label above the page heading of the events list"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сезоны оазиса",
+        "de": "Saisons der Oase",
+        "zh": "绿洲的节庆时令"
+      },
+      "note": "Small label above the page heading of the events list. No final stop."
+    },
+    "events.title": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Festivals & Events",
+      "ar": "المهرجانات والفعاليات",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Page heading (h1) of the events list, the breadcrumb name and the caption-free table heading context"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фестивали и мероприятия",
+        "de": "Festivals und Veranstaltungen",
+        "zh": "节庆与活动"
+      },
+      "note": "Page heading (h1) of the events list, the breadcrumb name and the caption-free table heading context. No final stop.",
+      "same_english_different_arabic": [
+        "evd.crumb"
+      ]
+    },
+    "events.lead": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "From Qaisariyah Souq to the palm groves, Al-Ahsa pulses with seasons that revive its heritage all year round — celebrations and festivals that return each year in their season.",
+      "ar": "من سوق القيصرية إلى مزارع النخيل، تنبض الأحساء بمواسمَ تُحيي تراثها على مدار العام — احتفالاتٌ ومهرجاناتٌ تعود كلَّ سنةٍ في موسمها.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Lead under the page heading of the events list"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "От рынка Эль-Кайсария до пальмовых садов — Аль-Ахса живёт сезонами, которые круглый год возрождают её наследие, — праздниками и фестивалями, что возвращаются из года в год, каждый в свой сезон.",
+        "de": "Vom Qaisariyah-Souk bis zu den Dattelpalmenfarmen ist Al-Ahsa von Saisons geprägt, die sein Erbe das ganze Jahr über beleben. Feste und Festivals kehren jedes Jahr in ihrer Saison wieder.",
+        "zh": "从凯撒利亚集市到连绵的椰枣园，哈萨一年四季都跳动着文化传承的节庆脉搏——一场场庆典与节日，年复一年在各自的时节如约而至。"
+      },
+      "note": "Lead under the page heading of the events list."
+    },
+    "events.notice": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "These events recur annually in their approximate seasons; official dates and details may vary from year to year with each edition. Please confirm via the organisers’ announcements and official channels before visiting.",
+      "ar": "تتكرّر هذه الفعاليات سنوياً في مواسمها التقريبية، وقد تختلف مواعيدها وتفاصيلها من عامٍ لآخر بحسب تنظيم كل نسخة. يُرجى التأكد من إعلانات الجهات المنظّمة والقنوات الرسمية قبل الزيارة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Notice box on the list page: the seasons are approximate and recur yearly; confirm with the organisers"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Эти мероприятия повторяются ежегодно, в свои примерные сезоны. Официальные даты и подробности могут отличаться год от года — это зависит от организации каждого выпуска. Уточняйте их в объявлениях организаторов и на официальных каналах перед поездкой.",
+        "de": "Diese Veranstaltungen kehren jährlich in ihren ungefähren Saisons wieder. Die offiziellen Termine und Einzelheiten können sich von Ausgabe zu Ausgabe ändern. Bitte bestätigen Sie die Angaben vor Ihrem Besuch anhand der Ankündigungen der Veranstalter und der offiziellen Kanäle.",
+        "zh": "以上活动每年在大致相同的季节循环举办，具体日期与内容可能因各届安排而有所变动。出行前请以主办方公告及官方渠道信息为准。"
+      },
+      "note": "Notice box on the list page: the seasons are approximate and recur yearly; confirm with the organisers."
+    },
+    "events.placeK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Location",
+      "ar": "الموقع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Label of the location row on every event card (and on a season page)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Место",
+        "de": "Ort",
+        "zh": "地点"
+      },
+      "note": "Label of the location row on every event card (and on a season page). No colon in the English: it is a term/definition pair."
+    },
+    "events.mapK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Map ↗",
+      "ar": "الخريطة ↗",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Link after the location on a card that has a map link; opens Google Maps in a new tab"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Карта ↗",
+        "de": "Karte ↗",
+        "zh": "地图 ↗"
+      },
+      "note": "Link after the location on a card that has a map link; opens Google Maps in a new tab. The English ends with \"↗\" (external link) — keep the arrow."
+    },
+    "events.ticketK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Book your ticket",
+      "ar": "احجز تذكرتك",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Booking button of an event that announced official booking (none shows once an edition is over)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Забронировать билет",
+        "de": "Buchen Sie Ihr Ticket",
+        "zh": "预订门票"
+      },
+      "note": "Booking button of an event that announced official booking (none shows once an edition is over)."
+    },
+    "events.orgK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Organisers",
+      "ar": "الجهات المنظّمة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Label of the organisers row (term/definition pair)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Организаторы",
+        "de": "Veranstalter",
+        "zh": "主办单位"
+      },
+      "note": "Label of the organisers row (term/definition pair)."
+    },
+    "events.spanK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Approximate length",
+      "ar": "المدة التقريبية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Label of the approximate-length row (term/definition pair)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Примерная продолжительность",
+        "de": "Ungefähre Dauer",
+        "zh": "大致时长"
+      },
+      "note": "Label of the approximate-length row (term/definition pair)."
+    },
+    "events.actsK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Highlights",
+      "ar": "أبرز الأنشطة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Heading of the highlights list on a card (term/definition pair)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ключевые моменты",
+        "de": "Höhepunkte",
+        "zh": "亮点活动"
+      },
+      "note": "Heading of the highlights list on a card (term/definition pair)."
+    },
+    "events.statusL.confirmed": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Confirmed this year",
+      "ar": "مؤكد هذا العام",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Status badge of an event whose dates the organisers announced for this year"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Подтверждено в этом году",
+        "de": "Dieses Jahr bestätigt",
+        "zh": "今年已确认"
+      },
+      "note": "Status badge of an event whose dates the organisers announced for this year."
+    },
+    "events.statusL.expected": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Expected season",
+      "ar": "موسم متوقع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Status badge of a season expected by analogy with past editions (the default badge on every card today)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ожидаемый сезон",
+        "de": "Erwartete Saison",
+        "zh": "预计档期"
+      },
+      "note": "Status badge of a season expected by analogy with past editions (the default badge on every card today)."
+    },
+    "events.statusL.tba": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Awaiting announcement",
+      "ar": "بانتظار الإعلان",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Status badge of an event whose recurrence is not confirmed"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Дата ещё не объявлена",
+        "de": "Ankündigung steht aus",
+        "zh": "待官方公布"
+      },
+      "note": "Status badge of an event whose recurrence is not confirmed."
+    },
+    "events.cd.pre.one": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Starts tomorrow",
+      "ar": "يبدأ غداً",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Countdown badge, written by the page script from the visitor's date: the edition starts tomorrow"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Начинается через {n} день",
+        "de": "Beginnt morgen",
+        "zh": "明天开幕"
+      },
+      "note": "Countdown badge, written by the page script from the visitor's date: the edition starts tomorrow."
+    },
+    "events.cd.pre.other": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Starts in {n} days",
+      "ar": "يبدأ بعد {n} يوماً",
+      "placeholders": [
+        "{n}"
+      ],
+      "renders": [
+        "/ur/events/: Countdown badge: the edition starts in {n} days ({n} is a number the script writes, 2 or more)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Начинается через {n} дня",
+        "de": "Beginnt in {n} Tagen",
+        "zh": "还有 {n} 天开幕"
+      },
+      "note": "Countdown badge: the edition starts in {n} days ({n} is a number the script writes, 2 or more)."
+    },
+    "events.cd.today": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Starts today",
+      "ar": "يبدأ اليوم",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Countdown badge: the edition starts today"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Начинается сегодня",
+        "de": "Beginnt heute",
+        "zh": "今天开幕"
+      },
+      "note": "Countdown badge: the edition starts today."
+    },
+    "events.cd.last": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Last day today",
+      "ar": "آخر يوم اليوم",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Countdown badge: today is the last day of the edition"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сегодня последний день",
+        "de": "Letzter Tag heute",
+        "zh": "今天是最后一天"
+      },
+      "note": "Countdown badge: today is the last day of the edition."
+    },
+    "events.cd.left.one": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "1 day left",
+      "ar": "يتبقّى يوم واحد",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Countdown badge during an edition: one day left (the English writes the figure 1)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Остался {n} день",
+        "de": "Noch 1 Tag",
+        "zh": "还剩 {n} 天"
+      },
+      "note": "Countdown badge during an edition: one day left (the English writes the figure 1).",
+      "divergence_auto": "numbers differ — English [1], Arabic []"
+    },
+    "events.cd.left.other": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "{n} days left",
+      "ar": "يتبقّى {n} يوم",
+      "placeholders": [
+        "{n}"
+      ],
+      "renders": [
+        "/ur/events/: Countdown badge during an edition: {n} days left ({n} written by the script, 2 or more)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Осталось {n} дня",
+        "de": "Noch {n} Tage",
+        "zh": "还剩 {n} 天"
+      },
+      "note": "Countdown badge during an edition: {n} days left ({n} written by the script, 2 or more)."
+    },
+    "events.nowBadge": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "You are here now",
+      "ar": "نحن الآن هنا",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Badge on the card of a season that is under way in the visitor's current month (\"this is the season now\")"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Вы сейчас здесь",
+        "de": "Läuft gerade",
+        "zh": "正当季"
+      },
+      "note": "Badge on the card of a season that is under way in the visitor's current month (\"this is the season now\")."
+    },
+    "events.orderNote": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The cards are ordered automatically by what is nearest to your device’s date — starting with whatever is under way now.",
+      "ar": "رُتِّبت البطاقات تلقائياً حسب الأقرب إلى تاريخ جهازك — تبدأ بما هو جارٍ الآن.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Small note under the cards: their order follows the visitor's device date, starting with what is under way"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Карточки автоматически упорядочены по близости к дате на вашем устройстве — начиная с того, что происходит прямо сейчас.",
+        "de": "Die Karten werden automatisch nach ihrer zeitlichen Nähe zum heutigen Datum auf Ihrem Gerät sortiert – beginnend mit dem, was gerade läuft.",
+        "zh": "卡片已按您设备的日期自动排序——正在进行的活动排在最前。"
+      },
+      "note": "Small note under the cards: their order follows the visitor's device date, starting with what is under way."
+    },
+    "events.notesH": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Before you go",
+      "ar": "قبل أن تحضر",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Heading of the three notes at the foot of the list page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Перед поездкой",
+        "de": "Vor Ihrem Besuch",
+        "zh": "出行前须知"
+      },
+      "note": "Heading of the three notes at the foot of the list page. No final stop.",
+      "same_source_as": [
+        "evd.noticeH"
+      ]
+    },
+    "events.notes.0.h": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Timing",
+      "ar": "التوقيت",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Heading of one of the three notes at the foot of the list page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Время",
+        "de": "Zeitraum",
+        "zh": "时间安排"
+      },
+      "note": "Heading of one of the three notes at the foot of the list page. No final stop."
+    },
+    "events.notes.0.d": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The events follow both the Hijri and Gregorian calendars and return annually in their approximate seasons; official dates can shift from year to year — follow each edition’s announcements.",
+      "ar": "تتبع الفعاليات التقويمين الهجري والميلادي وتعود سنوياً في مواسمها التقريبية، وقد تختلف المواعيد الرسمية من عامٍ لآخر — تابع إعلانات كل نسخة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Text of one of the three notes at the foot of the list page"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Мероприятия следуют календарю хиджры и григорианскому календарю и возвращаются ежегодно в свои примерные сезоны. Официальные даты могут смещаться год от года — следите за объявлениями каждого нового выпуска.",
+        "de": "Die offiziellen Termine der Veranstaltungen können von Jahr zu Jahr abweichen – folgen Sie daher den Ankündigungen der jeweiligen Ausgabe. Die Veranstaltungen richten sich sowohl nach dem islamischen Mondkalender (Hidschra-Kalender) als auch nach dem gregorianischen Kalender und kehren jährlich in ihren ungefähren Saisons wieder.",
+        "zh": "各项活动同时参照伊斯兰历与公历，每年在大致相同的季节举办；官方日期可能逐年变动——请关注每届的最新公告。"
+      },
+      "note": "Text of one of the three notes at the foot of the list page."
+    },
+    "events.notes.1.h": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Heritage & creativity",
+      "ar": "التراث والإبداع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Heading of one of the three notes at the foot of the list page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Наследие и творчество",
+        "de": "Erbe und Kreativität",
+        "zh": "传统与创意"
+      },
+      "note": "Heading of one of the three notes at the foot of the list page. No final stop."
+    },
+    "events.notes.1.d": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The festivals spotlight Al-Ahsa’s identity and heritage through folk dress, handicrafts and authentic local products.",
+      "ar": "تسلّط المهرجانات الضوء على هوية الأحساء وتراثها عبر الملابس الشعبية والحرف اليدوية والمنتجات المحلية الأصيلة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Text of one of the three notes at the foot of the list page"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Фестивали раскрывают самобытность и наследие Аль-Ахсы через народный костюм, ремёсла и подлинные местные изделия.",
+        "de": "Die Festivals rücken die Identität und das Erbe Al-Ahsas in den Fokus – mit traditioneller Tracht, Kunsthandwerk und authentischen lokalen Erzeugnissen.",
+        "zh": "这些节庆通过民族服饰、手工艺与地道的本地产品，展现哈萨的文化认同与传统底蕴。"
+      },
+      "note": "Text of one of the three notes at the foot of the list page."
+    },
+    "events.notes.2.h": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Family atmosphere",
+      "ar": "الأجواء العائلية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Heading of one of the three notes at the foot of the list page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Семейная атмосфера",
+        "de": "Familienatmosphäre",
+        "zh": "家庭氛围"
+      },
+      "note": "Heading of one of the three notes at the foot of the list page. No final stop."
+    },
+    "events.notes.2.d": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Programmes suit the whole family, focused on entertainment, creativity, shopping and tasting for all ages.",
+      "ar": "برامج تناسب جميع أفراد العائلة، بتركيزٍ على الترفيه والإبداع والتسوق والتذوق لكل الأعمار.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Text of one of the three notes at the foot of the list page"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Программы подходят для всей семьи и сосредоточены на развлечениях, творчестве, покупках и дегустациях для любого возраста.",
+        "de": "Die Programme sind auf die ganze Familie ausgerichtet und bieten Unterhaltung, Kreativität, Einkaufsmöglichkeiten und Kostproben für alle Altersgruppen.",
+        "zh": "活动内容适合全家参与，集娱乐、创意、购物与美食品鉴于一体，老少皆宜。"
+      },
+      "note": "Text of one of the three notes at the foot of the list page."
+    },
+    "events.srcNote": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "For more information and updates, follow Al-Ahsa Municipality, the Al-Ahsa Development Authority and the events’ official channels.",
+      "ar": "للمزيد من المعلومات والتحديثات، يُرجى متابعة أمانة الأحساء وهيئة تطوير الأحساء والقنوات الرسمية للفعاليات.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Source line at the foot of the list page: names the bodies to follow for updates"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Чтобы узнать больше и не пропустить новости, следите за муниципалитетом Аль-Ахсы, Управлением по развитию Аль-Ахсы и официальными каналами мероприятий.",
+        "de": "Für weitere Informationen und Aktualisierungen folgen Sie den offiziellen Kanälen der Kommunalverwaltung von Al-Ahsa, der Al-Ahsa-Entwicklungsbehörde und der Veranstaltungen.",
+        "zh": "欲了解更多信息与最新动态，请关注哈萨市政局、哈萨发展管理局及各活动官方渠道。"
+      },
+      "note": "Source line at the foot of the list page: names the bodies to follow for updates."
+    },
+    "events.ctaH": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Turn your season into a full trip",
+      "ar": "اجعل موسمك رحلةً كاملة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Heading of the closing call to action"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Превратите свой сезон в полноценную поездку",
+        "de": "Machen Sie aus Ihrer Saison eine ganze Reise",
+        "zh": "让节庆之行变成完整旅程"
+      },
+      "note": "Heading of the closing call to action. No final stop."
+    },
+    "events.ctaD": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Pair the festival with the oasis sights around it, and build your route in “My saved places”.",
+      "ar": "اربط زيارة المهرجان بمعالم الواحة القريبة منه، وجهّز مسارك في «معالمي المحفوظة».",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Text of the closing call to action"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Свяжите фестиваль с окрестными достопримечательностями оазиса и соберите свой маршрут в разделе «Сохранённые места».",
+        "de": "Verbinden Sie den Festivalbesuch mit den nahegelegenen Sehenswürdigkeiten der Oase, und stellen Sie Ihre Route mit der Merkliste zusammen.",
+        "zh": "将节庆游览与周边绿洲名胜串联起来，在“我的收藏”中规划您的路线。"
+      },
+      "note": "Text of the closing call to action. “My saved places” is the site's saved-places page (its Urdu name is the one the site's navigation uses)."
+    },
+    "events.ctaBrowse": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Browse attractions",
+      "ar": "تصفّح المعالم",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Button: to the attractions index (/ur/attractions/)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Смотреть достопримечательности",
+        "de": "Sehenswürdigkeiten entdecken",
+        "zh": "浏览景点"
+      },
+      "note": "Button: to the attractions index (/ur/attractions/)."
+    },
+    "events.ctaPlan": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Plan your trip",
+      "ar": "خطّط لرحلتك",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Button: to the trip-planning page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "План поездки",
+        "de": "Reise planen",
+        "zh": "规划行程"
+      },
+      "note": "Button: to the trip-planning page. On /ur/ it leads to the ENGLISH page (no Urdu page yet; N308: no language warning).",
+      "tm_approved": [
+        {
+          "ur": "سفر کا منصوبہ بنائیں",
+          "page": "ui",
+          "field": "nav.plan"
+        },
+        {
+          "ur": "سفر کا منصوبہ بنائیں",
+          "page": "ui",
+          "field": "nav.planVisit"
+        },
+        {
+          "ur": "سفر کا منصوبہ بنائیں",
+          "page": "ui",
+          "field": "home.plan.cta"
+        }
+      ]
+    },
+    "events.seoTitle": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa festivals & events — seasons of the oasis all year round",
+      "ar": "مهرجانات وفعاليات الأحساء — مواسم الواحة على مدار العام",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Page title of the events list (browser tab, og:title)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фестивали и мероприятия — сезоны оазиса круглый год",
+        "de": "Al-Ahsa: Festivals und Veranstaltungen – Saisons der Oase ganzjährig",
+        "zh": "哈萨节庆与活动——绿洲四季精彩不断"
+      },
+      "note": "Page title of the events list (browser tab, og:title). The site name is appended by the template."
+    },
+    "events.seoDesc": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventsView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A guide to Al-Ahsa’s seasonal festivals and events — the Bisht Festival, Qaisariyah Nights, the Lomi Exhibition and more, with seasons and organisers.",
+      "ar": "دليل المهرجانات والفعاليات الموسمية في الأحساء — البشت، ليالي القيصرية، معرض اللومي، شتاء العقير وغيرها، بمواسمها وأنشطتها وجهاتها المنظّمة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: Meta description of the events list (search-result snippet)"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Фестиваль бишта Аль-Ахсы, Ночи Эль-Кайсария, Выставка лайма Аль-Ахсы, Зима в Эль-Укайре и другие сезонные фестивали Аль-Ахсы — сезоны, программы, организаторы.",
+        "de": "Al-Ahsas Festivals und Veranstaltungen: Hasawi-Bischt-Festival, Qaisariyah-Nächte, Hasawi-Lomi-Ausstellung u. a. – Saisons und Veranstalter.",
+        "zh": "哈萨季节性节庆活动指南——哈萨比什特长袍节、凯撒利亚集市之夜、哈萨青柠展、乌盖尔之冬等，涵盖举办时节、亮点活动与主办单位。"
+      },
+      "note": "Meta description of the events list (search-result snippet). Names four seasons by the names their cards carry."
+    },
+    "events.tableCaption": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/lib/tables.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Seasonal calendar of events — approximate, recurring annually",
+      "ar": "روزنامة مواسم الفعاليات — مواعيد تقريبية تعود سنوياً",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/: caption of the seasonal calendar table"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Календарь сезонных мероприятий — даты приблизительны и повторяются ежегодно",
+        "de": "Saisonaler Kalender der Veranstaltungen – ungefähre Angaben, jährlich wiederkehrend",
+        "zh": null
+      },
+      "note": "Caption of the seasonal calendar (a table of the ten seasons: name, location, season · dates)."
+    },
+    "evd.eyebrow": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A season of the oasis",
+      "ar": "من مواسم الواحة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Small label above the event name on a season page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сезон оазиса",
+        "de": "Eine Saison der Oase",
+        "zh": "绿洲的节庆时令"
+      },
+      "note": "Small label above the event name on a season page. No final stop."
+    },
+    "evd.seasonK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Season",
+      "ar": "الموسم",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Label of the season row on a season page (term/definition pair)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сезон",
+        "de": "Jahreszeit",
+        "zh": "时节"
+      },
+      "note": "Label of the season row on a season page (term/definition pair).",
+      "tm_approved": [
+        {
+          "ur": "موسم",
+          "page": "ui",
+          "field": "fruits.head.season"
+        }
+      ]
+    },
+    "evd.timeK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "When",
+      "ar": "الموعد",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Label of the dates row on a season page (term/definition pair)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Когда",
+        "de": "Zeitraum",
+        "zh": "时间"
+      },
+      "note": "Label of the dates row on a season page (term/definition pair)."
+    },
+    "evd.hoursK": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Opening hours",
+      "ar": "ساعات العمل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Label of the opening-hours row (shown only while an edition with official hours is under way)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Часы работы",
+        "de": "Öffnungszeiten",
+        "zh": "开放时间"
+      },
+      "note": "Label of the opening-hours row (shown only while an edition with official hours is under way)."
+    },
+    "evd.faqH": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "FAQ",
+      "ar": "أسئلة شائعة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Heading of the questions section on a season page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Часто задаваемые вопросы",
+        "de": "Häufige Fragen",
+        "zh": "常见问题"
+      },
+      "note": "Heading of the questions section on a season page. No final stop."
+    },
+    "evd.relatedH": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "See also",
+      "ar": "اقرأ أيضاً",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Heading of the related-links list on a season page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Читайте также",
+        "de": "Siehe auch",
+        "zh": "延伸阅读"
+      },
+      "note": "Heading of the related-links list on a season page. No final stop."
+    },
+    "evd.mapH": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "On the map",
+      "ar": "الموقع على الخريطة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Heading of the map section on a season page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Расположение на карте",
+        "de": "Auf der Karte",
+        "zh": "地图位置"
+      },
+      "note": "Heading of the map section on a season page. No final stop."
+    },
+    "evd.mapOpen": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Open in Google Maps",
+      "ar": "افتح في خرائط قوقل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Button under the embedded map: opens the location in Google Maps"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Открыть в Google Картах",
+        "de": "In Google Maps öffnen",
+        "zh": "在谷歌地图中打开"
+      },
+      "note": "Button under the embedded map: opens the location in Google Maps."
+    },
+    "evd.mapNone": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The organisers have not announced a precise location for this event yet, so no map is shown.",
+      "ar": "لم تُعلن الجهة المنظّمة موقعاً دقيقاً لهذه الفعالية بعد، فلم نضع لها خريطة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Shown instead of a map where the organisers announced no precise location"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Организаторы пока не объявили точное место проведения этого мероприятия, поэтому мы не разместили здесь карту.",
+        "de": "Die Veranstalter haben den genauen Ort dieser Veranstaltung noch nicht bekannt gegeben, daher wird keine Karte angezeigt.",
+        "zh": "主办方尚未公布本活动的确切地点，因此暂不提供地图。"
+      },
+      "note": "Shown instead of a map where the organisers announced no precise location."
+    },
+    "evd.mapFrameTitle": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Event location map",
+      "ar": "خريطة موقع الفعالية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Accessible title of the embedded map frame (read aloud, never shown)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Карта места проведения мероприятия",
+        "de": "Karte des Veranstaltungsortes",
+        "zh": "活动地点地图"
+      },
+      "note": "Accessible title of the embedded map frame (read aloud, never shown)."
+    },
+    "evd.noticeH": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Before you go",
+      "ar": "قبل أن تحضر",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Heading of the notice box on a season page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Перед поездкой",
+        "de": "Vor Ihrem Besuch",
+        "zh": "出行前须知"
+      },
+      "note": "Heading of the notice box on a season page. No final stop.",
+      "same_source_as": [
+        "events.notesH"
+      ]
+    },
+    "evd.notice": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "This event recurs annually in its approximate season; dates and details may vary from year to year. Please confirm via the organisers’ announcements before visiting.",
+      "ar": "تتكرّر هذه الفعالية سنوياً في موسمها التقريبي، وقد تختلف مواعيدها وتفاصيلها من عامٍ لآخر. يُرجى التأكد من إعلانات الجهة المنظّمة قبل الزيارة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Notice box on a season page: the event recurs yearly in its approximate season; confirm with the organisers"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Мероприятие проводится ежегодно в этот примерный период, однако даты и детали могут меняться из года в год. Уточняйте их в анонсах организаторов перед поездкой.",
+        "de": "Diese Veranstaltung kehrt jährlich in ihrer ungefähren Saison wieder. Termine und Einzelheiten können von Jahr zu Jahr abweichen. Bitte bestätigen Sie diese vor Ihrem Besuch anhand der Ankündigungen der Veranstalter.",
+        "zh": "本活动每年在大致相同的季节循环举办，具体日期与内容可能逐年变动。出行前请以主办方公告为准。"
+      },
+      "note": "Notice box on a season page: the event recurs yearly in its approximate season; confirm with the organisers."
+    },
+    "evd.crumb": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Festivals & Events",
+      "ar": "الفعاليات",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Breadcrumb link to the events list (the second crumb)"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фестивали и мероприятия",
+        "de": "Festivals und Veranstaltungen",
+        "zh": "节庆与活动"
+      },
+      "note": "Breadcrumb link to the events list (the second crumb).",
+      "same_english_different_arabic": [
+        "events.title"
+      ]
+    },
+    "evd.moreH": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Other seasons",
+      "ar": "مواسم أخرى",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Heading of the three cards of other seasons at the foot of a season page"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Другие сезоны",
+        "de": "Weitere Saisons",
+        "zh": "更多时令活动"
+      },
+      "note": "Heading of the three cards of other seasons at the foot of a season page. No final stop."
+    },
+    "evd.back": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/components/views/EventDetailView.astro",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "All events",
+      "ar": "كل الفعاليات",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/<season>/: Button: back to the events list"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Все события",
+        "de": "Alle Termine",
+        "zh": "全部活动"
+      },
+      "note": "Button: back to the events list."
+    },
+    "ev.bisht.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Bisht Festival",
+      "ar": "مهرجان البشت الحساوي",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фестиваль бишта Аль-Ахсы",
+        "de": "Hasawi-Bischt-Festival",
+        "zh": "哈萨比什特长袍节"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.bisht.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Historic Ibrahim Palace, Hofuf",
+      "ar": "قصر إبراهيم التاريخي، الهفوف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Историческая крепость Каср-Ибрахим, Эль-Хуфуф",
+        "de": "Historischer Qasr Ibrahim, Hofuf",
+        "zh": "胡富夫历史悠久的易卜拉欣宫"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.bisht.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Winter",
+      "ar": "الشتاء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима",
+        "de": "Winter",
+        "zh": "冬季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\").",
+      "tm_approved": [
+        {
+          "ur": "سردیاں",
+          "page": "ui",
+          "field": "fruits.chips.winter"
+        }
+      ],
+      "same_source_as": [
+        "ev.dates-festival.season",
+        "ev.uqair-winter.season",
+        "ev.wafrah-winter.season",
+        "ev.horse-racing.season"
+      ]
+    },
+    "ev.bisht.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Around December",
+      "ar": "ديسمبر تقريباً",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Примерно в декабре",
+        "de": "Etwa im Dezember",
+        "zh": "12 月前后"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.bisht.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A few days",
+      "ar": "أيامٌ معدودة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Несколько дней",
+        "de": "Wenige Tage",
+        "zh": "为期数天"
+      },
+      "note": "Approximate length of the season (card and page)."
+    },
+    "ev.bisht.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Heritage Commission (Ministry of Culture)",
+      "ar": "هيئة التراث (وزارة الثقافة)",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Комиссия по наследию (Министерство культуры)",
+        "de": "Kommission für Kulturerbe (Kulturministerium)",
+        "zh": "沙特遗产委员会（文化部）"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.bisht.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Bisht exhibition",
+      "ar": "معرض البشت",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Выставка бишта",
+        "de": "Bischt-Ausstellung",
+        "zh": "比什特长袍展"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.bisht.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Weaving workshops",
+      "ar": "ورش تعليم الحياكة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Обучающие мастер-классы по ткачеству",
+        "de": "Weberei-Workshops",
+        "zh": "织造技艺工作坊"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.bisht.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Interactive bisht souq",
+      "ar": "سوق البشوت التفاعلي",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Интерактивный рынок биштов",
+        "de": "Interaktiver Bischt-Souk",
+        "zh": "互动比什特市集"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.bisht.acts.3": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Folklore performances",
+      "ar": "عروض فولكلورية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-bisht-festival/ and its card on /ur/events/: acts.3"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фольклорные представления",
+        "de": "Folkloristische Vorführungen",
+        "zh": "民俗表演"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.qaisariyah-nights.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Qaisariyah Nights",
+      "ar": "ليالي القيصرية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ночи Эль-Кайсария",
+        "de": "Qaisariyah-Nächte",
+        "zh": "凯撒利亚集市之夜"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.qaisariyah-nights.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Historic Qaisariyah Souq, Hofuf",
+      "ar": "سوق القيصرية التاريخي، الهفوف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Исторический рынок Эль-Кайсария, Эль-Хуфуф",
+        "de": "Historischer Qaisariyah-Souk, Hofuf",
+        "zh": "胡富夫历史悠久的凯撒利亚集市"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.qaisariyah-nights.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Late winter",
+      "ar": "أواخر الشتاء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Поздняя зима",
+        "de": "Spätwinter",
+        "zh": "冬末"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\")."
+    },
+    "ev.qaisariyah-nights.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "February – March",
+      "ar": "فبراير – مارس",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Февраль–март",
+        "de": "Februar–März",
+        "zh": "2 月至 3 月"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.qaisariyah-nights.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Several weeks",
+      "ar": "عدة أسابيع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Несколько недель",
+        "de": "Mehrere Wochen",
+        "zh": "为期数周"
+      },
+      "note": "Approximate length of the season (card and page).",
+      "same_source_as": [
+        "ev.dates-festival.span",
+        "ev.lomi.after.span",
+        "ev.uqair-winter.span"
+      ]
+    },
+    "ev.qaisariyah-nights.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Municipality, Al-Ahsa Development Authority, Heritage Commission",
+      "ar": "أمانة الأحساء، هيئة تطوير الأحساء، هيئة التراث",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Муниципалитет Аль-Ахсы, Управление по развитию Аль-Ахсы, Комиссия по наследию",
+        "de": "Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde, Kommission für Kulturerbe",
+        "zh": "哈萨市政局、哈萨发展管理局、沙特遗产委员会"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.qaisariyah-nights.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Folk arts shows",
+      "ar": "عروض فنون شعبية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Демонстрации народных искусств",
+        "de": "Volkskunstvorführungen",
+        "zh": "民间艺术表演"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.qaisariyah-nights.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Community gatherings",
+      "ar": "جلسات مجتمعية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Общественные посиделки",
+        "de": "Geselliges Beisammensein",
+        "zh": "社区聚会"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.qaisariyah-nights.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Heritage games",
+      "ar": "ألعاب تراثية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Традиционные игры",
+        "de": "Kulturerbe-Spiele",
+        "zh": "传统游戏"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.qaisariyah-nights.acts.3": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Craft workshops",
+      "ar": "ورش حرفية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/qaisariyah-nights/ and its card on /ur/events/: acts.3"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ремесленные мастер-классы",
+        "de": "Handwerks-Workshops",
+        "zh": "手工艺工作坊"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.kafu-nights.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Kafu Nights",
+      "ar": "ليالي كفو",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ночи Кафу",
+        "de": "Kafu-Nächte",
+        "zh": "卡夫之夜"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.kafu-nights.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "King Abdullah Environmental Park, Hofuf",
+      "ar": "منتزه الملك عبدالله البيئي، الهفوف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Экологический парк короля Абдаллы, Эль-Хуфуф",
+        "de": "König-Abdullah-Umweltpark, Hofuf",
+        "zh": "胡富夫阿卜杜拉国王环境公园"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.kafu-nights.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The holy month of Ramadan",
+      "ar": "شهر رمضان المبارك",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Священный месяц Рамадан",
+        "de": "Heiliger Ramadan",
+        "zh": "斋月（拉马丹）"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\")."
+    },
+    "ev.kafu-nights.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "During Ramadan",
+      "ar": "خلال شهر رمضان",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "В Рамадан",
+        "de": "Während des Ramadan",
+        "zh": "斋月期间"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.kafu-nights.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Extended Ramadan nights",
+      "ar": "ليالٍ رمضانية ممتدة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Продлённые ночи Рамадана",
+        "de": "Verlängerte Ramadan-Nächte",
+        "zh": "贯穿斋月（夜间举行）"
+      },
+      "note": "Approximate length of the season (card and page)."
+    },
+    "ev.kafu-nights.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "King Faisal University",
+      "ar": "جامعة الملك فيصل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Университет короля Фейсала",
+        "de": "König-Faisal-Universität",
+        "zh": "费萨尔国王大学"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.kafu-nights.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Theatre shows",
+      "ar": "عروض مسرحية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Театральные представления",
+        "de": "Theateraufführungen",
+        "zh": "戏剧演出"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.kafu-nights.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Kids’ zone",
+      "ar": "منطقة الطفل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Детская зона",
+        "de": "Kinderbereich",
+        "zh": "儿童乐园"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.kafu-nights.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Interactive Kafu kitchen",
+      "ar": "مطبخ كفو التفاعلي",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Интерактивная кухня Кафу",
+        "de": "Interaktive Kafu-Küche",
+        "zh": "卡夫互动厨房"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.kafu-nights.acts.3": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "“Ghabqa” dinner",
+      "ar": "عشاء «الغُبقة»",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/ and its card on /ur/events/: acts.3"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ужин «Габка»",
+        "de": "„Ghabqa“-Abendessen",
+        "zh": "“盖布加”晚宴（斋月夜间聚餐）"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.kafu-nights.intro": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "“Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arab Gulf states.",
+      "ar": null,
+      "placeholders": [],
+      "renders": [
+        "/ur/events/kafu-nights/: intro"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": null,
+        "de": null,
+        "zh": null
+      },
+      "note": "Opening paragraph of the season page."
+    },
+    "ev.dates-festival.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Processed Dates Festival",
+      "ar": "مهرجان التمور المصنّعة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фестиваль переработки фиников",
+        "de": "Festival der verarbeiteten Datteln",
+        "zh": "椰枣制品节"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.dates-festival.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Municipality Fort, Hofuf",
+      "ar": "قلعة أمانة الأحساء، الهفوف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Форт муниципалитета Аль-Ахсы, Эль-Хуфуф",
+        "de": "Festung der Kommunalverwaltung von Al-Ahsa, Hofuf",
+        "zh": "胡富夫哈萨市政局城堡"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.dates-festival.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Winter",
+      "ar": "الشتاء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима",
+        "de": "Winter",
+        "zh": "冬季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\").",
+      "tm_approved": [
+        {
+          "ur": "سردیاں",
+          "page": "ui",
+          "field": "fruits.chips.winter"
+        }
+      ],
+      "same_source_as": [
+        "ev.bisht.season",
+        "ev.uqair-winter.season",
+        "ev.wafrah-winter.season",
+        "ev.horse-racing.season"
+      ]
+    },
+    "ev.dates-festival.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "January – February",
+      "ar": "يناير – فبراير",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Январь–февраль",
+        "de": "Januar–Februar",
+        "zh": "1 月至 2 月"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.dates-festival.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Several weeks",
+      "ar": "عدة أسابيع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Несколько недель",
+        "de": "Mehrere Wochen",
+        "zh": "为期数周"
+      },
+      "note": "Approximate length of the season (card and page).",
+      "same_source_as": [
+        "ev.qaisariyah-nights.span",
+        "ev.lomi.after.span",
+        "ev.uqair-winter.span"
+      ]
+    },
+    "ev.dates-festival.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Municipality, Al-Ahsa Development Authority",
+      "ar": "أمانة الأحساء، هيئة تطوير الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Муниципалитет Аль-Ахсы, Управление по развитию Аль-Ахсы",
+        "de": "Kommunalverwaltung von Al-Ahsa, Al-Ahsa-Entwicklungsbehörde",
+        "zh": "哈萨市政局、哈萨发展管理局"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.dates-festival.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Tasting & shopping pavilion",
+      "ar": "جناح التذوق والتسوق",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Павильон дегустации и покупок",
+        "de": "Verkostungs- und Einkaufspavillon",
+        "zh": "品鉴与选购展馆"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.dates-festival.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Dates-product pavilions",
+      "ar": "أجنحة المنتجات التحويلية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Павильоны продукции из переработанных фиников",
+        "de": "Pavillons für verarbeitete Dattelerzeugnisse",
+        "zh": "椰枣深加工产品展馆"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.dates-festival.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Cultural workshops",
+      "ar": "ورش ثقافية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Культурные мастер-классы",
+        "de": "Kulturelle Workshops",
+        "zh": "文化工作坊"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.dates-festival.acts.3": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Competitions",
+      "ar": "مسابقات",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/processed-dates-festival/ and its card on /ur/events/: acts.3"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Конкурсы",
+        "de": "Wettbewerbe",
+        "zh": "各类竞赛"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.palm-village.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Palm Village",
+      "ar": "قرية النخيل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Пальмовая деревня",
+        "de": "Palmendorf",
+        "zh": "椰枣村"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.palm-village.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Oasis",
+      "ar": "واحة الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Оазис Аль-Ахса",
+        "de": "Al-Ahsa-Oase",
+        "zh": "哈萨绿洲"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop.",
+      "tm_approved": [
+        {
+          "ur": "الاحساء کا نخلستان",
+          "page": "ui",
+          "field": "data.oasisName"
+        }
+      ],
+      "termbase_key": [
+        "الاحساء کا نخلستان"
+      ]
+    },
+    "ev.palm-village.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Winter & spring",
+      "ar": "الشتاء والربيع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима и весна",
+        "de": "Winter und Frühling",
+        "zh": "冬春两季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\")."
+    },
+    "ev.palm-village.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "January – March",
+      "ar": "يناير – مارس",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Январь–март",
+        "de": "Januar–März",
+        "zh": "1 月至 3 月"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.palm-village.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "An extended season",
+      "ar": "موسم ممتد",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Продлённый сезон",
+        "de": "Verlängerte Saison",
+        "zh": "持续整季"
+      },
+      "note": "Approximate length of the season (card and page).",
+      "same_source_as": [
+        "ev.horse-racing.span"
+      ]
+    },
+    "ev.palm-village.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "National Center for Palms and Dates",
+      "ar": "المركز الوطني للنخيل والتمور",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Национальный центр пальм и фиников",
+        "de": "Nationales Zentrum für Palmen und Datteln",
+        "zh": "沙特国家棕榈和椰枣中心"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.palm-village.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Date shops",
+      "ar": "متاجر التمور",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Финиковые лавки",
+        "de": "Dattelläden",
+        "zh": "椰枣专卖店"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.palm-village.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Local restaurants & cafés",
+      "ar": "مطاعم ومقاهٍ محلية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Местные рестораны и кафе",
+        "de": "Lokale Restaurants und Cafés",
+        "zh": "本地餐厅与咖啡馆"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.palm-village.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Artisan pavilions (palm-frond crafts)",
+      "ar": "أجنحة الحرفيين (الخوصيات)",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Павильоны ремесленников (изделия из пальмовых листьев)",
+        "de": "Handwerker-Pavillons (Palmwedel-Flechtwaren)",
+        "zh": "手工艺人展馆（棕榈叶编织）"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.palm-village.acts.3": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Rural products market",
+      "ar": "تسويق المنتجات الريفية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/palm-village/ and its card on /ur/events/: acts.3"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Продажа сельской продукции",
+        "de": "Vermarktung ländlicher Erzeugnisse",
+        "zh": "乡村产品市集"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.lomi.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Lomi Exhibition",
+      "ar": "معرض اللومي الحساوي",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Выставка лайма Аль-Ахсы",
+        "de": "Hasawi-Lomi-Ausstellung",
+        "zh": "哈萨青柠展"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop.",
+      "termbase_key": [
+        "حساوی لیموں کی نمائش"
+      ]
+    },
+    "ev.lomi.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Expo Center, Al-Salam St (Ain Najm Rd), Hofuf",
+      "ar": "مركز الأحساء للمعارض، شارع السلام (طريق عين النجم)، الهفوف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Выставочный центр Аль-Ахсы, улица Эс-Салям (дорога на Айн-Наджм), Эль-Хуфуф",
+        "de": "Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf",
+        "zh": "胡富夫萨拉姆街（艾因奈杰姆路）哈萨会展中心"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.lomi.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Summer",
+      "ar": "الصيف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Лето",
+        "de": "Sommer",
+        "zh": "夏季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\").",
+      "tm_approved": [
+        {
+          "ur": "گرمیاں",
+          "page": "ui",
+          "field": "fruits.chips.summer"
+        },
+        {
+          "ur": "گرمیاں",
+          "page": "ui",
+          "field": "fruits.g2.f1.season"
+        }
+      ]
+    },
+    "ev.lomi.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "19 August – 13 September 2026",
+      "ar": "19 أغسطس – 13 سبتمبر 2026م",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "19 августа–13 сентября 2026 года",
+        "de": "19. August – 13. September 2026",
+        "zh": "2026 年 8 月 19 日至 9 月 13 日"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar. The announced edition is OVER: this is not shown today (after.time is); the type requires it."
+    },
+    "ev.lomi.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "About 26 days",
+      "ar": "نحو 26 يوماً",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Около двадцати шести дней",
+        "de": "Etwa 26 Tage",
+        "zh": "约 26 天"
+      },
+      "note": "Approximate length of the season (card and page). The announced edition is OVER: this is not shown today (after.span is); the type requires it."
+    },
+    "ev.lomi.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Chamber",
+      "ar": "غرفة الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Торгово-промышленная палата Аль-Ахсы",
+        "de": "Al-Ahsa-Handelskammer",
+        "zh": "哈萨商会"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.lomi.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Lomi (dried lime) product shows",
+      "ar": "معارض منتجات اللومي",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Выставки продукции из лайма",
+        "de": "Lomi-Produktausstellungen",
+        "zh": "青柠产品展销"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.lomi.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Live cooking",
+      "ar": "الطهي الحي",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Готовка вживую",
+        "de": "Live-Kochvorführungen",
+        "zh": "现场烹饪"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.lomi.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Agricultural workshops",
+      "ar": "ورش عمل زراعية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сельскохозяйственные мастер-классы",
+        "de": "Landwirtschaftliche Workshops",
+        "zh": "农业工作坊"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.lomi.acts.3": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Kids’ corner",
+      "ar": "ركن الطفل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: acts.3"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Детский уголок",
+        "de": "Kinderecke",
+        "zh": "儿童天地"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.lomi.acts.4": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Family sessions",
+      "ar": "جلسات عائلية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: acts.4"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Семейные посиделки",
+        "de": "Familiäres Beisammensein",
+        "zh": "家庭亲子活动"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.lomi.intro": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The Hasawi Lomi Exhibition — also known as the Hasawi Lemon Exhibition or the Al-Ahsa Lemon Festival — is Al-Ahsa’s flagship seasonal agricultural event, organised by the Al-Ahsa Chamber to celebrate the oasis’s most famous crop after dates. The exhibition offers an interactive experience of the Hasawi lomi’s qualities, benefits and cultivation, direct contact with the farmers, and shopping from productive-family stalls, alongside the accompanying programme.",
+      "ar": "يُعدّ معرض اللومي الحساوي — ويُعرف أيضاً باسم معرض الليمون الحساوي — أبرز الفعاليات الزراعية الموسمية في الأحساء، تنظّمه غرفة الأحساء احتفاءً بثمرة الواحة الأشهر بعد التمور. يقدّم المعرض تجربةً تفاعلية للتعرّف على خصائص اللومي الأحسائي وفوائده وتقنيات زراعته، والتواصل مع المزارعين، وتسوّق منتجات الأسر المنتجة، إلى جانب الفعاليات المصاحبة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: intro"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Выставка лайма Аль-Ахсы (также известная как «Выставка лимона Аль-Ахсы») — главное сезонное сельскохозяйственное событие оазиса: его организует Торгово-промышленная палата Аль-Ахсы в честь самого известного плода оазиса после фиников. На выставке в интерактивном формате можно узнать о свойствах, пользе и способах выращивания лайма Аль-Ахсы, пообщаться напрямую с фермерами, сделать покупки в лавках семейных производителей и принять участие в сопутствующей программе.",
+        "de": "Die Hasawi-Lomi-Ausstellung – auch als Hasawi-Limetten-Ausstellung bekannt – ist Al-Ahsas bedeutendste saisonale landwirtschaftliche Veranstaltung. Die Al-Ahsa-Handelskammer veranstaltet sie zu Ehren des nach den Datteln berühmtesten landwirtschaftlichen Erzeugnisses der Oase. Die Ausstellung bietet ein interaktives Erlebnis rund um die Eigenschaften, den Nutzen und den Anbau der Lomi (die Hasawi-Limette), direkten Kontakt zu den Landwirten und Einkaufsmöglichkeiten an den Ständen von Familienbetrieben. Hinzu kommt ein Begleitprogramm.",
+        "zh": "哈萨青柠展（Hasawi Lomi Exhibition）——民间也俗称哈萨柠檬展——由哈萨商会主办，是哈萨最具代表性的季节性农业盛会，为礼赞这片绿洲中名气仅次于椰枣的招牌物产而设。展会主打互动体验：您可以了解哈萨青柠的特色、益处与种植技艺，与果农面对面交流，选购本地家庭工坊的自制产品，并参与丰富多彩的配套活动。"
+      },
+      "note": "Opening paragraph of the season page."
+    },
+    "ev.lomi.sections.0.h": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "What is the Hasawi lomi?",
+      "ar": "ما هو اللومي الأحسائي؟",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: sections.0.h"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Что такое лайм Аль-Ахсы?",
+        "de": "Was ist die Hasawi-Lomi?",
+        "zh": "什么是哈萨青柠？"
+      },
+      "note": "Section heading on the season page. No final stop."
+    },
+    "ev.lomi.sections.0.ps.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The Hasawi lomi — often called the Hasawi lemon or Hasawi lime — is a small, dark-green citrus with a thin skin, abundant juice, a sharp tang and a distinctive aroma that sets it apart from other citrus. It is Al-Ahsa’s second crop after dates: the oasis grows more than 100,000 fruiting lomi trees, each yielding some 25-30 kilograms a season.",
+      "ar": "اللومي الأحسائي (البن زهيري) — ويسمّيه كثيرون الليمون الأحسائي — ثمرة صغيرة خضراء داكنة، رقيقة القشرة غزيرة العصير، بطعم حمضي قوي ورائحة عطرية نفّاذة تميّزه عن سائر الحمضيات. وهو المنتج الزراعي الثاني في الأحساء بعد التمور: تنتشر في الواحة أكثر من 100 ألف شجرة لومي مثمرة، تنتج الشجرة الواحدة ما بين 25 و30 كيلوغراماً في الموسم.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: sections.0.ps.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Лайм Аль-Ахсы — сорт, также известный под названием «Бин Зухайри» и часто называемый лимоном Аль-Ахсы, — маленький тёмно-зелёный цитрус с тонкой кожурой, обильным соком, резкой кислинкой и характерным ароматом, который отличает его от прочих цитрусовых. Это вторая после фиников сельскохозяйственная культура Аль-Ахсы: в оазисе растёт более 100 000 плодоносящих деревьев лайма, и одно дерево даёт за сезон 25–30 кг.",
+        "de": "Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.",
+        "zh": "哈萨青柠（本地品种名 Bin Zuhairi）果实小巧，色泽深绿，皮薄汁多，酸味强劲，香气馥郁独特，在众多柑橘类水果中自成一格。它是哈萨仅次于椰枣的第二大农产品：绿洲里生长着 10 万余棵挂果的青柠树，每棵每季可产 25 至 30 公斤。"
+      },
+      "note": "Paragraph of a section on the season page.",
+      "divergence_auto": "numbers differ — English [100,000, 25, 30], Arabic [100, 25, 30]"
+    },
+    "ev.lomi.sections.0.ps.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "A cherished summer tradition surrounds it: families gather to juice and preserve it for the whole year — fresh, as juice, or dried for Hasawi and Gulf cooking.",
+      "ar": "وترتبط به عادة أحسائية صيفية أصيلة: تجتمع الأسر لعصره وتخزينه («الجميد»: عصير اللومي المشمّس المعتّق) لاستعماله على مدار العام — طازجاً وعصيراً ومجففاً في المطبخ الأحسائي والخليجي.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: sections.0.ps.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: высушенный на солнце и выдержанный лаймовый сок) и пользоваться им весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Залива.",
+        "de": "Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Hasawi- und Golfküche. Der sonnengetrocknete und gereifte Lomi-Saft heißt „Jameed“.",
+        "zh": "围绕这种果实，还流传着一项地道的哈萨夏日习俗：家家户户齐聚一堂，榨汁封存，汁液经日晒陈放（当地称“贾米德”，jameed），以备全年取用——无论鲜食、榨汁还是晒干入馔，都是哈萨与海湾菜肴中不可或缺的风味。"
+      },
+      "note": "Paragraph of a section on the season page."
+    },
+    "ev.lomi.faq.0.q": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Where is the exhibition held?",
+      "ar": "أين يقام المعرض؟",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: faq.0.q"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Где проходит выставка?",
+        "de": "Wo findet die Ausstellung statt?",
+        "zh": "展会在哪里举办？"
+      },
+      "note": "Question on the season page (also in the FAQ structured data)."
+    },
+    "ev.lomi.faq.0.a": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "At the Al-Ahsa Expo Center on Al-Salam Street (Ain Najm Road) in Hofuf — the map is on this page.",
+      "ar": "في مركز الأحساء للمعارض على شارع السلام (طريق عين النجم) بالهفوف — وتجد الخريطة في هذه الصفحة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: faq.0.a"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "В Выставочном центре Аль-Ахсы на улице Эс-Салям (дорога на Айн-Наджм), в Эль-Хуфуфе — карта на этой странице.",
+        "de": "Im Al-Ahsa-Ausstellungszentrum, Al-Salam-Straße (Ain-Najm-Straße), Hofuf – die Karte finden Sie auf dieser Seite.",
+        "zh": "位于胡富夫萨拉姆街（艾因奈杰姆路）的哈萨会展中心——本页附有地图。"
+      },
+      "note": "Answer on the season page (also in the FAQ structured data)."
+    },
+    "ev.lomi.faq.1.q": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "How does the Hasawi lomi differ from a regular lemon?",
+      "ar": "ما الفرق بين اللومي الأحسائي والليمون العادي؟",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: faq.1.q"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Чем лайм Аль-Ахсы отличается от обычного лимона?",
+        "de": "Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone?",
+        "zh": "哈萨青柠与普通柠檬有何不同？"
+      },
+      "note": "Question on the season page (also in the FAQ structured data)."
+    },
+    "ev.lomi.faq.1.a": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "It is smaller, thinner-skinned, juicier and more aromatic, and is used fresh, as juice, and dried in Hasawi cooking.",
+      "ar": "اللومي الأحسائي أصغر حجماً وأرقّ قشرة وأغزر عصارة وأقوى رائحة، ويُستخدم طازجاً وعصيراً ومجففاً في المطبخ الأحسائي.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: faq.1.a"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Он меньше по размеру, тоньше кожурой, сочнее и ароматнее; используется свежим, в виде сока и сушёным в кухне Аль-Ахсы.",
+        "de": "Sie ist kleiner, dünnschaliger, saftiger und aromatischer und wird frisch, als Saft und getrocknet in der Küche Al-Ahsas verwendet.",
+        "zh": "哈萨青柠果形更小、皮更薄、汁水更足、香气更浓，在哈萨菜肴中可鲜食、榨汁或晒干使用。"
+      },
+      "note": "Answer on the season page (also in the FAQ structured data)."
+    },
+    "ev.lomi.faq.2.q": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Are there activities for children?",
+      "ar": "هل توجد فعاليات للأطفال؟",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: faq.2.q"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Есть ли мероприятия для детей?",
+        "de": "Gibt es Aktivitäten für Kinder?",
+        "zh": "有适合儿童的活动吗？"
+      },
+      "note": "Question on the season page (also in the FAQ structured data)."
+    },
+    "ev.lomi.faq.2.a": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Yes — the exhibition has a kids’ corner, alongside live cooking, agricultural workshops and family sessions.",
+      "ar": "نعم — يضم المعرض ركن الطفل، إلى جانب الطهي الحي وورش العمل الزراعية والجلسات العائلية.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: faq.2.a"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Да — на выставке есть детский уголок, а также готовка вживую, сельскохозяйственные мастер-классы и семейные посиделки.",
+        "de": "Ja – die Ausstellung bietet eine Kinderecke, dazu Live-Kochvorführungen, landwirtschaftliche Workshops und familiäres Beisammensein.",
+        "zh": "有——展会设有儿童天地，还有现场烹饪、农业工作坊和亲子家庭活动。"
+      },
+      "note": "Answer on the season page (also in the FAQ structured data)."
+    },
+    "ev.lomi.related.0.label": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "The Hasawi lomi on our Fruits of Al-Ahsa page",
+      "ar": "اللومي الأحسائي في صفحة ثمار الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: related.0.label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Лайм Аль-Ахсы на странице «Сезонные плоды Аль-Ахсы»",
+        "de": "Die Hasawi-Lomi auf unserer Seite „Oasenfrüchte“",
+        "zh": "“哈萨时令水果”页面上的哈萨青柠"
+      },
+      "note": "A related link on the season page: on /ur/ it leads to /ur/fruits/."
+    },
+    "ev.lomi.related.1.label": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Plan your trip to Al-Ahsa",
+      "ar": "خطّط لرحلتك إلى الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: related.1.label"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Спланируйте поездку в Аль-Ахсу",
+        "de": "Reise planen",
+        "zh": "规划您的哈萨之旅"
+      },
+      "note": "A related link on the season page: on /ur/ it leads to /en/plan-your-trip/ (English page; N308: no language warning)."
+    },
+    "ev.lomi.after.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Around August – September",
+      "ar": "أغسطس – سبتمبر تقريباً",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: after.time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Примерно в августе–сентябре",
+        "de": "Etwa August–September",
+        "zh": "8 月至 9 月前后"
+      },
+      "note": "Approximate dates of the season once the announced edition is over (what the card and page show NOW)."
+    },
+    "ev.lomi.after.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Several weeks",
+      "ar": "عدة أسابيع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/ and its card on /ur/events/: after.span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Несколько недель",
+        "de": "Mehrere Wochen",
+        "zh": "为期数周"
+      },
+      "note": "Approximate length of the season once the edition is over (shown NOW).",
+      "same_source_as": [
+        "ev.qaisariyah-nights.span",
+        "ev.dates-festival.span",
+        "ev.uqair-winter.span"
+      ]
+    },
+    "ev.lomi.after.seoTitle": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hasawi Lomi Exhibition: Season, Location & Highlights",
+      "ar": "معرض اللومي الحساوي: الموسم والموقع والأنشطة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: after.seoTitle"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Выставка лайма Аль-Ахсы: сезон, место и ключевые моменты",
+        "de": "Hasawi-Lomi-Ausstellung: Saison, Ort & Höhepunkte",
+        "zh": "哈萨青柠展：举办时节、地点与亮点"
+      },
+      "note": "Page title of the season page once the edition is over (browser tab, og:title; the site name is appended)."
+    },
+    "ev.lomi.after.seoDesc": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Guide to the Hasawi Lomi Exhibition in Hofuf: its approximate season in August-September each year — follow the Al-Ahsa Chamber for the next edition’s dates.",
+      "ar": "دليل معرض اللومي الحساوي بالهفوف: موسمه التقريبي في أغسطس وسبتمبر من كل عام وأنشطته — تابع إعلان غرفة الأحساء لموعد النسخة القادمة.",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/hasawi-lomi-exhibition/: after.seoDesc"
+      ],
+      "nav": null,
+      "final_stop_in_english": true,
+      "precedent": {
+        "ru": "Выставка лайма Аль-Ахсы в Эль-Хуфуфе: ежегодно, примерно в августе–сентябре, с программой. Дата нового выпуска — в анонсах Торгово-промышленной палаты Аль-Ахсы.",
+        "de": "Reiseführer zur Hasawi-Lomi-Ausstellung in Hofuf: ungefähre jährliche Saison: August–September – Termine der nächsten Ausgabe: Al-Ahsa-Handelskammer informiert.",
+        "zh": "胡富夫哈萨青柠展指南：每年 8 月至 9 月前后举办——下一届的具体日期，请关注哈萨商会官方公告。"
+      },
+      "note": "Meta description of the season page once the edition is over (search-result snippet)."
+    },
+    "ev.uqair-winter.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Uqair Winter",
+      "ar": "شتاء العقير",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима в Эль-Укайре",
+        "de": "Al-Uqair-Winter",
+        "zh": "乌盖尔之冬"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.uqair-winter.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Uqair Beach Park",
+      "ar": "منتزه شاطئ العقير",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Пляжный парк Эль-Укайр",
+        "de": "Park am Al-Uqair-Strand",
+        "zh": "乌盖尔海滩公园"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.uqair-winter.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Winter",
+      "ar": "الشتاء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима",
+        "de": "Winter",
+        "zh": "冬季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\").",
+      "tm_approved": [
+        {
+          "ur": "سردیاں",
+          "page": "ui",
+          "field": "fruits.chips.winter"
+        }
+      ],
+      "same_source_as": [
+        "ev.bisht.season",
+        "ev.dates-festival.season",
+        "ev.wafrah-winter.season",
+        "ev.horse-racing.season"
+      ]
+    },
+    "ev.uqair-winter.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "December – February",
+      "ar": "ديسمبر – فبراير",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Декабрь–февраль",
+        "de": "Dezember–Februar",
+        "zh": "12 月至次年 2 月"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.uqair-winter.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Several weeks",
+      "ar": "عدة أسابيع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Несколько недель",
+        "de": "Mehrere Wochen",
+        "zh": "为期数周"
+      },
+      "note": "Approximate length of the season (card and page).",
+      "same_source_as": [
+        "ev.qaisariyah-nights.span",
+        "ev.dates-festival.span",
+        "ev.lomi.after.span"
+      ]
+    },
+    "ev.uqair-winter.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Development Authority, Al-Ahsa Municipality",
+      "ar": "هيئة تطوير الأحساء، أمانة الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Управление по развитию Аль-Ахсы, муниципалитет Аль-Ахсы",
+        "de": "Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa",
+        "zh": "哈萨发展管理局、哈萨市政局"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.uqair-winter.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Family sea & sports activities",
+      "ar": "فعاليات بحرية ورياضية عائلية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Семейные морские и спортивные мероприятия",
+        "de": "Familienfreundliche Meeres- und Sportaktivitäten",
+        "zh": "亲子海滨与运动活动"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.uqair-winter.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Art & craft workshops",
+      "ar": "ورش فنية حرفية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Мастер-классы по декоративно-прикладному искусству",
+        "de": "Kunst- und Handwerksworkshops",
+        "zh": "艺术手工工作坊"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.uqair-winter.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Fun games",
+      "ar": "ألعاب ترفيهية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-uqair-winter/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Весёлые игры",
+        "de": "Unterhaltungsspiele",
+        "zh": "趣味游乐项目"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.wafrah-winter.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Wafrah Winter",
+      "ar": "شتاء الوفرة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима в Эль-Вафре",
+        "de": "Al-Wafrah-Winter",
+        "zh": "瓦夫拉之冬"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.wafrah-winter.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Wafrah district, south Hofuf",
+      "ar": "حي الوفرة، جنوب الهفوف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Район Эль-Вафра, к югу от Эль-Хуфуфа",
+        "de": "Al-Wafrah-Viertel, südlich von Hofuf",
+        "zh": "胡富夫以南的瓦夫拉区"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.wafrah-winter.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Winter",
+      "ar": "الشتاء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима",
+        "de": "Winter",
+        "zh": "冬季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\").",
+      "tm_approved": [
+        {
+          "ur": "سردیاں",
+          "page": "ui",
+          "field": "fruits.chips.winter"
+        }
+      ],
+      "same_source_as": [
+        "ev.bisht.season",
+        "ev.dates-festival.season",
+        "ev.uqair-winter.season",
+        "ev.horse-racing.season"
+      ]
+    },
+    "ev.wafrah-winter.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "From around November",
+      "ar": "من نوفمبر تقريباً",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Примерно с ноября",
+        "de": "Ab etwa November",
+        "zh": "一般自 11 月起"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.wafrah-winter.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "An extended winter season",
+      "ar": "موسم شتوي ممتد",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Продлённый зимний сезон",
+        "de": "Verlängerte Wintersaison",
+        "zh": "贯穿整个冬季"
+      },
+      "note": "Approximate length of the season (card and page)."
+    },
+    "ev.wafrah-winter.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Private operators under Al-Ahsa Municipality supervision",
+      "ar": "ملاك ومستثمرون بإشراف أمانة الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Владельцы и инвесторы под надзором муниципалитета Аль-Ахсы",
+        "de": "Eigentümer und Investoren unter Aufsicht der Kommunalverwaltung von Al-Ahsa",
+        "zh": "私营商家与投资者（哈萨市政局监管）"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.wafrah-winter.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "150+ food trucks",
+      "ar": "أكثر من 150 عربة طعام (فود ترك)",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Более 150 фуд-траков",
+        "de": "Mehr als 150 Foodtrucks",
+        "zh": "150 余辆美食餐车"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.wafrah-winter.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Hasawi folk dishes",
+      "ar": "أكلات شعبية أحسائية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Народные блюда Аль-Ахсы",
+        "de": "Hasawi-Volksgerichte",
+        "zh": "哈萨风味民间小吃"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.wafrah-winter.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Open-air winter gatherings",
+      "ar": "جلسات شتوية مفتوحة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/al-wafrah-winter/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зимние посиделки на открытом воздухе",
+        "de": "Winterliches Beisammensein im Freien",
+        "zh": "露天冬日聚会"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.horse-racing.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Horse Racing Season",
+      "ar": "موسم سباقات الخيل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Сезон скачек",
+        "de": "Pferderennsaison",
+        "zh": "赛马季"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.horse-racing.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Equestrian Arena, Al-Taraf",
+      "ar": "ميدان الفروسية، الطرف",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Конноспортивная арена Аль-Ахсы, Эт-Тараф",
+        "de": "Reitsportanlage, Al-Taraf",
+        "zh": "塔拉夫（Al-Taraf）哈萨马术赛场"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.horse-racing.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Winter",
+      "ar": "الشتاء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Зима",
+        "de": "Winter",
+        "zh": "冬季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\").",
+      "tm_approved": [
+        {
+          "ur": "سردیاں",
+          "page": "ui",
+          "field": "fruits.chips.winter"
+        }
+      ],
+      "same_source_as": [
+        "ev.bisht.season",
+        "ev.dates-festival.season",
+        "ev.uqair-winter.season",
+        "ev.wafrah-winter.season"
+      ]
+    },
+    "ev.horse-racing.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "November – February",
+      "ar": "نوفمبر – فبراير",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Ноябрь–февраль",
+        "de": "November–Februar",
+        "zh": "11 月至次年 2 月"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.horse-racing.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "An extended season",
+      "ar": "موسم ممتد",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Продлённый сезон",
+        "de": "Verlängerte Saison",
+        "zh": "持续整季"
+      },
+      "note": "Approximate length of the season (card and page).",
+      "same_source_as": [
+        "ev.palm-village.span"
+      ]
+    },
+    "ev.horse-racing.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Equestrian Arena",
+      "ar": "ميدان الفروسية بالأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Конноспортивная арена Аль-Ахсы",
+        "de": "Al-Ahsa-Reitsportanlage",
+        "zh": "哈萨马术赛场"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic)."
+    },
+    "ev.horse-racing.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Horse races",
+      "ar": "سباقات الخيل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Скачки",
+        "de": "Pferderennen",
+        "zh": "赛马赛事"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.horse-racing.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Equestrian events",
+      "ar": "فعاليات الفروسية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/horse-racing-season/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Конноспортивные мероприятия",
+        "de": "Reitsportveranstaltungen",
+        "zh": "马术活动"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.creative-ahsa.name": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Creative Al-Ahsa Festival",
+      "ar": "مهرجان الأحساء المبدعة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: name"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Фестиваль творческой Аль-Ахсы",
+        "de": "Kreativ-Al-Ahsa-Festival",
+        "zh": "创意哈萨节"
+      },
+      "note": "Event name: the card heading, the page heading (h1), the calendar row. Names are spelled from the Arabic. No final stop."
+    },
+    "ev.creative-ahsa.place": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Heritage Freej, the Municipality Fort",
+      "ar": "الفريج التراثي، قلعة الأمانة",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: place"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Исторический квартал Эль-Фридж, форт муниципалитета Аль-Ахсы",
+        "de": "Traditioneller Freej, Festung der Kommunalverwaltung von Al-Ahsa",
+        "zh": "“弗里季”传统街区（哈萨市政局城堡）"
+      },
+      "note": "Location row of the card and the page (where the venue is an attraction of the site, the page links it). No final stop."
+    },
+    "ev.creative-ahsa.season": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Spring",
+      "ar": "الربيع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: season"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Весна",
+        "de": "Frühling",
+        "zh": "春季"
+      },
+      "note": "Season, shown in the calendar row before the dates (\"<season> · <dates>\").",
+      "tm_approved": [
+        {
+          "ur": "بہار",
+          "page": "ui",
+          "field": "fruits.chips.spring"
+        }
+      ]
+    },
+    "ev.creative-ahsa.time": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "March – April",
+      "ar": "مارس – أبريل",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: time"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Март–апрель",
+        "de": "März–April",
+        "zh": "3 月至 4 月"
+      },
+      "note": "Approximate dates (months) of the season, on the card, the page and the calendar."
+    },
+    "ev.creative-ahsa.span": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "About a week",
+      "ar": "نحو أسبوع",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: span"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Около недели",
+        "de": "Etwa eine Woche",
+        "zh": "约一周"
+      },
+      "note": "Approximate length of the season (card and page)."
+    },
+    "ev.creative-ahsa.org": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Al-Ahsa Municipality",
+      "ar": "أمانة الأحساء",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: org"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Муниципалитет Аль-Ахсы",
+        "de": "Kommunalverwaltung von Al-Ahsa",
+        "zh": "哈萨市政局"
+      },
+      "note": "Organisers row (bodies named as on their own Urdu usage where one exists; otherwise from the Arabic).",
+      "termbase_key": [
+        "الاحساء کی بلدیہ"
+      ]
+    },
+    "ev.creative-ahsa.acts.0": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Pottery making",
+      "ar": "صناعة الفخار",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: acts.0"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Гончарное дело",
+        "de": "Töpferei",
+        "zh": "陶艺制作"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.creative-ahsa.acts.1": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Palm-frond crafts",
+      "ar": "الخوصيات",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: acts.1"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Изделия из пальмовых листьев",
+        "de": "Palmwedel-Flechtwaren",
+        "zh": "棕榈叶编织"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.creative-ahsa.acts.2": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Traditional carpentry",
+      "ar": "النجارة التقليدية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: acts.2"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Традиционное столярное дело",
+        "de": "Traditionelles Tischlerhandwerk",
+        "zh": "传统木工"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.creative-ahsa.acts.3": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Fine arts",
+      "ar": "فنون تشكيلية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: acts.3"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Изобразительное искусство",
+        "de": "Bildende Kunst",
+        "zh": "造型艺术"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    },
+    "ev.creative-ahsa.acts.4": {
+      "kind": "page module (events)",
+      "source": {
+        "file": "src/data/events.ts",
+        "id_scheme": "tools/lib/events-site.mjs"
+      },
+      "tier": "rendered",
+      "en": "Folk performances",
+      "ar": "عروض شعبية",
+      "placeholders": [],
+      "renders": [
+        "/ur/events/creative-alahsa-festival/ and its card on /ur/events/: acts.4"
+      ],
+      "nav": null,
+      "final_stop_in_english": false,
+      "precedent": {
+        "ru": "Народные представления",
+        "de": "Volksdarbietungen",
+        "zh": "民俗表演"
+      },
+      "note": "One highlight of the event (a list item). No final stop."
+    }
+  },
+  "owner_questions": [],
+  "not_in_this_batch": {
+    "held_for_owner": {
+      "rule": "Rendered on the three pages, but the wording is the site owner's to decide (owner_questions.brand). Not in strings: stage files carry no value for it. zh, de and ru leave the key undefined.",
+      "strings": {
+        "site.brand": {
+          "kind": "ui.ts key",
+          "source": {
+            "file": "src/i18n/ui.ts",
+            "key": "site.brand"
+          },
+          "tier": "rendered",
+          "en": "Visit Al-Ahsa",
+          "ar": "زوروا الأحساء",
+          "placeholders": [],
+          "renders": [
+            "events: head title",
+            "events: head meta @og:site_name",
+            "events: head meta @og:title",
+            "events: head meta @twitter:title",
+            "events: head jsonld @name",
+            "events: head jsonld @copyrightNotice",
+            "events: head meta @copyright",
+            "events: head meta @rights",
+            "events: footer text",
+            "event:hasawi-bisht-festival: head title",
+            "event:hasawi-bisht-festival: head meta @og:site_name",
+            "event:hasawi-bisht-festival: head meta @og:title",
+            "event:hasawi-bisht-festival: head meta @twitter:title",
+            "event:hasawi-bisht-festival: head jsonld @name",
+            "event:hasawi-bisht-festival: head jsonld @copyrightNotice",
+            "event:hasawi-bisht-festival: head meta @copyright",
+            "event:hasawi-bisht-festival: head meta @rights",
+            "event:hasawi-bisht-festival: footer text",
+            "event:qaisariyah-nights: head title",
+            "event:qaisariyah-nights: head meta @og:site_name",
+            "event:qaisariyah-nights: head meta @og:title",
+            "event:qaisariyah-nights: head meta @twitter:title",
+            "event:qaisariyah-nights: head jsonld @name",
+            "event:qaisariyah-nights: head jsonld @copyrightNotice",
+            "event:qaisariyah-nights: head meta @copyright",
+            "event:qaisariyah-nights: head meta @rights",
+            "event:qaisariyah-nights: footer text",
+            "event:kafu-nights: head title",
+            "event:kafu-nights: head meta @og:site_name",
+            "event:kafu-nights: head meta @og:title",
+            "event:kafu-nights: head meta @twitter:title",
+            "event:kafu-nights: head jsonld @name",
+            "event:kafu-nights: head jsonld @copyrightNotice",
+            "event:kafu-nights: head meta @copyright",
+            "event:kafu-nights: head meta @rights",
+            "event:kafu-nights: footer text",
+            "event:processed-dates-festival: head title",
+            "event:processed-dates-festival: head meta @og:site_name",
+            "event:processed-dates-festival: head meta @og:title",
+            "event:processed-dates-festival: head meta @twitter:title",
+            "event:processed-dates-festival: head jsonld @name",
+            "event:processed-dates-festival: head jsonld @copyrightNotice",
+            "event:processed-dates-festival: head meta @copyright",
+            "event:processed-dates-festival: head meta @rights",
+            "event:processed-dates-festival: footer text",
+            "event:palm-village: head title",
+            "event:palm-village: head meta @og:site_name",
+            "event:palm-village: head meta @og:title",
+            "event:palm-village: head meta @twitter:title",
+            "event:palm-village: head jsonld @name",
+            "event:palm-village: head jsonld @copyrightNotice",
+            "event:palm-village: head meta @copyright",
+            "event:palm-village: head meta @rights",
+            "event:palm-village: footer text",
+            "event:hasawi-lomi-exhibition: head title",
+            "event:hasawi-lomi-exhibition: head meta @og:site_name",
+            "event:hasawi-lomi-exhibition: head meta @og:title",
+            "event:hasawi-lomi-exhibition: head meta @twitter:title",
+            "event:hasawi-lomi-exhibition: head jsonld @name",
+            "event:hasawi-lomi-exhibition: head jsonld @copyrightNotice",
+            "event:hasawi-lomi-exhibition: head meta @copyright",
+            "event:hasawi-lomi-exhibition: head meta @rights",
+            "event:hasawi-lomi-exhibition: footer text",
+            "event:al-uqair-winter: head title",
+            "event:al-uqair-winter: head meta @og:site_name",
+            "event:al-uqair-winter: head meta @og:title",
+            "event:al-uqair-winter: head meta @twitter:title",
+            "event:al-uqair-winter: head jsonld @name",
+            "event:al-uqair-winter: head jsonld @copyrightNotice",
+            "event:al-uqair-winter: head meta @copyright",
+            "event:al-uqair-winter: head meta @rights",
+            "event:al-uqair-winter: footer text",
+            "event:al-wafrah-winter: head title",
+            "event:al-wafrah-winter: head meta @og:site_name",
+            "event:al-wafrah-winter: head meta @og:title",
+            "event:al-wafrah-winter: head meta @twitter:title",
+            "event:al-wafrah-winter: head jsonld @name",
+            "event:al-wafrah-winter: head jsonld @copyrightNotice",
+            "event:al-wafrah-winter: head meta @copyright",
+            "event:al-wafrah-winter: head meta @rights",
+            "event:al-wafrah-winter: footer text",
+            "event:horse-racing-season: head title",
+            "event:horse-racing-season: head meta @og:site_name",
+            "event:horse-racing-season: head meta @og:title",
+            "event:horse-racing-season: head meta @twitter:title",
+            "event:horse-racing-season: head jsonld @name",
+            "event:horse-racing-season: head jsonld @copyrightNotice",
+            "event:horse-racing-season: head meta @copyright",
+            "event:horse-racing-season: head meta @rights",
+            "event:horse-racing-season: footer text",
+            "event:creative-alahsa-festival: head title",
+            "event:creative-alahsa-festival: head meta @og:site_name",
+            "event:creative-alahsa-festival: head meta @og:title",
+            "event:creative-alahsa-festival: head meta @twitter:title",
+            "event:creative-alahsa-festival: head jsonld @name",
+            "event:creative-alahsa-festival: head jsonld @copyrightNotice",
+            "event:creative-alahsa-festival: head meta @copyright",
+            "event:creative-alahsa-festival: head meta @rights",
+            "event:creative-alahsa-festival: footer text"
+          ],
+          "element": [
+            "span"
+          ],
+          "nav": null,
+          "final_stop_in_english": false,
+          "precedent": {
+            "ru": null,
+            "de": null,
+            "zh": null
+          }
+        }
+      }
+    },
+    "english_in_scripts_by_precedent": [
+      {
+        "file": "src/components/CopyGuard.astro",
+        "text": "Source: Visit Al-Ahsa — <page URL>",
+        "renders": "appended to any copied selection longer than 150 characters, on every non-Arabic page",
+        "note": "The component knows two languages only (Arabic / everything else): zh, de and ru pages append the English line too. Carries the brand (owner_questions.brand)."
+      }
+    ],
+    "later_rounds": {
+      "rule": "ui.ts keys and category labels that no built /ur/ page (and no round-1 attraction page) renders. They belong to the rounds that build their pages.",
+      "count": 183,
+      "ui_keys": [
+        "site.name",
+        "trails.title",
+        "trails.lead",
+        "trails.duration",
+        "trails.duration.half-day",
+        "trails.duration.full-day",
+        "trails.mode",
+        "trails.mode.walking",
+        "trails.mode.driving",
+        "trails.mode.4x4",
+        "trails.stopsCount",
+        "trails.unescoCount",
+        "trails.view",
+        "trails.stopsH",
+        "trails.stop",
+        "trails.unesco",
+        "trails.sources",
+        "trails.landmark",
+        "trails.mapH",
+        "trails.mapNote",
+        "trails.all",
+        "nav.discover",
+        "lang.switch",
+        "lang.switchLabel",
+        "det.mentions.h",
+        "form.honeypot",
+        "foot.l.historic",
+        "foot.l.nature",
+        "foot.l.crafts",
+        "foot.l.taste",
+        "foot.l.stay",
+        "foot.l.routes",
+        "foot.l.aboutSite",
+        "stores.all",
+        "stores.filterLabel",
+        "stores.search",
+        "stores.searchLabel",
+        "stores.empty",
+        "stores.visit",
+        "stores.visitAccount",
+        "stores.directOrder",
+        "stores.platform",
+        "stores.disclaimer",
+        "stores.faq",
+        "stores.lead",
+        "stores.shotAlt",
+        "stores.logoAlt",
+        "det.coords",
+        "det.openAmap",
+        "det.allStays",
+        "det.verifyNote",
+        "tmap.title",
+        "tmap.lead",
+        "tmap.open",
+        "tmap.loading",
+        "tmap.3d.on",
+        "tmap.3d.off",
+        "tmap.locate",
+        "tmap.list.title",
+        "tmap.classic",
+        "tmap.gest.win",
+        "tmap.gest.mac",
+        "tmap.gest.touch",
+        "plan.eyebrow",
+        "plan.title",
+        "plan.lead",
+        "plan.savedSuffix",
+        "plan.savedOne",
+        "plan.savedTwo",
+        "plan.savedFew",
+        "plan.clearConfirm",
+        "plan.routeLimit",
+        "plan.route",
+        "plan.clear",
+        "plan.remove",
+        "plan.location",
+        "plan.empty.h",
+        "plan.empty.d",
+        "plan.empty.browse",
+        "plan.empty.map",
+        "plan.share",
+        "plan.copy",
+        "plan.print",
+        "plan.waText",
+        "plan.shared.h",
+        "plan.shared.d",
+        "plan.shared.import",
+        "plan.shared.mine",
+        "plan.printNote",
+        "crumb.blog",
+        "blog.eyebrow",
+        "blog.title",
+        "blog.lead",
+        "blog.empty",
+        "blog.published",
+        "blog.updated",
+        "blog.back",
+        "blog.faq",
+        "guides.nav",
+        "guides.title",
+        "guides.seoDesc",
+        "guides.lead",
+        "guides.disc.before",
+        "guides.disc.role",
+        "guides.filter.lang",
+        "guides.filter.spec",
+        "guides.filter.all",
+        "guides.filter.none",
+        "guides.list.h",
+        "guides.list.order",
+        "guides.empty.h",
+        "guides.empty.p",
+        "guides.badge.m",
+        "guides.badge.f",
+        "guides.place",
+        "guides.card.langs",
+        "guides.card.areas",
+        "guides.card.valid",
+        "guides.card.page.m",
+        "guides.card.page.f",
+        "guides.contact.h.m",
+        "guides.contact.h.f",
+        "guides.contact.wa",
+        "guides.contact.tel",
+        "guides.contact.mail",
+        "guides.contact.waAria",
+        "guides.contact.telAria",
+        "guides.contact.mailAria",
+        "guides.contact.short",
+        "guides.how.h",
+        "guides.how.1.h",
+        "guides.how.1.p",
+        "guides.how.2.h",
+        "guides.how.2.p",
+        "guides.how.3.h",
+        "guides.how.3.p",
+        "guides.yes.h",
+        "guides.yes.1",
+        "guides.yes.2",
+        "guides.no.h",
+        "guides.no.1",
+        "guides.no.2",
+        "guides.no.3",
+        "guides.join.h",
+        "guides.join.p",
+        "guides.join.wa",
+        "guides.join.mailAria",
+        "guides.chip.valid",
+        "guides.facts.group",
+        "guides.facts.prices",
+        "guides.facts.pricesV",
+        "guides.lic.h",
+        "guides.lic.checked",
+        "guides.lic.number",
+        "guides.lic.issuer",
+        "guides.lic.expires",
+        "guides.lic.verifiedAt",
+        "guides.lic.note",
+        "guides.stated",
+        "guides.bio.h.m",
+        "guides.bio.h.f",
+        "guides.tours.h",
+        "guides.tours.price",
+        "guides.gallery.h",
+        "guides.gallery.note",
+        "guides.service.h",
+        "guides.service.length",
+        "guides.service.meeting",
+        "guides.service.hours",
+        "guides.service.note",
+        "guides.about.h",
+        "guides.about.1",
+        "guides.about.2",
+        "guides.about.3",
+        "guides.report",
+        "guides.others.h",
+        "guides.others.all",
+        "guides.photoAlt",
+        "guides.plan.h",
+        "guides.plan.p"
+      ],
+      "category_labels": [
+        "experience",
+        "taste",
+        "events"
+      ]
+    },
+    "english_by_precedent": [
+      {
+        "id": "data.orgDesc",
+        "file": "src/lib/schema.ts",
+        "en": "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.",
+        "ar": "مبادرة مستقلة: دليل سياحي رقمي عن محافظة الأحساء في السعودية — ليست جهة حكومية ولا تمثل أي هيئة رسمية.",
+        "renders": "JSON-LD Organization.description on every page (search engines only)",
+        "note": "zh, de and ru all carry the ENGLISH sentence here: the earlier lines never translated it.",
+        "values_today": {
+          "zh": "(the English sentence)",
+          "de": "(the English sentence)",
+          "ru": "(the English sentence)"
+        }
+      }
+    ],
+    "already_in_urdu": {
+      "rule": "Rendered on the pages of the batch, and the code already carries their Urdu: approved text of an earlier batch, not reopened here.",
+      "ui_keys_and_labels": [
+        "crumb.home",
+        "a11y.skip",
+        "a11y.menu",
+        "a11y.mainNav",
+        "nav.attractions",
+        "nav.trails",
+        "nav.leisure",
+        "nav.events",
+        "nav.fruits",
+        "nav.food",
+        "nav.dining",
+        "nav.stayShort",
+        "nav.stores",
+        "nav.plan",
+        "nav.map",
+        "search.open",
+        "search.label",
+        "search.placeholder",
+        "search.close",
+        "search.idle",
+        "search.escHint",
+        "search.empty",
+        "search.searching",
+        "search.results",
+        "nav.myTrip",
+        "lang.menu",
+        "nav.planVisit",
+        "video.pause",
+        "video.play",
+        "foot.tagline",
+        "foot.col.discover",
+        "CATEGORY_LABELS.historic",
+        "CATEGORY_LABELS.nature",
+        "nav.dine",
+        "nav.stay",
+        "foot.l.events",
+        "nav.blog",
+        "foot.l.about",
+        "foot.l.unesco",
+        "foot.col.plan",
+        "foot.l.getThere",
+        "foot.col.site",
+        "foot.l.privacy",
+        "foot.l.report",
+        "foot.l.contact",
+        "foot.l.whatsapp",
+        "foot.independence",
+        "a11y.crumbs",
+        "plan.copied",
+        "share.btn"
+      ],
+      "inline_sites": [
+        "inline.home.title",
+        "inline.home.description",
+        "inline.home.fact.palms.n",
+        "inline.home.fact.springs.n",
+        "inline.home.country",
+        "inline.attractions.groupsHint",
+        "inline.404.title",
+        "inline.404.heading",
+        "inline.404.text",
+        "data.dist.under",
+        "data.dist.about",
+        "data.oasisName",
+        "data.langShort"
+      ]
+    },
+    "not_text": "The .eyebrow letter-spacing, the OG card image, the header thresholds, the unlisted table and the build guards are engineering steps, not strings. The OG card (public/og-default-ur.png) is generated from home.hero.eyebrow, and the web-app manifest description from home.hero.lead: both are strings of this batch."
+  },
+  "english_that_stays_on_the_three_pages_after_this_batch": {
+    "note": "Measured on the trace build: Latin text on the four pages that no string of this batch replaces. It keeps counting against the 20% threshold of build check C22 until its own batches land.",
+    "content_of_untranslated_attractions": {
+      "distinct_strings": 0,
+      "attractions": 0,
+      "why": "titles and summaries of attractions with no title_ur, on the index cards, the home featured cards, the \"nearby\" cards and the ItemList JSON-LD"
+    },
+    "trails_section": {
+      "distinct_strings": 0,
+      "strings": [],
+      "why": "titles and taglines of suggested trails (src/data/trails.json): the trails have no Urdu version; the section heading itself (trails.partOf) is in the batch"
+    },
+    "brand": [
+      "© 2026 — visit-alahsa.com"
+    ],
+    "organization_description": [
+      "An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority."
+    ],
+    "other_languages_by_design": [
+      "VISIT AL-AHSA",
+      "English",
+      "Deutsch",
+      "This page is available in English",
+      "Read in English",
+      "Dismiss",
+      "Diese Seite ist auf Deutsch verfügbar",
+      "Auf Deutsch lesen",
+      "Schließen"
+    ],
+    "keyboard_key": [
+      "Esc"
+    ],
+    "untraced": [
+      "Weddings & Beauty Expo  [events: head jsonld @name — html > head > script]",
+      "Weddings & Beauty Expo  [events: main attr @alt — article.card.ev-card > div.ev-media > picture.photo.photo--img > img]",
+      "Limited-time event  [events: main text — div.ev-grid > article.card.ev-card > div.ev-media > span.ev-season.ev-season--once]",
+      "3–7 December 2026  [events: main text — div.ev-body > div.ev-top > span.ev-time > span]",
+      "5 days  [events: main text — article.card.ev-card > div.ev-body > div.ev-top > span.ev-span]",
+      "Weddings & Beauty Expo  [events: main text — article.card.ev-card > div.ev-body > h2.ev-name > a.ev-name-link]",
+      "Somewhere Hotel, Al-Ahsa —  [events: main text — div.ev-body > dl.ev-meta > div.evm-row > dd.evm-v]",
+      "Karaz Tree Exhibitions & Conferences Company  [events: main text — div.ev-body > dl.ev-meta > div.evm-row > dd.evm-v]",
+      "Fashion & luxury  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Wedding essentials  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Beauty & care  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Flowers & décor  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Salons & perfumes  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Cosmetic clinics  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Photography & video editing  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Catering & sweets  [events: main text — article.card.ev-card > div.ev-body > ul.ev-acts > li.ev-act]",
+      "Bookings & enquiries on WhatsApp  [events: main text — article.card.ev-card > div.ev-body > div.ev-btns.ev-btns--card > a.ev-ticket]"
+    ]
+  }
+}

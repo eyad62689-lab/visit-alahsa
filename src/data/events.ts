@@ -347,6 +347,9 @@ const TEXT_EN: EventTexts = {
     season: 'The holy month of Ramadan', time: 'During Ramadan', span: 'Extended Ramadan nights',
     org: 'King Faisal University',
     acts: ['Theatre shows', 'Kids’ zone', 'Interactive Kafu kitchen', '“Ghabqa” dinner'],
+    // معنى الاسم والغبقة — من إياد (2026-10-17): «كفو» من «كوفئ»، والغبقة وجبة وعادة اجتماعية شعبية في
+    // ليالي رمضان بدول الخليج. للقارئ غير العربي وحده بقراره: النسخة العربية بلا مدخل (الاسم مفهوم للعربي).
+    intro: '“Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arab Gulf states.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -487,6 +490,7 @@ const TEXT_ZH: TranslatedTexts = {
     season: '斋月（拉马丹）', time: '斋月期间', span: '贯穿斋月（夜间举行）',
     org: '费萨尔国王大学',
     acts: ['戏剧演出', '儿童乐园', '卡夫互动厨房', '“盖布加”晚宴（斋月夜间聚餐）'],
+    intro: '“卡夫”（Kafu）一词源自阿拉伯语动词，意为“受到奖赏”，即赢得奖赏与赞誉。卡夫之夜的亮点活动之一是“盖布加”晚宴。“盖布加”是海湾阿拉伯国家的一种民间聚餐与社交习俗，在神圣斋月的夜晚举行。',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -601,6 +605,7 @@ const TEXT_RU: TranslatedTexts = {
     season: 'Священный месяц Рамадан', time: 'В Рамадан', span: 'Продлённые ночи Рамадана',
     org: 'Университет короля Фейсала',
     acts: ['Театральные представления', 'Детская зона', 'Интерактивная кухня Кафу', 'Ужин «Габка»'],
+    intro: 'Слово «Кафу» происходит от арабского глагола со значением «быть вознаграждённым», то есть заслужить награду и похвалу. Среди ключевых моментов этих ночей — «Габка», народная трапеза и общественный обычай: её устраивают ночами священного месяца Рамадан в арабских странах Залива.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -705,6 +710,7 @@ const TEXT_DE: TranslatedTexts = {
     season: 'Heiliger Ramadan', time: 'Während des Ramadan', span: 'Verlängerte Ramadan-Nächte',
     org: 'König-Faisal-Universität',
     acts: ['Theateraufführungen', 'Kinderbereich', 'Interaktive Kafu-Küche', '„Ghabqa“-Abendessen'],
+    intro: '„Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Kafu-Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den arabischen Ländern der Golfregion gepflegt wird.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -782,6 +788,139 @@ const TEXT_DE: TranslatedTexts = {
   },
 };
 // @de-events:end
+// @ur-events:start
+// النسخة الأوردية — خط ur-translation-pipeline حصراً (دفعة b22-ui). المقاطع slug تشارك الإنجليزية.
+// بنود نسخة 2026 المنتهية من معرض اللومي (dated، والساعات، وعنوان النسخة ووصفها) لا تُترجم على سابقة TEXT_DE،
+// والرابط إلى الثمار يقصد /ur/fruits/ (وما لا صفحة أوردية له يقصد الإنجليزية).
+const TEXT_UR: TranslatedTexts = {
+  bisht: {
+    slug: 'hasawi-bisht-festival',
+    name: 'حساوی چوغے کا میلہ',
+    place: 'تاریخی قصر ابراہیم، ہفوف',
+    season: 'سردیاں',
+    time: 'تقریباً دسمبر میں',
+    span: 'چند دن',
+    org: 'ورثہ کمیشن (ثقافت کی وزارت)',
+    acts: ['چوغوں کی نمائش', 'بنائی سکھانے کی تربیتی نشستیں', 'چوغوں کا بازار', 'لوک فنون کی پیشکشیں'],
+  },
+  'qaisariyah-nights': {
+    slug: 'qaisariyah-nights',
+    name: 'القیصریہ کی راتیں',
+    place: 'تاریخی سوق القیصریہ، ہفوف',
+    season: 'سردیوں کا آخری حصہ',
+    time: 'فروری سے مارچ تک',
+    span: 'کئی ہفتے',
+    org: 'الاحساء کی بلدیہ، الاحساء کی ترقی کا ادارہ، ورثہ کمیشن',
+    acts: ['لوک فنون کی پیشکشیں', 'مل بیٹھنے کی عوامی محفلیں', 'روایتی کھیل', 'دستکاری کی تربیتی نشستیں'],
+  },
+  'kafu-nights': {
+    slug: 'kafu-nights',
+    name: '“کفو” کی راتیں',
+    place: 'شاہ عبد اللہ ماحولیاتی پارک، ہفوف',
+    season: 'رمضان المبارک کا مہینہ',
+    time: 'رمضان کے دوران',
+    span: 'رمضان کی کئی راتیں',
+    org: 'شاہ فیصل یونیورسٹی',
+    acts: ['اسٹیج ڈرامے', 'بچوں کے لیے مخصوص حصہ', '“کفو” کا باورچی خانہ', '“غبقہ” کا کھانا'],
+    intro: '“کفو” عربی کے ایک فعل سے نکلا ہے جس کا مطلب ہے “صلہ پانا”، یعنی انعام اور تعریف حاصل کرنا۔ ان راتوں کی نمایاں سرگرمیوں میں “غبقہ” بھی شامل ہے۔ یہ خلیجی عرب ممالک میں رمضان المبارک کی راتوں کا ایک مقبول کھانا اور سماجی رسم ہے۔',
+  },
+  'dates-festival': {
+    slug: 'processed-dates-festival',
+    name: 'کھجور کی مصنوعات کا میلہ',
+    place: 'الاحساء کی بلدیہ کا قلعہ، ہفوف',
+    season: 'سردیاں',
+    time: 'جنوری سے فروری تک',
+    span: 'کئی ہفتے',
+    org: 'الاحساء کی بلدیہ، الاحساء کی ترقی کا ادارہ',
+    acts: ['چکھنے اور خریداری کا پنڈال', 'کھجور کی مصنوعات کے پنڈال', 'ثقافتی تربیتی نشستیں', 'مقابلے'],
+  },
+  'palm-village': {
+    slug: 'palm-village',
+    name: 'کھجور کے درختوں کا گاؤں',
+    place: 'الاحساء کا نخلستان',
+    season: 'سردیاں اور بہار',
+    time: 'جنوری سے مارچ تک',
+    span: 'طویل موسم',
+    org: 'کھجور کے درختوں اور کھجوروں کا قومی مرکز',
+    acts: ['کھجوروں کی دکانیں', 'کھانے پینے کی مقامی جگہیں', 'دستکاروں کے پنڈال (کھجور کے پتوں سے بنی دستکاریاں)', 'دیہی مصنوعات کا بازار'],
+  },
+  lomi: {
+    slug: 'hasawi-lomi-exhibition',
+    name: 'حساوی لیموں کی نمائش',
+    place: 'الاحساء نمائشی مرکز، شارع السلام (عین النجم سڑک)، ہفوف',
+    season: 'گرمیاں',
+    time: '19 اگست سے 13 ستمبر 2026 تک',
+    span: 'تقریباً 26 دن',
+    org: 'الاحساء ایوان تجارت',
+    acts: ['لیموں کی مصنوعات کی نمائشیں', 'موقع پر کھانا پکانا', 'زراعت کی تربیتی نشستیں', 'بچوں کا گوشہ', 'خاندانی محفلیں'],
+    intro: '“حساوی لیموں کی نمائش” الاحساء کی سب سے نمایاں موسمی زرعی تقریب ہے۔ الاحساء ایوان تجارت یہ نمائش منعقد کرتا ہے۔ اس کا مقصد کھجور کے بعد الاحساء کے نخلستان کی سب سے مشہور فصل کا جشن منانا ہے۔ نمائش میں آپ الاحساء کے لیموں کی خصوصیات، فوائد اور کاشت کو عملی طور پر قریب سے جان سکتے ہیں، کاشتکاروں سے براہ راست مل سکتے ہیں اور گھروں میں چیزیں تیار کرنے والے خاندانوں کی مصنوعات خرید سکتے ہیں۔ اس کے ساتھ نمائش میں دوسری سرگرمیاں بھی ہوتی ہیں۔',
+    sections: [
+      {
+        h: 'الاحساء کا لیموں کیا ہے؟',
+        ps: [
+          'الاحساء کا لیموں چھوٹا، گہرا ہرا اور پتلے چھلکے والا ترشاوہ پھل ہے، جو رس سے بھرا ہوتا ہے۔ اس کا ذائقہ خوب کھٹا ہوتا ہے اور خوشبو اتنی تیز ہوتی ہے کہ یہ باقی تمام ترشاوہ پھلوں سے الگ پہچانا جاتا ہے۔ کھجور کے بعد یہ الاحساء کی دوسری بڑی زرعی پیداوار ہے: نخلستان میں پھل دینے والے لیموں کے 1 لاکھ سے زیادہ درخت ہیں، اور ایک درخت ایک موسم میں 25 سے 30 کلوگرام پھل دیتا ہے۔',
+          'اس سے گرمیوں کی ایک پرانی اور عزیز روایت جڑی ہے: خاندان مل بیٹھ کر اس کا رس نچوڑتے اور سال بھر کے لیے محفوظ کرتے ہیں، تاکہ اسے تازہ، رس کی صورت میں یا خشک کر کے الاحساء اور خلیج کے کھانوں میں استعمال کریں۔',
+        ],
+      },
+    ],
+    faq: [
+      { q: 'نمائش کہاں ہوتی ہے؟', a: 'ہفوف میں شارع السلام (عین النجم سڑک) پر الاحساء نمائشی مرکز میں۔ اس کا نقشہ اسی صفحے پر ہے۔' },
+      { q: 'الاحساء کا لیموں عام لیموں سے کیسے مختلف ہے؟', a: 'یہ عام لیموں سے چھوٹا ہوتا ہے، اس کا چھلکا پتلا ہوتا ہے، اور اس میں رس زیادہ اور خوشبو تیز ہوتی ہے۔ الاحساء کے کھانوں میں لوگ اسے تازہ، رس کی صورت میں اور خشک کر کے استعمال کرتے ہیں۔' },
+      { q: 'کیا بچوں کے لیے بھی سرگرمیاں ہیں؟', a: 'جی ہاں۔ نمائش میں بچوں کا گوشہ ہے، اور اس کے ساتھ موقع پر کھانا پکانا، زراعت کی تربیتی نشستیں اور خاندانی محفلیں بھی ہوتی ہیں۔' },
+    ],
+    related: [
+      { label: '“الاحساء کے موسمی پھل” والے صفحے پر الاحساء کا لیموں', href: '/ur/fruits/' },
+      { label: 'الاحساء کے سفر کا منصوبہ بنائیں', href: '/en/plan-your-trip/' },
+    ],
+    after: {
+      time: 'تقریباً اگست سے ستمبر تک',
+      span: 'کئی ہفتے',
+      seoTitle: 'حساوی لیموں کی نمائش: موسم، جگہ اور نمایاں سرگرمیاں',
+      seoDesc: 'ہفوف میں حساوی لیموں کی نمائش کا تعارف: یہ ہر سال تقریباً اگست اور ستمبر میں ہوتی ہے۔ اگلی نمائش کی تاریخوں کے لیے الاحساء ایوان تجارت کے اعلانات پر نظر رکھیں۔',
+    },
+  },
+  'uqair-winter': {
+    slug: 'al-uqair-winter',
+    name: 'العقیر کی سردیاں',
+    place: 'العقیر کے ساحل سمندر کا پارک',
+    season: 'سردیاں',
+    time: 'دسمبر سے فروری تک',
+    span: 'کئی ہفتے',
+    org: 'الاحساء کی ترقی کا ادارہ، الاحساء کی بلدیہ',
+    acts: ['خاندانوں کے لیے سمندری اور کھیلوں کی سرگرمیاں', 'فن اور دستکاری کی تربیتی نشستیں', 'تفریحی کھیل'],
+  },
+  'wafrah-winter': {
+    slug: 'al-wafrah-winter',
+    name: 'الوفرہ کی سردیاں',
+    place: 'محلہ الوفرہ، ہفوف کے جنوبی حصے میں',
+    season: 'سردیاں',
+    time: 'تقریباً نومبر سے',
+    span: 'سردیوں کا طویل موسم',
+    org: 'مالکان اور سرمایہ کار، الاحساء کی بلدیہ کی نگرانی میں',
+    acts: ['کھانا بیچنے والی 150 سے زیادہ گاڑیاں', 'الاحساء کے روایتی پکوان', 'کھلی فضا میں سردیوں کی محفلیں'],
+  },
+  'horse-racing': {
+    slug: 'horse-racing-season',
+    name: 'گھڑ دوڑ کا موسم',
+    place: 'گھڑ سواری کا میدان، الطرف نامی قصبہ',
+    season: 'سردیاں',
+    time: 'نومبر سے فروری تک',
+    span: 'طویل موسم',
+    org: 'الاحساء میں گھڑ سواری کا میدان',
+    acts: ['گھوڑوں کی دوڑیں', 'گھڑ سواری کی تقریبات'],
+  },
+  'creative-ahsa': {
+    slug: 'creative-alahsa-festival',
+    name: 'تخلیقی الاحساء کا میلہ',
+    place: 'الفریج نامی روایتی محلہ، بلدیہ کا قلعہ',
+    season: 'بہار',
+    time: 'مارچ سے اپریل تک',
+    span: 'تقریباً ایک ہفتہ',
+    org: 'الاحساء کی بلدیہ',
+    acts: ['مٹی کے برتن بنانا', 'کھجور کے پتوں سے بنی دستکاریاں', 'بڑھئی کا روایتی کام', 'بصری فنون', 'لوک فنون کی پیشکشیں'],
+  },
+};
+// @ur-events:end
 // ── الدمج: Ev واحدة لكل فعالية ولغة — الشكل نفسه الذي يقرؤه كل مستهلك ─────────
 function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
   const m: EventMeta = EVENT_META[id];
@@ -800,11 +939,11 @@ export const EVENTS_EN: Ev[] = EVENT_IDS.map((id) => merge(id, TEXT_EN[id]));
 export const EVENTS_ZH: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_ZH[id]));
 export const EVENTS_DE: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_DE[id]));
 export const EVENTS_RU: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_RU[id]));
+export const EVENTS_UR: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_UR[id]));
 
-/** فعاليات لغة الصفحة. الأوردو بلا كتلة نصوص بعد (لا TEXT_UR خارج خط ترجمتها) فتتراجع
- *  للإنجليزية صراحةً؛ وeventAlt أدناه يبقى بلغاته الخمس: لا صفحة /ur/events/ يُربط إليها. */
+/** فعاليات لغة الصفحة (الأوردو: المواسم المتكرّرة من خطها، دفعة b22-ui). */
 export const eventsFor = (lang: Lang): Ev[] =>
-  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU, ur: EVENTS_EN } satisfies Record<Lang, Ev[]>)[lang];
+  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU, ur: EVENTS_UR } satisfies Record<Lang, Ev[]>)[lang];
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>
@@ -813,14 +952,15 @@ export const counterpart = (id: string, lang: Lang): Ev | undefined =>
 /** روابط الفعالية بلغاتها — مصدر alt (hreflang ومبدّل اللغة) لصفحاتها المفردة.
  *  الصينية والألمانية والروسية للمواسم العشرة كاملة؛ والفعالية المؤقتة عربية وإنجليزية فقط،
  *  فلا تُدرج لها لغة بلا صفحة (لا خيار يقود إلى 404). */
-export const eventAlt = (id: string): { ar: string; en: string; zh?: string; de?: string; ru?: string } => {
+export const eventAlt = (id: string): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string } => {
   const slugIn = (list: Ev[]) => list.find((e) => e.id === id)?.slug;
-  const zh = slugIn(EVENTS_ZH), de = slugIn(EVENTS_DE), ru = slugIn(EVENTS_RU);
+  const zh = slugIn(EVENTS_ZH), de = slugIn(EVENTS_DE), ru = slugIn(EVENTS_RU), ur = slugIn(EVENTS_UR);
   return {
     ar: `/فعاليات/${slugIn(EVENTS_AR)!}/`,
     en: `/en/events/${slugIn(EVENTS_EN)!}/`,
     ...(zh ? { zh: `/zh/events/${zh}/` } : {}),
     ...(de ? { de: `/de/events/${de}/` } : {}),
     ...(ru ? { ru: `/ru/events/${ru}/` } : {}),
+    ...(ur ? { ur: `/ur/events/${ur}/` } : {}),
   };
 };
