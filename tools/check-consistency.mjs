@@ -28,7 +28,7 @@ import { checkIbrahimMaterialsIntro, EXPECT as MATERIALS_EXPECT } from './check-
 import { checkHubaishChandal, EXPECT as HUBAISH_EXPECT } from './check-hubaish-chandal.mjs';
 import { checkZhUqair, EXPECT as ZH_UQAIR_EXPECT } from './check-zh-uqair.mjs';
 import { checkNavTitles, EXPECT as NAV_TITLES_EXPECT } from './check-nav-titles.mjs';
-import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, checkUrRound2Rulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
+import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, checkUrRound2Rulings, checkUrOwnerRulings, stripLangElements, FORBIDDEN_LETTERS, REQUIRED_LETTERS } from './check-ur-text.mjs';
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
 import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
@@ -1569,6 +1569,12 @@ async function main() {
       const [id, label, ok] = ROUND2_CHECKS[r.id];
       if (r.problems.length) fail(id, `${label} (حكم الجولة 2 ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
       else pass(id, `${label} (حكم الجولة 2 ${r.id}): ${ok(r.stats)} — ${r.stats.blocks} كتلة نصّ أوردي`);
+    }
+
+    // ── C71: حكم المالك N406 — اسم «ليالي كفو» بفتحة الكاف ──
+    for (const r of checkUrOwnerRulings(urPages, termbase)) {
+      if (r.problems.length) fail('C71', `اسم كفو بفتحة (حكم المالك ${r.id}): ${r.problems.length} مشكلة — ${r.problems.slice(0, 4).join(' · ')}`);
+      else pass('C71', `اسم كفو بفتحة (حكم المالك ${r.id}): ${r.stats.mentions} ذكراً في ${r.stats.carriers} صفحة، ولا «کفو» بلا فتحة — ${r.stats.blocks} كتلة نصّ أوردي`);
     }
   }
 
