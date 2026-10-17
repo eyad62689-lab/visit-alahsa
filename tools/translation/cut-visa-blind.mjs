@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 const lang = process.argv[2];
 const dir = `${lang}-translation/output/visa-guide`;
-const s = JSON.parse(readFileSync(`${dir}/${lang}-05.json`, 'utf8')).strings;
+const s = JSON.parse(readFileSync(process.argv[3] ?? `${dir}/${lang}-05.json`, 'utf8')).strings;
 const pack = JSON.parse(readFileSync(`${dir}/pack.json`, 'utf8')).strings;
 const strip = (t) => t.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 const lines = [];
@@ -26,5 +26,5 @@ for (let i = 0; i < 7; i++) lines.push(s[`faq.items.${i}.q`], s[`faq.items.${i}.
 lines.push(s['links.h'], keys.filter((k) => k.startsWith('links.head.')).map((k) => s[k]).join(' | '));
 for (let i = 0; i < 9; i++) lines.push(`${s[`links.rows.${i}.route`]} | … | ${s[`links.rows.${i}.org`]}`);
 lines.push('', `[${s['ui.foot.l.visa']}] [${s['ui.plan.visa']}]`, '', `<title>${s['seo.title']}</title>`, `<meta description>${s['seo.description']}`);
-writeFileSync(`${dir}/blind-input.txt`, lines.join('\n') + '\n');
-console.log(`${dir}/blind-input.txt`, lines.length, 'lines');
+writeFileSync(process.argv[4] ?? `${dir}/blind-input.txt`, lines.join('\n') + '\n');
+console.log(process.argv[4] ?? `${dir}/blind-input.txt`, lines.length, 'lines');
