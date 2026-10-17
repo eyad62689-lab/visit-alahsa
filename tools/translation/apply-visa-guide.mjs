@@ -183,11 +183,25 @@ if (Array.isArray(tb.terms)) {
 } else {
   for (const a of adds) { const k = a.key ?? a.ur; if (k && !tb.terms[k]) { const { key, ...rest } = a; tb.terms[k] = rest; added++; } }
 }
-if (added) writeFileSync(tbPath, JSON.stringify(tb, null, 2) + '\n');
+// أحكام وبنود مفتوحة جديدة (الأوردو: _meta.calibration_rulings وopen_items) من قرارات المالك
+let rulings = 0, openItems = 0;
+if (tb._meta) {
+  for (const r of judge.rulings_additions ?? []) {
+    const list = tb._meta.calibration_rulings;
+    if (Array.isArray(list) && !list.some((x) => JSON.stringify(x) === JSON.stringify(r) || (r.id && x.id === r.id))) { list.push(r); rulings++; }
+    else if (list && !Array.isArray(list) && r.id && !list[r.id]) { const { id, ...rest } = r; list[id] = rest; rulings++; }
+  }
+  for (const o of judge.open_items_additions ?? []) {
+    const list = tb._meta.open_items;
+    if (Array.isArray(list) && !list.some((x) => JSON.stringify(x) === JSON.stringify(o) || (o.id && x.id === o.id))) { list.push(o); openItems++; }
+    else if (list && !Array.isArray(list) && o.id && !list[o.id]) { const { id, ...rest } = o; list[id] = rest; openItems++; }
+  }
+}
+if (added || rulings || openItems) writeFileSync(tbPath, JSON.stringify(tb, null, 2) + '\n');
 
 const scoresPath = path.join(ROOT, `${lang}-translation/memory/scores.csv`);
 const csv = (s) => `"${String(s).replace(/"/g, '""')}"`;
 const row = [csv(`visa-guide${judgeFile === 'judge.json' ? '' : ' amend'} (${lang}): /${lang}/visa-guide/ ${judgeFile === 'judge.json' ? 'full page (138 strings) + ui foot.l.visa/plan.visa' : `correction batch (${judge.amended_keys?.length ?? '?'} keys)`}`), today, judge.loop ?? 1, judge.score, csv(`${judge.decision} (${(judge.notes ?? []).join('; ').slice(0, 600)})`)].join(',');
 writeFileSync(scoresPath, read(scoresPath).replace(/\s*$/, '\n') + row + '\n');
 
-console.log(`✓ ${lang}: ${dataPath} · ${keys.length} سلسلة (${replaced} زوج ذاكرة مُحدَّث) · ${added} إضافة معجم · الدرجة ${judge.score} · العنوان ${tl} والوصف ${dl} حرفاً`);
+console.log(`✓ ${lang}: ${dataPath} · ${keys.length} سلسلة (${replaced} زوج ذاكرة مُحدَّث) · ${added} إضافة معجم · ${rulings} حكماً و${openItems} بنداً مفتوحاً · الدرجة ${judge.score} · العنوان ${tl} والوصف ${dl} حرفاً`);
