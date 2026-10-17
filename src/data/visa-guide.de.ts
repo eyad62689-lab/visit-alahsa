@@ -1,4 +1,4 @@
-// مولَّد بـtools/translation/apply-visa-guide.mjs من de-translation/output/visa-guide/judge.json (2026-10-17، الدرجة 92) — لا يُحرَّر يدوياً؛
+// مولَّد بـtools/translation/apply-visa-guide.mjs من de-translation/output/visa-guide/judge.json (2026-10-17، الدرجة 93) — لا يُحرَّر يدوياً؛
 // أي تعديل يمرّ بخط de-translation-pipeline ثم يُعاد التطبيق.
 import type { VisaGuideContent } from './visa-guide';
 
@@ -11,7 +11,7 @@ export const VISA_DE: VisaGuideContent = {
   "lead": "Ihre Reise nach Al-Ahsa beginnt mit einem Schritt: dem Antrag auf das Besuchsvisum für Saudi-Arabien, das zu Ihnen passt. Dieser Leitfaden fasst die acht Wege zum Visum auf einer Seite zusammen und erklärt knapp, für wen jeder Weg gedacht ist, wie lange das zugehörige Visum gilt und wo Sie es beantragen. Danach führt er Sie zur jeweiligen staatlichen Plattform, auf der Sie Ihren Antrag stellen.",
   "feesLine": "Die Gebühren sehen Sie bei der Antragstellung auf der offiziellen Plattform.",
   "verifyLine": "Prüfen Sie vor der Antragstellung die offizielle Quelle, denn die Bedingungen können sich ändern.",
-  "updatedLine": "Stand: 16. Oktober 2026",
+  "updatedLine": "Stand: 17. Oktober 2026",
   "intro": {
     "h": "Was erwartet Sie in Al-Ahsa?",
     "parts": [
@@ -50,7 +50,7 @@ export const VISA_DE: VisaGuideContent = {
     "rows": [
       [
         "Elektronisches Touristenvisum (eVisa)",
-        "Staatsangehörige berechtigter Länder, Inhaber eines Visums für den Schengen-Raum, die USA oder das Vereinigte Königreich, dort dauerhaft Aufenthaltsberechtigte sowie Einwohner der GCC-Staaten",
+        "Staatsangehörige berechtigter Länder, Inhaber eines Visums für den Schengen-Raum, die USA oder das Vereinigte Königreich, Personen mit dauerhaftem Aufenthaltsrecht in den USA, der EU oder dem Vereinigten Königreich sowie Einwohner der GCC-Staaten",
         "1 Jahr, mehrfache Einreise, Aufenthalt bis zu 3 Monate",
         "visa.visitsaudi.com"
       ],
@@ -168,10 +168,10 @@ export const VISA_DE: VisaGuideContent = {
       "h": "Visum für Familien- und Privatbesuche",
       "who": {
         "label": "Für wen gilt dieses Visum?",
-        "text": "Für Personen, die von einem saudischen Staatsbürger oder einem Einwohner Saudi-Arabiens eingeladen werden. Der Familienbesuch ist für Verwandte gedacht: bei Staatsbürgern der GCC-Staaten für Verwandte ersten Grades (Eltern, Ehefrau und Kinder), bei Einwohnern für Verwandte. Der Privatbesuch ist für Personen, die mit dem Gastgeber weder verwandt noch geschäftlich verbunden sind. Den Antrag leitet der Gastgeber online auf der Plattform des Außenministeriums ein."
+        "text": "Für Personen, die von einem saudischen Staatsbürger oder einem Einwohner Saudi-Arabiens eingeladen werden. Der Familienbesuch ist für Verwandte gedacht: bei Staatsbürgern der GCC-Staaten für Verwandte ersten Grades (Eltern, Ehepartner und Kinder), bei Einwohnern für Verwandte. Der Privatbesuch ist für Personen, die mit dem Gastgeber weder verwandt noch geschäftlich verbunden sind. Den Antrag leitet der Gastgeber online auf der Plattform des Außenministeriums ein."
       },
       "cta": {
-        "label": "Auf der offiziellen Plattform beantragen",
+        "label": "Der Einladende leitet den Antrag auf der offiziellen Plattform ein",
         "href": "https://visa.mofa.gov.sa/Home/Index2?service_type=2"
       }
     },
@@ -182,7 +182,7 @@ export const VISA_DE: VisaGuideContent = {
         "text": "Für Personen, die von einem Unternehmen oder einer Organisation im Königreich eingeladen werden und zu dieser einladenden Stelle eine Geschäftsbeziehung haben. Die einladende Stelle leitet den Antrag ein; abgeschlossen wird er anschließend auf der Plattform des Außenministeriums."
       },
       "cta": {
-        "label": "Auf der offiziellen Plattform beantragen",
+        "label": "Der Einladende leitet den Antrag auf der offiziellen Plattform ein",
         "href": "https://ksavisa.sa/visa/business-visit/apply"
       }
     },
@@ -315,7 +315,7 @@ export const VISA_DE: VisaGuideContent = {
       },
       {
         "q": "Brauchen Einwohner der GCC-Staaten ein Visum für Al-Ahsa?",
-        "a": "Ja. Für Einwohner der GCC-Staaten steht der touristische Weg offen; den Antrag stellen sie über die Plattform des Außenministeriums."
+        "a": "Ja. Den Antrag stellen sie über den Weg für Einwohner der GCC-Staaten auf der Plattform des Außenministeriums (ksavisa.sa)."
       },
       {
         "q": "Darf ich mit einem Touristenvisum die Umra verrichten?",
@@ -323,7 +323,7 @@ export const VISA_DE: VisaGuideContent = {
       },
       {
         "q": "Darf ich mit einem Touristenvisum arbeiten?",
-        "a": "Nein. Das Touristenvisum ist für Tourismus, die Umra und Verwandtenbesuche bestimmt; Arbeit und Studium erlaubt es nicht."
+        "a": "Nein. Das Touristenvisum ist für Tourismus, den Besuch von Veranstaltungen, die Umra und Verwandtenbesuche bestimmt; Arbeit und Studium erlaubt es nicht."
       },
       {
         "q": "Wie lade ich einen Verwandten zu einem Besuch in Al-Ahsa ein?",
