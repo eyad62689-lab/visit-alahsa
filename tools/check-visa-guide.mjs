@@ -22,7 +22,8 @@ export { VISA_GUIDE_ALT, VISA_GUIDE_PATH, VISA_LANGS, VISA_PREVIEW_NOTE };
 
 const DEC = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ' };
 const decode = (t) => t.replace(/&(?:amp|quot|#39|#x27|lt|gt|nbsp);/g, (e) => DEC[e]);
-const strip = (html) => decode(html.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+// إسقاط <script> و<style> بوسم إغلاق يحتمل المسافة والحالة (</script >، </SCRIPT>) ثم كل الوسوم — مرشّح وسوم كامل لا جزئي
+const strip = (html) => decode(html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, ' ').replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
 const norm = (t) => decode(t).replace(/\s+/g, ' ').trim();
 
 /** كل الوصلات في قطعة HTML: href وtarget وrel ونصّها. */
