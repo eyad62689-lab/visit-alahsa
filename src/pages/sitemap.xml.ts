@@ -5,7 +5,7 @@
 // يتعذّر git يسقط الحقل من الخريطة كلها بدل تلفيق تاريخ موحَّد (انظر git-dates.ts).
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH } from '../data/events';
+import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH, eventsFor } from '../data/events';
 import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT } from '../lib/routes';
 import { publishedGuides } from '../lib/guides';
 import { storesLangs } from '../lib/stores';
@@ -35,7 +35,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // أزواج (عربي/إنجليزي/صيني اختياري) — تُستبعد «رحلتي» الشخصية (noindex).
   // zh/de/ru/ur ترد من attractionAlt حين يحمل المعلم ترجمةً معتمدة بتلك اللغة.
-  // الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة لها صفّ ur هنا؛ وما عداها بلا صفحة أوردية فلا يُعلَن.
+  // الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة والفعاليات (وصفحاتها المفردة) لها صفّ ur هنا؛ وما عداها بلا صفحة أوردية فلا يُعلَن.
   const pairs: Pair[] = [
     { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/', lastmod: dateOf(`${V}HomeView.astro`, 'src/i18n/ui.ts', ...attractionFiles) },
     { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/', ur: '/ur/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
@@ -47,7 +47,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
-    { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
+    { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', ur: '/ur/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
     // دليل التأشيرات عربي وإنجليزي (2026-10-16) — نصّه في src/data/visa-guide.ts
     { ...VISA_GUIDE_ALT, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.ts') },
@@ -113,6 +113,8 @@ export const GET: APIRoute = async ({ site }) => {
       zh: EVENTS_ZH.find((x) => x.id === e.id) ? '/zh/events/' + EVENTS_ZH.find((x) => x.id === e.id)!.slug + '/' : undefined,
       de: EVENTS_DE.find((x) => x.id === e.id) ? '/de/events/' + EVENTS_DE.find((x) => x.id === e.id)!.slug + '/' : undefined,
       ru: EVENTS_RU.find((x) => x.id === e.id) ? '/ru/events/' + EVENTS_RU.find((x) => x.id === e.id)!.slug + '/' : undefined,
+      // الأوردو: المواسم المتكرّرة وحدها (لا نصّ أوردي للفعالية المؤقتة، كاللغات الثلاث)
+      ur: eventsFor('ur').find((x) => x.id === e.id && !x.oneOff) ? '/ur/events/' + eventsFor('ur').find((x) => x.id === e.id)!.slug + '/' : undefined,
       lastmod: dateOf('src/data/events.ts', `${V}EventDetailView.astro`),
     })),
   ];

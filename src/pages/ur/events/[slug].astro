@@ -1,0 +1,15 @@
+---
+// صفحة الفعالية المفردة — النسخة الأوردية (ur-PK): نصوص EVENTS_UR وكتلة ur في EventDetailView من خط
+// ur-translation-pipeline حصراً (دفعة b22-ui). المقاطع slug تشارك الإنجليزية، والمواسم المتكرّرة وحدها
+// (الفعالية المؤقتة عربية وإنجليزية فقط، كاللغات الثلاث).
+import EventDetailView from '../../../components/views/EventDetailView.astro';
+import { eventsFor, eventAlt } from '../../../data/events';
+
+export function getStaticPaths() {
+  return eventsFor('ur').filter((ev) => !ev.oneOff).map((ev) => ({ params: { slug: ev.slug }, props: { ev } }));
+}
+
+const { ev } = Astro.props;
+const alt = eventAlt(ev.id);
+---
+<EventDetailView ev={ev} lang="ur" alt={alt} />
