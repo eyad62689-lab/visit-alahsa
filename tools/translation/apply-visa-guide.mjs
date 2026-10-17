@@ -18,14 +18,18 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const lang = process.argv[2];
-if (!['zh', 'de', 'ru', 'ur'].includes(lang)) { console.error('usage: apply-visa-guide.mjs <zh|de|ru|ur>'); process.exit(2); }
+// اللغة واسم ملف الحكم من سطر الأوامر يُقيَّدان بقوائم مغلقة (لا مسار حرّاً من المستخدم إلى نظام الملفات)
+const LANGS = ['zh', 'de', 'ru', 'ur'];
+const lang = LANGS.find((l) => l === process.argv[2]);
+if (!lang) { console.error('usage: apply-visa-guide.mjs <zh|de|ru|ur> [judge.json|judge-amend.json]'); process.exit(2); }
 const OUT = path.join(ROOT, `${lang}-translation/output/visa-guide`);
 const read = (p) => readFileSync(p, 'utf8');
 const readJson = (p) => JSON.parse(read(p));
 
 const pack = readJson(path.join(OUT, 'pack.json'));
-const judgeFile = process.argv[3] ?? 'judge.json';
+const JUDGE_FILES = ['judge.json', 'judge-amend.json'];
+const judgeFile = JUDGE_FILES.find((f) => f === path.basename(process.argv[3] ?? 'judge.json'));
+if (!judgeFile) { console.error(`ملف الحكم يجب أن يكون أحد: ${JUDGE_FILES.join(' | ')}`); process.exit(2); }
 const judge = readJson(path.join(OUT, judgeFile));
 if (judge.decision !== 'APPROVE') { console.error(`judge.json: القرار ${judge.decision} — لا تطبيق بلا APPROVE`); process.exit(1); }
 const S = judge.final_strings;

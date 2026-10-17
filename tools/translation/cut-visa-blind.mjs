@@ -1,9 +1,14 @@
 // يقصّ مدخل القارئ الأعمى لدفعة «دليل التأشيرات»: نصّ اللغة الهدف وحده من ملف المرحلة 5، بلا مصدر ولا مفاتيح.
-//   node tools/translation/cut-visa-blind.mjs <lang>
+//   node tools/translation/cut-visa-blind.mjs <lang> [stage-file.json] [blind-input-name.txt]
+// الملفان يُقرآن ويُكتبان داخل مجلد الدفعة وحده (اسم الملف بلا مسار؛ path.basename يقطع أي مسار مُمرَّر).
 import { readFileSync, writeFileSync } from 'node:fs';
-const lang = process.argv[2];
+import { basename, join } from 'node:path';
+const lang = ['zh', 'de', 'ru', 'ur'].find((l) => l === process.argv[2]);
+if (!lang) { console.error('usage: cut-visa-blind.mjs <zh|de|ru|ur> [stage-file.json] [blind-input-name.txt]'); process.exit(2); }
 const dir = `${lang}-translation/output/visa-guide`;
-const s = JSON.parse(readFileSync(process.argv[3] ?? `${dir}/${lang}-05.json`, 'utf8')).strings;
+const inFile = join(dir, basename(process.argv[3] ?? `${lang}-05.json`));
+const outFile = join(dir, basename(process.argv[4] ?? 'blind-input.txt'));
+const s = JSON.parse(readFileSync(inFile, 'utf8')).strings;
 const pack = JSON.parse(readFileSync(`${dir}/pack.json`, 'utf8')).strings;
 const strip = (t) => t.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 const lines = [];
@@ -26,5 +31,5 @@ for (let i = 0; i < 7; i++) lines.push(s[`faq.items.${i}.q`], s[`faq.items.${i}.
 lines.push(s['links.h'], keys.filter((k) => k.startsWith('links.head.')).map((k) => s[k]).join(' | '));
 for (let i = 0; i < 9; i++) lines.push(`${s[`links.rows.${i}.route`]} | … | ${s[`links.rows.${i}.org`]}`);
 lines.push('', `[${s['ui.foot.l.visa']}] [${s['ui.plan.visa']}]`, '', `<title>${s['seo.title']}</title>`, `<meta description>${s['seo.description']}`);
-writeFileSync(process.argv[4] ?? `${dir}/blind-input.txt`, lines.join('\n') + '\n');
-console.log(process.argv[4] ?? `${dir}/blind-input.txt`, lines.length, 'lines');
+writeFileSync(outFile, lines.join('\n') + '\n');
+console.log(outFile, lines.length, 'lines');
