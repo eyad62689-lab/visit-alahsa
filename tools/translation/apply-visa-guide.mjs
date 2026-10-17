@@ -25,7 +25,8 @@ const read = (p) => readFileSync(p, 'utf8');
 const readJson = (p) => JSON.parse(read(p));
 
 const pack = readJson(path.join(OUT, 'pack.json'));
-const judge = readJson(path.join(OUT, 'judge.json'));
+const judgeFile = process.argv[3] ?? 'judge.json';
+const judge = readJson(path.join(OUT, judgeFile));
 if (judge.decision !== 'APPROVE') { console.error(`judge.json: القرار ${judge.decision} — لا تطبيق بلا APPROVE`); process.exit(1); }
 const S = judge.final_strings;
 const keys = Object.keys(pack.strings);
@@ -125,10 +126,20 @@ const q = (s) => `'${s.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
 if (!mjs.includes(`${lang}: '/${lang}/visa-guide/'`)) {
   mjs = mjs.replace(/export const VISA_GUIDE_ALT = \{([^}]*)\};/, (_m, body) => `export const VISA_GUIDE_ALT = {${body.trimEnd()}, ${lang}: '/${lang}/visa-guide/' };`);
   mjs = mjs.replace(/export const VISA_LANGS = \[([^\]]*)\];/, (_m, body) => `export const VISA_LANGS = [${body.trimEnd()}, '${lang}'];`);
-  mjs = mjs.replace(/export const VISA_UPDATED_LINE = \{([^}]*)\};/, (_m, body) => `export const VISA_UPDATED_LINE = {${body.trimEnd()}, ${lang}: ${q(S.updatedLine)} };`);
-  mjs = mjs.replace(/export const VISA_FEES_LINE = \{([^}]*)\};/, (_m, body) => `export const VISA_FEES_LINE = {${body.trimEnd()}, ${lang}: ${q(S.feesLine)} };`);
   writeFileSync(mjsPath, mjs);
 }
+// سطرا التحديث والرسوم يُحدَّثان دائماً من النص المعتمد (دفعة التصحيح تغيّرهما)
+const setLine = (name, value) => {
+  const re = new RegExp(`(export const ${name} = \\{[^}]*)\\};`);
+  mjs = mjs.replace(re, (_m, body) => {
+    const entryRe = new RegExp(`,?\\s*${lang}: '(?:[^'\\\\]|\\\\.)*'`);
+    const stripped = body.replace(entryRe, '');
+    return `${stripped.trimEnd()}, ${lang}: ${q(value)} };`;
+  });
+};
+setLine('VISA_UPDATED_LINE', S.updatedLine);
+setLine('VISA_FEES_LINE', S.feesLine);
+writeFileSync(mjsPath, mjs);
 
 // ── الصفحة ──
 const pageDir = path.join(ROOT, `src/pages/${lang}/visa-guide`);
@@ -154,8 +165,13 @@ if (!after.slice(0, after.indexOf(`${EOL}  },`)).includes("'foot.l.visa'")) {
 // ── الذاكرة والمعجم والسجلّ ──
 const tmPath = path.join(ROOT, `${lang}-translation/memory/tm.json`);
 const tm = readJson(tmPath);
-const existing = new Set(tm.pairs.filter((p) => p.page === 'visa-guide').map((p) => p.field));
-for (const k of keys) if (!existing.has(k)) tm.pairs.push({ en: pack.strings[k].en, [lang]: S[k], page: 'visa-guide', field: k, date: today });
+const byField = new Map(tm.pairs.filter((p) => p.page === 'visa-guide').map((p) => [p.field, p]));
+let replaced = 0;
+for (const k of keys) {
+  const cur = byField.get(k);
+  if (!cur) tm.pairs.push({ en: pack.strings[k].en, [lang]: S[k], page: 'visa-guide', field: k, date: today });
+  else if (cur[lang] !== S[k] || cur.en !== pack.strings[k].en) { cur.en = pack.strings[k].en; cur[lang] = S[k]; cur.date = today; replaced++; }
+}
 writeFileSync(tmPath, JSON.stringify(tm, null, 2) + '\n');
 
 const tbPath = path.join(ROOT, `${lang}-translation/glossary/termbase.json`);
@@ -171,7 +187,7 @@ if (added) writeFileSync(tbPath, JSON.stringify(tb, null, 2) + '\n');
 
 const scoresPath = path.join(ROOT, `${lang}-translation/memory/scores.csv`);
 const csv = (s) => `"${String(s).replace(/"/g, '""')}"`;
-const row = [csv(`visa-guide (${lang}): /${lang}/visa-guide/ full page (138 strings) + ui foot.l.visa/plan.visa`), today, judge.loop ?? 1, judge.score, csv(`${judge.decision} (${(judge.notes ?? []).join('; ').slice(0, 600)})`)].join(',');
+const row = [csv(`visa-guide${judgeFile === 'judge.json' ? '' : ' amend'} (${lang}): /${lang}/visa-guide/ ${judgeFile === 'judge.json' ? 'full page (138 strings) + ui foot.l.visa/plan.visa' : `correction batch (${judge.amended_keys?.length ?? '?'} keys)`}`), today, judge.loop ?? 1, judge.score, csv(`${judge.decision} (${(judge.notes ?? []).join('; ').slice(0, 600)})`)].join(',');
 writeFileSync(scoresPath, read(scoresPath).replace(/\s*$/, '\n') + row + '\n');
 
-console.log(`✓ ${lang}: ${dataPath} · ${keys.length} سلسلة · ${added} إضافة معجم · الدرجة ${judge.score} · العنوان ${tl} والوصف ${dl} حرفاً`);
+console.log(`✓ ${lang}: ${dataPath} · ${keys.length} سلسلة (${replaced} زوج ذاكرة مُحدَّث) · ${added} إضافة معجم · الدرجة ${judge.score} · العنوان ${tl} والوصف ${dl} حرفاً`);
