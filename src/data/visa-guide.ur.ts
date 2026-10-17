@@ -23,7 +23,7 @@ export const VISA_UR: VisaGuideContent = {
       " دیکھیں، اپنے سفر کی تاریخوں کے آس پاس کی ",
       {
         "t": "تقریبات",
-        "href": "/en/events/"
+        "href": "/ur/events/"
       },
       " پر نظر ڈال لیں، اپنی ",
       {
@@ -279,7 +279,7 @@ export const VISA_UR: VisaGuideContent = {
           "، ",
           {
             "t": "تقریبات",
-            "href": "/en/events/"
+            "href": "/ur/events/"
           },
           " اور ",
           {

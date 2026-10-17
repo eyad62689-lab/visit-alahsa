@@ -57,7 +57,7 @@ if (lang === 'ur') for (const [k, v] of Object.entries(S)) if (/[يكة]/.test(v
 if (problems.length) { console.error('إخفاق الفحص قبل التطبيق:\n - ' + problems.join('\n - ')); process.exit(1); }
 
 // ── تحويل الروابط الداخلية إلى لغة الصفحة ──
-const BUILT = { zh: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], de: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ru: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ur: ['attractions', 'map'] }[lang];
+const BUILT = { zh: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], de: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ru: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ur: ['attractions', 'events', 'map'] }[lang];
 const mapHref = (href) => {
   if (/^https?:\/\//.test(href)) return href;
   const m = href.match(/^\/en\/([^/#]+)\/(#.*)?$/);
