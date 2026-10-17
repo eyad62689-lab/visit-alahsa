@@ -1,0 +1,26 @@
+{
+  "batch": "palm-location",
+  "lang": "zh",
+  "stage": 7,
+  "date": "2026-10-17",
+  "threshold": 90,
+  "score": 96,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 28,
+    "termbase_style": 20,
+    "cultural_fit": 8,
+    "structural": 10
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "zh-ev-palm-place",
+      "from": "穆巴拉兹穆海里斯区",
+      "to": "穆巴拉兹的穆海里斯区",
+      "why": "Inserted 的 between city and district. Binding line precedent: termbase note on 费萨尔区 (judge ruling, batch 9) — outside area fields a Mubarraz district is separated from the city by 的 (穆巴拉兹的费萨尔区, 穆巴拉兹的舒鲁菲亚区, both live in khalifa-museum/musa-park body_zh) \"so it is not read as one name\". The binding sibling wafrah-winter «胡富夫以南的瓦夫拉区» also places 的 directly before the district noun. Stage 05 itself named this as the fallback if the blind reader could not split the names, and the reader could not (穆巴拉兹穆 / 海里斯区?)."
+    }
+  ],
+  "rulings": "Source AR «حي محيرس، المبرز» governs; EN agrees. Names verbatim from termbase: 穆巴拉兹 (المبرز, batch-2) and 穆海里斯 (from 穆海里斯宫, approved title of muhairis.md); حي = 区 per every district entry. Order city-before-district per sibling wafrah-winter and Chinese address order. Separator choice: (a) 的 — adopted, per batch-9 ruling and wafrah sibling; (b) «·» rejected — in Chinese the interpunct marks segments of one foreign personal name (e.g. 侯赛因·阿里·哈利法 in khalifa-museum), so it would signal one name, the opposite of the aim, and no zh place field uses it; (c) fullwidth comma rejected — mirrors the Arabic list order, no event place field in the block uses a comma, and a comma in a fact-row value reads as two items; (d) «——» rejected — it is the attraction area_zh convention (district——city, e.g. 费萨尔区——穆巴拉兹), not used by any events.ts place sibling; (e) adding 市 after 穆巴拉兹 rejected — termbase entry is bare 穆巴拉兹 and no sibling carries 市 (胡富夫 is always bare). No Latin gloss (district rule; siblings carry none except horse-racing). Nothing added: no street/building number (7317 عين منصور), no direction, no province, no description. Plain text, one line, no spaces, no markdown, no Latin punctuation. Nativeness -2: two consecutive 穆-initial transliterations remain inherently heavy even with 的; cultural fit -2: the value does not say Mubarraz is in Al-Ahsa, which is source-level (see disposition).",
+  "blind_disposition": "M1 (run-together names): FIXED by judge edit (的), per batch-9 ruling. M1 sub-point \"say Mubarraz is a city in Al-Ahsa\": REJECTED for this string — the source names only district and city; the binding sibling wafrah-winter adds no province, and the brief forbids additions; the page header/brand and the embedded map already place it. Source-level, for the owner, if a province is wanted in place fields across languages. M1 sub-point \"add 市 / 穆巴拉兹市·穆海里斯区\": REJECTED — no termbase or sibling precedent for 市, and «·» signals one personal name in Chinese. M1 sub-point \"no venue name\": SOURCE-LEVEL, for the owner — the source place field is district + city only; the event name 椰枣村 is already the page title and the map pin carries the venue (brief: no street, number or description). M2 (no event description), M3 (no year/hours/fee), M4 (no organiser link): SOURCE-LEVEL, for the owner — content absent from AR/EN, outside this batch mandate. M5 (凯撒利亚 reads as Caesarea), M6 (卡夫之夜 opaque): OUT OF SCOPE — other pages' approved termbase names; logged for a future zh termbase review. N1 (breadcrumb/share run-together): artefact of plain-text dist extraction, not a string defect. N2 (哈萨 vs 艾哈萨): REJECTED — 哈萨 is the termbase name line-wide. N3, N4, N5: OUT OF SCOPE — other strings of the approved page; N5 (乡村产品市集) noted for a later polish batch."
+}

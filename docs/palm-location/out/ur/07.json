@@ -1,0 +1,48 @@
+{
+  "batch": "palm-location",
+  "lang": "ur",
+  "stage": 7,
+  "date": "2026-10-17",
+  "threshold": 90,
+  "score": 97,
+  "breakdown": {
+    "accuracy": {
+      "points": 30,
+      "of": 30,
+      "why": "Both parts of the Arabic «حي محيرس، المبرز» (governing) and of the English 'Muhairis district, Al-Mubarraz' are carried, in the source's order. Nothing is added (no street, number, direction or description) and nothing is dropped. The old «الاحساء کا نخلستان» leaves with the Arabic «واحة الأحساء»."
+    },
+    "nativeness": {
+      "points": 28,
+      "of": 30,
+      "why": "«محلہ X، Y» is the established label form of the Urdu place rows (sibling «محلہ الوفرہ، ہفوف کے جنوبی حصے میں»; approved area lines «محلہ الکوت، ہفوف کے وسط میں»). The reader rendered it at once as 'Muhairis neighbourhood, Al-Mubarraz'. Two points held back because it reads as an address label, not a phrase. That is the nature of the field and is charged lightly."
+    },
+    "termbase_orthography": {
+      "points": 20,
+      "of": 20,
+      "why": "«المبرز» verbatim from its verified entry (P1: article kept; no 'city' word, as the entry note requires). «محیرس» is the name element of the approved title «قصر محیرس» (muhairis.md title_ur), built from the Arabic spelling. «محلہ» stands before the name (N73 point 1). No «نامی» is owed: «محیرس» is not a homograph of a common Urdu word (N73 point 2, N352, N357). Code points checked: ی U+06CC, ہ U+06C1, ، U+060C, spaces U+0020 only, and none of U+064A/0643/0629/0647/0649/0623/0625/06C3 (P11, P17). No final «۔» (P26). Gender not exercised."
+    },
+    "fit": {
+      "points": 9,
+      "of": 10,
+      "why": "With the map now on the page the reader could plan the visit ('Nothing blocks the visit'). One point is held back because the reader could not place «المبرز» within Al-Ahsa. That comes from the source's bare-town form, which every sibling row also uses for «ہفوف», and it is not cured in the Urdu (blind disposition 1)."
+    },
+    "structure": {
+      "points": 10,
+      "of": 10,
+      "why": "One plain TS string value on one line, with no markup. The field TEXT_UR['palm-village'].place in src/data/events.ts keeps its name. The reader saw the same value on the page, on the card and in the meta line."
+    }
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "rulings": "Applied: N407 (new, below) for the order of the line; N73 point 1 («محلہ» before its name); N73 point 2 with N352/N357 (no «نامی», because there is no homograph); P1 (the article in «المبرز»); P11 and P17 (letterforms); P26 (no final stop in a card value). The neighbour binds phrasing, not substance. From the wafrah-winter sibling the line takes «محلہ X، town». It does not take the sibling's «کے جنوبی حصے میں», because this source gives no position, so the town stands bare, as in «تاریخی قصر ابراہیم، ہفوف». N30 and P20 do not decide this line. They bind area_ur on attraction pages, where P20 would put a bare larger place first («المبرز، محلہ محیرس»). Event place rows are a different field with their own settled order: all nine siblings put the specific place first and the town after. Stage 5 cited N30/N45 for the order; this is corrected to N407, and the string is the same either way. Termbase note for the coordinator (not written here): a key for the bare district is optional. If entered: «محلہ محیرس» / ar «حي محيرس» / en «Muhairis district», masculine by «محلہ» (not exercised), pending, source = name element of «قصر محیرس» (ur.wikipedia «محیرس» 0 pages per stage 4 of b1; not re-counted by this judge), on the pattern of the entry «الوفرہ». The score row and the tm pair are left to the coordinator's apply step, because this stage stays off src/ and the termbase.",
+  "new_rulings": [
+    {
+      "id": "N407",
+      "title": "The order and form of an event place row that names a neighbourhood and its town (Arabic «حي X، المدينة»).",
+      "binds": "ev.palm-village.place («محلہ محیرس، المبرز»). Every later event place row (TEXT_UR[*].place in src/data/events.ts) whose source gives a district and then a town. The nine sibling rows stand unchanged.",
+      "ruling": "An event place row keeps its source's order: the specific place first, then «،», then the town as a bare name («محلہ محیرس، المبرز»; cf. «محلہ الوفرہ، ہفوف کے جنوبی حصے میں», «تاریخی قصر ابراہیم، ہفوف»). The Arabic «حي» is «محلہ», written once and before the name (N73 point 1). «نامی» is added only for a homograph of a common Urdu word (N73 point 2). A position («کے … حصے میں», «کے شمال میں») is written only when the source gives one, and the line then ends in the postposition. With no position the town stands bare, without «میں». Nothing the source lacks is added: no larger place («الاحساء») and no word for 'city'. P20 and N30 (larger place first in area_ur) bind attraction pages only and do not move an event row. Cost, stated: Al-Mubarraz comes last here but leads «الاحساء، المبرز کے شمال میں» on the muhairis attraction page. These are two fields with two settled orders.",
+      "guard": "For the proofreader, not machine-read: an event place row that names a district begins «محلہ X» or with the venue, and its town follows «،». It does not end in «۔» (P26). It carries no word that its Arabic place field lacks."
+    }
+  ],
+  "blind_disposition": "Only point 1 touches this string. (1, minor) 'A neighbourhood is not a venue. Name the site, or write «المبرز (الاحساء)».' Both halves are SOURCE-LEVEL, FOR THE OWNER, and are not applied. The source place field «حي محيرس، المبرز» names no venue. The owner's map address adds only a street and building number («7317 عين منصور»), which the brief forbids. «(الاحساء)» is a fact the source field does not carry, and every sibling row writes its town bare («ہفوف»), so adding it here alone would break the block's phrasing (the fence outranks fluency; N407). The reader also said the map and its links let him navigate to the pin, so the page covers the gap. Option for the owner, in one line: if place fields should situate the town, add «، الأحساء» to the Arabic place fields site-wide and let every language follow. Points 2–8 do not touch this string and fall outside this batch's mandate of one position. They are listed for the owner or coordinator and not ruled here: (2) «اندازاً دورانیہ: طویل موسم» reads as filler; (3) the page gives no hours, no fees and no link to the organizer's announcements: this comes from the source, and the content rule forbids inventing them; (4) the reader could not place «حساوی» in «حساوی چوغے کا میلہ»: the owner's naming exception for «مهرجان البشت الحساوي» applies, so any gloss belongs to that event's own string; (5) the eyebrow «نخلستان کا ایک موسم» is slightly odd; (6) the reader first took the title «کھجور کے درختوں کا گاؤں» for a real village, then resolved it; (7) «کفو» is opaque; (8) «القیصریہ» is unplaced in a teaser. The batch has no serious points, and nothing in points 1–8 blocks approval of the one position."
+}
