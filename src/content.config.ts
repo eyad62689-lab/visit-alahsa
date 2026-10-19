@@ -150,10 +150,19 @@ const attractions = defineCollection({
     // بلا ترجمة اللغة يبقى العنوان الافتراضي لتلك اللغة.
     galleryTitle: z.string().optional(),
     galleryTitle_en: z.string().optional(),
+    galleryTitle_zh: z.string().optional(),
+    galleryTitle_de: z.string().optional(),
+    galleryTitle_ru: z.string().optional(),
+    galleryTitle_ur: z.string().optional(),
     // دعوة لإجراء خارجي في بطاقة الزيارة (تسجيل العارضين مثلاً): لا يظهر الزر في لغة بلا نصّه.
     cta: z.object({
       url: z.url(), label: z.string(), note: z.string().optional(),
       url_en: z.url().optional(), label_en: z.string().optional(), note_en: z.string().optional(),
+      // zh/de/ru/ur عبر خطوط ترجمتها؛ الرابط فيها رابط الإنجليزية (لا صفحة تسجيل بلغاتها)
+      label_zh: z.string().optional(), note_zh: z.string().optional(),
+      label_de: z.string().optional(), note_de: z.string().optional(),
+      label_ru: z.string().optional(), note_ru: z.string().optional(),
+      label_ur: z.string().optional(), note_ur: z.string().optional(),
     }).optional(),
     tags: z.array(z.string()).default([]),
     // ── المواعيد والرسوم المبنيَنة (الخطوة 8 من خطة التفاعل العالمي، بند 3.3 من الدراسة) ──

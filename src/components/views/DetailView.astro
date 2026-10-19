@@ -40,10 +40,14 @@ const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summ
 // فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي): 35–45 كلمة من المتن والبطاقة تتصدّر المتن
 // وتكون وصف الصفحة — عربي/إنجليزي فقط (zh/de/ru عبر خطوط الترجمة حصراً)، ويحرسها C24.
 const answer = ar ? a.answer : lang === 'en' ? a.answer_en : undefined;
-const galleryH = (ar ? a.galleryTitle : lang === 'en' ? a.galleryTitle_en : undefined) ?? t('det.fromPlace');
-// زر الإجراء الخارجي: عربي أو إنجليزي فقط، ولا يظهر في لغة بلا نصّه
-const cta = a.cta && (ar ? { url: a.cta.url, label: a.cta.label, note: a.cta.note }
-  : lang === 'en' && a.cta.label_en ? { url: a.cta.url_en ?? a.cta.url, label: a.cta.label_en, note: a.cta.note_en } : undefined);
+// عنوان قسم الصور بلغة الصفحة بلا تراجع لغة أخرى: الغائب يعطي العنوان الافتراضي من قاموسها
+const galleryH = (ar ? a.galleryTitle : zh ? a.galleryTitle_zh : de ? a.galleryTitle_de : ru ? a.galleryTitle_ru : ur ? a.galleryTitle_ur : a.galleryTitle_en) ?? t('det.fromPlace');
+// زر الإجراء الخارجي: لا يظهر في لغة بلا نصّه (لا تراجع لنصّ لغة أخرى)؛ غير العربية تفتح الرابط الإنجليزي
+const ctaLabel = a.cta && (ar ? a.cta.label : zh ? a.cta.label_zh : de ? a.cta.label_de : ru ? a.cta.label_ru : ur ? a.cta.label_ur : a.cta.label_en);
+const cta = a.cta && ctaLabel ? {
+  url: ar ? a.cta.url : (a.cta.url_en ?? a.cta.url), label: ctaLabel,
+  note: ar ? a.cta.note : zh ? a.cta.note_zh : de ? a.cta.note_de : ru ? a.cta.note_ru : ur ? a.cta.note_ur : a.cta.note_en,
+} : undefined;
 const description = answer ?? summary;
 // المعلم الحامل لمعرّف مكوّن يونسكو يربط صفحة المكوّنات بلغة الصفحة (بلغاتها الخمس منذ المرحلة هـ)
 const unescoHref = a.unesco ? staticHref('unesco', lang) : undefined;
