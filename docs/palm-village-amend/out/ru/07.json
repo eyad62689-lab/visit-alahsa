@@ -1,0 +1,79 @@
+{
+  "lang": "ru",
+  "stage": "07",
+  "batch": "palm-village-amend",
+  "judged_on": "2026-10-19",
+  "pass_threshold": 90,
+  "judged_text": "05.json proposed (the page the blind reader read: 06-blind-input.on-05.txt), no judge edits",
+  "scope_of_scoring": "الدرجة تقيس المواضع الثلاثة وحدها: TEXT_RU['palm-village'].season/time/span. نصوص الواجهة المعتمدة (spanK «Примерная продолжительность»، statusL.expected «Ожидаемый сезон»، الإشعار، التسميات) وسطر نتيجة البحث المركَّب آلياً لا تُحسب على الدفعة، وعلّة المصدر لا تُخصم ما لم يكن للترجمة بديل داخل حقولها يطابق المصدر.",
+  "scores": {
+    "per_position": [
+      {
+        "id": "ru-ev-palm-season",
+        "score": 100,
+        "breakdown": { "accuracy": 30, "nativeness": 30, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "«Зима» = en_after «Winter» = ar «الشتاء» بلا زيادة ولا نقص، وهي الكلمة نفسها في مواسم TEXT_RU المعتمدة (events.ts:641 «Зима»/«Примерно с ноября»، و648 «Зима»/«Ноябрь–февраль») — أي أن «زمن الشتاء لنوفمبر» اصطلاح الملف في المصدر وفي الروسية المعتمدة. حيرة القارئ (البند 3) علّة مصدر لا ترجمة."
+      },
+      {
+        "id": "ru-ev-palm-time",
+        "score": 99,
+        "breakdown": { "accuracy": 30, "nativeness": 29, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "الشهر والسنة وحدهما (en «November 2026»، ar «نوفمبر 2026م»)، لا يوم ولا رقم نسخة. «2026 года» بحكم style_rules.data وسابقة «19 августа–13 сентября 2026 года» (events.ts:663)؛ والحرف الكبير لأن الشهر أول كلمة في قيمة مستقلة كـ«Ноябрь–февраль» و«Январь–март» المعتمدتين (الحرف الصغير لداخل التاريخ). ‑1 أصالة: الاسم في الرفع مع «года» في الجرّ صحيح لكنه أقرب لصيغة القوائم منه لجملة («в ноябре 2026 года»)؛ والقيمة تظهر أيضاً شارةً مفردة (Поделиться|Ноябрь 2026 года) فصيغة الرفع هي الصحيحة هنا ولا تُعدَّل."
+      },
+      {
+        "id": "ru-ev-palm-span",
+        "score": 97,
+        "breakdown": { "accuracy": 30, "nativeness": 27, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "«Продолжительность ещё не объявлена» = «Duration not yet announced» / «لم تُعلن المدة بعد»، بلا وعد ولا تقدير، وعلى قالب statusL.tba المعتمد «Дата ещё не объявлена»؛ التطابق ж.р. سليم و«ещё» بـё. ‑3 أصالة: تحت تسمية صفحة التفصيل «Примерная продолжительность» تتكرّر الكلمة (البند 4). لا بديل داخل الحقل: القيمة نفسها تُعرض في بطاقة فهرس الفعاليات بلا تسمية (EventsView.astro:372 ‎.ev-span) فحذف «Продолжительность» يتركها يتيمة («Пока не объявлена» عمّاذا؟)، والتكرار موجود في المصدر نفسه («Approximate length — Duration not yet announced»). علّة مصدر/واجهة (SD-PV-RU-3)."
+      }
+    ],
+    "batch_score": 97,
+    "batch_score_rule": "درجة الدفعة = أدنى درجة موضع"
+  },
+  "breakdown": { "accuracy": 30, "nativeness": 27, "compliance": 20, "fit": 10, "structure": 10 },
+  "blind_reader_rulings": [
+    { "n": 1, "severity": "serious", "verdict": "recorded", "scope": "out_of_scope", "reason": "سطر نتيجة البحث «Зима и весна. Январь–март.» من بناء قديم ويُركَّب آلياً من الحقول name/place/season/time/acts نفسها، فيصير «Зима. Ноябрь 2026 года.» في البناء التالي بعد apply.mjs. ليس علّة ترجمة؛ يُتحقَّق منه بعد البناء (تكليف للمنسّق)." },
+    { "n": 2, "severity": "serious", "verdict": "source_defect", "scope": "out_of_scope", "reason": "الشارة «Ожидаемый сезон» من statusL.expected (نص واجهة معتمد) وتُختار آلياً لأن EVENT_META['palm-village'] بلا startISO/endISO؛ والإشعار «в этот примерный период» معتمد ومشترك. اقتراح القارئ «Ожидается в ноябре 2026 года» / «ориентировочно в ноябре» مردود داخل الحقل: يضيف تحوّطاً يناقض قرار إياد (الشهر والسنة مؤكدان) أو يُسقط السنة من المصدر. التناقض بين «مؤكد في نوفمبر 2026» وشارة «متوقَّع» بنية مصدر في كل اللغات (SD-PV-RU-1)." },
+    { "n": 3, "severity": "serious", "verdict": "source_defect", "scope": "in_batch", "reason": "«Зима» تطابق en «Winter» وar «الشتاء» واصطلاح ملف الفعاليات (البريف: شتاء الوفرة وسباقات الخيل يبدآن نوفمبر تحت «الشتاء»)، وهي في TEXT_RU المعتمد لفعاليتين نوفمبريتين. بدائل القارئ («прохладный сезон (конец осени)»، «Зимний (прохладный) сезон») تضيف وصفاً مناخياً غير موجود في المصدر وتكسر تطابق مواسم الصفحة (حجة السياج تعلو الطلاقة). يُرفع لإياد: نوفمبر «شتاء» يحيّر القارئ الروسي (SD-PV-RU-2)." },
+    { "n": 4, "severity": "minor", "verdict": "source_defect", "scope": "in_batch", "reason": "التكرار حقيقي لكن لا بديل داخل الحقل: span يُعرض في بطاقة الفهرس بلا تسمية فلا يُحذف الفاعل، والمصدر يكرّر نفسه («Approximate length — Duration not yet announced»). وتعديل التسمية spanK خارج الدفعة. SD-PV-RU-3 + دفعة واجهة." },
+    { "n": 5, "severity": "minor", "verdict": "recorded", "scope": "out_of_scope", "reason": "«Организаторы» بالجمع وجملة الخريطة «Организаторы пока не объявили…»: نصوص واجهة معتمدة مشتركة (سُجّلت في events-amend البند 8). لدفعة واجهة." },
+    { "n": 6, "severity": "minor", "verdict": "recorded", "scope": "out_of_scope", "reason": "تفاوت «Фестивали и мероприятия»/«Все события»: نصوص واجهة (events-amend البند 13)." },
+    { "n": 7, "severity": "minor", "verdict": "recorded", "scope": "out_of_scope", "reason": "«Сезон оазиса»، «Ожидаемый сезон»، «Другие сезоны»: نصوص واجهة معتمدة (events-amend البنود 5، 13، 14)؛ «Ожидаемые сроки» مرشّح لدفعة الواجهة." },
+    { "n": 8, "severity": "minor", "verdict": "recorded", "scope": "out_of_scope", "reason": "«Ключевые моменты» نص واجهة معتمد؛ «Что вас ждёт» مرشّح لدفعة واجهة." },
+    { "n": 9, "severity": "minor", "verdict": "recorded", "scope": "out_of_scope", "reason": "acts «Местные рестораны и кафе» و«Продажа сельской продукции» معتمدة (context في الحزمة، لا تُلمس). تُسجَّل لمراجعة لاحقة؛ «рестораны» يطابق المصدر (restaurants) فلا يُغيَّر بالذوق." },
+    { "n": 10, "severity": "minor", "verdict": "rejected", "scope": "out_of_scope", "reason": "«Аль-Ахса» و«Эль-Кайсария» صيغ معجمية مقرّرة على مستوى الموقع؛ لا يُنقض مدخل موثّق بالذوق (سابقة events-amend البند 17)." },
+    { "n": 11, "severity": "minor", "verdict": "source_defect", "scope": "out_of_scope", "reason": "«Поздняя зима — Февраль–март» لليالي القيصرية معتمد ويطابق مصدره؛ فئة SD-PV-RU-2 نفسها (أسماء الفصول في ملف الفعاليات)." },
+    { "n": 12, "severity": "minor", "verdict": "recorded", "scope": "out_of_scope", "reason": "عنوان «Расположение на карте» ونصّه: نص واجهة معتمد. لدفعة واجهة." },
+    { "n": 13, "severity": "minor", "verdict": "recorded", "scope": "out_of_scope", "reason": "تلميح البحث «Esc закрыть»: نص واجهة. لدفعة واجهة." }
+  ],
+  "blind_reader_counts": { "applied": 0, "rejected": 1, "source_defect": 5, "recorded_out_of_scope": 7, "total": 13, "serious": 3, "serious_ruling": "1 = سطر بحث من بناء قديم (recorded)، 2 = شارة واجهة + بنية مصدر (SD-PV-RU-1)، 3 = اصطلاح الفصول في المصدر (SD-PV-RU-2); لا خطير على نصّ الحقول الثلاثة نفسه" },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "changed_by_judge": [],
+  "changed_by_judge_note": "final = 05 بايتاً ببايت.",
+  "final_values": {
+    "ru-ev-palm-season": "Зима",
+    "ru-ev-palm-time": "Ноябрь 2026 года",
+    "ru-ev-palm-span": "Продолжительность ещё не объявлена"
+  },
+  "termbase_ops": [],
+  "tm_ops": [
+    { "op": "replace", "match": { "page": "events", "field": "cards.palm-village.season", "en": "Winter & spring" }, "en": "Winter", "ru": "Зима", "page": "events", "field": "cards.palm-village.season", "date": "2026-10-19" },
+    { "op": "replace", "match": { "page": "events", "field": "cards.palm-village.time", "en": "January – March" }, "en": "November 2026", "ru": "Ноябрь 2026 года", "page": "events", "field": "cards.palm-village.time", "date": "2026-10-19" },
+    { "op": "replace", "match": { "page": "events", "field": "cards.palm-village.span", "en": "An extended season" }, "en": "Duration not yet announced", "ru": "Продолжительность ещё не объявлена", "page": "events", "field": "cards.palm-village.span", "date": "2026-10-19" }
+  ],
+  "tm_ops_note": "تُستبدل الأزواج الثلاثة القديمة (tm.json حول السطر 5241–5260) لا تُضاف؛ زوج «An extended season» لسباقات الخيل (cards.horse-racing.span) يبقى. تُطبَّق مع apply.mjs.",
+  "source_defects_for_owner": [
+    { "id": "SD-PV-RU-1", "position": "status/notice (خارج الدفعة)", "blind_items": [2], "issue": "القرار: نوفمبر 2026 مؤكد، لكن الصفحة تعرض شارة «Expected season» والإشعار «held annually around this approximate period» لأن EVENT_META بلا startISO/endISO. القارئ لم يعرف أمؤكَّد الشهر أم لا. يلزم حالة وسيطة (شهر مؤكد بلا يوم) أو صياغة إشعار، في كل اللغات." },
+    { "id": "SD-PV-RU-2", "position": "season (في الدفعة) + فصول ملف الفعاليات", "blind_items": [3, 11], "issue": "«Winter/الشتاء» لنوفمبر (و«Late winter» لمارس) اصطلاح محلي يقرؤه الروسي خطأً (نوفمبر خريف، ومارس ربيع). إن رأى إياد ذلك فالتعديل في المصدر لكل الفعاليات معاً (مثلاً «Cool season»)، ثم دفعة لكل اللغات." },
+    { "id": "SD-PV-RU-3", "position": "span (في الدفعة) + spanK", "blind_items": [4], "issue": "«Approximate length — Duration not yet announced» يكرّر الكلمة ويعد بتقدير لا يأتي، في المصدر نفسه. الحل في تسمية الواجهة (دفعة واجهة) لا في الحقل، لأن الحقل يُعرض بلا تسمية في بطاقة الفهرس." }
+  ],
+  "follow_ups_for_coordinator": [
+    "بعد apply.mjs والبناء: التحقق من أن سطر نتيجة البحث لـ/ru/events/palm-village/ صار «… Зима. Ноябрь 2026 года. …» (البند 1).",
+    "دفعة واجهة روسية (تُضمّ لقائمة events-amend): spanK «Примерная продолжительность»، statusL.expected «Ожидаемый сезон» → «Ожидаемые сроки» مرشّح، «Организаторы»، «Другие сезоны»، «Ключевые моменты»، «Расположение на карте»، «Esc закрыть» (البنود 4، 5، 6، 7، 8، 12، 13).",
+    "tm_ops تُطبَّق مع apply.mjs، ثم سطر scores.csv أدناه."
+  ],
+  "machine_checks_rerun": "القيم الثلاث: سطر واحد لكل منها؛ أرقام لاتينية فقط (2026)؛ مسافات U+0020 فقط، صفر U+00A0/U+2009/U+202F؛ صفر حرف لاتيني؛ صفر علامة تنصيص أو شرطة؛ لا هروب؛ ё في «ещё»؛ final = 05 بلا تعديل.",
+  "scores_csv_row": "\"palm-village-amend (ru): /ru/events/palm-village/ TEXT_RU['palm-village'].season/time/span (3 reopened positions, owner ruling 2026-10-19)\",2026-10-19,3,97,\"APPROVE (lowest = span 30/27/20/10/10; season 100, time 99, span 97; no judge edits; «Зима» kept per TEXT_RU winter convention (source defect SD-PV-RU-2), «Ноябрь 2026 года» per style_rules.data, «Продолжительность ещё не объявлена» kept because card shows span unlabeled; blind reader 13 (3 serious): 0 applied, 1 rejected, 5 source defects, 7 recorded out of scope; serious = stale search line (rebuild), status badge (SD-PV-RU-1), November as winter (SD-PV-RU-2); TM 3 pairs replaced)\"",
+  "notes": "APPROVE بدرجة 97 ≥ 90. الحقول الثلاثة تطابق en_after وar_after واصطلاح TEXT_RU المعتمد؛ الخطيرة الثلاث كلها خارج نصّ الحقول (بناء قديم، شارة واجهة، اصطلاح فصول في المصدر)."
+}

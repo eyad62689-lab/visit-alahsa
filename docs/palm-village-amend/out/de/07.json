@@ -1,0 +1,67 @@
+{
+  "lang": "de",
+  "stage": "07",
+  "batch": "palm-village-amend",
+  "pass_threshold": 90,
+  "scores": {
+    "per_position": [
+      {
+        "id": "de-ev-palm-season",
+        "score": 100,
+        "breakdown": { "accuracy": 30, "nativeness": 30, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "الدقة 30: «Winter» = en_after «Winter» = ar_after «الشتاء»، وسقط «und Frühling» كما سقط «& spring» من المصدر. الأصالة 30: كلمة واحدة بصيغة صفوف المواسم الألمانية المعتمدة (Al-Wafrah-Winter «Winter»، سباقات الخيل «Winter» لـ«November–Februar»). الامتثال 20: يطابق اصطلاح TEXT_DE لـ«Winter» حرفاً. الملاءمة 10: «Winter» لنوفمبر اصطلاح ملف الفعاليات في المصدر نفسه (الموجز) — ملاحظة القارئ 4 علّة مصدر لا تُخصم. البنية 10: سطر واحد بلا هروب."
+      },
+      {
+        "id": "de-ev-palm-time",
+        "score": 100,
+        "breakdown": { "accuracy": 30, "nativeness": 30, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "الدقة 30: «November 2026» = en_after / ar «نوفمبر 2026م»، لا يوم ولا مدة ولا «النسخة الثالثة». الأصالة 30: صيغة شهر + سنة ألمانية معيارية. الامتثال 20: اسم الشهر وصيغة السنة كمواعيد النسخ المؤرّخة في TEXT_DE («… 2026»)، أرقام لاتينية، لا شرطة إذ لا مدى. الملاءمة 10: التاريخ المؤكَّد هو ما يحتاجه الزائر؛ التباس «Erwartete Saison» من حالة EVENT_META ونص واجهة معتمد (علّة مصدر). البنية 10."
+      },
+      {
+        "id": "de-ev-palm-span",
+        "score": 98,
+        "breakdown": { "accuracy": 30, "nativeness": 28, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "الدقة 30: «Dauer noch nicht bekannt gegeben» = «Duration not yet announced» / «لم تُعلن المدة بعد» بلا تقدير ولا وعد. الأصالة 28: جملة اسمية مختصرة طبيعية في صفّ بيانات، بنسق الزوج المعتمد في الذاكرة («… noch nicht bekannt gegeben»)؛ خُصمت نقطتان لتكرار «Dauer» تحت الوسم «Ungefähre Dauer» (ملاحظة القارئ 3) — وهو تكرار المصدر نفسه («Approximate length: Duration not yet announced» / «المدة التقريبية: لم تُعلن المدة بعد»)، والبديل الوحيد داخل الحقل («Noch nicht bekannt gegeben») يُسقط كلمة يحملها المصدر ويُفقد الصفّ معناه حيث يظهر بلا وسم، فلا يُعدَّل. الامتثال 20: «bekannt gegeben» منفصلة (توصية Duden، كالذاكرة)، لا Denglisch. الملاءمة 10. البنية 10: سطر واحد، U+0020 وحدها، بلا هروب."
+      }
+    ],
+    "batch_score": 98,
+    "batch_score_rule": "درجة الدفعة = أدنى موضع (98، de-ev-palm-span)."
+  },
+  "breakdown": { "accuracy": 30, "nativeness": 28, "compliance": 20, "fit": 10, "structure": 10 },
+  "blind_reader_rulings": [
+    { "n": 1, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "ليس علّة ترجمة: سطر نتيجة البحث مأخوذ من بناء قديم (pagefind على dist السابق) ويُركَّب آلياً من الحقول نفسها season/time، فيصير «Winter · November 2026» بالبناء التالي. يُتحقَّق منه بعد التطبيق." },
+    { "n": 2, "position": "de-ev-palm-time", "in_changed_span": false, "verdict": "source_defect", "reason": "الشارة «Erwartete Saison» من حالة EVENT_META['palm-village'] ونص واجهة معتمد (statusL.expected) خارج الدفعة، وكذا سطر التنبيه. الحقل نفسه «November 2026» يطابق المصدر، وإضافة «Voraussichtlich» أو «noch nicht offiziell bestätigt» تضيف واقعة يخالفها قرار إياد (الشهر مؤكَّد). يُرفع لإياد (SD1): الحالة expected مع شهر مؤكَّد." },
+    { "n": 3, "position": "de-ev-palm-span", "in_changed_span": true, "verdict": "rejected", "reason": "الوسم «Ungefähre Dauer» نص واجهة معتمد (spanK) يقابل «Approximate length» / «المدة التقريبية»؛ والتكرار «Dauer … Dauer» بنية المصدر بلغتيه. حذف «Dauer» من القيمة يُسقط كلمة من المصدر ويُفقد القيمة معناها حيث تُعرض مستقلة؛ تُحتسب في الأصالة (−2). يُرفع لإياد (SD2): وسم «تقريبية» فوق قيمة «لم تُعلن»." },
+    { "n": 4, "position": "de-ev-palm-season", "in_changed_span": true, "verdict": "rejected", "reason": "«Winter» لنوفمبر اصطلاح ملف الفعاليات المصدري (الموجز: شتاء الوفرة «من نوفمبر تقريباً»، سباقات الخيل «نوفمبر – فبراير»)، والألمانية المعتمدة تقول «Winter» في الصفّين. «Wintersaison (kühle Monate)» يكسر اتساق TEXT_DE ويضيف شرحاً لا يحمله المصدر. علّة مصدر مسجّلة (SD3)." },
+    { "n": 5, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: «Eine Saison der Oase» نص واجهة معتمد مشترك (سُجّل في events-amend). لمرور ألماني لاحق." },
+    { "n": 6, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: سطر التنبيه المشترك نص معتمد (سُجّل في events-amend، الملاحظتان 11–12). لمرور ألماني لاحق." },
+    { "n": 7, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: «Alle Termine» و«Weitere Saisons» نصوص واجهة معتمدة. لمرور ألماني لاحق." },
+    { "n": 8, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: صفوف ليالي كفو نص معتمد (tm: ev.kafu-nights.season/time)، سُجّل سابقاً." },
+    { "n": 9, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: «Palmendorf» اسم معجمي معتمد؛ الگلوس العربي في الاسم محظور (gloss_regel) ولا تهجئة رسمية موثّقة. لا إجراء." },
+    { "n": 10, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: النشاط «Vermarktung ländlicher Erzeugnisse» نص معتمد (tm: ev.palm-village.acts.3) يقابل المصدر؛ «Verkauf … Hofprodukte» تأويل. لمرور ألماني لاحق." },
+    { "n": 11, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "سطر البحث القديم نفسه (انظر 1): «Lokale» بالكبير لأن النشاط يبدأ بحرف كبير في القائمة ويُلصَق آلياً في جملة؛ علّة تركيب السطر لا الدفعة. يُسجَّل لمرور لاحق." },
+    { "n": 12, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: رابط التذييل «Visa guide» إنجليزي غير مترجم في نص واجهة مشترك. يُسجَّل لمرور ألماني لاحق (مرشّح C22 إن تكرّر)." },
+    { "n": 13, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: «Al-Ahsa-Oase» مكان معتمد (tm: ev.palm-village.place) يطابق المصدر؛ الإضافة المقترحة موجودة أصلاً في تنبيه الخريطة. لا إجراء." }
+  ],
+  "blind_reader_counts": { "applied": 0, "applied_in_part": 0, "rejected": 12, "source_defect": 1, "total": 13, "in_changed_span": 2 },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "changed_by_judge": [],
+  "changed_by_judge_note": "لا تعديل: المواضع الثلاثة تطابق en_after وar_after واصطلاح TEXT_DE (Winter؛ «Monat Jahr» كمواعيد النسخ المؤرّخة؛ «… noch nicht bekannt gegeben» كزوج الذاكرة)، ولا ملاحظة للقارئ داخل الحقول الثلاثة يطابق تطبيقُها المصدر.",
+  "machine_checks_by_judge": "على final.proposed: لا U+00A0/U+2009/U+2014، لا سطر جديد، لا ماركداون، لا أرقام عربية-هندية؛ final.current = pack.current وfile = pack.file لكل موضع؛ final.proposed = 05.proposed حرفياً.",
+  "termbase_ops": [],
+  "termbase_ops_note": "لا اسم علم جديد.",
+  "tm_ops": [
+    { "op": "replace", "page": "events", "field": "ev.palm-village.season", "en": "Winter", "de": "Winter", "date": "2026-10-19", "note": "palm-village-amend (كان: Winter & spring ⇒ Winter und Frühling)" },
+    { "op": "replace", "page": "events", "field": "ev.palm-village.time", "en": "November 2026", "de": "November 2026", "date": "2026-10-19", "note": "palm-village-amend (كان: January – March ⇒ Januar–März)" },
+    { "op": "replace", "page": "events", "field": "ev.palm-village.span", "en": "Duration not yet announced", "de": "Dauer noch nicht bekannt gegeben", "date": "2026-10-19", "note": "palm-village-amend (كان: An extended season ⇒ Verlängerte Saison)" }
+  ],
+  "tm_ops_note": "ثلاثة أزواج تستبدل أزواج ev.palm-village.season/time/span القائمة (2026-09-19)؛ يطبّقها المنسّق.",
+  "scores_csv_row": "\"events (de): palm-village-amend — 3 positions (palm-village season/time/span)\",2026-10-19,3,98,\"APPROVE (min span 30/28/20/10/10; season 100, time 100; no judge edit; blind reader 13 observations: 0 applied, 12 rejected (stale search line, approved UI text outside the batch, Winter for November = source convention, label/value doubling = source structure), 1 source defect (Erwartete Saison over a confirmed month); 3 TM pairs replaced)\"",
+  "source_defects_for_owner": [
+    "SD1 (الملاحظة 2، serious): EVENT_META['palm-village'] حالته expected فتظهر الشارة «Erwartete Saison» / «Expected season» / «موسم متوقع» فوق «November 2026» المؤكَّد بقرار إياد؛ يلتبس على الزائر أمؤكَّد هو أم مقدَّر. القرار في الحالة (confirmed؟) لا في الترجمة.",
+    "SD2 (الملاحظة 3): الوسم «Approximate length» / «المدة التقريبية» فوق قيمة «Duration not yet announced» يعد بتقدير لا يُعطى ويكرّر «المدة». إما وسم بلا «تقريبية» أو قيمة بلا «المدة» — في المصدر وواجهته.",
+    "SD3 (الملاحظة 4، minor): «Winter» لنوفمبر يبدو للقارئ الألماني خريفاً؛ اصطلاح ملف الفعاليات المصدري، يُترك لإياد."
+  ],
+  "notes": "(1) APPROVE بدرجة 98 (أدنى موضع: span)، فوق العتبة 90. (2) لا تعديل حاكم؛ final.json = 05. (3) سطر البحث (1، 11) من بناء قديم ويتحدّث آلياً — يُتحقَّق بعد البناء. (4) سطر scores.csv وعمليات tm يطبّقها المنسّق؛ apply.mjs يقرأ final.json وحده."
+}
