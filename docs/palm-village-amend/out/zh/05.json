@@ -1,0 +1,37 @@
+{
+  "lang": "zh",
+  "stage": "05",
+  "batch": "palm-village-amend",
+  "positions": [
+    {
+      "id": "zh-ev-palm-season",
+      "current": "冬春两季",
+      "proposed": "冬季",
+      "why": "04 基准：中文官方旅游门户的季节标签惯用「冬季」，无翻译腔；与 TEXT_ZH 其余冬季活动逐字一致。05 校对：简体 PASS；无标点 PASS；事实（仅冬季）与 en_after 一致 PASS。"
+    },
+    {
+      "id": "zh-ev-palm-time",
+      "current": "1 月至 3 月",
+      "proposed": "2026 年 11 月",
+      "why": "04 基准：「YYYY 年 M 月」为国内官方发布的标准格式。05 校对：西文数字 PASS（无阿拉伯-印度数字，C4 安全）；数字与「年」「月」之间为 U+0020，同「2026 年 8 月 19 日至 9 月 13 日」「2019 年 3 月」PASS；无日期、无「第三届」，事实栅栏 PASS（仅 November 2026）。另核：EVENT_META['palm-village'] start/end=11，与 11 月一致。"
+    },
+    {
+      "id": "zh-ev-palm-span",
+      "current": "持续整季",
+      "proposed": "时长尚未公布",
+      "why": "04 基准：「尚未公布」为官方通告常用表述，中性；与站内「待官方公布」用词同源。05 校对：简体 PASS；无标点、无空格需求 PASS；无预估或承诺，事实栅栏 PASS；长度 6 字，与「为期数周」「约 26 天」相当 PASS。"
+    }
+  ],
+  "changes_from_previous_stage": [],
+  "compliance_checklist": {
+    "punctuation_full_width_only": "PASS（三处均无标点）",
+    "termbase_compliance": "PASS（无专名）",
+    "numbers_dates_units": "PASS（西文数字；年月格式同既有文本）",
+    "simplified_only": "PASS",
+    "structure_integrity": "PASS（单行纯文本，无 Markdown，无需转义，仅 U+0020）",
+    "fact_fence": "PASS（未加日期、届次、时长估计）"
+  },
+  "termbase_ops": [],
+  "source_defects": [],
+  "notes_to_next_stage": "供 06 盲读：将三值代入活动卡片后检查「冬季 · 2026 年 11 月 · 时长尚未公布」在中国读者眼中是否通顺；预期无异议。"
+}

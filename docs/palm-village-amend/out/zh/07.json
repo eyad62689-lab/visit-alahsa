@@ -1,0 +1,66 @@
+{
+  "lang": "zh",
+  "stage": "07",
+  "role": "judge (zh-translation/prompts/06-judge.md)",
+  "batch": "palm-village-amend",
+  "threshold": { "pass_threshold": 90, "read_from": "zh-translation/config.json" },
+  "scope_rule": "الدرجة تقيس المواضع الثلاثة في الحزمة (season/time/span لـTEXT_ZH['palm-village']) ترجمةً لـen_after وحده بقرار إياد 2026-10-19. النص الصيني المعتمد خارج الحزمة (التسميات 时节/时间/大致时长، شارة 预计档期، سطر التنبيه، القائمة، الذيل) لا يُعاد صياغته ولا يُخصم منه؛ وعيب المصدر لا يُخصم ما لم يكن للترجمة بديل داخل حقولها الثلاثة يطابق المصدر.",
+  "scores": {
+    "per_position": [
+      {
+        "id": "zh-ev-palm-season",
+        "score": 100,
+        "breakdown": { "accuracy": 30, "nativeness": 30, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "Winter = 冬季، حرفاً كما في مواسم الفعاليات الشتوية الأخرى في TEXT_ZH (شتاء الوفرة «冬季 · 一般自 11 月起»، سباقات الخيل «冬季 · 11 月至次年 2 月») — اتساق مطلوب في الـBRIEF. كون نوفمبر «خريفاً» عند القارئ الصيني اصطلاح المصدر (الملاحظة 2) لا يُخصم."
+      },
+      {
+        "id": "zh-ev-palm-time",
+        "score": 100,
+        "breakdown": { "accuracy": 30, "nativeness": 30, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "November 2026 = 2026 年 11 月، صيغة «YYYY 年 M 月» بمسافة U+0020 بين الرقم والحرف كما في «2026 年 8 月 19 日至 9 月 13 日» القائم. لا يوم ولا «النسخة الثالثة»؛ أرقام لاتينية؛ يطابق EVENT_META start/end=11."
+      },
+      {
+        "id": "zh-ev-palm-span",
+        "score": 91,
+        "breakdown": { "accuracy": 30, "nativeness": 21, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "Duration not yet announced = 时长尚未公布: الاسم «Duration» = 时长، و«not yet announced» = 尚未公布 (حال قائم، لا وعد كـ待公布 ولا تقدير كـ具体 — رفضهما 03 بحق). طول 6 أحرف بطول صفوف المدة الأخرى (为期数周، 约 26 天). خصم الأصالة 9 لصدى «大致时长 / 时长尚未公布» في صفحة التفصيل (الملاحظة 4)؛ والحكم بالإبقاء مع ذلك (انظر blind_reader_rulings n=4)."
+      }
+    ],
+    "aggregation": "متوسط المواضع الثلاثة: (100 + 100 + 91) / 3 = 97"
+  },
+  "score": 97,
+  "breakdown": { "accuracy": 30, "nativeness": 27, "compliance": 20, "fit": 10, "structure": 10 },
+  "blind_reader_rulings": [
+    { "n": 1, "position": null, "severity": "serious", "verdict": "rejected_out_of_scope", "reason": "سطر نتيجة البحث في مدخل القارئ من بناء قديم يحمل القيم السابقة (冬春两季, 1 月至 3 月). يُركَّب آلياً من الحقول نفسها season/time فيتحدّث بالبناء التالي بعد التطبيق — ليس علّة ترجمة. التناقض الذي رآه القارئ يزول بالنشر. (والترقيم اللاتيني في مولّد الوصف بند تقني قائم من events-amend.)" },
+    { "n": 2, "position": "zh-ev-palm-season", "severity": "minor", "verdict": "source_defect", "reason": "«الشتاء» لنوفمبر قرار المصدر العربي/الإنجليزي (Winter) واصطلاح ملف الفعاليات نفسه في كل اللغات، والـBRIEF يُلزم بالاتساق مع 冬季 في المواسم الأخرى. 秋冬之交 أو شرح «凉爽季» يخالف المصدر ويضيف. يُعرض على المالك (SD-ZH-PV-1)." },
+    { "n": 3, "position": null, "severity": "minor", "verdict": "source_defect", "reason": "الشارة «预计档期» (statusL.expected) وتكرار الموعد في الشارة والصف من بنية القالب (after.status='expected') ونص واجهة معتمد خارج الدفعة. ولا بديل داخل الحقول: إضافة «预计» إلى time تكرّر الشارة، و«具体日期待主办方公布» إضافة يمنعها الـBRIEF. (档期 مسجّل سلفاً في zh_followups من events-amend.)" },
+    { "n": 4, "position": "zh-ev-palm-span", "severity": "minor", "verdict": "kept", "reason": "البديل داخل الحقل («尚未公布» وحدها) يكسر البطاقة: في EventsView تُعرض span بلا تسمية بجوار الموعد («2026 年 11 月  尚未公布») فتُقرأ أن التاريخ نفسه لم يُعلن، وهذا يناقض «2026 年 11 月» المؤكد. القيمة يجب أن تحمل موضوعها، والمصدر الإنجليزي يحمله كذلك (Approximate length / Duration not yet announced). «持续时间尚未公布» يخفّف الصدى الحرفي لكنه أطول وأثقل والتكرار المعنوي باقٍ. في صفحة التفصيل dt وdd سطران منفصلان لا «时长时长» متصلة (الاتصال من قصّ النص في مدخل القارئ). كلفة أصالة حقيقية خُصمت، والجذر تسمية «大致时长» المعتمدة لقيمة ليست تقريبية — SD-ZH-PV-2." },
+    { "n": 5, "position": null, "severity": "minor", "verdict": "source_defect", "reason": "غياب فقرة تعريف بالفعالية في المصدر بكل لغاته؛ لا يُختلق. يُعرض على المالك (SD-ZH-PV-3)." },
+    { "n": 6, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "تسمية «亮点活动» (actsK) نص واجهة معتمد على كل صفحات الفعاليات. يُسجَّل لبند صيني لاحق." },
+    { "n": 7, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "context.place «哈萨绿洲» معتمد، وسطر mapNone يقول إن الموقع لم يُعلن. خارج الحزمة." },
+    { "n": 8, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "تعدد تسميات الباب — طابور التنقّل المعلّق عند إياد (مسجّل في events-amend)." },
+    { "n": 9, "position": null, "severity": "minor", "verdict": "rejected_out_of_scope", "reason": "«卡夫之夜» مدخل المعجم 143، ومدخل صفحته عُرِّف في kafu-definition. خارج هذه الصفحة والحزمة." },
+    { "n": 10, "position": null, "severity": "minor", "verdict": "source_defect", "reason": "سطر التنبيه العام «每年在大致相同的季节循环举办» نص معتمد خارج الحزمة؛ والتعارض مع موعد مؤرخ يزول بزوال الملاحظة 1 بعد البناء. صيغة «循环举办» مسجّلة سلفاً في zh_followups." }
+  ],
+  "blind_reader_tally": { "total": 10, "applied": 0, "kept": 1, "rejected_out_of_scope": 5, "source_defect": 4, "serious": 1, "serious_verdict": "rejected_out_of_scope (stale build of the search line)" },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "changed_by_judge": [],
+  "termbase_ops": [],
+  "tm_ops": [
+    { "op": "add", "file": "zh-translation/memory/tm.json", "pair": { "en": "Winter", "zh": "冬季", "page": "events/palm-village", "field": "TEXT_ZH['palm-village'].season", "note": "palm-village-amend 2026-10-19 (قرار إياد): كان 冬春两季.", "date": "2026-10-19" } },
+    { "op": "add", "file": "zh-translation/memory/tm.json", "pair": { "en": "November 2026", "zh": "2026 年 11 月", "page": "events/palm-village", "field": "TEXT_ZH['palm-village'].time", "note": "palm-village-amend 2026-10-19: نسخة مؤكدة الشهر بلا يوم؛ كان 1 月至 3 月.", "date": "2026-10-19" } },
+    { "op": "add", "file": "zh-translation/memory/tm.json", "pair": { "en": "Duration not yet announced", "zh": "时长尚未公布", "page": "events/palm-village", "field": "TEXT_ZH['palm-village'].span", "note": "palm-village-amend 2026-10-19: القيمة تحمل «时长» لأنها تُعرض في البطاقة بلا تسمية؛ 尚未公布 لا 待公布 (لا وعد).", "date": "2026-10-19" } }
+  ],
+  "source_defects_for_owner": [
+    { "id": "SD-ZH-PV-1", "title": "نوفمبر موسوماً «الشتاء»", "evidence": "القارئ الصيني (2): نوفمبر عنده أواخر الخريف فيظن الموسم خطأً. الاصطلاح نفسه في شتاء الوفرة وسباقات الخيل.", "ask": "هل يبقى «الشتاء» لفعاليات نوفمبر اصطلاحاً موحّداً، أم يُعتمد «أواخر الخريف/مطلع الشتاء» في المصدر فتتبعه اللغات؟" },
+    { "id": "SD-ZH-PV-2", "title": "تسمية «المدة التقريبية» فوق قيمة غير معلنة، وشارة «متوقع» فوق شهر مؤكد", "evidence": "القارئ (3، 4): «大致时长 / 时长尚未公布» صدى، و«预计档期» تجعل نوفمبر المؤكد يبدو تقديراً بينما صف «时间» بلا وسم. الأمر في الإنجليزية نفسه (Approximate length / Duration not yet announced؛ after.status='expected').", "ask": "هل تُضبط الحالة 'confirmed' للشهر (نوفمبر 2026 مؤكد بقرارك) مع بقاء اليوم غير معلن؟ وهل تُخفى تسمية «التقريبية» حين تكون المدة غير معلنة؟" },
+    { "id": "SD-ZH-PV-3", "title": "صفحة قرية النخيل بلا جملة تعريف", "evidence": "القارئ (5): لا يعرف أهي سوق أم معرض أم مهرجان، ولا الرسوم.", "ask": "هل تُضاف إلى المصدر جملة تعريف موثّقة (كما في kafu-definition)؟" }
+  ],
+  "zh_followups_not_in_scope": [
+    "actsK «亮点活动» يسرد أماكن لا أنشطة (القارئ 6) — «主要内容/看点» في بند صيني لاحق",
+    "سطر البحث: يُتحقق بعد البناء أنه صار «冬季, 2026 年 11 月» (القارئ 1)، والترقيم اللاتيني في مولّده بند تقني قائم"
+  ],
+  "scores_csv_row": "\"palm-village-amend (zh): 3 reopened positions on /zh/events/palm-village/ - season/time/span (TEXT_ZH['palm-village'])\",2026-10-19,3,97,\"APPROVE (30/27/20/10/10; no judge edit; 冬季 matches other winter events; 2026 年 11 月 matches dated-edition format; 时长尚未公布 kept (card shows span unlabeled, bare 尚未公布 would read as date not announced; source carries Duration too) - nativeness cost for label echo; blind reader 10 items: 1 serious = stale-build search line (rejected out of scope), 1 kept, 5 out of scope, 4 source defects; TM 3 add; owner: November as winter, expected badge on confirmed month + Approximate label over unannounced value, no event definition)\"",
+  "notes": "APPROVE بـ97 مقابل عتبة 90. لا تعديل من الحاكم: القيم الثلاث نهائية كما في 05. الملاحظة الخطيرة الوحيدة من بناء قديم وتزول بالتطبيق. لا مساس بالعربية ولا الإنجليزية ولا بأي نص خارج الحزمة؛ نص خام، سطر واحد، U+0020 وحدها، أرقام لاتينية، لا فاصلة عليا. يُطبَّق عبر docs/palm-village-amend/apply.mjs وحده: final.json، ثم أزواج الذاكرة وسطر scores.csv."
+}

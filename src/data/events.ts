@@ -119,7 +119,9 @@ const EVENT_META = {
   'qaisariyah-nights': { img: '/img/event-qaisariyah-nights', start: 2, end: 3, venue: 'qaisariyah' },
   'kafu-nights': { img: '/img/event-kafu-nights', start: 13, ramadan: true, venue: 'king-abdullah-park' },
   'dates-festival': { img: '/img/event-dates-festival', start: 1, end: 2 },
-  'palm-village': { img: '/img/event-palm-village', start: 1, end: 3 },
+  // نسخة 2026 مؤكدة في نوفمبر (من إياد، 2026-10-19) بلا تاريخ دقيق ولا مدة معلنة — فلا status: 'confirmed'
+  // (يلزمه startISO/endISO). النسختان السابقتان: أبريل 2025 ويناير–مارس 2026 (صفحة المعلم palm-village.md).
+  'palm-village': { img: '/img/event-palm-village', start: 11, end: 11 },
   // موعد نسخة 2026 المعلن: 19 أغسطس – 5 سبتمبر (من إياد، 2026-07-22)، ثم مُدِّد
   // إلى 13 سبتمبر (من إياد، 2026-08-28) — لذلك status: 'confirmed'.
   // العودة إلى الموسم التقريبي بعد الانقضاء تلقائية عبر after (النصوص في
@@ -226,7 +228,7 @@ const TEXT_AR: EventTexts = {
   'palm-village': {
     slug: 'قرية-النخيل',
     name: 'قرية النخيل', place: 'واحة الأحساء',
-    season: 'الشتاء والربيع', time: 'يناير – مارس', span: 'موسم ممتد',
+    season: 'الشتاء', time: 'نوفمبر 2026م', span: 'لم تُعلن المدة بعد',
     org: 'المركز الوطني للنخيل والتمور',
     acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
   },
@@ -365,7 +367,7 @@ const TEXT_EN: EventTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Palm Village', place: 'Al-Ahsa Oasis',
-    season: 'Winter & spring', time: 'January – March', span: 'An extended season',
+    season: 'Winter', time: 'November 2026', span: 'Duration not yet announced',
     org: 'National Center for Palms and Dates',
     acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
   },
@@ -506,7 +508,7 @@ const TEXT_ZH: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: '椰枣村', place: '哈萨绿洲',
-    season: '冬春两季', time: '1 月至 3 月', span: '持续整季',
+    season: '冬季', time: '2026 年 11 月', span: '时长尚未公布',
     org: '沙特国家棕榈和椰枣中心',
     acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品市集'],
   },
@@ -622,7 +624,7 @@ const TEXT_RU: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Пальмовая деревня', place: 'Оазис Аль-Ахса',
-    season: 'Зима и весна', time: 'Январь–март', span: 'Продлённый сезон',
+    season: 'Зима', time: 'Ноябрь 2026 года', span: 'Продолжительность ещё не объявлена',
     org: 'Национальный центр пальм и фиников',
     acts: ['Финиковые лавки', 'Местные рестораны и кафе', 'Павильоны ремесленников (изделия из пальмовых листьев)', 'Продажа сельской продукции'],
   },
@@ -726,7 +728,7 @@ const TEXT_DE: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Palmendorf', place: 'Al-Ahsa-Oase',
-    season: 'Winter und Frühling', time: 'Januar–März', span: 'Verlängerte Saison',
+    season: 'Winter', time: 'November 2026', span: 'Dauer noch nicht bekannt gegeben',
     org: 'Nationales Zentrum für Palmen und Datteln',
     acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
   },
@@ -842,9 +844,9 @@ const TEXT_UR: TranslatedTexts = {
     slug: 'palm-village',
     name: 'کھجور کے درختوں کا گاؤں',
     place: 'الاحساء کا نخلستان',
-    season: 'سردیاں اور بہار',
-    time: 'جنوری سے مارچ تک',
-    span: 'طویل موسم',
+    season: 'سردیاں',
+    time: 'نومبر 2026',
+    span: 'دورانیے کا اعلان ابھی نہیں ہوا',
     org: 'کھجور کے درختوں اور کھجوروں کا قومی مرکز',
     acts: ['کھجوروں کی دکانیں', 'کھانے پینے کی مقامی جگہیں', 'دستکاروں کے پنڈال (کھجور کے پتوں سے بنی دستکاریاں)', 'دیہی مصنوعات کا بازار'],
   },
