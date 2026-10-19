@@ -1,0 +1,65 @@
+{
+  "lang": "ur",
+  "stage": "07",
+  "batch": "palm-village-amend",
+  "pass_threshold": 90,
+  "scores": {
+    "per_position": [
+      {
+        "id": "ur-ev-palm-season",
+        "score": 99,
+        "breakdown": { "accuracy": 30, "nativeness": 30, "compliance": 20, "fit": 9, "structure": 10 },
+        "why": "الدقة 30: «سردیاں» = en «Winter» = ar «الشتاء»؛ أسقط «اور بہار» كما أسقطه المصدر، بلا إضافة. الأصالة 30: كلمة الموسم نفسها في صفوف TEXT_UR القائمة (حساوی چوغے کا میلہ، شتاء الوفرة، سباقات الخيل…). الامتثال 20: حروف أوردية، بلا وقفة (P26). الملاءمة 9: «سردیاں» لنوفمبر قد يستغربه قارئ باكستاني (نوفمبر عنده أواخر الخريف) — لكنه اصطلاح ملف الفعاليات المصدري (شتاء الوفرة «الشتاء · من نوفمبر تقريباً») فيُسجَّل علّة مصدر لا تُخصم إلا بنقطة الملاءمة الطفيفة. البنية 10: current = pack.current حرفياً، سطر واحد."
+      },
+      {
+        "id": "ur-ev-palm-time",
+        "score": 100,
+        "breakdown": { "accuracy": 30, "nativeness": 30, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "الدقة 30: «نومبر 2026» = en «November 2026» = ar «نوفمبر 2026م»؛ لا يوم ولا مدة ولا «تقریباً» (السياج: الشهر مؤكد بقرار إياد). الأصالة 30: اسم الشهر «نومبر» كما في صف شتاء الوفرة/سباقات الخيل، وصيغة «<شهر> 2026» بلا «عیسوی» كصف معرض اللومي «… 13 ستمبر 2026 تک». الامتثال 20: أرقام لاتينية، لا U+06F0–06F9. الملاءمة 10. البنية 10."
+      },
+      {
+        "id": "ur-ev-palm-span",
+        "score": 97,
+        "breakdown": { "accuracy": 30, "nativeness": 27, "compliance": 20, "fit": 10, "structure": 10 },
+        "why": "الدقة 30: «دورانیے کا اعلان ابھی نہیں ہوا» = en «Duration not yet announced» = ar «لم تُعلن المدة بعد»؛ لا وعد ولا تقدير. الأصالة 27: جملة أوردية سليمة بفعل لازم «ہوا» (لا مبني للمجهول «کیا گیا»)؛ الخصم لتكرار «دورانیہ» بعد التسمية «اندازاً دورانیہ» في صفحة التفصيل (ملاحظة القارئ 2) — وهو تكرار المصدرين نفسيهما (Approximate length: Duration not yet announced / المدة التقريبية: لم تُعلن المدة بعد). الامتثال 20: «دورانیہ» = مصطلح events.spanK في tm؛ مُحرَّف «دورانیے» قبل «کا»؛ «اعلان» مذكّر مع «ہوا»؛ لا وقفة ختامية (P26). الملاءمة 10: القيمة تُعرض في بطاقة الفهرس بلا تسمية (EventsView.astro:372 ‹span class=ev-span›) فيلزمها حمل «دورانیہ» لتُفهم. البنية 10."
+      }
+    ],
+    "batch_score": 97,
+    "batch_score_rule": "درجة الدفعة = أدنى موضع (97)."
+  },
+  "breakdown": { "accuracy": 30, "nativeness": 27, "compliance": 20, "fit": 10, "structure": 10 },
+  "blind_reader_rulings": [
+    { "n": 1, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "ليس علّة ترجمة: سطر نتيجة البحث في مدخل القارئ مأخوذ من بناء قديم، ويُركَّب آلياً من حقول season/time/acts نفسها، فيصير «سردیاں، نومبر 2026۔» بالبناء التالي بعد التطبيق. لا إجراء في الحقول؛ يُتحقَّق منه في dist بعد البناء." },
+    { "n": 2, "position": "ur-ev-palm-span", "in_changed_span": true, "verdict": "rejected", "reason": "شقّان. (أ) «اندازاً» في التسمية مع قيمة لا تقدير فيها: التسمية events.spanK نص واجهة معتمد خارج الدفعة (tm: «اندازاً دورانیہ» = Approximate length)، والتوتر نفسه في en/ar — علّة مصدر (SD2). (ب) تكرار «دورانیہ» داخل القيمة: البديل المقترح «ابھی اعلان نہیں ہوا» يُسقط «المدة» من القيمة، وهي تُعرض أيضاً في بطاقة فهرس الفعاليات بلا تسمية (EventsView.astro:372) فتصير «لم يُعلن بعد» بلا مسنَد — يمحو مضمون الحقل الوحيد لمعنى en «Duration»/ar «المدة» (P24/P25). والمرادف «مدت کا اعلان …» يكسر اتّساق المصطلح مع التسمية. يبقى كما هو ويُحتسب في الأصالة (−3)؛ ويُسجَّل خياراً للمالك: إن غُيِّرت التسمية إلى «دورانیہ» وحدها (بلا «اندازاً») في مرور واجهة لاحق زال التوتر." },
+    { "n": 3, "position": "ur-ev-palm-time", "in_changed_span": true, "verdict": "source_defect", "reason": "شارة «متوقع وقت» من status في EVENT_META ونصوص واجهة معتمدة خارج الدفعة، بينما قرار إياد يقول الشهر مؤكد. اقتراح «متوقع طور پر نومبر 2026 (تاریخوں کا اعلان ابھی باقی ہے)» يضيف إلى القيمة ما لا يحمله المصدر ويناقض القرار (السياج يعلو). الأوردو وفيّة لـ«November 2026». يُرفع لإياد (SD1)." },
+    { "n": 4, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: عنوان القسم «دوسرے موسم» نص واجهة معتمد (en «Other seasons»). يُسجَّل لمرور أوردي لاحق." },
+    { "n": 5, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: صف موسم ليالي القيصرية «سردیوں کا آخری حصہ» نص معتمد مقابل المصدر (Late winter). يُسجَّل." },
+    { "n": 6, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: الترويسة الصغرى «نخلستان کا ایک موسم» نص واجهة معتمد مشترك (سابقة de: Eine Saison der Oase). يُسجَّل لمرور لاحق." },
+    { "n": 7, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: النشاط acts.2 نص معتمد (tm ev.palm-village.acts.2)، و«اسٹال» دخيل إنجليزي (P16). يُسجَّل." },
+    { "n": 8, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: acts.1 نص معتمد (tm). يُسجَّل." },
+    { "n": 9, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: acts.0 نص معتمد (tm). يُسجَّل." },
+    { "n": 10, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: سطر التنبيه المشترك («… لوٹ آتی ہے») نص واجهة معتمد. يُسجَّل لمرور لاحق." },
+    { "n": 11, "position": null, "in_changed_span": false, "verdict": "rejected", "reason": "خارج الدفعة: اسم «“کَفو” کی راتیں» معتمد في المعجم؛ “…” هو الاقتباس المعتمد في orthography بالـconfig. لا إجراء." }
+  ],
+  "blind_reader_counts": { "applied": 0, "applied_in_part": 0, "rejected": 10, "source_defect": 1, "total": 11, "in_changed_span": 2 },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "changed_by_judge": [],
+  "changed_by_judge_note": "لا تعديل: القيم الثلاث من 05 تُعتمد حرفياً. مراجعة مستقلة: «سردیاں» و«نومبر» و«دورانیہ» مطابقة لـTEXT_UR وtm؛ لا بديل داخل الحقول الثلاثة يطابق المصدر ويزيل تكرار «دورانیہ» دون إسقاط مضمون الحقل في البطاقة غير المُسمّاة.",
+  "machine_checks_by_judge": "على final.proposed: كل المحارف ضمن U+0600–06FF أو U+0020 أو 0-9 اللاتينية؛ لا U+064A/U+0643/U+0629/U+0647/U+00A0؛ لا U+06F0–06F9؛ لا سطر جديد ولا وقفة ختامية؛ final.current = pack.current حرفياً وfile = pack.file.",
+  "termbase_ops": [],
+  "termbase_ops_note": "لا مدخل: لا اسم علم؛ «دورانیہ» قائم في tm (events.spanK).",
+  "tm_ops": [
+    { "op": "update", "page": "ui", "field": "ev.palm-village.season", "en": "Winter", "ur": "سردیاں", "date": "2026-10-19", "replaces": { "en": "Winter & spring", "ur": "سردیاں اور بہار" } },
+    { "op": "update", "page": "ui", "field": "ev.palm-village.time", "en": "November 2026", "ur": "نومبر 2026", "date": "2026-10-19", "replaces": { "en": "January – March", "ur": "جنوری سے مارچ تک" } },
+    { "op": "update", "page": "ui", "field": "ev.palm-village.span", "en": "Duration not yet announced", "ur": "دورانیے کا اعلان ابھی نہیں ہوا", "date": "2026-10-19", "replaces": { "en": "An extended season", "ur": "طویل موسم" } }
+  ],
+  "tm_ops_note": "تُطبَّق على ur-translation/memory/tm.json مع التطبيق (لم يكتبها الحاكم في الذاكرة بتكليف المنسّق: 07.json وfinal.json وحدهما).",
+  "scores_csv_row": "\"events (palm-village-amend: 3 strings)\",2026-10-19,1,97,\"APPROVE (batch 97, lowest position; axes 30/27/20/10/10; blind reader 11 items: 0 applied, 10 rejected, 1 source defects, 0 open items; 0 edits)\"",
+  "source_defects_for_owner": [
+    { "id": "SD1", "where": "EVENT_META['palm-village'].status + نصوص الواجهة (شارة «متوقع وقت»)", "issue": "الشارة تقول «متوقع» والقرار يقول نوفمبر 2026 مؤكد؛ القارئ لم يعرف هل الشهر معلَن أم تقدير.", "option": "تعديل status في المصدر إن كان الشهر مؤكداً، أو إبقاؤه إن قُصد أن اليوم غير معلن." },
+    { "id": "SD2", "where": "events.spanK (ar «المدة التقريبية» / en «Approximate length» / ur «اندازاً دورانیہ»)", "issue": "تسمية «تقريبية» فوق قيمة «لم تُعلن المدة بعد»، وتكرار «المدة» في الصف بكل اللغات.", "option": "سطر واحد: تسمية «المدة» بلا «التقريبية» في مرور واجهة لاحق." },
+    { "id": "SD3", "where": "TEXT_*['palm-village'].season (ar «الشتاء»)", "issue": "نوفمبر «شتاء» اصطلاح الملف؛ قارئ جنوب آسيوي يعدّه أواخر الخريف (ملاحظتا القارئ 4 و5 في الباب نفسه).", "option": "لا إجراء ما دام اصطلاح الملف موحَّداً." }
+  ],
+  "notes": "سطر نتيجة البحث (الملاحظة 1) يُتحقَّق منه في dist بعد البناء التالي: يجب أن يقرأ «سردیاں، نومبر 2026۔». الملاحظات 4–11 خارج الدفعة تُحال إلى مرور أوردي لاحق على نصوص الفعاليات والواجهة. لا بند من _meta.open_items مسّته الدفعة."
+}
