@@ -146,6 +146,15 @@ const attractions = defineCollection({
     openSite: z.boolean().default(false),
     heroImage: z.string().optional(),          // مسار صورة لاحقاً (الآن عنصر نائب)
     gallery: z.array(z.string()).default([]),
+    // عنوان قسم الصور بدل «من المكان» حين تكون الصور من سياق محدد (نسخ سابقة لفعالية موسمية).
+    // بلا ترجمة اللغة يبقى العنوان الافتراضي لتلك اللغة.
+    galleryTitle: z.string().optional(),
+    galleryTitle_en: z.string().optional(),
+    // دعوة لإجراء خارجي في بطاقة الزيارة (تسجيل العارضين مثلاً): لا يظهر الزر في لغة بلا نصّه.
+    cta: z.object({
+      url: z.url(), label: z.string(), note: z.string().optional(),
+      url_en: z.url().optional(), label_en: z.string().optional(), note_en: z.string().optional(),
+    }).optional(),
     tags: z.array(z.string()).default([]),
     // ── المواعيد والرسوم المبنيَنة (الخطوة 8 من خطة التفاعل العالمي، بند 3.3 من الدراسة) ──
     // نسخة آلية القراءة من بند practical الموثّق نفسه — لا تُملأ إلا لما بنده موثّق

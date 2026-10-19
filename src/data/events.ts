@@ -229,7 +229,7 @@ const TEXT_AR: EventTexts = {
     slug: 'قرية-النخيل',
     name: 'قرية النخيل', place: 'واحة الأحساء',
     season: 'الشتاء', time: 'نوفمبر 2026م', span: 'لم تُعلن المدة بعد',
-    org: 'المركز الوطني للنخيل والتمور',
+    org: 'هيئة تطوير الأحساء، أمانة الأحساء',
     acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
   },
   lomi: {
@@ -368,7 +368,7 @@ const TEXT_EN: EventTexts = {
     slug: 'palm-village',
     name: 'Palm Village', place: 'Al-Ahsa Oasis',
     season: 'Winter', time: 'November 2026', span: 'Duration not yet announced',
-    org: 'National Center for Palms and Dates',
+    org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
     acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
   },
   lomi: {
@@ -509,7 +509,7 @@ const TEXT_ZH: TranslatedTexts = {
     slug: 'palm-village',
     name: '椰枣村', place: '哈萨绿洲',
     season: '冬季', time: '2026 年 11 月', span: '时长尚未公布',
-    org: '沙特国家棕榈和椰枣中心',
+    org: '哈萨发展管理局、哈萨市政局',
     acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品市集'],
   },
   lomi: {
@@ -625,7 +625,7 @@ const TEXT_RU: TranslatedTexts = {
     slug: 'palm-village',
     name: 'Пальмовая деревня', place: 'Оазис Аль-Ахса',
     season: 'Зима', time: 'Ноябрь 2026 года', span: 'Продолжительность ещё не объявлена',
-    org: 'Национальный центр пальм и фиников',
+    org: 'Управление по развитию Аль-Ахсы, муниципалитет Аль-Ахсы',
     acts: ['Финиковые лавки', 'Местные рестораны и кафе', 'Павильоны ремесленников (изделия из пальмовых листьев)', 'Продажа сельской продукции'],
   },
   'uqair-winter': {
@@ -729,7 +729,7 @@ const TEXT_DE: TranslatedTexts = {
     slug: 'palm-village',
     name: 'Palmendorf', place: 'Al-Ahsa-Oase',
     season: 'Winter', time: 'November 2026', span: 'Dauer noch nicht bekannt gegeben',
-    org: 'Nationales Zentrum für Palmen und Datteln',
+    org: 'Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa',
     acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
   },
   lomi: {
@@ -847,7 +847,7 @@ const TEXT_UR: TranslatedTexts = {
     season: 'سردیاں',
     time: 'نومبر 2026',
     span: 'دورانیے کا اعلان ابھی نہیں ہوا',
-    org: 'کھجور کے درختوں اور کھجوروں کا قومی مرکز',
+    org: 'الاحساء کی ترقی کا ادارہ، الاحساء کی بلدیہ',
     acts: ['کھجوروں کی دکانیں', 'کھانے پینے کی مقامی جگہیں', 'دستکاروں کے پنڈال (کھجور کے پتوں سے بنی دستکاریاں)', 'دیہی مصنوعات کا بازار'],
   },
   lomi: {
