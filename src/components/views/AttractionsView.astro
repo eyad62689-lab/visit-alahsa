@@ -44,7 +44,8 @@ const tx = (suffix: string) => t(`${K}.${suffix}` as any);
 
 // ترتيب عرض المجموعات — الأكثر شهرةً أولاً. كل مجموعة قسمٌ بمرساة #cat-<الفئة>
 // تنقل إليها أيقونتها في شريط المجموعات. المعالم داخل كل مجموعة مرتّبة بحقل order.
-const DISPLAY_ORDER = leisure ? ['market', 'parks', 'farm'] : ['historic', 'museum', 'nature', 'religious'];
+// «التجارب والحِرف» (experience) منذ قرية النخيل (2026-10-19): وجهةٌ موسمية ليست تاريخية ولا متحفاً.
+const DISPLAY_ORDER = leisure ? ['market', 'parks', 'farm'] : ['historic', 'museum', 'nature', 'religious', 'experience'];
 const items = (await getCollection('attractions'))
   .filter((i) => DISPLAY_ORDER.includes(i.data.category))
   .sort((x, y) => x.data.order - y.data.order);
@@ -66,6 +67,7 @@ const CAT_ICONS: Record<string, string> = {
   market: '<path d="M4 9h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 9l1.6-4h14.8L21 9z"/><path d="M3 9h18"/><path d="M9 21v-6h6v6"/>',
   parks: '<path d="M12 22v-5"/><path d="M12 17a5.5 5.5 0 0 0 5.5-5.5c0-1.5-.6-2.6-.6-2.6A5 5 0 0 0 12 4a5 5 0 0 0-4.9 4.9s-.6 1.1-.6 2.6A5.5 5.5 0 0 0 12 17z"/>',
   farm: '<path d="M12 21v-8"/><path d="M12 13c-.5-3-3-5-7-4 3-1.5 5.5-1 7 1 .5-3 3-5 7-4-3-1.5-5.5-1-7 1z"/>',
+  experience: '<path d="M4 10h16l-1.6 9.2a2 2 0 0 1-2 1.8H7.6a2 2 0 0 1-2-1.8z"/><path d="M8.5 10 11 4"/><path d="M15.5 10 13 4"/><path d="M4.6 14.5h14.8"/>',
 };
 // النص الصيني من خط zh-translation-pipeline (misc.groupsHint — دفعة 2026-08-29)
 // والروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05).
