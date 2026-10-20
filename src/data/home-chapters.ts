@@ -41,7 +41,8 @@ const NATURE: Day[] = [
   { stops: [T('al-uqair-coast')] },
 ];
 const MARKETS: Day[] = [
-  { stops: [T('historic-hofuf'), P('craftsmen-souq'), P('hamidiyah-souq'), P('women-souq')] },
+  // سوق الحميدية خارج القالب (حكم إياد 2026-10-20): لم يعد سوقاً عاملاً، ويبقى معلماً في المعالم
+  { stops: [T('historic-hofuf'), P('craftsmen-souq'), P('women-souq')] },
   { stops: [T('qarah-and-jawatha')] },
   { stops: [T('oasis-and-springs'), P('lemon-farm')] },
 ];
