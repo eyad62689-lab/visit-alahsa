@@ -1,0 +1,56 @@
+---
+// الفصل 7 — الختام: زرّ رئيسي واحد يتغيّر بحسب حال الزائر (القرار أ1): «خطّط زيارتك» إلى
+// دليل التخطيط، أو «افتح رحلتي (n)» إلى «معالمي» متى وُجد محفوظ في va-plan. لا زرّ حجز.
+// الصورة نهارية حقيقية من المكتبة، والنصّ لا يدّعي الغروب حتى تُصوَّر لقطته (القرار أ5).
+import Photo from '../Photo.astro';
+
+interface Props { lang: 'ar' | 'en'; planHref: string; myTripHref: string }
+const { lang, planHref, myTripHref } = Astro.props;
+const ar = lang === 'ar';
+const plan = ar ? 'خطّط زيارتك' : 'Plan your visit';
+const open = ar ? 'افتح رحلتي' : 'Open my trip';
+---
+<section class="ch cv-auto ch--dark finale" id="ch-finale" data-chapter data-dark data-track-view="finale" data-track-view-page="home">
+  <div class="fin-bg" aria-hidden="true"><Photo src="/img/asfar" class="fin-photo" sizes="100vw" /></div>
+  <div class="fin-shade" aria-hidden="true"></div>
+  <div class="container fin-in" data-rise>
+    <span class="ch-no">07 · Finale</span>
+    <h2 class="ch-title fin-title">{ar ? 'الواحة بانتظارك' : 'The oasis awaits'}</h2>
+    <p class="ch-lead fin-lead">{ar ? 'من رمال الأصفر إلى ظلال النخيل، رحلتك تبدأ من هنا.' : 'From the sands of Al-Asfar to the shade of the palms, your journey starts here.'}</p>
+    <div class="fin-cta">
+      <a class="btn btn--gold" href={planHref} data-finale-cta data-plan-href={planHref} data-trip-href={myTripHref} data-tx-plan={plan} data-tx-open={open} data-track="finale_cta" data-track-kind="plan">{plan}</a>
+      <a class="btn btn--ghost" href="#top" data-track="finale_replay">{ar ? 'أعِد الحكاية' : 'Replay the story'}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function syncFinale() {
+    const a = document.querySelector<HTMLAnchorElement>('[data-finale-cta]');
+    if (!a) return;
+    const n: number = ((window as any).VAPlan?.get?.() ?? []).length;
+    const has = n > 0;
+    a.href = (has ? a.dataset.tripHref : a.dataset.planHref) || a.href;
+    a.textContent = has ? `${a.dataset.txOpen} (${n})` : (a.dataset.txPlan || '');
+    a.dataset.trackKind = has ? 'my_trip' : 'plan';
+  }
+  document.addEventListener('astro:page-load', syncFinale);
+  document.addEventListener('va-plan-change', syncFinale);
+</script>
+
+<style>
+  .finale { position: relative; overflow: hidden; isolation: isolate; min-block-size: min(86svh, 760px); display: grid; align-items: center; text-align: center; color: var(--c-sand); }
+  .fin-bg { position: absolute; inset: 0; z-index: -2; }
+  .fin-bg :global(.fin-photo) { position: absolute; inset: 0; }
+  .fin-bg :global(.fin-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
+  @media (prefers-reduced-motion: no-preference) {
+    .fin-bg :global(.fin-photo img) { animation: fin-drift 24s ease-in-out infinite alternate; }
+    @keyframes fin-drift { from { transform: scale(1.02); } to { transform: scale(1.1); } }
+  }
+  .fin-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0,40,35,.9), rgba(0,44,39,.55) 60%, rgba(0,44,39,.45)); }
+  .fin-in { display: grid; justify-items: center; gap: var(--s-3); }
+  .fin-in .ch-no { justify-self: center; }
+  .fin-title { color: var(--c-sand); }
+  .fin-lead { color: rgba(247,243,234,.88); margin-inline: auto; }
+  .fin-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); justify-content: center; margin-block-start: var(--s-2); }
+</style>

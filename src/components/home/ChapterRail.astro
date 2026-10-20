@@ -1,0 +1,52 @@
+---
+// شريط الفصول: سبع نقاط عند inline-end (يسار في العربية، يمين في الإنجليزية — القرار ب6).
+// النقطة النشطة تستطيل وتتذهّب، والاسم يظهر على الحاسوب وحده. روابط عادية تعمل بلوحة المفاتيح.
+interface Props { lang: 'ar' | 'en' }
+const { lang } = Astro.props;
+const items = lang === 'ar'
+  ? [['ch-gate', 'البوابة'], ['ch-water', 'الماء تحت الرمل'], ['ch-qarah', 'جبل القارة'], ['ch-map', 'الخريطة الحيّة'], ['ch-memory', 'ذاكرة الطين والسوق'], ['ch-plan', 'خطّط رحلتك'], ['ch-finale', 'الختام']]
+  : [['ch-gate', 'The Gate'], ['ch-water', 'Water beneath the sand'], ['ch-qarah', 'Jabal Al-Qarah'], ['ch-map', 'The living map'], ['ch-memory', 'Memory of clay and souq'], ['ch-plan', 'Plan your trip'], ['ch-finale', 'Finale']];
+---
+<nav class="rail" aria-label={lang === 'ar' ? 'فصول الصفحة' : 'Page chapters'} data-rail>
+  {items.map(([id, label]) => (
+    <a href={`#${id}`} data-rail-for={id} aria-label={label}><span class="rail-dot" aria-hidden="true"></span><span class="rail-lbl">{label}</span></a>
+  ))}
+</nav>
+
+<script>
+  function initRail() {
+    const rail = document.querySelector<HTMLElement>('[data-rail]');
+    if (!rail || rail.dataset.wired || typeof IntersectionObserver !== 'function') return;
+    rail.dataset.wired = '1';
+    const links = Array.from(rail.querySelectorAll<HTMLAnchorElement>('[data-rail-for]'));
+    const obs = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const id = e.target.id;
+        links.forEach((a) => {
+          const on = a.dataset.railFor === id;
+          a.classList.toggle('is-on', on);
+          if (on) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
+        });
+        rail.classList.toggle('rail--dark', e.target.hasAttribute('data-dark'));
+      }
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    document.querySelectorAll('[data-chapter]').forEach((s) => obs.observe(s));
+  }
+  document.addEventListener('astro:page-load', initRail);
+</script>
+
+<style>
+  .rail { position: fixed; z-index: 30; inset-inline-end: 10px; inset-block-start: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 2px; }
+  .rail a { display: flex; flex-direction: row-reverse; align-items: center; gap: 10px; min-block-size: 24px; min-inline-size: 24px; text-decoration: none; }
+  .rail-dot { inline-size: 7px; block-size: 7px; margin-inline: 8px; border-radius: 99px; background: rgba(21,33,30,.35); transition: block-size .4s cubic-bezier(.2,.7,.2,1), background .4s; }
+  .rail a.is-on .rail-dot { block-size: 22px; background: var(--c-gold); }
+  .rail-lbl { font-size: var(--t-xs); font-weight: 600; color: var(--c-ink); white-space: nowrap; opacity: 0; transition: opacity .3s; }
+  .rail a.is-on .rail-lbl, .rail a:focus-visible .rail-lbl { opacity: 1; }
+  .rail.rail--dark .rail-dot { background: rgba(247,243,234,.5); }
+  .rail.rail--dark a.is-on .rail-dot { background: var(--c-gold); }
+  .rail.rail--dark .rail-lbl { color: var(--c-sand); }
+  .rail a:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; border-radius: 6px; }
+  @media (max-width: 899px) { .rail { inset-inline-end: 2px; } .rail-lbl { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .rail-dot, .rail-lbl { transition: none; } }
+</style>

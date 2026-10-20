@@ -1,0 +1,40 @@
+---
+// شريط «معالمي» السفلي: مخفيّ حتى أول حفظ في va-plan، ثم ينزلق بالعدد وزرّ يقود إلى الفصل 6
+// حيث يُدمج المحفوظ في المسار. حين يظهر تختفي أيقونة «معالمي» من رأس الجوال فلا يتكرر العنصر
+// في الشاشة (القرار أ3، البند 5).
+interface Props { lang: 'ar' | 'en' }
+const { lang } = Astro.props;
+const ar = lang === 'ar';
+---
+<div class="sbar" data-savebar hidden>
+  <div class="sbar-in">
+    <span class="sbar-count">{ar ? 'معالمي:' : 'My places:'} <b data-plan-count>0</b></span>
+    <a class="btn btn--gold sbar-btn" href="#ch-plan">{ar ? 'ابنِ رحلتي منها' : 'Build my trip from them'}</a>
+  </div>
+</div>
+
+<script>
+  function syncBar() {
+    const bar = document.querySelector<HTMLElement>('[data-savebar]');
+    if (!bar) { document.documentElement.classList.remove('has-savebar'); return; }
+    const n: number = ((window as any).VAPlan?.get?.() ?? []).length;
+    bar.hidden = n === 0;
+    document.documentElement.classList.toggle('has-savebar', n > 0);
+  }
+  document.addEventListener('astro:page-load', syncBar);
+  document.addEventListener('va-plan-change', syncBar);
+</script>
+
+<style>
+  .sbar { position: fixed; z-index: 45; inset-inline: 0; inset-block-end: 0; padding: 0 var(--s-3) calc(12px + env(safe-area-inset-bottom, 0px)); pointer-events: none; }
+  .sbar-in { pointer-events: auto; margin-inline: auto; max-inline-size: 560px; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); background: var(--c-ink); color: var(--c-sand); border-radius: var(--radius-pill); padding: 8px; padding-inline-start: 20px; box-shadow: 0 12px 32px rgba(0,30,26,.3); }
+  .sbar-count { font-weight: 600; }
+  .sbar-count b { color: var(--c-gold-bright); }
+  .sbar-btn { min-block-size: 42px; padding: 0 18px; font-size: var(--t-sm); }
+  @media (prefers-reduced-motion: no-preference) {
+    .sbar:not([hidden]) .sbar-in { animation: sbar-in .6s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes sbar-in { from { transform: translateY(120%); } to { transform: none; } }
+  }
+  /* الرأس على الجوال: أيقونة «معالمي» تختفي حين يظهر الشريط */
+  @media (max-width: 760px) { :global(html.has-savebar .site-header .plan-link) { display: none !important; } }
+</style>
