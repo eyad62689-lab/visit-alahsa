@@ -3,7 +3,7 @@
 // من خط ترجمتها حصراً ثم تُضمّ إلى HOME_LANGS. أوصاف الأماكن ليست هنا: تأتي من مجموعاتها.
 import type { Lang } from '../i18n/ui';
 
-export const HOME_LANGS = ['ar', 'en', 'zh'] as const;
+export const HOME_LANGS = ['ar', 'en', 'zh', 'de'] as const;
 export type HomeLang = (typeof HOME_LANGS)[number];
 
 type Pair = readonly [string, string];
@@ -251,6 +251,79 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       replay: '从头再读',
     },
     saved: { count: '我的收藏：', build: '用收藏的景点规划行程' },
+  },
+  // seo منقول من HomeView (دفعة الواجهة الألمانية) — نصوص الفصول من خط de-translation-pipeline (دفعة de-home-1)
+  de: {
+    seo: {
+      title: 'Al-Ahsa-Reiseführer – die größte Oase der Welt',
+      description: 'Ihr Al-Ahsa-Reiseführer: Jabal al-Qarah, Qasr Ibrahim, Qaisariyah-Souk und Al-Uqair – Karten, Routen, Veranstaltungen und Restaurants im UNESCO-Welterbe.',
+      place: 'Al-Ahsa',
+      country: 'Saudi-Arabien',
+    },
+    arrow: '→',
+    sep: ' ',
+    paths: { attractions: '/de/attractions/', map: '/de/map/', plan: '/de/plan-your-trip/', myTrip: '/de/plan/', trails: '/de/trails/' },
+    gate: {
+      title: 'Die größte Oase der Welt öffnet sich Ihnen Kapitel für Kapitel',
+      lead: 'In der Ostprovinz Saudi-Arabiens: Wasser unter dem Sand, ein höhlenreicher Berg und Souks, in denen seit Generationen gehandelt wird. Scrollen Sie, und die Geschichte beginnt.',
+      begin: 'Die Geschichte beginnen',
+      skip: 'Zur Planung springen',
+    },
+    rail: {
+      label: 'Kapitel dieser Seite',
+      items: [['ch-gate', 'Das Tor'], ['ch-water', 'Wasser unter dem Sand'], ['ch-qarah', 'Jabal al-Qarah'], ['ch-map', 'Die interaktive Karte'], ['ch-memory', 'Was Lehm und Souk bewahren'], ['ch-plan', 'Reise planen'], ['ch-finale', 'Ausklang']],
+    },
+    water: {
+      title: 'Wasser unter dem Sand',
+      lead: 'Ein gewaltiges Grundwasservorkommen speist die Oase und lässt sie mitten in der Wüste ergrünen.',
+      springsL: 'artesische Quellen bewässern die Oase',
+      srcLabel: 'Quellen: ',
+      srcGuinness: 'Guinness World Records, Eintrag „Largest oasis“',
+      srcMid: ' (Palmen und Quellen); Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft (Palmen); ',
+      srcUnesco: 'UNESCO-Welterbeliste',
+      srcEnd: ' (2018).',
+      link: 'Natur entdecken',
+    },
+    qarah: {
+      title: 'Jabal al-Qarah: Der Tag liegt in Ihrer Hand',
+      drag: 'Ziehen Sie den Regler vom Morgengrauen bis zum Sonnenuntergang.',
+      timeLabel: 'Tageszeit',
+      times: ['Morgengrauen', 'Vormittag', 'Spätnachmittag', 'Sonnenuntergang'],
+      link: 'Mehr über den Jabal al-Qarah',
+    },
+    map: {
+      title: 'Wählen Sie, was Sie lockt',
+      lead: 'Die Sehenswürdigkeiten sind dort eingezeichnet, wo sie tatsächlich liegen. Tippen Sie eine an, um mehr zu sehen, und setzen Sie sie auf Ihre Merkliste.',
+      svgLabel: 'Vereinfachte Karte der Sehenswürdigkeiten von Al-Ahsa',
+      km: '10 km',
+      legend: 'Sehenswürdigkeiten auf der Karte',
+      empty: 'Wählen Sie auf der Karte eine Sehenswürdigkeit, um Foto und Beschreibung zu sehen.',
+      more: 'Seite der Sehenswürdigkeit',
+      link: 'Zur vollständigen Karte',
+    },
+    memory: {
+      title: 'Was Lehm und Souk bewahren',
+      lead: 'Festungen aus Lehm, einige der frühesten Moscheen des Islams und Souks, in denen seit Generationen gehandelt wird.',
+      track: 'Historische Stätten – seitlich scrollen',
+      link: 'Zu den historischen Stätten',
+    },
+    plan: {
+      title: 'Ihre Reise planen – in drei Fragen',
+      lead: 'Antworten Sie, und Ihre Route erscheint sofort – was Sie auf der Karte gemerkt haben, fließt mit ein.',
+      link: 'Ausführlicher Ratgeber zur Reiseplanung',
+      int: { legend: 'Was zieht Sie an?', opts: [['heritage', 'Kulturerbe und Geschichte'], ['nature', 'Natur und Wasser'], ['markets', 'Souks und Handwerk']] },
+      dur: { legend: 'Wie viele Tage haben Sie?', opts: [['1', 'Ein Tag'], ['2', 'Zwei Tage'], ['3', 'Drei Tage']] },
+      com: { legend: 'Mit wem reisen Sie?', opts: [['family', 'Familie'], ['friends', 'Freunde'], ['solo', 'Allein']] },
+      L: { wait: 'Beantworten Sie die drei Fragen, dann erscheint hier Ihre Route.', title: 'Ihre Route', days: ['Tag 1', 'Tag 2', 'Tag 3'], trail: 'Route', place: 'Sehenswürdigkeit', saved: 'Aus Ihrer Merkliste' },
+    },
+    finale: {
+      title: 'Die Oase erwartet Sie',
+      lead: 'Vom Sand am Al-Asfar-See bis in den Schatten der Palmen – hier beginnt Ihre Reise.',
+      plan: 'Reise planen',
+      open: 'Meine Merkliste öffnen',
+      replay: 'Zurück zum Anfang',
+    },
+    saved: { count: 'Meine Merkliste:', build: 'Reise daraus planen' },
   },
 };
 
