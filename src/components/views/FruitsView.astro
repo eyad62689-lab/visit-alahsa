@@ -15,6 +15,7 @@ import { fruitsTable } from '../../lib/tables';
 import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_DE, FRUIT_GROUPS_RU, FRUIT_GROUPS_UR } from '../../data/fruits';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
+import { OASIS_FACTS } from '../../data/oasis-facts';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -41,10 +42,10 @@ const ZH = {
   title: '哈萨时令水果',
   heroSum: '在世界上最大的绿洲，四季在果园间流转，每一季都为到访者献上当令的果香——从盛夏金黄的软熟鲜椰枣、冬日的毛叶枣，到闻名遐迩的哈萨青柠。',
   stats: [
-    { n: '250 万', l: '绿洲中的椰枣树' },
-    { n: '40 万', l: '与椰枣并植的果树' },
+    { n: OASIS_FACTS.palms.short.zh, l: '绿洲中的椰枣树' },
+    { n: OASIS_FACTS.fruitTrees.short.zh, l: '与椰枣并植的果树' },
   ],
-  statsSrc: '依据吉尼斯世界纪录认证（2020 年 10 月）及沙特环境水务与农业部的统计数据。',
+  statsSrc: OASIS_FACTS.fruitsStatsSrc.zh,
   frEyebrow: '水果之旅',
   frH: '四季皆有果',
   frLead: '请选择您到访的季节，查看当季水果：',
@@ -75,10 +76,10 @@ const RU = {
   title: 'Сезонные плоды Аль-Ахсы',
   heroSum: 'В крупнейшем оазисе мира времена года сменяют друг друга в садах, и каждое дарит гостю свой плод и свой вкус — от золотистого летнего рутаба (фиников на стадии перед полной спелостью) до зимнего канара и знаменитого лайма оазиса.',
   stats: [
-    { n: '2,5 млн', l: 'финиковых пальм в оазисе' },
-    { n: '400 тыс.', l: 'плодовых деревьев помимо пальм' },
+    { n: OASIS_FACTS.palms.short.ru, l: 'финиковых пальм в оазисе' },
+    { n: OASIS_FACTS.fruitTrees.short.ru, l: 'плодовых деревьев помимо пальм' },
   ],
-  statsSrc: 'Источники: запись в Книге рекордов Гиннесса (октябрь 2020 года) и статистика Министерства окружающей среды, водных ресурсов и сельского хозяйства.',
+  statsSrc: OASIS_FACTS.fruitsStatsSrc.ru,
   frEyebrow: 'Знакомство с плодами',
   frH: 'Каждому сезону — свой плод',
   frLead: 'Выберите сезон своей поездки, чтобы увидеть его плоды:',
@@ -110,10 +111,10 @@ const DE = {
   title: 'Saisonale Früchte Al-Ahsas',
   heroSum: 'In der größten Oase der Welt lösen sich die Jahreszeiten in den Hainen ab und schenken den Besuchern in jeder Jahreszeit eine neue Frucht und einen neuen Geschmack. Das reicht von der goldenen, halbreifen, weichen Sommerdattel namens Rutab bis zur winterlichen Sidr-Frucht namens Kanar (Indische Jujube) – dazu die berühmte Hasawi-Limette (Lomi) der Oase.',
   stats: [
-    { n: '2,5 Mio.', l: 'Dattelpalmen in der Oase' },
-    { n: '400 Tsd.', l: 'Obstbäume neben den Palmen' },
+    { n: OASIS_FACTS.palms.short.de, l: 'Dattelpalmen in der Oase' },
+    { n: OASIS_FACTS.fruitTrees.short.de, l: 'Obstbäume neben den Palmen' },
   ],
-  statsSrc: 'Laut Eintrag von Guinness World Records (Oktober 2020) und Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft.',
+  statsSrc: OASIS_FACTS.fruitsStatsSrc.de,
   frEyebrow: 'Rundgang durch die Früchte',
   frH: 'Eine Frucht für jede Jahreszeit',
   frLead: 'Wählen Sie die Jahreszeit Ihres Besuchs, um deren Früchte zu sehen:',
@@ -147,10 +148,10 @@ const UR = {
   title: 'الاحساء کے موسمی پھل',
   heroSum: 'دنیا کے سب سے بڑے نخلستان میں باغوں پر ایک کے بعد ایک موسم آتا ہے، اور ہر موسم سیاحوں کے لیے ایک نیا پھل اور نیا ذائقہ لاتا ہے: گرمیوں کے سنہری رطب اور نخلستان کے مشہور لیموں سے لے کر سردیوں کے کنار تک۔ رطب تازہ پکی کھجوروں کو کہتے ہیں، اور کنار بیر کو۔',
   stats: [
-    { n: '25 لاکھ', l: 'نخلستان میں کھجور کے درخت' },
-    { n: '4 لاکھ', l: 'کھجور کے درختوں کے علاوہ پھل دار درخت' },
+    { n: OASIS_FACTS.palms.short.ur, l: 'نخلستان میں کھجور کے درخت' },
+    { n: OASIS_FACTS.fruitTrees.short.ur, l: 'کھجور کے درختوں کے علاوہ پھل دار درخت' },
   ],
-  statsSrc: 'گنیز ورلڈ ریکارڈز کے اندراج (اکتوبر 2020) اور ماحولیات، پانی اور زراعت کی وزارت کے اعداد و شمار کے مطابق۔',
+  statsSrc: OASIS_FACTS.fruitsStatsSrc.ur,
   frEyebrow: 'پھلوں کا تعارف',
   frH: 'ہر موسم کا ایک پھل',
   frLead: 'اپنی سیر کا موسم چنیں اور اس کے پھل دیکھیں:',
@@ -180,10 +181,10 @@ const C = localize(lang, {
     title: 'ثمار الأحساء الموسمية',
     heroSum: 'في أكبر واحة في العالم، تتعاقب المواسم على البساتين فتهدي زائرها في كل فصل ثمرةً ومذاقاً: من رطب الصيف الذهبي إلى كنار الشتاء ولومي الواحة الشهير.',
     stats: [
-      { n: '2.5 مليون', l: 'نخلة في الواحة' },
-      { n: '400 ألف', l: 'شجرة فاكهة إلى جانب النخيل' },
+      { n: OASIS_FACTS.palms.short.ar, l: 'نخلة في الواحة' },
+      { n: OASIS_FACTS.fruitTrees.short.ar, l: 'شجرة فاكهة إلى جانب النخيل' },
     ],
-    statsSrc: 'وفق تسجيل موسوعة غينيس للأرقام القياسية (أكتوبر 2020م) وإحصاءات وزارة البيئة والمياه والزراعة.',
+    statsSrc: OASIS_FACTS.fruitsStatsSrc.ar,
     frEyebrow: 'جولة الثمار',
     frH: 'ثمرة لكل فصل',
     frLead: 'اختر فصل زيارتك لعرض ثماره:',
@@ -211,10 +212,10 @@ const C = localize(lang, {
     title: 'Seasonal Fruits of Al-Ahsa',
     heroSum: "In the world’s largest oasis, the seasons take turns over the groves, offering visitors a new fruit and flavour with each one — from golden summer rutab to winter kanar and the oasis’s famous lime.",
     stats: [
-      { n: '2.5M', l: 'palm trees in the oasis' },
-      { n: '400K', l: 'fruit trees alongside the palms' },
+      { n: OASIS_FACTS.palms.short.en, l: 'palm trees in the oasis' },
+      { n: OASIS_FACTS.fruitTrees.short.en, l: 'fruit trees alongside the palms' },
     ],
-    statsSrc: 'Per the Guinness World Records listing (October 2020) and Ministry of Environment, Water and Agriculture statistics.',
+    statsSrc: OASIS_FACTS.fruitsStatsSrc.en,
     frEyebrow: 'A tour of the fruits',
     frH: 'A fruit for every season',
     frLead: 'Pick the season of your visit to see its fruits:',
