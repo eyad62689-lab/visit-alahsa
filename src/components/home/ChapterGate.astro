@@ -5,21 +5,12 @@
 import HeroPoster from '../HeroPoster.astro';
 import HeroVideo from '../HeroVideo.astro';
 
-interface Props { lang: 'ar' | 'en' }
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
+
+interface Props { lang: HomeLang }
 const { lang } = Astro.props;
-const C = lang === 'ar'
-  ? {
-      title: 'أكبر واحةٍ في العالم تتكشّف لك، فصلاً بعد فصل',
-      lead: 'ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. مرّر لتبدأ الحكاية.',
-      begin: 'ابدأ الحكاية',
-      skip: 'انتقل إلى التخطيط',
-    }
-  : {
-      title: 'The world’s largest oasis, unfolding chapter by chapter',
-      lead: 'Water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.',
-      begin: 'Begin the story',
-      skip: 'Skip to planning',
-    };
+const eb = chapterEyebrow(lang, 0, 'The Gate');
+const C = HOME_COPY[lang].gate;
 ---
 <section class="ch gate" id="ch-gate" data-chapter data-dark data-track-view="gate" data-track-view-page="home">
   <div class="gate-media">
@@ -28,7 +19,7 @@ const C = lang === 'ar'
   </div>
   <div class="gate-shade" aria-hidden="true"></div>
   <div class="container gate-in">
-    <span class="ch-no">01 · The Gate</span>
+    <span class="ch-no" lang={eb.lang}>{eb.text}</span>
     <h1 class="gate-title">{C.title}</h1>
     <p class="gate-lead">{C.lead}</p>
     <div class="gate-cta">

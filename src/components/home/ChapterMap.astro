@@ -7,12 +7,15 @@
 import Photo from '../Photo.astro';
 import { attractionHref } from '../../lib/routes';
 import { useTranslations } from '../../i18n/utils';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 type Pt = { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string; lat: number; lng: number };
-interface Props { lang: 'ar' | 'en'; points: Pt[] }
+interface Props { lang: HomeLang; points: Pt[] }
 const { lang, points } = Astro.props;
+const eb = chapterEyebrow(lang, 3, 'The Living Map');
 const t = useTranslations(lang);
-const ar = lang === 'ar';
+const HC = HOME_COPY[lang];
+const C = HC.map;
 
 const W = 640, PAD = 56;
 const lat0 = (25.5 * Math.PI) / 180;
@@ -35,13 +38,13 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
 <section class="ch cv-auto ch--dark mapch" id="ch-map" data-chapter data-dark data-track-view="map" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">04 · The Living Map</span>
-      <h2 class="ch-title">{ar ? 'اختر ما يناديك' : 'Choose what calls you'}</h2>
-      <p class="ch-lead">{ar ? 'المعالم في مواضعها الحقيقية. المس معلماً لتراه، واحفظه لرحلتك.' : 'Landmarks in their true positions. Tap one to see it, and save it for your trip.'}</p>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
+      <h2 class="ch-title">{C.title}</h2>
+      <p class="ch-lead">{C.lead}</p>
     </header>
     <div class="mp" data-map>
       <div class="mp-box">
-        <svg class="mp-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={ar ? 'خريطة تحريرية لمعالم الأحساء' : 'Editorial map of Al-Ahsa landmarks'}>
+        <svg class="mp-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={C.svgLabel}>
           {Array.from({ length: Math.floor(W / 40) + 1 }, (_, i) => <line x1={i * 40} y1="0" x2={i * 40} y2={H} class="mp-grid" />)}
           {Array.from({ length: Math.floor(H / 40) + 1 }, (_, i) => <line x1="0" y1={i * 40} x2={W} y2={i * 40} class="mp-grid" />)}
           <text x="26" y="30" class="mp-meta" text-anchor="middle">N ↑</text>
@@ -49,7 +52,7 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
             <line x1={sbX} y1={sbY} x2={sbX + sb} y2={sbY} />
             <line x1={sbX} y1={sbY - 5} x2={sbX} y2={sbY + 5} />
             <line x1={sbX + sb} y1={sbY - 5} x2={sbX + sb} y2={sbY + 5} />
-            <text x={r1(sbX + sb / 2)} y={sbY - 9} class="mp-meta" text-anchor="middle">{ar ? '10 كم' : '10 km'}</text>
+            <text x={r1(sbX + sb / 2)} y={sbY - 9} class="mp-meta" text-anchor="middle">{C.km}</text>
           </g>
           {pins.map((p) => (
             <g class="mp-pin" data-pin={p.slug_en} style={`--d:${p.delay}s`} aria-hidden="true">
@@ -60,12 +63,12 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
           ))}
         </svg>
         {/* البديل غير الحركي ومدخل لوحة المفاتيح: زرّ لكل معلم بالترتيب نفسه */}
-        <div class="mp-legend" role="group" aria-label={ar ? 'معالم الخريطة' : 'Map landmarks'}>
+        <div class="mp-legend" role="group" aria-label={C.legend}>
           {pins.map((p) => <button type="button" class="mp-chip" data-open={p.slug_en} aria-pressed="false" aria-controls={`mp-panel-${p.slug_en}`}>{p.title}</button>)}
         </div>
       </div>
       <div class="mp-panels" aria-live="polite">
-        <p class="mp-empty">{ar ? 'اختر معلماً من الخريطة لترى صورته ووصفه.' : 'Pick a landmark on the map to see its photo and description.'}</p>
+        <p class="mp-empty">{C.empty}</p>
         {pins.map((p) => (
           <article class="mp-panel" id={`mp-panel-${p.slug_en}`} data-panel={p.slug_en} hidden>
             <Photo src={p.heroImage} label={p.title} class="mp-photo" sizes="(max-width: 860px) 100vw, 420px" />
@@ -76,14 +79,14 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
                 <button class="fav-btn mp-save" type="button" data-fav={p.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
                   <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
                 </button>
-                <a class="mp-more" href={attractionHref(p, lang)}>{ar ? 'صفحة المعلم' : 'Landmark page'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+                <a class="mp-more" href={attractionHref(p, lang)}>{C.more} <span aria-hidden="true">{HC.arrow}</span></a>
               </div>
             </div>
           </article>
         ))}
       </div>
     </div>
-    <a class="ch-link" href={ar ? '/خريطة/' : '/en/map/'}>{ar ? 'الخريطة الكاملة' : 'Full map'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+    <a class="ch-link" href={HC.paths.map}>{C.link} <span aria-hidden="true">{HC.arrow}</span></a>
   </div>
 </section>
 

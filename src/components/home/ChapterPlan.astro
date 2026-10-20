@@ -3,39 +3,30 @@
 // وفقرة المرافقين (القرار ب4، اعتمد إياد نصوصها)، ويُدمج في أول اليوم الأول ما حُفظ في
 // «معالمي» (va-plan). القوالب محسومة وقت البناء إلى أسماء وروابط؛ السكربت يعرض فقط.
 // إكمال الأسئلة يُقاس بحدث route_built.
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 type ResolvedStop = { name: string; href: string; kind: 'trail' | 'place' };
 type Resolved = { title: string; note?: string; days: ResolvedStop[][] };
 interface Props {
-  lang: 'ar' | 'en';
+  lang: HomeLang;
   templates: Record<string, Resolved>;
   tips: Record<string, string>;
   places: Record<string, { name: string; href: string }>; // slug_ar → اسم ورابط، لدمج المحفوظ
   planHref: string;
 }
 const { lang, templates, tips, places, planHref } = Astro.props;
-const ar = lang === 'ar';
-const Q = ar
-  ? {
-      int: { legend: 'ما الذي يشدّك؟', opts: [['heritage', 'التراث والتاريخ'], ['nature', 'الطبيعة والماء'], ['markets', 'الأسواق والحِرف']] },
-      dur: { legend: 'كم يوماً معك؟', opts: [['1', 'يوم'], ['2', 'يومان'], ['3', 'ثلاثة أيام']] },
-      com: { legend: 'مع من تسافر؟', opts: [['family', 'العائلة'], ['friends', 'الأصدقاء'], ['solo', 'وحدي']] },
-    }
-  : {
-      int: { legend: 'What draws you?', opts: [['heritage', 'Heritage & history'], ['nature', 'Nature & water'], ['markets', 'Souqs & crafts']] },
-      dur: { legend: 'How many days do you have?', opts: [['1', 'One day'], ['2', 'Two days'], ['3', 'Three days']] },
-      com: { legend: 'Who are you travelling with?', opts: [['family', 'Family'], ['friends', 'Friends'], ['solo', 'On my own']] },
-    };
-const L = ar
-  ? { wait: 'أجب عن الأسئلة الثلاثة ليظهر مسارك هنا.', title: 'مسارك', days: ['اليوم الأول', 'اليوم الثاني', 'اليوم الثالث'], trail: 'مسار', place: 'معلم', saved: 'من محفوظاتك' }
-  : { wait: 'Answer the three questions to see your route here.', title: 'Your route', days: ['Day one', 'Day two', 'Day three'], trail: 'Trail', place: 'Landmark', saved: 'From your saved places' };
+const eb = chapterEyebrow(lang, 5, 'Plan Your Trip');
+const H = HOME_COPY[lang];
+const C = H.plan;
+const Q = { int: C.int, dur: C.dur, com: C.com };
+const L = C.L;
 const payload = JSON.stringify({ templates, tips, places, L });
 ---
 <section class="ch cv-auto ch--sand plan6" id="ch-plan" data-chapter data-track-view="plan" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">06 · Plan Your Trip</span>
-      <h2 class="ch-title">{ar ? 'خطّط رحلتك في ثلاثة أسئلة' : 'Plan your trip in three questions'}</h2>
-      <p class="ch-lead">{ar ? 'أجب، فيظهر مسارك فوراً، ويدخل فيه ما حفظته من الخريطة.' : 'Answer, and your route appears at once, with the places you saved from the map.'}</p>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
+      <h2 class="ch-title">{C.title}</h2>
+      <p class="ch-lead">{C.lead}</p>
     </header>
     <div class="p6">
       <form class="p6-form" data-plan-form>
@@ -56,7 +47,7 @@ const payload = JSON.stringify({ templates, tips, places, L });
         <div data-route-body hidden></div>
       </div>
     </div>
-    <a class="ch-link" href={planHref}>{ar ? 'دليل التخطيط الكامل' : 'Full trip-planning guide'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+    <a class="ch-link" href={planHref}>{C.link} <span aria-hidden="true">{H.arrow}</span></a>
   </div>
   <script type="application/json" data-plan-data set:html={payload} />
 </section>

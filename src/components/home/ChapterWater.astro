@@ -5,28 +5,29 @@
 // لصيقة عدد المعالم نصّ القاموس نفسه (fact.sites.l) — يقرؤها فحص C3.
 import { OASIS_FACTS, OASIS_SOURCES } from '../../data/oasis-facts';
 import { useTranslations } from '../../i18n/utils';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
-interface Props { lang: 'ar' | 'en'; sitesCount: number }
+interface Props { lang: HomeLang; sitesCount: number }
 const { lang, sitesCount } = Astro.props;
+const eb = chapterEyebrow(lang, 1, 'Water Beneath the Sand');
 const t = useTranslations(lang);
-const ar = lang === 'ar';
-const springs = OASIS_FACTS.springs.value;
+const H = HOME_COPY[lang];
+const C = H.water;
 const facts = [
   { n: OASIS_FACTS.palms.plus[lang], l: t('fact.palms.l'), count: true },
-  // «+» قبل الرقم في العربية معزول اتجاهياً كصيغة النخيل
-  { n: ar ? `⁦+${springs}⁩` : `${springs}+`, l: ar ? 'عيناً ارتوازية تروي الواحة' : 'artesian springs water the oasis', count: true },
+  { n: OASIS_FACTS.springs.plus[lang], l: C.springsL, count: true },
   { n: String(OASIS_FACTS.unescoYear.value), l: t('fact.unesco.l'), count: false },
   { n: String(sitesCount), l: t('fact.sites.l'), count: true },
 ];
-const allHref = ar ? '/معالم/' : '/en/attractions/';
+const allHref = H.paths.attractions;
 ---
 <section class="ch cv-auto ch--light water" id="ch-water" data-chapter data-track-view="water" data-track-view-page="home">
   <div class="water-ripples" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">02 · Water Beneath the Sand</span>
-      <h2 class="ch-title">{ar ? 'الماء تحت الرمل' : 'Water beneath the sand'}</h2>
-      <p class="ch-lead">{ar ? 'خزانٌ جوفيٌّ هائل يغذّي الواحة، فتخضرّ في قلب الصحراء.' : 'A vast underground aquifer feeds the oasis, keeping it green in the heart of the desert.'}</p>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
+      <h2 class="ch-title">{C.title}</h2>
+      <p class="ch-lead">{C.lead}</p>
     </header>
     <div class="water-facts">
       {facts.map((f) => (
@@ -40,13 +41,13 @@ const allHref = ar ? '/معالم/' : '/en/attractions/';
       ))}
     </div>
     <p class="water-src">
-      {ar ? 'المصادر: ' : 'Sources: '}
-      <a href={OASIS_SOURCES.guinness} rel="noopener" target="_blank">{ar ? 'موسوعة غينيس للأرقام القياسية، سجل «أكبر واحة»' : 'Guinness World Records, “Largest oasis”'}</a>
-      {ar ? ' (النخيل والعيون)؛ وإحصاءات وزارة البيئة والمياه والزراعة (النخيل)؛ و' : ' (palms and springs); Ministry of Environment, Water and Agriculture statistics (palms); '}
-      <a href={OASIS_SOURCES.unesco} rel="noopener" target="_blank">{ar ? 'قائمة التراث العالمي لليونسكو' : 'UNESCO World Heritage List'}</a>
-      {ar ? ' (2018).' : ' (2018).'}
+      {C.srcLabel}
+      <a href={OASIS_SOURCES.guinness} rel="noopener" target="_blank">{C.srcGuinness}</a>
+      {C.srcMid}
+      <a href={OASIS_SOURCES.unesco} rel="noopener" target="_blank">{C.srcUnesco}</a>
+      {C.srcEnd}
     </p>
-    <a class="ch-link" href={`${allHref}?cat=nature`}>{ar ? 'اكتشف معالم الطبيعة' : 'Explore nature sites'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+    <a class="ch-link" href={`${allHref}?cat=nature`}>{C.link} <span aria-hidden="true">{H.arrow}</span></a>
   </div>
 </section>
 

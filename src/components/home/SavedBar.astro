@@ -2,14 +2,16 @@
 // شريط «معالمي» السفلي: مخفيّ حتى أول حفظ في va-plan، ثم ينزلق بالعدد وزرّ يقود إلى الفصل 6
 // حيث يُدمج المحفوظ في المسار. حين يظهر تختفي أيقونة «معالمي» من رأس الجوال فلا يتكرر العنصر
 // في الشاشة (القرار أ3، البند 5).
-interface Props { lang: 'ar' | 'en' }
+import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+
+interface Props { lang: HomeLang }
 const { lang } = Astro.props;
-const ar = lang === 'ar';
+const C = HOME_COPY[lang].saved;
 ---
 <div class="sbar" data-savebar hidden>
   <div class="sbar-in">
-    <span class="sbar-count">{ar ? 'معالمي:' : 'My places:'} <b data-plan-count>0</b></span>
-    <a class="btn btn--gold sbar-btn" href="#ch-plan">{ar ? 'ابنِ رحلتي منها' : 'Build my trip from them'}</a>
+    <span class="sbar-count">{C.count} <b data-plan-count>0</b></span>
+    <a class="btn btn--gold sbar-btn" href="#ch-plan">{C.build}</a>
   </div>
 </div>
 

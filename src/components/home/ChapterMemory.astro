@@ -3,21 +3,24 @@
 // التاريخ على البطاقة بصيغته من متن صفحة المعلم، وما لا تاريخ في متنه بلا تاريخ (القرار ج6).
 import Photo from '../Photo.astro';
 import { attractionHref } from '../../lib/routes';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 type Card = { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string; date?: string };
-interface Props { lang: 'ar' | 'en'; cards: Card[] }
+interface Props { lang: HomeLang; cards: Card[] }
 const { lang, cards } = Astro.props;
-const ar = lang === 'ar';
+const eb = chapterEyebrow(lang, 4, 'Memory of Clay and Souq');
+const H = HOME_COPY[lang];
+const C = H.memory;
 ---
 <section class="ch cv-auto ch--light memory" id="ch-memory" data-chapter data-track-view="memory" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">05 · Memory of Clay and Souq</span>
-      <h2 class="ch-title">{ar ? 'ذاكرة الطين والسوق' : 'Memory of clay and souq'}</h2>
-      <p class="ch-lead">{ar ? 'حصونٌ من طين، ومساجد من أوائل الإسلام، وأسواقٌ تعاقبت عليها الأجيال.' : 'Clay fortresses, some of Islam’s earliest mosques, and souqs passed down through generations.'}</p>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
+      <h2 class="ch-title">{C.title}</h2>
+      <p class="ch-lead">{C.lead}</p>
     </header>
   </div>
-  <div class="mem-track" tabindex="0" role="region" aria-label={ar ? 'معالم التراث، تمرير أفقي' : 'Heritage landmarks, scroll sideways'}>
+  <div class="mem-track" tabindex="0" role="region" aria-label={C.track}>
     {cards.map((c) => (
       <a class="mem-card" href={attractionHref(c, lang)}>
         <div class="mem-ph">
@@ -30,7 +33,7 @@ const ar = lang === 'ar';
     ))}
   </div>
   <div class="container">
-    <a class="ch-link" href={ar ? '/معالم/?cat=historic' : '/en/attractions/?cat=historic'}>{ar ? 'المعالم التراثية' : 'Heritage sites'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+    <a class="ch-link" href={`${H.paths.attractions}?cat=historic`}>{C.link} <span aria-hidden="true">{H.arrow}</span></a>
   </div>
 </section>
 
