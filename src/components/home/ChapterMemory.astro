@@ -3,18 +3,19 @@
 // التاريخ على البطاقة بصيغته من متن صفحة المعلم، وما لا تاريخ في متنه بلا تاريخ (القرار ج6).
 import Photo from '../Photo.astro';
 import { attractionHref } from '../../lib/routes';
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 type Card = { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string; date?: string };
 interface Props { lang: HomeLang; cards: Card[] }
 const { lang, cards } = Astro.props;
+const eb = chapterEyebrow(lang, 4, 'Memory of Clay and Souq');
 const H = HOME_COPY[lang];
 const C = H.memory;
 ---
 <section class="ch cv-auto ch--light memory" id="ch-memory" data-chapter data-track-view="memory" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">05 · Memory of Clay and Souq</span>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
       <h2 class="ch-title">{C.title}</h2>
       <p class="ch-lead">{C.lead}</p>
     </header>

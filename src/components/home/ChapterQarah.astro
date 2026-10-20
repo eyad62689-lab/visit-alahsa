@@ -4,10 +4,11 @@
 // الخلاصة من مجموعة المعالم كما هي — تنسب الدفء للشتاء (C16).
 import Photo from '../Photo.astro';
 import { attractionHref } from '../../lib/routes';
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang; qarah: { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string } }
 const { lang, qarah } = Astro.props;
+const eb = chapterEyebrow(lang, 2, 'Jabal Al-Qarah');
 const H = HOME_COPY[lang];
 const C = H.qarah;
 const times = C.times;
@@ -15,7 +16,7 @@ const times = C.times;
 <section class="ch cv-auto ch--sand qarah" id="ch-qarah" data-chapter data-track-view="qarah" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">03 · Jabal Al-Qarah</span>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
       <h2 class="ch-title">{C.title}</h2>
       <p class="ch-lead">{qarah.summary} {C.drag}</p>
     </header>

@@ -3,10 +3,11 @@
 // دليل التخطيط، أو «افتح رحلتي (n)» إلى «معالمي» متى وُجد محفوظ في va-plan. لا زرّ حجز.
 // الصورة نهارية حقيقية من المكتبة، والنصّ لا يدّعي الغروب حتى تُصوَّر لقطته (القرار أ5).
 import Photo from '../Photo.astro';
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang; planHref: string; myTripHref: string }
 const { lang, planHref, myTripHref } = Astro.props;
+const eb = chapterEyebrow(lang, 6, 'Finale');
 const C = HOME_COPY[lang].finale;
 const { plan, open } = C;
 ---
@@ -14,7 +15,7 @@ const { plan, open } = C;
   <div class="fin-bg" aria-hidden="true"><Photo src="/img/asfar" class="fin-photo" sizes="100vw" /></div>
   <div class="fin-shade" aria-hidden="true"></div>
   <div class="container fin-in" data-rise>
-    <span class="ch-no">07 · Finale</span>
+    <span class="ch-no" lang={eb.lang}>{eb.text}</span>
     <h2 class="ch-title fin-title">{C.title}</h2>
     <p class="ch-lead fin-lead">{C.lead}</p>
     <div class="fin-cta">

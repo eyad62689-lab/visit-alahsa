@@ -7,11 +7,12 @@
 import Photo from '../Photo.astro';
 import { attractionHref } from '../../lib/routes';
 import { useTranslations } from '../../i18n/utils';
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 type Pt = { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string; lat: number; lng: number };
 interface Props { lang: HomeLang; points: Pt[] }
 const { lang, points } = Astro.props;
+const eb = chapterEyebrow(lang, 3, 'The Living Map');
 const t = useTranslations(lang);
 const HC = HOME_COPY[lang];
 const C = HC.map;
@@ -37,7 +38,7 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
 <section class="ch cv-auto ch--dark mapch" id="ch-map" data-chapter data-dark data-track-view="map" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">04 · The Living Map</span>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
       <h2 class="ch-title">{C.title}</h2>
       <p class="ch-lead">{C.lead}</p>
     </header>

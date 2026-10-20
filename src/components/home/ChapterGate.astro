@@ -5,10 +5,11 @@
 import HeroPoster from '../HeroPoster.astro';
 import HeroVideo from '../HeroVideo.astro';
 
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang }
 const { lang } = Astro.props;
+const eb = chapterEyebrow(lang, 0, 'The Gate');
 const C = HOME_COPY[lang].gate;
 ---
 <section class="ch gate" id="ch-gate" data-chapter data-dark data-track-view="gate" data-track-view-page="home">
@@ -18,7 +19,7 @@ const C = HOME_COPY[lang].gate;
   </div>
   <div class="gate-shade" aria-hidden="true"></div>
   <div class="container gate-in">
-    <span class="ch-no">01 · The Gate</span>
+    <span class="ch-no" lang={eb.lang}>{eb.text}</span>
     <h1 class="gate-title">{C.title}</h1>
     <p class="gate-lead">{C.lead}</p>
     <div class="gate-cta">

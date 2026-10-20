@@ -3,7 +3,7 @@
 // وفقرة المرافقين (القرار ب4، اعتمد إياد نصوصها)، ويُدمج في أول اليوم الأول ما حُفظ في
 // «معالمي» (va-plan). القوالب محسومة وقت البناء إلى أسماء وروابط؛ السكربت يعرض فقط.
 // إكمال الأسئلة يُقاس بحدث route_built.
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 type ResolvedStop = { name: string; href: string; kind: 'trail' | 'place' };
 type Resolved = { title: string; note?: string; days: ResolvedStop[][] };
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
   planHref: string;
 }
 const { lang, templates, tips, places, planHref } = Astro.props;
+const eb = chapterEyebrow(lang, 5, 'Plan Your Trip');
 const H = HOME_COPY[lang];
 const C = H.plan;
 const Q = { int: C.int, dur: C.dur, com: C.com };
@@ -23,7 +24,7 @@ const payload = JSON.stringify({ templates, tips, places, L });
 <section class="ch cv-auto ch--sand plan6" id="ch-plan" data-chapter data-track-view="plan" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">06 · Plan Your Trip</span>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
       <h2 class="ch-title">{C.title}</h2>
       <p class="ch-lead">{C.lead}</p>
     </header>

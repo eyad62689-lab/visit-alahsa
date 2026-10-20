@@ -64,6 +64,7 @@ export const OASIS_FACTS = {
     plus: {
       ar: '⁦+280⁩',
       en: '280+',
+      zh: '280 多',
     } satisfies Readonly<Record<HomeLang, string>>,
   },
   unescoYear: { value: 2018 },

@@ -5,10 +5,11 @@
 // لصيقة عدد المعالم نصّ القاموس نفسه (fact.sites.l) — يقرؤها فحص C3.
 import { OASIS_FACTS, OASIS_SOURCES } from '../../data/oasis-facts';
 import { useTranslations } from '../../i18n/utils';
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang; sitesCount: number }
 const { lang, sitesCount } = Astro.props;
+const eb = chapterEyebrow(lang, 1, 'Water Beneath the Sand');
 const t = useTranslations(lang);
 const H = HOME_COPY[lang];
 const C = H.water;
@@ -24,7 +25,7 @@ const allHref = H.paths.attractions;
   <div class="water-ripples" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="container">
     <header class="ch-head" data-rise>
-      <span class="ch-no">02 · Water Beneath the Sand</span>
+      <span class="ch-no" lang={eb.lang}>{eb.text}</span>
       <h2 class="ch-title">{C.title}</h2>
       <p class="ch-lead">{C.lead}</p>
     </header>

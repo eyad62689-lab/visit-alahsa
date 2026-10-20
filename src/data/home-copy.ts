@@ -3,7 +3,7 @@
 // من خط ترجمتها حصراً ثم تُضمّ إلى HOME_LANGS. أوصاف الأماكن ليست هنا: تأتي من مجموعاتها.
 import type { Lang } from '../i18n/ui';
 
-export const HOME_LANGS = ['ar', 'en'] as const;
+export const HOME_LANGS = ['ar', 'en', 'zh'] as const;
 export type HomeLang = (typeof HOME_LANGS)[number];
 
 type Pair = readonly [string, string];
@@ -174,6 +174,87 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     saved: { count: 'My places:', build: 'Build my trip from them' },
   },
+  // الصينية من خط zh-translation-pipeline (دفعة zh-home-1، 2026-10-20)؛ seo منقول من HomeView (misc.seo.*، 2026-08-29)
+  zh: {
+    seo: {
+      title: '哈萨旅游指南——全球最大的绿洲',
+      description: '沙特阿拉伯哈萨旅游指南：卡拉山、易卜拉欣宫、凯撒利亚集市、乌盖尔（Al-Uqair）。在这片列入联合国教科文组织世界遗产名录的绿洲，查看地图与行程，了解活动与美食。',
+      place: '哈萨',
+      country: '沙特阿拉伯',
+    },
+    arrow: '→',
+    paths: { attractions: '/zh/attractions/', map: '/zh/map/', plan: '/zh/plan-your-trip/', myTrip: '/zh/plan/', trails: '/zh/trails/' },
+    gate: {
+      title: '全球最大的绿洲，在您眼前一章章展开',
+      lead: '沙下藏水，山中洞穴密布，集市世代相传。向下滑动，开启这段故事。',
+      begin: '开启故事',
+      skip: '直接前往行程规划',
+    },
+    rail: {
+      label: '页面章节',
+      items: [['ch-gate', '入口'], ['ch-water', '沙下之水'], ['ch-qarah', '卡拉山'], ['ch-map', '互动地图'], ['ch-memory', '泥土与集市的记忆'], ['ch-plan', '行程规划'], ['ch-finale', '尾声']],
+    },
+    water: {
+      title: '沙下之水',
+      lead: '一片巨大的地下含水层滋养着绿洲，让它在大漠腹地保持葱绿。',
+      springsL: '处自流泉，灌溉着这片绿洲',
+      srcLabel: '资料来源：',
+      srcGuinness: '吉尼斯世界纪录“最大的绿洲”',
+      srcMid: '（椰枣树与泉眼）；沙特环境水务与农业部统计数据（椰枣树）；',
+      srcUnesco: '联合国教科文组织《世界遗产名录》',
+      srcEnd: '（2018）。',
+      link: '探索自然风光',
+    },
+    qarah: {
+      title: '卡拉山：亲手拨转一天的时光',
+      drag: '拖动滑块，从黎明到日落。',
+      timeLabel: '一天中的时段',
+      times: ['黎明', '上午', '下午', '日落'],
+      link: '卡拉山页面',
+    },
+    map: {
+      title: '选一处让您心动的地方',
+      lead: '每个景点都标在真实位置上。点击即可查看，还能把它收进“我的收藏”。',
+      svgLabel: '哈萨景点示意地图',
+      km: '10 公里',
+      legend: '地图上的景点',
+      empty: '在地图上选一处景点，即可查看它的照片与介绍。',
+      more: '景点页面',
+      link: '查看完整地图',
+    },
+    memory: {
+      title: '泥土与集市的记忆',
+      lead: '泥筑的城堡、伊斯兰教早期兴建的清真寺，还有世代相传的传统市集。',
+      track: '历史古迹列表，可左右滑动',
+      link: '浏览历史古迹',
+    },
+    plan: {
+      title: '行程规划，只需三个问题',
+      lead: '答完问题，路线随即出现，您在地图上收藏的景点也会一并排入。',
+      link: '完整行程规划指南',
+      int: { legend: '什么最吸引您？', opts: [['heritage', '古迹与历史'], ['nature', '自然与水'], ['markets', '市集与手工艺']] },
+      dur: { legend: '您有几天时间？', opts: [['1', '一天'], ['2', '两天'], ['3', '三天']] },
+      com: { legend: '您和谁同行？', opts: [['family', '家人'], ['friends', '朋友'], ['solo', '独自出行']] },
+      L: { wait: '回答这三个问题，您的路线将显示在这里。', title: '您的路线', days: ['第 1 天', '第 2 天', '第 3 天'], trail: '路线', place: '景点', saved: '来自我的收藏' },
+    },
+    finale: {
+      title: '绿洲静候您的到来',
+      lead: '从阿斯法湖畔的黄沙，到椰枣林的绿荫，您的旅程由此开始。',
+      plan: '行程规划',
+      open: '打开我的收藏',
+      replay: '从头再读',
+    },
+    saved: { count: '我的收藏：', build: '用收藏的景点规划行程' },
+  },
 };
 
 export const isHomeLang = (l: Lang): l is HomeLang => (HOME_LANGS as readonly string[]).includes(l);
+
+/** العنوان الصغير فوق الفصل («01 · The Gate»): لاتيني في العربية والإنجليزية كما اعتُمد التصميم
+ *  (وموسوم lang="en" في العربية)، وفي غيرهما اسم الفصل المترجم من شريط الفصول — نصّ لاتيني في
+ *  صفحة صينية يحسبه فحص سلامة اللغة C22 غير مترجم. */
+export const chapterEyebrow = (lang: HomeLang, i: number, latin: string) => {
+  const no = String(i + 1).padStart(2, '0');
+  if (lang === 'ar' || lang === 'en') return { text: `${no} · ${latin}`, lang: lang === 'en' ? undefined : 'en' };
+  return { text: `${no} · ${HOME_COPY[lang].rail.items[i][1]}`, lang: undefined };
+};
