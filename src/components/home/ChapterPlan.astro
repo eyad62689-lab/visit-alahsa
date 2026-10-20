@@ -5,21 +5,22 @@
 // إكمال الأسئلة يُقاس بحدث route_built.
 import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
 type ResolvedStop = { name: string; href: string; kind: 'trail' | 'place' };
-type Resolved = { title: string; note?: string; days: ResolvedStop[][] };
+type Resolved = { title: string; note?: string; coast: boolean; days: ResolvedStop[][] };
 interface Props {
   lang: HomeLang;
   templates: Record<string, Resolved>;
   tips: Record<string, string>;
+  coastTips: Record<string, string>; // تتمة الفقرة حين يضمّ القالب يوم الساحل
   places: Record<string, { name: string; href: string }>; // slug_ar → اسم ورابط، لدمج المحفوظ
   planHref: string;
 }
-const { lang, templates, tips, places, planHref } = Astro.props;
+const { lang, templates, tips, coastTips, places, planHref } = Astro.props;
 const eb = chapterEyebrow(lang, 5, 'Plan Your Trip');
 const H = HOME_COPY[lang];
 const C = H.plan;
 const Q = { int: C.int, dur: C.dur, com: C.com };
 const L = C.L;
-const payload = JSON.stringify({ templates, tips, places, L });
+const payload = JSON.stringify({ templates, tips, coastTips, sep: H.sep, places, L });
 ---
 <section class="ch cv-auto ch--sand plan6" id="ch-plan" data-chapter data-track-view="plan" data-track-view-page="home">
   <div class="container">
@@ -55,8 +56,10 @@ const payload = JSON.stringify({ templates, tips, places, L });
 <script>
   type Stop = { name: string; href: string; kind: 'trail' | 'place' };
   type Data = {
-    templates: Record<string, { title: string; note?: string; days: Stop[][] }>;
+    templates: Record<string, { title: string; note?: string; coast: boolean; days: Stop[][] }>;
     tips: Record<string, string>;
+    coastTips: Record<string, string>;
+    sep: string;
     places: Record<string, { name: string; href: string }>;
     L: { wait: string; title: string; days: string[]; trail: string; place: string; saved: string };
   };
@@ -103,7 +106,8 @@ const payload = JSON.stringify({ templates, tips, places, L });
         body.append(day);
       });
       if (tpl.note) body.append(el('p', 'p6-note', tpl.note));
-      if (D.tips[com]) body.append(el('p', 'p6-tip', D.tips[com]));
+      const coast = tpl.coast ? D.coastTips[com] : undefined;
+      if (D.tips[com]) body.append(el('p', 'p6-tip', coast ? D.tips[com] + D.sep + coast : D.tips[com]));
       body.hidden = false; wait.hidden = true;
       const key = `${int}-${dur}-${com}`;
       if (key !== lastKey) { lastKey = key; (window as any).VATrack?.('route_built', { interest: int, duration: Number(dur), companion: com, saved: savedStops.length }); }

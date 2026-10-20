@@ -106,9 +106,9 @@ export const TEMPLATES: Record<string, Template> = {
  *  (mode: walking) وahsa-museum للمنفرد. */
 export const COMPANION_TIPS: Record<Companion, Record<HomeLang, string>> = {
   family: {
-    ar: 'أضف إلى يومك منتزهاً عائلياً قريباً من محطاتك: منتزه جواثا السياحي بجوار مسجد جواثا، ومنتزه الملك عبدالله البيئي للمشي والتنزّه، وفي يوم الساحل شاطئ العقير.',
-    en: 'Add a family park near your stops: Jawatha Park beside Jawatha Mosque, King Abdullah Environmental Park for walking and outings, and on the coast day, Al-Uqair Beach.',
-    zh: '为当天行程就近添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园；适合散步和出游的阿卜杜拉国王环境公园；去海岸的那天，还有乌盖尔海滩。',
+    ar: 'أضف إلى يومك منتزهاً عائلياً: منتزه جواثا السياحي بجوار مسجد جواثا، أو منتزه الملك عبدالله البيئي للمشي والتنزّه.',
+    en: 'Add a family park to your day: Jawatha Park beside Jawatha Mosque, or King Abdullah Environmental Park for walking and outings.',
+    zh: '为当天行程添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园，或适合散步和出游的阿卜杜拉国王环境公园。',
   },
   friends: {
     ar: 'لمن يحبّ الرحلات البرية: مسار بحيرة الأصفر يحتاج سيارة دفع رباعي، وجبل الأربع وجهة تخييم ورحلات جنوب شرق الهفوف.',
@@ -119,5 +119,16 @@ export const COMPANION_TIPS: Record<Companion, Record<HomeLang, string>> = {
     ar: 'مسار الهفوف التاريخي يُقطع مشياً، فهو يومٌ هادئ بين الحصن والسوق، وللمزيد متحف الأحساء يعرض تاريخ المنطقة وآثارها.',
     en: 'The Historic Hofuf Trail is walked on foot, a quiet day between the fortress and the souq; for more, Al-Ahsa Museum presents the region’s history and antiquities.',
     zh: '胡富夫历史路线全程步行，在城堡与市集之间度过安静的一天；若想了解更多，哈萨博物馆呈现了这一地区的历史与文物。',
+  },
+};
+
+/** تتمة فقرة المرافقين تظهر فقط في قالب فيه يوم الساحل (مسار al-uqair-coast): كانت جزءاً من فقرة
+ *  العائلة فتَعِد بـ«يوم الساحل» في قوالب اليوم واليومين التي لا ساحل فيها (2026-10-20). */
+export const COAST_TRAIL = 'al-uqair-coast';
+export const COAST_TIPS: Partial<Record<Companion, Record<HomeLang, string>>> = {
+  family: {
+    ar: 'وفي يوم الساحل أضف شاطئ العقير.',
+    en: 'On the coast day, add Al-Uqair Beach.',
+    zh: '去海岸的那天，再添上乌盖尔海滩。',
   },
 };
