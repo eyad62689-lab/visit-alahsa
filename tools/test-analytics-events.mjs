@@ -123,7 +123,8 @@ try {
 
   await goto('/en/attractions/jabal-al-qarah/');
   await page.click('details[data-lang-menu] > summary');
-  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }).catch(() => {}), page.click('a.lang-item[lang="ar"]')]);
+  // المبدّل المفتوح في الشريط تحديداً: نسخة الجوال في القائمة (nav-langs) أسبق في الشجرة ومخفية على 1280px
+  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }).catch(() => {}), page.click('details[data-lang-menu] a.lang-item[lang="ar"]')]);
   const ls = await waitEvent(page, 'lang_switch', (p) => p.from === 'en' && p.to === 'ar');
   ok(ls, 'lang_switch عند تبديل اللغة', 'from = en · to = ar');
 
