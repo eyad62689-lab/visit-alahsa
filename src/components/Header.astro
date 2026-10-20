@@ -339,7 +339,10 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur'] as Lang[])
      كل لغة يبقى كما هو: البحث واللغة و«معالمي» في الشريط والتنقّل في القائمة. */
   @media (max-width: 760px) {
     .hd-actions :global(.hd-search-btn), .hd-actions .lang-menu { display: none; }
-    .nav-tools { display: grid; gap: var(--s-3); padding: var(--s-3) var(--s-4); }
+    /* تُعرض حين تُفتح القائمة فقط: القائمة المطويّة مخفيّة بـvisibility لا display، فأسماء اللغات
+       فيها (Русский، 中文) تُخطَّط وتطلب وجوهها السيريلية والصينية في كل صفحة على الجوال —
+       كسرت ميزانية «لا سيريلي خارج /ru/» في بوابة الأداء. */
+    .nav-toggle:checked ~ .nav .nav-tools { display: grid; gap: var(--s-3); padding: var(--s-3) var(--s-4); }
     .nav-search { display: flex; align-items: center; gap: 10px; inline-size: 100%; min-block-size: 46px; padding: 0 16px; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); font-family: var(--font-body); font-size: var(--t-ui, .9375rem); color: var(--c-ink-soft); text-align: start; cursor: pointer; }
     .nav-search:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
     .nav-langs { display: flex; flex-wrap: wrap; gap: var(--s-2); }
