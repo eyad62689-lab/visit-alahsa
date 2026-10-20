@@ -25,7 +25,7 @@ import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 import { TRAILS, trailText } from '../../data/trails';
-import { MAP_SLUGS, MEMORY_CARDS, TEMPLATES, COMPANION_TIPS, COAST_TIPS, COAST_TRAIL, type Stop } from '../../data/home-chapters';
+import { MAP_SLUGS, MEMORY_CARDS, TEMPLATES, COMPANION_TIPS, type Stop } from '../../data/home-chapters';
 import { HOME_COPY, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang; alt: AltLinks }
@@ -33,10 +33,10 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const H = HOME_COPY[lang];
-type Loc = { title: string; summary: string; title_en?: string; summary_en?: string; title_zh?: string; summary_zh?: string };
+type Loc = { title: string; summary: string; title_en?: string; summary_en?: string; title_zh?: string; summary_zh?: string; title_de?: string; summary_de?: string };
 // حقل اللغة المترجمة (لغير العربية والإنجليزية)؛ يُضاف فرع لكل لغة تنضمّ إلى HOME_LANGS
 const L = lang as Lang;
-const xl = (d: Loc, k: 'title' | 'summary'): string | undefined => (L === 'zh' ? d[`${k}_zh`] : undefined);
+const xl = (d: Loc, k: 'title' | 'summary'): string | undefined => (L === 'zh' ? d[`${k}_zh`] : L === 'de' ? d[`${k}_de`] : undefined);
 const own = (d: Loc) => L === 'ar' || L === 'en' || xl(d, 'title') !== undefined;
 const locTitle = (d: Loc) => (ar ? d.title : xl(d, 'title') ?? d.title_en ?? d.title);
 const locSummary = (d: Loc) => (ar ? d.summary : xl(d, 'summary') ?? d.summary_en ?? d.summary);
@@ -80,11 +80,10 @@ const resolveStop = (s: Stop) => {
 const templates = Object.fromEntries(Object.entries(TEMPLATES).map(([k, v]) => [k, {
   title: v.title[lang],
   note: v.note?.[lang],
-  coast: v.days.some((d) => d.stops.some((s) => 'trail' in s && s.trail === COAST_TRAIL)),
+  trails: v.days.flatMap((d) => d.stops.flatMap((s) => ('trail' in s ? [s.trail] : []))),
   days: v.days.map((d) => d.stops.map(resolveStop)),
 }]));
-const tips = Object.fromEntries(Object.entries(COMPANION_TIPS).map(([k, v]) => [k, v[lang]]));
-const coastTips = Object.fromEntries(Object.entries(COAST_TIPS).map(([k, v]) => [k, v[lang]]));
+const tips = Object.fromEntries(Object.entries(COMPANION_TIPS).map(([k, parts]) => [k, parts.map((p) => ({ when: p.when, text: p.text[lang] }))]));
 const places = Object.fromEntries(all.map((e) => [e.data.slug_ar, { name: locTitle(e.data), href: attractionHref(e.data, hrefLang(e.data)) }]));
 
 const planHref = H.paths.plan;
@@ -114,7 +113,7 @@ const { title, description } = H.seo;
     <ChapterQarah lang={lang} qarah={pick('jabal-al-qarah')} />
     <ChapterMap lang={lang} points={mapPoints} />
     <ChapterMemory lang={lang} cards={memoryCards} />
-    <ChapterPlan lang={lang} templates={templates} tips={tips} coastTips={coastTips} places={places} planHref={planHref} />
+    <ChapterPlan lang={lang} templates={templates} tips={tips} places={places} planHref={planHref} />
     <ChapterFinale lang={lang} planHref={planHref} myTripHref={myTripHref} />
   </main>
   <ChapterRail lang={lang} />
