@@ -25,6 +25,7 @@
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { writeFileSync, mkdirSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 
 const BASE = process.env.BASE ?? 'http://127.0.0.1:4399';
 const LH_DIR = (process.env.LH_DIR ?? '.').replace(/\\/g, '/');
@@ -39,6 +40,15 @@ const LCP_MAX = Number(process.env.LCP_MAX ?? 4000);   // مللي ثانية �
 const PERF_MIN = Number(process.env.PERF_MIN ?? 80);   // درجة الأداء الدنيا (محاكاة)
 const FONT_FILES_MAX = Number(process.env.FONT_FILES_MAX ?? 12);
 const FONT_KB_MAX = Number(process.env.FONT_KB_MAX ?? 270);   // كان 365 كيلوبايت على الرئيسية العربية قبل الخطوة 3
+// سقفا وزن الرئيسيات (مواصفات «الواحة تتكشّف» الإصدار 2، قرار ج2): مجموع JavaScript
+// مضغوطاً (الملفات الخارجية من نطاقنا والسكربتات المضمّنة في HTML) ≤ 120KB، ووزن
+// الصفحة الأولى بلا الفيديو ≤ 1200KB. المعاينة المحلية لا تضغط، فالنصوص (المستند
+// والسكربت والأنماط والجلب) تُقاس بـgzip لمحتواها كما يجلبه المتصفح — حتمياً ومقارباً
+// لما يرسله نتلايفي (brotli أصغر قليلاً، فالقياس متحفّظ) — والصور والخطوط بحجم نقلها.
+// يُحكم بهما على الرئيسيات وحدها (/ و/xx/)، ويُطبعان تشخيصاً لكل صفحة.
+const JS_KB_MAX = Number(process.env.JS_KB_MAX ?? 120);
+const WEIGHT_KB_MAX = Number(process.env.WEIGHT_KB_MAX ?? 1200);
+const isHome = (p) => /^\/([a-z]{2}\/)?$/.test(p);
 const OUT = process.env.LH_OUT ?? '';                  // مجلد اختياري لحفظ تقارير JSON
 const PAGES = (process.env.PAGES ?? '/,/en/,/ru/,/ur/,/en/attractions/jabal-al-qarah/,/ur/attractions/jabal-al-qarah/').split(',').map((s) => s.trim()).filter(Boolean);
 // وسيط N تشغيلات لكل صفحة: المحاكاة تُبنى على أثر فعلي تتقلّب أزمنة CPU فيه بين تشغيل
@@ -126,6 +136,38 @@ async function eagerBelowFold(url) {
   }
 }
 
+// حجم gzip لمورد من نطاقنا (يُخزَّن: الملف نفسه يتكرر بين التشغيلات والصفحات)
+const gzCache = new Map();
+async function gzBytes(url) {
+  if (!url.startsWith(BASE)) return null;
+  if (!gzCache.has(url)) {
+    gzCache.set(url, fetch(url).then(async (r) => {
+      const buf = Buffer.from(await r.arrayBuffer());
+      return { gz: gzipSync(buf, { level: 9 }).length, body: buf.toString('utf8') };
+    }).catch(() => null));
+  }
+  return gzCache.get(url);
+}
+const TEXT_TYPES = new Set(['Document', 'Script', 'Stylesheet', 'Fetch', 'XHR']);
+// JS مضغوطاً + وزن الصفحة بلا فيديو، من طلبات تشغيل Lighthouse نفسه
+async function weightOf(reqs) {
+  let js = 0, weight = 0;
+  for (const i of reqs) {
+    if (/\.(mp4|webm)(\?|$)/.test(i.url)) continue;
+    const g = TEXT_TYPES.has(i.resourceType) ? await gzBytes(i.url) : null;
+    const size = g ? g.gz : (i.transferSize || 0);
+    weight += size;
+    if (i.resourceType === 'Script') js += size;
+    if (i.resourceType === 'Document' && g) {
+      // JSON-LD وimportmap بيانات لا شيفرة — لا تُحسب
+      const inline = [...g.body.matchAll(/<script\b(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi)]
+        .filter((m) => !/type=["\x27]?(application\/(ld\+)?json|importmap)/i.test(m[1])).map((m) => m[2]).join('\n');
+      if (inline.trim()) js += gzipSync(Buffer.from(inline, 'utf8'), { level: 9 }).length;
+    }
+  }
+  return { jsKb: Math.round(js / 1024), weightKb: Math.round(weight / 1024) };
+}
+
 const rows = [];
 let failed = false;
 try {
@@ -176,6 +218,7 @@ try {
     const preLcp = reqs.filter((i) => i.networkRequestTime < obsLcp);
     const preImgs = preLcp.filter((i) => i.resourceType === 'Image' && i.url !== lcpSrc);
     const kb = (xs) => Math.round(xs.reduce((t, i) => t + (i.transferSize || 0), 0) / 1024);
+    const { jsKb, weightKb } = await weightOf(reqs);
     samples.push({
       perf: Math.round((lhr.categories.performance.score ?? 0) * 100),
       // ميزانيات حتمية (1 = سليم)
@@ -189,6 +232,7 @@ try {
       cls: Number(a['cumulative-layout-shift'].numericValue.toFixed(3)),
       tbt: Math.round(a['total-blocking-time'].numericValue),
       kb: Math.round(a['total-byte-weight'].numericValue / 1024),
+      jsKb, weightKb,
       fonts: fontReqs.length,
       cyrillic: reqs.filter((i) => /cyrillic/.test(i.url)).length,
       nastaliq: reqs.filter((i) => /nastaliq/.test(i.url)).length,
@@ -225,13 +269,17 @@ try {
       'نستعليق قبل LCP': row.nastaliqBeforeLcp === 1,
       'صورة LCP محمَّلة مسبقاً': row.lcpImageOk === 1,
       'لا صورة eager تحت الطيّة': eagerBelow.length === 0,
+      ...(isHome(path) ? {
+        [`JS ≤ ${JS_KB_MAX}KB`]: row.jsKb <= JS_KB_MAX,
+        [`وزن بلا فيديو ≤ ${WEIGHT_KB_MAX}KB`]: row.weightKb <= WEIGHT_KB_MAX,
+      } : {}),
     };
     row.budgetFail = Object.entries(row.budget).filter(([, v]) => !v).map(([k]) => k);
     row.ok = row.lcp <= LCP_MAX && row.perf >= PERF_MIN && row.budgetFail.length === 0;
     if (!row.ok) failed = true;
     rows.push(row);
     if (OUT) { mkdirSync(OUT, { recursive: true }); writeFileSync(`${OUT}/${path.replace(/[^a-z0-9]+/gi, '_') || 'root'}.json`, JSON.stringify(lhr)); }
-    console.log(`${row.ok ? '✓' : '✗'} ${path.padEnd(36)} أداء ${String(row.perf).padStart(3)} · LCP ${String(row.lcp).padStart(4)}ms (وسيط ${row.runs}: ${row.lcpSpread}) · FCP ${row.fcp}ms · CLS ${row.cls} · ${row.kb}KB · خطوط ${row.fonts}/${row.fontKb}KB (سيريلي ${row.cyrillic} · نستعليق ${row.nastaliq}/${row.nastaliqKb}KB)${row.budgetFail.length ? ' · ميزانية مخالَفة: ' + row.budgetFail.join('، ') : ''}`);
+    console.log(`${row.ok ? '✓' : '✗'} ${path.padEnd(36)} أداء ${String(row.perf).padStart(3)} · LCP ${String(row.lcp).padStart(4)}ms (وسيط ${row.runs}: ${row.lcpSpread}) · FCP ${row.fcp}ms · CLS ${row.cls} · ${row.kb}KB · JS ${row.jsKb}KB gz · وزن بلا فيديو ${row.weightKb}KB · خطوط ${row.fonts}/${row.fontKb}KB (سيريلي ${row.cyrillic} · نستعليق ${row.nastaliq}/${row.nastaliqKb}KB)${row.budgetFail.length ? ' · ميزانية مخالَفة: ' + row.budgetFail.join('، ') : ''}`);
     // سطر التشخيص: عنصر LCP ومراحله من آخر تشغيل، والأثر الفعلي (غير المحاكى) وسيطاً
     const lcpEl = lhr.audits['largest-contentful-paint-element']?.details?.items ?? [];
     const snippet = (lcpEl[0]?.items?.[0]?.node?.snippet ?? '—').replace(/\s+/g, ' ').slice(0, 110);
@@ -243,5 +291,5 @@ try {
 } finally {
   await chrome.kill();
 }
-console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · لا نستعليق خارج /ur/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو ولا نستعليق قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
+console.log(`\nالميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · لا نستعليق خارج /ur/ · خطوط ≤ ${FONT_FILES_MAX} ملفاً و≤ ${FONT_KB_MAX}KB · لا فيديو ولا نستعليق قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة · الرئيسيات: JS ≤ ${JS_KB_MAX}KB مضغوطاً ووزن بلا فيديو ≤ ${WEIGHT_KB_MAX}KB؛ وحارسا المحاكاة: LCP ≤ ${LCP_MAX}ms وأداء ≥ ${PERF_MIN} (وسيط ${RUNS}) · ${rows.filter((r) => r.ok).length}/${rows.length} صفحات اجتازت`);
 if (failed) process.exit(1);
