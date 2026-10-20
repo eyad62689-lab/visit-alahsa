@@ -78,6 +78,8 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     parks: 'پارک اور باغات',
     market: 'روایتی بازار',
     farm: 'زرعی فارم',
+    // دفعة palm-village-page 2026-10-20 (الحاكم 92/100)
+    experience: 'تجربات اور دستکاریاں',
   },
 };
 

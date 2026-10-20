@@ -121,7 +121,13 @@ const EVENT_META = {
   'dates-festival': { img: '/img/event-dates-festival', start: 1, end: 2 },
   // نسخة 2026 مؤكدة في نوفمبر (من إياد، 2026-10-19) بلا تاريخ دقيق ولا مدة معلنة — فلا status: 'confirmed'
   // (يلزمه startISO/endISO). النسختان السابقتان: أبريل 2025 ويناير–مارس 2026 (صفحة المعلم palm-village.md).
-  'palm-village': { img: '/img/event-palm-village', start: 11, end: 11 },
+  // الموقع من رابط الخرائط الذي قدّمه إياد (2026-10-17، وأعاد تأكيده 2026-10-20 برابط جديد للنقطة نفسها)؛
+  // القرية موسمية في مكان ثابت (قوقل يسمّيها «مغلق نهائياً» خارج موسمها). الإحداثيات من الرابط المفكوك.
+  'palm-village': {
+    img: '/img/event-palm-village', start: 11, end: 11,
+    map: 'https://maps.app.goo.gl/TAUpHgVWvNB9TyAq8',
+    coords: { lat: 25.460124, lng: 49.567101 },
+  },
   // موعد نسخة 2026 المعلن: 19 أغسطس – 5 سبتمبر (من إياد، 2026-07-22)، ثم مُدِّد
   // إلى 13 سبتمبر (من إياد، 2026-08-28) — لذلك status: 'confirmed'.
   // العودة إلى الموسم التقريبي بعد الانقضاء تلقائية عبر after (النصوص في
@@ -227,9 +233,9 @@ const TEXT_AR: EventTexts = {
   },
   'palm-village': {
     slug: 'قرية-النخيل',
-    name: 'قرية النخيل', place: 'واحة الأحساء',
+    name: 'قرية النخيل', place: 'حي محيرس، المبرز',
     season: 'الشتاء', time: 'نوفمبر 2026م', span: 'لم تُعلن المدة بعد',
-    org: 'المركز الوطني للنخيل والتمور',
+    org: 'هيئة تطوير الأحساء، أمانة الأحساء',
     acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
   },
   lomi: {
@@ -366,9 +372,9 @@ const TEXT_EN: EventTexts = {
   },
   'palm-village': {
     slug: 'palm-village',
-    name: 'Palm Village', place: 'Al-Ahsa Oasis',
+    name: 'Palm Village', place: 'Muhairis district, Al-Mubarraz',
     season: 'Winter', time: 'November 2026', span: 'Duration not yet announced',
-    org: 'National Center for Palms and Dates',
+    org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
     acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
   },
   lomi: {
@@ -507,9 +513,9 @@ const TEXT_ZH: TranslatedTexts = {
   },
   'palm-village': {
     slug: 'palm-village',
-    name: '椰枣村', place: '哈萨绿洲',
+    name: '椰枣村', place: '穆巴拉兹的穆海里斯区',
     season: '冬季', time: '2026 年 11 月', span: '时长尚未公布',
-    org: '沙特国家棕榈和椰枣中心',
+    org: '哈萨发展管理局、哈萨市政局',
     acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品市集'],
   },
   lomi: {
@@ -623,9 +629,9 @@ const TEXT_RU: TranslatedTexts = {
   // دفعة ru-ev-3 2026-09-17 — خط ru-translation-pipeline، الحاكم 93/100 · APPROVE من الدورة الأولى
   'palm-village': {
     slug: 'palm-village',
-    name: 'Пальмовая деревня', place: 'Оазис Аль-Ахса',
+    name: 'Пальмовая деревня', place: 'Район Мухайрис, Эль-Мубарраз',
     season: 'Зима', time: 'Ноябрь 2026 года', span: 'Продолжительность ещё не объявлена',
-    org: 'Национальный центр пальм и фиников',
+    org: 'Управление по развитию Аль-Ахсы, муниципалитет Аль-Ахсы',
     acts: ['Финиковые лавки', 'Местные рестораны и кафе', 'Павильоны ремесленников (изделия из пальмовых листьев)', 'Продажа сельской продукции'],
   },
   'uqair-winter': {
@@ -727,9 +733,9 @@ const TEXT_DE: TranslatedTexts = {
   },
   'palm-village': {
     slug: 'palm-village',
-    name: 'Palmendorf', place: 'Al-Ahsa-Oase',
+    name: 'Palmendorf', place: 'Muhairis-Viertel, Al-Mubarraz',
     season: 'Winter', time: 'November 2026', span: 'Dauer noch nicht bekannt gegeben',
-    org: 'Nationales Zentrum für Palmen und Datteln',
+    org: 'Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa',
     acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
   },
   lomi: {
@@ -843,11 +849,11 @@ const TEXT_UR: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'کھجور کے درختوں کا گاؤں',
-    place: 'الاحساء کا نخلستان',
+    place: 'محلہ محیرس، المبرز',
     season: 'سردیاں',
     time: 'نومبر 2026',
     span: 'دورانیے کا اعلان ابھی نہیں ہوا',
-    org: 'کھجور کے درختوں اور کھجوروں کا قومی مرکز',
+    org: 'الاحساء کی ترقی کا ادارہ، الاحساء کی بلدیہ',
     acts: ['کھجوروں کی دکانیں', 'کھانے پینے کی مقامی جگہیں', 'دستکاروں کے پنڈال (کھجور کے پتوں سے بنی دستکاریاں)', 'دیہی مصنوعات کا بازار'],
   },
   lomi: {

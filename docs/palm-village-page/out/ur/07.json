@@ -1,0 +1,219 @@
+{
+  "lang": "ur",
+  "batch": "palm-village-page",
+  "stage": "07",
+  "score": 92,
+  "breakdown": {
+    "accuracy": 28,
+    "nativeness": 26,
+    "termbase_orthography_style": 19,
+    "fit_for_traveller": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "notes": "Score 92/100 after judge edits (before edits 28/23/19/7/10 = 87, below threshold; edits made within remit and the page rescored). Decision APPROVE.\nFixed strings byte-exact: title «کھجور کے درختوں کا گاؤں» (N361); organisers «الاحساء کی ترقی کا ادارہ، الاحساء کی بلدیہ»; «تصدیق باقی ہے» (P4); «نومبر 2026»; place «محلہ محیرس، المبرز» (card) / «المبرز کے محلہ محیرس میں» (body.4). C21: every number in faq.* (2026, 2024, 22 اپریل 2025, 27 جنوری 2026, 21, 19, 5, 7) stands in body/card in the same form (script-checked). Orthography script-checked: no ي ك ة ۃ, no Arabic-Indic digits, no Latin letters, no ASCII . , ? ; in Urdu text, no U+00A0, labels/card values without ۔.\nBOOTH (cta.label, body.5, faq.2.q): «دکان لگانا»: native, seller-only, the button stands alone; consistent with body.3, where the same village's booths are counted as «دکانیں». OWNER OPTION (one line): if the owner prefers the loan the reader asked for, the button is «گاؤں میں اسٹال کے لیے اندراج کرائیں» (body.5 «… گاؤں میں اسٹال کے لیے اندراج …», faq.2.q «گاؤں میں حصہ لینے کے لیے اسٹال کیسے لیا جا سکتا ہے؟»); this would reopen N174 / N377 under P16. Not used.\nCAFÉS: the summary keeps EN's separate cafés; body.3 and faq.3.a now name them inside the single figure: «قہوہ خانوں سمیت کھانے پینے کی 19 جگہیں» (N6 phrase kept; termbase «قہوہ خانہ» verified).\nOWNER OPTIONS / SOURCE-LEVEL: (1) \"seasonal destination\": if the owner wants the page to call it a fair, «موسمی میلہ» (blind 2a/28). (2) FAQ 4 answer lists three dates without explaining launch vs openings (blind 23): source-level, Urdu keeps the source. (3) \"lasting venue\" vs \"seasonal\" (blind 9); full protocol of patron / opener / presence (blind 8/14); no channel named for the organisers' announcements (blind 20): source-level. (4) UI outside the batch, for the UI line: bookmark button «یہ مقام محفوظ کریں» read as \"preserve\" (5); «اپنا دن بھرپور بنائیں» (25); nearby-places label/name run together and «الخلیفہ کا ورثہ عجائب گھر» (26); distance-note order (27); site-wide hours notice with nothing on the card to refer to (20, C13).\nEXTRA: ui.category.experience = «تجربات اور دستکاریاں» (blind 1, serious), to be added to CATEGORY_LABELS.ur in src/lib/categories.ts by the apply step.\nTERMBASE OPS: stage 05's 8 ops carried unchanged plus one new pending op for booth «دکان». Nothing written to termbase / tm / scores / src (coordinator applies).",
+  "blind_rulings": [
+    {
+      "n": 1,
+      "ruling": "applied (extra position)",
+      "why": "UI gap: category `experience` has no ur label in src/lib/categories.ts. Extra position ui.category.experience = «تجربات اور دستکاریاں» (the reader's own wording): plural heading in the pattern of «پارک اور باغات», «مساجد اور مذہبی مقامات»; «دستکاریاں» is the line's word for crafts; matches zh/de/ru \"experiences and crafts\". To be added by the apply step (judge does not write src/)."
+    },
+    {
+      "n": 2,
+      "ruling": "partly applied",
+      "why": "(a) «موسمی میلہ/بازار» rejected: EN \"seasonal destination\" / AR «وجهة موسمية» is the site's own description; calling it a fair changes how the site states it (P24/P25). Owner option: «موسمی میلہ». (b) applied: «ہیں» to habitual «ہوتے ہیں» (form only). (c) applied in body.3 / faq.3.a: the count names cafés inside the one figure («قہوہ خانوں سمیت کھانے پینے کی 19 جگہیں»); the summary keeps cafés as EN lists them."
+    },
+    {
+      "n": 3,
+      "ruling": "partly applied",
+      "why": "«مقام … منعقد» applied: «اس کا اہتمام … کرتے ہیں» (summary, body.1, faq.1.q). The name «الاحساء کی ترقی کا ادارہ» rejected: termbase entry and approved organiser string (fixed), and «اتھارٹی» is a loan without an entry (P16)."
+    },
+    {
+      "n": 4,
+      "ruling": "rejected",
+      "why": "«الاحساء کے نخلستان» is the line's established form of the oasis name on approved pages; compressing to «الاحساء نخلستان» is taste against a termbase form."
+    },
+    {
+      "n": 5,
+      "ruling": "rejected (outside batch)",
+      "why": "«یہ مقام محفوظ کریں» is a UI string, not a position of this batch. Logged for the UI line."
+    },
+    {
+      "n": 6,
+      "ruling": "applied",
+      "why": "body.1: «یہاں ایک ہی جگہ خریداری بھی ہے، ذائقے چکھنے کا موقع بھی اور ورثے سے واقفیت بھی۔» (same three items)."
+    },
+    {
+      "n": 7,
+      "ruling": "applied",
+      "why": "«پڑاؤ» (a caravan / bird stopover in this line) replaced: «یہاں کی سیر کئی حصوں پر مشتمل ہے»."
+    },
+    {
+      "n": 8,
+      "ruling": "rejected",
+      "why": "The three princes, their offices and roles are source facts (EN and AR). «امیر» (pending op; office fixed by the province and «شہزادہ») and «حاکم» (verified, N48) are termbase forms; «گورنر» is a loan refused under P16. The protocol register is the source's: source-level note for the owner."
+    },
+    {
+      "n": 9,
+      "ruling": "source-level",
+      "why": "EN \"lasting venue\" + \"seasonal destination\" / AR «بنيةً دائمة» + «وجهة موسمية»: a permanent site that opens seasonally; body.4 says so. Logged for the owner; Urdu keeps both."
+    },
+    {
+      "n": 10,
+      "ruling": "applied",
+      "why": "«اس وقت اس کا رقبہ 50,000 مربع میٹر سے زیادہ تھا۔» (referent and tense clear)."
+    },
+    {
+      "n": 11,
+      "ruling": "partly applied",
+      "why": "«ہوا» to «لگا» applied. Explaining \"Year of Handicrafts 2025\" (whose year) would add a fact the sources do not carry: rejected (fence)."
+    },
+    {
+      "n": 12,
+      "ruling": "rejected",
+      "why": "«تربیتی نشست» is the verified termbase word for workshop; «ورکشاپ» refused (P16)."
+    },
+    {
+      "n": 13,
+      "ruling": "partly applied",
+      "why": "Trailing verb closed («… تعداد نہیں تھی۔»). The disclaimer is the site's own statement in both sources (P25) and stays."
+    },
+    {
+      "n": 14,
+      "ruling": "rejected",
+      "why": "Patron / opener / presence are source facts in both languages; not ours to drop. Source-level register note for the owner."
+    },
+    {
+      "n": 15,
+      "ruling": "partly applied",
+      "why": "Scope of «جن میں» fixed (culture houses in their own clause). «ناظرین کی شرکت والا اسٹیج» (interactive theatre) and «ثقافت کے گھر» (culture houses) render source items; no detail may be added (fence). The two «فنون» mirror the source (\"folk arts\" / \"arts\")."
+    },
+    {
+      "n": 16,
+      "ruling": "applied",
+      "why": "«اگلا موسم نومبر 2026 میں لگے گا، اور یہ بات طے ہو چکی ہے۔»"
+    },
+    {
+      "n": 17,
+      "ruling": "partly applied",
+      "why": "«دو سے تین گھنٹے کا وقت رکھیں» applied. Curly marks round the card label are ruled (N89). No vowel signs on names (P17)."
+    },
+    {
+      "n": 18,
+      "ruling": "partly applied",
+      "why": "Booth: «چیزیں پیش کرنے کی جگہ» to «دکان لگانے» (native, seller-only). «اسٹال» not used (N174, N377, P16); owner option recorded. «گھروں میں چیزیں تیار کرنے والے خاندان» is the approved tm wording: rejected. Fee / selection / deadline are not in the sources: rejected (fence)."
+    },
+    {
+      "n": 19,
+      "ruling": "partly applied",
+      "why": "Repetition removed: «اندراج کے لیے اس صفحے پر ایک لنک دیا گیا ہے۔» Which link and where: the source says \"linked on this page\" only; layout is UI."
+    },
+    {
+      "n": 20,
+      "ruling": "rejected (outside batch)",
+      "why": "The hours/fees line is the site-wide notice det.hoursNotice (UI, build check C13), not a batch position. Where to follow the organisers' announcements: the sources name no channel; source-level for the owner."
+    },
+    {
+      "n": 21,
+      "ruling": "applied (button) / rejected (caption)",
+      "why": "Button now «گاؤں میں دکان لگانے کے لیے اندراج کرائیں»: stands alone, cannot be read as visitor sign-up. cta.note keeps the source's verbless caption form (EN \"For traders, …\", AR «للتجّار …»)."
+    },
+    {
+      "n": 22,
+      "ruling": "applied",
+      "why": "faq.2.q now «گاؤں میں حصہ لینے کے لیے دکان کیسے لگائی جا سکتی ہے؟»"
+    },
+    {
+      "n": 23,
+      "ruling": "source-level",
+      "why": "The answer is the source's (unchanged in EN and AR): three dates, no explanation of the launch. Logged for the owner. «افتتاحوں» is the regular oblique plural of «افتتاح»; kept."
+    },
+    {
+      "n": 24,
+      "ruling": "rejected",
+      "why": "The location clause is in both source answers (EN \"it is held amid the palm groves\", AR «وتقام وسط نخيل واحة الأحساء»)."
+    },
+    {
+      "n": 25,
+      "ruling": "rejected (outside batch)",
+      "why": "«اپنا دن بھرپور بنائیں» is a UI heading."
+    },
+    {
+      "n": 26,
+      "ruling": "rejected (outside batch)",
+      "why": "Nearby-places block (labels, spacing, museum name) is UI / other pages."
+    },
+    {
+      "n": 27,
+      "ruling": "rejected (outside batch)",
+      "why": "Distance note is UI."
+    },
+    {
+      "n": 28,
+      "ruling": "applied via 2 and 3",
+      "why": "Search line = summary: habitual tense and «اہتمام» applied; \"seasonal fair\" / \"closed until November\" would change or add to the site's claim (see 2a)."
+    }
+  ],
+  "edits": [
+    {
+      "id": "summary",
+      "before": "نخلستان کے کھجور کے باغات کے بیچ ایک موسمی مقام، جہاں کھجوروں کی دکانیں، کھانے پینے کی جگہیں، قہوہ خانے، دستکاروں کے پنڈال اور کھجور کے درخت کا عجائب گھر ہیں۔ اسے الاحساء کی ترقی کا ادارہ اور الاحساء کی بلدیہ منعقد کرتے ہیں۔",
+      "after": "نخلستان کے کھجور کے باغات کے بیچ ایک موسمی مقام، جہاں کھجوروں کی دکانیں، کھانے پینے کی جگہیں، قہوہ خانے، دستکاروں کے پنڈال اور کھجور کے درخت کا عجائب گھر ہوتے ہیں۔ اس کا اہتمام الاحساء کی ترقی کا ادارہ اور الاحساء کی بلدیہ کرتے ہیں۔",
+      "why": "Blind 2b/28: habitual «ہوتے ہیں» (whenever the season runs) for the bare «ہیں», which read as \"open now\"; the EN summary is timeless, so form only. Blind 3: one organises an event, not a «مقام»: «اس کا اہتمام … کرتے ہیں» (Pakistani press idiom for organisers). Cafés kept as EN lists them (blind 2c answered in body.3 / faq.3.a). Mixed list takes masculine plural, as stage 05 ruled for «شامل تھے»."
+    },
+    {
+      "id": "body.1",
+      "before": "کھجور کے درختوں کا گاؤں الاحساء کے نخلستان کے کھجور کے باغات کے بیچ ایک موسمی مقام ہے، جسے الاحساء کی ترقی کا ادارہ اور الاحساء کی بلدیہ منعقد کرتے ہیں۔ یہ کھجور کے درخت اور اس سے ملنے والی ہر چیز کا جشن ہے: کھجور اور اس سے بنی طرح طرح کی مصنوعات، اس کی دیکھ بھال کرنے والے کاشتکار، اور اس کے پتوں سے بنی دستکاریاں۔ یہاں خریداری، ذائقے چکھنا اور ورثے سے واقفیت ایک ہی جگہ ساتھ ساتھ چلتے ہیں۔ یہاں کی سیر میں کئی پڑاؤ آتے ہیں، اس لیے ہر سیاح اپنی دلچسپی اور اپنے وقت کے حساب سے ان میں سے جو چاہے چن سکتا ہے۔",
+      "after": "کھجور کے درختوں کا گاؤں الاحساء کے نخلستان کے کھجور کے باغات کے بیچ ایک موسمی مقام ہے، جس کا اہتمام الاحساء کی ترقی کا ادارہ اور الاحساء کی بلدیہ کرتے ہیں۔ یہ کھجور کے درخت اور اس سے ملنے والی ہر چیز کا جشن ہے: کھجور اور اس سے بنی طرح طرح کی مصنوعات، اس کی دیکھ بھال کرنے والے کاشتکار، اور اس کے پتوں سے بنی دستکاریاں۔ یہاں ایک ہی جگہ خریداری بھی ہے، ذائقے چکھنے کا موقع بھی اور ورثے سے واقفیت بھی۔ یہاں کی سیر کئی حصوں پر مشتمل ہے، اس لیے ہر سیاح اپنی دلچسپی اور اپنے وقت کے حساب سے ان میں سے جو چاہے چن سکتا ہے۔",
+      "why": "Blind 3: «اہتمام» for «منعقد» with «مقام». Blind 6: «ساتھ ساتھ چلتے ہیں» replaced by «… بھی … بھی … بھی» (same three items in one place). Blind 7: «پڑاؤ» is a halt / overnight stop (the line uses it for migratory birds), now «کئی حصوں پر مشتمل» for \"a tour of several stops\". Facts unchanged."
+    },
+    {
+      "id": "body.2",
+      "before": "دسمبر 2024 میں مشرقی صوبے کے امیر شہزادہ سعود بن نایف بن عبد العزیز نے اس منصوبے کا آغاز کیا، تاکہ یہ کھجور کے درختوں اور کھجوروں سے بنی مصنوعات اور ان سے جڑی تقریبات کا ایک مستقل مرکز بنے۔ الاحساء کے حاکم شہزادہ سعود بن طلال بن بدر نے منگل 22 اپریل 2025 کی شام اس کا افتتاح کیا۔ یہ 50,000 مربع میٹر سے زیادہ رقبے پر پھیلا ہوا تھا۔ یہ پہلا موسم دستکاریوں کے سال 2025 کے دوران ہوا، اور اس میں دستکاروں اور تربیتی نشستوں کے لیے ایک جگہ مخصوص تھی۔ روزانہ تقریباً 5,000 لوگوں کے آنے کی توقع تھی۔ یہ افتتاح کے موقع پر بتایا گیا ایک اندازہ تھا، حاضری کی کوئی درج شدہ تعداد نہیں۔",
+      "after": "دسمبر 2024 میں مشرقی صوبے کے امیر شہزادہ سعود بن نایف بن عبد العزیز نے اس منصوبے کا آغاز کیا، تاکہ یہ کھجور کے درختوں اور کھجوروں سے بنی مصنوعات اور ان سے جڑی تقریبات کا ایک مستقل مرکز بنے۔ الاحساء کے حاکم شہزادہ سعود بن طلال بن بدر نے منگل 22 اپریل 2025 کی شام اس کا افتتاح کیا۔ اس وقت اس کا رقبہ 50,000 مربع میٹر سے زیادہ تھا۔ یہ پہلا موسم دستکاریوں کے سال 2025 کے دوران لگا، اور اس میں دستکاروں اور تربیتی نشستوں کے لیے ایک جگہ مخصوص تھی۔ روزانہ تقریباً 5,000 لوگوں کے آنے کی توقع تھی۔ یہ افتتاح کے موقع پر بتایا گیا ایک اندازہ تھا، حاضری کی درج شدہ تعداد نہیں تھی۔",
+      "why": "Blind 10: «یہ … پھیلا ہوا تھا» had no clear referent and read as \"no longer exists\"; now «اس وقت اس کا رقبہ … تھا» (the site at the opening, EN \"opened it … on a site of more than 50,000 square metres\"). Blind 11: «موسم … ہوا» to «لگا», the line's verb for a fair (body.4 «لگتا ہے»). Blind 13: verbless tail closed with «نہیں تھی»; the claim itself (estimate, not a recorded figure) is the source's and stays (P25)."
+    },
+    {
+      "id": "body.3",
+      "before": "دوسرے موسم کا افتتاح 27 جنوری 2026 کو مشرقی صوبے کے امیر کی سرپرستی میں ہوا۔ افتتاح مشرقی صوبے کے نائب امیر شہزادہ سعود بن بندر بن عبد العزیز نے الاحساء کے حاکم کی موجودگی میں کیا، اور یہ موسم دو مہینے جاری رہا۔ اس کا رقبہ 90,000 مربع میٹر تھا، اور اس میں کھجوروں اور ان سے تیار کی گئی مصنوعات کی 21 دکانیں، کھانے پینے کی 19 جگہیں، الاحساء کی دیہی مصنوعات کی 5 دکانیں اور کھجور کے درخت سے بنی دستکاریوں کے 7 پنڈال تھے۔ اس کے پروگرام میں کھجور کے درخت کا عجائب گھر بھی تھا، جو کھجور کے درختوں اور کھجوروں کی قسموں اور ان کی تاریخ سے متعارف کراتا تھا۔ پروگرام میں بچوں کے لیے سرگرمیاں، ناظرین کی شرکت والا ایک اسٹیج، لوک فنون اور ثقافت کے گھر بھی شامل تھے، جن میں فنون، ادب، دستکاریاں اور لوک ورثہ یکجا تھے۔ یہ اعداد و شمار دوسرے موسم کے ہیں۔ سہولتیں ایک موسم سے دوسرے موسم میں بدل سکتی ہیں۔",
+      "after": "دوسرے موسم کا افتتاح 27 جنوری 2026 کو مشرقی صوبے کے امیر کی سرپرستی میں ہوا۔ افتتاح مشرقی صوبے کے نائب امیر شہزادہ سعود بن بندر بن عبد العزیز نے الاحساء کے حاکم کی موجودگی میں کیا، اور یہ موسم دو مہینے جاری رہا۔ اس کا رقبہ 90,000 مربع میٹر تھا، اور اس میں کھجوروں اور ان سے تیار کی گئی مصنوعات کی 21 دکانیں، قہوہ خانوں سمیت کھانے پینے کی 19 جگہیں، الاحساء کی دیہی مصنوعات کی 5 دکانیں اور کھجور کے درخت سے بنی دستکاریوں کے 7 پنڈال تھے۔ اس کے پروگرام میں کھجور کے درخت کا عجائب گھر بھی تھا، جو کھجور کے درختوں اور کھجوروں کی قسموں اور ان کی تاریخ سے متعارف کراتا تھا۔ پروگرام میں بچوں کے لیے سرگرمیاں، ناظرین کی شرکت والا ایک اسٹیج اور لوک فنون شامل تھے، اور ساتھ ہی ثقافت کے گھر بھی، جن میں فنون، ادب، دستکاریاں اور لوک ورثہ یکجا تھے۔ یہ اعداد و شمار دوسرے موسم کے ہیں۔ سہولتیں ایک موسم سے دوسرے موسم میں بدل سکتی ہیں۔",
+      "why": "Blind 2c: EN \"19 restaurants and cafés\" is one count of both; N6 «کھانے پینے کی جگہیں» is kept and the cafés are named inside the same count: «قہوہ خانوں سمیت کھانے پینے کی 19 جگہیں» (termbase «قہوہ خانہ» verified; no loan; number unchanged). Blind 15 (scope of «جن میں»): culture houses get their own clause so the relative binds only them. «ثقافت کے گھر» and «ناظرین کی شرکت والا اسٹیج» render source items and stay."
+    },
+    {
+      "id": "body.4",
+      "before": "اگلا موسم نومبر 2026 میں ہوگا، اور اس کی تصدیق ہو چکی ہے۔ افتتاح کی ٹھیک تاریخ، موسم کے دورانیے، اوقات اور فیس کا ابھی اعلان نہیں ہوا، اس لیے جانے سے پہلے منتظمین کے اعلانات دیکھ لیں۔ یہ گاؤں المبرز کے محلہ محیرس میں ایک مستقل جگہ پر لگتا ہے، اور نقشے پر اس کا لنک اسی صفحے کے “سیاحوں کے لیے معلومات” والے حصے میں ہے۔ آرام سے گھومنے کے لیے دو سے تین گھنٹے رکھیں، اور کھجوروں کی دکانوں پر خریدنے سے پہلے پوچھ لیں کہ کھجور کس قسم کی ہے، کہاں سے آئی ہے اور اسے کیسے محفوظ رکھا جائے۔",
+      "after": "اگلا موسم نومبر 2026 میں لگے گا، اور یہ بات طے ہو چکی ہے۔ افتتاح کی ٹھیک تاریخ، موسم کے دورانیے، اوقات اور فیس کا ابھی اعلان نہیں ہوا، اس لیے جانے سے پہلے منتظمین کے اعلانات دیکھ لیں۔ یہ گاؤں المبرز کے محلہ محیرس میں ایک مستقل جگہ پر لگتا ہے، اور نقشے پر اس کا لنک اسی صفحے کے “سیاحوں کے لیے معلومات” والے حصے میں ہے۔ آرام سے گھومنے کے لیے دو سے تین گھنٹے کا وقت رکھیں، اور کھجوروں کی دکانوں پر خریدنے سے پہلے پوچھ لیں کہ کھجور کس قسم کی ہے، کہاں سے آئی ہے اور اسے کیسے محفوظ رکھا جائے۔",
+      "why": "Blind 16: «ہوگا، اور اس کی تصدیق ہو چکی ہے» (tacked-on clause) to «لگے گا، اور یہ بات طے ہو چکی ہے» (\"is confirmed\"; fair verb). Blind 17: «گھنٹے رکھیں» to «گھنٹے کا وقت رکھیں». «نومبر 2026» intact; card label in marks per N89."
+    },
+    {
+      "id": "body.5",
+      "before": "تاجر، کاشتکار، دستکار اور گھروں میں چیزیں تیار کرنے والے خاندان اگر حصہ لینا چاہیں تو گاؤں میں اپنی چیزیں پیش کرنے کی جگہ کے لیے اندراج کرا سکتے ہیں۔ اندراج کا صفحہ اسی صفحے پر دیے گئے لنک سے کھلتا ہے۔",
+      "after": "تاجر، کاشتکار، دستکار اور گھروں میں چیزیں تیار کرنے والے خاندان اگر حصہ لینا چاہیں تو گاؤں میں دکان لگانے کے لیے اندراج کرا سکتے ہیں۔ اندراج کے لیے اس صفحے پر ایک لنک دیا گیا ہے۔",
+      "why": "Blind 18/21: «اپنی چیزیں پیش کرنے کی جگہ» read as display / performance / serving. Booth = «دکان لگانا» (\"set up a stall/shop at a fair\"): native everyday Pakistani Urdu for a seller's pitch at a mela; only a seller \"sets up a shop\", so it names who it is for; the second edition's own booths are «دکانیں» in body.3 (21 + 5). No loan (N174 / N377 / P16 stand); «اسٹال» recorded as owner option. Blind 19: «صفحہ … صفحے» repetition removed. «گھروں میں چیزیں تیار کرنے والے خاندان» is the approved lomi wording (tm) and stays."
+    },
+    {
+      "id": "cta.label",
+      "before": "چیزیں پیش کرنے کی جگہ کے لیے اندراج کرائیں",
+      "after": "گاؤں میں دکان لگانے کے لیے اندراج کرائیں",
+      "why": "Blind 21 (serious): the button read alone as visitor sign-up. «دکان لگانے کے لیے اندراج» cannot be a visitor action and stands alone; follows AR «سجّل لحجز ركن في القرية» (\"in the village\"). Short: 7 words, as before. Owner option: «گاؤں میں اسٹال کے لیے اندراج کرائیں»."
+    },
+    {
+      "id": "faq.1.q",
+      "before": "کھجور کے درختوں کا گاؤں کون منعقد کرتا ہے؟",
+      "after": "کھجور کے درختوں کے گاؤں کا اہتمام کون کرتا ہے؟",
+      "why": "Blind 3 consistency: organiser verb now «اہتمام کرنا» in summary and body.1; «گاؤں … منعقد کرتا ہے» carried the same mismatch."
+    },
+    {
+      "id": "faq.2.q",
+      "before": "گاؤں میں حصہ لینے کے لیے اپنی چیزیں پیش کرنے کی جگہ کیسے لی جا سکتی ہے؟",
+      "after": "گاؤں میں حصہ لینے کے لیے دکان کیسے لگائی جا سکتی ہے؟",
+      "why": "Blind 22: shorter; booth word as in body.5 / cta.label; \"take part\" kept (EN \"How can I take part with a booth?\")."
+    },
+    {
+      "id": "faq.3.a",
+      "before": "کھجوروں اور ان سے تیار کی گئی مصنوعات کی 21 دکانیں، کھانے پینے کی 19 جگہیں، الاحساء کی دیہی مصنوعات کی 5 دکانیں، کھجور کے درخت سے بنی دستکاریوں کے 7 پنڈال اور کھجور کے درخت کا عجائب گھر۔ سہولتیں ایک موسم سے دوسرے موسم میں بدل سکتی ہیں۔",
+      "after": "کھجوروں اور ان سے تیار کی گئی مصنوعات کی 21 دکانیں، قہوہ خانوں سمیت کھانے پینے کی 19 جگہیں، الاحساء کی دیہی مصنوعات کی 5 دکانیں، کھجور کے درخت سے بنی دستکاریوں کے 7 پنڈال اور کھجور کے درخت کا عجائب گھر۔ سہولتیں ایک موسم سے دوسرے موسم میں بدل سکتی ہیں۔",
+      "why": "Blind 2c: same count wording as body.3 (C21: 21 / 19 / 5 / 7 identical in body)."
+    }
+  ]
+}

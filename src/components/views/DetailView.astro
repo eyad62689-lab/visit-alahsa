@@ -40,6 +40,14 @@ const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summ
 // فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي): 35–45 كلمة من المتن والبطاقة تتصدّر المتن
 // وتكون وصف الصفحة — عربي/إنجليزي فقط (zh/de/ru عبر خطوط الترجمة حصراً)، ويحرسها C24.
 const answer = ar ? a.answer : lang === 'en' ? a.answer_en : undefined;
+// عنوان قسم الصور بلغة الصفحة بلا تراجع لغة أخرى: الغائب يعطي العنوان الافتراضي من قاموسها
+const galleryH = (ar ? a.galleryTitle : zh ? a.galleryTitle_zh : de ? a.galleryTitle_de : ru ? a.galleryTitle_ru : ur ? a.galleryTitle_ur : a.galleryTitle_en) ?? t('det.fromPlace');
+// زر الإجراء الخارجي: لا يظهر في لغة بلا نصّه (لا تراجع لنصّ لغة أخرى)؛ غير العربية تفتح الرابط الإنجليزي
+const ctaLabel = a.cta && (ar ? a.cta.label : zh ? a.cta.label_zh : de ? a.cta.label_de : ru ? a.cta.label_ru : ur ? a.cta.label_ur : a.cta.label_en);
+const cta = a.cta && ctaLabel ? {
+  url: ar ? a.cta.url : (a.cta.url_en ?? a.cta.url), label: ctaLabel,
+  note: ar ? a.cta.note : zh ? a.cta.note_zh : de ? a.cta.note_de : ru ? a.cta.note_ru : ur ? a.cta.note_ur : a.cta.note_en,
+} : undefined;
 const description = answer ?? summary;
 // المعلم الحامل لمعرّف مكوّن يونسكو يربط صفحة المكوّنات بلغة الصفحة (بلغاتها الخمس منذ المرحلة هـ)
 const unescoHref = a.unesco ? staticHref('unesco', lang) : undefined;
@@ -55,6 +63,8 @@ const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : ur ? (a.body_ur ?? a.body_en ?? '')
   : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
+// المتن غير العربي نص خام: السطر الفارغ فيه فاصل فقرات
+const bodyParas = bodyText.split(/\n{2,}/);
 // «مقالات تذكر هذا المعلم» — الفهرس العكسي بلغة الصفحة (الخطوة 9)؛ [] حين لا مقال بها
 const mentions = await mentionsOf(a, lang);
 
@@ -231,7 +241,7 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
     <div class="container att-layout">
       <article class="prose" data-reveal>
         {answer && <p class="answer" data-answer>{answer}</p>}
-        {ar && Content ? <Content /> : <p>{bodyText}</p>}
+        {ar && Content ? <Content /> : bodyParas.map((para) => <p>{para}</p>)}
       </article>
 
       <aside class="att-aside" data-reveal>
@@ -291,6 +301,16 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
       </aside>
     </div>
 
+    {/* دعوة الإجراء الخارجي شريطٌ مستقل خارج بطاقة الزيارة: البطاقة لا تحمل رابطاً خارجياً غير الخريطة والمشغّل (C12) */}
+    {cta && (
+      <section class="container cta-sec" data-cta data-reveal>
+        <div class="cta-box">
+          {cta.note && <p class="cta-note">{cta.note}</p>}
+          <a class="btn btn--turq cta-btn" href={cta.url} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="cta" data-track-item-id={a.slug_en}>{cta.label}</a>
+        </div>
+      </section>
+    )}
+
     {faqItems.length > 0 && (
       <section class="container att-faq" data-reveal>
         <h2 class="faq-h">{t('det.faq')}</h2>
@@ -306,7 +326,7 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
     {/* الشرط على القسم كله لا على محتواه: القسم الفارغ كان يترك فراغاً 32–48px */}
     {a.gallery.length > 0 && (
       <section class="container gallery-sec" data-reveal>
-        <h2 class="gal-h">{t('det.fromPlace')}</h2>
+        <h2 class="gal-h">{galleryH}</h2>
         <div class="gal-grid">
           {a.gallery.map((g, i) => (
             <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class="gal-item" sizes="(max-width: 760px) 50vw, 33vw" />
@@ -498,6 +518,10 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   :global([lang='ur']) .ah-sum, :global([lang='ur']) .prose, :global([lang='ur']) .faq-item p { line-height: 2.45; }
   :global([lang='ur']) .info-list dt, :global([lang='ur']) .info-list dd, :global([lang='ur']) .faq-item summary { line-height: 2.3; }
   .gallery-sec { padding-block: 0 var(--s-6); }
+  .cta-sec { padding-block: 0 var(--s-6); }
+  .cta-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3) var(--s-5); padding: var(--s-4) var(--s-5); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); }
+  .cta-note { flex: 1 1 280px; font-size: var(--t-base); color: var(--c-ink); line-height: 1.7; margin: 0; }
+  .cta-btn { flex: 0 0 auto; text-align: center; }
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
   .gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }

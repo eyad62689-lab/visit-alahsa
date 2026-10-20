@@ -1,0 +1,20 @@
+{
+  "batch": "palm-location",
+  "lang": "de",
+  "stage": 7,
+  "date": "2026-10-17",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 28,
+    "termbase_style": 19,
+    "cultural_fit": 9,
+    "structure": 9,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "rulings": "Accuracy 30/30: AR authority «حي محيرس، المبرز» rendered exactly as district + city; nothing added (no street, no number 7317, no Ain Mansour, no direction, no venue description); EN «Muhairis district, Al-Mubarraz» agrees. Nativeness 28/30: «X-Viertel, Stadt» is the normal German short location form for a facts row and a card; -2 only because «Muhairis» and «Al-Mubarraz» are opaque to a German reader, which is inherent to place names and not fixable inside this field. Termbase/style 19/20: «Al-Mubarraz» verbatim from termbase (artikellos); «Muhairis» verbatim from the approved title_de «Muhairis-Palast» (muhairis.md) and termbase «der Muhairis-Palast (Qasr Muhairis)», no invented «Al-» (Arabic محيرس carries none; same rule as «das Shurufiyah-Viertel»); Durchkopplung «-Viertel» per Al-Koot-/Al-Faisal-/Al-Wafrah-Viertel; artikellos in a place field per the Al-Wafrah termbase note; phrasing mirrors the binding sibling «Al-Wafrah-Viertel, südlich von Hofuf» with «südlich von» correctly dropped (neighbour binds phrasing, not substance). -1: «Muhairis district (حي محيرس) ⇒ das Muhairis-Viertel» has no termbase entry yet; recommended for apply (do not merge district with palace: only the name is shared). Cultural fit 9/10: with the new map and «In Google Maps öffnen» the district + city line is sufficient to plan; city is not glossed as being in Al-Ahsa, consistent with sibling «Hofuf» fields. Structure 9/10: single plain-text TS string, one line, U+0020 only, no markdown, no dash, comma separator as in all sibling places; -1 reserved as the string is unverified in a built page by this stage beyond the blind cut. Alternatives considered and rejected as in 05: «Muhairis-Viertel in Al-Mubarraz» (breaks the comma pattern of all sibling places), «Viertel Muhairis, Al-Mubarraz» (apposition form superseded by Durchkopplung), «Al-Muhairis-Viertel, Al-Mubarraz» (invents «Al-»). No better value exists within the rules; no edit.",
+  "blind_disposition": "Only blind point 1 touches this string. (a) «a district is not an address / not a venue»: source-level, for the owner. The Arabic authority names only the district and the city; the street and number in the owner-supplied Maps address are deliberately not in the source field and must not be added by the translation. The map pin and Google Maps link (from the owner coordinates) carry the precise spot. (b) «nothing says Al-Mubarraz is a town in Al-Ahsa»: rejected for this field. Adding «in Al-Ahsa» or «Stadt» would add content the source lacks and would break parity with every sibling place field, which name «Hofuf» unglossed; the page context (site, breadcrumb, map) places it. (c) «does the pin mark the grounds or the district centre» and «is Palmendorf the site or only the event»: source-level, for the owner (the pin comes from the owner Maps link to «قرية النخيل»; any wording that the village is a fixed site belongs in the Arabic source first). Points 2-12 do not touch this position and are out of scope for this batch; noted for the owner/future de batches: 6 (capital «Lokale» in the meta-description line) and 8 («Visa guide» untranslated in the German footer) look like genuine German defects elsewhere and are worth a separate fix; 2, 3, 5, 7, 10, 12 are wording/source questions outside this field; 4, 9, 11 are source-level."
+}
