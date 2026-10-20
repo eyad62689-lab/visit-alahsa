@@ -1,0 +1,149 @@
+---
+// الرئيسية «الواحة تتكشّف» — سبعة فصول يقودها التمرير، بالعربية والإنجليزية أولاً (القرار ج3):
+// zh/de/ru/ur تبقى على HomeView حتى تنجح دفعة ترجمتها ثم تُنقل، وتُحذف HomeView بعد آخر لغة.
+// المواصفات: مصادر-المشروع/مستندات-العمل/مفهوم-الواحة-تتكشف-مواصفات-الرئيسية-v2-2026-10-20.md
+//
+// العنوان والوصف وJSON-LD هي نفسها في HomeView (بفرعي ar/en): الوجهة بهوية الواحة يحرسها C19،
+// ولصيقة عدد المعالم في الفصل 2 يقرؤها C3.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import ChapterGate from '../home/ChapterGate.astro';
+import ChapterWater from '../home/ChapterWater.astro';
+import ChapterQarah from '../home/ChapterQarah.astro';
+import ChapterMap from '../home/ChapterMap.astro';
+import ChapterMemory from '../home/ChapterMemory.astro';
+import ChapterPlan from '../home/ChapterPlan.astro';
+import ChapterFinale from '../home/ChapterFinale.astro';
+import ChapterRail from '../home/ChapterRail.astro';
+import SavedBar from '../home/SavedBar.astro';
+import { getCollection } from 'astro:content';
+import { attractionHref } from '../../lib/routes';
+import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
+import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
+import { ogDefault } from '../../lib/og';
+import trailsData from '../../data/trails.json';
+import { MAP_SLUGS, MEMORY_CARDS, TEMPLATES, COMPANION_TIPS, type Stop } from '../../data/home-chapters';
+
+interface Props { lang: 'ar' | 'en'; alt: AltLinks }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const all = await getCollection('attractions');
+const bySlugEn = new Map(all.map((e) => [e.data.slug_en, e.data]));
+const pick = (slugEn: string) => {
+  const d = bySlugEn.get(slugEn);
+  if (!d) throw new Error(`home-chapters: معلم غير موجود في المجموعة: ${slugEn}`);
+  // كل معلم في الفصول يُعرض بصورته الحقيقية (القرار أ5): غيابها يُفشل البناء لا يُخفي البطاقة
+  if (!d.heroImage) throw new Error(`home-chapters: ${slugEn} بلا heroImage`);
+  return {
+    slug_ar: d.slug_ar, slug_en: d.slug_en, heroImage: d.heroImage,
+    title: ar ? d.title : (d.title_en ?? d.title),
+    summary: ar ? d.summary : (d.summary_en ?? d.summary),
+    lat: d.location?.lat, lng: d.location?.lng,
+  };
+};
+
+const mapPoints = MAP_SLUGS.map((s) => {
+  const p = pick(s);
+  if (typeof p.lat !== 'number' || typeof p.lng !== 'number') throw new Error(`home-chapters: ${s} بلا location`);
+  return { ...p, lat: p.lat, lng: p.lng };
+});
+const memoryCards = MEMORY_CARDS.map((c) => ({ ...pick(c.slug), date: c.date?.[lang] }));
+
+const trails = new Map((trailsData as { trails: { slug: string; ar: { title: string }; en: { title: string } }[] }).trails.map((tr) => [tr.slug, tr]));
+const resolveStop = (s: Stop) => {
+  if ('trail' in s) {
+    const tr = trails.get(s.trail);
+    if (!tr) throw new Error(`home-chapters: مسار غير موجود: ${s.trail}`);
+    return { name: tr[lang].title, href: ar ? `/trails/${s.trail}/` : `/en/trails/${s.trail}/`, kind: 'trail' as const };
+  }
+  const p = pick(s.place);
+  return { name: p.title, href: attractionHref(p, lang), kind: 'place' as const };
+};
+const templates = Object.fromEntries(Object.entries(TEMPLATES).map(([k, v]) => [k, {
+  title: v.title[lang],
+  note: v.note?.[lang],
+  days: v.days.map((d) => d.stops.map(resolveStop)),
+}]));
+const tips = Object.fromEntries(Object.entries(COMPANION_TIPS).map(([k, v]) => [k, v[lang]]));
+const places = Object.fromEntries(all.map((e) => [e.data.slug_ar, { name: ar ? e.data.title : (e.data.title_en ?? e.data.title), href: attractionHref(e.data, lang) }]));
+
+const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
+const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
+
+const siteUrl = SITE;
+const jsonLd = [
+  { '@context': 'https://schema.org', ...orgNode(lang) },
+  { '@context': 'https://schema.org', ...websiteNode(lang), inLanguage: lang },
+  {
+    '@context': 'https://schema.org', '@type': 'TouristDestination',
+    name: ar ? 'الأحساء' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + ogDefault(lang),
+    description: t('home.hero.lead'),
+    geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
+    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : 'Saudi Arabia' },
+    sameAs: OASIS_SAMEAS,
+    identifier: UNESCO_WHS_ID,
+  },
+];
+const title = ar ? 'زوروا الأحساء — دليلك السياحي لأكبر واحة في العالم' : 'Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis';
+const description = ar
+  ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
+  : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
+---
+<Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
+  <Header lang={lang} alt={alt} overlay />
+  <main id="main" class="chapters">
+    <ChapterGate lang={lang} />
+    <ChapterWater lang={lang} sitesCount={all.length} />
+    <ChapterQarah lang={lang} qarah={pick('jabal-al-qarah')} />
+    <ChapterMap lang={lang} points={mapPoints} />
+    <ChapterMemory lang={lang} cards={memoryCards} />
+    <ChapterPlan lang={lang} templates={templates} tips={tips} places={places} planHref={planHref} />
+    <ChapterFinale lang={lang} planHref={planHref} myTripHref={myTripHref} />
+  </main>
+  <ChapterRail lang={lang} />
+  <SavedBar lang={lang} />
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  // ظهور ترويسات الفصول: العنصر ظاهر دائماً، وحين يدخل الشاشة أول مرة يرتفع 22px فقط —
+  // لا شفافية صفر قبل المراقِب (المواصفات: «لا نص يظهر بعد التحميل مخفياً»)، ولا شيء مع تقليل الحركة.
+  function initRise() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || typeof IntersectionObserver !== 'function') return;
+    const obs = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-risen');
+      obs.unobserve(e.target);
+    }), { threshold: 0.15 });
+    document.querySelectorAll('[data-rise]').forEach((el) => {
+      if (el.getBoundingClientRect().top > innerHeight) obs.observe(el);
+    });
+  }
+  document.addEventListener('astro:page-load', initRise);
+</script>
+
+<style>
+  /* أسس الفصول المشتركة: الترويسة الموحّدة، والإيقاع اللوني (داكن 1·4·7 وفاتح بينها — القرار ب1) */
+  .chapters :global(.ch) { padding-block: clamp(72px, 12vw, 128px); scroll-margin-block-start: 68px; }
+  .chapters :global(.ch--light) { background: var(--c-sand); }
+  .chapters :global(.ch--sand) { background: var(--c-sand-2); }
+  .chapters :global(.ch--dark) { background: var(--c-turq-deep); color: var(--c-sand); }
+  .chapters :global(.ch-head) { display: grid; gap: var(--s-2); max-inline-size: 660px; margin-block-end: clamp(28px, 5vw, 52px); }
+  .chapters :global(.ch-no) { font-family: var(--font-latin); font-weight: 600; font-size: .82rem; letter-spacing: .3em; text-transform: uppercase; color: var(--c-gold-deep); direction: ltr; unicode-bidi: isolate; justify-self: start; }
+  .chapters :global([data-dark] .ch-no) { color: var(--c-gold-bright); }
+  /* على الرملي الثاني (الفصلان 3 و6) يهبط الذهبي الداكن إلى 4.45:1 دون حدّ AA — فالرقم بالتركواز الداكن */
+  .chapters :global(.ch--sand .ch-no) { color: var(--c-turq-deep); }
+  .chapters :global(.ch-title) { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-2xl); line-height: 1.2; margin: 0; color: var(--c-turq-deep); text-wrap: balance; }
+  .chapters :global(.ch--dark .ch-title) { color: var(--c-sand); }
+  .chapters :global(.ch-lead) { font-size: 1.1875rem; line-height: 1.7; color: var(--c-ink-soft); margin: 0; max-inline-size: 58ch; }
+  .chapters :global(.ch--dark .ch-lead) { color: rgba(247,243,234,.82); }
+  .chapters :global(.ch-link) { display: inline-flex; gap: var(--s-2); align-items: center; font-weight: 600; font-size: var(--t-sm); text-decoration: none; color: var(--c-turq); border-block-end: 1px solid currentColor; padding-block-end: 2px; }
+  .chapters :global(.ch--dark .ch-link) { color: var(--c-gold-bright); }
+  .chapters :global([data-rise].is-risen) { animation: ch-rise .9s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes ch-rise { from { transform: translateY(22px); } to { transform: none; } }
+  /* شريط الفصول عند inline-end: هامش إضافي للنصّ على الجوال كي لا تعلوه النقاط */
+  @media (max-width: 899px) { .chapters :global(.container) { padding-inline-end: 22px; } }
+</style>

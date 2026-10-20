@@ -1,0 +1,142 @@
+---
+// الفصل 4 — الخريطة الحيّة: ستة معالم (القرار ج8) مواضعها مُسقطة وقت البناء من حقل location
+// في المجموعة (إسقاط متساوي المسافات مصحَّح بجيب تمام العرض)، ومقياس 10 كم بالمقياس نفسه.
+// لا بلاطات ولا مكتبة خرائط. كل معلم لوحة مبنيّة مسبقاً (hidden) بصورة حقيقية وخلاصته
+// وزرّ الحفظ القائم (data-fav → VAPlan، ويقيسه plan_add)؛ المقاطع تنتظر التصوير (القرار أ5).
+// النبض متعاقب ويتوقف حين تُفتح لوحة (القرار ب2).
+import Photo from '../Photo.astro';
+import { attractionHref } from '../../lib/routes';
+import { useTranslations } from '../../i18n/utils';
+
+type Pt = { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string; lat: number; lng: number };
+interface Props { lang: 'ar' | 'en'; points: Pt[] }
+const { lang, points } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+
+const W = 640, PAD = 56;
+const lat0 = (25.5 * Math.PI) / 180;
+const kmLat = 110.95, kmLng = 111.32 * Math.cos(lat0);
+const minLng = Math.min(...points.map((p) => p.lng)), maxLng = Math.max(...points.map((p) => p.lng));
+const minLat = Math.min(...points.map((p) => p.lat)), maxLat = Math.max(...points.map((p) => p.lat));
+const sc = (W - PAD * 2) / ((maxLng - minLng) * kmLng); // بكسل لكل كم
+const H = Math.round((maxLat - minLat) * kmLat * sc + PAD * 2 + 24);
+const r1 = (x: number) => Math.round(x * 10) / 10;
+const pins = points.map((p, i) => ({
+  ...p,
+  x: r1(PAD + (p.lng - minLng) * kmLng * sc),
+  y: r1(PAD + (maxLat - p.lat) * kmLat * sc),
+  delay: (i * 0.43).toFixed(2),
+}));
+// جهة التسمية: الطرف الشرقي تُكتب تسميته غرباً كي لا تخرج من الإطار
+const anchorOf = (x: number) => (x > W * 0.7 ? 'end' : 'start');
+const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
+---
+<section class="ch cv-auto ch--dark mapch" id="ch-map" data-chapter data-dark data-track-view="map" data-track-view-page="home">
+  <div class="container">
+    <header class="ch-head" data-rise>
+      <span class="ch-no">04 · The Living Map</span>
+      <h2 class="ch-title">{ar ? 'اختر ما يناديك' : 'Choose what calls you'}</h2>
+      <p class="ch-lead">{ar ? 'المعالم في مواضعها الحقيقية. المس معلماً لتراه، واحفظه لرحلتك.' : 'Landmarks in their true positions. Tap one to see it, and save it for your trip.'}</p>
+    </header>
+    <div class="mp" data-map>
+      <div class="mp-box">
+        <svg class="mp-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={ar ? 'خريطة تحريرية لمعالم الأحساء' : 'Editorial map of Al-Ahsa landmarks'}>
+          {Array.from({ length: Math.floor(W / 40) + 1 }, (_, i) => <line x1={i * 40} y1="0" x2={i * 40} y2={H} class="mp-grid" />)}
+          {Array.from({ length: Math.floor(H / 40) + 1 }, (_, i) => <line x1="0" y1={i * 40} x2={W} y2={i * 40} class="mp-grid" />)}
+          <text x="26" y="30" class="mp-meta" text-anchor="middle">N ↑</text>
+          <g class="mp-scale">
+            <line x1={sbX} y1={sbY} x2={sbX + sb} y2={sbY} />
+            <line x1={sbX} y1={sbY - 5} x2={sbX} y2={sbY + 5} />
+            <line x1={sbX + sb} y1={sbY - 5} x2={sbX + sb} y2={sbY + 5} />
+            <text x={r1(sbX + sb / 2)} y={sbY - 9} class="mp-meta" text-anchor="middle">{ar ? '10 كم' : '10 km'}</text>
+          </g>
+          {pins.map((p) => (
+            <g class="mp-pin" data-pin={p.slug_en} style={`--d:${p.delay}s`} aria-hidden="true">
+              <circle cx={p.x} cy={p.y} r="9" class="mp-halo" />
+              <circle cx={p.x} cy={p.y} r="7" class="mp-core" />
+              <text x={p.x + (anchorOf(p.x) === 'end' ? -12 : 12)} y={p.y + 4} text-anchor={anchorOf(p.x)} class="mp-label">{p.title}</text>
+            </g>
+          ))}
+        </svg>
+        {/* البديل غير الحركي ومدخل لوحة المفاتيح: زرّ لكل معلم بالترتيب نفسه */}
+        <div class="mp-legend" role="group" aria-label={ar ? 'معالم الخريطة' : 'Map landmarks'}>
+          {pins.map((p) => <button type="button" class="mp-chip" data-open={p.slug_en} aria-pressed="false" aria-controls={`mp-panel-${p.slug_en}`}>{p.title}</button>)}
+        </div>
+      </div>
+      <div class="mp-panels" aria-live="polite">
+        <p class="mp-empty">{ar ? 'اختر معلماً من الخريطة لترى صورته ووصفه.' : 'Pick a landmark on the map to see its photo and description.'}</p>
+        {pins.map((p) => (
+          <article class="mp-panel" id={`mp-panel-${p.slug_en}`} data-panel={p.slug_en} hidden>
+            <Photo src={p.heroImage} label={p.title} class="mp-photo" sizes="(max-width: 860px) 100vw, 420px" />
+            <div class="mp-body">
+              <h3 class="mp-t">{p.title}</h3>
+              <p class="mp-d">{p.summary}</p>
+              <div class="mp-row">
+                <button class="fav-btn mp-save" type="button" data-fav={p.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
+                  <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
+                </button>
+                <a class="mp-more" href={attractionHref(p, lang)}>{ar ? 'صفحة المعلم' : 'Landmark page'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <a class="ch-link" href={ar ? '/خريطة/' : '/en/map/'}>{ar ? 'الخريطة الكاملة' : 'Full map'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+  </div>
+</section>
+
+<script>
+  function initMap() {
+    const root = document.querySelector<HTMLElement>('[data-map]');
+    if (!root || root.dataset.wired) return;
+    root.dataset.wired = '1';
+    const open = (id: string) => {
+      root.classList.add('is-open');
+      root.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== id; });
+      root.querySelectorAll<HTMLElement>('[data-pin]').forEach((g) => g.classList.toggle('is-sel', g.dataset.pin === id));
+      root.querySelectorAll<HTMLElement>('[data-open]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.open === id)));
+      const empty = root.querySelector<HTMLElement>('.mp-empty');
+      if (empty) empty.hidden = true;
+    };
+    root.querySelectorAll<HTMLElement>('[data-open]').forEach((b) => b.addEventListener('click', () => open(b.dataset.open || '')));
+    // النقر على الدبّوس نفسه (للمس): الدبابيس مخفيّة عن قارئ الشاشة لأن الأزرار تحمل الوظيفة
+    root.querySelectorAll<SVGGElement>('[data-pin]').forEach((g) => g.addEventListener('click', () => open(g.dataset.pin || '')));
+  }
+  document.addEventListener('astro:page-load', initMap);
+</script>
+
+<style>
+  .mapch { background: #00332D; }
+  .mp { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); align-items: start; margin-block-end: var(--s-4); }
+  @media (max-width: 860px) { .mp { grid-template-columns: minmax(0, 1fr); } }
+  .mp-box { border: 1px solid rgba(247,243,234,.16); border-radius: var(--radius-lg); overflow: hidden; background: radial-gradient(120% 90% at 30% 40%, rgba(0,110,97,.35), transparent 70%), var(--c-turq-deep); }
+  .mp-svg { display: block; inline-size: 100%; block-size: auto; }
+  .mp-grid { stroke: rgba(247,243,234,.05); }
+  .mp-meta { fill: rgba(247,243,234,.6); font-family: var(--font-body); font-size: 12px; }
+  .mp-scale line { stroke: rgba(247,243,234,.6); stroke-width: 2; }
+  .mp-pin { cursor: pointer; }
+  .mp-halo { fill: none; stroke: var(--c-gold-bright); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; opacity: 0; }
+  .mp-core { fill: var(--c-gold); stroke: var(--c-sand); stroke-width: 2; }
+  .mp-pin.is-sel .mp-core { fill: var(--c-sand); stroke: var(--c-gold); }
+  .mp-label { fill: var(--c-sand); font-family: var(--font-body); font-size: 13px; font-weight: 500; }
+  /* على الجوال تصغر نصوص SVG مع الإطار حتى تتعذّر قراءتها: القائمة تحت الخريطة تحمل الأسماء */
+  @media (max-width: 600px) { .mp-label { display: none; } .mp-pin.is-sel .mp-label { display: inline; } }
+  @media (prefers-reduced-motion: no-preference) {
+    [data-map]:not(.is-open) .mp-halo { animation: mp-pulse 2.6s ease-out infinite; animation-delay: var(--d); }
+    @keyframes mp-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
+  }
+  .mp-legend { display: flex; flex-wrap: wrap; gap: var(--s-2); padding: 12px 14px 14px; border-block-start: 1px solid rgba(247,243,234,.16); }
+  .mp-chip { font-family: var(--font-body); font-size: var(--t-sm); font-weight: 500; color: var(--c-sand); background: transparent; border: 1px solid rgba(247,243,234,.3); border-radius: var(--radius-pill); padding: 8px 14px; min-block-size: 40px; cursor: pointer; }
+  .mp-chip[aria-pressed="true"] { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
+  .mp-chip:focus-visible { outline: 2px solid var(--c-gold-bright); outline-offset: 2px; }
+  .mp-panels { border: 1px solid rgba(247,243,234,.16); border-radius: var(--radius-lg); overflow: hidden; background: rgba(0,79,70,.6); }
+  .mp-empty { margin: 0; padding: var(--s-5) var(--s-4); color: rgba(247,243,234,.78); }
+  .mp-panel :global(.mp-photo) { aspect-ratio: 16 / 10; }
+  .mp-body { padding: var(--s-3) var(--s-4) var(--s-4); display: grid; gap: var(--s-2); }
+  .mp-t { font-family: var(--font-heading); font-size: 1.4rem; margin: 0; color: var(--c-sand); }
+  .mp-d { margin: 0; color: rgba(247,243,234,.85); line-height: 1.7; }
+  .mp-row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; margin-block-start: var(--s-1); }
+  .mp-more { color: var(--c-gold-bright); font-weight: 600; text-decoration: none; }
+</style>

@@ -1,0 +1,81 @@
+---
+// الفصل 3 — جبل القارة: شريط من الفجر إلى الغروب يغيّر الإضاءة وموضع الشمس فوق صورة
+// الجبل الحقيقية الواحدة (القرار أ5: طبقات إضاءة، لا صور مولّدة؛ القرار ج7: بلا شعاع كهف).
+// الخلاصة من مجموعة المعالم كما هي — تنسب الدفء للشتاء (C16).
+import Photo from '../Photo.astro';
+import { attractionHref } from '../../lib/routes';
+
+interface Props { lang: 'ar' | 'en'; qarah: { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string } }
+const { lang, qarah } = Astro.props;
+const ar = lang === 'ar';
+const times = ar ? ['الفجر', 'الضحى', 'الأصيل', 'الغروب'] : ['Dawn', 'Morning', 'Afternoon', 'Sunset'];
+---
+<section class="ch cv-auto ch--sand qarah" id="ch-qarah" data-chapter data-track-view="qarah" data-track-view-page="home">
+  <div class="container">
+    <header class="ch-head" data-rise>
+      <span class="ch-no">03 · Jabal Al-Qarah</span>
+      <h2 class="ch-title">{ar ? 'جبل القارة: حرّك اليوم بيدك' : 'Jabal Al-Qarah: move the day yourself'}</h2>
+      <p class="ch-lead">{qarah.summary} {ar ? 'اسحب الشريط من الفجر إلى الغروب.' : 'Drag the slider from dawn to sunset.'}</p>
+    </header>
+    <div class="qs" data-t="2" data-qarah-scene>
+      <Photo src={qarah.heroImage} label={qarah.title} class="qs-photo" sizes="(max-width: 1120px) 100vw, 1120px" />
+      <span class="qs-veil" aria-hidden="true"></span>
+      <span class="qs-tint" aria-hidden="true"></span>
+      <span class="qs-sun" aria-hidden="true"></span>
+      <span class="qs-time" aria-hidden="true">{times[2]}</span>
+    </div>
+    <div class="qs-ctl">
+      <label class="sr-only" for="qarah-range">{ar ? 'وقت اليوم' : 'Time of day'}</label>
+      <input id="qarah-range" class="qs-range" type="range" min="0" max="3" step="1" value="2" aria-valuetext={times[2]} data-labels={times.join('|')} />
+      <div class="qs-ticks" aria-hidden="true">{times.map((x) => <span>{x}</span>)}</div>
+    </div>
+    <a class="ch-link" href={attractionHref(qarah, lang)}>{ar ? 'صفحة جبل القارة' : 'Jabal Al-Qarah page'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+  </div>
+</section>
+
+<script>
+  function initQarah() {
+    const scene = document.querySelector<HTMLElement>('[data-qarah-scene]');
+    const range = document.getElementById('qarah-range') as HTMLInputElement | null;
+    if (!scene || !range || range.dataset.wired) return;
+    range.dataset.wired = '1';
+    const labels = (range.dataset.labels || '').split('|');
+    const time = scene.querySelector('.qs-time');
+    const set = () => {
+      const v = range.value;
+      scene.dataset.t = v;
+      range.setAttribute('aria-valuetext', labels[Number(v)] || '');
+      if (time) time.textContent = labels[Number(v)] || '';
+    };
+    range.addEventListener('input', set);
+  }
+  document.addEventListener('astro:page-load', initQarah);
+</script>
+
+<style>
+  .qs { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 16 / 9; max-inline-size: 100%; background: #2b2a24; isolation: isolate; }
+  @media (max-width: 600px) { .qs { aspect-ratio: 4 / 5; } }
+  .qs :global(.qs-photo) { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; }
+  .qs :global(.qs-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .qs-veil, .qs-tint { position: absolute; inset: 0; pointer-events: none; transition: background 1.2s cubic-bezier(.2,.7,.2,1); }
+  .qs-tint { mix-blend-mode: soft-light; }
+  .qs-sun { position: absolute; inline-size: 9%; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%); transition: left 1.2s cubic-bezier(.2,.7,.2,1), top 1.2s cubic-bezier(.2,.7,.2,1), background 1.2s, box-shadow 1.2s; }
+  .qs-time { position: absolute; inset-block-end: 14px; inset-inline-start: 14px; background: rgba(0,30,26,.62); color: var(--c-sand); font-weight: 600; font-size: var(--t-sm); padding: 6px 14px; border-radius: var(--radius-pill); }
+  /* الفجر · الضحى · الأصيل · الغروب — طبقات توضيحية فوق صورة حقيقية واحدة */
+  .qs[data-t="0"] .qs-veil { background: linear-gradient(180deg, rgba(40,52,92,.55), rgba(70,60,90,.25) 55%, rgba(20,30,50,.35)); }
+  .qs[data-t="0"] .qs-tint { background: rgba(120,140,220,.55); }
+  .qs[data-t="0"] .qs-sun { left: 88%; top: 34%; background: rgba(255,200,170,.85); box-shadow: 0 0 60px 20px rgba(255,170,150,.45); }
+  .qs[data-t="1"] .qs-veil { background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0)); }
+  .qs[data-t="1"] .qs-tint { background: rgba(255,250,235,.25); }
+  .qs[data-t="1"] .qs-sun { left: 70%; top: 10%; background: rgba(255,252,236,.95); box-shadow: 0 0 70px 26px rgba(255,248,220,.55); }
+  .qs[data-t="2"] .qs-veil { background: linear-gradient(180deg, rgba(255,190,90,.18), rgba(255,170,80,.06) 60%, rgba(60,30,0,.15)); }
+  .qs[data-t="2"] .qs-tint { background: rgba(255,190,100,.5); }
+  .qs[data-t="2"] .qs-sun { left: 22%; top: 18%; background: rgba(255,214,140,.95); box-shadow: 0 0 70px 26px rgba(255,190,90,.5); }
+  .qs[data-t="3"] .qs-veil { background: linear-gradient(180deg, rgba(150,60,40,.35), rgba(120,50,30,.25) 50%, rgba(30,10,10,.5)); }
+  .qs[data-t="3"] .qs-tint { background: rgba(255,120,60,.6); }
+  .qs[data-t="3"] .qs-sun { left: 8%; top: 30%; background: rgba(255,150,80,.95); box-shadow: 0 0 80px 30px rgba(255,110,50,.5); }
+  .qs-ctl { display: grid; gap: var(--s-2); margin-block: var(--s-4) var(--s-3); }
+  .qs-range { inline-size: 100%; block-size: 32px; accent-color: var(--c-turq); }
+  .qs-ticks { display: flex; justify-content: space-between; font-size: var(--t-sm); color: var(--c-ink-soft); }
+  @media (prefers-reduced-motion: reduce) { .qs-veil, .qs-tint, .qs-sun { transition: none; } }
+</style>

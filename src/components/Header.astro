@@ -9,8 +9,10 @@ import { LANG_META } from '../i18n/langs';
 import { listedAlt } from '../i18n/unlisted';
 import { storesHref, builtLang } from '../lib/routes';
 
-interface Props { lang?: Lang; alt?: AltLinks; }
-const { lang = 'ar', alt } = Astro.props;
+// overlay: رأس الرئيسية «الواحة تتكشّف» (القرار أ3، البند 4) — شفاف فوق الفصل الأول، ومضبّب
+// كالمعتاد حين يعبر حارس [data-header-sentinel] (عند 60% من ارتفاع الشاشة) أعلى الإطار.
+interface Props { lang?: Lang; alt?: AltLinks; overlay?: boolean; }
+const { lang = 'ar', alt, overlay = false } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
@@ -78,7 +80,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur'] as Lang[])
     ...LANG_META[l],
   }));
 ---
-<header class="site-header" id="top" data-pagefind-ignore>
+<header class:list={['site-header', overlay && 'site-header--overlay']} id="top" data-pagefind-ignore data-overlay={overlay ? '' : undefined}>
   <div class="container hd-in">
     <a href={home} class="brand">
       <Wordmark variant="turq" size="sm" pageLang={lang} />
@@ -145,6 +147,23 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur'] as Lang[])
 <script is:inline>
   // إغلاق قائمة اللغات بالنقر خارجها أو بـEsc — مستمعان على document مرة واحدة
   // (يبقيان عبر تنقّلات ClientRouter، والحارس يمنع التكرار بعد كل تنقّل).
+  // الرأس الشفاف: مراقِب واحد على حارس الفصل الأول، يُعاد ربطه بعد كل تنقّل
+  (function () {
+    function initOverlay() {
+      if (window.__vaHdObs) { window.__vaHdObs.disconnect(); window.__vaHdObs = null; }
+      const hd = document.querySelector('.site-header[data-overlay]');
+      const sentinel = document.querySelector('[data-header-sentinel]');
+      if (!hd) return;
+      if (!sentinel || typeof IntersectionObserver !== 'function') { hd.classList.add('is-solid'); return; }
+      window.__vaHdObs = new IntersectionObserver(function (entries) {
+        const e = entries[0];
+        hd.classList.toggle('is-solid', !e.isIntersecting && e.boundingClientRect.top < 0);
+      });
+      window.__vaHdObs.observe(sentinel);
+    }
+    if (!window.__vaHdOverlay) { window.__vaHdOverlay = true; document.addEventListener('astro:page-load', initOverlay); }
+    initOverlay();
+  })();
   if (!window.__vaLangMenu) {
     window.__vaLangMenu = true;
     // زرّ البحث داخل قائمة الجوال: يطوي القائمة ثم ينقر زرّ البحث الأصلي (المخفيّ في الشريط)
@@ -331,6 +350,14 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur'] as Lang[])
     :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     :global([lang='ru']) .nav .nav-plan { display: block; }
   }
+  /* الرأس الشفاف (overlay): فوق الفصل الأول بلا خلفية وبنصوص فاتحة، ومضبّب كالمعتاد بعده.
+     القائمة المفتوحة على الجوال تعيده مضبّباً كي تُقرأ روابطها على خلفيتها الرملية. */
+  .site-header--overlay { position: fixed; inset-inline: 0; inset-block-start: 0; transition: background .5s var(--ease), border-color .5s var(--ease), backdrop-filter .5s var(--ease); }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) { background: transparent; border-block-end-color: transparent; backdrop-filter: none; }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) :global(.wm) { --wm: var(--c-sand) !important; --wm-sub: rgba(247,243,234,.8) !important; }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) .burger span { background: var(--c-sand); }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) .plan-link { color: var(--c-sand); }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) .nav a { color: var(--c-sand); }
   /* أدوات الجوال (القرار أ3): مخفيّة حيث يظهر البحث ومبدّل اللغة في الشريط */
   .nav-tools { display: none; }
   .plan-ic { display: none; }

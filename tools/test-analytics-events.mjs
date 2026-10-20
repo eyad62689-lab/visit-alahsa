@@ -157,14 +157,27 @@ try {
 
   console.log('\n── الرئيسية: بلوغ الأقسام، الفيديو ومؤشرات الويب الحيوية ──');
   await goto('/en/');
-  // section_view: الهيرو يعبر منتصف الشاشة عند التحميل، وقسم الخطة الأخير بعد التمرير إليه
-  const hero = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'hero', 4000);
-  ok(hero && hero.params.depth === 1 && hero.params.depth_of >= 7, 'section_view للهيرو عند التحميل', hero ? `depth ${hero.params.depth}/${hero.params.depth_of}` : '');
-  await page.evaluate(() => document.getElementById('plan')?.scrollIntoView({ block: 'center' }));
-  const planSec = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'plan', 4000);
-  ok(planSec && planSec.params.depth === planSec.params.depth_of, 'section_view لقسم الخطة الأخير بعد التمرير', planSec ? `depth ${planSec.params.depth}/${planSec.params.depth_of}` : '');
+  // section_view: فصل البوابة يعبر منتصف الشاشة عند التحميل، وفصل الختام الأخير بعد التمرير إليه
+  // (الرئيسية «الواحة تتكشّف»: سبعة فصول gate…finale)
+  const hero = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'gate', 4000);
+  ok(hero && hero.params.depth === 1 && hero.params.depth_of === 7, 'section_view لفصل البوابة عند التحميل', hero ? `depth ${hero.params.depth}/${hero.params.depth_of}` : '');
+  // route_built: إكمال أسئلة الفصل 6 الثلاثة يبني المسار ويُقاس
+  await page.evaluate(() => document.getElementById('ch-plan')?.scrollIntoView({ block: 'center' }));
+  // الفصول تحت الطيّة بـcontent-visibility: يُرسم الفصل عند دخوله فيتبدّل ارتفاعه التقديري بالحقيقي،
+  // والنقر قبل استقرار التخطيط يقع خارج الخيار الأول
+  await sleep(500);
+  for (const id of ['p6-int-heritage', 'p6-dur-2', 'p6-com-family']) await page.click(`label:has(#${id})`);
+  const rb = await waitEvent(page, 'route_built', (p) => p.interest === 'heritage' && p.duration === 2 && p.companion === 'family', 3000);
+  ok(rb, 'route_built عند إكمال أسئلة التخطيط الثلاثة', rb ? `${rb.params.interest}/${rb.params.duration}/${rb.params.companion}` : '');
+  await page.evaluate(() => document.getElementById('ch-finale')?.scrollIntoView({ block: 'center' }));
+  const planSec = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'finale', 4000);
+  ok(planSec && planSec.params.depth === planSec.params.depth_of, 'section_view لفصل الختام الأخير بعد التمرير', planSec ? `depth ${planSec.params.depth}/${planSec.params.depth_of}` : '');
+  // دعوة الختام: data-track بنوعها (plan بلا محفوظ) — نمنع التنقّل ونبقي النقر
+  await page.evaluate(() => document.querySelector('[data-finale-cta]')?.addEventListener('click', (e) => e.preventDefault()));
+  await page.click('[data-finale-cta]');
   ev = await events(page);
-  ok(ev.filter((e) => e.name === 'section_view' && e.params.section === 'hero').length === 1, 'section_view لا يتكرر للقسم نفسه');
+  ok(find(ev, 'finale_cta', (p) => p.kind === 'plan'), 'finale_cta عند النقر على دعوة الختام', 'kind = plan');
+  ok(ev.filter((e) => e.name === 'section_view' && e.params.section === 'gate').length === 1, 'section_view لا يتكرر للفصل نفسه');
   await page.evaluate(() => scrollTo(0, 0));
   let vp = await waitEvent(page, 'video_play', () => true, 8000);
   if (!vp) {

@@ -1,0 +1,149 @@
+---
+// الفصل 6 — خطّط رحلتك: ثلاثة أسئلة (الاهتمام، المدة، المرافقون) تختار أحد القوالب التسعة
+// وفقرة المرافقين (القرار ب4، اعتمد إياد نصوصها)، ويُدمج في أول اليوم الأول ما حُفظ في
+// «معالمي» (va-plan). القوالب محسومة وقت البناء إلى أسماء وروابط؛ السكربت يعرض فقط.
+// إكمال الأسئلة يُقاس بحدث route_built.
+type ResolvedStop = { name: string; href: string; kind: 'trail' | 'place' };
+type Resolved = { title: string; note?: string; days: ResolvedStop[][] };
+interface Props {
+  lang: 'ar' | 'en';
+  templates: Record<string, Resolved>;
+  tips: Record<string, string>;
+  places: Record<string, { name: string; href: string }>; // slug_ar → اسم ورابط، لدمج المحفوظ
+  planHref: string;
+}
+const { lang, templates, tips, places, planHref } = Astro.props;
+const ar = lang === 'ar';
+const Q = ar
+  ? {
+      int: { legend: 'ما الذي يشدّك؟', opts: [['heritage', 'التراث والتاريخ'], ['nature', 'الطبيعة والماء'], ['markets', 'الأسواق والحِرف']] },
+      dur: { legend: 'كم يوماً معك؟', opts: [['1', 'يوم'], ['2', 'يومان'], ['3', 'ثلاثة أيام']] },
+      com: { legend: 'مع من تسافر؟', opts: [['family', 'العائلة'], ['friends', 'الأصدقاء'], ['solo', 'وحدي']] },
+    }
+  : {
+      int: { legend: 'What draws you?', opts: [['heritage', 'Heritage & history'], ['nature', 'Nature & water'], ['markets', 'Souqs & crafts']] },
+      dur: { legend: 'How many days do you have?', opts: [['1', 'One day'], ['2', 'Two days'], ['3', 'Three days']] },
+      com: { legend: 'Who are you travelling with?', opts: [['family', 'Family'], ['friends', 'Friends'], ['solo', 'On my own']] },
+    };
+const L = ar
+  ? { wait: 'أجب عن الأسئلة الثلاثة ليظهر مسارك هنا.', title: 'مسارك', days: ['اليوم الأول', 'اليوم الثاني', 'اليوم الثالث'], trail: 'مسار', place: 'معلم', saved: 'من محفوظاتك' }
+  : { wait: 'Answer the three questions to see your route here.', title: 'Your route', days: ['Day one', 'Day two', 'Day three'], trail: 'Trail', place: 'Landmark', saved: 'From your saved places' };
+const payload = JSON.stringify({ templates, tips, places, L });
+---
+<section class="ch cv-auto ch--sand plan6" id="ch-plan" data-chapter data-track-view="plan" data-track-view-page="home">
+  <div class="container">
+    <header class="ch-head" data-rise>
+      <span class="ch-no">06 · Plan Your Trip</span>
+      <h2 class="ch-title">{ar ? 'خطّط رحلتك في ثلاثة أسئلة' : 'Plan your trip in three questions'}</h2>
+      <p class="ch-lead">{ar ? 'أجب، فيظهر مسارك فوراً، ويدخل فيه ما حفظته من الخريطة.' : 'Answer, and your route appears at once, with the places you saved from the map.'}</p>
+    </header>
+    <div class="p6">
+      <form class="p6-form" data-plan-form>
+        {(['int', 'dur', 'com'] as const).map((k) => (
+          <fieldset class="p6-q">
+            <legend class="p6-legend">{Q[k].legend}</legend>
+            <div class="p6-opts">
+              {Q[k].opts.map(([v, label]) => (
+                <label class="p6-opt"><input type="radio" name={k} value={v} id={`p6-${k}-${v}`} /><span>{label}</span></label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </form>
+      <div class="p6-route" aria-live="polite">
+        <h3 class="p6-title" data-route-title>{L.title}</h3>
+        <p class="p6-wait" data-route-wait>{L.wait}</p>
+        <div data-route-body hidden></div>
+      </div>
+    </div>
+    <a class="ch-link" href={planHref}>{ar ? 'دليل التخطيط الكامل' : 'Full trip-planning guide'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+  </div>
+  <script type="application/json" data-plan-data set:html={payload} />
+</section>
+
+<script>
+  type Stop = { name: string; href: string; kind: 'trail' | 'place' };
+  type Data = {
+    templates: Record<string, { title: string; note?: string; days: Stop[][] }>;
+    tips: Record<string, string>;
+    places: Record<string, { name: string; href: string }>;
+    L: { wait: string; title: string; days: string[]; trail: string; place: string; saved: string };
+  };
+  function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function initPlan() {
+    const form = document.querySelector<HTMLFormElement>('[data-plan-form]');
+    const raw = document.querySelector('[data-plan-data]');
+    if (!form || !raw || form.dataset.wired) return;
+    form.dataset.wired = '1';
+    const D = JSON.parse(raw.textContent || '{}') as Data;
+    const body = document.querySelector<HTMLElement>('[data-route-body]');
+    const wait = document.querySelector<HTMLElement>('[data-route-wait]');
+    const titleEl = document.querySelector<HTMLElement>('[data-route-title]');
+    let lastKey = '';
+    const render = () => {
+      const fd = new FormData(form);
+      const int = String(fd.get('int') || ''), dur = String(fd.get('dur') || ''), com = String(fd.get('com') || '');
+      if (!body || !wait || !titleEl) return;
+      if (!int || !dur || !com) { body.hidden = true; wait.hidden = false; return; }
+      const tpl = D.templates[`${int}-${dur}`];
+      if (!tpl) return;
+      const saved: string[] = (window as any).VAPlan?.get?.() ?? [];
+      const savedStops = saved.map((s) => D.places[s]).filter(Boolean);
+      body.replaceChildren();
+      titleEl.textContent = tpl.title;
+      tpl.days.forEach((stops, i) => {
+        const day = el('div', 'p6-day');
+        day.append(el('h4', 'p6-dayname', D.L.days[i] ?? ''));
+        const ol = el('ol', 'p6-stops');
+        const add = (s: { name: string; href: string }, tag: string) => {
+          const li = el('li', 'p6-stop');
+          const a = el('a', 'p6-stop-a', s.name); a.href = s.href;
+          li.append(el('span', 'p6-kind', tag), a);
+          ol.append(li);
+        };
+        if (i === 0) savedStops.forEach((s) => add(s, D.L.saved));
+        stops.forEach((s) => add(s, s.kind === 'trail' ? D.L.trail : D.L.place));
+        day.append(ol);
+        body.append(day);
+      });
+      if (tpl.note) body.append(el('p', 'p6-note', tpl.note));
+      if (D.tips[com]) body.append(el('p', 'p6-tip', D.tips[com]));
+      body.hidden = false; wait.hidden = true;
+      const key = `${int}-${dur}-${com}`;
+      if (key !== lastKey) { lastKey = key; (window as any).VATrack?.('route_built', { interest: int, duration: Number(dur), companion: com, saved: savedStops.length }); }
+    };
+    form.addEventListener('change', render);
+    document.addEventListener('va-plan-change', render);
+  }
+  document.addEventListener('astro:page-load', initPlan);
+</script>
+
+<style>
+  .p6 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: start; margin-block-end: var(--s-4); }
+  @media (max-width: 860px) { .p6 { grid-template-columns: minmax(0, 1fr); } }
+  .p6-q { border: 0; padding: 0; margin: 0 0 var(--s-4); min-inline-size: 0; }
+  .p6-legend { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; color: var(--c-turq-deep); padding: 0; margin-block-end: var(--s-2); }
+  .p6-opts { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .p6-opt { position: relative; }
+  .p6-opt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .p6-opt span { display: inline-flex; align-items: center; min-block-size: 44px; padding: 0 18px; border: 1px solid var(--c-line); background: #fff; border-radius: var(--radius-pill); font-weight: 500; transition: background .3s, border-color .3s, color .3s; }
+  .p6-opt input:checked + span { background: var(--c-turq); color: var(--c-sand); border-color: var(--c-turq); }
+  .p6-opt input:focus-visible + span { outline: 2px solid var(--c-gold-deep); outline-offset: 3px; }
+  .p6-route { background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: var(--s-4); display: grid; gap: var(--s-3); }
+  .p6-title { font-family: var(--font-heading); margin: 0; font-size: 1.3rem; color: var(--c-turq-deep); }
+  .p6-wait { margin: 0; color: var(--c-ink-soft); }
+  .p6-route :global(.p6-day) { display: grid; gap: var(--s-2); margin-block-end: var(--s-3); }
+  .p6-route :global(.p6-dayname) { margin: 0; font-size: var(--t-xs); font-weight: 700; color: var(--c-gold-deep); }
+  .p6-route :global(.p6-stops) { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+  .p6-route :global(.p6-stop) { display: grid; gap: 2px; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--c-sand); }
+  .p6-route :global(.p6-kind) { font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .p6-route :global(.p6-stop-a) { font-weight: 600; color: var(--c-turq-deep); text-decoration: none; }
+  .p6-route :global(.p6-stop-a:hover) { text-decoration: underline; }
+  .p6-route :global(.p6-note) { margin: 0; font-size: var(--t-sm); font-weight: 600; color: var(--c-ink); }
+  .p6-route :global(.p6-tip) { margin: 0; font-size: var(--t-sm); color: var(--c-ink-soft); border-inline-start: 3px solid var(--c-gold); padding-inline-start: 12px; }
+</style>

@@ -1,0 +1,115 @@
+---
+// الفصل 2 — الماء تحت الرمل: أرقام الواحة من مصدرها الواحد (oasis-facts.ts، القرار أ4).
+// الرقم النهائي مكتوب في HTML؛ العدّ تجميل يُصفَّر قبيل دخول الشاشة ثم يتصاعد، ولا يعمل مع
+// تقليل الحركة. السنة ثابتة لا تُعدّ. دوائر الماء تبدأ بعد انتهاء العدّ (القرار ب2).
+// لصيقة عدد المعالم نصّ القاموس نفسه (fact.sites.l) — يقرؤها فحص C3.
+import { OASIS_FACTS, OASIS_SOURCES } from '../../data/oasis-facts';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props { lang: 'ar' | 'en'; sitesCount: number }
+const { lang, sitesCount } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const springs = OASIS_FACTS.springs.value;
+const facts = [
+  { n: OASIS_FACTS.palms.plus[lang], l: t('fact.palms.l'), count: true },
+  // «+» قبل الرقم في العربية معزول اتجاهياً كصيغة النخيل
+  { n: ar ? `⁦+${springs}⁩` : `${springs}+`, l: ar ? 'عيناً ارتوازية تروي الواحة' : 'artesian springs water the oasis', count: true },
+  { n: String(OASIS_FACTS.unescoYear.value), l: t('fact.unesco.l'), count: false },
+  { n: String(sitesCount), l: t('fact.sites.l'), count: true },
+];
+const allHref = ar ? '/معالم/' : '/en/attractions/';
+---
+<section class="ch cv-auto ch--light water" id="ch-water" data-chapter data-track-view="water" data-track-view-page="home">
+  <div class="water-ripples" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="container">
+    <header class="ch-head" data-rise>
+      <span class="ch-no">02 · Water Beneath the Sand</span>
+      <h2 class="ch-title">{ar ? 'الماء تحت الرمل' : 'Water beneath the sand'}</h2>
+      <p class="ch-lead">{ar ? 'خزانٌ جوفيٌّ هائل يغذّي الواحة، فتخضرّ في قلب الصحراء.' : 'A vast underground aquifer feeds the oasis, keeping it green in the heart of the desert.'}</p>
+    </header>
+    <div class="water-facts">
+      {facts.map((f) => (
+        <div class="wf" data-rise>
+          <span class="wf-n">
+            {/* عنصر واحد بالرقم النهائي: نسخة ثانية لقارئ الشاشة تُكرّر العدد في النصّ (فيقرأ C3 «5858») */}
+            {f.count ? <bdi data-count>{f.n}</bdi> : <bdi>{f.n}</bdi>}
+          </span>
+          <span class="wf-l">{f.l}</span>
+        </div>
+      ))}
+    </div>
+    <p class="water-src">
+      {ar ? 'المصادر: ' : 'Sources: '}
+      <a href={OASIS_SOURCES.guinness} rel="noopener" target="_blank">{ar ? 'موسوعة غينيس للأرقام القياسية، سجل «أكبر واحة»' : 'Guinness World Records, “Largest oasis”'}</a>
+      {ar ? ' (النخيل والعيون)؛ وإحصاءات وزارة البيئة والمياه والزراعة (النخيل)؛ و' : ' (palms and springs); Ministry of Environment, Water and Agriculture statistics (palms); '}
+      <a href={OASIS_SOURCES.unesco} rel="noopener" target="_blank">{ar ? 'قائمة التراث العالمي لليونسكو' : 'UNESCO World Heritage List'}</a>
+      {ar ? ' (2018).' : ' (2018).'}
+    </p>
+    <a class="ch-link" href={`${allHref}?cat=nature`}>{ar ? 'اكتشف معالم الطبيعة' : 'Explore nature sites'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+  </div>
+</section>
+
+<script>
+  // العدّ: الرقم الأول في النصّ يتصاعد بصيغته (فاصلة عشرية أو نقطة)، وما حوله يبقى كما هو.
+  function initWater() {
+    const sec = document.getElementById('ch-water');
+    if (!sec || sec.dataset.wired) return;
+    sec.dataset.wired = '1';
+    const els = Array.from(sec.querySelectorAll<HTMLElement>('[data-count]'));
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || typeof IntersectionObserver !== 'function') { sec.classList.add('is-counted'); return; }
+    const parts = els.map((el) => {
+      const text = el.textContent || '';
+      const m = text.match(/\d+(?:[.,]\d+)?/);
+      if (!m || m.index === undefined) return null;
+      const sep = m[0].includes(',') ? ',' : '.';
+      const dec = (m[0].split(/[.,]/)[1] || '').length;
+      return { el, text, before: text.slice(0, m.index), after: text.slice(m.index + m[0].length), to: Number(m[0].replace(',', '.')), sep, dec };
+    }).filter((x): x is NonNullable<typeof x> => x !== null);
+    const paint = (p: (typeof parts)[number], v: number) => {
+      p.el.textContent = p.before + v.toFixed(p.dec).replace('.', p.sep) + p.after;
+    };
+    let primed = false, done = false;
+    const grid = sec.querySelector('.water-facts');
+    // يُصفَّر العدّاد قبيل الدخول فقط (والشبكة تحت الشاشة بعدُ)، فلا يرى الزائر الرقم ثم يقفز إلى صفر
+    const prime = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !primed && !done && e.boundingClientRect.top > innerHeight * 0.75) { primed = true; parts.forEach((p) => paint(p, 0)); }
+    }, { rootMargin: '0px 0px 300px 0px' });
+    const run = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting || done) return;
+      done = true; prime.disconnect(); run.disconnect();
+      if (!primed) { sec.classList.add('is-counted'); return; }
+      const t0 = performance.now(), D = 1800;
+      const tick = (t: number) => {
+        const k = Math.min(1, (t - t0) / D), ease = 1 - Math.pow(1 - k, 3);
+        parts.forEach((p) => paint(p, p.to * ease));
+        if (k < 1) requestAnimationFrame(tick);
+        else { parts.forEach((p) => { p.el.textContent = p.text; }); sec.classList.add('is-counted'); }
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.45 });
+    if (grid) { prime.observe(grid); run.observe(grid); }
+  }
+  document.addEventListener('astro:page-load', initWater);
+</script>
+
+<style>
+  .water { position: relative; overflow: hidden; }
+  .water-facts { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 3vw, 40px); }
+  @media (max-width: 760px) { .water-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s-5); } }
+  .wf { display: grid; gap: 6px; align-content: start; border-block-start: 1px solid var(--c-line); padding-block-start: var(--s-3); }
+  .wf-n { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.05; color: var(--c-turq-deep); font-variant-numeric: tabular-nums lining-nums; }
+  .wf-l { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.5; }
+  .water-src { position: relative; z-index: 1; margin-block: var(--s-5) var(--s-3); font-size: var(--t-xs); line-height: 1.6; color: var(--c-ink-soft); max-inline-size: 80ch; }
+  .water-src a { color: var(--c-turq); }
+  .water-ripples { position: absolute; inset-inline-start: -8%; inset-block-end: -30%; inline-size: 620px; aspect-ratio: 1; pointer-events: none; opacity: 0; transition: opacity 1.2s; }
+  .water.is-counted .water-ripples { opacity: 1; }
+  .water-ripples i { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(0,110,97,.2); transform: scale(.2); }
+  @media (prefers-reduced-motion: no-preference) {
+    .water.is-counted .water-ripples i { animation: ripple 12s ease-in-out infinite; }
+    .water.is-counted .water-ripples i:nth-child(2) { animation-delay: 4s; }
+    .water.is-counted .water-ripples i:nth-child(3) { animation-delay: 8s; }
+    @keyframes ripple { 0% { transform: scale(.2); opacity: 0; } 25% { opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+  }
+</style>

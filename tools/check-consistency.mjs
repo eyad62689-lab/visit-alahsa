@@ -192,7 +192,11 @@ async function main() {
   } else {
     const home = await readText(homePath);
     // النصّ المرئي وحده: تُنزع الوسوم ثم يُلتقط ما قبل اللصيقة مباشرةً.
-    const text = stripTags(home, '');
+    // تُنزع كتل script/style أولاً (كما في C4): بلا ذلك يقرن التقشير المتكرر «<» في سكربت سابق
+    // (`i < n`) بـ«>» في سكربت لاحق (`=>`) فيبتلع النصّ المرئي بينهما — اختفت لصيقة العدد كلها
+    // في الرئيسية ذات الفصول.
+    const visibleHome = stripUntilStable(stripUntilStable(home, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi), /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi);
+    const text = stripTags(visibleHome, '');
     const m = text.match(/(?<![\d.,+MK万])([\d.,+MK万]+)[\p{Cc}\s]*معلماً ووجهةً للاكتشاف/u);
     if (!m) fail('C3', 'تعذّر استخراج عدد المعالم من بطاقات حقائق الرئيسية');
     else if (m[1] === String(truth)) pass('C3', `الرئيسية تعرض ${truth} معلماً`);

@@ -1,0 +1,49 @@
+---
+// الفصل 5 — ذاكرة الطين والسوق: شريط بطاقات أفقي بـscroll-snap أصلي بلا مكتبة.
+// التاريخ على البطاقة بصيغته من متن صفحة المعلم، وما لا تاريخ في متنه بلا تاريخ (القرار ج6).
+import Photo from '../Photo.astro';
+import { attractionHref } from '../../lib/routes';
+
+type Card = { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string; date?: string };
+interface Props { lang: 'ar' | 'en'; cards: Card[] }
+const { lang, cards } = Astro.props;
+const ar = lang === 'ar';
+---
+<section class="ch cv-auto ch--light memory" id="ch-memory" data-chapter data-track-view="memory" data-track-view-page="home">
+  <div class="container">
+    <header class="ch-head" data-rise>
+      <span class="ch-no">05 · Memory of Clay and Souq</span>
+      <h2 class="ch-title">{ar ? 'ذاكرة الطين والسوق' : 'Memory of clay and souq'}</h2>
+      <p class="ch-lead">{ar ? 'حصونٌ من طين، ومساجد من أوائل الإسلام، وأسواقٌ تعاقبت عليها الأجيال.' : 'Clay fortresses, some of Islam’s earliest mosques, and souqs passed down through generations.'}</p>
+    </header>
+  </div>
+  <div class="mem-track" tabindex="0" role="region" aria-label={ar ? 'معالم التراث، تمرير أفقي' : 'Heritage landmarks, scroll sideways'}>
+    {cards.map((c) => (
+      <a class="mem-card" href={attractionHref(c, lang)}>
+        <div class="mem-ph">
+          <Photo src={c.heroImage} label={c.title} class="mem-photo" sizes="300px" />
+          {c.date && <span class="mem-date">{c.date}</span>}
+        </div>
+        <h3 class="mem-t">{c.title}</h3>
+        <p class="mem-d">{c.summary}</p>
+      </a>
+    ))}
+  </div>
+  <div class="container">
+    <a class="ch-link" href={ar ? '/معالم/?cat=historic' : '/en/attractions/?cat=historic'}>{ar ? 'المعالم التراثية' : 'Heritage sites'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+  </div>
+</section>
+
+<style>
+  .mem-track { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(230px, 30vw, 300px); gap: var(--s-3); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; padding-block: 4px var(--s-3); padding-inline: max(16px, calc((100% - 1120px) / 2)); scroll-padding-inline: max(16px, calc((100% - 1120px) / 2)); }
+  .mem-track:focus-visible { outline: 2px solid var(--c-turq); outline-offset: -2px; }
+  .mem-card { scroll-snap-align: start; display: grid; gap: var(--s-2); align-content: start; text-decoration: none; color: inherit; }
+  .mem-ph { position: relative; aspect-ratio: 3 / 4; border-radius: var(--radius); overflow: hidden; background: var(--c-sand-2); }
+  .mem-ph :global(.mem-photo) { position: absolute; inset: 0; }
+  .mem-ph :global(.mem-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .mem-card:hover .mem-ph :global(.mem-photo img) { transform: scale(1.04); }
+  .mem-date { position: absolute; z-index: 2; inset-block-end: 12px; inset-inline-start: 12px; background: var(--c-sand); color: var(--c-turq-deep); font-weight: 600; font-size: var(--t-xs); padding: 5px 12px; border-radius: var(--radius-pill); }
+  .mem-t { font-family: var(--font-heading); font-size: 1.2rem; margin: 0; color: var(--c-turq-deep); line-height: 1.3; }
+  .mem-d { margin: 0; font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.6; }
+  @media (prefers-reduced-motion: reduce) { .mem-ph :global(.mem-photo img) { transition: none; } }
+</style>

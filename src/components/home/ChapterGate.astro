@@ -1,0 +1,64 @@
+---
+// الفصل 1 — البوابة: البطل بالفيديو القائم (HeroVideo بتحميله المؤجل كما هو، القرار ب5)
+// وطبقتا عمق تتحركان مع التمرير بـanimation-timeline في CSS وحده (القرار ج1).
+// الزرّ الثانوي ظاهر وقابل للنقر من التحميل؛ حركة دخوله وحدها تتأخر ثانيتين (القرار ب3).
+import HeroPoster from '../HeroPoster.astro';
+import HeroVideo from '../HeroVideo.astro';
+
+interface Props { lang: 'ar' | 'en' }
+const { lang } = Astro.props;
+const C = lang === 'ar'
+  ? {
+      title: 'أكبر واحةٍ في العالم تتكشّف لك، فصلاً بعد فصل',
+      lead: 'ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. مرّر لتبدأ الحكاية.',
+      begin: 'ابدأ الحكاية',
+      skip: 'انتقل إلى التخطيط',
+    }
+  : {
+      title: 'The world’s largest oasis, unfolding chapter by chapter',
+      lead: 'Water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.',
+      begin: 'Begin the story',
+      skip: 'Skip to planning',
+    };
+---
+<section class="ch gate" id="ch-gate" data-chapter data-dark data-track-view="gate" data-track-view-page="home">
+  <div class="gate-media">
+    <HeroPoster src="/img/hero-home" class="gate-bg" />
+    <HeroVideo src="/video/hero-home-v2.mp4" srcMobile="/video/hero-home-v2-portrait.mp4" lang={lang} />
+  </div>
+  <div class="gate-shade" aria-hidden="true"></div>
+  <div class="container gate-in">
+    <span class="ch-no">01 · The Gate</span>
+    <h1 class="gate-title">{C.title}</h1>
+    <p class="gate-lead">{C.lead}</p>
+    <div class="gate-cta">
+      <a href="#ch-water" class="btn btn--gold">{C.begin}</a>
+      <a href="#ch-plan" class="btn btn--ghost gate-later">{C.skip}</a>
+    </div>
+  </div>
+  {/* حارس الرأس الشفاف: يصير الرأس مضبّباً حين يتجاوز التمرير 60% من ارتفاع الشاشة */}
+  <span class="gate-sentinel" data-header-sentinel aria-hidden="true"></span>
+</section>
+
+<style>
+  .gate { position: relative; min-block-size: min(92svh, 860px); display: grid; align-items: end; overflow: hidden; isolation: isolate; color: var(--c-sand); padding-block: 140px clamp(48px, 8vw, 88px); }
+  .gate-media { position: absolute; inset: 0; z-index: -2; }
+  .gate-shade { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(0deg, rgba(0,40,35,.92) 0%, rgba(0,44,39,.55) 45%, rgba(0,44,39,.15) 75%, rgba(0,44,39,.5) 100%); }
+  .gate-in { display: grid; gap: var(--s-3); max-inline-size: 760px; margin-inline: auto; }
+  .gate-title { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-display); line-height: 1.12; color: var(--c-sand); margin: 0; text-wrap: balance; }
+  .gate-lead { font-size: 1.1875rem; line-height: 1.7; color: rgba(247,243,234,.88); margin: 0; max-inline-size: 56ch; }
+  .gate-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-block-start: var(--s-2); }
+  .gate-sentinel { position: absolute; inset-block-start: 60vh; inline-size: 1px; block-size: 1px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .gate-later { animation: gate-rise .9s cubic-bezier(.2,.7,.2,1) 2s both; }
+    @keyframes gate-rise { from { transform: translateY(22px); } to { transform: none; } }
+    @supports (animation-timeline: scroll()) {
+      @media (min-width: 761px) {
+        .gate-media { animation: gate-back linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+        .gate-in { animation: gate-front linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+        @keyframes gate-back { to { transform: translateY(18vh); } }
+        @keyframes gate-front { to { transform: translateY(-8vh); } }
+      }
+    }
+  }
+</style>
