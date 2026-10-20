@@ -7,6 +7,7 @@ import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
 import HeroVideo from '../HeroVideo.astro';
 import SeasonNow from '../SeasonNow.astro';
+import { OASIS_FACTS } from '../../data/oasis-facts';
 import { getCollection } from 'astro:content';
 import { attractionHref } from '../../lib/routes';
 import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
@@ -57,13 +58,10 @@ const catCards = [
   { key: 'events', cat: null, href: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : '/en/events/', img: '/img/event-dates-festival' },
 ];
 const facts = [
-  // أرقام مضمّنة خارج القاموس: كل لغة تحتاج فرعاً يدوياً هنا، والفشل صامت
-  // (فاصلة عشرية ألمانية — دفعة الواجهة الألمانية 2026-09-03).
-  // الرقم الروسي من خط ru-translation-pipeline (دفعة الواجهة 2026-09-05) — فاصلة عشرية روسية.
-  // «+» يطابق «أكثر من 2.5 مليون» في المقدمة (2026-10-03)؛ في العربية معزولة اتجاهياً (LRI…PDI) لتبقى قبل الرقم
-  // الرقم الأوردي من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12): بالمقياس الأوردي «لاکھ».
-  { n: ar ? '\u2066+2.5\u2069 مليون' : zh ? '250 多万' : de ? 'Über 2,5 Mio.' : ru ? 'Более 2,5 млн' : ur ? '25 لاکھ+' : '2.5M+', l: t('fact.palms.l') },
-  { n: '2018', l: t('fact.unesco.l') },
+  // أرقام الواحة وصيغها في كل لغة من مصدرها الواحد (src/data/oasis-facts.ts)؛
+  // «+» يطابق «أكثر من 2.5 مليون» في المقدمة (2026-10-03).
+  { n: OASIS_FACTS.palms.plus[lang], l: t('fact.palms.l') },
+  { n: String(OASIS_FACTS.unescoYear.value), l: t('fact.unesco.l') },
   // العدد يُشتقّ من المجموعة لا يُكتب يدوياً: كان مثبَّتاً «+60» بينما المنشور 58،
   // فتضاربت الرئيسية مع الخريطة وllms.txt (تدقيق 2026-08-30). أرقام لاتينية بحكم قاعدة الموقع.
   { n: String(allEntries.length), l: t('fact.sites.l') },
