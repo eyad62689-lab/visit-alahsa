@@ -3,23 +3,23 @@
 // دليل التخطيط، أو «افتح رحلتي (n)» إلى «معالمي» متى وُجد محفوظ في va-plan. لا زرّ حجز.
 // الصورة نهارية حقيقية من المكتبة، والنصّ لا يدّعي الغروب حتى تُصوَّر لقطته (القرار أ5).
 import Photo from '../Photo.astro';
+import { HOME_COPY, type HomeLang } from '../../data/home-copy';
 
-interface Props { lang: 'ar' | 'en'; planHref: string; myTripHref: string }
+interface Props { lang: HomeLang; planHref: string; myTripHref: string }
 const { lang, planHref, myTripHref } = Astro.props;
-const ar = lang === 'ar';
-const plan = ar ? 'خطّط زيارتك' : 'Plan your visit';
-const open = ar ? 'افتح رحلتي' : 'Open my trip';
+const C = HOME_COPY[lang].finale;
+const { plan, open } = C;
 ---
 <section class="ch cv-auto ch--dark finale" id="ch-finale" data-chapter data-dark data-track-view="finale" data-track-view-page="home">
   <div class="fin-bg" aria-hidden="true"><Photo src="/img/asfar" class="fin-photo" sizes="100vw" /></div>
   <div class="fin-shade" aria-hidden="true"></div>
   <div class="container fin-in" data-rise>
     <span class="ch-no">07 · Finale</span>
-    <h2 class="ch-title fin-title">{ar ? 'الواحة بانتظارك' : 'The oasis awaits'}</h2>
-    <p class="ch-lead fin-lead">{ar ? 'من رمال الأصفر إلى ظلال النخيل، رحلتك تبدأ من هنا.' : 'From the sands of Al-Asfar to the shade of the palms, your journey starts here.'}</p>
+    <h2 class="ch-title fin-title">{C.title}</h2>
+    <p class="ch-lead fin-lead">{C.lead}</p>
     <div class="fin-cta">
       <a class="btn btn--gold" href={planHref} data-finale-cta data-plan-href={planHref} data-trip-href={myTripHref} data-tx-plan={plan} data-tx-open={open} data-track="finale_cta" data-track-kind="plan">{plan}</a>
-      <a class="btn btn--ghost" href="#top" data-track="finale_replay">{ar ? 'أعِد الحكاية' : 'Replay the story'}</a>
+      <a class="btn btn--ghost" href="#top" data-track="finale_replay">{C.replay}</a>
     </div>
   </div>
 </section>

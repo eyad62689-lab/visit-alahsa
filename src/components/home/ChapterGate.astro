@@ -5,21 +5,11 @@
 import HeroPoster from '../HeroPoster.astro';
 import HeroVideo from '../HeroVideo.astro';
 
-interface Props { lang: 'ar' | 'en' }
+import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+
+interface Props { lang: HomeLang }
 const { lang } = Astro.props;
-const C = lang === 'ar'
-  ? {
-      title: 'أكبر واحةٍ في العالم تتكشّف لك، فصلاً بعد فصل',
-      lead: 'ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. مرّر لتبدأ الحكاية.',
-      begin: 'ابدأ الحكاية',
-      skip: 'انتقل إلى التخطيط',
-    }
-  : {
-      title: 'The world’s largest oasis, unfolding chapter by chapter',
-      lead: 'Water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.',
-      begin: 'Begin the story',
-      skip: 'Skip to planning',
-    };
+const C = HOME_COPY[lang].gate;
 ---
 <section class="ch gate" id="ch-gate" data-chapter data-dark data-track-view="gate" data-track-view-page="home">
   <div class="gate-media">

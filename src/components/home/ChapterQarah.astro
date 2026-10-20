@@ -4,18 +4,20 @@
 // الخلاصة من مجموعة المعالم كما هي — تنسب الدفء للشتاء (C16).
 import Photo from '../Photo.astro';
 import { attractionHref } from '../../lib/routes';
+import { HOME_COPY, type HomeLang } from '../../data/home-copy';
 
-interface Props { lang: 'ar' | 'en'; qarah: { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string } }
+interface Props { lang: HomeLang; qarah: { slug_ar: string; slug_en: string; title: string; summary: string; heroImage: string } }
 const { lang, qarah } = Astro.props;
-const ar = lang === 'ar';
-const times = ar ? ['الفجر', 'الضحى', 'الأصيل', 'الغروب'] : ['Dawn', 'Morning', 'Afternoon', 'Sunset'];
+const H = HOME_COPY[lang];
+const C = H.qarah;
+const times = C.times;
 ---
 <section class="ch cv-auto ch--sand qarah" id="ch-qarah" data-chapter data-track-view="qarah" data-track-view-page="home">
   <div class="container">
     <header class="ch-head" data-rise>
       <span class="ch-no">03 · Jabal Al-Qarah</span>
-      <h2 class="ch-title">{ar ? 'جبل القارة: حرّك اليوم بيدك' : 'Jabal Al-Qarah: move the day yourself'}</h2>
-      <p class="ch-lead">{qarah.summary} {ar ? 'اسحب الشريط من الفجر إلى الغروب.' : 'Drag the slider from dawn to sunset.'}</p>
+      <h2 class="ch-title">{C.title}</h2>
+      <p class="ch-lead">{qarah.summary} {C.drag}</p>
     </header>
     <div class="qs" data-t="2" data-qarah-scene>
       <Photo src={qarah.heroImage} label={qarah.title} class="qs-photo" sizes="(max-width: 1120px) 100vw, 1120px" />
@@ -25,11 +27,11 @@ const times = ar ? ['الفجر', 'الضحى', 'الأصيل', 'الغروب'] 
       <span class="qs-time" aria-hidden="true">{times[2]}</span>
     </div>
     <div class="qs-ctl">
-      <label class="sr-only" for="qarah-range">{ar ? 'وقت اليوم' : 'Time of day'}</label>
+      <label class="sr-only" for="qarah-range">{C.timeLabel}</label>
       <input id="qarah-range" class="qs-range" type="range" min="0" max="3" step="1" value="2" aria-valuetext={times[2]} data-labels={times.join('|')} />
       <div class="qs-ticks" aria-hidden="true">{times.map((x) => <span>{x}</span>)}</div>
     </div>
-    <a class="ch-link" href={attractionHref(qarah, lang)}>{ar ? 'صفحة جبل القارة' : 'Jabal Al-Qarah page'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+    <a class="ch-link" href={attractionHref(qarah, lang)}>{C.link} <span aria-hidden="true">{H.arrow}</span></a>
   </div>
 </section>
 

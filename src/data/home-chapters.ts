@@ -5,11 +5,13 @@
 // بعناوينها من trails.json. الجديد وحده سطور عناوين القوالب وفقرات المرافقين، وكلها
 // اعتمدها إياد (قوالب-المسارات-الفصل6-مسودة-2026-10-20.md) — كل عبارة فيها تحيل إلى نصّ منشور.
 
+import type { HomeLang } from './home-copy';
+
 /** خريطة الفصل 4 (القرار ج8): المواضع تُسقط من حقل location في المجموعة. */
 export const MAP_SLUGS = ['jabal-al-qarah', 'qasr-ibrahim', 'jawatha-mosque', 'asfar', 'najm-park', 'al-uqair'] as const;
 
 /** بطاقات الفصل 5 (القرار ج6): التاريخ بصيغته من متن صفحة المعلم، وما لا تاريخ في متنه بلا تاريخ. */
-export const MEMORY_CARDS: { slug: string; date?: { ar: string; en: string } }[] = [
+export const MEMORY_CARDS: { slug: string; date?: Record<HomeLang, string> }[] = [
   // متن الجعلانية: «في القرن الخامس الهجري» / «in the fifth century AH»
   { slug: 'jalaniyah', date: { ar: 'القرن الخامس الهجري', en: 'Fifth century AH' } },
   // متن القيصرية: «يعود لأكثر من قرنين» / «going back more than two centuries»
@@ -24,7 +26,8 @@ export type Companion = 'family' | 'friends' | 'solo';
 export type Stop = { trail: string } | { place: string };
 
 type Day = { stops: Stop[] };
-type Template = { title: { ar: string; en: string }; days: Day[]; note?: { ar: string; en: string } };
+type Text = Record<HomeLang, string>;
+type Template = { title: Text; days: Day[]; note?: Text };
 
 const T = (trail: string): Stop => ({ trail });
 const P = (place: string): Stop => ({ place });
@@ -48,7 +51,7 @@ const MARKETS: Day[] = [
 ];
 
 // تنبيه منقول من مقدمة مسار الأصفر المنشور: «الوصول إلى البحيرة يتطلب سيارة دفع رباعي»
-const ASFAR_NOTE = {
+const ASFAR_NOTE: Record<HomeLang, string> = {
   ar: 'الوصول إلى البحيرة يتطلب سيارة دفع رباعي.',
   en: 'Reaching the lake requires a 4x4.',
 };
@@ -100,7 +103,7 @@ export const TEMPLATES: Record<string, Template> = {
 /** فقرات المرافقين (اعتمدها إياد) — المراجع: jawatha-park وking-abdullah-park ومقدمة
  *  al-uqair-coast للعائلة؛ مقدمة al-asfar-and-national-park وarbaa للأصدقاء؛ historic-hofuf
  *  (mode: walking) وahsa-museum للمنفرد. */
-export const COMPANION_TIPS: Record<Companion, { ar: string; en: string }> = {
+export const COMPANION_TIPS: Record<Companion, Record<HomeLang, string>> = {
   family: {
     ar: 'أضف إلى يومك منتزهاً عائلياً قريباً من محطاتك: منتزه جواثا السياحي بجوار مسجد جواثا، ومنتزه الملك عبدالله البيئي للمشي والتنزّه، وفي يوم الساحل شاطئ العقير.',
     en: 'Add a family park near your stops: Jawatha Park beside Jawatha Mosque, King Abdullah Environmental Park for walking and outings, and on the coast day, Al-Uqair Beach.',

@@ -15,6 +15,7 @@
 // — مراجعة مواصفات «الواحة تتكشّف»، القرار أ4 (2026-10-20).
 import type { Lang } from '../i18n/ui';
 import { UNESCO_WHS_URL } from '../lib/schema';
+import type { HomeLang } from './home-copy';
 
 type PerLang = Readonly<Record<Lang, string>>;
 
@@ -56,8 +57,15 @@ export const OASIS_FACTS = {
       ur: '4 لاکھ',
     } satisfies PerLang,
   },
-  /** للرئيسية الجديدة (الفصل 2)؛ صيغها تُكتب مع نصوص الفصل عبر خطوط الترجمة. */
-  springs: { value: 280, plus: true },
+  /** للرئيسية الجديدة (الفصل 2)؛ صيغها تُكتب مع نصوص الفصل عبر خطوط الترجمة، فلا تحمل
+   *  إلا لغات الرئيسية الجديدة (HOME_LANGS). في العربية «+» معزول اتجاهياً كصيغة النخيل. */
+  springs: {
+    value: 280,
+    plus: {
+      ar: '⁦+280⁩',
+      en: '280+',
+    } satisfies Readonly<Record<HomeLang, string>>,
+  },
   unescoYear: { value: 2018 },
   /** سطر المصدر تحت أرقام صفحة الثمار (النخيل وأشجار الفاكهة). */
   fruitsStatsSrc: {

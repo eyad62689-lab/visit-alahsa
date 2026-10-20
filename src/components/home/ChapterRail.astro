@@ -1,13 +1,14 @@
 ---
 // شريط الفصول: سبع نقاط عند inline-end (يسار في العربية، يمين في الإنجليزية — القرار ب6).
 // النقطة النشطة تستطيل وتتذهّب، والاسم يظهر على الحاسوب وحده. روابط عادية تعمل بلوحة المفاتيح.
-interface Props { lang: 'ar' | 'en' }
+import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+
+interface Props { lang: HomeLang }
 const { lang } = Astro.props;
-const items = lang === 'ar'
-  ? [['ch-gate', 'البوابة'], ['ch-water', 'الماء تحت الرمل'], ['ch-qarah', 'جبل القارة'], ['ch-map', 'الخريطة الحيّة'], ['ch-memory', 'ذاكرة الطين والسوق'], ['ch-plan', 'خطّط رحلتك'], ['ch-finale', 'الختام']]
-  : [['ch-gate', 'The Gate'], ['ch-water', 'Water beneath the sand'], ['ch-qarah', 'Jabal Al-Qarah'], ['ch-map', 'The living map'], ['ch-memory', 'Memory of clay and souq'], ['ch-plan', 'Plan your trip'], ['ch-finale', 'Finale']];
+const C = HOME_COPY[lang].rail;
+const items = C.items;
 ---
-<nav class="rail" aria-label={lang === 'ar' ? 'فصول الصفحة' : 'Page chapters'} data-rail>
+<nav class="rail" aria-label={C.label} data-rail>
   {items.map(([id, label]) => (
     <a href={`#${id}`} data-rail-for={id} aria-label={label}><span class="rail-dot" aria-hidden="true"></span><span class="rail-lbl">{label}</span></a>
   ))}

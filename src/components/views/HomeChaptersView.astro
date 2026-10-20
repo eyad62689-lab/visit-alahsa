@@ -1,6 +1,7 @@
 ---
 // الرئيسية «الواحة تتكشّف» — سبعة فصول يقودها التمرير، بالعربية والإنجليزية أولاً (القرار ج3):
-// zh/de/ru/ur تبقى على HomeView حتى تنجح دفعة ترجمتها ثم تُنقل، وتُحذف HomeView بعد آخر لغة.
+// كل لغة أخرى تبقى على HomeView حتى تنجح دفعة ترجمتها فتُضمّ إلى HOME_LANGS (home-copy.ts)،
+// وتُحذف HomeView بعد آخر لغة.
 // المواصفات: مصادر-المشروع/مستندات-العمل/مفهوم-الواحة-تتكشف-مواصفات-الرئيسية-v2-2026-10-20.md
 //
 // العنوان والوصف وJSON-LD هي نفسها في HomeView (بفرعي ar/en): الوجهة بهوية الواحة يحرسها C19،
@@ -21,14 +22,26 @@ import { getCollection } from 'astro:content';
 import { attractionHref } from '../../lib/routes';
 import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
 import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
-import trailsData from '../../data/trails.json';
+import { TRAILS, trailText } from '../../data/trails';
 import { MAP_SLUGS, MEMORY_CARDS, TEMPLATES, COMPANION_TIPS, type Stop } from '../../data/home-chapters';
+import { HOME_COPY, type HomeLang } from '../../data/home-copy';
 
-interface Props { lang: 'ar' | 'en'; alt: AltLinks }
+interface Props { lang: HomeLang; alt: AltLinks }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const H = HOME_COPY[lang];
+type Loc = { title: string; summary: string; title_en?: string; summary_en?: string; title_zh?: string; summary_zh?: string };
+// حقل اللغة المترجمة (لغير العربية والإنجليزية)؛ يُضاف فرع لكل لغة تنضمّ إلى HOME_LANGS
+const L = lang as Lang;
+const xl = (d: Loc, k: 'title' | 'summary'): string | undefined => (L === 'zh' ? d[`${k}_zh`] : undefined);
+const own = (d: Loc) => L === 'ar' || L === 'en' || xl(d, 'title') !== undefined;
+const locTitle = (d: Loc) => (ar ? d.title : xl(d, 'title') ?? d.title_en ?? d.title);
+const locSummary = (d: Loc) => (ar ? d.summary : xl(d, 'summary') ?? d.summary_en ?? d.summary);
+// المحفوظات قد تشمل معلماً لم يُترجم بعد: يتراجع للإنجليزية نصاً ورابطاً (نمط HomeView)
+const hrefLang = (d: Loc): Lang => (own(d) ? lang : 'en');
 
 const all = await getCollection('attractions');
 const bySlugEn = new Map(all.map((e) => [e.data.slug_en, e.data]));
@@ -37,10 +50,12 @@ const pick = (slugEn: string) => {
   if (!d) throw new Error(`home-chapters: معلم غير موجود في المجموعة: ${slugEn}`);
   // كل معلم في الفصول يُعرض بصورته الحقيقية (القرار أ5): غيابها يُفشل البناء لا يُخفي البطاقة
   if (!d.heroImage) throw new Error(`home-chapters: ${slugEn} بلا heroImage`);
+  // ومعالم الفصول مترجمة كلها إلى لغة الصفحة: الناقص يُفشل البناء لا يتراجع للإنجليزية
+  if (!own(d)) throw new Error(`home-chapters: ${slugEn} بلا ترجمة ${lang}`);
   return {
     slug_ar: d.slug_ar, slug_en: d.slug_en, heroImage: d.heroImage,
-    title: ar ? d.title : (d.title_en ?? d.title),
-    summary: ar ? d.summary : (d.summary_en ?? d.summary),
+    title: locTitle(d),
+    summary: locSummary(d),
     lat: d.location?.lat, lng: d.location?.lng,
   };
 };
@@ -52,12 +67,12 @@ const mapPoints = MAP_SLUGS.map((s) => {
 });
 const memoryCards = MEMORY_CARDS.map((c) => ({ ...pick(c.slug), date: c.date?.[lang] }));
 
-const trails = new Map((trailsData as { trails: { slug: string; ar: { title: string }; en: { title: string } }[] }).trails.map((tr) => [tr.slug, tr]));
+const trails = new Map(TRAILS.map((tr) => [tr.slug, tr]));
 const resolveStop = (s: Stop) => {
   if ('trail' in s) {
     const tr = trails.get(s.trail);
     if (!tr) throw new Error(`home-chapters: مسار غير موجود: ${s.trail}`);
-    return { name: tr[lang].title, href: ar ? `/trails/${s.trail}/` : `/en/trails/${s.trail}/`, kind: 'trail' as const };
+    return { name: trailText(tr, lang).title, href: `${H.paths.trails}${s.trail}/`, kind: 'trail' as const };
   }
   const p = pick(s.place);
   return { name: p.title, href: attractionHref(p, lang), kind: 'place' as const };
@@ -68,10 +83,10 @@ const templates = Object.fromEntries(Object.entries(TEMPLATES).map(([k, v]) => [
   days: v.days.map((d) => d.stops.map(resolveStop)),
 }]));
 const tips = Object.fromEntries(Object.entries(COMPANION_TIPS).map(([k, v]) => [k, v[lang]]));
-const places = Object.fromEntries(all.map((e) => [e.data.slug_ar, { name: ar ? e.data.title : (e.data.title_en ?? e.data.title), href: attractionHref(e.data, lang) }]));
+const places = Object.fromEntries(all.map((e) => [e.data.slug_ar, { name: locTitle(e.data), href: attractionHref(e.data, hrefLang(e.data)) }]));
 
-const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
-const myTripHref = ar ? '/رحلتي/' : '/en/plan/';
+const planHref = H.paths.plan;
+const myTripHref = H.paths.myTrip;
 
 const siteUrl = SITE;
 const jsonLd = [
@@ -79,18 +94,15 @@ const jsonLd = [
   { '@context': 'https://schema.org', ...websiteNode(lang), inLanguage: lang },
   {
     '@context': 'https://schema.org', '@type': 'TouristDestination',
-    name: ar ? 'الأحساء' : 'Al-Ahsa', url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + ogDefault(lang),
+    name: H.seo.place, url: absUrl(altHref(alt, lang), siteUrl), image: siteUrl + ogDefault(lang),
     description: t('home.hero.lead'),
     geo: { '@type': 'GeoCoordinates', latitude: 25.4, longitude: 49.62 },
-    containedInPlace: { '@type': 'Country', name: ar ? 'المملكة العربية السعودية' : 'Saudi Arabia' },
+    containedInPlace: { '@type': 'Country', name: H.seo.country },
     sameAs: OASIS_SAMEAS,
     identifier: UNESCO_WHS_ID,
   },
 ];
-const title = ar ? 'زوروا الأحساء — دليلك السياحي لأكبر واحة في العالم' : 'Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis';
-const description = ar
-  ? 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.'
-  : 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.';
+const { title, description } = H.seo;
 ---
 <Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} overlay />
