@@ -154,6 +154,40 @@ function sendVital(m: Metric): void {
   });
 }
 
+// بلوغ الأقسام — خط أساس قياس الرئيسية قبل إعادة تصميمها: كل عنصر يحمل
+// `data-track-view` (اسم القسم) و`data-track-view-page` (اسم الصفحة) يُرسل
+// section_view مرة واحدة لكل عرض صفحة حين يعبر خطّ منتصف الشاشة، ومعه ترتيبه
+// بين أقسام الصفحة (depth من depth_of) — فيُبنى قمع البلوغ قسماً قسماً.
+// يُعاد المسح في كل astro:page-load (عناصر الصفحة الجديدة بعد تنقّل ClientRouter)،
+// وWeakSet يمنع تكرار الحدث إن أُعيد المسح على الصفحة نفسها.
+let viewObs: IntersectionObserver | null = null;
+const viewed = new WeakSet<Element>();
+function observeViews(): void {
+  try {
+    viewObs?.disconnect();
+    viewObs = null;
+    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-track-view]'));
+    if (!els.length || typeof IntersectionObserver !== 'function') return;
+    const obs = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting || viewed.has(e.target)) continue;
+        viewed.add(e.target);
+        obs.unobserve(e.target);
+        const el = e.target as HTMLElement;
+        track('section_view', {
+          page: el.dataset.trackViewPage,
+          section: el.dataset.trackView,
+          depth: els.indexOf(el) + 1,
+          depth_of: els.length,
+          page_path: currentPath(),
+        });
+      }
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    els.forEach((el) => { if (!viewed.has(el)) obs.observe(el); });
+    viewObs = obs;
+  } catch { /* القياس لا يكسر الصفحة */ }
+}
+
 function init(): void {
   if (window.__vaAnalytics) return;
   window.__vaAnalytics = true;
@@ -161,6 +195,8 @@ function init(): void {
   document.addEventListener('click', onClick);
   document.addEventListener('change', onChange);
   document.addEventListener('playing', onPlaying, true);
+  document.addEventListener('astro:page-load', observeViews);
+  observeViews();
   onLCP(sendVital);
   onCLS(sendVital);
   onINP(sendVital);
