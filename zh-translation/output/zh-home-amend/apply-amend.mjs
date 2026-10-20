@@ -1,3 +1,4 @@
+// قيمة YAML بين علامتي تنصيص: JSON.stringify يهرّب الشرطة العكسية والتنصيص معاً (YAML يقبل تهريب JSON)
 // node apply-amend.mjs <REPO> <BATCH_DIR> <file.json> — يطبّق دفعة zh-home-amend (قابل للإعادة)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -26,6 +27,6 @@ edit('src/data/home-chapters.ts', (s) => {
   return s;
 });
 for (const [key, file] of [['att.qaisariyah.summary', 'qaisariyah'], ['att.najm-park.summary', 'najm-park']]) {
-  edit(`src/content/attractions/${file}.md`, (s) => one(s, /^summary_zh: .*$/m, () => `summary_zh: "${Z[key].replace(/"/g, '\\"')}"`, key));
+  edit(`src/content/attractions/${file}.md`, (s) => one(s, /^summary_zh: .*$/m, () => `summary_zh: ${JSON.stringify(Z[key])}`, key));
 }
 console.log('applied', FILE);
