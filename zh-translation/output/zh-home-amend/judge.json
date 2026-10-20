@@ -1,0 +1,213 @@
+{
+  "batch": "zh-home-amend",
+  "stage": 6,
+  "scores": {
+    "gate.lead": 94,
+    "tip.family": 93,
+    "tip.familyCoast": 93,
+    "att.qaisariyah.summary": 92,
+    "att.najm-park.summary": 93
+  },
+  "batch_score": 92,
+  "breakdown": {
+    "gate.lead": {
+      "accuracy": 29,
+      "nativeness": 27,
+      "termbase": 19,
+      "culture": 9,
+      "structure": 10
+    },
+    "tip.family": {
+      "accuracy": 29,
+      "nativeness": 26,
+      "termbase": 19,
+      "culture": 9,
+      "structure": 10
+    },
+    "tip.familyCoast": {
+      "accuracy": 29,
+      "nativeness": 26,
+      "termbase": 19,
+      "culture": 9,
+      "structure": 10
+    },
+    "att.qaisariyah.summary": {
+      "accuracy": 29,
+      "nativeness": 25,
+      "termbase": 19,
+      "culture": 9,
+      "structure": 10
+    },
+    "att.najm-park.summary": {
+      "accuracy": 29,
+      "nativeness": 26,
+      "termbase": 19,
+      "culture": 9,
+      "structure": 10
+    }
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "strings": {
+    "gate.lead": "在沙特阿拉伯东部省，沙下藏水，山中洞穴密布，集市世代相传。向下滑动，开启这段故事。",
+    "tip.family": "为当天行程添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园，或适合散步和出游的阿卜杜拉国王环境公园。",
+    "tip.familyCoast": "去海岸的那天，再添上乌盖尔海滩。",
+    "att.qaisariyah.summary": "可上溯 200 多年的老集市，是最古老的传统集市之一，也是寻访手工艺与本地物产的去处。",
+    "att.najm-park.summary": "一座环绕历史悠久的艾因奈杰姆泉而建的公园；这眼泉位于穆巴拉兹以西，是哈萨最负盛名的硫磺疗养泉。"
+  },
+  "termbase_additions": [],
+  "notes": [
+    "[s1] gate.lead: only change is the leading location 在沙特阿拉伯东部省，(东部省 = termbase 'Eastern Province'; 沙特阿拉伯 as in published al-uqair summary_zh). Rest of the approved sentence kept verbatim.",
+    "[s1] tip.family: dropped the coast clause；去海岸的那天，还有乌盖尔海滩 and closed the list with 。 — the two approved park clauses kept verbatim (贾瓦塔公园, 阿卜杜拉国王环境公园 per ref.json).",
+    "[s1] tip.familyCoast: appended directly after tip.family; verb 添 mirrors tip.family's 添一处; 乌盖尔海滩 is the termbase/published form.",
+    "[s1] att.qaisariyah.summary: (1) 海湾地区 removed (not in en/ar); (2) broken subject of 挑选 replaced by 也是寻访……的去处 (= ar «وجهة»), keeping the approved phrase 手工艺与本地物产; (3) 市集 unified to 集市. NUMBER: ctx asks for «200 多年» but pack.json gives no digit in en/ar and no allowNums, so verify-stage's number fence rejects 200; rendered «أكثر من قرنين» as 两个多世纪 (same meaning, no new digit). If the coordinator adds allowNums [\"200\"], swap back to 可上溯 200 多年 to match body_zh and the home badge «200 多年历史».",
+    "[s1] att.najm-park.summary: no longer opens with the park name; rebuilt on the Arabic order (منتزه حول عين النجم التاريخية غربي المبرز، أشهر…), keeping 穆巴拉兹 · 艾因奈杰姆泉 · 硫磺疗养泉 and the approved clause 这眼泉……是哈萨最负盛名的硫磺疗养泉.",
+    "[s2] att.qaisariyah.summary: added 是 so the summary reads 是……之一，也是……的去处 (parallel predicates) instead of a bare appositive; no fact or name change.",
+    "[s2] gate.lead / tip.family / tip.familyCoast / att.najm-park.summary: read as native copy; no change. Approved wording outside the defects untouched.",
+    "[s3] Localization pass: no glosses needed (东部省 is the standard mainland form; 乌盖尔海滩 / 贾瓦塔公园 / 阿卜杜拉国王环境公园 / 艾因奈杰姆泉 already established on the site). No photo/advice/quality claims added; religious and heritage references unchanged. Strings identical to stage 2.",
+    "[s3] Open point for coordinator: att.qaisariyah.summary uses 两个多世纪 only because the number fence has no allowNums for 200; the site-consistent form is 可上溯 200 多年.",
+    "[s4] att.qaisariyah.summary: CROSS ح1 applied — 两个多世纪 → 可上溯 200 多年 (allowNums 200 now in pack.json; matches body_zh «可上溯 200 多年» and home badge «200 多年历史»).",
+    "[s4] Fact fence: no additions in any of the 5 strings vs en + ar. 海湾地区 stays removed. «من أعرق الأسواق الشعبية / one of the oldest folk markets» kept as 最古老的传统集市之一: the published Qaisariyah body_zh («最古老、最有故事的传统市集之一») and FAQ («海湾地区最古老的传统集市之一») both use 传统 for this exact claim; 民俗市集 in termbase is a facility-name term (Mushaqar park souq, 妇女民俗市集), not a descriptor for this claim. Switching to 民间/民俗 would split the summary from its own page body; no fact change either way, so the approved 传统 stays (amend rule: fix the defect only).",
+    "[s4] gate.lead: 东部省 = termbase entry «Eastern Province» and the only form in published bodies (palm-village, umzurainiq: 东部省省长…; 东部省清真寺建筑). Comma after 在沙特阿拉伯东部省 kept: a 在… locative followed by a colon is unidiomatic in Chinese; the comma lets the place frame all three clauses, which is what the Arabic colon does.",
+    "[s4] najm-park / tip.family / tip.familyCoast: published names verbatim (艾因奈杰姆泉, 穆巴拉兹, 贾瓦塔公园, 阿卜杜拉国王环境公园, 乌盖尔海滩); no 翻译腔; unchanged.",
+    "[s5] Proofread: no changes. All five strings clean on punctuation, spacing, names, numbers and grammar.",
+    "[s6] CROSS ح2 applied: tip.family source lost «near your stops» and now joins the two parks with «or»; zh aligned — 就近 removed, ；→，或 between 贾瓦塔公园 and 阿卜杜拉国王环境公园. Rest of the approved clause kept verbatim; tip.familyCoast still follows directly (添一处 … 再添上).",
+    "[s6] CROSS ح1 confirmed in final: att.qaisariyah.summary opens 可上溯 200 多年的老集市 (allowNums 200; body_zh and home badge 200 多年历史); 海湾地区 stays removed; 市集 unified to 集市.",
+    "[s6] gate.lead: only change vs approved zh-home-1 is the location frame 在沙特阿拉伯东部省，(termbase 东部省); approved 沙下藏水 / 开启这段故事 kept.",
+    "[s6] att.najm-park.summary: no longer repeats the title; published names 艾因奈杰姆泉 · 穆巴拉兹 · 硫磺疗养泉 verbatim."
+  ],
+  "blind_reader_rulings": [
+    {
+      "item": "#1",
+      "ruling": "out of scope",
+      "why": "gate.title is approved zh-home-1 copy outside the 5 amend positions."
+    },
+    {
+      "item": "#2",
+      "ruling": "rejected with precedent",
+      "why": "Only the location frame is new in gate.lead; 沙下藏水 / 山中洞穴密布 / 集市世代相传 is approved wording mirroring the source triad (water beneath the sand, a mountain of caves, souqs passed down). Reader rewrite adds facts (涌出泉水, 星罗棋布). Keep approved wording where no defect."
+    },
+    {
+      "item": "#3",
+      "ruling": "rejected with precedent",
+      "why": "开启这段故事 approved in zh-home-1 (judge ruling #1 there: faithful to مرّر لتبدأ الحكاية / Scroll to begin; parallels gate.begin 开启故事)."
+    },
+    {
+      "item": "#4a",
+      "ruling": "applied",
+      "why": "就近 removed (CROSS ح2; source no longer says near your stops) — judge edit."
+    },
+    {
+      "item": "#4b",
+      "ruling": "applied",
+      "why": "一处 + two parks: ；→，或 so it reads as one of two (source «or», CROSS ح2) — judge edit."
+    },
+    {
+      "item": "#4c",
+      "ruling": "rejected",
+      "why": "Imperative mirrors the source (Add a family park / أضف); approved register; reader opener 带孩子出行？ and 野餐 add content not in source."
+    },
+    {
+      "item": "#4d",
+      "ruling": "out of scope",
+      "why": "Same tip under all nine templates is page structure (source design), not the string; reported to owner as before."
+    },
+    {
+      "item": "#5",
+      "ruling": "rejected",
+      "why": "tip.familyCoast reads cleanly; 再添上 parallels 添一处. 玩水、散步 would add facts. Route geography of the park vs coast day is source design (reported)."
+    },
+    {
+      "item": "#6",
+      "ruling": "out of scope",
+      "why": "Template titles (tpl.*.title) are approved zh-home-1 copy outside the 5 positions."
+    },
+    {
+      "item": "#7",
+      "ruling": "out of scope",
+      "why": "tpl.heritage-3 title (published C34 wording); first-seaport ambiguity already a reported source defect."
+    },
+    {
+      "item": "#8",
+      "ruling": "out of scope",
+      "why": "Template title outside the 5 positions."
+    },
+    {
+      "item": "#9",
+      "ruling": "out of scope",
+      "why": "Template title outside the 5 positions; Qarah pottery already a reported source defect."
+    },
+    {
+      "item": "#10",
+      "ruling": "out of scope",
+      "why": "Template title outside the 5 positions; generic «East» kept generic per BRIEF trap 2."
+    },
+    {
+      "item": "#11a",
+      "ruling": "rejected with precedent",
+      "why": "Source states no region (one of the oldest folk markets); adding 沙特/哈萨 would add a fact — the old 海湾地区 was removed for exactly this reason."
+    },
+    {
+      "item": "#11b",
+      "ruling": "rejected with precedent",
+      "why": "Latin numerals with half-width spaces are site style; 可上溯 200 多年 is the body_zh form (CROSS ح1)."
+    },
+    {
+      "item": "#11c",
+      "ruling": "rejected",
+      "why": "老集市 … 传统集市之一 mirrors source «souq … folk markets»; 集市 head noun unified per ctx. 适合淘 is a register shift and drops «destination» (وجهة)."
+    },
+    {
+      "item": "#12",
+      "ruling": "rejected",
+      "why": "Reader finds it clear and complete; requested defect (title repetition) fixed. 温泉 would add a temperature claim not in source; semicolon structure kept."
+    }
+  ],
+  "judge_edits": [
+    {
+      "key": "tip.family",
+      "before": "为当天行程就近添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园；适合散步和出游的阿卜杜拉国王环境公园。",
+      "after": "为当天行程添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园，或适合散步和出游的阿卜杜拉国王环境公园。",
+      "why": "CROSS ح2 + reader #4a/#4b: source no longer says near your stops and joins the parks with or — 就近 dropped, ；→，或. Rest verbatim."
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "In Saudi Arabia’s Eastern Province: water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.",
+      "zh": "在沙特阿拉伯东部省，沙下藏水，山中洞穴密布，集市世代相传。向下滑动，开启这段故事。",
+      "page": "home (zh /)",
+      "field": "gate.lead",
+      "note": "supersedes zh-home-1 gate.lead pair"
+    },
+    {
+      "en": "Add a family park to your day: Jawatha Park beside Jawatha Mosque, or King Abdullah Environmental Park for walking and outings.",
+      "zh": "为当天行程添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园，或适合散步和出游的阿卜杜拉国王环境公园。",
+      "page": "home (zh /)",
+      "field": "tip.family",
+      "note": "supersedes zh-home-1 tip.family pair (coast clause split to tip.familyCoast)"
+    },
+    {
+      "en": "On the coast day, add Al-Uqair Beach.",
+      "zh": "去海岸的那天，再添上乌盖尔海滩。",
+      "page": "home (zh /)",
+      "field": "tip.familyCoast"
+    },
+    {
+      "en": "A heritage souq over two centuries old, one of the oldest folk markets and a destination for crafts and local products.",
+      "zh": "可上溯 200 多年的老集市，是最古老的传统集市之一，也是寻访手工艺与本地物产的去处。",
+      "page": "attraction summary_zh",
+      "field": "att.qaisariyah.summary"
+    },
+    {
+      "en": "A park around the historic Ain Najm west of Al-Mubarraz, the most famous of Al-Ahsa's healing sulphur springs.",
+      "zh": "一座环绕历史悠久的艾因奈杰姆泉而建的公园；这眼泉位于穆巴拉兹以西，是哈萨最负盛名的硫磺疗养泉。",
+      "page": "attraction summary_zh",
+      "field": "att.najm-park.summary"
+    }
+  ],
+  "source_defects": [
+    "tip.family: the same two parks appear under all nine templates regardless of route geography (reader #4d/#5); not route-aware — owner.",
+    "Template-title items from the reader (#6–#10: comma/colon mix, first-seaport ambiguity, «海湾» unspecific, Qarah pottery, «East» scope) remain as reported in zh-home-1; outside this amend."
+  ],
+  "scores_row": "\"zh-home-amend (zh): home /zh/ amend — 5 positions (gate.lead location, tip.family split + tip.familyCoast, Qaisariyah + Ain Najm summary_zh)\",2026-10-20,1,92,\"APPROVE (lowest key att.qaisariyah.summary 92; 1 judge edit: tip.family 就近 removed and ；->，或 per CROSS ح2; ح1 200 多年 confirmed; blind reader 17 items: 2 applied, 4 rejected with precedent, 4 rejected, 7 out of scope; termbase 0 adds; TM 5 (2 supersede zh-home-1); owner: park tip not route-aware)\""
+}

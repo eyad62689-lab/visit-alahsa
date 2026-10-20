@@ -13,6 +13,8 @@ export type HomeCopy = {
   seo: { title: string; description: string; place: string; country: string };
   /** سهم الروابط بحسب اتجاه الكتابة */
   arrow: string;
+  /** فاصل جملتين متتاليتين في فقرة واحدة (لا مسافة في الصينية) */
+  sep: string;
   paths: { attractions: string; map: string; plan: string; myTrip: string; trails: string };
   gate: { title: string; lead: string; begin: string; skip: string };
   rail: { label: string; items: readonly Pair[] };
@@ -40,10 +42,12 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       country: 'المملكة العربية السعودية',
     },
     arrow: '←',
+    sep: ' ',
     paths: { attractions: '/معالم/', map: '/خريطة/', plan: '/خطط/', myTrip: '/رحلتي/', trails: '/trails/' },
     gate: {
       title: 'أكبر واحةٍ في العالم تتكشّف لك، فصلاً بعد فصل',
-      lead: 'ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. مرّر لتبدأ الحكاية.',
+      // الموضع في أول البطل (2026-10-20): القارئ الأعمى الصيني لم يعرف أين الأحساء حتى الفصل الرابع
+      lead: 'في المنطقة الشرقية من المملكة العربية السعودية: ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. مرّر لتبدأ الحكاية.',
       begin: 'ابدأ الحكاية',
       skip: 'انتقل إلى التخطيط',
     },
@@ -111,10 +115,11 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       country: 'Saudi Arabia',
     },
     arrow: '→',
+    sep: ' ',
     paths: { attractions: '/en/attractions/', map: '/en/map/', plan: '/en/plan-your-trip/', myTrip: '/en/plan/', trails: '/en/trails/' },
     gate: {
       title: 'The world’s largest oasis, unfolding chapter by chapter',
-      lead: 'Water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.',
+      lead: 'In Saudi Arabia’s Eastern Province: water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.',
       begin: 'Begin the story',
       skip: 'Skip to planning',
     },
@@ -183,10 +188,11 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       country: '沙特阿拉伯',
     },
     arrow: '→',
+    sep: '',
     paths: { attractions: '/zh/attractions/', map: '/zh/map/', plan: '/zh/plan-your-trip/', myTrip: '/zh/plan/', trails: '/zh/trails/' },
     gate: {
       title: '全球最大的绿洲，在您眼前一章章展开',
-      lead: '沙下藏水，山中洞穴密布，集市世代相传。向下滑动，开启这段故事。',
+      lead: '在沙特阿拉伯东部省，沙下藏水，山中洞穴密布，集市世代相传。向下滑动，开启这段故事。',
       begin: '开启故事',
       skip: '直接前往行程规划',
     },
