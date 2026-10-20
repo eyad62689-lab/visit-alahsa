@@ -126,6 +126,7 @@ const EVENT_META = {
   'palm-village': {
     img: '/img/event-palm-village', start: 11, end: 11,
     map: 'https://maps.app.goo.gl/TAUpHgVWvNB9TyAq8',
+    venue: 'palm-village',
     coords: { lat: 25.460124, lng: 49.567101 },
   },
   // موعد نسخة 2026 المعلن: 19 أغسطس – 5 سبتمبر (من إياد، 2026-07-22)، ثم مُدِّد
@@ -236,6 +237,7 @@ const TEXT_AR: EventTexts = {
     name: 'قرية النخيل', place: 'حي محيرس، المبرز',
     season: 'الشتاء', time: 'نوفمبر 2026م', span: 'لم تُعلن المدة بعد',
     org: 'هيئة تطوير الأحساء، أمانة الأحساء',
+    related: [{ label: 'قرية النخيل', href: '/معالم/قرية-النخيل/' }],
     acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
   },
   lomi: {
@@ -375,6 +377,7 @@ const TEXT_EN: EventTexts = {
     name: 'Palm Village', place: 'Muhairis district, Al-Mubarraz',
     season: 'Winter', time: 'November 2026', span: 'Duration not yet announced',
     org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
+    related: [{ label: 'Palm Village', href: '/en/attractions/palm-village/' }],
     acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
   },
   lomi: {
@@ -516,6 +519,7 @@ const TEXT_ZH: TranslatedTexts = {
     name: '椰枣村', place: '穆巴拉兹的穆海里斯区',
     season: '冬季', time: '2026 年 11 月', span: '时长尚未公布',
     org: '哈萨发展管理局、哈萨市政局',
+    related: [{ label: '椰枣村', href: '/zh/attractions/palm-village/' }],
     acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品市集'],
   },
   lomi: {
@@ -632,6 +636,7 @@ const TEXT_RU: TranslatedTexts = {
     name: 'Пальмовая деревня', place: 'Район Мухайрис, Эль-Мубарраз',
     season: 'Зима', time: 'Ноябрь 2026 года', span: 'Продолжительность ещё не объявлена',
     org: 'Управление по развитию Аль-Ахсы, муниципалитет Аль-Ахсы',
+    related: [{ label: 'Пальмовая деревня', href: '/ru/attractions/palm-village/' }],
     acts: ['Финиковые лавки', 'Местные рестораны и кафе', 'Павильоны ремесленников (изделия из пальмовых листьев)', 'Продажа сельской продукции'],
   },
   'uqair-winter': {
@@ -736,6 +741,7 @@ const TEXT_DE: TranslatedTexts = {
     name: 'Palmendorf', place: 'Muhairis-Viertel, Al-Mubarraz',
     season: 'Winter', time: 'November 2026', span: 'Dauer noch nicht bekannt gegeben',
     org: 'Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa',
+    related: [{ label: 'Palmendorf', href: '/de/attractions/palm-village/' }],
     acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
   },
   lomi: {
@@ -854,6 +860,7 @@ const TEXT_UR: TranslatedTexts = {
     time: 'نومبر 2026',
     span: 'دورانیے کا اعلان ابھی نہیں ہوا',
     org: 'الاحساء کی ترقی کا ادارہ، الاحساء کی بلدیہ',
+    related: [{ label: 'کھجور کے درختوں کا گاؤں', href: '/ur/attractions/palm-village/' }],
     acts: ['کھجوروں کی دکانیں', 'کھانے پینے کی مقامی جگہیں', 'دستکاروں کے پنڈال (کھجور کے پتوں سے بنی دستکاریاں)', 'دیہی مصنوعات کا بازار'],
   },
   lomi: {
