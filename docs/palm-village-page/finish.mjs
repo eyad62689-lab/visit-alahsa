@@ -4,7 +4,12 @@
 //   node docs/palm-village-page/finish.mjs <lg…>
 import { readFileSync, writeFileSync, appendFileSync } from 'node:fs';
 
-for (const lg of process.argv.slice(2)) {
+// رموز اللغة والمرحلة من قائمة ثابتة لا من سطر الأوامر: القيمة المستعملة في التعابير والمسارات
+// عنصرٌ من القائمة نفسها، فلا يصل مدخلٌ خارجي إلى RegExp ولا إلى مسار ملف.
+const ALL_LANGS = ['zh', 'de', 'ru', 'ur'];
+const pickLang = (arg) => { const v = ALL_LANGS.find((x) => x === arg); if (!v) { console.error(`لغة غير معروفة: ${arg}`); process.exit(1); } return v; };
+
+for (const lg of process.argv.slice(2).map(pickLang)) {
   const fin = JSON.parse(readFileSync(`docs/palm-village-page/out/${lg}/final.json`, 'utf8'));
   const pack = JSON.parse(readFileSync(`${lg}-translation/output/palm-village-page/pack.json`, 'utf8'));
   const j7 = JSON.parse(readFileSync(`docs/palm-village-page/out/${lg}/07.json`, 'utf8'));

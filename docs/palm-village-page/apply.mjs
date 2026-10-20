@@ -4,9 +4,13 @@
 //   node docs/palm-village-page/apply.mjs <05|final> <lg…>
 import { readFileSync, writeFileSync } from 'node:fs';
 
-const STAGE = process.argv[2];
-const LANGS = process.argv.slice(3);
-if (!STAGE || !LANGS.length) { console.error('usage: apply.mjs <05|final> <lg…>'); process.exit(1); }
+// رموز اللغة والمرحلة من قائمة ثابتة لا من سطر الأوامر: القيمة المستعملة في التعابير والمسارات
+// عنصرٌ من القائمة نفسها، فلا يصل مدخلٌ خارجي إلى RegExp ولا إلى مسار ملف.
+const ALL_LANGS = ['zh', 'de', 'ru', 'ur'];
+const pickLang = (arg) => { const v = ALL_LANGS.find((x) => x === arg); if (!v) { console.error(`لغة غير معروفة: ${arg}`); process.exit(1); } return v; };
+const STAGE = ['01', '03', '05', 'final'].find((x) => x === process.argv[2]);
+const LANGS = process.argv.slice(3).map(pickLang);
+if (!STAGE || !LANGS.length) { console.error('usage: apply.mjs <01|03|05|final> <lg…>'); process.exit(1); }
 const PAGE = 'src/content/attractions/palm-village.md';
 const LABEL = { zh: 'الصينية', de: 'الألمانية', ru: 'الروسية', ur: 'الأوردية' };
 const EVBLOCK = { zh: 'TEXT_ZH', de: 'TEXT_DE', ru: 'TEXT_RU', ur: 'TEXT_UR' };

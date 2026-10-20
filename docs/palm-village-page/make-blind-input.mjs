@@ -55,7 +55,11 @@ const visible = (html) => {
 //   node docs/palm-village-page/make-blind-input.mjs <lg…>
 const HERE = dirname(fileURLToPath(import.meta.url));
 let fail = 0;
-for (const lg of process.argv.slice(2)) {
+// رموز اللغة والمرحلة من قائمة ثابتة لا من سطر الأوامر: القيمة المستعملة في التعابير والمسارات
+// عنصرٌ من القائمة نفسها، فلا يصل مدخلٌ خارجي إلى RegExp ولا إلى مسار ملف.
+const ALL_LANGS = ['zh', 'de', 'ru', 'ur'];
+const pickLang = (arg) => { const v = ALL_LANGS.find((x) => x === arg); if (!v) { console.error(`لغة غير معروفة: ${arg}`); process.exit(1); } return v; };
+for (const lg of process.argv.slice(2).map(pickLang)) {
   const page = `dist/${lg}/attractions/palm-village/index.html`;
   if (!existsSync(page)) { console.error(`FAIL ${lg}: ${page} missing`); fail++; continue; }
   const html = readFileSync(page, 'utf8');
