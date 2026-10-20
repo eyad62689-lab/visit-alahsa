@@ -26,7 +26,7 @@ body = strip(strip(body, /<(h1|h2|h3|p|li|div|section|header|nav|span|button|leg
 const lines = decode(body).split('\n').map((l) => l.trim()).filter(Boolean);
 const P = payload.L;
 let out = `# ${H.body}\n\n${lines.join('\n')}\n\n# ${H.aria}\n\n${attrs.join('\n')}\n\n# ${H.routes}\n`;
-for (const [k, t] of Object.entries(payload.templates)) {
+for (const t of Object.values(payload.templates)) {
   out += `\n## ${t.title}\n`;
   t.days.forEach((stops, i) => { out += `${P.days[i]}\n` + stops.map((s) => `  [${s.kind === 'trail' ? P.trail : P.place}] ${s.name}`).join('\n') + '\n'; });
   if (t.note) out += `${t.note}\n`;

@@ -4,8 +4,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const [REPO, DIR, LANG] = process.argv.slice(2);
-if (!REPO || !DIR || !LANG) throw new Error('الاستعمال: build-pack.mjs <REPO> <BATCH_DIR> <lang>');
+const [REPO, DIR, langArg] = process.argv.slice(2);
+// رمز اللغة من قائمة مغلقة لا من سطر الأوامر مباشرة: يدخل في تعابير نمطية ومسارات (CodeQL js/regex-injection)
+const LANG = (() => {
+  switch (langArg) {
+    case 'zh': return 'zh';
+    case 'de': return 'de';
+    case 'ru': return 'ru';
+    case 'ur': return 'ur';
+    default: return null;
+  }
+})();
+if (!REPO || !DIR || !LANG) throw new Error('الاستعمال: build-pack.mjs <REPO> <BATCH_DIR> <zh|de|ru|ur>');
 const imp = (p) => import(pathToFileURL(path.join(REPO, p)).href);
 const { HOME_COPY } = await imp('src/data/home-copy.ts');
 const { TEMPLATES, COMPANION_TIPS, MEMORY_CARDS, MAP_SLUGS } = await imp('src/data/home-chapters.ts');
