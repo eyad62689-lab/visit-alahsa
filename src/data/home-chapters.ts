@@ -102,38 +102,54 @@ export const TEMPLATES: Record<string, Template> = {
   },
 };
 
-/** فقرات المرافقين (اعتمدها إياد) — المراجع: jawatha-park وking-abdullah-park ومقدمة
- *  al-uqair-coast للعائلة؛ مقدمة al-asfar-and-national-park وarbaa للأصدقاء؛ historic-hofuf
- *  (mode: walking) وahsa-museum للمنفرد. */
-export const COMPANION_TIPS: Record<Companion, Record<HomeLang, string>> = {
-  family: {
-    ar: 'أضف إلى يومك منتزهاً عائلياً: منتزه جواثا السياحي بجوار مسجد جواثا، أو منتزه الملك عبدالله البيئي للمشي والتنزّه.',
-    en: 'Add a family park to your day: Jawatha Park beside Jawatha Mosque, or King Abdullah Environmental Park for walking and outings.',
-    zh: '为当天行程添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园，或适合散步和出游的阿卜杜拉国王环境公园。',
-    de: 'Ergänzen Sie Ihren Tag um einen Park für die ganze Familie: den Jawatha-Park neben der Jawatha-Moschee oder den König-Abdullah-Umweltpark für Spaziergänge und Ausflüge.',
-  },
-  friends: {
-    ar: 'لمن يحبّ الرحلات البرية: مسار بحيرة الأصفر يحتاج سيارة دفع رباعي، وجبل الأربع وجهة تخييم ورحلات جنوب شرق الهفوف.',
-    en: 'For desert-trip lovers: the Al-Asfar Lake trail needs a 4x4, and Al-Arba Mountain, south-east of Hofuf, is a camping and desert-trip destination.',
-    zh: '如果您喜欢沙漠出游：阿斯法湖与国家公园路线需要四驱车；阿尔巴山位于胡富夫东南，是露营与沙漠出游的目的地。',
-    de: 'Für alle, die gern in die Wüste fahren: Die Route zum Al-Asfar-See erfordert einen Geländewagen, und der Al-Arba-Berg südöstlich von Hofuf ist ein Ausflugsziel für Camping und Touren in die Wüste.',
-  },
-  solo: {
-    ar: 'مسار الهفوف التاريخي يُقطع مشياً، فهو يومٌ هادئ بين الحصن والسوق، وللمزيد متحف الأحساء يعرض تاريخ المنطقة وآثارها.',
-    en: 'The Historic Hofuf Trail is walked on foot, a quiet day between the fortress and the souq; for more, Al-Ahsa Museum presents the region’s history and antiquities.',
-    zh: '胡富夫历史路线全程步行，在城堡与市集之间度过安静的一天；若想了解更多，哈萨博物馆呈现了这一地区的历史与文物。',
-    de: 'Die Route durch das historische Hofuf legen Sie zu Fuß zurück – ein ruhiger Tag zwischen Festung und Souk. Möchten Sie mehr sehen, zeigt Ihnen das Al-Ahsa-Museum Geschichte und Altertümer der Region.',
-  },
-};
-
-/** تتمة فقرة المرافقين تظهر فقط في قالب فيه يوم الساحل (مسار al-uqair-coast): كانت جزءاً من فقرة
- *  العائلة فتَعِد بـ«يوم الساحل» في قوالب اليوم واليومين التي لا ساحل فيها (2026-10-20). */
-export const COAST_TRAIL = 'al-uqair-coast';
-export const COAST_TIPS: Partial<Record<Companion, Record<HomeLang, string>>> = {
-  family: {
-    ar: 'وفي يوم الساحل أضف شاطئ العقير.',
-    en: 'On the coast day, add Al-Uqair Beach.',
-    zh: '去海岸的那天，再添上乌盖尔海滩。',
-    de: 'Ergänzen Sie den Tag an der Küste um den Al-Uqair-Strand.',
-  },
+/** فقرات المرافقين (اعتمدها إياد) أجزاءٌ متتالية في فقرة واحدة: جزءٌ بلا شرط يظهر في القوالب التسعة،
+ *  وجزءٌ بـ`when` يظهر فقط إن ضمّ القالب ذلك المسار — فلا تَعِد الفقرة بيوم ساحل أو بمسار لا يمرّ به القالب
+ *  (رصده القارئان الأعميان الصيني والألماني، 2026-10-20/21). المراجع: jawatha-park وking-abdullah-park
+ *  للعائلة (لا جزء للساحل: شاطئ العقير محطة في مسار al-uqair-coast نفسه، فكانت «أضفه» تكراراً)؛ arbaa للأصدقاء (تنبيه الدفع الرباعي في tpl.note حيث يمرّ القالب بالأصفر)؛
+ *  historic-hofuf (mode: walking) وahsa-museum للمنفرد. */
+export type TipPart = { id: string; when?: string; text: Record<HomeLang, string> };
+export const COMPANION_TIPS: Record<Companion, TipPart[]> = {
+  family: [
+    {
+      id: 'family',
+      text: {
+        ar: 'أضف إلى رحلتك منتزهاً عائلياً: منتزه جواثا السياحي بجوار مسجد جواثا، أو منتزه الملك عبدالله البيئي للمشي والتنزّه.',
+        en: 'Add a family park to your trip: Jawatha Park beside Jawatha Mosque, or King Abdullah Environmental Park for walking and outings.',
+        zh: '为这趟行程添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园，或适合散步和出游的阿卜杜拉国王环境公园。',
+        de: 'Ergänzen Sie Ihre Reise um einen Park für die ganze Familie: den Jawatha-Park neben der Jawatha-Moschee oder den König-Abdullah-Umweltpark für Spaziergänge und Ausflüge.',
+      },
+    },
+  ],
+  friends: [
+    {
+      id: 'friends',
+      text: {
+        ar: 'لمن يحبّ الرحلات البرية: جبل الأربع جنوب شرق الهفوف وجهة تخييم ورحلات.',
+        en: 'For desert-trip lovers: Al-Arba Mountain, south-east of Hofuf, is a camping and excursion destination.',
+        zh: '如果您喜欢沙漠出游：阿尔巴山位于胡富夫东南，适合露营与游览。',
+        de: 'Für alle, die gern in die Wüste fahren: Der Al-Arba-Berg südöstlich von Hofuf ist ein Ziel für Camping und Ausflüge.',
+      },
+    },
+  ],
+  solo: [
+    {
+      id: 'soloWalk',
+      when: 'historic-hofuf',
+      text: {
+        ar: 'مسار الهفوف التاريخي جولةٌ مشياً بين الحصن والسوق.',
+        en: 'The Historic Hofuf Trail is a walk between the fortress and the souq.',
+        zh: '胡富夫历史路线全程步行，穿行于城堡与市集之间。',
+        de: 'Die Route durch das historische Hofuf ist ein Rundgang zu Fuß zwischen Festung und Souk.',
+      },
+    },
+    {
+      id: 'soloMuseum',
+      text: {
+        ar: 'متحف الأحساء يعرض تاريخ المنطقة وآثارها، لمن يريد التعمّق.',
+        en: 'Al-Ahsa Museum presents the region’s history and antiquities, for those who want to go deeper.',
+        zh: '哈萨博物馆呈现了这一地区的历史与文物，适合想深入了解的人。',
+        de: 'Das Al-Ahsa-Museum zeigt Geschichte und Altertümer der Region – für alle, die tiefer eintauchen möchten.',
+      },
+    },
+  ],
 };
