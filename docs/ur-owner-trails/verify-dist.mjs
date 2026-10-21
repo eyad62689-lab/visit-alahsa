@@ -40,12 +40,16 @@ const run = (get) => {
   const left = urPages.filter((p) => get(p).includes('کارخانہ'));
   if (left.length) bad++;
   if (!BREAK) console.log(`${left.length ? 'FAIL' : 'ok  '} no «کارخانہ» in ${urPages.length} Urdu pages${left.length ? ': ' + left.join(', ') : ''}`);
+  // N723: the ligature U+FDFA draws taller than the Nastaliq line (47px in a 32.3px line), so it is written out
+  const lig = urPages.filter((p) => get(p).includes('ﷺ'));
+  if (lig.length) bad++;
+  if (!BREAK) console.log(`${lig.length ? 'FAIL' : 'ok  '} no U+FDFA in ${urPages.length} Urdu pages${lig.length ? ': ' + lig.join(', ') : ''}`);
   return bad;
 };
 
 const bad = run(read);
 if (bad) { console.error(`FAIL ${bad}`); process.exit(1); }
-console.log(`ALL PASS ${checks.length + 1}/${checks.length + 1}`);
+console.log(`ALL PASS ${checks.length + 2}/${checks.length + 2}`);
 if (BREAK) {
   let caught = 0;
   for (const [page, must, mustNot, label] of checks) {
@@ -55,6 +59,8 @@ if (BREAK) {
   // a stray «کارخانہ» on an unrelated page must also be caught
   const stray = urPages.find((p) => p.includes('/map/')) ?? urPages[0];
   if (run((pg) => (pg === stray ? read(pg) + 'کارخانہ' : read(pg))) > 0) caught++; else console.error('NOT CAUGHT: stray «کارخانہ»');
-  console.log(`break: ${caught}/${checks.length + 1} caught`);
-  if (caught !== checks.length + 1) process.exit(1);
+  const jaw = 'ur/trails/qarah-and-jawatha/index.html';
+  if (run((pg) => (pg === jaw ? read(pg).replace('نبوی صلی اللہ علیہ وسلم', 'نبوی ﷺ') : read(pg))) > 0) caught++; else console.error('NOT CAUGHT: the U+FDFA ligature');
+  console.log(`break: ${caught}/${checks.length + 2} caught`);
+  if (caught !== checks.length + 2) process.exit(1);
 }
