@@ -1362,21 +1362,29 @@ async function main() {
     // (ب) المنشآت → معالم الحيّ
     const SRC_DINING = path.join(ROOT, 'src/content/dining');
     const attrByDistrict = new Map();
+    const attrById = new Map(); // معرّف ملف المعلم → روابطه، لحقل near في المنشأة
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const dist = fmField(head, 'district');
-      if (!dist) continue;
       const slugAr = fmField(head, 'slug_ar');
       const slugEn = fmField(head, 'slug_en');
-      (attrByDistrict.get(dist) ?? attrByDistrict.set(dist, []).get(dist)).push({ ar: `/${AR_ATTRACTIONS_DIR}/${slugAr}/`, en: `/en/attractions/${slugEn}/` });
+      const links = { ar: `/${AR_ATTRACTIONS_DIR}/${slugAr}/`, en: `/en/attractions/${slugEn}/` };
+      attrById.set(f.replace(/\.md$/, ''), links);
+      const dist = fmField(head, 'district');
+      if (!dist) continue;
+      (attrByDistrict.get(dist) ?? attrByDistrict.set(dist, []).get(dist)).push(links);
     }
-    let diningWith = 0, diningChecked = 0;
+    let diningWith = 0, diningChecked = 0, diningNear = 0;
     for (const f of (await readdir(SRC_DINING)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_DINING, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const dist = fmField(head, 'district');
       const slugAr = fmField(head, 'slug_ar');
       const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
+      // near: [id, …] — معالم مجاورة من حيٍّ آخر يسمّيها المصدر صراحة؛ وحدها تُقبل من خارج الحيّ، وكلها واجبة
+      const nearRaw = fmField(head, 'near');
+      const near = nearRaw ? nearRaw.replace(/^\[|\]$/g, '').split(',').map((x) => x.trim().replace(/^["']|["']$/g, '')).filter(Boolean) : [];
+      for (const id of near) if (!attrById.has(id)) problems.push(`${f}: near «${id}» ليس معلماً`);
+      if (near.length) diningNear++;
       const pages = [['ar', `/مطاعم-ومقاهي/${slugAr}/`], ['en', `/en/restaurants-cafes/${slugEn}/`]]
         .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
       for (const [l, p, fp] of pages) {
@@ -1384,8 +1392,8 @@ async function main() {
         const html = await readText(fp);
         const sec = html.match(/<section class="dd-panel dd-sights"[\s\S]*?<\/section>/)?.[0] ?? '';
         const got = hrefsOf(sec);
-        const want = new Set((dist ? attrByDistrict.get(dist) ?? [] : []).map((x) => x[l]));
-        if (!dist && sec) problems.push(`${p}: قسم معالم الحيّ بلا district في المصدر`);
+        const want = new Set([...(dist ? attrByDistrict.get(dist) ?? [] : []), ...near.map((id) => attrById.get(id)).filter(Boolean)].map((x) => x[l]));
+        if (!dist && !near.length && sec) problems.push(`${p}: قسم معالم الحيّ بلا district في المصدر`);
         if (want.size) diningWith++;
         const missing = [...want].filter((x) => !got.has(x));
         const extra = [...got].filter((x) => !want.has(x));
@@ -1395,7 +1403,7 @@ async function main() {
     }
     if (posts < 10 || withMentions < 20 || diningChecked < 20 || diningWith < 6) fail('C25', `الحارس صار فارغاً: ${posts} مقالات، ${withMentions} صفحة معلم بمقالات، ${diningChecked} صفحة منشأة (${diningWith} بمعالم حيّ) — المتوقع ≥10 و≥20 و≥20 و≥6`);
     else if (problems.length) fail('C25', `الربط الداخلي: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C25', `${withMentions} صفحة معلم تحمل قسم المقالات (${mentionLinks} رابطاً) مطابقاً للمقالات الـ${posts} التي تذكرها، و${diningWith} من ${diningChecked} صفحة منشأة تعرض معالم حيّها كاملةً`);
+    else pass('C25', `${withMentions} صفحة معلم تحمل قسم المقالات (${mentionLinks} رابطاً) مطابقاً للمقالات الـ${posts} التي تذكرها، و${diningWith} من ${diningChecked} صفحة منشأة تعرض معالم حيّها كاملةً (${diningNear} منشأة بمعالم مجاورة مسمّاة في near)`);
   }
 
   // ── C26: تبادل hreflang (الخطوة 10 من خطة التفاعل العالمي — المدونة متعددة اللغات) ──
