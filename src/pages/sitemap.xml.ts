@@ -29,7 +29,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // ملفات مصدر كل صفحة قائمة — تاريخها أحدث ما بين قالبها وبيانات محتواها
   const V = 'src/components/views/';
-  const TRAIL_FILES = ['src/data/trails.json', 'src/data/trails.zh.json', 'src/data/trails.de.json', 'src/data/trails.ru.json'];
+  const TRAIL_FILES = ['src/data/trails.json', 'src/data/trails.zh.json', 'src/data/trails.de.json', 'src/data/trails.ru.json', 'src/data/trails.ur.json'];
   const attractionFiles = items.map((e) => e.filePath).filter((p): p is string => Boolean(p));
   const dateOf = (...paths: string[]) => newestDate(paths);
 

@@ -1437,7 +1437,7 @@ async function main() {
 
   // ── C27: المسارات المقترحة (2026-09-26) ─────────────────────────────────
   // المنطق في tools/check-trails.mjs (دالة نقية يختبرها الكسر في الذاكرة)؛ هنا القراءة فقط:
-  // المصدر src/data/trails.json وملفات zh/de/ru، وصفحات /trails/ بلغاتها الخمس في dist.
+  // المصدر src/data/trails.json وملفات zh/de/ru/ur، وصفحات /trails/ بلغاتها الست في dist.
   {
     const data = JSON.parse(await readText(path.join(ROOT, 'src/data/trails.json')));
     const l10n = {};

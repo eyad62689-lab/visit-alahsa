@@ -15,7 +15,7 @@
 //       المحطات الخمس المسمّاة وحدها؛ ملاحظة اليونسكو مرة واحدة في كل صفحة؛ الإسناد في
 //       رأس الفهرس وذيل كل مسار (بعد آخر محطة)؛ نص كل محطة منشور حرفياً (التشكيل كما هو)؛
 //       المصادر تحت كل محطة بعناوينها وروابطها وtarget=_blank rel=noopener؛ لا وصف رسمي في
-//       <title> والوصف وog/twitter وh1؛ hreflang باللغات الخمس.
+//       <title> والوصف وog/twitter وh1؛ hreflang باللغات الست.
 //   (د) zh/de/ru: ملف كل لغة يحمل مسارات trails.json ومحطاتها ومصادرها بلا نقص ولا زيادة،
 //       ويُفحص منشورُها بالقواعد نفسها مقارَناً بنص ملفها حرفياً.
 //   (ج) عنوان المصدر نصٌّ واحد أو { ar, en } ويُقارَن المنشور بعنوان لغة الصفحة؛ ولا رابط
@@ -45,6 +45,7 @@ const FORBIDDEN_L10N = {
   zh: ['官方', '正式', '认证', '批准', '认可'],
   de: [/\boffiziell/i, /\bamtlich/i, /\bgenehmigt/i, /\banerkannt/i],
   ru: [/официальн/i, /утвержд/i, /одобренн/i],
+  ur: ['سرکاری', 'منظور شدہ', 'مستند', 'باضابطہ'],
 };
 const hasForbidden = (s, l) => FORBIDDEN_AR.filter((w) => s.includes(w))
   .concat(FORBIDDEN_EN.filter((re) => re.test(s)).map(String))
@@ -55,9 +56,10 @@ const ROMAN_L10N = {
   zh: [/罗马剧场/, '并非古罗马遗迹'],
   de: [/Römische[sn]? Theater/, 'kein antikes römisches Bauwerk'],
   ru: [/Римск[а-яё]* театр/, 'не памятник римской эпохи'],
+  ur: [/المسرح الرومانی/, 'رومی دور کے آثار میں سے نہیں'],
 };
 
-export const L10N_LANGS = ['zh', 'de', 'ru'];
+export const L10N_LANGS = ['zh', 'de', 'ru', 'ur'];
 const same = (a, b) => [...a].sort((a, b) => a.localeCompare(b)).join('\n') === [...b].sort((a, b) => a.localeCompare(b)).join('\n');
 // قارئات النص بلغة الصفحة: ar/en من trails.json، وغيرهما من ملف لغته
 const isBase = (l) => l === 'ar' || l === 'en';
@@ -176,7 +178,7 @@ export function checkTrails(data, pages, l10n) {
     const checkHead = (rel, html) => {
       for (const [k, v] of headTexts(html)) { const bad = hasForbidden(v, l); if (bad.length) problems.push(`${rel}: ${k} يحمل وصفاً رسمياً (${bad.join('، ')})`); }
       const langs = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)"/g)].map((m) => m[1]).sort((a, b) => a.localeCompare(b)).join(',');
-      if (langs !== 'ar,de,en,ru,x-default,zh') problems.push(`${rel}: hreflang [${langs}] — المتوقع اللغات الخمس وx-default`);
+      if (langs !== 'ar,de,en,ru,ur,x-default,zh') problems.push(`${rel}: hreflang [${langs}] — المتوقع اللغات الست وx-default`);
       const notes = count(html, 'data-unesco-note');
       if (notes !== 1) problems.push(`${rel}: ملاحظة اليونسكو ${notes} مرة — المطلوب مرة واحدة`);
       else if (!decode(html).includes(note)) problems.push(`${rel}: نص ملاحظة اليونسكو لا يطابق المصدر`);
