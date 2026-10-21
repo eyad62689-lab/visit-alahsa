@@ -28,7 +28,7 @@ export const VISA_UR: VisaGuideContent = {
       " پر نظر ڈال لیں، اپنی ",
       {
         "t": "رہائش",
-        "href": "/en/stay/"
+        "href": "/ur/stay/"
       },
       " چنیں، پھر تفصیل سے ",
       {
@@ -254,7 +254,7 @@ export const VISA_UR: VisaGuideContent = {
         "parts": [
           {
             "t": "الاحساء میں رہائش کی جگہیں",
-            "href": "/en/stay/"
+            "href": "/ur/stay/"
           },
           "۔"
         ]

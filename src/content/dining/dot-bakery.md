@@ -18,8 +18,11 @@ blurb_ru: "Пекарня и кафе в одном месте: витрина �
 area_ru: "Дорога на Айн-Наджм — Эль-Мубарраз"
 alt_ru: "Стойка заказа и витрина с выпечкой в Dot Bakery & Café"
 blurb_de: "Bäckerei und Café in einem: eine Vitrine mit frischem Gebäck und eine Bestelltheke mit blauem Akzent."
+blurb_ur: "یہاں سینکی ہوئی چیزوں کی دکان اور قہوہ خانہ ایک ساتھ ہیں: نمائشی الماری میں یہی چیزیں رکھی ہیں، اور کاؤنٹر پر کہیں کہیں نیلا رنگ ہے۔"
 area_de: "Ain-Najm-Straße – Al-Mubarraz"
+area_ur: "عین النجم سڑک، المبرز"
 alt_de: "Die Bestelltheke und die Gebäckvitrine bei Dot Bakery & Café"
+alt_ur: "کاؤنٹر اور سینکی ہوئی چیزوں کی نمائشی الماری، مخبز و مقہی ڈاٹ میں"
 img: /img/dining/dot-bakery
 maps: "https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6"
 order: 9

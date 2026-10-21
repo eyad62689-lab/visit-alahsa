@@ -110,12 +110,25 @@ const C = localize(lang, {
     noteH: 'Об этой странице',
     noteP: 'Название и местоположение взяты напрямую из Google Карт; рейтинг подгружается оттуда при каждом обновлении сайта и может меняться. Цены и звёздность здесь не указываются, а сама страница описательная, а не рекомендательная.',
   },
+  ur: {
+    kindLabel: d.kind === 'heritage-inn' ? 'روایتی مہمان خانہ' : 'ہوٹل',
+    backLabel: 'رہائش کی تمام جگہیں',
+    indexName: 'رہائش',
+    openMaps: t('det.openMaps'),
+    newWindow: '(گوگل میپس نئی کھڑکی میں کھلے گا)',
+    ratingLabel: 'گوگل میپس پر درجہ بندی',
+    closedPerm: 'مستقل طور پر بند، گوگل میپس کے مطابق',
+    closedTemp: 'عارضی طور پر بند، گوگل میپس کے مطابق',
+    areaH: 'مقام',
+    noteH: 'اس صفحے کے بارے میں',
+    noteP: 'نام اور مقام براہ راست گوگل میپس سے لیے گئے ہیں۔ ویب سائٹ کی ہر تازہ کاری پر درجہ بندی بھی وہیں سے لی جاتی ہے اور بدل سکتی ہے۔ یہاں نہ قیمتیں دی گئی ہیں نہ ہوٹلوں کے ستارہ درجے۔ یہ صفحہ جگہ کا تعارف کراتا ہے، اس کی سفارش نہیں کرتا۔',
+  },
 });
 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : '/en/stay/';
+const indexHref = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : '/en/stay/';
 const siteUrl = SITE;
 const selfUrl = absUrl(stayHref(d, lang), siteUrl);
 const jsonLd = [

@@ -18,8 +18,11 @@ blurb_ru: "Современный стеклянный фасад, увенча�
 area_ru: "Дорога короля Абдаллы — Эль-Мазру"
 alt_ru: "Стеклянный фасад Ammo с подсвеченной вывеской ночью"
 blurb_de: "Eine moderne Glasfassade, gekrönt von ihrem leuchtenden Schild."
+blurb_ur: "شیشے کے ایک جدید اگواڑے کے اوپر اس کا روشن نشان جگمگاتا ہے۔"
 area_de: "König-Abdullah-Straße – Al-Mazrou'"
+area_ur: "شاہ عبد اللہ سڑک، محلہ المزروع"
 alt_de: "Die Glasfassade von Ammo mit ihrem leuchtenden Schild bei Nacht"
+alt_ur: "آمو کا شیشے کا اگواڑا اور اس کا روشن نشان، رات کے وقت"
 img: /img/dining/ammo
 maps: "https://maps.app.goo.gl/sj8f9VMZL3LdthJX9"
 order: 8

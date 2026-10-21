@@ -18,8 +18,11 @@ blurb_ru: "Бургеры и картофель фри на металличес
 area_ru: "Эль-Халидия — улица принца Наввафа"
 alt_ru: "Бургер и картофель фри на подносе в Greasy Fingers"
 blurb_de: "Burger und Pommes frites auf Metalltabletts – der moderne, zwanglose und schnelle Eintrag auf der Liste."
+blurb_ur: "دھات کی سینیوں پر برگر اور تلے ہوئے آلو رکھے ہیں، اور یہ جگہ اس فہرست میں جدید طرز کے جھٹ پٹ کھانے کا انتخاب ہے۔"
 area_de: "Al-Khalidiyah – Prinz-Nawwaf-Straße"
+area_ur: "محلہ الخالدیہ، شہزادہ نواف سڑک"
 alt_de: "Ein Burger und Pommes frites auf einem Serviertablett bei Greasy Fingers"
+alt_ur: "ایک سینی پر برگر اور تلے ہوئے آلو، گریسی فنگرز میں"
 img: /img/dining/greasy-fingers
 maps: "https://maps.app.goo.gl/AQhfw1PKHnLviEyt6"
 order: 6

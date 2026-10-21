@@ -18,8 +18,11 @@ blurb_ru: "Блюда подаются горячими в чугунных ск
 area_ru: "Дорога Эль-Халидж — Эль-Улья"
 alt_ru: "Разнообразные блюда на мраморном столе в Lava"
 blurb_de: "Gerichte, die heiß in eisernen Pfannen auf Marmortischen ankommen."
+blurb_ur: "سنگ مرمر کی میزوں پر پکوان لوہے کی کڑاہیوں میں گرم گرم آتے ہیں۔"
 area_de: "Al-Khaleej-Straße – Al-Olaya"
+area_ur: "الخلیج سڑک، محلہ العلیا"
 alt_de: "Verschiedene Gerichte auf einem Marmortisch bei Lava"
+alt_ur: "سنگ مرمر کی ایک میز پر طرح طرح کے پکوان، لاوا میں"
 img: /img/dining/lava
 maps: "https://maps.app.goo.gl/eYZPQBsVxoBjMyvb6"
 order: 7
