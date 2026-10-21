@@ -7,7 +7,7 @@ import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
 import HeroPoster from '../HeroPoster.astro';
 import { catLabel } from '../../lib/categories';
-import { attractionHref, builtLang, staticHref } from '../../lib/routes';
+import { attractionHref, staticHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
 import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
@@ -205,9 +205,8 @@ const nearby = a.location
   : [];
 
 // «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم، بلغة الصفحة.
-// الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح). المسارات بلا نسخة أوردية بعد:
-// صفحة /ur/ تعرضها بعنوانها الإنجليزي ورابطها الإنجليزي (builtLang) لا رابطاً إلى /ur/trails/.
-const trailLang = builtLang(lang);
+// الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
+const trailLang = lang;
 const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
   .map((tr) => ({ href: trailHref(tr, trailLang), title: trailText(tr, trailLang).title, tagline: trailText(tr, trailLang).tagline, slug: tr.slug }));
 ---

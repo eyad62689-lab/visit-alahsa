@@ -5,8 +5,8 @@
 // المخطط أدناه صارم (strictObject): أي حقل زائد أو ناقص يُفشل البناء لحظة الاستيراد،
 // فيستحيل أن تتسلل حقيقة غير مدقَّقة عبر حقل جديد لا يعرفه القالب.
 //
-// ملف المالك عربي/إنجليزي (meta.languages). نصوص zh/de/ru في ملفات مستقلة
-// (trails.zh.json · trails.de.json · trails.ru.json) تكتبها خطوط الترجمة حصراً، بالمفاتيح
+// ملف المالك عربي/إنجليزي (meta.languages). نصوص zh/de/ru/ur في ملفات مستقلة
+// (trails.zh.json · trails.de.json · trails.ru.json · trails.ur.json) تكتبها خطوط الترجمة حصراً، بالمفاتيح
 // نفسها (slug المسار ومفتاح المحطة ومفتاح المصدر) — فلا يُمسّ ملف المالك، ومخططها يرفض أي
 // مسار أو محطة أو مصدر ناقص أو زائد فلا تُبنى صفحة بلغةٍ نصفها إنجليزي.
 // المسارات **مقترحة من الموقع لا رسمية**: meta.attribution تُعرض في رأس الفهرس وذيل كل
@@ -16,6 +16,7 @@ import raw from './trails.json';
 import rawZh from './trails.zh.json';
 import rawDe from './trails.de.json';
 import rawRu from './trails.ru.json';
+import rawUr from './trails.ur.json';
 
 const Bi = z.strictObject({ ar: z.string().min(1), en: z.string().min(1) });
 const TrailText = z.strictObject({ title: z.string().min(1), tagline: z.string().min(1), intro: z.string().min(1) });
@@ -71,8 +72,8 @@ export const TRAILS: Trail[] = [...TRAILS_DATA.trails].sort((a, b) => a.order - 
 export const TRAIL_META = TRAILS_DATA.meta;
 export const TRAIL_SOURCES = TRAILS_DATA.sources;
 
-// ── نصوص zh/de/ru ───────────────────────────────────────────────────────────
-export type TrailLang = 'ar' | 'en' | 'zh' | 'de' | 'ru';
+// ── نصوص zh/de/ru/ur ────────────────────────────────────────────────────────
+export type TrailLang = 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur';
 type L10nLang = Exclude<TrailLang, 'ar' | 'en'>;
 
 const sameKeys = (a: string[], b: string[]) => a.length === b.length && [...a].sort((a, b) => a.localeCompare(b)).join('\n') === [...b].sort((a, b) => a.localeCompare(b)).join('\n');
@@ -97,6 +98,7 @@ const L10N: Record<L10nLang, z.infer<typeof L10nSchema>> = {
   zh: L10nSchema.parse(rawZh),
   de: L10nSchema.parse(rawDe),
   ru: L10nSchema.parse(rawRu),
+  ur: L10nSchema.parse(rawUr),
 };
 const isBase = (lang: TrailLang): lang is 'ar' | 'en' => lang === 'ar' || lang === 'en';
 

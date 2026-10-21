@@ -7,7 +7,7 @@ import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
 import { LANG_META } from '../i18n/langs';
 import { listedAlt } from '../i18n/unlisted';
-import { storesHref, builtLang } from '../lib/routes';
+import { storesHref } from '../lib/routes';
 
 // overlay: رأس الرئيسية «الواحة تتكشّف» (القرار أ3، البند 4) — شفاف فوق الفصل الأول، ومضبّب
 // كالمعتاد حين يعبر حارس [data-header-sentinel] (عند 60% من ارتفاع الشاشة) أعلى الإطار.
@@ -46,7 +46,7 @@ const nav = [
   // المسارات المقترحة: في شريط ar/en/zh. الألمانية والروسية خارجه بالقياس لا بالتقدير
   // (tools/measure-header-fit.mjs: رابط تاسع يلزمه 1443px و1608px فيتراكب عند كل عرض) —
   // رابطهما في التذييل كالمدونة.
-  ...(de || ru ? [] : [{ href: ar ? '/trails/' : `/${builtLang(lang)}/trails/`, label: t('nav.trails') }]),
+  ...(de || ru ? [] : [{ href: ar ? '/trails/' : `/${lang}/trails/`, label: t('nav.trails') }]),
   { href: routes.leisure, label: t('nav.leisure') },
   { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },
