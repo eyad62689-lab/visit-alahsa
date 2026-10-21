@@ -889,7 +889,7 @@ const TEXT_UR: TranslatedTexts = {
     ],
     related: [
       { label: '“الاحساء کے موسمی پھل” والے صفحے پر الاحساء کا لیموں', href: '/ur/fruits/' },
-      { label: 'الاحساء کے سفر کا منصوبہ بنائیں', href: '/en/plan-your-trip/' },
+      { label: 'الاحساء کے سفر کا منصوبہ بنائیں', href: '/ur/plan-your-trip/' },
     ],
     after: {
       time: 'تقریباً اگست سے ستمبر تک',
