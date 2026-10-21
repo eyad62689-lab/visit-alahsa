@@ -29,7 +29,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // ملفات مصدر كل صفحة قائمة — تاريخها أحدث ما بين قالبها وبيانات محتواها
   const V = 'src/components/views/';
-  const TRAIL_FILES = ['src/data/trails.json', 'src/data/trails.zh.json', 'src/data/trails.de.json', 'src/data/trails.ru.json'];
+  const TRAIL_FILES = ['src/data/trails.json', 'src/data/trails.zh.json', 'src/data/trails.de.json', 'src/data/trails.ru.json', 'src/data/trails.ur.json'];
   const attractionFiles = items.map((e) => e.filePath).filter((p): p is string => Boolean(p));
   const dateOf = (...paths: string[]) => newestDate(paths);
 
@@ -37,7 +37,7 @@ export const GET: APIRoute = async ({ site }) => {
   // zh/de/ru/ur ترد من attractionAlt حين يحمل المعلم ترجمةً معتمدة بتلك اللغة.
   // الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة والفعاليات (وصفحاتها المفردة) لها صفّ ur هنا؛ وما عداها بلا صفحة أوردية فلا يُعلَن.
   const pairs: Pair[] = [
-    { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/', lastmod: dateOf(`${V}HomeView.astro`, 'src/i18n/ui.ts', ...attractionFiles) },
+    { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/', lastmod: dateOf(`${V}HomeChaptersView.astro`, 'src/data/home-copy.ts', 'src/data/home-chapters.ts', 'src/i18n/ui.ts', ...attractionFiles) },
     { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/', ur: '/ur/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', de: '/de/souqs-parks-farms/', ru: '/ru/souqs-parks-farms/', ur: '/ur/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },

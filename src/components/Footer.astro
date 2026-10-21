@@ -3,7 +3,7 @@ import Wordmark from './Wordmark.astro';
 import PalmMotif from './PalmMotif.astro';
 import { useTranslations, titleSep } from '../i18n/utils';
 import { catLabel } from '../lib/categories';
-import { staticHref, aboutHref, storesHref, builtLang, guidesHref } from '../lib/routes';
+import { staticHref, aboutHref, storesHref, guidesHref } from '../lib/routes';
 import { guidesListed } from '../lib/guides';
 import { ORG_EMAIL, ORG_WHATSAPP_URL } from '../lib/schema';
 import { storesPage, storesLangs } from '../lib/stores';
@@ -41,7 +41,7 @@ const cols = [
       { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/' },
       { label: t('nav.stay'), href: ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : '/en/stay/' },
       { label: t('foot.l.events'), href: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : '/en/events/' },
-      { label: t('nav.trails'), href: ar ? '/trails/' : `/${builtLang(lang)}/trails/` },
+      { label: t('nav.trails'), href: ar ? '/trails/' : `/${lang}/trails/` },
       // دليل المتاجر الإلكترونية (أُعلن 2026-10-09) — في التذييل لا الترويسة: الشريط مقيس إلى حدّه.
       // التسمية عنوان الصفحة المعتمد (title_tag) بلغتها، فلا نصّ جديد يُكتب لـzh/de/ru خارج الخطوط.
       ...(storesLangs.includes(lang) ? [{ label: storesPage(lang).seo.title_tag, href: storesHref(lang) }] : []),
