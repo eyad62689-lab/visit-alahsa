@@ -18,8 +18,11 @@ blurb_ru: "Историческое убранство с деревянным �
 area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Историческое убранство Al-Sayed Café с деревянным потолком"
 blurb_de: "Ein traditionell eingerichteter Innenraum mit Holzdecke, der den Charakter der alten Kaffeehäuser bewahrt."
+blurb_ur: "لکڑی کی چھت والی اس روایتی نشست گاہ میں پرانے قہوہ خانوں کا رنگ ڈھنگ باقی ہے۔"
 area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
+area_ur: "محلہ شمالی الرفعہ، ہفوف"
 alt_de: "Der traditionell eingerichtete Innenraum von Al-Sayed Café mit seiner Holzdecke"
+alt_ur: "لکڑی کی چھت والی روایتی نشست گاہ، مقہی السید کے اندر"
 img: /img/dining/alsayed
 maps: "https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9"
 order: 5

@@ -14,7 +14,9 @@ alt_zh: "Bu Hussain Traditional Bakery 的会客厅，木长凳与花纹坐垫"
 blurb_ru: "Гостиная с деревянными скамьями и узорчатыми подушками, на полках — старинная утварь."
 alt_ru: "Гостиная Bu Hussain Traditional Bakery с деревянными скамьями и узорчатыми подушками"
 blurb_de: "Ein Sitzraum mit hölzernen Bänken, gemusterten Kissen und Regalen voller alter Gefäße."
+blurb_ur: "ایک بیٹھک میں لکڑی کی نشستیں اور نقش دار تکیے ہیں، اور خانوں میں پرانے برتن رکھے ہیں۔"
 alt_de: "Der Sitzraum der Bu Hussain Traditional Bakery mit hölzernen Bänken und gemusterten Kissen"
+alt_ur: "مخبز بوحسین الشعبی کی بیٹھک، لکڑی کی نشستیں اور نقش دار تکیے"
 img: /img/dining/buhussain-bakery
 maps: "https://maps.app.goo.gl/QfZ5nfnepYYTzvSW7"
 order: 3

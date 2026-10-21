@@ -15,7 +15,9 @@ alt_zh: "SHYLM 的露台，座位区中央的橄榄树与水池"
 blurb_ru: "Мощёная терраса с оливковым деревом в водоёме посередине, а вокруг дерева — плетёные кресла."
 alt_ru: "Терраса SHYLM с оливковым деревом в водоёме посреди зоны отдыха"
 blurb_de: "Im Zentrum der gepflasterten Terrasse steht ein Olivenbaum in einem Wasserbecken, umgeben von geflochtenen Sesseln."
+blurb_ur: "پختہ فرش والے چبوترے کے بیچ پانی کے حوض میں زیتون کا درخت ہے، اور اس کے گرد بُنی ہوئی کرسیاں رکھی ہیں۔"
 alt_de: "Die Terrasse von SHYLM mit dem Olivenbaum im Wasserbecken inmitten der Sitzgruppe"
+alt_ur: "شلیم کا چبوترا، نشستوں کے بیچ پانی کے حوض میں زیتون کا درخت"
 img: /img/dining/shylm
 maps: "https://maps.app.goo.gl/EkVG5edhp3GSd8vRA"
 order: 14

@@ -21,8 +21,11 @@ blurb_ru: "У горловины напольного тандыра сидит 
 area_ru: "Район Эль-Худуд — рядом с Айн-эль-Худуд"
 alt_ru: "Пекарь пекарни Abu Fahd Al-Rabee Bakery поднимает лепёшку у напольного тандыра, вокруг разложены лепёшки"
 blurb_de: "Ein Bäcker sitzt an der Öffnung eines im Boden eingelassenen Tanurs, während die Brote um ihn herum auf den Fliesen ausgebreitet liegen."
+blurb_ur: "زمین میں بنے تندور کے دہانے پر ایک نان بائی بیٹھا ہے، اور اس کے گرد پختہ فرش پر روٹیاں پھیلی ہوئی ہیں۔"
 area_de: "Al-Khudud-Viertel – nahe Ain Al-Khudud (der Khudud-Quelle)"
+area_ur: "محلہ الخدود، عین الخدود نامی چشمے کے قریب"
 alt_de: "Ein Bäcker der Abu Fahd Al-Rabee Bakery hebt einen Laib an; im Boden ist ein Tanur eingelassen, ringsum liegen die Brote ausgebreitet"
+alt_ur: "مخبز ابو فہد الربیع کا نان بائی زمین میں بنے تندور کے پاس روٹی اٹھائے ہوئے، اور اس کے گرد پھیلی روٹیاں"
 img: /img/dining/abu-fahd-alrabee
 maps: "https://maps.app.goo.gl/u8xKKnydxd1cVinv7"
 order: 1

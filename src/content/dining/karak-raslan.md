@@ -18,8 +18,11 @@ blurb_ru: "Карак, разлитый по маленьким чашкам, р
 area_ru: "Дорога Эль-Халидж (дорога на Катар)"
 alt_ru: "Чашки карака на деревянном подносе с блюдами для завтрака в кафе Raslan"
 blurb_de: "Karak (gewürzter Milchtee), in kleine Tassen gegossen, dazu einfache Frühstückshäppchen."
+blurb_ur: "چھوٹی پیالیوں میں کڑک چائے انڈیلی جا رہی ہے، اور ساتھ ناشتے کی سادہ چیزیں رکھی ہیں۔"
 area_de: "Al-Khaleej-Straße (Katar-Straße)"
+area_ur: "الخلیج سڑک (قطر سڑک)"
 alt_de: "Karak-Tassen und Frühstücksgerichte auf einem Holztablett bei Raslan"
+alt_ur: "لکڑی کی سینی پر کڑک چائے کی پیالیاں اور ناشتے کے پکوان، رسلان میں"
 img: /img/dining/karak-raslan
 maps: "https://maps.app.goo.gl/ctJt3bVV2hDtSYX56"
 order: 10

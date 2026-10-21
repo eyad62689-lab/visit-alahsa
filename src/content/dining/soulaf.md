@@ -18,8 +18,11 @@ blurb_ru: "Спокойный современный интерьер с оли�
 area_ru: "Эр-Рауда — дорога короля Абдаллы"
 alt_ru: "Современный интерьер Soulaf Coffee с оливковым деревом и потолком из деревянных реек"
 blurb_de: "Ein ruhiges, modernes Interieur, in dessen Mitte ein Olivenbaum unter einem Oberlicht steht."
+blurb_ur: "پرسکون اور جدید اندرونی حصے کے بیچ میں روشن دان کے نیچے زیتون کا ایک درخت ہے۔"
 area_de: "Al-Rawdah – König-Abdullah-Straße"
+area_ur: "محلہ الروضہ، شاہ عبد اللہ سڑک"
 alt_de: "Das moderne Interieur von Soulaf Coffee mit Olivenbaum und Lamellendecke aus Holz"
+alt_ur: "سلاف کا جدید اندرونی حصہ، زیتون کا درخت اور لکڑی کی پٹیوں والی چھت"
 img: /img/dining/soulaf
 maps: "https://maps.app.goo.gl/S47bGoYznnPUYTrm6"
 order: 7
