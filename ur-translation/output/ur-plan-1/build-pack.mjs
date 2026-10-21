@@ -76,7 +76,7 @@ const refUi = {};
 for (const k of ['nav.plan', 'nav.planVisit', 'nav.myTrip', 'fav.add', 'crumb.home', 'nav.attractions', 'nav.stay', 'nav.food', 'nav.events', 'fact.palms.l', 'fact.unesco.l', 'home.hero.lead', 'det.hoursNotice', 'site.brand']) if (typeof ui.ur?.[k] === 'string') refUi[k] = ui.ur[k];
 // أزواج الذاكرة ذات الصلة: أعلام الطعام والثمار والحِرف والمواسم والجهات الواردة في المصدر
 const tm = JSON.parse(fs.readFileSync(path.join(REPO, 'ur-translation/memory/tm.json'), 'utf8'));
-const KW = /Khalas|red rice|harees|balaleet|date bread|red bread|fig|lomi|kanar|Suwari|pomegranate|bisht|zari|pottery|palm-frond|incense|Dates Festival|Guinness|World Heritage|Hofuf|Mubarraz|Dammam|Khobar|Riyadh|Bahrain|Causeway|Abqaiq|SAR|Saudi Arabia Railways|Saudi Post|National Address|Riyal|souq|Eastern Province|oasis|springs?$/i;
+const KW = /Khalas|red rice|harees|balaleet|date bread|red bread|fig|lomi|kanar|Suwari|pomegranate|bisht|zari|pottery|palm-frond|incense|Dates Festival|Guinness|World Heritage|Hofuf|Mubarraz|Dammam|Khobar|Riyadh|Bahrain|Causeway|Abqaiq|SAR|Saudi Arabia Railways|Saudi Post|National Address|Riyal|souq|Eastern Province|oasis|springs?/i;
 const tmRel = tm.pairs.filter((p) => typeof p.en === 'string' && p.en.length <= 90 && KW.test(p.en)).map(({ en, ur, page, field }) => ({ en, ur, page, field }));
 const seen = new Set();
 const tmPick = tmRel.filter((p) => (seen.has(p.en) ? false : seen.add(p.en))).slice(0, 160);
