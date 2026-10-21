@@ -75,7 +75,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     map: {
       title: 'اختر ما يناديك',
-      lead: 'المعالم في مواضعها الحقيقية. المس معلماً لتراه، واحفظه لرحلتك.',
+      lead: 'المعالم في مواضعها الحقيقية. اضغط على معلمٍ لتراه، واحفظه لرحلتك.',
       svgLabel: 'خريطة تحريرية لمعالم الأحساء',
       km: '10 كم',
       legend: 'معالم الخريطة',
@@ -147,7 +147,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     map: {
       title: 'Choose what calls you',
-      lead: 'Landmarks in their true positions. Tap one to see it, and save it for your trip.',
+      lead: 'Landmarks in their true positions. Open one to see it, and save it for your trip.',
       svgLabel: 'Editorial map of Al-Ahsa landmarks',
       km: '10 km',
       legend: 'Map landmarks',
@@ -293,7 +293,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     map: {
       title: 'Wählen Sie, was Sie lockt',
-      lead: 'Die Sehenswürdigkeiten sind dort eingezeichnet, wo sie tatsächlich liegen. Tippen Sie eine an, um mehr zu sehen, und setzen Sie sie auf Ihre Merkliste.',
+      lead: 'Die Sehenswürdigkeiten sind dort eingezeichnet, wo sie tatsächlich liegen. Öffnen Sie eine, um mehr zu sehen, und setzen Sie sie auf Ihre Merkliste.',
       svgLabel: 'Vereinfachte Karte der Sehenswürdigkeiten von Al-Ahsa',
       km: '10 km',
       legend: 'Sehenswürdigkeiten auf der Karte',
@@ -439,7 +439,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     map: {
       title: 'جو دل کو بھائے، وہ چنیں',
-      lead: 'نقشے پر سیاحتی مقامات اپنی اصل جگہوں پر دکھائے گئے ہیں۔ کسی مقام کو چھو کر اسے دیکھیں اور اپنے سفر کے لیے محفوظ کریں۔',
+      lead: 'نقشے پر سیاحتی مقامات اپنی اصل جگہوں پر دکھائے گئے ہیں۔ کسی مقام کو کھول کر اسے دیکھیں اور اپنے سفر کے لیے محفوظ کریں۔',
       svgLabel: 'الاحساء کے سیاحتی مقامات کا سادہ نقشہ',
       km: '10 کلومیٹر',
       legend: 'نقشے کے سیاحتی مقامات',
