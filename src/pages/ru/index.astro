@@ -1,9 +1,6 @@
 ---
-// الرئيسية الروسية (ru-RU) — قاموس ui.ru جزئي جداً بعد (lang.menu وحده)، فكل ما
-// عداه يتراجع ru ← en ← ar فيظهر بالإنجليزية وروابطه تقصد الصفحات الإنجليزية:
-// تسمية إنجليزية لصفحة إنجليزية، لا وعدٌ مكسور. يُستبدل بمخرج خط الترجمة في
-// دفعة نصوص الواجهة (المرحلة 2 في ru-translation/PLAN.md).
-import HomeView from '../../components/views/HomeView.astro';
+// الرئيسية الروسية «الواحة تتكشّف» — نصوصها من خط ru-translation-pipeline (home-copy.ts، دفعة ru-home-1)
+import HomeChaptersView from '../../components/views/HomeChaptersView.astro';
 const alt = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/' };
 ---
-<HomeView lang="ru" alt={alt} />
+<HomeChaptersView lang="ru" alt={alt} />
