@@ -1,0 +1,39 @@
+{
+  "batch": "7st-touch",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-21",
+  "threshold": 90,
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_transcription_orthography": 19,
+    "fit_for_traveller": 8,
+    "structural_integrity": 10,
+    "total": 94
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "ru-7st-body",
+      "from": "Кафе находится рядом с крепостью Каср-Ибрахим, в районе Эр-Рифаа аш-Шамалия в Эль-Хуфуфе, и открылось в 2025 году.",
+      "to": "Кафе находится в районе Эр-Рифаа аш-Шамалия в Эль-Хуфуфе, рядом с крепостью Каср-Ибрахим, и открылось в 2025 году.",
+      "why": "Mirror the regenerated source order: ar_after «يقع في حي الرفعة الشمالية بالهفوف بجوار قصر إبراهيم» / en_after \"sits in the North Al-Rifaa district of Hofuf, beside Qasr Ibrahim\" now put the district first, because \"beside Qasr Ibrahim, in North Al-Rifaa\" was read as placing the fortress in Al-Rifaa. 05 kept the old order (fortress, then district), which in Russian carries the same risk: «рядом с крепостью Каср-Ибрахим, в районе Эр-Рифаа…» lets the district phrase attach to the fortress. Reordered only; every word and case kept: «в районе» (prepositional, name indeclinable), «в Эль-Хуфуфе» (prepositional), «рядом с крепостью» (instrumental). The district + city stay together as one locative unit, as in the published sibling «В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе…»."
+    }
+  ],
+  "rulings": "Threshold 90; score 94 >= 90 => APPROVE (batch score = lowest page score; both positions judged together). ru-7st-body: two district places changed, everything else byte-identical (verified by script, incl. the photo sentence that is not in this batch). (1) Location sentence, after the judge edit: «Кафе находится в районе Эр-Рифаа аш-Шамалия в Эль-Хуфуфе, рядом с крепостью Каср-Ибрахим, и открылось в 2025 году.» = ar_after (governing) in content and order: district, city, then beside the fortress; «старом» dropped with «القديم»; no street, distance or direction. Name verbatim from context.area «Район Эр-Рифаа аш-Шамалия» and the published usage «в районе Эр-Рифаа аш-Шамалия» (dining FAQ / hamidiyah-souq). (2) Al-Koot sentence: «По соседству с кафе — район Эль-Кут, самый старый в Эль-Хуфуфе: здесь находятся…» = «ويجاور المقهى حيَّ الكوت، أقدم أحياء الهفوف، الذي يضم…»; termbase «район Эль-Кут» in the nominative; 05's choice to keep the district as subject is upheld, since «здесь» and «его улицы» must refer to Al-Koot, not to the café. The blind reader confirms both points: café in Ar-Rifaa ash-Shamaliya, Al-Kut a different neighbouring district. ru-home-map-lead: «Нажмите» kept unchanged (proposed = current) — upheld. «Нажмите (на)» is the standard Russian UI verb for both a mouse click and a finger tap, i.e. the direct equivalent of ar_after «اضغط على»; the touch-only fault of «المس»/«Tap» (Russian «коснитесь») never existed in this string, and it does not repeat the title verb «Выберите». The blind reader independently confirmed it fits laptop and phone. A calque of \"Open one\" («Откройте») would move away from the Arabic authority. Scores: accuracy 29/30 (both fragments exact to ar_after; -1 for the residual reader inference that the fortress itself lies in Al-Kut while the café is beside it — true to the source, not a defect of the string); nativeness 28/30 (natural locative chain; -2 for the slightly heavy three-part locative sentence); termbase 19/20 (all names verbatim; -1 because «Эр-Рифаа аш-Шамалия» rests on project usage rather than an external attestation); fit 8/10 (the café is now locatable; neighbouring old-town walk preserved; district names are not self-locating for a foreign visitor); structure 10/10 (single line, U+0020 only, no markdown, YAML-safe, no line breaks). Guard (limited to this ruling only): on /ru/restaurants-cafes/7st/ body_ru must contain «в районе Эр-Рифаа аш-Шамалия в Эль-Хуфуфе, рядом с крепостью Каср-Ибрахим» and «По соседству с кафе — район Эль-Кут», and must not contain «в старом районе Эль-Кут» or «где стоит кафе»; HOME_COPY.ru.map.lead must still contain «Нажмите на любую» (no «Коснитесь»). Any regex on these strings must use [а-яё] or the u flag.",
+  "blind_disposition": "Directed questions: (a) location — applied/confirmed: the reader places the café in Ar-Rifaa ash-Shamaliya and Al-Kut as a different neighbouring district; the remaining wobble (café beside the fortress, fortress in Al-Kut) is the source's own geography and is reduced by the judge reorder (district first). (b) «Нажмите» — confirmed for mouse and tap; no change. Language point 7 (map lead «чтобы увидеть её» vague / bare «и добавьте») — rejected for this batch: the mission is the verb only; the rest mirrors the source \"to see it, and save it for your trip\"; recorded for the owner. OUT OF SCOPE, recorded for the owner, not edited, not deducted: 1 «пишет своё название в двух системах письма» clumsy; 2 «Кофейня улицы №7» reads as a café belonging to the street (better «Кофейня „Улица 7“»); 3 «то заведение, что» colloquial; 4 «Золотой пояс» unexplained; 5 nearby-sights block heading with the district name after a colon, and Qasr Ibrahim absent from the nearby list though the text says the café is beside it (source/data issue — raise to the owner); 6 mixed район/квартал units; 8 Qasr Ibrahim card «вмещает … башни»; 9 shortcut hint missing dash «Esc — закрыть»; 10 «Мечеть Джавата» spelling (settled termbase title; not re-litigated); 11 note promising rating/hours not shown; 12 «манит» in the title acceptable. A stray link line in the blind input is an artifact of the cut from the previous home chapter, not page text — no action.",
+  "positions": [
+    {
+      "id": "ru-7st-body",
+      "current": "7st пишет своё название сразу в двух системах письма — как «Макха-Шари 7» (дословно «Кофейня улицы №7») рядом с «7st». Кафе находится рядом с крепостью Каср-Ибрахим, в старом районе Эль-Кут в Эль-Хуфуфе, и открылось в 2025 году. Здесь делают ставку на спешелти-кофе и эспрессо. У кафе в Аль-Ахсе два адреса, которые оно указывает само: 7st Эль-Байт — это и есть то заведение, что рядом с крепостью, — и 7st Эль-Кинна в квартале Эс-Салям на Золотом поясе. Сам район Эль-Кут, где стоит кафе, — самый старый в Эль-Хуфуфе: здесь находятся крепость Каср-Ибрахим и мечеть Эль-Джабри, а его улицы доходят до рынка Эль-Кайсария, так что кафе легко включить в пешую прогулку по старому городу. На фотографии кафе — уголок с кожаными креслами под витражным окном.",
+      "proposed": "7st пишет своё название сразу в двух системах письма — как «Макха-Шари 7» (дословно «Кофейня улицы №7») рядом с «7st». Кафе находится в районе Эр-Рифаа аш-Шамалия в Эль-Хуфуфе, рядом с крепостью Каср-Ибрахим, и открылось в 2025 году. Здесь делают ставку на спешелти-кофе и эспрессо. У кафе в Аль-Ахсе два адреса, которые оно указывает само: 7st Эль-Байт — это и есть то заведение, что рядом с крепостью, — и 7st Эль-Кинна в квартале Эс-Салям на Золотом поясе. По соседству с кафе — район Эль-Кут, самый старый в Эль-Хуфуфе: здесь находятся крепость Каср-Ибрахим и мечеть Эль-Джабри, а его улицы доходят до рынка Эль-Кайсария, так что кафе легко включить в пешую прогулку по старому городу. На фотографии кафе — уголок с кожаными креслами под витражным окном."
+    },
+    {
+      "id": "ru-home-map-lead",
+      "current": "Достопримечательности отмечены там, где они находятся на самом деле. Нажмите на любую, чтобы увидеть её, и добавьте в сохранённые места.",
+      "proposed": "Достопримечательности отмечены там, где они находятся на самом деле. Нажмите на любую, чтобы увидеть её, и добавьте в сохранённые места."
+    }
+  ]
+}
