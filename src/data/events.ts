@@ -490,7 +490,7 @@ const TEXT_ZH: TranslatedTexts = {
     name: '哈萨比什特长袍节', place: '胡富夫历史悠久的易卜拉欣宫',
     season: '冬季', time: '12 月前后', span: '为期数天',
     org: '沙特遗产委员会（文化部）',
-    acts: ['比什特长袍展', '织造技艺工作坊', '互动比什特市集', '民俗表演'],
+    acts: ['比什特长袍展', '织造技艺工作坊', '互动比什特集市', '民俗表演'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -520,7 +520,7 @@ const TEXT_ZH: TranslatedTexts = {
     season: '冬季', time: '2026 年 11 月', span: '时长尚未公布',
     org: '哈萨发展管理局、哈萨市政局',
     related: [{ label: '椰枣村', href: '/zh/attractions/palm-village/' }],
-    acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品市集'],
+    acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品集市'],
   },
   lomi: {
     slug: 'hasawi-lomi-exhibition',

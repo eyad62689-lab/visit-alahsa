@@ -89,11 +89,11 @@ export const TEMPLATES: Record<string, Template> = {
     note: ASFAR_NOTE,
   },
   'markets-1': {
-    title: { ar: 'يومٌ في أسواق الهفوف التراثية', en: 'A day in Hofuf’s heritage souqs', zh: '一天，漫步胡富夫的传统市集', de: 'Ein Tag in den traditionellen Souks von Hofuf' },
+    title: { ar: 'يومٌ في أسواق الهفوف التراثية', en: 'A day in Hofuf’s heritage souqs', zh: '一天，漫步胡富夫的传统集市', de: 'Ein Tag in den traditionellen Souks von Hofuf' },
     days: MARKETS.slice(0, 1),
   },
   'markets-2': {
-    title: { ar: 'يومان: الأسواق، ثم الفخار عند جبل القارة', en: 'Two days: the souqs, then pottery at Jabal Al-Qarah', zh: '两天：先逛市集，再到卡拉山寻访陶器', de: 'Zwei Tage: erst die Souks, dann die Töpferei am Jabal al-Qarah' },
+    title: { ar: 'يومان: الأسواق، ثم الفخار عند جبل القارة', en: 'Two days: the souqs, then pottery at Jabal Al-Qarah', zh: '两天：先逛集市，再到卡拉山寻访陶器', de: 'Zwei Tage: erst die Souks, dann die Töpferei am Jabal al-Qarah' },
     days: MARKETS.slice(0, 2),
   },
   'markets-3': {
@@ -138,7 +138,7 @@ export const COMPANION_TIPS: Record<Companion, TipPart[]> = {
       text: {
         ar: 'مسار الهفوف التاريخي جولةٌ مشياً بين الحصن والسوق.',
         en: 'The Historic Hofuf Trail is a walk between the fortress and the souq.',
-        zh: '胡富夫历史路线全程步行，穿行于城堡与市集之间。',
+        zh: '胡富夫历史路线全程步行，穿行于城堡与集市之间。',
         de: 'Die Route durch das historische Hofuf ist ein Rundgang zu Fuß zwischen Festung und Souk.',
       },
     },

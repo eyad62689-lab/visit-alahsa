@@ -2,10 +2,10 @@
 title: "سوق الحرفيين"
 title_en: "Craftsmen Souq"
 # الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 10 بدرجة 94/100 (2026-09-03)
-title_zh: 手工艺人市集
-kicker_zh: 手工艺市集
-summary_zh: "位于胡富夫历史城区中心、由哈萨市政局主管的一座市集，汇聚手工艺人和他们的店铺，并设有一所传授手工艺的学院。"
-body_zh: "手工艺人市集（Craftsmen Souq）位于胡富夫历史城区的中心，2020 年 3 月开放，旨在扶持手工艺与民间艺术。市集占地 12000 多平方米，设有 112 家手工艺人店铺，另有一处露天庭院、一家传统咖啡馆、一家坦努尔泥炉面包坊和一座活动广场。市集里还有一所传授手工艺的学院，由经验丰富的手工艺人主持，把手艺传给新一代，这一使命也与哈萨加入联合国教科文组织创意城市网络一脉相承。市集的兴建是胡富夫历史城区开发项目的一部分，由哈萨市政局主管。"
+title_zh: 手工艺人集市
+kicker_zh: 手工艺集市
+summary_zh: "位于胡富夫历史城区中心、由哈萨市政局主管的一座集市，汇聚手工艺人和他们的店铺，并设有一所传授手工艺的学院。"
+body_zh: "手工艺人集市（Craftsmen Souq）位于胡富夫历史城区的中心，2020 年 3 月开放，旨在扶持手工艺与民间艺术。集市占地 12000 多平方米，设有 112 家手工艺人店铺，另有一处露天庭院、一家传统咖啡馆、一家坦努尔泥炉面包坊和一座活动广场。集市里还有一所传授手工艺的学院，由经验丰富的手工艺人主持，把手艺传给新一代，这一使命也与哈萨加入联合国教科文组织创意城市网络一脉相承。集市的兴建是胡富夫历史城区开发项目的一部分，由哈萨市政局主管。"
 area_zh: 胡富夫——历史城区
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 بدرجة 93/100 (2026-09-11، الدورة 2 من 3)
 title_de: "Handwerker-Souk"
@@ -55,8 +55,8 @@ faq:
     a: "يومياً من 7:30 ص إلى 12 منتصف الليل، والأحد والاثنين من 7 ص، والجمعة من 2:30 م — بحسب الساعات التي حدّثتها المؤسسة في خرائط قوقل."
     q_en: "What are the opening hours of the Craftsmen Souq?"
     a_en: "Daily from 7:30 am to midnight; Sunday and Monday from 7:00 am, and Friday from 2:30 pm, according to the hours updated by the business on Google Maps."
-    q_zh: "手工艺人市集的开放时间是几点到几点？"
-    a_zh: "一般为 7:30–24:00；周日、周一提前到 7:00 开门，周五则要到 14:30 才开门。以上为市集方在谷歌地图上更新的营业时间。"
+    q_zh: "手工艺人集市的开放时间是几点到几点？"
+    a_zh: "一般为 7:30–24:00；周日、周一提前到 7:00 开门，周五则要到 14:30 才开门。以上为集市方在谷歌地图上更新的营业时间。"
     q_de: "Wie sind die Öffnungszeiten des Handwerker-Souks?"
     a_de: "Täglich von 7:30 bis 24:00 Uhr; sonntags und montags ab 7:00 Uhr und freitags ab 14:30 Uhr – nach den Öffnungszeiten, die der Betrieb selbst bei Google Maps aktualisiert hat."
     q_ru: "В какие часы открыт Рынок ремесленников?"
@@ -67,8 +67,8 @@ faq:
     a: "112 متجراً للحرفيين، وفناء مفتوح، وقهوة شعبية، ومخبز تنور، وساحة للفعاليات، وأكاديمية لتعليم الحرف اليدوية يديرها حرفيون ذوو خبرة."
     q_en: "What is inside the Craftsmen Souq?"
     a_en: "112 shops for artisans, an open courtyard, a traditional coffee house, a tannour bakery, an events plaza, and an academy where experienced craftspeople teach their trades."
-    q_zh: "手工艺人市集里有什么？"
-    a_zh: "市集里有 112 家手工艺人店铺，另有露天庭院、传统咖啡馆、坦努尔泥炉面包坊和活动广场；还设有一所传授手工艺的学院，由经验丰富的手工艺人执教。"
+    q_zh: "手工艺人集市里有什么？"
+    a_zh: "集市里有 112 家手工艺人店铺，另有露天庭院、传统咖啡馆、坦努尔泥炉面包坊和活动广场；还设有一所传授手工艺的学院，由经验丰富的手工艺人执教。"
     q_de: "Was gibt es im Handwerker-Souk?"
     a_de: "112 Geschäfte von Handwerkern, einen offenen Innenhof, ein traditionelles Kaffeehaus, eine Bäckerei mit Tanur, einen Veranstaltungsplatz und eine Akademie, in der erfahrene Handwerker ihr Können weitergeben."
     q_ru: "Что можно увидеть на Рынке ремесленников?"
@@ -79,8 +79,8 @@ faq:
     a: "في قلب الهفوف التاريخية، ضمن مشاريع تطوير وسط المدينة التاريخي، وتشرف عليه أمانة الأحساء."
     q_en: "Where is the Craftsmen Souq, and who runs it?"
     a_en: "In the historic centre of Hofuf, created as part of the projects to develop historic downtown, and run by Al-Ahsa Municipality."
-    q_zh: "手工艺人市集在哪里，由谁主管？"
-    a_zh: "在胡富夫历史城区的中心，由哈萨市政局主管；市集的兴建是胡富夫历史城区开发项目的一部分。"
+    q_zh: "手工艺人集市在哪里，由谁主管？"
+    a_zh: "在胡富夫历史城区的中心，由哈萨市政局主管；集市的兴建是胡富夫历史城区开发项目的一部分。"
     q_de: "Wo liegt der Handwerker-Souk, und wer hat die Aufsicht?"
     a_de: "Im historischen Zentrum von Hofuf. Er entstand im Rahmen der Projekte zur Entwicklung der historischen Innenstadt und steht unter der Aufsicht der Kommunalverwaltung von Al-Ahsa."
     q_ru: "Где находится Рынок ремесленников и кто им управляет?"
@@ -91,7 +91,7 @@ faq:
     a: "في مارس 2020م."
     q_en: "When did the Craftsmen Souq open?"
     a_en: "In March 2020."
-    q_zh: "手工艺人市集是哪一年开放的？"
+    q_zh: "手工艺人集市是哪一年开放的？"
     a_zh: "2020 年 3 月开放。"
     q_de: "Wann wurde der Handwerker-Souk eröffnet?"
     a_de: "Im März 2020."
