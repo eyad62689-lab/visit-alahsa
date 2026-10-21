@@ -33,10 +33,10 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const H = HOME_COPY[lang];
-type Loc = { title: string; summary: string; title_en?: string; summary_en?: string; title_zh?: string; summary_zh?: string; title_de?: string; summary_de?: string };
+type Loc = { title: string; summary: string; title_en?: string; summary_en?: string; title_zh?: string; summary_zh?: string; title_de?: string; summary_de?: string; title_ru?: string; summary_ru?: string };
 // حقل اللغة المترجمة (لغير العربية والإنجليزية)؛ يُضاف فرع لكل لغة تنضمّ إلى HOME_LANGS
 const L = lang as Lang;
-const xl = (d: Loc, k: 'title' | 'summary'): string | undefined => (L === 'zh' ? d[`${k}_zh`] : L === 'de' ? d[`${k}_de`] : undefined);
+const xl = (d: Loc, k: 'title' | 'summary'): string | undefined => (L === 'zh' ? d[`${k}_zh`] : L === 'de' ? d[`${k}_de`] : L === 'ru' ? d[`${k}_ru`] : undefined);
 const own = (d: Loc) => L === 'ar' || L === 'en' || xl(d, 'title') !== undefined;
 const locTitle = (d: Loc) => (ar ? d.title : xl(d, 'title') ?? d.title_en ?? d.title);
 const locSummary = (d: Loc) => (ar ? d.summary : xl(d, 'summary') ?? d.summary_en ?? d.summary);

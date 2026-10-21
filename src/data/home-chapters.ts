@@ -13,9 +13,9 @@ export const MAP_SLUGS = ['jabal-al-qarah', 'qasr-ibrahim', 'jawatha-mosque', 'a
 /** بطاقات الفصل 5 (القرار ج6): التاريخ بصيغته من متن صفحة المعلم، وما لا تاريخ في متنه بلا تاريخ. */
 export const MEMORY_CARDS: { slug: string; date?: Record<HomeLang, string> }[] = [
   // متن الجعلانية: «في القرن الخامس الهجري» / «in the fifth century AH»
-  { slug: 'jalaniyah', date: { ar: 'القرن الخامس الهجري', en: 'Fifth century AH', zh: '伊斯兰历 5 世纪', de: '5. Jahrhundert n. H.' } },
+  { slug: 'jalaniyah', date: { ar: 'القرن الخامس الهجري', en: 'Fifth century AH', zh: '伊斯兰历 5 世纪', de: '5. Jahrhundert n. H.', ru: 'V век хиджры' } },
   // متن القيصرية: «يعود لأكثر من قرنين» / «going back more than two centuries»
-  { slug: 'qaisariyah', date: { ar: 'أكثر من قرنين', en: 'Over two centuries', zh: '200 多年历史', de: 'Mehr als zwei Jahrhunderte' } },
+  { slug: 'qaisariyah', date: { ar: 'أكثر من قرنين', en: 'Over two centuries', zh: '200 多年历史', de: 'Mehr als zwei Jahrhunderte', ru: 'Более двух веков' } },
   { slug: 'qasr-ibrahim' },
   { slug: 'jawatha-mosque' },
   { slug: 'al-uqair' },
@@ -56,48 +56,49 @@ const ASFAR_NOTE: Record<HomeLang, string> = {
   en: 'Reaching the lake requires a 4x4.',
   zh: '前往湖边需要四驱车。',
   de: 'Die Fahrt zum See erfordert einen Geländewagen.',
+  ru: 'До озера не добраться без полноприводного автомобиля.',
 };
 
 /** القوالب التسعة (القرار ب4): المفتاح `${interest}-${days}`. */
 export const TEMPLATES: Record<string, Template> = {
   'heritage-1': {
-    title: { ar: 'يومٌ بين حصون الهفوف وأقدم مساجد الشرق', en: 'A day between Hofuf’s fortresses and the East’s oldest mosques', zh: '一天，穿行于胡富夫的城堡与东部最古老的清真寺之间', de: 'Ein Tag zwischen den Festungen von Hofuf und den ältesten Moscheen des Ostens' },
+    title: { ar: 'يومٌ بين حصون الهفوف وأقدم مساجد الشرق', en: 'A day between Hofuf’s fortresses and the East’s oldest mosques', zh: '一天，穿行于胡富夫的城堡与东部最古老的清真寺之间', de: 'Ein Tag zwischen den Festungen von Hofuf und den ältesten Moscheen des Ostens', ru: 'День: крепости Эль-Хуфуфа и старейшие мечети востока страны' },
     // قالب اليوم الواحد: المسار التاريخي ثم القارة وجواثى (بلا إضافات اليومين)
     days: [{ stops: [T('historic-hofuf'), T('qarah-and-jawatha')] }],
   },
   'heritage-2': {
-    title: { ar: 'يومان: المدينة القديمة، ثم القرى الشرقية', en: 'Two days: the old city, then the eastern villages', zh: '两天：先走老城，再访哈萨东部村落', de: 'Zwei Tage: erst die Altstadt, dann die Dörfer im Osten' },
+    title: { ar: 'يومان: المدينة القديمة، ثم القرى الشرقية', en: 'Two days: the old city, then the eastern villages', zh: '两天：先走老城，再访哈萨东部村落', de: 'Zwei Tage: erst die Altstadt, dann die Dörfer im Osten', ru: 'Два дня: старый город, затем восточные деревни' },
     days: HERITAGE.slice(0, 2),
   },
   'heritage-3': {
     // صياغة الدارة المعتمدة لميناء العقير (حكم إياد 2026-09-30، يحرسه C34) — لا «أول موانئ المنطقة»
-    title: { ar: 'ثلاثة أيام تنتهي عند أول ميناء بحري شرق المملكة', en: 'Three days ending at Saudi Arabia’s first seaport on its eastern coast', zh: '三天，终点是沙特阿拉伯东部沿海的第一座海港', de: 'Drei Tage, die am ersten Seehafen an der Ostküste Saudi-Arabiens enden' },
+    title: { ar: 'ثلاثة أيام تنتهي عند أول ميناء بحري شرق المملكة', en: 'Three days ending at Saudi Arabia’s first seaport on its eastern coast', zh: '三天，终点是沙特阿拉伯东部沿海的第一座海港', de: 'Drei Tage, die am ersten Seehafen an der Ostküste Saudi-Arabiens enden', ru: 'Три дня, которые завершаются у первого морского порта на востоке Саудовской Аравии' },
     days: HERITAGE,
   },
   'nature-1': {
-    title: { ar: 'يومٌ بين كهوف القارة وبساتين الواحة', en: 'A day between Al-Qarah’s caves and the oasis groves', zh: '一天，穿行于卡拉山的洞穴与绿洲果园之间', de: 'Ein Tag zwischen den Höhlen des Jabal al-Qarah und den Hainen der Oase' },
+    title: { ar: 'يومٌ بين كهوف القارة وبساتين الواحة', en: 'A day between Al-Qarah’s caves and the oasis groves', zh: '一天，穿行于卡拉山的洞穴与绿洲果园之间', de: 'Ein Tag zwischen den Höhlen des Jabal al-Qarah und den Hainen der Oase', ru: 'День: Джабаль-эль-Кара с её пещерами и сады оазиса' },
     days: NATURE.slice(0, 1),
   },
   'nature-2': {
-    title: { ar: 'يومان: الجبل والبساتين، ثم البحيرة وسط الكثبان', en: 'Two days: the mountain and groves, then the lake among the dunes', zh: '两天：先访山与果园，再赴沙丘间的湖泊', de: 'Zwei Tage: erst der Berg und die Haine, dann der See inmitten der Dünen' },
+    title: { ar: 'يومان: الجبل والبساتين، ثم البحيرة وسط الكثبان', en: 'Two days: the mountain and groves, then the lake among the dunes', zh: '两天：先访山与果园，再赴沙丘间的湖泊', de: 'Zwei Tage: erst der Berg und die Haine, dann der See inmitten der Dünen', ru: 'Два дня: гора и сады, затем озеро среди дюн' },
     days: NATURE.slice(0, 2),
     note: ASFAR_NOTE,
   },
   'nature-3': {
-    title: { ar: 'ثلاثة أيام تنتهي على ساحل الخليج', en: 'Three days ending on the Gulf coast', zh: '三天，终点在海湾之滨', de: 'Drei Tage, die an der Golfküste enden' },
+    title: { ar: 'ثلاثة أيام تنتهي على ساحل الخليج', en: 'Three days ending on the Gulf coast', zh: '三天，终点在海湾之滨', de: 'Drei Tage, die an der Golfküste enden', ru: 'Три дня, которые завершаются на побережье Залива' },
     days: NATURE,
     note: ASFAR_NOTE,
   },
   'markets-1': {
-    title: { ar: 'يومٌ في أسواق الهفوف التراثية', en: 'A day in Hofuf’s heritage souqs', zh: '一天，漫步胡富夫的传统集市', de: 'Ein Tag in den traditionellen Souks von Hofuf' },
+    title: { ar: 'يومٌ في أسواق الهفوف التراثية', en: 'A day in Hofuf’s heritage souqs', zh: '一天，漫步胡富夫的传统集市', de: 'Ein Tag in den traditionellen Souks von Hofuf', ru: 'День на традиционных рынках Эль-Хуфуфа' },
     days: MARKETS.slice(0, 1),
   },
   'markets-2': {
-    title: { ar: 'يومان: الأسواق، ثم الفخار عند جبل القارة', en: 'Two days: the souqs, then pottery at Jabal Al-Qarah', zh: '两天：先逛集市，再到卡拉山寻访陶器', de: 'Zwei Tage: erst die Souks, dann die Töpferei am Jabal al-Qarah' },
+    title: { ar: 'يومان: الأسواق، ثم الفخار عند جبل القارة', en: 'Two days: the souqs, then pottery at Jabal Al-Qarah', zh: '两天：先逛集市，再到卡拉山寻访陶器', de: 'Zwei Tage: erst die Souks, dann die Töpferei am Jabal al-Qarah', ru: 'Два дня: рынки, затем Джабаль-эль-Кара и гончарное ремесло' },
     days: MARKETS.slice(0, 2),
   },
   'markets-3': {
-    title: { ar: 'ثلاثة أيام تنتهي في بساتين الواحة', en: 'Three days ending in the oasis groves', zh: '三天，终点在绿洲果园', de: 'Drei Tage, die in den Hainen der Oase enden' },
+    title: { ar: 'ثلاثة أيام تنتهي في بساتين الواحة', en: 'Three days ending in the oasis groves', zh: '三天，终点在绿洲果园', de: 'Drei Tage, die in den Hainen der Oase enden', ru: 'Три дня, которые завершаются в садах оазиса' },
     days: MARKETS,
   },
 };
@@ -117,6 +118,7 @@ export const COMPANION_TIPS: Record<Companion, TipPart[]> = {
         en: 'Add a family park to your trip: Jawatha Park beside Jawatha Mosque, or King Abdullah Environmental Park for walking and outings.',
         zh: '为这趟行程添一处家庭公园：贾瓦塔清真寺旁边的贾瓦塔公园，或适合散步和出游的阿卜杜拉国王环境公园。',
         de: 'Ergänzen Sie Ihre Reise um einen Park für die ganze Familie: den Jawatha-Park neben der Jawatha-Moschee oder den König-Abdullah-Umweltpark für Spaziergänge und Ausflüge.',
+        ru: 'Добавьте в поездку семейный парк: парк Джавата (по соседству — мечеть Джавата) или Экологический парк короля Абдаллы для прогулок и отдыха на природе.',
       },
     },
   ],
@@ -128,6 +130,7 @@ export const COMPANION_TIPS: Record<Companion, TipPart[]> = {
         en: 'For desert-trip lovers: Al-Arba Mountain, south-east of Hofuf, is a camping and excursion destination.',
         zh: '如果您喜欢沙漠出游：阿尔巴山位于胡富夫东南，适合露营与游览。',
         de: 'Für alle, die gern in die Wüste fahren: Der Al-Arba-Berg südöstlich von Hofuf ist ein Ziel für Camping und Ausflüge.',
+        ru: 'Любите поездки по пустыне? Гора Эль-Арба к юго-востоку от Эль-Хуфуфа — место для кемпинга и вылазок на природу.',
       },
     },
   ],
@@ -140,6 +143,7 @@ export const COMPANION_TIPS: Record<Companion, TipPart[]> = {
         en: 'The Historic Hofuf Trail is a walk between the fortress and the souq.',
         zh: '胡富夫历史路线全程步行，穿行于城堡与集市之间。',
         de: 'Die Route durch das historische Hofuf ist ein Rundgang zu Fuß zwischen Festung und Souk.',
+        ru: 'Маршрут по историческому Эль-Хуфуфу — пешая прогулка между крепостью и рынком.',
       },
     },
     {
@@ -149,6 +153,7 @@ export const COMPANION_TIPS: Record<Companion, TipPart[]> = {
         en: 'Al-Ahsa Museum presents the region’s history and antiquities, for those who want to go deeper.',
         zh: '哈萨博物馆呈现了这一地区的历史与文物，适合想深入了解的人。',
         de: 'Das Al-Ahsa-Museum zeigt Geschichte und Altertümer der Region – für alle, die tiefer eintauchen möchten.',
+        ru: 'Музей Аль-Ахсы рассказывает об истории и древностях региона — для тех, кто хочет узнать больше.',
       },
     },
   ],
