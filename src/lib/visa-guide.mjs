@@ -17,7 +17,7 @@ export const VISA_GUIDE_PATH = VISA_GUIDE_ALT.ar;
 export const VISA_LANGS = ['ar', 'en', 'zh', 'ru', 'de', 'ur'];
 
 /** رابط الصفحة بلغة الطلب — غير المبنيّ يقصد الإنجليزية (لا رابط إلى صفحة غير موجودة). */
-export const visaHref = (lang) => (lang === 'ar' ? VISA_GUIDE_ALT.ar : VISA_GUIDE_ALT.en);
+export const visaHref = (lang) => String((VISA_LANGS.includes(lang) && VISA_GUIDE_ALT[lang]) || VISA_GUIDE_ALT.en);
 
 /** تاريخ آخر تعديل على المحتوى (ISO لـdateModified) وسطره المرئي بلغتيه — حرفياً، يحرسه C28. */
 export const VISA_UPDATED_ISO = '2026-10-17';

@@ -33,7 +33,7 @@ export const VISA_UR: VisaGuideContent = {
       " چنیں، پھر تفصیل سے ",
       {
         "t": "سفر کا منصوبہ بنائیں",
-        "href": "/en/plan-your-trip/"
+        "href": "/ur/plan-your-trip/"
       },
       "۔ اگر آپ خاص طور پر الاحساء کا سیاحتی ویزا تلاش کر رہے ہیں تو واضح رہے کہ الاحساء سعودی عرب کا ایک شہر ہے، اس لیے آپ کو سعودی عرب کا وزٹ ویزا ہی چاہیے۔"
     ]
@@ -231,7 +231,7 @@ export const VISA_UR: VisaGuideContent = {
       "ریل گاڑی اور گاڑی سے پہنچنے کی تفصیل، اور ریاض اور دمام سے فاصلے، “",
       {
         "t": "کیسے پہنچیں",
-        "href": "/en/plan-your-trip/#getting-there"
+        "href": "/ur/plan-your-trip/#getting-there"
       },
       "” والے حصے میں درج ہیں۔"
     ]
@@ -244,7 +244,7 @@ export const VISA_UR: VisaGuideContent = {
         "parts": [
           {
             "t": "سڑکیں، ہوائی اڈے اور ریل گاڑی",
-            "href": "/en/plan-your-trip/#getting-there"
+            "href": "/ur/plan-your-trip/#getting-there"
           },
           "۔"
         ]
@@ -264,7 +264,7 @@ export const VISA_UR: VisaGuideContent = {
         "parts": [
           {
             "t": "آنے کا بہترین موسم",
-            "href": "/en/plan-your-trip/#practical"
+            "href": "/ur/plan-your-trip/#practical"
           },
           "۔"
         ]

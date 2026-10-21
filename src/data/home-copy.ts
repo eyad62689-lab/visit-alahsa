@@ -408,7 +408,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     arrow: '←',
     sep: ' ',
-    paths: { attractions: '/ur/attractions/', map: '/ur/map/', plan: '/en/plan-your-trip/', myTrip: '/en/plan/', trails: '/ur/trails/' },
+    paths: { attractions: '/ur/attractions/', map: '/ur/map/', plan: '/ur/plan-your-trip/', myTrip: '/en/plan/', trails: '/ur/trails/' },
     gate: {
       title: 'دنیا کا سب سے بڑا نخلستان، جو باب بہ باب آپ کے سامنے کھلتا ہے',
       lead: 'سعودی عرب کے مشرقی صوبے میں: ریت کے نیچے پانی، غاروں سے بھرا ایک پہاڑ اور نسلوں سے چلے آ رہے بازار۔ داستان شروع کرنے کے لیے صفحہ نیچے سرکائیں۔',
