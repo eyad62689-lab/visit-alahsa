@@ -1,9 +1,6 @@
 ---
-// الرئيسية الأوردية (ur-PK، RTL) — كتلة ui.ur فارغة عمداً، فكل نصوص الواجهة تتراجع
-// ur ← en ← ar وتظهر بالإنجليزية، وروابط الأقسام غير المبنية تقصد الصفحات الإنجليزية:
-// تسمية إنجليزية لصفحة إنجليزية، لا وعدٌ مكسور. تُستبدل بمخرج خط ur-translation-pipeline
-// في دفعة نصوص الواجهة (المرحلة 2 في ur-translation/PLAN.md).
-import HomeView from '../../components/views/HomeView.astro';
+// الرئيسية الأوردية «الواحة تتكشّف» (RTL) — نصوصها من خط ur-translation-pipeline (home-copy.ts، دفعة ur-home-1)
+import HomeChaptersView from '../../components/views/HomeChaptersView.astro';
 const alt = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/' };
 ---
-<HomeView lang="ur" alt={alt} />
+<HomeChaptersView lang="ur" alt={alt} />
