@@ -157,12 +157,12 @@ const C = localize(lang, {
     sightsH: 'Достопримечательности поблизости: {district}',
   },
 });
-const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : 'en'][d.district]) : '';
+const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : ur ? 'ur' : 'en'][d.district]) : '';
 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : '/en/restaurants-cafes/';
+const indexHref = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : ur ? '/ur/restaurants-cafes/' : '/en/restaurants-cafes/';
 const siteUrl = SITE;
 const selfUrl = absUrl(diningHref(d, lang), siteUrl);
 const jsonLd = [

@@ -18,8 +18,11 @@ blurb_ru: "Ресторан и кафе в одном — как гласят с
 area_ru: "Дорога короля Абдаллы — Эль-Мазру"
 alt_ru: "Фасад Code — ресторан и кафе — с его светящейся вывеской, выполненной арабской каллиграфией"
 blurb_de: "Restaurant und Café in einem – so beschreibt sich der Ort selbst, und genau das kündigen auch die leuchtenden arabischen Buchstaben auf seiner dunklen Fassade an."
+blurb_ur: "گہرے رنگ کا اگواڑا روشن حروف میں بتاتا ہے کہ یہاں کھانے کی جگہ اور قہوہ خانہ ایک ساتھ ہیں۔"
 area_de: "König-Abdullah-Straße – Al-Mazrou'"
+area_ur: "شاہ عبد اللہ سڑک، محلہ المزروع"
 alt_de: "Die Fassade von Code – Restaurant und Café – mit ihrem leuchtenden Schild in arabischer Schrift"
+alt_ur: "کوڈ کا اگواڑا اور عربی خط میں اس کا روشن نشان: کھانے کی جگہ اور قہوہ خانہ ایک ساتھ"
 img: /img/dining/koud
 maps: "https://maps.app.goo.gl/RVVLPpJCUVfpCdWt7"
 order: 10

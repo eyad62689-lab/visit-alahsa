@@ -18,8 +18,11 @@ blurb_ru: "Арочные ворота богато украшены и веду
 area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Богато украшенный арочный вход и места под открытым небом Sharq Al-Qaisariyah"
 blurb_de: "Ein Tor mit reich verziertem Bogen führt zu Sitzgelegenheiten im traditionellen Stil."
+blurb_ur: "نقش دار محراب والا ایک پھاٹک روایتی طرز کی نشستوں تک لے جاتا ہے۔"
 area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
+area_ur: "محلہ شمالی الرفعہ، ہفوف"
 alt_de: "Der Eingang mit seinem reich verzierten Bogen und die Sitzplätze im Freien bei Sharq Al-Qaisariyah"
+alt_ur: "مطعم شرق کا نقش دار محراب والا داخلی راستہ اور باہر کی نشستیں"
 img: /img/dining/sharq-alqaisariah
 maps: "https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8"
 order: 9

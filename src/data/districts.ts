@@ -9,7 +9,7 @@ export const DISTRICTS = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'ra
   'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz', 'khudud', 'qarah'] as const;
 export type District = (typeof DISTRICTS)[number];
 
-export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh' | 'de' | 'ru', Record<District, string>> = {
+export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur', Record<District, string>> = {
   ar: {
     alkoot: 'حي الكوت', downtown: 'وسط الهفوف التاريخي', 'rafah-north': 'الرفعة الشمالية',
     khalidiyah: 'الخالدية', rawdah: 'الروضة', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
@@ -49,6 +49,9 @@ export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh' | 'de' | 'ru', Record<Dis
     khalidiyah: 'Эль-Халидия', rawdah: 'Эр-Рауда', mazrou: 'Эль-Мазру',
     uwaimriyah: 'район Эль-Увеймирия', olaya: 'Эль-Улья', khaleej: 'дорога Эль-Халидж',
     mubarraz: 'Эль-Мубарраз', khudud: 'район Эль-Худуд', qarah: 'Эль-Кара',
+  },
+  ur: {
+    alkoot: 'محلہ الکوت', downtown: 'ہفوف کا تاریخی مرکز', 'rafah-north': 'شمالی الرفعہ', khalidiyah: 'الخالدیہ', rawdah: 'الروضہ', mazrou: 'المزروع', uwaimriyah: 'العویمریہ', olaya: 'العلیا', khaleej: 'الخلیج سڑک', mubarraz: 'المبرز', khudud: 'محلہ الخدود', qarah: 'القارہ',
   },
 };
 

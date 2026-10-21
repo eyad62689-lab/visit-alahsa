@@ -18,8 +18,11 @@ blurb_ru: "Выпечка и хрустящие лакомства (так на�
 area_ru: "Дорога на Айн-Наджм — Эль-Мубарраз"
 alt_ru: "Фасад кафе Baking Up с зонтами и местами для сидения на улице"
 blurb_de: "Hinter einer fröhlichen Fassade mit Sitzplätzen im Freien warten Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps."
+blurb_ur: "گوگل میپس پر اس جگہ کا اپنا تعارف “سینکی ہوئی اور کرکری چیزیں” ہے، اور اس کے خوش رنگ اگواڑے کے باہر نشستیں لگی ہیں۔"
 area_de: "Ain-Najm-Straße – Al-Mubarraz"
+area_ur: "عین النجم سڑک، المبرز"
 alt_de: "Die Fassade von Baking Up mit Sonnenschirmen und Sitzplätzen im Freien"
+alt_ur: "بیکنگ اپ کا اگواڑا، سائبان اور باہر کی نشستیں"
 img: /img/dining/baking-up
 maps: "https://maps.app.goo.gl/Vq412YHJLwnKc1SE8"
 order: 8
