@@ -36,7 +36,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     religious: '清真寺与宗教场所',
     nature: '自然风光',
     parks: '公园与园林',
-    market: '传统市集',
+    market: '传统集市',
     farm: '农场',
     experience: '体验与手工艺',
     taste: '哈萨美食',

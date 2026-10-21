@@ -230,7 +230,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     memory: {
       title: '泥土与集市的记忆',
-      lead: '泥筑的城堡、伊斯兰教早期兴建的清真寺，还有世代相传的传统市集。',
+      lead: '泥筑的城堡、伊斯兰教早期兴建的清真寺，还有世代相传的传统集市。',
       track: '历史古迹列表，可左右滑动',
       link: '浏览历史古迹',
     },
@@ -238,7 +238,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       title: '行程规划，只需三个问题',
       lead: '答完问题，路线随即出现，您在地图上收藏的景点也会一并排入。',
       link: '完整行程规划指南',
-      int: { legend: '什么最吸引您？', opts: [['heritage', '古迹与历史'], ['nature', '自然与水'], ['markets', '市集与手工艺']] },
+      int: { legend: '什么最吸引您？', opts: [['heritage', '古迹与历史'], ['nature', '自然与水'], ['markets', '集市与手工艺']] },
       dur: { legend: '您有几天时间？', opts: [['1', '一天'], ['2', '两天'], ['3', '三天']] },
       com: { legend: '您和谁同行？', opts: [['family', '家人'], ['friends', '朋友'], ['solo', '独自出行']] },
       L: { wait: '回答这三个问题，您的路线将显示在这里。', title: '您的路线', days: ['第 1 天', '第 2 天', '第 3 天'], trail: '路线', place: '景点', saved: '来自我的收藏' },

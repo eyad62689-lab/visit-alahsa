@@ -3,9 +3,9 @@ title: "سوق القيصرية"
 title_en: "Qaisariyah Souq"
 # الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 1 بدرجة 92/100 (2026-08-29)
 title_zh: 凯撒利亚集市
-kicker_zh: 遗产市集
+kicker_zh: 遗产集市
 summary_zh: "可上溯 200 多年的老集市，是最古老的传统集市之一，也是寻访手工艺与本地物产的去处。"
-body_zh: "这是海湾地区最古老、最有故事的传统市集之一，可上溯 200 多年。市集建筑自成一格，店铺一间挨一间，排列在香料与香水气息弥漫、铜器泛着光泽的巷道两旁；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是市集的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；上午或傍晚前来最宜。"
+body_zh: "这是海湾地区最古老、最有故事的传统集市之一，可上溯 200 多年。集市建筑自成一格，店铺一间挨一间，排列在香料与香水气息弥漫、铜器泛着光泽的巷道两旁；在哈萨挑选传统手工艺品，这里是首选去处。著名的哈萨比什特长袍是集市的招牌，那是身份与重大场合的礼袍；“哈萨织造”以手工刺绣的细密见长，所用扎里线镀有金银，这门手艺在哈萨的家族之间代代相传。除比什特之外，这里还有棕榈叶编织、陶器一类的本地手工艺，以及各色椰枣、咖啡与香料。开放时间与费用见下方“游览信息”卡片；上午或傍晚前来最宜。"
 area_zh: 胡富夫，里法阿区
 bestTime_zh: 上午或傍晚前往；店铺中午歇业，到下午才重新开门。
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 بدرجة 93/100 (2026-09-11، الدورة 2 من 3)
@@ -92,7 +92,7 @@ faq:
     q_en: "What can I buy at Qaisariyah Souq?"
     a_en: "The famous Hasawi bisht, local crafts in palm frond and pottery, dates of every variety, coffee and spices."
     q_zh: "在凯撒利亚集市能买到什么？"
-    a_zh: "市集的招牌是著名的哈萨比什特长袍；此外还有棕榈叶编织、陶器一类的本地手工艺品，以及各色椰枣、咖啡与香料。"
+    a_zh: "集市的招牌是著名的哈萨比什特长袍；此外还有棕榈叶编织、陶器一类的本地手工艺品，以及各色椰枣、咖啡与香料。"
     q_de: "Was kann ich im Qaisariyah-Souk kaufen?"
     a_de: "Den berühmten Hasawi-Bischt, einheimisches Kunsthandwerk aus Palmblättern und Keramik, Datteln aller Sorten, Kaffee und Gewürze."
     q_ru: "Что купить на рынке Эль-Кайсария?"
@@ -116,7 +116,7 @@ faq:
     q_en: "How old is Qaisariyah Souq?"
     a_en: "It goes back more than two centuries, and is among the oldest and most storied souqs in the Gulf."
     q_zh: "凯撒利亚集市有多少年历史了？"
-    a_zh: "已有 200 多年历史，是海湾地区最古老、最有故事的传统市集之一。"
+    a_zh: "已有 200 多年历史，是海湾地区最古老、最有故事的传统集市之一。"
     q_de: "Wie alt ist der Qaisariyah-Souk?"
     a_de: "Seine Geschichte reicht mehr als zwei Jahrhunderte zurück; er zählt zu den ältesten und traditionsreichsten Souks der Golfregion."
     q_ru: "Сколько лет рынку Эль-Кайсария?"

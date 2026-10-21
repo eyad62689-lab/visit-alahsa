@@ -2,10 +2,10 @@
 title: "سوق النساء الشعبي"
 title_en: "Women's Folk Souq"
 # الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 11 بدرجة 92/100 (2026-09-03)
-title_zh: 妇女民俗市集
-kicker_zh: 民俗市集
-summary_zh: "胡富夫市中心里法阿南区的一座传统摊位市集，商贩都是哈萨的妇女，市集也因此得名，至今仍是城里鲜活的民间商贸一景。"
-body_zh: "妇女民俗市集（Women's Folk Souq）位于胡富夫的里法阿南区，是一座传统摊位市集，就在老苏韦格市集区的中心。市集的名字来自这里的商贩：都是哈萨的妇女，既有城镇的，也有贝都因的。她们出售各式货品，其中有些是亲手制作的。市集坐落在胡富夫市中心的阿卜杜勒阿齐兹国王路上，对所有人开放，无论男女。哈萨市政局对这座市集做过改造提升。如今这里的民间商贸依旧鲜活，售卖衣物、酥油、干制酸奶等。"
+title_zh: 妇女民俗集市
+kicker_zh: 民俗集市
+summary_zh: "胡富夫市中心里法阿南区的一座传统摊位集市，商贩都是哈萨的妇女，集市也因此得名，至今仍是城里鲜活的民间商贸一景。"
+body_zh: "妇女民俗集市（Women's Folk Souq）位于胡富夫的里法阿南区，是一座传统摊位集市，就在老苏韦格集市区的中心。集市的名字来自这里的商贩：都是哈萨的妇女，既有城镇的，也有贝都因的。她们出售各式货品，其中有些是亲手制作的。集市坐落在胡富夫市中心的阿卜杜勒阿齐兹国王路上，对所有人开放，无论男女。哈萨市政局对这座集市做过改造提升。如今这里的民间商贸依旧鲜活，售卖衣物、酥油、干制酸奶等。"
 area_zh: 胡富夫，里法阿南区
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-2 بدرجة 91/100 (2026-09-11، الدورة 3 من 3)
 title_de: "Frauen-Souk"
@@ -53,7 +53,7 @@ faq:
     a: "يومياً من 8 ص إلى 11 م."
     q_en: "What are the opening hours of the Women’s Folk Souq?"
     a_en: "Daily from 8:00 am to 11:00 pm."
-    q_zh: "妇女民俗市集的开放时间是几点到几点？"
+    q_zh: "妇女民俗集市的开放时间是几点到几点？"
     a_zh: "每日 8:00–23:00。"
     q_de: "Wie sind die Öffnungszeiten des Frauen-Souks?"
     a_de: "Täglich von 8:00 bis 23:00 Uhr."
@@ -65,8 +65,8 @@ faq:
     a: "في حي الرفعة الجنوبية بالهفوف، على طريق الملك عبدالعزيز وسط منطقة سوق السويق القديمة."
     q_en: "Where is the Women’s Folk Souq?"
     a_en: "In the South Al-Rifaa district of Hofuf, on King Abdulaziz Road at the heart of the old Suwaiq market area."
-    q_zh: "妇女民俗市集在哪里？"
-    a_zh: "在胡富夫的里法阿南区，阿卜杜勒阿齐兹国王路上，就在老苏韦格市集区的中心。"
+    q_zh: "妇女民俗集市在哪里？"
+    a_zh: "在胡富夫的里法阿南区，阿卜杜勒阿齐兹国王路上，就在老苏韦格集市区的中心。"
     q_de: "Wo liegt der Frauen-Souk?"
     a_de: "Im Al-Rifaa-Süd-Viertel von Hofuf, an der König-Abdulaziz-Straße im Herzen des alten Marktviertels Suwaiq."
     q_ru: "Где находится Женский народный рынок?"
@@ -77,7 +77,7 @@ faq:
     a: "لأن البائعات فيه نساءٌ من الأحساء، محليّاتٌ وبدويات."
     q_en: "Why is it called the Women’s Folk Souq?"
     a_en: "Because the sellers there are women of Al-Ahsa — both local women and Bedouin."
-    q_zh: "妇女民俗市集为什么叫这个名字？"
+    q_zh: "妇女民俗集市为什么叫这个名字？"
     a_zh: "因为这里的商贩都是哈萨的妇女，既有城镇的，也有贝都因的。"
     q_de: "Warum heißt der Markt Frauen-Souk?"
     a_de: "Weil dort Frauen aus Al-Ahsa verkaufen – Städterinnen wie Beduininnen."
@@ -89,8 +89,8 @@ faq:
     a: "لا، السوق مفتوح للجميع نساءً ورجالاً؛ والنساء هنّ البائعات فيه."
     q_en: "Is the Women’s Folk Souq open only to women?"
     a_en: "No — the souq is open to everyone, women and men alike; it is the sellers who are women."
-    q_zh: "妇女民俗市集只对女性开放吗？"
-    a_zh: "不是。市集对所有人开放，无论男女；只是这里的商贩都是妇女。"
+    q_zh: "妇女民俗集市只对女性开放吗？"
+    a_zh: "不是。集市对所有人开放，无论男女；只是这里的商贩都是妇女。"
     q_de: "Ist der Frauen-Souk nur für Frauen zugänglich?"
     a_de: "Nein, der Souk steht allen offen, Frauen wie Männern; verkauft wird dort von Frauen."
     q_ru: "Вход на Женский народный рынок только для женщин?"
@@ -101,7 +101,7 @@ faq:
     a: "الملابس والسمن والإقط وغيرها."
     q_en: "What is sold at the Women’s Folk Souq?"
     a_en: "Clothes, ghee, aqit (dried yoghurt) and more."
-    q_zh: "在妇女民俗市集能买到什么？"
+    q_zh: "在妇女民俗集市能买到什么？"
     a_zh: "这里卖的是衣物、酥油、干制酸奶等货品。"
     q_de: "Was wird im Frauen-Souk verkauft?"
     a_de: "Kleidung, Butterschmalz, Aqit und anderes mehr."
