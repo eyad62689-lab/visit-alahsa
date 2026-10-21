@@ -62,13 +62,15 @@ const visible = (html) => {
   return out.split('\n').map((l) => l.replace(/[ \t]+/g, ' ').trim()).filter(Boolean).join('\n');
 };
 
+// --applied: dist was built after apply.mjs, so it already holds `proposed`; the cut looks for it and substitutes nothing
+const APPLIED = process.argv.includes('--applied');
 const stage = JSON.parse(readFileSync(`${HERE}/out/${FROM}.json`, 'utf8')).positions;
 const pack = JSON.parse(readFileSync(`${HERE}/../../ur-translation/output/ur-owner-trails/pack.json`, 'utf8')).positions;
 let fail = 0;
 const pos = (id) => {
   const p = stage.find((x) => x.id === id), k = pack.find((x) => x.id === id);
   if (!p || !k || p.current !== k.current) { console.error(`FAIL ${id}: stage ${FROM} does not match the pack`); fail++; return null; }
-  return p;
+  return APPLIED ? { id: p.id, current: p.proposed, proposed: p.proposed } : p;
 };
 const page = (rel) => {
   const f = `${R}/dist/${rel}`;
