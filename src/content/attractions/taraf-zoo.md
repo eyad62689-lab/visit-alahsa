@@ -34,6 +34,14 @@ summary_en: "A family zoo in the town of Al-Taraf east of Hofuf."
 body_en: "In the town of Al-Taraf, east of Hofuf among the oasis villages, lies Al-Taraf Zoo, a family destination where children get to see a variety of animals up close. It is one of the area's simple, unhurried family outings, easily combined with a visit to the nearby Al-Taraf countryside and the southern reaches of the oasis. Check locally before planning the trip."
 area: بلدة الطرف — شرق الهفوف
 area_en: "Al-Taraf — east of Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بند المواعيد موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours
+description: "حديقة حيوانات عائلية في بلدة الطرف شرقي الهفوف. وهي من الجولات العائلية الهادئة في المنطقة، ويسهل جمعها مع زيارة أرياف الطرف وجنوب الواحة."
+description_en: "In the town of Al-Taraf, east of Hofuf among the oasis villages, lies Al-Taraf Zoo. It is one of the area's simple, unhurried family outings."
 featured: false
 heroImage: /img/taraf-zoo
 order: 65

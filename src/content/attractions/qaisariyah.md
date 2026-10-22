@@ -52,6 +52,14 @@ hoursSpec:
 fee: { free: true }
 answer: "سوق القيصرية في حي الرفعة بالهفوف من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. متاجره المتراصّة تبيع البشت الحساوي والحِرف من الخوص والفخار والتمور والقهوة والبهارات. يفتح من 8 ص إلى 12 ظهراً ومن 3:30 ع إلى 10 م (الجمعة مساءً فقط)، والدخول مجاني."
 answer_en: "Qaisariyah Souq in Hofuf’s Al-Rifaa district is among the Gulf’s oldest souqs, over two centuries old. Its close-packed shops sell the Hasawi bisht, palm-frond and pottery crafts, dates, coffee and spices. Open 8 am–12 noon and 3:30–10 pm (Friday evenings only); entry is free."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: hours-fees
+description: "سوق القيصرية في حي الرفعة بالهفوف من أقدم أسواق الخليج وأعرقها. يفتح من 8 ص إلى 12 ظهراً ومن 3:30 ع إلى 10 م (الجمعة مساءً فقط)، والدخول مجاني."
+description_en: "Qaisariyah Souq in Hofuf’s Al-Rifaa district is among the Gulf’s oldest souqs. Open 8 am–12 noon and 3:30–10 pm (Friday evenings only); entry is free."
 location: { lat: 25.37558, lng: 49.589 }
 sameAs:
   - https://www.wikidata.org/wiki/Q16121126

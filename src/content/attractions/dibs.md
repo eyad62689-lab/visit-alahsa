@@ -35,6 +35,14 @@ summary_en: "The historic Al-Fatih Mosque — one of the Al-Koot district's olde
 body_en: "In the Al-Koot district of old Hofuf, bordered on the east by Qasr Ibrahim and a short walk from Al-Jabri Mosque and Bayt Al-Bay'ah, stands Al-Dibs Mosque — officially Al-Fatih Mosque, built in 962 AH / 1555 CE by the Ottoman governor Muhammad Farrukh Pasha. Its popular name comes from the date stores and dibs (date molasses) trade that once filled the street beside it. Covering some 350 square metres, it follows the early Ottoman style, crowned by a large central dome ringed by smaller light-bearing domes, and long served as a teaching mosque where Quran, fiqh and hadith were taught in the Shafi'i tradition. Its eastern minaret was removed in 1391 AH / 1971 CE when Al-Koot street was opened, and after a partial collapse in 1406 AH / 1986 CE it was restored while preserving its old architectural character — a working mosque to this day."
 area: حي الكوت — الهفوف
 area_en: "Al-Koot district — Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: free
+description: "مسجد الفاتح التاريخي — من أقدم مساجد حي الكوت، بُني في العهد العثماني عام 962هـ/1555م. أُزيلت مئذنته الشرقية عام 1391هـ/1971م عند فتح شارع الكوت."
+description_en: "The historic Al-Fatih Mosque — one of the Al-Koot district's oldest, built in the Ottoman era in 962 AH / 1555 CE. Covering some 350 square metres."
 featured: false
 order: 22
 practical:

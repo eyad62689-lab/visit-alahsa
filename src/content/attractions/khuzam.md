@@ -34,6 +34,14 @@ summary_en: "A First Saudi State fort on Hofuf's western edge, part of the UNESC
 body_en: "On the edge of Al-Mazrouiyah district in western Hofuf stands Qasr Khuzam, a fort built in 1220 AH / 1805 CE by Imam Saud bin Abdulaziz, third imam of the First Saudi State, as part of a chain of fortifications protecting Al-Ahsa and watching its western approaches — its name derives from the 'zimam', the rein by which camels are led — a sign of its command over the region. Its rectangular wall, roughly 70 by 80 metres, is guarded by six towers, most of them conical, enclosing an open courtyard, a mosque, a majlis, a well and stables. The fort later served as a seat for managing tribal affairs and settling disputes over water sources. Restored and opened to visitors in 2017, it is today one of the twelve components of the Al-Ahsa Oasis site inscribed by UNESCO in 2018."
 area: حي المزروعية — غرب الهفوف
 area_en: "Al-Mazrouiyah district — west of Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة حقل unesco (مكوّن في موقع اليونسكو).
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: unesco
+description: "قلعة من حصون الدولة السعودية الأولى غربي الهفوف، ضمن موقع واحة الأحساء في قائمة اليونسكو. سوره المستطيل (نحو 70×80 متراً) تحرسه ستة أبراج معظمها مخروطي."
+description_en: "A First Saudi State fort on Hofuf's western edge, part of the UNESCO-listed Al-Ahsa Oasis site. Restored and opened to visitors in 2017."
 featured: false
 order: 14
 district: mazrou

@@ -35,6 +35,14 @@ summary_en: "A quiet beach at Salwa town in Al-Ahsa's far south-east, near the Q
 body_en: "At the town of Salwa in Al-Ahsa's far south-east, by the Kingdom's land gateway to Qatar, Salwa Beach stretches along the Arabian Gulf about 150 kilometres from Hofuf. Salwa falls administratively under Al-Ahsa governorate; its sands are described as among the finest on the Gulf; the dunes of the Jafurah desert border it to the west, and the area is rich in birdlife. It is a well-known sea-fishing spot and a quiet destination for family sittings and shoreline walks, and the municipality has developed the beach and its park with shades, playgrounds, a walkway and outdoor fitness equipment."
 area: بلدة سلوى — أقصى جنوب شرق الأحساء
 area_en: "Salwa — the far southeast of Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "شاطئ هادئ عند بلدة سلوى في أقصى جنوب شرق الأحساء، قرب الحدود مع قطر. تتبع سلوى إدارياً محافظة الأحساء، وتوصف رمال شاطئها بأنها من أجمل رمال الخليج."
+description_en: "A quiet beach at Salwa town in Al-Ahsa's far south-east. It is a well-known sea-fishing spot and a quiet destination for family sittings and shoreline walks."
 featured: false
 order: 41
 openSite: true

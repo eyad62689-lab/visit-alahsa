@@ -36,6 +36,14 @@ featured: false
 order: 68
 area: "طريق الخليج — الأحساء"
 area_en: "Al-Khaleej Road — Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "على طريق الخليج تقع مزرعة زكي السالم. من أكبر مزارع الأرز الأحسائي في الأحساء — تشتهر باحتفالات موسم الحصاد، وفيها نبع مياه كبريتية وأكواخ تراثية من السعف."
+description_en: "One of the largest Hasawi rice farms in Al-Ahsa — famed for its harvest-season celebrations, with a sulphur-water spring and traditional palm-frond huts."
 practical:
   - { label: "المواعيد", value: "الخميس والجمعة والسبت: 3:30 م - 10:00 م", label_en: "Hours", value_en: "Thursday, Friday and Saturday 3:30–10:00 pm", label_ur: "اوقات", value_ur: "جمعرات، جمعہ اور ہفتہ سہ پہر 3:30 بجے سے رات 10 بجے تک", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
   - { label: "الرسوم", value: "25 ريال للفرد", label_en: "Fees", value_en: "SAR 25 per person", label_ur: "فیس", value_ur: "فی کس 25 سعودی ریال", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }

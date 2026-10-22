@@ -42,6 +42,14 @@ practical:
   - { label: "الوضع الحالي", value: "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق", label_en: "Current status", value_en: "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it", label_ru: "Текущий статус", value_ru: "Историческая достопримечательность — как рынок не работает; в его здании действует ресторан «Шарк»", label_zh: "现状", value_zh: "遗产地标——不再作为集市营业；目前在其建筑内经营的是沙尔格餐厅", label_de: "Aktueller Status", value_de: "Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört – als Souk nicht mehr in Betrieb; im Gebäude ist das Sharq-Restaurant", label_ur: "موجودہ حالت", value_ur: "ہفوف کے ورثے کی ایک یادگار، جو اب بازار کے طور پر نہیں چلتی۔ اس کی عمارت میں مطعم شرق نامی کھانے پینے کی جگہ چلتی ہے", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-04", verified: true }
 answer: "سوق الحميدية مبنى تراثي في وسط الهفوف بحي الرفعة الشمالية على طريق الملك عبدالعزيز، رُمِّم ضمن مشاريع تطوير وسط الهفوف التاريخي إلى جانب سوق القيصرية وسوق الحرفيين. وهو اليوم معلم تراثي لا سوق عامل: توقّف نشاطه سوقاً شعبياً، والنشاط القائم في مبناه مطعم شرق."
 answer_en: "Al-Hamidiyah Souq is a heritage building in central Hofuf, in North Al-Rifaa on King Abdulaziz Road, restored as part of the historic downtown development alongside Qaisariyah Souq and Craftsmen Souq. Today it is a landmark rather than a working souq: Sharq Restaurant occupies the building."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: guide
+description: "سوق الحميدية مبنى تراثي في وسط الهفوف بحي الرفعة الشمالية على طريق الملك عبدالعزيز. وهو اليوم معلم تراثي لا سوق عامل: توقّف نشاطه سوقاً شعبياً."
+description_en: "Al-Hamidiyah Souq is a heritage building in central Hofuf, in North Al-Rifaa on King Abdulaziz Road. Today it is a landmark rather than a working souq."
 district: rafah-north
 location: { lat: 25.375159, lng: 49.5890072 }
 mapUrl: "https://maps.app.goo.gl/4KEvxVRALRYuCDYA9"

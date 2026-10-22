@@ -35,6 +35,14 @@ summary_en: "The 'Naathel' museum — an old Hasawi house with its majlis rooms,
 body_en: "In Hofuf, the Al-Ahsa House Museum — known as the Naathel Museum — recreates the old Hasawi home room by room. It was established by Sulaiman bin Mohammed Al-Majed in the outer courtyard of his own house, over an area of some 180 square metres. Its rooms follow the layout of traditional life: a men's majlis with Hasawi coffee pots and roasting tools, a women's majlis with its old furnishings, a kitchen with stone hand-mills and copper dishes, a bridal chamber with dress and jewellery, and a children's room with vintage toys — alongside manuscripts, coins, old photographs and farming tools. The museum also hosts heritage gatherings and workshops, keeping the old house alive rather than merely displayed."
 area: الهفوف — الأحساء
 area_en: "Hofuf — Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة بند المواعيد موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: hours
+description: "متحف «النعاثل» — بيت أحسائي قديم بمجالسه ومطبخه وغرفة عروسه. تتوزع أركانه على نسق الحياة التقليدية: مجلس الرجال بدلاله الأحسائية وأدوات تحميص القهوة وطحنها."
+description_en: "The 'Naathel' museum — an old Hasawi house with its majlis rooms, kitchen and bridal chamber. The museum also hosts heritage gatherings and workshops."
 featured: false
 order: 52
 practical:

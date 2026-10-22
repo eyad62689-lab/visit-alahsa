@@ -9,6 +9,8 @@ area: "طريق الملك عبدالله — حي المزروع"
 area_en: "King Abdullah Road — Al-Mazrou‘"
 blurb: "مطعم ومقهى معاً — كما تعلن واجهته الداكنة بحروفها المضيئة."
 blurb_en: "Restaurant and café in one — as it calls itself, and as its dark façade announces in glowing Arabic letters."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "مطعم ومقهى كود على طريق الملك عبدالله في حي المزروع بالهفوف، ويجمع المطعم والمقهى في مكان واحد — وهو ما يعلنه بنفسه في اسم حسابه: «مطعم و مقهى كود»."
 alt: "واجهة كود — مطعم ومقهى — بشعارها المضيء بالخط العربي"
 alt_en: "Code’s façade — restaurant and café — with its lit Arabic sign"
 blurb_zh: "既是餐厅也是咖啡馆——深色门面上的发光字样就这样写着。"

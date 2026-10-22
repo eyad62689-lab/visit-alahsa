@@ -9,6 +9,8 @@ area: "حي الرفعة الشمالية — الهفوف"
 area_en: "North Al-Rifaa — Hofuf"
 blurb: "جلسة تراثية بسقف خشبي تحفظ ملامح المقاهي الشعبية."
 blurb_en: "A heritage interior with a wooden ceiling that keeps the feel of the old coffeehouses."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "داخل سوق القيصرية التاريخي بالهفوف يقع مقهى السيد، وصاحبه السيد حسن الحسين. ويجمع بين الديوانيات والمجالس الشعبية وعرض القطع الأثرية الأحسائية."
 alt: "الجلسة التراثية بسقفها الخشبي داخل مقهى السيد"
 alt_en: "The heritage interior of Al-Sayed Café with its wooden ceiling"
 blurb_zh: "木质顶棚下的老式座位区，保留着传统咖啡馆的模样。"

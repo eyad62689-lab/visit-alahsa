@@ -34,6 +34,14 @@ summary_en: "A sprawling park near Al-Qarah village bearing the name of the pre-
 body_en: "Near Al-Qarah village on the eastern side of the oasis spreads Al-Mushaqar Park (formerly Al-Shaibani Park), a green retreat of dense plantings with open lawns, a folk souq and family play areas. The place carries the name of the famed pre-Islamic Mushaqar fortress — known in early Arabic sources as the 'fort of Hajar', mentioned in the accounts of Arabia's celebrated battle-days and neighbour to the Mushaqar market, one of the pre-Islamic Arab fairs — though scholars still debate the original fort's location between Al-Battaliyah, Jawatha and Al-Qarah. At the park's heart stands the 'Mushaqar Palace', a modern building raised in homage to that ancient stronghold, now the park's centrepiece and icon."
 area: قرب قرية القارة — شرق الأحساء
 area_en: "Near Al-Qarah village — eastern Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "منتزه واسع قرب قرية القارة يحمل اسم حصن المشقر الجاهلي. وفي قلب المنتزه يقوم مبنى «قصر المشقر»، بناء حديث شُيّد استلهاماً لذلك الحصن."
+description_en: "A sprawling park near Al-Qarah village bearing the name of the pre-Islamic Mushaqar fort. At the park's heart stands the 'Mushaqar Palace'."
 featured: false
 order: 46
 district: qarah

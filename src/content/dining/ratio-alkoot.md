@@ -9,6 +9,8 @@ area: "طريق الملك عبدالعزيز — وسط الهفوف التار
 area_en: "King Abdulaziz Road — historic downtown Hofuf"
 blurb: "مجلس عربي بوسائد وسجاد تحت سقف من جذوع النخل."
 blurb_en: "An Arabian majlis of cushions and rugs beneath a palm-trunk ceiling."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "ريشيو علامة قهوة أحسائية المنشأ، انطلقت عام 2018 من وسط الأحساء ثم امتدّت إلى مدن المملكة. وفرعها في الكوت يقع داخل سوق القيصرية."
 alt: "مجلس تراثي بوسائد وسجاد تحت سقف من جذوع النخل في ريشيو الكوت"
 alt_en: "A traditional majlis with cushions and rugs beneath a palm-trunk ceiling at Ratio Al-Koot"
 blurb_zh: "椰枣树干顶棚下的阿拉伯式会客厅，铺着坐垫与地毯。"

@@ -1248,8 +1248,9 @@ async function main() {
     //     (المتن دون الفقرة نفسها) — ولا فقرة لصفحة بلا answer في مصدرها.
     //     وصف الصفحة: حيث يحمل المصدر description/description_en (ar/en) فالوصف المنشور = المصدر حرفياً،
     //     بين 120 و158 نقطة ترميز، كل جملة منه جزء حرفي من فقرة الإجابة إن وُجدت وإلا من نصّ
-    //     الملخص (.ah-sum) والمتن، وكل رقم فيه وارد في متن الصفحة أو بطاقتها. بلا description تبقى القاعدة
-    //     السابقة (الوصف = فقرة الإجابة).
+    //     الملخص (.ah-sum) والمتن المنشور (.prose، بعد حذف فقرة الإجابة) — وهو الحاسم لمتن الصفحة العربي
+    //     الذي لا يراه مخطط المحتوى (المخطط يفحص answer والملخص والمتن الإنجليزي فقط)؛ وكل رقم فيه وارد
+    //     في متن الصفحة أو بطاقتها. بلا description تبقى القاعدة السابقة (الوصف = فقرة الإجابة).
     const escapeRe = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
     const unesc = (t) => t.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
@@ -1329,9 +1330,9 @@ async function main() {
       if (!smXml24.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`)) problems.push(`${p}: غائبة عن sitemap`);
     }
 
-    // أرضية descPages = 2 لأن الدفعة التي أسّست حقل description عبّأت معلمَين فقط (جبل القارة وقصر إبراهيم) × لغتين = 4 صفحات
-    // منها 2 على الأقل؛ تعبئة بقية المعالم (A2) ترفعها.
-    if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6 || descPages < 2) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${descPages} وصفاً مخصّصاً، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥2 و≥6`);
+    // أرضية descPages = 100: كل معلم قابل للفهرسة (54) يحمل description بلغتين = 108 صفحة؛ دونها تراجع في التعبئة
+    // أو حارس فارغ. (كانت 2 يوم أُسِّس الحقل بمعلمَين فقط: جبل القارة وقصر إبراهيم.)
+    if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6 || descPages < 100) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${descPages} وصفاً مخصّصاً، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥100 و≥6`);
     else if (hoursPages < 16 || feePages < 40) fail('C24', `المواعيد المبنيَنة في ${hoursPages} صفحة والرسوم في ${feePages} — المتوقع ≥16 و≥40 (تراجع في المصدر؟)`);
     else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة/الإجابات/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ ${descPages} وصفاً مخصّصاً (120–158) مطابقاً لمصدره وجمله حرفية من إجابة صفحته وأرقامه من صفحتها؛ صفحة اليونسكو بلغاتها الخمس تحمل المكوّنات ${comps.length} بروابطها`);

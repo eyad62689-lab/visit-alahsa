@@ -204,6 +204,8 @@ const TEXT_AR: EventTexts = {
   bisht: {
     slug: 'مهرجان-البشت-الحساوي',
     name: 'مهرجان البشت الحساوي', place: 'قصر إبراهيم التاريخي، الهفوف',
+    seoDesc: 'مهرجان البشت الحساوي — قصر إبراهيم التاريخي، الهفوف. الشتاء، ديسمبر تقريباً. معرض البشت، ورش تعليم الحياكة، سوق البشوت التفاعلي.',
+    seoTitle: 'مهرجان البشت الحساوي في الأحساء: الموسم والموقع',
     season: 'الشتاء', time: 'ديسمبر تقريباً', span: 'أيامٌ معدودة',
     org: 'هيئة التراث (وزارة الثقافة)',
     acts: ['معرض البشت', 'ورش تعليم الحياكة', 'سوق البشوت التفاعلي', 'عروض فولكلورية'],
@@ -211,6 +213,8 @@ const TEXT_AR: EventTexts = {
   'qaisariyah-nights': {
     slug: 'ليالي-القيصرية',
     name: 'ليالي القيصرية', place: 'سوق القيصرية التاريخي، الهفوف',
+    seoDesc: 'ليالي القيصرية — سوق القيصرية التاريخي، الهفوف. أواخر الشتاء، فبراير – مارس. عروض فنون شعبية، جلسات مجتمعية، ألعاب تراثية.',
+    seoTitle: 'ليالي القيصرية في الأحساء: الموسم والموقع',
     season: 'أواخر الشتاء', time: 'فبراير – مارس', span: 'عدة أسابيع',
     org: 'أمانة الأحساء، هيئة تطوير الأحساء، هيئة التراث',
     acts: ['عروض فنون شعبية', 'جلسات مجتمعية', 'ألعاب تراثية', 'ورش حرفية'],
@@ -218,6 +222,8 @@ const TEXT_AR: EventTexts = {
   'kafu-nights': {
     slug: 'ليالي-كفو',
     name: 'ليالي كفو', place: 'منتزه الملك عبدالله البيئي، الهفوف',
+    seoDesc: 'ليالي كفو — منتزه الملك عبدالله البيئي، الهفوف. شهر رمضان المبارك، خلال شهر رمضان. عروض مسرحية، منطقة الطفل، مطبخ كفو التفاعلي.',
+    seoTitle: 'ليالي كفو في الأحساء: الموسم والموقع',
     season: 'شهر رمضان المبارك', time: 'خلال شهر رمضان', span: 'ليالٍ رمضانية ممتدة',
     org: 'جامعة الملك فيصل',
     acts: ['عروض مسرحية', 'منطقة الطفل', 'مطبخ كفو التفاعلي', 'عشاء «الغُبقة»'],
@@ -228,6 +234,7 @@ const TEXT_AR: EventTexts = {
   'dates-festival': {
     slug: 'مهرجان-التمور-المصنعة',
     name: 'مهرجان التمور المصنّعة', place: 'قلعة أمانة الأحساء، الهفوف',
+    seoTitle: 'مهرجان التمور المصنّعة في الأحساء: الموسم والموقع',
     season: 'الشتاء', time: 'يناير – فبراير', span: 'عدة أسابيع',
     org: 'أمانة الأحساء، هيئة تطوير الأحساء',
     acts: ['جناح التذوق والتسوق', 'أجنحة المنتجات التحويلية', 'ورش ثقافية', 'مسابقات'],
@@ -235,6 +242,7 @@ const TEXT_AR: EventTexts = {
   'palm-village': {
     slug: 'قرية-النخيل',
     name: 'قرية النخيل', place: 'حي محيرس، المبرز',
+    seoDesc: 'قرية النخيل — حي محيرس، المبرز. الشتاء، نوفمبر 2026م. متاجر التمور، مطاعم ومقاهٍ محلية، أجنحة الحرفيين (الخوصيات)، تسويق المنتجات الريفية.',
     // عنوان الصفحة يميّزها عن صفحة المعلم «قرية النخيل» (C72: عنوان فريد عبر الصفحات)
     seoTitle: 'فعالية قرية النخيل بالأحساء: الموسم والموقع',
     season: 'الشتاء', time: 'نوفمبر 2026م', span: 'لم تُعلن المدة بعد',
@@ -295,6 +303,8 @@ const TEXT_AR: EventTexts = {
   'uqair-winter': {
     slug: 'شتاء-العقير',
     name: 'شتاء العقير', place: 'منتزه شاطئ العقير',
+    seoDesc: 'شتاء العقير — منتزه شاطئ العقير. الشتاء، ديسمبر – فبراير. فعاليات بحرية ورياضية عائلية، ورش فنية حرفية، ألعاب ترفيهية.',
+    seoTitle: 'شتاء العقير في الأحساء: الموسم والموقع',
     season: 'الشتاء', time: 'ديسمبر – فبراير', span: 'عدة أسابيع',
     org: 'هيئة تطوير الأحساء، أمانة الأحساء',
     acts: ['فعاليات بحرية ورياضية عائلية', 'ورش فنية حرفية', 'ألعاب ترفيهية'],
@@ -302,6 +312,7 @@ const TEXT_AR: EventTexts = {
   'wafrah-winter': {
     slug: 'شتاء-الوفرة',
     name: 'شتاء الوفرة', place: 'حي الوفرة، جنوب الهفوف',
+    seoTitle: 'شتاء الوفرة في الأحساء: الموسم والموقع',
     season: 'الشتاء', time: 'من نوفمبر تقريباً', span: 'موسم شتوي ممتد',
     org: 'ملاك ومستثمرون بإشراف أمانة الأحساء',
     acts: ['أكثر من 150 عربة طعام (فود ترك)', 'أكلات شعبية أحسائية', 'جلسات شتوية مفتوحة'],
@@ -309,6 +320,8 @@ const TEXT_AR: EventTexts = {
   'horse-racing': {
     slug: 'موسم-سباقات-الخيل',
     name: 'موسم سباقات الخيل', place: 'ميدان الفروسية، الطرف',
+    seoDesc: 'موسم سباقات الخيل — ميدان الفروسية، الطرف. الشتاء، نوفمبر – فبراير. سباقات الخيل، فعاليات الفروسية. ينظّمه ميدان الفروسية بالأحساء.',
+    seoTitle: 'موسم سباقات الخيل في الأحساء: الموسم والموقع',
     season: 'الشتاء', time: 'نوفمبر – فبراير', span: 'موسم ممتد',
     org: 'ميدان الفروسية بالأحساء',
     acts: ['سباقات الخيل', 'فعاليات الفروسية'],
@@ -316,6 +329,8 @@ const TEXT_AR: EventTexts = {
   'creative-ahsa': {
     slug: 'مهرجان-الأحساء-المبدعة',
     name: 'مهرجان الأحساء المبدعة', place: 'الفريج التراثي، قلعة الأمانة',
+    seoDesc: 'مهرجان الأحساء المبدعة — الفريج التراثي، قلعة الأمانة. الربيع، مارس – أبريل. صناعة الفخار، الخوصيات، النجارة التقليدية، فنون تشكيلية.',
+    seoTitle: 'مهرجان الأحساء المبدعة: الموسم والموقع والأنشطة',
     season: 'الربيع', time: 'مارس – أبريل', span: 'نحو أسبوع',
     org: 'أمانة الأحساء',
     acts: ['صناعة الفخار', 'الخوصيات', 'النجارة التقليدية', 'فنون تشكيلية', 'عروض شعبية'],
@@ -336,7 +351,7 @@ const TEXT_AR: EventTexts = {
       { label: 'أماكن الإقامة في الأحساء', href: '/إقامة/' },
       { label: 'خطّط لرحلتك إلى الأحساء', href: '/خطط/' },
     ],
-    seoTitle: 'معرض الأعراس والجمال W&B Expo في فندق مكان بالأحساء — 3–7 ديسمبر 2026',
+    seoTitle: 'معرض الأعراس والجمال W&B Expo في الأحساء — 3–7 ديسمبر 2026',
     seoDesc: 'معرض الأعراس والجمال (W&B Expo) في فندق مكان بالأحساء من 3 إلى 7 ديسمبر 2026م: الأزياء ومستلزمات الزفاف والجمال والزهور والتصوير والضيافة في مكان واحد.',
   },
 };
@@ -345,6 +360,7 @@ const TEXT_EN: EventTexts = {
   bisht: {
     slug: 'hasawi-bisht-festival',
     name: 'Hasawi Bisht Festival', place: 'Historic Ibrahim Palace, Hofuf',
+    seoTitle: 'Hasawi Bisht Festival in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'Around December', span: 'A few days',
     org: 'Heritage Commission (Ministry of Culture)',
     acts: ['Bisht exhibition', 'Weaving workshops', 'Interactive bisht souq', 'Folklore performances'],
@@ -352,6 +368,7 @@ const TEXT_EN: EventTexts = {
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
     name: 'Qaisariyah Nights', place: 'Historic Qaisariyah Souq, Hofuf',
+    seoTitle: 'Qaisariyah Nights in Al-Ahsa: Season & Location',
     season: 'Late winter', time: 'February – March', span: 'Several weeks',
     org: 'Al-Ahsa Municipality, Al-Ahsa Development Authority, Heritage Commission',
     acts: ['Folk arts shows', 'Community gatherings', 'Heritage games', 'Craft workshops'],
@@ -359,6 +376,7 @@ const TEXT_EN: EventTexts = {
   'kafu-nights': {
     slug: 'kafu-nights',
     name: 'Kafu Nights', place: 'King Abdullah Environmental Park, Hofuf',
+    seoTitle: 'Kafu Nights in Al-Ahsa: Season & Location',
     season: 'The holy month of Ramadan', time: 'During Ramadan', span: 'Extended Ramadan nights',
     org: 'King Faisal University',
     acts: ['Theatre shows', 'Kids’ zone', 'Interactive Kafu kitchen', '“Ghabqa” dinner'],
@@ -370,6 +388,7 @@ const TEXT_EN: EventTexts = {
   'dates-festival': {
     slug: 'processed-dates-festival',
     name: 'Processed Dates Festival', place: 'Al-Ahsa Municipality Fort, Hofuf',
+    seoTitle: 'Processed Dates Festival in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'January – February', span: 'Several weeks',
     org: 'Al-Ahsa Municipality, Al-Ahsa Development Authority',
     acts: ['Tasting & shopping pavilion', 'Dates-product pavilions', 'Cultural workshops', 'Competitions'],
@@ -377,6 +396,7 @@ const TEXT_EN: EventTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Palm Village', place: 'Muhairis district, Al-Mubarraz',
+    seoDesc: 'Palm Village — Muhairis district, Al-Mubarraz. Winter, November 2026. Date shops, Local restaurants & cafés, Artisan pavilions (palm-frond crafts).',
     // Distinguishes the event page title from the "Palm Village" attraction page (C72: unique titles)
     seoTitle: 'Palm Village Event in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'November 2026', span: 'Duration not yet announced',
@@ -438,6 +458,7 @@ const TEXT_EN: EventTexts = {
   'uqair-winter': {
     slug: 'al-uqair-winter',
     name: 'Al-Uqair Winter', place: 'Al-Uqair Beach Park',
+    seoTitle: 'Al-Uqair Winter in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'December – February', span: 'Several weeks',
     org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
     acts: ['Family sea & sports activities', 'Art & craft workshops', 'Fun games'],
@@ -445,6 +466,7 @@ const TEXT_EN: EventTexts = {
   'wafrah-winter': {
     slug: 'al-wafrah-winter',
     name: 'Al-Wafrah Winter', place: 'Al-Wafrah district, south Hofuf',
+    seoTitle: 'Al-Wafrah Winter in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'From around November', span: 'An extended winter season',
     org: 'Private operators under Al-Ahsa Municipality supervision',
     acts: ['150+ food trucks', 'Hasawi folk dishes', 'Open-air winter gatherings'],
@@ -452,6 +474,7 @@ const TEXT_EN: EventTexts = {
   'horse-racing': {
     slug: 'horse-racing-season',
     name: 'Horse Racing Season', place: 'Al-Ahsa Equestrian Arena, Al-Taraf',
+    seoTitle: 'Horse Racing Season in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'November – February', span: 'An extended season',
     org: 'Al-Ahsa Equestrian Arena',
     acts: ['Horse races', 'Equestrian events'],
@@ -459,6 +482,7 @@ const TEXT_EN: EventTexts = {
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',
     name: 'Creative Al-Ahsa Festival', place: 'Heritage Freej, the Municipality Fort',
+    seoTitle: 'Creative Al-Ahsa Festival: Season, Location & Activities',
     season: 'Spring', time: 'March – April', span: 'About a week',
     org: 'Al-Ahsa Municipality',
     acts: ['Pottery making', 'Palm-frond crafts', 'Traditional carpentry', 'Fine arts', 'Folk performances'],
@@ -479,8 +503,8 @@ const TEXT_EN: EventTexts = {
       { label: 'Where to stay in Al-Ahsa', href: '/en/stay/' },
       { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
     ],
-    seoTitle: 'Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa — 3–7 Dec 2026',
-    seoDesc: 'The Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers, photography and catering in one place.',
+    seoTitle: 'Weddings & Beauty Expo (W&B Expo) in Al-Ahsa — 3–7 Dec 2026',
+    seoDesc: 'The Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers and photography.',
   },
 };
 

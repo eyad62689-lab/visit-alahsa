@@ -35,6 +35,14 @@ summary_en: "A heritage mosque of some three centuries in the heart of the Al-Ko
 body_en: "In the heart of Hofuf's historic Al-Koot district, near the house and religious schools of the Al-Mulla family, stands the Mosque of Sheikh Muhammad bin Abi Bakr Al-Mulla — also known as the Eastern Mosque — one of Al-Ahsa's oldest heritage mosques, dating back some three centuries. Built of mud, gravel and palm trunks, it long served as a centre of learning where lessons in fiqh, Quranic exegesis and grammar were held, its imams drawn generation after generation from the Al-Mulla scholarly family. It was rehabilitated in the first phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques, completed in 1441 AH / 2020 CE, preserving its traditional character while accommodating around 125 worshippers."
 area: حي الكوت — الهفوف
 area_en: "Al-Koot district — Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: free
+description: "مسجد تراثي عمره نحو ثلاثة قرون في قلب حي الكوت. شُيّد من الطين والحصى وجذوع النخيل، وكان منارة علمية تُعقد فيه دروس الفقه والتفسير والنحو."
+description_en: "A heritage mosque of some three centuries in the heart of the Al-Koot district, tied to the scholarly Al-Mulla family. Built of mud, gravel and palm trunks."
 featured: false
 order: 30
 practical:
