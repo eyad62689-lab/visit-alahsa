@@ -77,6 +77,14 @@ practical:
   - { label: "الرسوم", value: "بانتظار التأكيد", label_en: "Fees", value_en: "Pending confirmation", label_zh: "费用", value_zh: "待确认（信息更新中）", label_de: "Eintritt", value_de: "Angaben werden noch bestätigt", label_ru: "Стоимость входа", value_ru: "Информация уточняется", label_ur: "فیس", value_ur: "تصدیق باقی ہے", verified: false }
 answer: "قرية النخيل وجهة موسمية تنظّمها هيئة تطوير الأحساء وأمانة الأحساء وسط نخيل الواحة، تجمع متاجر التمور ومنتجاتها والمطاعم والمقاهي وأجنحة الحرف اليدوية ومتحف النخلة. نسختها القادمة مؤكدة في نوفمبر 2026، ولم يُعلن بعد تاريخ افتتاحها الدقيق ولا مدتها."
 answer_en: "Palm Village is a seasonal destination organised by the Al-Ahsa Development Authority and Al-Ahsa Municipality amid the oasis palms, with date shops, restaurants, cafés, craft pavilions and a Palm Museum. Its next edition is confirmed for November 2026; exact dates and duration are not announced."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "المبرز"
+  place_en: "Al-Mubarraz"
+  benefit: guide
+description: "قرية النخيل وجهة موسمية تنظّمها هيئة تطوير الأحساء وأمانة الأحساء وسط نخيل الواحة، تجمع متاجر التمور ومنتجاتها والمطاعم والمقاهي وأجنحة الحرف اليدوية."
+description_en: "Palm Village is a seasonal destination organised by the Al-Ahsa Development Authority and Al-Ahsa Municipality amid the oasis palms."
 faq:
   - q: "متى تقام النسخة القادمة من قرية النخيل؟"
     a: "في نوفمبر 2026. لم يُعلن بعد تاريخ الافتتاح الدقيق ولا مدة الموسم، فتابع إعلانات المنظّمين قبل الزيارة."

@@ -43,6 +43,14 @@ area_en: "The Arabian Gulf coast — eastern Al-Ahsa"
 fee: { free: true }
 answer: "العُقير ميناء الأحساء القديم على ساحل الخليج العربي شرق الواحة، رست عنده المراكب محمّلةً بالتمر والبضائع قبل تعبيد الطرق. اليوم تلتقي فيه رمال بيضاء ناعمة بزرقة الخليج الصافية، وتحرسه بقايا المباني الطينية والحصن القديم. موقع عام مفتوح بلا رسوم دخول."
 answer_en: "Al-Uqair is Al-Ahsa’s old port on the Arabian Gulf coast, where vessels moored with dates and goods before the roads were paved. Today white sands meet the clear blue Gulf beside remains of mud buildings and the old fort; the site is open and free."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "العُقير ميناء الأحساء القديم على ساحل الخليج العربي شرق الواحة، رست عنده المراكب محمّلةً بالتمر والبضائع قبل تعبيد الطرق. موقع عام مفتوح بلا رسوم دخول."
+description_en: "Al-Uqair is Al-Ahsa’s old port on the Arabian Gulf coast. Today white sands meet the clear blue Gulf beside remains of mud buildings and the old fort."
 location: { lat: 25.643004, lng: 50.213101 }
 sameAs:
   - https://www.wikidata.org/wiki/Q3546517

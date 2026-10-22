@@ -35,6 +35,14 @@ summary_en: "The domed mosque inside Qasr Ibrahim, one of its most striking arch
 body_en: "Within the walls of Qasr Ibrahim in Hofuf's Al-Koot district stands the Qubba Mosque, the palace's most striking architectural element and one of the defining images of heritage Al-Ahsa. It was founded in 979 AH / 1571 CE, after some five years of construction, as part of a complex that included a school of Islamic sciences and a place for teaching the Quran. It is crowned by a central hemispherical dome about thirteen metres across, flanked by small corner domes, with a free-standing cylindrical minaret rising nineteen metres around a stone spiral staircase. Above its entrance, a gypsum plaque records the founding date in Thuluth script — a witness to an entire era of the oasis's history."
 area: داخل قصر إبراهيم، حي الكوت — الهفوف
 area_en: "Inside Qasr Ibrahim, Al-Koot district — Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: hours-fees
+description: "داخل أسوار قصر إبراهيم بحي الكوت في الهفوف يقوم مسجد القبة. تتوّجه قبة مركزية نصف كروية يبلغ قطرها نحو 13 متراً تحيط بها قباب صغيرة في الأركان."
+description_en: "The domed mosque inside Qasr Ibrahim. It is crowned by a central hemispherical dome about thirteen metres across, flanked by small corner domes."
 featured: false
 order: 24
 practical:

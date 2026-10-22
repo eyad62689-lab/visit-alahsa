@@ -40,6 +40,14 @@ featured: false
 order: 17
 answer: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي، أول ميناء بحري شرق المملكة وبوابة نجد إلى البحر قديماً. تشمل المباني القائمة القلعة والخان ومبنى الإمارة والجمارك والمسجد، وعلى أرض الميناء وُقّع بروتوكول العقير عام 1341هـ/1922م. يشهد الموقع أعمال ترميم، وقد تكون بعض أجزائه مغلقة."
 answer_en: "Al-Uqair Castle stands among the buildings of Al-Uqair’s historic port in eastern Al-Ahsa, the first seaport on Saudi Arabia’s eastern coast and once Najd’s gateway to the sea. The castle, khan, emirate, customs house and mosque survive; the Uqair Protocol was signed here in 1922."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: guide
+description: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي. تشمل المباني القائمة القلعة والخان ومبنى الإمارة والجمارك والمسجد. يشهد الموقع أعمال ترميم."
+description_en: "Al-Uqair Castle stands among the buildings of Al-Uqair’s historic port in eastern Al-Ahsa. The castle, khan, emirate, customs house and mosque survive."
 practical:
   - { label: "المواعيد", value: "متاح للزيارة الخارجية", label_en: "Hours", value_en: "Open for exterior visits", label_ur: "اوقات", value_ur: "باہر سے دیکھا جا سکتا ہے", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
   - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }

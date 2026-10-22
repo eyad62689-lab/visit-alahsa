@@ -35,6 +35,14 @@ summary_en: "Al-Ahsa's first formal government school, opened in 1937; its histo
 body_en: "On the rise of Umm Al-Khubaisi in the Na'athil district, east of old Hofuf and near the Qaisariyah Souq, stands the Amiriah School, Al-Ahsa's first formal government school. Classes began in 1356 AH / 1937 CE in rented premises, and its permanent home opened in 1360 AH / 1941 CE in Arab-Islamic style, with an arched entrance and an inner courtyard ringed by arcades. Generations of the region's sons studied here. The building has been restored as 'Bait Al-Thaqafa' (House of Culture), a landmark preserving the memory of Al-Ahsa's educational awakening."
 area: حي النعاثل — شرق الهفوف القديمة
 area_en: "Al-Na'athil district — east of old Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "أول مدرسة حكومية نظامية في الأحساء، انطلقت عام 1356هـ/1937م، ومبناها التاريخي اليوم بيت للثقافة. تخرّجت فيها أجيال من أبناء المنطقة."
+description_en: "Al-Ahsa's first formal government school. On the rise of Umm Al-Khubaisi in the Na'athil district, east of old Hofuf and near the Qaisariyah Souq."
 featured: false
 order: 12
 practical:

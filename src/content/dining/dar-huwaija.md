@@ -9,6 +9,8 @@ area: "شارع الملك فهد — وسط الهفوف التاريخي"
 area_en: "King Fahd Road — historic downtown Hofuf"
 blurb: "جلسات بين أقواس جصية بيضاء وأرفف تحمل عُدَّة القهوة."
 blurb_en: "Seating among white plaster arches and shelves of coffee-making gear."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "في قلب سوق القيصرية بالهفوف تجمع دار حويجة بين مقهى ومتجر للحرف الأحسائية. وأقسامها تشمل منتجات البشت، والتطريز والجلد والسعف."
 alt: "جلسات دار حويجة بين الأقواس الجصية والكراسي الخشبية"
 alt_en: "Dar Huwaija’s seating among plaster arches and wooden chairs"
 blurb_zh: "座位设在白色石膏拱门之间，架子上摆着煮咖啡的器具。"

@@ -9,6 +9,8 @@ area: "حي الكوت — مقابل قصر إبراهيم"
 area_en: "Al-Koot district — opposite Qasr Ibrahim"
 blurb: "مطعم الفندق التراثي — موائد تحت سقف زجاجي في فناءٍ تحيط به الأروقة."
 blurb_en: "The heritage hotel’s restaurant — tables beneath a glass roof in an arcaded courtyard."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "في قلب حي الكوت بالهفوف، مقابل قصر إبراهيم مباشرةً، يقوم فندق ومطعم الكوت التراثي. ويقدّم مطعمه الرز الحساوي والهريسة والمرقوق والمفلق."
 alt: "الفناء الداخلي لفندق الكوت التراثي بأروقته وسقفه الزجاجي"
 alt_en: "The courtyard of Al-Koot Heritage Hotel with its arcades and glass roof"
 blurb_zh: "传统客栈的餐厅——拱廊环绕的庭院中，餐桌摆在玻璃顶下。"

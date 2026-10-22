@@ -43,6 +43,14 @@ hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:00" }
 answer: "سوق النساء الشعبي سوق تراثي في حي الرفعة الجنوبية بالهفوف، وسط منطقة سوق السويق القديمة، وأحد مشاهد التجارة الشعبية الحيّة في المدينة، تُباع فيه الملابس وحاجات البيت اليومية، وقد نفّذت أمانة الأحساء أعمال تطوير له. يفتح يومياً من 8 ص إلى 11 م."
 answer_en: "The Women's Folk Souq is a traditional market in the South Al-Rifaa district of Hofuf, at the heart of the old Suwaiq market area and one of the city's living folk-trade scenes, selling clothes and everyday household goods. Open daily 8:00 am to 11:00 pm."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة بند المواعيد موثّق بترجمته.
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: hours
+description: "سوق النساء الشعبي سوق تراثي في حي الرفعة الجنوبية بالهفوف. تُباع فيه الملابس وحاجات البيت اليومية. يفتح يومياً من 8 ص إلى 11 م."
+description_en: "The Women's Folk Souq is a traditional market in the South Al-Rifaa district of Hofuf, at the heart of the old Suwaiq market area."
 location: { lat: 25.3713889, lng: 49.5886111 }
 mapUrl: "https://maps.app.goo.gl/AjLK1nvuFsuJQ3i89"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).

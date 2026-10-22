@@ -9,6 +9,8 @@ area: "حي الكوت — بجوار حديقة قصر إبراهيم"
 area_en: "Al-Koot district — next to Qasr Ibrahim park"
 blurb: "جلسات خارجية بين النخيل وواجهة زجاجية على طرف حديقة قصر إبراهيم."
 blurb_en: "Outdoor seating among the palms and a glass façade on the edge of the Qasr Ibrahim park."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "في وسط الهفوف التاريخي، على طرف حديقة قصر إبراهيم، يشغل مطعم دار بسمة منزلاً قديماً يُعرف بـ«منزل العفسة» يعود تاريخه لأكثر من مئة عام."
 alt: "واجهة دار بسمة الزجاجية وجلساتها الخارجية بين النخيل مساءً"
 alt_en: "Dar Basma’s glass façade and outdoor seating among the palms at night"
 blurb_zh: "椰枣树间的户外座位与玻璃门面，就在易卜拉欣宫公园边上。"

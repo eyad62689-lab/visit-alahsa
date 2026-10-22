@@ -36,6 +36,14 @@ summary_en: "A small watch-and-guard fort from the First Saudi State era on the 
 body_en: "North of Al-Mubarraz stands Qasr Muhairis, a small watch-and-guard fort built in 1208 AH / 1794 CE by order of Saud bin Abdulaziz (later Imam) during the First Saudi State. Raised in mud brick and stone and roofed with tree trunks and palm fronds, it follows a square plan of roughly twenty metres a side, crowned by a two-storey round tower at its south-eastern corner, its walls leaning gently inward as they rise. It served as a lookout post and a store for provisions and ammunition — its final role before falling out of use. Today a green park adjoins it, and its grounds host heritage and arts events during Al-Ahsa's festival seasons."
 area: شمال المبرز — الأحساء
 area_en: "North of Al-Mubarraz — Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "حصن مراقبة صغير من عهد الدولة السعودية الأولى على أطراف المبرز. بُني من الطين واللبن والحجارة وسُقف بجذوع الأشجار وسعف النخيل."
+description_en: "A small watch-and-guard fort from the First Saudi State era on the edge of Al-Mubarraz. North of Al-Mubarraz stands Qasr Muhairis."
 featured: false
 order: 13
 district: mubarraz

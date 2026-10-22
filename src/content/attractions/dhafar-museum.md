@@ -35,6 +35,14 @@ summary_en: "A heritage museum south of Hofuf famed for its unique scouting coll
 body_en: "South of Hofuf lies the museum of Saleh bin Abdullatif Al-Dhafar, a private museum whose folk-heritage collection was gathered over more than thirty-five years — rare pieces arranged across sections for hospitality and coffee, farming and irrigation, weapons, cooking vessels, and traditional dress and jewellery. What sets it apart is its celebrated scouting museum, described as the first of its kind in Saudi Arabia: scouting pieces spanning uniforms, neckerchiefs, badges, whistles, compasses, certificates and documentary photographs, tracing decades of the scouting movement. Together the two collections make it one of Al-Ahsa's most distinctive private museums."
 area: جنوب الهفوف — الأحساء
 area_en: "South of Hofuf — Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "جنوب الهفوف يقع متحف صالح بن عبداللطيف الظفر، متحف خاص جمع صاحبه مقتنياته التراثية على مدى أكثر من خمسة وثلاثين عاماً: نوادر موزعة على أقسام الضيافة والقهوة."
+description_en: "A heritage museum south of Hofuf famed for its unique scouting collection. South of Hofuf lies the museum of Saleh bin Abdullatif Al-Dhafar."
 featured: false
 order: 56
 practical:

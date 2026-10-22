@@ -39,6 +39,14 @@ area_en: "Al-Kilabiyah village — northeast of Hofuf"
 fee: { free: true }
 answer: "مسجد جواثا في الكلابية شمال شرق الهفوف من أقدم مساجد الإسلام، ويُذكر أنه أول موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس. الدخول مجاني، والمنتزه المجاور من 8 ص إلى 12 منتصف الليل بـ10–15 ريالاً للفرد."
 answer_en: "Jawatha Mosque in Al-Kilabiyah, northeast of Hofuf, is among the oldest mosques in Islam, said to be the first place Friday prayer was held after the Prophet's Mosque. Entry is free; the park beside it opens 8 am to midnight for SAR 10–15 per person."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "مسجد جواثا في الكلابية شمال شرق الهفوف من أقدم مساجد الإسلام، ويُذكر أنه أول موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس."
+description_en: "Jawatha Mosque in Al-Kilabiyah, northeast of Hofuf. Entry is free; the park beside it opens 8 am to midnight for SAR 10–15 per person."
 location: { lat: 25.469801, lng: 49.678502 }
 sameAs:
   - https://www.wikidata.org/wiki/Q4022355
