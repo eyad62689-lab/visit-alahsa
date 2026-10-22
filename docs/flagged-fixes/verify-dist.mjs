@@ -26,8 +26,12 @@ for (const lg of ['de', 'zh', 'ru']) {
     const key = p.id.slice(lg.length + 1), k = pack.find((x) => x.id === p.id);
     // a new key used to render the English text: that must be gone from the element; the page may still carry it elsewhere,
     // so the "old" probe for a new key is the English label inside the element that shows it
-    const old = p.proposed === p.current ? null : p.current ? probe(p.current) : `>${k.en}<`;
-    checks.push([`${lg}/${PAGE[key]}index.html`, probe(p.proposed), old, p.id]);
+    let old = p.proposed === p.current ? null : p.current ? probe(p.current) : `>${k.en}<`;
+    let must = probe(p.proposed);
+    // when the fix only adds to the front (the Esc dash), the old text is inside the new one: anchor both on the
+    // tag end before them, so "> закрыть" (old) and "> — закрыть" (new) differ
+    if (old && p.current && p.proposed.includes(p.current)) { old = `> ${p.current}`; must = `> ${p.proposed}`; }
+    checks.push([`${lg}/${PAGE[key]}index.html`, must, old, p.id]);
   }
 }
 const run = (get) => {
