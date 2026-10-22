@@ -25,7 +25,7 @@ This guide gathers what you need before the visit: what you'll see inside the ca
 
 Water and wind shaped this rock over thousands of years, carving corridors so narrow the stone almost brushes your shoulders — then suddenly opening onto a high chamber pierced by a thread of light. The deep rock mass holds a steady temperature of **around 20°C all year**: step in at noon in August and an unexpected coolness greets you; step in during winter and it feels warm.
 
-Nor is the mountain a single connected passage. It holds **twelve caves** of varied shapes — among them the Naqah, Eid and Mahyoub caves. And it is larger than its silhouette suggests: within it run 28 towering lengthwise passages that extend for 1.5 kilometres.
+Nor is the mountain a single connected passage. It holds **twelve caves** of varied shapes — among them the Naqa, Eid and Mahyoub caves. And it is larger than its silhouette suggests: within it run 28 towering lengthwise passages that extend for 1.5 kilometres.
 
 ## What to See
 
