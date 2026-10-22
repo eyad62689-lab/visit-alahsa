@@ -5,11 +5,11 @@ import { useTranslations, type AltLinks } from '../i18n/utils';
 import { ogDefault } from '../lib/og';
 import { isUnlisted, listedAlt, unlistedNoindex } from '../i18n/unlisted';
 interface Props {
-  title: string; description: string; lang?: Lang; alt?: AltLinks;
+  title: string; ogTitle?: string; description: string; lang?: Lang; alt?: AltLinks;
   type?: 'website' | 'article'; image?: string; noindex?: boolean; jsonLd?: object | object[];
 }
 const {
-  title, description, lang = 'ar', alt,
+  title, ogTitle = title, description, lang = 'ar', alt,
   type = 'website', image, noindex = false, jsonLd,
 } = Astro.props;
 
@@ -57,7 +57,7 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru', 'ur'] as const)
 <meta property="og:site_name" content={t('site.brand')} />
 <meta property="og:locale" content={ogLocale} />
 {alt && ogLocaleAlts.map((l) => <meta property="og:locale:alternate" content={l} />)}
-<meta property="og:title" content={title} />
+<meta property="og:title" content={ogTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
@@ -65,7 +65,7 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru', 'ur'] as const)
 <meta property="og:image:height" content="630" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content={ogTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 

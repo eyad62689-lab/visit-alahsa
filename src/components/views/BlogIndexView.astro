@@ -12,11 +12,13 @@ import { SITE, orgNode, absUrl, breadcrumb } from '../../lib/schema';
 import { blogHref } from '../../lib/routes';
 import { htmlLang, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { BLOG_INDEX } from '../../lib/blog';
-import type { Lang } from '../../i18n/ui';
+import { ui, type Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
+// عنوان ووصف الرأس لـSEO (ar/en فقط): مفاتيح meta.* لا تتراجع إلى الإنجليزية في zh/de/ru/ur.
+const hasMeta = Object.hasOwn(ui[lang], 'meta.blog.title');
 const ar = lang === 'ar';
 // الفهارس الجزئية: الصينية، والروسية منذ ب9 (2026-09-18).
 // الألمانية ليست منها: مقالاتها الثمانية اكتملت في ج10 (2026-09-24)، فلا بطاقة تتراجع
@@ -50,7 +52,7 @@ const jsonLd = [
   ], siteUrl),
 ];
 ---
-<Base title={`${t('blog.title')} ${titleSep(lang)} ${t('site.brand')}`} description={t('blog.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${hasMeta ? t('meta.blog.title') : t('blog.title')} ${titleSep(lang)} ${t('site.brand')}`} description={hasMeta ? t('meta.blog.desc') : t('blog.lead')} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={t('blog.eyebrow')} title={t('blog.title')} lead={t('blog.lead')} leadWidth={52} lang={lang} />

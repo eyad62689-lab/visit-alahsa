@@ -3,6 +3,7 @@
 import { defineCollection } from 'astro:content';
 import { DISTRICTS, DISTRICT_MENTION } from './data/districts';
 import { GUIDE_SPECIALTIES, GUIDE_LANGUAGES } from './data/guides';
+import { SEO_BENEFIT_KEYS, SEO_BENEFITS } from './data/seo-benefits';
 // z من astro/zod لا astro:content: التصدير القديم مهمل في Astro 7 (38 تحذيراً في astro check)
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
@@ -11,6 +12,12 @@ const CATEGORIES = ['historic', 'museum', 'religious', 'nature', 'parks', 'marke
 
 // عدد الكلمات لفقرة الإجابة — حدّاها ملزمان في المخطط ويُعاد فحصهما في C24 على dist
 const wc = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
+// وصف الصفحة (description): طوله بنقاط الترميز بين حدّين ملزمين في المخطط ويُعاد فحصهما في C24 على dist
+// (وC72 يحرس السقف 160). جمله: التقسيم على . ؟ ! وكل جملة جزء حرفي من نصّ المصدر.
+const cp = (s: string) => [...s].length;
+const DESC_MIN = 120;
+const DESC_MAX = 158;
+const sentencesOf = (s: string) => s.split(/[.؟!?。]/).map((x) => x.trim()).filter(Boolean);
 
 const attractions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/attractions' }),
@@ -179,6 +186,19 @@ const attractions = defineCollection({
     // لا شيء؛ zh/de/ru لا تُكتب إلا عبر خطوط الترجمة فلا فقرة لها حتى تمرّ بها.
     answer: z.string().optional(),
     answer_en: z.string().optional(),
+    // ── بنية العنوان والوصف لـSEO (ar/en فقط) ──
+    // seo: «[العنوان] في [المكان]: [الفائدة]» يُركَّب في src/lib/seo-title.ts. المكان وارد حرفياً في
+    // area/title (أو «الأحساء») والفائدة من معجم src/data/seo-benefits.ts بشرط دليلها على المدخل نفسه —
+    // يفرضه المخطط أدناه ويحرسه C24 على dist. بلا seo يبقى العنوان كما هو.
+    seo: z.object({
+      place: z.string().optional(),
+      place_en: z.string().optional(),
+      benefit: z.enum(SEO_BENEFIT_KEYS).optional(),
+    }).optional(),
+    // description: وصف الصفحة (120–158 نقطة ترميز)، جمل حرفية من answer إن وُجد وإلا من summary.
+    // عربي وإنجليزي معاً أو لا شيء. بدونه يبقى الوصف = answer ثم summary كما كان.
+    description: z.string().optional(),
+    description_en: z.string().optional(),
     hoursSpec: z.array(z.object({
       days: z.string().regex(/^(Mo|Tu|We|Th|Fr|Sa|Su)( (Mo|Tu|We|Th|Fr|Sa|Su))*$/),
       opens: z.string().regex(/^\d{2}:\d{2}$/),
@@ -201,6 +221,21 @@ const attractions = defineCollection({
     message: 'فقرة الإجابة بين 35 و45 كلمة',
   }).refine((a) => !a.district || DISTRICT_MENTION[a.district].test(`${a.area ?? ''} ${a.title}`), {
     message: 'district يُسند فقط حين يسمّي نصّ area أو العنوان الحيَّ نفسه — لا حيّ بالتقدير',
+  }).refine((a) => !a.seo?.place || a.seo.place === 'الأحساء' || `${a.area ?? ''} ${a.title}`.includes(a.seo.place), {
+    message: 'seo.place يرد حرفياً في area أو العنوان أو يساوي «الأحساء» — لا مكان بالتقدير',
+  }).refine((a) => !a.seo?.place_en || a.seo.place_en === 'Al-Ahsa' || `${a.area_en ?? ''} ${a.title_en ?? ''}`.includes(a.seo.place_en), {
+    message: 'seo.place_en يرد حرفياً في area_en أو title_en أو يساوي "Al-Ahsa"',
+  }).refine((a) => !a.seo || Boolean(a.seo.benefit), {
+    message: 'seo يلزمه benefit — المكان وحده لا يبني عنواناً',
+  }).refine((a) => !a.seo?.benefit || (['ar', 'en'] as const).every((l) => SEO_BENEFITS[a.seo!.benefit!].requires(a, l)), {
+    message: 'seo.benefit يلزمه دليله في الملف نفسه (بند practical موثّق بترجمته للإنجليزية، أو fee مجاني، أو unesco، وبلا openSite للمواعيد والرسوم) — لا فائدة يعد بها العنوان وتغيب عن الصفحة',
+  }).refine((a) => Boolean(a.description) === Boolean(a.description_en), {
+    message: 'description وdescription_en معاً أو لا شيء — وصف الصفحة بلغتي الموقع الكاملتين',
+  }).refine((a) => [a.description, a.description_en].every((s) => !s || (cp(s) >= DESC_MIN && cp(s) <= DESC_MAX)), {
+    message: `وصف الصفحة بين ${DESC_MIN} و${DESC_MAX} نقطة ترميز`,
+  }).refine((a) => ([[a.description, a.answer ?? a.summary], [a.description_en, a.answer_en ?? a.summary_en]] as const)
+    .every(([d, src]) => !d || (src !== undefined && sentencesOf(d).every((x) => src.includes(x)))), {
+    message: 'كل جملة من الوصف جزء حرفي من answer (وإلا summary) بلغتها — لا جملة مضافة من خارج الصفحة',
   }),
 });
 
@@ -265,6 +300,9 @@ const dining = defineCollection({
     area_en: z.string().optional(),
     blurb: z.string(),                         // نبذة البطاقة — لا ادعاء جودة ولا أصناف
     blurb_en: z.string(),
+    // وصف الصفحة المخصّص (ar/en) — اختياري؛ بدونه يُركَّب من النبذة والموقع والنوع (seo-title.ts). الطول فقط.
+    description: z.string().refine((s) => cp(s) >= DESC_MIN && cp(s) <= DESC_MAX, { message: `وصف الصفحة بين ${DESC_MIN} و${DESC_MAX} نقطة ترميز` }).optional(),
+    description_en: z.string().refine((s) => cp(s) >= DESC_MIN && cp(s) <= DESC_MAX, { message: `وصف الصفحة بين ${DESC_MIN} و${DESC_MAX} نقطة ترميز` }).optional(),
     alt: z.string(),                           // النص البديل للصورة
     alt_en: z.string(),
     // الصينية (الدفعة 14 — 2026-09-03): نبذة البطاقة وسطر الموقع والنص البديل، على نمط
@@ -323,6 +361,9 @@ const stay = defineCollection({
     area_en: z.string().optional(),
     blurb: z.string(),
     blurb_en: z.string(),
+    // وصف الصفحة المخصّص (ar/en) — اختياري؛ بدونه يُركَّب من النبذة والموقع والنوع (seo-title.ts). الطول فقط.
+    description: z.string().refine((s) => cp(s) >= DESC_MIN && cp(s) <= DESC_MAX, { message: `وصف الصفحة بين ${DESC_MIN} و${DESC_MAX} نقطة ترميز` }).optional(),
+    description_en: z.string().refine((s) => cp(s) >= DESC_MIN && cp(s) <= DESC_MAX, { message: `وصف الصفحة بين ${DESC_MIN} و${DESC_MAX} نقطة ترميز` }).optional(),
     alt: z.string(),
     alt_en: z.string(),
     // الصينية (الدفعة 14) — كنموذج dining: اختيارية، والبطاقة تتراجع للإنجليزية بدونها

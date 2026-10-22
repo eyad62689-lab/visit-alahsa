@@ -13,6 +13,7 @@ import Photo from '../Photo.astro';
 import { stayHref } from '../../lib/routes';
 import { liveFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
+import { composeFacilityDescription, facilityTitleCore } from '../../lib/seo-title';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import ShareButton from '../ShareButton.astro';
@@ -128,6 +129,13 @@ const C = localize(lang, {
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
+// العنوان والوصف لـSEO (ar/en فقط؛ بقية اللغات كما هي): الفهرس يسقط من العنوان إن جاوزت النواة 60،
+// والوصف description المخصّص أو تركيب حتمي «النبذة الموقع · النوع» من بيانات الصفحة المنشورة نفسها.
+const seoLang = ar || lang === 'en';
+const seoTitleCore = seoLang ? facilityTitleCore(name, C.indexName, titleSep(lang)) : `${name} ${titleSep(lang)} ${C.indexName}`;
+const seoDescription = (ar ? d.description : lang === 'en' ? d.description_en : undefined)
+  ?? (seoLang ? composeFacilityDescription(blurb, area, C.kindLabel) : blurb);
+
 const indexHref = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : '/en/stay/';
 const siteUrl = SITE;
 const selfUrl = absUrl(stayHref(d, lang), siteUrl);
@@ -143,7 +151,7 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`${name} ${titleSep(lang)} ${C.indexName} ${titleSep(lang)} ${t('site.brand')}`} description={blurb} image={`${d.img}.jpg`}
+<Base title={`${seoTitleCore} ${titleSep(lang)} ${t('site.brand')}`} description={seoDescription} image={`${d.img}.jpg`}
   lang={lang} alt={alt} jsonLd={jsonLd}
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />

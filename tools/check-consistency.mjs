@@ -32,6 +32,7 @@ import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, checkUrRound2
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
 import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
+import { auditSeoMeta, checkSeoMeta, loadBaseline as loadSeoBaseline } from './check-seo-meta.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -63,7 +64,8 @@ const numInText = (text, num) => {
 };
 
 const ROOT = process.cwd();
-const DIST = path.join(ROOT, 'dist');
+// DIST من البيئة اختيارياً (اختبار الكسر على نسخة dist مؤقتة بلا مسّ المصدر)؛ الافتراضي ROOT/dist كما كان.
+const DIST = process.env.DIST ? path.resolve(process.env.DIST) : path.join(ROOT, 'dist');
 const SRC_ATTRACTIONS = path.join(ROOT, 'src/content/attractions');
 
 const results = [];
@@ -1243,10 +1245,16 @@ async function main() {
     // (ج) فقرة الإجابة (answer/answer_en): تُنشر حرفياً أول المتن وفي وصف الصفحة بالعربية
     //     والإنجليزية فقط، بين 35 و45 كلمة، وكل رقم فيها وارد في بقية المتن أو بطاقة الزيارة
     //     (المتن دون الفقرة نفسها) — ولا فقرة لصفحة بلا answer في مصدرها.
+    //     وصف الصفحة: حيث يحمل المصدر description/description_en (ar/en) فالوصف المنشور = المصدر حرفياً،
+    //     بين 120 و158 نقطة ترميز، كل جملة منه جزء حرفي من فقرة الإجابة إن وُجدت وإلا من نصّ
+    //     الملخص (.ah-sum) والمتن، وكل رقم فيه وارد في متن الصفحة أو بطاقتها. بلا description تبقى القاعدة
+    //     السابقة (الوصف = فقرة الإجابة).
     const escapeRe = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const wc = (t) => t.trim().split(/\s+/).filter(Boolean).length;
     const unesc = (t) => t.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
     let answerPages = 0;
+    let descPages = 0;
+    const squash = (t) => t.replace(/\s+/g, ' ').trim();
     for (const f of attrFiles) {
       const head = heads[f];
       const slugAr = fmField(head, 'slug_ar');
@@ -1254,19 +1262,40 @@ async function main() {
       if (!slugAr || !slugEn) continue;
       const src = { ar: head.match(/^answer:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^answer_en:\s*"(.*)"\s*$/m)?.[1] };
       if (Boolean(src.ar) !== Boolean(src.en)) problems.push(`${f}: answer بلغة واحدة`);
+      const dsrc = { ar: head.match(/^description:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^description_en:\s*"(.*)"\s*$/m)?.[1] };
+      if (Boolean(dsrc.ar) !== Boolean(dsrc.en)) problems.push(`${f}: description بلغة واحدة`);
       const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
         .map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
       for (const [l, p, fp] of pages) {
         const html = await readText(fp);
         const found = [...html.matchAll(/<p class="answer"[^>]*>([\s\S]*?)<\/p>/g)].map((m) => unesc(stripTags(m[1], ' ')).trim());
         const want = l === 'ar' || l === 'en' ? src[l] : undefined;
+        const dWant = l === 'ar' || l === 'en' ? dsrc[l] : undefined;
+        if (dWant) {
+          descPages++;
+          const metaDesc = unesc(html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
+          if (metaDesc !== dWant) problems.push(`${p}: وصف الصفحة المنشور لا يطابق description في المصدر`);
+          const dLen = [...dWant].length;
+          if (dLen < 120 || dLen > 158) problems.push(`${p}: وصف الصفحة ${dLen} نقطة ترميز — المطلوب 120–158`);
+          const prose0 = (html.match(/<article\b[^>]*\bclass="prose"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '').replace(/<p class="answer"[^>]*>[\s\S]*?<\/p>/, '');
+          const aside0 = html.match(/<aside\b[^>]*\bclass="att-aside"[^>]*>[\s\S]*?<\/aside>/)?.[0] ?? '';
+          const ahSum = unesc(stripTags(html.match(/<p class="ah-sum"[^>]*>([\s\S]*?)<\/p>/)?.[1] ?? '', ' '));
+          if (!prose0 || !aside0) { problems.push(`${p}: تعذّر عزل المتن أو بطاقة الزيارة لفحص الوصف`); }
+          else {
+            // مرجع الجمل: فقرة الإجابة إن وُجدت، وإلا الملخص + المتن
+            const hay = squash(want ?? `${ahSum} ${unesc(stripTags(prose0, ' '))}`);
+            for (const s of dWant.split(/[.؟!?。]/).map((x) => squash(x)).filter(Boolean)) if (!hay.includes(s)) problems.push(`${p}: جملة من الوصف ليست جزءاً حرفياً من ${want ? 'فقرة الإجابة' : 'الملخص والمتن'}: «${s.slice(0, 40)}»`);
+            const dSrcText = stripTags(prose0 + ' ' + aside0, ' ');
+            for (const num of dWant.match(/\d+(?:[:.,]\d+)*/g) ?? []) if (!numInText(dSrcText, num)) problems.push(`${p}: الرقم «${num}» في الوصف لا يرد في متن الصفحة ولا بطاقتها`);
+          }
+        }
         if (!want) { if (found.length) problems.push(`${p}: فقرة إجابة بلا answer بلغتها في المصدر`); continue; }
         answerPages++;
         if (found.length !== 1 || found[0] !== want) { problems.push(`${p}: فقرة الإجابة المنشورة لا تطابق المصدر`); continue; }
         const words = wc(want);
         if (words < 35 || words > 45) problems.push(`${p}: فقرة الإجابة ${words} كلمة — المطلوب 35–45`);
         const desc = unesc(html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
-        if (desc !== want) problems.push(`${p}: وصف الصفحة ليس فقرة الإجابة`);
+        if (!dWant && desc !== want) problems.push(`${p}: وصف الصفحة ليس فقرة الإجابة`);
         const prose = (html.match(/<article\b[^>]*\bclass="prose"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '').replace(/<p class="answer"[^>]*>[\s\S]*?<\/p>/, '');
         const aside = html.match(/<aside\b[^>]*\bclass="att-aside"[^>]*>[\s\S]*?<\/aside>/)?.[0] ?? '';
         if (!prose || !aside) { problems.push(`${p}: تعذّر عزل المتن أو بطاقة الزيارة لفحص أرقام الإجابة`); continue; }
@@ -1299,10 +1328,12 @@ async function main() {
       if (!smXml24.includes(`<loc>https://visit-alahsa.com${encodeURI(p)}</loc>`)) problems.push(`${p}: غائبة عن sitemap`);
     }
 
-    if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥6`);
+    // أرضية descPages = 2 لأن الدفعة التي أسّست حقل description عبّأت معلمَين فقط (جبل القارة وقصر إبراهيم) × لغتين = 4 صفحات
+    // منها 2 على الأقل؛ تعبئة بقية المعالم (A2) ترفعها.
+    if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6 || descPages < 2) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${descPages} وصفاً مخصّصاً، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥2 و≥6`);
     else if (hoursPages < 16 || feePages < 40) fail('C24', `المواعيد المبنيَنة في ${hoursPages} صفحة والرسوم في ${feePages} — المتوقع ≥16 و≥40 (تراجع في المصدر؟)`);
     else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة/الإجابات/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ صفحة اليونسكو بلغاتها الخمس تحمل المكوّنات ${comps.length} بروابطها`);
+    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ ${descPages} وصفاً مخصّصاً (120–158) مطابقاً لمصدره وجمله حرفية من إجابة صفحته وأرقامه من صفحتها؛ صفحة اليونسكو بلغاتها الخمس تحمل المكوّنات ${comps.length} بروابطها`);
   }
 
   // ── C25: الربط الداخلي (الخطوة 9 من خطة التفاعل العالمي، ف4) ──
@@ -1672,6 +1703,20 @@ async function main() {
     for (const id of Object.keys(OK)) {
       if (problems[id].length) fail(id, `دليل المرشدين: ${problems[id].length} مشكلة — ${problems[id].slice(0, 4).join(' · ')}`);
       else pass(id, OK[id]);
+    }
+  }
+
+  // ── C72: رأس الصفحة (العنوان والوصف وH1) في صفحات ar/en المفهرسة ──
+  // المنطق في tools/check-seo-meta.mjs (دالة نقية)؛ هنا القراءة فقط: dist وملف الأساس.
+  // دليل التأشيرات مستثنى (C28 يحكمه بحدوده). سقّاطة: مخالفو اليوم في tools/seo-head-baseline.json
+  // لا يزدادون سوءاً ولا يُضاف إليهم، وكل مخالفة تُصلَح تُحذف من الملف.
+  {
+    const rows = auditSeoMeta(DIST);
+    const { problems, stats } = checkSeoMeta(rows, loadSeoBaseline());
+    if (problems.length) fail('C72', `رأس الصفحة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else {
+      pass('C72', `رأس ${stats.pages} صفحة ar/en مفهرسة: لا عنوان مكرّر ولا وصف مكرّر، وH1 واحد في كلٍّ، ولا مخالفة جديدة لحدّ النواة 60 أو الوصف 160 ولا مدرجة ازدادت سوءاً`);
+      if (stats.tolerated) warn('C72', `${stats.tolerated} صفحة مدرجة في seo-head-baseline.json خارج الحدود (عنوان قصير ${stats.titleShort} · طويل ${stats.titleLong} · وصف قصير ${stats.descShort} · طويل ${stats.descLong}) — تُحذف من الملف كلما أُصلحت`);
     }
   }
 
