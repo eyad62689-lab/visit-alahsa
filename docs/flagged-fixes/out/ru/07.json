@@ -1,0 +1,48 @@
+{
+  "batch": "flagged-fixes",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-22",
+  "threshold": 90,
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_transcription_orthography": 19,
+    "fit_for_traveller": 8,
+    "structural_integrity": 10,
+    "total": 94
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "id": "ru-7st-body",
+      "from": "в квартале Эс-Салям в районе Золотого пояса.",
+      "to": "в квартале Эс-Салям в районе „Золотой пояс“.",
+      "why": "The source change (حي السلام بمنطقة الحزام الذهبي / \"the Al-Salam district of the Golden Belt area\") places the quarter INSIDE an area named the Golden Belt. In Russian «в районе + genitive» is the standard locution for \"in the vicinity of\" (cf. «в районе вокзала»), so 05's «в районе Золотого пояса» reads first as \"near the Golden Belt\", i.e. possibly outside it: the very ambiguity the owner's change removed. A generic noun + the name in quotes in the nominative («в районе „Золотой пояс“») is the normal Russian way to name an area and cannot be read as \"near\". „“ chosen to match the convention 05 already uses inside this body for the name «Улица 7» (the field is YAML double-quoted, so no ASCII quotes). Termbase form «Золотой пояс» unchanged (only the case is now nominative by apposition rule; termbase sklonenie note stays valid for bare uses). «квартал Эс-Салям» kept. Nothing else touched."
+    },
+    {
+      "id": "ru-7st-body",
+      "addendum": true,
+      "date": "2026-10-22",
+      "from": "в районе „Золотой пояс“.",
+      "to": "в районе «Золотой пояс».",
+      "why": "Addendum after the fresh blind read of the built page (which confirmed the phrase reads as the area, not \"near\"): the quoted name stands at the top level of the sentence, not inside «…», so SKILL rule «ёлочки» outside / „лапки“ only inside applies, and termbase S-2 (brand-word in «ёлочки», generic word outside, e.g. школа «Эль-Амирия»). The „“ in the first edit was a quote-level slip; «Кофейня „Улица 7“» stays „“ because it is nested inside «…»."
+    }
+  ],
+  "addendum_note": "2026-10-22: judge edit 1 amended by addendum (judge_edits[1]): «в районе „Золотой пояс“» -> «в районе «Золотой пояс»» per SKILL quote rule and termbase S-2; score unchanged at 94 (the score rates the final text, which now conforms; orthography axis already carried its deduction for the pending terms).",
+  "rulings": "Threshold 90; score 94 >= 90 => APPROVE. Mandate (owner ruling 2026-10-21): fix the named error only, everything else literal; verified by script that body differs from pack current only in the two flagged spans and escHint only by the leading «— ». (1) ru-7st-body, gloss: «Кофейня улицы №7» -> «Кофейня „Улица 7“» (05) accepted: makes \"Street 7\" the name, drops a «№» absent from the name; blind reader confirms it reads as \"Street 7 Café\" (directed question a). Nested quotes «…„…“…» correct. (2) Golden Belt: rendered per source change as an area name; judge edit «в районе Золотого пояса» -> «в районе „Золотой пояс“» (see judge_edits). (3) ru-search.escHint: «— закрыть · стрелки — переход · Enter — открыть» (05) accepted: renders after <kbd>Esc</kbd> as «Esc — закрыть», matching the other two items; one shared key so every page gets it. Deductions: accuracy -1 (the Golden Belt location remains unplaceable for a reader, a source-level gap now with the owner, not a translation error); nativeness -2 (untouched in-scope-adjacent bookish phrasing such as «пишет своё название…», «то заведение, что…», out of mandate); termbase -1 (Золотой пояс / Эль-Кинна still status pending in termbase); fit -2 (second branch not locatable). Termbase note for the coordinator: consider adding the appositive form «район „Золотой пояс“» to the Золотой пояс entry's sklonenie note; not edited here.",
+  "blind_disposition": "Reader 06: 1 serious, 8 minor. #2 serious («Золотой пояс» unexplained / where): the location is source-level (source names an area, not where) -> owner; the Russian rendering issue it exposed (genitive after «в районе» reads \"near\") fixed by judge edit; hierarchy remark (район used for Er-Rifaa too) is source hierarchy (حي vs منطقة), out of mandate. #5 hint without dash at line 11: artifact of the cut (only the café text substituted on that page); one shared key, every page shows the corrected form; no deduction. #6 «переход» noun among infinitives: published text outside the flagged dash, out of scope. #1, #3, #4, #7, #8, #9: published text outside the flagged spans or page/extraction artifacts; out of mandate; no edit, no deduction.",
+  "positions": [
+    {
+      "id": "ru-7st-body",
+      "current": "7st пишет своё название сразу в двух системах письма — как «Макха-Шари 7» (дословно «Кофейня улицы №7») рядом с «7st». Кафе находится в районе Эр-Рифаа аш-Шамалия в Эль-Хуфуфе, рядом с крепостью Каср-Ибрахим, и открылось в 2025 году. Здесь делают ставку на спешелти-кофе и эспрессо. У кафе в Аль-Ахсе два адреса, которые оно указывает само: 7st Эль-Байт — это и есть то заведение, что рядом с крепостью, — и 7st Эль-Кинна в квартале Эс-Салям на Золотом поясе. По соседству с кафе — район Эль-Кут, самый старый в Эль-Хуфуфе: здесь находятся крепость Каср-Ибрахим и мечеть Эль-Джабри, а его улицы доходят до рынка Эль-Кайсария, так что кафе легко включить в пешую прогулку по старому городу. На фотографии кафе — уголок с кожаными креслами под витражным окном.",
+      "proposed": "7st пишет своё название сразу в двух системах письма — как «Макха-Шари 7» (дословно «Кофейня „Улица 7“») рядом с «7st». Кафе находится в районе Эр-Рифаа аш-Шамалия в Эль-Хуфуфе, рядом с крепостью Каср-Ибрахим, и открылось в 2025 году. Здесь делают ставку на спешелти-кофе и эспрессо. У кафе в Аль-Ахсе два адреса, которые оно указывает само: 7st Эль-Байт — это и есть то заведение, что рядом с крепостью, — и 7st Эль-Кинна в квартале Эс-Салям в районе «Золотой пояс». По соседству с кафе — район Эль-Кут, самый старый в Эль-Хуфуфе: здесь находятся крепость Каср-Ибрахим и мечеть Эль-Джабри, а его улицы доходят до рынка Эль-Кайсария, так что кафе легко включить в пешую прогулку по старому городу. На фотографии кафе — уголок с кожаными креслами под витражным окном."
+    },
+    {
+      "id": "ru-search.escHint",
+      "current": "закрыть · стрелки — переход · Enter — открыть",
+      "proposed": "— закрыть · стрелки — переход · Enter — открыть"
+    }
+  ]
+}
