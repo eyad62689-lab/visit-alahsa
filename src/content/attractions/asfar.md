@@ -50,6 +50,14 @@ practical:
 fee: { free: true }
 answer: "بحيرة الأصفر شمال شرق نخيل واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع الواحة على قائمة اليونسكو للتراث العالمي. مسطّح مائي وسط الصحراء صار محطةً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
 answer_en: "Al-Asfar Lake, northeast of the oasis palm groves, is among the Gulf region's largest bodies of water and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: a desert lake and stopover for migratory birds. Finest at sunset; no fee."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "بحيرة الأصفر شمال شرق نخيل واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي. مسطّح مائي وسط الصحراء صار محطةً للطيور المهاجرة."
+description_en: "Al-Asfar Lake, northeast of the oasis palm groves, is among the Gulf region's largest bodies of water. Finest at sunset; no fee."
 location: { lat: 25.525252, lng: 49.808672 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12196225

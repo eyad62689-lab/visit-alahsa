@@ -293,6 +293,8 @@ export const ui = {
     // رأس الصفحة لـSEO (عنوان ووصف نيّة البحث) للفهارس الأربعة — ar/en فقط؛ تُقرأ بـObject.hasOwn فلا تتراجع zh/de/ru/ur إلى الإنجليزية. {n} يُشتق من المجموعة.
     'meta.attractions.title': 'أماكن سياحية في الأحساء: دليل المعالم بالخريطة',
     'meta.attractions.desc': 'دليل معالم الأحساء: المعالم التاريخية والمتاحف والمساجد والطبيعة والتجارب والحِرف — اختر فئة، وافتح الخريطة، وابدأ الاكتشاف.',
+    'meta.leisure.title': 'الأسواق والمنتزهات والمزارع في الأحساء: دليل التسوق والتنزه',
+    'meta.leisure.desc': 'دليل الأسواق والمنتزهات والمزارع في الأحساء: من القيصرية العريقة إلى حدائق الواحة ومزارعها — تسوّق وتنزّه وذُق خيرات الأحساء.',
     'meta.blog.title': 'مدونة الأحساء: أدلة زيارة ومسارات وتاريخ الواحة',
     'meta.blog.desc': 'أدلة عملية وحكايات من واحة الأحساء: خطط زيارة وتجارب وحِرف وتاريخ، وكل ما يعينك على رحلة أوفى — اقرأ قبل أن تسافر، ثم خطّط رحلتك.',
     'meta.map.title': 'خريطة الأحساء السياحية: كل المعالم على خريطة تفاعلية',
@@ -648,6 +650,8 @@ export const ui = {
     // Search-intent head titles/descriptions for the four index pages — ar/en only; read with Object.hasOwn so zh/de/ru/ur never fall back to English. {n} is derived from the collection.
     'meta.attractions.title': 'Things to Do in Al-Ahsa: Attractions Guide & Map',
     'meta.attractions.desc': 'Guide to Al-Ahsa’s attractions: historic landmarks, museums, mosques, nature and crafts — pick a category, open the map and start exploring.',
+    'meta.leisure.title': 'Souqs, Parks & Farms in Al-Ahsa: Shopping & Outings Guide',
+    'meta.leisure.desc': 'Guide to Al-Ahsa’s souqs, parks and farms: from the storied Qaisariyah to the oasis gardens and farms — shop, stroll and taste the bounty of Al-Ahsa.',
     'meta.blog.title': 'Al-Ahsa Blog: Visit Guides, Trails & Oasis History',
     'meta.blog.desc': 'Practical guides and stories from the Al-Ahsa oasis — trip plans, experiences, crafts and history, and everything that makes for a fuller visit.',
     'meta.map.title': 'Al-Ahsa Attractions Map: All Sights on One Interactive Map',

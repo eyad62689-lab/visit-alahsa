@@ -35,6 +35,14 @@ summary_en: "The historic mosque within the Al-Uqair port complex, among the fac
 body_en: "On the Arabian Gulf coast of eastern Al-Ahsa, within the complex of the historic Al-Uqair port — the first seaport on Saudi Arabia’s eastern coast — stands the port's historic mosque, where sailors, merchants and travellers once prayed at Najd's old gateway to the sea. It is counted among the port facilities built and developed in the reign of King Abdulaziz, alongside the fort, the khan, the emirate building and the customs house, in the days when Al-Uqair was Al-Ahsa's commercial artery. The mosque was restored under the historic mosques restoration programme, with the support of the Royal Commission for Jubail and Yanbu, among a group of Al-Ahsa's historic mosques. Today it stands within the historic port site, part of the full story the old port tells its visitors."
 area: ميناء العقير — ساحل الخليج شرق الأحساء
 area_en: "Al-Uqair port — the Gulf coast of eastern Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: guide
+description: "المسجد التاريخي ضمن مباني ميناء العقير. يُعدّ المسجد من مرافق الميناء التي أُنشئت وطُوّرت في عهد الملك عبدالعزيز إلى جانب الحصن والخان ومبنى الإمارة والجمارك."
+description_en: "The historic mosque within the Al-Uqair port complex, among the facilities developed under King Abdulaziz. On the Arabian Gulf coast of eastern Al-Ahsa."
 featured: false
 order: 29
 practical:

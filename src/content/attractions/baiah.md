@@ -35,6 +35,14 @@ summary_en: "The historic Al-Mulla family house in the Al-Koot district — buil
 body_en: "In the Al-Koot district at the heart of Hofuf, steps away from Qasr Ibrahim and the Qaisariyah Souq, stands Bayt Al-Bay'ah — the House of Allegiance, known as Bayt Al-Mulla — a 705-square-metre residence built in 1203 AH / 1788 CE by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar bin Muhammad Al-Mulla, and later the home of Abdullatif bin Abdulrahman Al-Mulla (1853–1921), elder of the Al-Mulla family, jurist and judge. It was the first house King Abdulaziz entered on arriving in Al-Ahsa, on 28 Jumada I 1331 AH / 4 May 1913, and here the people of Al-Ahsa pledged him their allegiance and joined the Saudi state, making the house a symbol of Al-Ahsa joining the modern Saudi state and one of its foremost historical and political landmarks. Restored by the Saudi Agency for Antiquities and Museums in 2005–2007, it has hosted Al-Ahsa's celebrations of the Saudi National Day ever since and is now a museum whose rooms display artefacts, tools, manuscripts and photographs telling its story. The white house with its wooden windows rises two storeys: the ground floor a large reception courtyard overlooked by inner balconies, with sitting areas for guests and displays of clothing and personal effects, and the upper floor rooms given mostly to sleeping and living, their walls lined with historical and explanatory photographs."
 area: حي الكوت — وسط الهفوف
 area_en: "Al-Koot district — central Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: hours-fees
+description: "بيت آل الملا التاريخي في حي الكوت. رمّمته وكالة الآثار والمتاحف بين عامي 2005 و2007م، ومنذ ذلك الحين يحتفل الأحسائيون فيه باليوم الوطني."
+description_en: "The historic Al-Mulla family house in the Al-Koot district. Restored by the Saudi Agency for Antiquities and Museums in 2005–2007."
 featured: false
 order: 15
 district: alkoot

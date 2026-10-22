@@ -35,6 +35,14 @@ summary_en: "A private museum built like a folk souq echoing the Qaisariyah, its
 body_en: "North of Al-Mubarraz, between the villages of Al-Shu'bah and Al-Qurain, stands the Al-Khalifa Heritage Museum, one of Al-Ahsa's most prominent private museums, licensed by the Museums Commission. Its founder, Hussain Ali Al-Khalifa, began it in his home garden in Al-Mubarraz's Shurufiyah district and built the collection over some twenty years, until the museum grew into its present form: a folk souq echoing the old Qaisariyah, with over twenty little shops recreating the historic crafts and trades. Its displays span weapons, coffee pots and cooking vessels, farming tools, women's dress and jewellery, old teaching materials, sections on the Hasawi house, farming, desert and seafaring life, a corner for the Aramco era, and a majlis done up as a traditional Hasawi diwaniyah."
 area: شمال المبرز — بين الشعبة والقرين
 area_en: "North of Al-Mubarraz — between Al-Shu'bah and Al-Qurain"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بند المواعيد موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours
+description: "متحف خاص على هيئة سوق شعبي يحاكي القيصرية، بمعروضات تراثية تغطي مهن الأحساء وحياتها القديمة. شمال المبرز، بين بلدتي الشعبة والقرين."
+description_en: "A private museum built like a folk souq echoing the Qaisariyah. North of Al-Mubarraz, between the villages of Al-Shu'bah and Al-Qurain."
 featured: false
 order: 53
 district: mubarraz

@@ -9,6 +9,8 @@ area: "حي الخالدية — شارع الأمير نواف"
 area_en: "Al-Khalidiyah — Prince Nawwaf Street"
 blurb: "برجر وبطاطس على صوانٍ معدنية — الخيار العصري السريع في القائمة."
 blurb_en: "Burgers and fries on metal trays — the modern casual pick of the list."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "قريسي فينقرز مطعم برجر في حي الخالدية بالهفوف، على شارع الأمير نواف، افتُتح عام 2024. وتكتب المنشأة اسمها بالعربية «قريسي فينقرز» بالقاف."
 alt: "برجر وبطاطس مقلية على صينية تقديم في قريسي فينقرز"
 alt_en: "A burger and fries on a serving tray at Greasy Fingers"
 blurb_zh: "金属托盘上的汉堡与薯条——本列表里走现代快餐路线的一家。"

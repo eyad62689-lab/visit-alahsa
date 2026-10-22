@@ -36,6 +36,14 @@ featured: false
 order: 49
 area: "حي الفيصل — المبرز"
 area_en: "Al-Faisal district — Al-Mubarraz"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة بند المواعيد موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "المبرز"
+  place_en: "Al-Mubarraz"
+  benefit: hours
+description: "حديقة عائلية في حي الفيصل بالمبرز ضمن مبادرة «نلعب معاً». تمتد على مساحة تزيد على 2200 متر مربع وتضم أكثر من اثنتي عشرة لعبة متخصصة في الدمج."
+description_en: "A family park in the Faisal district of Al-Mubarraz. Spread over some 2,200 square metres, it holds more than twelve specialised inclusive play units."
 district: mubarraz
 openSite: true
 practical:

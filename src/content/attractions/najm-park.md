@@ -35,6 +35,14 @@ summary_en: "A park around the historic Ain Najm west of Al-Mubarraz, the most f
 body_en: "West of Al-Mubarraz lies Ain Najm Park, a public park laid out by Al-Ahsa Municipality around the historic Ain Najm — one of Al-Ahsa's most famous hot sulphur springs, sought since old times for its healing waters, and described as the Kingdom's first tourist site devoted to healing and wellness. Its buildings, with their distinctive half-oval domes, were raised in 1115 AH / 1703 CE, and the spring is woven into the region's history: beside it the people of Al-Ahsa pledged allegiance to Saud bin Abdulaziz (later Imam) in 1799, and King Abdulaziz came to take its waters in 1367 AH / 1948 CE. After redevelopment, the park welcomed visitors in mid-2015 with greenery and quiet family sittings, and it is managed today by Al-Ahsa Municipality."
 area: غرب المبرز — الأحساء
 area_en: "West of Al-Mubarraz — Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "منتزه حول عين النجم التاريخية غربي المبرز، أشهر عيون الأحساء الكبريتية الاستشفائية. شُيّدت مبانيها ذات القباب نصف البيضاوية المميزة عام 1115هـ/1703م."
+description_en: "A park around the historic Ain Najm west of Al-Mubarraz. Its buildings, with their distinctive half-oval domes, were raised in 1115 AH / 1703 CE."
 featured: false
 order: 45
 district: mubarraz

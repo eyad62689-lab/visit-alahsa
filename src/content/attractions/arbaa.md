@@ -34,6 +34,14 @@ summary_en: "Four adjoining conical hills south-east of Hofuf, a favourite campi
 body_en: "Some 22 kilometres south-east of Hofuf, on the road heading towards Salwa and Qatar, rise the hills of Jabal Al-Arba — four adjoining conical formations of reddish sedimentary rock, thought to have once been a single hill split apart by erosion, which is how the mountain earned its name ('the Four'). The town of Al-Taraf lies about six kilometres to its north, and the mountain is one of southern Al-Ahsa's best-known spots for camping, desert trips and hiking. Al-Ahsa Municipality has launched a project to humanise the Jabal Al-Arba road, making the landmark easier to reach."
 area: جنوب شرق الهفوف — قرب بلدة الطرف
 area_en: "Southeast of Hofuf — near Al-Taraf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "أربع هضاب مخروطية متجاورة جنوب شرق الهفوف، وجهة تخييم ورحلات برية شهيرة. تقع بلدة الطرف شماله على بعد نحو ستة كيلومترات."
+description_en: "Four adjoining conical hills south-east of Hofuf, a favourite camping and desert-trip destination. Some 22 kilometres south-east of Hofuf."
 featured: false
 order: 35
 openSite: true

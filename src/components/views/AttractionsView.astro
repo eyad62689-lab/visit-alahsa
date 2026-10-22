@@ -41,10 +41,11 @@ const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '
 // نصوص الصفحة بحسب النطاق (list.* للمعالم، list2.* للأسواق والمنتزهات)
 const K = leisure ? 'list2' : 'list';
 // عنوان ووصف الرأس لـSEO (ar/en فقط): مفاتيح meta.* لا تتراجع إلى الإنجليزية في zh/de/ru/ur، فتبقى
-// تلك اللغات على عنوان الصفحة وتمهيدها كما هما. صفحة الأسواق والمنتزهات (leisure) كذلك.
-const hasMeta = !leisure && Object.hasOwn(ui[lang], 'meta.attractions.title');
-const headTitle = hasMeta ? t('meta.attractions.title') : t(`${K}.title` as any);
-const headDesc = hasMeta ? t('meta.attractions.desc') : t(`${K}.lead` as any);
+// تلك اللغات على عنوان الصفحة وتمهيدها كما هما. صفحة الأسواق والمنتزهات لها مفتاحاها (meta.leisure.*).
+const META = leisure ? 'meta.leisure' : 'meta.attractions';
+const hasMeta = Object.hasOwn(ui[lang], `${META}.title`);
+const headTitle = hasMeta ? t(`${META}.title` as any) : t(`${K}.title` as any);
+const headDesc = hasMeta ? t(`${META}.desc` as any) : t(`${K}.lead` as any);
 const tx = (suffix: string) => t(`${K}.${suffix}` as any);
 
 // ترتيب عرض المجموعات — الأكثر شهرةً أولاً. كل مجموعة قسمٌ بمرساة #cat-<الفئة>

@@ -45,6 +45,14 @@ hoursSpec:
 fee: { min: 10, max: 15, currency: SAR }
 answer: "منتزه جواثا السياحي منتزه أخضر في قرية الكلابية، يجمع الطبيعة بالتاريخ: فبجواره مسجد جواثا الأثري، أول موضع أُقيمت فيه الجمعة بعد المسجد النبوي، وموقع جواثا الأثري. وجهة للنزهات العائلية تفتح يومياً من 8 ص إلى 12 منتصف الليل، والدخول 10–15 ريالاً للفرد والمسجد مجاناً."
 answer_en: "Jawatha Park, a green park in Al-Kilabiyah, joins nature to history: beside it stand Jawatha Mosque, the first place Friday prayer was held after the Prophet's Mosque, and the Jawatha archaeological site. Open daily 8 am to midnight; entry SAR 10–15 per person, mosque free."
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "منتزه جواثا السياحي منتزه أخضر في قرية الكلابية، يجمع الطبيعة بالتاريخ. وجهة للنزهات العائلية تفتح يومياً من 8 ص إلى 12 منتصف الليل."
+description_en: "Jawatha Park, a green park in Al-Kilabiyah, joins nature to history. Open daily 8 am to midnight; entry SAR 10–15 per person, mosque free."
 location: { lat: 25.471156, lng: 49.677408 }
 mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).

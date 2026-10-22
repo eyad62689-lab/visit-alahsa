@@ -35,6 +35,14 @@ summary_en: "An Uyunid-era mosque in Al-Battaliyah village, also known as the Ba
 body_en: "In the western quarter of Al-Battaliyah village, some twelve kilometres north-east of Hofuf, stands Al-Jalaniyah Mosque — also known as the Battaliyah Mosque — one of Al-Ahsa's most celebrated historic mosques. It dates back to the Uyunid state in the fifth century AH (around the eleventh century CE), and its name is linked to Princess Hibah bint Abdullah bin Ali Al-Uyuni, daughter of the dynasty's founder, to whom the mosque is attributed. Built of stone and mud and roofed with palm trunks and fronds, it is notable for having two mihrabs in its qibla wall and rows of columns carrying pointed arches, with space for well over a thousand worshippers. The Royal Commission for Jubail and Yanbu restored it, completing the work in 1430 AH / 2009 CE, and in 2017 it was listed among Al-Ahsa's officially registered historic mosques."
 area: قرية البطالية — شمال شرق الهفوف
 area_en: "Al-Battaliyah village — northeast of Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: guide
+description: "مسجد من عهد الدولة العيونية في قرية البطالية. شُيّد من الحجر والطين وسُقف بجذوع النخيل وسعفه، ويتفرد بمحرابين في جدار قبلته وصفوف أعمدة تحمل عقوداً مدببة."
+description_en: "An Uyunid-era mosque in Al-Battaliyah village, also known as the Battaliyah Mosque. Built of stone and mud and roofed with palm trunks and fronds."
 featured: false
 order: 21
 practical:

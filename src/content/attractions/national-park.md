@@ -34,6 +34,12 @@ summary_en: "A man-made forest born of a 1962 sand-control project — millions 
 body_en: "North-east of the oasis at the city of Al-Omran, close to Al-Qarah Mountain, spreads Al-Ahsa National Park — a story that began in 1382 AH / 1962 CE as a Ministry of Agriculture project to hold back the sands creeping over the oasis villages. Millions of trees were planted, most of them tamarisk, over an area of some 4,500 hectares with a belt running twenty kilometres, and over time the sand barriers grew into a lush man-made forest, then a public park with shaded seating, trails and family facilities. Today it is overseen by the National Center for Vegetation Cover Development and Combating Desertification, which continues its rehabilitation projects, and within its bounds the Jawatha Forest was launched with two million trees of salt-tolerant native species."
 area: العمران — شمال شرق الواحة
 area_en: "Al-Omran — northeast of the oasis"
+# عنوان ووصف الصفحة لـSEO (ar/en): بلا مكان (العنوان نفسه يسمّيه)، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  benefit: hours-fees
+description: "غابة اصطناعية نشأت من مشروع حجز الرمال عام 1962م. زُرعت فيه ملايين الأشجار غالبيتها الأثل، على مساحة تقارب 4500 هكتار وحزام يمتد عشرين كيلومتراً."
+description_en: "A man-made forest born of a 1962 sand-control project — millions of tamarisk trees. North-east of the oasis at the city of Al-Omran."
 featured: false
 order: 43
 practical:

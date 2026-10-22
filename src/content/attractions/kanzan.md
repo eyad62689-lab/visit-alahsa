@@ -34,6 +34,14 @@ summary_en: "A mountain massif north-east of the oasis, known in the history boo
 body_en: "On the eastern rim of the northern oasis, some fifteen kilometres north-east of Hofuf, stretches the massif of Kanzan Mountain — the name the history books know it by, though today it is commonly called Al-Shu'bah Mountain. A chain of sedimentary and sandy hills, it neighbours the villages of Al-Shu'bah, Al-Kilabiyah, Al-Battaliyah and Al-Jurn, and adjoins the surroundings of the ancient Jawatha Mosque on its western side. In the Kanzan area, in 1333 AH / 1915 CE, the famous Battle of Kanzan was fought in the era of King Abdulaziz, in which the King was wounded and his brother Prince Saad fell. Its clean, soft sands have made it a favourite spot for outings, dune driving and gazing over the palm groves, and Al-Ahsa Municipality is developing a major recreational park on the massif."
 area: شمال شرق الهفوف — قرب قرى الشعبة والكلابية
 area_en: "Northeast of Hofuf — near the villages of Al-Shu'bah and Al-Kilabiyah"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "كتلة جبلية شمال شرق الواحة عرفتها كتب التاريخ باسم كنزان. رماله الناعمة النظيفة جعلته وجهة مفضلة للتنزه والتطعيس ومشاهدة بحر النخيل."
+description_en: "A mountain massif north-east of the oasis, known in the history books as Kanzan — site of the 1915 Battle of Kanzan. A chain of sedimentary and sandy hills."
 featured: false
 order: 34
 openSite: true

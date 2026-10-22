@@ -35,6 +35,14 @@ summary_en: "A thirteenth-century AH mosque in South Al-Rifaa that hosted the le
 body_en: "In the South Al-Rifaa district in central Hofuf stands Al-Hubaish Mosque, one of Al-Ahsa's oldest historic mosques, dating to the thirteenth century AH (around the nineteenth century CE). It is also known as the Mosque of Sheikh Abdulaziz Al-Alji, after one of Al-Ahsa's leading scholars of fiqh and grammar whose lessons it hosted. Built of limestone and mud and roofed with chandal wood (timber once imported to the Gulf), bamboo and woven mats, it is distinguished by an arcade of rounded arches, a square minaret at its north-eastern corner and a total area of about 318 square metres holding some ninety worshippers. Rehabilitated in 2020 within the first phase of the Prince Mohammed bin Salman Project for the Development of Historic Mosques, it regained its life as a working mosque while keeping its original features."
 area: حي الرفعة الجنوبية — وسط الهفوف
 area_en: "South Al-Rifaa district — central Hofuf"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الهفوف"
+  place_en: "Hofuf"
+  benefit: free
+description: "في حي الرفعة الجنوبية وسط الهفوف يقوم مسجد الحبيش، أحد أقدم مساجد الأحساء التاريخية، ويعود إنشاؤه إلى القرن الثالث عشر الهجري (نحو القرن التاسع عشر الميلادي)."
+description_en: "In the South Al-Rifaa district in central Hofuf stands Al-Hubaish Mosque. It is also known as the Mosque of Sheikh Abdulaziz Al-Alji."
 featured: false
 order: 27
 practical:

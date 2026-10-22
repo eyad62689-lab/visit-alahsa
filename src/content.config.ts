@@ -18,6 +18,23 @@ const cp = (s: string) => [...s].length;
 const DESC_MIN = 120;
 const DESC_MAX = 158;
 const sentencesOf = (s: string) => s.split(/[.؟!?。]/).map((x) => x.trim()).filter(Boolean);
+// مصدر جمل الوصف بلغة الصفحة: فقرة الإجابة وحدها إن وُجدت (طولها يكفي للمدى)، وإلا الملخص ومتن الصفحة.
+// أي جملة (بعد التقسيم على . ؟ !) جزء حرفي من المصدر — لا جملة مختلقة ولا مُعاد صوغها.
+// المتن الإنجليزي (body_en) حقل في الملف فيُفحص هنا؛ أما المتن العربي فهو نصّ الـmarkdown لا حقل في المخطط
+// فلا يراه الـrefine: جملة عربية لا تَرِد في answer (أو الملخص) تُحال إلى C24 الذي يقارنها على dist
+// بنصّ `.ah-sum` و`.prose` المنشورَين (حرفياً، وبلا تنسيق ماركداون)، وهو الحاسم لها.
+const descriptionSourceOk = (
+  a: { description?: string; description_en?: string; answer?: string; answer_en?: string; summary: string; summary_en?: string; body_en?: string },
+  lang: 'ar' | 'en',
+): boolean => {
+  const d = lang === 'ar' ? a.description : a.description_en;
+  if (!d) return true;
+  const answer = lang === 'ar' ? a.answer : a.answer_en;
+  if (answer) return sentencesOf(d).every((x) => answer.includes(x));
+  if (lang === 'ar') return true; // خارج الملخص يتحقق منه C24 على dist (متن عربي ليس في المخطط)
+  const src = [a.summary_en, a.body_en].filter((t): t is string => Boolean(t));
+  return src.length > 0 && sentencesOf(d).every((x) => src.some((t) => t.includes(x)));
+};
 
 const attractions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/attractions' }),
@@ -195,8 +212,9 @@ const attractions = defineCollection({
       place_en: z.string().optional(),
       benefit: z.enum(SEO_BENEFIT_KEYS).optional(),
     }).optional(),
-    // description: وصف الصفحة (120–158 نقطة ترميز)، جمل حرفية من answer إن وُجد وإلا من summary.
-    // عربي وإنجليزي معاً أو لا شيء. بدونه يبقى الوصف = answer ثم summary كما كان.
+    // description: وصف الصفحة (120–158 نقطة ترميز)، جمل حرفية من answer إن وُجد وإلا من summary ومتن الصفحة
+    // (descriptionSourceOk أدناه؛ المتن العربي يحرسه C24 على dist). عربي وإنجليزي معاً أو لا شيء.
+    // بدونه يبقى الوصف = answer ثم summary كما كان.
     description: z.string().optional(),
     description_en: z.string().optional(),
     hoursSpec: z.array(z.object({
@@ -233,9 +251,8 @@ const attractions = defineCollection({
     message: 'description وdescription_en معاً أو لا شيء — وصف الصفحة بلغتي الموقع الكاملتين',
   }).refine((a) => [a.description, a.description_en].every((s) => !s || (cp(s) >= DESC_MIN && cp(s) <= DESC_MAX)), {
     message: `وصف الصفحة بين ${DESC_MIN} و${DESC_MAX} نقطة ترميز`,
-  }).refine((a) => ([[a.description, a.answer ?? a.summary], [a.description_en, a.answer_en ?? a.summary_en]] as const)
-    .every(([d, src]) => !d || (src !== undefined && sentencesOf(d).every((x) => src.includes(x)))), {
-    message: 'كل جملة من الوصف جزء حرفي من answer (وإلا summary) بلغتها — لا جملة مضافة من خارج الصفحة',
+  }).refine((a) => descriptionSourceOk(a, 'ar') && descriptionSourceOk(a, 'en'), {
+    message: 'كل جملة من الوصف جزء حرفي من answer إن وُجد، وإلا من summary أو متن الصفحة بلغتها — لا جملة مضافة من خارج الصفحة',
   }),
 });
 

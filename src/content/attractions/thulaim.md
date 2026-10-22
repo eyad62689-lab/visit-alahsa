@@ -34,6 +34,14 @@ summary_en: "The first of Al-Ahsa's landmarks at its northern gateway, just west
 body_en: "At Al-Ahsa's northern gateway, about a kilometre west of the city of Al-Oyoun, rises Al-Thulaim Mountain — the first landmark to greet travellers arriving at the oasis from the north. It is a solitary rocky formation, one of the sedimentary desert hills scattered around the oasis's fringes. Its position beside Al-Oyoun and the northern oasis road makes it an easy destination for desert outings and walking, and community proposals have been floated to develop it as a northern tourist gateway for Al-Ahsa — ideas that remain at the proposal stage."
 area: غرب مدينة العيون — شمال الأحساء
 area_en: "West of Al-Oyoun — northern Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "أول معالم الأحساء عند مدخلها الشمالي، غربي مدينة العيون. موقعه بجوار العيون وطريق الواحة الشمالي يجعله وجهة سهلة للرحلات البرية والمشي."
+description_en: "At Al-Ahsa's northern gateway. Its position beside Al-Oyoun and the northern oasis road makes it an easy destination for desert outings and walking."
 featured: false
 order: 37
 openSite: true

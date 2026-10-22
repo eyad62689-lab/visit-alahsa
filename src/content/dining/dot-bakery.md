@@ -9,6 +9,8 @@ area: "طريق عين نجم — المبرز"
 area_en: "Ain Najm Road — Al-Mubarraz"
 blurb: "مخبز ومقهى معاً: واجهة عرض للمخبوزات وركن طلب بلمسة زرقاء."
 blurb_en: "Bakery and café in one: a fresh-pastry display with a blue-accented order counter."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "بدأ «دوت» عام 2012 حساباً على إنستغرام يبيع مخبوزات تُصنع في مطبخ منزلي بالأحساء. ولديه اليوم ثلاثة فروع معلنة في الخبر والمبرز والهفوف."
 alt: "ركن الطلب وواجهة عرض المخبوزات في مخبز ومقهى دوت"
 alt_en: "The order counter and pastry display at Dot Bakery & Café"
 blurb_zh: "烘焙坊与咖啡馆合一：烘焙点心的展示柜，以及带一抹蓝色的点餐台。"
