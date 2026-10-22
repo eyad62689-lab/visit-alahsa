@@ -1,0 +1,44 @@
+# gate-after: dist من npm run build على الشجرة بعد التعديل (فيديو v3)؛ منفذ 4341؛ 2026-10-22
+
+معايرة المضيف: benchmarkIndex 903.5 (وسيط 3: 874.5–919.5) → مضاعف إبطاء المعالج 2.2x (افتراضي Lighthouse 4x يفترض مؤشراً ≈ 1533) · شبكة كروم: 4g (rtt 100 · downlink 1.5) → تحت محاكاة Lighthouse 4g (rtt 0 · downlink 0) · Chrome/155.0.0.0
+✓ /                                    أداء  90 · LCP 2519ms (وسيط 3: 2514–3105) · FCP 1819ms · CLS 0 · 458KB · JS 20KB gz · وزن بلا فيديو 457KB · خطوط 10/234KB (سيريلي 0 · نستعليق 0/0KB)
+    LCP: <img src="http://localhost:4341/img/hero-home-800w.webp" srcset="/img/hero-home-400w.jpg 400w, /img/hero-home-
+    مراحل LCP (آخر تشغيل): TTFB 459 · Load Delay 0 · Load Time 0 · Render Delay 2060
+    الأثر الفعلي (وسيط): FCP 512ms · LCP 512ms · load 651ms · نهاية الأثر 3109ms · TBT محاكى 291ms · فيديو لم يبدأ داخل الأثر · benchmarkIndex 831
+    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): 12 (352KB) منها صور غير LCP 1 (126KB)
+✗ /en/                                 أداء  95 · LCP 2507ms (وسيط 3: 2424–2573) · FCP 1832ms · CLS 0 · 855KB · JS 20KB gz · وزن بلا فيديو 368KB · خطوط 7/144KB (سيريلي 0 · نستعليق 0/0KB) · ميزانية مخالَفة: فيديو قبل LCP
+    LCP: <video class="photo-bg hero-vid hero-vid--on" muted="" loop="" playsinline="" preload="none" aria-hidden="true
+    مراحل LCP (آخر تشغيل): TTFB 461 · Load Delay 0 · Load Time 0 · Render Delay 2046
+    الأثر الفعلي (وسيط): FCP 1170ms · LCP 3525ms · load 434ms · نهاية الأثر 3723ms · TBT محاكى 27ms · فيديو بدأ عند 3445ms (486KB) · benchmarkIndex 927
+    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): 17 (855KB) منها صور غير LCP 2 (164KB)
+    أكبر ما بدأ قبل LCP (آخر تشغيل):
+      486KB Media @3445ms /video/hero-home-v3-portrait.mp4
+      126KB Image @302ms /img/jabal-al-qarah-800w.webp
+      38KB Image @34ms /img/hero-home-800w.webp
+      36KB Document @1ms /en/
+      23KB Font @314ms /_astro/cormorant-garamond-latin-600-normal.Co1r35X9.woff2
+      23KB Font @304ms /_astro/playfair-display-latin-700-normal.CuDiGg7c.woff2
+      23KB Font @313ms /_astro/cormorant-garamond-latin-400-normal.B-1hWBU7.woff2
+      22KB Font @303ms /_astro/lora-latin-600-normal.B-3RcLOQ.woff2
+✓ /ru/                                 أداء  98 · LCP 2264ms (وسيط 3: 2264–2644) · FCP 1097ms · CLS 0.027 · 421KB · JS 20KB gz · وزن بلا فيديو 419KB · خطوط 11/193KB (سيريلي 4 · نستعليق 0/0KB)
+    LCP: <img src="http://localhost:4341/img/hero-home-800w.webp" srcset="/img/hero-home-400w.jpg 400w, /img/hero-home-
+    مراحل LCP (آخر تشغيل): TTFB 456 · Load Delay 0 · Load Time 0 · Render Delay 2188
+    الأثر الفعلي (وسيط): FCP 125ms · LCP 321ms · load 448ms · نهاية الأثر 2865ms · TBT محاكى 6ms · فيديو لم يبدأ داخل الأثر · benchmarkIndex 1032
+    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): 11 (326KB) منها صور غير LCP 1 (126KB)
+✓ /ur/                                 أداء  98 · LCP 2195ms (وسيط 3: 2193–2197) · FCP 1816ms · CLS 0.002 · 470KB · JS 20KB gz · وزن بلا فيديو 469KB · خطوط 7/244KB (سيريلي 0 · نستعليق 1/118KB)
+    LCP: <img src="http://localhost:4341/img/hero-home-800w.webp" srcset="/img/hero-home-400w.jpg 400w, /img/hero-home-
+    مراحل LCP (آخر تشغيل): TTFB 457 · Load Delay 0 · Load Time 0 · Render Delay 1736
+    الأثر الفعلي (وسيط): FCP 389ms · LCP 389ms · load 571ms · نهاية الأثر 2995ms · TBT محاكى 40ms · فيديو لم يبدأ داخل الأثر · نستعليق طُلب عند 601ms · benchmarkIndex 992
+    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): 11 (325KB) منها صور غير LCP 1 (126KB)
+✓ /en/attractions/jabal-al-qarah/      أداء  92 · LCP 3168ms (وسيط 3: 2714–3169) · FCP 1668ms · CLS 0 · 404KB · JS 18KB gz · وزن بلا فيديو 403KB · خطوط 6/121KB (سيريلي 0 · نستعليق 0/0KB)
+    LCP: <img src="http://localhost:4341/img/jabal-al-qarah-800w.webp" srcset="/img/jabal-al-qarah-400w.jpg 400w, /img/
+    مراحل LCP (آخر تشغيل): TTFB 459 · Load Delay 0 · Load Time 0 · Render Delay 2709
+    الأثر الفعلي (وسيط): FCP 1223ms · LCP 1223ms · load 309ms · نهاية الأثر 3565ms · TBT محاكى 0ms · فيديو لم يبدأ داخل الأثر · benchmarkIndex 1136.5
+    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): 15 (404KB) منها صور غير LCP 2 (105KB)
+✓ /ur/attractions/jabal-al-qarah/      أداء  94 · LCP 2865ms (وسيط 3: 2344–3093) · FCP 1107ms · CLS 0.013 · 612KB · JS 18KB gz · وزن بلا فيديو 610KB · خطوط 7/244KB (سيريلي 0 · نستعليق 1/118KB)
+    LCP: <img src="http://localhost:4341/img/jabal-al-qarah-800w.webp" srcset="/img/jabal-al-qarah-400w.jpg 400w, /img/
+    مراحل LCP (آخر تشغيل): TTFB 457 · Load Delay 0 · Load Time 0 · Render Delay 2407
+    الأثر الفعلي (وسيط): FCP 140ms · LCP 473ms · load 505ms · نهاية الأثر 3038ms · TBT محاكى 180ms · فيديو لم يبدأ داخل الأثر · نستعليق طُلب عند 530ms · benchmarkIndex 993.5
+    طلبات بدأت قبل LCP المرصود (تدخل في محاكاة LCP): 12 (443KB) منها صور غير LCP 3 (189KB)
+
+الميزانيات: لا CSS حاجب · لا سيريلي خارج /ru/ · لا نستعليق خارج /ur/ · خطوط ≤ 12 ملفاً و≤ 270KB · لا فيديو ولا نستعليق قبل LCP · صورة LCP محمَّلة مسبقاً · لا صورة eager تحت الطيّة · الرئيسيات: JS ≤ 120KB مضغوطاً ووزن بلا فيديو ≤ 1200KB؛ وحارسا المحاكاة: LCP ≤ 4000ms وأداء ≥ 80 (وسيط 3) · 5/6 صفحات اجتازت
