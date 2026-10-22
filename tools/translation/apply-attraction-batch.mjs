@@ -19,6 +19,7 @@
 // نفسه لا مفترَضة (`SKILL.md`) — والملف اليوم LF، وقد كان CRLF.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { recordFile } from './lock.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '../..');
 const [lang, batch, judgeFile] = process.argv.slice(2);
@@ -107,6 +108,13 @@ const reviseKey = (text, key, value) => {
   return replaceQuotedAt(text, `\n${key}: "`, key, value);
 };
 
+// سجل انجراف الترجمة (tools/translation/lock.json): كتابةُ body_<lang> تُسجّل بصمة body_en الحالية
+// بعد الكتابة فعلاً، فلا يبقى الزوج منجرفاً في C73. لا تسجيل في التجربة الجافة ولا حين لم يُكتب متن.
+const lockBody = (fp, name, wroteBody) => {
+  if (DRY || !wroteBody) return;
+  log(`${name}: قفل الانجراف ← ${recordFile(fp, lang)}/${lang}`);
+};
+
 for (const [name, page] of Object.entries(fields)) {
   const fp = path.join(ROOT, 'src/content/attractions', `${name}.md`);
   let t = read(fp);
@@ -136,6 +144,7 @@ for (const [name, page] of Object.entries(fields)) {
     t = t.slice(0, eol) + note + t.slice(eol);
     log(`${name}: مراجعةٌ — ${n} من ${allow.length} حقلاً تغيّر فعلاً`);
     write(fp, t);
+    lockBody(fp, name, allow.includes(`body${sfx}`));
     continue;
   }
 
@@ -209,6 +218,7 @@ for (const [name, page] of Object.entries(fields)) {
     log(`${name}: ${faq.length} سؤالاً`);
   }
   write(fp, t);
+  lockBody(fp, name, String(page[`body${sfx}`] ?? '').trim() !== '');
 }
 
 // ── 2) مفاتيح الواجهة (إن وُجدت في الحكم) ───────────────────────────────

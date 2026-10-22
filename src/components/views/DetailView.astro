@@ -70,7 +70,17 @@ const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
 // المتن غير العربي نص خام: السطر الفارغ فيه فاصل فقرات
-const bodyParas = bodyText.split(/\n{2,}/);
+// وفقرةٌ تبدأ بـ«## » عنوانٌ فرعي h2 وبـ«### » h3 (النص بعد العلامة)؛ وما يلي سطر العنوان في الفقرة
+// نفسها يبقى فقرة. لا ماركداون غير هذا في المتون غير العربية.
+type BodyBlock = { tag: 'p' | 'h2' | 'h3'; text: string };
+const bodyBlocks: BodyBlock[] = bodyText.split(/\n{2,}/).flatMap((para): BodyBlock[] => {
+  const mark = para.startsWith('### ') ? 3 : para.startsWith('## ') ? 2 : 0;
+  if (!mark) return [{ tag: 'p', text: para }];
+  const nl = para.indexOf('\n');
+  const head = (nl < 0 ? para : para.slice(0, nl)).slice(mark + 1).trim();
+  const rest = nl < 0 ? '' : para.slice(nl + 1).trim();
+  return [{ tag: mark === 3 ? 'h3' : 'h2', text: head }, ...(rest ? [{ tag: 'p' as const, text: rest }] : [])];
+});
 // «مقالات تذكر هذا المعلم» — الفهرس العكسي بلغة الصفحة (الخطوة 9)؛ [] حين لا مقال بها
 const mentions = await mentionsOf(a, lang);
 
@@ -221,7 +231,7 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
     <div class="container att-layout">
       <article class="prose" data-reveal>
         {answer && <p class="answer" data-answer>{answer}</p>}
-        {ar && Content ? <Content /> : bodyParas.map((para) => <p>{para}</p>)}
+        {ar && Content ? <Content /> : bodyBlocks.map((b) => b.tag === 'h2' ? <h2 class="prose-h2">{b.text}</h2> : b.tag === 'h3' ? <h3 class="prose-h3">{b.text}</h3> : <p>{b.text}</p>)}
       </article>
 
       <aside class="att-aside" data-reveal>
@@ -467,6 +477,9 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .prose { font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); max-inline-size: 68ch; }
   .prose :global(p) { margin-block-end: var(--s-4); }
   .prose :global(strong) { color: var(--c-turq-deep); font-weight: 600; }
+  /* العناوين الفرعية في المتن: h2/h3 المصيَّران من الماركداون العربي و.prose-h2/.prose-h3 في المتون غير العربية بشكل واحد */
+  .prose :global(h2) { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-6) var(--s-3); }
+  .prose :global(h3) { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-5) var(--s-2); }
   .att-aside { position: sticky; inset-block-start: 88px; display: flex; flex-direction: column; gap: var(--s-3); }
   .info-card { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-4); }
   .info-h { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-3); }

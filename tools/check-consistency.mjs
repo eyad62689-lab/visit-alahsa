@@ -34,6 +34,8 @@ import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
 import { auditSeoMeta, checkSeoMeta, loadBaseline as loadSeoBaseline } from './check-seo-meta.mjs';
 import { checkImageDims } from './check-image-dims.mjs';
+import { checkDrift, driftReport } from './translation/drift.mjs';
+import { readAttractions as readLockAttractions, loadLock, LOCK_PATH } from './translation/lock.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -1754,6 +1756,23 @@ async function main() {
     else {
       pass('C72', `رأس ${stats.pages} صفحة ar/en مفهرسة: لا عنوان مكرّر ولا وصف مكرّر، وH1 واحد في كلٍّ، ولا مخالفة جديدة لحدّ النواة 60 أو الوصف 160 ولا مدرجة ازدادت سوءاً`);
       if (stats.tolerated) warn('C72', `${stats.tolerated} صفحة مدرجة في seo-head-baseline.json خارج الحدود (عنوان قصير ${stats.titleShort} · طويل ${stats.titleLong} · وصف قصير ${stats.descShort} · طويل ${stats.descLong}) — تُحذف من الملف كلما أُصلحت`);
+    }
+  }
+
+  // ── C73: انجراف الترجمة (تحذير لا إخفاق) ──────────────────────────────────────────────────
+  // المنطق في tools/translation/drift.mjs (دالة نقية يُختبر كسرها في الذاكرة)؛ هنا القراءة فقط:
+  // tools/translation/lock.json (بصمة body_en لكل زوج معلم/لغة وقت الترجمة) مقابل ترويسات المعالم الحالية.
+  // يلتقط ما لا يلتقطه C22: نموّ ar/en مع بقاء body_zh/de/ru/ur قديماً. لا يُخفق البناء أبداً — الانجراف
+  // يوقف على قرار إعادة الترجمة بخطها ثم `lock.mjs record`. المدخل الموسوم baseline = «مُفترَض متزامناً».
+  {
+    if (!existsSync(LOCK_PATH)) warn('C73', 'tools/translation/lock.json غائب — شغّل: node tools/translation/lock.mjs bootstrap');
+    else {
+      try {
+        const current = readLockAttractions(SRC_ATTRACTIONS);
+        for (const r of driftReport(checkDrift(loadLock(), current))) (r.level === 'ok' ? pass : warn)('C73', r.msg);
+      } catch (e) {
+        warn('C73', `تعذّرت قراءة سجل الانجراف أو ترويسات المعالم: ${e.message}`); // تحذير لا إخفاق، ولا انهيار للفاحص
+      }
     }
   }
 
