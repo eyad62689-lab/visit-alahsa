@@ -12,7 +12,7 @@ Jabal Al-Qarah was once known as Jabal Al-Shab'an [ح-10]. Four historic village
 
 ## What you'll see
 
-According to the Saudipedia encyclopaedia, Jabal Al-Qarah has 12 caves of different shapes and lengths [ح-27، ح-28], among them Al-Nashab, Al-Naqa (also written Al-Naqah), Al-Eid, Al-Mahyoub and Bu Saleh [ح-29، ح-30]. According to the Saudi Tourism Authority, these caves contain 28 long, towering passages stretching 1.5 kilometres [ح-31]. In Al-Nashab cave, long, narrow, tall corridors cross one another at right angles [ح-34], and its galleries rise to the top of the mountain through openings that let daylight in [ح-35]. You find yourself between two walls that almost touch your shoulders, then the rock opens onto a high chamber pierced by a shaft of light. According to Saudipedia, the caves stay close to 20°C even when it is over 40°C outside [ح-36، ح-38]. Weathering has shaped mushroom-like forms in the mountain's rock [ح-40], and its summit looks out over the governorate's palms and the surrounding towns [ح-41].
+According to the Saudipedia encyclopaedia, Jabal Al-Qarah has 12 caves of different shapes and lengths [ح-27، ح-28], among them Al-Nashab, Al-Naqa (also written Al-Naqah), Al-Eid, Al-Mahyoub and Bu Saleh [ح-29، ح-30]. According to the Saudi Tourism Authority, these caves contain 28 long passages stretching 1.5 kilometres [ح-31]. In Al-Nashab cave, long, narrow, tall corridors cross one another at right angles [ح-34], and its galleries rise to the top of the mountain through openings that let daylight in [ح-35]. You find yourself between two walls that almost touch your shoulders, then the rock opens onto a high chamber pierced by a shaft of light. According to Saudipedia, the caves stay close to 20°C even when it is over 40°C outside [ح-36، ح-38]. Weathering has shaped mushroom-like forms in the mountain's rock [ح-40], and its summit looks out over the governorate's palms and the surrounding towns [ح-41].
 
 According to the Saudi Tourism Authority, some caves are used for workshops by traditional potters [ح-42]. According to the Al-Yaum newspaper in 2023, the mountain park has a mosque, a café and a gift shop [ح-46], and lighting and a footbridge have been installed in the mountain area [ح-47].
 
@@ -22,7 +22,7 @@ The Al-Yaum newspaper (2023) describes Jabal Al-Qarah as a year-round destinatio
 
 ## Getting there
 
-The mountain is in the town of Al-Qarah, which is also home to [Dughat Al-Gharash](/en/attractions/duqat-algharash/) [ح-56]. You can find it on the [attractions map](/en/map/).
+The mountain is in the town of Al-Qarah, which is also home to [Dougha Al-Gharash Pottery](/en/attractions/duqat-algharash/) [ح-56]. You can find it on the [attractions map](/en/map/).
 
 ## Visitor tips
 
