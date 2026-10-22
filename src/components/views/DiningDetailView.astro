@@ -17,6 +17,7 @@ import { catLabel } from '../../lib/categories';
 import { DISTRICT_NAMES } from '../../data/districts';
 import { liveFor, hoursData as hoursDataFor, hoursFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
+import { composeFacilityDescription, facilityTitleCore } from '../../lib/seo-title';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import ShareButton from '../ShareButton.astro';
@@ -164,6 +165,13 @@ const C = localize(lang, {
 // مع معلمٍ من حيٍّ آخر لا يصدق «… في {الحي}»، فيُستعمل عنوان «أكمل يومك» المعتمد في صفحة المعلم
 const sightsH = near.length ? t('det.nearby.h') : d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : ur ? 'ur' : 'en'][d.district]) : '';
 
+// العنوان والوصف لـSEO (ar/en فقط؛ بقية اللغات كما هي): الفهرس يسقط من العنوان إن جاوزت النواة 60،
+// والوصف description المخصّص أو تركيب حتمي «النبذة الموقع · النوع» من بيانات الصفحة المنشورة نفسها.
+const seoLang = ar || lang === 'en';
+const seoTitleCore = seoLang ? facilityTitleCore(name, C.indexName, titleSep(lang)) : `${name} ${titleSep(lang)} ${C.indexName}`;
+const seoDescription = (ar ? d.description : lang === 'en' ? d.description_en : undefined)
+  ?? (seoLang ? composeFacilityDescription(blurb, area || (d.district ? DISTRICT_NAMES[ar ? 'ar' : 'en'][d.district] : undefined), C.kindLabel) : blurb);
+
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
@@ -185,7 +193,7 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`${name} ${titleSep(lang)} ${C.indexName} ${titleSep(lang)} ${t('site.brand')}`} description={blurb} image={`${d.img}.jpg`}
+<Base title={`${seoTitleCore} ${titleSep(lang)} ${t('site.brand')}`} description={seoDescription} image={`${d.img}.jpg`}
   lang={lang} alt={alt} jsonLd={jsonLd}
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />

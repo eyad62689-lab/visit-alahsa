@@ -10,7 +10,7 @@ import { attractionHref, staticHref } from '../../lib/routes';
 import { srcsetFor } from '../../lib/images';
 import { DIST_LABELS } from '../../lib/distance';
 import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
-import type { Lang } from '../../i18n/ui';
+import { ui, type Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -81,6 +81,11 @@ const leadRaw = t('map.lead.a');
 const leadParts = leadRaw.includes('{n}') ? leadRaw.split('{n}') : null;
 const leadText = leadParts ? leadParts.join(String(points.length)) : `${points.length} ${leadRaw}`;
 
+// عنوان ووصف الرأس لـSEO (ar/en فقط): مفاتيح meta.* لا تتراجع إلى الإنجليزية في zh/de/ru/ur؛ والعدد مشتق من المعالم المعروضة.
+const hasMeta = Object.hasOwn(ui[lang], 'meta.map.title');
+const headTitle = hasMeta ? t('meta.map.title') : t('map.title');
+const headDesc = hasMeta ? t('meta.map.desc').replace('{n}', String(points.length)) : leadText;
+
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -89,7 +94,7 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={`${t('map.title')} ${titleSep(lang)} ${t('site.brand')}`} description={leadText} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${headTitle} ${titleSep(lang)} ${t('site.brand')}`} description={headDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
   {/* preconnect لكارتو في أسفل الصفحة بلا crossorigin عمداً: البلاطات تُطلب كـ<img> بلا CORS،
       فاتصال crossorigin (الذي يضيفه Base) لا يُعاد استعماله ويُهدر */}
   <Header lang={lang} alt={alt} />

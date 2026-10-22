@@ -38,6 +38,9 @@ import type { Lang } from '../i18n/ui';
 
 interface Props {
   title: string;
+  /* عنوان المشاركة (og:title وtwitter:title) إن اختلف عن عنوان الصفحة — افتراضيه title.
+     عنوان الصفحة المبنيّ للبحث (الاسم في المكان: الفائدة) لا يصلح بطاقة مشاركة، فتُمرَّر الاسم المجرد. */
+  ogTitle?: string;
   description?: string;
   lang?: Lang;
   alt?: AltLinks;
@@ -59,7 +62,7 @@ interface Props {
   langSuggest?: boolean;
 }
 const {
-  title,
+  title, ogTitle,
   description = 'الأحساء — أكبر واحة في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
   lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
   langSuggest = true,
@@ -126,7 +129,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* بيان التطبيق بلغة الصفحة: العربي ملف ثابت، والبقية من src/pages/[lang]/site.webmanifest.ts */}
     <link rel="manifest" href={lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`} />
-    <Seo title={title} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
+    <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
     <meta name="copyright" content={copyrightNotice} />
     <meta name="rights" content={copyrightNotice} />
     <Fragment set:html={ownershipComment} />

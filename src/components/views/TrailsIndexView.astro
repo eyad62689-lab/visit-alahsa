@@ -9,6 +9,7 @@ import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import { TRAILS, trailAttribution, trailText, trailUnescoNote, trailsSeoDesc } from '../../data/trails';
+import { ui } from '../../i18n/ui';
 import { trailHref, type TrailLang } from '../../lib/trails';
 import { absUrl, breadcrumb } from '../../lib/schema';
 
@@ -32,7 +33,10 @@ const cards = TRAILS.map((tr) => ({
 }));
 
 const title = t('trails.title');
-const seoDesc = trailsSeoDesc(lang);
+// عنوان ووصف الرأس لـSEO (ar/en فقط): مفاتيح meta.* لا تتراجع إلى الإنجليزية في zh/de/ru/ur؛ والعدد مشتق من المسارات المعروضة.
+const hasMeta = Object.hasOwn(ui[lang], 'meta.trails.title');
+const headTitle = hasMeta ? t('meta.trails.title') : title;
+const seoDesc = hasMeta ? t('meta.trails.desc').replace('{n}', String(TRAILS.length)) : trailsSeoDesc(lang);
 
 const jsonLd = [
   {
@@ -45,7 +49,7 @@ const jsonLd = [
   ]),
 ];
 ---
-<Base title={`${title} ${titleSep(lang)} ${t('site.brand')}`} description={seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={`${headTitle} ${titleSep(lang)} ${t('site.brand')}`} description={seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={t('nav.trails')} title={title} lead={t('trails.lead')} leadWidth={60} motif="center" lang={lang}>

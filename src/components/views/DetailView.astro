@@ -10,6 +10,7 @@ import { catLabel } from '../../lib/categories';
 import { attractionHref, staticHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
 import { isThinAttraction } from '../../lib/publish';
+import { attractionTitle } from '../../lib/seo-title';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ui, type Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
@@ -49,7 +50,11 @@ const cta = a.cta && ctaLabel ? {
   url: ar ? a.cta.url : (a.cta.url_en ?? a.cta.url), label: ctaLabel,
   note: ar ? a.cta.note : zh ? a.cta.note_zh : de ? a.cta.note_de : ru ? a.cta.note_ru : ur ? a.cta.note_ur : a.cta.note_en,
 } : undefined;
-const description = answer ?? summary;
+// وصف الصفحة: description المخصّص (ar/en فقط، جمل حرفية من الإجابة أو النبذة) ثم الإجابة ثم النبذة.
+const customDescription = ar ? a.description : lang === 'en' ? a.description_en : undefined;
+const description = customDescription ?? answer ?? summary;
+// عنوان <title> المبنيّ بنية (الاسم في المكان: الفائدة) لـar/en فقط؛ بقية اللغات كما هي. H1 والفتات لا يتغيران.
+const seoTitle = ar || lang === 'en' ? attractionTitle(entry, lang) : title;
 // المعلم الحامل لمعرّف مكوّن يونسكو يربط صفحة المكوّنات بلغة الصفحة (بلغاتها الخمس منذ المرحلة هـ)
 const unescoHref = a.unesco ? staticHref('unesco', lang) : undefined;
 // الشارة برقم المكوّن وشرحه حيث يحمل قاموس اللغة det.unescoNo؛ وإلا الصيغة السابقة (التسمية · الرقم)
@@ -186,7 +191,7 @@ const trailLang = lang;
 const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
   .map((tr) => ({ href: trailHref(tr, trailLang), title: trailText(tr, trailLang).title, tagline: trailText(tr, trailLang).tagline, slug: tr.slug }));
 ---
-<Base title={`${title} ${titleSep(lang)} ${t('site.brand')}`} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
+<Base title={`${seoTitle} ${titleSep(lang)} ${t('site.brand')}`} ogTitle={ar || lang === 'en' ? title : undefined} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>

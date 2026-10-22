@@ -235,6 +235,8 @@ const TEXT_AR: EventTexts = {
   'palm-village': {
     slug: 'قرية-النخيل',
     name: 'قرية النخيل', place: 'حي محيرس، المبرز',
+    // عنوان الصفحة يميّزها عن صفحة المعلم «قرية النخيل» (C72: عنوان فريد عبر الصفحات)
+    seoTitle: 'فعالية قرية النخيل بالأحساء: الموسم والموقع',
     season: 'الشتاء', time: 'نوفمبر 2026م', span: 'لم تُعلن المدة بعد',
     org: 'هيئة تطوير الأحساء، أمانة الأحساء',
     related: [{ label: 'قرية النخيل', href: '/معالم/قرية-النخيل/' }],
@@ -375,6 +377,8 @@ const TEXT_EN: EventTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Palm Village', place: 'Muhairis district, Al-Mubarraz',
+    // Distinguishes the event page title from the "Palm Village" attraction page (C72: unique titles)
+    seoTitle: 'Palm Village Event in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'November 2026', span: 'Duration not yet announced',
     org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
     related: [{ label: 'Palm Village', href: '/en/attractions/palm-village/' }],
