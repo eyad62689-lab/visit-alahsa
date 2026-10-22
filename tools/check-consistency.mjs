@@ -32,6 +32,7 @@ import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, checkUrRound2
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
 import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
+import { checkImageDims } from './check-image-dims.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -63,7 +64,8 @@ const numInText = (text, num) => {
 };
 
 const ROOT = process.cwd();
-const DIST = path.join(ROOT, 'dist');
+// DIST من البيئة لاختبار الكسر على نسخة dist مؤقتة؛ الافتراضي dist الجذر بلا تغيير.
+const DIST = process.env.DIST ? path.resolve(process.env.DIST) : path.join(ROOT, 'dist');
 const SRC_ATTRACTIONS = path.join(ROOT, 'src/content/attractions');
 
 const results = [];
@@ -1311,6 +1313,10 @@ async function main() {
   //     المقال — والعكس: لا رابط في القسم إلى مقال لا يذكره (المنشور = الفهرس العكسي).
   // (ب) صفحة المنشأة التي يحمل مصدرها district تعرض كل المعالم الحاملة للحيّ نفسه
   //     (عدداً وروابط)، ولا قسم لمنشأة بلا حيّ. حارس إيجابي على العددين.
+  // (ج) مرآة (ب) على صفحة المعلم (ar/en): قسم «مطاعم ومقاهٍ قرب هذا المعلم» = المطاعم **المبنية**
+  //     (لها صفحة في dist) التي حيّها = حيّ المعلم أو يحوي near معرّفه — لا رابط خارج هذه المجموعة،
+  //     وبالسقف 4 (الأولوية للمسمّاة في near) فعددها min(4، المجموعة)؛ ولا قسم حين لا نتيجة،
+  //     ولا قسم في zh/de/ru/ur. كل رابط حدث related_click من نوع dining.
   {
     const problems = [];
     const AR_BLOG_DIR = 'مدونة';
@@ -1362,6 +1368,7 @@ async function main() {
     // (ب) المنشآت → معالم الحيّ
     const SRC_DINING = path.join(ROOT, 'src/content/dining');
     const attrByDistrict = new Map();
+    const attrMeta = new Map(); // معرّف ملف المعلم ← { district, slugAr, slugEn } لـ(ج)
     const attrById = new Map(); // معرّف ملف المعلم → روابطه، لحقل near في المنشأة
     for (const f of (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_ATTRACTIONS, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
@@ -1370,10 +1377,12 @@ async function main() {
       const links = { ar: `/${AR_ATTRACTIONS_DIR}/${slugAr}/`, en: `/en/attractions/${slugEn}/` };
       attrById.set(f.replace(/\.md$/, ''), links);
       const dist = fmField(head, 'district');
+      attrMeta.set(f.slice(0, -3), { district: dist, slugAr, slugEn });
       if (!dist) continue;
       (attrByDistrict.get(dist) ?? attrByDistrict.set(dist, []).get(dist)).push(links);
     }
     let diningWith = 0, diningChecked = 0, diningNear = 0;
+    const diningRecs = []; // المنشآت المبنيّة (لغة ← مسارها في dist)، لـ(ج)
     for (const f of (await readdir(SRC_DINING)).filter((n) => n.endsWith('.md'))) {
       const head = (await readText(path.join(SRC_DINING, f))).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
       const dist = fmField(head, 'district');
@@ -1387,6 +1396,7 @@ async function main() {
       if (near.length) diningNear++;
       const pages = [['ar', `/مطاعم-ومقاهي/${slugAr}/`], ['en', `/en/restaurants-cafes/${slugEn}/`]]
         .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      diningRecs.push({ dist, near, built: Object.fromEntries(pages.map(([l, p]) => [l, p])) });
       for (const [l, p, fp] of pages) {
         diningChecked++;
         const html = await readText(fp);
@@ -1401,9 +1411,37 @@ async function main() {
         if (extra.length) problems.push(`${p}: معالم الحيّ تربط ${extra.slice(0, 2).join('، ')} من خارج الحيّ`);
       }
     }
-    if (posts < 10 || withMentions < 20 || diningChecked < 20 || diningWith < 6) fail('C25', `الحارس صار فارغاً: ${posts} مقالات، ${withMentions} صفحة معلم بمقالات، ${diningChecked} صفحة منشأة (${diningWith} بمعالم حيّ) — المتوقع ≥10 و≥20 و≥20 و≥6`);
+    // (ج) المعالم → مطاعم قربها
+    const DINING_NEAR_MAX = 4;
+    let nearDiningPages = 0, nearDiningLinks = 0;
+    for (const [id, meta] of attrMeta) {
+      const pagesA = [['ar', `/${AR_ATTRACTIONS_DIR}/${meta.slugAr}/`], ['en', `/en/attractions/${meta.slugEn}/`], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, `/${l}/attractions/${meta.slugEn}/`])]
+        .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
+      for (const [l, p, fp] of pagesA) {
+        const html = await readText(fp);
+        const sec = html.match(/<section class="nearby-sec near-dining"[\s\S]*?<\/section>/)?.[0] ?? '';
+        if (l !== 'ar' && l !== 'en') { if (sec) problems.push(`${p}: قسم المطاعم القريبة في لغة بلا مفاتيحه`); continue; }
+        const all = diningRecs.filter((r) => r.built[l] && ((r.dist && r.dist === meta.district) || r.near.includes(id)));
+        const want = new Set(all.map((r) => r.built[l]));
+        const explicit = new Set(all.filter((r) => r.near.includes(id)).map((r) => r.built[l]));
+        const got = hrefsOf(sec);
+        if (!want.size) { if (sec) problems.push(`${p}: قسم مطاعم قريبة بلا مطعم مبنيّ في حيّه أو في near`); continue; }
+        if (!sec) { problems.push(`${p}: لا قسم للمطاعم القريبة رغم ${want.size} مطعماً مبنياً`); continue; }
+        nearDiningPages++; nearDiningLinks += got.size;
+        const extra = [...got].filter((x) => !want.has(x));
+        if (extra.length) problems.push(`${p}: المطاعم القريبة تربط ${extra.slice(0, 2).join('، ')} وليست حيّه ولا في near`);
+        if (got.size !== Math.min(DINING_NEAR_MAX, want.size)) problems.push(`${p}: ${got.size} مطعماً في القسم والمتوقع ${Math.min(DINING_NEAR_MAX, want.size)}`);
+        // المسمّاة في near تتقدّم: كلها حاضرة إن وسعها السقف، وإلا فالقسم كله منها
+        const exMiss = [...explicit].filter((x) => !got.has(x));
+        if (explicit.size <= DINING_NEAR_MAX ? exMiss.length : [...got].some((x) => !explicit.has(x))) problems.push(`${p}: المسمّاة في near لا تتقدّم على مطاعم الحيّ${exMiss.length ? ` — ناقص ${exMiss.slice(0, 2).join('، ')}` : ''}`);
+        const tracked = (sec.match(/data-track="related_click" data-track-kind="dining"/g) ?? []).length;
+        if (tracked !== got.size) problems.push(`${p}: ${tracked} من ${got.size} رابط مطعم فقط يحمل related_click/dining`);
+      }
+    }
+    if (nearDiningPages < 6) fail('C25', `الحارس صار فارغاً: ${nearDiningPages} صفحة معلم تحمل قسم المطاعم القريبة — المتوقع ≥6`);
+    else if (posts < 10 || withMentions < 20 || diningChecked < 20 || diningWith < 6) fail('C25', `الحارس صار فارغاً: ${posts} مقالات، ${withMentions} صفحة معلم بمقالات، ${diningChecked} صفحة منشأة (${diningWith} بمعالم حيّ) — المتوقع ≥10 و≥20 و≥20 و≥6`);
     else if (problems.length) fail('C25', `الربط الداخلي: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C25', `${withMentions} صفحة معلم تحمل قسم المقالات (${mentionLinks} رابطاً) مطابقاً للمقالات الـ${posts} التي تذكرها، و${diningWith} من ${diningChecked} صفحة منشأة تعرض معالم حيّها كاملةً (${diningNear} منشأة بمعالم مجاورة مسمّاة في near)`);
+    else pass('C25', `${withMentions} صفحة معلم تحمل قسم المقالات (${mentionLinks} رابطاً) مطابقاً للمقالات الـ${posts} التي تذكرها، و${diningWith} من ${diningChecked} صفحة منشأة تعرض معالم حيّها كاملةً (${diningNear} منشأة بمعالم مجاورة مسمّاة في near)، و${nearDiningPages} صفحة معلم (ar/en) تحمل قسم «مطاعم ومقاهٍ قرب هذا المعلم» (${nearDiningLinks} رابطاً) مطابقاً لفهرسها العكسي`);
   }
 
   // ── C26: تبادل hreflang (الخطوة 10 من خطة التفاعل العالمي — المدونة متعددة اللغات) ──
@@ -1673,6 +1711,64 @@ async function main() {
       if (problems[id].length) fail(id, `دليل المرشدين: ${problems[id].length} مشكلة — ${problems[id].slice(0, 4).join(' · ')}`);
       else pass(id, OK[id]);
     }
+  }
+
+  // ── C75: تكافؤ sitemap وhreflang (2026-10-22) ──────────────────────────────────────────
+  // كل صفحة مبنية قابلة للفهرسة (بلا noindex) تُعلن نفسها في hreflang يجب أن يكون <loc> لها في
+  // sitemap؛ وبالعكس كل <loc> يقابل صفحة مبنية قابلة للفهرسة. الثغرة التي سدّها: /ur/stay/<slug>/
+  // و/ur/restaurants-cafes/<slug>/ كانت تحمل hreflang="ur" وتغيب عن الخريطة لأن فرعي المنشآت فيها
+  // كانا يُسقطان ur. C23 يغطي المعالم وحدها، وC26 تبادل hreflang لا الخريطة.
+  // المقارنة على المسار مفكوك الترميز (loc يُرمَّز بالنسبة المئوية وhref قد يأتي مرمَّزاً أو لا — كما في C24-د).
+  // الاستثناءات المقصودة: صفحات noindex (رحلتي، المعالم الرقيقة، دليل المرشدين الفارغ، غير المعلَن
+  // الموسوم noindex…) لا تدخل الخريطة؛ وما سوى index.html (404.html، ملفات الحزم) ليس صفحة معلَنة؛
+  // و/brand/ للتطوير المحلي فقط (CLAUDE.md الجذر) فتُستثنى إن وُجدت في dist.
+  {
+    const dec = (u) => { try { return decodeURIComponent(u); } catch { return u; } };
+    const ORIGIN = 'https://visit-alahsa.com';
+    const smXml = existsSync(smPath) ? await readText(smPath) : '';
+    const locPaths = [...smXml.matchAll(new RegExp('<loc>([^<]+)</loc>', 'g'))].map((m) => dec(m[1].replace(ORIGIN, '')));
+    const locSet = new Set(locPaths);
+    const built = new Map(); // المسار المفكوك → { rel, indexable, selfHreflang }
+    for (const fp of htmlFiles) {
+      const rel = path.relative(DIST, fp).split(path.sep).join('/');
+      if (!rel.endsWith('index.html')) continue;
+      const pagePath = '/' + rel.slice(0, -'index.html'.length);
+      if (pagePath.startsWith('/brand/')) continue;
+      const html = await readText(fp);
+      const noindex = /<meta[^>]+name="robots"[^>]*content="[^"]*noindex/i.test(html) || /<meta[^>]+content="[^"]*noindex[^"]*"[^>]*name="robots"/i.test(html);
+      let selfHreflang = false;
+      for (const m of html.matchAll(/<link rel="alternate" hreflang="(?!x-default)[^"]+" href="([^"]+)"/g)) {
+        if (dec(m[1].replace(ORIGIN, '')) === pagePath) { selfHreflang = true; break; }
+      }
+      built.set(pagePath, { rel, indexable: !noindex, selfHreflang });
+    }
+    const problems = [];
+    let declared = 0;
+    for (const [p, b] of built) {
+      if (!b.indexable || !b.selfHreflang) continue;
+      declared++;
+      if (!locSet.has(p)) problems.push(`${b.rel}: تحمل hreflang لنفسها وقابلة للفهرسة وغائبة عن sitemap`);
+    }
+    for (const p of locSet) {
+      const b = built.get(p);
+      if (!b) problems.push(`sitemap: <loc> ${p} بلا صفحة مبنية`);
+      else if (!b.indexable) problems.push(`sitemap: <loc> ${p} صفحة noindex`);
+    }
+    if (locSet.size !== locPaths.length) problems.push(`sitemap: ${locPaths.length - locSet.size} <loc> مكرر`);
+    if (locSet.size < 300 || declared < 300) fail('C75', `الحارس صار فارغاً: ${locSet.size} <loc> و${declared} صفحة معلَنة قابلة للفهرسة — المتوقع ≥300 لكلٍّ`);
+    else if (problems.length) fail('C75', `تكافؤ sitemap وhreflang: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C75', `sitemap وhreflang متكافئان: ${locSet.size} <loc> كلها صفحات مبنية قابلة للفهرسة، و${declared} صفحة معلَنة بـhreflang كلها في الخريطة`);
+  }
+
+  // ── C74: كل <img> من /img/ يحمل width وheight عدديين ───────────────────────────────────────
+  // المنطق في tools/check-image-dims.mjs (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة)؛ هنا
+  // القراءة فقط: كل صفحات dist. الأبعاد من src/data/image-widths.json عبر Photo وHeroPoster.
+  {
+    const pages = [];
+    for (const f of htmlFiles) pages.push({ rel: path.relative(DIST, f).split(path.sep).join('/'), html: await readText(f) });
+    const { problems, stats } = checkImageDims(pages);
+    if (problems.length) fail('C74', `أبعاد الصور: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C74', `${stats.checked} صورة من /img/ في ${stats.pages} صفحة تحمل width وheight عدديين موجبين`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────

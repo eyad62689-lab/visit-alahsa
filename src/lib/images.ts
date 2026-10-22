@@ -6,7 +6,7 @@
 
 import manifest from '../data/image-widths.json';
 
-type Entry = { full: number; fullWebp: number; widths: number[] };
+type Entry = { full: number; fullWebp: number; widths: number[]; height?: number; heightWebp?: number };
 const widths = manifest as Record<string, Entry>;
 
 /** يحوّل "/img/qasr-ibrahim" إلى "qasr-ibrahim" و"/img/fruits/khalas-v2" إلى
@@ -25,4 +25,13 @@ export function srcsetFor(src: string): { jpg: string; webp: string } | undefine
       `${src}.${ext} ${fullWidth}w`,
     ].join(', ');
   return { jpg: build('jpg', entry.full), webp: build('webp', entry.fullWebp) };
+}
+
+/** أبعاد الأصل (jpg) لصورة من البيان، لإخراجها في width/height على <img> فيحجز المتصفح
+ *  المساحة قبل التحميل. الحجم المعروض يبقى بالـCSS (inline-size/block-size/aspect-ratio)؛
+ *  السمتان هنا تعطيان نسبة العرض إلى الارتفاع فقط. undefined لصورة خارج البيان. */
+export function dimsFor(src: string): { width: number; height: number } | undefined {
+  const entry = widths[keyOf(src)];
+  if (!entry || !entry.full || !entry.height) return undefined;
+  return { width: entry.full, height: entry.height };
 }
