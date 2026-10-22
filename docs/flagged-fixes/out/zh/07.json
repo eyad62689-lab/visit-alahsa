@@ -1,0 +1,46 @@
+{
+  "batch": "flagged-fixes",
+  "lang": "zh",
+  "stage": 7,
+  "date": "2026-10-22",
+  "threshold": 90,
+  "score": 93,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 19,
+    "cultural_fit": 8,
+    "structure": 10,
+    "total": 93
+  },
+  "decision": "APPROVE",
+  "judge_edits": [
+    {
+      "where": "sentence 4 (branches)",
+      "from": "咖啡馆在哈萨另设两家分店",
+      "to": "咖啡馆在哈萨共有两家分店",
+      "why": "另设 = two branches besides this one; source وله في الأحساء فرعان counts this café as one of the two (blind reader serious #1)."
+    },
+    {
+      "where": "sentence 4 (branches)",
+      "from": "紧邻易卜拉欣宫的 7st Al-Bait，以及",
+      "to": "一家是 7st Al-Bait，即紧邻易卜拉欣宫的这一家；另一家是",
+      "why": "Source «شارع 7 البيت» وهو هذا الذي بجوار القصر: Al-Bait IS this café. Keeps the stage-5 fix 城堡→易卜拉欣宫 (termbase Qasr Ibrahim)."
+    },
+    {
+      "where": "sentence 4 (branches)",
+      "from": "萨拉姆区内的 7st Al-Kinnah",
+      "to": "萨拉姆区的 7st Al-Kinnah",
+      "why": "Drops 内 to lighten the stacked place words (reader #3); 地区 + quotes kept for the owner-confirmed area name (بمنطقة الحزام الذهبي)."
+    }
+  ],
+  "rulings": "Scope: the one flagged sentence only; every other character is verbatim current. 城堡 → 易卜拉欣宫 accepted from stage 5 (termbase). 黄金地带 kept per termbase (Golden Belt = 黄金地带) and marked as an area name with “” + 地区, matching the source change to منطقة الحزام الذهبي; the reader read it as a named area, so the flagged ambiguity is resolved in-language. Residual: without a transliteration or map anchor a reader cannot locate the area. That is source-level (the source names the area, not where it is) and goes to the owner, no deduction here. Judge edit fixes the reader serious item in the same sentence: the café has two branches, Al-Bait being this one beside Qasr Ibrahim.",
+  "blind_disposition": "#1 serious: fixed by judge edit (共有 + 即…这一家). #3 minor: area-name reading confirmed by the reader; 内 dropped; map-locatability is source-level, to the owner. Out of scope (published text outside the flagged sentence or page chrome; no edit, no deduction): #2 均由店家自行命名 (part of the sentence but not flagged; mirrors source يسمّيهما بنفسه, kept); #4 no gloss for Maqha Shari' 7; #5 精品咖啡 repetition; #6 location-line order 里法阿北区——胡富夫 (template); #7 Google rating/hours notice without data (template/live data); #8 Google Maps link text redundancy (template a11y); #9 哈米迪耶 vs Arabic-based forms (termbase); #10 恰好 / long Al-Koot sentence.",
+  "positions": [
+    {
+      "id": "zh-7st-body",
+      "current": "7st 咖啡馆的店名同时用阿拉伯文（音译 Maqha Shari' 7）和拉丁字母“7st”两种文字书写。它坐落在胡富夫的里法阿北区，紧邻易卜拉欣宫，于 2025 年开业。这里以精品咖啡与意式浓缩咖啡为主打。咖啡馆在哈萨另设两家分店，均由店家自行命名：紧邻城堡的 7st Al-Bait，以及位于黄金地带萨拉姆区内的 7st Al-Kinnah。与咖啡馆相邻的库特区是胡富夫最古老的街区，区内有易卜拉欣宫和贾布里清真寺，一直延伸到凯撒利亚集市，这家咖啡馆恰好处在老城步行游览的范围之内。除精品咖啡外，店内还供应多种饮品与甜点。",
+      "proposed": "7st 咖啡馆的店名同时用阿拉伯文（音译 Maqha Shari' 7）和拉丁字母“7st”两种文字书写。它坐落在胡富夫的里法阿北区，紧邻易卜拉欣宫，于 2025 年开业。这里以精品咖啡与意式浓缩咖啡为主打。咖啡馆在哈萨共有两家分店，均由店家自行命名：一家是 7st Al-Bait，即紧邻易卜拉欣宫的这一家；另一家是位于“黄金地带”地区萨拉姆区的 7st Al-Kinnah。与咖啡馆相邻的库特区是胡富夫最古老的街区，区内有易卜拉欣宫和贾布里清真寺，一直延伸到凯撒利亚集市，这家咖啡馆恰好处在老城步行游览的范围之内。除精品咖啡外，店内还供应多种饮品与甜点。"
+    }
+  ]
+}
