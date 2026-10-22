@@ -5,16 +5,12 @@
 import { getCollection } from 'astro:content';
 import { diningAlt } from '../../lib/routes';
 import DiningDetailView from '../../components/views/DiningDetailView.astro';
+import { hasDiningPage } from '../../lib/publish';
 
 export async function getStaticPaths() {
-  const WORD_MIN_AR = 80;
-  const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
   const items = await getCollection('dining');
   return items
-    .filter((e) => {
-      const body = (e.body ?? '').trim();
-      return words(body) >= WORD_MIN_AR && body !== e.data.blurb;
-    })
+    .filter((e) => hasDiningPage(e, 'ar'))
     .map((entry) => ({
       params: { slug: entry.data.slug_ar },
       props: { entry, alt: diningAlt(entry.data) },
