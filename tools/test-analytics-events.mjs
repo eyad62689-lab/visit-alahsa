@@ -128,6 +128,18 @@ try {
   const ls = await waitEvent(page, 'lang_switch', (p) => p.from === 'en' && p.to === 'ar');
   ok(ls, 'lang_switch عند تبديل اللغة', 'from = en · to = ar');
 
+  // «مطاعم ومقاهٍ قرب هذا المعلم»: صفحة بقسم حاضر (جبل القارة بلا مطعم مبنيّ في حيّه) — نمنع التنقّل ونبقي النقر
+  await goto('/en/attractions/qasr-ibrahim/');
+  const nearDiningCard = await page.$('.near-dining a.nb-card');
+  ok(!!nearDiningCard, 'قسم «مطاعم ومقاهٍ قرب هذا المعلم» حاضر في صفحة قصر إبراهيم');
+  if (nearDiningCard) {
+    await page.evaluate(() => document.querySelectorAll('.near-dining a.nb-card').forEach((a) => a.addEventListener('click', (e) => e.preventDefault())));
+    await page.click('.near-dining a.nb-card');
+    ev = await events(page);
+    const rcD = find(ev, 'related_click', (p) => p.kind === 'dining');
+    ok(rcD && typeof rcD.params.item_id === 'string' && rcD.params.item_id.length > 0, 'related_click على مطعم أو مقهى قريب', rcD ? `item_id = ${rcD.params.item_id}` : '');
+  }
+
   console.log('\n── الفلاتر: الخريطة والمطاعم وفهرس المعالم ──');
   await goto('/en/map/');
   const chip = (await page.$$('.chip[data-filter]'))[1];

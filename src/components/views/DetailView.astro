@@ -13,7 +13,8 @@ import { isThinAttraction } from '../../lib/publish';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ui, type Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
-import { kmBetween, distLabel } from '../../lib/distance';
+import { distLabel } from '../../lib/distance';
+import { nearbyAttractions, diningNear } from '../../lib/nearby';
 import ShareButton from '../ShareButton.astro';
 import { mentionsOf } from '../../lib/related';
 import { trailHref, trailsForAttraction } from '../../lib/trails';
@@ -171,38 +172,13 @@ const noticeOp = t('det.hoursNotice.op');
 // «أكمل يومك» — أقرب 3 معالم تُحسب وقت البناء من الإحداثيات الموثّقة في ملفات المعالم.
 // المسافة بخطٍّ مستقيم — kmBetween وdistLabel في src/lib/distance.ts (مشتركة مع الخريطة
 // و«كم يبعد عني» منذ الخطوة 7 من خطة التفاعل العالمي). لا تُقدَّر مسافات قيادة.
-const nearby = a.location
-  ? (await getCollection('attractions'))
-      .filter((e) => e.data.slug_ar !== a.slug_ar && e.data.location)
-      .map((e) => ({
-        // البطاقة القريبة بلغة الصفحة، وعنوانها يتراجع للإنجليزية إن غابت
-        // ترجمته الصينية — لكن رابطها يقصد صفحة اللغة الحالية إن وُجدت،
-        // وإلا فالإنجليزية (لا رابط لصفحة /zh/ غير مولّدة).
-        href: attractionHref(e.data, (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) || (ur && !e.data.title_ur) ? 'en' : lang),
-        title: ar ? e.data.title
-          : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title)
-          : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title)
-          : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title)
-          : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title)
-          : (e.data.title_en ?? e.data.title),
-        cat: catLabel(e.data.category, lang),
-        // العنوان المتراجع للإنجليزية يُوسم lang="en" فيقرؤه قارئ الشاشة بلغته،
-        // ويستثنيه الحارس C18 (تهجئة Souk الألمانية) من نصّ الصفحة الألماني.
-        titleLang: (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) || (ur && !e.data.title_ur) ? 'en' : undefined,
-        id: e.data.slug_en,
-        img: e.data.heroImage,
-        km: kmBetween(a.location!.lat, a.location!.lng, e.data.location!.lat, e.data.location!.lng),
-      }))
-      .sort((x, y) => x.km - y.km)
-      .slice(0, 3)
-      .map((n) => ({
-        ...n,
-        // الصيني من خط الإنتاج (misc.underKm/aboutKm — دورة 2026-08-29)
-        // والألماني من دفعة الواجهة الألمانية (detail.underKm/aboutKm — 2026-09-03)
-        // والروسي من دفعة الواجهة الروسية (2026-09-05)
-        dist: distLabel(n.km, lang),
-      }))
-  : [];
+// الحساب في src/lib/nearby.ts (مكاشَف على مستوى الوحدة).
+const nearby = await nearbyAttractions(entry, lang);
+
+// «مطاعم ومقاهٍ قرب هذا المعلم» (ar/en فقط): الفهرس العكسي لقسم «معالم قريبة» في صفحة المطعم —
+// مطاعم حيّ المعلم أو المسمّاة قربه في near، ممن لهم صفحة مبنية. لا مسافة ولا ادّعاء. يحرسه C25 (ج).
+// مفاتيح النص ar/en فقط (useTranslations يتراجع للإنجليزية)، فتُقرأ بلا تراجع وتُخفى الكتلة في غيرهما.
+const nearDining = Object.hasOwn(ui[lang], 'det.nearDining.h') ? await diningNear(entry, lang) : [];
 
 // «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم، بلغة الصفحة.
 // الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
@@ -372,6 +348,27 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
       </section>
     )}
 
+    {nearDining.length > 0 && (
+      <section class="nearby-sec near-dining">
+        <div class="container" data-reveal>
+          <h2 class="nb-h">{t('det.nearDining.h')}</h2>
+          <div class="nb-grid">
+            {nearDining.map((n) => (
+              <a class="card card--lift nb-card" href={n.href} data-track="related_click" data-track-kind="dining" data-track-item-id={n.id}>
+                <Photo src={n.img} label={n.alt} class="nb-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                <div class="nb-body">
+                  <span class="t-caption nb-k">{t(`det.nearDining.k.${n.kind}`)}</span>
+                  <h3 class="nb-t">{n.name}</h3>
+                  {n.area && <span class="nb-dist">{n.area}</span>}
+                </div>
+              </a>
+            ))}
+          </div>
+          <p class="nb-note">{t('det.nearDining.note')}</p>
+        </div>
+      </section>
+    )}
+
     {inTrails.length > 0 && (
       <section class="container trails-sec" data-reveal data-part-of-trails>
         <h2 class="mn-h">{t('trails.partOf')}</h2>
@@ -536,6 +533,8 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .trails-sec { padding-block: var(--s-6) 0; }
   .trl-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.6; }
   .nearby-sec { background: var(--c-sand-2); padding-block: var(--s-6); }
+  /* قسم المطاعم يلي «معالم قريبة» مباشرةً: يتصل بها بلا حشوة علوية مضاعفة */
+  .nearby-sec + .near-dining { padding-block-start: 0; }
   .nb-h { font-size: var(--t-xl); color: var(--c-turq-deep); }
   .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-1) var(--s-4); }
   .nb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
