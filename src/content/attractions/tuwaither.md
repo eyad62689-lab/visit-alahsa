@@ -35,6 +35,14 @@ summary_en: "A mountain of cool grottoes and rock formations north of Al-Tuwaith
 body_en: "In the Al-Qou' quarter north of Al-Tuwaither village, amid the belt of Al-Ahsa's eastern villages some twenty kilometres east of Hofuf, rises Abu Husais Mountain, bordered on the west by the palm groves of Al-Tuwaither and Al-Qarah. The mountain is famed for its narrow grottoes, from which cool draughts flow year-round — a trait of Al-Ahsa's sedimentary hills — and for wind-carved rock formations and slopes easy enough for casual climbing. In 2024, Al-Ahsa Municipality signed an investment contract to develop and operate the mountain as a tourist resort with eco-friendly rural lodges over an area of 100,000 square metres."
 area: قرية التويثير — القرى الشرقية، الأحساء
 area_en: "Al-Tuwaither village — the eastern villages, Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: free
+description: "جبل بمغارات باردة وتشكيلات صخرية شمالي التويثير. في حي القوع شمالي قرية التويثير، وسط حزام القرى الشرقية وعلى نحو عشرين كيلومتراً شرق الهفوف."
+description_en: "A mountain of cool grottoes and rock formations north of Al-Tuwaither, amid the eastern villages. The mountain is famed for its narrow grottoes."
 featured: false
 order: 38
 openSite: true

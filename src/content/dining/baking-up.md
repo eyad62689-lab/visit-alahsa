@@ -9,6 +9,8 @@ area: "طريق عين نجم — المبرز"
 area_en: "Ain Najm Road — Al-Mubarraz"
 blurb: "مخبوزات ومقرمشات — كما يعرّف نفسه في خرائط قوقل — بواجهة مبهجة وجلسات خارجية."
 blurb_en: "Bakes and crunchy treats — as it calls itself on Google Maps — behind a cheerful storefront."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "«بيكينق آب» علامة مخبوزات وحلويات تأسست عام 2016 ومقرّها الدمام. وموقعها على طريق عين نجم بالمبرز داخل برج فخر، أي وحدة تجارية في مبنى حديث لا مبنى مستقل."
 alt: "واجهة بيكينق آب وجلساتها الخارجية بمظلاتها"
 alt_en: "Baking Up’s storefront with umbrellas and outdoor seating"
 blurb_zh: "明快的店面加上户外座位，店家在谷歌地图上自称“烘焙点心与酥脆小食”。"

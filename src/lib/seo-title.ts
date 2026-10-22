@@ -25,8 +25,10 @@ export function attractionTitle(entry: TitleSource, lang: SeoLang): string {
   const place = lang === 'ar' ? seo.place : seo.place_en;
   const benefit = seo.benefit ? SEO_BENEFITS[seo.benefit][lang] : undefined;
   if (!benefit) return title;
+  // فائدة اليونسكو تسمّي الأحساء بنفسها، فلا يُكرَّر «في الأحساء» قبلها (قصر خزام: ضمن واحة الأحساء في اليونسكو)
+  const redundant = seo.benefit === 'unesco' && (place === 'الأحساء' || place === 'Al-Ahsa');
   const forms = [
-    ...(place ? [lang === 'ar' ? `${title} في ${place}: ${benefit}` : `${title} in ${place}: ${benefit}`] : []),
+    ...(place && !redundant ? [lang === 'ar' ? `${title} في ${place}: ${benefit}` : `${title} in ${place}: ${benefit}`] : []),
     `${title}: ${benefit}`,
   ];
   return forms.find((f) => titleLen(f) <= SEO_LIMITS.titleMax) ?? title;

@@ -35,6 +35,14 @@ summary_en: "A private museum in Al-Jafr whose collection fills twenty-six theme
 body_en: "In the town of Al-Jafr, east of the oasis, sits the museum of Walid Al-Najim, one of the region's most notable private museums, its collection arranged over some 400 square metres in twenty-six themed corners. The museum is licensed by the Ministry of Culture, and its corners recreate whole scenes of old Hasawi life: a vintage grocery shop, a bridal chamber, a historic classroom, men's and women's majlis rooms, craftsmen's corners for blacksmithing, carpentry and jewellery-making, along with old Saudi coins and stamps, antique furniture, dress and early machines. Officials of the tourism and heritage authority have praised it as a private museum of notable heritage value."
 area: بلدة الجفر — شرق الأحساء
 area_en: "Al-Jafr — eastern Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "في بلدة الجفر شرقي الواحة يقع متحف وليد الناجم، أحد أبرز المتاحف الخاصة في المنطقة، تتوزع مقتنياته على نحو 400 متر مربع في ستة وعشرين ركناً متخصصاً."
+description_en: "A private museum in Al-Jafr whose collection fills twenty-six themed corners recreating old Hasawi life. In the town of Al-Jafr, east of the oasis."
 featured: false
 order: 57
 practical:

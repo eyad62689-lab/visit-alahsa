@@ -10,6 +10,8 @@
 import { createHash } from 'node:crypto';
 
 export const LANGS = ['zh', 'de', 'ru', 'ur'];
+// مقارن صريح للنصوص (SonarJS S2871: sort بلا مقارن خطأ موثوقية) — ترتيب نقاط الترميز، ثابت عبر الأنظمة
+export const byCode = (a, b) => (a < b ? -1 : Number(a > b));
 
 // توحيد نهايات الأسطر إلى LF وقصّ الأطراف قبل البصمة: نسخة ويندوز بـautocrlf وCI على لينكس
 // يجب أن يخرجا ببصمة واحدة.
@@ -29,7 +31,7 @@ export function checkDrift(lock, current) {
   const drifted = [], unregistered = [], orphaned = [];
   let pairs = 0;
   const slugs = new Set([...Object.keys(lock ?? {}), ...Object.keys(current ?? {})]);
-  for (const slug of [...slugs].sort()) {
+  for (const slug of [...slugs].sort(byCode)) {
     const cur = current?.[slug];
     const entry = lock?.[slug] ?? {};
     const nowSha = cur ? enSha(cur.body_en) : null;

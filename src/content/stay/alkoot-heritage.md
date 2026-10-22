@@ -8,6 +8,8 @@ area: "حي الكوت — مقابل قصر إبراهيم"
 area_en: "Al-Koot district — opposite Qasr Ibrahim"
 blurb: "غرفٌ تحت أسقفٍ من جذوع النخل وجريده في قصرٍ رُمّم نُزلاً تراثياً."
 blurb_en: "Rooms beneath ceilings of palm trunks and fronds, in a palace restored as a heritage inn."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "في حي الكوت بالهفوف، مقابل قصر إبراهيم، يقيم الزائر داخل قصرٍ يقارب عمره مئتي عام. الغرف ثمانية أجنحة تحت أسقفٍ من جذوع النخل وجريده."
 alt: "غرفة في فندق الكوت التراثي بسقفها من جذوع النخل وكواها المقوّسة ونسيج السدو"
 alt_en: "A room at Al-Koot Heritage Hotel, with its palm-trunk ceiling, arched niches and sadu weaving"
 blurb_zh: "客房设在一座修复后改作传统客栈的宫殿里，顶棚由椰枣树干与枝叶搭成。"

@@ -9,6 +9,8 @@ area: "حي الخالدية — مقابل جامعة الملك فيصل"
 area_en: "Al-Khalidiyah — opposite King Faisal University"
 blurb: "سفرة فطور شعبي تُبسط على الخوص طبقاً إلى جانب طبق."
 blurb_en: "A traditional breakfast spread laid out on woven mats, plate after plate."
+# وصف الصفحة لـSEO: جمل حرفية من المتن (body) بلا أسعار ولا أحكام جودة.
+description: "فطور الحوي مطعم فطور في حي الخالدية بالهفوف، مقابل جامعة الملك فيصل. واسمه من مفردة محلية: «الحوي» هو الفناء أو المساحة المكشوفة في المنزل — حوي البيت."
 alt: "سفرة فطور شعبي بأطباقها المتنوعة في مطعم الحوي"
 alt_en: "A traditional breakfast spread of assorted dishes at Al Hawy"
 blurb_zh: "传统早餐铺在棕榈叶编织席上，一盘挨着一盘。"

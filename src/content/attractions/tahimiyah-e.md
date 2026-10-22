@@ -35,6 +35,14 @@ summary_en: "An old mud-built mosque in Al-Tahimiyah, the village once famed for
 body_en: "In the village of Al-Tahimiyah, among Al-Ahsa's eastern villages some twelve kilometres from Hofuf, stands the Al-Tahimiyah East Mosque — also known as the First Tahimiyah Mosque, and in earlier times as Abu Al-Nu'ush Mosque, where funeral prayers were held before burial in the nearby cemetery. Its history goes back centuries; the village itself was once famed as 'the village of forty mosques', of which only around eleven remain. It is a modest mud structure of three arcades around an inner courtyard, enclosed by an outer wall and roofed with palm trunks, holding about fifty worshippers, built on the banks of the old Zuhairi stream with the slopes of Al-Qarah Mountain close by. In 2017 it was listed among Al-Ahsa's officially registered historic mosques, and its setting near Al-Qarah Mountain makes it an easy stop for visitors to the area."
 area: قرية التهيمية — القرى الشرقية، الأحساء
 area_en: "Al-Tahimiyah village — the eastern villages, Al-Ahsa"
+# عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
+# الوصف جمل حرفية من الملخص والمتن (يتحقق C24 من المتن على dist)؛ يفرضه المخطط ويحرسه C24 على dist.
+seo:
+  place: "الأحساء"
+  place_en: "Al-Ahsa"
+  benefit: hours-fees
+description: "مسجد طيني أثري في قرية التهيمية التي اشتهرت قديماً بقرية الأربعين مسجداً. أُدرج عام 2017م ضمن قائمة المساجد التاريخية المسجلة رسمياً في الأحساء."
+description_en: "An old mud-built mosque in Al-Tahimiyah. Its history goes back centuries; the village itself was once famed as 'the village of forty mosques'."
 featured: false
 order: 26
 practical:
