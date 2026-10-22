@@ -60,17 +60,22 @@ async function main() {
   for (const base of bases) {
     const srcJpg = join(IMG_DIR, `${base}.jpg`)
     const srcWebp = join(IMG_DIR, `${base}.webp`)
-    const full = (await sharp(srcJpg).metadata()).width
-    if (!full) {
+    const metaJpg = await sharp(srcJpg).metadata()
+    const full = metaJpg.width
+    const height = metaJpg.height
+    if (!full || !height) {
       console.warn(`تخطّي ${base}: تعذّرت قراءة العرض`)
       continue
     }
     // الأصلان قد يختلفان في العرض (حُوِّلا في وقتين مختلفين)، ووصفة w في srcset
     // يجب أن تطابق العرض الحقيقي لكل ملف وإلا اختار المتصفح مرشّحاً خاطئاً.
-    const fullWebp = existsSync(srcWebp) ? (await sharp(srcWebp).metadata()).width || full : full
+    const metaWebp = existsSync(srcWebp) ? await sharp(srcWebp).metadata() : null
+    const fullWebp = metaWebp?.width || full
+    const heightWebp = metaWebp?.height || height
 
     const targets = LADDER.filter((w) => w < Math.min(full, fullWebp))
-    manifest[base] = { full, fullWebp, widths: targets }
+    // height/heightWebp أبعاد الأصل الحقيقية: يخرجها Photo/HeroPoster في width/height فيحجز المتصفح المساحة قبل التحميل
+    manifest[base] = { full, fullWebp, widths: targets, height, heightWebp }
 
     for (const w of targets) {
       for (const [ext, opts] of [
