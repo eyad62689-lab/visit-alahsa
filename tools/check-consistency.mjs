@@ -32,6 +32,7 @@ import { checkUrLetterforms, checkUrRulings, checkUrRound1Rulings, checkUrRound2
 import { checkNastaliqSubset, PACKAGE as NASTALIQ_PACKAGE } from './check-nastaliq-subset.mjs';
 import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
+import { checkImageDims } from './check-image-dims.mjs';
 
 // كل قراءة نصّية تمرّ من هنا فتُوحَّد نهايات الأسطر على LF قبل أي تعبير نمطي. نسخة ويندوز
 // العاملة بـcore.autocrlf=true تحمل ملفات المصدر بـCRLF بينما CI على لينكس يراها LF، وأنماطٌ
@@ -63,7 +64,8 @@ const numInText = (text, num) => {
 };
 
 const ROOT = process.cwd();
-const DIST = path.join(ROOT, 'dist');
+// DIST من البيئة لاختبار الكسر على نسخة dist مؤقتة؛ الافتراضي dist الجذر بلا تغيير.
+const DIST = process.env.DIST ? path.resolve(process.env.DIST) : path.join(ROOT, 'dist');
 const SRC_ATTRACTIONS = path.join(ROOT, 'src/content/attractions');
 
 const results = [];
@@ -1673,6 +1675,17 @@ async function main() {
       if (problems[id].length) fail(id, `دليل المرشدين: ${problems[id].length} مشكلة — ${problems[id].slice(0, 4).join(' · ')}`);
       else pass(id, OK[id]);
     }
+  }
+
+  // ── C74: كل <img> من /img/ يحمل width وheight عدديين ───────────────────────────────────────
+  // المنطق في tools/check-image-dims.mjs (دالة نقية يُختبر كسرها على نسخة dist في الذاكرة)؛ هنا
+  // القراءة فقط: كل صفحات dist. الأبعاد من src/data/image-widths.json عبر Photo وHeroPoster.
+  {
+    const pages = [];
+    for (const f of htmlFiles) pages.push({ rel: path.relative(DIST, f).split(path.sep).join('/'), html: await readText(f) });
+    const { problems, stats } = checkImageDims(pages);
+    if (problems.length) fail('C74', `أبعاد الصور: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C74', `${stats.checked} صورة من /img/ في ${stats.pages} صفحة تحمل width وheight عدديين موجبين`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────
