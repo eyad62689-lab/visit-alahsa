@@ -40,7 +40,8 @@ heroImage: /img/jabal-al-qarah
 kicker: أعجوبة جيولوجية
 summary: كهوفٌ تبرد في الصيف وتدفأ في الشتاء، نحتها الزمن في قلب الواحة.
 summary_en: "Caves that stay cool in summer and warm in winter, carved by time at the heart of the oasis."
-body_en: "Jabal Al-Qarah rises from the middle of the oasis like an ancient guardian, but its secret lies not in its height — rather in its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth in the depth of winter — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity. Walk its narrow corridors, where the stone almost brushes your shoulders, then suddenly opens onto a high chamber pierced by a thread of light. From the summit the oasis unfolds like a sea of palms — a view that sums up why Al-Ahsa became the largest oasis on earth."
+# متن (ar/en) من docs/attractions/jabal-al-qarah/facts.md — تحقق 2026-10-22
+body_en: "Jabal Al-Qarah rises east of Hofuf in the middle of a green oasis filled with palms, and its caves, not its height, are what make it special. The mountain is a flat-topped hill of sedimentary rock carved by erosion, threaded with caves and passages that stay pleasantly cool at the height of summer and gently warm in winter. It lies within Component 01 of “Al-Ahsa Oasis, an Evolving Cultural Landscape”, inscribed on the UNESCO World Heritage List in 2018; Al-Ahsa is the largest oasis in the world.\n\n## History\n\nJabal Al-Qarah was once known as Jabal Al-Shab'an. Four historic villages surround it, Al-Tuwaithir, Al-Dalwah, Al-Tahimiyah and Al-Qarah, and the mountain takes its name from the last of them. Before air conditioning spread, its caves were where people from the nearby villages escaped the summer heat, especially during the daytime in Ramadan. In 2016 the Land of Civilisations cultural tourism project opened in part, and in January 2018 it opened officially with a tourist trail, a leisure trail and an information hall; according to 2020 coverage, the project occupies about 10% of the mountain.\n\n## What you'll see\n\nAccording to the Saudipedia encyclopaedia, Jabal Al-Qarah has 12 caves of different shapes and lengths, among them Al-Nashab, Al-Naqa (also written Al-Naqah), Al-Eid, Al-Mahyoub and Bu Saleh. According to the Saudi Tourism Authority, these caves contain 28 long passages stretching 1.5 kilometres. In Al-Nashab cave, long, narrow, tall corridors cross one another at right angles, and its galleries rise to the top of the mountain through openings that let daylight in. You find yourself between two walls that almost touch your shoulders, then the rock opens onto a high chamber pierced by a shaft of light. According to Saudipedia, the caves stay close to 20°C even when it is over 40°C outside. Weathering has shaped mushroom-like forms in the mountain's rock, and its summit looks out over the governorate's palms and the surrounding towns.\n\nAccording to the Saudi Tourism Authority, some caves are used for workshops by traditional potters. According to the Al-Yaum newspaper in 2023, the mountain park has a mosque, a café and a gift shop, and lighting and a footbridge have been installed in the mountain area.\n\n## Best time to visit\n\nThe Al-Yaum newspaper (2023) describes Jabal Al-Qarah as a year-round destination thanks to the atmosphere of its caves, and as a good spot for watching birds such as the hoopoe, the bee-eater and the bulbul during the migration season.\n\n## Getting there\n\nThe mountain is in the town of Al-Qarah, which is also home to Dougha Al-Gharash Pottery. You can find it on the attractions map.\n\n## Visitor tips\n\nThe Saudi Tourism Authority notes that guided tours are available to introduce you to the history of Jabal Al-Qarah. A cave researcher cautions that some of the cave routes are difficult and need experts or people from the nearby areas, and the Al-Yaum newspaper advises anyone climbing the mountain to take care and go with a guide. Hours and fees are in the visit card above. Before you go, read the guide to visiting the caves of Jabal Al-Qarah, and if you want to fold the visit into a longer trip, see 48 hours in Al-Ahsa."
 area: شرق الهفوف — الأحساء
 area_en: "East of Hofuf — Al-Ahsa"
 hoursSpec:
@@ -119,20 +120,32 @@ faq:
     a_ru: "В светлое время суток."
     q_ur: "جبل القارہ کی سیر کے لیے بہترین وقت کون سا ہے؟"
     a_ur: "دن کا وقت۔"
+  - q: "هل جبل القارة ضمن موقع واحة الأحساء في اليونسكو؟"
+    a: "نعم، يقع جبل القارة ضمن المكوّن الأول (الواحة الشرقية) لموقع «واحة الأحساء، منظر ثقافي آخذ بالتغير» المسجّل في قائمة التراث العالمي عام 2018."
+    q_en: "Is Jabal Al-Qarah part of the Al-Ahsa Oasis UNESCO site?"
+    a_en: "Yes. Jabal Al-Qarah lies within Component 01 (the Eastern Oasis) of “Al-Ahsa Oasis, an Evolving Cultural Landscape”, inscribed on the World Heritage List in 2018."
 ---
 
-يرتفع جبل القارة من وسط الواحة كأنّه حارسٌ قديم، لكنّ سرّه ليس في علوّه بل في
-جوفه. شقوقٌ ومغاراتٌ تتسلّل بين صخوره، تحتفظ ببرودةٍ لطيفةٍ في ذروة القيظ، ودفءٍ
-هادئٍ في قلب الشتاء — ظاهرةٌ طبيعيةٌ جعلت أهل الأحساء يأوون إليها منذ القِدم.
+يرتفع جبل القارة شرق الهفوف وسط واحة خضراء يملؤها النخيل، وكهوفه هي سرّه لا علوّه. فالجبل تلّ مسطّح القمة من صخور رسوبية نحتتها عوامل التعرية، وتتخلّله مغارات وممرات تحتفظ ببرودة لطيفة في ذروة القيظ ودفء هادئ في الشتاء. ويقع ضمن المكوّن الأول لموقع «واحة الأحساء، منظر ثقافي آخذ بالتغير» المسجّل في قائمة التراث العالمي لليونسكو عام 2018، والأحساء أكبر واحة في العالم.
 
-امشِ بين ممرّاته الضيقة، حيث يضيق الصخر حتى يكاد يلمس كتفيك، ثم ينفتح فجأةً على
-قاعةٍ عاليةٍ يتسرّب إليها خيطُ ضوء. هنا يلتقي الجيولوجيا بالحكاية: صخورٌ شكّلها
-الماء والريح عبر آلاف السنين، وظلٌّ يحتمي به الزائر كما احتمى به الأوّلون.
+## التاريخ
 
-لا يضمّ الجبل ممرّاً واحداً متّصلاً، بل **اثنتي عشرة مغارةً** متباينة الأشكال —
-منها كهف الناقة وكهف العيد وكهف المهيوب — تحافظ على اعتدالٍ حراريٍّ يقارب 20°م
-طوال العام. وفيه 28 ممرّاً طوليّاً شاهقاً تمتدّ لمسافة 1.5 كيلومتر. وضمن مشروع
-«أرض الحضارات» تتكامل تجربة الزيارة بمساراتٍ ومرافق ومطلّات.
+عُرف جبل القارة قديماً باسم «جبل الشبعان»، وتحيط به أربع قرى تاريخية هي التويثير والدالوة والتهيمية والقارة، ومن قرية القارة أخذ اسمه. قبل انتشار المكيّفات كانت مغاراته ملجأ أهل القرى المجاورة من حرّ الصيف، ولا سيما في نهارات رمضان. وفي عام 2016 فُتح جزئياً مشروع [«أرض الحضارات»](/معالم/أرض-الحضارات/) السياحي الثقافي، ثم افتُتح رسمياً في يناير 2018 بمسار سياحي ومسار ترفيهي وقاعة معلومات، ويشغل المشروع، بحسب تغطية عام 2020، نحو 10% من مساحة الجبل.
 
-من أعلى الجبل تتكشّف الواحة كبحرٍ من النخيل لا تكاد عينك تبلغ طرفه — مشهدٌ يلخّص
-لماذا صارت الأحساء أكبر واحةٍ في العالم.
+## ما تراه
+
+في جبل القارة 12 مغارة مختلفة الأشكال والأطوال بحسب موسوعة سعوديبيديا، منها كهف النشاب وكهف النقا (ويُكتب الناقة) وكهف العيد وكهف المهيوب وكهف بوصالح. وبحسب الهيئة السعودية للسياحة، في هذه الكهوف 28 ممراً طولياً تمتد لمسافة 1.5 كيلومتر. في كهف النشاب تتقاطع ممرات طويلة ضيقة عالية بزوايا قائمة، وتصعد أروقته إلى سطح الجبل عبر فتحات يتسرّب منها ضوء النهار. تجد نفسك بين جدارين يكادان يلمسان كتفيك، ثم ينفتح الصخر على قاعة عالية يخترقها شعاع. وتبقى حرارة المغارات، بحسب سعوديبيديا، قريبة من 20°م حتى حين يتجاوز الخارج 40°م. شكّلت التجوية في صخور الجبل أشكالاً تشبه الفطر، وتطل قمته على نخيل المحافظة والبلدات المحيطة.
+
+بحسب الهيئة السعودية للسياحة، تُستخدم بعض الكهوف لورش صانعي الفخار التقليديين. ويضم منتزه الجبل، بحسب صحيفة اليوم عام 2023، مسجداً ومقهى ومتجر هدايا، وأُقيمت في منطقة الجبل إضاءات وجسر للمشاة.
+
+## أفضل وقت للزيارة
+
+تصف صحيفة اليوم (2023) جبل القارة بأنه وجهة سياحية على مدار السنة بفضل أجواء كهوفه، ومكان مناسب لمراقبة الطيور، كالهدهد والوروار والبلبل، في موسم الهجرة.
+
+## الوصول
+
+يقع الجبل في بلدة القارة، وفيها كذلك [دوغة الغراش](/معالم/دوقة-الغراش/). وتجد موقعه على [خريطة المعالم](/خريطة/).
+
+## نصائح للزيارة
+
+تذكر الهيئة السعودية للسياحة توافر جولات بصحبة مرشدين يعرّفونك بتاريخ جبل القارة. وينبّه باحث في الكهوف إلى أن بعض طرقها صعبة وتحتاج إلى خبراء أو سكان من المناطق القريبة، وتنصح صحيفة اليوم من يصعد الجبل بالحذر والاستعانة بمرشد. والمواعيد والرسوم في بطاقة الزيارة أعلاه. وقبل الزيارة اقرأ [دليل زيارة كهوف جبل القارة](/مدونة/دليل-زيارة-جبل-القارة/)، وإن أردت ضمّها إلى جولة أوسع فانظر [48 ساعة في الأحساء](/مدونة/48-ساعة-في-الأحساء/).
