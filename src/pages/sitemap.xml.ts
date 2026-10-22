@@ -33,6 +33,27 @@ export const GET: APIRoute = async ({ site }) => {
   const attractionFiles = items.map((e) => e.filePath).filter((p): p is string => Boolean(p));
   const dateOf = (...paths: string[]) => newestDate(paths);
 
+  // صفحة منشأة/إقامة: العربية تُبنى بمتن عربي ≥ 80 كلمة، والإنجليزية بمتن إنجليزي ≥ 100، وكل لغة
+  // أخرى (zh/de/ru/ur) تُبنى بعتبة الإنجليزية نفسها مع body_<lang> معتمد (ويحمله alt من routes.ts
+  // دالةً واحدة: diningAlt/stayAlt). فالخريطة تُدرج كل صفحة مبنية بلغتها — الأوردية منها (2026-10-22)،
+  // وإلا حملت /ur/stay/<slug>/ hreflang="ur" وغابت عن الخريطة (يحرسه C75).
+  const facilityPairs = (
+    e: { body?: string; filePath?: string; data: { blurb: string; blurb_en: string; body_en: string } },
+    a: { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string },
+  ): Pair[] => {
+    const w = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
+    const bodyAr = (e.body ?? '').trim();
+    const okAr = w(bodyAr) >= 80 && bodyAr !== e.data.blurb;
+    const okEn = w(e.data.body_en) >= 100 && e.data.body_en.trim() !== e.data.blurb_en;
+    if (!okAr && !okEn) return [];
+    const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
+    if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.zh ? { zh: a.zh } : {}), ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), ...(a.ur ? { ur: a.ur } : {}), lastmod }];
+    const out: Pair[] = [{ ar: okAr ? a.ar : a.en, lastmod }];
+    // لغات zh/de/ru/ur لا تحتاج العتبة العربية: متى عبر الإنجليزي بنيت فتدخل منفردةً (غير المعلَن في unlisted.ts يُستبعد)
+    if (okEn) for (const l of ['zh', 'de', 'ru', 'ur'] as const) if (a[l] && !isUnlisted(a[l]!)) out.push({ ar: a[l]!, lastmod });
+    return out;
+  };
+
   // أزواج (عربي/إنجليزي/صيني اختياري) — تُستبعد «رحلتي» الشخصية (noindex).
   // zh/de/ru/ur ترد من attractionAlt حين يحمل المعلم ترجمةً معتمدة بتلك اللغة.
   // الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة والفعاليات (وصفحاتها المفردة) لها صفّ ur هنا؛ وما عداها بلا صفحة أوردية فلا يُعلَن.
@@ -43,6 +64,9 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', de: '/de/souqs-parks-farms/', ru: '/ru/souqs-parks-farms/', ur: '/ur/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', de: '/de/map/', ru: '/ru/map/', ur: '/ur/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
     { ...staticAlt('terrainMap'), lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
+
+    // السياسات: مفهرسة وتعلن hreflang بلغاتها الخمس (يحرسه C75)
+    { ...staticAlt('legal'), lastmod: dateOf(`${V}LegalView.astro`, 'src/data/legal.ts') },
     { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', de: '/de/fruits/', ru: '/ru/fruits/', ur: '/ur/fruits/', lastmod: dateOf(`${V}FruitsView.astro`, 'src/data/fruits.ts') },
     { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', ur: '/ur/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
@@ -79,33 +103,11 @@ export const GET: APIRoute = async ({ site }) => {
     }),
     // المعالم الرقيقة (lib/publish.ts) noindex فلا تدخل الخريطة بأي لغة
     ...items.filter((e) => !isThinAttraction(e)).map((e) => ({ ...attractionAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath) : undefined })),
-    // صفحات المنشآت المفردة — تدخل الخريطة فقط متى عبر متنُها العتبة، تطابقاً
+    // صفحات المنشآت المفردة وأماكن الإقامة — تدخل الخريطة فقط متى عبر متنُها العتبة، تطابقاً
     // مع حارس getStaticPaths. وإن عبرت لغةٌ دون الأخرى دخلت وحدها بلا hreflang،
     // فلا يُعلَن زوجٌ لصفحة غير مولَّدة (docs/قرار-بنية-صفحات-المنشآت.md).
-    ...places.flatMap((e) => {
-      const w = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
-      const bodyAr = (e.body ?? '').trim();
-      const okAr = w(bodyAr) >= 80 && bodyAr !== e.data.blurb;
-      const okEn = w(e.data.body_en) >= 100 && e.data.body_en.trim() !== e.data.blurb_en;
-      if (!okAr && !okEn) return [];
-      const a = diningAlt(e.data);
-      const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
-      // والصينية والألمانية والروسية متى حملت المنشأة body_zh (د1) أو body_de (ج7) أو body_ru (ب6)
-      if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.zh ? { zh: a.zh } : {}), ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), lastmod }];
-      return [{ ar: okAr ? a.ar : a.en, lastmod }];
-    }),
-    // صفحات أماكن الإقامة المفردة — العتبة نفسها وحارسها نفسه
-    ...stays.flatMap((e) => {
-      const w = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
-      const bodyAr = (e.body ?? '').trim();
-      const okAr = w(bodyAr) >= 80 && bodyAr !== e.data.blurb;
-      const okEn = w(e.data.body_en) >= 100 && e.data.body_en.trim() !== e.data.blurb_en;
-      if (!okAr && !okEn) return [];
-      const a = stayAlt(e.data);
-      const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
-      if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.zh ? { zh: a.zh } : {}), ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), lastmod }];
-      return [{ ar: okAr ? a.ar : a.en, lastmod }];
-    }),
+    ...places.flatMap((e) => facilityPairs(e, diningAlt(e.data))),
+    ...stays.flatMap((e) => facilityPairs(e, stayAlt(e.data))),
     // صفحات الفعاليات المفردة — تُقرن بالمعرّف id لا بالترتيب؛ النسخة الصينية كاملة
     ...EVENTS_AR.map((e) => ({
       ar: '/فعاليات/' + e.slug + '/',
