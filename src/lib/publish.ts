@@ -27,3 +27,15 @@ export function attractionContentWords(entry: CollectionEntry<'attractions'>, la
 /** رقيقة = دون العتبة بالعربية أو بالإنجليزية. */
 export const isThinAttraction = (entry: CollectionEntry<'attractions'>): boolean =>
   attractionContentWords(entry, 'ar') < THIN_WORDS || attractionContentWords(entry, 'en') < THIN_WORDS;
+
+// بوابة صفحة المنشأة المفردة (مطعم/مقهى/مخبز) بالعربية والإنجليزية: متنٌ يعبر العتبة
+// (80 كلمة عربية / 100 إنجليزية) ولا يكون نسخةً من النبذة. مصدر واحد لمساري
+// `مطاعم-ومقاهي/[slug]` و`en/restaurants-cafes/[slug]` ولكل رابط يقصد تلك الصفحات
+// (قسم «مطاعم ومقاهٍ قرب هذا المعلم») — فلا يُربط إلا ما له صفحة مبنية وإلا أخفق check-links.
+export const DINING_WORD_MIN = { ar: 80, en: 100 } as const;
+
+export function hasDiningPage(entry: CollectionEntry<'dining'>, lang: 'ar' | 'en'): boolean {
+  const d = entry.data;
+  const body = (lang === 'ar' ? (entry.body ?? '') : d.body_en).trim();
+  return words(body) >= DINING_WORD_MIN[lang] && body !== (lang === 'ar' ? d.blurb : d.blurb_en);
+}
