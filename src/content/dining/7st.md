@@ -5,6 +5,7 @@ slug_ar: "مقهى-شارع-7"
 slug_en: "7st"
 kind: cafe
 district: rafah-north
+near: [qasr-ibrahim]
 area: "حي الرفعة الشمالية — الهفوف"
 area_en: "North Al-Rifaa — Hofuf"
 blurb: "قهوة مختصة في جلسة كلاسيكية بكراسٍ جلدية ونوافذ من الزجاج الملون."

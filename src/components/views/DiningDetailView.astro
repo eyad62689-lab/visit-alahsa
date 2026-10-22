@@ -51,11 +51,15 @@ const bodyEnParas = (zh && d.body_zh?.trim() ? d.body_zh : de && d.body_de?.trim
 
 // «معالم قريبة في الحيّ» (الخطوة 9 من خطة التفاعل العالمي): المعالم التي تحمل مفتاح حيّ
 // المنشأة نفسه (district — مشتقّ من نصّ area في ملف المعلم، يفرضه المخطط). بلا حيّ لا قسم.
-const sights = d.district
-  ? (await getCollection('attractions'))
-      .filter((e) => e.data.district === d.district)
-      .sort((x, y) => x.data.order - y.data.order)
-      .map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
+// ومعها المعالم المجاورة المسمّاة في حقل near (من حيٍّ آخر)، بعد معالم الحيّ.
+const near = d.near ?? [];
+const allAttractions = await getCollection('attractions');
+for (const id of near) if (!allAttractions.some((e) => e.id === id)) throw new Error(`dining ${d.slug_en}: near "${id}" is not an attraction`);
+const sights = d.district || near.length
+  ? [
+      ...allAttractions.filter((e) => d.district && e.data.district === d.district && !near.includes(e.id)).sort((x, y) => x.data.order - y.data.order),
+      ...near.map((id) => allAttractions.find((e) => e.id === id)!),
+    ].map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
   : [];
 
 const C = localize(lang, {
@@ -157,7 +161,8 @@ const C = localize(lang, {
     sightsH: 'Достопримечательности поблизости: {district}',
   },
 });
-const sightsH = d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : ur ? 'ur' : 'en'][d.district]) : '';
+// مع معلمٍ من حيٍّ آخر لا يصدق «… في {الحي}»، فيُستعمل عنوان «أكمل يومك» المعتمد في صفحة المعلم
+const sightsH = near.length ? t('det.nearby.h') : d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : ur ? 'ur' : 'en'][d.district]) : '';
 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
