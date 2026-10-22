@@ -1,0 +1,48 @@
+{
+  "batch": "flagged-fixes",
+  "lang": "de",
+  "stage": 7,
+  "date": "2026-10-22",
+  "threshold": 90,
+  "score": 93,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 26,
+    "termbase_style": 19,
+    "cultural_fit": 9,
+    "structure": 10,
+    "total": 93
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "rulings": "Scope held: each position changes only the flagged fragment; the rest of every string is byte-identical to the pack current. (1) de-7st-body: «an „Golden Belt“» (preposition + bare name) replaced by «im Al-Salam-Viertel des Golden-Belt-Gebiets» — Durchkopplung per naming_policy, genitive mirrors en_after \"of the Golden Belt area\" and ar_after «بمنطقة الحزام الذهبي». «Gebiet» is now sanctioned: the old termbase objection (no Sachklaerung because neither en nor ar carried one) is void after the owner source change of 2026-10-22, which itself names the area. Quotes dropped because the name is now a compound element. Ellipsis «den neben dem Palast» resolved to «den Standort neben Qasr Ibrahim» (accusative apposition to «zwei Standorte» correct; the established name avoids the palace/fort mismatch with en \"fort\"). Blind reader (b) confirms the reference is clear. Small deduction: «Standorte … Standort» repetition, acceptable for clarity. (2) de-map.lead.a: «suchen Sie nach einer Sehenswuerdigkeit» supplies the object; blind reader (d) reads it correctly. Minor deduction: Sehenswuerdigkeit now occurs three times in the lead; no edit, because replacing the counted noun would touch unflagged text or introduce a non-termbase synonym. (3) de-tmap.lead: «den Ort» fixes the antecedent (name -> place); reader confirms. (4)/(5) foot.l.visa and plan.visa: «Visa-Leitfaden» matches tm.json entries ui.foot.l.visa / ui.plan.visa and the page self-description in src/data/visa-guide.de.ts h1 «Ihr kurzer Leitfaden»; «Guide» is barred as Denglisch; nominal labels match the other de footer and plan buttons, so no verb needed. Reader (c) accepts it.",
+  "termbase_notes": "UPDATE REQUIRED in de-translation/glossary/termbase.json, entry en \"the Golden Belt (الحزام الذهبي …)\": the STUFE-7 note (\"Eine Sachklaerung (Ringstrasse, Gebiet) bleibt aus\") is superseded. New wording to record: de \"das Golden-Belt-Gebiet\" (artikel \"das\", from Gebiet), used as genitive «des Golden-Belt-Gebiets»; source = owner source change 2026-10-22 (ar «بمنطقة الحزام الذهبي», en \"the Golden Belt area\"); batch flagged-fixes; status derived (owner-sourced), the bare name «Golden Belt» stays unchanged. «Ringstrasse» remains barred (no source). Also update the Al-Salam district entry en gloss from \"on the Golden Belt\" to \"of the Golden Belt area\". No change to TM for Visa-Leitfaden (already present).",
+  "blind_disposition": "#1 serious (café footer shows \"Visa guide\"): artifact of the cut — only the café body was substituted on that page; the footer reads shared key foot.l.visa, which this batch adds, so every page will show «Visa-Leitfaden». No deduction. #2 (what/where is Golden Belt): source-level — the source names the area but not its location; German is correct; for the owner. No deduction. #3 (district of Qasr Ibrahim), #4 («fuehrt seinen Namen… zugleich», meaning of Maqha Shari 7), #5 («die es selbst so nennt»), #6 («innerhalb des Rundgangs zu Fuss»), #7 («Sein Foto»), #8 («beschreibt nur, ohne zu empfehlen»), #9 (footer tagline Haine/Dattelpalmen), #10 (plan page \"ausgezeichnete Wahl\" ambiguity), #11 (plan page digits vs words): all on published, out-of-scope text — no edit, no deduction; candidates for a later blind-flag round.",
+  "positions": [
+    {
+      "id": "de-7st-body",
+      "current": "7st führt seinen Namen in beiden Schriftsystemen zugleich: in arabischer Schrift, umschrieben „Maqha Shari' 7“, und in lateinischer Schrift „7st“. Das Café liegt im Al-Rifaa-Nord-Viertel von Hofuf, neben Qasr Ibrahim, und wurde 2025 eröffnet. Es versteht sich als Adresse für Spezialitätenkaffee und Espresso. In Al-Ahsa hat es zwei Standorte, die es selbst so nennt: 7st Al-Bait, den neben dem Palast, und 7st Al-Kinnah im Al-Salam-Viertel an „Golden Belt“. An das Café grenzt das Al-Koot-Viertel, das älteste in Hofuf: Hier liegen Qasr Ibrahim und die Al-Jabri-Moschee, und das Viertel reicht bis zum Qaisariyah-Souk. Damit liegt das Café innerhalb des Rundgangs zu Fuß durch die Altstadt. Sein Foto zeigt eine Sitzecke aus Lederstühlen unter einem bunten Glasfenster.",
+      "proposed": "7st führt seinen Namen in beiden Schriftsystemen zugleich: in arabischer Schrift, umschrieben „Maqha Shari' 7“, und in lateinischer Schrift „7st“. Das Café liegt im Al-Rifaa-Nord-Viertel von Hofuf, neben Qasr Ibrahim, und wurde 2025 eröffnet. Es versteht sich als Adresse für Spezialitätenkaffee und Espresso. In Al-Ahsa hat es zwei Standorte, die es selbst so nennt: 7st Al-Bait, den Standort neben Qasr Ibrahim, und 7st Al-Kinnah im Al-Salam-Viertel des Golden-Belt-Gebiets. An das Café grenzt das Al-Koot-Viertel, das älteste in Hofuf: Hier liegen Qasr Ibrahim und die Al-Jabri-Moschee, und das Viertel reicht bis zum Qaisariyah-Souk. Damit liegt das Café innerhalb des Rundgangs zu Fuß durch die Altstadt. Sein Foto zeigt eine Sitzecke aus Lederstühlen unter einem bunten Glasfenster."
+    },
+    {
+      "id": "de-map.lead.a",
+      "current": "Sehenswürdigkeiten auf der Karte der Oase – suchen Sie oder wählen Sie eine Kategorie. Klicken oder tippen Sie dann auf eine beliebige Sehenswürdigkeit in der Liste oder auf der Karte, um ihre Kurzinfo zu öffnen.",
+      "proposed": "Sehenswürdigkeiten auf der Karte der Oase – suchen Sie nach einer Sehenswürdigkeit oder wählen Sie eine Kategorie. Klicken oder tippen Sie dann auf eine beliebige Sehenswürdigkeit in der Liste oder auf der Karte, um ihre Kurzinfo zu öffnen."
+    },
+    {
+      "id": "de-tmap.lead",
+      "current": "Die Oase im Relief: Jabal al-Qarah (der Qarah-Berg), die Palmenhaine und die Dünen im Osten – jedes Ausflugsziel an seinem tatsächlichen Standort. Klicken oder tippen Sie auf einen Namen in der Liste, um ihn auf der Karte zu sehen.",
+      "proposed": "Die Oase im Relief: Jabal al-Qarah (der Qarah-Berg), die Palmenhaine und die Dünen im Osten – jedes Ausflugsziel an seinem tatsächlichen Standort. Klicken oder tippen Sie auf einen Namen in der Liste, um den Ort auf der Karte zu sehen."
+    },
+    {
+      "id": "de-foot.l.visa",
+      "current": "",
+      "proposed": "Visa-Leitfaden"
+    },
+    {
+      "id": "de-plan.visa",
+      "current": "",
+      "proposed": "Visa-Leitfaden"
+    }
+  ]
+}
