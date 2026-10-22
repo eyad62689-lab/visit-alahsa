@@ -14,7 +14,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { LANGS, enSha } from './drift.mjs';
+import { LANGS, enSha, byCode } from './drift.mjs';
 
 export const ROOT = path.resolve(import.meta.dirname, '../..');
 export const LOCK_PATH = path.join(ROOT, 'tools/translation/lock.json');
@@ -58,7 +58,7 @@ export function readFields(text, where = 'ملف') {
 // { slug_en: { file, body_en, body_zh?, ... } }
 export function readAttractions(dir = ATTRACTIONS_DIR) {
   const out = {};
-  for (const f of readdirSync(dir).filter((n) => n.endsWith('.md')).sort()) {
+  for (const f of readdirSync(dir).filter((n) => n.endsWith('.md')).sort(byCode)) {
     const fields = readFields(readFileSync(path.join(dir, f), 'utf8'), f);
     if (!fields.slug_en) throw new Error(`${f}: لا slug_en`);
     if (out[fields.slug_en]) throw new Error(`${f}: slug_en مكرر مع ${out[fields.slug_en].file}`);
@@ -74,7 +74,7 @@ export function loadLock(p = LOCK_PATH) {
 // مفاتيح مرتّبة لثبات الفرق: المعالم أبجدياً، واللغات بترتيب LANGS، وحقول المدخل enSha ثم at ثم baseline.
 export function saveLock(lock, p = LOCK_PATH) {
   const sorted = {};
-  for (const slug of Object.keys(lock).sort()) {
+  for (const slug of Object.keys(lock).sort(byCode)) {
     sorted[slug] = {};
     for (const lang of LANGS) {
       const e = lock[slug][lang];
