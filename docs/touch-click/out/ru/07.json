@@ -1,0 +1,42 @@
+{
+  "batch": "touch-click",
+  "lang": "ru",
+  "stage": 7,
+  "date": "2026-10-22",
+  "threshold": 90,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 28,
+    "termbase_transcription_orthography": 19,
+    "fit_for_traveller": 9,
+    "structural_integrity": 10,
+    "total": 95
+  },
+  "decision": "APPROVE",
+  "judge_edits": [],
+  "rulings": "Threshold 90; score 95 >= 90 => APPROVE. Scope = the verb phrases only (owner ruling 2026-10-21: one verb valid for both a mouse click and a finger tap). ru-map.lead.a «нажимайте на любой объект», ru-tmap.lead «Нажмите на любое название», ru-plan.empty.d «нажмите «Сохранить место»»: kept byte-identical. «нажимать/нажать (на)» is the standard device-neutral Russian UI verb, covering click and tap alike; it is the verb #211 kept on the home map lead («Нажмите»), and the blind reader confirmed all three fit both devices. Not «кликните/щёлкните» (mouse-only) nor «коснитесь/тапните» (touch-only); «кликайте или нажимайте» would be redundant against the neutral verb. ru-dining-heroSum: only «в одно касание» -> «одним нажатием» (касание is touch-only; нажатие is the noun of the site-wide neutral verb and mirrors ar «بضغطة واحدة» / en \"one click or tap away\"). Syntax check: «точка на Google Картах, куда можно перейти одним нажатием» — «куда» (adverbial relative, antecedent «точка») correctly governs the directional «перейти»; «одним нажатием» is instrumental of means (одним: instr. sg. neuter agreeing with нажатием), the idiomatic pattern as in «одним кликом/одним движением»; «в одно нажатие» is possible but less natural. Every other byte of the four strings unchanged (verified by script). Deductions: accuracy -1 (en_after doubles the verb «click or tap»; Russian conveys it with one neutral verb, a deliberate, precedent-backed compression); nativeness -2 (headline register of the surrounding published sentences, unscored for edits but the verb phrases sit in them); termbase -1 (no termbase entry yet for the нажимать/нажатие rule — recommend adding); fit -1 (no mouse-specific cue for desktop readers, acceptable per #211).",
+  "blind_disposition": "Blind reader: 0 serious, 5 minor; all four verbs judged to fit both mouse and touch, no mouse-only or touch-only verb. All five minor points are on published text outside this batch's mission (the verb only), so: no edit, no deduction; listed for the owner. (1) tmap.lead «и каждая достопримечательность на своём месте» reads like a set phrase; reader suggests «с отмеченными на ней достопримечательностями». (2) restaurants eyebrow «От столов Аль-Ахсы» literal/odd; suggests «Кухня Аль-Ахсы» or «С местных столов». (3) dining heroSum «народных блюд» unusual for restaurant food (suggests «традиционных»/«местных блюд»); «историческая обстановка» slightly stiff (suggests «исторические интерьеры»). (4) «пекарни финикового хлеба» grammatical but the dish may be unfamiliar — acceptable. (5) plan tagline «Оазис со своей историей» bland filler.",
+  "positions": [
+    {
+      "id": "ru-map.lead.a",
+      "current": "Ищите достопримечательности на карте оазиса — здесь их {n}: выбирайте категорию или пользуйтесь поиском, а затем нажимайте на любой объект в списке или на карте, чтобы открыть его карточку.",
+      "proposed": "Ищите достопримечательности на карте оазиса — здесь их {n}: выбирайте категорию или пользуйтесь поиском, а затем нажимайте на любой объект в списке или на карте, чтобы открыть его карточку."
+    },
+    {
+      "id": "ru-tmap.lead",
+      "current": "Рельеф оазиса: Джабаль-эль-Кара (гора Эль-Кара), пальмовые рощи и дюны на востоке — и каждая достопримечательность на своём месте. Нажмите на любое название в списке, чтобы увидеть его на карте.",
+      "proposed": "Рельеф оазиса: Джабаль-эль-Кара (гора Эль-Кара), пальмовые рощи и дюны на востоке — и каждая достопримечательность на своём месте. Нажмите на любое название в списке, чтобы увидеть его на карте."
+    },
+    {
+      "id": "ru-plan.empty.d",
+      "current": "Просмотрите достопримечательности и нажмите «Сохранить место», чтобы собрать здесь всё, что хотите посетить, а затем получите готовый маршрут.",
+      "proposed": "Просмотрите достопримечательности и нажмите «Сохранить место», чтобы собрать здесь всё, что хотите посетить, а затем получите готовый маршрут."
+    },
+    {
+      "id": "ru-dining-heroSum",
+      "current": "Ваш путеводитель по кухне Аль-Ахсы: рестораны, кафе и пекарни финикового хлеба в Эль-Хуфуфе, Эль-Мубарразе и в округе — от исторической обстановки и народных блюд до современных заведений и спешелти-кофе. У каждого места — своё фото и точка на Google Картах, куда можно перейти в одно касание. Список постоянно пополняется.",
+      "proposed": "Ваш путеводитель по кухне Аль-Ахсы: рестораны, кафе и пекарни финикового хлеба в Эль-Хуфуфе, Эль-Мубарразе и в округе — от исторической обстановки и народных блюд до современных заведений и спешелти-кофе. У каждого места — своё фото и точка на Google Картах, куда можно перейти одним нажатием. Список постоянно пополняется."
+    }
+  ]
+}
