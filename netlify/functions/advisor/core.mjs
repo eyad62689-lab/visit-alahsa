@@ -41,12 +41,13 @@ export function estimateCostUsd(model, usage) {
 }
 
 // ── التحقق من الطلب ───────────────────────────────────────────────────────────
-const ROLES = { user: 'user', assistant: 'assistant' }
 const bad = (error) => ({ ok: false, status: 400, error })
+// مقارنة صريحة لا بحث في كائن: ROLES[m.role] كان يُرجع دوال النموذج الأولي لـ'constructor' ونحوه
+const roleOf = (m) => (m?.role === 'user' || m?.role === 'assistant' ? m.role : null)
 
 /** رسالة واحدة: دورها ونصّها وحدودها وتناوبها مع السابقة — تعيد الرسالة المنظَّفة أو اسم الخطأ */
 function normalizeMessage(m, index, prevRole) {
-  const role = ROLES[m?.role] ?? null
+  const role = roleOf(m)
   if (!role) return { error: 'role' }
   if (typeof m.content !== 'string') return { error: 'content' }
   const content = m.content.replace(/\s+/g, ' ').trim()

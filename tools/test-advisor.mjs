@@ -34,6 +34,7 @@ ok(!validateRequest({ ...good, messages: [{ role: 'user', content: 'a' }, { role
 ok(!validateRequest({ ...good, messages: [{ role: 'user', content: 'x'.repeat(LIMITS.maxUserChars + 1) }] }).ok, 'رسالة أطول من الحد تُرفض');
 ok(!validateRequest({ ...good, messages: Array.from({ length: LIMITS.maxMessages + 1 }, (_, i) => ({ role: i % 2 ? 'assistant' : 'user', content: 'x' })) }).ok, 'أدوار أكثر من الحد تُرفض');
 ok(!validateRequest({ ...good, messages: [{ role: 'user', content: { $: 1 } }] }).ok, 'محتوى غير نصّي يُرفض');
+ok(!validateRequest({ ...good, messages: [{ role: 'constructor', content: 'x' }] }).ok && !validateRequest({ ...good, messages: [{ role: 'toString', content: 'x' }] }).ok, 'دور باسم خاصية من النموذج الأولي يُرفض');
 const long = validateRequest({ ...good, page: '/x'.repeat(400) });
 ok(long.ok && long.page.length === LIMITS.maxPathChars, 'المسار الطويل يُقصّ لا يُرفض');
 
