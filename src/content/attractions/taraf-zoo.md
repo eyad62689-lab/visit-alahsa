@@ -20,7 +20,7 @@ summary_de: "Ein Familienzoo im Ort Al-Taraf, östlich von Hofuf."
 body_de: "Im Ort Al-Taraf, östlich von Hofuf, inmitten der Dörfer der Oase, liegt der Al-Taraf-Zoo, ein Familienausflugsziel, in dem Kinder eine Vielfalt an Tieren aus nächster Nähe sehen können. Er zählt zu den ruhigen Familienausflügen der Gegend und lässt sich gut mit einem Besuch der nahen ländlichen Umgebung von Al-Taraf sowie des südlichen Teils der Oase verbinden. Erkundigen Sie sich lokal, bevor Sie die Reise planen."
 area_de: "Al-Taraf – östlich von Hofuf"
 # الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-14، الدفعة b10 — السجل في ur-translation/memory/scores.csv).
-title_ur: "الطرف کا چڑیا گھر"
+title_ur: "الطرف نامی قصبے کا چڑیا گھر"
 kicker_ur: "خاندانی تفریح"
 summary_ur: "ہفوف کے مشرق میں، الطرف نامی قصبے میں، خاندانوں کے لیے ایک چڑیا گھر۔"
 body_ur: "ہفوف کے مشرق میں الاحساء کے نخلستان کے دیہات کے بیچ الطرف نامی قصبہ ہے، جہاں الطرف کا چڑیا گھر واقع ہے۔ یہ خاندانوں کے لیے ایک تفریحی مقام ہے، جہاں بچے طرح طرح کے جانور قریب سے دیکھ سکتے ہیں۔ یہ اس علاقے میں خاندان کے ساتھ سادہ اور پرسکون سیر کی جگہوں میں سے ایک ہے۔ یہاں آنے کے ساتھ ساتھ آپ آسانی سے الطرف نامی قصبے کے قریبی دیہی علاقوں اور نخلستان کے جنوبی حصوں کی سیر بھی کر سکتے ہیں۔ سفر کا منصوبہ بنانے سے پہلے مقامی طور پر معلومات کی تصدیق کر لیں۔"

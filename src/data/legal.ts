@@ -51,7 +51,7 @@ export const LEGAL_SECTIONS_AR: LegalSection[] = [
   },
   {
     n: 'ثانيًا', h: 'شروط الاستخدام',
-    lead: 'تنظم هذه الشروط استخدامكم لموقع «زوروا الأحساء» وما يتضمنه من محتوى وخدمات. ويُعد دخولكم إلى الموقع واستخدامه قبولًا صريحًا بهذه الشروط والتزامًا بها.',
+    lead: 'تنظم هذه الشروط استخدامكم لموقع «زوروا الأحساء» وما يتضمنه من محتوى وخدمات. ويُعد دخولكم إلى الموقع واستخدامه قبولًا بهذه الشروط والتزامًا بها.',
     subs: [
       { h: '1. طبيعة الموقع والغرض منه',
         before: ['«زوروا الأحساء» موقع معلوماتي مستقل يهدف إلى التعريف بواحة الأحساء ومعالمها التراثية والطبيعية وفعالياتها الموسمية، وتقديم محتوى إرشادي وثقافي للزوار والمهتمين. والموقع ليس جهة حكومية، ولا يمثل أي هيئة رسمية، ولا يقدم خدمات حجز أو بيع مباشرة.'] },
@@ -126,7 +126,7 @@ export const LEGAL_SECTIONS_AR: LegalSection[] = [
     n: 'خامسًا', h: 'سياسة حقوق الملكية الفكرية',
     subs: [
       { h: '1. بيان الملكية',
-        before: ['جميع الحقوق محفوظة © لموقع «زوروا الأحساء» (visit-alahsa.com). يشمل ذلك — على سبيل المثال لا الحصر — النصوص والمقالات والسرود الأدبية والتاريخية، والصور الفوتوغرافية والمعالجة، والرسوم والتصاميم، والشعار والهوية البصرية (بما فيها شخصية البلبل أبيض الأذنين)، والخرائط التفاعلية، وبنية الموقع وشيفرته البرمجية. وكل ما ورد في الموقع من محتوى مرخص من أطراف أخرى يبقى ملكًا لأصحابه ويُستخدم وفق تراخيصه.'] },
+        before: ['جميع الحقوق محفوظة © لموقع «زوروا الأحساء» (visit-alahsa.com). يشمل ذلك — على سبيل المثال لا الحصر — النصوص والمقالات والسرود الأدبية والتاريخية، والصور الفوتوغرافية والمعالجة، والرسوم والتصاميم، والشعار والهوية البصرية (بما فيها شخصية البلبل أبيض الخدين)، والخرائط التفاعلية، وبنية الموقع وشيفرته البرمجية. وكل ما ورد في الموقع من محتوى مرخص من أطراف أخرى يبقى ملكًا لأصحابه ويُستخدم وفق تراخيصه.'] },
       { h: '2. نطاق الحماية',
         before: ['يتمتع محتوى الموقع بالحماية المقررة بموجب نظام حماية حقوق المؤلف في المملكة العربية السعودية والاتفاقيات الدولية التي تكون المملكة طرفًا فيها، ومنها اتفاقية برن لحماية المصنفات الأدبية والفنية. ويُعد أي استخدام غير مصرح به تعديًا يوجب المساءلة النظامية.'] },
       { h: '3. آلية الإبلاغ عن انتهاك الحقوق',
@@ -200,7 +200,7 @@ export const LEGAL_SECTIONS_EN: LegalSection[] = [
   },
   {
     n: 'Two', h: 'Terms of Use',
-    lead: 'These terms govern your use of Visit Al-Ahsa and the content and services it includes. Your access to and use of the site constitutes express acceptance of and commitment to these terms.',
+    lead: 'These terms govern your use of Visit Al-Ahsa and the content and services it includes. Your access to and use of the site constitutes acceptance of and commitment to these terms.',
     subs: [
       { h: '1. Nature and purpose of the site',
         before: ['Visit Al-Ahsa is an independent informational site that aims to introduce the Al-Ahsa Oasis, its heritage and natural landmarks and its seasonal events, and to provide guidance and cultural content for visitors and those interested. The site is not a government body, does not represent any official authority, and does not provide direct booking or sales services.'] },
@@ -366,7 +366,7 @@ export const LEGAL_SECTIONS_ZH: LegalSection[] = [
   },
   {
     n: "二", h: "使用条款",
-    lead: "本条款规范您对游览哈萨及其所含内容与服务的使用。您访问并使用本网站，即表示明确接受并承诺遵守本条款。",
+    lead: "本条款规范您对游览哈萨及其所含内容与服务的使用。您访问并使用本网站，即表示接受并承诺遵守本条款。",
     subs: [
       { h: "1. 网站的性质与宗旨",
         before: [
@@ -566,7 +566,7 @@ export const LEGAL_SECTIONS_DE: LegalSection[] = [
   },
   {
     n: "Zweitens", h: "Nutzungsbedingungen",
-    lead: "Diese Bedingungen regeln, wie Sie Visit Al-Ahsa sowie die darauf enthaltenen Inhalte und Dienste nutzen. Wenn Sie auf die Website zugreifen und sie nutzen, akzeptieren Sie diese Bedingungen ausdrücklich und verpflichten sich zu ihrer Einhaltung.",
+    lead: "Diese Bedingungen regeln, wie Sie Visit Al-Ahsa sowie die darauf enthaltenen Inhalte und Dienste nutzen. Wenn Sie auf die Website zugreifen und sie nutzen, akzeptieren Sie diese Bedingungen und verpflichten sich zu ihrer Einhaltung.",
     subs: [
       { h: "1. Art und Zweck der Website",
         before: [
@@ -766,7 +766,7 @@ export const LEGAL_SECTIONS_RU: LegalSection[] = [
   },
   {
     n: "Раздел второй", h: "Условия использования",
-    lead: "Настоящие условия регулируют использование вами сайта «Аль-Ахса» и включённых в него содержания и услуг. Заходя на сайт и используя его, вы прямо принимаете настоящие условия и обязуетесь их соблюдать.",
+    lead: "Настоящие условия регулируют использование вами сайта «Аль-Ахса» и включённых в него содержания и услуг. Заходя на сайт и используя его, вы принимаете настоящие условия и обязуетесь их соблюдать.",
     subs: [
       { h: "1. Характер и назначение сайта",
         before: [
@@ -972,7 +972,7 @@ export const LEGAL_SECTIONS_UR: LegalSection[] = [
   },
   {
     n: 'دوسرا حصہ', h: 'استعمال کی شرائط',
-    lead: 'آپ جب Visit Al-Ahsa اور اس میں شامل مواد اور خدمات کو استعمال کرتے ہیں تو اس استعمال پر یہ شرائط لاگو ہوتی ہیں۔ ویب سائٹ تک رسائی اور اس کے استعمال کو ان شرائط کی صریح قبولیت اور ان کی پابندی سمجھا جائے گا۔',
+    lead: 'آپ جب Visit Al-Ahsa اور اس میں شامل مواد اور خدمات کو استعمال کرتے ہیں تو اس استعمال پر یہ شرائط لاگو ہوتی ہیں۔ ویب سائٹ تک رسائی اور اس کے استعمال کو ان شرائط کی قبولیت اور ان کی پابندی سمجھا جائے گا۔',
     subs: [
       { h: '1. ویب سائٹ کی نوعیت اور مقصد',
         before: [
@@ -1082,7 +1082,7 @@ export const LEGAL_SECTIONS_UR: LegalSection[] = [
     subs: [
       { h: '1. ملکیت کا بیان',
         before: [
-          'جملہ حقوق © Visit Al-Ahsa (visit-alahsa.com) کے نام محفوظ ہیں۔ ان حقوق کے دائرے میں مثال کے طور پر درج ذیل شامل ہیں، مگر یہ صرف انہی تک محدود نہیں: متن، مضامین اور ادبی و تاریخی بیانیے، تصاویر اور ترمیم شدہ تصاویر، خاکے اور ڈیزائن، علامتی نشان اور بصری شناخت (بشمول سفید کانوں والی بلبل کا کردار)، تعاملی نقشے، اور ویب سائٹ کی ساخت اور سورس کوڈ۔ ویب سائٹ پر موجود جو مواد دوسرے فریقوں سے اجازت نامے کے تحت حاصل کیا گیا ہے وہ اپنے مالکان کی ملکیت رہتا ہے اور ان کے اجازت ناموں کے مطابق استعمال ہوتا ہے۔',
+          'جملہ حقوق © Visit Al-Ahsa (visit-alahsa.com) کے نام محفوظ ہیں۔ ان حقوق کے دائرے میں مثال کے طور پر درج ذیل شامل ہیں، مگر یہ صرف انہی تک محدود نہیں: متن، مضامین اور ادبی و تاریخی بیانیے، تصاویر اور ترمیم شدہ تصاویر، خاکے اور ڈیزائن، علامتی نشان اور بصری شناخت (بشمول سفید گالوں والی بلبل کا کردار)، تعاملی نقشے، اور ویب سائٹ کی ساخت اور سورس کوڈ۔ ویب سائٹ پر موجود جو مواد دوسرے فریقوں سے اجازت نامے کے تحت حاصل کیا گیا ہے وہ اپنے مالکان کی ملکیت رہتا ہے اور ان کے اجازت ناموں کے مطابق استعمال ہوتا ہے۔',
         ],
       },
       { h: '2. تحفظ کا دائرہ',
