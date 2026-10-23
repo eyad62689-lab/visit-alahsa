@@ -77,8 +77,10 @@ const times = C.times;
   .qs[data-t="3"] .qs-veil { background: linear-gradient(180deg, rgba(150,60,40,.35), rgba(120,50,30,.25) 50%, rgba(30,10,10,.5)); }
   .qs[data-t="3"] .qs-tint { background: rgba(255,120,60,.6); }
   .qs[data-t="3"] .qs-sun { left: 8%; top: 30%; background: rgba(255,150,80,.95); box-shadow: 0 0 80px 30px rgba(255,110,50,.5); }
-  .qs-ctl { display: grid; gap: var(--s-2); margin-block: var(--s-4) var(--s-3); }
+  /* عمود الشبكة يتقلّص إلى عرض الحاوية: بلا minmax(0,…) يفرض أقصر عرض لتسميات الشريط (min-content) مقاسَ العمود فيفيض المنزلق عن الشاشة. */
+  .qs-ctl { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-2); margin-block: var(--s-4) var(--s-3); }
   .qs-range { inline-size: 100%; block-size: 32px; accent-color: var(--c-turq); }
-  .qs-ticks { display: flex; justify-content: space-between; font-size: var(--t-sm); color: var(--c-ink-soft); }
+  /* التسميات تلتفّ على صفّين حين لا تتّسع لعرض الحاوية (الألمانية على 320–412px: مجموع كلماتها الأربع ≈ 408px) بدل أن تفيض؛ كلماتها تبقى سليمة. حيث تتّسع بطولها لا يلتفّ شيء ولا يتغيّر التوزيع. */
+  .qs-ticks { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-1); font-size: var(--t-sm); color: var(--c-ink-soft); }
   @media (prefers-reduced-motion: reduce) { .qs-veil, .qs-tint, .qs-sun { transition: none; } }
 </style>

@@ -48,6 +48,8 @@ img, svg { display: block; max-width: 100%; }
   text-decoration: none; transition: inset-block-start .2s var(--ease);
 }
 .skip-link:focus-visible { inset-block-start: 0; }
+/* هدف رابط التخطّي: الترويسة اللاصقة (min-block-size 68px + حدّها 1px = 69px مقيسة) تغطّي أول عنوان إن بلغ التمرير أعلى main. هامش تمرير على main وحده — لا scroll-padding على html لأنه يُجمع مع هوامش .ch و.cat-sec و.lg-sec. */
+main#main { scroll-margin-block-start: 69px; }
 
 /* حلقة تركيز مزدوجة للوحة المفاتيح: فيروزي خارجي يظهر على الفاتح، وحلقة
    رملية داخلية تظهر على الداكن (الفوتر والهيرو) — تباين ≥3:1 في الحالتين */

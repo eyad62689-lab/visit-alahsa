@@ -149,6 +149,10 @@ const { title, description } = H.seo;
   /* على الرملي الثاني (الفصلان 3 و6) يهبط الذهبي الداكن إلى 4.45:1 دون حدّ AA — فالرقم بالتركواز الداكن */
   .chapters :global(.ch--sand .ch-no) { color: var(--c-turq-deep); }
   .chapters :global(.ch-title) { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-2xl); line-height: 1.2; margin: 0; color: var(--c-turq-deep); text-wrap: balance; }
+  /* العربية: 1.35 من tokens.css (قاعدة العناوين العربية)؛ هذا المحدِّد أخصّ منها فيغلبها بـ1.2 ما لم تُعَد هنا. */
+  :global(:root:lang(ar)) .chapters :global(.ch-title) { line-height: 1.35; }
+  /* الأوردو: 1.6 من tokens.css (قاعدة عناوين النستعليق) تخسر أمام 1.2 أعلاه بالخصوصية فيلتحم العنوان بالفقرة تحته. */
+  :global(:root:lang(ur)) .chapters :global(.ch-title) { line-height: 1.6; }
   .chapters :global(.ch--dark .ch-title) { color: var(--c-sand); }
   .chapters :global(.ch-lead) { font-size: 1.1875rem; line-height: 1.7; color: var(--c-ink-soft); margin: 0; max-inline-size: 58ch; }
   .chapters :global(.ch--dark .ch-lead) { color: rgba(247,243,234,.82); }

@@ -101,6 +101,8 @@ const allHref = H.paths.attractions;
   @media (max-width: 760px) { .water-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s-5); } }
   .wf { display: grid; gap: 6px; align-content: start; border-block-start: 1px solid var(--c-line); padding-block-start: var(--s-3); }
   .wf-n { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.05; color: var(--c-turq-deep); font-variant-numeric: tabular-nums lining-nums; }
+  /* «+2.5 مليون» لا يتّسع في سطر على 320–375px (154–159px لعمود 125–153px) فينكسر سطرين، والعربية بارتفاع 1.05 يلاصق سطراها بعضهما؛ 1.25 يفصلهما. اللاتينية تبقى على 1.05. */
+  :global(:root:lang(ar)) .wf-n { line-height: 1.25; }
   .wf-l { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.5; }
   .water-src { position: relative; z-index: 1; margin-block: var(--s-5) var(--s-3); font-size: var(--t-xs); line-height: 1.6; color: var(--c-ink-soft); max-inline-size: 80ch; }
   .water-src a { color: var(--c-turq); }
