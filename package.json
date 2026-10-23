@@ -7,7 +7,10 @@
     "dev": "astro dev",
     "prebuild": "node tools/test-ai-detection.mjs && node tools/fetch-places.mjs && node scripts/fingerprint.mjs",
     "build": "astro check && astro build && pagefind --site dist",
-    "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs && node tools/check-links.mjs",
+    "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs && node tools/check-links.mjs && node tools/gen-advisor-kb.mjs",
+    "test:advisor": "node tools/test-advisor.mjs",
+    "advisor:dev": "node tools/advisor-dev-server.mjs",
+    "advisor:eval": "node tools/advisor-eval.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "fingerprint": "node scripts/fingerprint.mjs",
@@ -17,6 +20,7 @@
     "test:detect": "node tools/test-ai-detection.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.1.0",
     "@fontsource/amiri": "^5.2.8",
     "@fontsource/cairo": "^5.3.0",
     "@fontsource/cormorant-garamond": "^5.3.0",
