@@ -29,6 +29,7 @@ import '@fontsource/cormorant-garamond/latin-600.css';
 import { createHash } from 'node:crypto';
 import Seo from '../components/Seo.astro';
 import CopyGuard from '../components/CopyGuard.astro';
+import Advisor from '../components/Advisor.astro';
 import LangSuggest from '../components/LangSuggest.astro';
 import { srcsetFor } from '../lib/images';
 import { orgNode, websiteNode, brandName } from '../lib/schema';
@@ -346,6 +347,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
       else document.addEventListener('DOMContentLoaded', () => window.VAPlan.sync());
     </script>
     {alt && langSuggest && <LangSuggest lang={lang} alt={alt} />}
+    <Advisor lang={lang} />
     <CopyGuard />
     {/* طبقة القياس الموحّدة (وحدة مُجمَّعة تُنفَّذ مرة واحدة): الأحداث العشرة
         ومؤشرات الويب الحيوية — src/scripts/analytics.ts. تأتي بعد سكربت VAPlan

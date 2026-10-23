@@ -6,6 +6,11 @@ dist/
 # بيانات خرائط قوقل الحية — تُجلب في كل بناء ولا تُخزَّن في المستودع (شروط قوقل)
 src/data/places-live.json
 
+# بطاقة معرفة المستشار الذكي — تُولَّد في postbuild من dist (tools/gen-advisor-kb.mjs) وتُحزم مع الدالة
+netlify/functions/advisor/kb.generated.json
+# تقارير تقييم المستشار (tools/advisor-eval.mjs) — مخرجات محلية تُلخَّص في docs/ لا تُودَع خاماً
+tools/advisor-eval-out/
+
 # متغيرات البيئة — القيم الحقيقية لا تدخل المستودع أبداً.
 # `.env.example` وحده متعقَّب (نموذج بقيم وهمية) بالاستثناء الصريح أدناه.
 .env
