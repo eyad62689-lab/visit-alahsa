@@ -1,0 +1,104 @@
+{
+  "batch": "ur-mytrip-1",
+  "stage": 23,
+  "strings": {
+    "plan.eyebrow": "آپ کی اپنی فہرست",
+    "plan.title": "میرے محفوظ کردہ مقامات",
+    "plan.lead": "آپ کے چنے ہوئے سیاحتی مقامات اس آلے پر محفوظ ہیں۔ انہیں ترتیب دیں اور بنا بنایا راستہ پا لیں۔",
+    "plan.savedSuffix": "سیاحتی مقامات محفوظ",
+    "plan.savedOne": "سیاحتی مقام محفوظ",
+    "plan.savedTwo": "سیاحتی مقامات محفوظ",
+    "plan.savedFew": "سیاحتی مقامات محفوظ",
+    "plan.clearConfirm": "کیا آپ اپنے محفوظ کردہ مقامات کی پوری فہرست خالی کرنا چاہتے ہیں؟",
+    "plan.routeLimit": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے کھلنے والے راستے میں آپ کی فہرست کے پہلے 10 سیاحتی مقامات شامل ہوں گے۔",
+    "plan.route": "گوگل میپس پر راستہ کھولیں",
+    "plan.clear": "فہرست خالی کریں",
+    "plan.remove": "ہٹائیں",
+    "plan.location": "نقشے پر جگہ ↗",
+    "plan.empty.h": "آپ کی فہرست ابھی خالی ہے",
+    "plan.empty.d": "سیاحتی مقامات دیکھیں، اور انہیں یہاں جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔ پھر بنا بنایا راستہ آپ کو مل جائے گا۔",
+    "plan.empty.browse": "سیاحتی مقامات دیکھیں",
+    "plan.empty.map": "نقشہ کھولیں",
+    "plan.share": "واٹس ایپ پر اشتراک کریں",
+    "plan.copy": "اشتراک کا لنک کاپی کریں",
+    "plan.print": "فہرست چھاپیں",
+    "plan.waText": "الاحساء میں میرے محفوظ کردہ مقامات:",
+    "plan.shared.h": "سیاحتی مقامات کی اشتراک کردہ فہرست",
+    "plan.shared.d": "یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے۔ اسے دیکھیں، یا اپنے “میرے محفوظ کردہ مقامات” میں شامل کر لیں۔",
+    "plan.shared.import": "میرے محفوظ کردہ مقامات میں شامل کریں",
+    "plan.shared.mine": "میرے محفوظ کردہ مقامات دیکھیں",
+    "plan.printNote": "اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے سرکاری ذرائع سے تصدیق کر لیں۔"
+  },
+  "termbase_additions": [],
+  "notes": [
+    "[s1] plan.title: H1 is byte-for-byte the published ui.nav.myTrip / tm plan-your-trip ctaTrip «میرے محفوظ کردہ مقامات». The page, the nav link and the H1 are one name; no difference to justify.",
+    "[s1] Landmark noun: counter and routeLimit use the published «سیاحتی مقامات» (plural, ui.nav.attractions) and «سیاحتی مقام» (singular, column head); title/clearConfirm/shared strings use «مقامات» alone because that is the published form inside «میرے محفوظ کردہ مقامات». No third synonym («مقام کی جگہ», «نشان», «سیر گاہ») is introduced.",
+    "[s1] plan.savedSuffix / plan.savedOne: the script writes the number first, so the label is «<n> سیاحتی مقامات محفوظ» (n != 1) and «1 سیاحتی مقام محفوظ». No stop. plan.savedTwo and plan.savedFew are never rendered in Urdu (Intl.PluralRules gives one/other only); written correctly anyway, identical to savedSuffix (zh/de/ru precedent keeps them parallel).",
+    "[s1] plan.empty.d (PROVISIONAL, owner decision 2026-10-21 device-neutral verb): the button is quoted verbatim as the published ui.fav.add «یہ مقام محفوظ کریں». The click-or-tap verb is «چنیں», the device-neutral everyday verb of N332 (E); «کلک» and «ٹیپ» are refused by P16/N332/N720, «دبائیں» by N89/N727, «چھو کر» is touch-only (N720). «کھول کر» (N720) does not fit because the button is not opened. Cost: the source's two verbs become one neutral verb. A blind reader may suggest «دبائیں»; hold the line on N332/N727.",
+    "[s1] Route noun (PROVISIONAL): «راستہ» in plan.lead, plan.route, plan.routeLimit, plan.empty.d. This page's route is the Google Maps directions through the saved stops, the sense of the published tm plan-your-trip ctaD «گوگل میپس پر بنا بنایا راستہ پا لیں» and visa-guide «سفر کا بنا بنایا راستہ». N612 reserves «سفری منصوبہ» for the home planner itinerary and N336 moved the visa routes to «طریقہ»; neither applies here (directions are exactly «راستہ»). The stops are «پڑاؤ» (termbase entry, ar محطة).",
+    "[s1] plan.route: «گوگل میپس پر راستہ کھولیں», preposition «پر» as in published det.openMaps «گوگل میپس پر دیکھیں ↗». Brand is the termbase «گوگل میپس».",
+    "[s1] plan.share: «واٹس ایپ پر اشتراک کریں». «واٹس ایپ» is the termbase entry (verified, ui foot.l.whatsapp) and «اشتراک کریں» is the published share.btn (N3). plan.copy: «اشتراک کا لنک کاپی کریں»; «لنک» and «کاپی» are P16-admitted, and the published plan.copied is «لنک کاپی ہو گیا ✓», so button and result share the verb.",
+    "[s1] plan.print (PROVISIONAL): «فہرست چھاپیں». «پرنٹ» is not on the admitted-loan list (P16/P16-test) and I found no ruling admitting it; «چھاپنا» is the common native verb. If a blind reader or the owner shows Urdu browser UIs name the function «پرنٹ», P16-test (1) would be met and the label could become «فہرست پرنٹ کریں». Not verified against a localized interface.",
+    "[s1] plan.clear / plan.clearConfirm: button «فہرست خالی کریں» (ar أفرغ = empty), confirm question uses the same verb «خالی کرنا» and ends «؟». «تمام» is in the source («all your saved places»), so N620's no-unsourced-quantifier ban is not engaged. plan.remove «ہٹائیں» (published «ریت ہٹائیں» shows the verb; no ruling on the button).",
+    "[s1] plan.location (PROVISIONAL): «جگہ ↗» for «Location ↗» (a card link to the place in Google Maps). Reason: «مقام» alone would collide with «سیاحتی مقام» / «یہ مقام محفوظ کریں» where it means the place itself; published «نقشے پر میری جگہ» (map.locate) uses «جگہ» for location. Alternative if a reader finds it too bare: «نقشے پر جگہ ↗» (adds «on the map», which is true of the link target).",
+    "[s1] plan.waText: «الاحساء میں میرے محفوظ کردہ مقامات:» keeps the source's trailing colon (ASCII, as in published home saved.count «میرے محفوظ کردہ مقامات:»), since the link follows on a new line. Head name «الاحساء» per P2.",
+    "[s1] plan.shared.h (PROVISIONAL): «سیاحتی مقامات کی اشتراک کردہ فہرست»; «اشتراک کردہ» derives from the published «اشتراک کریں». Alternative reading «آپ کے ساتھ شیئر کی گئی فہرست» refused (loan «شیئر»). No stop at the end of the heading.",
+    "[s1] plan.shared.d: the em dash becomes a sentence break. Own list is named with the published «میرے محفوظ کردہ مقامات» in “ ” as the English and Arabic quote it; «اپنے» carries the Arabic «عندك» / English «your own».",
+    "[s1] plan.shared.import / plan.shared.mine: buttons keep the first-person «میرے محفوظ کردہ مقامات» of the title so the button, the page and the H1 name the same thing (pack trap 1).",
+    "[s1] plan.printNote: dash becomes «، اس لیے»; «سرکاری ذرائع» is the published events.srcNote wording for official channels and «جانے سے پہلے … تصدیق کر لیں» the published det.hoursNotice/evd.notice frame. No unsourced addition.",
+    "[s1] plan.lead: «اس آلے پر» (published «آپ کے آلے کی تاریخ», ui events.orderNote); the loan «ڈیوائس» is not admitted (P16). Meta-description sentence: two short sentences, no stop dropped.",
+    "[s1] plan.routeLimit: «زیادہ سے زیادہ» is the sense of the source's «accepts 10 stops per route» used as a limit (ctx says limit; ru «не более», zh «最多»); the figure 10 stays Latin and appears twice as in the source. No other number.",
+    "[s1] plan.empty.h: «ابھی» follows the Arabic «بعد» and the zh/de/ru precedents («还是», «noch», «пока»); the English has no «yet». Meaning-neutral, recorded as a divergence.",
+    "[s1] plan.empty.browse is the published sibling «سیاحتی مقامات دیکھیں» verbatim (ref.siblings, tm ui/events.ctaBrowse). plan.empty.map «نقشہ کھولیں» uses the published nav.map «نقشہ»; the target page title is «سیاحتی مقامات کا نقشہ».",
+    "[s1] SOURCE OBSERVATION: the English savedSuffix «sights saved» and the ctx example «{n} saved places» differ in noun, and the page title says «places» while the counter says «sights»; Urdu follows the English noun per string and keeps the published pair «سیاحتی مقامات» (names) and «مقامات» (title). Not a defect that blocks translation.",
+    "[s2] plan.print SETTLED: «فہرست چھاپیں» stands. P16-test (1) is not met: the Urdu Wikipedia interface itself names the function with native words (MediaWiki messages print «طباعت», printableversion «قابل طبع نسخہ»; fetched from ur.wikipedia api allmessages, HTTP 200), and «چھاپنا» is the common verb; no ruling admits «پرنٹ». S1's open point is closed; the loan is not entered. Not verified against Chrome/Android Urdu strings.",
+    "[s2] plan.location SETTLED: «جگہ ↗» alone is a bare noun that does not tell a card reader where the arrow leads («جگہ» could be the card's own place); the published det.openMaps «گوگل میپس پر دیکھیں ↗» and map.locate «نقشے پر میری جگہ» both anchor the word to the map. Taken s1's own alternative: «نقشے پر جگہ ↗». «مقام» still avoided (collision with «یہ مقام محفوظ کریں»), no «لوکیشن» (P16). The arrow stays after one space as in det.openMaps / tm «نقشہ ↗».",
+    "[s2] plan.empty.d: the purpose clause that stranded the verb behind a long object chain is split: «دیکھیں، اور انہیں یہاں جمع کرنے کے لیے … چنیں» then «پھر … مل جائے گا». The button stays quoted verbatim “یہ مقام محفوظ کریں”; the verb stays «چنیں» (N332 E, device-neutral, owner decision 2026-10-21). «اپنی منزلیں» (s1) dropped for «انہیں»: «منزل» is also a floor of a building and its published use «مقامات اور منزلیں» (fact.sites.l) is on the open published-ur-labels-flagged list (three readers); the sights are already «سیاحتی مقامات» in the same sentence, so no third noun is needed. «آپ کو اس کے بعد» became «پھر» (shorter).",
+    "[s2] plan.clearConfirm: «تمام محفوظ کردہ مقامات کی فہرست» was a scope slip (all of the places' list); the Arabic quantifier «كاملةً» belongs to the list, so «محفوظ کردہ مقامات کی پوری فہرست». N620 not engaged (no quantifier added). Verb «خالی کرنا» unchanged, same as the button plan.clear.",
+    "[s2] plan.routeLimit: «راستہ آپ کی فہرست کے پہلے 10 سیاحتی مقامات کے ساتھ کھلے گا» was a calque of 'opens with'; finite Urdu: «کھلنے والے راستے میں … پہلے 10 سیاحتی مقامات شامل ہوں گے». Both 10s stay Latin; no new number or claim (the source says only that the route opens with the first 10). «پڑاؤ» for stops kept (home.route.lead precedent; N526 restricts it from running-text birds' rests, not from route stops).",
+    "[s2] plan.shared.d: «کے ذریعے پہنچی ہے» (dftari) became «ملی ہے» with «سے»: «یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے». Sense unchanged (the list reached you via a share link). plan.lead: comma before «اور» removed (two imperatives joined, no pause needed); wording otherwise s1's.",
+    "[s2] Unchanged on purpose: plan.shared.h «اشتراک کردہ» (a little formal, but it is the participle of the published N3 verb, and the loan «شیئر» is refused by P16-test); plan.copy / plan.share / plan.route / plan.clear / plan.remove (short labels, no officialese); counter pair (a fragment label reads as a count line after the numeral, no «ہیں» so it is not a sentence, per BRIEF trap 2); title and eyebrow; the two published siblings.",
+    "[s3] Localizer pass: nothing in this page is geography, heritage or Saudi-institution vocabulary that needs a gloss, and the strings are labels, so no gloss, no season/heat/hours framing and no etiquette is added (the fence). The only audience-specific choice is the device-neutral verb and the Urdu-reader's WhatsApp spelling «واٹس ایپ» (termbase), both ruled earlier. plan.waText stays a neutral line a Urdu-speaking resident would send before a link, head name «الاحساء» (P2), colon kept as in published home saved.count.",
+    "[s3] plan.printNote: «سرکاری ذرائع» kept; the strings add no hours, fees or place names, so there is no figure to localize. Verified against the unchanged published det.hoursNotice frame."
+  ],
+  "stage_specific": {
+    "changed": [
+      {
+        "key": "plan.lead",
+        "before": "آپ کے چنے ہوئے سیاحتی مقامات اس آلے پر محفوظ ہیں۔ انہیں ترتیب دیں، اور بنا بنایا راستہ پا لیں۔",
+        "after": "آپ کے چنے ہوئے سیاحتی مقامات اس آلے پر محفوظ ہیں۔ انہیں ترتیب دیں اور بنا بنایا راستہ پا لیں۔",
+        "why": "Comma before «اور» between two short imperatives removed; no wording change."
+      },
+      {
+        "key": "plan.clearConfirm",
+        "before": "کیا آپ اپنے تمام محفوظ کردہ مقامات کی فہرست خالی کرنا چاہتے ہیں؟",
+        "after": "کیا آپ اپنے محفوظ کردہ مقامات کی پوری فہرست خالی کرنا چاہتے ہیں؟",
+        "why": "«تمام» quantified the places while the verb empties the list; Arabic «كاملةً» scopes the list: «پوری فہرست»."
+      },
+      {
+        "key": "plan.routeLimit",
+        "before": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے راستہ آپ کی فہرست کے پہلے 10 سیاحتی مقامات کے ساتھ کھلے گا۔",
+        "after": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے کھلنے والے راستے میں آپ کی فہرست کے پہلے 10 سیاحتی مقامات شامل ہوں گے۔",
+        "why": "Calque of 'opens with' replaced by a finite Urdu clause; same facts and figures."
+      },
+      {
+        "key": "plan.location",
+        "before": "جگہ ↗",
+        "after": "نقشے پر جگہ ↗",
+        "why": "A bare «جگہ ↗» does not read as a map link; anchored to the map as in published det.openMaps and map.locate (s1's own alternative, settled)."
+      },
+      {
+        "key": "plan.empty.d",
+        "before": "سیاحتی مقامات دیکھیں اور اپنی منزلیں یہاں جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔ اس کے بعد آپ کو بنا بنایا راستہ مل جائے گا۔",
+        "after": "سیاحتی مقامات دیکھیں، اور انہیں یہاں جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔ پھر بنا بنایا راستہ آپ کو مل جائے گا۔",
+        "why": "«منزلیں» (floors; flagged published fact.sites.l) and a stranded long object chain removed; button quote and neutral verb «چنیں» kept."
+      },
+      {
+        "key": "plan.shared.d",
+        "before": "یہ فہرست آپ تک اشتراک کے لنک کے ذریعے پہنچی ہے۔ اسے دیکھیں، یا اپنے “میرے محفوظ کردہ مقامات” میں شامل کر لیں۔",
+        "after": "یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے۔ اسے دیکھیں، یا اپنے “میرے محفوظ کردہ مقامات” میں شامل کر لیں۔",
+        "why": "«کے ذریعے» officialese replaced by plain «سے»; same meaning."
+      }
+    ]
+  }
+}

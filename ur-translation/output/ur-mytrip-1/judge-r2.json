@@ -1,0 +1,478 @@
+{
+  "batch": "ur-mytrip-1",
+  "stage": 7,
+  "round": 2,
+  "scores": {
+    "per_string": {
+      "plan.eyebrow": 96,
+      "plan.title": 95,
+      "plan.lead": 92,
+      "plan.savedSuffix": 94,
+      "plan.savedOne": 94,
+      "plan.savedTwo": 94,
+      "plan.savedFew": 94,
+      "plan.clearConfirm": 93,
+      "plan.routeLimit": 91,
+      "plan.route": 95,
+      "plan.clear": 93,
+      "plan.remove": 95,
+      "plan.location": 92,
+      "plan.empty.h": 96,
+      "plan.empty.d": 91,
+      "plan.empty.browse": 97,
+      "plan.empty.map": 95,
+      "plan.share": 94,
+      "plan.copy": 94,
+      "plan.print": 93,
+      "plan.waText": 94,
+      "plan.shared.h": 91,
+      "plan.shared.d": 93,
+      "plan.shared.import": 95,
+      "plan.shared.mine": 95,
+      "plan.printNote": 96
+    },
+    "per_page": {
+      "/ur/plan/": 91
+    }
+  },
+  "batch_score": 91,
+  "breakdown": {
+    "method": "Batch score = lowest page score (07-judge.md; config pass_threshold 90); the batch has one page, /ur/plan/, whose score is its lowest key (plan.routeLimit, plan.empty.d, plan.shared.h = 91). Each key scored on five axes: accuracy 30, nativeness 30, termbase/transliteration/orthography 20, fit for the Urdu-speaking traveller 10, structure 10. The axes below are the page minimums and sum to 91. Round 2: one text edit (plan.routeLimit, N739); the score of that key stays 91 because its remaining costs (the stop noun and the verb 'accepts', both bound by N734 and weighed again) are the ones already charged. The fresh blind reader's 70/100 (0 serious) is a reading, not the score: its deductions are mostly charged to published wording and rulings that bind (see blind_reader_rulings), to source or template design (source_defects), and to tool artefacts.",
+    "axes": {
+      "accuracy": {
+        "score": 28,
+        "of": 30,
+        "note": "plan.empty.d -1: the source's two verbs (click, tap) are one neutral verb «چنیں» (N730, owner decision 2026-10-21, cost already charged by N332). plan.location -1: «نقشے پر» is not in either source but names the link's real target (N731). plan.routeLimit/plan.empty.h: «زیادہ سے زیادہ» and «ابھی» are entailed or carried by the Arabic, no deduction. The new routeLimit clause (N739) says what the source says (the route opens with the first 10) and adds no fact. No fact, number or name added; both 10s Latin."
+      },
+      "nativeness": {
+        "score": 25,
+        "of": 30,
+        "note": "plan.shared.h -2: «اشتراک کردہ» is stiff (reader r0 #8, r1 #6); kept under N733 because the fallback «کی اشتراک کی گئی» stacks «کی … کی» and the loan «شیئر» is refused (P16-test). plan.routeLimit -2: the heavy participle «کھلنے والے راستے» is gone (N739), but «پڑاؤ» can read as a camp (N734 binds) and «قبول کرتا ہے» is a software verb that two readers took for a calque. plan.empty.d -1: «چنیں» for acting on a button is the line's neutral verb, not the everyday phone word. Published phrases «اس آلے پر», «بنا بنایا راستہ پا لیں», «محفوظ کردہ» are chatty or official but bind by sibling consistency."
+      },
+      "termbase_style": {
+        "score": 19,
+        "of": 20,
+        "note": "plan.shared.h -1: «اشتراک کردہ» participle of the N3 verb, no termbase entry of its own. «پڑاؤ» is still status pending (no dictionary page read in the line). Letterforms, digits, punctuation, quotes, P22 pronouns, P2 head name, brands and P16-admitted loans all clean (stage 5 list and verify.mjs OK)."
+      },
+      "fit_for_traveller": {
+        "score": 9,
+        "of": 10,
+        "note": "-1: the shared-list box (paragraph plus «میرے محفوظ کردہ مقامات دیکھیں») can be misread as viewing the shared list; that is the source's design (SD-M2) and the Urdu keeps faith. Labels are short, the counter reads as a count line, the confirm is one question ending in «؟»."
+      },
+      "structure": {
+        "score": 10,
+        "of": 10,
+        "note": "26 keys in pack order; no placeholder, markup or link in any string; Latin 10 twice in plan.routeLimit and nothing else; the arrow follows one space; plan.title equals ui.nav.myTrip and plan.empty.browse equals the published sibling byte for byte."
+      }
+    }
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "strings": {
+    "plan.eyebrow": "آپ کی اپنی فہرست",
+    "plan.title": "میرے محفوظ کردہ مقامات",
+    "plan.lead": "آپ نے جو سیاحتی مقامات چنے ہیں، وہ اس آلے پر محفوظ ہیں۔ انہیں ترتیب دیں اور بنا بنایا راستہ پا لیں۔",
+    "plan.savedSuffix": "سیاحتی مقامات محفوظ",
+    "plan.savedOne": "سیاحتی مقام محفوظ",
+    "plan.savedTwo": "سیاحتی مقامات محفوظ",
+    "plan.savedFew": "سیاحتی مقامات محفوظ",
+    "plan.clearConfirm": "کیا آپ اپنے محفوظ کردہ مقامات کی پوری فہرست خالی کرنا چاہتے ہیں؟",
+    "plan.routeLimit": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔",
+    "plan.route": "گوگل میپس پر راستہ کھولیں",
+    "plan.clear": "فہرست خالی کریں",
+    "plan.remove": "ہٹائیں",
+    "plan.location": "نقشے پر جگہ ↗",
+    "plan.empty.h": "آپ کی فہرست ابھی خالی ہے",
+    "plan.empty.d": "سیاحتی مقامات دیکھیں، اور انہیں یہاں جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔ پھر بنا بنایا راستہ پا لیں۔",
+    "plan.empty.browse": "سیاحتی مقامات دیکھیں",
+    "plan.empty.map": "نقشہ کھولیں",
+    "plan.share": "واٹس ایپ پر اشتراک کریں",
+    "plan.copy": "اشتراک کا لنک کاپی کریں",
+    "plan.print": "فہرست چھاپیں",
+    "plan.waText": "الاحساء میں میرے محفوظ کردہ مقامات:",
+    "plan.shared.h": "سیاحتی مقامات کی اشتراک کردہ فہرست",
+    "plan.shared.d": "یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے۔ اسے دیکھیں، یا اپنے “میرے محفوظ کردہ مقامات” میں شامل کر لیں۔",
+    "plan.shared.import": "میرے محفوظ کردہ مقامات میں شامل کریں",
+    "plan.shared.mine": "میرے محفوظ کردہ مقامات دیکھیں",
+    "plan.printNote": "اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے سرکاری ذرائع سے تصدیق کر لیں۔"
+  },
+  "termbase_additions": [],
+  "notes": [
+    "[s1] plan.title: H1 is byte-for-byte the published ui.nav.myTrip / tm plan-your-trip ctaTrip «میرے محفوظ کردہ مقامات». The page, the nav link and the H1 are one name; no difference to justify.",
+    "[s1] Landmark noun: counter and routeLimit use the published «سیاحتی مقامات» (plural, ui.nav.attractions) and «سیاحتی مقام» (singular, column head); title/clearConfirm/shared strings use «مقامات» alone because that is the published form inside «میرے محفوظ کردہ مقامات». No third synonym («مقام کی جگہ», «نشان», «سیر گاہ») is introduced.",
+    "[s1] plan.savedSuffix / plan.savedOne: the script writes the number first, so the label is «<n> سیاحتی مقامات محفوظ» (n != 1) and «1 سیاحتی مقام محفوظ». No stop. plan.savedTwo and plan.savedFew are never rendered in Urdu (Intl.PluralRules gives one/other only); written correctly anyway, identical to savedSuffix (zh/de/ru precedent keeps them parallel).",
+    "[s1] plan.empty.d (PROVISIONAL, owner decision 2026-10-21 device-neutral verb): the button is quoted verbatim as the published ui.fav.add «یہ مقام محفوظ کریں». The click-or-tap verb is «چنیں», the device-neutral everyday verb of N332 (E); «کلک» and «ٹیپ» are refused by P16/N332/N720, «دبائیں» by N89/N727, «چھو کر» is touch-only (N720). «کھول کر» (N720) does not fit because the button is not opened. Cost: the source's two verbs become one neutral verb. A blind reader may suggest «دبائیں»; hold the line on N332/N727.",
+    "[s1] Route noun (PROVISIONAL): «راستہ» in plan.lead, plan.route, plan.routeLimit, plan.empty.d. This page's route is the Google Maps directions through the saved stops, the sense of the published tm plan-your-trip ctaD «گوگل میپس پر بنا بنایا راستہ پا لیں» and visa-guide «سفر کا بنا بنایا راستہ». N612 reserves «سفری منصوبہ» for the home planner itinerary and N336 moved the visa routes to «طریقہ»; neither applies here (directions are exactly «راستہ»). The stops are «پڑاؤ» (termbase entry, ar محطة).",
+    "[s1] plan.route: «گوگل میپس پر راستہ کھولیں», preposition «پر» as in published det.openMaps «گوگل میپس پر دیکھیں ↗». Brand is the termbase «گوگل میپس».",
+    "[s1] plan.share: «واٹس ایپ پر اشتراک کریں». «واٹس ایپ» is the termbase entry (verified, ui foot.l.whatsapp) and «اشتراک کریں» is the published share.btn (N3). plan.copy: «اشتراک کا لنک کاپی کریں»; «لنک» and «کاپی» are P16-admitted, and the published plan.copied is «لنک کاپی ہو گیا ✓», so button and result share the verb.",
+    "[s1] plan.print (PROVISIONAL): «فہرست چھاپیں». «پرنٹ» is not on the admitted-loan list (P16/P16-test) and I found no ruling admitting it; «چھاپنا» is the common native verb. If a blind reader or the owner shows Urdu browser UIs name the function «پرنٹ», P16-test (1) would be met and the label could become «فہرست پرنٹ کریں». Not verified against a localized interface.",
+    "[s1] plan.clear / plan.clearConfirm: button «فہرست خالی کریں» (ar أفرغ = empty), confirm question uses the same verb «خالی کرنا» and ends «؟». «تمام» is in the source («all your saved places»), so N620's no-unsourced-quantifier ban is not engaged. plan.remove «ہٹائیں» (published «ریت ہٹائیں» shows the verb; no ruling on the button).",
+    "[s1] plan.location (PROVISIONAL): «جگہ ↗» for «Location ↗» (a card link to the place in Google Maps). Reason: «مقام» alone would collide with «سیاحتی مقام» / «یہ مقام محفوظ کریں» where it means the place itself; published «نقشے پر میری جگہ» (map.locate) uses «جگہ» for location. Alternative if a reader finds it too bare: «نقشے پر جگہ ↗» (adds «on the map», which is true of the link target).",
+    "[s1] plan.waText: «الاحساء میں میرے محفوظ کردہ مقامات:» keeps the source's trailing colon (ASCII, as in published home saved.count «میرے محفوظ کردہ مقامات:»), since the link follows on a new line. Head name «الاحساء» per P2.",
+    "[s1] plan.shared.h (PROVISIONAL): «سیاحتی مقامات کی اشتراک کردہ فہرست»; «اشتراک کردہ» derives from the published «اشتراک کریں». Alternative reading «آپ کے ساتھ شیئر کی گئی فہرست» refused (loan «شیئر»). No stop at the end of the heading.",
+    "[s1] plan.shared.d: the em dash becomes a sentence break. Own list is named with the published «میرے محفوظ کردہ مقامات» in “ ” as the English and Arabic quote it; «اپنے» carries the Arabic «عندك» / English «your own».",
+    "[s1] plan.shared.import / plan.shared.mine: buttons keep the first-person «میرے محفوظ کردہ مقامات» of the title so the button, the page and the H1 name the same thing (pack trap 1).",
+    "[s1] plan.printNote: dash becomes «، اس لیے»; «سرکاری ذرائع» is the published events.srcNote wording for official channels and «جانے سے پہلے … تصدیق کر لیں» the published det.hoursNotice/evd.notice frame. No unsourced addition.",
+    "[s1] plan.lead: «اس آلے پر» (published «آپ کے آلے کی تاریخ», ui events.orderNote); the loan «ڈیوائس» is not admitted (P16). Meta-description sentence: two short sentences, no stop dropped.",
+    "[s1] plan.routeLimit: «زیادہ سے زیادہ» is the sense of the source's «accepts 10 stops per route» used as a limit (ctx says limit; ru «не более», zh «最多»); the figure 10 stays Latin and appears twice as in the source. No other number.",
+    "[s1] plan.empty.h: «ابھی» follows the Arabic «بعد» and the zh/de/ru precedents («还是», «noch», «пока»); the English has no «yet». Meaning-neutral, recorded as a divergence.",
+    "[s1] plan.empty.browse is the published sibling «سیاحتی مقامات دیکھیں» verbatim (ref.siblings, tm ui/events.ctaBrowse). plan.empty.map «نقشہ کھولیں» uses the published nav.map «نقشہ»; the target page title is «سیاحتی مقامات کا نقشہ».",
+    "[s1] SOURCE OBSERVATION: the English savedSuffix «sights saved» and the ctx example «{n} saved places» differ in noun, and the page title says «places» while the counter says «sights»; Urdu follows the English noun per string and keeps the published pair «سیاحتی مقامات» (names) and «مقامات» (title). Not a defect that blocks translation.",
+    "[s2] plan.print SETTLED: «فہرست چھاپیں» stands. P16-test (1) is not met: the Urdu Wikipedia interface itself names the function with native words (MediaWiki messages print «طباعت», printableversion «قابل طبع نسخہ»; fetched from ur.wikipedia api allmessages, HTTP 200), and «چھاپنا» is the common verb; no ruling admits «پرنٹ». S1's open point is closed; the loan is not entered. Not verified against Chrome/Android Urdu strings.",
+    "[s2] plan.location SETTLED: «جگہ ↗» alone is a bare noun that does not tell a card reader where the arrow leads («جگہ» could be the card's own place); the published det.openMaps «گوگل میپس پر دیکھیں ↗» and map.locate «نقشے پر میری جگہ» both anchor the word to the map. Taken s1's own alternative: «نقشے پر جگہ ↗». «مقام» still avoided (collision with «یہ مقام محفوظ کریں»), no «لوکیشن» (P16). The arrow stays after one space as in det.openMaps / tm «نقشہ ↗».",
+    "[s2] plan.empty.d: the purpose clause that stranded the verb behind a long object chain is split: «دیکھیں، اور انہیں یہاں جمع کرنے کے لیے … چنیں» then «پھر … مل جائے گا». The button stays quoted verbatim “یہ مقام محفوظ کریں”; the verb stays «چنیں» (N332 E, device-neutral, owner decision 2026-10-21). «اپنی منزلیں» (s1) dropped for «انہیں»: «منزل» is also a floor of a building and its published use «مقامات اور منزلیں» (fact.sites.l) is on the open published-ur-labels-flagged list (three readers); the sights are already «سیاحتی مقامات» in the same sentence, so no third noun is needed. «آپ کو اس کے بعد» became «پھر» (shorter).",
+    "[s2] plan.clearConfirm: «تمام محفوظ کردہ مقامات کی فہرست» was a scope slip (all of the places' list); the Arabic quantifier «كاملةً» belongs to the list, so «محفوظ کردہ مقامات کی پوری فہرست». N620 not engaged (no quantifier added). Verb «خالی کرنا» unchanged, same as the button plan.clear.",
+    "[s2] plan.routeLimit: «راستہ آپ کی فہرست کے پہلے 10 سیاحتی مقامات کے ساتھ کھلے گا» was a calque of 'opens with'; finite Urdu: «کھلنے والے راستے میں … پہلے 10 سیاحتی مقامات شامل ہوں گے». Both 10s stay Latin; no new number or claim (the source says only that the route opens with the first 10). «پڑاؤ» for stops kept (home.route.lead precedent; N526 restricts it from running-text birds' rests, not from route stops). (Superseded by [j2] item 3 / N739: the participle clause «کھلنے والے راستے میں … شامل ہوں گے» is replaced in the final text.)",
+    "[s2] plan.shared.d: «کے ذریعے پہنچی ہے» (dftari) became «ملی ہے» with «سے»: «یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے». Sense unchanged (the list reached you via a share link). plan.lead: comma before «اور» removed (two imperatives joined, no pause needed); wording otherwise s1's.",
+    "[s2] Unchanged on purpose: plan.shared.h «اشتراک کردہ» (a little formal, but it is the participle of the published N3 verb, and the loan «شیئر» is refused by P16-test); plan.copy / plan.share / plan.route / plan.clear / plan.remove (short labels, no officialese); counter pair (a fragment label reads as a count line after the numeral, no «ہیں» so it is not a sentence, per BRIEF trap 2); title and eyebrow; the two published siblings.",
+    "[s3] Localizer pass: nothing in this page is geography, heritage or Saudi-institution vocabulary that needs a gloss, and the strings are labels, so no gloss, no season/heat/hours framing and no etiquette is added (the fence). The only audience-specific choice is the device-neutral verb and the Urdu-reader's WhatsApp spelling «واٹس ایپ» (termbase), both ruled earlier. plan.waText stays a neutral line a Urdu-speaking resident would send before a link, head name «الاحساء» (P2), colon kept as in published home saved.count.",
+    "[s3] plan.printNote: «سرکاری ذرائع» kept; the strings add no hours, fees or place names, so there is no figure to localize. Verified against the unchanged published det.hoursNotice frame.",
+    "[s4] Siblings checked byte for byte against ref.json: plan.title = ui.nav.myTrip = tm plan-your-trip/ctaTrip «میرے محفوظ کردہ مقامات» (equal); plan.empty.browse = tm ui/events.ctaBrowse = tm plan-your-trip/ctaBrowse «سیاحتی مقامات دیکھیں» (equal). Also equal to the published forms: the quoted button “یہ مقام محفوظ کریں” (ui.fav.add), «گوگل میپس», «واٹس ایپ», «الاحساء», «سرکاری ذرائع» (events.srcNote), and the det.hoursNotice frame «اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے … سے تصدیق کر لیں۔». The title name repeated inside plan.shared.d (in “ ”), plan.shared.import, plan.shared.mine and plan.waText (the last as the longer «میرے محفوظ کردہ مقامات:») is byte-identical to plan.title.",
+    "[s4] Fact fence: nothing of s2/s3 deleted, because nothing they added carries a fact the sources lack. Audited: «پوری» (clearConfirm) is the Arabic «كاملةً»; «ابھی» (empty.h) is the Arabic «بعد»; «نقشے پر» (location) is not in en or ar but is the nature of the link, which the template builds from the place's mapUrl (PlanView.astro, class pc-map, target google maps), so it names the destination and states nothing about the place (see N731); «زیادہ سے زیادہ» (routeLimit, from s1) is the limit that 'accepts 10 stops per route … so the first 10' entails and the ctx names, not a P19 evaluative superlative. One MOOD change, not a fact: s2's future promise «مل جائے گا» in empty.d became the imperative of the sources and of plan.lead.",
+    "[s4] plan.empty.d: s2's second sentence «پھر بنا بنایا راستہ آپ کو مل جائے گا۔» promised an outcome where en («then get a ready route») and ar («ثم احصل على مسارٍ جاهز») instruct; and the same page's plan.lead says «بنا بنایا راستہ پا لیں» (as does the published ctaD). Back to the imperative with the lead's verb: «پھر بنا بنایا راستہ پا لیں۔». Published visa-guide uses «مل جائے گا» for its own English; that pair is left alone.",
+    "[s4] Calque/translation-smell sweep: no «موجود ہے/پایا جاتا ہے», no stacked «ہوئے» (one «چنے ہوئے» in plan.lead, the everyday participle, kept), no English article rendered as «یہ/وہ/ایک» (the only «یہ» are in the quoted published button and in plan.shared.d where en has «This list»), no «کیا جاتا ہے» passive. «قبول کرتا ہے» (software accepts input) kept. Nothing else rewritten. (Superseded by [j1] item 2 / N735: the final plan.lead no longer contains «چنے ہوئے».)",
+    "[s4] Names: all in the termbase/published list (الاحساء, گوگل میپس, واٹس ایپ; the 'places' list of ref.json is empty). No new term, no addition. «پڑاؤ» is still status pending in the termbase (gender «مذکر» from the entry; not re-verified at s4: rekhtadictionary answered HTTP 503, ur.wikipedia 429 on the later calls; no count is quoted from a non-200). Gulf/exonym/letterform spot-check: none of the Gulf names occurs; no ي ك ة ه ى أ إ in the strings.",
+    "[s4] N730 (the visitor's action on a quoted action button, plan.empty.d): the verb is «چنیں» after the label quoted verbatim: «… جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔». N332 (E) decided this verb as the device-neutral one for acting on a place or an option and owner decision 2026-10-21 asks for a verb that fits tap and click; the sources' «click or tap» / «اضغط» are one action. Not «کلک / ٹیپ» (P16, N332), not «دبائیں» (N89, N727), not «چھو کر» (N720), not «کھول کر» (the button saves; it opens nothing, so the N89 frame «… کا لنک کھولیں» is not used) and no noun «بٹن» is added (N89). Binds only the verb of plan.empty.d.",
+    "[s4] N731 (the card link «Location ↗», plan.location): «نقشے پر جگہ ↗». The noun is «جگہ» (published ui events.placeK «Location» → «جگہ»; map.locate «نقشے پر میری جگہ»), anchored to the map as the arrow links of the line are (det.openMaps «گوگل میپس پر دیکھیں ↗», events.mapK «نقشہ ↗»); not «مقام» (the attraction itself, N4), not «لوکیشن» (P16). Decides the arrow link of the plan card only: the plain field label «Location» is not touched (events.placeK «جگہ», stay dv.areaH «مقام» stand as published).",
+    "[s4] N732 (the print function, plan.print): the label is «فہرست چھاپیں». P16-test (1) is not met on the evidence of record (s2: the Urdu Wikipedia interface names printing with native words «طباعت» / «قابل طبع نسخہ», HTTP 200; not re-fetched at s4, the later request got 429): the native verb «چھاپنا» is the common one and «پرنٹ» is not admitted. Provisional on one point: it is not checked against the Chrome/Android Urdu interface; if that shows «پرنٹ» as the name of the function and a blind reader stumbles, P16-test could be reopened for this one label. Binds the label of plan.print only.",
+    "[s4] N733 (the shared list, plan.shared.h): «سیاحتی مقامات کی اشتراک کردہ فہرست». «اشتراک کردہ» is the participle of the verb of N3 («اشتراک کریں») and pairs with the page's own «محفوظ کردہ» (nav.myTrip); the loan «شیئر» stays refused (P16-test). Cost: a little formal. ur.wikipedia returned 6 results for the exact phrase «اشتراک کردہ» (HTTP 200, one query; a name-form count only, not a style test). Binds this heading only; the alternative «اشتراک کی گئی فہرست» is the fallback if a blind reader stumbles.",
+    "[s4] N734 (the route noun on /ur/plan/): «راستہ» names the Google Maps route through the saved stops in plan.lead, plan.route, plan.routeLimit and plan.empty.d, and its stops are «پڑاؤ». N612 (the planner's itinerary is «سفری منصوبہ», because a reader took «راستہ» as road directions on the home planner) is not engaged: here directions are what the page produces, the very sense of the published ctaD «گوگل میپس پر بنا بنایا راستہ پا لیں». N526 reserves «پڑاؤ» for running text of trail pages and binds trail strings; the stops of a route keep the home.route.lead use. Binds the four strings above, not other pages.",
+    "[s5] Item 1 (letterforms): regex [يكةهىأإۃ] over all 26 strings: 0 hits (none). Over the whole ur-04 file: 16 hits, all inside the English-language notes that quote Arabic source words by design (U+0629, U+0623, U+0643, U+0649, U+0647) or list the forbidden letters in the s4 spot-check note; none in a string. Code-point inventory of the strings: only U+06CC, U+06A9, U+06C1, U+06D2, U+06BA, U+06BE, U+0679, U+0691, U+0621, U+0624, U+0626, U+0622, ASCII digits 0/1, space, U+060C, U+06D4, U+061F, U+201C/U+201D, U+2197, one ASCII colon (waText). U+06BE occurs only in the aspirates of کھلنے، کھولیں، دیکھیں، ابھی، پھر، چھاپیں. No U+06C3, no U+00A0, no U+200x format marks, no U+06F0-06F9 or U+0660-0669.",
+    "[s5] Item 2/6 (names, termbase): الاحساء (waText, once), گوگل میپس (routeLimit, route), واٹس ایپ (share) are byte-identical to their termbase keys (code points compared in a script, not by eye); لنک and کاپی (copy) are the P16-admitted entries, verified, with the genders masculine and feminine agreeing («اشتراک کا لنک» m.). «پڑاؤ» is present as a termbase key (masculine, plural direct «پڑاؤ», used as «10 پڑاؤ»), status pending; its entry reads 'stop (of a trail)' and N526 reserves it for trail strings, but N734 (s4) rules the route-stop sense on this page, which is also the home.route.lead use the entry cites as its source. No new term; nothing banned (no جبل/سوق/قصر/عین names on this page, so no pleonasm or gloss case arises).",
+    "[s5] Items 3-4 (grammar, address): read each string for agreement. Plural masculine «سیاحتی مقامات» with «پہلے 10» and «شامل ہوں گے»; «چنے ہوئے» (m. pl. direct before the noun, correct); «یہ فہرست … ملی ہے» (f.); «خالی کرنا چاہتے ہیں» after «آپ»; every imperative is an «-یں» honorific form (دیکھیں، ترتیب دیں، پا لیں، کھولیں، کریں، ہٹائیں، چھاپیں، چنیں، شامل کر لیں). No تم/تو/تمہارا/تیرا/تمہیں and no non-honorific verb (token scan returned none). «ایک راستے میں» renders the source's 'per route' (ar «في المسار الواحد») and is idiomatic, not an added number. (Superseded by [j1] item 2 / N735 and [j2] item 3 / N739: the final plan.lead has no «چنے ہوئے», and the final plan.routeLimit has no «شامل ہوں گے».)",
+    "[s5] Items 5, 7, 8 (headings, punctuation, numbers): no U+06D4 at the end of any label, heading, button, eyebrow or counter suffix (checked by last code point per key); sentences (lead, routeLimit, empty.d, shared.d, printNote) end in U+06D4 and clearConfirm in U+061F; no ASCII period, comma, quote, guillemet or semicolon after Urdu text; no space before U+06D4 or U+060C; quotation marks are U+201C/U+201D only (empty.d, shared.d). The only ASCII punctuation is the final colon of plan.waText, kept from the source and from the published home saved.count (no ruling bars it; the link follows on a new line). Digits: only the Latin 10 twice in routeLimit; no currency, date, hour or large number on the page.",
+    "[s5] Items 9, 10, 11 (loanwords, glossing, structure): the only Latin-origin words in Urdu letters are the brands گوگل میپس and واٹس ایپ (termbase) and لنک and کاپی (P16-admitted); no banned anglicism (لوکیشن، ڈیوائس، شیئر، پرنٹ، کلک، ٹیپ، بٹن، فیملی، فوٹوگرافی), no arabism, no Hindi-leaning word, no «کا انعقاد کیا جاتا ہے» chain and no «موجود ہے» chain. No bracket or gloss anywhere. All 26 keys present in pack order (compared programmatically), no key added or lost; the arrow in plan.location follows one ordinary space as in det.openMaps.",
+    "[s5] Siblings and placeholders: plan.title equals ui.nav.myTrip byte for byte; plan.empty.browse equals the ref.siblings entry byte for byte; the quoted button in plan.empty.d equals ui.fav.add between U+201C/U+201D (string-contains test true); plan.shared.d quotes the title name in U+201C/U+201D; plan.shared.import, plan.shared.mine and plan.waText contain the title name's bytes; plan.printNote equals the published det.hoursNotice frame with {op} replaced by سرکاری ذرائع. The pack sources carry no placeholder, tag or markup ({n} appears only in the ctx note), so none is expected or present in any Urdu string.",
+    "[s5] Result: no string changed. Nothing in the 26 strings failed a mechanical item, no ruling N730-N734 contradicts a published sibling, and no new open item is raised. Standing open items are unchanged from s4 (published-ur-labels-flagged, BRAND). Not verified here: «پڑاؤ» against rekhtadictionary/udb (termbase status stays pending; no network lookup was needed or made at s5), and «چھاپیں» against the Chrome/Android Urdu interface (N732's stated limit).",
+    "[j1] Decision: APPROVE. One page, /ur/plan/, lowest key 91 (plan.routeLimit, plan.empty.d, plan.shared.h) against the threshold 90; the stage-5 list has no letterform or digit defect and verify.mjs prints OK. The blind reader (r0) rated the page 62/100 with 20 items (1 serious, 11 medium, 8 minor). Ruling: 1 accepted (changed text) · 13 rejected · 4 source defect · 2 out of scope. The low rating is carried mostly by published phrases that bind by sibling consistency (nav.myTrip, ctaD, events.orderNote, det.hoursNotice), by rulings N3/N730–N734, and by the page's design (the shared-list box, the promise to arrange, hidden blocks shown together), not by errors in the Urdu. One judge edit: plan.lead (N735).",
+    "[j1] Item 1 (tab title «… — Visit Al-Ahsa»): out of scope. The Latin brand line is the open item BRAND (provisional: the Latin wordmark renders, N1; the owner's to decide); the dash is titleSep(lang) and the brand site.brand, both built by the template (PlanView.astro Base title). plan.title carries no brand. Logged as SD-M5 for the owner; nothing edited. No candidate form of BRAND is settled here.",
+    "[j1] Item 2 accepted with a different remedy than the reader's: «چنے ہوئے» put the plural «چنے» (chickpeas) first before the participle resolved it. plan.lead is now the relative clause «آپ نے جو سیاحتی مقامات چنے ہیں، وہ اس آلے پر محفوظ ہیں» (N735), which mirrors en 'The sights you chose' and ar «المعالم التي اخترتها» and keeps the line's verb. The reader's «منتخب کیے ہوئے» (officialese, weighed and not taken in N332) and any «پسند» (adds 'liked') refused. (This supersedes the «چنے ہوئے» recorded in [s4] item 33 and [s5] item 42.)",
+    "[j1] Items 3 and 4 (plan.lead, plan.empty.d): rejected. «اس آلے پر» is the published noun for 'device' (events.orderNote «آپ کے آلے کی تاریخ»); «ڈیوائس» is not admitted (P16), and «براؤزر» or «فون» would state something narrower or different from the source's 'this device'. «بنا بنایا راستہ پا لیں» is the published wording of tm plan-your-trip ctaD, and visa-guide next.items.4.parts publishes the phrase «بنا بنایا راستہ» («سفر کا بنا بنایا راستہ»); the same pack's plan.lead and plan.empty.d carry it (N734, N736); the reader's «ایک سفری راستے کی صورت میں کھولیں» rewrites the claim and uses «سفری» which N612 keeps for the home planner. The remark that the promise is bigger than what the page does belongs to the source (SD-M1).",
+    "[j1] Item 6 (name repeated): rejected. «میرے محفوظ کردہ مقامات» is the published ui.nav.myTrip and the page's H1; BRIEF trap 1 asks for one name for the page, the link that leads to it and the H1. «میری فہرست» would be a third name. Cost charged under nativeness.",
+    "[j1] Item 8 and N733: rejected, with the fallback weighed. N733 allowed «اشتراک کی گئی فہرست» if a blind reader stumbled, and this one did. In the heading it reads «سیاحتی مقامات کی اشتراک کی گئی فہرست», which stacks «کی … کی» and is no lighter than «اشتراک کردہ»; the reader's «شیئر کی گئی» is refused (N3, P16-test: the function is «اشتراک» on Android and Chrome, and the line holds the native verb). Who shared is not in either source (the paragraph below says only 'via a share link'). N733 stands unchanged.",
+    "[j1] Items 10, 11, 12 and 17 (counter, share, print, clear, confirm): rejected under N3, N732, N738 and the sources. The counter is a label after a numeral, not a sentence (BRIEF trap 2): «ہیں» would make it one and break the one/other pair. «چھاپیں» was understood by the reader; P16-test (2) is not met, so «پرنٹ» is not reopened even if (1) were shown. «خالی کریں» is the Arabic «أفرغ» and the confirm and the button share the verb; «مٹا دیں» would be a different, stronger verb, and «یہ واپس نہیں آئے گی» adds a claim neither source makes. «کیا آپ … چاہتے ہیں؟» carries the Arabic «أتريد» and is ordinary confirm-dialog Urdu. The Arabic notes cut off at the end of the reading (item 10) are a reading-tool artefact (out of scope).",
+    "[j1] Item 13 (plan.routeLimit): rejected. «پڑاؤ» for a route stop is N734 (the home.route.lead use); the rest of the 10-stop limit (what happens to the others) is not in either source, and 'the first 10 of your list' depends on the list order, which has no control on the page (SD-M1). The heavy participle was already redrafted once (s2) and the finite form stays. (Superseded in part by [j2] item 3 / N739: the participle clause is replaced; the stop noun and the rest of this ruling stand.)",
+    "[j1] Items 14, 15 and 18 (printNote, empty.d, plan.location): rejected. printNote is the published det.hoursNotice frame with the published «سرکاری ذرائع»; «کھلنے کے اوقات», «داخلہ فیس» would add specifics. «چنیں» for acting on the quoted button is N730 under owner decision 2026-10-21; «دبائیں/ٹیپ» are refused (N89, N332, P16). That the page does not say where the save button lives is the source's silence; the fence bars adding 'on each attraction page'. «نقشے پر جگہ ↗» is N731; the reader's «گوگل میپس پر دیکھیں ↗» is the published det.openMaps, a verb phrase for a different English string (the zh line, 在谷歌地图中打开, took the same view; en and ar here are the noun 'Location', SD-M7).",
+    "[j1] Item 19 (waText «الاحساء»): rejected. The head name is «الاحساء» (P2, closed list) in every Urdu sentence, and P1 bars the Latin name inside a sentence; the clash with the Latin brand line is the open item BRAND, not this string.",
+    "[j1] Items 16 (two map buttons) and 10's cut notes: out of scope as tool artefacts. The reading prints hidden blocks together; the empty state («نقشہ کھولیں») and the action bar («گوگل میپس پر راستہ کھولیں») are never visible at once in the page (hidden attributes in PlanView.astro). Item 9 (serious): the sources' design, not the translation; the box cannot say 'view this list' because the button is the source's 'View my saved places'. Item 20: nothing in the Urdu can be added; logged (SD-M6), and the copy confirmation exists as the published ui plan.copied «لنک کاپی ہو گیا ✓», outside this batch and not shown in the reading.",
+    "[j1] Template finding while reading PlanView.astro (tree fe0bab0 plus local edits, mapHref line): browseHref has a ur branch, mapHref does not, so in the tree read plan.empty.map links to /en/map/ on the Urdu page, whereas BRIEF says /ur/map/. Logged SD-M3; not edited. (Fixed in the working tree after stage 7, see [j2] item 5: mapHref now has the ur branch; still uncommitted.)",
+    "[j1] No open item of _meta.open_items is settled by this text. published-ur-labels-flagged (the quoted ui.fav.add) and BRAND are unchanged. No termbase entry added or amended. Verified here by reading: the 20 reader items, PlanView.astro, the termbase rulings P16, P16-test, N3, N332, N612, N720, N727, N526, N336, P23, P24, P25, N620, ref.json and tm.json pairs. Not verified: Chrome/Android Urdu strings for «پرنٹ» and «پڑاؤ» in a dictionary (termbase status stays pending); no web lookup was made at stage 7, so no count is quoted.",
+    "[j2] Decision: APPROVE. One page, /ur/plan/, lowest keys plan.routeLimit, plan.empty.d, plan.shared.h = 91 against the threshold 90; batch score 91; no letterform or digit defect. The fresh blind reader (r1, read on judge-r1.json) rated the page 70/100 with 0 serious, 8 medium, 12 minor (20 items). Ruling: 1 accepted (changed text) · 16 rejected · 1 source defect · 2 out of scope. One judge edit: plan.routeLimit (N739). The independent proofread of round 1 found 0 MANDATORY and 4 RECOMMENDED; all four are settled below (item 4).",
+    "[j2] Item 2 (reader r1: how the 20 items were weighed). Most items repeat a point round 1 rejected on the same ground (r1 #1 = r0 #3 device word; #2 = r0 #4/#5 ready-made route and arrange; #4 = r0 #6; #5 = r0 #11; #6 = r0 #8; #8 = r0 #10; #11 = r0 #14; #12 = r0 #15; #13 = r0 #18; #15 = r0 #17; #16 = r0 #19; #18 = r0 #12; #20 = r0 #6). Each is re-ruled on its reason, and a second reading is not by itself a reason. Rejected again, with the binding ruling: #1 (P16, events.orderNote), #2 (N736, N735), #4 and #20 (the published name, BRIEF trap 1), #5 and #18 (N3, N732, N738; the reader understood both words and called them stiff or first-glance odd, and the double 'idafat' it names in «اشتراک کے لنک» is one «کے»), #6 (N733, N737), #7 (the two buttons keep the page's name, N737; «یہ فہرست دیکھیں» would mislabel the mine button, SD-M2), #8 (BRIEF trap 2; the bracketed gloss beside the counter pair is a cut mark), #9 (N734; «اجازت دیتا ہے» is a modal shift from 'accepts', «اسٹاپ» is the loan P16-test refuses), #11 (the published det.hoursNotice frame), #12 (N730), #13 (N731; the arrow ↗ is the published det.openMaps convention), #14 («ہٹائیں» is the sources' bare 'Remove' on the card it removes; «فہرست سے» would be the judge's addition), #15 (the browser draws the confirm buttons; irreversibility is a claim neither source makes), #16 (the recipient opens a page named by the same words; P1/P2). #3 is the source's own repetition (SD-M4, widened to plan.empty.d). #17 is the open item BRAND and #19 a cut mark. #10 is accepted in part (item 3).",
+    "[j2] Item 3 (plan.routeLimit, reader r1 #10, N739): the reader read «کھلنے والے راستے» as a road, and reader r0 (#13) had called the same participle heavy: two independent fresh readers, not one repeated. The second sentence half is now «اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔»: 'the route of the first 10 sights opens', which says what en («the route opens with the first 10 sights on your list») and ar («فيُفتح المسار بأول 10 معالم») say, uses the finite verb of plan.route («راستہ کھولیں»), removes the participle and the doubled «راستے … راستے», and adds no number, no 'only' and no destination. «پڑاؤ» (N734) and «قبول کرتا ہے» are unchanged. What the reader wanted beyond that (which 10, what happens to the rest) is not in either source (SD-M1; the fence). Both 10s stay Latin.",
+    "[j2] Item 4 (proofread-r1 settled; 0 MANDATORY, 4 RECOMMENDED). (1) N738 rewritten: it no longer says the reader 'was explained by the next string' (the reader did not say so; r1 #5 repeats the first-glance oddness), it rests on P16-test condition (1) (N3, N732), says plainly that the conditions are cumulative so a stumble alone admits nothing, and drops «ٹیپ» from its title and body (that refusal belongs to plan.empty.d under N730/N332, now a pointer only). (2) SD-M3 is marked fixed in the working tree, and note [j1] item 58 says so. (3) The stale «چنے ہوئے» records ([s4] item 33, [s5] item 42) carry 'superseded by N735'; the routeLimit records ([s2] item 25, [j1] item 54, [s5] item 42) carry 'superseded by N739'. (4) Note [j1] item 50 is reworded so that only ctaD is said to publish «بنا بنایا راستہ پا لیں» and visa-guide next.items.4.parts is said to publish «بنا بنایا راستہ», as N736 states it. Earlier notes are otherwise byte-identical to judge-r1.json.",
+    "[j2] Item 5 (SD-M3 state): PlanView.astro in the working tree now reads mapHref with the ur branch (… de ? '/de/map/' : ur ? '/ur/map/' : '/en/map/'), read at stage 7 of round 2; git status shows the file modified and uncommitted, so the fix is in the working tree only. SD-M3 is kept in source_defects as 'fixed in the working tree, uncommitted' so the owner sees what ships.",
+    "[j2] Item 6 (not verified): no web lookup was made this round, so no count is quoted; «پڑاؤ» stays pending in the termbase; «چھاپیں» is not checked against the Chrome/Android Urdu interface (N732's stated limit). Verified by reading: the 20 reader items, judge-r1.json, proofread-r1.md, the termbase rulings P16, P16-test, N3, N332, N526, N727 and the open items, PlanView.astro lines 44-52 and 84-148, pack.json and ref.json. No open item of _meta.open_items is settled; BRAND and published-ur-labels-flagged are unchanged; no termbase entry added or amended."
+  ],
+  "rulings": [
+    {
+      "id": "N735",
+      "title": "plan.lead: the sights «you chose» are said with a relative clause, not the participle «چنے ہوئے».",
+      "binds": "plan.lead only (it is also the page's meta description). No other string and no other page.",
+      "ruling": "«آپ نے جو سیاحتی مقامات چنے ہیں، وہ اس آلے پر محفوظ ہیں۔ انہیں ترتیب دیں اور بنا بنایا راستہ پا لیں۔». The relative clause mirrors the English 'The sights you chose are saved on this device' and the Arabic «المعالم التي اخترتها محفوظةٌ على هذا الجهاز», keeps the line's verb for choosing (N332 E, N730) and removes the reading of «چنے» as chickpeas that the participle before the noun allowed (reader r0 #2). Not «منتخب کیے ہوئے / منتخب کردہ» (officialese; «منتخب» was weighed in N332 and not taken), not «پسند» (adds 'liked', a different claim). «اس آلے پر» stays (published events.orderNote «آپ کے آلے کی تاریخ»; «ڈیوائس» is not admitted, P16; «براؤزر» or «فون» would narrow the source's 'this device'). The second sentence is unchanged: «ترتیب دیں» is the source's 'Arrange them' (SD-M1 records that the page has no such control).",
+      "evidence": "blind-reader.r0.md #2, #3; ur-05 note [s4] 32 (the participle was a sweep result, not a ruling); PlanView.astro (no sort or reorder control). ROUND 2: the fresh reader r1 (#1, #2) re-raised «آلے» and «بنا بنایا راستہ پا لیں» and had no stumble on the relative clause.",
+      "guard": "None."
+    },
+    {
+      "id": "N736",
+      "title": "«بنا بنایا راستہ پا لیں» stays in plan.lead and plan.empty.d: the published phrase.",
+      "binds": "plan.lead and plan.empty.d (the second sentence) only.",
+      "ruling": "The phrase is the published wording of the same source phrase 'ready-made route' (tm plan-your-trip ctaD «گوگل میپس پر بنا بنایا راستہ پا لیں», visa-guide next.items.4.parts «سفر کا بنا بنایا راستہ»), and N734 settles «راستہ» for this page. The reader's three remarks (#4, #15: chatty, literary «پا لیں», a promise larger than the page delivers) are taste, or are the source's promise; his remedy «انہیں گوگل میپس پر ایک سفری راستے کی صورت میں کھولیں» changes what is claimed and uses «سفری», which N612 keeps for the home planner. The page's own sibling and the ctaD pair must keep reading the same.",
+      "evidence": "blind-reader.r0.md #4, #15; ref.json tm pairs ctaD and next.items.4.parts. ROUND 2: reader r1 #2 and #12 repeat the point («پا لیں» as a calque of 'get'); no new reason.",
+      "guard": "None."
+    },
+    {
+      "id": "N737",
+      "title": "The shared-list box keeps the page's own name and the sources' two buttons; N733 holds after the reader's stumble.",
+      "binds": "plan.shared.h, plan.shared.d, plan.shared.import and plan.shared.mine only.",
+      "ruling": "The paragraph quotes «میرے محفوظ کردہ مقامات» and the two buttons are «… میں شامل کریں» and «… دیکھیں» with the same name, byte-identical to plan.title (BRIEF trap 1). The reader's «یہ فہرست دیکھیں» for the second button (#9) is refused: in the template that button (mine-btn) removes ?list= and returns to the visitor's own list, so the label states what it does, and 'View my saved places' is the sources' text. That the box invites 'browse it' while its only view button opens the visitor's own list is the source's design (SD-M2). N733 stands: the fallback «اشتراک کی گئی فہرست» was weighed on this reader's stumble (#8, #11) and gives «سیاحتی مقامات کی اشتراک کی گئی فہرست» («کی … کی» stacked) with no gain; «شیئر» stays refused (N3, P16-test); who shared the list is in neither source.",
+      "evidence": "blind-reader.r0.md #8, #9, #11; PlanView.astro (mine-btn, import-btn handlers); N3, N733. ROUND 2: reader r1 #6 and #7 repeat the heading and the two buttons (chain of three nouns; buttons long and alike); the length of «اپنی فہرست میں شامل کریں» would drop the page's name, and the alikeness of the two buttons is the sources' design (SD-M2); no new reason.",
+      "guard": "None."
+    },
+    {
+      "id": "N738",
+      "title": "P16-test applied to this batch's readers: «شیئر» and «پرنٹ» are not admitted for plan.share, plan.copy and plan.print.",
+      "binds": "plan.share, plan.copy and plan.print only (their labels).",
+      "ruling": "P16-test is cumulative: a loan enters only when (1) the native wording is shown not to be what the function is called, (2) a blind reader stumbled or was misled, and (3) the loan has a dictionary headword or solid attestation. «شیئر»: condition (1) fails — the function is called «اشتراک کریں» on Android and Chrome, and the same label is the published share.btn (N3); so the native label stays whatever the readers' first impression. The two readers' remark that «اشتراک» first suggests partnership (r0 #11, r1 #5) is recorded as a first-glance oddness; both read the labels correctly and called them stiff, and a stumble alone admits nothing. «پرنٹ»: condition (1) fails on the evidence of N732 (the Urdu Wikipedia interface names printing with native words, «طباعت» and «قابل طبع نسخہ»); «چھاپیں» was understood by both readers (r0 #12, r1 #18). No termbase entry is made. If a later page shows from the Chrome/Android Urdu interface (the evidence N732 asks for) that the function is named with the loan, the test can be reopened for that label. The refusal of «ٹیپ» in plan.empty.d is N730/N332, not this ruling.",
+      "evidence": "blind-reader.r0.md #11, #12; blind-reader.r1.md #5, #18; P16-test; N3; N732; proofread-r1.md RECOMMENDED 1.",
+      "guard": "None."
+    },
+    {
+      "id": "N739",
+      "title": "plan.routeLimit: the participle «کھلنے والے راستے میں … شامل ہوں گے» is replaced by «… پہلے 10 سیاحتی مقامات کا راستہ کھلے گا».",
+      "binds": "plan.routeLimit only (its second clause; the first clause, «پڑاؤ» and «قبول کرتا ہے» are unchanged). No other string and no other page.",
+      "ruling": "The note reads «گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔». The clause says what the English («the route opens with the first 10 sights on your list») and the Arabic («فيُفتح المسار بأول 10 معالم في قائمتك») say, with the finite verb of the button plan.route («گوگل میپس پر راستہ کھولیں»), so the note and the button speak of the same route. It removes the participle that two fresh readers stumbled on (r0 #13 'heavy'; r1 #10 'a road that opens') and the doubled «راستے … راستے». It adds no number, no 'only', no destination and no fact; both 10s stay Latin; «راستہ» and «پڑاؤ» stay per N734. Not taken from the readers: «اسٹاپ» (loan, P16-test (1) fails), «اجازت دیتا ہے» (a modal shift from 'accepts'), and any sentence saying which 10 or what happens to the rest (neither source says; SD-M1: the page has no order control).",
+      "evidence": "blind-reader.r0.md #13; blind-reader.r1.md #9, #10; pack.json plan.routeLimit (en, ar, ctx); judge-r1.json N734 note and [j1] item 54.",
+      "guard": "None."
+    }
+  ],
+  "base_amendments": [],
+  "withdrawn": [],
+  "owner_questions": [],
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "quote": "آپ نے جو سیاحتی مقامات چنے ہیں، وہ اس آلے پر محفوظ ہیں۔",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #3. «آلہ» is the published noun for 'device' (events.orderNote «آپ کے آلے کی تاریخ»); «ڈیوائس» is not admitted (P16); «فون» or «براؤزر» would narrow the source's 'this device'. The new point (is the list in an account or on one phone) is answered by the source sentence itself, 'on this device'; saying more (another phone, clearing the browser) would state facts the sources do not give, which the fence bars. N735."
+    },
+    {
+      "n": 2,
+      "quote": "انہیں ترتیب دیں اور بنا بنایا راستہ پا لیں۔",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #4/#5. «بنا بنایا راستہ پا لیں» is the published wording (ctaD, visa-guide) and «راستہ» is N734; «پا لیں» as a calque of 'get' adds no reason beyond the earlier 'literary'; the reader's «ایک ہی راستے کی صورت میں نقشے پر کھول لیں» rewrites the claim. N736. That 'Arrange them' has no control behind it is the source's (SD-M1): the Urdu keeps faith and «ترتیب دیں» is not dropped.",
+      "secondary_verdict": "source_defect"
+    },
+    {
+      "n": 3,
+      "quote": "صفحے پر یہی جملہ ٹیب کی تفصیل میں، عنوان کے نیچے، اور «آپ کی فہرست ابھی خالی ہے» کے نیچے ... دہرایا گیا ہے",
+      "severity": "minor",
+      "verdict": "source_defect",
+      "reason": "In the template the lead is also the meta description (Base description = plan.lead), and the empty-state paragraph ends with the same 'get a ready route' that the English and Arabic lead end with. One string cannot differ in two places; the repetition is in the sources. Logged under SD-M4 (widened to plan.empty.d)."
+    },
+    {
+      "n": 4,
+      "quote": "«سیاحتی مقامات» پورے صفحے میں تقریباً ہر جملے میں آتا ہے، کبھی «مقامات» اکیلا",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #6. «سیاحتی مقامات» is the published name of the landmarks (ui.nav.attractions) and «مقامات» is the published form inside the page's own name «میرے محفوظ کردہ مقامات»; the two are the same published pair, not two things, and a third word («جگہیں») would be a new synonym (BRIEF trap 1). Cost charged under nativeness."
+    },
+    {
+      "n": 5,
+      "quote": "«واٹس ایپ پر اشتراک کریں» ... «اشتراک کا لنک کاپی کریں» ... «یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #11. «اشتراک کریں» is the published share.btn and the name of the function on Android and Chrome (N3); P16-test condition (1) fails for «شیئر» (N738), and a first-glance oddness admits nothing. «اشتراک کے لنک» is one «کے» (a single possessive), not two."
+    },
+    {
+      "n": 6,
+      "quote": "سیاحتی مقامات کی اشتراک کردہ فہرست",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #8. N733/N737 hold: the fallback was weighed and stacks «کی … کی»; «شیئر» is refused (N738). The reader's «کسی نے آپ کے ساتھ ایک فہرست شیئر کی ہے» is a sentence for a heading, uses the refused loan, and adds a sender the sources do not carry (the reader itself records that as a gap)."
+    },
+    {
+      "n": 7,
+      "quote": "میرے محفوظ کردہ مقامات میں شامل کریں / میرے محفوظ کردہ مقامات دیکھیں",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Both buttons name the page as the H1 does (BRIEF trap 1, N737); «اپنی فہرست میں شامل کریں» drops that name and «یہ فہرست دیکھیں» would mislabel the second button, which returns to the visitor's own list (SD-M2). That the two buttons look alike is the sources' design: both English strings share 'my saved places'."
+    },
+    {
+      "n": 8,
+      "quote": "0 سیاحتی مقامات محفوظ ... سیاحتی مقام محفوظ کا جزو (سطر 29)",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #10. The counter is a label after a numeral, not a sentence (BRIEF trap 2); «ہیں» would make it one and break the one/other pair. The bar is hidden until a place is saved, so «0 …» and the empty-state heading are never on screen together (a reading artefact). The line 29 fragment is the singular suffix in the action-only block; the script writes the number before it.",
+      "secondary_verdict": "out_of_scope"
+    },
+    {
+      "n": 9,
+      "quote": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "«پڑاؤ» for a route stop is N734 (the home.route.lead use), which already weighed the 'camp' reading; «اسٹاپ» is a loan P16-test refuses; «مقام» would collide with the sight itself (N4). «قبول کرتا ہے» is the ordinary verb for software taking input; «اجازت دیتا ہے» changes 'accepts' to 'permits', and «10 سے زیادہ پڑاؤ نہیں رکھ سکتا» recasts the sentence. A second reading adds a verb preference, not a misreading."
+    },
+    {
+      "n": 10,
+      "quote": "...اس لیے کھلنے والے راستے میں آپ کی فہرست کے پہلے 10 سیاحتی مقامات شامل ہوں گے۔",
+      "severity": "medium",
+      "verdict": "accepted",
+      "reason": "«کھلنے والا راستہ» was read as a road, and reader r0 (#13) had called the same participle heavy: two independent readers. Applied in part, as N739: «اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔», finite and parallel to the button plan.route, no fact added. Not applied: which 10 and what happens to the rest are in neither source, and the order depends on a control the page lacks (SD-M1); the reader's «باقی نہیں» would add that claim.",
+      "edit": {
+        "key": "plan.routeLimit",
+        "after": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔"
+      }
+    },
+    {
+      "n": 11,
+      "quote": "اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے سرکاری ذرائع سے تصدیق کر لیں۔",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #14. The string is the published det.hoursNotice frame with the published «سرکاری ذرائع» (events.srcNote); «کھلنے کے اوقات», «داخلہ فیس» and «متعلقہ جگہ» would add specifics and a different source of confirmation than the English «official channels». The card text on the page is the places' own summary, so whether a printed summary holds times is not decidable from the page text and is not a defect shown."
+    },
+    {
+      "n": 12,
+      "quote": "سیاحتی مقامات دیکھیں، اور انہیں یہاں جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔ پھر بنا بنایا راستہ پا لیں۔",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #15. «چنیں» is N730 under the owner's decision of 2026-10-21 (device-neutral, tap and click); «دبائیں/ٹیپ» are refused (N89, N332, P16-test). The sentence was already split at s2 to bring the verb closer. The reader's «کسی بھی مقام کے صفحے پر … دبائیں، وہ یہاں آ جائے گا» adds where the button lives and a promise («آ جائے گا») that the sources do not carry; the second sentence is N736."
+    },
+    {
+      "n": 13,
+      "quote": "نقشے پر جگہ ↗",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #18. N731 binds: «جگہ» anchored to the map, not «مقام» (the sight itself); «نقشے پر دیکھیں ↗» or «گوگل میپس میں کھولیں» are verb phrases for what en and ar give as the noun 'Location' (SD-M7). The arrow ↗ is the published det.openMaps convention, set after one space."
+    },
+    {
+      "n": 14,
+      "quote": "ہٹائیں",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "The sources are the bare 'Remove' / «إزالة» (and zh/de/ru likewise), set on each card and removing that card from the list; «فہرست سے ہٹائیں» would be the judge's addition of a destination. A short label on the card it acts on is clear in place."
+    },
+    {
+      "n": 15,
+      "quote": "کیا آپ اپنے محفوظ کردہ مقامات کی پوری فہرست خالی کرنا چاہتے ہیں؟",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #17. The sentence is ordinary confirm-dialog Urdu and carries the Arabic «أتريد»; 'cannot be undone' is a claim neither source makes. The two buttons of a window.confirm are drawn by the browser, not by a string of this batch.",
+      "secondary_verdict": "out_of_scope"
+    },
+    {
+      "n": 16,
+      "quote": "الاحساء میں میرے محفوظ کردہ مقامات:",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #19. The recipient opens a page whose name is exactly «میرے محفوظ کردہ مقامات» (title, shared box), so the message keeps that name; the head name «الاحساء» is P2 and the Latin name inside a sentence is barred by P1. «الاحساء کے وہ مقامات جو میں نے محفوظ کیے ہیں:» is a longer, different sentence than the sources' short line and leaves the page's name."
+    },
+    {
+      "n": 17,
+      "quote": "صفحہ: میرے محفوظ کردہ مقامات — Visit Al-Ahsa",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "The Latin brand line and the dash are built by the template (titleSep plus site.brand); the Urdu brand line is the open item BRAND (N1: not coined by the line), logged and unchanged. plan.title carries no brand. SD-M5."
+    },
+    {
+      "n": 18,
+      "quote": "چھاپیں (فہرست چھاپیں)",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #12. «چھاپیں» is N732; the reader itself says it is right and that «پرنٹ» is only more often heard, which is a preference, not a misreading (N738)."
+    },
+    {
+      "n": 19,
+      "quote": "آخری حصے میں قوسین کی عبارتیں عربی میں ہیں",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Tool artefact: the bracketed Arabic text after each string of the action-only section is the page notes of the reading cut (the reader itself guesses it is not page text), not a string of the Urdu page."
+    },
+    {
+      "n": 20,
+      "quote": "«محفوظ کردہ» کا بار بار آنا (تقریباً نو بار)",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Repeats r0 #6. «میرے محفوظ کردہ مقامات» is the published ui.nav.myTrip and the page's H1; «میری محفوظ فہرست» or «میری فہرست» would be a second name for the same page (BRIEF trap 1). Cost charged under nativeness."
+    }
+  ],
+  "blind_reader_counts": {
+    "total": 20,
+    "accepted": 1,
+    "rejected": 16,
+    "source_defect": 1,
+    "out_of_scope": 2,
+    "serious": 0,
+    "medium": 8,
+    "minor": 12,
+    "reader_rating": 70
+  },
+  "judge_edits": [
+    {
+      "key": "plan.routeLimit",
+      "before": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے کھلنے والے راستے میں آپ کی فہرست کے پہلے 10 سیاحتی مقامات شامل ہوں گے۔",
+      "after": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔",
+      "why": "Blind reader r1 #10 (and r0 #13): the participle «کھلنے والے راستے» reads as a road and is heavy. The second clause now says 'the route of the first 10 sights opens', as en and ar say it, with the finite verb of plan.route; no number, claim or noun added; «پڑاؤ» and «قبول کرتا ہے» unchanged (N739)."
+    }
+  ],
+  "tm_pairs": [
+    { "en": "Your own list", "ur": "آپ کی اپنی فہرست", "page": "plan", "field": "plan.eyebrow" },
+    { "en": "My saved places", "ur": "میرے محفوظ کردہ مقامات", "page": "plan", "field": "plan.title" },
+    { "en": "The sights you chose are saved on this device. Arrange them, and get a ready-made route.", "ur": "آپ نے جو سیاحتی مقامات چنے ہیں، وہ اس آلے پر محفوظ ہیں۔ انہیں ترتیب دیں اور بنا بنایا راستہ پا لیں۔", "page": "plan", "field": "plan.lead" },
+    { "en": "sights saved", "ur": "سیاحتی مقامات محفوظ", "page": "plan", "field": "plan.savedSuffix" },
+    { "en": "sight saved", "ur": "سیاحتی مقام محفوظ", "page": "plan", "field": "plan.savedOne" },
+    { "en": "sights saved", "ur": "سیاحتی مقامات محفوظ", "page": "plan", "field": "plan.savedTwo" },
+    { "en": "sights saved", "ur": "سیاحتی مقامات محفوظ", "page": "plan", "field": "plan.savedFew" },
+    { "en": "Clear all your saved places?", "ur": "کیا آپ اپنے محفوظ کردہ مقامات کی پوری فہرست خالی کرنا چاہتے ہیں؟", "page": "plan", "field": "plan.clearConfirm" },
+    { "en": "Google Maps accepts 10 stops per route, so the route opens with the first 10 sights on your list.", "ur": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔", "page": "plan", "field": "plan.routeLimit" },
+    { "en": "Open the route in Google Maps", "ur": "گوگل میپس پر راستہ کھولیں", "page": "plan", "field": "plan.route" },
+    { "en": "Clear list", "ur": "فہرست خالی کریں", "page": "plan", "field": "plan.clear" },
+    { "en": "Remove", "ur": "ہٹائیں", "page": "plan", "field": "plan.remove" },
+    { "en": "Location ↗", "ur": "نقشے پر جگہ ↗", "page": "plan", "field": "plan.location" },
+    { "en": "Your list is empty", "ur": "آپ کی فہرست ابھی خالی ہے", "page": "plan", "field": "plan.empty.h" },
+    { "en": "Browse the attractions and click or tap “Save this place” to gather your destinations here, then get a ready route.", "ur": "سیاحتی مقامات دیکھیں، اور انہیں یہاں جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔ پھر بنا بنایا راستہ پا لیں۔", "page": "plan", "field": "plan.empty.d" },
+    { "en": "Browse attractions", "ur": "سیاحتی مقامات دیکھیں", "page": "plan", "field": "plan.empty.browse" },
+    { "en": "Open the map", "ur": "نقشہ کھولیں", "page": "plan", "field": "plan.empty.map" },
+    { "en": "Share on WhatsApp", "ur": "واٹس ایپ پر اشتراک کریں", "page": "plan", "field": "plan.share" },
+    { "en": "Copy share link", "ur": "اشتراک کا لنک کاپی کریں", "page": "plan", "field": "plan.copy" },
+    { "en": "Print the list", "ur": "فہرست چھاپیں", "page": "plan", "field": "plan.print" },
+    { "en": "My saved places in Al-Ahsa:", "ur": "الاحساء میں میرے محفوظ کردہ مقامات:", "page": "plan", "field": "plan.waText" },
+    { "en": "A shared list of sights", "ur": "سیاحتی مقامات کی اشتراک کردہ فہرست", "page": "plan", "field": "plan.shared.h" },
+    { "en": "This list reached you via a share link — browse it, or add it to your own “My saved places”.", "ur": "یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے۔ اسے دیکھیں، یا اپنے “میرے محفوظ کردہ مقامات” میں شامل کر لیں۔", "page": "plan", "field": "plan.shared.d" },
+    { "en": "Add to my saved places", "ur": "میرے محفوظ کردہ مقامات میں شامل کریں", "page": "plan", "field": "plan.shared.import" },
+    { "en": "View my saved places", "ur": "میرے محفوظ کردہ مقامات دیکھیں", "page": "plan", "field": "plan.shared.mine" },
+    { "en": "Times and fees can change — confirm via official channels before visiting.", "ur": "اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے سرکاری ذرائع سے تصدیق کر لیں۔", "page": "plan", "field": "plan.printNote" }
+  ],
+  "source_defects": [
+    {
+      "id": "SD-M1",
+      "keys": [
+        "plan.lead",
+        "plan.routeLimit"
+      ],
+      "defect": "The English 'Arrange them' and the Arabic «رتّبها» promise arranging, but the page has no control that sorts or reorders (PlanView.astro: cards render in saved order; no sort, drag or reorder code). The 'first 10 sights on your list' of plan.routeLimit therefore depends on an order the visitor cannot set, and 'ready-made route' promises more than the plain Google Maps directions link delivers (reader r0 #4, #5, #13; r1 #2, #10). The Urdu keeps faith; the owner can drop 'Arrange them' from the three languages or add the control."
+    },
+    {
+      "id": "SD-M2",
+      "keys": [
+        "plan.shared.d",
+        "plan.shared.mine",
+        "plan.title",
+        "plan.savedSuffix"
+      ],
+      "defect": "Shared-list mode (?list=): the box invites the visitor to 'browse it', but its only view button is 'View my saved places', which in the template (mine-btn) drops ?list= and returns to the visitor's own list; the H1 and the counter keep 'My saved places' / 'saved' while the cards are someone else's; what 'Add' does (merges the shared stops into the visitor's list, import-btn) is not said (reader r0 #9, serious; r1 #7). Source and template design; the Urdu keeps faith."
+    },
+    {
+      "id": "SD-M3",
+      "keys": [
+        "plan.empty.map"
+      ],
+      "defect": "FIXED IN THE WORKING TREE (uncommitted). When read at round 1, PlanView.astro (tree fe0bab0 with local edits) had a ur branch in browseHref (/ur/attractions/) but none in mapHref, so the empty-state map button of the Urdu page fell through to /en/map/ instead of /ur/map/ (BRIEF names /ur/map/). At round 2, line 52 of PlanView.astro reads '… de ? '/de/map/' : ur ? '/ur/map/' : '/en/map/'' and git status shows the file modified, not committed: the fix reaches the site only when that edit is committed and merged."
+    },
+    {
+      "id": "SD-M4",
+      "keys": [
+        "plan.lead",
+        "plan.empty.d"
+      ],
+      "defect": "The lead is passed as the page's meta description (Base description = t('plan.lead')) and also rendered under the H1, so a description and the visible lead are the same sentences (reader r0 #7); and the empty-state paragraph ends with the same 'get a ready route' as the lead, so the page says it twice (reader r1 #3). Template and source design; a separate plan.desc string would be needed for the first, and the second is in the English and Arabic."
+    },
+    {
+      "id": "SD-M5",
+      "keys": [
+        "plan.title"
+      ],
+      "defect": "Tab title = plan.title + titleSep + site.brand: the brand line stays the Latin wordmark and the separator is the template's (reader r0 #1, r1 #17). This is the open item BRAND (N1), the owner's to decide; the reader also asks that the tab title say the list is the visitor's own, which the single string plan.title cannot do."
+    },
+    {
+      "id": "SD-M6",
+      "keys": [
+        "plan.copy",
+        "plan.share",
+        "plan.route",
+        "plan.remove",
+        "plan.shared.import"
+      ],
+      "defect": "No user-facing message exists for: a failed clipboard write (the script swallows the error and shows nothing), a failed share or Maps open, an invalid or empty ?list= (silently shows the visitor's own list), or undo after «ہٹائیں» (reader r0 #20). The copy success text exists (published ui plan.copied). Nothing can be added in Urdu; a string and template change would be needed."
+    },
+    {
+      "id": "SD-M7",
+      "keys": [
+        "plan.location"
+      ],
+      "defect": "The sources disagree on kind: en 'Location ↗' and ar «الموقع ↗» are a noun, while the approved zh line is an action (在谷歌地图中打开 ↗, 'open in Google Maps') and the de/ru are nouns. The Urdu follows en and ar (N731). If the owner wants the action reading on all languages, the English and Arabic change first."
+    },
+    {
+      "id": "SD-M8",
+      "keys": [
+        "plan.savedSuffix",
+        "plan.savedOne",
+        "plan.title"
+      ],
+      "defect": "English noun drift on one page: the title and buttons say 'places', the counter and the shared heading say 'sights' (the ctx example even reads '{n} saved places'); recorded at s1. The Urdu keeps the published pair «سیاحتی مقامات» / «مقامات» per string."
+    }
+  ],
+  "scores_row": "\"ur-mytrip-1 (ur): /ur/plan/ — 26 strings\",2026-10-23,2,91,\"APPROVE (lowest keys plan.routeLimit, plan.empty.d, plan.shared.h 91; axes 28/25/19/9/10; 1 judge edit: plan.routeLimit finite clause for the participle «کھلنے والے راستے» (N739); rulings N735-N739 (N738 rewritten on proofread advice); fresh blind reader 20 items (70/100, 0 serious): 1 accepted, 16 rejected, 1 source defect, 2 out of scope, 13 of the 20 repeat round-1 points; proofread r1: 0 mandatory, 4 recommended all settled; termbase 0 entries; TM 26 pairs; no owner question; 8 source defects, SD-M3 (ur map link) fixed in the working tree, uncommitted)\""
+}

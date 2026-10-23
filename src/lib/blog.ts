@@ -11,15 +11,14 @@ import { blogHref } from './routes';
 
 type Post = CollectionEntry<'blog'>;
 
-/** فهرس المدونة بلغة الطلب — ru منذ ب9 (2026-09-18)، وde منذ ج10 (2026-09-24).
- *  الأوردو بلا فهرس مدونة بعد فتقصد الإنجليزي (لا رابط إلى /ur/blog/ غير مبنية). */
-export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', ur: '/en/blog/' };
+/** فهرس المدونة بلغة الطلب — ru منذ ب9 (2026-09-18)، وde منذ ج10 (2026-09-24)، وur منذ ur-blog-1. */
+export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', ur: '/ur/blog/' };
 
 /** نظائر المقال بلغاته المبنية — zh/de/ru تُدرج فقط حين يوجد ملفها (بوابة التوليد كما في المعالم) */
 export const postAlt = (all: Post[], entry: Post): AltLinks => {
   const sib = (l: Lang) => all.find((e) => e.data.key === entry.data.key && e.data.lang === l && !e.data.draft);
   const ar = sib('ar'), en = sib('en');
   const out: AltLinks = { ar: ar ? blogHref(ar.data) : BLOG_INDEX.ar, en: en ? blogHref(en.data) : BLOG_INDEX.en };
-  for (const l of ['zh', 'de', 'ru'] as const) { const s = sib(l); if (s) out[l] = blogHref(s.data); }
+  for (const l of ['zh', 'de', 'ru', 'ur'] as const) { const s = sib(l); if (s) out[l] = blogHref(s.data); }
   return out;
 };

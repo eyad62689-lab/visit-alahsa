@@ -1,0 +1,918 @@
+{
+  "batch": "ur-static-1",
+  "stage": 7,
+  "round": 2,
+  "scores": {
+    "per_string": {
+      "unesco.title": 95,
+      "unesco.lead": 94,
+      "unesco.comp": 96,
+      "unesco.officialH": 96,
+      "unesco.official": 92,
+      "unesco.officialLink": 95,
+      "unesco.seoTitle": 93,
+      "unesco.seoDesc": 94,
+      "report.eyebrow": 94,
+      "report.title": 97,
+      "report.lead": 93,
+      "report.pageL": 94,
+      "report.pagePh": 95,
+      "report.msgL": 95,
+      "report.msgPh": 94,
+      "report.emailL": 95,
+      "report.emailPh": 99,
+      "report.submit": 96,
+      "report.note": 93,
+      "thanks.title": 96,
+      "thanks.d": 93,
+      "thanks.back": 96,
+      "tmap.title": 92,
+      "tmap.lead": 93,
+      "tmap.open": 92,
+      "tmap.loading": 95,
+      "tmap.3d.on": 94,
+      "tmap.3d.off": 94,
+      "tmap.locate": 96,
+      "tmap.list.title": 96,
+      "tmap.classic": 94,
+      "tmap.gest.win": 91,
+      "tmap.gest.mac": 91,
+      "tmap.gest.touch": 94
+    },
+    "per_page": {
+      "/ur/unesco/": 92,
+      "/ur/report/": 93,
+      "/ur/report/thanks/": 93,
+      "/ur/terrain-map/": 91
+    }
+  },
+  "batch_score": 91,
+  "breakdown": {
+    "method": "Round 2. Batch score = lowest page score (07-judge.md; config pass_threshold 90); a page scores as its lowest key. Each key was scored on five axes: accuracy 30, nativeness 30, termbase/transliteration/orthography 20, fit for the Urdu-speaking traveller 10, structure 10. The axes below are the minima of the lowest keys (tmap.gest.win and tmap.gest.mac, 91), unchanged from round 1: the two round-2 text edits (unesco.lead, report.eyebrow) moved two keys from 93 to 94 and touch no minimum. The fresh reader on the round-1 text marked UNESCO 72, report 78, thanks 79, terrain map 63, overall 70 (0 serious, 18 medium, 21 minor): a reading, not the score; 19 of its 39 items fall on published Urdu, card text or reading-tool artefacts outside this batch, and the in-batch mediums that are not taken are ruled against the sources and the rulings that bind.",
+    "axes": {
+      "accuracy": {
+        "score": 28,
+        "of": 30,
+        "note": "tmap.gest.win / tmap.gest.mac -2: the English 'scroll' and the Arabic 'عجلة الفأرة' are both carried by the bare «سرکائیں» (N746), which does not say wheel or direction. tmap.title / tmap.open -1: 'terrain' is carried as relief, «نشیب و فراز». unesco.official -1 and tmap.classic before the edit: the Centre is named descriptively, and the source qualifier 'Classic' was missing (now restored, N751). No fact added anywhere; the fence held."
+      },
+      "nativeness": {
+        "score": 25,
+        "of": 30,
+        "note": "tmap.gest.win / mac -5: «Ctrl دبا کر سرکائیں» is heard as slide-or-pan by the blind reader (#50); N746 keeps the verb and the doubt stands. tmap.title / open -5: three independent readers (two in b21-ui, one here, 'serious') stumble on «نشیب و فراز» as a figure of speech, though ur.wikipedia uses it for physical relief including a map of a surface (N750). unesco.official -3: the Centre's descriptive name carries three genitives and a double locative. thanks.d -2 and report.lead -2: «سب کے لیے درست رہتا ہے» and «کام نہ کرنے والا لنک» remain as rendered idioms, kept under the fence. Round 2: the fresh reader repeats the doubts on «سرکائیں» (#39) and «نشیب و فراز» (#26, N750); both stay under the rulings that bind, so the minima do not move."
+      },
+      "termbase_style": {
+        "score": 19,
+        "of": 20,
+        "note": "Published siblings byte for byte (report.title = ui.foot.l.report; thanks.back has ui.crumb.home; tmap.classic is the published page name with «روایتی» inserted before «نقشہ» (N751)); P1, P7, P10, P13, P16, P22, N13, N33 held; N745 (ای میل), N746-N748 held; «سرکاری» for 'official' follows the memory (N753). -1: the Centre's name is still unattested (pending in the termbase) and the gesture verb has no interface page to quote. Round 2: the record is repaired (genders on every termbase addition, kind «institution», the 3D and 2D labels as two entries, N751 and N753 quote what is written)."
+      },
+      "traveller_fit": {
+        "score": 9,
+        "of": 10,
+        "note": "Short, polite, clear labels; the reader's missing information (no reply time, nothing about the email, the six other components unnamed, which view a toggle names) is the sources' and is logged, not invented. tmap.title -2: the one 'serious' reading."
+      },
+      "structure": {
+        "score": 10,
+        "of": 10,
+        "note": "34 keys in pack order; {comps.length} once in unesco.lead and unesco.seoDesc, {names.join(', ')} once in unesco.seoDesc; constants ↗ Ctrl ⌘ 1563 2018 name@example.com intact; no U+00A0, no Eastern digits, no Arabic letterforms, no stop on any title, label, button or placeholder; verify.mjs passes. Round 2: unesco.lead and report.eyebrow re-checked: {comps.length} once, no U+00A0, no Arabic letterform, no stop on the eyebrow."
+      },
+      "total": 91,
+      "batch_score_rule": "Batch score = the lowest page score (config.score_rule): /ur/terrain-map/ 91 (tmap.gest.win, tmap.gest.mac)."
+    },
+    "lowest_keys": [
+      "tmap.gest.win",
+      "tmap.gest.mac"
+    ],
+    "deductions": {
+      "tmap.gest.win / tmap.gest.mac": "accuracy -2, nativeness -5, termbase -1, fit -1 (N746's bare «سرکائیں»; the wheel is not named; the Arabic Windows hint names it, the Mac hint does not).",
+      "tmap.title / tmap.open": "accuracy -1, nativeness -5, fit -2 («نشیب و فراز», N750).",
+      "unesco.official": "accuracy -1, nativeness -3, termbase -1, fit -1 (three genitives in the Centre's descriptive name, locative pair).",
+      "other keys": "93-99: one to three points for a source silence, a published idiom kept under the fence, or a register the reader paused on."
+    },
+    "blind_reader": {
+      "total": 39,
+      "rating": 70,
+      "serious": 0,
+      "medium": 18,
+      "minor": 21,
+      "accepted": 2,
+      "rejected": 16,
+      "source_defect": 2,
+      "out_of_scope": 19,
+      "pages": {
+        "unesco": 72,
+        "report": 78,
+        "thanks": 79,
+        "terrain_map": 63
+      }
+    }
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "strings": {
+    "unesco.title": "الاحساء کا نخلستان عالمی ورثے کی فہرست میں",
+    "unesco.lead": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے کی فہرست میں درج ہوا (مقام نمبر 1563)۔ اس کے بارہ حصے ہیں۔ ان میں سے {comps.length} مقامات ہیں جن کے اس سیاحتی رہنما میں الگ صفحات ہیں۔ یہاں ان کی ترتیب سرکاری فہرست میں حصوں کے نمبروں کے مطابق ہے۔",
+    "unesco.comp": "حصہ",
+    "unesco.officialH": "سرکاری ماخذ",
+    "unesco.official": "بارہ حصوں کی پوری فہرست اور ان کے نقشے آپ یونیسکو کے عالمی ورثے کے مرکز پر اس مقام کے صفحے میں دیکھ سکتے ہیں۔",
+    "unesco.officialLink": "یونیسکو پر مقام نمبر 1563 ↗",
+    "unesco.seoTitle": "یونیسکو میں الاحساء کا نخلستان",
+    "unesco.seoDesc": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے میں شامل ہوا۔ اس کے بارہ حصوں میں سے {comps.length} کے الگ صفحات ہیں: {names.join(', ')}۔",
+    "report.eyebrow": "درستی برقرار رکھنے میں ہماری مدد کریں",
+    "report.title": "غلطی کی اطلاع دیں",
+    "report.lead": "ہمارے لیے سب سے اہم چیز معلومات کی درستی ہے۔ اگر آپ کو کوئی غیر درست تفصیل، کام نہ کرنے والا لنک یا غلط جگہ لگی تصویر نظر آئے تو ہمیں بتائیں، ہم اس کا جائزہ لیں گے۔",
+    "report.pageL": "متعلقہ صفحہ",
+    "report.pagePh": "صفحے کا لنک یا سیاحتی مقام کا نام",
+    "report.msgL": "آپ کو کیا غلطی نظر آئی؟",
+    "report.msgPh": "غلطی مختصر الفاظ میں بتائیں، اور اگر آپ کو درست معلومات اور اس کا ماخذ معلوم ہو تو وہ بھی لکھ دیں",
+    "report.emailL": "آپ کا ای میل پتا (اختیاری، اگر آپ جواب چاہتے ہوں)",
+    "report.emailPh": "name@example.com",
+    "report.submit": "اطلاع بھیجیں",
+    "report.note": "آپ کی اطلاع سیدھی ویب سائٹ کے عملے تک پہنچتی ہے، اور اس میں سے کچھ بھی شائع نہیں ہوتا۔",
+    "thanks.title": "آپ کی اطلاع ہمیں مل گئی، شکریہ",
+    "thanks.d": "ویب سائٹ کا عملہ آپ کی نشاندہی کا جائزہ لے گا اور جس غلطی کی تصدیق ہو جائے گی اسے ٹھیک کر دے گا۔ آپ کے تعاون سے الاحساء کا سیاحتی رہنما سب کے لیے درست رہتا ہے۔",
+    "thanks.back": "صفحہ اول پر واپس جائیں",
+    "tmap.title": "زمین کے نشیب و فراز کا نقشہ",
+    "tmap.lead": "نخلستان کی زمین اپنے نشیب و فراز کے ساتھ: جبل القارہ، کھجور کے باغات اور مشرق میں ریت کے ٹیلے، اور ہر سیاحتی مقام اپنی جگہ پر۔ فہرست میں کسی بھی مقام کو چن کر اسے نقشے پر دیکھیں۔",
+    "tmap.open": "زمین کے نشیب و فراز کا نقشہ کھولیں",
+    "tmap.loading": "نقشہ کھل رہا ہے…",
+    "tmap.3d.on": "تین جہتی منظر",
+    "tmap.3d.off": "دو جہتی منظر",
+    "tmap.locate": "نقشے پر دکھائیں",
+    "tmap.list.title": "نقشے پر تمام سیاحتی مقامات",
+    "tmap.classic": "سیاحتی مقامات کا روایتی نقشہ",
+    "tmap.gest.win": "نقشے کو بڑا یا چھوٹا کرنے کے لیے Ctrl دبا کر سرکائیں",
+    "tmap.gest.mac": "نقشے کو بڑا یا چھوٹا کرنے کے لیے ⌘ دبا کر سرکائیں",
+    "tmap.gest.touch": "دو انگلیوں سے نقشہ سرکائیں"
+  },
+  "termbase_additions": [
+    {
+      "en": "email",
+      "ar": "البريد الإلكتروني",
+      "ur": "ای میل",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "status": "verified",
+      "source": "VERIFIED at stage 4 (2026-10-23): rekhtadictionary.com/meaning-of-email answers HTTP 200 on the entry page with the headword «ای میل» (U+0627 U+06CC U+0020 U+0645 U+06CC U+0644; Origin: English), «Noun, Masculine», 'messages distributed by electronic means from one computer user to one or more recipients via a network', with sher examples that use it as a masculine noun. ur.wikipedia exact phrase «ای میل» 160 pages against «برقی ڈاک» 27 (both HTTP 200, 2026-10-23; top titles «برقی ڈاک», «جی میل», «ای میل انکرپشن»). P16-test (3) met by the Rekhta headword; coordinator decision for this round: «ای میل» site-wide. «برقی ڈاک» (ur.wikipedia article title) is recorded here for search and is not written.",
+      "note": "Masculine (Rekhta), so «آپ کا ای میل». Two words with a plain U+0020 between them: never joined «ایمیل», never hyphenated, never U+00A0. report.emailL writes «آپ کا ای میل پتا» (head noun «پتا», masculine, as in the published «درست پتا»). Ruled in N745."
+    },
+    {
+      "en": "UNESCO World Heritage Centre",
+      "ar": "مركز التراث العالمي لليونسكو",
+      "ur": "یونیسکو کے عالمی ورثے کا مرکز",
+      "gender": "مذکر",
+      "plural": "مراکز",
+      "kind": "institution",
+      "status": "pending",
+      "source": "built from the ruled parts: N2 «عالمی ورثہ», termbase «یونیسکو», common noun «مرکز»; NOT attested as a name: ur.wikipedia exact phrases «عالمی ورثہ مرکز», «عالمی ورثے کا مرکز», «عالمی ورثے کے مرکز» and «مرکز برائے عالمی ورثہ» all 0 pages (HTTP 200 each, 2026-10-23, stage 4); no Urdu edition of whc.unesco.org",
+      "note": "PROVISIONAL (s1), re-checked at stage 4 and still unattested. Written in unesco.official as «یونیسکو کے عالمی ورثے کے مرکز» (oblique, inside a sentence); a descriptive name, no quotation marks (cf. N16 (1)). [j2] kind «institution» (the termbase kinds are toponym, institution, generic, dish, person, plant, name; the RUNBOOK word «org» is not a stored kind)."
+    },
+    {
+      "en": "site staff (the site team)",
+      "ar": "فريق الموقع",
+      "ur": "ویب سائٹ کا عملہ",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "status": "verified",
+      "source": "VERIFIED at stage 4 (2026-10-23): «عملہ» on rekhtadictionary.com/meaning-of-amla (final URL meaning-of-amala, HTTP 200): «عَمَلہ», Origin Arabic, 'Noun, Masculine, Plural': staff of servants or workers, officials, functionaries, the establishment of an office. «ویب سائٹ» is feminine in the termbase (Rekhta), so the genitive agrees with «عملہ»: «ویب سائٹ کا عملہ». The compound itself is not attested: ur.wikipedia exact phrases «ویب سائٹ کا عملہ» and «ویب سائٹ کی ٹیم» both 0 pages (HTTP 200). The loan «ٹیم» has no termbase entry and is outside the P16 admitted list, so the native collective stands.",
+      "note": "report.note («ویب سائٹ کے عملے تک», oblique) and thanks.d («ویب سائٹ کا عملہ … جائزہ لے گا»). Collective masculine singular: the verb is «لے گا / کر دے گا». The head word is verified, the two-word phrase is a plain genitive of two verified words."
+    },
+    {
+      "en": "3D view (toggle label)",
+      "ar": "العرض ثلاثي الأبعاد (3D)",
+      "ur": "تین جہتی منظر",
+      "gender": "مذکر",
+      "plural": "مناظر",
+      "kind": "generic",
+      "status": "verified",
+      "source": "«تین جہتی» by N331 (never Latin 3D, never «تھری ڈی»; termbase entry). «دو جہتی»: ur.wikipedia exact phrase 43 pages (HTTP 200, 2026-10-23, stage 4; top titles «دو جہتی», «نقشہ», «دو جہتی توجہ کا بہاؤ»), the sibling of «تین جہتی» 37 pages in the same «نقشہ» article N331 cites. «منظر»: rekhtadictionary.com/meaning-of-manzar (HTTP 200, 2026-10-23): «مَنظر», Noun, Masculine: a sight, a view, scenery, landscape.",
+      "note": "tmap.3d.on. The button shows the label of the OTHER mode (core.ts apply3d: 3D on shows d3off), so the label is a bare noun phrase naming the view the press leads to. [j2] split from the combined entry «تین جہتی منظر / دو جہتی منظر» (a termbase key is matched byte for byte)."
+    },
+    {
+      "en": "2D view (toggle label)",
+      "ar": "العرض المسطّح (2D)",
+      "ur": "دو جہتی منظر",
+      "gender": "مذکر",
+      "plural": "مناظر",
+      "kind": "generic",
+      "status": "verified",
+      "source": "«تین جہتی» by N331 (never Latin 3D, never «تھری ڈی»; termbase entry). «دو جہتی»: ur.wikipedia exact phrase 43 pages (HTTP 200, 2026-10-23, stage 4; top titles «دو جہتی», «نقشہ», «دو جہتی توجہ کا بہاؤ»), the sibling of «تین جہتی» 37 pages in the same «نقشہ» article N331 cites. «منظر»: rekhtadictionary.com/meaning-of-manzar (HTTP 200, 2026-10-23): «مَنظر», Noun, Masculine: a sight, a view, scenery, landscape.",
+      "note": "tmap.3d.off. The Arabic «المسطّح» (flat) is not written: its own bracket says (2D). The button shows the label of the other mode, as for the 3D entry. [j2] split from the combined entry."
+    },
+    {
+      "en": "zoom (the map): make it bigger or smaller",
+      "ar": "تكبير الخريطة / تصغيرها",
+      "ur": "نقشے کو بڑا یا چھوٹا کرنا",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "status": "verified",
+      "source": "rekhtadictionary.com/urdu-meaning-of-zoom (HTTP 200, 2026-10-23): the computer sense is glossed «تصویر کا سائز کم یا زیادہ کرنا (کمپیوٹر)» and the compound «zoom in» «بڑا کر کے دکھانا»; the Urdu glosses «زوں، زوم» are translations on the English headword's page, not Urdu headwords with entry pages of their own, so the loan «زوم» fails P16-test (3) and a native phrase exists (P16-test (1)).",
+      "note": "tmap.gest.win / tmap.gest.mac: «نقشے کو بڑا یا چھوٹا کرنے کے لیے». «چھوٹا بڑا کرنے» (stage 1) is the idiom of small-and-big and does not say the direction of the action. Ruled in N746. Infinitive, masculine (Urdu infinitives are masculine). [j2] gender set."
+    },
+    {
+      "en": "scroll / slide (verb)",
+      "ar": "تمرير / تحريك",
+      "ur": "سرکانا",
+      "gender": "مذکر",
+      "plural": null,
+      "kind": "generic",
+      "status": "verified",
+      "source": "rekhtadictionary.com/meaning-of-sarkaanaa (HTTP 200, re-read 2026-10-23, stage 4): «سَرْکانا», Verb, Origin Hindi: to move something from its place, slide or push to one side, shift, postpone; Urdu gloss «کِھسکانا، ایک طرف کرنا». N601 confirmed it as the line's verb for slider and scroll instructions (published gate.lead «صفحہ نیچے سرکائیں», memory.track «دائیں بائیں سرکائیں»). The English headword «scroll» on Rekhta (urdu-meaning-of-scroll, HTTP 200) has noun senses only (a roll of paper, an ornament) and no interface verb, so the loan «اسکرول» has no entry to rest on.",
+      "note": "Imperative «سرکائیں». Scroll with a modifier key: «Ctrl دبا کر سرکائیں» / «⌘ دبا کر سرکائیں»; pan the map by touch: «دو انگلیوں سے نقشہ سرکائیں». Ruled in N746 for the map hints only. Infinitive, masculine (Urdu infinitives are masculine). [j2] gender set."
+    }
+  ],
+  "notes": [
+    "[s1] unesco.title/lead/seoDesc: «عالمی ورثے کی فہرست» is the N2 form; in unesco.lead the full «یونیسکو کے عالمی ورثے کی فہرست» is the published-UI form (N2: «یونیسکو کے عالمی ورثے میں شمولیت», «… کا حصہ») as the BRIEF directs. It is NOT a decision on open item UNESCO-LIST-PAIR (the owner's site-wide review is untouched); no «کی … کی» double possessive is written. The H1 drops «یونیسکو» because neither en nor ar carries it there.",
+    "[s1] unesco.lead: «site 1563» is «مقام نمبر 1563» (a bare «مقام» also names an attraction elsewhere on the site, so the sentence has the oasis as subject and a bracket after it; «اس کے بارہ حصے ہیں»). «component» is «حصہ» as in the published det.unescoNo / det.unesco. «twelve» is written «بارہ». Placeholders {comps.length} and {names.join(', ')} kept byte for byte, once each; the Urdu separator is the template's. In unesco.seoDesc the closing «۔» follows the placeholder as the English full stop does.",
+    "[s1] unesco.official: «World Heritage Centre» has no attested Urdu name (see termbase_additions); written descriptively, «یونیسکو کے عالمی ورثے کے مرکز». unesco.officialLink keeps «↗» and «1563».",
+    "[s1] report.title is «غلطی کی اطلاع دیں», byte for byte the published ui.foot.l.report (and its tm pair); det.report (published «کوئی غلطی نظر آئی؟ ہمیں بتائیں») supplies «غلطی» and «ہمیں بتائیں». No stop on title, labels, button, eyebrow, placeholders.",
+    "[s1] report.emailL: «email» has no published Urdu; the loan «ای میل» is not admitted (P16: no dictionary headword on rekhtadictionary.com, checked) so the native «برقی ڈاک» is used (ur.wikipedia article title). The em dash of the source became «،» inside the bracket. name@example.com untouched. [SUPERSEDED by the [coord] note below: «ای میل» is written.]",
+    "[s1] report.note / thanks.d: «site team» is «ویب سائٹ کا عملہ» (see termbase_additions), not the loan «ٹیم». thanks.d: «note» is «نشاندہی» (pointing out), «contribution» is «تعاون».",
+    "[s1] thanks.back uses the published ui.crumb.home «صفحہ اول» in «صفحہ اول پر واپس جائیں». thanks.title: the source's em dash is «،».",
+    "[s1] tmap.title / tmap.open: the source title has no “3D”, so it is «زمین کے نشیب و فراز کا نقشہ», the published ui.map.terrain (N331, N333) minus «تین جہتی». N333's option of a plainer native phrase («زمین کی اونچ نیچ») is NOT taken: it needs its own evidence. In tmap.lead «نخلستان کی زمین اپنے نشیب و فراز کے ساتھ» renders “the oasis in relief” with the same anchored pair.",
+    "[s1] tmap.lead: the action sentence uses «کھول کر» (N720, the owner's 2026-10-21 decision; device-neutral for tap and click, no «کلک»/«ٹیپ», no «چھو کر»), as the ctx directs; the alternative «چنیں» (N332 E, as in the published map.lead.a) would also be device-neutral but N720 binds the click-or-tap case. «ہر سیاحتی مقام» keeps «every» because BOTH sources carry it (N620 bars the quantifier only where the source lacks it). «جبل القارہ» is the published name (ref.places); P3a's single «پہاڑ» in the body is a rule for pages titled with «جبل», not applied to this list.",
+    "[s1] tmap.3d.on / tmap.3d.off: «تین جہتی منظر» / «دو جہتی منظر» (N331: «تین جہتی», never Latin 3D nor «تھری ڈی»). Two words each for a narrow button.",
+    "[s1] tmap.classic is the published ui.map.title «سیاحتی مقامات کا نقشہ», named by its name as the BRIEF directs; tmap.locate is a verb phrase to which the template appends «: اسم المعلم».",
+    "[s1] tmap.gest.*: «scroll» is «سرکائیں» (N601: «سرکائیں» confirmed as the Urdu verb of slide/scroll instructions; the loan «اسکرول» is not admitted); «zoom the map» is «نقشے کو چھوٹا بڑا کرنا» (zoom in and out, no loan «زوم»); «move the map» (touch pan) is «کھسکانا» to keep it apart from the scroll verb. All three are provisional s1 choices for stages 2-4 to test. «Ctrl» and «⌘» kept as Latin constants inside the Urdu sentence.",
+    "[s1] tmap.loading: no published precedent; the loan «لوڈ» is not admitted, so «نقشہ تیار ہو رہا ہے…» (the ellipsis character is part of the source label, not a stop).",
+    "[coord] «email» is written «ای میل» site-wide (the common Urdu word; rekhtadictionary.com has the headword «ای میل», m.). Stage 1's «برقی ڈاک» in report.emailL is replaced and its termbase proposal dropped; «ای میل» is proposed instead with the Rekhta headword as source.",
+    "[s2] «ای میل» verified this session on the dictionary itself: rekhtadictionary.com/meaning-of-email answers HTTP 200 with the headword «ای میل» (code points U+0627 U+06CC U+0020 U+0645 U+06CC U+0644), «اسم، مذکر». A first attempt on the slug «meaning-of-e-mail» returned a page without it, and a search page for «ای میل» returned only unrelated proverbs; the slug that holds the entry is «meaning-of-email». Gender masculine, hence «آپ کا ای میل پتا». Written with a plain space (U+0020), not joined and not U+00A0.",
+    "[s2] unesco.lead: three sentences instead of two, verbs instead of the passive chain. Stage 1's «انہیں یہاں … رکھا گیا ہے» (a passive «رکھا گیا») becomes «یہاں یہ … ترتیب سے آتے ہیں»; «اپنے الگ صفحات» loses the redundant «اپنے» (the possessive «جن کے» already says whose). «شامل ہوا» becomes «درج ہوا», the verb of the published N508 sentence on meta.unescoNote («… عالمی ورثے کی فہرست میں درج ہوا»): inscription is entered on a list, and the page keeps one verb for it across the site. Facts, 1563, 2018, twelve, the placeholder: untouched.",
+    "[s2] unesco.official: the passive «دیکھے جا سکتے ہیں» becomes the active «آپ … دیکھ سکتے ہیں» (آپ, as the line addresses the visitor); order unchanged (list and maps first, place of the page after). The descriptive name of the Centre stays «یونیسکو کے عالمی ورثے کے مرکز» (termbase_additions).",
+    "[s2] report.eyebrow: «ہمیں درست رہنے میں مدد دیں» → «درست رہنے میں ہماری مدد کریں». «مدد دینا» is the calque of «give help»; the idiom is «مدد کرنا», and the possessive «ہماری» sits before the noun as Urdu puts the beneficiary. No stop, no fact.",
+    "[s2] report.lead: «ہمیں سب سے زیادہ فکر معلومات کی درستی کی ہے» (a «فکر … کی ہے» of the English «we care») → «ہمارے لیے سب سے اہم چیز معلومات کی درستی ہے» (the claim of the source, \"what matters most\", stated as Urdu states it). «غلط جگہ لگی ہوئی تصویر» loses the participial «ہوئی»: «غلط جگہ لگی تصویر». «کام نہ کرنے والا لنک» is kept: the loan «لنک» has its entry (ref.terms) and no dictionary-attested native phrase for a broken link is at hand (not coined).",
+    "[s2] report.msgPh: «مختصراً بیان کریں» (Arabic-leaning adverb plus the officialese «بیان کریں») → «مختصر الفاظ میں بتائیں». The em dash stays «،» as stage 1 had it (no «؛», N33). No stop at the end of a placeholder.",
+    "[s2] thanks.d, thanks.title, report.note, report.submit, report.pageL/pagePh/msgL: read as an Urdu reader and left as they are. Stage 1's «سیدھی … تک پہنچتی ہے» and «جائزہ لے گا … ٹھیک کر دے گا» are finite, active and plain; «نشاندہی» for the visitor's note (against «اطلاع» in the title and the button) is the pointing-out of an error and keeps the two sentences from repeating one noun. «تعاون» is kept for «contribution»: N336 records the form as a common word.",
+    "[s2] tmap.list.title: «تمام» kept (the English and the Arabic both say all/كل; N620 bars the quantifier only where the source lacks it), the empty «موجود» is cut: «نقشے پر تمام سیاحتی مقامات».",
+    "[s2] tmap.gest.win / mac: «Ctrl کے ساتھ سرکائیں» (slide together with Ctrl, which an Urdu reader can take as moving the Ctrl key or sliding the map) → «Ctrl دبا کر سرکائیں». For a keyboard key «دبانا» is the ordinary Urdu verb (N89 and N332 bar «دبانا» only for the finger on a phone screen, the touch string below does not use it). «چھوٹا بڑا کرنے» → «بڑا یا چھوٹا کرنے»: see the verb decisions below. The constants «Ctrl» and «⌘» are byte for byte.",
+    "[s2] VERB DECISION, zoom: «نقشے کو بڑا یا چھوٹا کرنے کے لیے». The loan «زوم» is not an Urdu headword: rekhtadictionary.com/meaning-of-zoom is an English entry (buzz, steep climb, camera zoom, «resize an image») whose Urdu glosses «زوں / زوم» are not headwords of their own, so P16-test (3) is not met. Stage 1's «چھوٹا بڑا کرنے» is the idiom of \"small and big\" (people, sizes) and does not say the direction of the action; «بڑا یا چھوٹا کرنے» says that the map is made bigger or smaller, the two ways of zooming, in plain words. Stated as inferred: no Urdu phone-interface page for pinch or Ctrl+scroll was reachable (Apple's ur-in Maps guide gave only English titles in the fetched table of contents, Google's Maps help answered with its not-available-in-Urdu notice), so no interface wording could be quoted for or against.",
+    "[s2] VERB DECISION, scroll: «سرکائیں» kept. N601 confirms it on rekhtadictionary.com/meaning-of-sarkaanaa (verified again this session: «سرکانا»: to slide, push to one side, shift) and binds later /ur/ slider/scroll instructions; the published gate.lead «صفحہ نیچے سرکائیں» is the same verb for scrolling a page. The loan «اسکرول» is not a Rekhta headword (the scroll page of the dictionary answered 503 on the one try; not counted as evidence either way).",
+    "[s2] VERB DECISION, pan on touch: «کھسکانا» is replaced by «سرکانا». Rekhta's own gloss of «سرکانا» is «کھسکانا، ایک طرف کرنا», so the two are one verb, but «کھسکانا» is the colloquial form (\"to nudge along\", also \"to slip away\"), and the line already has the standard form (N601). The concern of stage 1 (keep the pan verb apart from the scroll verb) falls away: the desktop string (zoom by Ctrl + scroll) and the touch string (pan by two fingers) are never on screen together, each device shows its own. The touch string becomes an imperative with the means first, «دو انگلیوں سے نقشہ سرکائیں», the Urdu order of \"with two fingers, move the map\", instead of «استعمال کریں» (the officialese verb of \"use\"). Content identical: two fingers, move the map.",
+    "[s2] tmap.loading: «نقشہ تیار ہو رہا ہے…» → «نقشہ کھل رہا ہے…». «تیار ہونا» is the verb of dishes and arrangements being made ready (it is the verb the termbase meets in «آئس کریم», «عصیدہ»), not of data arriving; the button the visitor has just pressed says «نقشہ کھولیں» (tmap.open), and N720/N727 already use «کھلنا» for what opens on tap. So the loading label continues the same verb: open → opening. The loan «لوڈ» was tried against Rekhta: the English headword «load» has no software/data sense there (cargo, burden, a firearm's charge), so P16-test (3) is not met. Stated as inferred, not quoted from a phone interface (none reachable).",
+    "[s3] Urdu-speaking traveller's read: nothing in the four pages needed foregrounding (heat, hours, family, season) because the source carries none of it and the fence bars adding it. The localization is of vocabulary only: the page-1 inscription verb (درج ہوا), «ای میل» for the visitor's own word for email, «سرکائیں» for the verb Urdu phones and the home page already use, and the loading verb that repeats the button's.",
+    "[s3] Glosses: no new gloss is added. «جبل القارہ» in tmap.lead is a published Urdu name of a list item, not an attraction page; P3a's single «پہاڑ» in the body binds pages titled with «جبل» and the line lists no bracket for an Urdu generic. The German and Russian precedents add \"(der Qarah-Berg)\" / \"(гора Эль-Кара)\"; the Urdu line does not (P3a: «جبل» is itself an Urdu word). «یونیسکو», «عالمی ورثہ», «نخلستان» are published and need none. No devotional framing, no comparison, no Iqama/visa/road remark was added.",
+    "[s3] unesco.lead: for a reader who knows nothing of the property the sentence now runs inscription → number → twelve parts → how many have pages here → the order they appear in. That is the English order and adds nothing; the only change of emphasis is the order of the last two clauses, with the verb of presentation («آتے ہیں») at the end of its sentence.",
+    "[s3] Left for stage 4: (a) tmap.gest.* has no interface-quoted evidence for «بڑا یا چھوٹا کرنے» or «سرکائیں» on a phone; both rest on N601, Rekhta's «سرکانا» entry and inference. (b) tmap.3d.on/off do not say whether the label names the current mode or the mode the button switches to; the source does not say either. (c) The Arabic names the mouse wheel (Ctrl + عجلة الفأرة) and the Chinese too; the English does not and the Mac string does not: «ماؤس» has no termbase entry, so it is not written, and «سرکائیں» covers wheel and trackpad. Recorded as a divergence the arbiter (Arabic) may prefer to see written: «پہیہ» would be the native word.",
+    "[s4] FENCE: all 34 strings were diffed against the English source and the Arabic arbiter. Stages 1-3 introduced no fact, number, superlative, tip, duration or promise that the sources lack. The one element removed is the demonstrative «یہ» of thanks.d («الاحساء کا یہ سیاحتی رہنما»): the English article “the” rendered as a demonstrative (from stage 1), no fact involved. Checked and KEPT as not additions: «ہر» in tmap.lead and «تمام» in tmap.list.title, because en and ar both carry every/all («وكل معلم», «كل المعالم»), which is the Arabic condition of P19 and the exception N620 leaves; «پوری» in unesco.official (the full list, «الكاملة»); «سیاحتی» before «مقامات» and «رہنما» (the site's published words for attraction and for guide: nav.attractions, and tm inline.home.description «الاحساء کا سیاحتی رہنما» for “Your guide to Al-Ahsa”); «آپ» in unesco.official (address, not a claim); «پتا» in report.emailL (the object of the field; the Arabic «بريدك» is itself the address, and the head noun keeps the line out of the m./f. dispute over «ای میل»).",
+    "[s4] SIBLINGS AND CONSTANTS, checked byte for byte by script against ref.json and the stage-4 strings: report.title = ui.foot.l.report «غلطی کی اطلاع دیں» (and the tm pair ui/foot.l.report); thanks.back contains ui.crumb.home «صفحہ اول»; unesco.comp = «حصہ» (the noun of det.unescoNo / det.unesco); tmap.classic = ui.map.title «سیاحتی مقامات کا نقشہ»; tmap.lead carries ref.places «جبل القارہ»; {comps.length} once in unesco.lead and once in unesco.seoDesc, {names.join(', ')} once in unesco.seoDesc, no other placeholder anywhere; the constants «↗» (unesco.officialLink), «1563» (unesco.lead, unesco.officialLink), «2018» (unesco.lead, unesco.seoDesc), «name@example.com», «Ctrl» and «⌘» are present as in the sources. No U+00A0, no «؛», no Arabic letterform, no stop at the end of a title, label, button, placeholder or eyebrow.",
+    "[s4] DIVERGENCES SETTLED (the Arabic is the arbiter for facts, the English for device-neutral wording): (1) tmap.lead, en “the palm groves, and the dunes to the east” against ar «امتداد النخيل، وحافّة الرمال شرقاً» (the extent of the palms, the edge of the sands): an image, not a fact; both put palms in the oasis and sand to its east, neither gives a measure or a boundary. Urdu keeps the published «کھجور کے باغات» and «ریت کے ٹیلے» (termbase, as the zh/de/ru lines kept dunes) and claims no edge and no extent. (2) tmap.gest.win, en “Ctrl + scroll” against ar «Ctrl + عجلة الفأرة»: the wheel is the means, not what the sentence says; the Arabic's own Mac string says only «التمرير». Urdu follows the device-neutral English and names no device (N746). (3) tmap.3d.off, en “2D view” against ar «العرض المسطّح (2D)»: the Arabic carries the bracket (2D) itself, so both sources say 2D; «دو جہتی» is written, not a word for flat («ہموار» would mean smooth), and it pairs with N331's «تین جہتی». (4) tmap.lead object, en “name” against ar «معلم»: Urdu «مقام», the noun of the published sibling ui.map.lead.a (N747).",
+    "[s4] OPEN POINTS OF ur-02 SETTLED. (a) Zoom, scroll and pan verbs: kept as stage 2 left them, with the evidence now complete (N746): on Rekhta the zoom entry has the computer sense «تصویر کا سائز کم یا زیادہ کرنا (کمپیوٹر)», so «بڑا یا چھوٹا کرنا» is the dictionary's own wording; the mouse entry has only the animal senses (چوہا، موش) and no pointing-device sense, so «ماؤس» fails P16-test (3); the scroll entry has no interface verb. The remaining doubt is that a bare «سرکائیں» could be read as panning: the hints are shown by MapLibre's cooperative-gestures handler, one text per device class (WindowsHelpText, MacHelpText, MobileHelpText in core.ts), and the reader has just scrolled over the map, so the verb is read with that act; this is inferred, no Urdu interface page was reachable to quote. (b) «نقشہ کھل رہا ہے…» kept: the label is written into #tmap-status when the open button is pressed (index.ts start()) and cleared when the map is ready, so it continues the verb of the button just pressed («نقشہ کھولیں»); the Rekhta pages for «load» carry only cargo, burden, lethal dose and charging a gun (urdu-meaning-of-load, HTTP 200), no data sense, so «لوڈ» fails P16-test (3). Inferred: Urdu speakers say a page or site «کھل رہا ہے». (c) tmap.3d.on / tmap.3d.off: core.ts (apply3d) puts on the button the label of the OTHER mode (3D on shows d3off, 3D off shows d3on) and its own comment says the text describes what a press will do; so the labels are bare noun phrases that name the view the button leads to, «تین جہتی منظر» and «دو جہتی منظر», without a verb and without a postposition. (d) A generic «پہاڑ» for «جبل القارہ» under P3a in tmap.lead: not needed (N748).",
+    "[s4] unesco.lead, last sentence: «یہاں یہ سرکاری فہرست کے مطابق حصوں کے نمبروں کی ترتیب سے آتے ہیں» → «یہاں ان کی ترتیب سرکاری فہرست میں حصوں کے نمبروں کے مطابق ہے». The old line put two demonstratives side by side and used an intransitive «آتے ہیں» for the order of a list; the new one has «ترتیب» as subject and a plain predicate. Same content: the order is that of the component numbers on the official list. No fact moves.",
+    "[s4] thanks.d: «الاحساء کا یہ سیاحتی رہنما» → «الاحساء کا سیاحتی رہنما» (see FENCE); the pairing «الاحساء کا سیاحتی رہنما» is the published rendering of “Your guide to Al-Ahsa”.",
+    "[s4] tmap.classic keeps the BRIEF's instruction (the link is named by the other page's published title, «سیاحتی مقامات کا نقشہ»). Cost, stated: both sources say classic («التقليدية»), and the Urdu link text does not; the template appends the arrow.",
+    "[s4] N745 (email): «email» is written «ای میل», masculine (a possessive before it is «کا»), two words with a plain U+0020 between them, never joined «ایمیل», never hyphenated, never U+00A0, and never the purist «برقی ڈاک». Ground: P16-test (3), the Rekhta headword (rekhtadictionary.com/meaning-of-email, HTTP 200, 2026-10-23: «ای میل», Noun, Masculine), with ur.wikipedia 160 pages for «ای میل» against 27 for «برقی ڈاک» (HTTP 200). It decides the form and the gender of this one word and admits no other computer loan.",
+    "[s4] N746 (map gesture hints): in the three cooperative-gesture hints of the map (tmap.gest.win, tmap.gest.mac, tmap.gest.touch) zoom is «نقشے کو بڑا یا چھوٹا کرنے کے لیے»; scrolling with a modifier key is «Ctrl دبا کر سرکائیں» and «⌘ دبا کر سرکائیں» (the key is pressed; the verb is N601's «سرکائیں»; N89 and N332 bar «دبانا» only for a finger on a screen); the two-finger move is «دو انگلیوں سے نقشہ سرکائیں». Not written: «زوم» (a native phrase exists, the Rekhta zoom entry glosses the computer sense as «تصویر کا سائز کم یا زیادہ کرنا»), «اسکرول» (the Rekhta scroll entry has no interface verb), «ماؤس» (the Rekhta mouse entry has only the animal senses). The Arabic «عجلة الفأرة» is not carried: the English says scroll and the Arabic's Mac string says only «التمرير». It binds these strings and later hints of the same map; it does not decide «سرکائیں» for other objects.",
+    "[s4] N747 (the click-or-tap sentence of the terrain lead): “Click or tap any name in the list to see it on the map” is «فہرست میں کسی بھی مقام کو چن کر اسے نقشے پر دیکھیں»: the verb of the published sibling ui.map.lead.a (N332 E, whose English is the same click-or-tap phrase) in its conjunctive form, device-neutral, no «کلک» or «ٹیپ» (P16), no «دبا کر» (N89). N720 binds the home map lead, whose source verb is “open”, and is not extended here (this replaces the [s1] reading that N720 binds the click-or-tap case): a list entry is chosen, not opened. The object is «مقام» (the Arabic «معلم» and the sibling's noun), not «نام». It decides this sentence and any later string with the same click-or-tap-in-a-list source.",
+    "[s4] N748 (a jabal name outside a jabal page): P3a's single «پہاڑ» in the body binds a page whose title begins «جبل». A string that only names «جبل القارہ» in a list or a lead (tmap.lead) takes neither that «پہاڑ» nor a bracket: «جبل» is itself an Urdu word with that sense (P3a (2)), so the gloss-by-need rule leaves nothing to gloss. The «(der Qarah-Berg)» of the German and the «(гора Эль-Кара)» of the Russian glosses an opaque word and is not carried. It decides only this scope of P3a.",
+    "[s4] OPEN ITEM UNESCO-LIST-PAIR is touched by unesco.lead and by nothing else: written B, «یونیسکو کے عالمی ورثے کی فہرست», the form of N2 and of the published ui pairs, as the BRIEF directs; A is the approved tm pair «یونیسکو کی عالمی ورثے کی فہرست» (asfar faq[2].a, visa-guide intro.parts, trails meta.unescoNote) that five readers reject. Nothing is decided: the owner's site-wide review stands. unesco.title uses the N2 list form without the organisation («عالمی ورثے کی فہرست»), because neither source names UNESCO in that title, and unesco.seoDesc uses «یونیسکو کے عالمی ورثے میں شامل», the published ui form; neither writes the pair.",
+    "[s4] NOT VERIFIED / INFERRED: no Urdu phone or browser interface page was reachable for the map hints or the loading label, so every claim of how Urdu users read «سرکائیں», «بڑا یا چھوٹا کرنا» and «کھل رہا ہے» is inferred from the Rekhta entries, N601, N720, N727 and MapLibre's behaviour in this repository, not quoted. «یونیسکو کے عالمی ورثے کا مرکز» stays unattested (four exact phrasings, 0 pages on ur.wikipedia). The Rekhta pages meaning-of-amla and meaning-of-manzar answered 503 on the first try and 200 on the second; only the 200 answers are used.",
+    "[s5] Item 1 (letterforms): the regex [U+064A U+0643 U+0629 U+0647 U+0649 U+0623 U+0625 U+06C3] run over all 34 strings (Bash, node, file read as UTF-8): 0 hits. Also 0 of: U+00A0, U+200B-U+200F, U+202A-U+202E, U+2066-U+2069, U+FEFF, U+0640, U+061B, U+06F0-U+06F9, U+0660-U+0669, U+00AB, U+00BB, straight quotation mark, U+2013, U+2014, the Latin code SAR; the raw file has no U+00A0 and no BOM. The 5 occurrences of U+0621 are all inside the termbase name for Al-Ahsa (byte-identical to the termbase key). Every U+06BE (17) stands on an aspirate (کھ بھ چھ ٹھ تھ دھ) and no aspirate is written with U+06C1.",
+    "[s5] Items 2 and 6 (names, termbase): every termbase name found in the 34 strings was matched by script against the termbase keys and genders: الاحساء (m.), الاحساء کا نخلستان (m.; direct in unesco.lead/title/seoTitle, oblique الاحساء کے نخلستان in seoDesc), جبل القارہ (m.), نخلستان (m.), یونیسکو (m.), عالمی ورثہ (oblique ورثے), ریت کے ٹیلے (m. pl., direct), تین جہتی, نشیب و فراز (m.), ویب سائٹ (f.; the genitive agrees with عملہ, m.), لنک (m.: «کام نہ کرنے والا لنک»), کھجور (f.; compound «کھجور کے باغات»). No Latin-script name inside an Urdu sentence; no پہاڑ next to جبل القارہ; no banned variant (الاحسا, الہفوف, جبل قارہ); none of the anglicisms of style_rules.anglicisms. N745-N748 are in the s4 range 745-749 of pack.json.",
+    "[s5] Items 3 and 4 (grammar, address): read every string for gender, number, postposition and ergative agreement and found no error (درج ہوا with the masculine نخلستان; ثابت ہو گی with بات f.; ویب سائٹ کا عملہ ... لے گا / کر دے گا; اگر ... چاہتے ہوں subjunctive; ہو تو وہ بھی لکھ دیں). The two hits of the address scan (report.lead, report.msgPh) are the conditional particle after a subjunctive (نظر آئے تو, معلوم ہو تو), not address; no تم, تمہارا, تیرا; every verb after آپ is honorific (دیکھ سکتے ہیں, بتائیں, لکھ دیں, جائیں, کھولیں, دیکھیں, سرکائیں).",
+    "[s5] Items 5, 7, 8 (headings, punctuation, numbers): no U+06D4 at the end of any title, eyebrow, label, button, placeholder or link text (unesco.title, comp, officialH, officialLink, seoTitle; report.eyebrow/title/pageL/pagePh/msgL/msgPh/emailL/emailPh/submit; thanks.title/back; tmap.title/open/loading/3d.on/3d.off/locate/list.title/classic/gest.*); the question label report.msgL closes with U+061F as its source closes with a question mark; every sentence string closes with U+06D4, and unesco.seoDesc closes with it after the placeholder, as the English closes with a full stop. The Latin comma occurs only inside the placeholder {names.join(', ')}; no Latin full stop after Urdu; no space before U+06D4 or U+060C; no semicolon. Digits are Latin only (2018, 1563); «بارہ» is a word, as BRIEF allows. No clock time, currency, date or large number occurs.",
+    "[s5] Items 9, 10, 11 (loanwords, glossing, structure): the only loans in Urdu letters are the admitted لنک, ویب سائٹ and the N745 ای میل (two words, plain U+0020, never joined; masculine «آپ کا ای میل پتا»); the Latin constants Ctrl, ⌘, ↗, name@example.com are byte for byte. No verbal-noun + passive chain, no موجود. No gloss bracket after a name (the only brackets are «(مقام نمبر 1563)», «(2018)» and the label's «(اختیاری، ...)»); termbase names with a gloss: none occur. Keys of strings are identical to pack.json in number (34) and order; placeholders {comps.length} (unesco.lead, unesco.seoDesc) and {names.join(', ')} (unesco.seoDesc) once each, no stray brace.",
+    "[s5] Published siblings, by script against ref.json: report.title === ui.foot.l.report (and tm ui/foot.l.report); thanks.back contains ui.crumb.home; tmap.classic === ui.map.title; unesco.comp is the noun of ui.det.unescoNo; tmap.title is ui.map.terrain minus تین جہتی; unesco.lead / seoDesc use «یونیسکو کے عالمی ورثے» of ui.det.unescoNo and ui.fact.unesco.l; tmap.lead carries ref.places جبل القارہ; پتا follows the published «درست پتا». No sibling string was changed. No string was changed at stage 5; the stage 4 file is carried unchanged and the cumulative termbase_additions are those of stage 4 (no new proposal).",
+    "[j1] ur-static-1, round 1, final judge. Read: JUDGE-BRIEF-r1, 07-judge.md, RUNBOOK-r5, BRIEF, pack.json, ref.json, ur-05.json with the notes of stages 1-5 (N745-N748 bind), blind-input.r0.txt and blind-reader.r0.md (51 items). Searched termbase.json (terms, N2, N331-N333, N601, N620, N720, N727, P16, P16-test, P23-P25, open items) and tm.json.",
+    "[j1] Score: batch 91 = /ur/terrain-map/ (tmap.gest.win, tmap.gest.mac 91; tmap.title and tmap.open 92). /ur/unesco/ 92 (unesco.official), /ur/report/ 93, /ur/report/thanks/ 93. Axes 28/25/19/9/10. APPROVE: 91 >= 90, no letterform, digit or placeholder defect (verify.mjs OK).",
+    "[j1] Reader items: 51 ruled: 4 accepted (1, 3, 27, 34), 19 rejected, 3 source defect (26, 30, 51), 25 out of scope (5-14, 35, 36-49; the published attraction names, summaries and category labels, the reading cut's button marker, and the RTL renderings of 5 and 50). No real contradiction in published data was found; two published items already on the owner's list were hit again by a fourth reader (SD-S5).",
+    "[j1] N750 (terrain wording): item 31 is the reader's only 'serious' item and the phrase was weighed against the termbase and P16. «نشیب و فراز» stays; «تضاریسی» (0 pages for the phrase and for «تضاریس» on ur.wikipedia) and «زمین کی اونچ نیچ» (0 pages) are not admitted; ur.wikipedia uses «نشیب و فراز» of physical relief, including a relief map of the Moon's surface. No base amendment of ui.map.terrain and no owner question: N333's one-line option for a plainer phrase stands unchanged for the owner. Rekhta pages for «تضاریس» / «اونچ نیچ» answered 503 and were not counted; the first Bash attempt at the Wikipedia counts returned 0 and then 429 (shell-mangled Urdu, rate limit) and was discarded; the counts quoted are from a script run with HTTP 200 on each.",
+    "[j1] N751 (tmap.classic): the BRIEF said to name the link by the published page title alone; zh, de and ru kept 'Classic' and the Urdu had dropped the only word that told the link from the open button (reader #34). «سیاحتی مقامات کا روایتی نقشہ» is the published name «سیاحتی مقامات کا نقشہ» with «روایتی» inserted before «نقشہ»; the link text is therefore not byte-identical to ui.map.title. [j2] corrected: round 1 said the published name was kept inside the link, which it is not.",
+    "[j1] N752 (thanks.d) and N753 («سرکاری» for 'official' at UNESCO): see rulings. Judge edits: unesco.seoDesc (two sentences), unesco.lead («اس سیاحتی رہنما»), thanks.d (antecedent), tmap.classic (qualifier).",
+    "[j1] Kept under the fence, noted for the owner as one-line options only: (a) «سب کے لیے درست رہتا ہے» (thanks.d) in place of a looser claim; (b) a wheel word in the Windows gesture hint, if the owner decides «ماؤس» or «پہیہ» may enter (the Arabic Windows hint names the wheel, N746 does not). UNESCO-LIST-PAIR is untouched: unesco.lead keeps N2's form B, as the BRIEF and stage 4 had it.",
+    "[j1] Not verified: how Urdu users read «سرکائیں» with a modifier key (no interface page reachable; N746's evidence is dictionary and inference), and whether whc.unesco.org has an Urdu page (the sources say nothing; none was claimed).",
+    "[j2] ur-static-1, round 2, final judge. Read: JUDGE-BRIEF-r2, 07-judge.md, RUNBOOK-r5, BRIEF, pack.json, ref.json, judge-r1.json (text, rulings N750-N753, edits), blind-reader.r1.md (39 items on the round-1 text; UNESCO 72, report 78, thanks 79, terrain map 63, overall 70; 0 serious, 18 medium, 21 minor), proofread-r1.md (2 MANDATORY, 4 RECOMMENDED). Searched termbase.json (P16-test, open items, N16, N331-N333, N601, N746, N750-N753 absence) and tm.json (accuracy and guide phrases). Out of scope as the brief says: published attraction names, summaries and category headings (items 5-14, 29-38 where they concern cards), the reading cut's button marker, the Latin and RTL renderings.",
+    "[j2] Proofread MANDATORY 1 settled: the two termbase additions with gender null («نقشے کو بڑا یا چھوٹا کرنا», «سرکانا») now carry «مذکر» (Urdu infinitives are masculine; noted in each entry). MANDATORY 2 settled: N751, the tmap.classic edit's why and the [j1] N751 note no longer say the published name is kept inside the link; they say it is the published name with «روایتی» inserted before «نقشہ». The string is unchanged; the alternative «سیاحتی مقامات کا نقشہ (روایتی)» (published name byte for byte) is weighed in N751 and not taken.",
+    "[j2] Proofread RECOMMENDED settled: (3) N753 now quotes fruits.methodP1 as published, «سرکاری اور زرعی ذرائع»; (4) the Centre entry is kind «institution»; (5) the combined 3D/2D entry is two entries, «تین جہتی منظر» and «دو جہتی منظر»; (6) the doubled «سیاحتی» in unesco.lead is removed by a judge edit (below), because the fresh reader (#3, medium) read it twice and heard the other six components as not tourist sites.",
+    "[j2] Judge edits (2 keys, both accepted reader items, no fact moves): unesco.lead «ان میں سے {comps.length} مقامات ہیں جن کے اس سیاحتی رہنما میں …» (the first «سیاحتی» goes; «مقامات» is the sibling noun for the attraction, N747; the published guide name «سیاحتی رہنما» stays whole; the reader's «گائیڈ» is on the owner's banned list, P16-test); report.eyebrow «درستی برقرار رکھنے میں ہماری مدد کریں» for «درست رہنے میں …» (reader #16, medium: the infinitive had no stated subject and read as the staff being corrected; the noun «درستی» is the one report.lead uses; ur.wikipedia «درستی برقرار» 2 pages against «درست رہنے» 0, HTTP 200, a weak count quoted only because it is all there is). Edits of round 1 (unesco.seoDesc, thanks.d, tmap.classic) stand.",
+    "[j2] Ruled against the reader, each with its reason in blind_reader_rulings: #1 (adds the word 'list' no title carries); #2 (N754, «مقام» is the Urdu noun of a World Heritage Site); #13 and the «سرکاری» question (N753 amended: «اصل ماخذ» weighed and refused, 'original' is not 'official'); #20 (it would extend the site's privacy claim to the email address); #23 (the site's own claim, P24/P25); #26 (N750, fourth reader, «ارضی خدوخال» 0 pages on ur.wikipedia, HTTP 200); #27 (the headline is verbless in both sources); #28 («عام نقشہ» is not 'classic' and drops the qualifier, N751); #39 (N746 stands: «ماؤس» fails P16-test (3), «ماؤس کا پہیہ» and «پہیہ گھمائیں» are 0 pages, HTTP 200).",
+    "[j2] «مغربی کنارہ» (reader #8): the phrase is in the published summary of the Khuzam fort (src/content/attractions/khuzam.md, summary_ur: «ہفوف کے مغربی کنارے پر …»), not in a string of this batch: out of scope, logged as SD-S6 for the owner, not edited. On ur.wikipedia the exact phrase «مغربی کنارہ» matches 321 pages and its top title is the article «مغربی کنارہ» (HTTP 200), which supports the reader's first-read; the reader's «مغربی سرے پر» is recorded there as the option.",
+    "[j2] N751 vs the reader's «عام نقشہ» (#28), and N753 vs «اصل ماخذ» (#13): both weighed on the sources first. 1. The sources carry the qualifier ('Classic map', «الخريطة التقليدية»; zh, de, ru keep it); «عام نقشہ» is 'general map' and ur.wikipedia's two pages for the phrase are not a map type (HTTP 200). 2. The sources say 'Official' / «الرسمي»; «اصل» is 'original'. Neither alternative is shown to be fixed usage, and the memory's words («روایتی», «سرکاری») decide. No new guard in either ruling.",
+    "[j2] Score: batch 91 = /ur/terrain-map/ (tmap.gest.win, tmap.gest.mac 91; tmap.title and tmap.open 92); /ur/unesco/ 92 (unesco.official), /ur/report/ 93, /ur/report/thanks/ 93. Axes 28/25/19/9/10 as in round 1 (the two edited keys 93 to 94, no minimum moves). APPROVE: 91 >= 90, no letterform, digit or placeholder defect (verify.mjs OK). Reader items: 39 ruled: 2 accepted (3, 16), 16 rejected, 2 source defect (15, 22), 19 out of scope. The fresh reader's page marks (63 for the map) are a reading, not the score. No owner question; no base amendment; no withdrawal.",
+    "[j2] Not verified: how Urdu users read «سرکائیں» with a modifier key (no interface page reachable; N746 rests on dictionary and inference); whether whc.unesco.org has an Urdu page (the sources say nothing; none was claimed); the ur.wikipedia counts are search-engine page counts, and the search for «اندراج نمبر» returned 13172 pages, which is not an exact-phrase count and is not used. The round-1 reader's 51 rulings stay in judge-r1.json; blind_reader_rulings here are the 39 items of the round-2 reader."
+  ],
+  "rulings": [
+    {
+      "id": "N750",
+      "title": "tmap.title / tmap.open / tmap.lead: «نشیب و فراز» stays for 'terrain'; no base amendment of ui.map.terrain; «اونچ نیچ» and «تضاریسی» not admitted.",
+      "binds": "tmap.title, tmap.open and the phrase «نشیب و فراز» of tmap.lead; ui.map.terrain (published, unchanged). No other string.",
+      "ruling": "«زمین کے نشیب و فراز کا نقشہ» (tmap.title, tmap.open) and «نخلستان کی زمین اپنے نشیب و فراز کے ساتھ» (tmap.lead) stand: the published ui.map.terrain «زمین کے نشیب و فراز کا تین جہتی نقشہ» (N331 C, N333 A) minus «تین جہتی», because the source title says 'Terrain Map' and the Arabic «الخريطة التضاريسية» without 3D. The third reader's 'serious' charge (#31: the phrase is mostly figurative) is the charge of two earlier readers (b21-ui, N333 round 2) and the answer is the same plus new evidence. (1) The physical sense is attested in running text: ur.wikipedia «سطح مرتفع پوٹھوہار» («اس کی سطح مسلسل نشیب و فراز رکھتی ہے … وادیاں، ندی نالے»), «چندریان-2» («چاند کی سطح کے نشیب و فراز کا ڈیجیٹل نقشہ تیار کیا جائے گا» — a relief map, the very object), «قیامت» («زمین میں … نشیب و فراز، وادیاں، کہسار اور پہاڑ»). (2) «تضاریسی» (the reader's second candidate) has no attestation: ur.wikipedia exact phrases «تضاریسی نقشہ» 0 pages and «تضاریس» 0 pages (HTTP 200), a technical Arabic loan a Urdu reader would meet less than the Persian compound; the Rekhta pages tried answered 503 and are not counted. (3) «زمین کی اونچ نیچ» 0 pages (HTTP 200); bare «اونچ نیچ» 34 pages, whose top titles include «اونچ نیچ بیچ» and «جنوبی ایشیا کے روایتی کھیل», so it is not shown to be less figurative than the compound; N333's rule stands that a plainer phrase needs its own evidence through the line. (4) The termbase entry «نشیب و فراز» carries ar «تضاريس» and en 'terrain, relief', and zh, de and ru name the same object (地形图, Geländekarte, Карта рельефа). So the sourced entry is not replaced on taste (P24/P25); no base amendment is made, and none is asked of the owner. The cost is charged: nativeness -5 and fit -2 on tmap.title and tmap.open (92), with «زمین کے» anchor kept, the lead right below (Jabal Al-Qarah, palm groves, dunes) and the eyebrow «سیاحتی معلومات» fixing the reading. [j2] The fresh reader's #26 (medium) is a fourth reader's charge on the same phrase; its candidate «ارضی خدوخال» has 0 pages on ur.wikipedia (HTTP 200) and «تضاریسی» is not attested (above). tmap.title is the published ui.map.terrain minus «تین جہتی» (the stage-5 sibling check), so a plainer phrase would be a site-wide amendment through N333's one-line option for the owner, not a page edit. The ruling stands unchanged.",
+      "evidence": "ur.wikipedia API, 2026-10-23, HTTP 200 each: «نشیب و فراز» 63 pages; «زمین کے نشیب و فراز» 0; «تضاریسی نقشہ» 0; «تضاریس» 0; «زمین کی اونچ نیچ» 0; «اونچ نیچ» 34; snippets from the search «\"نشیب و فراز\" زمین» (HTTP 200): پوٹھوہار، چندریان-2، قیامت. Queries answered 429 («تضاریسی», «طبعی نقشہ», «زمینی نقشہ») are discarded, not counted. termbase entry «نشیب و فراز» (verified); N331, N333; blind-reader.r0.md #31, #32. Round 2: ur.wikipedia API, 2026-10-23, HTTP 200: «ارضی خدوخال» 0 pages, «زمین کے خدوخال» 2 pages (top titles فرہنگ اصطلاحات سائنس · لغت سائنس, a glossary, not a map); blind-reader.r1.md #26, #27.",
+      "guard": "None."
+    },
+    {
+      "id": "N751",
+      "title": "tmap.classic: the link to the classic map keeps the source qualifier — «سیاحتی مقامات کا روایتی نقشہ».",
+      "binds": "tmap.classic only (the link under the terrain lead, and its noscript twin). The BRIEF's instruction to name the link by the published title alone is superseded for this link; ui.map.title is unchanged.",
+      "ruling": "The link reads «سیاحتی مقامات کا روایتی نقشہ» (the template appends the arrow). Both sources say 'Classic map' / «الخريطة التقليدية» and the zh, de and ru lines keep the qualifier; with the published name alone, the link and the neighbouring open button looked like two names for one map (reader r0 #34). The string is the published page name «سیاحتی مقامات کا نقشہ» (ui.map.title) with «روایتی» inserted before «نقشہ»; the link text is therefore not byte-identical to ui.map.title. «روایتی» is the memory's word for traditional (published «روایتی بازار», «روایتی گھر»). The loan «کلاسک» is not written (P16). [j2] Weighed again against the round-2 reader's #28 (medium: «روایتی» reads as old-style, asks «عام نقشہ»): «عام نقشہ» is not admitted, because it drops the qualifier both sources carry and says 'general map' (ur.wikipedia: the phrase «عام نقشہ» 2 pages, HTTP 200, neither a map type), and the link sits directly under the terrain lead and beside the open button, where 'terrain' against 'traditional' is the contrast. The form «سیاحتی مقامات کا نقشہ (روایتی)», which would keep ui.map.title byte for byte, is not taken: a bracket on a one-line link adds a clause, and the sibling checks (stage 5) compare the name, not a bracket.",
+      "evidence": "blind-reader.r0.md #34; ui.ts tmap.classic in en, ar, zh, de, ru; pack.json precedent for tmap.classic. Round 2: blind-reader.r1.md #28; proofread-r1.md finding 2; ur.wikipedia API, 2026-10-23, HTTP 200: «عام نقشہ» 2 pages.",
+      "guard": "None."
+    },
+    {
+      "id": "N752",
+      "title": "thanks.d: the clause of confirmation names its noun — «جس غلطی کی تصدیق ہو جائے گی اسے ٹھیک کر دے گا».",
+      "binds": "thanks.d only.",
+      "ruling": "'Correct whatever is confirmed' / «يصحح ما يثبت منها» is written with an explicit antecedent: «ویب سائٹ کا عملہ آپ کی نشاندہی کا جائزہ لے گا اور جس غلطی کی تصدیق ہو جائے گی اسے ٹھیک کر دے گا۔». The earlier «جو بات درست ثابت ہو گی اسے …» let «اسے» point at the report or at the claim (reader #27, medium). «غلطی» is not a new fact: the page is the error report and its title and the footer label say «غلطی». Not the reader's conditional «اگر آپ کی نشاندہی درست نکلی تو غلطی دور کر دی جائے گی» (it makes the whole note stand or fall, where the sources say whatever is confirmed, and turns the active team into a passive).",
+      "evidence": "blind-reader.r0.md #27; thanks.d en and ar; ui det.hoursNotice «تصدیق کر لیں».",
+      "guard": "None."
+    },
+    {
+      "id": "N753",
+      "title": "'Official' is «سرکاری» for a non-governmental body's list or page as well (UNESCO).",
+      "binds": "unesco.officialH «سرکاری ماخذ» and the phrase «سرکاری فہرست» of unesco.lead. It does not decide other words for 'official'.",
+      "ruling": "Kept: «سرکاری ماخذ» and «سرکاری فہرست میں حصوں کے نمبروں کے مطابق». Reader (r0 #4, again r1 #13) hears «سرکاری» as the Saudi government's, and UNESCO is not a government. The memory uses «سرکاری» for 'official' in general, not only for the state: «تقریبات کے سرکاری ذرائع» (ui events.srcNote, the events' own channels), «سرکاری ویب سائٹ» (visa-guide table.head.3, the platform), «سرکاری اور زرعی ذرائع» (fruits.methodP1, ui); the state is spoken of apart, «حکومتی ادارہ … سرکاری ادارے» (ui foot.independence). Changing it here would split one word for 'official' across the site, and the reader's «یونیسکو کی فہرست» would drop the word 'official' that both sources carry. [j2] The round-2 candidate «اصل ماخذ» (reader r1 #13) was weighed and is not taken: «اصل» says 'original', not 'official'; the English 'Official source' and the Arabic «المصدر الرسمي» say official, and what the box points to is the body's own register of the site. «اصل ماخذ» is a general phrase on ur.wikipedia (63 pages, HTTP 200; top titles میٹاکریٹک · آبادیات برازیل · بیریلیم, articles citing data), while «سرکاری ماخذ» and «باضابطہ ماخذ» are 0 pages each (HTTP 200): none of the three is shown to be fixed usage, so the memory's word decides. The ruling decides these two strings only.",
+      "evidence": "tm.json pairs ui events.srcNote, visa-guide table.head.3, ui fruits.methodP1 («سرکاری اور زرعی ذرائع»), ui foot.independence; blind-reader.r0.md #4; blind-reader.r1.md #13; ur.wikipedia API, 2026-10-23, HTTP 200: «اصل ماخذ» 63 pages, «سرکاری ماخذ» 0, «باضابطہ ماخذ» 0; proofread-r1.md finding 3.",
+      "guard": "None."
+    },
+    {
+      "id": "N754",
+      "title": "unesco.lead / unesco.officialLink: 'site 1563' stays «مقام نمبر 1563»; «اندراج نمبر» is not admitted.",
+      "binds": "The phrase «مقام نمبر 1563» in unesco.lead and in unesco.officialLink («یونیسکو پر مقام نمبر 1563 ↗»). It does not decide «مقام» as the attraction noun (N747, unchanged) or the component noun «حصہ» (published ui.det.unescoNo).",
+      "ruling": "'(site 1563)', «(الموقع رقم 1563)» and 'Site 1563 at UNESCO' are written «مقام نمبر 1563» and «یونیسکو پر مقام نمبر 1563». «مقام» is the Urdu noun for a World Heritage Site (ur.wikipedia names the lists «عالمی ثقافتی ورثہ مقامات»), the oasis is itself the inscribed site, and both sources say 'site' / «الموقع», not 'entry' / «إدراج». The reader's «اندراج نمبر» (#2, medium) names the inscription, which neither source says; its worry that the number is first heard as a physical place is not a defect, since the site is a place. The component stays «حصہ» (published), so the site number and the component numbers stay apart.",
+      "evidence": "ur.wikipedia API, 2026-10-23, HTTP 200: «عالمی ثقافتی ورثہ مقامات» 351 pages (top titles عالمی ثقافتی ورثہ مقامات کی فہرستیں · ایشیا کے عالمی ثقافتی ورثہ مقامات کی فہرستیں · پاکستان کے عالمی ثقافتی ورثہ مقامات کی فہرست). The search for «اندراج نمبر» matched 13172 pages, which is not an exact-phrase count and is not used. pack.json unesco.lead and unesco.officialLink, en and ar; ref.json ui.det.unescoNo; blind-reader.r1.md #2.",
+      "guard": "None."
+    }
+  ],
+  "base_amendments": [],
+  "withdrawn": [],
+  "owner_questions": [],
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "quote": "«یونیسکو میں الاحساء کا نخلستان» (tab title)",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "The title renders 'Al-Ahsa Oasis at UNESCO' / «واحة الأحساء في اليونسكو». The reader's «… کی فہرست میں» adds the word 'list' that neither title says, and it touches UNESCO-LIST-PAIR (open, owner); the H1 beside it (unesco.title) already carries the list. A tab title stays short."
+    },
+    {
+      "n": 2,
+      "quote": "«مقام نمبر 1563»; «اس مقام کے صفحے میں»; «یونیسکو پر مقام نمبر 1563 ↗»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "N754: «مقام» is the Urdu noun for a World Heritage Site and both sources say 'site'; «اندراج نمبر» would name the inscription, which neither says. The component noun stays «حصہ» (published), so the two are kept apart."
+    },
+    {
+      "n": 3,
+      "quote": "«ان میں سے 6 سیاحتی مقامات ہیں جن کے اس سیاحتی رہنما میں الگ صفحات ہیں۔»",
+      "severity": "medium",
+      "verdict": "accepted",
+      "reason": "The doubled «سیاحتی» is real and it let the sentence be heard as saying the other six are not tourist sites. The first «سیاحتی» is removed (the noun «مقامات» stays, so 'landmarks' is carried); the published guide name «سیاحتی رہنما» stays whole. The reader's «گائیڈ» is on the owner's banned list and is not taken. The verb is last as in the Urdu sentence order; no change there.",
+      "edit": "unesco.lead"
+    },
+    {
+      "n": 4,
+      "quote": "«بارہ» word and \"6\" digit in the same sentence",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "'twelve' is a word in both sources and {comps.length} is the template's digit; the BRIEF allows the word and the checker asks for it. The two numbers also name different things (all the components, those with pages)."
+    },
+    {
+      "n": 5,
+      "quote": "«حصہ 1563-004» — code unexplained; RTL may reverse",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "The card code is built by the template from the data and the Latin/RTL rendering is out of scope; the label «حصہ» (unesco.comp) is the noun of the published ui.det.unescoNo «حصہ نمبر {n}», so it is consistent."
+    },
+    {
+      "n": 6,
+      "quote": "«مٹی کی دیواروں اور کھجور کے تنوں کی چھتوں والا قلعہ …»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction summary (not a string of this batch)."
+    },
+    {
+      "n": 7,
+      "quote": "«دو صدیوں سے زیادہ پرانا ایک روایتی بازار … اپنی طرز کے …»",
+      "severity": "medium",
+      "verdict": "out_of_scope",
+      "reason": "Published Qaisariyah summary; already on the owner's list (published-ur-labels-flagged, qaisariyah «اپنی طرز کے»). Nothing in this batch changes it."
+    },
+    {
+      "n": 8,
+      "quote": "«ہفوف کے مغربی کنارے پر پہلی سعودی ریاست کا ایک قلعہ۔»",
+      "severity": "medium",
+      "verdict": "out_of_scope",
+      "reason": "Published Khuzam summary (src/content/attractions/khuzam.md, summary_ur), not a string of this batch. The phrase does read as the West Bank on first sight (ur.wikipedia: «مغربی کنارہ» 321 pages, top title the article «مغربی کنارہ», HTTP 200); logged as SD-S6 for the owner with the reader's «مغربی سرے پر» as the option. Not edited."
+    },
+    {
+      "n": 9,
+      "quote": "«… جو یونیسکو کی فہرست میں شامل ہے۔» (ambiguous «جو»)",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction summary."
+    },
+    {
+      "n": 10,
+      "quote": "«المبرز کے قلب میں سات برجوں والا ایک بہت بڑا دفاعی قلعہ …»",
+      "severity": "medium",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction summary."
+    },
+    {
+      "n": 11,
+      "quote": "«مدینہ منورہ کے بعد پہلی جگہ جہاں جمعہ کی نماز ادا کی گئی۔»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction summary."
+    },
+    {
+      "n": 12,
+      "quote": "«خلیجی خطے کے سب سے بڑے آبی اجسام میں سے ایک»",
+      "severity": "medium",
+      "verdict": "out_of_scope",
+      "reason": "Published Asfar summary; already on the owner's list (published-ur-labels-flagged, asfar «آبی اجسام»). Nothing in this batch changes it."
+    },
+    {
+      "n": 13,
+      "quote": "«بارہ حصوں کی پوری فہرست … یونیسکو کے عالمی ورثے کے مرکز پر اس مقام کے صفحے میں …»; «سرکاری ماخذ»; «یونیسکو پر مقام نمبر 1563 ↗»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "(a) «سرکاری»: N753 amended; «اصل ماخذ» weighed and refused ('original' is not 'official'; both sources say official; 63 pages for the general phrase, 0 for «سرکاری ماخذ» and «باضابطہ ماخذ», so the memory's word decides). (b) The genitives come from the Centre's descriptive name «یونیسکو کے عالمی ورثے کا مرکز» (pending in the termbase, N16 (1): no attested Urdu name, four exact phrasings 0 pages at stage 4); the reader's «یونیسکو کی ویب سائٹ» drops the Centre that both sources name and makes the line a command the sources do not give. (c) «یونیسکو پر» is 'at UNESCO' of the link text. (d) «مقام»: N754."
+    },
+    {
+      "n": 14,
+      "quote": "«صاہود», «ہفوف», «المبرز», «سوق القیصریہ» — unexplained",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction names and summaries."
+    },
+    {
+      "n": 15,
+      "quote": "the intro promises «الگ صفحات» but the cards show no link; the other six parts are not named",
+      "severity": "minor",
+      "verdict": "source_defect",
+      "reason": "SD-S4: the page lists six of the twelve components and neither source names or explains the other six; the card links are the template's. No component was named and no link added."
+    },
+    {
+      "n": 16,
+      "quote": "«درست رہنے میں ہماری مدد کریں»",
+      "severity": "medium",
+      "verdict": "accepted",
+      "reason": "The English infinitive without a stated subject reads as the staff being corrected. «درستی برقرار رکھنے میں ہماری مدد کریں» keeps the Arabic's noun («الدقة») and the noun report.lead uses; the reader's «معلومات کو درست رکھنے» adds the noun «معلومات» and is not taken. No fact added.",
+      "edit": "report.eyebrow"
+    },
+    {
+      "n": 17,
+      "quote": "«ہمارے لیے سب سے اہم چیز … غلط جگہ لگی تصویر» — register varies",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "Both phrases are ordinary written Urdu in a two-sentence note; the sentence order and content are the source's ('Accuracy is what we care about most'). No change."
+    },
+    {
+      "n": 18,
+      "quote": "«متعلقہ صفحہ» — officialese; «کس صفحے پر؟»",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "«متعلقہ صفحہ» is the plain form-label for 'The page concerned', a noun phrase in both sources; the reader's question turns a label into a question, and report.msgL below it is already the question."
+    },
+    {
+      "n": 19,
+      "quote": "«اور اس کا ماخذ» — «اس کا» ambiguous",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "«اس کا» has one nearest antecedent, «معلومات»; 'its source' in the English has the same reference."
+    },
+    {
+      "n": 20,
+      "quote": "«اس میں سے کچھ بھی شائع نہیں ہوتا۔»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "'none of it' refers to the report, the only antecedent («آپ کی اطلاع»). The reader's «آپ کی اطلاع اور ای میل پتا شائع نہیں کیا جاتا» extends the site's own privacy statement to the email address, which neither source says (P24/P25). What happens to the email is not said (SD-S1); nothing was added."
+    },
+    {
+      "n": 21,
+      "quote": "«ہم» then «ویب سائٹ کا عملہ» — two voices",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "The English mixes the same voices ('tell us and we will review' / 'the site team'; 'goes straight to the site team'); the Urdu keeps faith. «ویب سائٹ کا عملہ» is the verified termbase entry."
+    },
+    {
+      "n": 22,
+      "quote": "page 3 never says whether or when a reply comes",
+      "severity": "medium",
+      "verdict": "source_defect",
+      "reason": "SD-S1: the form offers 'if you would like a reply' and the thank-you page is silent; no reply promise, period or use of the email was added."
+    },
+    {
+      "n": 23,
+      "quote": "«آپ کے تعاون سے الاحساء کا سیاحتی رہنما سب کے لیے درست رہتا ہے۔»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "'Keeps the guide accurate for everyone' is the site's own claim (P24/P25), kept as owner option (a) of [j1]; «سیاحتی رہنما» is the published guide name (tm inline.home.title, inline.home.description, foot.independence). The reader's «آپ جیسے قارئین» adds an addressee the sources do not name, and «گائیڈ» is on the owner's banned list."
+    },
+    {
+      "n": 24,
+      "quote": "«نشاندہی … جس غلطی کی تصدیق ہو جائے گی اسے ٹھیک کر دے گا۔» — cold",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "N752: the conditional 'correct whatever is confirmed' is the source's and is a team note; warmth would need words the sources do not carry."
+    },
+    {
+      "n": 25,
+      "quote": "«صفحہ اول پر واپس جائیں» — «مرکزی صفحہ» / «ہوم پیج»",
+      "severity": "minor",
+      "verdict": "rejected",
+      "reason": "«صفحہ اول» is the published ui.crumb.home that thanks.back carries (ref.json); another name would split the site's word for the home page."
+    },
+    {
+      "n": 26,
+      "quote": "«زمین کے نشیب و فراز کا نقشہ» (title, button)",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "N750 (amended): a fourth reader's charge on the same phrase; «ارضی خدوخال» is 0 pages on ur.wikipedia (HTTP 200) and «تضاریسی» is not attested; the title is the published ui.map.terrain minus «تین جہتی», so a plainer phrase is a site-wide amendment (N333's one-line option for the owner), not a page edit. The lead below and the eyebrow «سیاحتی معلومات» fix the reading; the cost is already charged in the scores."
+    },
+    {
+      "n": 27,
+      "quote": "«نخلستان کی زمین اپنے نشیب و فراز کے ساتھ: جبل القارہ، کھجور کے باغات اور مشرق میں ریت کے ٹیلے، اور ہر سیاحتی مقام اپنی جگہ پر۔»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "The English and the Arabic lead are verbless lists in the same shape ('The oasis in relief: …'), and «مشرق میں» governs the dunes only, as 'to the east' and «شرقاً» do. «اپنے … کے ساتھ» is ordinary Urdu ('with its …'). A verb or a reshaped clause would claim an extent or an edge the sources avoid (s4 divergence 1)."
+    },
+    {
+      "n": 28,
+      "quote": "«سیاحتی مقامات کا روایتی نقشہ ←» — «عام نقشہ»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "N751 (amended): both sources carry the qualifier ('Classic' / «التقليدية», kept in zh, de, ru); «عام نقشہ» is 'general map' and drops it; the link stands under the terrain lead, beside the open button, where terrain against traditional is the contrast. The published name with «روایتی» inserted stays."
+    },
+    {
+      "n": 29,
+      "quote": "a bare [button] before «نقشے پر تمام سیاحتی مقامات» and before each place name",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Reading-cut marker \"[button]\" (tool artefact); the buttons' labels are tmap.locate «نقشے پر دکھائیں» with the name appended by the template."
+    },
+    {
+      "n": 30,
+      "quote": "«جبل کنزان پارک (الشعبہ)» — «الشعبہ» reads as 'the department'",
+      "severity": "medium",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction name."
+    },
+    {
+      "n": 31,
+      "quote": "heading «تجربات اور دستکاریاں» with a single item",
+      "severity": "medium",
+      "verdict": "out_of_scope",
+      "reason": "Published category heading and list contents (not a string of this batch)."
+    },
+    {
+      "n": 32,
+      "quote": "«الخلیفہ کا ورثہ عجائب گھر»",
+      "severity": "medium",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction name."
+    },
+    {
+      "n": 33,
+      "quote": "«رباط آل ابی بکر الملا»; «مسجد شیخ محمد بن ابی بکر الملا»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction names."
+    },
+    {
+      "n": 34,
+      "quote": "«جھیل الدیلفوون»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction name."
+    },
+    {
+      "n": 35,
+      "quote": "«السوسن کے پرندوں کے باغات»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction name."
+    },
+    {
+      "n": 36,
+      "quote": "«الاحساء کے روایتی گھر کا عجائب گھر»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction name."
+    },
+    {
+      "n": 37,
+      "quote": "«حساوی لیموں کا باغ»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published lemon-farm title; already on the owner's list (published-ur-labels-flagged). Nothing in this batch changes it."
+    },
+    {
+      "n": 38,
+      "quote": "«دوغہ الغراش», «“ارض الحضارات”», «بیت البیعہ»",
+      "severity": "minor",
+      "verdict": "out_of_scope",
+      "reason": "Published attraction names."
+    },
+    {
+      "n": 39,
+      "quote": "«Ctrl دبا کر سرکائیں»; «⌘ دبا کر سرکائیں»; «دو انگلیوں سے نقشہ سرکائیں»",
+      "severity": "medium",
+      "verdict": "rejected",
+      "reason": "N746 stands (the second reader to doubt «سرکائیں», r0 #50, r1 #39): the hint is shown to a user who has just scrolled over the map, and «سرکائیں» is the site's scroll verb (N601, published gate.lead «صفحہ نیچے سرکائیں»). The reader's «ماؤس کا پہیہ گھمائیں» needs «ماؤس», which fails P16-test (3) (the Rekhta mouse entry has only animal senses, stage 4); ur.wikipedia «ماؤس کا پہیہ» and «پہیہ گھمائیں» are 0 pages each (HTTP 200); and only the Arabic Windows hint names a wheel, while the Mac and touch hints cannot. The English hints give no wheel or direction (SD-S3); the touch line says 'move' as the English does. «⌘» is the source's constant. Kept as owner option (b) of [j1]."
+    }
+  ],
+  "blind_reader_counts": {
+    "total": 39,
+    "accepted": 2,
+    "rejected": 16,
+    "source_defect": 2,
+    "out_of_scope": 19,
+    "serious": 0,
+    "medium": 18,
+    "minor": 21,
+    "reader_rating": 70
+  },
+  "judge_edits": [
+    {
+      "key": "unesco.seoDesc",
+      "before": "یونیسکو کے عالمی ورثے میں شامل الاحساء کے نخلستان (2018) کے بارہ حصوں میں سے {comps.length} کے الگ صفحات ہیں: {names.join(', ')}۔",
+      "after": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے میں شامل ہوا۔ اس کے بارہ حصوں میں سے {comps.length} کے الگ صفحات ہیں: {names.join(', ')}۔",
+      "why": "Blind reader #1 (medium): a bracketed year and a chain of genitives sent the verb to the end of the meta description and the reader read it twice. Two sentences, verb after the subject; the year is attached to the verb, which is what the lead of this page already states (inscribed in 2018) and what the English and Arabic bracket means. The facts, the placeholders (once each) and the closing «۔» after the name list are unchanged. The verb is the published ui form «شامل» (ui.fact.unesco.l, ui.det.unescoNo), and «فہرست» is not written, so UNESCO-LIST-PAIR stays untouched."
+    },
+    {
+      "key": "unesco.lead",
+      "before": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے کی فہرست میں درج ہوا (مقام نمبر 1563)۔ اس کے بارہ حصے ہیں۔ ان میں سے {comps.length} سیاحتی مقامات ہیں جن کے اس رہنما میں الگ صفحات ہیں۔ یہاں ان کی ترتیب سرکاری فہرست میں حصوں کے نمبروں کے مطابق ہے۔",
+      "after": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے کی فہرست میں درج ہوا (مقام نمبر 1563)۔ اس کے بارہ حصے ہیں۔ ان میں سے {comps.length} مقامات ہیں جن کے اس سیاحتی رہنما میں الگ صفحات ہیں۔ یہاں ان کی ترتیب سرکاری فہرست میں حصوں کے نمبروں کے مطابق ہے۔",
+      "why": "Blind reader #3 (medium): «اس رہنما» alone can be heard as a person. The memory writes the guide as «سیاحتی رہنما» (ui inline.home.title, inline.home.description, foot.independence). One word added; no fact. The reader's «… موجود ہیں» form is not taken (the empty «موجود» is barred by style_rules and 'own pages', «الگ», would be lost). [j2] Fresh reader #3 (medium) read «سیاحتی» twice in one clause and heard the other six components as not tourist sites; the first «سیاحتی» is removed («مقامات», the sibling noun of the attraction, N747), the published guide name «سیاحتی رہنما» stays whole. No fact moves; the reader's «گائیڈ» is on the owner's banned list (P16-test) and is not written. Proofread-r1 finding 6 left the choice to the judge."
+    },
+    {
+      "key": "thanks.d",
+      "before": "ویب سائٹ کا عملہ آپ کی نشاندہی کا جائزہ لے گا اور جو بات درست ثابت ہو گی اسے ٹھیک کر دے گا۔ آپ کے تعاون سے الاحساء کا سیاحتی رہنما سب کے لیے درست رہتا ہے۔",
+      "after": "ویب سائٹ کا عملہ آپ کی نشاندہی کا جائزہ لے گا اور جس غلطی کی تصدیق ہو جائے گی اسے ٹھیک کر دے گا۔ آپ کے تعاون سے الاحساء کا سیاحتی رہنما سب کے لیے درست رہتا ہے۔",
+      "why": "Blind reader #27 (medium): «جو بات درست ثابت ہو گی … اسے» left the antecedent of «اسے» open (the report? the claim?) and read as 'what proves correct, it will fix'. The relative clause now has its noun, «غلطی», and the verb of the English 'confirmed', «تصدیق» (as in ui det.hoursNotice «تصدیق کر لیں»). The page is the error report (report.title «غلطی کی اطلاع دیں»), so 'whatever is confirmed' is the confirmed error: no fact added, 'whatever' is kept. N752."
+    },
+    {
+      "key": "tmap.classic",
+      "before": "سیاحتی مقامات کا نقشہ",
+      "after": "سیاحتی مقامات کا روایتی نقشہ",
+      "why": "Blind reader #34 (medium): the link and the open button, side by side, carried two unrelated names and the reader took them for one map. Both sources say 'Classic' / «التقليدية» and zh, de and ru all keep it (经典地图, Klassische Karte, Классическая карта); the Urdu had dropped the only word that tells the two maps apart. The string is the published page name with «روایتی» (the site's word for 'traditional', as in «روایتی بازار») inserted before «نقشہ»; the link text is not byte-identical to ui.map.title. N751 (record corrected in round 2; the string is unchanged)."
+    },
+    {
+      "key": "report.eyebrow",
+      "before": "درست رہنے میں ہماری مدد کریں",
+      "after": "درستی برقرار رکھنے میں ہماری مدد کریں",
+      "why": "Round-2 reader #16 (medium): «درست رہنے میں ہماری مدد کریں» is the English infinitive with no stated subject and read as the staff being corrected. The noun «درستی» (the one report.lead uses) with «برقرار رکھنے» says what the reader is asked to help with, in the Arabic's noun form («الدقة»). The reader's «معلومات کو درست رکھنے» adds the noun «معلومات» that the eyebrow does not carry and is not taken. Honorific kept (آپ), no stop on the eyebrow, no fact added."
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Al-Ahsa Oasis on the World Heritage List",
+      "ur": "الاحساء کا نخلستان عالمی ورثے کی فہرست میں",
+      "page": "static",
+      "field": "unesco.title"
+    },
+    {
+      "en": "Al-Ahsa Oasis was inscribed on the UNESCO World Heritage List in 2018 (site 1563). The site comprises twelve components; {comps.length} of them are landmarks with their own pages in this guide, listed here in the order of their component numbers on the official list.",
+      "ur": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے کی فہرست میں درج ہوا (مقام نمبر 1563)۔ اس کے بارہ حصے ہیں۔ ان میں سے {comps.length} مقامات ہیں جن کے اس سیاحتی رہنما میں الگ صفحات ہیں۔ یہاں ان کی ترتیب سرکاری فہرست میں حصوں کے نمبروں کے مطابق ہے۔",
+      "page": "static",
+      "field": "unesco.lead"
+    },
+    {
+      "en": "Component",
+      "ur": "حصہ",
+      "page": "static",
+      "field": "unesco.comp"
+    },
+    {
+      "en": "Official source",
+      "ur": "سرکاری ماخذ",
+      "page": "static",
+      "field": "unesco.officialH"
+    },
+    {
+      "en": "The full list of the twelve components and their maps is on the site’s page at the UNESCO World Heritage Centre.",
+      "ur": "بارہ حصوں کی پوری فہرست اور ان کے نقشے آپ یونیسکو کے عالمی ورثے کے مرکز پر اس مقام کے صفحے میں دیکھ سکتے ہیں۔",
+      "page": "static",
+      "field": "unesco.official"
+    },
+    {
+      "en": "Site 1563 at UNESCO ↗",
+      "ur": "یونیسکو پر مقام نمبر 1563 ↗",
+      "page": "static",
+      "field": "unesco.officialLink"
+    },
+    {
+      "en": "Al-Ahsa Oasis at UNESCO",
+      "ur": "یونیسکو میں الاحساء کا نخلستان",
+      "page": "static",
+      "field": "unesco.seoTitle"
+    },
+    {
+      "en": "{comps.length} of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site (2018) with their own pages: {names.join(', ')}.",
+      "ur": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے میں شامل ہوا۔ اس کے بارہ حصوں میں سے {comps.length} کے الگ صفحات ہیں: {names.join(', ')}۔",
+      "page": "static",
+      "field": "unesco.seoDesc"
+    },
+    {
+      "en": "Help us stay accurate",
+      "ur": "درستی برقرار رکھنے میں ہماری مدد کریں",
+      "page": "static",
+      "field": "report.eyebrow"
+    },
+    {
+      "en": "Report an error",
+      "ur": "غلطی کی اطلاع دیں",
+      "page": "static",
+      "field": "report.title"
+    },
+    {
+      "en": "Accuracy is what we care about most. If you spot an inaccurate detail, a broken link or a misplaced photo, tell us and we will review it.",
+      "ur": "ہمارے لیے سب سے اہم چیز معلومات کی درستی ہے۔ اگر آپ کو کوئی غیر درست تفصیل، کام نہ کرنے والا لنک یا غلط جگہ لگی تصویر نظر آئے تو ہمیں بتائیں، ہم اس کا جائزہ لیں گے۔",
+      "page": "static",
+      "field": "report.lead"
+    },
+    {
+      "en": "The page concerned",
+      "ur": "متعلقہ صفحہ",
+      "page": "static",
+      "field": "report.pageL"
+    },
+    {
+      "en": "Page link or attraction name",
+      "ur": "صفحے کا لنک یا سیاحتی مقام کا نام",
+      "page": "static",
+      "field": "report.pagePh"
+    },
+    {
+      "en": "What error did you notice?",
+      "ur": "آپ کو کیا غلطی نظر آئی؟",
+      "page": "static",
+      "field": "report.msgL"
+    },
+    {
+      "en": "Describe the error briefly — and if you know the correct information and its source, add it.",
+      "ur": "غلطی مختصر الفاظ میں بتائیں، اور اگر آپ کو درست معلومات اور اس کا ماخذ معلوم ہو تو وہ بھی لکھ دیں",
+      "page": "static",
+      "field": "report.msgPh"
+    },
+    {
+      "en": "Your email (optional — if you would like a reply)",
+      "ur": "آپ کا ای میل پتا (اختیاری، اگر آپ جواب چاہتے ہوں)",
+      "page": "static",
+      "field": "report.emailL"
+    },
+    {
+      "en": "name@example.com",
+      "ur": "name@example.com",
+      "page": "static",
+      "field": "report.emailPh"
+    },
+    {
+      "en": "Send the report",
+      "ur": "اطلاع بھیجیں",
+      "page": "static",
+      "field": "report.submit"
+    },
+    {
+      "en": "Your report goes straight to the site team; none of it is published.",
+      "ur": "آپ کی اطلاع سیدھی ویب سائٹ کے عملے تک پہنچتی ہے، اور اس میں سے کچھ بھی شائع نہیں ہوتا۔",
+      "page": "static",
+      "field": "report.note"
+    },
+    {
+      "en": "Your report has arrived — thank you",
+      "ur": "آپ کی اطلاع ہمیں مل گئی، شکریہ",
+      "page": "static",
+      "field": "thanks.title"
+    },
+    {
+      "en": "The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.",
+      "ur": "ویب سائٹ کا عملہ آپ کی نشاندہی کا جائزہ لے گا اور جس غلطی کی تصدیق ہو جائے گی اسے ٹھیک کر دے گا۔ آپ کے تعاون سے الاحساء کا سیاحتی رہنما سب کے لیے درست رہتا ہے۔",
+      "page": "static",
+      "field": "thanks.d"
+    },
+    {
+      "en": "Back to home",
+      "ur": "صفحہ اول پر واپس جائیں",
+      "page": "static",
+      "field": "thanks.back"
+    },
+    {
+      "en": "Terrain Map",
+      "ur": "زمین کے نشیب و فراز کا نقشہ",
+      "page": "static",
+      "field": "tmap.title"
+    },
+    {
+      "en": "The oasis in relief: Jabal Al-Qarah, the palm groves, and the dunes to the east — with every attraction in place. Click or tap any name in the list to see it on the map.",
+      "ur": "نخلستان کی زمین اپنے نشیب و فراز کے ساتھ: جبل القارہ، کھجور کے باغات اور مشرق میں ریت کے ٹیلے، اور ہر سیاحتی مقام اپنی جگہ پر۔ فہرست میں کسی بھی مقام کو چن کر اسے نقشے پر دیکھیں۔",
+      "page": "static",
+      "field": "tmap.lead"
+    },
+    {
+      "en": "Open the terrain map",
+      "ur": "زمین کے نشیب و فراز کا نقشہ کھولیں",
+      "page": "static",
+      "field": "tmap.open"
+    },
+    {
+      "en": "Loading the map…",
+      "ur": "نقشہ کھل رہا ہے…",
+      "page": "static",
+      "field": "tmap.loading"
+    },
+    {
+      "en": "3D view",
+      "ur": "تین جہتی منظر",
+      "page": "static",
+      "field": "tmap.3d.on"
+    },
+    {
+      "en": "2D view",
+      "ur": "دو جہتی منظر",
+      "page": "static",
+      "field": "tmap.3d.off"
+    },
+    {
+      "en": "Show on map",
+      "ur": "نقشے پر دکھائیں",
+      "page": "static",
+      "field": "tmap.locate"
+    },
+    {
+      "en": "All attractions on the map",
+      "ur": "نقشے پر تمام سیاحتی مقامات",
+      "page": "static",
+      "field": "tmap.list.title"
+    },
+    {
+      "en": "Classic map",
+      "ur": "سیاحتی مقامات کا روایتی نقشہ",
+      "page": "static",
+      "field": "tmap.classic"
+    },
+    {
+      "en": "Use Ctrl + scroll to zoom the map",
+      "ur": "نقشے کو بڑا یا چھوٹا کرنے کے لیے Ctrl دبا کر سرکائیں",
+      "page": "static",
+      "field": "tmap.gest.win"
+    },
+    {
+      "en": "Use ⌘ + scroll to zoom the map",
+      "ur": "نقشے کو بڑا یا چھوٹا کرنے کے لیے ⌘ دبا کر سرکائیں",
+      "page": "static",
+      "field": "tmap.gest.mac"
+    },
+    {
+      "en": "Use two fingers to move the map",
+      "ur": "دو انگلیوں سے نقشہ سرکائیں",
+      "page": "static",
+      "field": "tmap.gest.touch"
+    }
+  ],
+  "source_defects": [
+    {
+      "id": "SD-S1",
+      "keys": [
+        "report.note",
+        "report.emailL",
+        "thanks.d"
+      ],
+      "defect": "The form and the thank-you page say nothing about whether a reply comes or when (the label offers 'if you would like a reply'), and the note says 'none of it is published' without saying what happens to the email. Reader #25, #26, #30. The Urdu keeps faith; no promise of a reply, a period or a use of the email was added."
+    },
+    {
+      "id": "SD-S2",
+      "keys": [
+        "tmap.3d.on",
+        "tmap.3d.off"
+      ],
+      "defect": "The toggle labels are bare noun phrases ('3D view' / '2D view') and the template shows the label of the other mode, so a reader cannot tell whether a label names the view now on or the view a press leads to (reader #51). A verb or a state word would be a change of the source and the template."
+    },
+    {
+      "id": "SD-S3",
+      "keys": [
+        "tmap.gest.win",
+        "tmap.gest.mac"
+      ],
+      "defect": "The English hints say only 'Ctrl + scroll' / '⌘ + scroll' (no direction, no wheel); the Arabic Windows hint names the mouse wheel and its Mac hint does not (stage 4, divergence 2). Reader #50 could not tell scroll from pan."
+    },
+    {
+      "id": "SD-S4",
+      "keys": [
+        "unesco.lead",
+        "unesco.comp"
+      ],
+      "defect": "The page lists six of the twelve components, with numbers that skip (1563-004 … 1563-012), and the other six are named nowhere (reader #3, #5). Neither source explains the gaps; the sentence 'in the order of their component numbers' is all they say."
+    },
+    {
+      "id": "SD-S5",
+      "keys": [
+        "published: asfar summary",
+        "published: qaisariyah summary",
+        "published: lemon-farm title"
+      ],
+      "defect": "Published Urdu already on the owner's list (open item published-ur-labels-flagged) is hit again by a fifth reader: «آبی اجسام» in the lake summary (r1 #12), «اپنی طرز کے» in the Qaisariyah summary (#7), «حساوی لیموں کا باغ» under the farm category (#37). Nothing in this batch changes them."
+    },
+    {
+      "id": "SD-S6",
+      "keys": [
+        "published: khuzam summary_ur"
+      ],
+      "defect": "The published Urdu summary of the Khuzam fort (src/content/attractions/khuzam.md, summary_ur) reads «ہفوف کے مغربی کنارے پر پہلی سعودی ریاست کا ایک قلعہ۔»; «مغربی کنارہ» is the Urdu name of the West Bank (ur.wikipedia article «مغربی کنارہ», HTTP 200), and the reader (r1 #8, medium) took it that way. Out of scope for this batch; option for the owner with the open published-label round: «ہفوف کے مغربی سرے پر» or «مغربی حصے میں». Not edited."
+    }
+  ],
+  "scores_row": "\"ur-static-1 (ur): /ur/unesco/, /ur/report/, /ur/report/thanks/, /ur/terrain-map/ — 34 strings\",2026-10-23,2,91,\"APPROVE (lowest keys tmap.gest.win and tmap.gest.mac 91 (page scores 92, 93, 93, 91; axes 28/25/19/9/10); 2 judge edits in round 2 (unesco.lead single «سیاحتی», report.eyebrow «درستی برقرار رکھنے») on top of the 4 of round 1; proofread repairs in the record (genders on the termbase additions, N751 wording, N753 quote, kind institution, 3D and 2D as two entries); rulings N750-N753 carried (N751 and N753 amended) and N754 new («مقام نمبر» kept for the site number); blind reader on round 1: 39 items (70/100, 0 serious): 2 accepted · 16 rejected · 2 source defect · 19 out of scope; termbase additions 7; TM 34 pairs; no owner question; 6 source defects)\""
+}

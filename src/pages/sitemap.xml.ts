@@ -89,16 +89,16 @@ export const GET: APIRoute = async ({ site }) => {
     // المسارات المقترحة بلغاتها الخمس — التاريخ من ملفات البيانات وقالبها
     { ...trailsIndexAlt(), lastmod: dateOf(`${V}TrailsIndexView.astro`, ...TRAIL_FILES) },
     ...TRAILS.map((tr) => ({ ...trailAlt(tr), lastmod: dateOf(`${V}TrailView.astro`, ...TRAIL_FILES) })),
-    { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
+    { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', ur: '/ur/blog/', lastmod: dateOf(`${V}BlogIndexView.astro`, ...posts.map((p) => p.filePath!).filter(Boolean)) },
     // مقالات المدونة — الاقتران بحقل key المشترك بين لغاته (ar/en/zh/de/ru منذ الخطوة 10).
     // التاريخ من ترويسة المقال نفسه (أحدث نسخة): هو إعلان الكاتب، وأوثق من تاريخ الالتزام.
     ...[...new Set(posts.map((p) => p.data.key))].map((key) => {
       const by = new Map(posts.filter((p) => p.data.key === key).map((p) => [p.data.lang, p]));
       const lastmod = [...by.values()].map((p) => (p.data.updatedDate ?? p.data.pubDate).toISOString().slice(0, 10)).sort((a, b) => a.localeCompare(b)).at(-1);
-      const href = (l: 'ar' | 'en' | 'zh' | 'de' | 'ru') => { const p = by.get(l); return p ? blogHref(p.data) : undefined; };
+      const href = (l: 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur') => { const p = by.get(l); return p ? blogHref(p.data) : undefined; };
       // مقال بلا نسخة عربية يدخل بحقل ar (الحقل الإلزامي للرابط) بنسخته الإنجليزية بلا hreflang
       return by.has('ar')
-        ? { ar: href('ar')!, en: href('en'), zh: href('zh'), de: href('de'), ru: href('ru'), lastmod }
+        ? { ar: href('ar')!, en: href('en'), zh: href('zh'), de: href('de'), ru: href('ru'), ur: href('ur'), lastmod }
         : { ar: href('en')!, lastmod };
     }),
     // المعالم الرقيقة (lib/publish.ts) noindex فلا تدخل الخريطة بأي لغة
