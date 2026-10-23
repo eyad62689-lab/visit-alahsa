@@ -32,12 +32,12 @@ export const ORG_WHATSAPP_URL = 'https://wa.me/966532482544';
 
 /** حسابات الموقع في المنصات الاجتماعية، بالترتيب المعتمد. `name` اسم علم لاتيني لا يُترجم. */
 export interface OrgSocial { id: 'x' | 'instagram' | 'tiktok' | 'youtube'; name: string; url: string }
-// بانتظار الروابط من المالك — فارغ = لا يُعرض (لا في التذييل ولا في sameAs). لا تُخمَّن معرّفات.
+// روابط الحسابات الرسمية (واردة من المالك 2026-10-23) بلا معاملات تتبع. فارغ = لا يُعرض (لا في التذييل ولا في sameAs).
 export const ORG_SOCIAL: readonly OrgSocial[] = [
-  { id: 'x', name: 'X', url: '' },
-  { id: 'instagram', name: 'Instagram', url: '' },
-  { id: 'tiktok', name: 'TikTok', url: '' },
-  { id: 'youtube', name: 'YouTube', url: '' },
+  { id: 'x', name: 'X', url: 'https://x.com/visitahsa' },
+  { id: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/visitalahsacity' },
+  { id: 'tiktok', name: 'TikTok', url: 'https://www.tiktok.com/@visitalahsa' },
+  { id: 'youtube', name: 'YouTube', url: 'https://www.youtube.com/@visit-alahsa' },
 ];
 /** المعبّأ رابطه فقط، بالترتيب نفسه. */
 export const orgSocialLinks = (): OrgSocial[] => ORG_SOCIAL.filter((p) => p.url.trim() !== '');
