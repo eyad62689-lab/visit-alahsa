@@ -29,6 +29,18 @@ const ORG_DESC: Record<Lang, string> = {
 export const ORG_EMAIL = 'info@visit-alahsa.com';
 /** واتساب الموقع — الرقم لا يُعرض نصاً في أي صفحة، يُضمَّن في الرابط فقط. */
 export const ORG_WHATSAPP_URL = 'https://wa.me/966532482544';
+
+/** حسابات الموقع في المنصات الاجتماعية، بالترتيب المعتمد. `name` اسم علم لاتيني لا يُترجم. */
+export interface OrgSocial { id: 'x' | 'instagram' | 'tiktok' | 'youtube'; name: string; url: string }
+// بانتظار الروابط من المالك — فارغ = لا يُعرض (لا في التذييل ولا في sameAs). لا تُخمَّن معرّفات.
+export const ORG_SOCIAL: readonly OrgSocial[] = [
+  { id: 'x', name: 'X', url: '' },
+  { id: 'instagram', name: 'Instagram', url: '' },
+  { id: 'tiktok', name: 'TikTok', url: '' },
+  { id: 'youtube', name: 'YouTube', url: '' },
+];
+/** المعبّأ رابطه فقط، بالترتيب نفسه. */
+export const orgSocialLinks = (): OrgSocial[] => ORG_SOCIAL.filter((p) => p.url.trim() !== '');
 export const orgNode = (lang: Lang) => ({
   '@type': 'Organization',
   '@id': ORG_ID,
@@ -38,6 +50,7 @@ export const orgNode = (lang: Lang) => ({
   url: `${SITE}/`,
   logo: `${SITE}/icon-512.png`,
   email: ORG_EMAIL,
+  ...(orgSocialLinks().length ? { sameAs: orgSocialLinks().map((p) => p.url) } : {}),
   mainEntityOfPage: `${SITE}${lang === 'ar' ? encodeURI('/من-نحن/') : '/en/about/'}`,
 });
 

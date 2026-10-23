@@ -212,6 +212,23 @@ try {
   }
   const inp = await waitEvent(page, 'web_vitals', (p) => p.metric_name === 'INP', 2000);
   console.log(`  · web_vitals INP: ${inp ? inp.params.metric_value + ' ms' : 'لم يُبلَّغ (لا تفاعل مؤهَّل في المتصفح المقطوع — مقبول)'}`);
+
+  // أيقونات التواصل في التذييل: تُصيَّر فقط متى عُبّئ ORG_SOCIAL (src/lib/schema.ts)؛ بلا روابط لا صف ولا حدث
+  console.log('── التذييل: social_click ──');
+  await goto('/');
+  const socialIds = await page.$$eval('.ft-social a[data-track="social_click"]', (as) => as.map((a) => a.dataset.trackPlatform));
+  if (!socialIds.length) console.log('  · لا روابط تواصل معبّأة — الفحص متخطّى (الحالة المتوقعة قبل تعبئة ORG_SOCIAL)');
+  else {
+    for (const id of socialIds) {
+      await page.evaluate((pid) => {
+        const a = document.querySelector(`.ft-social a[data-track-platform="${pid}"]`);
+        a.addEventListener('click', (e) => e.preventDefault(), { once: true });
+        a.click();
+      }, id);
+      ok(await waitEvent(page, 'social_click', (p) => p.platform === id, 3000), `social_click عند النقر على أيقونة ${id}`);
+    }
+  }
+
 } finally {
   await browser.close();
 }
