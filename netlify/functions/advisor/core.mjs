@@ -4,6 +4,8 @@
 // القاعدة الحاكمة (CLAUDE.md): لا تُختلق أي معلومة. المستشار لا يرى إلا بطاقة المعرفة المولَّدة
 // وقت البناء من مصادر الحقيقة نفسها، وبرومبت النظام يلزمه بها ويعلّمه قول «بانتظار التأكيد».
 
+import { isIP } from 'node:net'
+
 /** اللغات الست — بالترتيب نفسه في src/i18n/langs.ts */
 export const LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur']
 const LANG_NAME = { ar: 'Arabic', en: 'English', zh: 'Simplified Chinese', de: 'German', ru: 'Russian', ur: 'Urdu' }
@@ -215,16 +217,21 @@ export function originAllowed(origin) {
   return host === `${NETLIFY_SITE}.netlify.app` || host.endsWith(`--${NETLIFY_SITE}.netlify.app`)
 }
 
-/** دلو العنوان للحدّ اليومي: IPv4 كما هو، وIPv6 بأول 64 بتاً (المشترك الواحد يملك بادئة /64 كاملة) */
+/** دلو العنوان للحدّ اليومي: IPv4 كما هو، وIPv6 بأول 64 بتاً (المشترك الواحد يملك بادئة /64 كاملة).
+ *  العنوان المضمَّن (::ffff:1.2.3.4) يعود IPv4 حتى لا يتشارك دلواً مع غيره، وغير الصالح يُعاد خاماً فيُجزَّأ كاملاً. */
 export function ipBucket(ip) {
   const s = String(ip || '').trim().replace(/^\[|\]$/g, '')
-  if (!s.includes(':')) return s
+  if (isIP(s) === 4) return s
+  if (isIP(s) !== 6) return s
+  const mapped = s.match(/^(?:0*:)*:?ffff:((?:\d{1,3}\.){3}\d{1,3})$/i) || s.match(/((?:\d{1,3}\.){3}\d{1,3})$/)
+  if (mapped && isIP(mapped[1]) === 4) return mapped[1]
   const [head, tail = ''] = s.split('::')
   const h = head ? head.split(':') : []
   const t = tail ? tail.split(':') : []
   const groups = [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t]
   return groups.slice(0, 4).map((g) => g.toLowerCase().replace(/^0+(?=\w)/, '')).join(':') + '::/64'
 }
+
 
 export async function addSpend(store, usd, now = new Date()) {
   try {

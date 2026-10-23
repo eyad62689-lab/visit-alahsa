@@ -111,6 +111,13 @@ export default async (req, context) => {
         console.error('advisor:', kind, err?.status ?? '', err?.message ?? err)
         send('error', { reason: kind })
       } finally {
+        // إلغاء أو خطأ قبل اكتمال الاستهلاك: تقدير محافظ لا تقليل — المخرجات من النصّ المبثوث
+        // (≈ محرفان لكل رمز) والمدخلات من حجم البرومبت إن لم يصل message_start
+        if (!Number.isFinite(+usage.output_tokens)) usage = { ...usage, output_tokens: Math.ceil(full.length / 2) }
+        if (!Number.isFinite(+usage.input_tokens) && !Number.isFinite(+usage.cache_read_input_tokens)) {
+          const chars = system.reduce((n, b) => n + b.text.length, 0) + apiMessages.reduce((n, m) => n + m.content.length, 0)
+          usage = { ...usage, input_tokens: Math.ceil(chars / 2) }
+        }
         const usd = estimateCostUsd(model, usage)
         if (usd > 0) await addSpend(st, usd)
         if (!closed) { closed = true; controller.close() }
