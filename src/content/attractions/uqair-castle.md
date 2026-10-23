@@ -50,7 +50,7 @@ description: "قلعة العقير شرقي الأحساء ضمن مباني م
 description_en: "Al-Uqair Castle stands among the buildings of Al-Uqair’s historic port in eastern Al-Ahsa. The castle, khan, emirate, customs house and mosque survive."
 practical:
   - { label: "المواعيد", value: "متاح للزيارة الخارجية", label_en: "Hours", value_en: "Open for exterior visits", label_ur: "اوقات", value_ur: "باہر سے دیکھا جا سکتا ہے", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "لا دخول إلى الداخل", label_en: "Fees", value_en: "No entry inside", label_ur: "فیس", value_ur: "اندر داخلہ نہیں", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.644409, lng: 50.214729 }
 mapUrl: "https://maps.app.goo.gl/pQj9N6Dq75yekPTK8"
 ---

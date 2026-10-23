@@ -6,7 +6,7 @@
 // تسميات الأعمدة من نصوص معتمدة لكل لغة؛ وإن غابت تسمية للغةٍ لا يُبنى جدولها فيها
 // (لا نصّ zh خارج خط الترجمة).
 import { getCollection } from 'astro:content';
-import type { Lang } from '../i18n/ui';
+import { ui, type Lang } from '../i18n/ui';
 import { attractionHref } from './routes';
 import { eventsFor, evView } from '../data/events';
 import { fruitGroupsFor } from '../data/fruits';
@@ -39,8 +39,11 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
     if (h && !hoursHead && /^(المواعيد|Hours|开放时间|Öffnungszeiten|Часы работы|اوقات)$/.test(pickL(h) ?? '')) hoursHead = pickL(h);
     if (f && !feesHead) feesHead = pickL(f);
     const hasOwn = lang === 'ar' || lang === 'en' || (lang === 'zh' && e.data.title_zh) || (lang === 'de' && e.data.title_de) || (lang === 'ru' && e.data.title_ru) || (lang === 'ur' && e.data.title_ur);
+    // الفعالية الموسمية (category: experience — قرية النخيل) تُوسَم في خانة الاسم بوسم plan.tableEvent المعتمد
+    // بلغة الصفحة (قرار 2026-10-23)؛ ولغةٌ بلا وسم تعرض الاسم عارياً كما كان.
+    const eventTag = e.data.category === 'experience' ? (ui[lang] as Record<string, string>)['plan.tableEvent'] : undefined;
     rows.push({ cells: [
-      { text: title(e.data), href: attractionHref(e.data, hasOwn ? lang : 'en') },
+      { text: eventTag ? (lang === 'zh' ? `${title(e.data)}（${eventTag}）` : `${title(e.data)} (${eventTag})`) : title(e.data), href: attractionHref(e.data, hasOwn ? lang : 'en') },
       h ? (pickV(h) as string) : '—',
       f ? (pickV(f) as string) : '—',
     ] });
