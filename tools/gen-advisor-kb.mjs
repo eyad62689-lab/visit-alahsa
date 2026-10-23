@@ -49,7 +49,8 @@ const inKb = kb.entries.filter((e) => e.kind === 'attraction').length
 if (files !== inKb) failures.push(`المعالم: ${files} ملفاً في المحتوى مقابل ${inKb} في البطاقة`)
 
 // 4. القياس
-const estTokens = (s, lang) => Math.round(s.length / (lang === 'zh' ? 1.2 : lang === 'ar' || lang === 'ur' ? 2.2 : 4))
+const CHARS_PER_TOKEN = { zh: 1.2, ar: 2.2, ur: 2.2 } // وسواها لاتينية/سيريلية ≈ 4
+const estTokens = (s, lang) => Math.round(s.length / (CHARS_PER_TOKEN[lang] ?? 4))
 for (const lang of LANGS) {
   const text = renderKb(kb, lang)
   const t = estTokens(text, lang)

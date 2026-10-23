@@ -46,7 +46,9 @@ for (const lang of LANGS) {
 const ar = renderKb(kb, 'ar');
 ok(ar.includes('جبل القارة') && !ar.includes('Jabal Al-Qarah (English only)'), 'العربية باسمها لا الإنجليزي');
 ok(/\[mushaqar\][\s\S]*?NOT PUBLISHED/.test(ar), 'المعلم بلا بند موثّق موسوم NOT PUBLISHED');
-ok(renderKb(kb, 'ar') === renderKb(kb, 'ar'), 'الصياغة حتمية (شرط الخزن المؤقت)');
+const firstRender = renderKb(kb, 'ar');
+const secondRender = renderKb(kb, 'ar');
+ok(firstRender === secondRender, 'الصياغة حتمية (شرط الخزن المؤقت)');
 const sys = buildSystem('ur', 'KB');
 ok(sys.length === 2 && sys.every((b) => b.cache_control?.type === 'ephemeral'), 'كتلتا نظام مخزَّنتان');
 ok(sys[0].text.includes('Reply in Urdu') && sys[0].text.includes('Latin digits'), 'القواعد تسمّي اللغة وتُلزم بالأرقام اللاتينية');
@@ -98,8 +100,10 @@ ok(originAllowed('http://localhost:8788') && originAllowed('http://127.0.0.1:433
 ok(ipBucket('203.0.113.7') === '203.0.113.7', 'IPv4 كما هو');
 ok(ipBucket('2001:db8:85a3:8d3:1319:8a2e:370:7348') === '2001:db8:85a3:8d3::/64', 'IPv6 يُجمَّع على /64');
 ok(ipBucket('2001:db8::1') === ipBucket('2001:db8:0:0:ffff::9') && ipBucket('2001:db8::1') === '2001:db8:0:0::/64', 'الصيغة المختصرة :: تُفكّ قبل التجميع');
-ok(ipBucket('[::1]') === '0:0:0:0::/64', 'loopback IPv6 يُجمَّع كغيره');
-ok(ipBucket('::ffff:203.0.113.7') === '203.0.113.7', 'IPv4 المضمَّن في IPv6 يعود IPv4 (لا دلو مشترك)');
+const loop6 = ipBucket('::1');
+ok(ipBucket('[::1]') === loop6 && loop6.endsWith('::/64') && loop6.startsWith('0:0:0:0'), 'loopback IPv6 يُجمَّع كغيره والأقواس تُنزع');
+const loop4 = '127.0.0.1';
+ok(ipBucket(`::ffff:${loop4}`) === loop4 && ipBucket(`0:0:0:0:0:ffff:${loop4}`) === loop4, 'IPv4 المضمَّن في IPv6 يعود IPv4 (لا دلو مشترك)');
 ok(ipBucket('garbage') === 'garbage' && ipBucket('') === '', 'غير الصالح يُعاد خاماً فيُجزَّأ كاملاً');
 
 if (existsSync(KB_PATH)) {
@@ -119,4 +123,7 @@ if (existsSync(KB_PATH)) {
 }
 
 console.log(`\n${failures.length ? '✗' : '✓'} test-advisor: ${passed} ناجحاً، ${failures.length} مخفقاً`);
-if (failures.length) { for (const f of failures) console.log(`  - ${f}`); process.exit(1); }
+if (failures.length) {
+  for (const f of failures) console.log(`  - ${f}`);
+  process.exit(1);
+}

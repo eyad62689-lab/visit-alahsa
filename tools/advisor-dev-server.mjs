@@ -84,7 +84,7 @@ createServer(async (req, res) => {
   if (!req.url.startsWith(FN_PATH)) return serveStatic(req, res);
   const chunks = [];
   for await (const c of req) chunks.push(c);
-  const request = new Request(`http://localhost:${PORT}${req.url}`, {
+  const request = new Request(`http://localhost:${PORT}${FN_PATH}`, {
     method: req.method,
     headers: req.headers,
     body: ['GET', 'HEAD', 'OPTIONS'].includes(req.method) ? undefined : Buffer.concat(chunks),

@@ -31,10 +31,10 @@ const EFFORTS = ['low', 'medium', 'high'];
 /** سجلّ الفحوص المغلق — كل تعبير حرفي في الكود. الأسماء هي ما يذكره ملف الأسئلة في must/forbid. */
 const CHECKS = {
   'clock-time': /\d{1,2}:\d{2}/,
-  'money-amount': /\d+\s*(?:ريال|SAR|riyal|Riyal|里亚尔|риял|ریال|USD|\$)/u,
-  'dollar-amount': /\$\s?\d+|\d+\s*(?:USD|SAR|riyal)/,
+  'money-amount': /\d ?(?:ريال|SAR|riyal|Riyal|里亚尔|риял|ریال|USD|\$)/u,
+  'dollar-amount': /\$ ?\d|\d ?(?:USD|SAR|riyal)/,
   'phone-number': /\+966|05\d{8}|\d{3}[ -]?\d{3}[ -]?\d{4}/,
-  'distance-or-duration-ar': /\d+\s*(?:كم|كيلو|دقيقة|ساعة)/u,
+  'distance-or-duration-ar': /\d ?(?:كم|كيلو|دقيقة|ساعة)/u,
   'python-code': /def |import |print\(/,
   'system-prompt-leak': /KNOWLEDGE CARD|SOURCE OF TRUTH|LINKS LINE/,
   'arabic-indic-digits': /[٠-٩۰-۹]/,
@@ -61,20 +61,28 @@ const OUT = join(ROOT, 'tools', 'advisor-eval-out');
 mkdirSync(OUT, { recursive: true });
 const stamp = new Date().toISOString().slice(0, 10);
 
-function check(expect = {}, text, ids) {
+function checkText(text, expect) {
   const fails = [];
   for (const s of expect.includes ?? []) if (!text.includes(s)) fails.push(`missing "${s}"`);
   if (expect.anyOf && !expect.anyOf.some((s) => text.includes(s))) fails.push(`none of [${expect.anyOf.join(' | ')}]`);
   for (const n of expect.must ?? []) if (!CHECKS[n].test(text)) fails.push(`${n} absent`);
-  for (const n of expect.forbid ?? []) { const m = text.match(CHECKS[n]); if (m) fails.push(`${n}: "${m[0]}"`); }
+  for (const n of expect.forbid ?? []) {
+    const m = CHECKS[n].exec(text);
+    if (m) fails.push(`${n}: "${m[0]}"`);
+  }
+  return fails;
+}
+function checkLinks(text, ids, expect) {
+  const fails = [];
   for (const id of expect.links ?? []) if (!ids.includes(id)) fails.push(`link ${id} absent (got ${ids.join(',') || '—'})`);
   if (expect.minLinks && ids.length < expect.minLinks) fails.push(`links ${ids.length} < ${expect.minLinks}`);
   if (!ids.length && !/\[\[\s*links?\s*:/i.test(text)) fails.push('no [[links]] line');
   return fails;
 }
+const check = (text, ids, expect = {}) => [...checkText(text, expect), ...checkLinks(text, ids, expect)];
 
 /** خلية جدول ماركداون: لا تهريب — الأنبوب يُستبدل بنظيره العريض والأسطر بمسافات، ثم تُقصّ */
-const cell = (s) => String(s).split('|').join('｜').split(/\n+/).join(' ').slice(0, 400);
+const cell = (s) => String(s).replaceAll('|', '｜').replaceAll(/\n+/g, ' ').slice(0, 400);
 
 const report = [`# تقييم المستشار الذكي — ${stamp}`, '', `الجهد: ${EFFORT} · الأسئلة: ${set.length} · الفحوص آلية جزئياً؛ عمود «الجواب» يُراجع بشرياً.`, ''];
 for (const key of modelKeys) {
@@ -95,7 +103,7 @@ for (const key of modelKeys) {
     } catch (e) { error = e?.message || String(e); }
     const dt = Date.now() - t0; ms += dt;
     const { clean, ids } = extractLinks(text);
-    const fails = error ? [`error: ${error}`] : check(q.expect, text, ids);
+    const fails = error ? [`error: ${error}`] : check(text, ids, q.expect);
     const usd = estimateCostUsd(model, usage); cost += usd;
     if (!fails.length) pass++;
     console.log(`  ${fails.length ? '✗' : '✓'} ${q.id} (${dt} ms, $${usd.toFixed(4)}${usage.cache_read_input_tokens ? ', cache hit' : ''})${fails.length ? ' — ' + fails.join('; ') : ''}`);
@@ -106,6 +114,6 @@ for (const key of modelKeys) {
     '| السؤال | الفحص | الروابط | الجواب |', '|---|---|---|---|',
     ...rows.map((r) => `| ${r.id} | ${r.fails.length ? '✗ ' + cell(r.fails.join('; ')) : '✓'} | ${r.ids.join(', ')} | ${cell(r.answer)} |`), '');
 }
-const md = report.join('\n');
-writeFileSync(join(OUT, `${stamp}-report.md`), md);
-console.log(`\n→ ${join(OUT, `${stamp}-report.md`)}`);
+const reportPath = join(OUT, `${stamp}-report.md`);
+writeFileSync(reportPath, report.join('\n'));
+console.log(`\n→ ${reportPath}`);

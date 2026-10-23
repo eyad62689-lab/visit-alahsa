@@ -33,7 +33,42 @@ const sse = (event, data) => `event: ${event}\ndata: ${JSON.stringify(data)}\n\n
 const json = (status, body, extra = {}) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', ...extra } })
 
-export default async (req, context) => {
+/** فئة الخطأ للواجهة وسجل الدالة — لا تفاصيل داخلية للمتصفح */
+function errorKind(err) {
+  if (err instanceof Anthropic.RateLimitError) return 'rate'
+  if (err instanceof Anthropic.APIError) return 'api'
+  return 'network'
+}
+
+/** تقدير محافظ للاستهلاك حين لم يكتمل البث (إلغاء أو خطأ): المخرجات من النصّ المبثوث فعلاً
+ *  (≈ محرفان لكل رمز) والمدخلات من حجم البرومبت إن لم يصل message_start — لا تقليل أبداً */
+function settleUsage(usage, completed, full, system, messages) {
+  if (completed) return usage
+  const out = { ...usage, output_tokens: Math.max(+usage.output_tokens || 0, Math.ceil(full.length / 2)) }
+  if (!Number.isFinite(+out.input_tokens) && !Number.isFinite(+out.cache_read_input_tokens)) {
+    const chars = system.reduce((n, b) => n + b.text.length, 0) + messages.reduce((n, m) => n + m.content.length, 0)
+    out.input_tokens = Math.ceil(chars / 2)
+  }
+  return out
+}
+
+/** يبثّ جواب النموذج إلى المتصفح ويجمع الاستهلاك من أحداث البث نفسها */
+async function relay(apiStream, send, state) {
+  for await (const ev of apiStream) {
+    if (ev.type === 'message_start') state.usage = { ...state.usage, ...ev.message.usage }
+    else if (ev.type === 'message_delta') state.usage = { ...state.usage, ...ev.usage }
+    else if (ev.type === 'content_block_delta' && ev.delta.type === 'text_delta') {
+      state.full += ev.delta.text
+      send('delta', { t: ev.delta.text })
+    }
+  }
+  const final = await apiStream.finalMessage()
+  state.usage = final.usage
+  state.completed = true
+  return final
+}
+
+export default async function advisor(req, context) {
   const cors = corsHeaders(req)
   if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors })
   if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405 })
@@ -74,53 +109,27 @@ export default async (req, context) => {
 
   const client = new Anthropic()
   const encoder = new TextEncoder()
-  // الاستهلاك يُجمع من أحداث البث نفسها (message_start للمدخلات، message_delta للمخرجات) ويُسجَّل في
-  // finally مهما انتهى الطلب — خطأ أو إلغاء من المتصفح — فلا رمز مدفوع يفلت من السقف الشهري.
+  // الاستهلاك يُجمع من أحداث البث ويُسجَّل في finally مهما انتهى الطلب — خطأ أو إلغاء من المتصفح —
+  // فلا رمز مدفوع يفلت من السقف الشهري.
+  const state = { usage: {}, full: '', completed: false }
   let apiStream = null
-  let usage = {}
   let closed = false
-  let completed = false // finalMessage وصل بكامل usage؛ وإلا فالتقدير يأخذ الأكبر
   const stream = new ReadableStream({
     async start(controller) {
       const send = (event, data) => { if (!closed) controller.enqueue(encoder.encode(sse(event, data))) }
-      let full = ''
       try {
-        apiStream = client.messages.stream({
-          model,
-          max_tokens: LIMITS.maxOutputTokens,
-          output_config: { effort },
-          system,
-          messages: apiMessages,
-        })
-        for await (const ev of apiStream) {
-          if (ev.type === 'message_start') usage = { ...usage, ...ev.message.usage }
-          else if (ev.type === 'message_delta') usage = { ...usage, ...ev.usage }
-          else if (ev.type === 'content_block_delta' && ev.delta.type === 'text_delta') {
-            full += ev.delta.text
-            send('delta', { t: ev.delta.text })
-          }
-        }
-        const final = await apiStream.finalMessage()
-        usage = final.usage
-        completed = true
-        const { ids } = extractLinks(full)
-        send('cards', { cards: resolveCards(ids, kb, lang) })
+        apiStream = client.messages.stream({ model, max_tokens: LIMITS.maxOutputTokens, output_config: { effort }, system, messages: apiMessages })
+        const final = await relay(apiStream, send, state)
+        send('cards', { cards: resolveCards(extractLinks(state.full).ids, kb, lang) })
         send('done', { stop: final.stop_reason, model: final.model })
       } catch (err) {
-        if (closed) return // أُلغي من المتصفح — لا رسالة بعده
-        // لا تفاصيل داخلية للمتصفح؛ الفئة تكفي للواجهة ولسجل الدالة
-        const kind = err instanceof Anthropic.RateLimitError ? 'rate' : err instanceof Anthropic.APIError ? 'api' : 'network'
-        console.error('advisor:', kind, err?.status ?? '', err?.message ?? err)
-        send('error', { reason: kind })
-      } finally {
-        // إلغاء أو خطأ قبل اكتمال الاستهلاك: تقدير محافظ لا تقليل — المخرجات من النصّ المبثوث
-        // (≈ محرفان لكل رمز) والمدخلات من حجم البرومبت إن لم يصل message_start
-        if (!completed) usage = { ...usage, output_tokens: Math.max(+usage.output_tokens || 0, Math.ceil(full.length / 2)) }
-        if (!Number.isFinite(+usage.input_tokens) && !Number.isFinite(+usage.cache_read_input_tokens)) {
-          const chars = system.reduce((n, b) => n + b.text.length, 0) + apiMessages.reduce((n, m) => n + m.content.length, 0)
-          usage = { ...usage, input_tokens: Math.ceil(chars / 2) }
+        if (!closed) {
+          const kind = errorKind(err)
+          console.error('advisor:', kind, err?.status ?? '', err?.message ?? err)
+          send('error', { reason: kind })
         }
-        const usd = estimateCostUsd(model, usage)
+      } finally {
+        const usd = estimateCostUsd(model, settleUsage(state.usage, state.completed, state.full, system, apiMessages))
         if (usd > 0) await addSpend(st, usd)
         if (!closed) { closed = true; controller.close() }
       }

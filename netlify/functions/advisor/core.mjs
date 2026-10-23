@@ -41,9 +41,26 @@ export function estimateCostUsd(model, usage) {
 }
 
 // ── التحقق من الطلب ───────────────────────────────────────────────────────────
+const ROLES = { user: 'user', assistant: 'assistant' }
+const bad = (error) => ({ ok: false, status: 400, error })
+
+/** رسالة واحدة: دورها ونصّها وحدودها وتناوبها مع السابقة — تعيد الرسالة المنظَّفة أو اسم الخطأ */
+function normalizeMessage(m, index, prevRole) {
+  const role = ROLES[m?.role] ?? null
+  if (!role) return { error: 'role' }
+  if (typeof m.content !== 'string') return { error: 'content' }
+  const content = m.content.replace(/\s+/g, ' ').trim()
+  if (!content) return { error: 'empty' }
+  const max = role === 'user' ? LIMITS.maxUserChars : LIMITS.maxAssistantChars
+  if (content.length > max) return { error: 'too-long' }
+  // الأدوار تتناوب وتبدأ بالزائر
+  if (index === 0 && role !== 'user') return { error: 'first-role' }
+  if (index > 0 && prevRole === role) return { error: 'alternate' }
+  return { message: { role, content } }
+}
+
 /** يعيد { ok: true, lang, page, messages } أو { ok: false, status, error } */
 export function validateRequest(body) {
-  const bad = (error) => ({ ok: false, status: 400, error })
   if (!body || typeof body !== 'object') return bad('body')
   const lang = LANGS.includes(body.lang) ? body.lang : null
   if (!lang) return bad('lang')
@@ -52,67 +69,86 @@ export function validateRequest(body) {
   if (body.messages.length > LIMITS.maxMessages) return bad('too-many-messages')
   const messages = []
   for (let i = 0; i < body.messages.length; i++) {
-    const m = body.messages[i]
-    const role = m?.role === 'assistant' ? 'assistant' : m?.role === 'user' ? 'user' : null
-    if (!role) return bad('role')
-    if (typeof m.content !== 'string') return bad('content')
-    const max = role === 'user' ? LIMITS.maxUserChars : LIMITS.maxAssistantChars
-    const content = m.content.replace(/\s+/g, ' ').trim()
-    if (!content) return bad('empty')
-    if (content.length > max) return bad('too-long')
-    // الأدوار تتناوب وتبدأ وتنتهي بالزائر
-    if (i === 0 && role !== 'user') return bad('first-role')
-    if (i > 0 && messages[i - 1].role === role) return bad('alternate')
-    messages.push({ role, content })
+    const r = normalizeMessage(body.messages[i], i, messages.at(-1)?.role)
+    if (r.error) return bad(r.error)
+    messages.push(r.message)
   }
-  if (messages[messages.length - 1].role !== 'user') return bad('last-role')
+  if (messages.at(-1).role !== 'user') return bad('last-role')
   return { ok: true, lang, page, messages }
 }
 
 // ── بطاقة المعرفة → نصّ برومبت بلغة الصفحة ──────────────────────────────────
 const L = (x, lang) => (x && (x[lang] ?? x.en ?? x.ar)) || ''
-const inLang = (x, lang) => Boolean(x && x[lang])
+const inLang = (x, lang) => Boolean(x?.[lang])
 
-/** تسميات الأقسام لصفحات `page/*` — تمرَّر من الدالة (مصدرها ui.ts عبر البطاقة) */
+const KINDS = [
+  ['attraction', 'ATTRACTIONS'], ['dining', 'RESTAURANTS AND CAFES'], ['stay', 'PLACES TO STAY'],
+  ['trail', 'SUGGESTED TRAILS'], ['event', 'EVENTS AND SEASONS'], ['post', 'BLOG ARTICLES'],
+  ['dish', 'HASAWI CUISINE (dishes page)'], ['fruit', 'OASIS FRUITS (fruits page)'], ['page', 'SITE SECTIONS'],
+]
+
+/** سطر العنوان: المعرّف والاسم والرابط (مع وسم «English only» حين لا صفحة بلغة الطلب) والفئة واليونسكو */
+function renderHeadline(e, lang) {
+  const parts = [`- [${e.id}] ${L(e.name, lang)}`]
+  const href = L(e.href, lang)
+  const onlyEn = !inLang(e.href, lang) && lang !== 'en'
+  if (href) parts.push(`| page: ${href}${onlyEn ? ' (English only)' : ''}`)
+  if (e.category && e.kind !== 'page') parts.push(`| ${e.category}`)
+  if (e.unesco) parts.push(`| UNESCO component ${e.unesco}`)
+  return parts.join(' ')
+}
+
+/** حقول الوصف المفردة: المنطقة، الملخّص، أفضل وقت */
+function renderFields(e, lang) {
+  const out = []
+  const area = L(e.area, lang)
+  if (area) out.push(`  area: ${area}`)
+  const summary = L(e.summary, lang)
+  if (summary) out.push(`  ${summary}`)
+  const best = L(e.bestTime, lang)
+  if (best) out.push(`  best time: ${best}`)
+  return out
+}
+
+/** البنود العملية الموثّقة ووسوم الحالة (غير منشور / موقع مفتوح / صفحة رقيقة) */
+function renderFacts(e, lang) {
+  const out = []
+  for (const f of e.facts ?? []) {
+    const lab = L(f.label, lang)
+    const val = L(f.value, lang)
+    if (lab && val) out.push(`  ${lab}: ${val}`)
+  }
+  if (e.pending) out.push('  hours/fees: NOT PUBLISHED on the site (awaiting confirmation)')
+  if (e.openSite) out.push('  open site: no tickets, no operator hours')
+  if (e.thin) out.push('  (short page: little detail published yet)')
+  return out
+}
+
+/** الأسئلة الشائعة ومحطات المسار */
+function renderExtras(e, lang) {
+  const out = []
+  for (const q of e.faq ?? []) {
+    const qq = L(q.q, lang)
+    const aa = L(q.a, lang)
+    if (qq && aa) out.push(`  Q: ${qq} A: ${aa}`)
+  }
+  if (e.stops?.length) {
+    const names = e.stops.map((s) => L(s, lang)).filter(Boolean)
+    if (names.length) out.push(`  stops: ${names.join(' → ')}`)
+  }
+  return out
+}
+
+const renderEntry = (e, lang) => [renderHeadline(e, lang), ...renderFields(e, lang), ...renderFacts(e, lang), ...renderExtras(e, lang)]
+
+/** بطاقة المعرفة نصاً بلغة الصفحة — حتمية الصياغة (شرط الخزن المؤقت للبرومبت) */
 export function renderKb(kb, lang) {
   const out = []
-  const kinds = [
-    ['attraction', 'ATTRACTIONS'], ['dining', 'RESTAURANTS AND CAFES'], ['stay', 'PLACES TO STAY'],
-    ['trail', 'SUGGESTED TRAILS'], ['event', 'EVENTS AND SEASONS'], ['post', 'BLOG ARTICLES'],
-    ['dish', 'HASAWI CUISINE (dishes page)'], ['fruit', 'OASIS FRUITS (fruits page)'], ['page', 'SITE SECTIONS'],
-  ]
-  for (const [kind, heading] of kinds) {
+  for (const [kind, heading] of KINDS) {
     const items = kb.entries.filter((e) => e.kind === kind)
     if (items.length === 0) continue
     out.push(`\n### ${heading}`)
-    for (const e of items) {
-      const name = L(e.name, lang)
-      const href = L(e.href, lang)
-      const onlyEn = !inLang(e.href, lang) && lang !== 'en'
-      const line = [`- [${e.id}] ${name}`]
-      if (href) line.push(`| page: ${href}${onlyEn ? ' (English only)' : ''}`)
-      if (e.category && kind !== 'page') line.push(`| ${e.category}`)
-      if (e.unesco) line.push(`| UNESCO component ${e.unesco}`)
-      out.push(line.join(' '))
-      const area = L(e.area, lang); if (area) out.push(`  area: ${area}`)
-      const summary = L(e.summary, lang); if (summary) out.push(`  ${summary}`)
-      const best = L(e.bestTime, lang); if (best) out.push(`  best time: ${best}`)
-      for (const f of e.facts ?? []) {
-        const lab = L(f.label, lang); const val = L(f.value, lang)
-        if (lab && val) out.push(`  ${lab}: ${val}`)
-      }
-      if (e.pending) out.push('  hours/fees: NOT PUBLISHED on the site (awaiting confirmation)')
-      if (e.openSite) out.push('  open site: no tickets, no operator hours')
-      if (e.thin) out.push('  (short page: little detail published yet)')
-      for (const q of e.faq ?? []) {
-        const qq = L(q.q, lang); const aa = L(q.a, lang)
-        if (qq && aa) out.push(`  Q: ${qq} A: ${aa}`)
-      }
-      if (e.stops?.length) {
-        const names = e.stops.map((s) => L(s, lang)).filter(Boolean)
-        if (names.length) out.push(`  stops: ${names.join(' → ')}`)
-      }
-    }
+    for (const e of items) out.push(...renderEntry(e, lang))
   }
   return out.join('\n')
 }
@@ -155,14 +191,19 @@ export function pageContext(kb, lang, page) {
 }
 
 // ── سطر الروابط في جواب النموذج ─────────────────────────────────────────────
-const LINKS_RE = /\s*\[\[\s*links?\s*:\s*([^\]]*)\]\]\s*$/i
+// خطّي على أي مدخل: نقفز إلى آخر «[[» بـlastIndexOf ثم نطابق الذيل وحده بنمط مُرسى من طرفيه — بلا مكرِّرات
+// متداخلة ولا بحث غير مُرسى (الصيغتان السابقتان كانتا تربيعيتين: 12 ثانية على 250 ألف محرف، و21 ثانية
+// على 30 ألف فاتحة متتالية). المسافات حول المعرّفات تُقصّ بعد الالتقاط لا داخل النمط.
+const LINKS_TAIL_RE = /^\[\[\s*links?\s*:([^\]]*)\]\]\s*$/i
 
 /** يفصل سطر [[links: …]] عن النصّ ويعيد المعرّفات (بلا تكرار، حتى 3) */
 export function extractLinks(text) {
-  const m = String(text ?? '').match(LINKS_RE)
-  if (!m) return { clean: String(text ?? '').trim(), ids: [] }
-  const ids = [...new Set(m[1].split(/[,\s]+/).map((s) => s.trim()).filter(Boolean))].slice(0, 3)
-  return { clean: String(text).slice(0, m.index).trim(), ids }
+  const s = String(text ?? '')
+  const at = s.lastIndexOf('[[')
+  const m = at >= 0 ? LINKS_TAIL_RE.exec(s.slice(at)) : null
+  if (!m) return { clean: s.trim(), ids: [] }
+  const ids = [...new Set(m[1].split(/[,\s]+/).map((x) => x.trim()).filter(Boolean))].slice(0, 3)
+  return { clean: s.slice(0, at).trim(), ids }
 }
 
 /** بطاقات الصفحات للواجهة — بلغة الصفحة أو الإنجليزية إن غابت نسختها */
@@ -189,7 +230,7 @@ export const monthKey = (now = new Date()) => now.toISOString().slice(0, 7)
 export async function bump(store, key, limit) {
   try {
     const prev = await store.get(key, { type: 'json' })
-    const count = ((prev && prev.n) || 0) + 1
+    const count = (prev?.n || 0) + 1
     await store.setJSON(key, { n: count, last: new Date().toISOString() })
     return { allowed: count <= limit, count }
   } catch {
@@ -205,6 +246,25 @@ export async function readSpend(store, now = new Date()) {
   } catch { return null }
 }
 
+export async function addSpend(store, usd, now = new Date()) {
+  try {
+    const key = `spend/${monthKey(now)}`
+    const prev = await store.get(key, { type: 'json' })
+    const total = (Number(prev?.usd) || 0) + usd
+    await store.setJSON(key, { usd: Math.round(total * 1e6) / 1e6, n: (prev?.n || 0) + 1, last: now.toISOString() })
+    return total
+  } catch { return null }
+}
+
+/** مخزن في الذاكرة — للاختبار والتشغيل المحلي حين لا يتوفر Netlify Blobs */
+export function memoryStore() {
+  const map = new Map()
+  return {
+    async get(key) { return map.has(key) ? JSON.parse(map.get(key)) : null },
+    async setJSON(key, v) { map.set(key, JSON.stringify(v)) },
+  }
+}
+
 /** الأصل المسموح: النطاق الرسمي، ونطاق Netlify الخاص بالموقع وحده (الإنتاج ومعاينات النشر
  *  deploy-preview-N--visit-ahsa وفروعه <branch>--visit-ahsa) — لا كل *.netlify.app — والتطوير المحلي */
 export const SITE_HOSTS = ['visit-alahsa.com', 'www.visit-alahsa.com']
@@ -217,6 +277,8 @@ export function originAllowed(origin) {
   return host === `${NETLIFY_SITE}.netlify.app` || host.endsWith(`--${NETLIFY_SITE}.netlify.app`)
 }
 
+const DOTTED_TAIL_RE = /:((?:\d{1,3}\.){3}\d{1,3})$/
+
 /** دلو العنوان للحدّ اليومي: IPv4 كما هو، وIPv6 بأول 64 بتاً (المشترك الواحد يملك بادئة /64 كاملة).
  *  العنوان المضمَّن الحقيقي وحده (::ffff:0:0/96 بصيغتيه المنقوطة والسداسية) يعود IPv4 حتى لا يتشارك دلواً
  *  مع غيره، وغير الصالح يُعاد خاماً فيُجزَّأ كاملاً — لا تعبير غير مُرسى يلتقط رقماً منقوطاً من أي موضع. */
@@ -226,7 +288,7 @@ export function ipBucket(ip) {
   if (isIP(s) !== 6) return s
   // الذيل المنقوط (::ffff:1.2.3.4) يشغل مجموعتين؛ يُحوَّل إلى سداسي قبل التمدد ليصير الفحص بايتياً
   let hexForm = s
-  const dotted = s.match(/:((?:\d{1,3}\.){3}\d{1,3})$/)
+  const dotted = DOTTED_TAIL_RE.exec(s)
   if (dotted && isIP(dotted[1]) === 4) {
     const b = dotted[1].split('.').map(Number)
     hexForm = s.slice(0, -dotted[1].length) + ((b[0] << 8) | b[1]).toString(16) + ':' + ((b[2] << 8) | b[3]).toString(16)
@@ -234,30 +296,11 @@ export function ipBucket(ip) {
   const [head, tail = ''] = hexForm.split('::')
   const h = head ? head.split(':') : []
   const t = tail ? tail.split(':') : []
-  const groups = [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t].map((g) => parseInt(g || '0', 16))
+  const zeros = new Array(Math.max(0, 8 - h.length - t.length)).fill('0')
+  const groups = [...h, ...zeros, ...t].map((g) => Number.parseInt(g || '0', 16))
   if (groups.length !== 8 || groups.some((g) => !Number.isFinite(g))) return s
   if (groups.slice(0, 5).every((g) => g === 0) && groups[5] === 0xffff) {
     return [groups[6] >> 8, groups[6] & 255, groups[7] >> 8, groups[7] & 255].join('.')
   }
   return groups.slice(0, 4).map((g) => g.toString(16)).join(':') + '::/64'
-}
-
-
-export async function addSpend(store, usd, now = new Date()) {
-  try {
-    const key = `spend/${monthKey(now)}`
-    const prev = await store.get(key, { type: 'json' })
-    const total = ((prev && Number(prev.usd)) || 0) + usd
-    await store.setJSON(key, { usd: Math.round(total * 1e6) / 1e6, n: ((prev && prev.n) || 0) + 1, last: now.toISOString() })
-    return total
-  } catch { return null }
-}
-
-/** مخزن في الذاكرة — للاختبار والتشغيل المحلي حين لا يتوفر Netlify Blobs */
-export function memoryStore() {
-  const map = new Map()
-  return {
-    async get(key) { return map.has(key) ? JSON.parse(map.get(key)) : null },
-    async setJSON(key, v) { map.set(key, JSON.stringify(v)) },
-  }
 }
