@@ -80,8 +80,6 @@ export const ui = {
     'a11y.crumbs': 'مسار الصفحة',
     'a11y.scrollDown': 'انزل إلى المحتوى',
     'form.honeypot': 'لا تملأ هذا الحقل: ',
-    'video.pause': 'أوقف فيديو الخلفية',
-    'video.play': 'شغّل فيديو الخلفية',
     'fav.add': 'احفظ المعلم',
     'fav.added': 'محفوظ ✓',
     // الترويسة/التذييل
@@ -484,8 +482,6 @@ export const ui = {
     'a11y.crumbs': 'Breadcrumb',
     'a11y.scrollDown': 'Scroll to content',
     'form.honeypot': 'Do not fill this field: ',
-    'video.pause': 'Pause background video',
-    'video.play': 'Play background video',
     'fav.add': 'Save this place',
     'fav.added': 'Saved ✓',
     'foot.tagline': 'An oasis with a story. Wander among its orchards and palms.',
@@ -966,8 +962,6 @@ export const ui = {
     'a11y.crumbs': '面包屑导航',
     'a11y.scrollDown': '向下滚动查看更多',
     'form.honeypot': '请勿填写此字段： ',
-    'video.pause': '暂停背景视频',
-    'video.play': '播放背景视频',
     'fav.add': '收藏景点',
     'fav.added': '已收藏 ✓',
     'foot.tagline': '一片有故事的绿洲。漫步在果园与椰枣林间。',
@@ -1291,8 +1285,6 @@ export const ui = {
     'a11y.crumbs': 'Pfadnavigation',
     'a11y.scrollDown': 'Zum Inhalt scrollen',
     'form.honeypot': 'Dieses Feld bitte nicht ausfüllen: ',
-    'video.pause': 'Hintergrundvideo pausieren',
-    'video.play': 'Hintergrundvideo abspielen',
     'fav.add': 'Diesen Ort merken',
     'fav.added': 'Gemerkt ✓',
     // ── دفعة الواجهة العامة A-ui-de — خط de-translation-pipeline، الحاكم 95/100 (2026-09-17، الدورة 1) ──
@@ -1575,9 +1567,6 @@ export const ui = {
     'a11y.scrollDown': 'Прокрутить к содержимому',
     // النماذج
     'form.honeypot': 'Не заполняйте это поле: ',
-    // فيديو الهيرو
-    'video.pause': 'Приостановить фоновое видео',
-    'video.play': 'Запустить фоновое видео',
     // المفضّلة
     'fav.add': 'Сохранить место',
     'fav.added': 'Сохранено ✓',
@@ -1721,8 +1710,6 @@ export const ui = {
     'a11y.mainNav': 'مرکزی مینو',
     'a11y.crumbs': 'صفحے کا راستہ',
     'a11y.scrollDown': 'نیچے مواد پر جائیں',
-    'video.pause': 'پس منظر کی ویڈیو روکیں',
-    'video.play': 'پس منظر کی ویڈیو چلائیں',
     'fav.add': 'یہ مقام محفوظ کریں',
     'fav.added': 'محفوظ ہو گیا ✓',
     'foot.tagline': 'ایک نخلستان، جس کی اپنی ایک داستان ہے۔ اس کے باغوں اور کھجور کے درختوں کے بیچ گھومیں پھریں۔',
