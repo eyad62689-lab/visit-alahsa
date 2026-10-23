@@ -180,7 +180,10 @@ export function resolveCards(ids, kb, lang) {
 export const dayKey = (now = new Date()) => now.toISOString().slice(0, 10)
 export const monthKey = (now = new Date()) => now.toISOString().slice(0, 7)
 
-/** يزيد عدّاد المفتاح ويعيد { allowed, count }؛ تعذّر المخزن لا يمنع الخدمة (عدّاد إحصائي) */
+/** يزيد عدّاد المفتاح ويعيد { allowed, count }. **يُغلق عند تعذّر المخزن** (allowed: false, error: true):
+ *  الحدود تحمي رصيداً شهرياً محدوداً، فتعطّل Blobs يصمت المستشار بدل أن يفتحه بلا حدّ.
+ *  قراءة-تعديل-كتابة بلا زيادة ذرّية (لا يوفرها Blobs): سباق طلبين متزامنين قد يمرّر رسالة زائدة
+ *  واحدة لا أكثر — مقبول لحدّ يومي إحصائي، والسقف الشهري يبقى بهامش 25% تحت الرصيد. */
 export async function bump(store, key, limit) {
   try {
     const prev = await store.get(key, { type: 'json' })
@@ -188,15 +191,39 @@ export async function bump(store, key, limit) {
     await store.setJSON(key, { n: count, last: new Date().toISOString() })
     return { allowed: count <= limit, count }
   } catch {
-    return { allowed: true, count: 0 }
+    return { allowed: false, count: 0, error: true }
   }
 }
 
+/** إنفاق الشهر بالدولار، أو null إن تعذّر المخزن (فيُغلق المستدعي) */
 export async function readSpend(store, now = new Date()) {
   try {
     const v = await store.get(`spend/${monthKey(now)}`, { type: 'json' })
     return (v && Number(v.usd)) || 0
-  } catch { return 0 }
+  } catch { return null }
+}
+
+/** الأصل المسموح: النطاق الرسمي، ونطاق Netlify الخاص بالموقع وحده (الإنتاج ومعاينات النشر
+ *  deploy-preview-N--visit-ahsa وفروعه <branch>--visit-ahsa) — لا كل *.netlify.app — والتطوير المحلي */
+export const SITE_HOSTS = ['visit-alahsa.com', 'www.visit-alahsa.com']
+export const NETLIFY_SITE = 'visit-ahsa'
+export function originAllowed(origin) {
+  if (!origin) return false
+  let host = ''
+  try { host = new URL(origin).hostname } catch { return false }
+  if (SITE_HOSTS.includes(host) || host === 'localhost' || host === '127.0.0.1') return true
+  return host === `${NETLIFY_SITE}.netlify.app` || host.endsWith(`--${NETLIFY_SITE}.netlify.app`)
+}
+
+/** دلو العنوان للحدّ اليومي: IPv4 كما هو، وIPv6 بأول 64 بتاً (المشترك الواحد يملك بادئة /64 كاملة) */
+export function ipBucket(ip) {
+  const s = String(ip || '').trim().replace(/^\[|\]$/g, '')
+  if (!s.includes(':')) return s
+  const [head, tail = ''] = s.split('::')
+  const h = head ? head.split(':') : []
+  const t = tail ? tail.split(':') : []
+  const groups = [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t]
+  return groups.slice(0, 4).map((g) => g.toLowerCase().replace(/^0+(?=\w)/, '')).join(':') + '::/64'
 }
 
 export async function addSpend(store, usd, now = new Date()) {

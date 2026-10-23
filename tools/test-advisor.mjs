@@ -7,7 +7,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   validateRequest, renderKb, buildSystem, pageContext, extractLinks, resolveCards,
-  estimateCostUsd, bump, readSpend, addSpend, memoryStore, LIMITS, LANGS,
+  estimateCostUsd, bump, readSpend, addSpend, memoryStore, LIMITS, LANGS, originAllowed, ipBucket,
 } from '../netlify/functions/advisor/core.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -86,7 +86,19 @@ ok((await readSpend(st)) === 0, 'إنفاق الشهر يبدأ من صفر');
 await addSpend(st, 0.004); await addSpend(st, 0.006);
 ok(Math.abs((await readSpend(st)) - 0.01) < 1e-9, 'الإنفاق يتراكم');
 const broken = { async get() { throw new Error('blobs down'); }, async setJSON() { throw new Error('blobs down'); } };
-ok((await bump(broken, 'k', 1)).allowed && (await readSpend(broken)) === 0, 'تعطّل المخزن لا يوقف الخدمة');
+const b = await bump(broken, 'k', 1);
+ok(!b.allowed && b.error === true && (await readSpend(broken)) === null, 'تعطّل المخزن يُغلق الحدّ اليومي والسقف الشهري (fail closed)');
+
+console.log('\n[4ب] الأصل ودلو العنوان');
+ok(originAllowed('https://visit-alahsa.com') && originAllowed('https://www.visit-alahsa.com'), 'نطاقا الموقع مقبولان');
+ok(originAllowed('https://visit-ahsa.netlify.app') && originAllowed('https://deploy-preview-225--visit-ahsa.netlify.app') && originAllowed('https://feat-x--visit-ahsa.netlify.app'), 'نطاق Netlify الخاص بالموقع ومعايناته مقبولة');
+ok(!originAllowed('https://evil.netlify.app') && !originAllowed('https://visit-ahsa.netlify.app.evil.com') && !originAllowed('https://xvisit-ahsa.netlify.app'), 'موقع Netlify آخر أو نطاق مشابه يُرفض');
+ok(!originAllowed('') && !originAllowed(null) && !originAllowed('not a url'), 'بلا Origin أو مشوّه → يُرفض');
+ok(originAllowed('http://localhost:8788') && originAllowed('http://127.0.0.1:4331'), 'التطوير المحلي مقبول');
+ok(ipBucket('203.0.113.7') === '203.0.113.7', 'IPv4 كما هو');
+ok(ipBucket('2001:db8:85a3:8d3:1319:8a2e:370:7348') === '2001:db8:85a3:8d3::/64', 'IPv6 يُجمَّع على /64');
+ok(ipBucket('2001:db8::1') === ipBucket('2001:db8:0:0:ffff::9') && ipBucket('2001:db8::1') === '2001:db8:0:0::/64', 'الصيغة المختصرة :: تُفكّ قبل التجميع');
+ok(ipBucket('[::1]') === '0:0:0:0::/64', 'loopback IPv6 يُجمَّع كغيره');
 
 if (existsSync(KB_PATH)) {
   console.log('\n[5] البطاقة الفعلية');
