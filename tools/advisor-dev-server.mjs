@@ -10,8 +10,8 @@
 
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
-import { readFileSync, existsSync, statSync, createReadStream, realpathSync } from 'node:fs';
-import { join, dirname, extname, resolve, sep } from 'node:path';
+import { readFileSync, existsSync, createReadStream, readdirSync } from 'node:fs';
+import { join, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 process.env.ADVISOR_STORE ??= 'memory';
@@ -19,7 +19,6 @@ const PORT = Number(process.env.ADVISOR_PORT) || 8788;
 const MOCK = process.env.ADVISOR_MOCK === '1' || process.argv.includes('--mock');
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
-const DIST_REAL = existsSync(DIST) ? realpathSync(DIST) : DIST;
 const FN_PATH = '/.netlify/functions/advisor';
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.geojson': 'application/geo+json', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.woff': 'font/woff', '.mp4': 'video/mp4', '.webm': 'video/webm', '.webmanifest': 'application/manifest+json', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8', '.pbf': 'application/octet-stream', '.wasm': 'application/wasm' };
@@ -57,16 +56,26 @@ if (MOCK) {
   ({ default: handler } = await import('../netlify/functions/advisor/advisor.mjs'));
 }
 
+/** جدول ملفات dist (مسار URL مفكوك ← مسار مطلق على القرص) يُبنى مرة عند الإقلاع: الطلب يُستعمل مفتاحَ
+ *  بحث فقط، والمسار الذي يُفتح يأتي من الجدول لا من الطلب — فلا تركيب مسار من مدخل ولا حاجة لفحص «..». */
+function indexDist(dir, prefix, into) {
+  for (const ent of readdirSync(dir, { withFileTypes: true })) {
+    const abs = join(dir, ent.name);
+    if (ent.isDirectory()) indexDist(abs, prefix + ent.name + '/', into);
+    else if (ent.isFile()) {
+      into.set(prefix + ent.name, abs);
+      if (ent.name === 'index.html') into.set(prefix, abs);
+    }
+  }
+  return into;
+}
+const FILES = existsSync(DIST) ? indexDist(DIST, '/', new Map()) : new Map();
+
 function serveStatic(req, res) {
-  let path;
-  try { path = decodeURIComponent(new URL(req.url, `http://localhost:${PORT}`).pathname); } catch { res.writeHead(400); return res.end(); }
-  // حصر الخدمة داخل dist: لا مقطع .. ولا مسار يحلّ (بعد الروابط الرمزية) خارج المجلد
-  if (path.split('/').includes('..')) { res.writeHead(403); return res.end(); }
-  let file = resolve(DIST, '.' + path);
-  if (existsSync(file) && statSync(file).isDirectory()) file = join(file, 'index.html');
-  if (!existsSync(file) || !statSync(file).isFile()) { res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }); return res.end('404'); }
-  file = realpathSync(file);
-  if (file !== DIST_REAL && !file.startsWith(DIST_REAL + sep)) { res.writeHead(403); return res.end(); }
+  let key;
+  try { key = decodeURIComponent(new URL(req.url, `http://localhost:${PORT}`).pathname); } catch { res.writeHead(400); return res.end(); }
+  const file = FILES.get(key);
+  if (!file) { res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }); return res.end('404'); }
   res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream', 'cache-control': 'no-store' });
   createReadStream(file).pipe(res);
 }
