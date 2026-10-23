@@ -4,11 +4,12 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { flat } from './visible.mjs';
 
 const R = process.argv[2] || '.';
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&nbsp;': ' ' };
-const text = (f) => readFileSync(f, 'utf8').replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/&#?\w+;/g, (m) => ENT[m] ?? m).replace(/\s+/g, ' ');
+// JSON-LD داخل <script> يُسقطه الماسح، فالفحص على النصّ المعروض وحده
+const text = (f) => flat(readFileSync(f, 'utf8'));
 const pages = (dir, acc = []) => { for (const f of readdirSync(dir)) { const p = join(dir, f); if (statSync(p).isDirectory()) pages(p, acc); else if (f === 'index.html') acc.push(p); } return acc; };
 let fails = 0, ok = 0;
 // العربية في جذر dist (بلا مجلد لغة)؛ تُستثنى مجلدات اللغات الأخرى

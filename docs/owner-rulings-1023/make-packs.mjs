@@ -56,7 +56,7 @@ const OWNER = {
 };
 
 const positions = (lg) => {
-  const S0 = sec(L0, lg), S1 = sec(L1, lg), EN0 = sec(L0, 'en'), EN1 = sec(L1, 'en'), AR0 = sec(L0, 'ar'), AR1 = sec(L1, 'ar');
+  const S1 = sec(L1, lg), EN0 = sec(L0, 'en'), EN1 = sec(L1, 'en'), AR0 = sec(L0, 'ar'), AR1 = sec(L1, 'ar');
   const Q = 'src/content/attractions/jabal-al-qarah.md', H = 'src/content/attractions/ardh-alhadarat.md', ST = `src/data/stores-directory.${lg}.json`;
   const P = [
     { id: `${lg}-legal-lead`, file: LEGAL, kind: 'ts', role: `Lead sentence of part two (Terms of Use) on /${lg}/legal/. One TS string literal.`, ruling: OWNER.lead,
