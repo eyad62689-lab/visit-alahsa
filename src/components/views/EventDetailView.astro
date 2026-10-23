@@ -548,7 +548,8 @@ if (ev.faq?.length) {
   :global(.evd-wm) { position: absolute; inset-block-end: -12%; inset-inline-start: -8%; color: var(--c-gold); opacity: .12; z-index: 0; }
   .evd-in { position: relative; z-index: 2; padding-block: var(--s-7) var(--s-6); }
   .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
-  .crumbs a { display: inline-block; padding-block: var(--s-1); color: rgba(247,243,234,.92); text-decoration: none; }
+  /* هدف لمس ≥36px: الحشو يزيد 3px من كل جهة والهامش السالب يعيد مساحة الصندوق فلا يتحرك شيء */
+  .crumbs a { display: inline-block; padding-block: calc(var(--s-1) + 3px); margin-block: -3px; color: rgba(247,243,234,.92); text-decoration: none; }
   .crumbs a:hover { color: var(--c-gold-bright); }
   .crumbs span { color: rgba(247,243,234,.62); }
   /* العنوان: --font-heading = Playfair + Cairo (اصطلاح الموقع الفاخر) */

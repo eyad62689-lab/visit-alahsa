@@ -132,11 +132,14 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
       const open = (v: boolean) => {
         panel.hidden = !v;
         fab.setAttribute('aria-expanded', String(v));
+        fab.classList.remove('is-away');
         root.classList.toggle('is-open', v);
         setOpen(v);
         if (v) { scroll(); setTimeout(() => input.focus(), 50); } else fab.focus();
       };
       fab.addEventListener('click', () => open(panel.hasAttribute('hidden')));
+      // التركيز (لوحة مفاتيح أو قارئ شاشة) يُظهر الزر ولو كان منزلقاً خارج الشاشة
+      fab.addEventListener('focus', () => fab.classList.remove('is-away'));
       root.querySelector('.adv-x')!.addEventListener('click', () => open(false));
       root.querySelector('.adv-reset')!.addEventListener('click', () => {
         history = []; save(lang, history);
@@ -236,6 +239,25 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
       form.addEventListener('submit', (e) => { e.preventDefault(); ask(input.value); });
     }
 
+    // إخفاء الزر العائم أثناء النزول على الجوال (≤760px) وإظهاره عند الصعود أو في أعلى الصفحة.
+    // المستمع على window مرة واحدة (الحارس أعلاه) ويبحث عن الزر الحالي في كل استدعاء لأن القالب
+    // يعيد تصييره عند التنقّل؛ العتبة 8px تتجاهل اهتزاز اللمس؛ الإخفاء بصري فقط (CSS) فيبقى الزر في شجرة الوصولية.
+    const FAB_STEP = 8;
+    const mobileMq = window.matchMedia('(max-width: 760px)');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const fab = document.querySelector<HTMLButtonElement>('#advisor .adv-fab');
+      if (!fab) return;
+      const y = Math.max(0, window.scrollY);
+      if (!mobileMq.matches || y <= FAB_STEP) { fab.classList.remove('is-away'); lastY = y; return; }
+      const dy = y - lastY;
+      if (Math.abs(dy) < FAB_STEP) return;
+      lastY = y;
+      const pinned = fab.getAttribute('aria-expanded') === 'true' || document.activeElement === fab;
+      fab.classList.toggle('is-away', dy > 0 && !pinned);
+    }, { passive: true });
+    document.addEventListener('astro:page-load', () => { lastY = Math.max(0, window.scrollY); });
+
     document.addEventListener('astro:page-load', wire);
     if (document.readyState !== 'loading') wire(); else document.addEventListener('DOMContentLoaded', wire);
   }
@@ -250,6 +272,13 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
   .adv-fab:hover { background: var(--c-turq-deep); transform: translateY(-1px); }
   .adv-fab:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 3px; }
   .is-open .adv-fab { display: none; }
+  @media (max-width: 760px) {
+    .adv-fab { transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), opacity var(--dur) var(--ease); }
+    /* ينزلق خارج الحافة السفلية؛ pointer-events لا visibility كي يبقى في شجرة الوصولية ويُركَّز بلوحة المفاتيح */
+    .adv-fab.is-away { transform: translateY(calc(100% + var(--s-3) + env(safe-area-inset-bottom, 0px) + 4px)); opacity: 0; pointer-events: none; }
+    .adv-fab.is-away:focus { transform: none; opacity: 1; pointer-events: auto; }
+  }
+  @media (max-width: 760px) and (prefers-reduced-motion: reduce) { .adv-fab, .adv-fab.is-away { transition: none; } }
   @media (max-width: 640px) { .adv-fab-tx { display: none; } .adv-fab { inline-size: 56px; block-size: 56px; padding: 0; justify-content: center; } }
 
   /* اللوحة */
