@@ -218,18 +218,28 @@ export function originAllowed(origin) {
 }
 
 /** دلو العنوان للحدّ اليومي: IPv4 كما هو، وIPv6 بأول 64 بتاً (المشترك الواحد يملك بادئة /64 كاملة).
- *  العنوان المضمَّن (::ffff:1.2.3.4) يعود IPv4 حتى لا يتشارك دلواً مع غيره، وغير الصالح يُعاد خاماً فيُجزَّأ كاملاً. */
+ *  العنوان المضمَّن الحقيقي وحده (::ffff:0:0/96 بصيغتيه المنقوطة والسداسية) يعود IPv4 حتى لا يتشارك دلواً
+ *  مع غيره، وغير الصالح يُعاد خاماً فيُجزَّأ كاملاً — لا تعبير غير مُرسى يلتقط رقماً منقوطاً من أي موضع. */
 export function ipBucket(ip) {
   const s = String(ip || '').trim().replace(/^\[|\]$/g, '')
   if (isIP(s) === 4) return s
   if (isIP(s) !== 6) return s
-  const mapped = s.match(/^(?:0*:)*:?ffff:((?:\d{1,3}\.){3}\d{1,3})$/i) || s.match(/((?:\d{1,3}\.){3}\d{1,3})$/)
-  if (mapped && isIP(mapped[1]) === 4) return mapped[1]
-  const [head, tail = ''] = s.split('::')
+  // الذيل المنقوط (::ffff:1.2.3.4) يشغل مجموعتين؛ يُحوَّل إلى سداسي قبل التمدد ليصير الفحص بايتياً
+  let hexForm = s
+  const dotted = s.match(/:((?:\d{1,3}\.){3}\d{1,3})$/)
+  if (dotted && isIP(dotted[1]) === 4) {
+    const b = dotted[1].split('.').map(Number)
+    hexForm = s.slice(0, -dotted[1].length) + ((b[0] << 8) | b[1]).toString(16) + ':' + ((b[2] << 8) | b[3]).toString(16)
+  }
+  const [head, tail = ''] = hexForm.split('::')
   const h = head ? head.split(':') : []
   const t = tail ? tail.split(':') : []
-  const groups = [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t]
-  return groups.slice(0, 4).map((g) => g.toLowerCase().replace(/^0+(?=\w)/, '')).join(':') + '::/64'
+  const groups = [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t].map((g) => parseInt(g || '0', 16))
+  if (groups.length !== 8 || groups.some((g) => !Number.isFinite(g))) return s
+  if (groups.slice(0, 5).every((g) => g === 0) && groups[5] === 0xffff) {
+    return [groups[6] >> 8, groups[6] & 255, groups[7] >> 8, groups[7] & 255].join('.')
+  }
+  return groups.slice(0, 4).map((g) => g.toString(16)).join(':') + '::/64'
 }
 
 

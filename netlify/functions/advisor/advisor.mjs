@@ -79,6 +79,7 @@ export default async (req, context) => {
   let apiStream = null
   let usage = {}
   let closed = false
+  let completed = false // finalMessage وصل بكامل usage؛ وإلا فالتقدير يأخذ الأكبر
   const stream = new ReadableStream({
     async start(controller) {
       const send = (event, data) => { if (!closed) controller.enqueue(encoder.encode(sse(event, data))) }
@@ -101,6 +102,7 @@ export default async (req, context) => {
         }
         const final = await apiStream.finalMessage()
         usage = final.usage
+        completed = true
         const { ids } = extractLinks(full)
         send('cards', { cards: resolveCards(ids, kb, lang) })
         send('done', { stop: final.stop_reason, model: final.model })
@@ -113,7 +115,7 @@ export default async (req, context) => {
       } finally {
         // إلغاء أو خطأ قبل اكتمال الاستهلاك: تقدير محافظ لا تقليل — المخرجات من النصّ المبثوث
         // (≈ محرفان لكل رمز) والمدخلات من حجم البرومبت إن لم يصل message_start
-        if (!Number.isFinite(+usage.output_tokens)) usage = { ...usage, output_tokens: Math.ceil(full.length / 2) }
+        if (!completed) usage = { ...usage, output_tokens: Math.max(+usage.output_tokens || 0, Math.ceil(full.length / 2)) }
         if (!Number.isFinite(+usage.input_tokens) && !Number.isFinite(+usage.cache_read_input_tokens)) {
           const chars = system.reduce((n, b) => n + b.text.length, 0) + apiMessages.reduce((n, m) => n + m.content.length, 0)
           usage = { ...usage, input_tokens: Math.ceil(chars / 2) }
