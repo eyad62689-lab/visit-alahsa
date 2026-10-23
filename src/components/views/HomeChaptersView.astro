@@ -156,7 +156,9 @@ const { title, description } = H.seo;
   .chapters :global(.ch--dark .ch-title) { color: var(--c-sand); }
   .chapters :global(.ch-lead) { font-size: 1.1875rem; line-height: 1.7; color: var(--c-ink-soft); margin: 0; max-inline-size: 58ch; }
   .chapters :global(.ch--dark .ch-lead) { color: rgba(247,243,234,.82); }
-  .chapters :global(.ch-link) { display: inline-flex; gap: var(--s-2); align-items: center; font-weight: 600; font-size: var(--t-sm); text-decoration: none; color: var(--c-turq); border-block-end: 1px solid currentColor; padding-block-end: 2px; }
+  .chapters :global(.ch-link) { display: inline-flex; gap: var(--s-2); align-items: center; font-weight: 600; font-size: var(--t-sm); text-decoration: none; color: var(--c-turq); border-block-end: 1px solid currentColor; padding-block-end: 2px;
+    /* هدف لمس ≥36px: الحشو من الأعلى وحده (الحدّ السفلي هو الخطّ المرئي فلا يُحشى تحته) والهامش السالب يعيد المساحة */
+    padding-block-start: 7px; margin-block-start: -7px; }
   .chapters :global(.ch--dark .ch-link) { color: var(--c-gold-bright); }
   .chapters :global([data-rise].is-risen) { animation: ch-rise .9s cubic-bezier(.2,.7,.2,1) both; }
   @keyframes ch-rise { from { transform: translateY(22px); } to { transform: none; } }

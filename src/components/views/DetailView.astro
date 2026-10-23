@@ -454,7 +454,8 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
      التحديد على الفقرات الداخلية فقط. */
   .ah-in { position: relative; z-index: 2; padding-block: var(--s-6); }
   .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
-  .crumbs a { display: inline-block; padding-block: var(--s-1); color: rgba(247,243,234,.92); text-decoration: none; }
+  /* هدف لمس ≥36px: الحشو يزيد 3px من كل جهة والهامش السالب يعيد مساحة الصندوق فلا يتحرك شيء */
+  .crumbs a { display: inline-block; padding-block: calc(var(--s-1) + 3px); margin-block: -3px; color: rgba(247,243,234,.92); text-decoration: none; }
   .crumbs a:hover { color: var(--c-gold-bright); }
   .crumbs span { color: rgba(247,243,234,.62); }
   /* تسمية الفئة صارت eyebrow مثل بقيّة أبطال الموقع: نصٌّ رملي وزخرفة ذهبية.
@@ -513,7 +514,7 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .dist-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
   .dist-out { font-size: var(--t-sm); color: var(--c-ink-soft); }
   .dist-out:empty { display: none; }
-  .report-link { display: block; padding-block: var(--s-1); margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-soft);
+  .report-link { display: block; padding-block: calc(var(--s-1) + 3px); margin-block: calc(var(--s-3) - 3px) -3px; /* هدف لمس ≥36px بلا إزاحة بصرية */ font-size: var(--t-xs); color: var(--c-ink-soft);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
   /* الأسئلة الشائعة — الأنماط نفسها في BlogPostView (post-faq) حرفياً؛ تحت
