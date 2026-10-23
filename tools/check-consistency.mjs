@@ -1357,7 +1357,7 @@ async function main() {
     const hrefsOf = (block) => new Set(linksIn(block, /href="([^"]+)"/g));
     // (أ) المقالات → المعالم
     const expected = new Map(); // `${lang}:${slug}` → Set(postPath)
-    const blogDirs = [['ar', path.join(DIST, AR_BLOG_DIR)], ['en', path.join(DIST, 'en', 'blog')], ...['zh', 'de', 'ru'].map((l) => [l, path.join(DIST, l, 'blog')])];
+    const blogDirs = [['ar', path.join(DIST, AR_BLOG_DIR)], ['en', path.join(DIST, 'en', 'blog')], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, path.join(DIST, l, 'blog')])];
     let posts = 0;
     for (const [l, dir] of blogDirs) {
       let names;

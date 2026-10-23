@@ -107,10 +107,10 @@ export const aboutHref = (lang: Lang): string => (lang === 'ar' ? ABOUT_ALT.ar :
 /** دليل المتاجر الإلكترونية (أُعلن 2026-10-09) — النظائر الخمس؛ المبنيّ منها فعلاً
  *  يقرّره وجود ملف الترجمة (src/lib/stores.ts storesLangs)، وهو ما يدخل الخريطة وhreflang. */
 export const STORES_ALT = {
-  ar: '/متاجر-الأحساء-الإلكترونية/', en: '/en/online-stores/', zh: '/zh/online-stores/', de: '/de/online-stores/', ru: '/ru/online-stores/',
+  ar: '/متاجر-الأحساء-الإلكترونية/', en: '/en/online-stores/', zh: '/zh/online-stores/', de: '/de/online-stores/', ru: '/ru/online-stores/', ur: '/ur/online-stores/',
 } as const;
 export const STORES_AR = STORES_ALT.ar;
-export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[builtLang(lang)];
+export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[lang];
 
 /** دليل المرشدين السياحيين المرخّصين — عربي/إنجليزي فقط (كصفحة «عن زوروا الأحساء»)،
  *  فلا يدخل STATIC_AR. اللغات الأخرى تقصد الفهرس الإنجليزي حيث يلزم رابط، ولا رابط
@@ -131,11 +131,15 @@ export const guideAlt = (d: GuideSlugs): { ar: string; en: string } => ({
   en: guideHref(d, 'en'),
 });
 
-/** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. الأوردو تقصد الإنجليزية (builtLang). */
-export const staticHref = (page: StaticPage, lang: Lang): string =>
-  lang === 'ar' ? STATIC_AR[page] : `/${builtLang(lang)}/${STATIC_LATIN[page]}`;
+/** الصفحات الثابتة المبنية بالأوردو (خط ur-translation-pipeline، دفعة بدفعة): ما ليس هنا يقصد الإنجليزية. */
+const UR_STATIC: ReadonlySet<StaticPage> = new Set<StaticPage>(['map', 'unesco', 'report', 'reportThanks', 'terrainMap', 'legal']);
 
-/** نظائر الصفحة الثابتة بلغاتها الخمس — مصدر hreflang ومبدّل اللغة. */
-export const staticAlt = (page: StaticPage): { ar: string; en: string; zh: string; de: string; ru: string } => ({
+/** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. الأوردو تقصد نسختها متى بُنيت (UR_STATIC) وإلا الإنجليزية. */
+export const staticHref = (page: StaticPage, lang: Lang): string =>
+  lang === 'ar' ? STATIC_AR[page] : lang === 'ur' && !UR_STATIC.has(page) ? `/en/${STATIC_LATIN[page]}` : `/${lang}/${STATIC_LATIN[page]}`;
+
+/** نظائر الصفحة الثابتة بلغاتها — مصدر hreflang ومبدّل اللغة؛ الأوردو متى بُنيت (UR_STATIC). */
+export const staticAlt = (page: StaticPage): { ar: string; en: string; zh: string; de: string; ru: string; ur?: string } => ({
   ar: staticHref(page, 'ar'), en: staticHref(page, 'en'), zh: staticHref(page, 'zh'), de: staticHref(page, 'de'), ru: staticHref(page, 'ru'),
+  ...(UR_STATIC.has(page) ? { ur: staticHref(page, 'ur') } : {}),
 });
