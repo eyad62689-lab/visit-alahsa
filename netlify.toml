@@ -10,12 +10,15 @@
 
 # نظام حماية المحتوى — الدوال في netlify/functions:
 #   copy-log:   تستقبل أحداث النسخ من CopyGuard وتخزّنها في Blobs
+#   advisor:    المستشار الذكي — يبثّ جواب Claude من بطاقة معرفة الموقع (netlify/functions/advisor/،
+#               البطاقة kb.generated.json تُولَّد في postbuild وتُحزم هنا؛ المفاتيح ANTHROPIC_API_KEY وADVISOR_*)
 #   theft-scan: مسح أسبوعي مجدول (الجدولة معلنة داخل الدالة نفسها:
 #               export const config = { schedule: "0 3 * * 1" })
 # والـ Edge Function ‏bot-log (netlify/edge-functions) تسجّل عيّنة الزحف —
 # مساراتها واستثناءاتها معلنة داخلها أيضاً.
 # المفاتيح كلها متغيرات بيئة في لوحة Netlify — لا مفتاح داخل الكود:
-#   IP_HASH_SALT, SERPER_API_KEY, RESEND_API_KEY, ALERT_EMAIL_TO, ALERT_EMAIL_FROM
+#   IP_HASH_SALT, SERPER_API_KEY, RESEND_API_KEY, ALERT_EMAIL_TO, ALERT_EMAIL_FROM,
+#   ANTHROPIC_API_KEY, ADVISOR_MODEL, ADVISOR_EFFORT, ADVISOR_MONTHLY_CAP_USD, ADVISOR_DAILY_PER_IP, ADVISOR_DISABLED
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
