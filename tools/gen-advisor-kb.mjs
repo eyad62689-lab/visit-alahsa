@@ -29,8 +29,10 @@ const failures = []
 const hrefs = new Set()
 for (const e of kb.entries) for (const h of Object.values(e.href ?? {})) hrefs.add(h)
 for (const h of hrefs) {
-  if (!h.startsWith('/') || !h.endsWith('/')) { failures.push(`رابط بلا شرطة ختامية أو غير داخلي: ${h}`); continue }
-  const file = join(ROOT, 'dist', decodeURI(h), 'index.html')
+  // الرابط قد يحمل مرساة قسم (#sec-dates في صفحة المتاجر): تُفحص الصفحة ما قبل المرساة، والمرساة بصيغتها
+  const [page, frag, extra] = h.split('#')
+  if (!page.startsWith('/') || !page.endsWith('/') || extra !== undefined || (frag !== undefined && !/^[a-z][a-z0-9-]*$/.test(frag))) { failures.push(`رابط بلا شرطة ختامية أو غير داخلي: ${h}`); continue }
+  const file = join(ROOT, 'dist', decodeURI(page), 'index.html')
   if (!existsSync(file)) failures.push(`رابط إلى صفحة غير مبنية: ${h}`)
 }
 

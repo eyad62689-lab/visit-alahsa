@@ -66,6 +66,14 @@ r = extractLinks('x [[links: a, a, b, c, d]]');
 ok(r.ids.length === 3 && r.ids[0] === 'a' && r.ids[1] === 'b', 'التكرار يُسقط والعدد يُقصّ إلى 3');
 r = extractLinks('x [[LINKS:jabal-al-qarah]]');
 ok(r.ids[0] === 'jabal-al-qarah', 'حالة الأحرف والمسافات لا تهم');
+r = extractLinks('نصّ.\n\n[[links: [page/attractions], [post/souvenirs-guide], [page/fruits]]]');
+ok(r.clean === 'نصّ.' && r.ids.join() === 'page/attractions,post/souvenirs-guide,page/fruits', 'أقواس حول كل معرّف لا تُفسد القراءة ولا تُسرّب السطر (واقعة 2026-10-24)');
+r = extractLinks('نصّ [[links: "page/stores", store/alsheraa ]]');
+ok(r.clean === 'نصّ' && r.ids.join() === 'page/stores,store/alsheraa', 'التنصيص والفراغات تُسقط');
+r = extractLinks('أول [[links: a]] ثم [[links: b]]');
+ok(r.ids.join() === 'b' && r.clean === 'أول [[links: a]] ثم', 'آخر سطر روابط هو المعتمد');
+r = extractLinks('نصّ [[links: ليس-معرّفاً, page/plan]]');
+ok(r.ids.join() === 'page/plan', 'ما ليس معرّفاً لاتينياً يُسقط');
 const noUr = kb.entries.find((e) => e.kind === 'attraction' && e.href.en && !e.href.ur);
 if (noUr) {
   const cards = resolveCards([noUr.id, 'ghost', 'page/plan'], kb, 'ur');
@@ -73,6 +81,17 @@ if (noUr) {
 } else console.log('  · كل المعالم لها صفحة أوردية — اختبار التراجع يُتخطّى');
 ok(resolveCards(['jabal-al-qarah', 'ghost'], kb, 'ur').length === 1, 'المعرّف المجهول يُسقط');
 ok(resolveCards(['jabal-al-qarah'], kb, 'ar')[0].name === 'جبل القارة', 'البطاقة بالاسم العربي على الصفحة العربية');
+
+console.log('\n[3b] المتاجر الإلكترونية في البطاقة');
+const stores = kb.entries.filter((e) => e.kind === 'store');
+ok(stores.length === kb.counts.stores && stores.length > 0, `${stores.length} متجراً في البطاقة = العدّ المعلن`);
+const dateStore = stores.find((e) => e.category === 'dates');
+ok(!!dateStore && /#sec-dates$/.test(dateStore.href.ar) && /التمور/.test(dateStore.summary.ar), 'متجر تمور يحيل إلى قسم التمور في صفحة المتاجر وملخّصه يسمّي القسم');
+ok(stores.every((e) => e.href.ar.startsWith('/متاجر-الأحساء-الإلكترونية/#sec-')), 'كل متجر يحيل إلى صفحة المتاجر عند قسمه');
+const storesIdx = kb.entries.find((e) => e.id === 'page/stores');
+ok(!!storesIdx?.summary?.ar && storesIdx.summary.ar.includes(String(stores.length)) && storesIdx.summary.ar.includes('تمور'), 'صفحة المتاجر لها ملخّص بالعدد الفعلي ويذكر التمور');
+ok(renderKb(kb, 'ar').includes('### ONLINE STORES') && renderKb(kb, 'ar').includes(`[${dateStore.id}]`), 'قسم المتاجر يُعرض في نصّ البطاقة');
+ok(resolveCards([dateStore.id], kb, 'ur')[0].href.endsWith('#sec-dates'), 'بطاقة المتجر بالأوردو تتراجع إلى صفحة لها نسخة مبنية مع المرساة');
 
 console.log('\n[4] الكلفة والحدود');
 const usage = { input_tokens: 1000, output_tokens: 300, cache_read_input_tokens: 40000, cache_creation_input_tokens: 0 };

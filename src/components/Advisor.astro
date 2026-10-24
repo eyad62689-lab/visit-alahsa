@@ -86,8 +86,14 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
     const isOpen = () => { try { return sessionStorage.getItem(OPEN) === '1'; } catch { return false; } };
     const setOpen = (v: boolean) => { try { sessionStorage.setItem(OPEN, v ? '1' : '0'); } catch { /* */ } };
 
-    // يقصّ سطر [[links: …]] ولو ناقصاً أثناء البث
-    const visible = (s: string) => s.replace(/\s*\[\[[^\]]*(\]\]?)?\s*$/, '').trimEnd();
+    // يقصّ سطر [[links: …]] من آخر ظهوره مهما كانت صياغته (أقواس زائدة حول المعرّفات مثلاً)،
+    // ويقصّ «[[» الناقصة في ذيل النصّ أثناء البث
+    const visible = (s: string) => {
+      let at = -1;
+      for (const m of s.matchAll(/\[\[\s*links?\s*:/gi)) at = m.index ?? -1;
+      if (at < 0) { const j = s.lastIndexOf('[['); if (j >= 0 && s.length - j <= 12) at = j; }
+      return (at >= 0 ? s.slice(0, at) : s).trimEnd();
+    };
 
     function paragraphs(el: HTMLElement, text: string) {
       el.replaceChildren();

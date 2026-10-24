@@ -25,13 +25,14 @@ import { trailHref, trailsIndexHref } from '../../lib/trails';
 import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_RU, DISH_GROUPS_DE, DISH_GROUPS_UR, type DishGroup } from '../../data/dishes';
 import { fruitGroupsFor } from '../../data/fruits';
 import { visaHref } from '../../lib/visa-guide.mjs';
+import { storesPage, storesLangs } from '../../lib/stores';
 
 /** نصّ بلغات متعددة — المفاتيح الموجودة وحدها (لا قيمة فارغة ولا تراجع هنا؛ التراجع في الدالة). */
 type L = Partial<Record<Lang, string>>;
 
 export type KbEntry = {
   id: string;
-  kind: 'attraction' | 'dining' | 'stay' | 'post' | 'event' | 'trail' | 'dish' | 'fruit' | 'page';
+  kind: 'attraction' | 'dining' | 'stay' | 'post' | 'event' | 'trail' | 'dish' | 'fruit' | 'store' | 'page';
   name: L;
   /** رابط الصفحة بكل لغة لها نسخة مبنية؛ ما يغيب تتراجع له الدالة إلى الإنجليزية */
   href: L;
@@ -267,6 +268,37 @@ function fruitEntries(): KbEntry[] {
   });
 }
 
+// ── المتاجر الإلكترونية: كل متجر مدخل باسمه ووصفه وقسمه، ورابطه صفحة المتاجر عند قسمه ──
+// (المحلّ الصحيح لسؤال «من أين أشتري التمر/الحرف»؛ الأسواق التراثية أماكن زيارة لا جواب الشراء)
+function storeEntries(pageHref: L): KbEntry[] {
+  const pages: Partial<Record<Lang, ReturnType<typeof storesPage>>> = {};
+  for (const l of storesLangs) pages[l] = storesPage(l);
+  const base = pages.ar!;
+  return base.stores.map((store, i) => {
+    const name: L = {}; const summary: L = {}; const href: L = {};
+    const section = base.sections.find((s) => s.id === store.section);
+    for (const l of L_ALL) {
+      const h = pageHref[l];
+      if (!h) continue;
+      href[l] = `${h}#sec-${store.section}`;
+      const p = pages[l];
+      if (!p) continue;
+      const s = p.stores[i];
+      const sec = p.sections.find((x) => x.id === store.section);
+      name[l] = s.name;
+      summary[l] = [sec?.title, s.description, s.platform].filter(Boolean).join(' — ');
+    }
+    return { id: `store/${store.id}`, kind: 'store' as const, name, href, summary, category: section?.id };
+  });
+}
+
+/** ملخّص صفحة المتاجر من سطرها التمهيدي (ui.ts) بعدد المتاجر الفعلي */
+function storesPageSummary(n: number): L {
+  const out: L = {};
+  for (const l of L_ALL) { const v = uiStr(l, 'stores.lead'); if (v) out[l] = v.replace('{n}', String(n)); }
+  return out;
+}
+
 // ── صفحات الأقسام: الروابط كما يبنيها الشريط العلوي (Header.astro) ────────────
 const SECTION = (ar: string, latin: string): Record<Lang, string> => ({
   ar, en: `/en/${latin}`, zh: `/zh/${latin}`, de: `/de/${latin}`, ru: `/ru/${latin}`, ur: `/ur/${latin}`,
@@ -307,6 +339,11 @@ export const GET: APIRoute = async () => {
   const stay = (await getCollection('stay')).sort((a, b) => a.data.order - b.data.order);
   const posts = await getCollection('blog');
 
+  const pages = pageEntries();
+  const storesIndex = pages.find((p) => p.id === 'page/stores')!;
+  const stores = storeEntries(storesIndex.href);
+  storesIndex.summary = storesPageSummary(stores.length);
+
   const entries: KbEntry[] = [
     ...attractions.map(attractionEntry),
     ...dining.map(diningEntry),
@@ -316,12 +353,13 @@ export const GET: APIRoute = async () => {
     ...trailEntries(),
     ...dishEntries(),
     ...fruitEntries(),
-    ...pageEntries(),
+    ...stores,
+    ...pages,
   ];
 
   const body = {
     generatedAt: new Date().toISOString().slice(0, 10),
-    counts: { attractions: attractions.length, dining: dining.length, stay: stay.length, entries: entries.length },
+    counts: { attractions: attractions.length, dining: dining.length, stay: stay.length, stores: stores.length, entries: entries.length },
     entries,
   };
   return new Response(JSON.stringify(body), {
