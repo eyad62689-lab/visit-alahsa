@@ -10,9 +10,12 @@
 // بخطوط ترجمتها — والاقتراحات الجاهزة (chips) تُخفى لتلك اللغات لا تُعرض إنجليزية.
 // الجواب نفسه بلغة الصفحة من النموذج. القياس: data-track (advisor_open / advisor_card_click)
 // وVATrack('advisor_send').
+//
+// الشخصية (قرار إياد 2026-10-24): المستشار هو «بلبل» — تميمة الموقع (البلبل أبيض الخدين). الأيقونة قصّة
+// رأس التميمة على قرص رملي (قاعدة التميمة: قرص فاتح على الداكن، بلا تشويه) من أصل دليل PDF، في
+// public/img/brand/bulbul-icon-{64,128}.{png,webp}؛ والتحية بلسانه (ui.ts) والنبرة في برومبت الدالة.
 import { ui, type Lang } from '../i18n/ui';
 import { useTranslations, isRtl } from '../i18n/utils';
-import PalmMotif from './PalmMotif.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -32,16 +35,19 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
   data-s-resting={s('advisor.resting')} data-s-rate={s('advisor.rate')} data-s-error={s('advisor.error')}
   data-s-cards={s('advisor.cards')} data-s-thinking={s('advisor.thinking')}>
   <button type="button" class="adv-fab" aria-expanded="false" aria-controls="advisor-panel" aria-label={translated ? t('advisor.open') : brand} data-track="advisor_open">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H9l-4.2 3.4A.5.5 0 0 1 4 19V5.5Z" />
-      <path d="M12 6.8l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9Z" />
-    </svg>
+    <picture class="adv-fab-ic">
+      <source srcset="/img/brand/bulbul-icon-64.webp 1x, /img/brand/bulbul-icon-128.webp 2x" type="image/webp" />
+      <img src="/img/brand/bulbul-icon-64.png" srcset="/img/brand/bulbul-icon-64.png 1x, /img/brand/bulbul-icon-128.png 2x" width="32" height="32" alt="" decoding="async" />
+    </picture>
     {translated && <span class="adv-fab-tx">{t('advisor.open')}</span>}
   </button>
 
   <section id="advisor-panel" class="adv" role="dialog" aria-labelledby="advisor-title" hidden>
     <header class="adv-hd">
-      <PalmMotif size={22} class="adv-hd-ic" />
+      <picture class="adv-hd-ic">
+      <source srcset="/img/brand/bulbul-icon-64.webp 1x, /img/brand/bulbul-icon-128.webp 2x" type="image/webp" />
+      <img src="/img/brand/bulbul-icon-64.png" srcset="/img/brand/bulbul-icon-64.png 1x, /img/brand/bulbul-icon-128.png 2x" width="28" height="28" alt="" decoding="async" />
+    </picture>
       <h2 id="advisor-title" class="adv-title">{translated ? t('advisor.title') : brand}</h2>
       <button type="button" class="adv-reset" aria-label={translated ? t('advisor.reset') : brand} hidden={!translated}>
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7" /><path d="M3 4v5h5" /></svg>
@@ -52,7 +58,7 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
     </header>
 
     <div class="adv-log" aria-live="polite" aria-busy="false">
-      {translated && <div class="adv-msg adv-msg--bot adv-intro"><p>{t('advisor.intro')}</p></div>}
+      {translated && <div class="adv-msg adv-msg--bot adv-intro">{t('advisor.intro').split('\n').map((line) => <p>{line}</p>)}</div>}
       {chips.length > 0 && (
         <div class="adv-chips">
           {chips.map((c) => <button type="button" class="adv-chip">{c}</button>)}
@@ -277,6 +283,11 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
   [dir='rtl'] .adv-fab { padding: 0 14px 0 18px; }
   .adv-fab:hover { background: var(--c-turq-deep); transform: translateY(-1px); }
   .adv-fab:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 3px; }
+  /* أيقونة بلبل: قرص رملي مقصوص من التميمة، بحلقة ذهبية خفيفة على الفيروزي؛ الأبعاد ثابتة فلا قفز في التخطيط */
+  .adv-fab-ic, .adv-hd-ic { display: block; flex-shrink: 0; line-height: 0; }
+  .adv-fab-ic img, .adv-hd-ic img { display: block; border-radius: 50%; box-shadow: 0 0 0 1.5px rgba(201, 154, 74, .7); }
+  .adv-fab-ic img { inline-size: 32px; block-size: 32px; }
+  .adv-hd-ic img { inline-size: 28px; block-size: 28px; }
   .is-open .adv-fab { display: none; }
   @media (max-width: 760px) {
     .adv-fab { transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), opacity var(--dur) var(--ease); }
@@ -285,13 +296,12 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
     .adv-fab.is-away:focus { transform: none; opacity: 1; pointer-events: auto; }
   }
   @media (max-width: 760px) and (prefers-reduced-motion: reduce) { .adv-fab, .adv-fab.is-away { transition: none; } }
-  @media (max-width: 640px) { .adv-fab-tx { display: none; } .adv-fab { inline-size: 56px; block-size: 56px; padding: 0; justify-content: center; } }
+  @media (max-width: 640px) { .adv-fab-tx { display: none; } .adv-fab { inline-size: 56px; block-size: 56px; padding: 0; justify-content: center; } .adv-fab-ic img { inline-size: 38px; block-size: 38px; } }
 
   /* اللوحة */
   .adv { display: flex; flex-direction: column; inline-size: min(400px, calc(100vw - 2 * var(--s-3))); block-size: min(620px, calc(100dvh - 2 * var(--s-3) - env(safe-area-inset-bottom, 0px))); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); overflow: hidden; }
   .adv[hidden] { display: none; }
   .adv-hd { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--c-turq-deep); color: var(--c-sand); }
-  .adv-hd-ic { color: var(--c-gold-bright); flex-shrink: 0; }
   .adv-title { flex: 1; margin: 0; font: 700 var(--t-base)/1.2 var(--font-heading); letter-spacing: 0; }
   .adv-x, .adv-reset { display: grid; place-items: center; inline-size: 40px; block-size: 40px; border: 0; border-radius: 50%; background: transparent; color: var(--c-sand); cursor: pointer; }
   .adv-x:hover, .adv-reset:hover { background: rgba(255, 255, 255, .12); }
