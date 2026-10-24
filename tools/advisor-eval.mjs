@@ -13,7 +13,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Anthropic from '@anthropic-ai/sdk';
-import { renderKb, buildSystem, pageContext, extractLinks, estimateCostUsd, LIMITS, LANGS } from '../netlify/functions/advisor/core.mjs';
+import { renderKb, buildSystem, pageContext, storeRotation, extractLinks, estimateCostUsd, LIMITS, LANGS } from '../netlify/functions/advisor/core.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const KB_PATH = join(ROOT, 'netlify', 'functions', 'advisor', 'kb.generated.json');
@@ -93,7 +93,7 @@ for (const key of modelKeys) {
   for (const q of set) {
     kbText[q.lang] ??= renderKb(kb, q.lang);
     const system = buildSystem(q.lang, kbText[q.lang]);
-    const ctx = pageContext(kb, q.lang, q.page || '');
+    const ctx = pageContext(kb, q.lang, q.page || '') + storeRotation(kb, q.lang);
     const t0 = Date.now();
     let text = ''; let usage = {}; let stop = ''; let error = '';
     try {

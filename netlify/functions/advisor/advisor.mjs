@@ -16,7 +16,7 @@ import { createHash } from 'node:crypto'
 import kb from './kb.generated.json' with { type: 'json' }
 import {
   DEFAULT_MODEL, LIMITS, validateRequest, renderKb, buildSystem, pageContext,
-  extractLinks, resolveCards, estimateCostUsd, bump, readSpend, addSpend, dayKey, memoryStore,
+  extractLinks, resolveCards, storeRotation, estimateCostUsd, bump, readSpend, addSpend, dayKey, memoryStore,
   originAllowed, ipBucket,
 } from './core.mjs'
 
@@ -104,7 +104,7 @@ export default async function advisor(req, context) {
   const effort = process.env.ADVISOR_EFFORT || 'low'
   KB_TEXT[lang] ??= renderKb(kb, lang)
   const system = buildSystem(lang, KB_TEXT[lang])
-  const ctx = pageContext(kb, lang, page)
+  const ctx = pageContext(kb, lang, page) + storeRotation(kb, lang)
   const apiMessages = messages.map((m, i) => (i === messages.length - 1 && ctx ? { role: m.role, content: ctx + m.content } : m))
 
   const client = new Anthropic()

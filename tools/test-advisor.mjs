@@ -6,7 +6,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  validateRequest, renderKb, buildSystem, pageContext, extractLinks, resolveCards,
+  validateRequest, renderKb, buildSystem, pageContext, storeRotation, extractLinks, resolveCards,
   estimateCostUsd, bump, readSpend, addSpend, memoryStore, LIMITS, LANGS, originAllowed, ipBucket,
 } from '../netlify/functions/advisor/core.mjs';
 
@@ -56,6 +56,17 @@ ok(sys[0].text.includes('Reply in Urdu') && sys[0].text.includes('Latin digits')
 ok(sys[0].text.includes('Never invent') && sys[0].text.includes('[[links:'), 'القواعد تمنع الاختلاق وتطلب سطر الروابط');
 ok(pageContext(kb, 'ar', '/معالم/جبل-القارة/?x=1#y').includes('[jabal-al-qarah]'), 'سياق الصفحة يطابق الرابط بلا استعلام أو علامة');
 ok(pageContext(kb, 'ar', '/لا-شيء/') === '', 'صفحة بلا مدخل → بلا سياق');
+
+console.log('\n[2b] storeRotation');
+const first = storeRotation(kb, 'ar', () => 0);
+const dates = kb.entries.filter((e) => e.kind === 'store' && e.category === 'dates');
+ok(first.startsWith('(Only if the visitor asks where to buy') && first.endsWith('\n'), 'التشكيلة سطر شرطي يسبق رسالة الزائر');
+ok(dates.slice(0, 3).every((e) => first.includes(`[${e.id}] ${e.name.ar}`)), 'بلا عشوائية: أول ثلاثة متاجر تمور بترتيب البطاقة');
+const lastPick = storeRotation(kb, 'ar', (max) => max - 1);
+ok(lastPick !== first && lastPick.includes(`[${dates.at(-1).id}]`), 'اختيار آخر: تشكيلة مختلفة تبدأ بآخر متجر تمور');
+ok((first.match(/\[store\//g) || []).length === 7, '3 تمور + 2 حرف + 2 منتجات أخرى = 7 معرّفات');
+ok(storeRotation({ entries: kb.entries.filter((e) => e.kind !== 'store') }, 'ar') === '', 'بلا متاجر → بلا سطر');
+ok(storeRotation(kb, 'ur', () => 0).includes(`[${dates[0].id}] ${dates[0].name.ur ?? dates[0].name.en}`), 'الأوردو: الاسم بلغتها وإلا الإنجليزية');
 
 console.log('\n[3] extractLinks / resolveCards');
 let r = extractLinks('جبل القارة يفتح يومياً.\n\n[[links: jabal-al-qarah, page/plan]]');
