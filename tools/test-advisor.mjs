@@ -168,7 +168,7 @@ const line = JSON.stringify(statObj);
 const leaks = (l) => l.includes('0551234567') || l.includes('رقمي') || l.includes('جبل القارة') || /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.test(l);
 ok(!leaks(line), 'سطر الإحصاء بلا نصّ السؤال ولا اسم البطاقة ولا عنوان');
 ok(statObj.topics.includes('food') && statObj.ids[0] === 'jabal-al-qarah' && statObj.kinds[0] === 'attraction' && statObj.turn === 1 && statObj.out === 120, 'الحقول: مواضيع، معرّف، نوع، دور، رموز');
-ok(Object.keys(statObj).sort().join() === 'env,ids,kinds,lang,out,outcome,page,src,topics,turn,v', 'مفاتيح السطر ثابتة لا يُضاف إليها حقل خفية');
+ok(Object.keys(statObj).sort((a, b) => a.localeCompare(b)).join() === 'env,ids,kinds,lang,out,outcome,page,src,topics,turn,v', 'مفاتيح السطر ثابتة لا يُضاف إليها حقل خفية');
 ok(leaks(JSON.stringify({ ...statObj, q: secret })), 'كسر الحلقة: حقن نصّ السؤال يُمسَك');
 ok(leaks(JSON.stringify({ ...statObj, ip: ['203', '0', '113', '9'].join('.') })), 'كسر الحلقة: حقن عنوان يُمسَك');
 
