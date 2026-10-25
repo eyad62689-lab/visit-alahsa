@@ -11,9 +11,14 @@
 // الجواب نفسه بلغة الصفحة من النموذج. القياس: data-track (advisor_open / advisor_card_click)
 // وVATrack('advisor_send')، وVATrack('advisor_answer') بتسميات المواضيع وأنواع البطاقات بعد كل جواب.
 //
-// الشخصية (قرار إياد 2026-10-24): المستشار هو «بلبل» — تميمة الموقع (البلبل أبيض الخدين). الأيقونة قصّة
-// رأس التميمة على قرص رملي (قاعدة التميمة: قرص فاتح على الداكن، بلا تشويه) من أصل دليل PDF، في
-// public/img/brand/bulbul-icon-{64,128}.{png,webp}؛ والتحية بلسانه (ui.ts) والنبرة في برومبت الدالة.
+// الشخصية (قرار إياد 2026-10-24): المستشار هو «بلبل» — تميمة الموقع (البلبل أبيض الخدين)؛ والتحية بلسانه
+// (ui.ts) والنبرة في برومبت الدالة.
+//
+// المشهد الحي (2026-10-25): بلبل واقعي يجثم في عش فوق الطرف الداخلي للزرّ (وداخل الدائرة على الجوال)،
+// يطير مرة بعد التحميل (مرة في الجلسة) ويطير إلى رأس اللوحة عند فتحها فلا يؤخر المستخدم. الأصول من
+// tools/gen-bulbul-assets.mjs (صورة الوقوف، شريط وضعيات الأجنحة بمراسي عين موحّدة، رأس اللوحة) وهندستها في
+// src/data/bulbul-sprite.json. العش SVG مضمّن يُرسم هنا بمولّد حتمي (خيوط قشّ بلا عشوائية بين البنائين).
+// الصور تُطلب بعد حدث load فقط (لا تزاحم LCP)، والمشهد ديكور (aria-hidden)، وprefers-reduced-motion: صورة ساكنة.
 import { ui, type Lang } from '../i18n/ui';
 import { useTranslations, isRtl } from '../i18n/utils';
 
@@ -30,23 +35,82 @@ const s = (key: keyof typeof ui['ar']): string => (translated ? t(key) : '');
 const chips = ['advisor.chip1', 'advisor.chip2', 'advisor.chip3'].map(own).filter((x): x is string => Boolean(x));
 const dir = isRtl(lang) ? 'rtl' : 'ltr';
 const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions/advisor';
+
+// ——— العش: viewBox 120×52، فوهته قطع ناقص مركزه (60,14) ونصفا قطريه 57×11، وقاعه حتى y=51 ———
+// مولّد حتمي (mulberry32) فالمخرَج ثابت بين البنائين؛ الإحداثيات بمنزلة عشرية واحدة.
+function rng(seed: number) {
+  let a = seed >>> 0;
+  return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const r1 = (v: number) => Math.round(v * 10) / 10;
+const STRAW = ['#c49c68', '#8d6942', '#5a402b', '#a77c49'];
+const span = (x: number) => Math.max(0, 1 - ((x - 60) / 57) ** 2);
+const nearRim = (x: number) => 14 + 11 * Math.sqrt(span(x));
+const farRim = (x: number) => 14 - 11 * Math.sqrt(span(x));
+const bottom = (x: number) => 14 + 37 * span(x) ** 0.6;
+const rand = rng(1563);
+const pick = () => STRAW[Math.floor(rand() * STRAW.length)];
+// خيط يتبع انحناء الوعاء على عمق t بين الحافة القريبة والقاع، بطول جزئي وميل خفيف
+function strand(t: number, curve: (x: number, t: number) => number) {
+  const x0 = 2 + rand() * 40, x1 = 78 + rand() * 40, tilt = (rand() - 0.5) * 0.12;
+  const pts: string[] = [];
+  for (let i = 0; i <= 6; i++) { const x = x0 + ((x1 - x0) * i) / 6; pts.push(`${r1(x)},${r1(curve(x, t) + tilt * (x - 60))}`); }
+  return { d: `M${pts.join('L')}`, c: pick(), w: r1(1 + rand() * 1.4), o: r1(0.75 + rand() * 0.25) };
+}
+const bowlPts: string[] = [];
+for (let x = 3; x <= 117; x += 6) bowlPts.push(`${r1(x)},${r1(bottom(x))}`);
+const rimPts: string[] = [];
+for (let x = 117; x >= 3; x -= 6) rimPts.push(`${r1(x)},${r1(nearRim(x))}`);
+const bowlD = `M3,14L${bowlPts.join('L')}L117,14L${rimPts.join('L')}Z`;
+const frontStrands = Array.from({ length: 26 }, (_, i) => strand(0.04 + (i / 26) * 0.96, (x, t) => nearRim(x) + t * (bottom(x) - nearRim(x))));
+const rimStrands = Array.from({ length: 7 }, () => strand(rand() * 0.12, (x, t) => nearRim(x) + t * 6 - 1.5));
+const backStrands = Array.from({ length: 9 }, () => strand(rand(), (x, t) => farRim(x) - t * 4 + 1));
+// قشّات بارزة من الحافة
+const straws = Array.from({ length: 7 }, () => {
+  const x = 6 + rand() * 108, y = nearRim(x) + rand() * 4, side = x < 60 ? -1 : 1;
+  const ang = (side * (20 + rand() * 50) * Math.PI) / 180, len = 7 + rand() * 9;
+  return { d: `M${r1(x)},${r1(y)}L${r1(x + Math.sin(ang) * len)},${r1(y - Math.cos(ang) * len * 0.6)}`, c: pick() };
+});
 ---
 <div class="adv-root" id="advisor" data-lang={lang} data-endpoint={endpoint} dir={dir} data-pagefind-ignore
   data-s-resting={s('advisor.resting')} data-s-rate={s('advisor.rate')} data-s-error={s('advisor.error')}
   data-s-cards={s('advisor.cards')} data-s-thinking={s('advisor.thinking')}>
   <button type="button" class="adv-fab" aria-expanded="false" aria-controls="advisor-panel" aria-label={translated ? t('advisor.open') : brand} data-track="advisor_open">
-    <picture class="adv-fab-ic">
-      <source srcset="/img/brand/bulbul-icon-64.webp 1x, /img/brand/bulbul-icon-128.webp 2x" type="image/webp" />
-      <img src="/img/brand/bulbul-icon-64.png" srcset="/img/brand/bulbul-icon-64.png 1x, /img/brand/bulbul-icon-128.png 2x" width="32" height="32" alt="" decoding="async" />
-    </picture>
+    <span class="adv-perch" aria-hidden="true">
+      <svg class="adv-nest adv-nest--back" viewBox="0 0 120 52" width="60" height="26" focusable="false">
+        <defs>
+          <radialGradient id="adv-nest-cup" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#2a1c10" /><stop offset=".7" stop-color="#3e2b1a" /><stop offset="1" stop-color="#5a402b" /></radialGradient>
+        </defs>
+        <ellipse cx="60" cy="14" rx="57" ry="11" fill="#6b4c30" />
+        {backStrands.map((s) => <path d={s.d} stroke={s.c} stroke-width={s.w} opacity={s.o} fill="none" stroke-linecap="round" />)}
+        <ellipse cx="60" cy="15" rx="50" ry="8.5" fill="url(#adv-nest-cup)" />
+      </svg>
+      <span class="adv-bird"><span class="adv-bird-img"></span></span>
+      <svg class="adv-nest adv-nest--front" viewBox="0 0 120 52" width="60" height="26" focusable="false">
+        <defs>
+          <linearGradient id="adv-nest-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a77c49" /><stop offset=".55" stop-color="#8d6942" /><stop offset="1" stop-color="#5a402b" /></linearGradient>
+          <radialGradient id="adv-nest-shade" cx="50%" cy="10%" r="95%"><stop offset=".55" stop-color="#2a1c10" stop-opacity="0" /><stop offset="1" stop-color="#2a1c10" stop-opacity=".55" /></radialGradient>
+          <clipPath id="adv-nest-clip"><path d={bowlD} /></clipPath>
+        </defs>
+        <path d={bowlD} fill="url(#adv-nest-body)" />
+        <g clip-path="url(#adv-nest-clip)" fill="none" stroke-linecap="round">
+          {frontStrands.map((s) => <path d={s.d} stroke={s.c} stroke-width={s.w} opacity={s.o} />)}
+          <path d={bowlD} fill="url(#adv-nest-shade)" stroke="none" />
+        </g>
+        <g fill="none" stroke-linecap="round">
+          {rimStrands.map((s) => <path d={s.d} stroke={s.c} stroke-width={s.w} opacity={s.o} />)}
+          {straws.map((s) => <path d={s.d} stroke={s.c} stroke-width="1.3" />)}
+        </g>
+      </svg>
+    </span>
     {translated && <span class="adv-fab-tx">{t('advisor.open')}</span>}
   </button>
 
   <section id="advisor-panel" class="adv" role="dialog" aria-labelledby="advisor-title" hidden>
     <header class="adv-hd">
       <picture class="adv-hd-ic">
-      <source srcset="/img/brand/bulbul-icon-64.webp 1x, /img/brand/bulbul-icon-128.webp 2x" type="image/webp" />
-      <img src="/img/brand/bulbul-icon-64.png" srcset="/img/brand/bulbul-icon-64.png 1x, /img/brand/bulbul-icon-128.png 2x" width="28" height="28" alt="" decoding="async" />
+      <source srcset="/img/brand/bulbul-head-64.webp" type="image/webp" />
+      <img src="/img/brand/bulbul-head-64.png" width="28" height="28" alt="" loading="lazy" decoding="async" fetchpriority="low" />
     </picture>
       <h2 id="advisor-title" class="adv-title">{translated ? t('advisor.title') : brand}</h2>
       <button type="button" class="adv-reset" aria-label={translated ? t('advisor.reset') : brand} hidden={!translated}>
@@ -74,10 +138,12 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
     </form>
     {translated && <p class="adv-note">{t('advisor.notice')}</p>}
   </section>
+  <span class="adv-fly" aria-hidden="true" hidden></span>
 </div>
 
 <script>
   // يُحمَّل مرة لكل جلسة (حارس) ويُعاد ربط العناصر عند كل تنقّل (astro:page-load) لأن القالب يعيد تصييرها.
+  import geo from '../data/bulbul-sprite.json';
   type Msg = { role: 'user' | 'assistant'; content: string };
   type Card = { id: string; name: string; href: string; img: string | null; kind: string };
 
@@ -109,6 +175,158 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
         if (p.textContent) el.appendChild(p);
       }
     }
+
+    // ——— بلبل: صورة الجثوم وطيرانه ———
+    // الأصول بمقياس 2x (src/data/bulbul-sprite.json): كل بكسلين من الأصل بكسل CSS واحد قبل مقياس المشهد.
+    // الطائر في الأصول ينظر يساراً؛ في RTL يُعكس العش (CSS) فينظر إلى داخل الصفحة.
+    const bulbul = (() => {
+      const P = geo.perch, F = geo.fly;
+      const PW = P.w / 2, FW = F.w / 2, FH = F.h / 2, EX = F.eye[0] / 2, EY = F.eye[1] / 2;
+      const ORDER = [0, 2, 3, 4, 5]; // ضربة الجناح: أعلى ← منبسط ← أسفل ← أدنى ← صاعد
+      const GLIDE = 2;               // الأجنحة الممدودة للانزلاق
+      const FLOWN = 'va-bulbul-flown';
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+      type Pt = { x: number; y: number; s: number; dir: number };
+      type Flight = { kind: 'eight' | 'panel'; t0: number; dur: number; from: Pt; ax: [number, number]; h: number; to?: { x: number; y: number } };
+      let art: { perch: string; fly: string } | null = null;
+      let fl: Flight | null = null;
+      let raf = 0, last = 0, beat = 0;
+      let intro: ReturnType<typeof setTimeout> | undefined;
+
+      const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(`#advisor ${sel}`);
+      const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
+      const smooth = (a: number, b: number, v: number) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+
+      function paint() {
+        if (!art) return;
+        const img = $('.adv-bird-img');
+        if (img) { img.style.backgroundImage = `url("${art.perch}")`; img.classList.add('is-ready'); }
+        const fly = $('.adv-fly');
+        if (fly) {
+          Object.assign(fly.style, {
+            backgroundImage: `url("${art.fly}")`, width: `${FW}px`, height: `${FH}px`,
+            backgroundSize: `${FW * F.n}px ${FH}px`, transformOrigin: `${EX}px ${EY}px`,
+          });
+        }
+      }
+      const fetchImg = (src: string) => new Promise<string>((ok, fail) => {
+        const i = new Image(); i.decoding = 'async'; i.setAttribute('fetchpriority', 'low');
+        i.onload = () => ok(src); i.onerror = fail; i.src = src;
+      });
+      const one = (name: string) => fetchImg(`/img/brand/${name}.webp`).catch(() => fetchImg(`/img/brand/${name}.png`));
+
+      // موضع العين على الشاشة ومقياس المشهد (0.7 على الجوال) واتجاه النظر (−1 يسار، +1 يمين)
+      function perchPoint(): Pt | null {
+        const bird = $('.adv-bird'); const root = document.getElementById('advisor');
+        if (!bird || !root || !art) return null;
+        const r = bird.getBoundingClientRect();
+        if (!r.width) return null;
+        const s = r.width / PW; const mirrored = root.dir === 'rtl';
+        const ex = (P.eye[0] / 2) * s, ey = (P.eye[1] / 2) * s;
+        return { x: mirrored ? r.right - ex : r.left + ex, y: r.top + ey, s, dir: mirrored ? 1 : -1 };
+      }
+
+      function frame(p: Pt, s: number, fx: number, rot: number, pose: number, alpha: number) {
+        const fly = $('.adv-fly'); if (!fly) return;
+        fly.style.transform = `translate(${(p.x - EX).toFixed(1)}px, ${(p.y - EY).toFixed(1)}px) rotate(${rot.toFixed(1)}deg) scale(${(fx * s).toFixed(3)}, ${s.toFixed(3)})`;
+        fly.style.backgroundPosition = `${-pose * FW}px 0`;
+        fly.style.opacity = alpha.toFixed(2);
+      }
+
+      function stop(silent = false) {
+        cancelAnimationFrame(raf); raf = 0; fl = null;
+        if (silent && intro) { clearTimeout(intro); intro = undefined; }
+        const fly = $('.adv-fly'); if (fly) fly.hidden = true;
+        const img = $('.adv-bird-img'); if (img) img.style.opacity = '';
+      }
+
+      function tick(now: number) {
+        if (!fl) return;
+        const dt = Math.min((now - last) / 1000, 0.05); last = now;
+        const p = clamp((now - fl.t0) / fl.dur, 0, 1);
+        const { from } = fl;
+        let x: number, y: number, vx: number, vy: number, s: number, alpha: number;
+        if (fl.kind === 'eight') {
+          // ثمانية مسطّحة: تخرج إلى جهة النظر وتصعد، تعبر فوق العش في المنتصف، تدور في الجهة الأخرى وتهبط
+          const w = Math.sin(2 * Math.PI * p), amp = w >= 0 ? fl.ax[0] : fl.ax[1];
+          x = from.x + from.dir * amp * w; y = from.y - fl.h * Math.sin(Math.PI * p);
+          vx = from.dir * amp * Math.cos(2 * Math.PI * p) * 2; vy = -fl.h * Math.cos(Math.PI * p);
+          s = from.s * (1 - 0.08 * Math.sin(Math.PI * p));
+          alpha = smooth(0, 0.06, p) * (1 - smooth(0.93, 1, p));
+        } else {
+          // إلى رأس اللوحة: قوس يتأرجح إلى جهة النظر ثم يحطّ على أيقونة الرأس ويتلاشى فيها
+          const to = fl.to!, e = smooth(0, 1, p), arc = 50 * from.s, swing = 46 * from.s * Math.sin(2 * Math.PI * p) * (1 - p);
+          x = from.x + (to.x - from.x) * e + from.dir * swing; y = from.y + (to.y - from.y) * e - arc * Math.sin(Math.PI * p);
+          vx = (to.x - from.x) * 6 * p * (1 - p) + from.dir * 46 * from.s * Math.cos(2 * Math.PI * p);
+          vy = (to.y - from.y) * 6 * p * (1 - p) - arc * Math.cos(Math.PI * p);
+          s = from.s * (1 - 0.45 * e);
+          alpha = 1 - smooth(0.8, 1, p);
+          if (p > 0.85) document.querySelector('#advisor .adv-hd-ic')?.classList.add('is-pop');
+        }
+        // الاتجاه: انعكاس أفقي مع انكماش عند الدوران (لا قلب مفاجئ)، وميل خفيف بحسب الصعود
+        const v = Math.hypot(vx, vy) || 1, hx = vx / v;
+        const face = Math.abs(hx) < 0.02 ? -from.dir : (hx < 0 ? 1 : -1);
+        const fx = face * clamp(Math.abs(hx) * 3, 0.35, 1);
+        const rot = clamp(face * 14 * (-vy / v), -12, 12);
+        beat += dt * 5.5;
+        const edge = fl.kind === 'eight' ? p < 0.06 || p > 0.94 : p < 0.05;
+        const pose = edge ? 0 : p > 0.42 && p < 0.58 ? GLIDE : ORDER[Math.floor(beat * ORDER.length) % ORDER.length];
+        frame({ x, y, s, dir: from.dir }, s, fx, rot, pose, alpha);
+        if (fl.kind === 'eight') { const img = $('.adv-bird-img'); if (img) img.style.opacity = (1 - alpha).toFixed(2); }
+        if (p >= 1) { stop(); return; }
+        raf = requestAnimationFrame(tick);
+      }
+
+      function start(f: Flight) {
+        const fly = $('.adv-fly'); if (!fly) return false;
+        fl = f; beat = 0; last = performance.now(); fly.hidden = false;
+        raf = requestAnimationFrame(tick);
+        return true;
+      }
+      const canFly = () => Boolean(art) && !reduced.matches && !document.hidden;
+
+      // الطيران الافتتاحي: حدود الثمانية من موضع العش وحدود الشاشة وأسفل الترويسة
+      function eight() {
+        const root = document.getElementById('advisor');
+        if (!canFly() || !root || root.classList.contains('is-open') || $('.adv-fab.is-away')) return;
+        const from = perchPoint(); if (!from) return;
+        const mobile = window.innerWidth <= 640;
+        const capX = mobile ? 85 : 220, capH = mobile ? 85 : 160;
+        const half = FW * from.s * 0.55, gap = 10;
+        const left = from.x - gap - half, right = window.innerWidth - from.x - gap - half;
+        const header = document.querySelector('header');
+        const top = (header ? Math.max(0, header.getBoundingClientRect().bottom) : 0) + gap + EY * from.s;
+        const h = clamp(from.y - top, 0, capH);
+        const ax: [number, number] = from.dir < 0 ? [clamp(left, 0, capX), clamp(right, 0, capX)] : [clamp(right, 0, capX), clamp(left, 0, capX)];
+        if (h < 30 || ax[0] + ax[1] < 60) return; // لا مساحة تكفي: يبقى في عشه
+        if (start({ kind: 'eight', t0: performance.now(), dur: 4000, from, ax, h })) {
+          try { sessionStorage.setItem(FLOWN, '1'); } catch { /* تخزين معطَّل */ }
+        }
+      }
+
+      function toPanel(from: Pt) {
+        if (!canFly()) return;
+        const ic = document.querySelector<HTMLElement>('#advisor .adv-hd-ic');
+        const r = ic?.getBoundingClientRect();
+        if (!ic || !r || !r.width) return;
+        ic.classList.remove('is-pop');
+        start({ kind: 'panel', t0: performance.now(), dur: 2000, from, ax: [0, 0], h: 0, to: { x: r.left + r.width * 0.42, y: r.top + r.height * 0.4 } });
+      }
+
+      // الأصول بعد load فقط، ثم الطيران الافتتاحي بعد 1.5 ثانية مرة في الجلسة
+      const boot = () => {
+        Promise.all([one('bulbul-perch'), one('bulbul-fly')]).then(([perch, fly]) => {
+          art = { perch, fly }; paint();
+          let flown = false; try { flown = sessionStorage.getItem(FLOWN) === '1'; } catch { /* */ }
+          if (!flown && !reduced.matches) intro = setTimeout(eight, 1500);
+        }).catch(() => { /* يبقى العش وحده */ });
+      };
+      if (document.readyState === 'complete') boot(); else window.addEventListener('load', boot, { once: true });
+      document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+      window.addEventListener('resize', () => { if (fl) stop(); }, { passive: true });
+      reduced.addEventListener('change', () => stop());
+      return { paint, perchPoint, toPanel, stop };
+    })();
 
     function wire() {
       const root = document.getElementById('advisor');
@@ -149,7 +367,14 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
         setOpen(v);
         if (v) { scroll(); setTimeout(() => input.focus(), 50); } else fab.focus();
       };
-      fab.addEventListener('click', () => open(panel.hasAttribute('hidden')));
+      fab.addEventListener('click', () => {
+        const opening = panel.hasAttribute('hidden');
+        // نقطة الجثوم تُقرأ قبل الفتح (الزر يختفي معه)، واللوحة تُفتح فوراً والبلبل يطير إليها أثناءها
+        bulbul.stop();
+        const from = opening ? bulbul.perchPoint() : null;
+        open(opening);
+        if (from) bulbul.toPanel(from);
+      });
       // التركيز (لوحة مفاتيح أو قارئ شاشة) يُظهر الزر ولو كان منزلقاً خارج الشاشة
       fab.addEventListener('focus', () => fab.classList.remove('is-away'));
       root.querySelector('.adv-x')!.addEventListener('click', () => open(false));
@@ -269,11 +494,14 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
       if (Math.abs(dy) < FAB_STEP) return;
       lastY = y;
       const pinned = fab.getAttribute('aria-expanded') === 'true' || document.activeElement === fab;
-      fab.classList.toggle('is-away', dy > 0 && !pinned);
+      const away = dy > 0 && !pinned;
+      fab.classList.toggle('is-away', away);
+      if (away) bulbul.stop(); // العش ينزلق مع الزر فيهبط البلبل فوراً
     }, { passive: true });
     document.addEventListener('astro:page-load', () => { lastY = Math.max(0, window.scrollY); });
 
-    document.addEventListener('astro:page-load', wire);
+    document.addEventListener('astro:page-load', () => { wire(); bulbul.paint(); });
+    document.addEventListener('astro:before-swap', () => bulbul.stop(true));
     if (document.readyState !== 'loading') wire(); else document.addEventListener('DOMContentLoaded', wire);
   }
 </script>
@@ -282,15 +510,38 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
   .adv-root { position: fixed; z-index: 60; inset-inline-end: var(--s-3); inset-block-end: calc(var(--s-3) + env(safe-area-inset-bottom, 0px)); font-family: var(--font-body); color: var(--c-ink); }
 
   /* الزرّ العائم: فيروزي على حافة ذهبية رفيعة — الذهبي لمسة لا مساحة */
-  .adv-fab { display: inline-flex; align-items: center; gap: 10px; min-block-size: 52px; padding: 0 18px 0 14px; border: 1px solid rgba(201, 154, 74, .55); border-radius: var(--radius-pill); background: var(--c-turq); color: var(--c-sand); font: 600 var(--t-sm)/1 var(--font-body); box-shadow: var(--shadow-gold); cursor: pointer; transition: transform var(--dur) var(--ease), background var(--dur) var(--ease); }
-  [dir='rtl'] .adv-fab { padding: 0 14px 0 18px; }
+  .adv-fab { position: relative; display: inline-flex; align-items: center; gap: 10px; min-block-size: 52px; min-inline-size: 84px; padding: 0 18px 0 78px; border: 1px solid rgba(201, 154, 74, .55); border-radius: var(--radius-pill); background: var(--c-turq); color: var(--c-sand); font: 600 var(--t-sm)/1 var(--font-body); box-shadow: var(--shadow-gold); cursor: pointer; transition: transform var(--dur) var(--ease), background var(--dur) var(--ease); }
+  [dir='rtl'] .adv-fab { padding: 0 78px 0 18px; }
   .adv-fab:hover { background: var(--c-turq-deep); transform: translateY(-1px); }
   .adv-fab:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 3px; }
-  /* أيقونة بلبل: قرص رملي مقصوص من التميمة، بحلقة ذهبية خفيفة على الفيروزي؛ الأبعاد ثابتة فلا قفز في التخطيط */
-  .adv-fab-ic, .adv-hd-ic { display: block; flex-shrink: 0; line-height: 0; }
-  .adv-fab-ic img, .adv-hd-ic img { display: block; border-radius: 50%; box-shadow: 0 0 0 1.5px rgba(201, 154, 74, .7); }
-  .adv-fab-ic img { inline-size: 32px; block-size: 32px; }
-  .adv-hd-ic img { inline-size: 28px; block-size: 28px; }
+
+  /* المشهد: عش وبلبل يجثمان فوق الطرف الداخلي للزرّ متداخلين معه 18px. الصندوق 68×66 (أبعاد صورة الوقوف
+     بنصف أصلها 2x؛ ذيلها يتدلّى 8px تحته)، والعش 60×26 أسفله يغطّي خط قصّ الغصن (y≈49). الصندوق يلتقط النقر
+     فيصل الزر (هو داخله)، والطائر المحلّق .adv-fly خارج الزر بلا pointer-events. */
+  .adv-perch { --pk: 1; --mx: 1; position: absolute; inset-inline-start: 6px; inset-block-end: calc(100% - 18px); inline-size: 68px; block-size: 66px; direction: ltr; transform: scale(calc(var(--pk) * var(--mx)), var(--pk)); transform-origin: 50% 100%; }
+  [dir='rtl'] .adv-perch { --mx: -1; }
+  .adv-nest { position: absolute; left: 2px; top: 40px; inline-size: 60px; block-size: 26px; overflow: visible; }
+  .adv-nest--front { filter: drop-shadow(0 2px 2px rgba(21, 33, 30, .28)); }
+  .adv-bird { position: absolute; left: 0; top: 0; inline-size: 68px; block-size: 74px; }
+  .adv-bird-img { display: block; inline-size: 100%; block-size: 100%; background: no-repeat 0 0 / 100% 100%; opacity: 0; transform-origin: 40% 70%; transition: opacity .6s var(--ease); }
+  .adv-bird-img.is-ready { opacity: 1; }
+  .adv-fly { position: fixed; inset-block-start: 0; left: 0; z-index: 2; background: no-repeat; pointer-events: none; will-change: transform, opacity; }
+  .adv-fly[hidden] { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    /* السكون: تنفّس ±1px كل 3 ثوانٍ وميل رأس نادر (مرة في 12 ثانية) — تحويلات مركّبة بلا تخطيط */
+    .adv-bird-img.is-ready { animation: adv-breathe 12s ease-in-out infinite; }
+    @keyframes adv-breathe {
+      0%, 25%, 50%, 75%, 100% { transform: translateY(0); }
+      12.5%, 37.5%, 87.5% { transform: translateY(-1px); }
+      60% { transform: translateY(-.5px) rotate(0); }
+      64%, 68% { transform: translateY(-1px) rotate(-4deg); }
+    }
+    .adv-hd-ic.is-pop img { animation: adv-pop .45s var(--ease); }
+    @keyframes adv-pop { 0% { transform: scale(.8); } 60% { transform: scale(1.12); } 100% { transform: none; } }
+  }
+
+  .adv-hd-ic { display: block; flex-shrink: 0; line-height: 0; }
+  .adv-hd-ic img { display: block; inline-size: 28px; block-size: 28px; border-radius: 50%; box-shadow: 0 0 0 1.5px rgba(201, 154, 74, .7); }
   .is-open .adv-fab { display: none; }
   @media (max-width: 760px) {
     .adv-fab { transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), opacity var(--dur) var(--ease); }
@@ -299,7 +550,12 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
     .adv-fab.is-away:focus { transform: none; opacity: 1; pointer-events: auto; }
   }
   @media (max-width: 760px) and (prefers-reduced-motion: reduce) { .adv-fab, .adv-fab.is-away { transition: none; } }
-  @media (max-width: 640px) { .adv-fab-tx { display: none; } .adv-fab { inline-size: 56px; block-size: 56px; padding: 0; justify-content: center; } .adv-fab-ic img { inline-size: 38px; block-size: 38px; } }
+  /* الجوال: دائرة 56px والمشهد داخلها بمقياس 0.7 (العش في نصفها الأسفل، ورأس البلبل يلامس حافتها العليا) */
+  @media (max-width: 640px) {
+    .adv-fab-tx { display: none; }
+    .adv-fab, [dir='rtl'] .adv-fab { inline-size: 56px; min-inline-size: 0; block-size: 56px; padding: 0; justify-content: center; }
+    .adv-perch, [dir='rtl'] .adv-perch { --pk: .7; inset-inline-start: calc(50% - 34px); inset-block-end: 8px; }
+  }
 
   /* اللوحة */
   .adv { display: flex; flex-direction: column; inline-size: min(400px, calc(100vw - 2 * var(--s-3))); block-size: min(620px, calc(100dvh - 2 * var(--s-3) - env(safe-area-inset-bottom, 0px))); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); overflow: hidden; }
