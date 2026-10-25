@@ -6,7 +6,8 @@
 // الحدود (تحمي رصيد API الشهري): سقف إنفاق شهري يُقدَّر من usage كل طلب، وعدّاد يومي لكل زائر
 // بتجزئة IP مُملَّحة (IP_HASH_SALT — لا IP خام، كما في copy-log)، وحدّ لطول الرسالة وعدد الأدوار.
 // عند بلوغ السقف تعيد الدالة 503 بسبب `cap` فتصمت الواجهة بلطف. لا تُحفظ المحادثات إطلاقاً.
-// الإحصاء: سطر «advisor-stat» مجهول لكل طلب في سجل الدالة (مواضيع وبطاقات، لا نصّ — usageStat في core.mjs).
+// الإحصاء: سطر «advisor-stat» مجهول لكل طلب في سجل الدالة (أفضل جهد)، وعدّاد يومي مجمّع في Blobs
+// `stats/<يوم>/<web|eval>` هو المصدر الكامل (مواضيع وبطاقات وصفحات، لا نصّ — usageStat/addStat في core.mjs).
 //
 // متغيرات البيئة (لوحة Netlify): ANTHROPIC_API_KEY (إلزامي)، ADVISOR_MODEL، ADVISOR_EFFORT،
 // ADVISOR_MONTHLY_CAP_USD، ADVISOR_DAILY_PER_IP، ADVISOR_DISABLED=1 (إيقاف طارئ)، IP_HASH_SALT.
@@ -18,7 +19,7 @@ import kb from './kb.generated.json' with { type: 'json' }
 import {
   DEFAULT_MODEL, LIMITS, validateRequest, renderKb, buildSystem, pageContext,
   extractLinks, resolveCards, storeRotation, estimateCostUsd, bump, readSpend, addSpend, dayKey, memoryStore,
-  originAllowed, ipBucket, usageStat, classifyTopics,
+  originAllowed, ipBucket, usageStat, classifyTopics, addStat,
 } from './core.mjs'
 
 const KB_TEXT = {} // بطاقة كل لغة تُصاغ مرة عند أول طلب وتبقى في ذاكرة النسخة الدافئة
@@ -30,9 +31,16 @@ function store() {
   try { return getStore({ name: 'advisor', consistency: 'strong' }) } catch { return memoryStore() }
 }
 
-/** يطبع سطر الإحصاء المجهول؛ لا يُسقط الطلب أبداً */
+/** يطبع سطر الإحصاء المجهول (سجل الدالة — أفضل جهد، قد يضيع بعضه) ويعيد الكائن للعدّاد المجمّع؛
+ *  لا يُسقط الطلب أبداً */
 function logStat(fields) {
-  try { console.log('advisor-stat', JSON.stringify(usageStat(fields))) } catch { /* الإحصاء لا يعطّل الخدمة */ }
+  try { const s = usageStat(fields); console.log('advisor-stat', JSON.stringify(s)); return s } catch { return null }
+}
+
+/** السطر + العدّاد اليومي المجمّع في Blobs (المصدر الكامل) */
+async function recordStat(st, fields) {
+  const s = logStat(fields)
+  if (s) await addStat(st, s)
 }
 
 const sse = (event, data) => `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`
@@ -108,7 +116,7 @@ export default async function advisor(req, context) {
   const ipHash = createHash('sha256').update(salt + ipBucket(ip)).digest('hex').slice(0, 24)
   const daily = await bump(st, `ip/${dayKey()}/${ipHash}`, envNum('ADVISOR_DAILY_PER_IP', LIMITS.dailyPerIp))
   if (daily.error) { logStat({ ...stat, outcome: 'cap' }); return json(503, { reason: 'cap' }, cors) }
-  if (!daily.allowed) { logStat({ ...stat, outcome: 'limit' }); return json(429, { reason: 'rate' }, cors) }
+  if (!daily.allowed) { await recordStat(st, { ...stat, outcome: 'limit' }); return json(429, { reason: 'rate' }, cors) }
 
   const model = process.env.ADVISOR_MODEL || DEFAULT_MODEL
   const effort = process.env.ADVISOR_EFFORT || 'low'
@@ -132,8 +140,8 @@ export default async function advisor(req, context) {
         const final = await relay(apiStream, send, state)
         state.cards = resolveCards(extractLinks(state.full).ids, kb, lang)
         state.outcome = 'ok'
-        // يُطبع والبث ما زال مفتوحاً: سطر يُطبع بعد آخر حدث يضيع غالباً حين تُجمَّد النسخة عند الإغلاق
-        logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
+        // يُسجَّل والبث ما زال مفتوحاً: ما يُطبع بعد آخر حدث يضيع غالباً حين تُجمَّد النسخة عند الإغلاق
+        await recordStat(st, { ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
         state.logged = true
         send('cards', { cards: state.cards })
         // المواضيع (تسميات لا نصّ) تعود للواجهة فتُرسلها حدثاً advisor_answer إلى Analytics
@@ -143,13 +151,13 @@ export default async function advisor(req, context) {
           const kind = errorKind(err)
           state.outcome = `error:${kind}`
           console.error('advisor:', kind, err?.status ?? '', err?.message ?? err)
-          logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
+          await recordStat(st, { ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
           state.logged = true
           send('error', { reason: kind })
         }
       } finally {
         // الإلغاء من المتصفح وحده يصل هنا بلا سطر (لا قارئ يُنتظر، فالسطر أفضل جهد)
-        if (!state.logged) logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
+        if (!state.logged) await recordStat(st, { ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
         const usd = estimateCostUsd(model, settleUsage(state.usage, state.completed, state.full, system, apiMessages))
         if (usd > 0) await addSpend(st, usd)
         if (!closed) { closed = true; controller.close() }

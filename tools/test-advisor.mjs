@@ -7,7 +7,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   validateRequest, renderKb, buildSystem, pageContext, storeRotation, extractLinks, resolveCards,
-  estimateCostUsd, bump, readSpend, addSpend, memoryStore, LIMITS, LANGS, originAllowed, ipBucket, usageStat, classifyTopics,
+  estimateCostUsd, bump, readSpend, addSpend, memoryStore, LIMITS, LANGS, originAllowed, ipBucket, usageStat, classifyTopics, addStat,
 } from '../netlify/functions/advisor/core.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -171,6 +171,24 @@ ok(statObj.topics.includes('food') && statObj.ids[0] === 'jabal-al-qarah' && sta
 ok(Object.keys(statObj).sort((a, b) => a.localeCompare(b)).join() === 'env,ids,kinds,lang,out,outcome,page,src,topics,turn,v', 'مفاتيح السطر ثابتة لا يُضاف إليها حقل خفية');
 ok(leaks(JSON.stringify({ ...statObj, q: secret })), 'كسر الحلقة: حقن نصّ السؤال يُمسَك');
 ok(leaks(JSON.stringify({ ...statObj, ip: ['203', '0', '113', '9'].join('.') })), 'كسر الحلقة: حقن عنوان يُمسَك');
+
+console.log('\n[10] addStat — العدّاد اليومي المجمّع');
+{
+  const ms = memoryStore();
+  const day = new Date('2026-10-25T10:00:00Z');
+  await addStat(ms, statObj, day);
+  await addStat(ms, { ...statObj, topics: [], kinds: [], ids: [], outcome: 'error:rate', turn: 9 }, day);
+  await addStat(ms, { ...statObj, src: 'eval' }, day);
+  const agg = await ms.get('stats/2026-10-25/web', { type: 'json' });
+  ok(agg?.n === 2 && agg.outcome.ok === 1 && agg.outcome.error === 1, 'العدّ والنتائج (error:rate → error)');
+  ok(agg.topics.food === 1 && agg.topics.none === 1, 'المواضيع، وبلا موضوع → none');
+  ok(agg.ids['jabal-al-qarah'] === 1 && agg.kinds.attraction === 1 && agg.pages['/'] === 2, 'البطاقات والأنواع والصفحات');
+  ok(agg.turn['1'] === 1 && agg.turn['5'] === 1, 'الأدوار تُسقف عند 5');
+  ok((await ms.get('stats/2026-10-25/eval', { type: 'json' }))?.n === 1, 'التقييم في مفتاح منفصل عن الزوار');
+  ok(!leaks(JSON.stringify(agg)), 'العدّاد بلا نصّ سؤال ولا اسم ولا عنوان');
+  const broken = { get: async () => { throw new Error('down'); }, setJSON: async () => { throw new Error('down'); } };
+  ok(await addStat(broken, statObj) === false, 'تعطّل المخزن لا يرمي (يعيد false)');
+}
 
 console.log(`\n${failures.length ? '✗' : '✓'} test-advisor: ${passed} ناجحاً، ${failures.length} مخفقاً`);
 if (failures.length) {

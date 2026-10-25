@@ -402,3 +402,28 @@ export function usageStat({ src, env, lang, page, messages = [], cards = [], out
     out: Number(usage.output_tokens) || 0,
   }
 }
+
+/** يضيف سطر الإحصاء إلى عدّاد اليوم المجمّع `stats/<يوم>/<src>` (يُقرأ من لوحة Blobs في نتلايفي).
+ *  عدّادات فقط — لا سطر لكل طلب — فلا يمكن ربط موضوع بزائر. قراءة-تعديل-كتابة بلا ذرّية كـbump:
+ *  سباق نادر قد يُسقط زيادة واحدة، مقبول لإحصاء. لا يرمي أبداً. */
+export async function addStat(store, stat, now = new Date()) {
+  try {
+    const key = `stats/${dayKey(now)}/${stat.src === 'eval' ? 'eval' : 'web'}`
+    const prev = (await store.get(key, { type: 'json' })) || {}
+    const inc = (obj, k) => { const o = obj && typeof obj === 'object' ? obj : {}; o[k] = (Number(o[k]) || 0) + 1; return o }
+    const next = { ...prev, n: (Number(prev.n) || 0) + 1, last: now.toISOString() }
+    next.outcome = inc(prev.outcome, String(stat.outcome || 'unknown').split(':')[0])
+    next.lang = inc(prev.lang, stat.lang || '?')
+    next.turn = inc(prev.turn, String(Math.min(Number(stat.turn) || 0, 5)))
+    next.topics = prev.topics && typeof prev.topics === 'object' ? prev.topics : {}
+    for (const t of stat.topics?.length ? stat.topics : ['none']) inc(next.topics, t)
+    next.kinds = prev.kinds && typeof prev.kinds === 'object' ? prev.kinds : {}
+    for (const k of stat.kinds || []) inc(next.kinds, k)
+    next.ids = prev.ids && typeof prev.ids === 'object' ? prev.ids : {}
+    for (const id of stat.ids || []) inc(next.ids, id)
+    next.pages = prev.pages && typeof prev.pages === 'object' ? prev.pages : {}
+    if (stat.page) inc(next.pages, stat.page)
+    await store.setJSON(key, next)
+    return true
+  } catch { return false }
+}
