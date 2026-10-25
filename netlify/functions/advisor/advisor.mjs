@@ -143,9 +143,11 @@ export default async function advisor(req, context) {
           send('error', { reason: kind })
         }
       } finally {
+        // السطر قبل تسجيل الإنفاق لا بعده: نداء Blobs المنتظَر يمهل stdout ليُفرَّغ قبل أن تُجمَّد النسخة
+        // عند إغلاق البث — طباعته آخر شيء قبل close() أضاعت معظم الأسطر في المعاينة
+        logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
         const usd = estimateCostUsd(model, settleUsage(state.usage, state.completed, state.full, system, apiMessages))
         if (usd > 0) await addSpend(st, usd)
-        logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
         if (!closed) { closed = true; controller.close() }
       }
     },
