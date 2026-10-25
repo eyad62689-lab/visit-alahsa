@@ -121,7 +121,7 @@ export default async function advisor(req, context) {
   const encoder = new TextEncoder()
   // الاستهلاك يُجمع من أحداث البث ويُسجَّل في finally مهما انتهى الطلب — خطأ أو إلغاء من المتصفح —
   // فلا رمز مدفوع يفلت من السقف الشهري.
-  const state = { usage: {}, full: '', completed: false, cards: [], outcome: 'cancel' }
+  const state = { usage: {}, full: '', completed: false, cards: [], outcome: 'cancel', logged: false }
   let apiStream = null
   let closed = false
   const stream = new ReadableStream({
@@ -132,6 +132,9 @@ export default async function advisor(req, context) {
         const final = await relay(apiStream, send, state)
         state.cards = resolveCards(extractLinks(state.full).ids, kb, lang)
         state.outcome = 'ok'
+        // يُطبع والبث ما زال مفتوحاً: سطر يُطبع بعد آخر حدث يضيع غالباً حين تُجمَّد النسخة عند الإغلاق
+        logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
+        state.logged = true
         send('cards', { cards: state.cards })
         // المواضيع (تسميات لا نصّ) تعود للواجهة فتُرسلها حدثاً advisor_answer إلى Analytics
         send('done', { stop: final.stop_reason, model: final.model, topics: classifyTopics(messages[messages.length - 1].content) })
@@ -140,12 +143,13 @@ export default async function advisor(req, context) {
           const kind = errorKind(err)
           state.outcome = `error:${kind}`
           console.error('advisor:', kind, err?.status ?? '', err?.message ?? err)
+          logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
+          state.logged = true
           send('error', { reason: kind })
         }
       } finally {
-        // السطر قبل تسجيل الإنفاق لا بعده: نداء Blobs المنتظَر يمهل stdout ليُفرَّغ قبل أن تُجمَّد النسخة
-        // عند إغلاق البث — طباعته آخر شيء قبل close() أضاعت معظم الأسطر في المعاينة
-        logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
+        // الإلغاء من المتصفح وحده يصل هنا بلا سطر (لا قارئ يُنتظر، فالسطر أفضل جهد)
+        if (!state.logged) logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
         const usd = estimateCostUsd(model, settleUsage(state.usage, state.completed, state.full, system, apiMessages))
         if (usd > 0) await addSpend(st, usd)
         if (!closed) { closed = true; controller.close() }
