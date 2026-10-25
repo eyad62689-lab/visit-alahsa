@@ -9,7 +9,7 @@
 // النصوص: ar/en في ui.ts (advisor.*)؛ zh/de/ru/ur تتراجع للإنجليزية حتى تمرّ المفاتيح
 // بخطوط ترجمتها — والاقتراحات الجاهزة (chips) تُخفى لتلك اللغات لا تُعرض إنجليزية.
 // الجواب نفسه بلغة الصفحة من النموذج. القياس: data-track (advisor_open / advisor_card_click)
-// وVATrack('advisor_send').
+// وVATrack('advisor_send')، وVATrack('advisor_answer') بتسميات المواضيع وأنواع البطاقات بعد كل جواب.
 //
 // الشخصية (قرار إياد 2026-10-24): المستشار هو «بلبل» — تميمة الموقع (البلبل أبيض الخدين). الأيقونة قصّة
 // رأس التميمة على قرص رملي (قاعدة التميمة: قرص فاتح على الداكن، بلا تشويه) من أصل دليل PDF، في
@@ -219,7 +219,7 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
             else finalNote(S('error'), false);
             return;
           }
-          const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = ''; let cards: Card[] = []; let failed = false;
+          const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = ''; let cards: Card[] = []; let topics: string[] = []; let failed = false;
           for (;;) {
             const { value, done } = await reader.read();
             if (done) break;
@@ -232,6 +232,7 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
               let d: Record<string, unknown> = {}; try { d = JSON.parse(data); } catch { continue; }
               if (ev === 'delta') { full += String(d.t ?? ''); bot.classList.remove('is-typing'); paragraphs(bot, visible(full)); scroll(); }
               else if (ev === 'cards') cards = (d.cards as Card[]) || [];
+              else if (ev === 'done') topics = Array.isArray(d.topics) ? (d.topics as string[]) : [];
               else if (ev === 'error') failed = true;
             }
           }
@@ -240,6 +241,8 @@ const endpoint = import.meta.env.PUBLIC_ADVISOR_ENDPOINT ?? '/.netlify/functions
           paragraphs(bot, text);
           history = [...history, { role: 'assistant', content: text.slice(0, 2000) }]; save(lang, history);
           renderCards(cards);
+          // إحصاء مجهول: تسميات المواضيع وأنواع البطاقات فقط، لا نصّ سؤال ولا جواب
+          w.VATrack?.('advisor_answer', { lang, topics: topics.join(',') || 'none', kinds: [...new Set(cards.map((c) => c.kind))].join(',') || 'none', cards: cards.length });
           if (failed) finalNote(S('error'), false);
         } catch {
           bot.remove(); finalNote(S('error'), false);
