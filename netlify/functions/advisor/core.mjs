@@ -344,3 +344,61 @@ export function ipBucket(ip) {
   }
   return groups.slice(0, 4).map((g) => g.toString(16)).join(':') + '::/64'
 }
+
+// ── إحصاء مجهول لكل جواب: مواضيع ومعرّفات بطاقات، لا نصّ ولا عنوان ──
+// يُطبع سطراً واحداً «advisor-stat {...}» في سجل الدالة (نتلايفي يحفظه 7 أيام)، فيُعرف ما يهتم به
+// الزوار دون حفظ أسئلتهم: التصنيف يجري في الذاكرة على كلمات مفتاحية ثم يُرمى النص.
+const TOPIC_WORDS = {
+  plan: ['برنامج', 'جدول', 'خطه', 'خطط', 'يومين', 'رحله', 'طلعه', 'وين اروح', 'itinerary', 'plan', 'schedule', 'trip', 'days'],
+  hours: ['موعد', 'مواعيد', 'متي', 'يفتح', 'تفتح', 'دوام', 'ساعات', 'رسوم', 'سعر', 'اسعار', 'تذكره', 'تذاكر', 'بكم', 'hours', 'open', 'opening', 'fee', 'fees', 'price', 'ticket', 'tickets', 'cost'],
+  food: ['مطعم', 'مطاعم', 'اكل', 'اكلات', 'فطور', 'غداء', 'عشاء', 'قهوه', 'مقهي', 'مقاهي', 'كافيه', 'كوفي', 'طبق', 'restaurant', 'restaurants', 'food', 'eat', 'cafe', 'coffee', 'breakfast', 'lunch', 'dinner', 'dish'],
+  shopping: ['تمر', 'تمور', 'اشتري', 'شراء', 'متجر', 'متاجر', 'هديه', 'هدايا', 'buy', 'shop', 'shopping', 'store', 'stores', 'dates', 'souvenir', 'souvenirs'],
+  events: ['فعاليه', 'فعاليات', 'مهرجان', 'event', 'events', 'festival'],
+  stay: ['فندق', 'فنادق', 'سكن', 'نزل', 'منتجع', 'شاليه', 'hotel', 'hotels', 'stay', 'resort'],
+  transport: ['مطار', 'قطار', 'مواصلات', 'تاكسي', 'كيف اوصل', 'airport', 'train', 'taxi', 'transport'],
+  family: ['اطفال', 'عائله', 'عيال', 'kids', 'children', 'family'],
+}
+
+/** تطبيع عربي للمطابقة: حذف التشكيل والتطويل، وتوحيد الألف والتاء المربوطة والألف المقصورة */
+function normalizeAr(s) {
+  let out = ''
+  for (const ch of String(s ?? '').toLowerCase()) {
+    const c = ch.codePointAt(0)
+    if ((c >= 0x064B && c <= 0x065F) || c === 0x0670 || c === 0x0640) continue
+    if (ch === 'أ' || ch === 'إ' || ch === 'آ') out += 'ا'
+    else if (ch === 'ة') out += 'ه'
+    else if (ch === 'ى') out += 'ي'
+    else out += ch
+  }
+  return out
+}
+
+/** مواضيع السؤال من كلمات مفتاحية (العربية بالاحتواء لأجل السوابق، اللاتينية بالكلمة الكاملة) */
+export function classifyTopics(text) {
+  const norm = normalizeAr(text)
+  const latin = new Set(norm.split(/[^a-z]+/).filter(Boolean))
+  const topics = []
+  for (const [topic, words] of Object.entries(TOPIC_WORDS)) {
+    const hit = words.some((w) => (/^[a-z]+$/.test(w) ? latin.has(w) : norm.includes(w)))
+    if (hit) topics.push(topic)
+  }
+  return topics
+}
+
+/** سطر الإحصاء: لا نصّ سؤال ولا جواب ولا عنوان ولا تجزئة عنوان */
+export function usageStat({ src, env, lang, page, messages = [], cards = [], outcome, usage = {} }) {
+  const last = messages.length ? messages[messages.length - 1].content : ''
+  return {
+    v: 1,
+    src,
+    env,
+    lang,
+    page: typeof page === 'string' && page.startsWith('/') ? page.split(/[?#]/)[0] : '',
+    turn: messages.filter((m) => m.role === 'user').length,
+    topics: classifyTopics(last),
+    kinds: [...new Set(cards.map((c) => c.kind))],
+    ids: cards.map((c) => c.id),
+    outcome,
+    out: Number(usage.output_tokens) || 0,
+  }
+}

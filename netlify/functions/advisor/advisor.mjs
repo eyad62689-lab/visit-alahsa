@@ -6,6 +6,7 @@
 // الحدود (تحمي رصيد API الشهري): سقف إنفاق شهري يُقدَّر من usage كل طلب، وعدّاد يومي لكل زائر
 // بتجزئة IP مُملَّحة (IP_HASH_SALT — لا IP خام، كما في copy-log)، وحدّ لطول الرسالة وعدد الأدوار.
 // عند بلوغ السقف تعيد الدالة 503 بسبب `cap` فتصمت الواجهة بلطف. لا تُحفظ المحادثات إطلاقاً.
+// الإحصاء: سطر «advisor-stat» مجهول لكل طلب في سجل الدالة (مواضيع وبطاقات، لا نصّ — usageStat في core.mjs).
 //
 // متغيرات البيئة (لوحة Netlify): ANTHROPIC_API_KEY (إلزامي)، ADVISOR_MODEL، ADVISOR_EFFORT،
 // ADVISOR_MONTHLY_CAP_USD، ADVISOR_DAILY_PER_IP، ADVISOR_DISABLED=1 (إيقاف طارئ)، IP_HASH_SALT.
@@ -17,7 +18,7 @@ import kb from './kb.generated.json' with { type: 'json' }
 import {
   DEFAULT_MODEL, LIMITS, validateRequest, renderKb, buildSystem, pageContext,
   extractLinks, resolveCards, storeRotation, estimateCostUsd, bump, readSpend, addSpend, dayKey, memoryStore,
-  originAllowed, ipBucket,
+  originAllowed, ipBucket, usageStat, classifyTopics,
 } from './core.mjs'
 
 const KB_TEXT = {} // بطاقة كل لغة تُصاغ مرة عند أول طلب وتبقى في ذاكرة النسخة الدافئة
@@ -27,6 +28,11 @@ const envNum = (name, fallback) => (Number.isFinite(+process.env[name]) && proce
 function store() {
   if (process.env.ADVISOR_STORE === 'memory') return memoryStore()
   try { return getStore({ name: 'advisor', consistency: 'strong' }) } catch { return memoryStore() }
+}
+
+/** يطبع سطر الإحصاء المجهول؛ لا يُسقط الطلب أبداً */
+function logStat(fields) {
+  try { console.log('advisor-stat', JSON.stringify(usageStat(fields))) } catch { /* الإحصاء لا يعطّل الخدمة */ }
 }
 
 const sse = (event, data) => `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`
@@ -84,12 +90,16 @@ export default async function advisor(req, context) {
   const v = validateRequest(body)
   if (!v.ok) return json(v.status, { error: v.error }, cors)
   const { lang, page, messages } = v
+  // مصدر الطلب للتمييز بين الزوار وأدوات التقييم، وسياق النشر لفصل المعاينات عن الإنتاج
+  const src = (req.headers.get('user-agent') || '').startsWith('advisor-eval') ? 'eval' : 'web'
+  const env = context?.deploy?.context || process.env.CONTEXT || ''
+  const stat = { src, env, lang, page, messages }
 
   const st = store()
   const cap = envNum('ADVISOR_MONTHLY_CAP_USD', LIMITS.monthlyCapUsd)
   // الإغلاق عند تعذّر المخزن (null): لا سقف مقروء = لا خدمة، فالرصيد محدود
   const spent = await readSpend(st)
-  if (spent === null || spent >= cap) return json(503, { reason: 'cap' }, cors)
+  if (spent === null || spent >= cap) { logStat({ ...stat, outcome: 'cap' }); return json(503, { reason: 'cap' }, cors) }
 
   // بلا عنوان لا حدّ يومي ممكن → يُرفض (fail closed). IPv6 يُجمَّع على /64 قبل التجزئة.
   const ip = context?.ip || req.headers.get('x-nf-client-connection-ip') || ''
@@ -97,8 +107,8 @@ export default async function advisor(req, context) {
   const salt = process.env.IP_HASH_SALT || ''
   const ipHash = createHash('sha256').update(salt + ipBucket(ip)).digest('hex').slice(0, 24)
   const daily = await bump(st, `ip/${dayKey()}/${ipHash}`, envNum('ADVISOR_DAILY_PER_IP', LIMITS.dailyPerIp))
-  if (daily.error) return json(503, { reason: 'cap' }, cors)
-  if (!daily.allowed) return json(429, { reason: 'rate' }, cors)
+  if (daily.error) { logStat({ ...stat, outcome: 'cap' }); return json(503, { reason: 'cap' }, cors) }
+  if (!daily.allowed) { logStat({ ...stat, outcome: 'limit' }); return json(429, { reason: 'rate' }, cors) }
 
   const model = process.env.ADVISOR_MODEL || DEFAULT_MODEL
   const effort = process.env.ADVISOR_EFFORT || 'low'
@@ -111,7 +121,7 @@ export default async function advisor(req, context) {
   const encoder = new TextEncoder()
   // الاستهلاك يُجمع من أحداث البث ويُسجَّل في finally مهما انتهى الطلب — خطأ أو إلغاء من المتصفح —
   // فلا رمز مدفوع يفلت من السقف الشهري.
-  const state = { usage: {}, full: '', completed: false }
+  const state = { usage: {}, full: '', completed: false, cards: [], outcome: 'cancel' }
   let apiStream = null
   let closed = false
   const stream = new ReadableStream({
@@ -120,17 +130,22 @@ export default async function advisor(req, context) {
       try {
         apiStream = client.messages.stream({ model, max_tokens: LIMITS.maxOutputTokens, output_config: { effort }, system, messages: apiMessages })
         const final = await relay(apiStream, send, state)
-        send('cards', { cards: resolveCards(extractLinks(state.full).ids, kb, lang) })
-        send('done', { stop: final.stop_reason, model: final.model })
+        state.cards = resolveCards(extractLinks(state.full).ids, kb, lang)
+        state.outcome = 'ok'
+        send('cards', { cards: state.cards })
+        // المواضيع (تسميات لا نصّ) تعود للواجهة فتُرسلها حدثاً advisor_answer إلى Analytics
+        send('done', { stop: final.stop_reason, model: final.model, topics: classifyTopics(messages[messages.length - 1].content) })
       } catch (err) {
         if (!closed) {
           const kind = errorKind(err)
+          state.outcome = `error:${kind}`
           console.error('advisor:', kind, err?.status ?? '', err?.message ?? err)
           send('error', { reason: kind })
         }
       } finally {
         const usd = estimateCostUsd(model, settleUsage(state.usage, state.completed, state.full, system, apiMessages))
         if (usd > 0) await addSpend(st, usd)
+        logStat({ ...stat, cards: state.cards, outcome: state.outcome, usage: state.usage })
         if (!closed) { closed = true; controller.close() }
       }
     },
