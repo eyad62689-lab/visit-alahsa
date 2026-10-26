@@ -32,7 +32,7 @@ heroImage: /img/dar-alturath
 kicker: "متحف خاص"
 summary: "دار على الطراز الأحسائي القديم وسط مزارع المنصورة، تضم مقتنيات تراثية وتاريخية نادرة."
 summary_en: "A house in the old Hasawi style amid Al-Mansurah's farms, holding rare heritage and historical pieces."
-body_en: "Amid the palm farms of Al-Mansurah, east of the oasis, stands Dar Al-Turath — the Heritage House — a private museum built in the old Hasawi architectural style. Its founder, Jafar Al-Khawaher, gathered its collection over more than twenty-five years from within Al-Ahsa and beyond, carrying on a family legacy of collecting heritage, and the house was inaugurated in its developed form in May 2017. Its holdings include rare heritage and historical pieces: manuscripts, coins, old photographs, cooking vessels and coffee pots, and weapons — swords and military helmets some of which go back more than three hundred years — along with fossilised animals. The building itself, in the old local style amid the greenery, is part of the exhibit."
+body_en: "Amid the palm farms of Al-Mansurah, east of the oasis, stands Dar Al-Turath — the Heritage House — a private museum built in the old Hasawi architectural style. Its founder, Jafar Al-Khawaher, gathered its collection over more than twenty-five years from within Al-Ahsa and beyond, carrying on a family legacy of collecting heritage, and the house was inaugurated in its developed form in May 2017. Its holdings include rare heritage and historical pieces: manuscripts, coins, old photographs, cooking vessels and coffee pots, and weapons — swords and military helmets some of which go back more than three hundred years — along with fossilised animals. The building itself, in the old local style amid the greenery, is part of the exhibit.\n\n## Other heritage museums in Al-Ahsa\n\nAl-Ahsa has more heritage museums. Al-Ahsa House Museum in Hofuf is an old Hasawi house with its majlis rooms, kitchen and bridal chamber. Al-Khalifa Heritage Museum north of Al-Mubarraz is a folk souq echoing the Qaisariyah. Al-Ahsa Museum in Hofuf is the oasis's official government museum, presenting the region's history and antiquities."
 area: بلدة المنصورة — شرق الواحة
 area_en: "Al-Mansurah — east of the oasis"
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
@@ -61,3 +61,7 @@ mapUrl: "https://goo.gl/maps/DvscYb4gtJNf3CGM7"
 بعضها لأكثر من ثلاثمائة عام،
 إلى جانب حيوانات متحجرة. والمبنى نفسه، بطرازه المحلي القديم وسط الخضرة،
 جزء من المعرض.
+
+## متاحف الأحساء التراثية الأخرى
+
+إن أحببت التوسّع في تراث الأحساء فزر [متحف البيت الأحسائي](/معالم/متحف-البيت-الأحسائي/) في الهفوف، وهو بيت أحسائي قديم بمجالسه ومطبخه وغرفة عروسه، و[متحف الخليفة التراثي](/معالم/متحف-الخليفة-التراثي/) شمال المبرز، وهو سوق شعبي يحاكي القيصرية، و[متحف الأحساء](/معالم/متحف-الأحساء/) في الهفوف، المتحف الحكومي الرسمي للواحة الذي يعرض تاريخ الأحساء وآثارها.

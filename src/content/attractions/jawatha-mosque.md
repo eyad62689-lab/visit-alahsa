@@ -31,9 +31,9 @@ slug_en: jawatha-mosque
 category: religious
 heroImage: /img/jawatha-mosque
 kicker: إرثٌ نادر
-summary: من أقدم المساجد في الإسلام، وأوّل ما أُقيمت فيه جمعةٌ بعد المدينة.
-summary_en: "One of the oldest mosques in Islam, and the first place a Friday prayer was held after Medina."
-body_en: "Jawatha Mosque holds a standing few landmarks can match: it is among the oldest mosques in Islam, and is said to be the first place where Friday prayer was held after the Prophet's Mosque in Medina, by the Banu Abd al-Qais who settled this land. What remains of its humble mud structure carries a dignity beyond its size. Stand before its arches and walls and you summon centuries of prayer and gathering in an oasis whose people were among the earliest to embrace Islam. The mosque was restored under the Prince Mohammed bin Salman Project for the Development of Historic Mosques, together with the Jalaniyah, Sheikh Muhammad bin Abi Bakr Al-Mulla and Hubaish mosques in Al-Ahsa. To visit it is a journey through time more than a visit to a building — a moment that connects you to a deep root of the place’s history."
+summary: من أقدم المساجد في الأحساء والإسلام، وأوّل ما أُقيمت فيه جمعةٌ بعد المدينة.
+summary_en: "One of the oldest mosques in Al-Ahsa and in Islam, and the first place a Friday prayer was held after Medina."
+body_en: "Jawatha Mosque holds a standing few landmarks can match: it is among the oldest mosques in Islam, and is said to be the first place where Friday prayer was held after the Prophet's Mosque in Medina, by the Banu Abd al-Qais who settled this land. What remains of its humble mud structure carries a dignity beyond its size. Stand before its arches and walls and you summon centuries of prayer and gathering in an oasis whose people were among the earliest to embrace Islam. The historic Jawatha Mosque was restored under the Prince Mohammed bin Salman Project for the Development of Historic Mosques, together with the Jalaniyah, Sheikh Muhammad bin Abi Bakr Al-Mulla and Hubaish mosques in Al-Ahsa. Beside the mosque stands Jawatha Park, a green park and a destination for family outings. To visit it is a journey through time more than a visit to a building — a moment that connects you to a deep root of the place’s history."
 area: قرية الكلابية — شمال شرق الهفوف
 area_en: "Al-Kilabiyah village — northeast of Hofuf"
 fee: { free: true }
@@ -126,9 +126,11 @@ faq:
 وجدرانه فتستحضر قروناً من الصلاة والاجتماع في واحةٍ كانت من أوائل من دخل أهلها
 الإسلام.
 
-وقد أُعيد ترميم المسجد ضمن **مشروع الأمير محمد بن سلمان لتطوير المساجد
+وقد أُعيد ترميم مسجد جواثا التاريخي ضمن **مشروع الأمير محمد بن سلمان لتطوير المساجد
 التاريخية**، هو ومساجد الجعلانية والشيخ محمد بن أبي بكر الملا والحبيش في
 الأحساء.
+
+ويجاور المسجد [منتزه جواثا السياحي](/معالم/منتزه-جواثا-السياحي/)، وهو منتزه أخضر وجهة للنزهات العائلية.
 
 زيارته رحلةٌ في الزمن أكثر منها زيارةً لمبنى — لحظةٌ تتّصل فيها بجذرٍ عميقٍ من
 تاريخ المكان.

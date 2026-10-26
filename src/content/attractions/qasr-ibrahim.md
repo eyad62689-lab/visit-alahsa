@@ -36,7 +36,7 @@ heroImage: /img/qasr-ibrahim
 kicker: قلعة تاريخية
 summary: جدرانٌ من الطين وأسقفٌ من جذوع النخل في حصنٍ يجمع المسجد والثكنات والأبراج.
 summary_en: "Mud walls and palm-trunk roofs in a fortress that gathers mosque, barracks and towers."
-body_en: "In the heart of Hofuf, Qasr Ibrahim (Ibrahim Palace) stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque, military barracks, watchtowers, stables and stores. It was built in the traditional Gulf manner: walls of mud mixed with straw, roofs of palm trunks, chandal wood (timber once imported to the Gulf) and stone, and a minaret reached by a spiral stone staircase. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
+body_en: "In the heart of Hofuf, Qasr Ibrahim (Ibrahim Palace) stands witness to centuries of change. Not a palace in the lavish sense, but a fortress that brought together beneath one wall what rarely meets: an elegantly domed mosque (Al-Qubba Mosque), military barracks, watchtowers, stables and stores. It was built in the traditional Gulf manner: walls of mud mixed with straw, roofs of palm trunks, chandal wood (timber once imported to the Gulf) and stone, and a minaret reached by a spiral stone staircase. Wander its broad courtyard, watch the dome shade the mihrab, and you will read layers of history accumulated generation by generation. Today the fort is among Al-Ahsa’s foremost heritage landmarks, part of the urban fabric that placed the oasis on UNESCO’s World Heritage list in 2018."
 area: وسط الهفوف — الأحساء
 area_en: "Central Hofuf — Al-Ahsa"
 hoursSpec:
@@ -76,9 +76,9 @@ tags: ["قلاع", "تاريخ", "عمارة"]
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-12، الدفعة b1 — السجل في ur-translation/memory/scores.csv).
 faq:
-  - q: "ما مواعيد قصر إبراهيم؟"
+  - q: "ما مواعيد زيارة قصر إبراهيم؟"
     a: "الأحد إلى الخميس من 8 ص إلى 5 م، والجمعة من 4 إلى 8 م، والسبت من 9 ص إلى 1 م ومن 4 إلى 8 م."
-    q_en: "What are the opening hours of Qasr Ibrahim?"
+    q_en: "What are the visiting hours of Qasr Ibrahim?"
     a_en: "Sunday to Thursday 8 am–5 pm, Friday 4–8 pm, and Saturday 9 am–1 pm and 4–8 pm."
     q_zh: "易卜拉欣宫的开放时间是几点到几点？"
     a_zh: "周日至周四 8:00–17:00，周五 16:00–20:00，周六 9:00–13:00、16:00–20:00。"
@@ -119,12 +119,12 @@ faq:
 ---
 
 في قلب الهفوف يقف قصر إبراهيم شاهداً على قرونٍ من التحوّل. ليس قصراً بالمعنى
-المترف، بل **حصنٌ** جمع تحت سوره ما لا يجتمع عادةً: مسجدٌ بقبّةٍ أنيقة، وثكناتٌ
+المترف، بل **حصنٌ** جمع تحت سوره ما لا يجتمع عادةً: مسجدٌ بقبّةٍ أنيقة هو [مسجد القبة](/معالم/مسجد-القبة/)، وثكناتٌ
 عسكرية، وأبراجٌ تراقب الأفق، وإسطبلاتٌ ومخازن.
 
 بُني على الطريقة التقليدية في عمارة الخليج: جدرانٌ من الطين المخلوط بالقش، وأسقفٌ من جذوع النخل
 والشندل (خشبٌ كان يُجلب إلى الخليج) والحجارة، ومئذنةٌ يُصعد إليها بسلّمٍ حلزونيٍّ من الحجر. تَجوّل في فنائه الواسع وتأمّل القبّة وهي تظلّل المحراب، وستقرأ في جدرانه
 طبقاتٍ من التاريخ تراكمت جيلاً بعد جيل.
 
-القصر اليوم أحد أبرز معالم الأحساء التراثية، وجزءٌ من نسيجٍ عمرانيٍّ جعل الواحة
+قصر إبراهيم في الأحساء اليوم أحد أبرز معالمها التراثية، وجزءٌ من نسيجٍ عمرانيٍّ جعل الواحة
 على قائمة التراث العالمي لليونسكو عام 2018.
