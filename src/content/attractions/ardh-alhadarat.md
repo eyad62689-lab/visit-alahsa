@@ -38,21 +38,21 @@ order: 59
 area: "مدينة العمران، شرق الهفوف — عند جبل القارة"
 area_en: "Al-Omran, east of Hofuf — by Al-Qarah Mountain"
 practical:
-  - { label: "المواعيد", value: "يومياً 8:00 ص – 10:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 10:00 pm (may be extended on holidays)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–22:00 (в праздники может быть открыто дольше)", label_zh: "开放时间", value_zh: "每日 8:00–22:00（节假日与旺季可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–22:00 Uhr (an Feiertagen möglicherweise länger)", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 10 بجے تک (چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "يومياً 8:00 ص – 11:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 11:00 pm (may be extended on holidays)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–23:00 (в праздники может быть открыто дольше)", label_zh: "开放时间", value_zh: "每日 8:00–23:00（节假日与旺季可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–23:00 Uhr (an Feiertagen möglicherweise länger)", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 11 بجے تک (چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے)", source: "مواعيد جبل القارة (الهيئة السعودية للسياحة) — تذكرة واحدة للموقعَين؛ التمديد في العطلات من مسودة دليل الأحساء السياحي المعتمدة", source_en: "Jabal Al-Qarah hours (Saudi Tourism Authority) — one ticket covers both sites; holiday extension from the approved draft of the Al-Ahsa tourist guide", source_de: "Öffnungszeiten des Jabal Al-Qarah (Saudi Tourism Authority) – ein Ticket für beide Orte; Verlängerung an Feiertagen laut genehmigtem Entwurf des Al-Ahsa-Reiseführers", source_ru: "Часы работы Джебель-эль-Кара (Саудовское управление по туризму) — один билет на оба объекта; продление в праздники по утверждённому проекту путеводителя", verifiedAt: "2026-10-26", verified: true }
   - { label: "الرسوم", value: "50 ريالاً للبالغين — تذكرة واحدة تشمل أرض الحضارات وجبل القارة", label_en: "Fees", value_en: "SAR 50 for adults — one ticket covers the Land of Civilisations and Jabal Al-Qarah", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых; один билет на «Землю цивилизаций» и Джабаль-эль-Кара", label_zh: "门票", value_zh: "成人 50 沙特里亚尔（SAR），一张门票同时涵盖文明之地和卡拉山", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene – ein Ticket gilt für „Land of Civilisations“ und den Qarah-Berg", label_ur: "فیس", value_ur: "بڑوں کے لیے 50 سعودی ریال۔ ایک ٹکٹ میں “ارض الحضارات” اور جبل القارہ شامل ہیں", source: "مسودة دليل الأحساء السياحي المعتمدة؛ التذكرة الواحدة للموقعين تأكيد فريق زوروا الأحساء", source_en: "Approved draft of the Al-Ahsa tourist guide; the single ticket for both sites confirmed by the Visit Al-Ahsa team", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-10-23", verified: true }
 hoursSpec:
-  - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "22:00" }
+  - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:00" }
 fee: { amount: 50, currency: SAR }
-answer: "أرض الحضارات قرية تراثية ومعرض عند سفح جبل القارة في مدينة العمران شرق الهفوف، تستعرض مراحل الحضارة في المنطقة وتتكامل معها تجربة زيارة الجبل وكهوفه بمسارات ومرافق ومطلّات. تفتح يومياً من 8:00 ص إلى 10:00 م، والتذكرة 50 ريالاً للبالغين وتشمل تجربة كهوف جبل القارة."
-answer_en: "Land of Civilisations is a heritage village and exhibition at the foot of Al-Qarah Mountain, tracing the region’s stages of civilisation, with trails and viewpoints linking it to the mountain’s caves. Open daily 8:00 am to 10:00 pm; adult tickets SAR 50 include the caves."
+answer: "أرض الحضارات قرية تراثية ومعرض عند سفح جبل القارة في مدينة العمران شرق الهفوف، تستعرض مراحل الحضارة في المنطقة وتتكامل معها تجربة زيارة الجبل وكهوفه بمسارات ومرافق ومطلّات. تفتح يومياً من 8:00 ص إلى 11:00 م، والتذكرة 50 ريالاً للبالغين وتشمل تجربة كهوف جبل القارة."
+answer_en: "Land of Civilisations is a heritage village and exhibition at the foot of Al-Qarah Mountain, tracing the region’s stages of civilisation, with trails and viewpoints linking it to the mountain’s caves. Open daily 8:00 am to 11:00 pm; adult tickets SAR 50 include the caves."
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
 # الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
 seo:
   place: "الأحساء"
   place_en: "Al-Ahsa"
   benefit: hours-fees
-description: "أرض الحضارات قرية تراثية ومعرض عند سفح جبل القارة في مدينة العمران شرق الهفوف. تفتح يومياً من 8:00 ص إلى 10:00 م، والتذكرة 50 ريالاً للبالغين."
-description_en: "Land of Civilisations is a heritage village and exhibition at the foot of Al-Qarah Mountain. Open daily 8:00 am to 10:00 pm."
+description: "أرض الحضارات قرية تراثية ومعرض عند سفح جبل القارة في مدينة العمران شرق الهفوف. تفتح يومياً من 8:00 ص إلى 11:00 م، والتذكرة 50 ريالاً للبالغين."
+description_en: "Land of Civilisations is a heritage village and exhibition at the foot of Al-Qarah Mountain. Open daily 8:00 am to 11:00 pm."
 district: qarah
 location: { lat: 25.41184, lng: 49.6927 }
 mapUrl: "https://maps.app.goo.gl/uCahvRZfgCzKpkxc7"
@@ -63,17 +63,17 @@ heroImage: /img/earth-of-civilization
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-14، الدفعة b9 — السجل في ur-translation/memory/scores.csv).
 faq:
   - q: "ما مواعيد أرض الحضارات؟"
-    a: "يومياً من 8:00 ص إلى 10:00 م، وقد تُمدّد في العطلات."
+    a: "يومياً من 8:00 ص إلى 11:00 م، وقد تُمدّد في العطلات."
     q_en: "What are the opening hours of the Land of Civilisations?"
-    a_en: "Daily from 8:00 am to 10:00 pm, and they may be extended on holidays."
+    a_en: "Daily from 8:00 am to 11:00 pm, and they may be extended on holidays."
     q_zh: "文明之地的开放时间是几点到几点？"
-    a_zh: "每日 8:00–22:00，节假日可能延长。"
+    a_zh: "每日 8:00–23:00，节假日可能延长。"
     q_de: "Wie sind die Öffnungszeiten von „Land of Civilisations“?"
-    a_de: "Täglich von 8:00 bis 22:00 Uhr; an Feiertagen möglicherweise länger."
+    a_de: "Täglich von 8:00 bis 23:00 Uhr; an Feiertagen möglicherweise länger."
     q_ru: "В какие часы открыта «Земля цивилизаций»?"
-    a_ru: "Ежедневно 8:00–22:00; в праздники может быть открыто дольше."
+    a_ru: "Ежедневно 8:00–23:00; в праздники может быть открыто дольше."
     q_ur: "“ارض الحضارات” کب سے کب تک کھلا رہتا ہے؟"
-    a_ur: "روزانہ صبح 8 بجے سے رات 10 بجے تک۔ چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے۔"
+    a_ur: "روزانہ صبح 8 بجے سے رات 11 بجے تک۔ چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے۔"
   - q: "كم رسوم دخول أرض الحضارات؟"
     a: "50 ريالاً للبالغين، والتذاكر تشمل تجربة كهوف جبل القارة."
     q_en: "How much is entry to the Land of Civilisations?"
