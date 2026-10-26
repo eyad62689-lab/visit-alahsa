@@ -36,8 +36,8 @@ export type HomeCopy = {
 export const HOME_COPY: Record<HomeLang, HomeCopy> = {
   ar: {
     seo: {
-      title: 'زوروا الأحساء — دليلك السياحي لأكبر واحة في العالم',
-      description: 'دليل سياحة الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.',
+      title: 'السياحة في الأحساء: دليلك الشامل لأكبر واحة في العالم — زوروا الأحساء',
+      description: 'دليل السياحة في الأحساء: جبل القارة وقصر إبراهيم وسوق القيصرية والعقير، مع خرائط ومسارات وفعاليات ومطاعم — واحة مسجلة في تراث اليونسكو العالمي.',
       place: 'الأحساء',
       country: 'المملكة العربية السعودية',
     },
@@ -47,7 +47,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     gate: {
       title: 'الأحساء: أكبر واحةٍ في العالم تتكشّف لك، فصلاً بعد فصل',
       // الموضع في أول البطل (2026-10-20): القارئ الأعمى الصيني لم يعرف أين الأحساء حتى الفصل الرابع
-      lead: 'في المنطقة الشرقية من المملكة العربية السعودية: ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. مرّر لتبدأ الحكاية.',
+      lead: 'في المنطقة الشرقية من المملكة العربية السعودية: ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. هذا دليل الأحساء السياحي لزيارة الأحساء — مرّر لتبدأ الحكاية.',
       begin: 'ابدأ الحكاية',
       skip: 'انتقل إلى التخطيط',
     },
@@ -109,8 +109,8 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
   },
   en: {
     seo: {
-      title: 'Visit Al-Ahsa — Travel Guide to the World’s Largest Oasis',
-      description: 'Your guide to Al-Ahsa: Jabal Al-Qarah, Qasr Ibrahim, Qaisariyah Souq and Al-Uqair — maps, itineraries, events and dining in the UNESCO-listed oasis.',
+      title: 'Al-Ahsa Travel Guide: Things to Do, World’s Largest Oasis — Visit Al-Ahsa',
+      description: 'Things to do in Al-Ahsa: sights from Jabal Al-Qarah to Qaisariyah Souq, with maps, events and itineraries across the Al-Ahsa Oasis UNESCO World Heritage Site.',
       place: 'Al-Ahsa',
       country: 'Saudi Arabia',
     },
@@ -119,7 +119,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     paths: { attractions: '/en/attractions/', map: '/en/map/', plan: '/en/plan-your-trip/', myTrip: '/en/plan/', trails: '/en/trails/' },
     gate: {
       title: 'Al-Ahsa: The world’s largest oasis, unfolding chapter by chapter',
-      lead: 'In Saudi Arabia’s Eastern Province: water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.',
+      lead: 'In Saudi Arabia’s Eastern Province: water beneath the sand, a mountain of caves, and souqs passed down through generations. Your guide to Al-Ahsa tourist attractions and things to do starts here — scroll to begin.',
       begin: 'Begin the story',
       skip: 'Skip to planning',
     },
