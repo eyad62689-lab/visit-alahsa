@@ -54,11 +54,11 @@ const ORG = {
 
 const AR: VisaGuideContent = {
   seo: {
-    title: 'تأشيرة زيارة السعودية لرحلة الأحساء: اختر مسارك',
+    title: 'دليل تأشيرة زيارة السعودية لرحلة الأحساء: اختر مسارك',
     description: 'اختر تأشيرة زيارة السعودية المناسبة لرحلتك إلى الأحساء في دقائق: 8 مسارات، لمن كل مسار، صلاحيته، ورابط التقديم الرسمي. ابدأ التخطيط لرحلتك الآن.',
   },
   h1: 'تأشيرة زيارة السعودية: دليلك المختصر لرحلة الأحساء',
-  lead: 'تبدأ رحلتك إلى الأحساء بخطوة واحدة: تأشيرة زيارة السعودية المناسبة لك. يجمع هذا الدليل مسارات التأشيرة الثمانية في صفحة واحدة، ويخبرك بإيجاز لمن كل مسار، وكم تدوم تأشيرته، وأين تقدّم عليها. ثم يسلّمك إلى منصة الجهة الحكومية لتكمل طلبك هناك.',
+  lead: 'تبدأ رحلتك إلى الأحساء بخطوة واحدة: تأشيرة زيارة السعودية المناسبة لك، ومنها التأشيرة السياحية الإلكترونية المعروفة بين المسافرين بـ«فيزا سياحية للسعودية». يجمع هذا الدليل مسارات التأشيرة الثمانية في صفحة واحدة، ويخبرك بإيجاز لمن كل مسار، وكم تدوم تأشيرته، وأين تقدّم عليها. ثم يسلّمك إلى منصة الجهة الحكومية لتكمل طلبك هناك.',
   feesLine: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.',
   verifyLine: 'تحقّق من المصدر الرسمي قبل التقديم، فالشروط قد تتغيّر.',
   updatedLine: VISA_UPDATED_LINE.ar,
@@ -94,7 +94,7 @@ const AR: VisaGuideContent = {
       cta: { label: 'قدّم عبر المنصة الرسمية', href: L.tourist },
     },
     {
-      id: 'gcc', h: 'زيارة الأحساء للمقيمين في دول الخليج',
+      id: 'gcc', h: 'دليل تأشيرة السعودية لمقيمي الخليج: زيارة الأحساء',
       who: { label: 'لمن هذه التأشيرة؟', text: 'للمقيمين في إحدى دول مجلس التعاون بإقامة سارية 3 أشهر على الأقل.' },
       validity: { label: 'الصلاحية ومدة الإقامة:', text: 'خياران: دخول متعدد بصلاحية سنة وإقامة 90 يوماً، أو دخول واحد بصلاحية 90 يوماً وإقامة 90 يوماً.' },
       cta: { label: 'قدّم عبر المنصة الرسمية', href: L.gcc },
@@ -183,7 +183,7 @@ const AR: VisaGuideContent = {
 
 const EN: VisaGuideContent = {
   seo: {
-    title: 'Saudi Visit Visa for Al-Ahsa: Choose Your Route',
+    title: 'Saudi Visit Visa Guide for Al-Ahsa: Choose Your Route',
     description: 'Choose the right Saudi visit visa for your Al-Ahsa trip in minutes: 8 routes, who each is for, its validity, and the official link to apply. Start planning now.',
   },
   h1: 'Saudi Visit Visa: A Short Guide for Your Al-Ahsa Trip',
@@ -223,7 +223,7 @@ const EN: VisaGuideContent = {
       cta: { label: 'Apply on the official platform', href: L.tourist },
     },
     {
-      id: 'gcc', h: 'Visiting Al-Ahsa as a GCC resident',
+      id: 'gcc', h: 'Saudi visa guide for GCC residents: visiting Al-Ahsa',
       who: { label: 'Who is this visa for?', text: 'Residents of a GCC country holding a residency valid for at least 3 months.' },
       validity: { label: 'Validity and length of stay:', text: 'Two options: multiple entry valid for one year with a 90-day stay, or single entry valid for 90 days with a 90-day stay.' },
       cta: { label: 'Apply on the official platform', href: L.gcc },

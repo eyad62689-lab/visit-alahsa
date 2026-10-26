@@ -93,7 +93,7 @@ const C = localize(lang, {
   ar: {
     heroEyebrow: 'أين تبيت في الواحة',
     title: 'أماكن الإقامة',
-    heroSum: 'أماكن للمبيت في الأحساء — من نُزلٍ تراثي داخل المدينة القديمة إلى فندقٍ على ساحل العقير، لكلٍّ منها صورته وموقعه على خرائط قوقل. القائمة وصفية لا ترشيحية، وتنمو تباعاً.',
+    heroSum: 'فنادق الأحساء وأماكن المبيت فيها — من نُزلٍ تراثي داخل المدينة القديمة إلى فندقٍ على ساحل العقير، لكلٍّ منها صورته وموقعه على خرائط قوقل. القائمة وصفية لا ترشيحية، وتنمو تباعاً.',
     listH: 'أماكن إقامة في الأحساء',
     kindLabels: { 'heritage-inn': 'نُزل تراثي', hotel: 'فندق' } as Record<string, string>,
     openMaps: t('det.openMaps'),
@@ -120,7 +120,7 @@ const C = localize(lang, {
   en: {
     heroEyebrow: 'Where to stay in the oasis',
     title: 'Places to Stay',
-    heroSum: 'Places to stay in Al Ahsa — from a heritage inn inside the old city to a hotel on the Al-Uqair coast, each with its photo and its spot on Google Maps. The list is descriptive rather than a set of recommendations, and it keeps growing.',
+    heroSum: 'Hotels in Al-Ahsa and other places to stay — from a heritage inn inside the old city to a hotel on the Al-Uqair coast, each with its photo and its spot on Google Maps. The list is descriptive rather than a set of recommendations, and it keeps growing.',
     listH: 'Places to stay in Al-Ahsa',
     kindLabels: { 'heritage-inn': 'Heritage inn', hotel: 'Hotel' } as Record<string, string>,
     openMaps: t('det.openMaps'),
@@ -255,13 +255,13 @@ const C = localize(lang, {
 // ar/en: الكلمات المفتاحية ثم اسم العلامة كبقية القوالب (كانت العلامة غائبة عن هذا العنوان)؛
 // نوع المنشأتين باقٍ في الوصف.
 const pageTitle = ar
-  ? `أماكن الإقامة في الأحساء ${titleSep(lang)} ${t('site.brand')}`
+  ? `أماكن الإقامة في الأحساء: فنادق الهفوف والعقير ${titleSep(lang)} ${t('site.brand')}`
   : zh || de || ru || ur ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
-  : `Where to Stay in Al Ahsa ${titleSep(lang)} ${t('site.brand')}`;
+  : `Where to Stay in Al-Ahsa: Hotels in Hofuf and Al-Uqair ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
-  ? 'أماكن الإقامة في الأحساء: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
+  ? 'فنادق الأحساء وأماكن الإقامة فيها: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
   : zh || de || ru || ur ? C.heroSum
-  : 'Where to stay in Al Ahsa: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
+  : 'Hotels in Al-Ahsa and where to stay: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
 const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : '/en/stay/';
