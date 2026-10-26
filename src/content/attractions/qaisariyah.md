@@ -34,9 +34,9 @@ slug_en: "qaisariyah"
 category: market
 heroImage: /img/qaisariyah
 kicker: "سوق تراثي"
-summary: "سوق تراثي يعود لأكثر من قرنين، من أعرق الأسواق الشعبية ووجهة للحرف والمنتجات المحلية."
-summary_en: "A heritage souq over two centuries old, one of the oldest folk markets and a destination for crafts and local products."
-body_en: "One of the oldest and most storied souqs in the Gulf, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices. Opening hours and fees are listed in the visit-information card below, and its best hours are in the evening."
+summary: "سوق تراثي يعود لأكثر من قرنين، من أعرق أسواق الأحساء الشعبية والتراثية ووجهة للحرف والمنتجات المحلية."
+summary_en: "A heritage souq over two centuries old, one of Al-Ahsa's oldest folk and heritage markets and a destination for crafts and local products."
+body_en: "Qaisariyah Souq in Hofuf is one of the oldest and most storied souqs in the Gulf, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices.\n\n## Qaisariyah Souq hours\n\nOpening hours and fees are listed in the visit-information card below, and its best hours are in the evening."
 featured: false
 order: 58
 area: "الهفوف، حي الرفعة"
@@ -133,7 +133,7 @@ faq:
     a_ur: "اس کی تاریخ دو صدیوں سے زیادہ پرانی ہے، اور یہ خلیجی خطے کے قدیم ترین اور مشہور ترین بازاروں میں سے ایک ہے۔"
 ---
 
-من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. طرازه المعماري فريد، ومتاجره
+سوق القيصرية في الهفوف من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. طرازه المعماري فريد، ومتاجره
 المتراصّة تقودك بين ممرّاتٍ تفوح فيها روائح البهارات والنحاس والعطور — هنا ينبض
 قلب التسوّق التراثي في الأحساء.
 
@@ -141,5 +141,7 @@ faq:
 تتميّز «الحياكة الحساوية» بدقّة التطريز اليدوي بخيوط «الزري» المغطّاة بماء الذهب
 أو الفضة، وقد توارثت عائلاتٌ أحسائية هذه المهنة جيلاً بعد جيل. وإلى جانب البشت
 تجد الحِرف المحلية من الخوص والفخار، والتمور بأصنافها، والقهوة والبهارات.
+
+## مواعيد سوق القيصرية
 
 المواعيد والرسوم في بطاقة «معلومات الزيارة» أدناه، وأفضل أوقاته الصباح أو المساء.
