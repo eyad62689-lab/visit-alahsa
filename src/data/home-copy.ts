@@ -47,7 +47,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     gate: {
       title: 'الأحساء: أكبر واحةٍ في العالم تتكشّف لك، فصلاً بعد فصل',
       // الموضع في أول البطل (2026-10-20): القارئ الأعمى الصيني لم يعرف أين الأحساء حتى الفصل الرابع
-      lead: 'دليل الأحساء السياحي في المنطقة الشرقية من المملكة العربية السعودية: ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. مرّر لتبدأ زيارة الأحساء.',
+      lead: 'في المنطقة الشرقية من المملكة العربية السعودية: ماءٌ تحت الرمل، وجبلٌ تسكنه الكهوف، وأسواقٌ تعاقبت عليها الأجيال. هذا دليل الأحساء السياحي لزيارة الأحساء — مرّر لتبدأ الحكاية.',
       begin: 'ابدأ الحكاية',
       skip: 'انتقل إلى التخطيط',
     },
@@ -119,7 +119,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     paths: { attractions: '/en/attractions/', map: '/en/map/', plan: '/en/plan-your-trip/', myTrip: '/en/plan/', trails: '/en/trails/' },
     gate: {
       title: 'Al-Ahsa: The world’s largest oasis, unfolding chapter by chapter',
-      lead: 'Al-Ahsa tourist attractions and things to do in Saudi Arabia’s Eastern Province: water beneath the sand, a mountain of caves, and souqs passed down through generations. Scroll to begin.',
+      lead: 'In Saudi Arabia’s Eastern Province: water beneath the sand, a mountain of caves, and souqs passed down through generations. Your guide to Al-Ahsa tourist attractions and things to do starts here — scroll to begin.',
       begin: 'Begin the story',
       skip: 'Skip to planning',
     },
