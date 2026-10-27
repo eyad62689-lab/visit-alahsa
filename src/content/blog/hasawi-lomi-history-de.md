@@ -59,7 +59,7 @@ Hier beginnt der Teil, in dem sich die Erzählungen häufen und die Dokumente d�
 
 **Was nicht dokumentiert ist:** Kein Dokument und kein historischer Text datiert die Ankunft der Limette speziell in den Oasen von Al-Ahsa oder Qatif. Und kein veröffentlichter archäobotanischer Befund (Samenreste oder Pollen) aus archäologischen Fundstätten im Osten der Arabischen Halbinsel belegt das Vorkommen von Zitrusfrüchten für eine bestimmte Epoche. Die Annahme, dass die Zitrusfrüchte beide Oasen zur selben Zeit erreichten, ist ein plausibler Schluss aus ihrem gemeinsamen Naturraum und Handelsnetz, keine erwiesene Tatsache.
 
-Am wahrscheinlichsten ist daher, dass die Lomi auf demselben Weg an die Golfküste gelangte, der sie nach Oman gebracht hatte: über das Meer, mit Kaufleuten und Seefahrern, zu einem Zeitpunkt, den wir bislang nicht bestimmen können.
+Am wahrscheinlichsten ist daher, dass die Lomi auf demselben Weg an die Küste des Arabischen Golfs gelangte, der sie nach Oman gebracht hatte: über das Meer, mit Kaufleuten und Seefahrern, zu einem Zeitpunkt, den wir bislang nicht bestimmen können.
 
 ## Al-Ahsa oder Qatif? Eine Frage, die keinen Streit braucht
 
@@ -77,7 +77,7 @@ Die Unterschiede, die dem Erzeugnis der beiden Oasen in Schalendicke, Säuregeha
 
 Schon der Name der Frucht trägt eine Spur ihrer Reise. Das Wort „banzahir“ stammt aus dem Persischen und bedeutet **Gegengift**; in genau dieser Bedeutung hält es das Wörterbuch [Al-Mu'jam Al-Wasit](https://www.almaany.com/ar/dict/ar-ar/بنزهير/) fest. Seine zusammengesetzte Wurzel ist „badzahr“: „bad“ für „gegen“ und „zahr“ für „Gift“ – dasselbe Wort, das als „bezoar“ in die europäischen Sprachen einging und dort den Gegengiftstein bezeichnet ([Wörterbuch der Fremdwörter im Arabischen](https://mbtda.com/language/a3jmi/baa.php)).
 
-Die Bedeutung dieser Spur reicht tiefer, als es scheint: Der Name der Frucht ist persisch geprägt, ein weiteres Indiz dafür, dass sie über ein Handels- und Sprachnetz kam, das die ganze Region umspannte – sie entstand eben nicht vor Ort und wurde auch nicht vor Ort benannt. Lomi wiederum ist ein allgemeiner Name in der Golfregion, und die Namenszusätze Hasawi und Qatifi sind geografische Zuschreibungen für den Markt, nicht für die Landsorte.
+Die Bedeutung dieser Spur reicht tiefer, als es scheint: Der Name der Frucht ist persisch geprägt, ein weiteres Indiz dafür, dass sie über ein Handels- und Sprachnetz kam, das die ganze Region umspannte – sie entstand eben nicht vor Ort und wurde auch nicht vor Ort benannt. Lomi wiederum ist ein allgemeiner Name in der Region am Arabischen Golf, und die Namenszusätze Hasawi und Qatifi sind geografische Zuschreibungen für den Markt, nicht für die Landsorte.
 
 ## Die Lomi heute: Von der eingeführten Frucht zur lokalen Identität
 
@@ -97,7 +97,7 @@ Das erklärt, warum das landwirtschaftliche Erbe der Lomi in Al-Ahsa zugleich ko
 
 - Die Hasawi-Limette ist Citrus × aurantiifolia, eine natürliche Hybride aus Citrus micrantha und Citrus medica – weder eine echte Art noch eine Sorte örtlichen Ursprungs.
 - Ihre erste Heimat sind Südostasien und die östlichen Ausläufer des Himalaya, nicht Indien allein und nicht die Arabische Halbinsel.
-- Das Mittelmeerbecken erreichte sie im 10. Jahrhundert n. Chr. im Zuge der landwirtschaftlichen Ausbreitung in der islamischen Welt; an den Golf gelangte sie höchstwahrscheinlich über See und Handel, wie der Anbau in Oman seit mindestens 4 Jahrhunderten bezeugt.
+- Das Mittelmeerbecken erreichte sie im 10. Jahrhundert n. Chr. im Zuge der landwirtschaftlichen Ausbreitung in der islamischen Welt; an den Arabischen Golf gelangte sie höchstwahrscheinlich über See und Handel, wie der Anbau in Oman seit mindestens 4 Jahrhunderten bezeugt.
 - Hasawi-Limette, Qatifi-Limette, Bin Zuhairi und Lomi sind Namen für ein und dieselbe Frucht, wie offizielle saudische Quellen bestätigen.
 - Es gibt keine Grundlage dafür, Al-Ahsa oder Qatif den Ursprung zuzuschreiben; der wirkliche Wert der beiden Oasen liegt in ihrem gewachsenen landwirtschaftlichen und kulturellen Erbe.
 

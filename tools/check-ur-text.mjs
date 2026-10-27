@@ -250,7 +250,13 @@ export function checkUrRulings(pages, termbase) {
 // نصّ كل حكم في المعجم (_meta.calibration_rulings) بمعرّفه، وسلاسله هنا منسوخة منه ويُعاد التحقق
 // عند كل تشغيل أنها ما زالت واردة فيه حرفياً.
 export const GULF = 'خلیج';
-export const GULF_QUALIFIED = ['خلیج فارس', 'خلیج عرب'];
+// P5 بقرار إياد 2026-10-27: الاسم الموصوف وحده، والفارسي والصفة المجرّدة محظوران. والمستثنى بعد الكلمة: اسم مجلس
+// التعاون الرسمي. وعلم الشارع «الخلیج سڑک» لا يُعدّ كلمةً مستقلة (الأداة ملتصقة به).
+export const GULF_ARABIAN = 'خلیج عرب';
+export const GULF_PERSIAN = 'خلیج فارس';
+export const GULF_ADJ = 'خلیجی';
+export const GULF_ORG = 'خلیج تعاون کونسل';
+export const GULF_QUALIFIED = [GULF_PERSIAN, GULF_ARABIAN];
 export const LIME_LOAN = 'لائم';
 export const SCALE_LOANS = ['ملین', 'بلین'];
 export const SCALE_WORD = 'لاکھ';
@@ -272,13 +278,17 @@ const LIFESPAN = /\(\d{4}–\d{4}\)/g;
 
 // كلٌّ من الدوال الآتية يفحص كتلة نصّ واحدة لحكم واحد، ويضيف مشكلاته إلى نتيجة الحكم r.
 
-// P5 — الخليج بلا وصف. يعيد true إن ورد الاسم المجرّد في الكتلة.
+// P5 — الخليج العربي (قرار إياد 2026-10-27). يعيد true إن ورد الاسم الموصوف في الكتلة.
 function gulfIn(b, rel, r) {
-  for (const f of GULF_QUALIFIED) {
-    const i = b.indexOf(f);
-    if (i !== -1) r.problems.push(`${rel}: الخليج موصوفاً «${f}» ⇐ «${snip(b, i, f.length)}»`);
+  const p = b.indexOf(GULF_PERSIAN);
+  if (p !== -1) r.problems.push(`${rel}: «${GULF_PERSIAN}» ⇐ «${snip(b, p, GULF_PERSIAN.length)}»`);
+  for (let i = wordAt(b, GULF); i !== -1; i = wordAt(b, GULF, i + 1)) {
+    if (b.startsWith(GULF_ARABIAN, i) || b.startsWith(GULF_ORG, i) || b.startsWith(GULF_PERSIAN, i)) continue;
+    r.problems.push(`${rel}: «${GULF}» بلا «عرب» ⇐ «${snip(b, i, GULF.length)}»`);
   }
-  return wordAt(b, GULF) !== -1;
+  const a = wordAt(b, GULF_ADJ);
+  if (a !== -1) r.problems.push(`${rel}: الصفة «${GULF_ADJ}» بلا الاسم ⇐ «${snip(b, a, GULF_ADJ.length)}»`);
+  return b.includes(GULF_ARABIAN);
 }
 
 // P6 — اسم الثمرة لا الدخيل
@@ -393,7 +403,7 @@ function semicolonIn(b, rel, r) {
 
 // حرّاس إيجابيون: الفحص ليس فارغاً. compares: الصفحات الإنجليزية المقابلة مُرِّرت للمقارنة بالقيمة.
 function round1Emptiness(out, compares) {
-  if (out.gulf.stats.carriers === 0) out.gulf.problems.push(`«${GULF}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
+  if (out.gulf.stats.carriers === 0) out.gulf.problems.push(`«${GULF_ARABIAN}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
   if (out.cities.stats.mentions === 0) out.cities.problems.push('لا ذكر لأيٍّ من المدينتين في صفحات /ur/ — الحارس صار فارغاً');
   if (out.scale.stats.carriers === 0) out.scale.problems.push(`«${SCALE_WORD}» لا ترد في أي صفحة /ur/ — الحارس صار فارغاً`);
   if (compares && out.scale.stats.compared === 0) out.scale.problems.push('لا رقم بكلمة مقياس قوبل بصفحته الإنجليزية — الحارس صار فارغاً');

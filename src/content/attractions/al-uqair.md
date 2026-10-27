@@ -5,30 +5,30 @@ title_en: Al-Uqair
 # بعد مرحلة «القارئ الأعمى» 6.5).
 title_zh: 乌盖尔
 kicker_zh: 港口与白沙
-summary_zh: 沙特阿拉伯东部沿海的第一座海港，沙漠在此止步，与海湾的湛蓝相接。
-body_zh: "在公路修通之前，乌盖尔（Al-Uqair）是哈萨通往世界的门户。这座海湾之滨的古港，曾泊满装载椰枣与货物的船只，半岛腹地的物资与消息也由此进出。如今，乌盖尔仍留着一处难得的景致：沙漠一路铺展而来的洁白细沙，到水边忽然收住，海湾清澈的蓝就从这里开始。土坯房舍的残迹与城堡依旧守在岸边，提醒着每个到访的人：今天这道安静的海岸，当年是往来不绝的枢纽。这里适合访古，也适合什么都不做：沿着当年商队的足迹走一段，然后在海与沙相接处坐下来。"
-area_zh: 海湾沿岸——哈萨以东
+summary_zh: 沙特阿拉伯东部沿海的第一座海港，沙漠在此止步，与阿拉伯湾的湛蓝相接。
+body_zh: "在公路修通之前，乌盖尔（Al-Uqair）是哈萨通往世界的门户。这座阿拉伯湾之滨的古港，曾泊满装载椰枣与货物的船只，半岛腹地的物资与消息也由此进出。如今，乌盖尔仍留着一处难得的景致：沙漠一路铺展而来的洁白细沙，到水边忽然收住，阿拉伯湾清澈的蓝就从这里开始。土坯房舍的残迹与城堡依旧守在岸边，提醒着每个到访的人：今天这道安静的海岸，当年是往来不绝的枢纽。这里适合访古，也适合什么都不做：沿着当年商队的足迹走一段，然后在海与沙相接处坐下来。"
+area_zh: 阿拉伯湾沿岸——哈萨以东
 bestTime_zh: 日落前的那段时间，白沙映着海水，泛起柔光。
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — دفعة المعالم 1 (2026-09-04)
 title_de: "Al-Uqair"
 kicker_de: "Hafen und Sand"
-summary_de: "Der erste Seehafen an der Ostküste Saudi-Arabiens, wo der Wüstensand auf das Blau des Golfs trifft."
-area_de: "Die Golfküste – östlich von Al-Ahsa"
+summary_de: "Der erste Seehafen an der Ostküste Saudi-Arabiens, wo der Wüstensand auf das Blau des Arabischen Golfs trifft."
+area_de: "Die Küste des Arabischen Golfs – östlich von Al-Ahsa"
 bestTime_de: "Kurz vor Sonnenuntergang, wenn der weiße Sand vor dem Blau des Wassers leuchtet."
-body_de: "Bevor es asphaltierte Straßen gab, war Al-Uqair das Tor Al-Ahsas zur Welt. Ein alter Hafen am Golf, an dem Schiffe festmachten, beladen mit Datteln und Waren, und durch den Nachrichten und Handel ins Herz der Halbinsel gelangten. Heute treffen in Al-Uqair zwei seltene Bilder aufeinander: weicher weißer Sand, der aus der Wüste heranreicht, und das klare Blau des Golfs, das dort beginnt, wo der Sand endet. Die Reste der Lehmbauten und die alte Festung wachen noch immer über den Ort und erinnern daran, dass diese stille Küste einst das Herz rastloser Bewegung war. Ein Ort für Geschichte und Besinnung zugleich – Sie gehen auf den Spuren der Karawanen und sitzen auf Sand, der das Meer berührt."
+body_de: "Bevor es asphaltierte Straßen gab, war Al-Uqair das Tor Al-Ahsas zur Welt. Ein alter Hafen am Arabischen Golf, an dem Schiffe festmachten, beladen mit Datteln und Waren, und durch den Nachrichten und Handel ins Herz der Halbinsel gelangten. Heute treffen in Al-Uqair zwei seltene Bilder aufeinander: weicher weißer Sand, der aus der Wüste heranreicht, und das klare Blau des Arabischen Golfs, das dort beginnt, wo der Sand endet. Die Reste der Lehmbauten und die alte Festung wachen noch immer über den Ort und erinnern daran, dass diese stille Küste einst das Herz rastloser Bewegung war. Ein Ort für Geschichte und Besinnung zugleich – Sie gehen auf den Spuren der Karawanen und sitzen auf Sand, der das Meer berührt."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 1 بدرجة 91/100 (2026-09-05، السجل في ru-translation/memory/scores.csv)
 title_ru: "Эль-Укайр"
 kicker_ru: "Порт и пески"
-summary_ru: "Исторически первый морской порт на востоке Саудовской Аравии, где пески пустыни встречаются с синевой Залива."
-body_ru: "Еще до того, как проложили асфальтированные дороги, Эль-Укайр (или Укайр) был воротами Аль-Ахсы в мир — древним портом на побережье Залива, где швартовались суда с финиками и товарами и откуда новости и торговля шли в глубь полуострова. Сегодня в Эль-Укайре сходятся две картины, которые редко увидишь рядом: мягкий белый песок тянется сюда из пустыни, а там, где он кончается, начинается чистая синева Залива. Остатки глинобитных построек и старая крепость по-прежнему охраняют это место и напоминают гостю: этот тихий берег был когда-то сердцем неутихающего движения. В Эль-Укайре можно и прикоснуться к истории, и просто предаться созерцанию: вы идете по следам караванов и сидите на песке, которого касается море."
-area_ru: "Побережье Залива, к востоку от Аль-Ахсы"
+summary_ru: "Исторически первый морской порт на востоке Саудовской Аравии, где пески пустыни встречаются с синевой Арабского залива."
+body_ru: "Еще до того, как проложили асфальтированные дороги, Эль-Укайр (или Укайр) был воротами Аль-Ахсы в мир — древним портом на побережье Арабского залива, где швартовались суда с финиками и товарами и откуда новости и торговля шли в глубь полуострова. Сегодня в Эль-Укайре сходятся две картины, которые редко увидишь рядом: мягкий белый песок тянется сюда из пустыни, а там, где он кончается, начинается чистая синева Арабского залива. Остатки глинобитных построек и старая крепость по-прежнему охраняют это место и напоминают гостю: этот тихий берег был когда-то сердцем неутихающего движения. В Эль-Укайре можно и прикоснуться к истории, и просто предаться созерцанию: вы идете по следам караванов и сидите на песке, которого касается море."
+area_ru: "Побережье Арабского залива, к востоку от Аль-Ахсы"
 bestTime_ru: "Незадолго до заката, когда белые пески светятся на фоне синей воды."
 # الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-15، الدفعة b16 — السجل في ur-translation/memory/scores.csv).
 title_ur: "العقیر"
 kicker_ur: "بندرگاہ اور ریت"
-summary_ur: "سعودی عرب کے مشرقی ساحل کی پہلی سمندری بندرگاہ، جہاں صحرا کی ریت خلیج کی نیلاہٹ سے جا ملتی ہے۔"
-body_ur: "پکی سڑکیں بننے سے پہلے الاحساء کے لیے باہر کی دنیا کا دروازہ العقیر تھا۔ خلیج کے کنارے کی اس قدیم بندرگاہ پر کھجوروں اور سامان سے لدی کشتیاں لنگر ڈالتی تھیں، اور اسی کے راستے خبریں اور تجارت جزیرہ نما عرب کے قلب تک پہنچتی تھیں۔ آج العقیر میں دو ایسے منظر ملتے ہیں جو کم ہی یکجا ہوتے ہیں: صحرا سے پھیلتی چلی آتی نرم سفید ریت، اور خلیج کی شفاف نیلاہٹ جو وہیں سے شروع ہوتی ہے جہاں ریت ختم ہوتی ہے۔ مٹی کی عمارتوں کے آثار اور پرانا قلعہ آج بھی اس جگہ کی نگہبانی کر رہے ہیں، اور آنے والے کو یاد دلاتے ہیں کہ یہ پرسکون ساحل کسی زمانے میں ایسی چہل پہل کا مرکز تھا جو تھمنے کا نام نہ لیتی تھی۔ یہاں تاریخ بھی ہے اور ٹھہر کر سوچنے کا موقع بھی: آپ وہاں چل پھر سکتے ہیں جہاں سے کبھی قافلے گزرتے تھے، اور اس ریت پر بیٹھ سکتے ہیں جو سمندر کو چھوتی ہے۔"
-area_ur: "خلیج کا ساحل، الاحساء کے مشرقی حصے میں"
+summary_ur: "سعودی عرب کے مشرقی ساحل کی پہلی سمندری بندرگاہ، جہاں صحرا کی ریت خلیج عرب کی نیلاہٹ سے جا ملتی ہے۔"
+body_ur: "پکی سڑکیں بننے سے پہلے الاحساء کے لیے باہر کی دنیا کا دروازہ العقیر تھا۔ خلیج عرب کے کنارے کی اس قدیم بندرگاہ پر کھجوروں اور سامان سے لدی کشتیاں لنگر ڈالتی تھیں، اور اسی کے راستے خبریں اور تجارت جزیرہ نما عرب کے قلب تک پہنچتی تھیں۔ آج العقیر میں دو ایسے منظر ملتے ہیں جو کم ہی یکجا ہوتے ہیں: صحرا سے پھیلتی چلی آتی نرم سفید ریت، اور خلیج عرب کی شفاف نیلاہٹ جو وہیں سے شروع ہوتی ہے جہاں ریت ختم ہوتی ہے۔ مٹی کی عمارتوں کے آثار اور پرانا قلعہ آج بھی اس جگہ کی نگہبانی کر رہے ہیں، اور آنے والے کو یاد دلاتے ہیں کہ یہ پرسکون ساحل کسی زمانے میں ایسی چہل پہل کا مرکز تھا جو تھمنے کا نام نہ لیتی تھی۔ یہاں تاریخ بھی ہے اور ٹھہر کر سوچنے کا موقع بھی: آپ وہاں چل پھر سکتے ہیں جہاں سے کبھی قافلے گزرتے تھے، اور اس ریت پر بیٹھ سکتے ہیں جو سمندر کو چھوتی ہے۔"
+area_ur: "خلیج عرب کا ساحل، الاحساء کے مشرقی حصے میں"
 bestTime_ur: "غروب آفتاب سے ذرا پہلے، جب سفید ریت پانی کی نیلاہٹ کے پس منظر میں دمک اٹھتی ہے"
 slug_ar: العقير
 slug_en: al-uqair
@@ -36,13 +36,13 @@ category: historic
 heroImage: /img/al-uqair
 kicker: ميناء ورمال
 summary: أوّل ميناء بحري شرق المملكة، حيث تلامس رمالُ الصحراء زرقةَ الخليج.
-summary_en: "Saudi Arabia’s first seaport on its eastern coast, where desert sands meet the blue of the Gulf."
-body_en: "Before the roads were paved, Al-Uqair was Al-Ahsa’s gateway to the world. An ancient port on the Arabian Gulf, where vessels moored laden with dates and goods, and through which news and trade entered the heart of the peninsula. Today two rare scenes meet at Al-Uqair: soft white sands stretching in from the desert, and the clear blue of the Gulf beginning where the sand ends. The remains of mud buildings and the old fort still guard the place, reminding the visitor that this quiet shore was once the heart of restless movement. A site for history and contemplation alike — you walk in the trace of caravans, and sit on sand that touches the sea."
+summary_en: "Saudi Arabia’s first seaport on its eastern coast, where desert sands meet the blue of the Arabian Gulf."
+body_en: "Before the roads were paved, Al-Uqair was Al-Ahsa’s gateway to the world. An ancient port on the Arabian Gulf, where vessels moored laden with dates and goods, and through which news and trade entered the heart of the peninsula. Today two rare scenes meet at Al-Uqair: soft white sands stretching in from the desert, and the clear blue of the Arabian Gulf beginning where the sand ends. The remains of mud buildings and the old fort still guard the place, reminding the visitor that this quiet shore was once the heart of restless movement. A site for history and contemplation alike — you walk in the trace of caravans, and sit on sand that touches the sea."
 area: ساحل الخليج العربي — شرق الأحساء
 area_en: "The Arabian Gulf coast — eastern Al-Ahsa"
 fee: { free: true }
 answer: "العُقير ميناء الأحساء القديم على ساحل الخليج العربي شرق الواحة، رست عنده المراكب محمّلةً بالتمر والبضائع قبل تعبيد الطرق. اليوم تلتقي فيه رمال بيضاء ناعمة بزرقة الخليج الصافية، وتحرسه بقايا المباني الطينية والحصن القديم. موقع عام مفتوح بلا رسوم دخول."
-answer_en: "Al-Uqair is Al-Ahsa’s old port on the Arabian Gulf coast, where vessels moored with dates and goods before the roads were paved. Today white sands meet the clear blue Gulf beside remains of mud buildings and the old fort; the site is open and free."
+answer_en: "Al-Uqair is Al-Ahsa’s old port on the Arabian Gulf coast, where vessels moored with dates and goods before the roads were paved. Today white sands meet the clear blue sea beside remains of mud buildings and the old fort; the site is open and free."
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
 # الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
 seo:
@@ -50,7 +50,7 @@ seo:
   place_en: "Al-Ahsa"
   benefit: free
 description: "العُقير ميناء الأحساء القديم على ساحل الخليج العربي شرق الواحة، رست عنده المراكب محمّلةً بالتمر والبضائع قبل تعبيد الطرق. موقع عام مفتوح بلا رسوم دخول."
-description_en: "Al-Uqair is Al-Ahsa’s old port on the Arabian Gulf coast. Today white sands meet the clear blue Gulf beside remains of mud buildings and the old fort."
+description_en: "Al-Uqair is Al-Ahsa’s old port on the Arabian Gulf coast. Today white sands meet the clear blue sea beside remains of mud buildings and the old fort."
 location: { lat: 25.643004, lng: 50.213101 }
 sameAs:
   - https://www.wikidata.org/wiki/Q3546517
@@ -84,11 +84,11 @@ faq:
     q_en: "Where is Al-Uqair?"
     a_en: "On the Arabian Gulf coast, in eastern Al-Ahsa."
     q_zh: "乌盖尔在哪里？"
-    a_zh: "在海湾沿岸，哈萨以东。"
+    a_zh: "在阿拉伯湾沿岸，哈萨以东。"
     q_ru: "Где находится Эль-Укайр?"
-    a_ru: "На побережье Залива, к востоку от Аль-Ахсы."
+    a_ru: "На побережье Арабского залива, к востоку от Аль-Ахсы."
     q_ur: "العقیر کہاں ہے؟"
-    a_ur: "خلیج کے ساحل پر، الاحساء کے مشرقی حصے میں۔"
+    a_ur: "خلیج عرب کے ساحل پر، الاحساء کے مشرقی حصے میں۔"
   - q: "ما أفضل وقت لزيارة العُقير؟"
     a: "قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء."
     q_en: "What is the best time to visit Al-Uqair?"
@@ -102,13 +102,13 @@ faq:
   - q: "ماذا يمكن أن أرى في العُقير؟"
     a: "بقايا المباني الطينية والحصن القديم للميناء التاريخي، ورمالاً بيضاء ناعمة تلامس مياه الخليج."
     q_en: "What can I see at Al-Uqair?"
-    a_en: "The remains of the old port’s mud buildings and its fort, and soft white sand that meets the waters of the Gulf."
+    a_en: "The remains of the old port’s mud buildings and its fort, and soft white sand that meets the waters of the Arabian Gulf."
     q_zh: "在乌盖尔能看到什么？"
-    a_zh: "古港遗留的土坯房舍残迹和城堡，还有从沙漠一路铺展到海湾水边的洁白细沙。"
+    a_zh: "古港遗留的土坯房舍残迹和城堡，还有从沙漠一路铺展到阿拉伯湾水边的洁白细沙。"
     q_ru: "Что можно увидеть в Эль-Укайре?"
-    a_ru: "Остатки глинобитных построек старого порта и его крепость, а также мягкий белый песок, который встречается с водами Залива."
+    a_ru: "Остатки глинобитных построек старого порта и его крепость, а также мягкий белый песок, который встречается с водами Арабского залива."
     q_ur: "العقیر میں کیا دیکھا جا سکتا ہے؟"
-    a_ur: "پرانی بندرگاہ کی مٹی کی عمارتوں کے آثار اور اس کا قلعہ، اور نرم سفید ریت جو خلیج کے پانی سے جا ملتی ہے۔"
+    a_ur: "پرانی بندرگاہ کی مٹی کی عمارتوں کے آثار اور اس کا قلعہ، اور نرم سفید ریت جو خلیج عرب کے پانی سے جا ملتی ہے۔"
 ---
 
 قبل أن تُعبّد الطرق، كان العُقير بوّابة الأحساء إلى العالم. ميناءٌ قديمٌ على ساحل
