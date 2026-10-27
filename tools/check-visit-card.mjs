@@ -73,7 +73,7 @@ export function noticeStrings(uiText) {
   const out = {};
   let cur = null;
   for (const l of lines) {
-    const b = l.match(/^ {2}(ar|en|zh|de|ru|ur): \{$/);
+    const b = l.match(/^ {2}(ar|en|zh|de|ru|ur|tr): \{$/);
     if (b) { cur = b[1]; out[cur] = {}; continue; }
     const m = cur && l.match(/^ {4}'(det\.hoursNotice(?:\.op)?)': '((?:[^'\\]|\\.)*)',$/);
     if (m) out[cur][m[1]] = m[2].replace(/\\(.)/g, '$1');
