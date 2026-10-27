@@ -6,13 +6,13 @@
 // الأمر بنيوياً: من يبني رابط معلم يستدعيها ولا يركّب المسار بنفسه.
 import type { Lang } from '../i18n/ui';
 
-type AttractionSlugs = { slug_ar: string; slug_en: string; title_zh?: string; title_de?: string; title_ru?: string; title_ur?: string };
+type AttractionSlugs = { slug_ar: string; slug_en: string; title_zh?: string; title_de?: string; title_ru?: string; title_ur?: string; title_tr?: string };
 
 /** لغة المسار لما لم يُبنَ بالأوردو بعد: تحت /ur/ اليوم الرئيسية وفهرس المعالم وصفحات
  *  المعالم الحاملة title_ur وحدها، وكل ما عداها (الصفحات الثابتة، دليل المتاجر، وأقسام
  *  الترويسة والتذييل) يقصد نظيره الإنجليزي — لا رابط إلى صفحة أوردية غير مبنية.
  *  يُحذف استعمالها من كل دالة يوم يُبنى مسارها تحت /ur/. */
-export const builtLang = (lang: Lang): Exclude<Lang, 'ur'> => (lang === 'ur' ? 'en' : lang);
+export const builtLang = (lang: Lang): Exclude<Lang, 'ur' | 'tr'> => (lang === 'ur' || lang === 'tr' ? 'en' : lang);
 
 /** رابط صفحة المعلم بلغة الطلب — بشرطة ختامية دائماً (تطابق canonical).
  *  zh وde وru وur تشارك الإنجليزية الـslug اللاتيني تحت بادئة لغتها. */
@@ -23,13 +23,14 @@ export const attractionHref = (d: AttractionSlugs, lang: Lang): string =>
  *  zh يُدرج فقط حين يحمل المعلم ترجمة صينية معتمدة (title_zh)، وde حين يحمل
  *  ترجمة ألمانية معتمدة (title_de)، وru حين يحمل title_ru، وur حين يحمل title_ur —
  *  فلا يظهر hreflang أو خيار في المبدّل لصفحة غير موجودة. */
-export const attractionAlt = (d: AttractionSlugs): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string } => ({
+export const attractionAlt = (d: AttractionSlugs): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string } => ({
   ar: attractionHref(d, 'ar'),
   en: attractionHref(d, 'en'),
   ...(d.title_zh ? { zh: attractionHref(d, 'zh') } : {}),
   ...(d.title_de ? { de: attractionHref(d, 'de') } : {}),
   ...(d.title_ru ? { ru: attractionHref(d, 'ru') } : {}),
   ...(d.title_ur ? { ur: attractionHref(d, 'ur') } : {}),
+  ...(d.title_tr ? { tr: attractionHref(d, 'tr') } : {}),
 });
 
 type DiningSlugs = { slug_ar: string; slug_en: string; body_zh?: string; body_ru?: string; body_de?: string; body_ur?: string };
@@ -110,7 +111,8 @@ export const STORES_ALT = {
   ar: '/متاجر-الأحساء-الإلكترونية/', en: '/en/online-stores/', zh: '/zh/online-stores/', de: '/de/online-stores/', ru: '/ru/online-stores/', ur: '/ur/online-stores/',
 } as const;
 export const STORES_AR = STORES_ALT.ar;
-export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[lang];
+// التركية: لا دليل متاجر بها بعد، فالإنجليزي
+export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[lang === 'tr' ? 'en' : lang];
 
 /** دليل المرشدين السياحيين المرخّصين — عربي/إنجليزي فقط (كصفحة «عن زوروا الأحساء»)،
  *  فلا يدخل STATIC_AR. اللغات الأخرى تقصد الفهرس الإنجليزي حيث يلزم رابط، ولا رابط
@@ -134,9 +136,12 @@ export const guideAlt = (d: GuideSlugs): { ar: string; en: string } => ({
 /** الصفحات الثابتة المبنية بالأوردو (خط ur-translation-pipeline، دفعة بدفعة): ما ليس هنا يقصد الإنجليزية. */
 const UR_STATIC: ReadonlySet<StaticPage> = new Set<StaticPage>(['map', 'unesco', 'report', 'reportThanks', 'terrainMap', 'legal']);
 
-/** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. الأوردو تقصد نسختها متى بُنيت (UR_STATIC) وإلا الإنجليزية. */
+/** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. الأوردو تقصد نسختها متى بُنيت (UR_STATIC) وإلا الإنجليزية،
+ *  والتركية الإنجليزية (لا صفحة ثابتة تركية بعد). */
 export const staticHref = (page: StaticPage, lang: Lang): string =>
-  lang === 'ar' ? STATIC_AR[page] : lang === 'ur' && !UR_STATIC.has(page) ? `/en/${STATIC_LATIN[page]}` : `/${lang}/${STATIC_LATIN[page]}`;
+  lang === 'ar' ? STATIC_AR[page]
+  : (lang === 'ur' && !UR_STATIC.has(page)) || lang === 'tr' ? `/en/${STATIC_LATIN[page]}`
+  : `/${lang}/${STATIC_LATIN[page]}`;
 
 /** نظائر الصفحة الثابتة بلغاتها — مصدر hreflang ومبدّل اللغة؛ الأوردو متى بُنيت (UR_STATIC). */
 export const staticAlt = (page: StaticPage): { ar: string; en: string; zh: string; de: string; ru: string; ur?: string } => ({

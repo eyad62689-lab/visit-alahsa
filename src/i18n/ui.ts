@@ -7,7 +7,8 @@
 // والروسية (ru-RU) قاموس جزئي كذلك (دفعة الواجهة 2026-09-05)، وخطها ru-translation-pipeline.
 // والأوردو (ur-PK) كتلتها فارغة عمداً حتى تمرّ دفعة واجهتها بخط ur-translation-pipeline:
 // كل مفتاح يتراجع للإنجليزية (ur ← en ← ar).
-export type Lang = 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur';
+// والتركية (tr-TR) كتلتها فارغة عمداً حتى تمرّ دفعة واجهتها بخط tr-translation-pipeline.
+export type Lang = 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur' | 'tr';
 
 export const ui = {
   ar: {
@@ -1976,5 +1977,11 @@ export const ui = {
     'advisor.thinking': 'بلبل لکھ رہی ہے…',
     'advisor.you': 'آپ',
     'advisor.reset': 'نئی گفتگو',
+  } as Record<string, string>,
+
+  // التركية (tr-TR) — كتلة جزئية: لا مفتاح يُكتب هنا إلا من مخرج معتمد لخط
+  // tr-translation-pipeline. ما غاب عنها يتراجع للإنجليزية في useTranslations، والسلاسل
+  // المضمّنة التي لم تمرّ بالخط تحمل فرع tr صريحاً يعطي الإنجليزية — فالمتبقّي مرئيّ ببحث عن «tr:».
+  tr: {
   } as Record<string, string>,
 } as const;

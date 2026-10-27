@@ -1,0 +1,17 @@
+---
+// صفحات المعالم التركية (tr-TR) — تُولَّد فقط للمعالم التي تحمل ترجمة تركية
+// معتمدة من خط tr-translation-pipeline (وجود title_tr هو المفتاح، على سابقة
+// title_ur). البقية لا صفحة لها فلا تظهر في hreflang ولا مبدّل اللغة (منطق attractionAlt).
+import { attractionAlt } from '../../../lib/routes';
+import DetailView from '../../../components/views/DetailView.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const items = await getCollection('attractions', ({ data }) => Boolean(data.title_tr));
+  return items.map((entry) => ({
+    params: { slug: entry.data.slug_en },
+    props: { entry, alt: attractionAlt(entry.data) },
+  }));
+}
+const { entry, alt } = Astro.props;
+---
+<DetailView entry={entry} lang="tr" alt={alt} />

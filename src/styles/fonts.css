@@ -136,6 +136,43 @@
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
+/* ---------- الحروف التركية (tr-TR) — Playfair / Lora / Cormorant بنطاق ضيّق ----------
+   ملفات latin-*.woff2 المحمّلة لا تحمل ğ Ğ ş Ş İ (مقيس بـfontTools على ملفات الحزم المثبّتة 2026-10-27؛
+   تحمل ı ç ö ü)، وملفات latin-ext تحملها. هنا وجوه latin-ext نفسها (نُسخت من مجلد files في الحزم
+   الثلاث إلى public/fonts) بنطاق **الحروف التركية الخمسة وحدها** لا نطاق latin-ext الكامل: فلا تُنزَّل
+   إلا في صفحة تُصيِّر واحداً منها، ولا يتغيّر ما تنزّله صفحات اللغات الأخرى (النطاق الكامل يشمل
+   ā وī وū ورموز عملات قد ترد فيها). على سابقة السيريلية أعلاه. */
+@font-face {
+  font-family: 'Playfair Display'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/playfair-display-latin-ext-400-normal.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F;
+}
+@font-face {
+  font-family: 'Playfair Display'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/playfair-display-latin-ext-700-normal.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F;
+}
+@font-face {
+  font-family: 'Lora'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/lora-latin-ext-400-normal.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F;
+}
+@font-face {
+  font-family: 'Lora'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/lora-latin-ext-600-normal.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F;
+}
+@font-face {
+  font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/cormorant-garamond-latin-ext-400-normal.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F;
+}
+@font-face {
+  font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/cormorant-garamond-latin-ext-600-normal.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F;
+}
+
 /* ---------- النستعليق (ur-PK) — Noto Nastaliq Urdu، وجه واحد مشذَّب ----------
    وجهٌ واحد يخدم مدى الوزن 400–700: العناوين الأوردية تُصيَّر بالوزن العادي نفسه — لا ملف
    ثانٍ يُنزَّل ولا عريض يصطنعه المتصفح. الملف مشذَّب إلى محارف النطاق المعلَن أدناه تماماً

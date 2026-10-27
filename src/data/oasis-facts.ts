@@ -17,6 +17,7 @@ import type { Lang } from '../i18n/ui';
 import { UNESCO_WHS_URL } from '../lib/schema';
 import type { HomeLang } from './home-copy';
 
+// التركية: الصيغ الإنجليزية حتى تمرّ دفعتها بخط tr-translation-pipeline
 type PerLang = Readonly<Record<Lang, string>>;
 
 export const OASIS_SOURCES = {
@@ -35,6 +36,7 @@ export const OASIS_FACTS = {
       de: 'Über 2,5 Mio.',
       ru: 'Более 2,5 млн',
       ur: '25 لاکھ+',
+      tr: '2.5M+',
     } satisfies PerLang,
     /** الصيغة المجرّدة (صفحة الثمار). */
     short: {
@@ -44,6 +46,7 @@ export const OASIS_FACTS = {
       de: '2,5 Mio.',
       ru: '2,5 млн',
       ur: '25 لاکھ',
+      tr: '2.5M',
     } satisfies PerLang,
   },
   fruitTrees: {
@@ -55,6 +58,7 @@ export const OASIS_FACTS = {
       de: '400 Tsd.',
       ru: '400 тыс.',
       ur: '4 لاکھ',
+      tr: '400K',
     } satisfies PerLang,
   },
   /** للرئيسية الجديدة (الفصل 2)؛ صيغها تُكتب مع نصوص الفصل عبر خطوط الترجمة، فلا تحمل
@@ -79,5 +83,6 @@ export const OASIS_FACTS = {
     de: 'Laut Eintrag von Guinness World Records (Oktober 2020) und Statistiken des Ministeriums für Umwelt, Wasser und Landwirtschaft.',
     ru: 'Источники: запись в Книге рекордов Гиннесса (октябрь 2020 года) и статистика Министерства окружающей среды, водных ресурсов и сельского хозяйства.',
     ur: 'گنیز ورلڈ ریکارڈز کے اندراج (اکتوبر 2020) اور ماحولیات، پانی اور زراعت کی وزارت کے اعداد و شمار کے مطابق۔',
+    tr: 'Per the Guinness World Records listing (October 2020) and Ministry of Environment, Water and Agriculture statistics.',
   } satisfies PerLang,
 } as const;

@@ -990,7 +990,8 @@ export const EVENTS_UR: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_UR[id]))
 
 /** فعاليات لغة الصفحة (الأوردو: المواسم المتكرّرة من خطها، دفعة b22-ui). */
 export const eventsFor = (lang: Lang): Ev[] =>
-  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU, ur: EVENTS_UR } satisfies Record<Lang, Ev[]>)[lang];
+  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU, ur: EVENTS_UR, tr: EVENTS_EN } satisfies Record<Lang, Ev[]>)[lang];
+// التركية: لا صفحة فعاليات /tr/ بعد، فالإنجليزية
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>

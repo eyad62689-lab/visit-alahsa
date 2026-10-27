@@ -15,7 +15,7 @@ import { diningHref } from '../../lib/routes';
 import { DISTRICT_NAMES } from '../../data/districts';
 import { loadLive, liveFor, hoursData, hoursFor, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
-import { localize, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, type AltLinks, isRtl, htmlLang } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -502,7 +502,7 @@ const districtOptions = DISTRICT_ORDER
   .filter((k) => districtCounts[k])
   .map((k) => ({ key: k, label: C.districtNames[k], count: districtCounts[k] }));
 // نصّ البحث لكل بطاقة: الاسم والموقع بلغة الصفحة — يُبنى وقت البناء لا وقت التشغيل
-const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area ?? ''}`.trim().toLowerCase();
+const searchText = (p: (typeof ALL_PLACES)[number]) => `${p.name} ${p.area ?? ''}`.trim().toLocaleLowerCase(htmlLang(lang));
 
 // «مفتوح الآن»: تُمرَّر البنية الأسبوعية والإزاحة (hoursData في lib/places-live.ts)
 // إلى المتصفح ولا تُصيَّر حالةٌ هنا إطلاقاً — الشارة تخرج hidden ويملؤها
@@ -716,7 +716,8 @@ const jsonLd = [
 
     function apply() {
       revealAll();
-      const q = (search.value || '').trim().toLowerCase();
+      // بمحلّ الصفحة: 'İ'.toLowerCase() يعطي i + نقطة مركّبة فلا يطابق بحث التركية
+      const q = (search.value || '').trim().toLocaleLowerCase(document.documentElement.lang || undefined);
       const d = sel.value;
       const onlyOpen = openBtn && openBtn.getAttribute('aria-pressed') === 'true';
       let shown = 0;

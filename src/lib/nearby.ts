@@ -29,13 +29,13 @@ const allAttractions = () => (attractions ??= getCollection('attractions'));
 export async function nearbyAttractions(entry: CollectionEntry<'attractions'>, lang: Lang): Promise<NearbyAttraction[]> {
   const a = entry.data;
   if (!a.location) return [];
-  const zh = lang === 'zh', de = lang === 'de', ru = lang === 'ru', ur = lang === 'ur', ar = lang === 'ar';
+  const zh = lang === 'zh', de = lang === 'de', ru = lang === 'ru', ur = lang === 'ur', tr = lang === 'tr', ar = lang === 'ar';
   return (await allAttractions())
     .filter((e) => e.data.slug_ar !== a.slug_ar && e.data.location)
     .map((e) => {
       // العنوان المتراجع للإنجليزية يُوسم lang="en" فيقرؤه قارئ الشاشة بلغته،
       // ويستثنيه الحارس C18 (تهجئة Souk الألمانية) من نصّ الصفحة الألماني.
-      const fallback = (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) || (ur && !e.data.title_ur);
+      const fallback = (zh && !e.data.title_zh) || (de && !e.data.title_de) || (ru && !e.data.title_ru) || (ur && !e.data.title_ur) || (tr && !e.data.title_tr);
       return {
         // البطاقة القريبة بلغة الصفحة، وعنوانها يتراجع للإنجليزية إن غابت
         // ترجمته — لكن رابطها يقصد صفحة اللغة الحالية إن وُجدت،
@@ -46,6 +46,7 @@ export async function nearbyAttractions(entry: CollectionEntry<'attractions'>, l
           : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title)
           : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title)
           : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title)
+          : tr ? (e.data.title_tr ?? e.data.title_en ?? e.data.title)
           : (e.data.title_en ?? e.data.title),
         cat: catLabel(e.data.category, lang),
         titleLang: fallback ? ('en' as const) : undefined,

@@ -19,7 +19,7 @@ import { nearbyAttractions, diningNear } from '../../lib/nearby';
 import ShareButton from '../ShareButton.astro';
 import { mentionsOf } from '../../lib/related';
 import { trailHref, trailsForAttraction } from '../../lib/trails';
-import { trailText } from '../../data/trails';
+import { trailText, type TrailLang } from '../../data/trails';
 
 interface Props { entry: CollectionEntry<'attractions'>; lang: Lang; alt: AltLinks; }
 const { entry, lang, alt } = Astro.props;
@@ -32,23 +32,24 @@ const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
 const ur = lang === 'ur';
+const tr = lang === 'tr';
 
-// اختيار الحقل بلغة الصفحة — zh/de/ru/ur تتراجع للإنجليزية فالعربية عند الغياب
-const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined, deV?: T, ruV?: T, urV?: T): T =>
-  ar ? arV : zh ? (zhV ?? enV ?? arV) : de ? (deV ?? enV ?? arV) : ru ? (ruV ?? enV ?? arV) : ur ? (urV ?? enV ?? arV) : (enV ?? arV);
+// اختيار الحقل بلغة الصفحة — zh/de/ru/ur/tr تتراجع للإنجليزية فالعربية عند الغياب
+const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined, deV?: T, ruV?: T, urV?: T, trV?: T): T =>
+  ar ? arV : zh ? (zhV ?? enV ?? arV) : de ? (deV ?? enV ?? arV) : ru ? (ruV ?? enV ?? arV) : ur ? (urV ?? enV ?? arV) : tr ? (trV ?? enV ?? arV) : (enV ?? arV);
 
-const title = pick(a.title, a.title_en, a.title_zh, a.title_de, a.title_ru, a.title_ur);
-const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summary_ru, a.summary_ur);
+const title = pick(a.title, a.title_en, a.title_zh, a.title_de, a.title_ru, a.title_ur, a.title_tr);
+const summary = pick(a.summary, a.summary_en, a.summary_zh, a.summary_de, a.summary_ru, a.summary_ur, a.summary_tr);
 // فقرة الإجابة (الخطوة 8 من خطة التفاعل العالمي): 35–45 كلمة من المتن والبطاقة تتصدّر المتن
 // وتكون وصف الصفحة — عربي/إنجليزي فقط (zh/de/ru عبر خطوط الترجمة حصراً)، ويحرسها C24.
 const answer = ar ? a.answer : lang === 'en' ? a.answer_en : undefined;
 // عنوان قسم الصور بلغة الصفحة بلا تراجع لغة أخرى: الغائب يعطي العنوان الافتراضي من قاموسها
-const galleryH = (ar ? a.galleryTitle : zh ? a.galleryTitle_zh : de ? a.galleryTitle_de : ru ? a.galleryTitle_ru : ur ? a.galleryTitle_ur : a.galleryTitle_en) ?? t('det.fromPlace');
+const galleryH = (ar ? a.galleryTitle : zh ? a.galleryTitle_zh : de ? a.galleryTitle_de : ru ? a.galleryTitle_ru : ur ? a.galleryTitle_ur : tr ? a.galleryTitle_tr : a.galleryTitle_en) ?? t('det.fromPlace');
 // زر الإجراء الخارجي: لا يظهر في لغة بلا نصّه (لا تراجع لنصّ لغة أخرى)؛ غير العربية تفتح الرابط الإنجليزي
-const ctaLabel = a.cta && (ar ? a.cta.label : zh ? a.cta.label_zh : de ? a.cta.label_de : ru ? a.cta.label_ru : ur ? a.cta.label_ur : a.cta.label_en);
+const ctaLabel = a.cta && (ar ? a.cta.label : zh ? a.cta.label_zh : de ? a.cta.label_de : ru ? a.cta.label_ru : ur ? a.cta.label_ur : tr ? a.cta.label_tr : a.cta.label_en);
 const cta = a.cta && ctaLabel ? {
   url: ar ? a.cta.url : (a.cta.url_en ?? a.cta.url), label: ctaLabel,
-  note: ar ? a.cta.note : zh ? a.cta.note_zh : de ? a.cta.note_de : ru ? a.cta.note_ru : ur ? a.cta.note_ur : a.cta.note_en,
+  note: ar ? a.cta.note : zh ? a.cta.note_zh : de ? a.cta.note_de : ru ? a.cta.note_ru : ur ? a.cta.note_ur : tr ? a.cta.note_tr : a.cta.note_en,
 } : undefined;
 // وصف الصفحة: description المخصّص (ar/en فقط، جمل حرفية من الإجابة أو النبذة) ثم الإجابة ثم النبذة.
 const customDescription = ar ? a.description : lang === 'en' ? a.description_en : undefined;
@@ -67,6 +68,7 @@ const bodyText = zh ? (a.body_zh ?? a.body_en ?? '')
   : de ? (a.body_de ?? a.body_en ?? '')
   : ru ? (a.body_ru ?? a.body_en ?? '')
   : ur ? (a.body_ur ?? a.body_en ?? '')
+  : tr ? (a.body_tr ?? a.body_en ?? '')
   : (a.body_en ?? a.summary_en ?? '');
 const { Content } = ar ? await render(entry) : { Content: null };
 // المتن غير العربي نص خام: السطر الفارغ فيه فاصل فقرات
@@ -92,7 +94,7 @@ const mentions = await mentionsOf(a, lang);
 const isLeisure = ['market', 'parks', 'farm'].includes(a.category);
 const attractionsHref = isLeisure
   ? (ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : ur ? '/ur/souqs-parks-farms/' : '/en/souqs-parks-farms/')
-  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/');
+  : (ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : tr ? '/tr/attractions/' : '/en/attractions/');
 const crumbLabel = isLeisure ? t('crumb.leisure') : t('crumb.attractions');
 const backLabel = isLeisure ? t('det.allLeisure') : t('det.allSights');
 const siteUrl = 'https://visit-alahsa.com';
@@ -108,7 +110,7 @@ const jsonLd: object[] = [
     '@context': 'https://schema.org', '@type': 'TouristAttraction',
     name: title, description, url: pageUrl, image: siteUrl + (a.heroImage ? `${a.heroImage}.jpg` : ogDefault(lang)),
     ...(a.location ? { geo: { '@type': 'GeoCoordinates', latitude: a.location.lat, longitude: a.location.lng } } : {}),
-    address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh, a.area_de, a.area_ru, a.area_ur) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
+    address: { '@type': 'PostalAddress', addressLocality: pick(a.area, a.area_en, a.area_zh, a.area_de, a.area_ru, a.area_ur, a.area_tr) ?? regionName, addressRegion: regionName, addressCountry: 'SA' },
     touristType: catLabel(a.category, lang),
     // alt[lang] هنا هو رابط صفحة المعلم نفسه — فكانت السكيما تقول إن المعلم جزءٌ
     // من نفسه في 116 صفحة (تدقيق 2026-08-28). الوجهة هي الرئيسية بلغة الصفحة.
@@ -150,10 +152,10 @@ const ogImage = a.heroImage ? `${a.heroImage}.jpg` : undefined;
 // والقسم المرئي أدناه يطابقها حرفياً (قوقل تشترط ظهور المحتوى المنظَّم للزائر).
 // يحرسها C21: المنشور = المصدر، ولا رقم في سؤال أو جواب من خارج الصفحة.
 const faqItems = a.faq
-  .filter((f) => ar || (zh ? f.q_zh && f.a_zh : de ? f.q_de && f.a_de : ru ? f.q_ru && f.a_ru : ur ? f.q_ur && f.a_ur : f.q_en && f.a_en))
+  .filter((f) => ar || (zh ? f.q_zh && f.a_zh : de ? f.q_de && f.a_de : ru ? f.q_ru && f.a_ru : ur ? f.q_ur && f.a_ur : tr ? f.q_tr && f.a_tr : f.q_en && f.a_en))
   .map((f) => ({
-    q: ar ? f.q : zh ? f.q_zh! : de ? f.q_de! : ru ? f.q_ru! : ur ? f.q_ur! : f.q_en!,
-    a: ar ? f.a : zh ? f.a_zh! : de ? f.a_de! : ru ? f.a_ru! : ur ? f.a_ur! : f.a_en!,
+    q: ar ? f.q : zh ? f.q_zh! : de ? f.q_de! : ru ? f.q_ru! : ur ? f.q_ur! : tr ? f.q_tr! : f.q_en!,
+    a: ar ? f.a : zh ? f.a_zh! : de ? f.a_de! : ru ? f.a_ru! : ur ? f.a_ur! : tr ? f.a_tr! : f.a_en!,
   }));
 if (faqItems.length > 0) {
   jsonLd.push({
@@ -167,13 +169,13 @@ if (faqItems.length > 0) {
 
 // بطاقة معلومات الزيارة بلغة الصفحة: البند لا يظهر إلا إن وُجدت ترجمته للغة
 // الصفحة (label_en/value_en أو label_zh/value_zh) — لا نعرض لغةً داخل صفحة أخرى.
-const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : de ? (a.area_de ?? null) : ru ? (a.area_ru ?? null) : ur ? (a.area_ur ?? null) : (a.area_en ?? null);
-const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : de ? (a.bestTime_de ?? null) : ru ? (a.bestTime_ru ?? null) : ur ? (a.bestTime_ur ?? null) : (a.bestTime_en ?? null);
+const areaVal = ar ? a.area : zh ? (a.area_zh ?? null) : de ? (a.area_de ?? null) : ru ? (a.area_ru ?? null) : ur ? (a.area_ur ?? null) : tr ? (a.area_tr ?? null) : (a.area_en ?? null);
+const bestTimeVal = ar ? a.bestTime : zh ? (a.bestTime_zh ?? null) : de ? (a.bestTime_de ?? null) : ru ? (a.bestTime_ru ?? null) : ur ? (a.bestTime_ur ?? null) : tr ? (a.bestTime_tr ?? null) : (a.bestTime_en ?? null);
 const shownPractical = a.practical
-  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : de ? p.label_de && p.value_de : ru ? p.label_ru && p.value_ru : ur ? p.label_ur && p.value_ur : p.label_en && p.value_en)));
+  .filter((p) => p.verified && (ar || (zh ? p.label_zh && p.value_zh : de ? p.label_de && p.value_de : ru ? p.label_ru && p.value_ru : ur ? p.label_ur && p.value_ur : tr ? p.label_tr && p.value_tr : p.label_en && p.value_en)));
 const practicalItems = shownPractical.map((p) => ({
-  label: ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : ru ? p.label_ru! : ur ? p.label_ur! : p.label_en!,
-  value: ar ? p.value : zh ? p.value_zh! : de ? p.value_de! : ru ? p.value_ru! : ur ? p.value_ur! : p.value_en!,
+  label: ar ? p.label : zh ? p.label_zh! : de ? p.label_de! : ru ? p.label_ru! : ur ? p.label_ur! : tr ? p.label_tr! : p.label_en!,
+  value: ar ? p.value : zh ? p.value_zh! : de ? p.value_de! : ru ? p.value_ru! : ur ? p.value_ur! : tr ? p.value_tr! : p.value_en!,
 }));
 // سطر المواعيد والرسوم الموحَّد: يظهر حين تعرض البطاقة بلغة الصفحة بند مواعيد أو رسوم
 // (لا حين يوجد البند بلغة أخرى فقط). كلمة «المشغّل» تصير رابطاً إلى حساب الجهة المشغّلة
@@ -197,7 +199,8 @@ const nearDining = Object.hasOwn(ui[lang], 'det.nearDining.h') ? await diningNea
 
 // «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم، بلغة الصفحة.
 // الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
-const trailLang = lang;
+// التركية: لا مسارات /tr/trails/ بعد، فالإنجليزية
+const trailLang: TrailLang = lang === 'tr' ? 'en' : lang;
 const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
   .map((tr) => ({ href: trailHref(tr, trailLang), title: trailText(tr, trailLang).title, tagline: trailText(tr, trailLang).tagline, slug: tr.slug }));
 ---

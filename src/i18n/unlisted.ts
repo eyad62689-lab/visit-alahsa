@@ -18,6 +18,10 @@ type Unlisted = { path: string; noindex: boolean; why: string };
 const registry = (...entries: Unlisted[]): ReadonlyArray<Unlisted> => entries;
 
 export const UNLISTED = registry(
+  // صفحتا /tr/ في النواة الهيكلية (2026-10-27): فهرس المعالم وجبل القارة (المعايرة 90/100). الهيكل
+  // إنجليزي متراجَع إليه حتى تمرّ دفعة نصوص الواجهة ui.tr بخطها، فتُخرجان من هنا بقياس C22.
+  { path: '/tr/attractions/', noindex: true, why: 'tr core: ui.tr not translated yet, English fallback frame' },
+  { path: '/tr/attractions/jabal-al-qarah/', noindex: true, why: 'tr core: ui.tr not translated yet, English fallback frame' },
   // صفحات /ur/ الثلاث (الرئيسية، فهرس المعالم، جبل القارة) أُخرجت 2026-10-12 بدفعة نصوص الواجهة ui.ur
   // (161 سلسلة، الحاكم 90/100) ودفعتَي المعالم الأوليين (عشرة معالم). القياس بمنطق C22 نفسِه: الرئيسية
   // 2% (2/126) · فهرس المعالم 15% (30/200) · جبل القارة 4% (4/100) — والعتبة 20%؛ وكانت حين أُدرجت 89% و94% و71%
