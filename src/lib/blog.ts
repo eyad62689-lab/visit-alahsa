@@ -12,7 +12,8 @@ import { blogHref } from './routes';
 type Post = CollectionEntry<'blog'>;
 
 /** فهرس المدونة بلغة الطلب — ru منذ ب9 (2026-09-18)، وde منذ ج10 (2026-09-24)، وur منذ ur-blog-1. */
-export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', ur: '/ur/blog/' };
+export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', ur: '/ur/blog/', tr: '/en/blog/' };
+// التركية: لا مسار /tr/blog/ بعد، ففهرسها الإنجليزي (يُصحَّح يوم يُبنى).
 
 /** نظائر المقال بلغاته المبنية — zh/de/ru تُدرج فقط حين يوجد ملفها (بوابة التوليد كما في المعالم) */
 export const postAlt = (all: Post[], entry: Post): AltLinks => {

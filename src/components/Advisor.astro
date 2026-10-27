@@ -24,6 +24,8 @@ import { useTranslations, isRtl } from '../i18n/utils';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
+// التركية: المستشار لا يخدمها بعد (LANGS في netlify/functions/advisor/core.mjs)، فيحاور على /tr/
+// بالإنجليزية — data-lang أدناه — حتى تمرّ دفعة المستشار بخطها.
 const t = useTranslations(lang);
 const own = (key: string): string | undefined => (ui[lang] as Record<string, string>)[key];
 // الصفحة «مترجمة» حين تحمل كتلة لغتها مفاتيح advisor.* نفسها؛ وإلا تُعرض الواجهة بلا أي نصّ إنجليزي من كلمتين
@@ -72,7 +74,7 @@ const straws = Array.from({ length: 7 }, () => {
   return { d: `M${r1(x)},${r1(y)}L${r1(x + Math.sin(ang) * len)},${r1(y - Math.cos(ang) * len * 0.6)}`, c: pick() };
 });
 ---
-<div class="adv-root" id="advisor" data-lang={lang} data-endpoint={endpoint} dir={dir} data-pagefind-ignore
+<div class="adv-root" id="advisor" data-lang={lang === 'tr' ? 'en' : lang} data-endpoint={endpoint} dir={dir} data-pagefind-ignore
   data-s-resting={s('advisor.resting')} data-s-rate={s('advisor.rate')} data-s-error={s('advisor.error')}
   data-s-cards={s('advisor.cards')} data-s-thinking={s('advisor.thinking')}>
   <button type="button" class="adv-fab" aria-expanded="false" aria-controls="advisor-panel" aria-label={translated ? t('advisor.open') : brand} data-track="advisor_open">

@@ -13,7 +13,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { storesPage, storesLangs, countsBySection } from '../../lib/stores';
 import { STORES_ALT } from '../../lib/routes';
-import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { titleSep, useTranslations, type AltLinks, htmlLang } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; }
@@ -84,7 +84,7 @@ const pageTitle = `${seo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
             </h2>
             <div class="stores-grid">
               {stores.filter((s) => s.section === sec.id).map((s, idx) => (
-                <article class="card card--lift store-card" data-section={s.section} data-search={`${s.name} ${s.description}`.toLowerCase()} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+                <article class="card card--lift store-card" data-section={s.section} data-search={`${s.name} ${s.description}`.toLocaleLowerCase(htmlLang(lang))} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
                   <Photo src={s.image} label={fill(t('stores.shotAlt'), { name: s.name })} class="store-shot" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
                   <div class="store-body">
                     <div class="store-head">
@@ -135,7 +135,7 @@ const pageTitle = `${seo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
     const secs = root.querySelectorAll('.stores-sec');
     let section = 'all';
     function apply() {
-      const q = (search.value || '').trim().toLowerCase();
+      const q = (search.value || '').trim().toLocaleLowerCase(document.documentElement.lang || undefined);
       let shown = 0;
       cards.forEach((card) => {
         const inSection = section === 'all' || card.getAttribute('data-section') === section;

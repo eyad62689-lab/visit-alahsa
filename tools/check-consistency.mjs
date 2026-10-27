@@ -17,6 +17,7 @@ import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
 import { checkGulfName, EXPECT as GULF_EXPECT } from './check-gulf-name.mjs';
+import { checkTrText, collectTrFields, MIN_FIELDS as TR_MIN_FIELDS } from './check-tr-text.mjs';
 import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
 import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passages.mjs';
 import { checkUqairPort, EXPECT as UQAIR_EXPECT } from './check-uqair-port.mjs';
@@ -343,7 +344,7 @@ async function main() {
     };
     const allPages = [];
     for (const [file, e] of byFile) {
-      for (const l of ['ar', 'en', 'zh', 'de', 'ru', 'ur']) {
+      for (const l of ['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr']) {
         const p = l === 'ar'
           ? path.join(DIST, AR_ATTRACTIONS_DIR, e.slugAr ?? '', 'index.html')
           : path.join(DIST, l, 'attractions', e.slugEn ?? '', 'index.html');
@@ -381,7 +382,7 @@ async function main() {
     const pages = [];
     for (const f of htmlFiles) {
       const rel = path.relative(DIST, f).split(path.sep).join('/');
-      const lang = /^(en|zh|de|ru|ur)\//.exec(rel)?.[1] ?? 'ar';
+      const lang = /^(en|zh|de|ru|ur|tr)\//.exec(rel)?.[1] ?? 'ar';
       pages.push({ rel, lang, html: await readText(f) });
     }
     const { problems, stats } = checkJawathaFriday(pages);
@@ -396,7 +397,7 @@ async function main() {
     const pages = [];
     for (const f of htmlFiles) {
       const rel = path.relative(DIST, f).split(path.sep).join('/');
-      const lang = /^(en|zh|de|ru|ur)\//.exec(rel)?.[1] ?? 'ar';
+      const lang = /^(en|zh|de|ru|ur|tr)\//.exec(rel)?.[1] ?? 'ar';
       pages.push({ rel, lang, html: await readText(f) });
     }
     const { problems, stats } = checkAsfarWording(pages);
@@ -411,6 +412,13 @@ async function main() {
       const gmin = Object.entries(GULF_EXPECT).map(([l, n]) => `${l} ${n}`).join(' · ');
       if (g.problems.length) fail('C76', `الخليج العربي: ${g.problems.length} مشكلة — ${g.problems.slice(0, 4).join(' · ')}`);
       else pass('C76', `الخليج «العربي» في كل ورود (${g.stats.mentions}) بصفحات en/zh/de/ru/tr إلا علم الشارع واسم مجلس التعاون، ولا «الفارسي»؛ الاسم الموصوف في صفحات ${gper} (الحدّ الأدنى ${gmin})`);
+    }
+    // ── C77: أحكام المعايرة التركية الملزمة (P8 علامة الفصل، P2 El-Ahsa، P5، P10 الأوقات، i/İ) على كل حقل
+    // تركي منشور، بحارسين إيجابيين. المنطق في tools/check-tr-text.mjs، وحلقة كسره tools/test-tr-text.mjs.
+    {
+      const tr = checkTrText(collectTrFields(ROOT));
+      if (tr.problems.length) fail('C77', `النص التركي: ${tr.problems.length} مشكلة — ${tr.problems.slice(0, 4).join(' · ')}`);
+      else pass('C77', `أحكام المعايرة التركية في ${tr.stats.fields} حقلاً تركياً (الحدّ الأدنى ${TR_MIN_FIELDS}): ${tr.stats.suffixes} لاحقة بعلامة U+0027 وحدها، و«El-Ahsa» و«Arap Körfezi» والأوقات «08.00»، ولا i بنقطة مركّبة`);
     }
     // ── C32: بيت البيعة بُني عام 1203هـ/1788م (حكم إياد 2026-09-30، بسند الدارة وسعوديبيديا) — لا
     // «1789» في صفحة تذكر 1203، وإيجاباً 1203…1788 في صفحة المعلم بكل لغة. المنطق في
@@ -930,7 +938,7 @@ async function main() {
       const items = [];
       for (const raw of block.split(/\r?\n/)) {
         if (!raw.trim()) continue;
-        const m = raw.match(/^[ \t]+(-[ \t]+)?(q|a)(_en|_zh|_de|_ru|_ur)?:[ \t]*(".*")[ \t]*$/);
+        const m = raw.match(/^[ \t]+(-[ \t]+)?(q|a)(_en|_zh|_de|_ru|_ur|_tr)?:[ \t]*(".*")[ \t]*$/);
         if (!m) { problems.push(`${f}: سطر faq خارج الصيغة المحدَّدة — ${raw.trim().slice(0, 40)}`); continue; }
         if (m[1]) items.push({});
         if (!items.length) { problems.push(`${f}: حقل faq قبل أول بند`); continue; }
@@ -1035,7 +1043,7 @@ async function main() {
     const problems = [];
     const worst = {};
     let advertised = 0;
-    for (const lang of ['zh', 'de', 'ru', 'ur']) {
+    for (const lang of ['zh', 'de', 'ru', 'ur', 'tr']) {
       worst[lang] = { pct: 0, page: '' };
       for (const fp of await listHtml(path.join(DIST, lang))) {
         const html = await readText(fp);
@@ -1073,10 +1081,10 @@ async function main() {
         if (html.includes(`hreflang="${u.path.split('/')[1]}" href="https://visit-alahsa.com${u.path}"`)) problems.push(`${path.relative(DIST, fp)}: hreflang يشير إلى غير المعلَنة ${u.path}`);
       }
     }
-    const summary = ['zh', 'de', 'ru', 'ur'].map((l) => `${l} ≤ ${worst[l].pct}% (${worst[l].page || '—'})`).join(' · ');
+    const summary = ['zh', 'de', 'ru', 'ur', 'tr'].map((l) => `${l} ≤ ${worst[l].pct}% (${worst[l].page || '—'})`).join(' · ');
     if (advertised < 50) fail('C22', `الحارس صار فارغاً: ${advertised} صفحة معلَنة مفحوصة — المتوقع ≥50`);
     else if (problems.length) fail('C22', `سلامة اللغة: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C22', `${advertised} صفحة zh/de/ru/ur معلَنة كلها دون ${THRESHOLD}% إنجليزية (الأعلى: ${summary})؛ و${unlisted.length} صفحة غير معلَنة بلا hreflang وخارج sitemap`);
+    else pass('C22', `${advertised} صفحة zh/de/ru/ur/tr معلَنة كلها دون ${THRESHOLD}% إنجليزية (الأعلى: ${summary})؛ و${unlisted.length} صفحة غير معلَنة بلا hreflang وخارج sitemap`);
   }
 
   // ── C23: عتبة نشر المعالم وبطاقات المشاركة بلغة الصفحة (الخطوة 4 من خطة التفاعل العالمي) ──
@@ -1219,7 +1227,7 @@ async function main() {
       if (!slugAr || !slugEn) continue; // يبلّغ عنه C23
       const hoursSrc = head.match(/^hoursSpec:\n([\s\S]*?)(?=^\S)/m)?.[1];
       const feeSrc = head.match(/^fee:.*$/m)?.[0];
-      const pages = [`/${AR_ATTRACTIONS_DIR}/${slugAr}/`, `/en/attractions/${slugEn}/`, ...['zh', 'de', 'ru', 'ur'].map((l) => `/${l}/attractions/${slugEn}/`)]
+      const pages = [`/${AR_ATTRACTIONS_DIR}/${slugAr}/`, `/en/attractions/${slugEn}/`, ...['zh', 'de', 'ru', 'ur', 'tr'].map((l) => `/${l}/attractions/${slugEn}/`)]
         .map((p) => [p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, fp]) => existsSync(fp));
       for (const [p, fp] of pages) {
         attrPages++;
@@ -1278,7 +1286,7 @@ async function main() {
       if (Boolean(src.ar) !== Boolean(src.en)) problems.push(`${f}: answer بلغة واحدة`);
       const dsrc = { ar: head.match(/^description:\s*"(.*)"\s*$/m)?.[1], en: head.match(/^description_en:\s*"(.*)"\s*$/m)?.[1] };
       if (Boolean(dsrc.ar) !== Boolean(dsrc.en)) problems.push(`${f}: description بلغة واحدة`);
-      const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
+      const pages = [['ar', `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru', 'ur', 'tr'].map((l) => [l, `/${l}/attractions/${slugEn}/`])]
         .map(([l, p]) => [l, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , fp]) => existsSync(fp));
       for (const [l, p, fp] of pages) {
         const html = await readText(fp);
@@ -1394,7 +1402,7 @@ async function main() {
       const slugAr = fmField(head, 'slug_ar');
       const slugEn = fmField(head, 'slug_en');
       if (!slugAr || !slugEn) continue;
-      const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
+      const pages = [['ar', slugAr, `/${AR_ATTRACTIONS_DIR}/${slugAr}/`], ['en', slugEn, `/en/attractions/${slugEn}/`], ...['zh', 'de', 'ru', 'ur', 'tr'].map((l) => [l, slugEn, `/${l}/attractions/${slugEn}/`])]
         .map(([l, slug, p]) => [l, slug, p, path.join(DIST, decodeURIComponent(p), 'index.html')]).filter(([, , , fp]) => existsSync(fp));
       for (const [l, slug, p, fp] of pages) {
         const html = await readText(fp);
@@ -1458,7 +1466,7 @@ async function main() {
     const DINING_NEAR_MAX = 4;
     let nearDiningPages = 0, nearDiningLinks = 0;
     for (const [id, meta] of attrMeta) {
-      const pagesA = [['ar', `/${AR_ATTRACTIONS_DIR}/${meta.slugAr}/`], ['en', `/en/attractions/${meta.slugEn}/`], ...['zh', 'de', 'ru', 'ur'].map((l) => [l, `/${l}/attractions/${meta.slugEn}/`])]
+      const pagesA = [['ar', `/${AR_ATTRACTIONS_DIR}/${meta.slugAr}/`], ['en', `/en/attractions/${meta.slugEn}/`], ...['zh', 'de', 'ru', 'ur', 'tr'].map((l) => [l, `/${l}/attractions/${meta.slugEn}/`])]
         .map(([l, p]) => [l, p, path.join(DIST, p, 'index.html')]).filter(([, , fp]) => existsSync(fp));
       for (const [l, p, fp] of pagesA) {
         const html = await readText(fp);

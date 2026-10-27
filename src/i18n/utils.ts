@@ -3,7 +3,7 @@ import { LANG_META } from './langs';
 
 export function getLangFromUrl(url: URL): Lang {
   const [, seg] = url.pathname.split('/');
-  return (['en', 'zh', 'de', 'ru', 'ur'] as const).find((l) => l === seg) ?? 'ar';
+  return (['en', 'zh', 'de', 'ru', 'ur', 'tr'] as const).find((l) => l === seg) ?? 'ar';
 }
 
 export function useTranslations(lang: Lang) {
@@ -11,7 +11,7 @@ export function useTranslations(lang: Lang) {
     // تراجع الصينية والألمانية والروسية إلى الإنجليزية: قواميس zh وde وru
     // جزئية عمداً (تُملأ صفحةً بعد صفحة عبر خطوط الإنتاج الثلاثة)، والزائر يقرأ
     // الإنجليزية أينما غابت الترجمة بدل أن يرى مفتاحاً خاماً. والأوردو كذلك:
-    // كتلتها فارغة حتى تمرّ دفعة واجهتها بخطها.
+    // كتلتها فارغة حتى تمرّ دفعة واجهتها بخطها. والتركية كذلك.
     return (
       (ui[lang] as Record<string, string>)[key] ??
       (ui.en as Record<string, string>)[key] ??
@@ -39,10 +39,10 @@ export function useTranslations(lang: Lang) {
  *  الترتيب يظل مكتوباً في مئات المواضع بلا مفاتيح — وهو عين ما نُقض. المواضع
  *  الثلاثة عشر كلها مُرحَّلة.
  *
- *  كتلة ur اختيارية كذلك، ولا تُكتب إلا من مخرج معتمد لخط الترجمة الأوردي. */
+ *  كتلة ur اختيارية كذلك، ولا تُكتب إلا من مخرج معتمد لخط الترجمة الأوردي، وكتلة tr كذلك بخطها. */
 export const localize = <T,>(
   lang: Lang,
-  blocks: { ar: T; en: T; zh?: T; de?: T; ru?: T; ur?: T },
+  blocks: { ar: T; en: T; zh?: T; de?: T; ru?: T; ur?: T; tr?: T },
 ): T =>
   lang === 'ar' ? blocks.ar : (blocks[lang] ?? blocks.en);
 
@@ -52,15 +52,15 @@ export const localize = <T,>(
 export const dir = (lang: Lang): 'rtl' | 'ltr' => LANG_META[lang].dir;
 export const isRtl = (lang: Lang): boolean => LANG_META[lang].dir === 'rtl';
 export const htmlLang = (lang: Lang) =>
-  ({ ar: 'ar', en: 'en', zh: 'zh-CN', de: 'de', ru: 'ru', ur: 'ur' } as const)[lang];
+  ({ ar: 'ar', en: 'en', zh: 'zh-CN', de: 'de', ru: 'ru', ur: 'ur', tr: 'tr' } as const)[lang];
 
 // مسارات النظائر باللغات الأخرى (للمبدّل وhreflang). تمرَّر لكل صفحة.
-// zh وde وru وur اختيارية: لا تُدرج لغة إلا حين توجد نسخة فعلية للصفحة بها
+// zh وde وru وur وtr اختيارية: لا تُدرج لغة إلا حين توجد نسخة فعلية للصفحة بها
 // — hreflang ومبدّل اللغة يظهرانها عند وجودها فقط، فلا خيار يقود إلى 404.
-export interface AltLinks { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; }
+export interface AltLinks { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string; }
 
-/** رابط الصفحة بلغة الطلب من alt — مع تراجع zh/de/ru/ur للإنجليزية إن غاب نظيرها
- *  (الأربعة اختيارية في AltLinks، وبدون هذا المساعد يصير alt[lang] قابلاً
+/** رابط الصفحة بلغة الطلب من alt — مع تراجع zh/de/ru/ur/tr للإنجليزية إن غاب نظيرها
+ *  (الخمسة اختيارية في AltLinks، وبدون هذا المساعد يصير alt[lang] قابلاً
  *  للغياب نوعياً في كل موضع استهلاك). */
 export const altHref = (alt: AltLinks, lang: Lang): string => alt[lang] ?? alt.en;
 

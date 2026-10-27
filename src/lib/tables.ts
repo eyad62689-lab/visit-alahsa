@@ -19,13 +19,13 @@ const FEES_RE = /الرسوم/;
 /** المواعيد والرسوم الموثّقة — صف لكل معلم يحمل بنداً موثّقاً منهما بلغة الطلب. */
 export async function practicalTable(lang: Lang): Promise<Table | null> {
   const items = (await getCollection('attractions')).sort((a, b) => a.data.order - b.data.order);
-  const pickL = (p: { label: string; label_en?: string; label_zh?: string; label_de?: string; label_ru?: string; label_ur?: string }) =>
-    ({ ar: p.label, en: p.label_en, zh: p.label_zh, de: p.label_de, ru: p.label_ru, ur: p.label_ur })[lang];
-  const pickV = (p: { value: string; value_en?: string; value_zh?: string; value_de?: string; value_ru?: string; value_ur?: string }) =>
-    ({ ar: p.value, en: p.value_en, zh: p.value_zh, de: p.value_de, ru: p.value_ru, ur: p.value_ur })[lang];
+  const pickL = (p: { label: string; label_en?: string; label_zh?: string; label_de?: string; label_ru?: string; label_ur?: string; label_tr?: string }) =>
+    ({ ar: p.label, en: p.label_en, zh: p.label_zh, de: p.label_de, ru: p.label_ru, ur: p.label_ur, tr: p.label_tr })[lang];
+  const pickV = (p: { value: string; value_en?: string; value_zh?: string; value_de?: string; value_ru?: string; value_ur?: string; value_tr?: string }) =>
+    ({ ar: p.value, en: p.value_en, zh: p.value_zh, de: p.value_de, ru: p.value_ru, ur: p.value_ur, tr: p.value_tr })[lang];
   const title = (d: (typeof items)[number]['data']) => {
     if (lang === 'ar') return d.title;
-    const local = { en: d.title_en, zh: d.title_zh, de: d.title_de, ru: d.title_ru, ur: d.title_ur }[lang];
+    const local = { en: d.title_en, zh: d.title_zh, de: d.title_de, ru: d.title_ru, ur: d.title_ur, tr: d.title_tr }[lang];
     return local ?? d.title_en ?? d.title;
   };
   // رؤوس الأعمدة من تسميات البنود المعتمدة نفسها (المواعيد/Hours/开放时间 …)
@@ -38,7 +38,7 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
     if (!h && !f) continue;
     if (h && !hoursHead && /^(المواعيد|Hours|开放时间|Öffnungszeiten|Часы работы|اوقات)$/.test(pickL(h) ?? '')) hoursHead = pickL(h);
     if (f && !feesHead) feesHead = pickL(f);
-    const hasOwn = lang === 'ar' || lang === 'en' || (lang === 'zh' && e.data.title_zh) || (lang === 'de' && e.data.title_de) || (lang === 'ru' && e.data.title_ru) || (lang === 'ur' && e.data.title_ur);
+    const hasOwn = lang === 'ar' || lang === 'en' || (lang === 'zh' && e.data.title_zh) || (lang === 'de' && e.data.title_de) || (lang === 'ru' && e.data.title_ru) || (lang === 'ur' && e.data.title_ur) || (lang === 'tr' && e.data.title_tr);
     // الفعالية الموسمية (category: experience — قرية النخيل) تُوسَم في خانة الاسم بوسم plan.tableEvent المعتمد
     // بلغة الصفحة (قرار 2026-10-23)؛ ولغةٌ بلا وسم تعرض الاسم عارياً كما كان.
     const eventTag = e.data.category === 'experience' ? (ui[lang] as Record<string, string>)['plan.tableEvent'] : undefined;

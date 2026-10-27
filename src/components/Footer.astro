@@ -23,9 +23,11 @@ const ru = lang === 'ru';
 // الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة والفعاليات تحت /ur/ (فروع صريحة: listBase وleisureBase ورابطا #name والثمار والمطبخ والخريطة والفعاليات)،
 // وكل رابط آخر يقع على الفرع الإنجليزي الأخير في سطره حتى يُبنى قسمه.
 const ur = lang === 'ur';
+// التركية: فهرس المعالم وحده مبنيّ تحت /tr/ (النواة)، وكل رابط آخر إلى الإنجليزية.
+const tr = lang === 'tr';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
 const showGuides = (ar || lang === 'en') && (await guidesListed());
-const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
+const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : tr ? '/tr/attractions/' : '/en/attractions/';
 const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : ur ? '/ur/souqs-parks-farms/' : '/en/souqs-parks-farms/';
 const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : ur ? '/ur/plan-your-trip/' : '/en/plan-your-trip/';
 const cols = [
@@ -41,7 +43,7 @@ const cols = [
       { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : ur ? '/ur/restaurants-cafes/' : '/en/restaurants-cafes/' },
       { label: t('nav.stay'), href: ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : '/en/stay/' },
       { label: t('foot.l.events'), href: ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : '/en/events/' },
-      { label: t('nav.trails'), href: ar ? '/trails/' : `/${lang}/trails/` },
+      { label: t('nav.trails'), href: ar ? '/trails/' : tr ? '/en/trails/' : `/${lang}/trails/` },
       // دليل المتاجر الإلكترونية (أُعلن 2026-10-09) — في التذييل لا الترويسة: الشريط مقيس إلى حدّه.
       // التسمية عنوان الصفحة المعتمد (title_tag) بلغتها، فلا نصّ جديد يُكتب لـzh/de/ru خارج الخطوط.
       ...(storesLangs.includes(lang) ? [{ label: storesPage(lang).seo.title_tag, href: storesHref(lang) }] : []),

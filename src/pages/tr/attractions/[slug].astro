@@ -1,0 +1,8 @@
+---
+// صفحات المعالم التركية (tr-TR) — للمعالم الحاملة title_tr المعتمد من خط tr-translation-pipeline.
+import DetailView from '../../../components/views/DetailView.astro';
+import { attractionPagesBy } from '../../../lib/attraction-pages';
+export const getStaticPaths = () => attractionPagesBy('title_tr');
+const { entry, alt } = Astro.props;
+---
+<DetailView entry={entry} lang="tr" alt={alt} />

@@ -54,8 +54,10 @@ export type KbEntry = {
   stops?: L[];
 };
 
-const L_ALL = LANGS;
-const SUF: Record<Lang, string> = { ar: '', en: '_en', zh: '_zh', de: '_de', ru: '_ru', ur: '_ur' };
+// التركية خارج قاعدة المعرفة حتى تمرّ دفعة المستشار بخطها: المستشار على /tr/ يحاور بالإنجليزية
+// (Advisor.astro)، ولا تُكتب له مداخل تركية قبل ذلك.
+const L_ALL = LANGS.filter((l) => l !== 'tr');
+const SUF: Record<Lang, string> = { ar: '', en: '_en', zh: '_zh', de: '_de', ru: '_ru', ur: '_ur', tr: '_tr' };
 
 /** يجمع حقل `base` بلواحق اللغات من كائن بيانات (title, title_en, title_zh …) */
 function pick(data: Record<string, unknown>, base: string, langs: readonly Lang[] = L_ALL): L {
@@ -129,8 +131,8 @@ function attractionEntry(e: Att): KbEntry {
 }
 
 // ── المطاعم والمقاهي وأماكن الإقامة ──────────────────────────────────────────
-const DINE_INDEX: Record<Lang, string> = { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', ur: '/ur/restaurants-cafes/' };
-const STAY_INDEX: Record<Lang, string> = { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', ur: '/ur/stay/' };
+const DINE_INDEX: Record<Lang, string> = { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', ur: '/ur/restaurants-cafes/', tr: '/en/restaurants-cafes/' };
+const STAY_INDEX: Record<Lang, string> = { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', ur: '/ur/stay/', tr: '/en/stay/' };
 
 function diningEntry(e: CollectionEntry<'dining'>): KbEntry {
   const d = e.data as unknown as Record<string, unknown>;
@@ -231,9 +233,9 @@ function trailEntries(): KbEntry[] {
 }
 
 // ── المطبخ والثمار: بطاقاتهما بلغة كل نسخة، والرابط صفحة القسم ───────────────
-const FOOD_INDEX: Record<Lang, string> = { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/' };
-const FRUITS_INDEX: Record<Lang, string> = { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', de: '/de/fruits/', ru: '/ru/fruits/', ur: '/ur/fruits/' };
-const DISHES: Record<Lang, DishGroup[]> = { ar: DISH_GROUPS_AR, en: DISH_GROUPS_EN, zh: DISH_GROUPS_ZH, de: DISH_GROUPS_DE, ru: DISH_GROUPS_RU, ur: DISH_GROUPS_UR };
+const FOOD_INDEX: Record<Lang, string> = { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/', tr: '/en/food/' };
+const FRUITS_INDEX: Record<Lang, string> = { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', de: '/de/fruits/', ru: '/ru/fruits/', ur: '/ur/fruits/', tr: '/en/fruits/' };
+const DISHES: Record<Lang, DishGroup[]> = { ar: DISH_GROUPS_AR, en: DISH_GROUPS_EN, zh: DISH_GROUPS_ZH, de: DISH_GROUPS_DE, ru: DISH_GROUPS_RU, ur: DISH_GROUPS_UR, tr: DISH_GROUPS_EN };
 
 function dishEntries(): KbEntry[] {
   // الطبق يُعرَّف بترتيبه داخل القائمة؛ القوائم بكل لغة بالترتيب نفسه (مصدر واحد، dishes.ts)
@@ -301,7 +303,7 @@ function storesPageSummary(n: number): L {
 
 // ── صفحات الأقسام: الروابط كما يبنيها الشريط العلوي (Header.astro) ────────────
 const SECTION = (ar: string, latin: string): Record<Lang, string> => ({
-  ar, en: `/en/${latin}`, zh: `/zh/${latin}`, de: `/de/${latin}`, ru: `/ru/${latin}`, ur: `/ur/${latin}`,
+  ar, en: `/en/${latin}`, zh: `/zh/${latin}`, de: `/de/${latin}`, ru: `/ru/${latin}`, ur: `/ur/${latin}`, tr: `/en/${latin}`,
 });
 function pageEntries(): KbEntry[] {
   // الاسم من مفتاح ui.ts بكل لغة له فيها نصّ معتمد (zh/de/ru/ur مرّت بخطوطها)، والإنجليزية احتياط الدالة

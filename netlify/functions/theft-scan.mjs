@@ -34,7 +34,7 @@ async function serperSearch(phrase, lang, apiKey) {
       q: `"${phrase}" -site:visit-alahsa.com`,
       gl: 'sa',
       // لغة الواجهة تتبع لغة العبارة: الصينية بواجهة zh-cn والألمانية de والروسية ru
-      hl: { ar: 'ar', zh: 'zh-cn', de: 'de', ru: 'ru', ur: 'ur' }[lang] ?? 'en',
+      hl: { ar: 'ar', zh: 'zh-cn', de: 'de', ru: 'ru', ur: 'ur', tr: 'tr' }[lang] ?? 'en',
       num: 10,
     }),
   })

@@ -198,7 +198,7 @@ const jsonLd = [
       const listEl = document.getElementById('map-list');
       const lis = listEl ? Array.from(listEl.children) : [];
       // تطبيع البحث: بلا تشكيل، وتوحيد الهمزات والألف المقصورة (جواثى=جواثا) والتاء المربوطة
-      const norm = (s) => (s || '').toLowerCase()
+      const norm = (s) => (s || '').toLocaleLowerCase(document.documentElement.lang || undefined)
         .replace(/[ً-ْـ]/g, '')
         .replace(/[أإآى]/g, 'ا').replace(/ة/g, 'ه');
       const fmt = (n) => String(n); // الأرقام لاتينية في اللغتين

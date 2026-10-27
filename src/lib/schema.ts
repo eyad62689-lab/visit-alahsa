@@ -25,6 +25,7 @@ const ORG_DESC: Record<Lang, string> = {
   de: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
   ru: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
   ur: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
+  tr: 'An independent initiative: a digital travel guide to Al-Ahsa Governorate, Saudi Arabia — not a government body and not affiliated with any official authority.',
 };
 export const ORG_EMAIL = 'info@visit-alahsa.com';
 /** واتساب الموقع — الرقم لا يُعرض نصاً في أي صفحة، يُضمَّن في الرابط فقط. */
@@ -90,6 +91,8 @@ export const UNESCO_WHS_ID = {
 // والأوردية من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12): الاسم مركّباً بالإضافة الأوردية.
 const OASIS_NAME: Record<Lang, string> = {
   ar: 'واحة الأحساء', en: 'Al-Ahsa Oasis', zh: '哈萨绿洲', de: 'Al-Ahsa-Oase', ru: 'оазис Аль-Ахса', ur: 'الاحساء کا نخلستان',
+  // التركية: الإنجليزية حتى تمرّ دفعة واجهتها بخطها
+  tr: 'Al-Ahsa Oasis',
 };
 
 /** عقدة الواحة كموقع تراث عالمي — تُدرج في isPartOf لكل معلم يحمل معرّف مكوّن. */

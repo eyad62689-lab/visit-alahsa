@@ -16,7 +16,7 @@ import { isUnlisted } from '../i18n/unlisted';
 import { TRAILS } from '../data/trails';
 import { trailAlt, trailsIndexAlt } from '../lib/trails';
 
-type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; ur?: string; lastmod?: string };
+type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string; lastmod?: string };
 
 export const GET: APIRoute = async ({ site }) => {
   const base = site ?? new URL('https://visit-alahsa.com');
@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ site }) => {
   // وإلا حملت /ur/stay/<slug>/ hreflang="ur" وغابت عن الخريطة (يحرسه C75).
   const facilityPairs = (
     e: { body?: string; filePath?: string; data: { blurb: string; blurb_en: string; body_en: string } },
-    a: { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string },
+    a: { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string },
   ): Pair[] => {
     const w = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
     const bodyAr = (e.body ?? '').trim();
@@ -47,19 +47,20 @@ export const GET: APIRoute = async ({ site }) => {
     const okEn = w(e.data.body_en) >= 100 && e.data.body_en.trim() !== e.data.blurb_en;
     if (!okAr && !okEn) return [];
     const lastmod = e.filePath ? dateOf(e.filePath) : undefined;
-    if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.zh ? { zh: a.zh } : {}), ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), ...(a.ur ? { ur: a.ur } : {}), lastmod }];
+    if (okAr && okEn) return [{ ar: a.ar, en: a.en, ...(a.zh ? { zh: a.zh } : {}), ...(a.de ? { de: a.de } : {}), ...(a.ru ? { ru: a.ru } : {}), ...(a.ur ? { ur: a.ur } : {}), ...(a.tr ? { tr: a.tr } : {}), lastmod }];
     const out: Pair[] = [{ ar: okAr ? a.ar : a.en, lastmod }];
     // لغات zh/de/ru/ur لا تحتاج العتبة العربية: متى عبر الإنجليزي بنيت فتدخل منفردةً (غير المعلَن في unlisted.ts يُستبعد)
-    if (okEn) for (const l of ['zh', 'de', 'ru', 'ur'] as const) if (a[l] && !isUnlisted(a[l]!)) out.push({ ar: a[l]!, lastmod });
+    if (okEn) for (const l of ['zh', 'de', 'ru', 'ur', 'tr'] as const) if (a[l] && !isUnlisted(a[l]!)) out.push({ ar: a[l]!, lastmod });
     return out;
   };
 
   // أزواج (عربي/إنجليزي/صيني اختياري) — تُستبعد «رحلتي» الشخصية (noindex).
   // zh/de/ru/ur ترد من attractionAlt حين يحمل المعلم ترجمةً معتمدة بتلك اللغة.
+  // التركية: فهرس المعالم وصفحات المعالم الحاملة title_tr وحدها (النواة)؛ ولا رئيسية /tr/ بعد.
   // الأوردو: الرئيسية وفهرسا المعالم والأسواق وصفحات الثمار والمطبخ والخريطة والفعاليات (وصفحاتها المفردة) لها صفّ ur هنا؛ وما عداها بلا صفحة أوردية فلا يُعلَن.
   const pairs: Pair[] = [
     { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/', lastmod: dateOf(`${V}HomeChaptersView.astro`, 'src/data/home-copy.ts', 'src/data/home-chapters.ts', 'src/i18n/ui.ts', ...attractionFiles) },
-    { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/', ur: '/ur/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
+    { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/', ur: '/ur/attractions/', tr: '/tr/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', de: '/de/souqs-parks-farms/', ru: '/ru/souqs-parks-farms/', ur: '/ur/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', de: '/de/map/', ru: '/ru/map/', ur: '/ur/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
@@ -124,7 +125,7 @@ export const GET: APIRoute = async ({ site }) => {
   // الصفحات غير المعلَنة (src/i18n/unlisted.ts) تُحذف من أزواجها: لا تدخل الخريطة
   // ولا تُذكر بديلاً لنظيراتها (الخطوة 5 من خطة التفاعل العالمي)
   for (const p of pairs) {
-    for (const k of ['zh', 'de', 'ru', 'ur'] as const) if (p[k] && isUnlisted(p[k]!)) delete p[k];
+    for (const k of ['zh', 'de', 'ru', 'ur', 'tr'] as const) if (p[k] && isUnlisted(p[k]!)) delete p[k];
   }
   const lm = (p: Pair) => (p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : '');
   const alts = (p: Pair) => {
@@ -136,6 +137,7 @@ export const GET: APIRoute = async ({ site }) => {
       (p.de ? `\n    <xhtml:link rel="alternate" hreflang="de" href="${abs(p.de)}"/>` : '') +
       (p.ru ? `\n    <xhtml:link rel="alternate" hreflang="ru" href="${abs(p.ru)}"/>` : '') +
       (p.ur ? `\n    <xhtml:link rel="alternate" hreflang="ur" href="${abs(p.ur)}"/>` : '') +
+      (p.tr ? `\n    <xhtml:link rel="alternate" hreflang="tr" href="${abs(p.tr)}"/>` : '') +
       `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(p.ar)}"/>`
     );
   };
@@ -148,6 +150,7 @@ export const GET: APIRoute = async ({ site }) => {
     if (p.de) urls.push(`  <url><loc>${abs(p.de)}</loc>${lm(p)}${alts(p)}</url>`);
     if (p.ru) urls.push(`  <url><loc>${abs(p.ru)}</loc>${lm(p)}${alts(p)}</url>`);
     if (p.ur) urls.push(`  <url><loc>${abs(p.ur)}</loc>${lm(p)}${alts(p)}</url>`);
+    if (p.tr) urls.push(`  <url><loc>${abs(p.tr)}</loc>${lm(p)}${alts(p)}</url>`);
   }
 
   const xml =

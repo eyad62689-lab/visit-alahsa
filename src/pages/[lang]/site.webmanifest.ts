@@ -8,7 +8,7 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import type { Lang } from '../../i18n/ui';
 import { dir, htmlLang, useTranslations } from '../../i18n/utils';
 
-const LANGS: Lang[] = ['en', 'zh', 'de', 'ru', 'ur'];
+const LANGS: Lang[] = ['en', 'zh', 'de', 'ru', 'ur', 'tr'];
 
 export const getStaticPaths: GetStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 
