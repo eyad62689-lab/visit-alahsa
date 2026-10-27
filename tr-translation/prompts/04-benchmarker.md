@@ -14,7 +14,7 @@ You are a comparative reviewer. Benchmark the text against the register of Turki
 - Verify every proper noun against `glossary/termbase.json`. Any name not yet in it: verify it against sources 1–4, then add it **with suffix vowel, example suffix and source** before finalizing. Rendered from the Arabic, never from the English. No name enters the text unsourced.
 - **Open calibration items (P1–P12 in `_meta.open_items`):** for every name or form whose entry carries no explicit ruling, flag the question with both candidate forms — do not decide it silently in the text.
 - **Fact fence (the main job of this stage):** diff the text against the English source and the Arabic authority. Delete every fact, number, superlative, tip or claim that stage 3 introduced and the source does not carry. List each deletion.
-- Check that the exonyms are applied as the termbase records them, and that the Gulf is `Körfez` with no qualifier — never `Basra Körfezi`, never `Arap Körfezi` (P5).
+- Check that the exonyms are applied as the termbase records them, and that the Gulf is `Arap Körfezi` (ruling P5, owner decision) — never `Basra Körfezi`.
 - Spot-check for ASCII-stripped Turkish letters and `i`/`İ` case errors — the exhaustive scan is stage 5's, but an error you see is an error you fix.
 
 **Output:** the polished page + two short lists: (a) changed sentences (before→after), (b) facts removed by the fence, with where they came from — and, where raised, the open calibration items with both candidate forms, marked as open.
