@@ -25,7 +25,7 @@ description: خط إنتاج الترجمة الألمانية لموقع زور
 - **Durchkopplung**: اسم علم + اسم جنس بشرطة واصلة (`Jawatha-Moschee`، `Al-Ahsa-Oase`، `Al-Asfar-See`). المسافة المجرّدة خطأ إملائي.
 - لا تكرار لاسم الجنس: `Qarah-Berg` أو `Jabal al-Qarah` — لا `Jabal-al-Qarah-Berg`؛ و`Souq` لا `Souq-Markt`.
 - **كل مدخل termbase يحمل جنسه** (der/die/das)، والنص يلتزمه عبر الصفحات كلها.
-- الخليج = `die Golfregion` / `der Golf` فقط. اللومي = `die Limette` لا `Zitrone`. رأس الاسم = `Al-Ahsa`.
+- الخليج = `der Arabische Golf` · `die Küste des Arabischen Golfs` · `die Region am Arabischen Golf` · `die Länder am Arabischen Golf`؛ كل إحالة إلى الخليج تحمل الوصف، والمستثنى علم الشارع «طريق الخليج» والاسم الرسمي لمجلس التعاون (قرار إياد O-GULF، 2026-10-27؛ الحارس C76). لا `Golfregion` ولا `Golfküste` ولا `Persischer Golf`. اللومي = `die Limette` لا `Zitrone`. رأس الاسم = `Al-Ahsa`.
 - أرقام لاتينية بفاصلة عشرية ونقطة آلاف؛ التواريخ `21. Juni 2026`؛ الأوقات `10:00–17:00 Uhr`؛ التقويم `962 n. H. (1555 n. Chr.)`.
 - الگلوس **مرة لكل مصطلح في الصفحة** عند أول ورود في المتن — لا في العنوان.
 - ممنوع Denglisch: `Spot`، `Location`، `Must-see`، `Hotspot`، `Guide`؛ و`Highlight` مرة واحدة على الأكثر.

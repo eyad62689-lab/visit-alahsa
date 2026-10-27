@@ -86,7 +86,7 @@ export const TEMPLATES: Record<string, Template> = {
     note: ASFAR_NOTE,
   },
   'nature-3': {
-    title: { ar: 'ثلاثة أيام تنتهي على ساحل الخليج', en: 'Three days ending on the Gulf coast', zh: '三天，终点在海湾之滨', de: 'Drei Tage, die an der Golfküste enden', ru: 'Три дня, которые завершаются на побережье Залива', ur: 'تین دن، جو خلیج کے ساحل پر ختم ہوتے ہیں' },
+    title: { ar: 'ثلاثة أيام تنتهي على ساحل الخليج', en: 'Three days ending on the Gulf coast', zh: '三天，终点在阿拉伯湾之滨', de: 'Drei Tage, die an der Küste des Arabischen Golfs enden', ru: 'Три дня, которые завершаются на побережье Арабского залива', ur: 'تین دن، جو خلیج عرب کے ساحل پر ختم ہوتے ہیں' },
     days: NATURE,
     note: ASFAR_NOTE,
   },

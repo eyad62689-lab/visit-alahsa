@@ -533,7 +533,7 @@ const TEXT_ZH: TranslatedTexts = {
     season: '斋月（拉马丹）', time: '斋月期间', span: '贯穿斋月（夜间举行）',
     org: '费萨尔国王大学',
     acts: ['戏剧演出', '儿童乐园', '卡夫互动厨房', '“盖布加”晚宴（斋月夜间聚餐）'],
-    intro: '卡夫之夜（Kafu Nights）是一年一度的斋月社区节庆，由费萨尔国王大学在哈萨县主办，首届于 2024 年举行。“卡夫”一词源自阿拉伯语动词，意为“受到奖赏”，即赢得奖赏与赞誉。卡夫之夜的亮点活动之一是“盖布加”晚宴。“盖布加”是海湾阿拉伯国家的一种民间聚餐与社交习俗，在神圣斋月的夜晚举行。',
+    intro: '卡夫之夜（Kafu Nights）是一年一度的斋月社区节庆，由费萨尔国王大学在哈萨县主办，首届于 2024 年举行。“卡夫”一词源自阿拉伯语动词，意为“受到奖赏”，即赢得奖赏与赞誉。卡夫之夜的亮点活动之一是“盖布加”晚宴。“盖布加”是阿拉伯湾国家的一种民间聚餐与社交习俗，在神圣斋月的夜晚举行。',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -569,7 +569,7 @@ const TEXT_ZH: TranslatedTexts = {
         h: '什么是哈萨青柠？',
         ps: [
           '哈萨青柠（本地品种名 Bin Zuhairi）果实小巧，色泽深绿，皮薄汁多，酸味强劲，香气馥郁独特，在众多柑橘类水果中自成一格。它是哈萨仅次于椰枣的第二大农产品：绿洲里生长着 10 万余棵挂果的青柠树，每棵每季可产 25 至 30 公斤。',
-          '围绕这种果实，还流传着一项地道的哈萨夏日习俗：家家户户齐聚一堂，榨汁封存，汁液经日晒陈放（当地称“贾米德”，jameed），以备全年取用——无论鲜食、榨汁还是晒干入馔，都是哈萨与海湾菜肴中不可或缺的风味。',
+          '围绕这种果实，还流传着一项地道的哈萨夏日习俗：家家户户齐聚一堂，榨汁封存，汁液经日晒陈放（当地称“贾米德”，jameed），以备全年取用——无论鲜食、榨汁还是晒干入馔，都是哈萨与阿拉伯湾地区菜肴中不可或缺的风味。',
         ],
       },
       {
@@ -649,7 +649,7 @@ const TEXT_RU: TranslatedTexts = {
     season: 'Священный месяц Рамадан', time: 'В Рамадан', span: 'Продлённые ночи Рамадана',
     org: 'Университет короля Фейсала',
     acts: ['Театральные представления', 'Детская зона', 'Интерактивная кухня Кафу', 'Ужин «Габка»'],
-    intro: '«Ночи Кафу» — ежегодный общественный фестиваль, приуроченный к Рамадану; его организует Университет короля Фейсала в мухафазе (административном округе) Аль-Ахса. Впервые фестиваль прошёл в 2024 году. Слово «Кафу» происходит от арабского глагола со значением «быть вознаграждённым», то есть заслужить награду и похвалу. Среди ключевых моментов этих ночей — «Габка», народная трапеза и общественный обычай: её устраивают ночами священного месяца Рамадан в арабских странах Залива.',
+    intro: '«Ночи Кафу» — ежегодный общественный фестиваль, приуроченный к Рамадану; его организует Университет короля Фейсала в мухафазе (административном округе) Аль-Ахса. Впервые фестиваль прошёл в 2024 году. Слово «Кафу» происходит от арабского глагола со значением «быть вознаграждённым», то есть заслужить награду и похвалу. Среди ключевых моментов этих ночей — «Габка», народная трапеза и общественный обычай: её устраивают ночами священного месяца Рамадан в странах Арабского залива.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -708,7 +708,7 @@ const TEXT_RU: TranslatedTexts = {
         h: 'Что такое лайм Аль-Ахсы?',
         ps: [
           'Лайм Аль-Ахсы — сорт, также известный под названием «Бин Зухайри» и часто называемый лимоном Аль-Ахсы, — маленький тёмно-зелёный цитрус с тонкой кожурой, обильным соком, резкой кислинкой и характерным ароматом, который отличает его от прочих цитрусовых. Это вторая после фиников сельскохозяйственная культура Аль-Ахсы: в оазисе растёт более 100 000 плодоносящих деревьев лайма, и одно дерево даёт за сезон 25–30 кг.',
-          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: высушенный на солнце и выдержанный лаймовый сок) и пользоваться им весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Залива.',
+          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: высушенный на солнце и выдержанный лаймовый сок) и пользоваться им весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Арабского залива.',
         ],
       },
     ],
@@ -755,7 +755,7 @@ const TEXT_DE: TranslatedTexts = {
     season: 'Heiliger Ramadan', time: 'Während des Ramadan', span: 'Verlängerte Ramadan-Nächte',
     org: 'König-Faisal-Universität',
     acts: ['Theateraufführungen', 'Kinderbereich', 'Interaktive Kafu-Küche', '„Ghabqa“-Abendessen'],
-    intro: 'Die Kafu-Nächte sind ein jährliches Gemeinschaftsfestival im Ramadan, das die König-Faisal-Universität im Gouvernorat Al-Ahsa veranstaltet; erstmals fand das Festival 2024 statt. „Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Kafu-Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den arabischen Ländern der Golfregion gepflegt wird.',
+    intro: 'Die Kafu-Nächte sind ein jährliches Gemeinschaftsfestival im Ramadan, das die König-Faisal-Universität im Gouvernorat Al-Ahsa veranstaltet; erstmals fand das Festival 2024 statt. „Kafu“ geht auf ein arabisches Verb zurück, das „belohnt werden“ bedeutet: Lohn und Lob ernten. Zu den Höhepunkten der Kafu-Nächte gehört die „Ghabqa“, eine volkstümliche Mahlzeit und gesellschaftliche Sitte, die in den Nächten des heiligen Monats Ramadan in den Ländern am Arabischen Golf gepflegt wird.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -784,7 +784,7 @@ const TEXT_DE: TranslatedTexts = {
         h: 'Was ist die Hasawi-Lomi?',
         ps: [
           'Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.',
-          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Hasawi- und Golfküche. Der sonnengetrocknete und gereifte Lomi-Saft heißt „Jameed“.',
+          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Küche Al-Ahsas und der Region am Arabischen Golf. Der sonnengetrocknete und gereifte Lomi-Saft heißt „Jameed“.',
         ],
       },
     ],
@@ -868,7 +868,7 @@ const TEXT_UR: TranslatedTexts = {
     span: 'رمضان کی کئی راتیں',
     org: 'شاہ فیصل یونیورسٹی',
     acts: ['اسٹیج ڈرامے', 'بچوں کے لیے مخصوص حصہ', '“کَفو” کا باورچی خانہ', '“غبقہ” کا کھانا'],
-    intro: '“کَفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہے۔ اسے الاحساء میں شاہ فیصل یونیورسٹی منعقد کرتی ہے، اور یہ میلہ پہلی بار 2024 میں لگا۔ “کَفو” عربی کے ایک فعل سے نکلا ہے جس کا مطلب ہے “صلہ پانا”، یعنی انعام اور تعریف حاصل کرنا۔ ان راتوں کی نمایاں سرگرمیوں میں “غبقہ” بھی شامل ہے۔ یہ خلیجی عرب ممالک میں رمضان المبارک کی راتوں کا ایک مقبول کھانا اور سماجی رسم ہے۔',
+    intro: '“کَفو” کی راتیں رمضان کا ایک سالانہ عوامی میلہ ہے۔ اسے الاحساء میں شاہ فیصل یونیورسٹی منعقد کرتی ہے، اور یہ میلہ پہلی بار 2024 میں لگا۔ “کَفو” عربی کے ایک فعل سے نکلا ہے جس کا مطلب ہے “صلہ پانا”، یعنی انعام اور تعریف حاصل کرنا۔ ان راتوں کی نمایاں سرگرمیوں میں “غبقہ” بھی شامل ہے۔ یہ خلیج عرب کے ممالک میں رمضان المبارک کی راتوں کا ایک مقبول کھانا اور سماجی رسم ہے۔',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -906,7 +906,7 @@ const TEXT_UR: TranslatedTexts = {
         h: 'الاحساء کا لیموں کیا ہے؟',
         ps: [
           'الاحساء کا لیموں چھوٹا، گہرا ہرا اور پتلے چھلکے والا ترشاوہ پھل ہے، جو رس سے بھرا ہوتا ہے۔ اس کا ذائقہ خوب کھٹا ہوتا ہے اور خوشبو اتنی تیز ہوتی ہے کہ یہ باقی تمام ترشاوہ پھلوں سے الگ پہچانا جاتا ہے۔ کھجور کے بعد یہ الاحساء کی دوسری بڑی زرعی پیداوار ہے: نخلستان میں پھل دینے والے لیموں کے 1 لاکھ سے زیادہ درخت ہیں، اور ایک درخت ایک موسم میں 25 سے 30 کلوگرام پھل دیتا ہے۔',
-          'اس سے گرمیوں کی ایک پرانی اور عزیز روایت جڑی ہے: خاندان مل بیٹھ کر اس کا رس نچوڑتے اور سال بھر کے لیے محفوظ کرتے ہیں، تاکہ اسے تازہ، رس کی صورت میں یا خشک کر کے الاحساء اور خلیج کے کھانوں میں استعمال کریں۔',
+          'اس سے گرمیوں کی ایک پرانی اور عزیز روایت جڑی ہے: خاندان مل بیٹھ کر اس کا رس نچوڑتے اور سال بھر کے لیے محفوظ کرتے ہیں، تاکہ اسے تازہ، رس کی صورت میں یا خشک کر کے الاحساء اور خلیج عرب کے کھانوں میں استعمال کریں۔',
         ],
       },
     ],

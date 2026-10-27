@@ -12,7 +12,7 @@ faq:
   - q: "Wie viele Tage sollte ich für Al-Ahsa einplanen?"
     a: "Zwei Tage decken die wichtigsten Sehenswürdigkeiten ab: an einem Tag das historische Herz der Stadt Hofuf, am anderen Natur, Wasser und Küste der Oase Al-Ahsa. Ein einzelner, gut geplanter Tag reicht für das Wesentliche; drei Tage lassen Raum für Museen, Parks und wöchentliche Souks."
   - q: "Brauche ich ein Auto für einen Besuch in Al-Ahsa?"
-    a: "Das Auto ist die praktische Wahl, um Al-Ahsa zu erkunden: Manche Sehenswürdigkeiten liegen mitten in Hofuf, andere am Rand der Oase und an der Golfküste Saudi-Arabiens. Die Merkliste dieser Website macht aus Ihren gewählten Stationen eine fertige Route, die sich in Google Maps öffnet."
+    a: "Das Auto ist die praktische Wahl, um Al-Ahsa zu erkunden: Manche Sehenswürdigkeiten liegen mitten in Hofuf, andere am Rand der Oase und an der Küste Saudi-Arabiens am Arabischen Golf. Die Merkliste dieser Website macht aus Ihren gewählten Stationen eine fertige Route, die sich in Google Maps öffnet."
 ---
 
 Die kurze Antwort: **ja** – und zwar aus Gründen, die kein anderes Reiseziel in Saudi-Arabien vorweisen kann. Al-Ahsa ist die **größte Oase der Welt** und wurde **2018 in die UNESCO-Welterbeliste aufgenommen**. Zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert hier das Leben, und unter dem Sand fließt seit Jahrtausenden Wasser. Schon der Name erzählt die Geschichte: *Al-Ahsa* ist der Plural von *hisy* – dem Süßwasser, das sich unter einer dünnen Sandschicht sammelt und dort hervorquillt, wo es niemand erwartet.
@@ -29,7 +29,7 @@ Im Folgenden lesen Sie, was diesen Ort wirklich auszeichnet – und wie Sie beur
 
 **Lebendiges Handwerk, keine Nachstellung.** In [Dougha Al-Gharash](/de/attractions/duqat-algharash/) am Fuß des Qarah-Bergs dreht die Familie Al-Gharash noch immer den Ton – in einer der bekanntesten Stätten des Töpferhandwerks in Saudi-Arabien.
 
-**Wo die Wüste auf das Meer trifft.** In [Al-Uqair](/de/attractions/al-uqair/), dem ersten Seehafen an der Ostküste Saudi-Arabiens, hebt sich der weiße Sand kurz vor Sonnenuntergang leuchtend vom Blau des Golfs ab.
+**Wo die Wüste auf das Meer trifft.** In [Al-Uqair](/de/attractions/al-uqair/), dem ersten Seehafen an der Ostküste Saudi-Arabiens, hebt sich der weiße Sand kurz vor Sonnenuntergang leuchtend vom Blau des Arabischen Golfs ab.
 
 ## Wie sich Al-Ahsa in eine Saudi-Arabien-Reise einfügt
 

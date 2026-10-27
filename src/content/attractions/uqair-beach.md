@@ -4,29 +4,29 @@ title_en: "Al-Uqair Beach"
 # الحقول الصينية: معتمدة من خط zh-translation-pipeline — دفعة المعالم 7 بدرجة 94/100 (2026-09-02)
 title_zh: 乌盖尔海滩
 kicker_zh: 自然景观
-summary_zh: "海水清浅、沙滩洁白，是海湾沿岸最古老的夏日度假胜地之一。"
-body_zh: "乌盖尔海滩（Al-Uqair）历史悠久，在海湾之滨铺展。这里海水清浅平静，沙滩洁白，沙丘相伴，是海湾沿岸历史最久的夏日度假地之一。一旁的乌盖尔古港，曾是哈萨通向大海的门户。海滩既适合家庭出游，也适合摄影爱好者取景，紧邻处还设有专供游客使用的遮阳棚与配套设施。"
+summary_zh: "海水清浅、沙滩洁白，是阿拉伯湾沿岸最古老的夏日度假胜地之一。"
+body_zh: "乌盖尔海滩（Al-Uqair）历史悠久，在阿拉伯湾之滨铺展。这里海水清浅平静，沙滩洁白，沙丘相伴，是阿拉伯湾沿岸历史最久的夏日度假地之一。一旁的乌盖尔古港，曾是哈萨通向大海的门户。海滩既适合家庭出游，也适合摄影爱好者取景，紧邻处还设有专供游客使用的遮阳棚与配套设施。"
 area_zh: 乌盖尔海岸——哈萨以东
 bestTime_zh: "清晨或下午稍晚以后，避开一天中最热的时段。"
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline — batch-de-6 بدرجة 91/100 (2026-09-12، الدورة 1 من 3)
 title_de: "Al-Uqair-Strand"
 kicker_de: "Naturlandschaft"
-summary_de: "Ein Strand mit klarem, flachem Wasser und weißem Sand – eines der ältesten Sommerziele am Golf."
-body_de: "An der Golfküste erstreckt sich der historische Al-Uqair-Strand mit ruhigem, flachem Wasser, weißem Sand und Dünen – eines der ältesten Sommerziele am Golf. Daneben liegt der historische Hafen von Al-Uqair, einst das Tor Al-Ahsas zum Meer. Der Strand eignet sich für Familien und für alle, die gern fotografieren; in direkter Nachbarschaft finden Sie Schattendächer und Einrichtungen für Besucher."
+summary_de: "Ein Strand mit klarem, flachem Wasser und weißem Sand – eines der ältesten Sommerziele am Arabischen Golf."
+body_de: "An der Küste des Arabischen Golfs erstreckt sich der historische Al-Uqair-Strand mit ruhigem, flachem Wasser, weißem Sand und Dünen – eines der ältesten Sommerziele am Arabischen Golf. Daneben liegt der historische Hafen von Al-Uqair, einst das Tor Al-Ahsas zum Meer. Der Strand eignet sich für Familien und für alle, die gern fotografieren; in direkter Nachbarschaft finden Sie Schattendächer und Einrichtungen für Besucher."
 area_de: "Küste von Al-Uqair – östlich von Al-Ahsa"
 bestTime_de: "Am frühen Morgen oder ab dem späten Nachmittag – außerhalb der größten Tageshitze."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline — دفعة المعالم 6 بدرجة 91/100 (2026-09-07، السجل في ru-translation/memory/scores.csv)
 title_ru: "Пляж Эль-Укайр"
 kicker_ru: "Природная достопримечательность"
-summary_ru: "Пляж с прозрачным мелководьем и белым песком — одно из старейших мест летнего отдыха в регионе Залива."
-body_ru: "Исторический пляж Эль-Укайр тянется вдоль берега Залива: спокойное мелководье, белый песок и дюны. Это одно из старейших мест летнего отдыха в регионе Залива. Рядом находится исторический порт Эль-Укайр, который был морскими воротами Аль-Ахсы. Пляж подходит семьям и любителям фотографии. По соседству устроены навесы и другие удобства для посетителей."
+summary_ru: "Пляж с прозрачным мелководьем и белым песком — одно из старейших мест летнего отдыха в регионе Арабского залива."
+body_ru: "Исторический пляж Эль-Укайр тянется вдоль берега Арабского залива: спокойное мелководье, белый песок и дюны. Это одно из старейших мест летнего отдыха в регионе Арабского залива. Рядом находится исторический порт Эль-Укайр, который был морскими воротами Аль-Ахсы. Пляж подходит семьям и любителям фотографии. По соседству устроены навесы и другие удобства для посетителей."
 area_ru: "Побережье Эль-Укайр, к востоку от Аль-Ахсы"
 bestTime_ru: "Ранним утром или ближе к вечеру, не в часы самого сильного зноя."
 # الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-15، الدفعة b16 — السجل في ur-translation/memory/scores.csv).
 title_ur: "العقیر کا ساحل سمندر"
 kicker_ur: "قدرتی مقام"
-summary_ur: "شفاف، کم گہرے پانی اور سفید ریت والا ایک ساحل سمندر، جو خلیج کے کنارے گرمیاں گزارنے کے سب سے پرانے مقامات میں سے ایک ہے۔"
-body_ur: "خلیج کے کنارے کنارے العقیر کا تاریخی ساحل سمندر پھیلا ہوا ہے، جہاں پرسکون، کم گہرا پانی، سفید ریت اور ریت کے ٹیلے ہیں۔ یہ خلیج کے کنارے گرمیاں گزارنے کے سب سے پرانے مقامات میں سے ایک ہے۔ اس کے پہلو میں العقیر کی تاریخی بندرگاہ ہے، جو کبھی سمندر کی طرف الاحساء کا دروازہ تھی۔ یہ ساحل خاندان کے ساتھ آنے والوں اور تصویر کشی کے شوقین لوگوں کے لیے موزوں ہے، اور اس کے برابر میں سیاحوں کے لیے مخصوص سائبان اور سہولتیں ہیں۔"
+summary_ur: "شفاف، کم گہرے پانی اور سفید ریت والا ایک ساحل سمندر، جو خلیج عرب کے کنارے گرمیاں گزارنے کے سب سے پرانے مقامات میں سے ایک ہے۔"
+body_ur: "خلیج عرب کے کنارے کنارے العقیر کا تاریخی ساحل سمندر پھیلا ہوا ہے، جہاں پرسکون، کم گہرا پانی، سفید ریت اور ریت کے ٹیلے ہیں۔ یہ خلیج عرب کے کنارے گرمیاں گزارنے کے سب سے پرانے مقامات میں سے ایک ہے۔ اس کے پہلو میں العقیر کی تاریخی بندرگاہ ہے، جو کبھی سمندر کی طرف الاحساء کا دروازہ تھی۔ یہ ساحل خاندان کے ساتھ آنے والوں اور تصویر کشی کے شوقین لوگوں کے لیے موزوں ہے، اور اس کے برابر میں سیاحوں کے لیے مخصوص سائبان اور سہولتیں ہیں۔"
 area_ur: "العقیر کا ساحل، الاحساء کے مشرقی حصے میں"
 bestTime_ur: "صبح سویرے، یا سہ پہر ڈھلنے کے بعد، جب گرمی اپنے عروج پر نہ ہو"
 slug_ar: "شاطئ-العقير"
