@@ -1,0 +1,29 @@
+{
+  "source_lang": "en",
+  "authority_lang": "ar",
+  "target_lang": "tr-TR",
+  "html_lang": "tr",
+  "dir": "ltr",
+  "url_prefix": "/tr/",
+  "pass_threshold": 90,
+  "max_correction_loops": 3,
+  "output_path_pattern": "src/pages/tr/{slug}",
+  "content_field_suffix": "_tr",
+  "batch_size": 5,
+  "address_form": "siz بصيغ التصريف المهذّبة (görebilirsiniz · gidin · ziyaret edin)؛ لا «sen» إطلاقاً، ولا «Siz» بحرف كبير داخل الجملة (العرف التركي المعاصر يكتب ضمير المخاطبة صغيراً).",
+  "orthography": "المعيار: دليل الإملاء لمجمع اللغة التركية (TDK Yazım Kılavuzu، ‏sozluk.gov.tr). الحروف التركية كاملة: ç ğ ı İ ö ş ü — لا تبسيط إلى ASCII. والزوج i/İ وı/I حرفان مستقلّان: لا تحويل حالة بـtoUpperCase/toLowerCase بلا محلّ tr. اللواحق على الأعلام بعلامة فصل (El-Ahsa'da) وشكلها بند معايرة P8.",
+  "numerals": "أرقام لاتينية 0-9 (قاعدة الموقع C4). الصيغة التركية: نقطة للآلاف «16.000» وفاصلة عشرية «2,5» — على سابقة الألمانية. والأوقات بند معايرة P10.",
+  "transliteration_source": "النقحرة تُبنى من الرسم العربي لا من title_en، على العرف التركي المستقر في نقل الأعلام العربية (ق←k · ج←c · ش←ş · خ←h · ذ/ث←z/s). علامات المد (â î û) وتمثيل العين والهمزة بند معايرة P4. ولكل اسم مصدر في termbase.",
+  "font_stack": "عائلات الموقع اللاتينية القائمة (Playfair Display · Lora · Cormorant Garamond · Marcellus) — لا عائلة جديدة؛ لكن مجموعة latin-ext غائبة (PLAN §٦ ②).",
+  "font_note": "Base.astro يستورد ملفات @fontsource/*/latin-*.css وحدها، وحروف ğ U+011F وĞ U+011E وş U+015F وŞ U+015E وİ U+0130 ليست فيها (latin يحمل ı U+0131 وحده). فبلا إصلاح يسقط المتصفح إلى Georgia/Lora Fallback حرفاً حرفاً وسط الكلمة. الحل على سابقة السيريلية في fonts.css: نسخ ملفات latin-ext-*.woff2 من الحزم المثبّتة إلى public/fonts وإعلانها بـunicode-range فلا تُنزَّل إلا حين يظهر حرف منها. لا حزمة npm جديدة.",
+  "score_rule": "درجة الدفعة = أدنى درجة صفحة فيها (سابقة الخطوط الأربعة)",
+  "stages": [
+    "01-translator",
+    "02-editor",
+    "03-localizer",
+    "04-benchmarker",
+    "05-proofreader",
+    "06-blind-reader",
+    "07-judge"
+  ]
+}
