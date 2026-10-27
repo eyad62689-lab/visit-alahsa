@@ -22,7 +22,7 @@ const EDITS = [
   [A + 'qasr-ibrahim.md', '(timber once imported to the Gulf)', '(timber once imported to the Arabian Gulf)', 1],
   [A + 'qasr-ibrahim.md', 'in the traditional Gulf manner', 'in the traditional manner of the Arabian Gulf', 1],
   [A + 'qaisariyah.md', 'storied souqs in the Gulf', 'storied souqs in the Arabian Gulf region', 2],
-  [A + 'qaisariyah.md', 'among the Gulf’s oldest souqs', 'among the Arabian Gulf’s oldest souqs', 2] // الإجابة محدودة بـ45 كلمة,
+  [A + 'qaisariyah.md', 'among the Gulf’s oldest souqs', 'among the Arabian Gulf’s oldest souqs', 2], // الإجابة محدودة بـ45 كلمة
   [A + 'salwa-beach.md', 'among the finest on the Gulf', 'among the finest on the Arabian Gulf', 1],
   [A + 'uqair-beach.md', "one of the Gulf's oldest summer destinations", "one of the Arabian Gulf's oldest summer destinations", 1],
   [A + 'uqair-beach.md', 'oldest summer destinations on the Gulf', 'oldest summer destinations on the Arabian Gulf', 2],
