@@ -11,7 +11,7 @@ heroImage: /img/fruits/lomi-v2
 tags: ["Hasawi lime", "Hasawi lomi", "Hasawi Lomi Exhibition", "Al-Ahsa fruits"]
 faq:
   - q: "How does the Hasawi lomi differ from a regular lemon or lime?"
-    a: "It is smaller, thinner-skinned, juicier and far more aromatic than other citrus, and it is used fresh, as juice, and dried in Hasawi and Gulf cooking."
+    a: "It is smaller, thinner-skinned, juicier and far more aromatic than other citrus, and it is used fresh, as juice, and dried in Hasawi and Arabian Gulf cooking."
   - q: "When is the Hasawi lime in season?"
     a: "Its season is summer, running from around mid-June to the end of August — the same season in which Hasawi families gather to press and preserve it for the whole year."
   - q: "What is jameed?"
@@ -36,7 +36,7 @@ The lomi's season is summer, running **from around mid-June to the end of August
 
 ## From Tree to Pantry: Jameed, the Sun-Dried Lime Juice
 
-A cherished Hasawi summer custom surrounds the lomi: in its season, families gather to press and preserve it — the practice known as **"jameed"**: lime juice sun-dried and aged in glass jars — laying in a supply for the whole year. It is used fresh, as juice, and dried, perfuming the dishes of Hasawi and Gulf cooking all year round.
+A cherished Hasawi summer custom surrounds the lomi: in its season, families gather to press and preserve it — the practice known as **"jameed"**: lime juice sun-dried and aged in glass jars — laying in a supply for the whole year. It is used fresh, as juice, and dried, perfuming the dishes of Hasawi and Arabian Gulf cooking all year round.
 
 ## In the Hasawi Kitchen
 

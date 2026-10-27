@@ -8,7 +8,7 @@ import { checkUrRound1Rulings } from '../../tools/check-ur-text.mjs';
 const R = process.argv[2] || '.';
 const list = (d, acc = []) => { for (const f of readdirSync(d)) { const p = join(d, f); if (statSync(p).isDirectory()) list(p, acc); else if (f.endsWith('.html')) acc.push(p); } return acc; };
 const load = (lg) => list(join(R, 'dist', lg)).map((f) => ({ rel: relative(join(R, 'dist'), f).split('\\').join('/'), lang: lg, html: readFileSync(f, 'utf8') }));
-const pages = ['zh', 'de', 'ru'].flatMap(load);
+const pages = ['en', 'zh', 'de', 'ru'].flatMap(load);
 const ur = load('ur');
 const tb = JSON.parse(readFileSync(join(R, 'ur-translation/glossary/termbase.json'), 'utf8'));
 const urGulf = (ps) => checkUrRound1Rulings(ps, tb).find((r) => r.id === 'P5').problems.length;
@@ -26,6 +26,8 @@ const inject = (set, lg, from, to, run) => {
   ok &&= caught;
 };
 const c76 = (ps) => checkGulfName(ps).problems.length;
+inject(pages, 'en', 'Arabian Gulf', 'Gulf', c76);
+inject(pages, 'en', 'Arabian Gulf', 'Persian Gulf', c76);
 inject(pages, 'zh', '阿拉伯湾', '海湾', c76);
 inject(pages, 'zh', '阿拉伯湾', '波斯湾', c76);
 inject(pages, 'de', 'Arabischen Golf', 'Golf', c76);

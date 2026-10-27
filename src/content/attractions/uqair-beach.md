@@ -35,8 +35,8 @@ category: nature
 heroImage: /img/uqair-beach
 kicker: "معلم طبيعي"
 summary: "شاطئ بمياه ضحلة صافية ورمال بيضاء، من أقدم وجهات الاصطياف على الخليج."
-summary_en: "A beach of clear shallow waters and white sand, one of the Gulf's oldest summer destinations."
-body_en: "Along the Arabian Gulf coast stretches the historic Al-Uqair Beach, with its calm shallow waters, white sand and dunes — one of the oldest summer destinations on the Gulf, and beside it the historic Al-Uqair port that was Al-Ahsa’s gateway to the sea. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors."
+summary_en: "A beach of clear shallow waters and white sand, one of the Arabian Gulf's oldest summer destinations."
+body_en: "Along the Arabian Gulf coast stretches the historic Al-Uqair Beach, with its calm shallow waters, white sand and dunes — one of the oldest summer destinations on this coast, and beside it the historic Al-Uqair port that was Al-Ahsa’s gateway to the sea. The beach suits families and photography enthusiasts, and adjoins shades and facilities set aside for visitors."
 featured: false
 order: 40
 area: "ساحل العقير — شرق الأحساء"
@@ -44,7 +44,7 @@ area_en: "Al-Uqair coast — eastern Al-Ahsa"
 bestTime: "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
 bestTime_en: "Early morning, or late afternoon onwards, away from the peak heat."
 answer: "شاطئ العقير التاريخي على ساحل الخليج العربي في شرق الأحساء، بمياهه الهادئة الضحلة ورماله البيضاء وكثبانه، من أقدم وجهات الاصطياف على الخليج، وبجواره ميناء العقير التاريخي الذي كان بوّابة الأحساء البحرية. مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق للزوّار وموقعاً مخصّصاً لعربات الكرفان يُحجز إلكترونياً."
-answer_en: "Al-Uqair Beach stretches along the Arabian Gulf coast with calm shallow waters, white sand and dunes, one of the oldest summer destinations on the Gulf, beside the historic Al-Uqair port. It suits families and photographers, with shades, facilities and a caravan site booked online."
+answer_en: "Al-Uqair Beach stretches along the Arabian Gulf coast with calm shallow waters, white sand and dunes, one of the oldest summer destinations on this coast, beside the historic Al-Uqair port. It suits families and photographers, with shades, facilities and a caravan site booked online."
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
 # الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
 seo:

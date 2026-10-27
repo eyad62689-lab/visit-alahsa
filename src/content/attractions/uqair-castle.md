@@ -35,7 +35,7 @@ summary: "قلعة تاريخية تحرس الميناء، شاهدة على ا
 summary_en: "A historic castle guarding the port, a witness to Al-Uqair's old commercial prosperity."
 body_en: "On the Arabian Gulf coast of eastern Al-Ahsa, Al-Uqair Castle stands among the buildings of the historic Al-Uqair port — the first seaport on Saudi Arabia’s eastern coast and, in earlier times, Najd's gateway to the sea, where archaeological finds attest to trade stretching back to remote antiquity. The structures seen today include the castle, the khan, the emirate building, the customs house and the mosque, and it was on the port's grounds that the Uqair Protocol demarcating borders was signed in 1341 AH / 1922 CE. The port's role faded after Dammam's port rose in the mid-twentieth century, leaving its buildings as witnesses to an entire era. They were restored in the late 1990s. The site is undergoing restoration work, and some parts may be closed."
 area: ميناء العقير — ساحل الخليج شرق الأحساء
-area_en: "Al-Uqair port — the Gulf coast of eastern Al-Ahsa"
+area_en: "Al-Uqair port — the Arabian Gulf coast of eastern Al-Ahsa"
 featured: false
 order: 17
 answer: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي، أول ميناء بحري شرق المملكة وبوابة نجد إلى البحر قديماً. تشمل المباني القائمة القلعة والخان ومبنى الإمارة والجمارك والمسجد، وعلى أرض الميناء وُقّع بروتوكول العقير عام 1341هـ/1922م. يشهد الموقع أعمال ترميم، وقد تكون بعض أجزائه مغلقة."

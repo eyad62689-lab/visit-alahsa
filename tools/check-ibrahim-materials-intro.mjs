@@ -28,7 +28,7 @@ export const OLD = [
 
 export const OK = {
   ar: /على\s+الطريقة\s+التقليدية\s+في\s+عمارة\s+الخليج[\s\S]{0,300}?الشندل\s+\(خشبٌ\s+كان\s+يُجلب\s+إلى\s+الخليج\)/,
-  en: /built\s+in\s+the\s+traditional\s+Gulf\s+manner[\s\S]{0,300}?chandal\s+wood\s+\(timber\s+once\s+imported\s+to\s+the\s+Gulf\)/i,
+  en: /built\s+in\s+the\s+traditional\s+manner\s+of\s+the\s+Arabian\s+Gulf\s+region[\s\S]{0,300}?chandal\s+wood\s+\(timber\s+once\s+imported\s+to\s+the\s+Arabian\s+Gulf\s+region\)/i,
   de: /in\s+der\s+traditionellen\s+Bauweise\s+der\s+Region\s+am\s+Arabischen\s+Golf[\s\S]{0,300}?Chandal-Holz\s+\(Bauholz,\s+das\s+früher\s+in\s+die\s+Region\s+am\s+Arabischen\s+Golf\s+eingeführt\s+wurde\)/,
   ru: /в\s+традициях\s+зодчества\s+Арабского\s+залива[\s\S]{0,300}?шандаль\s+\(его\s+когда-то\s+привозили\s+в\s+регион\s+Арабского\s+залива\)/u,
   zh: /沿袭阿拉伯湾地区的营造传统[\s\S]{0,300}?阿拉伯湾传统建筑常用的进口木料/,

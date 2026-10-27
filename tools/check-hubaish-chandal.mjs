@@ -12,7 +12,7 @@ export const EXPECT = { minPages: 6 };
 
 export const OK = {
   ar: /الشندل\s+\(كان\s+يُجلب\s+إلى\s+الخليج\)/,
-  en: /chandal\s+wood\s+\(timber\s+once\s+imported\s+to\s+the\s+Gulf\)/i,
+  en: /chandal\s+wood\s+\(timber\s+once\s+imported\s+to\s+the\s+Arabian\s+Gulf\s+region\)/i,
   de: /Chandal-Holz\s+\(Bauholz,\s+das\s+früher\s+in\s+die\s+Region\s+am\s+Arabischen\s+Golf\s+eingeführt\s+wurde\)/,
   ru: /шандаль\s+\(его\s+когда-то\s+привозили\s+в\s+регион\s+Арабского\s+залива\)/u,
   zh: /尚达尔木杆（chandal，阿拉伯湾传统建筑常用的进口木料）/,

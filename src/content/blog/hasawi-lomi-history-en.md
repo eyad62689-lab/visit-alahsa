@@ -59,7 +59,7 @@ Here begins the part where stories multiply and documents thin out, and honesty 
 
 **What is not documented:** no document or historical text dates the arrival of the acid lime in the Al-Ahsa or Qatif oases specifically, and no published archaeobotanical evidence (seed remains or pollen) from archaeological sites in eastern Arabia proves the presence of citrus in any particular period. The claim that citrus entered both oases at the same time is a reasonable inference from their shared environment and trade network, not an established fact.
 
-The likeliest reading, then, is that the lomi reached the Gulf coast the same way it reached Oman: by sea, with merchants and sailors, at a date we cannot yet fix.
+The likeliest reading, then, is that the lomi reached the Arabian Gulf coast the same way it reached Oman: by sea, with merchants and sailors, at a date we cannot yet fix.
 
 ## Al-Ahsa or Qatif? A Question That Needs No Quarrel
 
@@ -77,7 +77,7 @@ As for the differences attributed to the two oases' produce in peel thickness, a
 
 The fruit's very name carries a trace of its journey. The word banzahir is of Persian origin and means **antidote**, a meaning recorded explicitly in [Al-Mu'jam Al-Wasit](https://www.almaany.com/ar/dict/ar-ar/بنزهير/). Its compound root is badzahr: bad meaning "against" and zahr meaning "poison", the same word that entered European languages as bezoar, the antidote stone ([dictionary of foreign loanwords in Arabic](https://mbtda.com/language/a3jmi/baa.php)).
 
-The significance runs deeper than it looks: the fruit's name is Persian in freight, one more sign that it arrived through a trading and linguistic network spanning the region, rather than sprouting locally and being named locally. Lomi, meanwhile, is a general Gulf name, and Hasawi and Qatifi are geographical labels for the market, not for the landrace.
+The significance runs deeper than it looks: the fruit's name is Persian in freight, one more sign that it arrived through a trading and linguistic network spanning the region, rather than sprouting locally and being named locally. Lomi, meanwhile, is a general name across the Arabian Gulf region, and Hasawi and Qatifi are geographical labels for the market, not for the landrace.
 
 ## The Lomi Today: From Imported Fruit to Local Identity
 
@@ -97,7 +97,7 @@ This explains why the lomi's agricultural heritage in Al-Ahsa is at once preciou
 
 - The Hasawi lime is Citrus × aurantiifolia, a natural hybrid of Citrus micrantha and Citrus medica, neither a true species nor a variety of local origin.
 - Its first homeland is Southeast Asia and the eastern Himalayan foothills, not India alone and not the Arabian Peninsula.
-- It reached the Mediterranean in the 10th century CE with the agricultural diffusion of the Islamic world; its arrival in the Gulf most likely came by sea and trade, as witnessed by at least 4 centuries of cultivation in Oman.
+- It reached the Mediterranean in the 10th century CE with the agricultural diffusion of the Islamic world; its arrival in the Arabian Gulf region most likely came by sea and trade, as witnessed by at least 4 centuries of cultivation in Oman.
 - Hasawi lime, Qatifi lime, Bin Zuhairi and lomi are names for one fruit, as official Saudi sources confirm.
 - There is no basis for attributing the origin to either Al-Ahsa or Qatif; the two oases' real value lies in their accumulated agricultural and cultural heritage.
 

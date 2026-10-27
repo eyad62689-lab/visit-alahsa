@@ -3,7 +3,7 @@
 // دالة نقية بلا قراءة ملفات: يستدعيها check-consistency.mjs بصفحات dist، ويستدعيها اختبار
 // الكسر بنسخ معدَّلة في الذاكرة. الأوردية يحرسها C59 في tools/check-ur-text.mjs بالقرار نفسه.
 //
-// يحرس في صفحات zh وde وru وtr:
+// يحرس في صفحات en وzh وde وru وtr (الإنجليزية بإقرار إياد «حسب السياق»، 2026-10-27):
 //   (أ) كل ورود لكلمة الخليج يحمل الوصف «العربي» بصيغة اللغة، إلا علم الشارع (طريق الخليج)
 //       والاسم الرسمي لمجلس التعاون.
 //   (ب) لا «الخليج الفارسي» بأي صيغة.
@@ -12,10 +12,11 @@
 //
 // الأنماط الروسية بـ[а-яё] وراية u لا \w ولا \b: آسكيّان في JS فلا يطابقان السيريلية.
 
-export const EXPECT = { zh: 24, de: 24, ru: 25, tr: 0 }; // المقيس عند الدفعة 2026-10-27
+export const EXPECT = { en: 24, zh: 24, de: 24, ru: 25, tr: 0 }; // المقيس عند الدفعة 2026-10-27
 
 // كلمة الخليج في كل لغة. الروسية بلا «заливает(ся)» (فعل «يغمر»: «вода заливается золотым светом»)
 export const GULF_WORD = {
+  en: /\bGulf\b/g,
   zh: /湾/g,
   de: /Golf/g,
   ru: /[Зз]алив(?!ает)/gu,
@@ -23,6 +24,7 @@ export const GULF_WORD = {
 };
 // ما يسبق الكلمة أو يحيط بها فيجعل الورود سليماً
 export const QUALIFIED = {
+  en: (t, i) => t.slice(i - 8, i) === 'Arabian ',
   zh: (t, i) => t.slice(i - 3, i) === '阿拉伯',
   de: (t, i) => /[Aa]rabische[nmrs]?\s+$/.test(t.slice(Math.max(0, i - 14), i)),
   // وسمة البحث في دليل المتاجر بأحرف صغيرة («арабского залива»)
@@ -31,18 +33,21 @@ export const QUALIFIED = {
 };
 // المستثنى: علم الشارع والاسم الرسمي لمجلس التعاون
 export const KEEP = {
+  en: (t, i) => t.startsWith('Gulf Cooperation Council', i),
   zh: (t, i) => t.startsWith('湾路', i) || t.startsWith('湾合作委员会', i) || t.startsWith('湾阿拉伯国家合作委员会', i),
   de: (t, i) => t.startsWith('Golf-Kooperationsrat', i),
   ru: () => false,
   tr: (t, i) => t.startsWith('Körfez İşbirliği Konseyi', i),
 };
 export const PERSIAN = {
+  en: /Persian Gulf/,
   zh: /波斯湾/,
   de: /[Pp]ersische[nmrs]?\s+Golf/,
   ru: /[Пп]ерсидск[а-яё]*\s+залив/u,
   tr: /Basra Körfez/,
 };
 export const ARABIAN = {
+  en: /Arabian Gulf/,
   zh: /阿拉伯湾/,
   de: /[Aa]rabische[nmrs]?\s+Golf/,
   ru: /Арабск[а-яё]*\s+залив/u,

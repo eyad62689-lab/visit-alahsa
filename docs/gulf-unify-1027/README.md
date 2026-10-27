@@ -18,5 +18,7 @@
 - **الحرّاس:** C76 جديد (zh/de/ru/tr) وC59 مقلوب (ur)، والحرّاس المثبّتة على الصياغة القديمة (C31 · C40 · C41) حُدّثت
   إلى الصياغة الجديدة. حلقة الكسر: `node docs/gulf-unify-1027/break-test.mjs .` (عشر حقن كلها تُمسك).
 
+**الإنجليزية** (إقرار إياد «نعم، حسب السياق»): 46 موضعاً بـ`apply-en.mjs`، ثم سبعة تعديلات مراجع مستقل بـ`apply-en-review.mjs` (الإقليم حيث لا يُقصد الماء، والذكر الثاني في الجملة نفسها «the sea» / «this coast»). «in the Gulf» بمعنى الإقليم = «in the Arabian Gulf region» لأن «in the Arabian Gulf» تُقرأ داخل البحر (C31). C76 يحرس الإنجليزية كذلك. والعربية لم تُمسّ.
+
 العُدّة: `make-packs.mjs` ← `05` ← `apply.mjs 05` ← بناء ← `make-blind-input.mjs` ← `06` ← `07` ← `apply.mjs final --prev 05`
 ← `finish-glossary.mjs` ← بناء.

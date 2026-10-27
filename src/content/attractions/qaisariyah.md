@@ -36,7 +36,7 @@ heroImage: /img/qaisariyah
 kicker: "سوق تراثي"
 summary: "سوق تراثي يعود لأكثر من قرنين، من أعرق أسواق الأحساء الشعبية والتراثية ووجهة للحرف والمنتجات المحلية."
 summary_en: "A heritage souq over two centuries old, one of Al-Ahsa's oldest folk and heritage markets and a destination for crafts and local products."
-body_en: "Qaisariyah Souq in Hofuf is one of the oldest and most storied souqs in the Gulf, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices.\n\n## Qaisariyah Souq hours\n\nOpening hours and fees are listed in the visit-information card below, and its best hours are in the evening."
+body_en: "Qaisariyah Souq in Hofuf is one of the oldest and most storied souqs in the Arabian Gulf region, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices.\n\n## Qaisariyah Souq hours\n\nOpening hours and fees are listed in the visit-information card below, and its best hours are in the evening."
 featured: false
 order: 58
 area: "الهفوف، حي الرفعة"
@@ -51,7 +51,7 @@ hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "15:30", closes: "22:00" }
 fee: { free: true }
 answer: "سوق القيصرية في حي الرفعة بالهفوف من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. متاجره المتراصّة تبيع البشت الحساوي والحِرف من الخوص والفخار والتمور والقهوة والبهارات. يفتح من 8 ص إلى 12 ظهراً ومن 3:30 ع إلى 10 م (الجمعة مساءً فقط)، والدخول مجاني."
-answer_en: "Qaisariyah Souq in Hofuf’s Al-Rifaa district is among the Gulf’s oldest souqs, over two centuries old. Its close-packed shops sell the Hasawi bisht, palm-frond and pottery crafts, dates, coffee and spices. Open 8 am–12 noon and 3:30–10 pm (Friday evenings only); entry is free."
+answer_en: "Qaisariyah Souq in Hofuf’s Al-Rifaa district is among the Arabian Gulf’s oldest souqs, over two centuries old. Its close-packed shops sell the Hasawi bisht, palm-frond and pottery crafts, dates, coffee and spices. Open 8 am–12 noon and 3:30–10 pm (Friday evenings only); entry is free."
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة بندا «المواعيد» و«الرسوم» موثّقان بترجمتيهما وليس الموقع مفتوحاً.
 # الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
 seo:
@@ -59,7 +59,7 @@ seo:
   place_en: "Hofuf"
   benefit: hours-fees
 description: "سوق القيصرية في حي الرفعة بالهفوف من أقدم أسواق الخليج وأعرقها. يفتح من 8 ص إلى 12 ظهراً ومن 3:30 ع إلى 10 م (الجمعة مساءً فقط)، والدخول مجاني."
-description_en: "Qaisariyah Souq in Hofuf’s Al-Rifaa district is among the Gulf’s oldest souqs. Open 8 am–12 noon and 3:30–10 pm (Friday evenings only); entry is free."
+description_en: "Qaisariyah Souq in Hofuf’s Al-Rifaa district is among the Arabian Gulf’s oldest souqs. Open 8 am–12 noon and 3:30–10 pm (Friday evenings only); entry is free."
 location: { lat: 25.37558, lng: 49.589 }
 sameAs:
   - https://www.wikidata.org/wiki/Q16121126
@@ -122,7 +122,7 @@ faq:
   - q: "كم عمر سوق القيصرية؟"
     a: "يعود لأكثر من قرنين، وهو من أقدم أسواق الخليج وأعرقها."
     q_en: "How old is Qaisariyah Souq?"
-    a_en: "It goes back more than two centuries, and is among the oldest and most storied souqs in the Gulf."
+    a_en: "It goes back more than two centuries, and is among the oldest and most storied souqs in the Arabian Gulf region."
     q_zh: "凯撒利亚集市有多少年历史了？"
     a_zh: "已有 200 多年历史，是阿拉伯湾地区最古老、最有故事的传统集市之一。"
     q_de: "Wie alt ist der Qaisariyah-Souk?"

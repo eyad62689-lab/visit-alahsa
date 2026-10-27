@@ -383,7 +383,7 @@ const TEXT_EN: EventTexts = {
     // معنى الاسم والغبقة — من إياد (2026-10-17): «كفو» من «كوفئ»، والغبقة وجبة وعادة اجتماعية شعبية في
     // ليالي رمضان بدول الخليج. للقارئ غير العربي وحده بقراره (الاسم مفهوم للعربي). والجملة الأولى تعريف الفعالية
     // من إياد (2026-10-17) — وهي وحدها في المدخل العربي.
-    intro: 'Kafu Nights is an annual Ramadan community festival organised by King Faisal University in Al-Ahsa Governorate; its first edition was held in 2024. “Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arab Gulf states.',
+    intro: 'Kafu Nights is an annual Ramadan community festival organised by King Faisal University in Al-Ahsa Governorate; its first edition was held in 2024. “Kafu” comes from an Arabic verb meaning “to be rewarded”: to earn reward and praise. Among the highlights of the nights is the “Ghabqa”, a popular meal and social custom held on the nights of the holy month of Ramadan in the Arabian Gulf states.',
   },
   'dates-festival': {
     slug: 'processed-dates-festival',
@@ -428,7 +428,7 @@ const TEXT_EN: EventTexts = {
         h: 'What is the Hasawi lomi?',
         ps: [
           'The Hasawi lomi — often called the Hasawi lemon or Hasawi lime — is a small, dark-green citrus with a thin skin, abundant juice, a sharp tang and a distinctive aroma that sets it apart from other citrus. It is Al-Ahsa’s second crop after dates: the oasis grows more than 100,000 fruiting lomi trees, each yielding some 25-30 kilograms a season.',
-          'A cherished summer tradition surrounds it: families gather to juice and preserve it for the whole year — fresh, as juice, or dried for Hasawi and Gulf cooking.',
+          'A cherished summer tradition surrounds it: families gather to juice and preserve it for the whole year — fresh, as juice, or dried for Hasawi and Arabian Gulf cooking.',
         ],
       },
       {
