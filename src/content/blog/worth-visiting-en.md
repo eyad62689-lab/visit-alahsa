@@ -12,7 +12,7 @@ faq:
   - q: "How many days should I spend in Al-Ahsa?"
     a: "Two days cover the foremost landmarks — the heritage heart of Hofuf on one day, the oasis's nature, water and coast on the other. A single well-planned day covers the essential core; three days give room for the museums, parks and weekly souqs."
   - q: "Do I need a car to visit Al-Ahsa?"
-    a: "A car is the practical way to explore: some landmarks sit in central Hofuf, others at the edges of the oasis and on the Gulf coast. The site's “My saved places” tool turns your chosen stops into a ready route that opens in Google Maps."
+    a: "A car is the practical way to explore: some landmarks sit in central Hofuf, others at the edges of the oasis and on the Arabian Gulf coast. The site's “My saved places” tool turns your chosen stops into a ready route that opens in Google Maps."
 ---
 
 The short answer: **yes** — and for reasons no other destination in Saudi Arabia can copy. Al-Ahsa is the **largest oasis on earth**, inscribed on the **UNESCO World Heritage list in 2018**, where life thrives among more than 2.5 million date palms and water has run beneath the sand for millennia. The name itself tells the story: *Al-Ahsa* is the plural of *hisy* — sweet water gathered beneath a thin layer of sand, springing up where no one expects it.
@@ -29,7 +29,7 @@ What follows is what actually sets the place apart, and how to judge whether it 
 
 **Living craft, not reenactment.** At [Dougha Al-Gharash](/en/attractions/duqat-algharash/), by the foot of Jabal Al-Qarah, the Al-Gharash family still turns clay in one of the Kingdom's best-known homes of pottery.
 
-**Desert meeting sea.** At [Al-Uqair](/en/attractions/al-uqair/), Saudi Arabia's first seaport on its eastern coast, white sands glow against the blue of the Gulf just before sunset.
+**Desert meeting sea.** At [Al-Uqair](/en/attractions/al-uqair/), Saudi Arabia's first seaport on its eastern coast, white sands glow against the blue of the Arabian Gulf just before sunset.
 
 ## How Al-Ahsa Fits a Saudi Itinerary
 

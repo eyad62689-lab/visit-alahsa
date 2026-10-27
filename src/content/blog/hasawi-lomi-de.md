@@ -11,7 +11,7 @@ heroImage: /img/fruits/lomi-v2
 tags: ["Hasawi-Limette", "Hasawi-Lomi", "Hasawi-Lomi-Ausstellung", "Oasenfrüchte"]
 faq:
   - q: "Wodurch unterscheidet sich die Hasawi-Lomi von einer gewöhnlichen Zitrone oder Limette?"
-    a: "Sie ist kleiner, dünnschaliger, saftiger und weitaus aromatischer als andere Zitrusfrüchte. In der Küche von Al-Ahsa und der Golfregion wird sie frisch, als Saft und getrocknet verwendet."
+    a: "Sie ist kleiner, dünnschaliger, saftiger und weitaus aromatischer als andere Zitrusfrüchte. In der Küche von Al-Ahsa und der Region am Arabischen Golf wird sie frisch, als Saft und getrocknet verwendet."
   - q: "Wann hat die Hasawi-Limette (Lomi) Saison?"
     a: "Ihre Saison ist der Sommer und reicht von etwa Mitte Juni bis Ende August – dieselbe Zeit, in der die Familien in Al-Ahsa zusammenkommen, um die Frucht zu pressen und als Vorrat für das ganze Jahr haltbar zu machen."
   - q: "Was ist „Jameed“?"
@@ -36,7 +36,7 @@ Die Saison der Lomi ist der Sommer; sie reicht **von etwa Mitte Juni bis Ende Au
 
 ## Vom Baum in die Speisekammer: „Jameed“, der sonnengetrocknete Lomi-Saft
 
-Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und haltbar zu machen. Was dabei entsteht, heißt **„Jameed“**: Der Lomi-Saft trocknet in der Sonne und reift in Glasgefäßen – ein Vorrat für das ganze Jahr. Verwendet wird die Lomi frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte Al-Ahsas und der Golfregion.
+Um die Lomi rankt sich ein liebgewonnener Hasawi-Sommerbrauch: In ihrer Saison kommen die Familien zusammen, um sie zu pressen und haltbar zu machen. Was dabei entsteht, heißt **„Jameed“**: Der Lomi-Saft trocknet in der Sonne und reift in Glasgefäßen – ein Vorrat für das ganze Jahr. Verwendet wird die Lomi frisch, als Saft und getrocknet; so parfümiert sie rund ums Jahr die Gerichte Al-Ahsas und der Region am Arabischen Golf.
 
 ## In der Küche Al-Ahsas
 

@@ -1,0 +1,258 @@
+{
+  "batch": "gulf-unify-1027",
+  "lang": "zh",
+  "stage": 7,
+  "date": "2026-10-27",
+  "threshold": 90,
+  "score": 93,
+  "breakdown": {
+    "accuracy_to_source_and_ruling": {
+      "score": 29,
+      "max": 30,
+      "note": "Every Gulf reference in the pack carries 阿拉伯湾; 12 exceptions (11 海湾路 street-name positions, 1 GCC official name) correctly kept. -1: three cuisine positions and zh-22 used the sea name where the source means the region (fixed by judge edits)."
+    },
+    "naturalness": {
+      "score": 26,
+      "max": 30,
+      "note": "阿拉伯湾 is unfamiliar to mainland readers (blind reader: first read as Arabian Sea/Red Sea, resolved from context). This cost is inherent in the owner ruling and is not deducted beyond what the wording around it controls; 阿拉伯湾国家 reads as a coined term but is the minimal ruling-compliant form."
+    },
+    "consistency": {
+      "score": 18,
+      "max": 20,
+      "note": "05 notes announced 阿拉伯湾地区菜肴 while the text had 阿拉伯湾菜肴 (zh-24/39) and 阿拉伯湾的菜肴 (zh-25), diverging from zh-47; after edits sea vs region forms follow one rule site-wide."
+    },
+    "constraint_compliance": {
+      "score": 20,
+      "max": 20,
+      "note": "Only the Gulf expression changed; links, ASCII quotes, punctuation and spaces intact; no 波斯湾, no bare 海湾 outside 海湾路/海湾合作委员会; no 波斯 adjacent to 阿拉伯湾; misparse sweep clean."
+    }
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "judge_edits": [
+    {
+      "id": "zh-22",
+      "from": "阿拉伯湾通行的叫法",
+      "to": "阿拉伯湾地区通行的叫法",
+      "why": "Source: \"a general Gulf name\" / اسم خليجي عام: a name current across the Gulf region, not on the water. 阿拉伯湾通行 reads as current on the sea itself; the region form 阿拉伯湾地区 (BRIEF form list) restores the old 海湾 region sense."
+    },
+    {
+      "id": "zh-24",
+      "from": "阿拉伯湾菜肴",
+      "to": "阿拉伯湾地区菜肴",
+      "why": "Gulf cooking is cuisine of the region; a sea name before 菜肴 reads as seafood of the Arabian Gulf. The 05 note itself announces 阿拉伯湾地区菜肴 but the text dropped 地区; aligns with zh-47 (沙特和阿拉伯湾地区的菜肴)."
+    },
+    {
+      "id": "zh-25",
+      "from": "阿拉伯湾的菜肴",
+      "to": "阿拉伯湾地区的菜肴",
+      "why": "Same as zh-24 (note/text mismatch in 05; region form for cuisine)."
+    },
+    {
+      "id": "zh-39",
+      "from": "阿拉伯湾菜肴",
+      "to": "阿拉伯湾地区菜肴",
+      "why": "Same as zh-24; this events.ts line repeats the hasawi-lomi blog sentence, so the three cuisine positions now read identically."
+    }
+  ],
+  "rulings": [
+    {
+      "id": "R1",
+      "title": "Mitigation for the unfamiliar 阿拉伯湾 (blind finding 1)",
+      "ruling": "No locator is added in this batch. The sea-sense first mentions already sit next to a location on their page: 沙特阿拉伯东部沿海 (al-uqair zh-1, 48-hours zh-20, worth-visiting zh-27, home chapter title beside zh-40) or 哈萨以东 (zh-3/4, zh-14..17, uqair-beach, salwa 距胡富夫约150公里). This is the context the reader used to resolve the name. The remaining positions are region forms (阿拉伯湾地区/国家/地区菜肴), which cannot be confused with the Red Sea or Arabian Sea in use. The two context-free UI leads (home.feat.lead zh-52, list.lead zh-54) render a source that gives no location; adding 沙特阿拉伯东部 there would add words the source sentence lacks and exceed the narrow mandate. Recorded for the owner as an optional follow-up.",
+      "precedent": "ru P8 and tr Kare: a name collision inherent in an owner ruling is accepted, and the mitigation is the context already present, not a new gloss. owner-rulings-1023: the mandate is the ruled expression only."
+    },
+    {
+      "id": "R2",
+      "title": "海湾路 beside 阿拉伯湾 (blind finding 4)",
+      "ruling": "海湾路 stays. It is the established proper name of the Hofuf road (طريق الخليج, termbase 海湾路; also 海湾路（卡塔尔路）), and the BRIEF lists it explicitly as excepted. That the same water appears under two names is the normal situation of a street name, and the street is far from the sea; renaming it 阿拉伯湾路 would invent a name nobody uses. No change.",
+      "precedent": "BRIEF exceptions; de Al-Khaleej-Straße / ru Эль-Халидж keep the street as a proper name."
+    },
+    {
+      "id": "R3",
+      "title": "海湾阿拉伯国家 → 阿拉伯湾国家 (zh-38, zh-46; proposer uncertainty)",
+      "ruling": "Upheld. 阿拉伯湾阿拉伯国家 would double 阿拉伯 and read as an error; 阿拉伯湾国家 renders Arab Gulf states / دول الخليج العربي with the ruled name and the same form as zh-41..45 (Gulf states). The Arab sense is carried by the ruled name itself.",
+      "precedent": "BRIEF form list (阿拉伯湾国家); termbase 685 (海湾国家 / 海湾阿拉伯国家) collapses to one form."
+    },
+    {
+      "id": "R4",
+      "title": "Cuisine wording (zh-24, zh-25, zh-39; proposer uncertainty)",
+      "ruling": "Region form 阿拉伯湾地区菜肴 / 阿拉伯湾地区的菜肴, as the 05 notes intended and as zh-47 already has. A bare sea name before 菜肴 suggests seafood from the water. The added 地区 is part of the Gulf expression (BRIEF lists 阿拉伯湾地区), so it is within the mandate.",
+      "precedent": "BRIEF form list; termbase 23 (the Gulf region = 海湾地区, now 阿拉伯湾地区)."
+    },
+    {
+      "id": "R5",
+      "title": "阿拉伯湾经济协议 (zh-46)",
+      "ruling": "Upheld. The zh text is a descriptive rendering of الاتفاقية الاقتصادية الخليجية / the Gulf economic agreement, not an official organisation name like 海湾合作委员会, so the ruling applies. The reader asked which agreement this is and which country 本国产品 means. That vagueness is in the source and predates this batch, so it is out of scope.",
+      "precedent": "BRIEF: only official organisation names are excepted."
+    },
+    {
+      "id": "R6",
+      "title": "Fixed-string termbase entries carrying 海湾",
+      "ruling": "The ruling overrides the frozen strings: 海湾地区最大的水域之一 (terms.563) becomes 阿拉伯湾地区最大的水域之一 (zh-6, zh-48), and the chandal gloss (terms.239) becomes 尚达尔木杆（chandal，阿拉伯湾传统建筑常用的进口木料） (zh-7, zh-10). The gloss wording is otherwise unchanged.",
+      "precedent": "O-GULF supersedes P5 (neutral 海湾) and every entry derived from it."
+    }
+  ],
+  "blind_disposition": [
+    {
+      "finding": "1 · 阿拉伯湾 unfamiliar, first read as Arabian Sea/Red Sea, resolved from context",
+      "scope": "in",
+      "ruling": "Inherent cost of the owner ruling; accepted. No locator added (R1)."
+    },
+    {
+      "finding": "2 · 阿拉伯湾国家 unseen, reads as a literal coinage",
+      "scope": "in",
+      "ruling": "Upheld as the minimal ruling-compliant form (R3)."
+    },
+    {
+      "finding": "3a · 阿拉伯湾经济协议 naming",
+      "scope": "in",
+      "ruling": "Upheld (R5)."
+    },
+    {
+      "finding": "3b · which agreement; 本国产品 ambiguous",
+      "scope": "out_of_scope",
+      "ruling": "Source vagueness, untouched by this batch."
+    },
+    {
+      "finding": "4 · 海湾路 vs 阿拉伯湾: same water named two ways",
+      "scope": "in",
+      "ruling": "Street proper name stays (R2)."
+    },
+    {
+      "finding": "27a · 阿拉伯湾传统建筑 in the chandal gloss",
+      "scope": "in",
+      "ruling": "Upheld (R6)."
+    },
+    {
+      "finding": "27b · 尚达尔 sounds invented",
+      "scope": "out_of_scope",
+      "ruling": "Existing termbase transliteration with gloss; not this batch."
+    },
+    {
+      "finding": "§3 · 阿拉伯湾 feels mapped from Arabian Gulf",
+      "scope": "in",
+      "ruling": "Correct, and this is the owner ruling; accepted."
+    },
+    {
+      "finding": "5 · 半岛 unspecified",
+      "scope": "out_of_scope",
+      "ruling": "Not a Gulf expression."
+    },
+    {
+      "finding": "6 · 第一座海港 ambiguous",
+      "scope": "out_of_scope",
+      "ruling": "Not a Gulf expression."
+    },
+    {
+      "finding": "7 · 久远的年代 empty",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    },
+    {
+      "finding": "8–9 · 哈萨 read as 哈萨克; 哈萨县 scope",
+      "scope": "out_of_scope",
+      "ruling": "Termbase name decision, not this batch."
+    },
+    {
+      "finding": "10–11 · 里法阿南区 vs 里法阿区; hubaish summary fragment",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    },
+    {
+      "finding": "12 · 阿斯法湖 lake vs drainage",
+      "scope": "out_of_scope",
+      "ruling": "Old content (owner ruling 2026-09-29 already governs)."
+    },
+    {
+      "finding": "13–17 · Uqair naming (议定书/会议, gloss placement, 港/古港/海岸, restoration status, beach wording)",
+      "scope": "out_of_scope",
+      "ruling": "Old content; the Gulf words in those sentences were the only change."
+    },
+    {
+      "finding": "18–23 · lime terms (来檬/柑橘/青柠, 枚, Latin terms, 贾米德)",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    },
+    {
+      "finding": "24–25 · date season wording; date variety names",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    },
+    {
+      "finding": "26 · 说是宫，其实是一座城堡 repeated",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    },
+    {
+      "finding": "28 · 扎里线 / 头箍 / 凯撒利亚集市 unexplained",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    },
+    {
+      "finding": "29 · 正宗有保障 vs disclaimer; 游览哈萨网站 naming",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    },
+    {
+      "finding": "30 · UI label concatenation in text extraction; 预计档期",
+      "scope": "out_of_scope",
+      "ruling": "Artefact of text cut / old content."
+    },
+    {
+      "finding": "§3 · 这一机构 / 这一页 filler demonstratives",
+      "scope": "out_of_scope",
+      "ruling": "Old content."
+    }
+  ],
+  "out_of_scope_for_owner": [
+    "Optional: a one-time locator on the context-free home/list leads (home.feat.lead, list.lead), e.g. 沙特阿拉伯东部的阿拉伯湾之滨. This adds words the source lacks, so it needs an owner decision.",
+    "哈萨 is read as 哈萨克 at first sight; 哈萨县 / 哈萨 / oasis scope unclear (findings 8–9).",
+    "stores FAQ: which Gulf economic agreement, and what 本国产品 means (3b).",
+    "里法阿南区 vs 里法阿区 naming; hubaish summary lacks 位于 (10–11).",
+    "Uqair: 议定书 vs 会议; 港/古港/海岸 naming; restoration vs open status (13–16).",
+    "Lime terminology drift 青柠/来檬/柑橘 and 哈萨青柠 vs 普通青柠 (18–20).",
+    "online-stores: quality guarantee vs disclaimer; site name 游览哈萨网站 (29).",
+    "Unexplained 扎里线 / 头箍 / 加尔 / 凯撒利亚 (25, 28)."
+  ],
+  "termbase_notes": [
+    {
+      "key": "海湾 (terms.23)",
+      "append": "OWNER 2026-10-27 (O-GULF, gulf-unify-1027): superseded. The Gulf is 阿拉伯湾 in every reference: sea 阿拉伯湾 · coast 阿拉伯湾沿岸/之滨 · region 阿拉伯湾地区 (incl. cuisine 阿拉伯湾地区菜肴, «general Gulf name» 阿拉伯湾地区通行的叫法) · states 阿拉伯湾国家. Never 波斯湾; bare 海湾 only inside 海湾路 and 海湾合作委员会（海合会）. Rule: sea/coast sense uses 阿拉伯湾, region/culture sense uses 阿拉伯湾地区."
+    },
+    {
+      "key": "海湾国家 / 海湾阿拉伯国家 (terms.685)",
+      "append": "O-GULF 2026-10-27: both collapse to 阿拉伯湾国家 (no doubled 阿拉伯)."
+    },
+    {
+      "key": "海湾经济协议 (terms.686)",
+      "append": "O-GULF 2026-10-27: 阿拉伯湾经济协议 (descriptive rendering, not an official title)."
+    },
+    {
+      "key": "尚达尔木杆 gloss (terms.239)",
+      "append": "O-GULF 2026-10-27: gloss now 尚达尔木杆（chandal，阿拉伯湾传统建筑常用的进口木料）."
+    },
+    {
+      "key": "海湾地区最大的水域之一 (terms.563)",
+      "append": "O-GULF 2026-10-27: fixed string now 阿拉伯湾地区最大的水域之一."
+    },
+    {
+      "key": "海湾沿岸 in terms.491",
+      "append": "O-GULF 2026-10-27: now 阿拉伯湾沿岸; the 波斯-not-adjacent guard now applies to 阿拉伯湾 (checked clean)."
+    },
+    {
+      "key": "海湾路 (terms.196)",
+      "append": "O-GULF 2026-10-27: unchanged. A street proper name, explicitly excepted; no longer derived from the general 海湾 entry."
+    },
+    {
+      "key": "海湾合作委员会（海合会） (terms.752)",
+      "append": "O-GULF 2026-10-27: unchanged. Official organisation name, excepted."
+    }
+  ],
+  "counts": {
+    "positions": 54,
+    "changed": 42,
+    "kept": 12,
+    "judge_edits": 4
+  }
+}

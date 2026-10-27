@@ -16,6 +16,7 @@ import { checkVisitCards, expectFromSource, noticeStrings, LANGS as VISIT_LANGS 
 import { checkMosqueCards, checkBlogVisitWording, EXPECT as MOSQUE_EXPECT } from './check-mosque-card.mjs';
 import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-friday.mjs';
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
+import { checkGulfName, EXPECT as GULF_EXPECT } from './check-gulf-name.mjs';
 import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
 import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passages.mjs';
 import { checkUqairPort, EXPECT as UQAIR_EXPECT } from './check-uqair-port.mjs';
@@ -402,6 +403,15 @@ async function main() {
     const per = Object.entries(stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
     if (problems.length) fail('C31', `صياغة بحيرة الأصفر: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C31', `بحيرة الأصفر بصياغة واس في صفحتها بكل لغة (${per}؛ الحدّ الأدنى ${ASFAR_EXPECT.minPages})، ولا دعوى «أكبر البحيرات الطبيعية» في ${stats.scanned} صفحة`);
+    // ── C76: الخليج «الخليج العربي» في en/zh/de/ru/tr (قرار إياد 2026-10-27). المنطق في tools/check-gulf-name.mjs؛
+    // والأوردية في C59.
+    {
+      const g = checkGulfName(pages);
+      const gper = Object.entries(g.stats.perLang).map(([l, n]) => `${l} ${n}`).join(' · ');
+      const gmin = Object.entries(GULF_EXPECT).map(([l, n]) => `${l} ${n}`).join(' · ');
+      if (g.problems.length) fail('C76', `الخليج العربي: ${g.problems.length} مشكلة — ${g.problems.slice(0, 4).join(' · ')}`);
+      else pass('C76', `الخليج «العربي» في كل ورود (${g.stats.mentions}) بصفحات en/zh/de/ru/tr إلا علم الشارع واسم مجلس التعاون، ولا «الفارسي»؛ الاسم الموصوف في صفحات ${gper} (الحدّ الأدنى ${gmin})`);
+    }
     // ── C32: بيت البيعة بُني عام 1203هـ/1788م (حكم إياد 2026-09-30، بسند الدارة وسعوديبيديا) — لا
     // «1789» في صفحة تذكر 1203، وإيجاباً 1203…1788 في صفحة المعلم بكل لغة. المنطق في
     // tools/check-baiah-year.mjs (دالة نقية يُختبر كسرها في الذاكرة).
@@ -1623,7 +1633,7 @@ async function main() {
       titles.push({ file: f, ar: fmField(head, 'title'), ur: fmField(head, 'title_ur') });
     }
     const ROUND1_CHECKS = {
-      P5: ['C59', 'الخليج بلا وصف', (s) => `لا «خليج» موصوفاً، والاسم المجرّد وارد في ${s.carriers} صفحة`],
+      P5: ['C59', 'الخليج العربي', (s) => `لا «خليج» بلا «عرب» ولا «فارس» ولا «خلیجی»، والاسم الموصوف وارد في ${s.carriers} صفحة`],
       P6: ['C60', 'اسم الثمرة لا الدخيل', () => 'لا دخيل لاسم الليمون في نصّ /ur/'],
       P9: ['C61', 'المدينتان بوصفهما', (s) => `${s.mentions} ذكراً للمدينتين، كلٌّ بوصفه بعده`],
       P10: ['C62', 'المقياس الأوردي للأعداد', (s) => `لا مقياس دخيلاً، ومقياس اللاکھ وارد في ${s.carriers} صفحة، و${s.compared} رقماً بكلمة مقياس يساوي كلٌّ منها رقماً في صفحته الإنجليزية، ولا رقم مجرّداً من لاك فأكثر`],
