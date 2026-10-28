@@ -25,6 +25,11 @@ kicker_ur: "تاریخی مقام"
 summary_ur: "بندرگاہ کی نگہبانی کرتا ایک تاریخی قلعہ، جو العقیر کی پرانی تجارتی خوش حالی کا گواہ ہے۔"
 body_ur: "قلعہ العقیر خلیج عرب کے ساحل پر، الاحساء کے مشرقی حصے میں، العقیر کی تاریخی بندرگاہ کی عمارتوں کے درمیان واقع ہے۔ یہ بندرگاہ سعودی عرب کے مشرقی ساحل کی پہلی سمندری بندرگاہ ہے، اور پرانے زمانے میں یہ سمندر کی طرف نجد کا دروازہ تھی۔ یہاں سے ملنے والے آثار قدیمہ گواہی دیتے ہیں کہ اس جگہ تجارت کا سلسلہ نہایت قدیم زمانوں تک جاتا ہے۔ آج جو عمارتیں دکھائی دیتی ہیں ان میں قلعہ، سرائے، امارت کی عمارت، چنگی خانہ اور مسجد شامل ہیں۔ اسی بندرگاہ پر 1341 ہجری (1922 عیسوی) میں سرحدوں کے تعین کے لیے معاہدہ العقیر پر دستخط ہوئے۔ بیسویں صدی عیسوی کے وسط میں دمام کی بندرگاہ قائم ہوئی تو العقیر کی بندرگاہ کی اہمیت گھٹ گئی، اور اس کی عمارتیں ایک پورے دور کی گواہ بن کر رہ گئیں۔ 1990 کی دہائی کے اواخر میں ان کی مرمت ہوئی۔ اس مقام پر مرمت کا کام جاری ہے، اور ممکن ہے کہ اس کے کچھ حصے بند ہوں۔"
 area_ur: "العقیر کی بندرگاہ، الاحساء کے مشرقی حصے میں خلیج عرب کے ساحل پر"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-2 — السجل في tr-translation/output/tr-attr-2/)
+title_tr: "Ukayr Kalesi"
+summary_tr: "Limanı gözeten tarihî bir kale; Ukayr'ın eski ticari refahının tanığı."
+body_tr: "Ukayr Kalesi, Arap Körfezi kıyısında, El-Ahsa'nın doğusundadır. Kale, tarihî Ukayr Limanı'nın yapıları arasında yükselir. Liman, Suudi Arabistan'ın doğu kıyısındaki ilk deniz limanıdır; eskiden Necid'in denize açılan kapısıydı. Arkeolojik buluntular burada ticaretin çok eski çağlara uzandığını gösterir. Bugün ayakta olan yapılar arasında kale, han, emirlik binası, gümrük binası ve cami bulunur. Sınırları belirleyen Ukayr Protokolü, Hicri 1341 (1922) yılında liman alanında imzalandı. Limanın rolü, yirminci yüzyılın ortasında Dammam Limanı kurulduktan sonra azaldı; binaları ise bütün bir çağın tanığı olarak ayakta kaldı. Yapılar 1990'ların sonunda restore edildi. Alanda restorasyon çalışmaları sürüyor; bazı bölümler kapalı olabilir."
+area_tr: "Ukayr Limanı — El-Ahsa'nın doğusundaki Arap Körfezi kıyısı"
 slug_ar: "قلعة-العقير"
 slug_en: "uqair-castle"
 category: historic
@@ -49,8 +54,8 @@ seo:
 description: "قلعة العقير شرقي الأحساء ضمن مباني ميناء العقير التاريخي. تشمل المباني القائمة القلعة والخان ومبنى الإمارة والجمارك والمسجد. يشهد الموقع أعمال ترميم."
 description_en: "Al-Uqair Castle stands among the buildings of Al-Uqair’s historic port in eastern Al-Ahsa. The castle, khan, emirate, customs house and mosque survive."
 practical:
-  - { label: "المواعيد", value: "متاح للزيارة الخارجية", label_en: "Hours", value_en: "Open for exterior visits", label_ur: "اوقات", value_ur: "باہر سے دیکھا جا سکتا ہے", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "لا دخول إلى الداخل", label_en: "Fees", value_en: "No entry inside", label_ur: "فیس", value_ur: "اندر داخلہ نہیں", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "متاح للزيارة الخارجية", label_en: "Hours", value_en: "Open for exterior visits", label_ur: "اوقات", value_ur: "باہر سے دیکھا جا سکتا ہے", label_tr: "Ziyaret saatleri", value_tr: "Dışarıdan ziyarete açık", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "لا دخول إلى الداخل", label_en: "Fees", value_en: "No entry inside", label_ur: "فیس", value_ur: "اندر داخلہ نہیں", label_tr: "Ücretler", value_tr: "İçeri girilemiyor", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.644409, lng: 50.214729 }
 mapUrl: "https://maps.app.goo.gl/pQj9N6Dq75yekPTK8"
 ---
