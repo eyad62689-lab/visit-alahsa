@@ -25,6 +25,11 @@ kicker_ur: "مذہبی مقام"
 summary_ur: "العقیر کی بندرگاہ کے احاطے میں واقع تاریخی مسجد۔ یہ مسجد بندرگاہ کے ان حصوں میں سے ایک ہے جن کی ترقی شاہ عبد العزیز کے دور میں ہوئی۔"
 body_ur: "یہ تاریخی مسجد خلیج عرب کے ساحل پر، الاحساء کے مشرقی حصے میں، العقیر کی تاریخی بندرگاہ کے احاطے میں واقع ہے۔ یہ بندرگاہ سعودی عرب کے مشرقی ساحل کی پہلی سمندری بندرگاہ ہے، اور پرانے زمانے میں یہ سمندر کی طرف نجد کا دروازہ تھی۔ ملاح، تاجر اور مسافر اسی مسجد میں نماز ادا کرتے تھے۔ اس مسجد کا شمار بندرگاہ کے ان حصوں میں ہوتا ہے جن کی تعمیر و ترقی شاہ عبد العزیز کے دور میں ہوئی۔ ان میں قلعہ، سرائے، امارت کی عمارت اور چنگی خانہ بھی شامل ہیں۔ یہ وہ دن تھے جب العقیر، الاحساء کی تجارتی شہ رگ ہوا کرتا تھا۔ تاریخی مساجد کی مرمت کے منصوبے کے تحت الاحساء کی چند اور تاریخی مساجد کے ساتھ اس مسجد کی بھی مرمت ہوئی، اور اس کام میں الجبیل اور ینبع کے شاہی کمیشن نے تعاون کیا۔ آج یہ مسجد تاریخی بندرگاہ کی حدود کے اندر کھڑی ہے، اور اس پوری داستان کا ایک حصہ ہے جو پرانی بندرگاہ اپنے ہاں آنے والوں کو سناتی ہے۔"
 area_ur: "العقیر کی بندرگاہ، الاحساء کے مشرقی حصے میں خلیج عرب کے ساحل پر"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-4 — السجل في tr-translation/output/tr-attr-4/)
+title_tr: "Ukayr Limanı Camii"
+summary_tr: "Ukayr Limanı'nın yapıları arasında yer alan tarihî cami; Kral Abdülaziz döneminde geliştirilen liman tesislerinden biri."
+body_tr: "Tarihî Ukayr Limanı, El-Ahsa'nın doğusundaki Arap Körfezi kıyısındadır; Suudi Arabistan'ın doğu kıyısındaki ilk deniz limanıdır. Limanın yapıları arasında tarihî bir cami bulunur. Necid'in denize açılan eski kapısında denizciler, tüccarlar ve yolcular bir zamanlar bu camide namaz kılardı. Cami, Kral Abdülaziz döneminde inşa edilen ve geliştirilen liman tesisleri arasında sayılır; kale, han, emirlik binası ve gümrük binası da bu tesislerdendir. Ukayr, o günlerde El-Ahsa'nın ticaret damarıydı. Cami, tarihî camilerin restorasyon programı kapsamında restore edildi. Bu çalışmayı Cübeyl ve Yenbu Kraliyet Komisyonu destekledi. Cami, programın kapsadığı El-Ahsa camilerinden biriydi. Bugün cami, tarihî liman alanının içindedir. Eski liman, ziyaretçilerine bütün hikâyesini anlatır; cami bu hikâyenin bir parçasıdır."
+area_tr: "Ukayr Limanı — El-Ahsa'nın doğusundaki Arap Körfezi kıyısı"
 slug_ar: "مسجد-ميناء-العقير"
 slug_en: "uqair-mosque"
 category: religious
