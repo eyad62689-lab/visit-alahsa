@@ -30,6 +30,12 @@ summary_ur: "سعودی عرب کے مشرقی ساحل کی پہلی سمندر
 body_ur: "پکی سڑکیں بننے سے پہلے الاحساء کے لیے باہر کی دنیا کا دروازہ العقیر تھا۔ خلیج عرب کے کنارے کی اس قدیم بندرگاہ پر کھجوروں اور سامان سے لدی کشتیاں لنگر ڈالتی تھیں، اور اسی کے راستے خبریں اور تجارت جزیرہ نما عرب کے قلب تک پہنچتی تھیں۔ آج العقیر میں دو ایسے منظر ملتے ہیں جو کم ہی یکجا ہوتے ہیں: صحرا سے پھیلتی چلی آتی نرم سفید ریت، اور خلیج عرب کی شفاف نیلاہٹ جو وہیں سے شروع ہوتی ہے جہاں ریت ختم ہوتی ہے۔ مٹی کی عمارتوں کے آثار اور پرانا قلعہ آج بھی اس جگہ کی نگہبانی کر رہے ہیں، اور آنے والے کو یاد دلاتے ہیں کہ یہ پرسکون ساحل کسی زمانے میں ایسی چہل پہل کا مرکز تھا جو تھمنے کا نام نہ لیتی تھی۔ یہاں تاریخ بھی ہے اور ٹھہر کر سوچنے کا موقع بھی: آپ وہاں چل پھر سکتے ہیں جہاں سے کبھی قافلے گزرتے تھے، اور اس ریت پر بیٹھ سکتے ہیں جو سمندر کو چھوتی ہے۔"
 area_ur: "خلیج عرب کا ساحل، الاحساء کے مشرقی حصے میں"
 bestTime_ur: "غروب آفتاب سے ذرا پہلے، جب سفید ریت پانی کی نیلاہٹ کے پس منظر میں دمک اٹھتی ہے"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1 — السجل في tr-translation/output/tr-attr-1/)
+title_tr: "Ukayr"
+summary_tr: "Suudi Arabistan'ın doğu kıyısındaki ilk deniz limanı; çöl kumlarının Arap Körfezi'nin mavisiyle buluştuğu yer."
+body_tr: "Yollar asfaltlanmadan önce Ukayr, El-Ahsa'nın dünyaya açılan kapısıydı. Arap Körfezi kıyısındaki bu eski limana hurma ve mal yüklü gemiler demir atardı, haberler ve ticaret de buradan yarımadanın kalbine girerdi. Bugün Ukayr'da iki nadir manzara buluşuyor: çölden uzanıp gelen yumuşak beyaz kumlar ve kumun bittiği yerde başlayan Arap Körfezi'nin berrak mavisi. Çamurdan binaların kalıntıları ve eski kale hâlâ burada nöbet tutar; ziyaretçiye bu sakin kıyının bir zamanlar durmak bilmeyen bir hareketliliğin merkezi olduğunu hatırlatır. Hem tarihe hem de düşüncelere dalmak için bir yer — kervanların izinden yürürsünüz, denize değen kumda oturursunuz."
+area_tr: "Arap Körfezi kıyısı — El-Ahsa'nın doğusu"
+bestTime_tr: "Gün batımından hemen önce; beyaz kumlar suyun mavisine karşı parıldar."
 slug_ar: العقير
 slug_en: al-uqair
 category: historic
@@ -63,11 +69,12 @@ bestTime: قبيل الغروب، حين تتوهّج الرمال البيضا�
 bestTime_en: "Just before sunset, when the white sands glow against the blue of the water."
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", label_tr: "Ziyaret saatleri ve giriş", value_tr: "Herkese açık alan — giriş ücretsiz", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-03", verified: true }
 tags: ["ساحل", "تاريخ", "بحر"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-15، الدفعة b16 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1)
 faq:
   - q: "هل دخول العُقير برسوم؟"
     a: "لا، العُقير موقع عام مفتوح بلا رسوم دخول."
@@ -79,6 +86,8 @@ faq:
     a_ru: "Вход свободный: Эль-Укайр — открытая общедоступная территория."
     q_ur: "کیا العقیر میں داخلے کی کوئی فیس ہے؟"
     a_ur: "نہیں۔ العقیر ایک کھلا عوامی مقام ہے جہاں داخلے کی کوئی فیس نہیں۔"
+    q_tr: "Ukayr'a giriş ücretli mi?"
+    a_tr: "Hayır. Ukayr herkese açık bir alandır; giriş ücreti yoktur."
   - q: "أين يقع العُقير؟"
     a: "على ساحل الخليج العربي في شرق الأحساء."
     q_en: "Where is Al-Uqair?"
@@ -89,6 +98,8 @@ faq:
     a_ru: "На побережье Арабского залива, к востоку от Аль-Ахсы."
     q_ur: "العقیر کہاں ہے؟"
     a_ur: "خلیج عرب کے ساحل پر، الاحساء کے مشرقی حصے میں۔"
+    q_tr: "Ukayr nerede?"
+    a_tr: "Arap Körfezi kıyısında, El-Ahsa'nın doğusunda."
   - q: "ما أفضل وقت لزيارة العُقير؟"
     a: "قبيل الغروب، حين تتوهّج الرمال البيضاء على زرقة الماء."
     q_en: "What is the best time to visit Al-Uqair?"
@@ -99,6 +110,8 @@ faq:
     a_ru: "Незадолго до заката, когда белые пески светятся на фоне синей воды."
     q_ur: "العقیر کی سیر کے لیے بہترین وقت کون سا ہے؟"
     a_ur: "غروب آفتاب سے ذرا پہلے کا وقت، جب سفید ریت پانی کی نیلاہٹ کے پس منظر میں دمک اٹھتی ہے۔"
+    q_tr: "Ukayr'ı ziyaret etmek için en iyi zaman nedir?"
+    a_tr: "Gün batımından hemen önce; beyaz kumlar suyun mavisine karşı parıldar."
   - q: "ماذا يمكن أن أرى في العُقير؟"
     a: "بقايا المباني الطينية والحصن القديم للميناء التاريخي، ورمالاً بيضاء ناعمة تلامس مياه الخليج."
     q_en: "What can I see at Al-Uqair?"
@@ -109,6 +122,8 @@ faq:
     a_ru: "Остатки глинобитных построек старого порта и его крепость, а также мягкий белый песок, который встречается с водами Арабского залива."
     q_ur: "العقیر میں کیا دیکھا جا سکتا ہے؟"
     a_ur: "پرانی بندرگاہ کی مٹی کی عمارتوں کے آثار اور اس کا قلعہ، اور نرم سفید ریت جو خلیج عرب کے پانی سے جا ملتی ہے۔"
+    q_tr: "Ukayr'da neler görebilirim?"
+    a_tr: "Eski limanın çamurdan yapılmış binalarının kalıntılarını, kalesini ve Arap Körfezi'nin sularıyla buluşan yumuşak beyaz kumları görebilirsiniz."
 ---
 
 قبل أن تُعبّد الطرق، كان العُقير بوّابة الأحساء إلى العالم. ميناءٌ قديمٌ على ساحل

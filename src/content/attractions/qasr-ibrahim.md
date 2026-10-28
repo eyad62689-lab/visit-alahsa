@@ -29,6 +29,12 @@ summary_ur: "مٹی کی دیواروں اور کھجور کے تنوں کی چ�
 body_ur: "ہفوف کے قلب میں قصر ابراہیم (یعنی ابراہیم کا محل) صدیوں کی تبدیلیوں کا گواہ بنا کھڑا ہے۔ یہ عیش و عشرت کا محل نہیں بلکہ ایک قلعہ ہے، جس کی ایک ہی فصیل کے اندر وہ کچھ اکٹھا ہے جو کم ہی یکجا ہوتا ہے: نفیس گنبد والی مسجد، سپاہیوں کی رہائش گاہیں، نگرانی کے برج، اصطبل اور گودام۔ اسے خلیج عرب کے خطے کے روایتی انداز میں تعمیر کیا گیا: دیواریں بھوسا ملی مٹی کی ہیں۔ چھتیں کھجور کے تنوں، شندل نامی لکڑی (جو کبھی خلیج عرب کے خطے میں درآمد کی جاتی تھی) اور پتھر کی ہیں۔ مینار کے اوپر تک پتھر کی چکر دار سیڑھیاں جاتی ہیں۔ اگر آپ اس کے کشادہ صحن میں گھومیں اور دیکھیں کہ گنبد محراب پر کیسے سایہ کیے ہوئے ہے، تو تاریخ کی وہ تہیں پڑھ لیں گے جو نسل در نسل جمتی چلی گئیں۔ آج یہ قلعہ الاحساء کے ورثے کے نمایاں ترین مقامات میں سے ایک ہے، اور ان عمارتوں میں شامل ہے جن کی بنا پر 2018 میں الاحساء کے نخلستان کو یونیسکو کی عالمی ورثے کی فہرست میں جگہ ملی۔"
 area_ur: "الاحساء، ہفوف کے وسط میں"
 bestTime_ur: "دن میں، تاکہ آپ طرز تعمیر کی باریکیاں اور اندرونی صحن کی روشنی دیکھ سکیں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1 — السجل في tr-translation/output/tr-attr-1/)
+title_tr: "Kasr İbrahim"
+summary_tr: "Duvarları çamurdan, çatıları hurma ağacı gövdelerinden bir kale; cami, kışla ve kuleleri bir arada barındırıyor."
+body_tr: "Hüfuf'un kalbinde duran Kasr İbrahim (İbrahim Sarayı), yüzyıllar boyunca yaşanan değişimin tanığıdır. Gösterişli bir saray değil, bir kaledir; tek bir surun içinde, nadiren bir arada bulunan yapıları toplamıştır: zarif kubbeli bir cami (El-Kubbe Camii), askerî kışlalar, gözetleme kuleleri, ahırlar ve depolar. Arap Körfezi bölgesinin geleneksel yöntemiyle inşa edilmiştir: duvarları samanla karıştırılmış çamurdan, çatıları hurma ağacı gövdelerinden, şandal ağacından (eskiden bölgeye dışarıdan getirilen bir kereste) ve taştan yapılmıştır. Minaresine taştan sarmal bir merdivenle çıkılır. Kalenin geniş avlusunda dolaşıp kubbenin mihrabı nasıl gölgelediğini izlerseniz, kuşaktan kuşağa biriken tarih katmanlarını okursunuz. Bugün kale hem El-Ahsa'nın önde gelen miras yapılarından biri hem de vahanın 2018'de UNESCO Dünya Mirası Listesi'ne girmesini sağlayan kentsel dokunun bir parçasıdır."
+area_tr: "Hüfuf merkezi — El-Ahsa"
+bestTime_tr: "Gündüz saatleri; mimari ayrıntıları ve iç avlunun ışığını görmek için."
 slug_ar: قصر-إبراهيم
 slug_en: qasr-ibrahim
 category: historic
@@ -68,13 +74,14 @@ order: 2
 bestTime: النهار، لرؤية تفاصيل العمارة وضوء الفناء الداخلي.
 bestTime_en: "Daytime, to see the architectural details and the light of the inner courtyard."
 practical:
-  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_ru: "Часы работы", value_ru: "Вс–чт 8:00–17:00 · пт 16:00–20:00 · сб 9:00–13:00 и 16:00–20:00", label_de: "Öffnungszeiten", value_de: "So.–Do. 8–17 Uhr · Fr. 16–20 Uhr · Sa. 9–13 und 16–20 Uhr", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے شام 5 بجے تک · جمعہ شام 4 بجے سے رات 8 بجے تک · ہفتہ صبح 9 بجے سے دوپہر 1 بجے تک اور شام 4 بجے سے رات 8 بجے تک", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", label_ur: "فیس", value_ur: "داخلہ مفت", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
-  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_ru: "Время на осмотр", value_ru: "От одного до двух часов", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", label_ur: "سیر کا دورانیہ", value_ur: "ایک سے دو گھنٹے", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_ru: "Часы работы", value_ru: "Вс–чт 8:00–17:00 · пт 16:00–20:00 · сб 9:00–13:00 и 16:00–20:00", label_de: "Öffnungszeiten", value_de: "So.–Do. 8–17 Uhr · Fr. 16–20 Uhr · Sa. 9–13 und 16–20 Uhr", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے شام 5 بجے تک · جمعہ شام 4 بجے سے رات 8 بجے تک · ہفتہ صبح 9 بجے سے دوپہر 1 بجے تک اور شام 4 بجے سے رات 8 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Pazar–Perşembe 08.00–17.00 · Cuma 16.00–20.00 · Cumartesi 09.00–13.00 ve 16.00–20.00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_ru: "Время на осмотр", value_ru: "От одного до двух часов", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", label_ur: "سیر کا دورانیہ", value_ur: "ایک سے دو گھنٹے", label_tr: "Ziyaret süresi", value_tr: "Bir ila iki saat", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-12، الدفعة b1 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1)
 faq:
   - q: "ما مواعيد زيارة قصر إبراهيم؟"
     a: "الأحد إلى الخميس من 8 ص إلى 5 م، والجمعة من 4 إلى 8 م، والسبت من 9 ص إلى 1 م ومن 4 إلى 8 م."
@@ -86,6 +93,8 @@ faq:
     a_ru: "С воскресенья по четверг 8:00–17:00, в пятницу 16:00–20:00, в субботу 9:00–13:00 и 16:00–20:00."
     q_ur: "قصر ابراہیم کب سے کب تک کھلا رہتا ہے؟"
     a_ur: "اتوار تا جمعرات صبح 8 بجے سے شام 5 بجے تک، جمعہ کو شام 4 بجے سے رات 8 بجے تک، اور ہفتے کو صبح 9 بجے سے دوپہر 1 بجے تک اور شام 4 بجے سے رات 8 بجے تک۔"
+    q_tr: "Kasr İbrahim'in ziyaret saatleri nedir?"
+    a_tr: "Pazar–Perşembe günleri 08.00–17.00, Cuma günü 16.00–20.00, Cumartesi günü 09.00–13.00 ve 16.00–20.00 saatleri arasında açıktır."
   - q: "هل دخول قصر إبراهيم برسوم؟"
     a: "لا، الدخول مجاني."
     q_en: "Is there an entry fee at Qasr Ibrahim?"
@@ -96,6 +105,8 @@ faq:
     a_ru: "Вход свободный."
     q_ur: "کیا قصر ابراہیم میں داخلے کی کوئی فیس ہے؟"
     a_ur: "نہیں، داخلہ مفت ہے۔"
+    q_tr: "Kasr İbrahim'e giriş ücretli mi?"
+    a_tr: "Hayır, giriş ücretsizdir."
   - q: "كم تستغرق زيارة قصر إبراهيم؟"
     a: "ساعة إلى ساعتين."
     q_en: "How long does a visit to Qasr Ibrahim take?"
@@ -106,6 +117,8 @@ faq:
     a_ru: "От одного до двух часов."
     q_ur: "قصر ابراہیم کی سیر میں کتنا وقت لگتا ہے؟"
     a_ur: "ایک سے دو گھنٹے۔"
+    q_tr: "Kasr İbrahim'i ziyaret etmek ne kadar sürer?"
+    a_tr: "Bir ila iki saat sürer."
   - q: "ماذا يضمّ قصر إبراهيم؟"
     a: "حصن يجمع تحت سوره مسجداً بقبّة أنيقة وثكنات عسكرية وأبراج مراقبة وإسطبلات ومخازن، وهو جزء من النسيج العمراني الذي أدرج الواحة على قائمة التراث العالمي لليونسكو عام 2018."
     q_en: "What is inside Qasr Ibrahim?"
@@ -116,6 +129,8 @@ faq:
     a_ru: "За одной стеной здесь мечеть с куполом, казармы, сторожевые башни, конюшни и склады; крепость — часть той городской застройки, благодаря которой оазис в 2018 году вошел в Список всемирного наследия ЮНЕСКО."
     q_ur: "قصر ابراہیم کے اندر کیا ہے؟"
     a_ur: "یہ ایک قلعہ ہے جس کی ایک ہی فصیل کے اندر گنبد والی مسجد، سپاہیوں کی رہائش گاہیں، نگرانی کے برج، اصطبل اور گودام یکجا ہیں۔ یہ ان عمارتوں میں شامل ہے جن کی بنا پر 2018 میں الاحساء کے نخلستان کو یونیسکو کی عالمی ورثے کی فہرست میں جگہ ملی۔"
+    q_tr: "Kasr İbrahim'in içinde neler var?"
+    a_tr: "Tek bir surun içinde kubbeli bir cami, askerî kışlalar, gözetleme kuleleri, ahırlar ve depolar bulunur. Kale aynı zamanda vahanın 2018'de UNESCO Dünya Mirası Listesi'ne girmesini sağlayan kentsel dokunun bir parçasıdır."
 ---
 
 في قلب الهفوف يقف قصر إبراهيم شاهداً على قرونٍ من التحوّل. ليس قصراً بالمعنى

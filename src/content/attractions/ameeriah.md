@@ -25,6 +25,11 @@ kicker_ur: "تاریخی مقام"
 summary_ur: "الاحساء کا پہلا باقاعدہ سرکاری اسکول، جو 1937 میں شروع ہوا۔ اس کی تاریخی عمارت آج ثقافت کا گھر ہے۔"
 body_ur: "مدرسہ امیریہ (یعنی امیریہ اسکول)، الاحساء کا پہلا باقاعدہ سرکاری اسکول، پرانے ہفوف کے مشرق میں، محلہ النعاثل میں واقع ہے۔ جس ٹیلے پر یہ بنا ہے اسے ام الخبیصی کہتے ہیں، اور سوق القیصریہ نامی بازار یہاں سے قریب ہے۔ اسکول میں پڑھائی 1356 ہجری (1937 عیسوی) میں کرائے کی ایک عمارت میں شروع ہوئی، اور اس کی مستقل عمارت 1360 ہجری (1941 عیسوی) میں کھلی۔ یہ عمارت عرب اسلامی طرز تعمیر میں بنی ہے: دروازہ محراب دار ہے اور اندرونی صحن کے گرد برآمدے ہیں۔ اس علاقے کے بچے نسل در نسل یہیں پڑھتے رہے۔ مرمت کے بعد یہ عمارت اب “بیت الثقافہ” (ثقافت کا گھر) نامی مقام ہے، جو الاحساء کی تعلیمی بیداری کی یاد کو محفوظ رکھتا ہے۔"
 area_ur: "محلہ النعاثل، پرانے ہفوف کے مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1 — السجل في tr-translation/output/tr-attr-1/)
+title_tr: "El-Emiriye Okulu"
+summary_tr: "El-Ahsa'nın 1937'de açılan, örgün eğitim veren ilk devlet okulu; tarihî binası bugün kültür evi olarak hizmet veriyor."
+body_tr: "El-Emiriye Okulu, En-Naasil mahallesindeki Ümm el-Hubeysi yükseltisinde bulunur; eski Hüfuf'un doğusunda, El-Kaysariye Çarşısı'nın yakınındadır. El-Ahsa'nın örgün eğitim veren ilk devlet okuludur. Dersler Hicri 1356 (1937) yılında kiralık bir binada başladı. Kalıcı binası ise Hicri 1360 (1941) yılında Arap-İslam üslubunda, kemerli girişi ve revaklarla çevrili iç avlusuyla açıldı. Bölgenin evlatları kuşaklar boyunca burada okudu. Bina “Beyt es-Sekafe” (Kültür Evi) olarak restore edildi; El-Ahsa'nın eğitimdeki uyanışının anısını yaşatan bir yapıdır."
+area_tr: "En-Naasil mahallesi — eski Hüfuf'un doğusu"
 slug_ar: "المدرسة-الأميرية"
 slug_en: "ameeriah"
 category: historic
@@ -46,8 +51,8 @@ description_en: "Al-Ahsa's first formal government school. On the rise of Umm Al
 featured: false
 order: 12
 practical:
-  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 8:00 م | الجمعة والسبت: 4:00 م - 8:00 م", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 8:00 pm; Friday & Saturday 4:00–8:00 pm", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے رات 8 بجے تک · جمعہ اور ہفتہ شام 4 بجے سے رات 8 بجے تک", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 8:00 م | الجمعة والسبت: 4:00 م - 8:00 م", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 8:00 pm; Friday & Saturday 4:00–8:00 pm", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے رات 8 بجے تک · جمعہ اور ہفتہ شام 4 بجے سے رات 8 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Pazar–Perşembe 08.00–20.00; Cuma ve Cumartesi 16.00–20.00", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.37411, lng: 49.58745 }
 mapUrl: "https://goo.gl/maps/KsemJ5EufHLVJwaWA"
 ---
