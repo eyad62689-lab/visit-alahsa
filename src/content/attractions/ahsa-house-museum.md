@@ -25,6 +25,11 @@ kicker_ur: "نجی عجائب گھر"
 summary_ur: "اسے “النعاثل” عجائب گھر بھی کہتے ہیں: الاحساء کا ایک پرانا گھر، اپنی بیٹھکوں، باورچی خانے اور دلہن کے کمرے سمیت۔ اسے سلیمان الماجد نے قائم کیا۔"
 body_ur: "ہفوف میں الاحساء کے روایتی گھر کا عجائب گھر واقع ہے، جو “النعاثل” عجائب گھر کے نام سے بھی معروف ہے۔ یہ عجائب گھر الاحساء کے پرانے گھر کو کمرہ بہ کمرہ دوبارہ سجا کر دکھاتا ہے۔ اسے سلیمان بن محمد الماجد نے اپنے ہی گھر کے بیرونی صحن میں تقریباً 180 مربع میٹر کے رقبے پر قائم کیا۔ اس کے کمروں کی ترتیب روایتی رہن سہن کے مطابق ہے: مردوں کی بیٹھک میں الاحساء کی قہوے کی کیتلیاں اور قہوہ بھوننے کے اوزار ہیں، اور عورتوں کی بیٹھک میں پرانا سازوسامان۔ باورچی خانے میں پتھر کی ہاتھ چکیاں اور تانبے کے برتن ہیں، دلہن کے کمرے میں اس کا لباس اور زیورات، اور بچوں کے کمرے میں پرانے زمانے کے کھلونے۔ ان کے ساتھ مخطوطات، سکے، پرانی تصاویر اور کھیتی باڑی کے اوزار بھی رکھے ہیں۔ عجائب گھر میں ورثے کی محفلیں اور تربیتی نشستیں بھی ہوتی ہیں، اور یوں یہ پرانا گھر محض نمائش کی چیز نہیں رہتا، جیتا جاگتا رہتا ہے۔"
 area_ur: "الاحساء، ہفوف میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-9 — السجل في tr-translation/output/tr-attr-9/)
+title_tr: "El-Ahsa Evi Müzesi"
+summary_tr: "“En-Naasil” müzesi — meclis salonları, mutfağı ve gelin odasıyla eski bir El-Ahsa evi; kurucusu Süleyman el-Macid."
+body_tr: "Hüfuf'taki El-Ahsa Evi Müzesi, eski bir El-Ahsa evini oda oda yeniden canlandırır. Müze, En-Naasil Müzesi adıyla da bilinir. Müzeyi Süleyman bin Muhammed el-Macid, kendi evinin dış avlusunda kurdu. Müzenin alanı yaklaşık 180 metrekaredir. Odalar geleneksel yaşamın düzenini izler. Erkeklerin meclis salonunda El-Ahsa kahve ibrikleri ve kahve kavurma aletleri, kadınların meclis salonunda eski mobilyalar bulunur. Mutfakta taş el değirmenleri ve bakır kaplar, gelin odasında giysi ve takılar, çocuk odasında eski oyuncaklar yer alır. Bunların yanında el yazmaları, sikkeler, eski fotoğraflar ve tarım aletleri de sergilenir. Müze ayrıca kültürel miras buluşmalarına ve atölye çalışmalarına ev sahipliği yapar; böylece eski ev yalnızca sergilenmekle kalmaz, yaşatılır."
+area_tr: "Hüfuf — El-Ahsa"
 slug_ar: "متحف-البيت-الأحسائي"
 slug_en: "ahsa-house-museum"
 category: museum
@@ -46,7 +51,7 @@ description_en: "The 'Naathel' museum — an old Hasawi house with its majlis ro
 featured: false
 order: 52
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 10:00 م", label_en: "Hours", value_en: "Daily 4:00–10:00 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 10 بجے تک", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://instagram.com/ahsa_house", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 10:00 م", label_en: "Hours", value_en: "Daily 4:00–10:00 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 10 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–22.00", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://instagram.com/ahsa_house", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.341541, lng: 49.611248 }
 mapUrl: "https://goo.gl/maps/AheTCeTPrZybFnZU8"
 ---

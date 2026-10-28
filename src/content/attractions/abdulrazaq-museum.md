@@ -25,6 +25,11 @@ kicker_ur: "نجی عجائب گھر"
 summary_ur: "ہفوف میں ایک نجی عجائب گھر، جس کی وجہ شہرت سعودی عرب کی پرانی نصابی کتابوں کا نادر ذخیرہ ہے۔"
 body_ur: "ہفوف میں عبد الرزاق العرب کا عجائب گھر واقع ہے۔ یہ نجی عجائب گھر الاحساء کا لوک ورثہ یکجا کرتا ہے، اور اس کی سب سے بڑی پہچان اس کا دستاویزی خاص موضوع ہے: سعودی عرب میں تعلیم کی تاریخ۔ یہاں مملکت کی اولین نصابی کتابوں اور تدریسی سامان کا ایک نادر ذخیرہ ہے۔ اس ذخیرے نے سرکاری توجہ بھی پائی: 2019 میں الاحساء میں سیاحت اور قومی ورثے کے ادارے کے دفتر نے عجائب گھر کے اندر ہی نصابی کتابوں کو ڈیجیٹل طور پر محفوظ کرنے کا ایک منصوبہ شروع کیا۔ اس منصوبے میں تقریباً 750 گھنٹوں کی محنت سے 150 سے زیادہ پرانی نصابی کتابیں ڈیجیٹل شکل میں ڈھل گئیں۔ تعلیم کے ذخیرے کے ساتھ ساتھ عجائب گھر مقامی لوک ورثے کی اشیا بھی دکھاتا ہے۔ یوں جو سیاح یہ جاننا چاہتے ہیں کہ مملکت میں تعلیم کا آغاز کیسے ہوا، ان کے لیے یہ ایک خاص پڑاؤ ہے۔"
 area_ur: "الاحساء، ہفوف میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-9 — السجل في tr-translation/output/tr-attr-9/)
+title_tr: "Abdürrezzak el-Arab Müzesi"
+summary_tr: "Hüfuf'ta, Suudi Arabistan'ın eski okul müfredatlarından oluşan nadir koleksiyonuyla ünlü özel müze."
+body_tr: "Hüfuf'ta Abdürrezzak el-Arab'ın müzesi bulunur. Burası, El-Ahsa'nın halk kültürü mirasını bir araya getiren özel bir müzedir. Müze, belgelenmiş uzmanlık alanıyla en çok tanınır: Suudi Arabistan'da eğitimin tarihi. Müzede, Suudi Arabistan'ın en eski okul müfredatlarından ve öğretim gereçlerinden oluşan nadir bir koleksiyon yer alır. Müzenin koleksiyonu resmî ilgi gördü. Suudi Arabistan'ın turizm ve millî miras otoritesinin El-Ahsa ofisi, 2019'da müzenin içinde bir elektronik arşivleme projesi başlattı. Projede 150'den fazla eski müfredat, yaklaşık 750 saatlik çalışmayla sayısallaştırıldı. Eğitim koleksiyonunun yanında müzede yerel halk kültüründen parçalar da sergilenir. Bu da müzeyi, Suudi Arabistan'da öğrenimin nasıl başladığının izini sürmek isteyen ziyaretçiler için kendine özgü bir durak yapar."
+area_tr: "Hüfuf — El-Ahsa"
 slug_ar: "متحف-عبد-الرزاق-العرب"
 slug_en: "abdulrazaq-museum"
 category: museum
@@ -46,7 +51,7 @@ description_en: "In Hofuf stands the museum of Abdulrazaq Al-Arab. Alongside the
 featured: false
 order: 54
 practical:
-  - { label: "المواعيد", value: "الفترة المسائية: 4:30 م - 9:30 م (بالاتصال المسبق)", label_en: "Hours", value_en: "Evenings 4:30–9:30 pm, by prior arrangement", label_ur: "اوقات", value_ur: "شام 4:30 بجے سے رات 9:30 بجے تک، پیشگی رابطہ کر کے", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الفترة المسائية: 4:30 م - 9:30 م (بالاتصال المسبق)", label_en: "Hours", value_en: "Evenings 4:30–9:30 pm, by prior arrangement", label_ur: "اوقات", value_ur: "شام 4:30 بجے سے رات 9:30 بجے تک، پیشگی رابطہ کر کے", label_tr: "Ziyaret saatleri", value_tr: "Akşamları 16.30–21.30, önceden randevuyla", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.360015, lng: 49.608017 }
 mapUrl: "https://goo.gl/maps/b9Sdf6HmKhbBXUNz7"
 ---
