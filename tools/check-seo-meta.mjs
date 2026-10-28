@@ -23,7 +23,7 @@ export const MIN_PAGES = 100;
 // مسارات دليل التأشيرات (C28 يحكم عنوانها ووصفها بحدود خاصة).
 const VISA_PATHS = new Set(['/دليل-التأشيرات/', '/en/visa-guide/']);
 // أدلة ليست صفحات عربية/إنجليزية: لغات أخرى وأدلة الأصول (تُستثنى من الجذر فقط، و«en» تُمشى بنفسها)
-const SKIP_ROOT = /^(zh|de|ru|ur|brand|dev|pagefind|_astro|img|fonts|video|vendor|data)$/;
+const SKIP_ROOT = /^(zh|de|ru|ur|tr|brand|dev|pagefind|_astro|img|fonts|video|vendor|data)$/;
 const SKIP_EN = /^(img|fonts|video|vendor|data|_astro)$/;
 
 const unesc = (t) => t.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
