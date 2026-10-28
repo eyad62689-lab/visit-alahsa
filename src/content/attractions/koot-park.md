@@ -25,6 +25,11 @@ kicker_ur: "پارک"
 summary_ur: "ہفوف کے تاریخی مرکز میں بلدیہ کا ایک باغ، جو قصر ابراہیم سے چند قدم کے فاصلے پر ہے اور “شہروں کو لوگوں کے لیے بہتر بنانے” کے منصوبے کا حصہ ہے۔"
 body_ur: "ہفوف کے تاریخی مرکز میں، محلہ الکوت کے قلب میں، الکوت کا باغ واقع ہے۔ یہاں سے چند قدم کے فاصلے پر سوق القیصریہ نامی بازار اور قصر ابراہیم ہیں۔ یہ بلدیہ کا ایک باغ ہے، جس کا افتتاح الاحساء کی بلدیہ نے 2020 کے اواخر میں کیا۔ یہ ان آٹھ باغوں میں سے ایک ہے جو “شہروں کو لوگوں کے لیے بہتر بنانے” کے منصوبے میں شامل ہیں۔ اس باغ میں فوارے، درخت اور سبزہ زار ہیں، اور بچوں کے کھیلنے کی ایک سایہ دار جگہ بھی۔ یہاں چہل قدمی کے راستے اور عوامی بیت الخلا ہیں، اور معذور افراد کی ضروریات کا خیال رکھا گیا ہے۔ یہ باغ ان منصوبوں کے وسیع تر سلسلے کا بھی حصہ ہے جو ہفوف کے تاریخی مرکز کی ترقی کے لیے ہیں۔ ان منصوبوں میں اس محلے کے باغوں کو الاحساء کے طرز تعمیر کا رنگ دیا جا رہا ہے۔ یوں یہ باغ خود بخود محلے کے ورثے کے مقامات کے درمیان دم لینے کی جگہ بن جاتا ہے۔"
 area_ur: "محلہ الکوت، ہفوف کے وسط میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-8 — السجل في tr-translation/output/tr-attr-8/)
+title_tr: "El-Kut Parkı"
+summary_tr: "Hüfuf'un tarihî merkezinde, Kasr İbrahim'e birkaç adım uzaklıkta bir belediye bahçesi; “Şehirleri iyileştirme” programının bir parçası."
+body_tr: "El-Kut Parkı, Hüfuf'un tarihî merkezinde, El-Kut mahallesinin kalbindedir. Park, Kasr İbrahim'e ve El-Kaysariye Çarşısı'na birkaç adım mesafededir. El-Ahsa Belediyesi bu bahçeyi 2020'nin sonlarında, “Şehirleri iyileştirme” programındaki sekiz bahçeden biri olarak hizmete açtı. Bahçede su fıskiyeleri, ağaçlar ve çimenlik alanlar, gölgelikli bir çocuk oyun alanı, yürüyüş alanı ve halka açık tuvaletler bulunur. Engelli kişilerin erişilebilirliği de dikkate alınmıştır. Park aynı zamanda Hüfuf'un tarihî merkezini geliştirmeye yönelik daha geniş proje grubunun parçasıdır. Bu projelerde mahallenin bahçelerine El-Ahsa'nın mimari motifleri işleniyor. Böylece park, mahallenin tarihî yerleri arasında doğal bir mola yeri oluyor."
+area_tr: "El-Kut mahallesi — Hüfuf merkezi"
 slug_ar: "حديقة-الكوت"
 slug_en: "koot-park"
 category: parks
@@ -47,8 +52,8 @@ order: 48
 district: alkoot
 openSite: true
 practical:
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", label_tr: "Ziyaret saatleri", value_tr: "24 saat açık", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.378523, lng: 49.584952 }
 mapUrl: "https://goo.gl/maps/wUgnv5hVGcKYmxAu8"
 heroImage: /img/al-kout-garden
