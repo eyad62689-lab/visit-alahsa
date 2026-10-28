@@ -1,0 +1,41 @@
+# tr-attr-3 - independent proofread of the judge's round-1 edits (stage 05d)
+
+## Scope
+
+Seven strings were edited by the judge (stage 7, round 1) after the proofread stage: jalaniyah.summary, jalaniyah.body, dibs.body, bubakr-ribat.area, bubakr-ribat.body, qubba-mosque.body, tahimiyah-w.body. Read: BRIEF.md, prompts/05-proofreader.md, stages/05-proofreader.json, stages/07-judge.r1.json (strings, changes, rulings, notes), pack.json (English `en`, Arabic `ar` / `arabic_body`), termbase.json (El-Calaniye Camii, El-Kubbe Camii, Et-Tahimiye, El-Kut, El-Mulla, Cebel el-Kare, Kasr İbrahim A1 ruling), and the published qasr-ibrahim Turkish text in ref.json (it calls the building «bir kale»; so «kalenin» in qubba-mosque.body is the established form, and the English «palace's» vs summary «features» divergence is already in source_defects). No JSON was edited.
+
+## Whole-file scans
+
+- Change integrity: all 7 `changes[].before` are byte-equal to stage 05; all 7 `changes[].after` are byte-equal to the judge's `strings`. The set of keys whose text differs from stage 05 is exactly those 7; the other 15 of the 22 strings are byte-equal to stage 05.
+- Whole file (22 strings): no U+00A0, no U+2019 (apostrophe is U+0027 only), no «» or straight double quotes, no Markdown characters, no Arabic-Indic digits, no sen-form, no space-before-punctuation.
+- Edited strings: apostrophes only on names and numerals (Hüfuf'un, El-Ahsa'nın, 2017'de, Ribatı'dır, Et-Tahimiye'nin, El-Cebri Camii'ne, Beyt el-Biat'a, Hüfuf'taki). Turkish letters and i/İ, ı/I all correct (İslami, İbrahim, Şeyh, Şafii, ünlüydü, ilmî, tarihî, resmî).
+- Name forms identical to title/area/termbase/rulings: El-Calaniye Camii, El-Battaliye, El-Kubbe Camii, Kasr İbrahim, Et-Tahimiye, Cebel el-Kare, El-Kut mahallesi, El-Mulla ailesi, Ebu Bekir el-Mulla Ailesi Ribatı (title) = body form, Uyuniler Devleti (A3-Uyuniler), Mehmed Ferruh Paşa (A3-Mehmed-Ferruh), Cübeyl ve Yenbu Kraliyet Komisyonu (A3-Cubeyl).
+- P10: no clock times in the seven strings. Hijri form: «Hicri 962 (1555)», «Hicri 1391 (1971)», «Hicri 1406 (1986)», «Hicri 1430 (2009)», «Hicri 979 (1571)», «Hicri 1280 (yaklaşık 1863)», «Hicri 1430 (yaklaşık 2009)», «Hicri beşinci yüzyılda (yaklaşık on birinci yüzyıl)» all match the calibration form and A3-P11-yaklasik (P11 stays open, flagged by the judge).
+- Checker, run exactly as instructed: `RESULT [OK] 0 findings (full text: 07-judge.r1.json.check.txt)`.
+
+## Verdict counts
+
+OK: 7 · MANDATORY: 0 · OPTIONAL: 0 (three non-blocking remarks inside OK sections, below).
+
+## Per string
+
+### jalaniyah.summary - OK
+English: «An Uyunid-era mosque in Al-Battaliyah village, also known as the Battaliyah Mosque.» Turkish «El-Battaliye köyünde, Uyuniler Devleti dönemine ait bir cami; El-Battaliye Camii adıyla da bilinir.» Only «Devleti» was added; it is the Arabic's الدولة العيونية and the A3-Uyuniler ruling, and the body already says it. Dative «dönemine ait» correct; faithful (nothing added or dropped); under the length limit.
+
+### jalaniyah.body - OK
+Four edits checked against the English. (1) «Cami, Uyuniler Devleti dönemine aittir; Hicri beşinci yüzyılda (yaklaşık on birinci yüzyıl) inşa edilmiştir.» is a clean split of «dates back to the Uyunid state in the fifth century AH»; one complement per clause; the Arabic يعود بناؤه supports «inşa». (2) «iki mihrabıyla ve … sütun sıralarıyla dikkat çeker» is correct instrumental coordination (-yla after consonant-final-vowel «mihrabı», vowel harmony right). (3) «Bin kişiden çok daha fazlası burada namaz kılabilir.» renders «space for well over a thousand worshippers»; no fact lost. (4) «2017'de cami, … arasına alındı.» with «ise» dropped; faithful. Remaining text byte-equal to stage 05. Remark (non-blocking): the sentence «… dikkat çeker.» follows a sentence whose grammatical subject is «caminin çatısı»; «iki mihrabıyla» (possessive on the mosque) resolves it, and it is unchanged in sense from stage 05, so no change needed.
+
+### dibs.body - OK
+(1) «cami, El-Cebri Camii'ne ve Beyt el-Biat'a kısa bir yürüyüş mesafesindedir» - subject is explicit, the two published names are byte-binding (El-Cebri Camii, Beyt el-Biat) and take correct apostrophe suffixes (-'ne, -'a). (2) «Hicri 1406 (1986) yılında caminin bir bölümü çöktü; ardından eski mimari tarzı korunarak onarıldı.» faithful to «after a partial collapse … restored while preserving its old architectural character»; Hijri form correct. (3) «Bugün de ibadete açık bir camidir.» renders «a working mosque to this day»; dropping «yaşayan» removes a word the English does not have. Remark (non-blocking): the passive «onarıldı» after «bir bölümü çöktü» can in principle be heard as «the section was repaired»; «ardından cami eski … onarıldı» would close it, but the sentence reads correctly as it stands.
+
+### bubakr-ribat.area - OK
+English «Al-Ruwaidah quarter, Al-Koot district — Hofuf»; Turkish «Er-Ruveyde kesimi, El-Kut mahallesi — Hüfuf». Sun-letter article (P1), El-Kut mahallesi as ruled, «kesim» per A3-Ruveyde (judge read TDK; no rank inversion inside a mahalle). Matches the body's opening phrase exactly. Em dash form is the frame's own.
+
+### bubakr-ribat.body - OK
+All five edits checked against the English. (1) «Er-Ruveyde kesimi» consistent with the area string. (2) «Burada El-Bubekir Ribatı yükselir; asıl adı Ebu Bekir el-Mulla Ailesi Ribatı'dır.» follows the English «the Bubakr Ribat — properly the Ribat of the Al Abi Bakr Al-Mulla family»; «yerel adıyla» correctly removed (the English has no «local»; the Arabic's المعروف محلياً stays in source_defects); the full name equals the title byte for byte; «Ribatı'dır» takes the apostrophe on an attraction name per the cited A1-El-Emiriye ruling and harmonises (ı → -dır). (3) «Ribat, ilmî bir vakıftır; Şeyh Abdullah bin Ebu Bekir el-Mulla onu Hicri 1280 (yaklaşık 1863) yılında kurdu.» faithful to «a scholarly endowment founded in 1280 AH (around 1863 CE) by Sheikh …»; «yaklaşık» inside the bracket per A3-P11-yaklasik; Ebu Bekir as in the termbase. (4) The provision sentence, the students sentence («Öğrenciler El-Ahsa'dan da, çok daha uzak yerlerden de gelirdi») and «ribat nesillerce âlim ve kadı yetiştirdi» keep every fact of «free lodging, food and drink to students … from within Al-Ahsa and far beyond, as well as to travellers, … graduated generations of scholars and judges»; ablatives -dan/-den correct. (5) «Yapı alçı, çakıl, ahşap ve hurma ağacı gövdelerinden yapılmıştır» correct. Rest byte-equal to stage 05. Remark (non-blocking): «Ribat,» opens four sentences/clauses (sentences 3, 4, 7 and the second clause of 5, as «ribat»); the judge did this on purpose so the subject is never taken for the Sheikh; acceptable.
+
+### qubba-mosque.body - OK
+(1) «Kalenin surları içinde El-Kubbe Camii yükselir; cami, kalenin en dikkat çekici mimari unsuru ve tarihî El-Ahsa'yı tanımlayan görüntülerden biridir.» The «kale» wording is the established form on the published Kasr İbrahim page (ref.json: «Gösterişli bir saray değil, bir kaledir»), the English «palace's» divergence already sits in source_defects; name forms El-Kubbe Camii, Kasr İbrahim, El-Kut mahallesi byte-correct. (2) «Bir külliyenin parçasıydı; külliyede İslami ilimler okulu ile Kur'an öğretimine ayrılmış bir yer de vardı.» is the English «as part of a complex that included a school of Islamic sciences and a place for teaching the Quran», split; locative «külliyede» correct. (3) «Ayrı duran» for «free-standing» is correct, and fixes the political reading of «Bağımsız». (4) «Caminin girişinin üzerindeki alçı levhada» - correct genitive-possessive chain, subject now the mosque as the English «its entrance». No fact added; digits (13, 19 metre) unchanged.
+
+### tahimiyah-w.body - OK
+(1) Split at the English break: «Bu cami, köyün geriye kalan eski çamur camilerinden biridir.» then the village sentence. (2) «Köy eskiden “kırk caminin köyü” olarak ünlüydü» is the English «once famed as 'the village of forty mosques'»; “” quotes only; «lakabıyla» correctly gone (lakap = person). (3) «bugün bu camilerden ancak on bir kadarı ayakta» is «only around eleven remain»; «ayakta» without copula is acceptable (3rd person). Et-Tahimiye'nin, Cebel el-Kare'ye, Doğu Camii ile Batı Camii: forms as the termbase and A3-Tahimiye-Bati; last sentence byte-equal to stage 05.

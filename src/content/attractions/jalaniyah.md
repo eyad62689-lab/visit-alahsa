@@ -26,6 +26,11 @@ kicker_ur: "مذہبی مقام"
 summary_ur: "البطالیہ گاؤں میں عیونی ریاست کے دور کی ایک مسجد، جو مسجد البطالیہ کے نام سے بھی معروف ہے۔"
 body_ur: "ہفوف سے تقریباً بارہ کلومیٹر شمال مشرق میں، البطالیہ گاؤں کے مغربی محلے میں مسجد الجعلانیہ واقع ہے۔ اسے مسجد البطالیہ بھی کہتے ہیں، اور یہ الاحساء کی مشہور ترین تاریخی مساجد میں سے ایک ہے۔ یہ عیونی ریاست کے دور میں، پانچویں صدی ہجری (تقریباً گیارہویں صدی عیسوی) میں تعمیر ہوئی۔ اس کا نام شہزادی ہبہ بنت عبد اللہ بن علی العیونی سے جڑا ہے۔ وہ اس ریاست کے بانی کی بیٹی تھیں، اور یہ مسجد ان سے منسوب ہے۔ یہ پتھر اور مٹی سے بنی ہے، اور اس کی چھت کھجور کے تنوں اور پتوں کی ہے۔ ستونوں کی قطاروں پر نوک دار محرابیں ٹکی ہیں۔ قبلے کی دیوار میں دو محرابیں اس مسجد کو منفرد بناتی ہیں۔ اس میں ایک ہزار سے زیادہ نمازیوں کی گنجائش ہے۔ الجبیل اور ینبع کے شاہی کمیشن نے اس کی مرمت کی، اور یہ کام 1430 ہجری (2009 عیسوی) میں مکمل ہوا۔ 2017 میں یہ الاحساء کی تاریخی مساجد کی سرکاری فہرست میں شامل ہوئی۔"
 area_ur: "البطالیہ گاؤں، ہفوف کے شمال مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-3 — السجل في tr-translation/output/tr-attr-3/)
+title_tr: "El-Calaniye Camii"
+summary_tr: "El-Battaliye köyünde, Uyuniler Devleti dönemine ait bir cami; El-Battaliye Camii adıyla da bilinir."
+body_tr: "El-Battaliye köyü, Hüfuf'un yaklaşık on iki kilometre kuzeydoğusundadır. Köyün batı mahallesinde El-Calaniye Camii yükselir; cami, El-Battaliye Camii adıyla da bilinir ve El-Ahsa'nın en ünlü tarihî camilerinden biridir. Cami, Uyuniler Devleti dönemine aittir; Hicri beşinci yüzyılda (yaklaşık on birinci yüzyıl) inşa edilmiştir. Adı, devletin kurucusunun kızı Prenses Hibe bint Abdullah bin Ali el-Uyuni ile ilişkilendirilir; cami de ona atfedilir. Taş ve çamurdan yapılan caminin çatısı hurma ağacı gövdeleri ve yapraklarıyla örtülüdür. Cami, kıble duvarındaki iki mihrabıyla ve sivri kemerleri taşıyan sütun sıralarıyla dikkat çeker. Bin kişiden çok daha fazlası burada namaz kılabilir. Camiyi Cübeyl ve Yenbu Kraliyet Komisyonu restore etti; çalışmalar Hicri 1430 (2009) yılında tamamlandı. 2017'de cami, El-Ahsa'nın resmen tescil edilmiş tarihî camileri arasına alındı."
+area_tr: "El-Battaliye köyü — Hüfuf'un kuzeydoğusu"
 slug_ar: "مسجد-الجعلانية"
 slug_en: "jalaniyah"
 category: religious

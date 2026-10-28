@@ -25,6 +25,11 @@ kicker_ur: "مذہبی مقام"
 summary_ur: "التہیمیہ گاؤں میں مٹی کی قدیم مساجد میں سے ایک۔"
 body_ur: "التہیمیہ گاؤں جبل القارہ کے قریب ہے اور الاحساء کے مشرقی دیہات میں سے ہے۔ یہ مسجد اس گاؤں کی ان قدیم مساجد میں سے ایک ہے جو مٹی سے بنی ہیں اور آج تک باقی ہیں۔ یہ گاؤں کبھی “چالیس مساجد کا گاؤں” کے نام سے مشہور تھا، اور ان مساجد میں سے اب تقریباً گیارہ ہی باقی ہیں۔ التہیمیہ کی مساجد مٹی اور کھجور کے تنوں کی روایتی عمارتیں ہیں، اور ان میں سے دو، مشرقی اور مغربی مسجد، الاحساء کی تاریخی مساجد کی سرکاری فہرست میں درج ہیں۔"
 area_ur: "الاحساء، مشرقی دیہات میں التہیمیہ گاؤں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-3 — السجل في tr-translation/output/tr-attr-3/)
+title_tr: "Et-Tahimiye Batı Camii"
+summary_tr: "Et-Tahimiye köyünün eski çamur camilerinden biri."
+body_tr: "Et-Tahimiye, El-Ahsa'nın doğu köylerinden biridir ve Cebel el-Kare'ye yakındır. Bu cami, köyün geriye kalan eski çamur camilerinden biridir. Köy eskiden “kırk caminin köyü” olarak ünlüydü; bugün bu camilerden ancak on bir kadarı ayakta. Et-Tahimiye'nin camileri, çamur ve hurma ağacı gövdelerinden yapılmış geleneksel yapılardır. Bunlardan ikisi, Doğu Camii ile Batı Camii, El-Ahsa'daki tarihî camilerin resmî kaydında yer alıyor."
+area_tr: "Et-Tahimiye köyü — El-Ahsa'nın doğu köyleri"
 slug_ar: "مسجد-التهيمية-الغربي"
 slug_en: "tahimiyah-w"
 category: religious
