@@ -25,6 +25,11 @@ kicker_ur: "پارک"
 summary_ur: "القارہ گاؤں کے قریب ایک وسیع پارک، جس کا نام زمانہ جاہلیت کے قلعہ المشقر کے نام پر ہے۔ اس کے قلب میں ایک محل ہے جو اسی قلعے سے متاثر ہو کر بنایا گیا۔"
 body_ur: "الاحساء کے نخلستان کے مشرقی حصے میں، القارہ گاؤں کے قریب، المشقر پارک پھیلا ہوا ہے، جو پہلے الشیبانی پارک کہلاتا تھا۔ یہ گھنے پیڑ پودوں میں گھری ایک ہری بھری جگہ ہے، جہاں کھلے سبزہ زار، ایک روایتی بازار اور خاندانوں کے لیے کھیل کی جگہیں ہیں۔ اس جگہ کا نام زمانہ جاہلیت کے مشہور قلعہ المشقر کے نام پر ہے۔ قدیم عربی تحریروں میں اس قلعے کو “قلعہ ہجر” کہا گیا ہے۔ اس کا ذکر عربوں کی ان مشہور لڑائیوں کے تذکروں میں آتا ہے جو “ایام العرب” کہلاتی ہیں۔ اسی کے پڑوس میں سوق المشقر نامی بازار لگتا تھا، جو زمانہ جاہلیت میں عربوں کے بازاروں میں سے ایک تھا۔ البتہ اصل قلعہ کہاں تھا، اس پر محققین میں آج بھی اختلاف ہے: کوئی اسے البطالیہ میں بتاتا ہے، کوئی جواثا میں اور کوئی القارہ میں۔ پارک کے قلب میں “قصر المشقر” کھڑا ہے۔ یہ ایک جدید عمارت ہے، جو اس قدیم قلعے سے متاثر ہو کر بنائی گئی۔ اب یہی اس پارک کا مرکز اور اس کی پہچان ہے۔"
 area_ur: "القارہ گاؤں کے قریب، الاحساء کے مشرقی حصے میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-7 — السجل في tr-translation/output/tr-attr-7/)
+title_tr: "Eş-Şeybani / Muşakkar Parkı"
+summary_tr: "El-Kare köyünün yakınında, İslam öncesi dönemin Muşakkar Kalesi'nin adını taşıyan geniş bir park; merkezinde kaleyi örnek alarak yapılmış bir saray bulunur."
+body_tr: "Vahanın doğu yanında, El-Kare köyünün yakınında Muşakkar Parkı (önceki adı Eş-Şeybani Parkı) uzanır. Park, sık bitki örtüsünün içinde açık çimenlikleri, bir halk çarşısını ve ailelere yönelik oyun alanlarını barındıran yeşil bir dinlenme alanıdır. Yerin adı, İslam öncesi dönemin ünlü Muşakkar Kalesi'nden gelir. Kale, erken dönem Arapça kaynaklarda “Hecer Kalesi” olarak geçer ve Arabistan'ın ünlü savaş günlerinin anlatılarında anılır. Kalenin komşusu, İslam öncesi Arap panayırlarından biri olan Muşakkar Pazarı'ydı. Ancak araştırmacılar asıl kalenin yerini hâlâ tartışıyor: görüşler El-Battaliye, Cüvasa ve El-Kare arasında ayrılıyor. Parkın merkezinde “Muşakkar Sarayı” bulunur. Bu modern yapı, o eski kaleye bir saygı ifadesi olarak yapıldı; bugün parkın odak noktasıdır ve parkla özdeşleşmiştir."
+area_tr: "El-Kare köyü yakınları — El-Ahsa'nın doğusu"
 slug_ar: "المشقر"
 slug_en: "mushaqar"
 category: parks
@@ -46,8 +51,8 @@ featured: false
 order: 46
 district: qarah
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "Daily 4:00–11:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 11:30 بجے تک", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "Daily 4:00–11:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 11:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–23.30", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.423663, lng: 49.67916 }
 mapUrl: "https://goo.gl/maps/RmGxkW2cm1xvkW4W7"
 heroImage: /img/al-mashqar-park-01

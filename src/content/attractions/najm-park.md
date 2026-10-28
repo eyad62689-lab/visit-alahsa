@@ -25,6 +25,11 @@ kicker_ur: "پارک"
 summary_ur: "المبرز کے مغرب میں تاریخی عین النجم کے گرد بنا ایک پارک۔ الاحساء کے گندھک والے شفا بخش چشموں میں عین النجم سب سے مشہور ہے۔"
 body_ur: "المبرز کے مغرب میں عین النجم پارک واقع ہے۔ یہ ایک عوامی پارک ہے جو الاحساء کی بلدیہ نے عین النجم نامی تاریخی چشمے کے گرد بنایا ہے۔ یہ چشمہ الاحساء کے گندھک والے مشہور ترین گرم چشموں میں سے ایک ہے۔ لوگ قدیم زمانے سے اس کے شفا بخش پانی کے لیے یہاں آتے رہے ہیں، اور کہا جاتا ہے کہ یہ سعودی عرب میں شفایابی کے لیے مخصوص پہلا سیاحتی مقام ہے۔ اس چشمے کی عمارتیں، جن کے نیم بیضوی گنبد ان کی پہچان ہیں، 1115 ہجری (1703 عیسوی) میں تعمیر ہوئیں۔ یہ چشمہ اس علاقے کی تاریخ سے جڑا ہوا ہے: 1799 میں الاحساء کے لوگوں نے اسی کے پاس سعود بن عبد العزیز کے ہاتھ پر بیعت کی، جو بعد میں امام بنے، اور 1367 ہجری (1948 عیسوی) میں شاہ عبد العزیز اس کے پانی سے علاج کے لیے یہاں آئے۔ ترقیاتی کاموں کے بعد یہ پارک 2015 کے وسط میں سیاحوں کے لیے کھول دیا گیا۔ یہاں ہریالی ہے اور خاندان کے ساتھ مل بیٹھنے کی پرسکون جگہیں ہیں۔ آج اس کا انتظام الاحساء کی بلدیہ سنبھالتی ہے۔"
 area_ur: "الاحساء، المبرز کے مغرب میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-7 — السجل في tr-translation/output/tr-attr-7/)
+title_tr: "Ayn en-Necm Parkı"
+summary_tr: "Müberrez'in batısında, tarihî Ayn en-Necm'in çevresindeki park; bu pınar, El-Ahsa'nın şifalı kükürtlü pınarlarının en ünlüsüdür."
+body_tr: "Müberrez'in batısında Ayn en-Necm Parkı bulunur. Bu halka açık parkı El-Ahsa Belediyesi, tarihî Ayn en-Necm'in çevresine kurdu. Ayn en-Necm, El-Ahsa'nın en ünlü sıcak kükürtlü pınarlarından biridir. Pınar, şifalı suları için eski zamanlardan beri aranmıştır; Suudi Arabistan'ın şifa ve sağlıklı yaşama yönelik ilk turistik yeri olarak da tanımlanır. Pınarın kendine özgü yarı oval kubbeli yapıları Hicri 1115 (1703) yılında inşa edildi. Pınar, bölgenin tarihiyle iç içedir: 1799'da El-Ahsa halkı pınarın yanında, daha sonra imamlık makamına gelen Suud bin Abdülaziz'e biat etti; Kral Abdülaziz de Hicri 1367 (1948) yılında pınarın sularından yararlanmaya geldi. Yeniden geliştirilmesinin ardından park, 2015'in ortasında ziyaretçilerini yeşilliğiyle ve sakin aile oturma alanlarıyla karşıladı. Parkı bugün El-Ahsa Belediyesi yönetiyor."
+area_tr: "Müberrez'in batısı — El-Ahsa"
 slug_ar: "حديقة-عين-النجم"
 slug_en: "najm-park"
 category: parks
@@ -47,8 +52,8 @@ featured: false
 order: 45
 district: mubarraz
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "Daily 4:00–11:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 11:30 بجے تک", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "Daily 4:00–11:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 11:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–23.30", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.40642, lng: 49.557917 }
 mapUrl: "https://goo.gl/maps/zD3noGFvTMLadcKRA"
 ---

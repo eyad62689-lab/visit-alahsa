@@ -2034,6 +2034,8 @@ export const ui = {
     'list.search': 'Gezilecek yer arayın…',
     'list.searchLabel': 'Gezilecek yerlerde arayın',
     'nav.leisure': 'Çarşı, park ve çiftlikler',
+    'det.allLeisure': 'Tüm çarşılar ve parklar →',
+    'crumb.leisure': 'Çarşılar ve parklar',
     'det.visitInfo': 'Ziyaret bilgileri',
     'det.hoursNotice': 'Saatler ve ücretler değişebilir — ziyaretten önce {op} ile teyit edin.',
     'det.hoursNotice.op': 'işletmeci',
