@@ -91,8 +91,8 @@ export const UNESCO_WHS_ID = {
 // والأوردية من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12): الاسم مركّباً بالإضافة الأوردية.
 const OASIS_NAME: Record<Lang, string> = {
   ar: 'واحة الأحساء', en: 'Al-Ahsa Oasis', zh: '哈萨绿洲', de: 'Al-Ahsa-Oase', ru: 'оазис Аль-Ахса', ur: 'الاحساء کا نخلستان',
-  // التركية: الإنجليزية حتى تمرّ دفعة واجهتها بخطها
-  tr: 'Al-Ahsa Oasis',
+  // التركية من خط tr-translation-pipeline — الدفعة tr-ui-1 بدرجة 91/100 (2026-10-28)
+  tr: 'El-Ahsa Vahası',
 };
 
 /** عقدة الواحة كموقع تراث عالمي — تُدرج في isPartOf لكل معلم يحمل معرّف مكوّن. */

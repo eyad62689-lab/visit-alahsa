@@ -179,7 +179,29 @@
     ],
     "owner_confirmation": [
       "«Doğu Vahası» في المتن (مكرَّرة من سؤال اليونسكو) — بنية تخالف متون اللغات الأخرى."
-    ]
+    ],
+    "batch_rulings": {
+      "tr-ui-1": [
+        {
+          "id": "UI1-controls",
+          "title": "Control forms (amended in round 2)",
+          "ruling": "Buttons, links that perform an action and action aria-labels are polite-plural imperatives (-in/-ın/-un/-ün: Paylaşın, Kaydedin, Kapatın, Haritada görüntüleyin, Hata bildirin); section labels, page headings, footer links and landmarks are noun phrases (İletişim, Ulaşım, Ana menü); status lines are passive or participial (Aranıyor…, Kaydedildi ✓, Bağlantı kopyalandı ✓). Footer column headings keep the source's part of speech: an imperative source gives a polite imperative (Keşfedin, Planlayın), a noun source a noun phrase (Site hakkında). 'view' on a button = 'görüntüleyin', never bare 'görün' (= appear). The arrow keys are 'ok tuşları'.",
+          "by": "judge tr-ui-1 (91/100, 2026-10-28)"
+        },
+        {
+          "id": "UI1-gezinmek",
+          "title": "No gezinmek next to gezi (amended in round 2)",
+          "ruling": "Where 'gezi' (trip) appears in the same view, do not use forms of 'gezinmek' (navigate) in visible text; the arrow-key hint is 'ok tuşlarıyla seçin'. 'Gezinti yolu' stays as the breadcrumb aria-label (screen-reader only).",
+          "by": "judge tr-ui-1 (91/100, 2026-10-28)"
+        },
+        {
+          "id": "UI1-yer-heading",
+          "title": "No heading that opens with the verb 'yer almak'",
+          "ruling": "On /tr/ pages 'yer' is the word for place (gezilecek yer, Bu yeri kaydedin, yakın yerler), so a heading or label must not open with 'Yer aldığı …' or another 'yer almak' form, which is first read as the noun. 'Part of these trails' = 'Bu yeri içeren rotalar'; for 'included in' use 'içeren' or 'dahil' with a named subject.",
+          "by": "judge tr-ui-1 (91/100, 2026-10-28)"
+        }
+      ]
+    }
   },
   "terms": {
     "Arap Körfezi": {
@@ -431,6 +453,36 @@
       "source": "built from Arabic (written joined: بوصالح); no Turkish attestation (searched in stage 4: tr.wikipedia, web)",
       "status": "pending",
       "note": "Joined form = the Arabic بوصالح (transliteration from the Arabic, not title_en «Bu Saleh»); no article (the Arabic has none). CLOSED r3: the «bu Salih» echo (three readers) accepted as inherent (ru P8); mitigation: never followed by a lowercase common noun; in lists it closes a list announced as names («şu adları taşır: … ve Busalih»); standalone «Busalih Mağarası». Banned: «Bu Salih», «Ebu Salih» (respells بو as أبو), «Bu-Salih», «BuSalih», «Busalih mağaraları»."
+    },
+    "gezilecek yer": {
+      "ar": "معلم",
+      "en": "attraction",
+      "suffix_vowel": "i — gezilecek yerler, gezilecek yerlerde (common noun, no apostrophe)",
+      "kind": "generic",
+      "gloss": null,
+      "source": "tr-translation/memory/tm.json (published 'gezilecek yerler haritasında', jabal-al-qarah); kulturportali.gov.tr category tile 'Gezilecek Yerler' (read 2026-10-27, stage 4)",
+      "status": "verified",
+      "note": "Ruling UI1-attraction. Plural for navigation labels; 'yer' alone for saved/nearby places. (tr-ui-1, 2026-10-28)"
+    },
+    "El-Ahsa mutfağı": {
+      "ar": "المطبخ الأحسائي",
+      "en": "Hasawi Cuisine",
+      "suffix_vowel": "ı — El-Ahsa mutfağında (common phrase, no apostrophe)",
+      "kind": "generic",
+      "gloss": null,
+      "source": "built from El-Ahsa (termbase, P2) + TDK mutfak; no Turkish attestation of a 'Hasawi' form",
+      "status": "verified",
+      "note": "Ruling UI1-hasawi. Sentence case: lowercase 'mutfağı'. (tr-ui-1, 2026-10-28)"
+    },
+    "çevrim içi": {
+      "ar": "عبر الإنترنت",
+      "en": "online",
+      "suffix_vowel": "i — çevrim içi mağazalar (two words, lowercase)",
+      "kind": "generic",
+      "gloss": null,
+      "source": "https://sozluk.gov.tr/gts?ara=çevrim içi (two-word headword; 'çevrimiçi' has no entry), read 2026-10-27 at stage 4",
+      "status": "verified",
+      "note": "Ruling UI1-header. Not 'online' (anglicism rule), not 'çevrimiçi'. (tr-ui-1, 2026-10-28)"
     }
   }
 }

@@ -21,8 +21,8 @@ export const DIST_LABELS: Record<Lang, { under: string; about: string }> = {
   ru: { under: 'менее 1 км', about: 'около {n} км' },
   // الأوردية من خط ur-translation-pipeline (دفعة الواجهة 2026-10-12)
   ur: { under: '1 کلومیٹر سے کم', about: 'تقریباً {n} کلومیٹر' },
-  // التركية: الإنجليزية حتى تمرّ دفعة واجهتها بخط tr-translation-pipeline
-  tr: { under: 'under 1 km', about: '~{n} km' },
+  // التركية من خط tr-translation-pipeline — الدفعة tr-ui-1 بدرجة 91/100 (2026-10-28)
+  tr: { under: '1 km\'den az', about: 'yaklaşık {n} km' },
 };
 
 export const distLabel = (km: number, lang: Lang): string =>

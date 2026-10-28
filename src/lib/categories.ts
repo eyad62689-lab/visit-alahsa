@@ -81,6 +81,19 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     // دفعة palm-village-page 2026-10-20 (الحاكم 92/100)
     experience: 'تجربات اور دستکاریاں',
   },
+  // التركية من خط tr-translation-pipeline — الدفعة tr-ui-1 بدرجة 91/100 (2026-10-28).
+  tr: {
+    historic: 'Tarihî yerler',
+    museum: 'Müzeler',
+    religious: 'Camiler ve dinî mekânlar',
+    nature: 'Doğa',
+    parks: 'Parklar ve bahçeler',
+    market: 'Geleneksel çarşılar',
+    farm: 'Çiftlikler',
+    experience: 'Deneyimler ve el sanatları',
+    taste: 'El-Ahsa mutfağı',
+    events: 'Etkinlikler',
+  },
 };
 
 export const CATEGORY_ORDER = ['historic', 'museum', 'religious', 'nature', 'parks', 'market', 'farm', 'experience', 'taste', 'events'];

@@ -49,7 +49,8 @@ const nav = [
   // المسارات المقترحة: في شريط ar/en/zh. الألمانية والروسية خارجه بالقياس لا بالتقدير
   // (tools/measure-header-fit.mjs: رابط تاسع يلزمه 1443px و1608px فيتراكب عند كل عرض) —
   // رابطهما في التذييل كالمدونة.
-  ...(de || ru ? [] : [{ href: ar ? '/trails/' : tr ? '/en/trails/' : `/${lang}/trails/`, label: t('nav.trails') }]),
+  // والتركية خارجه كذلك (قياس 2026-10-27: عشرة روابط تلزمها 1732px؛ سابقة الروسية).
+  ...(de || ru || tr ? [] : [{ href: ar ? '/trails/' : `/${lang}/trails/`, label: t('nav.trails') }]),
   { href: routes.leisure, label: t('nav.leisure') },
   { href: routes.events, label: t('nav.events') },
   { href: routes.fruits, label: t('nav.fruits') },
@@ -251,9 +252,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
   }
   /* الروسية بعد «Интернет-магазины» (2026-10-09): اللازم 1668px بخط 13px وفجوة 10px */
   @media (min-width: 1708px) {
-    :global([lang='ru']) .hd-in { inline-size: min(100% - var(--s-3), 1690px); }
-    :global([lang='ru']) .nav { gap: 10px; }
-    :global([lang='ru']) .nav a { font-size: .8125rem; }
+    :global([lang='ru']) .hd-in, :global([lang='tr']) .hd-in { inline-size: min(100% - var(--s-3), 1690px); }
+    :global([lang='ru']) .nav, :global([lang='tr']) .nav { gap: 10px; }
+    :global([lang='ru']) .nav a, :global([lang='tr']) .nav a { font-size: .8125rem; }
   }
   .hd-actions { display: flex; align-items: center; gap: var(--s-3); }
   /* بوزن حبّة البحث المجاورة: كان الحدّ --c-line (‏1.1:1) غير مرئي عملياً
@@ -336,22 +337,22 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
   /* الألمانية تنهار عند 1520px (اللازم 1481 بخط 12.5px وفجوة 8px، «Merkliste» و«Küche aus Al-Ahsa» و«Online-Shops») والروسية عند 1707px (اللازم 1668 بخط 13px وفجوة 10px، «Сохранённые места» و«Интернет-магазины»؛ أصغر من 13px يُضعف القراءة). كانتا 1432 و1569 قبل رابط المتاجر (2026-10-09).
      تكرار الكتلة مقصود ومحصور كي لا تخسر العربية والصينية شريطهما بلا سبب. */
   @media (max-width: 1520px) {
-    :global([lang='de']) .hd-actions .btn-gold, :global([lang='ru']) .hd-actions .btn-gold { display: none; }
-    :global([lang='de']) .burger, :global([lang='ru']) .burger { display: flex; }
-    :global([lang='de']) .nav-toggle, :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    :global([lang='de']) .nav, :global([lang='ru']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
-    :global([lang='de']) .nav a, :global([lang='ru']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
-    :global([lang='de']) .nav-toggle:checked ~ .nav, :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
-    :global([lang='de']) .nav .nav-plan, :global([lang='ru']) .nav .nav-plan { display: block; }
+    :global([lang='de']) .hd-actions .btn-gold, :global([lang='ru']) .hd-actions .btn-gold, :global([lang='tr']) .hd-actions .btn-gold { display: none; }
+    :global([lang='de']) .burger, :global([lang='ru']) .burger, :global([lang='tr']) .burger { display: flex; }
+    :global([lang='de']) .nav-toggle, :global([lang='ru']) .nav-toggle, :global([lang='tr']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='de']) .nav, :global([lang='ru']) .nav, :global([lang='tr']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='de']) .nav a, :global([lang='ru']) .nav a, :global([lang='tr']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='de']) .nav-toggle:checked ~ .nav, :global([lang='ru']) .nav-toggle:checked ~ .nav, :global([lang='tr']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='de']) .nav .nav-plan, :global([lang='ru']) .nav .nav-plan, :global([lang='tr']) .nav .nav-plan { display: block; }
   }
   @media (max-width: 1707px) {
-    :global([lang='ru']) .hd-actions .btn-gold { display: none; }
-    :global([lang='ru']) .burger { display: flex; }
-    :global([lang='ru']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    :global([lang='ru']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
-    :global([lang='ru']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
-    :global([lang='ru']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
-    :global([lang='ru']) .nav .nav-plan { display: block; }
+    :global([lang='ru']) .hd-actions .btn-gold, :global([lang='tr']) .hd-actions .btn-gold { display: none; }
+    :global([lang='ru']) .burger, :global([lang='tr']) .burger { display: flex; }
+    :global([lang='ru']) .nav-toggle, :global([lang='tr']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    :global([lang='ru']) .nav, :global([lang='tr']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    :global([lang='ru']) .nav a, :global([lang='tr']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    :global([lang='ru']) .nav-toggle:checked ~ .nav, :global([lang='tr']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    :global([lang='ru']) .nav .nav-plan, :global([lang='tr']) .nav .nav-plan { display: block; }
   }
   /* الرأس الشفاف (overlay): فوق الفصل الأول بلا خلفية وبنصوص فاتحة، ومضبّب كالمعتاد بعده.
      القائمة المفتوحة على الجوال تعيده مضبّباً كي تُقرأ روابطها على خلفيتها الرملية. */
