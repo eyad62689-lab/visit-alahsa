@@ -13,7 +13,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 /** الحدّ الأدنى لحقول _tr المنشورة — يرتفع مع كل دفعة ولا ينزل (حارس فارغ يمرّ بصمت). */
-export const MIN_FIELDS = 22;
+export const MIN_FIELDS = 100;
 
 const RULES = [
   { id: 'P8', re: /\p{L}[’ʼ]\p{L}/u, msg: 'علامة فصل غير U+0027' },

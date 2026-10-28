@@ -26,9 +26,9 @@ const blocks = LANGS.map((l) => {
   return {
     lang: l, code: LANG_META[l].code, dir: LANG_META[l].dir,
     home: HOME[l], list: LIST[l], homeLabel: t('crumb.home'), listLabel: t('nav.attractions'),
-    title: `${l === 'ar' ? 'الصفحة غير موجودة' : l === 'en' ? 'Page not found' : l === 'ur' ? 'صفحہ نہیں ملا' : '404'} ${titleSep(l)} ${brandName(l)}`,
-    heading: l === 'ar' ? 'يبدو أنّك خرجت عن مسار الواحة' : l === 'en' ? 'Looks like you wandered off the oasis trail' : l === 'ur' ? 'لگتا ہے آپ نخلستان کے راستے سے بھٹک گئے ہیں' : null,
-    text: l === 'ar' ? 'الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:' : l === 'en' ? EN_LINE : l === 'ur' ? 'یہ صفحہ موجود نہیں یا کہیں اور منتقل ہو گیا ہے۔ نیچے سے صفحہ اول یا سیاحتی مقامات پر جائیں۔' : null,
+    title: `${l === 'ar' ? 'الصفحة غير موجودة' : l === 'en' ? 'Page not found' : l === 'ur' ? 'صفحہ نہیں ملا' : l === 'tr' ? 'Sayfa bulunamadı' : '404'} ${titleSep(l)} ${brandName(l)}`,
+    heading: l === 'ar' ? 'يبدو أنّك خرجت عن مسار الواحة' : l === 'en' ? 'Looks like you wandered off the oasis trail' : l === 'ur' ? 'لگتا ہے آپ نخلستان کے راستے سے بھٹک گئے ہیں' : l === 'tr' ? 'Vahada yolunuzu şaşırmış gibisiniz' : null,
+    text: l === 'ar' ? 'الصفحة التي تبحث عنها غير موجودة أو انتقلت. جرّب أحد هذه الأبواب:' : l === 'en' ? EN_LINE : l === 'ur' ? 'یہ صفحہ موجود نہیں یا کہیں اور منتقل ہو گیا ہے۔ نیچے سے صفحہ اول یا سیاحتی مقامات پر جائیں۔' : l === 'tr' ? 'Aradığınız sayfa yok ya da taşınmış. Aşağıdan ana sayfaya ya da gezilecek yerlere geçebilirsiniz.' : null,
     // العربية والإنجليزية ظاهرتان بلا JS (السلوك السابق)؛ البقية تُكشف بالسكربت
     initiallyHidden: l !== 'ar' && l !== 'en',
   };
