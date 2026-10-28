@@ -27,6 +27,11 @@ kicker_ur: "تاریخی مقام"
 summary_ur: "المبرز کے سرے پر پہلی سعودی ریاست کے دور کا ایک چھوٹا سا قلعہ، جو نگرانی اور پہرے کے لیے بنایا گیا تھا۔"
 body_ur: "قصر محیرس، المبرز کے شمال میں واقع ہے۔ یہ ایک چھوٹا سا قلعہ ہے جو نگرانی اور پہرے کے لیے بنا تھا۔ اسے پہلی سعودی ریاست کے دور میں، 1208 ہجری (1794 عیسوی) میں، سعود بن عبد العزیز نے تعمیر کروایا، جو بعد میں امام بنے۔ یہ کچی اینٹوں اور پتھر سے بنا ہے، اور اس کی چھت درختوں کے تنوں اور کھجور کے پتوں کی ہے۔ اس کا نقشہ مربع ہے، تقریباً بیس میٹر لمبا اور اتنا ہی چوڑا، اور اس کے جنوب مشرقی کونے پر دو منزلہ ایک گول برج ہے۔ اس کی دیواریں جوں جوں اوپر اٹھتی ہیں، ذرا ذرا اندر کی طرف جھکتی جاتی ہیں۔ یہ نگرانی کی چوکی کا کام دیتا تھا، اور متروک ہونے سے پہلے اس کا آخری کام رسد اور گولہ بارود کا ذخیرہ رکھنا تھا۔ آج اس کے ساتھ ایک سرسبز پارک ہے، اور جب الاحساء میں میلے لگتے ہیں تو اس کے احاطے میں ورثے اور فنون کی تقریبات ہوتی ہیں۔"
 area_ur: "الاحساء، المبرز کے شمال میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-2 — السجل في tr-translation/output/tr-attr-2/)
+title_tr: "Muheyris Sarayı"
+summary_tr: "Müberrez'in kenarında, İlk Suudi Devleti döneminden kalma, gözetleme ve koruma amaçlı küçük bir kale."
+body_tr: "Muheyris Sarayı (Kasr Muheyris), Müberrez'in kuzeyinde duran, gözetleme ve koruma amaçlı küçük bir kaledir. İlk Suudi Devleti döneminde, Hicri 1208 (1794) yılında, daha sonra imamlık makamına gelen Suud bin Abdülaziz'in emriyle yapıldı. Çamur, kerpiç ve taştan yapılan kalenin çatısı ağaç gövdeleri ve hurma yapraklarıyla örtülüdür. Planı kare, her kenarı yaklaşık yirmi metredir. Güneydoğu köşesinde iki katlı, yuvarlak bir kule yükselir; kalenin duvarları yükseldikçe içe doğru eğilir. Kale gözetleme ve nöbet noktası olarak kullanıldı; son döneminde erzak ve cephane de burada saklanıyordu. Yanı başında bugün yeşil bir park var; El-Ahsa'nın festival dönemlerinde kale alanında kültürel miras ve sanat etkinlikleri düzenleniyor."
+area_tr: "Müberrez'in kuzeyi — El-Ahsa"
 slug_ar: "قصر-محيرس"
 slug_en: "muhairis"
 category: historic
@@ -48,8 +53,8 @@ featured: false
 order: 13
 district: mubarraz
 practical:
-  - { label: "المواعيد", value: "الحديقة والممشى يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "The garden and walkway daily 4:00–11:30 pm", label_ur: "اوقات", value_ur: "باغ اور چہل قدمی کا راستہ: روزانہ شام 4 بجے سے رات 11:30 بجے تک", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الحديقة والممشى يومياً: 4:00 م - 11:30 م", label_en: "Hours", value_en: "The garden and walkway daily 4:00–11:30 pm", label_ur: "اوقات", value_ur: "باغ اور چہل قدمی کا راستہ: روزانہ شام 4 بجے سے رات 11:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Bahçe ve yürüyüş yolu her gün 16.00–23.30", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.448248, lng: 49.582469 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233066

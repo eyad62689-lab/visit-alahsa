@@ -25,6 +25,11 @@ kicker_ur: "تاریخی مقام"
 summary_ur: "ہفوف کے مغربی کنارے پر پہلی سعودی ریاست کا ایک قلعہ۔ یہ الاحساء کے نخلستان کا حصہ ہے، جو یونیسکو کی فہرست میں شامل ہے۔"
 body_ur: "قصر خزام، ہفوف کے مغرب میں، محلہ المزروعیہ کے کنارے واقع ہے۔ یہ قلعہ 1220 ہجری (1805 عیسوی) میں امام سعود بن عبد العزیز نے تعمیر کیا، جو پہلی سعودی ریاست کے تیسرے امام تھے۔ یہ ان قلعوں کے سلسلے کی ایک کڑی تھا جو الاحساء کی حفاظت اور اس کے مغربی راستوں کی نگرانی کے لیے بنائے گئے تھے۔ اس کا نام “زمام” سے نکلا ہے، یعنی وہ مہار جس سے اونٹوں کو لے کر چلتے ہیں۔ یہ نام اس علاقے پر قلعے کی گرفت کی علامت ہے۔ اس کی مستطیل فصیل ایک طرف تقریباً 70 میٹر اور دوسری طرف تقریباً 80 میٹر لمبی ہے، اور چھ برج اس کی حفاظت کرتے ہیں، جن میں سے زیادہ تر مخروطی شکل کے ہیں۔ فصیل کے اندر کھلا صحن، مسجد، بیٹھک، کنواں اور اصطبل ہیں۔ بعد میں یہ قلعہ قبائل کے معاملات سنبھالنے اور پانی کے ذرائع پر ہونے والے جھگڑے نمٹانے کا مرکز بنا۔ 2017 میں اس کی مرمت ہوئی اور اسے سیاحوں کے لیے کھول دیا گیا۔ الاحساء کا نخلستان 2018 میں یونیسکو کی فہرست میں درج ہوا، اور آج یہ قلعہ اس کے بارہ حصوں میں سے ایک ہے۔"
 area_ur: "محلہ المزروعیہ، ہفوف کے مغرب میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-2 — السجل في tr-translation/output/tr-attr-2/)
+title_tr: "Huzam Sarayı"
+summary_tr: "Hüfuf'un batısında, İlk Suudi Devleti döneminden kalma bir kale; UNESCO Dünya Mirası Listesi'ndeki El-Ahsa Vahası alanının parçası."
+body_tr: "Huzam Sarayı (Kasr Huzam), Hüfuf'un batısında, El-Mezruiye mahallesinin kenarında yükselir. İlk Suudi Devleti'nin üçüncü imamı Suud bin Abdülaziz, bu kaleyi Hicri 1220 (1805) yılında yaptırdı. Kale, savunma yapıları zincirinin bir halkasıdır; bu yapılar El-Ahsa'yı korumak ve batıdan gelen yolları gözetlemek için kuruldu. Adı, “zimam” sözcüğünden gelir; zimam, develeri yönlendirmeye yarayan yulardır. Bu ad, kalenin bölgeye hâkim olduğunu gösterir. Yaklaşık 70 × 80 metrelik dikdörtgen sur, altı kuleyle korunur; kulelerin çoğu konik biçimlidir. Surun içinde açık bir avlu, bir cami, bir meclis salonu, bir kuyu ve bir ahır bulunur. Kale sonradan bedevi işlerinin yürütüldüğü bir merkez olarak kullanıldı; su kaynakları yüzünden çıkan anlaşmazlıklar da burada çözülüyordu. 2017'de restore edilerek ziyaretçilere açıldı. Bugün, 2018'de UNESCO Dünya Mirası Listesi'ne alınan El-Ahsa Vahası alanının on iki bileşeninden biridir."
+area_tr: "El-Mezruiye mahallesi — Hüfuf'un batısı"
 slug_ar: "قصر-خزام"
 slug_en: "khuzam"
 category: historic
@@ -46,7 +51,7 @@ featured: false
 order: 14
 district: mazrou
 practical:
-  - { label: "الوضع الحالي", value: "مغلق حالياً لأعمال الترميم والتطوير التراثي", label_en: "Current status", value_en: "Currently closed for restoration and heritage development", label_ur: "موجودہ حالت", value_ur: "فی الحال بند ہے، مرمت اور ورثے کی ترقی کے کاموں کی وجہ سے", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الوضع الحالي", value: "مغلق حالياً لأعمال الترميم والتطوير التراثي", label_en: "Current status", value_en: "Currently closed for restoration and heritage development", label_ur: "موجودہ حالت", value_ur: "فی الحال بند ہے، مرمت اور ورثے کی ترقی کے کاموں کی وجہ سے", label_tr: "Güncel durum", value_tr: "Şu anda kapalı (restorasyon ve kültürel miras geliştirme çalışmaları nedeniyle)", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.368042, lng: 49.576862 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12233036
