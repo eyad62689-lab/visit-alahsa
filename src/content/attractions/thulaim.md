@@ -25,6 +25,11 @@ kicker_ur: "قدرتی مقام"
 summary_ur: "الاحساء میں شمال سے داخل ہونے والے راستے پر سب سے پہلا مقام، العیون شہر کے ذرا مغرب میں۔"
 body_ur: "الاحساء میں شمال سے داخل ہونے والے راستے پر، العیون شہر سے تقریباً ایک کلومیٹر مغرب میں، جبل الثلیم کھڑا ہے۔ شمال سے الاحساء کے نخلستان میں آنے والے مسافروں کا استقبال سب سے پہلے یہی مقام کرتا ہے۔ یہ پہاڑ ایک الگ تھلگ چٹانی ٹیلہ ہے، اور ان رسوبی صحرائی ٹیلوں میں سے ایک ہے جو نخلستان کے کناروں پر بکھرے ہوئے ہیں۔ یہ العیون کے پہلو میں اور نخلستان کی شمالی سڑک کے کنارے ہے، اس لیے صحرا کی سیر اور چہل قدمی کے لیے یہاں آنا آسان ہے۔ مقامی لوگوں نے یہ تجاویز دی ہیں کہ اسے الاحساء کے شمالی سیاحتی دروازے کے طور پر تیار کیا جائے، مگر ابھی یہ صرف ایک خیال ہے۔"
 area_ur: "العیون شہر کے مغرب میں، الاحساء کے شمالی حصے میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-5 — السجل في tr-translation/output/tr-attr-5/)
+title_tr: "Cebel es-Suleym"
+summary_tr: "El-Ahsa'nın kuzey kapısındaki ilk önemli yer; El-Uyun şehrinin hemen batısında."
+body_tr: "Cebel es-Suleym, El-Ahsa'nın kuzey kapısında, El-Uyun şehrinin yaklaşık bir kilometre batısında yükselir. Dağ, vahaya kuzeyden gelen yolcuları karşılayan ilk önemli yerdir. Tek başına duran kayalık bir oluşumdur; vahanın kenarlarına serpilmiş tortul çöl tepelerinden biridir. Dağ, hem El-Uyun'un hem de vahanın kuzey yolunun yanında durur; bu konum onu çöl gezileri ve yürüyüş için kolayca gidilebilecek bir yer yapar. Halktan gelen öneriler, dağı El-Ahsa'nın kuzeydeki turizm kapısı olarak geliştirmeyi gündeme getirdi; bu fikirler hâlâ öneri aşamasındadır."
+area_tr: "El-Uyun'un batısı — El-Ahsa'nın kuzeyi"
 slug_ar: "جبل-الثليم"
 slug_en: "thulaim"
 category: nature
@@ -46,9 +51,9 @@ featured: false
 order: 37
 openSite: true
 practical:
-  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد والدخول", value: "موقع عام مفتوح — بلا رسوم دخول", label_en: "Hours & entry", value_en: "Open public site — no entry fee", label_ru: "Часы работы и вход", value_ru: "Открытая общедоступная территория — вход свободный", label_de: "Öffnungszeiten und Eintritt", value_de: "Frei zugängliches Gelände – kein Eintrittsgeld", label_zh: "开放时间与门票", value_zh: "开放的公共区域，免收门票", label_ur: "اوقات اور داخلہ", value_ur: "کھلا عوامی مقام، داخلے کی کوئی فیس نہیں", label_tr: "Ziyaret saatleri ve giriş", value_tr: "Herkese açık alan — giriş ücretsiz", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", source_zh: "本站编辑团队确认", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", label_tr: "Ziyaret saatleri", value_tr: "24 saat açık", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 fee: { free: true }
 location: { lat: 25.60932, lng: 49.531818 }
 mapUrl: "https://maps.app.goo.gl/MUgsdWiBE6LNA5mY7"
