@@ -25,6 +25,11 @@ kicker_ur: "پارک"
 summary_ur: "ایک مصنوعی جنگل، جو 1962 کے ریت روکنے کے منصوبے سے وجود میں آیا۔ یہاں جھاؤ کے لاکھوں درخت، سائبان اور پیدل چلنے کے راستے ہیں۔"
 body_ur: "الاحساء کے نخلستان کے شمال مشرق میں، العمران شہر کے پاس اور جبل القارہ کے قریب، الاحساء قومی پارک پھیلا ہوا ہے۔ اس کی کہانی 1382 ہجری (1962 عیسوی) میں زراعت کی وزارت کے ایک منصوبے سے شروع ہوئی۔ مقصد اس ریت کو روکنا تھا جو نخلستان کے دیہات پر چڑھتی چلی آ رہی تھی۔ یہاں تقریباً 4,500 ہیکٹر کے رقبے پر اور بیس کلومیٹر لمبی ایک پٹی میں لاکھوں درخت لگائے گئے، جن میں زیادہ تر جھاؤ کے تھے۔ ریت روکنے والی یہ باڑیں وقت کے ساتھ ساتھ ایک ہرا بھرا مصنوعی جنگل بن گئیں، اور پھر ایک عوامی پارک، جہاں سائبان، پیدل چلنے کے راستے اور خاندانوں کے لیے سہولتیں ہیں۔ آج اس کی نگرانی سبزے کے فروغ اور صحرا کے پھیلاؤ کی روک تھام کا قومی مرکز کرتا ہے، جو اس پارک کی بحالی کے منصوبے جاری رکھے ہوئے ہے۔ اسی پارک کی حدود میں جواثا کے جنگل کا آغاز نمک برداشت کرنے والی مقامی اقسام کے بیس لاکھ درختوں سے کیا گیا۔"
 area_ur: "العمران، نخلستان کے شمال مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-7 — السجل في tr-translation/output/tr-attr-7/)
+title_tr: "El-Ahsa Millî Parkı"
+summary_tr: "Kumları durdurmak için 1962'de başlatılan bir projeden doğan yapay orman; milyonlarca ılgın ağacı, gölgelikli oturma alanları ve yürüyüş yolları."
+body_tr: "El-Ahsa Millî Parkı, vahanın kuzeydoğusunda, El-Umran şehrinde uzanır. Park, Cebel el-Kare'ye yakındır. Parkın hikâyesi Hicri 1382 (1962) yılında bir projeyle başladı. Proje, Suudi Arabistan'ın Tarım Bakanlığına aitti ve vahadaki köylere doğru ilerleyen kumları durdurmayı amaçlıyordu. Yaklaşık 4.500 hektarlık bir alana milyonlarca ağaç dikildi; bunların çoğu ılgın ağacıydı. Alanda yirmi kilometre boyunca uzanan bir kuşak da bulunur. Zamanla kum bariyerleri önce gür, yapay bir ormana, sonra gölgelikli oturma alanları, yürüyüş yolları ve aile tesisleri olan halka açık bir parka dönüştü. Park bugün Millî Bitki Örtüsünü Geliştirme ve Çölleşmeyle Mücadele Merkezinin gözetimindedir. Merkez, parkın rehabilitasyon projelerini sürdürüyor. Park sınırları içinde, tuza dayanıklı yerli türlerden iki milyon ağaçla Cüvasa Ormanı hayata geçirildi."
+area_tr: "El-Umran — vahanın kuzeydoğusu"
 slug_ar: "منتزه-الأحساء-الوطني"
 slug_en: "national-park"
 category: parks
@@ -43,8 +48,8 @@ description_en: "A man-made forest born of a 1962 sand-control project — milli
 featured: false
 order: 43
 practical:
-  - { label: "المواعيد", value: "يومياً: 6:00 ص - 6:00 م", label_en: "Hours", value_en: "Daily 6:00 am – 6:00 pm", label_ur: "اوقات", value_ur: "روزانہ صبح 6 بجے سے شام 6 بجے تک", source: "تحقق مباشر من المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر", source_en: "Verified directly with the National Center for Vegetation Cover Development", sourceUrl: "https://ncvc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر", source_en: "Verified directly with the National Center for Vegetation Cover Development", sourceUrl: "https://ncvc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 6:00 ص - 6:00 م", label_en: "Hours", value_en: "Daily 6:00 am – 6:00 pm", label_ur: "اوقات", value_ur: "روزانہ صبح 6 بجے سے شام 6 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 06.00–18.00", source: "تحقق مباشر من المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر", source_en: "Verified directly with the National Center for Vegetation Cover Development", sourceUrl: "https://ncvc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر", source_en: "Verified directly with the National Center for Vegetation Cover Development", sourceUrl: "https://ncvc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.444967, lng: 49.727603 }
 sameAs:
   - https://www.wikidata.org/wiki/Q12245245

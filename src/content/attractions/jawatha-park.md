@@ -25,6 +25,11 @@ kicker_ur: "پارک"
 summary_ur: "تاریخی مسجد جواثا کے پہلو میں ایک سرسبز پارک، جو خاندان کے ساتھ گھومنے پھرنے کی جگہ ہے۔"
 body_ur: "الکلابیہ گاؤں میں واقع یہ وسیع اور سرسبز پارک فطرت کو تاریخ سے جوڑتا ہے۔ اس کے پہلو میں قدیم مسجد جواثا ہے: مدینہ منورہ کی مسجد نبوی کے بعد یہ پہلی جگہ ہے جہاں جمعہ کی نماز ادا کی گئی۔ جواثا کا آثار قدیمہ کا مقام بھی پارک کے ساتھ ہی ہے۔ خاندان کے ساتھ گھومنے پھرنے کے لیے یہ ایک موزوں جگہ ہے۔ اوقات اور فیس نیچے “سیاحوں کے لیے معلومات” والے حصے میں درج ہیں۔"
 area_ur: "الکلابیہ، ہفوف کے شمال مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-7 — السجل في tr-translation/output/tr-attr-7/)
+title_tr: "Cüvasa Parkı"
+summary_tr: "Tarihî Cüvasa Camii'nin yanındaki yeşil park; ailece gezintiler için bir gezi noktası."
+body_tr: "El-Kilabiye köyündeki Cüvasa Parkı, doğayı tarihle buluşturan geniş ve yeşil bir parktır. Parkın yanında tarihî Cüvasa Camii ile Cüvasa arkeolojik alanı bulunur. Cami, Medine'deki Mescid-i Nebevî'den sonra cuma namazının kılındığı ilk yerdir. Park, ailece gezintiler için uygun bir gezi noktasıdır. Ziyaret saatleri ve ücretler aşağıdaki ziyaret bilgileri kartında yer alır."
+area_tr: "El-Kilabiye — Hüfuf'un kuzeydoğusu"
 slug_ar: "منتزه-جواثا-السياحي"
 slug_en: "jawatha-park"
 category: parks
@@ -38,8 +43,8 @@ order: 44
 area: "الكلابية — شمال شرق الهفوف"
 area_en: "Al-Kilabiyah — northeast of Hofuf"
 practical:
-  - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–24:00", label_zh: "开放时间", value_zh: "每日 8:00–24:00", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–24:00 Uhr", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 12 بجے تک", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "10–15 ريالاً للفرد · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 per person · visiting the mosque is free", label_ru: "Стоимость входа", value_ru: "10–15 саудовских риялов (SAR) · посещение мечети бесплатно", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", label_de: "Eintritt", value_de: "10–15 Saudi-Riyal (SAR) · Besuch der Moschee kostenlos", label_ur: "فیس", value_ur: "فی کس 10 سے 15 سعودی ریال · مسجد کی زیارت مفت ہے", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "يومياً 8 ص – 12 منتصف الليل", label_en: "Hours", value_en: "Daily 8 am – 12 midnight", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–24:00", label_zh: "开放时间", value_zh: "每日 8:00–24:00", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–24:00 Uhr", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 12 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 08.00–24.00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "10–15 ريالاً للفرد · زيارة المسجد مجانية", label_en: "Fees", value_en: "SAR 10–15 per person · visiting the mosque is free", label_ru: "Стоимость входа", value_ru: "10–15 саудовских риялов (SAR) · посещение мечети бесплатно", label_zh: "门票", value_zh: "10–15 沙特里亚尔（SAR） · 参观清真寺免费", label_de: "Eintritt", value_de: "10–15 Saudi-Riyal (SAR) · Besuch der Moschee kostenlos", label_ur: "فیس", value_ur: "فی کس 10 سے 15 سعودی ریال · مسجد کی زیارت مفت ہے", label_tr: "Ücretler", value_tr: "Kişi başı 10–15 Suudi riyali (SAR) · camiyi ziyaret etmek ücretsiz", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:59" }
 fee: { min: 10, max: 15, currency: SAR }
@@ -58,6 +63,7 @@ mapUrl: "https://goo.gl/maps/xMRrFsNQLRgF3hFS7"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-07، الدفعة ru-attr-7 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 93/100 (2026-10-15، الدفعة b14 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-7)
 faq:
   - q: "ما مواعيد منتزه جواثا؟"
     a: "يومياً من 8 ص إلى 12 منتصف الليل."
@@ -71,6 +77,8 @@ faq:
     a_ru: "Ежедневно с 8:00 до 24:00."
     q_ur: "جواثا پارک کب سے کب تک کھلا رہتا ہے؟"
     a_ur: "روزانہ صبح 8 بجے سے رات 12 بجے تک۔"
+    q_tr: "Cüvasa Parkı'nın ziyaret saatleri nedir?"
+    a_tr: "Park her gün 08.00'den 24.00'e kadar açıktır."
   - q: "كم رسوم دخول منتزه جواثا؟"
     a: "من 10 إلى 15 ريالاً للفرد، وزيارة المسجد مجانية."
     q_en: "How much is entry to Jawatha Park?"
@@ -83,6 +91,8 @@ faq:
     a_ru: "10–15 саудовских риялов; посещение мечети бесплатно."
     q_ur: "جواثا پارک میں داخلے کی فیس کتنی ہے؟"
     a_ur: "فی کس 10 سے 15 سعودی ریال، اور مسجد کی زیارت مفت ہے۔"
+    q_tr: "Cüvasa Parkı'na giriş ücreti ne kadar?"
+    a_tr: "Kişi başı 10–15 SAR; camiyi ziyaret etmek ücretsizdir."
   - q: "ماذا يوجد بجوار منتزه جواثا؟"
     a: "مسجد جواثا الأثري، أوّل موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، وموقع جواثا الأثري."
     q_en: "What is next to Jawatha Park?"
@@ -95,6 +105,8 @@ faq:
     a_ru: "Древнюю мечеть Джавата и археологический памятник Джавата. Мечеть — первое место после мечети Пророка в Медине, где совершили пятничную молитву."
     q_ur: "جواثا پارک کے پہلو میں کیا ہے؟"
     a_ur: "اس کے پہلو میں قدیم مسجد جواثا ہے: مدینہ منورہ کی مسجد نبوی کے بعد یہ پہلی جگہ ہے جہاں جمعہ کی نماز ادا کی گئی۔ جواثا کا آثار قدیمہ کا مقام بھی پارک کے ساتھ ہی ہے۔"
+    q_tr: "Cüvasa Parkı'nın yanında ne var?"
+    a_tr: "Parkın yanında tarihî Cüvasa Camii ile Cüvasa arkeolojik alanı bulunur. Cami, Medine'deki Mescid-i Nebevî'den sonra cuma namazının kılındığı ilk yerdir."
   - q: "أين يقع منتزه جواثا؟"
     a: "في قرية الكلابية شمال شرق الهفوف."
     q_en: "Where is Jawatha Park?"
@@ -107,6 +119,8 @@ faq:
     a_ru: "В деревне Эль-Килабия, к северо-востоку от Эль-Хуфуфа."
     q_ur: "جواثا پارک کہاں ہے؟"
     a_ur: "الکلابیہ گاؤں میں، ہفوف کے شمال مشرق میں۔"
+    q_tr: "Cüvasa Parkı nerede?"
+    a_tr: "Hüfuf'un kuzeydoğusundaki El-Kilabiye köyünde."
 ---
 
 منتزهٌ أخضر واسع في قرية الكلابية، يجمع الطبيعة بالتاريخ: فبجواره يقع **مسجد
