@@ -25,6 +25,11 @@ kicker_ur: "مذہبی مقام"
 summary_ur: "قصر ابراہیم کے اندر گنبد والی مسجد، جو اس کے نمایاں ترین تعمیراتی حصوں میں سے ایک ہے۔"
 body_ur: "مسجد القبہ (یعنی گنبد والی مسجد) ہفوف کے محلہ الکوت میں قصر ابراہیم کی فصیل کے اندر واقع ہے۔ یہ اس قلعے کا نمایاں ترین تعمیراتی حصہ ہے، اور ان مناظر میں سے ایک ہے جن سے الاحساء کے ورثے کی پہچان ہے۔ تقریباً پانچ سال کی تعمیر کے بعد یہ 979 ہجری (1571 عیسوی) میں مکمل ہوئی۔ یہ عمارتوں کے ایسے مجموعے کا حصہ تھی جس میں دینی علوم کا مدرسہ اور قرآن پڑھانے کی جگہ بھی شامل تھی۔ اس کے اوپر بیچ میں ایک نیم کروی گنبد ہے، جس کا قطر تقریباً تیرہ میٹر ہے، اور کونوں پر چھوٹے گنبد ہیں۔ اس کا مینار الگ کھڑا ہے۔ یہ گول ستون کی شکل کا اور انیس میٹر اونچا ہے، اور اس میں پتھر کی چکر دار سیڑھیاں ہیں۔ مسجد کے دروازے کے اوپر گچ کی ایک تختی لگی ہے، جس پر خط ثلث میں اس کی تعمیر کی تاریخ درج ہے۔ یہ الاحساء کے نخلستان کی تاریخ کے ایک پورے دور کی گواہ ہے۔"
 area_ur: "ہفوف، محلہ الکوت، قصر ابراہیم کے اندر"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-3 — السجل في tr-translation/output/tr-attr-3/)
+title_tr: "El-Kubbe Camii"
+summary_tr: "Kasr İbrahim'in içindeki kubbeli cami; kalenin en dikkat çekici mimari özelliklerinden biri."
+body_tr: "Kasr İbrahim, Hüfuf'un El-Kut mahallesindedir. Kalenin surları içinde El-Kubbe Camii yükselir; cami, kalenin en dikkat çekici mimari unsuru ve tarihî El-Ahsa'yı tanımlayan görüntülerden biridir. Cami, Hicri 979 (1571) yılında, yaklaşık beş yıl süren inşaatın ardından kuruldu. Bir külliyenin parçasıydı; külliyede İslami ilimler okulu ile Kur'an öğretimine ayrılmış bir yer de vardı. Camiyi, yaklaşık 13 metre çapında yarım küre biçimli bir merkez kubbe taçlandırır; köşelerdeki küçük kubbeler bu kubbeye eşlik eder. Camiden ayrı duran, silindir biçimli bir minare ise taş sarmal bir merdivenin çevresinde 19 metre yükselir. Caminin girişinin üzerindeki alçı levhada kuruluş tarihi sülüs hattıyla yazılıdır. Cami, vaha tarihinin bütün bir dönemine tanıklık eder."
+area_tr: "Kasr İbrahim'in içi, El-Kut mahallesi — Hüfuf"
 slug_ar: "مسجد-القبة"
 slug_en: "qubba-mosque"
 category: religious
