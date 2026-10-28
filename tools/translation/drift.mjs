@@ -9,7 +9,7 @@
 // ويُختبر كسرها في الذاكرة.
 import { createHash } from 'node:crypto';
 
-export const LANGS = ['zh', 'de', 'ru', 'ur'];
+export const LANGS = ['zh', 'de', 'ru', 'ur', 'tr'];
 // مقارن صريح للنصوص (SonarJS S2871: sort بلا مقارن خطأ موثوقية) — ترتيب نقاط الترميز، ثابت عبر الأنظمة
 export const byCode = (a, b) => (a < b ? -1 : Number(a > b));
 

@@ -26,6 +26,11 @@ kicker_ur: "نایاب ورثہ"
 summary_ur: "اسلام کی قدیم ترین مساجد میں سے ایک، اور مدینہ منورہ کے بعد پہلی جگہ جہاں جمعہ کی نماز ادا کی گئی۔"
 body_ur: "مسجد جواثا کو وہ مرتبہ حاصل ہے جس کی برابری کم ہی مقامات کر سکتے ہیں۔ یہ اسلام کی قدیم ترین مساجد میں سے ایک ہے، اور کہا جاتا ہے کہ مدینہ منورہ کی مسجد نبوی کے بعد یہ پہلی جگہ ہے جہاں جمعہ کی نماز ادا کی گئی۔ بتایا جاتا ہے کہ یہ نماز قبیلہ بنو عبد القیس کے لوگوں نے ادا کی، جو اس سرزمین پر آباد تھے۔ مٹی کی اس سادہ سی عمارت کا جو حصہ باقی ہے، وہ اپنی جسامت سے زیادہ باوقار ہے۔ اس کی محرابوں اور دیواروں کے سامنے کھڑے ہوں تو نماز اور اجتماع کی وہ صدیاں آنکھوں کے سامنے آ جاتی ہیں جو الاحساء کے نخلستان میں گزریں۔ اس نخلستان کے لوگ سب سے پہلے اسلام قبول کرنے والوں میں سے تھے۔ اس مسجد کی مرمت “شہزادہ محمد بن سلمان منصوبے” کے تحت ہوئی۔ یہ تاریخی مساجد کے لیے ایک ترقیاتی منصوبہ ہے، اور اسی کے تحت الاحساء کی مسجد الجعلانیہ، مسجد شیخ محمد بن ابی بکر الملا اور مسجد الحبیش کی بھی مرمت ہوئی۔ مسجد جواثا کی زیارت کسی عمارت کو دیکھنے سے بڑھ کر وقت کا سفر ہے، ایک ایسا لمحہ جو آپ کو اس جگہ کی تاریخ کی ایک گہری جڑ سے جوڑ دیتا ہے۔"
 area_ur: "الکلابیہ گاؤں، ہفوف کے شمال مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1 — السجل في tr-translation/output/tr-attr-1/)
+title_tr: "Cüvasa Camii"
+summary_tr: "El-Ahsa'nın ve İslam'ın en eski camilerinden biri; Medine'den sonra cuma namazının kılındığı ilk yer."
+body_tr: "Cüvasa Camii, pek az yapıda görülen bir saygınlığa sahiptir: İslam'ın en eski camileri arasındadır. Rivayete göre Medine'deki Mescid-i Nebevî'den sonra cuma namazının kılındığı ilk yerdir ve namazı, bu toprakları yurt edinen Abdülkays kabilesi kılmıştır. Sade çamur yapısından geriye kalanlar, boyutlarını aşan bir vakar taşır. Kemerlerinin ve duvarlarının önünde durduğunuzda, yüzyıllar boyunca süren namazları ve toplanmaları gözünüzde canlandırırsınız. Burası, halkı İslam'ı ilk kabul edenler arasında olan bir vahadır. Tarihî Cüvasa Camii, “Prens Muhammed bin Selman Tarihî Camileri Geliştirme Projesi” kapsamında, El-Ahsa'daki El-Calaniye Camii, Şeyh Muhammed bin Ebu Bekir el-Mulla Camii ve El-Hubeyş Camii ile birlikte restore edildi. Caminin yanında Cüvasa Parkı bulunur: yeşil bir park ve ailelerin gezmeye gittiği bir yer. Camiyi ziyaret etmek, bir yapıyı görmekten çok bir zaman yolculuğudur; sizi bu yerin tarihinin derin köklerine bağlayan bir andır."
+area_tr: "El-Kilabiye köyü — Hüfuf'un kuzeydoğusu"
 slug_ar: مسجد-جواثا
 slug_en: jawatha-mosque
 category: religious
@@ -57,14 +62,15 @@ mapUrl: https://goo.gl/maps/NfRxmGxvUnTatBzJ8
 featured: true
 order: 4
 practical:
-  - { label: "مواعيد المنتزه المجاور", value: "8 ص–12 منتصف الليل", label_en: "Adjacent park hours", value_en: "8 am – 12 midnight", label_ru: "Часы работы соседнего парка", value_ru: "8:00–24:00", label_de: "Öffnungszeiten des benachbarten Parks", value_de: "8–24 Uhr", label_zh: "相邻公园开放时间", value_zh: "8:00–24:00", label_ur: "ساتھ والے پارک کے اوقات", value_ur: "صبح 8 بجے سے رات 12 بجے تک", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
-  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً للفرد", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15 per person", label_ru: "Стоимость входа", value_ru: "Мечеть: бесплатно · вход в парк: 10–15 саудовских риялов (SAR)", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", label_ur: "فیس", value_ur: "مسجد: مفت · پارک میں داخلہ: فی کس 10 سے 15 سعودی ریال", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "مواعيد المنتزه المجاور", value: "8 ص–12 منتصف الليل", label_en: "Adjacent park hours", value_en: "8 am – 12 midnight", label_ru: "Часы работы соседнего парка", value_ru: "8:00–24:00", label_de: "Öffnungszeiten des benachbarten Parks", value_de: "8–24 Uhr", label_zh: "相邻公园开放时间", value_zh: "8:00–24:00", label_ur: "ساتھ والے پارک کے اوقات", value_ur: "صبح 8 بجے سے رات 12 بجے تک", label_tr: "Yandaki parkın ziyaret saatleri", value_tr: "08.00–24.00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "الرسوم", value: "المسجد مجاناً · دخول المنتزه 10–15 ريالاً للفرد", label_en: "Fees", value_en: "Mosque: free · park entry: SAR 10–15 per person", label_ru: "Стоимость входа", value_ru: "Мечеть: бесплатно · вход в парк: 10–15 саудовских риялов (SAR)", label_de: "Eintritt", value_de: "Moschee: kostenlos · Park: 10–15 SAR", label_zh: "门票", value_zh: "清真寺免费 · 公园入场 10–15 沙特里亚尔（SAR）", label_ur: "فیس", value_ur: "مسجد: مفت · پارک میں داخلہ: فی کس 10 سے 15 سعودی ریال", label_tr: "Ücretler", value_tr: "Cami: ücretsiz · park girişi: kişi başı 10–15 Suudi riyali (SAR)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   # بند الزيارة: الصيغة نفسها في صفحات المساجد بلغاتها الخمس.
   - { label: "الزيارة", value: "متاحة، مع اللباس المحتشم واحترام حرمة المكان", label_en: "Visiting", value_en: "Open to visitors, with modest dress and respect for the sanctity of the place", label_ru: "Посещение", value_ru: "Открыто для посетителей; приходите в скромной одежде и уважайте святость места", label_zh: "游览", value_zh: "开放参观，请注意衣着端庄，尊重场所的神圣", label_de: "Besuch", value_de: "Für Besucher offen – bitte in bedeckender Kleidung und mit Respekt vor der Heiligkeit des Ortes", label_ur: "زیارت", value_ur: "زائرین کے لیے کھلی ہے۔ مناسب لباس پہن کر آئیں اور اس مقام کے تقدس کا خیال رکھیں", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-10", verified: true }
 tags: ["تاريخ إسلامي", "تراث", "عمارة"]
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة ru-attr-1 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-15، الدفعة b15 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1)
 faq:
   - q: "هل دخول مسجد جواثا برسوم؟"
     a: "لا، زيارة المسجد مجانية، أمّا دخول المنتزه المجاور له فمن 10 إلى 15 ريالاً للفرد."
@@ -76,6 +82,8 @@ faq:
     a_ru: "Вход в мечеть свободный, а в соседний парк — 10–15 саудовских риялов."
     q_ur: "کیا مسجد جواثا کی زیارت کی کوئی فیس ہے؟"
     a_ur: "نہیں۔ مسجد کی زیارت مفت ہے۔ ساتھ والے پارک میں داخلے کی فیس فی کس 10 سے 15 سعودی ریال ہے۔"
+    q_tr: "Cüvasa Camii'ni ziyaret etmek ücretli mi?"
+    a_tr: "Hayır. Camiyi ziyaret etmek ücretsizdir; yandaki parka giriş kişi başı 10–15 SAR."
   - q: "ما مواعيد المنتزه المجاور لمسجد جواثا؟"
     a: "يُفتح المنتزه المجاور للمسجد من 8 ص إلى 12 منتصف الليل."
     q_en: "What are the opening hours of the park beside Jawatha Mosque?"
@@ -86,6 +94,8 @@ faq:
     a_ru: "Парк рядом с мечетью открыт с 8:00 до 24:00."
     q_ur: "مسجد جواثا کے ساتھ والا پارک کب سے کب تک کھلا رہتا ہے؟"
     a_ur: "مسجد کے ساتھ والا پارک صبح 8 بجے سے رات 12 بجے تک کھلا رہتا ہے۔"
+    q_tr: "Cüvasa Camii'nin yanındaki parkın ziyaret saatleri nedir?"
+    a_tr: "Caminin yanındaki park 08.00'den 24.00'e kadar açıktır."
   - q: "لماذا يُعدّ مسجد جواثا مهماً؟"
     a: "هو من أقدم المساجد في الإسلام، ويُذكر أنّه أوّل موضع أُقيمت فيه صلاة الجمعة بعد المسجد النبوي، على يد بني عبد القيس."
     q_en: "Why is Jawatha Mosque significant?"
@@ -96,6 +106,8 @@ faq:
     a_ru: "Это одна из старейших мечетей ислама; по преданию, именно здесь племя Абд аль-Кайс совершило пятничную молитву — первую после той, что прошла в мечети Пророка в Медине."
     q_ur: "مسجد جواثا کیوں اہم ہے؟"
     a_ur: "یہ اسلام کی قدیم ترین مساجد میں سے ایک ہے، اور کہا جاتا ہے کہ مدینہ منورہ کی مسجد نبوی کے بعد یہ پہلی جگہ ہے جہاں جمعہ کی نماز ادا کی گئی۔ بتایا جاتا ہے کہ یہ نماز قبیلہ بنو عبد القیس کے لوگوں نے ادا کی۔"
+    q_tr: "Cüvasa Camii neden önemlidir?"
+    a_tr: "İslam'ın en eski camileri arasındadır. Rivayete göre Medine'deki Mescid-i Nebevî'den sonra cuma namazının kılındığı ilk yerdir ve namazı Abdülkays kabilesi kılmıştır."
   - q: "أين يقع مسجد جواثا؟"
     a: "في قرية الكلابية شمال شرق الهفوف."
     q_en: "Where is Jawatha Mosque?"
@@ -106,6 +118,8 @@ faq:
     a_ru: "В деревне Эль-Килабия, к северо-востоку от Эль-Хуфуфа."
     q_ur: "مسجد جواثا کہاں ہے؟"
     a_ur: "الکلابیہ گاؤں میں، ہفوف کے شمال مشرق میں۔"
+    q_tr: "Cüvasa Camii nerede?"
+    a_tr: "Hüfuf'un kuzeydoğusundaki El-Kilabiye köyünde."
   - q: "هل رُمّم مسجد جواثا؟"
     a: "نعم، ضمن مشروع الأمير محمد بن سلمان لتطوير المساجد التاريخية، مع مساجد الجعلانية والشيخ محمد بن أبي بكر الملا والحبيش في الأحساء."
     q_en: "Has Jawatha Mosque been restored?"
@@ -116,6 +130,8 @@ faq:
     a_ru: "Да, в рамках Проекта принца Мухаммеда ибн Салмана по развитию исторических мечетей — вместе с другими мечетями Аль-Ахсы: Эль-Джаалания, Эль-Хубайш и мечетью шейха Мухаммеда ибн Абу Бакра аль-Муллы."
     q_ur: "کیا مسجد جواثا کی مرمت ہو چکی ہے؟"
     a_ur: "جی ہاں، “شہزادہ محمد بن سلمان منصوبے” کے تحت۔ یہ تاریخی مساجد کے لیے ایک ترقیاتی منصوبہ ہے، اور اسی کے تحت الاحساء کی مسجد الجعلانیہ، مسجد شیخ محمد بن ابی بکر الملا اور مسجد الحبیش کی بھی مرمت ہوئی۔"
+    q_tr: "Cüvasa Camii restore edildi mi?"
+    a_tr: "Evet. “Prens Muhammed bin Selman Tarihî Camileri Geliştirme Projesi” kapsamında, El-Ahsa'daki El-Calaniye Camii, Şeyh Muhammed bin Ebu Bekir el-Mulla Camii ve El-Hubeyş Camii ile birlikte restore edildi."
 ---
 
 لمسجد جواثا مكانةٌ لا تضاهيها كثيرٌ من المعالم: فهو من **أقدم المساجد في الإسلام**،

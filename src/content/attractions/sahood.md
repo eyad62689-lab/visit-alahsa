@@ -25,6 +25,11 @@ kicker_ur: "تاریخی مقام"
 summary_ur: "المبرز کے قلب میں سات برجوں والا ایک بہت بڑا دفاعی قلعہ، جو یونیسکو کی فہرست میں شامل الاحساء کے نخلستان کا ایک حصہ ہے۔"
 body_ur: "المبرز کے قلب میں قصر صاہود کھڑا ہے۔ یہ تقریباً 10,000 مربع میٹر پر پھیلا ایک بہت بڑا قلعہ ہے۔ نگرانی کے سات برج اس کی چھ میٹر اونچی فصیلوں کی حفاظت کرتے ہیں، اور کبھی اس کے گرد ایک دفاعی خندق ہوا کرتی تھی۔ یہ بارہویں صدی ہجری کے اواخر میں تعمیر ہوا۔ الاحساء نے علی پاشا کی لشکر کشی کے خلاف جو مزاحمت کی، یہ قلعہ اس کے واقعات کا گواہ ہے۔ اس کی فصیلوں کے اندر ایک مسجد، ایک کنواں، گودام، سپاہیوں کے کمرے اور اصطبل تھے، اور محاصرے کے دنوں میں شہر کے لوگ یہیں پناہ لیتے تھے۔ ورثہ کمیشن نے اس کی مرمت کی۔ الاحساء کا نخلستان 2018 میں یونیسکو کی عالمی ورثے کی فہرست میں درج ہوا، اور آج یہ قلعہ اس کے بارہ حصوں میں سے ایک ہے۔"
 area_ur: "الاحساء، المبرز کے وسط میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1 — السجل في tr-translation/output/tr-attr-1/)
+title_tr: "Sahud Sarayı"
+summary_tr: "Müberrez'in kalbinde yedi kuleli, devasa bir savunma kalesi; UNESCO Dünya Mirası Listesi'ndeki El-Ahsa Vahası alanının bileşenlerinden biri."
+body_tr: "Sahud Sarayı (Kasr Sahud), Müberrez'in kalbinde yükselir: yaklaşık 10.000 metrekareye yayılan devasa bir kaledir. Altı metrelik surlarını yedi gözetleme kulesi korur; bir zamanlar etrafı savunma hendeğiyle çevriliydi. Kale, Hicri on ikinci yüzyılın sonlarında yapıldı; Ali Paşa'nın seferine karşı El-Ahsa'nın direnişi sırasında yaşanan bazı olaylara tanık oldu. Surlarının içinde bir cami, bir kuyu, depolar, askerlerin odaları ve ahırlar vardı; kuşatma zamanlarında kent halkına da sığınak olurdu. Miras Kurumu kaleyi restore etti. Bugün kale, 2018'de UNESCO Dünya Mirası Listesi'ne alınan El-Ahsa Vahası alanını oluşturan on iki bileşenden biridir."
+area_tr: "Müberrez merkezi — El-Ahsa"
 slug_ar: "قصر-صاهود"
 slug_en: "sahood"
 category: historic
