@@ -25,6 +25,11 @@ kicker_ur: "پارک"
 summary_ur: "الشعبہ/کنزان کے پہاڑی سلسلے پر ایک پہاڑی پارک، جو الاحساء کی بلدیہ بنا رہی ہے۔ یہاں پہاڑی ڈھلان پر پھسلنے کی جگہیں، معلق پل اور آبشار ہیں۔"
 body_ur: "الاحساء کے نخلستان کے شمال مشرق میں جبل الشعبہ کا پہاڑی سلسلہ ہے۔ اس پہاڑ کا تاریخی نام کنزان ہے۔ الاحساء کی بلدیہ اس پر مرحلہ وار ایک بڑا پہاڑی پارک بنا رہی ہے۔ اس منصوبے کا سرکاری نام “جبل الشعبہ پارک” ہے۔ 2022 کے اواخر میں اس کا بالائی حصہ جزوی طور پر کھول دیا گیا۔ اس حصے میں پہاڑی ڈھلان پر پھسلنے کی جگہیں، تقریباً 1,100 میٹر کی لمبائی میں پھیلے ہوئے مصنوعی آبشار، لکڑی کے تین معلق پل، رسی سے لٹک کر ہوا میں پھسلنے کی سواری، بچوں کے کھیلنے کی جگہیں اور پیدل چلنے کے راستے ہیں۔ منصوبے کے جن حصوں کا اعلان ہو چکا ہے، ان میں تین اسٹیشنوں اور 1,500 میٹر لمبے راستے والی کیبل کار بھی شامل ہے اور دو جھیلیں بھی۔ تعمیر کے بقیہ مراحل بدستور جاری ہیں، اور اس کے مکمل طور پر کھلنے کی تصدیق ابھی باقی ہے۔"
 area_ur: "جبل الشعبہ، نخلستان کے شمال مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-8 — السجل في tr-translation/output/tr-attr-8/)
+title_tr: "Kanzan Macera Parkı (Eş-Şube)"
+summary_tr: "El-Ahsa Belediyesinin Eş-Şube/Kanzan dağ kütlesinde inşa etmekte olduğu dağ parkı; dağ kaydırakları, asma köprüler ve şelaleler."
+body_tr: "Vahanın kuzeydoğusunda Cebel eş-Şube kütlesi uzanır; tarihî adı Kanzan'dır. El-Ahsa Belediyesi, bu kütlede dinlenme ve eğlence amaçlı büyük bir dağ parkını aşamalar hâlinde inşa ediyor. Projenin resmî adı Cebel eş-Şube Parkı'dır. Parkın üst bölümü 2022'nin sonlarında kısmen hizmete girdi. Bu bölümde dağ kaydırağı alanları, yaklaşık 1.100 metre uzunluğunda yapay şelaleler, üç ahşap asma köprü, zipline hattı, çocuk oyun alanları ve yürüyüş yolları var. Proje kapsamında ayrıca üç istasyonlu, 1.500 metrelik bir teleferik ile iki göl duyuruldu. Projenin kalan inşaat aşamaları sürüyor; parkın tamamen hizmete girmesi henüz teyit edilmedi."
+area_tr: "Cebel eş-Şube — vahanın kuzeydoğusu"
 slug_ar: "منتزه-جبل-كنزان"
 slug_en: "kanzan-park"
 category: nature
@@ -45,8 +50,8 @@ description_en: "The mountain park Al-Ahsa Municipality is building on the Shu'b
 featured: false
 order: 47
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل", label_en: "Hours", value_en: "Daily 4:00 pm – midnight", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 12 بجے تک", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل", label_en: "Hours", value_en: "Daily 4:00 pm – midnight", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 12 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–24.00", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.476554, lng: 49.641744 }
 mapUrl: "https://maps.app.goo.gl/MAuvnpt8hXJdWbkz9"
 heroImage: /img/kanzan-mountain-park

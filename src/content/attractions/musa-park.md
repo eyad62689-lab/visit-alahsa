@@ -25,6 +25,11 @@ kicker_ur: "پارک"
 summary_ur: "المبرز کے محلہ الفیصل میں “نلعب معاً” (ہم مل کر کھیلتے ہیں) نامی اقدام کے تحت بنا ایک خاندانی پارک، جہاں کھیل کا ایسا سامان ہے جس پر معذور بچے اپنے ہم عمروں کے ساتھ مل کر کھیلتے ہیں۔"
 body_ur: "المبرز کے محلہ الفیصل میں الموسیٰ پارک واقع ہے۔ یہ نومبر 2019 کے اواخر میں “نلعب معاً” نامی اقدام کے دوسرے پارک کے طور پر کھولا گیا۔ یہ اقدام المہیدب برائے سماجی خدمت اور الموسیٰ اسپیشلسٹ ہسپتال کی سماجی شراکت ہے۔ اس پارک کی بنیاد ایک سادہ سے خیال پر رکھی گئی، جو اس وقت سعودی عرب میں کم ہی دیکھنے میں آتا تھا: کھیل کا ایسا سامان جو خاص طور پر اس لیے بنایا گیا ہو کہ معذور بچے اور ان کے ہم عمر ساتھ ساتھ کھیلیں۔ یوں بچوں کو شمولیت سکھائی نہیں جاتی، وہ اسے خود برت کر سیکھتے ہیں۔ یہ پارک 2,200 مربع میٹر سے زیادہ رقبے پر پھیلا ہوا ہے، اور اس میں شمولیت کے لیے بنائے گئے کھیل کے بارہ سے زیادہ خصوصی آلات ہیں۔ اس سے پہلے اس اقدام کا پہلا پارک الخبر میں بن چکا تھا۔"
 area_ur: "المبرز، محلہ الفیصل"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-8 — السجل في tr-translation/output/tr-attr-8/)
+title_tr: "El-Musa Parkı"
+summary_tr: "Müberrez'in El-Faysal mahallesinde bir aile parkı, “Birlikte Oynuyoruz” girişiminin parçası; parkta kapsayıcı oyun ekipmanları engelli çocukları akranlarıyla buluşturuyor."
+body_tr: "Müberrez'in El-Faysal mahallesinde El-Musa Parkı yer alır. Park, 2019'un kasım ayı sonlarında “Birlikte Oynuyoruz” (Nalaab Ma'an) girişiminin ikinci parkı olarak açıldı. Girişim, El-Muheydib Toplum Hizmeti ile El-Musa Uzmanlık Hastanesi arasında toplumsal bir ortaklıktır. Park, o dönemde Suudi Arabistan'da nadir görülen basit bir fikirden doğdu: engelli çocukların ve akranlarının yan yana oynayabilmesi için özel olarak tasarlanmış oyun ekipmanları. Böylece kapsayıcılık, çocuklara öğretilen bir şey olmaktan çıkıp onların yaşadığı bir şeye dönüşür. Park, yaklaşık 2.200 metrekarelik bir alana yayılır ve on ikiden fazla özel kapsayıcı oyun ünitesi barındırır. Girişimin ilk parkı ise bundan önce El-Huber'de açılmıştı."
+area_tr: "El-Faysal mahallesi — Müberrez"
 slug_ar: "حديقة-الموسى"
 slug_en: "musa-park"
 category: parks
@@ -47,8 +52,8 @@ description_en: "A family park in the Faisal district of Al-Mubarraz. Spread ove
 district: mubarraz
 openSite: true
 practical:
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", label_tr: "Ziyaret saatleri", value_tr: "24 saat açık", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.436352, lng: 49.573605 }
 mapUrl: "https://goo.gl/maps/Vp66QYY7itVeeV9n7"
 heroImage: /img/al-mousa-garden

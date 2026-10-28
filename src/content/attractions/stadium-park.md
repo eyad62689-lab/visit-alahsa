@@ -21,6 +21,10 @@ title_ur: "کھیلوں کے اسٹیڈیم کا پارک"
 kicker_ur: "پارک"
 summary_ur: "ہفوف میں کھیلوں کے اسٹیڈیم کے پہلو میں ایک عوامی پارک۔"
 body_ur: "ہفوف میں کھیلوں کے اسٹیڈیم کے پہلو میں ایک عوامی پارک۔"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-8 — السجل في tr-translation/output/tr-attr-8/)
+title_tr: "Spor Stadyumu Parkı"
+summary_tr: "Hüfuf'ta spor stadyumunun yanındaki halka açık park."
+body_tr: "Hüfuf'ta spor stadyumunun yanında halka açık bir park bulunur."
 slug_ar: "حديقة-الاستاد-الرياضي"
 slug_en: "stadium-park"
 category: parks
@@ -32,8 +36,8 @@ featured: false
 order: 50
 openSite: true
 practical:
-  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مفتوح على مدار الساعة (24 ساعة)", label_en: "Hours", value_en: "Open 24 hours", label_ur: "اوقات", value_ur: "24 گھنٹے کھلا رہتا ہے", label_tr: "Ziyaret saatleri", value_tr: "24 saat açık", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.309695, lng: 49.611511 }
 mapUrl: "https://goo.gl/maps/SasB8ksT1gdzCiC99"
 heroImage: /img/stadium-park

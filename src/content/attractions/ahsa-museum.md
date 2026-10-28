@@ -25,6 +25,11 @@ kicker_ur: "تاریخی مقام"
 summary_ur: "سرکاری علاقائی عجائب گھر، جو الاحساء کی تاریخ اور آثار قدیمہ کو دور بہ دور پیش کرتا ہے۔"
 body_ur: "ہفوف میں الاحساء کا عجائب گھر واقع ہے، جو آثار قدیمہ اور لوک ورثے کے لیے قائم ہے۔ یہ الاحساء کے نخلستان کا سرکاری عجائب گھر ہے، جو 1980 کی دہائی کے اوائل (1404 ہجری) میں کھولا گیا، اور جس کا رقبہ تقریباً چار ہزار مربع میٹر ہے۔ اس میں آثار قدیمہ اور ورثے کی ایسی اشیا رکھی ہیں جو اس خطے کی کہانی زمانی ترتیب سے سناتی ہیں۔ یہ کہانی سنگی دور کی ان دریافتوں سے شروع ہوتی ہے جو عین قناص نامی مقام اور اس جیسی دوسری جگہوں سے ملیں، دلمون اور الجرہاء کی تہذیبوں سے گزرتی ہے، اور اسلامی ادوار اور پہلی اور دوسری سعودی ریاستوں تک پہنچتی ہے۔ مرکزی نمائش گاہ کے علاوہ یہاں ایک استقبالیہ کمرہ ہے، جس میں آثار قدیمہ کے مقامات کے نقشے اور 1930 اور 1940 کی دہائیوں کی الاحساء کی تاریخی تصاویر ہیں۔ ایک کمرہ تقاریر کے لیے مخصوص ہے، اور مرمت کا ایک شعبہ بھی ہے۔ نخلستان کی گہرائی کو سمجھنے کے لیے یہ ایک مثالی نقطہ آغاز ہے: پہلے یہاں آئیں، پھر اس کے اہم مقامات کی سیر کریں۔"
 area_ur: "الاحساء، ہفوف میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-8 — السجل في tr-translation/output/tr-attr-8/)
+title_tr: "El-Ahsa Müzesi"
+summary_tr: "Resmî bölge müzesi; El-Ahsa'nın tarihini ve eski eserlerini çağlar boyunca sergiliyor."
+body_tr: "Hüfuf'ta, vahanın resmî devlet müzesi olan El-Ahsa Arkeoloji ve Halk Kültürü Müzesi bulunur. Müze, 1980'lerin başında (Hicri 1404) yaklaşık dört bin metrekarelik bir alanda açıldı. Müzedeki arkeolojik ve tarihî eserler bölgenin hikâyesini kronolojik sırayla anlatır. Bu hikâye, Ayn Kannas gibi alanlardan çıkan Taş Devri buluntularıyla başlar; Dilmun ve Cerha medeniyetlerinden geçerek İslami dönemlere, İlk ve İkinci Suudi Devleti'ne uzanır. Ana sergi salonunun yanı sıra müzede bir karşılama salonu, bir konferans salonu ve bir restorasyon bölümü bulunur. Karşılama salonunda arkeolojik alanların haritaları ile El-Ahsa'nın 1930'lu ve 1940'lı yıllarına ait tarihî fotoğraflar sergilenir. Müze, gezilecek yerleri dolaşmadan önce vahanın derinliğini kavramak için ideal bir başlangıç noktasıdır."
+area_tr: "Hüfuf — El-Ahsa"
 slug_ar: "متحف-الأحساء"
 slug_en: "ahsa-museum"
 category: museum
@@ -48,8 +53,8 @@ seo:
 description: "متحف الأحساء للآثار والتراث الشعبي في الهفوف هو المتحف الحكومي الرسمي للواحة، افتُتح أوائل الثمانينيات الميلادية (1404هـ)."
 description_en: "The Al-Ahsa Museum in Hofuf is the oasis’s official government museum. Its archaeological and heritage pieces tell the region’s story in sequence."
 practical:
-  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 2:30 م (مغلق الجمعة والسبت)", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 2:30 pm (closed Friday & Saturday)", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے دوپہر 2:30 بجے تک (جمعہ اور ہفتہ بند)", source: "تحقق مباشر من هيئة المتاحف", source_en: "Verified directly with the Museums Commission", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من هيئة المتاحف", source_en: "Verified directly with the Museums Commission", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 2:30 م (مغلق الجمعة والسبت)", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 2:30 pm (closed Friday & Saturday)", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے دوپہر 2:30 بجے تک (جمعہ اور ہفتہ بند)", label_tr: "Ziyaret saatleri", value_tr: "Pazar–Perşembe 08.00–14.30 (cuma ve cumartesi kapalı)", source: "تحقق مباشر من هيئة المتاحف", source_en: "Verified directly with the Museums Commission", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من هيئة المتاحف", source_en: "Verified directly with the Museums Commission", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.35964, lng: 49.599078 }
 sameAs:
   - https://www.wikidata.org/wiki/Q20400438
