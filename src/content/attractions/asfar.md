@@ -29,6 +29,12 @@ summary_ur: "خلیج عرب کے خطے کے سب سے بڑے آبی اجسام
 body_ur: "الاحساء کا نخلستان یونیسکو کی عالمی ورثے کی فہرست میں درج ہے، اور جھیل الاصفر اس کے بارہ حصوں میں سے ایک ہے۔ صحرا کے بیچوں بیچ پانی کا ایسا پھیلاؤ کم ہی دیکھنے کو ملتا ہے۔ جسے سکون اور کھلے افق کی تلاش ہو، وہ یہیں کا رخ کرتا ہے۔ یہ جھیل مہاجر پرندوں کا پڑاؤ ہے، جو شمال اور جنوب کے درمیان آتے جاتے سال میں دو بار یہاں سے گزرتے ہیں۔ مہاجر پرندے سردیوں کے آغاز سے مئی تک یہاں ٹھہرتے ہیں۔ 2019 میں ماحولیات، پانی اور زراعت کی وزارت نے اسے محفوظ قدرتی علاقہ بنانے کا اعلان کیا۔ یہ جھیل نخلستان کے کھجور کے باغات کے شمال مشرق میں ہے۔ یہاں کا سب سے حسین وقت غروب آفتاب کا ہے، جب پانی کی سطح سنہری روشنی میں نہا جاتی ہے۔ یہی تصویر کشی کرنے والوں اور فطرت کے شائقین کا پسندیدہ وقت ہے۔"
 area_ur: "نخلستان کے کھجور کے باغات کے شمال مشرق میں"
 bestTime_ur: "غروب آفتاب کے وقت، جب پانی دمک اٹھتا ہے اور پرندوں کے جھنڈ لوٹ آتے ہیں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-6 — السجل في tr-translation/output/tr-attr-6/)
+title_tr: "El-Asfar Gölü"
+summary_tr: "Arap Körfezi bölgesindeki en büyük su kütlelerinden biri; göçmen kuşları ve doğa tutkunlarını kendine çekiyor."
+body_tr: "El-Asfar Gölü, UNESCO Dünya Mirası Listesi'ne alınan El-Ahsa Vahası alanının on iki bileşeninden biridir. Göl, çölün ortasında nadir görülen geniş bir su kütlesidir; sakinlik ve açık bir ufuk arayan herkes için bir gezi noktası hâline gelmiştir. Göl, göçmen kuşlar için bir mola yeridir; kuşlar yılda iki kez, kuzey ile güney arasındaki yolculuklarında buradan geçer. Göçmen kuşlar kış başından mayıs ayına kadar burada kalır. Suudi Arabistan'ın Çevre, Su ve Tarım Bakanlığı 2019'da gölün doğa koruma alanına dönüştürülmesini duyurdu. Göl, vahadaki hurmalıkların kuzeydoğusundadır. Gölün en güzel saati gün batımıdır: suyun yüzeyi altın sarısı bir ışıkla renklenir. Fotoğrafçıların ve doğa tutkunlarının en sevdiği zaman da budur."
+area_tr: "Vahadaki hurmalıkların kuzeydoğusu"
+bestTime_tr: "Gün batımında; su parıldar ve kuş sürüleri geri döner."
 slug_ar: "بحيرة-الأصفر"
 slug_en: "asfar"
 category: nature
@@ -45,8 +51,8 @@ bestTime: "عند الغروب، حين يتوهّج سطح الماء وتعو�
 bestTime_en: "At sunset, when the water glows and the flocks of birds return."
 openSite: true
 practical:
-  - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", label_de: "Eintritt", value_de: "Kostenlos – frei zugängliches Naturgelände", label_ur: "فیس", value_ur: "کوئی فیس نہیں، کھلا قدرتی مقام", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-03", verified: true }
-  - { label: "الوصول", value: "بسيارات الدفع الرباعي فقط", label_en: "Access", label_de: "Zufahrt", value_de: "Nur mit Allradfahrzeug", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", label_zh: "交通", value_zh: "只能乘坐四驱车前往", source_zh: "本站编辑团队确认", value_en: "Four-wheel-drive vehicles only", label_ru: "Подъезд к озеру", value_ru: "Только на полноприводных автомобилях", source_ru: "Подтверждено редакцией этого сайта", label_ur: "رسائی", value_ur: "صرف فور وہیل ڈرائیو گاڑی سے", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-10-01", verified: true }
+  - { label: "الرسوم", value: "بلا رسوم — موقع طبيعي عام", label_en: "Fees", value_en: "No fee — open natural site", label_ru: "Стоимость входа", value_ru: "Вход свободный — открытая природная территория", label_zh: "门票", value_zh: "免收门票，开放的公共自然景点", label_de: "Eintritt", value_de: "Kostenlos – frei zugängliches Naturgelände", label_ur: "فیس", value_ur: "کوئی فیس نہیں، کھلا قدرتی مقام", label_tr: "Ücretler", value_tr: "Ücretsiz — herkese açık doğal alan", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-03", verified: true }
+  - { label: "الوصول", value: "بسيارات الدفع الرباعي فقط", label_en: "Access", label_de: "Zufahrt", value_de: "Nur mit Allradfahrzeug", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", label_zh: "交通", value_zh: "只能乘坐四驱车前往", source_zh: "本站编辑团队确认", value_en: "Four-wheel-drive vehicles only", label_ru: "Подъезд к озеру", value_ru: "Только на полноприводных автомобилях", source_ru: "Подтверждено редакцией этого сайта", label_ur: "رسائی", value_ur: "صرف فور وہیل ڈرائیو گاڑی سے", label_tr: "Ulaşım", value_tr: "Yalnızca dört çekerli araçlarla", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", verifiedAt: "2026-10-01", verified: true }
 fee: { free: true }
 answer: "بحيرة الأصفر شمال شرق نخيل واحة الأحساء من أكبر التجمعات المائية في منطقة الخليج العربي، وأحد المكوّنات الاثني عشر المدرجة ضمن موقع الواحة على قائمة اليونسكو للتراث العالمي. مسطّح مائي وسط الصحراء صار محطةً للطيور المهاجرة، وأجمل أوقاتها عند الغروب. موقع طبيعي عام بلا رسوم."
 answer_en: "Al-Asfar Lake, northeast of the oasis palm groves, is among the Arabian Gulf region's largest bodies of water and one of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site: a desert lake and stopover for migratory birds. Finest at sunset; no fee."
@@ -68,6 +74,7 @@ mapUrl: "https://maps.app.goo.gl/7bH1ePC7GbRxurVF8"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-07، الدفعة ru-attr-6 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-13، الدفعة b6 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-6)
 faq:
   - q: "هل لزيارة بحيرة الأصفر رسوم؟"
     a: "لا، بحيرة الأصفر موقع طبيعي عام بلا رسوم."
@@ -81,6 +88,8 @@ faq:
     a_ru: "Нет. Озеро Эль-Асфар — открытая природная территория, вход свободный."
     q_ur: "کیا جھیل الاصفر کی سیر کی کوئی فیس ہے؟"
     a_ur: "نہیں۔ جھیل الاصفر ایک کھلا قدرتی مقام ہے جہاں کوئی فیس نہیں۔"
+    q_tr: "El-Asfar Gölü'nü ziyaret etmek ücretli mi?"
+    a_tr: "Hayır. El-Asfar Gölü herkese açık bir doğal alandır; giriş ücreti yoktur."
   - q: "أين تقع بحيرة الأصفر؟"
     a: "شمال شرق نخيل واحة الأحساء؛ ولموقعها الدقيق استخدم زر «افتح في خرائط قوقل» في بطاقة معلومات الزيارة."
     q_en: "Where is Al-Asfar Lake?"
@@ -93,6 +102,8 @@ faq:
     a_ru: "К северо-востоку от пальмовых рощ оазиса Аль-Ахса; чтобы узнать точное местоположение, нажмите кнопку «Открыть в Google Картах» в карточке «Практическая информация»."
     q_ur: "جھیل الاصفر کہاں ہے؟"
     a_ur: "الاحساء کے نخلستان کے کھجور کے باغات کے شمال مشرق میں۔ بالکل درست جگہ دیکھنے کے لیے “سیاحوں کے لیے معلومات” والے حصے میں “گوگل میپس پر دیکھیں” کا لنک کھولیں۔"
+    q_tr: "El-Asfar Gölü nerede?"
+    a_tr: "El-Ahsa Vahası'ndaki hurmalıkların kuzeydoğusunda; tam konum için ziyaret bilgileri kartındaki “Google Haritalar'da açın” düğmesini kullanın."
   - q: "هل بحيرة الأصفر ضمن موقع اليونسكو؟"
     a: "نعم، هي أحد المكوّنات الاثني عشر المُدرجة ضمن موقع واحة الأحساء على قائمة اليونسكو للتراث العالمي."
     q_en: "Is Al-Asfar Lake part of the UNESCO site?"
@@ -105,6 +116,8 @@ faq:
     a_ru: "Да. Это один из двенадцати компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО."
     q_ur: "کیا جھیل الاصفر یونیسکو کے عالمی ورثے کا حصہ ہے؟"
     a_ur: "جی ہاں۔ الاحساء کا نخلستان یونیسکو کی عالمی ورثے کی فہرست میں درج ہے، اور یہ جھیل اس کے بارہ حصوں میں سے ایک ہے۔"
+    q_tr: "El-Asfar Gölü, UNESCO alanının bir parçası mı?"
+    a_tr: "Evet. El-Asfar Gölü, UNESCO Dünya Mirası Listesi'ne alınan El-Ahsa Vahası alanının on iki bileşeninden biridir."
   - q: "ما أفضل وقت لزيارة بحيرة الأصفر؟"
     a: "عند الغروب، حين يتوهّج سطح الماء وتعود أسراب الطيور."
     q_en: "What is the best time to visit Al-Asfar Lake?"
@@ -117,6 +130,8 @@ faq:
     a_ru: "На закате, когда светится вода и возвращаются птичьи стаи."
     q_ur: "جھیل الاصفر کی سیر کے لیے بہترین وقت کون سا ہے؟"
     a_ur: "غروب آفتاب کا وقت، جب پانی دمک اٹھتا ہے اور پرندوں کے جھنڈ لوٹ آتے ہیں۔"
+    q_tr: "El-Asfar Gölü'nü ziyaret etmek için en iyi zaman nedir?"
+    a_tr: "Gün batımında; su parıldar ve kuş sürüleri geri döner."
 ---
 
 بحيرة الأصفر أحد **المكوّنات الاثني عشر** المُدرجة ضمن موقع واحة الأحساء
