@@ -29,6 +29,12 @@ summary_ur: "شفاف، کم گہرے پانی اور سفید ریت والا �
 body_ur: "خلیج عرب کے کنارے کنارے العقیر کا تاریخی ساحل سمندر پھیلا ہوا ہے، جہاں پرسکون، کم گہرا پانی، سفید ریت اور ریت کے ٹیلے ہیں۔ یہ خلیج عرب کے کنارے گرمیاں گزارنے کے سب سے پرانے مقامات میں سے ایک ہے۔ اس کے پہلو میں العقیر کی تاریخی بندرگاہ ہے، جو کبھی سمندر کی طرف الاحساء کا دروازہ تھی۔ یہ ساحل خاندان کے ساتھ آنے والوں اور تصویر کشی کے شوقین لوگوں کے لیے موزوں ہے، اور اس کے برابر میں سیاحوں کے لیے مخصوص سائبان اور سہولتیں ہیں۔"
 area_ur: "العقیر کا ساحل، الاحساء کے مشرقی حصے میں"
 bestTime_ur: "صبح سویرے، یا سہ پہر ڈھلنے کے بعد، جب گرمی اپنے عروج پر نہ ہو"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-6 — السجل في tr-translation/output/tr-attr-6/)
+title_tr: "Ukayr Plajı"
+summary_tr: "Suları berrak ve sığ, kumu beyaz bir plaj; Arap Körfezi'nin en eski yaz tatili yörelerinden biri."
+body_tr: "Arap Körfezi kıyısı boyunca tarihî Ukayr Plajı uzanır. Plajın suları sakin ve sığdır, kumu beyazdır; kumullar da vardır. Burası, bu kıyının en eski yaz tatili yörelerinden biridir. Plajın yanında tarihî Ukayr Limanı bulunur; liman eskiden El-Ahsa'nın denize açılan kapısıydı. Plaj, ailelere ve fotoğraf meraklılarına uygundur; ziyaretçilere ayrılmış gölgeliklere ve tesislere bitişiktir."
+area_tr: "Ukayr kıyısı — El-Ahsa'nın doğusu"
+bestTime_tr: "Sabahın erken saatleri ya da öğleden sonranın geç saatlerinden itibaren; günün en sıcak saatlerinden uzak."
 slug_ar: "شاطئ-العقير"
 slug_en: "uqair-beach"
 category: nature
@@ -63,10 +69,11 @@ gallery:
 # الرسمي عن الخدمة؛ والصيغة مقصورة على ما أعلنه: موقعٌ مخصّص بمواقف ونقاط
 # تزويد بالمياه وتصريف وحجز إلكتروني — بلا أعداد ولا رسوم ولا مواعيد.
 practical:
-  - { label: "عربات الكرفان", value: "للشاطئ موقعٌ مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً", label_en: "Caravans", value_en: "The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online", label_ru: "Дома на колёсах", value_ru: "Муниципалитет Аль-Ахсы устроил на пляже площадку для домов на колёсах — места для стоянки, точки заправки водой и точки слива, бронирование онлайн", label_zh: "房车", value_zh: "海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订", label_de: "Caravans", value_de: "Der Strand hat einen eigenen Caravanstellplatz mit Stellflächen, Frischwasser- und Entsorgungsstationen, den die Kommunalverwaltung von Al-Ahsa eingerichtet hat; der Platz lässt sich online buchen", source_zh: "哈萨县关于房车营地服务的官方公告", source_de: "Offizielle Bekanntmachung des Gouvernorats al-Ahsa zum Serviceangebot des Caravanstellplatzes", verified: true, label_ur: "گھر نما گاڑیاں", value_ur: "اس ساحل پر گھر نما گاڑیوں کے لیے ایک مخصوص جگہ ہے جو الاحساء کی بلدیہ نے بنائی ہے۔ یہاں گاڑی کھڑی کرنے کی جگہیں، صاف پانی بھرنے اور گندے پانی کی نکاسی کے مقامات ہیں، اور جگہ آن لائن محفوظ کرائی جاتی ہے", source: "إعلان محافظة الأحساء الرسمي عن خدمة موقع الكرفانات", source_en: "Al-Ahsa Governorate's official announcement of the caravan-site service", source_ru: "Официальное сообщение мухафазы Аль-Ахса о площадке для домов на колёсах", verifiedAt: "2026-09-01" }
+  - { label: "عربات الكرفان", value: "للشاطئ موقعٌ مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً", label_en: "Caravans", value_en: "The beach has a dedicated caravan site set up by Al-Ahsa Municipality, with bays, fresh-water and waste-disposal points, booked online", label_ru: "Дома на колёсах", value_ru: "Муниципалитет Аль-Ахсы устроил на пляже площадку для домов на колёсах — места для стоянки, точки заправки водой и точки слива, бронирование онлайн", label_zh: "房车", value_zh: "海滩设有一处专用房车营地，由哈萨市政局设立，配有营位、供水点和排污点，可在线预订", label_de: "Caravans", value_de: "Der Strand hat einen eigenen Caravanstellplatz mit Stellflächen, Frischwasser- und Entsorgungsstationen, den die Kommunalverwaltung von Al-Ahsa eingerichtet hat; der Platz lässt sich online buchen", source_zh: "哈萨县关于房车营地服务的官方公告", source_de: "Offizielle Bekanntmachung des Gouvernorats al-Ahsa zum Serviceangebot des Caravanstellplatzes", verified: true, label_ur: "گھر نما گاڑیاں", value_ur: "اس ساحل پر گھر نما گاڑیوں کے لیے ایک مخصوص جگہ ہے جو الاحساء کی بلدیہ نے بنائی ہے۔ یہاں گاڑی کھڑی کرنے کی جگہیں، صاف پانی بھرنے اور گندے پانی کی نکاسی کے مقامات ہیں، اور جگہ آن لائن محفوظ کرائی جاتی ہے", label_tr: "Karavanlar", value_tr: "Plajda, El-Ahsa Belediyesinin kurduğu, karavanlara ayrılmış bir alan vardır; alanda park yerleri ile tatlı su ve atık boşaltma noktaları bulunur; rezervasyon çevrim içi yapılır", source: "إعلان محافظة الأحساء الرسمي عن خدمة موقع الكرفانات", source_en: "Al-Ahsa Governorate's official announcement of the caravan-site service", source_ru: "Официальное сообщение мухафазы Аль-Ахса о площадке для домов на колёсах", verifiedAt: "2026-09-01" }
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-07، الدفعة ru-attr-6 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-15، الدفعة b16 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-6)
 faq:
   - q: "هل يمكن المبيت بعربات الكرفان في شاطئ العقير؟"
     a: "نعم، للشاطئ موقع مخصّص لعربات الكرفان أنشأته أمانة الأحساء، فيه مواقف ونقاط تزويد بالمياه وتصريف، ويُحجز إلكترونياً."
@@ -80,6 +87,8 @@ faq:
     a_ru: "Да. Муниципалитет Аль-Ахсы устроил на пляже площадку для домов на колёсах — места для стоянки, точки заправки водой и точки слива, бронирование онлайн."
     q_ur: "کیا العقیر کے ساحل سمندر پر گھر نما گاڑی میں ٹھہرا جا سکتا ہے؟"
     a_ur: "جی ہاں۔ اس ساحل پر گھر نما گاڑیوں کے لیے ایک مخصوص جگہ ہے جو الاحساء کی بلدیہ نے بنائی ہے۔ یہاں گاڑی کھڑی کرنے کی جگہیں، صاف پانی بھرنے اور گندے پانی کی نکاسی کے مقامات ہیں، اور جگہ آن لائن محفوظ کرائی جاتی ہے۔"
+    q_tr: "Ukayr Plajı'nda karavanda konaklayabilir miyim?"
+    a_tr: "Evet. Plajda, El-Ahsa Belediyesinin kurduğu, karavanlara ayrılmış bir alan vardır; alanda park yerleri ile tatlı su ve atık boşaltma noktaları bulunur; rezervasyon çevrim içi yapılır."
   - q: "ما أفضل وقت لزيارة شاطئ العقير؟"
     a: "الصباح الباكر أو العصر وما بعده، بعيداً عن ذروة الحرّ."
     q_en: "What is the best time to visit Al-Uqair Beach?"
@@ -92,6 +101,8 @@ faq:
     a_ru: "Ранним утром или ближе к вечеру, не в часы самого сильного зноя."
     q_ur: "العقیر کے ساحل سمندر کی سیر کے لیے بہترین وقت کون سا ہے؟"
     a_ur: "صبح سویرے، یا سہ پہر ڈھلنے کے بعد، جب گرمی اپنے عروج پر نہ ہو۔"
+    q_tr: "Ukayr Plajı'nı ziyaret etmek için en iyi zaman nedir?"
+    a_tr: "Sabahın erken saatleri ya da öğleden sonranın geç saatlerinden itibaren; günün en sıcak saatlerinden uzak."
   - q: "هل شاطئ العقير مناسب للعائلات؟"
     a: "نعم، الشاطئ مناسب للعائلات وهواة التصوير، ويجاور مظلّات ومرافق مخصّصة للزوّار."
     q_en: "Is Al-Uqair Beach suitable for families?"
@@ -104,6 +115,8 @@ faq:
     a_ru: "Да. Пляж подходит семьям и любителям фотографии, а по соседству устроены навесы и другие удобства для посетителей."
     q_ur: "کیا العقیر کا ساحل سمندر خاندان کے ساتھ آنے کے لیے موزوں ہے؟"
     a_ur: "جی ہاں۔ یہ ساحل خاندان کے ساتھ آنے والوں اور تصویر کشی کے شوقین لوگوں کے لیے موزوں ہے، اور اس کے برابر میں سیاحوں کے لیے مخصوص سائبان اور سہولتیں ہیں۔"
+    q_tr: "Ukayr Plajı ailelere uygun mu?"
+    a_tr: "Evet. Plaj, ailelere ve fotoğraf meraklılarına uygundur; ziyaretçilere ayrılmış gölgeliklere ve tesislere bitişiktir."
   - q: "أين يقع شاطئ العقير؟"
     a: "على ساحل العقير في شرق الأحساء، بجوار ميناء العقير التاريخي."
     q_en: "Where is Al-Uqair Beach?"
@@ -116,6 +129,8 @@ faq:
     a_ru: "На побережье Эль-Укайр к востоку от Аль-Ахсы, рядом с историческим портом Эль-Укайр."
     q_ur: "العقیر کا ساحل سمندر کہاں ہے؟"
     a_ur: "الاحساء کے مشرقی حصے میں العقیر کے ساحل پر، العقیر کی تاریخی بندرگاہ کے پہلو میں۔"
+    q_tr: "Ukayr Plajı nerede?"
+    a_tr: "El-Ahsa'nın doğusundaki Ukayr kıyısında, tarihî Ukayr Limanı'nın yanında."
 ---
 
 على ساحل الخليج العربي يمتدّ شاطئ العقير التاريخي بمياهه الهادئة الضحلة ورماله

@@ -21,6 +21,10 @@ title_ur: "شاہ عبد اللہ ماحولیاتی پارک"
 kicker_ur: "پارک"
 summary_ur: "چہل قدمی اور خاندان کے ساتھ گھومنے پھرنے کے لیے ایک وسیع ماحولیاتی پارک۔"
 body_ur: "چہل قدمی اور خاندان کے ساتھ گھومنے پھرنے کے لیے ایک وسیع ماحولیاتی پارک۔"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-6 — السجل في tr-translation/output/tr-attr-6/)
+title_tr: "Kral Abdullah Çevre Parkı"
+summary_tr: "Yürüyüş ve ailece gezintiler için geniş bir çevre parkı."
+body_tr: "Yürüyüş ve ailece gezintiler için geniş bir çevre parkı."
 slug_ar: "منتزه-الملك-عبدالله-البيئي"
 slug_en: "king-abdullah-park"
 category: parks
@@ -31,7 +35,7 @@ body_en: "A vast environmental park for walking and family outings."
 featured: false
 order: 42
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل (عروض النافورة من بعد المغرب)", label_en: "Hours", value_en: "Daily 4:00 pm – midnight (fountain shows after sunset)", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 12 بجے تک (فوارے کی نمائش غروب آفتاب کے بعد)", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 12:00 منتصف الليل (عروض النافورة من بعد المغرب)", label_en: "Hours", value_en: "Daily 4:00 pm – midnight (fountain shows after sunset)", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 12 بجے تک (فوارے کی نمائش غروب آفتاب کے بعد)", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–24.00 (fıskiye gösterileri gün batımından sonra)", source: "تحقق مباشر من أمانة الأحساء", source_en: "Verified directly with Al-Ahsa Municipality", sourceUrl: "https://alhasa.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.321457, lng: 49.558356 }
 mapUrl: "https://goo.gl/maps/XBJEVnW23eQz96db8"
 heroImage: /img/king-abdullah-ecopark
