@@ -25,6 +25,11 @@ kicker_ur: "مذہبی مقام"
 summary_ur: "التہیمیہ میں مٹی کی بنی ایک قدیم مسجد۔ یہ گاؤں کبھی اپنی چالیس مساجد کے لیے مشہور تھا۔"
 body_ur: "التہیمیہ گاؤں الاحساء کے مشرقی دیہات میں سے ہے، اور ہفوف سے تقریباً بارہ کلومیٹر دور ہے۔ یہیں التہیمیہ کی مشرقی مسجد واقع ہے، جسے التہیمیہ کی پہلی مسجد بھی کہتے ہیں۔ پرانے وقتوں میں اسے مسجد ابو النعوش کہتے تھے، اور قریبی قبرستان میں تدفین سے پہلے نماز جنازہ یہیں ادا کی جاتی تھی۔ اس مسجد کی تاریخ صدیوں پرانی ہے۔ خود یہ گاؤں کبھی “چالیس مساجد کا گاؤں” کے نام سے مشہور تھا، اور ان مساجد میں سے اب تقریباً گیارہ ہی باقی ہیں۔ یہ مسجد مٹی کی ایک سادہ سی عمارت ہے: اندرونی صحن کے گرد تین برآمدے ہیں، باہر چار دیواری ہے، اور چھت کھجور کے تنوں کی ہے۔ اس میں تقریباً پچاس نمازیوں کی گنجائش ہے۔ یہ پرانی نہر الزہیری کے کنارے بنی ہے، اور جبل القارہ کی ڈھلانیں یہاں سے قریب ہی ہیں۔ 2017 میں یہ الاحساء کی تاریخی مساجد کی سرکاری فہرست میں شامل ہوئی۔ یہ جبل القارہ کے قریب ہے، اس لیے علاقے میں آنے والوں کے لیے یہاں رکنا آسان ہے۔"
 area_ur: "الاحساء، مشرقی دیہات میں التہیمیہ گاؤں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-4 — السجل في tr-translation/output/tr-attr-4/)
+title_tr: "Et-Tahimiye Doğu Camii"
+summary_tr: "Et-Tahimiye'de çamurdan yapılmış eski bir cami; köy bir zamanlar kırk camisiyle ünlüydü."
+body_tr: "Et-Tahimiye köyü, El-Ahsa'nın doğu köylerinden biridir ve Hüfuf'a yaklaşık on iki kilometre uzaklıktadır. Köyde Et-Tahimiye Doğu Camii bulunur; cami Et-Tahimiye Birinci Camii adıyla da bilinir, eskiden ise Ebu en-Nuuş Camii denirdi. Cenazeler yakındaki mezarlığa defnedilmeden önce cenaze namazı burada kılınırdı. Caminin tarihi yüzyıllar öncesine uzanır. Köy eskiden “kırk caminin köyü” olarak ünlüydü; bugün bu camilerden ancak on bir kadarı ayakta. Cami, iç avlunun çevresinde üç revaktan oluşan mütevazı bir çamur yapıdır. Dış duvarla çevrilidir, çatısı hurma ağacı gövdelerinden yapılmıştır ve camide yaklaşık elli kişi namaz kılabilir. Eski Ez-Züheyri deresinin kıyısında inşa edilmiştir; Cebel el-Kare'nin yamaçları hemen yakındadır. 2017'de cami, El-Ahsa'nın resmen tescil edilmiş tarihî camileri arasına alındı. Cebel el-Kare'ye yakın konumu, camiyi bölgeyi gezenler için uğraması kolay bir durak yapar."
+area_tr: "Et-Tahimiye köyü — El-Ahsa'nın doğu köyleri"
 slug_ar: "مسجد-التهيمية-الشرقي"
 slug_en: "tahimiyah-e"
 category: religious
