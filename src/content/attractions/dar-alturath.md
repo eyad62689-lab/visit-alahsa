@@ -25,6 +25,11 @@ kicker_ur: "نجی عجائب گھر"
 summary_ur: "المنصورہ کے باغات کے بیچ الاحساء کے قدیم طرز پر بنا ایک گھر، جس میں ورثے اور تاریخ کی نادر اشیا رکھی ہیں۔"
 body_ur: "الاحساء کے نخلستان کے مشرق میں، المنصورہ قصبے کے کھجور کے باغات کے بیچ، دار التراث (یعنی ورثے کا گھر) واقع ہے۔ یہ نجی عجائب گھر الاحساء کے قدیم طرز تعمیر پر بنا ہے۔ اس کے بانی جعفر الخواہر نے پچیس برس سے زیادہ عرصے میں الاحساء کے اندر اور باہر سے اس کا ذخیرہ جمع کیا، اور یوں ورثے کی اشیا اکٹھی کرنے کی اپنی خاندانی روایت کو آگے بڑھایا۔ مئی 2017 میں اس گھر کا افتتاح اس کی نئی اور بہتر شکل میں ہوا۔ اس کے ذخیرے میں ورثے اور تاریخ کی نادر اشیا ہیں: مخطوطات، سکے، پرانی تصاویر، کھانا پکانے کے برتن، قہوے کی کیتلیاں اور ہتھیار۔ ہتھیاروں میں تلواریں اور آہنی ٹوپیاں ہیں، جن میں سے بعض تین سو برس سے زیادہ پرانی ہیں۔ ان کے ساتھ ایسے جانور بھی رکھے ہیں جو پتھر بن چکے ہیں۔ ہریالی کے بیچ پرانے مقامی طرز پر بنی یہ عمارت بھی نمائش ہی کا حصہ ہے۔"
 area_ur: "المنصورہ قصبہ، نخلستان کے مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-9 — السجل في tr-translation/output/tr-attr-9/)
+title_tr: "Dar et-Turas"
+summary_tr: "El-Mansure'nin çiftlikleri arasında, El-Ahsa'nın eski üslubuyla yapılmış bir ev; nadir miras eserleri ve tarihî parçalar barındırıyor."
+body_tr: "Vahanın doğusunda, El-Mansure'deki hurma çiftlikleri arasında Dar et-Turas (Miras Evi) yer alır. Dar et-Turas, El-Ahsa'nın eski mimari üslubuyla yapılmış özel bir müzedir. Kurucusu Cafer el-Havaher, koleksiyonunu yirmi beş yıldan uzun bir sürede El-Ahsa'nın içinden ve dışından topladı. Bunu, ailesinden devraldığı kültürel miras biriktirme geleneğini sürdürerek yaptı. Ev, geliştirilmiş hâliyle Mayıs 2017'de açıldı. Koleksiyonda nadir miras eserleri ve tarihî parçalar bulunur: el yazmaları, sikkeler, eski fotoğraflar, yemek pişirme kapları, kahve ibrikleri ve silahlar. Silahlar arasında kılıçlar ve askerî miğferler vardır; bazılarının geçmişi üç yüz yıldan fazla geriye uzanır. Koleksiyona fosilleşmiş hayvanlar da dâhildir. Binanın kendisi de sergiden sayılır; eski yerel üslubuyla yeşilliklerin arasında durur.\n\n## El-Ahsa'daki başka miras müzeleri\n\nEl-Ahsa'da başka miras müzeleri de vardır. Hüfuf'taki El-Ahsa Evi Müzesi, meclis salonları, mutfağı ve gelin odasıyla eski bir El-Ahsa evidir. Müberrez'in kuzeyindeki El-Halife Miras Müzesi, El-Kaysariye Çarşısı'nı andıran bir halk çarşısıdır. Hüfuf'taki El-Ahsa Müzesi ise vahanın resmî devlet müzesidir; bölgenin tarihini ve eski eserlerini sergiler."
+area_tr: "El-Mansure — vahanın doğusu"
 slug_ar: "دار-التراث"
 slug_en: "dar-alturath"
 category: museum
@@ -46,8 +51,8 @@ description_en: "A house in the old Hasawi style amid Al-Mansurah's farms. The b
 featured: false
 order: 55
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 10:30 م", label_en: "Hours", value_en: "Daily 4:00–10:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 10:30 بجے تک", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://instagram.com/dar_alturath", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "20 ريال للفرد", label_en: "Fees", value_en: "SAR 20 per person", label_ur: "فیس", value_ur: "فی کس 20 سعودی ریال", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://instagram.com/dar_alturath", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 10:30 م", label_en: "Hours", value_en: "Daily 4:00–10:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 10:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–22.30", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://instagram.com/dar_alturath", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "20 ريال للفرد", label_en: "Fees", value_en: "SAR 20 per person", label_ur: "فیس", value_ur: "فی کس 20 سعودی ریال", label_tr: "Ücretler", value_tr: "Kişi başı 20 Suudi riyali (SAR)", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://instagram.com/dar_alturath", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.397274, lng: 49.681173 }
 mapUrl: "https://goo.gl/maps/DvscYb4gtJNf3CGM7"
 ---

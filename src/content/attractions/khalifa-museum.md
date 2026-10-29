@@ -25,6 +25,11 @@ kicker_ur: "نجی عجائب گھر"
 summary_ur: "ایک نجی عجائب گھر، جو سوق القیصریہ کی طرز پر روایتی بازار کی صورت میں بنا ہے۔ یہاں رکھی ورثے کی اشیا الاحساء کے پرانے پیشوں اور روزمرہ زندگی کی تصویر پیش کرتی ہیں۔"
 body_ur: "المبرز کے شمال میں، الشعبہ اور القرین گاؤں کے درمیان، الخلیفہ کا ورثہ عجائب گھر واقع ہے۔ یہ الاحساء کے نمایاں ترین نجی عجائب گھروں میں سے ایک ہے، اور اسے عجائب گھروں کے کمیشن سے اجازت نامہ حاصل ہے۔ اس کے بانی حسین علی الخلیفہ نے اس کا آغاز المبرز کے محلہ الشروفیہ میں اپنے گھر کے باغ سے کیا اور تقریباً بیس برس میں اپنا ذخیرہ جمع کیا، یہاں تک کہ عجائب گھر ایک روایتی بازار کی موجودہ شکل میں ڈھل گیا۔ اسے پرانے سوق القیصریہ نامی بازار کی طرز پر بنایا گیا ہے، اور اس کی بیس سے زیادہ چھوٹی دکانیں تاریخی پیشوں اور دستکاریوں کی عکاسی کرتی ہیں۔ اس کی نمائش میں ہتھیار، قہوے کی کیتلیاں اور کھانا پکانے کے برتن، کھیتی باڑی کے اوزار، عورتوں کے لباس اور زیورات اور تعلیم کا پرانا سامان شامل ہیں۔ یہاں الاحساء کے گھر، کھیتی باڑی، صحرائی زندگی اور ملاحوں کی زندگی پر الگ حصے ہیں، آرامکو کے دور کا ایک گوشہ ہے، اور ایک بیٹھک ہے جسے الاحساء کے روایتی دیوان خانے کی طرز پر سجایا گیا ہے۔"
 area_ur: "المبرز کے شمال میں، الشعبہ اور القرین کے درمیان"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-9 — السجل في tr-translation/output/tr-attr-9/)
+title_tr: "El-Halife Miras Müzesi"
+summary_tr: "El-Kaysariye Çarşısı'nı andıran bir halk çarşısı biçiminde kurulmuş özel müze; geleneksel sergileri El-Ahsa'nın eski zanaatlarını ve gündelik yaşamını kapsıyor."
+body_tr: "Müberrez'in kuzeyinde, Eş-Şube ile El-Kureyn köyleri arasında El-Halife Miras Müzesi bulunur. Müze, El-Ahsa'nın en öne çıkan özel müzelerinden biridir ve Suudi Arabistan'ın Müzeler Kurumundan ruhsat almıştır. Kurucusu Hüseyin Ali el-Halife, müzeyi evinin bahçesinde kurmaya başladı. Ev, Müberrez'in Eş-Şurufiye mahallesindedir. Kurucu, koleksiyonu yaklaşık yirmi yılda biriktirdi; müze bu sürede büyüyerek bugünkü biçimini aldı: El-Kaysariye Çarşısı'nın eski hâlini andıran bir halk çarşısı. Çarşıda tarihî zanaatları ve meslekleri yeniden canlandıran yirmiden fazla küçük dükkân bulunur. Müzede silahlar, kahve ibrikleri, yemek pişirme kapları, tarım aletleri, kadın giysileri ve takıları, eski öğretim gereçleri sergilenir. Müzede ayrıca El-Ahsa evi, çiftçilik, çöl yaşamı ve denizcilik konulu bölümler ve Aramco dönemine ayrılmış bir köşe vardır. Bir meclis salonu da geleneksel El-Ahsa tarzında düzenlenmiştir."
+area_tr: "Müberrez'in kuzeyi — Eş-Şube ile El-Kureyn arası"
 slug_ar: "متحف-الخليفة-التراثي"
 slug_en: "khalifa-museum"
 category: museum
@@ -47,7 +52,7 @@ featured: false
 order: 53
 district: mubarraz
 practical:
-  - { label: "المواعيد", value: "يومياً: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily 4:00–9:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 9:30 بجے تک", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily 4:00–9:30 pm", label_ur: "اوقات", value_ur: "روزانہ شام 4 بجے سے رات 9:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–21.30", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.422917, lng: 49.580739 }
 mapUrl: "https://goo.gl/maps/jmPcvnWqa1xXRnz6A"
 ---

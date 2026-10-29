@@ -25,6 +25,11 @@ kicker_ur: "نجی عجائب گھر"
 summary_ur: "ہفوف کے جنوب میں ورثے کا ایک عجائب گھر، جو اسکاؤٹ تحریک کے اپنے منفرد ذخیرے کے لیے مشہور ہے۔ سعودی عرب میں یہ اپنی نوعیت کا پہلا ذخیرہ ہے۔"
 body_ur: "ہفوف کے جنوب میں صالح الظفر کا عجائب گھر واقع ہے۔ یہ ایک نجی عجائب گھر ہے۔ اس کے مالک صالح بن عبد اللطیف الظفر نے لوک ورثے کی اشیا پینتیس برس سے زیادہ عرصے میں جمع کیں۔ یہ نادر اشیا الگ الگ حصوں میں رکھی ہیں: مہمان نوازی اور قہوہ، کھیتی باڑی اور آب پاشی، ہتھیار، کھانا پکانے کے برتن، اور روایتی لباس اور زیورات۔ مگر اس کی اصل پہچان اس کا مشہور اسکاؤٹ عجائب گھر ہے، جسے سعودی عرب میں اپنی نوعیت کا پہلا عجائب گھر کہا جاتا ہے۔ یہاں اسکاؤٹ تحریک کی اشیا ہیں: وردیاں، گلوبند، نشانات، سیٹیاں، قطب نما، اسناد اور دستاویزی تصاویر، جو اس تحریک کی کئی دہائیوں کی کہانی سناتی ہیں۔ یہ دونوں ذخیرے مل کر اسے الاحساء کے منفرد ترین نجی عجائب گھروں میں سے ایک بنا دیتے ہیں۔"
 area_ur: "الاحساء، ہفوف کے جنوب میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-29، الدفعة tr-attr-9 — السجل في tr-translation/output/tr-attr-9/)
+title_tr: "Salih ez-Zafer Müzesi"
+summary_tr: "Hüfuf'un güneyinde, benzersiz izcilik koleksiyonuyla ünlü bir miras müzesi; koleksiyon Suudi Arabistan'da türünün ilki."
+body_tr: "Hüfuf'un güneyinde Salih bin Abdüllatif ez-Zafer'in müzesi bulunur. Bu özel müzenin halk kültürü koleksiyonu otuz beş yıldan uzun bir sürede biriktirilmiştir. Koleksiyondaki nadir parçalar şu bölümlere ayrılmıştır: konuk ağırlama ve kahve, tarım ve sulama, silahlar, yemek pişirme kapları, geleneksel giysi ve takılar. Müzeyi farklı kılan şey ünlü izcilik müzesidir. Bu izcilik müzesi, Suudi Arabistan'da türünün ilki olarak tanımlanır. İzcilik parçaları arasında üniformalar, fularlar, rozetler, düdükler, pusulalar, sertifikalar ve belgesel fotoğraflar vardır; bunlar izcilik hareketinin onlarca yıllık geçmişini anlatır. Halk kültürü ve izcilik koleksiyonları birlikte müzeyi El-Ahsa'nın en kendine özgü özel müzelerinden biri yapar."
+area_tr: "Hüfuf'un güneyi — El-Ahsa"
 slug_ar: "متحف-صالح-عبد-اللطيف-الظفر"
 slug_en: "dhafar-museum"
 category: museum
@@ -46,8 +51,8 @@ description_en: "A heritage museum south of Hofuf famed for its unique scouting 
 featured: false
 order: 56
 practical:
-  - { label: "المواعيد", value: "الفترة المسائية (بالحجز والاتصال المسبق)", label_en: "Hours", value_en: "Evenings, by prior booking and arrangement", label_ur: "اوقات", value_ur: "شام کے وقت، پیشگی رابطہ کر کے اور جگہ محفوظ کرا کے", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", label_ur: "فیس", value_ur: "15 سعودی ریال", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الفترة المسائية (بالحجز والاتصال المسبق)", label_en: "Hours", value_en: "Evenings, by prior booking and arrangement", label_ur: "اوقات", value_ur: "شام کے وقت، پیشگی رابطہ کر کے اور جگہ محفوظ کرا کے", label_tr: "Ziyaret saatleri", value_tr: "Akşamları, önceden rezervasyon ve randevuyla", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", label_ur: "فیس", value_ur: "15 سعودی ریال", label_tr: "Ücretler", value_tr: "15 Suudi riyali (SAR)", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.33304, lng: 49.57921 }
 mapUrl: "https://goo.gl/maps/62qJWimkfPshjqnMA"
 ---
