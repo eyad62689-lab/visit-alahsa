@@ -25,6 +25,11 @@ kicker_ur: "خاندانی تفریح"
 summary_ur: "ہفوف کے مشرق میں، الطرف نامی قصبے میں، خاندانوں کے لیے ایک چڑیا گھر۔"
 body_ur: "ہفوف کے مشرق میں الاحساء کے نخلستان کے دیہات کے بیچ الطرف نامی قصبہ ہے، جہاں الطرف کا چڑیا گھر واقع ہے۔ یہ خاندانوں کے لیے ایک تفریحی مقام ہے، جہاں بچے طرح طرح کے جانور قریب سے دیکھ سکتے ہیں۔ یہ اس علاقے میں خاندان کے ساتھ سادہ اور پرسکون سیر کی جگہوں میں سے ایک ہے۔ یہاں آنے کے ساتھ ساتھ آپ آسانی سے الطرف نامی قصبے کے قریبی دیہی علاقوں اور نخلستان کے جنوبی حصوں کی سیر بھی کر سکتے ہیں۔ سفر کا منصوبہ بنانے سے پہلے مقامی طور پر معلومات کی تصدیق کر لیں۔"
 area_ur: "الطرف نامی قصبہ، ہفوف کے مشرق میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-11 — السجل في tr-translation/output/tr-attr-11/)
+title_tr: "Et-Taraf Hayvanat Bahçesi"
+summary_tr: "Hüfuf'un doğusundaki Et-Taraf kasabasında aileler için bir hayvanat bahçesi."
+body_tr: "Et-Taraf kasabası, Hüfuf'un doğusunda, vahanın köyleri arasında yer alır. Kasabada Et-Taraf Hayvanat Bahçesi bulunur. Hayvanat bahçesi, çocukların çeşitli hayvanları yakından görebildiği bir aile gezi noktasıdır. Bölgenin sade ve telaşsız aile gezilerinden biridir; yakındaki Et-Taraf kırsalını ve vahanın güney kesimlerini ziyaret etmekle kolayca birleştirilebilir. Geziyi planlamadan önce yerinde teyit edin."
+area_tr: "Et-Taraf kasabası — Hüfuf'un doğusu"
 slug_ar: "حديقة-حيوانات-الطرف"
 slug_en: "taraf-zoo"
 category: parks
@@ -46,7 +51,7 @@ featured: false
 heroImage: /img/taraf-zoo
 order: 65
 practical:
-  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", label_ur: "اوقات", value_ur: "روزانہ سہ پہر 3:30 بجے سے رات 10:30 بجے تک", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 3:30 م - 10:30 م", label_en: "Hours", value_en: "Daily 3:30–10:30 pm", label_ur: "اوقات", value_ur: "روزانہ سہ پہر 3:30 بجے سے رات 10:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 15.30–22.30", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.366635, lng: 49.722483 }
 mapUrl: "https://maps.app.goo.gl/LQqCFeu7UHmaMpLn8"
 ---
