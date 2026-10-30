@@ -26,6 +26,11 @@ kicker_ur: "ہفوف کے ورثے کی یادگار"
 summary_ur: "ہفوف کے وسط میں ایک روایتی بازار کی عمارت، جس کی مرمت شہر کے تاریخی مرکز کی ترقی کے منصوبے کے تحت کی گئی۔ اب یہ بازار کے طور پر نہیں چلتی، اور آج اس میں مطعم شرق نامی کھانے پینے کی جگہ ہے۔"
 body_ur: "سوق الحمیدیہ (یعنی الحمیدیہ کا بازار) ہفوف کے وسط میں، محلہ شمالی الرفعہ میں، شاہ عبد العزیز سڑک پر واقع ایک عمارت ہے۔ ہفوف کے تاریخی مرکز کی ترقی کے منصوبوں کے تحت اس کی مرمت کی گئی، اور اس کے ساتھ ساتھ سوق القیصریہ نامی بازار نئے سرے سے بنا اور دستکاروں کا بازار وجود میں آیا۔ یوں یہ شہر کے قلب میں روایتی بازاروں کی عمارتوں کے مجموعے کا حصہ بن گیا۔ آج یہ چلتا ہوا بازار نہیں بلکہ ہفوف کے ورثے کی ایک یادگار ہے۔ اب یہاں روایتی بازار کا کاروبار نہیں ہوتا، اور اس کی عمارت میں مطعم شرق نامی کھانے پینے کی جگہ چلتی ہے۔ اس عمارت اور اس کی تاریخ کے بارے میں مزید تفصیلات کی معتبر ذرائع سے تصدیق ابھی باقی ہے، اس لیے وہ یہاں درج نہیں کی گئیں۔"
 area_ur: "ہفوف، محلہ شمالی الرفعہ"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-11 — السجل في tr-translation/output/tr-attr-11/)
+title_tr: "El-Hamidiye Çarşısı"
+summary_tr: "Hüfuf'un merkezindeki geleneksel çarşı binası, tarihî şehir merkezini geliştirme çalışmaları kapsamında restore edildi. Artık çarşı olarak çalışmıyor; bugün binada Şark Restoranı hizmet veriyor."
+body_tr: "El-Hamidiye Çarşısı, Hüfuf'un merkezinde bir binadır. Bina, Kuzey er-Rifa mahallesinde, Kral Abdülaziz Yolu üzerindedir. Hüfuf'un tarihî şehir merkezini geliştirme çalışmaları kapsamında restore edildi. Bu çalışmalarla birlikte El-Kaysariye Çarşısı yeniden inşa edildi, Zanaatkârlar Çarşısı da kuruldu. Böylece bina, şehrin kalbindeki geleneksel çarşı binaları kümesine katıldı. Günümüzde bina çalışan bir çarşı değil, tarihî bir yapıdır: artık halk çarşısı olarak çalışmıyor; içinde Şark Restoranı hizmet veriyor. Binaya ve tarihine dair daha fazla ayrıntı, burada yayımlanmadan önce güvenilir kaynaklardan teyit edilmeyi bekliyor."
+area_tr: "Hüfuf, Kuzey er-Rifa mahallesi"
 slug_ar: "سوق-الحميدية"
 slug_en: "hamidiyah-souq"
 category: historic
@@ -39,7 +44,7 @@ order: 66
 area: "الهفوف، حي الرفعة الشمالية"
 area_en: "Hofuf, North Al-Rifaa district"
 practical:
-  - { label: "الوضع الحالي", value: "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق", label_en: "Current status", value_en: "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it", label_ru: "Текущий статус", value_ru: "Историческая достопримечательность — как рынок не работает; в его здании действует ресторан «Шарк»", label_zh: "现状", value_zh: "遗产地标——不再作为集市营业；目前在其建筑内经营的是沙尔格餐厅", label_de: "Aktueller Status", value_de: "Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört – als Souk nicht mehr in Betrieb; im Gebäude ist das Sharq-Restaurant", label_ur: "موجودہ حالت", value_ur: "ہفوف کے ورثے کی ایک یادگار، جو اب بازار کے طور پر نہیں چلتی۔ اس کی عمارت میں مطعم شرق نامی کھانے پینے کی جگہ چلتی ہے", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-04", verified: true }
+  - { label: "الوضع الحالي", value: "معلم تراثي — لا يعمل سوقاً؛ النشاط القائم فيه مطعم شرق", label_en: "Current status", value_en: "A heritage landmark — no longer trading as a souq; Sharq Restaurant operates in it", label_ru: "Текущий статус", value_ru: "Историческая достопримечательность — как рынок не работает; в его здании действует ресторан «Шарк»", label_zh: "现状", value_zh: "遗产地标——不再作为集市营业；目前在其建筑内经营的是沙尔格餐厅", label_de: "Aktueller Status", value_de: "Sehenswürdigkeit, die zum kulturellen Erbe Hofufs gehört – als Souk nicht mehr in Betrieb; im Gebäude ist das Sharq-Restaurant", label_ur: "موجودہ حالت", value_ur: "ہفوف کے ورثے کی ایک یادگار، جو اب بازار کے طور پر نہیں چلتی۔ اس کی عمارت میں مطعم شرق نامی کھانے پینے کی جگہ چلتی ہے", label_tr: "Güncel durum", value_tr: "Tarihî bir yapı — artık çarşı olarak çalışmıyor; içinde Şark Restoranı hizmet veriyor", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-04", verified: true }
 answer: "سوق الحميدية مبنى تراثي في وسط الهفوف بحي الرفعة الشمالية على طريق الملك عبدالعزيز، رُمِّم ضمن مشاريع تطوير وسط الهفوف التاريخي إلى جانب سوق القيصرية وسوق الحرفيين. وهو اليوم معلم تراثي لا سوق عامل: توقّف نشاطه سوقاً شعبياً، والنشاط القائم في مبناه مطعم شرق."
 answer_en: "Al-Hamidiyah Souq is a heritage building in central Hofuf, in North Al-Rifaa on King Abdulaziz Road, restored as part of the historic downtown development alongside Qaisariyah Souq and Craftsmen Souq. Today it is a landmark rather than a working souq: Sharq Restaurant occupies the building."
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
@@ -56,6 +61,7 @@ mapUrl: "https://maps.app.goo.gl/4KEvxVRALRYuCDYA9"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 91/100 (2026-09-05، الدفعة 16 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-08، الدفعة ru-attr-12 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-15، الدفعة b17 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-11)
 faq:
   - q: "هل سوق الحميدية سوق عامل اليوم؟"
     a: "لا، هو معلم تراثي توقّف نشاطه بوصفه سوقاً شعبياً، والنشاط القائم في مبناه اليوم مطعم شرق."
@@ -69,6 +75,8 @@ faq:
     a_ru: "Нет. Это историческая достопримечательность: он перестал работать как народный рынок, а в его здании теперь ресторан «Шарк»."
     q_ur: "کیا سوق الحمیدیہ آج بھی ایک چلتا ہوا بازار ہے؟"
     a_ur: "نہیں۔ یہ ہفوف کے ورثے کی ایک یادگار ہے، جہاں اب روایتی بازار کا کاروبار نہیں ہوتا۔ آج اس کی عمارت میں مطعم شرق نامی کھانے پینے کی جگہ چلتی ہے۔"
+    q_tr: "El-Hamidiye Çarşısı hâlâ çalışan bir çarşı mı?"
+    a_tr: "Hayır. Çarşı tarihî bir yapıdır; artık halk çarşısı olarak çalışmıyor. Binasında bugün Şark Restoranı hizmet veriyor."
   - q: "أين يقع سوق الحميدية؟"
     a: "في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك عبدالعزيز."
     q_en: "Where is Al-Hamidiyah Souq?"
@@ -81,6 +89,8 @@ faq:
     a_ru: "В центре Эль-Хуфуфа, в районе Эр-Рифаа аш-Шамалия, у дороги короля Абдул-Азиза."
     q_ur: "سوق الحمیدیہ کہاں ہے؟"
     a_ur: "ہفوف کے وسط میں، محلہ شمالی الرفعہ میں، شاہ عبد العزیز سڑک پر۔"
+    q_tr: "El-Hamidiye Çarşısı nerede?"
+    a_tr: "Hüfuf'un merkezinde, Kuzey er-Rifa mahallesinde bulunur; Kral Abdülaziz Yolu üzerindedir."
   - q: "ما علاقة سوق الحميدية بالأسواق التراثية المجاورة؟"
     a: "رُمِّم ضمن تطوير وسط الهفوف التاريخي، إلى جانب إعادة بناء سوق القيصرية وإنشاء سوق الحرفيين."
     q_en: "How does Al-Hamidiyah Souq relate to the neighbouring heritage souqs?"
@@ -93,6 +103,8 @@ faq:
     a_ru: "Его отстроили заново в рамках развития исторического центра Эль-Хуфуфа — вместе с ним заново отстроили рынок Эль-Кайсария и создали Рынок ремесленников."
     q_ur: "سوق الحمیدیہ کا آس پاس کے روایتی بازاروں سے کیا تعلق ہے؟"
     a_ur: "ہفوف کے تاریخی مرکز کی ترقی کے منصوبے کے تحت اس کی مرمت کی گئی، اور اس کے ساتھ ساتھ سوق القیصریہ نامی بازار نئے سرے سے بنا اور دستکاروں کا بازار وجود میں آیا۔"
+    q_tr: "El-Hamidiye Çarşısı'nın çevresindeki geleneksel çarşılarla bağlantısı nedir?"
+    a_tr: "Çarşı, Hüfuf'un tarihî şehir merkezini geliştirme çalışmaları kapsamında restore edildi. Bu çalışmalarla birlikte El-Kaysariye Çarşısı yeniden inşa edildi, Zanaatkârlar Çarşısı da kuruldu."
 ---
 
 سوق الحميدية مبنىً في وسط الهفوف، بحي الرفعة الشمالية على طريق الملك

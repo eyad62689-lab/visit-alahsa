@@ -25,6 +25,11 @@ kicker_ur: "زرعی فارم اور کھجور کے درخت"
 summary_ur: "ترشاوہ پھلوں کا ایک باغ، جہاں موسم آنے پر سیاح الاحساء کے مشہور لیموں توڑتے ہیں۔"
 body_ur: "ترشاوہ پھلوں کا ایک باغ، جہاں موسم آنے پر سیاح الاحساء کے مشہور لیموں توڑتے ہیں۔"
 bestTime_ur: "وسط جون سے اگست تک، لیموں کی چنائی کا موسم"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-11 — السجل في tr-translation/output/tr-attr-11/)
+title_tr: "El-Ahsa Misket Limonu Çiftliği"
+summary_tr: "Bir narenciye çiftliği; ziyaretçiler ünlü El-Ahsa misket limonunu (lomi) mevsiminde burada toplar."
+body_tr: "Bir narenciye çiftliği; ziyaretçiler ünlü El-Ahsa misket limonunu (lomi) mevsiminde burada toplar."
+bestTime_tr: "Haziran ortasından ağustos ayına kadar, misket limonu toplama mevsimi."
 slug_ar: "مزرعة-الليمون-الحساوي"
 slug_en: "lemon-farm"
 category: farm
@@ -37,7 +42,7 @@ bestTime_en: "From mid-June to August, the lime-picking season."
 featured: false
 order: 61
 practical:
-  - { label: "المواعيد", value: "يومياً في المواسم الزراعية: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily in the growing seasons, 4:00–9:30 pm", label_ur: "اوقات", value_ur: "زرعی موسموں میں روزانہ شام 4 بجے سے رات 9:30 بجے تک", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً في المواسم الزراعية: 4:00 م - 9:30 م", label_en: "Hours", value_en: "Daily in the growing seasons, 4:00–9:30 pm", label_ur: "اوقات", value_ur: "زرعی موسموں میں روزانہ شام 4 بجے سے رات 9:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 16.00–21.30 (yetişme mevsimlerinde)", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.382611, lng: 49.605278 }
 mapUrl: "https://maps.app.goo.gl/P24d8Cya5Fg2ChTi6"
 heroImage: /img/hasawi-lemon-farm

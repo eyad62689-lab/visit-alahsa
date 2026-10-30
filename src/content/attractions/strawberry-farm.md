@@ -21,6 +21,10 @@ title_ur: "اسٹرابیری کا فارم"
 kicker_ur: "زرعی فارم اور کھجور کے درخت"
 summary_ur: "العقیر جانے والی سڑک پر اسٹرابیری کا ایک فارم، جہاں موسم آنے پر آپ اسٹرابیری توڑ سکتے ہیں۔"
 body_ur: "العقیر جانے والی سڑک پر اسٹرابیری کا ایک فارم، جہاں موسم آنے پر آپ اسٹرابیری توڑ سکتے ہیں۔"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-11 — السجل في tr-translation/output/tr-attr-11/)
+title_tr: "Çilek Çiftliği"
+summary_tr: "Ukayr yolu üzerinde bir çilek çiftliği; mevsimlik çilek toplama imkânı sunar."
+body_tr: "Ukayr yolu üzerinde bir çilek çiftliği; mevsimlik çilek toplama imkânı sunar."
 slug_ar: "مزرعة-الفراولة"
 slug_en: "strawberry-farm"
 category: farm
@@ -31,7 +35,7 @@ body_en: "A strawberry farm on the Al-Uqair road offering seasonal picking."
 featured: false
 order: 63
 practical:
-  - { label: "المواعيد", value: "الموسم الشتوي والربيعي: 3:30 م - 9:30 م", label_en: "Hours", value_en: "Winter and spring season, 3:30–9:30 pm", label_ur: "اوقات", value_ur: "سردیوں اور بہار کے موسم میں سہ پہر 3:30 بجے سے رات 9:30 بجے تک", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الموسم الشتوي والربيعي: 3:30 م - 9:30 م", label_en: "Hours", value_en: "Winter and spring season, 3:30–9:30 pm", label_ur: "اوقات", value_ur: "سردیوں اور بہار کے موسم میں سہ پہر 3:30 بجے سے رات 9:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Kış ve ilkbahar mevsimlerinde 15.30–21.30", source: "تحقق مباشر من إدارة الموقع", source_en: "Verified directly with the site’s management", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.356864, lng: 49.685624 }
 mapUrl: "https://maps.app.goo.gl/qZwEquXBiyLu1y6X7"
 heroImage: /img/strawberry-farm
