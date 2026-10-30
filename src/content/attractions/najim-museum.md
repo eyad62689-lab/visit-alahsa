@@ -25,6 +25,11 @@ kicker_ur: "نجی عجائب گھر"
 summary_ur: "الجفر میں ایک نجی عجائب گھر، جس کا ذخیرہ چھبیس موضوعاتی گوشوں میں سجا ہے۔ یہ گوشے الاحساء کی پرانی زندگی کی تصویر پھر سے زندہ کرتے ہیں۔"
 body_ur: "الاحساء کے نخلستان کے مشرق میں، الجفر قصبے میں، ولید الناجم کا عجائب گھر واقع ہے۔ یہ اس خطے کے نمایاں ترین نجی عجائب گھروں میں سے ایک ہے، اور اس کا ذخیرہ تقریباً 400 مربع میٹر کے رقبے پر چھبیس موضوعاتی گوشوں میں سجا ہے۔ اسے ثقافت کی وزارت سے اجازت نامہ حاصل ہے۔ اس کے گوشے الاحساء کی پرانی زندگی کے مکمل منظر دوبارہ پیش کرتے ہیں: پرانے زمانے کی پرچون کی دکان، دلہن کا کمرہ، تاریخی کمرہ جماعت، مردوں اور عورتوں کی بیٹھکیں، اور لوہاروں، بڑھئیوں اور سناروں کے ہنر کے گوشے۔ ان کے ساتھ پرانے سعودی سکے اور ڈاک ٹکٹ، قدیم فرنیچر، لباس اور ابتدائی دور کے آلات بھی رکھے ہیں۔ سیاحت اور قومی ورثے کے ادارے کے عہدیداروں نے اس کی تعریف کی ہے اور کہا ہے کہ ورثے کے لحاظ سے یہ ایک قیمتی نجی عجائب گھر ہے۔"
 area_ur: "الجفر قصبہ، الاحساء کے مشرقی حصے میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-10 — السجل في tr-translation/output/tr-attr-10/)
+title_tr: "Velid en-Nacim Müzesi"
+summary_tr: "El-Cefr kasabasında özel bir müze; koleksiyonu yirmi altı temalı köşeye yayılır ve bu köşeler El-Ahsa'nın eski yaşamını yeniden canlandırır."
+body_tr: "Vahanın doğusundaki El-Cefr kasabasında Velid en-Nacim Müzesi bulunur. Müze, bölgenin en öne çıkan özel müzelerinden biridir; koleksiyonu yaklaşık 400 metrekarelik bir alanda, yirmi altı temalı köşede düzenlenmiştir. Müze, Suudi Arabistan'ın Kültür Bakanlığından ruhsat almıştır. Müzenin köşeleri, El-Ahsa'nın eski yaşamından eksiksiz sahneleri yeniden canlandırır: eski bir bakkal dükkânı, bir gelin odası, tarihî bir sınıf, erkeklerin ve kadınların meclis salonları, demircilik, marangozluk ve kuyumculuk için zanaatkâr köşeleri. Bunların yanında Suudi Arabistan'ın eski sikkeleri ve pulları, antika mobilyalar, giysiler ve ilk dönem makineleri de vardır. Suudi Arabistan'ın turizm ve miras otoritesinin yetkilileri, müzeyi miras değeri bakımından kayda değer bir özel müze olarak övmüştür."
+area_tr: "El-Cefr kasabası — El-Ahsa'nın doğusu"
 slug_ar: "متحف-وليد-الناجم"
 slug_en: "najim-museum"
 category: museum
@@ -46,8 +51,8 @@ description_en: "A private museum in Al-Jafr whose collection fills twenty-six t
 featured: false
 order: 57
 practical:
-  - { label: "المواعيد", value: "الفترة المسائية (بالاتصال والتنسيق المسبق)", label_en: "Hours", value_en: "Evenings, by prior arrangement", label_ur: "اوقات", value_ur: "شام کے وقت، پیشگی رابطہ کر کے", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", label_ur: "فیس", value_ur: "15 سعودی ریال", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "الفترة المسائية (بالاتصال والتنسيق المسبق)", label_en: "Hours", value_en: "Evenings, by prior arrangement", label_ur: "اوقات", value_ur: "شام کے وقت، پیشگی رابطہ کر کے", label_tr: "Ziyaret saatleri", value_tr: "Akşamları, önceden randevuyla", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "15 ريال", label_en: "Fees", value_en: "SAR 15", label_ur: "فیس", value_ur: "15 سعودی ریال", label_tr: "Ücretler", value_tr: "15 Suudi riyali (SAR)", source: "تحقق مباشر من إدارة المتحف", source_en: "Verified directly with the museum’s management", sourceUrl: "https://museums.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.376243, lng: 49.715393 }
 mapUrl: "https://goo.gl/maps/D7TWfsPXagcZHpAY9"
 ---
