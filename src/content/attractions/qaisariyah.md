@@ -50,10 +50,10 @@ area_en: "Hofuf, Al-Rifaa district"
 bestTime: "الصباح أو المساء، فالمتاجر تغلق ظهراً."
 bestTime_en: "The morning or the evening, as the shops close at midday."
 practical:
-  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة صباحاً وبعد العصر)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday: morning and after the afternoon prayer)", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00 (по пятницам — только вечером)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", label_de: "Öffnungszeiten", value_de: "8:00–12:00 und 15:30–22:00 Uhr (freitags nur abends)", label_ur: "اوقات", value_ur: "صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک (جمعہ صرف شام کو)", label_tr: "Ziyaret saatleri", value_tr: "08.00–12.00 ve 15.30–22.00 (Cuma sabah ve ikindi sonrası)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00", label_de: "Öffnungszeiten", value_de: "8:00–12:00 und 15:30–22:00 Uhr", label_ur: "اوقات", value_ur: "صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "08.00–12.00 ve 15.30–22.00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_zh: "费用", value_zh: "免费", label_de: "Eintritt", value_de: "Kostenlos", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 hoursSpec:
-  - { days: "Sa Su Mo Tu We Th", opens: "08:00", closes: "12:00" }
+  - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "12:00" }
   - { days: "Mo Tu We Th Fr Sa Su", opens: "15:30", closes: "22:00" }
 fee: { free: true }
 answer: "سوق القيصرية في حي الرفعة بالهفوف من أقدم أسواق الخليج وأعرقها، يعود لأكثر من قرنين. متاجره المتراصّة تبيع البشت الحساوي والحِرف من الخوص والفخار والتمور والقهوة والبهارات. يفتح من 8 ص إلى 12 ظهراً ومن 3:30 ع إلى 10 م (الجمعة مساءً فقط)، والدخول مجاني."
@@ -79,19 +79,19 @@ mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
 # أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-10)
 faq:
   - q: "ما مواعيد سوق القيصرية؟"
-    a: "من 8 ص إلى 12 ظهراً، ومن 3:30 عصراً إلى 10 مساءً، والجمعة صباحاً وبعد العصر."
+    a: "من 8 ص إلى 12 ظهراً، ومن 3:30 عصراً إلى 10 مساءً."
     q_en: "What are the opening hours of Qaisariyah Souq?"
-    a_en: "8 am to 12 noon and 3:30 to 10 pm; on Fridays, the morning and after the afternoon prayer."
+    a_en: "8 am to 12 noon and 3:30 to 10 pm."
     q_zh: "凯撒利亚集市的开放时间是几点到几点？"
-    a_zh: "8:00–12:00、15:30–22:00，周五只在下午至晚间那一段营业。"
+    a_zh: "8:00–12:00、15:30–22:00。"
     q_de: "Wie sind die Öffnungszeiten des Qaisariyah-Souks?"
-    a_de: "Von 8:00 bis 12:00 Uhr und von 15:30 bis 22:00 Uhr; freitags nur abends."
+    a_de: "Von 8:00 bis 12:00 Uhr und von 15:30 bis 22:00 Uhr."
     q_ru: "В какие часы открыт рынок Эль-Кайсария?"
-    a_ru: "С 8:00 до 12:00 и с 15:30 до 22:00; по пятницам — только вечером."
+    a_ru: "С 8:00 до 12:00 и с 15:30 до 22:00."
     q_ur: "سوق القیصریہ کب سے کب تک کھلا رہتا ہے؟"
-    a_ur: "صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک۔ جمعہ کو یہ صرف شام کے وقت کھلتا ہے۔"
+    a_ur: "صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک۔"
     q_tr: "El-Kaysariye Çarşısı'nın ziyaret saatleri nedir?"
-    a_tr: "08.00'den 12.00'ye ve 15.30'dan 22.00'ye kadar açıktır; Cuma günleri sabah ve ikindi sonrası açıktır."
+    a_tr: "08.00'den 12.00'ye ve 15.30'dan 22.00'ye kadar açıktır."
   - q: "هل دخول سوق القيصرية برسوم؟"
     a: "لا، الدخول مجاني."
     q_en: "Is there an entry fee at Qaisariyah Souq?"
