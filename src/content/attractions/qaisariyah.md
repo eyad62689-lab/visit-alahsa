@@ -32,7 +32,7 @@ bestTime_ur: "صبح یا شام، کیونکہ دوپہر کو دکانیں ب�
 # الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-10 — السجل في tr-translation/output/tr-attr-10/)
 title_tr: "El-Kaysariye Çarşısı"
 summary_tr: "İki yüzyıldan eski tarihî bir çarşı; El-Ahsa'nın en eski halk ve geleneksel çarşılarından biri, zanaat ve yerel ürünler için bir gezi noktası."
-body_tr: "Hüfuf'taki El-Kaysariye Çarşısı, Arap Körfezi bölgesinin en eski ve en köklü çarşılarından biridir; geçmişi iki yüzyıldan fazla geriye uzanır. Çarşının mimarisi kendine özgüdür. Sıkı sıkıya dizilmiş dükkânlar sizi geçitlerden geçirir. Bu geçitler baharat ve parfüm kokar, bakırla parıldar. El-Ahsa'da geleneksel alışverişin kalbi burada atar. Çarşı, ünlü El-Ahsa biştini, yani itibarın ve büyük günlerin pelerinini satın almak için ideal bir yerdir. “El-Ahsa dokuması”, altın ya da gümüş kaplamalı sırma ipliklerle yapılan el işlemesinin titizliğiyle ayırt edilir. Bu zanaatı El-Ahsa aileleri kuşaktan kuşağa aktarmıştır. Biştin yanı sıra hurma yaprağı ve çömlek işi yerel zanaatlar, her çeşit hurma, kahve ve baharat bulabilirsiniz.\n\n## El-Kaysariye Çarşısı ziyaret saatleri\n\nZiyaret saatleri ve ücretler aşağıdaki ziyaret bilgileri kartında yer alır; çarşının en iyi saatleri akşamdır."
+body_tr: "Hüfuf'taki El-Kaysariye Çarşısı, Arap Körfezi bölgesinin en eski ve en köklü çarşılarından biridir; geçmişi iki yüzyıldan fazla geriye uzanır. Çarşının mimarisi kendine özgüdür. Sıkı sıkıya dizilmiş dükkânlar sizi geçitlerden geçirir. Bu geçitler baharat ve parfüm kokar, bakırla parıldar. El-Ahsa'da geleneksel alışverişin kalbi burada atar. Çarşı, ünlü El-Ahsa biştini, yani itibarın ve büyük günlerin pelerinini satın almak için ideal bir yerdir. “El-Ahsa dokuması”, altın ya da gümüş kaplamalı sırma ipliklerle yapılan el işlemesinin titizliğiyle ayırt edilir. Bu zanaatı El-Ahsa aileleri kuşaktan kuşağa aktarmıştır. Biştin yanı sıra hurma yaprağı ve çömlek işi yerel zanaatlar, her çeşit hurma, kahve ve baharat bulabilirsiniz.\n\n## El-Kaysariye Çarşısı ziyaret saatleri\n\nZiyaret saatleri ve ücretler aşağıdaki ziyaret bilgileri kartında yer alır; çarşının en iyi saatleri sabah ve akşamdır."
 area_tr: "Hüfuf, Er-Rifa mahallesi"
 bestTime_tr: "Sabah ya da akşam; dükkânlar öğle vakti kapanır."
 slug_ar: "سوق-القيصرية"
@@ -42,7 +42,7 @@ heroImage: /img/qaisariyah
 kicker: "سوق تراثي"
 summary: "سوق تراثي يعود لأكثر من قرنين، من أعرق أسواق الأحساء الشعبية والتراثية ووجهة للحرف والمنتجات المحلية."
 summary_en: "A heritage souq over two centuries old, one of Al-Ahsa's oldest folk and heritage markets and a destination for crafts and local products."
-body_en: "Qaisariyah Souq in Hofuf is one of the oldest and most storied souqs in the Arabian Gulf region, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices.\n\n## Qaisariyah Souq hours\n\nOpening hours and fees are listed in the visit-information card below, and its best hours are in the evening."
+body_en: "Qaisariyah Souq in Hofuf is one of the oldest and most storied souqs in the Arabian Gulf region, going back more than two centuries. Its architecture is distinctive, and its close-packed shops lead you through passages fragrant with spices and perfume and gleaming with copper — here beats the heart of heritage shopping in Al-Ahsa. The souq is the ideal place to acquire the famous Hasawi bisht, the cloak of standing and of great occasions; “Hasawi weaving” is distinguished by the precision of its hand embroidery in zari thread washed with gold or silver, a craft Al-Ahsa families have handed down generation after generation. Alongside the bisht you will find local crafts in palm frond and pottery, dates of every variety, coffee and spices.\n\n## Qaisariyah Souq hours\n\nOpening hours and fees are listed in the visit-information card below, and its best hours are in the morning and the evening."
 featured: false
 order: 58
 area: "الهفوف، حي الرفعة"
@@ -50,7 +50,7 @@ area_en: "Hofuf, Al-Rifaa district"
 bestTime: "الصباح أو المساء، فالمتاجر تغلق ظهراً."
 bestTime_en: "The morning or the evening, as the shops close at midday."
 practical:
-  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة مساءً فقط)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday evenings only)", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00 (по пятницам — только вечером)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", label_de: "Öffnungszeiten", value_de: "8:00–12:00 und 15:30–22:00 Uhr (freitags nur abends)", label_ur: "اوقات", value_ur: "صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک (جمعہ صرف شام کو)", label_tr: "Ziyaret saatleri", value_tr: "08.00–12.00 ve 15.30–22.00 (Cuma yalnızca akşam)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "8 ص–12 ظهراً و3:30 ع–10 م (الجمعة صباحاً وبعد العصر)", label_en: "Hours", value_en: "8 am–12 noon & 3:30–10 pm (Friday: morning and after the afternoon prayer)", label_ru: "Часы работы", value_ru: "8:00–12:00 и 15:30–22:00 (по пятницам — только вечером)", label_zh: "开放时间", value_zh: "8:00–12:00、15:30–22:00（周五仅傍晚营业）", label_de: "Öffnungszeiten", value_de: "8:00–12:00 und 15:30–22:00 Uhr (freitags nur abends)", label_ur: "اوقات", value_ur: "صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک (جمعہ صرف شام کو)", label_tr: "Ziyaret saatleri", value_tr: "08.00–12.00 ve 15.30–22.00 (Cuma sabah ve ikindi sonrası)", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_zh: "费用", value_zh: "免费", label_de: "Eintritt", value_de: "Kostenlos", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-06-21", verified: true }
 hoursSpec:
   - { days: "Sa Su Mo Tu We Th", opens: "08:00", closes: "12:00" }
@@ -79,9 +79,9 @@ mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
 # أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-10)
 faq:
   - q: "ما مواعيد سوق القيصرية؟"
-    a: "من 8 ص إلى 12 ظهراً، ومن 3:30 عصراً إلى 10 مساءً، والجمعة مساءً فقط."
+    a: "من 8 ص إلى 12 ظهراً، ومن 3:30 عصراً إلى 10 مساءً، والجمعة صباحاً وبعد العصر."
     q_en: "What are the opening hours of Qaisariyah Souq?"
-    a_en: "8 am to 12 noon and 3:30 to 10 pm; on Fridays, evenings only."
+    a_en: "8 am to 12 noon and 3:30 to 10 pm; on Fridays, the morning and after the afternoon prayer."
     q_zh: "凯撒利亚集市的开放时间是几点到几点？"
     a_zh: "8:00–12:00、15:30–22:00，周五只在下午至晚间那一段营业。"
     q_de: "Wie sind die Öffnungszeiten des Qaisariyah-Souks?"
@@ -91,7 +91,7 @@ faq:
     q_ur: "سوق القیصریہ کب سے کب تک کھلا رہتا ہے؟"
     a_ur: "صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک۔ جمعہ کو یہ صرف شام کے وقت کھلتا ہے۔"
     q_tr: "El-Kaysariye Çarşısı'nın ziyaret saatleri nedir?"
-    a_tr: "08.00'den 12.00'ye ve 15.30'dan 22.00'ye kadar açıktır; Cuma günleri yalnızca akşam açılır."
+    a_tr: "08.00'den 12.00'ye ve 15.30'dan 22.00'ye kadar açıktır; Cuma günleri sabah ve ikindi sonrası açıktır."
   - q: "هل دخول سوق القيصرية برسوم؟"
     a: "لا، الدخول مجاني."
     q_en: "Is there an entry fee at Qaisariyah Souq?"

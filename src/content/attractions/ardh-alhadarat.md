@@ -44,7 +44,7 @@ area: "مدينة العمران، شرق الهفوف — عند جبل الق�
 area_en: "Al-Omran, east of Hofuf — by Al-Qarah Mountain"
 practical:
   - { label: "المواعيد", value: "يومياً 8:00 ص – 11:00 م (قد تُمدّد في العطلات)", label_en: "Hours", value_en: "Daily 8:00 am – 11:00 pm (may be extended on holidays)", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–23:00 (в праздники может быть открыто дольше)", label_zh: "开放时间", value_zh: "每日 8:00–23:00（节假日与旺季可能延长）", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–23:00 Uhr (an Feiertagen möglicherweise länger)", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 11 بجے تک (چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے)", label_tr: "Ziyaret saatleri", value_tr: "Her gün 08.00–23.00 (tatillerde uzatılabilir)", source: "مواعيد جبل القارة (الهيئة السعودية للسياحة) — تذكرة واحدة للموقعَين؛ التمديد في العطلات من مسودة دليل الأحساء السياحي المعتمدة", source_en: "Jabal Al-Qarah hours (Saudi Tourism Authority) — one ticket covers both sites; holiday extension from the approved draft of the Al-Ahsa tourist guide", source_de: "Öffnungszeiten des Jabal Al-Qarah (Saudi Tourism Authority) – ein Ticket für beide Orte; Verlängerung an Feiertagen laut genehmigtem Entwurf des Al-Ahsa-Reiseführers", source_ru: "Часы работы Джебель-эль-Кара (Саудовское управление по туризму) — один билет на оба объекта; продление в праздники по утверждённому проекту путеводителя", verifiedAt: "2026-10-26", verified: true }
-  - { label: "الرسوم", value: "50 ريالاً للبالغين — تذكرة واحدة تشمل أرض الحضارات وجبل القارة", label_en: "Fees", value_en: "SAR 50 for adults — one ticket covers the Land of Civilisations and Jabal Al-Qarah", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых; один билет на «Землю цивилизаций» и Джабаль-эль-Кара", label_zh: "门票", value_zh: "成人 50 沙特里亚尔（SAR），一张门票同时涵盖文明之地和卡拉山", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene – ein Ticket gilt für „Land of Civilisations“ und den Qarah-Berg", label_ur: "فیس", value_ur: "بڑوں کے لیے 50 سعودی ریال۔ ایک ٹکٹ میں “ارض الحضارات” اور جبل القارہ شامل ہیں", label_tr: "Ücretler", value_tr: "Yetişkinler için 50 Suudi riyali (SAR) — tek bilet Medeniyetler Diyarı'nı ve Cebel el-Kare'yi kapsar", source: "مسودة دليل الأحساء السياحي المعتمدة؛ التذكرة الواحدة للموقعين تأكيد فريق زوروا الأحساء", source_en: "Approved draft of the Al-Ahsa tourist guide; the single ticket for both sites confirmed by the Visit Al-Ahsa team", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-10-23", verified: true }
+  - { label: "الرسوم", value: "50 ريالاً للبالغين و10 ريالات للأطفال — تذكرة واحدة تشمل أرض الحضارات وجبل القارة", label_en: "Fees", value_en: "SAR 50 for adults and SAR 10 for children — one ticket covers the Land of Civilisations and Jabal Al-Qarah", label_ru: "Стоимость входа", value_ru: "50 саудовских риялов (SAR) для взрослых; один билет на «Землю цивилизаций» и Джабаль-эль-Кара", label_zh: "门票", value_zh: "成人 50 沙特里亚尔（SAR），一张门票同时涵盖文明之地和卡拉山", label_de: "Eintritt", value_de: "50 Saudi-Riyal (SAR) für Erwachsene – ein Ticket gilt für „Land of Civilisations“ und den Qarah-Berg", label_ur: "فیس", value_ur: "بڑوں کے لیے 50 سعودی ریال۔ ایک ٹکٹ میں “ارض الحضارات” اور جبل القارہ شامل ہیں", label_tr: "Ücretler", value_tr: "Yetişkinler için 50 Suudi riyali (SAR), çocuklar için 10 SAR — tek bilet Medeniyetler Diyarı'nı ve Cebel el-Kare'yi kapsar", source: "مسودة دليل الأحساء السياحي المعتمدة؛ التذكرة الواحدة للموقعين تأكيد فريق زوروا الأحساء", source_en: "Approved draft of the Al-Ahsa tourist guide; the single ticket for both sites confirmed by the Visit Al-Ahsa team", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", verifiedAt: "2026-10-23", verified: true }
 hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:00" }
 fee: { amount: 50, currency: SAR }
@@ -83,9 +83,9 @@ faq:
     q_tr: "Medeniyetler Diyarı'nın ziyaret saatleri nedir?"
     a_tr: "Her gün 08.00'den 23.00'e kadar açıktır; tatillerde saatler uzatılabilir."
   - q: "كم رسوم دخول أرض الحضارات؟"
-    a: "50 ريالاً للبالغين، والتذاكر تشمل تجربة كهوف جبل القارة."
+    a: "50 ريالاً للبالغين و10 ريالات للأطفال، والتذاكر تشمل تجربة كهوف جبل القارة."
     q_en: "How much is entry to the Land of Civilisations?"
-    a_en: "SAR 50 for adults, and tickets include the Al-Qarah Mountain caves experience."
+    a_en: "SAR 50 for adults and SAR 10 for children, and tickets include the Al-Qarah Mountain caves experience."
     q_zh: "文明之地门票多少钱？"
     a_zh: "成人 50 沙特里亚尔，门票含卡拉山洞穴体验。"
     q_de: "Wie hoch ist der Eintritt für „Land of Civilisations“?"
@@ -95,7 +95,7 @@ faq:
     q_ur: "“ارض الحضارات” میں داخلے کی فیس کتنی ہے؟"
     a_ur: "بڑوں کے لیے 50 سعودی ریال، اور ٹکٹ میں جبل القارہ کے غاروں کی سیر بھی شامل ہے۔"
     q_tr: "Medeniyetler Diyarı'na giriş ücreti ne kadar?"
-    a_tr: "Yetişkinler için 50 SAR; biletler Cebel el-Kare'deki mağara deneyimini de kapsar."
+    a_tr: "Yetişkinler için 50 SAR, çocuklar için 10 SAR; biletler Cebel el-Kare'deki mağara deneyimini de kapsar."
   - q: "ما أرض الحضارات؟"
     a: "قرية تراثية ومعرض عند سفح جبل القارة، تستعرض مراحل الحضارة في المنطقة."
     q_en: "What is the Land of Civilisations?"
