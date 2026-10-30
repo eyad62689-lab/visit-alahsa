@@ -16,6 +16,8 @@
 // خطوطها. حوّل ملف الحزمة (@fontsource/noto-nastaliq-urdu، الوجه العربي 400) إلى TTF خارج
 // المستودع (fonttools: TTFont(woff2).flavor = None ثم save)، ثم:
 //          OG_UR_FONTFILE=<مسار الـTTF> node tools/gen-og-images.mjs ur
+// والتركية كذلك من ملف خط: ادمج lora-latin-400-normal وlora-latin-ext-400-normal (woff2 → TTF ثم fontTools.merge)، ثم:
+//          OG_TR_FONTFILE=<مسار الـTTF المدمج> node tools/gen-og-images.mjs tr
 import sharp from 'sharp';
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -51,6 +53,8 @@ const LANGS = {
   zh: { font: "'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" },
   // السطر من ملف الخط (fontfileEnv) لا من خطوط النظام؛ الحجم بالبكسل عند dpi 72
   ur: { font: 'Noto Nastaliq Urdu', size: 36, fontfileEnv: 'OG_UR_FONTFILE', base: 'en' },
+  // التركية: سطرها من ملف خط Lora (latin + latin-ext مدمجان من @fontsource/lora بـfonttools) لا من خطوط النظام
+  tr: { font: 'Lora', size: 40, fontfileEnv: 'OG_TR_FONTFILE', base: 'en' },
 };
 const only = process.argv.slice(2);
 const unknown = only.filter((l) => !(l in LANGS));

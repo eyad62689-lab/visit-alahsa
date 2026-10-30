@@ -25,6 +25,11 @@ kicker_ur: "روایتی بازار"
 summary_ur: "ہفوف کے وسط میں، محلہ جنوبی الرفعہ میں پتھاروں کا ایک روایتی بازار ہے، جہاں سامان الاحساء کی خواتین بیچتی ہیں اور اسی سے اس کا نام پڑا۔ یہ شہر میں عوامی خرید و فروخت کی جیتی جاگتی جھلکیوں میں سے ایک ہے۔"
 body_ur: "ہفوف کے محلہ جنوبی الرفعہ میں خواتین کا روایتی بازار واقع ہے۔ یہ پتھاروں کا ایک روایتی بازار ہے، جو سوق السویق نامی بازار کے پرانے علاقے کے وسط میں ہے۔ اس کا نام اس کے بیچنے والوں سے پڑا ہے: یہاں الاحساء کی خواتین، مقامی بھی اور بادیہ نشین بھی، طرح طرح کا سامان بیچتی ہیں، جس میں سے کچھ ان کے اپنے ہاتھ کا بنا ہوتا ہے۔ یہ بازار سب کے لیے کھلا ہے، خواتین کے لیے بھی اور مردوں کے لیے بھی۔ یہ ہفوف کے وسط میں شاہ عبد العزیز سڑک پر ہے۔ الاحساء کی بلدیہ نے اس بازار میں ترقیاتی کام کیے ہیں۔ یہ بازار آج بھی ہفوف میں عوامی خرید و فروخت کی جیتی جاگتی جھلکیوں میں سے ایک ہے۔ یہاں کپڑے، گھی، اقط (سکھایا ہوا دہی) اور دوسری چیزیں بکتی ہیں۔"
 area_ur: "ہفوف، محلہ جنوبی الرفعہ"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 91/100 (2026-10-31، الدفعة tr-attr-12 — السجل في tr-translation/output/tr-attr-12/)
+title_tr: "Kadınlar Çarşısı"
+summary_tr: "Hüfuf'un merkezindeki Güney er-Rifa mahallesinde geleneksel, tezgâhlı bir çarşı. Satıcıları El-Ahsalı kadınlardır; çarşı adını da bundan alır. Şehirde geleneksel esnaf ticaretinin hâlâ canlı olduğu yerlerden biridir."
+body_tr: "Kadınlar Çarşısı, Hüfuf'taki Güney er-Rifa mahallesinde bulunur. Geleneksel, tezgâhlı bir çarşıdır ve Es-Süveyk adlı eski çarşı bölgesinin kalbindedir. Çarşı adını satıcılarından alır: buradaki satıcılar El-Ahsalı kadınlardır, hem yerleşik hem bedevi kadınlar. Çeşitli ürünler sunarlar; bir kısmı kendi el işleridir. Çarşı herkese açıktır, kadınlara da erkeklere de. Hüfuf'un merkezinde, Kral Abdülaziz Yolu üzerindedir. El-Ahsa Belediyesi çarşıda geliştirme çalışmaları yürüttü. Çarşı, Hüfuf'ta geleneksel esnaf ticaretinin hâlâ canlı olduğu yerlerden biridir; burada giysi, sadeyağ, akit (kurutulmuş yoğurt) ve başka ürünler satılır."
+area_tr: "Hüfuf, Güney er-Rifa mahallesi"
 slug_ar: "سوق-النساء-الشعبي"
 slug_en: "women-souq"
 category: market
@@ -38,7 +43,7 @@ order: 67
 area: "الهفوف، حي الرفعة الجنوبية"
 area_en: "Hofuf, South Al-Rifaa district"
 practical:
-  - { label: "المواعيد", value: "يومياً 8 ص – 11 م", label_en: "Hours", value_en: "Daily 8:00 am – 11:00 pm", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–23:00", label_zh: "开放时间", value_zh: "每日 8:00–23:00", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–23:00 Uhr", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 11 بجے تک", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-04", verified: true }
+  - { label: "المواعيد", value: "يومياً 8 ص – 11 م", label_en: "Hours", value_en: "Daily 8:00 am – 11:00 pm", label_ru: "Часы работы", value_ru: "Ежедневно 8:00–23:00", label_zh: "开放时间", value_zh: "每日 8:00–23:00", label_de: "Öffnungszeiten", value_de: "Täglich 8:00–23:00 Uhr", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے رات 11 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 08.00–23.00", source: "تأكيد فريق «زوروا الأحساء»", source_en: "Confirmed by the Visit Al-Ahsa team", source_ru: "Подтверждено редакцией этого сайта", source_zh: "本站编辑团队确认", source_de: "Bestätigung durch das Redaktionsteam von Visit Al-Ahsa", verifiedAt: "2026-09-04", verified: true }
 hoursSpec:
   - { days: "Mo Tu We Th Fr Sa Su", opens: "08:00", closes: "23:00" }
 answer: "سوق النساء الشعبي سوق تراثي في حي الرفعة الجنوبية بالهفوف، وسط منطقة سوق السويق القديمة، وأحد مشاهد التجارة الشعبية الحيّة في المدينة، تُباع فيه الملابس وحاجات البيت اليومية، وقد نفّذت أمانة الأحساء أعمال تطوير له. يفتح يومياً من 8 ص إلى 11 م."
@@ -56,6 +61,7 @@ mapUrl: "https://maps.app.goo.gl/AjLK1nvuFsuJQ3i89"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-08، الدفعة ru-attr-12 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 91/100 (2026-10-15، الدفعة b17 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 91/100 (2026-10-31، الدفعة tr-attr-12)
 faq:
   - q: "ما مواعيد سوق النساء الشعبي؟"
     a: "يومياً من 8 ص إلى 11 م."
@@ -69,6 +75,8 @@ faq:
     a_ru: "Ежедневно с 8:00 до 23:00."
     q_ur: "خواتین کا روایتی بازار کب سے کب تک کھلا رہتا ہے؟"
     a_ur: "روزانہ صبح 8 بجے سے رات 11 بجے تک۔"
+    q_tr: "Kadınlar Çarşısı'nın ziyaret saatleri nedir?"
+    a_tr: "Çarşı her gün 08.00'den 23.00'e kadar açıktır."
   - q: "أين يقع سوق النساء الشعبي؟"
     a: "في حي الرفعة الجنوبية بالهفوف، على طريق الملك عبدالعزيز وسط منطقة سوق السويق القديمة."
     q_en: "Where is the Women’s Folk Souq?"
@@ -81,6 +89,8 @@ faq:
     a_ru: "В районе Эр-Рифаа аль-Джанубия, в Эль-Хуфуфе, у дороги короля Абдул-Азиза, в сердце старого рыночного квартала Эс-Сувайк."
     q_ur: "خواتین کا روایتی بازار کہاں ہے؟"
     a_ur: "ہفوف کے محلہ جنوبی الرفعہ میں، شاہ عبد العزیز سڑک پر، سوق السویق نامی بازار کے پرانے علاقے کے وسط میں۔"
+    q_tr: "Kadınlar Çarşısı nerede?"
+    a_tr: "Çarşı, Hüfuf'taki Güney er-Rifa mahallesinde, Kral Abdülaziz Yolu üzerindedir; Es-Süveyk adlı eski çarşı bölgesinin kalbindedir."
   - q: "لماذا سُمّي سوق النساء الشعبي بهذا الاسم؟"
     a: "لأن البائعات فيه نساءٌ من الأحساء، محليّاتٌ وبدويات."
     q_en: "Why is it called the Women’s Folk Souq?"
@@ -93,6 +103,8 @@ faq:
     a_ru: "Потому что торгуют на нём женщины из Аль-Ахсы, как горожанки, так и бедуинки."
     q_ur: "اسے خواتین کا روایتی بازار کیوں کہتے ہیں؟"
     a_ur: "کیونکہ یہاں سامان الاحساء کی خواتین بیچتی ہیں، مقامی بھی اور بادیہ نشین بھی۔"
+    q_tr: "Kadınlar Çarşısı neden bu adı taşıyor?"
+    a_tr: "Çünkü buradaki satıcılar El-Ahsalı kadınlardır: hem yerleşik hem bedevi kadınlar."
   - q: "هل دخول سوق النساء الشعبي مقتصر على النساء؟"
     a: "لا، السوق مفتوح للجميع نساءً ورجالاً؛ والنساء هنّ البائعات فيه."
     q_en: "Is the Women’s Folk Souq open only to women?"
@@ -105,6 +117,8 @@ faq:
     a_ru: "Нет. Рынок открыт для всех — и для женщин, и для мужчин, а торгуют на нём женщины."
     q_ur: "کیا خواتین کا روایتی بازار صرف خواتین کے لیے کھلا ہے؟"
     a_ur: "نہیں، یہ بازار سب کے لیے کھلا ہے، خواتین کے لیے بھی اور مردوں کے لیے بھی۔ البتہ سامان خواتین ہی بیچتی ہیں۔"
+    q_tr: "Kadınlar Çarşısı yalnızca kadınlara mı açık?"
+    a_tr: "Hayır. Çarşı herkese açıktır, kadınlara da erkeklere de; satıcılar kadındır."
   - q: "ماذا يُباع في سوق النساء الشعبي؟"
     a: "الملابس والسمن والإقط وغيرها."
     q_en: "What is sold at the Women’s Folk Souq?"
@@ -117,6 +131,8 @@ faq:
     a_ru: "Одежду, топлёное масло, акит (сушёный кисломолочный продукт) и другие товары."
     q_ur: "خواتین کے روایتی بازار میں کیا بکتا ہے؟"
     a_ur: "کپڑے، گھی، اقط (سکھایا ہوا دہی) اور دوسری چیزیں۔"
+    q_tr: "Kadınlar Çarşısı'nda neler satılıyor?"
+    a_tr: "Giysi, sadeyağ, akit (kurutulmuş yoğurt) ve başka ürünler."
 ---
 
 في حي الرفعة الجنوبية بالهفوف يقع سوق النساء الشعبي، سوقُ بسطاتٍ تراثي وسط

@@ -25,6 +25,11 @@ kicker_ur: "زرعی فارم"
 summary_ur: "الاحساء کے چاول کی کاشت کرنے والے سب سے بڑے فارموں میں سے ایک، جو کٹائی کے موسم کی تقریبات کے لیے مشہور ہے۔ یہاں گندھک والے پانی کا ایک چشمہ اور کھجور کے پتوں کی روایتی جھونپڑیاں بھی ہیں۔"
 body_ur: "الخلیج سڑک پر زکی السالم کا فارم واقع ہے۔ یہ الاحساء کے سرخ چاول کی کاشت کرنے والے سب سے بڑے فارموں میں سے ایک ہے، اور یہاں الاحساء کے نخلستان کی دوسری فصلیں بھی اگتی ہیں۔ ہر سال چاول کی کٹائی کے موسم میں یہاں تقریبات ہوتی ہیں۔ ان میں میلے کا سا ماحول ہوتا ہے، جو سیاحوں کو اس فارم کی طرف کھینچ لاتا ہے۔ فارم میں گندھک والے پانی کا ایک قدرتی چشمہ بھی ہے جو زمین سے پھوٹتا ہے۔ اس کے گرد کھجور کے پتوں کی روایتی جھونپڑیاں بنائی گئی ہیں جو “اریاف زکی” (زکی کا دیہی علاقہ) کہلاتی ہیں۔ ان میں سیاح ہریالی کے بیچ معدنیات سے بھرپور گرم پانی میں نہاتے ہیں۔"
 area_ur: "الاحساء، الخلیج سڑک پر"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 91/100 (2026-10-31، الدفعة tr-attr-12 — السجل في tr-translation/output/tr-attr-12/)
+title_tr: "Zeki es-Salim Çiftliği"
+summary_tr: "El-Ahsa pirinci yetiştiren en büyük çiftliklerden biri; hasat mevsimi kutlamalarıyla ünlüdür. Çiftlikte kükürtlü bir pınar ve hurma yaprağından geleneksel kulübeler vardır."
+body_tr: "Zeki es-Salim Çiftliği, El-Ahsa Vahası'nın doğusunda, Arap Körfezi Yolu üzerindedir. Çiftlik, El-Ahsa kırmızı pirinci yetiştiren en büyük çiftliklerden biridir; vahanın başka ürünleri de burada yetişir. Her yıl hasat mevsiminde kutlamalar yapılır. Kutlamalar, El-Ahsa pirinci hasadıyla ilgili şenlik gibi etkinlikler sunarak ziyaretçileri çiftliğe çeker. Çiftlikte ayrıca yerden çıkan doğal bir kükürtlü pınar vardır. Pınarın çevresine hurma yaprağından geleneksel kulübeler yapılmıştır; bunlar “Eryaf Zeki” adıyla bilinir. Bu kulübelerde konuklar, yeşilliğin ortasında mineralce zengin ılık suda banyo yapabilir."
+area_tr: "Arap Körfezi Yolu — El-Ahsa"
 slug_ar: "مزرعة-زكي-السالم"
 slug_en: "zaki-alsalem-farm"
 category: farm
@@ -45,9 +50,9 @@ seo:
 description: "على طريق الخليج تقع مزرعة زكي السالم. من أكبر مزارع الأرز الأحسائي في الأحساء — تشتهر باحتفالات موسم الحصاد، وفيها نبع مياه كبريتية وأكواخ تراثية من السعف."
 description_en: "One of the largest Hasawi rice farms in Al-Ahsa — famed for its harvest-season celebrations, with a sulphur-water spring and traditional palm-frond huts."
 practical:
-  - { label: "المواعيد", value: "الخميس والجمعة والسبت: 3:30 م - 10:00 م", label_en: "Hours", value_en: "Thursday, Friday and Saturday 3:30–10:00 pm", label_ur: "اوقات", value_ur: "جمعرات، جمعہ اور ہفتہ سہ پہر 3:30 بجے سے رات 10 بجے تک", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "25 ريال للفرد", label_en: "Fees", value_en: "SAR 25 per person", label_ur: "فیس", value_ur: "فی کس 25 سعودی ریال", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", label_ur: "سیر", value_ur: "تصدیق باقی ہے", verified: false }
+  - { label: "المواعيد", value: "الخميس والجمعة والسبت: 3:30 م - 10:00 م", label_en: "Hours", value_en: "Thursday, Friday and Saturday 3:30–10:00 pm", label_ur: "اوقات", value_ur: "جمعرات، جمعہ اور ہفتہ سہ پہر 3:30 بجے سے رات 10 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Perşembe, Cuma ve Cumartesi 15.30–22.00", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "25 ريال للفرد", label_en: "Fees", value_en: "SAR 25 per person", label_ur: "فیس", value_ur: "فی کس 25 سعودی ریال", label_tr: "Ücretler", value_tr: "Kişi başı 25 Suudi riyali (SAR)", source: "تحقق مباشر من إدارة المزرعة", source_en: "Verified directly with the farm’s management", sourceUrl: "https://instagram.com/zaki_farm", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الزيارة", value: "بانتظار التأكيد", label_en: "Visiting", value_en: "Pending confirmation", label_zh: "游览", value_zh: "待确认（信息更新中）", label_ur: "سیر", value_ur: "تصدیق باقی ہے", label_tr: "Ziyaret", value_tr: "Teyit bekleniyor", verified: false }
 location: { lat: 25.2985879, lng: 49.6605849 }
 mapUrl: "https://maps.app.goo.gl/S3QhpmWT7b3ge6DKA"
 ---
