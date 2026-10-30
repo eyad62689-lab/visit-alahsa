@@ -25,6 +25,11 @@ kicker_ur: "دستکاری کا بازار"
 summary_ur: "ہفوف کے تاریخی مرکز میں ایک بازار، جہاں دستکار، ان کی دکانیں اور دستکاری سکھانے کی ایک تربیت گاہ یکجا ہیں۔ اس کی نگرانی الاحساء کی بلدیہ کرتی ہے۔"
 body_ur: "ہفوف کے تاریخی مرکز میں دستکاروں کا بازار واقع ہے، جو دستکاریوں اور لوک فنون کے فروغ کے لیے مارچ 2020 میں کھولا گیا۔ یہ 12,000 مربع میٹر سے زیادہ رقبے پر پھیلا ہوا ہے، اور اس میں دستکاروں کی 112 دکانیں، ایک کھلا صحن، ایک روایتی قہوہ خانہ، روٹی کا تندور اور تقریبات کا میدان ہیں۔ یہاں ایک تربیت گاہ بھی ہے، جہاں تجربہ کار دستکار نئی نسلوں کو اپنا ہنر سکھاتے ہیں۔ ہنر سکھانے کا یہ سلسلہ یونیسکو کے تخلیقی شہروں کے نیٹ ورک میں الاحساء کی شمولیت سے جڑا ہوا ہے۔ یہ بازار ہفوف کے تاریخی مرکز کی ترقی کے منصوبوں کے تحت بنایا گیا، اور اس کا انتظام الاحساء کی بلدیہ سنبھالتی ہے۔"
 area_ur: "ہفوف، شہر کے تاریخی مرکز میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-10 — السجل في tr-translation/output/tr-attr-10/)
+title_tr: "Zanaatkârlar Çarşısı"
+summary_tr: "Tarihî Hüfuf'un kalbinde bir çarşı; zanaatkârları, dükkânlarını ve bir el sanatları akademisini bir araya getirir. Çarşı, El-Ahsa Belediyesinin gözetimindedir."
+body_tr: "Hüfuf'un tarihî merkezinde Zanaatkârlar Çarşısı bulunur. Çarşı, el sanatlarını ve halk sanatlarını desteklemek amacıyla Mart 2020'de açıldı. 12.000 metrekareden fazla bir alana yayılan çarşıda zanaatkârlar için 112 dükkân, açık bir avlu, geleneksel bir kahvehane, bir tandır fırını ve bir etkinlik meydanı vardır. Çarşıda ayrıca deneyimli ustaların mesleklerini yeni kuşaklara öğrettiği bir akademi bulunur. Akademinin bu görevi, El-Ahsa'nın UNESCO Yaratıcı Şehirler Ağı'na katılımıyla yakından bağlantılıdır. Çarşı, Hüfuf'un tarihî şehir merkezini geliştirme projeleri kapsamında kuruldu; çarşıyı El-Ahsa Belediyesi yönetir."
+area_tr: "Hüfuf — tarihî şehir merkezi"
 slug_ar: "سوق-الحرفيين"
 slug_en: "craftsmen-souq"
 category: market
@@ -38,7 +43,7 @@ order: 59
 area: "الهفوف — وسط المدينة التاريخي"
 area_en: "Hofuf — the historic town centre"
 practical:
-  - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_ru: "Часы работы", value_ru: "Ежедневно 7:30–24:00 (по воскресеньям и понедельникам с 7:00 · по пятницам с 14:30)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", label_de: "Öffnungszeiten", value_de: "Täglich 7:30–24:00 Uhr (sonntags und montags ab 7:00 Uhr · freitags ab 14:30 Uhr)", label_ur: "اوقات", value_ur: "روزانہ صبح 7:30 بجے سے رات 12 بجے تک (اتوار اور پیر صبح 7 بجے سے · جمعہ دوپہر 2:30 بجے سے)", source: "خرائط قوقل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_ru: "Google Карты — часы работы, обновлённые самим рынком", source_zh: "谷歌地图（营业时间由商家更新）", source_de: "Google Maps – vom Betrieb selbst aktualisierte Öffnungszeiten", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
+  - { label: "المواعيد", value: "يومياً 7:30 ص – 12 منتصف الليل (الأحد والاثنين من 7 ص · الجمعة من 2:30 م)", label_en: "Hours", value_en: "Daily 7:30 am – midnight (Sunday & Monday from 7:00 am · Friday from 2:30 pm)", label_ru: "Часы работы", value_ru: "Ежедневно 7:30–24:00 (по воскресеньям и понедельникам с 7:00 · по пятницам с 14:30)", label_zh: "开放时间", value_zh: "每日 7:30–24:00（周日、周一 7:00 起；周五 14:30 起）", label_de: "Öffnungszeiten", value_de: "Täglich 7:30–24:00 Uhr (sonntags und montags ab 7:00 Uhr · freitags ab 14:30 Uhr)", label_ur: "اوقات", value_ur: "روزانہ صبح 7:30 بجے سے رات 12 بجے تک (اتوار اور پیر صبح 7 بجے سے · جمعہ دوپہر 2:30 بجے سے)", label_tr: "Ziyaret saatleri", value_tr: "Her gün 07.30–24.00 (Pazar ve Pazartesi 07.00'den · Cuma 14.30'dan)", source: "خرائط قوقل — ساعات حدّثتها المؤسسة", source_en: "Google Maps — hours updated by the business", source_ru: "Google Карты — часы работы, обновлённые самим рынком", source_zh: "谷歌地图（营业时间由商家更新）", source_de: "Google Maps – vom Betrieb selbst aktualisierte Öffnungszeiten", sourceUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA", verifiedAt: "2026-09-03", verified: true }
 hoursSpec:
   - { days: "Tu We Th Sa", opens: "07:30", closes: "23:59" }
   - { days: "Su Mo", opens: "07:00", closes: "23:59" }
@@ -58,6 +63,7 @@ mapUrl: "https://maps.app.goo.gl/Sm86zgpMPBcqcWVAA"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 15 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 90/100 (2026-09-08، الدفعة ru-attr-10 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-14، الدفعة b9 — السجل في ur-translation/memory/scores.csv).
+# أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-10)
 faq:
   - q: "ما مواعيد سوق الحرفيين؟"
     a: "يومياً من 7:30 ص إلى 12 منتصف الليل، والأحد والاثنين من 7 ص، والجمعة من 2:30 م — بحسب الساعات التي حدّثتها المؤسسة في خرائط قوقل."
@@ -71,6 +77,8 @@ faq:
     a_ru: "Ежедневно с 7:30 до 24:00; по воскресеньям и понедельникам — с 7:00, по пятницам — с 14:30. Это часы работы, которые сам рынок обновил в Google Картах."
     q_ur: "دستکاروں کا بازار کب سے کب تک کھلا رہتا ہے؟"
     a_ur: "روزانہ صبح 7:30 بجے سے رات 12 بجے تک۔ اتوار اور پیر کو یہ صبح 7 بجے سے، اور جمعہ کو دوپہر 2:30 بجے سے کھلتا ہے۔ یہ وہ اوقات ہیں جو بازار کی انتظامیہ نے گوگل میپس پر تازہ کیے ہیں۔"
+    q_tr: "Zanaatkârlar Çarşısı'nın ziyaret saatleri nedir?"
+    a_tr: "Her gün 07.30'dan 24.00'e kadar açıktır; Pazar ve Pazartesi günleri 07.00'de, Cuma günü ise 14.30'da açılır. Bu bilgiler, işletmenin Google Haritalar'da güncellediği saatlere göredir."
   - q: "ماذا يوجد في سوق الحرفيين؟"
     a: "112 متجراً للحرفيين، وفناء مفتوح، وقهوة شعبية، ومخبز تنور، وساحة للفعاليات، وأكاديمية لتعليم الحرف اليدوية يديرها حرفيون ذوو خبرة."
     q_en: "What is inside the Craftsmen Souq?"
@@ -83,6 +91,8 @@ faq:
     a_ru: "112 лавок ремесленников, открытый двор, традиционную кофейню, пекарню с тандыром, площадь для мероприятий и академию, где опытные мастера передают своё дело."
     q_ur: "دستکاروں کے بازار میں کیا کچھ ہے؟"
     a_ur: "دستکاروں کی 112 دکانیں، ایک کھلا صحن، ایک روایتی قہوہ خانہ، روٹی کا تندور، تقریبات کا میدان، اور ایک تربیت گاہ جہاں تجربہ کار دستکار اپنا ہنر سکھاتے ہیں۔"
+    q_tr: "Zanaatkârlar Çarşısı'nın içinde neler var?"
+    a_tr: "Çarşıda zanaatkârlar için 112 dükkân, açık bir avlu, geleneksel bir kahvehane, bir tandır fırını, bir etkinlik meydanı ve deneyimli ustaların mesleklerini öğrettiği bir akademi bulunur."
   - q: "أين يقع سوق الحرفيين ومن يشرف عليه؟"
     a: "في قلب الهفوف التاريخية، ضمن مشاريع تطوير وسط المدينة التاريخي، وتشرف عليه أمانة الأحساء."
     q_en: "Where is the Craftsmen Souq, and who runs it?"
@@ -95,6 +105,8 @@ faq:
     a_ru: "В историческом центре Эль-Хуфуфа. Рынок появился в рамках проектов по развитию исторического центра, а управляет им муниципалитет Аль-Ахсы."
     q_ur: "دستکاروں کا بازار کہاں ہے، اور اس کا انتظام کون سنبھالتا ہے؟"
     a_ur: "ہفوف کے تاریخی مرکز میں۔ یہ اس تاریخی مرکز کی ترقی کے منصوبوں کے تحت بنایا گیا، اور اس کا انتظام الاحساء کی بلدیہ سنبھالتی ہے۔"
+    q_tr: "Zanaatkârlar Çarşısı nerede ve kim yönetiyor?"
+    a_tr: "Çarşı, Hüfuf'un tarihî merkezindedir. Tarihî şehir merkezini geliştirme projeleri kapsamında kurulmuştur; çarşıyı El-Ahsa Belediyesi yönetir."
   - q: "متى افتُتح سوق الحرفيين؟"
     a: "في مارس 2020م."
     q_en: "When did the Craftsmen Souq open?"
@@ -107,6 +119,8 @@ faq:
     a_ru: "В марте 2020 года."
     q_ur: "دستکاروں کا بازار کب کھلا؟"
     a_ur: "مارچ 2020 میں۔"
+    q_tr: "Zanaatkârlar Çarşısı ne zaman açıldı?"
+    a_tr: "Mart 2020'de."
 ---
 
 في قلب الهفوف التاريخية يقع سوق الحرفيين، الذي افتُتح في مارس 2020م دعماً

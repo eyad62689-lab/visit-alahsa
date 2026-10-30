@@ -25,6 +25,11 @@ kicker_ur: "روایتی دستکاری"
 summary_ur: "جبل القارہ کے پاس مٹی کے برتن بنانے کی ایک روایتی کارگاہ، جو الغراش خاندان میں نسل در نسل چلی آ رہی ہے۔ یہ سعودی عرب میں اس ہنر کے مشہور ترین مراکز میں سے ایک ہے۔"
 body_ur: "جبل القارہ کے دامن میں، القارہ گاؤں میں، دوغہ الغراش (یعنی الغراش کی کارگاہ) واقع ہے۔ یہ مٹی کے برتن بنانے کی ایک روایتی کارگاہ ہے، جہاں کمہار آج بھی پرانے طریقے سے ہاتھ سے برتن بناتے ہیں اور پھر انہیں یہیں کی بھٹیوں میں پکاتے ہیں۔ الغراش خاندان میں یہ ہنر نسل در نسل منتقل ہوتا آیا ہے۔ اخبارات کے مطابق اس جگہ مٹی کے برتن بنانے کا کام چھ سو برس سے زیادہ عرصے سے جاری ہے، اور اسی لیے یہ سعودی عرب میں لوک دستکاری کے مشہور ترین مراکز میں سے ایک ہے۔ یہاں کے کمہار فرانس، امریکہ اور کینیڈا کی نمائشوں میں اپنا کام پیش کر چکے ہیں۔ آج یہ کارگاہ ایک سیاحتی مقام ہے، جہاں سیاح مٹی گوندھنے سے لے کر کمہار کے چاک اور بھٹی تک اس ہنر کے سارے مراحل دیکھتے ہیں اور یہاں کے بنے برتن ساتھ لے جاتے ہیں۔"
 area_ur: "القارہ گاؤں، جبل القارہ کے پاس، الاحساء کے مشرقی حصے میں"
+# الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-30، الدفعة tr-attr-10 — السجل في tr-translation/output/tr-attr-10/)
+title_tr: "Duğa el-Garaş Çömlek Atölyesi"
+summary_tr: "Cebel el-Kare'nin yanında geleneksel bir çömlek atölyesi; El-Garaş ailesinde kuşaktan kuşağa aktarılmıştır. Atölye, Suudi Arabistan'ın çömlekçilikteki en bilinen merkezlerinden biridir."
+body_tr: "Cebel el-Kare'nin eteğindeki El-Kare köyünde Duğa el-Garaş bulunur. Duğa el-Garaş, geleneksel bir çömlek atölyesidir; çömlek kapları burada hâlâ eski yöntemle, elle kilden şekillendirilir ve atölyenin fırınlarında pişirilir. Bu zanaat, El-Garaş ailesinde kuşaktan kuşağa aktarılmıştır. Basın haberleri, çömlekçiliğin bu yerde altı yüz yıldan fazla süredir sürdüğünü kaydeder. Bu da atölyeyi, Suudi Arabistan'daki halk zanaatının en ünlü merkezlerinden biri hâline getirir. Atölyenin çömlekçileri çalışmalarını Fransa, Amerika Birleşik Devletleri ve Kanada'daki sergilerde sunmuştur. Duğa el-Garaş bugün turistik bir duraktır; ziyaretçiler kilin yoğrulmasından çömlekçi çarkına ve fırına kadar zanaatın aşamalarını izler ve atölyenin ürünlerini eve götürür."
+area_tr: "El-Kare köyü — Cebel el-Kare'nin yanı, El-Ahsa'nın doğusu"
 slug_ar: "دوقة-الغراش"
 slug_en: "duqat-algharash"
 category: market
@@ -46,8 +51,8 @@ featured: false
 order: 60
 district: qarah
 practical:
-  - { label: "المواعيد", value: "يومياً: 8:00 ص - 12:00 ظهراً | 3:00 م - 7:30 م", label_en: "Hours", value_en: "Daily 8:00 am – 12:00 noon and 3:00–7:30 pm", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3 بجے سے شام 7:30 بجے تک", source: "تحقق مباشر من أسرة الغراش", source_en: "Verified directly with the Al-Gharash family", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
-  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", source: "تحقق مباشر من أسرة الغراش", source_en: "Verified directly with the Al-Gharash family", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "يومياً: 8:00 ص - 12:00 ظهراً | 3:00 م - 7:30 م", label_en: "Hours", value_en: "Daily 8:00 am – 12:00 noon and 3:00–7:30 pm", label_ur: "اوقات", value_ur: "روزانہ صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3 بجے سے شام 7:30 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Her gün 08.00–12.00 ve 15.00–19.30", source: "تحقق مباشر من أسرة الغراش", source_en: "Verified directly with the Al-Gharash family", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من أسرة الغراش", source_en: "Verified directly with the Al-Gharash family", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.412022, lng: 49.6836 }
 sameAs:
   - https://www.wikidata.org/wiki/Q99941895
