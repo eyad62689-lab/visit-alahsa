@@ -29,7 +29,7 @@ const tr = lang === 'tr';
 const showGuides = (ar || lang === 'en') && (await guidesListed());
 const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : tr ? '/tr/attractions/' : '/en/attractions/';
 const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : ur ? '/ur/souqs-parks-farms/' : '/en/souqs-parks-farms/';
-const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : ur ? '/ur/plan-your-trip/' : '/en/plan-your-trip/';
+const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : ur ? '/ur/plan-your-trip/' : lang === 'tr' ? '/tr/plan-your-trip/' : '/en/plan-your-trip/';
 const cols = [
   {
     h: t('foot.col.discover'),
@@ -63,8 +63,8 @@ const cols = [
       // دليل التأشيرات عربي وإنجليزي (2026-10-16) — لا رابط في تذييل اللغات التي لم تمرّ نصوصه بخطوطها
       ...(VISA_LANGS.includes(lang) ? [{ label: t('foot.l.visa'), href: visaHref(lang) }] : []),
       ...(showGuides ? [{ label: t('guides.nav'), href: guidesHref(lang) }] : []),
-      { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : '/en/plan/' },
-      { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : ur ? '/ur/map/' : '/en/map/' },
+      { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : ur ? '/ur/plan/' : lang === 'tr' ? '/tr/plan/' : '/en/plan/' },
+      { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : ur ? '/ur/map/' : lang === 'tr' ? '/tr/map/' : '/en/map/' },
     ],
   },
   {

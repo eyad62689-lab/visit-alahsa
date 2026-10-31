@@ -481,7 +481,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
     },
     arrow: '→',
     sep: ' ',
-    paths: { attractions: '/tr/attractions/', map: '/en/map/', plan: '/en/plan-your-trip/', myTrip: '/en/plan/', trails: '/tr/trails/' },
+    paths: { attractions: '/tr/attractions/', map: '/tr/map/', plan: '/tr/plan-your-trip/', myTrip: '/tr/plan/', trails: '/tr/trails/' },
     gate: {
       title: 'El-Ahsa: Dünyanın en büyük vahasını bölüm bölüm keşfedin',
       lead: 'Suudi Arabistan\'ın Doğu Bölgesi\'nde: kumun altında su, mağaralarla dolu bir dağ ve nesillerdir süregelen çarşılar. El-Ahsa\'da gezilecek yerler ve yapılacaklar için rehberiniz burada. Başlamak için sayfayı kaydırın.',

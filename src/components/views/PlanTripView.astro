@@ -45,7 +45,7 @@ const ITIN = ar
         { href: '/en/#ch-plan', h: 'Trip planner', d: 'Answer three questions and get a route for one to three days.' },
       ],
     };
-const itinItems = ITIN.items.filter((i): i is { href: string; h: string; d: string } => i.href !== null);
+const itinItems = ar || lang === 'en' ? ITIN.items.filter((i): i is { href: string; h: string; d: string } => i.href !== null) : [];
 
 /* أيقونات خطّية بلغة أيقونات فئات المعالم نفسها. كانت إيموجي (✈ 🚗 🚆) تُصيَّرها
    ويندوز ملوّنةً — السيارة حمراء والقطار بنفسجي — فتصير الألوان المشبعة الوحيدة
@@ -348,14 +348,64 @@ const C = localize(lang, {
     seoTitle: 'الاحساء کے سفر کا منصوبہ: کیسے پہنچیں، بہترین وقت اور مشورے',
     seoDesc: 'الاحساء کی سیر کے لیے ضروری معلومات: ہوائی جہاز، سڑک اور ریل گاڑی سے کیسے پہنچیں، جانے کا بہترین وقت، عملی معلومات، مشورے اور عمومی سوالات۔ اطمینان سے اپنا سفر ترتیب دیں۔',
   },
+  tr: {
+    // الكتلة التركية — خط tr-translation-pipeline (دفعة tr-map-plan-1؛ الحاكم 91/100)
+    eyebrow: 'Gezinizi planlayın',
+    title: 'Yola çıkmadan önce ihtiyacınız olan her şey',
+    lead: 'Gezinizin varıştan dönüşe kadar sorunsuz geçmesi için kısa ve pratik bilgiler.',
+    getThereH: 'El-Ahsa\'ya ulaşım',
+    getThere: [
+      { icon: 'air', h: 'Hava yoluyla', d: 'El-Ahsa Uluslararası Havalimanı\'na iç ve dış hat uçuşları yapılır. Hatlar ve uçuş saatleri değiştiği için rezervasyondan önce teyit edin. Bir diğer seçenek Dammam\'daki Kral Fahd Uluslararası Havalimanı\'dır. Bu havalimanı arabayla yaklaşık iki saat uzaklıktadır ve daha fazla uçuş bağlantısı sunar.' },
+      { icon: 'road', h: 'Kara yoluyla', d: 'El-Ahsa, Riyad\'a yaklaşık 326 km uzaklıktadır (yolculuk 3 saat 20 dakika kadar sürer). İyi bir otoyol ağı sayesinde Dammam\'a ve El-Huber\'e de yakındır.' },
+      { icon: 'rail', h: 'Demir yoluyla', d: 'Riyad–Dammam demir yolu hattının Hüfuf\'ta bir istasyonu vardır; hattı Suudi Arabistan Demiryolları işletir. Riyad\'dan gelenler için en hızlı ve en konforlu seçenek trendir (yaklaşık iki saat on dakika). Dammam\'dan yolculuk aşağı yukarı bir ila bir buçuk saat sürer. Tren ayrıca aynı hat üzerinde, yakındaki Abkayk\'ta (Bukayk olarak da bilinir) durur. Başkent Riyad\'dan ve Suudi Arabistan\'ın Doğu Bölgesi\'nden gelenler için tren çok iyi bir seçimdir.' },
+    ],
+    practicalH: 'Pratik bilgiler',
+    practical: [
+      { k: 'El-Ahsa\'yı ziyaret etmek için en iyi dönem', v: 'El-Ahsa\'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; yaz ise vahanın bereketli mevsimidir, yaz akşamları da keyiflidir.' },
+      { k: 'Konaklama', v: 'Vahanın dört bir yanında modern oteller ve tatil tesisleri var. Geleneksel konuk evleri ise otantik, yerel bir konaklama sunar.' },
+      { k: 'Yörenin karakteri', v: 'El-Ahsa otantik, konuksever ve muhafazakâr bir yöredir. Mirasını modern ziyaretçi olanaklarıyla buluşturur; ailelere de tek başına seyahat edenlere de uygundur.' },
+      { k: 'Para birimi', v: 'Suudi riyali (SAR). Çoğu işletmede kart kabul edilir; geleneksel çarşılar için yanınızda biraz nakit bulundurun.' },
+    ],
+    tipsH: 'Ziyaretçilere öneriler',
+    tipsLead: 'Gezinizde büyük fark yaratan küçük ayrıntılar.',
+    tips: [
+      { h: 'Kibarca pazarlık edin', d: 'Çarşılarda saygılı olduğunuz sürece pazarlık yapmak kabul görür; bu, geleneksel alışverişin keyfine dâhildir.' },
+      { h: 'Mevsiminizi seçin', d: 'Yaz taze meyvelerin tadını çıkarmaya, kış ise gezilecek yerleri ve bölgenin tarihini tanımaya uygundur.' },
+      { h: 'Zamanlamaya dikkat edin', d: 'Sıcak aylarda açık hava alanlarına sabah erken ya da öğleden sonranın ilerleyen saatlerinde gidin. Kışın ise hava gün boyu hoştur.' },
+      { h: 'Ziyaret saatlerini teyit edin', d: 'Müzelerin ve kalelerin ziyaret saatlerini önceden kontrol edin; bazılarının saatleri mevsime göre değişir.' },
+    ],
+    faqH: 'Sıkça sorulan sorular',
+    faq: [
+      { q: 'El-Ahsa\'ya gitmeye değer mi?', a: 'Kesinlikle. El-Ahsa dünyanın en büyük vahasıdır (Guinness Dünya Rekorları, 2020) ve bir UNESCO Dünya Mirası alanıdır (2018). El-Ahsa, doğa harikalarını Hüfuf\'un hâlâ canlı olan mirasıyla buluşturur. Cebel el-Kare\'nin mağaraları, El-Asfar Gölü ve tatlı su pınarları bu harikalar arasındadır. Kasr İbrahim, El-Kaysariye Çarşısı ve Cüvasa Camii ise bu mirasın örnekleridir. Bunlara hurmalıklar, vaha meyveleri ve kendine özgü yerel mutfak da eklenir. Ailelere uygun bir yöre olan El-Ahsa\'da tarih, doğa ve konukseverlik buluşur.' },
+      { q: 'El-Ahsa\'da gezilecek en güzel yerler hangileri?', a: 'El-Ahsa\'da öne çıkan yerler şunlardır: Cebel el-Kare (mağaraları ve “Medeniyetler Diyarı” miras köyüyle), tarihî Kasr İbrahim, geleneksel El-Kaysariye Çarşısı, Cüvasa Camii (İslam tarihinin ilk camilerinden biri), El-Asfar Gölü ve Müberrez\'deki Sahud Sarayı (Kasr Sahud). Tam liste için “Gezilecek yerler” sayfasına göz atın; listedeki yerleri “Kayıtlı yerlerim” listenize ekleyebilirsiniz.' },
+      { q: 'Cebel el-Kare\'nin ziyaret saatleri nedir?', a: 'Cebel el-Kare her gün 08.00\'den 23.00\'e kadar açıktır (saatler tatillerde uzatılabilir). Yetişkinler için giriş ücreti 50 SAR\'dır; biletler “Medeniyetler Diyarı” miras köyü üzerinden alınır. Saatler mevsime göre değişebileceği için gitmeden önce teyit edin.' },
+      { q: 'El-Kaysariye Çarşısı ne zaman açık?', a: 'El-Kaysariye Çarşısı sabahları 08.00–12.00, akşamları 15.30–22.00 saatleri arasında açıktır (Cuma günleri yalnızca akşam); giriş ücretsizdir. En iyi zaman akşam saatleridir: dükkânlar açılır ve çarşı canlanır.' },
+      { q: 'El-Ahsa\'yı ziyaret etmek için en iyi dönem hangisi?', a: 'El-Ahsa\'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; bu dönem gezilecek yerler ve kaleler için idealdir. Yaz ise taze hurmanın, keyifli akşamların ve parkların mevsimidir. Yılın başlarında bir hurma festivali düzenlenir.' },
+      { q: 'Riyad\'dan El-Ahsa\'ya nasıl gidilir?', a: 'El-Ahsa Riyad\'a yaklaşık 326 km uzaklıktadır. En hızlı ve en konforlu seçenek trendir: Suudi Arabistan Demiryolları ile Hüfuf istasyonuna yaklaşık iki saat on dakikada ulaşırsınız. Otoyoldan arabayla da gidebilirsiniz (yaklaşık 3 saat 20 dakika) ya da El-Ahsa Uluslararası Havalimanı\'na uçabilirsiniz.' },
+      { q: 'El-Ahsa\'nın Bahreyn\'e ve Dammam\'a uzaklığı ne kadar?', a: 'El-Ahsa, iyi bir otoyol ağı sayesinde Dammam\'a ve El-Huber\'e yakındır (Dammam yaklaşık 150 km uzaklıktadır; yolculuk 1,5 saat kadar sürer). Bahreyn\'e kara yoluyla, El-Huber üzerinden Kral Fahd Köprüsü\'nü geçerek ulaşılır (yaklaşık iki saat). Suudi Arabistan Demiryolları\'nın trenleri ayrıca aynı hat üzerinde, yakındaki Abkayk\'ta (Bukayk olarak da bilinir) durur.' },
+      { q: 'Riyad–El-Ahsa tren bileti nasıl alınır?', a: 'Biletinizi Suudi Arabistan Demiryolları üzerinden alabilirsiniz: şirketin resmî uygulamasından, sar.com.sa sitesinden ya da istasyonlardaki bilet gişelerinden. Hat Riyad\'ı Hüfuf\'a ve Dammam\'a bağlar; tatillerde ve yoğun sezonlarda biletinizi erken alın.' },
+      { q: 'El-Ahsa\'nın posta kodu nedir?', a: 'El-Ahsa\'daki (Hüfuf ve Müberrez) posta kodları 36 ile başlar; tam kod mahalleye ve konuma göre değişir. Kesin adres için Suudi Posta\'nın (SPL) Ulusal Adres rehberini kullanın: splonline.com.sa.' },
+      { q: 'El-Ahsa\'da kalınacak en iyi oteller hangileri?', a: 'El-Ahsa\'da Hüfuf\'un ve Müberrez\'in dört bir yanında modern oteller ve tatil tesisleri bulunur. Bunların yanında geleneksel konuk evleri, şaleler ve çiftlik evleri de hurma ağaçları arasında otantik, yerel bir deneyim sunar. Bütçenize ve konumunuza en uygun yeri bulmak için güvenilir rezervasyon platformlarında seçenekleri ve yorumları karşılaştırın. (Bilgilerin tarafsız kalması için belirli işletmeleri önermiyoruz.)' },
+      { q: 'El-Ahsa neyle ünlü?', a: 'El-Ahsa, bölgenin en bilinen çeşidi olan altın renkli Halas hurmasıyla ünlüdür. El-Ahsa kırmızı pirinci ve yöresel yemekler de buranın ünlü lezzetleri arasındadır. Bu yemeklerden bazıları şunlardır: haris (buğday ve etle yapılan bir yemek), balalit (şehriye tatlısı) ve hurma ekmeği (kırmızı ekmek olarak da bilinir). Vahanın meyveleri arasında El-Ahsa inciri, misket limonu (lomi), kanar (sidr ağacının meyvesi) ve “Suvari” nar çeşidi vardır. El sanatlarında sırma işlemeli El-Ahsa bişti (bir erkek pelerini) öne çıkar; El-Kaysariye Çarşısı\'nda çömlekler, hurma yaprağından ürünler, tütsüler ve parfümler de bulunur.' },
+      { q: 'El-Ahsa adı nereden geliyor?', a: '“El-Ahsa”, “hisy” sözcüğünün çoğuludur. Hisy, ince bir kum tabakasının altında akan ve toplanan tatlı sudur; kumu elinizle açar açmaz su yüzeye çıkar. Bu ad, bölgeyi tam olarak tarif eder: El-Ahsa pınarları, su kanalları ve yeraltı sularıyla cömert bir vahadır; bu sular onu dünyanın en büyük vahası yapmıştır.' },
+      { q: 'El-Ahsa\'daki en iyi geleneksel restoranlar hangileri?', a: 'El-Ahsa kahvaltıları ve yöresel yemekler (El-Ahsa kırmızı pirinci, balalit, haris, hurma ekmeği) Hüfuf\'taki birkaç geleneksel restoranda sunulur. Bazı çiftliklerde de doğanın içinde El-Ahsa kahvaltısı yapabilirsiniz. En iyi seçimi yapmak için güncel yerel yorumlara göz atın. (Bilgilerin tarafsız kalması için belirli restoranları önermiyoruz.)' },
+    ],
+    ctaH: 'Hazır mısınız? Listenizi oluşturmaya başlayın',
+    ctaD: 'Gezilecek yerlere göz atın, beğendiklerinizi “Kayıtlı yerlerim” listenize ekleyin, ardından Google Haritalar\'da hazır rotanızı alın.',
+    ctaBrowse: 'Gezilecek yerlere göz atın',
+    ctaTrip: 'Kayıtlı yerlerim',
+    seoTitle: 'El-Ahsa gezinizi planlayın: ulaşım, en iyi zaman ve öneriler',
+    seoDesc: 'El-Ahsa gezisi için gereken her şey: hava, kara ve demir yoluyla ulaşım, en iyi ziyaret zamanı, pratik bilgiler, öneriler ve sıkça sorulan sorular. Güvenle planlayın.',
+  },
 });
 
 const zh = lang === 'zh';
 const ru = lang === 'ru';
 const de = lang === 'de';
 const ur = lang === 'ur';
-const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : de ? '/de/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
-const tripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : ru ? '/ru/plan/' : de ? '/de/plan/' : lang === 'ur' ? '/ur/plan/' : '/en/plan/';
+const tr = lang === 'tr';
+const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : ru ? '/ru/attractions/' : de ? '/de/attractions/' : ur ? '/ur/attractions/' : tr ? '/tr/attractions/' : '/en/attractions/';
+const tripHref = ar ? '/رحلتي/' : zh ? '/zh/plan/' : ru ? '/ru/plan/' : de ? '/de/plan/' : lang === 'ur' ? '/ur/plan/' : tr ? '/tr/plan/' : '/en/plan/';
 const siteUrl = 'https://visit-alahsa.com';
 const jsonLd = [
   {
@@ -366,7 +416,7 @@ const jsonLd = [
     })),
   },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : de ? '/de/' : ur ? '/ur/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : ru ? '/ru/' : de ? '/de/' : ur ? '/ur/' : tr ? '/tr/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: t('nav.plan'), item: new URL(altHref(alt, lang), siteUrl).href },
   ] },
 ];
