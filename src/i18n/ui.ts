@@ -2025,6 +2025,7 @@ export const ui = {
     'foot.l.contact': 'İletişim',
     'foot.l.whatsapp': 'WhatsApp',
     'foot.l.unesco': 'UNESCO Dünya Mirası',
+    'home.hero.eyebrow': 'UNESCO Dünya Mirası alanı · 2018',
     'list.eyebrow': 'Gezi rehberi',
     'list.title': 'El-Ahsa\'da gezilecek yerler',
     'list.lead': 'Mağaralarla dolu bir dağdan Arap Körfezi\'ndeki bir limana kadar — bir kategori seçin ve keşfe başlayın.',

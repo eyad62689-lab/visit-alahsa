@@ -1140,7 +1140,7 @@ async function main() {
       }
     }
     // (ب) بطاقات المشاركة
-    const ogFiles = ['og-default.png', 'og-default-en.png', 'og-default-zh.png', 'og-default-de.png', 'og-default-ru.png', 'og-default-ur.png'];
+    const ogFiles = ['og-default.png', 'og-default-en.png', 'og-default-zh.png', 'og-default-de.png', 'og-default-ru.png', 'og-default-ur.png', 'og-default-tr.png'];
     for (const o of ogFiles) if (!existsSync(path.join(DIST, o))) problems.push(`${o} غير موجودة في dist`);
     let ogChecked = 0, ogDefault = 0;
     for (const fp of await listHtml(DIST)) {
