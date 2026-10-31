@@ -1,6 +1,6 @@
 ---
-// الرئيسية «الواحة تتكشّف» — سبعة فصول يقودها التمرير، بلغات الموقع الست. كل لغة دخلت بدفعة خطّ
-// ترجمتها وضُمّت إلى HOME_LANGS (home-copy.ts)؛ وحُذفت HomeView القديمة بعد آخرها (الأوردية).
+// الرئيسية «الواحة تتكشّف» — سبعة فصول يقودها التمرير، بلغات الموقع السبع. كل لغة دخلت بدفعة خطّ
+// ترجمتها وضُمّت إلى HOME_LANGS (home-copy.ts)؛ وحُذفت HomeView القديمة بعد الأوردية، والتركية (tr-home-1) دخلت بعدها.
 // المواصفات: مصادر-المشروع/مستندات-العمل/مفهوم-الواحة-تتكشف-مواصفات-الرئيسية-v2-2026-10-20.md
 //
 // العنوان والوصف وJSON-LD هي نفسها في HomeView (بفرعي ar/en): الوجهة بهوية الواحة يحرسها C19،
@@ -32,10 +32,10 @@ const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 const H = HOME_COPY[lang];
-type Loc = { title: string; summary: string; title_en?: string; summary_en?: string; title_zh?: string; summary_zh?: string; title_de?: string; summary_de?: string; title_ru?: string; summary_ru?: string; title_ur?: string; summary_ur?: string };
+type Loc = { title: string; summary: string; title_en?: string; summary_en?: string; title_zh?: string; summary_zh?: string; title_de?: string; summary_de?: string; title_ru?: string; summary_ru?: string; title_ur?: string; summary_ur?: string; title_tr?: string; summary_tr?: string };
 // حقل اللغة المترجمة (لغير العربية والإنجليزية)؛ يُضاف فرع لكل لغة تنضمّ إلى HOME_LANGS
 const L = lang as Lang;
-const xl = (d: Loc, k: 'title' | 'summary'): string | undefined => (L === 'zh' ? d[`${k}_zh`] : L === 'de' ? d[`${k}_de`] : L === 'ru' ? d[`${k}_ru`] : L === 'ur' ? d[`${k}_ur`] : undefined);
+const xl = (d: Loc, k: 'title' | 'summary'): string | undefined => (L === 'zh' ? d[`${k}_zh`] : L === 'de' ? d[`${k}_de`] : L === 'ru' ? d[`${k}_ru`] : L === 'ur' ? d[`${k}_ur`] : L === 'tr' ? d[`${k}_tr`] : undefined);
 const own = (d: Loc) => L === 'ar' || L === 'en' || xl(d, 'title') !== undefined;
 const locTitle = (d: Loc) => (ar ? d.title : xl(d, 'title') ?? d.title_en ?? d.title);
 const locSummary = (d: Loc) => (ar ? d.summary : xl(d, 'summary') ?? d.summary_en ?? d.summary);
