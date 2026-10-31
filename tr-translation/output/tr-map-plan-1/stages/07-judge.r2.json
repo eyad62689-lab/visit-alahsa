@@ -1,0 +1,1667 @@
+{
+ "batch": "tr-map-plan-1",
+ "stage": "07",
+ "round": 2,
+ "date": "2026-10-31",
+ "scores": {
+  "map": 91,
+  "mytrip": 92,
+  "pt-arrive": 91,
+  "pt-practical": 91,
+  "pt-tips": 92,
+  "pt-faq": 91,
+  "pt-close": 92
+ },
+ "batch_score": 91,
+ "breakdown": {
+  "map": {
+   "accuracy": "28/30 — the lead keeps the count, search/category and opening a card; nothing added.",
+   "terminology": "19/20 — frame strings byte-identical (Gezi rehberi, Gezilecek yer arayın…); «3D» ruled.",
+   "fluency": "28/30 — the lead says «Arama yapın» and opens «bir yerin bilgi kartını»; the popup link names whose page.",
+   "register": "9/10 — imperatives on actions (UI1-controls), siz.",
+   "orthography": "8/10 — clean (P9 sentence case, no stops on labels, {n} kept)."
+  },
+  "mytrip": {
+   "accuracy": "28/30 — «kaydedilir», «düzenleyin» promise nothing the page lacks.",
+   "terminology": "19/20 — «Kayıtlı yerlerim» frame, «Bu yeri kaydedin» quoted byte-identical, «rota oluşturun» = saved.build.",
+   "fluency": "28/30 — the empty state locates the button on the place's page; «rotanızı oluşturun» without the ready-made/create tension.",
+   "register": "9/10 — siz throughout, buttons imperative.",
+   "orthography": "8/10 — clean; plural forms identical."
+  },
+  "pt-arrive": {
+   "accuracy": "27/30 — every number and name as the English; the source's unnamed starting point and Abkayk sentence kept.",
+   "terminology": "19/20 — the railway named without the acronym (M2-r2), SAR only the currency; airport/causeway attested.",
+   "fluency": "27/30 — train card subject restored; long card still five sentences.",
+   "register": "9/10 — plain practical.",
+   "orthography": "9/10 — suffixes (Abkayk'ta, Hüfuf'ta), en dash ranges."
+  },
+  "pt-practical": {
+   "accuracy": "27/30 — the English's images kept without new activities.",
+   "terminology": "18/20 — currency A7/A10-SAR; «yöre» for the region.",
+   "fluency": "28/30 — «vahanın bereketli mevsimi» says whose bounty.",
+   "register": "9/10 — the brochure tone is the English's.",
+   "orthography": "9/10 — ekimden marta lower case, muhafazakâr."
+  },
+  "pt-tips": {
+   "accuracy": "28/30 — four tips faithful; H4-r3 plain times.",
+   "terminology": "19/20 — çarşı, gezilecek yer.",
+   "fluency": "28/30 — season tip has a verb now.",
+   "register": "9/10 — four parallel polite imperatives.",
+   "orthography": "8/10 — dâhildir; clean."
+  },
+  "pt-faq": {
+   "accuracy": "27/30 — every number, name and both visit-card facts agree; one source repetition rendered once.",
+   "terminology": "18/20 — names byte-identical; SAR/railway ruled; several food/fruit names unattested (recorded).",
+   "fluency": "28/30 — «Tarih, doğa ve konukseverliğin buluştuğu», the name-first list, the dish list without «ile», «“Suvari” narı».",
+   "register": "9/10 — neutral disclaimers in brackets; no brochure cheer.",
+   "orthography": "9/10 — 1,5, 08.00, apostrophes, “…”."
+  },
+  "pt-close": {
+   "accuracy": "28/30 — seoDesc keeps the English closer.",
+   "terminology": "19/20 — Kayıtlı yerlerim, Google Haritalar, rota oluşturun.",
+   "fluency": "28/30 — one «hazır» in the band; «rotanızı oluşturun».",
+   "register": "9/10 — siz imperative.",
+   "orthography": "8/10 — no dash in seoTitle; clean."
+  }
+ },
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "strings": {
+  "ui.map.eyebrow": "Gezi rehberi",
+  "ui.map.title": "Gezilecek yerler haritası",
+  "ui.map.lead.a": "Bu haritada vahadaki {n} gezilecek yeri bulabilirsiniz. Arama yapın ya da bir kategori seçin; ardından listeden veya haritadan bir yerin bilgi kartını açın.",
+  "ui.map.search.ph": "Gezilecek yer arayın…",
+  "ui.map.filter.aria": "Gezilecek yerleri kategoriye göre filtreleme",
+  "ui.map.terrain": "3D arazi haritası",
+  "ui.map.locate": "Konumunuzu haritada görüntüleyin",
+  "ui.map.list.aria": "Haritada gösterilen gezilecek yerlerin listesi",
+  "ui.map.count": "Gösterilen yerler",
+  "ui.map.empty": "Eşleşen sonuç yok — başka bir kelime ya da kategori deneyin.",
+  "ui.map.pop.view": "Sayfasına gidin →",
+  "ui.plan.eyebrow": "Kendi listeniz",
+  "ui.plan.title": "Kayıtlı yerlerim",
+  "ui.plan.lead": "Seçtiğiniz gezilecek yerler bu cihaza kaydedilir. Listenizi düzenleyin ve rotanızı oluşturun.",
+  "ui.plan.savedSuffix": "kayıtlı yer",
+  "ui.plan.savedOne": "kayıtlı yer",
+  "ui.plan.savedTwo": "kayıtlı yer",
+  "ui.plan.savedFew": "kayıtlı yer",
+  "ui.plan.clearConfirm": "Tüm kayıtlı yerlerinizi silmek istiyor musunuz?",
+  "ui.plan.routeLimit": "Google Haritalar bir rotada 10 durak kabul eder; bu yüzden rota, listenizdeki ilk 10 yerle açılır.",
+  "ui.plan.route": "Rotayı Google Haritalar'da açın",
+  "ui.plan.clear": "Listeyi temizleyin",
+  "ui.plan.remove": "Kaldırın",
+  "ui.plan.location": "Konum ↗",
+  "ui.plan.empty.h": "Listeniz boş",
+  "ui.plan.empty.d": "Gezilecek yerlere göz atın ve gitmek istediğiniz her yerin sayfasındaki “Bu yeri kaydedin” düğmesine basın. Kaydettiğiniz yerler burada toplanır; ardından rotanızı oluşturun.",
+  "ui.plan.empty.browse": "Gezilecek yerlere göz atın",
+  "ui.plan.empty.map": "Haritayı açın",
+  "ui.plan.tableEvent": "etkinlik",
+  "ui.plan.share": "WhatsApp'ta paylaşın",
+  "ui.plan.copy": "Paylaşım bağlantısını kopyalayın",
+  "ui.plan.print": "Listeyi yazdırın",
+  "ui.plan.waText": "El-Ahsa için kaydettiğim yerler:",
+  "ui.plan.shared.h": "Paylaşılan gezilecek yer listesi",
+  "ui.plan.shared.d": "Bu liste size bir paylaşım bağlantısıyla ulaştı. Listeye göz atabilir ya da kendi “Kayıtlı yerlerim” listenize ekleyebilirsiniz.",
+  "ui.plan.shared.import": "Kayıtlı yerlerinize ekleyin",
+  "ui.plan.shared.mine": "Kayıtlı yerlerinizi görüntüleyin",
+  "ui.plan.printNote": "Saatler ve ücretler değişebilir — ziyaretten önce resmî kanallardan teyit edin.",
+  "pt.eyebrow": "Gezinizi planlayın",
+  "pt.title": "Yola çıkmadan önce ihtiyacınız olan her şey",
+  "pt.lead": "Gezinizin varıştan dönüşe kadar sorunsuz geçmesi için kısa ve pratik bilgiler.",
+  "pt.getThereH": "El-Ahsa'ya ulaşım",
+  "pt.getThere.0.h": "Hava yoluyla",
+  "pt.getThere.0.d": "El-Ahsa Uluslararası Havalimanı'na iç ve dış hat uçuşları yapılır. Hatlar ve uçuş saatleri değiştiği için rezervasyondan önce teyit edin. Bir diğer seçenek Dammam'daki Kral Fahd Uluslararası Havalimanı'dır. Bu havalimanı arabayla yaklaşık iki saat uzaklıktadır ve daha fazla uçuş bağlantısı sunar.",
+  "pt.getThere.1.h": "Kara yoluyla",
+  "pt.getThere.1.d": "El-Ahsa, Riyad'a yaklaşık 326 km uzaklıktadır (yolculuk 3 saat 20 dakika kadar sürer). İyi bir otoyol ağı sayesinde Dammam'a ve El-Huber'e de yakındır.",
+  "pt.getThere.2.h": "Demir yoluyla",
+  "pt.getThere.2.d": "Riyad–Dammam demir yolu hattının Hüfuf'ta bir istasyonu vardır; hattı Suudi Arabistan Demiryolları işletir. Riyad'dan gelenler için en hızlı ve en konforlu seçenek trendir (yaklaşık iki saat on dakika). Dammam'dan yolculuk aşağı yukarı bir ila bir buçuk saat sürer. Tren ayrıca aynı hat üzerinde, yakındaki Abkayk'ta (Bukayk olarak da bilinir) durur. Başkent Riyad'dan ve Suudi Arabistan'ın Doğu Bölgesi'nden gelenler için tren çok iyi bir seçimdir.",
+  "pt.practicalH": "Pratik bilgiler",
+  "pt.practical.0.k": "El-Ahsa'yı ziyaret etmek için en iyi dönem",
+  "pt.practical.0.v": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; yaz ise vahanın bereketli mevsimidir ve akşamları keyiflidir.",
+  "pt.practical.1.k": "Konaklama",
+  "pt.practical.1.v": "Vahanın dört bir yanında modern oteller ve tatil köyleri var. Geleneksel konuk evleri ise otantik, yerel bir konaklama sunar.",
+  "pt.practical.2.k": "Yörenin karakteri",
+  "pt.practical.2.v": "El-Ahsa otantik, konuksever ve muhafazakâr bir yöredir. Mirasını modern ziyaretçi olanaklarıyla buluşturur; ailelere de tek başına seyahat edenlere de uygundur.",
+  "pt.practical.3.k": "Para birimi",
+  "pt.practical.3.v": "Suudi riyali (SAR). Çoğu işletmede kart kabul edilir; geleneksel çarşılar için yanınızda biraz nakit bulundurun.",
+  "pt.table.nameHead": "Gezilecek yer",
+  "pt.tipsH": "Ziyaretçilere öneriler",
+  "pt.tipsLead": "Gezinizde büyük fark yaratan küçük ayrıntılar.",
+  "pt.tips.0.h": "Kibarca pazarlık edin",
+  "pt.tips.0.d": "Çarşılarda saygılı olduğunuz sürece pazarlık yapmak kabul görür; bu, geleneksel alışverişin keyfine dâhildir.",
+  "pt.tips.1.h": "Mevsiminizi seçin",
+  "pt.tips.1.d": "Yaz taze meyvelerin tadını çıkarmaya, kış ise gezilecek yerleri ve bölgenin tarihini tanımaya uygundur.",
+  "pt.tips.2.h": "Zamanlamaya dikkat edin",
+  "pt.tips.2.d": "Sıcak aylarda açık hava alanlarına sabah erken ya da öğleden sonranın ilerleyen saatlerinde gidin. Kışın ise hava gün boyu hoştur.",
+  "pt.tips.3.h": "Ziyaret saatlerini teyit edin",
+  "pt.tips.3.d": "Müzelerin ve kalelerin ziyaret saatlerini önceden kontrol edin; bazılarının saatleri mevsime göre değişir.",
+  "pt.faqH": "Sıkça sorulan sorular",
+  "pt.faq.0.q": "El-Ahsa'ya gitmeye değer mi?",
+  "pt.faq.0.a": "Kesinlikle. El-Ahsa dünyanın en büyük vahasıdır (Guinness Dünya Rekorları, 2020) ve bir UNESCO Dünya Mirası alanıdır (2018). El-Ahsa, doğa harikalarını Hüfuf'un hâlâ canlı olan mirasıyla buluşturur. Cebel el-Kare'nin mağaraları, El-Asfar Gölü ve tatlı su pınarları bu doğa harikaları arasındadır; Kasr İbrahim, El-Kaysariye Çarşısı ve Cüvasa Camii ise bu mirasın örnekleridir. Bunlara hurmalıklar, vaha meyveleri ve kendine özgü yerel mutfak da eklenir. Tarih, doğa ve konukseverliğin buluştuğu El-Ahsa, ailelere uygun bir yöredir.",
+  "pt.faq.1.q": "El-Ahsa'da gezilecek en güzel yerler hangileri?",
+  "pt.faq.1.a": "El-Ahsa'da öne çıkan yerler şunlardır: Cebel el-Kare (mağaraları ve “Medeniyetler Diyarı” miras köyüyle), tarihî Kasr İbrahim, geleneksel El-Kaysariye Çarşısı, Cüvasa Camii (İslam tarihinin ilk camilerinden biri), El-Asfar Gölü ve Müberrez'deki Sahud Sarayı (Kasr Sahud). Tam liste için “Gezilecek yerler” sayfasına göz atın; listedeki yerleri “Kayıtlı yerlerim” listenize ekleyebilirsiniz.",
+  "pt.faq.2.q": "Cebel el-Kare'nin ziyaret saatleri nedir?",
+  "pt.faq.2.a": "Cebel el-Kare her gün 08.00'den 23.00'e kadar açıktır (saatler tatillerde uzatılabilir). Yetişkinler için giriş ücreti 50 SAR'dır; biletler “Medeniyetler Diyarı” miras köyü üzerinden alınır. Saatler mevsime göre değişebileceği için gitmeden önce teyit edin.",
+  "pt.faq.3.q": "El-Kaysariye Çarşısı ne zaman açık?",
+  "pt.faq.3.a": "El-Kaysariye Çarşısı sabahları 08.00–12.00, akşamları 15.30–22.00 saatleri arasında açıktır (Cuma günleri yalnızca akşam); giriş ücretsizdir. En iyi zaman akşam saatleridir: dükkânlar açılır ve çarşı canlanır.",
+  "pt.faq.4.q": "El-Ahsa'yı ziyaret etmek için en iyi dönem hangisi?",
+  "pt.faq.4.a": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; bu dönem gezilecek yerler ve kaleler için idealdir. Yaz ise taze hurmanın, keyifli akşamların ve parkların mevsimidir. Yılın başlarında bir hurma festivali düzenlenir.",
+  "pt.faq.5.q": "Riyad'dan El-Ahsa'ya nasıl gidilir?",
+  "pt.faq.5.a": "El-Ahsa Riyad'a yaklaşık 326 km uzaklıktadır. En hızlı ve en konforlu seçenek, Suudi Arabistan Demiryolları'nın Hüfuf istasyonuna giden trenidir (yaklaşık iki saat on dakika). Otoyoldan arabayla da gidebilirsiniz (yaklaşık 3 saat 20 dakika) ya da El-Ahsa Uluslararası Havalimanı'na uçabilirsiniz.",
+  "pt.faq.6.q": "El-Ahsa'nın Bahreyn'e ve Dammam'a uzaklığı ne kadar?",
+  "pt.faq.6.a": "El-Ahsa, iyi bir otoyol ağı sayesinde Dammam'a ve El-Huber'e yakındır (Dammam yaklaşık 150 km uzaklıktadır; yolculuk 1,5 saat kadar sürer). Bahreyn'e kara yoluyla, El-Huber üzerinden Kral Fahd Köprüsü'nü geçerek ulaşılır (yaklaşık iki saat). Suudi Arabistan Demiryolları'nın trenleri ayrıca aynı hat üzerinde, yakındaki Abkayk'ta (Bukayk olarak da bilinir) durur.",
+  "pt.faq.7.q": "Riyad–El-Ahsa tren bileti nasıl alınır?",
+  "pt.faq.7.a": "Biletinizi Suudi Arabistan Demiryolları üzerinden alabilirsiniz: şirketin resmî uygulamasından, sar.com.sa sitesinden ya da istasyonlardaki bilet gişelerinden. Hat Riyad'ı Hüfuf'a ve Dammam'a bağlar; tatillerde ve yoğun sezonlarda biletinizi erken alın.",
+  "pt.faq.8.q": "El-Ahsa'nın posta kodu nedir?",
+  "pt.faq.8.a": "El-Ahsa'daki (Hüfuf ve Müberrez) posta kodları 36 ile başlar; tam kod mahalleye ve konuma göre değişir. Kesin adres için Suudi Posta'nın (SPL) Ulusal Adres rehberini kullanın: splonline.com.sa.",
+  "pt.faq.9.q": "El-Ahsa'da kalınacak en iyi oteller hangileri?",
+  "pt.faq.9.a": "El-Ahsa'da Hüfuf'un ve Müberrez'in dört bir yanında modern oteller ve tatil köyleri bulunur. Bunların yanında geleneksel konuk evleri, şaleler ve çiftlik evleri de hurma ağaçları arasında otantik, yerel bir deneyim sunar. Bütçenize ve konumunuza en uygun yeri bulmak için güvenilir rezervasyon platformlarında seçenekleri ve yorumları karşılaştırın. (Bilgilerin tarafsız kalması için belirli işletmeleri önermiyoruz.)",
+  "pt.faq.10.q": "El-Ahsa neyle ünlü?",
+  "pt.faq.10.a": "El-Ahsa, bölgenin en bilinen çeşidi olan altın renkli Halas hurmasıyla ünlüdür. El-Ahsa kırmızı pirinci ve haris, balalit, hurma ekmeği (kırmızı ekmek olarak da bilinir) gibi yöresel yemekler de buranın ünlü lezzetleri arasındadır. Vahanın meyveleri arasında El-Ahsa inciri, misket limonu (lomi), kanar (sidr ağacının meyvesi) ve “Suvari” narı vardır. El sanatlarında sırma işlemeli El-Ahsa bişti (bir erkek pelerini) öne çıkar; El-Kaysariye Çarşısı'nda çömlekler, hurma yaprağından ürünler, tütsüler ve parfümler de bulunur.",
+  "pt.faq.11.q": "El-Ahsa adı nereden geliyor?",
+  "pt.faq.11.a": "“El-Ahsa”, “hisy” sözcüğünün çoğuludur. Hisy, ince bir kum tabakasının altında akan ve toplanan tatlı sudur; eliniz kumu açar açmaz su yüzeye çıkar. Bu ad, bölgeyi tam olarak tarif eder: El-Ahsa pınarları, su kanalları ve yeraltı sularıyla cömert bir vahadır; bu sular onu dünyanın en büyük vahası yapmıştır.",
+  "pt.faq.12.q": "El-Ahsa'daki en iyi geleneksel restoranlar hangileri?",
+  "pt.faq.12.a": "El-Ahsa kahvaltıları ve yöresel yemekler (El-Ahsa kırmızı pirinci, balalit, haris, hurma ekmeği) Hüfuf'taki birkaç geleneksel restoranda sunulur. Bazı çiftliklerde de doğanın içinde El-Ahsa kahvaltısı yapabilirsiniz. En iyi seçimi yapmak için güncel yerel yorumlara göz atın. (Bilgilerin tarafsız kalması için belirli restoranları önermiyoruz.)",
+  "pt.ctaH": "Hazır mısınız? Listenizi oluşturmaya başlayın",
+  "pt.ctaD": "Gezilecek yerlere göz atın, beğendiklerinizi “Kayıtlı yerlerim” listenize ekleyin, ardından Google Haritalar'da rotanızı oluşturun.",
+  "pt.ctaBrowse": "Gezilecek yerlere göz atın",
+  "pt.ctaTrip": "Kayıtlı yerlerim",
+  "pt.seoTitle": "El-Ahsa gezinizi planlayın: ulaşım, en iyi zaman ve öneriler",
+  "pt.seoDesc": "El-Ahsa gezisi için gereken her şey: hava, kara ve demir yoluyla ulaşım, en iyi ziyaret zamanı, pratik bilgiler, öneriler ve sıkça sorulan sorular. Güvenle planlayın."
+ },
+ "changes": [
+  {
+   "key": "ui.plan.lead",
+   "before": "Seçtiğiniz gezilecek yerler bu cihaza kaydedilir. Listenizi düzenleyin ve hazır bir rota oluşturun.",
+   "after": "Seçtiğiniz gezilecek yerler bu cihaza kaydedilir. Listenizi düzenleyin ve rotanızı oluşturun.",
+   "why": "M1-r2: «hazır … oluşturun» read as «ready-made» vs «create it yourself» by two readers (r1 on «rota edinin», r2 #15) — «hazır» dropped; «rotanızı oluşturun» is the approved button's verb (saved.build) and the visitor's own act."
+  },
+  {
+   "key": "ui.plan.empty.d",
+   "before": "Gezilecek yerlere göz atın ve gitmek istediğiniz yerlerde “Bu yeri kaydedin” düğmesine basın. Kaydettiğiniz yerler burada toplanır; ardından hazır bir rota oluşturun.",
+   "after": "Gezilecek yerlere göz atın ve gitmek istediğiniz her yerin sayfasındaki “Bu yeri kaydedin” düğmesine basın. Kaydettiğiniz yerler burada toplanır; ardından rotanızı oluşturun.",
+   "why": "M1-r2: «hazır» dropped as in ui.plan.lead and pt.ctaD (r2 #15). M7-r2: «yerlerde … basın» read as «when you are at the places» (proof NOTE 1, r2 #16) — «her yerin sayfasındaki» locates the button (DetailView carries the labelled button on every landmark page); «sayfa» not «kart», since on this page «kart» would point at the saved-list cards."
+  },
+  {
+   "key": "pt.ctaD",
+   "before": "Gezilecek yerlere göz atın, beğendiklerinizi “Kayıtlı yerlerim” listenize ekleyin, ardından Google Haritalar'da hazır bir rota oluşturun.",
+   "after": "Gezilecek yerlere göz atın, beğendiklerinizi “Kayıtlı yerlerim” listenize ekleyin, ardından Google Haritalar'da rotanızı oluşturun.",
+   "why": "M1-r2: «hazır» dropped (r2 #15, #52 — also removes «hazır» twice in the band under «Hazır mısınız?»); Google Haritalar stays where the English names it."
+  },
+  {
+   "key": "pt.getThere.2.d",
+   "before": "Riyad–Dammam demir yolu hattının Hüfuf'ta bir istasyonu vardır; hattı Suudi Arabistan Demiryolları (SAR) işletir. Riyad'dan gelenler için en hızlı ve en konforlu seçenek trendir (yaklaşık iki saat on dakika). Dammam'dan yolculuk aşağı yukarı bir ila bir buçuk saat sürer. Tren ayrıca aynı hat üzerinde, yakındaki Abkayk'ta (Bukayk olarak da bilinir) durur. Başkent Riyad'dan ve Suudi Arabistan'ın Doğu Bölgesi'nden gelenler için tren çok iyi bir seçimdir.",
+   "after": "Riyad–Dammam demir yolu hattının Hüfuf'ta bir istasyonu vardır; hattı Suudi Arabistan Demiryolları işletir. Riyad'dan gelenler için en hızlı ve en konforlu seçenek trendir (yaklaşık iki saat on dakika). Dammam'dan yolculuk aşağı yukarı bir ila bir buçuk saat sürer. Tren ayrıca aynı hat üzerinde, yakındaki Abkayk'ta (Bukayk olarak da bilinir) durur. Başkent Riyad'dan ve Suudi Arabistan'ın Doğu Bölgesi'nden gelenler için tren çok iyi bir seçimdir.",
+   "why": "M2-r2: two readers stopped at «SAR» = railway or currency (r1 p3 #3, r2 #26); the company is named in full without the acronym on every page, so «SAR» on the site means only the currency (A7/A10)."
+  },
+  {
+   "key": "pt.faq.7.a",
+   "before": "Biletinizi Suudi Arabistan Demiryolları (SAR) üzerinden alabilirsiniz: şirketin resmî uygulamasından, sar.com.sa sitesinden ya da istasyonlardaki bilet gişelerinden. Hat Riyad'ı Hüfuf'a ve Dammam'a bağlar; tatillerde ve yoğun sezonlarda biletinizi erken alın.",
+   "after": "Biletinizi Suudi Arabistan Demiryolları üzerinden alabilirsiniz: şirketin resmî uygulamasından, sar.com.sa sitesinden ya da istasyonlardaki bilet gişelerinden. Hat Riyad'ı Hüfuf'a ve Dammam'a bağlar; tatillerde ve yoğun sezonlarda biletinizi erken alın.",
+   "why": "M2-r2: acronym dropped as in the train card; the company's Latin «SAR» is still carried by its address «sar.com.sa» in the same answer."
+  },
+  {
+   "key": "pt.practical.0.v",
+   "before": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; yaz ise bereket ve keyifli akşamlar mevsimidir.",
+   "after": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; yaz ise vahanın bereketli mevsimidir ve akşamları keyiflidir.",
+   "why": "M11-r2: «bereket … mevsimi» asked «abundance of what?» by two readers (r1 p3 #7, r2 #29) — «vahanın bereketli mevsimi» names whose bounty (the ur precedent «نخلستان کی نعمتوں»), no fruit the English does not name; the evenings as a plain predicate."
+  },
+  {
+   "key": "pt.tips.1.d",
+   "before": "Yaz taze meyvelerin tadını çıkarmaya, kış ise gezilecek yerleri ve tarihi tanımaya uygundur.",
+   "after": "Yaz taze meyvelerin tadını çıkarmaya, kış ise gezilecek yerleri ve bölgenin tarihini tanımaya uygundur.",
+   "why": "M13-r2: «tarihi» read as the adjective «tarihî» (r2 #42, proof NOTE 2 class) — the reader's «bölgenin tarihini» cannot be read as the adjective."
+  },
+  {
+   "key": "pt.faq.0.a",
+   "before": "Kesinlikle. El-Ahsa dünyanın en büyük vahasıdır (Guinness Dünya Rekorları, 2020) ve bir UNESCO Dünya Mirası alanıdır (2018). El-Ahsa, doğa harikalarını Hüfuf'un hâlâ canlı olan mirasıyla buluşturur. Cebel el-Kare'nin mağaraları, El-Asfar Gölü ve tatlı su pınarları bu doğa harikaları arasındadır; Kasr İbrahim, El-Kaysariye Çarşısı ve Cüvasa Camii ise bu mirasın örnekleridir. Bunlara hurmalıklar, vaha meyveleri ve kendine özgü yerel mutfak da eklenir. Tarihi, doğayı ve konukseverliği bir araya getiren El-Ahsa, ailelere de uygun bir yöredir.",
+   "after": "Kesinlikle. El-Ahsa dünyanın en büyük vahasıdır (Guinness Dünya Rekorları, 2020) ve bir UNESCO Dünya Mirası alanıdır (2018). El-Ahsa, doğa harikalarını Hüfuf'un hâlâ canlı olan mirasıyla buluşturur. Cebel el-Kare'nin mağaraları, El-Asfar Gölü ve tatlı su pınarları bu doğa harikaları arasındadır; Kasr İbrahim, El-Kaysariye Çarşısı ve Cüvasa Camii ise bu mirasın örnekleridir. Bunlara hurmalıklar, vaha meyveleri ve kendine özgü yerel mutfak da eklenir. Tarih, doğa ve konukseverliğin buluştuğu El-Ahsa, ailelere uygun bir yöredir.",
+   "why": "M14-r2: «Tarihi,» opened as the adjective (proof NOTE 2) — the proof's «Tarih, doğa ve konukseverliğin buluştuğu …»; the hanging «de» of «ailelere de» dropped (r2 #44: «also» to nothing — the English «family-friendly» has no «also»)."
+  },
+  {
+   "key": "pt.faq.10.a",
+   "before": "El-Ahsa, bölgenin en bilinen çeşidi olan altın renkli Halas hurmasıyla ünlüdür. El-Ahsa kırmızı pirinci ile haris, balalit ve hurma ekmeği (kırmızı ekmek olarak da bilinir) gibi yöresel yemekler de buranın ünlü lezzetleri arasındadır. Vahanın meyveleri arasında El-Ahsa inciri, misket limonu (lomi), kanar (sidr ağacının meyvesi) ve Suvari narı vardır. El sanatlarında sırma işlemeli El-Ahsa bişti (bir erkek pelerini) öne çıkar; El-Kaysariye Çarşısı'nda çömlekler, hurma yaprağından ürünler, tütsüler ve parfümler de bulunur.",
+   "after": "El-Ahsa, bölgenin en bilinen çeşidi olan altın renkli Halas hurmasıyla ünlüdür. El-Ahsa kırmızı pirinci ve haris, balalit, hurma ekmeği (kırmızı ekmek olarak da bilinir) gibi yöresel yemekler de buranın ünlü lezzetleri arasındadır. Vahanın meyveleri arasında El-Ahsa inciri, misket limonu (lomi), kanar (sidr ağacının meyvesi) ve “Suvari” narı vardır. El sanatlarında sırma işlemeli El-Ahsa bişti (bir erkek pelerini) öne çıkar; El-Kaysariye Çarşısı'nda çömlekler, hurma yaprağından ürünler, tütsüler ve parfümler de bulunur.",
+   "why": "M15-r2: «Suvari» read as «süvari» (stage-3 note, r2 #50) — the quotes mark the variety name (the spelling stays from السواري, P1/P4; no respelling); the Khalas variety is unquoted because it has no collision. r2 #48: «ile» read as one dish «rice with haris» — «ve» then the comma list, the English shape «red rice and folk dishes such as …»; food names byte-identical with pt.faq.12.a."
+  },
+  {
+   "key": "ui.map.lead.a",
+   "before": "Bu haritada vahadaki {n} gezilecek yeri bulabilirsiniz. Arayın ya da bir kategori seçin, sonra kartını görmek istediğiniz yeri listeden veya haritadan açın.",
+   "after": "Bu haritada vahadaki {n} gezilecek yeri bulabilirsiniz. Arama yapın ya da bir kategori seçin; ardından listeden veya haritadan bir yerin bilgi kartını açın.",
+   "why": "r2 #1: «Arayın» read first as «phone»; «Arama yapın» is the search verb; «bir yerin bilgi kartını … açın» opens the card (= the popup, ctx «its card»), H6 «açın» kept, {n} sentence unchanged."
+  },
+  {
+   "key": "ui.map.pop.view",
+   "before": "Sayfayı görüntüleyin →",
+   "after": "Sayfasına gidin →",
+   "why": "r2 #14: «Sayfayı» on a popup did not say whose page — the possessive points at the place named above the link; a link takes «gidin» (UI1-controls imperative); arrow kept."
+  },
+  {
+   "key": "pt.getThere.0.d",
+   "before": "El-Ahsa Uluslararası Havalimanı'na iç ve dış hat uçuşları yapılır. Hatlar ve uçuş saatleri değiştiği için rezervasyondan önce teyit edin. Bir diğer seçenek Dammam'daki Kral Fahd Uluslararası Havalimanı'dır. Bu havalimanı arabayla yaklaşık iki saat uzaklıktadır ve daha geniş bağlantılar sunar.",
+   "after": "El-Ahsa Uluslararası Havalimanı'na iç ve dış hat uçuşları yapılır. Hatlar ve uçuş saatleri değiştiği için rezervasyondan önce teyit edin. Bir diğer seçenek Dammam'daki Kral Fahd Uluslararası Havalimanı'dır. Bu havalimanı arabayla yaklaşık iki saat uzaklıktadır ve daha fazla uçuş bağlantısı sunar.",
+   "why": "r2 #25 (second half): «daha geniş bağlantılar» read as translated — «wider connections» of an airport = more flight connections, the reader's Turkish; the unnamed starting point stays (source defect)."
+  },
+  {
+   "key": "pt.faq.1.a",
+   "before": "El-Ahsa'da öne çıkan yerler şunlardır: mağaraları ve “Medeniyetler Diyarı” miras köyüyle Cebel el-Kare, tarihî Kasr İbrahim, geleneksel El-Kaysariye Çarşısı, Cüvasa Camii (İslam tarihinin ilk camilerinden biri), El-Asfar Gölü ve Müberrez'deki Sahud Sarayı (Kasr Sahud). Tam liste için “Gezilecek yerler” sayfasına göz atın; listedeki yerleri “Kayıtlı yerlerim” listenize ekleyebilirsiniz.",
+   "after": "El-Ahsa'da öne çıkan yerler şunlardır: Cebel el-Kare (mağaraları ve “Medeniyetler Diyarı” miras köyüyle), tarihî Kasr İbrahim, geleneksel El-Kaysariye Çarşısı, Cüvasa Camii (İslam tarihinin ilk camilerinden biri), El-Asfar Gölü ve Müberrez'deki Sahud Sarayı (Kasr Sahud). Tam liste için “Gezilecek yerler” sayfasına göz atın; listedeki yerleri “Kayıtlı yerlerim” listenize ekleyebilirsiniz.",
+   "why": "r2 #46: the name first, its caves and the village in brackets (as Cüvasa Camii's bracket in the same list); nothing added."
+  },
+  {
+   "key": "pt.faq.4.a",
+   "before": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; bu dönem gezilecek yerler ve kaleler için idealdir. Yaz ise taze hurmayı, keyifli akşamları ve parkları getirir. Yılın başlarında bir hurma festivali düzenlenir.",
+   "after": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; bu dönem gezilecek yerler ve kaleler için idealdir. Yaz ise taze hurmanın, keyifli akşamların ve parkların mevsimidir. Yılın başlarında bir hurma festivali düzenlenir.",
+   "why": "Proof NOTE 3: «yaz … parkları getirir» read as summer producing the parks — the proof's «… mevsimidir» keeps the three items and adds nothing."
+  }
+ ],
+ "blind_reader_rulings": [
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 1,
+   "verdict": "applied",
+   "key": "ui.map.lead.a",
+   "why": "«Arama yapın» for search; «bir yerin bilgi kartını … açın» (ctx: its card = the popup); H6 «açın» kept."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 2,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch; «Cebel el-Kare» unglossed by A5, Kare collision A1."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 3,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: category placement of the pottery workshop."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 4,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: El-Hamidiye Çarşısı is a heritage building (owner decision)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 5,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: «Ukayr» bare is the published title."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 6,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: the park's category and «(Eş-Şube)» (A1 collision class)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 7,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: the slash name."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 8,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: Medeniyetler Diyarı's category."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 9,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: «Kasr İbrahim» vs «… Sarayı» are the published titles (P3/A5)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 10,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: Hurma Köyü on the map — owner question (carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 11,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: the article prefixes of the published titles (sun-letter assimilation as ruled)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 12,
+   "verdict": "published",
+   "key": "ref.all_places",
+   "why": "published text (ref.all_places / ref.categories / card summaries) — not this batch: published titles; no comprehension problem by the reader's note."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 13,
+   "verdict": "published",
+   "key": "ref.places summary_tr",
+   "why": "The popup summary is the published summary_tr — not this batch."
+  },
+  {
+   "reader": "on-r1",
+   "page": 1,
+   "item": 14,
+   "verdict": "applied",
+   "key": "ui.map.pop.view",
+   "why": "«Sayfasına gidin →»: the possessive names the place's page, a link imperative (UI1-controls)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 15,
+   "verdict": "applied",
+   "key": "ui.plan.lead",
+   "why": "M1-r2: «hazır» dropped — «rotanızı oluşturun» in the three strings."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 16,
+   "verdict": "applied",
+   "key": "ui.plan.empty.d",
+   "why": "M7-r2: «her yerin sayfasındaki “Bu yeri kaydedin” düğmesine basın» («sayfa», not the reader's «kart»: on this page the cards are the saved items)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 17,
+   "verdict": "published",
+   "key": "ref.places summary_tr",
+   "why": "«ilim ehli … bağlantılı» is a published card summary — not this batch."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 18,
+   "verdict": "frame",
+   "key": "ui.plan.routeLimit",
+   "why": "The list order is the saving order (source shape, r1 ruling carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 19,
+   "verdict": "frame",
+   "key": "ui.plan.clear",
+   "why": "Clear/delete pair: the confirm «… silmek istiyor musunuz?» answers it, by the reader's own note."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 20,
+   "verdict": "frame",
+   "key": "ui.plan.printNote",
+   "why": "M9 carried: «resmî kanallar» is the English «official channels»; no channel to name without a new fact."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 21,
+   "verdict": "frame",
+   "key": "ui.plan.shared.d",
+   "why": "H10 person treatment: the page name quoted “Kayıtlı yerlerim” inside «kendi … listenize»; the buttons are siz forms (Kayıtlı yerlerinize ekleyin), not the page name."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 22,
+   "verdict": "frame",
+   "key": "ui.plan.shared.import",
+   "why": "The button adds the shared list (the English «Add to my saved places»); H10 siz; the paragraph above says «listenize ekleyebilirsiniz»."
+  },
+  {
+   "reader": "on-r1",
+   "page": 2,
+   "item": 23,
+   "verdict": "frame",
+   "key": "ui.plan.savedSuffix",
+   "why": "A count label without a verb is the frame's shape; fine by the reader's note."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 24,
+   "verdict": "source_defect",
+   "key": "pt.seoDesc",
+   "why": "The English closes with «Plan with confidence.»; kept."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 25,
+   "verdict": "applied",
+   "key": "pt.getThere.0.d",
+   "why": "Second half applied: «daha fazla uçuş bağlantısı». First half (two hours from where) is the English's — source defect."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 26,
+   "verdict": "applied",
+   "key": "pt.getThere.2.d",
+   "why": "M2-r2: the company named without «(SAR)» in the train card and FAQ 8; «SAR» on the page is the currency only."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 27,
+   "verdict": "source_defect",
+   "key": "pt.getThere.2.d",
+   "why": "The Abqaiq sentence and its repetition in the Bahrain/Dammam answer are the English's."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 28,
+   "verdict": "source_defect",
+   "key": "pt.getThere.2.d",
+   "why": "The repeated recommendation is the English's («— an excellent choice from the capital …»); M10 lightened it to «seçim»."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 29,
+   "verdict": "applied",
+   "key": "pt.practical.0.v",
+   "why": "M11-r2: «yaz ise vahanın bereketli mevsimidir ve akşamları keyiflidir»."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 30,
+   "verdict": "source_defect",
+   "key": "pt.practical.2.v",
+   "why": "«conservative character» without guidance is the English's; no dress advice invented."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 31,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "Visit-card values (child price on one row; currency written two ways) — owner question (carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 32,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "The card value «köy üzerinden satılır» is published; the FAQ «üzerinden alınır» is the English «booked through» (the place of sale is not in either source)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 33,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "Free entry in the hours column and again in the fees column — owner question (carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 34,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "Columns reversed on El-Asfar Gölü — owner question (carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 35,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "«İçeri girilemiyor» in the fees column — owner question (carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 36,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "«Akşamları 16.30–21.30», «Akşamları» without hours and «rezervasyon ve randevu» are published card values — owner question (new)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 37,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "The El-Kaysariye card has no Friday note while the FAQ (the English) has it — owner question (carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 38,
+   "verdict": "source_defect",
+   "key": "pt.faq.3.a",
+   "why": "«when the shops open» after the morning hours is the English's; the reader's «hepsi» adds «all» — source shape kept, visit-card facts untouched."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 39,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "«Her gün» with three exceptions and the day-name capitalisation are published card values — owner question (carried, extended)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 40,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "«yetişme mevsimlerinde» is a published card value — owner question (new)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 41,
+   "verdict": "published",
+   "key": "ref.practical_table",
+   "why": "Hurma Köyü in November vs the English's festival «early in the year» — published card + source defect; owner question (carried, extended)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 42,
+   "verdict": "applied",
+   "key": "pt.tips.1.d",
+   "why": "M13-r2: «bölgenin tarihini tanımaya»."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 43,
+   "verdict": "source_defect",
+   "key": "pt.faq.4.a",
+   "why": "«landmarks and forts» / «museum and fort» are the English's pairs; kept."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 44,
+   "verdict": "applied",
+   "key": "pt.faq.0.a",
+   "why": "«Kesinlikle.» is the English «Absolutely.» (source defect, kept); the hanging «de» of «ailelere de» dropped (M14-r2)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 45,
+   "verdict": "source_defect",
+   "key": "pt.faq.0.a",
+   "why": "Both sources put the heritage «in Hofuf» (Cüvasa Camii lies outside it) — source defect, carried."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 46,
+   "verdict": "applied",
+   "key": "pt.faq.1.a",
+   "why": "Name first: «Cebel el-Kare (mağaraları ve “Medeniyetler Diyarı” miras köyüyle)»."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 47,
+   "verdict": "source_defect",
+   "key": "pt.faq.6.a",
+   "why": "The English gives Bahrain in hours only and repeats the highway sentence; kept."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 48,
+   "verdict": "applied",
+   "key": "pt.faq.10.a",
+   "why": "«El-Ahsa kırmızı pirinci ve haris, balalit, hurma ekmeği … gibi yöresel yemekler» — no «ile»."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 49,
+   "verdict": "source_defect",
+   "key": "pt.faq.10.a",
+   "why": "Fence: neither source describes haris or balalit — owner question (carried)."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 50,
+   "verdict": "applied",
+   "key": "pt.faq.10.a",
+   "why": "M15-r2: «“Suvari” narı» — the quotes mark the variety name; spelling from السواري kept."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 51,
+   "verdict": "rejected",
+   "key": "pt.faq.10.a",
+   "why": "«El-Ahsa bişti» is the termbase/A10 form and published elsewhere; the gloss «(bir erkek pelerini)» follows it at once — kept, recorded."
+  },
+  {
+   "reader": "on-r1",
+   "page": 3,
+   "item": 52,
+   "verdict": "applied",
+   "key": "pt.ctaD",
+   "why": "M1-r2: «hazır» dropped from the paragraph; «Hazır mısınız?» stays the only «hazır» in the band."
+  }
+ ],
+ "proof_rulings": [
+  {
+   "note": 1,
+   "key": "ui.plan.empty.d",
+   "verdict": "applied",
+   "why": "M7-r2 (with r2 #16): «her yerin sayfasındaki “Bu yeri kaydedin” düğmesine basın»."
+  },
+  {
+   "note": 2,
+   "key": "pt.faq.0.a",
+   "verdict": "applied",
+   "why": "M14-r2: «Tarih, doğa ve konukseverliğin buluştuğu El-Ahsa, ailelere uygun bir yöredir.»; the source_defects entry now quotes the current Turkish."
+  },
+  {
+   "note": 3,
+   "key": "pt.faq.4.a",
+   "verdict": "applied",
+   "why": "«Yaz ise taze hurmanın, keyifli akşamların ve parkların mevsimidir.»"
+  }
+ ],
+ "rulings": [
+  {
+   "id": "M1-r2-route",
+   "title": "the route noun phrase",
+   "ruling": "«rotanızı oluşturun» in ui.plan.lead, ui.plan.empty.d and pt.ctaD (pt.ctaD keeps «Google Haritalar'da» where the English names it); «hazır bir rota» nowhere. Supersedes the noun phrase of M1; the verb «oluşturun» (saved.build) stands.",
+   "evidence": "Two readers on one string: r1 (three strikes on «rota edinin»), r2 #15/#52 («hazır» = ready-made vs «oluşturun» = make it yourself; «hazır» twice in the closing band). The button saved.build «Bu yerlerden rota oluşturun» makes the route from the list — the possessive says whose route without a new claim. Loss: «ready-made» (recorded)."
+  },
+  {
+   "id": "M2-r2-railway",
+   "title": "the railway company on every page",
+   "ruling": "«Suudi Arabistan Demiryolları» without the acronym on every page; «SAR» on the Turkish site is the currency only (A7/A10). The company's Latin acronym survives in its address «sar.com.sa» (FAQ 8). Supersedes M2's bracket rule.",
+   "evidence": "Two readers stopped at «SAR» (r1 p3 #3, r2 #26); the published table prints «50 SAR» and «50 Suudi riyali (SAR)»; the English brackets the acronym in two places only and writes bare «SAR» twice — a Turkish reader cannot tell the four apart."
+  },
+  {
+   "id": "M7-r2-button-place",
+   "title": "where the save button is",
+   "ruling": "«gitmek istediğiniz her yerin sayfasındaki “Bu yeri kaydedin” düğmesine basın» — the place's page, not «kart» on the plan page (its cards are the saved items).",
+   "evidence": "Proof NOTE 1 + r2 #16 («yerlerde» = physically there); DetailView renders the labelled button on every landmark page."
+  },
+  {
+   "id": "M11-r2-bounty",
+   "title": "«a season of bounty»",
+   "ruling": "«yaz ise vahanın bereketli mevsimidir ve akşamları keyiflidir» — whose bounty is said (the oasis), no fruit added; pt.faq.4.a keeps its own English list («taze hurmanın, keyifli akşamların ve parkların mevsimidir»).",
+   "evidence": "r1 p3 #7 + r2 #29 («abundance of what?»); ur precedent «نخلستان کی نعمتوں»; proof NOTE 3 on «getirir»."
+  },
+  {
+   "id": "M13-r2-tarih",
+   "title": "«tarihi» vs «tarihî»",
+   "ruling": "Where the accusative of «tarih» could be read as the adjective, write a shape that cannot: «bölgenin tarihini» (pt.tips.1.d), «Tarih, doğa ve konukseverliğin buluştuğu …» (pt.faq.0.a). Binding for later batches.",
+   "evidence": "Proof NOTE 2 + r2 #42; the site writes the adjective «tarihî» with the circumflex, so a bare «tarihi» first reads as a missing circumflex."
+  },
+  {
+   "id": "M15-r2-suvari",
+   "title": "the Suwari pomegranate",
+   "ruling": "«“Suvari” narı» in running text: the quotes mark the variety name against «süvari»; the spelling stays from السواري (P1/P4), no respelling. Variety names without a collision (Halas) stay unquoted.",
+   "evidence": "Stage-3 note + r2 #50 («cavalry pomegranate»); A1 accepts the collision, the quotes only make the name visible."
+  }
+ ],
+ "rulings_carried": [
+  "M3-map-lead",
+  "M4-3D",
+  "M5-locate-filter",
+  "M6-plan-lead",
+  "M7-button-verb",
+  "M8-wa-text",
+  "M9-print-note",
+  "M10-train-card",
+  "M11-region-destination",
+  "M12-vibe",
+  "M13-season-tip",
+  "M14-living-heritage",
+  "M15-famous-for",
+  "M16-cta-heading",
+  "M17-names"
+ ],
+ "termbase_additions": [
+  {
+   "tr": "Suudi Arabistan Demiryolları",
+   "ar": "الشركة السعودية للخطوط الحديدية «سار»",
+   "en": "Saudi Arabia Railways (SAR)",
+   "suffix_vowel": "ı — Suudi Arabistan Demiryolları'nın",
+   "kind": "institution",
+   "gloss": "",
+   "source": "tr.wikipedia full-text search and aa.com.tr: no result (stage 4, 2026-10-31)",
+   "status": "unattested",
+   "note": "M2-r2: written without «(SAR)» on every page (SAR = the currency on the site); the acronym rests on sar.com.sa. Candidate «Suudi Demiryolları»."
+  },
+  {
+   "tr": "El-Ahsa Uluslararası Havalimanı",
+   "ar": "مطار الأحساء الدولي",
+   "en": "Al-Ahsa International Airport",
+   "suffix_vowel": "ı — El-Ahsa Uluslararası Havalimanı'na",
+   "kind": "toponym",
+   "gloss": "",
+   "source": "https://tr.wikipedia.org/wiki/Hüfuf",
+   "status": "attested",
+   "note": ""
+  },
+  {
+   "tr": "Kral Fahd Uluslararası Havalimanı",
+   "ar": "مطار الملك فهد الدولي",
+   "en": "King Fahd International Airport",
+   "suffix_vowel": "ı — Kral Fahd Uluslararası Havalimanı'dır",
+   "kind": "toponym",
+   "gloss": "",
+   "source": "https://tr.wikipedia.org/wiki/Kral_Fahd_Uluslararası_Havalimanı (redirect to «Kral Fehd Uluslararası Havalimanı»; text uses Fahd 6×, Fehd 4×)",
+   "status": "attested",
+   "note": "M17: Fahd ruled (with Kral Fahd Köprüsü, Kral Fahd Yolu); «Dammam'daki» before it."
+  },
+  {
+   "tr": "Kral Fahd Köprüsü",
+   "ar": "جسر الملك فهد",
+   "en": "King Fahd Causeway",
+   "suffix_vowel": "ü — Kral Fahd Köprüsü'nü",
+   "kind": "toponym",
+   "gloss": "",
+   "source": "https://tr.wikipedia.org/wiki/Bahreyn",
+   "status": "attested",
+   "note": ""
+  },
+  {
+   "tr": "Abkayk",
+   "ar": "بقيق",
+   "en": "Abqaiq (Buqayq)",
+   "suffix_vowel": "a — Abkayk'ta",
+   "kind": "toponym",
+   "gloss": "Bukayk olarak da bilinir",
+   "source": "tr.wikipedia «2019 Abkayk ve Hureys saldırısı», «Suudi Arabistan'ın illeri»",
+   "status": "attested",
+   "note": "M17: the English's second form «Buqayq» → «(Bukayk olarak da bilinir)» at first mention per field; «Bukayk» unattested (built from بقيق). TDK assimilation «Abkayk'ta» (tr.wikipedia writes «Abkayk'daki»)."
+  },
+  {
+   "tr": "Suudi Posta (SPL)",
+   "ar": "مؤسسة البريد السعودي (سبل)",
+   "en": "Saudi Post (SPL)",
+   "suffix_vowel": "a — Suudi Posta'nın (SPL)",
+   "kind": "institution",
+   "gloss": "",
+   "source": "tr.wikipedia search: no result",
+   "status": "unattested",
+   "note": "Candidate «SPL (Suudi Posta)»."
+  },
+  {
+   "tr": "Ulusal Adres",
+   "ar": "العنوان الوطني",
+   "en": "National Address",
+   "suffix_vowel": "e — Ulusal Adres rehberi",
+   "kind": "institution",
+   "gloss": "",
+   "source": "no Turkish source found",
+   "status": "unattested",
+   "note": "Candidate «Millî Adres»; «Ulusal Adres» chosen (Turkey's UAVT wording)."
+  },
+  {
+   "tr": "haris",
+   "ar": "الهريس",
+   "en": "harees",
+   "suffix_vowel": "i — harisi",
+   "kind": "generic",
+   "gloss": "",
+   "source": "built from الهريس (P4); sozluk.gov.tr no «herise»",
+   "status": "unattested",
+   "note": "No gloss (fence; owner question). Candidate «herise»."
+  },
+  {
+   "tr": "balalit",
+   "ar": "البلاليط",
+   "en": "balaleet",
+   "suffix_vowel": "i — balaliti",
+   "kind": "generic",
+   "gloss": "",
+   "source": "built from البلاليط (P4)",
+   "status": "unattested",
+   "note": "No gloss (fence; owner question)."
+  },
+  {
+   "tr": "hurma ekmeği",
+   "ar": "خبز التمر (الخبز الأحمر)",
+   "en": "date bread (red bread)",
+   "suffix_vowel": "i — hurma ekmeğini",
+   "kind": "generic",
+   "gloss": "kırmızı ekmek olarak da bilinir",
+   "source": "translated",
+   "status": "unattested",
+   "note": "Gloss once per page."
+  },
+  {
+   "tr": "kanar",
+   "ar": "الكنار",
+   "en": "kanar",
+   "suffix_vowel": "a — kanarı",
+   "kind": "generic",
+   "gloss": "sidr ağacının meyvesi",
+   "source": "built from الكنار; gloss from the site's Arabic «الكنار الأحسائي (النبق)» / «شجرة السدر» (src/data/fruits.ts)",
+   "status": "unattested",
+   "note": "«kenar» rejected (= edge)."
+  },
+  {
+   "tr": "Suvari narı",
+   "ar": "الرمان السواري",
+   "en": "Suwari pomegranate",
+   "suffix_vowel": "ı — Suvari narını",
+   "kind": "generic",
+   "gloss": "",
+   "source": "built from السواري",
+   "status": "unattested",
+   "note": "M15-r2: «“Suvari” narı» in running text (quotes mark the variety name against «süvari»); spelling from السواري, no respelling."
+  },
+  {
+   "tr": "El-Ahsa inciri",
+   "ar": "التين الأحسائي",
+   "en": "Hasawi fig",
+   "suffix_vowel": "i — El-Ahsa incirini",
+   "kind": "generic",
+   "gloss": "",
+   "source": "Hasawi rule A9",
+   "status": "unattested",
+   "note": ""
+  },
+  {
+   "tr": "hisy",
+   "ar": "حِسْي",
+   "en": "hisy",
+   "suffix_vowel": "i — hisy sözcüğünün",
+   "kind": "generic",
+   "gloss": "",
+   "source": "https://islamansiklopedisi.org.tr/lahsa («… hisy kelimesinin çoğulu»)",
+   "status": "attested",
+   "note": "Quoted “hisy” where the English quotes it."
+  }
+ ],
+ "tm_pairs": [
+  {
+   "en": "Visit guide",
+   "tr": "Gezi rehberi",
+   "page": "map",
+   "field": "ui.map.eyebrow"
+  },
+  {
+   "en": "Attractions Map",
+   "tr": "Gezilecek yerler haritası",
+   "page": "map",
+   "field": "ui.map.title"
+  },
+  {
+   "en": "sights on the map of the oasis — search or pick a category, and click or tap any place in the list or on the map to open its card.",
+   "tr": "Bu haritada vahadaki {n} gezilecek yeri bulabilirsiniz. Arama yapın ya da bir kategori seçin; ardından listeden veya haritadan bir yerin bilgi kartını açın.",
+   "page": "map",
+   "field": "ui.map.lead.a"
+  },
+  {
+   "en": "Search attractions…",
+   "tr": "Gezilecek yer arayın…",
+   "page": "map",
+   "field": "ui.map.search.ph"
+  },
+  {
+   "en": "Filter attractions by category",
+   "tr": "Gezilecek yerleri kategoriye göre filtreleme",
+   "page": "map",
+   "field": "ui.map.filter.aria"
+  },
+  {
+   "en": "3D terrain map",
+   "tr": "3D arazi haritası",
+   "page": "map",
+   "field": "ui.map.terrain"
+  },
+  {
+   "en": "My location on the map",
+   "tr": "Konumunuzu haritada görüntüleyin",
+   "page": "map",
+   "field": "ui.map.locate"
+  },
+  {
+   "en": "List of attractions shown on the map",
+   "tr": "Haritada gösterilen gezilecek yerlerin listesi",
+   "page": "map",
+   "field": "ui.map.list.aria"
+  },
+  {
+   "en": "Showing",
+   "tr": "Gösterilen yerler",
+   "page": "map",
+   "field": "ui.map.count"
+  },
+  {
+   "en": "No matches — try another word or category.",
+   "tr": "Eşleşen sonuç yok — başka bir kelime ya da kategori deneyin.",
+   "page": "map",
+   "field": "ui.map.empty"
+  },
+  {
+   "en": "View page →",
+   "tr": "Sayfasına gidin →",
+   "page": "map",
+   "field": "ui.map.pop.view"
+  },
+  {
+   "en": "Your own list",
+   "tr": "Kendi listeniz",
+   "page": "plan",
+   "field": "ui.plan.eyebrow"
+  },
+  {
+   "en": "My saved places",
+   "tr": "Kayıtlı yerlerim",
+   "page": "plan",
+   "field": "ui.plan.title"
+  },
+  {
+   "en": "The sights you chose are saved on this device. Arrange them, and get a ready-made route.",
+   "tr": "Seçtiğiniz gezilecek yerler bu cihaza kaydedilir. Listenizi düzenleyin ve rotanızı oluşturun.",
+   "page": "plan",
+   "field": "ui.plan.lead"
+  },
+  {
+   "en": "sights saved",
+   "tr": "kayıtlı yer",
+   "page": "plan",
+   "field": "ui.plan.savedSuffix"
+  },
+  {
+   "en": "sight saved",
+   "tr": "kayıtlı yer",
+   "page": "plan",
+   "field": "ui.plan.savedOne"
+  },
+  {
+   "en": "sights saved",
+   "tr": "kayıtlı yer",
+   "page": "plan",
+   "field": "ui.plan.savedTwo"
+  },
+  {
+   "en": "sights saved",
+   "tr": "kayıtlı yer",
+   "page": "plan",
+   "field": "ui.plan.savedFew"
+  },
+  {
+   "en": "Clear all your saved places?",
+   "tr": "Tüm kayıtlı yerlerinizi silmek istiyor musunuz?",
+   "page": "plan",
+   "field": "ui.plan.clearConfirm"
+  },
+  {
+   "en": "Google Maps accepts 10 stops per route, so the route opens with the first 10 sights on your list.",
+   "tr": "Google Haritalar bir rotada 10 durak kabul eder; bu yüzden rota, listenizdeki ilk 10 yerle açılır.",
+   "page": "plan",
+   "field": "ui.plan.routeLimit"
+  },
+  {
+   "en": "Open the route in Google Maps",
+   "tr": "Rotayı Google Haritalar'da açın",
+   "page": "plan",
+   "field": "ui.plan.route"
+  },
+  {
+   "en": "Clear list",
+   "tr": "Listeyi temizleyin",
+   "page": "plan",
+   "field": "ui.plan.clear"
+  },
+  {
+   "en": "Remove",
+   "tr": "Kaldırın",
+   "page": "plan",
+   "field": "ui.plan.remove"
+  },
+  {
+   "en": "Location ↗",
+   "tr": "Konum ↗",
+   "page": "plan",
+   "field": "ui.plan.location"
+  },
+  {
+   "en": "Your list is empty",
+   "tr": "Listeniz boş",
+   "page": "plan",
+   "field": "ui.plan.empty.h"
+  },
+  {
+   "en": "Browse the attractions and click or tap “Save this place” to gather your destinations here, then get a ready route.",
+   "tr": "Gezilecek yerlere göz atın ve gitmek istediğiniz her yerin sayfasındaki “Bu yeri kaydedin” düğmesine basın. Kaydettiğiniz yerler burada toplanır; ardından rotanızı oluşturun.",
+   "page": "plan",
+   "field": "ui.plan.empty.d"
+  },
+  {
+   "en": "Browse attractions",
+   "tr": "Gezilecek yerlere göz atın",
+   "page": "plan",
+   "field": "ui.plan.empty.browse"
+  },
+  {
+   "en": "Open the map",
+   "tr": "Haritayı açın",
+   "page": "plan",
+   "field": "ui.plan.empty.map"
+  },
+  {
+   "en": "event",
+   "tr": "etkinlik",
+   "page": "plan",
+   "field": "ui.plan.tableEvent"
+  },
+  {
+   "en": "Share on WhatsApp",
+   "tr": "WhatsApp'ta paylaşın",
+   "page": "plan",
+   "field": "ui.plan.share"
+  },
+  {
+   "en": "Copy share link",
+   "tr": "Paylaşım bağlantısını kopyalayın",
+   "page": "plan",
+   "field": "ui.plan.copy"
+  },
+  {
+   "en": "Print the list",
+   "tr": "Listeyi yazdırın",
+   "page": "plan",
+   "field": "ui.plan.print"
+  },
+  {
+   "en": "My saved places in Al-Ahsa:",
+   "tr": "El-Ahsa için kaydettiğim yerler:",
+   "page": "plan",
+   "field": "ui.plan.waText"
+  },
+  {
+   "en": "A shared list of sights",
+   "tr": "Paylaşılan gezilecek yer listesi",
+   "page": "plan",
+   "field": "ui.plan.shared.h"
+  },
+  {
+   "en": "This list reached you via a share link — browse it, or add it to your own “My saved places”.",
+   "tr": "Bu liste size bir paylaşım bağlantısıyla ulaştı. Listeye göz atabilir ya da kendi “Kayıtlı yerlerim” listenize ekleyebilirsiniz.",
+   "page": "plan",
+   "field": "ui.plan.shared.d"
+  },
+  {
+   "en": "Add to my saved places",
+   "tr": "Kayıtlı yerlerinize ekleyin",
+   "page": "plan",
+   "field": "ui.plan.shared.import"
+  },
+  {
+   "en": "View my saved places",
+   "tr": "Kayıtlı yerlerinizi görüntüleyin",
+   "page": "plan",
+   "field": "ui.plan.shared.mine"
+  },
+  {
+   "en": "Times and fees can change — confirm via official channels before visiting.",
+   "tr": "Saatler ve ücretler değişebilir — ziyaretten önce resmî kanallardan teyit edin.",
+   "page": "plan",
+   "field": "ui.plan.printNote"
+  },
+  {
+   "en": "Plan your trip",
+   "tr": "Gezinizi planlayın",
+   "page": "plan-your-trip",
+   "field": "pt.eyebrow"
+  },
+  {
+   "en": "Everything you need before you go",
+   "tr": "Yola çıkmadan önce ihtiyacınız olan her şey",
+   "page": "plan-your-trip",
+   "field": "pt.title"
+  },
+  {
+   "en": "Concise, practical information to make your trip smooth from arrival to departure.",
+   "tr": "Gezinizin varıştan dönüşe kadar sorunsuz geçmesi için kısa ve pratik bilgiler.",
+   "page": "plan-your-trip",
+   "field": "pt.lead"
+  },
+  {
+   "en": "How to get to Al-Ahsa",
+   "tr": "El-Ahsa'ya ulaşım",
+   "page": "plan-your-trip",
+   "field": "pt.getThereH"
+  },
+  {
+   "en": "By air",
+   "tr": "Hava yoluyla",
+   "page": "plan-your-trip",
+   "field": "pt.getThere.0.h"
+  },
+  {
+   "en": "Al-Ahsa International Airport handles domestic and international flights; routes and schedules change, so confirm before booking. Alternatively, King Fahd International Airport in Dammam is about a two-hour drive away and offers wider connections.",
+   "tr": "El-Ahsa Uluslararası Havalimanı'na iç ve dış hat uçuşları yapılır. Hatlar ve uçuş saatleri değiştiği için rezervasyondan önce teyit edin. Bir diğer seçenek Dammam'daki Kral Fahd Uluslararası Havalimanı'dır. Bu havalimanı arabayla yaklaşık iki saat uzaklıktadır ve daha fazla uçuş bağlantısı sunar.",
+   "page": "plan-your-trip",
+   "field": "pt.getThere.0.d"
+  },
+  {
+   "en": "By road",
+   "tr": "Kara yoluyla",
+   "page": "plan-your-trip",
+   "field": "pt.getThere.1.h"
+  },
+  {
+   "en": "About 326 km from Riyadh (around 3 hours 20 minutes), and close to Dammam and Khobar via a good highway network.",
+   "tr": "El-Ahsa, Riyad'a yaklaşık 326 km uzaklıktadır (yolculuk 3 saat 20 dakika kadar sürer). İyi bir otoyol ağı sayesinde Dammam'a ve El-Huber'e de yakındır.",
+   "page": "plan-your-trip",
+   "field": "pt.getThere.1.d"
+  },
+  {
+   "en": "By train",
+   "tr": "Demir yoluyla",
+   "page": "plan-your-trip",
+   "field": "pt.getThere.2.h"
+  },
+  {
+   "en": "Hofuf has a station on the Riyadh–Dammam railway (SAR). From Riyadh it is the fastest and most comfortable option (around two hours and ten minutes); from Dammam it is roughly one to one and a half hours, and the train also stops at nearby Abqaiq (Buqayq) on the same line — an excellent choice from the capital and the Eastern Province.",
+   "tr": "Riyad–Dammam demir yolu hattının Hüfuf'ta bir istasyonu vardır; hattı Suudi Arabistan Demiryolları işletir. Riyad'dan gelenler için en hızlı ve en konforlu seçenek trendir (yaklaşık iki saat on dakika). Dammam'dan yolculuk aşağı yukarı bir ila bir buçuk saat sürer. Tren ayrıca aynı hat üzerinde, yakındaki Abkayk'ta (Bukayk olarak da bilinir) durur. Başkent Riyad'dan ve Suudi Arabistan'ın Doğu Bölgesi'nden gelenler için tren çok iyi bir seçimdir.",
+   "page": "plan-your-trip",
+   "field": "pt.getThere.2.d"
+  },
+  {
+   "en": "Practical information",
+   "tr": "Pratik bilgiler",
+   "page": "plan-your-trip",
+   "field": "pt.practicalH"
+  },
+  {
+   "en": "Best time to visit Al-Ahsa",
+   "tr": "El-Ahsa'yı ziyaret etmek için en iyi dönem",
+   "page": "plan-your-trip",
+   "field": "pt.practical.0.k"
+  },
+  {
+   "en": "A year-round destination; the air is gentlest from October to March, while summer is a season of bounty and evening experiences.",
+   "tr": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; yaz ise vahanın bereketli mevsimidir ve akşamları keyiflidir.",
+   "page": "plan-your-trip",
+   "field": "pt.practical.0.v"
+  },
+  {
+   "en": "Accommodation",
+   "tr": "Konaklama",
+   "page": "plan-your-trip",
+   "field": "pt.practical.1.k"
+  },
+  {
+   "en": "Modern hotels and resorts across the oasis, plus heritage inns that offer an authentic local stay.",
+   "tr": "Vahanın dört bir yanında modern oteller ve tatil köyleri var. Geleneksel konuk evleri ise otantik, yerel bir konaklama sunar.",
+   "page": "plan-your-trip",
+   "field": "pt.practical.1.v"
+  },
+  {
+   "en": "Destination vibe",
+   "tr": "Yörenin karakteri",
+   "page": "plan-your-trip",
+   "field": "pt.practical.2.k"
+  },
+  {
+   "en": "An authentic, welcoming destination with a conservative character, blending heritage with modern visitor facilities — well suited to families and solo travellers alike.",
+   "tr": "El-Ahsa otantik, konuksever ve muhafazakâr bir yöredir. Mirasını modern ziyaretçi olanaklarıyla buluşturur; ailelere de tek başına seyahat edenlere de uygundur.",
+   "page": "plan-your-trip",
+   "field": "pt.practical.2.v"
+  },
+  {
+   "en": "Currency",
+   "tr": "Para birimi",
+   "page": "plan-your-trip",
+   "field": "pt.practical.3.k"
+  },
+  {
+   "en": "The Saudi Riyal (SAR). Cards are accepted in most venues; carry some cash for traditional souqs.",
+   "tr": "Suudi riyali (SAR). Çoğu işletmede kart kabul edilir; geleneksel çarşılar için yanınızda biraz nakit bulundurun.",
+   "page": "plan-your-trip",
+   "field": "pt.practical.3.v"
+  },
+  {
+   "en": "Attraction",
+   "tr": "Gezilecek yer",
+   "page": "plan-your-trip",
+   "field": "pt.table.nameHead"
+  },
+  {
+   "en": "Visitor tips",
+   "tr": "Ziyaretçilere öneriler",
+   "page": "plan-your-trip",
+   "field": "pt.tipsH"
+  },
+  {
+   "en": "Small details that make a big difference to your experience.",
+   "tr": "Gezinizde büyük fark yaratan küçük ayrıntılar.",
+   "page": "plan-your-trip",
+   "field": "pt.tipsLead"
+  },
+  {
+   "en": "Bargain politely",
+   "tr": "Kibarca pazarlık edin",
+   "page": "plan-your-trip",
+   "field": "pt.tips.0.h"
+  },
+  {
+   "en": "Haggling in the souqs is acceptable when done respectfully — part of the traditional shopping fun.",
+   "tr": "Çarşılarda saygılı olduğunuz sürece pazarlık yapmak kabul görür; bu, geleneksel alışverişin keyfine dâhildir.",
+   "page": "plan-your-trip",
+   "field": "pt.tips.0.d"
+  },
+  {
+   "en": "Pick your season",
+   "tr": "Mevsiminizi seçin",
+   "page": "plan-your-trip",
+   "field": "pt.tips.1.h"
+  },
+  {
+   "en": "Summer for savouring fresh fruit; winter for the landmarks and history.",
+   "tr": "Yaz taze meyvelerin tadını çıkarmaya, kış ise gezilecek yerleri ve bölgenin tarihini tanımaya uygundur.",
+   "page": "plan-your-trip",
+   "field": "pt.tips.1.d"
+  },
+  {
+   "en": "Time it right",
+   "tr": "Zamanlamaya dikkat edin",
+   "page": "plan-your-trip",
+   "field": "pt.tips.2.h"
+  },
+  {
+   "en": "In the hot months, start early or after mid-afternoon for open-air sites; in winter the weather is pleasant all day.",
+   "tr": "Sıcak aylarda açık hava alanlarına sabah erken ya da öğleden sonranın ilerleyen saatlerinde gidin. Kışın ise hava gün boyu hoştur.",
+   "page": "plan-your-trip",
+   "field": "pt.tips.2.d"
+  },
+  {
+   "en": "Confirm opening times",
+   "tr": "Ziyaret saatlerini teyit edin",
+   "page": "plan-your-trip",
+   "field": "pt.tips.3.h"
+  },
+  {
+   "en": "Check museum and fort opening hours ahead — some change seasonally.",
+   "tr": "Müzelerin ve kalelerin ziyaret saatlerini önceden kontrol edin; bazılarının saatleri mevsime göre değişir.",
+   "page": "plan-your-trip",
+   "field": "pt.tips.3.d"
+  },
+  {
+   "en": "Frequently asked questions",
+   "tr": "Sıkça sorulan sorular",
+   "page": "plan-your-trip",
+   "field": "pt.faqH"
+  },
+  {
+   "en": "Is Al-Ahsa worth visiting?",
+   "tr": "El-Ahsa'ya gitmeye değer mi?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.0.q"
+  },
+  {
+   "en": "Absolutely. Al-Ahsa is the world’s largest oasis (Guinness 2020) and a UNESCO World Heritage Site (2018). It pairs natural wonders — Al-Qarah Mountain’s caves, Al-Asfar Lake and the freshwater springs — with living heritage in Hofuf: Qasr Ibrahim, Qaisariyah Souq and Jawatha Mosque, plus palm groves, oasis fruits and distinctive local cuisine. A welcoming, family-friendly destination blending history, nature and hospitality.",
+   "tr": "Kesinlikle. El-Ahsa dünyanın en büyük vahasıdır (Guinness Dünya Rekorları, 2020) ve bir UNESCO Dünya Mirası alanıdır (2018). El-Ahsa, doğa harikalarını Hüfuf'un hâlâ canlı olan mirasıyla buluşturur. Cebel el-Kare'nin mağaraları, El-Asfar Gölü ve tatlı su pınarları bu doğa harikaları arasındadır; Kasr İbrahim, El-Kaysariye Çarşısı ve Cüvasa Camii ise bu mirasın örnekleridir. Bunlara hurmalıklar, vaha meyveleri ve kendine özgü yerel mutfak da eklenir. Tarih, doğa ve konukseverliğin buluştuğu El-Ahsa, ailelere uygun bir yöredir.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.0.a"
+  },
+  {
+   "en": "What are the best places to visit in Al-Ahsa?",
+   "tr": "El-Ahsa'da gezilecek en güzel yerler hangileri?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.1.q"
+  },
+  {
+   "en": "Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” heritage village, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My saved places”.",
+   "tr": "El-Ahsa'da öne çıkan yerler şunlardır: Cebel el-Kare (mağaraları ve “Medeniyetler Diyarı” miras köyüyle), tarihî Kasr İbrahim, geleneksel El-Kaysariye Çarşısı, Cüvasa Camii (İslam tarihinin ilk camilerinden biri), El-Asfar Gölü ve Müberrez'deki Sahud Sarayı (Kasr Sahud). Tam liste için “Gezilecek yerler” sayfasına göz atın; listedeki yerleri “Kayıtlı yerlerim” listenize ekleyebilirsiniz.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.1.a"
+  },
+  {
+   "en": "What are the opening hours for Al-Qarah Mountain?",
+   "tr": "Cebel el-Kare'nin ziyaret saatleri nedir?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.2.q"
+  },
+  {
+   "en": "It opens daily from 8:00 am to 11:00 pm (hours may be extended on holidays), and admission is SAR 50 for adults, booked through the “Land of Civilisations” heritage village. Hours can change seasonally, so confirm before you go.",
+   "tr": "Cebel el-Kare her gün 08.00'den 23.00'e kadar açıktır (saatler tatillerde uzatılabilir). Yetişkinler için giriş ücreti 50 SAR'dır; biletler “Medeniyetler Diyarı” miras köyü üzerinden alınır. Saatler mevsime göre değişebileceği için gitmeden önce teyit edin.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.2.a"
+  },
+  {
+   "en": "When does Qaisariyah Souq open?",
+   "tr": "El-Kaysariye Çarşısı ne zaman açık?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.3.q"
+  },
+  {
+   "en": "The souq trades in the morning from 8 am to 12 noon and in the evening from 3:30 pm to 10 pm (Friday evenings only), and entry is free. Evenings are the best time, when the shops open and the market comes alive.",
+   "tr": "El-Kaysariye Çarşısı sabahları 08.00–12.00, akşamları 15.30–22.00 saatleri arasında açıktır (Cuma günleri yalnızca akşam); giriş ücretsizdir. En iyi zaman akşam saatleridir: dükkânlar açılır ve çarşı canlanır.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.3.a"
+  },
+  {
+   "en": "When is the best time to visit Al-Ahsa?",
+   "tr": "El-Ahsa'yı ziyaret etmek için en iyi dönem hangisi?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.4.q"
+  },
+  {
+   "en": "A year-round destination; the weather is gentlest from October to March — ideal for the landmarks and forts — while summer brings fresh dates, evening experiences and the parks. Early in the year is the season of the Dates Festival.",
+   "tr": "El-Ahsa'ya yıl boyu gidilebilir. Hava ekimden marta kadar en ılıman hâlindedir; bu dönem gezilecek yerler ve kaleler için idealdir. Yaz ise taze hurmanın, keyifli akşamların ve parkların mevsimidir. Yılın başlarında bir hurma festivali düzenlenir.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.4.a"
+  },
+  {
+   "en": "How do I travel from Riyadh to Al-Ahsa?",
+   "tr": "Riyad'dan El-Ahsa'ya nasıl gidilir?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.5.q"
+  },
+  {
+   "en": "Al-Ahsa is about 326 km from Riyadh. The fastest and most comfortable option is the train to Hofuf station (around two hours and ten minutes with SAR), or driving via the highway (around 3 hours 20 minutes), or flying into Al-Ahsa International Airport.",
+   "tr": "El-Ahsa Riyad'a yaklaşık 326 km uzaklıktadır. En hızlı ve en konforlu seçenek, Suudi Arabistan Demiryolları'nın Hüfuf istasyonuna giden trenidir (yaklaşık iki saat on dakika). Otoyoldan arabayla da gidebilirsiniz (yaklaşık 3 saat 20 dakika) ya da El-Ahsa Uluslararası Havalimanı'na uçabilirsiniz.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.5.a"
+  },
+  {
+   "en": "What is the distance from Al-Ahsa to Bahrain and Dammam?",
+   "tr": "El-Ahsa'nın Bahreyn'e ve Dammam'a uzaklığı ne kadar?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.6.q"
+  },
+  {
+   "en": "Al-Ahsa is close to Dammam and Khobar via a good highway network (Dammam is roughly 150 km, about 1.5 hours). Bahrain is reached by road across the King Fahd Causeway via Khobar (about two hours). SAR trains also stop at nearby Abqaiq (Buqayq) on the same line.",
+   "tr": "El-Ahsa, iyi bir otoyol ağı sayesinde Dammam'a ve El-Huber'e yakındır (Dammam yaklaşık 150 km uzaklıktadır; yolculuk 1,5 saat kadar sürer). Bahreyn'e kara yoluyla, El-Huber üzerinden Kral Fahd Köprüsü'nü geçerek ulaşılır (yaklaşık iki saat). Suudi Arabistan Demiryolları'nın trenleri ayrıca aynı hat üzerinde, yakındaki Abkayk'ta (Bukayk olarak da bilinir) durur.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.6.a"
+  },
+  {
+   "en": "How do I book a Riyadh–Al-Ahsa train ticket?",
+   "tr": "Riyad–El-Ahsa tren bileti nasıl alınır?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.7.q"
+  },
+  {
+   "en": "Book through Saudi Arabia Railways (SAR) via its official app or website sar.com.sa, or at station ticket counters. The line connects Riyadh with Hofuf and Dammam; book early during holidays and peak seasons.",
+   "tr": "Biletinizi Suudi Arabistan Demiryolları üzerinden alabilirsiniz: şirketin resmî uygulamasından, sar.com.sa sitesinden ya da istasyonlardaki bilet gişelerinden. Hat Riyad'ı Hüfuf'a ve Dammam'a bağlar; tatillerde ve yoğun sezonlarda biletinizi erken alın.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.7.a"
+  },
+  {
+   "en": "What is the postal code for Al-Ahsa?",
+   "tr": "El-Ahsa'nın posta kodu nedir?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.8.q"
+  },
+  {
+   "en": "Al-Ahsa (Hofuf and Al-Mubarraz) falls within postal codes beginning with 36, with the exact code varying by district and location. For a precise address, use the Saudi Post (SPL) National Address directory at splonline.com.sa.",
+   "tr": "El-Ahsa'daki (Hüfuf ve Müberrez) posta kodları 36 ile başlar; tam kod mahalleye ve konuma göre değişir. Kesin adres için Suudi Posta'nın (SPL) Ulusal Adres rehberini kullanın: splonline.com.sa.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.8.a"
+  },
+  {
+   "en": "What are the best hotels to stay at in Al-Ahsa?",
+   "tr": "El-Ahsa'da kalınacak en iyi oteller hangileri?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.9.q"
+  },
+  {
+   "en": "Al-Ahsa offers modern hotels and resorts across Hofuf and Al-Mubarraz, alongside heritage inns, chalets and farm stays for an authentic local experience among the palms. To find the best fit for your budget and location, compare options and reviews on trusted booking platforms. (We don’t endorse specific venues, to keep the information neutral.)",
+   "tr": "El-Ahsa'da Hüfuf'un ve Müberrez'in dört bir yanında modern oteller ve tatil köyleri bulunur. Bunların yanında geleneksel konuk evleri, şaleler ve çiftlik evleri de hurma ağaçları arasında otantik, yerel bir deneyim sunar. Bütçenize ve konumunuza en uygun yeri bulmak için güvenilir rezervasyon platformlarında seçenekleri ve yorumları karşılaştırın. (Bilgilerin tarafsız kalması için belirli işletmeleri önermiyoruz.)",
+   "page": "plan-your-trip",
+   "field": "pt.faq.9.a"
+  },
+  {
+   "en": "What is Al-Ahsa famous for?",
+   "tr": "El-Ahsa neyle ünlü?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.10.q"
+  },
+  {
+   "en": "Al-Ahsa is famous for its golden Khalas dates (its best-known variety), Hasawi red rice and folk dishes such as harees, balaleet and date bread (also called red bread). Its oasis fruits include the Hasawi fig, lomi, kanar and Suwari pomegranate. In crafts, the Hasawi bisht embroidered with zari thread stands out, along with pottery, palm-frond ware, incense and perfumes from Qaisariyah Souq.",
+   "tr": "El-Ahsa, bölgenin en bilinen çeşidi olan altın renkli Halas hurmasıyla ünlüdür. El-Ahsa kırmızı pirinci ve haris, balalit, hurma ekmeği (kırmızı ekmek olarak da bilinir) gibi yöresel yemekler de buranın ünlü lezzetleri arasındadır. Vahanın meyveleri arasında El-Ahsa inciri, misket limonu (lomi), kanar (sidr ağacının meyvesi) ve “Suvari” narı vardır. El sanatlarında sırma işlemeli El-Ahsa bişti (bir erkek pelerini) öne çıkar; El-Kaysariye Çarşısı'nda çömlekler, hurma yaprağından ürünler, tütsüler ve parfümler de bulunur.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.10.a"
+  },
+  {
+   "en": "How did Al-Ahsa get its name?",
+   "tr": "El-Ahsa adı nereden geliyor?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.11.q"
+  },
+  {
+   "en": "“Al-Ahsa” is the plural of “hisy”: the sweet water that runs and gathers beneath a thin layer of sand, which springs up as soon as your hand uncovers it. It is a precise description of this land — a generous oasis of springs, channels and groundwater that made it the largest oasis in the world.",
+   "tr": "“El-Ahsa”, “hisy” sözcüğünün çoğuludur. Hisy, ince bir kum tabakasının altında akan ve toplanan tatlı sudur; eliniz kumu açar açmaz su yüzeye çıkar. Bu ad, bölgeyi tam olarak tarif eder: El-Ahsa pınarları, su kanalları ve yeraltı sularıyla cömert bir vahadır; bu sular onu dünyanın en büyük vahası yapmıştır.",
+   "page": "plan-your-trip",
+   "field": "pt.faq.11.a"
+  },
+  {
+   "en": "What are the best traditional restaurants in Al-Ahsa?",
+   "tr": "El-Ahsa'daki en iyi geleneksel restoranlar hangileri?",
+   "page": "plan-your-trip",
+   "field": "pt.faq.12.q"
+  },
+  {
+   "en": "Hasawi breakfasts and folk dishes (Hasawi red rice, balaleet, harees, date bread) are served at several heritage restaurants in Hofuf, and some farms offer a Hasawi breakfast in nature. For the best current pick, check up-to-date local reviews. (We don’t endorse specific restaurants, to keep the information neutral.)",
+   "tr": "El-Ahsa kahvaltıları ve yöresel yemekler (El-Ahsa kırmızı pirinci, balalit, haris, hurma ekmeği) Hüfuf'taki birkaç geleneksel restoranda sunulur. Bazı çiftliklerde de doğanın içinde El-Ahsa kahvaltısı yapabilirsiniz. En iyi seçimi yapmak için güncel yerel yorumlara göz atın. (Bilgilerin tarafsız kalması için belirli restoranları önermiyoruz.)",
+   "page": "plan-your-trip",
+   "field": "pt.faq.12.a"
+  },
+  {
+   "en": "Ready? Start gathering your sights",
+   "tr": "Hazır mısınız? Listenizi oluşturmaya başlayın",
+   "page": "plan-your-trip",
+   "field": "pt.ctaH"
+  },
+  {
+   "en": "Browse the attractions, add what you like to “My saved places”, then get a ready-made route in Google Maps.",
+   "tr": "Gezilecek yerlere göz atın, beğendiklerinizi “Kayıtlı yerlerim” listenize ekleyin, ardından Google Haritalar'da rotanızı oluşturun.",
+   "page": "plan-your-trip",
+   "field": "pt.ctaD"
+  },
+  {
+   "en": "Browse attractions",
+   "tr": "Gezilecek yerlere göz atın",
+   "page": "plan-your-trip",
+   "field": "pt.ctaBrowse"
+  },
+  {
+   "en": "My saved places",
+   "tr": "Kayıtlı yerlerim",
+   "page": "plan-your-trip",
+   "field": "pt.ctaTrip"
+  },
+  {
+   "en": "Plan your trip to Al-Ahsa — getting there, best time and tips",
+   "tr": "El-Ahsa gezinizi planlayın: ulaşım, en iyi zaman ve öneriler",
+   "page": "plan-your-trip",
+   "field": "pt.seoTitle"
+  },
+  {
+   "en": "Everything you need to visit Al-Ahsa: getting there by air, road and train, the best time to visit, practical information, tips and FAQs. Plan with confidence.",
+   "tr": "El-Ahsa gezisi için gereken her şey: hava, kara ve demir yoluyla ulaşım, en iyi ziyaret zamanı, pratik bilgiler, öneriler ve sıkça sorulan sorular. Güvenle planlayın.",
+   "page": "plan-your-trip",
+   "field": "pt.seoDesc"
+  }
+ ],
+ "source_defects": [
+  {
+   "keys": [
+    "pt.faq.0.a"
+   ],
+   "defect": "Both sources place Jawatha Mosque among the living heritage «in Hofuf»; the published Cüvasa Camii page puts it in El-Kilabiye village north-east of Hofuf. Turkish follows the English (Hüfuf'un hâlâ canlı olan mirası … Cüvasa Camii)."
+  },
+  {
+   "keys": [
+    "pt.faq.0.q",
+    "pt.faq.0.a"
+   ],
+   "defect": "The Arabic question is «what is there to see in Al-Ahsa», the English «Is Al-Ahsa worth visiting?», and only the English answer opens with «Absolutely.» Turkish follows the English."
+  },
+  {
+   "keys": [
+    "pt.faq.4.a",
+    "pt.tips.1.d"
+   ],
+   "defect": "English «fresh dates» vs Arabic «الرطب والثمار الطازجة» (rutab and fresh fruit); Turkish follows the English («taze hurma»)."
+  },
+  {
+   "keys": [
+    "pt.faq.6.a"
+   ],
+   "defect": "English «Bahrain» vs Arabic «مملكة البحرين»; Turkish «Bahreyn» (the modern country — the termbase entry is scoped to the historic region; a new scope note is needed)."
+  },
+  {
+   "keys": [
+    "pt.faq.10.q",
+    "pt.faq.12.q"
+   ],
+   "defect": "The Arabic questions are narrower (food and local products; traditional breakfast restaurants) than the English (famous for; traditional restaurants). Turkish follows the English."
+  },
+  {
+   "keys": [
+    "pt.faq.9.q"
+   ],
+   "defect": "Arabic asks about hotels and chalets; English hotels only."
+  },
+  {
+   "keys": [
+    "pt.seoTitle"
+   ],
+   "defect": "Arabic ends with «جدول سياحي» (itinerary), English with «tips»; Turkish follows the English."
+  },
+  {
+   "keys": [
+    "pt.getThere.0.d",
+    "pt.faq.6.a"
+   ],
+   "defect": "Dammam airport is «about a two-hour drive» while Dammam city is «about 1.5 hours» by road — not contradictory (the airport lies beyond the city), noted only."
+  },
+  {
+   "keys": [
+    "pt.seoDesc"
+   ],
+   "defect": "The English closes the meta description with «Plan with confidence.» (reader: brochure tone); kept as «Güvenle planlayın.»."
+  },
+  {
+   "keys": [
+    "pt.getThere.0.d"
+   ],
+   "defect": "«about a two-hour drive away» names no starting point (implied Al-Ahsa)."
+  },
+  {
+   "keys": [
+    "pt.getThere.2.d",
+    "pt.faq.6.a"
+   ],
+   "defect": "The Abqaiq sentence gives the reader no reason to care and in FAQ 7 does not answer the distance question; FAQ 7 also says «on the same line» with no line named in that answer; «about two hours» to Bahrain names no starting point."
+  },
+  {
+   "keys": [
+    "pt.faq.2.a"
+   ],
+   "defect": "Fixed daily hours followed by «Hours can change seasonally»."
+  },
+  {
+   "keys": [
+    "pt.faq.3.a"
+   ],
+   "defect": "«Evenings are the best time, when the shops open» after morning trading hours."
+  },
+  {
+   "keys": [
+    "pt.faq.4.a"
+   ],
+   "defect": "A dates festival «early in the year», fresh dates «in summer», and the only date event on the site (Palm Village) in November 2026: the reader cannot tell when to come for dates."
+  },
+  {
+   "keys": [
+    "pt.practical.0.v",
+    "pt.faq.4.a"
+   ],
+   "defect": "«a season of bounty and evening experiences» / «evening experiences» — vague images in the English; rendered without adding an activity."
+  },
+  {
+   "keys": [
+    "pt.faq.0.a",
+    "pt.faq.1.a"
+   ],
+   "defect": "«Hofuf», «Al-Mubarraz» and the «Qasr» of the names are unexplained in the English (termbase names; generics inside names are not glossed, P3/A5)."
+  },
+  {
+   "keys": [
+    "pt.faq.10.a"
+   ],
+   "defect": "harees and balaleet are unglossed in the English and the Arabic while kanar and the bisht are explained elsewhere on the site."
+  },
+  {
+   "keys": [
+    "pt.practical.2.v"
+   ],
+   "defect": "«a conservative character» with no guidance on dress or conduct (r2 #30); none invented."
+  },
+  {
+   "keys": [
+    "pt.faq.4.a",
+    "pt.tips.3.d"
+   ],
+   "defect": "«landmarks and forts» / «museum and fort» name forts beside the landmarks; the one fort in the table cannot be entered (r2 #43)."
+  },
+  {
+   "keys": [
+    "pt.faq.6.a"
+   ],
+   "defect": "The distance question is answered for Bahrain in hours only, and the answer repeats the highway sentence of the road card (r2 #47)."
+  }
+ ],
+ "owner_questions": [
+  "Visit-card table (/tr/plan-your-trip/): the Cebel el-Kare card gives only the adult price while the Medeniyetler Diyarı card for the same shared ticket also gives «çocuklar için 10 SAR»; the currency is «50 SAR» on one and «50 Suudi riyali (SAR)» on the other (blind reader p3 #9). Should the Cebel el-Kare card (and FAQ 3) carry the child price? (Also blind reader on-r1 #31.)",
+  "Visit-card table: «Herkese açık alan — giriş ücretsiz» sits in the hours column and «Giriş ücretsiz» again in the fees column on some mountain rows, a dash on «Ukayr»; El-Asfar Gölü has the same information in the fees column only (p3 #10, #11). Unify the published cards? (Also on-r1 #33, #34.)",
+  "Visit-card table: «Ukayr Kalesi — İçeri girilemiyor» appears in the fees column (p3 #12). Move to an access line? (Also on-r1 #35.)",
+  "El-Kaysariye Çarşısı: the published card «08.00–12.00 ve 15.30–22.00» has no Friday note, while the English FAQ says «Friday evenings only» (p3 #16). Add the Friday note to the card? (Also on-r1 #37.)",
+  "Day names: «Pazar», «Cuma» capitalised on some published cards, «cuma ve cumartesi kapalı» lower case on others (p3 #17); A10-days capitalises in schedules — sweep the published cards? On-r1 #39 adds: «Her gün 07.30–24.00 (Pazar ve Pazartesi 07.00'den · Cuma 14.30'dan)» on Zanaatkârlar Çarşısı — «her gün» followed by three exceptions; restate?",
+  "Hurma Köyü is a dated event (November 2026) on its card and in the table but a permanent pin on the map with no event mark (p1 #10, p3 #19). Mark it on the map? On-r1 #41 adds: the English FAQ's dates festival «early in the year» next to the November card — two events or one?",
+  "harees / balaleet: neither the English nor the Arabic describes the two dishes; a Turkish reader cannot picture them (p3 #29). Supply a one-line description in the source if wanted. (Also on-r1 #49.)",
+  "Visit cards «Akşamları 16.30–21.30, önceden randevuyla» (Abdürrezzak el-Arab Müzesi — 16.30 is afternoon to a Turkish reader), «Akşamları» with no hours, and «rezervasyon ve randevu» (Salih ez-Zafer Müzesi) (on-r1 #36): confirm the hours and one booking word?",
+  "El-Ahsa Misket Limonu Çiftliği «Her gün 16.00–21.30 (yetişme mevsimlerinde)» — which months (on-r1 #40)?"
+ ],
+ "notes": [
+  "Bahreyn (existing termbase entry): add the scope note — «Bahreyn» is also the modern state (pt.faq.6.a «Bahreyn'e kara yoluyla … ulaşılır»; tr.wikipedia «Bahreyn Krallığı … ada ülkesidir»); the historic-region use keeps its bracket inside Yaqut's quotation. finish-ui does not edit existing entries.",
+  "16 strings edited in round 1, 14 in round 2 (on the proof's NOTEs, the two-reader threshold items and once-flagged reader items): ui.plan.lead, ui.plan.empty.d, pt.ctaD, pt.getThere.2.d, pt.faq.7.a, pt.practical.0.v, pt.tips.1.d, pt.faq.0.a, pt.faq.10.a, ui.map.lead.a, ui.map.pop.view, pt.getThere.0.d, pt.faq.1.a, pt.faq.4.a. A fresh proofread and a fresh blind reader on these are owed before the merge per the role file.",
+  "Rechecked after the edits: faq.2.a and faq.3.a untouched (visit-card facts as published); food names byte-identical between faq.10.a and faq.12.a («El-Ahsa kırmızı pirinci», «haris», «balalit», «hurma ekmeği»); pairs pt.ctaBrowse = ui.plan.empty.browse, pt.ctaTrip = ui.plan.title = «Kayıtlı yerlerim», pt.faqH, pt.eyebrow, savedTwo = savedFew = savedSuffix; quoted “Bu yeri kaydedin” and “Kayıtlı yerlerim” byte-identical; {n} present; every digit as the English (326, 3 saat 20 dakika, 150, 1,5, 36, 10, 2020, 2018, 08.00, 23.00, 50, 3D).",
+  "Sentence-by-sentence check against the English done for ui.map.lead.a, ui.plan.lead, ui.plan.empty.d, ui.plan.shared.d, ui.plan.routeLimit, the three arrive paragraphs, the four practical values, the four tips, the 13 FAQ answers, pt.ctaD and pt.seoDesc. Deliberate losses: pt.faq.0.a renders «welcoming … hospitality» once (the English repeats); pt.tips.1.d adds the verb «uygundur» for the English's «for».",
+  "P6, P7, P11, P12 stay open; P7 (lomi) untouched — «misket limonu (lomi)» as the termbase A11-lime form.",
+  "SAR mentions after M2-r2: «Suudi riyali (SAR)» (practical.3.v), «50 SAR» (faq.2.a) — the currency only; the railway «Suudi Arabistan Demiryolları» without the acronym in getThere.2.d, faq.5.a, faq.6.a, faq.7.a; «sar.com.sa» in faq.7.a.",
+  "Round 2 rechecked after the edits: faq.2.a and faq.3.a untouched (visit-card facts); food names byte-identical between faq.10.a and faq.12.a; pt.ctaBrowse = ui.plan.empty.browse, pt.ctaTrip = ui.plan.title, savedTwo = savedFew = savedSuffix; “Bu yeri kaydedin” and “Kayıtlı yerlerim” quoted byte-identical; {n} kept; no label gained a stop (ui.map.pop.view ends with →).",
+  "Deliberate losses round 2: «ready-made» (M1-r2); the bracketed «(SAR)» after the company (M2-r2, the acronym rests on sar.com.sa)."
+ ],
+ "scores_row": "tr-map-plan-1,2026-10-31,2,91,APPROVE"
+}

@@ -36,7 +36,7 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
     const h = ok.find((p) => HOURS_RE.test(p.label));
     const f = ok.find((p) => FEES_RE.test(p.label));
     if (!h && !f) continue;
-    if (h && !hoursHead && /^(المواعيد|Hours|开放时间|Öffnungszeiten|Часы работы|اوقات)$/.test(pickL(h) ?? '')) hoursHead = pickL(h);
+    if (h && !hoursHead && /^(المواعيد|Hours|开放时间|Öffnungszeiten|Часы работы|اوقات|Ziyaret saatleri)$/.test(pickL(h) ?? '')) hoursHead = pickL(h);
     if (f && !feesHead) feesHead = pickL(f);
     const hasOwn = lang === 'ar' || lang === 'en' || (lang === 'zh' && e.data.title_zh) || (lang === 'de' && e.data.title_de) || (lang === 'ru' && e.data.title_ru) || (lang === 'ur' && e.data.title_ur) || (lang === 'tr' && e.data.title_tr);
     // الفعالية الموسمية (category: experience — قرية النخيل) تُوسَم في خانة الاسم بوسم plan.tableEvent المعتمد
@@ -48,8 +48,9 @@ export async function practicalTable(lang: Lang): Promise<Table | null> {
       f ? (pickV(f) as string) : '—',
     ] });
   }
-  // رأسا «اوقات» و«فیس» الأورديان من تسميات البنود المعتمدة نفسها، ورأس العمود الأول من دفعة ur-plan-1.
-  const nameHead = ({ ar: 'المعلم', en: 'Attraction', zh: '景点', de: 'Sehenswürdigkeit', ru: 'Достопримечательность', ur: 'سیاحتی مقام' } as Partial<Record<Lang, string>>)[lang];
+  // رأسا «اوقات» و«فیس» الأورديان من تسميات البنود المعتمدة نفسها، ورأس العمود الأول من دفعة ur-plan-1؛
+  // والتركية كذلك: «Ziyaret saatleri» و«Ücretler» من بطاقات المعالم، ورأس العمود الأول من دفعة tr-map-plan-1.
+  const nameHead = ({ ar: 'المعلم', en: 'Attraction', zh: '景点', de: 'Sehenswürdigkeit', ru: 'Достопримечательность', ur: 'سیاحتی مقام', tr: 'Gezilecek yer' } as Partial<Record<Lang, string>>)[lang];
   if (!rows.length || !nameHead || !hoursHead || !feesHead) return null;
   return {
     id: 'practical',

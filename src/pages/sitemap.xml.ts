@@ -63,7 +63,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/معالم/', en: '/en/attractions/', zh: '/zh/attractions/', de: '/de/attractions/', ru: '/ru/attractions/', ur: '/ur/attractions/', tr: '/tr/attractions/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
     // صفحة الأسواق والمنتزهات تستخدم AttractionsView نفسه بنطاق leisure
     { ar: '/أسواق-ومنتزهات-ومزارع/', en: '/en/souqs-parks-farms/', zh: '/zh/souqs-parks-farms/', de: '/de/souqs-parks-farms/', ru: '/ru/souqs-parks-farms/', ur: '/ur/souqs-parks-farms/', lastmod: dateOf(`${V}AttractionsView.astro`, ...attractionFiles) },
-    { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', de: '/de/map/', ru: '/ru/map/', ur: '/ur/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
+    { ar: '/خريطة/', en: '/en/map/', zh: '/zh/map/', de: '/de/map/', ru: '/ru/map/', ur: '/ur/map/', tr: '/tr/map/', lastmod: dateOf(`${V}MapView.astro`, ...attractionFiles) },
     { ...staticAlt('terrainMap'), lastmod: dateOf(`${V}TerrainMapView.astro`, ...attractionFiles) },
 
     // السياسات: مفهرسة وتعلن hreflang بلغاتها الخمس (يحرسه C75)
@@ -73,7 +73,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', ur: '/ur/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', ur: '/ur/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', ur: '/ur/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
-    { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', ur: '/ur/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
+    { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', ur: '/ur/plan-your-trip/', tr: '/tr/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
     // دليل التأشيرات عربي وإنجليزي (2026-10-16) — نصّه في src/data/visa-guide.ts
     { ...VISA_GUIDE_ALT, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.ts') },
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },

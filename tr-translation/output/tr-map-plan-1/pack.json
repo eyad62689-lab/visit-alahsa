@@ -1,0 +1,1417 @@
+{
+  "batch": "tr-map-plan-1",
+  "lang": "tr-TR",
+  "pages": [
+    "/tr/map/",
+    "/tr/plan/",
+    "/tr/plan-your-trip/"
+  ],
+  "units": {
+    "map": "ui.map.*",
+    "mytrip": "ui.plan.*",
+    "pt-arrive": "pt.eyebrow/title/lead/getThere*",
+    "pt-practical": "pt.practical*, pt.table.nameHead",
+    "pt-tips": "pt.tips*",
+    "pt-faq": "pt.faq*",
+    "pt-close": "pt.cta*, pt.seo*"
+  },
+  "rule": "en is the source; ar is the arbiter on facts and the source of name spellings; ctx was written from the component code; precedent = published approved zh/de/ru/ur (for understanding, never copied).",
+  "ui_keys": [
+    "map.eyebrow",
+    "map.title",
+    "map.lead.a",
+    "map.search.ph",
+    "map.filter.aria",
+    "map.terrain",
+    "map.locate",
+    "map.list.aria",
+    "map.count",
+    "map.empty",
+    "map.pop.view",
+    "plan.eyebrow",
+    "plan.title",
+    "plan.lead",
+    "plan.savedSuffix",
+    "plan.savedOne",
+    "plan.savedTwo",
+    "plan.savedFew",
+    "plan.clearConfirm",
+    "plan.routeLimit",
+    "plan.route",
+    "plan.clear",
+    "plan.remove",
+    "plan.location",
+    "plan.empty.h",
+    "plan.empty.d",
+    "plan.empty.browse",
+    "plan.empty.map",
+    "plan.tableEvent",
+    "plan.share",
+    "plan.copy",
+    "plan.print",
+    "plan.waText",
+    "plan.shared.h",
+    "plan.shared.d",
+    "plan.shared.import",
+    "plan.shared.mine",
+    "plan.printNote"
+  ],
+  "strings": {
+    "ui.map.eyebrow": {
+      "en": "Visit guide",
+      "ar": "دليل الزيارة",
+      "ctx": "Small kicker printed above the H1 of the map page (span.eyebrow). The attractions index prints the approved «Gezi rehberi» for the same English («Visit guide», ref.ui list.eyebrow) — the same string here unless the page gives a reason. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "游览指南",
+        "de": "Reiseführer",
+        "ru": "Путеводитель",
+        "ur": "سیاحتی معلومات"
+      },
+      "ui_key": "map.eyebrow",
+      "unit": "map"
+    },
+    "ui.map.title": {
+      "en": "Attractions Map",
+      "ar": "خريطة معالم الأحساء",
+      "ctx": "H1 of the map page; also the browser tab title (followed by the separator and the brand), the aria-label of the map canvas, and the page name in the breadcrumb JSON-LD. The header nav item for this page is the approved «Harita» (ref.ui nav.map). Sentence case (P9); a noun phrase, no final stop. The Arabic names El-Ahsa, the English does not.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "景点地图",
+        "de": "Karte der Sehenswürdigkeiten",
+        "ru": "Карта достопримечательностей",
+        "ur": "سیاحتی مقامات کا نقشہ"
+      },
+      "ui_key": "map.title",
+      "unit": "map"
+    },
+    "ui.map.lead.a": {
+      "en": "sights on the map of the oasis — search or pick a category, and click or tap any place in the list or on the map to open its card.",
+      "ar": "معلماً — مواقع الأماكن السياحية في الأحساء على الخريطة: ابحث أو اختر فئة، واضغط أي معلم في القائمة أو الخريطة لفتح بطاقته.",
+      "ctx": "The paragraph under the H1. The component prints the COUNT of landmarks (59 today, derived from the data) and this text: if the string contains «{n}» the count is put there (the ru/ur shape — REQUIRED here: Turkish puts the number before the noun, so write «{n}» where the number goes, e.g. «Vahanın haritasında {n} gezilecek yer: …»); without «{n}» the count is printed before the string as a bare number. The sentence then tells the visitor what to do: search or pick a category, then click or tap a place in the list or on the map to open its card (= the small popup). «click or tap» covers mouse and touch — one verb that covers both (the home batch ruled against a touch-only verb). The map page is also the meta description of the page (what search engines show), so it must read as one full sentence with the number in it.",
+      "placeholders": [
+        "{n}"
+      ],
+      "precedent": {
+        "zh": "处景点已在绿洲地图上标出——您可以搜索或按类别筛选，点击列表或地图中的任意景点，即可打开它的信息卡。",
+        "de": "Sehenswürdigkeiten auf der Karte der Oase – suchen Sie nach einer Sehenswürdigkeit oder wählen Sie eine Kategorie. Klicken oder tippen Sie dann auf eine beliebige Sehenswürdigkeit in der Liste oder auf der Karte, um ihre Kurzinfo zu öffnen.",
+        "ru": "Ищите достопримечательности на карте оазиса — здесь их {n}: выбирайте категорию или пользуйтесь поиском, а затем нажимайте на любой объект в списке или на карте, чтобы открыть его карточку.",
+        "ur": "الاحساء کے نخلستان کے نقشے پر {n} مقامات ہیں۔ تلاش کریں یا کوئی زمرہ چنیں۔ فہرست میں یا نقشے پر کسی بھی مقام کو چنیں تو اس کا مختصر تعارف کھل جائے گا۔"
+      },
+      "ui_key": "map.lead.a",
+      "unit": "map"
+    },
+    "ui.map.search.ph": {
+      "en": "Search attractions…",
+      "ar": "ابحث عن معلم…",
+      "ctx": "Placeholder text inside the search box above the map, and its aria-label. The attractions index uses the approved «Gezilecek yer arayın…» for its search box (ref.ui list.search) — reuse unless the page gives a reason. Ends with «…» as the English.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "搜索景点…",
+        "de": "Sehenswürdigkeiten suchen…",
+        "ru": "Искать достопримечательность…",
+        "ur": "مقام تلاش کریں…"
+      },
+      "ui_key": "map.search.ph",
+      "unit": "map"
+    },
+    "ui.map.filter.aria": {
+      "en": "Filter attractions by category",
+      "ar": "تصفية المعالم حسب الفئة",
+      "ctx": "aria-label of the row of category chips (screen readers only; not visible). A short noun phrase or infinitive, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "按类别筛选景点",
+        "de": "Sehenswürdigkeiten nach Kategorie filtern",
+        "ru": "Фильтр достопримечательностей по категории",
+        "ur": "زمرے کے لحاظ سے مقامات کا انتخاب"
+      },
+      "ui_key": "map.filter.aria",
+      "unit": "map"
+    },
+    "ui.map.terrain": {
+      "en": "3D terrain map",
+      "ar": "الخريطة التضاريسية 3D",
+      "ctx": "Link text to the 3D terrain map page, followed by an arrow «→» printed by the component. The Turkish terrain-map page is not built: the link goes to the English page /en/terrain-map/ — name the page, promise no Turkish version. «3D» stays as the English/Arabic write it («3D» with a Latin D; allowNums carries the 3).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "3D 地形图",
+        "de": "3D-Geländekarte",
+        "ru": "3D-карта рельефа",
+        "ur": "زمین کے نشیب و فراز کا تین جہتی نقشہ"
+      },
+      "ui_key": "map.terrain",
+      "unit": "map",
+      "allowNums": [
+        "3"
+      ]
+    },
+    "ui.map.locate": {
+      "en": "My location on the map",
+      "ar": "موقعي على الخريطة",
+      "ctx": "aria-label AND title (tooltip) of the round «locate me» button beside the search box (an icon only, no visible text). When pressed, the list is sorted by distance from the visitor. Noun phrase as the English («My location on the map»); no final stop. The error message of the same button is the approved «Konumunuz belirlenemedi — …» (ref.ui map.locate.err).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "我在地图上的位置",
+        "de": "Mein Standort auf der Karte",
+        "ru": "Моё местоположение на карте",
+        "ur": "نقشے پر میری جگہ"
+      },
+      "ui_key": "map.locate",
+      "unit": "map"
+    },
+    "ui.map.list.aria": {
+      "en": "List of attractions shown on the map",
+      "ar": "قائمة المعالم الظاهرة على الخريطة",
+      "ctx": "aria-label of the side list of landmarks (screen readers only). Noun phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "地图上当前显示的景点列表",
+        "de": "Liste der auf der Karte angezeigten Sehenswürdigkeiten",
+        "ru": "Список достопримечательностей, показанных на карте",
+        "ur": "نقشے پر دکھائے گئے مقامات کی فہرست"
+      },
+      "ui_key": "map.list.aria",
+      "unit": "map"
+    },
+    "ui.map.count": {
+      "en": "Showing",
+      "ar": "المعالم الظاهرة",
+      "ctx": "Label at the top of the side list, printed as «<this>: 59» (a colon and the number follow it, the number changes with the filter). A short noun phrase; the Arabic «المعالم الظاهرة», the English «Showing». No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "当前显示",
+        "de": "Angezeigte Sehenswürdigkeiten",
+        "ru": "Показано",
+        "ur": "دکھائے گئے مقامات"
+      },
+      "ui_key": "map.count",
+      "unit": "map"
+    },
+    "ui.map.empty": {
+      "en": "No matches — try another word or category.",
+      "ar": "لا نتائج مطابقة — جرّب كلمة أخرى أو فئة مختلفة.",
+      "ctx": "Message shown in the side list when the search/filter matches nothing. Full sentence with a stop; the attractions index uses the approved «Eşleşen sonuç yok — başka bir kelime deneyin.» for «No matches — try another word.» (ref.ui search.empty) — this one adds «or category».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "没有找到匹配的景点——换个关键词或类别试试。",
+        "de": "Keine Ergebnisse – versuchen Sie ein anderes Wort oder eine andere Kategorie.",
+        "ru": "Ничего не найдено — попробуйте другое слово или категорию.",
+        "ur": "کوئی نتیجہ نہیں ملا، کوئی دوسرا لفظ یا زمرہ آزمائیں۔"
+      },
+      "ui_key": "map.empty",
+      "unit": "map"
+    },
+    "ui.map.pop.view": {
+      "en": "View page →",
+      "ar": "عرض الصفحة ←",
+      "ctx": "Link text at the foot of the map popup card (opened when a pin or a list item is clicked), followed by the arrow «→» that is part of the string. Leads to the landmark page. The home batch uses «→» arrows the same way (ref.home water.link). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "查看详情 →",
+        "de": "Seite ansehen →",
+        "ru": "Открыть страницу →",
+        "ur": "صفحہ دیکھیں ←"
+      },
+      "ui_key": "map.pop.view",
+      "unit": "map"
+    },
+    "ui.plan.eyebrow": {
+      "en": "Your own list",
+      "ar": "قائمتك الخاصة",
+      "ctx": "Small kicker above the H1 of «My saved places» (PageHero eyebrow). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您的专属列表",
+        "de": "Ihre eigene Liste",
+        "ru": "Ваш личный список",
+        "ur": "آپ کی اپنی فہرست"
+      },
+      "ui_key": "plan.eyebrow",
+      "unit": "mytrip"
+    },
+    "ui.plan.title": {
+      "en": "My saved places",
+      "ar": "معالمي المحفوظة",
+      "ctx": "H1 of the page, the browser tab title (with separator and brand), and the name of the page everywhere else: the header nav item and the home page use the approved «Kayıtlı yerlerim» for the same English (ref.ui nav.myTrip; ref.home saved.* and finale.open) — byte-identical here. The page is noindex.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "我的收藏",
+        "de": "Merkliste",
+        "ru": "Сохранённые места",
+        "ur": "میرے محفوظ کردہ مقامات"
+      },
+      "ui_key": "plan.title",
+      "unit": "mytrip"
+    },
+    "ui.plan.lead": {
+      "en": "The sights you chose are saved on this device. Arrange them, and get a ready-made route.",
+      "ar": "المعالم التي اخترتها محفوظةٌ على هذا الجهاز. رتّبها، واحصل على مسارٍ جاهز.",
+      "ctx": "Paragraph under the H1 and the meta description of the page. Two sentences: the sights the visitor chose are saved on this device (localStorage — nothing is sent anywhere); arrange them and get a ready-made route (a Google Maps route). Keep both facts; siz forms.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您挑选的景点已保存在本设备上。安排好这些景点，即可获取一条现成路线。",
+        "de": "Die Sehenswürdigkeiten, die Sie ausgewählt haben, sind auf diesem Gerät gespeichert. Ordnen Sie sie an und erhalten Sie eine fertige Route.",
+        "ru": "Достопримечательности, которые вы выбрали, сохранены на этом устройстве. Расставьте их по порядку — и получите готовый маршрут.",
+        "ur": "آپ نے جو سیاحتی مقامات چنے ہیں، وہ اس آلے پر محفوظ ہیں۔ انہیں ترتیب دیں اور بنا بنایا راستہ پا لیں۔"
+      },
+      "ui_key": "plan.lead",
+      "unit": "mytrip"
+    },
+    "ui.plan.savedSuffix": {
+      "en": "sights saved",
+      "ar": "معلماً محفوظاً",
+      "ctx": "The count line above the saved cards is printed as «<N> <suffix>» (the number in its own element, then this text). The browser picks the suffix by Intl.PluralRules for Turkish, which returns «one» for 1 and «other» for every other number: plan.savedOne is used for 1, THIS string for 2, 3, 10 … The shape must read correctly after any number («3 …»). No final stop. plan.savedTwo / plan.savedFew are never selected for Turkish — make them identical to this string.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "处景点已收藏",
+        "de": "Sehenswürdigkeiten gespeichert",
+        "ru": "достопримечательностей сохранено",
+        "ur": "سیاحتی مقامات محفوظ"
+      },
+      "ui_key": "plan.savedSuffix",
+      "unit": "mytrip"
+    },
+    "ui.plan.savedOne": {
+      "en": "sight saved",
+      "ar": "معلم محفوظ",
+      "ctx": "Same count line for exactly one saved sight: «1 <this>». Turkish keeps the noun singular after a number in every case, so this and plan.savedSuffix normally differ only if the verb/participle differs — the natural solution is one identical text for all four forms, or a form that reads after «1» and after «3» alike. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "处景点已收藏",
+        "de": "Sehenswürdigkeit gespeichert",
+        "ru": "достопримечательность сохранена",
+        "ur": "سیاحتی مقام محفوظ"
+      },
+      "ui_key": "plan.savedOne",
+      "unit": "mytrip"
+    },
+    "ui.plan.savedTwo": {
+      "en": "sights saved",
+      "ar": "معلمان محفوظان",
+      "ctx": "Never selected for Turkish (no «two» category) — must exist for the code; make it identical to plan.savedSuffix.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "处景点已收藏",
+        "de": "Sehenswürdigkeiten gespeichert",
+        "ru": "достопримечательности сохранены",
+        "ur": "سیاحتی مقامات محفوظ"
+      },
+      "ui_key": "plan.savedTwo",
+      "unit": "mytrip"
+    },
+    "ui.plan.savedFew": {
+      "en": "sights saved",
+      "ar": "معالم محفوظة",
+      "ctx": "Never selected for Turkish (no «few» category) — must exist for the code; make it identical to plan.savedSuffix.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "处景点已收藏",
+        "de": "Sehenswürdigkeiten gespeichert",
+        "ru": "достопримечательности сохранены",
+        "ur": "سیاحتی مقامات محفوظ"
+      },
+      "ui_key": "plan.savedFew",
+      "unit": "mytrip"
+    },
+    "ui.plan.clearConfirm": {
+      "en": "Clear all your saved places?",
+      "ar": "أتريد إفراغ قائمة معالمك المحفوظة كاملةً؟",
+      "ctx": "Text of the browser confirm() dialog after the «Clear list» button: a yes/no question ending with «?». siz form.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "确定要清空整个收藏列表吗？",
+        "de": "Möchten Sie Ihre gesamte Merkliste leeren?",
+        "ru": "Очистить весь список сохранённых мест?",
+        "ur": "کیا آپ اپنے محفوظ کردہ مقامات کی پوری فہرست خالی کرنا چاہتے ہیں؟"
+      },
+      "ui_key": "plan.clearConfirm",
+      "unit": "mytrip"
+    },
+    "ui.plan.routeLimit": {
+      "en": "Google Maps accepts 10 stops per route, so the route opens with the first 10 sights on your list.",
+      "ar": "خرائط قوقل تقبل 10 محطات في المسار الواحد، فيُفتح المسار بأول 10 معالم في قائمتك.",
+      "ctx": "Small note under the action buttons, shown only when more than 10 sights are saved: Google Maps accepts 10 stops per route, so the route opens with the first 10 sights of the list. «Google Maps» = the approved «Google Haritalar» (termbase; «Google Haritalar'da açın» is the approved button on landmark pages). Full sentence with a stop; the two 10s stay digits.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "谷歌地图每条路线最多支持 10 个地点，因此路线打开后只包含您列表中的前 10 处景点。",
+        "de": "Google Maps akzeptiert 10 Stationen pro Route, daher öffnet sich die Route mit den ersten 10 Sehenswürdigkeiten Ihrer Liste.",
+        "ru": "Google Карты принимают не более 10 точек в одном маршруте, поэтому он откроется с первыми 10 достопримечательностями из вашего списка.",
+        "ur": "گوگل میپس ایک راستے میں زیادہ سے زیادہ 10 پڑاؤ قبول کرتا ہے، اس لیے آپ کی فہرست کے پہلے 10 سیاحتی مقامات کا راستہ کھلے گا۔"
+      },
+      "ui_key": "plan.routeLimit",
+      "unit": "mytrip"
+    },
+    "ui.plan.route": {
+      "en": "Open the route in Google Maps",
+      "ar": "افتح المسار في خرائط قوقل",
+      "ctx": "Gold button (link): opens the route of the saved sights in Google Maps in a new tab. The landmark pages have the approved «Google Haritalar'da açın ↗» for «Open in Google Maps ↗» (ref.ui det.openMaps) — same verb and name here; no arrow in this string. Imperative siz, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "在谷歌地图中打开路线",
+        "de": "Route in Google Maps öffnen",
+        "ru": "Открыть маршрут в Google Картах",
+        "ur": "گوگل میپس پر راستہ کھولیں"
+      },
+      "ui_key": "plan.route",
+      "unit": "mytrip"
+    },
+    "ui.plan.clear": {
+      "en": "Clear list",
+      "ar": "أفرغ القائمة",
+      "ctx": "Ghost button: empties the saved list (after the confirm question). Short imperative, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "清空列表",
+        "de": "Liste leeren",
+        "ru": "Очистить список",
+        "ur": "فہرست خالی کریں"
+      },
+      "ui_key": "plan.clear",
+      "unit": "mytrip"
+    },
+    "ui.plan.remove": {
+      "en": "Remove",
+      "ar": "إزالة",
+      "ctx": "Small text button at the foot of each saved card: removes that sight from the list. One word if possible, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "移除",
+        "de": "Entfernen",
+        "ru": "Удалить",
+        "ur": "ہٹائیں"
+      },
+      "ui_key": "plan.remove",
+      "unit": "mytrip"
+    },
+    "ui.plan.location": {
+      "en": "Location ↗",
+      "ar": "الموقع ↗",
+      "ctx": "Small link at the foot of each saved card, opens the landmark's Google Maps location in a new tab; the «↗» is part of the string. One or two words + «↗». The map page's locate button uses «konum» for the visitor's own location (ui.map.locate of this batch) — here it is the PLACE's location.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "在谷歌地图中打开 ↗",
+        "de": "Standort ↗",
+        "ru": "Место ↗",
+        "ur": "نقشے پر جگہ ↗"
+      },
+      "ui_key": "plan.location",
+      "unit": "mytrip"
+    },
+    "ui.plan.empty.h": {
+      "en": "Your list is empty",
+      "ar": "قائمتك فارغة بعد",
+      "ctx": "Heading of the empty state (shown when nothing is saved): «Your list is empty». Short, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您的列表还是空的",
+        "de": "Ihre Liste ist noch leer",
+        "ru": "Ваш список пока пуст",
+        "ur": "آپ کی فہرست ابھی خالی ہے"
+      },
+      "ui_key": "plan.empty.h",
+      "unit": "mytrip"
+    },
+    "ui.plan.empty.d": {
+      "en": "Browse the attractions and click or tap “Save this place” to gather your destinations here, then get a ready route.",
+      "ar": "تصفّح المعالم واضغط «احفظ المعلم» لتجمع وجهاتك هنا، ثم احصل على مسارٍ جاهز.",
+      "ctx": "Paragraph of the empty state: browse the attractions and click or tap “Save this place” to gather your destinations here, then get a ready route. The button name quoted is the approved «Bu yeri kaydedin» (ref.ui fav.add) — quote it byte-identical in “…”. «click or tap» as in ui.map.lead.a. Full sentence(s) with a stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "浏览景点，点击“收藏景点”，把想去的地方收集到这里，再获取一条现成路线。",
+        "de": "Durchstöbern Sie die Sehenswürdigkeiten, und klicken oder tippen Sie auf „Diesen Ort merken“, um Ihre Ziele hier zu sammeln. Anschließend erhalten Sie eine fertige Route.",
+        "ru": "Просмотрите достопримечательности и нажмите «Сохранить место», чтобы собрать здесь всё, что хотите посетить, а затем получите готовый маршрут.",
+        "ur": "سیاحتی مقامات دیکھیں، اور انہیں یہاں جمع کرنے کے لیے “یہ مقام محفوظ کریں” چنیں۔ پھر بنا بنایا راستہ پا لیں۔"
+      },
+      "ui_key": "plan.empty.d",
+      "unit": "mytrip"
+    },
+    "ui.plan.empty.browse": {
+      "en": "Browse attractions",
+      "ar": "تصفّح المعالم",
+      "ctx": "Turquoise button under the empty-state text, leads to /tr/attractions/ (the approved index name is «Gezilecek yerler», ref.ui nav.attractions). The home page and PlanTripView have buttons for the same action (ref.home finale.* / pt.ctaBrowse of this batch) — one wording across the site. Imperative siz, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "浏览景点",
+        "de": "Sehenswürdigkeiten entdecken",
+        "ru": "Смотреть достопримечательности",
+        "ur": "سیاحتی مقامات دیکھیں"
+      },
+      "ui_key": "plan.empty.browse",
+      "unit": "mytrip"
+    },
+    "ui.plan.empty.map": {
+      "en": "Open the map",
+      "ar": "استعرض الخريطة",
+      "ctx": "Ghost button beside it, leads to /tr/map/ (this batch's ui.map.title). Imperative siz, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "查看地图",
+        "de": "Karte öffnen",
+        "ru": "Открыть карту",
+        "ur": "نقشہ کھولیں"
+      },
+      "ui_key": "plan.empty.map",
+      "unit": "mytrip"
+    },
+    "ui.plan.tableEvent": {
+      "en": "event",
+      "ar": "فعالية",
+      "ctx": "Tag printed after a landmark name in the hours/fees table of /tr/plan-your-trip/, only for the seasonal event listed among the attractions (Palm Village, «Hurma Köyü»): «Hurma Köyü (<this>)». One lower-case word (the four precedents are one noun); no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "活动",
+        "de": "Veranstaltung",
+        "ru": "мероприятие",
+        "ur": "تقریب"
+      },
+      "ui_key": "plan.tableEvent",
+      "unit": "mytrip"
+    },
+    "ui.plan.share": {
+      "en": "Share on WhatsApp",
+      "ar": "شاركها في واتساب",
+      "ctx": "Turquoise button: opens WhatsApp with a share link to the list. «WhatsApp» stays Latin. Imperative siz, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "分享到 WhatsApp",
+        "de": "Auf WhatsApp teilen",
+        "ru": "Поделиться в WhatsApp",
+        "ur": "واٹس ایپ پر اشتراک کریں"
+      },
+      "ui_key": "plan.share",
+      "unit": "mytrip"
+    },
+    "ui.plan.copy": {
+      "en": "Copy share link",
+      "ar": "انسخ رابط المشاركة",
+      "ctx": "Ghost button: copies the share link to the clipboard; after success the button text becomes the approved «Bağlantı kopyalandı ✓» (ref.ui plan.copied) for two seconds — use the same noun for «link» («bağlantı»). Imperative siz, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "复制分享链接",
+        "de": "Link kopieren",
+        "ru": "Скопировать ссылку",
+        "ur": "اشتراک کا لنک کاپی کریں"
+      },
+      "ui_key": "plan.copy",
+      "unit": "mytrip"
+    },
+    "ui.plan.print": {
+      "en": "Print the list",
+      "ar": "اطبع القائمة",
+      "ctx": "Ghost button: prints the list (window.print). Imperative siz, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "打印列表",
+        "de": "Liste drucken",
+        "ru": "Распечатать список",
+        "ur": "فہرست چھاپیں"
+      },
+      "ui_key": "plan.print",
+      "unit": "mytrip"
+    },
+    "ui.plan.waText": {
+      "en": "My saved places in Al-Ahsa:",
+      "ar": "معالمي المحفوظة في الأحساء:",
+      "ctx": "First line of the WhatsApp message, followed on the next line by the share URL: «My saved places in Al-Ahsa:» — ends with a colon. The page name as the approved «Kayıtlı yerlerim» allows; El-Ahsa with the locative suffix (P8 apostrophe).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "我收藏的哈萨景点：",
+        "de": "Meine Merkliste für Al-Ahsa:",
+        "ru": "Мои сохранённые места в Аль-Ахсе:",
+        "ur": "الاحساء میں میرے محفوظ کردہ مقامات:"
+      },
+      "ui_key": "plan.waText",
+      "unit": "mytrip"
+    },
+    "ui.plan.shared.h": {
+      "en": "A shared list of sights",
+      "ar": "قائمة معالم مُشارَكة",
+      "ctx": "Heading of the note shown when the page is opened through a share link (?list=…): the visitor is looking at someone else's list. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "他人分享的景点列表",
+        "de": "Eine geteilte Liste von Sehenswürdigkeiten",
+        "ru": "Список достопримечательностей, которым поделились с вами",
+        "ur": "سیاحتی مقامات کی اشتراک کردہ فہرست"
+      },
+      "ui_key": "plan.shared.h",
+      "unit": "mytrip"
+    },
+    "ui.plan.shared.d": {
+      "en": "This list reached you via a share link — browse it, or add it to your own “My saved places”.",
+      "ar": "وصلتك هذه القائمة برابط مشاركة — استعرضها، أو أضفها إلى «معالمي المحفوظة» عندك.",
+      "ctx": "Paragraph of that note: this list reached you via a share link — browse it, or add it to your own “My saved places”. The quoted page name = the approved «Kayıtlı yerlerim» byte-identical in “…”. Full sentence with a stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这份列表是通过分享链接发给您的。您可以直接浏览，也可以把它加入“我的收藏”。",
+        "de": "Sie haben diese Liste über einen Freigabelink erhalten – stöbern Sie darin, oder fügen Sie sie zu Ihrer eigenen Merkliste hinzu.",
+        "ru": "Этот список пришёл к вам по ссылке — просмотрите его или добавьте в свой раздел «Сохранённые места».",
+        "ur": "یہ فہرست آپ کو اشتراک کے لنک سے ملی ہے۔ اسے دیکھیں، یا اپنے “میرے محفوظ کردہ مقامات” میں شامل کر لیں۔"
+      },
+      "ui_key": "plan.shared.d",
+      "unit": "mytrip"
+    },
+    "ui.plan.shared.import": {
+      "en": "Add to my saved places",
+      "ar": "أضفها إلى معالمي المحفوظة",
+      "ctx": "Gold button in that note: adds the shared list's sights to the visitor's own saved list. Imperative siz, no final stop; names «my saved places» as the English (the approved page name or a plain phrase — rule one with plan.shared.mine).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "全部加入我的收藏",
+        "de": "Zu meiner Merkliste hinzufügen",
+        "ru": "Добавить в сохранённые места",
+        "ur": "میرے محفوظ کردہ مقامات میں شامل کریں"
+      },
+      "ui_key": "plan.shared.import",
+      "unit": "mytrip"
+    },
+    "ui.plan.shared.mine": {
+      "en": "View my saved places",
+      "ar": "اعرض معالمي المحفوظة",
+      "ctx": "Ghost button beside it: leaves the shared list and shows the visitor's own saved places. Imperative siz, no final stop; parallel with plan.shared.import.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "查看我的收藏",
+        "de": "Meine Merkliste ansehen",
+        "ru": "Открыть мои сохранённые места",
+        "ur": "میرے محفوظ کردہ مقامات دیکھیں"
+      },
+      "ui_key": "plan.shared.mine",
+      "unit": "mytrip"
+    },
+    "ui.plan.printNote": {
+      "en": "Times and fees can change — confirm via official channels before visiting.",
+      "ar": "المواعيد والرسوم قابلة للتغيير — تأكد من القنوات الرسمية قبل الزيارة.",
+      "ctx": "One line printed only on the paper version (print stylesheet) under the title: times and fees can change — confirm via official channels before visiting. The landmark pages carry the approved «Saatler ve ücretler değişebilir — ziyaretten önce {op} ile teyit edin.» (ref.ui det.hoursNotice) — same nouns and verb; this one has no operator placeholder («official channels»). Full sentence with a stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "开放时间与费用可能变动，出行前请以官方渠道信息为准。",
+        "de": "Öffnungszeiten und Eintritt können sich ändern – prüfen Sie beides vor Ihrem Besuch über die offiziellen Kanäle nach.",
+        "ru": "Часы работы и стоимость входа могут меняться — перед поездкой уточните их по официальным источникам.",
+        "ur": "اوقات اور فیس میں تبدیلی ہو سکتی ہے، اس لیے جانے سے پہلے سرکاری ذرائع سے تصدیق کر لیں۔"
+      },
+      "ui_key": "plan.printNote",
+      "unit": "mytrip"
+    },
+    "pt.eyebrow": {
+      "en": "Plan your trip",
+      "ar": "خطّط لرحلتك",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Small kicker above the H1 (PageHero eyebrow) and the page name in the breadcrumb JSON-LD (the visible breadcrumb is not printed on this page). The header nav item for this page is the approved «Gezinizi planlayın» (ref.ui nav.plan) and the home page uses the same words (ref.home) — byte-identical here. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "规划您的行程",
+        "de": "Reise planen",
+        "ru": "План поездки",
+        "ur": "سفر کا منصوبہ بنائیں"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.title": {
+      "en": "Everything you need before you go",
+      "ar": "كلُّ ما تحتاجه قبل أن تنطلق",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H1 of the page. Sentence case (P9), no final stop. The Arabic «كلُّ ما تحتاجه قبل أن تنطلق» = the English.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "出发前，您需要了解的一切",
+        "de": "Alles, was Sie vor Ihrem Besuch brauchen",
+        "ru": "Всё необходимое перед поездкой",
+        "ur": "سفر سے پہلے آپ کو جو کچھ جاننا چاہیے"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.lead": {
+      "en": "Concise, practical information to make your trip smooth from arrival to departure.",
+      "ar": "معلومات عملية موجزة تجعل رحلتك سلسة من الوصول إلى الوداع.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph under the H1. One sentence with a stop; «from arrival to departure» kept as one image.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "简明实用的信息，让您的旅程从抵达到返程一路顺畅。",
+        "de": "Knappe, praktische Informationen für eine reibungslose Reise – von der Ankunft bis zum Abschied.",
+        "ru": "Краткая практическая информация, которая сделает вашу поездку комфортной от приезда до отъезда.",
+        "ur": "مختصر اور کارآمد معلومات، تاکہ پہنچنے سے لے کر واپسی تک آپ کا سفر آسانی سے گزرے۔"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.getThereH": {
+      "en": "How to get to Al-Ahsa",
+      "ar": "كيف تصل إلى الأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H2 of the first section (three cards: by air, by road, by train). The Arabic is a question («كيف تصل إلى الأحساء؟»), the English a noun phrase; the footer link for the same section is the approved «Ulaşım» (ref.ui foot.l.getThere) — a heading may be longer than the footer word. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "如何抵达",
+        "de": "Anreise",
+        "ru": "Как добраться",
+        "ur": "کیسے پہنچیں"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.getThere.0.h": {
+      "en": "By air",
+      "ar": "جوّاً",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H3 of card 1 of «How to get there» (a plane icon above it). Two or three words, parallel across the three cards («By air / By road / By train»). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "乘飞机",
+        "de": "Mit dem Flugzeug",
+        "ru": "На самолёте",
+        "ur": "ہوائی راستے سے"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.getThere.0.d": {
+      "en": "Al-Ahsa International Airport handles domestic and international flights; routes and schedules change, so confirm before booking. Alternatively, King Fahd International Airport in Dammam is about a two-hour drive away and offers wider connections.",
+      "ar": "مطار الأحساء الدولي يستقبل رحلاتٍ داخلية ودولية؛ وتتغيّر الوجهات والجداول فيُنصح بالتأكد قبل الحجز. وبديلاً عنه، مطار الملك فهد الدولي بالدمام يبعد نحو ساعتين بالسيارة ويتيح وجهاتٍ أوسع.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of card 1. Every number, distance and duration exactly as the English (the checker holds every digit to the source; «around»/«about» stay approximate). Names: airports (Al-Ahsa International Airport; King Fahd International Airport in Dammam), Riyadh, Dammam, Khobar, Hofuf, Abqaiq (Buqayq — the Arabic بقيق is the spelling source), the Eastern Province, the railway company «Saudi Arabia Railways (SAR)» — the Arabic «شركة سار». Termbase has Hüfuf, Dammam, El-Huber, Doğu Bölgesi; the airports, Abqaiq and the railway company are new names for stage 4 to attest (tr.wikipedia / TDV / official Turkish). «SAR» in the train card is the railway company, not the currency — write it so it cannot be read as money. Split long chains into two sentences (lesson 1).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨国际机场（Al-Ahsa International Airport）有国内及国际航班起降；航线与班期时有调整，建议您订票前先行确认。如需更多航线选择，达曼的法赫德国王国际机场（King Fahd International Airport）距哈萨约 2 小时车程，是不错的备选。",
+        "de": "Der Flughafen Al-Ahsa fertigt nationale und internationale Flüge ab. Da sich Strecken und Flugpläne ändern, bestätigen Sie diese am besten vor der Buchung. Alternativ liegt der König-Fahd-Flughafen in Dammam etwa zwei Autostunden entfernt und bietet eine größere Auswahl an Verbindungen.",
+        "ru": "Международный аэропорт Аль-Ахсы принимает внутренние и международные рейсы; маршруты и расписание могут меняться, поэтому уточняйте их перед бронированием. Альтернативой может служить Международный аэропорт имени короля Фахда в Даммаме — он находится примерно в двух часах езды на автомобиле и предлагает более широкий выбор направлений.",
+        "ur": "الاحساء بین الاقوامی ہوائی اڈے پر اندرون ملک اور بین الاقوامی پروازیں آتی جاتی ہیں۔ پروازیں اور ان کے اوقات بدلتے رہتے ہیں، اس لیے ٹکٹ لینے سے پہلے تصدیق کر لیں۔ دمام کا شاہ فہد بین الاقوامی ہوائی اڈا بھی ایک متبادل ہے۔ وہاں سے زیادہ مقامات کے لیے پروازیں ملتی ہیں، اور الاحساء تک گاڑی سے تقریباً دو گھنٹے لگتے ہیں۔"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.getThere.1.h": {
+      "en": "By road",
+      "ar": "برّاً",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H3 of card 2 of «How to get there» (a road icon above it). Two or three words, parallel across the three cards («By air / By road / By train»). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "自驾前往",
+        "de": "Mit dem Auto",
+        "ru": "На автомобиле",
+        "ur": "سڑک کے راستے سے"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.getThere.1.d": {
+      "en": "About 326 km from Riyadh (around 3 hours 20 minutes), and close to Dammam and Khobar via a good highway network.",
+      "ar": "تبعد عن الرياض نحو 326 كم (قرابة 3 ساعات و20 دقيقة)، وقريبةٌ من الدمام والخبر عبر شبكة طرقٍ سريعة جيدة.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of card 2. Every number, distance and duration exactly as the English (the checker holds every digit to the source; «around»/«about» stay approximate). Names: airports (Al-Ahsa International Airport; King Fahd International Airport in Dammam), Riyadh, Dammam, Khobar, Hofuf, Abqaiq (Buqayq — the Arabic بقيق is the spelling source), the Eastern Province, the railway company «Saudi Arabia Railways (SAR)» — the Arabic «شركة سار». Termbase has Hüfuf, Dammam, El-Huber, Doğu Bölgesi; the airports, Abqaiq and the railway company are new names for stage 4 to attest (tr.wikipedia / TDV / official Turkish). «SAR» in the train card is the railway company, not the currency — write it so it cannot be read as money. Split long chains into two sentences (lesson 1).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨距利雅得约 326 公里，车程约 3 小时 20 分钟；高速公路网完善，前往达曼与胡拜尔同样便捷。",
+        "de": "Al-Ahsa liegt etwa 326 km von Riad entfernt (rund 3 Stunden 20 Minuten) und ist über ein gut ausgebautes Straßennetz auch von Dammam und Khobar aus leicht erreichbar.",
+        "ru": "Расстояние от Эр-Рияда — около 326 км (примерно 3 часа 20 минут в пути); до Даммама и Эль-Хубара также можно доехать по хорошей сети скоростных шоссе.",
+        "ur": "الاحساء ریاض سے تقریباً 326 کلومیٹر دور ہے، اور گاڑی سے لگ بھگ 3 گھنٹے 20 منٹ لگتے ہیں۔ دمام اور الخبر بھی قریب ہیں، اور وہاں تک اچھی شاہراہیں جاتی ہیں۔"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.getThere.2.h": {
+      "en": "By train",
+      "ar": "بالقطار",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H3 of card 3 of «How to get there» (a train icon above it). Two or three words, parallel across the three cards («By air / By road / By train»). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "乘火车",
+        "de": "Mit dem Zug",
+        "ru": "На поезде",
+        "ur": "ریل گاڑی سے"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.getThere.2.d": {
+      "en": "Hofuf has a station on the Riyadh–Dammam railway (SAR). From Riyadh it is the fastest and most comfortable option (around two hours and ten minutes); from Dammam it is roughly one to one and a half hours, and the train also stops at nearby Abqaiq (Buqayq) on the same line — an excellent choice from the capital and the Eastern Province.",
+      "ar": "للهفوف محطةٌ على خط سكة حديد الرياض–الدمام (شركة سار). من الرياض هي الأسرع والأريح (نحو ساعتين وعشر دقائق)، ومن الدمام نحو ساعة إلى ساعة ونصف، ويتوقف القطار أيضاً في بقيق القريبة على المسار نفسه — خيارٌ ممتاز للقادمين من العاصمة والمنطقة الشرقية.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of card 3. Every number, distance and duration exactly as the English (the checker holds every digit to the source; «around»/«about» stay approximate). Names: airports (Al-Ahsa International Airport; King Fahd International Airport in Dammam), Riyadh, Dammam, Khobar, Hofuf, Abqaiq (Buqayq — the Arabic بقيق is the spelling source), the Eastern Province, the railway company «Saudi Arabia Railways (SAR)» — the Arabic «شركة سار». Termbase has Hüfuf, Dammam, El-Huber, Doğu Bölgesi; the airports, Abqaiq and the railway company are new names for stage 4 to attest (tr.wikipedia / TDV / official Turkish). «SAR» in the train card is the railway company, not the currency — write it so it cannot be read as money. Split long chains into two sentences (lesson 1).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "胡富夫设有利雅得—达曼铁路的车站，由沙特铁路公司（SAR）运营。从利雅得出发，乘火车最快捷也最舒适（约 2 小时 10 分钟）；从达曼出发约需 1 至 1.5 小时。列车还停靠同一线路上邻近的布盖格（Abqaiq）站。无论您从首都还是东部省出发，乘火车都是极佳的选择。",
+        "de": "Hofuf hat einen Bahnhof an der Bahnstrecke Riad–Dammam, die von der Bahngesellschaft SAR betrieben wird. Von Riad aus ist die Zugfahrt die schnellste und komfortabelste Option (rund zwei Stunden und zehn Minuten). Von Dammam aus dauert sie etwa eine bis anderthalb Stunden. Der Zug hält auf derselben Strecke auch im nahegelegenen Abqaiq (Buqayq) – eine ausgezeichnete Wahl für Reisende aus der Hauptstadt und der Ostprovinz (asch-Scharqiyya).",
+        "ru": "В Эль-Хуфуфе есть железнодорожная станция на линии Эр-Рияд — Даммам (компания SAR). Из Эр-Рияда это самый быстрый и комфортный вариант (около двух часов десяти минут); из Даммама — примерно от часа до полутора часов. Поезд также останавливается в соседнем Абкайке (или Букайке) на этой же линии. Это отличный выбор для тех, кто едет из столицы и Восточной провинции.",
+        "ur": "ہفوف میں ایک اسٹیشن ہے جہاں ریاض اور دمام کے درمیان چلنے والی سعودی ریلوے کمپنی کی ریل گاڑیاں رکتی ہیں۔ ریاض سے ریل گاڑی سب سے تیز اور آرام دہ ذریعہ ہے (تقریباً دو گھنٹے دس منٹ)۔ دمام سے تقریباً ایک سے ڈیڑھ گھنٹہ لگتا ہے، اور اسی راستے پر ریل گاڑی قریب ہی بقیق میں بھی رکتی ہے۔ دارالحکومت اور مشرقی صوبے سے آنے والوں کے لیے یہ بہت اچھا انتخاب ہے۔"
+      },
+      "unit": "pt-arrive"
+    },
+    "pt.practicalH": {
+      "en": "Practical information",
+      "ar": "معلومات عملية",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H2 of the second section (four label/value pairs, then the generated hours/fees table). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "实用信息",
+        "de": "Praktische Informationen",
+        "ru": "Практическая информация",
+        "ur": "عملی معلومات"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.0.k": {
+      "en": "Best time to visit Al-Ahsa",
+      "ar": "أفضل وقت لزيارة الأحساء",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Label (dt, small gold caps) of pair 1 of «Practical information». Short noun phrase, no final stop; the four labels parallel.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "最佳季节",
+        "de": "Beste Besuchszeit",
+        "ru": "Лучший сезон",
+        "ur": "بہترین موسم"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.0.v": {
+      "en": "A year-round destination; the air is gentlest from October to March, while summer is a season of bounty and evening experiences.",
+      "ar": "وجهةٌ على مدار العام؛ الأجواء ألطف من أكتوبر إلى مارس، والصيف موسم خيراتٍ وتجاربَ مسائية.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Value (dd) of pair 1, one or two sentences with a stop. Months «October to March» in Turkish lower case («ekimden marta»); no new claim about the weather.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨四季皆宜；10 月至次年 3 月天气最为宜人，夏季则是瓜果飘香、夜间活动丰富的时节。",
+        "de": "Ein ganzjähriges Reiseziel: Von Oktober bis März ist die Luft am mildesten, der Sommer dagegen eine Saison der Fülle und abendlicher Erlebnisse.",
+        "ru": "Место, привлекательное круглый год: погода мягче всего с октября по март, а лето — сезон изобилия и вечерних впечатлений.",
+        "ur": "آپ یہاں سال بھر آ سکتے ہیں۔ اکتوبر سے مارچ تک موسم سب سے خوشگوار رہتا ہے، جبکہ گرمیاں نخلستان کی نعمتوں اور شام کی سرگرمیوں کا موسم ہیں۔"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.1.k": {
+      "en": "Accommodation",
+      "ar": "الإقامة",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Label (dt, small gold caps) of pair 2 of «Practical information». Short noun phrase, no final stop; the four labels parallel.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "住宿",
+        "de": "Unterkunft",
+        "ru": "Проживание",
+        "ur": "رہائش"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.1.v": {
+      "en": "Modern hotels and resorts across the oasis, plus heritage inns that offer an authentic local stay.",
+      "ar": "فنادق ومنتجعات حديثة في الواحة، إضافةً إلى نُزلٍ تراثية تمنح تجربة محلية أصيلة.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Value (dd) of pair 2, one or two sentences with a stop. «heritage inns» = the traditional guesthouses; no brand, no name.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "绿洲内既有现代化的酒店与度假村，也有传统民居客栈，让您体验地道的当地风情。",
+        "de": "Moderne Hotels und Resorts in der ganzen Oase sowie Kulturerbe-Gasthäuser, die einen authentischen Aufenthalt vor Ort bieten.",
+        "ru": "Современные отели и курорты по всему оазису, а также традиционные гостевые дома с настоящей местной атмосферой.",
+        "ur": "نخلستان بھر میں ٹھہرنے کے لیے جدید ہوٹل اور سیاحتی تفریح گاہیں ہیں، اور روایتی مہمان خانے بھی، جہاں آپ ٹھیٹ مقامی انداز میں رہ سکتے ہیں۔"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.2.k": {
+      "en": "Destination vibe",
+      "ar": "طابع الوجهة",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Label (dt, small gold caps) of pair 3 of «Practical information». Short noun phrase, no final stop; the four labels parallel.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "目的地风情",
+        "de": "Charakter des Reiseziels",
+        "ru": "Характер места",
+        "ur": "یہاں کا ماحول"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.2.v": {
+      "en": "An authentic, welcoming destination with a conservative character, blending heritage with modern visitor facilities — well suited to families and solo travellers alike.",
+      "ar": "وجهةٌ عائلية أصيلة بطابعٍ محافظ ومضياف، تجمع بين عبق التراث ومرافق الزائر الحديثة، وتناسب العائلات والأفراد على حدٍّ سواء.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Value (dd) of pair 3, one or two sentences with a stop. «conservative character» and «welcoming» both kept, no softening and no sharpening; «families and solo travellers alike».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这里民风淳朴、热情好客，整体氛围较为保守传统。历史韵味与现代旅游设施在此融为一体，既适合家庭出游，也适合独自旅行。",
+        "de": "Ein authentisches, familienfreundliches und gastfreundliches Reiseziel mit konservativem Charakter, das Tradition mit modernen Einrichtungen für Besucher verbindet – ebenso geeignet für Familien wie für Alleinreisende.",
+        "ru": "Гостеприимное семейное место с консервативным укладом и неподдельным местным колоритом: здесь сочетаются дух наследия и современная туристическая инфраструктура, а само место одинаково хорошо подходит и семьям, и путешественникам-одиночкам.",
+        "ur": "یہ ایک مہمان نواز منزل ہے جس نے اپنی روایات کو سنبھال رکھا ہے۔ یہاں کا مزاج قدامت پسند ہے، اور ورثے کے ساتھ ساتھ سیاحوں کے لیے جدید سہولتیں بھی ملتی ہیں۔ خاندان ہوں یا اکیلے مسافر، یہ سب کے لیے موزوں ہے۔"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.3.k": {
+      "en": "Currency",
+      "ar": "العملة",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Label (dt, small gold caps) of pair 4 of «Practical information». Short noun phrase, no final stop; the four labels parallel.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "货币",
+        "de": "Währung",
+        "ru": "Валюта",
+        "ur": "کرنسی"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.practical.3.v": {
+      "en": "The Saudi Riyal (SAR). Cards are accepted in most venues; carry some cash for traditional souqs.",
+      "ar": "الريال السعودي (SAR). تُقبل البطاقات في أغلب المنشآت، ويُفضّل حمل نقدٍ للأسواق التقليدية.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Value (dd) of pair 4, one or two sentences with a stop. The currency: first mention «Suudi riyali (SAR)» per the style rule (the English writes «The Saudi Riyal (SAR)»); cards accepted in most venues; carry some cash for the traditional souqs («çarşı» is the site's word for souq).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特里亚尔（SAR）。大多数场所可刷卡消费，逛传统集市时建议随身携带一些现金。",
+        "de": "Der Saudi-Riyal (SAR). Karten werden in den meisten Einrichtungen akzeptiert. Für die traditionellen Souks empfiehlt sich etwas Bargeld.",
+        "ru": "Саудовский риял (SAR). Карты принимают в большинстве заведений, но для традиционных рынков лучше иметь при себе наличные.",
+        "ur": "سعودی ریال۔ زیادہ تر جگہوں پر کارڈ سے ادائیگی ہو جاتی ہے، لیکن روایتی بازاروں کے لیے کچھ نقد رقم ساتھ رکھیں۔"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.table.nameHead": {
+      "en": "Attraction",
+      "ar": "المعلم",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Head of the FIRST column of the generated «hours and fees» table under the practical pairs (src/lib/tables.ts nameHead). The other two column heads are NOT in this batch: they are the published Turkish labels of the landmark visit cards, «Ziyaret saatleri» and «Ücretler» (the table takes them from the first landmark that carries them). The cells of the first column are the published Turkish landmark names (ref.all_places), one tagged «Hurma Köyü (<ui.plan.tableEvent>)». Singular noun as a column head (the four precedents: 景点 / Sehenswürdigkeit / Достопримечательность / سیاحتی مقام); the site's word for a landmark is «gezilecek yer» (ref.ui nav.attractions «Gezilecek yerler»); sentence case; no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "景点",
+        "de": "Sehenswürdigkeit",
+        "ru": "Достопримечательность",
+        "ur": "سیاحتی مقام"
+      },
+      "unit": "pt-practical"
+    },
+    "pt.tipsH": {
+      "en": "Visitor tips",
+      "ar": "نصائح للزائر",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H2 of the third section (four numbered tips). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "游客贴士",
+        "de": "Tipps für Besucher",
+        "ru": "Советы для туристов",
+        "ur": "سیاحوں کے لیے مشورے"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tipsLead": {
+      "en": "Small details that make a big difference to your experience.",
+      "ar": "تفاصيلٌ صغيرة تصنع فرقاً كبيراً في تجربتك.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). One-line lead under the tips H2. Sentence with a stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "小细节，让您的旅行体验大不同。",
+        "de": "Kleine Details, die einen großen Unterschied für Ihr Erlebnis machen.",
+        "ru": "Небольшие детали, которые сильно меняют впечатления от поездки.",
+        "ur": "چھوٹی چھوٹی باتیں جو آپ کے تجربے میں بڑا فرق ڈالتی ہیں۔"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.0.h": {
+      "en": "Bargain politely",
+      "ar": "المساومة بأدب",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H3 of tip 1 (a numbered circle 1–4 precedes it). Short imperative in the polite siz form, parallel across the four tips; no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "礼貌议价",
+        "de": "Feilschen Sie höflich",
+        "ru": "Торгуйтесь вежливо",
+        "ur": "شائستگی سے مول تول کریں"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.0.d": {
+      "en": "Haggling in the souqs is acceptable when done respectfully — part of the traditional shopping fun.",
+      "ar": "المساومة في الأسواق مقبولة باحترام، وجزءٌ من متعة التسوّق التقليدي.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of tip 1, one or two sentences with a stop. Haggling in the souqs («çarşı») is acceptable when respectful — part of the fun of traditional shopping; no moralising.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "在传统集市购物时，有礼有节地讨价还价并不失礼，反而是传统购物乐趣的一部分。",
+        "de": "Feilschen in den Souks ist akzeptiert, solange es respektvoll geschieht – ein Teil des traditionellen Einkaufsvergnügens.",
+        "ru": "Торговаться на рынках вполне уместно, если делать это уважительно, — в этом часть удовольствия от традиционных покупок.",
+        "ur": "بازاروں میں احترام کے ساتھ مول تول کرنا معیوب نہیں، بلکہ روایتی خریداری کے لطف کا حصہ ہے۔"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.1.h": {
+      "en": "Pick your season",
+      "ar": "اختر موسمك",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H3 of tip 2 (a numbered circle 1–4 precedes it). Short imperative in the polite siz form, parallel across the four tips; no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "选对季节",
+        "de": "Wählen Sie Ihre Jahreszeit",
+        "ru": "Выберите сезон",
+        "ur": "اپنا موسم چنیں"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.1.d": {
+      "en": "Summer for savouring fresh fruit; winter for the landmarks and history.",
+      "ar": "الصيف للاستمتاع بالثمار الطازجة، والشتاء لزيارة المعالم والغوص في التاريخ.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of tip 2, one or two sentences with a stop. Summer for fresh fruit; winter for the landmarks and history — two balanced halves.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "夏季可品尝新鲜瓜果；冬季则适合走访名胜古迹、探寻历史。",
+        "de": "Der Sommer eignet sich zum Genießen frischer Früchte. Der Winter eignet sich für die Sehenswürdigkeiten und ihre Geschichte.",
+        "ru": "Летом — свежие фрукты, зимой — знакомство с достопримечательностями и историей.",
+        "ur": "تازہ پھلوں کا مزہ لینا ہو تو گرمیوں میں آئیں، اور سیاحتی مقامات کی سیر اور یہاں کی تاریخ سے واقفیت کے لیے سردیوں میں۔"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.2.h": {
+      "en": "Time it right",
+      "ar": "اختر التوقيت",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H3 of tip 3 (a numbered circle 1–4 precedes it). Short imperative in the polite siz form, parallel across the four tips; no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "选对时段",
+        "de": "Wählen Sie den richtigen Zeitpunkt",
+        "ru": "Выберите время",
+        "ur": "صحیح وقت چنیں"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.2.d": {
+      "en": "In the hot months, start early or after mid-afternoon for open-air sites; in winter the weather is pleasant all day.",
+      "ar": "في الأشهر الحارّة ابدأ باكراً أو بعد العصر لزيارة المواقع المفتوحة؛ أمّا في الشتاء فالجوّ لطيفٌ طوال اليوم.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of tip 3, one or two sentences with a stop. «start early or after mid-afternoon» for open-air sites in the hot months; winter pleasant all day. The home batch ruled the plain register for times of day («Öğleden sonra», not «ikindi»).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "炎热月份游览露天景点，宜趁清晨出发，或等到临近傍晚、暑气稍退时再出行；冬季则全天气候宜人。",
+        "de": "In den heißen Monaten starten Sie für Orte im Freien am besten früh am Morgen oder erst am späten Nachmittag. Im Winter ist das Wetter den ganzen Tag über angenehm.",
+        "ru": "В жаркие месяцы посещайте открытые площадки рано утром или ближе к вечеру; зимой погода комфортна весь день.",
+        "ur": "گرم مہینوں میں کھلی جگہوں کی سیر صبح سویرے یا عصر کے بعد شروع کریں۔ سردیوں میں دن بھر موسم خوشگوار رہتا ہے۔"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.3.h": {
+      "en": "Confirm opening times",
+      "ar": "تأكّد من المواعيد",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H3 of tip 4 (a numbered circle 1–4 precedes it). Short imperative in the polite siz form, parallel across the four tips; no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "确认开放时间",
+        "de": "Bestätigen Sie die Öffnungszeiten",
+        "ru": "Уточняйте часы работы",
+        "ur": "اوقات کی تصدیق کریں"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.tips.3.d": {
+      "en": "Check museum and fort opening hours ahead — some change seasonally.",
+      "ar": "تحقّق من أوقات فتح المتاحف والقلاع مسبقاً، فبعضها يتغيّر موسمياً.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of tip 4, one or two sentences with a stop. «museums and forts»; opening hours change seasonally; «check ahead».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "博物馆与城堡的开放时间请提前查询，部分场所会随季节调整。",
+        "de": "Prüfen Sie die Öffnungszeiten von Museen und Festungen im Voraus – einige ändern sich saisonal.",
+        "ru": "Заранее уточняйте часы работы музеев и крепостей — у некоторых они меняются по сезону.",
+        "ur": "عجائب گھروں اور قلعوں کے کھلنے کے اوقات پہلے سے معلوم کر لیں، کیونکہ کچھ کے اوقات موسم کے ساتھ بدلتے ہیں۔"
+      },
+      "unit": "pt-tips"
+    },
+    "pt.faqH": {
+      "en": "Frequently asked questions",
+      "ar": "أسئلة شائعة",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H2 of the FAQ section (13 collapsible questions). The landmark pages print the approved «Sıkça sorulan sorular» for «Frequently asked questions» (ref.ui det.faq) — byte-identical here. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "常见问题",
+        "de": "Häufige Fragen",
+        "ru": "Часто задаваемые вопросы",
+        "ur": "عمومی سوالات"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.0.q": {
+      "en": "Is Al-Ahsa worth visiting?",
+      "ar": "ماذا يوجد في الأحساء سياحة؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 1 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨有哪些旅游看点？",
+        "de": "Was gibt es in Al-Ahsa zu sehen?",
+        "ru": "Какие туристические достопримечательности есть в Аль-Ахсе?",
+        "ur": "کیا الاحساء دیکھنے کے لائق ہے؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.0.a": {
+      "en": "Absolutely. Al-Ahsa is the world’s largest oasis (Guinness 2020) and a UNESCO World Heritage Site (2018). It pairs natural wonders — Al-Qarah Mountain’s caves, Al-Asfar Lake and the freshwater springs — with living heritage in Hofuf: Qasr Ibrahim, Qaisariyah Souq and Jawatha Mosque, plus palm groves, oasis fruits and distinctive local cuisine. A welcoming, family-friendly destination blending history, nature and hospitality.",
+      "ar": "الأحساء أكبر واحة في العالم (موسوعة غينيس 2020م) وموقع تراث عالمي مسجّل في اليونسكو منذ 2018م. تجمع بين المعالم الطبيعية كجبل القارة بكهوفه وبحيرة الأصفر والعيون، والتراث العمراني في الهفوف كقصر إبراهيم وسوق القيصرية ومسجد جواثى، إضافةً إلى مزارع النخيل وثمار الواحة وأكلاتها الشعبية — وجهة عائلية تجمع التاريخ والطبيعة والضيافة.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 1 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). The fixed phrase «the largest oasis in the world» as the tm («dünyanın en büyük vahası»; never «hurma», never «doğal» — C15); «Guinness 2020» names the organisation as the termbase («Guinness Dünya Rekorları»); «UNESCO World Heritage Site (2018)» as the site's forms (ref.ui det.unesco / termbase list). Landmark names byte-identical to ref.places: Cebel el-Kare, El-Asfar Gölü, Kasr İbrahim, El-Kaysariye Çarşısı, Cüvasa Camii. «Absolutely.» opens the answer — a natural Turkish affirmation, not a brochure cheer. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨是世界最大的绿洲（2020 年吉尼斯世界纪录），并自 2018 年起列入联合国教科文组织世界遗产名录。这里既有卡拉山及其洞穴、阿斯法湖（黄湖）与众多泉眼等自然景观，也有胡富夫的建筑遗产——易卜拉欣宫、凯撒利亚集市与贾瓦塔清真寺，还有棕榈园、绿洲瓜果与地道的民间美食——是一处集历史、自然与好客之道于一体、适合全家出游的目的地。",
+        "de": "Al-Ahsa ist die größte Oase der Welt (Guinness World Records, 2020) und seit 2018 eine UNESCO-Welterbestätte. Die Oase vereint Naturwunder – die Höhlen des Qarah-Bergs (Jabal al-Qarah), den Al-Asfar-See und die Süßwasserquellen – mit lebendigem Erbe in Hofuf: Qasr Ibrahim, dem Qaisariyah-Souk und der Jawatha-Moschee, dazu Dattelpalmenhaine, Oasenfrüchte und eine unverwechselbare lokale Küche. So wird sie zu einem einladenden, familienfreundlichen Reiseziel, das Geschichte, Natur und Gastfreundschaft verbindet.",
+        "ru": "Аль-Ахса — крупнейший оазис в мире (Книга рекордов Гиннесса, 2020) и объект Всемирного наследия ЮНЕСКО (с 2018 года). Здесь сочетаются природные чудеса — пещеры Джабаль-эль-Кара (в переводе — гора Эль-Кара), озеро Эль-Асфар и пресные источники — с живым наследием Эль-Хуфуфа: Каср-Ибрахим, рынок Эль-Кайсария и мечеть Джавата, а также пальмовые рощи, плоды оазиса и самобытная местная кухня. Гостеприимное направление для всей семьи, где соединились история, природа и радушие.",
+        "ur": "الاحساء دنیا کا سب سے بڑا نخلستان ہے (گنیز ورلڈ ریکارڈز، 2020) اور 2018 سے یونیسکو کے عالمی ورثے میں شامل ہے۔ یہاں قدرتی عجائبات ہیں، جیسے جبل القارہ کے غار، جھیل الاصفر اور میٹھے پانی کے چشمے۔ ہفوف میں تعمیراتی ورثہ بھی ہے، جیسے قصر ابراہیم، سوق القیصریہ اور مسجد جواثا۔ کھجور کے باغات، نخلستان کے پھل اور یہاں کے منفرد کھانے بھی اس کی پہچان ہیں۔ یہ خاندانوں کے لیے موزوں منزل ہے، جہاں تاریخ، فطرت اور مہمان نوازی یکجا ہیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.1.q": {
+      "en": "What are the best places to visit in Al-Ahsa?",
+      "ar": "ما هي أبرز الأماكن السياحية في الأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 2 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨最值得游览的景点有哪些？",
+        "de": "Was sind die bedeutendsten Sehenswürdigkeiten in Al-Ahsa?",
+        "ru": "Какие лучшие места стоит посетить в Аль-Ахсе?",
+        "ur": "الاحساء میں دیکھنے کی بہترین جگہیں کون سی ہیں؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.1.a": {
+      "en": "Highlights include Al-Qarah Mountain with its caves and the “Land of Civilisations” heritage village, the historic Qasr Ibrahim, the heritage Qaisariyah Souq, Jawatha Mosque (one of the earliest mosques in Islam), Al-Asfar Lake, and Qasr Sahood in Al-Mubarraz. Browse the Attractions page for the full list you can add to “My saved places”.",
+      "ar": "من أبرزها: جبل القارة وكهوفه وقرية «أرض الحضارات» التراثية، وقصر إبراهيم التاريخي، وسوق القيصرية التراثي، ومسجد جواثى (من أقدم مساجد الإسلام)، وبحيرة الأصفر، وقصر صاهود بالمبرّز. تصفّح صفحة «المعالم» لقائمة كاملة يمكنك إضافتها إلى «معالمي المحفوظة».",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 2 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). Names byte-identical (ref.places): Cebel el-Kare, «Medeniyetler Diyarı» (the heritage village — the termbase form, quoted “…” as the English quotes it), Kasr İbrahim, El-Kaysariye Çarşısı, Cüvasa Camii («one of the earliest mosques in Islam» — the hedge «one of» kept exactly), El-Asfar Gölü, Sahud Sarayı / Kasr Sahud (the termbase has both; the published page title is in ref.places) in Müberrez. The page names quoted at the end are the approved «Gezilecek yerler» (ref.ui nav.attractions) and «Kayıtlı yerlerim» (ref.ui nav.myTrip), in “…”. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "主要景点包括：卡拉山及其洞穴与“文明之地”（Land of Civilisations）遗产村落、历史悠久的易卜拉欣宫、传统的凯撒利亚集市、伊斯兰教最早的清真寺之一贾瓦塔清真寺、阿斯法湖，以及穆巴拉兹的萨胡德宫（Qasr Sahood）。您可以在“景点”页面浏览完整列表，并将心仪的景点加入“我的收藏”。",
+        "de": "Zu den bedeutendsten zählen der Qarah-Berg mit seinen Höhlen und dem Kulturerbe-Dorf „Land of Civilisations“, der historische Qasr Ibrahim, der traditionsreiche Qaisariyah-Souk, die Jawatha-Moschee (eine der ältesten Moscheen des Islam), der Al-Asfar-See und der Sahood-Palast (Qasr Sahood) in Al-Mubarraz. Auf der Seite „Sehenswürdigkeiten“ finden Sie die vollständige Liste, die Sie auf Ihre Merkliste setzen können.",
+        "ru": "Среди главных: Джабаль-эль-Кара с его пещерами и этнографической деревней «Земля цивилизаций», исторический Каср-Ибрахим, старинный рынок Эль-Кайсария, мечеть Джавата (одна из старейших мечетей ислама), озеро Эль-Асфар и дворец Сахуд в Эль-Мубарразе. Полный список вы найдёте на странице «Достопримечательности» — оттуда их можно добавить в раздел «Сохранённые места».",
+        "ur": "الاحساء کے نمایاں مقامات میں یہ شامل ہیں: جبل القارہ اور اس کے غار، “ارض الحضارات” (تہذیبوں کی سرزمین) نامی ثقافتی گاؤں، تاریخی قصر ابراہیم، روایتی سوق القیصریہ، مسجد جواثا (جو اسلام کی قدیم ترین مساجد میں سے ایک ہے)، جھیل الاصفر اور المبرز میں قصر صاہود۔ پوری فہرست کے لیے “سیاحتی مقامات” والا صفحہ دیکھیں، جہاں سے آپ مقامات کو “میرے محفوظ کردہ مقامات” میں شامل کر سکتے ہیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.2.q": {
+      "en": "What are the opening hours for Al-Qarah Mountain?",
+      "ar": "ما هي مواعيد وأوقات العمل في جبل القارة؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 3 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "卡拉山几点开放？门票多少钱？",
+        "de": "Welche Öffnungszeiten hat der Qarah-Berg?",
+        "ru": "Какие часы работы у Джабаль-эль-Кара?",
+        "ur": "جبل القارہ کب سے کب تک کھلا رہتا ہے؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.2.a": {
+      "en": "It opens daily from 8:00 am to 11:00 pm (hours may be extended on holidays), and admission is SAR 50 for adults, booked through the “Land of Civilisations” heritage village. Hours can change seasonally, so confirm before you go.",
+      "ar": "يفتح يومياً من 8:00 صباحاً حتى 11:00 مساءً (وقد تُمدّد المواعيد في العطلات)، ورسوم الدخول 50 ريالاً للبالغين تُحجز تذاكرها عبر «أرض الحضارات». يُفضّل تأكيد المواعيد قبل الزيارة فقد تتغيّر موسمياً.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 3 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). The hours and fee of Cebel el-Kare must agree with the published visit card (ref.places.jabal-al-qarah.practical: «Her gün 08.00–23.00 (tatillerde uzatılabilir)», «Yetişkinler için 50 SAR — …») — the same table is printed on this very page above the FAQ. Times in the TDK shape the published cards use («08.00–23.00», P10 as applied); the fee «50 SAR» or «50 Suudi riyali (SAR)» per the style rule (first mention in the field); «Medeniyetler Diyarı» quoted; «confirm before you go» in siz. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "卡拉山每天上午 8:00 至晚上 11:00 开放（节假日可能延长），成人门票 50 里亚尔，通过“文明之地”遗产村落预约购票。开放时间或随季节调整，建议您行前确认。",
+        "de": "Er ist täglich von 8:00 bis 23:00 Uhr geöffnet (an Feiertagen möglicherweise länger), und der Eintritt kostet 50 Saudi-Riyal (SAR) für Erwachsene – die Tickets werden über „Land of Civilisations“ gebucht. Die Zeiten können sich saisonal ändern; prüfen Sie sie daher vor Ihrem Besuch.",
+        "ru": "Вход открыт ежедневно 8:00–23:00 (в праздники время работы может быть продлено), а стоимость — 50 саудовских риялов (SAR) для взрослых; билеты можно забронировать через этнографическую деревню «Земля цивилизаций». Часы работы могут меняться по сезонам, поэтому уточняйте их перед поездкой.",
+        "ur": "جبل القارہ روزانہ صبح 8 بجے سے رات 11 بجے تک کھلا رہتا ہے (چھٹیوں میں زیادہ دیر تک کھلا رہ سکتا ہے)۔ بڑوں کے لیے داخلے کی فیس 50 سعودی ریال ہے، اور ٹکٹ “ارض الحضارات” نامی ثقافتی گاؤں سے ملتے ہیں۔ اوقات موسم کے ساتھ بدل سکتے ہیں، اس لیے جانے سے پہلے تصدیق کر لیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.3.q": {
+      "en": "When does Qaisariyah Souq open?",
+      "ar": "متى يفتح سوق القيصرية في الأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 4 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "凯撒利亚集市何时开放？",
+        "de": "Wann öffnet der Qaisariyah-Souk in Al-Ahsa?",
+        "ru": "Когда открывается рынок Эль-Кайсария в Аль-Ахсе?",
+        "ur": "سوق القیصریہ کب کھلتا ہے؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.3.a": {
+      "en": "The souq trades in the morning from 8 am to 12 noon and in the evening from 3:30 pm to 10 pm (Friday evenings only), and entry is free. Evenings are the best time, when the shops open and the market comes alive.",
+      "ar": "يعمل السوق صباحاً من 8 حتى 12 ظهراً، ومساءً من 3:30 حتى 10 مساءً (الجمعة مساءً فقط)، والدخول مجاني. وأفضل أوقاته الفترة المسائية حين تفتح المتاجر ويشتدّ نبض السوق.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 4 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). The hours of El-Kaysariye Çarşısı must agree with its published visit card (ref.places.qaisariyah.practical); «Friday evenings only» kept; «entry is free»; evenings the best time. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "集市营业时间为上午 8:00 至中午 12:00、下午 3:30 至晚上 10:00（周五仅晚间营业），免费入场。最推荐傍晚前往——店铺陆续开门，集市也随之热闹起来。",
+        "de": "Der Souk hat morgens von 8:00 bis 12:00 Uhr und abends von 15:30 bis 22:00 Uhr (freitags nur abends) geöffnet; der Eintritt ist kostenlos. Am schönsten ist er abends, wenn die Läden öffnen und der Souk zum Leben erwacht.",
+        "ru": "Рынок работает утром 8:00–12:00 и вечером 15:30–22:00 (по пятницам — только вечером), вход свободный. Лучшее время — вечер, когда открываются лавки и рынок оживает.",
+        "ur": "سوق القیصریہ صبح 8 بجے سے دوپہر 12 بجے تک اور سہ پہر 3:30 بجے سے رات 10 بجے تک کھلا رہتا ہے (جمعہ صرف شام کو)، اور داخلہ مفت ہے۔ شام کا وقت سب سے اچھا ہے، جب دکانیں کھلتی ہیں اور بازار میں رونق آ جاتی ہے۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.4.q": {
+      "en": "When is the best time to visit Al-Ahsa?",
+      "ar": "ما هو أفضل وقت لزيارة الأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 5 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "游览哈萨的最佳时间是什么时候？",
+        "de": "Wann ist die beste Reisezeit für Al-Ahsa?",
+        "ru": "Когда лучшее время для поездки в Аль-Ахсу?",
+        "ur": "الاحساء کی سیر کے لیے بہترین وقت کون سا ہے؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.4.a": {
+      "en": "A year-round destination; the weather is gentlest from October to March — ideal for the landmarks and forts — while summer brings fresh dates, evening experiences and the parks. Early in the year is the season of the Dates Festival.",
+      "ar": "وجهةٌ على مدار العام؛ الأجواء ألطف من أكتوبر إلى مارس وهي الأنسب لزيارة المعالم والقلاع، أمّا الصيف فموسم الرطب والثمار الطازجة والتجارب المسائية والمنتزهات. ومطلع العام موعد مهرجان التمور.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 5 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). «October to March» lower case; «fresh dates» (the English says dates, the Arabic «الرطب» — the English is the source); «the Dates Festival»: there is no Turkish events page, so no published festival name exists — describe it generically (a dates festival early in the year), no invented proper name (the Urdu ruling). Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨四季皆宜；10 月至次年 3 月天气最为宜人，最适合游览名胜与城堡；夏季则是软熟鲜椰枣（Rutab）与新鲜瓜果上市的时节，夜间活动丰富，还可以逛逛公园。每年年初则迎来椰枣节。",
+        "de": "Am mildesten ist das Klima von Oktober bis März – ideal für Sehenswürdigkeiten und Festungen –, während der Sommer Rutab, frische Früchte, abendliche Erlebnisse und die Parks bringt. Al-Ahsa lässt sich dabei das ganze Jahr über bereisen; der Jahresbeginn ist zugleich die Saison des Festivals der verarbeiteten Datteln.",
+        "ru": "Аль-Ахсу можно посещать круглый год: с октября по март климат мягче всего — идеальное время для осмотра памятников и крепостей, а летом наступает сезон рутаба (фиников на стадии перед полной спелостью) и свежих плодов — время вечерних впечатлений и прогулок по паркам. В начале года проходит фестиваль фиников.",
+        "ur": "آپ سال بھر الاحساء آ سکتے ہیں۔ اکتوبر سے مارچ تک موسم سب سے خوشگوار رہتا ہے، اور یہی وقت تاریخی مقامات اور قلعوں کی سیر کے لیے بہترین ہے۔ گرمیوں میں تازہ کھجوریں، شام کی سرگرمیاں اور پارک آپ کے منتظر ہوتے ہیں۔ سال کے شروع میں کھجور کی مصنوعات کا میلہ لگتا ہے۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.5.q": {
+      "en": "How do I travel from Riyadh to Al-Ahsa?",
+      "ar": "كم تبعد الأحساء عن الرياض؟ وكيف يمكن الذهاب إليها؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 6 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨距利雅得多远？如何前往？",
+        "de": "Wie weit ist es von Riad nach Al-Ahsa, und wie kommt man dorthin?",
+        "ru": "Как далеко Аль-Ахса от Эр-Рияда и как туда добраться?",
+        "ur": "ریاض سے الاحساء کیسے جائیں؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.5.a": {
+      "en": "Al-Ahsa is about 326 km from Riyadh. The fastest and most comfortable option is the train to Hofuf station (around two hours and ten minutes with SAR), or driving via the highway (around 3 hours 20 minutes), or flying into Al-Ahsa International Airport.",
+      "ar": "تبعد عن الرياض نحو 326 كم. أسرع وأريح خيار هو القطار إلى محطة الهفوف (نحو ساعتين وعشر دقائق مع شركة «سار»)، أو القيادة عبر الطريق السريع (نحو 3 ساعات و20 دقيقة)، أو الطيران إلى مطار الأحساء الدولي.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 6 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). Numbers exactly as the English: 326 km, «around two hours and ten minutes» (words, as the English), «around 3 hours 20 minutes» (digits, as the English); «with SAR» = the railway company; the airport name as attested in the arrive cards. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨距利雅得约 326 公里。最快捷、最舒适的方式是乘火车前往胡富夫站（沙特铁路公司运营，约 2 小时 10 分钟）；也可经高速公路自驾（约 3 小时 20 分钟），或乘飞机抵达哈萨国际机场。",
+        "de": "Al-Ahsa liegt etwa 326 km von Riad entfernt. Am schnellsten und komfortabelsten reisen Sie mit dem Zug zum Bahnhof Hofuf (rund zwei Stunden und zehn Minuten mit der Bahngesellschaft SAR); alternativ fahren Sie über die Autobahn (rund 3 Stunden 20 Minuten) oder fliegen zum Flughafen Al-Ahsa.",
+        "ru": "Аль-Ахса находится примерно в 326 км от Эр-Рияда. Быстрее и удобнее всего доехать на поезде Саудовской железнодорожной компании до станции Эль-Хуфуф (около двух часов десяти минут); можно также доехать на автомобиле по автомагистрали (около 3 часов 20 минут) или долететь до международного аэропорта Аль-Ахсы.",
+        "ur": "الاحساء ریاض سے تقریباً 326 کلومیٹر دور ہے۔ سب سے تیز اور آرام دہ ذریعہ ہفوف کے اسٹیشن تک سعودی ریلوے کمپنی کی ریل گاڑی ہے (تقریباً دو گھنٹے دس منٹ)۔ آپ شاہراہ کے راستے گاڑی سے بھی جا سکتے ہیں (تقریباً 3 گھنٹے 20 منٹ)، یا ہوائی جہاز سے الاحساء بین الاقوامی ہوائی اڈے پر اتر سکتے ہیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.6.q": {
+      "en": "What is the distance from Al-Ahsa to Bahrain and Dammam?",
+      "ar": "كم تبعد الأحساء عن الدمام والبحرين؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 7 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨距达曼和巴林多远？",
+        "de": "Wie weit ist Al-Ahsa von Dammam und Bahrain entfernt?",
+        "ru": "Как далеко Аль-Ахса от Даммама и Бахрейна?",
+        "ur": "الاحساء سے بحرین اور دمام کا فاصلہ کتنا ہے؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.6.a": {
+      "en": "Al-Ahsa is close to Dammam and Khobar via a good highway network (Dammam is roughly 150 km, about 1.5 hours). Bahrain is reached by road across the King Fahd Causeway via Khobar (about two hours). SAR trains also stop at nearby Abqaiq (Buqayq) on the same line.",
+      "ar": "الأحساء قريبة من الدمام والخبر عبر شبكة طرق سريعة جيدة (الدمام نحو 150 كم / قرابة ساعة ونصف). وتُوصَل مملكة البحرين بالسيارة عبر جسر الملك فهد مروراً بالخبر (نحو ساعتين). ويتوقّف قطار «سار» أيضاً في بقيق القريبة على المسار نفسه.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 7 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). Dammam ≈ 150 km / about 1.5 hours («1,5» with the Turkish decimal comma); Bahrain via the King Fahd Causeway through Khobar (~two hours) — «King Fahd Causeway» is a new name for stage 4 (tr.wikipedia); «SAR trains» = the railway company; Abqaiq (Buqayq) as in the train card. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "从哈萨出发，经完善的高速公路网可便捷前往达曼与胡拜尔（距达曼约 150 公里，车程约 1.5 小时）。前往巴林王国，可自驾经胡拜尔跨越法赫德国王大桥（约 2 小时）。此外，若选择乘坐火车，沙特铁路公司的列车也停靠同一线路上邻近的布盖格站。",
+        "de": "Al-Ahsa ist über ein gutes Autobahnnetz mit Dammam und Khobar verbunden (Dammam liegt rund 150 km entfernt, etwa 1,5 Stunden). Bahrain erreicht man mit dem Auto über den König-Fahd-Damm und Khobar (rund zwei Stunden). Auch Züge der SAR halten auf derselben Strecke im nahegelegenen Abqaiq (Buqayq).",
+        "ru": "Аль-Ахса находится недалеко от Даммама и Эль-Хубара — с ними её связывает хорошая сеть автомагистралей (до Даммама — около 150 км, то есть около полутора часов). В Бахрейн можно доехать на автомобиле через мост короля Фахда — путь лежит через Эль-Хубар и занимает около двух часов. Поезда Саудовской железнодорожной компании также останавливаются неподалёку, в Абкайке (или Букайке), на той же линии.",
+        "ur": "الاحساء سے دمام اور الخبر زیادہ دور نہیں، اور وہاں تک اچھی شاہراہیں جاتی ہیں۔ دمام تقریباً 150 کلومیٹر دور ہے، یعنی لگ بھگ ڈیڑھ گھنٹے کا راستہ۔ بحرین جانے کے لیے گاڑی سے الخبر ہوتے ہوئے شاہ فہد پل پار کرنا ہوتا ہے (تقریباً دو گھنٹے)۔ سعودی ریلوے کمپنی کی ریل گاڑیاں ہفوف کے علاوہ قریب ہی بقیق میں بھی رکتی ہیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.7.q": {
+      "en": "How do I book a Riyadh–Al-Ahsa train ticket?",
+      "ar": "كيف يمكن حجز قطار الرياض–الأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 8 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "如何预订利雅得—哈萨的火车票？",
+        "de": "Wie bucht man eine Zugfahrkarte auf der Strecke Riad–Al-Ahsa?",
+        "ru": "Как забронировать билет на поезд Эр-Рияд–Аль-Ахса?",
+        "ur": "ریاض سے الاحساء کے لیے ریل گاڑی کا ٹکٹ کیسے لیں؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.7.a": {
+      "en": "Book through Saudi Arabia Railways (SAR) via its official app or website sar.com.sa, or at station ticket counters. The line connects Riyadh with Hofuf and Dammam; book early during holidays and peak seasons.",
+      "ar": "يُحجز القطار عبر الشركة السعودية للخطوط الحديدية «سار» (SAR) من تطبيقها الرسمي أو موقعها sar.com.sa، أو من شبابيك التذاكر في المحطات. يربط الخط الرياض بالهفوف والدمام، ويُنصح بالحجز مبكراً في المواسم وأيام العطل.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 8 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). «Saudi Arabia Railways (SAR)» as attested in the train card; «sar.com.sa» byte-identical; the app, the website, the station counters; «book early during holidays and peak seasons». Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您可通过沙特铁路公司的官方 App 或官网 sar.com.sa 购票，也可在车站售票窗口购买。该线路连接利雅得、胡富夫与达曼；节假日与出行高峰期建议提前订票。",
+        "de": "Buchen Sie bei der Saudi Arabia Railways (SAR) – über die offizielle App, die Website sar.com.sa oder an den Fahrkartenschaltern der Bahnhöfe. Die Strecke verbindet Riad mit Hofuf und Dammam; buchen Sie in den Ferien und der Hochsaison frühzeitig.",
+        "ru": "Билет можно забронировать через Саудовскую железнодорожную компанию — в её официальном приложении, на сайте sar.com.sa, или в кассах на станциях. Линия связывает Эр-Рияд с Эль-Хуфуфом и Даммамом; в праздники и высокий сезон бронировать билеты рекомендуется заранее.",
+        "ur": "ریاض سے الاحساء کی ریل گاڑی کا ٹکٹ سعودی ریلوے کمپنی (“سار”) سے ملتا ہے۔ آپ اس کی سرکاری ایپ یا ویب سائٹ sar.com.sa سے ٹکٹ لے سکتے ہیں، یا اسٹیشن کے ٹکٹ گھر سے۔ یہ ریل گاڑیاں ریاض کو ہفوف اور دمام سے ملاتی ہیں۔ چھٹیوں اور بھیڑ کے موسم میں ٹکٹ پہلے سے لے لیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.8.q": {
+      "en": "What is the postal code for Al-Ahsa?",
+      "ar": "ما هو الرمز البريدي للأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 9 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨的邮政编码是多少？",
+        "de": "Wie lautet die Postleitzahl von Al-Ahsa?",
+        "ru": "Какой почтовый индекс у Аль-Ахсы?",
+        "ur": "الاحساء کا ڈاک رمز کیا ہے؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.8.a": {
+      "en": "Al-Ahsa (Hofuf and Al-Mubarraz) falls within postal codes beginning with 36, with the exact code varying by district and location. For a precise address, use the Saudi Post (SPL) National Address directory at splonline.com.sa.",
+      "ar": "تقع الأحساء (الهفوف والمبرّز) ضمن نطاق أرقامٍ بريدية تبدأ بالرقم 36، وتختلف الأرقام التفصيلية باختلاف الحي والموقع. للحصول على العنوان الدقيق استخدم دليل العنوان الوطني من مؤسسة البريد السعودي (سُبل) على splonline.com.sa.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 9 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). «36» stays a digit; «Saudi Post (SPL)» — a new institution for stage 4 (its Turkish name or the English with a gloss); «splonline.com.sa» byte-identical; «National Address» as a proper service name. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨（胡富夫与穆巴拉兹）的邮政编码以 36 开头，具体编码因街区和位置而异。如需精确地址，请使用沙特邮政（SPL）的国家地址查询服务：splonline.com.sa。",
+        "de": "Al-Ahsa (Hofuf und Al-Mubarraz) liegt im Bereich der Postleitzahlen, die mit 36 beginnen; die genaue Zahl variiert je nach Stadtteil und Standort. Für eine genaue Adresse nutzen Sie das Nationale Adressverzeichnis von Saudi Post (SPL) auf splonline.com.sa.",
+        "ru": "У Аль-Ахсы (Эль-Хуфуфа и Эль-Мубарраза) почтовые индексы начинаются с 36; точный индекс зависит от района и местоположения. Для точного адреса используйте сервис «Национальный адрес» Почты Саудовской Аравии (SPL) на splonline.com.sa.",
+        "ur": "الاحساء (ہفوف اور المبرز) کے ڈاک رمز 36 سے شروع ہوتے ہیں، اور پورا رمز محلے اور جگہ کے لحاظ سے بدلتا ہے۔ کسی جگہ کا درست پتا جاننے کے لیے سعودی ڈاک کے ادارے (“سبل”) کی ویب سائٹ splonline.com.sa پر قومی پتے کی فہرست دیکھیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.9.q": {
+      "en": "What are the best hotels to stay at in Al-Ahsa?",
+      "ar": "ما هي أفضل فنادق وشاليهات الأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 10 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨有哪些优质的酒店和度假别墅？",
+        "de": "Was sind die besten Hotels und Chalets in Al-Ahsa?",
+        "ru": "Какие лучшие отели и шале в Аль-Ахсе?",
+        "ur": "الاحساء میں ٹھہرنے کے لیے بہترین ہوٹل کون سے ہیں؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.9.a": {
+      "en": "Al-Ahsa offers modern hotels and resorts across Hofuf and Al-Mubarraz, alongside heritage inns, chalets and farm stays for an authentic local experience among the palms. To find the best fit for your budget and location, compare options and reviews on trusted booking platforms. (We don’t endorse specific venues, to keep the information neutral.)",
+      "ar": "تضمّ الأحساء فنادق ومنتجعات حديثة موزّعة في الهفوف والمبرّز، إضافةً إلى نُزلٍ ومنازل تراثية وشاليهات ومزارع للإيجار تمنح تجربة محلية أصيلة وسط النخيل. لاختيار الأنسب لميزانيتك وموقعك، قارن الخيارات والتقييمات عبر منصّات الحجز الموثوقة. (لا نرشّح منشآت بعينها حفاظاً على حياد المعلومة.)",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 10 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). Neutral: no hotel, no platform, no brand; «heritage inns, chalets and farm stays»; the bracketed disclaimer sentence stays in brackets as the English. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨的现代化酒店与度假村多分布在胡富夫与穆巴拉兹，另有传统客栈、老宅民居、度假别墅与可供租住的农庄，让您在棕榈林间享受地道的当地体验。请通过可信的预订平台比较各项选择与住客评价，找到最符合您预算与位置需求的住宿。（为保持信息中立，我们不推荐具体的住宿场所。）",
+        "de": "Al-Ahsa bietet moderne Hotels und Resorts in Hofuf und Al-Mubarraz, dazu Kulturerbe-Gasthäuser und -Häuser, Chalets und Mietfarmen für ein authentisches lokales Erlebnis inmitten der Dattelpalmen. Um die beste Wahl für Ihr Budget und Ihre Lage zu finden, vergleichen Sie Angebote und Bewertungen auf vertrauenswürdigen Buchungsplattformen. (Wir empfehlen keine bestimmten Unterkünfte, um die Neutralität der Informationen zu wahren.)",
+        "ru": "В Эль-Хуфуфе и Эль-Мубарразе работают современные отели и курорты, а для подлинного местного опыта среди пальм подойдут постоялые дворы и дома в традиционном стиле, шале и фермы, которые сдаются в аренду. Чтобы подобрать вариант по бюджету и расположению, сравните предложения и отзывы на надёжных платформах бронирования. (Мы не рекомендуем конкретные заведения, чтобы сохранить нейтральность информации.)",
+        "ur": "الاحساء میں ہفوف اور المبرز بھر میں ٹھہرنے کے لیے جدید ہوٹل اور سیاحتی تفریح گاہیں ہیں۔ ان کے علاوہ روایتی مہمان خانے، اور چھٹیاں گزارنے کے لیے کرائے کے مکان اور فارم بھی ہیں، جہاں آپ کھجور کے درختوں کے بیچ ٹھیٹ مقامی ماحول میں رہ سکتے ہیں۔ اپنی جیب اور پسند کے علاقے کے مطابق موزوں جگہ چننے کے لیے، کمرے محفوظ کرانے کی قابل اعتماد ویب سائٹوں پر مختلف جگہوں اور مہمانوں کی آرا کا موازنہ کریں۔ (معلومات کو غیر جانبدار رکھنے کے لیے ہم کسی خاص جگہ کی سفارش نہیں کرتے۔)"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.10.q": {
+      "en": "What is Al-Ahsa famous for?",
+      "ar": "بماذا تشتهر الأحساء في الطعام والمنتجات المحلية؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 11 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨以哪些美食和特产闻名？",
+        "de": "Wofür ist Al-Ahsa bei Speisen und lokalen Produkten bekannt?",
+        "ru": "Какими блюдами и местными продуктами славится Аль-Ахса?",
+        "ur": "الاحساء کس چیز کے لیے مشہور ہے؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.10.a": {
+      "en": "Al-Ahsa is famous for its golden Khalas dates (its best-known variety), Hasawi red rice and folk dishes such as harees, balaleet and date bread (also called red bread). Its oasis fruits include the Hasawi fig, lomi, kanar and Suwari pomegranate. In crafts, the Hasawi bisht embroidered with zari thread stands out, along with pottery, palm-frond ware, incense and perfumes from Qaisariyah Souq.",
+      "ar": "تشتهر الأحساء بتمور الخلاص الذهبية (أشهر أصنافها)، والأرز الأحسائي الأحمر، والأكلات الشعبية كالهريس والبلاليط وخبز التمر (الخبز الأحمر). ومن ثمار الواحة: التين الأحسائي واللومي والكنار والرمان السواري. وفي الحِرف يبرز البشت الحساوي المطرّز بخيوط الزري، إلى جانب الفخار والخوص والبخور والعطور من سوق القيصرية.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 11 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). Food and craft names: Khalas dates (termbase «Halas»); «Hasawi red rice» = the Al-Ahsa red rice (the site's rule: the adjective «Hasawi» renders as «El-Ahsa …» for things — A9/A11; the tm has «El-Ahsa pirinci»); harees, balaleet (Arabic هريس، بلاليط — transliterate from the Arabic spelling, P1, and gloss once if needed); «date bread (also called red bread)» — both names in one sentence, the dried-lime rule does not apply here; the fruits: Hasawi fig, lomi (termbase «misket limonu»), kanar (Arabic الكنار — the Arabic arbiter glosses it «النبق»: the sidr/jujube fruit; transliterate and gloss once, no new botany), Suwari pomegranate (a variety name — transliterate from السواري); the «Hasawi bisht embroidered with zari thread» = termbase «El-Ahsa bişti» and «sırma»; pottery, palm-frond ware, incense and perfumes from El-Kaysariye Çarşısı. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨以金黄的哈拉斯椰枣（Khalas，其最负盛名的品种）与哈萨红米闻名，民间美食则有哈里斯（Harees）、巴拉利特（Balaleet）、椰枣面包（当地又称“红面包”）等。绿洲瓜果有哈萨无花果、哈萨青柠、毛叶枣（Kanar），以及名为“苏瓦里”（Suwari）的石榴。手工艺方面，以扎里线刺绣的哈萨比什特长袍最为出名，凯撒利亚集市上还能买到陶器、棕榈叶编织品、熏香与香水。",
+        "de": "Al-Ahsa ist bekannt für seine goldenen Khalas-Datteln (die bekannteste Sorte), den roten Hasawi-Reis und Volksgerichte wie Harees, Balaleet und das rote Hasawi-Brot (Dattelbrot). Zu den Oasenfrüchten zählen die Hasawi-Feige, die Hasawi-Limette (Lomi), die Hasawi-Kanar und der Hasawi-Granatapfel (Suwari). Im Handwerk sticht der mit Zari-Fäden bestickte Hasawi-Bischt hervor – dazu Töpferei, Palmwedel-Flechtwaren, Weihrauch und Düfte aus dem Qaisariyah-Souk.",
+        "ru": "Аль-Ахса славится золотистыми финиками сорта «Халас» — самым известным местным сортом, — красным рисом Аль-Ахсы и народными блюдами: харисой, балалитом и финиковым хлебом (он же «красный хлеб»). Среди плодов оазиса — инжир Аль-Ахсы, лайм, канар и гранат «Сувари». В ремёслах выделяется бишт Аль-Ахсы, расшитый нитью «зари», а также гончарные изделия, изделия из пальмовых листьев, благовония и парфюмерия с рынка Эль-Кайсария.",
+        "ur": "الاحساء خلاص نامی سنہری کھجوروں کے لیے مشہور ہے، جو یہاں کی سب سے جانی پہچانی قسم ہے۔ یہاں کے روایتی پکوانوں میں الاحساء کا پلاؤ (جو لال چاولوں سے پکتا ہے)، ہریس، بلالیط اور کھجور کی روٹی (جسے “لال روٹی” بھی کہتے ہیں) شامل ہیں۔ نخلستان کے پھلوں میں الاحساء کا انجیر، لیموں، کنار (یعنی بیر) اور السواری انار مشہور ہیں۔ دستکاریوں میں زری کے دھاگے سے کڑھا ہوا حساوی چوغہ نمایاں ہے۔ اس کے ساتھ مٹی کے برتن، کھجور کے پتوں سے بنی چیزیں، اور سوق القیصریہ کے بخور اور عطر بھی یہاں کی پہچان ہیں۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.11.q": {
+      "en": "How did Al-Ahsa get its name?",
+      "ar": "لماذا سميت الأحساء بهذا الاسم؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 12 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "“哈萨”这个名字从何而来？",
+        "de": "Woher hat Al-Ahsa seinen Namen?",
+        "ru": "Откуда пошло название «Аль-Ахса»?",
+        "ur": "الاحساء کا نام کیسے پڑا؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.11.a": {
+      "en": "“Al-Ahsa” is the plural of “hisy”: the sweet water that runs and gathers beneath a thin layer of sand, which springs up as soon as your hand uncovers it. It is a precise description of this land — a generous oasis of springs, channels and groundwater that made it the largest oasis in the world.",
+      "ar": "«الأحساء» جمعُ «حِسْي»: الماء العذب الذي يجري ويُختزَن تحت طبقةٍ رقيقةٍ من الرمل، تكشفه اليد فلا يلبث أن يفور. وهو وصفٌ دقيق لهذه الأرض: واحةٌ سخيّةٌ بعيونها وأفلاجها ومياهها الجوفية التي جعلتها أكبر واحة في العالم.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 12 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). «Al-Ahsa» is the plural of «hisy»: the Arabic word حِسْي transliterated from the Arabic spelling (P1/P4: «hisy» — rule the form; it is a quoted Arabic word, not a Turkish one); the image of water beneath a thin layer of sand kept; the closing «the largest oasis in the world» as the tm. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "“哈萨”（Al-Ahsa）是“希斯”（hisy）一词的复数，指在薄薄沙层之下流淌、蓄积的甘泉——用手拨开沙土，泉水便会涌出。这正是这片土地的真实写照：一片泉眼遍布、灌渠纵横、地下水丰沛的富饶绿洲，也因此成为世界上最大的绿洲。",
+        "de": "„Al-Ahsa“ ist der Plural von „hisy“: dem Süßwasser, das unter einer dünnen Sandschicht fließt, sich sammelt und hervorquillt, sobald die Hand es freilegt. Es ist eine treffende Beschreibung dieses Landes – einer großzügigen Oase, deren Quellen, Falaj-Kanäle und Grundwasser sie zur größten Oase der Welt machen.",
+        "ru": "«Аль-Ахса» — множественное число от слова «хиси»: пресная вода, которая течёт и скапливается под тонким слоем песка; разгребите его рукой — и вода забьёт ключом. Это точное описание здешней земли: щедрый оазис с источниками, каналами и подземными водами, которые сделали его крупнейшим оазисом в мире.",
+        "ur": "لفظ “الاحساء” ایک عربی لفظ کی جمع ہے۔ اس عربی لفظ سے مراد وہ میٹھا پانی ہے جو ریت کی پتلی تہ کے نیچے بہتا اور اکٹھا ہوتا ہے، اور ہاتھ سے ریت ہٹاتے ہی پھوٹ نکلتا ہے۔ یہ نام اس سرزمین کی ٹھیک ٹھیک تصویر ہے: چشموں، نہروں اور زیر زمین پانی سے مالا مال ایک فیاض نخلستان، جسے اسی پانی نے دنیا کا سب سے بڑا نخلستان بنا دیا۔"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.12.q": {
+      "en": "What are the best traditional restaurants in Al-Ahsa?",
+      "ar": "ما هي أفضل مطاعم الفطور الشعبي في الأحساء؟",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Question 13 of 13 (the <summary> of a collapsible <details>; also the «name» of a Question node in the FAQPage JSON-LD that search engines read). Written as a Turkish visitor would type it into a search engine; ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨有哪些地道的传统早餐餐厅？",
+        "de": "Was sind die besten Restaurants für ein traditionelles Frühstück in Al-Ahsa?",
+        "ru": "Какие рестораны в Аль-Ахсе предлагают лучший традиционный завтрак?",
+        "ur": "الاحساء میں روایتی کھانوں کی بہترین جگہیں کون سی ہیں؟"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.faq.12.a": {
+      "en": "Hasawi breakfasts and folk dishes (Hasawi red rice, balaleet, harees, date bread) are served at several heritage restaurants in Hofuf, and some farms offer a Hasawi breakfast in nature. For the best current pick, check up-to-date local reviews. (We don’t endorse specific restaurants, to keep the information neutral.)",
+      "ar": "يُقدَّم الفطور الأحسائي والأكلات الشعبية (الأرز الأحسائي الأحمر، البلاليط، الهريس، خبز التمر (الخبز الأحمر)) في عددٍ من المطاعم التراثية في الهفوف، وتتيح بعض المزارع تجربة فطور أحسائي وسط الطبيعة. ولاختيار الأنسب حالياً ننصح بمراجعة التقييمات المحلية المحدّثة. (لا نرشّح مطاعم بعينها حفاظاً على حياد المعلومة.)",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Answer 13 (the paragraph under the question; also the «acceptedAnswer.text» in JSON-LD, so it must stand on its own without the question or the page around it, plain text). Same food names as question 11, byte-identical within this page (the checker does not see this — stage 5 must); «heritage restaurants in Hofuf»; «some farms offer a Hasawi breakfast in nature»; the bracketed disclaimer kept. Every number as the English (the checker holds digits to the source); the English is the translation source where the Arabic differs on a fact (the divergence goes to source_defects).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "胡富夫的多家传统餐厅供应哈萨式早餐与民间美食——哈萨焖饭、巴拉利特、哈里斯、椰枣面包（即“红面包”），部分农庄还可让您在田园风光中享用哈萨式早餐。选择时，建议您参考最新的当地评价。（为保持信息中立，我们不推荐具体的餐厅。）",
+        "de": "Hasawi-Frühstück und Volksgerichte – roter Hasawi-Reis, Balaleet, Harees, das rote Hasawi-Brot (Dattelbrot) – werden in mehreren Kulturerbe-Restaurants in Hofuf serviert, und einige Farmen bieten ein Hasawi-Frühstück inmitten der Natur an. Für die derzeit beste Wahl empfehlen wir, aktuelle lokale Bewertungen zu prüfen. (Wir empfehlen keine bestimmten Restaurants, um die Neutralität der Informationen zu wahren.)",
+        "ru": "В нескольких традиционных ресторанах Эль-Хуфуфа подают завтрак Аль-Ахсы и народные блюда — красный рис Аль-Ахсы, балалит, харису и финиковый хлеб (он же «красный хлеб»), — а некоторые фермы предлагают завтрак Аль-Ахсы на природе. Чтобы выбрать лучший вариант, стоит свериться с актуальными местными отзывами. (Мы не рекомендуем конкретные рестораны, чтобы сохранить нейтральность информации.)",
+        "ur": "ہفوف میں کھانے پینے کی کئی پرانی طرز کی جگہوں پر الاحساء کا ناشتہ اور روایتی پکوان ملتے ہیں، جیسے الاحساء کا پلاؤ (جو لال چاولوں سے پکتا ہے)، بلالیط، ہریس اور کھجور کی روٹی (جسے “لال روٹی” بھی کہتے ہیں)۔ کچھ فارم کھلی فضا میں الاحساء کا ناشتہ بھی پیش کرتے ہیں۔ آج کل کون سی جگہ سب سے اچھی ہے، یہ جاننے کے لیے تازہ مقامی آرا دیکھ لیں۔ (معلومات کو غیر جانبدار رکھنے کے لیے ہم کسی خاص جگہ کی سفارش نہیں کرتے۔)"
+      },
+      "unit": "pt-faq"
+    },
+    "pt.ctaH": {
+      "en": "Ready? Start gathering your sights",
+      "ar": "جاهز؟ ابدأ بجمع معالمك",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). H2 of the closing call-to-action band: «Ready? Start gathering your sights». Question + imperative siz; no final stop after the imperative (the English has none).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "准备好了吗？开始收藏您的心仪景点",
+        "de": "Bereit? Beginnen Sie, Ihre Sehenswürdigkeiten zusammenzustellen",
+        "ru": "Готовы? Начните собирать свои достопримечательности",
+        "ur": "تیار ہیں؟ اپنے پسندیدہ مقامات جمع کرنا شروع کریں"
+      },
+      "unit": "pt-close"
+    },
+    "pt.ctaD": {
+      "en": "Browse the attractions, add what you like to “My saved places”, then get a ready-made route in Google Maps.",
+      "ar": "تصفّح المعالم وأضف ما يعجبك إلى «معالمي المحفوظة»، ثم احصل على مسارٍ جاهز في خرائط قوقل.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Paragraph of the closing band: browse the attractions, add what you like to “My saved places” (= the approved «Kayıtlı yerlerim», quoted “…” byte-identical), then get a ready-made route in Google Maps («Google Haritalar»). One sentence with a stop. The home page has the same idea in ref.home finale.lead — read it for consistency, do not copy.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "浏览各处景点，将喜欢的加入“我的收藏”，即可在谷歌地图中获取现成的游览路线。",
+        "de": "Durchstöbern Sie die Sehenswürdigkeiten, setzen Sie, was Ihnen gefällt, auf Ihre Merkliste, und erhalten Sie anschließend eine fertige Route in Google Maps.",
+        "ru": "Просмотрите достопримечательности, добавьте понравившиеся в раздел «Сохранённые места» и получите готовый маршрут в Google Картах.",
+        "ur": "سیاحتی مقامات دیکھیں، جو پسند آئیں انہیں “میرے محفوظ کردہ مقامات” میں شامل کریں، اور پھر گوگل میپس پر بنا بنایا راستہ پا لیں۔"
+      },
+      "unit": "pt-close"
+    },
+    "pt.ctaBrowse": {
+      "en": "Browse attractions",
+      "ar": "تصفّح المعالم",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Gold button of the closing band, leads to /tr/attractions/. The same English («Browse attractions») is ui.plan.empty.browse of this batch — byte-identical; and the home page's finale button for the same action is in ref.home. Imperative siz, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "浏览景点",
+        "de": "Sehenswürdigkeiten entdecken",
+        "ru": "Смотреть достопримечательности",
+        "ur": "سیاحتی مقامات دیکھیں"
+      },
+      "unit": "pt-close"
+    },
+    "pt.ctaTrip": {
+      "en": "My saved places",
+      "ar": "معالمي المحفوظة",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Turquoise button beside it, leads to /tr/plan/ («My saved places», built in this batch). The approved page name «Kayıtlı yerlerim» (ref.ui nav.myTrip) byte-identical. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "我的收藏",
+        "de": "Zur Merkliste",
+        "ru": "Сохранённые места",
+        "ur": "میرے محفوظ کردہ مقامات"
+      },
+      "unit": "pt-close"
+    },
+    "pt.seoTitle": {
+      "en": "Plan your trip to Al-Ahsa — getting there, best time and tips",
+      "ar": "خطّط لرحلتك إلى الأحساء: الوصول وأفضل وقت وجدول سياحي",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). <title> of the page (browser tab, search result); the layout appends the separator and the brand («… — Visit Al-Ahsa»), so write NO dash inside the title — the four precedents use a colon («…: …»). About 60 characters; sentence case; El-Ahsa (P2).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "规划您的哈萨之旅——交通、最佳时间与实用贴士",
+        "de": "Al-Ahsa-Reise planen: Anreise, Reisezeit, Tipps",
+        "ru": "План поездки: как добраться, лучшее время и советы",
+        "ur": "الاحساء کے سفر کا منصوبہ: کیسے پہنچیں، بہترین وقت اور مشورے"
+      },
+      "unit": "pt-close"
+    },
+    "pt.seoDesc": {
+      "en": "Everything you need to visit Al-Ahsa: getting there by air, road and train, the best time to visit, practical information, tips and FAQs. Plan with confidence.",
+      "ar": "كل ما تحتاجه لزيارة الأحساء: الوصول جواً وبراً وبالقطار، أفضل وقت للزيارة، معلومات عملية، ونصائح وأسئلة شائعة. خطّط بثقة.",
+      "ctx": "Page /tr/plan-your-trip/ («Plan your trip»: the practical page — how to get there, practical info, the hours/fees table, tips, FAQ, closing call to action). Meta description (search snippet, about 150–160 characters). Lists what the page holds: getting there by air, road and train; the best time; practical information; tips; FAQs; «Plan with confidence.» Full sentences with stops.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "游览哈萨所需的一切信息：乘飞机、自驾与乘火车的交通方式，最佳到访时间，以及实用信息、游客贴士与常见问题——助您安心规划行程。",
+        "de": "Alles für Ihre Al-Ahsa-Reise: Anreise per Flugzeug, Auto oder Zug, beste Reisezeit, praktische Informationen, Tipps und häufige Fragen. Planen Sie mit Zuversicht.",
+        "ru": "Всё для поездки в Аль-Ахсу: как добраться самолётом, машиной или поездом, лучшее время для визита, практическая информация, советы и часто задаваемые вопросы.",
+        "ur": "الاحساء کی سیر کے لیے ضروری معلومات: ہوائی جہاز، سڑک اور ریل گاڑی سے کیسے پہنچیں، جانے کا بہترین وقت، عملی معلومات، مشورے اور عمومی سوالات۔ اطمینان سے اپنا سفر ترتیب دیں۔"
+      },
+      "unit": "pt-close"
+    }
+  }
+}

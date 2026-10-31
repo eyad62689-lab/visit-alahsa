@@ -136,15 +136,19 @@ export const guideAlt = (d: GuideSlugs): { ar: string; en: string } => ({
 /** الصفحات الثابتة المبنية بالأوردو (خط ur-translation-pipeline، دفعة بدفعة): ما ليس هنا يقصد الإنجليزية. */
 const UR_STATIC: ReadonlySet<StaticPage> = new Set<StaticPage>(['map', 'unesco', 'report', 'reportThanks', 'terrainMap', 'legal']);
 
+/** الصفحات الثابتة المبنية بالتركية (خط tr-translation-pipeline): الخريطة منذ tr-map-plan-1؛ ما ليس هنا يقصد الإنجليزية. */
+const TR_STATIC: ReadonlySet<StaticPage> = new Set<StaticPage>(['map']);
+
 /** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. الأوردو تقصد نسختها متى بُنيت (UR_STATIC) وإلا الإنجليزية،
- *  والتركية الإنجليزية (لا صفحة ثابتة تركية بعد). */
+ *  والتركية كذلك (TR_STATIC). */
 export const staticHref = (page: StaticPage, lang: Lang): string =>
   lang === 'ar' ? STATIC_AR[page]
-  : (lang === 'ur' && !UR_STATIC.has(page)) || lang === 'tr' ? `/en/${STATIC_LATIN[page]}`
+  : (lang === 'ur' && !UR_STATIC.has(page)) || (lang === 'tr' && !TR_STATIC.has(page)) ? `/en/${STATIC_LATIN[page]}`
   : `/${lang}/${STATIC_LATIN[page]}`;
 
-/** نظائر الصفحة الثابتة بلغاتها — مصدر hreflang ومبدّل اللغة؛ الأوردو متى بُنيت (UR_STATIC). */
-export const staticAlt = (page: StaticPage): { ar: string; en: string; zh: string; de: string; ru: string; ur?: string } => ({
+/** نظائر الصفحة الثابتة بلغاتها — مصدر hreflang ومبدّل اللغة؛ الأوردو متى بُنيت (UR_STATIC) والتركية متى بُنيت (TR_STATIC). */
+export const staticAlt = (page: StaticPage): { ar: string; en: string; zh: string; de: string; ru: string; ur?: string; tr?: string } => ({
   ar: staticHref(page, 'ar'), en: staticHref(page, 'en'), zh: staticHref(page, 'zh'), de: staticHref(page, 'de'), ru: staticHref(page, 'ru'),
   ...(UR_STATIC.has(page) ? { ur: staticHref(page, 'ur') } : {}),
+  ...(TR_STATIC.has(page) ? { tr: staticHref(page, 'tr') } : {}),
 });
