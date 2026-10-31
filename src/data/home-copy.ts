@@ -3,7 +3,7 @@
 // من خط ترجمتها حصراً ثم تُضمّ إلى HOME_LANGS. أوصاف الأماكن ليست هنا: تأتي من مجموعاتها.
 import type { Lang } from '../i18n/ui';
 
-export const HOME_LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur'] as const;
+export const HOME_LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as const;
 export type HomeLang = (typeof HOME_LANGS)[number];
 
 type Pair = readonly [string, string];
@@ -470,6 +470,79 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       replay: 'داستان دوبارہ شروع کریں',
     },
     saved: { count: 'میرے محفوظ کردہ مقامات:', build: 'ان سے اپنا سفر ترتیب دیں' },
+  },
+  // التركية من خط tr-translation-pipeline (دفعة tr-home-1): seo من الدفعة نفسها (لا HomeView تركية)؛ الخريطة والتخطيط و«رحلتي» غير مبنية بالتركية فمساراتها إلى الإنجليزية (نمط builtLang)
+  tr: {
+    seo: {
+      title: 'El-Ahsa gezi rehberi: dünyanın en büyük vahasında yapılacaklar — Visit Al-Ahsa',
+      description: 'El-Ahsa\'da yapılacaklar: Cebel el-Kare\'den El-Kaysariye Çarşısı\'na gezilecek yerler. UNESCO Dünya Mirası Listesi\'ndeki El-Ahsa Vahası için haritalar, etkinlikler ve gezi planları.',
+      place: 'El-Ahsa',
+      country: 'Suudi Arabistan',
+    },
+    arrow: '→',
+    sep: ' ',
+    paths: { attractions: '/tr/attractions/', map: '/en/map/', plan: '/en/plan-your-trip/', myTrip: '/en/plan/', trails: '/tr/trails/' },
+    gate: {
+      title: 'El-Ahsa: Dünyanın en büyük vahasını bölüm bölüm keşfedin',
+      lead: 'Suudi Arabistan\'ın Doğu Bölgesi\'nde: kumun altında su, mağaralarla dolu bir dağ ve nesillerdir süregelen çarşılar. El-Ahsa\'da gezilecek yerler ve yapılacaklar için rehberiniz burada. Başlamak için sayfayı kaydırın.',
+      begin: 'Hikâyeye başlayın',
+      skip: 'Planlamaya geçin',
+    },
+    rail: {
+      label: 'Sayfanın bölümleri',
+      items: [['ch-gate', 'Giriş'], ['ch-water', 'Kumun altındaki su'], ['ch-qarah', 'Cebel el-Kare'], ['ch-map', 'Etkileşimli harita'], ['ch-memory', 'Toprağın ve çarşının hafızası'], ['ch-plan', 'Gezinizi planlayın'], ['ch-finale', 'Kapanış']],
+    },
+    water: {
+      title: 'Kumun altındaki su',
+      lead: 'Geniş bir yeraltı su katmanı vahayı besler ve çölün ortasında yemyeşil tutar.',
+      springsL: 'artezyen kaynağı vahayı sular',
+      srcLabel: 'Kaynaklar: ',
+      srcGuinness: 'Guinness Dünya Rekorları, “En büyük vaha”',
+      srcMid: ' (hurma ağaçları ve pınarlar); Suudi Arabistan\'ın Çevre, Su ve Tarım Bakanlığı istatistikleri (hurma ağaçları); ',
+      srcUnesco: 'UNESCO Dünya Mirası Listesi',
+      srcEnd: ' (2018).',
+      link: 'Doğada gezilecek yerleri keşfedin',
+    },
+    qarah: {
+      title: 'Cebel el-Kare: Günün saatini siz seçin',
+      drag: 'Kaydırıcıyı şafaktan gün batımına sürükleyin.',
+      timeLabel: 'Günün saati',
+      times: ['Şafak', 'Sabah', 'Öğleden sonra', 'Gün batımı'],
+      link: 'Cebel el-Kare sayfası',
+    },
+    map: {
+      title: 'İlginizi çeken yeri seçin',
+      lead: 'Gezilecek yerler haritada gerçek konumlarında gösterilir. Birini açıp inceleyin ve geziniz için kaydedin.',
+      svgLabel: 'El-Ahsa\'daki gezilecek yerlerin sadeleştirilmiş haritası',
+      km: '10 km',
+      legend: 'Haritadaki gezilecek yerler',
+      empty: 'Fotoğrafını ve tanıtımını görmek için haritadan bir yer seçin.',
+      more: 'Gezilecek yer sayfası',
+      link: 'Haritanın tamamı',
+    },
+    memory: {
+      title: 'Toprağın ve çarşının hafızası',
+      lead: 'Toprak kaleler, İslam tarihinin ilk camilerinden bazıları ve nesillerdir süregelen çarşılar.',
+      track: 'Tarihî yerler, yana kaydırın',
+      link: 'Tarihî yerler',
+    },
+    plan: {
+      title: 'Gezinizi üç soruda planlayın',
+      lead: 'Soruları yanıtlayın; rotanız hemen belirir. Haritadan kaydettiğiniz yerler de rotaya eklenir.',
+      link: 'Kapsamlı gezi planlama rehberi',
+      int: { legend: 'Sizi ne çekiyor?', opts: [['heritage', 'Miras ve tarih'], ['nature', 'Doğa ve su'], ['markets', 'Çarşılar ve el sanatları']] },
+      dur: { legend: 'Kaç gününüz var?', opts: [['1', 'Bir gün'], ['2', 'İki gün'], ['3', 'Üç gün']] },
+      com: { legend: 'Kiminle seyahat ediyorsunuz?', opts: [['family', 'Ailemle'], ['friends', 'Arkadaşlarımla'], ['solo', 'Tek başıma']] },
+      L: { wait: 'Rotanızı burada görmek için üç soruyu yanıtlayın.', title: 'Rotanız', days: ['Birinci gün', 'İkinci gün', 'Üçüncü gün'], trail: 'Rota', place: 'Gezilecek yer', saved: 'Kayıtlı yerlerinizden' },
+    },
+    finale: {
+      title: 'Vaha sizi bekliyor',
+      lead: 'El-Asfar Gölü\'nün kumullarından hurma ağaçlarının gölgesine, yolculuğunuz burada başlıyor.',
+      plan: 'Gezinizi planlayın',
+      open: 'Kayıtlı yerleri açın',
+      replay: 'Hikâyeyi yeniden başlatın',
+    },
+    saved: { count: 'Kayıtlı yerleriniz:', build: 'Bu yerlerden rota oluşturun' },
   },
 };
 

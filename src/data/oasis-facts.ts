@@ -36,7 +36,7 @@ export const OASIS_FACTS = {
       de: 'Über 2,5 Mio.',
       ru: 'Более 2,5 млн',
       ur: '25 لاکھ+',
-      tr: '2.5M+',
+      tr: '2,5 milyondan fazla',
     } satisfies PerLang,
     /** الصيغة المجرّدة (صفحة الثمار). */
     short: {
@@ -72,6 +72,7 @@ export const OASIS_FACTS = {
       de: 'Über 280',
       ru: 'Более 280',
       ur: '280+',
+      tr: '280\'den fazla',
     } satisfies Readonly<Record<HomeLang, string>>,
   },
   unescoYear: { value: 2018 },

@@ -27,10 +27,10 @@ const ru = lang === 'ru';
 // الأقسام تقع على الفرع الأخير (الإنجليزي) في كل سطر أدناه — تسمية إنجليزية لصفحة
 // إنجليزية حتى يُبنى القسم تحت /ur/ فيُضاف فرعه.
 const ur = lang === 'ur';
-// التركية: النواة وحدها (فهرس المعالم وصفحات المعالم الحاملة title_tr)، فلها فرع صريح في
-// attractions وحده؛ ولا رئيسية /tr/ بعد، فالرئيسية وبقية الأقسام إلى الإنجليزية.
+// التركية: الرئيسية /tr/ (tr-home-1) وفهرس المعالم وصفحات المعالم الحاملة title_tr والمسارات، فلها فروع
+// صريحة فيها؛ وبقية الأقسام إلى الإنجليزية حتى تُبنى.
 const tr = lang === 'tr';
-const home = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/';
+const home = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : tr ? '/tr/' : '/en/';
 const routes = {
   attractions: ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : tr ? '/tr/attractions/' : '/en/attractions/',
   leisure: ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : ur ? '/ur/souqs-parks-farms/' : '/en/souqs-parks-farms/',

@@ -859,7 +859,7 @@ async function main() {
         }
       }
     }
-    for (const home of ['', 'en', 'zh', 'de', 'ru', 'ur']) {
+    for (const home of ['', 'en', 'zh', 'de', 'ru', 'ur', 'tr']) {
       const p = path.join(DIST, home, 'index.html');
       let html;
       try { html = await readText(p); } catch { problems.push(`الرئيسية /${home} مفقودة`); continue; }
@@ -875,7 +875,7 @@ async function main() {
     const withU = expected.filter((e) => e.unesco).length;
     if (withQ < 10 || withU < 6) fail('C19', `الحارس صار فارغاً: ${withQ} معلماً بـsameAs و${withU} بمكوّن يونسكو — المتوقع ≥10 و≥6`);
     else if (problems.length) fail('C19', `sameAs/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C19', `sameAs في ${withQ} معلماً (${pagesChecked} صفحة) ومكوّنات اليونسكو ${withU} — المنشور يطابق المصدر، ولا كيان مشترك، والرئيسيات الست تحمل هوية الواحة`);
+    else pass('C19', `sameAs في ${withQ} معلماً (${pagesChecked} صفحة) ومكوّنات اليونسكو ${withU} — المنشور يطابق المصدر، ولا كيان مشترك، والرئيسيات السبع تحمل هوية الواحة`);
   }
 
   // ── C20: انقسام أداة التعريف في الروسية (حكم المعايرة P1 — 2026-09-05) ────
