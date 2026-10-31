@@ -28,7 +28,7 @@ const tr = lang === 'tr';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
 const showGuides = (ar || lang === 'en') && (await guidesListed());
 const listBase = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : tr ? '/tr/attractions/' : '/en/attractions/';
-const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : ur ? '/ur/souqs-parks-farms/' : '/en/souqs-parks-farms/';
+const leisureBase = ar ? '/أسواق-ومنتزهات-ومزارع/' : zh ? '/zh/souqs-parks-farms/' : de ? '/de/souqs-parks-farms/' : ru ? '/ru/souqs-parks-farms/' : ur ? '/ur/souqs-parks-farms/' : lang === 'tr' ? '/tr/souqs-parks-farms/' : '/en/souqs-parks-farms/';
 const planTrip = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : ur ? '/ur/plan-your-trip/' : lang === 'tr' ? '/tr/plan-your-trip/' : '/en/plan-your-trip/';
 const cols = [
   {
@@ -38,7 +38,7 @@ const cols = [
       ...['historic', 'nature'].map((c) => ({ label: catLabel(c, lang), href: `${listBase}?cat=${c}` })),
       // صفحة واحدة باسمها كالترويسة، لا مرشّحاتها الثلاثة (حكم إياد 2026-10-04: قرأها القرّاء ثلاث صفحات)
       { label: t('nav.leisure'), href: leisureBase },
-      { label: t('nav.fruits'), href: ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : ur ? '/ur/fruits/' : '/en/fruits/' },
+      { label: t('nav.fruits'), href: ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : ur ? '/ur/fruits/' : lang === 'tr' ? '/tr/fruits/' : '/en/fruits/' },
       { label: t('nav.food'), href: ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : ur ? '/ur/food/' : '/en/food/' },
       { label: t('nav.dine'), href: ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : ur ? '/ur/restaurants-cafes/' : '/en/restaurants-cafes/' },
       { label: t('nav.stay'), href: ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : '/en/stay/' },

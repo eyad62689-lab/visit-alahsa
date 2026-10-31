@@ -12,7 +12,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import DataTable from '../DataTable.astro';
 import { fruitsTable } from '../../lib/tables';
-import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_DE, FRUIT_GROUPS_RU, FRUIT_GROUPS_UR } from '../../data/fruits';
+import { FRUIT_GROUPS_AR, FRUIT_GROUPS_EN, FRUIT_GROUPS_ZH, FRUIT_GROUPS_DE, FRUIT_GROUPS_RU, FRUIT_GROUPS_UR, FRUIT_GROUPS_TR } from '../../data/fruits';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { OASIS_FACTS } from '../../data/oasis-facts';
@@ -25,6 +25,7 @@ const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
 const ur = lang === 'ur';
+const tr = lang === 'tr';
 // رؤوس جدول المواسم (الخطوة 8 من خطة التفاعل العالمي) — عربي/إنجليزي فقط؛ الصيني بانتظار خط الترجمة فلا يُبنى جدوله
 // @de-fruits:heads:start
 // رؤوس جدول المواسم الألمانية — من خط de-translation-pipeline (دفعة de-fruits-1)
@@ -34,7 +35,9 @@ const DE_HEADS = { fruit: 'Frucht', season: 'Saison', group: 'Gruppe' };
 const RU_HEADS = { fruit: 'Плод', season: 'Сезон', group: 'Группа' };
 // رؤوس جدول المواسم الأوردية — من خط ur-translation-pipeline (دفعة b18-ui)
 const UR_HEADS = { fruit: 'پھل', season: 'موسم', group: 'زمرہ' };
-const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : de ? DE_HEADS : ru ? RU_HEADS : ur ? UR_HEADS : { fruit: 'Fruit', season: 'Season', group: 'Group' };
+// رؤوس جدول المواسم التركية — من خط tr-translation-pipeline (دفعة tr-leisure-fruits-1)
+const TR_HEADS = { fruit: 'Meyve', season: 'Mevsim', group: 'Grup' };
+const fruitHeads = ar ? { fruit: 'الثمرة', season: 'الموسم', group: 'المجموعة' } : de ? DE_HEADS : ru ? RU_HEADS : ur ? UR_HEADS : tr ? TR_HEADS : { fruit: 'Fruit', season: 'Season', group: 'Group' };
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة fruits 2026-09-02، الحاكم 94/100)
 const ZH = {
@@ -175,6 +178,39 @@ const UR = {
   methodP2: 'پھل پکنے کا وقت موسمی حالات کے مطابق سال بہ سال تھوڑا آگے پیچھے ہو جاتا ہے۔',
   groups: FRUIT_GROUPS_UR,
 };
+// الكتلة التركية — خط tr-translation-pipeline (دفعة tr-leisure-fruits-1؛ الحاكم 92/100، صفحة /tr/fruits/).
+// رؤوس الجدول والوصف من الخط نفسه، فيُبنى جدول المواسم بالتركية لا بالإنجليزية.
+const TR = {
+  heroEyebrow: 'Vahanın bereketi',
+  title: 'El-Ahsa\'nın mevsim meyveleri',
+  heroSum: 'Dünyanın en büyük vahasında mevsimler bahçelerde birbirini izler ve her biri ziyaretçiye yeni bir meyve, yeni bir lezzet sunar. Bu meyveler arasında yazın altın sarısı rutab (taze, yumuşak evredeki hurma), kışın sidr meyvesi (kanar) ve vahanın ünlü misket limonu vardır.',
+  stats: [
+    { n: OASIS_FACTS.palms.short.tr, l: 'vahadaki hurma ağacı' },
+    { n: OASIS_FACTS.fruitTrees.short.tr, l: 'diğer meyve ağacı' },
+  ],
+  statsSrc: OASIS_FACTS.fruitsStatsSrc.tr,
+  frEyebrow: 'Meyveler arasında bir gezinti',
+  frH: 'Her mevsimin kendi meyvesi',
+  frLead: 'Ziyaret edeceğiniz mevsimi seçin, meyvelerini görün:',
+  chipsAria: 'Meyveler için mevsim filtreleri',
+  chips: [
+    { f: 'all', l: 'Tüm mevsimler' },
+    { f: 'winter', l: 'Kış' },
+    { f: 'spring', l: 'İlkbahar' },
+    { f: 'summer', l: 'Yaz' },
+    { f: 'autumn', l: 'Sonbahar' },
+  ],
+  pending: 'Teyit bekleniyor',
+  rare: 'Yok olmak üzere',
+  more: 'Devamını okuyun',
+  less: 'Devamını gizleyin',
+  emptyMsg: 'Bu mevsim için henüz kayıtlı meyve yok.',
+  countPrefix: 'Gösterilen meyve sayısı: ',
+  methodH: 'Bu sayfanın doğruluğu hakkında',
+  methodP1: 'Bu sayfa güvenilir resmî ve tarımsal kaynaklara dayanır; her bilgiyi yayımlamadan önce doğrulamaya özen gösteririz.',
+  methodP2: 'Olgunlaşma zamanları hava koşullarına göre sezondan sezona biraz değişir.',
+  groups: FRUIT_GROUPS_TR,
+};
 const C = localize(lang, {
   ar: {
     heroEyebrow: 'من خيرات الواحة',
@@ -242,6 +278,7 @@ const C = localize(lang, {
   de: DE,
   ru: RU,
   ur: UR,
+  tr: TR,
 });
 
 const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.brand')}`;
@@ -253,13 +290,13 @@ const description = ar
       ? 'Die Früchte der Al-Ahsa-Oase Saison für Saison: Datteln und Rutab, Hasawi-Limette, gelbe Melone, Feigen, Kanar und mehr – nach offiziellen Quellen geprüft.'
     : ru
       ? 'Плоды оазиса Аль-Ахса по сезонам: финики и рутаб, лайм Аль-Ахсы, жёлтая дыня, инжир, канар и другие — с проверенными сведениями из официальных источников.'
-      : ur ? 'الاحساء کے نخلستان کے پھلوں کا موسم بہ موسم تعارف: کھجوریں اور رطب، الاحساء کے لیموں، پیلا خربوزہ، انجیر، کنار اور دوسرے پھل، سرکاری ذرائع سے تصدیق شدہ معلومات کے ساتھ۔' : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
+      : ur ? 'الاحساء کے نخلستان کے پھلوں کا موسم بہ موسم تعارف: کھجوریں اور رطب، الاحساء کے لیموں، پیلا خربوزہ، انجیر، کنار اور دوسرے پھل، سرکاری ذرائع سے تصدیق شدہ معلومات کے ساتھ۔' : tr ? 'El-Ahsa Vahası meyveleri mevsim mevsim: hurma ve rutab, misket limonu, sarı kavun, incir, sidr meyvesi (kanar) ve dahası. Resmî kaynaklarla doğrulanmıştır.' : 'A season-by-season tour of Al-Ahsa Oasis fruits: dates and rutab, Hasawi lime, yellow melon, figs, kanar and more — verified from official sources.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : ur ? '/ur/fruits/' : '/en/fruits/';
+const selfPath = ar ? '/ثمار/' : zh ? '/zh/fruits/' : de ? '/de/fruits/' : ru ? '/ru/fruits/' : ur ? '/ur/fruits/' : lang === 'tr' ? '/tr/fruits/' : '/en/fruits/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : lang === 'tr' ? '/tr/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];
