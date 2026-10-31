@@ -1,0 +1,1128 @@
+{
+  "batch": "tr-trails-1",
+  "lang": "tr",
+  "pages": [
+    "/tr/trails/",
+    "/tr/trails/historic-hofuf/",
+    "/tr/trails/qarah-and-jawatha/",
+    "/tr/trails/oasis-and-springs/",
+    "/tr/trails/al-asfar-and-national-park/",
+    "/tr/trails/al-uqair-coast/"
+  ],
+  "rule": "en is the source; ar is the arbiter on names and on facts to flag; precedent is for understanding, never copied; listSep is not a batch string (apply writes «, »).",
+  "strings": {
+    "ui.trails.title": {
+      "en": "Suggested trails",
+      "ar": "مسارات مقترحة",
+      "ctx": "H1 of the trails index (/tr/trails/) and its browser-tab title (followed by the separator and the brand). The header/footer link to the same page is the approved «Rotalar» (nav.trails) — the H1 can be longer than the nav word. Sentence case (P9).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "推荐路线",
+        "de": "Empfohlene Routen",
+        "ru": "Рекомендуемые маршруты",
+        "ur": "سیر کے تجویز کردہ راستے"
+      },
+      "ui_key": "trails.title"
+    },
+    "ui.trails.lead": {
+      "en": "Themed trails linking Al-Ahsa’s landmarks, with ordered stops and sources for every stop.",
+      "ar": "مسارات تجمع معالم الأحساء في رحلات بموضوع واحد، بمحطات مرتّبة ومصادر لكل محطة.",
+      "ctx": "Paragraph under the H1 of the index.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "一条路线一个主题，串起哈萨的景点；站点依次排列，每一站都附有资料来源。",
+        "de": "Jede Route verbindet Sehenswürdigkeiten Al-Ahsas zu einem Themenausflug – mit Stationen in fester Reihenfolge und Quellenangaben zu jeder Station.",
+        "ru": "Тематические маршруты по достопримечательностям Аль-Ахсы: остановки даны в порядке посещения, у каждой указаны источники сведений.",
+        "ur": "سیر کا ہر راستہ الاحساء کے کچھ سیاحتی مقامات کو کسی ایک موضوع کے تحت یکجا کرتا ہے۔ ہر راستے کے پڑاؤ ترتیب سے دیے گئے ہیں، اور ہر پڑاؤ کے ساتھ اس کی معلومات کے ذرائع بھی درج ہیں۔"
+      },
+      "ui_key": "trails.lead"
+    },
+    "ui.trails.duration": {
+      "en": "Suggested duration",
+      "ar": "المدة المقترحة",
+      "ctx": "Label of the duration cell on every trail card and in the trail-page head (followed by the half-day/full-day value).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "建议时长",
+        "de": "Empfohlene Dauer",
+        "ru": "Сколько времени отвести",
+        "ur": "تجویز کردہ دورانیہ"
+      },
+      "ui_key": "trails.duration"
+    },
+    "ui.trails.duration.half-day": {
+      "en": "Half day",
+      "ar": "نصف يوم",
+      "ctx": "Value of the duration cell: half a day.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "半天",
+        "de": "Halber Tag",
+        "ru": "Полдня",
+        "ur": "آدھا دن"
+      },
+      "ui_key": "trails.duration.half-day"
+    },
+    "ui.trails.duration.full-day": {
+      "en": "Full day",
+      "ar": "يوم كامل",
+      "ctx": "Value of the duration cell: a full day.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "一整天",
+        "de": "Ganzer Tag",
+        "ru": "Целый день",
+        "ur": "پورا دن"
+      },
+      "ui_key": "trails.duration.full-day"
+    },
+    "ui.trails.mode": {
+      "en": "Getting around",
+      "ar": "التنقّل",
+      "ctx": "Label of the getting-around cell (followed by the walking/driving/4x4 value).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "出行方式",
+        "de": "Unterwegs",
+        "ru": "Как передвигаться",
+        "ur": "سفر کا ذریعہ"
+      },
+      "ui_key": "trails.mode"
+    },
+    "ui.trails.mode.walking": {
+      "en": "On foot",
+      "ar": "سيراً على الأقدام",
+      "ctx": "Value: on foot.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "步行",
+        "de": "Zu Fuß",
+        "ru": "Пешком",
+        "ur": "پیدل"
+      },
+      "ui_key": "trails.mode.walking"
+    },
+    "ui.trails.mode.driving": {
+      "en": "By car",
+      "ar": "بالسيارة",
+      "ctx": "Value: by car.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "驾车",
+        "de": "Mit dem Auto",
+        "ru": "На автомобиле",
+        "ur": "گاڑی سے"
+      },
+      "ui_key": "trails.mode.driving"
+    },
+    "ui.trails.mode.4x4": {
+      "en": "4x4 vehicle",
+      "ar": "سيارة دفع رباعي",
+      "ctx": "Value: a four-wheel-drive vehicle (the English card says «4x4 vehicle»; the tm/termbase may already hold the Turkish for 4x4 from the asfar page).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "四驱车",
+        "de": "Mit dem Geländewagen",
+        "ru": "На полноприводном автомобиле",
+        "ur": "فور وہیل ڈرائیو گاڑی سے"
+      },
+      "ui_key": "trails.mode.4x4"
+    },
+    "ui.trails.stopsCount": {
+      "en": "Stops",
+      "ar": "المحطات",
+      "ctx": "Label beside the number of stops on the card («4 Stops» — the number renders before the label as a separate element).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "站点",
+        "de": "Stationen",
+        "ru": "Остановки",
+        "ur": "پڑاؤ"
+      },
+      "ui_key": "trails.stopsCount"
+    },
+    "ui.trails.unescoCount": {
+      "en": "UNESCO stops",
+      "ar": "محطات في اليونسكو",
+      "ctx": "Label beside the number of UNESCO stops on the card.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "世界遗产站点",
+        "de": "Stationen im UNESCO-Welterbe",
+        "ru": "Остановки из списка ЮНЕСКО",
+        "ur": "یونیسکو کے عالمی ورثے میں شامل پڑاؤ"
+      },
+      "ui_key": "trails.unescoCount"
+    },
+    "ui.trails.view": {
+      "en": "View trail",
+      "ar": "تفاصيل المسار",
+      "ctx": "Link text on the card to the trail page; an arrow follows it.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "查看路线",
+        "de": "Route ansehen",
+        "ru": "Подробнее о маршруте",
+        "ur": "راستے کی تفصیل"
+      },
+      "ui_key": "trails.view"
+    },
+    "ui.trails.stopsH": {
+      "en": "Trail stops",
+      "ar": "محطات المسار",
+      "ctx": "H2 above the numbered list of stops on the trail page.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "路线站点",
+        "de": "Stationen der Route",
+        "ru": "Остановки маршрута",
+        "ur": "راستے کے پڑاؤ"
+      },
+      "ui_key": "trails.stopsH"
+    },
+    "ui.trails.stop": {
+      "en": "Stop",
+      "ar": "المحطة",
+      "ctx": "Small label before the stop number («Stop 1»); the number follows as a separate element.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "站点",
+        "de": "Station",
+        "ru": "Остановка",
+        "ur": "پڑاؤ"
+      },
+      "ui_key": "trails.stop"
+    },
+    "ui.trails.unesco": {
+      "en": "UNESCO",
+      "ar": "اليونسكو",
+      "ctx": "Badge on a stop that lies inside the UNESCO component parts (one word; the site writes UNESCO in Latin).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "世界遗产",
+        "de": "UNESCO",
+        "ru": "ЮНЕСКО",
+        "ur": "یونیسکو"
+      },
+      "ui_key": "trails.unesco"
+    },
+    "ui.trails.sources": {
+      "en": "Sources",
+      "ar": "المصادر",
+      "ctx": "Small heading above the source links of a stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "资料来源",
+        "de": "Quellenangaben",
+        "ru": "Источники сведений",
+        "ur": "ذرائع"
+      },
+      "ui_key": "trails.sources"
+    },
+    "ui.trails.landmark": {
+      "en": "Landmark page",
+      "ar": "صفحة المعلم",
+      "ctx": "Link from a stop to its attraction page; an arrow follows it. The sibling back link on attraction pages is «Tüm gezilecek yerler →».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "景点页面",
+        "de": "Seite der Sehenswürdigkeit",
+        "ru": "Подробнее о месте",
+        "ur": "سیاحتی مقام کا صفحہ دیکھیں"
+      },
+      "ui_key": "trails.landmark"
+    },
+    "ui.trails.mapH": {
+      "en": "Trail map",
+      "ar": "خريطة المسار",
+      "ctx": "H2 of the trail map.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "路线地图",
+        "de": "Karte der Route",
+        "ru": "Карта маршрута",
+        "ur": "راستے کا نقشہ"
+      },
+      "ui_key": "trails.mapH"
+    },
+    "ui.trails.mapNote": {
+      "en": "The map shows only stops linked to a landmark page.",
+      "ar": "تظهر على الخريطة المحطات المرتبطة بصفحات معالم فقط.",
+      "ctx": "One line under the map.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "地图上只标出设有景点页面的站点。",
+        "de": "Die Karte zeigt nur Stationen, zu denen es eine Seite der Sehenswürdigkeit gibt.",
+        "ru": "На карте отмечены только остановки, у которых на сайте есть отдельная страница.",
+        "ur": "نقشے پر صرف وہ پڑاؤ دکھائے گئے ہیں جو کسی سیاحتی مقام کے صفحے سے جڑے ہیں۔"
+      },
+      "ui_key": "trails.mapNote"
+    },
+    "ui.trails.all": {
+      "en": "All trails",
+      "ar": "كل المسارات",
+      "ctx": "Link at the foot of the trail page back to the index.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "全部路线",
+        "de": "Alle Routen",
+        "ru": "Все маршруты",
+        "ur": "سیر کے تمام راستے"
+      },
+      "ui_key": "trails.all"
+    },
+    "meta.attribution": {
+      "en": "Suggested trails for exploring Al-Ahsa.",
+      "ar": "مسارات مقترحة لاستكشاف الأحساء.",
+      "ctx": "Attribution line in the index head and at the foot of every trail page: the trails are the site's own suggestions, not official — no «resmî», «onaylı», «onaylanmış» or any word implying endorsement, here or in any title/tagline/intro (guard C27).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "探索哈萨的推荐路线。",
+        "de": "Empfohlene Routen, um Al-Ahsa zu erkunden.",
+        "ru": "Рекомендуемые маршруты для знакомства с Аль-Ахсой.",
+        "ur": "الاحساء کی سیر کے لیے تجویز کردہ راستے۔"
+      }
+    },
+    "meta.unescoNote": {
+      "en": "The UNESCO badge is shown only for stops within the twelve component parts of 'Al-Ahsa Oasis, an Evolving Cultural Landscape', inscribed in 2018.",
+      "ar": "تُمنح شارة اليونسكو فقط للمحطات الواقعة ضمن المكونات الاثني عشر لموقع «واحة الأحساء، منظر ثقافي آخذ بالتغيّر» المسجل عام 2018م.",
+      "ctx": "UNESCO note, once per trail page. The inscribed site name and 2018 as the termbase/tm already render them (search «Evolving Cultural Landscape» / «Al-Ahsa Oasis» in ref.terms and ref.tm). The English keeps the site name in quotes.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "只有位于“哈萨绿洲，变迁的文化景观”十二处组成部分之内的站点，才带有“世界遗产”标识；该遗产于 2018 年列入联合国教科文组织《世界遗产名录》。",
+        "de": "Nur Stationen, die in einem der zwölf Bestandteile der Stätte „Oase Al-Ahsa, eine sich entwickelnde Kulturlandschaft“ liegen, erhalten die UNESCO-Kennzeichnung; die Stätte wurde 2018 in die Welterbeliste aufgenommen.",
+        "ru": "Значком ЮНЕСКО отмечены только те остановки, которые находятся в пределах двенадцати компонентов объекта «Оазис Аль-Ахса, меняющийся культурный ландшафт», включённого в Список всемирного наследия в 2018 году.",
+        "ur": "الاحساء کا نخلستان، ایک ارتقا پذیر ثقافتی منظر، 2018 میں یونیسکو کی عالمی ورثے کی فہرست میں درج ہوا۔ یونیسکو کا نشان صرف اسی پڑاؤ پر دکھایا جاتا ہے جو عالمی ورثے میں شامل نخلستان کے بارہ حصوں میں سے کسی میں ہو۔"
+      }
+    },
+    "seoDesc": {
+      "en": "{n} suggested trails across Al-Ahsa’s landmarks: {titles}.",
+      "ar": "{n} مسارات مقترحة بين معالم الأحساء: {titles}.",
+      "ctx": "Meta description of the index page. {n} = number of trails, {titles} = the trail titles joined by «, ». Keep both placeholders exactly once; the sentence must read well with a list after the colon.",
+      "placeholders": [
+        "{n}",
+        "{titles}"
+      ],
+      "precedent": {
+        "zh": "串联哈萨各处景点的 {n} 条推荐路线：{titles}。",
+        "de": "{n} empfohlene Routen zu den Sehenswürdigkeiten Al-Ahsas: {titles}.",
+        "ru": "Рекомендуемые маршруты по достопримечательностям Аль-Ахсы ({n}): {titles}.",
+        "ur": "الاحساء کے سیاحتی مقامات میں سیر کے {n} تجویز کردہ راستے: {titles}۔"
+      }
+    },
+    "sources.unesco-ar": {
+      "en": "UNESCO — Al-Ahsa Oasis, an Evolving Cultural Landscape",
+      "ar": "اليونسكو — واحة الأحساء، منظر ثقافي آخذ بالتغير",
+      "ctx": "Link text of a source (official) under a stop; opens whc.unesco.org in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "联合国教科文组织：哈萨绿洲，变迁的文化景观",
+        "de": "UNESCO – Oase Al-Ahsa, eine sich entwickelnde Kulturlandschaft",
+        "ru": "ЮНЕСКО — Оазис Аль-Ахса, меняющийся культурный ландшафт",
+        "ur": "یونیسکو — الاحساء کا نخلستان، ایک ارتقا پذیر ثقافتی منظر"
+      }
+    },
+    "sources.unesco-decision": {
+      "en": "UNESCO Decision 42 COM 8B.16",
+      "ar": "UNESCO Decision 42 COM 8B.16",
+      "ctx": "Link text of a source (official) under a stop; opens whc.unesco.org in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "联合国教科文组织：第 42 COM 8B.16 号决定",
+        "de": "UNESCO-Beschluss 42 COM 8B.16",
+        "ru": "Решение ЮНЕСКО 42 COM 8B.16",
+        "ur": "یونیسکو کا فیصلہ 42 COM 8B.16"
+      }
+    },
+    "sources.components-list": {
+      "en": "Jehat News — Statement on the boundaries of the 12 inscribed sites",
+      "ar": "جهات الإخبارية — تصريح عن حدود المواقع الـ12 المسجلة",
+      "ctx": "Link text of a source (secondary) under a stop; opens jehat.net in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "Jehat 新闻网：关于十二处列入名录的遗产地边界的声明",
+        "de": "Jehat News – Stellungnahme zu den Grenzen der 12 aufgenommenen Stätten",
+        "ru": "Издание «Джихат аль-Ихбария» — заявление о границах 12 участков, включённых в Список всемирного наследия",
+        "ur": "جہات الاخباریہ — عالمی ورثے کی فہرست میں درج 12 مقامات کی حدود کے بارے میں بیان"
+      }
+    },
+    "sources.saudipedia-qasr-ibrahim": {
+      "en": "Saudipedia — Qasr Ibrahim",
+      "ar": "سعوديبيديا — قصر إبراهيم الأثري",
+      "ctx": "Link text of a source (official) under a stop; opens saudipedia.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特百科：古迹易卜拉欣宫",
+        "de": "Saudipedia – Historischer Qasr Ibrahim",
+        "ru": "Saudipedia — историческая крепость Каср-Ибрахим",
+        "ur": "سعودی پیڈیا — قصر ابراہیم"
+      }
+    },
+    "sources.spa-bayt-albayah": {
+      "en": "SPA — Bayt Al-Bay'ah, witness to a historic journey",
+      "ar": "واس — بيت البيعة شاهد لمسيرة تاريخية",
+      "ctx": "Link text of a source (official) under a stop; opens www.spa.gov.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特通讯社：效忠之家，一段历史进程的见证",
+        "de": "SPA – Bayt Al-Bay'ah, Zeuge eines historischen Werdegangs",
+        "ru": "Саудовское агентство новостей — Байт-эль-Бая, свидетель исторического пути",
+        "ur": "سعودی خبر رساں ادارہ — بیت البیعہ، ایک تاریخی سفر کا گواہ"
+      }
+    },
+    "sources.sabq-darah-bayt-almulla": {
+      "en": "Sabq — Darah introduces Al-Mulla House",
+      "ar": "سبق — الدارة تعرّف ببيت الملا",
+      "ctx": "Link text of a source (press) under a stop; opens sabq.org in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "Sabq 新闻网：阿卜杜勒阿齐兹国王基金会介绍拜特·穆拉",
+        "de": "Sabq – Darah stellt Bayt Al-Mulla vor",
+        "ru": "Издание «Сабк» — Фонд исследований и архивов короля Абдул-Азиза рассказывает о Байт-эль-Мулла",
+        "ur": "سبق اخبار — الدارہ نے بیت الملا کا تعارف کرایا"
+      }
+    },
+    "sources.saudipedia-amiriya": {
+      "en": "Saudipedia — Al-Amiriya School in Al-Ahsa",
+      "ar": "سعوديبيديا — المدرسة الأميرية في الأحساء",
+      "ctx": "Link text of a source (official) under a stop; opens saudipedia.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特百科：哈萨的阿米里亚学校",
+        "de": "Saudipedia – Amiriah-Schule in Al-Ahsa",
+        "ru": "Saudipedia — школа «Эль-Амирия» в Аль-Ахсе",
+        "ur": "سعودی پیڈیا — الاحساء میں مدرسہ امیریہ"
+      }
+    },
+    "sources.alwatan-amiriya": {
+      "en": "Al-Watan — Al-Amiriya School: visited by the Founder, opened by Faisal",
+      "ar": "الوطن — المدرسة الأميرية زارها المؤسس وافتتحها الفيصل",
+      "ctx": "Link text of a source (press) under a stop; opens www.alwatan.com.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "《祖国报》：阿米里亚学校，开国国王曾到访，费萨尔主持启用",
+        "de": "Al-Watan – Amiriah-Schule: Besuch des Staatsgründers, Eröffnung durch Faisal",
+        "ru": "Газета «аль-Ватан» — школа «Эль-Амирия»: ее посетил король-основатель, а открыл Фейсал",
+        "ur": "الوطن اخبار — مدرسہ امیریہ: مملکت کے بانی یہاں آئے اور الفیصل نے اس کا افتتاح کیا"
+      }
+    },
+    "sources.aleqt-craftsmen-house": {
+      "en": "Al-Eqtisadiah — Craftsmen's House inaugurated at Al-Amiriya School",
+      "ar": "الاقتصادية — تدشين بيت الحرفيين في المدرسة الأميرية",
+      "ctx": "Link text of a source (press) under a stop; opens www.aleqt.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "《经济报》：“手工艺人之家”在阿米里亚学校启动",
+        "de": "Al-Eqtisadiah – Auftakt für das „Haus der Handwerker“ in der Amiriah-Schule",
+        "ru": "Газета «аль-Иктисадия» — открытие «Дома ремесленников» в школе «Эль-Амирия»",
+        "ur": "الاقتصادیہ اخبار — مدرسہ امیریہ میں “بیت الحرفیین” کا افتتاح"
+      }
+    },
+    "sources.saudipedia-qaisariya": {
+      "en": "Saudipedia — Historic Souq Al-Qaisariya",
+      "ar": "سعوديبيديا — سوق القيصرية التاريخي",
+      "ctx": "Link text of a source (official) under a stop; opens saudipedia.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特百科：历史悠久的凯撒利亚集市",
+        "de": "Saudipedia – Historischer Qaisariyah-Souk",
+        "ru": "Saudipedia — исторический рынок Эль-Кайсария",
+        "ur": "سعودی پیڈیا — تاریخی سوق القیصریہ"
+      }
+    },
+    "sources.alwatan-qaisariya": {
+      "en": "Al-Watan — Al-Ahsa's Qaisariya, a historic market",
+      "ar": "الوطن — قيصرية الأحساء سوق تاريخي",
+      "ctx": "Link text of a source (press) under a stop; opens www.alwatan.com.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "《祖国报》：哈萨的凯撒利亚集市，一座历史集市",
+        "de": "Al-Watan – Al-Ahsas Qaisariyah-Souk, ein historischer Markt",
+        "ru": "Газета «аль-Ватан» — Эль-Кайсария в Аль-Ахсе, исторический рынок",
+        "ur": "الوطن اخبار — الاحساء کا القیصریہ، ایک تاریخی بازار"
+      }
+    },
+    "sources.visitsaudi-qarah": {
+      "en": "Visit Saudi — Jabal Al-Qarah",
+      "ar": "روح السعودية — جبل القارة",
+      "ctx": "Link text of a source (official) under a stop; opens www.visitsaudi.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "Visit Saudi：卡拉山",
+        "de": "Visit Saudi – Jabal al-Qarah",
+        "ru": "Visit Saudi — Джабаль-эль-Кара",
+        "ur": "وزٹ سعودی — جبل القارہ"
+      }
+    },
+    "sources.spa-land-of-civilizations": {
+      "en": "SPA — Partial opening of the Land of Civilisations project",
+      "ar": "واس — افتتاح جزئي لمشروع أرض الحضارات",
+      "ctx": "Link text of a source (official) under a stop; opens www.spa.gov.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特通讯社：“文明之地”项目部分开放",
+        "de": "SPA – Teileröffnung des Projekts „Land of Civilisations“",
+        "ru": "Саудовское агентство новостей — частичное открытие проекта «Земля цивилизаций»",
+        "ur": "سعودی خبر رساں ادارہ — “ارض الحضارات” نامی ثقافتی گاؤں کا جزوی افتتاح"
+      }
+    },
+    "sources.alyaum-dougha": {
+      "en": "Al-Yaum — Al-Ahsa's Dougha, a pottery-making landmark",
+      "ar": "اليوم — دوغة الأحساء معلم لصناعة الفخار",
+      "ctx": "Link text of a source (press) under a stop; opens www.alyaum.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "《今日报》：哈萨的杜加，制陶业的一处地标",
+        "de": "Al-Yaum – Al-Ahsas Dougha, ein Wahrzeichen des Töpferhandwerks",
+        "ru": "Газета «аль-Яум» — мастерская Дуга в Аль-Ахсе, знаковое место гончарного ремесла",
+        "ur": "الیوم اخبار — الاحساء کا دوغہ، مٹی کے برتن بنانے کا ایک نمایاں مقام"
+      }
+    },
+    "sources.spa-jawatha": {
+      "en": "SPA — Jawatha Mosque, the second mosque to hold Friday prayer",
+      "ar": "واس — مسجد جواثا ثاني مسجد تقام فيه الجمعة",
+      "ctx": "Link text of a source (official) under a stop; opens www.spa.gov.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特通讯社：贾瓦塔清真寺，第二座举行主麻日聚礼的清真寺",
+        "de": "SPA – Jawatha-Moschee: zweite Moschee, in der das Freitagsgebet abgehalten wurde",
+        "ru": "Саудовское агентство новостей — мечеть Джавата, вторая мечеть, где совершили пятничную молитву",
+        "ur": "سعودی خبر رساں ادارہ — مسجد جواثا، دوسری مسجد جس میں جمعہ کی نماز ادا ہوئی"
+      }
+    },
+    "sources.saudipedia-springs": {
+      "en": "Saudipedia — Water springs in Al-Ahsa",
+      "ar": "سعوديبيديا — العيون المائية في الأحساء",
+      "ctx": "Link text of a source (official) under a stop; opens saudipedia.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特百科：哈萨的泉眼",
+        "de": "Saudipedia – Wasserquellen in Al-Ahsa",
+        "ru": "Saudipedia — водные источники в Аль-Ахсе",
+        "ur": "سعودی پیڈیا — الاحساء کے پانی کے چشمے"
+      }
+    },
+    "sources.spa-rice": {
+      "en": "SPA — Hasawi rice planting season begins",
+      "ar": "واس — بدء موسم زراعة الأرز الحساوي",
+      "ctx": "Link text of a source (official) under a stop; opens www.spa.gov.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特通讯社：哈萨大米种植季开始",
+        "de": "SPA – Beginn der Pflanzsaison für den Hasawi-Reis",
+        "ru": "Саудовское агентство новостей — начало сезона посадки риса Аль-Ахсы",
+        "ur": "سعودی خبر رساں ادارہ — الاحساء کے چاول کی بوائی کا موسم شروع"
+      }
+    },
+    "sources.spa-siram": {
+      "en": "SPA — The date harvest in Al-Ahsa",
+      "ar": "واس — صرام التمور في الأحساء",
+      "ctx": "Link text of a source (official) under a stop; opens www.spa.gov.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特通讯社：哈萨的椰枣采收季“西拉姆”",
+        "de": "SPA – Dattelernte in Al-Ahsa",
+        "ru": "Саудовское агентство новостей — сбор фиников в Аль-Ахсе",
+        "ur": "سعودی خبر رساں ادارہ — الاحساء میں کھجوروں کی کٹائی"
+      }
+    },
+    "sources.spa-asfar": {
+      "en": "SPA — Al-Asfar Lake",
+      "ar": "واس — بحيرة الأصفر",
+      "ctx": "Link text of a source (official) under a stop; opens www.spa.gov.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特通讯社：阿斯法湖",
+        "de": "SPA – Al-Asfar-See",
+        "ru": "Саудовское агентство новостей — озеро Эль-Асфар",
+        "ur": "سعودی خبر رساں ادارہ — جھیل الاصفر"
+      }
+    },
+    "sources.almadina-national-park": {
+      "en": "Al-Madina — Al-Ahsa National Park",
+      "ar": "المدينة — المنتزه الوطني بالأحساء",
+      "ctx": "Link text of a source (press) under a stop; opens www.al-madina.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "《麦地那报》：哈萨的国家公园",
+        "de": "Al-Madina – Al-Ahsa-Nationalpark",
+        "ru": "Газета «аль-Медина» — Национальный парк Аль-Ахсы",
+        "ur": "المدینہ اخبار — الاحساء قومی پارک"
+      }
+    },
+    "sources.spa-darah-uqair": {
+      "en": "SPA — Darah documents the history of Al-Uqair Port",
+      "ar": "واس — دارة الملك عبدالعزيز توثق تاريخ ميناء العقير",
+      "ctx": "Link text of a source (official) under a stop; opens www.spa.gov.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沙特通讯社：阿卜杜勒阿齐兹国王基金会记录乌盖尔港的历史",
+        "de": "SPA – König-Abdulaziz-Stiftung (Darah) dokumentiert die Geschichte des Hafens von Al-Uqair",
+        "ru": "Саудовское агентство новостей — Фонд исследований и архивов короля Абдул-Азиза документирует историю порта Эль-Укайр",
+        "ur": "سعودی خبر رساں ادارہ — الدارہ نے العقیر کی بندرگاہ کی تاریخ قلم بند کی"
+      }
+    },
+    "sources.sabq-uqair-buildings": {
+      "en": "Sabq — Al-Uqair port and its buildings",
+      "ar": "سبق — فرضة العقير ومبانيها",
+      "ctx": "Link text of a source (press) under a stop; opens sabq.org in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "Sabq 新闻网：乌盖尔码头及其建筑",
+        "de": "Sabq – Anlegestelle von Al-Uqair und ihre Gebäude",
+        "ru": "Издание «Сабк» — пристань Эль-Укайр и ее постройки",
+        "ur": "سبق اخبار — العقیر کی بندرگاہ اور اس کی عمارتیں"
+      }
+    },
+    "sources.alriyadh-uqair-amphitheatre": {
+      "en": "Al-Riyadh — Development of Al-Uqair Beach and the amphitheatre",
+      "ar": "الرياض — تطوير شاطئ العقير والمدرج",
+      "ctx": "Link text of a source (press) under a stop; opens www.alriyadh.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "《利雅得报》：乌盖尔海滩与阶梯剧场的开发",
+        "de": "Al-Riyadh – Entwicklung des Al-Uqair-Strands und des Amphitheaters",
+        "ru": "Газета «Эр-Рияд» — благоустройство пляжа Эль-Укайр и амфитеатра",
+        "ur": "الریاض اخبار — تعمیر و ترقی: العقیر کا ساحل سمندر اور کھلی تماشا گاہ"
+      }
+    },
+    "sources.aljazirah-heritage-projects": {
+      "en": "Al-Jazirah — Heritage Commission projects in Al-Ahsa (including Ain Najm)",
+      "ar": "الجزيرة — مشاريع هيئة التراث في الأحساء (منها عين نجم)",
+      "ctx": "Link text of a source (press) under a stop; opens www.al-jazirah.com in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "《半岛报》：沙特遗产委员会在哈萨的项目（包括艾因奈杰姆泉）",
+        "de": "Al-Jazirah – Projekte der Kommission für Kulturerbe in Al-Ahsa (darunter Ain Najm)",
+        "ru": "Газета «аль-Джазира» — проекты Комиссии по наследию в Аль-Ахсе (в том числе Айн-Наджм)",
+        "ur": "الجزیرہ اخبار — الاحساء میں ورثہ کمیشن کے منصوبے (عین النجم سمیت)"
+      }
+    },
+    "sources.ajel-jawatha": {
+      "en": "Ajel — Jawatha Mosque, early witness to the first Friday prayer outside Medina",
+      "ar": "عاجل — مسجد جواثا شاهد مبكر على إقامة أول جمعة خارج المدينة",
+      "ctx": "Link text of a source (press) under a stop; opens ajel.sa in a new tab. Shape: outlet name, the dash, then the document title. The outlet names are Arabic proper nouns (الوطن, سبق, الاقتصادية, اليوم, المدينة, الرياض, الجزيرة, عاجل, جهات, واس, دارة الملك عبدالعزيز) → P1–P4 from the Arabic spelling in Turkish orthography unless the termbase already fixes a form; «SPA» = Saudi Press Agency (واس); «Saudipedia», «Visit Saudi» and «UNESCO» stay Latin. A decision number («42 COM 8B.16») stays as it is.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "Ajel 新闻网：贾瓦塔清真寺，麦地那以外首次主麻日聚礼的早期见证",
+        "de": "Ajel – Jawatha-Moschee, früher Zeuge des ersten Freitagsgebets außerhalb von Medina",
+        "ru": "Издание «Аджиль» — мечеть Джавата, раннее свидетельство первой пятничной молитвы за пределами Медины",
+        "ur": "عاجل اخبار — مسجد جواثا، مدینہ منورہ سے باہر جمعہ کی پہلی نماز کی قدیم گواہ"
+      }
+    },
+    "trails.historic-hofuf.title": {
+      "en": "Historic Hofuf Trail",
+      "ar": "مسار الهفوف التاريخي",
+      "ctx": "Trail title: H1 of its page, card title on the index, the label of this stop in the home-page planner (chapter 6) and the «Bu yeri içeren rotalar» list on attraction pages. Suggested, not official (C27). Duration half-day, mode walking. P3: the generic «Trail» is translated («… Rotası»/«… Güzergâhı» — one word for all five, matching nav.trails «Rotalar»); the names inside follow the termbase.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "胡富夫历史路线",
+        "de": "Route durch das historische Hofuf",
+        "ru": "Маршрут по историческому Эль-Хуфуфу",
+        "ur": "تاریخی ہفوف کا راستہ"
+      }
+    },
+    "trails.historic-hofuf.tagline": {
+      "en": "Urban heritage at the heart of the old city",
+      "ar": "التراث العمراني في قلب المدينة القديمة",
+      "ctx": "Short line under the title on the card and in the page head. No full stop (the English has none).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "老城中心的建筑遗产",
+        "de": "Bauliches Erbe im Herzen der Altstadt",
+        "ru": "Архитектурное наследие в сердце старого города",
+        "ur": "پرانے شہر کے قلب میں تعمیراتی ورثہ"
+      }
+    },
+    "trails.historic-hofuf.intro": {
+      "en": "This trail threads through old Hofuf, between Al-Kut quarter and Souq Al-Qaisariya: a fortress that housed the Ottoman garrison, the house where the people of Al-Ahsa pledged allegiance to King Abdulaziz, Al-Ahsa's first government school, and a covered market that is still very much alive. The stops sit close together and are best explored on foot in the morning or late afternoon.",
+      "ar": "يجول هذا المسار في وسط الهفوف القديم بين حي الكوت وسوق القيصرية؛ حصنٌ اتخذه العثمانيون مقراً لحاميتهم، وبيتٌ شهد بيعة أهالي الأحساء للملك عبدالعزيز، وأول مدرسة حكومية في الأحساء، وسوقٌ مسقوف ما زال ينبض بالحياة. محطاته متقاربة، ويُستحسن أداؤه سيراً على الأقدام في الصباح أو بعد العصر.",
+      "ctx": "Intro paragraph in the trail-page head. Every fact as the English; the Arabic is the arbiter on names.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这条路线穿行在胡富夫老城中心，库特区与凯撒利亚集市之间：一座曾为奥斯曼驻军总部的城堡，一处见证哈萨民众向阿卜杜勒阿齐兹国王宣誓效忠的宅邸，哈萨第一所官办学校，还有一座带顶棚的集市，至今依然充满生机。各站相距不远，宜在上午或傍晚步行游览。",
+        "de": "Diese Route führt durch das alte Zentrum von Hofuf, zwischen dem Al-Koot-Viertel und dem Qaisariyah-Souk: zu einer Festung, die den Osmanen als Sitz ihrer Garnison diente, zu einem Haus, in dem die Bewohner von Al-Ahsa den Treueid auf König Abdulaziz leisteten, zur ersten staatlichen Schule Al-Ahsas und zu einem überdachten Markt, in dem bis heute das Leben pulsiert. Die Stationen liegen nah beieinander; am besten erkunden Sie sie zu Fuß, am Morgen oder am späten Nachmittag.",
+        "ru": "Маршрут проходит по старому центру Эль-Хуфуфа, между районом Эль-Кут и рынком Эль-Кайсария: крепость, в которой османы разместили штаб своего гарнизона; дом, где жители Аль-Ахсы принесли присягу королю Абдул-Азизу; первая в Аль-Ахсе государственная школа и крытый рынок, где и сегодня кипит жизнь. Остановки расположены рядом друг с другом, и обойти их лучше пешком — утром или ближе к вечеру.",
+        "ur": "یہ راستہ پرانے ہفوف میں سوق القیصریہ نامی بازار اور محلہ الکوت کے درمیان سے گزرتا ہے۔ راستے میں ایک قلعہ آتا ہے جہاں عثمانی فوجی دستہ رہتا تھا، پھر وہ گھر جہاں الاحساء کے لوگوں نے شاہ عبد العزیز کے ہاتھ پر بیعت کی، الاحساء کا پہلا حکومتی اسکول، اور ایک چھت دار بازار جس کی رونق آج بھی قائم ہے۔ سارے پڑاؤ پاس پاس ہیں، اس لیے انہیں صبح کے وقت یا سہ پہر ڈھلنے کے بعد پیدل دیکھنا بہتر ہے۔"
+      }
+    },
+    "trails.historic-hofuf.stops.qasr-ibrahim.name": {
+      "en": "Qasr Ibrahim",
+      "ar": "قصر إبراهيم",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «Kasr İbrahim» (ref.places.qasr-ibrahim): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor. Carries the UNESCO badge.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "易卜拉欣宫",
+        "de": "Qasr Ibrahim",
+        "ru": "Каср-Ибрахим",
+        "ur": "قصر ابراہیم"
+      }
+    },
+    "trails.historic-hofuf.stops.qasr-ibrahim.text": {
+      "en": "A fortress on the northern edge of Al-Kut quarter, dating to the 10th century AH (16th century CE) and later used as the Ottoman garrison headquarters in Al-Ahsa. It blends two styles: the religious, seen in the arches and domes of the Al-Qubba Mosque, and the military, expressed in massive towers, soldiers' barracks and horse stables, all built from mud, straw and palm trunks. King Abdulaziz restored Al-Ahsa to the Saudi state in 1331 AH / 1913 CE. The fortress is one of the inscribed UNESCO component parts.",
+      "ar": "حصنٌ يقع شمال حي الكوت، يعود إلى القرن العاشر الهجري (السادس عشر الميلادي)، واتخذه العثمانيون مقراً لحاميتهم في الأحساء. يجمع طرازين: دينياً يتجلى في مسجد القبة بأقواسه وقبابه، وعسكرياً تمثّله الأبراج الضخمة وثكنات الجنود وإسطبلات الخيل، وقد شُيّد من الطين والقش وجذوع النخل. واستعاد الملك عبدالعزيز الأحساء عام 1331هـ/1913م، والقصر من المكونات المسجلة في قائمة التراث العالمي.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这是一座城堡，位于库特区北部，历史可追溯至伊斯兰历 10 世纪（公元 16 世纪），奥斯曼人以它为驻哈萨守军的总部。城堡融两种风格于一体：宗教的一面，见于堡内圆顶清真寺（Qubbah，意为“穹顶”）的拱券与穹顶；军事的一面，见于巨大的塔楼、兵营与马厩。整座建筑以泥土、秸秆和椰枣树干筑成。伊历 1331 年（公元 1913 年），阿卜杜勒阿齐兹国王收复哈萨。易卜拉欣宫是“哈萨绿洲”列入《世界遗产名录》的组成部分之一。",
+        "de": "Die Festung im Norden des Al-Koot-Viertels stammt aus dem 10. Jahrhundert nach der Hidschra (n. H.), also dem 16. Jahrhundert n. Chr.; die Osmanen machten sie zum Sitz ihrer Garnison in Al-Ahsa. Sie vereint zwei Baustile: den religiösen, sichtbar an der Al-Qubba-Moschee (der Kuppelmoschee) mit ihren Bögen und Kuppeln, und den militärischen, für den die mächtigen Türme, die Kasernen und die Pferdeställe stehen. Errichtet wurde sie aus Lehm, Stroh und Palmstämmen. König Abdulaziz gewann Al-Ahsa im Jahr 1331 n. H. (1913 n. Chr.) zurück. Die Festung gehört zu den Bestandteilen der Welterbestätte.",
+        "ru": "Крепость на северном краю района Эль-Кут появилась в X веке хиджры (XVI век н. э.); османы разместили в ней штаб своего гарнизона в Аль-Ахсе. Здесь соединились культовая и военная архитектура: первая — в арках и куполах мечети Эль-Кубба (в переводе — Купольная мечеть), вторая — в массивных башнях, солдатских казармах и конюшнях. Возвели крепость из глины, соломы и пальмовых стволов. В 1331 г. х. (1913 г. н. э.) Аль-Ахсу вернул король Абдул-Азиз. Каср-Ибрахим — один из компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО.",
+        "ur": "محلہ الکوت کے شمالی کنارے پر واقع یہ قلعہ دسویں صدی ہجری (سولہویں صدی عیسوی) کا ہے۔ بعد میں عثمانیوں نے اسے الاحساء میں اپنے فوجی دستے کا صدر مقام بنایا۔ اس میں دو طرز تعمیر یکجا ہیں: مذہبی طرز، جو مسجد القبہ کی محرابوں اور گنبدوں میں نظر آتا ہے، اور فوجی طرز، جس کی جھلک بڑے بڑے برجوں، سپاہیوں کی رہائش گاہوں اور گھوڑوں کے اصطبلوں میں ملتی ہے۔ یہ سب مٹی، بھوسے اور کھجور کے تنوں سے بنا ہے۔ شاہ عبد العزیز نے 1331 ہجری (1913 عیسوی) میں الاحساء کو دوبارہ سعودی ریاست میں شامل کیا۔ الاحساء کا نخلستان یونیسکو کی عالمی ورثے کی فہرست میں درج ہے، اور یہ قلعہ اس کے حصوں میں سے ایک ہے۔"
+      }
+    },
+    "trails.historic-hofuf.stops.bayt-al-bayah.name": {
+      "en": "Bayt Al-Bay'ah (Al-Mulla House)",
+      "ar": "بيت البيعة (بيت الملا)",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «Beyt el-Biat» (ref.places.bayt-al-bayah): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "效忠之家（拜特·穆拉）",
+        "de": "Bayt Al-Bay'ah (Bayt Al-Mulla)",
+        "ru": "Байт-эль-Бая (или Байт-эль-Мулла)",
+        "ur": "بیت البیعہ (بیت الملا)"
+      }
+    },
+    "trails.historic-hofuf.stops.bayt-al-bayah.text": {
+      "en": "The Al-Mulla family house in Al-Kut quarter, built in 1203 AH / 1788 CE according to the King Abdulaziz Foundation (Darah), is a fine example of traditional Al-Ahsa architecture. King Abdulaziz stayed here on entering Al-Ahsa in 1331 AH / 1913 CE, and it was here that the people of Al-Ahsa pledged their allegiance to him, hence its name, the House of Allegiance. Restored and open to visitors, it bears witness to a defining moment in the unification of the Kingdom.",
+      "ar": "بيت أسرة آل الملا في حي الكوت، شُيّد عام 1203هـ/1788م بحسب دارة الملك عبدالعزيز، ويُعد نموذجاً للعمارة التقليدية الأحسائية. نزل فيه الملك عبدالعزيز عند دخوله الأحساء عام 1331هـ، وفيه بايعه أهالي الأحساء، فعُرف منذ ذلك الحين بـ«بيت البيعة». رُمّم وأُهّل لاستقبال الزوار شاهداً على لحظة مفصلية في تاريخ توحيد المملكة.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这是穆拉家族在库特区的宅邸，据阿卜杜勒阿齐兹国王基金会记载，建于伊历 1203 年（公元 1788 年），被视为哈萨传统建筑的范例。伊历 1331 年，阿卜杜勒阿齐兹国王进入哈萨时在此下榻，哈萨民众也在这里向他宣誓效忠，宅邸自此人称“效忠之家”。宅邸经过修缮，已可接待访客，见证着王国统一史上的关键一刻。",
+        "de": "Nach Angaben der König-Abdulaziz-Stiftung (Darah) wurde das Haus der Familie Al-Mulla im Al-Koot-Viertel 1203 n. H. (1788 n. Chr.) erbaut; es gilt als Beispiel für die traditionelle Architektur Al-Ahsas. König Abdulaziz wohnte hier, als er 1331 n. H. in Al-Ahsa einzog. In diesem Haus leisteten ihm die Bewohner von Al-Ahsa den Treueid; seither ist es als „Bayt Al-Bay'ah“ (Haus des Treueids) bekannt. Das Haus wurde restauriert und für Besucher hergerichtet; es zeugt von einem Wendepunkt in der Geschichte der Einigung des Königreichs.",
+        "ru": "Дом семьи аль-Мулла в районе Эль-Кут. По сведениям Фонда исследований и архивов короля Абдул-Азиза, его построили в 1203 году хиджры (1788 год н. э.); он считается образцом традиционной архитектуры Аль-Ахсы. Здесь король Абдул-Азиз остановился, когда в 1331 г. х. (1913 г. н. э.) вошел в Аль-Ахсу, и здесь же ее жители принесли ему присягу — с тех пор дом называют Байт-эль-Бая (в переводе — Дом присяги). Его отреставрировали и подготовили к приему посетителей: это свидетель переломного момента в истории объединения Королевства.",
+        "ur": "محلہ الکوت میں الملا خاندان کا یہ گھر الاحساء کے روایتی طرز تعمیر کا عمدہ نمونہ ہے۔ شاہ عبد العزیز کے تحقیقی اور دستاویزی ادارے (الدارہ) کے مطابق یہ 1203 ہجری (1788 عیسوی) میں تعمیر ہوا۔ 1331 ہجری (1913 عیسوی) میں شاہ عبد العزیز الاحساء میں داخل ہوئے تو یہیں ٹھہرے، اور یہیں الاحساء کے لوگوں نے ان کے ہاتھ پر بیعت کی۔ اسی لیے یہ گھر بیت البیعہ، یعنی بیعت کا گھر، کہلایا۔ مرمت کے بعد اب یہ سیاحوں کے لیے کھلا ہے، اور سعودی عرب کے متحد ہونے کی تاریخ کے ایک فیصلہ کن لمحے کا گواہ ہے۔"
+      }
+    },
+    "trails.historic-hofuf.stops.al-amiriya-school.name": {
+      "en": "Al-Amiriya School (House of Culture)",
+      "ar": "المدرسة الأميرية (بيت الثقافة)",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «El-Emiriye Okulu» (ref.places.al-amiriya-school): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "阿米里亚学校（文化之家）",
+        "de": "Amiriah-Schule (Haus der Kultur)",
+        "ru": "Школа «Эль-Амирия» (или Байт-эс-Сакафа)",
+        "ur": "مدرسہ امیریہ"
+      }
+    },
+    "trails.historic-hofuf.stops.al-amiriya-school.text": {
+      "en": "Al-Ahsa's first government primary school: classes began in 1356 AH / 1937 CE, and the present building opened officially in Muharram 1360 AH, covering some 1,200 m² around a square courtyard framed by round-arched arcades. Its first class graduated in 1943, and several prominent statesmen studied here. Now known as the House of Culture, it hosts the Heritage Commission's Craftsmen's House programme, launched in 2022.",
+      "ar": "أول منشأة تعليمية حكومية للتعليم الابتدائي في الأحساء؛ بدأت عام 1356هـ/1937م، وافتُتح مبناها الحالي رسمياً في محرم 1360هـ على مساحة نحو 1,200 م²، بفناء مربع تحيط به أروقة بعقود نصف دائرية. تخرّجت أول دفعة منها عام 1943م، ودرس فيها عدد من رجالات الدولة. تُعرف اليوم بـ«بيت الثقافة»، ودشّنت فيها هيئة التراث عام 2022م برنامج «بيت الحرفيين» للحرف اليدوية.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨第一所官办小学，伊历 1356 年（公元 1937 年）开办；现有校舍于伊历 1360 年 1 月（穆哈兰姆月）正式启用，占地约 1200 平方米，方形庭院四周环以半圆拱回廊。首届学生于 1943 年毕业，多位国家要员曾在此就读。如今这里人称“文化之家”（Bait Al-Thaqafa）；2022 年，沙特遗产委员会在此启动了手工艺项目“手工艺人之家”。",
+        "de": "Al-Ahsas erste staatliche Grundschule: Der Schulbetrieb begann 1356 n. H. (1937 n. Chr.), und das heutige Gebäude wurde im Monat Muharram 1360 n. H. offiziell eröffnet. Es steht auf einer Fläche von rund 1.200 m²; seinen quadratischen Hof säumen Arkaden mit Rundbögen. Der erste Jahrgang schloss 1943 ab, und eine Reihe von Staatsmännern ging hier zur Schule. Heute ist die Schule als „Haus der Kultur“ bekannt; die Kommission für Kulturerbe startete hier 2022 das Handwerksprogramm „Haus der Handwerker“.",
+        "ru": "Первая в Аль-Ахсе государственная начальная школа. Занятия начались в 1356 году хиджры (1937 год н. э.), а нынешнее здание официально открыли в месяце мухаррам 1360 г. х. Оно занимает около 1 200 м²; его квадратный двор окружён галереями с полукруглыми арками. Первый выпуск школа дала в 1943 году; здесь учились несколько государственных деятелей. Сегодня здание известно как Байт-эс-Сакафа (в переводе — Дом культуры). В 2022 году Комиссия по наследию запустила здесь программу «Дом ремесленников», посвящённую ремеслам.",
+        "ur": "یہ الاحساء میں ابتدائی تعلیم کا پہلا سرکاری اسکول ہے۔ یہاں پڑھائی 1356 ہجری (1937 عیسوی) میں شروع ہوئی، اور موجودہ عمارت کا باقاعدہ افتتاح محرم 1360 ہجری میں ہوا۔ تقریباً 1,200 مربع میٹر پر پھیلی اس عمارت کا صحن چوکور ہے، جس کے گرد نیم گول محرابوں والے برآمدے ہیں۔ طلبہ کی پہلی جماعت 1943 میں یہاں سے فارغ التحصیل ہوئی، اور سعودی ریاست کی کئی نمایاں شخصیات نے یہیں تعلیم پائی۔ آج یہ عمارت “بیت الثقافہ” (ثقافت کا گھر) کہلاتی ہے، اور یہاں ورثہ کمیشن کا “بیت الحرفیین” (دستکاروں کا گھر) نامی منصوبہ چلتا ہے، جو 2022 میں شروع ہوا۔"
+      }
+    },
+    "trails.historic-hofuf.stops.souq-al-qaisariya.name": {
+      "en": "Souq Al-Qaisariya",
+      "ar": "سوق القيصرية",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «El-Kaysariye Çarşısı» (ref.places.souq-al-qaisariya): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor. Carries the UNESCO badge.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "凯撒利亚集市",
+        "de": "Qaisariyah-Souk",
+        "ru": "Рынок Эль-Кайсария",
+        "ur": "سوق القیصریہ"
+      }
+    },
+    "trails.historic-hofuf.stops.souq-al-qaisariya.text": {
+      "en": "A historic covered market in central Hofuf, built in 1238 AH / 1822 CE. It spreads over more than 15,000 m² with fourteen gates and some 422 shops selling fabrics, traditional clothing, incense and local products. Damaged by fire in 2001, it was rebuilt and fully reopened in late 2013. It is one of the inscribed UNESCO component parts and the natural finale of the trail.",
+      "ar": "سوق تاريخي مسقوف وسط الهفوف، بُني عام 1238هـ/1822م، ويمتد على أكثر من 15 ألف م² بأربع عشرة بوابة ونحو 422 محلاً للأقمشة والملابس التقليدية والبخور والمنتجات الشعبية. أتى عليه حريق عام 2001م، ثم أُعيد بناؤه وافتُتح كاملاً أواخر عام 2013م. وهو من المكونات المسجلة في قائمة التراث العالمي، وخير ختام للمسار.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "胡富夫市中心一座历史悠久、带顶棚的集市，建于伊历 1238 年（公元 1822 年），占地 1.5 万多平方米，设十四座大门、约 422 家店铺，经营布料、传统服饰、熏香和民俗产品。2001 年，集市毁于大火，后经重建，于 2013 年底全面开放。它是“哈萨绿洲”列入《世界遗产名录》的组成部分之一，也是这条路线再好不过的收尾。",
+        "de": "Ein historischer überdachter Souk im Zentrum von Hofuf, erbaut 1238 n. H. (1822 n. Chr.). Auf mehr als 15.000 m² zählt er vierzehn Tore und rund 422 Läden für Stoffe, traditionelle Kleidung, Weihrauch und volkstümliche Erzeugnisse. Im Jahr 2001 fiel er einem Brand zum Opfer; danach wurde er wiederaufgebaut und Ende 2013 vollständig wiedereröffnet. Er gehört zu den Bestandteilen der Welterbestätte und bildet den krönenden Abschluss der Route.",
+        "ru": "Исторический крытый рынок в центре Эль-Хуфуфа построили в 1238 году хиджры (1822 год н. э.). Он занимает более 15 000 м²; здесь четырнадцать ворот и около 422 лавок, где продают ткани, национальную одежду, благовония и другие традиционные товары. В 2001 году рынок сгорел; его отстроили заново и в конце 2013 года открыли полностью. Это один из компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО, — и лучшее завершение маршрута.",
+        "ur": "ہفوف کے وسط میں یہ تاریخی چھت دار بازار 1238 ہجری (1822 عیسوی) میں بنا۔ یہ 15,000 مربع میٹر سے زیادہ رقبے پر پھیلا ہے۔ اس کے چودہ دروازے اور تقریباً 422 دکانیں ہیں، جہاں کپڑا، روایتی لباس، بخور اور مقامی مصنوعات بکتی ہیں۔ 2001 میں آگ سے اسے نقصان پہنچا، پھر اس کی ازسرنو تعمیر ہوئی، اور 2013 کے آخر میں یہ پوری طرح دوبارہ کھل گیا۔ الاحساء کا نخلستان یونیسکو کی عالمی ورثے کی فہرست میں درج ہے، اور یہ بازار اس کے حصوں میں سے ایک ہے۔ یہی اس راستے کا فطری اختتام بھی ہے۔"
+      }
+    },
+    "trails.qarah-and-jawatha.title": {
+      "en": "Al-Qarah & Jawatha Trail",
+      "ar": "مسار جبل القارة وجواثى",
+      "ctx": "Trail title: H1 of its page, card title on the index, the label of this stop in the home-page planner (chapter 6) and the «Bu yeri içeren rotalar» list on attraction pages. Suggested, not official (C27). Duration half-day, mode driving. P3: the generic «Trail» is translated («… Rotası»/«… Güzergâhı» — one word for all five, matching nav.trails «Rotalar»); the names inside follow the termbase.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "卡拉山与贾瓦塔路线",
+        "de": "Route zum Jabal al-Qarah und nach Jawatha",
+        "ru": "Маршрут к горе Эль-Кара и мечети Джавата",
+        "ur": "جبل القارہ اور جواثا کا راستہ"
+      }
+    },
+    "trails.qarah-and-jawatha.tagline": {
+      "en": "Caves, pottery and early Islamic heritage in the eastern villages",
+      "ar": "كهوف وفخار وأثر إسلامي مبكر في القرى الشرقية",
+      "ctx": "Short line under the title on the card and in the page head. No full stop (the English has none).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "绿洲东部村落的洞穴、陶艺与早期伊斯兰遗迹",
+        "de": "Höhlen, Töpferei und ein Zeugnis des frühen Islams in den östlichen Dörfern",
+        "ru": "Пещеры, гончарное ремесло и раннеисламский памятник в восточных деревнях",
+        "ur": "مشرقی دیہات میں غار، مٹی کے برتن اور ابتدائی اسلامی دور کا ورثہ"
+      }
+    },
+    "trails.qarah-and-jawatha.intro": {
+      "en": "This trail heads into the oasis's eastern villages: a mountain of narrow passages and caves, a pottery workshop handed down within one family, and one of the earliest mosques in Islam in eastern Arabia. You will need a car between stops.",
+      "ar": "يأخذك هذا المسار إلى القرى الشرقية من الواحة: جبلٌ بممرات ضيقة وكهوف، وورشة فخار تتوارثها أسرة واحدة، ومسجدٌ من أقدم مساجد الإسلام شرقي الجزيرة العربية. يحتاج إلى سيارة للتنقل بين محطاته.",
+      "ctx": "Intro paragraph in the trail-page head. Every fact as the English; the Arabic is the arbiter on names.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这条路线带您走进绿洲东部村落：一座藏着狭窄通道与洞穴的山，一间由同一个家族世代相传的陶坊，还有一座坐落在阿拉伯半岛东部的清真寺，是伊斯兰历史上最古老的清真寺之一。各站之间往来需要用车。",
+        "de": "Diese Route führt Sie in die östlichen Dörfer der Oase: zu einem Berg mit engen Gängen und Höhlen, zu einer Töpferwerkstatt, die in ein und derselben Familie vererbt wird, und zu einer der ältesten Moscheen des Islams im Osten der Arabischen Halbinsel. Für die Wege zwischen den Stationen brauchen Sie ein Auto.",
+        "ru": "Маршрут ведет в восточные деревни оазиса: гора с узкими проходами и пещерами, гончарная мастерская, которая передается по наследству в одной семье, и одна из старейших мечетей ислама на востоке Аравийского полуострова. От остановки к остановке придется ехать на машине.",
+        "ur": "یہ راستہ آپ کو الاحساء کے نخلستان کے مشرقی دیہات میں لے جاتا ہے، جہاں تنگ راہداریوں اور غاروں والا ایک پہاڑ ہے، مٹی کے برتن بنانے کی ایک کارگاہ ہے جو ایک ہی خاندان میں نسل در نسل چلی آ رہی ہے، اور جزیرہ نما عرب کے مشرقی حصے میں اسلام کی قدیم ترین مساجد میں سے ایک ہے۔ ایک پڑاؤ سے دوسرے تک جانے کے لیے آپ کو گاڑی کی ضرورت ہوگی۔"
+      }
+    },
+    "trails.qarah-and-jawatha.stops.jabal-al-qarah.name": {
+      "en": "Jabal Al-Qarah",
+      "ar": "جبل القارة",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «Cebel el-Kare» (ref.places.jabal-al-qarah): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "卡拉山",
+        "de": "Jabal al-Qarah",
+        "ru": "Джабаль-эль-Кара",
+        "ur": "جبل القارہ"
+      }
+    },
+    "trails.qarah-and-jawatha.stops.jabal-al-qarah.text": {
+      "en": "One of Al-Ahsa's best-known natural landmarks, famous for narrow passages and caves whose temperature stays mild almost all year, so they feel cool in summer and warm in winter. The mountain hosts 'Land of Civilisations', a cultural tourism project partly opened in 2016 that offers a prepared route through the caves with visitor services.",
+      "ar": "من أبرز المعالم الطبيعية في الأحساء، تشتهر ممراته الضيقة وكهوفه بحرارة معتدلة تكاد تثبت طوال العام، فيجدها الزائر باردة صيفاً ودافئة شتاءً. يضم الجبل مشروع «أرض الحضارات» السياحي الثقافي الذي افتُتح جزئياً عام 2016م، ويقدّم مساراً مهيأً عبر الكهوف مع خدمات للزوار.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨最知名的自然地标之一。山中狭窄的通道与洞穴以温度宜人著称，一年四季几乎恒定：游客盛夏前来觉得凉爽，隆冬前来觉得温暖。山间建有文化旅游项目“文明之地”（Land of Civilisations），2016 年部分开放，洞穴中辟有修整好的游览步道，并提供游客服务。",
+        "de": "Der Berg zählt zu den bedeutendsten Natursehenswürdigkeiten Al-Ahsas. Seine engen Gänge und Höhlen sind für ihre milde Temperatur bekannt, die sich das ganze Jahr über kaum ändert: Im Sommer empfinden Besucher es dort als kühl, im Winter als warm. Zum Berg gehört das Kultur- und Tourismusprojekt „Land of Civilisations“, das 2016 teilweise eröffnet wurde. Es bietet Einrichtungen für Besucher und einen ausgebauten Weg durch die Höhlen.",
+        "ru": "Джабаль-эль-Кара (в переводе — гора Эль-Кара) — одна из самых заметных природных достопримечательностей Аль-Ахсы. Гора знаменита узкими проходами и пещерами, где круглый год держится умеренная, почти неизменная температура: летом в них прохладно, а зимой тепло. На горе действует культурно-туристический проект «Земля цивилизаций», частично открытый в 2016 году: через пещеры проложена обустроенная тропа, есть удобства для посетителей.",
+        "ur": "یہ الاحساء کے مشہور ترین قدرتی مقامات میں سے ایک ہے، اور اپنی تنگ راہداریوں اور غاروں کے لیے جانا جاتا ہے، جن کا درجہ حرارت تقریباً سال بھر معتدل رہتا ہے۔ اسی لیے یہ گرمیوں میں ٹھنڈے اور سردیوں میں گرم لگتے ہیں۔ اسی پہاڑ پر “ارض الحضارات” (تہذیبوں کی سرزمین) نامی ثقافتی گاؤں ہے، جو ثقافتی سیاحت کے ایک منصوبے کے طور پر 2016 میں جزوی طور پر کھلا۔ یہاں غاروں کے بیچ سے سیاحوں کے لیے ایک راستہ بنایا گیا ہے، اور ان کے لیے سہولتیں بھی ہیں۔"
+      }
+    },
+    "trails.qarah-and-jawatha.stops.dougha-al-gharash.name": {
+      "en": "Dougha Al-Gharash Pottery",
+      "ar": "دوغة الغراش للفخار",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «Duğa el-Garaş Çömlek Atölyesi» (ref.places.dougha-al-gharash): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "加拉什家族杜加陶坊",
+        "de": "Dougha Al-Gharash",
+        "ru": "Гончарная мастерская Дуга-эль-Гараш",
+        "ur": "دوغہ الغراش"
+      }
+    },
+    "trails.qarah-and-jawatha.stops.dougha-al-gharash.text": {
+      "en": "A traditional pottery workshop in Al-Qarah village at the foot of the mountain, run by the Al-Gharash family, who have passed the craft down through generations. Visitors watch vessels being shaped from oasis clay and fired the traditional way, and can take home handmade pieces.",
+      "ar": "ورشة فخار تقليدية في بلدة القارة عند سفح الجبل، تتوارث أسرة الغراش صنعتها جيلاً بعد جيل. يشاهد الزائر فيها تشكيل الأواني من طين الواحة ثم حرقها بالطريقة التقليدية، ويستطيع اقتناء قطع مصنوعة يدوياً تذكاراً من الأحساء.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "卡拉村的一间传统陶坊，就在卡拉山脚下，制陶手艺在加拉什家族中代代相传。在这里，游客可以观看器皿如何以绿洲的黏土塑形，再按传统方法烧制，还能选购手工陶器，留作哈萨之行的纪念。",
+        "de": "Eine traditionelle Töpferwerkstatt im Dorf Al-Qarah am Fuß des Berges; die Familie Al-Gharash gibt ihr Handwerk von Generation zu Generation weiter. Hier sehen Sie zu, wie Gefäße aus dem Ton der Oase geformt und anschließend auf traditionelle Weise gebrannt werden, und können handgefertigte Stücke als Andenken an Al-Ahsa erwerben.",
+        "ru": "Традиционная гончарная мастерская в посёлке Эль-Кара, у подножия горы. В семье аль-Гараш ремесло передают из поколения в поколение. Здесь можно посмотреть, как из глины оазиса лепят посуду и обжигают ее традиционным способом, и купить изделия ручной работы — на память об Аль-Ахсе.",
+        "ur": "پہاڑ کے دامن میں، القارہ گاؤں میں، الغراش خاندان مٹی کے برتن بنانے کی ایک روایتی کارگاہ چلاتا ہے۔ یہ ہنر اس خاندان میں نسل در نسل منتقل ہوتا آیا ہے۔ یہاں آپ نخلستان کی مٹی سے برتن بنتے اور روایتی طریقے سے پکتے دیکھ سکتے ہیں، اور ہاتھ کی بنی چیزیں اپنے ساتھ لے جا سکتے ہیں۔"
+      }
+    },
+    "trails.qarah-and-jawatha.stops.jawatha-mosque.name": {
+      "en": "Jawatha Mosque & Archaeological Site",
+      "ar": "مسجد جواثى وموقعه الأثري",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «Cüvasa Camii» (ref.places.jawatha-mosque): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor. Carries the UNESCO badge.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "贾瓦塔清真寺及考古遗址",
+        "de": "Jawatha-Moschee und archäologische Stätte",
+        "ru": "Мечеть Джавата и археологический памятник",
+        "ur": "مسجد جواثا اور آثار قدیمہ کا مقام"
+      }
+    },
+    "trails.qarah-and-jawatha.stops.jawatha-mosque.text": {
+      "en": "North-east of Hofuf near the village of Al-Kilabiyah, the mosque was built by the Banu Abd Al-Qays in the seventh year of the Hijra after they embraced Islam. Ibn Abbas reported, in Sahih Al-Bukhari, that the first Friday prayer held after the one in the Prophet's Mosque in Madinah was held at the mosque of Abd Al-Qays in Jawatha, which is why it is known as the second mosque in Islam to host the Friday prayer. The mosque and the surrounding archaeological site are both inscribed UNESCO component parts.",
+      "ar": "يقع شمال شرق الهفوف قرب قرية الكلابية، وبناه بنو عبد القيس في السنة السابعة للهجرة بعد إسلامهم طوعاً. روى البخاري عن ابن عباس رضي الله عنهما قال: «إِنَّ أَوَّلَ جُمُعَةٍ جُمِّعَتْ بَعْدَ جُمُعَةٍ فِي مَسْجِدِ رَسُولِ اللَّهِ ﷺ فِي مَسْجِدِ عَبْدِ الْقَيْسِ بِجُوَاثَى مِنَ الْبَحْرَيْنِ»، ولذا يُعرف بثاني مسجد أقيمت فيه صلاة الجمعة في الإسلام. المسجد والموقع الأثري المحيط به مكوّنان مسجلان في قائمة التراث العالمي.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "清真寺位于胡富夫东北方向，靠近基拉比亚村；阿卜杜·盖斯部落自愿归信伊斯兰教后，于伊斯兰历 7 年修建此寺。据《布哈里圣训实录》所载伊本·阿拔斯的传述，在麦地那的先知清真寺举行主麻日聚礼之后，第一次主麻日聚礼是在巴林（此处指历史上的东部沿海地区）贾瓦塔的阿卜杜·盖斯部落清真寺举行的。这座清真寺因此被称为伊斯兰教历史上第二座举行主麻日聚礼的清真寺。清真寺与周边的考古遗址，是“哈萨绿洲”列入《世界遗产名录》的两处组成部分。",
+        "de": "Die Jawatha-Moschee liegt nordöstlich von Hofuf nahe dem Dorf Al-Kilabiyah. Die Banu Abd al-Qais erbauten die Moschee im siebten Jahr nach der Hidschra, nachdem sie freiwillig den Islam angenommen hatten. Al-Buchari überliefert von Ibn Abbas: „Das erste Freitagsgebet nach dem in der Prophetenmoschee wurde in der Moschee der Abd al-Qais in Jawatha in Bahrain abgehalten.“ (Bahrain bezeichnet hier die historischen Ostküstenlande.) Deshalb ist die Jawatha-Moschee als die zweite Moschee im Islam bekannt, in der das Freitagsgebet abgehalten wurde. Die Moschee und die archäologische Stätte um sie herum sind zwei Bestandteile der Welterbestätte.",
+        "ru": "Мечеть стоит к северо-востоку от Эль-Хуфуфа, близ деревни Эль-Килабия. Ее построило племя Абд аль-Кайс в седьмом году хиджры, после того как добровольно приняло ислам. По словам Ибн Аббаса, которые передает аль-Бухари, после мечети Пророка в Медине пятничную молитву впервые совершили в мечети племени Абд аль-Кайс — «в Джавата, что в Бахрейне». Поэтому ее и называют второй мечетью в исламе, где совершили пятничную молитву. Мечеть и археологический памятник вокруг нее — два компонента объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО.",
+        "ur": "یہ مسجد ہفوف کے شمال مشرق میں الکلابیہ گاؤں کے قریب ہے۔ قبیلہ بنو عبد القیس نے اسلام قبول کرنے کے بعد ہجرت کے ساتویں سال میں اسے تعمیر کیا۔ صحیح بخاری میں حضرت ابن عباسؓ کی روایت ہے کہ مدینہ منورہ کی مسجد نبوی صلی اللہ علیہ وسلم کے بعد سب سے پہلے جس مسجد میں جمعہ کی نماز ادا کی گئی، وہ جواثا میں عبد القیس کی مسجد تھی۔ اسی لیے یہ اسلام کی وہ دوسری مسجد کہلاتی ہے جہاں جمعہ کی نماز ادا ہوئی۔ الاحساء کا نخلستان یونیسکو کی عالمی ورثے کی فہرست میں درج ہے، اور یہ مسجد اور اس کے اردگرد کا آثار قدیمہ کا مقام، دونوں ہی نخلستان کے حصوں میں شامل ہیں۔"
+      }
+    },
+    "trails.oasis-and-springs.title": {
+      "en": "Oasis & Springs Trail",
+      "ar": "مسار الواحة والعيون",
+      "ctx": "Trail title: H1 of its page, card title on the index, the label of this stop in the home-page planner (chapter 6) and the «Bu yeri içeren rotalar» list on attraction pages. Suggested, not official (C27). Duration half-day, mode driving. P3: the generic «Trail» is translated («… Rotası»/«… Güzergâhı» — one word for all five, matching nav.trails «Rotalar»); the names inside follow the termbase.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "绿洲与泉眼路线",
+        "de": "Route durch die Oase und zu den Quellen",
+        "ru": "Маршрут по оазису и источникам",
+        "ur": "نخلستان اور چشموں کا راستہ"
+      }
+    },
+    "trails.oasis-and-springs.tagline": {
+      "en": "Rural life among palms and irrigation channels",
+      "ar": "الحياة الريفية بين النخيل وقنوات الري",
+      "ctx": "Short line under the title on the card and in the page head. No full stop (the English has none).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "椰枣树与水渠之间的乡村生活",
+        "de": "Ländliches Leben zwischen Dattelpalmen und Bewässerungskanälen",
+        "ru": "Сельская жизнь среди пальм и оросительных каналов",
+        "ur": "کھجور کے باغات اور آب پاشی کی نالیوں کے بیچ دیہی زندگی"
+      }
+    },
+    "trails.oasis-and-springs.intro": {
+      "en": "A trail to experience the oasis as its people live it: unbroken palm groves, fields of Hasawi rice, and natural springs that sustained irrigation for centuries before a modern network took over. Early morning is best, and it is wise to arrange visits in advance with farms that welcome guests.",
+      "ar": "مسار لتجربة الواحة كما يعيشها أهلها: بساتين نخيل متصلة، وحقول الأرز الحساوي، وعيون طبيعية كانت عماد الري قروناً قبل أن تحل محلها شبكة حديثة. أنسب أوقاته الصباح الباكر، ويُستحسن التنسيق المسبق مع المزارع التي تستقبل الزوار.",
+      "ctx": "Intro paragraph in the trail-page head. Every fact as the English; the Arabic is the arbiter on names.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "沿着这条路线，像当地居民一样体验绿洲：椰枣林连绵成片，稻田里种着哈萨大米，还有一处处天然泉眼——数百年间，灌溉一直仰赖它们，直到现代灌溉网络取而代之。清晨前往最为相宜，建议提前与接待访客的农场约好。",
+        "de": "Diese Route zeigt die Oase so, wie ihre Bewohner sie erleben: ineinander übergehende Palmenhaine, Felder mit Hasawi-Reis (dem Reis aus Al-Ahsa) und natürliche Quellen, die jahrhundertelang die Grundlage der Bewässerung waren, bevor ein modernes Netz an ihre Stelle trat. Am besten eignet sich der frühe Morgen. Ihren Besuch sollten Sie vorab mit den Farmen abstimmen, die Gäste empfangen.",
+        "ru": "Маршрут для тех, кто хочет увидеть оазис таким, каким его знают местные жители: пальмовые рощи, переходящие одна в другую, поля, где растет рис Аль-Ахсы, и природные источники, на которых веками держался полив, пока их не сменила современная оросительная сеть. Лучшее время — раннее утро; о посещении хозяйств, которые принимают гостей, стоит договориться заранее.",
+        "ur": "اس راستے پر آپ دیکھیں گے کہ یہاں کے لوگ نخلستان میں کیسے زندگی گزارتے ہیں: دور تک پھیلے کھجور کے باغات، الاحساء کے چاول کے کھیت، اور قدرتی چشمے، جن پر صدیوں تک آب پاشی کا دارومدار رہا، یہاں تک کہ ان کی جگہ ایک جدید نظام نے لے لی۔ صبح سویرے کا وقت سب سے اچھا ہے، اور جو فارم مہمانوں کا استقبال کرتے ہیں، ان سے پہلے ہی وقت طے کر لینا بہتر ہے۔"
+      }
+    },
+    "trails.oasis-and-springs.stops.oasis-farms.name": {
+      "en": "Oasis Groves & Rural Farms",
+      "ar": "بساتين الواحة والمزارع الريفية",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). No attraction page for this stop: build the name from the Arabic spelling by P1–P4 and the termbase. Carries the UNESCO badge.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "绿洲果园与乡村农场",
+        "de": "Haine der Oase und ländliche Farmen",
+        "ru": "Рощи оазиса и деревенские хозяйства",
+        "ur": "نخلستان کے باغات اور دیہی فارم"
+      }
+    },
+    "trails.oasis-and-springs.stops.oasis-farms.text": {
+      "en": "The eastern and northern oases and the Al-Seifa farming area form the heart of the UNESCO-inscribed cultural landscape. At farms that welcome visitors, guests learn how the palms are tended and can witness siram, the annual date harvest, when families and neighbours gather to pick and sort the fruit, Khalas being among the best-known varieties. Early August also marks the planting of red Hasawi rice, one of the oasis's heritage crops.",
+      "ar": "تمثل الواحتان الشرقية والشمالية ومنطقة السيفة الزراعية قلب المشهد الثقافي المسجل في اليونسكو. في المزارع التي تستقبل الزوار يتعرف الضيف على العناية بالنخلة، ويشهد موسم «الصرام» السنوي حين تُجنى التمور وتُفرز بتعاون الأسر والجيران، ومن أشهر أصنافها الخلاص. ويبدأ مطلع أغسطس موسم زراعة الأرز الحساوي الأحمر، أحد محاصيل الواحة التراثية.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "列入联合国教科文组织世界遗产的这片文化景观，以东部绿洲、北部绿洲与赛法农业区为核心。在接待访客的农场里，客人可以了解椰枣树如何养护，并亲眼看到一年一度的椰枣采收季“西拉姆”：各家与邻里合力采摘、分拣椰枣。哈拉斯便是最有名的椰枣品种之一。8 月初，哈萨红米进入种植季；这种红米是绿洲的传统作物之一。",
+        "de": "Die östliche und die nördliche Oase sowie das landwirtschaftliche Gebiet Al-Seifah bilden das Herz der Kulturlandschaft, die zum UNESCO-Welterbe zählt. Auf Farmen, die Gäste empfangen, erfahren Sie, wie die Dattelpalme gepflegt wird, und erleben die jährliche Erntezeit „Siram“: Dann ernten und sortieren Familien und Nachbarn die Datteln gemeinsam. Zu den bekanntesten Sorten gehört Khalas. Anfang August beginnt die Pflanzsaison für den roten Hasawi-Reis, eine der traditionellen Feldfrüchte der Oase.",
+        "ru": "Восточный и Северный оазисы и сельскохозяйственная зона Эс-Сифа — сердце культурного ландшафта, включённого в Список всемирного наследия ЮНЕСКО. В хозяйствах, которые принимают гостей, можно узнать, как ухаживают за пальмой, и увидеть «сирам» — ежегодный сезон сбора фиников, когда семьи и соседи вместе снимают и сортируют плоды; один из самых известных сортов — «Халас». А в начале августа открывается сезон посадки красного риса Аль-Ахсы — одной из традиционных культур оазиса.",
+        "ur": "الاحساء کے مشرقی اور شمالی نخلستان اور السیفہ کا زرعی علاقہ یونیسکو کی عالمی ورثے کی فہرست میں درج ثقافتی منظر کا دل ہیں۔ جو فارم سیاحوں کا استقبال کرتے ہیں، وہاں آپ جان سکتے ہیں کہ کھجور کے درختوں کی دیکھ بھال کیسے ہوتی ہے۔ وہیں آپ “صرام” بھی دیکھ سکتے ہیں، یعنی کھجوروں کی سالانہ کٹائی کا موسم، جب خاندان اور پڑوسی مل کر پھل توڑتے اور چھانٹتے ہیں۔ یہاں کی مشہور ترین اقسام میں خلاص نامی کھجور بھی شامل ہے۔ اگست کے آغاز میں الاحساء کے سرخ چاول کی بوائی بھی شروع ہوتی ہے، جو نخلستان کی روایتی فصلوں میں سے ایک ہے۔"
+      }
+    },
+    "trails.oasis-and-springs.stops.natural-springs.name": {
+      "en": "Natural Springs",
+      "ar": "العيون الطبيعية",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). No attraction page for this stop: build the name from the Arabic spelling by P1–P4 and the termbase.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "天然泉眼",
+        "de": "Natürliche Quellen",
+        "ru": "Природные источники",
+        "ur": "قدرتی چشمے"
+      }
+    },
+    "trails.oasis-and-springs.stops.natural-springs.text": {
+      "en": "Springs were the backbone of irrigation in Al-Ahsa before the modern irrigation and drainage project. Their output peaked in 1387 AH / 1967 CE, then declined, and some have dried up. Their waters range from warm, as at Umm Sab'a, which flows through seven channels, and Al-Harrah, to cool, as at Ain Ali, and hot, as at Ain Najm with its sulphurous water, restored by the Heritage Commission. Ain Al-Jawhariya is another historic spring. Flow varies from spring to spring, so check current conditions before visiting.",
+      "ar": "كانت العيون عماد الري في الأحساء قبل تنفيذ مشروع الري والصرف، وبلغ إنتاجها ذروته عام 1387هـ/1967م ثم تناقص ونضب بعضها. تتفاوت مياهها بين الدافئ كعين أم سبعة التي تتدفق من سبعة مجارٍ وعين الحارة، والبارد كعين علي، والساخن كعين نجم ذات المياه الكبريتية التي رمّمتها هيئة التراث. ومن العيون التاريخية كذلك عين الجوهرية. يختلف التدفق من عين لأخرى، فيُستحسن التحقق من حالتها قبل الزيارة.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "在灌溉与排水工程实施之前，哈萨的灌溉一直仰赖泉眼；出水量在伊斯兰历 1387 年（公元 1967 年）达到顶峰，此后减少，部分泉眼已经干涸。各泉水温不一：温的有分七条水道涌流的艾因乌姆·萨卜阿泉（“艾因”即阿拉伯语“泉”）和艾因哈拉泉；凉的有艾因阿里泉；热的有艾因奈杰姆泉，这处硫磺泉已由沙特遗产委员会修复。艾因焦哈里亚泉也是历史悠久的泉眼之一。各泉水量有别，建议出发前先了解现状。",
+        "de": "Die Quellen waren die Grundlage der Bewässerung in Al-Ahsa, bevor das Bewässerungs- und Entwässerungsprojekt umgesetzt wurde. Am meisten Wasser führten sie 1387 nach der Hidschra (1967 n. Chr.); danach ging die Menge zurück, und einige Quellen versiegten. Die Wassertemperatur ist von Quelle zu Quelle verschieden: Warm ist das Wasser etwa in Ain Umm Sab'ah (der Umm-Sab'ah-Quelle), die über sieben Wasserläufe abfließt, und in Ain Al-Harrah, kühl in Ain Ali, heiß und schwefelhaltig in Ain Najm. Ain Najm wurde von der Kommission für Kulturerbe instand gesetzt. Zu den historischen Quellen zählt außerdem Ain Al-Jawhariyah. Nicht jede Quelle führt gleich viel Wasser; erkundigen Sie sich deshalb vor dem Besuch, in welchem Zustand die jeweilige Quelle ist.",
+        "ru": "До проекта орошения и дренажа полив в Аль-Ахсе держался на источниках. Больше всего воды они давали в 1387 году хиджры (1967 год н. э.), затем воды становилось меньше, а некоторые источники иссякли. Вода в них разной температуры. Теплая — в Айн-Умм-Сабаа (в переводе — источник Умм-Сабаа), откуда она расходится по семи руслам, и в Айн-эль-Харра; холодная — в Айн-Али; горячая, серная — в Айн-Наджм, который отреставрировала Комиссия по наследию. Среди исторических источников — и Айн-эль-Джаухария. Поток воды у каждого источника свой, поэтому перед поездкой стоит узнать, в каком состоянии источник сейчас.",
+        "ur": "آب پاشی اور نکاسی کے جدید منصوبے سے پہلے الاحساء میں آب پاشی کا دارومدار چشموں پر تھا۔ ان سے نکلنے والے پانی کی مقدار 1387 ہجری (1967 عیسوی) میں سب سے زیادہ تھی، پھر گھٹنے لگی، اور کچھ چشمے سوکھ گئے۔ کسی کا پانی نیم گرم ہے، جیسے عین ام سبعہ نامی چشمے کا، جو سات نالیوں میں بہتا ہے، اور عین الحارہ نامی چشمے کا۔ کسی کا ٹھنڈا ہے، جیسے عین علی نامی چشمے کا، اور کسی کا گرم، جیسے عین النجم نامی چشمے کا، جس کا پانی گندھک والا ہے اور جس کی مرمت ورثہ کمیشن نے کی۔ تاریخی چشموں میں عین الجوہریہ نامی چشمہ بھی شامل ہے۔ ہر چشمے میں پانی کا بہاؤ الگ ہے، اس لیے جانے سے پہلے اس کی موجودہ حالت معلوم کر لیں۔"
+      }
+    },
+    "trails.al-asfar-and-national-park.title": {
+      "en": "Al-Asfar Lake & National Park Trail",
+      "ar": "مسار بحيرة الأصفر والمتنزه الوطني",
+      "ctx": "Trail title: H1 of its page, card title on the index, the label of this stop in the home-page planner (chapter 6) and the «Bu yeri içeren rotalar» list on attraction pages. Suggested, not official (C27). Duration full-day, mode 4x4. P3: the generic «Trail» is translated («… Rotası»/«… Güzergâhı» — one word for all five, matching nav.trails «Rotalar»); the names inside follow the termbase.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "阿斯法湖与国家公园路线",
+        "de": "Route zum Al-Asfar-See und zum Al-Ahsa-Nationalpark",
+        "ru": "Маршрут к озеру Эль-Асфар и Национальному парку",
+        "ur": "جھیل الاصفر اور قومی پارک کا راستہ"
+      }
+    },
+    "trails.al-asfar-and-national-park.tagline": {
+      "en": "A forest that held back the sands, and a lake among the dunes",
+      "ar": "غابة صدّت الرمال وبحيرة وسط الكثبان",
+      "ctx": "Short line under the title on the card and in the page head. No full stop (the English has none).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "挡住流沙的森林，沙丘环抱的湖泊",
+        "de": "Ein Wald, der den Sand aufhielt, und ein See inmitten der Dünen",
+        "ru": "Лес, остановивший пески, и озеро среди дюн",
+        "ur": "ریت کو روکنے والا جنگل، اور ٹیلوں کے بیچ ایک جھیل"
+      }
+    },
+    "trails.al-asfar-and-national-park.intro": {
+      "en": "A trail for nature lovers and desert explorers east of the oasis: it begins in a forest planted to shield the oasis from drifting sand and ends at a lake among the dunes where migrating birds rest. Reaching the lake requires a 4x4 and experience of sand driving; going with a guide is recommended.",
+      "ar": "مسار لمحبي الطبيعة والرحلات البرية شرق الواحة: يبدأ بغابة زُرعت لتحمي الواحة من زحف الرمال، وينتهي عند بحيرة وسط الكثبان تستريح فيها الطيور المهاجرة. الوصول إلى البحيرة يتطلب سيارة دفع رباعي وخبرة بالقيادة في الرمال، ويُفضَّل الذهاب مع مرشد.",
+      "ctx": "Intro paragraph in the trail-page head. Every fact as the English; the Arabic is the arbiter on names.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这条路线在绿洲以东，适合喜爱自然与沙漠出游的人：起点是一片森林，为保护绿洲不受流沙侵袭而栽；终点是沙丘间的一片湖，候鸟在此歇脚。前往湖边需要四驱车，还要有沙地驾驶经验，最好有向导同行。",
+        "de": "Eine Route östlich der Oase für Naturfreunde und für alle, die gern draußen im Gelände unterwegs sind: Sie beginnt in einem Wald, der gepflanzt wurde, um die Oase vor dem vordringenden Sand zu schützen, und endet an einem See inmitten der Dünen, an dem Zugvögel rasten. Die Fahrt zum See erfordert einen Geländewagen und Erfahrung im Fahren auf Sand; am besten lassen Sie sich von einem Reiseführer begleiten.",
+        "ru": "Маршрут к востоку от оазиса — для тех, кто любит природу и поездки по пустыне. Он начинается в лесу, который высадили, чтобы защитить оазис от наступающих песков, и заканчивается у озера среди дюн, где отдыхают перелетные птицы. До озера не добраться без полноприводного автомобиля и опыта езды по песку; лучше ехать с проводником.",
+        "ur": "نخلستان کے مشرق میں یہ راستہ فطرت کے شائقین اور صحرا کی سیر کرنے والوں کے لیے ہے۔ یہ ایک جنگل سے شروع ہوتا ہے، جو نخلستان کو اڑتی ریت سے بچانے کے لیے لگایا گیا تھا، اور ٹیلوں کے بیچ ایک جھیل پر ختم ہوتا ہے، جہاں مہاجر پرندے آرام کرتے ہیں۔ جھیل تک پہنچنے کے لیے فور وہیل ڈرائیو گاڑی اور ریت پر گاڑی چلانے کا تجربہ ضروری ہے، اور بہتر ہے کہ آپ کسی رہنما کے ساتھ جائیں۔"
+      }
+    },
+    "trails.al-asfar-and-national-park.stops.al-ahsa-national-park.name": {
+      "en": "Al-Ahsa National Park",
+      "ar": "متنزه الأحساء الوطني",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «El-Ahsa Millî Parkı» (ref.places.al-ahsa-national-park): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨国家公园",
+        "de": "Al-Ahsa-Nationalpark",
+        "ru": "Национальный парк Аль-Ахсы",
+        "ur": "الاحساء قومی پارک"
+      }
+    },
+    "trails.al-asfar-and-national-park.stops.al-ahsa-national-park.text": {
+      "en": "In Al-Umran, the park began in 1962 as part of a sand-stabilisation project, with belts of trees planted to stop the dunes advancing on the oasis. As the trees matured it became a forest and a sprawling family park, part of which extends towards the Al-Asfar area, making it a fitting start before heading into the sands.",
+      "ar": "في مدينة العمران، نشأ عام 1962م ضمن مشروع حجز الرمال، بزراعة أحزمة شجرية تصد زحف الكثبان عن الواحة. ومع نمو أشجاره تحوّل إلى غابة ومتنزه عائلي ممتد، يمتد جزء منه باتجاه منطقة الأصفر، ويشكّل بداية مناسبة للمسار قبل التوغل في الرمال.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "公园位于欧姆兰市，始建于 1962 年，是固沙工程的一部分：当时栽下一道道林带，阻挡沙丘向绿洲推进。随着树木长成，这里变成一片森林，也成了一座开阔的家庭休闲公园，其中一部分向阿斯法一带延伸。深入沙地之前，从这里起步正合适。",
+        "de": "Der Park in der Stadt Al-Omran entstand 1962 als Teil des Projekts zur Sandeindämmung: Baumgürtel wurden gepflanzt, um die vordringenden Dünen von der Oase fernzuhalten. Als die Bäume heranwuchsen, wurden daraus ein Wald und ein weitläufiger Park für Familien; ein Teil davon erstreckt sich in Richtung des Al-Asfar-Gebiets. Der Park ist ein passender Auftakt der Route, bevor es tiefer in den Sand geht.",
+        "ru": "Парк в городе Эль-Умран появился в 1962 году как часть проекта по сдерживанию песков: здесь высадили лесные полосы, которые преграждают дюнам путь к оазису. Деревья подросли, и посадки превратились в лес и просторный парк для семейного отдыха; часть его тянется в сторону местности Эль-Асфар. Это удобное начало маршрута — перед тем как углубиться в пески.",
+        "ur": "العمران شہر میں واقع یہ پارک 1962 میں ریت روکنے کے ایک منصوبے سے وجود میں آیا۔ اس منصوبے میں پٹیوں کی صورت میں درخت لگائے گئے تاکہ ٹیلے نخلستان کی طرف نہ بڑھیں۔ درخت بڑے ہوئے تو یہ جگہ ایک جنگل اور خاندانوں کے لیے ایک وسیع پارک بن گئی، جس کا ایک حصہ الاصفر کے علاقے کی طرف پھیلا ہوا ہے۔ یہ پارک ریت کی طرف بڑھنے سے پہلے اس راستے کا ایک موزوں آغاز ہے۔"
+      }
+    },
+    "trails.al-asfar-and-national-park.stops.al-asfar-lake.name": {
+      "en": "Al-Asfar Lake",
+      "ar": "بحيرة الأصفر",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «El-Asfar Gölü» (ref.places.al-asfar-lake): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor. Carries the UNESCO badge.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "阿斯法湖",
+        "de": "Al-Asfar-See",
+        "ru": "Озеро Эль-Асфар",
+        "ur": "جھیل الاصفر"
+      }
+    },
+    "trails.al-asfar-and-national-park.stops.al-asfar-lake.text": {
+      "en": "A lake ringed by dunes, fed mainly by the oasis's agricultural drainage channels and swelling with winter rain. It is one of the largest bodies of water in the region of the Arabian Gulf. The Ministry of Environment, Water and Agriculture announced the lake’s conversion into a nature reserve covering 326 million m² (SPA, March 2019). It is a resting point for birds migrating north and south, as well as an inscribed UNESCO component part. Locals call it 'kohl of summer, white of winter' for the way its colour shifts between seasons.",
+      "ar": "بحيرة تحيط بها الكثبان، تتغذى أساساً من قنوات الصرف الزراعي لمزارع الواحة وتتسع شتاءً مع الأمطار، وتُعد من أكبر التجمعات المائية في منطقة الخليج. أعلنت وزارة البيئة والمياه والزراعة تحويل البحيرة إلى محمية طبيعية بمساحة 326 مليون م² (واس، مارس 2019). وهي محطة للطيور المهاجرة في رحلتيها بين الشمال والجنوب، ومكوّن مسجل في قائمة التراث العالمي. يسميها الأهالي «كحل الصيف وبياض الشتاء» لتبدّل لون مياهها بين الفصلين.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "一片沙丘环抱的湖，湖水主要来自绿洲农场的农业排水渠，冬季湖面随降雨扩大。它被视为阿拉伯湾地区最大的水域之一。沙特环境水务与农业部宣布将该湖辟为自然保护区，占地 326 平方公里（沙特通讯社，2019 年 3 月）。它是候鸟南北往返迁徙途中的歇脚地，也是“哈萨绿洲”列入《世界遗产名录》的组成部分。当地居民叫它“夏日的黛色，冬日的素白”，说的是湖水的颜色在两季之间变换。",
+        "de": "Ein von Dünen umgebener See, der sich vor allem aus den Drainagekanälen der Oasenfarmen speist und sich im Winter mit dem Regen ausdehnt. Er gilt als eines der größten Gewässer der Region am Arabischen Golf. Das Ministerium für Umwelt, Wasser und Landwirtschaft gab die Umwandlung des Sees in ein Naturreservat mit einer Fläche von 326 Millionen m² bekannt (Saudi Press Agency, SPA, März 2019). Zugvögel rasten hier auf dem Hin- und auf dem Rückflug zwischen Norden und Süden; zudem ist der See ein Bestandteil der Welterbestätte. Die Einheimischen nennen ihn „Kajal des Sommers und Weiß des Winters“, weil die Farbe seines Wassers zwischen den beiden Jahreszeiten wechselt.",
+        "ru": "Озеро в кольце дюн. Питают его в основном дренажные каналы, по которым уходит вода с плантаций оазиса, а зимой, с дождями, оно разливается шире. Его считают одним из крупнейших водоёмов в регионе Арабского залива. Здесь останавливаются перелетные птицы на пути с севера на юг и обратно. Местные жители называют озеро «сурьмой лета и белизной зимы»: от лета к зиме вода меняет цвет. Министерство окружающей среды, водных ресурсов и сельского хозяйства объявило, что озеро станет охраняемой природной территорией площадью 326 млн м² (Саудовское агентство новостей, март 2019 года). Озеро — один из компонентов объекта «Оазис Аль-Ахса», включённых в Список всемирного наследия ЮНЕСКО.",
+        "ur": "ٹیلوں سے گھری اس جھیل میں پانی زیادہ تر نخلستان کی زرعی نکاسی کی نالیوں سے آتا ہے، اور سردیوں کی بارشوں میں یہ پھیل جاتی ہے۔ یہ خلیج عرب کے خطے کے سب سے بڑے آبی اجسام میں سے ایک ہے۔ ماحولیات، پانی اور زراعت کی وزارت نے اس جھیل کو 32.6 کروڑ مربع میٹر رقبے پر محفوظ قدرتی علاقہ بنانے کا اعلان کیا (سعودی خبر رساں ادارہ، مارچ 2019)۔ شمال اور جنوب کے درمیان سفر کرنے والے مہاجر پرندے یہاں ٹھہرتے ہیں۔ الاحساء کا نخلستان یونیسکو کی عالمی ورثے کی فہرست میں درج ہے، اور یہ جھیل اس کے حصوں میں سے ایک ہے۔ مقامی لوگ اسے “گرمیوں کا سرمہ، سردیوں کی سفیدی” کہتے ہیں، کیونکہ موسم کے ساتھ اس کا رنگ بدل جاتا ہے۔"
+      }
+    },
+    "trails.al-uqair-coast.title": {
+      "en": "Al-Uqair Coastal Trail",
+      "ar": "مسار العقير البحري",
+      "ctx": "Trail title: H1 of its page, card title on the index, the label of this stop in the home-page planner (chapter 6) and the «Bu yeri içeren rotalar» list on attraction pages. Suggested, not official (C27). Duration full-day, mode driving. P3: the generic «Trail» is translated («… Rotası»/«… Güzergâhı» — one word for all five, matching nav.trails «Rotalar»); the names inside follow the termbase.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "乌盖尔海岸路线",
+        "de": "Route an die Küste von Al-Uqair",
+        "ru": "Маршрут на побережье Эль-Укайр",
+        "ur": "العقیر کے ساحل کا راستہ"
+      }
+    },
+    "trails.al-uqair-coast.tagline": {
+      "en": "Where sea trade met the history of the state",
+      "ar": "حيث التقت تجارة البحر بتاريخ الدولة",
+      "ctx": "Short line under the title on the card and in the page head. No full stop (the English has none).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "海上贸易与国家历史交汇之处",
+        "de": "Wo Seehandel und Staatsgeschichte aufeinandertrafen",
+        "ru": "Где морская торговля встретилась с историей государства",
+        "ur": "جہاں سمندری تجارت سعودی ریاست کی تاریخ سے آ ملی"
+      }
+    },
+    "trails.al-uqair-coast.intro": {
+      "en": "This trail runs east to the Arabian Gulf coast: a port that was the sea gateway for Al-Ahsa and Najd and hosted negotiations that drew the region's borders, followed by a beach for family time. Plan a full day and head back before sunset.",
+      "ar": "يمتد هذا المسار شرقاً إلى ساحل الخليج العربي، حيث ميناءٌ كان بوابة الأحساء ونجد إلى البحر، وشهد مفاوضات رسمت حدود المنطقة، ثم شاطئٌ للاستجمام العائلي. يُستحسن جمعه في يوم كامل مع العودة قبل الغروب.",
+      "ctx": "Intro paragraph in the trail-page head. Every fact as the English; the Arabic is the arbiter on names.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "这条路线一路向东，直抵阿拉伯湾沿岸：先到一座港口，它曾是哈萨与内志（沙特中部地区）通向大海的门户，也见证过划定本地区边界的谈判；再到一片适合全家休闲的海滩。建议留出一整天，日落前返程。",
+        "de": "Diese Route führt nach Osten an die Küste des Arabischen Golfs: zu einem Hafen, der für Al-Ahsa und Nadschd das Tor zum Meer war und Schauplatz von Verhandlungen, in denen die Grenzen der Region gezogen wurden, danach zu einem Strand, an dem sich Familien erholen. Am besten nehmen Sie sich für beides einen ganzen Tag und kehren vor Sonnenuntergang zurück.",
+        "ru": "Маршрут ведет на восток, к побережью Арабского залива. Сначала — порт, который был воротами Аль-Ахсы и Неджда к морю и видел переговоры, определившие границы региона; затем — пляж для семейного отдыха. На маршрут лучше отвести целый день и вернуться до заката.",
+        "ur": "یہ راستہ مشرق میں خلیج عرب کے ساحل تک جاتا ہے۔ پہلے ایک بندرگاہ آتی ہے، جو الاحساء اور نجد کے لیے سمندر کا دروازہ تھی، اور جہاں وہ مذاکرات ہوئے جن سے اس خطے کی سرحدیں طے ہوئیں۔ اس کے بعد ایک ساحل سمندر ہے، جہاں آپ خاندان کے ساتھ وقت گزار سکتے ہیں۔ اس سفر کے لیے پورا دن رکھیں، اور سورج ڈوبنے سے پہلے واپسی کی راہ لیں۔"
+      }
+    },
+    "trails.al-uqair-coast.stops.al-uqair-historic-port.name": {
+      "en": "Al-Uqair Historic Port",
+      "ar": "ميناء العقير التاريخي",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «Ukayr» (ref.places.al-uqair-historic-port): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "乌盖尔古港",
+        "de": "Historischer Hafen von Al-Uqair",
+        "ru": "Исторический порт Эль-Укайр",
+        "ur": "العقیر کی تاریخی بندرگاہ"
+      }
+    },
+    "trails.al-uqair-coast.stops.al-uqair-historic-port.text": {
+      "en": "Documented by the King Abdulaziz Foundation for Research and Archives (Darah) as the first seaport on the Kingdom's eastern coast along the Arabian Gulf, Al-Uqair was the economic gateway for Al-Ahsa and Najd and the main entry point to eastern and central Arabia until its role faded after the discovery of oil and the building of Dammam port. Its buildings from the reign of King Abdulaziz include the customs and passport houses, the wharf, the khan, the emirate, the fort and the mosque. The founding King received foreign diplomats here, and the 1922 Uqair Conference, which set Najd's borders with Iraq and Kuwait, was held here.",
+      "ar": "أول ميناء بحري شرق المملكة على ساحل الخليج العربي بتوثيق دارة الملك عبدالعزيز؛ كان البوابة الاقتصادية للأحساء ونجد والمنفذ الرئيس إلى شرق المملكة ووسطها، إلى أن تراجعت أهميته بعد اكتشاف النفط وإنشاء ميناء الدمام. تضم منطقته مباني من عهد الملك عبدالعزيز منها الجمارك والجوازات والفرضة والخان والإمارة والحصن والمسجد. واتخذه الملك المؤسس مقراً لمقابلة الدبلوماسيين، وفيه عُقد مؤتمر العقير عام 1922م الذي رُسمت فيه حدود نجد مع العراق والكويت.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "据阿卜杜勒阿齐兹国王基金会记载，乌盖尔（Al-Uqair）是王国东部阿拉伯湾沿岸的第一座海港。它曾是哈萨与内志的经济门户，也是通往王国东部与中部的主要口岸，直到石油发现、达曼港建成，地位才有所下降。港区留有阿卜杜勒阿齐兹国王时期的建筑，包括海关楼、护照楼、码头、商队客栈、埃米尔府、城堡和清真寺。这位开国国王曾把这里用作会见外交使节的场所；1922 年，乌盖尔会议在此召开，划定了内志与伊拉克、科威特的边界。",
+        "de": "Den Dokumenten der König-Abdulaziz-Stiftung (Darah) zufolge war Al-Uqair der erste Seehafen an der Küste des Arabischen Golfs im Osten des Königreichs. Er diente Al-Ahsa und Nadschd als wirtschaftliches Tor und war der wichtigste Zugang zum Osten und zur Mitte des Königreichs, bis seine Bedeutung nach der Entdeckung des Erdöls und dem Bau des Hafens von Dammam zurückging. Auf seinem Gelände stehen Gebäude aus der Zeit von König Abdulaziz, dem Staatsgründer, darunter das Zollhaus, die Passstelle, die Anlegestelle, der Khan (die Karawanserei), das Gebäude des Emirats, die Festung und die Moschee. Der König machte den Hafen zu dem Ort, an dem er Diplomaten empfing. Hier fand 1922 die Konferenz von Al-Uqair statt, auf der die Grenzen von Nadschd zum Irak und zu Kuwait gezogen wurden.",
+        "ru": "По данным Фонда исследований и архивов короля Абдул-Азиза, это первый морской порт на востоке Королевства, на побережье Арабского залива. Он был экономическими воротами Аль-Ахсы и Неджда, и через него лежал главный путь в восточную и центральную части Королевства. После того как нашли нефть и построили порт Даммама, значение Эль-Укайра упало. В портовой зоне стоят постройки времен короля Абдул-Азиза, среди них таможня, паспортная контора, пристань, караван-сарай, здание эмирата, крепость и мечеть. Король-основатель принимал здесь дипломатов, и здесь же в 1922 году прошла Укайрская конференция, на которой определили границы Неджда с Ираком и Кувейтом.",
+        "ur": "شاہ عبد العزیز کے تحقیقی اور دستاویزی ادارے (الدارہ) کے مطابق العقیر خلیج عرب کے کنارے سعودی عرب کے مشرقی ساحل کی پہلی سمندری بندرگاہ ہے۔ یہ الاحساء اور نجد کا معاشی دروازہ اور مملکت کے مشرقی اور وسطی حصوں میں داخلے کا مرکزی راستہ تھی۔ پھر تیل دریافت ہوا اور دمام کی بندرگاہ بنی تو اس کی اہمیت ماند پڑ گئی۔ شاہ عبد العزیز کے دور کی اس کی عمارتوں میں چنگی خانہ، پاسپورٹ کا دفتر، گھاٹ، سرائے، امارت کی عمارت، قلعہ اور مسجد شامل ہیں۔ مملکت کے بانی بادشاہ یہاں غیر ملکی سفارت کاروں سے ملتے تھے، اور 1922 میں العقیر کا اجلاس بھی یہیں ہوا، جس میں عراق اور کویت کے ساتھ نجد کی سرحدیں طے ہوئیں۔"
+      }
+    },
+    "trails.al-uqair-coast.stops.al-uqair-beach.name": {
+      "en": "Al-Uqair Beach",
+      "ar": "شاطئ العقير",
+      "ctx": "Stop name (H3 on the trail page, and the stop label on the home planner). This stop links to the attraction page «Ukayr Plajı» (ref.places.al-uqair-beach): use that published title byte-identically where the English name is the attraction name; where the English adds a descriptor (e.g. \"Bayt Al-Bay'ah (Al-Mulla House)\"), keep the published name and translate the descriptor.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "乌盖尔海滩",
+        "de": "Al-Uqair-Strand",
+        "ru": "Пляж Эль-Укайр",
+        "ur": "العقیر کا ساحل سمندر"
+      }
+    },
+    "trails.al-uqair-coast.stops.al-uqair-beach.text": {
+      "en": "A seafront for strolls and family activities, developed by Al-Ahsa Municipality. The beach also has a modern open-air amphitheatre built by the municipality for events and known locally as the 'Roman Theatre'; it is a contemporary venue, not a Roman antiquity.",
+      "ar": "واجهة بحرية للتنزه والأنشطة العائلية ضمن مشروعات تطوير أمانة الأحساء. وعلى الشاطئ مدرّج مكشوف حديث أنشأته الأمانة للفعاليات ويُعرف محلياً باسم «المسرح الروماني»؛ وهو منشأة معاصرة، لا أثر روماني.",
+      "ctx": "Stop text under its name. Every fact, number, date and attribution as in the English; Hijri dates in the form the termbase/tm fixes (search «Hicri» in ref.tm). Plain text, no Markdown. **\"Roman Theatre\" is a local name for a modern amphitheatre: keep the explicit denial \"not a Roman antiquity\" in the same text (guard C27); the local name in “…” quotes.**",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨市政局开发项目中的一处滨海休闲区，适合散步，也适合全家活动。海滩上还有一座现代露天阶梯剧场，由市政局为举办活动而建，当地人称之为“罗马剧场”；它是一处当代设施，并非古罗马遗迹。",
+        "de": "Eine Strandpromenade für Spaziergänge und Unternehmungen mit der Familie, Teil der Entwicklungsprojekte der Kommunalverwaltung von Al-Ahsa. Am Strand steht ein modernes Amphitheater unter freiem Himmel, das die Kommunalverwaltung für Veranstaltungen errichtet hat und das vor Ort als „Römisches Theater“ bekannt ist; es ist eine zeitgenössische Anlage, kein antikes römisches Bauwerk.",
+        "ru": "Набережная для прогулок и семейного отдыха входит в число проектов благоустройства, которые ведет муниципалитет Аль-Ахсы. На пляже стоит современный открытый амфитеатр: муниципалитет построил его для мероприятий, а местные жители называют «Римским театром». Это постройка наших дней, а не памятник римской эпохи.",
+        "ur": "سمندر کے کنارے یہ جگہ سیر اور خاندانی سرگرمیوں کے لیے ہے، اور اسے الاحساء کی بلدیہ نے سنوارا ہے۔ ساحل پر ایک جدید کھلی تماشا گاہ بھی ہے، جو بلدیہ نے تقریبات کے لیے بنائی ہے۔ مقامی لوگ اسے “المسرح الرومانی” (رومی تماشا گاہ) کہتے ہیں، مگر یہ ایک نئی عمارت ہے، رومی دور کے آثار میں سے نہیں۔"
+      }
+    }
+  },
+  "ui_keys": [
+    "trails.title",
+    "trails.lead",
+    "trails.duration",
+    "trails.duration.half-day",
+    "trails.duration.full-day",
+    "trails.mode",
+    "trails.mode.walking",
+    "trails.mode.driving",
+    "trails.mode.4x4",
+    "trails.stopsCount",
+    "trails.unescoCount",
+    "trails.view",
+    "trails.stopsH",
+    "trails.stop",
+    "trails.unesco",
+    "trails.sources",
+    "trails.landmark",
+    "trails.mapH",
+    "trails.mapNote",
+    "trails.all"
+  ]
+}

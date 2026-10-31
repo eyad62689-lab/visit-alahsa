@@ -1030,6 +1030,11 @@ async function main() {
       body = stripUntilStable(body, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
       body = stripUntilStable(body, /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi);
       body = stripUntilStable(body, /<!--[\s\S]*?--!?>/g);
+      // كتل اقتراح اللغة (LangSuggest: <div class="ls-opt" lang="de|tr|…">) نصٌّ بلغات **أخرى** بالبناء — كل كتلة
+      // موسومة بلغتها ومخفية حتى يطابقها متصفح الزائر — فليست نصّاً إنجليزياً متراجَعاً إليه. كانت تُعدّ كذلك حيث
+      // كانت لاتينية (الألمانية ثم التركية)، فتجاوز /zh/trails/ القصير (19 كتلة) العتبة بخيار التركية وحده
+      // (2026-10-31). لا div متداخل داخلها، فأول </div> يغلقها.
+      body = stripUntilStable(body, /<div class="ls-opt"[^>]*>[\s\S]*?<\/div>/g);
       const attrs = [...body.matchAll(/(?:alt|aria-label|placeholder)="([^"]{3,})"/g)].map((m) => m[1]);
       return [...stripTags(body, '\n').split(/\n+/), ...attrs]
         // «&» والفاصلة العليا تُفكّان قبل إسقاط بقية الكيانات: الاسم «Al-Koot Heritage Hotel &amp; Restaurant»

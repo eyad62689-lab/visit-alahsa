@@ -17,6 +17,7 @@ import rawZh from './trails.zh.json';
 import rawDe from './trails.de.json';
 import rawRu from './trails.ru.json';
 import rawUr from './trails.ur.json';
+import rawTr from './trails.tr.json';
 
 const Bi = z.strictObject({ ar: z.string().min(1), en: z.string().min(1) });
 const TrailText = z.strictObject({ title: z.string().min(1), tagline: z.string().min(1), intro: z.string().min(1) });
@@ -73,7 +74,7 @@ export const TRAIL_META = TRAILS_DATA.meta;
 export const TRAIL_SOURCES = TRAILS_DATA.sources;
 
 // ── نصوص zh/de/ru/ur ────────────────────────────────────────────────────────
-export type TrailLang = 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur';
+export type TrailLang = 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur' | 'tr';
 type L10nLang = Exclude<TrailLang, 'ar' | 'en'>;
 
 const sameKeys = (a: string[], b: string[]) => a.length === b.length && [...a].sort((a, b) => a.localeCompare(b)).join('\n') === [...b].sort((a, b) => a.localeCompare(b)).join('\n');
@@ -99,6 +100,8 @@ const L10N: Record<L10nLang, z.infer<typeof L10nSchema>> = {
   de: L10nSchema.parse(rawDe),
   ru: L10nSchema.parse(rawRu),
   ur: L10nSchema.parse(rawUr),
+  // التركية من خط tr-translation-pipeline (دفعة tr-trails-1)
+  tr: L10nSchema.parse(rawTr),
 };
 const isBase = (lang: TrailLang): lang is 'ar' | 'en' => lang === 'ar' || lang === 'en';
 

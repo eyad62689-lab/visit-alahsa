@@ -217,7 +217,7 @@ function eventEntries(): KbEntry[] {
 
 // ── المسارات المقترحة ────────────────────────────────────────────────────────
 function trailEntries(): KbEntry[] {
-  const langs: TrailLang[] = ['ar', 'en', 'zh', 'de', 'ru', 'ur'];
+  const langs: TrailLang[] = ['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'];
   return TRAILS.map((t) => {
     const name: L = {}; const summary: L = {}; const href: L = {};
     const stops: L[] = t.stops.map(() => ({}));
@@ -321,7 +321,7 @@ function pageEntries(): KbEntry[] {
     { id: 'page/my-trip', key: 'nav.myTrip', href: { ar: '/رحلتي/', en: '/en/plan/', zh: '/zh/plan/', de: '/de/plan/', ru: '/ru/plan/' } },
     { id: 'page/visa', key: 'foot.l.visa', href: Object.fromEntries(L_ALL.map((l) => [l, visaHref(l)])) },
     { id: 'page/unesco', key: 'foot.l.unesco', href: Object.fromEntries(L_ALL.map((l) => [l, staticHref('unesco', l)])) },
-    { id: 'page/trails', key: 'nav.trails', href: Object.fromEntries((['ar', 'en', 'zh', 'de', 'ru', 'ur'] as TrailLang[]).map((l) => [l, trailsIndexHref(l)])) },
+    { id: 'page/trails', key: 'nav.trails', href: Object.fromEntries((['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as TrailLang[]).map((l) => [l, trailsIndexHref(l)])) },
     { id: 'page/blog', key: 'nav.blog', href: { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/' } },
     { id: 'page/stores', key: 'nav.stores', href: Object.fromEntries(L_ALL.map((l) => [l, storesHref(l)])) },
     { id: 'page/guides', key: 'guides.nav', href: { ar: guidesHref('ar'), en: guidesHref('en') } },

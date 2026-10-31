@@ -5,7 +5,7 @@ import type { Lang } from '../i18n/ui';
 import { TRAILS, type Trail, type TrailLang, type TrailStop } from '../data/trails';
 
 export type { TrailLang };
-const TRAIL_LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur'] as const satisfies readonly Lang[];
+const TRAIL_LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as const satisfies readonly Lang[];
 
 /** المسار المحدَّد من المالك: /trails/ و/en/trails/ (لا slug عربي كبقية الأقسام — طلبٌ
  *  صريح)، وzh/de/ru/ur تحت بادئة لغتها بالـslug نفسه. بشرطة ختامية دائماً (تطابق canonical). */

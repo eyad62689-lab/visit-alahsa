@@ -199,8 +199,7 @@ const nearDining = Object.hasOwn(ui[lang], 'det.nearDining.h') ? await diningNea
 
 // «ضمن المسارات» (2026-09-26): المسارات المقترحة التي تمرّ بهذا المعلم، بلغة الصفحة.
 // الربط من src/lib/trails.ts (التلميح الحرفي + جدول صريح).
-// التركية: لا مسارات /tr/trails/ بعد، فالإنجليزية
-const trailLang: TrailLang = lang === 'tr' ? 'en' : lang;
+const trailLang: TrailLang = lang;
 const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
   .map((tr) => ({ href: trailHref(tr, trailLang), title: trailText(tr, trailLang).title, tagline: trailText(tr, trailLang).tagline, slug: tr.slug }));
 ---
