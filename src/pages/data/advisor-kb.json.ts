@@ -234,7 +234,7 @@ function trailEntries(): KbEntry[] {
 
 // ── المطبخ والثمار: بطاقاتهما بلغة كل نسخة، والرابط صفحة القسم ───────────────
 const FOOD_INDEX: Record<Lang, string> = { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/', tr: '/en/food/' };
-const FRUITS_INDEX: Record<Lang, string> = { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', de: '/de/fruits/', ru: '/ru/fruits/', ur: '/ur/fruits/', tr: '/en/fruits/' };
+const FRUITS_INDEX: Record<Lang, string> = { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', de: '/de/fruits/', ru: '/ru/fruits/', ur: '/ur/fruits/', tr: '/tr/fruits/' };
 const DISHES: Record<Lang, DishGroup[]> = { ar: DISH_GROUPS_AR, en: DISH_GROUPS_EN, zh: DISH_GROUPS_ZH, de: DISH_GROUPS_DE, ru: DISH_GROUPS_RU, ur: DISH_GROUPS_UR, tr: DISH_GROUPS_EN };
 
 function dishEntries(): KbEntry[] {

@@ -724,5 +724,119 @@ export const FRUIT_GROUPS_UR: Group[] = [
   },
 ];
 
-const FRUIT_GROUPS_BY_LANG: Record<string, Group[]> = { ar: FRUIT_GROUPS_AR, zh: FRUIT_GROUPS_ZH, de: FRUIT_GROUPS_DE, ru: FRUIT_GROUPS_RU, ur: FRUIT_GROUPS_UR };
+// الكتلة التركية — خط tr-translation-pipeline (دفعة tr-leisure-fruits-1؛ الحاكم 92/100). البنية مرآة الكتلة الإنجليزية: المسارات والصور وفصول الفلترة والوسوم كما هي.
+export const FRUIT_GROUPS_TR: Group[] = [
+  {
+    title: 'Hurma — vahanın tacı',
+    intro: 'El-Ahsa\'nın en önemli ürünü hurmadır. Resmî raporlar yıllık üretimi yaklaşık 100.000 ile 120.000 ton arasında gösterir; Suudi Basın Ajansı (SPA) ise Ekim 2024\'te 200.000 tondan fazla üretim olduğunu bildirdi. Vaha, dünyanın en büyük hurma gen bankalarından birine sahiptir. 2021\'de El-Ahsa Hurma ve Hurma Ağacı Merkezi, 127\'den fazla yerli ve yabancı çeşitle Guinness rekoru kırdı. Bazı kaynaklara göre Halas, Şişi ve Raziz birlikte üretimin yaklaşık dörtte üçünü oluşturur.',
+    fruits: [
+      {
+        img: '/img/fruits/khalas-v2', alt: 'Bir servis tabağında iki kase: altın sarısı Halas rutabı ve kehribar rengi olgun Halas hurması',
+        k: 'Hurma', name: 'Halas',
+        season: 'Rutab: temmuz ortası – ağustos sonu • Olgun hurma: yaklaşık 15–25 Eylül', seasons: 'summer autumn',
+        pre: 'Halas, El-Ahsa hurmalarının simgesi ve en ünlü çeşididir; en çok satan çeşit de odur. Vahadaki hurma ağaçlarının %15–20\'sini oluşturur. Meyvesi oval ve orta boyludur, lifi azdır; rengi altın sarısından kehribara uzanır, dokusu yumuşaktır. Tatlılığı dengeli ve aromatiktir. Uzun süre saklansa bile lezzetini korur. Geleneksel olarak Arap kahvesinin yanında, cömertlik ve misafirperverlik sembolü olarak sunulur. Çinko, manganez ve selenyum gibi minerallerce zengindir.',
+      },
+      {
+        img: '/img/fruits/shishi-v2', alt: 'Aynı servis tabağında bir arada sarı Şişi rutabı ve kahverengi olgun Şişi hurması',
+        k: 'Hurma', name: 'Şişi',
+        season: 'Rutab: haziran sonu • Olgun hurma: ağustos ortası–sonu', seasons: 'summer',
+        pre: 'Şişi, El-Ahsa\'nın ikinci en ünlü çeşididir; Halas\'tan sonra en çok aranan çeşit de odur. Meyvesi iridir, eti kalın ve nispeten yumuşaktır. Rengi çoğunlukla kahverengidir, alt kısmı altın sarısıdır. Çok tatlıdır. Uzun süre bozulmadan durur. Bu yüzden saklanmaya ve dondurulmaya uygundur, yıl boyu yenebilir. Hurma pekmezi (dibs) ve diğer hurma ürünlerinde de kullanılır.',
+      },
+      {
+        img: '/img/fruits/raziz-tamr-v2', alt: 'Pirinç metalinden bir kasede Raziz hurmasından yapılmış, susamla kaplı sifsif topları',
+        k: 'Hurma', name: 'Raziz',
+        season: 'Olgun hurma: sezonun sonu, yaklaşık ekim başı', seasons: 'autumn',
+        pre: 'Raziz, El-Ahsa\'nın en eski ve en köklü hurmalarından biridir; en iyi ve en besleyici çeşitler arasında sayılır. “Sifsif” adlı ünlü kış tatlısının temel malzemesidir. Bu tatlı Raziz hurması, hurma pekmezi ve susamla yapılır ve misafirlerin ağırlandığı meclis salonlarında sunulur. Raziz, hurma pekmezinin de temel malzemesidir. Bugün nispeten nadir bir hurmadır, çünkü çiftçilerin çoğu Halas yetiştirmeye yöneldi.',
+      },
+      {
+        img: '/img/fruits/barhi', alt: 'Hurma ağacının yaprakları arasında sarkan sarı Barhi hurması salkımı',
+        k: 'Hurma', name: 'Barhi',
+        season: 'Rutab: yazın', seasons: 'summer',
+        pre: 'Barhi, El-Ahsa\'nın ve Arap dünyasının en ünlü rutab çeşitlerinden biridir. Irak kökenlidir; on dokuzuncu yüzyılın sonlarında El-Ahsa\'ya ve El-Kasım Bölgesi\'ne ulaştı. Son derece tatlı ve yumuşaktır. Sarı balah (bisr) evresinde bile buruk bir acılığı yoktur. Bu yüzden her üç evrede de yenir: balah, rutab ve olgun hurma. Olgunlaştıkça rengi yeşilden sarıya, sonra kehribara döner.',
+      },
+      {
+        img: '/img/fruits/bawakir-v2', alt: 'Gar, Huneyzi ve Şahl çeşitlerinden rutab kaseleri',
+        k: 'Hurma', name: 'Bavakir — erken ve yerel çeşitler',
+        season: 'Rutab ve olgun hurma: mayıs sonundan ekime kadar', seasons: 'spring summer autumn',
+        pre: 'Büyük çeşitlerin yanında vaha, sezonu açan ya da kapatan onlarca yerel çeşitle doludur. Erken hasadı Tayyar, Micnaz ve Gar çeşitleri açar; ardından Huneyzi, Şişi ve Halas gelir. Ümm Rahim, Zamili ve Hilali gibi geç rutablar ağustos ortasına kadar sürer. Bunlara Şubeybi, Şahl, Vuseyli, Hatimi, Kasbi ve başkaları da eklenir.',
+      },
+    ],
+  },
+  {
+    title: 'Narenciye',
+    fruits: [
+      {
+        img: '/img/fruits/lomi-v2', alt: 'Yeşil El-Ahsa misket limonları ve kesilmiş yarım meyve',
+        k: 'Narenciye', name: 'El-Ahsa misket limonu (ya da “Bin Züheyri”)',
+        season: 'Yaz: haziran ortasından ağustos sonuna kadar', seasons: 'summer',
+        pre: 'Misket limonu (lomi), hurmadan sonra El-Ahsa\'nın ikinci ürünüdür. Meyvesi küçük, koyu yeşil ve ince kabukludur; suyla dolup taşar. Tadı çok ekşidir; keskin kokusu onu diğer tüm narenciyelerden ayırır. Vahaya yayılmış, meyve veren 100.000\'den fazla misket limonu ağacı vardır. Bir ağaçtan bir mevsimde 25–30 kg ürün alınır. Misket limonuyla ilgili, El-Ahsa\'da sevilen bir yaz âdeti de vardır. Aileler bir araya gelip meyveyi sıkar ve suyunu yıl boyu kullanmak üzere saklar. Bu ürüne “cemid” denir: güneşte kurutulup bekletilmiş misket limonu suyu. Misket limonu her yıl El-Ahsa Lomi Sergisi\'yle kutlanır. Sergiyi El-Ahsa Ticaret Odası ile El-Ahsa Geliştirme Kurumu birlikte düzenler.',
+      },
+      {
+        img: '/img/fruits/atranj-v2', alt: 'Yeşil, buruşuk kabuklu atranc (ağaç kavunu) meyveleri',
+        k: 'Narenciye', name: 'Atranc (ağaç kavunu)',
+        season: 'Kış: ocak ayından mart başına kadar', seasons: 'winter',
+        pre: 'Çok eski bir narenciyedir; meyvesi iri ve güzel kokuludur, kabuğu kalın ve buruşuktur.',
+      },
+    ],
+  },
+  {
+    title: 'Yaz meyveleri',
+    fruits: [
+      {
+        img: '/img/fruits/melon-v2', alt: 'El-Ahsa kavunları ve kesilmiş bir dilim',
+        k: 'Yaz meyveleri', name: 'El-Ahsa sarı kavunu',
+        season: 'Yaz: yaklaşık mayıs sonundan itibaren', seasons: 'summer',
+        pre: 'Kuşaktan kuşağa aktarılan tarımsal ve kültürel bir mirastır. Çiftçilerin üstün tohumları seçip saklamasıyla oluşan yerel bir çeşittir. Bu seçim ona kendine özgü sarı rengini kazandırmış, El-Ahsa\'nın sıcağına ve su kıtlığına karşı dayanıklılık vermiştir. Tatlı ve aromatiktir; su, lif, C vitamini, potasyum ve karotenoidlerce zengindir, kalorisi düşüktür. Yazın vücudun su ihtiyacını karşılamaya yardımcı olan doğal bir kaynaktır.',
+      },
+      {
+        img: '/img/fruits/fig', alt: 'El-Ahsa incirleri ve içi görünen yarım bir incir',
+        k: 'Yaz meyveleri', name: 'El-Ahsa inciri',
+        season: 'Yaz', seasons: 'summer',
+        pre: 'Sevilen bir yaz meyvesidir. El-Ahsa\'nın en ünlü çeşidi açık limon yeşilindedir; her incir tek lokmalıktır. Şekerli ve yumuşaktır; birçok incirin aksine çabuk bozulmamasıyla öne çıkar. Genellikle kendine ayrılmış bahçelerde değil, hurmalıkların içinde misket limonunun ve narın yanına serpiştirilerek dikilir. Bu yüzden ağaç sayısına dair kesin bir veri yoktur. Bazı çiftçiler incirleri kurutarak saklar. Kur\'an-ı Kerim\'de anılan mübarek bir meyvedir.',
+      },
+      {
+        img: '/img/fruits/bambar-v2', alt: 'Bambar meyveleri',
+        k: 'Yaz meyveleri', name: 'El-Ahsa bambarı',
+        season: 'Yaz: yaklaşık temmuz–ağustos', seasons: 'summer',
+        pre: 'Yaşça büyüklerin çok sevdiği geleneksel bir meyvedir; bilimsel adı ', sci: 'Cordia myxa', post: ' olup sebestan, muheyt ve hambu adlarıyla da bilinir. Küçük ve oval meyvesi olgunlaştıkça yeşilden sarıya ya da kahverengiye döner. Tatlıdır; meyve eti yapışkanlığıyla ünlüdür. Taze yenir; geleneksel olarak halk hekimliğinde sindirim sistemi için kullanılır.',
+      },
+      {
+        img: '/img/fruits/grapes-v2', alt: 'Bir salkım El-Ahsa üzümü',
+        k: 'Yaz meyveleri', name: 'El-Ahsa üzümü',
+        season: 'Yaz: yaz başından itibaren', seasons: 'summer',
+        pre: 'Küçük taneli, çekirdekli yerel bir üzümdür; boyutuna rağmen lezzetiyle değer görür. Kırmızı ve yeşil olmak üzere iki çeşidi vardır. Hasadı yaz mevsimiyle birlikte, misket limonu, incir ve rutabla aynı dönemde başlar. Yerel basına konuşan çiftçilere ve satıcılara göre üretim hızla düşmüştür. Onlara göre bu üzüm çeşidi de su kıtlığı ve küçülen tarım arazileri yüzünden yok olma tehdidi altındadır.',
+      },
+      {
+        img: '/img/fruits/pomegranate-v2', alt: '“Suvari” narları ve parlak kırmızı taneleri görünen kesilmiş yarım nar',
+        k: 'Yaz meyveleri', name: 'El-Ahsa narı (“Suvari”)', rare: true,
+        season: '', seasons: 'summer autumn',
+        pre: 'Köklü, yerel bir meyvedir; en iri örneklerine “Suvari” adı verilir. Çok tatlıdır; öyle ki olgunlaşınca çatlar. Rengi canlıdır. Eskiden vahada incir ve misket limonunun yanında sık dikilirdi. El-Ahsa\'nın geleneksel meyvelerinden birkaçı gibi, bunun da üretimi o kadar düştü ki vahanın bahçelerinden neredeyse yok oldu; bugün nadirdir.',
+      },
+      {
+        img: '/img/fruits/papaya-v2', alt: 'Bir papaya ve turuncu eti görünen yarım meyve',
+        k: 'Yaz meyveleri', name: 'Papaya',
+        season: 'Yaz: haziran–ağustos', seasons: 'summer',
+        pre: 'Tatlı, turuncu etli tropikal bir meyvedir; vahanın bahçelerinde yazın olgunlaşır.',
+      },
+    ],
+  },
+  {
+    title: 'İlkbahar ve kış meyveleri',
+    fruits: [
+      {
+        img: '/img/fruits/mulberry-v2', alt: 'Bir yığın kırmızı ve siyah El-Ahsa dutu',
+        k: 'İlkbahar meyveleri', name: 'El-Ahsa dutu',
+        season: 'İlkbahar: yaklaşık nisan — sezonu ancak bir ay sürer', seasons: 'spring',
+        pre: 'Mevsimi kısa bir ilkbahar meyvesidir; son soğuklar çekilirken görünür. Küçük, yuvarlağa yakın taneleri kırmızı, siyah ve mavidir; El-Ahsa çiftliklerinde kırmızı ve siyah olanlar ağır basar. Talep, tam da mevsimi bu kadar kısa olduğu için yüksektir. Taze yenir; tatlılarda, dondurmalarda, meyve sularında ve reçellerde kullanılır; sezon bittikten sonra dondurularak saklanır. Yetiştiriciliği vahanın gelecek vaat eden ürünlerinden biri sayılır.',
+      },
+      {
+        img: '/img/fruits/kanar', alt: 'Kanar meyveleri',
+        k: 'Kış meyveleri', name: 'El-Ahsa kanarı (Nabk)',
+        season: 'Kış: yaklaşık ocak ayından mart sonuna kadar', seasons: 'winter spring',
+        pre: 'Köklü bir kış meyvesidir; Kur\'an-ı Kerim\'de anılan sidr ağacında yetişir. Vaha, bu meyve için hâlâ verimli bir yerdir. Birkaç çeşidi vardır: “Tuffahi” (elma büyüklüğünde), “Ümm Suleym” (küçük ve çekirdeksiz) ve “Sini” (büyük ve yeşil). Bunların yanında armut biçimli ve Hint çeşitleri de bulunur. Tatlıdır ve özellikle çocukların sevdiği bir meyvedir; uzun süre saklanmaz. Çarşılarda bu meyveyi satın almanın kendine özgü halk ezgileri vardır.',
+      },
+    ],
+  },
+];
+const FRUIT_GROUPS_BY_LANG: Record<string, Group[]> = { ar: FRUIT_GROUPS_AR, zh: FRUIT_GROUPS_ZH, de: FRUIT_GROUPS_DE, ru: FRUIT_GROUPS_RU, ur: FRUIT_GROUPS_UR, tr: FRUIT_GROUPS_TR };
 export const fruitGroupsFor = (lang: string): Group[] => FRUIT_GROUPS_BY_LANG[lang] ?? FRUIT_GROUPS_EN;
