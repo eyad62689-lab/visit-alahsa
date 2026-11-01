@@ -340,6 +340,10 @@ const TEXT_AR: EventTexts = {
     season: 'الشتاء', time: 'نوفمبر – فبراير', span: 'موسم ممتد',
     org: 'ميدان الفروسية بالأحساء',
     acts: ['سباقات الخيل', 'فعاليات الفروسية'],
+    // تاريخ الانطلاق من إياد (2026-11-01)؛ يُحدَّث القسم مع كل موسم
+    sections: [
+      { h: 'موسم 2026–2027', ps: ['انطلق موسم سباقات الخيل في ميدان الفروسية بالأحساء يوم 31 أكتوبر 2026. يعلن الميدان مواعيد السباقات على حسابه في X، ويبثّها مباشرة على قناته في يوتيوب، ورابطاهما في هذه الصفحة.'] },
+    ],
   },
   'creative-ahsa': {
     slug: 'مهرجان-الأحساء-المبدعة',
@@ -493,6 +497,9 @@ const TEXT_EN: EventTexts = {
     season: 'Winter', time: 'November – February', span: 'An extended season',
     org: 'Al-Ahsa Equestrian Arena',
     acts: ['Horse races', 'Equestrian events'],
+    sections: [
+      { h: 'The 2026–2027 season', ps: ['The horse racing season at the Al-Ahsa Equestrian Arena began on 31 October 2026. The arena announces race dates on its X account and streams the races live on its YouTube channel; both are linked on this page.'] },
+    ],
   },
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',
