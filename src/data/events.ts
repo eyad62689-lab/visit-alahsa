@@ -28,6 +28,12 @@ export type Ev = {
    *  أيام). فإن أُغلق المتجر أو صار خاصاً بنسخةٍ منقضية يُحذف الحقل يدوياً — لا آلية
    *  تسقطه تلقائياً كما يسقط الحجز. */
   shop?: string;
+  /** البث المباشر الرسمي للفعالية (اختياري) — رابط تقدّمه الجهة المنظّمة أو إياد، زرّاً لا نصّاً.
+   *  ليس dated: يبقى يقود إلى البث أو تسجيله بعد يومه؛ ويُستبدل يدوياً ببث النسخة التالية. */
+  live?: string;
+  /** حساب الجهة المنظّمة الرسمي على منصة اجتماعية (اختياري) — حيث تُعلن المواعيد أولاً،
+   *  فيُحال إليه الزائر بدل نقل مواعيد لم نتحقق منها. */
+  social?: string;
   /** إحداثيات الدبوس حين لا يكون المكان معلماً في الموقع — تُستخرج من رابط خرائط
    *  قدّمه إياد لا بالتقدير، ويبقى رابطه الأصلي في map لزرّ «افتح في خرائط قوقل». */
   coords?: { lat: number; lng: number };
@@ -103,7 +109,7 @@ export function evView(ev: Ev, now: Date = new Date()): Ev {
 
 // ── الحقول البنيوية — مرة واحدة لكل فعالية ──────────────────────────────────
 /** ما يشترك فيه كل الأنواع (انظر Ev لشرح كل حقل). */
-type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp'>;
+type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'live' | 'social' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp'>;
 /** النسخة المؤكدة تلزمها تواريخ ISO وحالةُ ما بعد الانقضاء؛ وسواها لا تحمل شيئاً منها.
  *  اتحادٌ مميَّز: لا يمكن كتابة status: 'confirmed' بلا afterStatus، ولا تواريخ ISO بلا تأكيد. */
 type EventMeta = MetaCommon & (
@@ -157,7 +163,15 @@ const EVENT_META = {
   // النافذة 11→2: البداية من حقل time («من نوفمبر تقريباً») والامتداد من
   // season «الشتاء» + span «موسم شتوي ممتد» — نهايته غير معلنة في المصدر.
   'wafrah-winter': { img: '', start: 11, end: 2, map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8' },
-  'horse-racing': { img: '/img/event-horse-racing', start: 11, end: 2 },
+  // موسم 2026–2027 انطلق 31 أكتوبر 2026 (من إياد، 2026-11-01) — نهايته غير معلنة فلا
+  // status: 'confirmed' (يلزمه endISO). حساب النادي على X ورابط البث المباشر على يوتيوب من
+  // إياد في اليوم نفسه (أُزيل معامل التتبّع si من رابط يوتيوب)؛ لم يُفتحا من بيئة البناء
+  // لحجب الشبكة، فهما على عهدة إياد.
+  'horse-racing': {
+    img: '/img/event-horse-racing', start: 11, end: 2,
+    social: 'https://x.com/ecialahsa',
+    live: 'https://www.youtube.com/live/R6CWUbPAIhk',
+  },
   'creative-ahsa': { img: '/img/event-creative-ahsa', start: 3, end: 4 },
   // معرض الأعراس والجمال (W&B Expo) — فعالية مؤقتة أضافها إياد (2026-10-14) بإعلانها الرسمي
   // ورابط خرائطه. من الإعلان حرفاً: الموعد 3–7 ديسمبر 2026، وأقسام المعرض الثمانية، وواتساب
