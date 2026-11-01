@@ -28,6 +28,12 @@ export type Ev = {
    *  أيام). فإن أُغلق المتجر أو صار خاصاً بنسخةٍ منقضية يُحذف الحقل يدوياً — لا آلية
    *  تسقطه تلقائياً كما يسقط الحجز. */
   shop?: string;
+  /** قناة البث المباشر الرسمية للجهة المنظّمة (اختياري) — رابط القناة لا بثٍّ مفرد كي لا يتقادم،
+   *  زرّاً لا نصّاً. ليس dated: القناة تبقى بين النسخ. */
+  live?: string;
+  /** حساب الجهة المنظّمة الرسمي على منصة اجتماعية (اختياري) — حيث تُعلن المواعيد أولاً،
+   *  فيُحال إليه الزائر بدل نقل مواعيد لم نتحقق منها. */
+  social?: string;
   /** إحداثيات الدبوس حين لا يكون المكان معلماً في الموقع — تُستخرج من رابط خرائط
    *  قدّمه إياد لا بالتقدير، ويبقى رابطه الأصلي في map لزرّ «افتح في خرائط قوقل». */
   coords?: { lat: number; lng: number };
@@ -103,7 +109,7 @@ export function evView(ev: Ev, now: Date = new Date()): Ev {
 
 // ── الحقول البنيوية — مرة واحدة لكل فعالية ──────────────────────────────────
 /** ما يشترك فيه كل الأنواع (انظر Ev لشرح كل حقل). */
-type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp'>;
+type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'live' | 'social' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp'>;
 /** النسخة المؤكدة تلزمها تواريخ ISO وحالةُ ما بعد الانقضاء؛ وسواها لا تحمل شيئاً منها.
  *  اتحادٌ مميَّز: لا يمكن كتابة status: 'confirmed' بلا afterStatus، ولا تواريخ ISO بلا تأكيد. */
 type EventMeta = MetaCommon & (
@@ -157,7 +163,16 @@ const EVENT_META = {
   // النافذة 11→2: البداية من حقل time («من نوفمبر تقريباً») والامتداد من
   // season «الشتاء» + span «موسم شتوي ممتد» — نهايته غير معلنة في المصدر.
   'wafrah-winter': { img: '', start: 11, end: 2, map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8' },
-  'horse-racing': { img: '/img/event-horse-racing', start: 11, end: 2 },
+  // موسم 2026–2027 انطلق 31 أكتوبر 2026 (من إياد، 2026-11-01) — يُعرض في قسم «الموسم الحالي»
+  // بنصوص ar/en، ونهايته غير معلنة فلا status: 'confirmed' (يلزمه endISO). المنظّم «ميدان
+  // الفروسية بالأحساء» (أكّده إياد 2026-11-01)، وحسابه على X وقناته على يوتيوب منه في اليوم
+  // نفسه (حلّت القناة محلّ رابط بثٍّ مفرد كان سيتقادم، وأُزيل معامل التتبّع si)؛ لم يُفتحا
+  // من بيئة البناء لحجب الشبكة، فهما على عهدة إياد.
+  'horse-racing': {
+    img: '/img/event-horse-racing', start: 11, end: 2,
+    social: 'https://x.com/ecialahsa',
+    live: 'https://www.youtube.com/@ecialahsa',
+  },
   'creative-ahsa': { img: '/img/event-creative-ahsa', start: 3, end: 4 },
   // معرض الأعراس والجمال (W&B Expo) — فعالية مؤقتة أضافها إياد (2026-10-14) بإعلانها الرسمي
   // ورابط خرائطه. من الإعلان حرفاً: الموعد 3–7 ديسمبر 2026، وأقسام المعرض الثمانية، وواتساب
@@ -325,6 +340,10 @@ const TEXT_AR: EventTexts = {
     season: 'الشتاء', time: 'نوفمبر – فبراير', span: 'موسم ممتد',
     org: 'ميدان الفروسية بالأحساء',
     acts: ['سباقات الخيل', 'فعاليات الفروسية'],
+    // تاريخ الانطلاق من إياد (2026-11-01)؛ يُحدَّث القسم مع كل موسم
+    sections: [
+      { h: 'موسم 2026–2027', ps: ['انطلق موسم سباقات الخيل في ميدان الفروسية بالأحساء يوم 31 أكتوبر 2026. يعلن الميدان مواعيد السباقات على حسابه في X، ويبثّها مباشرة على قناته في يوتيوب، ورابطاهما في هذه الصفحة.'] },
+    ],
   },
   'creative-ahsa': {
     slug: 'مهرجان-الأحساء-المبدعة',
@@ -478,6 +497,9 @@ const TEXT_EN: EventTexts = {
     season: 'Winter', time: 'November – February', span: 'An extended season',
     org: 'Al-Ahsa Equestrian Arena',
     acts: ['Horse races', 'Equestrian events'],
+    sections: [
+      { h: 'The 2026–2027 season', ps: ['The horse racing season at the Al-Ahsa Equestrian Arena began on 31 October 2026. The arena announces race dates on its X account and streams the races live on its YouTube channel; both are linked on this page.'] },
+    ],
   },
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',

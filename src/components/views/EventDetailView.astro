@@ -250,6 +250,9 @@ const afterJson = raw.after
 // خارج خطوط الترجمة، وكتلةٌ بلا نسخة بلغة الصفحة تُخفى لا تُعرض إنجليزية. والكلمة
 // الواحدة تبقى خارج مقياس C22 أيضاً (كتلته من كلمتين فأكثر).
 const shopLabel = (ui[lang] as Record<string, string>)['ev.shop'];
+// زرّا البث المباشر وحساب المنظّم على السابقة نفسها: أيقونة وحدها في لغة بلا المفتاح
+const liveLabel = (ui[lang] as Record<string, string>)['ev.live'];
+const socialLabel = (ui[lang] as Record<string, string>)['ev.social'];
 
 const zh = lang === 'zh';
 const ru = lang === 'ru';
@@ -397,7 +400,7 @@ if (ev.faq?.length) {
           {ev.acts.map((a) => <li class="evd-act">{a}</li>)}
         </ul>
 
-        {(ev.ticket || ev.shop || ev.whatsapp) && (
+        {(ev.ticket || ev.shop || ev.whatsapp || ev.live || ev.social) && (
           <div class="ev-btns evd-cta">
             {/* واتساب الإعلان زرّاً لا نصّاً، وخاص بالنسخة فيسقط بختامها */}
             {ev.whatsapp && (
@@ -435,6 +438,22 @@ if (ev.faq?.length) {
                   <path d="M9 8V6.4a3 3 0 0 1 6 0V8" />
                 </svg>
                 {shopLabel}
+              </a>
+            )}
+            {ev.live && (
+              <a class:list={['ev-ticket', { 'ev-ticket--icon': !liveLabel }]} href={ev.live} target="_blank" rel="noopener noreferrer"
+                aria-label={liveLabel ? undefined : 'Live'} title={liveLabel ? undefined : 'Live'}
+                data-track="outbound_click" data-track-kind="live" data-track-item-id={ev.id}>
+                <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="3" /><path d="M10.2 9.3v5.4l4.6-2.7-4.6-2.7Z" /></svg>
+                {liveLabel}
+              </a>
+            )}
+            {ev.social && (
+              <a class:list={['ev-ticket', { 'ev-ticket--icon': !socialLabel }]} href={ev.social} target="_blank" rel="noopener noreferrer"
+                aria-label={socialLabel ? undefined : 'X'} title={socialLabel ? undefined : 'X'}
+                data-track="outbound_click" data-track-kind="social" data-track-item-id={ev.id}>
+                <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 4.5l15 15M19.5 4.5l-15 15" /></svg>
+                {socialLabel}
               </a>
             )}
           </div>

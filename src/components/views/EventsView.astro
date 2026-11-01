@@ -304,6 +304,9 @@ const afterOf = (raw: Ev) => raw.after
 // الإنجليزية. لغة بلا المفتاح تعرض الأيقونة وحدها بتسمية aria إنجليزية من كلمة
 // واحدة، كما في الصفحة التفصيلية وزرّ المشاركة: لا نصّ بـzh/de/ru خارج الخطوط.
 const shopLabel = (ui[lang] as Record<string, string>)['ev.shop'];
+// زرّا البث المباشر وحساب المنظّم على السابقة نفسها: أيقونة وحدها في لغة بلا المفتاح
+const liveLabel = (ui[lang] as Record<string, string>)['ev.live'];
+const socialLabel = (ui[lang] as Record<string, string>)['ev.social'];
 // نبذة المتجر بجانب الزرّ — تُحذف كلياً في لغة بلا المفتاح (لا تُعرض إنجليزية):
 // قاعدة CLAUDE.md «كتلة بلا نسخة بلغة الصفحة تُخفى». والنصّ وصفٌ لفئات ما يعرضه
 // المتجر كما شوهدت في صفحته، لا حكم جودة ولا سعر (تفصيله عند المفتاح في ui.ts).
@@ -386,7 +389,7 @@ const jsonLd = [
               <ul class="ev-acts">
                 {e.acts.map((a) => <li class="ev-act">{a}</li>)}
               </ul>
-              {(e.ticket || e.shop || e.whatsapp) && (
+              {(e.ticket || e.shop || e.whatsapp || e.live || e.social) && (
                 <div class="ev-btns ev-btns--card">
                   {/* واتساب الإعلان زرّاً لا نصّاً، وخاص بالنسخة فيسقط بختامها */}
                   {e.whatsapp && (
@@ -425,6 +428,22 @@ const jsonLd = [
                         <path d="M9 8V6.4a3 3 0 0 1 6 0V8" />
                       </svg>
                       {shopLabel}
+                    </a>
+                  )}
+                  {e.live && (
+                    <a class:list={['ev-ticket', { 'ev-ticket--icon': !liveLabel }]} href={e.live} target="_blank" rel="noopener noreferrer"
+                      aria-label={liveLabel ? undefined : 'Live'} title={liveLabel ? undefined : 'Live'}
+                      data-track="outbound_click" data-track-kind="live" data-track-item-id={e.id}>
+                      <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="3" /><path d="M10.2 9.3v5.4l4.6-2.7-4.6-2.7Z" /></svg>
+                      {liveLabel}
+                    </a>
+                  )}
+                  {e.social && (
+                    <a class:list={['ev-ticket', { 'ev-ticket--icon': !socialLabel }]} href={e.social} target="_blank" rel="noopener noreferrer"
+                      aria-label={socialLabel ? undefined : 'X'} title={socialLabel ? undefined : 'X'}
+                      data-track="outbound_click" data-track-kind="social" data-track-item-id={e.id}>
+                      <svg class="ev-ticket-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 4.5l15 15M19.5 4.5l-15 15" /></svg>
+                      {socialLabel}
                     </a>
                   )}
                 </div>

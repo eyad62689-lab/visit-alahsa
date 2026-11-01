@@ -289,6 +289,9 @@ export const ui = {
     // ومأكولات (مكسرات · شيبس · خلّ التمر)، ومستحضرات عناية (صابون · شامبو ·
     // حنّاء · سدر)، وكل منتج منسوب إلى مؤسسة مشاركة. لا جودة ولا شهرة ولا سعر.
     'ev.shopNote': 'منتجات اللومي ومأكولات ومستحضرات عناية من المؤسسات المشاركة في المعرض.',
+    // زرّا البث المباشر وحساب المنظّم (‏ev.live/ev.social) — لغة بلا المفتاح تعرض الأيقونة وحدها
+    'ev.live': 'قناة المنظّم على يوتيوب (البث المباشر) ↗',
+    'ev.social': 'حساب المنظّم على X ↗',
     'foot.l.report': 'أبلغ عن خطأ',
     // المدونة
     'nav.blog': 'المدونة',
@@ -668,6 +671,8 @@ export const ui = {
     'det.faq': 'Frequently asked questions',
     'ev.shop': 'Shop the exhibition’s products — Al-Ahsa Chamber store (external link) ↗',
     'ev.shopNote': 'Lomi products, foods and care items from the establishments taking part in the exhibition.',
+    'ev.live': 'Organiser’s YouTube channel (live streams) ↗',
+    'ev.social': 'Organiser’s account on X ↗',
     'foot.l.report': 'Report an error',
     // Blog
     'nav.blog': 'Blog',
