@@ -39,9 +39,9 @@ const d = entry.data;
 const { Content } = await render(entry);
 
 const name = ar ? d.name : d.name_en;
-const area = ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : d.area_en;
-const blurb = ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : d.blurb_en;
-const alTxt = ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : d.alt_en;
+const area = ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : d.area_en;
+const blurb = ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : d.blurb_en;
+const alTxt = ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
@@ -179,6 +179,24 @@ const C = localize(lang, {
     noteP: 'نام اور مقام براہ راست گوگل میپس سے لیے گئے ہیں۔ ویب سائٹ کی ہر تازہ کاری پر درجہ بندی اور اوقات بھی وہیں سے لیے جاتے ہیں اور بدل سکتے ہیں۔ یہاں نہ قیمتیں دی گئی ہیں اور نہ کسی خاص کھانے کی سفارش۔',
     indexName: 'کھانے پینے کی جگہیں',
     sightsH: 'قریبی سیاحتی مقامات: {district}',
+  },
+  tr: {
+    kindLabel: d.kind === 'cafe' ? 'Kafe' : d.kind === 'bakery' ? 'Fırın' : 'Restoran',
+    backLabel: 'Tüm restoranlar ve kafeler',
+    openMaps: t('det.openMaps'),
+    newWindow: '(Google Haritalar yeni pencerede açılır)',
+    hoursH: 'Çalışma saatleri',
+    hoursNote: 'Saatler Google Haritalar\'dan alınır ve değişebilir — mekânın bağlantısını kontrol edin.',
+    ratingLabel: 'Google Haritalar\'daki puan',
+    openNow: 'Şu anda açık',
+    closedNow: 'Şu anda kapalı',
+    closedPerm: 'Kalıcı olarak kapalı — Google Haritalar\'a göre',
+    closedTemp: 'Geçici olarak kapalı — Google Haritalar\'a göre',
+    areaH: 'Konum',
+    noteH: 'Bu sayfa hakkında',
+    noteP: 'Ad ve konum doğrudan Google Haritalar\'dan alınır; puan ve çalışma saatleri ise her site güncellemesinde oradan çekilir ve değişebilir. Fiyat ya da yemek önerisi yer almaz.',
+    indexName: 'Restoranlar ve kafeler',
+    sightsH: 'Yakındaki görülecek yerler ({district})',
   },
 });
 // مع معلمٍ من حيٍّ آخر لا يصدق «… في {الحي}»، فيُستعمل عنوان «أكمل يومك» المعتمد في صفحة المعلم
