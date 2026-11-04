@@ -169,3 +169,29 @@ export const DISH_GROUPS_UR: DishGroup[] = [
     ],
   },
 ];
+
+// الكتلة التركية — خط tr-translation-pipeline (دفعة tr-food-1؛ الحاكم 92/100). البنية (الصور) مرآة الكتلة الإنجليزية،
+// والنص من الخط.
+export const DISH_GROUPS_TR: DishGroup[] = [
+  {
+    title: '',
+    dishes: [
+      { img: '/img/food/hasawi-rice-v2', alt: 'Odun ateşi üzerinde bir kil tencerede karıştırılan El-Ahsa pilavı', k: 'Ana yemek', name: 'El-Ahsa pilavı',
+        pre: 'El-Ahsa\'nın en bilinen yemeklerinden biridir. El-Ahsa pirinci et ya da tavukla, domates sosu ve baharatlarla (kurutulmuş misket limonu, tarçın, kakule) pişirilir; rengi kızılımsı kahverengiye döner, lezzeti zenginleşir. Kutlamalarda ve misafir sofralarında sunulur.' },
+      { img: '/img/food/mandi-v2', alt: 'Parlayan bir tandır çukurunun yanında bir tabak mandi', k: 'Ana yemek', name: 'Mandi',
+        pre: 'El-Ahsa\'da mandi pişirilmekten ziyade, sırlar gibi toprağa emanet edilir. Kısacası, mandi yerdeki bir çukura gömülmüş tandırda pişer. Et saatlerce kil tandırın soluğunu içine çeker, pirinç ise hurma ağacının ve dumanın kokusunu taşır. Bu yemek bir vahanın hikâyesini anlatır: o vaha, cömertliğin adını koymadan önce de cömertliği bilirdi.' },
+      { img: '/img/food/harees-v3', alt: 'Odun ateşi üzerinde karıştırılan bir tencere haris', k: 'Ana yemek', name: 'Haris',
+        pre: 'Buğday ve et saatlerce birbirine karışıp tek bir ruh olunca haris adlı yemek doğar. El-Ahsa\'nın ziyafetlerinde ve düğünlerinde cömertliğin başta gelen yemeğidir; ramazan sofralarının da eski bir dostudur.' },
+      { img: '/img/food/mufallaq-v2', alt: 'Vahada odun ateşinde pişen bir tencere mufallak: hurmalı yarma buğday', k: 'Ana yemek', name: 'Mufallak',
+        pre: 'Yarma buğdaydan (ceriş) yapılan geleneksel bir El-Ahsa yemeğidir. Buğday baharatlarla ve kurutulmuş misket limonuyla pişirilir, sonra hurma ve haşlanmış yumurtayla süslenir. Vahanın lezzetlerini bir araya getiren doyurucu bir tabaktır.' },
+      { img: '/img/food/balaleet-v2', alt: 'Omlet tavasının yanında, odun ateşinde kavrulan balalit için tel şehriye', k: 'Tatlı', name: 'Hurma pekmezli balalit',
+        pre: 'Altın sarısı tel şehriye safran ve kakuleyle kokulandırılır, El-Ahsa usulünce hurma pekmeziyle tatlandırılır. Hurma ağacının başkenti olan bir toprakta tatlılık hurmanın kendisinden gelir. Balalit omletle birlikte sunulur.' },
+      { img: '/img/food/date-asida-v2', alt: 'Ortasında hurma pekmezi çukuru olan bir tabak hurmalı aside; yanında hurma ve bir kahve ibriği', k: 'Tatlı', name: 'Hurmalı aside',
+        pre: 'Hurmalı aside, kaşıkla yenen yumuşak bir bulamaçtır ve El-Ahsa\'nın kış tatlısıdır. El-Ahsa\'nın kendi hurması hafif ateşte buğday ununa karışıp erir; tatlı koyulaşana kadar sabırla karıştırılır. Sonra sadeyağ ve bir tutam karabiberle taçlandırılır: sadeyağ tatlıya parlaklık verir, karabiber de tatlının sıcaklığını alevlendirir. Soğuk gecelerde aile bu tatlının etrafında toplanır.' },
+      { img: '/img/food/sago', alt: 'Ceviz ve Antep fıstığıyla süslenmiş sagu', k: 'Tatlı', name: 'Sagu',
+        pre: 'Küçük sagu taneleri suda pişirilir ve şekerle tatlandırılır. Taneler ateşte eriyerek safran ve kakuleyle ışıldayan saydam bir mücevhere dönüşür. El-Ahsa\'nın bu tatlısı ramazan sofralarının baş köşesindedir. Dokusu narin, geçmişi köklüdür; hazırlanışı vaha halkı arasında elden ele geçer.' },
+      { img: '/img/food/date-bread-v2', alt: 'Parlayan bir kil fırının önünde sacda hurma ekmeği', k: 'Ekmek', name: 'Hurma ekmeği',
+        pre: 'Yerel bir ekmektir. Hamuru ya hurma ezmesiyle yoğrulur ya da ezmeyle doldurulur; üzerine çörek otu serpilir. Bu ekmekte iyi ekmeğin lezzeti hurmanın tatlılığıyla birleşir. Arap kahvesiyle sunulur. “Kırmızı ekmek” olarak da bilinir.' },
+    ],
+  },
+];

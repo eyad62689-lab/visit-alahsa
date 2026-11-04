@@ -8,7 +8,7 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import Photo from '../Photo.astro';
 import PageHero from '../PageHero.astro';
-import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_DE, DISH_GROUPS_RU, DISH_GROUPS_UR } from '../../data/dishes';
+import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_DE, DISH_GROUPS_RU, DISH_GROUPS_UR, DISH_GROUPS_TR } from '../../data/dishes';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -20,6 +20,7 @@ const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
 const ur = lang === 'ur';
+const tr = lang === 'tr';
 
 // الكتلة الصينية — خط zh-translation-pipeline (دفعة food-map 2026-09-02، الحاكم 94/100).
 // dineHref يقصد فهرس المطاعم الصيني منذ صدوره (دفعة indexes 2026-09-02).
@@ -95,6 +96,23 @@ const UR = {
   dineHref: '/ur/restaurants-cafes/',
   groups: DISH_GROUPS_UR,
 };
+// الكتلة التركية — خط tr-translation-pipeline (دفعة tr-food-1؛ الحاكم 92/100، صفحة /tr/food/).
+// dineHref يقصد فهرس المطاعم الإنجليزي: لا صفحة مطاعم تركية بعد (سابقة الروسية والألمانية والأوردية).
+const TR = {
+  heroEyebrow: 'Vahanın sofrasından',
+  title: 'El-Ahsa mutfağı',
+  heroSum: 'El-Ahsa mutfağı vahanın bereketine dayanır: El-Ahsa pirinci, hurma pekmezi (dibs), kurutulmuş misket limonu (lomi) ve yarma buğday. Bu malzemelerden sıcak yemekler ortaya çıkar; bu yemekler sofralarda kuşaktan kuşağa aktarılır.',
+  listEyebrow: 'Lezzet turu',
+  listH: 'Vahanın kalbinden sekiz yemek',
+  more: 'Devamını okuyun',
+  less: 'Devamını gizleyin',
+  methodH: 'Bu sayfa hakkında',
+  methodP1: 'Buradaki açıklamalar, kesin tarif vermek yerine geleneksel yemekleri ve yaygın olarak bilinen malzemeleri tanıtır. Ölçüler ve adlar evden eve, bölgeden bölgeye değişir.',
+  methodP2: 'Bu sayfadaki yemekler El-Ahsa\'daki restoranlarda yıl boyu sunulur. Dört kartta bir özel gün ya da mevsim anılır: ramazan, kış geceleri, düğün ziyafetleri, misafir sofraları. Bu dört kart yemeklerin ziyaretçilere ne zaman sunulduğunu değil, El-Ahsa sofrasındaki geleneksel yerini anlatır.',
+  dineCta: 'Tadına bakabileceğiniz bir yer mi arıyorsunuz? Restoranlar ve kafeler listesine göz atın →',
+  dineHref: '/en/restaurants-cafes/',
+  groups: DISH_GROUPS_TR,
+};
 const C = localize(lang, {
   ar: {
     heroEyebrow: 'من موائد الواحة',
@@ -130,6 +148,7 @@ const C = localize(lang, {
   de: DE,
   ru: RU,
   ur: UR,
+  tr: TR,
 });
 
 // عنوان التبويب العربي أطول من H1 عمداً (كلمات البحث)؛ يبقى H1 قصيراً. اللغات الأخرى: العنوان نفسه.
@@ -143,13 +162,13 @@ const description = ar
       ? 'Eine Tour durch die Küche aus Al-Ahsa: Hasawi-Reis, Mandi, Harees, Mufallaq, Balaleet mit Dattelsirup, Dattel-Asida, Sago und Dattelbrot.'
     : ru
       ? 'Кухня Аль-Ахсы в восьми блюдах: рис Аль-Ахсы, манди, хариса из пшеницы, муфаллак, балалит с финиковой патокой, финиковая асида, саго и финиковый хлеб.'
-      : ur ? 'الاحساء کے پکوانوں کی سیر: الاحساء کا پلاؤ، مندی، ہریس، مفلق، کھجور کے شیرے کے ساتھ بلالیط، کھجور کا عصیدہ، ساگودانہ اور کھجور کی روٹی۔' : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
+      : ur ? 'الاحساء کے پکوانوں کی سیر: الاحساء کا پلاؤ، مندی، ہریس، مفلق، کھجور کے شیرے کے ساتھ بلالیط، کھجور کا عصیدہ، ساگودانہ اور کھجور کی روٹی۔' : tr ? 'El-Ahsa mutfağında bir gezinti: El-Ahsa pilavı, mandi, haris, mufallak, hurma pekmezli balalit, hurmalı aside, sagu ve hurma ekmeği.' : 'A tour of Hasawi cuisine: Hasawi rice, mandi, harees, mufallaq, balaleet with date syrup, date asida, sago and date bread.';
 
 const siteUrl = 'https://visit-alahsa.com';
-const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : ur ? '/ur/food/' : '/en/food/';
+const selfPath = ar ? '/أكلات/' : zh ? '/zh/food/' : de ? '/de/food/' : ru ? '/ru/food/' : ur ? '/ur/food/' : tr ? '/tr/food/' : '/en/food/';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/', siteUrl).href },
+    { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : tr ? '/tr/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
 ];

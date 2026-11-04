@@ -22,7 +22,7 @@ import { isThinAttraction, hasDiningPage } from '../../lib/publish';
 import { eventsFor, eventAlt, evView } from '../../data/events';
 import { TRAILS, trailText, stopText, type TrailLang } from '../../data/trails';
 import { trailHref, trailsIndexHref } from '../../lib/trails';
-import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_RU, DISH_GROUPS_DE, DISH_GROUPS_UR, type DishGroup } from '../../data/dishes';
+import { DISH_GROUPS_AR, DISH_GROUPS_EN, DISH_GROUPS_ZH, DISH_GROUPS_RU, DISH_GROUPS_DE, DISH_GROUPS_UR, DISH_GROUPS_TR, type DishGroup } from '../../data/dishes';
 import { fruitGroupsFor } from '../../data/fruits';
 import { visaHref } from '../../lib/visa-guide.mjs';
 import { storesPage, storesLangs } from '../../lib/stores';
@@ -233,9 +233,9 @@ function trailEntries(): KbEntry[] {
 }
 
 // ── المطبخ والثمار: بطاقاتهما بلغة كل نسخة، والرابط صفحة القسم ───────────────
-const FOOD_INDEX: Record<Lang, string> = { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/', tr: '/en/food/' };
+const FOOD_INDEX: Record<Lang, string> = { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/', tr: '/tr/food/' };
 const FRUITS_INDEX: Record<Lang, string> = { ar: '/ثمار/', en: '/en/fruits/', zh: '/zh/fruits/', de: '/de/fruits/', ru: '/ru/fruits/', ur: '/ur/fruits/', tr: '/tr/fruits/' };
-const DISHES: Record<Lang, DishGroup[]> = { ar: DISH_GROUPS_AR, en: DISH_GROUPS_EN, zh: DISH_GROUPS_ZH, de: DISH_GROUPS_DE, ru: DISH_GROUPS_RU, ur: DISH_GROUPS_UR, tr: DISH_GROUPS_EN };
+const DISHES: Record<Lang, DishGroup[]> = { ar: DISH_GROUPS_AR, en: DISH_GROUPS_EN, zh: DISH_GROUPS_ZH, de: DISH_GROUPS_DE, ru: DISH_GROUPS_RU, ur: DISH_GROUPS_UR, tr: DISH_GROUPS_TR };
 
 function dishEntries(): KbEntry[] {
   // الطبق يُعرَّف بترتيبه داخل القائمة؛ القوائم بكل لغة بالترتيب نفسه (مصدر واحد، dishes.ts)
