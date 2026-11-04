@@ -1,0 +1,764 @@
+{
+  "batch": "tr-static-1",
+  "stage": "07",
+  "round": 1,
+  "date": "2026-11-04",
+  "scores": {
+    "unesco": 91,
+    "report": 91,
+    "thanks": 91,
+    "tmap": 90
+  },
+  "batch_score": 90,
+  "breakdown": {
+    "unesco": {
+      "accuracy": "28/30 — facts in the English order; «Listesi'ne alındı» no longer ambiguous; the ordering sentence keeps the English (gaps are data).",
+      "terminology": "19/20 — bileşen, UNESCO Dünya Mirası Listesi, El-Ahsa Vahası byte-identical; attested «UNESCO Dünya Miras Merkezi».",
+      "fluency": "26/30 — short sentences; «6 tanesinin» after the digit is plain but slightly spoken.",
+      "register": "9/10 — plain guide prose.",
+      "orthography": "9/10 — P8 apostrophes (2018'de, 1563'tür, Listesi'ne), sentence case, no subject comma before a digit."
+    },
+    "report": {
+      "accuracy": "28/30 — accuracy (not honesty), review promise only, none of it published, reply only with an e-mail.",
+      "terminology": "19/20 — Hata bildirin, gezilecek yer, bildirim as one noun.",
+      "fluency": "26/30 — calques removed (yanlış yere konmuş, bulunduğu sayfa); the email aside stays a little stacked as in the English.",
+      "register": "9/10 — siz throughout, polite-plural button (UI1).",
+      "orthography": "9/10 — constants byte-identical, honeypot ends «: »."
+    },
+    "thanks": {
+      "accuracy": "29/30 — the confirmed-error meaning fault fixed.",
+      "terminology": "19/20 — bildirim as on the report page; Ana sayfa.",
+      "fluency": "26/30 — comma H1, plain second sentence.",
+      "register": "9/10 — warm, no larger promise.",
+      "orthography": "8/10 — one dash only in the tab title now."
+    },
+    "tmap": {
+      "accuracy": "27/30 — relief/east/in-place now said plainly; the list instruction follows a source defect (logged).",
+      "terminology": "19/20 — arazi haritası agrees with the published link; Cebel el-Kare, gezilecek yerler, Ctrl/⌘/3D/2D constants.",
+      "fluency": "26/30 — gesture hints parallel; «Klasik harita» bare as the English.",
+      "register": "9/10 — polite-plural controls (UI1).",
+      "orthography": "9/10 — sentence case, no stops on labels."
+    }
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "strings": {
+    "unesco.title": "Dünya Mirası Listesi'nde El-Ahsa Vahası",
+    "unesco.lead": "El-Ahsa Vahası 2018'de UNESCO Dünya Mirası Listesi'ne alındı. Listedeki numarası 1563'tür. Bu alan on iki bileşenden oluşur. Bunlardan {comps.length} tanesinin bu rehberde kendi sayfası vardır. Bileşenler burada resmî listedeki numara sırasına göre yer alır.",
+    "unesco.comp": "Bileşen",
+    "unesco.officialH": "Resmî kaynak",
+    "unesco.official": "On iki bileşenin tam listesini ve haritalarını UNESCO Dünya Miras Merkezi'nin bu alana ait sayfasında bulabilirsiniz.",
+    "unesco.officialLink": "UNESCO'da 1563 numaralı alan ↗",
+    "unesco.seoTitle": "UNESCO'da El-Ahsa Vahası",
+    "unesco.seoDesc": "2018'de UNESCO Dünya Mirası Listesi'ne alınan El-Ahsa Vahası alanının on iki bileşeninden {comps.length} tanesinin kendi sayfası var: {names}.",
+    "report.eyebrow": "Doğru bilgi vermemize yardımcı olun",
+    "report.title": "Hata bildirin",
+    "report.lead": "Bizim için en önemli şey bilgilerin doğruluğudur. Hatalı bir bilgi, açılmayan bir bağlantı ya da yanlış yere konmuş bir fotoğraf fark ederseniz bize bildirin, biz de inceleriz.",
+    "report.pageL": "Hatanın bulunduğu sayfa",
+    "report.pagePh": "Sayfa bağlantısı veya gezilecek yerin adı",
+    "report.msgL": "Hangi hatayı fark ettiniz?",
+    "report.msgPh": "Hatayı kısaca anlatın; doğru bilgiyi ve kaynağını biliyorsanız onları da ekleyin.",
+    "report.emailL": "E-posta adresiniz (isteğe bağlı, yanıt istiyorsanız)",
+    "report.emailPh": "name@example.com",
+    "report.submit": "Bildirimi gönderin",
+    "report.note": "Bildiriminiz doğrudan Visit Al-Ahsa ekibine ulaşır ve hiçbir kısmı yayımlanmaz.",
+    "thanks.title": "Bildiriminiz bize ulaştı, teşekkür ederiz",
+    "thanks.d": "Visit Al-Ahsa ekibi bildiriminizi inceleyecek ve hatalı olduğu doğrulanan her bilgiyi düzeltecek. Katkınız sayesinde El-Ahsa rehberi herkes için doğru bilgi vermeye devam eder.",
+    "thanks.back": "Ana sayfaya dönün",
+    "ui.tmap.title": "Arazi haritası",
+    "ui.tmap.lead": "Vahanın kabartma görünümü: Cebel el-Kare, hurmalıklar ve vahanın doğusundaki kumullar. Gezilecek her yer haritada kendi konumunda gösterilir. Bir yeri haritada görmek için listeden o yerin adını seçin.",
+    "ui.tmap.open": "Arazi haritasını açın",
+    "ui.tmap.loading": "Harita yükleniyor…",
+    "ui.tmap.3d.on": "3D görünüm",
+    "ui.tmap.3d.off": "2D görünüm",
+    "ui.tmap.locate": "Haritada gösterin",
+    "ui.tmap.list.title": "Haritadaki tüm gezilecek yerler",
+    "ui.tmap.classic": "Klasik harita",
+    "ui.tmap.gest.win": "Haritayı yakınlaştırmak için Ctrl tuşunu basılı tutarak kaydırın",
+    "ui.tmap.gest.mac": "Haritayı yakınlaştırmak için ⌘ tuşunu basılı tutarak kaydırın",
+    "ui.tmap.gest.touch": "Haritayı hareket ettirmek için iki parmağınızla sürükleyin",
+    "ui.form.honeypot": "Bu alanı doldurmayın: "
+  },
+  "changes": [
+    {
+      "key": "unesco.lead",
+      "before": "El-Ahsa Vahası, 2018'de UNESCO Dünya Mirası Listesi'ne 1563 numaralı alan olarak alındı. Alan on iki bileşenden oluşur. Bunlardan {comps.length} tanesinin bu rehberde kendi sayfası vardır. Bileşenler burada resmî listedeki numara sırasına göre yer alır.",
+      "after": "El-Ahsa Vahası 2018'de UNESCO Dünya Mirası Listesi'ne alındı. Listedeki numarası 1563'tür. Bu alan on iki bileşenden oluşur. Bunlardan {comps.length} tanesinin bu rehberde kendi sayfası vardır. Bileşenler burada resmî listedeki numara sırasına göre yer alır.",
+      "why": "P1.3: «1563 numaralı alan olarak alındı» was read as «taken as area no. 1563»; the approved verb «Listesi'ne alındı» (fact.unesco.l, tm) now stands next to its list, and the site number gets its own short sentence (lesson 1). «Bu alan» picks up the eyebrow «UNESCO Dünya Mirası alanı». No comma after the subject before a digit (DN16-e1-on-pages). «tanesinin» kept after the digit (no suffix on the placeholder)."
+    },
+    {
+      "key": "unesco.official",
+      "before": "On iki bileşenin tam listesi ve haritaları, alanın UNESCO Dünya Miras Merkezi'ndeki sayfasındadır.",
+      "after": "On iki bileşenin tam listesini ve haritalarını UNESCO Dünya Miras Merkezi'nin bu alana ait sayfasında bulabilirsiniz.",
+      "why": "P1.14 second half: «…sayfasındadır» read stiff; the plain «bulabilirsiniz» (tm «Yerini gezilecek yerler haritasında bulabilirsiniz») with the object first removes the subject comma too. The attested institution name «UNESCO Dünya Miras Merkezi» stays (stage 4 attestation)."
+    },
+    {
+      "key": "unesco.seoDesc",
+      "before": "El-Ahsa Vahası UNESCO Dünya Mirası alanının (2018) on iki bileşeninden {comps.length} tanesinin kendi sayfası var: {names}.",
+      "after": "2018'de UNESCO Dünya Mirası Listesi'ne alınan El-Ahsa Vahası alanının on iki bileşeninden {comps.length} tanesinin kendi sayfası var: {names}.",
+      "why": "P1.15: the bracketed «(2018)» inside a Turkish sentence read oddly; recast as the approved participle «2018'de UNESCO Dünya Mirası Listesi'ne alınan … alanının» (calibration UNESCO component sentence, tm jabal-al-qarah). Placeholders once each, names after the colon."
+    },
+    {
+      "key": "report.eyebrow",
+      "before": "Doğru bilgi vermemize yardım edin",
+      "after": "Doğru bilgi vermemize yardımcı olun",
+      "why": "P2.4: «yardım edin» on its own can read as a plea; «yardımcı olun» is the plain request a Turkish site writes. Subject «us» kept («vermemize»)."
+    },
+    {
+      "key": "report.lead",
+      "before": "Bizim için en önemli şey doğruluktur. Hatalı bir bilgi, açılmayan bir bağlantı ya da yanlış yerde duran bir fotoğraf görürseniz bize bildirin, biz de inceleyelim.",
+      "after": "Bizim için en önemli şey bilgilerin doğruluğudur. Hatalı bir bilgi, açılmayan bir bağlantı ya da yanlış yere konmuş bir fotoğraf fark ederseniz bize bildirin, biz de inceleriz.",
+      "why": "P2.1: bare «doğruluk» = honesty or accuracy; «bilgilerin doğruluğu» is the Arabic دقة المعلومة. P2.2: hortative «inceleyelim» → the aorist promise «inceleriz» (English «we will review it»; no correction promise added). P2.3: «yanlış yerde duran» calque → «yanlış yere konmuş». «spot» = «fark etmek», the verb of the approved det.report and of report.msgL."
+    },
+    {
+      "key": "report.pageL",
+      "before": "İlgili sayfa",
+      "after": "Hatanın bulunduğu sayfa",
+      "why": "P2.5: «İlgili sayfa» reads as «related page»; the page concerned on an error form is the page where the error is. Plain noun phrase label, no stop."
+    },
+    {
+      "key": "report.note",
+      "before": "Bildiriminiz doğrudan Visit Al-Ahsa ekibine ulaşır; hiçbir bölümü yayımlanmaz.",
+      "after": "Bildiriminiz doğrudan Visit Al-Ahsa ekibine ulaşır ve hiçbir kısmı yayımlanmaz.",
+      "why": "P2.8: «hiçbir bölümü» (any section) bookish; «hiçbir kısmı» = none of it, as the English. Joined with «ve» as one sentence."
+    },
+    {
+      "key": "thanks.title",
+      "before": "Bildiriminiz bize ulaştı — teşekkür ederiz",
+      "after": "Bildiriminiz bize ulaştı, teşekkür ederiz",
+      "why": "P3.1: the layout appends « — Visit Al-Ahsa», so the H1's own dash made two dashes in the tab title; a comma joins the two halves in Turkish without changing the meaning."
+    },
+    {
+      "key": "thanks.d",
+      "before": "Visit Al-Ahsa ekibi notunuzu inceleyecek ve doğrulanan her bilgiyi düzeltecek. Katkınız El-Ahsa rehberinin herkes için doğru kalmasını sağlar.",
+      "after": "Visit Al-Ahsa ekibi bildiriminizi inceleyecek ve hatalı olduğu doğrulanan her bilgiyi düzeltecek. Katkınız sayesinde El-Ahsa rehberi herkes için doğru bilgi vermeye devam eder.",
+      "why": "P3.2 (meaning fault): «doğrulanan her bilgiyi düzeltecek» said «correct every verified piece of information»; the English «correct whatever is confirmed» = each error that is confirmed → «hatalı olduğu doğrulanan her bilgiyi». P3.3: one noun for the report on a three-line page («bildiriminizi», as the H1). P3.4: «doğru kalmasını sağlar» → «doğru bilgi vermeye devam eder» (keeps … accurate), no larger promise."
+    },
+    {
+      "key": "ui.tmap.lead",
+      "before": "Vahanın kabartmalı hâli: Cebel el-Kare, hurmalıklar ve doğudaki kumullar. Gezilecek her yer de yerinde duruyor. Bir yeri haritada görmek için listeden o yerin adını seçin.",
+      "after": "Vahanın kabartma görünümü: Cebel el-Kare, hurmalıklar ve vahanın doğusundaki kumullar. Gezilecek her yer haritada kendi konumunda gösterilir. Bir yeri haritada görmek için listeden o yerin adını seçin.",
+      "why": "P4.2: «kabartmalı hâli» bookish → «kabartma görünümü» (the noun of the 3D/2D toggle). P4.4: «doğudaki» left hanging → «vahanın doğusundaki» (the English's «to the east», of the oasis; no distance added). P4.3: the idiom-like «yerinde duruyor» → «haritada kendi konumunda gösterilir» (every attraction in place). Third sentence kept as the English (source defect logged)."
+    }
+  ],
+  "blind_reader_rulings": [
+    {
+      "item": "P1.1",
+      "verdict": "rejected",
+      "key": "unesco.seoDesc",
+      "why": "Both number forms are bound: «on iki» in words is the approved det.unesco/tm form (T10-unescoNote) and the digit is written by the template ({comps.length}). «6 tanesinin» is ordinary Turkish after a digit and avoids a suffix on the placeholder (BRIEF trap). The surrounding clause was recast for P1.15."
+    },
+    {
+      "item": "P1.2",
+      "verdict": "rejected",
+      "key": "unesco.comp",
+      "why": "«bileşen» is the approved term for the UNESCO component (det.unesco, tm «on iki bileşeninden biridir», T10-unescoNote); ruling not reopened; the card caption «Bileşen 1563-004» stays."
+    },
+    {
+      "item": "P1.3",
+      "verdict": "applied",
+      "key": "unesco.lead",
+      "why": "«Listesi'ne alındı» now stands as its own clause; the site number in a separate sentence «Listedeki numarası 1563'tür»."
+    },
+    {
+      "item": "P1.4",
+      "verdict": "rejected",
+      "key": "unesco.lead",
+      "why": "The English says the cards are listed in the order of their component numbers; the gaps (001–003, 008, 010, 011) are data: only components with their own page are shown, which the previous sentence says. No content added."
+    },
+    {
+      "item": "P1.5",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "Kasr İbrahim card summary and «Kasr» are approved in earlier batches (termbase name); not in this batch."
+    },
+    {
+      "item": "P1.6",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "Card summaries are approved texts of earlier batches; their verb endings are not in this batch."
+    },
+    {
+      "item": "P1.7",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "El-Kaysariye summary approved earlier; not in this batch."
+    },
+    {
+      "item": "P1.8",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "«gezi noktası» is the approved tm word for a site (M11-region-destination); summary not in this batch."
+    },
+    {
+      "item": "P1.9",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "«Sarayı»/«kale» and «Hüfuf» are termbase names; summary approved earlier."
+    },
+    {
+      "item": "P1.10",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "Sahud summary and «Müberrez» (termbase) approved earlier."
+    },
+    {
+      "item": "P1.11",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "Cüvasa summary approved earlier; the claim is the source's."
+    },
+    {
+      "item": "P1.12",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "El-Asfar summary approved earlier."
+    },
+    {
+      "item": "P1.13",
+      "verdict": "published",
+      "key": "ref.unesco_components",
+      "why": "El-Asfar summary approved earlier."
+    },
+    {
+      "item": "P1.14",
+      "verdict": "applied",
+      "key": "unesco.official",
+      "why": "First part rejected: «UNESCO Dünya Miras Merkezi» is the attested Turkish name of the institution (unesco.org.tr/Pages/149/44; Ministry of Culture and Tourism), distinct from the list wording «Dünya Mirası Listesi». Second part applied: «…sayfasındadır» → «…sayfasında bulabilirsiniz»."
+    },
+    {
+      "item": "P1.15",
+      "verdict": "applied",
+      "key": "unesco.seoDesc",
+      "why": "«(2018)» recast as the approved participle «2018'de UNESCO Dünya Mirası Listesi'ne alınan». The tab/H1 difference is intended (seoTitle is the short search title, the H1 the fuller page name) and the reader found both fine."
+    },
+    {
+      "item": "P2.1",
+      "verdict": "applied",
+      "key": "report.lead",
+      "why": "«bilgilerin doğruluğu» removes the honesty reading (Arabic دقة المعلومة)."
+    },
+    {
+      "item": "P2.2",
+      "verdict": "applied",
+      "key": "report.lead",
+      "why": "Hortative «inceleyelim» → aorist «inceleriz» (English «we will review it»)."
+    },
+    {
+      "item": "P2.3",
+      "verdict": "applied",
+      "key": "report.lead",
+      "why": "«yanlış yerde duran» → «yanlış yere konmuş»."
+    },
+    {
+      "item": "P2.4",
+      "verdict": "applied",
+      "key": "report.eyebrow",
+      "why": "«yardım edin» → «yardımcı olun»."
+    },
+    {
+      "item": "P2.5",
+      "verdict": "applied",
+      "key": "report.pageL",
+      "why": "«İlgili sayfa» → «Hatanın bulunduğu sayfa» (the page concerned by the report)."
+    },
+    {
+      "item": "P2.6",
+      "verdict": "rejected",
+      "key": "report.emailL",
+      "why": "The two parts are the English's own aside («optional — if you would like a reply»); the reader understood it and named no fault; kept short as the ctx asks."
+    },
+    {
+      "item": "P2.7",
+      "verdict": "rejected",
+      "key": "report.submit",
+      "why": "UI1-controls: buttons are polite-plural imperatives (bare «Gönder» rejected by ruling). The noun stays: «bildirim» is the Turkish noun of «bildirmek» used for an error report («hata bildirimi») and is the one noun of the note and the thanks page; the approved frame says «Hata bildirin»."
+    },
+    {
+      "item": "P2.8",
+      "verdict": "applied",
+      "key": "report.note",
+      "why": "«hiçbir bölümü» → «hiçbir kısmı» (none of it, so the e-mail too). Second part rejected: «Visit Al-Ahsa» (brand, Latin) next to «El-Ahsa» (the place) is the site rule."
+    },
+    {
+      "item": "P2.9",
+      "verdict": "rejected",
+      "key": "report.emailPh",
+      "why": "«name@example.com» is a constant, byte-identical in every language (example.com is the reserved example domain)."
+    },
+    {
+      "item": "P2.10",
+      "verdict": "rejected",
+      "key": "ui.form.honeypot",
+      "why": "Off-screen spam-trap label nobody sees; the English gives no reason either; «Bu alanı doldurmayın: » has no Turkish fault."
+    },
+    {
+      "item": "P3.1",
+      "verdict": "applied",
+      "key": "thanks.title",
+      "why": "The H1's dash replaced by a comma, so the tab title carries only the layout's separator."
+    },
+    {
+      "item": "P3.2",
+      "verdict": "applied",
+      "key": "thanks.d",
+      "why": "Meaning fault fixed: «hatalı olduğu doğrulanan her bilgiyi düzeltecek» (each error confirmed)."
+    },
+    {
+      "item": "P3.3",
+      "verdict": "applied",
+      "key": "thanks.d",
+      "why": "«notunuzu» → «bildiriminizi», one noun with the H1 and the report page."
+    },
+    {
+      "item": "P3.4",
+      "verdict": "applied",
+      "key": "thanks.d",
+      "why": "«doğru kalmasını sağlar» → «Katkınız sayesinde El-Ahsa rehberi herkes için doğru bilgi vermeye devam eder». The promise itself is the English's."
+    },
+    {
+      "item": "P4.1",
+      "verdict": "rejected",
+      "key": "ui.tmap.title",
+      "why": "«arazi» is the ordinary Turkish word for terrain (arazi yapısı, arazi aracı; Google Haritalar's Turkish terrain layer is «Arazi»); the H1 agrees with the published link «3D arazi haritası» (map.terrain, M4-3D) and the lead's «kabartma» disambiguates on the page. Kept; no owner question needed."
+    },
+    {
+      "item": "P4.2",
+      "verdict": "applied",
+      "key": "ui.tmap.lead",
+      "why": "«kabartmalı hâli» → «kabartma görünümü»."
+    },
+    {
+      "item": "P4.3",
+      "verdict": "applied",
+      "key": "ui.tmap.lead",
+      "why": "«Gezilecek her yer haritada kendi konumunda gösterilir» says what the English «with every attraction in place» promises."
+    },
+    {
+      "item": "P4.4",
+      "verdict": "applied",
+      "key": "ui.tmap.lead",
+      "why": "«vahanın doğusundaki kumullar» — east of the oasis, the English's measure."
+    },
+    {
+      "item": "P4.5",
+      "verdict": "source_defect",
+      "key": "ui.tmap.lead",
+      "why": "In the page the name in each list row is a link to the landmark's page and the ◎ button flies the map; the English «Click or tap any name in the list to see it on the map» does not match. The Turkish follows the English; logged in source_defects and owner_questions."
+    },
+    {
+      "item": "P4.6",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "«Cebel el-Kare» is the termbase name (byte-identical); the collision with «kare» was accepted (A1-collisions, Kare precedent)."
+    },
+    {
+      "item": "P4.7",
+      "verdict": "rejected",
+      "key": "ui.tmap.classic",
+      "why": "«Klasik harita» is the plain Turkish name for the ordinary map as against a special view (the English «Classic map»); it sits under the lead that names this one a relief view. Saying what it contains would add words the English lacks."
+    },
+    {
+      "item": "P4.8",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Landmark name and category are approved; not in this batch."
+    },
+    {
+      "item": "P4.9",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Ukayr / Ukayr Kalesi are approved names of two pages."
+    },
+    {
+      "item": "P4.10",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Dar et-Turas approved name; category printed beside it."
+    },
+    {
+      "item": "P4.11",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "El-Halife Miras Müzesi approved name."
+    },
+    {
+      "item": "P4.12",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Approved names (termbase)."
+    },
+    {
+      "item": "P4.13",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "El-Hubeyş Camii / El-Hubeyl Gölü approved names."
+    },
+    {
+      "item": "P4.14",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "El-Kut is a termbase entry (A8-names)."
+    },
+    {
+      "item": "P4.15",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Kanzan Macera Parkı (Eş-Şube) by A8-names; category assignment is data."
+    },
+    {
+      "item": "P4.16",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Approved title."
+    },
+    {
+      "item": "P4.17",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Medeniyetler Diyarı approved name."
+    },
+    {
+      "item": "P4.18",
+      "verdict": "published",
+      "key": "ref.categories",
+      "why": "Category and list membership are data."
+    },
+    {
+      "item": "P4.19",
+      "verdict": "published",
+      "key": "ref.all_places",
+      "why": "Article assimilation es-/eş-/ed-/ez- is the P1 transliteration rule."
+    },
+    {
+      "item": "P4.20",
+      "verdict": "rejected",
+      "key": "ui.tmap.locate",
+      "why": "UI1-controls: action aria-labels and buttons are polite-plural imperatives («Haritada görüntüleyin» precedent); «Haritada gösterin» kept. «Beyt el-Biat» is a published landmark name."
+    },
+    {
+      "item": "P4.21",
+      "verdict": "rejected",
+      "key": "ui.tmap.3d.on",
+      "why": "The button names the view it switches to, as the component comment says; «3D görünüm / 2D görünüm» is the English «3D view / 2D view» word for word and a standard Turkish mode label; any added verb would be words the English lacks."
+    },
+    {
+      "item": "P4.22",
+      "verdict": "rejected",
+      "key": "ui.tmap.gest.touch",
+      "why": "The English uses two verbs (scroll / move) and so does the Turkish: «kaydırın» for the wheel/trackpad scroll in both PC hints, «hareket ettirmek … sürükleyin» for moving the map with two fingers. Using «kaydırmak» for the touch hint would make one verb do both jobs, which the reader itself objects to. The three hints stay parallel («Haritayı … için …»)."
+    },
+    {
+      "item": "P4.23",
+      "verdict": "published",
+      "key": "ref.ui map.pop.view",
+      "why": "«Sayfasına gidin →» is the approved popup link; the antecedent is the popup's place name, cut from the reader's input."
+    }
+  ],
+  "rulings": [
+    {
+      "id": "ST1-lead-inscription",
+      "title": "UNESCO lead: inscription and site number",
+      "ruling": "«El-Ahsa Vahası 2018'de UNESCO Dünya Mirası Listesi'ne alındı. Listedeki numarası 1563'tür. Bu alan on iki bileşenden oluşur.» — the approved verb «Listesi'ne alındı» next to its list; the site number in its own sentence; no comma after the subject before a digit. «Bunlardan {comps.length} tanesinin …» kept after the template digit.",
+      "evidence": "Reader on-05 P1.3; fact.unesco.l, calibration UNESCO component sentence; DN16-e1-on-pages."
+    },
+    {
+      "id": "ST2-whc-name",
+      "title": "UNESCO World Heritage Centre",
+      "ruling": "«UNESCO Dünya Miras Merkezi» (attested, bare «Miras» as in «Dünya Miras Komitesi») for the institution; «Dünya Mirası Listesi / alanı» stays for the list and the site. «… sayfasında bulabilirsiniz» for «is on … page».",
+      "evidence": "Stage 4: https://www.unesco.org.tr/Pages/149/44; reader P1.14."
+    },
+    {
+      "id": "ST3-year-bracket",
+      "title": "A year in brackets inside a sentence",
+      "ruling": "The English «(2018)» after a site name in running text becomes the approved participle «2018'de UNESCO Dünya Mirası Listesi'ne alınan …» rather than a bracket.",
+      "evidence": "Reader P1.15; tm jabal-al-qarah."
+    },
+    {
+      "id": "ST4-report-form",
+      "title": "Report page wording",
+      "ruling": "«Accuracy» = «bilgilerin doğruluğu» (never bare «doğruluk», read as honesty); «we will review it» = «biz de inceleriz»; «misplaced photo» = «yanlış yere konmuş bir fotoğraf»; «spot» = «fark etmek»; «The page concerned» = «Hatanın bulunduğu sayfa»; «Help us stay accurate» = «Doğru bilgi vermemize yardımcı olun»; «none of it is published» = «hiçbir kısmı yayımlanmaz». Button «Bildirimi gönderin» (UI1-controls).",
+      "evidence": "Reader P2.1–P2.5, P2.7, P2.8."
+    },
+    {
+      "id": "ST5-report-noun",
+      "title": "One noun for the report",
+      "ruling": "The visitor's report is «bildirim» on the report and thanks pages (button, note, H1, paragraph); not «not».",
+      "evidence": "Reader P3.3."
+    },
+    {
+      "id": "ST6-confirmed-errors",
+      "title": "«correct whatever is confirmed»",
+      "ruling": "«hatalı olduğu doğrulanan her bilgiyi düzeltecek» — the error is confirmed, not the information.",
+      "evidence": "Reader P3.2 (meaning fault)."
+    },
+    {
+      "id": "ST7-h1-dash",
+      "title": "Dash in an H1 that is also the tab title",
+      "ruling": "Where the H1 is also the <title> and the layout appends « — Visit Al-Ahsa», the English's inner dash becomes a comma («Bildiriminiz bize ulaştı, teşekkür ederiz»).",
+      "evidence": "Reader P3.1."
+    },
+    {
+      "id": "ST8-terrain-lead",
+      "title": "Terrain map lead",
+      "ruling": "«Vahanın kabartma görünümü: Cebel el-Kare, hurmalıklar ve vahanın doğusundaki kumullar. Gezilecek her yer haritada kendi konumunda gösterilir.» — «görünüm» as the toggle; «in place» = shown at its own location.",
+      "evidence": "Reader P4.2–P4.4."
+    },
+    {
+      "id": "ST9-terrain-nouns",
+      "title": "«Arazi haritası», toggle and gestures",
+      "ruling": "«Arazi haritası» (H1, button) agrees with the published «3D arazi haritası» and is the ordinary Turkish terrain word (Google Haritalar «Arazi»). «3D görünüm / 2D görünüm» name the target view, as the English. «kaydırın» = scroll; «hareket ettirmek … sürükleyin» = move with two fingers; «Klasik harita» for the classic map.",
+      "evidence": "Reader P4.1, P4.7, P4.21, P4.22; M4-3D."
+    }
+  ],
+  "termbase_additions": [
+    {
+      "tr": "UNESCO Dünya Miras Merkezi",
+      "ar": "مركز التراث العالمي لليونسكو",
+      "en": "UNESCO World Heritage Centre",
+      "suffix_vowel": "i — Merkezi'ndeki, Merkezi'nin",
+      "kind": "institution",
+      "gloss": "the UNESCO secretariat that keeps the World Heritage List and its site pages",
+      "source": "https://www.unesco.org.tr/Pages/149/44 (UNESCO Türkiye Millî Komisyonu); also kvmgm.ktb.gov.tr/tr-44423/dunya-miras-listesi.html",
+      "status": "attested",
+      "note": "Bare «Miras» in the institution name (as «Dünya Miras Komitesi»); the list and the site keep «Dünya Mirası Listesi / alanı». (tr-static-1, 2026-11-04)"
+    }
+  ],
+  "tm_pairs": [
+    {
+      "en": "Al-Ahsa Oasis on the World Heritage List",
+      "tr": "Dünya Mirası Listesi'nde El-Ahsa Vahası",
+      "page": "static",
+      "field": "unesco.title"
+    },
+    {
+      "en": "Al-Ahsa Oasis was inscribed on the UNESCO World Heritage List in 2018 (site 1563). The site comprises twelve components; {comps.length} of them are landmarks with their own pages in this guide, listed here in the order of their component numbers on the official list.",
+      "tr": "El-Ahsa Vahası 2018'de UNESCO Dünya Mirası Listesi'ne alındı. Listedeki numarası 1563'tür. Bu alan on iki bileşenden oluşur. Bunlardan {comps.length} tanesinin bu rehberde kendi sayfası vardır. Bileşenler burada resmî listedeki numara sırasına göre yer alır.",
+      "page": "static",
+      "field": "unesco.lead"
+    },
+    {
+      "en": "Component",
+      "tr": "Bileşen",
+      "page": "static",
+      "field": "unesco.comp"
+    },
+    {
+      "en": "Official source",
+      "tr": "Resmî kaynak",
+      "page": "static",
+      "field": "unesco.officialH"
+    },
+    {
+      "en": "The full list of the twelve components and their maps is on the site’s page at the UNESCO World Heritage Centre.",
+      "tr": "On iki bileşenin tam listesini ve haritalarını UNESCO Dünya Miras Merkezi'nin bu alana ait sayfasında bulabilirsiniz.",
+      "page": "static",
+      "field": "unesco.official"
+    },
+    {
+      "en": "Site 1563 at UNESCO ↗",
+      "tr": "UNESCO'da 1563 numaralı alan ↗",
+      "page": "static",
+      "field": "unesco.officialLink"
+    },
+    {
+      "en": "Al-Ahsa Oasis at UNESCO",
+      "tr": "UNESCO'da El-Ahsa Vahası",
+      "page": "static",
+      "field": "unesco.seoTitle"
+    },
+    {
+      "en": "{comps.length} of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site (2018) with their own pages: {names}.",
+      "tr": "2018'de UNESCO Dünya Mirası Listesi'ne alınan El-Ahsa Vahası alanının on iki bileşeninden {comps.length} tanesinin kendi sayfası var: {names}.",
+      "page": "static",
+      "field": "unesco.seoDesc"
+    },
+    {
+      "en": "Help us stay accurate",
+      "tr": "Doğru bilgi vermemize yardımcı olun",
+      "page": "static",
+      "field": "report.eyebrow"
+    },
+    {
+      "en": "Report an error",
+      "tr": "Hata bildirin",
+      "page": "static",
+      "field": "report.title"
+    },
+    {
+      "en": "Accuracy is what we care about most. If you spot an inaccurate detail, a broken link or a misplaced photo, tell us and we will review it.",
+      "tr": "Bizim için en önemli şey bilgilerin doğruluğudur. Hatalı bir bilgi, açılmayan bir bağlantı ya da yanlış yere konmuş bir fotoğraf fark ederseniz bize bildirin, biz de inceleriz.",
+      "page": "static",
+      "field": "report.lead"
+    },
+    {
+      "en": "The page concerned",
+      "tr": "Hatanın bulunduğu sayfa",
+      "page": "static",
+      "field": "report.pageL"
+    },
+    {
+      "en": "Page link or attraction name",
+      "tr": "Sayfa bağlantısı veya gezilecek yerin adı",
+      "page": "static",
+      "field": "report.pagePh"
+    },
+    {
+      "en": "What error did you notice?",
+      "tr": "Hangi hatayı fark ettiniz?",
+      "page": "static",
+      "field": "report.msgL"
+    },
+    {
+      "en": "Describe the error briefly — and if you know the correct information and its source, add it.",
+      "tr": "Hatayı kısaca anlatın; doğru bilgiyi ve kaynağını biliyorsanız onları da ekleyin.",
+      "page": "static",
+      "field": "report.msgPh"
+    },
+    {
+      "en": "Your email (optional — if you would like a reply)",
+      "tr": "E-posta adresiniz (isteğe bağlı, yanıt istiyorsanız)",
+      "page": "static",
+      "field": "report.emailL"
+    },
+    {
+      "en": "name@example.com",
+      "tr": "name@example.com",
+      "page": "static",
+      "field": "report.emailPh"
+    },
+    {
+      "en": "Send the report",
+      "tr": "Bildirimi gönderin",
+      "page": "static",
+      "field": "report.submit"
+    },
+    {
+      "en": "Your report goes straight to the site team; none of it is published.",
+      "tr": "Bildiriminiz doğrudan Visit Al-Ahsa ekibine ulaşır ve hiçbir kısmı yayımlanmaz.",
+      "page": "static",
+      "field": "report.note"
+    },
+    {
+      "en": "Your report has arrived — thank you",
+      "tr": "Bildiriminiz bize ulaştı, teşekkür ederiz",
+      "page": "static",
+      "field": "thanks.title"
+    },
+    {
+      "en": "The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.",
+      "tr": "Visit Al-Ahsa ekibi bildiriminizi inceleyecek ve hatalı olduğu doğrulanan her bilgiyi düzeltecek. Katkınız sayesinde El-Ahsa rehberi herkes için doğru bilgi vermeye devam eder.",
+      "page": "static",
+      "field": "thanks.d"
+    },
+    {
+      "en": "Back to home",
+      "tr": "Ana sayfaya dönün",
+      "page": "static",
+      "field": "thanks.back"
+    },
+    {
+      "en": "Terrain Map",
+      "tr": "Arazi haritası",
+      "page": "static",
+      "field": "ui.tmap.title"
+    },
+    {
+      "en": "The oasis in relief: Jabal Al-Qarah, the palm groves, and the dunes to the east — with every attraction in place. Click or tap any name in the list to see it on the map.",
+      "tr": "Vahanın kabartma görünümü: Cebel el-Kare, hurmalıklar ve vahanın doğusundaki kumullar. Gezilecek her yer haritada kendi konumunda gösterilir. Bir yeri haritada görmek için listeden o yerin adını seçin.",
+      "page": "static",
+      "field": "ui.tmap.lead"
+    },
+    {
+      "en": "Open the terrain map",
+      "tr": "Arazi haritasını açın",
+      "page": "static",
+      "field": "ui.tmap.open"
+    },
+    {
+      "en": "Loading the map…",
+      "tr": "Harita yükleniyor…",
+      "page": "static",
+      "field": "ui.tmap.loading"
+    },
+    {
+      "en": "3D view",
+      "tr": "3D görünüm",
+      "page": "static",
+      "field": "ui.tmap.3d.on"
+    },
+    {
+      "en": "2D view",
+      "tr": "2D görünüm",
+      "page": "static",
+      "field": "ui.tmap.3d.off"
+    },
+    {
+      "en": "Show on map",
+      "tr": "Haritada gösterin",
+      "page": "static",
+      "field": "ui.tmap.locate"
+    },
+    {
+      "en": "All attractions on the map",
+      "tr": "Haritadaki tüm gezilecek yerler",
+      "page": "static",
+      "field": "ui.tmap.list.title"
+    },
+    {
+      "en": "Classic map",
+      "tr": "Klasik harita",
+      "page": "static",
+      "field": "ui.tmap.classic"
+    },
+    {
+      "en": "Use Ctrl + scroll to zoom the map",
+      "tr": "Haritayı yakınlaştırmak için Ctrl tuşunu basılı tutarak kaydırın",
+      "page": "static",
+      "field": "ui.tmap.gest.win"
+    },
+    {
+      "en": "Use ⌘ + scroll to zoom the map",
+      "tr": "Haritayı yakınlaştırmak için ⌘ tuşunu basılı tutarak kaydırın",
+      "page": "static",
+      "field": "ui.tmap.gest.mac"
+    },
+    {
+      "en": "Use two fingers to move the map",
+      "tr": "Haritayı hareket ettirmek için iki parmağınızla sürükleyin",
+      "page": "static",
+      "field": "ui.tmap.gest.touch"
+    },
+    {
+      "en": "Do not fill this field: ",
+      "tr": "Bu alanı doldurmayın: ",
+      "page": "static",
+      "field": "ui.form.honeypot"
+    }
+  ],
+  "source_defects": [
+    {
+      "keys": [
+        "unesco.lead"
+      ],
+      "defect": "The Arabic carries an SEO phrase (Al-Ahsa's world heritage / UNESCO sites in Al-Ahsa) absent from the English; the Turkish follows the English."
+    },
+    {
+      "keys": [
+        "ui.tmap.lead"
+      ],
+      "defect": "The English «Click or tap any name in the list to see it on the map» does not match the page: each list row has an icon button (◎) that flies the map to the place, and the name itself is a link to the landmark's own page (TerrainMapView.astro ~128–145, terrain-map/index.ts ~82). The Turkish follows the English («listeden o yerin adını seçin»). Reader on-05 P4.5."
+    }
+  ],
+  "owner_questions": [
+    "ui.tmap.lead (all languages): should the English instruction be corrected to the button, e.g. «Click or tap ◎ beside any name to see it on the map» (the name opens the landmark page)? The Turkish follows the English until then."
+  ],
+  "notes": [
+    "Ten keys edited; a fresh proofread and a fresh blind reader on the edited text are due (07-judge rule).",
+    "«Arazi haritası» kept (P4.1): not a fault; no owner question raised on it.",
+    "The 3D/2D toggle wording is the English's; if the owner wants the button to say its action, the English must change first (e.g. «Switch to 3D»).",
+    "Constants checked: ↗, 1563, 2018, Ctrl, ⌘, 3D, 2D, name@example.com, the trailing «: » of ui.form.honeypot; {comps.length} once in unesco.lead and unesco.seoDesc, {names} once in unesco.seoDesc.",
+    "Every string re-read against the English after the edits; no fact, time frame or promise added (the report page promises review, no publication, a reply only with an e-mail)."
+  ],
+  "scores_row": "tr-static-1,2026-11-04,1,90,APPROVE"
+}

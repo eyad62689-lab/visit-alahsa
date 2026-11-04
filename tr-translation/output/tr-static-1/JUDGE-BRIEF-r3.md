@@ -1,0 +1,20 @@
+# Judge brief — batch `tr-static-1`, round 3 (closing addendum)
+
+BATCH = `C:\Users\truyr\node-store\va-wt\tr-sd\tr-translation\output\tr-static-1` · REPO read only.
+
+Your input text is `BATCH\stages\07-judge.r2.json`. New inputs:
+1. `BATCH\stages\05d-proof-of-judge-r2.md` — independent proofread of your r2 edits: **0 faults** (one optional observation: «Bileşenler burada…» → «Bu bileşenler burada…»).
+2. `BATCH\stages\06-blind-reader.on-r2.md` — a third fresh reader on the pages built from r2 (55 items; cite as R3:P<page>.<n>).
+3. **`pack.json` now has 36 strings**: `frame.map.terrain` — the published link on /tr/map/ («3D arazi haritası →», ctx and `published_tr` in the pack), added to this batch by the coordinator so the frame link can change together with the H1. It is applied in place in ui.ts by the batch's apply tool.
+
+## Coordinator ruling on your owner question 2 (the terrain-map noun)
+A wording choice for the line is not an owner question (the line's rule: decide by precedent, record). Three independent readers now stumbled on «arazi» for a relief map (on-05 P4.1, on-r1 R2:P4.1, on-r2 R3:P4.1 — the third expected «kabartma harita» unprompted, and R3:P4.28 notes the drift between link, title and toggle). This is the threshold the line executed before (tr-attr-12: «Arap Körfezi Yolu» after three readers). So in this round: **revise the noun in all three strings together** — `frame.map.terrain`, `ui.tmap.title`, `ui.tmap.open` — with the form you proposed («3D kabartma harita», «Kabartma harita», «Kabartma haritayı açın») or a better attested one (TDK: «kabartma harita»; check that the compound needs no -sı), and align the lead's «kabartma görünümü» (R3:P4.1) with the same noun. Rule it as ST9-r3 (ST9-r2 `superseded_by`). Remove it from `owner_questions`.
+
+## Rules for this round
+- **No score raise without a stated reason** in `notes`; this is the closing addendum, not a new round of forms.
+- **Do not reopen**: published items (component summaries, landmark names/categories, popup link — R3:P1.3–P1.12, the P4 list items, R3:P4.25), UI1-controls, «bileşen», ST2 (R3:P1.13 — the attested institution name; but you may clarify the link text «UNESCO'da 1563 numaralı alan» only if a real fault), the brand (R3:P2.8, P3.2), the terrain-lead source defect (R3:P4.4 — recorded; it stays an owner question). **A reader who names no new Turkish fault does not open a new form** — reject with the ruling id.
+- **Weigh only named Turkish faults the English allows you to fix**: R3:P3.1 «doğru kalır» (calque; and «El-Ahsa rehberi» readable as a person — the English «keeps the Al-Ahsa guide accurate»); R3:P4.3 «kendi konumlarında» (foreign; the English «with every attraction in place»); the proof's optional «Bu bileşenler burada…»; R3:P1.14 the seoDesc colon list (the English has the same colon list — keep unless a Turkish fault). Everything else one line in `blind_reader_rulings` (all 55).
+
+## Output — `BATCH\stages\07-judge.r3.json` + `BATCH\stages\07-judge.r3-addendum.md`
+The same JSON shape as r2 (`"round": 3`), `strings` = all **36**, `changes` vs `07-judge.r2.json` (for `frame.map.terrain` the `before` is its published text), the full `rulings` list again with superseded ones marked, full `termbase_additions` (add «kabartma harita» if you rule it, with its source) and `tm_pairs` (field = key, page "static"; for frame.map.terrain page "ui", field "map.terrain"), `source_defects`, `owner_questions`, `scores`, `batch_score`, `decision`, `scores_row` (`tr-static-1,2026-11-04,3,<score>,<decision>`). The addendum `.md`: a short Arabic-free English note — what changed and why, one line per change, and the score reasoning.
+Checker: `TR_REPO=C:/Users/truyr/node-store/va-wt/tr-sd node C:/Users/truyr/node-store/va-scratch/tr-r1/tools/verify.mjs tr-static-1 C:/Users/truyr/node-store/va-wt/tr-sd/tr-translation/output/tr-static-1/stages/07-judge.r3.json --prev C:/Users/truyr/node-store/va-wt/tr-sd/tr-translation/output/tr-static-1/stages/07-judge.r2.build.json` until `RESULT [OK]` (r2.build = r2 plus the published frame string). Report back as before.

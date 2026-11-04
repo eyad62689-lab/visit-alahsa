@@ -1,0 +1,605 @@
+{
+  "batch": "tr-static-1",
+  "lang": "tr-TR",
+  "latinNames": [
+    "name@example.com",
+    "Ctrl"
+  ],
+  "pages": [
+    "/tr/unesco/",
+    "/tr/report/",
+    "/tr/report/thanks/",
+    "/tr/terrain-map/"
+  ],
+  "units": {
+    "unesco": "unesco.* (UnescoView)",
+    "report": "report.* (ReportView) + ui.form.honeypot",
+    "thanks": "thanks.* (ReportThanksView)",
+    "tmap": "ui.tmap.* (TerrainMapView)"
+  },
+  "rule": "en is the source; ar is the arbiter on facts and the source of name spellings; ctx was written from the component code; precedent = published approved zh/de/ru/ur (for understanding, never copied).",
+  "ui_keys": [
+    "tmap.title",
+    "tmap.lead",
+    "tmap.open",
+    "tmap.loading",
+    "tmap.3d.on",
+    "tmap.3d.off",
+    "tmap.locate",
+    "tmap.list.title",
+    "tmap.classic",
+    "tmap.gest.win",
+    "tmap.gest.mac",
+    "tmap.gest.touch",
+    "form.honeypot"
+  ],
+  "strings": {
+    "unesco.title": {
+      "en": "Al-Ahsa Oasis on the World Heritage List",
+      "ar": "واحة الأحساء في قائمة التراث العالمي",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). H1 of the page; also the name of the ItemList and the page name in the breadcrumb JSON-LD. The approved frame: «UNESCO Dünya Mirası Listesi» (ref.ui fact.unesco.l, termbase), «El-Ahsa Vahası» (termbase). The footer names the page «UNESCO Dünya Mirası» — the H1 may be fuller (the English is) but the same nouns. The eyebrow above it is the approved «UNESCO Dünya Mirası alanı · 2018» (ref.ui home.hero.eyebrow), printed by the component. Sentence case (P9), no final stop. The English says «the World Heritage List» without UNESCO; the Arabic too — the eyebrow carries UNESCO; follow the English.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨绿洲列入联合国教科文组织世界遗产名录",
+        "de": "Oase Al-Ahsa auf der UNESCO-Welterbeliste",
+        "ru": "Оазис Аль-Ахса в Списке всемирного наследия ЮНЕСКО",
+        "ur": "الاحساء کا نخلستان عالمی ورثے کی فہرست میں"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "title"
+    },
+    "unesco.lead": {
+      "en": "Al-Ahsa Oasis was inscribed on the UNESCO World Heritage List in 2018 (site 1563). The site comprises twelve components; {comps.length} of them are landmarks with their own pages in this guide, listed here in the order of their component numbers on the official list.",
+      "ar": "سُجّلت واحة الأحساء على قائمة اليونسكو للتراث العالمي عام 2018 (الموقع رقم 1563)، فصار تراث الأحساء العالمي اثني عشر مكوّناً هي مواقع اليونسكو في الأحساء. {comps.length} منها معالم بصفحات مفردة في هذا الدليل — مرتّبةً هنا بأرقام مكوّناتها كما في القائمة الرسمية.",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). Paragraph under the H1 (64ch). The placeholder «{comps.length}» is the number of components with their own page (6 today; the template writes the digit) — keep it exactly once, written where the number goes (Turkish: number before the noun, singular noun after a number). «2018», «1563» and «twelve» as the English (twelve in words: «on iki», as the approved det.unesco / tm «on iki bileşeninden biridir»). «component» = the approved «bileşen» (ref.ui det.unesco). The two facts in the English order: inscribed 2018 as site 1563; twelve components; N of them have pages here, listed in the order of their component numbers on the official list. Split into two or three sentences (lesson 1). The Arabic has an SEO phrase the English lacks («Al-Ahsa's world heritage … UNESCO sites in Al-Ahsa») — the English is the source.",
+      "placeholders": [
+        "{comps.length}"
+      ],
+      "precedent": {
+        "zh": "哈萨绿洲于 2018 年列入联合国教科文组织世界遗产名录（编号 1563），由十二处组成部分构成，其中 {comps.length} 处是本指南收录的独立景点，此处按其在官方名录中的组成部分编号顺序列出。",
+        "de": "Die Oase Al-Ahsa wurde 2018 in die UNESCO-Welterbeliste aufgenommen (Stätte Nr. 1563) und umfasst zwölf Bestandteile. Für {comps.length} von ihnen gibt es eigene Seiten in diesem Reiseführer, hier aufgeführt in der Reihenfolge ihrer Bestandteilnummer in der offiziellen Liste.",
+        "ru": "Оазис Аль-Ахса был включён в Список всемирного наследия ЮНЕСКО в 2018 году (объект 1563). Объект включает двенадцать компонентов. {comps.length} из них — достопримечательности с отдельными страницами в этом путеводителе, перечисленные здесь в порядке номеров компонентов по официальному списку.",
+        "ur": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے کی فہرست میں درج ہوا (مقام نمبر 1563)۔ اس کے بارہ حصے ہیں۔ ان میں سے {comps.length} مقامات ہیں جن کے اس سیاحتی رہنما میں الگ صفحات ہیں۔ یہاں ان کی ترتیب سرکاری فہرست میں حصوں کے نمبروں کے مطابق ہے۔"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "lead",
+      "allowNums": [
+        "2018",
+        "1563"
+      ]
+    },
+    "unesco.comp": {
+      "en": "Component",
+      "ar": "المكوّن",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). Small gold caption on every card BEFORE the component number and the category: «<this> 1563-004 · Tarihî yerler». One noun, capitalised (it opens the caption), no final stop; the approved word «bileşen» (ref.ui det.unesco) → «Bileşen». No suffix: the number follows as a label.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "组成部分",
+        "de": "Bestandteil",
+        "ru": "Компонент",
+        "ur": "حصہ"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "comp"
+    },
+    "unesco.officialH": {
+      "en": "Official source",
+      "ar": "المصدر الرسمي",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). H2 of the box at the foot of the page. Short noun phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "官方来源",
+        "de": "Offizielle Quelle",
+        "ru": "Официальный источник",
+        "ur": "سرکاری ماخذ"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "officialH"
+    },
+    "unesco.official": {
+      "en": "The full list of the twelve components and their maps is on the site’s page at the UNESCO World Heritage Centre.",
+      "ar": "القائمة الكاملة للمكوّنات الاثني عشر وخرائطها في صفحة الموقع على منصة مركز التراث العالمي لليونسكو.",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). Paragraph of the box: the full list of the twelve components and their maps is on the site's page at the UNESCO World Heritage Centre (the link follows on its own line). «twelve» in words as in the lead; «UNESCO Dünya Mirası Merkezi» — attest the institution's Turkish name in stage 4 (tr.wikipedia / UNESCO Türkiye Millî Komisyonu). One sentence with a stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "完整的十二处组成部分列表及地图，可在联合国教科文组织世界遗产中心官网上该遗产地的专属页面查看。",
+        "de": "Die vollständige Liste der zwölf Bestandteile und deren Karten finden Sie auf der Seite der Stätte beim UNESCO-Welterbezentrum.",
+        "ru": "Полный список двенадцати компонентов и их карты — на странице объекта в Центре всемирного наследия ЮНЕСКО.",
+        "ur": "بارہ حصوں کی پوری فہرست اور ان کے نقشے آپ یونیسکو کے عالمی ورثے کے مرکز پر اس مقام کے صفحے میں دیکھ سکتے ہیں۔"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "official"
+    },
+    "unesco.officialLink": {
+      "en": "Site 1563 at UNESCO ↗",
+      "ar": "صفحة الموقع 1563 في اليونسكو ↗",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). Text of the external link to whc.unesco.org/en/list/1563 (opens in a new tab); ends with « ↗» exactly as the English (constant). «1563» stays. Noun phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "联合国教科文组织 1563 号遗产地 ↗",
+        "de": "Stätte 1563 bei der UNESCO ↗",
+        "ru": "Объект 1563 на сайте ЮНЕСКО ↗",
+        "ur": "یونیسکو پر مقام نمبر 1563 ↗"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "officialLink",
+      "allowNums": [
+        "1563"
+      ],
+      "constants": [
+        "↗"
+      ]
+    },
+    "unesco.seoTitle": {
+      "en": "Al-Ahsa Oasis at UNESCO",
+      "ar": "واحة الأحساء في اليونسكو: موقع التراث العالمي 1563 ومكوّناته",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). <title> of the page (browser tab, search result); the layout appends the separator and the brand. Write NO dash inside. Short (under ~45 characters); El-Ahsa Vahası and UNESCO; sentence case.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "哈萨绿洲与联合国教科文组织",
+        "de": "Oase Al-Ahsa bei der UNESCO",
+        "ru": "Оазис Аль-Ахса в ЮНЕСКО",
+        "ur": "یونیسکو میں الاحساء کا نخلستان"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "seoTitle"
+    },
+    "unesco.seoDesc": {
+      "en": "{comps.length} of the twelve components of the Al-Ahsa Oasis UNESCO World Heritage site (2018) with their own pages: {names}.",
+      "ar": "{comps.length} من مكوّنات واحة الأحساء الاثني عشر في قائمة اليونسكو للتراث العالمي (2018): {names}.",
+      "ctx": "Page /tr/unesco/ («Al-Ahsa Oasis on the World Heritage List»): the six UNESCO components that have their own landmark page in this guide, as cards (photo, a caption «<comp> 1563-004 · <category>», the published Turkish title and summary), then a box pointing to the official UNESCO page. Reached from the footer link «UNESCO Dünya Mirası» (ref.ui foot.l.unesco). Meta description (search snippet). Two placeholders, each exactly once: «{comps.length}» (the digit 6) and «{names}» (the six published Turkish component titles joined by «, », written by the template — they come at the end after a colon, as in the English). «twelve» in words, «2018» as the English. One sentence with a stop after the names. About 150–200 characters with the names.",
+      "placeholders": [
+        "{comps.length}",
+        "{names}"
+      ],
+      "precedent": {
+        "zh": "哈萨绿洲于 2018 年列入联合国教科文组织世界遗产名录，由十二处组成部分构成，其中 {comps.length} 处设有独立页面：{names}。",
+        "de": "Von den zwölf Bestandteilen der UNESCO-Welterbestätte Oase Al-Ahsa (2018) haben {comps.length} eigene Seiten in diesem Reiseführer: {names}.",
+        "ru": "{comps.length} из двенадцати компонентов объекта Всемирного наследия ЮНЕСКО «Оазис Аль-Ахса» (2018) с отдельными страницами: {names}.",
+        "ur": "الاحساء کا نخلستان 2018 میں یونیسکو کے عالمی ورثے میں شامل ہوا۔ اس کے بارہ حصوں میں سے {comps.length} کے الگ صفحات ہیں: {names}۔"
+      },
+      "unit": "unesco",
+      "view": "src/components/views/UnescoView.astro",
+      "field": "seoDesc",
+      "allowNums": [
+        "2018"
+      ]
+    },
+    "report.eyebrow": {
+      "en": "Help us stay accurate",
+      "ar": "ساعدنا على الدقة",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Small kicker above the H1. Short phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "帮助我们保持准确",
+        "de": "Helfen Sie uns, genau zu bleiben",
+        "ru": "Помогите нам сохранять точность",
+        "ur": "درستی برقرار رکھنے میں ہماری مدد کریں"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "eyebrow"
+    },
+    "report.title": {
+      "en": "Report an error",
+      "ar": "أبلغ عن خطأ",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. H1 of the page and the browser tab title (with separator and brand). The footer link to this page is the approved «Hata bildirin» (ref.ui foot.l.report) — the same words unless the page gives a reason. Sentence case, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "内容纠错",
+        "de": "Fehler melden",
+        "ru": "Сообщить об ошибке",
+        "ur": "غلطی کی اطلاع دیں"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "title"
+    },
+    "report.lead": {
+      "en": "Accuracy is what we care about most. If you spot an inaccurate detail, a broken link or a misplaced photo, tell us and we will review it.",
+      "ar": "دقة المعلومة أهم ما نحرص عليه. إن لاحظت معلومةً غير دقيقة أو رابطاً لا يعمل أو صورةً في غير مكانها، أخبرنا وسنراجعها.",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Paragraph under the H1 and the meta description. Two sentences: accuracy is what we care about most; if you spot an inaccurate detail, a broken link or a misplaced photo, tell us and we will review it and correct it. Keep the three examples in the English order. Full sentences with stops.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "我们最看重内容的准确性。如您发现信息有误、链接失效，或图片位置不对，请告诉我们，我们会认真核实。",
+        "de": "Genauigkeit ist uns am wichtigsten. Wenn Ihnen eine ungenaue Angabe, ein defekter Link oder ein falsch platziertes Foto auffällt, teilen Sie es uns mit – wir prüfen es.",
+        "ru": "Точность информации — то, что нас заботит больше всего. Если вы заметили неточность, неработающую ссылку или фотографию не на своём месте, сообщите нам, и мы это проверим.",
+        "ur": "ہمارے لیے سب سے اہم چیز معلومات کی درستی ہے۔ اگر آپ کو کوئی غیر درست تفصیل، کام نہ کرنے والا لنک یا غلط جگہ لگی تصویر نظر آئے تو ہمیں بتائیں، ہم اس کا جائزہ لیں گے۔"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "lead"
+    },
+    "report.pageL": {
+      "en": "The page concerned",
+      "ar": "الصفحة المعنيّة",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Label of the first field (input text, pre-filled with the address of the page the visitor came from). Noun phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "相关页面",
+        "de": "Die betreffende Seite",
+        "ru": "Страница с ошибкой",
+        "ur": "متعلقہ صفحہ"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "pageL"
+    },
+    "report.pagePh": {
+      "en": "Page link or attraction name",
+      "ar": "رابط الصفحة أو اسم المعلم",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Placeholder inside that field (grey example text, shown when it is empty). No final stop. «attraction» = the site's word «gezilecek yer» (ref.ui nav.attractions «Gezilecek yerler»).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "页面链接或景点名称",
+        "de": "Link zur Seite oder Name der Sehenswürdigkeit",
+        "ru": "Ссылка на страницу или название достопримечательности",
+        "ur": "صفحے کا لنک یا سیاحتی مقام کا نام"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "pagePh"
+    },
+    "report.msgL": {
+      "en": "What error did you notice?",
+      "ar": "ما الخطأ الذي لاحظته؟",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Label of the message field (textarea, required). A question as the English, ends with «?».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您发现了什么问题？",
+        "de": "Welchen Fehler haben Sie bemerkt?",
+        "ru": "Какую ошибку вы заметили?",
+        "ur": "آپ کو کیا غلطی نظر آئی؟"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "msgL"
+    },
+    "report.msgPh": {
+      "en": "Describe the error briefly — and if you know the correct information and its source, add it.",
+      "ar": "صف الخطأ بإيجاز — وإن عرفت المعلومة الصحيحة ومصدرها فأضفها.",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Placeholder of the message field. Imperative siz; the English has an em dash joining two halves — the Turkish may keep the dash (spaced « — » as the site writes it) or split; ends with a stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "简要描述问题——如果您了解正确信息及其来源，也请一并提供。",
+        "de": "Beschreiben Sie den Fehler kurz – und wenn Sie die richtige Information und ihre Quelle kennen, fügen Sie sie hinzu.",
+        "ru": "Опишите ошибку кратко — и, если знаете верную информацию и её источник, укажите это.",
+        "ur": "غلطی مختصر الفاظ میں بتائیں، اور اگر آپ کو درست معلومات اور اس کا ماخذ معلوم ہو تو وہ بھی لکھ دیں"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "msgPh"
+    },
+    "report.emailL": {
+      "en": "Your email (optional — if you would like a reply)",
+      "ar": "بريدك الإلكتروني (اختياري — إن أحببت أن نردّ عليك)",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Label of the email field (optional). The bracketed/dashed «optional — if you would like a reply» stays as one aside; keep it short. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您的邮箱（选填——如需回复请填写）",
+        "de": "Ihre E-Mail-Adresse (optional – falls Sie eine Antwort wünschen)",
+        "ru": "Ваш email (необязательно — если хотите получить ответ)",
+        "ur": "آپ کا ای میل پتا (اختیاری، اگر آپ جواب چاہتے ہوں)"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "emailL"
+    },
+    "report.emailPh": {
+      "en": "name@example.com",
+      "ar": "name@example.com",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Placeholder of the email field: «name@example.com» — a constant, byte-identical (the checker holds it).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "name@example.com",
+        "de": "name@example.com",
+        "ru": "name@example.com",
+        "ur": "name@example.com"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "emailPh",
+      "constants": [
+        "name@example.com"
+      ]
+    },
+    "report.submit": {
+      "en": "Send the report",
+      "ar": "أرسل البلاغ",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Gold submit button. Imperative siz or a noun phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "提交反馈",
+        "de": "Meldung senden",
+        "ru": "Отправить сообщение",
+        "ur": "اطلاع بھیجیں"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "submit"
+    },
+    "report.note": {
+      "en": "Your report goes straight to the site team; none of it is published.",
+      "ar": "يصل بلاغك إلى فريق الموقع مباشرة، ولا يُنشر منه شيء.",
+      "ctx": "Page /tr/report/ («Report an error», noindex): a Netlify form (name «report-error») with three fields and a button; the page is reached from the link at the foot of every landmark page, the approved «Hatalı bir bilgi mi fark ettiniz? Bize bildirin» (ref.ui det.report), and from the footer «Hata bildirin» (ref.ui foot.l.report). The «page» field is pre-filled with the page the visitor came from. siz forms throughout. Small note beside the button: the report goes straight to the site team and none of it is published. One sentence with a stop. «the site team» = the team of this site (the closing of the thanks page says the same).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您的反馈将直接送达网站团队，不会公开发布。",
+        "de": "Ihre Meldung geht direkt an das Team der Website; nichts davon wird veröffentlicht.",
+        "ru": "Ваше сообщение поступает напрямую команде сайта; ничего из него не публикуется.",
+        "ur": "آپ کی اطلاع سیدھی ویب سائٹ کے عملے تک پہنچتی ہے، اور اس میں سے کچھ بھی شائع نہیں ہوتا۔"
+      },
+      "unit": "report",
+      "view": "src/components/views/ReportView.astro",
+      "field": "note"
+    },
+    "thanks.title": {
+      "en": "Your report has arrived — thank you",
+      "ar": "وصل بلاغك — شكراً لك",
+      "ctx": "Page /tr/report/thanks/ (noindex): shown after the report form is sent (the form action points here). A centred H1, a paragraph and one button. H1 and browser tab title: «Your report has arrived — thank you». The site writes the spaced em dash « — »; a dash is fine in the H1, and the tab title appends the separator and brand after it. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "您的反馈已收到——谢谢您",
+        "de": "Ihre Meldung ist eingegangen – vielen Dank",
+        "ru": "Ваше сообщение получено — спасибо",
+        "ur": "آپ کی اطلاع ہمیں مل گئی، شکریہ"
+      },
+      "unit": "thanks",
+      "view": "src/components/views/ReportThanksView.astro",
+      "field": "title"
+    },
+    "thanks.d": {
+      "en": "The site team will review the note and correct whatever is confirmed. Your contribution keeps the Al-Ahsa guide accurate for everyone.",
+      "ar": "سيراجع فريق الموقع الملاحظة ويصحح ما يثبت منها. مساهمتك تُبقي دليل الأحساء دقيقاً للجميع.",
+      "ctx": "Page /tr/report/thanks/ (noindex): shown after the report form is sent (the form action points here). A centred H1, a paragraph and one button. Paragraph and meta description: the site team will review the note and correct whatever is confirmed; your contribution keeps the Al-Ahsa guide accurate for everyone. «guide» = the site's word for itself (ref.ui: «rehber»); El-Ahsa with the genitive as needed (P8). Full sentences with stops.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "网站团队将核实您的反馈，并更正查证属实的问题。您的贡献让哈萨指南对每一位读者始终保持准确。",
+        "de": "Das Team der Website prüft den Hinweis und korrigiert die Angabe, sobald sie sich bestätigt. Mit Ihrem Beitrag bleibt der Al-Ahsa-Reiseführer für alle korrekt.",
+        "ru": "Команда сайта проверит замечание и исправит всё, что подтвердится. Ваш вклад помогает поддерживать точность путеводителя по Аль-Ахсе для всех.",
+        "ur": "ویب سائٹ کا عملہ آپ کی نشاندہی کا جائزہ لے گا اور جس غلطی کی تصدیق ہو جائے گی اسے ٹھیک کر دے گا۔ آپ کے تعاون سے الاحساء کا سیاحتی رہنما سب کے لیے درست رہتا ہے۔"
+      },
+      "unit": "thanks",
+      "view": "src/components/views/ReportThanksView.astro",
+      "field": "d"
+    },
+    "thanks.back": {
+      "en": "Back to home",
+      "ar": "عودة إلى الرئيسية",
+      "ctx": "Page /tr/report/thanks/ (noindex): shown after the report form is sent (the form action points here). A centred H1, a paragraph and one button. Turquoise button back to /tr/. The breadcrumb word for home is the approved «Ana sayfa» (ref.ui crumb.home). Imperative or noun phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "返回首页",
+        "de": "Zurück zur Startseite",
+        "ru": "Вернуться на главную",
+        "ur": "صفحہ اول پر واپس جائیں"
+      },
+      "unit": "thanks",
+      "view": "src/components/views/ReportThanksView.astro",
+      "field": "back"
+    },
+    "ui.tmap.title": {
+      "en": "Terrain Map",
+      "ar": "الخريطة التضاريسية",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). H1 of the page, the browser tab title (with separator and brand) and the page name in the breadcrumb JSON-LD. The link that leads here says «3D arazi haritası» (ref.ui map.terrain) — the same noun «arazi haritası»; whether «3D» is repeated in the H1 is your call (the English H1 has no 3D). Sentence case (P9), no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "地形图",
+        "de": "Geländekarte",
+        "ru": "Карта рельефа",
+        "ur": "زمین کے نشیب و فراز کا نقشہ"
+      },
+      "ui_key": "tmap.title",
+      "unit": "tmap"
+    },
+    "ui.tmap.lead": {
+      "en": "The oasis in relief: Jabal Al-Qarah, the palm groves, and the dunes to the east — with every attraction in place. Click or tap any name in the list to see it on the map.",
+      "ar": "تضاريس الواحة مجسّمة: جبل القارة، وامتداد النخيل، وحافّة الرمال شرقاً — وكل معلم في مكانه. اضغط أي معلم في القائمة ليظهر على الخريطة.",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). Paragraph under the H1 and the meta description. First half: the oasis in relief — Jabal Al-Qarah (= «Cebel el-Kare», termbase/ref.places), the palm groves, the dunes to the east — with every attraction in place. Second half: click or tap any name in the list to see it on the map — «click or tap» is one verb covering mouse and touch, as the map batch ruled (ref.ui map.lead.a: read how it was solved and reuse the verb). The English joins with an em dash and a colon; Turkish may split into two sentences. Full sentences with stops.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "绿洲立体呈现：卡拉山、椰枣林与东边的沙丘——每一处景点都标注在图上。点击列表中的任意名称，即可在地图上查看。",
+        "de": "Die Oase im Relief: Jabal al-Qarah (der Qarah-Berg), die Palmenhaine und die Dünen im Osten – jedes Ausflugsziel an seinem tatsächlichen Standort. Klicken oder tippen Sie auf einen Namen in der Liste, um den Ort auf der Karte zu sehen.",
+        "ru": "Рельеф оазиса: Джабаль-эль-Кара (гора Эль-Кара), пальмовые рощи и дюны на востоке — и каждая достопримечательность на своём месте. Нажмите на любое название в списке, чтобы увидеть его на карте.",
+        "ur": "نخلستان کی زمین اپنے نشیب و فراز کے ساتھ: جبل القارہ، کھجور کے باغات اور مشرق میں ریت کے ٹیلے، اور ہر سیاحتی مقام اپنی جگہ پر۔ فہرست میں کسی بھی مقام کو چن کر اسے نقشے پر دیکھیں۔"
+      },
+      "ui_key": "tmap.lead",
+      "unit": "tmap"
+    },
+    "ui.tmap.open": {
+      "en": "Open the terrain map",
+      "ar": "افتح الخريطة التضاريسية",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). Large turquoise button on the map poster: loads the 3D map (nothing loads until pressed). Imperative siz, no final stop; the page noun as in tmap.title.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "打开地形图",
+        "de": "Geländekarte öffnen",
+        "ru": "Открыть карту рельефа",
+        "ur": "زمین کے نشیب و فراز کا نقشہ کھولیں"
+      },
+      "ui_key": "tmap.open",
+      "unit": "tmap"
+    },
+    "ui.tmap.loading": {
+      "en": "Loading the map…",
+      "ar": "تُحمَّل الخريطة…",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). Text shown on the poster while the map loads. Ends with «…» as the English.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "地图加载中…",
+        "de": "Karte wird geladen…",
+        "ru": "Карта загружается…",
+        "ur": "نقشہ کھل رہا ہے…"
+      },
+      "ui_key": "tmap.loading",
+      "unit": "tmap"
+    },
+    "ui.tmap.3d.on": {
+      "en": "3D view",
+      "ar": "العرض ثلاثي الأبعاد (3D)",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). Toggle button inside the map (a narrow control): switches to the 3D relief view. Very short: «3D» + one noun; «3D» Latin as the English; no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "3D 视图",
+        "de": "3D-Ansicht",
+        "ru": "3D-вид",
+        "ur": "تین جہتی منظر"
+      },
+      "ui_key": "tmap.3d.on",
+      "unit": "tmap",
+      "allowNums": [
+        "3"
+      ]
+    },
+    "ui.tmap.3d.off": {
+      "en": "2D view",
+      "ar": "العرض المسطّح (2D)",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). The same toggle in its other state: the flat 2D view. Parallel with tmap.3d.on («2D» + the same noun). No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "2D 视图",
+        "de": "2D-Ansicht",
+        "ru": "2D-вид",
+        "ur": "دو جہتی منظر"
+      },
+      "ui_key": "tmap.3d.off",
+      "unit": "tmap",
+      "allowNums": [
+        "2"
+      ]
+    },
+    "ui.tmap.locate": {
+      "en": "Show on map",
+      "ar": "أظهر على الخريطة",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). aria-label AND title (tooltip) of the small button on each landmark row of the list under the map: it flies the map to that landmark. In the aria-label the component appends «: <landmark name>» («<this>: Kasr İbrahim»), so the string must read correctly before a colon and a name. Imperative siz or noun phrase; no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "在地图上查看",
+        "de": "Auf der Karte anzeigen",
+        "ru": "Показать на карте",
+        "ur": "نقشے پر دکھائیں"
+      },
+      "ui_key": "tmap.locate",
+      "unit": "tmap"
+    },
+    "ui.tmap.list.title": {
+      "en": "All attractions on the map",
+      "ar": "كل المعالم على الخريطة",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). H2 of the landmark list under the map (grouped by category; the full list is there even without JavaScript). Noun phrase, no final stop; «attractions» = the site's «gezilecek yerler».",
+      "placeholders": [],
+      "precedent": {
+        "zh": "地图上的所有景点",
+        "de": "Alle Sehenswürdigkeiten auf der Karte",
+        "ru": "Все достопримечательности на карте",
+        "ur": "نقشے پر تمام سیاحتی مقامات"
+      },
+      "ui_key": "tmap.list.title",
+      "unit": "tmap"
+    },
+    "ui.tmap.classic": {
+      "en": "Classic map",
+      "ar": "الخريطة التقليدية",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). Link under the lead (followed by an arrow «→» printed by the component) and the noscript fallback link: both go to the classic map /tr/map/ («Gezilecek yerler haritası», ref.ui map.title). «Classic» = the ordinary flat map, as opposed to this terrain map. Noun phrase, no final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "经典地图",
+        "de": "Klassische Karte",
+        "ru": "Классическая карта",
+        "ur": "سیاحتی مقامات کا روایتی نقشہ"
+      },
+      "ui_key": "tmap.classic",
+      "unit": "tmap"
+    },
+    "ui.tmap.gest.win": {
+      "en": "Use Ctrl + scroll to zoom the map",
+      "ar": "استخدم Ctrl + عجلة الفأرة لتكبير الخريطة",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). Overlay hint shown when the visitor scrolls over the map on a PC (Windows/Linux) without the modifier key: hold Ctrl and scroll to zoom. «Ctrl» stays Latin byte-identical (a constant; Turkish keyboards print «Ctrl»). Imperative siz; no final stop (the English has none).",
+      "placeholders": [],
+      "precedent": {
+        "zh": "按住 Ctrl 滚动鼠标滚轮以缩放地图",
+        "de": "Verwenden Sie Strg + Scrollen, um die Karte zu zoomen",
+        "ru": "Используйте Ctrl + прокрутку, чтобы приблизить карту",
+        "ur": "نقشے کو بڑا یا چھوٹا کرنے کے لیے Ctrl دبا کر سرکائیں"
+      },
+      "ui_key": "tmap.gest.win",
+      "unit": "tmap",
+      "constants": [
+        "Ctrl"
+      ]
+    },
+    "ui.tmap.gest.mac": {
+      "en": "Use ⌘ + scroll to zoom the map",
+      "ar": "استخدم ⌘ + التمرير لتكبير الخريطة",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). The same hint on a Mac: «⌘» byte-identical (constant) + scroll. Parallel with tmap.gest.win — same verb and order. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "按住 ⌘ 滚动鼠标滚轮以缩放地图",
+        "de": "Verwenden Sie ⌘ + Scrollen, um die Karte zu zoomen",
+        "ru": "Используйте ⌘ + прокрутку, чтобы приблизить карту",
+        "ur": "نقشے کو بڑا یا چھوٹا کرنے کے لیے ⌘ دبا کر سرکائیں"
+      },
+      "ui_key": "tmap.gest.mac",
+      "unit": "tmap",
+      "constants": [
+        "⌘"
+      ]
+    },
+    "ui.tmap.gest.touch": {
+      "en": "Use two fingers to move the map",
+      "ar": "استخدم إصبعين لتحريك الخريطة",
+      "ctx": "Page /tr/terrain-map/ (the 3D terrain map, MapLibre, with a poster that loads the map only on a button press; under it the full list of landmarks grouped by category). Reached from the approved link «3D arazi haritası →» on the map page (ref.ui map.terrain) — the page name must agree with it. Its classic counterpart is the map page «Gezilecek yerler haritası» (ref.ui map.title, nav.map «Harita»). The eyebrow above the H1 is the approved «Gezi rehberi» (ref.ui map.eyebrow); the popup link the approved «Sayfasına gidin →» (ref.ui map.pop.view). The same hint on a touch screen when one finger drags over the map: use two fingers to move the map. Parallel with the two others. No final stop.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "使用两指移动地图",
+        "de": "Verwenden Sie zwei Finger, um die Karte zu verschieben",
+        "ru": "Используйте два пальца, чтобы передвигать карту",
+        "ur": "دو انگلیوں سے نقشہ سرکائیں"
+      },
+      "ui_key": "tmap.gest.touch",
+      "unit": "tmap"
+    },
+    "ui.form.honeypot": {
+      "en": "Do not fill this field: ",
+      "ar": "لا تملأ هذا الحقل: ",
+      "ctx": "Hidden label of the spam-trap field of the report form (/tr/report/): the label and its input are moved off-screen (Netlify honeypot «bot-field»), so people never see it; a screen reader or a bot may. The component prints this text directly before the input, so it ENDS WITH «: » (colon + space) exactly as the English. A short imperative siz: do not fill in this field. No other punctuation.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "请勿填写此字段： ",
+        "de": "Dieses Feld bitte nicht ausfüllen: ",
+        "ru": "Не заполняйте это поле: "
+      },
+      "ui_key": "form.honeypot",
+      "unit": "report",
+      "keepSpace": true
+    },
+    "frame.map.terrain": {
+      "en": "3D terrain map",
+      "ar": "الخريطة التضاريسية 3D",
+      "ctx": "PUBLISHED frame string revised with this batch (ruling ST9-r2): the link text on the map page /tr/map/ that leads to /tr/terrain-map/, followed by an arrow «→» printed by the component. Published as «3D arazi haritası»; two blind readers took «arazi» for land/plot. It must name the page with the same noun as ui.tmap.title and ui.tmap.open of this batch. «3D» Latin as the English.",
+      "placeholders": [],
+      "precedent": {
+        "zh": "3D 地形图",
+        "de": "3D-Geländekarte",
+        "ru": "3D-карта рельефа",
+        "ur": "زمین کے نشیب و فراز کا تین جہتی نقشہ"
+      },
+      "ui_key": "map.terrain",
+      "unit": "tmap",
+      "allowNums": [
+        "3"
+      ],
+      "published_tr": "3D arazi haritası",
+      "revise": true
+    }
+  },
+  "frame_revisions": [
+    "map.terrain"
+  ]
+}
