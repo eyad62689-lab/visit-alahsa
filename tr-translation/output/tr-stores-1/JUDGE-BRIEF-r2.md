@@ -1,0 +1,29 @@
+# Judge brief — batch `tr-stores-1`, round 2
+
+BATCH = `C:\Users\truyr\node-store\va-wt\tr-sd\tr-translation\output\tr-stores-1` · REPO read only.
+
+Your input is your own `BATCH\stages\07-judge.r1.json`. Two independent checks ran on it:
+1. `BATCH\stages\05d-proof-of-judge.md` — an independent proofreader of your 37 edits: **3 faults**, all confirmed by the coordinator against the text:
+   - `data.store.store-01.description`: your edit dropped the English's last sentence «It has Instagram and Snapchat accounts» (05 had «Fabrikanın Instagram ve Snapchat hesapları bulunur.»). Restore it. Also «Ayrıca … de satar» doubles the additive (ayrıca + de).
+   - `data.store.store-28.description`: «dışarıdan getirip» loses the English «imports» (from abroad). Your note says you changed «ithal» only to pass the checker's SPELLING rule — the brief says never shape the text to the checker. Write the right Turkish («yurt dışından getirip» as 05 had, or «ithal edip» — the checker flag on «ithal» is then the coordinator's to clear, say so in notes).
+   - `data.faq.4.a`: comma after the plain subject «Bu mağazalar,» (DN16-r2), and the new participial chain before «ekonomik anlaşmadan» (the fresh reader lost the thread too, P1.51): split the sentence (lesson 1).
+2. `BATCH\stages\06-blind-reader.on-r1.md` — a fresh blind reader on the page built from r1 (61 items, cite P1.<n>; input `06-blind-reader-input.on-r1.filtered.txt`).
+
+## Items to rule in round 2
+- **Second reader on the same word** (the first reader flagged it too — the line's threshold is that a stumble by two independent readers is a real fault unless a ruling or the English holds it; say which):
+  - «lapa karışımları» (P1.10; r0 P1.13) — what does `ar` say? Write the Turkish a shopper recognises for a porridge mix (e.g. «… lapası karışımları» with the grain/kind if ar names it), nothing invented.
+  - «ud yağı» (P1.25; r0 P1.28) — you kept it as attested; the second reader read the instrument again. Rule: keep, or the TDK word for agarwood («öd ağacı»: check TDK) with «ud» once in brackets.
+  - «X» as a social network (P1.9; r0 P1.12) — the English says «X». Rule whether Turkish press convention «X (eski adıyla Twitter)» adds a fact (it does not change what the store has; decide and record).
+  - «satın alma hizmetleri» (P1.11; r0 P1.15) — ar decides what «buying services» means (the factory buys dates? or buys for the client?); write that.
+  - «hurma poleni suyu» (P1.6; r0 P1.9) — your OS7; the second reader could not picture it. Keep if it is the right name of the thing (palm pollen water is a traditional product: attest a Turkish form if any), otherwise rule.
+  - «Millî Hurma Ağacı ve Hurma Merkezi» (P1.56; r0 P1.61) — two readers could not tell one body from two. Find a shape that reads as one institution (e.g. the name inside quotes, or «… Merkezi adlı kurum») without inventing; «Merkezinin» without apostrophe stays (institution rule) — rejected again.
+  - «macbus» vs «maabuc» (P1.29, P1.32, P1.58; r0 P1.34) — two different things in the English; the page shows no difference. Rule whether «maabuc» gets anything the English does not give; if not, `source_defect` (owner: gloss maaboj in the English).
+  - «Kaytan», «Gar», «nitelikli kahve», «Seçkin», «Et-/Eş-/Er-/Es-» articles, «Kulla» (P1.5, P1.16, P1.17, P1.20, P1.33, P1.52; r0) — brands, termbase, rulings: rejected with the ruling id, unless you find a real fault.
+- **New faults the English allows you to fix**: the voice of the FAQ questions — FAQ 0 «alabilirsiniz» while the others say «alabilirim» (P1.46): one voice for the ten questions; FAQ 7 «onları» plural for a singular antecedent (P1.54) and «varan daha uzun»; FAQ 6 «alabilmem için» (P1.52); FAQ 3 the question shape «özgün mü, nasıl kontrol edebilirim?» (P1.49) and «genel olarak» (also r0 P1.54 — two readers); «bişt» unglossed at its first appearance on the page (P1.21 — the first card that names it; the FAQ glosses it later: gloss at first mention, as the brief's pattern), «takviye edici gıdalar» → «gıda takviyeleri» (P1.38, your own OS2 wording), «Bunların yanında … da» repeated on many cards (P1.13, P1.57 — vary where it repeats, no fact changes), «Onu en çok öne çıkaran» (P1.8), the three near-synonyms in FAQ 6 answer (P1.53), «yerel olarak kendi ürettiği» (P1.26), «uzman bir meraklı» (P1.41; r0 P1.45 — two readers), «Yeni doğan karşılama ve ısıyla baskı» (P1.36; r0 P1.40 — two readers: ar decides what the items are), «tam yulaflı» (P1.34), «sıkılmış misket limonu» (P1.29 — ar decides: juice?).
+- **Source content** (`source_defect`, no edit): the same as round 1 — FAQ claims, «local products» vs the third section, platforms unexplained, Instagram links under «each link takes you to the store», the editorial hedges, the follower count, the rice cooking half-answer, «Saudi Arabia and the Gulf states», «can I buy from Turkey» (not in the source).
+- Everything else: applied or rejected, one line per item, all 61, in `blind_reader_rulings`.
+
+## Output — `BATCH\stages\07-judge.r2.json`
+The same shape as r1 (round 2; all 157 strings; `changes` = every edit vs **07-judge.r1.json**, full text; `blind_reader_rulings` for the 61 items of on-r1 plus one entry per proof fault (item «proof.1»…); `rulings` — new ids OS10…, or a revised one as «OS7-r2» etc.; `termbase_additions` as r1 updated; `tm_pairs` all 157; `scores` and `scores_row` with round 2). No score raise without a stated reason. Checker:
+`TR_REPO=C:/Users/truyr/node-store/va-wt/tr-sd node C:/Users/truyr/node-store/va-scratch/tr-r1/tools/verify.mjs tr-stores-1 C:/Users/truyr/node-store/va-wt/tr-sd/tr-translation/output/tr-stores-1/stages/07-judge.r2.json --prev C:/Users/truyr/node-store/va-wt/tr-sd/tr-translation/output/tr-stores-1/stages/07-judge.r1.json`
+until `RESULT [OK]` (if the only finding is SPELLING on «ithal», leave it and report it). Report back as in round 1.
