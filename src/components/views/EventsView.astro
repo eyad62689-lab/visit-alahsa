@@ -14,7 +14,7 @@ import DataTable from '../DataTable.astro';
 import { eventsTable } from '../../lib/tables';
 import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ui, type Lang } from '../../i18n/ui';
-import { EVENTS_AR, EVENTS_DE, EVENTS_EN, EVENTS_RU, EVENTS_UR, EVENTS_ZH, evView, type Ev } from '../../data/events';
+import { EVENTS_AR, EVENTS_DE, EVENTS_EN, EVENTS_RU, EVENTS_TR, EVENTS_UR, EVENTS_ZH, evView, type Ev } from '../../data/events';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -261,6 +261,61 @@ const C = localize(lang, {
     seoTitle: 'الاحساء کے میلے اور تقریبات: سال بھر نخلستان کے موسم',
     seoDesc: 'الاحساء کے موسمی میلوں اور تقریبات کا تعارف، ان کے موسموں اور منتظمین سمیت: حساوی چوغے کا میلہ، القیصریہ کی راتیں، حساوی لیموں کی نمائش اور دوسری تقریبات۔',
   },
+  tr: {
+    // الكتلة التركية — خط tr-translation-pipeline (دفعة tr-events-1؛ الحاكم 90/100)
+    events: EVENTS_TR,
+    eyebrow: 'Vahanın yıllık etkinlikleri',
+    title: 'Festivaller ve etkinlikler',
+    lead: 'El-Kaysariye Çarşısı\'ndan hurmalıklara kadar El-Ahsa yıl boyu etkinliklerle hareketlenir. Bu etkinlikler vahanın mirasını yeniden canlandırır; kutlamalar ve festivaller her yıl kendi zamanında geri döner.',
+    notice: 'Bu etkinlikler her yıl yaklaşık aynı mevsimlerde tekrarlanır. Resmî tarihler ve ayrıntılar yıldan yıla değişebilir. Ziyaretten önce lütfen düzenleyenlerin duyurularını ve resmî kanalları kontrol edin.',
+    placeK: 'Konum',
+    mapK: 'Harita ↗',
+    ticketK: 'Biletinizi alın',
+    orgK: 'Düzenleyenler',
+    spanK: 'Yaklaşık süre',
+    actsK: 'Öne çıkanlar',
+    statusL: {
+      confirmed: 'Bu yıl kesinleşti',
+      expected: 'Tarihler tahminî',
+      tba: 'Duyuru bekleniyor',
+    },
+    cd: {
+      pre: {
+        one: 'Yarın başlıyor',
+        other: '{n} gün sonra başlıyor',
+      },
+      today: 'Bugün başlıyor',
+      last: 'Bugün son gün',
+      left: {
+        one: '1 gün kaldı',
+        other: '{n} gün kaldı',
+      },
+    },
+    nowBadge: 'Yılın bu dönemindesiniz',
+    orderNote: 'Kartlar cihazınızdaki tarihe göre otomatik olarak sıralanır: yılın bu dönemine denk gelen etkinlikler en başta, ardından tarihi en yakın olanlar gelir.',
+    notesH: 'Gitmeden önce',
+    notes: [
+      {
+        h: 'Zamanlama',
+        d: 'Etkinlikler hem hicrî hem miladi takvimi izler ve her yıl yaklaşık aynı mevsimlerde tekrarlanır. Resmî tarihler yıldan yıla değişebilir; her dönemin duyurularını takip edin.',
+      },
+      {
+        h: 'Miras ve yaratıcılık',
+        d: 'Festivaller El-Ahsa\'nın kimliğini ve mirasını halk giysileri, el sanatları ve özgün yerel ürünlerle öne çıkarır.',
+      },
+      {
+        h: 'Aile ortamı',
+        d: 'Etkinlik programları bütün aileye uygundur; her yaştan ziyaretçi için eğlence, yaratıcılık, alışveriş ve tadım öne çıkar.',
+      },
+    ],
+    srcNote: 'Daha fazla bilgi ve güncel duyurular için El-Ahsa Belediyesini, El-Ahsa Geliştirme Kurumunu ve etkinliklerin resmî kanallarını takip edin.',
+    ctaH: 'Etkinlik ziyaretinizi tam bir geziye dönüştürün',
+    ctaD: 'Festivali çevresindeki gezilecek yerlerle birleştirin ve rotanızı “Kayıtlı yerlerim” listenizde hazırlayın.',
+    ctaBrowse: 'Gezilecek yerlere göz atın',
+    ctaPlan: 'Gezinizi planlayın',
+    seoTitle: 'El-Ahsa festival ve etkinlikleri: vahanın yıl boyu takvimi',
+    seoDesc: 'El-Ahsa\'nın mevsimlik festival ve etkinlikleri: El-Ahsa Bişt Festivali, El-Kaysariye Geceleri, El-Ahsa Lomi Sergisi ve dahası; zamanları ve düzenleyenleriyle.',
+  },
 });
 
 // العرض الفعّال وقت البناء: النسخة المؤكدة ما دامت قائمة، والموسم التقريبي بعدها
@@ -314,15 +369,16 @@ const shopNote = (ui[lang] as Record<string, string>)['ev.shopNote'];
 // الروسية: الصفحات المفردة /ru/events/<slug>/ مبنية منذ الدفعة 5
 const ru = lang === 'ru';
 const ur = lang === 'ur';
+const tr = lang === 'tr';
 // الألمانية: الصفحات المفردة /de/events/<slug>/ مبنية منذ ج4
 const de = lang === 'de';
-const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : '/en/attractions/';
-const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : '/en/events/';
-const planHref = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : ur ? '/ur/plan-your-trip/' : lang === 'tr' ? '/tr/plan-your-trip/' : '/en/plan-your-trip/';
+const browseHref = ar ? '/معالم/' : zh ? '/zh/attractions/' : de ? '/de/attractions/' : ru ? '/ru/attractions/' : ur ? '/ur/attractions/' : tr ? '/tr/attractions/' : '/en/attractions/';
+const detailBase = ar ? '/فعاليات/' : zh ? '/zh/events/' : de ? '/de/events/' : ru ? '/ru/events/' : ur ? '/ur/events/' : tr ? '/tr/events/' : '/en/events/';
+const planHref = ar ? '/خطط/' : zh ? '/zh/plan-your-trip/' : de ? '/de/plan-your-trip/' : ru ? '/ru/plan-your-trip/' : ur ? '/ur/plan-your-trip/' : tr ? '/tr/plan-your-trip/' : '/en/plan-your-trip/';
 const siteUrl = SITE;
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : tr ? '/tr/' : '/en/' },
     { name: C.title, path: altHref(alt, lang) },
   ]),
   // ItemList فقط — لا Event schema عمداً: قوقل يشترط startDate محدداً للأهلية،
