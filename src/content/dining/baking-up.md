@@ -21,10 +21,13 @@ area_ru: "Дорога на Айн-Наджм — Эль-Мубарраз"
 alt_ru: "Фасад кафе Baking Up с зонтами и местами для сидения на улице"
 blurb_de: "Hinter einer fröhlichen Fassade mit Sitzplätzen im Freien warten Gebäck und knusprige Knabbereien – laut eigener Beschreibung in Google Maps."
 blurb_ur: "گوگل میپس پر اس جگہ کا اپنا تعارف “سینکی ہوئی اور کرکری چیزیں” ہے، اور اس کے خوش رنگ اگواڑے کے باہر نشستیں لگی ہیں۔"
+blurb_tr: "Neşeli bir dükkân cephesinin ardında fırın ürünleri ve çıtır atıştırmalıklar; Google Haritalar'da kendini böyle tanıtıyor."
 area_de: "Ain-Najm-Straße – Al-Mubarraz"
 area_ur: "عین النجم سڑک، المبرز"
+area_tr: "Ayn en-Necm Yolu — Müberrez"
 alt_de: "Die Fassade von Baking Up mit Sonnenschirmen und Sitzplätzen im Freien"
 alt_ur: "بیکنگ اپ کا اگواڑا، سائبان اور باہر کی نشستیں"
+alt_tr: "Şemsiyeleri ve açık hava oturma alanlarıyla Baking Up kafesinin dükkân cephesi"
 img: /img/dining/baking-up
 maps: "https://maps.app.goo.gl/Vq412YHJLwnKc1SE8"
 order: 8

@@ -21,10 +21,13 @@ area_ru: "Дорога короля Абдул-Азиза — историчес
 alt_ru: "Традиционный меджлис с подушками и коврами под потолком из пальмовых стволов в кафе Ratio Al-Koot"
 blurb_de: "Ein arabischer Madschlis (Empfangsraum) mit Kissen und Teppichen unter einer Decke aus Palmstämmen."
 blurb_ur: "کھجور کے تنوں کی چھت کے نیچے ایک عربی بیٹھک تکیوں اور قالینوں سے سجی ہے۔"
+blurb_tr: "Hurma ağacı gövdelerinden yapılmış tavanın altında minderler ve halılarla döşeli bir Arap meclis salonu."
 area_de: "König-Abdulaziz-Straße – Historisches Zentrum von Hofuf"
 area_ur: "شاہ عبد العزیز سڑک، ہفوف کا تاریخی مرکز"
+area_tr: "Kral Abdülaziz Yolu — Hüfuf tarihî merkezi"
 alt_de: "Ein traditioneller Madschlis mit Kissen und Teppichen unter einer Decke aus Palmstämmen bei Ratio Al-Koot"
 alt_ur: "کھجور کے تنوں کی چھت کے نیچے تکیوں اور قالینوں والی ایک روایتی بیٹھک، ریشو الکوت میں"
+alt_tr: "Ratio Al-Koot kafesinde hurma ağacı gövdelerinden yapılmış tavanın altında minderler ve halılarla geleneksel bir meclis salonu"
 img: /img/dining/ratio-alkoot
 maps: "https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8"
 order: 6

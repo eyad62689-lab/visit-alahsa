@@ -15,8 +15,10 @@ blurb_ru: "Глинобитная стена с зубцами и выступа
 alt_ru: "Глинобитный фасад Bu Mubarak Traditional Bakery с двустворчатой деревянной дверью под пальмами"
 blurb_de: "Eine Lehmputzwand mit Zinnen und vorstehenden Balken sowie einer zweiflügeligen Holztür unter den Palmen."
 blurb_ur: "مٹی کی ایک دیوار پر کنگورے بنے ہیں اور شہتیر باہر نکلے ہوئے ہیں، اور کھجور کے درختوں کے نیچے لکڑی کا دوہرا دروازہ ہے۔"
+blurb_tr: "Mazgallı ve çıkıntılı kirişli, çamur sıvalı bir duvar; hurma ağaçlarının altında çift kanatlı ahşap bir kapı."
 alt_de: "Die Lehmputzfassade der Bu Mubarak Traditional Bakery mit ihrer zweiflügeligen Holztür unter den Palmen"
 alt_ur: "مخبز بومبارک الشعبی کا مٹی سے لپا اگواڑا اور کھجور کے درختوں تلے لکڑی کا دوہرا دروازہ"
+alt_tr: "Bu Mubarak Traditional Bakery'nin çamur sıvalı cephesi; çift kanatlı ahşap kapısı hurma ağaçlarının altında"
 img: /img/dining/bu-mubarak-bakery
 maps: "https://maps.app.goo.gl/pBjXyr4HgBWPVN5K8"
 order: 4

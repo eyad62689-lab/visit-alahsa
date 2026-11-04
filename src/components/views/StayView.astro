@@ -31,6 +31,7 @@ const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
 const ur = lang === 'ur';
+const tr = lang === 'tr';
 
 // التقييمات من Google Places API — نفس آلية صفحة المطاعم (القارئ الموحّد في
 // lib/places-live.ts)، ونفس التدهور الرشيق حين يغيب المفتاح.
@@ -50,11 +51,11 @@ const PLACES = entries.map((e) => {
     img: d.img, maps: d.maps, kind: d.kind,
     // الاسم لا يُترجم للصينية؛ النبذة والموقع والنص البديل من *_zh (الدفعة 14) بتراجع للإنجليزية
     name: ar ? d.name : d.name_en,
-    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : d.area_en,
-    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : d.alt_en,
-    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : d.blurb_en,
+    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : d.area_en,
+    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : d.alt_en,
+    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : d.blurb_en,
     // الصينية والألمانية والروسية تقصد كلٌّ منها صفحتها متى حمل المكان body_zh/body_de/body_ru، وإلا النظير الإنجليزي
-    href: hasPage ? stayHref(d, zh ? (d.body_zh?.trim() ? 'zh' : 'en') : de ? (d.body_de?.trim() ? 'de' : 'en') : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : ur ? (d.body_ur?.trim() ? 'ur' : 'en') : lang) : d.maps,
+    href: hasPage ? stayHref(d, zh ? (d.body_zh?.trim() ? 'zh' : 'en') : de ? (d.body_de?.trim() ? 'de' : 'en') : ru ? (d.body_ru?.trim() ? 'ru' : 'en') : ur ? (d.body_ur?.trim() ? 'ur' : 'en') : tr ? (d.body_tr?.trim() ? 'tr' : 'en') : lang) : d.maps,
     internal: hasPage,
   };
 });
@@ -248,6 +249,33 @@ const C = localize(lang, {
     methodP1: 'نام اور مقامات براہ راست گوگل میپس سے لیے گئے ہیں، اور ہر جگہ کے مختصر تعارف میں وہی بیان کیا گیا ہے جو اس کی تصویر میں نظر آتا ہے۔ یہاں نہ قیمتیں دی گئی ہیں، نہ ہوٹلوں کے ستارہ درجے، اور نہ سفارشات۔',
     places: PLACES,
   },
+  tr: {
+    heroEyebrow: 'Vahada kalacak yerler',
+    title: 'Konaklama',
+    heroSum: 'El-Ahsa\'daki oteller ve diğer konaklama yerleri: eski şehrin içindeki tarihî bir konukevinden Ukayr kıyısındaki bir otele kadar; her birinin fotoğrafı ve Google Haritalar\'daki konumu yer alır. Liste öneri içermez, yalnızca mekânları anlatır; genişlemeye devam ediyor.',
+    listH: 'El-Ahsa\'da konaklama yerleri',
+    kindLabels: { 'heritage-inn': 'Tarihî konukevi', hotel: 'Otel' } as Record<string, string>,
+    openMaps: t('det.openMaps'),
+    newWindow: '(Google Haritalar yeni pencerede açılır)',
+    moreLabel: 'Ayrıntılara bakın',
+    ratingLabel: 'Google Haritalar\'daki puan',
+    closedPerm: 'Kalıcı olarak kapalı — Google Haritalar\'a göre',
+    closedTemp: 'Geçici olarak kapalı — Google Haritalar\'a göre',
+    srcNote: fetchedLabel ? `Google Haritalar'daki puanlar — son güncelleme: ${fetchedLabel}` : null,
+    faqH: 'El-Ahsa\'da konaklama hakkında sıkça sorulan sorular',
+    faqs: [
+      { q: 'Eski Hüfuf\'un içinde kalabileceğim tarihî bir konukevi var mı?',
+        a: 'Evet — Al-Koot Heritage Hotel, Hüfuf\'un El-Kut mahallesinde, Kasr İbrahim\'in karşısındaki restore edilmiş bir sarayda bulunur. Otel, El-Ahsa\'da ruhsat alan ilk tarihî otel oldu; ruhsatı Suudi Turizm ve Millî Miras Kurumu verdi.' },
+      { q: 'Ukayr Plajı\'nın yakınında konaklayabileceğim bir yer var mı?',
+        a: 'Evet — Continent Hotel Al Uqayr, El-Ahsa\'nın doğusunda, Ukayr kıyısında yer alır. Karavanıyla gelenler için doğrudan plajda ayrılmış bir alan da var; bu alanın rezervasyonu çevrim içi, El-Ahsa Belediyesi üzerinden yapılır.',
+        linkText: 'Ukayr Plajı sayfasında ayrıntılara bakın →', linkHref: '/tr/attractions/uqair-beach/' },
+      { q: 'Bu liste en iyi otelleri mi öneriyor?',
+        a: 'Hayır. Kartlar yalnızca bilgi verir: her yerin adı, fotoğrafı ve Google Haritalar\'daki konumu. Mekânları birbirine göre sıralamıyoruz, fiyat da yazmıyoruz — seçenekleri güvenilir rezervasyon platformlarında karşılaştırın.' },
+    ],
+    methodH: 'Bu sayfa hakkında',
+    methodP1: 'Adlar ve konumlar doğrudan Google Haritalar\'dan alınır; kısa yazılar her mekânı fotoğrafında göründüğü gibi anlatır. Fiyat, yıldız sınıflandırması ya da öneri yer almaz.',
+    places: PLACES,
+  },
 });
 
 // العنوان والوصف الصينيان من الكتلة الصينية المعتمدة (title وheroSum) بدل السقوط على
@@ -256,20 +284,20 @@ const C = localize(lang, {
 // نوع المنشأتين باقٍ في الوصف.
 const pageTitle = ar
   ? `أماكن الإقامة في الأحساء: فنادق الهفوف والعقير ${titleSep(lang)} ${t('site.brand')}`
-  : zh || de || ru || ur ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
+  : zh || de || ru || ur || tr ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
   : `Where to Stay in Al-Ahsa: Hotels in Hofuf and Al-Uqair ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
   ? 'فنادق الأحساء وأماكن الإقامة فيها: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
-  : zh || de || ru || ur ? C.heroSum
+  : zh || de || ru || ur || tr ? C.heroSum
   : 'Hotels in Al-Ahsa and where to stay: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : '/en/stay/';
+const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : tr ? '/tr/stay/' : '/en/stay/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — الحارس
 // الآلي هو الفحص C10 في tools/check-consistency.mjs.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : tr ? '/tr/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:

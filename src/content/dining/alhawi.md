@@ -21,10 +21,13 @@ area_ru: "Эль-Халидия — напротив Университета к
 alt_ru: "Традиционный завтрак с разнообразными блюдами в Al Hawy"
 blurb_de: "Ein traditionelles Frühstück, auf Matten aus Palmwedel-Flechtwaren ausgebreitet, Teller an Teller."
 blurb_ur: "کھجور کے پتوں کی چٹائیوں پر روایتی ناشتے کا دسترخوان بچھا ہے، جس پر برتن ایک کے بعد ایک رکھے ہیں۔"
+blurb_tr: "Hasır örtülerin üzerine tabak tabak serilmiş geleneksel bir kahvaltı sofrası."
 area_de: "Al-Khalidiyah – gegenüber der König-Faisal-Universität"
 area_ur: "محلہ الخالدیہ، شاہ فیصل یونیورسٹی کے سامنے"
+area_tr: "El-Halidiye mahallesi — Kral Faysal Üniversitesinin karşısında"
 alt_de: "Ein traditionelles Frühstück mit verschiedenen Gerichten bei Al Hawy"
 alt_ur: "طرح طرح کے پکوانوں والا روایتی ناشتے کا دسترخوان، الحوی میں"
+alt_tr: "Al Hawy'de çeşitli yemeklerden oluşan geleneksel bir kahvaltı sofrası"
 img: /img/dining/alhawi
 maps: "https://maps.app.goo.gl/GZ61EihCSipwJyzJ8"
 order: 3

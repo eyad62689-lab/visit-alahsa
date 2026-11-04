@@ -22,10 +22,13 @@ area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Глинобитный вход и деревянная дверь кафе Baithana в старинном переулке"
 blurb_de: "Ein lehmverputztes Haus mit Holztür in einer der alten Gassen von Hofuf."
 blurb_ur: "ہفوف کی ایک پرانی گلی میں مٹی کا ایک گھر ہے، جس کا دروازہ لکڑی کا ہے۔"
+blurb_tr: "Hüfuf'un eski sokaklarından birinde, ahşap kapılı, çamur sıvalı bir ev."
 area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
 area_ur: "محلہ شمالی الرفعہ، ہفوف"
+area_tr: "Kuzey er-Rifa mahallesi — Hüfuf"
 alt_de: "Der Eingang von Baithana mit seinen lehmverputzten Wänden und der Holztür in einer traditionellen Gasse"
 alt_ur: "پرانی طرز کی ایک گلی میں بیذانہ کا داخلی راستہ، مٹی سے لپی دیواریں اور لکڑی کا دروازہ"
+alt_tr: "Tarihî bir sokakta çamur sıvalı girişi ve ahşap kapısıyla Baithana"
 img: /img/dining/baithana
 maps: "https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5"
 order: 1

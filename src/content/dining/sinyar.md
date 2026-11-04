@@ -21,10 +21,13 @@ area_ru: "Дорога Эль-Халидж — район Эль-Увеймир�
 alt_ru: "Глинобитный фасад Sinyar и вывеска арабской каллиграфией в сумерках"
 blurb_de: "Ein moderner Lehmbau im traditionellen Stil, der seinen Namen in arabischer Kalligrafie trägt."
 blurb_ur: "روایتی انداز کی ایک جدید مٹیالی عمارت پر اس کا نام عربی خطاطی میں لکھا ہے۔"
+blurb_tr: "Adı Arap hat sanatıyla yazılmış, modern bir toprak yapı."
 area_de: "Al-Khaleej-Straße – Al-Uwaimriyah-Viertel"
 area_ur: "الخلیج سڑک، العویمریہ"
+area_tr: "Arap Körfezi Yolu — El-Uveymiriye mahallesi"
 alt_de: "Lehmfassade und Schild in arabischer Kalligrafie bei Sinyar in der Abenddämmerung"
 alt_ur: "سنیار کا مٹیالا اگواڑا اور عربی خطاطی میں اس کا نام، شام کے وقت"
+alt_tr: "Sinyar'ın toprak cephesi ve Arap hat sanatıyla yazılmış tabelası, akşam üzeri"
 img: /img/dining/sinyar
 maps: "https://maps.app.goo.gl/kiKK2QEshBwycpDn6"
 order: 5

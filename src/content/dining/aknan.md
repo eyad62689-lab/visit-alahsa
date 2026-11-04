@@ -21,10 +21,13 @@ area_ru: "Эль-Кара — у подножия Джабаль-эль-Кара
 alt_ru: "Столики Aknan Café под открытым небом на фоне скал Джабаль-эль-Кара на закате"
 blurb_de: "Tische im Freien unter der Felswand des Qarah-Bergs, dazu ein in den Terrassenboden eingelassenes Glasoberlicht."
 blurb_ur: "جبل القارہ کی چٹانی دیوار کے نیچے کھلی فضا میں میزیں لگی ہیں، اور چبوترے کے فرش میں شیشے کا روشن دان بنا ہے۔"
+blurb_tr: "Cebel el-Kare kayalıklarının altında açık havada masalar; teras zemininde cam bir ışıklık yer alıyor."
 area_de: "Al-Qarah – am Fuß des Qarah-Bergs (Jabal al-Qarah)"
 area_ur: "القارہ، جبل القارہ کے دامن میں"
+area_tr: "El-Kare — Cebel el-Kare'nin eteğinde"
 alt_de: "Die Terrasse des Aknan Café vor den Felsen des Qarah-Bergs bei Sonnenuntergang"
 alt_ur: "غروب کے وقت جبل القارہ کی چٹانوں کے سامنے مقہی اکنان کی بیرونی نشستیں"
+alt_tr: "Gün batımında, Cebel el-Kare'nin kayalarının önünde Aknan Café'nin açık hava oturma alanları"
 img: /img/dining/aknan
 maps: "https://maps.app.goo.gl/yDBd9dZTXuTwXCDQ8"
 order: 11

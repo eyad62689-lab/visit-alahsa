@@ -15,8 +15,10 @@ blurb_ru: "Высокое белое пространство с окнами в
 alt_ru: "Белый зал Bun Café с барной стойкой-островом из мрамора и парящей деревянной лестницей"
 blurb_de: "Ein hoher, weißer Raum mit raumhohen Fenstern, einer freistehenden Bartheke aus Marmor und einer freitragenden Holztreppe."
 blurb_ur: "فرش سے چھت تک کھڑکیوں والے ایک اونچے سفید کمرے کے بیچ میں سنگ مرمر کا کاؤنٹر اور لکڑی کی معلق سیڑھی ہے۔"
+blurb_tr: "Yerden tavana pencereli, yüksek ve beyaz bir mekân; mermer bir bar tezgâhı ve havada asılı gibi duran ahşap bir merdiven."
 alt_de: "Die weiße Halle des Bun Café mit ihrer freistehenden Bartheke aus Marmor und der freitragenden Holztreppe"
 alt_ur: "مقہی بن کا سفید کمرہ، بیچ میں سنگ مرمر کا کاؤنٹر اور لکڑی کی معلق سیڑھی"
+alt_tr: "Bun Café'nin mermer bar tezgâhı ve havada asılı gibi duran ahşap merdivenli beyaz salonu"
 img: /img/dining/bun
 maps: "https://maps.app.goo.gl/sEoiBiKGABVMMoCM9"
 order: 12

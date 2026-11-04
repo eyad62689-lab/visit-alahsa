@@ -21,10 +21,13 @@ area_ru: "Район Эль-Кут — напротив Каср-Ибрахим"
 alt_ru: "Внутренний двор Al-Koot Heritage Hotel с его аркадами и стеклянной крышей"
 blurb_de: "Das Restaurant des Kulturerbe-Hotels – Tische unter einem Glasdach in einem von Arkaden gesäumten Innenhof."
 blurb_ur: "یہ روایتی طرز کے ہوٹل میں کھانے کی جگہ ہے، جہاں محراب دار برآمدوں سے گھرے صحن میں شیشے کی چھت کے نیچے میزیں لگی ہیں۔"
+blurb_tr: "Tarihî otelin restoranı — revaklı bir avluda cam çatının altında masalar."
 area_de: "Al-Koot-Viertel – gegenüber Qasr Ibrahim"
 area_ur: "محلہ الکوت، قصر ابراہیم کے سامنے"
+area_tr: "El-Kut mahallesi — Kasr İbrahim'in karşısında"
 alt_de: "Der Innenhof des Al-Koot Heritage Hotel mit seinen Arkaden und seinem Glasdach"
 alt_ur: "فندق و مطعم الکوت التراثی کا اندرونی صحن، محراب دار برآمدے اور شیشے کی چھت"
+alt_tr: "Al-Koot Heritage Hotel'in revakları ve cam çatısıyla avlusu"
 img: /img/dining/alkoot-hotel
 maps: "https://maps.app.goo.gl/gjwiTHDg83VZEbz76"
 order: 2

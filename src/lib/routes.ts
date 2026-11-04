@@ -33,7 +33,7 @@ export const attractionAlt = (d: AttractionSlugs): { ar: string; en: string; zh?
   ...(d.title_tr ? { tr: attractionHref(d, 'tr') } : {}),
 });
 
-type DiningSlugs = { slug_ar: string; slug_en: string; body_zh?: string; body_ru?: string; body_de?: string; body_ur?: string };
+type DiningSlugs = { slug_ar: string; slug_en: string; body_zh?: string; body_ru?: string; body_de?: string; body_ur?: string; body_tr?: string };
 
 /** رابط صفحة المنشأة (مطعم/مقهى) — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
 export const diningHref = (d: DiningSlugs, lang: Lang): string =>
@@ -42,7 +42,7 @@ export const diningHref = (d: DiningSlugs, lang: Lang): string =>
 /** روابط المنشأة بلغاتها — مصدر hreflang ومبدّل اللغة. الصينية والألمانية والروسية
  *  تُدرج كلٌّ منها متى حملت المنشأة body_zh/body_de/body_ru المعتمد (بوابة صفحتها،
  *  على سابقة stayAlt) — فلا يقود المبدّل إلى 404. */
-export const diningAlt = (d: DiningSlugs): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string } => ({
+export const diningAlt = (d: DiningSlugs): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string } => ({
   ar: diningHref(d, 'ar'),
   en: diningHref(d, 'en'),
   ...(d.body_zh?.trim() ? { zh: diningHref(d, 'zh') } : {}),
@@ -51,9 +51,11 @@ export const diningAlt = (d: DiningSlugs): { ar: string; en: string; zh?: string
   // بوابة الأوردو body_ur كأخواتها؛ ومسار /ur/restaurants-cafes/<slug>/ يُبنى مع دفعته
   // (متنٌ أوردي قبل المسار يُفشل فاحص الروابط لا يمرّ صامتاً)
   ...(d.body_ur?.trim() ? { ur: diningHref(d, 'ur') } : {}),
+  // والتركية body_tr بالبوابة نفسها (مسار /tr/restaurants-cafes/<slug>/ قائم منذ tr-stay-dining-1)
+  ...(d.body_tr?.trim() ? { tr: diningHref(d, 'tr') } : {}),
 });
 
-type StaySlugs = { slug_ar: string; slug_en: string; body_zh?: string; body_ru?: string; body_de?: string; body_ur?: string };
+type StaySlugs = { slug_ar: string; slug_en: string; body_zh?: string; body_ru?: string; body_de?: string; body_ur?: string; body_tr?: string };
 
 /** رابط صفحة مكان الإقامة — بشرطة ختامية دائماً، للسبب نفسه أعلاه. */
 export const stayHref = (d: StaySlugs, lang: Lang): string =>
@@ -62,7 +64,7 @@ export const stayHref = (d: StaySlugs, lang: Lang): string =>
 /** روابط مكان الإقامة بلغاتها — مصدر hreflang ومبدّل اللغة. الصينية والألمانية
  *  والروسية تُدرج كلٌّ منها متى حمل المكان body_zh/body_de/body_ru المعتمد (بوابة
  *  صفحته، على سابقة title_de/title_ru) — فلا يقود المبدّل إلى 404. */
-export const stayAlt = (d: StaySlugs): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string } => ({
+export const stayAlt = (d: StaySlugs): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string } => ({
   ar: stayHref(d, 'ar'),
   en: stayHref(d, 'en'),
   ...(d.body_zh?.trim() ? { zh: stayHref(d, 'zh') } : {}),
@@ -70,6 +72,7 @@ export const stayAlt = (d: StaySlugs): { ar: string; en: string; zh?: string; de
   ...(d.body_ru?.trim() ? { ru: stayHref(d, 'ru') } : {}),
   // بوابة الأوردو body_ur، ومسار /ur/stay/<slug>/ يُبنى مع دفعته (كما في diningAlt)
   ...(d.body_ur?.trim() ? { ur: stayHref(d, 'ur') } : {}),
+  ...(d.body_tr?.trim() ? { tr: stayHref(d, 'tr') } : {}),
 });
 
 type PostSlugs = { lang: string; slug: string };
