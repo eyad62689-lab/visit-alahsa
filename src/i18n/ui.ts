@@ -2046,6 +2046,8 @@ export const ui = {
     'foot.col.site': 'Site hakkında',
     'foot.independence': 'Visit Al-Ahsa bağımsız bir ziyaretçi rehberidir. Devlet kurumu değildir ve herhangi bir resmî makamı temsil etmez.',
     'foot.l.getThere': 'Ulaşım',
+    'foot.l.visa': 'Vize rehberi',
+    'plan.visa': 'Vize rehberi',
     'foot.l.events': 'Etkinlikler',
     'foot.l.about': 'El-Ahsa hakkında',
     'foot.l.privacy': 'Politikalar ve kullanım koşulları',

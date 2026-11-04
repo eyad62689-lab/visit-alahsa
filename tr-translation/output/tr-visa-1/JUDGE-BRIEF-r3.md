@@ -1,0 +1,28 @@
+# Judge brief — batch `tr-visa-1`, closing addendum (round 3)
+
+BATCH = `C:\Users\truyr\node-store\va-wt\tr-sd\tr-translation\output\tr-visa-1` · REPO read only.
+
+Your round-2 text was applied and built. Two checks ran on it:
+1. `stages\05d-proof-of-judge-r2.md`: **1 fault** — `routes.tourist.who.text` «Vize turizmi, …» reads as the compound «visa tourism», and «Hac, çalışma ve eğitimi kapsamaz» leaves «Hac, çalışma» without the accusative (suggested: «Bu vize turizmi, … kapsar. Haccı, çalışmayı ve eğitimi kapsamaz.»). The third reader hit the same thing (P3.21). Fix it.
+2. `stages\06-blind-reader.on-r2.md`: the **third** fresh blind reader (46 items, cite P3.<n>).
+
+## The three-reader threshold (binding precedent: «Arap Körfezi Yolu» tr-attr-12, «kabartma harita» tr-static-1, «oud yağı» tr-stores-1)
+A Turkish fault named by three independent readers is a fault even against a ruling of this batch — fix it here unless the fix would need the source to say something it does not (then it is a `source_defect` with an owner question). A fourth reader with no new fault does not open another round. Count across P1 (on 05), P2 (on r1), P3 (on r2):
+
+| Point | Readers | What to do |
+|---|---|---|
+| Statement buttons «Davet eden kişi/kuruluş başvuruyu resmî platformda başlatır» read as a sentence, not an action (P1.23, P2.34, P3.30) | 3 | **Threshold.** VG7 is revised: a button label the visitor can act on, keeping the English's fact that the inviter starts the application — e.g. a noun phrase naming the destination with the fact inside it. Same shape for both buttons; no new fact. Record `VG7-r3`. |
+| «hazır rota(nız)» (P1.30, P2.44, P3.38 — P3: «hazır» + «-nız» contradict) | 3 | **Threshold.** On this page, say the fact of the English («get a ready-made route») without the phrase the readers trip on, keeping the published feature name «Kayıtlı yerlerim». The ui.ts frame `plan.empty.d` / `plan.lead` is outside this batch: record it as a frame note, not an owner question. Revise VG13 → `VG13-r3`. |
+| «resmî platform / resmî kaynak / resmî sayfa» read as three things or one blurred thing (P1.2, P2.5, P3.4) | 3 | **Threshold.** Where the English means the same official site, one word; where it means a different thing (an information page vs the application platform; «the official source» to check conditions), make the difference visible in Turkish. Record a ruling. |
+| Three names «Suudi ziyaret vizesi» / «turist vizesi» / «turist e-vizesi» blur (P1.6, P2.9, P3.43, P3.7, P3.8) | 3 | **Threshold.** Keep the umbrella «Suudi ziyaret vizesi» (the English's) but make the bridge readable where the English uses «tourist visa» for the eVisa (FAQ questions, the intro's search sentence): either the same name «turist e-vizesi» where the English plainly means the eVisa, or a clause linking them once. No new fact. Revise VG3 → `VG3-r3`. |
+| «Cebel el-Kare» read as «kare» (square) (P1.3, P2.7a, P3.5) | 3 | The name is the site-wide termbase form used on every Turkish page (the attraction's own page): it cannot change in one batch. Verdict `frame` with a note for the line (a site-wide term question, outside this batch); do not gloss it with a meaning the source does not give. |
+| GCC residents in two rows (P1.8, P2.13, P3.10) · the host must be related vs the personal visit (P1.18, P2.47, P3.40) · FAQ «can it be extended» answered with expiry before entry (P1.31, P2.45, P3.42) · Türkiye not in any row (P1.7, P2.51, P3.17) | 3 | `source_defect` — the English says exactly this; the owner questions already stand (add the extension one). |
+| «mola» for a connection (P2.29, P3.27) · two «Kral Fahd» places (P1.26, P3.34) · «Paket vizesi / pilot aşama» (P1.24, P2.38, P3.32) | 2–3 | «mola»: the reader expected «aktarma» — rule on the merits. «Kral Fahd»: the names are the termbase's (frame). «pilot aşama»: the English (source). |
+
+## Other P3 items (one reader each — on the merits)
+P3.1 the description's colon list not parallel (keep 140–160), P3.3 three «-dığı» clauses, P3.6 «da bu vahadadır», P3.16 the table cell «Bir vatandaş veya ikamet eden biri» drops «Suudi» (the section has it — the English cell says «a citizen or resident»? compare; adding «Suudi» is no new fact if the English section says Saudi), P3.20 «Platformda listelenen» far from its noun, P3.25 the two options in one string — split, P3.26 «ayrıca … de», P3.29 «eş» as first-degree relative (the English «first-degree relatives (parents, spouse and children)» — source; Turkish may drop the bracket's label if it misleads, keeping the three relatives), P3.30 «çevrimiçi olarak» with «platformunda», P3.31 two relative clauses, P3.33 «da dahil», P3.35, P3.36 object far from verb, P3.37 list pattern, P3.39 the FAQ question's weight, P3.41 «yaparlar», P3.44 the work/study answer drops «hac» (compare the English). Everything else: applied, rejected or source with a line each — all 46 in `blind_reader_rulings`.
+
+Hard limits, links, `updatedLine`, no fee/currency/doubt word: as before. Check all 138 strings against the English after your edits; sweep all 138 for every ruling (VG1–VG13 and the revised ones).
+
+## Output — `BATCH\stages\07-judge.r3.json`, plus `BATCH\stages\07-judge.r3-addendum.md`
+The JSON in the round-2 shape with `"round": 3`; `changes` = every edit vs `07-judge.r2.json` (full text); `blind_reader_rulings` for P3.1–P3.46; `rulings` = new or revised only (`VGn-r3` with the reason, naming the three readers); `termbase_additions` complete; `tm_pairs` for all 138. The addendum (Markdown, short): the threshold table as you applied it, one line per point. Checker with `--prev` pointing at `07-judge.r2.json` until RESULT [OK]. Report back as before.
