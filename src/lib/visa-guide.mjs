@@ -4,27 +4,27 @@
 //
 // 2026-10-16 (قرار إياد): أُعيدت كتابة الصفحة دليلاً مختصراً بلا أي معلومة غير مؤكدة — لا
 // رسوم، لا «لم يُتحقَّق»، لا وسوم مصادر داخل النص، لا مدد قرار ولا سياسات استرداد. العربية
-// والإنجليزية كُتبتا مباشرةً (كصفحة «عن زوروا الأحساء»)، وzh/de/ru/ur مرّت بخطوط ترجمتها
-// 2026-10-17 (93 · 92 · 92 · 90) وطُبّقت بـtools/translation/apply-visa-guide.mjs.
+// والإنجليزية كُتبتا مباشرةً (كصفحة «عن زوروا الأحساء»)، وzh/de/ru/ur/tr مرّت بخطوط ترجمتها
+// 2026-10-17 (93 · 92 · 92 · 90) وtr في 2026-11-04 (91)، وطُبّقت بـtools/translation/apply-visa-guide.mjs.
 
 /** مسارا الصفحة بلغتيها — بشرطة ختامية (تطابق canonical). مصدر hreflang ومبدّل اللغة وsitemap. */
-export const VISA_GUIDE_ALT = { ar: '/دليل-التأشيرات/', en: '/en/visa-guide/', zh: '/zh/visa-guide/', ru: '/ru/visa-guide/', de: '/de/visa-guide/', ur: '/ur/visa-guide/' };
+export const VISA_GUIDE_ALT = { ar: '/دليل-التأشيرات/', en: '/en/visa-guide/', zh: '/zh/visa-guide/', ru: '/ru/visa-guide/', de: '/de/visa-guide/', ur: '/ur/visa-guide/', tr: '/tr/visa-guide/' };
 
 /** المسار العربي — يبقى باسمه القديم لمن يستورده (التذييل، «خطّط»، llms.txt، sitemap). */
 export const VISA_GUIDE_PATH = VISA_GUIDE_ALT.ar;
 
 /** اللغات المبنية للصفحة — يضيفها سكربت التطبيق بعد اعتماد حاكم خط اللغة. */
-export const VISA_LANGS = ['ar', 'en', 'zh', 'ru', 'de', 'ur'];
+export const VISA_LANGS = ['ar', 'en', 'zh', 'ru', 'de', 'ur', 'tr'];
 
 /** رابط الصفحة بلغة الطلب — غير المبنيّ يقصد الإنجليزية (لا رابط إلى صفحة غير موجودة). */
 export const visaHref = (lang) => String((VISA_LANGS.includes(lang) && VISA_GUIDE_ALT[lang]) || VISA_GUIDE_ALT.en);
 
 /** تاريخ آخر تعديل على المحتوى (ISO لـdateModified) وسطره المرئي بلغتيه — حرفياً، يحرسه C28. */
 export const VISA_UPDATED_ISO = '2026-10-17';
-export const VISA_UPDATED_LINE = { ar: 'تاريخ آخر تحديث: 17 أكتوبر 2026', en: 'Last updated: 17 October 2026', zh: '最后更新：2026 年 10 月 17 日', ru: 'Последнее обновление: 17 октября 2026 года', de: 'Stand: 17. Oktober 2026', ur: 'آخری ترمیم: 17 اکتوبر 2026' };
+export const VISA_UPDATED_LINE = { ar: 'تاريخ آخر تحديث: 17 أكتوبر 2026', en: 'Last updated: 17 October 2026', zh: '最后更新：2026 年 10 月 17 日', ru: 'Последнее обновление: 17 октября 2026 года', de: 'Stand: 17. Oktober 2026', ur: 'آخری ترمیم: 17 اکتوبر 2026', tr: 'Son güncelleme: 17 Ekim 2026' };
 
 /** سطر الرسوم العام — الذكر الوحيد للرسوم في الصفحة، حرفياً بكل لغة، يحرسه C28. */
-export const VISA_FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.', zh: '签证费用将在官方平台提交申请时显示。', ru: 'Размер визового сбора вы увидите при подаче заявки на официальной платформе.', de: 'Die Gebühren sehen Sie bei der Antragstellung auf der offiziellen Plattform.', ur: 'فیس سرکاری ویب سائٹ پر درخواست دیتے وقت دکھائی جاتی ہے۔' };
+export const VISA_FEES_LINE = { ar: 'تُعرض الرسوم عند التقديم في المنصة الرسمية.', en: 'Fees are shown when you apply on the official platform.', zh: '签证费用将在官方平台提交申请时显示。', ru: 'Размер визового сбора вы увидите при подаче заявки на официальной платформе.', de: 'Die Gebühren sehen Sie bei der Antragstellung auf der offiziellen Plattform.', ur: 'فیس سرکاری ویب سائٹ پر درخواست دیتے وقت دکھائی جاتی ہے۔', tr: 'Ücretler başvuru sırasında resmî platformda gösterilir.' };
 
 /** ملاحظة التحرير — في معاينة النشر وطلب الدمج فقط، ولا تظهر في الإنتاج (قرار إياد). */
 export const VISA_PREVIEW_NOTE = 'يجب فتح كل رابط يدوياً قبل النشر';

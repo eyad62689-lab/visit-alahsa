@@ -12,27 +12,30 @@
 //   4. src/pages/<lang>/visa-guide/index.astro.
 //   5. src/i18n/ui.ts — مفتاحا foot.l.visa وplan.visa في كتلة اللغة (بنهايات الأسطر كما في الملف).
 //   6. <lang>-translation/memory/tm.json وscores.csv وglossary/termbase.json (إضافات الحاكم).
+// التركية (tr): المدخل `tr-translation/output/tr-visa-1/final.json` (حقل strings على شكل دفعات خطّها)، والخطوة 6
+// يتولّاها خطّها بأداة إنهاء الدفعة (المعجم بمفاتيح tr والأحكام batch_rulings) فلا تُكرَّر هنا.
 // يتوقف عند أول نقص: مفتاح غائب، رقم عربي-هندي، عملة، عبارة شك، أو رابط خارجي ليس من الرسمية.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 // اللغة واسم ملف الحكم من سطر الأوامر يُقيَّدان بقوائم مغلقة (لا مسار حرّاً من المستخدم إلى نظام الملفات)
-const LANGS = ['zh', 'de', 'ru', 'ur'];
+const LANGS = ['zh', 'de', 'ru', 'ur', 'tr'];
 const lang = LANGS.find((l) => l === process.argv[2]);
-if (!lang) { console.error('usage: apply-visa-guide.mjs <zh|de|ru|ur> [judge.json|judge-amend.json]'); process.exit(2); }
-const OUT = path.join(ROOT, `${lang}-translation/output/visa-guide`);
+if (!lang) { console.error('usage: apply-visa-guide.mjs <zh|de|ru|ur|tr> [judge.json|judge-amend.json|final.json]'); process.exit(2); }
+const OUT = path.join(ROOT, lang === 'tr' ? 'tr-translation/output/tr-visa-1' : `${lang}-translation/output/visa-guide`);
 const read = (p) => readFileSync(p, 'utf8');
 const readJson = (p) => JSON.parse(read(p));
 
 const pack = readJson(path.join(OUT, 'pack.json'));
-const JUDGE_FILES = ['judge.json', 'judge-amend.json'];
-const judgeFile = JUDGE_FILES.find((f) => f === path.basename(process.argv[3] ?? 'judge.json'));
+const JUDGE_FILES = lang === 'tr' ? ['final.json'] : ['judge.json', 'judge-amend.json'];
+const judgeFile = JUDGE_FILES.find((f) => f === path.basename(process.argv[3] ?? JUDGE_FILES[0]));
 if (!judgeFile) { console.error(`ملف الحكم يجب أن يكون أحد: ${JUDGE_FILES.join(' | ')}`); process.exit(2); }
 const judge = readJson(path.join(OUT, judgeFile));
 if (judge.decision !== 'APPROVE') { console.error(`judge.json: القرار ${judge.decision} — لا تطبيق بلا APPROVE`); process.exit(1); }
-const S = judge.final_strings;
+const S = judge.final_strings ?? judge.strings;
+judge.score ??= judge.batch_score;
 const keys = Object.keys(pack.strings);
 const missing = keys.filter((k) => typeof S[k] !== 'string' || !S[k].trim());
 if (missing.length) { console.error(`final_strings ناقصة ${missing.length} مفتاحاً: ${missing.slice(0, 5).join(', ')}`); process.exit(1); }
@@ -40,7 +43,7 @@ const extra = Object.keys(S).filter((k) => !pack.strings[k]);
 if (extra.length) { console.error(`final_strings تحمل مفاتيح ليست في pack.json: ${extra.slice(0, 5).join(', ')}`); process.exit(1); }
 
 // ── فحوص السلامة على النصوص قبل أي كتابة ──
-const { VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, visaLimits } = await import(path.join(ROOT, 'src/lib/visa-guide.mjs'));
+const { VISA_OFFICIAL_LINKS, VISA_FORBIDDEN_PHRASES, visaLimits } = await import(pathToFileURL(path.join(ROOT, 'src/lib/visa-guide.mjs')).href);
 const VISA_LIMITS = visaLimits(lang);
 const official = new Set(Object.values(VISA_OFFICIAL_LINKS));
 const problems = [];
@@ -61,7 +64,7 @@ if (lang === 'ur') for (const [k, v] of Object.entries(S)) if (/[يكة]/.test(v
 if (problems.length) { console.error('إخفاق الفحص قبل التطبيق:\n - ' + problems.join('\n - ')); process.exit(1); }
 
 // ── تحويل الروابط الداخلية إلى لغة الصفحة ──
-const BUILT = { zh: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], de: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ru: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ur: ['attractions', 'events', 'map'] }[lang];
+const BUILT = { zh: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], de: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ru: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'], ur: ['attractions', 'events', 'map'], tr: ['attractions', 'events', 'stay', 'plan-your-trip', 'plan', 'map'] }[lang];
 const mapHref = (href) => {
   if (/^https?:\/\//.test(href)) return href;
   const m = href.match(/^\/en\/([^/#]+)\/(#.*)?$/);
@@ -110,7 +113,7 @@ for (const p of [...C.arrive.land]) if (typeof p !== 'string' && /^https?:/.test
 
 const UP = lang.toUpperCase();
 const today = new Date().toISOString().slice(0, 10);
-const tsOut = `// مولَّد بـtools/translation/apply-visa-guide.mjs من ${lang}-translation/output/visa-guide/judge.json (${today}، الدرجة ${judge.score}) — لا يُحرَّر يدوياً؛\n// أي تعديل يمرّ بخط ${lang}-translation-pipeline ثم يُعاد التطبيق.\nimport type { VisaGuideContent } from './visa-guide';\n\nexport const VISA_${UP}: VisaGuideContent = ${JSON.stringify(C, null, 2)};\n`;
+const tsOut = `// مولَّد بـtools/translation/apply-visa-guide.mjs من ${path.relative(ROOT, path.join(OUT, judgeFile)).split(path.sep).join('/')} (${today}، الدرجة ${judge.score}) — لا يُحرَّر يدوياً؛\n// أي تعديل يمرّ بخط ${lang}-translation-pipeline ثم يُعاد التطبيق.\nimport type { VisaGuideContent } from './visa-guide';\n\nexport const VISA_${UP}: VisaGuideContent = ${JSON.stringify(C, null, 2)};\n`;
 const dataPath = path.join(ROOT, `src/data/visa-guide.${lang}.ts`);
 writeFileSync(dataPath, tsOut);
 
@@ -167,6 +170,7 @@ if (!after.slice(0, after.indexOf(`${EOL}  },`)).includes("'foot.l.visa'")) {
 }
 
 // ── الذاكرة والمعجم والسجلّ ──
+if (lang === 'tr') { console.log(`✓ tr: ${dataPath} · ${keys.length} سلسلة · الدرجة ${judge.score} · العنوان ${tl} والوصف ${dl} حرفاً (الذاكرة والمعجم بأداة إنهاء الدفعة)`); process.exit(0); }
 const tmPath = path.join(ROOT, `${lang}-translation/memory/tm.json`);
 const tm = readJson(tmPath);
 const byField = new Map(tm.pairs.filter((p) => p.page === 'visa-guide').map((p) => [p.field, p]));

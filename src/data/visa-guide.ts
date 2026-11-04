@@ -6,13 +6,14 @@
 // وأرقام الدول، ومدد القرار، وسياسات الاسترداد، وتواريخ موسم حج بعينه، وأحكام المنافذ
 // البرية. لا تُضاف هنا معلومة تنظيمية جديدة بلا مصدر، ولا تُعدَّل اعتماداً على الذاكرة.
 // الروابط الرسمية من VISA_OFFICIAL_LINKS وحدها (الحارس C28 يرفض سواها).
-// الإنجليزية كُتبت مباشرةً كصفحة «عن زوروا الأحساء»؛ zh/de/ru/ur عبر خطوط الترجمة فقط.
+// الإنجليزية كُتبت مباشرةً كصفحة «عن زوروا الأحساء»؛ zh/de/ru/ur/tr عبر خطوط الترجمة فقط.
 import { VISA_OFFICIAL_LINKS as L, VISA_UPDATED_LINE } from '../lib/visa-guide.mjs';
 import type { Lang } from '../i18n/ui';
 import { VISA_ZH } from './visa-guide.zh';
 import { VISA_RU } from './visa-guide.ru';
 import { VISA_DE } from './visa-guide.de';
 import { VISA_UR } from './visa-guide.ur';
+import { VISA_TR } from './visa-guide.tr';
 // @visa-lang-imports — تُدرج هنا سجلّات اللغات المعتمدة من خطوط الترجمة (tools/translation/apply-visa-guide.mjs)
 
 /** لغات الصفحة المبنية — تتبع VISA_LANGS في src/lib/visa-guide.mjs */
@@ -317,6 +318,7 @@ export const VISA_GUIDE: Partial<Record<Lang, VisaGuideContent>> = {
   ru: VISA_RU,
   de: VISA_DE,
   ur: VISA_UR,
+  tr: VISA_TR,
   // @visa-lang-registry
 };
 export const visaGuide = (lang: Lang): VisaGuideContent => {

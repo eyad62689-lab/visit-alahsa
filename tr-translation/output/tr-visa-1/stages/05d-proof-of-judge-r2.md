@@ -1,0 +1,7 @@
+# Proof of judge edits, tr-visa-1 (07-judge.r2.json)
+
+Checked all 21 changes against en/ar sentence by sentence; swept all 138 strings for VG1-VG13 breaches (yol/rota, Krallık outside «Birleşik Krallık», e-Vize, ev sahibi, davet eden taraf, aktarma molası, rezerve, «Çoklu girişli», uygun ülke): none. Link hrefs and order equal the English in all 8 link strings. faq.items.5.q: the comma follows an object («Bir akrabamı»), not a plain subject, so DN16/DN16-r2 (subject commas) does not apply; it separates two adjacent accusative-looking words that would otherwise fuse («akrabamı beni»). Not a fault.
+
+1. `routes.tourist.who.text` — "Vize turizmi, etkinliklere katılımı, akraba ziyaretini ve umreyi kapsar. Hac, çalışma ve eğitimi kapsamaz." The new subject-less "Vize turizmi" reads as the compound noun "visa tourism" ("vize turizmi") and the list then misparses; in sentence 2 "Hac" (nominative, first item, no accusative) sits before the comma as if it were a topic/subject while only the last item carries -i, so "Hac" and "çalışma" look like unmarked subjects of "kapsamaz". The English is "It covers tourism, attending events, visiting relatives and Umrah. It does not cover Hajj, work or study." Suggested fix: "Bu vize turizmi, etkinliklere katılımı, akraba ziyaretini ve umreyi kapsar. Haccı, çalışmayı ve eğitimi kapsamaz." (or «Hac, çalışma ve eğitim için geçerli değildir» is no longer wanted because of the validity wording; keep «kapsar/kapsamaz» with «Bu vize» and fully case-marked objects).
+
+Faults: 1
