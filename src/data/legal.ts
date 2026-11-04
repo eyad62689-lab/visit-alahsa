@@ -4,7 +4,7 @@
 // **لا يُعدَّل أي بند إلا بوثيقة معتمدة جديدة من إياد.** تكيّف وحيد معتمد
 // (2026-07-10): مرجع «صفحة اتصل بنا» غير الموجودة → البريد الرسمي.
 // وبند «دليل المرشدين السياحيين» في قسم إخلاء المسؤولية (عربي/إنجليزي فقط) نصّه من
-// مصدره الواحد في src/data/guides.ts — لا يُكتب لـzh/de/ru إلا عبر خطوط الترجمة.
+// مصدره الواحد في src/data/guides.ts — لا يُكتب لـzh/de/ru/ur/tr إلا عبر خطوط الترجمة.
 import { GUIDES_DISCLAIMER } from './guides';
 
 export type LegalSub = { h: string; before?: string[]; list?: string[]; after?: string[] };
@@ -1126,6 +1126,230 @@ export const LEGAL_SECTIONS_UR: LegalSection[] = [
       { h: '2. ٹوٹے ہوئے یا ضوابط کے خلاف لنکس کی اطلاع',
         before: [
           'ہم بیرونی لنکس کا وقتاً فوقتاً جائزہ لینے کا اہتمام کرتے ہیں۔ باضابطہ رابطے کے ذرائع سے آپ کسی بھی ٹوٹے ہوئے لنک، یا نامناسب یا ضوابط کے خلاف مواد تک لے جانے والے لنک کی اطلاع دے سکتے ہیں، اور ہم ایسی ہر اطلاع کو خوش آمدید کہتے ہیں۔ ہم جلد از جلد اس کے ازالے کی کارروائی کریں گے۔',
+        ],
+      },
+    ],
+  },
+];
+
+// التركية — خط tr-translation-pipeline (الدفعة tr-legal-1). بلا بند «دليل المرشدين السياحيين» كبقية اللغات غير ar/en.
+export const LEGAL_SECTIONS_TR: LegalSection[] = [
+  {
+    n: "Birinci bölüm", h: "Gizlilik politikası",
+    lead: "Visit Al-Ahsa olarak ziyaretçilerimizin gizliliğine son derece önem veriyoruz. Ziyaretçilerimizin kişisel verilerini en iyi uygulamalara ve Suudi Arabistan Kişisel Verilerin Korunması Kanunu'na uygun olarak korumayı taahhüt ediyoruz. Bu politika topladığımız verilerin niteliğini, bu verileri nasıl kullanıp koruduğumuzu ve verilere ilişkin haklarınızı açıklar.",
+    subs: [
+      { h: "1. Topladığımız veriler",
+        before: [
+          "Visit Al-Ahsa öncelikle bilgilendirme amaçlı bir sitedir; içeriğine göz atmak için kayıt olmanız veya hesap açmanız gerekmez. Yine de aşağıdaki veri kategorilerini toplayabiliriz:",
+        ],
+        list: [
+          "Sitede gezinirken otomatik olarak toplanan teknik veriler, örneğin: İnternet Protokolü (IP) adresi, tarayıcı ve işletim sistemi türü, ziyaret edilen sayfalar, ziyaret süresi ve siteye geliş kaynağı.",
+          "Google Analytics ve benzeri analiz araçları yoluyla toplanan kullanım ve analiz verileri; bunlar büyük oranda anonim istatistik verileridir ve gezinme kalıplarını anlamak için kullanılır.",
+          "Bizimle e-posta veya iletişim formları aracılığıyla iletişime geçtiğinizde gönüllü olarak verdiğiniz veriler, örneğin: adınız, e-posta adresiniz ve mesajınızın içeriği.",
+        ],
+      },
+      { h: "2. Verilerin toplanma ve kullanılma amaçları",
+        before: [
+          "Yukarıda anılan verileri yalnızca aşağıdaki meşru amaçlarla kullanırız:",
+        ],
+        list: [
+          "Gezinme kalıplarına ve ziyaretçilerin genel ilgi alanlarına dayanarak sitenin içeriğini ve kullanıcı deneyimini iyileştirmek.",
+          "Sürekli geliştirme amacıyla sitenin performansını ölçmek ve ziyaret trafiğini istatistiksel olarak analiz etmek.",
+          "Ziyaretçilerden gelen soruları ve mesajları yanıtlamak.",
+          "Siteyi kötüye kullanıma ve hileli veya zararlı faaliyetlere karşı korumak.",
+        ],
+        after: [
+          "Kişisel verilerinizi hiçbir koşulda herhangi bir üçüncü tarafa satmayız, kiralamayız veya bu veriler üzerinden üçüncü taraflarla ticaret yapmayız. Bu verileri yalnızca anılan analiz araçlarının işletilmesi için gerekli ölçüde paylaşırız. Bunun dışında yalnızca mevzuat bu verileri yetkili bir makama açıklamamızı zorunlu kıldığında paylaşırız.",
+        ],
+      },
+      { h: "3. Google Analytics ve izleme çerezleri",
+        before: [
+          "Site, ziyaretlerin analizi için Google'ın sunduğu Google Analytics hizmetini (GA4 sürümü dahil) kullanır. Bu hizmet ziyaretlere ilişkin istatistiksel bilgi toplamak için çerezlere ve benzeri izleme yöntemlerine dayanır. Bu bilgiler Google'ın sunucularına aktarılabilir ve orada saklanabilir. Google'ın bu verileri işlemesi kendi gizlilik politikasına tabidir. İzleme çerezlerinin yönetimine ve devre dışı bırakma seçeneklerine ilişkin ayrıntıları bu belgenin “Çerez politikası” başlıklı dördüncü bölümünde bulabilirsiniz.",
+        ],
+      },
+      { h: "4. Kullanıcıların hakları",
+        before: [
+          "Suudi Arabistan Kişisel Verilerin Korunması Kanunu uyarınca kişisel verilerinize ilişkin olarak aşağıdaki haklara sahipsiniz:",
+        ],
+        list: [
+          "Bilgilendirilme hakkı: sizinle ilgili topladığımız verilerin niteliğini, hangi amaçla toplandıklarını ve nasıl işlendiklerini öğrenmek.",
+          "Erişim hakkı: elimizdeki kişisel verilerinize erişim talep etmek ve bunların bir kopyasını almak.",
+          "Düzeltme hakkı: yanlış veya eksik verilerin düzeltilmesini talep etmek.",
+          "Silme (imha) hakkı: kişisel verilerinize artık ihtiyaç kalmadığında veya rızanızı geri çektiğinizde bu verilerin silinmesini talep etmek; saklanmaları için yasal bir dayanak bulunan veriler bu hakkın kapsamı dışındadır.",
+          "Rızayı geri çekme hakkı: verilerinizin işlenmesine verdiğiniz rızayı dilediğiniz zaman geri çekmek; geri çekme işlemi daha önce yapılan veri işlemenin hukuka uygunluğunu etkilemez.",
+        ],
+        after: [
+          "Bu haklardan herhangi birini kullanmak için sitenin resmî iletişim kanalları üzerinden bize ulaşabilirsiniz. Talebinizi makul bir süre içinde ve mevzuatın gerekliliklerine uygun biçimde yanıtlarız.",
+        ],
+      },
+      { h: "5. Verilerin korunması ve saklama süresi",
+        before: [
+          "Verileri yetkisiz erişime, açıklanmaya, değiştirilmeye veya imha edilmeye karşı korumak için uygun teknik ve idari tedbirler uygularız. Bu tedbirler arasında şunlar yer alır: siteye bağlantının HTTPS protokolüyle şifrelenmesi, güvenlik başlıklarının etkinleştirilmesi ve verilere erişimin yalnızca bu verilere ihtiyaç duyan kişilerle sınırlandırılması. Kişisel verileri yalnızca toplandıkları amaçlara ulaşmak için gerekli olan süre ya da yürürlükteki mevzuatın öngördüğü süre boyunca saklarız.",
+        ],
+      },
+      { h: "6. Çocukların gizliliği",
+        before: [
+          "Site on sekiz yaşın altındaki kişilerden bilerek kişisel veri toplamaz. Bir çocuktan velisinin rızası olmadan veri topladığımızı öğrenirsek bu verileri derhal silme yoluna gideriz.",
+        ],
+      },
+    ],
+  },
+  {
+    n: "İkinci bölüm", h: "Kullanım koşulları",
+    lead: "Bu koşullar Visit Al-Ahsa sitesini ve sitedeki içerik ve hizmetleri kullanmanızı düzenler. Siteye erişmeniz ve siteyi kullanmanız, bu koşulları kabul ettiğiniz ve bunlara uymayı taahhüt ettiğiniz anlamına gelir.",
+    subs: [
+      { h: "1. Sitenin niteliği ve amacı",
+        before: [
+          "Visit Al-Ahsa bağımsız bir bilgilendirme sitesidir. Site El-Ahsa Vahası'nı, vahanın tarihî ve doğal yerlerini ve mevsimlik etkinliklerini tanıtmayı amaçlar. Ayrıca ziyaretçilere ve ilgi duyanlara yol gösterici ve kültürel içerik sunmayı hedefler. Site bir devlet kurumu değildir, hiçbir resmî makamı temsil etmez ve doğrudan rezervasyon ya da satış hizmeti sunmaz.",
+        ],
+      },
+      { h: "2. Fikrî mülkiyet hakları",
+        before: [
+          "Sitenin tüm içeriği (metinler, makaleler, edebî anlatılar, görseller, tasarımlar, logolar, etkileşimli haritalar, görsel kimlik ve kaynak kodu) Visit Al-Ahsa'ya aittir ya da ona lisanslıdır. Bu içerik Suudi Arabistan Telif Hakkı Kanunu ve ilgili uluslararası sözleşmeler uyarınca korunur. Önceden yazılı izin alınmadan bu içerik kopyalanamaz, yeniden yayımlanamaz, dağıtılamaz veya değiştirilemez; ticari amaçla da kullanılamaz.",
+        ],
+      },
+      { h: "3. İzin verilen kullanım",
+        list: [
+          "Sitede gezinmek ve içeriğini kişisel, ticari olmayan amaçlarla görüntülemek.",
+          "Sitenin sayfalarına giden bağlantıları sosyal medya veya başka yollarla kaynak göstererek paylaşmak.",
+          "Eğitim, araştırma veya eleştiri amacıyla içerikten sınırlı alıntı yapmak; alıntı mevzuatın izin verdiği sınırları aşmamalı ve içeriğin siteye ait olduğu açıkça belirtilmelidir.",
+        ],
+      },
+      { h: "4. Yasaklanan kullanım",
+        before: [
+          "Siteyi kullanırken aşağıdakilerden herhangi birini yapmanız yasaktır:",
+        ],
+        list: [
+          "Önceden yazılı izin almadan içeriği veya görselleri ticari amaçla kopyalamak ya da tamamen veya kısmen yeniden yayımlamak.",
+          "Siteyi Suudi Arabistan'da yürürlükte olan mevzuata aykırı herhangi bir faaliyette kullanmak. Bu mevzuata Suudi Arabistan Bilişim Suçlarıyla Mücadele Kanunu da dahildir.",
+          "Siteye sızmaya, işleyişini bozmaya ya da sitenin sistemlerine veya verilerine yetkisiz erişim sağlamaya çalışmak.",
+          "İçerik çekmek veya sistematik biçimde veri toplamak için izin alınmadan otomatik programlar (bot ya da veri kazıma aracı gibi) kullanmak. Bu yasak sitenin robots.txt dosyasında tarama izni verilen arama motorlarını, yanıt motorlarını ve yapay zekâ asistanlarını, dosyanın belirlediği sınırlar içinde kaldıkları sürece kapsamaz.",
+          "Belgelenmiş bir anlaşma olmadan sitenin kimliğine bürünmek ya da siteyle bir ortaklık bulunduğu veya sitenin sponsorluk ya da onay verdiği izlenimini yaratmak.",
+          "Hakaret ya da iftira içeren veya genel ahlaka ve İslami değerlere aykırı herhangi bir içeriği, siteyle ilişkili iletişim kanallarından herhangi biri üzerinden yayımlamak veya göndermek.",
+        ],
+      },
+      { h: "5. Değişiklikler ve hizmetin askıya alınması",
+        before: [
+          "Site, içeriğini veya hizmetlerini dilediği zaman, önceden bildirimde bulunmadan, tamamen veya kısmen değiştirme, askıya alma ya da sonlandırma hakkını saklı tutar. Bundan dolayı kullanıcılara karşı herhangi bir sorumluluk doğmaz.",
+        ],
+      },
+      { h: "6. Uygulanacak hukuk",
+        before: [
+          "Bu koşullar Suudi Arabistan'da yürürlükte olan mevzuata tabidir ve bu mevzuata göre yorumlanır. Bu koşullardan doğan her uyuşmazlıkta yargı yetkisi Suudi Arabistan'daki yetkili mahkemelere ve yargı mercilerine aittir.",
+        ],
+      },
+    ],
+  },
+  {
+    n: "Üçüncü bölüm", h: "Sorumluluk reddi",
+    lead: "Visit Al-Ahsa olarak, yayımladığımız bilgilerin doğru ve güncel olması için büyük çaba gösteriyoruz. Ancak turizm ve bilgilendirme içeriğinin doğası gereği şunları belirtmemiz gerekir:",
+    subs: [
+      { h: "1. Bilgilerin doğruluğu ve güncellenmesi",
+        before: [
+          "Sitedeki bilgiler genel nitelikte, yol gösterici bilgiler olarak sunulur. Bu bilgiler arasında yerlerin ve alanların ziyaret saatleri, giriş ve hizmet ücretleri, etkinliklerin ve mevsimlik festivallerin tarihleri ile restoranların, kafelerin ve konaklama yerlerinin ayrıntıları da yer alır. İşletmeciler bu bilgileri haberimiz olmadan her an değiştirebilir. Bu nedenle site bu bilgilerin her zaman doğru, eksiksiz ve güncel olduğunu garanti etmez. Ziyaretçilere, bir ziyaret planlamadan önce bu bilgileri doğrudan resmî kurumlardan veya yerlerin ve etkinliklerin işletmecilerinden doğrulamalarını daima öneririz.",
+        ],
+      },
+      { h: "2. Sorumluluğun sınırları",
+        before: [
+          "Aşağıdakiler hiçbir şekilde Visit Al-Ahsa'nın ve siteyi işletenlerin sorumluluğunda değildir:",
+        ],
+        list: [
+          "Sitenin kullanımından veya sitedeki bilgilere güvenilmesinden doğan her türlü doğrudan veya dolaylı zarar ile bunlardan doğan diğer zararlar.",
+          "Sitenin içeriğine dayanarak alınan kararların yol açtığı her türlü mali kayıp, masraf veya yükümlülük (örneğin fiyatların değişmesi, etkinliklerin iptal edilmesi ya da yerlerin kapanması nedeniyle).",
+          "Sitede adı geçen kurum ve işletmelerin sunduğu hizmetlerin kalitesi. Bu kurum ve işletmelerin sitede anılması bağlayıcı bir tavsiye değildir ve hizmet düzeylerine ilişkin bir garanti oluşturmaz.",
+          "Siteye erişimdeki her türlü kesinti ile makul ölçüde önlenemeyen teknik arızalar veya yazılım hataları.",
+        ],
+      },
+      { h: "3. Uzman tavsiyesi değil, yol gösterici içerik",
+        before: [
+          "Sitede yayımlanan içerik genel tanıtım ve yol gösterme amaçlıdır; hiçbir türde uzman tavsiyesi niteliği taşımaz. Kullanıcı sitenin içeriğine dayanarak herhangi bir karar almadan önce gerekli özeni bizzat göstermeli ve bağımsız bir doğrulama yapmalıdır.",
+        ],
+      },
+    ],
+  },
+  {
+    n: "Dördüncü bölüm", h: "Çerez politikası",
+    lead: "Bu politika Visit Al-Ahsa'da kullanılan çerezlerin niteliğini, amacını ve bunları nasıl kontrol edebileceğinizi açıklar.",
+    subs: [
+      { h: "1. Çerez nedir?",
+        before: [
+          "Çerezler internet sitelerini ziyaret ettiğinizde cihazınızda saklanan küçük metin dosyalarıdır. Bu dosyalar sitenin cihazınızı tanımasına ve ziyaretinize dair bazı bilgileri hatırlamasına yardımcı olur. Böylece gezinme deneyimi iyileşir ve sitenin performansı analiz edilebilir.",
+        ],
+      },
+      { h: "2. Sitede kullanılan çerez türleri",
+        list: [
+          "İşleyiş için zorunlu çerezler: sitenin temel işleyişi ve sayfalarının doğru görüntülenmesi için gereklidir; site üzerinden devre dışı bırakılamaz.",
+          "Analiz çerezleri: Google Analytics (GA4) aracılığıyla ziyaretlere ilişkin anonim istatistikler toplamak için kullanılır; örneğin ziyaretçi sayısı, en çok görüntülenen sayfalar, gezinme süresi ve siteye geliş kaynakları. Amaç içeriği geliştirmek ve deneyimi iyileştirmektir.",
+          "İleride eklenebilecek benzer analiz araçlarına ait performans ve ölçüm çerezleri; bu araçlar devreye alındığında bu politika güncellenecektir.",
+        ],
+        after: [
+          "Site şu anda ziyaretçileri hedeflemeye yönelik reklam veya pazarlama çerezleri kullanmaz.",
+        ],
+      },
+      { h: "3. Kontrol ve devre dışı bırakma seçenekleri",
+        before: [
+          "Çerezleri aşağıdaki seçeneklerle dilediğiniz gibi yönetebilir veya devre dışı bırakabilirsiniz:",
+        ],
+        list: [
+          "Tarayıcı ayarları: tüm modern tarayıcılar (Chrome, Safari, Firefox, Edge) gizlilik ayarları üzerinden çerezleri tamamen veya kısmen silmenize ya da engellemenize olanak tanır.",
+          "Google Analytics devre dışı bırakma aracı: gezinme verilerinizin Google Analytics hizmetiyle paylaşılmasını önlemek için Google'ın resmî tarayıcı eklentisini (Google Analytics Opt-out Browser Add-on) yükleyebilirsiniz.",
+          "Özel gezinme modu: gizli pencere veya özel gezinme modunu kullanmak, izleme çerezlerinin cihazınızda saklanmasını sınırlar.",
+        ],
+        after: [
+          "Lütfen unutmayın: bazı çerezleri devre dışı bırakmak sitenin belirli özelliklerinin çalışmasını etkileyebilir, ancak sitenin temel içeriğine erişmenizi engellemez.",
+        ],
+      },
+    ],
+  },
+  {
+    n: "Beşinci bölüm", h: "Fikrî mülkiyet politikası",
+    subs: [
+      { h: "1. Mülkiyet beyanı",
+        before: [
+          "Tüm hakları saklıdır © Visit Al-Ahsa (visit-alahsa.com). Bu hakların kapsamına örneğin şunlar girer (liste bunlarla sınırlı değildir): metinler, makaleler ile edebî ve tarihî anlatılar; fotoğraflar ve düzenlenmiş görseller; çizimler ve tasarımlar; logo ve görsel kimlik (Ak Yanaklı Arapbülbülü karakteri dahil); etkileşimli haritalar; sitenin yapısı ve kaynak kodu. Sitede yer alan ve başka taraflardan lisansla alınan her içerik hak sahiplerinin mülkiyetinde kalır ve lisanslarına uygun biçimde kullanılır.",
+        ],
+      },
+      { h: "2. Koruma kapsamı",
+        before: [
+          "Sitenin içeriği Suudi Arabistan Telif Hakkı Kanunu'nun ve Suudi Arabistan'ın taraf olduğu uluslararası sözleşmelerin sağladığı korumadan yararlanır. Bu sözleşmelerden biri Edebiyat ve Sanat Eserlerinin Korunmasına İlişkin Bern Sözleşmesi'dir. İzinsiz her kullanım hukuki sorumluluk doğuran bir ihlaldir.",
+        ],
+      },
+      { h: "3. Hak ihlalini bildirme",
+        before: [
+          "Sitede yayımlanan herhangi bir içeriğin size veya temsil ettiğiniz kişilere ait fikrî mülkiyet haklarını ihlal ettiğini düşünüyorsanız lütfen bunu sitenin resmî iletişim kanalları üzerinden bize bildirin. Bildirimde şunların bulunması gerekir:",
+        ],
+        list: [
+          "Hakkının ihlal edildiği iddia edilen eserin tanımı ve bildirimde bulunanın sıfatı (hak sahibi veya vekili).",
+          "Sitede itiraz edilen içeriğe giden bağlantı ve içeriğin doğru bir tanımı.",
+          "Hak sahipliğini veya hak sahibi adına hareket etme yetkisini gösteren kanıt.",
+          "Bildirimde bulunanın iletişim bilgileri (ad ve e-posta).",
+        ],
+        after: [
+          "Her ciddi bildirimi makul bir süre içinde inceleriz. İddianın doğru olduğu kanıtlanırsa kaynak gösterimini düzeltmekten içeriği kaldırmaya kadar uygun önlemi alırız. Sonucu da bildirimde bulunan kişiye iletiriz.",
+        ],
+      },
+      { h: "4. Lisans ve kullanım talepleri",
+        before: [
+          "Sitenin içeriğini veya görsellerini medya, eğitim ya da ticari amaçlarla kullanmak isteyenler sitenin resmî iletişim kanalları üzerinden lisans talebinde bulunabilir. Her talep niteliğine ve amacına göre değerlendirilir.",
+        ],
+      },
+    ],
+  },
+  {
+    n: "Altıncı bölüm", h: "Dış bağlantılar politikası",
+    lead: "Visit Al-Ahsa başka tarafların işlettiği internet sitelerine, uygulamalara veya platformlara giden bağlantılar içerebilir; örneğin resmî kurumların siteleri, rezervasyon platformları, Google Maps, sosyal medya hesapları, etkinliklerin siteleri ve turizm işletmelerinin siteleri. Bu bağlantılar yalnızca ziyaretçilere kolaylık sağlamak ve içeriği zenginleştirmek için sunulur.",
+    subs: [
+      { h: "1. Bağlantılara ilişkin sorumluluğun sınırları",
+        list: [
+          "Herhangi bir dış bağlantıya yer verilmesi, bağlantı verilen tarafın içeriğini sitenin onayladığı veya hizmetlerini garanti ettiği anlamına gelmek zorunda değildir.",
+          "Site dış sitelerin ve uygulamaların içeriğinden, bu içeriğin doğruluğundan, hukuka uygunluğundan veya güncelliğinden sorumlu değildir.",
+          "Site bu tarafların gizlilik politikalarından, kullanım koşullarından veya veri toplama uygulamalarından sorumlu değildir. Bu taraflarla işlem yapmadan önce politikalarını gözden geçirmenizi öneririz.",
+          "Sitedeki bir bağlantı üzerinden dış bir tarafla yaptığınız her türlü mali veya sözleşmeye dayalı işlem tamamen sizin sorumluluğunuzdadır ve doğrudan sizinle o taraf arasındadır.",
+        ],
+      },
+      { h: "2. Bozuk veya kurallara aykırı bağlantıları bildirme",
+        before: [
+          "Dış bağlantıları düzenli olarak gözden geçirmeye özen gösteririz. Bozuk bir bağlantıyı veya uygunsuz ya da kurallara aykırı içeriğe yönlendiren bir bağlantıyı sitenin resmî iletişim kanalları üzerinden bize bildirmenizden memnuniyet duyarız. Bildirilen sorunu en kısa sürede gidermek için gereğini yaparız.",
         ],
       },
     ],

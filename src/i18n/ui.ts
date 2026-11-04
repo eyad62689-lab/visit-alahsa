@@ -2050,7 +2050,7 @@ export const ui = {
     'plan.visa': 'Vize rehberi',
     'foot.l.events': 'Etkinlikler',
     'foot.l.about': 'El-Ahsa hakkında',
-    'foot.l.privacy': 'Politikalar ve kullanım koşulları',
+    'foot.l.privacy': 'Politikalar ve koşullar',
     'foot.l.contact': 'İletişim',
     'foot.l.whatsapp': 'WhatsApp',
     'foot.l.unesco': 'UNESCO Dünya Mirası',
