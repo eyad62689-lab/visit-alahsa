@@ -1,0 +1,22 @@
+# Judge brief — batch `tr-food-1`, round 2
+
+BATCH = `C:\Users\truyr\node-store\va-wt\tr-food\tr-translation\output\tr-food-1`
+REPO  = `C:\Users\truyr\node-store\va-wt\tr-food` (read only)
+
+You are stage 7, the final judge, round 2. Read `JUDGE-BRIEF-r1.md` first (everything in it still binds: files, units `fd`/`dg`, standing rules, output shape, checker), then `stages\07-judge.r1.json` (the round-1 text, rulings D1–D10, reader rulings). Your input text is `07-judge.r1.json`. New inputs:
+- `stages\05d-proof-of-judge.md` — an independent audit of the round-1 edits: 14 sound, **1 defect** (`dg.5.pre`: a comma between the participle subject and its predicate «… bulamaç olan aside, El-Ahsa'nın …», and the owner of «sıcaklığını» still ambiguous) plus advisory notes. Rule each.
+- `stages\06-blind-reader.on-r1.md` — a **fresh** blind reader on the page as built from round 1 (35 items; input `06-blind-reader-input.on-r1.filtered.txt`). Rule all 35.
+
+## Items to rule
+1. **The asida name, second reader** (#24): the first reader read «hurma asidesi» as «asit» (acid); round 1 ruled D1 «Hurmalı aside»; this reader read «aside» in running text as the English word «aside». Two readers, two collisions on one word: the name itself misleads. Re-rule D1 (as D1-r2): options include defusing at the first running-text mention so the word cannot be read as a stray word (e.g. «Aside (hurmalı un helvası) …» — a gloss drawn only from the card's own content, M6-r3 class), keeping «Hurmalı aside» in H3/alt/meta, or another Turkish form. The ruling binds later pages that name the dish.
+2. **«haris», second reader** (#13, and the first reader's #2): both read it as «haris» = greedy. The termbase name stands (A1-collisions class). Rule whether the card's first sentence should name it as a dish where the name first appears in running text (the English begins «When wheat and meat blend… harees is born» — the dish word may be placed so it cannot read as an adjective, e.g. «haris yemeği doğar»), without changing the name.
+3. **A round-1 edit the reader caught**: «El-Ahsa'daki gibi» (#19, balaleet — the English «the Hasawi way»): reads as a comparison with El-Ahsa while on an El-Ahsa page. Use the usage phrase («El-Ahsa usulüyle»).
+4. **Date bread** (#28): «içi bununla doldurulur» — clumsy pronoun; «içi» read as a hollow loaf. (#29) «iyi bir ekmeğin lezzetini» — the English «uniting good bread with the sweetness of dates»; rule.
+5. **Mandi** (#12): «cömertliğin adını koymadan önce de onu bilen bir vaha» still parsed with difficulty — a shorter relative or two clauses; keep the image. (#10) «Daha açık söylemek gerekirse» — the English «Put plainly» is the source's own apology for the image: keep a restatement marker (source shape) or rule a lighter one.
+6. **Hero** (#4): «sofralarda kuşaktan kuşağa aktarılan sıcak yemekler» — participle phrase before the subject; restructure.
+7. **Asida** (#23, audit): fix the owner of «sıcaklığını» and the subject–predicate comma; «bulamaç» (#24 unappetising) vs «lapa» (round-1 reader) — rule once with the TDK basis.
+8. **Sago** (#27): «elden ele aktarılır» — the English «handed down among the people of the oasis»; the page already uses «kuşaktan kuşağa» once: rule.
+9. **Method note** (#31, #32, #33): «yaygın bilinen» (#31 — one word); the four-cards/four-occasions mapping (#32 — the English says the same: source shape, record); the closing clause (#33).
+10. Source-shape / frame classes carry over from round 1 (brand tab, «El-Ahsa» P2, poetic images, melting sago, omelette, red bread unexplained, photo captions vs text — the alts are the English's alts).
+
+Write `BATCH\stages\07-judge.r2.json` (same shape as r1, `"round": 2`; `changes` = every edit vs `07-judge.r1.json`; `blind_reader_rulings` for the 35 on-r1 items plus `audit_rulings` for the 05d items; carry forward and update `rulings`, `termbase_additions`, `source_defects`, `owner_questions`; `tm_pairs` for all 44 final strings; `scores_row` `tr-food-1,2026-11-04,2,<score>,<decision>`). Checker: `TR_REPO=C:/Users/truyr/node-store/va-wt/tr-food node C:/Users/truyr/node-store/va-scratch/tr-r1/tools/verify.mjs tr-food-1 C:/Users/truyr/node-store/va-wt/tr-food/tr-translation/output/tr-food-1/stages/07-judge.r2.json --prev C:/Users/truyr/node-store/va-wt/tr-food/tr-translation/output/tr-food-1/stages/07-judge.r1.json` until `RESULT [OK]`. Turkish only via Write or a node script reading r1 (scripts in `C:\Users\truyr\node-store\va-scratch\tr-r1\`). Do not edit any repository file. Report as in round 1.
