@@ -111,11 +111,10 @@ export const aboutHref = (lang: Lang): string => (lang === 'ar' ? ABOUT_ALT.ar :
 /** دليل المتاجر الإلكترونية (أُعلن 2026-10-09) — النظائر الخمس؛ المبنيّ منها فعلاً
  *  يقرّره وجود ملف الترجمة (src/lib/stores.ts storesLangs)، وهو ما يدخل الخريطة وhreflang. */
 export const STORES_ALT = {
-  ar: '/متاجر-الأحساء-الإلكترونية/', en: '/en/online-stores/', zh: '/zh/online-stores/', de: '/de/online-stores/', ru: '/ru/online-stores/', ur: '/ur/online-stores/',
+  ar: '/متاجر-الأحساء-الإلكترونية/', en: '/en/online-stores/', zh: '/zh/online-stores/', de: '/de/online-stores/', ru: '/ru/online-stores/', ur: '/ur/online-stores/', tr: '/tr/online-stores/',
 } as const;
 export const STORES_AR = STORES_ALT.ar;
-// التركية: لا دليل متاجر بها بعد، فالإنجليزي
-export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[lang === 'tr' ? 'en' : lang];
+export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[lang];
 
 /** دليل المرشدين السياحيين المرخّصين — عربي/إنجليزي فقط (كصفحة «عن زوروا الأحساء»)،
  *  فلا يدخل STATIC_AR. اللغات الأخرى تقصد الفهرس الإنجليزي حيث يلزم رابط، ولا رابط
