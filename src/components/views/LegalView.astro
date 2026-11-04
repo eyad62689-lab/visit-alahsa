@@ -6,7 +6,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN, LEGAL_SECTIONS_RU, LEGAL_SECTIONS_DE, LEGAL_SECTIONS_ZH, LEGAL_SECTIONS_UR } from '../../data/legal';
+import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN, LEGAL_SECTIONS_RU, LEGAL_SECTIONS_DE, LEGAL_SECTIONS_ZH, LEGAL_SECTIONS_UR, LEGAL_SECTIONS_TR } from '../../data/legal';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -121,6 +121,24 @@ const C = localize(lang, {
     contactPre: 'ان پالیسیوں سے متعلق کسی استفسار، ذاتی ڈیٹا سے متعلق اپنے حقوق کے استعمال، یا حقوق کی خلاف ورزی یا ضوابط کے خلاف کسی لنک کی اطلاع کے لیے ہم ویب سائٹ کے باضابطہ ای میل پر آپ کے رابطے کے منتظر ہیں: ',
     copyright: 'جملہ حقوق محفوظ ہیں © 2026 Visit Al-Ahsa | visit-alahsa.com',
   },
+  // خط tr-translation-pipeline (الدفعة tr-legal-1)
+  tr: {
+    title: "Politikalar ve yasal koşullar",
+    updated: "Son güncelleme: 10 Temmuz 2026",
+    introH: "Genel giriş",
+    intro: [
+      "Visit Al-Ahsa (visit-alahsa.com) sitesine hoş geldiniz. Bu site El-Ahsa Vahası'nı mirası, doğası, kültürü ve etkinlikleriyle tanıtan bağımsız bir dijital portaldır. Bu belgedeki politikalar ve yasal koşullar siteyi, sitedeki içeriği ve hizmetleri kullanmanızı düzenler. Belge Suudi Arabistan'da yürürlükte olan mevzuata uygundur. Bu mevzuat arasında (M/19) sayılı ve Hicri 9 Safer 1443 (16 Eylül 2021) tarihli Kraliyet Kararnamesi ile yayımlanan Suudi Arabistan Kişisel Verilerin Korunması Kanunu ve bu kanunun Uygulama Yönetmeliği de yer alır.",
+      "Bu siteyi kullanarak veya sayfalarından herhangi birinde gezinerek bu politikaları ve koşulları okuduğunuzu ve anladığınızı onaylamış, bunlara uymayı da kabul etmiş olursunuz. Bunların herhangi bir hükmünü kabul etmiyorsanız lütfen siteyi kullanmayı bırakın.",
+      "Site bu politikaları dilediği zaman, önceden bildirimde bulunmadan değiştirme veya güncelleme hakkını saklı tutar. Bir değişiklik yayımlandıktan sonra siteyi kullanmaya devam etmeniz, o değişikliği örtülü olarak kabul ettiğiniz anlamına gelir. Bu nedenle bu sayfayı düzenli aralıklarla gözden geçirmenizi öneririz. Son güncellemenin tarihi her zaman belgenin en üstünde yer alır.",
+    ],
+    sections: LEGAL_SECTIONS_TR,
+    closingH: "Son hükümler ve iletişim",
+    closing: [
+      "Bu altı bölüm bir arada Visit Al-Ahsa sitesinin kullanımını düzenleyen politikaların ve koşulların tamamını oluşturur. Yetkili bir makam bu hükümlerden herhangi birinin geçersiz veya uygulanamaz olduğuna karar verirse bu durum diğer hükümlerin geçerliliğini ve yürürlüğünü etkilemez.",
+    ],
+    contactPre: "Bu politikalarla ilgili tüm sorularınız, kişisel verilerinize ilişkin haklarınızı kullanma talebiniz ya da bir hak ihlali veya kurallara aykırı bir bağlantı bildiriminiz için sitenin resmî e-posta adresi üzerinden bize ulaşmanızdan memnuniyet duyarız: ",
+    copyright: "© 2026 Visit Al-Ahsa. Tüm hakları saklıdır. | visit-alahsa.com",
+  },
 });
 
 const email = 'info@visit-alahsa.com';
@@ -132,6 +150,7 @@ const SEO_DESC: Partial<Record<Lang, string>> = {
   de: "Richtlinien und rechtliche Bestimmungen von Visit Al-Ahsa: Datenschutzrichtlinie, Nutzungsbedingungen, Haftungsausschluss, Cookie-Richtlinie, Richtlinie zum geistigen Eigentum und Richtlinie zu externen Links.",
   ru: "Правила и условия использования сайта «Аль-Ахса»: политика конфиденциальности, условия использования, отказ от ответственности, политика использования файлов cookie, политика интеллектуальной собственности и политика внешних ссылок.",
   ur: "Visit Al-Ahsa کی پالیسیاں اور قانونی شرائط: رازداری کی پالیسی، استعمال کی شرائط، ذمہ داری سے دستبرداری، کوکیز کی پالیسی، دانشورانہ ملکیت کے حقوق اور بیرونی لنکس۔",
+  tr: "Visit Al-Ahsa'nın politikaları ve yasal koşulları: gizlilik politikası, kullanım koşulları, sorumluluk reddi, çerezler, fikrî mülkiyet ve dış bağlantılar.",
 };
 const seoDesc = SEO_DESC[lang] ?? SEO_DESC.en!;
 ---

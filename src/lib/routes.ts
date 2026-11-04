@@ -139,8 +139,8 @@ export const guideAlt = (d: GuideSlugs): { ar: string; en: string } => ({
 const UR_STATIC: ReadonlySet<StaticPage> = new Set<StaticPage>(['map', 'unesco', 'report', 'reportThanks', 'terrainMap', 'legal']);
 
 /** الصفحات الثابتة المبنية بالتركية (خط tr-translation-pipeline): الخريطة منذ tr-map-plan-1، واليونسكو والإبلاغ وشكره
- *  والخريطة التضاريسية منذ tr-static-1؛ ما ليس هنا يقصد الإنجليزية. */
-const TR_STATIC: ReadonlySet<StaticPage> = new Set<StaticPage>(['map', 'unesco', 'report', 'reportThanks', 'terrainMap']);
+ *  والخريطة التضاريسية منذ tr-static-1، والسياسات منذ tr-legal-1؛ ما ليس هنا يقصد الإنجليزية. */
+const TR_STATIC: ReadonlySet<StaticPage> = new Set<StaticPage>(['map', 'unesco', 'report', 'reportThanks', 'terrainMap', 'legal']);
 
 /** رابط صفحة ثابتة بلغة — بشرطة ختامية دائماً. الأوردو تقصد نسختها متى بُنيت (UR_STATIC) وإلا الإنجليزية،
  *  والتركية كذلك (TR_STATIC). */
