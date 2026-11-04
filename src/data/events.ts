@@ -990,6 +990,150 @@ const TEXT_UR: TranslatedTexts = {
   },
 };
 // @ur-events:end
+// النسخة التركية — خط tr-translation-pipeline حصراً (دفعة tr-events-1؛ الحاكم 90/100). المواسم المتكرّرة العشرة،
+// والمقاطع slug تشارك الإنجليزية. بنود نسخة 2026 المنتهية من معرض اللومي (dated، والساعات، وعنوان النسخة
+// ووصفها) لا تُترجم، على سابقة TEXT_DE/RU/UR. والروابط إلى نظائرها التركية /tr/.
+const TEXT_TR: TranslatedTexts = {
+  bisht: {
+    slug: 'hasawi-bisht-festival',
+    name: 'El-Ahsa Bişt Festivali',
+    place: 'Tarihî Kasr İbrahim, Hüfuf',
+    season: 'Kış',
+    time: 'Aralık ayı civarında',
+    span: 'Birkaç gün',
+    org: 'Miras Kurumu (Suudi Arabistan\'ın Kültür Bakanlığı)',
+    acts: ['Bişt (erkek pelerini) sergisi', 'Dokuma atölyeleri', 'Bişt çarşısı', 'Folklor gösterileri'],
+  },
+  'qaisariyah-nights': {
+    slug: 'qaisariyah-nights',
+    name: 'El-Kaysariye Geceleri',
+    place: 'Tarihî El-Kaysariye Çarşısı, Hüfuf',
+    season: 'Kış sonu',
+    time: 'Şubat–mart',
+    span: 'Birkaç hafta',
+    org: 'El-Ahsa Belediyesi, El-Ahsa Geliştirme Kurumu, Miras Kurumu',
+    acts: ['Halk sanatları gösterileri', 'Sosyal buluşmalar', 'Geleneksel oyunlar', 'Zanaat atölyeleri'],
+  },
+  'kafu-nights': {
+    slug: 'kafu-nights',
+    name: 'Kafu Geceleri',
+    place: 'Kral Abdullah Çevre Parkı, Hüfuf',
+    season: 'Ramazan ayı',
+    time: 'Ramazan boyunca',
+    span: 'Uzun ramazan geceleri',
+    org: 'Kral Faysal Üniversitesi',
+    acts: ['Tiyatro gösterileri', 'Çocuk alanı', 'Uygulamalı Kafu mutfağı', '“Gabka” yemeği'],
+    intro: 'Kafu Geceleri her yıl ramazanda El-Ahsa\'da düzenlenen bir halk festivalidir. Festivalin düzenleyicisi Kral Faysal Üniversitesidir; festival ilk kez 2024\'te yapıldı. “Kafu” adı Arapça bir fiilden gelir; bu fiil “ödül ve övgü kazanmak” anlamındadır. Gecelerin öne çıkanlarından biri “Gabka” adlı yemektir. Bu yemek Arap Körfezi ülkelerinde ramazan gecelerinde yenir; halk arasında sevilen toplumsal bir gelenektir.',
+  },
+  'dates-festival': {
+    slug: 'processed-dates-festival',
+    name: 'Hurma Ürünleri Festivali',
+    place: 'El-Ahsa Belediye Kalesi, Hüfuf',
+    season: 'Kış',
+    time: 'Ocak–şubat',
+    span: 'Birkaç hafta',
+    org: 'El-Ahsa Belediyesi, El-Ahsa Geliştirme Kurumu',
+    acts: ['Tadım ve alışveriş alanı', 'Hurma ürünleri stantları', 'Kültürel atölyeler', 'Yarışmalar'],
+  },
+  'palm-village': {
+    slug: 'palm-village',
+    name: 'Hurma Köyü',
+    place: 'Muheyris mahallesi, Müberrez',
+    season: 'Kış',
+    time: 'Kasım 2026',
+    span: 'Süre henüz açıklanmadı',
+    org: 'El-Ahsa Geliştirme Kurumu, El-Ahsa Belediyesi',
+    seoTitle: 'El-Ahsa\'da Hurma Köyü etkinliği: mevsim ve konum',
+    acts: ['Hurma dükkânları', 'Yerel restoranlar ve kafeler', 'Zanaatkâr stantları (hurma yaprağı işleri)', 'Kırsal ürünler pazarı'],
+    related: [
+      { label: 'Hurma Köyü', href: '/tr/attractions/palm-village/' },
+    ],
+  },
+  lomi: {
+    slug: 'hasawi-lomi-exhibition',
+    name: 'El-Ahsa Lomi Sergisi',
+    place: 'El-Ahsa Fuar Merkezi, Es-Selam Caddesi (Ayn en-Necm Yolu), Hüfuf',
+    season: 'Yaz',
+    time: '19 Ağustos – 13 Eylül 2026',
+    span: 'Yaklaşık 26 gün',
+    org: 'El-Ahsa Ticaret Odası',
+    acts: ['Kurutulmuş misket limonu ürünleri sergisi', 'Canlı yemek pişirme', 'Tarım atölyeleri', 'Çocuk köşesi', 'Aile buluşmaları'],
+    intro: 'El-Ahsa Lomi Sergisi, El-Ahsa\'nın başlıca mevsimlik tarım etkinliğidir; El-Ahsa Limon Sergisi ya da El-Ahsa Limon Festivali olarak da bilinir. Misket limonu (lomi) vahanın hurmadan sonra en ünlü ürünüdür; El-Ahsa Ticaret Odası sergiyi bu ürünü kutlamak için düzenler. Ziyaretçiler sergide misket limonunun özelliklerini, faydalarını ve yetiştirilişini uygulamalı olarak öğrenir. Çiftçilerle doğrudan görüşebilir ve üretici ailelerin tezgâhlarından alışveriş yapabilir. Sergiye bir etkinlik programı da eşlik eder.',
+    sections: [
+      {
+        h: 'El-Ahsa misket limonu nedir?',
+        ps: [
+          'El-Ahsa misket limonuna çoğu kez El-Ahsa limonu da denir. Meyvesi küçük, koyu yeşil ve ince kabukludur; suyla dolup taşar. Tadı çok ekşidir; keskin kokusu onu diğer tüm narenciyelerden ayırır. Hurmadan sonra El-Ahsa\'nın ikinci ürünüdür. Vahaya yayılmış, meyve veren 100.000\'den fazla misket limonu ağacı vardır. Bir ağaçtan bir mevsimde 25–30 kg ürün alınır.',
+          'Misket limonuyla ilgili, El-Ahsa\'da sevilen bir yaz âdeti de vardır. Aileler bir araya gelip meyveyi sıkar ve yıl boyu kullanmak üzere saklar. Misket limonunun tazesi, suyu ve kurutulmuşu El-Ahsa ve Arap Körfezi mutfaklarında kullanılır.',
+        ],
+      },
+    ],
+    faq: [
+      { q: 'Sergi nerede düzenleniyor?', a: 'Hüfuf\'ta Es-Selam Caddesi (Ayn en-Necm Yolu) üzerindeki El-Ahsa Fuar Merkezi\'nde. Haritayı bu sayfada bulabilirsiniz.' },
+      { q: 'El-Ahsa misket limonunun sıradan limondan farkı nedir?', a: 'Daha küçüktür, kabuğu daha incedir, daha sulu ve daha kokuludur. El-Ahsa mutfağında tazesi, suyu ve kurutulmuşu kullanılır.' },
+      { q: 'Çocuklar için etkinlikler var mı?', a: 'Evet. Sergide bir çocuk köşesi vardır; bunun yanında canlı yemek pişirme, tarım atölyeleri ve aile buluşmaları da yer alır.' },
+    ],
+    related: [
+      { label: 'El-Ahsa misket limonu: “El-Ahsa\'nın mevsim meyveleri” sayfası', href: '/tr/fruits/' },
+      { label: 'El-Ahsa gezinizi planlayın', href: '/tr/plan-your-trip/' },
+    ],
+    after: {
+      time: 'Ağustos–eylül civarında',
+      span: 'Birkaç hafta',
+      seoTitle: 'El-Ahsa Lomi Sergisi: mevsim, konum ve öne çıkanlar',
+      seoDesc: 'Hüfuf\'taki El-Ahsa Lomi Sergisi rehberi: her yıl ağustos–eylül ayları civarında yapılır; sonraki dönemin tarihleri için El-Ahsa Ticaret Odasını takip edin.',
+    },
+  },
+  'uqair-winter': {
+    slug: 'al-uqair-winter',
+    name: 'Ukayr Kışı',
+    place: 'Ukayr Plajı\'ndaki park',
+    season: 'Kış',
+    time: 'Aralık–şubat',
+    span: 'Birkaç hafta',
+    org: 'El-Ahsa Geliştirme Kurumu, El-Ahsa Belediyesi',
+    acts: ['Ailelere yönelik deniz ve spor etkinlikleri', 'Sanat ve zanaat atölyeleri', 'Eğlenceli oyunlar'],
+  },
+  'wafrah-winter': {
+    slug: 'al-wafrah-winter',
+    name: 'El-Vefra Kışı',
+    place: 'Hüfuf\'un güneyindeki El-Vefra mahallesi',
+    season: 'Kış',
+    time: 'Kasım civarında başlar',
+    span: 'Uzun bir kış sezonu',
+    org: 'Özel işletmeciler (El-Ahsa Belediyesinin gözetiminde)',
+    acts: ['150\'den fazla food truck', 'El-Ahsa\'nın yöresel yemekleri', 'Açık havada kış buluşmaları'],
+  },
+  'horse-racing': {
+    slug: 'horse-racing-season',
+    name: 'At Yarışı Sezonu',
+    place: 'El-Ahsa Binicilik Arenası, Et-Taraf kasabası',
+    season: 'Kış',
+    time: 'Kasım–şubat',
+    span: 'Uzun bir sezon',
+    org: 'El-Ahsa Binicilik Arenası',
+    acts: ['At yarışları', 'Binicilik etkinlikleri'],
+    sections: [
+      {
+        h: '2026–2027 sezonu',
+        ps: [
+          'El-Ahsa Binicilik Arenası\'nda at yarışı sezonu 31 Ekim 2026\'da başladı. Arena yarış tarihlerini X hesabından duyurur ve yarışları YouTube kanalından canlı yayınlar. İkisinin de bağlantısı bu sayfada yer alır.',
+        ],
+      },
+    ],
+  },
+  'creative-ahsa': {
+    slug: 'creative-alahsa-festival',
+    name: 'El-Ahsa Yaratıcılık Festivali',
+    place: 'Geleneksel Füreyc mahallesi, El-Ahsa Belediye Kalesi',
+    season: 'İlkbahar',
+    time: 'Mart–nisan',
+    span: 'Yaklaşık bir hafta',
+    org: 'El-Ahsa Belediyesi',
+    acts: ['Çömlek yapımı', 'Hurma yaprağı işleri', 'Geleneksel marangozluk', 'Güzel sanatlar', 'Folklor gösterileri'],
+  },
+};
+// @tr-events:end
 // ── الدمج: Ev واحدة لكل فعالية ولغة — الشكل نفسه الذي يقرؤه كل مستهلك ─────────
 function merge(id: EventId, text: EvTextBase & { after?: AfterText }): Ev {
   const m: EventMeta = EVENT_META[id];
@@ -1009,11 +1153,11 @@ export const EVENTS_ZH: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_ZH[id]))
 export const EVENTS_DE: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_DE[id]));
 export const EVENTS_RU: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_RU[id]));
 export const EVENTS_UR: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_UR[id]));
+export const EVENTS_TR: Ev[] = RECURRING_IDS.map((id) => merge(id, TEXT_TR[id]));
 
-/** فعاليات لغة الصفحة (الأوردو: المواسم المتكرّرة من خطها، دفعة b22-ui). */
+/** فعاليات لغة الصفحة (الأوردو: المواسم المتكرّرة من خطها، دفعة b22-ui؛ والتركية من خطها، دفعة tr-events-1). */
 export const eventsFor = (lang: Lang): Ev[] =>
-  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU, ur: EVENTS_UR, tr: EVENTS_EN } satisfies Record<Lang, Ev[]>)[lang];
-// التركية: لا صفحة فعاليات /tr/ بعد، فالإنجليزية
+  ({ ar: EVENTS_AR, en: EVENTS_EN, zh: EVENTS_ZH, de: EVENTS_DE, ru: EVENTS_RU, ur: EVENTS_UR, tr: EVENTS_TR } satisfies Record<Lang, Ev[]>)[lang];
 
 /** نظير الفعالية باللغة الأخرى — لبناء رابط تبديل اللغة على الصفحة التفصيلية */
 export const counterpart = (id: string, lang: Lang): Ev | undefined =>
@@ -1022,9 +1166,9 @@ export const counterpart = (id: string, lang: Lang): Ev | undefined =>
 /** روابط الفعالية بلغاتها — مصدر alt (hreflang ومبدّل اللغة) لصفحاتها المفردة.
  *  الصينية والألمانية والروسية للمواسم العشرة كاملة؛ والفعالية المؤقتة عربية وإنجليزية فقط،
  *  فلا تُدرج لها لغة بلا صفحة (لا خيار يقود إلى 404). */
-export const eventAlt = (id: string): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string } => {
+export const eventAlt = (id: string): { ar: string; en: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string } => {
   const slugIn = (list: Ev[]) => list.find((e) => e.id === id)?.slug;
-  const zh = slugIn(EVENTS_ZH), de = slugIn(EVENTS_DE), ru = slugIn(EVENTS_RU), ur = slugIn(EVENTS_UR);
+  const zh = slugIn(EVENTS_ZH), de = slugIn(EVENTS_DE), ru = slugIn(EVENTS_RU), ur = slugIn(EVENTS_UR), tr = slugIn(EVENTS_TR);
   return {
     ar: `/فعاليات/${slugIn(EVENTS_AR)!}/`,
     en: `/en/events/${slugIn(EVENTS_EN)!}/`,
@@ -1032,5 +1176,6 @@ export const eventAlt = (id: string): { ar: string; en: string; zh?: string; de?
     ...(de ? { de: `/de/events/${de}/` } : {}),
     ...(ru ? { ru: `/ru/events/${ru}/` } : {}),
     ...(ur ? { ur: `/ur/events/${ur}/` } : {}),
+    ...(tr ? { tr: `/tr/events/${tr}/` } : {}),
   };
 };

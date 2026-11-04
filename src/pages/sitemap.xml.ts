@@ -72,7 +72,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/أكلات/', en: '/en/food/', zh: '/zh/food/', de: '/de/food/', ru: '/ru/food/', ur: '/ur/food/', tr: '/tr/food/', lastmod: dateOf(`${V}FoodView.astro`, 'src/data/dishes.ts') },
     { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', ur: '/ur/restaurants-cafes/', lastmod: dateOf(`${V}DiningView.astro`, ...places.map((e) => e.filePath!).filter(Boolean)) },
     { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', ur: '/ur/stay/', lastmod: dateOf(`${V}StayView.astro`, ...stays.map((e) => e.filePath!).filter(Boolean)) },
-    { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', ur: '/ur/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
+    { ar: '/فعاليات/', en: '/en/events/', zh: '/zh/events/', de: '/de/events/', ru: '/ru/events/', ur: '/ur/events/', tr: '/tr/events/', lastmod: dateOf(`${V}EventsView.astro`, 'src/data/events.ts') },
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', ur: '/ur/plan-your-trip/', tr: '/tr/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
     // دليل التأشيرات عربي وإنجليزي (2026-10-16) — نصّه في src/data/visa-guide.ts
     { ...VISA_GUIDE_ALT, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.ts') },
@@ -118,6 +118,7 @@ export const GET: APIRoute = async ({ site }) => {
       ru: EVENTS_RU.find((x) => x.id === e.id) ? '/ru/events/' + EVENTS_RU.find((x) => x.id === e.id)!.slug + '/' : undefined,
       // الأوردو: المواسم المتكرّرة وحدها (لا نصّ أوردي للفعالية المؤقتة، كاللغات الثلاث)
       ur: eventsFor('ur').find((x) => x.id === e.id && !x.oneOff) ? '/ur/events/' + eventsFor('ur').find((x) => x.id === e.id)!.slug + '/' : undefined,
+      tr: eventsFor('tr').find((x) => x.id === e.id && !x.oneOff) ? '/tr/events/' + eventsFor('tr').find((x) => x.id === e.id)!.slug + '/' : undefined,
       lastmod: dateOf('src/data/events.ts', `${V}EventDetailView.astro`),
     })),
   ];

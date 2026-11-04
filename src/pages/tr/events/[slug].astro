@@ -1,0 +1,15 @@
+---
+// صفحة الفعالية المفردة — النسخة التركية: نصوص EVENTS_TR وكتلة tr في EventDetailView من خط
+// tr-translation-pipeline حصراً (دفعة tr-events-1). المقاطع slug تشارك الإنجليزية، والمواسم المتكرّرة وحدها
+// (الفعالية المؤقتة عربية وإنجليزية فقط، كاللغات الأخرى).
+import EventDetailView from '../../../components/views/EventDetailView.astro';
+import { eventsFor, eventAlt } from '../../../data/events';
+
+export function getStaticPaths() {
+  return eventsFor('tr').filter((ev) => !ev.oneOff).map((ev) => ({ params: { slug: ev.slug }, props: { ev } }));
+}
+
+const { ev } = Astro.props;
+const alt = eventAlt(ev.id);
+---
+<EventDetailView ev={ev} lang="tr" alt={alt} />
