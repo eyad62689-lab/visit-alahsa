@@ -21,10 +21,13 @@ area_ru: "Район Эль-Худуд"
 alt_ru: "Освещённый арочный фасад Al-Khudud Traditional Bakery в сумерках"
 blurb_de: "Eine ockerfarbene Fassade mit einem beleuchteten Bogen, der bei Dämmerung den Blick in die Backstube öffnet."
 blurb_ur: "غروب کے وقت زرد اگواڑے میں ایک روشن محراب کھلی ہے، جس سے تندور کا اندرونی حصہ نظر آتا ہے۔"
+blurb_tr: "Toprak sarısı bir cephe; ışıklı bir kemer akşam üzeri fırının salonuna açılıyor."
 area_de: "Al-Khudud-Viertel"
 area_ur: "محلہ الخدود"
+area_tr: "El-Hudud mahallesi"
 alt_de: "Die beleuchtete Bogenfassade der Al-Khudud Traditional Bakery bei Dämmerung"
 alt_ur: "مخبز الخدود الشعبی کا روشن محراب دار اگواڑا، غروب کے وقت"
+alt_tr: "Akşam üzeri Al-Khudud Traditional Bakery'nin ışıklı kemerli cephesi"
 img: /img/dining/khudud-bakery
 maps: "https://maps.app.goo.gl/9WrPbhXHryjb9Ees6"
 order: 2

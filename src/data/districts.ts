@@ -9,7 +9,7 @@ export const DISTRICTS = ['alkoot', 'downtown', 'rafah-north', 'khalidiyah', 'ra
   'mazrou', 'uwaimriyah', 'olaya', 'khaleej', 'mubarraz', 'khudud', 'qarah'] as const;
 export type District = (typeof DISTRICTS)[number];
 
-export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur', Record<District, string>> = {
+export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur' | 'tr', Record<District, string>> = {
   ar: {
     alkoot: 'حي الكوت', downtown: 'وسط الهفوف التاريخي', 'rafah-north': 'الرفعة الشمالية',
     khalidiyah: 'الخالدية', rawdah: 'الروضة', mazrou: 'المزروع', uwaimriyah: 'العويمرية',
@@ -52,6 +52,9 @@ export const DISTRICT_NAMES: Record<'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur', Rec
   },
   ur: {
     alkoot: 'محلہ الکوت', downtown: 'ہفوف کا تاریخی مرکز', 'rafah-north': 'شمالی الرفعہ', khalidiyah: 'الخالدیہ', rawdah: 'الروضہ', mazrou: 'المزروع', uwaimriyah: 'العویمریہ', olaya: 'العلیا', khaleej: 'الخلیج سڑک', mubarraz: 'المبرز', khudud: 'محلہ الخدود', qarah: 'القارہ',
+  },
+  tr: {
+    alkoot: 'El-Kut mahallesi', downtown: 'Hüfuf tarihî merkezi', 'rafah-north': 'Kuzey er-Rifa mahallesi', khalidiyah: 'El-Halidiye mahallesi', rawdah: 'Er-Ravda mahallesi', mazrou: 'El-Mezru mahallesi', uwaimriyah: 'El-Uveymiriye mahallesi', olaya: 'El-Ulya mahallesi', khaleej: 'Arap Körfezi Yolu', mubarraz: 'Müberrez', khudud: 'El-Hudud mahallesi', qarah: 'El-Kare',
   },
 };
 

@@ -16,8 +16,10 @@ blurb_ru: "Кремовый фасад с названием тёмными бу
 alt_ru: "Кремовый фасад OUDA с названием тёмными буквами и столиками на улице"
 blurb_de: "Eine cremefarbene Fassade unter dem in dunklen Buchstaben geschriebenen Namen, dazu Fenster in Holzrahmen und Tische auf dem Pflaster."
 blurb_ur: "ملائی رنگ کے اگواڑے پر گہرے حروف میں اس کا نام لکھا ہے، کھڑکیوں کے چوکھٹے لکڑی کے ہیں، اور باہر پختہ فرش پر میزیں لگی ہیں۔"
+blurb_tr: "Adının koyu harflerle yazıldığı krem rengi bir cephe; ahşap çerçeveli pencereler ve kaldırımda masalar."
 alt_de: "Die cremefarbene Fassade von OUDA mit dem Namen in dunklen Buchstaben und den Tischen im Freien"
 alt_ur: "اودا کا ملائی رنگ کا اگواڑا، گہرے حروف میں اس کا نام اور باہر رکھی میزیں"
+alt_tr: "OUDA kafesinin koyu harflerle yazılmış adı olan krem rengi cephesi ve dış mekândaki masaları"
 img: /img/dining/ouda
 maps: "https://maps.app.goo.gl/tZmEXTYHzcsWMBvj6"
 order: 15

@@ -131,8 +131,8 @@ function attractionEntry(e: Att): KbEntry {
 }
 
 // ── المطاعم والمقاهي وأماكن الإقامة ──────────────────────────────────────────
-const DINE_INDEX: Record<Lang, string> = { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', ur: '/ur/restaurants-cafes/', tr: '/en/restaurants-cafes/' };
-const STAY_INDEX: Record<Lang, string> = { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', ur: '/ur/stay/', tr: '/en/stay/' };
+const DINE_INDEX: Record<Lang, string> = { ar: '/مطاعم-ومقاهي/', en: '/en/restaurants-cafes/', zh: '/zh/restaurants-cafes/', de: '/de/restaurants-cafes/', ru: '/ru/restaurants-cafes/', ur: '/ur/restaurants-cafes/', tr: '/tr/restaurants-cafes/' };
+const STAY_INDEX: Record<Lang, string> = { ar: '/إقامة/', en: '/en/stay/', zh: '/zh/stay/', de: '/de/stay/', ru: '/ru/stay/', ur: '/ur/stay/', tr: '/tr/stay/' };
 
 function diningEntry(e: CollectionEntry<'dining'>): KbEntry {
   const d = e.data as unknown as Record<string, unknown>;

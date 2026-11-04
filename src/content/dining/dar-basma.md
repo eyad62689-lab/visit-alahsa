@@ -21,10 +21,13 @@ area_ru: "Район Эль-Кут — рядом с парком Каср-Иб�
 alt_ru: "Стеклянный фасад и места под открытым небом Dar Basma среди пальм вечером"
 blurb_de: "Sitzplätze im Freien zwischen den Palmen und eine Glasfassade am Rand des Qasr-Ibrahim-Parks."
 blurb_ur: "کھجور کے درختوں کے بیچ باہر نشستیں لگی ہیں، اور قصر ابراہیم کے پارک کے کنارے شیشے کا اگواڑا ہے۔"
+blurb_tr: "Hurma ağaçlarının arasında açık hava oturma alanları ve Kasr İbrahim parkının kenarında cam bir cephe."
 area_de: "Al-Koot-Viertel – neben dem Qasr-Ibrahim-Park"
 area_ur: "محلہ الکوت، قصر ابراہیم کے پارک کے ساتھ"
+area_tr: "El-Kut mahallesi — Kasr İbrahim parkının yanında"
 alt_de: "Glasfassade und Sitzplätze im Freien zwischen den Palmen bei Dar Basma am Abend"
 alt_ur: "دار بسمہ کا شیشے کا اگواڑا اور کھجور کے درختوں کے بیچ باہر کی نشستیں، شام کے وقت"
+alt_tr: "Gece, hurma ağaçlarının arasında Dar Basma'nın cam cephesi ve açık hava oturma alanları"
 img: /img/dining/dar-basma
 maps: "https://maps.app.goo.gl/CLwUux3kdzc5Z4WE6"
 order: 1

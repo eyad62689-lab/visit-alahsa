@@ -28,6 +28,7 @@ const zh = lang === 'zh';
 const de = lang === 'de';
 const ru = lang === 'ru';
 const ur = lang === 'ur';
+const tr = lang === 'tr';
 
 // التقييمات وأوقات العمل من Google Places API — يكتبها tools/fetch-places.mjs
 // قبل البناء إن وُجد المفتاح. غيابها متوقَّع (بناء محلي بلا مفتاح) والصفحة
@@ -55,11 +56,11 @@ const toPlace = (e: (typeof diningEntries)[number]) => {
     // الاسم لا يُترجم للصينية ولا للروسية (يبقى كما تسمّي المنشأة نفسها)؛ النبذة والموقع والنص
     // البديل من الحقول *_zh (الدفعة 14 — 2026-09-03) و*_ru (ب5 — 2026-09-18) بتراجع للإنجليزية.
     name: ar ? d.name : d.name_en,
-    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : d.area_en,
-    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : d.alt_en,
-    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : d.blurb_en,
+    area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : d.area_en,
+    alt: ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : d.alt_en,
+    blurb: ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : d.blurb_en,
     // الصينية والألمانية والروسية تقصد كلٌّ منها صفحتها متى حملت المنشأة body_zh/body_de/body_ru، وإلا الإنجليزية
-    href: hasPage ? diningHref(d, (zh && !d.body_zh?.trim()) || (de && !d.body_de?.trim()) || (ru && !d.body_ru?.trim()) || (ur && !d.body_ur?.trim()) ? 'en' : lang) : d.maps,
+    href: hasPage ? diningHref(d, (zh && !d.body_zh?.trim()) || (de && !d.body_de?.trim()) || (ru && !d.body_ru?.trim()) || (ur && !d.body_ur?.trim()) || (tr && !d.body_tr?.trim()) ? 'en' : lang) : d.maps,
     internal: hasPage,
   };
 };
@@ -478,6 +479,69 @@ const C = localize(lang, {
     cafes: CAFES,
     bakeries: BAKERIES,
   },
+  tr: {
+    heroEyebrow: 'El-Ahsa sofralarından',
+    title: 'Restoranlar ve kafeler',
+    // «Al Ahsa» و«Hofuf» بلا واصلة مقصودتان هنا — تغطية تهجئات البحث الإنجليزية
+    heroSum: 'El-Ahsa\'da yeme içme rehberiniz: Hüfuf\'ta, Müberrez\'de ve diğer bölgelerde restoranlar, kafeler ve hurma ekmeği (“kırmızı ekmek”) fırınları; tarihî mekânlardan geleneksel yemeklere, modern mekânlardan nitelikli kahveye kadar. Her birinin fotoğrafına ve Google Haritalar\'daki konumuna bir tıkla ya da dokunuşla ulaşabilirsiniz. Liste genişlemeye devam ediyor.',
+    listH: 'Restoranlar',
+    cafesEyebrow: 'Kahve sevenler için',
+    cafesH: 'Kafeler',
+    bakeriesEyebrow: 'Doğrudan tandırdan',
+    bakeriesH: 'Hurma ekmeği fırınları',
+    bakeriesNote: 'Hurma ekmeği “kırmızı ekmek” olarak da bilinir; ikisi aynı ekmeğin iki adıdır. Aşağıdaki fırınların kil tandırları bu ekmek için yakılır.',
+    openMaps: t('det.openMaps'),
+    newWindow: '(Google Haritalar yeni pencerede açılır)',
+    moreLabel: 'Ayrıntılara bakın',
+    hoursLabel: 'Çalışma saatleri',
+    ratingLabel: 'Google Haritalar\'daki puan',
+    searchPh: 'Ad ya da bölgeye göre arayın…',
+    searchLabel: 'Restoranlarda ve kafelerde arayın',
+    kindAria: 'Türe göre filtreleme',
+    kindRestaurants: 'Restoranlar',
+    kindCafes: 'Kafeler',
+    kindBakeries: 'Fırınlar',
+    districtLabel: 'Bölge',
+    districtAll: 'Tüm bölgeler',
+    districtNames: DISTRICT_NAMES.tr as Record<string, string>,
+    openNow: 'Şu anda açık',
+    closedNow: 'Şu anda kapalı',
+    openFilter: 'Şu anda açık',
+    hoursNote: 'Saatler Google Haritalar\'dan alınır ve değişebilir — mekânın bağlantısını kontrol edin.',
+    countPrefix: 'Gösterilen yer sayısı: ',
+    countSuffix: ` (toplam ${diningEntries.length})`,
+    emptyMsg: 'Eşleşen sonuç yok — aramayı genişletin ya da “Tüm bölgeler” seçeneğine geçin.',
+    closedPerm: 'Kalıcı olarak kapalı — Google Haritalar\'a göre',
+    closedTemp: 'Geçici olarak kapalı — Google Haritalar\'a göre',
+    srcNote: fetchedLabel ? `Google Haritalar'daki puanlar ve çalışma saatleri — son güncelleme: ${fetchedLabel}` : null,
+    faqH: 'El-Ahsa\'da yeme içme hakkında sıkça sorulan sorular',
+    faqs: [
+      { q: 'El-Ahsa hangi geleneksel yemeklerle tanınır?',
+        a: 'El-Ahsa\'nın tanınmış yemekleri arasında El-Ahsa pilavı, mandi, haris ve hurma ekmeği bulunur.',
+        linkText: 'Bu yemekleri El-Ahsa mutfağı sayfasında keşfedin →', linkHref: '/tr/food/' },
+      { q: 'Kasr İbrahim\'in yakınında restoran ya da kafe var mı?',
+        a: 'Evet — bu listede iki yer var: Kasr İbrahim parkının yanındaki Dar Basma ile El-Kut mahallesinde, kalenin tam karşısında bulunan Al-Koot Heritage Hotel\'in restoranı. Her kart mekânın Google Haritalar\'daki konumuna bağlantı verir.' },
+      { q: 'Eski Hüfuf\'un içinde kafeler nerede?',
+        a: 'Hüfuf tarihî merkezinde ve Kuzey er-Rifa mahallesinde şu kafeler var: Baithana, Bait Al-Koot, Kral Fahd Yolu üzerindeki Dar Huwaija, Al-Sayed Café, Kral Abdülaziz Yolu üzerindeki Ratio Al-Koot ve Kasr İbrahim\'in yanındaki 7st.' },
+      { q: 'El-Ahsa hurma ekmeğini (“kırmızı ekmek”) nereden alabilirim?',
+        a: 'Bu sayfada hurma ekmeği fırınlarına ait ayrı bir bölüm var; hurma ekmeği ile “kırmızı ekmek” aynı ekmektir. Her fırının fotoğrafı ve Google Haritalar\'daki konumu yer alır.',
+        linkText: 'Hurma ekmeği hakkında El-Ahsa mutfağı sayfasında okuyun →', linkHref: '/tr/food/' },
+      { q: 'Müberrez\'de nerede yemek yiyebilirim?',
+        a: 'Bu listedeki iki yer Müberrez\'de, Ayn en-Necm Yolu üzerindedir: Baking Up ve Dot Bakery & Café. Listenin geri kalanı Hüfuf\'tadır.' },
+      { q: 'Bu restoran ve kafeler nerede yer alıyor?',
+        a: 'Mekânlar Hüfuf\'ta, Ayn en-Necm Yolu boyunca Müberrez\'de ve vahanın doğusundaki El-Kare\'de bulunur. Hüfuf\'ta şu bölgelerde yer alırlar: tarihî El-Kut mahallesi, Hüfuf tarihî merkezi, Kuzey er-Rifa mahallesi, El-Halidiye mahallesi, Er-Ravda mahallesi, El-Mezru mahallesi, El-Ulya mahallesi, El-Uveymiriye mahallesi ve El-Hudud mahallesi. Her kart mekânın tam konumuna Google Haritalar\'da bağlantı verir.' },
+      liveRaw
+        ? { q: 'Puanlar ve çalışma saatleri nereden geliyor?',
+            a: `Puanlar ve çalışma saatleri doğrudan Google Haritalar'dan alınır (son güncelleme: ${fetchedLabel}) ve değişebilir; en güncel bilgi için her mekânın Google Haritalar bağlantısına bakın. Fiyatlar yer almaz.` }
+        : { q: 'Bu sayfada çalışma saatleri ve fiyatlar yer alıyor mu?',
+            a: 'Hayır — çalışma saatlerini, fiyatları ve puanları ancak resmî kaynaklardan doğrulandıktan sonra yayımlıyoruz. En güncel bilgi için her restoranın Google Haritalar bağlantısını kullanın.' },
+    ],
+    methodH: 'Bu sayfa hakkında',
+    methodP1: 'Bu ilk liste zamanla genişleyecek. Adlar ve konumlar doğrudan Google Haritalar\'dan alınır; kısa yazılar her mekânı fotoğrafında göründüğü gibi anlatır — değerlendirme ya da yemek önerisi değildir.',
+    places: RESTAURANTS,
+    cafes: CAFES,
+    bakeries: BAKERIES,
+  },
 });
 
 // قسما الصفحة يُصيَّران بحلقة واحدة — كانت الكتلة نفسها مكرّرة حرفياً مرتين
@@ -516,21 +580,21 @@ const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 // ar/en: الكلمات المفتاحية ثم اسم العلامة كبقية القوالب (كانت العلامة غائبة عن هذا العنوان).
 const pageTitle = ar
   ? `مطاعم ومقاهي الأحساء في الهفوف ${titleSep(lang)} ${t('site.brand')}`
-  : zh || de || ru || ur ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
+  : zh || de || ru || ur || tr ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
   : `Al Ahsa Restaurants & Cafés in Hofuf ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
   ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
-  : zh || de || ru || ur ? C.heroSum
+  : zh || de || ru || ur || tr ? C.heroSum
   : 'Discover the best restaurants and cafés in Al Ahsa — from traditional Hasawi dining to specialty coffee, with photos and direct Google Maps locations.';
 
 const siteUrl = SITE;
-const selfPath = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : ur ? '/ur/restaurants-cafes/' : '/en/restaurants-cafes/';
+const selfPath = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : ur ? '/ur/restaurants-cafes/' : tr ? '/tr/restaurants-cafes/' : '/en/restaurants-cafes/';
 // ملاحظة ملزمة: لا يُصدَّر التقييم ولا عدد المراجعات في أي JSON-LD — بيانات
 // قوقل تُعرض في الواجهة فقط (شروط قوقل + إرشادات المراجعات الذاتية). الحارس
 // الآلي في tools/check-consistency.mjs (فحص C10) يُفشل البناء عند أي تسرّب.
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : tr ? '/tr/' : '/en/' },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:

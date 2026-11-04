@@ -22,10 +22,13 @@ area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Богато украшенный арочный вход и места под открытым небом Sharq Al-Qaisariyah"
 blurb_de: "Ein Tor mit reich verziertem Bogen führt zu Sitzgelegenheiten im traditionellen Stil."
 blurb_ur: "نقش دار محراب والا ایک پھاٹک روایتی طرز کی نشستوں تک لے جاتا ہے۔"
+blurb_tr: "Geleneksel üslupta oturma alanlarına açılan, süslü kemerli bir giriş kapısı."
 area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
 area_ur: "محلہ شمالی الرفعہ، ہفوف"
+area_tr: "Kuzey er-Rifa mahallesi — Hüfuf"
 alt_de: "Der Eingang mit seinem reich verzierten Bogen und die Sitzplätze im Freien bei Sharq Al-Qaisariyah"
 alt_ur: "مطعم شرق کا نقش دار محراب والا داخلی راستہ اور باہر کی نشستیں"
+alt_tr: "Sharq Al-Qaisariyah'ın süslü kemerli girişi ve açık hava oturma alanları"
 img: /img/dining/sharq-alqaisariah
 maps: "https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8"
 order: 9

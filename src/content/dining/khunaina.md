@@ -19,10 +19,13 @@ area_ru: "Эль-Халидия — Эль-Хуфуф"
 alt_ru: "Традиционные блюда в корзинах из пальмовых листьев на столе в Khunaina"
 blurb_de: "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, inmitten dunkelgrüner Samtsitze."
 blurb_ur: "گہرے سبز مخمل کی نشستوں کے بیچ روایتی پکوان کھجور کے پتوں کی ٹوکریوں میں پیش کیے گئے ہیں۔"
+blurb_tr: "Koyu yeşil kadife koltukların arasında hasır sepetlerle servis edilen geleneksel yemekler."
 area_de: "Al-Khalidiyah – Hofuf"
 area_ur: "محلہ الخالدیہ، ہفوف"
+area_tr: "El-Halidiye mahallesi — Hüfuf"
 alt_de: "Traditionelle Gerichte, serviert in Körben aus Palmwedel-Flechtwaren, auf einem Tisch bei Khunaina"
 alt_ur: "کھجور کے پتوں کی ٹوکریوں میں روایتی پکوان، خنینہ کی ایک میز پر"
+alt_tr: "Khunaina'da hasır sepetlerle servis edilen geleneksel yemekler"
 img: /img/dining/khunaina
 maps: "https://maps.app.goo.gl/LZWmKXLDNreXhUHL6"
 order: 4

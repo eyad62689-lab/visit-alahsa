@@ -21,10 +21,13 @@ area_ru: "Дорога короля Фахда — исторический це
 alt_ru: "Места для сидения кафе Dar Huwaija среди гипсовых арок и деревянных стульев"
 blurb_de: "Sitzplätze zwischen weiß verputzten Bögen und Regalen mit Kaffeegeräten."
 blurb_ur: "گچ کی سفید محرابوں کے بیچ نشستیں لگی ہیں، اور خانوں میں کافی بنانے کا سامان رکھا ہے۔"
+blurb_tr: "Beyaz alçı kemerlerin arasında oturma alanları ve kahve hazırlama takımlarıyla dolu raflar."
 area_de: "König-Fahd-Straße – Historisches Zentrum von Hofuf"
 area_ur: "شاہ فہد سڑک، ہفوف کا تاریخی مرکز"
+area_tr: "Kral Fahd Yolu — Hüfuf tarihî merkezi"
 alt_de: "Sitzplätze von Dar Huwaija zwischen verputzten Bögen und Holzstühlen"
 alt_ur: "گچ کی محرابوں اور لکڑی کی کرسیوں کے بیچ دار حویجہ کی نشستیں"
+alt_tr: "Dar Huwaija'nın alçı kemerler ve ahşap sandalyelerle oturma alanları"
 img: /img/dining/dar-huwaija
 maps: "https://maps.app.goo.gl/EejCz9U79km3VEUL6"
 order: 4

@@ -21,10 +21,13 @@ area_ru: "Эль-Кара"
 alt_ru: "Изогнутая барная стойка VOLK под круглой деревянной люстрой"
 blurb_de: "Ein geschwungener Tresen unter einem runden Kronleuchter aus Holzlamellen, von dem Glaskugellampen herabhängen."
 blurb_ur: "لکڑی کی پٹیوں سے بنے گول فانوس کے نیچے ایک خم دار کاؤنٹر ہے، اور فانوس سے شیشے کے قمقمے لٹک رہے ہیں۔"
+blurb_tr: "Kavisli bir bar; barın üstünde, ahşap çıtalardan yapılmış dairesel bir avize asılı ve avizeden cam ampuller sarkıyor."
 area_de: "Al-Qarah"
 area_ur: "القارہ"
+area_tr: "El-Kare"
 alt_de: "Der geschwungene Tresen von VOLK unter seinem runden Kronleuchter aus Holz"
 alt_ur: "وولک کا خم دار کاؤنٹر، لکڑی کے گول فانوس کے نیچے"
+alt_tr: "VOLK kafesinde dairesel ahşap avizenin altında kavisli bar"
 img: /img/dining/volk
 maps: "https://maps.app.goo.gl/SaSqaa3tbUCimoLL8"
 order: 13

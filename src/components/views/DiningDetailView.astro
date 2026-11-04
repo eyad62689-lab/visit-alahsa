@@ -30,6 +30,7 @@ const ar = lang === 'ar';
 // وحقول البطاقة *_ru من ب5 تتراجع للإنجليزية عند غيابها. الاسم لاتيني كما تسمّي المنشأة نفسها.
 const ru = lang === 'ru';
 const ur = lang === 'ur';
+const tr = lang === 'tr';
 // والألمانية (ج7): البوابة body_de في de/restaurants-cafes/[slug]، وحقول البطاقة *_de من ج6.
 const de = lang === 'de';
 // والصينية (د1): البوابة body_zh في zh/restaurants-cafes/[slug]، وحقول البطاقة *_zh من الدفعة 14.
@@ -38,9 +39,9 @@ const d = entry.data;
 const { Content } = await render(entry);
 
 const name = ar ? d.name : d.name_en;
-const area = ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : d.area_en;
-const blurb = ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : d.blurb_en;
-const alTxt = ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : d.alt_en;
+const area = ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : d.area_en;
+const blurb = ar ? d.blurb : zh ? (d.blurb_zh ?? d.blurb_en) : de ? (d.blurb_de ?? d.blurb_en) : ru ? (d.blurb_ru ?? d.blurb_en) : ur ? (d.blurb_ur ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : tr ? (d.blurb_tr ?? d.blurb_en) : d.blurb_en;
+const alTxt = ar ? d.alt : zh ? (d.alt_zh ?? d.alt_en) : de ? (d.alt_de ?? d.alt_en) : ru ? (d.alt_ru ?? d.alt_en) : ur ? (d.alt_ur ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : tr ? (d.alt_tr ?? d.alt_en) : d.alt_en;
 
 // بيانات قوقل الحية — القارئ الموحّد في lib/places-live.ts، وغيابها يتدهور رشيقاً
 const lv = liveFor(d.img);
@@ -48,7 +49,7 @@ const hours = hoursFor(lv, lang);
 const hoursData = hoursDataFor(lv);
 // المتن الإنجليزي: فقرات مفصولة بسطر فارغ — كان يُحقن بـset:html مع استبدال
 // «\n\n» فلا يُهرَّب النصّ، والآن يُصيَّر نصاً عادياً فقرةً فقرة.
-const bodyEnParas = (zh && d.body_zh?.trim() ? d.body_zh : de && d.body_de?.trim() ? d.body_de : ru && d.body_ru?.trim() ? d.body_ru : ur && d.body_ur?.trim() ? d.body_ur : d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+const bodyEnParas = (zh && d.body_zh?.trim() ? d.body_zh : de && d.body_de?.trim() ? d.body_de : ru && d.body_ru?.trim() ? d.body_ru : ur && d.body_ur?.trim() ? d.body_ur : tr && d.body_tr?.trim() ? d.body_tr : d.body_en).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
 // «معالم قريبة في الحيّ» (الخطوة 9 من خطة التفاعل العالمي): المعالم التي تحمل مفتاح حيّ
 // المنشأة نفسه (district — مشتقّ من نصّ area في ملف المعلم، يفرضه المخطط). بلا حيّ لا قسم.
@@ -60,7 +61,7 @@ const sights = d.district || near.length
   ? [
       ...allAttractions.filter((e) => d.district && e.data.district === d.district && !near.includes(e.id)).sort((x, y) => x.data.order - y.data.order),
       ...near.map((id) => allAttractions.find((e) => e.id === id)!),
-    ].map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
+    ].map((e) => ({ id: e.data.slug_en, href: attractionHref(e.data, lang), title: ar ? e.data.title : zh ? (e.data.title_zh ?? e.data.title_en ?? e.data.title) : de ? (e.data.title_de ?? e.data.title_en ?? e.data.title) : ru ? (e.data.title_ru ?? e.data.title_en ?? e.data.title) : ur ? (e.data.title_ur ?? e.data.title_en ?? e.data.title) : tr ? (e.data.title_tr ?? e.data.title_en ?? e.data.title) : (e.data.title_en ?? e.data.title), cat: catLabel(e.data.category, lang) }))
   : [];
 
 const C = localize(lang, {
@@ -181,7 +182,7 @@ const C = localize(lang, {
   },
 });
 // مع معلمٍ من حيٍّ آخر لا يصدق «… في {الحي}»، فيُستعمل عنوان «أكمل يومك» المعتمد في صفحة المعلم
-const sightsH = near.length ? t('det.nearby.h') : d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : ur ? 'ur' : 'en'][d.district]) : '';
+const sightsH = near.length ? t('det.nearby.h') : d.district ? C.sightsH.replace('{district}', DISTRICT_NAMES[ar ? 'ar' : zh ? 'zh' : de ? 'de' : ru ? 'ru' : ur ? 'ur' : tr ? 'tr' : 'en'][d.district]) : '';
 
 // العنوان والوصف لـSEO (ar/en فقط؛ بقية اللغات كما هي): الفهرس يسقط من العنوان إن جاوزت النواة 60،
 // والوصف description المخصّص أو تركيب حتمي «النبذة الموقع · النوع» من بيانات الصفحة المنشورة نفسها.
@@ -193,12 +194,12 @@ const seoDescription = (ar ? d.description : lang === 'en' ? d.description_en : 
 const closed = lv?.status === 'CLOSED_PERMANENTLY' ? C.closedPerm
   : lv?.status === 'CLOSED_TEMPORARILY' ? C.closedTemp : null;
 
-const indexHref = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : ur ? '/ur/restaurants-cafes/' : '/en/restaurants-cafes/';
+const indexHref = ar ? '/مطاعم-ومقاهي/' : zh ? '/zh/restaurants-cafes/' : de ? '/de/restaurants-cafes/' : ru ? '/ru/restaurants-cafes/' : ur ? '/ur/restaurants-cafes/' : tr ? '/tr/restaurants-cafes/' : '/en/restaurants-cafes/';
 const siteUrl = SITE;
 const selfUrl = absUrl(diningHref(d, lang), siteUrl);
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : tr ? '/tr/' : '/en/' },
     { name: C.indexName, path: indexHref },
     { name, path: diningHref(d, lang) },
   ], siteUrl),

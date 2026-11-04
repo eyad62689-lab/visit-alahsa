@@ -23,10 +23,13 @@ area_ru: "Район Эр-Рифаа аш-Шамалия — Эль-Хуфуф"
 alt_ru: "Уголок с кожаными креслами и витражным окном в кафе 7st"
 blurb_de: "Spezialitätenkaffee in einem klassischen Salon mit Lederstühlen und bunten Glasfenstern."
 blurb_ur: "یہاں چمڑے کی کرسیوں اور رنگین شیشے کی کھڑکیوں والی پرانی وضع کی نشست گاہ میں خاص کافی ملتی ہے۔"
+blurb_tr: "Deri koltuklu ve vitraylı klasik bir oturma odasında nitelikli kahve."
 area_de: "Al-Rifaa-Nord-Viertel – Hofuf"
 area_ur: "محلہ شمالی الرفعہ، ہفوف"
+area_tr: "Kuzey er-Rifa mahallesi — Hüfuf"
 alt_de: "Eine Sitzecke mit Lederstühlen und einem bunten Glasfenster bei 7st"
 alt_ur: "بیٹھنے کا ایک گوشہ، چمڑے کی آرام کرسیاں اور رنگین شیشے کی کھڑکی، شارع 7 نامی قہوہ خانے کے اندر"
+alt_tr: "7st kafesinde deri koltuklar ve vitraylı bir pencere bulunan oturma köşesi"
 img: /img/dining/7st
 maps: "https://maps.app.goo.gl/bMQ48Y8Lj6gNyjUu6"
 order: 2
