@@ -30,7 +30,7 @@ alt_ur: "غروب کے وقت جبل القارہ کی چٹانوں کے سام�
 alt_tr: "Gün batımında, Cebel el-Kare'nin kayalarının önünde Aknan Café'nin açık hava oturma alanları"
 img: /img/dining/aknan
 maps: "https://maps.app.goo.gl/yDBd9dZTXuTwXCDQ8"
-order: 11
+order: 14
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية).
 body_en: ""

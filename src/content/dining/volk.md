@@ -30,6 +30,6 @@ alt_ur: "وولک کا خم دار کاؤنٹر، لکڑی کے گول فانو�
 alt_tr: "VOLK kafesinde dairesel ahşap avizenin altında kavisli bar"
 img: /img/dining/volk
 maps: "https://maps.app.goo.gl/SaSqaa3tbUCimoLL8"
-order: 13
+order: 15
 body_en: ""
 ---

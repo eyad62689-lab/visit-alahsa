@@ -31,7 +31,7 @@ alt_ur: "سلاف کا جدید اندرونی حصہ، زیتون کا درخت
 alt_tr: "Soulaf Coffee'nin zeytin ağacı ve çıtalı tavanıyla modern iç mekânı"
 img: /img/dining/soulaf
 maps: "https://maps.app.goo.gl/S47bGoYznnPUYTrm6"
-order: 7
+order: 2
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

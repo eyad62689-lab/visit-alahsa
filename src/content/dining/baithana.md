@@ -31,7 +31,7 @@ alt_ur: "پرانی طرز کی ایک گلی میں بیذانہ کا داخل�
 alt_tr: "Tarihî bir sokakta çamur sıvalı girişi ve ahşap kapısıyla Baithana"
 img: /img/dining/baithana
 maps: "https://maps.app.goo.gl/aeUQ4kyTwg2MoHVx5"
-order: 1
+order: 6
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

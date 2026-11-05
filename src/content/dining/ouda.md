@@ -22,6 +22,6 @@ alt_ur: "اودا کا ملائی رنگ کا اگواڑا، گہرے حروف �
 alt_tr: "OUDA kafesinin koyu harflerle yazılmış adı olan krem rengi cephesi ve dış mekândaki masaları"
 img: /img/dining/ouda
 maps: "https://maps.app.goo.gl/tZmEXTYHzcsWMBvj6"
-order: 15
+order: 17
 body_en: ""
 ---

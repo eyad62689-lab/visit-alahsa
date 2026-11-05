@@ -21,6 +21,6 @@ alt_ur: "مقہی بن کا سفید کمرہ، بیچ میں سنگ مرمر ک
 alt_tr: "Bun Café'nin mermer bar tezgâhı ve havada asılı gibi duran ahşap merdivenli beyaz salonu"
 img: /img/dining/bun
 maps: "https://maps.app.goo.gl/sEoiBiKGABVMMoCM9"
-order: 12
+order: 3
 body_en: ""
 ---

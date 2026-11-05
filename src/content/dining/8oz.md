@@ -32,6 +32,6 @@ social:
   instagram: "https://www.instagram.com/8ozcafe"
   tiktok: "https://www.tiktok.com/@8ozcoffee"
   snapchat: "https://www.snapchat.com/add/oz.cafe"
-order: 17
+order: 5
 body_en: ""
 ---
