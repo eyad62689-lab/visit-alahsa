@@ -357,6 +357,13 @@ const dining = defineCollection({
     alt_tr: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
+    // حسابات المنشأة كما سلّمتها هي نفسها — بلا معاملات تتبّع. تُصيَّر أيقوناتٍ بلا نص
+    // مرئي تحت البطاقة (C22)، وتدخل sameAs في JSON-LD.
+    social: z.object({
+      instagram: z.url().optional(),
+      tiktok: z.url().optional(),
+      snapchat: z.url().optional(),
+    }).optional(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (المتن العربي في جسم الملف)
     // المتن الروسي من خط ru-translation-pipeline حصراً — بوابة صفحة /ru/restaurants-cafes/<slug>/
