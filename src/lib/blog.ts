@@ -3,7 +3,8 @@
 // كل لغة ملف Markdown مستقل يقترن بنظائره بحقل key. النظائر هنا مصدر hreflang ومبدّل
 // اللغة وشريط الاقتراح لصفحة المقال، وما لا نظير له بلغةٍ يتراجع إلى فهرسها (العربية
 // والإنجليزية والألمانية فهارس كاملة — الألمانية منذ ج10 (2026-09-24) باكتمال مقالاتها
-// الثمانية؛ والصينية والروسية فهرسان جزئيان).
+// الثمانية؛ والصينية والروسية فهرسان جزئيان؛ والتركية منذ tr-blog-1 تسرد مقالاتها وحدها بلا
+// بطاقات تراجع، لأن البطاقات الإنجليزية تُفشل C22).
 import type { CollectionEntry } from 'astro:content';
 import type { AltLinks } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
@@ -11,15 +12,14 @@ import { blogHref } from './routes';
 
 type Post = CollectionEntry<'blog'>;
 
-/** فهرس المدونة بلغة الطلب — ru منذ ب9 (2026-09-18)، وde منذ ج10 (2026-09-24)، وur منذ ur-blog-1. */
-export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', ur: '/ur/blog/', tr: '/en/blog/' };
-// التركية: لا مسار /tr/blog/ بعد، ففهرسها الإنجليزي (يُصحَّح يوم يُبنى).
+/** فهرس المدونة بلغة الطلب — ru منذ ب9 (2026-09-18)، وde منذ ج10 (2026-09-24)، وur منذ ur-blog-1، وtr منذ tr-blog-1. */
+export const BLOG_INDEX: Record<Lang, string> = { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', ur: '/ur/blog/', tr: '/tr/blog/' };
 
 /** نظائر المقال بلغاته المبنية — zh/de/ru تُدرج فقط حين يوجد ملفها (بوابة التوليد كما في المعالم) */
 export const postAlt = (all: Post[], entry: Post): AltLinks => {
   const sib = (l: Lang) => all.find((e) => e.data.key === entry.data.key && e.data.lang === l && !e.data.draft);
   const ar = sib('ar'), en = sib('en');
   const out: AltLinks = { ar: ar ? blogHref(ar.data) : BLOG_INDEX.ar, en: en ? blogHref(en.data) : BLOG_INDEX.en };
-  for (const l of ['zh', 'de', 'ru', 'ur'] as const) { const s = sib(l); if (s) out[l] = blogHref(s.data); }
+  for (const l of ['zh', 'de', 'ru', 'ur', 'tr'] as const) { const s = sib(l); if (s) out[l] = blogHref(s.data); }
   return out;
 };
