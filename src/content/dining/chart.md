@@ -32,6 +32,6 @@ social:
   instagram: "https://www.instagram.com/chart.cr"
   tiktok: "https://www.tiktok.com/@chart.crsa"
   snapchat: "https://www.snapchat.com/add/chart.crsa"
-order: 16
+order: 4
 body_en: ""
 ---

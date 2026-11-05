@@ -30,7 +30,7 @@ alt_ur: "کوڈ کا اگواڑا اور عربی خط میں اس کا روشن
 alt_tr: "Code adlı restoran ve kafenin ışıklı Arapça tabelalı cephesi"
 img: /img/dining/koud
 maps: "https://maps.app.goo.gl/RVVLPpJCUVfpCdWt7"
-order: 10
+order: 11
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

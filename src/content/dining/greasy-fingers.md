@@ -30,7 +30,7 @@ alt_ur: "ایک سینی پر برگر اور تلے ہوئے آلو، گریس�
 alt_tr: "Greasy Fingers restoranında servis tepsisinde hamburger ve patates kızartması"
 img: /img/dining/greasy-fingers
 maps: "https://maps.app.goo.gl/AQhfw1PKHnLviEyt6"
-order: 6
+order: 7
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

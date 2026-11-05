@@ -30,7 +30,7 @@ alt_ur: "کھجور کے تنوں کی چھت کے نیچے تکیوں اور ق
 alt_tr: "Ratio Al-Koot kafesinde hurma ağacı gövdelerinden yapılmış tavanın altında minderler ve halılarla geleneksel bir meclis salonu"
 img: /img/dining/ratio-alkoot
 maps: "https://maps.app.goo.gl/yRnN7ZTrcWPQ5XxJ8"
-order: 6
+order: 11
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

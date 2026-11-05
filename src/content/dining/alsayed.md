@@ -30,7 +30,7 @@ alt_ur: "لکڑی کی چھت والی روایتی نشست گاہ، مقہی �
 alt_tr: "Al-Sayed Café'nin ahşap tavanlı geleneksel iç mekânı"
 img: /img/dining/alsayed
 maps: "https://maps.app.goo.gl/QC9hzwbXQ6PT8m5W9"
-order: 5
+order: 10
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

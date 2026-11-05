@@ -31,7 +31,7 @@ alt_ur: "لکڑی کی سینی پر کڑک چائے کی پیالیاں اور 
 alt_tr: "Raslan'da ahşap bir tepside karak çayı bardakları ve kahvaltılık tabakları"
 img: /img/dining/karak-raslan
 maps: "https://maps.app.goo.gl/ctJt3bVV2hDtSYX56"
-order: 10
+order: 1
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

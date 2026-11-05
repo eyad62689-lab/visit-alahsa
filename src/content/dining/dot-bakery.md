@@ -30,7 +30,7 @@ alt_ur: "کاؤنٹر اور سینکی ہوئی چیزوں کی نمائشی ا
 alt_tr: "Dot Bakery & Café'de sipariş tezgâhı ve hamur işleri vitrini"
 img: /img/dining/dot-bakery
 maps: "https://maps.app.goo.gl/hMbtPX8FL5XDQwWU6"
-order: 9
+order: 13
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.
