@@ -22,6 +22,6 @@ alt_ur: "شلیم کا چبوترا، نشستوں کے بیچ پانی کے ح�
 alt_tr: "SHYLM kafesinin terası; oturma alanlarının ortasında su havuzunda bir zeytin ağacı"
 img: /img/dining/shylm
 maps: "https://maps.app.goo.gl/EkVG5edhp3GSd8vRA"
-order: 14
+order: 16
 body_en: ""
 ---

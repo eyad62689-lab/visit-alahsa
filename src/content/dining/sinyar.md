@@ -30,7 +30,7 @@ alt_ur: "سنیار کا مٹیالا اگواڑا اور عربی خطاطی م
 alt_tr: "Sinyar'ın toprak cephesi ve Arap hat sanatıyla yazılmış tabelası, akşam üzeri"
 img: /img/dining/sinyar
 maps: "https://maps.app.goo.gl/kiKK2QEshBwycpDn6"
-order: 5
+order: 6
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

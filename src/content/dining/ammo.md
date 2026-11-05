@@ -31,7 +31,7 @@ alt_ur: "آمو کا شیشے کا اگواڑا اور اس کا روشن نشا
 alt_tr: "Gece, ışıklı tabelasıyla Ammo restoranının cam cephesi"
 img: /img/dining/ammo
 maps: "https://maps.app.goo.gl/sj8f9VMZL3LdthJX9"
-order: 8
+order: 9
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

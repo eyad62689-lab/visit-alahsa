@@ -31,7 +31,7 @@ alt_ur: "مطعم شرق کا نقش دار محراب والا داخلی را�
 alt_tr: "Sharq Al-Qaisariyah'ın süslü kemerli girişi ve açık hava oturma alanları"
 img: /img/dining/sharq-alqaisariah
 maps: "https://maps.app.goo.gl/BqEvhdZMRoYrbWDv8"
-order: 9
+order: 10
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

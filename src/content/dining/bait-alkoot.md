@@ -31,7 +31,7 @@ alt_ur: "شام کے وقت بیت الکوت کا اگواڑا اور اس پر
 alt_tr: "Akşam üzeri Bait Al-Koot'un cephesi ve sarkan ışıklar"
 img: /img/dining/bait-alkoot
 maps: "https://maps.app.goo.gl/gkvgXUYMUZsV5BK38"
-order: 3
+order: 8
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

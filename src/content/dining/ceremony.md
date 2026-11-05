@@ -32,6 +32,6 @@ social:
   instagram: "https://www.instagram.com/ceremonyfd"
   tiktok: "https://www.tiktok.com/@ceremonyfd"
   snapchat: "https://www.snapchat.com/t/oy5T9Mg7"
-order: 11
+order: 3
 body_en: ""
 ---

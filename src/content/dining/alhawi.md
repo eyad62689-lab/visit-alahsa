@@ -30,7 +30,7 @@ alt_ur: "طرح طرح کے پکوانوں والا روایتی ناشتے کا
 alt_tr: "Al Hawy'de çeşitli yemeklerden oluşan geleneksel bir kahvaltı sofrası"
 img: /img/dining/alhawi
 maps: "https://maps.app.goo.gl/GZ61EihCSipwJyzJ8"
-order: 3
+order: 4
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.

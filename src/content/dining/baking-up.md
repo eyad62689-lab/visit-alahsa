@@ -30,7 +30,7 @@ alt_ur: "بیکنگ اپ کا اگواڑا، سائبان اور باہر کی �
 alt_tr: "Şemsiyeleri ve açık hava oturma alanlarıyla Baking Up kafesinin dükkân cephesi"
 img: /img/dining/baking-up
 maps: "https://maps.app.goo.gl/Vq412YHJLwnKc1SE8"
-order: 8
+order: 12
 # body / body_en: يُملأان بنصّ موثّق المصدر. الصفحة المفردة لا تُولَّد حتى يعبر
 # المتن عتبة docs/قرار-بنية-صفحات-المنشآت.md (80 كلمة عربية / 100 إنجليزية)
 # وألّا يكون نسخةً من blurb. البطاقة في الفهرس تعمل قبل ذلك وبعده.
