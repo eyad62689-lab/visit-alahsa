@@ -17,7 +17,7 @@ faq:
     a: "Ja – die Tickets gibt es im Kulturerbe-Dorf „Land of Civilisations“ am Fuß des Jabal al-Qarah, und sie schließen das Höhlenerlebnis ein. Die Angaben zu Öffnungszeiten und Eintritt stehen auf unserer Seite zum Berg, und das letzte Wort haben die offiziellen Kanäle."
 ---
 
-Im Herzen von Al-Ahsa – der größten Oase der Welt, seit 2018 UNESCO-Welterbe – ragt [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (der Qarah-Berg) zwischen den Hainen auf wie ein uralter Wächter. Doch das Geheimnis des Berges liegt nicht in seiner Höhe, sondern in seinem Inneren: Höhlen und Gänge durchziehen sein Gestein. Im Hochsommer bewahren sie sanfte Kühle, und im tiefsten Winter halten sie stille Wärme – ein Naturphänomen, das den Einheimischen seit jeher Zuflucht geboten hat und den Berg heute zur bekanntesten Sehenswürdigkeit der Oase macht.
+Im Herzen von Al-Ahsa – der größten Oase der Welt, seit 2018 UNESCO-Welterbe – ragt [Jabal al-Qarah](/de/attractions/jabal-al-qarah/) (der Qarah-Berg) zwischen den Hainen auf wie ein uralter Wächter. Doch das Geheimnis des Berges liegt nicht in seiner Höhe, sondern in seinem Inneren: Höhlen und Gänge durchziehen sein Gestein. Im Hochsommer bewahren sie sanfte Kühle, und im tiefsten Winter halten sie stille Wärme – ein Naturphänomen, das den Einheimischen seit jeher Zuflucht vor der Sommerhitze geboten hat und den Berg heute zur bekanntesten Sehenswürdigkeit der Oase macht.
 
 Dieser Reiseführer bündelt, was Sie vor dem Besuch brauchen: was Sie in den Höhlen sehen, was rund um den Berg liegt, wann Sie am besten aufsteigen und wie Sie den Besuch in Ihren Tag einbauen.
 
