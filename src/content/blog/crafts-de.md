@@ -1,6 +1,6 @@
 ---
 title: "Die Handwerke Al-Ahsas: Bischt, Töpferei und wo sie lebendig sind"
-description: "Ein Rundgang durch Al-Ahsas lebendige Handwerke – die Hasawi-Weberei des Bischts mit Zari-Fäden, das Töpferhaus Dougha Al-Gharash und den Handwerker-Souk samt Akademie in Hofuf."
+description: "Ein Rundgang durch Al-Ahsas lebendige Handwerke – den mit Zari-Fäden handgestickten Hasawi-Bischt, das Töpferhaus Dougha Al-Gharash und den Handwerker-Souk samt Akademie in Hofuf."
 lang: de
 key: crafts-tour
 slug: "al-ahsa-traditional-crafts"
@@ -12,14 +12,14 @@ faq:
   - q: "Können Besucher in Al-Ahsa zusehen, wie Töpferwaren entstehen?"
     a: "Ja: Dougha Al-Gharash, das Töpferhaus am Fuß des Jabal al-Qarah, ist eine Station für Besucher. Hier verfolgen Sie die Schritte des Handwerks – vom Kneten des Tons über die Töpferscheibe bis zum Brennofen – und kaufen eines der Erzeugnisse des Hauses gleich vor Ort."
   - q: "Wo kaufe ich einen echten Hasawi-Bischt?"
-    a: "Der Qaisariyah-Souk in Hofuf ist die klassische Adresse für den Hasawi-Bischt. Die „Hasawi-Weberei“ zeichnet sich durch die Feinheit ihrer Handstickerei mit Zari-Fäden aus; dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter, und die Geschäfte des Souks zeigen deren Arbeiten."
+    a: "Der Qaisariyah-Souk in Hofuf ist die klassische Adresse für den Hasawi-Bischt. Die „Hasawi-Nadelarbeit“ zeichnet sich durch die Feinheit ihrer Handstickerei mit Zari-Fäden aus; dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter, und die Geschäfte des Souks zeigen deren Arbeiten."
 ---
 
 In Al-Ahsa ist das Handwerk kein Exponat hinter Glas, sondern eine Reihe lebendiger Berufe, die Familien von einer Generation an die nächste weitergeben – und das so sehr, dass der Name der Stadt mit dem Beitritt zum **Netzwerk der UNESCO Creative Cities** verbunden ist. Dieser Rundgang stellt die bedeutendsten Handwerke der Oase vor und zeigt, wo sie vor Ihren Augen entstehen.
 
 ## Der Hasawi-Bischt: Der Umhang des Ansehens
 
-Der Hasawi-Bischt ist der Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen. Was ihn auszeichnet, ist die „**Hasawi-Weberei**“: die Feinheit ihrer Handstickerei mit Zari-Fäden, die mit Gold oder Silber überzogen sind. Dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter. Der [Qaisariyah-Souk](/de/attractions/qaisariyah/) – seine Geschichte reicht mehr als zwei Jahrhunderte zurück – ist die klassische Adresse, um die Umhänge zu sehen und sie bei denen zu kaufen, die sie fertigen.
+Der Hasawi-Bischt ist der Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen. Was ihn auszeichnet, ist die „**Hasawi-Nadelarbeit**“: die Feinheit ihrer Handstickerei mit Zari-Fäden, die mit Gold oder Silber überzogen sind. Dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter. Der [Qaisariyah-Souk](/de/attractions/qaisariyah/) – seine Geschichte reicht mehr als zwei Jahrhunderte zurück – ist die klassische Adresse, um die Umhänge zu sehen und sie bei denen zu kaufen, die sie fertigen.
 
 ## Töpferei: Dougha Al-Gharash
 

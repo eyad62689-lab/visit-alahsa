@@ -1,6 +1,6 @@
 ---
 title: "The Living Crafts of Al-Ahsa: Bisht, Pottery and Where to See Them Made"
-description: "A tour of Al-Ahsa's living crafts — the Hasawi bisht woven with zari thread, the Al-Gharash pottery house, and the Craftsmen Souq in the heart of Hofuf."
+description: "A tour of Al-Ahsa's living crafts — the Hasawi bisht embroidered in zari thread, the Al-Gharash pottery house, and the Craftsmen Souq in the heart of Hofuf."
 lang: en
 key: crafts-tour
 slug: "al-ahsa-traditional-crafts"
@@ -12,14 +12,14 @@ faq:
   - q: "Can visitors watch pottery being made in Al-Ahsa?"
     a: "Yes — Dougha Al-Gharash, at the foot of Jabal Al-Qarah, is a visitor stop where you watch the stages of the craft from kneading the clay to the wheel to the kiln, and buy directly from its wares."
   - q: "Where can I buy an authentic Hasawi bisht?"
-    a: "Qaisariyah Souq in Hofuf is the classic destination for the Hasawi bisht; the Hasawi weave, with its hand embroidery in zari thread, is a trade handed down through Al-Ahsa families generation after generation, and the souq's shops carry their work."
+    a: "Qaisariyah Souq in Hofuf is the classic destination for the Hasawi bisht; Hasawi needlework, its hand embroidery in zari thread, is a trade handed down through Al-Ahsa families generation after generation, and the souq's shops carry their work."
 ---
 
 In Al-Ahsa, craft is not an exhibit behind glass — it is a set of living trades handed down through families generation after generation, so much so that the city's name is bound to its accession to the **UNESCO Creative Cities Network**. This is a tour of the oasis's foremost crafts, and where to watch them being made.
 
 ## The Hasawi Bisht: The Cloak of Occasions
 
-The Hasawi bisht is the cloak of ceremony and standing, and what sets it apart is the **Hasawi weave**: precise hand embroidery in *zari* threads coated with gold or silver water. Al-Ahsa families have passed the trade down generation after generation, and [Qaisariyah Souq](/en/attractions/qaisariyah/) — trading for more than two centuries — is the classic place to see the cloaks and buy them from the people who make them.
+The Hasawi bisht is the cloak of ceremony and standing, and what sets it apart is **Hasawi needlework**: precise hand embroidery in *zari* threads coated with gold or silver water. Al-Ahsa families have passed the trade down generation after generation, and [Qaisariyah Souq](/en/attractions/qaisariyah/) — trading for more than two centuries — is the classic place to see the cloaks and buy them from the people who make them.
 
 ## Pottery: Dougha Al-Gharash
 

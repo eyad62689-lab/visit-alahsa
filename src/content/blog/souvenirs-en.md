@@ -12,7 +12,7 @@ faq:
   - q: "Which Al-Ahsa dates make the best gift?"
     a: "Khalas is the crown of the oasis and its most celebrated variety, alongside local varieties such as Shishi, Razeez and Barhi. Each variety's season, fresh and dried, is detailed on the site's Oasis Fruits page."
   - q: "Where do I find genuinely handmade products rather than imports?"
-    a: "Straight from the artisans' workshops: Dougha Al-Gharash pottery is bought from the craft house itself at Jabal Al-Qarah, the Hasawi bisht from Qaisariyah Souq shops carrying the weaving families' work, and the Craftsmen Souq in central Hofuf gathers 112 shops run by the craftspeople themselves."
+    a: "Straight from the artisans' workshops: Dougha Al-Gharash pottery is bought from the craft house itself at Jabal Al-Qarah, the Hasawi bisht from Qaisariyah Souq shops carrying the work of the families who make it, and the Craftsmen Souq in central Hofuf gathers 112 shops run by the craftspeople themselves."
 ---
 
 An honest gift from Al-Ahsa comes out of the oasis itself: from its palms, its citrus and the hands of its artisans. This guide sorts out what deserves a place in your suitcase, and where to find it in the city's heritage souqs.
@@ -27,7 +27,7 @@ The **Hasawi lime** (Bin Zuhairi) is among the most celebrated produce of Al-Ahs
 
 ## Handicrafts: What Outlasts the Trip
 
-- **The Hasawi bisht** — the cloak of ceremony, embroidered in *zari* thread coated with gold or silver water, a weave handed down through Al-Ahsa families generation after generation.
+- **The Hasawi bisht** — the cloak of ceremony, embroidered in *zari* thread coated with gold or silver water, a craft handed down through Al-Ahsa families generation after generation.
 - **Dougha Al-Gharash pottery** — vessels shaped the old manual way at the foot of Jabal Al-Qarah, bought from the craft house itself after watching the stages of the work.
 - **Palm-frond work** — woven from the palm's leaves, present among the local crafts in the heritage souq shops.
 - **Coffee and spices** — from Qaisariyah's passages, fragrant with both.

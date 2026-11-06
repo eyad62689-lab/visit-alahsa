@@ -17,7 +17,7 @@ faq:
     a: "Evet. Biletler dağın eteğindeki “Medeniyetler Diyarı” miras köyü üzerinden verilir; mağara ziyareti de bilete dahildir. Saatler ve ücretler Cebel el-Kare sayfasında yer alır; kesin bilgi için resmî kanallara bakın."
 ---
 
-Dünyanın en büyük vahası 2018'de UNESCO Dünya Mirası Listesi'ne alındı. Bu vahanın ortasında, bahçelerin arasından [Cebel el-Kare](/tr/attractions/jabal-al-qarah/) yükselir; çok eski bir bekçi gibidir. Ama dağın sırrı yüksekliğinde değil, iç boşluklarındadır. Kayalarının arasında mağaralar ve geçitler uzanır; yazın en bunaltıcı günlerinde tatlı bir serinliği, kışın ortasında yumuşak bir ılıklığı korurlar. Bu doğa olayı eski çağlardan beri El-Ahsa halkını kendine çekmiş, bugün de dağı vahanın en ünlü yeri yapmıştır.
+Dünyanın en büyük vahası 2018'de UNESCO Dünya Mirası Listesi'ne alındı. Bu vahanın ortasında, bahçelerin arasından [Cebel el-Kare](/tr/attractions/jabal-al-qarah/) yükselir; çok eski bir bekçi gibidir. Ama dağın sırrı yüksekliğinde değil, iç boşluklarındadır. Kayalarının arasında mağaralar ve geçitler uzanır; yazın en bunaltıcı günlerinde tatlı bir serinliği, kışın ortasında yumuşak bir ılıklığı korurlar. Bu doğa olayı, eski çağlardan beri El-Ahsa halkını yaz sıcağından korunmak için kendine çekmiş, bugün de dağı vahanın en ünlü yeri yapmıştır.
 
 Bu rehber ziyaretten önce ihtiyacınız olanları bir araya getiriyor: mağaraların içinde neler göreceğinizi, dağın çevresinde neler olduğunu, ne zaman tırmanacağınızı ve ziyareti gününüze nasıl sığdıracağınızı.
 

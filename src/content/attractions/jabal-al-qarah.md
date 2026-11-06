@@ -6,7 +6,7 @@ title_en: Jabal Al-Qarah
 title_zh: 卡拉山
 kicker_zh: 一处地质奇观
 summary_zh: 绿洲深处，岁月凿出的洞穴——盛夏藏凉，寒冬存暖，是酷暑行程中清凉舒适的一站。
-body_zh: "卡拉山（Jabal Al-Qarah）自哈萨绿洲中央拔地而起，如一位远古的守望者；真正的秘密不在高度，而在山体内部：洞穴与通道在岩层中蜿蜒穿行，盛夏时节自有一份清凉，隆冬之际又留有暖意——正是这份天然的妙处，让当地居民自古便在此栖身。当您走进狭窄的石廊，两侧岩壁几乎触及肩头；转过一道弯，眼前豁然开朗，一线天光自石厅高处漏下，光影动人。登临山顶，绿洲铺展至天际，椰枣林连绵如海——一眼望去，便明白哈萨为何成为世界上最大的绿洲。"
+body_zh: "卡拉山（Jabal Al-Qarah）自哈萨绿洲中央拔地而起，如一位远古的守望者；真正的秘密不在高度，而在山体内部：洞穴与通道在岩层中蜿蜒穿行，盛夏时节自有一份清凉，隆冬之际又留有暖意——正是这份天然的妙处，让当地居民自古便来此躲避夏日酷热。当您走进狭窄的石廊，两侧岩壁几乎触及肩头；转过一道弯，眼前豁然开朗，一线天光自石厅高处漏下，光影动人。登临山顶，绿洲铺展至天际，椰枣林连绵如海——一眼望去，便明白哈萨为何成为世界上最大的绿洲。"
 area_zh: 胡富夫（Hofuf）以东——哈萨
 bestTime_zh: 白天前往。
 # الحقول الألمانية: معتمدة من خط de-translation-pipeline بدرجة 92/100 (2026-09-03،
@@ -14,7 +14,7 @@ bestTime_zh: 白天前往。
 title_de: Jabal al-Qarah
 kicker_de: Geologisches Wunder
 summary_de: "Höhlen im Herzen der Oase, von der Zeit gemeißelt: im Sommer kühl, im Winter warm."
-body_de: "Jabal al-Qarah (der Qarah-Berg) ragt mitten aus der Oase auf wie ein uralter Wächter, doch sein Geheimnis liegt nicht in der Höhe, sondern im Inneren. Höhlen und Gänge durchziehen sein Gestein: Im Hochsommer bewahren sie sanfte Kühle, und im tiefsten Winter halten sie stille Wärme – ein Naturphänomen, das den Einheimischen seit jeher Zuflucht bietet. Gehen Sie durch die engen Gänge, in denen der Fels beinahe Ihre Schultern streift. Dann weitet sich der Weg plötzlich zu einer hohen Halle, in die ein schmaler Lichtstrahl dringt. Vom Gipfel aus entfaltet sich die Oase wie ein Meer aus Dattelpalmen – ein Anblick, der begreiflich macht, warum Al-Ahsa zur größten Oase der Welt wurde."
+body_de: "Jabal al-Qarah (der Qarah-Berg) ragt mitten aus der Oase auf wie ein uralter Wächter, doch sein Geheimnis liegt nicht in der Höhe, sondern im Inneren. Höhlen und Gänge durchziehen sein Gestein: Im Hochsommer bewahren sie sanfte Kühle, und im tiefsten Winter halten sie stille Wärme – ein Naturphänomen, das den Einheimischen seit jeher Zuflucht vor der Sommerhitze bietet. Gehen Sie durch die engen Gänge, in denen der Fels beinahe Ihre Schultern streift. Dann weitet sich der Weg plötzlich zu einer hohen Halle, in die ein schmaler Lichtstrahl dringt. Vom Gipfel aus entfaltet sich die Oase wie ein Meer aus Dattelpalmen – ein Anblick, der begreiflich macht, warum Al-Ahsa zur größten Oase der Welt wurde."
 area_de: "Östlich von Hofuf, Al-Ahsa"
 bestTime_de: "Tagsüber."
 # الحقول الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-05،
@@ -22,7 +22,7 @@ bestTime_de: "Tagsüber."
 title_ru: Джабаль-эль-Кара
 kicker_ru: Геологическое чудо
 summary_ru: "Пещеры, высеченные временем в сердце оазиса: летом в них прохладно, зимой — тепло."
-body_ru: "Джабаль-эль-Кара (в переводе — гора Эль-Кара) поднимается посреди оазиса, словно древний страж, но тайна горы не в высоте, а в недрах. Скала пронизана пещерами и ходами: в самый зной в них держится мягкая прохлада, а в разгар зимы — спокойное тепло. Это природное явление с древности привлекало сюда жителей Аль-Ахсы — здесь они находили укрытие. Пройдите по узким коридорам, где камень почти касается плеч, и вдруг перед вами откроется высокий зал, куда пробивается тонкий луч света. С вершины оазис расстилается морем пальм — и отсюда понятно, почему Аль-Ахса стала крупнейшим оазисом в мире."
+body_ru: "Джабаль-эль-Кара (в переводе — гора Эль-Кара) поднимается посреди оазиса, словно древний страж, но тайна горы не в высоте, а в недрах. Скала пронизана пещерами и ходами: в самый зной в них держится мягкая прохлада, а в разгар зимы — спокойное тепло. Это природное явление с древности привлекало сюда жителей Аль-Ахсы — здесь они находили укрытие от летнего зноя. Пройдите по узким коридорам, где камень почти касается плеч, и вдруг перед вами откроется высокий зал, куда пробивается тонкий луч света. С вершины оазис расстилается морем пальм — и отсюда понятно, почему Аль-Ахса стала крупнейшим оазисом в мире."
 area_ru: "К востоку от Эль-Хуфуфа, Аль-Ахса"
 bestTime_ru: "В светлое время суток."
 # الحقول الأوردية: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-12،
@@ -30,7 +30,7 @@ bestTime_ru: "В светлое время суток."
 title_ur: جبل القارہ
 kicker_ur: ارضیاتی عجوبہ
 summary_ur: "نخلستان کے قلب میں وقت کے تراشے ہوئے غار، جو گرمیوں میں ٹھنڈے رہتے ہیں اور سردیوں میں گرم۔"
-body_ur: "الاحساء کے نخلستان کے بیچوں بیچ جبل القارہ کسی قدیم نگہبان کی طرح سر اٹھائے کھڑا ہے، مگر اس کا راز بلندی میں نہیں، اس کے اندر چھپا ہے۔ چٹانوں میں غار ہیں اور بل کھاتے راستے۔ جب گرمی عروج پر ہو تو ان میں خوشگوار ٹھنڈک رہتی ہے، اور عین سردیوں میں ہلکی سی گرمائش۔ اسی قدرتی خوبی کی وجہ سے الاحساء کے لوگ قدیم زمانے سے یہاں پناہ لیتے آئے ہیں۔ پہاڑ کی تنگ راہداریوں سے گزریں تو چٹانیں کندھوں کو چھوتے چھوتے رہ جاتی ہیں، پھر اچانک راستہ اونچی چھت والی کشادہ جگہ میں جا نکلتا ہے، جہاں روشنی کی ایک باریک کرن چھن کر آتی ہے۔ چوٹی سے نخلستان یوں پھیلا دکھائی دیتا ہے جیسے کھجور کے درختوں کا سمندر ہو۔ یہی ایک منظر بتا دیتا ہے کہ الاحساء دنیا کا سب سے بڑا نخلستان کیوں بنا۔"
+body_ur: "الاحساء کے نخلستان کے بیچوں بیچ جبل القارہ کسی قدیم نگہبان کی طرح سر اٹھائے کھڑا ہے، مگر اس کا راز بلندی میں نہیں، اس کے اندر چھپا ہے۔ چٹانوں میں غار ہیں اور بل کھاتے راستے۔ جب گرمی عروج پر ہو تو ان میں خوشگوار ٹھنڈک رہتی ہے، اور عین سردیوں میں ہلکی سی گرمائش۔ اسی قدرتی خوبی کی وجہ سے الاحساء کے لوگ قدیم زمانے سے گرمیوں کی تپش سے بچنے کے لیے یہاں پناہ لیتے آئے ہیں۔ پہاڑ کی تنگ راہداریوں سے گزریں تو چٹانیں کندھوں کو چھوتے چھوتے رہ جاتی ہیں، پھر اچانک راستہ اونچی چھت والی کشادہ جگہ میں جا نکلتا ہے، جہاں روشنی کی ایک باریک کرن چھن کر آتی ہے۔ چوٹی سے نخلستان یوں پھیلا دکھائی دیتا ہے جیسے کھجور کے درختوں کا سمندر ہو۔ یہی ایک منظر بتا دیتا ہے کہ الاحساء دنیا کا سب سے بڑا نخلستان کیوں بنا۔"
 area_ur: "الاحساء، ہفوف کے مشرق میں"
 bestTime_ur: "دن میں"
 # الحقول التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-27، ثلاث دورات — صفحة المعايرة؛
