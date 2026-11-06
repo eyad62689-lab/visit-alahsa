@@ -1,6 +1,6 @@
 ---
 title: "El-Ahsa misket limonu (lomi): vahada hurmadan sonra ikinci sıradaki ürün ve kendi yıllık sergisi"
-description: "El-Ahsa'nın tarım ürünleri arasında hurmadan sonra ikinci sırada gelen El-Ahsa misket limonunu (yerel adıyla lomi) tanıyın. Bu yazıda meyvenin yaz mevsimini ve suyunu güneşte kurutup cemid yapma geleneğini anlatıyoruz; yıllık El-Ahsa Lomi Sergisi için de bir rehber sunuyoruz."
+description: "El-Ahsa'nın tarım ürünleri arasında hurmadan sonra ikinci sırada gelen El-Ahsa misket limonunu (yerel adıyla lomi) tanıyın. Bu yazıda meyvenin yaz mevsimini ve suyunu güneşe bırakıp bekleterek cemid yapma geleneğini anlatıyoruz; yıllık El-Ahsa Lomi Sergisi için de bir rehber sunuyoruz."
 lang: tr
 key: hasawi-lomi
 slug: "hasawi-lomi-lime"
@@ -15,7 +15,7 @@ faq:
   - q: "El-Ahsa misket limonunun mevsimi ne zaman?"
     a: "El-Ahsa misket limonunun mevsimi yazdır; yaklaşık haziran ortasından ağustos sonuna kadar sürer. Aynı yaz aylarında El-Ahsa aileleri meyveyi sıkıp bütün yıl için saklamak üzere bir araya gelir."
   - q: "Cemid nedir?"
-    a: "Cemid güneşte kurutulup bekletilmiş misket limonu suyudur. Onu hazırlamak sevilen bir El-Ahsa geleneğidir: aileler yaz mevsiminde bir araya gelip misket limonunu (lomi) sıkar, suyu güneşte kurutur ve cam kavanozlarda bekletir. Cemid böylece bütün yıl kullanılır."
+    a: "Cemid güneşe bırakılıp bekletilmiş misket limonu suyudur. Onu hazırlamak sevilen bir El-Ahsa geleneğidir: aileler yaz mevsiminde bir araya gelip misket limonunu (lomi) sıkar, suyu güneşe bırakır ve cam kavanozlarda bekletir. Cemid böylece bütün yıl kullanılır."
   - q: "El-Ahsa Lomi Sergisi ne zaman ve nerede düzenlenir?"
     a: "Sergiyi her yıl yaz sonunda El-Ahsa Ticaret Odası düzenler. Sergi Hüfuf'taki El-Ahsa Fuar Merkezi'nde yapılır. Güncel serginin tarihleri ve ziyaret saatleri her zaman bu sitedeki sergi sayfasında yayımlanır."
   - q: "El-Ahsa Lomi Sergisi bilet fiyatı ne kadar?"
@@ -34,9 +34,9 @@ Lomi küçük, koyu yeşil ve ince kabuklu bir meyvedir; yöre halkı ona **“E
 
 Lominin mevsimi yazdır; **yaklaşık haziran ortasından ağustos sonuna kadar** sürer. Sıcağın en yüksek olduğu günlere denk gelir ve bahçeler o sırada yaz rutabıyla (taze, yumuşak evredeki hurma) da meşguldür. Meyveyi ağacında görmek isterseniz [El-Ahsa Misket Limonu Çiftliği](/tr/attractions/lemon-farm/)'ne gidebilirsiniz. Bu narenciye çiftliğinde ziyaretçiler mevsiminde ünlü El-Ahsa misket limonunu (lomi) toplar. Vahanın her mevsim neler verdiğini [Vaha meyveleri](/tr/fruits/) sayfasında ayrıntılı olarak görebilirsiniz.
 
-## Ağaçtan kilere: cemid, güneşte kurutulan misket limonu suyu
+## Ağaçtan kilere: cemid, güneşe bırakılıp bekletilen misket limonu suyu
 
-Lominin etrafında El-Ahsa'ya özgü, çok sevilen bir yaz geleneği vardır: mevsiminde aileler bir araya gelip lomiyi sıkar ve suyunu bütün yıl yetecek kadar saklar. Bu ürüne **“cemid”** denir: güneşte kurutulup cam kavanozlarda bekletilmiş misket limonu suyu. Lomi taze olarak, sıkılmış suyuyla ve kurutulmuş meyve olarak kullanılır; kurutulmuş lomi yıl boyunca El-Ahsa'nın ve Arap Körfezi bölgesinin yemeklerine aroma katar.
+Lominin etrafında El-Ahsa'ya özgü, çok sevilen bir yaz geleneği vardır: mevsiminde aileler bir araya gelip lomiyi sıkar ve suyunu bütün yıl yetecek kadar saklar. Bu ürüne **“cemid”** denir: güneşe bırakılıp cam kavanozlarda bekletilmiş misket limonu suyu. Lomi taze olarak, sıkılmış suyuyla ve kurutulmuş meyve olarak kullanılır; kurutulmuş lomi yıl boyunca El-Ahsa'nın ve Arap Körfezi bölgesinin yemeklerine aroma katar.
 
 ## El-Ahsa mutfağında
 

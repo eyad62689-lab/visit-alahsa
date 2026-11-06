@@ -730,7 +730,7 @@ const TEXT_RU: TranslatedTexts = {
         h: 'Что такое лайм Аль-Ахсы?',
         ps: [
           'Лайм Аль-Ахсы — сорт, также известный под названием «Бин Зухайри» и часто называемый лимоном Аль-Ахсы, — маленький тёмно-зелёный цитрус с тонкой кожурой, обильным соком, резкой кислинкой и характерным ароматом, который отличает его от прочих цитрусовых. Это вторая после фиников сельскохозяйственная культура Аль-Ахсы: в оазисе растёт более 100 000 плодоносящих деревьев лайма, и одно дерево даёт за сезон 25–30 кг.',
-          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: высушенный на солнце и выдержанный лаймовый сок) и пользоваться им весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Арабского залива.',
+          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: выставленный на солнце и выдержанный лаймовый сок) и пользоваться лаймом весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Арабского залива.',
         ],
       },
     ],
@@ -806,7 +806,7 @@ const TEXT_DE: TranslatedTexts = {
         h: 'Was ist die Hasawi-Lomi?',
         ps: [
           'Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.',
-          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Küche Al-Ahsas und der Region am Arabischen Golf. Der sonnengetrocknete und gereifte Lomi-Saft heißt „Jameed“.',
+          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Küche Al-Ahsas und der Region am Arabischen Golf. Der in der Sonne gereifte Lomi-Saft heißt „Jameed“.',
         ],
       },
     ],
