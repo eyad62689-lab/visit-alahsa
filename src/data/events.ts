@@ -347,8 +347,8 @@ const TEXT_AR: EventTexts = {
   },
   'creative-ahsa': {
     slug: 'مهرجان-الأحساء-المبدعة',
-    name: 'مهرجان الأحساء المبدعة', place: 'الفريج التراثي، قلعة الأمانة',
-    seoDesc: 'مهرجان الأحساء المبدعة — الفريج التراثي، قلعة الأمانة. الربيع، مارس – أبريل. صناعة الفخار، الخوصيات، النجارة التقليدية، فنون تشكيلية.',
+    name: 'مهرجان الأحساء المبدعة', place: 'الفريج التراثي داخل قلعة الأمانة',
+    seoDesc: 'مهرجان الأحساء المبدعة — الفريج التراثي داخل قلعة الأمانة. الربيع، مارس – أبريل. صناعة الفخار، الخوصيات، النجارة التقليدية، فنون تشكيلية.',
     seoTitle: 'مهرجان الأحساء المبدعة: الموسم والموقع والأنشطة',
     season: 'الربيع', time: 'مارس – أبريل', span: 'نحو أسبوع',
     org: 'أمانة الأحساء',
@@ -503,7 +503,7 @@ const TEXT_EN: EventTexts = {
   },
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',
-    name: 'Creative Al-Ahsa Festival', place: 'Heritage Freej, the Municipality Fort',
+    name: 'Creative Al-Ahsa Festival', place: 'Heritage Freej inside the Municipality Fort',
     seoTitle: 'Creative Al-Ahsa Festival: Season, Location & Activities',
     season: 'Spring', time: 'March – April', span: 'About a week',
     org: 'Al-Ahsa Municipality',
@@ -713,7 +713,7 @@ const TEXT_RU: TranslatedTexts = {
   // دفعة ru-ev-4 2026-09-17 — خط ru-translation-pipeline، الحاكم 92/100 · APPROVE من الدورة الأولى
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',
-    name: 'Фестиваль творческой Аль-Ахсы', place: 'Исторический квартал Эль-Фридж, форт муниципалитета Аль-Ахсы',
+    name: 'Фестиваль творческой Аль-Ахсы', place: 'Исторический квартал Эль-Фридж внутри форта муниципалитета Аль-Ахсы',
     season: 'Весна', time: 'Март–апрель', span: 'Около недели',
     org: 'Муниципалитет Аль-Ахсы',
     acts: ['Гончарное дело', 'Изделия из пальмовых листьев', 'Традиционное столярное дело', 'Изобразительное искусство', 'Народные представления'],
@@ -849,7 +849,7 @@ const TEXT_DE: TranslatedTexts = {
   },
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',
-    name: 'Kreativ-Al-Ahsa-Festival', place: 'Traditioneller Freej, Festung der Kommunalverwaltung von Al-Ahsa',
+    name: 'Kreativ-Al-Ahsa-Festival', place: 'Traditioneller Freej innerhalb der Festung der Kommunalverwaltung von Al-Ahsa',
     season: 'Frühling', time: 'März–April', span: 'Etwa eine Woche',
     org: 'Kommunalverwaltung von Al-Ahsa',
     acts: ['Töpferei', 'Palmwedel-Flechtwaren', 'Traditionelles Tischlerhandwerk', 'Bildende Kunst', 'Volksdarbietungen'],
@@ -981,7 +981,7 @@ const TEXT_UR: TranslatedTexts = {
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',
     name: 'تخلیقی الاحساء کا میلہ',
-    place: 'الفریج نامی روایتی محلہ، بلدیہ کا قلعہ',
+    place: 'بلدیہ کے قلعے کے اندر واقع الفریج نامی روایتی محلہ',
     season: 'بہار',
     time: 'مارچ سے اپریل تک',
     span: 'تقریباً ایک ہفتہ',
@@ -1125,7 +1125,7 @@ const TEXT_TR: TranslatedTexts = {
   'creative-ahsa': {
     slug: 'creative-alahsa-festival',
     name: 'El-Ahsa Yaratıcılık Festivali',
-    place: 'Geleneksel Füreyc mahallesi, El-Ahsa Belediye Kalesi',
+    place: 'El-Ahsa Belediye Kalesi\'ndeki Geleneksel Füreyc mahallesi',
     season: 'İlkbahar',
     time: 'Mart–nisan',
     span: 'Yaklaşık bir hafta',
