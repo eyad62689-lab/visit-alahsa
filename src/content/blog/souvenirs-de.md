@@ -12,7 +12,7 @@ faq:
   - q: "Welche Datteln aus Al-Ahsa eignen sich am besten als Geschenk?"
     a: "Khalas ist die Krone der Oase und ihre berühmteste Sorte; daneben stehen einheimische Sorten wie Shishi, Razeez und Barhi. Wann welche Sorte Saison hat, als Rutab und als getrocknete Dattel, steht auf der Seite „Oasenfrüchte“ dieser Website."
   - q: "Wo finde ich echte Handarbeit statt importierter Ware?"
-    a: "Direkt aus den Werkstätten der Handwerker: Die Töpferwaren aus Dougha Al-Gharash kaufen Sie im Töpferhaus selbst am Jabal al-Qarah, den Hasawi-Bischt in den Geschäften des Qaisariyah-Souks, die die Arbeiten der Weberfamilien führen. Dazu vereint der Handwerker-Souk im Zentrum von Hofuf 112 Geschäfte, die von den Handwerkern selbst betrieben werden."
+    a: "Direkt aus den Werkstätten der Handwerker: Die Töpferwaren aus Dougha Al-Gharash kaufen Sie im Töpferhaus selbst am Jabal al-Qarah, den Hasawi-Bischt in den Geschäften des Qaisariyah-Souks, die die Arbeiten der Herstellerfamilien führen. Dazu vereint der Handwerker-Souk im Zentrum von Hofuf 112 Geschäfte, die von den Handwerkern selbst betrieben werden."
 ---
 
 Ein ehrliches Geschenk aus Al-Ahsa stammt aus der Oase selbst: von ihren Dattelpalmen, von ihren Zitrusfrüchten und aus den Händen ihrer Handwerker. Dieser Ratgeber ordnet für Sie, was einen Platz in Ihrem Koffer verdient – und wo Sie es in den traditionellen Souks der Stadt finden.
@@ -27,7 +27,7 @@ Die **Hasawi-Limette** (die Limette aus Al-Ahsa), auch Bin Zuhairi genannt, geh�
 
 ## Kunsthandwerk: Was die Reise überdauert
 
-- **Der Hasawi-Bischt** – der Umhang des Ansehens, bestickt mit *Zari*-Fäden, die mit Gold oder Silber überzogen sind; dieses Weberhandwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter.
+- **Der Hasawi-Bischt** – der Umhang des Ansehens, bestickt mit *Zari*-Fäden, die mit Gold oder Silber überzogen sind; dieses Handwerk geben Familien aus Al-Ahsa von Generation zu Generation weiter.
 - **Die Töpferwaren aus Dougha Al-Gharash** – Gefäße, die am Fuß des Jabal al-Qarah (des Qarah-Bergs) noch von Hand und auf die alte Art geformt werden; Sie kaufen sie im Töpferhaus selbst, nachdem Sie den Schritten des Handwerks zugesehen haben.
 - **Palmblattgeflecht** – aus den Wedeln der Dattelpalme geflochten; in den Geschäften der traditionellen Souks gehört es zum einheimischen Kunsthandwerk.
 - **Kaffee und Gewürze** – aus den Gassen des Qaisariyah-Souks, in denen es nach beidem duftet.

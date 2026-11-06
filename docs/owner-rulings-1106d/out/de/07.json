@@ -1,0 +1,40 @@
+{
+  "batch": "owner-rulings-1106d",
+  "lang": "de",
+  "stage": 7,
+  "date": "2026-11-06",
+  "score": 91,
+  "breakdown": { "accuracy": 38, "fluency": 26, "terminology": 18, "scope": 9 },
+  "decision": "approve",
+  "judge_edits": [
+    { "id": "souvenirs-faq", "from": "die die Arbeiten der Familien führen, die ihn fertigen", "to": "die die Arbeiten der Herstellerfamilien führen", "why": "Reader [5]: the 05 form stacked two relative clauses and was hard to parse. „Herstellerfamilien“ says 'the families who make it' in one word, with no Weber and only the original relative clause." },
+    { "id": "events", "from": "Bischt-Workshops", "to": "Workshops zur Bischt-Herstellung", "why": "The source is 'Bisht-making workshops'. 05 dropped the making. „Bischt-Herstellung“ restores it, so the heading says what the workshop teaches. The unexplained word „Bischt“ is out of scope: the event page glosses it elsewhere." }
+  ],
+  "rulings": [
+    { "id": "OR6d-de-1", "text": "Craft name „Hasawi-Nadelarbeit“ is kept. It is the direct German for the source's own term 'Hasawi needlework', and in all three places the next words („die Feinheit ihrer Handstickerei mit Zari-Fäden“) say it is embroidery. The reader answered (a) correctly, so the vagueness flag is rejected. „Hasawi-Stickerei“ was weighed and rejected: it would make the following „ihrer Handstickerei“ tautological in three sentences outside this batch's minimal edit." },
+    { "id": "OR6d-de-2", "text": "Embroidery verbs: „handgestickt“ (crafts description), „von Hand bestickt“ (stores). No Weberei/Weber-/gewebt on the Bischt. Palm-leaf craft untouched." },
+    { "id": "OR6d-de-3", "text": "Cave: „Zuflucht vor der Sommerhitze“ (05) stands. Winter warmth kept (C16)." }
+  ],
+  "blind_disposition": [
+    { "item": "1", "disposition": "in scope, accepted: summer-heat shelter read correctly." },
+    { "item": "2", "disposition": "in scope, accepted: handgestickt read correctly." },
+    { "item": "3", "disposition": "in scope, Hasawi-Nadelarbeit vagueness: rejected (OR6d-de-1). The Umhang and Architektur flags are out of scope." },
+    { "item": "4", "disposition": "in scope, same as 3: rejected. The deren antecedent existed before this batch (out of scope)." },
+    { "item": "5", "disposition": "in scope, fixed: the convoluted relative clause → „Herstellerfamilien“ (judge edit). Werkstätten vs souk shops and „Dazu vereint“ are out of scope." },
+    { "item": "6", "disposition": "not part of the pack (a neighbouring cave passage); no flag in scope." },
+    { "item": "7", "disposition": "in scope, accepted: „dieses Handwerk“. „Umhang des Ansehens“ is out of scope." },
+    { "item": "8", "disposition": "not part of the pack; no flag in scope." },
+    { "item": "9", "disposition": "in scope, fixed: Bischt-Workshops → Workshops zur Bischt-Herstellung (judge edit). The Bischt gloss is out of scope." },
+    { "item": "10", "disposition": "in scope, accepted: von Hand bestickt. UNESCO wording and 'anerkannt by whom' are out of scope." },
+    { "item": "overall", "disposition": "The repeated embroidery sentence in 3/4/7/10 is source structure (out of scope)." }
+  ],
+  "out_of_scope": [
+    "„Umhang aus Al-Ahsa für große Anlässe und ein Zeichen von Ansehen“ / „Umhang des Ansehens“ stiff (passages 3, 7)",
+    "„Unverwechselbar ist seine Architektur“ without detail (passage 3)",
+    "„Direkt aus den Werkstätten der Handwerker“ vs buying in souk shops; „Dazu vereint“ abrupt (passage 5)",
+    "„der Bischt als solcher steht seit 2025 auf der UNESCO-Liste“ ambiguous; „anerkannt“ by whom (passage 10)",
+    "„Bischt“ unexplained in the bare events heading (passage 9)",
+    "Near-verbatim repetition of the embroidery sentence across pages"
+  ],
+  "note": "Judge edits changed text after the 06 read. Per the pipeline, a fresh audit and a fresh blind read on final.json are due before apply."
+}

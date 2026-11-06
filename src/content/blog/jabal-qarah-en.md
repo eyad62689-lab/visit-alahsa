@@ -17,7 +17,7 @@ faq:
     a: "Yes — tickets are issued through the Land of Civilisations heritage village at the foot of the mountain and include the caves experience. Hours and fees live on the landmark's page, and official channels have the final word."
 ---
 
-At the centre of the largest oasis on earth — inscribed on the UNESCO World Heritage list in 2018 — [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) rises from among the groves like an ancient guardian. But the mountain's secret is not its height; it is its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth in the depth of winter — a natural wonder that drew the people of Al-Ahsa to shelter here since antiquity, and that makes the mountain the oasis's most famous landmark today.
+At the centre of the largest oasis on earth — inscribed on the UNESCO World Heritage list in 2018 — [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/) rises from among the groves like an ancient guardian. But the mountain's secret is not its height; it is its hollows. Caves and passages thread through its rock, keeping a gentle coolness at the peak of summer and a quiet warmth in the depth of winter — a natural wonder that drew the people of Al-Ahsa to shelter here from the summer heat since antiquity, and that makes the mountain the oasis's most famous landmark today.
 
 This guide gathers what you need before the visit: what you'll see inside the caves, what surrounds the mountain, when to climb, and how to fold it into your day.
 

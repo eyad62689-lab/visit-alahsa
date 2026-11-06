@@ -433,7 +433,7 @@ const TEXT_EN: EventTexts = {
     seoTitle: 'Hasawi Bisht Festival in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'Around December', span: 'A few days',
     org: 'Heritage Commission (Ministry of Culture)',
-    acts: ['Bisht exhibition', 'Weaving workshops', 'Interactive bisht souq', 'Folklore performances'],
+    acts: ['Bisht exhibition', 'Bisht-making workshops', 'Interactive bisht souq', 'Folklore performances'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -620,7 +620,7 @@ const TEXT_ZH: TranslatedTexts = {
     name: '哈萨比什特长袍节', place: '胡富夫历史悠久的易卜拉欣宫',
     season: '冬季', time: '12 月前后', span: '为期数天',
     org: '沙特遗产委员会（文化部）',
-    acts: ['比什特长袍展', '织造技艺工作坊', '互动比什特集市', '民俗表演'],
+    acts: ['比什特长袍展', '比什特长袍制作工作坊', '互动比什特集市', '民俗表演'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -736,7 +736,7 @@ const TEXT_RU: TranslatedTexts = {
     name: 'Фестиваль бишта Аль-Ахсы', place: 'Историческая крепость Каср-Ибрахим, Эль-Хуфуф',
     season: 'Зима', time: 'Примерно в декабре', span: 'Несколько дней',
     org: 'Комиссия по наследию (Министерство культуры)',
-    acts: ['Выставка бишта', 'Обучающие мастер-классы по ткачеству', 'Интерактивный рынок биштов', 'Фольклорные представления'],
+    acts: ['Выставка бишта', 'Обучающие мастер-классы по изготовлению бишта', 'Интерактивный рынок биштов', 'Фольклорные представления'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -810,7 +810,7 @@ const TEXT_RU: TranslatedTexts = {
         h: 'Что такое лайм Аль-Ахсы?',
         ps: [
           'Лайм Аль-Ахсы — сорт, также известный под названием «Бин Зухайри» и часто называемый лимоном Аль-Ахсы, — маленький тёмно-зелёный цитрус с тонкой кожурой, обильным соком, резкой кислинкой и характерным ароматом, который отличает его от прочих цитрусовых. Это вторая после фиников сельскохозяйственная культура Аль-Ахсы: в оазисе растёт более 100 000 плодоносящих деревьев лайма, и одно дерево даёт за сезон 25–30 кг.',
-          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: высушенный на солнце и выдержанный лаймовый сок) и пользоваться им весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Арабского залива.',
+          'С ним связан подлинный летний обычай Аль-Ахсы: семьи собираются, чтобы выжать и заготовить его («джамид»: выставленный на солнце и выдержанный лаймовый сок) и пользоваться лаймом весь год — свежим, в виде сока и сушёным, в кухне Аль-Ахсы и стран Арабского залива.',
         ],
       },
     ],
@@ -842,7 +842,7 @@ const TEXT_DE: TranslatedTexts = {
     name: 'Hasawi-Bischt-Festival', place: 'Historischer Qasr Ibrahim, Hofuf',
     season: 'Winter', time: 'Etwa im Dezember', span: 'Wenige Tage',
     org: 'Kommission für Kulturerbe (Kulturministerium)',
-    acts: ['Bischt-Ausstellung', 'Weberei-Workshops', 'Interaktiver Bischt-Souk', 'Folkloristische Vorführungen'],
+    acts: ['Bischt-Ausstellung', 'Workshops zur Bischt-Herstellung', 'Interaktiver Bischt-Souk', 'Folkloristische Vorführungen'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -886,7 +886,7 @@ const TEXT_DE: TranslatedTexts = {
         h: 'Was ist die Hasawi-Lomi?',
         ps: [
           'Die Hasawi-Lomi ist eine kleine, dunkelgrüne Zitrusfrucht mit dünner Schale, reichlich Saft, kräftig-saurem Geschmack und einem unverwechselbaren Duft, der sie von anderen Zitrusfrüchten unterscheidet. Sie ist das zweite landwirtschaftliche Erzeugnis Al-Ahsas nach den Datteln: In der Oase stehen mehr als 100.000 tragende Lomi-Bäume, von denen jeder rund 25–30 kg pro Saison liefert.',
-          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Küche Al-Ahsas und der Region am Arabischen Golf. Der sonnengetrocknete und gereifte Lomi-Saft heißt „Jameed“.',
+          'Ein liebgewonnener Hasawi-Sommerbrauch rankt sich um sie: Familien kommen zusammen, um sie für die Verwendung übers ganze Jahr zu pressen und aufzubewahren – frisch, als Saft oder getrocknet für die Küche Al-Ahsas und der Region am Arabischen Golf. Der in der Sonne gereifte Lomi-Saft heißt „Jameed“.',
         ],
       },
     ],
@@ -949,7 +949,7 @@ const TEXT_UR: TranslatedTexts = {
     time: 'تقریباً دسمبر میں',
     span: 'چند دن',
     org: 'ورثہ کمیشن (ثقافت کی وزارت)',
-    acts: ['چوغوں کی نمائش', 'بنائی سکھانے کی تربیتی نشستیں', 'چوغوں کا بازار', 'لوک فنون کی پیشکشیں'],
+    acts: ['چوغوں کی نمائش', 'چوغہ سازی سکھانے کی تربیتی نشستیں', 'چوغوں کا بازار', 'لوک فنون کی پیشکشیں'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -1082,7 +1082,7 @@ const TEXT_TR: TranslatedTexts = {
     time: 'Aralık ayı civarında',
     span: 'Birkaç gün',
     org: 'Miras Kurumu (Suudi Arabistan\'ın Kültür Bakanlığı)',
-    acts: ['Bişt (erkek pelerini) sergisi', 'Dokuma atölyeleri', 'Bişt çarşısı', 'Folklor gösterileri'],
+    acts: ['Bişt (erkek pelerini) sergisi', 'Bişt yapım atölyeleri', 'Bişt çarşısı', 'Folklor gösterileri'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
