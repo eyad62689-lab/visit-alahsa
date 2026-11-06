@@ -83,6 +83,9 @@ export type Ev = {
   /** واتساب «للحجز والاستفسار» كما في الإعلان الرسمي — أرقام دولية بلا + ولا يُعرض نصاً،
    *  زرّاً فقط (wa.me) يحمل data-track. خاص بالنسخة فيسقط بانقضائها. */
   whatsapp?: string;
+  /** بوابة التسجيل الرسمية للعارضين — للفعالية المؤقتة وحدها (تسميته في قاموس O)،
+   *  ورابط الجهة المنظّمة نفسها لا وسيط. خاص بالنسخة فيسقط بانقضائها. */
+  register?: string;
 };
 
 /** انقضت النسخة المؤكدة؟ — بنهاية اليوم الأخير بتوقيت السعودية (UTC+3، بلا توقيت صيفي) */
@@ -109,7 +112,7 @@ export function evView(ev: Ev, now: Date = new Date()): Ev {
 
 // ── الحقول البنيوية — مرة واحدة لكل فعالية ──────────────────────────────────
 /** ما يشترك فيه كل الأنواع (انظر Ev لشرح كل حقل). */
-type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'live' | 'social' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp'>;
+type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'live' | 'social' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp' | 'register'>;
 /** النسخة المؤكدة تلزمها تواريخ ISO وحالةُ ما بعد الانقضاء؛ وسواها لا تحمل شيئاً منها.
  *  اتحادٌ مميَّز: لا يمكن كتابة status: 'confirmed' بلا afterStatus، ولا تواريخ ISO بلا تأكيد. */
 type EventMeta = MetaCommon & (
@@ -187,6 +190,25 @@ const EVENT_META = {
     startISO: '2026-12-03', endISO: '2026-12-07',
     map: 'https://maps.app.goo.gl/dyuzzUe6zwySqV75A',
     whatsapp: '966532345832',
+  },
+  // معرض أصالة الشرق 2026 — فعالية مؤقتة أضافها إياد (2026-11-06) برابط بوابة التسجيل.
+  // من البوابة الرسمية portal.hcci.org.sa/asala (مقروءة 2026-11-06): الاسم، والموعد «من 26 نوفمبر
+  // وحتى 5 ديسمبر»، والمنظّم غرفة الأحساء، ومسارات المشاركة وأحجام الأركان وأسعارها، وأن التسجيل
+  // لا يُعدّ موافقة نهائية. ومن خبر واحة نيوز (2026-10-13، wahhnews.com/?p=110643): المكان مركز
+  // الأحساء للمعارض، ورعاية محافظ الأحساء، والتعاون مع هيئة تطوير الأحساء، والشعار. المكان نفسه
+  // مكان معرض اللومي، فالخريطة والإحداثيات منه. لا ساعات ولا رسوم دخول (لم تُعلن)، ولا رقم نسخة
+  // (تعارضت المصادر: «العاشرة» في واس بلا تاريخ، و«الـ14» لنسخة 2020 في عكاظ). والإعلان الرسمي
+  // «قريباً» من إياد (2026-11-06) — ومنه الاسم الإنجليزي «Asalat Al-Sharq Exhibition»؛ والساعات لم
+  // تُعلن بعد (من إياد في اليوم نفسه).
+  'asala-alsharq-2026': {
+    img: '/img/event-posters/asala-alsharq-2026', poster: '/img/event-posters/asala-alsharq-2026-poster',
+    start: 11, end: 12,
+    status: 'confirmed', oneOff: true,
+    startISO: '2026-11-26', endISO: '2026-12-05',
+    map: 'https://maps.app.goo.gl/uY5gEBdUJ43pMEFV7',
+    coords: { lat: 25.3903836, lng: 49.5619631 },
+    social: 'https://x.com/ahsachamber',
+    register: 'https://portal.hcci.org.sa/asala',
   },
 } as const satisfies Record<string, EventMeta>;
 
@@ -373,6 +395,35 @@ const TEXT_AR: EventTexts = {
     seoTitle: 'معرض الأعراس والجمال W&B Expo في الأحساء — 3–7 ديسمبر 2026',
     seoDesc: 'معرض الأعراس والجمال (W&B Expo) في فندق مكان بالأحساء من 3 إلى 7 ديسمبر 2026م: الأزياء ومستلزمات الزفاف والجمال والزهور والتصوير والضيافة في مكان واحد.',
   },
+  'asala-alsharq-2026': {
+    slug: 'معرض-أصالة-الشرق-2026',
+    name: 'معرض أصالة الشرق', place: 'مركز الأحساء للمعارض، شارع السلام (طريق عين النجم)، الهفوف',
+    season: 'الشتاء', time: '26 نوفمبر – 5 ديسمبر 2026م', span: '10 أيام',
+    org: 'غرفة الأحساء',
+    acts: ['الأزياء النسائية', 'العبايات', 'المجوهرات والإكسسوارات', 'الأزياء الرجالية', 'العود والعطور', 'التحف والمنتجات الفاخرة'],
+    intro: 'معرض أصالة الشرق منصّة سنوية تنظّمها غرفة الأحساء للأزياء والمنتجات الفاخرة، وتُقام نسخة 2026 في مركز الأحساء للمعارض بالهفوف من 26 نوفمبر إلى 5 ديسمبر 2026م، تحت رعاية صاحب السمو الملكي الأمير سعود بن طلال بن بدر محافظ الأحساء، وبالتعاون مع هيئة تطوير الأحساء، وشعارها «أصالة تُلهم، وفرص تتجدد».',
+    sections: [
+      { h: 'ماذا تجد في المعرض', ps: ['يجمع المعرض علامات تجارية سعودية وخليجية، وعلامات متخصصة في الأزياء والمجوهرات والإكسسوارات والعطور والمنتجات الفاخرة. ومسارات المشاركة المعلنة: الأزياء النسائية من فساتين وعبايات وجلابيات، والعبايات النسائية، والمجوهرات، والأزياء الرجالية، والعود والعطور، والتحف.'] },
+      { h: 'المشاركة عارضاً', dated: true, ps: [
+        'تستقبل غرفة الأحساء طلبات المشاركة عبر بوابتها الإلكترونية من الشركات وأصحاب السجلات التجارية وأصحاب العمل الحر والأسر المنتجة. ويطلب النموذج اسم المنشأة أو المشروع، واسم الممثل، والبريد الإلكتروني ورقم الجوال، ووصفاً مختصراً للمنتجات مع صورة لها أو ملف PDF، ثم اختيار مسار المشاركة ونوع الركن.',
+        'أحجام الأركان المعلنة في البوابة من 3×3 م إلى 6×6 م، وأسعارها من 7,000 إلى 15,000 ريال بحسب المساحة. وتنصّ البوابة على أن تسجيل البيانات لا يُعدّ موافقة نهائية على المشاركة، بل يخضع لعملية الفرز والاعتماد.',
+      ] },
+      { h: 'قبل الزيارة', dated: true, ps: ['لم تُعلن بعدُ ساعات الزيارة ولا رسوم الدخول، وتنشرها غرفة الأحساء على حسابها في X ورابطه في هذه الصفحة. والمعرض في المكان نفسه الذي يُقام فيه معرض اللومي الحساوي كل صيف.'] },
+    ],
+    faq: [
+      { q: 'متى يُقام المعرض؟', a: 'من 26 نوفمبر إلى 5 ديسمبر 2026م بحسب بوابة غرفة الأحساء.' },
+      { q: 'أين يُقام المعرض؟', a: 'في مركز الأحساء للمعارض على شارع السلام (طريق عين النجم) بالهفوف، وتجد الخريطة في هذه الصفحة.' },
+      { q: 'من ينظّم المعرض؟', a: 'غرفة الأحساء، تحت رعاية محافظ الأحساء وبالتعاون مع هيئة تطوير الأحساء.' },
+      { q: 'كيف أشارك عارضاً؟', a: 'عبر بوابة التسجيل الرسمية لغرفة الأحساء من زرّ «سجّل للمشاركة عارضاً» في هذه الصفحة، والتسجيل يخضع للفرز والاعتماد.', dated: true },
+    ],
+    related: [
+      { label: 'معرض اللومي الحساوي', href: '/فعاليات/معرض-اللومي-الحساوي/' },
+      { label: 'أماكن الإقامة في الأحساء', href: '/إقامة/' },
+      { label: 'خطّط لرحلتك إلى الأحساء', href: '/خطط/' },
+    ],
+    seoTitle: 'معرض أصالة الشرق 2026 في الأحساء: 26 نوفمبر – 5 ديسمبر',
+    seoDesc: 'معرض أصالة الشرق 2026 من غرفة الأحساء في مركز الأحساء للمعارض، 26 نوفمبر – 5 ديسمبر: الأزياء والمجوهرات والعطور والمنتجات الفاخرة، وتسجيل العارضين.',
+  },
 };
 
 const TEXT_EN: EventTexts = {
@@ -527,6 +578,35 @@ const TEXT_EN: EventTexts = {
     ],
     seoTitle: 'Weddings & Beauty Expo (W&B Expo) in Al-Ahsa — 3–7 Dec 2026',
     seoDesc: 'The Weddings & Beauty Expo (W&B Expo) at Somewhere Hotel, Al-Ahsa, 3–7 December 2026: fashion, wedding essentials, beauty, flowers and photography.',
+  },
+  'asala-alsharq-2026': {
+    slug: 'asalat-al-sharq-exhibition-2026',
+    name: 'Asalat Al-Sharq Exhibition', place: 'Al-Ahsa Expo Center, Al-Salam St (Ain Najm Rd), Hofuf',
+    season: 'Winter', time: '26 November – 5 December 2026', span: '10 days',
+    org: 'Al-Ahsa Chamber',
+    acts: ['Women’s fashion', 'Abayas', 'Jewellery & accessories', 'Men’s fashion', 'Oud & perfumes', 'Antiques & luxury goods'],
+    intro: 'Asalat Al-Sharq (“Authenticity of the East”) is an annual fashion and luxury-goods exhibition organised by the Al-Ahsa Chamber. The 2026 edition runs from 26 November to 5 December 2026 at the Al-Ahsa Expo Center in Hofuf, under the patronage of HRH Prince Saud bin Talal bin Badr, Governor of Al-Ahsa, in cooperation with the Al-Ahsa Development Authority.',
+    sections: [
+      { h: 'What you’ll find', ps: ['The exhibition brings together Saudi and GCC brands, along with specialist brands in fashion, jewellery, accessories, perfumes and luxury goods. The announced participation tracks are women’s fashion (dresses, abayas and jalabiyas), women’s abayas, jewellery, men’s fashion, oud and perfumes, and antiques.'] },
+      { h: 'Taking part as an exhibitor', dated: true, ps: [
+        'The Al-Ahsa Chamber accepts applications through its online portal from companies, commercial-register holders, freelancers and productive families. The form asks for the business or project name, the representative’s name, email and mobile number, and a short description of the products with a photo or PDF file, then the participation track and booth type.',
+        'Booth sizes listed on the portal range from 3×3 m to 6×6 m, priced from SAR 7,000 to SAR 15,000 depending on size. The portal states that submitting your details is not final approval to take part: every application goes through screening and approval.',
+      ] },
+      { h: 'Before you visit', dated: true, ps: ['Opening hours and entry fees have not been announced yet; the Al-Ahsa Chamber publishes them on its X account, linked on this page. The exhibition is held at the same venue as the Hasawi Lomi Exhibition each summer.'] },
+    ],
+    faq: [
+      { q: 'When is the exhibition held?', a: 'From 26 November to 5 December 2026, according to the Al-Ahsa Chamber’s portal.' },
+      { q: 'Where is the exhibition held?', a: 'At the Al-Ahsa Expo Center on Al-Salam Street (Ain Najm Road) in Hofuf; the map is on this page.' },
+      { q: 'Who organises the exhibition?', a: 'The Al-Ahsa Chamber, under the patronage of the Governor of Al-Ahsa and in cooperation with the Al-Ahsa Development Authority.' },
+      { q: 'How do I take part as an exhibitor?', a: 'Through the Al-Ahsa Chamber’s official registration portal, using the “Register as an exhibitor” button on this page; applications are subject to screening and approval.', dated: true },
+    ],
+    related: [
+      { label: 'Hasawi Lomi Exhibition', href: '/en/events/hasawi-lomi-exhibition/' },
+      { label: 'Where to stay in Al-Ahsa', href: '/en/stay/' },
+      { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
+    ],
+    seoTitle: 'Asalat Al-Sharq Exhibition 2026 in Al-Ahsa: 26 Nov – 5 Dec',
+    seoDesc: 'Asalat Al-Sharq 2026 at the Al-Ahsa Expo Center, Hofuf, 26 Nov – 5 Dec: fashion, jewellery, perfumes and luxury goods, plus exhibitor registration.',
   },
 };
 

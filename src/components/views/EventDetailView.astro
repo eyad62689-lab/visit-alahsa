@@ -266,6 +266,8 @@ const O = localize(lang, {
     whatsapp: 'للحجز والاستفسار عبر واتساب',
     posterAlt: 'الإعلان الرسمي',
     posterCap: 'الإعلان الرسمي للفعالية',
+    regBtn: 'سجّل للمشاركة عارضاً',
+    regNote: 'التسجيل عبر بوابة الجهة المنظّمة الرسمية، ولا يُعدّ موافقة نهائية على المشاركة.',
     ended: 'انتهت الفعالية',
   },
   en: {
@@ -274,6 +276,8 @@ const O = localize(lang, {
     whatsapp: 'Bookings & enquiries on WhatsApp',
     posterAlt: 'Official announcement',
     posterCap: 'The event’s official announcement',
+    regBtn: 'Register as an exhibitor',
+    regNote: 'Registration is through the organiser’s official portal and is not final approval to take part.',
     ended: 'Event has ended',
   },
 });
@@ -434,6 +438,13 @@ if (ev.faq?.length) {
           <div class="evd-reg" data-cta>
             {cta.note && <p class="evd-reg-note">{cta.note}</p>}
             <a class="btn btn--turq evd-reg-btn" href={cta.url} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="cta" data-track-item-id={ev.id}>{cta.label}</a>
+          </div>
+        )}
+        {/* بوابة تسجيل العارضين — للفعالية المؤقتة (تسميتها في O)، وخاصة بالنسخة فتسقط بختامها */}
+        {ev.register && ev.oneOff && (
+          <div class="evd-reg" data-ev-dated>
+            <p class="evd-reg-note">{O.regNote}</p>
+            <a class="btn btn--turq evd-reg-btn" href={ev.register} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="register" data-track-item-id={ev.id}>{O.regBtn}</a>
           </div>
         )}
 
