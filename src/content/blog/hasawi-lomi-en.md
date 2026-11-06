@@ -1,6 +1,6 @@
 ---
 title: "The Hasawi Lime (Lomi): The Oasis's Second Crop and Its Annual Exhibition"
-description: "Meet the Hasawi lime (lomi), Al-Ahsa's second crop after dates: its summer season, the jameed sun-drying tradition, and a guide to the annual Lomi Exhibition."
+description: "Meet the Hasawi lime (lomi), Al-Ahsa's second crop after dates: its summer season, the sun-aged jameed tradition, and a guide to the annual Lomi Exhibition."
 lang: en
 key: hasawi-lomi
 slug: "hasawi-lomi-lime"
@@ -15,7 +15,7 @@ faq:
   - q: "When is the Hasawi lime in season?"
     a: "Its season is summer, running from around mid-June to the end of August — the same season in which Hasawi families gather to press and preserve it for the whole year."
   - q: "What is jameed?"
-    a: "It is sun-dried lime juice: a cherished Hasawi custom in which families gather in the summer season to press the lomi, then sun-dry and age the juice in glass jars as a supply used throughout the year."
+    a: "It is lime juice aged in the sun: a cherished Hasawi custom in which families gather in the summer season to press the lomi, then set the juice in the sun and age it in glass jars as a supply used throughout the year."
   - q: "When and where is the Hasawi Lomi Exhibition held?"
     a: "Annually in late summer, organised by the Al-Ahsa Chamber, at the Al-Ahsa Expo Center in Hofuf. The current edition's dates and opening hours are always published on the exhibition's page on this site."
   - q: "How much are tickets to the Hasawi Lomi Exhibition?"
@@ -34,9 +34,9 @@ The Hasawi lomi — known locally as **Bin Zuhairi** — is a small, dark-green,
 
 The lomi's season is summer, running **from around mid-June to the end of August** — arriving at the height of the heat, just as the oasis's groves are also busy with summer rutab. To meet the fruit on its tree, there is the [Hasawi Lemon Farm](/en/attractions/lemon-farm/), a citrus farm where visitors pick the famous Hasawi lime (lomi) in season. For what the oasis bears in every season, take the full tour on the [seasonal fruits page](/en/fruits/).
 
-## From Tree to Pantry: Jameed, the Sun-Dried Lime Juice
+## From Tree to Pantry: Jameed, Lime Juice Aged in the Sun
 
-A cherished Hasawi summer custom surrounds the lomi: in its season, families gather to press and preserve it — the practice known as **"jameed"**: lime juice sun-dried and aged in glass jars — laying in a supply for the whole year. It is used fresh, as juice, and dried, perfuming the dishes of Hasawi and Arabian Gulf cooking all year round.
+A cherished Hasawi summer custom surrounds the lomi: in its season, families gather to press and preserve it — the practice known as **"jameed"**: lime juice set in the sun and aged in glass jars — laying in a supply for the whole year. It is used fresh, as juice, and dried, perfuming the dishes of Hasawi and Arabian Gulf cooking all year round.
 
 ## In the Hasawi Kitchen
 
