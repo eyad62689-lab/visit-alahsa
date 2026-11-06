@@ -25,7 +25,8 @@ export function blocks(html) {
     i = end + 1;
   }
   flush();
-  return out.map((b) => b.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' '));
+  const ENT = { amp: '&', quot: '"', '#39': "'", lt: '<', gt: '>', nbsp: ' ' };
+  return out.map((b) => b.replace(/&(amp|quot|#39|lt|gt|nbsp);/g, (_, k) => ENT[k]));
 }
 
 const htmlFiles = (dir) => readdirSync(dir).flatMap((n) => {

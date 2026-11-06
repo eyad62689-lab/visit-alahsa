@@ -25,7 +25,8 @@ function visible(html) {
     if (BLOCK.test(name)) buf += '\n';
     i = end + 1;
   }
-  return buf.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ').replace(/[ \t]+/g, ' ');
+  const ENT = { amp: '&', quot: '"', '#39': "'", nbsp: ' ' };
+  return buf.replace(/&(amp|quot|#39|nbsp);/g, (_, k) => ENT[k]).replace(/[ \t]+/g, ' ');
 }
 const htmlFiles = (dir) => readdirSync(dir).flatMap((n) => {
   const p = join(dir, n);
