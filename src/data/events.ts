@@ -382,7 +382,7 @@ const TEXT_EN: EventTexts = {
     seoTitle: 'Hasawi Bisht Festival in Al-Ahsa: Season & Location',
     season: 'Winter', time: 'Around December', span: 'A few days',
     org: 'Heritage Commission (Ministry of Culture)',
-    acts: ['Bisht exhibition', 'Weaving workshops', 'Interactive bisht souq', 'Folklore performances'],
+    acts: ['Bisht exhibition', 'Bisht-making workshops', 'Interactive bisht souq', 'Folklore performances'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -540,7 +540,7 @@ const TEXT_ZH: TranslatedTexts = {
     name: '哈萨比什特长袍节', place: '胡富夫历史悠久的易卜拉欣宫',
     season: '冬季', time: '12 月前后', span: '为期数天',
     org: '沙特遗产委员会（文化部）',
-    acts: ['比什特长袍展', '织造技艺工作坊', '互动比什特集市', '民俗表演'],
+    acts: ['比什特长袍展', '比什特长袍制作工作坊', '互动比什特集市', '民俗表演'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -656,7 +656,7 @@ const TEXT_RU: TranslatedTexts = {
     name: 'Фестиваль бишта Аль-Ахсы', place: 'Историческая крепость Каср-Ибрахим, Эль-Хуфуф',
     season: 'Зима', time: 'Примерно в декабре', span: 'Несколько дней',
     org: 'Комиссия по наследию (Министерство культуры)',
-    acts: ['Выставка бишта', 'Обучающие мастер-классы по ткачеству', 'Интерактивный рынок биштов', 'Фольклорные представления'],
+    acts: ['Выставка бишта', 'Обучающие мастер-классы по изготовлению бишта', 'Интерактивный рынок биштов', 'Фольклорные представления'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -762,7 +762,7 @@ const TEXT_DE: TranslatedTexts = {
     name: 'Hasawi-Bischt-Festival', place: 'Historischer Qasr Ibrahim, Hofuf',
     season: 'Winter', time: 'Etwa im Dezember', span: 'Wenige Tage',
     org: 'Kommission für Kulturerbe (Kulturministerium)',
-    acts: ['Bischt-Ausstellung', 'Weberei-Workshops', 'Interaktiver Bischt-Souk', 'Folkloristische Vorführungen'],
+    acts: ['Bischt-Ausstellung', 'Workshops zur Bischt-Herstellung', 'Interaktiver Bischt-Souk', 'Folkloristische Vorführungen'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -869,7 +869,7 @@ const TEXT_UR: TranslatedTexts = {
     time: 'تقریباً دسمبر میں',
     span: 'چند دن',
     org: 'ورثہ کمیشن (ثقافت کی وزارت)',
-    acts: ['چوغوں کی نمائش', 'بنائی سکھانے کی تربیتی نشستیں', 'چوغوں کا بازار', 'لوک فنون کی پیشکشیں'],
+    acts: ['چوغوں کی نمائش', 'چوغہ سازی سکھانے کی تربیتی نشستیں', 'چوغوں کا بازار', 'لوک فنون کی پیشکشیں'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
@@ -1002,7 +1002,7 @@ const TEXT_TR: TranslatedTexts = {
     time: 'Aralık ayı civarında',
     span: 'Birkaç gün',
     org: 'Miras Kurumu (Suudi Arabistan\'ın Kültür Bakanlığı)',
-    acts: ['Bişt (erkek pelerini) sergisi', 'Dokuma atölyeleri', 'Bişt çarşısı', 'Folklor gösterileri'],
+    acts: ['Bişt (erkek pelerini) sergisi', 'Bişt yapım atölyeleri', 'Bişt çarşısı', 'Folklor gösterileri'],
   },
   'qaisariyah-nights': {
     slug: 'qaisariyah-nights',
