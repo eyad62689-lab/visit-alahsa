@@ -1,0 +1,62 @@
+{
+  "batch": "owner-rulings-1106c",
+  "lang": "tr",
+  "stage": 7,
+  "date": "2026-11-06",
+  "score": 93,
+  "breakdown": {
+    "accuracy": 38,
+    "fluency": 26,
+    "terminology": 19,
+    "scope": 10
+  },
+  "decision": "pass",
+  "judge_edits": [
+    {
+      "id": "tr-tmap.howto",
+      "from": "Bir yeri haritada görmek için listede adının yanındaki düğmeye basın, sayfasını açmak için ise adını seçin.",
+      "to": "Bir yeri haritada görmek için listede adının yanındaki düğmeye basın, sayfasını açmak için ise adına basın.",
+      "why": "OR6c-tr-1: «seçin» read as select (reader #7); input-neutral «basın» as for the button (M7); «tıklayın» and «dokunun» barred (H6)."
+    }
+  ],
+  "rulings": [
+    {
+      "id": "OR6c-tr-1",
+      "text": "The button keeps M7-button-verb «düğmeye basın» (input-neutral). For the name, «adını seçin» becomes «adına basın»: the reader took «seçin» for selection and had to assume a click (#7); H6 bars «dokunun» and «tıklayın»; «açın» is already the purpose verb of the clause («açmak için»), so «adını açın» would echo it. One input-neutral verb for both elements of the row mirrors the sources’ one action («Click or tap … or the name itself»; «اضغط … أو اضغط اسمه»). Binds tmap.howto only; «seçin» stays for categories and list choices elsewhere."
+    }
+  ],
+  "blind_disposition": [
+    {
+      "item": "Section 1: button = show on map, name = open page",
+      "disposition": "goal met"
+    },
+    {
+      "item": "#1 Kabartma harita",
+      "disposition": "out of scope: published H1 and lead (tr-static-1)"
+    },
+    {
+      "item": "#2 Gezi rehberiKabartma harita",
+      "disposition": "out of scope: the glued breadcrumb is a text-cut artifact of two separate elements (eyebrow and H1), not page text"
+    },
+    {
+      "item": "#3 telegraphic first sentence of the lead",
+      "disposition": "out of scope: the lead is the published head, byte-identical by design"
+    },
+    {
+      "item": "#4 doğu tarafındaki",
+      "disposition": "out of scope: the lead is the published head, byte-identical by design"
+    },
+    {
+      "item": "#5 bulundukları noktada işaretlidir",
+      "disposition": "out of scope: the lead is the published head, byte-identical by design"
+    },
+    {
+      "item": "#6 «düğme» is an icon; reader looked for a labelled button",
+      "disposition": "rejected: «adının yanındaki» locates it, as the reader found; the brief forbids describing the shape; M7 verb kept"
+    },
+    {
+      "item": "#7 «seçin» ambiguous, assumed «tıklayın»",
+      "disposition": "accepted: «adını seçin» becomes «adına basın» (OR6c-tr-1); «tıklayın» barred by H6"
+    }
+  ]
+}
