@@ -10,7 +10,8 @@ const args = process.argv.slice(2);
 const brk = args.includes('--break');
 const [stage, distRoot = 'dist'] = args.filter((a) => a !== '--break');
 const TICKET = 'https://wahaevents.hozma.tech/event/10/register';
-const OLD = ['waha-demo.hozma.tech', 'booth-registration'];
+const OLD_HOST = 'waha-demo.hozma.tech';
+const OLD = [OLD_HOST, 'booth-registration'];
 const OLD_TEXT = {
   ar: ['لم يُعلن التاريخ الدقيق', 'لم تُعلن المدة بعد'], en: ['exact dates and duration not yet announced', 'Duration not yet announced'],
   zh: ['具体日期与时长尚未公布', '时长尚未公布'], de: ['Dauer noch nicht bekannt gegeben'],
@@ -27,8 +28,14 @@ const norm = (s) => s.replace(/\\"/g, '"').replace(/\\'/g, "'");
 function check(lg, page, html) {
   const errs = [];
   const text = blocks(html).join('\n');
-  if (!html.includes(TICKET)) errs.push('ticket link missing');
-  for (const o of OLD) if (html.includes(o)) errs.push(`old link: ${o}`);
+  // links compared as parsed href values, not substrings of the page
+  const hrefs = [...html.matchAll(/href="([^"]*)"/g)].map((m) => m[1].replace(/&amp;/g, '&'));
+  if (!hrefs.includes(TICKET)) errs.push('ticket link missing');
+  for (const h of hrefs) {
+    let u; try { u = new URL(h); } catch { continue; }
+    if (u.hostname === OLD_HOST) errs.push(`old link: ${h}`);
+  }
+  for (const o of OLD) if (text.includes(o)) errs.push(`old link text: ${o}`);
   for (const o of OLD_TEXT[lg] ?? []) if (text.includes(o)) errs.push(`old text: ${o}`);
   for (const n of NEW[lg] ?? []) if (!text.includes(n)) errs.push(`new text missing: ${n}`);
   if (lg !== 'ar' && lg !== 'en') {

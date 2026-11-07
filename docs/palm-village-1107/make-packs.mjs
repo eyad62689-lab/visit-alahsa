@@ -11,19 +11,39 @@ const EV = 'src/data/events.ts';
 const cur = (f) => readFileSync(f, 'utf8');
 const base = (f) => execFileSync('git', ['show', `origin/main:${f}`], { encoding: 'utf8', maxBuffer: 1 << 26 });
 
-// YAML double-quoted scalar of key k at line start (with optional indent)
-const yaml = (t, k) => { const m = t.match(new RegExp(`^\\s*(?:- )?${k}: "((?:[^"\\\\]|\\\\.)*)"`, 'm')); return m ? m[1] : undefined; };
+// Quoted scalar starting at s[i] (just after the opening quote q), escapes kept as written
+const scanQuoted = (s, i, q) => {
+  let j = i;
+  while (j < s.length && s[j] !== q) j += s[j] === '\\' ? 2 : 1;
+  return j < s.length ? s.slice(i, j) : undefined;
+};
+// value of `k: <q>…<q>` where k is a whole key (not the tail of a longer one)
+const field = (s, k, q) => {
+  const needle = `${k}: ${q}`;
+  for (let i = s.indexOf(needle); i >= 0; i = s.indexOf(needle, i + 1)) {
+    if (i === 0 || !/\w/.test(s[i - 1])) return scanQuoted(s, i + needle.length, q);
+  }
+};
+// YAML double-quoted scalar of key k at line start (with optional indent and list dash)
+const yaml = (t, k) => {
+  const l = t.split(/\r?\n/).find((x) => x.trimStart().replace(/^- /, '').startsWith(`${k}: "`));
+  return l === undefined ? undefined : field(l, k, '"');
+};
 const row = (t, label) => t.split(/\r?\n/).find((l) => l.includes(`label: "${label}"`));
-const inRow = (r, k) => { const m = r.match(new RegExp(`\\b${k}: "((?:[^"\\\\]|\\\\.)*)"`)); return m ? m[1] : undefined; };
+const inRow = (r, k) => field(r, k, '"');
 const firstFaq = (t) => t.slice(t.indexOf('\nfaq:'), t.indexOf('\n  - q: "من ينظّم'));
 const para = (body, n) => body.split('\\n\\n')[n];
 
 // event text block for a language: the 'palm-village' entry whose related href carries the language
 const evBlock = (t, key, hrefLang) => {
-  const re = new RegExp(`'${key}': \\{[\\s\\S]*?\\n  \\},`, 'g');
-  for (const m of t.matchAll(re)) if (m[0].includes('slug:') && (hrefLang ? m[0].includes(`/${hrefLang}/`) : true)) return m[0];
+  const open = `'${key}': {`;
+  for (let i = t.indexOf(open); i >= 0; i = t.indexOf(open, i + 1)) {
+    const end = t.indexOf('\n  },', i);
+    const b = t.slice(i, end + 5);
+    if (b.includes('slug:') && (hrefLang ? b.includes(`/${hrefLang}/`) : true)) return b;
+  }
 };
-const evField = (b, k) => { const m = b.match(new RegExp(`\\b${k}: '((?:[^'\\\\]|\\\\.)*)'`)); return m ? m[1] : undefined; };
+const evField = (b, k) => field(b, k, "'");
 const afterField = (b, k) => { const a = b.slice(b.indexOf('after: {')); return evField(a, k); };
 const evAr = (t) => [...t.matchAll(/'palm-village': \{[\s\S]*?\n {2}\},/g)].map((m) => m[0]).find((b) => b.includes("slug: 'قرية-النخيل'"));
 const lomiBlock = (t, lg) => [...t.matchAll(/ {2}lomi: \{[\s\S]*?\n {2}\},/g)].map((m) => m[0]).find((b) => b.includes(`/${lg}/`) || (lg === 'en' && b.includes('Hasawi Lomi Exhibition')));
