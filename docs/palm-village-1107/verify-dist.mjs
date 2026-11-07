@@ -30,7 +30,7 @@ function check(lg, page, html) {
   const text = blocks(html).join('\n');
   // links compared as parsed href values, not substrings of the page
   const hrefs = [...html.matchAll(/href="([^"]*)"/g)].map((m) => m[1].replace(/&amp;/g, '&'));
-  if (!hrefs.includes(TICKET)) errs.push('ticket link missing');
+  if (!hrefs.some((h) => h === TICKET)) errs.push('ticket link missing');
   for (const h of hrefs) {
     let u; try { u = new URL(h); } catch { continue; }
     if (u.hostname === OLD_HOST) errs.push(`old link: ${h}`);
