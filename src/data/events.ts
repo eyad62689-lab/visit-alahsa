@@ -128,12 +128,17 @@ const EVENT_META = {
   'qaisariyah-nights': { img: '/img/event-qaisariyah-nights', start: 2, end: 3, venue: 'qaisariyah' },
   'kafu-nights': { img: '/img/event-kafu-nights', start: 13, ramadan: true, venue: 'king-abdullah-park' },
   'dates-festival': { img: '/img/event-dates-festival', start: 1, end: 2 },
-  // نسخة 2026 مؤكدة في نوفمبر (من إياد، 2026-10-19) بلا تاريخ دقيق ولا مدة معلنة — فلا status: 'confirmed'
-  // (يلزمه startISO/endISO). النسختان السابقتان: أبريل 2025 ويناير–مارس 2026 (صفحة المعلم palm-village.md).
+  // نسخة 2026–2027: 11 نوفمبر 2026 – 28 فبراير 2027 — من صفحة حجز التذاكر الرسمية (واحة للفعاليات،
+  // مقروءة 2026-11-07؛ رابطها من رمز QR في إعلان قدّمه إياد، والبداية يؤكدها منشور هيئة تطوير الأحساء).
+  // لا ساعات ولا priceRange: الصفحة تعرض «ابتداءً من» لكل يوم بلا حدّ أعلى. النسختان السابقتان:
+  // أبريل 2025 ويناير–مارس 2026 (صفحة المعلم palm-village.md).
   // الموقع من رابط الخرائط الذي قدّمه إياد (2026-10-17، وأعاد تأكيده 2026-10-20 برابط جديد للنقطة نفسها)؛
   // القرية موسمية في مكان ثابت (قوقل يسمّيها «مغلق نهائياً» خارج موسمها). الإحداثيات من الرابط المفكوك.
   'palm-village': {
-    img: '/img/event-palm-village', start: 11, end: 11,
+    img: '/img/event-palm-village', start: 11, end: 2,
+    status: 'confirmed', afterStatus: 'expected',
+    startISO: '2026-11-11', endISO: '2027-02-28',
+    ticket: 'https://wahaevents.hozma.tech/event/10/register',
     map: 'https://maps.app.goo.gl/TAUpHgVWvNB9TyAq8',
     venue: 'palm-village',
     coords: { lat: 25.460124, lng: 49.567101 },
@@ -279,10 +284,14 @@ const TEXT_AR: EventTexts = {
   'palm-village': {
     slug: 'قرية-النخيل',
     name: 'قرية النخيل', place: 'حي محيرس، المبرز',
-    seoDesc: 'قرية النخيل — حي محيرس، المبرز. الشتاء، نوفمبر 2026م. متاجر التمور، مطاعم ومقاهٍ محلية، أجنحة الحرفيين (الخوصيات)، تسويق المنتجات الريفية.',
+    seoDesc: 'قرية النخيل — حي محيرس، المبرز. من 11 نوفمبر 2026م إلى 28 فبراير 2027م، والتذاكر من 10 ريالات. متاجر التمور، مطاعم ومقاهٍ محلية، أجنحة الحرفيين.',
     // عنوان الصفحة يميّزها عن صفحة المعلم «قرية النخيل» (C72: عنوان فريد عبر الصفحات)
     seoTitle: 'فعالية قرية النخيل بالأحساء: الموسم والموقع',
-    season: 'الشتاء', time: 'نوفمبر 2026م', span: 'لم تُعلن المدة بعد',
+    season: 'الشتاء', time: '11 نوفمبر 2026م – 28 فبراير 2027م', span: 'نحو أربعة أشهر',
+    after: {
+      time: 'نوفمبر – فبراير تقريباً', span: 'عدة أشهر',
+      seoDesc: 'قرية النخيل — حي محيرس، المبرز. الشتاء. متاجر التمور، مطاعم ومقاهٍ محلية، أجنحة الحرفيين (الخوصيات)، تسويق المنتجات الريفية.',
+    },
     org: 'هيئة تطوير الأحساء، أمانة الأحساء',
     related: [{ label: 'قرية النخيل', href: '/معالم/قرية-النخيل/' }],
     acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
@@ -466,10 +475,14 @@ const TEXT_EN: EventTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Palm Village', place: 'Muhairis district, Al-Mubarraz',
-    seoDesc: 'Palm Village — Muhairis district, Al-Mubarraz. Winter, November 2026. Date shops, Local restaurants & cafés, Artisan pavilions (palm-frond crafts).',
+    seoDesc: 'Palm Village — Muhairis district, Al-Mubarraz. 11 November 2026 – 28 February 2027, tickets from SAR 10. Date shops, local restaurants & cafés, craft pavilions.',
     // Distinguishes the event page title from the "Palm Village" attraction page (C72: unique titles)
     seoTitle: 'Palm Village Event in Al-Ahsa: Season & Location',
-    season: 'Winter', time: 'November 2026', span: 'Duration not yet announced',
+    season: 'Winter', time: '11 November 2026 – 28 February 2027', span: 'About four months',
+    after: {
+      time: 'Around November – February', span: 'Several months',
+      seoDesc: 'Palm Village — Muhairis district, Al-Mubarraz. Winter. Date shops, Local restaurants & cafés, Artisan pavilions (palm-frond crafts).',
+    },
     org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
     related: [{ label: 'Palm Village', href: '/en/attractions/palm-village/' }],
     acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
@@ -647,7 +660,8 @@ const TEXT_ZH: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: '椰枣村', place: '穆巴拉兹的穆海里斯区',
-    season: '冬季', time: '2026 年 11 月', span: '时长尚未公布',
+    season: '冬季', time: '2026 年 11 月 11 日至 2027 年 2 月 28 日', span: '约四个月',
+    after: { time: '11 月至次年 2 月前后', span: '为期数月' },
     org: '哈萨发展管理局、哈萨市政局',
     related: [{ label: '椰枣村', href: '/zh/attractions/palm-village/' }],
     acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品集市'],
@@ -764,7 +778,8 @@ const TEXT_RU: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Пальмовая деревня', place: 'Район Мухайрис, Эль-Мубарраз',
-    season: 'Зима', time: 'Ноябрь 2026 года', span: 'Продолжительность ещё не объявлена',
+    season: 'Зима', time: '11 ноября 2026 года – 28 февраля 2027 года', span: 'Около четырёх месяцев',
+    after: { time: 'Примерно в ноябре–феврале', span: 'Несколько месяцев' },
     org: 'Управление по развитию Аль-Ахсы, муниципалитет Аль-Ахсы',
     related: [{ label: 'Пальмовая деревня', href: '/ru/attractions/palm-village/' }],
     acts: ['Финиковые лавки', 'Местные рестораны и кафе', 'Павильоны ремесленников (изделия из пальмовых листьев)', 'Продажа сельской продукции'],
@@ -869,7 +884,8 @@ const TEXT_DE: TranslatedTexts = {
   'palm-village': {
     slug: 'palm-village',
     name: 'Palmendorf', place: 'Muhairis-Viertel, Al-Mubarraz',
-    season: 'Winter', time: 'November 2026', span: 'Dauer noch nicht bekannt gegeben',
+    season: 'Winter', time: '11. November 2026 – 28. Februar 2027', span: 'Etwa vier Monate',
+    after: { time: 'Etwa November–Februar', span: 'Mehrere Monate' },
     org: 'Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa',
     related: [{ label: 'Palmendorf', href: '/de/attractions/palm-village/' }],
     acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
@@ -987,8 +1003,9 @@ const TEXT_UR: TranslatedTexts = {
     name: 'کھجور کے درختوں کا گاؤں',
     place: 'محلہ محیرس، المبرز',
     season: 'سردیاں',
-    time: 'نومبر 2026',
-    span: 'دورانیے کا اعلان ابھی نہیں ہوا',
+    time: '11 نومبر 2026 سے 28 فروری 2027 تک',
+    span: 'تقریباً چار مہینے',
+    after: { time: 'تقریباً نومبر سے فروری تک', span: 'کئی مہینے' },
     org: 'الاحساء کی ترقی کا ادارہ، الاحساء کی بلدیہ',
     related: [{ label: 'کھجور کے درختوں کا گاؤں', href: '/ur/attractions/palm-village/' }],
     acts: ['کھجوروں کی دکانیں', 'کھانے پینے کی مقامی جگہیں', 'دستکاروں کے پنڈال (کھجور کے پتوں سے بنی دستکاریاں)', 'دیہی مصنوعات کا بازار'],
@@ -1120,8 +1137,9 @@ const TEXT_TR: TranslatedTexts = {
     name: 'Hurma Köyü',
     place: 'Muheyris mahallesi, Müberrez',
     season: 'Kış',
-    time: 'Kasım 2026',
-    span: 'Süre henüz açıklanmadı',
+    time: '11 Kasım 2026 – 28 Şubat 2027',
+    span: 'Yaklaşık dört ay',
+    after: { time: 'Kasım–şubat civarında', span: 'Birkaç ay' },
     org: 'El-Ahsa Geliştirme Kurumu, El-Ahsa Belediyesi',
     seoTitle: 'El-Ahsa\'da Hurma Köyü etkinliği: mevsim ve konum',
     acts: ['Hurma dükkânları', 'Yerel restoranlar ve kafeler', 'Zanaatkâr stantları (hurma yaprağı işleri)', 'Kırsal ürünler pazarı'],

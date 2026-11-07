@@ -324,8 +324,9 @@ const venueName = venue
 // المعلم أو حقله سقط addressLocality كلياً (كان «الهفوف» مكتوباً يدوياً لكل فعالية).
 const venueArea = venue ? (ar ? venue.data.area : de ? (venue.data.area_de ?? venue.data.area_en) : ru ? (venue.data.area_ru ?? venue.data.area_en) : ur ? (venue.data.area_ur ?? venue.data.area_en) : tr ? (venue.data.area_tr ?? venue.data.area_en) : venue.data.area_en) : undefined;
 // دعوة المعلم (تسجيل العارضين مثلاً) من ملفه نفسه — مصدر واحد للرابط ونصّه بكل اللغات،
-// على منطق DetailView حرفياً: لغة بلا نصّ الدعوة لا يظهر فيها الصندوق.
-const vc = venue?.data.cta;
+// على منطق DetailView حرفياً: لغة بلا نصّ الدعوة لا يظهر فيها الصندوق. ودعوةٌ رابطها هو حجز
+// الفعالية نفسه لا تُكرَّر هنا: زرّ الحجز (data-ev-dated) يسقط بانقضاء النسخة، والصندوق لا.
+const vc = venue?.data.cta && venue.data.cta.url !== ev.ticket ? venue.data.cta : undefined;
 const ctaLabel = vc && (ar ? vc.label : zh ? vc.label_zh : de ? vc.label_de : ru ? vc.label_ru : ur ? vc.label_ur : tr ? vc.label_tr : vc.label_en);
 const cta = vc && ctaLabel ? {
   url: ar ? vc.url : (vc.url_en ?? vc.url), label: ctaLabel,
