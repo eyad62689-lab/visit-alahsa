@@ -1,7 +1,7 @@
 ---
 // الفصل 2 — الماء تحت الرمل: أرقام الواحة من مصدرها الواحد (oasis-facts.ts، القرار أ4).
-// الرقم النهائي مكتوب في HTML؛ العدّ تجميل يُصفَّر قبيل دخول الشاشة ثم يتصاعد، ولا يعمل مع
-// تقليل الحركة. السنة ثابتة لا تُعدّ. دوائر الماء تبدأ بعد انتهاء العدّ (القرار ب2).
+// الأرقام ثابتة بقيمها النهائية: العدّ التصاعدي أُلغي لأن أي لقطة أثناءه (زائر أو أداة) كانت
+// تقرأ رقماً خاطئاً («+0.4 مليون نخلة»). دوائر الماء تبدأ حين تدخل الأرقام الشاشة.
 // لصيقة عدد المعالم نصّ القاموس نفسه (fact.sites.l) — يقرؤها فحص C3.
 import { OASIS_FACTS, OASIS_SOURCES } from '../../data/oasis-facts';
 import { useTranslations } from '../../i18n/utils';
@@ -14,10 +14,10 @@ const t = useTranslations(lang);
 const H = HOME_COPY[lang];
 const C = H.water;
 const facts = [
-  { n: OASIS_FACTS.palms.plus[lang], l: t('fact.palms.l'), count: true },
-  { n: OASIS_FACTS.springs.plus[lang], l: C.springsL, count: true },
-  { n: String(OASIS_FACTS.unescoYear.value), l: t('fact.unesco.l'), count: false },
-  { n: String(sitesCount), l: t('fact.sites.l'), count: true },
+  { n: OASIS_FACTS.palms.plus[lang], l: t('fact.palms.l') },
+  { n: OASIS_FACTS.springs.plus[lang], l: C.springsL },
+  { n: String(OASIS_FACTS.unescoYear.value), l: t('fact.unesco.l') },
+  { n: String(sitesCount), l: t('fact.sites.l') },
 ];
 const allHref = H.paths.attractions;
 ---
@@ -32,10 +32,7 @@ const allHref = H.paths.attractions;
     <div class="water-facts">
       {facts.map((f) => (
         <div class="wf" data-rise>
-          <span class="wf-n">
-            {/* عنصر واحد بالرقم النهائي: نسخة ثانية لقارئ الشاشة تُكرّر العدد في النصّ (فيقرأ C3 «5858») */}
-            {f.count ? <bdi data-count>{f.n}</bdi> : <bdi>{f.n}</bdi>}
-          </span>
+          <span class="wf-n"><bdi>{f.n}</bdi></span>
           <span class="wf-l">{f.l}</span>
         </div>
       ))}
@@ -52,45 +49,17 @@ const allHref = H.paths.attractions;
 </section>
 
 <script>
-  // العدّ: الرقم الأول في النصّ يتصاعد بصيغته (فاصلة عشرية أو نقطة)، وما حوله يبقى كما هو.
+  // دوائر الماء تبدأ حين تدخل الأرقام الشاشة؛ ومع تقليل الحركة تبقى ساكنة (قاعدة CSS أدناه).
   function initWater() {
     const sec = document.getElementById('ch-water');
     if (!sec || sec.dataset.wired) return;
     sec.dataset.wired = '1';
-    const els = Array.from(sec.querySelectorAll<HTMLElement>('[data-count]'));
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || typeof IntersectionObserver !== 'function') { sec.classList.add('is-counted'); return; }
-    const parts = els.map((el) => {
-      const text = el.textContent || '';
-      const m = text.match(/\d+(?:[.,]\d+)?/);
-      if (!m || m.index === undefined) return null;
-      const sep = m[0].includes(',') ? ',' : '.';
-      const dec = (m[0].split(/[.,]/)[1] || '').length;
-      return { el, text, before: text.slice(0, m.index), after: text.slice(m.index + m[0].length), to: Number(m[0].replace(',', '.')), sep, dec };
-    }).filter((x): x is NonNullable<typeof x> => x !== null);
-    const paint = (p: (typeof parts)[number], v: number) => {
-      p.el.textContent = p.before + v.toFixed(p.dec).replace('.', p.sep) + p.after;
-    };
-    let primed = false, done = false;
     const grid = sec.querySelector('.water-facts');
-    // يُصفَّر العدّاد قبيل الدخول فقط (والشبكة تحت الشاشة بعدُ)، فلا يرى الزائر الرقم ثم يقفز إلى صفر
-    const prime = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !primed && !done && e.boundingClientRect.top > innerHeight * 0.75) { primed = true; parts.forEach((p) => paint(p, 0)); }
-    }, { rootMargin: '0px 0px 300px 0px' });
-    const run = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting || done) return;
-      done = true; prime.disconnect(); run.disconnect();
-      if (!primed) { sec.classList.add('is-counted'); return; }
-      const t0 = performance.now(), D = 1800;
-      const tick = (t: number) => {
-        const k = Math.min(1, (t - t0) / D), ease = 1 - Math.pow(1 - k, 3);
-        parts.forEach((p) => paint(p, p.to * ease));
-        if (k < 1) requestAnimationFrame(tick);
-        else { parts.forEach((p) => { p.el.textContent = p.text; }); sec.classList.add('is-counted'); }
-      };
-      requestAnimationFrame(tick);
+    if (!grid || typeof IntersectionObserver !== 'function') { sec.classList.add('is-counted'); return; }
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { sec.classList.add('is-counted'); io.disconnect(); }
     }, { threshold: 0.45 });
-    if (grid) { prime.observe(grid); run.observe(grid); }
+    io.observe(grid);
   }
   document.addEventListener('astro:page-load', initWater);
 </script>
