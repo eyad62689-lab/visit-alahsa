@@ -586,6 +586,13 @@ const jsonLd = [
         // النافذة تلتفّ عبر رأس السنة عندما يكون end < start (مثل نوفمبر ← فبراير)
         running = start <= end ? (gm >= start && gm <= end) : (gm >= start || gm <= end);
         dist = running ? 0 : (start - gm + 12) % 12;
+        // النسخة المؤكدة: «الآن» بتاريخيها لا بشهرها — قبل يوم الافتتاح ليست جارية وإن كان شهرها
+        var s = el.getAttribute('data-ev-start'), e = el.getAttribute('data-ev-end');
+        if (s && e) {
+          var day = new Date(now.getTime() + 3 * 3600000).toISOString().slice(0, 10); // يوم الأحساء UTC+3
+          running = day >= s && day <= e;
+          if (!running && day < s && dist === 0) dist = 0.5; // شهر الافتتاح ولم تبدأ: بعد الجارية مباشرة
+        }
       }
       return { el: el, running: running, dist: dist, idx: idx };
     });
