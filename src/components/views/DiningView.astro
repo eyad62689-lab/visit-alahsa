@@ -45,7 +45,10 @@ const fetchedLabel = fetchedLabelFor(lang);
 const WORD_MIN_AR = 80;
 const WORD_MIN_EN = 100;
 const words = (t: string) => t.trim().split(/\s+/).filter(Boolean).length;
-const diningEntries = (await getCollection('dining')).sort((a, b) => a.data.order - b.data.order);
+// المنشأة التي تصفها قوقل «مغلقة نهائياً» تخرج من القائمة كلها: لا يُرسَل إليها زائر.
+const diningEntries = (await getCollection('dining'))
+  .filter((e) => liveFor(e.data.img)?.status !== 'CLOSED_PERMANENTLY')
+  .sort((a, b) => a.data.order - b.data.order);
 const toPlace = (e: (typeof diningEntries)[number]) => {
   const d = e.data;
   const bodyAr = (e.body ?? '').trim();
