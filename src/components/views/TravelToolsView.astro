@@ -1,0 +1,371 @@
+---
+// صفحة «أدوات السفر» — خمس أدوات لزائر الأحساء (عربي/إنجليزي فقط، كصفحة «عن زوروا الأحساء»).
+// النصوص والمصادر في src/data/travel-tools.ts، والسلوك في src/scripts/travel-tools.ts.
+// الاتصال الخارجي الوحيد: أسعار الصرف من api.frankfurter.dev (مُدرج في connect-src).
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { TOOLS_ALT } from '../../lib/routes';
+import { VISA_LANGS, visaHref } from '../../lib/visa-guide.mjs';
+import { SITE, breadcrumb } from '../../lib/schema';
+import { CITIES, CURRENCIES, PAGE, RUNTIME, TOOL_IDS, type ToolsLang } from '../../data/travel-tools';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const L: ToolsLang = lang === 'ar' ? 'ar' : 'en';
+const ar = L === 'ar';
+const t = useTranslations(lang);
+const C = PAGE[L];
+const selfPath = TOOLS_ALT[L];
+const planHref = ar ? '/خطط/' : '/en/plan-your-trip/';
+
+const curName = new Intl.DisplayNames([L], { type: 'currency' });
+const currencies = CURRENCIES.map((c) => [c, `${curName.of(c) ?? c} · ${c}`] as const)
+  .sort((a, b) => (a[0] === 'SAR' ? -1 : b[0] === 'SAR' ? 1 : a[1].localeCompare(b[1], L)));
+const cities = CITIES.map(([zone, a, e]) => [zone, ar ? a : e] as const).sort((a, b) => a[1].localeCompare(b[1], L));
+const payload = JSON.stringify({ lang: L, R: RUNTIME[L], cities: Object.fromEntries(cities), ahsa: C.time.ahsa }).replace(/</g, '\\u003c');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: C.title,
+    description: C.seoDesc,
+    url: `${SITE}${encodeURI(selfPath)}`,
+    inLanguage: L,
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('nav.plan'), path: planHref },
+    { name: C.title, path: selfPath },
+  ]),
+];
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={58} motif="center" size="compact" lang={lang} />
+
+    <section class="tt container" data-tools>
+      <div class="tt-tabs" role="tablist" aria-label={C.tabsLabel}>
+        {TOOL_IDS.map((id, i) => (
+          <button type="button" class="tt-tab" role="tab" id={`tt-tab-${id}`} data-tab={id} aria-controls={`tt-panel-${id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+            <span class="tt-tab-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="tt-tab-h">{C.tabs[id][0]}</span>
+            <span class="tt-tab-d">{C.tabs[id][1]}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* 1) العملة */}
+      <div class="tt-panel" role="tabpanel" id="tt-panel-currency" aria-labelledby="tt-tab-currency" data-panel="currency">
+        <header class="tt-head"><h2 class="tt-h">{C.cur.h}</h2><p class="tt-lead">{C.cur.lead}</p></header>
+        <div class="tt-grid">
+          <div class="tt-form">
+            <label class="tt-field"><span class="tt-l">{C.cur.amount}</span><input class="tt-i" id="tt-cur-amount" type="number" inputmode="decimal" min="0" max="1000000000" step="any" value="1000" /></label>
+            <div class="tt-pair">
+              <label class="tt-field"><span class="tt-l">{C.cur.from}</span>
+                <select class="tt-i" id="tt-cur-from">{currencies.map(([c, n]) => <option value={c} selected={c === 'USD'}>{n}</option>)}</select></label>
+              <button type="button" class="tt-swap" id="tt-cur-swap" aria-label={C.cur.swap} title={C.cur.swap}><span aria-hidden="true">⇄</span></button>
+              <label class="tt-field"><span class="tt-l">{C.cur.to}</span>
+                <select class="tt-i" id="tt-cur-to">{currencies.map(([c, n]) => <option value={c} selected={c === 'SAR'}>{n}</option>)}</select></label>
+            </div>
+            <div class="tt-pair tt-pair--2">
+              <label class="tt-field"><span class="tt-l">{C.cur.feePct}</span><input class="tt-i" id="tt-cur-pct" type="number" inputmode="decimal" min="0" max="99" step="any" value="0" /></label>
+              <label class="tt-field"><span class="tt-l">{C.cur.feeFixed}</span><input class="tt-i" id="tt-cur-fixed" type="number" inputmode="decimal" min="0" step="any" value="0" /></label>
+            </div>
+            <details class="tt-more">
+              <summary>{C.cur.manualSum}</summary>
+              <div class="tt-inline">
+                <label class="tt-field"><span class="tt-l">{C.cur.manualLabel}</span><input class="tt-i" id="tt-cur-manual" type="number" inputmode="decimal" min="0" step="any" /></label>
+                <button type="button" class="tt-btn tt-btn--ghost" id="tt-cur-manual-use">{C.cur.manualUse}</button>
+              </div>
+            </details>
+          </div>
+          <div class="tt-out" aria-live="polite">
+            <p class="tt-out-k">{C.cur.net}</p>
+            <p class="tt-out-v" id="tt-cur-net">—</p>
+            <dl class="tt-dl">
+              <div><dt>{C.cur.gross}</dt><dd id="tt-cur-gross">—</dd></div>
+              <div><dt>{C.cur.fees}</dt><dd id="tt-cur-fees">—</dd></div>
+            </dl>
+            <p class="tt-out-line" id="tt-cur-line">—</p>
+            <p class="tt-status" id="tt-cur-status"></p>
+            <button type="button" class="tt-btn tt-btn--ghost tt-btn--sm" id="tt-cur-refresh">{C.cur.refresh} <span aria-hidden="true">↻</span></button>
+          </div>
+        </div>
+        <p class="tt-note">{C.cur.note} {C.cur.source} <a href="https://frankfurter.dev/" rel="noopener" target="_blank">Frankfurter</a></p>
+      </div>
+
+      {/* 2) فرق التوقيت */}
+      <div class="tt-panel" role="tabpanel" id="tt-panel-time" aria-labelledby="tt-tab-time" data-panel="time" hidden>
+        <header class="tt-head"><h2 class="tt-h">{C.time.h}</h2><p class="tt-lead">{C.time.lead}</p></header>
+        <div class="tt-grid">
+          <div class="tt-form">
+            <label class="tt-field"><span class="tt-l">{C.time.city}</span>
+              <select class="tt-i" id="tt-time-city">{cities.map(([z, n]) => <option value={z} selected={z === 'Europe/London'}>{n}</option>)}</select></label>
+            <fieldset class="tt-seg">
+              <legend class="tt-l">{C.time.zoneOf}</legend>
+              <label><input type="radio" name="tt-time-src" id="tt-time-src-mine" checked /><span>{C.time.mine}</span></label>
+              <label><input type="radio" name="tt-time-src" id="tt-time-src-ahsa" /><span>{C.time.ahsa}</span></label>
+            </fieldset>
+            <label class="tt-field"><span class="tt-l">{C.time.when}</span><input class="tt-i" id="tt-time-when" type="datetime-local" /></label>
+            <label class="tt-field" id="tt-time-repeat" hidden><span class="tt-l">{C.time.repeat}</span>
+              <select class="tt-i" id="tt-time-occ"><option value="0">{C.time.first}</option><option value="1">{C.time.second}</option></select></label>
+            <button type="button" class="tt-btn tt-btn--ghost tt-btn--sm" id="tt-time-now">{C.time.now}</button>
+          </div>
+          <div class="tt-out" aria-live="polite">
+            <p class="tt-out-k" id="tt-time-dst-title">—</p>
+            <p class="tt-out-v" id="tt-time-result">—</p>
+            <p class="tt-out-line" id="tt-time-date"></p>
+            <p class="tt-status" id="tt-time-diff"></p>
+            <p class="tt-clocks"><span>{C.time.nowIn}</span> <span class="tt-num" id="tt-time-clocks" dir="ltr"></span></p>
+          </div>
+        </div>
+        <p class="tt-note">{C.time.note}</p>
+      </div>
+
+      {/* 3) المصاريف */}
+      <div class="tt-panel" role="tabpanel" id="tt-panel-expenses" aria-labelledby="tt-tab-expenses" data-panel="expenses" hidden>
+        <header class="tt-head"><h2 class="tt-h">{C.exp.h}</h2><p class="tt-lead">{C.exp.lead}</p></header>
+        <div class="tt-grid">
+          <div class="tt-form">
+            <form class="tt-inline" id="tt-exp-person-form">
+              <label class="tt-field"><span class="tt-l">{C.exp.person}</span><input class="tt-i" id="tt-exp-person" maxlength="40" autocomplete="off" /></label>
+              <button class="tt-btn tt-btn--ghost">{C.exp.add}</button>
+            </form>
+            <ul class="tt-chips" id="tt-exp-people"></ul>
+            <label class="tt-field"><span class="tt-l">{C.exp.settle}</span>
+              <select class="tt-i" id="tt-exp-settle">{currencies.map(([c, n]) => <option value={c}>{n}</option>)}</select></label>
+            <p class="tt-hint">{C.exp.settleNote}</p>
+            <form class="tt-form tt-sub" id="tt-exp-form">
+              <label class="tt-field"><span class="tt-l">{C.exp.title}</span><input class="tt-i" id="tt-exp-title" maxlength="80" required autocomplete="off" /></label>
+              <div class="tt-pair tt-pair--2">
+                <label class="tt-field"><span class="tt-l">{C.exp.amount}</span><input class="tt-i" id="tt-exp-amount" type="number" inputmode="decimal" min="0" step="any" required /></label>
+                <label class="tt-field"><span class="tt-l">{C.exp.currency}</span>
+                  <select class="tt-i" id="tt-exp-currency">{currencies.map(([c, n]) => <option value={c}>{n}</option>)}</select></label>
+              </div>
+              <label class="tt-field" id="tt-exp-rate-wrap" hidden><span class="tt-l">{C.exp.rate}</span><input class="tt-i" id="tt-exp-rate" type="number" inputmode="decimal" min="0" step="any" /><span class="tt-hint">{C.exp.rateNote}</span></label>
+              <label class="tt-field"><span class="tt-l">{C.exp.payer}</span><select class="tt-i" id="tt-exp-payer"></select></label>
+              <fieldset class="tt-field"><legend class="tt-l">{C.exp.split}</legend><div class="tt-checks" id="tt-exp-split"></div></fieldset>
+              <button class="tt-btn">{C.exp.addExpense}</button>
+              <p class="tt-status" id="tt-exp-msg" aria-live="polite"></p>
+            </form>
+          </div>
+          <div class="tt-out">
+            <p class="tt-out-k">{C.exp.total}</p>
+            <p class="tt-out-v" id="tt-exp-total">—</p>
+            <p class="tt-out-line" id="tt-exp-count"></p>
+            <h3 class="tt-h3">{C.exp.balances}</h3>
+            <div id="tt-exp-balances" aria-live="polite"></div>
+            <ul class="tt-list" id="tt-exp-list"></ul>
+            <div class="tt-actions">
+              <button type="button" class="tt-btn tt-btn--ghost tt-btn--sm" id="tt-exp-download">{C.exp.download}</button>
+              <button type="button" class="tt-btn tt-btn--ghost tt-btn--sm" id="tt-exp-reset">{C.exp.reset}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 4) الحقيبة */}
+      <div class="tt-panel" role="tabpanel" id="tt-panel-packing" aria-labelledby="tt-tab-packing" data-panel="packing" hidden>
+        <header class="tt-head"><h2 class="tt-h">{C.pack.h}</h2><p class="tt-lead">{C.pack.lead}</p></header>
+        <div class="tt-grid">
+          <div class="tt-form">
+            <form class="tt-form" id="tt-pack-form">
+              <div class="tt-pair tt-pair--2">
+                <label class="tt-field"><span class="tt-l">{C.pack.days}</span><input class="tt-i" id="tt-pack-days" type="number" inputmode="numeric" min="1" max="60" value="3" /></label>
+                <label class="tt-field"><span class="tt-l">{C.pack.weather}</span>
+                  <select class="tt-i" id="tt-pack-weather">{C.pack.weatherOpts.map(([v, n]) => <option value={v}>{n}</option>)}</select></label>
+                <label class="tt-field"><span class="tt-l">{C.pack.type}</span>
+                  <select class="tt-i" id="tt-pack-type">{C.pack.typeOpts.map(([v, n]) => <option value={v}>{n}</option>)}</select></label>
+                <label class="tt-field"><span class="tt-l">{C.pack.kids}</span>
+                  <select class="tt-i" id="tt-pack-kids">{C.pack.kidsOpts.map(([v, n]) => <option value={v}>{n}</option>)}</select></label>
+              </div>
+              <button class="tt-btn">{C.pack.build}</button>
+            </form>
+            <p class="tt-hint">{C.pack.seasonNote} <a href={`${planHref}#practical`}>{C.pack.seasonLink}</a></p>
+            {VISA_LANGS.includes(lang) && <p class="tt-hint">{C.pack.visaNote} <a href={visaHref(lang)}>{C.pack.visaLink}</a></p>}
+            <form class="tt-inline" id="tt-pack-custom-form">
+              <label class="tt-field"><span class="tt-l">{C.pack.custom}</span><input class="tt-i" id="tt-pack-custom" maxlength="80" autocomplete="off" /></label>
+              <button class="tt-btn tt-btn--ghost">{C.pack.add}</button>
+            </form>
+          </div>
+          <div class="tt-out">
+            <p class="tt-out-k">{C.pack.progress}</p>
+            <p class="tt-out-v tt-num" id="tt-pack-pct">0%</p>
+            <progress class="tt-bar" id="tt-pack-bar" max="100" value="0" aria-label={C.pack.progress}></progress>
+            <p class="tt-out-line" id="tt-pack-count" aria-live="polite"></p>
+            <ul class="tt-list" id="tt-pack-list"></ul>
+            <div class="tt-actions">
+              <button type="button" class="tt-btn tt-btn--ghost tt-btn--sm" id="tt-pack-download">{C.pack.download}</button>
+              <button type="button" class="tt-btn tt-btn--ghost tt-btn--sm" id="tt-pack-reset">{C.pack.reset}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 5) الكهرباء */}
+      <div class="tt-panel" role="tabpanel" id="tt-panel-power" aria-labelledby="tt-tab-power" data-panel="power" hidden>
+        <header class="tt-head"><h2 class="tt-h">{C.power.h}</h2><p class="tt-lead">{C.power.lead}</p></header>
+        <div class="tt-grid">
+          <div class="tt-form">
+            <label class="tt-field"><span class="tt-l">{C.power.plug}</span>
+              <select class="tt-i" id="tt-power-plug">{C.power.plugOpts.map(([v, n]) => <option value={v}>{n}</option>)}</select></label>
+            <label class="tt-field"><span class="tt-l">{C.power.volt}</span>
+              <select class="tt-i" id="tt-power-volt">{C.power.voltOpts.map(([v, n]) => <option value={v}>{n}</option>)}</select></label>
+            <label class="tt-field"><span class="tt-l">{C.power.hz}</span>
+              <select class="tt-i" id="tt-power-hz">{C.power.hzOpts.map(([v, n]) => <option value={v}>{n}</option>)}</select></label>
+            <ul class="tt-checklist" id="tt-power-checks" aria-live="polite"></ul>
+          </div>
+          <div class="tt-out tt-socket">
+            <p class="tt-out-k">{C.power.socketH}</p>
+            <svg class="tt-socket-svg" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <rect x="29.5" y="12" width="5" height="12" rx=".8" fill="currentColor" />
+              <rect x="14" y="35.5" width="12" height="5" rx=".8" fill="currentColor" />
+              <rect x="38" y="35.5" width="12" height="5" rx=".8" fill="currentColor" />
+            </svg>
+            <p class="tt-out-v">{C.power.socketType}</p>
+            <p class="tt-out-line">{C.power.socketDesc}</p>
+            <p class="tt-out-line tt-num" dir="ltr">{C.power.rating}</p>
+          </div>
+        </div>
+        <p class="tt-note">{C.power.adapter}</p>
+        <p class="tt-note"><a href="https://www.electricalsafetyfirst.org.uk/safety-advice/travel-advice/saudi-arabia/" rel="noopener" target="_blank">{C.power.sourceA}</a>. {C.power.sourceB} <a href="https://www.saso.gov.sa/en/consumer_awareness/awareness_campaigns/plugs_and_sockets_campaign/pages/campagine_about.aspx" rel="noopener" target="_blank">{C.power.sourceBLink}</a></p>
+      </div>
+
+      <p class="tt-privacy">{C.privacy}</p>
+      <p class="tt-sr" id="tt-status" role="status" aria-live="polite"></p>
+      <dialog class="tt-dialog" id="tt-confirm">
+        <p class="tt-dialog-h" id="tt-confirm-title"></p>
+        <div class="tt-actions">
+          <button type="button" class="tt-btn tt-btn--ghost" id="tt-confirm-cancel">{C.confirmCancel}</button>
+          <button type="button" class="tt-btn" id="tt-confirm-ok">{C.confirmOk}</button>
+        </div>
+      </dialog>
+    </section>
+    <script is:inline type="application/json" data-tools-data set:html={payload} />
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  import '../../scripts/travel-tools';
+</script>
+
+<style>
+  .tt { padding-block: var(--s-6) var(--s-8); }
+  .tt-tabs { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--c-line); border-radius: var(--radius-lg); overflow: hidden; background: #fff; }
+  .tt-tab { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: var(--s-4); text-align: start; background: transparent; border: 0; border-inline-end: 1px solid var(--c-line); cursor: pointer; font-family: var(--font-body); color: var(--c-ink); transition: background var(--dur) var(--ease); }
+  .tt-tab:last-child { border-inline-end: 0; }
+  .tt-tab:hover { background: var(--c-sand); }
+  .tt-tab[aria-selected='true'] { background: var(--c-turq-deep); color: var(--c-sand); }
+  .tt-tab:focus-visible { outline: 3px solid var(--c-gold); outline-offset: -3px; }
+  .tt-tab-n { font-family: var(--font-latin); font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .tt-tab[aria-selected='true'] .tt-tab-n, .tt-tab[aria-selected='true'] .tt-tab-d { color: var(--c-sand); }
+  .tt-tab-h { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-lg); line-height: 1.3; }
+  .tt-tab-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.4; }
+
+  .tt-panel { margin-block-start: var(--s-5); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: clamp(var(--s-4), 4vw, var(--s-6)); }
+  .tt-head { margin-block-end: var(--s-5); }
+  .tt-h { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.25; }
+  .tt-h3 { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-4) var(--s-2); }
+  .tt-lead { margin-block-start: var(--s-2); color: var(--c-ink-soft); line-height: 1.8; max-inline-size: 62ch; }
+  .tt-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--s-5); align-items: start; }
+  .tt-form { display: flex; flex-direction: column; gap: var(--s-4); }
+  .tt-sub { padding-block-start: var(--s-4); border-block-start: 1px solid var(--c-line); }
+  .tt-field { display: flex; flex-direction: column; gap: var(--s-1); border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+  .tt-l { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq-deep); }
+  .tt-i { font-family: var(--font-body); font-size: var(--t-base); color: var(--c-ink); background: #fff; border: 1.5px solid var(--c-line); border-radius: var(--radius); padding: var(--s-2) var(--s-3); min-block-size: 46px; inline-size: 100%; }
+  .tt-i:focus { outline: 2px solid var(--c-turq); outline-offset: 1px; border-color: var(--c-turq); }
+  .tt-i[type='number'], .tt-i[type='datetime-local'] { font-family: var(--font-latin), var(--font-body); }
+  .tt-pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: var(--s-3); align-items: end; }
+  .tt-pair--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tt-inline { display: flex; gap: var(--s-3); align-items: end; flex-wrap: wrap; }
+  .tt-inline .tt-field { flex: 1 1 12rem; }
+  .tt-swap { inline-size: 46px; block-size: 46px; border-radius: 50%; border: 1.5px solid var(--c-line); background: var(--c-sand); color: var(--c-turq-deep); font-size: 1.2rem; cursor: pointer; }
+  .tt-swap:hover { border-color: var(--c-turq); }
+  .tt-btn { font-family: var(--font-body); font-weight: 600; font-size: var(--t-base); align-self: flex-start; display: inline-flex; align-items: center; gap: var(--s-2); min-block-size: 46px; padding: 10px 24px; border-radius: var(--radius-pill); border: 1.5px solid var(--c-turq); background: var(--c-turq); color: var(--c-sand); cursor: pointer; }
+  .tt-btn:hover { background: var(--c-turq-deep); border-color: var(--c-turq-deep); }
+  .tt-btn--ghost { background: transparent; color: var(--c-turq-deep); }
+  .tt-btn--ghost:hover { background: rgba(0, 110, 97, .1); color: var(--c-turq-deep); }
+  .tt-btn--sm { min-block-size: 44px; padding: 8px 18px; font-size: var(--t-sm); }
+  .tt-btn:focus-visible, .tt-swap:focus-visible { outline: 3px solid var(--c-gold); outline-offset: 2px; }
+  .tt-more summary { cursor: pointer; font-weight: 600; color: var(--c-turq-deep); min-block-size: 44px; display: flex; align-items: center; }
+  .tt-more .tt-inline { margin-block-start: var(--s-2); }
+  .tt-seg { display: flex; flex-wrap: wrap; gap: var(--s-2); border: 0; padding: 0; margin: 0; }
+  .tt-seg legend { inline-size: 100%; margin-block-end: var(--s-1); }
+  .tt-seg label { position: relative; }
+  .tt-seg input { position: absolute; opacity: 0; inset: 0; }
+  .tt-seg span { display: inline-flex; align-items: center; min-block-size: 44px; padding-inline: var(--s-4); border: 1.5px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }
+  .tt-seg input:checked + span { background: var(--c-turq-deep); border-color: var(--c-turq-deep); color: var(--c-sand); }
+  .tt-seg input:focus-visible + span { outline: 3px solid var(--c-gold); outline-offset: 2px; }
+
+  .tt-out { background: var(--c-sand); border-radius: var(--radius-lg); padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
+  .tt-out-k { font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); }
+  .tt-out-v { font-family: var(--font-latin), var(--font-heading); font-weight: 700; font-size: var(--t-3xl); color: var(--c-turq-deep); line-height: 1.15; overflow-wrap: anywhere; }
+  .tt-out-line { color: var(--c-ink); line-height: 1.7; overflow-wrap: anywhere; }
+  .tt-dl { display: grid; gap: var(--s-1); margin: 0; }
+  .tt-dl div { display: flex; justify-content: space-between; gap: var(--s-3); border-block-end: 1px dashed var(--c-line); padding-block: var(--s-1); }
+  .tt-dl dt { color: var(--c-ink-soft); }
+  .tt-dl dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+  .tt-status { color: var(--c-ink-soft); font-size: var(--t-sm); line-height: 1.7; }
+  .tt-status.is-error { color: #8a2d22; }
+  .tt-clocks { font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .tt-num { font-family: var(--font-latin), var(--font-body); }
+  /* أرقام مصطفّة لا عتيقة (Cormorant يرسم 1 كـı افتراضياً)، والمبالغ تُقرأ يساراً لليمين في الصفحة العربية */
+  .tt-i, .tt-num, .tt-out-v, .tt-dl dd, .tt-out-line, .tt-settle, .tt-tab-n { font-variant-numeric: lining-nums tabular-nums; }
+  :global([dir='rtl']) #tt-cur-net, :global([dir='rtl']) #tt-cur-gross, :global([dir='rtl']) #tt-cur-fees, :global([dir='rtl']) #tt-cur-line, :global([dir='rtl']) #tt-exp-total { direction: ltr; unicode-bidi: isolate; text-align: right; }
+  .tt-note, .tt-hint { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8; }
+  .tt-note { margin-block-start: var(--s-4); }
+  .tt-note a, .tt-hint a { color: var(--c-turq-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+  .tt-chips { display: flex; flex-wrap: wrap; gap: var(--s-2); list-style: none; padding: 0; margin: 0; }
+  .tt-chip { display: inline-flex; align-items: center; gap: var(--s-1); padding-inline-start: var(--s-3); border-radius: var(--radius-pill); background: rgba(0, 110, 97, .1); color: var(--c-turq-deep); font-weight: 600; }
+  .tt-x { inline-size: 44px; block-size: 44px; border: 0; background: transparent; color: inherit; font-size: 1.3rem; cursor: pointer; border-radius: 50%; flex: none; }
+  .tt-x:hover { background: rgba(0, 0, 0, .06); }
+  .tt-x:focus-visible { outline: 3px solid var(--c-gold); outline-offset: -3px; }
+  .tt-checks { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); }
+  .tt-check { display: inline-flex; align-items: center; gap: var(--s-2); min-block-size: 44px; cursor: pointer; line-height: 1.5; }
+  .tt-check input { inline-size: 20px; block-size: 20px; accent-color: var(--c-turq); flex: none; }
+  .tt-list { list-style: none; padding: 0; margin: var(--s-2) 0 0; display: flex; flex-direction: column; }
+  .tt-row { display: flex; align-items: center; gap: var(--s-3); border-block-end: 1px solid var(--c-line); padding-block: var(--s-1); }
+  .tt-row > div, .tt-row > label { flex: 1; min-inline-size: 0; }
+  .tt-row small { display: block; color: var(--c-ink-soft); font-size: var(--t-xs); line-height: 1.6; }
+  .tt-pack.is-done label { color: var(--c-ink-soft); text-decoration: line-through; }
+  .tt-settle { font-weight: 600; color: var(--c-turq-deep); padding-block: var(--s-1); }
+  .tt-bar { inline-size: 100%; block-size: 10px; accent-color: var(--c-turq); }
+  .tt-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-block-start: var(--s-3); }
+  .tt-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s-2); }
+  .tt-check-line { border-inline-start: 4px solid var(--c-turq); background: var(--c-sand); border-radius: var(--radius); padding: var(--s-3); }
+  .tt-check-line.is-warn { border-inline-start-color: #8a2d22; }
+  .tt-check-line strong { display: block; color: var(--c-turq-deep); }
+  .tt-check-line.is-warn strong { color: #8a2d22; }
+  .tt-check-line p { color: var(--c-ink); line-height: 1.7; }
+  .tt-socket { align-items: center; text-align: center; }
+  .tt-socket-svg { inline-size: 120px; block-size: 120px; color: var(--c-turq-deep); }
+  .tt-privacy { margin-block-start: var(--s-5); font-size: var(--t-sm); color: var(--c-ink-soft); text-align: center; }
+  .tt-sr { position: fixed; inset-block-end: var(--s-4); inset-inline-start: 50%; transform: translateX(-50%); max-inline-size: min(90vw, 480px); background: var(--c-ink); color: var(--c-sand); padding: var(--s-2) var(--s-4); border-radius: var(--radius-pill); font-size: var(--t-sm); z-index: 50; }
+  .tt-sr:empty { display: none; }
+  .tt-dialog { border: 0; border-radius: var(--radius-lg); padding: var(--s-5); max-inline-size: min(90vw, 420px); box-shadow: var(--shadow); }
+  .tt-dialog::backdrop { background: rgba(21, 33, 30, .45); }
+  .tt-dialog-h { font-weight: 600; color: var(--c-ink); line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .tt-tabs { grid-template-columns: repeat(2, 1fr); }
+    .tt-tab { border-block-end: 1px solid var(--c-line); }
+    .tt-tab:last-child { grid-column: 1 / -1; }
+    .tt-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .tt-tab { padding: var(--s-3); }
+    .tt-tab-d { display: none; }
+    .tt-pair { grid-template-columns: minmax(0, 1fr); }
+    .tt-swap { justify-self: center; }
+    .tt-pair--2 { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

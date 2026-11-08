@@ -6,7 +6,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH, eventsFor } from '../data/events';
-import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT, TOOLS_ALT } from '../lib/routes';
 import { publishedGuides } from '../lib/guides';
 import { storesLangs } from '../lib/stores';
 import { newestDate } from '../lib/git-dates';
@@ -79,6 +79,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
     // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
     { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },
+    { ...TOOLS_ALT, lastmod: dateOf(`${V}TravelToolsView.astro`, 'src/data/travel-tools.ts') },
     // دليل المرشدين (عربي/إنجليزي): الفهرس وصفحاته تدخل الخريطة متى وُجد مرشد منشور — بلا مرشد
     // يبقى الفهرس مبنياً لكنه noindex فلا يُعلَن هنا (src/lib/guides.ts)
     ...(guides.length ? [
