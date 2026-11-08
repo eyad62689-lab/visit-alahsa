@@ -4,6 +4,8 @@
 // وتصدير PNG بإطار الموقع واسم الطفل. النصوص والرسومات من حمولة JSON في الصفحة (data-alwan-data).
 // المستمعات العامة تُلغى عند مغادرة الصفحة (astro:before-swap) لأن الموقع يتنقّل بلا إعادة تحميل.
 
+import { sitePath } from './play-shared.js';
+
 const W = 1000, H = 1415, TOUCH_LIFT = 48;
 const DB_NAME = 'alwan-alahsa-site-art-v2';
 const PALETTE = ['#c99a4a', '#e66c43', '#ca4150', '#ef92ae', '#9754a1', '#6557b0', '#377bb5', '#58b9d0', '#006e61', '#63a65d', '#a5be64', '#efe8d6', '#976344', '#5a4135', '#15211e'];
@@ -100,7 +102,7 @@ function initAlwan() {
   }
   function updateHistory() { $('undo').disabled = !undoStack.length; $('redo').disabled = !future.length; }
   function changed() { dirty = true; status(R.changed); clearTimeout(saveTimer); saveTimer = setTimeout(save, 700); updateHistory(); }
-  function snapshot() { undoStack.push(ctx.getImageData(0, 0, W, H)); if (undoStack.length > 12) undoStack.shift(); future = []; updateHistory(); }
+  function snapshot() { undoStack.push(ctx.getImageData(0, 0, W, H)); if (undoStack.length > 12) { undoStack.shift(); } future = []; updateHistory(); }
 
   function renderGallery() {
     for (const b of root.querySelectorAll('[data-category]')) {
@@ -116,7 +118,7 @@ function initAlwan() {
       b.className = i === current ? 'card active' : 'card';
       b.setAttribute('aria-pressed', String(i === current));
       const img = document.createElement('img');
-      img.alt = ''; img.draggable = false; img.loading = 'lazy'; img.src = p.thumb; img.width = 240; img.height = 340;
+      img.alt = ''; img.draggable = false; img.loading = 'lazy'; img.src = sitePath(p.thumb); img.width = 240; img.height = 340;
       const name = document.createElement('span');
       name.textContent = p.name;
       b.append(img, name);
@@ -125,7 +127,7 @@ function initAlwan() {
     });
     $('gallery').replaceChildren(...cards);
   }
-  const loadImage = (src) => new Promise((resolve, reject) => { const i = new Image(); i.onload = () => resolve(i); i.onerror = reject; i.src = src; });
+  const loadImage = (src) => new Promise((resolve, reject) => { const i = new Image(); i.onload = () => resolve(i); i.onerror = reject; i.src = sitePath(src); });
 
   async function selectPage(i) {
     if (busy || i === current) return;
@@ -185,7 +187,8 @@ function initAlwan() {
   }
   function point(e) {
     const q = contactPoint(e);
-    const p = e.pointerType === 'pen' ? clamp(Number.isFinite(e.pressure) ? e.pressure : 0.5, 0.03, 1) : 0.65;
+    const pressure = Number.isFinite(e.pressure) ? e.pressure : 0.5;
+    const p = e.pointerType === 'pen' ? clamp(pressure, 0.03, 1) : 0.65;
     return { x: (q.x - tx) / scale, y: (q.y - ty) / scale, p };
   }
   const brushRadius = (p) => Math.max(1, size * (RADIUS[tool] || 0.5) * (0.35 + clamp(p.p, 0.03, 1) * 0.9));
@@ -304,11 +307,11 @@ function initAlwan() {
     }
     ctx.putImageData(d, 0, 0);
   }
-  function finishStroke() { renderMaterialStroke(); markerActive = false; hideBrushCursor(); if (stroke?.drawing) changed(); stroke = null; }
+  function finishStroke() { renderMaterialStroke(); markerActive = false; hideBrushCursor(); if (stroke?.drawing) { changed(); } stroke = null; }
 
   function startGesture() {
     hideBrushCursor(); markerActive = false; markerBounds = null;
-    if (stroke?.drawing) { const before = undoStack.pop(); if (before) ctx.putImageData(before, 0, 0); updateHistory(); stroke = null; }
+    if (stroke?.drawing) { const before = undoStack.pop(); if (before) { ctx.putImageData(before, 0, 0); } updateHistory(); stroke = null; }
     const [a, b] = [...pointers.values()];
     gesture = { distance: Math.hypot(a.x - b.x, a.y - b.y), x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, scale, tx, ty };
   }
@@ -337,13 +340,13 @@ function initAlwan() {
       tx = cx - ((gesture.x - r.left - gesture.tx) * scale) / gesture.scale; ty = cy - ((gesture.y - r.top - gesture.ty) * scale) / gesture.scale;
       transform(); return;
     }
-    if (!stroke) { if (tool === 'fill') showBrushCursor(e); return; }
+    if (!stroke) { if (tool === 'fill') { showBrushCursor(e); } return; }
     if (!stroke.drawing) { tx = stroke.tx + e.clientX - stroke.x; ty = stroke.ty + e.clientY - stroke.y; transform(); return; }
     const coalesced = e.getCoalescedEvents?.() || [];
     for (const ev of coalesced.length ? coalesced : [e]) { const p = point(ev); segment(stroke.last, p); stroke.last = p; }
     renderMaterialStroke(); showBrushCursor(e);
   });
-  const up = (e) => { if (!pointers.has(e.pointerId)) return; pointers.delete(e.pointerId); finishStroke(); if (pointers.size < 2) gesture = null; };
+  const up = (e) => { if (!pointers.has(e.pointerId)) return; pointers.delete(e.pointerId); finishStroke(); if (pointers.size < 2) { gesture = null; } };
   for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) vp.addEventListener(ev, up);
   vp.addEventListener('pointerleave', (e) => { if (!pointers.has(e.pointerId)) hideBrushCursor(); });
   vp.addEventListener('wheel', (e) => { e.preventDefault(); zoom(e.deltaY < 0 ? 1.1 : 1 / 1.1); }, { passive: false });
@@ -395,8 +398,8 @@ function initAlwan() {
   $('opacity').addEventListener('input', (e) => { $('opacityValue').textContent = e.target.value + '%'; opacity = e.target.value / 100; });
   for (const b of root.querySelectorAll('[data-category]')) b.addEventListener('click', () => { category = b.dataset.category; renderGallery(); });
 
-  $('undo').addEventListener('click', () => { if (!undoStack.length || !ready) return; future.push(ctx.getImageData(0, 0, W, H)); ctx.putImageData(undoStack.pop(), 0, 0); changed(); });
-  $('redo').addEventListener('click', () => { if (!future.length || !ready) return; undoStack.push(ctx.getImageData(0, 0, W, H)); ctx.putImageData(future.pop(), 0, 0); changed(); });
+  $('undo').addEventListener('click', () => { if (!undoStack.length || !ready) { return; } future.push(ctx.getImageData(0, 0, W, H)); ctx.putImageData(undoStack.pop(), 0, 0); changed(); });
+  $('redo').addEventListener('click', () => { if (!future.length || !ready) { return; } undoStack.push(ctx.getImageData(0, 0, W, H)); ctx.putImageData(future.pop(), 0, 0); changed(); });
   $('clear').addEventListener('click', () => $('confirm').showModal());
   $('cancelClear').addEventListener('click', () => $('confirm').close());
   $('yesClear').addEventListener('click', () => { if (ready) { snapshot(); ctx.clearRect(0, 0, W, H); changed(); } $('confirm').close(); });
@@ -424,7 +427,7 @@ function initAlwan() {
   }
   const renderSignature = () => { signatureCtx.clearRect(0, 0, W, H); drawArtistName(signatureCtx, artistName); };
   $('artistName').addEventListener('input', (e) => { artistName = cleanArtistName(e.target.value); renderSignature(); });
-  document.fonts?.ready.then(renderSignature);
+  if (document.fonts) document.fonts.ready.then(renderSignature, () => {});
 
   function createBrandedExport(artCanvas, name, pageName) {
     const margin = 40, header = 120, footer = 60, c = document.createElement('canvas');
@@ -458,7 +461,7 @@ function initAlwan() {
       const a = flat.getContext('2d');
       a.fillStyle = '#fff'; a.fillRect(0, 0, W, H); a.drawImage(paint, 0, 0);
       a.globalCompositeOperation = 'multiply'; a.drawImage(lines, 0, 0); a.drawImage(paper, 0, 0);
-      if (document.fonts?.ready) await Promise.race([document.fonts.ready, new Promise((resolve) => setTimeout(resolve, 2000))]);
+      if (document.fonts) await Promise.race([document.fonts.ready, new Promise((resolve) => setTimeout(resolve, 2000))]);
       const c = createBrandedExport(flat, name, pageName);
       const blob = await new Promise((resolve) => c.toBlob(resolve, 'image/png'));
       if (!blob) throw new Error('export');
@@ -525,17 +528,17 @@ function initAlwan() {
     if (/^#[0-9a-f]{6}$/i.test(v)) { pickerHSV = hexToHSV(v); renderColorPicker(); return; }
     $('colorHex').setAttribute('aria-invalid', 'true'); $('colorError').textContent = R.hexError; $('applyColor').disabled = true;
   });
-  $('applyColor').addEventListener('click', () => { if ($('applyColor').disabled) return; setColor(hsvToHex(pickerHSV.h, pickerHSV.s, pickerHSV.v)); $('colorPicker').close(); });
+  $('applyColor').addEventListener('click', () => { if ($('applyColor').disabled) { return; } setColor(hsvToHex(pickerHSV.h, pickerHSV.s, pickerHSV.v)); $('colorPicker').close(); });
   syncToolSettings();
 
   function updateSource() {
     const p = art[current];
-    for (const id of ['sourceThumb', 'inlineOriginal', 'sourcePhoto']) $(id).src = p.photo;
+    for (const id of ['sourceThumb', 'inlineOriginal', 'sourcePhoto']) $(id).src = sitePath(p.photo);
     $('inlineOriginal').alt = fill(R.originalAlt, 'n', p.name);
     $('inlineOriginalName').textContent = p.name;
     $('sourcePhoto').alt = fill(R.originalAlt, 'n', p.name);
     $('sourceTitle').textContent = fill(R.originalTitle, 'n', p.name);
-    $('sourceLink').href = p.href;
+    $('sourceLink').href = sitePath(p.href);
   }
   const openSource = () => { if (ready) { updateSource(); $('sourceDialog').showModal(); } };
   $('showSource').addEventListener('click', openSource);
@@ -551,7 +554,7 @@ function initAlwan() {
     await Promise.race([openDB(), new Promise((resolve) => setTimeout(resolve, 1200))]);
     await selectPage(art.findIndex((p) => p.cat === 'heritage'));
     if (!storageOK) toast(R.noStorage);
-  })();
+  })().catch((err) => console.error(err));
 }
 
 initAlwan();

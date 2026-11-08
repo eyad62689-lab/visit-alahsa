@@ -10,7 +10,7 @@ const HISTORY_MAX = 20;
 
 /** أول قيمة شرطها صحيح، وإلا البديل — بدل الشروط الثلاثية المتداخلة. */
 const pick = (pairs, fallback) => (pairs.find(([cond]) => cond) || [false, fallback])[1];
-const rnd = () => crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
+import { randInt, sitePath } from './play-shared.js';
 const fmt = (tpl, vals) => Object.entries(vals).reduce((s, [k, v]) => s.split('{' + k + '}').join(String(v)), tpl);
 const isInt = (n, lo, hi) => Number.isInteger(n) && n >= lo && n <= hi;
 const isTile = (v) => v === 0 || (isInt(v, 2, MAX_TILE) && (v & (v - 1)) === 0);
@@ -83,8 +83,8 @@ function initMerge() {
     const s = session();
     const empty = s.board.map((v, i) => (v === 0 ? i : -1)).filter((i) => i >= 0);
     if (!empty.length) return;
-    spawn = empty[Math.floor(rnd() * empty.length)];
-    s.board[spawn] = rnd() < rule().four ? 4 : 2;
+    spawn = empty[randInt(empty.length)];
+    s.board[spawn] = randInt(10000) < Math.round(rule().four * 10000) ? 4 : 2;
   }
   function start(stage) {
     record().session = { stage, board: new Array(rule().size ** 2).fill(0), score: 0, moves: 0, undosLeft: rule().undos };
@@ -163,7 +163,7 @@ function initMerge() {
     if (v) {
       const place = stages[(Math.log2(v) - 1) % stages.length];
       const img = document.createElement('img');
-      img.className = 'tile-photo'; img.src = place.thumb; img.alt = ''; img.draggable = false;
+      img.className = 'tile-photo'; img.src = sitePath(place.thumb); img.alt = ''; img.draggable = false;
       const num = document.createElement('span');
       num.className = 'tile-number'; num.textContent = String(v);
       const label = document.createElement('small');
@@ -184,7 +184,7 @@ function initMerge() {
     b.disabled = locked;
     if (i === s.stage) b.setAttribute('aria-current', 'step');
     const img = document.createElement('img');
-    img.className = 'stage-photo'; img.src = p.thumb; img.alt = ''; img.draggable = false;
+    img.className = 'stage-photo'; img.src = sitePath(p.thumb); img.alt = ''; img.draggable = false;
     const shade = document.createElement('span'); shade.className = 'stage-shade';
     const num = document.createElement('span');
     num.className = 'num'; num.setAttribute('aria-hidden', 'true');
@@ -220,12 +220,12 @@ function initMerge() {
     $('undo').textContent = m.undos ? fmt(R.undoN, { n: Math.max(0, s.undosLeft) }) : R.undoNone;
     $('undo').disabled = complete || !undoStack.length || s.undosLeft <= 0;
     $('modeDesc').textContent = R.modeDesc[data.level];
-    $('placeImage').src = place.photo;
+    $('placeImage').src = sitePath(place.photo);
     $('placeImage').height = place.h;
     $('placeImage').alt = place.name;
     $('placeTitle').textContent = place.name;
     $('placeNote').textContent = place.note;
-    $('placeLink').href = place.href;
+    $('placeLink').href = sitePath(place.href);
     $('boardPlace').textContent = place.name;
     $('tip').textContent = place.tip;
     $('journeyProgress').textContent = `${stamps()} / ${stages.length}`;
@@ -255,7 +255,7 @@ function initMerge() {
   function showResult(won) {
     const s = session(), final = s.stage === last, place = stages[s.stage];
     $('resultIcon').textContent = won ? '✦' : '↻';
-    $('resultPhoto').src = place.photo;
+    $('resultPhoto').src = sitePath(place.photo);
     $('resultPhoto').height = place.h;
     $('resultPhoto').alt = place.name;
     $('resultTitle').textContent = pick([[!won, R.loseH], [final, R.winFinalH]], R.winH);
@@ -311,7 +311,7 @@ function initMerge() {
   let demoValue = 2;
   $('demo').addEventListener('click', () => {
     demoValue = demoValue >= 32 ? 2 : demoValue * 2;
-    const span = (v, cls) => { const el = document.createElement('span'); if (cls) el.className = cls; el.textContent = String(v); return el; };
+    const span = (v, cls) => { const el = document.createElement('span'); if (cls) { el.className = cls; } el.textContent = String(v); return el; };
     const op = (t) => { const el = document.createElement('b'); el.textContent = t; return el; };
     $('example').replaceChildren(span(demoValue), op('+'), span(demoValue), op('→'), span(demoValue * 2, 'result'));
     $('demoNote').textContent = fmt(R.demoNote, { a: demoValue, b: demoValue * 2 });
@@ -333,7 +333,7 @@ function initMerge() {
     board.setPointerCapture(e.pointerId);
   });
   board.addEventListener('pointerup', (e) => {
-    if (!pointer || pointer.id !== e.pointerId) return;
+    if (pointer?.id !== e.pointerId) return;
     const dx = e.clientX - pointer.x, dy = e.clientY - pointer.y;
     pointer = null;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < 20) return;

@@ -9,15 +9,14 @@ const LEVEL_IDS = [1, 2, 3];
 
 /** أول قيمة شرطها صحيح، وإلا البديل — بدل الشروط الثلاثية المتداخلة. */
 const pick = (pairs, fallback) => (pairs.find(([cond]) => cond) || [false, fallback])[1];
-/** رقم عشوائي في [0، 1) من مولّد التشفير. */
-const rand = () => crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
+import { randInt, sitePath } from './play-shared.js';
 const two = (n) => String(n).padStart(2, '0');
 const format = (s) => `${two(Math.floor(s / 60))}:${two(s % 60)}`;
 const isCount = (n) => Number.isFinite(n) && n >= 0 && Number.isInteger(n);
 
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
+    const j = randInt(i + 1);
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
@@ -32,7 +31,7 @@ function el(tag, cls, text) {
 }
 function img(src, cls) {
   const i = el('img', cls);
-  i.src = src; i.alt = ''; i.draggable = false; i.decoding = 'async';
+  i.src = sitePath(src); i.alt = ''; i.draggable = false; i.decoding = 'async';
   return i;
 }
 
@@ -136,7 +135,8 @@ function initExplorer() {
     pending.forEach(clearTimeout); pending = [];
     clearInterval(ticker);
     if ($('discovery').open) $('discovery').close();
-    Object.assign(state, { level, started: false, locked: false, open: [], matched: new Set(), moves: 0, seconds: 0, hintUsed: false, preview: false });
+    state.level = level; state.started = false; state.locked = false; state.open = []; state.matched = new Set();
+    state.moves = 0; state.seconds = 0; state.hintUsed = false; state.preview = false;
     const pool = places.slice(0, levels[level - 1]);
     state.deck = [...pool, ...pool];
     const board = $('board');
@@ -282,11 +282,11 @@ function initExplorer() {
 
   function fillModal(p) {
     const levelDone = state.modalMatched && state.matched.size === pairs();
-    $('modalImage').src = p.large;
+    $('modalImage').src = sitePath(p.large);
     $('modalImage').alt = p.title;
     $('modalTitle').textContent = p.title;
     $('modalFact').textContent = p.fact;
-    $('sourceLink').href = p.href;
+    $('sourceLink').href = sitePath(p.href);
     $('modalTag').textContent = pick([[levelDone, R.levelComplete], [state.modalMatched, R.stampAdded]], R.galleryTag);
     $('continueBtn').textContent = state.modalMatched ? R.keepExploring : R.close;
     $('modalNext').hidden = !(levelDone && state.level < levels.length);
