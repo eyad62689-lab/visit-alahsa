@@ -386,7 +386,7 @@ const dining = defineCollection({
 //
 // حياد الترشيح: هذه بطاقاتٌ وصفية بصور ومواقع، لا توصيات ولا تقييمات جودة —
 // وهو ما يبقي نبرة «خطط لرحلتك» (لا نرشّح منشأة بعينها) صحيحةً كما هي.
-const STAY_KINDS = ['heritage-inn', 'hotel'] as const;
+const STAY_KINDS = ['heritage-inn', 'hotel', 'chalet'] as const;
 
 const stay = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/stay' }),
@@ -426,6 +426,10 @@ const stay = defineCollection({
     alt_tr: z.string().optional(),
     img: z.string(),                           // المسار الأساسي بلا امتداد
     maps: z.url(),
+    // تواصل المنشأة نفسها (الشاليهات): رقمها كما في خرائط قوقل يُصيَّر زرّ اتصال tel: لا نصاً،
+    // ورابط الحجز أو الحساب الرسمي زرّاً ثانياً. بلا معاملات تتبّع.
+    phone: z.string().regex(/^\+[1-9]\d{7,14}$/,'phone بصيغة دولية تبدأ بـ+ بلا مسافات').optional(),
+    book: z.url().refine((u) => !/[?&](igsh|igshid|utm_[a-z]+|r)=/.test(u), { message: 'book بلا معاملات تتبّع' }).optional(),
     order: z.number().default(99),
     body_en: z.string().default(''),           // المتن الإنجليزي (العربي في جسم الملف)
     // المتن الروسي من خط ru-translation-pipeline حصراً — بوابة صفحة /ru/stay/<slug>/ (على سابقة title_ru)
