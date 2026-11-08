@@ -3,7 +3,7 @@ import Wordmark from './Wordmark.astro';
 import PalmMotif from './PalmMotif.astro';
 import { useTranslations, titleSep } from '../i18n/utils';
 import { catLabel } from '../lib/categories';
-import { staticHref, aboutHref, storesHref, guidesHref } from '../lib/routes';
+import { staticHref, aboutHref, storesHref, guidesHref, toolsHref } from '../lib/routes';
 import { guidesListed } from '../lib/guides';
 import { ORG_EMAIL, ORG_WHATSAPP_URL, orgSocialLinks } from '../lib/schema';
 import { SOCIAL_ICON } from '../lib/social-icons';
@@ -64,6 +64,8 @@ const cols = [
       // دليل التأشيرات عربي وإنجليزي (2026-10-16) — لا رابط في تذييل اللغات التي لم تمرّ نصوصه بخطوطها
       ...(VISA_LANGS.includes(lang) ? [{ label: t('foot.l.visa'), href: visaHref(lang) }] : []),
       ...(showGuides ? [{ label: t('guides.nav'), href: guidesHref(lang) }] : []),
+      // أدوات السفر عربي/إنجليزي فقط (كـ«عن زوروا الأحساء»): تسمية إنجليزية في zh/de/ru/ur/tr ترفع C22
+      ...(ar || lang === 'en' ? [{ label: t('foot.l.tools'), href: toolsHref(lang) }] : []),
       { label: t('nav.myTrip'), href: ar ? '/رحلتي/' : zh ? '/zh/plan/' : de ? '/de/plan/' : ru ? '/ru/plan/' : ur ? '/ur/plan/' : lang === 'tr' ? '/tr/plan/' : '/en/plan/' },
       { label: t('nav.map'), href: ar ? '/خريطة/' : zh ? '/zh/map/' : de ? '/de/map/' : ru ? '/ru/map/' : ur ? '/ur/map/' : lang === 'tr' ? '/tr/map/' : '/en/map/' },
     ],
