@@ -52,8 +52,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
   },
   {
     id: '1563-003', name: 'السيف', name_en: 'As-Seef', areaHa: 108,
-    desc: 'القطاع الأوسط من بساتين نخيل السيف في الهفوف، تحدّه المقبرة التاريخية الكبيرة للمدينة شرقاً، ويحيط به حزام أخضر بعرض 150 إلى 200 م يفصله عن الأحياء المجاورة.',
-    desc_en: 'The central part of the As-Seef palm groves in Hofuf, bounded on the east by the city’s large historic cemetery and ringed by a green belt 150 to 200 m wide that separates it from the neighbouring districts.',
+    desc: 'القطاع الأوسط من بساتين نخيل السيف في الهفوف، تحدّه المقبرة التاريخية الكبيرة للمدينة شرقاً، ويحيط به حزام أخضر بعرض 150 إلى 200 م يفصله عن الأحياء المجاورة. ويُعرف المكان محلياً بالسيفة.',
+    desc_en: 'The central part of the As-Seef palm groves in Hofuf, bounded on the east by the city’s large historic cemetery and ringed by a green belt 150 to 200 m wide that separates it from the neighbouring districts. Locally the area is known as Al-Seifa.',
     img: '/img/unesco/as-seef', credit: { holder: '© IPOGEA', source: 'unesco', sourceUrl: 'https://whc.unesco.org/en/documents/166908' },
   },
   {
@@ -64,8 +64,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
   },
   {
     id: '1563-005', name: 'سوق القيصرية', name_en: 'Suq al-Qaysariyah', areaHa: 0.93,
-    desc: 'من أبرز ملامح النسيج العمراني للهفوف: ثلاث وحدات معمارية تمتد نحو 250 م على طريق الملك عبدالعزيز، أُعيد بناؤها بعد حريق مدمّر.',
-    desc_en: 'One of the defining features of Hofuf’s urban fabric: three architectural units stretching about 250 m along King Abdulaziz Road, rebuilt after a devastating fire.',
+    desc: 'من أبرز ملامح النسيج العمراني للهفوف: ثلاث وحدات معمارية تمتد نحو 250 م على طريق الملك عبدالعزيز، أُعيد بناؤها بعد حريق مدمّر عام 2001.',
+    desc_en: 'One of the defining features of Hofuf’s urban fabric: three architectural units stretching about 250 m along King Abdulaziz Road, rebuilt after a devastating fire in 2001.',
     img: '/img/qaisariyah',
   },
   {

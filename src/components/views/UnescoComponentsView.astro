@@ -1,26 +1,41 @@
 ---
-// صفحة «واحة الأحساء في اليونسكو» بالعربية والإنجليزية: تعريف بالمكوّنات الاثني عشر كما سُجّلت
+// صفحة «واحة الأحساء في اليونسكو» باللغات السبع: تعريف بالمكوّنات الاثني عشر كما سُجّلت
 // (src/data/unesco-components.ts)، مستقلة عن صفحات المعالم — فليست كل المكوّنات متاحة للزيارة،
-// ولا مواعيد ولا رسوم ولا روابط معالم هنا. اللغات الأخرى على UnescoView حتى تمرّ بخطوط ترجمتها.
-// يحرسها C24 (د) على dist.
+// ولا مواعيد ولا رسوم ولا روابط معالم هنا. ar/en هنا، وبقية اللغات من خطوط ترجمتها في
+// src/data/unesco-components-i18n.ts. يحرسها C24 (د) على dist.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { LANG_META } from '../../i18n/langs';
 import { UNESCO_WHS_URL, breadcrumb } from '../../lib/schema';
 import { UNESCO_BOUNDARY_MAPS_URL, UNESCO_COMPONENTS, UNESCO_MAPS_URL, UNESCO_TOTAL_HA } from '../../data/unesco-components';
+import { UNESCO_I18N } from '../../data/unesco-components-i18n';
 
-interface Props { lang: 'ar' | 'en'; alt: AltLinks; }
+interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
+const tl = lang === 'ar' || lang === 'en' ? undefined : UNESCO_I18N[lang];
+if (!ar && lang !== 'en' && !tl) throw new Error(`UNESCO_I18N.${lang} غائبة: الصفحة لا تُبنى بلغة لم تمرّ بخط ترجمتها`);
 const comps = UNESCO_COMPONENTS;
-const name = (c: (typeof comps)[number]) => (ar ? c.name : c.name_en);
-const num = (n: number) => n.toLocaleString('en-US');
+type Comp = (typeof comps)[number];
+const name = (c: Comp) => (ar ? c.name : tl ? tl.comps[c.id].name : c.name_en);
+const desc = (c: Comp) => (ar ? c.desc : tl ? tl.comps[c.id].desc : c.desc_en);
+const imgNote = (c: Comp) => (ar ? c.imgNote : tl ? tl.comps[c.id].imgNote : c.imgNote_en);
+// أرقام لاتينية بفواصل لغة الصفحة (8.544 · 63,35 بالألمانية والتركية)؛ ar/en على en-US كما نُشرتا
+const fmt = new Intl.NumberFormat(tl ? LANG_META[lang].code : 'en-US', { numberingSystem: 'latn' });
+const num = (n: number) => fmt.format(n);
 
-const C = ar ? {
+const C = tl ? {
+  ...tl.page,
+  lead: tl.page.lead.replace('{total}', num(UNESCO_TOTAL_HA)),
+  area: (n: number) => tl.page.area.replace('{n}', num(n)),
+  viaEox: 'EOX Sentinel-2 cloudless ↗',
+} : ar ? {
   title: 'واحة الأحساء في قائمة التراث العالمي',
   lead: `سُجّلت واحة الأحساء على قائمة اليونسكو للتراث العالمي عام 2018 (الموقع رقم 1563) باثني عشر مكوّناً تجمع بساتين الواحة وحصونها وسوقها ومواقعها الأثرية وبحيرتها، بمساحة إجمالية ${num(UNESCO_TOTAL_HA)} هكتاراً. هذه الصفحة تعريف بالمكوّنات كما سُجّلت، لا دليل زيارة: فبعضها رقعة زراعية واسعة، وبعضها أرض أثرية مسيّجة.`,
   comp: 'المكوّن',
@@ -32,7 +47,7 @@ const C = ar ? {
   viaCommons: 'ويكيميديا كومنز ↗',
   viaEox: 'EOX Sentinel-2 cloudless ↗',
   srcH: 'المصدر',
-  src: 'الأسماء الإنجليزية والمساحات من جدول المكوّنات في صفحة الموقع 1563 بمركز التراث العالمي لليونسكو، والأوصاف من ملف ترشيح الموقع (2017). وصور الواحة الشرقية والسيف وقصر إبراهيم وقصر صاهود وبحيرة الأصفر من معرض الموقع في اليونسكو (من ملف الترشيح)، تُعرض كاملة بلا تعديل باسم صاحب حقوقها. وللواحة الشمالية وموقع جواثا الأثري وقرية العيون صور فضائية من Sentinel-2 (2016) رسمنا عليها حدود كل مكوّن منقولةً من خرائط ملف الترشيح.',
+  src: 'الأسماء الإنجليزية والمساحات من جدول المكوّنات في صفحة الموقع 1563 بمركز التراث العالمي لليونسكو، والأوصاف من ملف ترشيح الموقع (2017)، وأضفنا إليها الاسم المحلي للسيف وسنة حريق القيصرية. وصور الواحة الشرقية والسيف وقصر إبراهيم وقصر صاهود وبحيرة الأصفر من معرض الموقع في اليونسكو (من ملف الترشيح)، تُعرض كاملة بلا تعديل باسم صاحب حقوقها. وللواحة الشمالية وموقع جواثا الأثري وقرية العيون صور فضائية من Sentinel-2 (2016) رسمنا عليها حدود كل مكوّن منقولةً من خرائط ملف الترشيح. وصورة موقع عين قناص الأثري من ويكيميديا كومنز برخصتها، وصور سوق القيصرية وقصر خزام ومسجد جواثا من صور زوروا الأحساء.',
   srcBounds: 'خرائط حدود المكوّنات في اليونسكو ↗',
   srcMaps: 'جدول المكوّنات وخرائطها في اليونسكو ↗',
   srcSite: 'صفحة الموقع 1563 في اليونسكو ↗',
@@ -50,7 +65,7 @@ const C = ar ? {
   viaCommons: 'Wikimedia Commons ↗',
   viaEox: 'EOX Sentinel-2 cloudless ↗',
   srcH: 'Source',
-  src: 'English names and areas from the components table on the UNESCO World Heritage Centre page for site 1563; descriptions from the site’s nomination file (2017). The photos of the Eastern Oasis, As-Seef, Qasr Ibrahim, Qasr Sahood and Al-Asfar Lake are from the site’s UNESCO gallery (nomination file), shown whole and unaltered with their rights holder named. The Northern Oasis, the Jawatha archaeological site and Al-Oyun village are shown in Sentinel-2 satellite views (2016), on which we drew each component’s boundary as traced from the nomination maps.',
+  src: 'English names and areas from the components table on the UNESCO World Heritage Centre page for site 1563; descriptions from the site’s nomination file (2017), to which we added the local name of As-Seef and the year of the Qaysariyah fire. The photos of the Eastern Oasis, As-Seef, Qasr Ibrahim, Qasr Sahood and Al-Asfar Lake are from the site’s UNESCO gallery (nomination file), shown whole and unaltered with their rights holder named. The Northern Oasis, the Jawatha archaeological site and Al-Oyun village are shown in Sentinel-2 satellite views (2016), on which we drew each component’s boundary as traced from the nomination maps. The photo of the `Ain Qinas archaeological site is from Wikimedia Commons under its licence, and the photos of Suq al-Qaysariyah, Qasr Khuzam and the Jawatha Mosque are Visit Al-Ahsa’s own.',
   srcBounds: 'Component boundary maps at UNESCO ↗',
   srcMaps: 'Components table and maps at UNESCO ↗',
   srcSite: 'Site 1563 at UNESCO ↗',
@@ -64,7 +79,7 @@ const jsonLd = [
     itemListElement: comps.map((c, n) => ({ '@type': 'ListItem', position: n + 1, name: name(c) })),
   },
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : `/${lang}/` },
     { name: C.title, path: altHref(alt, lang) },
   ]),
 ];
@@ -84,10 +99,10 @@ const jsonLd = [
                 : <Photo label={C.noImg} class="lc-photo" />}
               {(c.imgNote || c.credit) && (
                 <figcaption class="un-cap t-caption">
-                  {c.imgNote && <span>{ar ? c.imgNote : c.imgNote_en}</span>}
+                  {c.imgNote && <span>{imgNote(c)}</span>}
                   {c.credit && (
                     <span>
-                      {C.photo}: <bdi lang="en" dir="ltr">{c.credit.holder}{c.credit.license && <> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank">{c.credit.license}</a></>}</bdi>
+                      {C.photo}{lang === 'zh' ? '：' : ': '}<bdi lang="en" dir="ltr"><span>{c.credit.holder}</span>{c.credit.license && <> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank">{c.credit.license}</a></>}</bdi>
                       {' · '}{C.via} <a href={c.credit.sourceUrl} rel="noopener" target="_blank">{{ unesco: C.viaUnesco, commons: C.viaCommons, eox: C.viaEox }[c.credit.source]}</a>
                     </span>
                   )}
@@ -98,7 +113,7 @@ const jsonLd = [
               <span class="t-caption lc-k">{C.comp} <bdi>{c.id}</bdi></span>
               <h2 class="lc-t">{name(c)}</h2>
               {ar && <p class="un-en" lang="en" dir="ltr">{c.name_en}</p>}
-              <p class="lc-d">{ar ? c.desc : c.desc_en}</p>
+              <p class="lc-d">{desc(c)}</p>
               <p class="un-area t-caption"><bdi>{C.area(c.areaHa)}</bdi></p>
             </div>
           </li>

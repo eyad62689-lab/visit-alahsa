@@ -76,7 +76,7 @@ export const GET: APIRoute = async ({ site }) => {
     { ar: '/خطط/', en: '/en/plan-your-trip/', zh: '/zh/plan-your-trip/', de: '/de/plan-your-trip/', ru: '/ru/plan-your-trip/', ur: '/ur/plan-your-trip/', tr: '/tr/plan-your-trip/', lastmod: dateOf(`${V}PlanTripView.astro`) },
     // دليل التأشيرات عربي وإنجليزي (2026-10-16) — نصّه في src/data/visa-guide.ts
     { ...VISA_GUIDE_ALT, lastmod: dateOf(`${V}VisaGuideView.astro`, 'src/data/visa-guide.ts') },
-    { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoView.astro`, ...attractionFiles) },
+    { ...staticAlt('unesco'), lastmod: dateOf(`${V}UnescoComponentsView.astro`, 'src/data/unesco-components.ts', 'src/data/unesco-components-i18n.ts') },
     // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
     { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },
     { ...TOOLS_ALT, lastmod: dateOf(`${V}TravelToolsView.astro`, 'src/data/travel-tools.ts') },
