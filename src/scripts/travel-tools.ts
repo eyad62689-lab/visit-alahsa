@@ -177,7 +177,9 @@ function initTools() {
     if (from === to) { rate = 1; rateStatus(R.rateSame); calculate(); return; }
     rateStatus(R.rateLoading);
     const pair = `${from}-${to}`;
-    const cache = read<Record<string, { rate?: number; date?: string }>>('rates', {});
+    // ذاكرة الأسعار تحفظ رقمين فقط (السعر وطابع التاريخ) — لا نصّ من استجابة الخادم يصل التخزين كما هو
+    const cache = read<Record<string, { r?: number; t?: number }>>('rates', {});
+    const isoDay = (t: number) => new Date(t).toISOString().slice(0, 10);
     try {
       const res = await fetch(RATE_API + encodeURIComponent(from) + '/' + encodeURIComponent(to), { signal: AbortSignal.timeout(12000) });
       if (!res.ok) throw new Error('rate');
@@ -185,16 +187,18 @@ function initTools() {
       if (typeof data.rate !== 'number' || !Number.isFinite(data.rate) || data.rate <= 0 || !/^\d{4}-\d{2}-\d{2}$/.test(data.date || '')) throw new Error('rate');
       if (my !== serial) return;
       rate = data.rate;
-      cache[pair] = { rate: data.rate, date: data.date };
+      const r = Number(data.rate), t = Date.parse(String(data.date) + 'T00:00:00Z');
+      if (Number.isFinite(r) && r > 0 && Number.isFinite(t)) cache[pair] = { r, t };
       save('rates', cache);
       rateStatus(fill(R.rateDate, { d: data.date! }));
       calculate();
     } catch {
       if (my !== serial) return;
       const cached = Object.hasOwn(cache, pair) ? cache[pair] : null;
-      if (cached && typeof cached.rate === 'number' && cached.rate > 0) {
-        rate = cached.rate;
-        rateStatus(fill(R.rateCached, { d: cached.date || '' }), true);
+      const cr = Number(cached?.r), ct = Number(cached?.t);
+      if (Number.isFinite(cr) && cr > 0 && Number.isFinite(ct)) {
+        rate = cr;
+        rateStatus(fill(R.rateCached, { d: isoDay(ct) }), true);
         calculate();
       } else {
         rateStatus(R.rateFail, true);
