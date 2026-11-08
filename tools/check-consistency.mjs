@@ -1358,6 +1358,16 @@ async function main() {
         const attrDirs = l === 'ar' ? [`/${AR_ATTRACTIONS_DIR}/`, encodeURI(`/${AR_ATTRACTIONS_DIR}/`)] : ['/en/attractions/'];
         if (attrDirs.some((d) => listHtml.includes(`href="${d}`))) problems.push(`${p}: قائمة المكوّنات تربط بصفحات معالم — الصفحة تعريف مستقل`);
         if (!list || list.numberOfItems !== unescoAll.length || (list.itemListElement ?? []).length !== unescoAll.length) problems.push(`${p}: ItemList لا يحمل ${unescoAll.length} مكوّناً`);
+        // صور img/unesco للغير بشروط ترخيصها: كل بطاقة تحملها تُسند صاحبها برابط مصدرها، والحرّة برابط رخصتها
+        for (const card of listHtml.split(/<li\b/).slice(1)) {
+          if (!card.includes('/img/unesco/')) continue;
+          const id = card.match(/data-unesco="([^"]+)"/)?.[1];
+          const cap = card.match(/<figcaption\b[\s\S]*?<\/figcaption>/)?.[0] ?? '';
+          const src = /href="https:\/\/(whc\.unesco\.org\/en\/documents\/\d+|commons\.wikimedia\.org\/wiki\/File:[^"]+|s2maps\.eu)"/.test(cap);
+          const free = /commons\.wikimedia|s2maps\.eu/.test(cap);
+          if (!src) problems.push(`${p}: صورة المكوّن ${id} من img/unesco بلا رابط مصدرها`);
+          else if (free && !/rel="license[^"]*"/.test(cap)) problems.push(`${p}: صورة المكوّن ${id} الحرّة بلا رابط رخصتها`);
+        }
       } else {
         if (JSON.stringify(ids) !== JSON.stringify(comps.map((c) => c.id))) problems.push(`${p}: المكوّنات المنشورة (${ids.join('، ')}) ≠ المصدر (${comps.map((c) => c.id).join('، ')})`);
         for (const c of comps) {
@@ -1376,7 +1386,7 @@ async function main() {
     if (tables < 6 || attrPages < 100 || ldCount < 300 || answerPages < 30 || comps.length < 6 || descPages < 100) fail('C24', `الحارس صار فارغاً: ${tables} جداول، ${attrPages} صفحة معلم، ${ldCount} كتلة ld+json، ${answerPages} فقرة إجابة، ${descPages} وصفاً مخصّصاً، ${comps.length} مكوّن يونسكو — المتوقع ≥6 و≥100 و≥300 و≥30 و≥100 و≥6`);
     else if (hoursPages < 16 || feePages < 40) fail('C24', `المواعيد المبنيَنة في ${hoursPages} صفحة والرسوم في ${feePages} — المتوقع ≥16 و≥40 (تراجع في المصدر؟)`);
     else if (problems.length) fail('C24', `الجداول/المواعيد المبنيَنة/الإجابات/اليونسكو: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ ${descPages} وصفاً مخصّصاً (120–158) مطابقاً لمصدره وجمله حرفية من إجابة صفحته وأرقامه من صفحتها؛ صفحة اليونسكو ar/en تعرّف بالمكوّنات الاثني عشر بلا روابط معالم، وzh/de/ru تحمل ${comps.length} بروابطها`);
+    else pass('C24', `${tables} جداول (${cells} خلية) أرقامها كلها من مصادرها؛ ${ldCount} كتلة ld+json صالحة؛ مواعيد مبنيَنة في ${hoursPages} صفحة معلم ورسوم في ${feePages} مطابقة لمصدرها؛ ${answerPages} فقرة إجابة (35–45 كلمة) مطابقة لمصدرها وأرقامها من صفحتها؛ ${descPages} وصفاً مخصّصاً (120–158) مطابقاً لمصدره وجمله حرفية من إجابة صفحته وأرقامه من صفحتها؛ صفحة اليونسكو ar/en تعرّف بالمكوّنات الاثني عشر بلا روابط معالم وصور الغير فيها بمصدرها ورخصتها، وzh/de/ru تحمل ${comps.length} بروابطها`);
   }
 
   // ── C25: الربط الداخلي (الخطوة 9 من خطة التفاعل العالمي، ف4) ──

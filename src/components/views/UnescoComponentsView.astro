@@ -10,7 +10,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { UNESCO_WHS_URL, breadcrumb } from '../../lib/schema';
-import { UNESCO_COMPONENTS, UNESCO_MAPS_URL, UNESCO_TOTAL_HA } from '../../data/unesco-components';
+import { UNESCO_BOUNDARY_MAPS_URL, UNESCO_COMPONENTS, UNESCO_MAPS_URL, UNESCO_TOTAL_HA } from '../../data/unesco-components';
 
 interface Props { lang: 'ar' | 'en'; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -30,8 +30,10 @@ const C = ar ? {
   via: 'المصدر:',
   viaUnesco: 'مركز التراث العالمي لليونسكو ↗',
   viaCommons: 'ويكيميديا كومنز ↗',
+  viaEox: 'EOX Sentinel-2 cloudless ↗',
   srcH: 'المصدر',
-  src: 'الأسماء الإنجليزية والمساحات من جدول المكوّنات في صفحة الموقع 1563 بمركز التراث العالمي لليونسكو، والأوصاف من ملف ترشيح الموقع (2017). وصور الواحة الشرقية والسيف وقصر إبراهيم وقصر صاهود وبحيرة الأصفر من معرض الموقع في اليونسكو (من ملف الترشيح)، تُعرض كاملة بلا تعديل باسم صاحب حقوقها.',
+  src: 'الأسماء الإنجليزية والمساحات من جدول المكوّنات في صفحة الموقع 1563 بمركز التراث العالمي لليونسكو، والأوصاف من ملف ترشيح الموقع (2017). وصور الواحة الشرقية والسيف وقصر إبراهيم وقصر صاهود وبحيرة الأصفر من معرض الموقع في اليونسكو (من ملف الترشيح)، تُعرض كاملة بلا تعديل باسم صاحب حقوقها. وللواحة الشمالية وموقع جواثا الأثري وقرية العيون صور فضائية من Sentinel-2 (2016) رسمنا عليها حدود كل مكوّن منقولةً من خرائط ملف الترشيح.',
+  srcBounds: 'خرائط حدود المكوّنات في اليونسكو ↗',
   srcMaps: 'جدول المكوّنات وخرائطها في اليونسكو ↗',
   srcSite: 'صفحة الموقع 1563 في اليونسكو ↗',
   seoTitle: 'مكوّنات واحة الأحساء الاثنا عشر في اليونسكو',
@@ -46,8 +48,10 @@ const C = ar ? {
   via: 'Source:',
   viaUnesco: 'UNESCO World Heritage Centre ↗',
   viaCommons: 'Wikimedia Commons ↗',
+  viaEox: 'EOX Sentinel-2 cloudless ↗',
   srcH: 'Source',
-  src: 'English names and areas from the components table on the UNESCO World Heritage Centre page for site 1563; descriptions from the site’s nomination file (2017). The photos of the Eastern Oasis, As-Seef, Qasr Ibrahim, Qasr Sahood and Al-Asfar Lake are from the site’s UNESCO gallery (nomination file), shown whole and unaltered with their rights holder named.',
+  src: 'English names and areas from the components table on the UNESCO World Heritage Centre page for site 1563; descriptions from the site’s nomination file (2017). The photos of the Eastern Oasis, As-Seef, Qasr Ibrahim, Qasr Sahood and Al-Asfar Lake are from the site’s UNESCO gallery (nomination file), shown whole and unaltered with their rights holder named. The Northern Oasis, the Jawatha archaeological site and Al-Oyun village are shown in Sentinel-2 satellite views (2016), on which we drew each component’s boundary as traced from the nomination maps.',
+  srcBounds: 'Component boundary maps at UNESCO ↗',
   srcMaps: 'Components table and maps at UNESCO ↗',
   srcSite: 'Site 1563 at UNESCO ↗',
   seoTitle: 'The twelve components of Al-Ahsa Oasis at UNESCO',
@@ -76,7 +80,7 @@ const jsonLd = [
           <li class="card un-card" data-unesco={c.id} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
             <figure class="un-fig">
               {c.img
-                ? <Photo src={c.img} label={name(c)} class={c.credit?.source === 'unesco' ? 'lc-photo un-nd' : 'lc-photo'} sizes="(max-width: 760px) 100vw, 33vw" />
+                ? <Photo src={c.img} label={name(c)} class={c.credit && c.credit.source !== 'commons' ? 'lc-photo un-nd' : 'lc-photo'} sizes="(max-width: 760px) 100vw, 33vw" />
                 : <Photo label={C.noImg} class="lc-photo" />}
               {(c.imgNote || c.credit) && (
                 <figcaption class="un-cap t-caption">
@@ -85,7 +89,7 @@ const jsonLd = [
                     <span>
                       {C.photo}: <bdi lang="en">{c.credit.holder}</bdi>
                       {c.credit.license && <> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank" lang="en">{c.credit.license}</a></>}
-                      {' · '}{C.via} <a href={c.credit.sourceUrl} rel="noopener" target="_blank">{c.credit.source === 'unesco' ? C.viaUnesco : C.viaCommons}</a>
+                      {' · '}{C.via} <a href={c.credit.sourceUrl} rel="noopener" target="_blank">{{ unesco: C.viaUnesco, commons: C.viaCommons, eox: C.viaEox }[c.credit.source]}</a>
                     </span>
                   )}
                 </figcaption>
@@ -107,7 +111,7 @@ const jsonLd = [
       <div class="un-box">
         <h2>{C.srcH}</h2>
         <p>{C.src}</p>
-        <p><a href={UNESCO_MAPS_URL} rel="noopener" target="_blank">{C.srcMaps}</a> · <a href={UNESCO_WHS_URL} rel="noopener" target="_blank">{C.srcSite}</a></p>
+        <p><a href={UNESCO_MAPS_URL} rel="noopener" target="_blank">{C.srcMaps}</a> · <a href={UNESCO_BOUNDARY_MAPS_URL} rel="noopener" target="_blank">{C.srcBounds}</a> · <a href={UNESCO_WHS_URL} rel="noopener" target="_blank">{C.srcSite}</a></p>
       </div>
     </section>
   </main>

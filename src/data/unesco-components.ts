@@ -18,12 +18,22 @@ export interface UnescoComponent {
   imgNote?: string;
   imgNote_en?: string;
   /** صورة الغير: صاحب الحقوق ومصدرها ورابط صفحتها، والترخيص إن كان حراً. صور اليونسكو من ملف الترشيح
-   *  شرطها المعلن الإسناد وعدم التعديل (Attribution + NoDerivatives): تُعرض كاملة بلا قصّ، وتُحجَّم فقط. */
-  credit?: { holder: string; source: 'unesco' | 'commons'; sourceUrl: string; license?: string; licenseUrl?: string };
+   *  شرطها المعلن الإسناد وعدم التعديل (Attribution + NoDerivatives): تُعرض كاملة بلا قصّ، وتُحجَّم فقط.
+   *  الصور الفضائية (eox) من Sentinel-2 cloudless 2016 برخصة CC BY 4.0، رُسمت عليها حدود المكوّن منقولةً من
+   *  خرائط ملف الترشيح (whc.unesco.org/document/168788) بمطابقة الخريطة على الصورة، وتحقّقت المساحة الناتجة
+   *  من المساحة الرسمية (284 → 283.9 هـ، 63.35 → 63.0–64.3، 2010 → 1989–2045). */
+  credit?: { holder: string; source: 'unesco' | 'commons' | 'eox'; sourceUrl: string; license?: string; licenseUrl?: string };
 }
 
 export const UNESCO_MAPS_URL = 'https://whc.unesco.org/en/list/1563/maps/';
 export const UNESCO_TOTAL_HA = 8544;
+/** خرائط حدود المكوّنات في ملف الترشيح، ومنها نُقلت حدود الصور الفضائية */
+export const UNESCO_BOUNDARY_MAPS_URL = 'https://whc.unesco.org/document/168788';
+
+const SAT_CREDIT: UnescoComponent['credit'] = {
+  holder: 'Sentinel-2 cloudless 2016 by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2016)', source: 'eox',
+  sourceUrl: 'https://s2maps.eu', license: 'CC BY 4.0', licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+};
 
 export const UNESCO_COMPONENTS: UnescoComponent[] = [
   {
@@ -37,6 +47,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
     id: '1563-002', name: 'الواحة الشمالية', name_en: 'Northern Oasis', areaHa: 2010,
     desc: 'قطاع كبير من الواحة الشمالية تحدّه قناة الصرف الرئيسة شرقاً، وشبكة قنوات من سبعينيات القرن الماضي في بقية الجهات، وقد استُثنيت منه القرى التاريخية وامتداداتها الحديثة.',
     desc_en: 'A large part of the northern oasis, bounded on the east by the main drainage channel and on its other sides by a network of channels from the 1970s; the historic villages and their modern extensions are left outside it.',
+    img: '/img/unesco/northern-oasis-sat', imgNote: 'صورة فضائية، والخط حدود المكوّن منقولة من خريطة اليونسكو', imgNote_en: 'Satellite view; the line is the component boundary traced from the UNESCO map',
+    credit: SAT_CREDIT,
   },
   {
     id: '1563-003', name: 'السيف', name_en: 'As-Seef', areaHa: 108,
@@ -72,6 +84,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
     id: '1563-008', name: 'موقع جواثا الأثري', name_en: 'Jawatha archaeological site', areaHa: 284,
     desc: 'رقعة واسعة من الأرض الصحراوية مسيّجة بالكامل، تتبع حدودها حدود الأرض المملوكة للدولة، وتقع بين جبل بريقا ومنتزه الأحساء الوطني.',
     desc_en: 'A wide, fully fenced expanse of desert land whose boundary follows that of the state-owned plot, lying between Jabal Burayqa and Al-Ahsa National Park.',
+    img: '/img/unesco/jawatha-archaeological-sat', imgNote: 'صورة فضائية، والخط حدود المكوّن منقولة من خريطة اليونسكو', imgNote_en: 'Satellite view; the line is the component boundary traced from the UNESCO map',
+    credit: SAT_CREDIT,
   },
   {
     id: '1563-009', name: 'مسجد جواثا', name_en: 'Jawatha Mosque', areaHa: 0.08,
@@ -83,6 +97,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
     id: '1563-010', name: 'قرية العيون', name_en: 'Al-`Oyun village', areaHa: 63.35,
     desc: 'جزءان متصلان في الركن الشمالي للواحة: الحي القديم لقرية العيون بشكله الدائري، وأقرب بساتين الواحة إليه حتى قناة الصرف التي تعبر واحة العيون.',
     desc_en: 'Two connected parts at the northern corner of the oasis: the circular old quarter of Al-Oyun village, and the nearest palm groves of the oasis up to the drainage channel that crosses the Al-Oyun oasis.',
+    img: '/img/unesco/al-oyun-village-sat', imgNote: 'صورة فضائية، والخط حدود المكوّن منقولة من خريطة اليونسكو', imgNote_en: 'Satellite view; the line is the component boundary traced from the UNESCO map',
+    credit: SAT_CREDIT,
   },
   {
     id: '1563-011', name: 'موقع عين قناص الأثري', name_en: '`Ain Qinas archaeological site', areaHa: 18.8,
