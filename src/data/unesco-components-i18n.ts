@@ -38,7 +38,7 @@ export const UNESCO_I18N: Partial<Record<Exclude<Lang, 'ar' | 'en'>, UnescoI18n>
     comps: {
       '1563-001': { name: "东部绿洲", desc: "面积最大的组成部分，是东部绿洲中一片宽阔的新月形地带，东西长约 12 公里、南北宽约 9 公里，椰枣林茂密，农田以渠网为界，东北部还包含卡拉山。", imgNote: "航拍卡拉山" },
       '1563-002': { name: "北部绿洲", desc: "北部绿洲的一大片区域，东面以主排水渠为界，其余各面以 20 世纪 70 年代的渠网为界；历史村落及其现代扩建部分不在范围之内。", imgNote: "卫星影像；图中线条依联合国教科文组织地图描出，为该组成部分的边界" },
-      '1563-003': { name: "赛夫", desc: "位于胡富夫的赛夫椰枣林中部地段，东面以该市规模很大的历史墓地为界；外围有一条宽 150 至 200 米的绿化带，将其与相邻街区隔开。" },
+      '1563-003': { name: "赛夫", desc: "位于胡富夫的赛夫椰枣林中部地段，东面以该市规模很大的历史墓地为界；外围有一条宽 150 至 200 米的绿化带，将其与相邻街区隔开。当地人也称这片地方为“赛法”。" },
       '1563-004': { name: "易卜拉欣宫", desc: "位于胡富夫市中心的易卜拉欣宫历史建筑群，是该市奥斯曼时期最主要的建筑遗存。" },
       '1563-005': { name: "凯撒利亚集市", desc: "胡富夫城市肌理中最具代表性的特征之一：三个建筑单元沿阿卜杜勒阿齐兹国王路延伸约 250 米，在一场严重的大火之后重建。" },
       '1563-006': { name: "胡扎姆宫", desc: "一座古堡，当年位于城墙环绕的城市西南面，该处如今已属胡富夫的现代市区。" },
@@ -73,7 +73,7 @@ export const UNESCO_I18N: Partial<Record<Exclude<Lang, 'ar' | 'en'>, UnescoI18n>
     comps: {
       '1563-001': { name: "Östliche Oase", desc: "Der größte Bestandteil: ein breiter, halbmondförmiger Abschnitt der Östlichen Oase, etwa 9 km von Nord nach Süd und 12 km von Ost nach West. Er ist von einem Kanalnetz begrenzt und von dichten Palmenhainen und Ackerland geprägt; im Nordosten liegt Jabal al-Qarah (der Qarah-Berg).", imgNote: "Im Bild: Jabal al-Qarah aus der Luft" },
       '1563-002': { name: "Nördliche Oase", desc: "Ein großer Teil der Nördlichen Oase. Seine Grenze bildet im Osten der Hauptdrainagekanal, auf den übrigen Seiten ein Kanalnetz aus den 1970er-Jahren; die historischen Dörfer und ihre modernen Erweiterungen bleiben ausgeklammert.", imgNote: "Satellitenbild; die Linie zeigt die Grenze des Bestandteils, übertragen aus der UNESCO-Karte" },
-      '1563-003': { name: "As-Seef", desc: "Der mittlere Teil der Palmenhaine von As-Seef in der Stadt Hofuf. Im Osten grenzt der große historische Friedhof der Stadt an; ein 150 bis 200 m breiter Grüngürtel umgibt den Teil und trennt ihn von den Nachbarvierteln." },
+      '1563-003': { name: "As-Seef", desc: "Der mittlere Teil der Palmenhaine von As-Seef in der Stadt Hofuf. Im Osten grenzt der große historische Friedhof der Stadt an; ein 150 bis 200 m breiter Grüngürtel umgibt den Teil und trennt ihn von den Nachbarvierteln. Vor Ort wird dieses Gebiet auch „Al-Seifah“ genannt." },
       '1563-004': { name: "Qasr Ibrahim", desc: "Die historische Anlage Qasr Ibrahim im Zentrum von Hofuf: die wichtigsten baulichen Überreste aus der osmanischen Zeit der Stadt." },
       '1563-005': { name: "Qaisariyah-Souk", desc: "Eines der prägenden Merkmale des Stadtgefüges von Hofuf: drei Baueinheiten auf etwa 250 m Länge entlang der König-Abdulaziz-Straße, nach einem verheerenden Brand wiederaufgebaut." },
       '1563-006': { name: "Khuzam-Palast", desc: "Eine historische Festung, die einst südwestlich der ummauerten Stadt lag und heute im modernen Hofuf liegt." },
@@ -108,7 +108,7 @@ export const UNESCO_I18N: Partial<Record<Exclude<Lang, 'ar' | 'en'>, UnescoI18n>
     comps: {
       '1563-001': { name: "Восточный оазис", desc: "Самый крупный компонент: обширная часть восточного оазиса в форме полумесяца, протянувшаяся примерно на 9 км с севера на юг и на 12 км с востока на запад. Густые пальмовые рощи и сельскохозяйственные угодья окаймлены сетью каналов, а в северо-восточной части компонента находится гора Эль-Кара.", imgNote: "На снимке: гора Эль-Кара с воздуха" },
       '1563-002': { name: "Северный оазис", desc: "Значительная часть северного оазиса. Границей с востока служит главный дренажный канал, с остальных сторон — сеть каналов 1970-х годов; исторические деревни и их современная застройка остались за пределами компонента.", imgNote: "Спутниковый снимок; линия — граница компонента, перенесённая с карты ЮНЕСКО" },
-      '1563-003': { name: "Эс-Сайф", desc: "Центральная часть пальмовых рощ Эс-Сайфа в Эль-Хуфуфе: она ограничена с востока большим историческим кладбищем города и окружена зелёным поясом шириной от 150 до 200 м, который отделяет её от соседних кварталов." },
+      '1563-003': { name: "Эс-Сайф", desc: "Центральная часть пальмовых рощ Эс-Сайфа в Эль-Хуфуфе: она ограничена с востока большим историческим кладбищем города и окружена зелёным поясом шириной от 150 до 200 м, который отделяет её от соседних кварталов. Местные жители называют это же место также «Эс-Сифа»." },
       '1563-004': { name: "Каср-Ибрахим", desc: "Исторический комплекс Каср-Ибрахим в центре Эль-Хуфуфа: главные сохранившиеся архитектурные памятники османского периода в городе." },
       '1563-005': { name: "Рынок Эль-Кайсария", desc: "Одна из самых заметных черт городской застройки Эль-Хуфуфа: три архитектурных блока протяжённостью около 250 м вдоль дороги короля Абдул-Азиза, отстроенные заново после разрушительного пожара." },
       '1563-006': { name: "Дворец Хузам", desc: "Историческая крепость: когда-то она стояла к юго-западу от города, обнесённого стеной, а это место теперь находится внутри современного Эль-Хуфуфа." },
@@ -143,7 +143,7 @@ export const UNESCO_I18N: Partial<Record<Exclude<Lang, 'ar' | 'en'>, UnescoI18n>
     comps: {
       '1563-001': { name: "مشرقی نخلستان", desc: "سب سے بڑا حصہ: مشرقی نخلستان کا ہلال کی شکل کا وسیع قطعہ، جو شمال سے جنوب تقریباً 9 کلومیٹر اور مشرق سے مغرب 12 کلومیٹر تک پھیلا ہے۔ اس میں کھجور کے گھنے باغات اور کھیت ہیں، جو نالیوں کے جال سے گھرے ہیں، اور قطعے کے شمال مشرق میں جبل القارہ بھی شامل ہے۔", imgNote: "تصویر میں: جبل القارہ کا فضائی منظر" },
       '1563-002': { name: "شمالی نخلستان", desc: "شمالی نخلستان کا بڑا قطعہ، جس کی مشرقی حد نکاسی کی مرکزی نالی ہے، اور باقی اطراف 1970 کی دہائی کی نالیوں کے جال سے گھرے ہیں۔ تاریخی گاؤں اور ان کی جدید توسیعیں اس میں شامل نہیں۔", imgNote: "مصنوعی سیارے سے لی گئی تصویر؛ اس حصے کی حد کی لکیر یونیسکو کے نقشے سے نقل کی گئی ہے" },
-      '1563-003': { name: "السیف", desc: "ہفوف میں السیف کے کھجور کے باغات کا وسطی علاقہ۔ اس کی مشرقی حد شہر کا بڑا تاریخی قبرستان ہے، اور 150 سے 200 میٹر چوڑی سبز پٹی اس علاقے کو گھیرے ہوئے ہے اور اسے ساتھ کے محلوں سے الگ کرتی ہے۔" },
+      '1563-003': { name: "السیف", desc: "ہفوف میں السیف کے کھجور کے باغات کا وسطی علاقہ۔ اس کی مشرقی حد شہر کا بڑا تاریخی قبرستان ہے، اور 150 سے 200 میٹر چوڑی سبز پٹی اس علاقے کو گھیرے ہوئے ہے اور اسے ساتھ کے محلوں سے الگ کرتی ہے۔ یہی علاقہ مقامی طور پر “السیفہ” کے نام سے بھی جانا جاتا ہے۔" },
       '1563-004': { name: "قصر ابراہیم", desc: "ہفوف کے وسط میں قصر ابراہیم کا تاریخی احاطہ، جو شہر کے عثمانی دور کی تعمیراتی باقیات میں سب سے نمایاں ہے۔" },
       '1563-005': { name: "سوق القیصریہ", desc: "یہ بازار ہفوف کی شہری ساخت کے نمایاں خدوخال میں سے ہے: شاہ عبد العزیز سڑک کے ساتھ تقریباً 250 میٹر تک پھیلی تین تعمیراتی اکائیاں، جنہیں تباہ کن آگ کے بعد دوبارہ بنایا گیا۔" },
       '1563-006': { name: "قصر خزام", desc: "تاریخی قلعہ، جس کی جگہ کبھی فصیل بند شہر کے جنوب مغرب میں تھی اور اب جدید ہفوف کے اندر آ چکی ہے۔" },
@@ -178,7 +178,7 @@ export const UNESCO_I18N: Partial<Record<Exclude<Lang, 'ar' | 'en'>, UnescoI18n>
     comps: {
       '1563-001': { name: "Doğu Vahası", desc: "En büyük bileşen: Doğu Vahası'nın hilal biçimli geniş bir kesimi; kuzey-güney doğrultusunda yaklaşık 9 km, doğu-batı doğrultusunda 12 km uzanır. İçinde sık hurmalıklar ile bir kanal ağının sınırladığı tarım arazileri bulunur; kuzeydoğusunda Cebel el-Kare yer alır.", imgNote: "Fotoğrafta: havadan Cebel el-Kare" },
       '1563-002': { name: "Kuzey Vahası", desc: "Kuzey Vahası'nın büyük bir bölümü; doğuda ana drenaj kanalıyla, diğer yönlerde 1970'lere ait bir kanal ağıyla sınırlanır. Tarihî köyler ve bunların modern uzantıları bileşenin dışında bırakılmıştır.", imgNote: "Uydu görüntüsü: üzerindeki çizgi, UNESCO haritasından aktarılan bileşen sınırıdır" },
-      '1563-003': { name: "Es-Seyf", desc: "Hüfuf'taki Es-Seyf hurmalıklarının orta kesimi; doğuda kentin büyük tarihî mezarlığıyla sınırlanır. Orta kesimi saran 150–200 m genişliğindeki yeşil kuşak, onu komşu mahallelerden ayırır." },
+      '1563-003': { name: "Es-Seyf", desc: "Hüfuf'taki Es-Seyf hurmalıklarının orta kesimi; doğuda kentin büyük tarihî mezarlığıyla sınırlanır. Orta kesimi saran 150–200 m genişliğindeki yeşil kuşak, onu komşu mahallelerden ayırır. Bu yer yerel olarak “Es-Seyfe” adıyla da bilinir." },
       '1563-004': { name: "Kasr İbrahim", desc: "Hüfuf'un merkezindeki tarihî Kasr İbrahim yapı topluluğu; kentin Osmanlı dönemine ait başlıca mimari kalıntıları." },
       '1563-005': { name: "El-Kaysariye Çarşısı", desc: "Hüfuf'un kentsel dokusunun belirleyici özelliklerinden biri: Kral Abdülaziz Yolu boyunca yaklaşık 250 m uzanan üç mimari birim; yıkıcı bir yangının ardından yeniden inşa edilmiştir." },
       '1563-006': { name: "Huzam Sarayı", desc: "Surlarla çevrili kentin güneybatısında bir zamanlar yer almış tarihî bir kale; bugün modern Hüfuf'un içinde bulunur." },

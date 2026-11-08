@@ -52,8 +52,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
   },
   {
     id: '1563-003', name: 'السيف', name_en: 'As-Seef', areaHa: 108,
-    desc: 'القطاع الأوسط من بساتين نخيل السيف في الهفوف، تحدّه المقبرة التاريخية الكبيرة للمدينة شرقاً، ويحيط به حزام أخضر بعرض 150 إلى 200 م يفصله عن الأحياء المجاورة.',
-    desc_en: 'The central part of the As-Seef palm groves in Hofuf, bounded on the east by the city’s large historic cemetery and ringed by a green belt 150 to 200 m wide that separates it from the neighbouring districts.',
+    desc: 'القطاع الأوسط من بساتين نخيل السيف في الهفوف، تحدّه المقبرة التاريخية الكبيرة للمدينة شرقاً، ويحيط به حزام أخضر بعرض 150 إلى 200 م يفصله عن الأحياء المجاورة. ويُعرف المكان محلياً بالسيفة.',
+    desc_en: 'The central part of the As-Seef palm groves in Hofuf, bounded on the east by the city’s large historic cemetery and ringed by a green belt 150 to 200 m wide that separates it from the neighbouring districts. Locally the area is known as Al-Seifa.',
     img: '/img/unesco/as-seef', credit: { holder: '© IPOGEA', source: 'unesco', sourceUrl: 'https://whc.unesco.org/en/documents/166908' },
   },
   {
