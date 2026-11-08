@@ -27,9 +27,9 @@ const MODE = process.env.MODE ?? 'verify';
 const ALL_PAGES = { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/', tr: '/tr/attractions/' };
 // التركية: لا رئيسية /tr/ بعد، فالترويسة تُقاس على فهرس المعالم (الترويسة واحدة في كل صفحة).
 
-// العروض المفحوصة: حدود العتبات تماماً (‏1270/1271 · 1393/1394 · 1515/1516 · 1517/1518 · 1520/1521 · 1707/1708) وعروض نوافذ
+// العروض المفحوصة: حدود العتبات تماماً (‏1180/1181 للتنقّل المجمَّع ar/en · 1270/1271 · 1393/1394 · 1515/1516 · 1517/1518 · 1520/1521 · 1707/1708) وعروض نوافذ
 // الشاشات الشائعة بعد شريط التمرير (‏1265 لشاشة 1280 · 1351 لـ1366 · 1425 لـ1440).
-const WIDTHS = [375, 768, 1024, 1199, 1270, 1271, 1280, 1351, 1366, 1393, 1394, 1425, 1440, 1515, 1516, 1517, 1518, 1520, 1521, 1536, 1600, 1665, 1707, 1708, 1905, 1920];
+const WIDTHS = [375, 768, 1024, 1180, 1181, 1199, 1270, 1271, 1280, 1351, 1366, 1393, 1394, 1425, 1440, 1515, 1516, 1517, 1518, 1520, 1521, 1536, 1600, 1665, 1707, 1708, 1905, 1920];
 
 let puppeteer;
 try {
@@ -48,7 +48,7 @@ const intrinsic = () => {
   const hd = document.querySelector('.hd-in');
   const nav = hd.querySelector('nav.nav');
   const W = (e) => e.getBoundingClientRect().width;
-  const links = [...nav.querySelectorAll('a')].filter((a) => W(a) > 0); // المخفيّ لا يأخذ فجوة
+  const links = [...nav.querySelectorAll('a, .ng-btn')].filter((a) => W(a) > 0); // المخفيّ لا يأخذ فجوة
   const navGap = parseFloat(getComputedStyle(nav).columnGap) || 0;
   const hdGap = parseFloat(getComputedStyle(hd).columnGap) || 0;
   const navIntrinsic = links.reduce((s, a) => s + W(a), 0) + (links.length - 1) * navGap;
@@ -64,7 +64,7 @@ const probe = () => {
   const R = (e) => e.getBoundingClientRect();
   const vis = (e) => e && e.offsetParent !== null && R(e).width > 0;
   const nav = hd.querySelector('nav.nav');
-  const links = [...nav.querySelectorAll('a')].filter(vis);
+  const links = [...nav.querySelectorAll('a, .ng-btn')].filter(vis);
   const planEl = nav.querySelector('.nav-plan');
   const planShown = !!planEl && getComputedStyle(planEl).display !== 'none';
   const gold = vis(hd.querySelector('.btn-gold'));
