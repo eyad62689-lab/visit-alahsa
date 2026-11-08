@@ -40,7 +40,7 @@ export function loadLive(): LiveFile | null {
 
 /** بيانات منشأة من مسار صورتها — المفتاح في الملف هو اسم الصورة بلا مجلدها. */
 export const liveFor = (img: string): Live | undefined =>
-  loadLive()?.places?.[img.replace(/^\/img\/(?:dining|stay)\//, '')];
+  loadLive()?.places?.[img.replace(/^\/img\/(?:dining|stay)\/(?:chalets\/)?/, '')];
 
 /** أوقات العمل بلغة الصفحة — **ولا تُعرض بغيرها**.
  *
