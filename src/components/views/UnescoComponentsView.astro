@@ -1,0 +1,126 @@
+---
+// صفحة «واحة الأحساء في اليونسكو» بالعربية والإنجليزية: تعريف بالمكوّنات الاثني عشر كما سُجّلت
+// (src/data/unesco-components.ts)، مستقلة عن صفحات المعالم — فليست كل المكوّنات متاحة للزيارة،
+// ولا مواعيد ولا رسوم ولا روابط معالم هنا. اللغات الأخرى على UnescoView حتى تمرّ بخطوط ترجمتها.
+// يحرسها C24 (د) على dist.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import Photo from '../Photo.astro';
+import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { UNESCO_WHS_URL, breadcrumb } from '../../lib/schema';
+import { UNESCO_COMPONENTS, UNESCO_MAPS_URL, UNESCO_TOTAL_HA } from '../../data/unesco-components';
+
+interface Props { lang: 'ar' | 'en'; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const ar = lang === 'ar';
+const comps = UNESCO_COMPONENTS;
+const name = (c: (typeof comps)[number]) => (ar ? c.name : c.name_en);
+const num = (n: number) => n.toLocaleString('en-US');
+
+const C = ar ? {
+  title: 'واحة الأحساء في قائمة التراث العالمي',
+  lead: `سُجّلت واحة الأحساء على قائمة اليونسكو للتراث العالمي عام 2018 (الموقع رقم 1563) باثني عشر مكوّناً تجمع بساتين الواحة وحصونها وسوقها ومواقعها الأثرية وبحيرتها، بمساحة إجمالية ${num(UNESCO_TOTAL_HA)} هكتاراً. هذه الصفحة تعريف بالمكوّنات كما سُجّلت، لا دليل زيارة: فبعضها رقعة زراعية واسعة، وبعضها أرض أثرية مسيّجة.`,
+  comp: 'المكوّن',
+  area: (n: number) => `المساحة المسجّلة ${num(n)} هكتار`,
+  noImg: 'لا تتوفر صورة مرخّصة بعد',
+  photo: 'صورة',
+  srcH: 'المصدر',
+  src: 'الأسماء الإنجليزية والمساحات من جدول المكوّنات في صفحة الموقع 1563 بمركز التراث العالمي لليونسكو، والأوصاف من ملف ترشيح الموقع (2017).',
+  srcMaps: 'جدول المكوّنات وخرائطها في اليونسكو ↗',
+  srcSite: 'صفحة الموقع 1563 في اليونسكو ↗',
+  seoTitle: 'مكوّنات واحة الأحساء الاثنا عشر في اليونسكو',
+  seoDesc: 'المكوّنات الاثنا عشر لموقع «واحة الأحساء» في قائمة اليونسكو للتراث العالمي (2018): واحتان، والسيف، وثلاثة قصور، وسوق، ومسجد، وموقعان أثريان، وقرية، وبحيرة.',
+} : {
+  title: 'Al-Ahsa Oasis on the World Heritage List',
+  lead: `Al-Ahsa Oasis was inscribed on the UNESCO World Heritage List in 2018 (site 1563) as twelve components that bring together the oasis’s palm groves, forts, market, archaeological sites and lake, covering ${num(UNESCO_TOTAL_HA)} hectares in all. This page introduces the components as they were inscribed; it is not a visiting guide, as some are wide farmland and some are fenced archaeological land.`,
+  comp: 'Component',
+  area: (n: number) => `Inscribed area ${num(n)} ha`,
+  noImg: 'No licensed photo yet',
+  photo: 'Photo',
+  srcH: 'Source',
+  src: 'English names and areas from the components table on the UNESCO World Heritage Centre page for site 1563; descriptions from the site’s nomination file (2017).',
+  srcMaps: 'Components table and maps at UNESCO ↗',
+  srcSite: 'Site 1563 at UNESCO ↗',
+  seoTitle: 'The twelve components of Al-Ahsa Oasis at UNESCO',
+  seoDesc: 'The twelve UNESCO components of Al-Ahsa Oasis: two oases, As-Seef, three forts, a market, a mosque, two archaeological sites, a village and a lake.',
+};
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, numberOfItems: comps.length,
+    itemListElement: comps.map((c, n) => ({ '@type': 'ListItem', position: n + 1, name: name(c) })),
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: C.title, path: altHref(alt, lang) },
+  ]),
+];
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={t('home.hero.eyebrow')} title={C.title} lead={C.lead} leadWidth={64} motif="center" lang={lang} />
+
+    <section class="container un-list">
+      <ol class="list-grid" role="list">
+        {comps.map((c, idx) => (
+          <li class="card un-card" data-unesco={c.id} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
+            <figure class="un-fig">
+              {c.img
+                ? <Photo src={c.img} label={name(c)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                : <Photo label={C.noImg} class="lc-photo" />}
+              {(c.imgNote || c.credit) && (
+                <figcaption class="un-cap t-caption">
+                  {c.imgNote && <span>{ar ? c.imgNote : c.imgNote_en}</span>}
+                  {c.credit && (
+                    <span>{C.photo}: <a href={c.credit.fileUrl} rel="noopener" target="_blank" lang="en">{c.credit.author}</a> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank" lang="en">{c.credit.license}</a></span>
+                  )}
+                </figcaption>
+              )}
+            </figure>
+            <div class="lc-body">
+              <span class="t-caption lc-k">{C.comp} <bdi>{c.id}</bdi></span>
+              <h2 class="lc-t">{name(c)}</h2>
+              {ar && <p class="un-en" lang="en" dir="ltr">{c.name_en}</p>}
+              <p class="lc-d">{ar ? c.desc : c.desc_en}</p>
+              <p class="un-area t-caption"><bdi>{C.area(c.areaHa)}</bdi></p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="container un-official">
+      <div class="un-box">
+        <h2>{C.srcH}</h2>
+        <p>{C.src}</p>
+        <p><a href={UNESCO_MAPS_URL} rel="noopener" target="_blank">{C.srcMaps}</a> · <a href={UNESCO_WHS_URL} rel="noopener" target="_blank">{C.srcSite}</a></p>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .un-list { padding-block: var(--s-6) var(--s-4); }
+  .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 264px), 1fr)); gap: var(--s-4); list-style: none; padding: 0; margin: 0; }
+  .un-card { display: flex; flex-direction: column; }
+  .un-fig { margin: 0; }
+  .lc-photo { aspect-ratio: 16 / 10; }
+  .un-cap { display: flex; flex-wrap: wrap; gap: 0 var(--s-2); padding: var(--s-1) var(--s-4) 0; color: var(--c-ink-soft); }
+  .un-cap a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 2px; }
+  .lc-body { padding: var(--s-3) var(--s-4) var(--s-5); display: flex; flex-direction: column; flex: 1; }
+  .lc-k { color: var(--c-gold-deep); }
+  .lc-t { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-1) 0; }
+  .un-en { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: 2px 0; }
+  .lc-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; margin-block: var(--s-2); }
+  .un-area { margin-block-start: auto; color: var(--c-ink-soft); }
+  .un-official { padding-block: var(--s-4) var(--s-7); }
+  .un-box { background: var(--c-sand); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-4) var(--s-5); max-inline-size: 70ch; }
+  .un-box h2 { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-2); }
+  .un-box p { color: var(--c-ink-soft); line-height: 1.8; margin-block: var(--s-2) 0; }
+  .un-box a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 3px; }
+</style>
