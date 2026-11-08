@@ -1,0 +1,189 @@
+---
+// «مستكشف الأحساء الصغير» — لعبة ذاكرة للأطفال بثلاثة مستويات من ست صور منشورة في الموقع (عربي/إنجليزي فقط).
+// الأماكن والنصوص في src/data/play-explorer.ts، والمحرّك في src/scripts/play-explorer.js،
+// والأنماط الأصلية محصورة تحت .explorer-app في src/styles/play-explorer.css. لا اتصال خارجي.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { EXPLORER_ALT, attractionHref, playHref } from '../../lib/routes';
+import { SITE, breadcrumb } from '../../lib/schema';
+import { EXPLORER_LEVELS, EXPLORER_PAGE, EXPLORER_PLACES, EXPLORER_RUNTIME, type ExplorerLang } from '../../data/play-explorer';
+import { PLAY_PAGE } from '../../data/play';
+import '../../styles/play-explorer.css';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const L: ExplorerLang = lang === 'ar' ? 'ar' : 'en';
+const ar = L === 'ar';
+const t = useTranslations(lang);
+const C = EXPLORER_PAGE[L];
+const R = EXPLORER_RUNTIME[L];
+const selfPath = EXPLORER_ALT[L];
+const home = ar ? '/' : '/en/';
+
+const attractions = await getCollection('attractions');
+const refHref = (ref: (typeof EXPLORER_PLACES)[number]['ref']): string => {
+  if (ref === 'fruits') return ar ? '/ثمار/' : '/en/fruits/';
+  const entry = attractions.find((a) => a.id === ref.attraction);
+  if (!entry) throw new Error(`play-explorer: unknown attraction ${ref.attraction}`);
+  return attractionHref(entry.data, L);
+};
+const places = EXPLORER_PLACES.map((p) => ({
+  id: p.id,
+  title: p[L].title,
+  fact: p[L].fact,
+  kind: C.kinds[p.kind],
+  small: `${p.photo}-400w.webp`,
+  large: `${p.photo}-800w.webp`,
+  href: refHref(p.ref),
+}));
+const lake = places.find((p) => p.id === 'asfar');
+const payload = JSON.stringify({ R, places, levels: EXPLORER_LEVELS, oasis: '/img/hero-home-400w.webp' }).replace(/</g, '\\u003c');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: C.title,
+    description: C.seoDesc,
+    url: `${SITE}${encodeURI(selfPath)}`,
+    inLanguage: L,
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: home },
+    { name: PLAY_PAGE[L].title, path: playHref(lang) },
+    { name: C.title, path: selfPath },
+  ]),
+];
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={60} motif="center" size="compact" lang={lang} />
+
+    <section class="explorer-app" data-explorer aria-label={C.title}>
+      <noscript><p class="ex-noscript">{C.noscript}</p></noscript>
+      <div class="shell">
+        <div class="hero-proof">
+          <div class="proof-item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h4l2-3h6l2 3h4v14H3Z"/><circle cx="12" cy="12" r="4"/></svg><span>{C.realPhotos}</span></div>
+          <div class="proof-item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>{C.threeLevels}</span></div>
+          <div class="proof-item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5Z"/><circle cx="12" cy="10" r="3"/><path d="M9 17h6"/></svg><span>{C.collectStamps}</span></div>
+        </div>
+
+        <div class="workspace" id="ex-play">
+          <section class="game-panel" aria-labelledby="ex-playHeading">
+            <div class="section-heading">
+              <div><h2 id="ex-playHeading">{C.playTitle}</h2><p>{C.playDesc}</p></div>
+              <span class="section-no" id="ex-sectionNo" aria-hidden="true">01 / 03</span>
+            </div>
+            <div class="levels" id="ex-levels" role="group" aria-label={C.levelsLabel}>
+              {C.levels.map(([name, meta], i) => (
+                <button type="button" class:list={['level', { active: i === 0 }]} data-level={i + 1} aria-pressed={i === 0 ? 'true' : 'false'}>
+                  <span class="level-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="level-copy"><b>{name}</b><small>{meta}</small></span>
+                </button>
+              ))}
+            </div>
+            <div class="stats">
+              <div class="stat"><strong id="ex-matches">0 / {EXPLORER_LEVELS[0]}</strong><span>{C.matches}</span></div>
+              <div class="stat"><strong id="ex-moves">0</strong><span>{C.moves}</span></div>
+              <div class="stat"><strong id="ex-time">00:00</strong><span>{C.time}</span></div>
+            </div>
+            <div class="progress" role="progressbar" id="ex-progress" aria-label={C.matches} aria-valuemin="0" aria-valuemax={EXPLORER_LEVELS[0]} aria-valuenow="0"><span id="ex-progressFill"></span></div>
+            <div class="start-cover" id="ex-startCover">
+              <div class="start-copy"><h3>{C.ready}</h3><p>{C.startHelp}</p></div>
+              <button type="button" class="primary gold" id="ex-startBtn">{C.start}</button>
+            </div>
+            <div class="board-wrap"><div class="board ready" id="ex-board" data-level="1" role="group" aria-label={C.board}></div></div>
+            <div class="toolbar">
+              <button type="button" class="text-btn hint" id="ex-hintBtn" disabled><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M8 14a6 6 0 1 1 8 0c-1 1-1 2-1 2H9s0-1-1-2Z"/></svg><span>{C.hint}</span></button>
+              <div class="tool-group">
+                <button type="button" class="text-btn" id="ex-soundBtn" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4ZM16 9l5 6m0-6-5 6"/></svg><span id="ex-soundLabel">{R.soundOff}</span></button>
+                <button type="button" class="text-btn" id="ex-restartBtn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 1 1 2 8M3 3v7h7"/></svg><span>{C.restart}</span></button>
+              </div>
+            </div>
+            <div class="status" id="ex-status" role="status" aria-live="polite"></div>
+            <div class="win-bar" id="ex-winBar" hidden><p>{C.won}</p><button type="button" class="primary" id="ex-winNext">{R.nextLevel}</button></div>
+            <div class="best" id="ex-best"></div>
+          </section>
+
+          <aside class="side-column" aria-labelledby="ex-passportH">
+            <section class="passport">
+              <div class="passport-inner">
+                <div class="passport-brand">
+                  <div class="brand" aria-hidden="true"><span class="wm-ar" lang="ar">{R.wmAr}</span><span class="wm-en" lang="en">{R.wmEn}</span></div>
+                  <div class="passport-kicker" lang="en" aria-hidden="true">LITTLE EXPLORER PASSPORT</div>
+                  <h2 id="ex-passportH">{C.passport}</h2>
+                  <p class="passport-desc">{C.passportIntro}</p>
+                </div>
+                <div class="collection-count"><span>{C.stamps}</span><strong id="ex-collectionCount">0 / {places.length}</strong></div>
+                <div class="stamps" id="ex-stamps"></div>
+                <p class="passport-note" id="ex-saveNote">{C.saveNote}</p>
+              </div>
+            </section>
+            <div class="guide">
+              <img src="/img/play/explorer/bulbul.webp" alt="" width="64" height="64" />
+              <div><h3>{C.tipTitle}</h3><p>{C.tip}</p></div>
+            </div>
+            {lake && (
+              <div class="mini-story">
+                <figure><img src={lake.large} alt="" width="800" height="533" loading="lazy" /><figcaption>{C.lakeTitle}</figcaption></figure>
+                <p>{C.lakeTeaser}</p>
+              </div>
+            )}
+          </aside>
+        </div>
+
+        <section class="gallery" id="ex-stories" aria-labelledby="ex-galleryH">
+          <div class="gallery-head">
+            <div><h2 id="ex-galleryH">{C.galleryTitle}</h2><p>{C.galleryDesc}</p></div>
+            <span class="section-no" aria-hidden="true">{String(places.length).padStart(2, '0')}</span>
+          </div>
+          <div class="gallery-grid" id="ex-gallery">
+            {places.map((p) => (
+              <button type="button" class="gallery-card" data-place={p.id} aria-haspopup="dialog">
+                <span class="gallery-photo"><img src={p.large} alt="" width="800" height="533" loading="lazy" /></span>
+                <span class="gallery-card-body">
+                  <span><strong>{p.title}</strong><small>{p.kind}</small></span>
+                  <span class="gallery-arrow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section class="end-banner" aria-labelledby="ex-beyondH">
+          <div><h2 id="ex-beyondH">{C.beyondTitle}</h2><p>{C.beyondDesc}</p></div>
+          <a class="primary gold" href={home}>{C.visitSite}</a>
+        </section>
+      </div>
+
+      <dialog id="ex-discovery" aria-labelledby="ex-modalTitle">
+        <div class="dialog-photo">
+          <img id="ex-modalImage" alt="" width="800" height="533" />
+          <button type="button" class="close-x" id="ex-closeDialog" aria-label={C.close}><span aria-hidden="true">×</span></button>
+          <span class="modal-tag" id="ex-modalTag"></span>
+        </div>
+        <div class="dialog-copy">
+          <h2 id="ex-modalTitle"></h2>
+          <p id="ex-modalFact"></p>
+          <a id="ex-sourceLink" class="source-link" href={home}>{C.readMore}</a>
+          <div class="modal-actions">
+            <button type="button" class="primary" id="ex-continueBtn">{C.keepExploring}</button>
+            <button type="button" class="secondary" id="ex-modalNext" hidden>{C.nextLevel}</button>
+          </div>
+        </div>
+      </dialog>
+    </section>
+  </main>
+  <script is:inline type="application/json" data-explorer-data set:html={payload}></script>
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  import '../../scripts/play-explorer.js';
+</script>

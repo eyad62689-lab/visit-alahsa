@@ -128,6 +128,14 @@ export const guidesHref = (lang: Lang): string => (lang === 'ar' ? GUIDES_ALT.ar
 export const TOOLS_ALT = { ar: '/أدوات-السفر/', en: '/en/travel-tools/' } as const;
 export const toolsHref = (lang: Lang): string => (lang === 'ar' ? TOOLS_ALT.ar : TOOLS_ALT.en);
 
+/** ألعاب الاكتشاف (التلوين والذاكرة و2048) وفهرسها — عربي/إنجليزي فقط كأدوات السفر،
+ *  فلا تُربط من اللغات الأخرى حتى تمرّ نصوصها بخطوط الترجمة. */
+export const PLAY_ALT = { ar: '/ألعاب/', en: '/en/play/' } as const;
+export const ALWAN_ALT = { ar: '/ألعاب/ألوان-الأحساء/', en: '/en/play/colours-of-al-ahsa/' } as const;
+export const EXPLORER_ALT = { ar: '/ألعاب/المستكشف-الصغير/', en: '/en/play/little-explorer/' } as const;
+export const MERGE_ALT = { ar: '/ألعاب/رحلة-الدمج-2048/', en: '/en/play/2048-oasis-journey/' } as const;
+export const playHref = (lang: Lang): string => (lang === 'ar' ? PLAY_ALT.ar : PLAY_ALT.en);
+
 type GuideSlugs = { slug_ar: string; slug_en: string };
 
 /** رابط صفحة المرشد — بشرطة ختامية دائماً. غير العربية تقصد الصفحة الإنجليزية. */

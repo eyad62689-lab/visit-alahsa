@@ -1,0 +1,189 @@
+---
+// «ألوان الأحساء» — صفحة تلوين للأطفال من 30 رسمة مستندة إلى صور الموقع (عربي/إنجليزي فقط).
+// الرسومات والنصوص في src/data/play-alwan.ts، والمحرّك في src/scripts/play-alwan.js،
+// والأنماط الأصلية محصورة تحت .alwan-app في src/styles/play-alwan.css. لا اتصال خارجي.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { ALWAN_ALT, attractionHref, playHref } from '../../lib/routes';
+import { SITE, breadcrumb } from '../../lib/schema';
+import { ALWAN_ART, ALWAN_CATS, ALWAN_PAGE, ALWAN_RUNTIME, ALWAN_TOOLS, type AlwanLang } from '../../data/play-alwan';
+import { CAT_ICONS, TOOL_ICONS } from '../../data/play-alwan-icons';
+import { PLAY_PAGE } from '../../data/play';
+import '../../styles/play-alwan.css';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const L: AlwanLang = lang === 'ar' ? 'ar' : 'en';
+const ar = L === 'ar';
+const t = useTranslations(lang);
+const C = ALWAN_PAGE[L];
+const R = ALWAN_RUNTIME[L];
+const selfPath = ALWAN_ALT[L];
+
+const attractions = await getCollection('attractions');
+const refHref = (ref: (typeof ALWAN_ART)[number]['ref']): string => {
+  if (ref === 'home') return ar ? '/' : '/en/';
+  if (ref === 'fruits') return ar ? '/ثمار/' : '/en/fruits/';
+  const entry = attractions.find((a) => a.id === ref.attraction);
+  if (!entry) throw new Error(`play-alwan: unknown attraction ${ref.attraction}`);
+  return attractionHref(entry.data, L);
+};
+const art = ALWAN_ART.map((a) => ({
+  id: a.id,
+  cat: a.cat,
+  name: a[L],
+  img: `/img/play/alwan/${a.id}.webp`,
+  thumb: `/img/play/alwan/${a.id}-thumb.webp`,
+  photo: `${a.photo}-800w.webp`,
+  href: refHref(a.ref),
+}));
+const captions = Object.fromEntries(ALWAN_CATS.map((c) => [c, C.cats[c][1]]));
+const payload = JSON.stringify({ lang: L, R, art, captions }).replace(/</g, '\\u003c');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: C.title,
+    description: C.seoDesc,
+    url: `${SITE}${encodeURI(selfPath)}`,
+    inLanguage: L,
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: PLAY_PAGE[L].title, path: playHref(lang) },
+    { name: C.title, path: selfPath },
+  ]),
+];
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={60} motif="center" size="compact" lang={lang} />
+
+    <section class="alwan-app" data-alwan aria-label={C.title}>
+      <noscript><p class="aw-noscript">{C.noscript}</p></noscript>
+      <div class="layout">
+        <aside class="panel library" aria-labelledby="aw-library-h">
+          <h2 id="aw-library-h">{C.library}</h2>
+          <div class="muted">{C.libraryNote}</div>
+          <div class="categories" role="group" aria-label={C.groups}>
+            {ALWAN_CATS.map((c, i) => (
+              <button type="button" class:list={['category-button', { active: i === 0 }]} data-category={c} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls="aw-gallery">
+                <Fragment set:html={CAT_ICONS[c]} /><span>{C.cats[c][0]}</span>
+              </button>
+            ))}
+          </div>
+          <div class="category-caption" id="aw-categoryCaption" aria-live="polite">{C.cats.heritage[1]}</div>
+          <div class="gallery" id="aw-gallery" role="group" aria-label={C.gallery}></div>
+          <div class="note">{C.libraryFoot}</div>
+        </aside>
+
+        <section class="work" aria-labelledby="aw-pageName">
+          <div class="worktop">
+            <div><h2 id="aw-pageName"></h2><div class="muted" id="aw-status" role="status">{C.statusStart}</div></div>
+            <div class="worktop-actions">
+              <span class="pill">{C.pill}</span>
+              <button type="button" id="aw-showSource" class="reference-btn"><img id="aw-sourceThumb" alt="" width="40" height="40" /><span>{C.showSource}</span></button>
+              <button type="button" class="btn primary save-btn" id="aw-download">{C.save}</button>
+            </div>
+          </div>
+          <div class="comparison-stage">
+            <div class="viewport" id="aw-viewport" role="application" aria-label={C.canvas}>
+              <div id="aw-brushCursor" class="brush-cursor" aria-hidden="true" hidden><span id="aw-brushRing" class="brush-ring"></span><span id="aw-cursorArt" class="cursor-art"></span></div>
+              <div class="sheet" id="aw-sheet"><canvas id="aw-paint"></canvas><canvas id="aw-lines"></canvas><canvas id="aw-signature" aria-hidden="true"></canvas></div>
+            </div>
+            <div class="inline-original">
+              <button type="button" class="original-photo-button" id="aw-openInlineOriginal" aria-label={C.inlineZoom}><img id="aw-inlineOriginal" alt="" width="800" height="600" /></button>
+              <div><strong>{C.inlineTitle}</strong><p id="aw-inlineOriginalName"></p><span>{C.inlineHint}</span></div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="actions">
+              <button type="button" class="btn" id="aw-undo" aria-label={C.undo} title={C.undo}>↶</button>
+              <button type="button" class="btn" id="aw-redo" aria-label={C.redo} title={C.redo}>↷</button>
+              <button type="button" class="btn" id="aw-clear">{C.clear}</button>
+            </div>
+            <span class="hint">{C.pinch}</span>
+            <div class="zoom">
+              <button type="button" class="btn" id="aw-zoomOut" aria-label={C.zoomOut}>−</button>
+              <button type="button" class="btn" id="aw-fit" title={C.fitTitle}>{C.fit}</button>
+              <button type="button" class="btn" id="aw-zoomIn" aria-label={C.zoomIn}>+</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel settings" aria-labelledby="aw-tools-h">
+          <h2 id="aw-tools-h">{C.toolsH}</h2>
+          <div class="tools" role="group" aria-label={C.toolsGroup}>
+            {ALWAN_TOOLS.map((id, i) => (
+              <button type="button" class:list={['tool', { active: i === 0 }]} data-tool={id} aria-pressed={i === 0 ? 'true' : 'false'} title={R.toolDesc[id]}>
+                <Fragment set:html={TOOL_ICONS[id]} /><span class="tool-name">{C.tools[id]}</span><span class="tool-selected" aria-hidden="true">✓</span>
+              </button>
+            ))}
+          </div>
+          <p class="touch-drawing-note">{C.touchNote}</p>
+          <p id="aw-toolDescription" class="tool-description" aria-live="polite">{R.toolDesc.pencil}</p>
+          <h2>{C.paletteH}</h2>
+          <div class="colorrow">
+            <div class="colors" id="aw-colors"></div>
+            <div class="custom">
+              <button type="button" id="aw-openColorPicker" class="more-colors" aria-haspopup="dialog" aria-label={C.moreColors}><span class="spectrum-icon" aria-hidden="true"><span>+</span></span><span class="more-colors-label">{C.moreColors}</span></button>
+            </div>
+          </div>
+          <div id="aw-eraserSizes" class="eraser-sizes" role="group" aria-label={C.eraserSizes} hidden>
+            <button type="button" data-eraser-size="20" aria-pressed="false"><i style="width:6px;height:6px"></i>{C.eraserS}</button>
+            <button type="button" data-eraser-size="60" aria-pressed="true"><i style="width:12px;height:12px"></i>{C.eraserM}</button>
+            <button type="button" data-eraser-size="120" aria-pressed="false"><i style="width:18px;height:18px"></i>{C.eraserL}</button>
+          </div>
+          <div class="sliders">
+            <div class="slider" id="aw-sizeControl"><label class="range" for="aw-size"><span id="aw-sizeLabel">{R.sizePen}</span> <span id="aw-sizeValue">18</span></label><input id="aw-size" type="range" min="3" max="90" value="18" /></div>
+            <div class="slider" id="aw-opacityControl"><label class="range" for="aw-opacity">{C.strength} <span id="aw-opacityValue">80%</span></label><input id="aw-opacity" type="range" min="10" max="100" value="80" /></div>
+          </div>
+          <div class="artist-field">
+            <label for="aw-artistName">{C.childName} <span>{C.optional}</span></label>
+            <input id="aw-artistName" type="text" maxlength="40" dir="auto" autocomplete="off" placeholder={C.childPlaceholder} />
+            <p>{C.childNote}</p>
+          </div>
+          <ul class="note aw-tips">{C.tips.map((tip) => <li>{tip}</li>)}</ul>
+        </aside>
+      </div>
+
+      <dialog id="aw-colorPicker" class="color-picker" aria-labelledby="aw-colorPickerTitle">
+        <div class="dialog-head"><h2 id="aw-colorPickerTitle">{C.pickerH}</h2><button type="button" id="aw-cancelColor" class="btn" aria-label={C.pickerClose}>×</button></div>
+        <p class="picker-help">{C.pickerHelp}</p>
+        <div class="color-field-wrap"><canvas id="aw-colorField" width="320" height="200" tabindex="0" role="application" aria-label={C.pickerH}></canvas><span id="aw-colorPoint" class="color-point" aria-hidden="true"></span></div>
+        <label class="hue-label" for="aw-colorHue">{C.hue}</label>
+        <input id="aw-colorHue" class="hue-slider" type="range" min="0" max="359" value="0" />
+        <div class="picker-bottom">
+          <div class="color-comparison" role="group" aria-label={C.compare}><span id="aw-previousColor" title={C.prevColor}></span><span id="aw-nextColor" title={C.nextColor}></span></div>
+          <label class="hex-label" for="aw-colorHex">{C.hex}<input id="aw-colorHex" dir="ltr" maxlength="7" spellcheck="false" autocomplete="off" value="#c99a4a" aria-describedby="aw-colorError" /></label>
+        </div>
+        <p id="aw-colorError" class="color-error" aria-live="polite"></p>
+        <div class="actions"><button type="button" id="aw-applyColor" class="btn primary">{C.useColor}</button></div>
+      </dialog>
+      <dialog id="aw-sourceDialog" class="source-dialog" aria-labelledby="aw-sourceTitle">
+        <div class="dialog-head"><h2 id="aw-sourceTitle">{C.sourceH}</h2><button type="button" id="aw-closeSource" class="btn" aria-label={C.sourceCloseLabel}>{C.sourceClose}</button></div>
+        <figure><img id="aw-sourcePhoto" alt="" width="800" height="600" /><figcaption>{C.sourceCaption}</figcaption></figure>
+        <a id="aw-sourceLink" class="source-link" href={ar ? '/' : '/en/'}>{C.sourceLink}</a>
+      </dialog>
+      <dialog id="aw-confirm" aria-labelledby="aw-confirm-h">
+        <h3 id="aw-confirm-h">{C.clearH}</h3>
+        <p>{C.clearP}</p>
+        <div class="actions"><button type="button" class="btn" id="aw-cancelClear">{C.cancel}</button><button type="button" class="btn primary" id="aw-yesClear">{C.clearYes}</button></div>
+      </dialog>
+      <div class="toast" id="aw-toast" role="status"></div>
+    </section>
+  </main>
+  <script is:inline type="application/json" data-alwan-data set:html={payload}></script>
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  import '../../scripts/play-alwan.js';
+</script>
