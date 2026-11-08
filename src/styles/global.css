@@ -173,6 +173,10 @@ picture.photo { display: block; }
 .photo.gd-portrait { inline-size: 100%; block-size: 100%; }
 .photo.gd-portrait.photo--img::after { content: none; }
 .photo.gd-tour-photo { aspect-ratio: 16 / 10; }
+/* صور مكوّنات اليونسكو من ملف الترشيح، وشرطها عدم التعديل: كاملة بلا قصّ ولا مرشّح ولا ظلّ */
+.photo.un-nd { background: var(--c-sand); }
+.photo.un-nd > img { object-fit: contain; filter: none; }
+.photo.un-nd::after { content: none; }
 .photo.gd-gal-photo { aspect-ratio: 4 / 3; border-radius: var(--radius-sm); }
 /* طبقة صورة خلفية لأقسام الهيرو (الصفحة الرئيسية وصفحة المعلم) */
 .photo-bg { position: absolute; inset: 0; z-index: 0; display: block; pointer-events: none; }
