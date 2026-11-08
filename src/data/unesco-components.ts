@@ -64,8 +64,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
   },
   {
     id: '1563-005', name: 'سوق القيصرية', name_en: 'Suq al-Qaysariyah', areaHa: 0.93,
-    desc: 'من أبرز ملامح النسيج العمراني للهفوف: ثلاث وحدات معمارية تمتد نحو 250 م على طريق الملك عبدالعزيز، أُعيد بناؤها بعد حريق مدمّر.',
-    desc_en: 'One of the defining features of Hofuf’s urban fabric: three architectural units stretching about 250 m along King Abdulaziz Road, rebuilt after a devastating fire.',
+    desc: 'من أبرز ملامح النسيج العمراني للهفوف: ثلاث وحدات معمارية تمتد نحو 250 م على طريق الملك عبدالعزيز، أُعيد بناؤها بعد حريق مدمّر عام 2001.',
+    desc_en: 'One of the defining features of Hofuf’s urban fabric: three architectural units stretching about 250 m along King Abdulaziz Road, rebuilt after a devastating fire in 2001.',
     img: '/img/qaisariyah',
   },
   {
