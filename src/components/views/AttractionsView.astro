@@ -6,7 +6,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { getCollection } from 'astro:content';
 import { catLabel } from '../../lib/categories';
-import { attractionHref } from '../../lib/routes';
+import { attractionHref, marketsHref } from '../../lib/routes';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ui, type Lang } from '../../i18n/ui';
 
@@ -137,6 +137,10 @@ const jsonLd = [
                 </article>
               ))}
             </div>
+            {/* أسواق المزارعين عربي/إنجليزي فقط (src/lib/routes.ts MARKETS_ALT) */}
+            {leisure && g.cat === 'market' && (ar || lang === 'en') && (
+              <p class="cat-more"><a href={marketsHref(lang)} data-track="related_click" data-track-kind="markets" data-track-item-id="farmers-markets">{ar ? 'أسواق المزارعين والأسواق اليومية' : 'Farmers’ markets and daily souqs'} <span aria-hidden="true">{ar ? '←' : '→'}</span></a></p>
+            )}
           </details>
         ))}
       </div>
@@ -202,6 +206,8 @@ const jsonLd = [
      مطويّين 88px فراغ فتُقرأ الأقسام كأنها لم تُحمَّل. المطويّة تلتصق قائمةً. */
   .cat-sec:not([open]) { margin-block-end: var(--s-4); }
   .cat-sec:last-of-type { margin-block-end: 0; }
+  .cat-more { margin-block-start: var(--s-4); }
+  .cat-more a { display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq-deep); }
   .cat-sec[hidden] { display: none; }
   /* summary هو العنوان القابل للنقر — نُزيل مؤشّر المتصفح الافتراضي ونضبطه شبكةً مرنة */
   summary.cat-sec-head { display: flex; align-items: center; gap: var(--s-3); cursor: pointer; list-style: none; }
