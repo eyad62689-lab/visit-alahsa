@@ -50,6 +50,10 @@ const routes = {
 // only: 'drawer' يظهر في القائمة المطويّة وحدها و'bar' في الشريط وحده (الخريطة في «اكتشف» داخل القائمة
 // وفي الشريط رابطٌ مباشر؛ و«معالمي المحفوظة» في الشريط أداةٌ أصلاً) — نمط nav-plan: وجهة واحدة لكل عرض.
 type NavItem = { href: string; label: string; wide?: boolean; only?: 'drawer' | 'bar'; badge?: boolean };
+// في شبكة العمودين على الجوال تضيق الخانة عن كلمة واحدة طويلة (Sehenswürdigkeiten · Достопримечательности: 165 و212px
+// في خانة 124–159px بين 320 و390px)، فتأخذ صفّاً كاملاً كـ«الأسواق والمنتزهات والمزارع» بدل قطعها بلا شرطة. 14 محرفاً
+// = أطول كلمة تتّسع بخط القائمة عند 320px (Veranstaltungen ‏15 لا تتّسع).
+const longWord = (s: string) => s.split(/\s+/).some((w) => w.length > 14);
 const groups: { id: string; label: string; flat?: boolean; items: NavItem[] }[] = [
   { id: 'discover', label: t('nav.g.discover'), items: [
     { href: routes.attractions, label: t('nav.attractions') },
@@ -118,7 +122,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
           )}
           <ul class="ng-list" id={`ng-p-${g.id}`}>
             {g.items.map((n) => (
-              <li class:list={[n.wide && 'ng-wide', n.only && `only-${n.only}`]}>
+              <li class:list={[(n.wide || longWord(n.label)) && 'ng-wide', n.only && `only-${n.only}`]}>
                 <a href={n.href}>{n.label}{n.badge && <span class="plan-badge" data-plan-count>0</span>}</a>
               </li>
             ))}
@@ -364,8 +368,10 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     .hd-grouped .hd-actions .btn-gold { display: none; }
     .hd-grouped .burger { display: flex; }
     .hd-grouped .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    .hd-grouped .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; display: block; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
-    .hd-grouped .nav-toggle:checked ~ .nav { max-block-size: calc(100dvh - 68px); overflow-y: auto; overscroll-behavior: contain; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    /* content-visibility: القائمة المطويّة لا تُرسَم محتوياتها وهي مغلقة، فلا تُطلب خطوطها (Playfair 400 للروابط) عند التحميل بل عند الفتح —
+       visibility:hidden وحدها تُبقيها في التخطيط فيُحمَّل خطّها بلا حاجة (ميزانية الخطوط ≤ 12 في /ru/). */
+    .hd-grouped .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; display: block; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; content-visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur), content-visibility 0s linear var(--dur); transition-behavior: allow-discrete; }
+    .hd-grouped .nav-toggle:checked ~ .nav { max-block-size: calc(100dvh - 68px); overflow-y: auto; overscroll-behavior: contain; visibility: visible; content-visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s, content-visibility 0s; transition-behavior: allow-discrete; }
     .hd-grouped .ng-btn, .hd-grouped .only-bar { display: none; }
     .hd-grouped .only-drawer { display: block; }
     .hd-grouped .ng { padding-inline: var(--s-4); }
@@ -373,7 +379,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     .hd-grouped .ng-title::after { content: ''; flex: 1; block-size: 1px; background: var(--c-gold); opacity: .7; }
     .hd-grouped .ng .ng-list { display: grid; position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); min-inline-size: 0; padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none; }
     .hd-grouped .ng-wide { grid-column: 1 / -1; }
-    .hd-grouped .ng .ng-list a { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-block-end: 1px solid var(--c-line); border-radius: 0; font-family: var(--font-heading); font-weight: 500; font-size: 1.125rem; white-space: normal; }
+    .hd-grouped .ng .ng-list a { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-block-end: 1px solid var(--c-line); border-radius: 0; min-inline-size: 0; hyphens: auto; overflow-wrap: anywhere; font-family: var(--font-heading); font-weight: 500; font-size: 1.125rem; white-space: normal; }
     .hd-grouped .ng .ng-list a:hover { background: none; color: var(--c-turq); }
     .hd-grouped .ng .ng-list a::after { content: none; }
     .hd-grouped .ng-list li:last-child a, .hd-grouped .ng-list li:nth-last-child(2):nth-child(odd) a, .hd-grouped .ng--flat .ng-list a { border-block-end: 0; }
