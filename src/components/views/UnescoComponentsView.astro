@@ -87,8 +87,7 @@ const jsonLd = [
                   {c.imgNote && <span>{ar ? c.imgNote : c.imgNote_en}</span>}
                   {c.credit && (
                     <span>
-                      {C.photo}: <bdi lang="en">{c.credit.holder}</bdi>
-                      {c.credit.license && <> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank" lang="en">{c.credit.license}</a></>}
+                      {C.photo}: <bdi lang="en" dir="ltr">{c.credit.holder}{c.credit.license && <> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank">{c.credit.license}</a></>}</bdi>
                       {' · '}{C.via} <a href={c.credit.sourceUrl} rel="noopener" target="_blank">{{ unesco: C.viaUnesco, commons: C.viaCommons, eox: C.viaEox }[c.credit.source]}</a>
                     </span>
                   )}
