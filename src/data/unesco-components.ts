@@ -17,8 +17,9 @@ export interface UnescoComponent {
   /** ما تُظهره الصورة حين لا تطابق المكوّن كله */
   imgNote?: string;
   imgNote_en?: string;
-  /** صورة الغير: المصوّر والترخيص ورابط الملف */
-  credit?: { author: string; license: string; licenseUrl: string; fileUrl: string };
+  /** صورة الغير: صاحب الحقوق ومصدرها ورابط صفحتها، والترخيص إن كان حراً. صور اليونسكو من ملف الترشيح
+   *  شرطها المعلن الإسناد وعدم التعديل (Attribution + NoDerivatives): تُعرض كاملة بلا قصّ، وتُحجَّم فقط. */
+  credit?: { holder: string; source: 'unesco' | 'commons'; sourceUrl: string; license?: string; licenseUrl?: string };
 }
 
 export const UNESCO_MAPS_URL = 'https://whc.unesco.org/en/list/1563/maps/';
@@ -29,7 +30,8 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
     id: '1563-001', name: 'الواحة الشرقية', name_en: 'Eastern Oasis', areaHa: 3885,
     desc: 'أكبر المكوّنات: قطاع واسع من الواحة الشرقية على هيئة هلال يمتد نحو 9 كم من الشمال إلى الجنوب و12 كم من الشرق إلى الغرب، فيه بساتين نخيل كثيفة ومزارع تحدّها شبكة من القنوات، ويضم جبل القارة في شماله الشرقي.',
     desc_en: 'The largest component: a broad crescent of the eastern oasis about 9 km from north to south and 12 km from east to west, with dense palm groves and farmland bounded by a network of channels, and Jabal Al-Qarah in its north-east.',
-    img: '/img/jabal-al-qarah', imgNote: 'في الصورة: جبل القارة داخل الواحة الشرقية', imgNote_en: 'Pictured: Jabal Al-Qarah, within the Eastern Oasis',
+    img: '/img/unesco/eastern-oasis-qarah', imgNote: 'في الصورة: جبل القارة من الجو', imgNote_en: 'Pictured: Al-Qarah from the air',
+    credit: { holder: '© IPOGEA', source: 'unesco', sourceUrl: 'https://whc.unesco.org/en/documents/166906' },
   },
   {
     id: '1563-002', name: 'الواحة الشمالية', name_en: 'Northern Oasis', areaHa: 2010,
@@ -40,12 +42,13 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
     id: '1563-003', name: 'السيف', name_en: 'As-Seef', areaHa: 108,
     desc: 'القطاع الأوسط من بساتين نخيل السيف في الهفوف، تحدّه المقبرة التاريخية الكبيرة للمدينة شرقاً، ويحيط به حزام أخضر بعرض 150 إلى 200 م يفصله عن الأحياء المجاورة.',
     desc_en: 'The central part of the As-Seef palm groves in Hofuf, bounded on the east by the city’s large historic cemetery and ringed by a green belt 150 to 200 m wide that separates it from the neighbouring districts.',
+    img: '/img/unesco/as-seef', credit: { holder: '© IPOGEA', source: 'unesco', sourceUrl: 'https://whc.unesco.org/en/documents/166908' },
   },
   {
     id: '1563-004', name: 'قصر إبراهيم', name_en: 'Qasr Ibrahim', areaHa: 1.97,
     desc: 'المجمع التاريخي لقصر إبراهيم وسط الهفوف، أبرز البقايا المعمارية من حقبة الحكم العثماني للمدينة.',
     desc_en: 'The historic Qasr Ibrahim complex in central Hofuf, the main architectural remains of the city’s Ottoman period.',
-    img: '/img/qasr-ibrahim',
+    img: '/img/unesco/qasr-ibrahim-courtyard', credit: { holder: '© François Cristofoli', source: 'unesco', sourceUrl: 'https://whc.unesco.org/en/documents/166902' },
   },
   {
     id: '1563-005', name: 'سوق القيصرية', name_en: 'Suq al-Qaysariyah', areaHa: 0.93,
@@ -63,7 +66,7 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
     id: '1563-007', name: 'قصر صاهود', name_en: 'Qasr Sahood', areaHa: 1.2,
     desc: 'حصن مستطيل الشكل تقريباً في المبرز، كان يقع خارج سور المدينة الغربي.',
     desc_en: 'A roughly rectangular fort in Al-Mubarraz that originally stood outside the city’s western wall.',
-    img: '/img/sahood',
+    img: '/img/unesco/qasr-sahood-facade', credit: { holder: '© François Cristofoli', source: 'unesco', sourceUrl: 'https://whc.unesco.org/en/documents/166909' },
   },
   {
     id: '1563-008', name: 'موقع جواثا الأثري', name_en: 'Jawatha archaeological site', areaHa: 284,
@@ -87,14 +90,14 @@ export const UNESCO_COMPONENTS: UnescoComponent[] = [
     desc_en: 'An archaeological site excavated in the 1970s and fully fenced.',
     img: '/img/unesco/ain-qinas',
     credit: {
-      author: 'Richard Mortel', license: 'CC BY 2.0', licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
-      fileUrl: 'https://commons.wikimedia.org/wiki/File:Ayn_Qannas_Neolithic_Site,_ca._7000_BCE_and_after,_al-Ahsa_(6)_(50620601991).jpg',
+      holder: 'Richard Mortel', source: 'commons', license: 'CC BY 2.0', licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ayn_Qannas_Neolithic_Site,_ca._7000_BCE_and_after,_al-Ahsa_(6)_(50620601991).jpg',
     },
   },
   {
     id: '1563-012', name: 'بحيرة الأصفر', name_en: 'Al-Asfar Lake', areaHa: 2170,
     desc: 'بحيرة الأصفر ومنطقة الصرف التي تتجمع فيها مياه الواحة، ومعها الجزء الشمالي من قناة الصرف الرئيسة للواحة الشرقية من الطريق السريع إلى شاطئ البحيرة؛ وفيها نظام بيئي طبيعي فريد.',
     desc_en: 'Al-Asfar Lake, the drainage area where the oasis’s water collects, together with the northern stretch of the Eastern Oasis’s main drainage channel from the highway to the lakeshore; it holds a unique natural ecosystem.',
-    img: '/img/asfar',
+    img: '/img/unesco/al-asfar-lake', credit: { holder: '© François Cristofoli', source: 'unesco', sourceUrl: 'https://whc.unesco.org/en/documents/166914' },
   },
 ];

@@ -27,8 +27,11 @@ const C = ar ? {
   area: (n: number) => `المساحة المسجّلة ${num(n)} هكتار`,
   noImg: 'لا تتوفر صورة مرخّصة بعد',
   photo: 'صورة',
+  via: 'المصدر:',
+  viaUnesco: 'مركز التراث العالمي لليونسكو ↗',
+  viaCommons: 'ويكيميديا كومنز ↗',
   srcH: 'المصدر',
-  src: 'الأسماء الإنجليزية والمساحات من جدول المكوّنات في صفحة الموقع 1563 بمركز التراث العالمي لليونسكو، والأوصاف من ملف ترشيح الموقع (2017).',
+  src: 'الأسماء الإنجليزية والمساحات من جدول المكوّنات في صفحة الموقع 1563 بمركز التراث العالمي لليونسكو، والأوصاف من ملف ترشيح الموقع (2017). وصور الواحة الشرقية والسيف وقصر إبراهيم وقصر صاهود وبحيرة الأصفر من معرض الموقع في اليونسكو (من ملف الترشيح)، تُعرض كاملة بلا تعديل باسم صاحب حقوقها.',
   srcMaps: 'جدول المكوّنات وخرائطها في اليونسكو ↗',
   srcSite: 'صفحة الموقع 1563 في اليونسكو ↗',
   seoTitle: 'مكوّنات واحة الأحساء الاثنا عشر في اليونسكو',
@@ -40,8 +43,11 @@ const C = ar ? {
   area: (n: number) => `Inscribed area ${num(n)} ha`,
   noImg: 'No licensed photo yet',
   photo: 'Photo',
+  via: 'Source:',
+  viaUnesco: 'UNESCO World Heritage Centre ↗',
+  viaCommons: 'Wikimedia Commons ↗',
   srcH: 'Source',
-  src: 'English names and areas from the components table on the UNESCO World Heritage Centre page for site 1563; descriptions from the site’s nomination file (2017).',
+  src: 'English names and areas from the components table on the UNESCO World Heritage Centre page for site 1563; descriptions from the site’s nomination file (2017). The photos of the Eastern Oasis, As-Seef, Qasr Ibrahim, Qasr Sahood and Al-Asfar Lake are from the site’s UNESCO gallery (nomination file), shown whole and unaltered with their rights holder named.',
   srcMaps: 'Components table and maps at UNESCO ↗',
   srcSite: 'Site 1563 at UNESCO ↗',
   seoTitle: 'The twelve components of Al-Ahsa Oasis at UNESCO',
@@ -70,13 +76,17 @@ const jsonLd = [
           <li class="card un-card" data-unesco={c.id} data-reveal style={`transition-delay:${(idx % 3) * 60}ms`}>
             <figure class="un-fig">
               {c.img
-                ? <Photo src={c.img} label={name(c)} class="lc-photo" sizes="(max-width: 760px) 100vw, 33vw" />
+                ? <Photo src={c.img} label={name(c)} class={c.credit?.source === 'unesco' ? 'lc-photo un-nd' : 'lc-photo'} sizes="(max-width: 760px) 100vw, 33vw" />
                 : <Photo label={C.noImg} class="lc-photo" />}
               {(c.imgNote || c.credit) && (
                 <figcaption class="un-cap t-caption">
                   {c.imgNote && <span>{ar ? c.imgNote : c.imgNote_en}</span>}
                   {c.credit && (
-                    <span>{C.photo}: <a href={c.credit.fileUrl} rel="noopener" target="_blank" lang="en">{c.credit.author}</a> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank" lang="en">{c.credit.license}</a></span>
+                    <span>
+                      {C.photo}: <bdi lang="en">{c.credit.holder}</bdi>
+                      {c.credit.license && <> · <a href={c.credit.licenseUrl} rel="license noopener" target="_blank" lang="en">{c.credit.license}</a></>}
+                      {' · '}{C.via} <a href={c.credit.sourceUrl} rel="noopener" target="_blank">{c.credit.source === 'unesco' ? C.viaUnesco : C.viaCommons}</a>
+                    </span>
                   )}
                 </figcaption>
               )}
