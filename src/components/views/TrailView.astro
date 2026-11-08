@@ -10,11 +10,20 @@
 // الخريطة: محطات المسار المرتبطة بمعلم فقط، بإحداثيات المعلم المخزّنة (location) —
 // لا دبوس ولا إحداثيات مختلَقة لمحطة بلا معلم. Leaflet المستضاف ذاتياً وبلاطات OSM
 // القياسية بلا مفتاح (نمط MapView بعد #79).
+//
+// أدوات المسار: صورة المحطة من heroImage معلمها (لا صورة لمحطة بلا معلم)، ورابط الاتجاهات
+// في خرائط قوقل بمحطات الخريطة نفسها وبترتيبها (سيراً لمسار المشي وبالسيارة لغيره)، وزر
+// المشاركة — بكل اللغات لأن نصوصها في قواميسها. وضع الجولة وعلامة «زرتُ» والتقدّم والطباعة
+// للعربية والإنجليزية وحدهما حتى تمرّ نصوصها بخطوط الترجمة (TOOLS_LANGS)، ومخفية حتى يعمل
+// السكربت. التقدّم في localStorage للمتصفح وحده، ووضع الجولة ينسخ محطات القائمة نفسها إلى
+// نافذة حوار فلا نص مكرّر في HTML.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
+import Photo from '../Photo.astro';
+import ShareButton from '../ShareButton.astro';
 import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import { TRAIL_SOURCES, sourceTitle, stopText, trailAttribution, trailText, trailUnescoNote, type Trail } from '../../data/trails';
 import { stopAttraction, trailsIndexHref, type TrailLang } from '../../lib/trails';
@@ -57,6 +66,7 @@ const stops = trail.stops.map((s, i) => {
     unesco: s.unesco,
     href: att ? attractionHref(att.data, lang) : undefined,
     loc: att?.data.location,
+    img: att?.data.heroImage,
     sources: s.sources.map((k) => ({ key: k, url: TRAIL_SOURCES[k].url, title: sourceTitle(k, lang) })),
   };
 });
@@ -64,6 +74,21 @@ const pins = stops.filter((s) => s.loc && s.href).map((s) => ({ n: s.n, name: s.
 const unescoCount = stops.filter((s) => s.unesco).length;
 const idxHref = trailsIndexHref(lang);
 const labels = { landmark: t('trails.landmark'), stop: t('trails.stop') };
+
+const TOOLS_LANGS: readonly TrailLang[] = ['ar', 'en'];
+const tools = TOOLS_LANGS.includes(lang);
+// خرائط قوقل: الأولى منطلقاً والأخيرة وجهة وما بينهما محطات وسيطة — بترتيب المسار
+const ll = (p: { lat: number; lng: number }) => `${p.lat},${p.lng}`;
+const dirUrl = (() => {
+  if (!pins.length) return undefined;
+  const q = new URLSearchParams({ api: '1', destination: ll(pins[pins.length - 1]), travelmode: trail.mode === 'walking' ? 'walking' : 'driving' });
+  if (pins.length > 1) q.set('origin', ll(pins[0]));
+  if (pins.length > 2) q.set('waypoints', pins.slice(1, -1).map(ll).join('|'));
+  return `https://www.google.com/maps/dir/?${q}`;
+})();
+const tourText = tools ? {
+  of: t('trails.tour.of'), next: t('trails.tour.next'), finish: t('trails.tour.finish'), progress: t('trails.progress'),
+} : undefined;
 
 const pageUrl = absUrl(altHref(alt, lang));
 const jsonLd = [
@@ -111,6 +136,22 @@ const jsonLd = [
       <p class="trd-intro-p">{tx.intro}</p>
     </section>
 
+    <section class="container trd-tools" aria-label={tools ? t('trails.toolsH') : undefined} data-trail-tools={trail.slug}>
+      <div class="trd-actions">
+        {tools && <button type="button" class="btn btn--turq" data-tour-start hidden>{t('trails.tour.start')}</button>}
+        {dirUrl && <a class="trd-act" href={dirUrl} target="_blank" rel="noopener" data-directions>{t('plan.route')}</a>}
+        {tools && <button type="button" class="trd-act" data-trail-print hidden>{t('trails.print')}</button>}
+        <ShareButton lang={lang} contentType="trail" itemId={trail.slug} />
+      </div>
+      {tools && (
+        <div class="trd-progress" data-progress hidden>
+          <p class="trd-progress-row"><span data-progress-text aria-live="polite"></span> <button type="button" class="trd-reset" data-progress-reset hidden>{t('trails.progressReset')}</button></p>
+          <div class="trd-bar" aria-hidden="true"><span data-progress-bar></span></div>
+          <p class="trd-progress-note">{t('trails.progressNote')}</p>
+        </div>
+      )}
+    </section>
+
     <section class="container trd-stops" aria-labelledby="trd-stops-h">
       <h2 id="trd-stops-h" class="trd-h">{t('trails.stopsH')}</h2>
       <ol class="trd-list">
@@ -118,6 +159,7 @@ const jsonLd = [
           <li class="trd-stop" id={s.key} data-stop={s.key}>
             <span class="trd-n" aria-hidden="true">{s.n}</span>
             <div class="trd-body">
+              {s.img && <Photo src={s.img} label={s.name} class="trd-photo" sizes="(min-width: 760px) 640px, calc(100vw - 92px)" />}
               <h3 class="trd-name">
                 {s.name}
                 {s.unesco && <span class="trd-badge" data-unesco-badge>{t('trails.unesco')}</span>}
@@ -128,6 +170,7 @@ const jsonLd = [
               {s.href && (
                 <p class="trd-land"><a href={s.href} data-landmark-link>{labels.landmark} <span aria-hidden="true">{rtl ? '←' : '→'}</span></a></p>
               )}
+              {tools && <button type="button" class="trd-visit" data-visit={s.key} aria-pressed="false" hidden>{t('trails.visited')}</button>}
               <div class="trd-src">
                 <h4 class="trd-src-h">{t('trails.sources')}</h4>
                 <ul>
@@ -157,6 +200,118 @@ const jsonLd = [
     </section>
   </main>
   <Footer lang={lang} />
+
+  {tools && (
+    <dialog class="trd-tour" data-tour aria-labelledby="trd-tour-h">
+      <div class="trd-tour-head">
+        <p class="trd-tour-k" id="trd-tour-h" data-tour-of></p>
+        <button type="button" class="trd-tour-x" data-tour-close aria-label={t('trails.tour.close')}><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="trd-tour-body" data-tour-body></div>
+      <div class="trd-tour-foot">
+        <button type="button" class="trd-act" data-tour-prev>{t('trails.tour.prev')}</button>
+        <button type="button" class="trd-visit" data-tour-visit aria-pressed="false">{t('trails.visited')}</button>
+        <button type="button" class="btn btn--turq" data-tour-next>{t('trails.tour.next')}</button>
+      </div>
+    </dialog>
+    <script is:inline define:vars={{ slug: trail.slug, tourText }}>
+      function initTrailTools() {
+        const root = document.querySelector('[data-trail-tools]');
+        if (!root || root.dataset.ready) return;
+        root.dataset.ready = '1';
+        const items = [...document.querySelectorAll('.trd-stop')];
+        const keys = items.map((li) => li.dataset.stop);
+        const store = 'va-trail-visited:' + slug;
+        const read = () => {
+          try {
+            const v = JSON.parse(localStorage.getItem(store) || '[]');
+            return new Set(Array.isArray(v) ? v.filter((k) => keys.includes(k)) : []);
+          } catch { return new Set(); }
+        };
+        const write = (set) => {
+          try { if (set.size) localStorage.setItem(store, JSON.stringify([...set])); else localStorage.removeItem(store); }
+          catch { /* تخزين محجوب: يبقى التقدّم لهذه الزيارة وحدها */ }
+        };
+        const fill = (tpl, n, total) => tpl.replace('{n}', n).replace('{total}', total);
+        let visited = read();
+        let cur = -1;
+
+        const dlg = document.querySelector('[data-tour]');
+        const body = dlg.querySelector('[data-tour-body]');
+        const next = dlg.querySelector('[data-tour-next]');
+        const prev = dlg.querySelector('[data-tour-prev]');
+        const tourVisit = dlg.querySelector('[data-tour-visit]');
+        const prog = document.querySelector('[data-progress]');
+        const reset = document.querySelector('[data-progress-reset]');
+
+        const paint = () => {
+          document.querySelectorAll('[data-visit]').forEach((b) => b.setAttribute('aria-pressed', String(visited.has(b.dataset.visit))));
+          items.forEach((li) => li.classList.toggle('is-visited', visited.has(li.dataset.stop)));
+          prog.querySelector('[data-progress-text]').textContent = fill(tourText.progress, visited.size, keys.length);
+          prog.querySelector('[data-progress-bar]').style.inlineSize = (visited.size / keys.length) * 100 + '%';
+          reset.hidden = visited.size === 0;
+          if (cur >= 0) tourVisit.setAttribute('aria-pressed', String(visited.has(keys[cur])));
+        };
+        const toggle = (k) => {
+          if (visited.has(k)) visited.delete(k); else visited.add(k);
+          write(visited);
+          paint();
+        };
+        document.querySelectorAll('[data-visit]').forEach((b) => {
+          b.hidden = false;
+          b.addEventListener('click', () => toggle(b.dataset.visit));
+        });
+        reset.addEventListener('click', () => { visited = new Set(); write(visited); paint(); });
+        prog.hidden = false;
+
+        // وضع الجولة: نسخة من صورة المحطة ونصها ورابط معلمها ومصادرها، محطةً محطة
+        const show = (i) => {
+          cur = i;
+          const clone = items[i].querySelector('.trd-body').cloneNode(true);
+          clone.querySelectorAll('[data-visit]').forEach((b) => b.remove());
+          clone.querySelectorAll('img').forEach((im) => { im.loading = 'eager'; });
+          body.replaceChildren(clone);
+          body.scrollTop = 0;
+          dlg.querySelector('[data-tour-of]').textContent = fill(tourText.of, i + 1, keys.length);
+          prev.disabled = i === 0;
+          next.textContent = i === keys.length - 1 ? tourText.finish : tourText.next;
+          paint();
+        };
+        const close = () => { if (dlg.open) dlg.close(); };
+        dlg.addEventListener('close', () => {
+          if (cur >= 0) items[cur].scrollIntoView({ block: 'start' });
+          cur = -1;
+        });
+        const start = document.querySelector('[data-tour-start]');
+        start.hidden = false;
+        start.addEventListener('click', () => {
+          // تبدأ الجولة من أول محطة لم تُزر بعد
+          const first = keys.findIndex((k) => !visited.has(k));
+          dlg.showModal();
+          show(first < 0 ? 0 : first);
+        });
+        next.addEventListener('click', () => (cur < keys.length - 1 ? show(cur + 1) : close()));
+        prev.addEventListener('click', () => { if (cur > 0) show(cur - 1); });
+        dlg.querySelector('[data-tour-close]').addEventListener('click', close);
+        tourVisit.addEventListener('click', () => { if (cur >= 0) toggle(keys[cur]); });
+        dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+        // الأسهم باتجاه الصفحة: في RTL السهم الأيسر هو «التالية»
+        dlg.addEventListener('keydown', (e) => {
+          if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || e.target.closest('a, button')) return;
+          const fwd = (e.key === 'ArrowLeft') === (document.documentElement.dir === 'rtl');
+          if (fwd && cur < keys.length - 1) show(cur + 1);
+          else if (!fwd && cur > 0) show(cur - 1);
+        });
+
+        const pr = document.querySelector('[data-trail-print]');
+        pr.hidden = false;
+        pr.addEventListener('click', () => window.print());
+        paint();
+      }
+      document.addEventListener('astro:page-load', initTrailTools);
+      if (document.readyState !== 'loading') initTrailTools(); else document.addEventListener('DOMContentLoaded', initTrailTools);
+    </script>
+  )}
 
   {pins.length > 0 && (
     <>
@@ -218,6 +373,59 @@ const jsonLd = [
   .trd-map-sec { padding-block: var(--s-4); }
   .trd-map { block-size: clamp(320px, 52vh, 520px); inline-size: 100%; background: var(--c-sand-2); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
   .trd-map-note { margin-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-soft); }
+  /* أدوات المسار: الزر الثانوي بنمط زر المشاركة (أبيض بحدّ رفيع، 44px) */
+  .trd-tools { padding-block: var(--s-4) 0; }
+  .trd-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
+  .trd-act { display: inline-flex; align-items: center; min-block-size: 44px; padding: 0 16px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; text-decoration: none; }
+  .trd-act:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .trd-act:disabled { opacity: .45; cursor: default; }
+  .trd-act:focus-visible, .trd-visit:focus-visible, .trd-reset:focus-visible, .trd-tour-x:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  .trd-progress { margin-block-start: var(--s-4); max-inline-size: 40rem; }
+  .trd-progress-row { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s-3); font-weight: 600; color: var(--c-turq-deep); }
+  .trd-reset { min-block-size: 44px; padding: 0 4px; background: none; border: 0; font: inherit; font-size: var(--t-sm); color: var(--c-turq); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .trd-bar { block-size: 8px; margin-block: var(--s-2); background: var(--c-sand-2); border-radius: var(--radius-pill); overflow: hidden; }
+  .trd-bar span { display: block; block-size: 100%; inline-size: 0; background: var(--c-turq); border-radius: inherit; transition: inline-size var(--dur) var(--ease); }
+  .trd-progress-note { margin: 0; font-size: var(--t-xs); color: var(--c-ink-soft); }
+  .trd-body :global(.trd-photo) { display: block; aspect-ratio: 16 / 9; margin-block-end: var(--s-3); border-radius: var(--radius); overflow: hidden; background: var(--c-sand-2); }
+  .trd-body :global(.trd-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; display: block; }
+  .trd-visit { display: inline-flex; align-items: center; gap: 8px; min-block-size: 44px; margin-block-start: var(--s-3); padding: 0 16px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }
+  .trd-visit::before { content: ''; display: grid; place-items: center; inline-size: 16px; block-size: 16px; border: 1.5px solid var(--c-turq); border-radius: 4px; box-sizing: border-box; font-size: 11px; line-height: 1; }
+  .trd-visit[aria-pressed='true'] { background: var(--c-sand-2); border-color: var(--c-turq); }
+  .trd-visit[aria-pressed='true']::before { content: '✓'; background: var(--c-turq); color: var(--c-sand); }
+  .trd-stop.is-visited .trd-n { background: var(--c-turq-deep); box-shadow: 0 0 0 3px var(--c-gold); }
+
+  /* نافذة الجولة: محطة واحدة بصورتها، والتنقّل ثابت في الذيل */
+  .trd-tour { inline-size: min(720px, calc(100vw - 32px)); max-inline-size: none; max-block-size: calc(100dvh - 32px); padding: 0; border: 0; border-radius: var(--radius-lg); background: var(--c-sand); color: var(--c-ink); box-shadow: var(--shadow); }
+  .trd-tour[open] { display: flex; flex-direction: column; }
+  .trd-tour::backdrop { background: rgba(0, 42, 37, .62); }
+  .trd-tour-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); padding-block: var(--s-1, 4px); padding-inline: var(--s-4) var(--s-2); border-block-end: 1px solid var(--c-line); }
+  .trd-tour-k { margin: 0; font-weight: 600; color: var(--c-gold-deep); }
+  .trd-tour-x { inline-size: 44px; block-size: 44px; display: grid; place-items: center; background: none; border: 0; border-radius: 50%; font-size: 28px; line-height: 1; color: var(--c-turq-deep); cursor: pointer; }
+  .trd-tour-x:hover { background: var(--c-sand-2); }
+  .trd-tour-body { overflow-y: auto; padding: var(--s-4); flex: 1 1 auto; }
+  .trd-tour-body :global(.trd-photo) { max-block-size: 38dvh; inline-size: 100%; }
+  .trd-tour-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2); padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+  .trd-tour-foot .trd-visit { margin: 0; }
+  /* الهاتف: علامة الزيارة صفاً كاملاً فوق السابقة والتالية */
+  @media (max-width: 520px) {
+    .trd-tour-foot .trd-visit { order: -1; flex-basis: 100%; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) { .trd-bar span { transition: none; } }
+
+  /* الطباعة: عنوان المسار ومقدّمته ومحطاته بمصادرها — بلا ترويسة وتذييل وأدوات وخريطة وصور */
+  @media print {
+    :global(.site-header), :global(.site-footer), :global(.skip-link), :global(.adv-root) { display: none !important; }
+    .trd-tools, .trd-visit, .trd-map-sec, .trd-foot .btn, .trd-tour { display: none !important; }
+    :global(.page-hero) { background: none !important; padding-block: 0 8pt; }
+    :global(.pgh-wm) { display: none !important; }
+    :global(.pgh-title) { color: #000 !important; font-size: 20pt; }
+    :global(.pgh-lead) { color: #333 !important; }
+    .trd-meta dt { color: #444; }
+    .trd-meta dd { color: #000; }
+    .trd-body :global(.trd-photo) { display: none !important; }
+    .trd-stop { break-inside: avoid; }
+    .trd-src { background: none; padding: 0; }
+  }
   .trd-foot { padding-block: var(--s-5) var(--s-8); display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-4); }
   .trd-attr { max-inline-size: 70ch; margin: 0; font-size: var(--t-sm); line-height: 1.8; color: var(--c-ink-soft); border-inline-start: 2px solid var(--c-gold); padding-inline-start: var(--s-3); }
 
