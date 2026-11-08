@@ -17,7 +17,15 @@ const SA_VOLT = 220;
 const SA_HZ = 60;
 
 const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k: string) => String(v[k] ?? ''));
-const uid = () => (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+const uid = (): string => {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  return Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, '0')).join('');
+};
+/** مفاتيح التخزين قائمة مغلقة — لا يدخل مفتاحاً شيءٌ من إدخال الزائر. */
+type StoreKey = 'cur' | 'rates' | 'city' | 'trip' | 'pack';
+const STORE_KEYS: ReadonlySet<string> = new Set<StoreKey>(['cur', 'rates', 'city', 'trip', 'pack']);
+/** «الأولى إن تحقق الشرط وإلا الثانية» — بديل الشرطيات المتداخلة. */
+const pick = <T>(pairs: [boolean, T][], fallback: T): T => pairs.find(([c]) => c)?.[1] ?? fallback;
 
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string) {
   const e = document.createElement(tag);
@@ -25,8 +33,14 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: 
   if (text !== undefined) e.textContent = text;
   return e;
 }
-function read<T>(key: string, fallback: T): T {
-  try { const v = localStorage.getItem('va-tools-' + key); return v ? (JSON.parse(v) as T) : fallback; } catch { return fallback; }
+function read<T>(key: StoreKey, fallback: T): T {
+  if (!STORE_KEYS.has(key)) return fallback;
+  try {
+    const v = localStorage.getItem('va-tools-' + key);
+    return v ? (JSON.parse(v) as T) : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 /* ---------- التوقيت: لحظات محتملة لوقت محلي في منطقة (التوقيت الصيفي قد يُكرّر وقتاً أو يُسقطه) ---------- */
@@ -85,7 +99,17 @@ function initTools() {
   const status = $<HTMLElement>('status');
   let statusTimer = 0;
   const say = (msg: string) => { status.textContent = msg; window.clearTimeout(statusTimer); statusTimer = window.setTimeout(() => { status.textContent = ''; }, 5000); };
-  const save = (key: string, data: unknown) => { try { localStorage.setItem('va-tools-' + key, JSON.stringify(data)); } catch { say(R.saveFail); } };
+  const save = (key: StoreKey, data: unknown) => {
+    if (!STORE_KEYS.has(key)) return;
+    try {
+      localStorage.setItem('va-tools-' + key, JSON.stringify(data));
+    } catch {
+      say(R.saveFail);
+    }
+  };
+  // رموز العملات المسموحة = خيارات القائمة نفسها؛ أي قيمة أخرى تُرفض قبل الشبكة والتخزين
+  const CODES: ReadonlySet<string> = new Set([...document.querySelectorAll<HTMLOptionElement>('#tt-cur-from option')].map((o) => o.value));
+  const code = (c: string): string | null => (CODES.has(c) && /^[A-Z]{3}$/.test(c) ? c : null);
   const dateFmt = (zone: string) => new Intl.DateTimeFormat(lang === 'ar' ? 'ar-SA-u-ca-gregory-nu-latn' : 'en-GB', { timeZone: zone, dateStyle: 'full' });
   const clockFmt = (zone: string) => new Intl.DateTimeFormat('en-GB', { timeZone: zone, hour: '2-digit', minute: '2-digit' });
   const fracDigits = (c: string) => { try { return new Intl.NumberFormat('en', { style: 'currency', currency: c }).resolvedOptions().maximumFractionDigits ?? 2; } catch { return 2; } };
@@ -101,7 +125,7 @@ function initTools() {
   $<HTMLButtonElement>('confirm-cancel').onclick = () => dialog.close();
   $<HTMLButtonElement>('confirm-ok').onclick = () => { dialog.close(); confirmAction?.(); };
   // العدد بصيغته: [الجمع العام، المفرد، المثنى، جمع القلة 3–10] — الإنجليزية تستعمل الأول والثاني
-  const count = (n: number, w: string[]) => (n === 1 ? w[1] : n === 2 && lang === 'ar' ? w[2] : lang === 'ar' && n >= 3 && n <= 10 ? `${n} ${w[3]}` : `${n} ${w[0]}`);
+  const count = (n: number, w: string[]) => pick([[n === 1, w[1]], [n === 2 && lang === 'ar', w[2]], [lang === 'ar' && n >= 3 && n <= 10, `${n} ${w[3]}`]], `${n} ${w[0]}`);
 
   /* ---------- التبويبات ---------- */
   const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-tab]')];
@@ -117,7 +141,7 @@ function initTools() {
   tabs.forEach((b, i) => {
     b.onclick = () => { show(b.dataset.tab!); try { history.replaceState(null, '', '#' + b.dataset.tab); } catch { /* sandboxed */ } };
     b.onkeydown = (e) => {
-      const step = e.key === 'ArrowLeft' ? 1 : e.key === 'ArrowRight' ? -1 : 0;
+      const step = pick([[e.key === 'ArrowLeft', 1], [e.key === 'ArrowRight', -1]], 0);
       if (!step) return;
       e.preventDefault();
       const dir = document.dir === 'rtl' ? step : -step;
@@ -147,27 +171,48 @@ function initTools() {
   };
   const rateStatus = (msg: string, error = false) => { const s = $<HTMLElement>('cur-status'); s.textContent = msg; s.classList.toggle('is-error', error); };
   const refreshRate = async () => {
-    const my = ++serial, from = $('cur-from').value, to = $('cur-to').value;
+    const my = ++serial, from = code($('cur-from').value), to = code($('cur-to').value);
+    if (!from || !to) { rateStatus(R.rateFail, true); return; }
     rate = null; calculate(); $('cur-manual').value = '';
     if (from === to) { rate = 1; rateStatus(R.rateSame); calculate(); return; }
     rateStatus(R.rateLoading);
-    const key = 'rate-' + from + '-' + to;
+    const pair = `${from}-${to}`;
+    const cache = read<Record<string, { rate?: number; date?: string }>>('rates', {});
     try {
       const res = await fetch(RATE_API + encodeURIComponent(from) + '/' + encodeURIComponent(to), { signal: AbortSignal.timeout(12000) });
       if (!res.ok) throw new Error('rate');
       const data = (await res.json()) as { rate?: number; date?: string };
-      if (typeof data.rate !== 'number' || !(data.rate > 0) || !/^\d{4}-\d{2}-\d{2}$/.test(data.date || '')) throw new Error('rate');
+      if (typeof data.rate !== 'number' || !Number.isFinite(data.rate) || data.rate <= 0 || !/^\d{4}-\d{2}-\d{2}$/.test(data.date || '')) throw new Error('rate');
       if (my !== serial) return;
-      rate = data.rate; save(key, data); rateStatus(fill(R.rateDate, { d: data.date! })); calculate();
+      rate = data.rate;
+      cache[pair] = { rate: data.rate, date: data.date };
+      save('rates', cache);
+      rateStatus(fill(R.rateDate, { d: data.date! }));
+      calculate();
     } catch {
       if (my !== serial) return;
-      const cached = read<{ rate?: number; date?: string } | null>(key, null);
-      if (cached && typeof cached.rate === 'number' && cached.rate > 0) { rate = cached.rate; rateStatus(fill(R.rateCached, { d: cached.date || '' }), true); calculate(); }
-      else rateStatus(R.rateFail, true);
+      const cached = Object.hasOwn(cache, pair) ? cache[pair] : null;
+      if (cached && typeof cached.rate === 'number' && cached.rate > 0) {
+        rate = cached.rate;
+        rateStatus(fill(R.rateCached, { d: cached.date || '' }), true);
+        calculate();
+      } else {
+        rateStatus(R.rateFail, true);
+      }
     }
   };
-  $<HTMLSelectElement>('cur-from').onchange = $<HTMLSelectElement>('cur-to').onchange = () => { save('cur', [$('cur-from').value, $('cur-to').value]); void refreshRate(); };
-  $<HTMLButtonElement>('cur-swap').onclick = () => { const f = $('cur-from').value; $('cur-from').value = $('cur-to').value; $('cur-to').value = f; save('cur', [$('cur-from').value, $('cur-to').value]); void refreshRate(); };
+  const savePair = () => {
+    const pairCodes = [code($('cur-from').value), code($('cur-to').value)];
+    if (pairCodes.every(Boolean)) save('cur', pairCodes);
+  };
+  $<HTMLSelectElement>('cur-from').onchange = $<HTMLSelectElement>('cur-to').onchange = () => { savePair(); void refreshRate(); };
+  $<HTMLButtonElement>('cur-swap').onclick = () => {
+    const f = $('cur-from').value;
+    $('cur-from').value = $('cur-to').value;
+    $('cur-to').value = f;
+    savePair();
+    void refreshRate();
+  };
   $<HTMLButtonElement>('cur-refresh').onclick = () => void refreshRate();
   for (const id of ['cur-amount', 'cur-pct', 'cur-fixed']) $(id).oninput = calculate;
   $<HTMLButtonElement>('cur-manual-use').onclick = () => {
@@ -177,7 +222,10 @@ function initTools() {
   };
   const savedPair = read<string[]>('cur', []);
   const known = (c: string) => [...$<HTMLSelectElement>('cur-from').options].some((o) => o.value === c);
-  if (savedPair.length === 2 && known(savedPair[0]) && known(savedPair[1])) { $('cur-from').value = savedPair[0]; $('cur-to').value = savedPair[1]; }
+  if (Array.isArray(savedPair) && savedPair.length === 2 && known(savedPair[0]) && known(savedPair[1])) {
+    $('cur-from').value = savedPair[0];
+    $('cur-to').value = savedPair[1];
+  }
   void refreshRate();
 
   /* ---------- 2) فرق التوقيت ---------- */
@@ -204,17 +252,22 @@ function initTools() {
     const instant = matches[Math.min(+$<HTMLSelectElement>('time-occ').value, matches.length - 1)];
     const target = localString(instant, dst);
     const dayShift = (Date.parse(target.slice(0, 10)) - Date.parse(local.slice(0, 10))) / 86400000;
-    $<HTMLElement>('time-result').textContent = target.slice(11) + (dayShift > 0 ? ` (${R.dayNext})` : dayShift < 0 ? ` (${R.dayPrev})` : '');
+    $<HTMLElement>('time-result').textContent = target.slice(11) + pick([[dayShift > 0, ` (${R.dayNext})`], [dayShift < 0, ` (${R.dayPrev})`]], '');
     $<HTMLElement>('time-date').textContent = dateFmt(dst).format(new Date(instant));
     const ahsaMinusCity = (Date.parse(localString(instant, AHSA) + 'Z') - Date.parse(localString(instant, city()) + 'Z')) / 60000;
     const gap = fmtGap(Math.abs(ahsaMinusCity));
-    $<HTMLElement>('time-diff').textContent = ahsaMinusCity === 0 ? fill(R.sameTime, { city: cityName() })
-      : fill(ahsaMinusCity > 0 ? R.ahsaAhead : R.ahsaBehind, { city: cityName(), diff: gap });
+    const diffMsg = pick([[ahsaMinusCity > 0, R.ahsaAhead], [ahsaMinusCity < 0, R.ahsaBehind]], R.sameTime);
+    $<HTMLElement>('time-diff').textContent = fill(diffMsg, { city: cityName(), diff: gap });
   };
   const setNow = () => { $('time-when').value = localString(Date.now(), sourceIsAhsa() ? AHSA : city()); $<HTMLSelectElement>('time-occ').value = '0'; convertTime(); };
   const savedCity = read<string>('city', '');
-  if (savedCity && cities[savedCity]) $('time-city').value = savedCity;
-  $<HTMLSelectElement>('time-city').onchange = () => { save('city', city()); if (!sourceIsAhsa()) setNow(); else convertTime(); };
+  if (savedCity && Object.hasOwn(cities, savedCity)) $('time-city').value = savedCity;
+  $<HTMLSelectElement>('time-city').onchange = () => {
+    // المنطقة تُحفظ فقط إن كانت من قائمة المدن نفسها
+    if (Object.hasOwn(cities, city())) save('city', city());
+    if (sourceIsAhsa()) convertTime();
+    else setNow();
+  };
   for (const id of ['time-src-mine', 'time-src-ahsa']) $(id).onchange = setNow;
   $('time-when').oninput = convertTime;
   $<HTMLSelectElement>('time-occ').onchange = convertTime;
@@ -282,7 +335,13 @@ function initTools() {
     const box = root.querySelector<HTMLInputElement>('#tt-exp-split input[value="' + id + '"]');
     if (box) box.checked = true;
   };
-  $<HTMLSelectElement>('exp-settle').onchange = () => { if (trip.expenses.length) return; trip.currency = $('exp-settle').value; $('exp-currency').value = trip.currency; persistTrip(); };
+  $<HTMLSelectElement>('exp-settle').onchange = () => {
+    const c = code($('exp-settle').value);
+    if (trip.expenses.length || !c) return;
+    trip.currency = c;
+    $('exp-currency').value = c;
+    persistTrip();
+  };
   $<HTMLSelectElement>('exp-currency').onchange = () => { $('exp-rate').value = ''; rateField(); };
   $<HTMLFormElement>('exp-form').onsubmit = (ev) => {
     ev.preventDefault();
@@ -292,7 +351,10 @@ function initTools() {
     const r = code === trip.currency ? 1 : $('exp-rate').valueAsNumber;
     if (!trip.people.length || !participants.length || !$('exp-payer').value) { msg.textContent = R.expNeed; return; }
     const units = Math.round(amount * r * factor());
-    if (!title || !Number.isFinite(r) || r <= 0 || !(amount > 0) || !Number.isSafeInteger(units) || units <= 0 || units > 1e12) { msg.textContent = R.expBad; return; }
+    if (!title || !Number.isFinite(r) || r <= 0 || !Number.isFinite(amount) || amount <= 0 || !Number.isSafeInteger(units) || units <= 0 || units > 1e12) {
+      msg.textContent = R.expBad;
+      return;
+    }
     trip.expenses.push({ id: uid(), title, amount, currency: code, rate: r, units, payer: $('exp-payer').value, participants });
     $('exp-title').value = ''; $('exp-amount').value = ''; msg.textContent = R.expAdded; persistTrip();
   };
@@ -316,7 +378,8 @@ function initTools() {
     const done = pack.items.filter((i) => i.done).length, total = pack.items.length, pct = total ? Math.round((done / total) * 100) : 0;
     $<HTMLElement>('pack-pct').textContent = pct + '%';
     $<HTMLProgressElement>('pack-bar').value = pct;
-    $<HTMLElement>('pack-count').textContent = total ? fill(R.packCount, { d: done, t: total }) + (pct === 100 ? R.packDone : '') : R.packStart;
+    const doneNote = pct === 100 ? R.packDone : '';
+    $<HTMLElement>('pack-count').textContent = total ? fill(R.packCount, { d: done, t: total }) + doneNote : R.packStart;
   };
   const renderPack = () => {
     const list = $<HTMLElement>('pack-list'); list.replaceChildren();
@@ -330,7 +393,13 @@ function initTools() {
     }
     packProgress();
   };
-  const addItems = (texts: string[]) => { for (const text of texts) if (!pack.items.some((i) => i.text === text)) pack.items.push({ id: uid(), text, done: false }); save('pack', pack); renderPack(); };
+  const addItems = (texts: string[]) => {
+    for (const text of texts) {
+      if (!pack.items.some((i) => i.text === text)) pack.items.push({ id: uid(), text, done: false });
+    }
+    save('pack', pack);
+    renderPack();
+  };
   $<HTMLFormElement>('pack-form').onsubmit = (ev) => {
     ev.preventDefault();
     const cfg = Object.fromEntries(packFields.map((k) => [k, $('pack-' + k).value]));
@@ -342,12 +411,17 @@ function initTools() {
     if (old) old.text = outfit;
     const I = R.items;
     addItems([...I.base, ...(old ? [] : [outfit]),
-      ...(cfg.weather === 'hot' ? I.hot : cfg.weather === 'cool' ? I.cool : []),
-      ...(cfg.type === 'nature' ? I.nature : cfg.type === 'business' ? I.business : []),
+      ...pick<string[]>([[cfg.weather === 'hot', I.hot], [cfg.weather === 'cool', I.cool]], []),
+      ...pick<string[]>([[cfg.type === 'nature', I.nature], [cfg.type === 'business', I.business]], []),
       ...(cfg.kids === 'yes' ? I.kids : [])]);
     say(R.packBuilt);
   };
-  $<HTMLFormElement>('pack-custom-form').onsubmit = (ev) => { ev.preventDefault(); const t = $('pack-custom').value.trim(); if (t) addItems([t]); $('pack-custom').value = ''; };
+  $<HTMLFormElement>('pack-custom-form').onsubmit = (ev) => {
+    ev.preventDefault();
+    const t = $('pack-custom').value.trim();
+    if (t) addItems([t]);
+    $('pack-custom').value = '';
+  };
   $<HTMLButtonElement>('pack-download').onclick = () => download('Al-Ahsa-packing-list.txt', [R.packFile, '', ...pack.items.map((i) => (i.done ? '[x] ' : '[ ] ') + i.text)].join('\n'));
   $<HTMLButtonElement>('pack-reset').onclick = () => askReset(R.resetPack, () => { pack.items = []; save('pack', pack); renderPack(); });
   renderPack();
@@ -362,12 +436,12 @@ function initTools() {
   const showPower = () => {
     checks.replaceChildren();
     const plug = $('power-plug').value, volt = $('power-volt').value, hz = $('power-hz').value;
-    line(plug === 'G' ? R.plugOk : plug === 'other' ? R.plugAdapter : R.plugUnknown, plug === 'other');
+    line(pick([[plug === 'G', R.plugOk], [plug === 'other', R.plugAdapter]], R.plugUnknown), plug === 'other');
     const [lo, hi] = volt.split('-').map(Number);
     const vOk = SA_VOLT >= lo && SA_VOLT <= hi;
-    line(volt === 'unknown' ? R.voltUnknown : vOk ? R.voltOk : R.voltBad, volt !== 'unknown' && !vOk);
+    line(pick([[volt === 'unknown', R.voltUnknown], [vOk, R.voltOk]], R.voltBad), volt !== 'unknown' && !vOk);
     const fOk = hz.split(',').map(Number).includes(SA_HZ);
-    line(hz === 'unknown' ? R.hzUnknown : fOk ? R.hzOk : R.hzBad, hz !== 'unknown' && !fOk);
+    line(pick([[hz === 'unknown', R.hzUnknown], [fOk, R.hzOk]], R.hzBad), hz !== 'unknown' && !fOk);
   };
   for (const id of ['power-plug', 'power-volt', 'power-hz']) $<HTMLSelectElement>(id).onchange = showPower;
   showPower();
