@@ -131,6 +131,8 @@ async function collect(dir, out = []) {
     else if (/[\\/]stores[\\/]/.test(p)) continue
     // img/guides: صور المرشدين وجولاتهم — حقّها لأصحابها فلا تُختم بحقوق الموقع
     else if (/[\\/]guides[\\/]/.test(p)) continue
+    // img/stay/chalets: صور الشاليهات من حساباتها الرسمية — حقّها لأصحابها فلا تُختم بحقوق الموقع
+    else if (/[\\/]chalets[\\/]/.test(p)) continue
     // img/event-posters: الإعلانات الرسمية للفعاليات المؤقتة — حقّها لجهاتها المنظّمة
     else if (/[\\/]event-posters[\\/]/.test(p)) continue
     // img/unesco: صور مكوّنات اليونسكو (معرض الموقع 1563 وويكيميديا كومنز) — حقّها لأصحابها بشروطهم

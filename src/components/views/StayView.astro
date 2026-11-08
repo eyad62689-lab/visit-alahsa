@@ -41,14 +41,18 @@ const WORD_MIN_AR = 80;
 const WORD_MIN_EN = 100;
 const words = (x: string) => x.trim().split(/\s+/).filter(Boolean).length;
 const entries = (await getCollection('stay')).sort((a, b) => a.data.order - b.data.order);
-const PLACES = entries.map((e) => {
+// ar/en أولاً: مكانٌ بلا نبذة بلغة الصفحة لا يُعرض في اللغات الخمس الأخرى حتى يمرّ
+// بخط ترجمتها — بطاقات إنجليزية متراجَعة تُسقط الحارس C22 (الشاليهات 2026-11-08).
+const shown = entries.filter((e) => ar || lang === 'en'
+  || Boolean(zh ? e.data.blurb_zh : de ? e.data.blurb_de : ru ? e.data.blurb_ru : ur ? e.data.blurb_ur : e.data.blurb_tr));
+const PLACES = shown.map((e) => {
   const d = e.data;
   const bodyAr = (e.body ?? '').trim();
   const passesAr = words(bodyAr) >= WORD_MIN_AR && bodyAr !== d.blurb;
   const passesEn = words(d.body_en) >= WORD_MIN_EN && d.body_en.trim() !== d.blurb_en;
   const hasPage = ar ? passesAr : passesEn;
   return {
-    img: d.img, maps: d.maps, kind: d.kind,
+    img: d.img, maps: d.maps, kind: d.kind, phone: d.phone, book: d.book,
     // الاسم لا يُترجم للصينية؛ النبذة والموقع والنص البديل من *_zh (الدفعة 14) بتراجع للإنجليزية
     name: ar ? d.name : d.name_en,
     area: ar ? d.area : zh ? (d.area_zh ?? d.area_en) : de ? (d.area_de ?? d.area_en) : ru ? (d.area_ru ?? d.area_en) : ur ? (d.area_ur ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : tr ? (d.area_tr ?? d.area_en) : d.area_en,
@@ -93,10 +97,10 @@ const ZH = {
 const C = localize(lang, {
   ar: {
     heroEyebrow: 'أين تبيت في الواحة',
-    title: 'أماكن الإقامة',
-    heroSum: 'فنادق الأحساء وأماكن المبيت فيها — من نُزلٍ تراثي داخل المدينة القديمة إلى فندقٍ على ساحل العقير، لكلٍّ منها صورته وموقعه على خرائط قوقل. القائمة وصفية لا ترشيحية، وتنمو تباعاً.',
+    title: t('nav.stay'),
+    heroSum: 'فنادق الأحساء وشاليهاتها وأماكن المبيت فيها — من نُزلٍ تراثي داخل المدينة القديمة إلى فندقٍ على ساحل العقير وشاليهاتٍ بمسابح خاصة في الهفوف، لكلٍّ منها صورته وموقعه على خرائط قوقل. القائمة وصفية لا ترشيحية، وتنمو تباعاً.',
     listH: 'أماكن إقامة في الأحساء',
-    kindLabels: { 'heritage-inn': 'نُزل تراثي', hotel: 'فندق' } as Record<string, string>,
+    kindLabels: { 'heritage-inn': 'نُزل تراثي', hotel: 'فندق', chalet: 'شاليه' } as Record<string, string>,
     openMaps: t('det.openMaps'),
     newWindow: '(يفتح في خرائط قوقل، نافذة جديدة)',
     moreLabel: 'تفاصيل المكان',
@@ -111,19 +115,21 @@ const C = localize(lang, {
       { q: 'هل توجد إقامة قريبة من شاطئ العقير؟',
         a: 'نعم — فندق كونتننت العقير على ساحل العقير شرق الأحساء. ولأصحاب عربات الكرفان موقفٌ مخصّص بالشاطئ نفسه بحجزٍ إلكتروني عبر أمانة الأحساء.',
         linkText: 'تفاصيله في صفحة شاطئ العقير ←', linkHref: '/معالم/شاطئ-العقير/' },
+      { q: 'هل توجد شاليهات بمسابح خاصة في الأحساء؟',
+        a: 'نعم — في القائمة أحد عشر شاليهاً في الهفوف وما حولها، أغلبها بمسبحٍ خاص وجلسات خارجية. في كل بطاقة زرٌّ للاتصال بالشاليه وآخر لصفحة حجزه أو حسابه الرسمي، والحجز والأسعار عند الشاليه نفسه.' },
       { q: 'هل هذه القائمة ترشيحٌ لأفضل الفنادق؟',
         a: 'لا. البطاقات وصفية: اسم المكان وصورته وموقعه على خرائط قوقل. لا نرشّح منشأةً على أخرى ولا نعرض أسعاراً — قارن الخيارات على منصات الحجز الموثوقة.' },
     ],
     methodH: 'حول هذه الصفحة',
-    methodP1: 'الأسماء والمواقع مأخوذة من خرائط قوقل مباشرة، والنبذات تعريفية موجزة تصف المكان كما يظهر في صورته. لا تُعرض أسعار ولا تصنيفات نجوم ولا ترشيحات.',
+    methodP1: 'الأسماء والمواقع وأرقام التواصل مأخوذة من خرائط قوقل مباشرة، والنبذات تعريفية موجزة تصف المكان كما يظهر في صورته وكما تعرض المنشأة مرافقها، وصور الشاليهات من حساباتها الرسمية. لا تُعرض أسعار ولا تصنيفات نجوم ولا ترشيحات، وترتيب البطاقات لا يفاضل بينها.',
     places: PLACES,
   },
   en: {
     heroEyebrow: 'Where to stay in the oasis',
     title: 'Places to Stay',
-    heroSum: 'Hotels in Al-Ahsa and other places to stay — from a heritage inn inside the old city to a hotel on the Al-Uqair coast, each with its photo and its spot on Google Maps. The list is descriptive rather than a set of recommendations, and it keeps growing.',
+    heroSum: 'Hotels, chalets and other places to stay in Al-Ahsa — from a heritage inn inside the old city to a hotel on the Al-Uqair coast and chalets with private pools in Hofuf, each with its photo and its spot on Google Maps. The list is descriptive rather than a set of recommendations, and it keeps growing.',
     listH: 'Places to stay in Al-Ahsa',
-    kindLabels: { 'heritage-inn': 'Heritage inn', hotel: 'Hotel' } as Record<string, string>,
+    kindLabels: { 'heritage-inn': 'Heritage inn', hotel: 'Hotel', chalet: 'Chalet' } as Record<string, string>,
     openMaps: t('det.openMaps'),
     newWindow: '(opens Google Maps in a new window)',
     moreLabel: 'Place details',
@@ -138,11 +144,13 @@ const C = localize(lang, {
       { q: 'Is there anywhere to stay near Al-Uqair beach?',
         a: 'Yes — Continent Hotel Al Uqayr sits on the Al-Uqair coast east of Al-Ahsa. Caravan owners also have a dedicated site on the beach itself, bookable online through Al-Ahsa Municipality.',
         linkText: 'See the details on the Al-Uqair Beach page →', linkHref: '/en/attractions/uqair-beach/' },
+      { q: 'Are there chalets with private pools in Al-Ahsa?',
+        a: 'Yes — the list includes eleven chalets in and around Hofuf, most with a private pool and outdoor seating. Each card has a button to call the chalet and another for its booking page or official account; bookings and prices are handled by the chalet itself.' },
       { q: 'Is this list a recommendation of the best hotels?',
         a: 'No. The cards are descriptive: each place’s name, photo and location on Google Maps. We do not rank one venue above another and we do not list prices — compare options on trusted booking platforms.' },
     ],
     methodH: 'About this page',
-    methodP1: 'Names and locations come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo. No prices, star ratings or recommendations are listed.',
+    methodP1: 'Names, locations and phone numbers come straight from Google Maps, and the blurbs are brief introductions describing each place as it appears in its photo and as the venue presents its facilities; chalet photos are from their official accounts. No prices, star ratings or recommendations are listed, and the order of the cards does not rank them.',
     places: PLACES,
   },
   zh: ZH,
@@ -283,13 +291,22 @@ const C = localize(lang, {
 // ar/en: الكلمات المفتاحية ثم اسم العلامة كبقية القوالب (كانت العلامة غائبة عن هذا العنوان)؛
 // نوع المنشأتين باقٍ في الوصف.
 const pageTitle = ar
-  ? `أماكن الإقامة في الأحساء: فنادق الهفوف والعقير ${titleSep(lang)} ${t('site.brand')}`
+  ? `إقامتك في الأحساء: فنادق ونُزل وشاليهات بمسابح خاصة ${titleSep(lang)} ${t('site.brand')}`
   : zh || de || ru || ur || tr ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
   : `Where to Stay in Al-Ahsa: Hotels in Hofuf and Al-Uqair ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
-  ? 'فنادق الأحساء وأماكن الإقامة فيها: نُزلٌ تراثي في حي الكوت بالهفوف وفندقٌ على ساحل العقير، بالصور ومواقع خرائط قوقل المباشرة.'
+  ? 'فنادق الأحساء وشاليهاتها: نُزلٌ تراثي في حي الكوت، وفندقٌ على ساحل العقير، وأحد عشر شاليهاً في الهفوف، بالصور ومواقع خرائط قوقل وأزرار التواصل.'
   : zh || de || ru || ur || tr ? C.heroSum
-  : 'Hotels in Al-Ahsa and where to stay: a heritage inn in Hofuf’s Al-Koot district and a hotel on the Al-Uqair coast, with photos and direct Google Maps locations.';
+  : 'Hotels and chalets in Al-Ahsa: a heritage inn in Hofuf’s Al-Koot district, a hotel on the Al-Uqair coast and eleven chalets, with photos and map locations.';
+
+// أزرار تواصل الشاليهات — ar/en وحدهما لأن الشاليهات لا تُعرض في غيرهما بعد (انظر shown).
+const ACT = ar
+  ? { call: 'اتصال', booking: 'صفحة الحجز', instagram: 'حساب إنستقرام', site: 'الحساب الرسمي', callFor: (n: string) => `اتصال بـ${n}` }
+  : { call: 'Call', booking: 'Booking page', instagram: 'Instagram', site: 'Official account', callFor: (n: string) => `Call ${n}` };
+const bookLabel = (u: string) => {
+  const host = new URL(u).hostname;
+  return host.endsWith('booking.com') ? ACT.booking : host.endsWith('instagram.com') ? ACT.instagram : ACT.site;
+};
 
 const siteUrl = SITE;
 const selfPath = ar ? '/إقامة/' : zh ? '/zh/stay/' : de ? '/de/stay/' : ru ? '/ru/stay/' : ur ? '/ur/stay/' : tr ? '/tr/stay/' : '/en/stay/';
@@ -303,6 +320,7 @@ const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, itemListElement:
     C.places.map((p, i) => ({ '@type': 'ListItem', position: i + 1, item: {
       '@type': 'LodgingBusiness', name: p.name, hasMap: p.maps,
+      ...(p.phone ? { telephone: p.phone } : {}),
       ...(p.internal ? { url: absUrl(p.href, siteUrl) } : {}),
       image: absUrl(`${p.img}.jpg`, siteUrl),
       address: { '@type': 'PostalAddress', ...(p.area ? { addressLocality: p.area } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
@@ -364,6 +382,24 @@ const jsonLd = [
                   </span>
                 </div>
               </a>
+              {(p.phone || p.book) && (
+                <div class="sc-actions">
+                  {p.phone && (
+                    <a class="sc-act" href={`tel:${p.phone}`} aria-label={ACT.callFor(p.name)}>
+                      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></svg>
+                      {ACT.call}
+                    </a>
+                  )}
+                  {p.book && (
+                    <a class="sc-act" href={p.book} target="_blank" rel="noopener">
+                      {bookLabel(p.book)}
+                      <svg class="sc-ext" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              )}
             </article>
           );
         })}
@@ -411,6 +447,11 @@ const jsonLd = [
   .sc-maps { margin-block-start: auto; padding-block-start: var(--s-2); display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); }
   .stay-card:hover .sc-arrow { transform: translateX(var(--arrow-shift, -3px)); }
   .sc-arrow { transition: transform var(--dur) var(--ease); }
+  /* أزرار الاتصال والحجز خارج رابط البطاقة — لا عنصر تفاعلي داخل آخر */
+  .sc-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); padding: 0 var(--s-4) var(--s-4); }
+  .sc-act { display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; padding: 0 var(--s-3); border: 1px solid var(--c-turq-deep); border-radius: var(--radius-sm); font-family: var(--font-body); font-weight: 600; font-size: var(--t-xs); color: var(--c-turq-deep); text-decoration: none; }
+  .sc-act:hover { background: var(--c-turq-deep); color: #fff; }
+  .sc-act:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
 
   :global(.st-photo) { aspect-ratio: 4 / 3; }
   :global(.st-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
