@@ -1,0 +1,35 @@
+{
+  "lang": "ru",
+  "stage": "01-05",
+  "batch": "nav-groups",
+  "positions": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.discover': 'Оазис',",
+      "notes": "Stage 1: en «Discover the oasis» / ar «اكتشف الواحة»; group holds Достопримечательности · Маршруты · Карта · События · Отдых. Stage 2: ONE form for all three titles = short noun phrase (matches published Russian nav: all nouns/noun phrases — «Карта», «События», «Плоды оазиса», «Где остановиться»; imperatives are used only for action buttons «Открыть», «Закрыть»). Imperative set rejected: «Откройте оазис» 115.7px fits but the taste title in imperative («Пробуйте и покупайте» 165.1px, «Ешьте и покупайте» 140.2px) overflows the budget; mixing imperative+noun violates the one-form rule. Noun candidates measured: «Открытие оазиса» 126.5px + «Еда и покупки» 105.7 = 232.2px -> only 1.3px narrower than English, FAILS the 12px budget (would need a higher Russian breakpoint); «Знакомство с оазисом» 164.2px fails; «Оазис вблизи» 100.1px rejected (adds meaning absent from source); «Об оазисе» 73.2px rejected (reads as an 'About' page). Stage 3: «Оазис» is the section noun for a menu group whose contents are exactly the oasis's sights/routes/map/events/leisure; native menu convention drops the verb. Stage 4: termbase: оазис is the binding rendering (lowercase common noun; 'оазис Аль-Ахса' entry #2 is the proper name, not used here). TM: «Плоды оазиса», «по оазису» (home.cats.title) consistent. No facts added. Stage 5: capital first letter only, no ё needed (no ambiguity), U+0020 only, no U+00A0. Measured with Chrome canvas, Lora 500 15px (latin+cyrillic woff2 from @fontsource), the bar font: reference «Discover the oasis» 127.7px + «Taste and shop» 105.8px = 233.5px; Russian must be <= 221.5px (>=12px narrower). Chars: en 18 vs ru 5; px 127.7 vs 44.2. Pair total with taste: 149.9px = 83.6px narrower than English -> PASS. Trade-off flagged for judge: loses the verb 'discover'; fallback «Открытие оазиса» costs a higher breakpoint."
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.taste': 'Еда и покупки',",
+      "notes": "Stage 1: en «Taste and shop» / ar «تذوّق وتسوّق»; group = Кухня Аль-Ахсы · Рестораны и кафе · Плоды оазиса · Интернет-магазины, so the title must cover buying, not eating only. Stage 2: noun phrase «Еда и покупки» (food and shopping) — same form as discover/visit. Rejected: «Вкусы и покупки» 124.7px (long; 'вкусы' = tastes/preferences, reads as lifestyle), «Вкус и покупки» 113.0px (singular abstract 'taste/style'), «Еда и шопинг» 100.8px (anglicism «шопинг» avoided in this site's register; pipeline bans anglicisms), «Еда и магазины» 115.7px (collides with «Интернет-магазины» below), «Пробуйте и покупайте» 165.1px (imperative, overflows). Stage 3: «покупки» is the standard Russian menu word for shopping and covers the online-stores item; «еда» is neutral and covers cuisine, restaurants and fruit. Stage 4: TM «ходите за покупками» (home body) and «Путешествие по вкусам» show покупки/вкус are in the site's vocabulary; termbase has no conflicting entry. Stage 5: capital first word only, lowercase after «и», no ё, U+0020. Chars: en 14 vs ru 13; px 105.8 vs 105.7 (equal). Measured with Chrome canvas, Lora 500 15px (latin+cyrillic woff2 from @fontsource), the bar font: reference «Discover the oasis» 127.7px + «Taste and shop» 105.8px = 233.5px; Russian must be <= 221.5px (>=12px narrower). With discover: 149.9px, 83.6px narrower -> PASS."
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.visit': 'Ваш визит',",
+      "notes": "Stage 1: en «Arrange your visit» / ar «رتّب زيارتك»; shown only as a section title in the menu (and accessible name of the flat group in the bar); holds Где остановиться · Карта · Сохранённые места. Stage 2: noun phrase «Ваш визит» to match the one-form rule (a verb 'Организуйте визит' would break it and sit too close to the button). Rejected: «Подготовка к визиту» 151.4px and «Организация визита»/«Планирование визита» — semantically the same as the gold button «План поездки» (nav.plan), forbidden by the brief; «Перед визитом» 111.7px — 'before the visit' mislabels «Сохранённые места»; «Ваша поездка» 100.7px — repeats the root of «План поездки» and approaches it. Stage 3: «визит» is the natural tourism-site noun for being there; «Ваш» (capital only as first word of the title; вы-register lowercase elsewhere) is the same personalisation as en/ar 'your'. Stage 4: no termbase entry; no new fact. Not a duplicate of the gold button «План поездки»: no shared lexeme (визит vs поездка), no planning verb/noun, and it names the practical-logistics group, not an action. Stage 5: no ё, U+0020, no punctuation. Chars: en 18 vs ru 9; not in the bar so no width impact (menu-only; 76.1px)."
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.langChange': 'Изменить',",
+      "notes": "Stage 1: en «Change» / ar «تغيير»; row: «{lang.menu}: {имя языка} …… {nav.langChange} ⌄» where lang.menu = «Язык». Stage 2: infinitive imperative-button form as in existing ru UI buttons «Открыть», «Закрыть» (lines 'det.openMaps', 'lang.suggest.close'); candidates «Изменить» (73.3px) vs «Сменить» (64.5px). Stage 3: «Изменить» is the standard Russian UI label for editing a current setting displayed beside it («Язык: Русский — Изменить»); «Сменить» implies replacing an object wholesale and is more colloquial. Stage 4: TM/termbase have no conflicting entry; single word as the brief asks. Stage 5: capital И, no ё, U+0020. Chars: en 6 vs ru 8; menu-only, no bar impact."
+    }
+  ]
+}

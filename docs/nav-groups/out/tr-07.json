@@ -1,0 +1,85 @@
+{
+  "batch": "nav-groups",
+  "stage": 7,
+  "date": "2026-11-08",
+  "threshold": 90,
+  "lang": "tr",
+  "score": 93,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 26,
+    "termbase_style": 20,
+    "traveller_fit": 8,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "final": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "value": "Vahayı keşfedin"
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "value": "Tadın ve satın alın"
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "value": "Ziyarete hazırlanın"
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "value": "Değiştirin"
+    }
+  ],
+  "judge_edits": [],
+  "judge_edits_note": "No value changed; the four stage-5 values are final, so no fresh proofread or fresh blind reader is required. Width unchanged: measured stage-5 minimum bar window 1147px (limit 1181px, 34px headroom). TM: the four new en/tr pairs (ui-chrome nav.g.discover, nav.g.taste, nav.g.visit, nav.langChange) are to be appended to tr-translation/memory/tm.json by the orchestrator on merge; checked against TM: «Keşfedin» (footer heading) and the imperative «… bereketini tadın» (leisure dek) already stand in the TM, so no recorded pair is broken.",
+  "blind_disposition": [
+    {
+      "key": "nav.g.discover",
+      "obs": "«Vahayı keşfedin» natural; slightly vague («the oasis» before the visitor knows what El-Ahsa is)",
+      "ruling": "rejected",
+      "reason": "the source says the oasis (en «Discover the oasis», ar «اكتشف الواحة»); «El-Ahsa'yı keşfedin» would replace the source noun, and the site name already carries El-Ahsa on every page; «vaha» is the termbase generic noun."
+    },
+    {
+      "key": "nav.g.taste",
+      "obs": "«Tadın» homograph with the noun «tadın» (your taste); reads like a shop slogan; «satın alın» fits only the stores; suggested «Lezzetler ve alışveriş» or «Yeme içme ve alışveriş»",
+      "ruling": "rejected",
+      "reason": "(1) Homograph: anticipated at stage 2; the parallel imperative «ve satın alın» fixes the verb reading in the same two-word line, and the possessive noun would be the sen-register «your taste», which makes no sense as a heading; the site already uses the imperative «tadın» in published text (TM: «… El-Ahsa'nın bereketini tadın»). (2) «satın alın» covering the stores only is the source's own split: «Taste» covers cuisine, dining and fruit, «shop» covers the stores (brief: the title must cover buying, not eating only). (3) Both remedies are noun phrases and break the one-form rule for the three titles and UI1-controls (a group heading of links keeps the source's part of speech, as the footer heading «Keşfedin» does; ar and en are imperative); «Yeme içme ve alışveriş» also repeats the item «Yeme içme» directly under it. (4) The longer imperatives that avoid «tadın» («Tadına bakın ve satın alın», «Tadın ve alışveriş yapın») add about 35–50px against 34px of headroom (1147 → about 1182–1197 > 1181). Nativeness docked 2 for the first-glance stumble."
+    },
+    {
+      "key": "nav.g.visit",
+      "obs": "«Ziyarete hazırlanın» natural, but confusable with the gold button «Gezinizi planlayın» (both imperatives about preparing the trip); suggested a noun label «Pratik bilgiler» / «Gezi öncesi»",
+      "ruling": "source flaw raised to owner",
+      "reason": "all five readers (zh, de, ru, ur, tr) land on this title with the same two defects (near the nav.plan CTA; does not describe lodging + saved places). The Arabic pair «رتّب زيارتك» / «خطّط لرحلتك» carries the same closeness, so the Turkish keeps faith with the source. Within the source, the Turkish already takes the farthest faithful form: a different verb (hazırlanmak, not planlamak/düzenlemek) and no «gezi» noun. «Pratik bilgiler» and «Gezi öncesi» change the meaning (they name content the group does not hold, and «gezi» moves it toward the button); a noun for this title alone would break the one-form rule. Not deducted from the translation score."
+    },
+    {
+      "key": "nav.g.visit / nav.g.discover / nav.g.taste",
+      "obs": "register: imperative headings over noun items feel promotional; noun headings («Keşif», «Lezzetler ve alışveriş», «Gezi hazırlığı») more idiomatic",
+      "ruling": "rejected",
+      "reason": "the source is imperative in ar and en; UI1-controls rules that group headings over link lists keep the source's part of speech (published footer headings «Keşfedin», «Planlayın»), so the menu and the footer speak with one voice; stage 2 tested the noun set («Vaha keşfi / Tat ve alışveriş / Ziyaret hazırlığı») and found it abstract. Taste, not a defect."
+    },
+    {
+      "key": "nav.langChange",
+      "obs": "«Dil: Türkçe Değiştirin ⌄» reads as one broken sentence; capital D mid-line looks like a typo; formal imperative unusual; suggested «Dil: Türkçe» only or «Dili değiştir»",
+      "ruling": "rejected",
+      "reason": "layout fact (JUDGE-NOTES, from the code): the row is two visually separate elements, «Dil: Türkçe» on one side and the control «Değiştirin ⌄» pushed to the far end (margin-inline-start: auto); the blind input joined them into one text line, which produced the broken-sentence and mid-line-capital effect. The control starts its own label, so the capital follows P9 sentence case. «Değiştir» is the sen imperative (forbidden by address_form); UI1-controls makes every control a polite-plural imperative (Kapatın, Kaydedin, Paylaşın); «Dili değiştir» adds «dil», which the source (en «Change», ar «تغيير») does not carry, and is sen. Dropping the label removes a source key."
+    }
+  ],
+  "out_of_batch_logged": [
+    "nav.plan «Gezinizi planlayın»: reader calls -niz stiff, briefly parsable as gezinmek; low severity; published label, not ruled here.",
+    "nav.leisure «Çarşı, park ve çiftlikler»: singular/plural unevenness; published label.",
+    "nav.dining «Yeme içme» overlaps nav.food «El-Ahsa mutfağı»; reader suggests «Restoranlar ve kafeler»; published label (navigation queue already holds the four food doors item).",
+    "nav.stores «Çevrim içi mağazalar»: TDK form, reader finds it slightly formal; published label.",
+    "nav.myTrip «Kayıtlı yerlerim»: reader reads «Kayıtlı» as registered, suggests «Kaydettiğim yerler»; published label, also icon-only aria text in the bar.",
+    "nav.map placement differs bar vs phone menu: layout by design (brief), not wording.",
+    "Page title «El-Ahsa'da gezilecek yerler» and «Hasa/Lahsa» search forms: P2 settled."
+  ],
+  "raised_to_owner": [
+    "nav.g.visit: all five blind readers (zh, de, ru, ur, tr) find the title too close to the gold button nav.plan and not descriptive of its contents (lodging + saved places, + map in the bar). The Arabic source «رتّب زيارتك» next to «خطّط لرحلتك» carries the same closeness; a source-level rename (ar/en first) would let every language follow — unscored."
+  ],
+  "notes": "Batch score = page score (one UI page, four keys). No stage-5 report of ASCII-stripped letters, i/İ errors or non-Latin digits (ş ı ü ğ intact). No open_items calibration item touched (P6, P7, P11, P12 unrelated)."
+}

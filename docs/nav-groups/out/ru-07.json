@@ -1,0 +1,299 @@
+{
+  "batch": "nav-groups",
+  "stage": 7,
+  "date": "2026-11-08",
+  "threshold": 90,
+  "lang": "ru",
+  "score": 91,
+  "breakdown": {
+    "accuracy": 27,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "traveller_fit": 8,
+    "structure": 9
+  },
+  "decision": "APPROVE",
+  "final": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "value": "Оазис"
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "value": "Еда и покупки"
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "value": "Ваш визит"
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "value": "Сменить"
+    }
+  ],
+  "discover_ruling": {
+    "question": "stage 5 «Оазис» (bare noun) vs a fuller form with a Russian-only bar breakpoint (~1208px)",
+    "ruling": "keep «Оазис»; no Russian-only breakpoint",
+    "reason": "The source's content word (oasis = binding termbase «оазис») is kept; what is dropped is the menu call-to-action verb, and all three Russian titles drop their verb the same way under the one-form (noun) rule (Discover the oasis -> Оазис, Taste and shop -> Еда и покупки, Arrange your visit -> Ваш визит (final after round 2)). The verb marks no distinction the Arabic makes between groups, so the loss is stylistic, not referential: the five items under it say what the section holds. The fuller candidates cost more than they give: «Открытие оазиса» (+82px, min bar window ~1207) reads first as 'the opening of the oasis' (an inauguration event) in a menu that lists «События» inside it, an ambiguity the source does not have; «Знакомство с оазисом» is about +120px (~1245). Accuracy docked 1 point for the dropped verb.",
+    "expected_extra_width_px": 0,
+    "measured_bar_min_window_px": 1125
+  },
+  "judge_edits": [
+    {
+      "id": "nav.g.visit",
+      "from": "Ваш визит",
+      "to": "Посетителям",
+      "reason": "Blind reader: «Ваш визит» reads as a calque of 'Your visit' and does not describe its contents. «Посетителям» ('for visitors') is the native Russian section heading for practical visitor information on museum and tourism sites, a noun form like the other two titles, adds no fact, keeps the source's 'visit' domain, and moves further from the gold button «План поездки» (no planning lexeme, no «поездка» root). Menu-only key: no bar width impact. NEEDS a fresh blind-reader re-check of the phone-menu section (heading above «Где остановиться» · «Сохранённые места»), including whether it echoes «План поездки»."
+    },
+    {
+      "id": "nav.g.visit",
+      "from": "Посетителям",
+      "to": "Ваш визит",
+      "round": 2,
+      "reason": "reverted, see judge_addendum"
+    },
+    {
+      "id": "nav.langChange",
+      "from": "Изменить",
+      "to": "Сменить",
+      "round": 2,
+      "reason": "see judge_addendum"
+    }
+  ],
+  "tm_pairs_to_add": [
+    {
+      "pair": "ui-chrome nav.g.discover",
+      "en": "Discover the oasis",
+      "ru": "Оазис"
+    },
+    {
+      "pair": "ui-chrome nav.g.taste",
+      "en": "Taste and shop",
+      "ru": "Еда и покупки"
+    },
+    {
+      "pair": "ui-chrome nav.g.visit",
+      "en": "Arrange your visit",
+      "ru": "Ваш визит"
+    },
+    {
+      "pair": "ui-chrome nav.langChange",
+      "en": "Change",
+      "ru": "Сменить"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "key": "nav.g.discover",
+      "obs": "«Оазис» natural but very general; reads as a section 'about the place'; contents clarify it; optional «Что посмотреть»",
+      "ruling": "rejected",
+      "reason": "«Что посмотреть» narrows the group to sightseeing (events, leisure and the map are not 'what to see'), drops the termbase word «оазис» the source carries, and switches to a question form against the one-form rule. The reader itself rates the issue minor and resolved by the items below. See discover_ruling."
+    },
+    {
+      "key": "nav.g.discover",
+      "obs": "heading «Оазис» on the phone matches the laptop button; fitting; not confused with the gold button",
+      "ruling": "no change",
+      "reason": "confirms the value"
+    },
+    {
+      "key": "nav.g.taste",
+      "obs": "«покупки» ambiguous (malls vs buying produce); suggests «Еда и сувениры» or «Кухня и покупки»",
+      "ruling": "rejected",
+      "reason": "«сувениры» adds meaning absent from en «shop» / ar «تسوّق» and mislabels online stores of food and goods; «Кухня» collides with the child item «Кухня Аль-Ахсы» directly below and narrows the group to cuisine (restaurants and fruit fall outside). The generality of «покупки» is the generality of the source verb; the reader notes the items resolve it."
+    },
+    {
+      "key": "nav.g.visit",
+      "obs": "«Ваш визит» unidiomatic, calque of 'Your visit'; does not reflect contents (stay + saved places); suggests «Планирование поездки», «Поездка», «Подготовка к поездке»",
+      "ruling": "applied in part (calque) / source flaw raised (contents)",
+      "reason": "Calque complaint applied: value changed to «Посетителям» (judge_edits). The reader's own suggestions rejected: each uses «поездка» and/or a planning noun, i.e. the meaning of the gold button «План поездки» that the brief forbids repeating; the reader concedes «Ваша поездка» would near-duplicate the button. That the heading does not name 'stay + saved places' is shared with the source and with all five language readers -> raised_to_owner, unscored."
+    },
+    {
+      "key": "nav.g.visit",
+      "obs": "«Ваш визит» overlaps the gold button in meaning (визит/поездка)",
+      "ruling": "source flaw raised to owner; mitigated in Russian",
+      "reason": "ar «رتّب زيارتك» beside «خطّط لرحلتك» carries the same overlap (cross-language pattern, five readers). The Russian edit removes the planning sense without adding meaning."
+    },
+    {
+      "key": "nav.langChange",
+      "obs": "«Изменить» after the language name reads naturally but as two parts («Язык: Русский» + link «Изменить»); slightly bureaucratic; maybe «Сменить» / «Сменить язык»",
+      "ruling": "rejected",
+      "reason": "The two-part reading is the actual layout (JUDGE-NOTES: name at one end, «Изменить ⌄» at the opposite end via margin-inline-start:auto); the single text line in 06-input was an artefact of the cut. «Изменить» beside a displayed current value is the standard Russian settings-row label; «Сменить» is a taste alternative, not an error; «Сменить язык» repeats «Язык» already on the row and breaks the one-word brief. Reader rates it acceptable."
+    },
+    {
+      "key": "out-of-batch",
+      "obs": "«События» (vs «Афиша»/«Мероприятия»), «Рынки, парки и фермы», «Плоды оазиса», «Интернет-магазины», «Где остановиться», «Карта» placement, «План поездки» wording",
+      "ruling": "logged, not ruled here",
+      "reason": "published labels outside this batch (JUDGE-NOTES); carried to raised_to_owner for the record"
+    }
+  ],
+  "raised_to_owner": [
+    "nav.g.visit (source): ar «رتّب زيارتك» / en «Arrange your visit» sits beside the gold button «خطّط لرحلتك» / «Plan your trip» and does not describe its contents (stay + saved places); all five language readers flagged both points. Russian uses «Посетителям» to stay faithful and away from the button; a source-level rename is the owner's call. Unscored.",
+    "Out-of-batch Russian labels noted by the blind reader, for a future batch: «Плоды оазиса» unclear without context, «События» vs «Афиша», «Где остановиться» the only question-form item, «Карта» under «Оазис» on the phone but separate on the laptop, «План поездки» read as a menu item rather than a call to action. Logged only.",
+    "Round 2 (layout, not translation): the gold button «План поездки» directly after the third section can read as one of its items, and the language row has two tappable-looking parts («Язык: Русский» and «Сменить ⌄»); both are Header.astro design questions, same in every language.",
+    "Round 3: the reader suggests making the gold button a verb («Спланировать поездку») to separate it from the heading «Ваш визит»; nav.plan is outside this batch. Logged."
+  ],
+  "measure_after_judgment": "No bar-visible value changed from stage 5 (discover/taste unchanged): expected extra bar width 0px; Russian min bar window stays 1125px <= 1181, no Russian-only breakpoint. «Посетителям» is menu-only (section heading in the collapsed menu and accessible name of the flat group in the bar).",
+  "judge_addendum": {
+    "round": 2,
+    "date": "2026-11-08",
+    "reader_file": "docs/nav-groups/out/06b-blind-ru.md",
+    "input_file": "docs/nav-groups/out/06b-input-ru.txt",
+    "dispositions": [
+      {
+        "key": "nav.g.discover",
+        "obs": "«Оазис» broad, contents clear only on opening; reader does not count it a problem on a one-oasis site",
+        "ruling": "no change",
+        "reason": "confirms the round-1 ruling (discover_ruling); no defect named"
+      },
+      {
+        "key": "nav.g.discover",
+        "obs": "phone heading «Оазис» holds «Карта», the laptop dropdown does not",
+        "ruling": "logged, not a translation issue",
+        "reason": "grouping of nav.map differs by layout in the source component (Header.astro), identical in all languages"
+      },
+      {
+        "key": "nav.g.taste",
+        "obs": "«Еда и покупки» natural, says what is inside; clearest item",
+        "ruling": "no change",
+        "reason": "confirms the value; the round-1 «покупки» ambiguity is not repeated"
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "«Посетителям» is a bare dative that reads as a signboard (museum notice), slightly Soviet-bureaucratic; under it one expects opening hours, tickets, rules",
+        "ruling": "applied (named defect of the judge edit)",
+        "reason": "This is a defect the round-1 edit introduced, not the source flaw: the heading promises visitor-regulation content that neither en «Arrange your visit» nor ar «رتّب زيارتك» carries, a drift in meaning. Fixed by reverting to the stage-5 noun «Ваш визит», the closest source-faithful form (your + visit, verb dropped like the other two titles). It cannot read as a notice or a rules page. Its round-1 weakness (a mild calque) is a smaller nativeness cost than a misdirected expectation."
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "heading does not match its items (stay + saved places); «Сохранённые места» looks foreign under it",
+        "ruling": "source flaw (already raised to owner)",
+        "reason": "shared by en/ar and all readers across five languages and two rounds; no source-faithful wording names both items without becoming a list of them"
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "suggestions «Поездка», «Планирование поездки», «Для путешественника», «Практическая информация»",
+        "ruling": "rejected",
+        "reason": "«Поездка»/«Планирование поездки» take the root and the meaning of the gold button «План поездки», which the brief forbids; «Для путешественника» is the same signboard «for X» construction just ruled against and odd in the singular; «Практическая информация» adds a meaning the source does not carry, and the reader itself says the saved places would not fit it"
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "gold button right after the section may be taken as one of its items (поездка closeness); headings must look like labels, not buttons",
+        "ruling": "source flaw + layout note to owner",
+        "reason": "nearness to the button is the shared source flaw; the visual separation of heading, items and button is a design matter in Header.astro, not a translation value"
+      },
+      {
+        "key": "nav.langChange",
+        "obs": "«Изменить ⌄» alone does not say what is changed; as a separate control at the row end the reader may not link it to «Язык: Русский»; «Сменить» is more idiomatic for language; suggests «Сменить язык» / «Выбрать язык»",
+        "ruling": "applied in part",
+        "reason": "Second reader in two rounds (round 1 also proposed «Сменить»), now on the true two-control layout: a named defect. «Изменить» alone is the generic edit-a-field label; «Сменить» says swap the current selection for another, which is exactly what the control does (opens the language list), and it is the collocation Russian uses for a language. One word, ar «تغيير» / en «Change», no meaning added. Rejected: «Сменить язык» / «Выбрать язык» repeat «Язык» already on the same row and break the one-word brief; the objectless verb is how the source itself reads (en «Change» beside «Language: English»)."
+      },
+      {
+        "key": "nav.langChange",
+        "obs": "two elements in one place; unclear whether the whole row or only «Изменить» is tappable; make the row one element",
+        "ruling": "logged to owner (layout), not a translation value",
+        "reason": "interaction design of the language row in Header.astro; same in every language"
+      },
+      {
+        "key": "out-of-batch",
+        "obs": "«План поездки» unclear (route or builder), «Сохранённые места» vs «Избранное», «События» vs «Мероприятия», «Плоды оазиса», «Интернет-магазины», «Рынки, парки и фермы»",
+        "ruling": "logged, not ruled here",
+        "reason": "published labels outside this batch (JUDGE-NOTES)"
+      }
+    ],
+    "edits": [
+      {
+        "id": "nav.g.visit",
+        "from": "Посетителям",
+        "to": "Ваш визит",
+        "reason": "revert of the round-1 judge edit: «Посетителям» reads as a signboard dative promising hours/tickets/rules, a meaning absent from the source; «Ваш визит» is the stage-5 source-faithful noun. Menu-only, no bar width impact."
+      },
+      {
+        "id": "nav.langChange",
+        "from": "Изменить",
+        "to": "Сменить",
+        "reason": "«Сменить» names swapping the current language for another, the control’s actual action and the idiomatic Russian collocation for language; one word, no added meaning. Menu-only (language row), about 9px narrower than «Изменить» (64.5 vs 73.3px, stage-5 measure), no bar impact."
+      }
+    ],
+    "needs_fresh_reader": [
+      "nav.g.visit «Ваш визит» (phone-menu section heading over «Где остановиться» · «Сохранённые места»)",
+      "nav.langChange «Сменить ⌄» as the separate control at the end of the row «Язык: Русский»"
+    ],
+    "expected_extra_bar_width_px": 0,
+    "score": 91,
+    "breakdown": {
+      "accuracy": 27,
+      "nativeness": 27,
+      "termbase_style": 20,
+      "traveller_fit": 8,
+      "structure": 9
+    },
+    "decision": "APPROVE",
+    "note": "Score unchanged: the reverted heading is more faithful (the signboard drift is removed) at the cost of the mild calque noted in round 1; «Сменить» lifts the language row. Bar values (discover/taste) unchanged, bar min window stays 1125px. Decision holds subject to the fresh reader on the two changed values."
+  },
+  "judge_addendum_r3": {
+    "round": 3,
+    "date": "2026-11-08",
+    "reader_file": "docs/nav-groups/out/06c-blind-ru.md",
+    "input_file": "docs/nav-groups/out/06c-input-ru.txt",
+    "dispositions": [
+      {
+        "key": "nav.g.discover",
+        "obs": "«Оазис» natural, short; contents fit as what to see and do; a topic rather than an action, fine for a tourism site",
+        "ruling": "no change",
+        "reason": "confirms the value; no defect named"
+      },
+      {
+        "key": "nav.g.taste",
+        "obs": "«Еда и покупки» natural, contents clear at once",
+        "ruling": "no change",
+        "reason": "confirms the value"
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "«Ваш визит» natural and warm, clearly about the practical side of the trip; but «визит» slightly official (diplomatic/business ring); suggests «Ваша поездка» or «Планирование поездки»",
+        "ruling": "rejected (not a new defect)",
+        "reason": "The register point is the round-1 nativeness note on «Ваш визит» (calque/stiffness), already weighed in round 2 when «Ваш визит» was chosen over the signboard «Посетителям»; the same reader also says no label reads as a calque. The suggestions take the root and the meaning of the gold button «План поездки» (already rejected in rounds 1 and 2; the brief forbids it). Russian has no other source-faithful noun for visit: «посещение» is more bureaucratic, and «поездка» is the button’s word. No new wording opened."
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "«Ваш визит» close in meaning to «План поездки»; reader may expect the plan under it; two items only",
+        "ruling": "source flaw (already raised to owner)",
+        "reason": "the shared cross-language flaw: ar «رتّب زيارتك» beside «خطّط لرحلتك»; all readers in five languages and three rounds"
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "minimum fix: keep «Ваш визит», make the gold button a verb «Спланировать поездку»",
+        "ruling": "logged to owner (out of batch)",
+        "reason": "nav.plan is a published label outside this batch; the reader endorses keeping the heading"
+      },
+      {
+        "key": "nav.langChange",
+        "obs": "«Сменить ⌄» understandable; objectless verb slightly incomplete but the object is clear from the row; «Изменить» or «Сменить язык» more usual; not an error, slight awkwardness",
+        "ruling": "rejected (not a new defect)",
+        "reason": "The objectless verb was ruled in round 2 (shared with en «Change» / ar «تغيير» on the same row). Going back to «Изменить» would reopen the round-2 named defect (generic edit label). «Сменить язык» was rejected in round 2 (repeats «Язык» on the row, breaks the one-word brief). The reader rates it acceptable."
+      },
+      {
+        "key": "out-of-batch",
+        "obs": "«Плоды оазиса» vague, «События» vs «Мероприятия»/«Афиша», «Рынки, парки и фермы» long, «План поездки» noun not action, «Сохранённые места» needs a screen-reader label, «Карта» placement differs by device",
+        "ruling": "logged, not ruled here",
+        "reason": "published labels or layout outside this batch (JUDGE-NOTES)"
+      }
+    ],
+    "edits": [],
+    "value_changed": false,
+    "score": 91,
+    "breakdown": {
+      "accuracy": 27,
+      "nativeness": 27,
+      "termbase_style": 20,
+      "traveller_fit": 8,
+      "structure": 9
+    },
+    "decision": "APPROVE",
+    "closing": "Batch closed for ru with the round-2 values. No new defect was named in round 3, so per the pipeline rule no new wording is opened. Bar values unchanged (min bar window 1125px, no Russian-only breakpoint)."
+  }
+}

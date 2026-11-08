@@ -1,0 +1,35 @@
+{
+  "lang": "ur",
+  "stage": "01-05",
+  "batch": "nav-groups",
+  "positions": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.discover': 'نخلستان دریافت کریں',",
+      "notes": "Stage 1 translator: en «Discover the oasis» / ar source; واحة → نخلستان per termbase generic_nouns (published nav.fruits «نخلستان کے پھل», home.plan «نخلستان سے لطف اٹھائیں»), imperative آپ-register «دریافت کریں» (TM: «ایسی آن لائن دکانیں دریافت کریں…»). Stage 2 editor: alternatives «واحہ دریافت کریں» (arabism, termbase forbids), «نخلستان کی سیر کریں» (promises a walk, trails already own سیر), «نخلستان کھوجیں» (not in TM); kept. Stage 3 localizer: natural spoken-written Urdu, 19 characters vs 18 English, inside the +117px slack for discover+taste. Stage 4 benchmarker: imperative section titles are the convention of the published ur UI buttons («مقامات دیکھیں», «اردو میں پڑھیں», «بند کریں»). Stage 5 proofreader: Urdu ی ک ہ only, no full stop, no Latin, no digits. One consistent form: all three group titles are آپ-imperatives in -یں."
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.taste': 'چکھیں اور خریداری کریں',",
+      "notes": "Stage 1 translator: en «Taste and shop» / ar source; the title must cover online stores, so shopping is explicit. «چکھیں» = TM (ui: «یہ پکوان کہاں چکھیں؟», dining bodies); «خریداری کریں» = TM (list2.lead «خریداری کریں، چہل قدمی کریں…», termbase/TM «آن لائن خریداری», 28 pages). Stage 2 editor: rejected «ذائقہ لیں» (termbase record: contested idiom, closed by owner 2026-10-15 in favour of چکھنا), «کھائیں اور خریداری کریں» (shrinks to eating), «خریداری اور ذائقے» (noun form breaks the imperative family), Arabic-style rhyme not required. Stage 3 localizer: reads as a two-verb invitation, no extra meaning. Stage 4 benchmarker: width about 22 characters; with discover the pair stays within the measured +117px slack (English pair is 32 characters, Urdu pair 41 but narrower glyph widths in the Urdu bar font — to be confirmed by tools/measure-header-fit.mjs MODE=fit at stage 7). Stage 5 proofreader: Urdu letters only, no full stop, same -یں imperative form as the other two titles."
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.visit': 'اپنا دورہ ترتیب دیں',",
+      "notes": "Stage 1 translator: en «Arrange your visit» / ar source; «دورہ» = visit/trip (TM: «ثقافتی دورے», «متعدد دورے»), «ترتیب دیں» = TM (plan.lead «انہیں ترتیب دیں», home.route «اپنا راستہ خود ترتیب دیں»). Stage 2 editor: rejected «اپنی زیارت ترتیب دیں» (زیارت in Urdu leans to pilgrimage; TM uses it only for the mosque visit), «اپنی آمد کا انتظام کریں» (heavier, logistics), «اپنا سفر ترتیب دیں» and anything with «منصوبہ بنائیں» (would echo the gold button). Stage 3 localizer: natural Urdu. Stage 4 benchmarker: this title does not duplicate or approach the gold button nav.plan «سفر کا منصوبہ بنائیں» — different noun (دورہ vs سفر), different verb (ترتیب دیں vs منصوبہ بنائیں), no shared word. It appears only as a menu section heading and as a screen-reader group name, so width is not at stake. Stage 5 proofreader: Urdu letters only, no full stop, same -یں imperative form."
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.langChange': 'تبدیل کریں',",
+      "notes": "Stage 1 translator: en «Change» / ar source; the row reads «زبان: اردو …… تبدیل کریں ⌄», a verb opening the language list. Stage 2 editor: bare «تبدیل» rejected (a noun «change», not an action) and «بدلیں» rejected (colloquial and rare in published UI); «زبان تبدیل کریں» rejected (repeats lang.menu in the same row, «زبان»). Stage 3 localizer: «تبدیل کریں» is the standard Urdu UI button for Change. Stage 4 benchmarker: same -یں imperative family as the published buttons (بند کریں, پڑھیں). TM has «تبدیلی» only as the noun in the hours notice; no conflict. Stage 5 proofreader: Urdu letters only, no full stop."
+    }
+  ]
+}

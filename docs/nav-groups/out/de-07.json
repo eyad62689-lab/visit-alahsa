@@ -1,0 +1,222 @@
+{
+  "batch": "nav-groups",
+  "stage": 7,
+  "date": "2026-11-08",
+  "threshold": 90,
+  "lang": "de",
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "traveller_fit": 8,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "final": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "value": "Die Oase entdecken"
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "value": "Genießen und einkaufen"
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "value": "Den Besuch organisieren"
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "value": "Ändern"
+    }
+  ],
+  "judge_edits": [
+    {
+      "id": "nav.g.visit",
+      "from": "Besuch organisieren",
+      "to": "Ihren Besuch organisieren",
+      "reason": "restores the possessive the source carries (en «your visit», ar «زيارتك») and removes the host reading the blind reader flagged («einen Besuch organisieren» = to host one). Same infinitive form as the other two titles; published precedent for infinitive + Sie-possessive in de UI: home.route.link «Ihre Route mit der Merkliste zusammenstellen». No new meaning; heading is menu-only (screen-reader name in the bar), so no bar-width effect. Re-check by a fresh reader required."
+    },
+    {
+      "tm": "de-translation/memory/tm.json",
+      "pair": "ui-chrome nav.g.discover / nav.g.taste / nav.g.visit / nav.langChange",
+      "reason": "four new en/de pairs to add at integration; no existing pair touched (no tm or termbase entry for these keys; termbase Oase respected; termbase «Besuch» entry is the practical-card label and is not affected)"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "key": "nav.g.discover",
+      "obs": "natural and inviting; only vaguely names the contents, which the items make clear; not confusable with the gold button",
+      "ruling": "rejected (no change needed)",
+      "reason": "positive observation; the title is the source (en «Discover the oasis», ar «اكتشف الواحة»), termbase Oase kept; describing the contents more would add meaning"
+    },
+    {
+      "key": "nav.g.taste",
+      "obs": "slight inconsistency: «Genießen» capitalised (reads nominalised) while «einkaufen» lowercase; could smooth to «Essen und Einkaufen»",
+      "ruling": "rejected",
+      "reason": "«Genießen» is capitalised only as the first word of the heading (Duden: Überschrift beginnt groß); «einkaufen» is a verb infinitive and correctly lowercase. «Essen und Einkaufen» switches to nominalised nouns, breaking the one-form rule with «Die Oase entdecken», and «Essen» narrows ar «تذوّق» (tasting/enjoying); the reader himself called it less inviting. Current title covers the Online-Shops as the brief requires."
+    },
+    {
+      "key": "nav.g.visit",
+      "obs": "sounds like administrative/translationese German; «einen Besuch organisieren» suggests hosting",
+      "ruling": "applied (judge edit)",
+      "reason": "«Ihren Besuch organisieren»: the possessive is in the source (your / ـك) and fixes the host reading without adding meaning"
+    },
+    {
+      "key": "nav.g.visit",
+      "obs": "content (Unterkünfte, Merkliste) covers the heading only halfway; suggested «Unterkunft und Merkliste», «Aufenthalt», «Unterkunft & Planung»",
+      "ruling": "rejected; source flaw raised to owner",
+      "reason": "replacing the source title by a list of the contents changes the meaning of «رتّب زيارتك»/«Arrange your visit»; «& Planung» re-approaches the gold button; «Aufenthalt» drops the arrange sense. Same observation from all five readers across languages = source flaw (JUDGE-NOTES)."
+    },
+    {
+      "key": "nav.g.visit",
+      "obs": "strongly confusable with the gold button «Reise planen» (organisieren/planen, Besuch/Reise), stacked directly on the phone menu",
+      "ruling": "partly applied; source flaw raised to owner",
+      "reason": "German keeps verb and noun both different from «Reise planen» (stage 2 already rejected «Besuch planen», «Reise vorbereiten»); the reader's «Reise vorbereiten» would be closer to the button, so rejected. The residual proximity is in the source itself (ar «رتّب زيارتك» beside «خطّط لرحلتك»), five readers in five languages; no faithful German form removes it. Raised to Eyad, unscored."
+    },
+    {
+      "key": "nav.langChange",
+      "obs": "«Sprache: Deutsch Ändern ⌄» reads as one broken title-case phrase; capital Ä on a verb; redundant with «Sprache: Deutsch»; suggested «Sprache: Deutsch» alone or «Sprache wechseln: Deutsch»",
+      "ruling": "rejected",
+      "reason": "layout fact (JUDGE-NOTES): the row is two visually separate elements, «Sprache: Deutsch» on one side and «Ändern ⌄» at the far end (margin-inline-start: auto); the blind input joined them into one text line, so the broken-phrase reading is an artefact of the cut. A standalone German button label is capitalised (cf. published «Teilen», «Schließen», «Entdecken»). Dropping the key removes the source's action word (en «Change», ar «تغيير»); «Sprache wechseln» repeats the label at the row start. Functionally the globe icon plus button is clear, as the reader himself notes."
+    },
+    {
+      "key": "out of batch",
+      "obs": "notes on «Reise planen», «Routen», «Souks, Parks und Farmen», «Oasenfrüchte», «Merkliste», Karte placement",
+      "ruling": "recorded, not ruled here",
+      "reason": "published labels outside the four batch keys (JUDGE-NOTES rule); «Farmen» and «Routen» left for a future nav review"
+    }
+  ],
+  "raised_to_owner": [
+    "nav.g.visit: ar «رتّب زيارتك» sits directly above the gold button «خطّط لرحلتك» and carries the same meaning field; all five blind readers (zh/de/ru/ur/tr) read the section as a second Plan button and as not describing its contents (stay + saved list). Source flaw, unscored; German uses the faithful form most distant from «Reise planen».",
+    "width: de measured 1147px at the stage-5 values (bar collapses at 1181px); nav.g.visit edit is menu-only and does not affect the bar — re-measure with measure-header-fit.mjs at integration."
+  ],
+  "judge_addendum": {
+    "round": 2,
+    "date": "2026-11-08",
+    "reader_file": "docs/nav-groups/out/06b-blind-de.md",
+    "input_file": "docs/nav-groups/out/06b-input-de.txt",
+    "dispositions": [
+      {
+        "key": "nav.g.discover",
+        "obs": "natural, inviting, fits the page theme; names contents only vaguely",
+        "ruling": "rejected (no change needed)",
+        "reason": "positive; source title kept, describing contents would add meaning"
+      },
+      {
+        "key": "nav.g.taste",
+        "obs": "natural and idiomatic, lowercase after «und» correct; two infinitives slightly unusual as a menu name but common and friendly on tourism sites",
+        "ruling": "rejected (no change needed)",
+        "reason": "positive; confirms the round-1 capitalisation ruling"
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "register break: the other two headings do not address the reader, «Ihren ...» does (nominal vs. «Ihren»)",
+        "ruling": "applied (judge edit)",
+        "reason": "named defect introduced by the round-1 edit. «Den Besuch organisieren» uses the definite article exactly like «Die Oase entdecken» (same pattern: article + noun + infinitive), so all three headings are Sie-neutral again. The definite article is the normal German rendering of en «your» / ar ـك in a neutral menu heading; no meaning added or removed. It also keeps the round-1 fix: with the article the phrase refers to a specific visit (the reader's), not to hosting one, which was the defect of the bare «Besuch organisieren»."
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "«organisieren» sounds heavy/administrative (also noted in round 1)",
+        "ruling": "rejected",
+        "reason": "«organisieren» is the closest German verb to رتّب / arrange and the only candidate that keeps verb and noun both distinct from the gold button «Reise planen»; «vorbereiten», «planen» move toward the button, «gestalten», «regeln» drift from the source. The residual heaviness is bound up with the source flaw below and is not fixable without changing meaning."
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "promises more (Anreise, Visum, Praktisches) than its two items; near-synonymous with «Reise planen»; suggested «Praktisches», «Unterkunft und Merkliste», «Ihr Aufenthalt», «Vor Ort und unterwegs»",
+        "ruling": "rejected; shared source flaw (already raised to owner)",
+        "reason": "same two findings from every reader in five languages and two rounds; ar «رتّب زيارتك» beside «خطّط لرحلتك» carries them. Each suggestion either lists the items, invents a new title («Praktisches», «Vor Ort und unterwegs») or drops the arrange sense («Ihr Aufenthalt»)."
+      },
+      {
+        "key": "nav.langChange",
+        "obs": "«Ändern ⌄» ambiguous on its own (change what?); a screen reader or a reader seeing only the button would not understand; suggested «Sprache ändern» / «Sprache wechseln»",
+        "ruling": "rejected",
+        "reason": "code fact (Header.astro l.134-135): «Sprache: Deutsch» and «Ändern ⌄» are two spans inside ONE <summary>, i.e. one control whose accessible name is «Sprache: Deutsch Ändern». The word never stands alone for a screen reader or a tap; the object «Sprache» is in the same control. The round-2 input's «separate control» overstates the separation (visually apart, functionally one). «Sprache ändern» would print «Sprache» twice in one row. Source (en «Change», ar «تغيير») is the bare verb."
+      },
+      {
+        "key": "out of batch",
+        "obs": "«Routen», «Souks, Parks und Farmen» (suggested «Märkte»), «Veranstaltungen», «Oasenfrüchte», «Online-Shops», «Karte» ambiguity, Karte placement, «Merkliste» fit",
+        "ruling": "recorded, not ruled here",
+        "reason": "published labels outside the four batch keys"
+      }
+    ],
+    "edits": [
+      {
+        "id": "nav.g.visit",
+        "from": "Ihren Besuch organisieren",
+        "to": "Den Besuch organisieren",
+        "reason": "register parity with «Die Oase entdecken» / «Genießen und einkaufen» (round-2 named defect) while keeping the round-1 fix against the hosting reading; fresh reader (round 3) to re-check this value"
+      }
+    ],
+    "score": 94,
+    "breakdown": {
+      "accuracy": 29,
+      "nativeness": 27,
+      "termbase_style": 20,
+      "traveller_fit": 8,
+      "structure": 10
+    },
+    "decision": "APPROVE"
+  },
+  "judge_addendum_r3": {
+    "round": 3,
+    "date": "2026-11-08",
+    "reader_file": "docs/nav-groups/out/06c-blind-de.md",
+    "input_file": "docs/nav-groups/out/06c-input-de.txt",
+    "dispositions": [
+      {
+        "key": "nav.g.discover",
+        "obs": "natural, idiomatic; «die Oase» slightly abstract without context but clear on the page",
+        "ruling": "rejected (no change needed)",
+        "reason": "positive; no defect named"
+      },
+      {
+        "key": "nav.g.taste",
+        "obs": "verb heading reads slogan-like; lowercase «einkaufen» reads as fragment; suggests nouns «Essen und Einkaufen»",
+        "ruling": "rejected (already ruled round 1)",
+        "reason": "same suggestion rejected in round 1: nominalising breaks the one-form rule with the other two headings and «Essen» narrows «تذوّق»; round-2 reader called the same title natural and common on tourism sites. No new defect."
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "«den Besuch» ambiguous: whose visit?",
+        "ruling": "rejected after weighing (new point, recorded)",
+        "reason": "new named point, weighed against the alternatives. The only source-faithful fix is the possessive «Ihren», which round 2 removed for a named register break against the two neutral headings; the bare «Besuch organisieren» carried the round-1 hosting reading. Each of the three faithful forms has drawn exactly one reader objection, so reopening would cycle rather than converge. Of the three, the definite article is the mildest: it is the same device as «Die Oase entdecken» (no reader asked «which oasis?»), the heading sits in the visitor site menu where the only visit in question is the reader's, and the reader raised it in passing inside the shared source-flaw complaint. Closed with the current value."
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "administrative-sounding «organisieren»; does not describe its two items; close to the gold button «Reise planen»; suggests «Ihr Aufenthalt», «Unterkunft und Merkliste»",
+        "ruling": "rejected (already ruled rounds 1-2; shared source flaw raised to owner)",
+        "reason": "third round of the same findings; suggestions list the items or drop the arrange sense, as ruled in round 2"
+      },
+      {
+        "key": "nav.langChange",
+        "obs": "«Ändern» without object is vague, may be read in isolation (also by a screen reader); suggests «Sprache ändern» / «Sprache wählen»",
+        "ruling": "rejected (already ruled round 2)",
+        "reason": "one <summary> control whose accessible name is «Sprache: Deutsch Ändern» (Header.astro l.134-135); the reader now saw it as the same tappable row and calls it «kein Fehler». «Sprache ändern» repeats «Sprache» in the row; source is the bare verb."
+      },
+      {
+        "key": "out of batch",
+        "obs": "«Routen», «Souks, Parks und Farmen», «Oasenfrüchte», Merkliste icon label, Karte placement, bar lacks the visit group label",
+        "ruling": "recorded, not ruled here",
+        "reason": "outside the four keys; the bar layout (visit links flat, group name for screen readers) is by design (BRIEF)"
+      }
+    ],
+    "edits": [],
+    "value_changed": false,
+    "score": 94,
+    "breakdown": {
+      "accuracy": 29,
+      "nativeness": 27,
+      "termbase_style": 20,
+      "traveller_fit": 8,
+      "structure": 10
+    },
+    "decision": "APPROVE",
+    "closing": "batch closed; no further reader round required for de"
+  }
+}

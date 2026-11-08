@@ -1,0 +1,139 @@
+{
+  "batch": "nav-groups",
+  "stage": 7,
+  "date": "2026-11-08",
+  "threshold": 90,
+  "lang": "zh",
+  "score": 92,
+  "breakdown": {
+    "accuracy": 28,
+    "nativeness": 28,
+    "termbase_style": 19,
+    "traveller_fit": 8,
+    "structure": 9
+  },
+  "decision": "APPROVE",
+  "final": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "value": "探索绿洲"
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "value": "美食与购物"
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "value": "出行指南"
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "value": "切换"
+    }
+  ],
+  "judge_edits": [
+    {
+      "id": "nav.g.visit",
+      "from": "出行准备",
+      "to": "出行指南",
+      "reason": "termbase entry foot.col.plan (footer-names 2026-10-04, owner decision, judge 96) fixes 出行指南 as the house name for the group of practical travel tools that holds 我的收藏 and 地图, and lists 行前准备 as rejected because a «preparation» heading does not cover 我的收藏 and 地图. 出行准备 carries the same sense and the blind reader flagged exactly that flaw (住宿 + 我的收藏 are not «trip preparation»). 出行指南 shares no word with the gold button 行程规划 (the foot.col.plan rule: no shared word with its first link; the single character 行 in 出行/行程 is shared, as it was with 出行准备 and in the owner-approved footer heading), names an information section rather than an action, so it sits further from the button than 准备/规划; four characters, nominal, same size as 探索绿洲. No fact is added: it is a category name for the same contents. Stage 1 objection («promises a guide page») is overruled by the owner-approved footer use of the same words for the same family of links. Menu only (bar shows these links flat), bar budget untouched. NEEDS FRESH BLIND READER on the phone menu block with this value.",
+      "recheck": true,
+      "recheck_done": "round 2 fresh blind reader, docs/nav-groups/out/06b-blind-zh.md — see judge_addendum"
+    },
+    {
+      "tm": "zh-translation/memory/tm.json",
+      "pair": "ui-chrome nav.g.discover / nav.g.taste / nav.g.visit / nav.langChange",
+      "reason": "four new en/zh pairs to add at integration (not written by the judge per batch rule); nav.g.visit pair = «Arrange your visit» / 出行指南; the other three unchanged from stage 5"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "key": "nav.g.discover",
+      "obs": "natural and inviting; slightly poetic, sounds like a call to action similar to the gold button; reader: no change needed",
+      "ruling": "rejected (no change)",
+      "reason": "the reader itself rates it acceptable; 探索 + place is the portal idiom and extends the published nav.discover 探索 and foot.col.discover 探索; 绿洲 is the termbase rendering of الواحة. Verb-object headings read as section names in Chinese menus; 绿洲探索 (noun inversion) was rejected at stage 2 as stiffer. One point taken under termbase/style for the mixed surface form (探索绿洲 verb-object beside two nominal headings), not enough to justify a stiffer form."
+    },
+    {
+      "key": "nav.g.taste",
+      "obs": "natural, standard website wording; clear that it covers eating and buying",
+      "ruling": "applied (confirms stage 5)",
+      "reason": "covers food, dining, fruits and online stores as the brief requires; no change"
+    },
+    {
+      "key": "nav.g.visit",
+      "obs": "PROBLEM: 出行准备 suggests visa/packing/flights, yet only 住宿 and 我的收藏 sit under it; close in meaning to the gold button 行程规划; suggested 住宿与收藏, or 行前准备 only if real preparation content lives there",
+      "ruling": "applied in part (value edited to 出行指南)",
+      "reason": "the content-mismatch half is accepted and matches the termbase rejection of 行前准备 for this group; value changed to the owner-approved 出行指南 (see judge_edits). 住宿与收藏 rejected: it replaces the source heading «Arrange your visit / رتّب زيارتك» with an inventory of links, i.e. meaning not in the source, and would break if the group gains a link. 行前准备 rejected: termbase rejects it for this group (does not cover 我的收藏/地图). The closeness-to-the-button half is shared by all five readers across languages and is a source flaw (ar «رتّب زيارتك» beside «خطّط لرحلتك»): raised to owner, unscored."
+    },
+    {
+      "key": "nav.langChange",
+      "obs": "切换 is a bare verb with no object after the language name, redundant with ⌄; drop it or use 切换语言; suggested «语言：简体中文 ⌄»",
+      "ruling": "rejected",
+      "reason": "layout fact (JUDGE-NOTES): the row is two visually separate elements, «语言：中文（简体）» on one side and 切换 ⌄ at the far end (margin-inline-start: auto); the cut input joined them in one text line, so the «broken sentence» reading is partly an artefact of the cut. Dropping the key is a template change outside this batch; 切换语言 repeats 语言 already on the same row (lang.menu) and lengthens a button the brief asks to keep to one word. 切换 is the standard mainland UI verb beside a current-language name."
+    },
+    {
+      "key": "nav.langChange (row punctuation)",
+      "obs": "ASCII colon 语言: next to full-width （简体）; use 语言：",
+      "ruling": "already fixed",
+      "reason": "the template now emits «：» for zh (JUDGE-NOTES); outside the four batch values"
+    },
+    {
+      "key": "out of batch",
+      "obs": "中文（简体） vs 简体中文; 哈萨 may read as clipped 哈萨克 (哈萨美食, page title), suggest 艾哈萨; 路线 ambiguous next to 行程规划; 传统集市、公园与农场 too long; 绿洲水果 vague; 网店 unclear whose; 地图 sits in different groups on laptop and phone; main heading literary",
+      "ruling": "recorded, not ruled here",
+      "reason": "published labels outside this batch (JUDGE-NOTES); 网店 was ruled in nav-stores (rejected 特产网店-type additions); 哈萨 is the termbase place name; 地图 placement is layout, not wording"
+    }
+  ],
+  "raised_to_owner": [
+    "nav.g.visit source flaw (all five readers, five languages): ar «رتّب زيارتك» / en «Arrange your visit» sits beside the gold button «خطّط لرحلتك» / «Plan your trip» and reads as a second button with near the same meaning, and it does not describe its contents (stay + saved places, plus map in the bar). zh took the house name 出行指南 (footer column for the same family of tools) to stay faithful while moving away from the button; a source-level rename is the owner's call — unscored",
+    "zh reader: 哈萨 alone may be read as a clip of 哈萨克 (Kazakh) in 哈萨美食 and the page title; suggests 艾哈萨. Termbase place-name question, outside this batch — unscored",
+    "zh reader: 地图 is a top-level link on laptop but sits under 探索绿洲 on phone (layout, not wording) — unscored",
+    "round 2 (zh): the fresh reader again named both nav.g.visit defects on 出行指南, the same two named on 出行准备 in round 1, which confirms they sit in the source and are not a Chinese wording issue — unscored"
+  ],
+  "judge_addendum": {
+    "round": 2,
+    "date": "2026-11-08",
+    "reader_file": "docs/nav-groups/out/06b-blind-zh.md",
+    "input_file": "docs/nav-groups/out/06b-input-zh.txt",
+    "dispositions": [
+      {
+        "key": "nav.g.discover",
+        "obs": "natural, reads as a travel-site section name; contents confirm it; no problem",
+        "ruling": "applied (confirms round 1)",
+        "reason": "no change"
+      },
+      {
+        "key": "nav.g.taste",
+        "obs": "natural, common wording; does not spell out how 绿洲水果 and 网店 relate, but reader understands «eating + buying»; acceptable",
+        "ruling": "applied (confirms round 1)",
+        "reason": "no change; the heading is not meant to enumerate its links"
+      },
+      {
+        "key": "nav.g.visit",
+        "obs": "most problematic heading: (1) 出行指南 leads a reader to expect transport, visa, weather, practical info, but only 住宿 and 我的收藏 sit under it; (2) 我的收藏 is a personal tool, not guide content; (3) close to the gold button 行程规划 (出行/行程) and to the site name 哈萨旅游指南 (指南); suggested 住宿与收藏, 行前准备 (only if visa/transport are added) or 实用信息, or promote 住宿 to top level",
+        "ruling": "source flaw (no edit)",
+        "reason": "(1)+(2)+(3a) are the two defects every reader has named in five languages and two rounds (near the button; does not describe its two items); round 1 named them on 出行准备, round 2 on 出行指南, so changing the Chinese wording does not remove them: they sit in the source «Arrange your visit / رتّب زيارتك» beside «Plan your trip / خطّط لرحلتك», already raised to owner. No offered wording fixes a named defect while staying faithful: 住宿与收藏 is a list of the items (meaning not in source); 行前准备 is rejected by termbase for this group and the reader itself conditions it on content that does not exist; 实用信息 promises information the group does not hold (same defect as (1)); promoting 住宿 is a structure change outside the batch. (3b) 指南 shared with the page/site title 哈萨旅游指南: the title is not a sibling control in the menu and the footer column already uses 出行指南 under the same site title (owner-approved 2026-10-04, reader-tested); rejected. Correction to round 1 record: 出行指南 does share the character 行 with 行程规划 (as 出行准备 did); it shares no word, which is the termbase rule."
+      },
+      {
+        "key": "nav.langChange",
+        "obs": "bare 切换 with no object; as a separate control it may be taken for decoration or another function (account? currency?); ⌄ already signals the dropdown; suggested 切换语言 ⌄, or make the whole row the tap target, or 更改/更换语言",
+        "ruling": "rejected (no edit)",
+        "reason": "code fact (src/components/Header.astro:134-135): the language name and 切换 ⌄ are two spans inside ONE <summary>, i.e. the whole row is already the single tap target the reader asks for, and its accessible name reads «语言：中文（简体） 切换». The round-2 input described 切换 ⌄ as a «separate control», which is not what the code renders, so the «what does it switch» reading rests on that description. Inside one control 切换语言 would say 语言 twice («语言：中文（简体） 切换语言»); bare 切换 beside a current value (city/region/language) is a standard mainland UI pattern; the source en «Change» / ar «تغيير» is equally bare. 更改 rejected in round 1 (alter a setting vs switch between options)."
+      },
+      {
+        "key": "out of batch",
+        "obs": "传统集市、公园与农场 too long and 传统 scope ambiguous; 哈萨 vs 哈萨克; 绿洲水果 info vs purchase; 网店 whose; 地图 grouped differently on laptop and phone; 路线 / 活动 acceptable",
+        "ruling": "recorded, not ruled here",
+        "reason": "published labels outside the four batch keys; 网店 ruled in nav-stores; 哈萨 already raised; 地图 placement already raised"
+      }
+    ],
+    "edits": [],
+    "score": 92,
+    "decision": "APPROVE",
+    "notes": "no value changed in round 2, so no further reader is required for zh. Coordinator: the round-2 input text called 切换 ⌄ a separate control; in the code the whole row is one <summary> — mirror that in any later reader input."
+  }
+}
