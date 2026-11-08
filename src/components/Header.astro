@@ -69,6 +69,33 @@ const nav = [
   { href: routes.plan, label: t('nav.plan'), cls: 'nav-plan' },
   { href: routes.map, label: t('nav.map') },
 ];
+// التنقّل المجمَّع (ar/en): ثلاث مجموعات بعناوين بدل عشرة روابط متساوية. في القائمة المطويّة تُعرض
+// المجموعات بعناوينها وشبكة عمودين، وفي الشريط المبسوط تصير الأوليان قائمتين منسدلتين والثالثة روابط
+// مباشرة. عناوين المجموعات لم تمرّ بعد بخطوط ترجمة zh/de/ru/ur/tr، فتبقى تلك اللغات على الشريط المسطّح.
+// only: 'drawer' يظهر في القائمة المطويّة وحدها و'bar' في الشريط وحده (الخريطة في «اكتشف» داخل القائمة
+// وفي الشريط رابطٌ مباشر؛ و«معالمي المحفوظة» في الشريط أداةٌ أصلاً) — نمط nav-plan: وجهة واحدة لكل عرض.
+const grouped = ar || lang === 'en';
+type NavItem = { href: string; label: string; wide?: boolean; only?: 'drawer' | 'bar'; badge?: boolean };
+const groups: { id: string; label: string; flat?: boolean; items: NavItem[] }[] = [
+  { id: 'discover', label: t('nav.g.discover'), items: [
+    { href: routes.attractions, label: t('nav.attractions') },
+    { href: ar ? '/trails/' : '/en/trails/', label: t('nav.trails') },
+    { href: routes.map, label: t('nav.map'), only: 'drawer' },
+    { href: routes.events, label: t('nav.events') },
+    { href: routes.leisure, label: t('nav.leisure'), wide: true },
+  ] },
+  { id: 'taste', label: t('nav.g.taste'), items: [
+    { href: routes.food, label: t('nav.food') },
+    { href: routes.dine, label: t('nav.dining') },
+    { href: routes.fruits, label: t('nav.fruits') },
+    { href: storesHref(lang), label: t('nav.stores') },
+  ] },
+  { id: 'visit', label: t('nav.g.visit'), flat: true, items: [
+    { href: routes.stay, label: t('nav.stayShort') },
+    { href: routes.map, label: t('nav.map'), only: 'bar' },
+    { href: routes.myTrip, label: t('nav.myTrip'), only: 'drawer', badge: true },
+  ] },
+];
 // مبدّل اللغة: زرّ واحد يفتح قائمةً باللغات المتاحة لهذه الصفحة (قرار إياد
 // 2026-08-29 — قابل للتوسع لأي لغة قادمة بلا إعادة تصميم). اللغة غير العربية
 // والإنجليزية تُدرج فقط حين تحمل الصفحة نظيراً لها في alt — لا خيار يقود إلى 404.
@@ -84,7 +111,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     ...LANG_META[l],
   }));
 ---
-<header class:list={['site-header', overlay && 'site-header--overlay']} id="top" data-pagefind-ignore data-overlay={overlay ? '' : undefined}>
+<header class:list={['site-header', overlay && 'site-header--overlay', grouped && 'hd-grouped']} id="top" data-pagefind-ignore data-overlay={overlay ? '' : undefined}>
   <div class="container hd-in">
     <a href={home} class="brand">
       <Wordmark variant="turq" size="sm" pageLang={lang} />
@@ -96,6 +123,52 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     <input type="checkbox" id="navtoggle" class="nav-toggle" aria-controls="site-nav" aria-label={t('a11y.menu')} />
     <label for="navtoggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
 
+    {grouped ? (
+    <nav class="nav nav--grouped" id="site-nav" aria-label={t('a11y.mainNav')}>
+      {/* أدوات الجوال (≤ 760px) كما في الشريط المسطّح أدناه، واللغات مطويّة في سطر واحد «اللغة: … — تغيير»
+          كي لا تشغل أول الشاشة؛ data-nav-lang لا data-lang-menu كي لا يلتقطها محدِّد مبدّل الشريط. */}
+      <div class="nav-tools">
+        <button type="button" class="nav-search" data-nav-search>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          {t('search.open')}
+        </button>
+      </div>
+      {groups.map((g) => (
+        <div class:list={['ng', g.flat && 'ng--flat']} role="group" aria-labelledby={`ng-t-${g.id}`} data-ng>
+          <span class="ng-title" id={`ng-t-${g.id}`}>{g.label}</span>
+          {!g.flat && (
+            <button type="button" class="ng-btn" aria-expanded="false" aria-controls={`ng-p-${g.id}`} data-ng-btn>
+              {g.label}<span class="ng-chev" aria-hidden="true"></span>
+            </button>
+          )}
+          <ul class="ng-list" id={`ng-p-${g.id}`}>
+            {g.items.map((n) => (
+              <li class:list={[n.wide && 'ng-wide', n.only && `only-${n.only}`]}>
+                <a href={n.href}>{n.label}{n.badge && <span class="plan-badge" data-plan-count>0</span>}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <a href={routes.plan} class="nav-plan">{t('nav.plan')}</a>
+      <details class="nav-lang" data-nav-lang>
+        <summary>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15.6 15.6 0 0 1 0 18a15.6 15.6 0 0 1 0-18Z" />
+          </svg>
+          <span>{t('lang.menu')}: <b lang={lang}>{LANG_META[lang].native}</b></span>
+          <span class="nav-lang-change">{t('nav.langChange')}<span class="ng-chev" aria-hidden="true"></span></span>
+        </summary>
+        <div class="nav-langs" role="group" aria-label={t('lang.menu')}>
+          {langItems.map((l) => l.current
+            ? <span class="lang-item is-current" aria-current="true" lang={l.code} dir={l.dir}>{l.native}</span>
+            : <a class="lang-item" href={l.href} lang={l.code} dir={l.dir}>{l.native}</a>)}
+        </div>
+      </details>
+    </nav>
+    ) : (
     <nav class="nav" id="site-nav" aria-label={t('a11y.mainNav')}>
       {/* أدوات الجوال (≤ 760px): البحث واللغة في أعلى القائمة بدل الشريط، فيبقى في الشريط
           الوردمارك والقائمة وحدهما (مراجعة مواصفات «الواحة تتكشّف»، القرار أ3). مكرّرة في
@@ -117,6 +190,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
       </div>
       {nav.map((n) => <a href={n.href} class={n.cls}>{n.label}</a>)}
     </nav>
+    )}
 
     <div class="hd-actions">
       <Search lang={lang} />
@@ -178,6 +252,24 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
       if (toggle) toggle.checked = false;
       document.getElementById('search-open')?.click();
     });
+    // مجموعات الشريط المبسوط: زرّ يفتح قائمته ويغلق أختها، والنقر خارجها أو Esc يغلقها
+    const closeGroups = (except) => document.querySelectorAll('[data-ng].is-open').forEach((g) => {
+      if (g === except) return;
+      g.classList.remove('is-open');
+      g.querySelector('[data-ng-btn]')?.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('click', (e) => {
+      const btn = e.target instanceof Element ? e.target.closest('[data-ng-btn]') : null;
+      if (btn) {
+        const g = btn.closest('[data-ng]');
+        const open = !g.classList.contains('is-open');
+        closeGroups(g);
+        g.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        return;
+      }
+      if (!(e.target instanceof Element) || !e.target.closest('[data-ng] .ng-list')) closeGroups(null);
+    });
     document.addEventListener('click', (e) => {
       document.querySelectorAll('details[data-lang-menu][open]').forEach((d) => {
         if (!d.contains(e.target)) d.removeAttribute('open');
@@ -186,6 +278,13 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape') return;
       document.querySelectorAll('details[data-lang-menu][open]').forEach((d) => d.removeAttribute('open'));
+      const open = document.querySelector('[data-ng].is-open');
+      if (open) { closeGroups(null); open.querySelector('[data-ng-btn]')?.focus(); }
+    });
+    // الخروج بـTab من مجموعة مفتوحة يغلقها، فلا تبقى قائمة معلّقة فوق الصفحة
+    document.addEventListener('focusout', (e) => {
+      const g = e.target instanceof Element ? e.target.closest('[data-ng].is-open') : null;
+      if (g && !(e.relatedTarget instanceof Element && g.contains(e.relatedTarget))) closeGroups(null);
     });
   }
 </script>
@@ -212,8 +311,8 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
      المبسوط وحده، بقيم مقيسة بـtools/measure-header-fit.mjs (MODE=fit): ar ‏14/12 ← 1304px
      · zh ‏14/12 ← 1128 · en ‏13.5/10 ← 1381 · de ‏12.5/8 ← 1393 · ru ‏13/10 ← 1530 (بعد «Sehenswürdigkeiten/Veranstaltungen» و«Достопримечательности»، 2026-10-04). */
   @media (min-width: 1271px) {
-    :global([lang='ar']) .nav, :global([lang='zh']) .nav { gap: 12px; }
-    :global([lang='ar']) .nav a, :global([lang='zh']) .nav a { font-size: .875rem; }
+    :global([lang='zh']) .nav { gap: 12px; }
+    :global([lang='zh']) .nav a { font-size: .875rem; }
   }
   /* مخفيّ حيث يظهر الزرّ الذهبي (وجهتهما واحدة)، ويظهر داخل القائمة المطويّة */
   .nav .nav-plan { display: none; }
@@ -223,16 +322,6 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
   .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
   /* كل لغة تُضيَّق في الوضع المبسوط وحده (من عتبة انهيارها فما فوق)، فلا يسري التضييق
      داخل القائمة المطويّة — المساحة هناك رأسية والتضييق خسارة خالصة. */
-  /* العربية: «معالمي المحفوظة» في الأدوات ثم «المتاجر» في الشريط (2026-10-09) رفعا اللازم إلى 1354px — أوسع من السقف المشترك 1280 */
-  @media (min-width: 1394px) {
-    :global([lang='ar']) .hd-in { inline-size: min(100% - var(--s-3), 1380px); }
-  }
-  /* الإنجليزية بعد «Online Stores» (2026-10-09): اللازم 1476px بخط 13.5px وفجوة 10px */
-  @media (min-width: 1516px) {
-    :global([lang='en']) .hd-in { inline-size: min(100% - var(--s-3), 1500px); }
-    :global([lang='en']) .nav { gap: 10px; }
-    :global([lang='en']) .nav a { font-size: .84375rem; }
-  }
   /* الأوردو ما دامت تسمياتها الإنجليزية المتراجَع إليها (كتلة ui.ur فارغة): المقيس بلا كتلة 1618px
      (خط 15px وفجوة 16px)، وبخط الإنجليزية وفجوتها 1478px — فعتبتها 1518px لا 1516. تُقاس من جديد
      يوم تدخل تسميات ui.ur: النستعليق يغيّر عرض التسميات وارتفاعها. */
@@ -286,42 +375,20 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
      الفجوة صار اللازم بعد تسمية الأقسام بعناوين صفحاتها وتسمية الأداة «معالمي المحفوظة» (2026-10-04):
      zh ‏1128px (خط 14px وفجوة 12px) — فالعتبة المشتركة 1270px؛ والعربية ‏1354 فلها كتلتها عند 1393 (بعد «المتاجر»، 2026-10-09). */
   @media (max-width: 1270px) {
-    .hd-actions .btn-gold { display: none; }
-    .burger { display: flex; }
+    .site-header:not(.hd-grouped) .hd-actions .btn-gold { display: none; }
+    .site-header:not(.hd-grouped) .burger { display: flex; }
     /* على الجوال: الصندوق في مسار التبويب، مخفي بصرياً بقصّ لا بـhidden */
-    .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .site-header:not(.hd-grouped) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     /* visibility:hidden ضرورية لا تجميلية: max-block-size:0 وحدها تُخفي القائمة بصرياً
        لكن روابطها تبقى في مسار Tab، فيضيع تركيز الكيبورد في قائمة غير مرئية.
        تأخير visibility بمقدار --dur يُبقي حركة الطيّ مرئية عند الإغلاق. */
-    .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
-    .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
+    .site-header:not(.hd-grouped) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    .site-header:not(.hd-grouped) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
     /* 70vh بدل 420px الثابتة: المحتوى الحالي 415px أي بهامش 5px فقط، وأي رابط
        سابع يُقصّ بلا تمرير. مع overflow-y:auto تتمرّر القائمة بدل أن تُبتر. */
-    .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    .site-header:not(.hd-grouped) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
     /* الزرّ الذهبي مخفيّ هنا، فرابط الخطة داخل القائمة هو الطريق الوحيد إليها */
-    .nav .nav-plan { display: block; }
-  }
-  /* العربية تنهار عند 1393px (اللازم 1354) والإنجليزية عند 1515px (اللازم 1476 بخط 13.5px وفجوة 10px):
-     عشرة روابط ظاهرة بعناوين الصفحات مع «المتاجر/Online Stores» (2026-10-09، كانتا 1343 و1420 قبله)
-     و«معالمي المحفوظة/My saved places» في الأدوات. الكتلة محصورة بالإنجليزية كي لا تُسقط شريط العربية
-     والصينية بلا سبب. لا تعدّل إحدى الكتل دون الأخرى. */
-  @media (max-width: 1393px) {
-    :global([lang='ar']) .hd-actions .btn-gold { display: none; }
-    :global([lang='ar']) .burger { display: flex; }
-    :global([lang='ar']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    :global([lang='ar']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
-    :global([lang='ar']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
-    :global([lang='ar']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
-    :global([lang='ar']) .nav .nav-plan { display: block; }
-  }
-  @media (max-width: 1515px) {
-    :global([lang='en']) .hd-actions .btn-gold { display: none; }
-    :global([lang='en']) .burger { display: flex; }
-    :global([lang='en']) .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    :global([lang='en']) .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; flex-direction: column; gap: 0; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
-    :global([lang='en']) .nav a { padding: var(--s-3) var(--s-4); border-block-start: 1px solid var(--c-line); }
-    :global([lang='en']) .nav-toggle:checked ~ .nav { max-block-size: 70vh; overflow-y: auto; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
-    :global([lang='en']) .nav .nav-plan { display: block; }
+    .site-header:not(.hd-grouped) .nav .nav-plan { display: block; }
   }
   /* والأوردو تنهار عند 1517px (اللازم 1478 بخط الإنجليزية وفجوتها) — كتلتها نسخة كتلة الإنجليزية
      بعتبتها المقيسة، ولا تعدَّل إحداهما دون قياس الأخرى. */
@@ -399,5 +466,75 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
        زاوية الرابط فلا تأخذ عرضاً، والكسر بواصلة ملاذٌ أخير حين لا يتّسع السطر للكلمة. */
     :global([lang='ru']) .plan-link { font-size: .8125rem; hyphens: auto; overflow-wrap: anywhere; }
     :global([lang='ru']) .plan-badge { position: absolute; inset-block-start: -2px; inset-inline-end: -6px; }
+  }
+  /* ─────────── التنقّل المجمَّع (ar/en) ───────────
+     الشريط المبسوط: «اكتشف الواحة ▾» و«تذوّق وتسوّق ▾» قائمتان منسدلتان، ثم «أماكن الإقامة» و«الخريطة»
+     مباشرةً. القائمة المطويّة: المجموعات الثلاث بعناوينها وخيط ذهبي، وشبكة عمودين على الجوال وثلاثة
+     أعمدة على اللوحي، ثم زرّ الخطة الذهبي، وسطر اللغة المطويّ أسفلها (≤ 760px).
+     عتبة الطيّ 1180px مقيسة بـtools/measure-header-fit.mjs بعد التجميع (2026-11-08): أدنى نافذة ar 1005px
+     · en 1124px، فالعتبة تتّسع للإنجليزية بهامش وتعطي الشريطَ المبسوط شاشات 1280px. */
+  .hd-grouped .nav { gap: 28px; align-items: center; }
+  .ng { position: relative; }
+  .ng-title, .only-drawer, .nav-lang { display: none; }
+  .ng-list { list-style: none; margin: 0; padding: 0; }
+  .ng-btn { display: inline-flex; align-items: center; gap: 8px; min-block-size: 44px; padding: 0; background: none; border: 0; cursor: pointer; white-space: nowrap; font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); transition: color var(--dur) var(--ease); }
+  .ng-btn:hover, .ng.is-open .ng-btn { color: var(--c-turq); }
+  .ng-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 4px; border-radius: 4px; }
+  /* حدّان فيزيائيان لا منطقيان: السهم يشير إلى الأسفل في الاتجاهين، لا إلى البداية في العربية */
+  .ng-chev { inline-size: 7px; block-size: 7px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(45deg); margin-block-start: -4px; transition: transform var(--dur) var(--ease); }
+  .ng.is-open .ng-chev { transform: rotate(225deg); margin-block-start: 3px; }
+  .ng:not(.ng--flat) .ng-list { display: none; position: absolute; inset-block-start: calc(100% + 10px); inset-inline-start: -16px; z-index: 60; min-inline-size: 260px; padding: 8px; background: #fff; border: 1px solid var(--c-line); border-block-start: 2px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow-hover); }
+  .ng.is-open .ng-list { display: block; }
+  .ng:not(.ng--flat) .ng-list a { display: block; padding: 11px 14px; border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 1rem; }
+  .ng:not(.ng--flat) .ng-list a::after { content: none; }
+  .ng:not(.ng--flat) .ng-list a:hover { background: var(--c-sand-2); }
+  .ng--flat .ng-list { display: flex; gap: 28px; }
+  /* بارتفاع زرّي المجموعتين (44px) كي تصطفّ الروابط المباشرة معهما في سطر واحد */
+  .ng--flat .ng-list a { display: inline-flex; align-items: center; min-block-size: 44px; padding-block: 0; }
+  .ng--flat .ng-list a::after { inset-block-end: 6px; }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) .ng-btn { color: var(--c-sand); }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) .ng:not(.ng--flat) .ng-list a { color: var(--c-ink); }
+
+  @media (max-width: 1180px) {
+    .hd-grouped .hd-actions .btn-gold { display: none; }
+    .hd-grouped .burger { display: flex; }
+    .hd-grouped .nav-toggle { display: block; position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .hd-grouped .nav { position: absolute; inset-block-start: 100%; inset-inline: 0; display: block; margin: 0; background: var(--c-sand); border-block-end: 1px solid var(--c-line); max-block-size: 0; overflow: hidden; visibility: hidden; transition: max-block-size var(--dur) var(--ease), visibility 0s linear var(--dur); }
+    .hd-grouped .nav-toggle:checked ~ .nav { max-block-size: calc(100dvh - 68px); overflow-y: auto; overscroll-behavior: contain; visibility: visible; transition: max-block-size var(--dur) var(--ease), visibility 0s; }
+    .hd-grouped .ng-btn, .hd-grouped .only-bar { display: none; }
+    .hd-grouped .only-drawer { display: block; }
+    .hd-grouped .ng { padding-inline: var(--s-4); }
+    .hd-grouped .ng-title { display: flex; align-items: center; gap: 10px; margin-block: 22px 2px; font-family: var(--font-body); font-weight: 500; font-size: .8125rem; color: var(--c-gold-deep); }
+    .hd-grouped .ng-title::after { content: ''; flex: 1; block-size: 1px; background: var(--c-gold); opacity: .7; }
+    .hd-grouped .ng .ng-list { display: grid; position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); min-inline-size: 0; padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none; }
+    .hd-grouped .ng-wide { grid-column: 1 / -1; }
+    .hd-grouped .ng .ng-list a { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-block-end: 1px solid var(--c-line); border-radius: 0; font-family: var(--font-heading); font-weight: 500; font-size: 1.125rem; white-space: normal; }
+    .hd-grouped .ng .ng-list a:hover { background: none; color: var(--c-turq); }
+    .hd-grouped .ng .ng-list a::after { content: none; }
+    .hd-grouped .ng-list li:last-child a, .hd-grouped .ng-list li:nth-last-child(2):nth-child(odd) a, .hd-grouped .ng--flat .ng-list a { border-block-end: 0; }
+    .hd-grouped .ng-list .plan-badge { position: static; }
+    .hd-grouped .nav .nav-plan { display: block; margin: 22px var(--s-4) var(--s-4); padding: 14px; text-align: center; background: var(--c-gold); color: var(--c-ink); border-radius: var(--radius-pill); font-family: var(--font-heading); font-weight: 700; font-size: 1.0625rem; }
+    .hd-grouped .nav .nav-plan::after { content: none; }
+  }
+  /* اللوحي: المجموعات الثلاث أعمدة متجاورة، كلٌّ بعمود روابط واحد، والزرّ الذهبي تحتها في الوسط */
+  @media (min-width: 761px) and (max-width: 1180px) {
+    .hd-grouped .nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; column-gap: var(--s-5); padding-inline: var(--s-5); }
+    .hd-grouped .ng { padding-inline: 0; }
+    /* «معالمي المحفوظة» ظاهرة في الشريط على هذا العرض، فلا تُكرَّر في القائمة */
+    .hd-grouped .ng--flat .only-drawer { display: none; }
+    .hd-grouped .ng .ng-list { grid-template-columns: minmax(0, 1fr); }
+    .hd-grouped .ng-list li:nth-last-child(2):nth-child(odd) a { border-block-end: 1px solid var(--c-line); }
+    .hd-grouped .nav .nav-plan { grid-column: 1 / -1; justify-self: center; inline-size: min(100%, 360px); margin-block: 26px var(--s-5); }
+  }
+  /* الجوال: اللغة سطر واحد مطويّ أسفل القائمة بدل سبع حبّات أعلاها */
+  @media (max-width: 760px) {
+    .hd-grouped .nav-lang { display: block; border-block-start: 1px solid var(--c-line); padding: 6px var(--s-4) var(--s-4); }
+    .nav-lang > summary { display: flex; align-items: center; gap: 8px; min-block-size: 48px; list-style: none; cursor: pointer; font-family: var(--font-body); font-size: var(--t-ui, .9375rem); color: var(--c-ink-soft); }
+    .nav-lang > summary::-webkit-details-marker { display: none; }
+    .nav-lang > summary:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; border-radius: 6px; }
+    .nav-lang summary b { font-weight: 600; color: var(--c-turq-deep); }
+    .nav-lang-change { margin-inline-start: auto; display: inline-flex; align-items: center; gap: 8px; }
+    .nav-lang[open] .ng-chev { transform: rotate(225deg); margin-block-start: 3px; }
+    .nav-lang .nav-langs { padding-block: 6px 4px; }
   }
 </style>
