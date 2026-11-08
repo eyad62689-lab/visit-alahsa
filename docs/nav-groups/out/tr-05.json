@@ -1,0 +1,35 @@
+{
+  "lang": "tr",
+  "stage": "01-05",
+  "batch": "nav-groups",
+  "positions": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.discover': 'Vahayı keşfedin',",
+      "notes": "Stage 1: en «Discover the oasis» / ar «اكتشف الواحة» (imperative). Termbase: generic noun «vaha» (generic_nouns), accusative «Vahayı» (no apostrophe on a common noun, PLAN suffix rule); site already uses «keşfedin» (gate.title «…bölüm bölüm keşfedin»; footer heading precedent «Keşfedin»). Stage 2: form is one polite-plural imperative for all three titles, following UI1-controls (a footer heading keeps the source's part of speech; the source is imperative in ar and en). Alternative noun form «Vaha keşfi / Tat ve alışveriş / Ziyaret hazırlığı» rejected: abstract, and breaks the source's verb form; kept as fallback if the blind reader rejects the imperative. «Vahayı gezin» rejected (the group also holds events, trails and map, not only touring). «El-Ahsa'yı keşfedin» rejected: source says the oasis, and the site name already carries El-Ahsa. Stage 3: everyday Turkish, siz register, no -mektedir chains. Stage 4: width estimate 15 chars (en 18); with taste (19 chars) total 34 vs en 32 chars, i/ı/l are narrow, so well inside the +52px tr slack (to be confirmed by measure-header-fit once tr is in ALL_PAGES). Stage 5: ş ı ü present, U+0020 only, no trailing space."
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.taste': 'Tadın ve satın alın',",
+      "notes": "Stage 1: en «Taste and shop» / ar «تذوّق وتسوّق»; the group holds food (nav.food), dining, fruits and the online stores (nav.stores), so the title must cover buying, not eating only. Stage 2: «Tadın» = imperative of tatmak. Risk: homograph with noun «tadın» (your taste); parallel with «satın alın» makes the verb reading unambiguous, so the pair is kept as a unit, flagged for the blind reader. Alternatives rejected: «Tadın ve alışveriş yapın» (24 chars, 39 total with discover, vs +52px slack: too tight, and «alışveriş yapın» reads as a mall); «Yiyin ve satın alın» (yiyin covers only eating, drops the sweet/fruit/drink side); «Tat ve alışveriş» (noun, breaks one-form rule); «Lezzet ve alışveriş» (lezzet = flavour as noun, same). «Tadına bakın ve alışveriş yapın» (31 chars) overflows the bar budget. Stage 3: «satın almak» is the neutral everyday verb for buying goods, which fits the stores directory (cf. TM «Mağazayı ziyaret edin» line in the stores batch is a different key). The Arabic pun taste/shop is not required (brief); the meaning is. Stage 4: no new fact added; no termbase conflict (nav.food «El-Ahsa mutfağı», nav.stores «Çevrim içi mağazalar» sit under it unchanged). Stage 5: ı ş present, U+0020 only."
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.visit': 'Ziyarete hazırlanın',",
+      "notes": "Stage 1: en «Arrange your visit» / ar «رتّب زيارتك»; contents: nav.stayShort «Konaklama», nav.map «Harita», nav.myTrip «Kayıtlı yerlerim». Constraint: must not duplicate or approach the gold button nav.plan «Gezinizi planlayın». Stage 2: «Ziyaretinizi planlayın» and «Gezinizi düzenleyin» rejected outright (same verb family / same noun as the button; the ar pair «خطّط لرحلتك» vs «رتّب زيارتك» is already near-synonym and the Turkish must keep the distance). «Ziyaretinizi düzenleyin» (literal arrange) rejected: düzenlemek ≈ planlamak to a Turkish reader, reads as a second plan button. «Ziyaretinizi ayarlayın» rejected: reads as scheduling/settings. «Ziyaret hazırlığı» (noun) rejected for one-form consistency. «Ziyarete hazırlanın» (get ready for your visit) keeps the practical meaning (lodging, map, saved places) with a different verb and no «gezi» noun, so it is clearly a section title, not the CTA. Stage 3: natural; «ziyaret» matches the site's frame word (termbase «ziyaret bilgileri», «Ziyaret saatleri»). Stage 4: width not binding (title appears in the menu only; the bar shows its links expanded, name kept for screen readers). Stage 5: ı present, U+0020, no trailing space. Confirmed: does not duplicate «Gezinizi planlayın»."
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.langChange': 'Değiştirin',",
+      "notes": "Stage 1: en «Change» / ar «تغيير»; shows in the mobile menu language row «Dil: {language} …… Değiştirin ⌄» and opens the language list. Stage 2: button forms are polite-plural imperatives (UI1-controls: Paylaşın, Kaydedin, Kapatın; existing tr 'lang.suggest.close': 'Kapatın', 'lang.suggest.cta': 'Türkçe okuyun'). So «Değiştirin», not bare «Değiştir» (singular/familiar imperative, sen register forbidden) and not «Değiştirme» (noun, 'replacement'). «Seçin» rejected: source says change, not choose, and the row already names the current language. Stage 3: standard UI Turkish. Stage 4: TM/termbase have no prior 'değiştir*' entry, so no conflict. Stage 5: ğ ş-free, U+0020 not needed, no trailing space."
+    }
+  ]
+}

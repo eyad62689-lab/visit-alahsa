@@ -1,0 +1,35 @@
+{
+  "lang": "de",
+  "stage": "01-05",
+  "batch": "nav-groups",
+  "positions": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.discover': 'Die Oase entdecken',",
+      "notes": "Stage 1: en «Discover the oasis» / ar «اكتشف الواحة». Termbase: Oase = «die Oase» (die Al-Ahsa-Oase; «die größte Oase der Welt» unaffected, no size claim here). Existing de UI uses the bare infinitive for actions (nav.discover «Entdecken», nav.plan «Reise planen», share.btn «Teilen», lang.suggest.close «Schließen»), so all three group titles use one form: verb infinitive + object (Sie-neutral, no imperative «Entdecken Sie»). Stage 2: «Die Oase entdecken» keeps the article for natural rhythm; «Oase entdecken» (no article) rejected as telegraphic; «Entdecken Sie die Oase» rejected (longer, Sie-imperative inconsistent with the infinitive buttons). «Oase erkunden» rejected: implies hiking/exploring, group also holds events and leisure. Stage 3: «Entdecken» is the established nav label (nav.discover) so no new register. Stage 4: width budget +130px for discover+taste against the English pair; estimate ~18 + ~22 chars vs 18 + 14 in English, about +60px, inside budget (not measured, measure-header-fit.mjs to confirm at stage 8). Stage 5: capitalisation (Oase noun, Die initial), no U+2014, plain U+0020, no trailing space."
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.taste': 'Genießen und einkaufen',",
+      "notes": "Stage 1: en «Taste and shop» / ar «تذوّق وتسوّق». Group = nav.food (Küche aus Al-Ahsa), nav.dining (Restaurants und Cafés), nav.fruits (Oasenfrüchte), nav.stores (Online-Shops): eating plus buying, so the title must cover shopping. Stage 2: «Schmecken und shoppen» rejected (Denglisch «shoppen», pun not required by brief); «Essen und Einkaufen» rejected (nominalised Einkaufen clashes with the infinitive form, and «Essen» omits fruit/stores nuance); «Genuss und Einkauf» rejected (nouns, breaks the one-form rule with discover/visit); «Kulinarik und Shopping» rejected (Anglicism). Chosen «Genießen und einkaufen»: verb infinitives, parallel to «Die Oase entdecken», «einkaufen» covers the Online-Shops. Stage 3: «genießen» is natural tourism register for food. Stage 4: no termbase conflict; Online-Shop (termbase de-estores) is the neighbour label and is a shop, matching «einkaufen». Width: longest of the three (22 chars), still within the +130px pair budget by estimate. Stage 5: lowercase «einkaufen» after und (verb), no U+2014, plain spaces."
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.g.visit': 'Besuch organisieren',",
+      "notes": "Stage 1: en «Arrange your visit» / ar «رتّب زيارتك». Group = Unterkünfte, Karte, Merkliste. Shown only as a section heading in the menu (screen-reader name in the bar), so it does not touch the bar width. Gold button neighbour: nav.plan = «Reise planen». Stage 2: must not duplicate or approximate it: «Besuch planen», «Reise vorbereiten», «Aufenthalt planen» rejected (same verb or noun field as «Reise planen»). «Besuch organisieren» chosen: different verb and different noun (Besuch vs Reise), mirrors the arrange/رتّب sense (logistics: stay, map, saved list). «Besuch vorbereiten» considered as equal; organisieren preferred as closer to arrange. «Aufenthalt organisieren» rejected: a stay is only one of the three links. Stage 3: «Besuch» is the everyday word for a visit as a trip to a place. Stage 4: no termbase entry conflict. Stage 5: capitalisation, no U+2014. Title does not duplicate the gold button «Reise planen»: verb and object both differ."
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "current": null,
+      "proposed": "    'nav.langChange': 'Ändern',",
+      "notes": "Stage 1: en «Change» / ar «تغيير»; row reads «Sprache: Deutsch  ……  Ändern ⌄» (lang.menu = Sprache). Stage 2: alternatives «Wechseln» (suggests switching to another thing right away, fine but less standard for settings rows), «Sprache ändern» (repeats the label already at the row start and is longer), «Ändern» chosen: standard one-word German UI label for a changeable setting, bare-infinitive/noun form like existing button labels (Teilen, Schließen). Stage 3: fine for mobile touch row. Stage 4: no termbase conflict; no tm entry for nav.langChange. Stage 5: initial Ä capitalised, no trailing space, no U+2014."
+    }
+  ]
+}

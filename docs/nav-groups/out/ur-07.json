@@ -1,0 +1,103 @@
+{
+  "batch": "nav-groups",
+  "stage": 7,
+  "date": "2026-11-08",
+  "threshold": 90,
+  "lang": "ur",
+  "score": 94,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 19,
+    "traveller_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "final": [
+    {
+      "id": "nav.g.discover",
+      "file": "src/i18n/ui.ts",
+      "value": "نخلستان دریافت کریں"
+    },
+    {
+      "id": "nav.g.taste",
+      "file": "src/i18n/ui.ts",
+      "value": "چکھیں اور خریداری کریں"
+    },
+    {
+      "id": "nav.g.visit",
+      "file": "src/i18n/ui.ts",
+      "value": "اپنا دورہ ترتیب دیں"
+    },
+    {
+      "id": "nav.langChange",
+      "file": "src/i18n/ui.ts",
+      "value": "تبدیل کریں"
+    }
+  ],
+  "judge_edits": [
+    {
+      "tm": "ur-translation/memory/tm.json",
+      "pair": "ui-chrome nav.g.discover, nav.g.taste, nav.g.visit, nav.langChange",
+      "reason": "four new en/ur pairs to be added by the coordinator; text unchanged from stage 5 (no value edited by the judge, so no fresh-reader re-check is required)"
+    }
+  ],
+  "blind_disposition": [
+    {
+      "obs": "nav.g.visit «اپنا دورہ ترتیب دیں» reads as a second plan button next to the gold «سفر کا منصوبہ بنائیں»",
+      "ruling": "source flaw raised to owner",
+      "reason": "cross-language pattern: all five readers (zh/de/ru/ur/tr) raise the same point on this key; ar «رتّب زيارتك» beside «خطّط لرحلتك» carries it. The Urdu already shares no word with the gold button (دورہ/ترتیب دیں vs سفر/منصوبہ بنائیں). A noun form would break the single imperative form of the three titles required by the brief, so the imperative is kept. Unscored."
+    },
+    {
+      "obs": "nav.g.visit does not name its contents (only رہائش and saved places); suggested noun headings «قیام اور محفوظات» / «رہائش اور میری فہرست»",
+      "ruling": "rejected (source flaw raised to owner)",
+      "reason": "the suggestions replace the source meaning (arrange your visit) with a list of contents absent from en/ar — adds/changes meaning; the mismatch is in the source and is raised to the owner with the item above."
+    },
+    {
+      "obs": "«دورہ» means an official/inspection visit or a fit (دل کا دورہ); «سفر» is the natural word",
+      "ruling": "rejected",
+      "reason": "termbase records «دورہ» as the word for a visit itself («الاحساء کا دورہ», «خاندانی اور ذاتی دورہ», «کاروباری دورہ», «متعدد دورے»; rekhta visit → دورہ), and tm carries «ثقافتی دورے»; overruling it on taste is barred. «سفر» is the gold button noun (nav.plan) and would bring the title closer to it, the very defect the reader names first. The «دل کا دورہ» sense does not arise in a menu heading."
+    },
+    {
+      "obs": "bottom row «زبان: اردو تبدیل کریں ⌄» reads as a broken sentence; suggested «زبان: اردو ⌄», «زبان تبدیل کریں» or «زبان تبدیل کریں (اردو)»",
+      "ruling": "rejected",
+      "reason": "layout fact (JUDGE-NOTES): the row is two visually separate elements, «زبان: اردو» at one end and «تبدیل کریں ⌄» pushed to the opposite end (margin-inline-start: auto); the reader input joined them into one text line, so the break is partly a cut artefact. Dropping the key removes the source word (en «Change», ar «تغيير»); «زبان تبدیل کریں» repeats lang.menu «زبان» in the same row; the bracket form changes the template outside this batch. «تبدیل کریں» is a single verb button in the -یں family of the published buttons (بند کریں)."
+    },
+    {
+      "obs": "nav.g.discover «نخلستان دریافت کریں»: natural, keep",
+      "ruling": "applied (kept)",
+      "reason": "agrees with stage 5; نخلستان = termbase generic for واحة."
+    },
+    {
+      "obs": "nav.g.taste «چکھیں اور خریداری کریں»: natural; «چکھیں» alone suggests tasting only but sub-items clarify, keep",
+      "ruling": "applied (kept)",
+      "reason": "the second verb «خریداری کریں» carries the online-stores half that the brief requires; چکھنا is the owner-closed form (2026-10-15) over «ذائقہ لیں»."
+    },
+    {
+      "obs": "«میرے محفوظ کردہ مقامات» stiff / «محفوظ مقامات» may read as safe places; suggested «میرے پسندیدہ مقامات» / «میری محفوظ فہرست»",
+      "ruling": "logged, not ruled here",
+      "reason": "published label (nav.myTrip / saved) outside this batch; recorded for a later ui batch per JUDGE-NOTES."
+    },
+    {
+      "obs": "«بازار، پارک اور زرعی فارم» long; «بازار، پارک اور فارم» shorter",
+      "ruling": "logged, not ruled here",
+      "reason": "published nav.leisure label outside this batch."
+    },
+    {
+      "obs": "«نقشہ» is top-level on laptop but inside the discover section on phone",
+      "ruling": "logged, not ruled here",
+      "reason": "structure of Header.astro (#294), not wording; noted for the owner with the visit-heading item."
+    },
+    {
+      "obs": "the three headings share the verb form, which is why the third reads as a button",
+      "ruling": "rejected",
+      "reason": "the brief requires one form for the three; the confusability is the source flaw raised above, not the form."
+    }
+  ],
+  "raised_to_owner": [
+    "nav.g.visit: five readers of five languages read ar «رتّب زيارتك» / en «Arrange your visit» as a second plan button beside nav.plan «خطّط لرحلتك», and as not describing its contents (stay + saved places). Source defect; Urdu keeps faith with the source («اپنا دورہ ترتیب دیں», no shared word with «سفر کا منصوبہ بنائیں»). One-line option: a source noun heading for the group (e.g. ar «إقامتك ومحفوظاتك» style) would let every language follow — unscored.",
+    "Phone menu places nav.map inside «Discover the oasis» while the laptop bar shows it as a top-level link (reader structure note, Header.astro) — unscored.",
+    "Published Urdu labels outside the batch noted by the reader for a later ui batch: «میرے محفوظ کردہ مقامات» (stiff; «محفوظ مقامات» can read as safe places) and «بازار، پارک اور زرعی فارم» (long) — unscored."
+  ],
+  "notes": "Width: ur measured at stage-5 values 1107px minimum bar window (MODE=fit), within 1181. Orthography checked by script: no U+064A/U+0643/U+0647/U+0629, no Persian digits, no final stop, no edge spaces. No open_item touched (only BRAND remains open). No judge edits."
+}
