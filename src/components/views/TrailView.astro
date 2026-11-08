@@ -14,9 +14,9 @@
 // أدوات المسار: صورة المحطة من heroImage معلمها (لا صورة لمحطة بلا معلم)، ورابط الاتجاهات
 // في خرائط قوقل بمحطات الخريطة نفسها وبترتيبها (سيراً لمسار المشي وبالسيارة لغيره)، وزر
 // المشاركة — بكل اللغات لأن نصوصها في قواميسها. وضع الجولة وعلامة «زرتُ» والتقدّم والطباعة
-// للعربية والإنجليزية وحدهما حتى تمرّ نصوصها بخطوط الترجمة (TOOLS_LANGS)، ومخفية حتى يعمل
-// السكربت. التقدّم في localStorage للمتصفح وحده، ووضع الجولة ينسخ محطات القائمة نفسها إلى
-// نافذة حوار فلا نص مكرّر في HTML.
+// تظهر في لغة يحمل قاموسها مفاتيحها كلها (TOOL_KEYS) بلا تراجع إلى الإنجليزية — لغة جديدة لا
+// تراها حتى تمرّ نصوصها بخطها — ومخفية حتى يعمل السكربت. التقدّم في localStorage للمتصفح وحده،
+// ووضع الجولة ينسخ محطات القائمة نفسها إلى نافذة حوار فلا نص مكرّر في HTML.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
@@ -25,6 +25,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import ShareButton from '../ShareButton.astro';
 import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
+import { ui } from '../../i18n/ui';
 import { TRAIL_SOURCES, sourceTitle, stopText, trailAttribution, trailText, trailUnescoNote, type Trail } from '../../data/trails';
 import { stopAttraction, trailsIndexHref, type TrailLang } from '../../lib/trails';
 import { attractionHref } from '../../lib/routes';
@@ -75,8 +76,11 @@ const unescoCount = stops.filter((s) => s.unesco).length;
 const idxHref = trailsIndexHref(lang);
 const labels = { landmark: t('trails.landmark'), stop: t('trails.stop') };
 
-const TOOLS_LANGS: readonly TrailLang[] = ['ar', 'en'];
-const tools = TOOLS_LANGS.includes(lang);
+const TOOL_KEYS = [
+  'trails.toolsH', 'trails.tour.start', 'trails.tour.of', 'trails.tour.prev', 'trails.tour.next', 'trails.tour.finish',
+  'trails.tour.close', 'trails.visited', 'trails.progress', 'trails.progressReset', 'trails.progressNote', 'trails.print',
+] as const;
+const tools = TOOL_KEYS.every((k) => Object.hasOwn(ui[lang], k));
 // خرائط قوقل: الأولى منطلقاً والأخيرة وجهة وما بينهما محطات وسيطة — بترتيب المسار
 const ll = (p: { lat: number; lng: number }) => `${p.lat},${p.lng}`;
 const dirUrl = (() => {
