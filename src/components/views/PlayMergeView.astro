@@ -1,0 +1,182 @@
+---
+// «رحلة الدمج 2048» — لعبة دمج أرقام بست محطات من الأحساء وثلاثة مستويات (عربي/إنجليزي فقط).
+// المحطات والنصوص في src/data/play-merge.ts، والمحرّك في src/scripts/play-merge.js،
+// والأنماط الأصلية محصورة تحت .merge-app في src/styles/play-merge.css. لا اتصال خارجي.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { MERGE_ALT, attractionHref, playHref } from '../../lib/routes';
+import { SITE, breadcrumb } from '../../lib/schema';
+import { MERGE_LEVELS, MERGE_PAGE, MERGE_RULES, MERGE_RUNTIME, MERGE_STAGES, type MergeLang } from '../../data/play-merge';
+import { PLAY_PAGE } from '../../data/play';
+import '../../styles/play-merge.css';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const L: MergeLang = lang === 'ar' ? 'ar' : 'en';
+const ar = L === 'ar';
+const t = useTranslations(lang);
+const C = MERGE_PAGE[L];
+const R = MERGE_RUNTIME[L];
+const selfPath = MERGE_ALT[L];
+
+const attractions = await getCollection('attractions');
+const refHref = (ref: (typeof MERGE_STAGES)[number]['ref']): string => {
+  if (ref === 'home') return ar ? '/' : '/en/';
+  const entry = attractions.find((a) => a.id === ref.attraction);
+  if (!entry) throw new Error(`play-merge: unknown attraction ${ref.attraction}`);
+  return attractionHref(entry.data, L);
+};
+const stages = MERGE_STAGES.map((s) => ({
+  target: s.target,
+  name: s[L].name,
+  note: s[L].note,
+  tip: s[L].tip,
+  thumb: `/img/${s.img}-400w.webp`,
+  photo: `/img/${s.img}-800w.webp`,
+  h: s.h800,
+  href: refHref(s.ref),
+}));
+const first = stages[0];
+const payload = JSON.stringify({ lang: L, R, stages, rules: MERGE_RULES, levels: MERGE_LEVELS }).replace(/</g, '\\u003c');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: C.title,
+    description: C.seoDesc,
+    url: `${SITE}${encodeURI(selfPath)}`,
+    inLanguage: L,
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: PLAY_PAGE[L].title, path: playHref(lang) },
+    { name: C.title, path: selfPath },
+  ]),
+];
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={58} motif="center" size="compact" lang={lang} />
+
+    <section class="merge-app" data-merge aria-label={C.title}>
+      <div class="wrap">
+        <noscript><p class="mg-noscript">{C.noscript}</p></noscript>
+        <div class="section-heading">
+          <div><h2>{C.headH}</h2><p>{C.headP}</p></div>
+          <div class="mg-head-actions">
+            <div class="journey-meter">{C.meter} <b id="mg-journeyProgress">0 / 6</b></div>
+            <button type="button" class="ghost" id="mg-helpBtn" aria-haspopup="dialog">{C.help}</button>
+          </div>
+        </div>
+
+        <div class="layout">
+          <section class="play" id="mg-playPanel" aria-label={C.playArea}>
+            <div class="gamehead">
+              <div><div class="stage-label" id="mg-stageLabel">{C.stageLabel}</div><h2 id="mg-stageTitle">{first.name}</h2></div>
+              <div class="stats">
+                <div class="stat"><small>{C.score}</small><b id="mg-score">0</b></div>
+                <div class="stat"><small>{C.best}</small><b id="mg-best">0</b></div>
+              </div>
+            </div>
+            <div class="settings">
+              <div class="settingrow">
+                <label for="mg-difficulty">{C.levelLabel}</label>
+                <select id="mg-difficulty">
+                  {MERGE_LEVELS.map((id) => <option value={id} selected={id === 'normal'}>{C.levels[id]}</option>)}
+                </select>
+              </div>
+              <p class="mode-desc" id="mg-modeDesc">{R.modeDesc.normal}</p>
+            </div>
+            <div class="goal"><span>{C.goal} <b id="mg-target">{first.target}</b></span><span>{C.highest} <b id="mg-highest">2</b></span></div>
+            <div class="progress" role="progressbar" aria-label={C.progress} aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mg-progress"><span id="mg-progressFill"></span></div>
+            <div class="board-wrap">
+              <div class="board-caption"><span id="mg-boardPlace">{first.name}</span><span>{C.boardCaption}</span></div>
+              <div class="board" id="mg-board" tabindex="0" role="group" aria-label={C.board}></div>
+            </div>
+            <div class="board-tools">
+              <span class="moves" id="mg-moves">{R.moves.replace('{n}', '0')}</span>
+              <button type="button" class="toggle" id="mg-photoToggle" aria-pressed="true">{C.photos} <span class="mg-check" aria-hidden="true">✓</span></button>
+            </div>
+            <div class="status" id="mg-status" role="status" aria-live="polite"></div>
+            <div class="actions">
+              <button type="button" id="mg-undo" class="btn secondary">{C.undo}</button>
+              <button type="button" id="mg-restart" class="btn secondary" aria-haspopup="dialog">{C.restart}</button>
+            </div>
+            <button type="button" class="btn hidden" id="mg-nextStage">{C.next}</button>
+            <div class="aux">
+              <span class="keyboard-hint">{C.keys}</span>
+              <div class="dpad" role="group" aria-label={C.dpad}>
+                <button type="button" data-dir="left" aria-label={C.dirs.left}>←</button>
+                <button type="button" data-dir="up" aria-label={C.dirs.up}>↑</button>
+                <button type="button" data-dir="down" aria-label={C.dirs.down}>↓</button>
+                <button type="button" data-dir="right" aria-label={C.dirs.right}>→</button>
+              </div>
+            </div>
+          </section>
+
+          <aside class="journey" aria-labelledby="mg-passport-h">
+            <div class="destination">
+              <img class="photo" id="mg-placeImage" src={first.photo} alt={first.name} width="800" height={first.h} decoding="async" />
+              <div class="photo-caption"><small>{C.youAreIn}</small><h2 id="mg-placeTitle">{first.name}</h2></div>
+            </div>
+            <p class="journey-note" id="mg-placeNote">{first.note}</p>
+            <a class="journey-link" id="mg-placeLink" href={first.href}>{C.discover}</a>
+            <div class="route-head"><h2 id="mg-passport-h">{C.passport}</h2><span id="mg-stampCount">{R.stampCount.replace('{n}', '0')}</span></div>
+            <nav class="stages" id="mg-stages" aria-label={C.stagesNav}></nav>
+            <div class="tip"><b>{C.tipH}</b><span id="mg-tip">{first.tip}</span></div>
+            <p class="storage" id="mg-storage">{R.saved}</p>
+          </aside>
+        </div>
+
+        <section class="how-strip" aria-labelledby="mg-strip-h">
+          <h2 id="mg-strip-h"><span>{C.stripH[0]}</span><span>{C.stripH[1]}</span></h2>
+          <p>{C.stripP}</p>
+          <div class="mini-merge" role="img" aria-label={C.miniMerge}><span>2</span>+<span>2</span>→<span>4</span></div>
+        </section>
+      </div>
+
+      <dialog id="mg-help" aria-labelledby="mg-helpTitle">
+        <div class="dialog-head"><h2 id="mg-helpTitle">{C.helpH}</h2><button type="button" class="close" data-close="help" aria-label={C.helpClose}>×</button></div>
+        <p>{C.helpP}</p>
+        <div class="example" id="mg-example"><span>2</span><b>+</b><span>2</span><b>→</b><span class="result">4</span></div>
+        <div class="mg-demo-row"><button type="button" class="ghost" id="mg-demo">{C.demo}</button></div>
+        <p class="tutorial-note" id="mg-demoNote" aria-live="polite">{C.demoNote}</p>
+        <ol class="how-list">
+          {C.howList.map(([b, rest]) => <li>{b && <strong>{b}</strong>}{rest}</li>)}
+        </ol>
+        <div class="help-note">{C.helpNote}</div>
+        <div class="modal-actions"><button type="button" class="btn" data-close="help">{C.ready}</button></div>
+      </dialog>
+      <dialog id="mg-result" aria-labelledby="mg-resultTitle">
+        <div class="dialog-head"><span class="eyebrow">{C.resultEyebrow}</span><button type="button" class="close" data-close="result" aria-label={C.resultClose}>×</button></div>
+        <img id="mg-resultPhoto" class="result-photo" alt="" width="800" height="450" />
+        <div class="result-icon" id="mg-resultIcon" aria-hidden="true">✦</div>
+        <h2 class="result-title" id="mg-resultTitle"></h2>
+        <p class="result-copy" id="mg-resultCopy"></p>
+        <div class="result-stats">
+          <div class="stat"><small>{C.score}</small><b id="mg-resultScore"></b></div>
+          <div class="stat"><small>{C.moves}</small><b id="mg-resultMoves"></b></div>
+        </div>
+        <div class="modal-actions"><button type="button" class="btn" id="mg-resultPrimary"></button><button type="button" class="btn secondary hidden" id="mg-resultUndo">{C.resultUndo}</button></div>
+      </dialog>
+      <dialog id="mg-confirm" aria-labelledby="mg-confirmTitle">
+        <div class="dialog-head"><h2 id="mg-confirmTitle">{R.restartH}</h2></div>
+        <p id="mg-confirmCopy">{R.restartP}</p>
+        <div class="modal-actions"><button type="button" class="btn" id="mg-confirmYes">{C.confirmYes}</button><button type="button" class="btn secondary" data-close="confirm">{C.cancel}</button></div>
+      </dialog>
+    </section>
+  </main>
+  <script is:inline type="application/json" data-merge-data set:html={payload}></script>
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  import '../../scripts/play-merge.js';
+</script>

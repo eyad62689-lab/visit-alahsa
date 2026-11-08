@@ -1,0 +1,76 @@
+---
+// فهرس «ألعاب الاكتشاف» — بطاقات الألعاب الثلاث (عربي/إنجليزي فقط كأدوات السفر).
+// النصوص في src/data/play.ts، والروابط من lib/routes.ts.
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import Photo from '../Photo.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { ALWAN_ALT, EXPLORER_ALT, MERGE_ALT, PLAY_ALT } from '../../lib/routes';
+import { SITE, breadcrumb } from '../../lib/schema';
+import { GAME_IDS, GAME_IMAGES, PLAY_PAGE, type GameId, type PlayLang } from '../../data/play';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const L: PlayLang = lang === 'ar' ? 'ar' : 'en';
+const ar = L === 'ar';
+const t = useTranslations(lang);
+const C = PLAY_PAGE[L];
+const selfPath = PLAY_ALT[L];
+const HREF: Record<GameId, string> = { alwan: ALWAN_ALT[L], explorer: EXPLORER_ALT[L], merge: MERGE_ALT[L] };
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: C.title,
+    description: C.seoDesc,
+    url: `${SITE}${encodeURI(selfPath)}`,
+    inLanguage: L,
+    hasPart: GAME_IDS.map((id) => ({ '@type': 'WebPage', name: C.games[id][0], url: `${SITE}${encodeURI(HREF[id])}` })),
+  },
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: C.title, path: selfPath },
+  ]),
+];
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={56} motif="center" size="compact" lang={lang} />
+    <section class="container ph-grid" aria-label={C.title}>
+      {GAME_IDS.map((id, i) => (
+        <article class="ph-card">
+          <a class="ph-media" href={HREF[id]} tabindex="-1" aria-hidden="true">
+            <Photo src={GAME_IMAGES[id]} label="" class="ph-photo" eager={i === 0} sizes="(max-width: 720px) 100vw, 33vw" />
+          </a>
+          <div class="ph-body">
+            <span class="ph-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h2><a href={HREF[id]}>{C.games[id][0]}</a></h2>
+            <p>{C.games[id][1]}</p>
+            <a class="ph-cta" href={HREF[id]} aria-label={`${C.play}: ${C.games[id][0]}`}>{C.play} <span aria-hidden="true">{ar ? '←' : '→'}</span></a>
+          </div>
+        </article>
+      ))}
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .ph-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: var(--s-5); padding-block: var(--s-7) var(--s-8); }
+  .ph-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); overflow: hidden; }
+  .ph-media { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--c-sand); }
+  .ph-media :global(.ph-photo), .ph-media :global(.ph-photo img) { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .ph-body { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-5); flex: 1; }
+  .ph-n { font-family: var(--font-latin); font-variant-numeric: lining-nums tabular-nums; color: var(--c-ink-soft); font-size: var(--t-sm); }
+  .ph-body h2 { font-family: var(--font-heading); font-size: var(--t-xl); margin: 0; line-height: 1.3; }
+  .ph-body h2 a { color: var(--c-ink); text-decoration: none; }
+  .ph-body h2 a:hover { color: var(--c-turq-deep); }
+  .ph-body p { margin: 0; color: var(--c-ink-soft); line-height: 1.8; flex: 1; }
+  .ph-cta { align-self: flex-start; margin-block-start: var(--s-3); padding: var(--s-2) var(--s-4); border-radius: var(--radius-pill); background: var(--c-turq); color: #fff; text-decoration: none; font-weight: 600; min-block-size: 44px; display: inline-flex; align-items: center; gap: var(--s-2); }
+  .ph-cta:hover { background: var(--c-turq-deep); }
+</style>

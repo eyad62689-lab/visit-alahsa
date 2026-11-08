@@ -99,6 +99,7 @@ export const ui = {
     // ورابطاها (التذييل وقسم «كيف تصل؟») مشروطان بالعربية فلا يقودان إلى صفحة غير موجودة.
     'foot.l.visa': 'دليل التأشيرات',
     'foot.l.tools': 'أدوات السفر',
+    'foot.l.play': 'ألعاب الاكتشاف',
     'plan.visa': 'دليل التأشيرات',
     'plan.tools.h': 'أدوات السفر',
     'plan.tools.p': 'حوّل عملتك إلى الريال، واعرف فرق التوقيت مع الأحساء، وقسّم المصاريف، وجهّز حقيبتك، وتحقّق من قابس جهازك.',
@@ -506,6 +507,7 @@ export const ui = {
     'foot.l.getThere': 'Getting there',
     'foot.l.visa': 'Visa guide',
     'foot.l.tools': 'Travel tools',
+    'foot.l.play': 'Discovery games',
     'plan.visa': 'Visa guide',
     'plan.tools.h': 'Travel tools',
     'plan.tools.p': 'Convert your currency to riyals, check the time difference with Al-Ahsa, split costs, pack your bag and check your plug.',
