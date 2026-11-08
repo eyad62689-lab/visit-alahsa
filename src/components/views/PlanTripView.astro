@@ -11,7 +11,7 @@ import DataTable from '../DataTable.astro';
 import { practicalTable } from '../../lib/tables';
 import { VISA_LANGS, visaHref } from '../../lib/visa-guide.mjs';
 import { getCollection } from 'astro:content';
-import { blogHref, guidesHref } from '../../lib/routes';
+import { blogHref, guidesHref, toolsHref } from '../../lib/routes';
 import { guidesListed } from '../../lib/guides';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -456,6 +456,16 @@ const jsonLd = [
         </dl>
         {/* جدول المواعيد والرسوم الموثّقة (الخطوة 8): من بنود practical نفسها — C24 يحرس أرقامه */}
         {practical && <DataTable table={practical} />}
+        {/* أدوات السفر — عربي/إنجليزي فقط (src/lib/routes.ts TOOLS_ALT) */}
+        {(lang === 'ar' || lang === 'en') && (
+          <aside class="pt-guides" data-reveal>
+            <div>
+              <h3 class="pt-guides-h">{t('plan.tools.h')}</h3>
+              <p class="pt-guides-d">{t('plan.tools.p')}</p>
+            </div>
+            <a class="btn btn--turq" href={toolsHref(lang)} data-track="related_click" data-track-kind="tools" data-track-item-id="travel-tools">{t('plan.tools.cta')}</a>
+          </aside>
+        )}
       </div>
     </section>
 

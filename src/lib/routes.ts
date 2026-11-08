@@ -123,6 +123,11 @@ export const storesHref = (lang: Lang = 'ar'): string => STORES_ALT[lang];
 export const GUIDES_ALT = { ar: '/مرشدون-سياحيون/', en: '/en/tour-guides/' } as const;
 export const guidesHref = (lang: Lang): string => (lang === 'ar' ? GUIDES_ALT.ar : GUIDES_ALT.en);
 
+/** أدوات السفر (العملة والتوقيت والمصاريف والحقيبة والكهرباء) — عربي/إنجليزي فقط كصفحة «عن زوروا الأحساء»،
+ *  فلا تدخل STATIC_AR ولا تُربط من اللغات الأخرى حتى تمرّ نصوصها بخطوط الترجمة. */
+export const TOOLS_ALT = { ar: '/أدوات-السفر/', en: '/en/travel-tools/' } as const;
+export const toolsHref = (lang: Lang): string => (lang === 'ar' ? TOOLS_ALT.ar : TOOLS_ALT.en);
+
 type GuideSlugs = { slug_ar: string; slug_en: string };
 
 /** رابط صفحة المرشد — بشرطة ختامية دائماً. غير العربية تقصد الصفحة الإنجليزية. */
