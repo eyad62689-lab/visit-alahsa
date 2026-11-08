@@ -6,7 +6,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH, eventsFor } from '../data/events';
-import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT, TOOLS_ALT, PLAY_ALT, ALWAN_ALT, EXPLORER_ALT, MERGE_ALT } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT, TOOLS_ALT, MARKETS_ALT, PLAY_ALT, ALWAN_ALT, EXPLORER_ALT, MERGE_ALT } from '../lib/routes';
 import { publishedGuides } from '../lib/guides';
 import { storesLangs } from '../lib/stores';
 import { newestDate } from '../lib/git-dates';
@@ -80,6 +80,7 @@ export const GET: APIRoute = async ({ site }) => {
     // «عن زوروا الأحساء» (2026-09-27) — عربي/إنجليزي فقط
     { ...ABOUT_ALT, lastmod: dateOf(`${V}AboutView.astro`) },
     { ...TOOLS_ALT, lastmod: dateOf(`${V}TravelToolsView.astro`, 'src/data/travel-tools.ts') },
+    { ...MARKETS_ALT, lastmod: dateOf(`${V}FarmersMarketsView.astro`, 'src/data/farmers-markets.ts') },
     // ألعاب الاكتشاف (عربي/إنجليزي): الفهرس والألعاب الثلاث
     { ...PLAY_ALT, lastmod: dateOf(`${V}PlayHubView.astro`, 'src/data/play.ts') },
     { ...ALWAN_ALT, lastmod: dateOf(`${V}PlayAlwanView.astro`, 'src/data/play-alwan.ts') },

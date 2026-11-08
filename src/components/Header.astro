@@ -7,7 +7,7 @@ import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
 import { LANG_META } from '../i18n/langs';
 import { listedAlt } from '../i18n/unlisted';
-import { storesHref } from '../lib/routes';
+import { storesHref, marketsHref } from '../lib/routes';
 
 // overlay: رأس الرئيسية «الواحة تتكشّف» (القرار أ3، البند 4) — شفاف فوق الفصل الأول، ومضبّب
 // كالمعتاد حين يعبر حارس [data-header-sentinel] (عند 60% من ارتفاع الشاشة) أعلى الإطار.
@@ -66,6 +66,8 @@ const groups: { id: string; label: string; flat?: boolean; items: NavItem[] }[] 
     { href: routes.food, label: t('nav.food') },
     { href: routes.dine, label: t('nav.dining') },
     { href: routes.fruits, label: t('nav.fruits') },
+    // أسواق المزارعين عربي/إنجليزي فقط (src/lib/routes.ts MARKETS_ALT)
+    ...(ar || lang === 'en' ? [{ href: marketsHref(lang), label: t('nav.markets') }] : []),
     { href: storesHref(lang), label: t('nav.stores') },
   ] },
   { id: 'visit', label: t('nav.g.visit'), flat: true, items: [

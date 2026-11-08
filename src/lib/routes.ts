@@ -128,6 +128,11 @@ export const guidesHref = (lang: Lang): string => (lang === 'ar' ? GUIDES_ALT.ar
 export const TOOLS_ALT = { ar: '/أدوات-السفر/', en: '/en/travel-tools/' } as const;
 export const toolsHref = (lang: Lang): string => (lang === 'ar' ? TOOLS_ALT.ar : TOOLS_ALT.en);
 
+/** أسواق المزارعين والأسواق اليومية (2026-11-08) — عربي/إنجليزي فقط كأدوات السفر، فلا تدخل STATIC_AR
+ *  ولا تُربط من اللغات الأخرى حتى تمرّ نصوصها بخطوط الترجمة. */
+export const MARKETS_ALT = { ar: '/أسواق-المزارعين/', en: '/en/farmers-markets/' } as const;
+export const marketsHref = (lang: Lang): string => (lang === 'ar' ? MARKETS_ALT.ar : MARKETS_ALT.en);
+
 /** ألعاب الاكتشاف (التلوين والذاكرة و2048) وفهرسها — عربي/إنجليزي فقط كأدوات السفر،
  *  فلا تُربط من اللغات الأخرى حتى تمرّ نصوصها بخطوط الترجمة. */
 export const PLAY_ALT = { ar: '/ألعاب/', en: '/en/play/' } as const;
