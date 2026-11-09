@@ -1,7 +1,8 @@
 // المسارات المقترحة (مسارات) — مصدر الحقيقة الوحيد لقسم /trails/ بلغاته الخمس.
 //
 // المحتوى في trails.json **منسوخ بايتاً ببايت** من ملف المالك المدقَّق (md5
-// cd1b8636bff88434658b144e97250044، 2026-09-26) — لا يُعاد صوغ أي نص ولا تُضاف واقعة.
+// cd1b8636bff88434658b144e97250044، 2026-09-26) — لا يُعاد صوغ أي نص ولا تُضاف واقعة. وما تغيّر
+// بعده فبقرار المالك وحده: «جواثا» بدل «جواثى» في العنوان والمحطة، وhook/tip/teaser (2026-11-09).
 // المخطط أدناه صارم (strictObject): أي حقل زائد أو ناقص يُفشل البناء لحظة الاستيراد،
 // فيستحيل أن تتسلل حقيقة غير مدقَّقة عبر حقل جديد لا يعرفه القالب.
 //
@@ -20,8 +21,16 @@ import rawUr from './trails.ur.json';
 import rawTr from './trails.tr.json';
 
 const Bi = z.strictObject({ ar: z.string().min(1), en: z.string().min(1) });
-const TrailText = z.strictObject({ title: z.string().min(1), tagline: z.string().min(1), intro: z.string().min(1) });
-const StopText = z.strictObject({ name: z.string().min(1), text: z.string().min(1) });
+// hook (عنوان افتتاحي فوق الأدوات) وtip (نصيحة عملية) وteaser (سطر المحطة): نصوص اعتمدها المالك
+// 2026-11-09 من ملفه المرفوع. اختيارية في المخطط لتُضاف لغةً لغة عبر خطوطها، لكنها «كلها أو لا شيء»
+// في كل لغة (guideIssues) — فلا تظهر صفحة نصفها بنصائح ونصفها بلا.
+const TrailText = z.strictObject({ title: z.string().min(1), tagline: z.string().min(1), intro: z.string().min(1), hook: z.string().min(1).optional(), tip: z.string().min(1).optional() });
+const StopText = z.strictObject({ name: z.string().min(1), text: z.string().min(1), teaser: z.string().min(1).optional() });
+type GuideFields = { hook?: string; tip?: string; stops: { teaser?: string }[] };
+const guideIssues = (trails: GuideFields[]): string | undefined => {
+  const flags = trails.flatMap((t) => [t.hook, t.tip, ...t.stops.map((s) => s.teaser)].map((v) => v !== undefined));
+  return flags.every(Boolean) || !flags.some(Boolean) ? undefined : 'hook/tip/teaser ناقصة في بعض المسارات أو المحطات';
+};
 
 export const TrailsSchema = z.strictObject({
   meta: z.strictObject({
@@ -61,6 +70,10 @@ export const TrailsSchema = z.strictObject({
   d.trails.forEach((t, i) => t.stops.forEach((s, j) => s.sources.forEach((k) => {
     if (!(k in d.sources)) ctx.addIssue({ code: 'custom', path: ['trails', i, 'stops', j, 'sources'], message: `مفتاح مصدر غير معرَّف: ${k}` });
   })));
+  for (const l of ['ar', 'en'] as const) {
+    const msg = guideIssues(d.trails.map((t) => ({ ...t[l], stops: t.stops.map((s) => s[l]) })));
+    if (msg) ctx.addIssue({ code: 'custom', path: ['trails'], message: `${l}: ${msg}` });
+  }
 });
 
 export type TrailsData = z.infer<typeof TrailsSchema>;
@@ -86,9 +99,12 @@ const L10nSchema = z.strictObject({
   sources: z.record(z.string(), z.string().min(1)),
   trails: z.record(z.string(), z.strictObject({
     title: z.string().min(1), tagline: z.string().min(1), intro: z.string().min(1),
+    hook: z.string().min(1).optional(), tip: z.string().min(1).optional(),
     stops: z.record(z.string(), StopText),
   })),
 }).superRefine((d, ctx) => {
+  const msg = guideIssues(Object.values(d.trails).map((t) => ({ ...t, stops: Object.values(t.stops) })));
+  if (msg) ctx.addIssue({ code: 'custom', path: ['trails'], message: msg });
   if (!sameKeys(Object.keys(d.sources), Object.keys(TRAILS_DATA.sources))) ctx.addIssue({ code: 'custom', path: ['sources'], message: 'مفاتيح المصادر لا تطابق trails.json' });
   if (!sameKeys(Object.keys(d.trails), TRAILS.map((t) => t.slug))) ctx.addIssue({ code: 'custom', path: ['trails'], message: 'المسارات لا تطابق trails.json' });
   for (const t of TRAILS) {
@@ -108,8 +124,8 @@ const isBase = (lang: TrailLang): lang is 'ar' | 'en' => lang === 'ar' || lang =
 /** عنوان المسار وتسميته ومقدّمته بلغة الصفحة */
 export const trailText = (t: Trail, lang: TrailLang): z.infer<typeof TrailText> => {
   if (isBase(lang)) return t[lang];
-  const { title, tagline, intro } = L10N[lang].trails[t.slug];
-  return { title, tagline, intro };
+  const { title, tagline, intro, hook, tip } = L10N[lang].trails[t.slug];
+  return { title, tagline, intro, hook, tip };
 };
 /** اسم المحطة ونصها بلغة الصفحة */
 export const stopText = (t: Trail, s: TrailStop, lang: TrailLang): z.infer<typeof StopText> =>
