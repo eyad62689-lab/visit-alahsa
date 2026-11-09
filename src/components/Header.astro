@@ -96,6 +96,9 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     <a href={home} class="brand">
       <Wordmark variant="turq" size="sm" pageLang={lang} />
     </a>
+    {/* شارة الإطلاق التجريبي: العربية والإنجليزية وحدهما (بقية اللغات لم تمرّ النصَّ بخطوط ترجمتها).
+        خارج رابط الشعار كي لا تدخل اسمه المقروء. */}
+    {(ar || lang === 'en') && <span class="beta">{ar ? 'إطلاق تجريبي' : 'Beta launch'}</span>}
 
     {/* الصندوق نفسه هو عنصر الإتاحة (بؤرة + مسافة + حالة محددة أصلية)، والملصق
         بصري بحت — role="button" على <label> مخالفة aria-allowed-role (لايتهاوس
@@ -258,6 +261,16 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
      بالأداة نفسها — لا بالنظر ولا بعدّ المحارف. */
   .hd-in { inline-size: min(100% - var(--s-3), 1280px); margin-inline: auto; display: flex; align-items: center; gap: var(--s-3); min-block-size: 68px; }
   .brand { text-decoration: none; }
+  /* الشارة تلتصق بالوردمارك (هامش سالب يلغي نصف فجوة الحاوية) ولا تتقلّص ولا تلتفّ */
+  .beta { flex: none; margin-inline-start: calc(var(--s-3) / -2); padding: 3px 10px 4px; border: 1px solid color-mix(in srgb, var(--c-gold) 70%, transparent); border-radius: var(--radius-pill); background: color-mix(in srgb, var(--c-gold) 10%, transparent); color: var(--c-gold-deep); font-family: var(--font-body); font-size: .75rem; font-weight: 600; line-height: 1.2; white-space: nowrap; user-select: none; }
+  :global([lang='en']) .beta { font-family: var(--font-latin); font-size: .8125rem; letter-spacing: .02em; }
+  /* بين عتبة الطيّ و1280px تضيق الإنجليزية (tools/measure-header-fit.mjs): الشارة تلتصق أكثر وتنحف */
+  @media (min-width: 1181px) and (max-width: 1279px) {
+    .beta { padding-inline: 7px; margin-inline-start: calc(var(--s-3) / -1.5); }
+    :global([lang='en']) .hd-grouped .nav { gap: 22px; }
+    :global([lang='en']) .ng--flat .ng-list { gap: 22px; }
+  }
+  .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) .beta { color: var(--c-sand); border-color: rgba(247,243,234,.55); background: rgba(247,243,234,.08); }
   /* 16px لا 20px: ثمان فجوات × 4px = 32px موفَّرة في كل لغة، وهي وحدها تكفي
      لردّ العربية إلى داخل الحاوية. الشريط يبقى متنفّساً بصرياً عند 16px. */
   .nav { display: flex; gap: 16px; margin-inline: auto; min-inline-size: 0; }
@@ -332,6 +345,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     .plan-link { padding-inline: 6px; }
     .lang { padding: 6px 9px; }
     .burger { inline-size: 40px; }
+    .beta { margin-inline-start: 0; padding-inline: 8px; }
     /* الروسية: كلمة «Сохранённые» وحدها 101.7px فتفيض أدوات الشريط 29px عند 320px
        (و28px أخرى متى ظهرت شارة العدّاد). خطّ التنقّل المضغوط نفسه، والشارة تُعلَّق على
        زاوية الرابط فلا تأخذ عرضاً، والكسر بواصلة ملاذٌ أخير حين لا يتّسع السطر للكلمة. */
