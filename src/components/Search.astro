@@ -48,7 +48,6 @@ const t = useTranslations(lang);
     const results = dialog.querySelector('#sm-results');
     const closeBtn = dialog.querySelector('#sm-close');
     const form = dialog.querySelector('#sm-form');
-    let loaded = false, loadFailed = false;
 
     // تحميل Pagefind كسولاً مرة واحدة، ويُحفظ على window ليبقى عبر تنقّلات ClientRouter.
     // وعدٌ واحد مشترك: كل حرف يُكتب قبل اكتمال التحميل كان يستدعي options() وinit()
@@ -75,7 +74,6 @@ const t = useTranslations(lang);
       let pf;
       try { pf = await ensurePagefind(); }
       catch (e) {
-        loadFailed = true;
         setMsg('⚠︎ ' + labels.empty); // في dev لا يوجد فهرس؛ يعمل في نسخة الإنتاج
         return;
       }
@@ -85,7 +83,7 @@ const t = useTranslations(lang);
       const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
       // الرابط والعنوان نصّ خام من الفهرس فيُهرَّبان؛ المقتطف HTML يولّده Pagefind بوسم <mark> فيبقى كما هو
       const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      results.innerHTML = top.map((d, i) =>
+      results.innerHTML = top.map((d) =>
         '<a class="sm-item" href="' + esc(d.url) + '" tabindex="-1">' +
           '<span class="sm-t">' + esc(d.meta && d.meta.title ? d.meta.title : d.url) + '</span>' +
           '<span class="sm-ex">' + d.excerpt + '</span>' +

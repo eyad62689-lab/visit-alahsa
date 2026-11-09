@@ -19,7 +19,7 @@ const C = HOME_COPY[lang].saved;
   function syncBar() {
     const bar = document.querySelector<HTMLElement>('[data-savebar]');
     if (!bar) { document.documentElement.classList.remove('has-savebar'); return; }
-    const n: number = ((window as any).VAPlan?.get?.() ?? []).length;
+    const n: number = (window.VAPlan?.get?.() ?? []).length;
     bar.hidden = n === 0;
     document.documentElement.classList.toggle('has-savebar', n > 0);
   }

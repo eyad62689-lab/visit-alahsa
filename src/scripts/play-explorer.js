@@ -87,7 +87,7 @@ function initExplorer() {
   function sound() {
     if (!state.sound) return;
     try {
-      const Ctx = window.AudioContext || window.webkitAudioContext;
+      const Ctx = window.AudioContext || /** @type {any} */ (window).webkitAudioContext;
       audio = audio || new Ctx();
       if (audio.state === 'suspended') audio.resume();
       const o = audio.createOscillator(), g = audio.createGain();

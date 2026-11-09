@@ -1,6 +1,6 @@
 # زوروا الأحساء — Visit Al-Ahsa
 
-موقع Astro ثنائي اللغة (عربي RTL في الجذر، إنجليزي تحت `/en/`). يُنشر آلياً:
+موقع Astro بسبع لغات: العربية RTL في الجذر، ثم `/en/` و`/zh/` و`/de/` و`/ru/` و`/ur/` (RTL) و`/tr/`. يُنشر آلياً:
 `git push` إلى `main` ← Netlify يبني ← visit-alahsa.com.
 
 - البناء: `npm run build` (يشمل فهرسة Pagefind). المعاينة: إعداد `astro-preview` في `.claude/launch.json`.

@@ -86,7 +86,7 @@ const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L }).repla
       if (!int || !dur || !com) { body.hidden = true; wait.hidden = false; return; }
       const tpl = D.templates[`${int}-${dur}`];
       if (!tpl) return;
-      const saved: string[] = (window as any).VAPlan?.get?.() ?? [];
+      const saved: string[] = window.VAPlan?.get?.() ?? [];
       const savedStops = saved.map((s) => D.places[s]).filter(Boolean);
       body.replaceChildren();
       titleEl.textContent = tpl.title;
@@ -110,7 +110,7 @@ const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L }).repla
       if (tip) body.append(el('p', 'p6-tip', tip));
       body.hidden = false; wait.hidden = true;
       const key = `${int}-${dur}-${com}`;
-      if (key !== lastKey) { lastKey = key; (window as any).VATrack?.('route_built', { interest: int, duration: Number(dur), companion: com, saved: savedStops.length }); }
+      if (key !== lastKey) { lastKey = key; window.VATrack?.('route_built', { interest: int, duration: Number(dur), companion: com, saved: savedStops.length }); }
     };
     form.addEventListener('change', render);
     document.addEventListener('va-plan-change', render);

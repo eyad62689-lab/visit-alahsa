@@ -64,6 +64,8 @@ export async function listEntries(store, prefix, cap) {
   return out.filter(Boolean)
 }
 
+const BOTISH_RE = /bot|crawl|spider|scrape|fetch|python|curl|wget|http|go-|axios|scrapy|headless/i
+
 function analyzeCrawlers(entries) {
   const byUa = new Map()
   const byIp = new Map()
@@ -82,7 +84,6 @@ function analyzeCrawlers(entries) {
   const topUa = [...byUa.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10)
   return { suspects: suspects.sort((a, b) => b.hits - a.hits), topUa, total: entries.length }
 }
-const BOTISH_RE = /bot|crawl|spider|scrape|fetch|python|curl|wget|http|go-|axios|scrapy|headless/i
 
 // نتائج Serper (رابط الناشر وعنوانه) نصّ خارجي غير موثوق: يُهرَّب قبل أي تضمين في HTML البريد
 // أو خلية جدول Markdown، وإلا حقن ناشرٌ علامات في بريد المالك أو كسر جدول التقرير.
