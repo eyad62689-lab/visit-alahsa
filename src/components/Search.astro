@@ -163,6 +163,8 @@ const t = useTranslations(lang);
   .sm-inner { display: flex; flex-direction: column; max-block-size: 78vh; }
 
   .sm-bar { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-3) var(--s-4); border-block-end: 1px solid var(--c-line); background: #fff; }
+  /* إتاحة (WCAG 2.4.7): حقل البحث بلا outline، فمؤشر التركيز المرئي خطّ تركوازي أسفل الشريط كله */
+  .sm-bar:focus-within { border-block-end-color: var(--c-turq); box-shadow: inset 0 -1px 0 var(--c-turq); }
   .sm-ic { color: var(--c-turq); flex-shrink: 0; }
   .sm-input { flex: 1; min-inline-size: 0; font-family: var(--font-body); font-size: var(--t-lg); color: var(--c-ink); background: none; border: 0; outline: none; padding-block: 4px; }
   .sm-input::placeholder { color: var(--c-ink-60); }

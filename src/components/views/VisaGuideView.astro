@@ -81,7 +81,8 @@ const jsonLd = [
           <p>{C.intro.parts.map((p) => typeof p === 'string' ? p : <a href={p.href}>{p.t}</a>)}</p>
         </section>
 
-        <section class="card vg-sec" aria-labelledby="vg-table">
+        {/* إتاحة: غلاف الجدول القابل للتمرير هو المعلم المسمّى بالعنوان؛ تسمية القسم به أيضاً تُنتج معلمين متطابقي الاسم (axe landmark-unique) */}
+        <section class="card vg-sec">
           <h2 id="vg-table">{C.table.h}</h2>
           <div class="tbl-wrap vg-tbl" role="region" tabindex="0" aria-labelledby="vg-table">
             <table class="va-table">
@@ -133,7 +134,7 @@ const jsonLd = [
           </div>
         </section>
 
-        <section class="card vg-sec" aria-labelledby="vg-links">
+        <section class="card vg-sec">
           <h2 id="vg-links">{C.links.h}</h2>
           <div class="tbl-wrap vg-tbl" role="region" tabindex="0" aria-labelledby="vg-links">
             <table class="va-table">
