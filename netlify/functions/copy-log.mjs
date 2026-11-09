@@ -13,7 +13,7 @@
 
 import { getStore } from '@netlify/blobs'
 import { createHash, randomUUID } from 'node:crypto'
-import { originAllowed, bump, dayKey } from './advisor/core.mjs'
+import { originAllowed, bump, dayKey, ipBucket } from './advisor/core.mjs'
 
 const SUSPICIOUS_LENGTH = 400
 const SUSPICIOUS_REPEATS = 5
@@ -48,9 +48,12 @@ export default async (req, context) => {
 
   const store = getStore('copy-logs')
 
-  // الحدّ اليومي للعنوان قبل أي كتابة أخرى؛ بلا عنوان لا حدّ ممكن فلا يُخزَّن شيء
+  // الحدّ اليومي للعنوان قبل أي كتابة أخرى؛ بلا عنوان لا حدّ ممكن فلا يُخزَّن شيء.
+  // مفتاح الحدّ من دلو العنوان (IPv6 على /64 كما في المستشار) حتى لا يتجاوزه مشترك واحد
+  // بتبديل عناوين بادئته؛ تجزئة الحدث نفسها تبقى على العنوان كما كانت.
   if (!ipHash) return new Response(null, { status: 204 })
-  const daily = await bump(store, `ip/${dayKey()}/${ipHash}`, IP_DAILY_CAP)
+  const capHash = createHash('sha256').update(salt + ipBucket(ip)).digest('hex').slice(0, 24)
+  const daily = await bump(store, `ip/${dayKey()}/${capHash}`, IP_DAILY_CAP)
   if (!daily.allowed) return new Response(null, { status: 204 })
 
   // عدّاد الجلسة في الخادم (سباق كتابة نادر ومقبول لغرض إحصائي)
