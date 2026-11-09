@@ -41,7 +41,7 @@ const tx = trailText(trail, lang);
 const homeHref = ar ? '/' : `/${lang}/`;
 const all = await getCollection('attractions');
 
-// نصّ الحديث في محطة جواثى مضمَّن وسط الجملة بين «…»: يُعزل في <q> بلا أي تغيير في
+// نصّ الحديث في محطة جواثا مضمَّن وسط الجملة بين «…»: يُعزل في <q> بلا أي تغيير في
 // المحارف (quotes: none فلا يضيف المتصفح علامات تنصيص) — المقطع الذي يحمل التشكيل وحده.
 // الحارس: الأجزاء مجموعةً تساوي النص الأصلي بايتاً ببايت وإلا فشل البناء.
 // التشكيل: الفتحتان حتى السكون (U+064B–U+0652) — بأرقام المحارف لا بمحارفها المركّبة غير المرئية
@@ -63,6 +63,7 @@ const stops = trail.stops.map((s, i) => {
     key: s.key,
     name: st.name,
     text: st.text,
+    teaser: st.teaser,
     quote: splitQuote(st.text),
     unesco: s.unesco,
     href: att ? attractionHref(att.data, lang) : undefined,
@@ -81,6 +82,8 @@ const TOOL_KEYS = [
   'trails.tour.close', 'trails.visited', 'trails.progress', 'trails.progressReset', 'trails.progressNote', 'trails.print',
 ] as const;
 const tools = TOOL_KEYS.every((k) => Object.hasOwn(ui[lang], k));
+// العنوان الافتتاحي والنصيحة وسطر المحطة: في لغة تحمل نصوصها (trails*.json) وعنوان النصيحة في قاموسها
+const guide = Boolean(tx.hook && tx.tip) && Object.hasOwn(ui[lang], 'trails.tip');
 // خرائط قوقل: الأولى منطلقاً والأخيرة وجهة وما بينهما محطات وسيطة — بترتيب المسار
 const ll = (p: { lat: number; lng: number }) => `${p.lat},${p.lng}`;
 const dirUrl = (() => {
@@ -138,9 +141,16 @@ const jsonLd = [
 
     <section class="container trd-intro">
       <p class="trd-intro-p">{tx.intro}</p>
+      {guide && (
+        <aside class="trd-tip" aria-labelledby="trd-tip-h" data-trail-tip>
+          <h2 id="trd-tip-h" class="trd-tip-h">{t('trails.tip')}</h2>
+          <p>{tx.tip}</p>
+        </aside>
+      )}
     </section>
 
     <section class="container trd-tools" aria-label={tools ? t('trails.toolsH') : undefined} data-trail-tools={trail.slug}>
+      {guide && <p class="trd-hook" data-trail-hook>{tx.hook}</p>}
       <div class="trd-actions">
         {tools && <button type="button" class="btn btn--turq" data-tour-start hidden>{t('trails.tour.start')}</button>}
         {dirUrl && <a class="trd-act" href={dirUrl} target="_blank" rel="noopener" data-directions>{t('plan.route')}</a>}
@@ -168,6 +178,7 @@ const jsonLd = [
                 {s.name}
                 {s.unesco && <span class="trd-badge" data-unesco-badge>{t('trails.unesco')}</span>}
               </h3>
+              {guide && s.teaser && <p class="trd-teaser" data-stop-teaser>{s.teaser}</p>}
               <p class="trd-text">{s.quote
                 ? <>{s.quote[0]}<q class="trd-quote">{s.quote[1]}</q>{s.quote[2]}</>
                 : s.text}</p>
@@ -351,6 +362,11 @@ const jsonLd = [
   .trd-meta dd { margin: 0; font-size: var(--t-base); font-weight: 600; color: var(--c-sand); }
   .trd-intro { padding-block: var(--s-6) var(--s-2); }
   .trd-intro-p { max-inline-size: 68ch; font-size: var(--t-lg); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
+  .trd-tip { max-inline-size: 68ch; margin-block-start: var(--s-4); padding: var(--s-3) var(--s-4); border-inline-start: 3px solid var(--c-gold); background: var(--c-sand-2); border-radius: var(--radius); }
+  .trd-tip-h { font-size: var(--t-sm); font-weight: 700; color: var(--c-turq-deep); margin: 0 0 4px; }
+  .trd-tip p { margin: 0; line-height: 1.8; color: var(--c-ink); }
+  .trd-hook { font-family: var(--font-heading); font-size: var(--t-xl); line-height: 1.5; color: var(--c-turq-deep); margin: 0 0 var(--s-3); }
+  .trd-teaser { font-weight: 600; color: var(--c-ink-soft); line-height: 1.8; margin: 0 0 var(--s-2); }
   .trd-stops { padding-block: var(--s-5) var(--s-4); }
   .trd-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-4); }
   .trd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s-5); max-inline-size: 76ch; }

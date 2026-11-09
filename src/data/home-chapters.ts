@@ -65,7 +65,7 @@ const ASFAR_NOTE: Record<HomeLang, string> = {
 export const TEMPLATES: Record<string, Template> = {
   'heritage-1': {
     title: { ar: 'يومٌ بين حصون الهفوف وأقدم مساجد الشرق', en: 'A day between Hofuf’s fortresses and the East’s oldest mosques', zh: '一天，穿行于胡富夫的城堡与东部最古老的清真寺之间', de: 'Ein Tag zwischen den Festungen von Hofuf und den ältesten Moscheen des Ostens', ru: 'День: крепости Эль-Хуфуфа и старейшие мечети востока страны', ur: 'ایک دن ہفوف کے قلعوں اور مشرقی خطے کی قدیم ترین مساجد کے بیچ', tr: 'Bir gün: Hüfuf\'un kaleleri ile doğunun en eski camileri arasında' },
-    // قالب اليوم الواحد: المسار التاريخي ثم القارة وجواثى (بلا إضافات اليومين)
+    // قالب اليوم الواحد: المسار التاريخي ثم القارة وجواثا (بلا إضافات اليومين)
     days: [{ stops: [T('historic-hofuf'), T('qarah-and-jawatha')] }],
   },
   'heritage-2': {
