@@ -298,7 +298,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       km: '10 km',
       legend: 'Sehenswürdigkeiten auf der Karte',
       empty: 'Wählen Sie auf der Karte eine Sehenswürdigkeit, um Foto und Beschreibung zu sehen.',
-      more: 'Seite der Sehenswürdigkeit',
+      more: 'Zur Sehenswürdigkeit',
       link: 'Zur vollständigen Karte',
     },
     memory: {
@@ -423,7 +423,7 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       title: 'ریت کے نیچے پانی',
       lead: 'زیر زمین پانی کا وسیع ذخیرہ نخلستان کی پرورش کرتا ہے اور صحرا کے بیچوں بیچ اسے سرسبز رکھتا ہے۔',
       springsL: 'زمین سے پھوٹتے چشمے نخلستان کو سیراب کرتے ہیں',
-      srcLabel: 'ذرائع: ',
+      srcLabel: 'ماخذ: ',
       srcGuinness: 'گنیز ورلڈ ریکارڈز کا اندراج “سب سے بڑا نخلستان”',
       srcMid: ' (کھجور کے درخت اور چشمے)، نیز ماحولیات، پانی اور زراعت کی وزارت کے اعداد و شمار (کھجور کے درخت) اور ',
       srcUnesco: 'یونیسکو کی عالمی ورثے کی فہرست',
