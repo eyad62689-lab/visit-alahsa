@@ -20,7 +20,8 @@ const H = HOME_COPY[lang];
 const C = H.plan;
 const Q = { int: C.int, dur: C.dur, com: C.com };
 const L = C.L;
-const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L });
+// «<» تُهرَّب كبقية حمولات JSON المضمّنة (TravelTools/Play*) حتى لا يُغلق «</script» في اسمٍ أو نصٍّ الكتلةَ مبكراً
+const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L }).replace(/</g, '\\u003c');
 ---
 <section class="ch cv-auto ch--sand plan6" id="ch-plan" data-chapter data-track-view="plan" data-track-view-page="home">
   <div class="container">

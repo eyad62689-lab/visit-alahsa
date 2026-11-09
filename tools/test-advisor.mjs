@@ -128,6 +128,7 @@ ok(originAllowed('https://visit-ahsa.netlify.app') && originAllowed('https://dep
 ok(!originAllowed('https://evil.netlify.app') && !originAllowed('https://visit-ahsa.netlify.app.evil.com') && !originAllowed('https://xvisit-ahsa.netlify.app'), 'موقع Netlify آخر أو نطاق مشابه يُرفض');
 ok(!originAllowed('') && !originAllowed(null) && !originAllowed('not a url'), 'بلا Origin أو مشوّه → يُرفض');
 ok(originAllowed('http://localhost:8788') && originAllowed('http://127.0.0.1:4331'), 'التطوير المحلي مقبول');
+ok(!originAllowed('http://localhost:8788', false) && !originAllowed('http://127.0.0.1:4331', false) && originAllowed('https://visit-alahsa.com', false), 'في الإنتاج (allowLocal=false) يُرفض localhost ويبقى نطاق الموقع مقبولاً');
 ok(ipBucket('203.0.113.7') === '203.0.113.7', 'IPv4 كما هو');
 ok(ipBucket('2001:db8:85a3:8d3:1319:8a2e:370:7348') === '2001:db8:85a3:8d3::/64', 'IPv6 يُجمَّع على /64');
 ok(ipBucket('2001:db8::1') === ipBucket('2001:db8:0:0:ffff::9') && ipBucket('2001:db8::1') === '2001:db8:0:0::/64', 'الصيغة المختصرة :: تُفكّ قبل التجميع');

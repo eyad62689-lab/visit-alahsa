@@ -71,4 +71,5 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as const)
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
-{blocks.map((obj) => (<script type="application/ld+json" set:html={JSON.stringify(obj)} />))}
+{/* «<» تُهرَّب إلى < (JSON مكافئ) كي لا يُغلق نصٌّ يحوي «</script» الكتلةَ مبكراً — النمط نفسه في TerrainMapView */}
+{blocks.map((obj) => (<script type="application/ld+json" set:html={JSON.stringify(obj).replace(/</g, '\\u003c')} />))}

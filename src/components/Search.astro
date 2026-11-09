@@ -83,9 +83,11 @@ const t = useTranslations(lang);
       if (search === null) return; // استُبق باستعلام أحدث
       if (!search.results.length) { setMsg(labels.empty); return; }
       const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+      // الرابط والعنوان نصّ خام من الفهرس فيُهرَّبان؛ المقتطف HTML يولّده Pagefind بوسم <mark> فيبقى كما هو
+      const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       results.innerHTML = top.map((d, i) =>
-        '<a class="sm-item" href="' + d.url + '" tabindex="-1">' +
-          '<span class="sm-t">' + (d.meta && d.meta.title ? d.meta.title : d.url) + '</span>' +
+        '<a class="sm-item" href="' + esc(d.url) + '" tabindex="-1">' +
+          '<span class="sm-t">' + esc(d.meta && d.meta.title ? d.meta.title : d.url) + '</span>' +
           '<span class="sm-ex">' + d.excerpt + '</span>' +
         '</a>'
       ).join('');

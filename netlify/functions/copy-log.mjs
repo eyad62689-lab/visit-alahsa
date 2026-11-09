@@ -7,16 +7,22 @@
 //
 // يُعلَّم الحدث «مشبوهاً» إذا تجاوز النسخ 400 حرف أو تكرر أكثر من 5 مرات في
 // الجلسة (يُحتسب التكرار في الخادم أيضاً — عدّاد المتصفح قابل للتلاعب).
+//
+// الحماية من الإغراق: Origin إلزامي ومن نطاقات الموقع وحدها، وسقف يومي لكل عنوان (مفتاح
+// ip/<يوم>/<تجزئة> في المخزن نفسه) فوق سقف الجلسة — فحص الأصل والعدّادان من advisor/core.mjs.
 
 import { getStore } from '@netlify/blobs'
 import { createHash, randomUUID } from 'node:crypto'
+import { originAllowed, bump, dayKey } from './advisor/core.mjs'
 
 const SUSPICIOUS_LENGTH = 400
 const SUSPICIOUS_REPEATS = 5
 // سقف الأحداث المخزّنة لجلسة واحدة: بعده يُحدَّث العدّاد فقط بلا تخزين الحدث
 // (بلا سقف كان سكربت واحد يستطيع إغراق المخزن بكتابتين لكل طلب)
 const SESSION_EVENT_CAP = 200
-const ALLOWED_HOSTS = ['visit-alahsa.com', 'www.visit-alahsa.com']
+// سقف يومي لكل عنوان (تجزئة مُملَّحة): معرّف الجلسة يختاره المرسل، فبدون حدّ على العنوان كان
+// تدوير الجلسات يتجاوز سقف الجلسة ويغرق المخزن. 300 نسخة في اليوم فوق أي استعمال بشري.
+const IP_DAILY_CAP = 300
 
 const clampStr = (v, max) => (typeof v === 'string' ? v.slice(0, max) : '')
 const clampNum = (v, max) => (Number.isFinite(+v) ? Math.max(0, Math.min(+v, max)) : 0)
@@ -24,14 +30,10 @@ const clampNum = (v, max) => (Number.isFinite(+v) ? Math.max(0, Math.min(+v, max
 export default async (req, context) => {
   if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405 })
 
-  // قبول الطلبات من الموقع نفسه فقط (يشمل نطاق العرض التجريبي *.netlify.app)
-  const origin = req.headers.get('origin') || ''
-  if (origin) {
-    let host = ''
-    try { host = new URL(origin).hostname } catch { /* أصل مشوّه → يُرفض أدناه */ }
-    const ok = ALLOWED_HOSTS.includes(host) || host.endsWith('.netlify.app') || host === 'localhost'
-    if (!ok) return new Response('Forbidden', { status: 403 })
-  }
+  // Origin إلزامي: المتصفح يرسله مع كل POST (sendBeacon ضمناً)، فغيابه = عميل غير متصفح.
+  // يُقبل من نطاقات الموقع ونطاق Netlify الخاص به وحده (لا كل *.netlify.app)، وlocalhost خارج الإنتاج.
+  const env = context?.deploy?.context || process.env.CONTEXT || ''
+  if (!originAllowed(req.headers.get('origin'), env !== 'production')) return new Response('Forbidden', { status: 403 })
 
   let body
   try { body = await req.json() } catch { return new Response('Bad Request', { status: 400 }) }
@@ -45,6 +47,11 @@ export default async (req, context) => {
   const ipHash = ip ? createHash('sha256').update(salt + ip).digest('hex').slice(0, 32) : null
 
   const store = getStore('copy-logs')
+
+  // الحدّ اليومي للعنوان قبل أي كتابة أخرى؛ بلا عنوان لا حدّ ممكن فلا يُخزَّن شيء
+  if (!ipHash) return new Response(null, { status: 204 })
+  const daily = await bump(store, `ip/${dayKey()}/${ipHash}`, IP_DAILY_CAP)
+  if (!daily.allowed) return new Response(null, { status: 204 })
 
   // عدّاد الجلسة في الخادم (سباق كتابة نادر ومقبول لغرض إحصائي)
   let serverCopies = 1
