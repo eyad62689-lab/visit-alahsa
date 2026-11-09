@@ -43,10 +43,10 @@ Die beste Zeit für den Aufstieg: **tagsüber**. Die Höhlen selbst sind mit ihr
 
 ## Praktische Hinweise
 
-- **Lage:** östlich von Hofuf, beim Dorf Al-Qarah – auf der [Seite zum Jabal al-Qarah](/de/attractions/jabal-al-qarah/) finden Sie den Kartenlink und die Koordinaten.
-- **Öffnungszeiten und Eintritt:** Die Angaben stehen auf der [Seite zum Jabal al-Qarah](/de/attractions/jabal-al-qarah/); die Tickets gibt es über „Land of Civilisations“, und sie schließen das Höhlenerlebnis ein. Die Öffnungszeiten ändern sich je nach Saison und an Feiertagen, und das letzte Wort haben die offiziellen Kanäle.
+- **Lage:** östlich von Hofuf, beim Dorf Al-Qarah – auf der [Seite zum Jabal al-Qarah](/de/attractions/jabal-al-qarah/) finden Sie den Link zur Karte und die Koordinaten.
+- **Öffnungszeiten und Eintritt:** Die Angaben stehen auf der [Seite zum Jabal al-Qarah](/de/attractions/jabal-al-qarah/); die Tickets, die den Besuch der Höhlen einschließen, gibt es über „Land of Civilisations“. Die Öffnungszeiten ändern sich je nach Saison und an Feiertagen; maßgeblich sind die Angaben der offiziellen Stellen.
 - **In Ihrem Reiseplan:** Mit dem Berg beginnen die [24-Stunden-Route](/de/blog/one-day-in-al-ahsa/) und der zweite Tag der [Zwei-Tage-Route](/de/blog/48-hours-in-al-ahsa/). Planen Sie Ihre Stationen mit der [Karte der Sehenswürdigkeiten](/de/map/) und mit der [Merkliste](/de/plan/).
 
 ## Fazit
 
-Manche Sehenswürdigkeiten besuchen Sie, um sagen zu können, Sie hätten sie gesehen; den Jabal al-Qarah besuchen Sie, um ihn zu spüren: die Kühle des Felsens im Gesicht nach dem grellen Licht der Mittagsstunde, den sich verengenden Gang, dann die sich öffnende Halle und zuletzt das Meer aus Dattelpalmen vom Gipfel. Beginnen Sie mit der [Seite zum Jabal al-Qarah](/de/attractions/jabal-al-qarah/) und bauen Sie Ihren Tag um den Berg herum.
+Manche Sehenswürdigkeiten besuchen Sie, um sagen zu können, Sie hätten sie gesehen; den Jabal al-Qarah besuchen Sie, um ihn zu spüren: die Kühle des Felsens im Gesicht nach dem grellen Licht der Mittagsstunde, den sich verengenden Gang, dann die sich öffnende Halle und zuletzt, vom Gipfel aus, das Meer aus Dattelpalmen. Beginnen Sie mit der [Seite zum Jabal al-Qarah](/de/attractions/jabal-al-qarah/) und planen Sie Ihren Tag rund um den Berg.
