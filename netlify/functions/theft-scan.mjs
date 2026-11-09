@@ -45,16 +45,23 @@ async function serperSearch(phrase, lang, apiKey) {
     .map((r) => ({ title: r.title, link: r.link, snippet: (r.snippet || '').slice(0, 200) }))
 }
 
-async function listEntries(store, prefix, cap) {
-  const out = []
+// قراءات Blobs المتوازية: كانت تسلسلية مفتاحاً مفتاحاً (حتى ~5000 قراءة في الدورة) فتستهلك
+// أغلب مهلة الدالة المجدولة في رحلات شبكية متعاقبة. ثماني قراءات متزامنة تكفي ولا تضغط المخزن.
+const READ_CONCURRENCY = 8
+
+/** يقرأ حتى cap سجلاً تحت البادئة بترتيب القائمة نفسه؛ السجل التالف يُسقَط ولا يوقف التحليل */
+export async function listEntries(store, prefix, cap) {
   const { blobs } = await store.list({ prefix })
-  for (const b of blobs.slice(0, cap)) {
-    try {
-      const v = await store.get(b.key, { type: 'json' })
-      if (v) out.push(v)
-    } catch { /* سجل تالف واحد لا يوقف التحليل */ }
+  const keys = blobs.slice(0, cap).map((b) => b.key)
+  const out = new Array(keys.length)
+  let next = 0
+  async function worker() {
+    for (let i = next++; i < keys.length; i = next++) {
+      try { out[i] = await store.get(keys[i], { type: 'json' }) } catch { out[i] = null }
+    }
   }
-  return out
+  await Promise.all(Array.from({ length: Math.min(READ_CONCURRENCY, keys.length) }, worker))
+  return out.filter(Boolean)
 }
 
 function analyzeCrawlers(entries) {
