@@ -17,7 +17,7 @@ faq:
 
 Nur ein Tag in Al-Ahsa? Diese Route verdichtet das Herz der Oase – der größten Oase der Welt, seit 2018 UNESCO-Welterbe – auf einen Tag: einen Berg voller Höhlen, eine Festung und ein historisches Viertel sowie einen mehr als zwei Jahrhunderte alten Souk.
 
-Öffnungszeiten und Eintritt ändern sich je nach Saison; deshalb folgen die Stationen dem **Rhythmus des Tages** und nicht festen Uhrzeiten. Die geprüften Angaben stehen auf der Seite jeder Sehenswürdigkeit dieser Website, und das letzte Wort haben die offiziellen Kanäle.
+Öffnungszeiten und Eintritt ändern sich je nach Saison; deshalb folgen die Stationen dem **Rhythmus des Tages** und nicht festen Uhrzeiten. Die geprüften Angaben stehen auf unseren Seiten zu den einzelnen Sehenswürdigkeiten; maßgeblich sind die Angaben der offiziellen Stellen.
 
 ## Morgen: Die Höhlen des Jabal al-Qarah und Dougha Al-Gharash
 
@@ -41,6 +41,6 @@ Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/), ei
 ## Praktische Hinweise
 
 - **Ein Auto** ist zwischen den Stationen die praktische Wahl: Manche liegen mitten in Hofuf, andere am Rand der Oase.
-- Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu Ihrer [Merkliste](/de/plan/) hinzu: Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der [Karte der Sehenswürdigkeiten](/de/map/) bringen Sie Ihren Tag in die richtige Reihenfolge.
+- Auf der Seite zur jeweiligen Sehenswürdigkeit setzen Sie Ihre Stationen auf Ihre [Merkliste](/de/plan/): Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der [Karte der Sehenswürdigkeiten](/de/map/) bringen Sie Ihren Tag in die richtige Reihenfolge.
 - **Bleiben Sie über Nacht?** Dann wechseln Sie zur [Zwei-Tage-Route (48 Stunden)](/de/blog/48-hours-in-al-ahsa/) – dort kommen die Amiriah-Schule, in der Saison die Hasawi-Limettenfarm und die Küste von Al-Uqair hinzu.
 - Zum ersten Mal in Al-Ahsa? Die Seite [Reise planen](/de/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.

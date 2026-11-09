@@ -17,7 +17,7 @@ faq:
 
 Zwei Tage genügen, um den Geist von Al-Ahsa zu spüren – der größten Oase der Welt, seit 2018 UNESCO-Welterbe. Zwischen mehr als 2,5 Millionen Dattelpalmen pulsiert hier das Leben. Diese Route teilt den Besuch so, wie die Oase selbst geteilt ist: **Tag eins gehört ihrem historischen Herzen in Hofuf**, **Tag zwei ihrem Wasser, ihrem Grün und ihrer Küste**.
 
-Eine Anmerkung vorab: Öffnungszeiten und Eintritt ändern sich je nach Saison. Deshalb folgen die Stationen hier dem **Rhythmus des Tages** – vom Morgen bis zum Sonnenuntergang – und nicht festen Uhrzeiten. Die geprüften Angaben stehen auf der Seite jeder Sehenswürdigkeit dieser Website; prüfen Sie sie vor Ihrem Besuch über die offiziellen Kanäle nach.
+Eine Anmerkung vorab: Öffnungszeiten und Eintritt ändern sich je nach Saison. Deshalb folgen die Stationen hier dem **Rhythmus des Tages** – vom Morgen bis zum Sonnenuntergang – und nicht festen Uhrzeiten. Die geprüften Angaben stehen auf unseren Seiten zu den einzelnen Sehenswürdigkeiten; gleichen Sie sie vor Ihrem Besuch mit den Angaben der offiziellen Stellen ab.
 
 ## Tag 1: Das historische Herz von Hofuf
 
@@ -53,6 +53,6 @@ Beenden Sie Ihre Reise an der Küste des Arabischen Golfs östlich von Al-Ahsa b
 
 ## Praktische Hinweise
 
-- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Fügen Sie Ihre Stationen auf der Seite jeder Sehenswürdigkeit zu Ihrer [Merkliste](/de/plan/) hinzu – daraus wird eine fertige Route, die sich in Google Maps öffnet.
+- **Planen Sie Ihre Route, bevor Sie aufbrechen**: Auf der Seite zur jeweiligen Sehenswürdigkeit setzen Sie Ihre Stationen auf Ihre [Merkliste](/de/plan/) – daraus wird eine fertige Route, die sich in Google Maps öffnet.
 - **Nutzen Sie die Karte**: Die [Karte der Sehenswürdigkeiten](/de/map/) zeigt jede Station an ihrem Ort und hilft Ihnen, die Reihenfolge Ihres Tages zu planen.
 - **Zum ersten Mal in Al-Ahsa?** Die Seite [Reise planen](/de/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.
