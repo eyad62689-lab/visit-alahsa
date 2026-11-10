@@ -170,9 +170,9 @@ try {
   console.log('\n── الرئيسية: بلوغ الأقسام، الفيديو ومؤشرات الويب الحيوية ──');
   await goto('/en/');
   // section_view: فصل البوابة يعبر منتصف الشاشة عند التحميل، وفصل الختام الأخير بعد التمرير إليه
-  // (الرئيسية «الواحة تتكشّف»: سبعة فصول gate…finale)
+  // (الرئيسية الإنجليزية بالترتيب الهجين: سبعة فصول gate…finale + الشريط السريع وبطاقات الفئات و«تذوّق وأقم» = 10 أقسام مقيسة)
   const hero = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'gate', 4000);
-  ok(hero && hero.params.depth === 1 && hero.params.depth_of === 7, 'section_view لفصل البوابة عند التحميل', hero ? `depth ${hero.params.depth}/${hero.params.depth_of}` : '');
+  ok(hero && hero.params.depth === 1 && hero.params.depth_of === 10, 'section_view لفصل البوابة عند التحميل', hero ? `depth ${hero.params.depth}/${hero.params.depth_of}` : '');
   // route_built: إكمال أسئلة الفصل 6 الثلاثة يبني المسار ويُقاس
   await page.evaluate(() => document.getElementById('ch-plan')?.scrollIntoView({ block: 'center' }));
   // الفصول تحت الطيّة بـcontent-visibility: يُرسم الفصل عند دخوله فيتبدّل ارتفاعه التقديري بالحقيقي،
