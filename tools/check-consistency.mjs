@@ -942,7 +942,7 @@ async function main() {
       const items = [];
       for (const raw of block.split(/\r?\n/)) {
         if (!raw.trim()) continue;
-        const m = raw.match(/^[ \t]+(-[ \t]+)?(q|a)(_en|_zh|_de|_ru|_ur|_tr)?:[ \t]*(".*")[ \t]*$/);
+        const m = raw.match(/^[ \t]+(-[ \t]+)?([qa])(_en|_zh|_de|_ru|_ur|_tr)?:[ \t]*(".*")[ \t]*$/);
         if (!m) { problems.push(`${f}: سطر faq خارج الصيغة المحدَّدة — ${raw.trim().slice(0, 40)}`); continue; }
         if (m[1]) items.push({});
         if (!items.length) { problems.push(`${f}: حقل faq قبل أول بند`); continue; }
@@ -1355,7 +1355,7 @@ async function main() {
         if (!listHtml) problems.push(`${p}: تعذّر عزل قائمة المكوّنات`);
         const attrDirs = l === 'ar' ? [`/${AR_ATTRACTIONS_DIR}/`, encodeURI(`/${AR_ATTRACTIONS_DIR}/`)] : [`/${l}/attractions/`];
         if (attrDirs.some((d) => listHtml.includes(`href="${d}`))) problems.push(`${p}: قائمة المكوّنات تربط بصفحات معالم — الصفحة تعريف مستقل`);
-        if (!list || list.numberOfItems !== unescoAll.length || (list.itemListElement ?? []).length !== unescoAll.length) problems.push(`${p}: ItemList لا يحمل ${unescoAll.length} مكوّناً`);
+        if (list?.numberOfItems !== unescoAll.length || (list.itemListElement ?? []).length !== unescoAll.length) problems.push(`${p}: ItemList لا يحمل ${unescoAll.length} مكوّناً`);
         // صور img/unesco للغير بشروط ترخيصها: كل بطاقة تحملها تُسند صاحبها برابط مصدرها، والحرّة برابط رخصتها
         for (const card of listHtml.split(/<li\b/).slice(1)) {
           if (!card.includes('/img/unesco/')) continue;

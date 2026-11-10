@@ -241,7 +241,7 @@ export function extractLinks(text) {
   for (const m of s.matchAll(LINKS_HEAD_RE)) at = m.index
   if (at < 0) return { clean: s.trim(), ids: [] }
   const body = s.slice(at).replace(/^\[\[\s*links?\s*:/i, '')
-  const tokens = body.split(/[\s,\[\]"'«»]+/).filter(Boolean)
+  const tokens = body.split(/[\s,[\]"'«»]+/).filter(Boolean)
   const ids = [...new Set(tokens.filter((x) => ID_RE.test(x)))].slice(0, 3)
   return { clean: s.slice(0, at).trim(), ids }
 }
@@ -391,7 +391,7 @@ export function classifyTopics(text) {
 
 /** سطر الإحصاء: لا نصّ سؤال ولا جواب ولا عنوان ولا تجزئة عنوان */
 export function usageStat({ src, env, lang, page, messages = [], cards = [], outcome, usage = {} }) {
-  const last = messages.length ? messages[messages.length - 1].content : ''
+  const last = messages.length ? messages.at(-1).content : ''
   return {
     v: 1,
     src,

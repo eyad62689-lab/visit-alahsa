@@ -97,7 +97,7 @@ console.log('\n[3b] المتاجر الإلكترونية في البطاقة');
 const stores = kb.entries.filter((e) => e.kind === 'store');
 ok(stores.length === kb.counts.stores && stores.length > 0, `${stores.length} متجراً في البطاقة = العدّ المعلن`);
 const dateStore = stores.find((e) => e.category === 'dates');
-ok(!!dateStore && /#sec-dates$/.test(dateStore.href.ar) && /التمور/.test(dateStore.summary.ar), 'متجر تمور يحيل إلى قسم التمور في صفحة المتاجر وملخّصه يسمّي القسم');
+ok(!!dateStore && dateStore.href.ar.endsWith('#sec-dates') && /التمور/.test(dateStore.summary.ar), 'متجر تمور يحيل إلى قسم التمور في صفحة المتاجر وملخّصه يسمّي القسم');
 ok(stores.every((e) => e.href.ar.startsWith('/متاجر-الأحساء-الإلكترونية/#sec-')), 'كل متجر يحيل إلى صفحة المتاجر عند قسمه');
 const storesIdx = kb.entries.find((e) => e.id === 'page/stores');
 ok(!!storesIdx?.summary?.ar && storesIdx.summary.ar.includes(String(stores.length)) && storesIdx.summary.ar.includes('تمور'), 'صفحة المتاجر لها ملخّص بالعدد الفعلي ويذكر التمور');

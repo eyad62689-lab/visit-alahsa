@@ -88,7 +88,7 @@ function analyzeCrawlers(entries) {
 // نتائج Serper (رابط الناشر وعنوانه) نصّ خارجي غير موثوق: يُهرَّب قبل أي تضمين في HTML البريد
 // أو خلية جدول Markdown، وإلا حقن ناشرٌ علامات في بريد المالك أو كسر جدول التقرير.
 const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
-const mdCell = (s) => String(s ?? '').replace(/[\r\n]+/g, ' ').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/[<>]/g, (c) => (c === '<' ? '&lt;' : '&gt;'))
+const mdCell = (s) => String(s ?? '').replace(/[\r\n]+/g, ' ').replaceAll('\\', '\\\\').replaceAll('|', String.raw`\|`).replace(/[<>]/g, (c) => (c === '<' ? '&lt;' : '&gt;'))
 /** رابط http(s) صالح فقط يُعرض رابطاً؛ غيره يُعرض نصاً مهرَّباً */
 const safeHttpUrl = (s) => { try { const u = new URL(String(s ?? '')); return u.protocol === 'http:' || u.protocol === 'https:' ? u.href : null } catch { return null } }
 
