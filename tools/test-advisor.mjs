@@ -111,8 +111,8 @@ ok(Math.abs(haiku - (1000 * 0.10 + 300 * 0.5 + 40000 * 0.01) / 1e6) < 1e-9, 'ك�
 ok(estimateCostUsd('unknown-model', usage) > haiku, 'نموذج مجهول يُقدَّر بسعر Sonnet (محافظ)');
 ok(estimateCostUsd('claude-haiku-5-5', {}) === 0, 'usage فارغ → صفر لا NaN');
 const st = memoryStore();
-let last;
-for (let i = 0; i < 3; i++) last = await bump(st, 'ip/d/h', 2);
+await bump(st, 'ip/d/h', 2); await bump(st, 'ip/d/h', 2);
+const last = await bump(st, 'ip/d/h', 2);
 ok(last.count === 3 && !last.allowed, 'العدّاد اليومي يرفض الرسالة الثالثة عند حد 2');
 ok((await bump(st, 'ip/d/other', 2)).allowed, 'زائر آخر لا يتأثر');
 ok((await readSpend(st)) === 0, 'إنفاق الشهر يبدأ من صفر');
