@@ -1,22 +1,39 @@
-# رؤوس Netlify — تعمل حتى مع السحب اليدوي لمجلد dist.
+# رؤوس Netlify — المصدر الوحيد لرؤوس HTTP في الموقع (لا [[headers]] في netlify.toml؛
+# يحرسه C78 في tools/check-consistency.mjs). تعمل حتى مع السحب اليدوي لمجلد dist.
+
+# تخزين مؤقت طويل للأصول المُبصَّمة وغير المتغيّرة (يحسّن السرعة وLCP)
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+# المكتبات المستضافة ذاتياً — المسار مُصدَّر بالإصدار فالتخزين الدائم آمن
 /vendor/*
   Cache-Control: public, max-age=31536000, immutable
+# الصور والفيديو (غير مُبصَّمة): تخزين شهراً — يوازن السرعة مع إمكانية استبدال الملف بنفس الاسم
 /img/*
+  Cache-Control: public, max-age=2592000
+/video/*
   Cache-Control: public, max-age=2592000
 # llms.txt عربي بالكامل: Netlify يضيف charset لـtext/* تلقائياً، والتثبيت هنا
 # يضمنه حتى مع السحب اليدوي أو تغيّر السلوك الافتراضي (تحقق 2026-08-30).
 /llms.txt
   Content-Type: text/plain; charset=utf-8
-/video/*
-  Cache-Control: public, max-age=2592000
+
+# رؤوس الأمان على كل المسارات:
+# - Strict-Transport-Security: HTTPS إلزامي سنةً كاملة (الموقع لا يُخدم إلا عبر Netlify HTTPS).
+# - Permissions-Policy: لا يستخدم الموقع الكاميرا ولا الميكروفون — نعلن ذلك صراحةً. الموقع
+#   الجغرافي للأصل نفسه فقط (self): «بالقرب مني» على الخريطة و«كم يبعد عني» في صفحة المعلم،
+#   بطلب صريح من الزائر ولا يغادر جهازه.
+# - Content-Security-Policy: إلزامي — المتصفح يحجب كل ما خالفه. مصدر خارجي جديد (بلاطات خريطة،
+#   تحليلات، API) يُضاف هنا وإلا حُجب صامتاً عند الزائر. unsafe-inline باقٍ للسكربتات والأنماط
+#   الداخلية إلى أن تُنقل إلى ملفات أو nonces. wasm-unsafe-eval لبحث الموقع (Pagefind يشغّل
+#   WebAssembly). لا unsafe-eval: إضافة النص العربي للخريطة تُحمَّل وحدةً بامتداد mjs لا عبر eval.
+#   blob: في worker-src لعامل MapLibre. frame-src لتضمين خرائط قوقل في صفحات الفعاليات.
+#   frame-ancestors يقابل X-Frame-Options. يحرس ذلك كله C78.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Permissions-Policy: camera=(), microphone=(), geolocation=(self), payment=()
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://tile.openstreetmap.org https://tiles.openfreemap.org https://s3.amazonaws.com https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://tiles.openfreemap.org https://s3.amazonaws.com https://tile.openstreetmap.org https://api.frankfurter.dev; font-src 'self'; media-src 'self'; worker-src 'self' blob:; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://tile.openstreetmap.org https://tiles.openfreemap.org https://s3.amazonaws.com https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://tiles.openfreemap.org https://s3.amazonaws.com https://tile.openstreetmap.org https://api.frankfurter.dev https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com; font-src 'self'; media-src 'self'; worker-src 'self' blob:; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'

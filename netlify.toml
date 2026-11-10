@@ -52,48 +52,6 @@
   to = "/en/legal/"
   status = 301
 
-# تخزين مؤقت طويل للأصول المُبصَّمة وغير المتغيّرة (يحسّن السرعة وLCP)
-[[headers]]
-  for = "/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/_astro/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Leaflet المستضاف ذاتياً — المسار مُصدَّر بالإصدار فالتخزين الدائم آمن
-[[headers]]
-  for = "/vendor/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# رؤوس أمان أساسية
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    X-Frame-Options = "SAMEORIGIN"
-    # HTTPS إلزامي سنةً كاملة (الموقع لا يُخدم إلا عبر Netlify HTTPS)
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    # لا يستخدم الموقع الكاميرا ولا الميكروفون — نعلن ذلك صراحةً. الموقع الجغرافي
-    # للأصل نفسه فقط (self) منذ الخطوة 7 من خطة التفاعل العالمي: «بالقرب مني» على
-    # الخريطة و«كم يبعد عني» في صفحة المعلم، بطلب صريح من الزائر ولا يغادر جهازه.
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(self), payment=()"
-    # CSP بوضع التقرير فقط (لا يحجب شيئاً): يكشف في console أي مصدر غير مدرج قبل
-    # الانتقال إلى Content-Security-Policy الإلزامي. unsafe-inline لازم للسكربتات
-    # الداخلية (GA، الخرائط، رحلتي) إلى أن تُنقل إلى ملفات أو nonces.
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://tile.openstreetmap.org https://tiles.openfreemap.org https://s3.amazonaws.com https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://tiles.openfreemap.org https://s3.amazonaws.com https://tile.openstreetmap.org https://api.frankfurter.dev; font-src 'self'; media-src 'self'; worker-src 'self' blob:; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'"
-
-# الصور والفيديو (غير مُبصَّمة): تخزين شهراً — يوازن السرعة مع إمكانية استبدال الملف بنفس الاسم
-[[headers]]
-  for = "/img/*"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000"
-
-[[headers]]
-  for = "/video/*"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000"
+# رؤوس HTTP (التخزين المؤقت ورؤوس الأمان وCSP) في public/_headers وحده — مصدر واحد
+# يُنسخ إلى dist/_headers عند البناء. لا تُضف [[headers]] هنا: القاعدة المكرّرة في
+# الملفين تسمح بتعديل أحدهما دون الآخر بلا أي إنذار (يحرسه C78 في check-consistency).

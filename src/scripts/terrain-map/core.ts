@@ -21,6 +21,8 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   // ‎/_astro/maplibre-gl-worker.mjs غير الموجود وتفشل الخريطة بصمت
   maplibregl.setWorkerUrl(cfg.workerUrl);
   // ملحق تشكيل النص العربي (مستضاف ذاتياً) — lazy: يُجلب فقط حين تظهر تسميات RTL
+  // الملف بامتداد .mjs قصداً: عامل MapLibre يحمّل ما ينتهي به عبر import()، وما عداه عبر
+  // eval الذي تحجبه سياسة المحتوى (لا unsafe-eval في script-src) — يحرسه C78.
   try { maplibregl.setRTLTextPlugin(cfg.rtlPluginUrl, true); } catch { /* مضبوط سابقاً */ }
 
   const map = new maplibregl.Map({

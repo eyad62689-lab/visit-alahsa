@@ -29,7 +29,7 @@
 - عامل MapLibre v6 ملف ESM منفصل مستضاف في `public/vendor/maplibre-6.4.1/`
   (worker + shared). عند ترقية maplibre-gl انسخ الملفين من `dist/` إلى مجلد
   جديد باسم الإصدار وحدِّث `workerUrl` في `TerrainMapView.astro`.
-- ملحق تشكيل النص العربي مستضاف في `public/vendor/maplibre/mapbox-gl-rtl-text-0.2.3.min.js`.
+- ملحق تشكيل النص العربي مستضاف في `public/vendor/maplibre/mapbox-gl-rtl-text-0.2.3.mjs`.
 - MapLibre لا يدخل حزمة أي صفحة: يُحمَّل عبر `import()` فقط عند توفّر WebGL2
   ودخول الحاوية الشاشة (أو زر صريح على الجوال)؛ وعند غيابه يتراجع تلقائياً
   إلى Leaflet المستضاف ذاتياً. ملصق `public/img/map-poster.*` هو LCP الصفحة.
