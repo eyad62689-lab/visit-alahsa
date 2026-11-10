@@ -782,6 +782,25 @@ async function main() {
     }
   }
 
+  // ── C79: عنوان الرئيسية ينتهي باسم الموقع في كل لغة ─────────────────────
+  // عنوان الرئيسية يأتي من home-copy.ts لا من قالب «العنوان + الفاصل + الاسم» الذي تبني به
+  // بقية الصفحات عناوينها، فبقيت أربع لغات بلا اسم الموقع في <title> دون أن يمسكها فحص.
+  // الفحص على <title> المبني: ينتهي بـ« <فاصل اللغة> <الاسم>» ويحمل الاسم مرة واحدة.
+  {
+    const HOME = [['ar', 'index.html', 'زوروا الأحساء'], ...['en', 'zh', 'de', 'ru', 'ur', 'tr'].map((l) => [l, path.join(l, 'index.html'), 'Visit Al-Ahsa'])];
+    const bad = [];
+    for (const [l, rel, brand] of HOME) {
+      const file = path.join(DIST, rel);
+      const m = existsSync(file) ? (await readText(file)).match(/<title>([^<]*)<\/title>/) : null;
+      if (!m) { bad.push(`${l}: بلا <title>`); continue; }
+      const sep = l === 'de' ? '\u2013' : '\u2014';
+      if (!m[1].endsWith(` ${sep} ${brand}`)) bad.push(`${l}: «${m[1]}»`);
+      else if (m[1].split(brand).length !== 2) bad.push(`${l}: الاسم مكرّر «${m[1]}»`);
+    }
+    if (bad.length) fail('C79', `عنوان الرئيسية لا ينتهي باسم الموقع في ${bad.length} لغة — ${bad.join(' · ')}`);
+    else pass('C79', `عنوان الرئيسية في ${HOME.length} لغات ينتهي بفاصل اللغة واسم الموقع مرة واحدة`);
+  }
+
   // ── C18: التهجئة الألمانية «Souk» لا «Souq» في صفحات /de/ ────────────────
   // حسم إياد 2026-09-04 بعد أن تنازع المعجم (Souq) ووثيقة المشروع (Souk)
   // وانقسم المستودع بينهما في تسعة مواضع. الإنجليزية تبقى «Souq» فالفحص
