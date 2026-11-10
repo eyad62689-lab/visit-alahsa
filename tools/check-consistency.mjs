@@ -18,6 +18,7 @@ import { checkJawathaFriday, EXPECT as JAWATHA_EXPECT } from './check-jawatha-fr
 import { checkAsfarWording, EXPECT as ASFAR_EXPECT } from './check-asfar-wording.mjs';
 import { checkGulfName, EXPECT as GULF_EXPECT } from './check-gulf-name.mjs';
 import { checkTrText, collectTrFields, MIN_FIELDS as TR_MIN_FIELDS } from './check-tr-text.mjs';
+import { checkHeaders } from './check-headers.mjs';
 import { checkBaiahYear, EXPECT as BAIAH_EXPECT } from './check-baiah-year.mjs';
 import { checkQarahPassages, EXPECT as QARAH_EXPECT } from './check-qarah-passages.mjs';
 import { checkUqairPort, EXPECT as UQAIR_EXPECT } from './check-uqair-port.mjs';
@@ -423,6 +424,19 @@ async function main() {
       const tr = checkTrText(collectTrFields(ROOT));
       if (tr.problems.length) fail('C77', `النص التركي: ${tr.problems.length} مشكلة — ${tr.problems.slice(0, 4).join(' · ')}`);
       else pass('C77', `أحكام المعايرة التركية في ${tr.stats.fields} حقلاً تركياً (الحدّ الأدنى ${TR_MIN_FIELDS}): ${tr.stats.suffixes} لاحقة بعلامة U+0027 وحدها، و«El-Ahsa» و«Arap Körfezi» والأوقات «08.00»، ولا i بنقطة مركّبة`);
+    }
+    // ── C78: رؤوس HTTP مصدرها public/_headers وحده — لا [[headers]] في netlify.toml، وdist/_headers
+    // يحمل رؤوس التخزين والأمان وCSP كاملةً بلا تكرار. المنطق في tools/check-headers.mjs (دالة نقية
+    // يُختبر كسرها في الذاكرة).
+    {
+      const tomlPath = path.join(ROOT, 'netlify.toml');
+      const hdrPath = path.join(DIST, '_headers');
+      const { problems, stats } = checkHeaders({
+        toml: existsSync(tomlPath) ? await readText(tomlPath) : '',
+        headers: existsSync(hdrPath) ? await readText(hdrPath) : '',
+      });
+      if (problems.length) fail('C78', `رؤوس HTTP: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C78', `رؤوس HTTP من dist/_headers وحده (${stats.headers} رأساً على ${stats.paths} مسارات؛ CSP: ${stats.cspMode})، ولا [[headers]] في netlify.toml`);
     }
     // ── C32: بيت البيعة بُني عام 1203هـ/1788م (حكم إياد 2026-09-30، بسند الدارة وسعوديبيديا) — لا
     // «1789» في صفحة تذكر 1203، وإيجاباً 1203…1788 في صفحة المعلم بكل لغة. المنطق في

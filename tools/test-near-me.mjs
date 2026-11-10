@@ -4,7 +4,7 @@
 // بموقع محاكاة (وسط الهفوف) وإذن ممنوح: الخريطة تضع علامة الزائر وتكتب المسافة على كل
 // عنصر وتعيد ترتيب القائمة من الأقرب مع حدث map_locate؛ وصفحة المعلم تعرض المسافة
 // بصياغة اللغة. وبإذن مرفوض: رسالة خطأ وحدث ok=false. ورؤوس Permissions-Policy تسمح
-// بالموقع للأصل نفسه (dist/_headers وnetlify.toml).
+// بالموقع للأصل نفسه (public/_headers ونسخته dist/_headers).
 import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 
@@ -25,7 +25,7 @@ const events = (page) => page.evaluate(() => (window.dataLayer || []).map((x) =>
 const find = (list, name, pred = () => true) => list.find((e) => e.name === name && pred(e.params));
 
 // الرؤوس: المصدر والمخرج
-for (const [f, re] of [['netlify.toml', /geolocation=\(self\)/], ['dist/_headers', /geolocation=\(self\)/]]) {
+for (const [f, re] of [['public/_headers', /geolocation=\(self\)/], ['dist/_headers', /geolocation=\(self\)/]]) {
   let txt = ''; try { txt = readFileSync(f, 'utf8'); } catch {}
   ok(re.test(txt), `${f}: Permissions-Policy يسمح بالموقع للأصل نفسه`);
 }

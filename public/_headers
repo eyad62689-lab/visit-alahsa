@@ -1,18 +1,32 @@
-# رؤوس Netlify — تعمل حتى مع السحب اليدوي لمجلد dist.
+# رؤوس Netlify — المصدر الوحيد لرؤوس HTTP في الموقع (لا [[headers]] في netlify.toml؛
+# يحرسه C78 في tools/check-consistency.mjs). تعمل حتى مع السحب اليدوي لمجلد dist.
+
+# تخزين مؤقت طويل للأصول المُبصَّمة وغير المتغيّرة (يحسّن السرعة وLCP)
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+# المكتبات المستضافة ذاتياً — المسار مُصدَّر بالإصدار فالتخزين الدائم آمن
 /vendor/*
   Cache-Control: public, max-age=31536000, immutable
+# الصور والفيديو (غير مُبصَّمة): تخزين شهراً — يوازن السرعة مع إمكانية استبدال الملف بنفس الاسم
 /img/*
+  Cache-Control: public, max-age=2592000
+/video/*
   Cache-Control: public, max-age=2592000
 # llms.txt عربي بالكامل: Netlify يضيف charset لـtext/* تلقائياً، والتثبيت هنا
 # يضمنه حتى مع السحب اليدوي أو تغيّر السلوك الافتراضي (تحقق 2026-08-30).
 /llms.txt
   Content-Type: text/plain; charset=utf-8
-/video/*
-  Cache-Control: public, max-age=2592000
+
+# رؤوس الأمان على كل المسارات:
+# - Strict-Transport-Security: HTTPS إلزامي سنةً كاملة (الموقع لا يُخدم إلا عبر Netlify HTTPS).
+# - Permissions-Policy: لا يستخدم الموقع الكاميرا ولا الميكروفون — نعلن ذلك صراحةً. الموقع
+#   الجغرافي للأصل نفسه فقط (self): «بالقرب مني» على الخريطة و«كم يبعد عني» في صفحة المعلم،
+#   بطلب صريح من الزائر ولا يغادر جهازه.
+# - Content-Security-Policy-Report-Only: وضع التقرير فقط (لا يحجب شيئاً): يكشف في console أي
+#   مصدر غير مدرج قبل الانتقال إلى Content-Security-Policy الإلزامي. unsafe-inline لازم
+#   للسكربتات الداخلية (GA، الخرائط، رحلتي) إلى أن تُنقل إلى ملفات أو nonces.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
