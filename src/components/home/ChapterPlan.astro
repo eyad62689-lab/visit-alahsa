@@ -20,7 +20,8 @@ const H = HOME_COPY[lang];
 const C = H.plan;
 const Q = { int: C.int, dur: C.dur, com: C.com };
 const L = C.L;
-const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L });
+// «<» تُهرَّب كبقية حمولات JSON المضمّنة (TravelTools/Play*) حتى لا يُغلق «</script» في اسمٍ أو نصٍّ الكتلةَ مبكراً
+const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L }).replace(/</g, '\\u003c');
 ---
 <section class="ch cv-auto ch--sand plan6" id="ch-plan" data-chapter data-track-view="plan" data-track-view-page="home">
   <div class="container">
@@ -85,7 +86,7 @@ const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L });
       if (!int || !dur || !com) { body.hidden = true; wait.hidden = false; return; }
       const tpl = D.templates[`${int}-${dur}`];
       if (!tpl) return;
-      const saved: string[] = (window as any).VAPlan?.get?.() ?? [];
+      const saved: string[] = window.VAPlan?.get?.() ?? [];
       const savedStops = saved.map((s) => D.places[s]).filter(Boolean);
       body.replaceChildren();
       titleEl.textContent = tpl.title;
@@ -109,7 +110,7 @@ const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L });
       if (tip) body.append(el('p', 'p6-tip', tip));
       body.hidden = false; wait.hidden = true;
       const key = `${int}-${dur}-${com}`;
-      if (key !== lastKey) { lastKey = key; (window as any).VATrack?.('route_built', { interest: int, duration: Number(dur), companion: com, saved: savedStops.length }); }
+      if (key !== lastKey) { lastKey = key; window.VATrack?.('route_built', { interest: int, duration: Number(dur), companion: com, saved: savedStops.length }); }
     };
     form.addEventListener('change', render);
     document.addEventListener('va-plan-change', render);

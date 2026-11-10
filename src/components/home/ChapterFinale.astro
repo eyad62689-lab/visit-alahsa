@@ -29,7 +29,7 @@ const { plan, open } = C;
   function syncFinale() {
     const a = document.querySelector<HTMLAnchorElement>('[data-finale-cta]');
     if (!a) return;
-    const n: number = ((window as any).VAPlan?.get?.() ?? []).length;
+    const n: number = (window.VAPlan?.get?.() ?? []).length;
     const has = n > 0;
     a.href = (has ? a.dataset.tripHref : a.dataset.planHref) || a.href;
     a.textContent = has ? `${a.dataset.txOpen} (${n})` : (a.dataset.txPlan || '');

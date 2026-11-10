@@ -83,12 +83,15 @@ async function relay(apiStream, send, state) {
 }
 
 export default async function advisor(req, context) {
-  const cors = corsHeaders(req)
+  // سياق النشر: في الإنتاج لا يُقبل أصل localhost ولا تُرسل رؤوس CORS له (المعاينات والتطوير المحلي تقبله)
+  const env = context?.deploy?.context || process.env.CONTEXT || ''
+  const allowLocal = env !== 'production'
+  const cors = allowLocal ? corsHeaders(req) : {}
   if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors })
   if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405 })
 
   // Origin إلزامي لطلب POST من متصفح (يرسله دائماً)، ويُقبل من نطاقات الموقع وحدها — لا كل *.netlify.app
-  if (!originAllowed(req.headers.get('origin'))) return new Response('Forbidden', { status: 403 })
+  if (!originAllowed(req.headers.get('origin'), allowLocal)) return new Response('Forbidden', { status: 403 })
 
   if (process.env.ADVISOR_DISABLED === '1') return json(503, { reason: 'off' }, cors)
   if (!process.env.ANTHROPIC_API_KEY) return json(503, { reason: 'off' }, cors)
@@ -100,7 +103,6 @@ export default async function advisor(req, context) {
   const { lang, page, messages } = v
   // مصدر الطلب للتمييز بين الزوار وأدوات التقييم، وسياق النشر لفصل المعاينات عن الإنتاج
   const src = (req.headers.get('user-agent') || '').startsWith('advisor-eval') ? 'eval' : 'web'
-  const env = context?.deploy?.context || process.env.CONTEXT || ''
   const stat = { src, env, lang, page, messages }
 
   const st = store()

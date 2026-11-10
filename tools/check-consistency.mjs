@@ -958,7 +958,6 @@ async function main() {
         hasZh: /^title_zh:/m.test(head), hasDe: /^title_de:/m.test(head), hasRu: /^title_ru:/m.test(head), hasUr: /^title_ur:/m.test(head),
       });
     }
-    const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     let pagesChecked = 0, questions = 0;
     for (const e of expected) {
       const pages = [

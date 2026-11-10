@@ -45,17 +45,26 @@ async function serperSearch(phrase, lang, apiKey) {
     .map((r) => ({ title: r.title, link: r.link, snippet: (r.snippet || '').slice(0, 200) }))
 }
 
-async function listEntries(store, prefix, cap) {
-  const out = []
+// قراءات Blobs المتوازية: كانت تسلسلية مفتاحاً مفتاحاً (حتى ~5000 قراءة في الدورة) فتستهلك
+// أغلب مهلة الدالة المجدولة في رحلات شبكية متعاقبة. ثماني قراءات متزامنة تكفي ولا تضغط المخزن.
+const READ_CONCURRENCY = 8
+
+/** يقرأ حتى cap سجلاً تحت البادئة بترتيب القائمة نفسه؛ السجل التالف يُسقَط ولا يوقف التحليل */
+export async function listEntries(store, prefix, cap) {
   const { blobs } = await store.list({ prefix })
-  for (const b of blobs.slice(0, cap)) {
-    try {
-      const v = await store.get(b.key, { type: 'json' })
-      if (v) out.push(v)
-    } catch { /* سجل تالف واحد لا يوقف التحليل */ }
+  const keys = blobs.slice(0, cap).map((b) => b.key)
+  const out = new Array(keys.length)
+  let next = 0
+  async function worker() {
+    for (let i = next++; i < keys.length; i = next++) {
+      try { out[i] = await store.get(keys[i], { type: 'json' }) } catch { out[i] = null }
+    }
   }
-  return out
+  await Promise.all(Array.from({ length: Math.min(READ_CONCURRENCY, keys.length) }, worker))
+  return out.filter(Boolean)
 }
+
+const BOTISH_RE = /bot|crawl|spider|scrape|fetch|python|curl|wget|http|go-|axios|scrapy|headless/i
 
 function analyzeCrawlers(entries) {
   const byUa = new Map()
@@ -75,7 +84,13 @@ function analyzeCrawlers(entries) {
   const topUa = [...byUa.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10)
   return { suspects: suspects.sort((a, b) => b.hits - a.hits), topUa, total: entries.length }
 }
-const BOTISH_RE = /bot|crawl|spider|scrape|fetch|python|curl|wget|http|go-|axios|scrapy|headless/i
+
+// نتائج Serper (رابط الناشر وعنوانه) نصّ خارجي غير موثوق: يُهرَّب قبل أي تضمين في HTML البريد
+// أو خلية جدول Markdown، وإلا حقن ناشرٌ علامات في بريد المالك أو كسر جدول التقرير.
+const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+const mdCell = (s) => String(s ?? '').replace(/[\r\n]+/g, ' ').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/[<>]/g, (c) => (c === '<' ? '&lt;' : '&gt;'))
+/** رابط http(s) صالح فقط يُعرض رابطاً؛ غيره يُعرض نصاً مهرَّباً */
+const safeHttpUrl = (s) => { try { const u = new URL(String(s ?? '')); return u.protocol === 'http:' || u.protocol === 'https:' ? u.href : null } catch { return null } }
 
 function buildReport({ now, matches, searched, searchNote, crawl, copySummary, emailNote }) {
   const d = now.toISOString().slice(0, 10)
@@ -90,7 +105,7 @@ function buildReport({ now, matches, searched, searchNote, crawl, copySummary, e
   } else {
     L.push(`**⚠️ رُصد ${matches.length} تطابقاً خارجياً — راجع docs/content-protection.md لخطوات التصعيد:**`, '')
     L.push('| الصفحة الأصلية | الموقع الناشر | العنوان لديهم |', '| --- | --- | --- |')
-    for (const m of matches) L.push(`| [${m.source.title}](${m.source.url}) | ${m.result.link} | ${m.result.title} |`)
+    for (const m of matches) L.push(`| [${mdCell(m.source.title)}](${m.source.url}) | ${mdCell(m.result.link)} | ${mdCell(m.result.title)} |`)
     L.push('')
   }
   L.push('## ٢) تحليل الزواحف (آخر ٧ أيام)', '')
@@ -121,7 +136,12 @@ async function sendAlertEmail({ matches, reportKey }) {
   const to = process.env.ALERT_EMAIL_TO
   if (!apiKey || !to) return 'تنبيه البريد متخطّى: RESEND_API_KEY أو ALERT_EMAIL_TO غير مضبوطين في متغيرات بيئة Netlify.'
   const from = process.env.ALERT_EMAIL_FROM || 'onboarding@resend.dev'
-  const rows = matches.map((m) => `<li><a href="${m.result.link}">${m.result.link}</a> — نسخ من: ${m.source.title}</li>`).join('')
+  const rows = matches.map((m) => {
+    const href = safeHttpUrl(m.result.link)
+    const shown = escapeHtml(m.result.link)
+    const link = href ? `<a href="${escapeHtml(href)}">${shown}</a>` : shown
+    return `<li>${link} — نسخ من: ${escapeHtml(m.source.title)}</li>`
+  }).join('')
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },

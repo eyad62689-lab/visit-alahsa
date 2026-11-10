@@ -306,14 +306,18 @@ export function memoryStore() {
 }
 
 /** الأصل المسموح: النطاق الرسمي، ونطاق Netlify الخاص بالموقع وحده (الإنتاج ومعاينات النشر
- *  deploy-preview-N--visit-ahsa وفروعه <branch>--visit-ahsa) — لا كل *.netlify.app — والتطوير المحلي */
+ *  deploy-preview-N--visit-ahsa وفروعه <branch>--visit-ahsa) — لا كل *.netlify.app — والتطوير المحلي.
+ *  allowLocal=false (سياق الإنتاج) يرفض localhost/127.0.0.1: أي صفحة تعمل على جهاز الزائر كانت
+ *  تستطيع استدعاء دالة الإنتاج من المتصفح واستهلاك حصته اليومية والسقف الشهري. */
 export const SITE_HOSTS = ['visit-alahsa.com', 'www.visit-alahsa.com']
 export const NETLIFY_SITE = 'visit-ahsa'
-export function originAllowed(origin) {
+export const LOCAL_HOSTS = ['localhost', '127.0.0.1']
+export function originAllowed(origin, allowLocal = true) {
   if (!origin) return false
   let host = ''
   try { host = new URL(origin).hostname } catch { return false }
-  if (SITE_HOSTS.includes(host) || host === 'localhost' || host === '127.0.0.1') return true
+  if (SITE_HOSTS.includes(host)) return true
+  if (LOCAL_HOSTS.includes(host)) return allowLocal
   return host === `${NETLIFY_SITE}.netlify.app` || host.endsWith(`--${NETLIFY_SITE}.netlify.app`)
 }
 

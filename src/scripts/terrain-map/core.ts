@@ -41,7 +41,10 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
       'CooperativeGesturesHandler.MobileHelpText': cfg.labels.gestTouch ?? '',
     },
   });
-  map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }));
+  // زرّا التكبير في الزاوية المقابلة لزرّ 2D/3D (المثبّت عند inset-inline-start): في الصفحات RTL كان
+  // الاثنان في أعلى اليمين فيغطّي الزرّ 23 من 29 بكسل من زرّ التكبير (axe target-size: partiallyObscured)
+  const rtl = getComputedStyle(host).direction === 'rtl';
+  map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), rtl ? 'top-left' : 'top-right');
   map.addControl(new maplibregl.ScaleControl({}));
 
   // ننتظر اكتمال النمط؛ فشل تحميل النمط نفسه (لا بلاطة عابرة) يرمي فيتراجع التمهيد إلى Leaflet

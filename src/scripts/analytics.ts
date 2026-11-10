@@ -20,6 +20,7 @@ type Params = Record<string, string | number | boolean | undefined>;
 declare global {
   interface Window {
     VATrack?: (name: string, params?: Params) => void;
+    VAPlan?: { key: string; get(): string[]; save(a: string[]): void; has(slug: string): boolean; toggle(slug: string): boolean; sync(): void };
     __vaAiSource?: string | null;
     __vaAnalytics?: boolean;
     gtag?: (...args: unknown[]) => void;

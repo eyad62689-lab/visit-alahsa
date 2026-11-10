@@ -48,7 +48,6 @@ const t = useTranslations(lang);
     const results = dialog.querySelector('#sm-results');
     const closeBtn = dialog.querySelector('#sm-close');
     const form = dialog.querySelector('#sm-form');
-    let loaded = false, loadFailed = false;
 
     // تحميل Pagefind كسولاً مرة واحدة، ويُحفظ على window ليبقى عبر تنقّلات ClientRouter.
     // وعدٌ واحد مشترك: كل حرف يُكتب قبل اكتمال التحميل كان يستدعي options() وinit()
@@ -75,7 +74,6 @@ const t = useTranslations(lang);
       let pf;
       try { pf = await ensurePagefind(); }
       catch (e) {
-        loadFailed = true;
         setMsg('⚠︎ ' + labels.empty); // في dev لا يوجد فهرس؛ يعمل في نسخة الإنتاج
         return;
       }
@@ -83,9 +81,11 @@ const t = useTranslations(lang);
       if (search === null) return; // استُبق باستعلام أحدث
       if (!search.results.length) { setMsg(labels.empty); return; }
       const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
-      results.innerHTML = top.map((d, i) =>
-        '<a class="sm-item" href="' + d.url + '" tabindex="-1">' +
-          '<span class="sm-t">' + (d.meta && d.meta.title ? d.meta.title : d.url) + '</span>' +
+      // الرابط والعنوان نصّ خام من الفهرس فيُهرَّبان؛ المقتطف HTML يولّده Pagefind بوسم <mark> فيبقى كما هو
+      const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      results.innerHTML = top.map((d) =>
+        '<a class="sm-item" href="' + esc(d.url) + '" tabindex="-1">' +
+          '<span class="sm-t">' + esc(d.meta && d.meta.title ? d.meta.title : d.url) + '</span>' +
           '<span class="sm-ex">' + d.excerpt + '</span>' +
         '</a>'
       ).join('');
@@ -161,6 +161,8 @@ const t = useTranslations(lang);
   .sm-inner { display: flex; flex-direction: column; max-block-size: 78vh; }
 
   .sm-bar { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-3) var(--s-4); border-block-end: 1px solid var(--c-line); background: #fff; }
+  /* إتاحة (WCAG 2.4.7): حقل البحث بلا outline، فمؤشر التركيز المرئي خطّ تركوازي أسفل الشريط كله */
+  .sm-bar:focus-within { border-block-end-color: var(--c-turq); box-shadow: inset 0 -1px 0 var(--c-turq); }
   .sm-ic { color: var(--c-turq); flex-shrink: 0; }
   .sm-input { flex: 1; min-inline-size: 0; font-family: var(--font-body); font-size: var(--t-lg); color: var(--c-ink); background: none; border: 0; outline: none; padding-block: 4px; }
   .sm-input::placeholder { color: var(--c-ink-60); }

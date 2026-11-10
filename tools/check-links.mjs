@@ -6,7 +6,7 @@
 // يُعدّ مكسوراً وإن وُجد مجلده (قاعدة routes.ts: الشرطة الختامية تطابق canonical،
 // وبدونها تحويل 301 يُهمِل زوج hreflang). يخرج بـ1 عند أي رابط مكسور فيفشل البناء.
 // القاعدة: أرقام لاتينية (0-9).
-import { readFile, readdir, stat } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
