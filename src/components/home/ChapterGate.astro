@@ -5,14 +5,18 @@
 import HeroPoster from '../HeroPoster.astro';
 import HeroVideo from '../HeroVideo.astro';
 
-import { HOME_COPY, chapterEyebrow, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, HYBRID_COPY, chapterEyebrow, isHybrid, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang }
 const { lang } = Astro.props;
 const eb = chapterEyebrow(lang, 0, 'The Gate');
 const C = HOME_COPY[lang].gate;
+// الترتيب الهجين: البطل أقصر، وزرّاه وجهتان حقيقيتان (فهرس المعالم والخريطة)؛ المخطِّط والحكاية تحته بالتمرير.
+const hybrid = isHybrid(lang);
+const G = isHybrid(lang) ? HYBRID_COPY[lang].gate : null;
+const H = HOME_COPY[lang];
 ---
-<section class="ch gate" id="ch-gate" data-chapter data-dark data-track-view="gate" data-track-view-page="home">
+<section class:list={['ch', 'gate', hybrid && 'gate--short']} id="ch-gate" data-chapter data-dark data-track-view="gate" data-track-view-page="home">
   <div class="gate-media">
     <HeroPoster src="/img/hero-home" class="gate-bg" />
     <HeroVideo src="/video/hero-home-v3.mp4" srcMobile="/video/hero-home-v3-portrait.mp4" />
@@ -23,8 +27,17 @@ const C = HOME_COPY[lang].gate;
     <h1 class="gate-title">{C.title}</h1>
     <p class="gate-lead">{C.lead}</p>
     <div class="gate-cta">
-      <a href="#ch-water" class="btn btn--gold">{C.begin}</a>
-      <a href="#ch-plan" class="btn btn--ghost gate-later">{C.skip}</a>
+      {hybrid ? (
+        <Fragment>
+          <a href={H.paths.attractions} class="btn btn--gold gate-go" data-track="home_gate" data-track-kind="attractions">{G?.explore}<span class="gate-go-ar" aria-hidden="true">{H.arrow}</span></a>
+          <a href={H.paths.map} class="btn btn--ghost gate-later gate-go" data-track="home_gate" data-track-kind="map"><svg class="gate-go-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>{G?.map}</a>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <a href="#ch-water" class="btn btn--gold">{C.begin}</a>
+          <a href="#ch-plan" class="btn btn--ghost gate-later">{C.skip}</a>
+        </Fragment>
+      )}
     </div>
   </div>
   {/* حارس الرأس الشفاف: يصير الرأس مضبّباً حين يتجاوز التمرير 60% من ارتفاع الشاشة */}
@@ -33,12 +46,18 @@ const C = HOME_COPY[lang].gate;
 
 <style>
   .gate { position: relative; min-block-size: min(92svh, 860px); display: grid; align-items: end; overflow: hidden; isolation: isolate; color: var(--c-sand); padding-block: 140px clamp(48px, 8vw, 88px); }
+  .gate--short { min-block-size: min(74svh, 700px); padding-block-end: clamp(40px, 6vw, 64px); }
   .gate-media { position: absolute; inset: 0; z-index: -2; }
   .gate-shade { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(0deg, rgba(0,40,35,.92) 0%, rgba(0,44,39,.55) 45%, rgba(0,44,39,.15) 75%, rgba(0,44,39,.5) 100%); }
   .gate-in { display: grid; gap: var(--s-3); max-inline-size: 760px; margin-inline: auto; }
   .gate-title { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-display); line-height: 1.12; color: var(--c-sand); margin: 0; text-wrap: balance; }
   .gate-lead { font-size: 1.1875rem; line-height: 1.7; color: rgba(247,243,234,.88); margin: 0; max-inline-size: 56ch; }
   .gate-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-block-start: var(--s-2); }
+  .gate-go { display: inline-flex; align-items: center; gap: 10px; }
+  .gate-go-ic { inline-size: 18px; block-size: 18px; flex: none; }
+  .gate-go-ar { transition: transform .25s; }
+  .gate-go:hover .gate-go-ar { transform: translateX(calc(4px * var(--dir, 1))); }
+  :global([dir='rtl']) .gate-go:hover .gate-go-ar { transform: translateX(-4px); }
   .gate-sentinel { position: absolute; inset-block-start: 60vh; inline-size: 1px; block-size: 1px; }
   @media (prefers-reduced-motion: no-preference) {
     .gate-later { animation: gate-rise .9s cubic-bezier(.2,.7,.2,1) 2s both; }

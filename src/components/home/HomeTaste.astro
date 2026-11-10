@@ -1,0 +1,51 @@
+---
+// «تذوّق وأقم» (الترتيب الهجين): مدخل واحد قبل الخاتمة إلى أبواب الطعام والإقامة والفعاليات والتسوّق،
+// بتسميات القائمة نفسها (ui.ts) حتى لا يحمل الباب اسمين.
+import Photo from '../Photo.astro';
+import { HYBRID_COPY, type HybridLang } from '../../data/home-copy';
+import { useTranslations } from '../../i18n/utils';
+import { marketsHref, storesHref } from '../../lib/routes';
+
+interface Props { lang: HybridLang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const C = HYBRID_COPY[lang].taste;
+const ar = lang === 'ar';
+const chips = [
+  { key: 'food', label: t('nav.food'), href: ar ? '/أكلات/' : '/en/food/' },
+  { key: 'dining', label: t('nav.dining'), href: ar ? '/مطاعم-ومقاهي/' : '/en/restaurants-cafes/' },
+  { key: 'fruits', label: t('nav.fruits'), href: ar ? '/ثمار/' : '/en/fruits/' },
+  { key: 'stay', label: t('nav.stay'), href: ar ? '/إقامة/' : '/en/stay/' },
+  { key: 'events', label: t('nav.events'), href: ar ? '/فعاليات/' : '/en/events/' },
+  { key: 'leisure', label: t('nav.leisure'), href: ar ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/' },
+  { key: 'markets', label: t('nav.markets'), href: marketsHref(lang) },
+  { key: 'stores', label: t('nav.stores'), href: storesHref(lang) },
+];
+---
+<section class="ch cv-auto ch--sand taste" id="home-taste" data-track-view="taste" data-track-view-page="home">
+  <div class="container taste-in">
+    <div class="taste-ph">
+      <Photo src="/img/hero-food" label="" class="taste-photo" sizes="(max-width: 860px) 92vw, 520px" />
+    </div>
+    <div class="taste-tx">
+      <h2 class="ch-title" data-rise>{C.title}</h2>
+      <p class="ch-lead">{C.lead}</p>
+      <ul class="taste-chips">
+        {chips.map((c) => (
+          <li><a class="chip taste-chip" href={c.href} data-track="home_taste" data-track-kind={c.key}>{c.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .taste-in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .taste-ph { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; background: var(--c-sand); }
+  .taste-ph :global(.taste-photo) { position: absolute; inset: 0; }
+  .taste-ph :global(.taste-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .taste-tx { display: grid; gap: var(--s-3); }
+  .taste-chips { list-style: none; margin: var(--s-2) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .taste-chip { min-block-size: 44px; display: inline-flex; align-items: center; padding-inline: 18px; background: var(--c-sand); text-decoration: none; }
+  @media (max-width: 860px) { .taste-in { grid-template-columns: 1fr; } }
+</style>

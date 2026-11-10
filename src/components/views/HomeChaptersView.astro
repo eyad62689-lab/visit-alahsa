@@ -17,15 +17,18 @@ import ChapterPlan from '../home/ChapterPlan.astro';
 import ChapterFinale from '../home/ChapterFinale.astro';
 import ChapterRail from '../home/ChapterRail.astro';
 import SavedBar from '../home/SavedBar.astro';
+import HomeQuick from '../home/HomeQuick.astro';
+import HomePaths from '../home/HomePaths.astro';
+import HomeTaste from '../home/HomeTaste.astro';
 import { getCollection } from 'astro:content';
-import { attractionHref } from '../../lib/routes';
+import { attractionHref, blogHref } from '../../lib/routes';
 import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
 import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 import { TRAILS, trailText } from '../../data/trails';
 import { MAP_SLUGS, MEMORY_CARDS, TEMPLATES, COMPANION_TIPS, type Stop } from '../../data/home-chapters';
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, isHybrid, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang; alt: AltLinks }
 const { lang, alt } = Astro.props;
@@ -87,6 +90,9 @@ const places = Object.fromEntries(all.map((e) => [e.data.slug_ar, { name: locTit
 
 const planHref = H.paths.plan;
 const myTripHref = H.paths.myTrip;
+// الترتيب الهجين (ar/en): المخطِّط بعد البطل، ومدخل «أول زيارة» إلى مقال 48 ساعة
+const hybrid = isHybrid(lang);
+const firstHref = lang === 'ar' ? blogHref({ lang: 'ar', slug: '48-ساعة-في-الأحساء' }) : blogHref({ lang: 'en', slug: '48-hours-in-al-ahsa' });
 
 const siteUrl = SITE;
 const jsonLd = [
@@ -108,11 +114,15 @@ const { title, description } = H.seo;
   <Header lang={lang} alt={alt} overlay />
   <main id="main" class="chapters">
     <ChapterGate lang={lang} />
+    {isHybrid(lang) && <HomeQuick lang={lang} firstHref={firstHref} arriveHref={`${planHref}#getting-there`} tripHref={myTripHref} />}
+    {hybrid && <ChapterPlan lang={lang} templates={templates} tips={tips} places={places} planHref={planHref} />}
+    {isHybrid(lang) && <HomePaths lang={lang} />}
     <ChapterWater lang={lang} sitesCount={all.length} />
     <ChapterQarah lang={lang} qarah={pick('jabal-al-qarah')} />
     <ChapterMap lang={lang} points={mapPoints} />
     <ChapterMemory lang={lang} cards={memoryCards} />
-    <ChapterPlan lang={lang} templates={templates} tips={tips} places={places} planHref={planHref} />
+    {!hybrid && <ChapterPlan lang={lang} templates={templates} tips={tips} places={places} planHref={planHref} />}
+    {isHybrid(lang) && <HomeTaste lang={lang} />}
     <ChapterFinale lang={lang} planHref={planHref} myTripHref={myTripHref} />
   </main>
   <ChapterRail lang={lang} />
