@@ -24,6 +24,8 @@ const t = useTranslations(lang);
 const C = ALWAN_PAGE[L];
 const R = ALWAN_RUNTIME[L];
 const selfPath = ALWAN_ALT[L];
+// دفتر التلوين الورقي: الرسومات نفسها في PDF مقاس A4 (طبعة عربية بعناوين إنجليزية للغتين)
+const BOOK_PDF = '/downloads/colours-of-al-ahsa-colouring-book.pdf';
 
 const attractions = await getCollection('attractions');
 const refHref = (ref: (typeof ALWAN_ART)[number]['ref']): string => {
@@ -179,6 +181,19 @@ const jsonLd = [
       </dialog>
       <div class="toast" id="aw-toast" role="status"></div>
     </section>
+
+    <section class="aw-book" aria-labelledby="aw-book-h">
+      <div class="aw-book-in">
+        <img class="aw-book-cover" src="/img/play/alwan/book-cover.webp" alt={C.bookAlt} width="480" height="680" loading="lazy" decoding="async" />
+        <div class="aw-book-txt">
+          <p class="aw-book-eyebrow">{C.bookEyebrow}</p>
+          <h2 id="aw-book-h">{C.bookH}</h2>
+          <p>{C.bookP}</p>
+          <a class="btn btn--turq" href={BOOK_PDF} download data-track="alwan_book_download" data-track-lang={L}>{C.bookBtn}<span aria-hidden="true">↓</span></a>
+          <p class="aw-book-meta">{C.bookMeta}</p>
+        </div>
+      </div>
+    </section>
   </main>
   <script is:inline type="application/json" data-alwan-data set:html={payload}></script>
   <Footer lang={lang} />
@@ -187,3 +202,19 @@ const jsonLd = [
 <script>
   import '../../scripts/play-alwan.js';
 </script>
+
+<style>
+  .aw-book { padding: clamp(40px, 6vw, 72px) 20px; background: var(--c-sand); }
+  .aw-book-in { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 240px) 1fr; gap: clamp(24px, 5vw, 56px); align-items: center; }
+  .aw-book-cover { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 0 1px rgba(21,33,30,.08), 0 18px 40px rgba(21,33,30,.16); }
+  .aw-book-eyebrow { color: var(--c-gold-deep); font-weight: 600; font-size: .9rem; margin: 0; }
+  .aw-book-txt h2 { color: var(--c-turq); font-size: clamp(1.5rem, 3.2vw, 2rem); margin: 6px 0 12px; }
+  .aw-book-txt p { color: var(--c-ink-soft); line-height: 1.8; margin: 0 0 20px; max-width: 58ch; }
+  .aw-book-txt .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; text-decoration: none; }
+  .aw-book-txt .aw-book-meta { font-size: .875rem; margin: 10px 0 0; }
+  @media (max-width: 640px) {
+    .aw-book-in { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .aw-book-cover { max-width: 200px; }
+    .aw-book-txt p { margin-inline: auto; }
+  }
+</style>
