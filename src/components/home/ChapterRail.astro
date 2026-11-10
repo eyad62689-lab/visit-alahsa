@@ -1,12 +1,12 @@
 ---
 // شريط الفصول: سبع نقاط عند inline-end (يسار في العربية، يمين في الإنجليزية — القرار ب6).
 // النقطة النشطة تستطيل وتتذهّب، والاسم يظهر على الحاسوب وحده. روابط عادية تعمل بلوحة المفاتيح.
-import { HOME_COPY, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, HYBRID_RAIL_ORDER, isHybrid, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang }
 const { lang } = Astro.props;
 const C = HOME_COPY[lang].rail;
-const items = C.items;
+const items = isHybrid(lang) ? HYBRID_RAIL_ORDER.map((i) => C.items[i]) : C.items;
 ---
 <nav class="rail" aria-label={C.label} data-rail>
   {items.map(([id, label]) => (

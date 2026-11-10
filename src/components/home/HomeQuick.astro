@@ -1,0 +1,50 @@
+---
+// شريط المداخل السريعة تحت البطل (الترتيب الهجين، عربي/إنجليزي): ثلاث نيّات شائعة بروابط إلى صفحات قائمة.
+// بلا أرقام ولا مسافات: كل مدخل يحيل إلى الصفحة التي تحمل المعلومة المؤكدة.
+import { HYBRID_COPY, HOME_COPY, type HybridLang } from '../../data/home-copy';
+
+interface Props { lang: HybridLang; firstHref: string; arriveHref: string; tripHref: string }
+const { lang, firstHref, arriveHref, tripHref } = Astro.props;
+const C = HYBRID_COPY[lang].quick;
+const arrow = HOME_COPY[lang].arrow;
+const items = [
+  { key: 'first', href: firstHref, t: C.first, icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
+  { key: 'arrive', href: arriveHref, t: C.arrive, icon: '<path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/>' },
+  { key: 'trip', href: tripHref, t: C.trip, icon: '<path d="M6.5 4h11a1 1 0 0 1 1 1v15l-6.5-3.8L5.5 20V5a1 1 0 0 1 1-1z"/>' },
+];
+---
+<nav class="quick" aria-label={C.label} data-track-view="quick" data-track-view-page="home">
+  <div class="container quick-in">
+    {items.map((it) => (
+      <a class="quick-item" href={it.href} data-track="home_quick" data-track-kind={it.key}>
+        <span class="quick-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={it.icon} /></span>
+        <span class="quick-tx">
+          <span class="quick-t">{it.t[0]}</span>
+          <span class="quick-d">{it.t[1]}</span>
+        </span>
+        <span class="quick-ar" aria-hidden="true">{arrow}</span>
+      </a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .quick { background: var(--c-sand); border-block-end: 1px solid rgba(21, 33, 30, .1); }
+  .quick-in { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .quick-item { display: flex; align-items: center; gap: var(--s-3); padding: 20px var(--s-3); text-decoration: none; color: var(--c-ink); min-block-size: 76px; transition: background-color .25s; }
+  .quick-item + .quick-item { border-inline-start: 1px solid rgba(21, 33, 30, .1); }
+  .quick-item:hover { background: var(--c-sand-2); }
+  .quick-item:focus-visible { outline: 2px solid var(--c-turq); outline-offset: -2px; }
+  .quick-ic { flex: none; inline-size: 40px; block-size: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--c-turq-deep); color: var(--c-sand); }
+  .quick-ic svg { inline-size: 20px; block-size: 20px; }
+  .quick-tx { display: grid; gap: 2px; min-inline-size: 0; }
+  .quick-t { font-family: var(--font-heading); font-weight: 700; font-size: 1.0625rem; color: var(--c-turq-deep); line-height: 1.35; }
+  .quick-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.5; }
+  .quick-ar { margin-inline-start: auto; color: var(--c-turq); font-size: 1.1rem; }
+  @media (max-width: 760px) {
+    .quick-in { grid-template-columns: 1fr; padding-inline: 0; }
+    .quick-item { padding: 14px 16px; min-block-size: 64px; }
+    .quick-item + .quick-item { border-inline-start: 0; border-block-start: 1px solid rgba(21, 33, 30, .1); }
+  }
+  @media (prefers-reduced-motion: reduce) { .quick-item { transition: none; } }
+</style>

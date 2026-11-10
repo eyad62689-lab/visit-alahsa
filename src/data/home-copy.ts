@@ -33,6 +33,43 @@ export type HomeCopy = {
   saved: { count: string; build: string };
 };
 
+/** الترتيب الهجين (المهمة أولاً ثم الحكاية): عربي/إنجليزي فقط، وبقية اللغات على ترتيبها حتى تمرّ نصوصه بخطوطها. */
+export const HYBRID_LANGS = ['ar', 'en'] as const;
+export type HybridLang = (typeof HYBRID_LANGS)[number];
+export const isHybrid = (lang: HomeLang): lang is HybridLang => lang === 'ar' || lang === 'en';
+/** رقم الفصل في الترتيب الهجين بحسب فهرسه الأصلي: المخطِّط يصعد ثانياً. */
+const HYBRID_NO = [1, 3, 4, 5, 6, 2, 7] as const;
+/** ترتيب نقاط الشريط الجانبي في الترتيب الهجين (فهارس rail.items). */
+export const HYBRID_RAIL_ORDER = [0, 5, 1, 2, 3, 4, 6] as const;
+
+export const HYBRID_COPY: Record<HybridLang, {
+  quick: { label: string; first: Pair; arrive: Pair; trip: Pair };
+  taste: { title: string; lead: string };
+  /** زرّا البطل: وجهتان خارج الصفحة (فهرس المعالم والخريطة)، لا قفزتان داخلها */
+  gate: { explore: string; map: string };
+}> = {
+  ar: {
+    quick: {
+      label: 'مداخل سريعة',
+      first: ['أول زيارة؟', 'جدول 48 ساعة جاهز'],
+      arrive: ['كيف تصل؟', 'دليل الوصول إلى الأحساء'],
+      trip: ['رحلتي', 'معالمك المحفوظة'],
+    },
+    taste: { title: 'تذوّق وأقم', lead: 'المطبخ الأحسائي ومطاعمه ومقاهيه، وأماكن الإقامة، وما يُقام من فعاليات.' },
+    gate: { explore: 'اكتشف معالم الأحساء', map: 'تجوّل على الخريطة' },
+  },
+  en: {
+    quick: {
+      label: 'Quick entries',
+      first: ['First visit?', 'A ready 48-hour itinerary'],
+      arrive: ['Getting there', 'How to reach Al-Ahsa'],
+      trip: ['My trip', 'Your saved places'],
+    },
+    taste: { title: 'Taste and stay', lead: 'Al-Ahsa’s cuisine, restaurants and cafés, places to stay, and what’s on.' },
+    gate: { explore: 'Explore the attractions', map: 'Open the map' },
+  },
+};
+
 export const HOME_COPY: Record<HomeLang, HomeCopy> = {
   ar: {
     seo: {
@@ -552,7 +589,7 @@ export const isHomeLang = (l: Lang): l is HomeLang => (HOME_LANGS as readonly st
  *  (وموسوم lang="en" في العربية)، وفي غيرهما اسم الفصل المترجم من شريط الفصول — نصّ لاتيني في
  *  صفحة صينية يحسبه فحص سلامة اللغة C22 غير مترجم. */
 export const chapterEyebrow = (lang: HomeLang, i: number, latin: string) => {
-  const no = String(i + 1).padStart(2, '0');
+  const no = String(isHybrid(lang) ? HYBRID_NO[i] : i + 1).padStart(2, '0');
   if (lang === 'ar' || lang === 'en') return { text: `${no} · ${latin}`, lang: lang === 'en' ? undefined : 'en' };
   return { text: `${no} · ${HOME_COPY[lang].rail.items[i][1]}`, lang: undefined };
 };

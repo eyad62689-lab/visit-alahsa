@@ -1,0 +1,60 @@
+---
+// «اختر طريقك في الواحة» (الترتيب الهجين): ثلاث بطاقات فئات بصور المعالم نفسها ونصوص ui.ts القائمة.
+// البطاقة رابط إلى قسم الفئة في الفهرس، لا جدول زيارة.
+import Photo from '../Photo.astro';
+import { HOME_COPY, type HybridLang } from '../../data/home-copy';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props { lang: HybridLang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const H = HOME_COPY[lang];
+const leisure = lang === 'ar' ? '/أسواق-ومنتزهات-ومزارع/' : '/en/souqs-parks-farms/';
+const cards = [
+  { key: 'historic', img: '/img/qasr-ibrahim', href: `${H.paths.attractions}?cat=historic`, title: t('cat.historic.t'), desc: t('cat.historic.d') },
+  { key: 'nature', img: '/img/jabal-al-qarah', href: `${H.paths.attractions}?cat=nature`, title: t('cat.nature.t'), desc: t('cat.nature.d') },
+  { key: 'market', img: '/img/qaisariyah', href: `${leisure}?cat=market`, title: t('cat.market.t'), desc: t('cat.market.d') },
+];
+---
+<section class="ch cv-auto ch--light paths" id="home-paths" data-track-view="paths" data-track-view-page="home">
+  <div class="container">
+    <header class="ch-head" data-rise>
+      <span class="paths-eb">{t('home.cats.eyebrow')}</span>
+      <h2 class="ch-title">{t('home.cats.title')}</h2>
+    </header>
+    <div class="paths-grid">
+      {cards.map((c) => (
+        <a class="path-card" href={c.href} data-track="home_path" data-track-kind={c.key}>
+          <Photo src={c.img} label="" class="path-photo" sizes="(max-width: 760px) 92vw, 360px" />
+          <span class="path-shade" aria-hidden="true"></span>
+          <span class="path-tx">
+            <span class="path-t">{c.title}</span>
+            <span class="path-d">{c.desc}</span>
+          </span>
+          <span class="path-ar" aria-hidden="true">{H.arrow}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .paths-eb { font-weight: 600; font-size: var(--t-sm); color: var(--c-gold-deep); }
+  .paths-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+  .path-card { position: relative; display: grid; align-items: end; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; text-decoration: none; color: var(--c-sand); background: var(--c-turq-deep); isolation: isolate; }
+  .path-card :global(.path-photo) { position: absolute; inset: 0; z-index: -2; }
+  .path-card :global(.path-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .path-card:hover :global(.path-photo img) { transform: scale(1.04); }
+  .path-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(8, 28, 25, .92) 0%, rgba(8, 28, 25, .6) 38%, rgba(8, 28, 25, 0) 70%); }
+  .path-tx { display: grid; gap: 6px; padding: var(--s-4) var(--s-3) var(--s-3); padding-inline-end: 60px; }
+  .path-t { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; line-height: 1.3; }
+  .path-d { font-size: var(--t-sm); line-height: 1.6; color: rgba(247, 243, 234, .92); }
+  .path-ar { position: absolute; inset-block-end: var(--s-3); inset-inline-end: var(--s-3); inline-size: 36px; block-size: 36px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(247, 243, 234, .55); color: var(--c-sand); transition: background-color .25s, color .25s; }
+  .path-card:hover .path-ar { background: var(--c-sand); color: var(--c-turq-deep); }
+  .path-card:focus-visible { outline: 3px solid var(--c-turq); outline-offset: 3px; }
+  @media (max-width: 760px) {
+    .paths-grid { grid-template-columns: 1fr; }
+    .path-card { aspect-ratio: 16 / 10; }
+  }
+  @media (prefers-reduced-motion: reduce) { .path-card :global(.path-photo img), .path-ar { transition: none; } }
+</style>
