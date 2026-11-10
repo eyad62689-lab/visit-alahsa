@@ -77,6 +77,9 @@ export const ALWAN_PAGE = {
     sourceCaption: 'هذه هي الصورة المنشورة في «زوروا الأحساء» التي استندت إليها الرسمة. بُسّطت التفاصيل لتناسب التلوين.',
     sourceLink: 'اكتشفها في الموقع',
     clearH: 'نبدأ بألوان جديدة؟', clearP: 'سيُمسح تلوين هذه الرسمة فقط. يمكنك التراجع بعد المسح.', cancel: 'إلغاء', clearYes: 'مسح الألوان',
+    bookEyebrow: 'للطباعة', bookH: 'دفتر التلوين الورقي',
+    bookP: 'الرسومات الثلاثون في دفتر واحد مقاس A4: غلاف، وخانة لاسم الطفل، وصفحة لكل رسمة باسمها. اطبعه في البيت أو المدرسة، ويُفضّل على وجه واحد من الورقة.',
+    bookBtn: 'حمّل الدفتر', bookMeta: 'ملف PDF · 37 صفحة · 5.8 ميغابايت', bookAlt: 'غلاف دفتر تلوين ألوان الأحساء',
   },
   en: {
     seoTitle: "Colours of Al-Ahsa: Kids' Colouring Pages of the Oasis",
@@ -109,6 +112,9 @@ export const ALWAN_PAGE = {
     sourceCaption: 'This is the photo published on Visit Al-Ahsa that the drawing is based on. Details were simplified for colouring.',
     sourceLink: 'Discover it on the site',
     clearH: 'Start with fresh colours?', clearP: 'Only this drawing’s colouring will be cleared. You can undo after clearing.', cancel: 'Cancel', clearYes: 'Clear colours',
+    bookEyebrow: 'Printable', bookH: 'The paper colouring book',
+    bookP: 'All 30 drawings in one A4 book: a cover, a space for the child’s name and a page for each drawing with its name. Print it at home or school, ideally on one side of the paper. Arabic edition with English titles.',
+    bookBtn: 'Download the book', bookMeta: 'PDF · 37 pages · 5.8 MB', bookAlt: 'Cover of the Colours of Al-Ahsa colouring book',
   },
 } as const;
 
