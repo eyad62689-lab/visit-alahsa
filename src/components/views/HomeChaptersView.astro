@@ -23,7 +23,7 @@ import HomeTaste from '../home/HomeTaste.astro';
 import { getCollection } from 'astro:content';
 import { attractionHref, blogHref } from '../../lib/routes';
 import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
-import { altHref, useTranslations, type AltLinks } from '../../i18n/utils';
+import { altHref, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { ogDefault } from '../../lib/og';
 import { TRAILS, trailText } from '../../data/trails';
@@ -109,8 +109,11 @@ const jsonLd = [
   },
 ];
 const { title, description } = H.seo;
+// the brand closes the title on every page; copy that already ends with it is left as is
+const brand = t('site.brand');
+const pageTitle = title.endsWith(brand) ? title : `${title} ${titleSep(lang)} ${brand}`;
 ---
-<Base title={title} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
+<Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
   <Header lang={lang} alt={alt} overlay />
   <main id="main" class="chapters">
     <ChapterGate lang={lang} />
