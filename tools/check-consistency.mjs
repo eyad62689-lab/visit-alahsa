@@ -427,16 +427,32 @@ async function main() {
     }
     // ── C78: رؤوس HTTP مصدرها public/_headers وحده — لا [[headers]] في netlify.toml، وdist/_headers
     // يحمل رؤوس التخزين والأمان وCSP كاملةً بلا تكرار. المنطق في tools/check-headers.mjs (دالة نقية
-    // يُختبر كسرها في الذاكرة).
+    // يُختبر كسرها في الذاكرة). والسياسة إلزامية بلا unsafe-eval، فكل سكربت يُسلَّم لعامل الخريطة وحدة mjs.
     {
       const tomlPath = path.join(ROOT, 'netlify.toml');
       const hdrPath = path.join(DIST, '_headers');
+      // ما تسلّمه الصفحات المبنية لعامل الخريطة: قيمة rtlPluginUrl في إعداد الخريطة التضاريسية
+      const KEY = '"rtlPluginUrl":"';
+      const workerScripts = [];
+      for (const f of htmlFiles) {
+        const html = await readText(f);
+        const at = html.indexOf(KEY);
+        if (at === -1) continue;
+        const url = html.slice(at + KEY.length, html.indexOf('"', at + KEY.length));
+        const local = url.startsWith('/') && !url.includes('..');
+        workerScripts.push({
+          page: path.relative(DIST, f).split(path.sep).join('/'),
+          url,
+          exists: local && existsSync(path.join(DIST, ...url.split('/'))),
+        });
+      }
       const { problems, stats } = checkHeaders({
         toml: existsSync(tomlPath) ? await readText(tomlPath) : '',
         headers: existsSync(hdrPath) ? await readText(hdrPath) : '',
+        workerScripts,
       });
       if (problems.length) fail('C78', `رؤوس HTTP: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-      else pass('C78', `رؤوس HTTP من dist/_headers وحده (${stats.headers} رأساً على ${stats.paths} مسارات؛ CSP: ${stats.cspMode})، ولا [[headers]] في netlify.toml`);
+      else pass('C78', `رؤوس HTTP من dist/_headers وحده (${stats.headers} رأساً على ${stats.paths} مسارات؛ CSP: ${stats.cspMode})، ولا [[headers]] في netlify.toml، وعامل الخريطة يستلم وحدة mjs في ${stats.workerScripts} صفحات`);
     }
     // ── C32: بيت البيعة بُني عام 1203هـ/1788م (حكم إياد 2026-09-30، بسند الدارة وسعوديبيديا) — لا
     // «1789» في صفحة تذكر 1203، وإيجاباً 1203…1788 في صفحة المعلم بكل لغة. المنطق في

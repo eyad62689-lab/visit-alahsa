@@ -11,6 +11,10 @@
 //   (ب) إيجاباً: dist/_headers يحمل كل قاعدة في REQUIRED بقيمتها — فلا يصير الحارس فارغاً
 //       إن حُذف الملف أو أُفرغ.
 //   (ج) لا مسار مكرّر ولا رأس مكرّر داخل المسار الواحد.
+//   (د) سياسة المحتوى إلزامية (Content-Security-Policy) لا تقريراً وحده، وفي script-src
+//       'wasm-unsafe-eval' (بحث الموقع يشغّل WebAssembly) وليس فيه 'unsafe-eval'.
+//   (هـ) كل سكربت تسلّمه صفحة مبنية لعامل الخريطة مسار محلي ينتهي بـ.mjs وموجود في dist: العامل
+//       يحمّل ما عدا ذلك عبر eval فتحجبه السياسة، ويسقط تشكيل النص العربي على الخريطة.
 
 /** القواعد اللازمة: المسار ← [اسم الرأس، نمط يطابق قيمته] */
 export const REQUIRED = [
@@ -28,8 +32,15 @@ export const REQUIRED = [
 ];
 
 /** توجيهات CSP التي لا تسقط من السياسة أياً كان وضعها */
-export const CSP_DIRECTIVES = ["default-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"];
-export const CSP_HEADERS = ['Content-Security-Policy', 'Content-Security-Policy-Report-Only'];
+export const CSP_DIRECTIVES = [
+  "default-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+];
+export const CSP_ENFORCED = 'Content-Security-Policy';
+export const CSP_HEADERS = [CSP_ENFORCED, 'Content-Security-Policy-Report-Only'];
 
 /**
  * يحلّل ملف _headers إلى خريطة: المسار ← [[الاسم، القيمة]، …] مع المكرّرات كما وردت.
@@ -57,11 +68,15 @@ export function parseHeadersFile(text) {
   return { rules, dupPaths, orphans };
 }
 
+/** توجيهات السياسة: كل توجيه قائمة كلمات أولها اسمه */
+const directivesOf = (policy) => policy.split(';').map((d) => d.trim().split(' ').filter(Boolean));
+
 /**
- * @param {{toml: string, headers: string}} input نص netlify.toml ونص dist/_headers
- * @returns {{problems: string[], stats: {paths: number, headers: number, cspMode: string}}}
+ * @param {{toml: string, headers: string, workerScripts?: {page: string, url: string, exists: boolean}[]}} input
+ *   نص netlify.toml ونص dist/_headers، وما تسلّمه الصفحات المبنية لعامل الخريطة (يُفحص متى مُرِّر).
+ * @returns {{problems: string[], stats: {paths: number, headers: number, cspMode: string, workerScripts: number}}}
  */
-export function checkHeaders({ toml, headers }) {
+export function checkHeaders({ toml, headers, workerScripts }) {
   const problems = [];
   const tomlTables = toml.split(/\r?\n/).filter((l) => l.trim().startsWith('[[headers]]')).length;
   if (tomlTables) problems.push(`netlify.toml يحمل ${tomlTables} جدول [[headers]] — الرؤوس في public/_headers وحده`);
@@ -92,11 +107,34 @@ export function checkHeaders({ toml, headers }) {
   const cspNames = CSP_HEADERS.filter((n) => valueOf('/*', n) !== null);
   if (cspNames.length === 0) problems.push('_headers: /* بلا سياسة أمان المحتوى (CSP)');
   for (const n of cspNames) {
-    const directives = valueOf('/*', n).split(';').map((d) => d.trim().replace(/\s+/g, ' '));
+    const directives = directivesOf(valueOf('/*', n)).map((d) => d.join(' '));
     for (const d of CSP_DIRECTIVES) {
       if (!directives.includes(d)) problems.push(`_headers: ${n} بلا التوجيه «${d}»`);
     }
   }
 
-  return { problems, stats: { paths: rules.size, headers: count, cspMode: cspNames.join(' + ') || 'none' } };
+  const enforced = valueOf('/*', CSP_ENFORCED);
+  if (enforced === null) {
+    if (cspNames.length) problems.push(`_headers: سياسة المحتوى في وضع التقرير وحده — الرأس الإلزامي ${CSP_ENFORCED} غائب`);
+  } else {
+    const scriptSrc = directivesOf(enforced).find((d) => d[0] === 'script-src') ?? [];
+    if (!scriptSrc.includes("'wasm-unsafe-eval'")) problems.push("_headers: script-src بلا 'wasm-unsafe-eval' — بحث الموقع يتوقف (يشغّل WebAssembly)");
+    if (scriptSrc.includes("'unsafe-eval'")) problems.push("_headers: script-src يحمل 'unsafe-eval'");
+  }
+
+  if (workerScripts) {
+    if (workerScripts.length === 0) problems.push('لا صفحة مبنية تسلّم إضافة النص العربي لعامل الخريطة (rtlPluginUrl)');
+    for (const { page, url, exists } of workerScripts) {
+      if (!url.startsWith('/') || url.startsWith('//') || !url.endsWith('.mjs')) {
+        problems.push(`${page}: «${url.slice(0, 80)}» يُسلَّم لعامل الخريطة وليس مساراً محلياً بامتداد .mjs — يُحمَّل عبر eval فتحجبه السياسة`);
+      } else if (!exists) {
+        problems.push(`${page}: «${url.slice(0, 80)}» غير موجود في dist`);
+      }
+    }
+  }
+
+  return {
+    problems,
+    stats: { paths: rules.size, headers: count, cspMode: cspNames.join(' + ') || 'none', workerScripts: workerScripts?.length ?? 0 },
+  };
 }
