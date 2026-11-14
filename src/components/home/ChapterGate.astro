@@ -22,6 +22,9 @@ const H = HOME_COPY[lang];
     <HeroVideo src="/video/hero-home-v3.mp4" srcMobile="/video/hero-home-v3-portrait.mp4" />
   </div>
   <div class="gate-shade" aria-hidden="true"></div>
+  {/* طبقتا الطقس (ar/en): لون الحالة ثم لوحة المؤثّر — فارغتان حتى يصل الطقس من رأس الصفحة (HeaderWeather.astro) */}
+  <div class="gate-tint" aria-hidden="true"></div>
+  <canvas class="gate-fx" aria-hidden="true" data-gate-fx></canvas>
   <div class="container gate-in">
     <span class="ch-no" lang={eb.lang}>{eb.text}</span>
     <h1 class="gate-title">{C.title}</h1>
@@ -44,6 +47,23 @@ const H = HOME_COPY[lang];
   <span class="gate-sentinel" data-header-sentinel aria-hidden="true"></span>
 </section>
 
+<script>
+  // مؤثّر الطقس: يبدأ حين يصل الطقس (va:weather)، أو فوراً إن وصل قبل هذا السكربت. وحدة المؤثّر
+  // تُحمَّل كسولاً فلا تدخل حزمة الصفحة. الرئيسيات بلغات أخرى لا تحمل شارة الطقس فلا يصلها الحدث.
+  let stopFx: (() => void) | null = null;
+  async function runFx(wx: { state?: string } | undefined) {
+    const gate = document.getElementById('ch-gate');
+    const cv = gate?.querySelector<HTMLCanvasElement>('[data-gate-fx]');
+    if (!gate || !cv || !wx?.state || gate.dataset.wx) return;
+    gate.dataset.wx = wx.state;
+    const { startWeatherFx } = await import('../../scripts/weather-fx');
+    stopFx = startWeatherFx(cv, gate, wx.state);
+  }
+  document.addEventListener('va:weather', (e) => runFx((e as CustomEvent).detail));
+  document.addEventListener('astro:page-load', () => runFx((window as any).__vaWeather));
+  document.addEventListener('astro:before-swap', () => { stopFx?.(); stopFx = null; });
+</script>
+
 <style>
   .gate { position: relative; min-block-size: min(92svh, 860px); display: grid; align-items: end; overflow: hidden; isolation: isolate; color: var(--c-sand); padding-block: 140px clamp(48px, 8vw, 88px); }
   .gate--short { min-block-size: min(74svh, 700px); padding-block-end: clamp(40px, 6vw, 64px); }
@@ -58,6 +78,27 @@ const H = HOME_COPY[lang];
   .gate-go-ar { transition: transform .25s; }
   .gate-go:hover .gate-go-ar { transform: translateX(calc(4px * var(--dir, 1))); }
   :global([dir='rtl']) .gate-go:hover .gate-go-ar { transform: translateX(-4px); }
+  /* طبقتا الطقس فوق التظليل وتحت النص؛ ومعهما مرشّح لوني على الصورة لكل حالة (يتلاشى في 1.4 ثانية) */
+  .gate-tint, .gate-fx { position: absolute; inset: 0; z-index: -1; pointer-events: none; inline-size: 100%; block-size: 100%; }
+  .gate-tint { opacity: 0; transition: opacity 1.4s ease; }
+  .gate-fx { opacity: 0; transition: opacity 1.4s ease; }
+  .gate-fx.is-on { opacity: 1; }
+  .gate-media { transition: filter 1.4s ease; }
+  .gate[data-wx] .gate-tint { opacity: .82; }
+  .gate[data-wx='clear'] .gate-tint { background: radial-gradient(120% 80% at var(--wx-sun, 12%) 0%, rgba(255,214,140,.30), transparent 60%); }
+  .gate[data-wx='hot'] .gate-tint { background: radial-gradient(130% 90% at var(--wx-sun, 10%) 0%, rgba(255,170,70,.38), transparent 62%), linear-gradient(0deg, rgba(255,120,30,.10), transparent 50%); }
+  .gate[data-wx='hot'] .gate-media { filter: saturate(1.12) contrast(1.04) brightness(1.04); }
+  .gate[data-wx='dust'] .gate-tint { background: linear-gradient(180deg, rgba(196,150,88,.46), rgba(170,120,60,.30)); }
+  .gate[data-wx='dust'] .gate-media { filter: sepia(.35) saturate(.8) contrast(.86) brightness(.96); }
+  .gate[data-wx='cloud'] .gate-tint { background: linear-gradient(180deg, rgba(40,60,66,.28), transparent 70%); }
+  .gate[data-wx='cloud'] .gate-media { filter: saturate(.88) brightness(.94); }
+  .gate[data-wx='rain'] .gate-tint { background: linear-gradient(180deg, rgba(30,52,66,.45), rgba(20,40,50,.22)); }
+  .gate[data-wx='rain'] .gate-media { filter: saturate(.75) brightness(.86) hue-rotate(-6deg); }
+  .gate[data-wx='fog'] .gate-tint { background: linear-gradient(0deg, rgba(225,228,222,.34), rgba(225,228,222,.10) 60%, transparent); }
+  .gate[data-wx='fog'] .gate-media { filter: saturate(.7) contrast(.8) brightness(1.02); }
+  .gate[data-wx='night'] .gate-tint { background: linear-gradient(180deg, rgba(4,14,34,.62), rgba(4,20,30,.30) 70%); }
+  .gate[data-wx='night'] .gate-media { filter: brightness(.62) saturate(.8) hue-rotate(8deg); }
+  :global([dir='ltr']) .gate { --wx-sun: 88%; }
   .gate-sentinel { position: absolute; inset-block-start: 60vh; inline-size: 1px; block-size: 1px; }
   @media (prefers-reduced-motion: no-preference) {
     .gate-later { animation: gate-rise .9s cubic-bezier(.2,.7,.2,1) 2s both; }

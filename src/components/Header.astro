@@ -2,6 +2,7 @@
 // الترويسة — ثنائية اللغة: تنقّل مترجم، مبدّل لغة يربط النظير، RTL/LTR تلقائي.
 import Wordmark from './Wordmark.astro';
 import Search from './Search.astro';
+import HeaderWeather from './HeaderWeather.astro';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
@@ -11,8 +12,9 @@ import { storesHref, marketsHref } from '../lib/routes';
 
 // overlay: رأس الرئيسية «الواحة تتكشّف» (القرار أ3، البند 4) — شفاف فوق الفصل الأول، ومضبّب
 // كالمعتاد حين يعبر حارس [data-header-sentinel] (عند 60% من ارتفاع الشاشة) أعلى الإطار.
-interface Props { lang?: Lang; alt?: AltLinks; overlay?: boolean; }
-const { lang = 'ar', alt, overlay = false } = Astro.props;
+// weather: شارة طقس الهفوف في صف الوردمارك — للرئيسية العربية والإنجليزية وحدهما (HeaderWeather.astro)
+interface Props { lang?: Lang; alt?: AltLinks; overlay?: boolean; weather?: boolean; }
+const { lang = 'ar', alt, overlay = false, weather = false } = Astro.props;
 const t = useTranslations(lang);
 const ar = lang === 'ar';
 
@@ -99,6 +101,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     {/* شارة الإطلاق التجريبي: العربية والإنجليزية وحدهما (بقية اللغات لم تمرّ النصَّ بخطوط ترجمتها).
         خارج رابط الشعار كي لا تدخل اسمه المقروء. */}
     {(ar || lang === 'en') && <span class="beta">{ar ? 'إطلاق تجريبي' : 'Beta launch'}</span>}
+    {weather && (ar || lang === 'en') && <HeaderWeather lang={ar ? 'ar' : 'en'} />}
 
     {/* الصندوق نفسه هو عنصر الإتاحة (بؤرة + مسافة + حالة محددة أصلية)، والملصق
         بصري بحت — role="button" على <label> مخالفة aria-allowed-role (لايتهاوس

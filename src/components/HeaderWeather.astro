@@ -1,0 +1,157 @@
+---
+// شارة طقس الهفوف في رأس الرئيسية — في صف الوردمارك، بلا إطار (اعتمده إياد 2026-11-14 بعد المعاينة).
+// تُعرض بالعربية والإنجليزية وحدهما: نصوص الحالات والنصائح لم تمرّ بخطوط ترجمة اللغات الأخرى.
+// تُملأ في المتصفح من /api/weather (netlify/functions/weather.mjs)، وتبقى مخفية (visibility لا display،
+// فمساحتها محجوزة ولا يتزحزح التنقّل حين تظهر) إن تعذّر الجلب. لا رقم في HTML المبني: الطقس لحظي.
+// حين تصل البيانات يُطلق الحدث va:weather فيبدأ مؤثّر الفصل الأول (ChapterGate.astro).
+interface Props { lang: 'ar' | 'en' }
+const { lang } = Astro.props;
+const ar = lang === 'ar';
+const L = ar
+  ? { label: 'طقس الأحساء الآن', place: 'الهفوف الآن', feels: 'الإحساس', hum: 'الرطوبة', wind: 'الرياح كم/س', src: 'بيانات الطقس:' }
+  : { label: 'Al-Ahsa weather now', place: 'Hofuf now', feels: 'Feels like', hum: 'Humidity', wind: 'Wind km/h', src: 'Weather data:' };
+// الحالات والنصائح: النصيحة مشتقّة من الطقس وحده، لا معلومة عن معلم بعينه
+const STATES = ar ? {
+  clear: ['صافٍ', 'طقس مثالي للتجوّل في البساتين والأسواق.'],
+  hot: ['حار جداً', 'حرّ شديد. اجعل الظهيرة للأماكن المغلقة والمساء للأسواق، واحمل ماءً.'],
+  dust: ['غبار', 'غبار عالق. أصحاب الحساسية يفضّلون الأماكن المغلقة اليوم.'],
+  cloud: ['غائم جزئياً', 'غيوم تلطّف الجو. وقت جيد للمشي في الهواء الطلق.'],
+  overcast: ['غائم', 'غيوم تلطّف الجو. وقت جيد للمشي في الهواء الطلق.'],
+  rain: ['مطر', 'أمطار. تجنّب الطرق البرية ومجاري السيول، وتحقّق من حالة الطريق قبل الخروج.'],
+  fog: ['ضباب', 'ضباب. تمهّل على الطرق السريعة وأضئ المصابيح.'],
+  night: ['ليل صافٍ', 'ليل صافٍ وهواء عليل. الأسواق التاريخية في أبهى حالها مساءً.'],
+} : {
+  clear: ['Clear', 'Ideal weather for wandering the orchards and souqs.'],
+  hot: ['Very hot', 'Intense heat. Spend midday indoors, save the souqs for the evening, and carry water.'],
+  dust: ['Dusty', 'Dust in the air. If you have allergies, indoor sights are the better choice today.'],
+  cloud: ['Partly cloudy', 'Clouds soften the heat. A good time to walk outdoors.'],
+  overcast: ['Cloudy', 'Clouds soften the heat. A good time to walk outdoors.'],
+  rain: ['Rain', 'Rain. Avoid desert tracks and flood channels, and check road conditions before heading out.'],
+  fog: ['Fog', 'Fog. Slow down on highways and use your headlights.'],
+  night: ['Clear night', 'A clear, mild night. The historic souqs are at their liveliest in the evening.'],
+};
+---
+<div class="hd-wx" data-hd-wx data-states={JSON.stringify(STATES)} data-label={L.label}>
+  <button type="button" class="wx-btn" aria-expanded="false" aria-controls="hd-wx-pop" aria-label={L.label} data-wx-btn>
+    <svg class="wx-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-wx-ic></svg>
+    <span class="wx-temp" data-wx-temp></span>
+    <span class="wx-cond" data-wx-cond></span>
+  </button>
+  <div class="wx-pop" id="hd-wx-pop" hidden data-wx-pop>
+    <p class="wx-place">{L.place}</p>
+    <dl>
+      <div><dt>{L.feels}</dt><dd data-wx-feels></dd></div>
+      <div><dt>{L.hum}</dt><dd data-wx-hum></dd></div>
+      <div><dt>{L.wind}</dt><dd data-wx-wind></dd></div>
+    </dl>
+    <p class="wx-tip" data-wx-tip></p>
+    <p class="wx-src">{L.src} <a href="https://open-meteo.com/" rel="noopener" target="_blank">Open-Meteo</a></p>
+  </div>
+</div>
+
+<script>
+  const ICONS: Record<string, string> = {
+    clear: '<circle cx="16" cy="16" r="5.5"/><path d="M16 4v3M16 25v3M4 16h3M25 16h3M7.5 7.5l2.1 2.1M22.4 22.4l2.1 2.1M7.5 24.5l2.1-2.1M22.4 9.6l2.1-2.1"/>',
+    hot: '<circle cx="16" cy="13" r="5"/><path d="M16 3v2.5M6 13H3.5M28.5 13H26M8.9 5.9l1.8 1.8M23.1 5.9l-1.8 1.8M6 23c2.5-1.6 4-1.6 6.5 0s4 1.6 6.5 0 4-1.6 6.5 0M6 27.5c2.5-1.6 4-1.6 6.5 0s4 1.6 6.5 0 4-1.6 6.5 0"/>',
+    dust: '<path d="M4 11h15a3 3 0 1 0-3-3M4 16h21a3 3 0 1 1-3 3M4 21h11"/><circle cx="21" cy="25" r=".6" fill="currentColor"/><circle cx="26" cy="23.5" r=".6" fill="currentColor"/><circle cx="18" cy="21.5" r=".6" fill="currentColor"/>',
+    cloud: '<path d="M10 24h13a5 5 0 0 0 .6-10A7 7 0 0 0 10.2 13 5.5 5.5 0 0 0 10 24z"/><path d="M20 7.5a5 5 0 0 1 6.6 5" opacity=".6"/>',
+    rain: '<path d="M10 19h13a5 5 0 0 0 .6-10A7 7 0 0 0 10.2 8 5.5 5.5 0 0 0 10 19z"/><path d="M11 23l-1.5 4M16.5 23L15 27M22 23l-1.5 4"/>',
+    fog: '<path d="M5 10h22M8 15h19M5 20h20M9 25h14"/>',
+    night: '<path d="M21.5 22.5A9 9 0 0 1 13 7a9 9 0 1 0 11.4 13.4 9 9 0 0 1-2.9 2.1z"/><circle cx="24" cy="8" r=".7" fill="currentColor"/><circle cx="27" cy="13" r=".5" fill="currentColor"/>',
+  };
+  type Wx = { state: string; code: number; temp: number; feels: number | null; humidity: number | null; wind: number | null };
+  const KNOWN = ['clear', 'hot', 'dust', 'cloud', 'rain', 'fog', 'night'];
+
+  async function initWeather() {
+    const box = document.querySelector<HTMLElement>('[data-hd-wx]');
+    if (!box || box.dataset.ready) return;
+    box.dataset.ready = '1';
+    let wx: Wx;
+    try {
+      const r = await fetch('/api/weather', { signal: AbortSignal.timeout(6000) });
+      if (!r.ok || r.status === 204) return;
+      wx = await r.json();
+    } catch { return; }
+    if (!wx || !KNOWN.includes(wx.state) || !Number.isFinite(wx.temp)) return;
+    const states = JSON.parse(box.dataset.states || '{}') as Record<string, [string, string]>;
+    const key = wx.state === 'cloud' && wx.code === 3 ? 'overcast' : wx.state;
+    const [cond, tip] = states[key] ?? states[wx.state];
+    const q = <T extends Element = HTMLElement>(s: string) => box.querySelector<T>(s)!;
+    q('[data-wx-ic]').innerHTML = ICONS[wx.state];
+    q('[data-wx-temp]').textContent = `${wx.temp}°`;
+    q('[data-wx-cond]').textContent = cond;
+    q('[data-wx-feels]').textContent = wx.feels == null ? '–' : `${wx.feels}°`;
+    q('[data-wx-hum]').textContent = wx.humidity == null ? '–' : `${wx.humidity}%`;
+    q('[data-wx-wind]').textContent = wx.wind == null ? '–' : String(wx.wind);
+    q('[data-wx-tip]').textContent = tip;
+    const btn = q<HTMLButtonElement>('[data-wx-btn]');
+    btn.setAttribute('aria-label', `${box.dataset.label}: ${wx.temp}°, ${cond}`);
+    box.classList.add('is-ready');
+    (window as any).__vaWeather = wx;
+    document.dispatchEvent(new CustomEvent('va:weather', { detail: wx }));
+  }
+
+  // فتح اللوحة وإغلاقها: مستمعات على document مرة واحدة (تبقى عبر تنقّلات ClientRouter)
+  if (!(window as any).__vaWxUi) {
+    (window as any).__vaWxUi = true;
+    const close = (focus = false) => {
+      const pop = document.querySelector<HTMLElement>('[data-wx-pop]');
+      const btn = document.querySelector<HTMLElement>('[data-wx-btn]');
+      if (!pop || pop.hidden) return;
+      pop.hidden = true; btn?.setAttribute('aria-expanded', 'false');
+      if (focus) btn?.focus();
+    };
+    document.addEventListener('click', (e) => {
+      const t = e.target instanceof Element ? e.target : null;
+      const btn = t?.closest('[data-wx-btn]');
+      if (btn) {
+        const pop = document.querySelector<HTMLElement>('[data-wx-pop]');
+        if (!pop) return;
+        pop.hidden = !pop.hidden;
+        btn.setAttribute('aria-expanded', String(!pop.hidden));
+        return;
+      }
+      if (!t?.closest('[data-hd-wx]')) close();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(true); });
+  }
+  document.addEventListener('astro:page-load', initWeather);
+</script>
+
+<style>
+  /* مساحة محجوزة بعرض ثابت: الشارة تظهر بعد التحميل، فلو أخذت عرضها حينها لتزحزح التنقّل الموسَّط. */
+  .hd-wx { position: relative; flex: none; inline-size: 9.5rem; visibility: hidden; }
+  .hd-wx.is-ready { visibility: visible; }
+  .wx-btn { display: flex; align-items: center; gap: 8px; min-block-size: 44px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--c-turq-deep); font: inherit; }
+  .wx-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 4px; border-radius: 6px; }
+  .wx-ic { inline-size: 24px; block-size: 24px; flex: none; color: var(--c-gold-deep); }
+  .wx-temp { font-family: var(--font-latin); font-weight: 600; font-size: 1.45rem; line-height: 1; direction: ltr; unicode-bidi: isolate; }
+  .wx-cond { font-family: var(--font-body); font-size: .875rem; white-space: nowrap; }
+  .wx-btn:hover .wx-cond { color: var(--c-turq); }
+  /* فوق الفصل الأول (الرأس الشفاف): نصّ رملي بظلّ خفيف يحفظ مقروئيته فوق سعف فاتح */
+  :global(.site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked))) .wx-btn { color: var(--c-sand); text-shadow: 0 1px 10px rgba(0,20,18,.5); }
+  :global(.site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked))) .wx-ic { color: var(--c-gold-bright); filter: drop-shadow(0 1px 6px rgba(0,20,18,.45)); }
+  :global(.site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked))) .wx-btn:hover .wx-cond { color: var(--c-gold-bright); }
+
+  .wx-pop { position: absolute; inset-block-start: calc(100% + 10px); inset-inline-start: 0; z-index: 60; inline-size: min(300px, calc(100vw - 32px)); padding: 16px 18px; border-radius: 16px; background: rgba(8,34,30,.92); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); color: var(--c-sand); display: grid; gap: 10px; box-shadow: 0 18px 40px rgba(0,20,18,.28); }
+  .wx-pop p { margin: 0; }
+  .wx-place { font-size: .8125rem; color: var(--c-gold-bright); }
+  .wx-pop dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; }
+  .wx-pop dt { font-size: .75rem; color: rgba(247,243,234,.78); }
+  .wx-pop dd { margin: 0; font-family: var(--font-latin); font-weight: 600; font-size: 1.15rem; direction: ltr; unicode-bidi: isolate; text-align: start; }
+  :global([dir='rtl']) .wx-pop dd { text-align: end; }
+  .wx-tip { font-size: .9rem; line-height: 1.7; border-block-start: 1px solid rgba(247,243,234,.2); padding-block-start: 10px; }
+  .wx-src { font-size: .75rem; color: rgba(247,243,234,.78); }
+  .wx-src a { color: var(--c-gold-bright); }
+
+  /* الشريط المبسوط (≥ 1181px) أضيق ما يكون، فالعتبات مقيسة (puppeteer على dist، 2026-11-14، بهامش 24px
+     كهامش tools/measure-header-fit.mjs): بالأيقونة والحرارة (76px) تتّسع العربية من 1189px والإنجليزية من
+     1261px، وبالحالة معهما (152px) العربية من 1265px ولا تتّسع الإنجليزية أبداً (العمود يقف عند 1280px).
+     دون العتبة تختفي الشارة كلياً (display لا visibility) فلا تزاحم التنقّل، والحالة باقية في اسم الزرّ. */
+  @media (min-width: 1181px) { .hd-wx { inline-size: 4.75rem; } .wx-cond { display: none; } }
+  @media (min-width: 1181px) and (max-width: 1212px) { .hd-wx { display: none; } }
+  @media (min-width: 1290px) { :global([lang='ar']) .hd-wx { inline-size: 9.5rem; } :global([lang='ar']) .wx-cond { display: inline; } }
+  @media (min-width: 1181px) and (max-width: 1299px) { :global([lang='en']) .hd-wx { display: none; } }
+  /* الجوال: الوردمارك وشارة الإطلاق والبرغر — الحرارة والأيقونة وحدهما */
+  @media (max-width: 520px) { .hd-wx { inline-size: 4.5rem; } .wx-cond { display: none; } .wx-temp { font-size: 1.3rem; } }
+</style>
