@@ -114,7 +114,7 @@ const brand = t('site.brand');
 const pageTitle = title.endsWith(brand) ? title : `${title} ${titleSep(lang)} ${brand}`;
 ---
 <Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-home">
-  <Header lang={lang} alt={alt} overlay />
+  <Header lang={lang} alt={alt} overlay weather={lang === 'ar' || lang === 'en'} />
   <main id="main" class="chapters">
     <ChapterGate lang={lang} />
     {isHybrid(lang) && <HomeQuick lang={lang} firstHref={firstHref} arriveHref={`${planHref}#getting-there`} tripHref={myTripHref} />}

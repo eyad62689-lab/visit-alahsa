@@ -12,6 +12,8 @@
 #   copy-log:   تستقبل أحداث النسخ من CopyGuard وتخزّنها في Blobs
 #   advisor:    المستشار الذكي — يبثّ جواب Claude من بطاقة معرفة الموقع (netlify/functions/advisor/،
 #               البطاقة kb.generated.json تُولَّد في postbuild وتُحزم هنا؛ المفاتيح ANTHROPIC_API_KEY وADVISOR_*)
+#   weather:    طقس الهفوف لشارة رأس الرئيسية ومؤثّر فصلها الأول (GET /api/weather، مخزّن على الشبكة 30 دقيقة،
+#               المصدر Open-Meteo بلا مفتاح)
 #   theft-scan: مسح أسبوعي مجدول (الجدولة معلنة داخل الدالة نفسها:
 #               export const config = { schedule: "0 3 * * 1" })
 # والـ Edge Function ‏bot-log (netlify/edge-functions) تسجّل عيّنة الزحف —
