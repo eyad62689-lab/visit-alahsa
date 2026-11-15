@@ -1,6 +1,6 @@
 ---
-// صفحة «الطوارئ والمساعدة في الأحساء» — عربي/إنجليزي فقط كأدوات السفر.
-// النصوص والأرقام ومصادرها في src/data/emergency.ts؛ لا رقم هنا من خارجه.
+// صفحة «الطوارئ والمساعدة في الأحساء». النصوص والأرقام ومصادرها في src/data/emergency.ts
+// (ar/en) وملفات emergency.<lang>.ts من خطوط الترجمة عبر src/data/emergency-i18n.ts؛ لا رقم هنا من خارجه.
 // الأرقام روابط tel: لتُطلب بلمسة من الجوال، وكل رابط يحمل data-track="emergency_call".
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
@@ -8,17 +8,21 @@ import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { EMERGENCY_ALT } from '../../lib/routes';
 import { breadcrumb } from '../../lib/schema';
-import { PAGE, HOSPITALS, type EmergencyLang } from '../../data/emergency';
+import { HOSPITAL_LINKS, MOH_MAP, PHRASES } from '../../data/emergency';
+import { EMERGENCY_PAGES, EMERGENCY_ALT } from '../../data/emergency-i18n';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
-const L: EmergencyLang = lang === 'ar' ? 'ar' : 'en';
-const ar = L === 'ar';
+const ar = lang === 'ar';
 const t = useTranslations(lang);
-const C = PAGE[L];
-const selfPath = EMERGENCY_ALT[L];
+const C = EMERGENCY_PAGES[lang]!;
+const selfPath = EMERGENCY_ALT[lang]!;
+// الصينية: علامتها الكاملة العرض «：» ولا فراغ بعد العنوان المغلَّظ أو «资料来源：»
+const CJK = lang === 'zh';
+const COLON = CJK ? '：' : ': ';
+const SP = CJK ? '' : ' ';
+const callAria = (n: string, who: string) => C.callAria.replace('{n}', n).replace('{who}', who);
 const before = C.sections.slice(0, 2);
 const afterHosp = C.sections.slice(2);
 const toc = [
@@ -32,7 +36,7 @@ const toc = [
 
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('crumb.home'), path: ar ? '/' : `/${lang}/` },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity:
@@ -51,8 +55,8 @@ const jsonLd = [
       <section class="em-alert" role="note" aria-labelledby="em-alert-h">
         <h2 id="em-alert-h">{C.alertH}</h2>
         <div class="em-alert-btns">
-          <a class="em-call em-call--pri" href="tel:911" data-track="emergency_call" data-track-number="911" aria-label={C.callAria('911', C.core[0].who)}>{C.call} <span dir="ltr">911</span></a>
-          <a class="em-call em-call--pri" href="tel:997" data-track="emergency_call" data-track-number="997" aria-label={C.callAria('997', C.core[1].who)}>{C.call} <span dir="ltr">997</span></a>
+          <a class="em-call em-call--pri" href="tel:911" data-track="emergency_call" data-track-number="911" aria-label={callAria('911', C.core[0].who)}>{C.call} <span dir="ltr">911</span></a>
+          <a class="em-call em-call--pri" href="tel:997" data-track="emergency_call" data-track-number="997" aria-label={callAria('997', C.core[1].who)}>{C.call} <span dir="ltr">997</span></a>
         </div>
         {C.alertP.map((p) => <p>{p}</p>)}
       </section>
@@ -62,7 +66,7 @@ const jsonLd = [
         <ul class="em-nums">
           {C.core.map((r) => (
             <li class="em-num">
-              <a class="em-num-n" href={`tel:${r.n}`} dir="ltr" data-track="emergency_call" data-track-number={r.n} aria-label={C.callAria(r.n, r.who)}>{r.n}</a>
+              <a class="em-num-n" href={`tel:${r.n}`} dir="ltr" data-track="emergency_call" data-track-number={r.n} aria-label={callAria(r.n, r.who)}>{r.n}</a>
               <div class="em-num-t">
                 <p class="em-num-who">{r.who}</p>
                 <p class="em-num-when">{r.when}</p>
@@ -71,57 +75,57 @@ const jsonLd = [
           ))}
         </ul>
         <p class="em-note">{C.coreNote}</p>
-        {C.coreSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.coreSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+        {C.coreSrc.length > 0 && <p class="em-src">{C.srcLabel}{SP}{C.coreSrc.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
       </section>
 
-      <nav class="em-toc" aria-label={ar ? 'محتويات الصفحة' : 'On this page'}>
+      <nav class="em-toc" aria-label={C.tocLabel}>
         <ul>{toc.map((x) => <li><a href={`#${x.id}`}>{x.h}</a></li>)}</ul>
       </nav>
 
       {before.map((s) => (
         <section class="em-sec" id={s.id} aria-labelledby={`em-${s.id}-h`}>
           <h2 id={`em-${s.id}-h`}>{s.h}</h2>
-          {s.steps && <ol class="em-steps">{s.steps.map((p) => <li><strong>{p.lead}:</strong> {p.text}</li>)}</ol>}
+          {s.steps && <ol class="em-steps">{s.steps.map((p) => <li><strong>{p.lead}{COLON.trim()}</strong>{SP}{p.text}</li>)}</ol>}
           {s.after?.map((p) => <p>{p.text}</p>)}
-          {s.paras?.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+          {s.paras?.map((p) => <p>{p.lead && <><strong>{p.lead}</strong>{SP}</>}{p.text}</p>)}
           {s.subs?.map((u) => (
             <>
               <h3>{u.h}</h3>
-              {u.paras.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
-              {u.src && <p class="em-src">{C.srcLabel} {u.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+              {u.paras.map((p) => <p>{p.lead && <><strong>{p.lead}</strong>{SP}</>}{p.text}</p>)}
+              {u.src && <p class="em-src">{C.srcLabel}{SP}{u.src.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
             </>
           ))}
-          {s.src && <p class="em-src">{C.srcLabel} {s.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+          {s.src && <p class="em-src">{C.srcLabel}{SP}{s.src.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
         </section>
       ))}
 
       <section class="em-sec" id="hospitals" aria-labelledby="em-hosp-h">
         <h2 id="em-hosp-h">{C.hospH}</h2>
-        {C.hospIntro.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
-        <p><a href="https://www.moh.gov.sa/eservices/interactive-maps/pages/default.aspx" target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id="moh-map">{ar ? 'الخريطة الرسمية لوزارة الصحة' : 'Ministry of Health official map'}<span class="sr-only"> {C.newWindow}</span></a></p>
+        {C.hospIntro.map((p) => <p>{p.lead && <><strong>{p.lead}</strong>{SP}</>}{p.text}</p>)}
+        <p><a href={MOH_MAP} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id="moh-map">{C.mapLink}<span class="sr-only"> {C.newWindow}</span></a></p>
         <h3>{C.hospListH}</h3>
         <ul class="em-hosp">
-          {HOSPITALS.map((h) => (
-            <li><span>{h.name[L]}</span> <a href={h.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id="hospital">{h.via[L]}<span class="sr-only"> {C.newWindow}</span></a></li>
+          {C.hospitals.map((h, i) => (
+            <li><span>{h.name}</span> <a href={HOSPITAL_LINKS[i]} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id="hospital">{h.via}<span class="sr-only"> {C.newWindow}</span></a></li>
           ))}
         </ul>
-        {C.hospAfter.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+        {C.hospAfter.map((p) => <p>{p.lead && <><strong>{p.lead}</strong>{SP}</>}{p.text}</p>)}
       </section>
 
       {afterHosp.map((s) => (
         <section class="em-sec" id={s.id} aria-labelledby={`em-${s.id}-h`}>
           <h2 id={`em-${s.id}-h`}>{s.h}</h2>
-          {s.steps && <ol class="em-steps">{s.steps.map((p) => <li><strong>{p.lead}:</strong> {p.text}</li>)}</ol>}
+          {s.steps && <ol class="em-steps">{s.steps.map((p) => <li><strong>{p.lead}{COLON.trim()}</strong>{SP}{p.text}</li>)}</ol>}
           {s.after?.map((p) => <p>{p.text}</p>)}
-          {s.paras?.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+          {s.paras?.map((p) => <p>{p.lead && <><strong>{p.lead}</strong>{SP}</>}{p.text}</p>)}
           {s.subs?.map((u) => (
             <>
               <h3>{u.h}</h3>
-              {u.paras.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
-              {u.src && <p class="em-src">{C.srcLabel} {u.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+              {u.paras.map((p) => <p>{p.lead && <><strong>{p.lead}</strong>{SP}</>}{p.text}</p>)}
+              {u.src && <p class="em-src">{C.srcLabel}{SP}{u.src.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
             </>
           ))}
-          {s.src && <p class="em-src">{C.srcLabel} {s.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+          {s.src && <p class="em-src">{C.srcLabel}{SP}{s.src.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
         </section>
       ))}
 
@@ -131,7 +135,7 @@ const jsonLd = [
         <ul class="em-nums em-nums--svc">
           {C.services.map((r) => (
             <li class="em-num">
-              <a class="em-num-n" href={`tel:${r.n}`} dir="ltr" data-track="emergency_call" data-track-number={r.n} aria-label={C.callAria(r.n, r.who)}>{r.n}</a>
+              <a class="em-num-n" href={`tel:${r.n}`} dir="ltr" data-track="emergency_call" data-track-number={r.n} aria-label={callAria(r.n, r.who)}>{r.n}</a>
               <div class="em-num-t">
                 <p class="em-num-who">{r.who}</p>
                 <p class="em-num-when">{r.when}</p>
@@ -140,18 +144,18 @@ const jsonLd = [
           ))}
         </ul>
         <p class="em-note">{C.servNote}</p>
-        {C.servSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.servSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+        {C.servSrc.length > 0 && <p class="em-src">{C.srcLabel}{SP}{C.servSrc.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
       </section>
 
       <section class="em-sec" id="phrases" aria-labelledby="em-ph-h">
         <h2 id="em-ph-h">{C.phrasesH}</h2>
         <dl class="em-phrases">
-          {C.phrases.map(([a, e]) => (
-            <div><dt lang="ar" dir="rtl">{a}</dt><dd lang="en" dir="ltr">{e}</dd></div>
+          {PHRASES.map(([a, e], i) => (
+            <div><dt lang="ar" dir="rtl">{a}</dt><dd lang="en" dir="ltr">{e}{C.phraseGloss[i] && <span class="em-gloss" lang={lang} dir={lang === 'ur' ? 'rtl' : 'ltr'}>{C.phraseGloss[i]}</span>}</dd></div>
           ))}
         </dl>
         <p class="em-note">{C.phrasesNote}</p>
-        {C.phrasesSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.phrasesSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+        {C.phrasesSrc.length > 0 && <p class="em-src">{C.srcLabel}{SP}{C.phrasesSrc.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
       </section>
 
       <section class="em-sec" id="faq" aria-labelledby="em-faq-h">
@@ -159,7 +163,7 @@ const jsonLd = [
         <dl class="em-faq">
           {C.faqs.map((f) => <><dt>{f.q}</dt><dd>{f.a}</dd></>)}
         </dl>
-        {C.faqSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.faqSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+        {C.faqSrc.length > 0 && <p class="em-src">{C.srcLabel}{SP}{C.faqSrc.map((x, i) => <>{i > 0 && C.listSep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
       </section>
 
       <aside class="em-keep">
@@ -221,6 +225,7 @@ const jsonLd = [
   .em-phrases div { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); background: #fff; border-radius: var(--radius-sm); padding: var(--s-2) var(--s-3); box-shadow: var(--shadow); }
   .em-phrases dt { font-weight: 600; font-size: var(--t-sm); }
   .em-phrases dd { margin: 0; font-size: var(--t-sm); color: var(--c-ink-soft); }
+  .em-gloss { display: block; margin-block-start: 2px; color: var(--c-ink); font-size: var(--t-xs); }
   @media (max-width: 560px) { .em-phrases div { grid-template-columns: 1fr; gap: 4px; } }
 
   .em-faq dt { font-family: var(--font-body); font-weight: 700; font-size: var(--t-base); color: var(--c-turq-deep); margin-block-start: var(--s-4); }
