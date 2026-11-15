@@ -117,6 +117,7 @@ export const ui = {
     // ورابطاها (التذييل وقسم «كيف تصل؟») مشروطان بالعربية فلا يقودان إلى صفحة غير موجودة.
     'foot.l.visa': 'دليل التأشيرات',
     'foot.l.tools': 'أدوات السفر',
+    'foot.l.emergency': 'الطوارئ والمساعدة',
     'foot.l.play': 'ألعاب الاكتشاف',
     'plan.visa': 'دليل التأشيرات',
     'plan.tools.h': 'أدوات السفر',
@@ -543,6 +544,7 @@ export const ui = {
     'foot.l.getThere': 'Getting there',
     'foot.l.visa': 'Visa guide',
     'foot.l.tools': 'Travel tools',
+    'foot.l.emergency': 'Emergencies and help',
     'foot.l.play': 'Discovery games',
     'plan.visa': 'Visa guide',
     'plan.tools.h': 'Travel tools',

@@ -1,0 +1,233 @@
+---
+// صفحة «الطوارئ والمساعدة في الأحساء» — عربي/إنجليزي فقط كأدوات السفر.
+// النصوص والأرقام ومصادرها في src/data/emergency.ts؛ لا رقم هنا من خارجه.
+// الأرقام روابط tel: لتُطلب بلمسة من الجوال، وكل رابط يحمل data-track="emergency_call".
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { EMERGENCY_ALT } from '../../lib/routes';
+import { breadcrumb } from '../../lib/schema';
+import { PAGE, HOSPITALS, type EmergencyLang } from '../../data/emergency';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const L: EmergencyLang = lang === 'ar' ? 'ar' : 'en';
+const ar = L === 'ar';
+const t = useTranslations(lang);
+const C = PAGE[L];
+const selfPath = EMERGENCY_ALT[L];
+const before = C.sections.slice(0, 2);
+const afterHosp = C.sections.slice(2);
+const toc = [
+  ...before.map((s) => ({ id: s.id, h: s.h })),
+  { id: 'hospitals', h: C.hospH },
+  ...afterHosp.map((s) => ({ id: s.id, h: s.h })),
+  { id: 'services', h: C.servH },
+  { id: 'phrases', h: C.phrasesH },
+  { id: 'faq', h: C.faqH },
+];
+
+const jsonLd = [
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: C.title, path: selfPath },
+  ]),
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity:
+    C.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={60} motif="center" size="compact" lang={lang} />
+
+    <div class="container em">
+      <p class="em-reviewed">{C.reviewed}</p>
+
+      <section class="em-alert" role="note" aria-labelledby="em-alert-h">
+        <h2 id="em-alert-h">{C.alertH}</h2>
+        <div class="em-alert-btns">
+          <a class="em-call em-call--pri" href="tel:911" data-track="emergency_call" data-track-number="911" aria-label={C.callAria('911', C.core[0].who)}>{C.call} <span dir="ltr">911</span></a>
+          <a class="em-call em-call--pri" href="tel:997" data-track="emergency_call" data-track-number="997" aria-label={C.callAria('997', C.core[1].who)}>{C.call} <span dir="ltr">997</span></a>
+        </div>
+        {C.alertP.map((p) => <p>{p}</p>)}
+      </section>
+
+      <section class="em-sec" aria-labelledby="em-core-h">
+        <h2 id="em-core-h">{C.coreH}</h2>
+        <ul class="em-nums">
+          {C.core.map((r) => (
+            <li class="em-num">
+              <a class="em-num-n" href={`tel:${r.n}`} dir="ltr" data-track="emergency_call" data-track-number={r.n} aria-label={C.callAria(r.n, r.who)}>{r.n}</a>
+              <div class="em-num-t">
+                <p class="em-num-who">{r.who}</p>
+                <p class="em-num-when">{r.when}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="em-note">{C.coreNote}</p>
+        {C.coreSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.coreSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+      </section>
+
+      <nav class="em-toc" aria-label={ar ? 'محتويات الصفحة' : 'On this page'}>
+        <ul>{toc.map((x) => <li><a href={`#${x.id}`}>{x.h}</a></li>)}</ul>
+      </nav>
+
+      {before.map((s) => (
+        <section class="em-sec" id={s.id} aria-labelledby={`em-${s.id}-h`}>
+          <h2 id={`em-${s.id}-h`}>{s.h}</h2>
+          {s.steps && <ol class="em-steps">{s.steps.map((p) => <li><strong>{p.lead}:</strong> {p.text}</li>)}</ol>}
+          {s.after?.map((p) => <p>{p.text}</p>)}
+          {s.paras?.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+          {s.subs?.map((u) => (
+            <>
+              <h3>{u.h}</h3>
+              {u.paras.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+              {u.src && <p class="em-src">{C.srcLabel} {u.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+            </>
+          ))}
+          {s.src && <p class="em-src">{C.srcLabel} {s.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+        </section>
+      ))}
+
+      <section class="em-sec" id="hospitals" aria-labelledby="em-hosp-h">
+        <h2 id="em-hosp-h">{C.hospH}</h2>
+        {C.hospIntro.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+        <p><a href="https://www.moh.gov.sa/eservices/interactive-maps/pages/default.aspx" target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id="moh-map">{ar ? 'الخريطة الرسمية لوزارة الصحة' : 'Ministry of Health official map'}<span class="sr-only"> {C.newWindow}</span></a></p>
+        <h3>{C.hospListH}</h3>
+        <ul class="em-hosp">
+          {HOSPITALS.map((h) => (
+            <li><span>{h.name[L]}</span> <a href={h.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id="hospital">{h.via[L]}<span class="sr-only"> {C.newWindow}</span></a></li>
+          ))}
+        </ul>
+        {C.hospAfter.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+      </section>
+
+      {afterHosp.map((s) => (
+        <section class="em-sec" id={s.id} aria-labelledby={`em-${s.id}-h`}>
+          <h2 id={`em-${s.id}-h`}>{s.h}</h2>
+          {s.steps && <ol class="em-steps">{s.steps.map((p) => <li><strong>{p.lead}:</strong> {p.text}</li>)}</ol>}
+          {s.after?.map((p) => <p>{p.text}</p>)}
+          {s.paras?.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+          {s.subs?.map((u) => (
+            <>
+              <h3>{u.h}</h3>
+              {u.paras.map((p) => <p>{p.lead && <strong>{p.lead} </strong>}{p.text}</p>)}
+              {u.src && <p class="em-src">{C.srcLabel} {u.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+            </>
+          ))}
+          {s.src && <p class="em-src">{C.srcLabel} {s.src.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+        </section>
+      ))}
+
+      <section class="em-sec" id="services" aria-labelledby="em-serv-h">
+        <h2 id="em-serv-h">{C.servH}</h2>
+        <p>{C.servIntro}</p>
+        <ul class="em-nums em-nums--svc">
+          {C.services.map((r) => (
+            <li class="em-num">
+              <a class="em-num-n" href={`tel:${r.n}`} dir="ltr" data-track="emergency_call" data-track-number={r.n} aria-label={C.callAria(r.n, r.who)}>{r.n}</a>
+              <div class="em-num-t">
+                <p class="em-num-who">{r.who}</p>
+                <p class="em-num-when">{r.when}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="em-note">{C.servNote}</p>
+        {C.servSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.servSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+      </section>
+
+      <section class="em-sec" id="phrases" aria-labelledby="em-ph-h">
+        <h2 id="em-ph-h">{C.phrasesH}</h2>
+        <dl class="em-phrases">
+          {C.phrases.map(([a, e]) => (
+            <div><dt lang="ar" dir="rtl">{a}</dt><dd lang="en" dir="ltr">{e}</dd></div>
+          ))}
+        </dl>
+        <p class="em-note">{C.phrasesNote}</p>
+        {C.phrasesSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.phrasesSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+      </section>
+
+      <section class="em-sec" id="faq" aria-labelledby="em-faq-h">
+        <h2 id="em-faq-h">{C.faqH}</h2>
+        <dl class="em-faq">
+          {C.faqs.map((f) => <><dt>{f.q}</dt><dd>{f.a}</dd></>)}
+        </dl>
+        {C.faqSrc.length > 0 && <p class="em-src">{C.srcLabel} {C.faqSrc.map((x, i) => <>{i > 0 && (ar ? "، " : ", ")}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="emergency_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}</p>}
+      </section>
+
+      <aside class="em-keep">
+        <h2>{C.keepH}</h2>
+        <ul>{C.keep.map((k) => <li>{k}</li>)}</ul>
+        <p>{C.disclaimer} <strong>{C.reviewed}</strong></p>
+      </aside>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .em { padding-block: var(--s-5) var(--s-8); max-inline-size: 60rem; }
+  .em-reviewed { font-size: var(--t-xs); color: var(--c-ink-soft); margin-block-end: var(--s-4); }
+
+  .em-alert { background: #fff; border-inline-start: 5px solid #a8322a; border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .em-alert h2 { font-size: var(--t-lg); line-height: 1.6; color: #8c2620; }
+  .em-alert p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.85; margin-block-start: var(--s-2); }
+  .em-alert-btns { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-block: var(--s-3); }
+  .em-call { display: inline-flex; align-items: center; gap: 8px; min-block-size: 48px; padding: 0 var(--s-4); border-radius: var(--radius-sm); font-family: var(--font-body); font-weight: 700; font-size: var(--t-base); text-decoration: none; }
+  .em-call--pri { background: #a8322a; color: #fff; }
+  .em-call--pri:hover { background: #8c2620; }
+  .em-call:focus-visible, .em-num-n:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+
+  .em-sec { margin-block-start: var(--s-7); scroll-margin-block-start: 96px; }
+  .em-sec h2 { font-size: var(--t-2xl); margin-block-end: var(--s-3); }
+  .em-sec h3 { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-4) var(--s-2); }
+  .em-sec p { font-size: var(--t-sm); line-height: 1.9; color: var(--c-ink); margin-block-start: var(--s-2); }
+  .em-sec strong { color: var(--c-turq-deep); }
+  .em-sec a { color: var(--c-turq-deep); font-weight: 600; }
+  .em-note { color: var(--c-ink-soft) !important; }
+
+  .em-nums { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: var(--s-3); }
+  .em-num { display: flex; align-items: center; gap: var(--s-3); background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-3); border-block-start: 3px solid var(--c-gold); }
+  .em-num-n { flex: none; min-inline-size: 5.2rem; min-block-size: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 0 var(--s-2); border: 1px solid var(--c-turq-deep); border-radius: var(--radius-sm); font-family: var(--font-body); font-weight: 700; font-size: var(--t-lg); color: var(--c-turq-deep) !important; text-decoration: none; font-variant-numeric: tabular-nums; }
+  .em-num-n:hover { background: var(--c-turq-deep); color: #fff !important; }
+  .em-nums--svc .em-num-n { font-size: var(--t-base); }
+  .em-num-t p { margin: 0 !important; }
+  .em-num-who { font-weight: 700; font-size: var(--t-sm) !important; color: var(--c-ink) !important; line-height: 1.5 !important; }
+  .em-num-when { font-size: var(--t-xs) !important; color: var(--c-ink-soft) !important; line-height: 1.6 !important; }
+
+  .em-toc { margin-block-start: var(--s-6); }
+  .em-toc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .em-toc a { display: inline-flex; align-items: center; min-block-size: 44px; padding: 0 var(--s-3); border-radius: 999px; background: var(--c-sand-2); color: var(--c-turq-deep); font-size: var(--t-xs); font-weight: 600; text-decoration: none; }
+  .em-toc a:hover { background: var(--c-turq-deep); color: #fff; }
+
+  .em-steps { list-style: none; counter-reset: st; padding: 0; margin: 0; }
+  .em-steps li { counter-increment: st; position: relative; padding-inline-start: 2.4rem; margin-block-start: var(--s-3); font-size: var(--t-sm); line-height: 1.9; }
+  .em-steps li::before { content: counter(st); position: absolute; inset-inline-start: 0; inset-block-start: 2px; inline-size: 1.7rem; block-size: 1.7rem; border-radius: 50%; background: var(--c-turq-deep); color: #fff; font-weight: 700; font-size: var(--t-xs); display: grid; place-items: center; }
+
+  .em-hosp { list-style: none; padding: 0; margin: 0; }
+  .em-hosp li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-2); padding-block: var(--s-2); border-block-end: 1px solid var(--c-sand-2); font-size: var(--t-sm); }
+
+  .em-src { font-size: var(--t-xs) !important; color: var(--c-ink-soft) !important; }
+  .em-src a { font-weight: 400 !important; }
+
+  .em-phrases { margin: 0; display: grid; gap: var(--s-2); }
+  .em-phrases div { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); background: #fff; border-radius: var(--radius-sm); padding: var(--s-2) var(--s-3); box-shadow: var(--shadow); }
+  .em-phrases dt { font-weight: 600; font-size: var(--t-sm); }
+  .em-phrases dd { margin: 0; font-size: var(--t-sm); color: var(--c-ink-soft); }
+  @media (max-width: 560px) { .em-phrases div { grid-template-columns: 1fr; gap: 4px; } }
+
+  .em-faq dt { font-family: var(--font-body); font-weight: 700; font-size: var(--t-base); color: var(--c-turq-deep); margin-block-start: var(--s-4); }
+  .em-faq dd { margin: var(--s-2) 0 0; font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.85; }
+
+  .em-keep { margin-block-start: var(--s-7); background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .em-keep h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
+  .em-keep ul { margin: 0 0 var(--s-3); padding-inline-start: 1.2rem; font-size: var(--t-sm); line-height: 1.9; }
+  .em-keep p { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.85; }
+</style>
