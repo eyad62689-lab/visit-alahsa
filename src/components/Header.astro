@@ -166,7 +166,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15.6 15.6 0 0 1 0 18a15.6 15.6 0 0 1 0-18Z" />
           </svg>
-          {LANG_META[lang].short}
+          <span class="lang-code">{LANG_META[lang].short}</span>
           <span class="lang-chev" aria-hidden="true"></span>
         </summary>
         <ul class="lang-list">
@@ -323,7 +323,17 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
      محفوظ فقط (الصنف has-items يضعه VAPlan.sync في Base.astro). العرض بين 761px وعتبة انهيار
      كل لغة يبقى كما هو: البحث واللغة و«معالمي» في الشريط والتنقّل في القائمة. */
   @media (max-width: 760px) {
-    .hd-actions :global(.hd-search-btn), .hd-actions .lang-menu { display: none; }
+    .hd-actions :global(.hd-search-btn) { display: none; }
+    /* مبدّل اللغة على الهاتف: كرة أرضية وحدها (44×44) قبل البرغر مباشرة، تفتح القائمة نفسها.
+       البرغر يُنقل آخر الصف، والهامش التلقائي ينتقل إلى الأدوات كي تبقى ملاصقة له.
+       القائمة <details> مغلقة فلا تُرسم أسماء اللغات ولا تُطلب خطوطها قبل الفتح. */
+    .hd-grouped .burger { order: 1; margin-inline-start: 0; }
+    .hd-grouped .hd-actions { margin-inline-start: auto; gap: 0; }
+    .lang-menu > .lang { inline-size: 44px; block-size: 44px; padding: 0; justify-content: center; background: none; border: 0; color: var(--c-ink); }
+    .lang-menu > .lang:hover { background: none; color: var(--c-turq); }
+    .lang-menu > .lang svg { inline-size: 22px; block-size: 22px; }
+    .lang-code, .lang-chev { display: none; }
+    .site-header--overlay:not(.is-solid):not(:has(.nav-toggle:checked)) .lang-menu > .lang { color: var(--c-sand); }
     /* تُعرض حين تُفتح القائمة فقط: القائمة المطويّة مخفيّة بـvisibility لا display، فأسماء اللغات
        فيها (Русский، 中文) تُخطَّط وتطلب وجوهها السيريلية والصينية في كل صفحة على الجوال —
        كسرت ميزانية «لا سيريلي خارج /ru/» في بوابة الأداء. */
@@ -347,6 +357,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
     .hd-actions { gap: var(--s-2); }
     .plan-link { padding-inline: 6px; }
     .lang { padding: 6px 9px; }
+    .lang-menu > .lang { padding: 0; }
     .burger { inline-size: 40px; }
     .beta { margin-inline-start: 0; padding-inline: 8px; }
     /* الروسية: كلمة «Сохранённые» وحدها 101.7px فتفيض أدوات الشريط 29px عند 320px
@@ -354,6 +365,15 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
        زاوية الرابط فلا تأخذ عرضاً، والكسر بواصلة ملاذٌ أخير حين لا يتّسع السطر للكلمة. */
     :global([lang='ru']) .plan-link { font-size: .8125rem; hyphens: auto; overflow-wrap: anywhere; }
     :global([lang='ru']) .plan-badge { position: absolute; inset-block-start: -2px; inset-inline-end: -6px; }
+  }
+  /* أضيق الهواتف (< 360px) بالعربية والإنجليزية: الوردمارك والشارة والطقس والكرة والبرغر
+     مجموعها 340px في حاوية 312px (مقيس عند 320px)، فيُعصر البرغر إلى 24px ويخرج عن الشاشة.
+     تضييق الفواصل والشارة وهدفي الكرة والبرغر إلى 40px يردّها إلى ~308px. */
+  @media (max-width: 359px) {
+    .hd-in { gap: 4px; }
+    .burger { flex: none; }
+    .lang-menu > .lang { inline-size: 40px; }
+    .beta { padding-inline: 6px; font-size: .6875rem; }
   }
   /* ─────────── التنقّل المجمَّع (ar/en) ───────────
      الشريط المبسوط: «اكتشف الواحة ▾» و«تذوّق وتسوّق ▾» قائمتان منسدلتان، ثم «أماكن الإقامة» و«الخريطة»
