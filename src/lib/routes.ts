@@ -133,6 +133,11 @@ export const toolsHref = (lang: Lang): string => (lang === 'ar' ? TOOLS_ALT.ar :
 export const MARKETS_ALT = { ar: '/أسواق-المزارعين/', en: '/en/farmers-markets/' } as const;
 export const marketsHref = (lang: Lang): string => (lang === 'ar' ? MARKETS_ALT.ar : MARKETS_ALT.en);
 
+/** الطوارئ والمساعدة (2026-11-15) — عربي/إنجليزي فقط كأدوات السفر، فلا تدخل STATIC_AR
+ *  ولا تُربط من اللغات الأخرى حتى تمرّ نصوصها بخطوط الترجمة. */
+export const EMERGENCY_ALT = { ar: '/الطوارئ/', en: '/en/emergency/' } as const;
+export const emergencyHref = (lang: Lang): string => (lang === 'ar' ? EMERGENCY_ALT.ar : EMERGENCY_ALT.en);
+
 /** ألعاب الاكتشاف (التلوين والذاكرة و2048) وفهرسها — عربي/إنجليزي فقط كأدوات السفر،
  *  فلا تُربط من اللغات الأخرى حتى تمرّ نصوصها بخطوط الترجمة. */
 export const PLAY_ALT = { ar: '/ألعاب/', en: '/en/play/' } as const;
