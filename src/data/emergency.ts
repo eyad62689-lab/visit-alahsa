@@ -33,11 +33,25 @@ const S = {
   nwc: 'https://www.nwc.com.sa/AR/HowWeCanHelp/Pages/default.aspx',
 } as const;
 
-export const HOSPITALS: { name: Record<EmergencyLang, string>; href: string; via: Record<EmergencyLang, string> }[] = [
-  { name: { ar: 'مستشفى الملك فهد بالهفوف', en: 'King Fahad Hospital, Hofuf' }, href: 'https://www.moh.gov.sa/ministry/mediacenter/news/pages/news-2021-12-09-001.aspx', via: { ar: 'وزارة الصحة', en: 'Ministry of Health' } },
-  { name: { ar: 'مستشفى الأمير سعود بن جلوي', en: 'Prince Saud bin Jalawi Hospital' }, href: 'https://www.moh.gov.sa/Ministry/MediaCenter/News/Pages/news-2019-03-20-008.aspx', via: { ar: 'وزارة الصحة', en: 'Ministry of Health' } },
-  { name: { ar: 'مستشفى الولادة والأطفال بالأحساء', en: 'Maternity and Children’s Hospital, Al-Ahsa' }, href: 'https://www.moh.gov.sa/ministry/mediacenter/news/pages/news-2019-10-09-001.aspx', via: { ar: 'وزارة الصحة', en: 'Ministry of Health' } },
-  { name: { ar: 'مستشفى الملك عبدالعزيز بالأحساء', en: 'King Abdulaziz Hospital, Al-Ahsa' }, href: 'https://mngha.med.sa/arabic/medicalcities/alahsa/pages/default.aspx', via: { ar: 'الشؤون الصحية بوزارة الحرس الوطني', en: 'Ministry of National Guard Health Affairs' } },
+/** روابط تعريف المستشفيات الرسمية بترتيب hospitals في كل لغة. */
+export const HOSPITAL_LINKS: string[] = [
+  "https://www.moh.gov.sa/ministry/mediacenter/news/pages/news-2021-12-09-001.aspx",
+  "https://www.moh.gov.sa/Ministry/MediaCenter/News/Pages/news-2019-03-20-008.aspx",
+  "https://www.moh.gov.sa/ministry/mediacenter/news/pages/news-2019-10-09-001.aspx",
+  "https://mngha.med.sa/arabic/medicalcities/alahsa/pages/default.aspx",
+];
+export const MOH_MAP = S.mohMap;
+
+/** العبارات تُعرض بالعربية والإنجليزية حرفياً في كل لغة؛ وغير ar/en تضيف معناها بلغتها (phraseGloss). */
+export const PHRASES: [string, string][] = [
+  ["أحتاج إلى سيارة إسعاف", "I need an ambulance."],
+  ["أنا في الأحساء وموقعي هو…", "I am in Al-Ahsa. My location is…"],
+  ["يوجد شخص مصاب", "Someone is injured."],
+  ["الشخص لا يستجيب", "The person is unresponsive."],
+  ["الشخص لا يتنفس بصورة طبيعية", "The person is not breathing normally."],
+  ["يوجد حريق", "There is a fire."],
+  ["طفلي مفقود", "My child is missing."],
+  ["لا أتحدث العربية وأحتاج إلى المساعدة بالإنجليزية", "I do not speak Arabic. I need help in English."],
 ];
 
 type Page = {
@@ -47,12 +61,18 @@ type Page = {
   sections: Section[];
   hospH: string; hospIntro: Para[]; hospListH: string; hospAfter: Para[];
   servH: string; servIntro: string; services: Num[]; servNote: string; servSrc: Src[];
-  phrasesH: string; phrases: [string, string][]; phrasesNote: string; phrasesSrc: Src[];
+  phrasesH: string; phrasesNote: string; phrasesSrc: Src[];
   faqH: string; faqs: { q: string; a: string }[]; faqSrc: Src[];
   keepH: string; keep: string[]; disclaimer: string;
-  srcLabel: string; newWindow: string; callAria: (n: string, who: string) => string;
+  srcLabel: string; newWindow: string; listSep: string; tocLabel: string; mapLink: string;
+  /** قالب تسمية زر الاتصال: {n} الرقم و{who} الجهة */
+  callAria: string;
+  hospitals: { name: string; via: string }[];
+  /** معنى كل عبارة من PHRASES بلغة الصفحة — فارغ في ar/en */
+  phraseGloss: string[];
 };
 
+export type EmergencyPage = Page;
 export const PAGE: Record<EmergencyLang, Page> = {
   ar: {
     seoTitle: 'الطوارئ والمساعدة في الأحساء: أرقام الإسعاف والأمن',
@@ -189,16 +209,6 @@ export const PAGE: Record<EmergencyLang, Page> = {
     servNote: 'احتفظ برقم الحجز أو الفاتورة واسم المنشأة عند تقديم شكوى سياحية أو تجارية.',
     servSrc: [{ label: 'المنصة الوطنية', href: S.platform }, { label: 'وزارة السياحة', href: S.tourism }, { label: 'المياه الوطنية', href: S.nwc }, { label: 'نجم', href: S.najm }],
     phrasesH: 'عبارات تساعد الزائر على طلب المساعدة',
-    phrases: [
-      ['أحتاج إلى سيارة إسعاف', 'I need an ambulance.'],
-      ['أنا في الأحساء وموقعي هو…', 'I am in Al-Ahsa. My location is…'],
-      ['يوجد شخص مصاب', 'Someone is injured.'],
-      ['الشخص لا يستجيب', 'The person is unresponsive.'],
-      ['الشخص لا يتنفس بصورة طبيعية', 'The person is not breathing normally.'],
-      ['يوجد حريق', 'There is a fire.'],
-      ['طفلي مفقود', 'My child is missing.'],
-      ['لا أتحدث العربية وأحتاج إلى المساعدة بالإنجليزية', 'I do not speak Arabic. I need help in English.'],
-    ],
     phrasesNote: 'اذكر اللغة التي تحتاجها في بداية المكالمة. يوفّر مركز 911 بالمنطقة الشرقية استقبالاً للبلاغات بعدة لغات، دون افتراض توافر كل لغة في جميع القنوات.',
     phrasesSrc: [{ label: 'واس عن خدمات مركز 911 للزوار', href: S.spa911Lang }],
     faqH: 'أسئلة شائعة',
@@ -221,7 +231,17 @@ export const PAGE: Record<EmergencyLang, Page> = {
     disclaimer: 'هذه الإرشادات تساعدك على طلب المساعدة، ولا تحل محل تقييم المختصين أو تعليمات فرق الطوارئ. تخضع الخدمات والأرقام للتحديث؛ راجع المصادر الرسمية عند التخطيط للرحلة.',
     srcLabel: 'المصادر:',
     newWindow: '(يفتح في نافذة جديدة)',
-    callAria: (n, who) => `اتصل بـ${n} — ${who}`,
+    listSep: "، ",
+    tocLabel: "محتويات الصفحة",
+    mapLink: "الخريطة الرسمية لوزارة الصحة",
+    callAria: "اتصل بـ{n} — {who}",
+    hospitals: [
+      { name: "مستشفى الملك فهد بالهفوف", via: "وزارة الصحة" },
+      { name: "مستشفى الأمير سعود بن جلوي", via: "وزارة الصحة" },
+      { name: "مستشفى الولادة والأطفال بالأحساء", via: "وزارة الصحة" },
+      { name: "مستشفى الملك عبدالعزيز بالأحساء", via: "الشؤون الصحية بوزارة الحرس الوطني" },
+    ],
+    phraseGloss: [],
   },
   en: {
     seoTitle: 'Emergencies and Help in Al-Ahsa: Ambulance and Police',
@@ -358,16 +378,6 @@ export const PAGE: Record<EmergencyLang, Page> = {
     servNote: 'Keep your booking or invoice number and the name of the business when you make a tourism or commercial complaint.',
     servSrc: [{ label: 'National Platform', href: S.platform }, { label: 'Ministry of Tourism', href: S.tourism }, { label: 'National Water Company', href: S.nwc }, { label: 'Najm', href: S.najm }],
     phrasesH: 'Phrases to help you ask for help',
-    phrases: [
-      ['أحتاج إلى سيارة إسعاف', 'I need an ambulance.'],
-      ['أنا في الأحساء وموقعي هو…', 'I am in Al-Ahsa. My location is…'],
-      ['يوجد شخص مصاب', 'Someone is injured.'],
-      ['الشخص لا يستجيب', 'The person is unresponsive.'],
-      ['الشخص لا يتنفس بصورة طبيعية', 'The person is not breathing normally.'],
-      ['يوجد حريق', 'There is a fire.'],
-      ['طفلي مفقود', 'My child is missing.'],
-      ['لا أتحدث العربية وأحتاج إلى المساعدة بالإنجليزية', 'I do not speak Arabic. I need help in English.'],
-    ],
     phrasesNote: 'Say which language you need at the start of the call. The 911 centre in the Eastern Province takes reports in several languages, but do not assume every language is available on every channel.',
     phrasesSrc: [{ label: 'SPA on 911 services for visitors', href: S.spa911Lang }],
     faqH: 'Frequently asked questions',
@@ -390,6 +400,16 @@ export const PAGE: Record<EmergencyLang, Page> = {
     disclaimer: 'This guidance helps you ask for help; it does not replace assessment by professionals or the instructions of emergency teams. Services and numbers change, so check the official sources when planning your trip.',
     srcLabel: 'Sources:',
     newWindow: '(opens in a new window)',
-    callAria: (n, who) => `Call ${n}, ${who}`,
+    listSep: ", ",
+    tocLabel: "On this page",
+    mapLink: "Ministry of Health official map",
+    callAria: "Call {n}, {who}",
+    hospitals: [
+      { name: "King Fahad Hospital, Hofuf", via: "Ministry of Health" },
+      { name: "Prince Saud bin Jalawi Hospital", via: "Ministry of Health" },
+      { name: "Maternity and Children’s Hospital, Al-Ahsa", via: "Ministry of Health" },
+      { name: "King Abdulaziz Hospital, Al-Ahsa", via: "Ministry of National Guard Health Affairs" },
+    ],
+    phraseGloss: [],
   },
 };

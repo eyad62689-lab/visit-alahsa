@@ -350,7 +350,8 @@ export function figureValues(html) {
 
 // P10 — المقياس الأوردي لا الدخيلان. يعيد true إن وردت كلمة المقياس في الكتلة.
 // source: قيم أرقام الصفحة الإنجليزية المقابلة، أو null حيث لا مقابل (فلا مقارنة).
-function scaleIn(b, rel, r, source) {
+// dialable: أرقام هاتف تجعلها الصفحة نفسها روابط tel: — رقم يُطلب لا عدد، فلا يُكتب بمقياس (صفحة الطوارئ)
+function scaleIn(b, rel, r, source, dialable = new Set()) {
   for (const w of SCALE_LOANS) {
     const i = wordAt(b, w);
     if (i !== -1) r.problems.push(`${rel}: مقياس دخيل «${w}» ⇐ «${snip(b, i, w.length)}»`);
@@ -366,6 +367,7 @@ function scaleIn(b, rel, r, source) {
   // N66: الرقم المجرّد من أول المقياس فصاعداً يُكتب بكلمته (سلسلة تبدأ بصفر ليست عدداً بهذا القدر)
   for (const m of rest.matchAll(BARE_FIGURE)) {
     const int = m[0].split('.')[0].split(',').join('');
+    if (dialable.has(m[0])) continue;
     if (int.length > SCALE_FROM && !int.startsWith('0')) r.problems.push(`${rel}: رقم مجرّد «${m[0]}» بلا كلمة مقياس (من «1 ${SCALE_WORD}» فصاعداً) ⇐ «${snip(rest, m.index, m[0].length)}»`);
   }
   return wordAt(b, SCALE_WORD) !== -1;
@@ -445,11 +447,12 @@ export function checkUrRound1Rulings(pages, termbase, { titles = [], counterpart
     let hasGulf = false;
     let hasScale = false;
     const source = counterparts?.has(rel) ? figureValues(counterparts.get(rel)) : null;
+    const dialable = new Set([...html.matchAll(/href="tel:(\d+)"/g)].map((m) => m[1]));
     for (const b of blocks) {
       hasGulf = gulfIn(b, rel, out.gulf) || hasGulf;
       limeIn(b, rel, out.lime);
       citiesIn(b, rel, out.cities);
-      hasScale = scaleIn(b, rel, out.scale, source) || hasScale;
+      hasScale = scaleIn(b, rel, out.scale, source, dialable) || hasScale;
       dashIn(b, rel, out.dash);
       palaceIn(b, rel, out.palace);
       if (isAttraction) semicolonIn(b, rel, out.semicolon);
