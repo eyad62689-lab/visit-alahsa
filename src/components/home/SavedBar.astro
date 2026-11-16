@@ -7,11 +7,13 @@ import { HOME_COPY, type HomeLang } from '../../data/home-copy';
 interface Props { lang: HomeLang }
 const { lang } = Astro.props;
 const C = HOME_COPY[lang].saved;
+// المخطِّط يسكن صفحة «خطّط لرحلتك» في كل اللغات
+const buildHref = `${HOME_COPY[lang].paths.plan}#ch-plan`;
 ---
 <div class="sbar" data-savebar hidden>
   <div class="sbar-in">
     <span class="sbar-count">{C.count} <b data-plan-count>0</b></span>
-    <a class="btn btn--gold sbar-btn" href="#ch-plan">{C.build}</a>
+    <a class="btn btn--gold sbar-btn" href={buildHref}>{C.build}</a>
   </div>
 </div>
 

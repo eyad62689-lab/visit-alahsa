@@ -1,7 +1,7 @@
 ---
-// الفصل 4 — الخريطة الحيّة: ستة معالم (القرار ج8) مواضعها مُسقطة وقت البناء من حقل location
-// في المجموعة (إسقاط متساوي المسافات مصحَّح بجيب تمام العرض)، ومقياس 10 كم بالمقياس نفسه.
-// لا بلاطات ولا مكتبة خرائط. كل معلم لوحة مبنيّة مسبقاً (hidden) بصورة حقيقية وخلاصته
+// الفصل 4 — الخريطة الحيّة: ستة معالم (القرار ج8) على خريطة حقيقية (Leaflet المستضاف ذاتياً وبلاطات
+// OpenStreetMap)، تُحمَّل مكتبتها حين يقترب الفصل من الشاشة فلا تمسّ تحميل الصفحة الأول. وتحتها الخريطة
+// التحريرية المُسقطة وقت البناء من حقل location بديلاً بلا JS أو حين تتعذّر البلاطات. كل معلم لوحة مبنيّة مسبقاً (hidden) بصورة حقيقية وخلاصته
 // وزرّ الحفظ القائم (data-fav → VAPlan، ويقيسه plan_add)؛ المقاطع تنتظر التصوير (القرار أ5).
 // النبض متعاقب ويتوقف حين تُفتح لوحة (القرار ب2).
 import Photo from '../Photo.astro';
@@ -44,6 +44,9 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
     </header>
     <div class="mp" data-map>
       <div class="mp-box">
+        <div class="mp-stage">
+        <div class="mp-live" data-map-live data-label={C.svgLabel}></div>
+        <script type="application/json" data-map-pts set:html={JSON.stringify(pins.map((p) => ({ id: p.slug_en, t: p.title, lat: p.lat, lng: p.lng }))).replace(/</g, '\\u003c')} />
         <svg class="mp-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={C.svgLabel}>
           {Array.from({ length: Math.floor(W / 40) + 1 }, (_, i) => <line x1={i * 40} y1="0" x2={i * 40} y2={H} class="mp-grid" />)}
           {Array.from({ length: Math.floor(H / 40) + 1 }, (_, i) => <line x1="0" y1={i * 40} x2={W} y2={i * 40} class="mp-grid" />)}
@@ -62,6 +65,7 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
             </g>
           ))}
         </svg>
+        </div>
         {/* البديل غير الحركي ومدخل لوحة المفاتيح: زرّ لكل معلم بالترتيب نفسه */}
         <div class="mp-legend" role="group" aria-label={C.legend}>
           {pins.map((p) => <button type="button" class="mp-chip" data-open={p.slug_en} aria-pressed="false" aria-controls={`mp-panel-${p.slug_en}`}>{p.title}</button>)}
@@ -91,21 +95,108 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
 </section>
 
 <script>
+  type Pt = { id: string; t: string; lat: number; lng: number };
+  type LeafletMap = { flyTo: (ll: [number, number], z?: number, o?: object) => void; getZoom: () => number; invalidateSize: () => void };
+  const LEAFLET = '/vendor/leaflet-1.9.4/';
+
+  // تحميل Leaflet مرة واحدة عند الحاجة (هو نفسه الذي تحمّله صفحة الخريطة الكاملة)
+  let leafletReady: Promise<boolean> | null = null;
+  function loadLeaflet(): Promise<boolean> {
+    if ((window as any).L) return Promise.resolve(true);
+    if (leafletReady) return leafletReady;
+    leafletReady = new Promise((resolve) => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = LEAFLET + 'leaflet.css';
+      document.head.appendChild(css);
+      const js = document.createElement('script');
+      js.src = LEAFLET + 'leaflet.js';
+      js.onload = () => resolve(Boolean((window as any).L));
+      js.onerror = () => resolve(false);
+      document.head.appendChild(js);
+    });
+    return leafletReady;
+  }
+
   function initMap() {
     const root = document.querySelector<HTMLElement>('[data-map]');
     if (!root || root.dataset.wired) return;
     root.dataset.wired = '1';
-    const open = (id: string) => {
+    let live: LeafletMap | null = null;
+    const markers = new Map<string, { getElement: () => HTMLElement | undefined }>();
+    const pts: Pt[] = JSON.parse(root.querySelector('[data-map-pts]')?.textContent || '[]');
+    const byId = new Map(pts.map((p) => [p.id, p]));
+
+    const open = (id: string, fromMap = false) => {
       root.classList.add('is-open');
       root.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== id; });
       root.querySelectorAll<HTMLElement>('[data-pin]').forEach((g) => g.classList.toggle('is-sel', g.dataset.pin === id));
       root.querySelectorAll<HTMLElement>('[data-open]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.open === id)));
+      markers.forEach((m, k) => m.getElement()?.classList.toggle('is-sel', k === id));
       const empty = root.querySelector<HTMLElement>('.mp-empty');
       if (empty) empty.hidden = true;
+      const p = byId.get(id);
+      if (live && p && !fromMap) {
+        const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        live.flyTo([p.lat, p.lng], Math.max(live.getZoom(), 12), { animate: !still, duration: 0.8 });
+      }
     };
     root.querySelectorAll<HTMLElement>('[data-open]').forEach((b) => b.addEventListener('click', () => open(b.dataset.open || '')));
-    // النقر على الدبّوس نفسه (للمس): الدبابيس مخفيّة عن قارئ الشاشة لأن الأزرار تحمل الوظيفة
+    // البديل التحريري: النقر على الدبّوس نفسه (للمس)؛ الدبابيس مخفيّة عن قارئ الشاشة لأن الأزرار تحمل الوظيفة
     root.querySelectorAll<SVGGElement>('[data-pin]').forEach((g) => g.addEventListener('click', () => open(g.dataset.pin || '')));
+
+    const host = root.querySelector<HTMLElement>('[data-map-live]');
+    if (!host || !pts.length) return;
+    const start = async () => {
+      if (!(await loadLeaflet()) || live) return;
+      const L = (window as any).L;
+      const touch = matchMedia('(pointer: coarse)').matches;
+      // عجلة الفأرة لا تكبّر (التمرير يعبر الصفحة)، وعلى اللمس لا سحب بإصبع واحد كي لا تحبس الخريطة تمرير الصفحة
+      const map = L.map(host, { scrollWheelZoom: false, dragging: !touch, tap: false, attributionControl: false, zoomSnap: 0.5 });
+      L.control.attribution({ prefix: false }).addTo(map);
+      L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
+      const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
+        maxZoom: 18,
+      });
+      let loaded = false;
+      tiles.once('load', () => { loaded = true; root.classList.add('is-live'); host.setAttribute('role', 'region'); host.setAttribute('aria-label', host.dataset.label || ''); });
+      tiles.addTo(map);
+      // العرض أولاً: Leaflet لا يبني عنصر الدبّوس قبل أن يكون للخريطة مركز وتكبير
+      map.fitBounds(L.latLngBounds(pts.map((p) => [p.lat, p.lng])), { padding: [40, 40] });
+      // الطرف الشرقي تُكتب تسميته غرباً كي لا تخرج من الإطار
+      const lngs = pts.map((p) => p.lng);
+      const midLng = Math.min(...lngs) + (Math.max(...lngs) - Math.min(...lngs)) * 0.7;
+      pts.forEach((p, i) => {
+        const icon = L.divIcon({
+          className: 'mpl-pin',
+          html: '<span class="mpl-halo"></span><span class="mpl-core"></span><span class="mpl-lbl"></span>',
+          iconSize: [20, 20], iconAnchor: [10, 10],
+        });
+        const m = L.marker([p.lat, p.lng], { icon, keyboard: false, title: p.t, riseOnHover: true }).addTo(map);
+        const el = m.getElement() as HTMLElement | undefined;
+        if (el) {
+          el.setAttribute('aria-hidden', 'true');
+          const lbl = el.querySelector('.mpl-lbl');
+          if (lbl) lbl.textContent = p.t;
+          // النبض متعاقب كما في البديل التحريري
+          el.querySelector<HTMLElement>('.mpl-halo')?.style.setProperty('animation-delay', `${(i * 0.43).toFixed(2)}s`);
+          if (p.lng > midLng) el.classList.add('mpl-pin--w');
+        }
+        m.on('click', () => open(p.id, true));
+        markers.set(p.id, m);
+      });
+      live = map;
+      // إن لم تصل أي بلاطة خلال 8 ثوانٍ تبقى الخريطة التحريرية ظاهرة
+      setTimeout(() => { if (!loaded) root.classList.remove('is-live'); }, 8000);
+      const sel = root.querySelector<HTMLElement>('[data-open][aria-pressed="true"]');
+      if (sel) open(sel.dataset.open || '', true);
+    };
+    if (typeof IntersectionObserver !== 'function') { start(); return; }
+    const io = new IntersectionObserver((es) => {
+      if (es.some((e) => e.isIntersecting)) { io.disconnect(); start(); }
+    }, { rootMargin: '400px 0px' });
+    io.observe(host);
   }
   document.addEventListener('astro:page-load', initMap);
 </script>
@@ -116,6 +207,24 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
   @media (max-width: 860px) { .mp { grid-template-columns: minmax(0, 1fr); } }
   .mp-box { border: 1px solid rgba(247,243,234,.16); border-radius: var(--radius-lg); overflow: hidden; background: radial-gradient(120% 90% at 30% 40%, rgba(0,110,97,.35), transparent 70%), var(--c-turq-deep); }
   .mp-svg { display: block; inline-size: 100%; block-size: auto; }
+  /* الخريطة الحقيقية فوق البديل التحريري: تغطيه حين تصل أول بلاطة (is-live) */
+  .mp-stage { position: relative; min-block-size: 340px; display: grid; }
+  .mp-stage > .mp-svg { grid-area: 1 / 1; align-self: center; }
+  .mp-live { grid-area: 1 / 1; z-index: 1; opacity: 0; pointer-events: none; transition: opacity .5s; background: var(--c-turq-deep); font-family: var(--font-body); }
+  .is-live .mp-live { opacity: 1; pointer-events: auto; }
+  .is-live .mp-svg { visibility: hidden; }
+  @media (prefers-reduced-motion: reduce) { .mp-live { transition: none; } }
+  .mp-live :global(.leaflet-control-attribution) { font-size: 11px; }
+  .mp-live :global(.leaflet-control-attribution a) { text-decoration: underline; }
+  .mp-live :global(.leaflet-control-zoom a) { inline-size: 36px; block-size: 36px; line-height: 36px; }
+  .mp-live :global(.mpl-pin) { cursor: pointer; }
+  .mp-live :global(.mpl-core) { position: absolute; inset: 3px; border-radius: 50%; background: var(--c-gold); border: 2px solid var(--c-sand); box-shadow: 0 1px 4px rgba(0,0,0,.45); }
+  .mp-live :global(.mpl-pin.is-sel .mpl-core) { background: var(--c-turq-deep); border-color: var(--c-gold); inset: 0; }
+  .mp-live :global(.mpl-halo) { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--c-gold-deep); opacity: 0; }
+  .mp-live :global(.mpl-lbl) { position: absolute; inset-block-start: 50%; left: 24px; transform: translateY(-50%); white-space: nowrap; font-size: 13px; font-weight: 600; color: var(--c-ink); background: rgba(255,255,255,.92); padding: 2px 8px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,.25); pointer-events: none; }
+  .mp-live :global(.mpl-pin--w .mpl-lbl) { left: auto; right: 24px; }
+  .mp-live :global(.mpl-pin.is-sel .mpl-lbl) { background: var(--c-turq-deep); color: var(--c-sand); }
+  @media (max-width: 600px) { .mp-live :global(.mpl-lbl) { display: none; } .mp-live :global(.mpl-pin.is-sel .mpl-lbl) { display: block; } }
   .mp-grid { stroke: rgba(247,243,234,.05); }
   .mp-meta { fill: rgba(247,243,234,.6); font-family: var(--font-body); font-size: 12px; }
   .mp-scale line { stroke: rgba(247,243,234,.6); stroke-width: 2; }
@@ -128,6 +237,7 @@ const sb = r1(10 * sc), sbX = W - PAD - sb, sbY = H - 18;
   @media (max-width: 600px) { .mp-label { display: none; } .mp-pin.is-sel .mp-label { display: inline; } }
   @media (prefers-reduced-motion: no-preference) {
     [data-map]:not(.is-open) .mp-halo { animation: mp-pulse 2.6s ease-out infinite; animation-delay: var(--d); }
+    [data-map]:not(.is-open) .mp-live :global(.mpl-halo) { animation: mp-pulse 2.6s ease-out infinite; }
     @keyframes mp-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
   }
   .mp-legend { display: flex; flex-wrap: wrap; gap: var(--s-2); padding: 12px 14px 14px; border-block-start: 1px solid rgba(247,243,234,.16); }
