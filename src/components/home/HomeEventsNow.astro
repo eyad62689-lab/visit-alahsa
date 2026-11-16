@@ -1,0 +1,119 @@
+---
+// فعاليات في موسمها الآن — داخل فصل «خطّط رحلتك» في الرئيسية الهجينة (ar/en فقط).
+// «الآن» بقاعدة صفحة الفعاليات نفسها: النسخة المؤكدة بين تاريخيها، وسواها بنافذة أشهرها
+// (وليالي كفو برمضان الهجري)، بتوقيت السعودية. البناء يحسبها فتظهر بلا JS، ثم يعيد
+// المتصفّح الحساب بتاريخ الزائر تحسّباً لتقادم النشر؛ وإن لم يبقَ شيء يختفي القسم كله.
+import Photo from '../Photo.astro';
+import { EVENTS_AR, EVENTS_EN, evView, type Ev } from '../../data/events';
+
+interface Props { lang: 'ar' | 'en' }
+const { lang } = Astro.props;
+const ar = lang === 'ar';
+const C = ar
+  ? { title: 'فعاليات في موسمها الآن', lead: 'ما يحلّ موسمه في الأحساء هذه الأيام، لتضيفه إلى رحلتك. تفاصيل كل فعالية في صفحتها.', placeK: 'المكان', all: 'كل الفعاليات', arrow: '←' }
+  : { title: 'Events in season now', lead: 'What is in season in Al-Ahsa these days, to add to your trip. Each event page has the details.', placeK: 'Venue', all: 'All events', arrow: '→' };
+const base = ar ? '/فعاليات/' : '/en/events/';
+const MAX = 4;
+
+const ksaMonth = (calendar?: string): number => {
+  try {
+    const f = new Intl.DateTimeFormat(calendar ? `en-u-ca-${calendar}` : 'en', { timeZone: 'Asia/Riyadh', month: 'numeric' });
+    const m = f.formatToParts(new Date()).find((p) => p.type === 'month');
+    return m ? parseInt(m.value, 10) : 0;
+  } catch { return 0; }
+};
+const gm = ksaMonth();
+const hm = ksaMonth('islamic-umalqura');
+const today = new Date(Date.now() + 3 * 3600000).toISOString().slice(0, 10);
+const running = (e: Ev): boolean => {
+  if (e.ramadan) return hm === 9;
+  if (e.startISO && e.endISO) return today >= e.startISO && today <= e.endISO;
+  const end = e.end ?? e.start;
+  return e.start <= end ? gm >= e.start && gm <= end : gm >= e.start || gm <= end;
+};
+// ذات التاريخين المعلنين أولاً (نسخة مؤكدة أو فعالية مؤقتة) ثم المواسم، فلا يحجبها الحدّ الأعلى
+const items = (ar ? EVENTS_AR : EVENTS_EN)
+  .map((raw) => { const e = evView(raw); return { raw, e, now: running(e) }; })
+  .sort((x, y) => Number(!!y.e.startISO) - Number(!!x.e.startISO));
+let shown = 0;
+const list = items.map((it) => ({ ...it, show: it.now && shown++ < MAX }));
+---
+<div class="evn" data-evnow hidden={shown === 0} data-max={MAX}>
+  <div class="evn-head">
+    <h3 class="evn-title" id="evn-h">{C.title}</h3>
+    <p class="evn-lead">{C.lead}</p>
+  </div>
+  <ul class="evn-list" role="list">
+    {list.map(({ e, show }) => (
+      <li class="evn-item" hidden={!show}
+        data-start={e.start} data-end={e.end ?? ''} data-ramadan={e.ramadan ? '1' : ''}
+        data-ev-start={e.startISO} data-ev-end={e.endISO}>
+        <a class="evn-card" href={`${base}${e.slug}/`} data-track="home_event_now" data-track-event={e.slug}>
+          <span class="evn-media"><Photo src={e.img} label={e.name} class="ev-photo" sizes="(max-width: 760px) 100vw, 280px" /></span>
+          <span class="evn-body">
+            <span class="evn-name">{e.name}</span>
+            <span class="evn-time">{e.time}</span>
+            <span class="evn-place"><span class="sr-only">{C.placeK}: </span>{e.place}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <a class="evn-all" href={base}>{C.all} <span aria-hidden="true">{C.arrow}</span></a>
+</div>
+
+<script>
+  function evNow() {
+    const box = document.querySelector<HTMLElement>('[data-evnow]');
+    if (!box) return;
+    const now = new Date();
+    let gm = now.getMonth() + 1;
+    let hm = 0;
+    try { gm = parseInt(new Intl.DateTimeFormat('en', { timeZone: 'Asia/Riyadh', month: 'numeric' }).format(now), 10) || gm; } catch { /* شهر الجهاز */ }
+    try {
+      const m = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { timeZone: 'Asia/Riyadh', month: 'numeric' }).formatToParts(now).find((p) => p.type === 'month');
+      hm = m ? parseInt(m.value, 10) : 0;
+    } catch { hm = 0; }
+    const day = new Date(now.getTime() + 3 * 3600000).toISOString().slice(0, 10);
+    const max = parseInt(box.dataset.max || '4', 10);
+    let shown = 0;
+    box.querySelectorAll<HTMLElement>('.evn-item').forEach((li) => {
+      let on: boolean;
+      const s = li.dataset.evStart, e = li.dataset.evEnd;
+      if (li.dataset.ramadan) on = hm === 9;
+      else if (s && e) on = day >= s && day <= e;
+      else {
+        const start = parseInt(li.dataset.start || '0', 10);
+        const end = li.dataset.end ? parseInt(li.dataset.end, 10) : start;
+        on = start <= end ? gm >= start && gm <= end : gm >= start || gm <= end;
+      }
+      const show = on && shown < max;
+      if (show) shown++;
+      li.hidden = !show;
+    });
+    box.hidden = shown === 0;
+  }
+  document.addEventListener('astro:page-load', evNow);
+  if (document.readyState !== 'loading') evNow();
+  else document.addEventListener('DOMContentLoaded', evNow);
+</script>
+
+<style>
+  .evn { margin-top: var(--s-7, 48px); padding-top: var(--s-6, 32px); border-top: 1px solid rgba(21, 33, 30, .12); }
+  .evn-title { font-family: var(--font-display); color: var(--c-turq); font-size: clamp(1.35rem, 2.6vw, 1.75rem); margin: 0; }
+  .evn-lead { color: var(--c-ink-soft); margin: 8px 0 0; line-height: 1.7; max-width: 60ch; }
+  .evn-list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 16px; }
+  .evn-card { display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 16px; overflow: hidden; text-decoration: none; color: var(--c-ink);
+    box-shadow: 0 0 0 1px rgba(21, 33, 30, .08), 0 8px 22px rgba(21, 33, 30, .06); transition: transform .25s, box-shadow .25s; }
+  .evn-card:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(201, 154, 74, .5), 0 14px 30px rgba(21, 33, 30, .1); }
+  .evn-card:focus-visible { outline: 3px solid var(--c-gold); outline-offset: 3px; }
+  /* نسبة الصورة من القاعدة العامة .photo.ev-photo (النمط المحصور لا يصل إلى <picture> مكوّن Photo) */
+  .evn-media { display: block; }
+  .evn-body { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 16px; }
+  .evn-name { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--c-turq); }
+  .evn-time { font-weight: 600; font-size: .9rem; color: var(--c-gold-deep); }
+  .evn-place { font-size: .9rem; color: var(--c-ink-soft); }
+  .evn-all { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 12px; font-weight: 600; color: var(--c-turq); text-decoration: none; }
+  .evn-all:hover { text-decoration: underline; }
+  @media (prefers-reduced-motion: reduce) { .evn-card { transition: none; } .evn-card:hover { transform: none; } }
+</style>

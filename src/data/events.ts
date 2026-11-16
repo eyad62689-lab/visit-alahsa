@@ -172,7 +172,8 @@ const EVENT_META = {
   // season «الشتاء» + span «موسم شتوي ممتد» — نهايته غير معلنة في المصدر.
   // موسم 2026–2027 انطلق في نوفمبر 2026 (من إياد، 2026-11-11) بلا تاريخ افتتاح ولا ختام معلنين،
   // فلا status: 'confirmed' (يلزمه startISO/endISO) — قسم «موسم 2026–2027» بنصوص ar/en كسابقة سباقات الخيل.
-  'wafrah-winter': { img: '', start: 11, end: 2, map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8' },
+  // الصورة من إياد (2026-11-16).
+  'wafrah-winter': { img: '/img/event-wafrah-winter', start: 11, end: 2, map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8' },
   // موسم 2026–2027 انطلق 31 أكتوبر 2026 (من إياد، 2026-11-01) — يُعرض في قسم «الموسم الحالي»
   // بنصوص ar/en، ونهايته غير معلنة فلا status: 'confirmed' (يلزمه endISO). المنظّم «ميدان
   // الفروسية بالأحساء» (أكّده إياد 2026-11-01)، وحسابه على X وقناته على يوتيوب منه في اليوم
@@ -364,6 +365,8 @@ const TEXT_AR: EventTexts = {
     season: 'الشتاء', time: 'من نوفمبر تقريباً', span: 'موسم شتوي ممتد',
     org: 'ملاك ومستثمرون بإشراف أمانة الأحساء',
     acts: ['أكثر من 150 عربة طعام (فود ترك)', 'أكلات شعبية أحسائية', 'جلسات شتوية مفتوحة'],
+    // من إياد (2026-11-16): مفتوح طوال اليوم بلا ساعات موحّدة، ولكل نشاط وقته، والذروة 4 م – 12 ل
+    hours: 'مفتوح طوال اليوم، ولكل عربة ونشاط مواعيده الخاصة. ذروة الحضور من 4:00 العصر حتى منتصف الليل.',
     // الانطلاق من إياد (2026-11-11) بلا تاريخ افتتاح ولا ختام معلنين؛ يُحدَّث القسم مع كل موسم
     sections: [
       { h: 'موسم 2026–2027', ps: ['انطلق موسم شتاء الوفرة 2026–2027 في نوفمبر 2026، ولم يُعلن موعد ختامه.'] },
@@ -559,6 +562,7 @@ const TEXT_EN: EventTexts = {
     season: 'Winter', time: 'From around November', span: 'An extended winter season',
     org: 'Private operators under Al-Ahsa Municipality supervision',
     acts: ['150+ food trucks', 'Hasawi folk dishes', 'Open-air winter gatherings'],
+    hours: 'Open all day, with each food truck and activity keeping its own hours. The busiest time is from 4:00 pm to midnight.',
     sections: [
       { h: 'The 2026–2027 season', ps: ['The 2026–2027 Al-Wafrah Winter season began in November 2026; no closing date has been announced.'] },
     ],

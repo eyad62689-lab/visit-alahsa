@@ -20,6 +20,7 @@ import SavedBar from '../home/SavedBar.astro';
 import HomeQuick from '../home/HomeQuick.astro';
 import HomePaths from '../home/HomePaths.astro';
 import HomeTaste from '../home/HomeTaste.astro';
+import HomeEventsNow from '../home/HomeEventsNow.astro';
 import { getCollection } from 'astro:content';
 import { attractionHref, blogHref } from '../../lib/routes';
 import { SITE, orgNode, websiteNode, OASIS_SAMEAS, UNESCO_WHS_ID, absUrl } from '../../lib/schema';
@@ -118,7 +119,7 @@ const pageTitle = title.endsWith(brand) ? title : `${title} ${titleSep(lang)} ${
   <main id="main" class="chapters">
     <ChapterGate lang={lang} />
     {isHybrid(lang) && <HomeQuick lang={lang} firstHref={firstHref} arriveHref={`${planHref}#getting-there`} tripHref={myTripHref} />}
-    {hybrid && <ChapterPlan lang={lang} templates={templates} tips={tips} places={places} planHref={planHref} />}
+    {hybrid && <ChapterPlan lang={lang} templates={templates} tips={tips} places={places} planHref={planHref}>{(lang === 'ar' || lang === 'en') && <HomeEventsNow lang={lang} />}</ChapterPlan>}
     {isHybrid(lang) && <HomePaths lang={lang} />}
     <ChapterWater lang={lang} sitesCount={all.length} />
     <ChapterQarah lang={lang} qarah={pick('jabal-al-qarah')} />

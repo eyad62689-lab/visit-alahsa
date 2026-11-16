@@ -49,6 +49,8 @@ const payload = JSON.stringify({ templates, tips, sep: H.sep, places, L }).repla
         <div data-route-body hidden></div>
       </div>
     </div>
+    {/* فعاليات في موسمها الآن (ar/en) — تمرَّر من الرئيسية */}
+    <slot />
     <a class="ch-link" href={planHref}>{C.link} <span aria-hidden="true">{H.arrow}</span></a>
   </div>
   <script type="application/json" data-plan-data set:html={payload} />
