@@ -1,0 +1,84 @@
+# ============================================================================
+# Production monitor — scheduled checks against the published site
+# ----------------------------------------------------------------------------
+# The Build workflow verifies a pull request against a local preview. Nothing
+# there notices a deploy that failed silently, a language home page that went
+# missing, or a scheduled rebuild that stopped (after which everything derived
+# from the build date goes stale: expired events, live opening hours).
+#
+# This workflow runs tools/prod-smoke.mjs once a day, shortly after the daily
+# scheduled rebuild (netlify/functions/scheduled-rebuild.mjs, 01:00 UTC). On
+# failure it opens an issue, or comments on the open one, so a failing day is
+# one notification rather than a silent red run.
+#
+# Build freshness is enforced only when the repository variable
+# PROD_MAX_AGE_DAYS is set (Settings -> Secrets and variables -> Actions ->
+# Variables). Set it to 2 once the scheduled rebuild is live; until then the
+# script prints the build age without judging it.
+#
+# No secrets are used and nothing is committed. The default token gets
+# issues:write for this job only. Actions are pinned to commit SHAs, same rule
+# as build.yml.
+# ============================================================================
+
+name: Production monitor
+
+on:
+  schedule:
+    - cron: "30 1 * * *" # 04:30 Asia/Riyadh
+  workflow_dispatch: {}
+
+concurrency:
+  group: prod-monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Production smoke test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22" # يطابق NODE_VERSION في netlify.toml
+
+      # السكربت بلا تبعيات (وحدات Node المدمجة وحدها) فلا npm ci.
+      - name: Smoke test the published site
+        id: smoke
+        env:
+          PROD_MAX_AGE_DAYS: ${{ vars.PROD_MAX_AGE_DAYS }}
+        run: |
+          set -o pipefail
+          node tools/prod-smoke.mjs 2>&1 | tee smoke.log
+
+      - name: Open or update the tracking issue
+        if: failure() && steps.smoke.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ISSUE_TITLE: Production smoke test failing
+        run: |
+          {
+            echo "The scheduled production smoke test failed."
+            echo
+            echo "Run: $RUN_URL"
+            echo
+            echo '```'
+            tail -n 40 smoke.log
+            echo '```'
+          } > body.md
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body-file body.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$ISSUE_TITLE" --body-file body.md
+          fi
