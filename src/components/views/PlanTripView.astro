@@ -24,9 +24,9 @@ const practical = await practicalTable(lang);
 const ar = lang === 'ar';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
 const showGuides = (ar || lang === 'en') && (await guidesListed());
-// مخطِّط الرحلة وفعاليات الموسم (ar/en): انتقلا من الرئيسية إلى هذه الصفحة؛ بقية اللغات يبقى مخطِّطها في الرئيسية
-const planLang = ar ? 'ar' : lang === 'en' ? 'en' : null;
-const plan = planLang ? await planData(planLang) : null;
+// مخطِّط الرحلة (كل اللغات) وفعاليات الموسم (ar/en): انتقلا من الرئيسية إلى هذه الصفحة
+const plan = await planData(lang);
+const evLang = ar ? 'ar' : lang === 'en' ? 'en' : null;
 
 // جدول سياحي: مقالان منشوران ومخطّط الرئيسية (عربي/إنجليزي فقط). الرابط من مجموعة المدونة بمفتاح المقال
 // فلا يُكتب slug يدوياً، ومقال غير منشور يسقط من القائمة بدل أن يترك رابطاً مكسوراً.
@@ -432,13 +432,11 @@ const jsonLd = [
   <main id="main">
     <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={56} motif="center" lang={lang} />
 
-    {plan && planLang && (
-      <div class="pt-planner">
-        <ChapterPlan lang={planLang} templates={plan.templates} tips={plan.tips} places={plan.places} standalone>
-          <HomeEventsNow lang={planLang} />
-        </ChapterPlan>
-      </div>
-    )}
+    <div class="pt-planner">
+      <ChapterPlan lang={lang} templates={plan.templates} tips={plan.tips} places={plan.places} standalone>
+        {evLang && <HomeEventsNow lang={evLang} />}
+      </ChapterPlan>
+    </div>
 
     <section class="sec" id="getting-there">
       <div class="container">

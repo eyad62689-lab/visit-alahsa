@@ -37,10 +37,10 @@ export type HomeCopy = {
 export const HYBRID_LANGS = ['ar', 'en'] as const;
 export type HybridLang = (typeof HYBRID_LANGS)[number];
 export const isHybrid = (lang: HomeLang): lang is HybridLang => lang === 'ar' || lang === 'en';
-/** رقم الفصل في الترتيب الهجين بحسب فهرسه الأصلي: المخطِّط (الفهرس 5) في صفحة «خطّط لرحلتك» لا في الرئيسية. */
-const HYBRID_NO = [1, 2, 3, 4, 5, 0, 6] as const;
-/** ترتيب نقاط الشريط الجانبي في الترتيب الهجين (فهارس rail.items). */
-export const HYBRID_RAIL_ORDER = [0, 1, 2, 3, 4, 6] as const;
+/** رقم الفصل بحسب فهرسه الأصلي في rail.items: المخطِّط (الفهرس 5) في صفحة «خطّط لرحلتك» لا في الرئيسية، في كل اللغات. */
+const CHAPTER_NO = [1, 2, 3, 4, 5, 0, 6] as const;
+/** نقاط الشريط الجانبي (فهارس rail.items): الفصول الستة التي في الرئيسية. */
+export const RAIL_ORDER = [0, 1, 2, 3, 4, 6] as const;
 
 export const HYBRID_COPY: Record<HybridLang, {
   quick: { label: string; first: Pair; arrive: Pair; trip: Pair };
@@ -256,9 +256,9 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       link: '卡拉山页面',
     },
     map: {
-      title: '选一处让您心动的地方',
+      title: '选择您的目的地',
       lead: '每个景点都标在真实位置上。点击即可查看，还能把它收进“我的收藏”。',
-      svgLabel: '哈萨景点示意地图',
+      svgLabel: '哈萨景点互动地图',
       km: '10 公里',
       legend: '地图上的景点',
       empty: '在地图上选一处景点，即可查看它的照片与介绍。',
@@ -329,9 +329,9 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       link: 'Mehr über den Jabal al-Qarah',
     },
     map: {
-      title: 'Wählen Sie, was Sie lockt',
+      title: 'Wählen Sie Ihr Reiseziel',
       lead: 'Die Sehenswürdigkeiten sind dort eingezeichnet, wo sie tatsächlich liegen. Öffnen Sie eine, um mehr zu sehen, und setzen Sie sie auf Ihre Merkliste.',
-      svgLabel: 'Vereinfachte Karte der Sehenswürdigkeiten von Al-Ahsa',
+      svgLabel: 'Interaktive Karte von Al-Ahsa mit den Standorten der Sehenswürdigkeiten',
       km: '10 km',
       legend: 'Sehenswürdigkeiten auf der Karte',
       empty: 'Wählen Sie auf der Karte eine Sehenswürdigkeit, um Foto und Beschreibung zu sehen.',
@@ -402,9 +402,9 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       link: 'Джабаль-эль-Кара — подробнее',
     },
     map: {
-      title: 'Выберите, что вас манит',
+      title: 'Выберите, куда отправиться',
       lead: 'Достопримечательности отмечены там, где они находятся на самом деле. Нажмите на любую, чтобы увидеть её, и добавьте в сохранённые места.',
-      svgLabel: 'Упрощённая карта достопримечательностей Аль-Ахсы',
+      svgLabel: 'Интерактивная карта Аль-Ахсы с отмеченными достопримечательностями',
       km: '10 км',
       legend: 'Достопримечательности на карте',
       empty: 'Выберите достопримечательность на карте, чтобы увидеть её фото и описание.',
@@ -475,9 +475,9 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       link: 'جبل القارہ کا صفحہ',
     },
     map: {
-      title: 'جو دل کو بھائے، وہ چنیں',
+      title: 'اپنی منزل چنیں',
       lead: 'نقشے پر سیاحتی مقامات اپنی اصل جگہوں پر دکھائے گئے ہیں۔ کسی مقام کو کھول کر اسے دیکھیں اور اپنے سفر کے لیے محفوظ کریں۔',
-      svgLabel: 'الاحساء کے سیاحتی مقامات کا سادہ نقشہ',
+      svgLabel: 'الاحساء کا تعاملی نقشہ، سیاحتی مقامات کی نشاندہی کے ساتھ',
       km: '10 کلومیٹر',
       legend: 'نقشے کے سیاحتی مقامات',
       empty: 'نقشے پر کوئی مقام چنیں تو اس کی تصویر اور تعارف سامنے آ جائے گا۔',
@@ -548,9 +548,9 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       link: 'Cebel el-Kare sayfası',
     },
     map: {
-      title: 'İlginizi çeken yeri seçin',
+      title: 'Gideceğiniz yeri seçin',
       lead: 'Gezilecek yerler haritada gerçek konumlarında gösterilir. Birini açıp inceleyin ve geziniz için kaydedin.',
-      svgLabel: 'El-Ahsa\'daki gezilecek yerlerin sadeleştirilmiş haritası',
+      svgLabel: 'El-Ahsa\'daki gezilecek yerlerin konumlarını gösteren etkileşimli harita',
       km: '10 km',
       legend: 'Haritadaki gezilecek yerler',
       empty: 'Fotoğrafını ve tanıtımını görmek için haritadan bir yer seçin.',
@@ -589,7 +589,7 @@ export const isHomeLang = (l: Lang): l is HomeLang => (HOME_LANGS as readonly st
  *  (وموسوم lang="en" في العربية)، وفي غيرهما اسم الفصل المترجم من شريط الفصول — نصّ لاتيني في
  *  صفحة صينية يحسبه فحص سلامة اللغة C22 غير مترجم. */
 export const chapterEyebrow = (lang: HomeLang, i: number, latin: string) => {
-  const no = String(isHybrid(lang) ? HYBRID_NO[i] : i + 1).padStart(2, '0');
+  const no = String(CHAPTER_NO[i]).padStart(2, '0');
   if (lang === 'ar' || lang === 'en') return { text: `${no} · ${latin}`, lang: lang === 'en' ? undefined : 'en' };
   return { text: `${no} · ${HOME_COPY[lang].rail.items[i][1]}`, lang: undefined };
 };

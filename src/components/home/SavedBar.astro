@@ -2,13 +2,13 @@
 // شريط «معالمي» السفلي: مخفيّ حتى أول حفظ في va-plan، ثم ينزلق بالعدد وزرّ يقود إلى الفصل 6
 // حيث يُدمج المحفوظ في المسار. حين يظهر تختفي أيقونة «معالمي» من رأس الجوال فلا يتكرر العنصر
 // في الشاشة (القرار أ3، البند 5).
-import { HOME_COPY, isHybrid, type HomeLang } from '../../data/home-copy';
+import { HOME_COPY, type HomeLang } from '../../data/home-copy';
 
 interface Props { lang: HomeLang }
 const { lang } = Astro.props;
 const C = HOME_COPY[lang].saved;
-// في ar/en يسكن المخطِّط صفحة «خطّط لرحلتك»؛ في بقية اللغات هو فصل في الرئيسية نفسها
-const buildHref = isHybrid(lang) ? `${HOME_COPY[lang].paths.plan}#ch-plan` : '#ch-plan';
+// المخطِّط يسكن صفحة «خطّط لرحلتك» في كل اللغات
+const buildHref = `${HOME_COPY[lang].paths.plan}#ch-plan`;
 ---
 <div class="sbar" data-savebar hidden>
   <div class="sbar-in">
