@@ -167,20 +167,23 @@ try {
   ev = await events(page);
   ok(find(ev, 'filter_use', (p) => p.ui === 'attractions' && p.open === true), 'filter_use عند فتح قسم في فهرس المعالم');
 
-  console.log('\n── الرئيسية: بلوغ الأقسام، الفيديو ومؤشرات الويب الحيوية ──');
-  await goto('/en/');
-  // section_view: فصل البوابة يعبر منتصف الشاشة عند التحميل، وفصل الختام الأخير بعد التمرير إليه
-  // (الرئيسية الإنجليزية بالترتيب الهجين: سبعة فصول gate…finale + الشريط السريع وبطاقات الفئات و«تذوّق وأقم» = 10 أقسام مقيسة)
-  const hero = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'gate', 4000);
-  ok(hero && hero.params.depth === 1 && hero.params.depth_of === 10, 'section_view لفصل البوابة عند التحميل', hero ? `depth ${hero.params.depth}/${hero.params.depth_of}` : '');
-  // route_built: إكمال أسئلة الفصل 6 الثلاثة يبني المسار ويُقاس
+  console.log('\n── صفحة «خطّط لرحلتك»: مخطِّط الرحلة ──');
+  await goto('/en/plan-your-trip/');
+  // route_built: إكمال أسئلة المخطِّط الثلاثة يبني المسار ويُقاس (انتقل المخطِّط من الرئيسية إلى هذه الصفحة)
   await page.evaluate(() => document.getElementById('ch-plan')?.scrollIntoView({ block: 'center' }));
-  // الفصول تحت الطيّة بـcontent-visibility: يُرسم الفصل عند دخوله فيتبدّل ارتفاعه التقديري بالحقيقي،
+  // القسم بـcontent-visibility: يُرسم عند دخوله فيتبدّل ارتفاعه التقديري بالحقيقي،
   // والنقر قبل استقرار التخطيط يقع خارج الخيار الأول
   await sleep(500);
   for (const id of ['p6-int-heritage', 'p6-dur-2', 'p6-com-family']) await page.click(`label:has(#${id})`);
   const rb = await waitEvent(page, 'route_built', (p) => p.interest === 'heritage' && p.duration === 2 && p.companion === 'family', 3000);
   ok(rb, 'route_built عند إكمال أسئلة التخطيط الثلاثة', rb ? `${rb.params.interest}/${rb.params.duration}/${rb.params.companion}` : '');
+
+  console.log('\n── الرئيسية: بلوغ الأقسام، الفيديو ومؤشرات الويب الحيوية ──');
+  await goto('/en/');
+  // section_view: فصل البوابة يعبر منتصف الشاشة عند التحميل، وفصل الختام الأخير بعد التمرير إليه
+  // (الرئيسية الإنجليزية بالترتيب الهجين: ستة فصول gate…finale + الشريط السريع وبطاقات الفئات و«تذوّق وأقم» = 9 أقسام مقيسة)
+  const hero = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'gate', 4000);
+  ok(hero && hero.params.depth === 1 && hero.params.depth_of === 9, 'section_view لفصل البوابة عند التحميل', hero ? `depth ${hero.params.depth}/${hero.params.depth_of}` : '');
   await page.evaluate(() => document.getElementById('ch-finale')?.scrollIntoView({ block: 'center' }));
   const planSec = await waitEvent(page, 'section_view', (p) => p.page === 'home' && p.section === 'finale', 4000);
   ok(planSec && planSec.params.depth === planSec.params.depth_of, 'section_view لفصل الختام الأخير بعد التمرير', planSec ? `depth ${planSec.params.depth}/${planSec.params.depth_of}` : '');

@@ -37,16 +37,16 @@ export type HomeCopy = {
 export const HYBRID_LANGS = ['ar', 'en'] as const;
 export type HybridLang = (typeof HYBRID_LANGS)[number];
 export const isHybrid = (lang: HomeLang): lang is HybridLang => lang === 'ar' || lang === 'en';
-/** رقم الفصل في الترتيب الهجين بحسب فهرسه الأصلي: المخطِّط يصعد ثانياً. */
-const HYBRID_NO = [1, 3, 4, 5, 6, 2, 7] as const;
+/** رقم الفصل في الترتيب الهجين بحسب فهرسه الأصلي: المخطِّط (الفهرس 5) في صفحة «خطّط لرحلتك» لا في الرئيسية. */
+const HYBRID_NO = [1, 2, 3, 4, 5, 0, 6] as const;
 /** ترتيب نقاط الشريط الجانبي في الترتيب الهجين (فهارس rail.items). */
-export const HYBRID_RAIL_ORDER = [0, 5, 1, 2, 3, 4, 6] as const;
+export const HYBRID_RAIL_ORDER = [0, 1, 2, 3, 4, 6] as const;
 
 export const HYBRID_COPY: Record<HybridLang, {
   quick: { label: string; first: Pair; arrive: Pair; trip: Pair };
   taste: { title: string; lead: string };
   /** زرّا البطل: وجهتان خارج الصفحة (فهرس المعالم والخريطة)، لا قفزتان داخلها */
-  gate: { explore: string; map: string };
+  gate: { explore: string; plan: string };
 }> = {
   ar: {
     quick: {
@@ -56,7 +56,7 @@ export const HYBRID_COPY: Record<HybridLang, {
       trip: ['رحلتي', 'معالمك المحفوظة'],
     },
     taste: { title: 'تذوّق وأقم', lead: 'المطبخ الأحسائي ومطاعمه ومقاهيه، وأماكن الإقامة، وما يُقام من فعاليات.' },
-    gate: { explore: 'اكتشف معالم الأحساء', map: 'تجوّل على الخريطة' },
+    gate: { explore: 'اكتشف معالم الأحساء', plan: 'خطّط رحلتك' },
   },
   en: {
     quick: {
@@ -66,7 +66,7 @@ export const HYBRID_COPY: Record<HybridLang, {
       trip: ['My trip', 'Your saved places'],
     },
     taste: { title: 'Taste and stay', lead: 'Al-Ahsa’s cuisine, restaurants and cafés, places to stay, and what’s on.' },
-    gate: { explore: 'Explore the attractions', map: 'Open the map' },
+    gate: { explore: 'Explore the attractions', plan: 'Plan your trip' },
   },
 };
 
@@ -111,9 +111,9 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       link: 'صفحة جبل القارة',
     },
     map: {
-      title: 'اختر ما يناديك',
+      title: 'اختر وجهتك',
       lead: 'المعالم في مواضعها الحقيقية. اضغط على معلمٍ لتراه، واحفظه لرحلتك.',
-      svgLabel: 'خريطة تحريرية لمعالم الأحساء',
+      svgLabel: 'خريطة الأحساء التفاعلية بمواضع المعالم',
       km: '10 كم',
       legend: 'معالم الخريطة',
       empty: 'اختر معلماً من الخريطة لترى صورته ووصفه.',
@@ -183,9 +183,9 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
       link: 'Jabal Al-Qarah page',
     },
     map: {
-      title: 'Choose what calls you',
+      title: 'Choose your destination',
       lead: 'Landmarks in their true positions. Open one to see it, and save it for your trip.',
-      svgLabel: 'Editorial map of Al-Ahsa landmarks',
+      svgLabel: 'Interactive map of Al-Ahsa with landmark locations',
       km: '10 km',
       legend: 'Map landmarks',
       empty: 'Pick a landmark on the map to see its photo and description.',

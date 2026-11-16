@@ -13,6 +13,9 @@ import { VISA_LANGS, visaHref } from '../../lib/visa-guide.mjs';
 import { getCollection } from 'astro:content';
 import { blogHref, guidesHref, toolsHref } from '../../lib/routes';
 import { guidesListed } from '../../lib/guides';
+import ChapterPlan from '../home/ChapterPlan.astro';
+import HomeEventsNow from '../home/HomeEventsNow.astro';
+import { planData } from '../../lib/plan-data';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
@@ -21,6 +24,9 @@ const practical = await practicalTable(lang);
 const ar = lang === 'ar';
 // دليل المرشدين: عربي/إنجليزي فقط، ولا يُربط إلا متى وُجد مرشد منشور واحد على الأقل
 const showGuides = (ar || lang === 'en') && (await guidesListed());
+// مخطِّط الرحلة وفعاليات الموسم (ar/en): انتقلا من الرئيسية إلى هذه الصفحة؛ بقية اللغات يبقى مخطِّطها في الرئيسية
+const planLang = ar ? 'ar' : lang === 'en' ? 'en' : null;
+const plan = planLang ? await planData(planLang) : null;
 
 // جدول سياحي: مقالان منشوران ومخطّط الرئيسية (عربي/إنجليزي فقط). الرابط من مجموعة المدونة بمفتاح المقال
 // فلا يُكتب slug يدوياً، ومقال غير منشور يسقط من القائمة بدل أن يترك رابطاً مكسوراً.
@@ -33,7 +39,7 @@ const ITIN = ar
       items: [
         { href: postHref('24-hours-itinerary'), h: 'يوم واحد في الأحساء', d: 'جدول 24 ساعة لزائر عابر.' },
         { href: postHref('48-hours-itinerary'), h: '48 ساعة في الأحساء', d: 'جدول يومين: الهفوف التراثية ثم الواحة وساحلها.' },
-        { href: '/#ch-plan', h: 'مخطّط الرحلة', d: 'أجب عن ثلاثة أسئلة، فيظهر مسارك من يوم إلى ثلاثة أيام.' },
+        { href: '#ch-plan', h: 'مخطّط الرحلة', d: 'أجب عن ثلاثة أسئلة، فيظهر مسارك من يوم إلى ثلاثة أيام.' },
       ],
     }
   : {
@@ -42,7 +48,7 @@ const ITIN = ar
       items: [
         { href: postHref('24-hours-itinerary'), h: 'One day in Al-Ahsa', d: 'A 24-hour itinerary for the passing visitor.' },
         { href: postHref('48-hours-itinerary'), h: '48 hours in Al-Ahsa', d: 'A two-day plan: heritage Hofuf, then the oasis and its coast.' },
-        { href: '/en/#ch-plan', h: 'Trip planner', d: 'Answer three questions and get a route for one to three days.' },
+        { href: '#ch-plan', h: 'Trip planner', d: 'Answer three questions and get a route for one to three days.' },
       ],
     };
 const itinItems = ar || lang === 'en' ? ITIN.items.filter((i): i is { href: string; h: string; d: string } => i.href !== null) : [];
@@ -426,6 +432,14 @@ const jsonLd = [
   <main id="main">
     <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={56} motif="center" lang={lang} />
 
+    {plan && planLang && (
+      <div class="pt-planner">
+        <ChapterPlan lang={planLang} templates={plan.templates} tips={plan.tips} places={plan.places} standalone>
+          <HomeEventsNow lang={planLang} />
+        </ChapterPlan>
+      </div>
+    )}
+
     <section class="sec" id="getting-there">
       <div class="container">
         <h2 class="sec-h" data-reveal>{C.getThereH}</h2>
@@ -540,6 +554,13 @@ const jsonLd = [
 
 <style>
   .sec { padding-block: var(--s-7); }
+  /* المخطِّط (فصل الرئيسية السابق) بترويسة أقسام هذه الصفحة */
+  .pt-planner :global(.ch) { padding-block: var(--s-7); scroll-margin-block-start: 68px; }
+  .pt-planner :global(.ch--sand) { background: var(--c-sand-2); }
+  .pt-planner :global(.ch-head) { display: grid; gap: var(--s-2); max-inline-size: 660px; margin-block-end: var(--s-5); }
+  .pt-planner :global(.ch-title) { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; margin: 0; text-wrap: balance; }
+  :global(:root:lang(ar)) .pt-planner :global(.ch-title) { line-height: 1.35; }
+  .pt-planner :global(.ch-lead) { font-size: 1.1875rem; line-height: 1.7; color: var(--c-ink-soft); margin: 0; max-inline-size: 58ch; }
   .sec--sand { background: var(--c-sand-2); }
   .sec-h { font-size: var(--t-2xl); color: var(--c-turq-deep); line-height: 1.2; margin-block-end: var(--s-5); }
   .gt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 248px), 1fr)); gap: var(--s-3); }
