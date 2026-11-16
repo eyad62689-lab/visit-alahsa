@@ -1,9 +1,9 @@
-// مولَّد من de-translation/output/emergency/judge.json (92، APPROVE + addendum) — لا يُحرَّر يدوياً؛
+// مولَّد من de-translation/output/emergency/judge-amend.json (92، APPROVE) — لا يُحرَّر يدوياً؛
 // أي تعديل يمرّ بخط de-translation-pipeline ثم يُعاد التطبيق.
 import type { EmergencyPage } from './emergency';
 
 export const EMERGENCY_DE: EmergencyPage = {
-  "seoTitle": "Notfälle und Hilfe in Al-Ahsa: Rettungsdienst und Polizei",
+  "seoTitle": "Notfälle und Hilfe in Al-Ahsa: Rettungsdienst und Sicherheit",
   "seoDesc": "Hilfe in Al-Ahsa: Nummern von Rettungsdienst, Polizei und Servicestellen – und was Sie nach einem Unfall oder bei Verlust Ihrer Dokumente auf der Reise tun.",
   "eyebrow": "Ratgeber für Besucher",
   "title": "Notfälle und Hilfe in Al-Ahsa",
@@ -58,7 +58,7 @@ export const EMERGENCY_DE: EmergencyPage = {
       "who": "Grenzschutz"
     }
   ],
-  "coreNote": "Die 911 ist in der Ostprovinz (asch-Scharqiyya), zu der Al-Ahsa gehört, erreichbar. Die Kurznummern oben gelten innerhalb Saudi-Arabiens; wählen Sie sie ohne die Ländervorwahl +966.",
+  "coreNote": "Die 911 ist in der Ostprovinz (asch-Scharqiyya), zu der Al-Ahsa gehört, erreichbar. Die Kurznummern oben gelten innerhalb Saudi-Arabiens; wählen Sie sie ohne die Ländervorwahl +966. Für Anrufe ohne SIM-Karte nennt die Einheitliche Nationale Plattform die 112 (siehe Häufige Fragen).",
   "coreSrc": [
     {
       "label": "Notrufnummern der Nationalen Plattform",
@@ -137,7 +137,7 @@ export const EMERGENCY_DE: EmergencyPage = {
         },
         {
           "lead": "Bei Unfällen ohne Verletzte:",
-          "text": "Wenden Sie sich an Najm – über die offizielle App oder den Kundenservice unter 199033 –, um zu klären, wie Sie den Unfall melden, soweit er unter die Zuständigkeit und die Servicebedingungen von Najm fällt. Die Nationale Plattform nennt für Unfälle mit versicherten Fahrzeugen die Nummer 920000560. Fällt der Unfall nicht in die Zuständigkeit von Najm, verweist Najm Sie an die Verkehrspolizei: Folgen Sie diesem Hinweis und rufen Sie 993 an. Halten Sie Ausweis, Führerschein, Fahrzeugschein und Versicherungsdaten bereit; ist das Auto gemietet, informieren Sie die Autovermietung."
+          "text": "Wenden Sie sich an Najm. Das Unternehmen Najm for Insurance Services erleichtert mit seiner offiziellen App die Meldung von Verkehrsunfällen. Nutzen Sie die App oder rufen Sie den Kundenservice unter 199033 an, und fragen Sie, wie Sie den Unfall im Rahmen der Zuständigkeit und der Servicebedingungen von Najm melden. Die Einheitliche Nationale Plattform nennt für Unfälle mit versicherten Fahrzeugen die Nummer 920000560. Fällt der Unfall nicht in die Zuständigkeit von Najm, verweist Najm Sie an die Verkehrspolizei: Folgen Sie diesem Hinweis und rufen Sie 993 an. Halten Sie Ausweis, Führerschein, Fahrzeugschein und Versicherungsdaten bereit; ist das Auto gemietet, informieren Sie die Autovermietung."
         },
         {
           "lead": "Bei einer Panne ohne unmittelbare Gefahr:",
@@ -225,7 +225,7 @@ export const EMERGENCY_DE: EmergencyPage = {
         },
         {
           "lead": "Schlangenbiss oder Skorpionstich:",
-          "text": "Rufen Sie sofort einen Rettungswagen. Sorgen Sie dafür, dass die Person ruhig bleibt, und folgen Sie den Anweisungen der Leitstelle. Binden Sie bei einem Schlangenbiss die Gliedmaße nicht ab, schneiden Sie die Bissstelle nicht ein und saugen Sie das Gift nicht aus. Versuchen Sie nicht, das Tier zu fangen."
+          "text": "Rufen Sie sofort unter 997 einen Rettungswagen. Sorgen Sie dafür, dass die Person ruhig bleibt, und folgen Sie den Anweisungen der Leitstelle. Binden Sie bei einem Schlangenbiss die Gliedmaße nicht ab, schneiden Sie die Bissstelle nicht ein und saugen Sie das Gift nicht aus. Versuchen Sie nicht, das Tier zu fangen."
         }
       ],
       "src": [
@@ -244,10 +244,10 @@ export const EMERGENCY_DE: EmergencyPage = {
       "h": "Brand, Gaslecks und elektrische Gefahren",
       "paras": [
         {
-          "text": "Verlassen Sie den Ort über einen sicheren Ausgang und warnen Sie die Menschen um Sie herum, ohne sich selbst in Gefahr zu bringen; rufen Sie dann von einem sicheren Ort aus 911 oder 998 an. Folgen Sie dem Evakuierungsplan und den Anweisungen des Personals, und kehren Sie nicht in den Gefahrenbereich zurück, um Ihre Sachen zu holen."
+          "text": "Verlassen Sie den Ort über einen sicheren Ausgang und warnen Sie die Menschen um Sie herum, ohne sich selbst in Gefahr zu bringen; rufen Sie dann von einem sicheren Ort aus 911 an oder direkt den Zivilschutz unter 998. Folgen Sie dem Evakuierungsplan und den Anweisungen des Personals, und kehren Sie nicht in den Gefahrenbereich zurück, um Ihre Sachen zu holen."
         },
         {
-          "text": "Wenn Sie ein Gasleck vermuten, entfernen Sie sich, zünden Sie keine Flamme an und benutzen Sie im betroffenen Bereich keine Schalter oder Geräte. Wenn Sie ein heruntergefallenes Kabel oder eine andere elektrische Gefahr sehen, berühren Sie nichts und nähern Sie sich keinem Wasser in der Umgebung; rufen Sie bei unmittelbarer Bedrohung 911 an, und melden Sie Stromstörungen unter 933."
+          "text": "Wenn Sie ein Gasleck vermuten, entfernen Sie sich, zünden Sie keine Flamme an, benutzen Sie im betroffenen Bereich keine Schalter oder Geräte, und rufen Sie von einem sicheren Ort aus 911 an. Wenn Sie ein heruntergefallenes Kabel oder eine andere elektrische Gefahr sehen, berühren Sie nichts und nähern Sie sich keinem Wasser in der Umgebung; rufen Sie bei unmittelbarer Bedrohung 911 an, und melden Sie Stromstörungen unter 933."
         }
       ]
     },
@@ -261,7 +261,7 @@ export const EMERGENCY_DE: EmergencyPage = {
         },
         {
           "lead": "Verlorener Reisepass oder verlorene Dokumente:",
-          "text": "Wenden Sie sich unter 999 oder über die 911 an die Polizei, um zu erfahren, wie Sie den Verlust anzeigen. Kontaktieren Sie außerdem die Botschaft oder das Konsulat Ihres Landes über deren offizielle Website, um Hinweise zu Ersatzdokumenten und zur Weiterreise zu erhalten. Bewahren Sie die Nummer Ihrer Verlustanzeige auf und informieren Sie Ihre Fluggesellschaft oder Ihr Verkehrsunternehmen, wenn der Verlust Ihre Reise beeinträchtigt."
+          "text": "Wenden Sie sich unter 999 an die Polizei, um zu erfahren, wie Sie den Verlust anzeigen. Kontaktieren Sie außerdem die Botschaft oder das Konsulat Ihres Landes über deren offizielle Website, um Hinweise zu Ersatzdokumenten und zur Weiterreise zu erhalten. Bewahren Sie die Nummer Ihrer Verlustanzeige auf und informieren Sie Ihre Fluggesellschaft oder Ihr Verkehrsunternehmen, wenn der Verlust Ihre Reise beeinträchtigt."
         },
         {
           "lead": "Verlorene Bankkarte oder verlorenes Telefon:",
@@ -319,7 +319,7 @@ export const EMERGENCY_DE: EmergencyPage = {
     {
       "who": "Najm (Unfälle mit versicherten Fahrzeugen)",
       "n": "920000560",
-      "when": "Wie in den Notrufnummern der Nationalen Plattform aufgeführt"
+      "when": "Unfälle mit versicherten Fahrzeugen (Angabe der Einheitlichen Nationalen Plattform)"
     },
     {
       "who": "Balady",
@@ -362,7 +362,7 @@ export const EMERGENCY_DE: EmergencyPage = {
     }
   ],
   "phrasesH": "Sätze, mit denen Sie um Hilfe bitten können",
-  "phrasesNote": "Sagen Sie zu Beginn des Anrufs, welche Sprache Sie benötigen. Die 911-Zentrale in der Ostprovinz nimmt Meldungen in mehreren Sprachen entgegen; gehen Sie aber nicht davon aus, dass jede Sprache auf jedem Kanal verfügbar ist.",
+  "phrasesNote": "Zeigen Sie der Person, die Ihnen hilft, den passenden Satz, oder lesen Sie ihn vor. Sagen Sie zu Beginn des Anrufs, welche Sprache Sie benötigen. Die 911-Zentrale in der Ostprovinz nimmt Meldungen in mehreren Sprachen entgegen; gehen Sie aber nicht davon aus, dass jede Sprache auf jedem Kanal verfügbar ist.",
   "phrasesSrc": [
     {
       "label": "SPA zu den 911-Leistungen für Besucher",

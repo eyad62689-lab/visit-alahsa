@@ -1,9 +1,9 @@
-// مولَّد من tr-translation/output/emergency/judge.json (91، APPROVE) — لا يُحرَّر يدوياً؛
+// مولَّد من tr-translation/output/emergency/judge-amend.json (92، APPROVE) — لا يُحرَّر يدوياً؛
 // أي تعديل يمرّ بخط tr-translation-pipeline ثم يُعاد التطبيق.
 import type { EmergencyPage } from './emergency';
 
 export const EMERGENCY_TR: EmergencyPage = {
-  "seoTitle": "El-Ahsa'da acil durumlar ve yardım: ambulans ve polis",
+  "seoTitle": "El-Ahsa'da acil durumlar ve yardım: ambulans ve güvenlik",
   "seoDesc": "El-Ahsa'da yardım almak için ambulans, güvenlik ve hizmet numaraları; gezi sırasında kaza ya da belge kaybı yaşarsanız yapmanız gerekenler.",
   "eyebrow": "Ziyaretçi rehberi",
   "title": "El-Ahsa'da acil durumlar ve yardım",
@@ -58,7 +58,7 @@ export const EMERGENCY_TR: EmergencyPage = {
       "who": "Sınır Muhafızları"
     }
   ],
-  "coreNote": "911, Suudi Arabistan'ın Doğu Bölgesi'nde hizmet verir; El-Ahsa da bu bölgeye bağlıdır. Yukarıdaki kısa numaralar Suudi Arabistan içinde kullanılır; başlarına ülke kodu +966'yı eklemeyin.",
+  "coreNote": "911, Suudi Arabistan'ın Doğu Bölgesi'nde hizmet verir; El-Ahsa da bu bölgeye bağlıdır. Yukarıdaki kısa numaralar Suudi Arabistan içinde kullanılır; başlarına ülke kodu +966'yı eklemeyin. Birleşik Ulusal Platformun listesinde SIM kart olmadan yapılan aramalar için 112 numarası yer alır (Sıkça sorulan sorular bölümüne bakın).",
   "coreSrc": [
     {
       "label": "Ulusal Platform — acil durum numaraları",
@@ -137,7 +137,7 @@ export const EMERGENCY_TR: EmergencyPage = {
         },
         {
           "lead": "Yaralı olmayan kazalarda:",
-          "text": "Kazayı nasıl bildireceğinizi Najm'ın resmî uygulamasından ya da 199033 numaralı müşteri hizmetlerinden öğrenin; bildirim Najm'ın kapsamı ve hizmet koşulları çerçevesinde yapılır. Ulusal Platformun listesinde sigortalı araçların karıştığı kazalar için 920000560 numarası yer alır. Kaza Najm'ın yetki alanı dışındaysa Najm'ın yönlendirmesi üzerine Trafik Polisi için 993'ü arayın. Kimliğinizi, sürücü belgenizi, araç ruhsatınızı ve sigorta bilgilerinizi yanınızda bulundurun; araç kiralıksa kiralama şirketine haber verin."
+          "text": "Najm (Najm Sigorta Hizmetleri), resmî uygulaması trafik kazalarını bildirmeyi kolaylaştıran bir şirkettir. Uygulama üzerinden ya da 199033 numaralı müşteri hizmetlerinden Najm'a ulaşın ve kazayı Najm'ın kapsamına ve hizmet koşullarına göre nasıl bildireceğinizi sorun. Birleşik Ulusal Platformun listesinde sigortalı araçların karıştığı kazalar için 920000560 numarası yer alır. Kaza Najm'ın yetki alanı dışındaysa Najm'ın yönlendirmesi üzerine Trafik Polisi için 993'ü arayın. Kimliğinizi, sürücü belgenizi, araç ruhsatınızı ve sigorta bilgilerinizi yanınızda bulundurun; araç kiralıksa kiralama şirketine haber verin."
         },
         {
           "lead": "Acil bir tehlike yokken aracınız arızalanırsa:",
@@ -225,7 +225,7 @@ export const EMERGENCY_TR: EmergencyPage = {
         },
         {
           "lead": "Yılan ısırması ya da akrep sokması:",
-          "text": "hemen ambulans çağırın. Kişiyi sakin tutun ve görevlinin talimatlarına uyun. Yılan ısırmasında ısırılan kolu ya da bacağı sıkıca bağlamayın, ısırık yerini kesmeyin ve zehri emmeye çalışmayın. Hayvanı yakalamaya çalışmayın."
+          "text": "hemen 997'yi arayıp ambulans isteyin. Kişiyi sakin tutun ve görevlinin talimatlarına uyun. Yılan ısırmasında ısırılan kolu ya da bacağı sıkıca bağlamayın, ısırık yerini kesmeyin ve zehri emmeye çalışmayın. Hayvanı yakalamaya çalışmayın."
         }
       ],
       "src": [
@@ -244,10 +244,10 @@ export const EMERGENCY_TR: EmergencyPage = {
       "h": "Yangın, gaz kaçağı ve elektrik tehlikeleri",
       "paras": [
         {
-          "text": "Güvenli bir çıkış yolu kullanarak bulunduğunuz yerden uzaklaşın ve kendinizi tehlikeye atmadan çevrenizdekileri uyarın; ardından güvenli bir yerden 911'i ya da 998'i arayın. Tahliye planına ve görevlilerin talimatlarına uyun; eşyalarınızı almak için tehlikeli alana geri dönmeyin."
+          "text": "Güvenli bir çıkış yolu kullanarak bulunduğunuz yerden uzaklaşın ve kendinizi tehlikeye atmadan çevrenizdekileri uyarın; ardından güvenli bir yerden 911'i arayın ya da Sivil Savunmaya doğrudan 998'i arayarak ulaşın. Tahliye planına ve görevlilerin talimatlarına uyun; eşyalarınızı almak için tehlikeli alana geri dönmeyin."
         },
         {
-          "text": "Gaz kaçağından şüpheleniyorsanız uzaklaşın; etkilenen alanda ateş yakmayın, elektrik anahtarlarını ya da cihazları kullanmayın. Yere düşmüş bir kablo ya da başka bir elektrik tehlikesi görürseniz ona dokunmayın ve çevresindeki suya yaklaşmayın. Acil bir tehdit varsa 911'i, elektrik arızalarını bildirmek için 933'ü arayın."
+          "text": "Gaz kaçağından şüpheleniyorsanız uzaklaşın; etkilenen alanda ateş yakmayın, elektrik anahtarlarını ya da cihazları kullanmayın ve güvenli bir yerden 911'i arayın. Yere düşmüş bir kablo ya da başka bir elektrik tehlikesi görürseniz ona dokunmayın ve çevresindeki suya yaklaşmayın. Acil bir tehdit varsa 911'i, elektrik arızalarını bildirmek için 933'ü arayın."
         }
       ]
     },
@@ -261,7 +261,7 @@ export const EMERGENCY_TR: EmergencyPage = {
         },
         {
           "lead": "Kaybolan pasaport ya da belgeler:",
-          "text": "bildirim işlemleri konusunda yönlendirilmek için polise 999'u arayarak ya da 911 üzerinden başvurun. Yeni belge çıkarma ve yolculuğunuz hakkında bilgi almak için ülkenizin büyükelçiliğine ya da konsolosluğuna resmî internet sitesi üzerinden ulaşın. Bildiriminizin numarasını saklayın; kayıp yolculuğunuzu etkiliyorsa havayolu şirketinize ya da ulaşım şirketinize haber verin."
+          "text": "bildirim işlemleri konusunda yönlendirilmek için 999'u arayıp polise ulaşın. Yeni belge çıkarma ve yolculuğunuz hakkında bilgi almak için ülkenizin büyükelçiliğine ya da konsolosluğuna resmî internet sitesi üzerinden ulaşın. Bildiriminizin numarasını saklayın; kaybınız yolculuğunuzu etkiliyorsa havayolu şirketinize ya da ulaşım şirketinize haber verin."
         },
         {
           "lead": "Kaybolan banka kartı ya da telefon:",
@@ -319,7 +319,7 @@ export const EMERGENCY_TR: EmergencyPage = {
     {
       "who": "Najm (sigortalı araç kazaları)",
       "n": "920000560",
-      "when": "Ulusal Platformun acil durum numaraları listesine göre"
+      "when": "Sigortalı araçların karıştığı kazalar (Birleşik Ulusal Platformun listesinde yer alan numara)"
     },
     {
       "who": "Balady",
@@ -362,7 +362,7 @@ export const EMERGENCY_TR: EmergencyPage = {
     }
   ],
   "phrasesH": "Yardım isterken kullanabileceğiniz ifadeler",
-  "phrasesNote": "Aramanın başında hangi dile ihtiyacınız olduğunu söyleyin. Doğu Bölgesi'ndeki 911 merkezi birçok dilde bildirim alır; ancak her dilin her kanalda bulunduğunu varsaymayın.",
+  "phrasesNote": "Uygun ifadeyi size yardım eden kişiye gösterin ya da ona okuyun. Aramanın başında hangi dile ihtiyacınız olduğunu söyleyin. Doğu Bölgesi'ndeki 911 merkezi birçok dilde bildirim alır; ancak her dilin her kanalda bulunduğunu varsaymayın.",
   "phrasesSrc": [
     {
       "label": "Suudi Basın Ajansı (SPA) — 911'in ziyaretçilere sunduğu hizmetler",

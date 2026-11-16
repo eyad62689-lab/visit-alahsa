@@ -6,6 +6,7 @@
 // w2717187؛ واستقبال البلاغات بعدة لغات — N2604869)، ووزارة الصحة (937 على مدار الساعة)،
 // والمياه الوطنية (931). وثلاثة أحكام عند المراجعة:
 //   - نجم: 199033 رقم خدمة العملاء كما في صفحة التطبيق، و920000560 كما تسمّيه المنصة الوطنية.
+//   - تعريف نجم («شركة نجم لخدمات التأمين»، وتطبيقها يسهّل الإبلاغ عن الحوادث المرورية) من صفحة التطبيق نفسها، 2026-11-16.
 //   - 930: لم يثبت أنه على مدار الساعة طوال العام، فلا يُكتب ذلك.
 //   - مصدرا الهلال الأحمر وجمعية القلب (404) حُذفا، ومايو كلينك أُبدل بصفحة وزارة الصحة.
 // أي رقم يُضاف هنا يلزمه مصدر رسمي — لا يُكتب من الذاكرة.
@@ -98,7 +99,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
       { when: 'بلاغ على الطرق الخارجية', n: '996', who: 'أمن الطرق' },
       { when: 'طارئ بحري أو ساحلي', n: '994', who: 'حرس الحدود' },
     ],
-    coreNote: '911 يعمل في المنطقة الشرقية التي تتبع لها الأحساء. الأرقام المختصرة أعلاه للاستخدام داخل المملكة؛ لا تضف إليها مفتاح الدولة +966.',
+    coreNote: '911 يعمل في المنطقة الشرقية التي تتبع لها الأحساء. الأرقام المختصرة أعلاه للاستخدام داخل المملكة؛ لا تضف إليها مفتاح الدولة +966. وتدرج المنصة الوطنية الموحدة 112 للاتصال دون شريحة (انظر الأسئلة الشائعة).',
     coreSrc: [{ label: 'المنصة الوطنية لأرقام الطوارئ', href: S.platform }, { label: 'واس عن مركز 911 بالمنطقة الشرقية', href: S.spa911 }],
     sections: [
       {
@@ -125,7 +126,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
         id: 'cars', h: 'حوادث السيارات وتعطل المركبة',
         paras: [
           { lead: 'عند وجود إصابات أو حريق أو خطر مباشر:', text: 'اتصل بـ911، واطلب الإسعاف على 997 عند الحاجة. ابتعد عن مسار المركبات إذا أمكن بأمان، ولا تعرّض نفسك للخطر لتصوير الحادث.' },
-          { lead: 'للحوادث التي لا تتضمن إصابات:', text: 'تواصل مع نجم عبر تطبيقها الرسمي أو خدمة عملائها على 199033 لتحديد مسار البلاغ ضمن نطاق تغطيتها وشروط الخدمة، وتدرج المنصة الوطنية الرقم 920000560 لحوادث المركبات المؤمنة. إذا لم يكن الحادث ضمن اختصاص نجم فاتبع توجيهها للمرور على 993. احتفظ بالهوية ورخصة القيادة واستمارة المركبة وبيانات التأمين، وأبلغ شركة التأجير إن كانت السيارة مستأجرة.' },
+          { lead: 'للحوادث التي لا تتضمن إصابات:', text: 'تواصل مع نجم، وهي شركة نجم لخدمات التأمين ويسهّل تطبيقها الرسمي الإبلاغ عن الحوادث المرورية، عبر التطبيق أو خدمة العملاء على 199033، واسأل عن طريقة الإبلاغ وفق نطاق تغطيتها وشروط خدمتها. وتدرج المنصة الوطنية الموحدة الرقم 920000560 لحوادث المركبات المؤمنة. إذا لم يكن الحادث ضمن اختصاص نجم فاتبع توجيهها للمرور على 993. احتفظ بالهوية ورخصة القيادة واستمارة المركبة وبيانات التأمين، وأبلغ شركة التأجير إن كانت السيارة مستأجرة.' },
           { lead: 'عند التعطل دون خطر مباشر:', text: 'اتصل بخدمة المساعدة على الطريق لدى التأمين أو شركة التأجير. إذا كان موقع التعطل يهدد السلامة أو كنت عالقاً في مكان خطر، اتصل بـ911 واذكر الموقع واتجاه الطريق.' },
         ],
         src: [{ label: 'صفحة تطبيق نجم', href: S.najm }, { label: 'المنصة الوطنية لأرقام الطوارئ', href: S.platform }],
@@ -162,22 +163,22 @@ export const PAGE: Record<EmergencyLang, Page> = {
         id: 'poison', h: 'التسمم واللدغات',
         paras: [
           { lead: 'اشتباه ابتلاع مادة سامة أو جرعة دواء غير صحيحة:', text: 'اطلب توجيهاً طبياً فوراً عبر 937، واتصل بـ997 عند فقدان الوعي أو صعوبة التنفس أو الأعراض الشديدة. احتفظ باسم المادة أو عبوتها ووقت التعرض والكمية التقريبية إن عُرفت. لا تحاول إحداث القيء.' },
-          { lead: 'لدغة ثعبان أو لسعة عقرب:', text: 'اطلب الإسعاف فوراً. هدّئ المصاب واتبع تعليمات الموظف. في لدغة الثعبان لا تربط الطرف، ولا تجرح موضع اللدغة أو تمص السم. لا تحاول الإمساك بالحيوان.' },
+          { lead: 'لدغة ثعبان أو لسعة عقرب:', text: 'اطلب الإسعاف فوراً على 997. هدّئ المصاب واتبع تعليمات الموظف. في لدغة الثعبان لا تربط الطرف، ولا تجرح موضع اللدغة أو تمص السم. لا تحاول الإمساك بالحيوان.' },
         ],
         src: [{ label: 'خدمات 937 وإرشادات التسمم', href: S.moh937 }, { label: 'وزارة الصحة عن اللدغات واللسعات', href: S.bites }],
       },
       {
         id: 'fire', h: 'الحريق وتسرب الغاز والخطر الكهربائي',
         paras: [
-          { text: 'غادر المكان عبر مخرج آمن، ونبّه من حولك دون تعريض نفسك للخطر، واتصل بـ911 أو 998 من مكان آمن. اتبع خطة الإخلاء وتعليمات العاملين، ولا تعد إلى منطقة الخطر لأخذ المتعلقات.' },
-          { text: 'عند الاشتباه بتسرب غاز، ابتعد عن المكان وتجنّب إشعال النار أو تشغيل المفاتيح والأجهزة داخل المنطقة المتأثرة. عند رؤية سلك ساقط أو خطر كهربائي لا تلمسه ولا تقترب من المياه المحيطة به؛ أبلغ 911 إذا كان هناك تهديد مباشر، و933 لبلاغات الكهرباء.' },
+          { text: 'غادر المكان عبر مخرج آمن، ونبّه من حولك دون تعريض نفسك للخطر، واتصل بـ911 من مكان آمن، أو بالدفاع المدني مباشرة على 998. اتبع خطة الإخلاء وتعليمات العاملين، ولا تعد إلى منطقة الخطر لأخذ المتعلقات.' },
+          { text: 'عند الاشتباه بتسرب غاز، ابتعد عن المكان وتجنّب إشعال النار أو تشغيل المفاتيح والأجهزة داخل المنطقة المتأثرة، واتصل بـ911 من مكان آمن. عند رؤية سلك ساقط أو خطر كهربائي لا تلمسه ولا تقترب من المياه المحيطة به؛ أبلغ 911 إذا كان هناك تهديد مباشر، و933 لبلاغات الكهرباء.' },
         ],
       },
       {
         id: 'lost', h: 'فقدان طفل أو شخص أو وثائق',
         paras: [
           { lead: 'فقدان طفل أو شخص يحتاج رعاية:', text: 'أبلغ أمن المكان فوراً واتصل بـ911. جهّز وصف الملابس والعمر وصورة حديثة وآخر موقع ووقت شوهد فيه. لا تنتظر اكتمال بحثك الشخصي إذا كانت السلامة مهددة، واتبع توجيه الجهات المختصة.' },
-          { lead: 'فقدان جواز سفر أو وثائق:', text: 'تواصل مع الشرطة على 999 أو عبر 911 لتوجيهك إلى إجراءات البلاغ، ومع سفارة بلدك أو قنصليتها عبر موقعها الرسمي للحصول على إرشادات الوثائق البديلة والسفر. احتفظ برقم البلاغ وأبلغ شركة النقل عند تأثير الفقد على رحلتك.' },
+          { lead: 'فقدان جواز سفر أو وثائق:', text: 'تواصل مع الشرطة على 999 لتوجيهك إلى إجراءات البلاغ، ومع سفارة بلدك أو قنصليتها عبر موقعها الرسمي للحصول على إرشادات الوثائق البديلة والسفر. احتفظ برقم البلاغ وأبلغ شركة النقل عند تأثير الفقد على رحلتك.' },
           { lead: 'فقدان بطاقة مصرفية أو هاتف:', text: 'أوقف البطاقة عبر البنك فوراً، واستخدم خدمات قفل الجهاز لدى مزود النظام، واتصل بمشغل الشريحة عند الحاجة. في حال السرقة قدّم بلاغاً للشرطة، ولا تشارك رموز التحقق مع من يدّعي العثور على متعلقاتك.' },
           { lead: 'متعلقات مفقودة دون خطر:', text: 'ابدأ باستقبال الفندق أو أمن الموقع أو شركة النقل، وقدّم وصفاً واضحاً ووقت الفقد ووسيلة اتصال.' },
         ],
@@ -200,7 +201,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
       { who: 'وزارة الصحة', n: '937', when: 'استشارة صحية وتوجيه وبلاغات صحية' },
       { who: 'المركز الموحد للسياحة', n: '930', when: 'مساعدة وشكاوى تتعلق بالخدمات السياحية' },
       { who: 'نجم (خدمة العملاء)', n: '199033', when: 'الاستفسار وتوجيه بلاغات حوادث المركبات وفق نطاق الخدمة' },
-      { who: 'نجم (حوادث المركبات المؤمنة)', n: '920000560', when: 'كما تدرجه المنصة الوطنية لأرقام الطوارئ' },
+      { who: 'نجم (حوادث المركبات المؤمنة)', n: '920000560', when: 'حوادث المركبات المؤمنة (رقم تدرجه المنصة الوطنية الموحدة)' },
       { who: 'بلدي', n: '940', when: 'بلاغات الخدمات البلدية' },
       { who: 'طوارئ الكهرباء', n: '933', when: 'أعطال ومخاطر شبكة الكهرباء' },
       { who: 'بلاغات المياه', n: '931', when: 'بلاغات المياه والتسربات' },
@@ -209,7 +210,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
     servNote: 'احتفظ برقم الحجز أو الفاتورة واسم المنشأة عند تقديم شكوى سياحية أو تجارية.',
     servSrc: [{ label: 'المنصة الوطنية', href: S.platform }, { label: 'وزارة السياحة', href: S.tourism }, { label: 'المياه الوطنية', href: S.nwc }, { label: 'نجم', href: S.najm }],
     phrasesH: 'عبارات تساعد الزائر على طلب المساعدة',
-    phrasesNote: 'اذكر اللغة التي تحتاجها في بداية المكالمة. يوفّر مركز 911 بالمنطقة الشرقية استقبالاً للبلاغات بعدة لغات، دون افتراض توافر كل لغة في جميع القنوات.',
+    phrasesNote: 'اعرض العبارة على من يساعدك أو اقرأها له. اذكر اللغة التي تحتاجها في بداية المكالمة. يوفّر مركز 911 بالمنطقة الشرقية استقبالاً للبلاغات بعدة لغات، دون افتراض توافر كل لغة في جميع القنوات.',
     phrasesSrc: [{ label: 'واس عن خدمات مركز 911 للزوار', href: S.spa911Lang }],
     faqH: 'أسئلة شائعة',
     faqs: [
@@ -244,7 +245,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
     phraseGloss: [],
   },
   en: {
-    seoTitle: 'Emergencies and Help in Al-Ahsa: Ambulance and Police',
+    seoTitle: 'Emergencies and Help in Al-Ahsa: Ambulance and Security',
     seoDesc: 'Getting help in Al-Ahsa: ambulance, security and service numbers, and what to do after an accident or if you lose your documents during your trip.',
     eyebrow: 'Visitor guide',
     title: 'Emergencies and Help in Al-Ahsa',
@@ -267,7 +268,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
       { when: 'Incident on highways outside the cities', n: '996', who: 'Roads Security' },
       { when: 'Sea or coastal emergency', n: '994', who: 'Border Guards' },
     ],
-    coreNote: '911 operates in the Eastern Province, to which Al-Ahsa belongs. The short numbers above are for use inside Saudi Arabia; do not add the country code +966.',
+    coreNote: '911 operates in the Eastern Province, to which Al-Ahsa belongs. The short numbers above are for use inside Saudi Arabia; do not add the country code +966. The Unified National Platform lists 112 for calls without a SIM card (see the FAQs).',
     coreSrc: [{ label: 'National Platform emergency numbers', href: S.platform }, { label: 'SPA on the 911 centre in the Eastern Province', href: S.spa911 }],
     sections: [
       {
@@ -294,7 +295,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
         id: 'cars', h: 'Car accidents and breakdowns',
         paras: [
           { lead: 'If there are injuries, a fire or immediate danger:', text: 'call 911, and ask for an ambulance on 997 if needed. Move out of the traffic lane if you can do so safely, and do not put yourself at risk to photograph the accident.' },
-          { lead: 'For accidents with no injuries:', text: 'contact Najm through its official app or its customer service on 199033 to find out how to report it within its coverage and terms of service; the National Platform lists 920000560 for accidents involving insured vehicles. If the accident is outside Najm’s remit, follow its direction to call the Traffic Police on 993. Keep your ID, driving licence, vehicle registration and insurance details to hand, and tell the rental company if the car is rented.' },
+          { lead: 'For accidents with no injuries:', text: 'contact Najm, the company Najm for Insurance Services, whose official app makes it easier to report traffic accidents, through the app or its customer service on 199033, and ask how to report the accident within its coverage and terms of service. The Unified National Platform lists 920000560 for accidents involving insured vehicles. If the accident is outside Najm’s remit, follow its direction to call the Traffic Police on 993. Keep your ID, driving licence, vehicle registration and insurance details to hand, and tell the rental company if the car is rented.' },
           { lead: 'If you break down with no immediate danger:', text: 'call the roadside assistance service of your insurer or rental company. If the spot where you stopped is unsafe or you are stranded somewhere dangerous, call 911 and give your location and direction of travel.' },
         ],
         src: [{ label: 'Najm app page', href: S.najm }, { label: 'National Platform emergency numbers', href: S.platform }],
@@ -331,22 +332,22 @@ export const PAGE: Record<EmergencyLang, Page> = {
         id: 'poison', h: 'Poisoning, bites and stings',
         paras: [
           { lead: 'If you suspect someone has swallowed a poisonous substance or the wrong dose of a medicine:', text: 'get medical guidance at once through 937, and call 997 if they lose consciousness, have difficulty breathing or have severe symptoms. Keep the name or container of the substance and note the time of exposure and the approximate amount, if known. Do not try to make them vomit.' },
-          { lead: 'Snake bite or scorpion sting:', text: 'call an ambulance at once. Keep the person calm and follow the call handler’s instructions. For a snake bite, do not tie off the limb, cut the bite or suck out the venom. Do not try to catch the animal.' },
+          { lead: 'Snake bite or scorpion sting:', text: 'call an ambulance on 997 at once. Keep the person calm and follow the call handler’s instructions. For a snake bite, do not tie off the limb, cut the bite or suck out the venom. Do not try to catch the animal.' },
         ],
         src: [{ label: '937 services and poisoning guidance', href: S.moh937 }, { label: 'Ministry of Health on bites and stings', href: S.bites }],
       },
       {
         id: 'fire', h: 'Fire, gas leaks and electrical hazards',
         paras: [
-          { text: 'Leave through a safe exit and warn the people around you without putting yourself in danger, then call 911 or 998 from a safe place. Follow the evacuation plan and staff instructions, and do not go back into the danger zone for your belongings.' },
-          { text: 'If you suspect a gas leak, move away and do not light a flame or use switches or appliances in the affected area. If you see a fallen cable or another electrical hazard, do not touch it or go near any water around it; call 911 if there is an immediate threat, and 933 to report electricity faults.' },
+          { text: 'Leave through a safe exit and warn the people around you without putting yourself in danger, then call 911 from a safe place, or Civil Defense directly on 998. Follow the evacuation plan and staff instructions, and do not go back into the danger zone for your belongings.' },
+          { text: 'If you suspect a gas leak, move away and do not light a flame or use switches or appliances in the affected area, and call 911 from a safe place. If you see a fallen cable or another electrical hazard, do not touch it or go near any water around it; call 911 if there is an immediate threat, and 933 to report electricity faults.' },
         ],
       },
       {
         id: 'lost', h: 'A missing child or person, or lost documents',
         paras: [
           { lead: 'A missing child, or a missing person who needs care:', text: 'tell the site’s security at once and call 911. Have ready a description of their clothes, their age, a recent photo, and where and when they were last seen. Do not wait to finish searching yourself if anyone’s safety is at risk, and follow the authorities’ directions.' },
-          { lead: 'Lost passport or documents:', text: 'contact the police on 999, or through 911, to be directed to the reporting procedure, and contact your country’s embassy or consulate through its official website for guidance on replacement documents and travel. Keep the report number, and tell your airline or transport company if the loss affects your journey.' },
+          { lead: 'Lost passport or documents:', text: 'contact the police on 999 to be directed to the reporting procedure, and contact your country’s embassy or consulate through its official website for guidance on replacement documents and travel. Keep the report number, and tell your airline or transport company if the loss affects your journey.' },
           { lead: 'Lost bank card or phone:', text: 'block the card through your bank at once, use your phone platform’s device-lock service, and contact your mobile operator if needed. If it was stolen, report it to the police, and never share verification codes with anyone who claims to have found your belongings.' },
           { lead: 'Lost belongings with no danger involved:', text: 'start with the hotel reception, site security or the transport company, and give a clear description, the time of the loss and a way to contact you.' },
         ],
@@ -369,7 +370,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
       { who: 'Ministry of Health', n: '937', when: 'Medical advice, directions and health reports' },
       { who: 'Unified Tourism Center', n: '930', when: 'Help and complaints about tourism services' },
       { who: 'Najm (customer service)', n: '199033', when: 'Enquiries and directing vehicle accident reports within its coverage' },
-      { who: 'Najm (insured vehicle accidents)', n: '920000560', when: 'As listed by the National Platform emergency numbers' },
+      { who: 'Najm (insured vehicle accidents)', n: '920000560', when: 'Accidents involving insured vehicles (a number listed by the Unified National Platform)' },
       { who: 'Balady', n: '940', when: 'Municipal service reports' },
       { who: 'Electricity emergencies', n: '933', when: 'Faults and hazards on the power network' },
       { who: 'Water reports', n: '931', when: 'Water supply problems and leaks' },
@@ -378,7 +379,7 @@ export const PAGE: Record<EmergencyLang, Page> = {
     servNote: 'Keep your booking or invoice number and the name of the business when you make a tourism or commercial complaint.',
     servSrc: [{ label: 'National Platform', href: S.platform }, { label: 'Ministry of Tourism', href: S.tourism }, { label: 'National Water Company', href: S.nwc }, { label: 'Najm', href: S.najm }],
     phrasesH: 'Phrases to help you ask for help',
-    phrasesNote: 'Say which language you need at the start of the call. The 911 centre in the Eastern Province takes reports in several languages, but do not assume every language is available on every channel.',
+    phrasesNote: 'Show the phrase to whoever is helping you, or read it out. Say which language you need at the start of the call. The 911 centre in the Eastern Province takes reports in several languages, but do not assume every language is available on every channel.',
     phrasesSrc: [{ label: 'SPA on 911 services for visitors', href: S.spa911Lang }],
     faqH: 'Frequently asked questions',
     faqs: [
