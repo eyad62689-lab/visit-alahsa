@@ -54,7 +54,7 @@ jobs:
             build-mode: none
     steps:
       - name: Checkout repository
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # Visibility is read from the API: schedule events carry no repository payload.
       - name: Detect repository visibility
         id: vis
@@ -64,13 +64,13 @@ jobs:
           if [ "${{ inputs.simulate_private }}" = "true" ]; then echo "private=true" >> "$GITHUB_OUTPUT"; exit 0; fi
           echo "private=$(gh api repos/${{ github.repository }} --jq .private)" >> "$GITHUB_OUTPUT"
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
+        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
           queries: security-extended,security-and-quality
       - name: Perform CodeQL analysis
-        uses: github/codeql-action/analyze@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
+        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
         with:
           category: "/language:${{ matrix.language }}"
           upload: ${{ steps.vis.outputs.private == 'true' && 'never' || 'always' }}
@@ -109,7 +109,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # The semgrep image has no gh CLI; the visibility is read with python alone.
       - name: Detect repository visibility
         id: vis
@@ -136,7 +136,7 @@ jobs:
       # الرفع يتسامح مع غياب SARIF حتى لا يصبغ الفحص المستودع بالأحمر كما فعل Snyk
       - name: Upload Semgrep results
         if: always() && hashFiles('semgrep.sarif') != '' && steps.vis.outputs.private != 'true'
-        uses: github/codeql-action/upload-sarif@5595ccaf912efad79be6eef63a5619ff05969be3 # v4
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
         with:
           sarif_file: semgrep.sarif
           category: semgrep
@@ -164,7 +164,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Comment with consolidated results
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const results = {
