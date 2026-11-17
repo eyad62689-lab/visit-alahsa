@@ -72,7 +72,7 @@ sameAs:
   - https://en.wikipedia.org/wiki/Al-Qaisaryah_Market
   - https://ar.wikipedia.org/wiki/سوق_القيصرية
 unesco: 1563-005
-mapUrl: "https://goo.gl/maps/6mZqNZHZcmL7K5pS7"
+mapUrl: "https://www.google.com/maps?cid=13646273377499432341"
 # أسئلة الصينية: معتمدة من خط zh-translation-pipeline بدرجة 92/100 (2026-09-05، الدفعة 17 — السجل في zh-translation/memory/scores.csv).
 # أسئلة الروسية: معتمدة من خط ru-translation-pipeline بدرجة 91/100 (2026-09-08، الدفعة ru-attr-10 — السجل في ru-translation/memory/scores.csv).
 # أسئلة الأوردو: معتمدة من خط ur-translation-pipeline بدرجة 92/100 (2026-10-14، الدفعة b9 — السجل في ur-translation/memory/scores.csv).
