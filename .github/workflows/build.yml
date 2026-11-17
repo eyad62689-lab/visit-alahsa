@@ -65,7 +65,8 @@ jobs:
       # البيانات الوصفية للطلب (اسم الفرع، العنوان، النص، رسائل الالتزامات) تُفحص قبل البناء
       # فيسقط المخالف في ثوانٍ. العنوان والنص يُجلبان وقت التشغيل لا من حمولة الحدث، فإعادة
       # تشغيل المهمة بعد تعديل نص الطلب تقرأ النص الجديد. قائمة المصطلحات سرّ في إعدادات
-      # المستودع؛ غيابه (طلب من نسخة متفرعة) يُبقي فحص التذييلات وحده.
+      # المستودع؛ غيابه (طلب من نسخة متفرعة) يُبقي فحص التذييلات وحده. طلبات تحديث التبعيات
+      # الآلية لا تُمرَّر لها القائمة: نصها ورسائلها ملاحظات إصدار الحزم لا كتابتنا.
       - name: Pull request metadata
         if: github.event_name == 'pull_request'
         shell: bash
@@ -73,7 +74,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_BASE: origin/${{ github.base_ref }}
-          PR_METADATA_FORBIDDEN_TERMS: ${{ secrets.PR_METADATA_FORBIDDEN_TERMS }}
+          PR_METADATA_FORBIDDEN_TERMS: ${{ github.event.pull_request.user.login != 'dependabot[bot]' && secrets.PR_METADATA_FORBIDDEN_TERMS || '' }}
         run: |
           {
             gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json title,body,headRefName
