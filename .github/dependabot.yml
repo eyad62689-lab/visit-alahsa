@@ -1,0 +1,55 @@
+# ============================================================================
+# Dependency updates — one grouped pull request per ecosystem, once a week
+# ----------------------------------------------------------------------------
+# npm: minor and patch updates arrive together in a single pull request, so the
+# Build workflow verifies them as one change. Major versions are ignored here
+# and upgraded by hand: they have needed source changes each time (headers,
+# worker hosting, type errors) that a version bump alone does not carry.
+#
+# github-actions: workflows pin actions to commit SHAs; this keeps the pins
+# moving, with the version comment beside each SHA updated in the same change.
+#
+# Security updates are not governed by this file: they follow the repository's
+# Dependabot security settings and are not held back by the ignore rule below.
+#
+# Nothing is merged automatically. Each pull request waits for the required
+# check and a manual merge.
+# ============================================================================
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Asia/Riyadh
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      npm-minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Asia/Riyadh
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: ci(deps)
+    groups:
+      actions:
+        patterns:
+          - "*"
