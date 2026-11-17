@@ -25,7 +25,7 @@ Start your day east of Hofuf at [Jabal Al-Qarah](/en/attractions/jabal-al-qarah/
 
 ## Mid-morning: Qasr Ibrahim and the Al-Koot District
 
-Return to central Hofuf for [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) — the fortress that gathers mosque, barracks and towers beneath one wall; the mid-morning light brings out its architecture and inner courtyard. Close by lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1788 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum.
+Return to central Hofuf for [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) — the fortress that gathers mosque, barracks and towers beneath one wall; the mid-morning light brings out its architecture and inner courtyard. The fortress does not open on Fridays. Close by lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1788 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum, though it is temporarily closed at present.
 
 For lunch, with the city centre around you, the restaurants and cafés are gathered in the [Restaurants & Cafés](/en/restaurants-cafes/) guide.
 
@@ -42,5 +42,5 @@ End your day at [Qaisariyah Souq](/en/attractions/qaisariyah/), about half a kil
 
 - **A car** is the practical way between stops — some sit in central Hofuf, others at the edges of the oasis.
 - Add your stops to [My saved places](/en/plan/) from each landmark's page for a ready-made route that opens in Google Maps, and use the [attractions map](/en/map/) to order your day.
-- **Staying the night?** Step up to the [two-day itinerary (48 hours)](/en/blog/48-hours-in-al-ahsa/) — it adds the Amiriah School, the Hasawi Lime Farm in season and the Al-Uqair coast.
+- **Staying the night?** Step up to the [two-day itinerary (48 hours)](/en/blog/48-hours-in-al-ahsa/) — it adds the Hasawi Lime Farm in season and the Al-Uqair coast.
 - First time in Al-Ahsa? The [Plan your trip](/en/plan-your-trip/) page gathers the essentials of getting there and getting around.

@@ -46,10 +46,7 @@ body_en: "In the heart of Hofuf, Qasr Ibrahim (Ibrahim Palace) stands witness to
 area: وسط الهفوف — الأحساء
 area_en: "Central Hofuf — Al-Ahsa"
 hoursSpec:
-  - { days: "Su Mo Tu We Th", opens: "08:00", closes: "17:00" }
-  - { days: "Fr", opens: "16:00", closes: "20:00" }
-  - { days: "Sa", opens: "09:00", closes: "13:00" }
-  - { days: "Sa", opens: "16:00", closes: "20:00" }
+  - { days: "Mo Tu We Th Sa Su", opens: "08:00", closes: "16:00" }
 fee: { free: true }
 answer: "قصر إبراهيم حصنٌ تاريخي في قلب الهفوف يجمع تحت سوره مسجداً بقبّة وثكنات وأبراج مراقبة وإسطبلات ومخازن، بُنيت جدرانه من الطين المخلوط بالقش وأسقفه من جذوع النخل، وهو جزء من موقع واحة الأحساء المسجّل في اليونسكو عام 2018. الدخول مجاني، والزيارة تستغرق ساعة إلى ساعتين."
 answer_en: "Qasr Ibrahim is a fortress in central Hofuf gathering a domed mosque, barracks, watchtowers, stables and stores, with mud-and-straw walls and palm-trunk roofs. Part of the Al-Ahsa Oasis site inscribed by UNESCO in 2018, it is free to enter; allow one to two hours."
@@ -74,7 +71,7 @@ order: 2
 bestTime: النهار، لرؤية تفاصيل العمارة وضوء الفناء الداخلي.
 bestTime_en: "Daytime, to see the architectural details and the light of the inner courtyard."
 practical:
-  - { label: "المواعيد", value: "الأحد–الخميس 8 ص–5 م · الجمعة 4–8 م · السبت 9 ص–1 م و4–8 م", label_en: "Hours", value_en: "Sun–Thu 8 am–5 pm · Fri 4–8 pm · Sat 9 am–1 pm & 4–8 pm", label_ru: "Часы работы", value_ru: "Вс–чт 8:00–17:00 · пт 16:00–20:00 · сб 9:00–13:00 и 16:00–20:00", label_de: "Öffnungszeiten", value_de: "So.–Do. 8–17 Uhr · Fr. 16–20 Uhr · Sa. 9–13 und 16–20 Uhr", label_zh: "开放时间", value_zh: "周日–周四 8:00–17:00 · 周五 16:00–20:00 · 周六 9:00–13:00、16:00–20:00", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے شام 5 بجے تک · جمعہ شام 4 بجے سے رات 8 بجے تک · ہفتہ صبح 9 بجے سے دوپہر 1 بجے تک اور شام 4 بجے سے رات 8 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Pazar–Perşembe 08.00–17.00 · Cuma 16.00–20.00 · Cumartesi 09.00–13.00 ve 16.00–20.00", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
+  - { label: "المواعيد", value: "السبت–الخميس 8 ص–4 م · الجمعة مغلق", label_en: "Hours", value_en: "Sat–Thu 8 am–4 pm · Closed Friday", label_ru: "Часы работы", value_ru: "Сб–чт 8:00–16:00 · пт — выходной", label_de: "Öffnungszeiten", value_de: "Sa.–Do. 8–16 Uhr · Fr. geschlossen", label_zh: "开放时间", value_zh: "周六–周四 8:00–16:00 · 周五闭馆", label_ur: "اوقات", value_ur: "ہفتہ تا جمعرات صبح 8 بجے سے شام 4 بجے تک · جمعہ کو بند", label_tr: "Ziyaret saatleri", value_tr: "Cumartesi–Perşembe 08.00–16.00 · Cuma kapalı", source: "قائمة المكان في خرائط قوقل", source_en: "Google Maps place listing", sourceUrl: "https://www.google.com/maps?cid=16179717000714983363", verifiedAt: "2026-11-17", verified: true }
   - { label: "الرسوم", value: "الدخول مجاني", label_en: "Fees", value_en: "Free entry", label_ru: "Стоимость входа", value_ru: "Вход свободный", label_de: "Eintritt", value_de: "Kostenlos", label_zh: "门票", value_zh: "免费入场", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
   - { label: "مدة الزيارة", value: "ساعة إلى ساعتين", label_en: "Visit duration", value_en: "One to two hours", label_ru: "Время на осмотр", value_ru: "От одного до двух часов", label_de: "Besuchsdauer", value_de: "Ein bis zwei Stunden", label_zh: "建议游览时长", value_zh: "1–2 小时", label_ur: "سیر کا دورانیہ", value_ur: "ایک سے دو گھنٹے", label_tr: "Ziyaret süresi", value_tr: "Bir ila iki saat", source: "مسودة دليل الأحساء السياحي المعتمدة", source_en: "Approved draft of the Al-Ahsa tourist guide", source_ru: "Утверждённый проект путеводителя по Аль-Ахсе", source_de: "Genehmigter Entwurf des Al-Ahsa-Reiseführers", verifiedAt: "2026-06-21", verified: true }
 tags: ["قلاع", "تاريخ", "عمارة"]
@@ -84,17 +81,17 @@ tags: ["قلاع", "تاريخ", "عمارة"]
 # أسئلة التركية: معتمدة من خط tr-translation-pipeline بدرجة 90/100 (2026-10-28، الدفعة tr-attr-1)
 faq:
   - q: "ما مواعيد زيارة قصر إبراهيم؟"
-    a: "الأحد إلى الخميس من 8 ص إلى 5 م، والجمعة من 4 إلى 8 م، والسبت من 9 ص إلى 1 م ومن 4 إلى 8 م."
+    a: "من السبت إلى الخميس من 8 ص إلى 4 م، ويُغلق يوم الجمعة."
     q_en: "What are the visiting hours of Qasr Ibrahim?"
-    a_en: "Sunday to Thursday 8 am–5 pm, Friday 4–8 pm, and Saturday 9 am–1 pm and 4–8 pm."
+    a_en: "Saturday to Thursday 8 am–4 pm; closed on Friday."
     q_zh: "易卜拉欣宫的开放时间是几点到几点？"
-    a_zh: "周日至周四 8:00–17:00，周五 16:00–20:00，周六 9:00–13:00、16:00–20:00。"
+    a_zh: "周六至周四 8:00–16:00，周五闭馆。"
     q_ru: "В какие часы открыт Каср-Ибрахим?"
-    a_ru: "С воскресенья по четверг 8:00–17:00, в пятницу 16:00–20:00, в субботу 9:00–13:00 и 16:00–20:00."
+    a_ru: "С субботы по четверг 8:00–16:00, в пятницу — выходной."
     q_ur: "قصر ابراہیم کب سے کب تک کھلا رہتا ہے؟"
-    a_ur: "اتوار تا جمعرات صبح 8 بجے سے شام 5 بجے تک، جمعہ کو شام 4 بجے سے رات 8 بجے تک، اور ہفتے کو صبح 9 بجے سے دوپہر 1 بجے تک اور شام 4 بجے سے رات 8 بجے تک۔"
+    a_ur: "ہفتہ تا جمعرات صبح 8 بجے سے شام 4 بجے تک کھلا رہتا ہے، جبکہ جمعہ کو بند رہتا ہے۔"
     q_tr: "Kasr İbrahim'in ziyaret saatleri nedir?"
-    a_tr: "Pazar–Perşembe günleri 08.00–17.00, Cuma günü 16.00–20.00, Cumartesi günü 09.00–13.00 ve 16.00–20.00 saatleri arasında açıktır."
+    a_tr: "Cumartesi–Perşembe günleri 08.00–16.00 saatleri arasında açıktır; Cuma günü kapalıdır."
   - q: "هل دخول قصر إبراهيم برسوم؟"
     a: "لا، الدخول مجاني."
     q_en: "Is there an entry fee at Qasr Ibrahim?"

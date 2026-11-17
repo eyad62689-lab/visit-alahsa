@@ -23,11 +23,11 @@ Eine Anmerkung vorab: Öffnungszeiten und Eintritt ändern sich je nach Saison. 
 
 ### Morgen: Qasr Ibrahim
 
-Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast). Diese Palastfestung mit ihren Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kasernen und Türme hinter einem einzigen Mauerring. Architektur und Innenhof zeigen sich tagsüber am besten.
+Beginnen Sie mitten in Hofuf bei [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast). Diese Palastfestung mit ihren Lehmmauern und Dächern aus Palmstämmen vereint Moschee, Kasernen und Türme hinter einem einzigen Mauerring. Architektur und Innenhof zeigen sich tagsüber am besten. Freitags ist die Palastfestung geschlossen.
 
 ### Vormittag: Das Al-Koot-Viertel und das Gedächtnis der Stadt
 
-Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1788 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient.
+Nahe dem Palast liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1788 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum, das jedoch vorübergehend geschlossen ist. Weiter geht es nach Osten zur [Amiriah-Schule](/de/attractions/ameeriah/), der ersten regulären staatlichen Schule Al-Ahsas (1937 eröffnet), deren historisches Gebäude heute als Haus der Kultur dient. Auch die Schule ist vorübergehend geschlossen.
 
 ### Abend: Der Qaisariyah-Souk
 

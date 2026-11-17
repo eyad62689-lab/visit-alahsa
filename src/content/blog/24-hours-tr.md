@@ -25,7 +25,7 @@ Güne Hüfuf'un doğusunda, [Cebel el-Kare](/tr/attractions/jabal-al-qarah/) ile
 
 ## Öğleye doğru: Kasr İbrahim ve El-Kut mahallesi
 
-Ardından Hüfuf'un merkezine dönün; sıradaki durak [Kasr İbrahim](/tr/attractions/qasr-ibrahim/). Bu kalede cami, kışla ve kuleler aynı surun içinde bir araya gelir. Öğleye doğru ışık kalenin mimarisini ve iç avlusunu en iyi hâliyle gösterir. Kalenin hemen yakınındaki tarihî El-Kut mahallesinde [Beyt el-Biat](/tr/attractions/baiah/) bulunur. Burası El-Mulla ailesinin evidir. Evi El-Ahsa kadısı Şeyh Abdurrahman bin Ömer el-Mulla Hicri 1203 (1788) yılında yaptırdı. El-Ahsa halkı 1913'te burada Kral Abdülaziz'e biat edip Suudi devletine katıldı. Ev bugün bir müzedir.
+Ardından Hüfuf'un merkezine dönün; sıradaki durak [Kasr İbrahim](/tr/attractions/qasr-ibrahim/). Bu kalede cami, kışla ve kuleler aynı surun içinde bir araya gelir. Öğleye doğru ışık kalenin mimarisini ve iç avlusunu en iyi hâliyle gösterir. Kale Cuma günleri kapalıdır. Kalenin hemen yakınındaki tarihî El-Kut mahallesinde [Beyt el-Biat](/tr/attractions/baiah/) bulunur. Burası El-Mulla ailesinin evidir. Evi El-Ahsa kadısı Şeyh Abdurrahman bin Ömer el-Mulla Hicri 1203 (1788) yılında yaptırdı. El-Ahsa halkı 1913'te burada Kral Abdülaziz'e biat edip Suudi devletine katıldı. Ev bugün bir müzedir; ancak şu anda geçici olarak kapalıdır.
 
 Öğle yemeği için şehir merkezindeki seçenekleri [Restoranlar ve kafeler](/tr/restaurants-cafes/) rehberinde bir arada bulabilirsiniz.
 
@@ -42,5 +42,5 @@ Gününüzü Kasr İbrahim'e yaklaşık yarım kilometre uzaklıktaki [El-Kaysar
 
 - Duraklar arasında **araba** en pratik seçenektir. Bazı duraklar Hüfuf'un merkezinde, bazıları vahanın kenarlarındadır.
 - Duraklarınızı her gezilecek yerin sayfasında kaydedin; [Kayıtlı yerlerim](/tr/plan/) sayfası bunları Google Haritalar'da açılan hazır bir rotaya dönüştürür. Gününüzü sıralamak için de [Harita](/tr/map/) sayfasından yararlanın.
-- **Geceyi El-Ahsa'da mı geçireceksiniz?** O zaman [iki günlük gezi planına (48 saat)](/tr/blog/48-hours-in-al-ahsa/) göz atın. İki günlük plan buna El-Emiriye Okulu'nu, mevsiminde El-Ahsa Misket Limonu Çiftliği'ni ve Ukayr kıyısını ekler.
+- **Geceyi El-Ahsa'da mı geçireceksiniz?** O zaman [iki günlük gezi planına (48 saat)](/tr/blog/48-hours-in-al-ahsa/) göz atın. İki günlük plan buna mevsiminde El-Ahsa Misket Limonu Çiftliği'ni ve Ukayr kıyısını ekler.
 - El-Ahsa'ya ilk kez mi geliyorsunuz? [Gezinizi planlayın](/tr/plan-your-trip/) sayfası El-Ahsa'ya nasıl gelineceğine ve şehirde nasıl dolaşılacağına dair temel bilgileri bir araya getirir.
