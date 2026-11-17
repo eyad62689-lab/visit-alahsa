@@ -11,15 +11,17 @@
 //
 // المخرجات لا تطبع المصطلح نفسه بل رقم سطره في القائمة.
 //
-// الاستعمال (في سير العمل):
-//   gh pr view N --json title,body,headRefName | PR_BASE=origin/main node tools/automation/check-pr-metadata.mjs
-// بيانات الطلب تُقرأ JSON من الدخل القياسي، والالتزامات من git (PR_BASE..HEAD بلا التزامات الدمج).
-// المنطق في دوال نقية مصدَّرة (parseTerms، checkMetadata) يُختبر كسرها في الذاكرة.
-import { execFileSync } from 'node:child_process';
+// الدخل كله على الدخل القياسي، يركّبه سير العمل — السكربت لا يشغّل أمراً ولا يفتح ملفاً:
+//   بيانات الطلب JSON (title، body، headRefName)، ثم المحرف 0x1D، ثم مخرج
+//   git log --no-merges --format=%H%x1f%B%x1e <الأساس>..HEAD
+// المنطق في دوال نقية مصدَّرة (parseTerms، parseInput، checkMetadata) يُختبر كسرها في الذاكرة.
 import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 const ALLOWED_BY_TRAILERS = new Set(['signed-off-by']);
+const PART_SEP = '\x1d';
+const RECORD_SEP = '\x1e';
+const FIELD_SEP = '\x1f';
 
 const isLetter = (ch) => (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
 
@@ -49,20 +51,36 @@ export function parseTerms(raw) {
   for (let i = 0; i < lines.length; i++) {
     const text = lines[i].trim().toLowerCase();
     if (!text || text.startsWith('#')) continue;
-    if (text.startsWith('!')) {
-      const ex = text.slice(1).trim();
-      if (ex) exceptions.push(ex);
-    } else terms.push({ line: i + 1, text });
+    if (text.startsWith('!')) exceptions.push(text.slice(1).trim());
+    else terms.push({ line: i + 1, text });
   }
   // الأطول أولاً: استثناء يحوي استثناء أقصر يُحجب كاملاً.
-  exceptions.sort((a, b) => b.length - a.length || a.localeCompare(b));
-  return { terms, exceptions };
+  const kept = exceptions.filter(Boolean).sort((a, b) => b.length - a.length || a.localeCompare(b));
+  return { terms, exceptions: kept };
 }
 
-const mask = (text, exceptions) => {
-  let out = text.toLowerCase();
-  for (const ex of exceptions) out = out.split(ex).join(' ');
-  return out;
+/**
+ * يفصل الدخل القياسي إلى بيانات الطلب والتزاماته. يرمي عند JSON غير صالح أو غياب الفاصل.
+ * @param {string} input
+ * @returns {{ branch: string, title: string, body: string, commits: { sha: string, message: string }[] }}
+ */
+export function parseInput(input) {
+  const cut = input.indexOf(PART_SEP);
+  if (cut === -1) throw new Error('الفاصل بين بيانات الطلب والالتزامات غائب');
+  const pr = JSON.parse(input.slice(0, cut));
+  const commits = input.slice(cut + 1).split(RECORD_SEP).map((rec) => rec.trim()).filter(Boolean).map((rec) => {
+    const at = rec.indexOf(FIELD_SEP);
+    return at === -1 ? { sha: '', message: rec } : { sha: rec.slice(0, at), message: rec.slice(at + 1) };
+  });
+  return { branch: String(pr.headRefName ?? ''), title: String(pr.title ?? ''), body: String(pr.body ?? ''), commits };
+}
+
+const trailerProblems = (text) => text.split('\n').map(byTrailer).filter((name) => name && !ALLOWED_BY_TRAILERS.has(name));
+
+const termHits = (text, list) => {
+  let masked = text.toLowerCase();
+  for (const ex of list.exceptions) masked = masked.split(ex).join(' ');
+  return list.terms.filter((t) => masked.includes(t.text));
 };
 
 /**
@@ -71,56 +89,28 @@ const mask = (text, exceptions) => {
  * @returns {string[]}
  */
 export function checkMetadata(meta, list) {
-  const problems = [];
   const fields = [
     { label: 'اسم الفرع', text: meta.branch ?? '', trailers: false },
     { label: 'عنوان الطلب', text: meta.title ?? '', trailers: false },
     { label: 'نص الطلب', text: meta.body ?? '', trailers: true },
     ...meta.commits.map((c) => ({ label: `رسالة الالتزام ${c.sha.slice(0, 7)}`, text: c.message, trailers: true })),
   ];
-  for (const f of fields) {
-    if (f.trailers) {
-      for (const line of f.text.split('\n')) {
-        const name = byTrailer(line);
-        if (name && !ALLOWED_BY_TRAILERS.has(name)) problems.push(`${f.label}: تذييل غير مسموح «${name}»`);
-      }
-    }
-    const masked = mask(f.text, list.exceptions);
-    for (const t of list.terms) {
-      if (masked.includes(t.text)) problems.push(`${f.label}: يحوي المصطلح الممنوع رقم ${t.line} في القائمة`);
-    }
-  }
-  return problems;
-}
-
-/** مرجع الأساس يُمرَّر وسيطاً لـgit: أحرف مرجع مألوفة وحدها، ولا يبدأ بشرطة. */
-export const safeRef = (ref) => {
-  if (!ref || ref.startsWith('-') || ref.includes('..')) return undefined;
-  for (const ch of ref) {
-    const ok = isLetter(ch) || (ch >= '0' && ch <= '9') || ch === '/' || ch === '.' || ch === '_' || ch === '-';
-    if (!ok) return undefined;
-  }
-  return ref;
-};
-
-function readCommits(base) {
-  const out = execFileSync('git', ['log', '--no-merges', '--format=%H%x1f%B%x1e', `${base}..HEAD`], { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
-  return out.split('\x1e').map((rec) => rec.trim()).filter(Boolean).map((rec) => {
-    const cut = rec.indexOf('\x1f');
-    return { sha: rec.slice(0, cut), message: rec.slice(cut + 1) };
-  });
+  return fields.flatMap((f) => [
+    ...(f.trailers ? trailerProblems(f.text) : []).map((name) => `${f.label}: تذييل غير مسموح «${name}»`),
+    ...termHits(f.text, list).map((t) => `${f.label}: يحوي المصطلح الممنوع رقم ${t.line} في القائمة`),
+  ]);
 }
 
 function main() {
-  const base = safeRef(process.env.PR_BASE ?? 'origin/main');
-  if (!base) { console.error('✗ PR_BASE ليس مرجعاً صالحاً.'); process.exit(1); }
-  let pr;
-  try { pr = JSON.parse(readFileSync(0, 'utf8')); } catch { console.error('✗ تعذّرت قراءة بيانات الطلب (JSON على الدخل القياسي).'); process.exit(1); }
+  let meta;
+  try { meta = parseInput(readFileSync(0, 'utf8')); } catch (e) {
+    console.error(`✗ تعذّرت قراءة الدخل القياسي — ${e instanceof Error ? e.message : String(e)}`);
+    process.exit(1);
+  }
   const list = parseTerms(process.env.PR_METADATA_FORBIDDEN_TERMS);
-  const commits = readCommits(base);
-  const problems = checkMetadata({ branch: String(pr.headRefName ?? ''), title: String(pr.title ?? ''), body: String(pr.body ?? ''), commits }, list);
+  const problems = checkMetadata(meta, list);
   const scope = list.terms.length ? `${list.terms.length} مصطلحاً ممنوعاً و${list.exceptions.length} استثناء` : 'قائمة المصطلحات غير مضبوطة — فُحصت التذييلات وحدها';
-  console.log(`pr-metadata: فرع وعنوان ونص و${commits.length} التزاماً (${scope})`);
+  console.log(`pr-metadata: فرع وعنوان ونص و${meta.commits.length} التزاماً (${scope})`);
   if (problems.length) {
     console.error(`✗ ${problems.length} إخفاق:`);
     for (const p of problems) console.error(`  - ${p}`);

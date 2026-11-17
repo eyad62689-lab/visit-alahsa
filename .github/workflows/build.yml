@@ -75,8 +75,11 @@ jobs:
           PR_BASE: origin/${{ github.base_ref }}
           PR_METADATA_FORBIDDEN_TERMS: ${{ secrets.PR_METADATA_FORBIDDEN_TERMS }}
         run: |
-          gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json title,body,headRefName \
-            | node tools/automation/check-pr-metadata.mjs
+          {
+            gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json title,body,headRefName
+            printf '\035'
+            git log --no-merges --format='%H%x1f%B%x1e' "$PR_BASE..HEAD" --
+          } | node tools/automation/check-pr-metadata.mjs
 
       - name: Install dependencies
         run: npm ci --ignore-scripts
