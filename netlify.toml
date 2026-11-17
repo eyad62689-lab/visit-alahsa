@@ -16,11 +16,14 @@
 #               المصدر Open-Meteo بلا مفتاح)
 #   theft-scan: مسح أسبوعي مجدول (الجدولة معلنة داخل الدالة نفسها:
 #               export const config = { schedule: "0 3 * * 1" })
+#   scheduled-rebuild: إعادة بناء يومية مجدولة (01:00 UTC) تستدعي خطّاف البناء REBUILD_HOOK_URL — ما يُحسب
+#               من تاريخ اليوم (انقضاء الفعاليات، أوقات العمل الحية) يتقادم بلا بناء؛ بلا المتغير تتخطى بسلام
 # والـ Edge Function ‏bot-log (netlify/edge-functions) تسجّل عيّنة الزحف —
 # مساراتها واستثناءاتها معلنة داخلها أيضاً.
 # المفاتيح كلها متغيرات بيئة في لوحة Netlify — لا مفتاح داخل الكود:
 #   IP_HASH_SALT, SERPER_API_KEY, RESEND_API_KEY, ALERT_EMAIL_TO, ALERT_EMAIL_FROM,
-#   ANTHROPIC_API_KEY, ADVISOR_MODEL, ADVISOR_EFFORT, ADVISOR_MONTHLY_CAP_USD, ADVISOR_DAILY_PER_IP, ADVISOR_DISABLED
+#   ANTHROPIC_API_KEY, ADVISOR_MODEL, ADVISOR_EFFORT, ADVISOR_MONTHLY_CAP_USD, ADVISOR_DAILY_PER_IP, ADVISOR_DISABLED,
+#   REBUILD_HOOK_URL
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
