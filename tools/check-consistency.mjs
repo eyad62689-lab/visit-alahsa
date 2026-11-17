@@ -39,6 +39,7 @@ import { auditSeoMeta, checkSeoMeta, loadBaseline as loadSeoBaseline } from './c
 import { checkImageDims } from './check-image-dims.mjs';
 import { checkEventsData, parseEventsSource, EXPECT as EVENTS_DATA_EXPECT } from './check-events-data.mjs';
 import { checkAttractionData, RULINGS as ATTRACTION_RULINGS } from './check-attraction-data.mjs';
+import { checkWorker, readInstalled, readDistWorker, pageWorkerUrl } from './maplibre-worker.mjs';
 import { checkDrift, driftReport } from './translation/drift.mjs';
 import { readAttractions as readLockAttractions, loadLock, LOCK_PATH } from './translation/lock.mjs';
 
@@ -1950,6 +1951,22 @@ async function main() {
       if (problems.length) fail('C81', `البيانات المنظّمة في المعالم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
       else pass('C81', `${stats.intervals} فترة hoursSpec في ${stats.specFiles} معالم بلا تداخل والفتح قبل الإغلاق، و${stats.dates} تاريخ تحقق حقيقي لا يتجاوز اليوم، و${stats.rulings} من ${ATTRACTION_RULINGS.length} حكماً محسوماً على المواعيد`);
     }
+  }
+
+  // ── C82: عامل MapLibre المستضاف ذاتياً من إصدار المكتبة المثبّتة نفسه ─────────────
+  // عامل إصدار آخر يُسقط الخريطة التضاريسية بصمت إلى التراجع (Leaflet) والبناء أخضر. الفحص يقابل
+  // ملفات dist/vendor/maplibre-<الإصدار>/ بملفات الحزمة بايتاً ببايت، ومسار workerUrl في كل صفحة
+  // تحمل ضبط الخريطة. المنطق في tools/maplibre-worker.mjs (دالة نقية يُختبر كسرها في الذاكرة).
+  {
+    const installed = readInstalled(ROOT);
+    const pages = [];
+    for (const f of await listHtml(DIST)) {
+      const html = await readText(f);
+      if (html.includes('id="tmap-cfg"')) pages.push({ rel: path.relative(DIST, f).split(path.sep).join('/'), workerUrl: pageWorkerUrl(html) });
+    }
+    const { problems, stats } = checkWorker({ version: installed.version, source: installed.files, ...readDistWorker(DIST, installed.version), pages });
+    if (problems.length) fail('C82', `عامل MapLibre: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+    else pass('C82', `عامل MapLibre ${stats.version} في dist يطابق الحزمة المثبّتة (${stats.files} ملف) و${stats.pages} صفحة تشير إليه`);
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────
