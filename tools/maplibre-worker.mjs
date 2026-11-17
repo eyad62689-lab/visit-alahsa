@@ -12,7 +12,7 @@
 //   readInstalled(root)     الإصدار المثبّت وملفات العامل من الحزمة.
 //   checkWorker(input)      دالة نقية: تقابل الحزمة بما في dist وبما تشير إليه الصفحات.
 //   readDistWorker(...)     قراءة مدخل checkWorker من dist.
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const PKG_DIR = 'node_modules/maplibre-gl';
@@ -22,6 +22,12 @@ const DIR_PREFIX = 'maplibre-';
 export const WORKER_FILE = 'maplibre-gl-worker.mjs';
 const SIBLING_FILES = ['maplibre-gl-shared.mjs'];
 const VERSION = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.]+)?$/;
+
+const missing = (e) => e?.code === 'ENOENT' || e?.code === 'ENOTDIR';
+/** بايتات الملف، أو null إن غاب — قراءة مباشرة بلا تحقق مسبق من الوجود. */
+function readOrNull(p) { try { return readFileSync(p); } catch (e) { if (missing(e)) return null; throw e; } }
+/** أسماء ما في المجلد، أو قائمة فارغة إن غاب. */
+function listOrEmpty(d) { try { return readdirSync(d); } catch (e) { if (missing(e)) return []; throw e; } }
 
 export const isVersion = (v) => typeof v === 'string' && v.length <= 40 && VERSION.test(v);
 export const vendorDirName = (version) => `${DIR_PREFIX}${version}`;
@@ -36,10 +42,8 @@ export function readInstalled(root) {
   if (!isVersion(version)) throw new Error(`إصدار maplibre-gl غير مقروء: ${String(version).slice(0, 40)}`);
   const files = new Map([[WORKER_FILE, readFileSync(path.join(pkgDir, 'dist', WORKER_FILE))]]);
   for (const name of SIBLING_FILES) {
-    const p = path.join(pkgDir, 'dist', name);
-    if (!existsSync(p)) continue;
-    const bytes = readFileSync(p);
-    if (bytes.length) files.set(name, bytes);
+    const bytes = readOrNull(path.join(pkgDir, 'dist', name));
+    if (bytes?.length) files.set(name, bytes);
   }
   return { version, files };
 }
@@ -53,7 +57,7 @@ export function syncWorker(root) {
   const written = [];
   for (const [name, bytes] of files) {
     const p = path.join(target, name);
-    if (existsSync(p) && readFileSync(p).equals(bytes)) continue;
+    if (readOrNull(p)?.equals(bytes)) continue;
     writeFileSync(p, bytes);
     written.push(name);
   }
@@ -105,9 +109,9 @@ export function checkWorker({ version, source, vendorDirs, built, pages }) {
 /** يقرأ من dist ما يحتاجه checkWorker: مجلدات vendor وملفات مجلد الإصدار المثبّت. */
 export function readDistWorker(dist, version) {
   const vendor = path.join(dist, 'vendor');
-  const vendorDirs = existsSync(vendor) ? readdirSync(vendor) : [];
+  const vendorDirs = listOrEmpty(vendor);
   const built = new Map();
   const dir = path.join(vendor, vendorDirName(version));
-  if (existsSync(dir)) for (const name of readdirSync(dir)) built.set(name, readFileSync(path.join(dir, name)));
+  for (const name of listOrEmpty(dir)) built.set(name, readFileSync(path.join(dir, name)));
   return { vendorDirs, built };
 }
