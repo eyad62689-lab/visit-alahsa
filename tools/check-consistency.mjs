@@ -37,6 +37,8 @@ import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
 import { auditSeoMeta, checkSeoMeta, loadBaseline as loadSeoBaseline } from './check-seo-meta.mjs';
 import { checkImageDims } from './check-image-dims.mjs';
+import { checkEventsData, parseEventsSource, EXPECT as EVENTS_DATA_EXPECT } from './check-events-data.mjs';
+import { checkAttractionData, RULINGS as ATTRACTION_RULINGS } from './check-attraction-data.mjs';
 import { checkDrift, driftReport } from './translation/drift.mjs';
 import { readAttractions as readLockAttractions, loadLock, LOCK_PATH } from './translation/lock.mjs';
 
@@ -1922,6 +1924,32 @@ async function main() {
     const { problems, stats } = checkImageDims(pages);
     if (problems.length) fail('C74', `أبعاد الصور: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
     else pass('C74', `${stats.checked} صورة من /img/ في ${stats.pages} صفحة تحمل width وheight عدديين موجبين`);
+  }
+
+  // ── C80: ثوابت بيانات الفعاليات (تواريخ ISO، نافذة الأشهر، نص time، ما يخص النسخة الجارية) ──
+  // ── C81: ثوابت البيانات المنظّمة في المعالم (hoursSpec، تواريخ التحقق، الأحكام المحسومة) ────
+  // المنطق في tools/check-events-data.mjs وtools/check-attraction-data.mjs (دالتان نقيتان يُختبر
+  // كسرهما على نسخ في الذاكرة)؛ هنا القراءة فقط، ومن المصدر لا من dist: الحقول بنيوية لا تُصيَّر
+  // كلها، والخطأ فيها يُمسك قبل أن يتوزّع على صفحات اللغات.
+  {
+    const names = (await readdir(SRC_ATTRACTIONS)).filter((n) => n.endsWith('.md')).sort((a, b) => a.localeCompare(b));
+    const files = [];
+    for (const n of names) {
+      const text = await readText(path.join(SRC_ATTRACTIONS, n));
+      const end = text.startsWith('---\n') ? text.indexOf('\n---', 3) : -1;
+      files.push({ slug: n.slice(0, -3), head: end === -1 ? '' : text.slice(4, end) });
+    }
+    {
+      const parsed = parseEventsSource(await readText(path.join(ROOT, 'src/data/events.ts')));
+      const { problems, stats } = checkEventsData({ ...parsed, attractionSlugs: new Set(files.map((f) => f.slug)) });
+      if (problems.length) fail('C80', `بيانات الفعاليات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C80', `${stats.events} فعالية (${stats.confirmed} مؤكدة، الحدّ الأدنى ${EVENTS_DATA_EXPECT.minConfirmed}): تواريخ ISO حقيقية مرتّبة تطابق نافذة الأشهر، و${stats.timeChecks} نص time في ${stats.langs} لغات يذكر يومي النسخة وسنتيها، وما يخص النسخة الجارية في المؤكدة وحدها`);
+    }
+    {
+      const { problems, stats } = checkAttractionData(files, { today: riyadhDay() });
+      if (problems.length) fail('C81', `البيانات المنظّمة في المعالم: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
+      else pass('C81', `${stats.intervals} فترة hoursSpec في ${stats.specFiles} معالم بلا تداخل والفتح قبل الإغلاق، و${stats.dates} تاريخ تحقق حقيقي لا يتجاوز اليوم، و${stats.rulings} من ${ATTRACTION_RULINGS.length} حكماً محسوماً على المواعيد`);
+    }
   }
 
   // ── التقرير ──────────────────────────────────────────────────────────────
