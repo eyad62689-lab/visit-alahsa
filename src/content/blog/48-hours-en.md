@@ -23,11 +23,11 @@ One note before you start: the stops here are arranged by the **rhythm of the da
 
 ### Morning: Qasr Ibrahim
 
-Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress of mud walls and palm-trunk roofs, gathering mosque, barracks and towers beneath one wall. Daytime is the best time to take in the architecture and the inner courtyard.
+Begin at [Qasr Ibrahim](/en/attractions/qasr-ibrahim/) in central Hofuf — the fortress of mud walls and palm-trunk roofs, gathering mosque, barracks and towers beneath one wall. Daytime is the best time to take in the architecture and the inner courtyard. The fortress does not open on Fridays.
 
 ### Mid-morning: Al-Koot District and the City's Memory
 
-Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1788 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum. Then continue east to the [Amiriah School](/en/attractions/ameeriah/), Al-Ahsa's first formal government school (1937), whose historic building now serves as a house of culture.
+Close to the palace lies the historic Al-Koot district, home to [Bayt Al-Bay'ah](/en/attractions/baiah/) — the Al-Mulla family house built by Al-Ahsa's judge, Sheikh Abdulrahman bin Omar Al-Mulla, in 1203 AH / 1788 CE, where the people of Al-Ahsa pledged allegiance to King Abdulaziz in 1913 and joined the Saudi state; today it is a museum, though it is temporarily closed at present. Then continue east to the [Amiriah School](/en/attractions/ameeriah/), Al-Ahsa's first formal government school (1937), whose historic building now serves as a house of culture; it too is temporarily closed at present.
 
 ### Evening: Qaisariyah Souq
 

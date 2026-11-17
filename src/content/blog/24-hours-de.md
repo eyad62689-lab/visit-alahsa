@@ -25,7 +25,7 @@ Beginnen Sie Ihren Tag östlich von Hofuf am [Jabal al-Qarah](/de/attractions/ja
 
 ## Vormittag: Qasr Ibrahim und das Al-Koot-Viertel
 
-Kehren Sie ins Zentrum von Hofuf zurück, zu [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast): Die Palastfestung vereint Moschee, Kasernen und Türme hinter einer einzigen Mauer. Im Vormittagslicht kommen Architektur und Innenhof zur Geltung. In der Nähe liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1788 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum.
+Kehren Sie ins Zentrum von Hofuf zurück, zu [Qasr Ibrahim](/de/attractions/qasr-ibrahim/) (dem Ibrahim-Palast): Die Palastfestung vereint Moschee, Kasernen und Türme hinter einer einzigen Mauer. Im Vormittagslicht kommen Architektur und Innenhof zur Geltung. Freitags ist die Palastfestung geschlossen. In der Nähe liegt das historische Al-Koot-Viertel mit [Bayt Al-Bay'ah](/de/attractions/baiah/), dem Haus der Familie Al-Mulla. Der Richter von Al-Ahsa, Scheich Abdulrahman bin Omar Al-Mulla, erbaute dieses Haus im Jahr 1203 nach der Hidschra (1788 n. Chr.). Hier leisteten die Bewohner von Al-Ahsa 1913 den Treueid auf König Abdulaziz und schlossen sich dem saudischen Staat an; heute ist das Haus ein Museum, das jedoch vorübergehend geschlossen ist.
 
 Zum Mittagessen sind Sie bereits mitten in der Stadt: Die Adressen finden Sie gesammelt auf der Seite [Restaurants und Cafés](/de/restaurants-cafes/).
 
@@ -42,5 +42,5 @@ Beschließen Sie Ihren Tag im [Qaisariyah-Souk](/de/attractions/qaisariyah/), ei
 
 - **Ein Auto** ist zwischen den Stationen die praktische Wahl: Manche liegen mitten in Hofuf, andere am Rand der Oase.
 - Auf der Seite zur jeweiligen Sehenswürdigkeit setzen Sie Ihre Stationen auf Ihre [Merkliste](/de/plan/): Daraus wird eine fertige Route, die sich in Google Maps öffnet. Und mit der [Karte der Sehenswürdigkeiten](/de/map/) bringen Sie Ihren Tag in die richtige Reihenfolge.
-- **Bleiben Sie über Nacht?** Dann wechseln Sie zur [Zwei-Tage-Route (48 Stunden)](/de/blog/48-hours-in-al-ahsa/) – dort kommen die Amiriah-Schule, in der Saison die Hasawi-Limettenfarm und die Küste von Al-Uqair hinzu.
+- **Bleiben Sie über Nacht?** Dann wechseln Sie zur [Zwei-Tage-Route (48 Stunden)](/de/blog/48-hours-in-al-ahsa/) – dort kommen in der Saison die Hasawi-Limettenfarm und die Küste von Al-Uqair hinzu.
 - Zum ersten Mal in Al-Ahsa? Die Seite [Reise planen](/de/plan-your-trip/) bündelt das Wichtigste zu Anreise und Fortbewegung.

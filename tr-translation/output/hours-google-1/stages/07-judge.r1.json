@@ -1,0 +1,56 @@
+{
+  "batch": "hours-google-1",
+  "date": "2026-11-17",
+  "score": 91,
+  "breakdown": { "accuracy": 28, "nativeness": 26, "compliance": 19, "fit": 9, "structure": 9 },
+  "decision": "APPROVE",
+  "rounds": 1,
+  "edits_r1": [
+    "plan.faq.qaisariyah: «açıktır … açılır» in one sentence -> «Cuma günleri ise yalnızca akşamları, 16.00–23.00 saatleri arasında açıktır» (reader on-05 #4)",
+    "blog24.ibrahim-bayah, blog48.ibrahim: «Kale Cuma günleri açılmaz» -> «Kale Cuma günleri kapalıdır» (reader on-05 #13; matches the card and FAQ wording)",
+    "blog48.bayah-amiriya: «okul da şu anda …» -> «ancak burası da şu anda …» (reader on-05 #19: «okul» read as a different subject than the house of culture)"
+  ],
+  "blind_reader_rulings_on_05": {
+    "1": "source_defect (kept second sentence as published per instruction; the English/Arabic also say the shops open in the evening although morning hours are given)",
+    "2": "rejected: published sentence kept by instruction; the fact is in the source",
+    "3": "rejected: «… saatleri arasında» is the P10 running-text form; «akşamları» for the evening shift is the approved tm wording (previously 15.30)",
+    "4": "applied",
+    "5": "rejected: Saturday–Thursday is the source fact; Cuma is listed separately",
+    "6": "rejected: the source gives the status only; adding a date or reason would breach the fact fence",
+    "7": "out_of_scope: unchanged approved text",
+    "8": "out_of_scope: unchanged approved text",
+    "9": "source_defect: the trail intro still recommends late afternoon (EN «late afternoon», AR «بعد العصر») while Qasr Ibrahim now closes at 16.00; raise to owner",
+    "10": "rejected: «ise» contrasts with the preceding time advice; approved text",
+    "11": "rejected: what to do instead is not in the source",
+    "12": "out_of_scope: unchanged approved text",
+    "13": "applied",
+    "14": "out_of_scope: unchanged approved text",
+    "15": "out_of_scope: unchanged approved text (tm)",
+    "16": "out_of_scope: unchanged approved text (tm)",
+    "17": "rejected: the source carries both «today a museum» and «at present temporarily closed»",
+    "18": "out_of_scope: unchanged approved text",
+    "19": "applied (subject); the «serves as / closed» tension is the source's own wording",
+    "20": "out_of_scope", "21": "out_of_scope: approved tm pair", "22": "rejected: only the dropped school was removed; the rest is the approved tm sentence",
+    "23": "out_of_scope", "24": "out_of_scope: termbase title_tr «Kasr İbrahim»",
+    "25": "rejected: combination advice not in source", "26": "no issue"
+  },
+  "addendum_on_r1_fresh_reader": {
+    "note": "Fresh reader on the four edited strings; ruled without further edits.",
+    "1": "rejected: «akşamları 16.00» is the approved tm form (was 15.30); repeating «saatleri arasında açıktır» across the two clauses is parallel structure, readable",
+    "2": "source_defect (same as on-05 #1)",
+    "3": "out_of_scope: paragraph opening unchanged (previous paragraph gives the antecedent)",
+    "4": "out_of_scope", "5": "out_of_scope",
+    "6": "no defect: «Kale Cuma günleri kapalıdır» read clean",
+    "7": "out_of_scope", "8": "out_of_scope (approved tm, P11 Hijri form)", "9": "out_of_scope (approved tm)",
+    "10": "rejected: as on-05 #17",
+    "11": "out_of_scope", "12": "out_of_scope", "13": "no defect", "14": "out_of_scope", "15": "out_of_scope", "16": "out_of_scope",
+    "17": "a,b out_of_scope (approved clause); c rejected: meaning read correctly",
+    "18": "rejected: repetition mirrors the source's repeated statuses"
+  },
+  "source_defects": [
+    "Trail historic-hofuf intro advises «morning or late afternoon» on foot, but Qasr Ibrahim now closes at 4 pm (EN and AR).",
+    "Qaisariyah FAQ (plan page): «Evenings are the best time, when the shops open» sits beside morning trading hours."
+  ],
+  "batch_defect": "batch.json item plan.faq.qaisariyah pointed at the wrong lines; corrected per coordinator to en line 144 / ar line 96 / tr line 388 a: string.",
+  "notes": "Checker C77 rules pass on all 12 strings (only the MIN_FIELDS guard fires, as expected for a 12-field batch). Not in this batch but still stale in Turkish: none found in the four attraction files beyond the batch fields."
+}

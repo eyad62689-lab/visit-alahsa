@@ -51,7 +51,7 @@ description_en: "Al-Ahsa's first formal government school. On the rise of Umm Al
 featured: false
 order: 12
 practical:
-  - { label: "المواعيد", value: "الأحد - الخميس: 8:00 ص - 8:00 م | الجمعة والسبت: 4:00 م - 8:00 م", label_en: "Hours", value_en: "Sunday–Thursday 8:00 am – 8:00 pm; Friday & Saturday 4:00–8:00 pm", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 8 بجے سے رات 8 بجے تک · جمعہ اور ہفتہ شام 4 بجے سے رات 8 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Pazar–Perşembe 08.00–20.00; Cuma ve Cumartesi 16.00–20.00", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+  - { label: "المواعيد", value: "مغلق مؤقتاً", label_en: "Hours", value_en: "Temporarily closed", label_ur: "اوقات", value_ur: "عارضی طور پر بند", label_tr: "Ziyaret saatleri", value_tr: "Geçici olarak kapalı", source: "قائمة المكان في خرائط قوقل", source_en: "Google Maps place listing", sourceUrl: "https://www.google.com/maps?cid=17635747024803710542", verifiedAt: "2026-11-17", verified: true }
   - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
 location: { lat: 25.37411, lng: 49.58745 }
 mapUrl: "https://goo.gl/maps/KsemJ5EufHLVJwaWA"
