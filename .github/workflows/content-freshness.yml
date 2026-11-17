@@ -1,0 +1,59 @@
+# ============================================================================
+# Content freshness — weekly report on source data that is due for review
+# ----------------------------------------------------------------------------
+# Runs tools/automation/freshness-report.mjs on the default branch once a week
+# and on demand. The report lists verified opening-hours and fee items whose
+# review date has come, attractions with no hours item, confirmed event
+# editions that end soon or have ended, and unconfirmed events whose season is
+# near.
+#
+# It is a report, not a gate: the job fails only if the data cannot be read.
+# The readable summary goes to the run's summary page; the full JSON is kept
+# as an artifact for 30 days.
+#
+# No secrets are used and nothing is committed. Actions are pinned to commit
+# SHAs, same rule as build.yml.
+# ============================================================================
+
+name: Content freshness
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # Monday 06:00 Asia/Riyadh
+  workflow_dispatch: {}
+
+concurrency:
+  group: content-freshness
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    name: Freshness report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22" # يطابق NODE_VERSION في netlify.toml
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build the report
+        run: |
+          node tools/automation/freshness-report.mjs > freshness-report.json
+          node tools/automation/freshness-report.mjs --summary >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: freshness-report
+          path: freshness-report.json
+          retention-days: 30
