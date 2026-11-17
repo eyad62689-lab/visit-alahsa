@@ -30,8 +30,29 @@ const LINK_CONCURRENCY = 6;
 const PER_HOST_GAP_MS = 400;
 const USER_AGENT = 'Mozilla/5.0 (compatible; link-check)';
 
-/** يفكّ كيانات HTML الشائعة في قيمة سمة href. */
-const decodeAttr = (s) => s.replaceAll('&amp;', '&').replaceAll('&#38;', '&').replaceAll('&quot;', '"').replaceAll('&#x27;', "'").replaceAll('&#39;', "'");
+const ENTITIES = new Map([
+  ['&amp;', '&'], ['&#38;', '&'], ['&#x26;', '&'],
+  ['&quot;', '"'], ['&#34;', '"'], ['&#x22;', '"'],
+  ['&#39;', "'"], ['&#x27;', "'"], ['&apos;', "'"],
+  ['&lt;', '<'], ['&gt;', '>'],
+]);
+
+/**
+ * يفكّ كيانات HTML الشائعة في قيمة سمة — بمرور واحد على النص، فما ينتج عن فكّ كيان
+ * لا يُفكّ مرة ثانية («&amp;quot;» تصير «&quot;» لا علامة تنصيص).
+ */
+function decodeAttr(s) {
+  let out = '';
+  let i = 0;
+  for (;;) {
+    const amp = s.indexOf('&', i);
+    if (amp === -1) return out + s.slice(i);
+    const semi = s.indexOf(';', amp);
+    const entity = semi !== -1 && semi - amp <= 6 ? ENTITIES.get(s.slice(amp, semi + 1).toLowerCase()) : undefined;
+    out += s.slice(i, amp) + (entity ?? '&');
+    i = entity ? semi + 1 : amp + 1;
+  }
+}
 
 /** قيم <loc> من نص sitemap — مسح خطي. */
 export function sitemapLocs(xml) {
