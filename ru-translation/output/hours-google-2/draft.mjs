@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+const b = JSON.parse(fs.readFileSync('batch.json','utf8'));
+const cur = Object.fromEntries(b.items.map(i=>[i.id,i.current_target]));
+const planA = cur['plan.faq.qaisariyah'].match(/a: `([^`]*)`/)[1];
+const OLD1 = 'Точки маршрута расположены рядом друг с другом, и обойти их лучше пешком — утром или ближе к вечеру.';
+const NEW1 = 'Точки маршрута расположены рядом друг с другом, и обойти их лучше пешком утром: рынок Эль-Кайсария закрывается к полудню, а Каср-Ибрахим — во второй половине дня.';
+const OLD2 = 'Лучшее время — вечер, когда открываются лавки и рынок оживает.';
+const NEW2 = 'Лучшее время — вечер, когда рынок оживает.';
+const t = cur['trail.historic-hofuf.intro'];
+if (!t.includes(OLD1) || !planA.includes(OLD2)) throw new Error('anchor');
+const d = { 'trail.historic-hofuf.intro': t.replace(OLD1, NEW1), 'plan.faq.qaisariyah': planA.replace(OLD2, NEW2) };
+fs.writeFileSync('stage-1-5-draft.json', JSON.stringify({changed_sentences:{'trail.historic-hofuf.intro':{old:OLD1,new:NEW1},'plan.faq.qaisariyah':{old:OLD2,new:NEW2}}, notes:['minimal edit: only the sentence EN/AR changed','«к полудню» = AR ظهراً / EN at midday (morning shift ends 11:30); «во второй половине дня» = AR عصراً / EN in the afternoon (closes 16:00)','Каср-Ибрахим nominative bare, as in the next approved sentence; no termbase change','stages 1–5 combined inline for a two-sentence edit, precedent hours-google-1'], items:d},null,2));
+console.log(Object.values(d).join('\n\n'));
