@@ -1,0 +1,98 @@
+# ============================================================================
+# External links — weekly check of outbound links on the published site
+# ----------------------------------------------------------------------------
+# tools/check-links.mjs verifies internal links on every build. Outbound links
+# (maps, official sites, booking pages, cited sources) break over time without
+# any change in the repository, so no pull request check can see them.
+#
+# This workflow runs tools/automation/check-external-links.mjs once a week and
+# on demand. The script reads every page listed in the production sitemap,
+# requests each distinct outbound link once, and fails only on links that are
+# definitely gone (404, 410, or a host name that no longer resolves). Hosts
+# that refuse automated visitors and transient errors are counted, not failed.
+#
+# On failure it opens an issue, or comments on the open one. The readable
+# summary goes to the run's summary page; the full JSON is kept as an artifact
+# for 30 days.
+#
+# No secrets are used and nothing is committed. The default token gets
+# issues:write for this job only. Actions are pinned to commit SHAs, same rule
+# as build.yml.
+# ============================================================================
+
+name: External links
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # Monday 06:00 Asia/Riyadh
+  workflow_dispatch: {}
+
+concurrency:
+  group: external-links
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: External link check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22" # يطابق NODE_VERSION في netlify.toml
+
+      # السكربت بلا تبعيات (وحدات Node المدمجة وحدها) فلا npm ci.
+      - name: Check outbound links on the published site
+        id: check
+        run: |
+          set -o pipefail
+          node tools/automation/check-external-links.mjs --save | tee links-summary.md
+
+      - name: Publish the summary
+        if: always()
+        run: |
+          if [ -s links-summary.md ]; then cat links-summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: external-links-report
+          path: external-links-report.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Open or update the tracking issue
+        if: failure() && steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ISSUE_TITLE: External links broken
+        run: |
+          {
+            echo "The scheduled external link check failed."
+            echo
+            echo "Run: $RUN_URL"
+            echo
+            if [ -s links-summary.md ]; then
+              cat links-summary.md
+            else
+              echo "The check stopped before producing a summary; see the run log."
+            fi
+          } > body.md
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body-file body.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$ISSUE_TITLE" --body-file body.md
+          fi
