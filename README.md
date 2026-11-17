@@ -26,9 +26,10 @@
 - بيانات المعالم تُولَّد وقت البناء من مجموعة المحتوى إلى `/data/landmarks.geojson`
   (المصدر: `src/pages/data/landmarks.geojson.ts` — لا يُحرَّر GeoJSON يدوياً).
 - ترميز الارتفاعات `encoding: 'terrarium'` **إلزامي** — الافتراضي `mapbox` يُنتج ارتفاعات خاطئة بصمت.
-- عامل MapLibre v6 ملف ESM منفصل مستضاف في `public/vendor/maplibre-6.4.1/`
-  (worker + shared). عند ترقية maplibre-gl انسخ الملفين من `dist/` إلى مجلد
-  جديد باسم الإصدار وحدِّث `workerUrl` في `TerrainMapView.astro`.
+- عامل MapLibre v6 ملف ESM منفصل مستضاف في `public/vendor/maplibre-<الإصدار>/`.
+  المجلد **مولَّد وخارج المستودع**: ينسخه `tools/maplibre-worker.mjs` من الحزمة المثبّتة عند كل
+  تشغيل لـAstro، و`workerUrl` مشتق من إصدارها (`src/lib/maplibre-worker.ts`)، فترقية
+  maplibre-gl لا تحتاج خطوة يدوية. الفحص C82 يقابل الملفات والمسار بالحزمة على dist.
 - ملحق تشكيل النص العربي مستضاف في `public/vendor/maplibre/mapbox-gl-rtl-text-0.2.3.mjs`.
 - MapLibre لا يدخل حزمة أي صفحة: يُحمَّل عبر `import()` فقط عند توفّر WebGL2
   ودخول الحاوية الشاشة (أو زر صريح على الجوال)؛ وعند غيابه يتراجع تلقائياً
