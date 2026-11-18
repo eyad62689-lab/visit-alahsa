@@ -1,0 +1,131 @@
+---
+// صفحة «الوصول والتنقل في الأحساء» — عربي/إنجليزي فقط كأدوات السفر والطوارئ.
+// النصوص والأرقام ومصادرها في src/data/transport.ts؛ لا رقم هنا من خارجه.
+// الجداول بقشرة الموقع (tbl-wrap + va-table) بلا data-table كدليل التأشيرات: ليست من مصادر C24.
+// كل رابط خارجي يحمل data-track="outbound_click" وكل رقم هاتف رابط tel: يحمل data-track="transport_call".
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { TRANSPORT_ALT } from '../../lib/routes';
+import { emergencyHref } from '../../data/emergency-i18n';
+import { breadcrumb } from '../../lib/schema';
+import { PAGE, type TransportLang, type Para } from '../../data/transport';
+
+interface Props { lang: Lang; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const L: TransportLang = lang === 'ar' ? 'ar' : 'en';
+const ar = L === 'ar';
+const t = useTranslations(lang);
+const C = PAGE[L];
+const selfPath = TRANSPORT_ALT[L];
+const sep = ar ? '، ' : ', ';
+
+const jsonLd = [
+  breadcrumb([
+    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: C.title, path: selfPath },
+  ]),
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity:
+    C.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+// فقرة: نصّ عادي، أو أجزاء فيها رقم هاتف (tel:) أو رابط داخلي
+const parts = (p: Para) => (typeof p === 'string' ? [p] : p);
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={C.eyebrow} title={C.title} lead={C.lead} leadWidth={60} motif="center" size="compact" lang={lang} />
+
+    <div class="container tp">
+      <p class="tp-reviewed">{C.reviewed} <span dir="ltr">{C.date}</span></p>
+
+      <nav class="tp-toc" aria-label={C.tocLabel}>
+        <ul>{C.groups.map((g) => g.sections.map((s) => <li><a href={`#${s.id}`}>{s.h}</a></li>))}<li><a href="#faq">{C.faqH}</a></li></ul>
+      </nav>
+
+      {C.groups.map((g) => (
+        <>
+          <h2 class="tp-group">{g.h}</h2>
+          {g.sections.map((s) => (
+            <section class="tp-sec" id={s.id} aria-labelledby={`tp-${s.id}-h`}>
+              <h3 id={`tp-${s.id}-h`}>{s.h}</h3>
+              {s.paras.map((p) => (
+                <p>{parts(p).map((x) => typeof x === 'string' ? x
+                  : 'tel' in x ? <a href={`tel:${x.tel}`} dir="ltr" class="tp-tel" data-track="transport_call" data-track-number={x.tel}>{x.tel}</a>
+                  : <a href={x.href}>{x.t}</a>)}</p>
+              ))}
+              {s.table && (
+                <div class="tbl-wrap">
+                  <table class="va-table">
+                    <caption>{s.table.caption}</caption>
+                    <thead><tr>{s.table.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+                    <tbody>{s.table.rows.map((r) => <tr>{r.map((c, i) => i === 0 ? <th scope="row">{c}</th> : <td>{c}</td>)}</tr>)}</tbody>
+                  </table>
+                </div>
+              )}
+              {s.after?.map((p) => <p class="tp-note">{p}</p>)}
+              {s.links && (
+                <ul class="tp-links">
+                  {s.links.map((x) => <li><a class="tp-btn" href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="transport_operator" data-track-item-id={x.id}>{x.t}<span class="sr-only"> {C.newWindow}</span></a></li>)}
+                </ul>
+              )}
+              <p class="tp-src">{C.srcLabel} {s.src.map((x, i) => <>{i > 0 && sep}<a href={x.href} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="transport_source" data-track-item-id={x.href}>{x.label}<span class="sr-only"> {C.newWindow}</span></a></>)}{C.checked} <span dir="ltr">{C.date}</span></p>
+            </section>
+          ))}
+        </>
+      ))}
+
+      <section class="tp-sec" id="faq" aria-labelledby="tp-faq-h">
+        <h2 id="tp-faq-h" class="tp-group">{C.faqH}</h2>
+        <dl class="tp-faq">
+          {C.faqs.map((f) => <><dt>{f.q}</dt><dd>{f.a}</dd></>)}
+        </dl>
+      </section>
+
+      <aside class="tp-keep">
+        <h2>{C.keepH}</h2>
+        <p>{C.keepP} <a href={emergencyHref(lang)}>{C.keepLink}</a></p>
+        <p class="tp-note">{C.disclaimer}</p>
+      </aside>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .tp { padding-block: var(--s-5) var(--s-8); max-inline-size: 60rem; }
+  .tp-reviewed { font-size: var(--t-xs); color: var(--c-ink-soft); margin-block-end: var(--s-4); }
+
+  .tp-toc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .tp-toc a { display: inline-flex; align-items: center; min-block-size: 44px; padding: 0 var(--s-3); border-radius: 999px; background: var(--c-sand-2); color: var(--c-turq-deep); font-size: var(--t-xs); font-weight: 600; text-decoration: none; }
+  .tp-toc a:hover { background: var(--c-turq-deep); color: #fff; }
+
+  .tp-group { font-size: var(--t-2xl); margin-block: var(--s-8) 0; padding-block-end: var(--s-2); border-block-end: 2px solid var(--c-gold); }
+  .tp-sec { margin-block-start: var(--s-6); scroll-margin-block-start: 96px; }
+  .tp-sec h3 { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-2); }
+  .tp-sec p { font-size: var(--t-sm); line-height: 1.9; color: var(--c-ink); margin-block-start: var(--s-2); }
+  .tp-sec a { color: var(--c-turq-deep); font-weight: 600; }
+  .tp-tel { font-variant-numeric: tabular-nums; unicode-bidi: isolate; }
+  .tp-note { color: var(--c-ink-soft) !important; }
+  .tp-sec .tbl-wrap { margin-block-start: var(--s-3); }
+
+  .tp-links { list-style: none; padding: 0; margin: var(--s-3) 0 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .tp-btn { display: inline-flex; align-items: center; min-block-size: 44px; padding: 0 var(--s-3); border: 1px solid var(--c-turq-deep); border-radius: var(--radius-sm); font-size: var(--t-xs); text-decoration: none; }
+  .tp-btn:hover { background: var(--c-turq-deep); color: #fff !important; }
+  .tp-btn:focus-visible, .tp-tel:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+
+  .tp-src { font-size: var(--t-xs) !important; color: var(--c-ink-soft) !important; }
+  .tp-src a { font-weight: 400 !important; }
+
+  .tp-faq dt { font-family: var(--font-body); font-weight: 700; font-size: var(--t-base); color: var(--c-turq-deep); margin-block-start: var(--s-4); }
+  .tp-faq dd { margin: var(--s-2) 0 0; font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.85; }
+
+  .tp-keep { margin-block-start: var(--s-7); background: #fff; border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4) var(--s-5); }
+  .tp-keep h2 { font-size: var(--t-lg); margin-block-end: var(--s-2); }
+  .tp-keep p { font-size: var(--t-sm); line-height: 1.85; }
+  .tp-keep a { color: var(--c-turq-deep); font-weight: 600; }
+</style>
