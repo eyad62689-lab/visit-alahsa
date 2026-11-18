@@ -11,7 +11,7 @@ import DataTable from '../DataTable.astro';
 import { practicalTable } from '../../lib/tables';
 import { VISA_LANGS, visaHref } from '../../lib/visa-guide.mjs';
 import { getCollection } from 'astro:content';
-import { blogHref, guidesHref, toolsHref } from '../../lib/routes';
+import { blogHref, guidesHref, toolsHref, transportHref } from '../../lib/routes';
 import { guidesListed } from '../../lib/guides';
 import ChapterPlan from '../home/ChapterPlan.astro';
 import HomeEventsNow from '../home/HomeEventsNow.astro';
@@ -452,6 +452,8 @@ const jsonLd = [
         </div>
         {/* دليل التأشيرات — عربي وإنجليزي (2026-10-16)؛ لا رابط في لغة لم تمرّ نصوصه بخطّها */}
         {VISA_LANGS.includes(lang) && <p class="gt-visa" data-reveal><a class="btn btn--turq" href={visaHref(lang)}>{t('plan.visa')}</a></p>}
+        {/* الوصول والتنقل — عربي وإنجليزي (2026-11-18) */}
+        {(lang === 'ar' || lang === 'en') && <p class="gt-visa" data-reveal><a class="btn btn--turq" href={transportHref(lang)} data-track="related_click" data-track-kind="transport" data-track-item-id="transport">{t('plan.transport')}</a></p>}
       </div>
     </section>
 
