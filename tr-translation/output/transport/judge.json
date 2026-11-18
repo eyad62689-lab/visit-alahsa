@@ -1,0 +1,1083 @@
+{
+  "batch": "transport",
+  "lang": "tr",
+  "stage": "7",
+  "score": 92,
+  "breakdown": {
+    "accuracy": 28,
+    "nativeness": 27,
+    "termbase_orthography_style": 19,
+    "fit_for_traveller": 8,
+    "structure": 10
+  },
+  "cycles": [
+    {
+      "cycle": 0,
+      "input": "tr-05.json",
+      "score": 87,
+      "breakdown": {
+        "accuracy": 26,
+        "nativeness": 24,
+        "termbase_orthography_style": 19,
+        "fit_for_traveller": 8,
+        "structure": 10
+      },
+      "decision": "below threshold: judge fix loop",
+      "reader": "blind-reader.md (20 items; input blind-input.txt)"
+    },
+    {
+      "cycle": 1,
+      "edits": 19,
+      "source_change_keys": [
+        "groups.0.sections.1.paras.0",
+        "faqs.1.a"
+      ],
+      "proofread": "fresh mechanical proof on final_strings: C77 PASS, 65 U+0027 suffixes; no U+2019/NBSP/«»/straight quotes; no hh:mm; digits identical except P10 notation",
+      "score_after": 91,
+      "note": "A fresh blind reader on the edited strings is the coordinator's step (as hours-google-1 / emergency-amend: approved, then fresh reader ruled in an addendum)."
+    }
+  ],
+  "blind_reader_rulings": {
+    "r0": [
+      {
+        "n": 1,
+        "sev": "HIGH",
+        "keys": [
+          "groups.0.sections.1.paras.0"
+        ],
+        "ruling": "source_defect → resolved by source change + retranslated",
+        "reason": "The en/ar sentence lacked the step the reader asked for. The coordinator changed the source (East train runs from Dammam station; after landing you need an airport→station transfer, booked separately from the train); retranslated from the new en/ar: «Doğu hattı trenleri Dammam istasyonu ile Hüfuf arasında çalışır; bu yüzden indikten sonra havalimanından istasyona bir transfere ihtiyacınız olur. Bu transferi tren biletinizden ayrı olarak ayarlayın.» «bu yüzden» now has its reason."
+      },
+      {
+        "n": 2,
+        "sev": "HIGH",
+        "keys": [
+          "faqs.1.a",
+          "groups.0.sections.0.paras.0"
+        ],
+        "ruling": "source change + applied",
+        "reason": "faqs.1.a retranslated from the changed source («Hofuf, in Al-Ahsa»): «… güzergâhta El-Ahsa'daki Hüfuf'ta durur». The same source fact is repeated at the first Hüfuf on the page (s0.p0 «burayı, El-Ahsa'daki Hüfuf şehrinin adıyla listeler»): a source fact may be moved or repeated, never added (ru P5, cited in calibration P3). «şehri»: the page itself says «Hüfuf'un merkezinde» (central Hofuf) and termbase Hüfuf is the city."
+      },
+      {
+        "n": 3,
+        "sev": "HIGH",
+        "keys": [
+          "groups.0.sections.3.paras.1.0",
+          "groups.0.sections.3.table.caption"
+        ],
+        "ruling": "applied",
+        "reason": "«günlük NN25 seferleri» read as «25 daily trips». NN25 is a route code (ar «على المسار NN25»): «NN25 güzergâhında … günlük seferleri», caption «NN25 güzergâhının günlük seferleri». güzergâh = the page's word for intercity routes (Darb Alwatan güzergâhları)."
+      },
+      {
+        "n": 4,
+        "sev": "MED",
+        "keys": [
+          "groups.0.sections.3.after.0"
+        ],
+        "ruling": "applied",
+        "reason": "«tarih yok» (date/history) → «yayın tarihi belirtilmemiş» (en undated, ar غير مؤرّخ)."
+      },
+      {
+        "n": 5,
+        "sev": "HIGH",
+        "keys": [
+          "groups.0.sections.4.paras.0"
+        ],
+        "ruling": "applied (wording); content gap = source",
+        "reason": "Rebuilt as the reader proposed, attribution kept: «El-Ahsa Belediyesinin anlattığına göre bölgede iki çevre yolu vardır: vahayı dolaşan dış çevre yolu ile kentsel alanı dolaşan iç çevre yolu (Kral Abdullah Çevre Yolu).» «dolaşan» avoids «çevreleyen çevre yolu». No approach route from other cities is in en/ar: not added (fence), logged SD-car-approach."
+      },
+      {
+        "n": 6,
+        "sev": "HIGH",
+        "keys": [
+          "groups.1.sections.2.paras.0",
+          "groups.1.sections.4.paras.0",
+          "faqs.2.a"
+        ],
+        "ruling": "applied (wording); scope = source",
+        "reason": "«yolculuklara yer verir» → «Careem'in uygulamasında El-Ahsa Uluslararası Havalimanı'ndan yolculuk seçeneği görünür» (en lists rides from the airport). Whether Careem serves the city is not in en/ar: the FAQ keeps the source's answer; logged SD-careem-scope."
+      },
+      {
+        "n": 7,
+        "sev": "HIGH",
+        "keys": [
+          "groups.1.sections.5.table.rows.0.1"
+        ],
+        "ruling": "applied",
+        "reason": "«Saati 2,30 SAR» read as a clock time → «Saat başına 2,30 SAR» (en per hour, ar للساعة)."
+      },
+      {
+        "n": 8,
+        "sev": "MED",
+        "keys": [
+          "groups.1.sections.0.table.rows.7.1"
+        ],
+        "ruling": "applied",
+        "reason": "Stop name with its number treated as a name like «Sanayi Şehri 4»: «El-Umran Şehri 6'ya». Termbase «El-Umran şehri» (lower-case generic) stays for running text; the capital marks the SAPTCO stop name (note added to the termbase entry)."
+      },
+      {
+        "n": 9,
+        "sev": "HIGH",
+        "keys": [
+          "groups.1.sections.3.paras.0"
+        ],
+        "ruling": "applied (wording); missing number = source (owner)",
+        "reason": "«bir şubesini listeler» → «El-Ahsa'da bir şubesi olduğunu belirtir»; «bir telefon numarası verir» → «sitesinde bir telefon numarası yayımlar», so the reader knows the number is on the linked page. The number itself is deliberately not published on the site (coordinator): source issue, nothing added."
+      },
+      {
+        "n": 10,
+        "sev": "HIGH",
+        "keys": [
+          "groups.1.sections.4.h"
+        ],
+        "ruling": "source_defect",
+        "reason": "Heading plural is the source's (en arrival stations, ar محطات الوصول); the paragraph covers the airport and the railway station only, the bus terminal is not addressed in en/ar. Turkish keeps faith; logged SD-arrival-stations."
+      },
+      {
+        "n": 11,
+        "sev": "MED",
+        "keys": [
+          "groups.1.sections.1.after.0"
+        ],
+        "ruling": "applied (notation); residual = source",
+        "reason": "«gece yarısından 06.00'ya» → P10 range «pazar–perşembe günleri 00.00–06.00, cuma ve cumartesi günleri 02.00–06.00 saatleri arasında uygulanır». Which calendar night «Sunday … 12 midnight» starts is ambiguous in en/ar alike; not resolved by guess: SD-taxi-night."
+      },
+      {
+        "n": 12,
+        "sev": "MED",
+        "keys": [
+          "groups.0.sections.6.paras.0"
+        ],
+        "ruling": "applied",
+        "reason": "«tüm süre boyunca» → «geçici giriş süresinin tamamında» (ar طوال مدة الإدخال); the two «-manız» clauses split into a sentence with the guide as subject: «Rehber ayrıca aracın sahibi olmanızı ya da onaylı bir yetki belgesi taşımanızı ister.»"
+      },
+      {
+        "n": 13,
+        "sev": "MED",
+        "keys": [
+          "groups.0.sections.6.paras.1.0"
+        ],
+        "ruling": "applied",
+        "reason": "«Kral Fahd Köprüsü'nün Jesr uygulamasıyla …»: the app is the causeway's (the section's source label «King Fahd Causeway: e-services»; ar تطبيق «جسر» in the causeway section). The second sentence then says «Köprüde» to avoid the name twice."
+      },
+      {
+        "n": 14,
+        "sev": "MED",
+        "keys": [
+          "groups.1.sections.6.paras.0"
+        ],
+        "ruling": "source_defect",
+        "reason": "«registered» with whom is not in en/ar (SAR conditions behind the link). «kayıtlı» kept; logged SD-sar-registered."
+      },
+      {
+        "n": 15,
+        "sev": "MED",
+        "keys": [
+          "groups.1.sections.1.paras.0.0"
+        ],
+        "ruling": "applied",
+        "reason": "The number follows the TGA sentence in en/ar; owner made explicit inside the paragraph: «Genel Ulaştırma Kurumuna soru ve görüşleriniz için: » (institution, no apostrophe)."
+      },
+      {
+        "n": 16,
+        "sev": "LOW",
+        "keys": [
+          "groups.1.sections.0.table.rows.8.1"
+        ],
+        "ruling": "rejected",
+        "reason": "«120 dakikada bir» kept: the brief binds numbers literally (BATCH/BRIEF.md: numbers transferred as in the source); «iki saatte bir» changes the figure the operator publishes."
+      },
+      {
+        "n": 17,
+        "sev": "LOW",
+        "keys": [
+          "groups.0.sections.2.paras.1"
+        ],
+        "ruling": "applied",
+        "reason": "«ödeme kartı kabul edilir» → «kartla ödeme yapılabilir» (does not imply card-only, the stage-4 concern)."
+      },
+      {
+        "n": 18,
+        "sev": "MED",
+        "keys": [
+          "groups.0.sections.3.paras.0.0"
+        ],
+        "ruling": "applied",
+        "reason": "Reader's order: «SAT (SAPTCO Alsa Ulaşım), Riyad çıkışlılar da dahil El-Ahsa'ya giden şehirlerarası otobüs seferlerinin biletlerini …»."
+      },
+      {
+        "n": 19,
+        "sev": "LOW",
+        "keys": [
+          "groups.1.sections.0.table.rows.0.1",
+          "groups.1.sections.0.table.rows.1.1"
+        ],
+        "ruling": "source_defect",
+        "reason": "Only the card row says «including tax» in en/ar; whether the single fare includes tax is not stated. Nothing added; SD-fare-tax."
+      },
+      {
+        "n": 20,
+        "sev": "LOW",
+        "keys": [
+          "groups.0.sections.5.h"
+        ],
+        "ruling": "rejected",
+        "reason": "No gloss in a heading (style_rules.gloss_kurali); KİK expanded once at first body mention as tr-visa-1 recorded for the termbase entry «Körfez İşbirliği Konseyi (KİK)»."
+      }
+    ]
+  },
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "notes": [
+    "Score 91 ≥ pass_threshold 90 (config.json). Batch score = 91 (one page + 2 ui keys).",
+    "Rulings r0: applied 14 (incl. partial with a source half), rejected 2 (#16 numbers literal, #20 no gloss in heading), source-only 3 (#10, #14, #19); #1/#2 resolved by the source change.",
+    "Coordinator rulings accepted: P10 clock notation and the Turkish decimal comma (dist verifier allows both).",
+    "Open calibration items touched, not decided: P6 (route 4 «sefer sıklığı teyit edilmeyi bekliyor», A6-P6-local form); P12 (Medine bare).",
+    "Judgement calls standing from stages 1–5: M2-r2 railway name without «SAR»; «Hafilat El-Ahsa» (P2 over the store spelling); «El-Cübeyl» (tr.wikipedia, P1) vs the article-less A3 institution entry — drift recorded; brands keep their Latin form (Najm, emergency).",
+    "seoTitle 54 ≤ 60, seoDesc 156 ≤ 160 (code points).",
+    "Bahreyn harmony letter: confirmed «e» (spoken last vowel, the entry's own example «Bahreyn'de»); field corrected in the termbase.",
+    "Post-reader addendum: 10 applied, 4 rejected, 7 source; 12 strings changed; C77 PASS; score 91 → 92 (nativeness 26 → 27).",
+    "Post-reader addendum, source revision: groups.0.sections.1.paras.0 retranslated from the revised en/ar (East train stops at Dammam station and Hofuf); C77 PASS; score unchanged at 92."
+  ],
+  "source_defects": [
+    {
+      "key": "groups.1.sections.0.table.rows.6.1 / rows.10.1",
+      "en": "Main Station to Al Uyun / Main Station to Al Shuba",
+      "ar": "المحطة الرئيسية إلى مدينة العيون / … إلى بلدة الشعبة",
+      "issue": "The Arabic adds the generic (مدينة «city», بلدة «town») that the English omits. Not a factual conflict; Turkish follows the Arabic authority with the termbase generic («El-Uyun şehri», «Eş-Şube kasabası»). Recorded for en/ar alignment."
+    },
+    {
+      "key": "groups.0.sections.5.src.2.label / src.3.label",
+      "en": "ZATCA: …",
+      "ar": "الهيئة: …",
+      "issue": "The Arabic shortens the body to «الهيئة» while the English keeps the acronym. Turkish follows the English acronym (introduced in full in src.1.label). No fact affected."
+    },
+    {
+      "id": "SD-car-approach",
+      "keys": [
+        "groups.0.sections.4.paras.0"
+      ],
+      "issue": "The «By car» section gives no approach route from other cities (reader 5); en/ar carry only the ring roads."
+    },
+    {
+      "id": "SD-careem-scope",
+      "keys": [
+        "groups.1.sections.2.paras.0",
+        "faqs.2.a"
+      ],
+      "issue": "The FAQ asks whether Careem operates in Al-Ahsa; the answer covers only rides from the airport (reader 6)."
+    },
+    {
+      "id": "SD-budget-number",
+      "keys": [
+        "groups.1.sections.3.paras.0"
+      ],
+      "issue": "Budget Saudi «lists a number» that the page does not print (deliberate, per coordinator); a reader looks for it (reader 9)."
+    },
+    {
+      "id": "SD-arrival-stations",
+      "keys": [
+        "groups.1.sections.4.h",
+        "groups.1.sections.4.paras.0"
+      ],
+      "issue": "Heading says arrival stations (plural); the paragraph covers the airport and railway station, not the Al-Ahsa Bus Station (reader 10)."
+    },
+    {
+      "id": "SD-taxi-night",
+      "keys": [
+        "groups.1.sections.1.after.0"
+      ],
+      "issue": "«Sunday to Thursday 12 midnight to 6 AM» does not say whether the night of Saturday→Sunday or Sunday→Monday is meant (reader 11)."
+    },
+    {
+      "id": "SD-sar-registered",
+      "keys": [
+        "groups.1.sections.6.paras.0"
+      ],
+      "issue": "«registered passengers with disabilities»: registered where/how is not stated (reader 14)."
+    },
+    {
+      "id": "SD-fare-tax",
+      "keys": [
+        "groups.1.sections.0.table.rows.0.1"
+      ],
+      "issue": "Only the bus-card row states «including tax»; the single-fare tax status is unstated (reader 19)."
+    },
+    {
+      "id": "SD-line30-resolved",
+      "keys": [
+        "groups.0.sections.1.paras.0",
+        "faqs.1.a"
+      ],
+      "issue": "RESOLVED by the source change after the blind reading (Dammam station transfer; Hofuf in Al-Ahsa)."
+    },
+    {
+      "id": "SD-car-address",
+      "keys": [
+        "groups.0.sections.4.paras.0"
+      ],
+      "issue": "«Set your accommodation address before you set off» gives no purpose after a ring-road sentence (post reader 2)."
+    },
+    {
+      "id": "SD-main-station",
+      "keys": [
+        "groups.1.sections.0.table.rows.*.1"
+      ],
+      "issue": "«Main Station» and the numbered stops (Alwasitah 1, Al Omran City 6, Industrial City 4) are brochure names with no location; a visitor cannot tell whether Main Station is the Al-Ahsa Bus Station (post reader 3, 4)."
+    },
+    {
+      "id": "SD-airport-taxi",
+      "keys": [
+        "groups.1.sections.1.after.0"
+      ],
+      "issue": "The page says the tariff is not the airport-taxi fare but gives no airport fare or where it is published (post reader 7)."
+    }
+  ],
+  "termbase_additions": [
+    {
+      "term": "Riyad",
+      "ar": "الرياض",
+      "en": "Riyadh",
+      "suffix_vowel": "a — Riyad'dan · Riyad'ın",
+      "kind": "toponym",
+      "source": "https://tr.wikipedia.org/wiki/Riyad (title «Riyad», read 2026-11-19); termbase naming_policy.exonyms",
+      "status": "attested",
+      "note": "P1 closed list (established article-less exonym)."
+    },
+    {
+      "term": "Cidde",
+      "ar": "جدة",
+      "en": "Jeddah",
+      "suffix_vowel": "e — Cidde'ye · Cidde'den",
+      "kind": "toponym",
+      "source": "https://tr.wikipedia.org/wiki/Cidde (title «Cidde», read 2026-11-19); termbase naming_policy.exonyms",
+      "status": "attested",
+      "note": "P1 closed list."
+    },
+    {
+      "term": "Hafci",
+      "ar": "الخفجي",
+      "en": "Khafji / Al Khafji",
+      "suffix_vowel": "i — Hafci'ye · Hafci'den",
+      "kind": "toponym",
+      "source": "https://tr.wikipedia.org/wiki/Hafci (title «Hafci»: «Hafci (الخفجي) şehri Suudi Arabistan ile Kuveyt sınırları arasındadır», read 2026-11-19)",
+      "status": "attested",
+      "note": "P1: article dropped as tr.wikipedia writes it — proposed for the closed list. Port: «Hafci Sınır Kapısı»."
+    },
+    {
+      "term": "El-Cübeyl",
+      "ar": "الجبيل",
+      "en": "Jubail",
+      "suffix_vowel": "e — El-Cübeyl'e · El-Cübeyl'den",
+      "kind": "toponym",
+      "source": "tr.wikipedia article «El-Cübeyl» (search result, Eastern Province city; read 2026-11-19); TDV «CÜBEYL»",
+      "status": "attested",
+      "note": "P1 article kept as tr.wikipedia titles the city; also keeps it apart from «Cübeyl» = Byblos. Drift: the institution entry «Cübeyl ve Yenbu Kraliyet Komisyonu» (A3) is article-less — recorded, not edited."
+    },
+    {
+      "term": "Rubülhali Sınır Kapısı",
+      "ar": "منفذ الربع الخالي",
+      "en": "Empty Quarter Port",
+      "suffix_vowel": "ı — Rubülhali Sınır Kapısı'ndan",
+      "kind": "institution",
+      "source": "tr.wikipedia «Rubülhali Çölü» (search title, read 2026-11-19); P4 no ʿayn mark",
+      "status": "unattested",
+      "note": "Crossing name unattested; «sınır kapısı» = the Turkish term for a land border crossing (منفذ بري)."
+    },
+    {
+      "term": "Selva Sınır Kapısı",
+      "ar": "منفذ سلوى",
+      "en": "Salwa Port",
+      "suffix_vowel": "ı — Selva Sınır Kapısı'ndan",
+      "kind": "institution",
+      "source": "termbase «Selva» (tr-attr-5); generic «sınır kapısı» (TDK)",
+      "status": "unattested",
+      "note": ""
+    },
+    {
+      "term": "El-Batha Sınır Kapısı",
+      "ar": "منفذ البطحاء",
+      "en": "Al Batha Port",
+      "suffix_vowel": "ı — El-Batha Sınır Kapısı'ndan (bare: a — El-Batha'da)",
+      "kind": "institution",
+      "source": "built from البطحاء (ط→t, ح→h, P1 article, P4 plain); no tr.wikipedia/TDV entry found",
+      "status": "unattested",
+      "note": ""
+    },
+    {
+      "term": "Hafci Sınır Kapısı",
+      "ar": "منفذ الخفجي",
+      "en": "Al Khafji Port",
+      "suffix_vowel": "ı — Hafci Sınır Kapısı'ndan",
+      "kind": "institution",
+      "source": "termbase addition «Hafci» (tr.wikipedia)",
+      "status": "unattested",
+      "note": ""
+    },
+    {
+      "term": "Birleşik Arap Emirlikleri",
+      "ar": "الإمارات العربية المتحدة",
+      "en": "United Arab Emirates",
+      "suffix_vowel": "i — Birleşik Arap Emirlikleri'nden",
+      "kind": "toponym",
+      "source": "tr.wikipedia «Birleşik Arap Emirlikleri» (established exonym)",
+      "status": "attested",
+      "note": "A2-emirlik echo accepted earlier."
+    },
+    {
+      "term": "Umman",
+      "ar": "سلطنة عُمان",
+      "en": "Oman",
+      "suffix_vowel": "a — Umman'dan",
+      "kind": "toponym",
+      "source": "tr.wikipedia «Umman» (established exonym)",
+      "status": "attested",
+      "note": "The Arabic «سلطنة» not added: the table cell is the country name, as the English."
+    },
+    {
+      "term": "Kuveyt",
+      "ar": "الكويت",
+      "en": "Kuwait",
+      "suffix_vowel": "e — Kuveyt'ten",
+      "kind": "toponym",
+      "source": "tr.wikipedia «Kuveyt» (established exonym; seen in search snippets 2026-11-19)",
+      "status": "attested",
+      "note": ""
+    },
+    {
+      "term": "Bahreyn (country)",
+      "ar": "البحرين",
+      "en": "Bahrain",
+      "suffix_vowel": "e — Bahreyn'den",
+      "kind": "toponym",
+      "source": "termbase «Bahreyn» scope amendment (tr-map-plan-1): bare name = the modern state",
+      "status": "attested",
+      "note": "Existing entry's suffix_vowel field reads «n»; the spoken last vowel is e (Bahreyn'de). Correction proposed, entry not edited."
+    },
+    {
+      "term": "SAPTCO",
+      "ar": "سابتكو (الشركة السعودية للنقل الجماعي)",
+      "en": "SAPTCO",
+      "suffix_vowel": "o — SAPTCO'nun · SAPTCO'ya",
+      "kind": "institution",
+      "source": "saptco.com.sa (company Latin brand); Najm precedent: brands keep their Latin form",
+      "status": "attested",
+      "note": "Brand."
+    },
+    {
+      "term": "SAT (SAPTCO Alsa Ulaşım)",
+      "ar": "سات (سابتكو ألسا للنقل)",
+      "en": "SAT (SAPTCO Alsa for Transportation)",
+      "suffix_vowel": "a — SAT'ın",
+      "kind": "institution",
+      "source": "sat.sa (brand); descriptor translated as «Najm Sigorta Hizmetleri» (Najm for Insurance Services, emergency-amend)",
+      "status": "unattested",
+      "note": "Collision with the verb «sat» (sell) noted; upper case carries the reading. Bracket full name at first mention only."
+    },
+    {
+      "term": "Darb Alwatan",
+      "ar": "درب الوطن",
+      "en": "Darb Alwatan",
+      "suffix_vowel": "a — Darb Alwatan'ın",
+      "kind": "institution",
+      "source": "darbalwatan.com (company Latin brand); Najm precedent (brand, not toponym: «Necm» not used)",
+      "status": "attested",
+      "note": "Alternative from the Arabic «Derb el-Vatan» recorded, not used."
+    },
+    {
+      "term": "flyadeal",
+      "ar": "طيران أديل",
+      "en": "flyadeal",
+      "suffix_vowel": "i — flyadeal'in (spoken «-dil»)",
+      "kind": "institution",
+      "source": "flyadeal.com (brand, lower case as the company writes it)",
+      "status": "attested",
+      "note": "Sentence-initial position avoided (lower-case brand)."
+    },
+    {
+      "term": "Uber",
+      "ar": "أوبر",
+      "en": "Uber",
+      "suffix_vowel": "e — Uber'in",
+      "kind": "institution",
+      "source": "uber.com (brand)",
+      "status": "attested",
+      "note": ""
+    },
+    {
+      "term": "Careem",
+      "ar": "كريم",
+      "en": "Careem",
+      "suffix_vowel": "i — Careem'in (spoken «Kerim»)",
+      "kind": "institution",
+      "source": "careem.com (brand)",
+      "status": "attested",
+      "note": ""
+    },
+    {
+      "term": "Lumi",
+      "ar": "لومي",
+      "en": "Lumi",
+      "suffix_vowel": "i — Lumi'nin",
+      "kind": "institution",
+      "source": "lumirental.com (brand)",
+      "status": "attested",
+      "note": "Not the dried lime «lomi» (P7)."
+    },
+    {
+      "term": "Budget Saudi",
+      "ar": "بدجت السعودية",
+      "en": "Budget Saudi",
+      "suffix_vowel": "i — Budget Saudi'nin",
+      "kind": "institution",
+      "source": "budgetsaudi.com (brand)",
+      "status": "attested",
+      "note": ""
+    },
+    {
+      "term": "Jesr",
+      "ar": "جسر (تطبيق)",
+      "en": "Jesr app",
+      "suffix_vowel": "e — Jesr'e",
+      "kind": "institution",
+      "source": "King Fahd Causeway e-services (app brand); Najm precedent",
+      "status": "attested",
+      "note": "Always with «uygulaması»; «Cisr» (from the Arabic) recorded, not used."
+    },
+    {
+      "term": "Mawgif",
+      "ar": "مواقف / موقف",
+      "en": "Mawgif",
+      "suffix_vowel": "i — Mawgif'in",
+      "kind": "institution",
+      "source": "Al-Ahsa Municipality Mawgif page (app/system brand); Najm precedent",
+      "status": "attested",
+      "note": "With «otopark sistemi» / «uygulaması»."
+    },
+    {
+      "term": "Hafilat El-Ahsa",
+      "ar": "حافلات الأحساء (تطبيق)",
+      "en": "Hafilat Al Ahsa app",
+      "suffix_vowel": "a — Hafilat El-Ahsa uygulamasından",
+      "kind": "institution",
+      "source": "SAPTCO Al-Ahsa buses page (app name); حافلات transliterated, head name per P2",
+      "status": "unattested",
+      "note": "JUDGEMENT: P2 (and C77 regex) bans «Al Ahsa» in /tr/ text except the site brand, so the store name «Hafilat Al Ahsa» is written with the ruled head name. Always followed by «uygulaması»."
+    },
+    {
+      "term": "Genel Ulaştırma Kurumu",
+      "ar": "الهيئة العامة للنقل",
+      "en": "Transport General Authority (TGA)",
+      "suffix_vowel": "u — Genel Ulaştırma Kurumunun (no apostrophe on an institution name)",
+      "kind": "institution",
+      "source": "A12-Kurum / VG8 (هيئة → Kurum); «ulaştırma» TDK",
+      "status": "unattested",
+      "note": "«TGA» not written; caption says «Genel Ulaştırma Kurumu belgesi»."
+    },
+    {
+      "term": "Zekât, Vergi ve Gümrük Kurumu (ZATCA)",
+      "ar": "هيئة الزكاة والضريبة والجمارك",
+      "en": "ZATCA",
+      "suffix_vowel": "a — ZATCA'nın (spoken «zatka»)",
+      "kind": "institution",
+      "source": "zatca.gov.sa (acronym); «zekât» TDK; A12-Kurum",
+      "status": "unattested",
+      "note": "Full form with acronym at its first appearance (section 5 sources), then «ZATCA» as the English."
+    },
+    {
+      "term": "Ulusal Otopark Şirketi",
+      "ar": "الشركة الوطنية للمواقف",
+      "en": "National Parking Company",
+      "suffix_vowel": "i — Ulusal Otopark Şirketi ile",
+      "kind": "institution",
+      "source": "translated descriptive name (Al-Ahsa Municipality Mawgif page)",
+      "status": "unattested",
+      "note": ""
+    },
+    {
+      "term": "Kral Abdullah Çevre Yolu",
+      "ar": "طريق الملك عبدالله الدائري",
+      "en": "King Abdullah Ring Road",
+      "suffix_vowel": "u — Kral Abdullah Çevre Yolu'nu",
+      "kind": "toponym",
+      "source": "termbase «Kral Abdullah Yolu» pattern + «çevre yolu» (TDK)",
+      "status": "unattested",
+      "note": "Distinct from «Kral Abdullah Yolu»."
+    },
+    {
+      "term": "El-Ahsa Otobüs Terminali",
+      "ar": "محطة حافلات الأحساء",
+      "en": "Al-Ahsa Bus Station",
+      "suffix_vowel": "i — El-Ahsa Otobüs Terminali'ne",
+      "kind": "toponym",
+      "source": "descriptive; «otobüs terminali» = Turkish term for an intercity bus station",
+      "status": "unattested",
+      "note": ""
+    },
+    {
+      "term": "El-Ahsa Havalimanı",
+      "ar": "مطار الأحساء",
+      "en": "Al-Ahsa Airport",
+      "suffix_vowel": "ı — El-Ahsa Havalimanı'na",
+      "kind": "toponym",
+      "source": "short form of termbase «El-Ahsa Uluslararası Havalimanı»",
+      "status": "attested",
+      "note": "Where the English drops «International»."
+    },
+    {
+      "term": "Ana İstasyon · Kral Abdullah Askerî Şehri · El-Vasita · Gırnata mahallesi · El-Umran şehri · Sanayi Şehri · Devlet Daireleri Kompleksi",
+      "ar": "المحطة الرئيسية · مدينة الملك عبدالله العسكرية · الوسيطة · حي غرناطة · مدينة العمران · المدينة الصناعية · مجمع الدوائر الحكومية",
+      "en": "Main Station · King Abdullah Military City · Alwasitah · Gharnatah District · Al Omran City · Industrial City · Government Departments Complex",
+      "suffix_vowel": "o — Ana İstasyon'dan · i — Askerî Şehri'ne · a — El-Vasita 1'e (number) · e — Gırnata mahallesine · Sanayi Şehri 4'e · i — Kompleksi'nden",
+      "kind": "toponym",
+      "source": "SAPTCO route guide (stop names); الوسيطة → El-Vasita (P1/P4); غرناطة → Gırnata (the established Turkish name of Granada, TDV «GIRNATA»); termbase «El-Umran» (with «şehri»), «El-Uyun şehri», «Eş-Şube»; «askerî» TDK circumflex (P4 note)",
+      "status": "unattested",
+      "note": "Stop numbers kept as in the source. El-Umran Şehri 6 capitalised as a stop name with its number (judge r0 #8); running text keeps «El-Umran şehri»."
+    },
+    {
+      "term": "Doğu hattı",
+      "ar": "قطار الشرق / شبكة الشرق",
+      "en": "the East train / East network (SAR)",
+      "suffix_vowel": "ı — Doğu hattını · Doğu hattı trenleri",
+      "kind": "institution",
+      "source": "Translated service name (sar.com.sa East Train); one form for network and train",
+      "status": "unattested",
+      "note": "Judge: «Doğu ağı» recorded as alternative, not used; the FAQ says «on the line»."
+    }
+  ],
+  "final_strings": {
+    "ui.foot.l.transport": "Gidiş ve yerel ulaşım",
+    "ui.plan.transport": "Ulaşım rehberi",
+    "seoTitle": "El-Ahsa'ya gidiş ve yerel ulaşım: uçak, tren ve otobüs",
+    "seoDesc": "El-Ahsa'ya uçak, tren, otobüs ya da arabayla gidiş; yerel ulaşımda şehir otobüsü, taksi, araç çağırma uygulamaları, otopark ve resmî işletmeci bağlantıları.",
+    "eyebrow": "Gezinizi planlayın",
+    "title": "El-Ahsa'ya gidiş ve El-Ahsa'da ulaşım",
+    "lead": "El-Ahsa'ya nasıl geleceğinizi seçin, sonra gezilecek yerler arasında nasıl dolaşacağınızı planlayın. Bu sayfada resmî kurumların ve işletmecilerin yayımladığı bilgileri, her birinin kaynağına bağlantıyla bir araya getirdik; saatler ve ücretler değiştiği için rezervasyondan önce kaynağı açın.",
+    "reviewed": "Bilgilerin son gözden geçirilme tarihi:",
+    "tocLabel": "Bu sayfada",
+    "srcLabel": "Kaynak:",
+    "listSep": ", ",
+    "checked": " — son kontrol tarihi:",
+    "newWindow": "(yeni pencerede açılır)",
+    "groups.0.h": "El-Ahsa'ya gidiş",
+    "groups.0.sections.0.h": "Uçakla",
+    "groups.0.sections.0.paras.0": "El-Ahsa Uluslararası Havalimanı'nın kodu HOF'tur; havayolu şirketleri burayı, El-Ahsa'daki Hüfuf şehrinin adıyla listeler. flyadeal'in sayfaları, Hüfuf ile Cidde, Medine gibi şehirler arasındaki uçuşları gösterir; hangi uçuşların olduğunu, aktarmasız olup olmadıklarını ve ücretlerini görmek için rezervasyon ekranında seyahat tarihinizi aratın.",
+    "groups.0.sections.0.paras.1": "Havalimanına uçan şirketler ve varış noktaları mevsimden mevsime değişir; bu yüzden burada sabit bir uçuş tarifesi ya da ücret vermiyoruz.",
+    "groups.0.sections.0.links.0.t": "Hüfuf'tan flyadeal uçuşları",
+    "groups.0.sections.0.src.0.label": "flyadeal",
+    "groups.0.sections.0.src.1.label": "flyadeal: Medine'den Hüfuf'a",
+    "groups.0.sections.1.h": "Dammam havalimanı üzerinden",
+    "groups.0.sections.1.paras.0": "Dammam'daki Kral Fahd Uluslararası Havalimanı'na iniyorsanız havalimanının ulaşım sayfasında taksi, araç çağırma uygulamaları, araç kiralama ve servis otobüsü seçeneklerini bulabilirsiniz. Doğu hattı trenleri hem Dammam istasyonunda hem de Hüfuf'ta durur; bu yüzden indikten sonra havalimanından istasyona bir transfere ihtiyacınız olur. Bu transferi tren biletinizden ayrı olarak ayarlayın.",
+    "groups.0.sections.1.links.0.t": "Kral Fahd Uluslararası Havalimanı'nda ulaşım",
+    "groups.0.sections.1.src.0.label": "Kral Fahd Uluslararası Havalimanı",
+    "groups.0.sections.1.src.1.label": "Suudi Arabistan Demiryolları",
+    "groups.0.sections.2.h": "Trenle",
+    "groups.0.sections.2.paras.0": "Suudi Arabistan Demiryolları, Riyad ile Dammam arasındaki Doğu hattını Hüfuf ve Abkayk üzerinden işletir. Bilet sınıfları: Tasarruflu Ekonomi, Ekonomi, Business ve Business Premium.",
+    "groups.0.sections.2.paras.1": "Biletinizi Suudi Arabistan Demiryolları'nın web sitesinden, uygulamasından ya da istasyonlardaki bilet gişelerinden alın. Çevrim içi rezervasyonda kartla ödeme yapılabilir; istasyon gişelerinde nakit ya da kartla ödeyebilirsiniz. Sorularınız için şirketin web sitesindeki iletişim sayfasını kullanın.",
+    "groups.0.sections.2.links.0.t": "Suudi Arabistan Demiryolları'ndan bilet alın",
+    "groups.0.sections.2.links.1.t": "Suudi Arabistan Demiryolları ile iletişime geçin",
+    "groups.0.sections.2.src.0.label": "Suudi Arabistan Demiryolları: demiryolu ağı",
+    "groups.0.sections.2.src.1.label": "Suudi Arabistan Demiryolları: bilet sınıfları",
+    "groups.0.sections.2.src.2.label": "Suudi Arabistan Demiryolları: bilet satın alma",
+    "groups.0.sections.3.h": "Şehirlerarası otobüsle",
+    "groups.0.sections.3.paras.0.0": "SAT (SAPTCO Alsa Ulaşım), Riyad'dan kalkanlar da dahil, El-Ahsa'ya giden şehirlerarası otobüs seferlerinin biletlerini web sitesinden ve uygulamasından satar. Müşteri hizmetlerine 7/24 ulaşabilirsiniz: ",
+    "groups.0.sections.3.paras.0.2": ".",
+    "groups.0.sections.3.paras.1.0": "Darb Alwatan, NN25 güzergâhında El-Ahsa Otobüs Terminali'ne gelen ve oradan kalkan günlük seferleri yayımlar; seferler aşağıdaki tabloda. Biletinizi şirketin web sitesinden, uygulamasından ya da bilet gişelerinden alın. Bilgi için: ",
+    "groups.0.sections.3.paras.1.2": ".",
+    "groups.0.sections.3.table.caption": "Darb Alwatan tarifesine göre NN25 güzergâhının günlük seferleri",
+    "groups.0.sections.3.table.head.0": "Sefer",
+    "groups.0.sections.3.table.head.1": "Kalkış",
+    "groups.0.sections.3.table.head.2": "Varış",
+    "groups.0.sections.3.table.rows.0.0": "El-Ahsa'dan Hafci'ye",
+    "groups.0.sections.3.table.rows.0.1": "14.00",
+    "groups.0.sections.3.table.rows.0.2": "22.40",
+    "groups.0.sections.3.table.rows.1.0": "Hafci'den El-Ahsa'ya",
+    "groups.0.sections.3.table.rows.1.1": "09.00",
+    "groups.0.sections.3.table.rows.1.2": "17.30",
+    "groups.0.sections.3.table.rows.2.0": "El-Cübeyl'den El-Ahsa'ya",
+    "groups.0.sections.3.table.rows.2.1": "09.30",
+    "groups.0.sections.3.table.rows.2.2": "13.30",
+    "groups.0.sections.3.table.rows.3.0": "El-Ahsa'dan El-Cübeyl'e",
+    "groups.0.sections.3.table.rows.3.1": "18.00",
+    "groups.0.sections.3.table.rows.3.2": "22.00",
+    "groups.0.sections.3.after.0": "Darb Alwatan'ın tarife sayfasında yayın tarihi belirtilmemiş; seyahat edeceğiniz günü rezervasyon ekranında teyit edin.",
+    "groups.0.sections.3.links.0.t": "SAT otobüs bileti alın",
+    "groups.0.sections.3.links.1.t": "Darb Alwatan güzergâhları",
+    "groups.0.sections.3.src.0.label": "SAT: bilet alma",
+    "groups.0.sections.3.src.1.label": "Darb Alwatan: güzergâhlar",
+    "groups.0.sections.3.src.2.label": "Darb Alwatan: bilet alma",
+    "groups.0.sections.4.h": "Arabayla",
+    "groups.0.sections.4.paras.0": "El-Ahsa Belediyesinin belirttiğine göre bölgede iki çevre yolu vardır: vahayı dolaşan dış çevre yolu ile kentsel alanı dolaşan iç çevre yolu (Kral Abdullah Çevre Yolu). Yola çıkmadan önce konaklama adresinizi belirleyin.",
+    "groups.0.sections.4.src.0.label": "El-Ahsa Belediyesi",
+    "groups.0.sections.5.h": "KİK ülkelerinden kara yoluyla",
+    "groups.0.sections.5.paras.0.0": "Suudi Arabistan'ı diğer Körfez İşbirliği Konseyi (KİK) ülkelerine bağlayan resmî kara sınır kapıları vardır; bunların bazıları tabloda yer alır. Yola çıktığınız ülkeye uygun olanı seçin. Vize ve giriş koşulları için ",
+    "groups.0.sections.5.paras.0.1.t": "Vize rehberi",
+    "groups.0.sections.5.paras.0.2": " sayfamıza bakın.",
+    "groups.0.sections.5.table.caption": "Suudi Arabistan ile KİK ülkeleri arasındaki kara sınır kapıları",
+    "groups.0.sections.5.table.head.0": "Ülke",
+    "groups.0.sections.5.table.head.1": "Sınır kapısı",
+    "groups.0.sections.5.table.rows.0.0": "Bahreyn",
+    "groups.0.sections.5.table.rows.0.1": "Kral Fahd Köprüsü",
+    "groups.0.sections.5.table.rows.1.0": "Katar",
+    "groups.0.sections.5.table.rows.1.1": "Selva Sınır Kapısı",
+    "groups.0.sections.5.table.rows.2.0": "Birleşik Arap Emirlikleri",
+    "groups.0.sections.5.table.rows.2.1": "El-Batha Sınır Kapısı",
+    "groups.0.sections.5.table.rows.3.0": "Umman",
+    "groups.0.sections.5.table.rows.3.1": "Rubülhali Sınır Kapısı",
+    "groups.0.sections.5.table.rows.4.0": "Kuveyt",
+    "groups.0.sections.5.table.rows.4.1": "Hafci Sınır Kapısı",
+    "groups.0.sections.5.src.0.label": "Kral Fahd Köprüsü Kurumu",
+    "groups.0.sections.5.src.1.label": "Zekât, Vergi ve Gümrük Kurumu (ZATCA): Selva Sınır Kapısı",
+    "groups.0.sections.5.src.2.label": "ZATCA: Rubülhali Sınır Kapısı",
+    "groups.0.sections.5.src.3.label": "ZATCA: 2024 yıllık raporu",
+    "groups.0.sections.6.h": "Yabancı araçlar ve Kral Fahd Köprüsü",
+    "groups.0.sections.6.paras.0": "KİK ülkeleri dışında tescilli turist araçları için ZATCA'nın geçici giriş rehberi şunları şart koşar: geçerli tescil, geçici giriş süresinin tamamında Suudi Arabistan'ı kapsayan sigorta ve geçerli sürücü belgesi. Rehber ayrıca aracın sahibi olmanızı ya da onaylı bir yetki belgesi taşımanızı ister. Yola çıkmadan önce rehberin tamamını okuyun.",
+    "groups.0.sections.6.paras.1.0": "Kral Fahd Köprüsü'nün Jesr uygulamasıyla köprü geçiş ücretini önceden ödeyebilir, yardım da isteyebilirsiniz. Köprüde yol yardımı için ",
+    "groups.0.sections.6.paras.1.2": " numarasını arayın ya da uygulamayı kullanın.",
+    "groups.0.sections.6.src.0.label": "ZATCA: yabancı turist araçlarının geçici girişi",
+    "groups.0.sections.6.src.1.label": "Kral Fahd Köprüsü: e-hizmetler",
+    "groups.0.sections.6.src.2.label": "Kral Fahd Köprüsü: yol yardımı",
+    "groups.1.h": "El-Ahsa'da ulaşım",
+    "groups.1.sections.0.h": "El-Ahsa şehir otobüsleri",
+    "groups.1.sections.0.paras.0.0": "SAPTCO, El-Ahsa otobüslerini her gün 05.30–23.30 saatleri arasında işletir; otobüsler engelli yolculara uygun donanıma sahiptir. Biletinizi Hafilat El-Ahsa uygulamasından ya da otobüs kartıyla alın; binerken kartı ya da uygulamadaki kodu okuyucuya okutun. Bilgi için: ",
+    "groups.1.sections.0.paras.0.2": ".",
+    "groups.1.sections.0.table.caption": "SAPTCO rehberinde yayımlanan ücretler ve hatlar",
+    "groups.1.sections.0.table.head.0": "Konu",
+    "groups.1.sections.0.table.head.1": "Ayrıntılar",
+    "groups.1.sections.0.table.rows.0.0": "Tek yolculuk",
+    "groups.1.sections.0.table.rows.0.1": "3,45 Suudi riyali (SAR)",
+    "groups.1.sections.0.table.rows.1.0": "Otobüs kartı",
+    "groups.1.sections.0.table.rows.1.1": "Vergi dahil 10 SAR",
+    "groups.1.sections.0.table.rows.2.0": "Hat 1",
+    "groups.1.sections.0.table.rows.2.1": "Ana İstasyon'dan Kral Abdullah Askerî Şehri'ne; 20 dakikada bir",
+    "groups.1.sections.0.table.rows.3.0": "Hat 2",
+    "groups.1.sections.0.table.rows.3.1": "Ana İstasyon'dan çıkıp El-Kaysariye ve tren istasyonu üzerinden yine Ana İstasyon'a dönen ring hattı; 15 dakikada bir",
+    "groups.1.sections.0.table.rows.4.0": "Hat 3",
+    "groups.1.sections.0.table.rows.4.1": "Ana İstasyon'dan El-Vasita 1'e; 20 dakikada bir",
+    "groups.1.sections.0.table.rows.5.0": "Hat 4",
+    "groups.1.sections.0.table.rows.5.1": "Ana İstasyon'dan Gırnata mahallesine; sefer sıklığı teyit edilmeyi bekliyor",
+    "groups.1.sections.0.table.rows.6.0": "Hat 5",
+    "groups.1.sections.0.table.rows.6.1": "Ana İstasyon'dan El-Uyun şehrine; 30 dakikada bir",
+    "groups.1.sections.0.table.rows.7.0": "Hat 6",
+    "groups.1.sections.0.table.rows.7.1": "El-Kaysariye'den El-Umran Şehri 6'ya; 30 dakikada bir",
+    "groups.1.sections.0.table.rows.8.0": "Hat 7",
+    "groups.1.sections.0.table.rows.8.1": "Devlet Daireleri Kompleksi'nden El-Ahsa Havalimanı'na; 120 dakikada bir",
+    "groups.1.sections.0.table.rows.9.0": "Hat 8",
+    "groups.1.sections.0.table.rows.9.1": "Ana İstasyon'dan Sanayi Şehri 4'e; 30 dakikada bir",
+    "groups.1.sections.0.table.rows.10.0": "Hat 9",
+    "groups.1.sections.0.table.rows.10.1": "Ana İstasyon'dan Eş-Şube kasabasına; 30 dakikada bir",
+    "groups.1.sections.0.after.0": "Hatlar ve sefer sıklıkları, tarih belirtilmemiş SAPTCO rehberinde yayımlandığı gibidir; her hattın ilk ve son seferi için uygulamaya bakın.",
+    "groups.1.sections.0.links.0.t": "Hafilat El-Ahsa uygulaması",
+    "groups.1.sections.0.src.0.label": "SAPTCO: El-Ahsa otobüsleri",
+    "groups.1.sections.0.src.1.label": "SAPTCO: hat haritası ve ücretler",
+    "groups.1.sections.1.h": "Taksiler",
+    "groups.1.sections.1.paras.0.0": "En fazla 4 yolcu için geçerli genel taksi tarifesini Genel Ulaştırma Kurumu belirler; tarife aşağıdaki tabloda. Taksimetrenin açık olduğundan emin olun: tarife kartında, taksimetre çalışmıyorsa yolculuğun ücretsiz olduğu yazar. Genel Ulaştırma Kurumuna soru ve görüşleriniz için: ",
+    "groups.1.sections.1.paras.0.2": ".",
+    "groups.1.sections.1.table.caption": "Genel taksi tarifesi, SAR cinsinden (Genel Ulaştırma Kurumu belgesi, Ekim 2024)",
+    "groups.1.sections.1.table.head.0": "Konu",
+    "groups.1.sections.1.table.head.1": "Tarife",
+    "groups.1.sections.1.table.rows.0.0": "Açılış ücreti",
+    "groups.1.sections.1.table.rows.0.1": "6,4 (gece 10)",
+    "groups.1.sections.1.table.rows.1.0": "Kilometre başına",
+    "groups.1.sections.1.table.rows.1.1": "2,1",
+    "groups.1.sections.1.table.rows.2.0": "Bekleme ya da 20 km/sa altında sürüşte dakika başına",
+    "groups.1.sections.1.table.rows.2.1": "0,9",
+    "groups.1.sections.1.table.rows.3.0": "En düşük ücret",
+    "groups.1.sections.1.table.rows.3.1": "10",
+    "groups.1.sections.1.after.0": "Gece tarifesi pazar–perşembe günleri 00.00–06.00, cuma ve cumartesi günleri 02.00–06.00 saatleri arasında uygulanır. Bu, havalimanı taksi ücreti değil, genel taksi tarifesidir.",
+    "groups.1.sections.1.src.0.label": "Genel Ulaştırma Kurumu: genel taksi özellikleri",
+    "groups.1.sections.2.h": "Araç çağırma uygulamaları",
+    "groups.1.sections.2.paras.0": "El-Ahsa'da Uber uygulamasından UberX çağırabilir, fiyatı çağırmadan önce görebilirsiniz. Careem'in uygulamasında El-Ahsa Uluslararası Havalimanı'ndan yolculuk seçeneği görünür; uygulamanın gösterdiği buluşma noktasına gidin ve onaylamadan önce tahmini ücrete bakın.",
+    "groups.1.sections.2.src.0.label": "Uber: El-Ahsa",
+    "groups.1.sections.2.src.1.label": "Careem: El-Ahsa Havalimanı",
+    "groups.1.sections.3.h": "Araç kiralama",
+    "groups.1.sections.3.paras.0": "Lumi, El-Ahsa'da bir şubesi olduğunu belirtir; Budget Saudi de El-Ahsa'daki hizmetleri için sitesinde bir telefon numarası yayımlar. Kiralama koşullarını (yaş, uluslararası ehliyet, sigorta ve ödeme) her şirket kendisi belirler; bu yüzden rezervasyon yaparken bunları kontrol edin.",
+    "groups.1.sections.3.links.0.t": "Lumi: El-Ahsa şubesi",
+    "groups.1.sections.3.links.1.t": "Budget Saudi: Doğu Bölgesi",
+    "groups.1.sections.3.src.0.label": "Lumi",
+    "groups.1.sections.3.src.1.label": "Budget Saudi",
+    "groups.1.sections.4.h": "Havalimanından ve varış istasyonlarından",
+    "groups.1.sections.4.paras.0": "El-Ahsa otobüs rehberinde havalimanına giden bir hat ile tren istasyonunun önünden geçen bir hat var (hat tablosuna bakın). Uber ve Careem'in uygulamalarında da El-Ahsa Havalimanı'ndan yolculuk seçeneği görünür; vardığınızda buluşma noktasını ve ücreti görmek için uygulamayı açın.",
+    "groups.1.sections.4.src.0.label": "SAPTCO: hat rehberi",
+    "groups.1.sections.4.src.1.label": "Uber",
+    "groups.1.sections.4.src.2.label": "Careem",
+    "groups.1.sections.5.h": "Otopark",
+    "groups.1.sections.5.paras.0": "El-Ahsa Belediyesi, Ulusal Otopark Şirketi ile birlikte Hüfuf'un merkezinde ücretli Mawgif otopark sistemini işletir. Ücreti bozuk parayla ya da Mawgif uygulamasındaki cüzdanla ödeyin; park ederken işaretli alana ve ödediğiniz süreye uyun.",
+    "groups.1.sections.5.table.caption": "Hüfuf merkezinde Mawgif ücreti ve saatleri",
+    "groups.1.sections.5.table.head.0": "Konu",
+    "groups.1.sections.5.table.head.1": "Ayrıntılar",
+    "groups.1.sections.5.table.rows.0.0": "Ücret",
+    "groups.1.sections.5.table.rows.0.1": "Saat başına 2,30 SAR",
+    "groups.1.sections.5.table.rows.1.0": "Cumartesi–perşembe",
+    "groups.1.sections.5.table.rows.1.1": "08.00–12.00 ve 16.00–22.00",
+    "groups.1.sections.5.table.rows.2.0": "Cuma",
+    "groups.1.sections.5.table.rows.2.1": "Ücretsiz",
+    "groups.1.sections.5.after.0": "Ramazan ayındaki saatler otopark makinelerinde duyurulur. Bu ücret yalnızca Hüfuf merkezinde geçerlidir.",
+    "groups.1.sections.5.src.0.label": "El-Ahsa Belediyesi: Mawgif",
+    "groups.1.sections.6.h": "Engelli yolcular için ulaşım",
+    "groups.1.sections.6.paras.0": "SAPTCO, El-Ahsa otobüslerinin engelli yolculara uygun donanıma sahip olduğunu belirtir. Suudi Arabistan Demiryolları, kendi koşulları çerçevesinde kayıtlı engelli yolculara yetişkin ekonomi biletinde %50 indirim uygular; bu indirim birlikte rezervasyon yapılan bir refakatçi için de geçerlidir. Uber'in El-Ahsa sayfasına göre şehirde şu anda Uber üzerinden tekerlekli sandalyeye uygun araç sunulmuyor.",
+    "groups.1.sections.6.src.0.label": "SAPTCO",
+    "groups.1.sections.6.src.1.label": "Suudi Arabistan Demiryolları: bilet sınıfları",
+    "groups.1.sections.6.src.2.label": "Uber",
+    "faqH": "Sıkça sorulan sorular",
+    "faqs.0.q": "El-Ahsa'da toplu taşıma otobüsü var mı?",
+    "faqs.0.a": "Evet. SAPTCO, El-Ahsa otobüslerini her gün 05.30–23.30 saatleri arasında işletir; biletinizi Hafilat El-Ahsa uygulamasından ya da otobüs kartıyla alabilirsiniz.",
+    "faqs.1.q": "El-Ahsa'ya trenle nasıl gidilir?",
+    "faqs.1.a": "Suudi Arabistan Demiryolları'nın Doğu hattı, Riyad ile Dammam arasındaki güzergâhta El-Ahsa'daki Hüfuf'ta durur. Biletinizi şirketin web sitesinden, uygulamasından ya da istasyonlardaki bilet gişelerinden alın.",
+    "faqs.2.q": "Uber ve Careem El-Ahsa'da hizmet veriyor mu?",
+    "faqs.2.a": "Uber, El-Ahsa'da UberX hizmeti sunar; Careem'in uygulamasında da El-Ahsa Uluslararası Havalimanı'ndan yolculuk seçeneği görünür. Ücreti ve buluşma noktasını görmek için uygulamayı açın.",
+    "faqs.3.q": "El-Ahsa'da taksi ücreti ne kadar?",
+    "faqs.3.a": "Genel taksi tarifesini Genel Ulaştırma Kurumu belirler: açılış ücreti 6,4 Suudi riyali (SAR), gece 10 SAR; kilometre başına 2,1 SAR; en düşük ücret 10 SAR.",
+    "keepH": "Yolda",
+    "keepP": "Acil durum numaraları (trafik polisi, yol güvenliği ve ambulans dahil) ile kaza ya da arıza durumunda neler yapmanız gerektiği için şu sayfaya bakın:",
+    "keepLink": "Acil durumlar ve yardım",
+    "disclaimer": "Bilgiler, adı geçen kurumların kontrol tarihinde yayımladığı şekliyle verilmiştir; hizmetin sunulacağını ya da fiyatların değişmeyeceğini garanti etmez. Visit Al-Ahsa bilet satmaz, rezervasyon da yapmaz."
+  },
+  "post_reader_addendum": {
+    "reader": "blind-reader-post.md (21 items; input blind-input-post.txt)",
+    "precedent": "hours-google-1 / emergency-amend: approved text, fresh reader ruled by the same judge in an addendum",
+    "rulings": [
+      {
+        "n": 1,
+        "sev": "S",
+        "keys": [
+          "groups.0.sections.1.paras.0"
+        ],
+        "ruling": "applied",
+        "reason": "en «ride-sharing», but ar «تطبيقات النقل» is the same term as the section heading «Ride-hailing apps» (ar تطبيقات النقل), and the Arabic is the authority: «araç çağırma uygulamaları», the page's one term. «araç paylaşımı» reads as carpooling."
+      },
+      {
+        "n": 2,
+        "sev": "S",
+        "keys": [
+          "groups.0.sections.4.paras.0"
+        ],
+        "ruling": "source",
+        "reason": "en/ar give the instruction without its purpose (حدّد عنوان إقامتك قبل الانطلاق). Stating what the address is for (navigation, which ring road) would add a fact; kept faithful, logged SD-car-address."
+      },
+      {
+        "n": 3,
+        "sev": "S",
+        "keys": [
+          "groups.1.sections.0.table.rows.*.1"
+        ],
+        "ruling": "source",
+        "reason": "«Ana İstasyon» is the SAPTCO brochure stop name (ar المحطة الرئيسية); en/ar give no location and do not say whether it is the bus terminal. Nothing added (coordinator); logged SD-main-station."
+      },
+      {
+        "n": 4,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.0.table.rows.4.1",
+          "rows.7.1",
+          "rows.9.1"
+        ],
+        "ruling": "source",
+        "reason": "Numbered stop names are the brochure's (Alwasitah 1, Al Omran City 6, Industrial City 4); whether they are districts is not stated. Kept as names (judge r0 #8); folded into SD-main-station."
+      },
+      {
+        "n": 5,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.0.table.rows.8.1"
+        ],
+        "ruling": "rejected",
+        "reason": "Second reader on «120 dakikada bir»; the figure stays as published (brief: numbers literal; ruling TR6, judge r0 #16)."
+      },
+      {
+        "n": 6,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.1.after.0"
+        ],
+        "ruling": "source",
+        "reason": "Which night is meant is ambiguous in en/ar alike: SD-taxi-night (judge r0 #11), unchanged."
+      },
+      {
+        "n": 7,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.1.after.0"
+        ],
+        "ruling": "source",
+        "reason": "en/ar say the table is not the airport-taxi fare and give no airport fare or where it is published; logged SD-airport-taxi. Nothing added."
+      },
+      {
+        "n": 8,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.3.paras.0.0"
+        ],
+        "ruling": "applied",
+        "reason": "«Riyad çıkışlılar» read as people → «Riyad'dan kalkanlar da dahil,» (the trips)."
+      },
+      {
+        "n": 9,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.3.paras.0.0"
+        ],
+        "ruling": "rejected",
+        "reason": "The descriptor is translated, as the termbase entry «Najm Sigorta Hizmetleri» (Najm for Insurance Services, emergency-amend) does; the brand «SAT» stays Latin."
+      },
+      {
+        "n": 10,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.3.table.rows.0.0",
+          "groups.0.sections.5.table.rows.4.1"
+        ],
+        "ruling": "rejected",
+        "reason": "The table rows mirror en/ar (Al-Ahsa to Khafji; Al Khafji Port); the crossing row carries «Sınır Kapısı», the bus row the bare town name. No doubt the reader said needs resolving; no change."
+      },
+      {
+        "n": 11,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.0.paras.0",
+          "groups.0.sections.0.paras.1"
+        ],
+        "ruling": "applied",
+        "reason": "«Cidde, Medine gibi şehirler» (both are cities; no fact added); «uçuş noktaları» → «varış noktaları»."
+      },
+      {
+        "n": 12,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.0.paras.0",
+          "groups.0.sections.3.after.0"
+        ],
+        "ruling": "applied",
+        "reason": "«rezervasyon aracı» (araç = vehicle) → «rezervasyon ekranı»."
+      },
+      {
+        "n": 13,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.2.paras.1",
+          "faqs.1.a"
+        ],
+        "ruling": "applied",
+        "reason": "«… ya da … veya …» → «web sitesinden, uygulamasından ya da … gişelerinden»."
+      },
+      {
+        "n": 14,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.4.paras.0"
+        ],
+        "ruling": "applied",
+        "reason": "«anlattığına göre» → «belirttiğine göre» (the page's verb for official sources)."
+      },
+      {
+        "n": 15,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.0.after.0"
+        ],
+        "ruling": "applied",
+        "reason": "«SAPTCO rehberinde (tarihsiz)» → «tarih belirtilmemiş SAPTCO rehberinde» (same wording as the Darb Alwatan note)."
+      },
+      {
+        "n": 16,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.1.paras.0.0"
+        ],
+        "ruling": "applied",
+        "reason": "Bracket removed: «En fazla 4 yolcu için geçerli genel taksi tarifesini …»."
+      },
+      {
+        "n": 17,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.0.table.rows.0.1"
+        ],
+        "ruling": "source",
+        "reason": "SD-fare-tax (judge r0 #19), unchanged."
+      },
+      {
+        "n": 18,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.6.paras.0"
+        ],
+        "ruling": "applied",
+        "reason": "«bu hizmet üzerinden» (read back to the railway) → «Uber üzerinden»."
+      },
+      {
+        "n": 19,
+        "sev": "m",
+        "keys": [
+          "groups.1.sections.6.paras.0"
+        ],
+        "ruling": "source",
+        "reason": "SD-sar-registered (judge r0 #14), unchanged."
+      },
+      {
+        "n": 20,
+        "sev": "m",
+        "keys": [
+          "disclaimer"
+        ],
+        "ruling": "applied",
+        "reason": "«hizmetin sunulacağını ya da fiyatların değişmeyeceğini garanti etmez» (en not a guarantee of availability or price)."
+      },
+      {
+        "n": 21,
+        "sev": "m",
+        "keys": [
+          "groups.0.sections.2.paras.0"
+        ],
+        "ruling": "rejected",
+        "reason": "The Arabic authority translates the class names (الاقتصادية الموفّرة …); Turkish translates the two that have the usual Turkish word and keeps «Business» as Turkish travel usage. The reader accepts the labels as the operator's; no change."
+      }
+    ],
+    "counts": {
+      "applied": 10,
+      "rejected": 4,
+      "source": 7
+    },
+    "strings_changed": [
+      "groups.0.sections.0.paras.0",
+      "groups.0.sections.0.paras.1",
+      "groups.0.sections.1.paras.0",
+      "groups.0.sections.2.paras.1",
+      "groups.0.sections.3.paras.0.0",
+      "groups.0.sections.3.after.0",
+      "groups.0.sections.4.paras.0",
+      "groups.1.sections.0.after.0",
+      "groups.1.sections.1.paras.0.0",
+      "groups.1.sections.6.paras.0",
+      "faqs.1.a",
+      "disclaimer"
+    ],
+    "c77": {
+      "result": "PASS",
+      "fields": 186,
+      "suffixes": 67,
+      "turkishLetters": 517
+    },
+    "score_before": 91,
+    "score_after": 92,
+    "breakdown_after": {
+      "accuracy": 28,
+      "nativeness": 27,
+      "termbase_orthography_style": 19,
+      "fit_for_traveller": 8,
+      "structure": 10
+    },
+    "new_source_defects": [
+      "SD-car-address",
+      "SD-main-station",
+      "SD-airport-taxi"
+    ],
+    "source_revision": {
+      "key": "groups.0.sections.1.paras.0",
+      "en": "If you arrive at King Fahd International Airport in Dammam, the airport’s transport page lists taxis, ride-sharing, car rental and shuttle buses. The East train stops at both Dammam station and Hofuf, so after you land you need a transfer from the airport to the station; book it separately from the train.",
+      "ar": "إن وصلت إلى مطار الملك فهد الدولي في الدمام، فصفحة النقل في المطار تذكر سيارات الأجرة وتطبيقات النقل وتأجير السيارات والحافلات الترددية. ويتوقف قطار الشرق في محطة الدمام وفي الهفوف، فبعد وصولك تحتاج انتقالاً من المطار إلى المحطة؛ رتّبه مستقلاً عن رحلة القطار.",
+      "change": "Second sentence: «runs between Dammam station and Hofuf» → «stops at both Dammam station and Hofuf» (ويتوقف قطار الشرق في محطة الدمام وفي الهفوف); the old wording contradicted the Riyadh–Dammam via Hofuf line.",
+      "tr": "«Doğu hattı trenleri hem Dammam istasyonunda hem de Hüfuf'ta durur» — same verb (durur) as faqs.1.a «Hüfuf'ta durur»; ruling #1 (araç çağırma uygulamaları) kept."
+    }
+  }
+}

@@ -6,7 +6,7 @@
 // مدة استخدام الرخصة الأجنبية، ورسوم الجسر. لا رقم في الصفحة من خارج هذا الملف.
 export type TransportLang = 'ar' | 'en';
 export type Src = { label: string; href: string };
-export type Para = string | (string | { tel: string } | { t: string; href: string })[];
+export type Para = string | (string | { tel: string } | { t: string; page: 'visa' })[];
 export type Section = {
   id: string;
   h: string;
@@ -19,7 +19,7 @@ export type Section = {
 export type TransportPage = {
   seoTitle: string; seoDesc: string;
   eyebrow: string; title: string; lead: string; reviewed: string; date: string; tocLabel: string;
-  srcLabel: string; checked: string; newWindow: string;
+  srcLabel: string; listSep: string; checked: string; newWindow: string;
   groups: { h: string; sections: Section[] }[];
   faqH: string; faqs: { q: string; a: string }[];
   keepH: string; keepP: string; keepLink: string; disclaimer: string;
@@ -68,6 +68,7 @@ const AR: TransportPage = {
   date: '2026-11-18',
   tocLabel: 'محتويات الصفحة',
   srcLabel: 'المصدر:',
+  listSep: '، ',
   checked: ' — آخر تحقق:',
   newWindow: '(يفتح في نافذة جديدة)',
   groups: [
@@ -81,7 +82,7 @@ const AR: TransportPage = {
         src: [{ label: 'طيران أديل', href: U.flyadealHof }, { label: 'طيران أديل: المدينة المنورة إلى الهفوف', href: U.flyadealMed }] },
       { id: 'dammam', h: 'عبر مطار الدمام',
         paras: [
-          'إن وصلت إلى مطار الملك فهد الدولي في الدمام، فصفحة النقل في المطار تذكر سيارات الأجرة وتطبيقات النقل وتأجير السيارات والحافلات الترددية. ويمرّ قطار الشرق بين الدمام والهفوف، فرتّب رحلة القطار مستقلةً عن انتقالك من المطار إلى المحطة.',
+          'إن وصلت إلى مطار الملك فهد الدولي في الدمام، فصفحة النقل في المطار تذكر سيارات الأجرة وتطبيقات النقل وتأجير السيارات والحافلات الترددية. ويتوقف قطار الشرق في محطة الدمام وفي الهفوف، فبعد وصولك تحتاج انتقالاً من المطار إلى المحطة؛ رتّبه مستقلاً عن رحلة القطار.',
         ],
         links: [{ id: 'kfia', t: 'النقل في مطار الملك فهد الدولي', href: U.kfia }],
         src: [{ label: 'مطار الملك فهد الدولي', href: U.kfia }, { label: 'الخطوط الحديدية السعودية (سار)', href: U.sarNet }] },
@@ -109,7 +110,7 @@ const AR: TransportPage = {
         src: [{ label: 'أمانة الأحساء', href: U.amana }] },
       { id: 'gcc', h: 'براً من دول الخليج',
         paras: [
-          ['تصل المملكة بدول مجلس التعاون منافذ برية رسمية، منها ما في الجدول؛ اختر المنفذ الذي يناسب بلد انطلاقك. وللتأشيرة وشروط الدخول راجع ', { t: 'دليل التأشيرات', href: '/دليل-التأشيرات/' }, '.'],
+          ['تصل المملكة بدول مجلس التعاون منافذ برية رسمية، منها ما في الجدول؛ اختر المنفذ الذي يناسب بلد انطلاقك. وللتأشيرة وشروط الدخول راجع ', { t: 'دليل التأشيرات', page: 'visa' }, '.'],
         ],
         table: { caption: 'منافذ برية بين المملكة ودول مجلس التعاون', head: ['الدولة', 'المنفذ'],
           rows: [['البحرين', 'جسر الملك فهد'], ['قطر', 'منفذ سلوى'], ['الإمارات العربية المتحدة', 'منفذ البطحاء'], ['سلطنة عُمان', 'منفذ الربع الخالي'], ['الكويت', 'منفذ الخفجي']] },
@@ -173,7 +174,7 @@ const AR: TransportPage = {
   faqH: 'أسئلة شائعة',
   faqs: [
     { q: 'هل في الأحساء حافلات نقل عام؟', a: 'نعم. تشغّل سابتكو حافلات الأحساء يومياً من 5:30 صباحاً إلى 11:30 مساءً، وتُشترى التذكرة من تطبيق «حافلات الأحساء» أو ببطاقة الحافلة.' },
-    { q: 'كيف أصل إلى الأحساء بالقطار؟', a: 'تمرّ شبكة قطار الشرق التابعة لسار بالهفوف بين الرياض والدمام. احجز من موقع سار أو تطبيقها أو مكاتب التذاكر في المحطات.' },
+    { q: 'كيف أصل إلى الأحساء بالقطار؟', a: 'تمرّ شبكة قطار الشرق التابعة لسار بالهفوف في الأحساء بين الرياض والدمام. احجز من موقع سار أو تطبيقها أو مكاتب التذاكر في المحطات.' },
     { q: 'هل تعمل أوبر وكريم في الأحساء؟', a: 'تعرض أوبر خدمة UberX في الأحساء، وتعرض كريم رحلات من مطار الأحساء الدولي. افتح التطبيق لمعرفة السعر ونقطة الالتقاء.' },
     { q: 'كم تعرفة سيارة الأجرة في الأحساء؟', a: 'تحدّد الهيئة العامة للنقل تعرفة الأجرة العامة: 6.4 ريال بداية الرحلة (ليلاً 10)، و2.1 ريال لكل كيلومتر، والحد الأدنى 10 ريالات.' },
   ],
@@ -193,6 +194,7 @@ const EN: TransportPage = {
   date: '2026-11-18',
   tocLabel: 'On this page',
   srcLabel: 'Source:',
+  listSep: ', ',
   checked: ' — last checked:',
   newWindow: '(opens in a new window)',
   groups: [
@@ -206,7 +208,7 @@ const EN: TransportPage = {
         src: [{ label: 'flyadeal', href: U.flyadealHof }, { label: 'flyadeal: Medina to Hofuf', href: U.flyadealMed }] },
       { id: 'dammam', h: 'Through Dammam airport',
         paras: [
-          'If you arrive at King Fahd International Airport in Dammam, the airport’s transport page lists taxis, ride-sharing, car rental and shuttle buses. The East train runs between Dammam and Hofuf, so book the train separately from your transfer between the airport and the station.',
+          'If you arrive at King Fahd International Airport in Dammam, the airport’s transport page lists taxis, ride-sharing, car rental and shuttle buses. The East train stops at both Dammam station and Hofuf, so after you land you need a transfer from the airport to the station; book it separately from the train.',
         ],
         links: [{ id: 'kfia', t: 'King Fahd International Airport transport', href: U.kfia }],
         src: [{ label: 'King Fahd International Airport', href: U.kfia }, { label: 'Saudi Arabia Railways (SAR)', href: U.sarNet }] },
@@ -234,7 +236,7 @@ const EN: TransportPage = {
         src: [{ label: 'Al-Ahsa Municipality', href: U.amana }] },
       { id: 'gcc', h: 'By road from the GCC',
         paras: [
-          ['Official land crossings link Saudi Arabia with the other GCC countries, including those in the table; choose the one that suits your country of departure. For visas and entry requirements, see our ', { t: 'visa guide', href: '/en/visa-guide/' }, '.'],
+          ['Official land crossings link Saudi Arabia with the other GCC countries, including those in the table; choose the one that suits your country of departure. For visas and entry requirements, see our ', { t: 'visa guide', page: 'visa' }, '.'],
         ],
         table: { caption: 'Land crossings between Saudi Arabia and the GCC countries', head: ['Country', 'Crossing'],
           rows: [['Bahrain', 'King Fahd Causeway'], ['Qatar', 'Salwa Port'], ['United Arab Emirates', 'Al Batha Port'], ['Oman', 'Empty Quarter Port'], ['Kuwait', 'Al Khafji Port']] },
@@ -298,7 +300,7 @@ const EN: TransportPage = {
   faqH: 'Frequently asked questions',
   faqs: [
     { q: 'Does Al-Ahsa have public buses?', a: 'Yes. SAPTCO runs Al-Ahsa buses daily from 5:30 AM to 11:30 PM; buy tickets in the Hafilat Al Ahsa app or with a bus card.' },
-    { q: 'How do I get to Al-Ahsa by train?', a: 'SAR’s East network stops at Hofuf on the line between Riyadh and Dammam. Book on SAR’s website or app, or at station ticket offices.' },
+    { q: 'How do I get to Al-Ahsa by train?', a: 'SAR’s East network stops at Hofuf, in Al-Ahsa, on the line between Riyadh and Dammam. Book on SAR’s website or app, or at station ticket offices.' },
     { q: 'Do Uber and Careem operate in Al-Ahsa?', a: 'Uber offers UberX in Al-Ahsa, and Careem lists rides from Al-Ahsa International Airport. Open the app to see the price and pickup point.' },
     { q: 'How much is a taxi in Al-Ahsa?', a: 'The Transport General Authority sets the public-taxi tariff: SAR 6.4 flagfall (10 at night), SAR 2.1 per kilometre, and a minimum fare of SAR 10.' },
   ],

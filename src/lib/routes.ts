@@ -133,10 +133,9 @@ export const toolsHref = (lang: Lang): string => (lang === 'ar' ? TOOLS_ALT.ar :
 export const MARKETS_ALT = { ar: '/أسواق-المزارعين/', en: '/en/farmers-markets/' } as const;
 export const marketsHref = (lang: Lang): string => (lang === 'ar' ? MARKETS_ALT.ar : MARKETS_ALT.en);
 
-/** الوصول والتنقل في الأحساء (2026-11-18) — عربي/إنجليزي فقط كأدوات السفر، فلا تدخل STATIC_AR
- *  ولا تُربط من اللغات الأخرى حتى تمرّ نصوصها بخطوط الترجمة. */
-export const TRANSPORT_ALT = { ar: '/النقل-والمواصلات/', en: '/en/getting-around/' } as const;
-export const transportHref = (lang: Lang): string => (lang === 'ar' ? TRANSPORT_ALT.ar : TRANSPORT_ALT.en);
+/** الوصول والتنقل في الأحساء (2026-11-18) — مسارات كل اللغات؛ المبنيّ منها فعلاً يقرّره
+ *  src/data/transport-i18n.ts (TRANSPORT_LANGS) بعد اعتماد خط كل لغة. */
+export const TRANSPORT_ALL = { ar: '/النقل-والمواصلات/', en: '/en/getting-around/', zh: '/zh/getting-around/', de: '/de/getting-around/', ru: '/ru/getting-around/', ur: '/ur/getting-around/', tr: '/tr/getting-around/' } as const;
 
 /** الطوارئ والمساعدة (2026-11-15) — مسارات كل اللغات؛ المبنيّ منها فعلاً يقرّره
  *  src/data/emergency-i18n.ts (EMERGENCY_LANGS) بعد اعتماد خط كل لغة. */
