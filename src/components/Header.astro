@@ -8,7 +8,8 @@ import type { Lang } from '../i18n/ui';
 import type { AltLinks } from '../i18n/utils';
 import { LANG_META } from '../i18n/langs';
 import { listedAlt } from '../i18n/unlisted';
-import { storesHref, marketsHref, transportHref } from '../lib/routes';
+import { storesHref, marketsHref } from '../lib/routes';
+import { TRANSPORT_LANGS, transportHref } from '../data/transport-i18n';
 
 // overlay: رأس الرئيسية «الواحة تتكشّف» (القرار أ3، البند 4) — شفاف فوق الفصل الأول، ومضبّب
 // كالمعتاد حين يعبر حارس [data-header-sentinel] (عند 60% من ارتفاع الشاشة) أعلى الإطار.
@@ -74,8 +75,8 @@ const groups: { id: string; label: string; flat?: boolean; items: NavItem[] }[] 
   ] },
   { id: 'visit', label: t('nav.g.visit'), flat: true, items: [
     { href: routes.stay, label: t('nav.stayShort') },
-    // الوصول والتنقل عربي/إنجليزي فقط، وفي القائمة المطويّة وحدها فلا يتغيّر اتّساع الشريط المقيس
-    ...(ar || lang === 'en' ? [{ href: transportHref(lang), label: t('foot.l.transport'), only: 'drawer' as const }] : []),
+    // الوصول والتنقل باللغات المبنيّة (transport-i18n)، وفي القائمة المطويّة وحدها فلا يتغيّر اتّساع الشريط المقيس
+    ...(TRANSPORT_LANGS.includes(lang) ? [{ href: transportHref(lang), label: t('foot.l.transport'), only: 'drawer' as const }] : []),
     { href: routes.map, label: t('nav.map'), only: 'bar' },
     { href: routes.myTrip, label: t('nav.myTrip'), only: 'drawer', badge: true },
   ] },

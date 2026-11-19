@@ -1,0 +1,964 @@
+{
+  "batch": "transport",
+  "lang": "ru",
+  "loop": 1,
+  "score": 92,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 26,
+    "termbase_orthography": 19,
+    "traveller_fit": 8,
+    "structure": 10
+  },
+  "blind_reader_rulings": [
+    {
+      "item": "1 — SAR = currency and railway; line 119 reads as money",
+      "ruling": "applied",
+      "keys": [
+        "groups.1.sections.6.paras.0",
+        "groups.0.sections.2.paras.1"
+      ],
+      "why": "Bare «SAR» as the railway in body text becomes «железнодорожная компания SAR» (termbase entry «SAR — disambiguation…»: «компания SAR»). Currency stays «саудовский риял (SAR)» / «N SAR» (style_rules.waluta, termbase «SAR (Saudi riyal)»); «рияль» rejected — termbase spelling «риял». Section labels «SAR: …» kept: they sit in the rail section or after «Источник:»."
+    },
+    {
+      "item": "2a — how Hofuf relates to Al-Ahsa",
+      "ruling": "source_defect",
+      "keys": [
+        "groups.0.sections.0.paras.0",
+        "faqs.1.a"
+      ],
+      "why": "Partly answered by the owner source change: faqs.1.a now says «Hofuf, in Al-Ahsa» → «в Эль-Хуфуфе, в Аль-Ахсе». The body never states it; adding it elsewhere would add a fact (P5). Logged."
+    },
+    {
+      "item": "2b — «Аль-» vs «Эль-» looks inconsistent",
+      "ruling": "rejected",
+      "keys": [
+        "*"
+      ],
+      "why": "Calibration ruling P1: «Аль-Ахса» head name (UNESCO/brand), «Эль-Хуфуф» (ru.wikipedia) — binding."
+    },
+    {
+      "item": "3 — «на страницах есть рейсы»",
+      "ruling": "applied",
+      "keys": [
+        "groups.0.sections.0.paras.0"
+      ],
+      "why": "«На сайте flyadeal указаны рейсы…» (ar «تعرض … في صفحاتها»)."
+    },
+    {
+      "item": "4 — «поэтому» does not follow; which transfer",
+      "ruling": "applied",
+      "keys": [
+        "groups.0.sections.1.paras.0"
+      ],
+      "why": "Source amended by the owner (en/ar: train runs between Dammam station and Hofuf, so after landing you need an airport–station transfer; book it separately from the train). Translated from the new en/ar; the causal link now holds."
+    },
+    {
+      "item": "5 — «Абкайк (или Букайк)» unclear",
+      "ruling": "rejected",
+      "keys": [
+        "groups.0.sections.2.paras.0"
+      ],
+      "why": "Termbase verified form «Абкайк (или Букайк)» and TM pair plan-your-trip getThere.2.d «Абкайке (или Букайке)»."
+    },
+    {
+      "item": "6 — ISO dates 2026-11-18",
+      "ruling": "rejected",
+      "keys": [
+        "reviewed",
+        "checked"
+      ],
+      "why": "Date is rendered by code as ISO in a separate span, same as the approved emergency page; not a translation string."
+    },
+    {
+      "item": "7 — «страны Арабского залива» unfamiliar",
+      "ruling": "rejected",
+      "keys": [
+        "groups.0.sections.5.*",
+        "groups.0.sections.6.paras.0"
+      ],
+      "why": "Owner ruling O-GULF (gulf-unify-1027 R1): unfamiliarity accepted, «Персидский» never used; termbase GCC entry «страны Арабского залива»."
+    },
+    {
+      "item": "8 — «от автовокзала … и до него» clumsy",
+      "ruling": "applied",
+      "keys": [
+        "groups.0.sections.3.paras.1.0"
+      ],
+      "why": "«с автовокзала Аль-Ахсы и обратно»."
+    },
+    {
+      "item": "9 — NN25 one route or two; intermediate stops",
+      "ruling": "source_defect",
+      "keys": [
+        "groups.0.sections.3.table.*"
+      ],
+      "why": "en/ar give only the four services; nothing on stops. Logged."
+    },
+    {
+      "item": "10 — address advice unrelated to ring roads",
+      "ruling": "rejected",
+      "keys": [
+        "groups.0.sections.4.paras.0"
+      ],
+      "why": "en/ar juxtapose the two sentences the same way; a linking purpose («чтобы понять, по какому кольцу ехать») would add a fact (P5)."
+    },
+    {
+      "item": "11 — «удобный для страны»",
+      "ruling": "applied",
+      "keys": [
+        "groups.0.sections.5.paras.0.0"
+      ],
+      "why": "«выберите переход со стороны страны, откуда вы едете»."
+    },
+    {
+      "item": "12a — visa link title without quotes",
+      "ruling": "applied",
+      "keys": [
+        "groups.0.sections.5.paras.0.0",
+        "groups.0.sections.5.paras.0.2"
+      ],
+      "why": "Quotes placed in the surrounding fragments («…на нашей странице «» + link + «».»), so the link text stays the TM form «Как получить визу» (ui.foot.l.visa)."
+    },
+    {
+      "item": "12b — emergency link title without quotes, no final period",
+      "ruling": "source_defect",
+      "keys": [
+        "keepP",
+        "keepLink"
+      ],
+      "why": "No string follows keepLink (template renders keepP + link and ends; en has no period either). Quotes cannot close without a trailing key; keepLink keeps the TM form. Logged as a template note for the coordinator."
+    },
+    {
+      "item": "13a — «туристический автомобиль» reads as a vehicle type",
+      "ruling": "rejected",
+      "keys": [
+        "groups.0.sections.6.paras.0"
+      ],
+      "why": "ZATCA term in en «tourist vehicles» / ar «السيارات السياحية»; the category is the source's."
+    },
+    {
+      "item": "13b — heading promises foreign-vehicle rules, only non-GCC given",
+      "ruling": "source_defect",
+      "keys": [
+        "groups.0.sections.6.h"
+      ],
+      "why": "en/ar heading and body as translated; rules for GCC-registered cars are absent from the source. Logged."
+    },
+    {
+      "item": "13c — conditions phrased as statements, long sentence",
+      "ruling": "applied",
+      "keys": [
+        "groups.0.sections.6.paras.0"
+      ],
+      "why": "Nominal list as proposed: «действующая регистрация…, страховка на территорию Саудовской Аравии…, действующее водительское удостоверение; машина должна принадлежать вам, или…». Same four conditions."
+    },
+    {
+      "item": "14 — «помощь»/«приложение» repeated",
+      "ruling": "applied",
+      "keys": [
+        "groups.0.sections.6.paras.1.0"
+      ],
+      "why": "«вызвать помощь… Техпомощь на мосту короля Фахда — по номеру …». The second sentence stays: en/ar give the number and the app as two channels."
+    },
+    {
+      "item": "15 — bus card: price or top-up; tax on single fare",
+      "ruling": "source_defect",
+      "keys": [
+        "groups.1.sections.0.table.rows.1.1",
+        "groups.1.sections.0.table.rows.0.1"
+      ],
+      "why": "en «SAR 10 including tax» / ar «10 ريالات شاملة الضريبة» only. Logged."
+    },
+    {
+      "item": "16 — digits after stop names read as city numbers",
+      "ruling": "rejected",
+      "keys": [
+        "groups.1.sections.0.table.rows.*"
+      ],
+      "why": "Stop names as SAPTCO publishes them (Alwasitah 1, Al Omran City 6, Industrial City 4); brief: station names kept, numbers literal."
+    },
+    {
+      "item": "17 — «интервал движения уточняется» unclear",
+      "ruling": "applied",
+      "keys": [
+        "groups.1.sections.0.table.rows.5.1"
+      ],
+      "why": "«интервал движения пока не подтверждён» — same meaning as «بانتظار التأكيد», no softening."
+    },
+    {
+      "item": "18 — «каждые 120 минут» → «каждые 2 часа»",
+      "ruling": "rejected",
+      "keys": [
+        "groups.1.sections.0.table.rows.8.1"
+      ],
+      "why": "Brief: numbers carried literally; «120» stays."
+    },
+    {
+      "item": "19 — 5:30–23:30 vs per-route first/last trip",
+      "ruling": "source_defect",
+      "keys": [
+        "groups.1.sections.0.paras.0.0",
+        "groups.1.sections.0.after.0"
+      ],
+      "why": "Both statements are the source's; no reconciliation invented. Logged."
+    },
+    {
+      "item": "20 — word order; «общественное такси» unusual",
+      "ruling": "applied (order) / rejected (term)",
+      "keys": [
+        "groups.1.sections.1.paras.0.0"
+      ],
+      "why": "Subject first: «…устанавливает Главное управление транспорта; он приведён в таблице». «общественное такси» kept: ar «الأجرة العامة» is set against airport taxi in after.0 (distinction the Arabic makes)."
+    },
+    {
+      "item": "21 — Friday night ambiguity; airport-taxi fare missing",
+      "ruling": "source_defect",
+      "keys": [
+        "groups.1.sections.1.after.0"
+      ],
+      "why": "en/ar «Friday and Saturday 2 AM to 6 AM» as translated; no airport fare in the source. Logged."
+    },
+    {
+      "item": "22 — «показывает поездки»; mixed imperative aspect; Careem in town",
+      "ruling": "applied",
+      "keys": [
+        "groups.1.sections.2.paras.0"
+      ],
+      "why": "«В приложении Careem можно заказать поездку из…: подойдите…, и проверьте…». City coverage of Careem is not in the source (not added)."
+    },
+    {
+      "item": "23 — «показывают поездки» again",
+      "ruling": "applied",
+      "keys": [
+        "groups.1.sections.4.paras.0",
+        "faqs.2.a"
+      ],
+      "why": "Same rewrite in both places."
+    },
+    {
+      "item": "24 — «у компании указан» — where; number not given",
+      "ruling": "applied",
+      "keys": [
+        "groups.1.sections.3.paras.0"
+      ],
+      "why": "«На сайте Lumi … на сайте Budget Saudi …». The number itself is not on the source page (not added)."
+    },
+    {
+      "item": "25 — two «и» merge advice; Мавкиф/Mawgif k/g",
+      "ruling": "applied (split) / rejected (spelling)",
+      "keys": [
+        "groups.1.sections.5.paras.0"
+      ],
+      "why": "Split into two sentences. «Мавкиф» kept: transliteration from Arabic script per naming_policy, coordinator ruling to keep the single name; Latin gloss under P4."
+    },
+    {
+      "item": "26 — «часы работы» of parking read as closing hours",
+      "ruling": "applied",
+      "keys": [
+        "groups.1.sections.5.table.caption",
+        "groups.1.sections.5.after.0"
+      ],
+      "why": "«часы оплаты». The repeated «only central Hofuf» note is the source's (ar «لنطاق وسط الهفوف وحده»)."
+    },
+    {
+      "item": "27 — «на своих условиях», «зарегистрированным» where",
+      "ruling": "rejected",
+      "keys": [
+        "groups.1.sections.6.paras.0"
+      ],
+      "why": "en «under its conditions», «registered» / ar «وفق شروطها», «المسجّلين» — nothing more in the source (P5)."
+    },
+    {
+      "item": "28 — traffic police vs Roads Security",
+      "ruling": "rejected",
+      "keys": [
+        "keepP"
+      ],
+      "why": "Two bodies with separate termbase entries and numbers (993 / 996) on the approved emergency page."
+    },
+    {
+      "item": "29 — title mixes singular/plural; car missing",
+      "ruling": "applied (number) / rejected (car)",
+      "keys": [
+        "seoTitle"
+      ],
+      "why": "«самолёт, поезд и автобус» (46 chars). en title names no car."
+    }
+  ],
+  "rulings_count": {
+    "applied": 16,
+    "rejected": 8,
+    "source_defect": 5
+  },
+  "source_defects": [
+    {
+      "key": "groups.1.sections.5.paras.0 / groups.1.sections.5.table.caption / groups.1.sections.5.src.0.label",
+      "issue": "ar называет систему то «مواقف» (мн. ч.: в тексте, подписи таблицы и источнике), то «موقف» (приложение); en везде «Mawgif», бриф — «موقف» Mawgif. Перевод держит одно имя «Мавкиф» (Mawgif) для системы и приложения по en и брифу; официальное имя системы нужно подтвердить у владельца."
+    },
+    {
+      "key": "faqs.1.a / body",
+      "id": "hofuf.alahsa",
+      "what": "Only the FAQ (after the owner change) says Hofuf is in Al-Ahsa; the air and rail sections never say it.",
+      "reader": "Blind reader #2"
+    },
+    {
+      "key": "groups.0.sections.3.table",
+      "id": "nn25.stops",
+      "what": "NN25: not stated whether one route serves Khafji and Jubail or which intermediate stops exist.",
+      "reader": "#9"
+    },
+    {
+      "key": "keepP / keepLink",
+      "id": "keep.template",
+      "what": "Template renders keepP + link with no trailing text: no closing punctuation and no way to quote the page title (same in en).",
+      "reader": "#12"
+    },
+    {
+      "key": "groups.0.sections.6",
+      "id": "vehicles.gcc",
+      "what": "Heading «Foreign vehicles…» but only non-GCC rules are given; nothing for GCC-registered cars.",
+      "reader": "#13b"
+    },
+    {
+      "key": "groups.1.sections.0.table.rows.0-1",
+      "id": "bus.card",
+      "what": "Bus card SAR 10: price of the card or top-up not stated; tax mentioned only for the card.",
+      "reader": "#15"
+    },
+    {
+      "key": "groups.1.sections.0.paras.0.0 / after.0",
+      "id": "bus.hours",
+      "what": "System hours 5:30–23:30 vs «check the app for each route's first and last trip» — relation not explained.",
+      "reader": "#19"
+    },
+    {
+      "key": "groups.1.sections.1.after.0",
+      "id": "taxi.night",
+      "what": "«Friday and Saturday 2 AM to 6 AM» does not say which night; the airport-taxi fare it contrasts with is not given.",
+      "reader": "#21"
+    }
+  ],
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "notes": [
+    "Threshold 90 (config.json); score 92 ≥ 90 → APPROVE in one loop.",
+    "Owner source change after the blind reading: groups.0.sections.1.paras.0 and faqs.1.a re-translated from the regenerated pack (new en/ar); pack.json keys unchanged (186).",
+    "Coordinator rulings applied: decimal comma (style_rules.chisla) and 24-hour times accepted; single name «Мавкиф» kept, ar «مواقف»/«موقف» split stays as a source note.",
+    "Judge edits: 20 keys (see judge_edits). Facts, numbers, names unchanged; SEO counted with node: seoTitle 46 ≤ 60, seoDesc 160 ≤ 160.",
+    "Precedents used: P1 (Аль-/Эль-), O-GULF / gulf-unify-1027 R1, termbase «компания SAR» disambiguation, termbase/TM «Абкайк (или Букайк)», emergency judge (ISO date rendered by code; Roads Security vs Traffic Police entries; fence P5 on reader-requested additions), P4 (Latin glosses)."
+  ],
+  "termbase_additions": [
+    {
+      "en": "Al-Khafji (الخفجي — town on the Kuwaiti border; bus NN25 terminus and land crossing)",
+      "ru": "Эль-Хафджи",
+      "rod": "м",
+      "sklonenie": "несклоняемое (оканчивается на -и): в Эль-Хафджи, из Эль-Хафджи; с родовым словом: пограничный переход Эль-Хафджи",
+      "source": "ru.wikipedia «Рас-эль-Хафджи» (ar رأس الخفجي; редирект «Хафджи»); имя на странице — الخفجي без «рас», артикль по naming_policy.article (лунная «خ» → «Эль-»)",
+      "status": "pending"
+    },
+    {
+      "en": "Rub' al Khali / Empty Quarter (الربع الخالي — in «Empty Quarter Port», the Saudi–Omani crossing)",
+      "ru": "Руб-эль-Хали",
+      "rod": "ж (по «пустыня»)",
+      "sklonenie": "несклоняемое; с родовым словом: пограничный переход Руб-эль-Хали",
+      "source": "ru.wikipedia «Руб-эль-Хали» (заголовок статьи, ar الربع الخالي)",
+      "status": "verified"
+    },
+    {
+      "en": "Al Batha (البطحاء — Saudi–UAE land crossing «Al Batha Port»)",
+      "ru": "Эль-Батха",
+      "rod": "ж",
+      "sklonenie": "с родовым словом не склоняется: пограничный переход Эль-Батха, на переходе Эль-Батха",
+      "source": "транскрипция с арабского написания البطحاء по naming_policy (лунная «ب» → «Эль-»); ar/en transport.ts",
+      "status": "pending"
+    },
+    {
+      "en": "United Arab Emirates",
+      "ru": "Объединённые Арабские Эмираты",
+      "rod": "мн",
+      "sklonenie": "склоняется: Объединённых Арабских Эмиратов, в Объединённых Арабских Эмиратах",
+      "source": "ru.wikipedia «Объединённые Арабские Эмираты»",
+      "status": "verified"
+    },
+    {
+      "en": "land crossing / port (منفذ — Salwa Port, Al Batha Port, Empty Quarter Port, Al Khafji Port)",
+      "ru": "пограничный переход",
+      "rod": "м",
+      "sklonenie": "склоняется родовое слово, имя после него неизменно: пограничного перехода Сальва, через пограничный переход Эль-Батха",
+      "source": "ar منفذ / en Port (transport.ts); «port» сухопутного КПП передаётся родовым «пограничный переход», не «порт»",
+      "status": "pending"
+    },
+    {
+      "en": "Zakat, Tax and Customs Authority (ZATCA; هيئة الزكاة والضريبة والجمارك)",
+      "ru": "Управление по закяту, налогам и таможне (ZATCA)",
+      "rod": "с (по «управление»)",
+      "sklonenie": "склоняется головное слово: Управления по закяту, налогам и таможне; прописная только у первого слова; латинский акроним ZATCA не склоняется и после первого упоминания служит кратким именем (в подписях источников «ZATCA: …»)",
+      "source": "zatca.gov.sa (en «Zakat, Tax and Customs Authority», ar «هيئة الزكاة والضريبة والجمارك»); модель «Управление по …» — записи «Управление по туризму Саудовской Аравии», «Управление моста короля Фахда»; «закят» — орфография gramota.ru",
+      "status": "pending"
+    },
+    {
+      "en": "Transport General Authority (TGA; الهيئة العامة للنقل)",
+      "ru": "Главное управление транспорта",
+      "rod": "с (по «управление»)",
+      "sklonenie": "склоняется головное слово: Главного управления транспорта, Главным управлением транспорта; прописная только у первого слова",
+      "source": "tga.gov.sa (en «Transport General Authority», ar «الهيئة العامة للنقل»); «General Authority» → «Главное управление» по модели «Управление по …» в termbase",
+      "status": "pending"
+    },
+    {
+      "en": "Saudi Public Transport Company (SAPTCO; سابتكو)",
+      "ru": "SAPTCO",
+      "rod": "ж (по «компания»)",
+      "sklonenie": "латинский акроним не склоняется: компания SAPTCO, путеводитель SAPTCO; класс записей «SAR», «Saudia»",
+      "source": "saptco.com.sa (бренд SAPTCO латиницей; ar سابتكو)",
+      "status": "pending"
+    },
+    {
+      "en": "SAT — SAPTCO Alsa for Transportation (سات «سابتكو ألسا للنقل»; intercity coaches)",
+      "ru": "SAT (SAPTCO Alsa for Transportation)",
+      "rod": "ж (по «компания»)",
+      "sklonenie": "латинское имя не склоняется: компания SAT, автобусы SAT; полное официальное имя латиницей в скобках один раз (P4: имя, которое посетитель видит латиницей на сайте и билете)",
+      "source": "sat.sa (en «SAPTCO Alsa for Transportation», ar «سابتكو ألسا للنقل»)",
+      "status": "pending"
+    },
+    {
+      "en": "Darb Alwatan (درب الوطن — intercity coach operator)",
+      "ru": "«Дарб аль-Ватан»",
+      "rod": "ж (по «компания»)",
+      "sklonenie": "несклоняемое в «ёлочках», при родовом слове или самостоятельно: компания «Дарб аль-Ватан», рейсы «Дарб аль-Ватан»; по образцу «Наджм», «Балади» (арабское имя бренда — кириллицей в кавычках)",
+      "source": "darbalwatan.com (ar «درب الوطن»); транскрипция с арабского написания, артикль внутри имени строчный «аль-» по модели «мечеть аль-Джумах»",
+      "status": "pending"
+    },
+    {
+      "en": "flyadeal (طيران أديل — airline)",
+      "ru": "flyadeal",
+      "rod": "ж (по «авиакомпания»)",
+      "sklonenie": "не склоняется (латинское написание торговой марки, класс «Saudia»): авиакомпания flyadeal, рейсы flyadeal; строчная f — как пишет сам бренд",
+      "source": "flyadeal.com",
+      "status": "pending"
+    },
+    {
+      "en": "Uber (أوبر) / UberX",
+      "ru": "Uber / UberX",
+      "rod": "м (по «сервис»)",
+      "sklonenie": "не склоняется (латинская торговая марка, класс «Saudia»): приложение Uber, у Uber; UberX — название тарифа",
+      "source": "uber.com",
+      "status": "pending"
+    },
+    {
+      "en": "Careem (كريم — ride-hailing app)",
+      "ru": "Careem",
+      "rod": "м (по «сервис»)",
+      "sklonenie": "не склоняется (латинская торговая марка, класс «Saudia»): приложение Careem",
+      "source": "careem.com",
+      "status": "pending"
+    },
+    {
+      "en": "Lumi (لومي — car rental)",
+      "ru": "Lumi",
+      "rod": "ж (по «компания»)",
+      "sklonenie": "не склоняется (латинская торговая марка): компания Lumi, у Lumi",
+      "source": "lumirental.com",
+      "status": "pending"
+    },
+    {
+      "en": "Budget Saudi (بدجت السعودية — car rental)",
+      "ru": "Budget Saudi",
+      "rod": "ж (по «компания»)",
+      "sklonenie": "не склоняется (латинская торговая марка): у Budget Saudi",
+      "source": "budgetsaudi.com",
+      "status": "pending"
+    },
+    {
+      "en": "Jesr app (تطبيق «جسر» — King Fahd Causeway app)",
+      "ru": "«Джиср» (Jesr)",
+      "rod": "с (по «приложение»)",
+      "sklonenie": "несклоняемое в «ёлочках»: приложение «Джиср», через «Джиср»; латинский глосс (Jesr) один раз на странице — имя в магазине приложений (P4)",
+      "source": "kfca.sa (ar «جسر», en «Jesr»); транскрипция с арабского написания",
+      "status": "pending"
+    },
+    {
+      "en": "Hafilat Al Ahsa app (تطبيق «حافلات الأحساء» — SAPTCO city-bus app)",
+      "ru": "«Хафилат Аль-Ахса» (Hafilat Al Ahsa)",
+      "rod": "с (по «приложение»)",
+      "sklonenie": "несклоняемое в «ёлочках»: приложение «Хафилат Аль-Ахса», в «Хафилат Аль-Ахса»; «Аль-Ахса» по записи головного имени (P1); латинский глосс один раз на странице — имя в магазине приложений (P4)",
+      "source": "saptco.com.sa (ar «حافلات الأحساء», en «Hafilat Al Ahsa»)",
+      "status": "pending"
+    },
+    {
+      "en": "Mawgif (موقف — paid parking system and app, central Hofuf)",
+      "ru": "«Мавкиф» (Mawgif)",
+      "rod": "ж/с (по родовому слову «система»/«приложение»; само имя в «ёлочках» не склоняется)",
+      "sklonenie": "несклоняемое в «ёлочках»: система «Мавкиф», приложение «Мавкиф»; латинский глосс (Mawgif) один раз — надпись на паркоматах и в приложении (P4); транскрипция с арабского написания موقف («ق» → «к»), не с местного произношения в en",
+      "source": "alahsa.gov.sa (ar «موقف», en «Mawgif»)",
+      "status": "pending"
+    },
+    {
+      "en": "National Parking Company (الشركة الوطنية للمواقف)",
+      "ru": "Национальная парковочная компания",
+      "rod": "ж",
+      "sklonenie": "склоняется: Национальной парковочной компанией; прописная только у первого слова — по образцу «Национальная водная компания»",
+      "source": "ar/en transport.ts; модель записи «Национальная водная компания»",
+      "status": "pending"
+    },
+    {
+      "en": "East network / East train (شبكة قطار الشرق — SAR line Riyadh–Hofuf–Abqaiq–Dammam)",
+      "ru": "Восточная сеть",
+      "rod": "ж",
+      "sklonenie": "склоняется: Восточной сети, по Восточной сети; прописная у первого слова как имя сети",
+      "source": "sar.com.sa (en «East Network/East Train», ar «قطار الشرق»); та же линия, что запись «железная дорога Эр-Рияд — Даммам (компания SAR)»",
+      "status": "pending"
+    },
+    {
+      "en": "King Abdullah Ring Road (طريق الملك عبدالله الدائري)",
+      "ru": "кольцевая дорога короля Абдаллы",
+      "rod": "ж (по «дорога»)",
+      "sklonenie": "склоняется родовое слово, «короля Абдаллы» неизменно: по кольцевой дороге короля Абдаллы; по образцу «дорога короля Абдаллы»",
+      "source": "alahsa.gov.sa; запись «King Abdullah Road | дорога короля Абдаллы»",
+      "status": "pending"
+    },
+    {
+      "en": "King Abdullah Military City (مدينة الملك عبدالله العسكرية — city-bus stop, route 1)",
+      "ru": "Военный город имени короля Абдаллы",
+      "rod": "м",
+      "sklonenie": "склоняется «Военный город»: до Военного города имени короля Абдаллы",
+      "source": "ar/en transport.ts (путеводитель SAPTCO); «имени» по образцу «Международный аэропорт имени короля Фахда»",
+      "status": "pending"
+    },
+    {
+      "en": "Alwasitah (الوسيطة — Al-Ahsa district; bus stop «Alwasitah 1»)",
+      "ru": "Эль-Васита",
+      "rod": "ж",
+      "sklonenie": "в названии остановки неизменно: Эль-Васита 1; самостоятельно склоняется как сущ. на -а: в Эль-Васите",
+      "source": "транскрипция с арабского написания الوسيطة (лунная «و» → «Эль-»), en Alwasitah",
+      "status": "pending"
+    },
+    {
+      "en": "Gharnatah District (حي غرناطة — bus stop, route 4)",
+      "ru": "район Гарната",
+      "rod": "м (по «район»)",
+      "sklonenie": "склоняется родовое слово, имя неизменно: до района Гарната",
+      "source": "транскрипция с арабского написания غرناطة (غ → «г») по naming_policy, а не экзоним «Гранада»: это имя района, а не испанского города",
+      "status": "pending"
+    },
+    {
+      "en": "Main Station (المحطة الرئيسية — SAPTCO city-bus hub)",
+      "ru": "Главная станция",
+      "rod": "ж",
+      "sklonenie": "склоняется: от Главной станции; прописная как имя остановки",
+      "source": "ar/en transport.ts",
+      "status": "pending"
+    },
+    {
+      "en": "Industrial City (المدينة الصناعية — bus stop «Industrial City 4»)",
+      "ru": "Промышленный город",
+      "rod": "м",
+      "sklonenie": "склоняется: до Промышленного города 4; прописная как имя остановки",
+      "source": "ar/en transport.ts",
+      "status": "pending"
+    },
+    {
+      "en": "Government Departments Complex (مجمع الدوائر الحكومية — bus stop, route 7)",
+      "ru": "Комплекс государственных учреждений",
+      "rod": "м",
+      "sklonenie": "склоняется: от Комплекса государственных учреждений",
+      "source": "ar/en transport.ts",
+      "status": "pending"
+    }
+  ],
+  "judge_edits": [
+    "seoTitle",
+    "groups.0.sections.0.paras.0",
+    "groups.0.sections.1.paras.0",
+    "groups.0.sections.2.paras.1",
+    "groups.0.sections.3.paras.1.0",
+    "groups.0.sections.5.paras.0.0",
+    "groups.0.sections.5.paras.0.2",
+    "groups.0.sections.6.paras.0",
+    "groups.0.sections.6.paras.1.0",
+    "groups.1.sections.0.table.rows.5.1",
+    "groups.1.sections.1.paras.0.0",
+    "groups.1.sections.2.paras.0",
+    "groups.1.sections.3.paras.0",
+    "groups.1.sections.4.paras.0",
+    "groups.1.sections.5.paras.0",
+    "groups.1.sections.5.table.caption",
+    "groups.1.sections.5.after.0",
+    "groups.1.sections.6.paras.0",
+    "faqs.1.a",
+    "faqs.2.a"
+  ],
+  "final_strings": {
+    "ui.foot.l.transport": "Транспорт и передвижение",
+    "ui.plan.transport": "Транспорт и передвижение",
+    "seoTitle": "Транспорт в Аль-Ахсе: самолёт, поезд и автобус",
+    "seoDesc": "Как добраться до Аль-Ахсы самолётом, поездом, автобусом или машиной и как передвигаться на месте: автобусы, такси, приложения, парковка. Ссылки на перевозчиков.",
+    "eyebrow": "План поездки",
+    "title": "Транспорт и передвижение в Аль-Ахсе",
+    "lead": "Выберите, как вы доберётесь до Аль-Ахсы, а затем спланируйте передвижение между её достопримечательностями. На этой странице собрано то, что публикуют официальные органы и перевозчики, со ссылкой на каждый источник. Перед бронированием открывайте источник: расписание и цены меняются.",
+    "reviewed": "Последняя проверка сведений:",
+    "tocLabel": "На этой странице",
+    "srcLabel": "Источник:",
+    "listSep": ", ",
+    "checked": " — последняя проверка:",
+    "newWindow": "(открывается в новом окне)",
+    "groups.0.h": "Как добраться до Аль-Ахсы",
+    "groups.0.sections.0.h": "На самолёте",
+    "groups.0.sections.0.paras.0": "У Международного аэропорта Аль-Ахсы код HOF, а авиакомпании называют его Эль-Хуфуф (Hofuf). На сайте flyadeal указаны рейсы между Эль-Хуфуфом и другими городами, в том числе Джиддой и Мединой. Чтобы узнать, какие рейсы есть на ваши даты, прямые ли они и сколько стоят, введите дату поездки в системе бронирования flyadeal.",
+    "groups.0.sections.0.paras.1": "Авиакомпании и направления, которые обслуживает аэропорт, меняются от сезона к сезону, поэтому постоянного расписания и цен мы не приводим.",
+    "groups.0.sections.0.links.0.t": "Рейсы flyadeal из Эль-Хуфуфа",
+    "groups.0.sections.0.src.0.label": "flyadeal",
+    "groups.0.sections.0.src.1.label": "flyadeal: из Медины в Эль-Хуфуф",
+    "groups.0.sections.1.h": "Через аэропорт Даммама",
+    "groups.0.sections.1.paras.0": "Если вы прилетаете в Международный аэропорт имени короля Фахда в Даммаме, на странице аэропорта о транспорте перечислены такси, сервисы заказа поездок, аренда автомобилей и автобусы-шаттлы. Поезда Восточной сети останавливаются и на вокзале Даммама, и в Эль-Хуфуфе, поэтому после прилёта вам понадобится трансфер из аэропорта до вокзала; бронируйте его отдельно от поезда.",
+    "groups.0.sections.1.links.0.t": "Транспорт в Международном аэропорту имени короля Фахда",
+    "groups.0.sections.1.src.0.label": "Международный аэропорт имени короля Фахда",
+    "groups.0.sections.1.src.1.label": "Саудовская железнодорожная компания (SAR)",
+    "groups.0.sections.2.h": "На поезде",
+    "groups.0.sections.2.paras.0": "Поезда Восточной сети Саудовской железнодорожной компании (SAR) ходят между Эр-Риядом и Даммамом через Эль-Хуфуф и Абкайк (или Букайк). Категории билетов: Economy Saver, Economy, Business и Business Premium.",
+    "groups.0.sections.2.paras.1": "Билеты продаются на сайте и в приложении железнодорожной компании SAR, а также в кассах на вокзалах. Онлайн можно заплатить платёжной картой, в кассах — наличными или картой. С вопросами обращайтесь через страницу обратной связи (Contact Us) на сайте компании.",
+    "groups.0.sections.2.links.0.t": "Купить билеты на поезд SAR",
+    "groups.0.sections.2.links.1.t": "Связаться с SAR",
+    "groups.0.sections.2.src.0.label": "SAR: железнодорожная сеть",
+    "groups.0.sections.2.src.1.label": "SAR: категории билетов",
+    "groups.0.sections.2.src.2.label": "SAR: покупка билетов",
+    "groups.0.sections.3.h": "На междугороднем автобусе",
+    "groups.0.sections.3.paras.0.0": "Компания SAT (SAPTCO Alsa for Transportation) продаёт на своём сайте и в приложении билеты на междугородние автобусы до Аль-Ахсы, в том числе из Эр-Рияда. Служба поддержки клиентов работает круглосуточно: ",
+    "groups.0.sections.3.paras.0.2": ".",
+    "groups.0.sections.3.paras.1.0": "В расписании компании «Дарб аль-Ватан» есть ежедневные рейсы по маршруту NN25 с автовокзала Аль-Ахсы и обратно (см. таблицу ниже); билеты продаются на её сайте, в приложении и в кассах. Справки: ",
+    "groups.0.sections.3.paras.1.2": ".",
+    "groups.0.sections.3.table.caption": "Ежедневные рейсы NN25 компании «Дарб аль-Ватан» согласно её опубликованному расписанию",
+    "groups.0.sections.3.table.head.0": "Направление",
+    "groups.0.sections.3.table.head.1": "Отправление",
+    "groups.0.sections.3.table.head.2": "Прибытие",
+    "groups.0.sections.3.table.rows.0.0": "Аль-Ахса — Эль-Хафджи",
+    "groups.0.sections.3.table.rows.0.1": "14:00",
+    "groups.0.sections.3.table.rows.0.2": "22:40",
+    "groups.0.sections.3.table.rows.1.0": "Эль-Хафджи — Аль-Ахса",
+    "groups.0.sections.3.table.rows.1.1": "09:00",
+    "groups.0.sections.3.table.rows.1.2": "17:30",
+    "groups.0.sections.3.table.rows.2.0": "Эль-Джубайль — Аль-Ахса",
+    "groups.0.sections.3.table.rows.2.1": "09:30",
+    "groups.0.sections.3.table.rows.2.2": "13:30",
+    "groups.0.sections.3.table.rows.3.0": "Аль-Ахса — Эль-Джубайль",
+    "groups.0.sections.3.table.rows.3.1": "18:00",
+    "groups.0.sections.3.table.rows.3.2": "22:00",
+    "groups.0.sections.3.after.0": "Страница с расписанием «Дарб аль-Ватан» не датирована; уточните рейсы на день поездки в системе бронирования.",
+    "groups.0.sections.3.links.0.t": "Билеты на автобусы SAT",
+    "groups.0.sections.3.links.1.t": "Маршруты «Дарб аль-Ватан»",
+    "groups.0.sections.3.src.0.label": "SAT: как забронировать",
+    "groups.0.sections.3.src.1.label": "«Дарб аль-Ватан»: маршруты",
+    "groups.0.sections.3.src.2.label": "«Дарб аль-Ватан»: как забронировать",
+    "groups.0.sections.4.h": "На автомобиле",
+    "groups.0.sections.4.paras.0": "Муниципалитет Аль-Ахсы описывает сеть дорог так: внешняя кольцевая дорога окружает оазис, а внутренняя кольцевая дорога короля Абдаллы — городскую застройку. Перед выездом уточните адрес места, где вы остановитесь.",
+    "groups.0.sections.4.src.0.label": "Муниципалитет Аль-Ахсы",
+    "groups.0.sections.5.h": "По суше из стран Арабского залива",
+    "groups.0.sections.5.paras.0.0": "Саудовскую Аравию с другими странами Арабского залива связывают официальные сухопутные пограничные переходы, в том числе указанные в таблице; выберите переход на границе со страной, из которой вы едете. О визах и условиях въезда читайте на нашей странице «",
+    "groups.0.sections.5.paras.0.1.t": "Как получить визу",
+    "groups.0.sections.5.paras.0.2": "».",
+    "groups.0.sections.5.table.caption": "Сухопутные пограничные переходы между Саудовской Аравией и странами Арабского залива",
+    "groups.0.sections.5.table.head.0": "Страна",
+    "groups.0.sections.5.table.head.1": "Пограничный переход",
+    "groups.0.sections.5.table.rows.0.0": "Бахрейн",
+    "groups.0.sections.5.table.rows.0.1": "Мост короля Фахда",
+    "groups.0.sections.5.table.rows.1.0": "Катар",
+    "groups.0.sections.5.table.rows.1.1": "Пограничный переход Сальва",
+    "groups.0.sections.5.table.rows.2.0": "Объединённые Арабские Эмираты",
+    "groups.0.sections.5.table.rows.2.1": "Пограничный переход Эль-Батха",
+    "groups.0.sections.5.table.rows.3.0": "Оман",
+    "groups.0.sections.5.table.rows.3.1": "Пограничный переход Руб-эль-Хали",
+    "groups.0.sections.5.table.rows.4.0": "Кувейт",
+    "groups.0.sections.5.table.rows.4.1": "Пограничный переход Эль-Хафджи",
+    "groups.0.sections.5.src.0.label": "Управление моста короля Фахда",
+    "groups.0.sections.5.src.1.label": "Управление по закяту, налогам и таможне (ZATCA): пограничный переход Сальва",
+    "groups.0.sections.5.src.2.label": "ZATCA: пограничный переход Руб-эль-Хали",
+    "groups.0.sections.5.src.3.label": "ZATCA: годовой отчёт за 2024 год",
+    "groups.0.sections.6.h": "Иностранные автомобили и мост короля Фахда",
+    "groups.0.sections.6.paras.0": "Для туристических автомобилей, зарегистрированных за пределами стран Арабского залива, руководство Управления по закяту, налогам и таможне (ZATCA) по временному ввозу требует действующую регистрацию автомобиля, страховку на территорию Саудовской Аравии на весь срок ввоза, действующее водительское удостоверение, а также право собственности на машину или заверенную доверенность. Перед поездкой прочитайте руководство полностью.",
+    "groups.0.sections.6.paras.1.0": "В приложении «Джиср» (Jesr) можно заранее оплатить сбор за проезд и вызвать помощь. Техпомощь на мосту короля Фахда — по номеру ",
+    "groups.0.sections.6.paras.1.2": " или через приложение.",
+    "groups.0.sections.6.src.0.label": "ZATCA: временный ввоз иностранных туристических автомобилей",
+    "groups.0.sections.6.src.1.label": "Мост короля Фахда: электронные услуги",
+    "groups.0.sections.6.src.2.label": "Мост короля Фахда: помощь на дороге",
+    "groups.1.h": "Передвижение по Аль-Ахсе",
+    "groups.1.sections.0.h": "Городские автобусы Аль-Ахсы",
+    "groups.1.sections.0.paras.0.0": "Городские автобусы Аль-Ахсы, которыми управляет компания SAPTCO, ходят ежедневно с 5:30 до 23:30 и оборудованы для пассажиров с инвалидностью. Билет можно купить в приложении «Хафилат Аль-Ахса» (Hafilat Al Ahsa) или оплатить автобусной картой; при посадке поднесите к считывателю карту или код в приложении. Справки: ",
+    "groups.1.sections.0.paras.0.2": ".",
+    "groups.1.sections.0.table.caption": "Тарифы и маршруты по справочнику SAPTCO",
+    "groups.1.sections.0.table.head.0": "Пункт",
+    "groups.1.sections.0.table.head.1": "Подробности",
+    "groups.1.sections.0.table.rows.0.0": "Одна поездка",
+    "groups.1.sections.0.table.rows.0.1": "3,45 саудовского рияла (SAR)",
+    "groups.1.sections.0.table.rows.1.0": "Автобусная карта",
+    "groups.1.sections.0.table.rows.1.1": "10 SAR с учётом налога",
+    "groups.1.sections.0.table.rows.2.0": "Маршрут 1",
+    "groups.1.sections.0.table.rows.2.1": "Главная станция — Военный город имени короля Абдаллы; каждые 20 минут",
+    "groups.1.sections.0.table.rows.3.0": "Маршрут 2",
+    "groups.1.sections.0.table.rows.3.1": "Кольцевой маршрут от Главной станции через рынок Эль-Кайсария и железнодорожный вокзал; каждые 15 минут",
+    "groups.1.sections.0.table.rows.4.0": "Маршрут 3",
+    "groups.1.sections.0.table.rows.4.1": "Главная станция — Эль-Васита 1; каждые 20 минут",
+    "groups.1.sections.0.table.rows.5.0": "Маршрут 4",
+    "groups.1.sections.0.table.rows.5.1": "Главная станция — район Гарната; интервал движения пока не подтверждён",
+    "groups.1.sections.0.table.rows.6.0": "Маршрут 5",
+    "groups.1.sections.0.table.rows.6.1": "Главная станция — город Эль-Уюн; каждые 30 минут",
+    "groups.1.sections.0.table.rows.7.0": "Маршрут 6",
+    "groups.1.sections.0.table.rows.7.1": "Рынок Эль-Кайсария — город Эль-Умран 6; каждые 30 минут",
+    "groups.1.sections.0.table.rows.8.0": "Маршрут 7",
+    "groups.1.sections.0.table.rows.8.1": "Комплекс государственных учреждений — аэропорт Аль-Ахсы; каждые 120 минут",
+    "groups.1.sections.0.table.rows.9.0": "Маршрут 8",
+    "groups.1.sections.0.table.rows.9.1": "Главная станция — Промышленный город 4; каждые 30 минут",
+    "groups.1.sections.0.table.rows.10.0": "Маршрут 9",
+    "groups.1.sections.0.table.rows.10.1": "Главная станция — посёлок Эш-Шууба; каждые 30 минут",
+    "groups.1.sections.0.after.0": "Маршруты и интервалы движения — по справочнику SAPTCO (без даты); время первого и последнего рейса на каждом маршруте смотрите в приложении.",
+    "groups.1.sections.0.links.0.t": "Приложение «Хафилат Аль-Ахса»",
+    "groups.1.sections.0.src.0.label": "SAPTCO: автобусы Аль-Ахсы",
+    "groups.1.sections.0.src.1.label": "SAPTCO: схема маршрутов и тарифы",
+    "groups.1.sections.1.h": "Такси",
+    "groups.1.sections.1.paras.0.0": "Тариф общественного такси (до 4 пассажиров) устанавливает Главное управление транспорта; он приведён в таблице. Убедитесь, что счётчик включён: согласно тарифной карточке, если он не работает, поездка бесплатна. Вопросы и замечания: ",
+    "groups.1.sections.1.paras.0.2": ".",
+    "groups.1.sections.1.table.caption": "Тариф общественного такси в саудовских риялах (документ Главного управления транспорта, октябрь 2024 года)",
+    "groups.1.sections.1.table.head.0": "Пункт",
+    "groups.1.sections.1.table.head.1": "Тариф",
+    "groups.1.sections.1.table.rows.0.0": "Посадка",
+    "groups.1.sections.1.table.rows.0.1": "6,4 (ночью 10)",
+    "groups.1.sections.1.table.rows.1.0": "За километр",
+    "groups.1.sections.1.table.rows.1.1": "2,1",
+    "groups.1.sections.1.table.rows.2.0": "За минуту ожидания или движения медленнее 20 км/ч",
+    "groups.1.sections.1.table.rows.2.1": "0,9",
+    "groups.1.sections.1.table.rows.3.0": "Минимальная стоимость поездки",
+    "groups.1.sections.1.table.rows.3.1": "10",
+    "groups.1.sections.1.after.0": "Ночное время: с воскресенья по четверг — с 0:00 до 6:00, в пятницу и субботу — с 2:00 до 6:00. Это тариф общественного такси, а не стоимость поездки на такси из аэропорта.",
+    "groups.1.sections.1.src.0.label": "Главное управление транспорта: требования к общественному такси",
+    "groups.1.sections.2.h": "Приложения для заказа поездок",
+    "groups.1.sections.2.paras.0": "В Аль-Ахсе можно заказать UberX через приложение Uber и узнать цену ещё до заказа. В приложении Careem можно заказать поездку из Международного аэропорта Аль-Ахсы: подойдите к месту посадки, указанному в приложении, и проверьте предварительную стоимость, прежде чем подтвердить заказ.",
+    "groups.1.sections.2.src.0.label": "Uber: Аль-Ахса",
+    "groups.1.sections.2.src.1.label": "Careem: аэропорт Аль-Ахсы",
+    "groups.1.sections.3.h": "Аренда автомобилей",
+    "groups.1.sections.3.paras.0": "На сайте Lumi указан филиал в Аль-Ахсе, а на сайте Budget Saudi — номер телефона для обслуживания в Аль-Ахсе. Условия аренды (возраст, международное водительское удостоверение, страховка и оплата) устанавливает каждая компания, поэтому уточняйте их при бронировании.",
+    "groups.1.sections.3.links.0.t": "Lumi: филиал в Аль-Ахсе",
+    "groups.1.sections.3.links.1.t": "Budget Saudi: Восточная провинция",
+    "groups.1.sections.3.src.0.label": "Lumi",
+    "groups.1.sections.3.src.1.label": "Budget Saudi",
+    "groups.1.sections.4.h": "Из аэропорта и с вокзалов",
+    "groups.1.sections.4.paras.0": "В справочнике по автобусам Аль-Ахсы есть маршрут до аэропорта и маршрут через железнодорожный вокзал (см. таблицу маршрутов). Поездку из аэропорта Аль-Ахсы можно заказать и через Uber или Careem: по прибытии откройте приложение, чтобы узнать место посадки и цену.",
+    "groups.1.sections.4.src.0.label": "SAPTCO: справочник маршрутов",
+    "groups.1.sections.4.src.1.label": "Uber",
+    "groups.1.sections.4.src.2.label": "Careem",
+    "groups.1.sections.5.h": "Парковка",
+    "groups.1.sections.5.paras.0": "Муниципалитет Аль-Ахсы вместе с Национальной парковочной компанией управляет системой платной парковки «Мавкиф» (Mawgif) в центре Эль-Хуфуфа. Оплатить парковку можно монетами или через кошелёк в приложении «Мавкиф». Ставьте машину только на размеченное место и не дольше оплаченного времени.",
+    "groups.1.sections.5.table.caption": "Тариф «Мавкиф» и часы оплаты в центре Эль-Хуфуфа",
+    "groups.1.sections.5.table.head.0": "Пункт",
+    "groups.1.sections.5.table.head.1": "Подробности",
+    "groups.1.sections.5.table.rows.0.0": "Тариф",
+    "groups.1.sections.5.table.rows.0.1": "2,30 SAR в час",
+    "groups.1.sections.5.table.rows.1.0": "С субботы по четверг",
+    "groups.1.sections.5.table.rows.1.1": "8:00–12:00 и 16:00–22:00",
+    "groups.1.sections.5.table.rows.2.0": "Пятница",
+    "groups.1.sections.5.table.rows.2.1": "Бесплатно",
+    "groups.1.sections.5.after.0": "Часы оплаты в Рамадан указаны на паркоматах. Тариф действует только в центре Эль-Хуфуфа.",
+    "groups.1.sections.5.src.0.label": "Муниципалитет Аль-Ахсы: «Мавкиф»",
+    "groups.1.sections.6.h": "Транспорт для людей с инвалидностью",
+    "groups.1.sections.6.paras.0": "SAPTCO сообщает, что автобусы Аль-Ахсы оборудованы для пассажиров с инвалидностью. Саудовская железнодорожная компания согласно своим условиям даёт зарегистрированным пассажирам с инвалидностью скидку 50 % на взрослый билет категории Economy; такая же скидка положена одному сопровождающему, если билеты бронируются вместе. На странице Uber для Аль-Ахсы указано, что в городе через сервис сейчас нельзя заказать автомобиль, приспособленный для инвалидной коляски.",
+    "groups.1.sections.6.src.0.label": "SAPTCO",
+    "groups.1.sections.6.src.1.label": "SAR: категории билетов",
+    "groups.1.sections.6.src.2.label": "Uber",
+    "faqH": "Часто задаваемые вопросы",
+    "faqs.0.q": "Есть ли в Аль-Ахсе общественные автобусы?",
+    "faqs.0.a": "Да. Городские автобусы Аль-Ахсы, которыми управляет компания SAPTCO, ходят ежедневно с 5:30 до 23:30; билет можно купить в приложении «Хафилат Аль-Ахса» или оплатить автобусной картой.",
+    "faqs.1.q": "Как добраться до Аль-Ахсы на поезде?",
+    "faqs.1.a": "Поезда Восточной сети Саудовской железнодорожной компании (SAR) останавливаются в Эль-Хуфуфе (Аль-Ахса) на линии Эр-Рияд — Даммам. Билеты продаются на сайте и в приложении SAR, а также в кассах на вокзалах.",
+    "faqs.2.q": "Работают ли в Аль-Ахсе Uber и Careem?",
+    "faqs.2.a": "Uber предлагает в Аль-Ахсе тариф UberX, а в приложении Careem можно заказать поездку из Международного аэропорта Аль-Ахсы. Откройте приложение, чтобы узнать цену и место посадки.",
+    "faqs.3.q": "Сколько стоит такси в Аль-Ахсе?",
+    "faqs.3.a": "Тариф общественного такси устанавливает Главное управление транспорта: посадка — 6,4 саудовского рияла (SAR), ночью — 10 SAR, каждый километр — 2,1 SAR, минимальная стоимость поездки — 10 SAR.",
+    "keepH": "В дороге",
+    "keepP": "Номера экстренных служб (в том числе дорожной полиции, Службы безопасности дорог и скорой помощи) и порядок действий после аварии или поломки — на странице",
+    "keepLink": "Экстренные ситуации и помощь",
+    "disclaimer": "Сведения приведены так, как их опубликовали названные здесь организации на дату проверки; мы не гарантируем ни наличия мест, ни цены. Visit Al-Ahsa не продаёт билеты и не бронирует поездки."
+  },
+  "post_reader_addendum": {
+    "date": "2026-11-19",
+    "reader_findings": 29,
+    "serious": [
+      2,
+      18,
+      21
+    ],
+    "source_revision": "groups.0.sections.1.paras.0 (East train stops at both Dammam station and Hofuf) re-translated from regenerated pack",
+    "rulings": [
+      {
+        "item": 1,
+        "ruling": "source_defect",
+        "why": "Hofuf↔Al-Ahsa at first mention: not in the source sentence (already logged hofuf.alahsa); Аль-/Эль- per P1."
+      },
+      {
+        "item": 2,
+        "ruling": "applied",
+        "why": "Railway in body without the acronym next to the money: groups.1.sections.6.paras.0 «Саудовская железнодорожная компания»; currency keeps «саудовский риял (SAR)» / «N SAR» (style_rules.waluta; termbase «компания SAR» disambiguation)."
+      },
+      {
+        "item": 3,
+        "ruling": "applied",
+        "why": "Owner source revision (train stops at both Dammam station and Hofuf) translated: «останавливаются и на вокзале Даммама, и в Эль-Хуфуфе, поэтому…»; «Восточная сеть» before its explanation is source order."
+      },
+      {
+        "item": 4,
+        "ruling": "rejected",
+        "why": "Termbase verified «Абкайк (или Букайк)» + TM plan-your-trip getThere.2.d."
+      },
+      {
+        "item": 5,
+        "ruling": "applied",
+        "why": "Word order: «продаёт на своём сайте и в приложении билеты…»."
+      },
+      {
+        "item": 6,
+        "ruling": "rejected",
+        "why": "en/ar «to and from Al-Ahsa Bus Station, shown below»; destinations are in the adjacent table, not repeated in the sentence."
+      },
+      {
+        "item": 7,
+        "ruling": "applied",
+        "why": "Column head «Рейс» → «Направление» (cells are directions)."
+      },
+      {
+        "item": 8,
+        "ruling": "rejected",
+        "why": "As main ruling #10: source juxtaposition; a link would add a fact (P5)."
+      },
+      {
+        "item": 9,
+        "ruling": "rejected",
+        "why": "O-GULF (gulf-unify-1027 R1)."
+      },
+      {
+        "item": 10,
+        "ruling": "applied",
+        "why": "«выберите переход на границе со страной, из которой вы едете»."
+      },
+      {
+        "item": 11,
+        "ruling": "applied (wording) / source (GCC cars)",
+        "why": "«требует действующую регистрацию…, страховку…, действующее водительское удостоверение, а также право собственности на машину или заверенную доверенность» — parallel list, same four conditions; GCC cars already logged vehicles.gcc."
+      },
+      {
+        "item": 12,
+        "ruling": "rejected",
+        "why": "The sentence in en/ar says only «the Jesr app»; owner of the app not added (P5)."
+      },
+      {
+        "item": 13,
+        "ruling": "applied",
+        "why": "«поднесите к считывателю карту или код в приложении»."
+      },
+      {
+        "item": 14,
+        "ruling": "source_defect",
+        "why": "Already logged bus.card."
+      },
+      {
+        "item": 15,
+        "ruling": "rejected",
+        "why": "Stop names as published; brief keeps names and numbers."
+      },
+      {
+        "item": 16,
+        "ruling": "rejected",
+        "why": "Brief: numbers literal («120»)."
+      },
+      {
+        "item": 17,
+        "ruling": "rejected",
+        "why": "«общественное такси» = ar «الأجرة العامة», set against airport taxi (distinction the Arabic makes)."
+      },
+      {
+        "item": 18,
+        "ruling": "source_defect",
+        "why": "Already logged taxi.night; no night boundaries invented."
+      },
+      {
+        "item": 19,
+        "ruling": "source_defect",
+        "why": "Already logged taxi.night (airport fare absent)."
+      },
+      {
+        "item": 20,
+        "ruling": "rejected",
+        "why": "en «arrival stations» / ar «محطات الوصول» plural — source heading."
+      },
+      {
+        "item": 21,
+        "ruling": "applied",
+        "why": "«мимо» → «маршрут через железнодорожный вокзал» (ar «يمرّ بمحطة القطار»; table «через»)."
+      },
+      {
+        "item": 22,
+        "ruling": "rejected",
+        "why": "Sentence in en/ar says only «coins»; parking machines appear in the note (P5)."
+      },
+      {
+        "item": 23,
+        "ruling": "rejected",
+        "why": "Repetition is the source's (ar «لنطاق وسط الهفوف وحده»)."
+      },
+      {
+        "item": 24,
+        "ruling": "applied (wording) / source (registration)",
+        "why": "«на своих условиях» → «согласно своим условиям»; where passengers register is not in the source."
+      },
+      {
+        "item": 25,
+        "ruling": "applied",
+        "why": "«что в городе через сервис сейчас нельзя заказать автомобиль…»."
+      },
+      {
+        "item": 26,
+        "ruling": "applied",
+        "why": "«в Эль-Хуфуфе (Аль-Ахса)»."
+      },
+      {
+        "item": 27,
+        "ruling": "rejected",
+        "why": "Template note keep.template already logged; Traffic Police vs Roads Security are separate termbase entries (emergency)."
+      },
+      {
+        "item": 28,
+        "ruling": "rejected",
+        "why": "ISO date rendered by code, as on the emergency page."
+      },
+      {
+        "item": 29,
+        "ruling": "applied",
+        "why": "«…на дату проверки; мы не гарантируем ни наличия мест, ни цены» (ar «وليست ضماناً»)."
+      }
+    ],
+    "rulings_count": {
+      "applied": 12,
+      "rejected": 13,
+      "source_defect": 4
+    },
+    "strings_changed": [
+      "groups.0.sections.1.paras.0",
+      "groups.0.sections.3.paras.0.0",
+      "groups.0.sections.3.table.head.0",
+      "groups.0.sections.5.paras.0.0",
+      "groups.0.sections.6.paras.0",
+      "groups.1.sections.0.paras.0.0",
+      "groups.1.sections.4.paras.0",
+      "groups.1.sections.6.paras.0",
+      "faqs.1.a",
+      "disclaimer"
+    ],
+    "rescore": {
+      "score": 92,
+      "breakdown": {
+        "accuracy": 29,
+        "nativeness": 26,
+        "termbase_orthography": 19,
+        "traveller_fit": 8,
+        "structure": 10
+      },
+      "note": "Wording fixes and one source revision; facts unchanged. Score unchanged at 92 ≥ 90 → APPROVE stands."
+    }
+  }
+}

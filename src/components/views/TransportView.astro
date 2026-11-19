@@ -1,6 +1,6 @@
 ---
-// صفحة «الوصول والتنقل في الأحساء» — عربي/إنجليزي فقط كأدوات السفر والطوارئ.
-// النصوص والأرقام ومصادرها في src/data/transport.ts؛ لا رقم هنا من خارجه.
+// صفحة «الوصول والتنقل في الأحساء» — ar/en من src/data/transport.ts، وبقية اللغات من سجلّ
+// src/data/transport-i18n.ts (ملفات يولّدها حكم خط كل لغة). لا رقم هنا من خارج ملفات البيانات.
 // الجداول بقشرة الموقع (tbl-wrap + va-table) بلا data-table كدليل التأشيرات: ليست من مصادر C24.
 // كل رابط خارجي يحمل data-track="outbound_click" وكل رقم هاتف رابط tel: يحمل data-track="transport_call".
 import Base from '../../layouts/Base.astro';
@@ -9,23 +9,25 @@ import Footer from '../Footer.astro';
 import PageHero from '../PageHero.astro';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { TRANSPORT_ALT } from '../../lib/routes';
+import { TRANSPORT_ALL } from '../../lib/routes';
 import { emergencyHref } from '../../data/emergency-i18n';
+import { visaHref } from '../../lib/visa-guide.mjs';
 import { breadcrumb } from '../../lib/schema';
-import { PAGE, type TransportLang, type Para } from '../../data/transport';
+import type { Para } from '../../data/transport';
+import { TRANSPORT_PAGES } from '../../data/transport-i18n';
 
 interface Props { lang: Lang; alt: AltLinks; }
 const { lang, alt } = Astro.props;
-const L: TransportLang = lang === 'ar' ? 'ar' : 'en';
-const ar = L === 'ar';
 const t = useTranslations(lang);
-const C = PAGE[L];
-const selfPath = TRANSPORT_ALT[L];
-const sep = ar ? '، ' : ', ';
+const C = TRANSPORT_PAGES[lang] ?? TRANSPORT_PAGES.en!;
+const selfPath = TRANSPORT_ALL[lang];
+const sep = C.listSep;
+// روابط داخلية في الفقرات تُحَلّ إلى صفحة لغة الصفحة
+const inner = (page: 'visa') => (page === 'visa' ? visaHref(lang) : '/');
 
 const jsonLd = [
   breadcrumb([
-    { name: t('crumb.home'), path: ar ? '/' : '/en/' },
+    { name: t('crumb.home'), path: lang === 'ar' ? '/' : `/${lang}/` },
     { name: C.title, path: selfPath },
   ]),
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity:
@@ -56,7 +58,7 @@ const parts = (p: Para) => (typeof p === 'string' ? [p] : p);
               {s.paras.map((p) => (
                 <p>{parts(p).map((x) => typeof x === 'string' ? x
                   : 'tel' in x ? <a href={`tel:${x.tel}`} dir="ltr" class="tp-tel" data-track="transport_call" data-track-number={x.tel}>{x.tel}</a>
-                  : <a href={x.href}>{x.t}</a>)}</p>
+                  : <a href={inner(x.page)}>{x.t}</a>)}</p>
               ))}
               {s.table && (
                 <div class="tbl-wrap">
