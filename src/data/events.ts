@@ -380,9 +380,12 @@ const TEXT_AR: EventTexts = {
     season: 'الشتاء', time: 'نوفمبر – فبراير', span: 'موسم ممتد',
     org: 'ميدان الفروسية بالأحساء',
     acts: ['سباقات الخيل', 'فعاليات الفروسية'],
-    // تاريخ الانطلاق من إياد (2026-11-01)؛ يُحدَّث القسم مع كل موسم
+    // تاريخ الانطلاق من إياد (2026-11-01)؛ يُحدَّث القسم مع كل موسم.
+    // «كل سبت بعد الظهر»: البث المباشر على قناة الميدان لـ18 حفلاً (موسما 1447 و1448) كله يوم السبت،
+    // يبدأ بين 12:30 و1:50 م وينتهي نحو 4:30–5:15 م بتوقيت الرياض (مقيس 2026-11-19).
+    // بلا ساعة محددة: الميدان لم يعلن موعداً رسمياً لأول شوط، ووقت البث ليس موعداً معلناً.
     sections: [
-      { h: 'موسم 2026–2027', ps: ['انطلق موسم سباقات الخيل في ميدان الفروسية بالأحساء يوم 31 أكتوبر 2026. يعلن الميدان مواعيد السباقات على حسابه في X، ويبثّها مباشرة على قناته في يوتيوب، ورابطاهما في هذه الصفحة.'] },
+      { h: 'موسم 2026–2027', ps: ['انطلق موسم سباقات الخيل في ميدان الفروسية بالأحساء يوم 31 أكتوبر 2026، وتُقام السباقات كل سبت بعد الظهر طوال الموسم. يعلن الميدان موعد كل سباق على حسابه في X، ويبثّها مباشرة على قناته في يوتيوب، ورابطاهما في هذه الصفحة.'] },
     ],
   },
   'creative-ahsa': {
@@ -575,7 +578,7 @@ const TEXT_EN: EventTexts = {
     org: 'Al-Ahsa Equestrian Arena',
     acts: ['Horse races', 'Equestrian events'],
     sections: [
-      { h: 'The 2026–2027 season', ps: ['The horse racing season at the Al-Ahsa Equestrian Arena began on 31 October 2026. The arena announces race dates on its X account and streams the races live on its YouTube channel; both are linked on this page.'] },
+      { h: 'The 2026–2027 season', ps: ['The horse racing season at the Al-Ahsa Equestrian Arena began on 31 October 2026, and races are held every Saturday afternoon through the season. The arena announces each race day on its X account and streams the races live on its YouTube channel; both are linked on this page.'] },
     ],
   },
   'creative-ahsa': {
