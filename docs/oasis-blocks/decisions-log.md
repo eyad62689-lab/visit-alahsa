@@ -34,9 +34,9 @@ Each entry records the date, the decision, why it was made, and what was conside
 - **Decision:** the service worker controls only the game page.
 - **Why:** the rest of the site has no service worker today. A site-wide one would change caching for every page, which is outside the brief. A narrow scope keeps the change reversible.
 
-## D8 — Seeded PRNG (2026-11-19)
-- **Decision:** game logic uses mulberry32, seeded once from `crypto.getRandomValues`.
-- **Why:** tests can be deterministic, and CodeQL flags biased crypto-random arithmetic (the lesson from PR 292). We avoid that pattern because game randomness is not security-sensitive.
+## D8 — Seeded PRNG (2026-11-19, revised after CodeQL on PR 338)
+- **Decision:** game logic uses mulberry32, seeded once from `Math.random`.
+- **Why:** tests can be deterministic. Gameplay randomness is not security-sensitive. Seeding from `crypto.getRandomValues` made CodeQL raise js/biased-cryptographic-random, because the crypto value flows into the PRNG arithmetic. Removing the crypto source fixes that pattern instead of suppressing it.
 
 ## D9 — ar/en only (2026-11-19)
 - **Decision:** the game ships in ar and en only.

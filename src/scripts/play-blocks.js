@@ -127,7 +127,8 @@ function initBlocks() {
     audio.close();
   }, { once: true, signal });
 
-  const random = mulberry32(crypto.getRandomValues(new Uint32Array(1))[0]);
+  // Gameplay randomness is not security-sensitive: one non-crypto seed, then the seeded PRNG.
+  const random = mulberry32(Math.floor(Math.random() * 4294967296));
   const grid = $('board');
   const trayNode = $('tray');
   const feedback = $('feedback');

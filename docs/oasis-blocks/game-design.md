@@ -42,8 +42,8 @@ works offline and can be installed.
    - If even the 1x1 piece doesn't fit, the board is full, and the run ends normally.
 
    The generator never peeks ahead to make a tray *harder*.
-7. **Randomness:** use a seedable PRNG (mulberry32) and `crypto.getRandomValues` for the
-   seed. Do not use `Math.random` in game logic. Tests must be able to inject a seed.
+7. **Randomness:** use a seedable PRNG (mulberry32), seeded once from `Math.random`
+   (see D8). Game logic draws only from the PRNG. Tests must be able to inject a seed.
 
 ## 4. Scoring (our own formula)
 - **Placing:** +1 point per cell of the placed piece.
