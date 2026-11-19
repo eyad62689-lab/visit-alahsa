@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PageHero from '../PageHero.astro';
+import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { BLOCKS_ALT, attractionHref, playHref } from '../../lib/routes';
+import { dimsFor } from '../../lib/images';
+import { SITE, breadcrumb } from '../../lib/schema';
+import { LEVELS, PIECES, CLASSIC_POOL, BLOCKS_COPY } from '../../data/play-blocks';
+import { PLAY_PAGE } from '../../data/play';
+import '../../styles/play-blocks.css';
+
+interface Props { lang: 'ar' | 'en'; alt: AltLinks; }
+const { lang, alt } = Astro.props;
+const t = useTranslations(lang);
+const C = BLOCKS_COPY[lang];
+const selfPath = BLOCKS_ALT[lang];
+const attractions = await getCollection('attractions');
+const levels = LEVELS.map(level => {
+  const entry = attractions.find(item => item.id === level.attraction);
+  if (!entry) throw new Error(`oasis-blocks: unknown attraction ${level.attraction}`);
+  const { data } = entry;
+  const summary = lang === 'ar' ? data.summary : data.summary_en;
+  if (!summary?.trim()) throw new Error(`oasis-blocks: missing ${lang} summary for ${entry.id}`);
+  const base = `/img/${level.img}`;
+  const size = dimsFor(base);
+  if (!size) throw new Error(`oasis-blocks: missing image dimensions for ${base}`);
+  return {
+    ...level,
+    name: lang === 'ar' ? data.title : data.title_en ?? data.title,
+    summary,
+    href: attractionHref(data, lang),
+    photo: `${base}-800w.webp`,
+    height: Math.round(800 * size.height / size.width),
+  };
+});
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', name: C.title, description: C.description,
+    url: `${SITE}${encodeURI(selfPath)}`, inLanguage: lang },
+  breadcrumb([
+    { name: t('crumb.home'), path: lang === 'ar' ? '/' : '/en/' },
+    { name: PLAY_PAGE[lang].title, path: playHref(lang) },
+    { name: C.title, path: selfPath },
+  ]),
+];
+const payload = JSON.stringify({ lang, C, levels, pieces: PIECES, classicPool: CLASSIC_POOL, scope: selfPath }).replace(/</g, '\\u003c');
+---
+<Base title={`${C.seoTitle} ${titleSep(lang)} ${t('site.brand')}`} description={C.description} lang={lang} alt={alt} jsonLd={jsonLd} manifest={`/oasis-blocks/manifest.${lang}.webmanifest`}>
+  <Header lang={lang} alt={alt} />
+  <main id="main">
+    <PageHero eyebrow={PLAY_PAGE[lang].title} title={C.title} lead={C.subtitle} leadWidth={58} motif="center" size="compact" lang={lang} />
+    <section class="blocks-app container" data-blocks aria-label={C.title}>
+      <noscript><p>{C.noscript}</p></noscript>
+      <div id="bk-interface" hidden>
+        <div class="bk-toolbar">
+          <div class="bk-modes" role="group" aria-label={C.mode}>
+            <button type="button" id="bk-journey" aria-pressed="true">{C.journey}</button>
+            <button type="button" id="bk-classic" aria-pressed="false">{C.classic}</button>
+          </div>
+          <div class="bk-actions">
+            <button type="button" id="bk-sound" aria-pressed="true">{C.sound}</button>
+            <button type="button" id="bk-help" aria-haspopup="dialog">{C.help}</button>
+          </div>
+        </div>
+        <div class="bk-layout">
+          <section class="bk-panel" aria-labelledby="bk-title">
+            <h2 id="bk-title"></h2>
+            <div class="bk-stats">
+              <span>{C.score} <b id="bk-score">0</b></span>
+              <span>{C.best} <b id="bk-best">0</b></span>
+              <span id="bk-goal-wrap">{C.goal} <b id="bk-goal"></b></span>
+            </div>
+            <p id="bk-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+            <div id="bk-board" role="grid" aria-label={C.board} aria-describedby="bk-instructions"></div>
+            <div id="bk-tray" role="group" aria-label={C.tray}></div>
+            <p id="bk-instructions">{C.instructions}</p>
+          </section>
+          <aside class="bk-panel" id="bk-passport" aria-labelledby="bk-passport-title">
+            <h2 id="bk-passport-title">{C.passport}</h2>
+            <p id="bk-stamps"></p>
+            <ol id="bk-levels"></ol>
+          </aside>
+        </div>
+        <dialog id="bk-help-dialog" aria-labelledby="bk-help-title">
+          <h2 id="bk-help-title">{C.help}</h2>
+          <p>{C.rules}</p>
+          <p>{C.instructions}</p>
+          <p>{C.keyboard}</p>
+          <form method="dialog" class="bk-actions">
+            <button type="submit" autofocus>{C.close}</button>
+            <button type="button" id="bk-reset">{C.reset}</button>
+          </form>
+        </dialog>
+        <dialog id="bk-result" aria-labelledby="bk-result-title">
+          <h2 id="bk-result-title"></h2>
+          <div id="bk-result-content"></div>
+          <form method="dialog" class="bk-actions">
+            <button type="submit" id="bk-continue"></button>
+            <button type="submit" id="bk-result-close" value="close">{C.close}</button>
+          </form>
+        </dialog>
+        <div id="bk-drag" hidden aria-hidden="true"></div>
+      </div>
+      <script id="bk-payload" type="application/json" set:html={payload} />
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  import '../../scripts/play-blocks.js';
+</script>

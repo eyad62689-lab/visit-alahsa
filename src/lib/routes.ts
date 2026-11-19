@@ -147,6 +147,7 @@ export const PLAY_ALT = { ar: '/ألعاب/', en: '/en/play/' } as const;
 export const ALWAN_ALT = { ar: '/ألعاب/ألوان-الأحساء/', en: '/en/play/colours-of-al-ahsa/' } as const;
 export const EXPLORER_ALT = { ar: '/ألعاب/المستكشف-الصغير/', en: '/en/play/little-explorer/' } as const;
 export const MERGE_ALT = { ar: '/ألعاب/رحلة-الدمج-2048/', en: '/en/play/2048-oasis-journey/' } as const;
+export const BLOCKS_ALT = { ar: '/ألعاب/كتل-الواحة/', en: '/en/play/oasis-blocks/' } as const;
 export const playHref = (lang: Lang): string => (lang === 'ar' ? PLAY_ALT.ar : PLAY_ALT.en);
 
 type GuideSlugs = { slug_ar: string; slug_en: string };

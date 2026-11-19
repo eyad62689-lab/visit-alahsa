@@ -42,5 +42,25 @@ Each entry records the date, the decision, why it was made, and what was conside
 - **Decision:** the game ships in ar and en only.
 - **Why:** the project rule is that text in other languages goes only through its translation pipeline. That is a separate batch after approval.
 
+## D10 — Board cells on narrow screens (2026-11-19)
+- **Decision:** the 8×8 board scales to fit a 320px viewport. The board is a continuous tap and drag surface, with individually addressable cells and keyboard navigation. Buttons outside the board have touch targets of at least 44px.
+- **Why:** 8 cells of 44px need 352px before padding. Individual board cells are smaller on narrow screens so the full board remains visible without horizontal scrolling.
+
 ## Measured level solvability
-_(filled in after tuning: pass rate per level over 200 seeds with the greedy bot)_
+
+200 seeds per level (0–199). The bot maximizes lines cleared on the current move, then minimizes empty cells with no orthogonally adjacent empty neighbor. Ties follow tray slot and row-major board order. The finale keeps the full piece pool and gives smaller pieces higher weights.
+
+| Level | Cleared the goal | Pass rate | Minimum |
+|---|---:|---:|---:|
+| 1 | 200/200 | 100% | 90% |
+| 2 | 200/200 | 100% | 90% |
+| 3 | 200/200 | 100% | 90% |
+| 4 | 200/200 | 100% | 90% |
+| 5 | 200/200 | 100% | 90% |
+| 6 | 199/200 | 99.5% | 90% |
+| 7 | 199/200 | 99.5% | 60% |
+| 8 | 199/200 | 99.5% | 60% |
+| 9 | 157/200 | 78.5% | 60% |
+| 10 | 153/200 | 76.5% | 60% |
+| 11 | 140/200 | 70% | 60% |
+| 12 | 129/200 | 64.5% | 60% |

@@ -1,5 +1,5 @@
 ---
-// فهرس «ألعاب الاكتشاف» — بطاقات الألعاب الثلاث (عربي/إنجليزي فقط كأدوات السفر).
+// فهرس «ألعاب الاكتشاف» — بطاقات الألعاب الأربع (عربي/إنجليزي فقط كأدوات السفر).
 // النصوص في src/data/play.ts، والروابط من lib/routes.ts.
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
@@ -8,7 +8,7 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { ALWAN_ALT, EXPLORER_ALT, MERGE_ALT, PLAY_ALT } from '../../lib/routes';
+import { ALWAN_ALT, EXPLORER_ALT, MERGE_ALT, BLOCKS_ALT, PLAY_ALT } from '../../lib/routes';
 import { SITE, breadcrumb } from '../../lib/schema';
 import { GAME_IDS, GAME_IMAGES, PLAY_PAGE, type GameId, type PlayLang } from '../../data/play';
 
@@ -19,7 +19,7 @@ const ar = L === 'ar';
 const t = useTranslations(lang);
 const C = PLAY_PAGE[L];
 const selfPath = PLAY_ALT[L];
-const HREF: Record<GameId, string> = { alwan: ALWAN_ALT[L], explorer: EXPLORER_ALT[L], merge: MERGE_ALT[L] };
+const HREF: Record<GameId, string> = { alwan: ALWAN_ALT[L], explorer: EXPLORER_ALT[L], merge: MERGE_ALT[L], blocks: BLOCKS_ALT[L] };
 
 const jsonLd = [
   {

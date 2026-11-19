@@ -61,12 +61,13 @@ interface Props {
   /* شريط اقتراح اللغة (الخطوة 2 من خطة التفاعل العالمي) — يُعطَّل حيث تتولى الصفحة
      لغتها بنفسها (404 تستنتج اللغة من المسار). الافتراضي: يعمل متى وُجد alt. */
   langSuggest?: boolean;
+  manifest?: string;
 }
 const {
   title, ogTitle,
   description = 'الأحساء — أكبر واحة في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
   lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
-  langSuggest = true,
+  langSuggest = true, manifest,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -129,7 +130,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* بيان التطبيق بلغة الصفحة: العربي ملف ثابت، والبقية من src/pages/[lang]/site.webmanifest.ts */}
-    <link rel="manifest" href={lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`} />
+    <link rel="manifest" href={manifest ?? (lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`)} />
     <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
     <meta name="copyright" content={copyrightNotice} />
     <meta name="rights" content={copyrightNotice} />

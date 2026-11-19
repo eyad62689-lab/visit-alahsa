@@ -7,7 +7,7 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { EVENTS_AR, EVENTS_EN, EVENTS_DE, EVENTS_RU, EVENTS_ZH, eventsFor } from '../data/events';
 import { EMERGENCY_ALT } from '../data/emergency-i18n';
-import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT, TOOLS_ALT, MARKETS_ALT, PLAY_ALT, ALWAN_ALT, EXPLORER_ALT, MERGE_ALT } from '../lib/routes';
+import { attractionAlt, blogHref, diningAlt, stayAlt, staticAlt, guideAlt, ABOUT_ALT, STORES_ALT, GUIDES_ALT, TOOLS_ALT, MARKETS_ALT, PLAY_ALT, ALWAN_ALT, EXPLORER_ALT, MERGE_ALT, BLOCKS_ALT } from '../lib/routes';
 import { TRANSPORT_ALT } from '../data/transport-i18n';
 import { publishedGuides } from '../lib/guides';
 import { storesLangs } from '../lib/stores';
@@ -85,11 +85,12 @@ export const GET: APIRoute = async ({ site }) => {
     { ...(TRANSPORT_ALT as Pair), lastmod: dateOf(`${V}TransportView.astro`, 'src/data/transport.ts', 'src/data/transport-i18n.ts') },
     { ...(EMERGENCY_ALT as Pair), lastmod: dateOf(`${V}EmergencyView.astro`, 'src/data/emergency.ts', 'src/data/emergency-i18n.ts') },
     { ...MARKETS_ALT, lastmod: dateOf(`${V}FarmersMarketsView.astro`, 'src/data/farmers-markets.ts') },
-    // ألعاب الاكتشاف (عربي/إنجليزي): الفهرس والألعاب الثلاث
+    // ألعاب الاكتشاف (عربي/إنجليزي): الفهرس والألعاب الأربع
     { ...PLAY_ALT, lastmod: dateOf(`${V}PlayHubView.astro`, 'src/data/play.ts') },
     { ...ALWAN_ALT, lastmod: dateOf(`${V}PlayAlwanView.astro`, 'src/data/play-alwan.ts') },
     { ...EXPLORER_ALT, lastmod: dateOf(`${V}PlayExplorerView.astro`, 'src/data/play-explorer.ts') },
     { ...MERGE_ALT, lastmod: dateOf(`${V}PlayMergeView.astro`, 'src/data/play-merge.ts') },
+    { ...BLOCKS_ALT, lastmod: dateOf(`${V}PlayBlocksView.astro`, 'src/data/play-blocks.ts') },
     // دليل المرشدين (عربي/إنجليزي): الفهرس وصفحاته تدخل الخريطة متى وُجد مرشد منشور — بلا مرشد
     // يبقى الفهرس مبنياً لكنه noindex فلا يُعلَن هنا (src/lib/guides.ts)
     ...(guides.length ? [
