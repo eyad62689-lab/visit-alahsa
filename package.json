@@ -8,6 +8,7 @@
     "prebuild": "node tools/test-ai-detection.mjs && node tools/fetch-places.mjs && node scripts/fingerprint.mjs",
     "build": "astro check && astro build && pagefind --site dist",
     "postbuild": "node scripts/image-rights.mjs && node tools/check-consistency.mjs && node tools/check-links.mjs && node tools/gen-advisor-kb.mjs",
+    "test:blocks": "node tools/test-oasis-blocks.mjs",
     "test:advisor": "node tools/test-advisor.mjs",
     "advisor:dev": "node tools/advisor-dev-server.mjs",
     "advisor:eval": "node tools/advisor-eval.mjs",
