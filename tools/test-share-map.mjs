@@ -2,7 +2,7 @@
 // (docs/تشخيص-التفاعل-العالمي-وخطة-التحسين-2026-09-08.md § خارطة التنفيذ، الخطوة 6)
 //
 // يتحقق من: زر المشاركة في القوالب الخمسة (معلم، مقال، منشأة، إقامة، فعالية) وعلى
-// الخريطة؛ مسار Web Share (محاكاة navigator.share) ومسار النسخ (محاكاة clipboard)
+// الخريطة؛ قائمة الوجهات (واتساب وX بروابطهما، والنسخ بمحاكاة clipboard) وفتحها وإغلاقها
 // وحدث `share` بطريقته؛ ونصوص الزر بلغة الصفحة من مفتاح share.btn لكل لغة (zh/de/ru منذ 2026-09-17)؛
 // وحالة الخريطة في الرابط تُقرأ (?cat= و?q= و#slug) وتُكتب عند التغيير مع حدث map_deeplink.
 // التشغيل كسابقة tools/test-analytics-events.mjs (puppeteer-core خارج المستودع).
@@ -42,32 +42,54 @@ async function fresh({ share, clipboard }) {
 }
 
 try {
-  console.log('\n── زر المشاركة: Web Share ثم النسخ ──');
-  let p = await fresh({ share: true, clipboard: false });
+  console.log('\n── زر المشاركة: القائمة (واتساب · X · نسخ الرابط) ──');
+  let p = await fresh({ share: false, clipboard: true });
   await p.goto2('/en/attractions/jabal-al-qarah/');
-  const btn = await p.$('button[data-share="attraction"]');
-  ok(btn, 'زر المشاركة في صفحة المعلم');
-  ok((await p.$eval('button[data-share="attraction"] [data-share-tx]', (e) => e.textContent.trim())) === 'Share', 'نصّ الزر الإنجليزي «Share»');
-  await p.click('button[data-share="attraction"]');
-  await sleep(300);
-  const shared = await p.evaluate(() => window.__shared || null);
-  ok(shared && shared.url === BASE + '/en/attractions/jabal-al-qarah/' && shared.title.includes('Jabal'), 'navigator.share استُدعي بالرابط والعنوان', shared && shared.url);
+  const sel = 'button[data-share="attraction"]';
+  ok(await p.$(sel), 'زر المشاركة في صفحة المعلم');
+  ok((await p.$eval(sel + ' .share-tx', (e) => e.textContent.trim())) === 'Share', 'نصّ الزر الإنجليزي «Share»');
+  const popOf = (s) => p.$eval(s, (b) => { const pop = document.getElementById(b.getAttribute('aria-controls')); return { hidden: pop.hidden, exp: b.getAttribute('aria-expanded') }; });
+  ok((await popOf(sel)).hidden, 'القائمة مخفية قبل الضغط');
+  await p.click(sel);
+  await sleep(150);
+  let st = await popOf(sel);
+  ok(!st.hidden && st.exp === 'true', 'الضغط يفتح القائمة (aria-expanded=true)');
+  const links = await p.$eval(sel, (b) => { const pop = document.getElementById(b.getAttribute('aria-controls')); return { wa: pop.querySelector('[data-share-to="whatsapp"]').href, x: pop.querySelector('[data-share-to="x"]').href, waTx: pop.querySelector('[data-share-to="whatsapp"]').textContent.trim(), copyTx: pop.querySelector('[data-share-to="copy"]').textContent.trim() }; });
+  const pageUrl = BASE + '/en/attractions/jabal-al-qarah/';
+  const waText = decodeURIComponent(links.wa.split('?text=')[1] || '');
+  ok(links.wa.startsWith('https://wa.me/?text=') && waText.endsWith('\n' + pageUrl) && waText.includes('Jabal'), 'رابط واتساب يحمل العنوان والرابط', waText.slice(0, 60));
+  const xu = new URL(links.x);
+  ok(xu.origin + xu.pathname === 'https://x.com/intent/post' && xu.searchParams.get('url') === pageUrl && (xu.searchParams.get('text') || '').includes('Jabal'), 'رابط X يحمل العنوان والرابط', links.x.slice(0, 80));
+  ok(links.waTx === 'WhatsApp' && links.copyTx === 'Copy share link', 'تسميات القائمة الإنجليزية', JSON.stringify([links.waTx, links.copyTx]));
+  await p.keyboard.press('Escape');
+  await sleep(100);
+  st = await popOf(sel);
+  ok(st.hidden && st.exp === 'false', 'Escape يغلق القائمة');
+  ok(await p.evaluate(() => !!document.activeElement && document.activeElement.matches('button[data-share]')), 'التركيز يعود إلى الزر بعد Escape');
+  await p.click(sel); await sleep(100);
+  await p.mouse.click(5, 880); await sleep(100);
+  ok((await popOf(sel)).hidden, 'النقر خارج القائمة يغلقها');
+  await p.click(sel); await sleep(100);
+  await p.evaluate(() => { document.querySelector('[data-share-to="whatsapp"]').addEventListener('click', (e) => e.preventDefault()); });
+  await p.click('[data-share-to="whatsapp"]'); await sleep(150);
   let ev = await events(p);
-  ok(find(ev, 'share', (x) => x.method === 'web_share' && x.content_type === 'attraction' && x.item_id === 'jabal-al-qarah'), 'حدث share (web_share · attraction · jabal-al-qarah)');
+  ok(find(ev, 'share', (x) => x.method === 'whatsapp' && x.content_type === 'attraction' && x.item_id === 'jabal-al-qarah'), 'حدث share (whatsapp · attraction · jabal-al-qarah)');
+  ok((await popOf(sel)).hidden, 'اختيار وجهة يغلق القائمة');
   await p.done();
 
   p = await fresh({ share: false, clipboard: true });
   await p.goto2('/en/blog/48-hours-in-al-ahsa/');
   ok(await p.$('button[data-share="blog"]'), 'زر المشاركة في المقال');
-  await p.click('button[data-share="blog"]');
+  await p.click('button[data-share="blog"]'); await sleep(150);
+  await p.click('[data-share-to="copy"]');
   await sleep(300);
   const copiedUrl = await p.evaluate(() => window.__copied || '');
-  ok(copiedUrl === BASE + '/en/blog/48-hours-in-al-ahsa/', 'النسخ إلى الحافظة عند غياب Web Share', copiedUrl);
-  ok(await p.$eval('button[data-share="blog"]', (b) => b.classList.contains('is-copied') && b.textContent.includes('Link copied')), 'الزر يعرض «Link copied ✓»');
+  ok(copiedUrl === BASE + '/en/blog/48-hours-in-al-ahsa/', 'نسخ الرابط إلى الحافظة', copiedUrl);
+  ok(await p.$eval('[data-share-to="copy"]', (b) => b.classList.contains('is-copied') && b.textContent.includes('Link copied')), 'الخيار يعرض «Link copied ✓»');
   ev = await events(p);
   ok(find(ev, 'share', (x) => x.method === 'copy' && x.content_type === 'blog'), 'حدث share (copy · blog)');
   await sleep(2400);
-  ok(await p.$eval('button[data-share="blog"]', (b) => !b.classList.contains('is-copied') && b.textContent.trim() === 'Share'), 'الزر يعود إلى «Share» بعد ثانيتين');
+  ok(await p.$eval('[data-share-to="copy"]', (b) => !b.classList.contains('is-copied') && b.textContent.trim() === 'Copy share link'), 'الخيار يعود إلى نصّه بعد ثانيتين');
 
   console.log('\n── الوجود في بقية القوالب وبلغات أخرى ──');
   await p.goto2('/en/restaurants-cafes/dar-basma/'); ok(await p.$('button[data-share="dining"]'), 'زر المشاركة في صفحة المنشأة');
@@ -76,8 +98,28 @@ try {
   if (stayHref) { await p.goto2(stayHref); ok(await p.$('button[data-share="stay"]'), 'زر المشاركة في صفحة الإقامة', stayHref); }
   else console.log('  · لا صفحة إقامة مفردة مبنية — يُتخطّى');
   await p.goto2('/en/events/hasawi-lomi-exhibition/'); ok(await p.$('button[data-share="event"]'), 'زر المشاركة في صفحة الفعالية');
-  await p.goto2('/معالم/جبل-القارة/'); ok((await p.$eval('button[data-share="attraction"] [data-share-tx]', (e) => e.textContent.trim())) === 'مشاركة', 'النصّ العربي «مشاركة»');
-  await p.goto2('/zh/attractions/jabal-al-qarah/'); ok((await p.$eval('button[data-share="attraction"] [data-share-tx]', (e) => e.textContent.trim())) === '分享', 'الصينية من مفتاح share.btn (دفعة A-ui-zh، الحاكم 92)');
+  await p.goto2('/معالم/جبل-القارة/');
+  ok((await p.$$eval('[data-share-to]', (els) => els.map((e) => e.textContent.trim()))).join('|') === 'واتساب|X|انسخ رابط المشاركة', 'تسميات القائمة العربية');
+  ok((await p.$eval('button[data-share="attraction"] .share-tx', (e) => e.textContent.trim())) === 'مشاركة', 'النصّ العربي «مشاركة»');
+  // على الجوال: الهيرو يقصّ ما يفيض، فالقائمة يجب أن تظهر كاملة داخل الشاشة وفوق كل شيء
+  const visibleMenu = (s) => p.$eval(s, (b) => {
+    b.scrollIntoView({ block: 'center' }); b.click();
+    const pop = document.getElementById(b.getAttribute('aria-controls'));
+    const r = pop.getBoundingClientRect();
+    const opts = [...pop.querySelectorAll('[data-share-to]')];
+    const onTop = opts.every((o) => { const q = o.getBoundingClientRect(); const hit = document.elementFromPoint(q.left + q.width / 2, q.top + q.height / 2); return hit && o.contains(hit); });
+    b.click();
+    return { inside: r.left >= 0 && r.right <= innerWidth && r.top >= 0 && r.bottom <= innerHeight, onTop, r: [Math.round(r.left), Math.round(r.right), innerWidth] };
+  });
+  await p.setViewport({ width: 375, height: 812 });
+  await p.goto2('/معالم/جبل-القارة/');
+  let mv = await visibleMenu('button[data-share="attraction"]');
+  ok(mv.inside && mv.onTop, 'القائمة كاملة داخل شاشة الجوال وغير مقصوصة (معلم عربي)', JSON.stringify(mv));
+  await p.goto2('/en/events/hasawi-lomi-exhibition/');
+  mv = await visibleMenu('button[data-share="event"]');
+  ok(mv.inside && mv.onTop, 'القائمة كاملة داخل شاشة الجوال وغير مقصوصة (فعالية)', JSON.stringify(mv));
+  await p.setViewport({ width: 1280, height: 900 });
+  await p.goto2('/zh/attractions/jabal-al-qarah/'); ok((await p.$eval('button[data-share="attraction"] .share-tx', (e) => e.textContent.trim())) === '分享', 'الصينية من مفتاح share.btn (دفعة A-ui-zh، الحاكم 92)');
   await p.goto2('/de/attractions/jabal-al-qarah/');
   const de = await p.$eval('button[data-share="attraction"]', (b) => ({ text: b.textContent.trim(), aria: b.getAttribute('aria-label'), icon: b.classList.contains('share-btn--icon') }));
   ok(de.text === 'Teilen' && de.aria === null && !de.icon, 'الألمانية «Teilen» من مفتاح share.btn (دفعة A-ui-de، الحاكم 95)', JSON.stringify(de));
@@ -112,6 +154,8 @@ try {
   const hash = await p.evaluate(() => location.hash);
   ok(/^#[a-z0-9-]+$/.test(hash), 'النقر على عنصر القائمة يكتب #slug', hash);
   await p.click('button[data-share="map"]');
+  await sleep(150);
+  await p.click('[data-share-to="copy"]');
   await sleep(300);
   const mapUrl = await p.evaluate(() => window.__copied || '');
   ok(mapUrl.includes('?cat=historic&q=qasr#'), 'مشاركة الخريطة تنسخ الرابط بحالته', mapUrl.replace(BASE, ''));
