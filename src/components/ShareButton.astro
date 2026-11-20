@@ -1,20 +1,19 @@
 ---
-// زر المشاركة — الخطوة 6 من خطة التفاعل العالمي (ف1 في التشخيص).
+// زر المشاركة — الخطوة 6 من خطة التفاعل العالمي (ف1 في التشخيص)، ثم قائمة الوجهات.
 //
-// كانت المشاركة في «رحلتي» وحدها (واتساب ونسخ الرابط)، ولا زر في صفحات المعالم
-// والمقالات والمنشآت والفعاليات والخريطة. هنا زر واحد: Web Share API حيث تتوفر
-// (ورقة المشاركة الأصلية على الجوال)، وإلا نسخ الرابط مع تأكيد مرئي. يُقاس حدث
-// `share` بطريقته (web_share / copy) ونوع المحتوى ومعرّفه عبر VATrack.
+// الزر يفتح قائمة صغيرة بثلاث وجهات صريحة: واتساب، وX، ونسخ الرابط. الرابط المُشارَك
+// هو رابط الصفحة بحالته (الخريطة تحمل فئتها وبحثها)، والنص عنوان الصفحة.
+// يُقاس حدث `share` بطريقته (whatsapp / x / copy) ونوع المحتوى ومعرّفه عبر VATrack.
 //
-// النصوص: share.btn وplan.copied من قاموس لغة الصفحة نفسها متى مرّا بخطّها (دفعة الواجهة
-// العامة 2026-09-16 أدخلتهما للصينية والألمانية والروسية). لغة بلا share.btn تعرض الأيقونة
-// وحدها بتسمية aria إنجليزية من كلمة واحدة، وبلا plan.copied تتراجع إلى الإنجليزية —
-// قاعدة CLAUDE.md: لا نصّ بهذه اللغات خارج الخطوط.
+// النصوص كلها من مفاتيح مرّت بخطوط اللغات: share.btn للزر، وfoot.l.whatsapp لاسم واتساب،
+// وplan.copy وplan.copied للنسخ. «X» اسم علامة لا يُترجم. لغة بلا share.btn تعرض الأيقونة
+// وحدها بتسمية aria إنجليزية من كلمة واحدة، وأي مفتاح ناقص يتراجع إلى الإنجليزية —
+// قاعدة CLAUDE.md: لا نصّ بلغات الخطوط خارجها.
 import { ui, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
-  /** نوع المحتوى لحدث القياس: attraction · blog · dining · stay · event · map */
+  /** نوع المحتوى لحدث القياس: attraction · blog · dining · stay · event · map · guide · trail */
   contentType: string;
   /** معرّف العنصر لحدث القياس (slug) — الافتراضي مسار الصفحة */
   itemId?: string;
@@ -24,68 +23,161 @@ interface Props {
 }
 const { lang, contentType, itemId, dark = false, class: cls = '' } = Astro.props;
 const str = (l: Lang, key: string): string | undefined => (ui[l] as Record<string, string>)[key];
+const pick = (key: string, last: string): string => str(lang, key) ?? str('en', key) ?? last;
 const label = str(lang, 'share.btn');
-const copied = str(lang, 'plan.copied') ?? str('en', 'plan.copied') ?? 'Link copied ✓';
 const aria = label ?? 'Share';
+const waName = pick('foot.l.whatsapp', 'WhatsApp');
+const copyTx = pick('plan.copy', 'Copy link');
+const copied = pick('plan.copied', 'Link copied ✓');
+const popId = `share-pop-${contentType}-${(itemId ?? 'page').replace(/[^A-Za-z0-9_-]/g, '')}`;
 ---
-<button
-  class:list={['share-btn', { 'share-btn--dark': dark, 'share-btn--icon': !label }, cls]}
-  type="button"
-  data-share={contentType}
-  data-share-id={itemId}
-  data-copied={copied}
-  aria-label={label ? undefined : aria}
-  title={label ? undefined : aria}
->
-  <svg class="share-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <circle cx="18" cy="5" r="2.6" /><circle cx="6" cy="12" r="2.6" /><circle cx="18" cy="19" r="2.6" />
-    <path d="M8.3 10.7l7.4-4.3M8.3 13.3l7.4 4.3" />
-  </svg>
-  {label && <span class="share-tx" data-share-tx data-share-label={label}>{label}</span>}
-</button>
+<div class:list={['share', cls]} data-share-wrap>
+  <button
+    class:list={['share-btn', { 'share-btn--dark': dark, 'share-btn--icon': !label }]}
+    type="button"
+    data-share={contentType}
+    data-share-id={itemId}
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls={popId}
+    aria-label={label ? undefined : aria}
+    title={label ? undefined : aria}
+  >
+    <svg class="share-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="18" cy="5" r="2.6" /><circle cx="6" cy="12" r="2.6" /><circle cx="18" cy="19" r="2.6" />
+      <path d="M8.3 10.7l7.4-4.3M8.3 13.3l7.4 4.3" />
+    </svg>
+    {label && <span class="share-tx">{label}</span>}
+  </button>
+  <div class="share-pop" id={popId} hidden>
+    <a class="share-opt" data-share-to="whatsapp" href="https://wa.me/" target="_blank" rel="noopener noreferrer">
+      <svg class="share-oi share-oi--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.6-.4Z"/></svg>
+      <span>{waName}</span>
+    </a>
+    <a class="share-opt" data-share-to="x" href="https://x.com/intent/post" target="_blank" rel="noopener noreferrer">
+      <svg class="share-oi" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3l-6.6 7.6L22 21h-6.1l-4.8-6.2L5.6 21h-3l7.1-8.1L2.2 3h6.2l4.3 5.7L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>
+      <span lang="en" dir="ltr">X</span>
+    </a>
+    <button class="share-opt" type="button" data-share-to="copy" data-copied={copied}>
+      <svg class="share-oi" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1" /><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1" /></svg>
+      <span data-share-copy-tx data-share-label={copyTx}>{copyTx}</span>
+    </button>
+  </div>
+</div>
 
 <script is:inline>
   (function () {
     if (window.__vaShare) return;
     window.__vaShare = true;
     var timers = new WeakMap();
+    // الرابط بحالته كما هو: الخريطة تحمل الفئة والبحث والمعلم في ?cat=&q=#slug
+    function shareUrl() { return location.href; }
     function track(btn, method) {
       try { if (window.VATrack) window.VATrack('share', { method: method, content_type: btn.dataset.share, item_id: btn.dataset.shareId || decodeURI(location.pathname) }); } catch (e) {}
     }
-    function copied(btn) {
-      var tx = btn.querySelector('[data-share-tx]');
-      btn.classList.add('is-copied');
-      if (tx) tx.textContent = btn.dataset.copied;
-      clearTimeout(timers.get(btn));
-      timers.set(btn, setTimeout(function () {
-        btn.classList.remove('is-copied');
-        if (tx) tx.textContent = tx.dataset.shareLabel;
+    // القائمة تُنقل إلى نهاية body عند فتحها: الهيرو يقصّ ما يفيض (overflow: hidden) وحاوياته
+    // تنشئ سياق تراكب (z-index) يغطيها ما بعده، فلا ينجو موضع داخلها. الربط بالزر عبر aria-controls.
+    function popOf(btn) { return document.getElementById(btn.getAttribute('aria-controls')); }
+    function btnOf(pop) { return document.querySelector('button[data-share][aria-controls="' + pop.id + '"]'); }
+    function close(btn, focusBtn) {
+      var pop = popOf(btn);
+      if (!pop || pop.hidden) return;
+      pop.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      if (focusBtn) btn.focus();
+    }
+    function closeAll(except) {
+      document.querySelectorAll('button[data-share][aria-expanded="true"]').forEach(function (b) { if (b !== except) close(b, false); });
+    }
+    function open(btn) {
+      var pop = popOf(btn);
+      if (pop.parentElement !== document.body) document.body.appendChild(pop);
+      var url = shareUrl();
+      var title = document.title;
+      pop.querySelector('[data-share-to="whatsapp"]').href = 'https://wa.me/?text=' + encodeURIComponent(title + '\n' + url);
+      pop.querySelector('[data-share-to="x"]').href = 'https://x.com/intent/post?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url);
+      closeAll(btn);
+      pop.dir = getComputedStyle(btn).direction;
+      pop.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+      place(btn, pop);
+    }
+    // موضع ثابت محسوب من الزر، محصور داخل عرض الشاشة، وينقلب فوق الزر حين لا يتسع ما تحته.
+    function place(btn, pop) {
+      var r = btn.getBoundingClientRect();
+      var w = pop.offsetWidth, h = pop.offsetHeight, m = 8;
+      var left = pop.dir === 'rtl' ? r.right - w : r.left;
+      left = Math.max(m, Math.min(left, window.innerWidth - w - m));
+      var top = r.bottom + 6;
+      if (top + h > window.innerHeight - m && r.top - 6 - h >= m) top = r.top - 6 - h;
+      pop.style.left = left + 'px';
+      pop.style.top = top + 'px';
+    }
+    function placeOpen() {
+      document.querySelectorAll('button[data-share][aria-expanded="true"]').forEach(function (b) { place(b, popOf(b)); });
+    }
+    window.addEventListener('scroll', placeOpen, { passive: true });
+    window.addEventListener('resize', placeOpen);
+    function copied(opt) {
+      var tx = opt.querySelector('[data-share-copy-tx]');
+      opt.classList.add('is-copied');
+      tx.textContent = opt.dataset.copied;
+      clearTimeout(timers.get(opt));
+      timers.set(opt, setTimeout(function () {
+        opt.classList.remove('is-copied');
+        tx.textContent = tx.dataset.shareLabel;
       }, 2200));
     }
     document.addEventListener('click', function (e) {
-      var btn = e.target.closest && e.target.closest('button[data-share]');
-      if (!btn) return;
-      var url = location.href;
-      var title = document.title;
-      if (navigator.share) {
-        navigator.share({ title: title, url: url }).then(function () { track(btn, 'web_share'); }).catch(function () { /* أُلغيت الورقة */ });
+      var t = e.target;
+      if (!t.closest) return;
+      var btn = t.closest('button[data-share]');
+      if (btn) {
+        if (btn.getAttribute('aria-expanded') === 'true') close(btn, false); else open(btn);
         return;
       }
-      var done = function () { copied(btn); track(btn, 'copy'); };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt(title, url); });
-      else window.prompt(title, url);
+      var pop = t.closest('.share-pop');
+      if (!pop) { closeAll(null); return; }
+      btn = btnOf(pop);
+      var opt = t.closest('[data-share-to]');
+      if (!opt || !btn) return;
+      var to = opt.dataset.shareTo;
+      if (to === 'copy') {
+        var url = shareUrl();
+        var done = function () { copied(opt); track(btn, 'copy'); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt(document.title, url); });
+        else window.prompt(document.title, url);
+        return;
+      }
+      track(btn, to);
+      setTimeout(function () { close(btn, false); }, 0);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var el = document.activeElement;
+      var pop = el && el.closest && el.closest('.share-pop');
+      var btn = pop ? btnOf(pop) : el && el.closest && el.closest('button[data-share]');
+      if (btn && btn.getAttribute('aria-expanded') === 'true') close(btn, true); else closeAll(null);
     });
   })();
 </script>
 
 <style>
+  .share { position: relative; display: inline-block; }
   .share-btn { display: inline-flex; align-items: center; gap: 8px; min-block-size: 44px; padding: 0 16px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), background var(--dur) var(--ease); }
-  .share-btn:hover { border-color: var(--c-turq); color: var(--c-turq); }
+  .share-btn:hover, .share-btn[aria-expanded='true'] { border-color: var(--c-turq); color: var(--c-turq); }
   .share-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
   .share-btn--icon { inline-size: 44px; padding: 0; justify-content: center; }
   .share-btn--dark { color: var(--c-sand); background: transparent; border-color: rgba(247, 243, 234, .5); }
-  .share-btn--dark:hover { color: var(--c-sand); border-color: var(--c-sand); background: rgba(247, 243, 234, .08); }
+  .share-btn--dark:hover, .share-btn--dark[aria-expanded='true'] { color: var(--c-sand); border-color: var(--c-sand); background: rgba(247, 243, 234, .08); }
   .share-btn--dark:focus-visible { outline-color: var(--c-gold-bright, var(--c-gold)); }
-  .share-btn.is-copied { color: var(--c-turq-deep); border-color: var(--c-turq); background: var(--c-sand-2); }
-  .share-btn--dark.is-copied { color: var(--c-sand); background: rgba(247, 243, 234, .14); border-color: var(--c-sand); }
+
+  .share-pop { position: fixed; top: 0; left: 0; z-index: 1100; /* فوق طبقات Leaflet (حتى 1000) في الخريطة؛ الموضع يحسبه السكربت */ display: grid; gap: 2px; min-inline-size: 210px; padding: 6px; background: #fff; border: 1px solid var(--c-line); border-radius: 14px; box-shadow: 0 10px 30px rgba(21, 33, 30, .16); }
+  .share-pop[hidden] { display: none; }
+  .share-opt { display: flex; align-items: center; gap: 10px; min-block-size: 44px; padding: 0 12px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; line-height: 1.3; color: var(--c-ink); text-align: start; text-decoration: none; background: transparent; border: 0; border-radius: 10px; cursor: pointer; }
+  .share-opt:hover { background: var(--c-sand-2); color: var(--c-turq-deep); }
+  .share-opt:focus-visible { outline: 2px solid var(--c-turq); outline-offset: -2px; }
+  .share-oi { flex: none; inline-size: 20px; color: var(--c-turq-deep); }
+  .share-oi--wa { color: #128c7e; }
+  .share-opt.is-copied { background: var(--c-sand-2); color: var(--c-turq-deep); }
 </style>
