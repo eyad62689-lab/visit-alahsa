@@ -56,6 +56,9 @@ const H = HOME_COPY[lang];
     const cv = gate?.querySelector<HTMLCanvasElement>('[data-gate-fx]');
     if (!gate || !cv || !wx?.state || gate.dataset.wx) return;
     gate.dataset.wx = wx.state;
+    // يبدأ المؤثّر في وقت خمول لا أثناء التحميل
+    await new Promise<void>((ok) => ('requestIdleCallback' in window ? requestIdleCallback(() => ok(), { timeout: 2500 }) : setTimeout(ok, 800)));
+    if (!gate.isConnected) return;
     const { startWeatherFx } = await import('../../scripts/weather-fx');
     stopFx = startWeatherFx(cv, gate, wx.state);
   }

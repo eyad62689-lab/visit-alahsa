@@ -315,12 +315,16 @@ const straws = Array.from({ length: 7 }, () => {
         start({ kind: 'panel', t0: performance.now(), dur: 2000, from, ax: [0, 0], h: 0, to: { x: r.left + r.width * 0.42, y: r.top + r.height * 0.4 } });
       }
 
-      // الأصول بعد load فقط، ثم الطيران الافتتاحي بعد 1.5 ثانية مرة في الجلسة
+      // الأصول بعد load فقط، ثم الطيران الافتتاحي بعد 1.5 ثانية من أول تفاعل مرة في الجلسة (لا حركة rAF أثناء التحميل)
       const boot = () => {
         Promise.all([one('bulbul-perch'), one('bulbul-fly')]).then(([perch, fly]) => {
           art = { perch, fly }; paint();
           let flown = false; try { flown = sessionStorage.getItem(FLOWN) === '1'; } catch { /* */ }
-          if (!flown && !reduced.matches) intro = setTimeout(eight, 1500);
+          if (!flown && !reduced.matches) {
+            const EV = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'] as const;
+            const go = () => { EV.forEach((e) => removeEventListener(e, go)); intro = setTimeout(eight, 1500); };
+            EV.forEach((e) => addEventListener(e, go, { passive: true, once: true }));
+          }
         }).catch(() => { /* يبقى العش وحده */ });
       };
       if (document.readyState === 'complete') boot(); else window.addEventListener('load', boot, { once: true });
