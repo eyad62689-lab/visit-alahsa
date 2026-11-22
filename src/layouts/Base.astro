@@ -315,43 +315,57 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
   <body>
     <a class="skip-link" href="#main" data-pagefind-ignore>{t('a11y.skip')}</a>
     <slot />
+    {/* ظهور بالتمرير (القواعد في global.css). تأخير التتابع الموسوم على العنصر (transition-delay بالمللي ثانية) يصير --rv-d بسقف 180ms.
+        ما في الشاشة أو فوقها عند التحميل يظهر فوراً بلا حركة (rv-now) والباقي يراقبه IntersectionObserver بهامش سفلي 15% وthreshold: 0
+        (نسبة الظهور تُقاس من ارتفاع العنصر نفسه فمتنٌ طويل لا يبلغ 0.12 أبداً). القفز بين إطارين (مفتاح End، مرساة، تمرير برمجي) قد يُفلت
+        من المراقب، فكنسة rAF خفيفة على scroll تُظهر كل معلَّق في الشاشة أو فوقها وتتوقف حين لا يبقى شيء. القراءات تسبق الكتابات كلها.
+        مجموعة <details> مطويّة: ما فيها يظهر فور فتحها. شبكة أمان: إن لم يُطلق المراقب شيئاً خلال 1.5 ث يُظهَر كل ما تبقّى. */}
     <script is:inline>
       function initReveal() {
-        const els = document.querySelectorAll('[data-reveal]:not(.in)');
+        if (window.__vaRv) window.__vaRv();
+        var els = document.querySelectorAll('[data-reveal]:not(.in)');
         if (!els.length) return;
-        // تأخير التتابع الموسوم على العنصر (transition-delay بالمللي ثانية) يصير --rv-d بسقف 180ms
-        const show = (e, now) => {
-          const d = Math.min(parseFloat(e.style.transitionDelay) || 0, 180);
+        var show = function (e, now) {
+          var d = Math.min(parseFloat(e.style.transitionDelay) || 0, 180);
           e.style.transitionDelay = '';
           if (d) e.style.setProperty('--rv-d', d + 'ms');
           e.classList.add('in');
           if (now) e.classList.add('rv-now');
         };
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const vh = window.innerHeight;
-        const rest = [];
-        // ما في الشاشة أو فوقها عند التحميل يظهر فوراً بلا حركة؛ والباقي يراقبه IntersectionObserver
-        els.forEach((e) => { if (reduce || e.getBoundingClientRect().top < vh * 1.15) show(e, true); else rest.push(e); });
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var vh = window.innerHeight, rest = [];
+        var tops = Array.prototype.map.call(els, function (e) { return e.getBoundingClientRect().top; });
+        els.forEach(function (e, i) { if (reduce || tops[i] < vh * 1.15) show(e, true); else rest.push(e); });
         if (!rest.length) return;
-        if (!('IntersectionObserver' in window)) { rest.forEach((e) => show(e, true)); return; }
-        let fired = false;
-        // threshold: 0 لا 0.12 — النسبة تُقاس من ارتفاع العنصر نفسه، فمتنُ مقالٍ طويل (6000px+)
-        // يلزمه 700px+ ظاهرة دفعةً واحدة فلا تتحقق أبداً على شاشة أقصر. الهامش السفلي +15% يبدأ
-        // الظهور قبل دخول العنصر. وما تجاوزه التمرير السريع (حافته فوق أسفل الشاشة) يُظهَر أيضاً.
-        const io = new IntersectionObserver((ents) => {
+        if (!('IntersectionObserver' in window)) { rest.forEach(function (e) { show(e, true); }); return; }
+        var fired = false, tick = 0, timer = 0, io;
+        var pending = function () { return rest.filter(function (e) { return !e.classList.contains('in'); }); };
+        var stop = function () { io.disconnect(); clearTimeout(timer); window.removeEventListener('scroll', onScroll); window.__vaRv = null; };
+        var sweep = function () {
+          tick = 0;
+          var left = pending();
+          if (!left.length) { stop(); return; }
+          var lim = window.innerHeight;
+          var t = left.map(function (e) { return e.getBoundingClientRect().top; });
+          left.forEach(function (e, i) { if (t[i] < lim) { show(e, false); io.unobserve(e); } });
+          if (!pending().length) stop();
+        };
+        var onScroll = function () { if (!tick) tick = requestAnimationFrame(sweep); };
+        io = new IntersectionObserver(function (ents) {
           fired = true;
-          ents.forEach((en) => {
-            const below = en.rootBounds ? en.boundingClientRect.top >= en.rootBounds.bottom : !en.isIntersecting;
+          ents.forEach(function (en) {
+            var below = en.rootBounds ? en.boundingClientRect.top >= en.rootBounds.bottom : !en.isIntersecting;
             if (en.isIntersecting || !below) { show(en.target, false); io.unobserve(en.target); }
           });
+          if (!pending().length) stop();
         }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
-        rest.forEach((e) => io.observe(e));
-        // مجموعة <details> مطويّة: ما فيها يظهر فور فتحها (المراقب لا يرى محتوى مطويّاً)
-        new Set(rest.map((e) => e.closest('details'))).forEach((d) => {
-          if (d) d.addEventListener('toggle', () => { if (d.open) d.querySelectorAll('[data-reveal]:not(.in)').forEach((e) => show(e, true)); });
+        rest.forEach(function (e) { io.observe(e); });
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.__vaRv = stop;
+        new Set(rest.map(function (e) { return e.closest('details'); })).forEach(function (d) {
+          if (d) d.addEventListener('toggle', function () { if (d.open) d.querySelectorAll('[data-reveal]:not(.in)').forEach(function (e) { show(e, true); }); });
         });
-        // شبكة أمان: إن لم يُطلق المراقب شيئاً خلال 1.5 ث يُظهَر كل ما تبقّى
-        setTimeout(() => { if (!fired) { rest.forEach((e) => { if (!e.classList.contains('in')) show(e, true); }); io.disconnect(); } }, 1500);
+        timer = setTimeout(function () { if (!fired) { pending().forEach(function (e) { show(e, true); }); stop(); } }, 1500);
       }
       document.addEventListener('astro:page-load', initReveal);
       if (document.readyState !== 'loading') initReveal();
