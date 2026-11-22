@@ -54,6 +54,8 @@ export const TrailsSchema = z.strictObject({
     theme: z.string(),
     suggestedDuration: z.enum(['half-day', 'full-day']),
     mode: z.enum(['walking', 'driving', '4x4']),
+    // مقطع حرفي من intro يحلّ محل أسماء المحطات في وصف الصفحة لـSEO (المسار الذي تذكر مقدمته إغلاق بعض محطاته مؤقتاً)
+    seoClause: Bi.optional(),
     ar: TrailText,
     en: TrailText,
     stops: z.array(z.strictObject({
@@ -70,6 +72,9 @@ export const TrailsSchema = z.strictObject({
   d.trails.forEach((t, i) => t.stops.forEach((s, j) => s.sources.forEach((k) => {
     if (!(k in d.sources)) ctx.addIssue({ code: 'custom', path: ['trails', i, 'stops', j, 'sources'], message: `مفتاح مصدر غير معرَّف: ${k}` });
   })));
+  d.trails.forEach((t, i) => (['ar', 'en'] as const).forEach((l) => {
+    if (t.seoClause && !t[l].intro.includes(t.seoClause[l])) ctx.addIssue({ code: 'custom', path: ['trails', i, 'seoClause', l], message: 'seoClause مقطع حرفي من intro' });
+  }));
   for (const l of ['ar', 'en'] as const) {
     const msg = guideIssues(d.trails.map((t) => ({ ...t[l], stops: t.stops.map((s) => s[l]) })));
     if (msg) ctx.addIssue({ code: 'custom', path: ['trails'], message: `${l}: ${msg}` });

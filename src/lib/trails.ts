@@ -88,10 +88,12 @@ export function trailSeo(trail: Trail, lang: TrailLang): { title: string; descri
   const names = joinNames(trail.stops.map((s) => stopText(trail, s, lang).name.replace(/\s*\([^)]*\)/g, '')), lang);
   const stops = `${stopsPhrase(trail.stops.length, lang)}: ${names}`;
   const title = `${tx.title}: ${cased(duration)}${en ? ', ' : '، '}${cased(mode)}`;
+  // مسار يحمل seoClause: مقطع حرفي من مقدمته بدل عدد المحطات وأسمائها (بعض محطاته مغلقة مؤقتاً فلا يعلنها الوصف)
+  const lead = trail.seoClause ? trail.seoClause[lang] : stops;
   const forms = [
-    `${tx.tagline}. ${stops}. ${t('trails.duration')}: ${cased(duration)}. ${t('trails.mode')}: ${cased(mode)}.`,
-    `${tx.tagline}. ${stops}. ${t('trails.duration')}: ${cased(duration)}.`,
-    `${tx.tagline}. ${stops}.`,
+    `${tx.tagline}. ${lead}. ${t('trails.duration')}: ${cased(duration)}. ${t('trails.mode')}: ${cased(mode)}.`,
+    `${tx.tagline}. ${lead}. ${t('trails.duration')}: ${cased(duration)}.`,
+    `${tx.tagline}. ${lead}.`,
   ];
   const fit = (n: number) => n >= SEO_LIMITS.descMin && n <= SEO_LIMITS.descMax;
   const description = forms.find((f) => fit(descLen(f))) ?? tx.tagline;
