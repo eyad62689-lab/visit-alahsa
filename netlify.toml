@@ -57,6 +57,68 @@
   to = "/en/legal/"
   status = 301
 
+# تحويلات دائمة لروابط قديمة محذوفة ما زالت تصل من محركات البحث (404 في Search Console).
+# كل قاعدة تشير إلى صفحة قائمة فعلاً في dist، بلا سلاسل. القاعدتان بالشرطة الختامية وبدونها كما في
+# تحويل السياسات أعلاه. لا يُستعاد أي محتوى محذوف: التحويل وحده.
+# العربية تُخدم من الجذر بلا بادئة /ar/.
+[[redirects]]
+  from = "/ar/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/ar"
+  to = "/"
+  status = 301
+
+# لم يوجد /en/discover.html في تاريخ المستودع؛ الرئيسية الإنجليزية هي الهدف الوحيد المنطقي.
+[[redirects]]
+  from = "/en/discover.html"
+  to = "/en/"
+  status = 301
+
+# «جبل الشعبة»: ملخص صفحته المحذوفة (جبل-الشعبة / shuubah) ينصّ على أنه الاسم المتداول لكتلة جبل كنزان.
+[[redirects]]
+  from = "/en/attractions/shuubah/"
+  to = "/en/attractions/kanzan/"
+  status = 301
+
+[[redirects]]
+  from = "/en/attractions/shuubah"
+  to = "/en/attractions/kanzan/"
+  status = 301
+
+[[redirects]]
+  from = "/معالم/جبل-الشعبة/"
+  to = "/معالم/جبل-كنزان/"
+  status = 301
+
+[[redirects]]
+  from = "/معالم/جبل-الشعبة"
+  to = "/معالم/جبل-كنزان/"
+  status = 301
+
+# صفحة قصر الملك عبدالعزيز بالعقير حُذفت لعدم صحة معلومتها؛ تحويل إلى مركز العقير لا استعادة لمحتواها.
+[[redirects]]
+  from = "/en/attractions/uqair-abdulaziz/"
+  to = "/en/attractions/al-uqair/"
+  status = 301
+
+[[redirects]]
+  from = "/en/attractions/uqair-abdulaziz"
+  to = "/en/attractions/al-uqair/"
+  status = 301
+
+[[redirects]]
+  from = "/معالم/قصر-الملك-عبدالعزيز-بالعقير/"
+  to = "/معالم/العقير/"
+  status = 301
+
+[[redirects]]
+  from = "/معالم/قصر-الملك-عبدالعزيز-بالعقير"
+  to = "/معالم/العقير/"
+  status = 301
+
 # رؤوس HTTP (التخزين المؤقت ورؤوس الأمان وCSP) في public/_headers وحده — مصدر واحد
 # يُنسخ إلى dist/_headers عند البناء. لا تُضف [[headers]] هنا: القاعدة المكرّرة في
 # الملفين تسمح بتعديل أحدهما دون الآخر بلا أي إنذار (يحرسه C78 في check-consistency).
