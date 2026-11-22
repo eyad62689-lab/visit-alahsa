@@ -169,12 +169,37 @@ const jsonLd = [
   {/* تجميع الدبابيس المتقاربة (marker clustering) — مستضاف ذاتياً؛ يمنع تراكب الدبابيس
       عند التكبير الشامل (يعالج target-size) ويوضّح المناطق المزدحمة. */}
   <link rel="stylesheet" href="/vendor/leaflet.markercluster-1.5.3/MarkerCluster.css" />
-  <script is:inline src="/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js"></script>
+  {/* سكربت markercluster يُحمَّل من السكربت المضمّن أدناه بعد توفّر Leaflet (ترتيب التنفيذ بعد التنقّل غير مضمون) */}
 
   <script is:inline define:vars={{ points, labels, isAr: ar, viewBounds }}>
+    // عند التنقّل بـClientRouter تُحمَّل السكربتات الخارجية المُدرَجة بلا ترتيب مضمون: لو وُسم markercluster بجانب Leaflet
+    // لنُفِّذ قبله أحياناً فيفشل (L is not defined) ولا يعرّف L.markerClusterGroup. لذا يُحمَّل markercluster من هنا بعد أن
+    // يتوفّر L (فوراً عند التحميل المباشر)، والانتظار كل 50ms حتى 10 ثوانٍ حتى يتوفّر الاثنان. التشغيل مرة واحدة لكل عنصر
+    // #map (el._leaflet_id) مهما تكرّر النداء من page-load وقراءة المستند.
+    const MC_SRC = '/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js';
+    const leafletReady = () => typeof L !== 'undefined' && typeof L.markerClusterGroup === 'function';
+    let waiting = false;
+    function loadCluster() {
+      if (typeof L === 'undefined' || typeof L.markerClusterGroup === 'function' || document.querySelector('script[data-va-mc]')) return;
+      const s = document.createElement('script');
+      s.src = MC_SRC; s.dataset.vaMc = '1';
+      document.head.appendChild(s);
+    }
     function initMap() {
+      if (!document.getElementById('map') || waiting) return;
+      loadCluster();
+      if (leafletReady()) { buildMap(); return; }
+      waiting = true;
+      let tries = 0;
+      const timer = setInterval(() => {
+        loadCluster();
+        if (leafletReady()) { clearInterval(timer); waiting = false; buildMap(); return; }
+        if (++tries >= 200 || !document.getElementById('map')) { clearInterval(timer); waiting = false; }
+      }, 50);
+    }
+    function buildMap() {
       const el = document.getElementById('map');
-      if (!el || typeof L === 'undefined' || el._leaflet_id) return;
+      if (!el || el._leaflet_id) return;
       // prefix صريح: بادئة Leaflet الافتراضية تحمل علماً سياسياً لا محلّ له على
       // موقع سياحي — الإسناد نفسه يبقى كاملاً.
       const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
