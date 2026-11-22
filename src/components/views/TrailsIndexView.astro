@@ -92,7 +92,9 @@ const jsonLd = [
   .tr-grid > li { display: flex; }
   /* أول مسار مميّز: سطح فاتح بخطّ ذهبي عند حافة البداية ورقم فيروزي كبير (لا شريحة داكنة ثانية تحت الهيرو الداكن).
      عمودان على الشاشات العريضة فقط؛ على الجوال عمود واحد بالحشوة الأرحب نفسها */
-  .tr-grid > li:first-child .tr-card { border-inline-start: 4px solid var(--c-gold); padding: var(--s-5) var(--s-4); gap: var(--s-3); }
+  .tr-grid > li:first-child .tr-card { position: relative; padding: var(--s-5) var(--s-4); gap: var(--s-3); }
+  /* gold marker as an inset bar on the straight part of the edge: a border here wraps around the rounded corners into a hook */
+  .tr-grid > li:first-child .tr-card::before { content: ''; position: absolute; inset-block: var(--s-4); inset-inline-start: 0; inline-size: 4px; background: var(--c-gold); border-start-end-radius: 2px; border-end-end-radius: 2px; }
   .tr-grid > li:first-child .tr-num { font-size: clamp(3rem, 7vw, 5rem); }
   .tr-grid > li:first-child .tr-t { font-size: clamp(1.5rem, 2.6vw, 2.125rem); }
   .tr-grid > li:first-child .tr-d { font-size: var(--t-base); max-inline-size: 60ch; }

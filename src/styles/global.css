@@ -65,6 +65,8 @@ main#main { scroll-margin-block-start: 69px; }
     transition-duration: .001ms !important;
     scroll-behavior: auto !important;
   }
+  /* no view-transition animation at all: the root cross-fade and every named group are cut */
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
 /* حاوية محتوى منضبطة */
