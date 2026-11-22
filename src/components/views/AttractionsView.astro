@@ -290,11 +290,11 @@ const jsonLd = [
   :global(.att-ph) { aspect-ratio: 4 / 3; }
   .att-card--feat :global(.att-ph) { aspect-ratio: 16 / 9; }
   /* التسمية والعنوان فوق الصورة على تدرّج سفلي يضمن 4.5:1 للنصّ الصغير فوق أفتح صورة (الحشوة العلوية تُبقي النصّ في المنطقة المعتّمة) */
-  .lc-over { position: absolute; inset-inline: 0; inset-block-end: 0; padding: var(--s-4) var(--s-4) var(--s-3); pointer-events: none; z-index: 1; }
-  /* التعتيم يبدأ من أسفل الصورة ولا يعلو عن ~45% منها، وشفّاف تماماً فوق ذلك: الصورة الساطعة تحتفظ بلونها */
-  .lc-media::after {
-    content: ''; position: absolute; inset-inline: 0; inset-block-end: 0; block-size: 45%; pointer-events: none;
-    background: linear-gradient(0deg, rgba(0,30,27,.92) 0%, rgba(0,30,27,.78) 48%, rgba(0,30,27,0) 100%);
+  /* التعتيم بحجم النصّ نفسه: كتلة التسمية والعنوان تقع كلها في منطقة معتّمة (≥4.5:1 للنصّ الصغير)، ويتلاشى فوقها خلال 30px فقط،
+     فلا يعلو التدرّج عن ~45% من الصورة وتبقى الصورة الساطعة بلونها فوق ذلك */
+  .lc-over {
+    position: absolute; inset-inline: 0; inset-block-end: 0; padding: 30px var(--s-4) var(--s-3); pointer-events: none; z-index: 1;
+    background: linear-gradient(0deg, rgba(0,30,27,.92) 0%, rgba(0,30,27,.86) calc(100% - 30px), rgba(0,30,27,0) 100%);
   }
   .lc-over > * { text-shadow: 0 1px 3px rgba(0,20,18,.55); }
   /* تدرّج .photo العامّ (يغمّق الأسفل بـ62%) يُلغى هنا: تعتيم البطاقة وحده هو الضمان، فلا تتراكم الطبقتان */
@@ -330,6 +330,7 @@ const jsonLd = [
     .att-card--feat { grid-column: auto; }
     :global(.att-ph), .att-card--feat :global(.att-ph) { aspect-ratio: 3 / 2; }
     .lc-d { -webkit-line-clamp: 2; line-clamp: 2; }
+    .lc-t, .att-card--feat .lc-t { font-size: 1.125rem; }
     /* على الجوال يلتصق حقل البحث وحده تحت الترويسة ويبقى التلميح في موضعه */
     .list-tools { display: contents; }
     .list-hint { margin-block-end: var(--s-3); }
