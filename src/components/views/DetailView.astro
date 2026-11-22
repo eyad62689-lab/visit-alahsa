@@ -476,7 +476,7 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .ah-fav { min-inline-size: 15ch; background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
   .ah-fav:hover { border-color: var(--c-sand); }
   .ah-fav.is-saved { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
-  .att-layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--s-6); padding-block: var(--s-7); align-items: start; }
+  .att-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--s-6); padding-block: var(--s-7); align-items: start; }
   .prose { font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); max-inline-size: 68ch; }
   .prose :global(p) { margin-block-end: var(--s-4); }
   .prose :global(strong) { color: var(--c-turq-deep); font-weight: 600; }
@@ -486,9 +486,11 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .att-aside { position: sticky; inset-block-start: 88px; display: flex; flex-direction: column; gap: var(--s-3); }
   .info-card { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-4); }
   .info-h { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
-  .info-list { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-3); margin: 0; }
-  .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
-  .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
+  /* عمود التسميات يتّسع لأطول تسمية حتى 45% من البطاقة ثم تلتفّ التسمية؛ والقيمة تنكمش (minmax(0, 1fr)) وتكسر أطول كلمة
+     بدل أن تُوسّع الشبكة فيفيض العرض على الجوال (تسمية ألمانية طويلة بلا التفاف كانت تدفع الصفحة إلى 418px عند 390px) */
+  .info-list { display: grid; grid-template-columns: fit-content(45%) minmax(0, 1fr); gap: var(--s-2) var(--s-3); margin: 0; }
+  .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; overflow-wrap: anywhere; }
+  .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; overflow-wrap: anywhere; }
   /* الأوردو: عمود التسميات (auto وبلا التفاف) يأخذ عرض أطول تسمية، فيبقى للقيمة نحو نصف البطاقة
      وتنكسر قيمتا المواعيد والرسوم أربعة أسطر إلى ستة بسطر النستعليق العالي. التسمية فوق قيمتها
      فتأخذ القيمة عرض البطاقة كله — في العمود الجانبي وعلى الجوال سواء. */
@@ -572,5 +574,5 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .back-btn { margin-block-start: var(--s-5); }
   /* 760px هي نقطة كسر الموقع الموحّدة؛ كانت هنا 860px شاذّة فتصير بطاقات
      «أكمل يومك» عموداً واحداً عملاقاً على التابلت، وتخالف sizes أعلاه */
-  @media (max-width: 760px) { .att-layout { grid-template-columns: 1fr; } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } .nb-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) { .att-layout { grid-template-columns: minmax(0, 1fr); } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } .nb-grid { grid-template-columns: 1fr; } }
 </style>
