@@ -428,7 +428,7 @@ const straws = Array.from({ length: 7 }, () => {
         }
       };
       sheetMq.addEventListener('change', syncModal);
-      document.addEventListener('astro:before-swap', releaseInert, { once: true });
+      document.addEventListener('astro:before-swap', () => { releaseInert(); sheetMq.removeEventListener('change', syncModal); }, { once: true });
       const open = (v: boolean) => {
         panel.hidden = !v;
         syncModal();
