@@ -11,6 +11,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import NextStep from '../NextStep.astro';
+import DetailHero from '../DetailHero.astro';
 import '../../styles/detail.css';
 import Photo from '../Photo.astro';
 import OpenNowBadge from '../OpenNowBadge.astro';
@@ -245,31 +246,31 @@ const jsonLd = [
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />
   <main id="main">
-    <article class="container dd">
-      <nav class="dd-crumbs" aria-label={t('a11y.crumbs')}>
-        <a href={indexHref}>{C.backLabel}</a>
+    <DetailHero wm="start" title={name}>
+      <nav class="dh-crumbs" aria-label={t('a11y.crumbs')}>
+        <a class="dd-back" href={indexHref}>{C.backLabel}</a>
       </nav>
+      <span class="eyebrow gold-on-dark">{C.kindLabel}</span>
+      <span class="saqiya saqiya--dark dh-sq" aria-hidden="true"></span>
+      <h1 class="dh-title">{name}</h1>
+      {area && <p class="dd-area">{area}</p>}
+      {closed && <p class="dd-closed">{closed}</p>}
+      <div class="dd-meta">
+        {lv?.rating && (
+          <p class="dd-rating"><span class="dd-star" aria-hidden="true">★</span>
+            <strong>{lv.rating.toFixed(1)}</strong>
+            {lv.count && <span class="dd-count">({lv.count.toLocaleString('en-US')})</span>}
+            <span class="sr-only">{C.ratingLabel}</span>
+          </p>
+        )}
+        {!closed && hoursData && (
+          <p class="dd-open" hidden data-hours={hoursData} data-open={C.openNow} data-shut={C.closedNow}></p>
+        )}
+      </div>
+      <div class="dh-act"><ShareButton lang={lang} contentType="dining" itemId={d.slug_en} dark /></div>
+    </DetailHero>
 
-      <header class="dd-head">
-        <span class="eyebrow">{C.kindLabel}</span>
-        <h1>{name}</h1>
-        <ShareButton lang={lang} contentType="dining" itemId={d.slug_en} class="dd-share" />
-        {area && <p class="dd-area">{area}</p>}
-        {closed && <p class="dd-closed">{closed}</p>}
-        <div class="dd-meta">
-          {lv?.rating && (
-            <p class="dd-rating"><span class="dd-star" aria-hidden="true">★</span>
-              <strong>{lv.rating.toFixed(1)}</strong>
-              {lv.count && <span class="dd-count">({lv.count.toLocaleString('en-US')})</span>}
-              <span class="sr-only">{C.ratingLabel}</span>
-            </p>
-          )}
-          {!closed && hoursData && (
-            <p class="dd-open" hidden data-hours={hoursData} data-open={C.openNow} data-shut={C.closedNow}></p>
-          )}
-        </div>
-      </header>
-
+    <article class="container dd">
       <Photo src={d.img} label={alTxt} class="dd-photo" eager sizes="(max-width: 900px) 100vw, 900px" />
 
       <div class="dd-body prose">
@@ -326,20 +327,20 @@ const jsonLd = [
 {hoursData && <OpenNowBadge />}
 
 <style>
-  .dd { padding-block: var(--s-6) var(--s-8); max-inline-size: 900px; }
-  .dd-crumbs { margin-block-end: var(--s-4); font-size: var(--t-sm); }
-  .dd-crumbs a { display: inline-flex; align-items: center; min-block-size: 44px; color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
-  .dd-crumbs a:hover { color: var(--c-turq); }
-  .dd-head h1 { font-size: var(--t-3xl); margin-block-start: var(--s-2); }
-  .dd-area { margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-deep); font-weight: 600; }
+  /* content column keeps the 900px reading width but starts at the same edge as the hero text */
+  .dd { padding-block: var(--s-4) var(--s-8); }
+  .dd > :global(*) { max-inline-size: 900px; }
+  /* header block lives in DetailHero (dark band): text colours below are for the dark surface */
+  .dh-crumbs .dd-back { display: inline-flex; align-items: center; min-block-size: 44px; margin-block: -6px; }
+  .dd-area { margin-block-start: var(--s-1); font-size: var(--t-base); color: var(--c-gold-bright); font-weight: 600; }
   .dd-closed { margin-block-start: var(--s-3); font-size: var(--t-sm); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-inline-start: 3px solid var(--c-gold); border-radius: var(--radius-sm); padding: 8px 12px; }
   .dd-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin-block-start: var(--s-3); }
-  .dd-rating { display: flex; align-items: center; gap: 6px; font-size: var(--t-sm); }
-  .dd-star { color: var(--c-gold-deep); }
-  .dd-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
-  .dd-open { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-sm); font-weight: 700; color: var(--c-ink-soft); }
+  .dd-rating { display: flex; align-items: center; gap: 6px; font-size: var(--t-sm); color: var(--c-sand); }
+  .dd-star { color: var(--c-gold-bright); }
+  .dd-count { color: rgba(247,243,234,.82); font-size: var(--t-xs); }
+  .dd-open { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-sm); font-weight: 700; color: rgba(247,243,234,.88); }
   .dd-open::before { content: ''; inline-size: 8px; block-size: 8px; border-radius: 50%; background: currentColor; }
-  .dd-open.is-open { color: var(--c-turq); }
+  .dd-open.is-open { color: var(--c-gold-bright); }
 
   /* إطار قوس خفيض: زاويتا الأعلى بنصف قطر إهليلجي (قبّة ضحلة) تبقي الصورة مقروءة */
   :global(.dd-photo) { margin-block: var(--s-5); border-radius: var(--radius); border-start-start-radius: 50% 22%; border-start-end-radius: 50% 22%; aspect-ratio: 3 / 2; }
