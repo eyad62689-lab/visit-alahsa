@@ -54,7 +54,7 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
 <section
   class:list={[
     'page-hero', 'on-dark', cls,
-    { 'page-hero--compact': size === 'compact', 'page-hero--media': hasMedia, 'page-hero--scrim-strong': scrim === 'strong', 'page-hero--arch': arch },
+    { 'page-hero--compact': size === 'compact', 'page-hero--media': hasMedia, 'page-hero--scrim-strong': scrim === 'strong', 'page-hero--arch': arch, 'page-hero--after': Astro.slots.has('after') },
   ]}
   style={`--arch-next: ${NEXT_BG[next]}`}
 >
@@ -85,14 +85,21 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
   /* هيرو بلا ملصق (سطح فيروزي مسطّح): أقصر كي لا يبدو فراغاً */
   .page-hero:not(.page-hero--media) { min-block-size: clamp(320px, 44svh, 480px); }
   .page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-6)); }
-  .page-hero--compact { min-block-size: clamp(260px, 34svh, 380px); padding-block: var(--s-7) var(--s-6); }
-  .page-hero--compact.page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-5)); }
+  /* .page-hero.page-hero-- لتغلب قاعدة «بلا ملصق» أعلاه (نوعيتها 0,2,0) فتنال الأبطال المدمجة ارتفاعها */
+  .page-hero.page-hero--compact { min-block-size: clamp(260px, 34svh, 380px); padding-block: var(--s-7) var(--s-6); }
+  .page-hero.page-hero--compact.page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-5)); }
   /* طبقة التعتيم فوق الملصق/الفيديو لضمان وضوح النصّ — للأبطال المصوّرة فقط. الثلث السفلي أقوى
      لأن النصّ مرساه هناك: الطبقة السفلية تضمن 4.5:1 للنصّ الصغير فوق أفتح ملصق. */
   .page-hero--media::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background:
       linear-gradient(0deg, rgba(0,34,30,.88) 0%, rgba(0,36,32,.66) 36%, rgba(0,36,32,0) 72%),
+      var(--hero-scrim);
+  }
+  /* هيرو بشريط سفلي (after): النصّ يقع فوق الشريط حيث يكاد التدرّج السفلي يتلاشى، فيبدأ التعتيم من أعلى */
+  .page-hero--after.page-hero--media::after {
+    background:
+      linear-gradient(0deg, rgba(0,34,30,.9) 0%, rgba(0,36,32,.82) 45%, rgba(0,36,32,.5) 75%, rgba(0,36,32,.12) 100%),
       var(--hero-scrim);
   }
   .page-hero--scrim-strong::after {
@@ -113,7 +120,7 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
   /* زخرفة السواقي تحت التسمية تغني عن خطّها ومعيّنها */
   .pgh-in :global(.eyebrow::before), .pgh-in :global(.eyebrow::after) { display: none; }
   .pgh-sq { inline-size: 168px; max-inline-size: 60%; margin-block: var(--s-3) var(--s-2); }
-  .pgh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-display); line-height: 1.1; margin-block: var(--s-2) var(--s-3); text-wrap: balance; overflow-wrap: break-word; }
+  .pgh-title { hyphens: auto; font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-display); line-height: 1.1; margin-block: var(--s-2) var(--s-3); text-wrap: balance; overflow-wrap: break-word; }
   .page-hero--compact .pgh-title { font-size: var(--t-3xl); }
   .pgh-lead { font-size: var(--t-lg); line-height: 1.7; color: rgba(247,243,234,.94); max-inline-size: min(100%, 56ch); }
   @media (max-width: 760px) {
