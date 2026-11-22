@@ -165,7 +165,7 @@ const attractions = defineCollection({
       source_zh: z.string().optional(),
       source_de: z.string().optional(),
       source_ru: z.string().optional(),
-      sourceUrl: z.string().url().optional(),                          // رابطه إن وُجد
+      sourceUrl: z.url().optional(),                                     // رابطه إن وُجد
       verifiedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تاريخ التحقق YYYY-MM-DD
       nextReview: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تجاوز دورة المراجعة الافتراضية
     }).refine((p) => !p.verified || (p.source && p.source_en && p.verifiedAt), {
@@ -173,7 +173,7 @@ const attractions = defineCollection({
     })).default([]),
     // رابط الجهة المشغّلة للموقع (حسابها أو صفحتها): حين يوجد تصير كلمة «المشغّل» في سطر
     // المواعيد والرسوم تحت بطاقة الزيارة رابطاً إليه، وتبقى نصاً عادياً في غيره.
-    operatorUrl: z.string().url().optional(),
+    operatorUrl: z.url().optional(),
     // موقع مفتوح للعموم بلا رسوم دخول أو مفتوح على مدار الساعة: لا يُعرض تحت بطاقته سطر
     // المواعيد والرسوم (لا مشغّل يُراجَع ولا تذكرة). لا يجتمع مع operatorUrl.
     openSite: z.boolean().default(false),

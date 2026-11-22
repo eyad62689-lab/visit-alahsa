@@ -23,7 +23,10 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   // ملحق تشكيل النص العربي (مستضاف ذاتياً) — lazy: يُجلب فقط حين تظهر تسميات RTL
   // الملف بامتداد .mjs قصداً: عامل MapLibre يحمّل ما ينتهي به عبر import()، وما عداه عبر
   // eval الذي تحجبه سياسة المحتوى (لا unsafe-eval في script-src) — يحرسه C78.
-  try { maplibregl.setRTLTextPlugin(cfg.rtlPluginUrl, true); } catch { /* مضبوط سابقاً */ }
+  // الدالة موسومة deprecated في MapLibre 6 (يشكّل النص العربي بنفسه) ولا بديل بتوقيع جديد؛ الملحق المستضاف
+  // ذاتياً ما زال مقصوداً (يستبدل المدمج)، فيُستدعى عبر نوع محلي حتى لا يُعلَّم التحذير بلا تغيير في السلوك.
+  const rtl = maplibregl as unknown as { setRTLTextPlugin(url: string, lazy: boolean): Promise<void> };
+  try { rtl.setRTLTextPlugin(cfg.rtlPluginUrl, true); } catch { /* مضبوط سابقاً */ }
 
   const map = new maplibregl.Map({
     container: el,
