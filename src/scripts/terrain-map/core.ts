@@ -26,7 +26,8 @@ export async function initMapLibre(host: HTMLElement, cfg: TmapCfg, opts: Opts) 
   // الدالة موسومة deprecated في MapLibre 6 (يشكّل النص العربي بنفسه) ولا بديل بتوقيع جديد؛ الملحق المستضاف
   // ذاتياً ما زال مقصوداً (يستبدل المدمج)، فيُستدعى عبر نوع محلي حتى لا يُعلَّم التحذير بلا تغيير في السلوك.
   const rtlApi = maplibregl as unknown as { setRTLTextPlugin(url: string, lazy: boolean): Promise<void> };
-  try { rtlApi.setRTLTextPlugin(cfg.rtlPluginUrl, true); } catch { /* مضبوط سابقاً */ }
+  // الاستدعاء داخل then: يلتقط التعيين المتزامن والرفض غير المتزامن معاً (مسجَّل سابقاً عند العودة للخريطة)
+  void Promise.resolve().then(() => rtlApi.setRTLTextPlugin(cfg.rtlPluginUrl, true)).catch(() => { /* مضبوط سابقاً */ });
 
   const map = new maplibregl.Map({
     container: el,
