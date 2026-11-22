@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { getCollection } from 'astro:content';
@@ -110,7 +111,9 @@ const jsonLd = [
     <section class="container list-body">
       <div class="list-tools">
         <p class="list-hint">{groupsHint}</p>
-        <input class="list-search" id="list-search" type="search" placeholder={t('list.search')} aria-label={t('list.searchLabel')} />
+        <div class="list-sbar">
+          <input class="list-search" id="list-search" type="search" placeholder={t('list.search')} aria-label={t('list.searchLabel')} />
+        </div>
       </div>
 
       <div id="list-grid">
@@ -149,13 +152,30 @@ const jsonLd = [
           </details>
         ))}
       </div>
-      <p class="empty" id="empty" hidden>{t('list.empty')}</p>
+      {/* منطقة حيّة دائمة: الرسالة والزرّ يظهران داخلها فيُعلنها قارئ الشاشة بلطف */}
+      <div role="status" aria-live="polite" class="empty-live">
+        <p class="empty" id="empty" hidden>{t('list.empty')} <button type="button" class="empty-reset" id="empty-reset">{t('list.all')}</button></p>
+      </div>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
 
 <script is:inline>
+  // انتقال العنصر المشترك: صورة البطاقة المنقورة تحمل الاسم va-hero لحظة النقر فقط (اسم واحد فريد في المستند أبداً)
+  // فتلتقي بصورة هيرو صفحة المعلم التي تحمله. الهيرو يُجرَّد من اسمه هنا كي لا يتكرّر الاسم عند الانتقال من معلم إلى معلم.
+  if (!window.__vaVtCard) {
+    window.__vaVtCard = true;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('.att-card .lc-link');
+      if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      document.querySelectorAll('[data-vt]').forEach(function (x) { x.style.viewTransitionName = ''; x.removeAttribute('data-vt'); });
+      document.querySelectorAll('.dhero--vt picture.photo-bg').forEach(function (x) { x.style.viewTransitionName = 'none'; });
+      var p = a.querySelector('picture.photo');
+      if (p) { p.style.viewTransitionName = 'va-hero'; p.setAttribute('data-vt', ''); }
+    });
+  }
   function initFilter() {
     const search = document.getElementById('list-search');
     const cards = document.querySelectorAll('#list-grid .att-card');
@@ -188,8 +208,20 @@ const jsonLd = [
         if (first) first.classList.add('att-card--feat');
       });
     }
+    // الاستعلام يُحفظ في الرابط (?q=) بـreplaceState فيُشارَك ويُستعاد عند التحميل، ويُحذف حين يفرغ؛ ?cat= يبقى كما هو.
+    function persist() {
+      try {
+        const u = new URL(location.href); const v = (search.value || '').trim();
+        if (v) u.searchParams.set('q', v); else u.searchParams.delete('q');
+        history.replaceState(history.state, '', u.pathname + u.search + u.hash);
+      } catch (e) { /* بيئة معزولة */ }
+    }
     search.dataset.wired = '1';
-    search.addEventListener('input', apply);
+    search.addEventListener('input', () => { apply(); persist(); });
+    const reset = document.getElementById('empty-reset');
+    if (reset) reset.addEventListener('click', () => { search.value = ''; apply(); persist(); search.focus(); });
+    const qWant = new URLSearchParams(location.search).get('q');
+    if (qWant) { search.value = qWant; apply(); }
     // روابط ?cat= القديمة (الرئيسية/التذييل) تفتح قسم المجموعة المطابق وتنقل إليه.
     const want = new URLSearchParams(location.search).get('cat');
     if (want) {
@@ -206,12 +238,12 @@ const jsonLd = [
   .lh-map { margin-block-start: var(--s-4); }
   .list-body { padding-block: var(--s-6) var(--s-8); }
   /* شريط الأدوات لاصق تحت الترويسة (68px + حدّها 1px)، يطمس ما يمرّ خلفه */
+  /* خلفية رملية مصمتة بحدّ سفلي رفيع (الحدّ دائم فلا إزاحة عند الالتصاق): البطاقات تمرّ تحتها فلا يظهر زرّ المفضلة خلف الشريط */
   .list-tools {
     position: sticky; inset-block-start: 69px; z-index: 20;
     display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap;
     margin-block-end: var(--s-5); margin-inline: calc(var(--s-3) * -1); padding: var(--s-3);
-    background: color-mix(in srgb, var(--c-sand) 90%, transparent); backdrop-filter: blur(10px);
-    box-shadow: 0 1px 0 var(--c-line);
+    background: var(--c-sand); border-block-end: 1px solid var(--c-line);
   }
   .list-hint { font-size: var(--t-sm); color: var(--c-ink-soft); }
   /* 16px حدّ أدنى إلزامي: سفاري iOS يزوّم الصفحة تلقائياً عند لمس أي حقل أصغر */
@@ -258,10 +290,15 @@ const jsonLd = [
   :global(.att-ph) { aspect-ratio: 4 / 3; }
   .att-card--feat :global(.att-ph) { aspect-ratio: 16 / 9; }
   /* التسمية والعنوان فوق الصورة على تدرّج سفلي يضمن 4.5:1 للنصّ الصغير فوق أفتح صورة (الحشوة العلوية تُبقي النصّ في المنطقة المعتّمة) */
-  .lc-over {
-    position: absolute; inset-inline: 0; inset-block-end: 0; padding: 44px var(--s-4) var(--s-3); pointer-events: none;
-    background: linear-gradient(0deg, rgba(0,30,27,.94) 0%, rgba(0,30,27,.88) 62%, rgba(0,30,27,0) 100%);
+  .lc-over { position: absolute; inset-inline: 0; inset-block-end: 0; padding: var(--s-4) var(--s-4) var(--s-3); pointer-events: none; z-index: 1; }
+  /* التعتيم يبدأ من أسفل الصورة ولا يعلو عن ~45% منها، وشفّاف تماماً فوق ذلك: الصورة الساطعة تحتفظ بلونها */
+  .lc-media::after {
+    content: ''; position: absolute; inset-inline: 0; inset-block-end: 0; block-size: 45%; pointer-events: none;
+    background: linear-gradient(0deg, rgba(0,30,27,.92) 0%, rgba(0,30,27,.78) 48%, rgba(0,30,27,0) 100%);
   }
+  .lc-over > * { text-shadow: 0 1px 3px rgba(0,20,18,.55); }
+  /* تدرّج .photo العامّ (يغمّق الأسفل بـ62%) يُلغى هنا: تعتيم البطاقة وحده هو الضمان، فلا تتراكم الطبقتان */
+  :global(.att-ph)::after { content: none; }
   .lc-k { color: var(--c-gold-bright); }
   .lc-t { font-size: var(--t-lg); color: var(--c-sand); margin-block: var(--s-1) 0; }
   .att-card--feat .lc-t { font-size: clamp(1.5rem, 2.6vw, 2.125rem); }
@@ -271,6 +308,9 @@ const jsonLd = [
   :global([lang='ur']) .lc-t { line-height: 1.6; }
   :global([lang='ur']) .lc-d { line-height: 2.45; }
   .empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }
+  .empty-reset { display: inline-flex; align-items: center; min-block-size: 44px; margin-inline-start: var(--s-2); padding: 0 var(--s-4); font: inherit; font-weight: 600; color: var(--c-turq-deep); background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }
+  .empty-reset:hover { border-color: var(--c-gold); }
+  .empty-reset:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
   /* جارة المميّزة في الصف الأول تملأ الارتفاع الذي تمدّه المميّزة بدل فراغ أسفل بطاقتها */
   @media (min-width: 900px) {
     .att-card--feat + .att-card .lc-media { flex: 1 1 auto; min-block-size: 240px; }
@@ -293,10 +333,11 @@ const jsonLd = [
     /* على الجوال يلتصق حقل البحث وحده تحت الترويسة ويبقى التلميح في موضعه */
     .list-tools { display: contents; }
     .list-hint { margin-block-end: var(--s-3); }
-    .list-search {
-      position: sticky; inset-block-start: 77px; z-index: 20; display: block; inline-size: 100%;
-      margin-block-end: var(--s-5); box-shadow: 0 6px 18px rgba(21,33,30,.12);
+    .list-sbar {
+      position: sticky; inset-block-start: 69px; z-index: 20; margin-inline: calc(var(--s-3) * -1); margin-block-end: var(--s-5);
+      padding: var(--s-2) var(--s-3); background: var(--c-sand); border-block-end: 1px solid var(--c-line);
     }
+    .list-search { display: block; inline-size: 100%; }
     .cat-sec-t { font-size: var(--t-xl); }
     /* كلمة أعرض من المتاح للعنوان («достопримечательности» ‏267.9px من 240 عند 375px)
        كانت تدفع العدّاد والشيفرون خارج الشاشة: تُكسر بواصلة، وبلا قاموس وصلٍ حيث تنتهي */

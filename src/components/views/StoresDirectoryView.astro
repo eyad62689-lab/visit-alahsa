@@ -9,6 +9,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { storesPage, storesLangs, countsBySection } from '../../lib/stores';
@@ -112,7 +113,10 @@ const pageTitle = `${seoCore} ${titleSep(lang)} ${t('site.brand')}`;
           </section>
         ))}
       </div>
-      <p class="stores-empty" id="stores-empty" hidden>{t('stores.empty')}</p>
+      {/* منطقة حيّة دائمة: الرسالة والزرّ يظهران داخلها فيُعلنها قارئ الشاشة بلطف */}
+      <div role="status" aria-live="polite" class="stores-live">
+        <p class="stores-empty" id="stores-empty" hidden>{t('stores.empty')} <button type="button" class="stores-reset" id="stores-reset">{t('list.all')}</button></p>
+      </div>
 
       <p class="stores-disclaimer">{t('stores.disclaimer')}</p>
 
@@ -126,6 +130,7 @@ const pageTitle = `${seoCore} ${titleSep(lang)} ${t('site.brand')}`;
         ))}
       </section>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
@@ -153,15 +158,28 @@ const pageTitle = `${seoCore} ${titleSep(lang)} ${t('site.brand')}`;
       secs.forEach((sec) => { sec.hidden = !sec.querySelector('.store-card:not([hidden])'); });
       if (empty) empty.hidden = shown !== 0;
     }
+    function setSection(id) {
+      section = id;
+      chips.forEach((o) => { const on = (o.getAttribute('data-section') || 'all') === id; o.classList.toggle('is-active', on); o.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      apply();
+    }
     chips.forEach((chip) => {
-      chip.addEventListener('click', () => {
-        section = chip.getAttribute('data-section') || 'all';
-        chips.forEach((o) => { const on = o === chip; o.classList.toggle('is-active', on); o.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-        apply();
-      });
+      chip.addEventListener('click', () => setSection(chip.getAttribute('data-section') || 'all'));
     });
+    // الاستعلام يُحفظ في الرابط (?q=) بـreplaceState فيُشارَك ويُستعاد عند التحميل، ويُحذف حين يفرغ
+    function persist() {
+      try {
+        const u = new URL(location.href); const v = (search.value || '').trim();
+        if (v) u.searchParams.set('q', v); else u.searchParams.delete('q');
+        history.replaceState(history.state, '', u.pathname + u.search + u.hash);
+      } catch (e) { /* بيئة معزولة */ }
+    }
     search.dataset.wired = '1';
-    search.addEventListener('input', apply);
+    search.addEventListener('input', () => { apply(); persist(); });
+    const reset = document.getElementById('stores-reset');
+    if (reset) reset.addEventListener('click', () => { search.value = ''; persist(); setSection('all'); search.focus(); });
+    const qWant = new URLSearchParams(location.search).get('q');
+    if (qWant) { search.value = qWant; apply(); }
   }
   document.addEventListener('astro:page-load', initStoresFilter);
   if (document.readyState !== 'loading') initStoresFilter(); else document.addEventListener('DOMContentLoaded', initStoresFilter);
@@ -199,6 +217,9 @@ const pageTitle = `${seoCore} ${titleSep(lang)} ${t('site.brand')}`;
   .store-cta { margin-block-start: auto; align-self: flex-start; }
 
   .stores-empty { text-align: center; color: var(--c-ink-soft); padding-block: var(--s-6); }
+  .stores-reset { display: inline-flex; align-items: center; min-block-size: 44px; margin-inline-start: var(--s-2); padding: 0 var(--s-4); font: inherit; font-weight: 600; color: var(--c-turq-deep); background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }
+  .stores-reset:hover { border-color: var(--c-gold); }
+  .stores-reset:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
   .stores-disclaimer { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.8; background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-3) var(--s-4); margin-block: var(--s-6); }
   .stores-faq { margin-block-start: var(--s-6); }
   .faq-item { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); }
