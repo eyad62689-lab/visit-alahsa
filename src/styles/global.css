@@ -137,13 +137,15 @@ main#main { scroll-margin-block-start: 69px; }
   content: ''; display: block; inline-size: 0; block-size: 2px; margin-block-start: var(--s-2);
   background: var(--c-gold); transition: inline-size var(--dur-3) var(--ease-out);
 }
-.card--lift:hover, .card--lift:has(:focus-visible) { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-.card--lift:has(:focus-visible) { outline: 2px solid var(--c-turq); outline-offset: 3px; } /* الحلقة على البطاقة: الرابط يملأها و.card يقصّ ما خرج عنها */
-.card--lift:hover .photo > img, .card--lift:has(:focus-visible) .photo > img { transform: scale(1.05); }
-.card--lift:hover :is(h2, h3)::after, .card--lift:has(:focus-visible) :is(h2, h3)::after { inline-size: 44px; }
+/* الحالة المرتفعة: تحويم، أو تركيز لوحة المفاتيح على البطاقة نفسها (حين تكون هي الرابط) أو على رابطٍ داخلها —
+   لا على زرّ المفضلة وحده (له حلقته الخاصة فلا تُضاعف) */
+.card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.card--lift:is(:focus-visible, :has(:focus-visible:not(.fav-btn))) { outline: 2px solid var(--c-turq); outline-offset: 3px; } /* الحلقة على البطاقة: الرابط يملؤها و.card يقصّ ما خرج عنها */
+.card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) .photo > img { transform: scale(1.05); }
+.card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) :is(h2, h3)::after { inline-size: 44px; }
 @media (prefers-reduced-motion: reduce) {
-  .card--lift:hover, .card--lift:has(:focus-visible) { transform: none; }
-  .card--lift:hover .photo > img, .card--lift:has(:focus-visible) .photo > img { transform: none; }
+  .card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) { transform: none; }
+  .card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) .photo > img { transform: none; }
 }
 
 /* --- السواقي والأقواس: أدوات الإيقاع البصري ---
@@ -248,6 +250,7 @@ picture.photo { display: block; }
 .js [data-reveal].in { animation: va-rise var(--dur-3) var(--ease-out) var(--rv-d, 0ms) backwards; }
 .js [data-reveal].rv-now { animation: none; }
 @keyframes va-rise { from { opacity: 0; transform: translateY(12px); } }
+@media print { [data-reveal] { opacity: 1 !important; transform: none !important; animation: none !important; } }
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal]:not(.in) { opacity: 1; transform: none; }
   .js [data-reveal].in { animation: none; }
