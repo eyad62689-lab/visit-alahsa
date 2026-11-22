@@ -89,6 +89,15 @@ const groupsHint = ar
         ? 'Ищите по названию или просматривайте группы ниже.'
         : ur ? 'نام سے تلاش کریں، یا نیچے دیے گئے زمرے دیکھیں۔' : tr ? 'İsme göre arayın ya da aşağıdaki gruplara göz atın.' : 'Search by name, or browse the groups below.';
 
+// sizes الصور بحسب موضع البطاقة في الشبكة (مطابقة لقواعد CSS): المميّزة عمودان من ثلاثة (≥900) وصف كامل (761–899) والوحيدة صف كامل؛
+// والأخيرة اليتيمة في صفّها (ثلاثية الأعمدة حين العدد من مضاعفات 3، وثنائية حين العدد زوجي) تمتدّ بعرض الصف فتُعلَن كذلك
+const cardSizes = (idx: number, n: number): string => {
+  if (idx === 0) return n === 1 ? '(max-width: 760px) 100vw, min(100vw, 1120px)' : '(max-width: 899px) 100vw, 66vw';
+  const last = idx === n - 1;
+  const wide = last && n % 3 === 0 ? 'min(100vw, 1120px)' : '33vw';
+  const mid = last && n % 2 === 0 ? '100vw' : '50vw';
+  return `(max-width: 760px) 100vw, (max-width: 899px) ${mid}, ${wide}`;
+};
 const siteUrl = 'https://visit-alahsa.com';
 const homeHref = ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : '/en/';
 const jsonLd = [
@@ -131,7 +140,7 @@ const jsonLd = [
                 <article class:list={['card', 'card--lift', 'att-card', { 'att-card--feat': idx === 0 }]} data-cat={i.data.category} data-title={`${i.data.title} ${i.data.title_en ?? ''} ${i.data.title_zh ?? ''}${ur && i.data.title_ur ? ` ${i.data.title_ur}` : ''}${tr && i.data.title_tr ? ` ${i.data.title_tr}` : ''}`} data-reveal style={`transition-delay:${(idx % 4) * 60}ms`}>
                   <a class="lc-link" href={attractionHref(i.data, hrefLang(i.data))}>
                     <div class="lc-media">
-                      <Photo src={i.data.heroImage} label={pickTitle(i.data)} class="att-ph" sizes={idx === 0 ? '(max-width: 760px) 100vw, 66vw' : '(max-width: 760px) 100vw, 50vw'} />
+                      <Photo src={i.data.heroImage} label={pickTitle(i.data)} class="att-ph" sizes={cardSizes(idx, g.list.length)} />
                       <div class="lc-over">
                         <span class="t-caption lc-k">{catLabel(i.data.category, lang)}</span>
                         <h3 class="lc-t">{pickTitle(i.data)}</h3>
@@ -262,8 +271,10 @@ const jsonLd = [
   .cat-sec[hidden] { display: none; }
   /* summary هو العنوان القابل للنقر — نُزيل مؤشّر المتصفح الافتراضي ونضبطه شبكةً مرنة؛
      السواقي (.saqiya) تحتَه بعرض الصف كاملاً */
-  summary.cat-sec-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); cursor: pointer; list-style: none; }
-  .cat-sq { flex: 0 0 100%; margin-block: var(--s-2) 0; }
+  summary.cat-sec-head { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; column-gap: var(--s-3); cursor: pointer; list-style: none; }
+  .cat-sq { grid-column: 1 / -1; margin-block: var(--s-2) 0; }
+  /* المجموعة المطويّة: خطّ رفيع فقط، والقطعة الذهبية ومعيّنها للمفتوحة */
+  .cat-sec:not([open]) .cat-sq::before, .cat-sec:not([open]) .cat-sq::after { display: none; }
   /* الفراغ تحت الرأس ينتمي إلى الشبكة المفتوحة لا إلى الرأس نفسه */
   .cat-sec > .list-grid { margin-block-start: var(--s-4); }
   summary.cat-sec-head::-webkit-details-marker { display: none; }
@@ -283,6 +294,7 @@ const jsonLd = [
   .list-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
   @media (min-width: 900px) { .list-grid { grid-template-columns: repeat(3, 1fr); } }
   .att-card--feat { grid-column: span 2; }
+  .att-card--feat:only-child { grid-column: 1 / -1; }
   /* القشرة والتحويم من card/card--lift الموحّدين */
   .att-card { position: relative; }
   .lc-link { display: flex; flex-direction: column; flex: 1; text-decoration: none; color: inherit; }
@@ -290,11 +302,11 @@ const jsonLd = [
   :global(.att-ph) { aspect-ratio: 4 / 3; }
   .att-card--feat :global(.att-ph) { aspect-ratio: 16 / 9; }
   /* التسمية والعنوان فوق الصورة على تدرّج سفلي يضمن 4.5:1 للنصّ الصغير فوق أفتح صورة (الحشوة العلوية تُبقي النصّ في المنطقة المعتّمة) */
-  /* التعتيم بحجم النصّ نفسه: كتلة التسمية والعنوان تقع كلها في منطقة معتّمة (≥4.5:1 للنصّ الصغير)، ويتلاشى فوقها خلال 30px فقط،
+  /* التعتيم بحجم النصّ نفسه: كتلة التسمية والعنوان تقع كلها في منطقة معتّمة (≥4.5:1 للنصّ الصغير)، ويتلاشى فوقها خلال 28px فقط،
      فلا يعلو التدرّج عن ~45% من الصورة وتبقى الصورة الساطعة بلونها فوق ذلك */
   .lc-over {
-    position: absolute; inset-inline: 0; inset-block-end: 0; padding: 30px var(--s-4) var(--s-3); pointer-events: none; z-index: 1;
-    background: linear-gradient(0deg, rgba(0,30,27,.92) 0%, rgba(0,30,27,.86) calc(100% - 30px), rgba(0,30,27,0) 100%);
+    position: absolute; inset-inline: 0; inset-block-end: 0; padding: 28px var(--s-4) var(--s-3); pointer-events: none; z-index: 1;
+    background: linear-gradient(0deg, rgba(0,30,27,.88) 0%, rgba(0,30,27,.82) calc(100% - 28px), rgba(0,30,27,0) 100%);
   }
   .lc-over > * { text-shadow: 0 1px 3px rgba(0,20,18,.55); }
   /* تدرّج .photo العامّ (يغمّق الأسفل بـ62%) يُلغى هنا: تعتيم البطاقة وحده هو الضمان، فلا تتراكم الطبقتان */
@@ -339,11 +351,11 @@ const jsonLd = [
       padding: var(--s-2) var(--s-3); background: var(--c-sand); border-block-end: 1px solid var(--c-line);
     }
     .list-search { display: block; inline-size: 100%; }
-    .cat-sec-t { font-size: var(--t-xl); }
+    .cat-sec-t { font-size: var(--t-lg); }
     /* كلمة أعرض من المتاح للعنوان («достопримечательности» ‏267.9px من 240 عند 375px)
        كانت تدفع العدّاد والشيفرون خارج الشاشة: تُكسر بواصلة، وبلا قاموس وصلٍ حيث تنتهي */
     .cat-sec-t { overflow-wrap: anywhere; }
     :global([lang='ru']) .cat-sec-t { hyphens: auto; }
-    summary.cat-sec-head { gap: var(--s-2); }
+    summary.cat-sec-head { column-gap: var(--s-2); }
   }
 </style>
