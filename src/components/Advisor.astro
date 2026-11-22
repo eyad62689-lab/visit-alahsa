@@ -108,7 +108,7 @@ const straws = Array.from({ length: 7 }, () => {
     {translated && <span class="adv-fab-tx">{t('advisor.open')}</span>}
   </button>
 
-  <section id="advisor-panel" class="adv" role="dialog" aria-modal="true" aria-labelledby="advisor-title" hidden>
+  <section id="advisor-panel" class="adv" role="dialog" aria-labelledby="advisor-title" hidden>
     <header class="adv-hd">
       <picture class="adv-hd-ic">
       <source srcset="/img/brand/bulbul-head-64.webp" type="image/webp" />
@@ -410,8 +410,28 @@ const straws = Array.from({ length: 7 }, () => {
       for (const m of history) bubble(m.role, m.content);
       if (history.length && chipsEl()) chipsEl()!.hidden = true;
 
+      // Modal only where the open panel is a full-width sheet (<= 480px, see the .adv-root.is-open rule):
+      // aria-modal, a Tab loop and inert on everything else. As a floating corner box it is a plain non-modal dialog.
+      const sheetMq = window.matchMedia('(max-width: 480px)');
+      let inerted: HTMLElement[] = [];
+      const releaseInert = () => { for (const n of inerted) n.inert = false; inerted = []; };
+      const syncModal = () => {
+        const modal = !panel.hidden && sheetMq.matches;
+        if (modal) panel.setAttribute('aria-modal', 'true'); else panel.removeAttribute('aria-modal');
+        releaseInert();
+        if (!modal) return;
+        // every sibling along the path from the advisor root up to <body>
+        for (let node: HTMLElement = host; node !== document.body && node.parentElement; node = node.parentElement) {
+          for (const sib of Array.from(node.parentElement.children) as HTMLElement[]) {
+            if (sib !== node && !sib.inert) { sib.inert = true; inerted.push(sib); }
+          }
+        }
+      };
+      sheetMq.addEventListener('change', syncModal);
+      document.addEventListener('astro:before-swap', releaseInert, { once: true });
       const open = (v: boolean) => {
         panel.hidden = !v;
+        syncModal();
         fab.setAttribute('aria-expanded', String(v));
         fab.classList.remove('is-away');
         root.classList.toggle('is-open', v);
@@ -436,10 +456,10 @@ const straws = Array.from({ length: 7 }, () => {
         if (chipsEl()) chipsEl()!.hidden = false;
         form.hidden = false; input.focus();
       });
-      // اللوحة حوار: التبويب يدور داخلها ما دامت مفتوحة (الزرّ الخارجي مخفيّ أثناء الفتح)، وEscape يغلقها ويعيد التركيز للزرّ
+      // Escape closes the panel and returns focus to the launcher in both modes; the Tab loop applies in the modal sheet only
       panel.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') { open(false); return; }
-        if (e.key !== 'Tab') return;
+        if (e.key !== 'Tab' || !sheetMq.matches) return;
         const items = Array.from(panel.querySelectorAll<HTMLElement>('button:not([hidden]):not([disabled]), a[href], textarea:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((n) => n.offsetParent !== null);
         if (!items.length) return;
         const first = items[0], last = items[items.length - 1];
