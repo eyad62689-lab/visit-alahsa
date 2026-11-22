@@ -210,8 +210,10 @@ const seoTitleCore = seoLang
       kindLabel: C.kindLabel, place: area, district: d.district ? DISTRICT_NAMES[ar ? 'ar' : 'en'][d.district] : undefined, comma: ar ? '، ' : ', ',
     })
   : `${name} ${titleSep(lang)} ${C.indexName}`;
-// عنوان المشاركة يبقى «الاسم — الفهرس» كما كان
-const shareTitle = `${facilityTitleCore(name, C.indexName, titleSep(lang))} ${titleSep(lang)} ${t('site.brand')}`;
+// عنوان المشاركة يبقى «الاسم — الفهرس» كما كان؛ وغير ar/en حرفياً كما كان (عنوان الصفحة نفسه) فلا يتغيّر بسقوط الفهرس عند الطول
+const shareTitle = seoLang
+  ? `${facilityTitleCore(name, C.indexName, titleSep(lang))} ${titleSep(lang)} ${t('site.brand')}`
+  : `${seoTitleCore} ${titleSep(lang)} ${t('site.brand')}`;
 const seoDescription = (ar ? d.description : lang === 'en' ? d.description_en : undefined)
   ?? (seoLang ? composeFacilityDescription(blurb, area || (d.district ? DISTRICT_NAMES[ar ? 'ar' : 'en'][d.district] : undefined), C.kindLabel) : blurb);
 
