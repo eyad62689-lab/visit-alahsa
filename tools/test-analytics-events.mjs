@@ -216,6 +216,15 @@ try {
   const inp = await waitEvent(page, 'web_vitals', (p) => p.metric_name === 'INP', 2000);
   console.log(`  · web_vitals INP: ${inp ? inp.params.metric_value + ' ms' : 'لم يُبلَّغ (لا تفاعل مؤهَّل في المتصفح المقطوع — مقبول)'}`);
 
+  // Inner-page next-step band: its own next_step_cta event, never counted as the home finale's finale_cta
+  console.log('── الصفحات الداخلية: next_step_cta ──');
+  await goto('/en/attractions/jabal-al-qarah/');
+  await page.evaluate(() => document.querySelector('.nxs-btn')?.addEventListener('click', (e) => e.preventDefault()));
+  await page.click('.nxs-btn');
+  ev = await events(page);
+  ok(find(ev, 'next_step_cta', (p) => p.kind === 'plan'), 'next_step_cta عند النقر على دعوة شريط الخطوة التالية', 'kind = plan');
+  ok(!find(ev, 'finale_cta'), 'نقر شريط الخطوة التالية لا يُحتسب finale_cta');
+
   // أيقونات التواصل في التذييل: تُصيَّر فقط متى عُبّئ ORG_SOCIAL (src/lib/schema.ts)؛ بلا روابط لا صف ولا حدث
   console.log('── التذييل: social_click ──');
   await goto('/');
