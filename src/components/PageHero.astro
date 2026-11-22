@@ -13,6 +13,7 @@
 import HeroPoster from './HeroPoster.astro';
 import HeroVideo from './HeroVideo.astro';
 import PalmMotif from './PalmMotif.astro';
+import ArchEdge from './ArchEdge.astro';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -55,7 +56,7 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
     'page-hero', 'on-dark', cls,
     { 'page-hero--compact': size === 'compact', 'page-hero--media': hasMedia, 'page-hero--scrim-strong': scrim === 'strong', 'page-hero--arch': arch },
   ]}
-  style={`--pgh-next: ${NEXT_BG[next]}`}
+  style={`--arch-next: ${NEXT_BG[next]}`}
 >
   {poster && <HeroPoster src={poster} />}
   {video && <HeroVideo src={video} srcMobile={videoMobile} />}
@@ -69,18 +70,13 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
   </div>
   {/* إضافات خارج حاوية النص (شريط أرقام الثمار مثلاً) */}
   <slot name="after" />
-  {arch && (
-    <svg class="pgh-arch" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path class="pgh-arch-fill" d="M0,61 L0,50 Q520,46 720,8 Q920,46 1440,50 L1440,61 Z" />
-      <path class="pgh-arch-line" d="M0,50 Q520,46 720,8 Q920,46 1440,50" fill="none" vector-effect="non-scaling-stroke" />
-    </svg>
-  )}
+  {arch && <ArchEdge />}
 </section>
 
 <style>
   /* الهيرو السينمائي: طويل، والنصّ مرساه حافة النهاية السفلية عند البداية، وينتهي بقوس مدبّب خفيض يملؤه سطح القسم التالي */
   .page-hero {
-    --pgh-arch-h: clamp(22px, 4.5vw, 56px);
+    --arch-h: clamp(22px, 4.5vw, 56px);
     position: relative; overflow: hidden; background: var(--c-turq-deep);
     min-block-size: clamp(420px, 62svh, 660px);
     display: flex; flex-direction: column; justify-content: flex-end;
@@ -88,9 +84,9 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
   }
   /* هيرو بلا ملصق (سطح فيروزي مسطّح): أقصر كي لا يبدو فراغاً */
   .page-hero:not(.page-hero--media) { min-block-size: clamp(320px, 44svh, 480px); }
-  .page-hero--arch { padding-block-end: calc(var(--pgh-arch-h) + var(--s-6)); }
+  .page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-6)); }
   .page-hero--compact { min-block-size: clamp(260px, 34svh, 380px); padding-block: var(--s-7) var(--s-6); }
-  .page-hero--compact.page-hero--arch { padding-block-end: calc(var(--pgh-arch-h) + var(--s-5)); }
+  .page-hero--compact.page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-5)); }
   /* طبقة التعتيم فوق الملصق/الفيديو لضمان وضوح النصّ — للأبطال المصوّرة فقط. الثلث السفلي أقوى
      لأن النصّ مرساه هناك: الطبقة السفلية تضمن 4.5:1 للنصّ الصغير فوق أفتح ملصق. */
   .page-hero--media::after {
@@ -120,9 +116,6 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
   .pgh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-display); line-height: 1.1; margin-block: var(--s-2) var(--s-3); text-wrap: balance; overflow-wrap: break-word; }
   .page-hero--compact .pgh-title { font-size: var(--t-3xl); }
   .pgh-lead { font-size: var(--t-lg); line-height: 1.7; color: rgba(247,243,234,.94); max-inline-size: min(100%, 56ch); }
-  .pgh-arch { position: absolute; z-index: 3; inset-inline: 0; inset-block-end: -1px; inline-size: 100%; block-size: var(--pgh-arch-h); pointer-events: none; }
-  .pgh-arch-fill { fill: var(--pgh-next, var(--c-sand)); }
-  .pgh-arch-line { stroke: var(--c-gold); stroke-width: 1.25; opacity: .8; }
   @media (max-width: 760px) {
     .pgh-lead { font-size: var(--t-base); }
   }
