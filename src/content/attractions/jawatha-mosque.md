@@ -47,8 +47,8 @@ answer_en: "Jawatha Mosque in Al-Kilabiyah, northeast of Hofuf, is among the old
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
 # الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
 # <title> يدوي (ar/en): «من أقدم مساجد الإسلام» في الإجابة، والدخول المجاني في بند الرسوم والإجابة.
-seoTitle: "مسجد جواثا في الأحساء: من أقدم مساجد الإسلام والدخول مجاني"
-seoTitle_en: "Jawatha Mosque in Al-Ahsa: One of Islam's Oldest, Free Entry"
+seoTitle: "مسجد جواثا في الأحساء: من أقدم مساجد الإسلام، والدخول مجاني"
+seoTitle_en: "Jawatha Mosque in Al-Ahsa: Among the Oldest Mosques in Islam"
 seo:
   place: "الأحساء"
   place_en: "Al-Ahsa"
