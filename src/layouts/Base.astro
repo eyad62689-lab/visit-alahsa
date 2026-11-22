@@ -318,14 +318,40 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <script is:inline>
       function initReveal() {
         const els = document.querySelectorAll('[data-reveal]:not(.in)');
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach((e) => e.classList.add('in')); return; }
+        if (!els.length) return;
+        // تأخير التتابع الموسوم على العنصر (transition-delay بالمللي ثانية) يصير --rv-d بسقف 180ms
+        const show = (e, now) => {
+          const d = Math.min(parseFloat(e.style.transitionDelay) || 0, 180);
+          e.style.transitionDelay = '';
+          if (d) e.style.setProperty('--rv-d', d + 'ms');
+          e.classList.add('in');
+          if (now) e.classList.add('rv-now');
+        };
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const vh = window.innerHeight;
+        const rest = [];
+        // ما في الشاشة أو فوقها عند التحميل يظهر فوراً بلا حركة؛ والباقي يراقبه IntersectionObserver
+        els.forEach((e) => { if (reduce || e.getBoundingClientRect().top < vh * 1.15) show(e, true); else rest.push(e); });
+        if (!rest.length) return;
+        if (!('IntersectionObserver' in window)) { rest.forEach((e) => show(e, true)); return; }
+        let fired = false;
+        // threshold: 0 لا 0.12 — النسبة تُقاس من ارتفاع العنصر نفسه، فمتنُ مقالٍ طويل (6000px+)
+        // يلزمه 700px+ ظاهرة دفعةً واحدة فلا تتحقق أبداً على شاشة أقصر. الهامش السفلي +15% يبدأ
+        // الظهور قبل دخول العنصر. وما تجاوزه التمرير السريع (حافته فوق أسفل الشاشة) يُظهَر أيضاً.
         const io = new IntersectionObserver((ents) => {
-          ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-        // threshold: 0 لا 0.12 — النسبة تُقاس من ارتفاع العنصر نفسه، فمتنُ مقالٍ
-        // طويل (6000px+) يلزمه 700px+ ظاهرة دفعةً واحدة فلا تتحقق أبداً على شاشة
-        // أقصر، فتبقى الصفحة فارغة. الآن يكفي أن تعبر حافته العليا خط الكشف.
-        }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
-        els.forEach((e) => io.observe(e));
+          fired = true;
+          ents.forEach((en) => {
+            const below = en.rootBounds ? en.boundingClientRect.top >= en.rootBounds.bottom : !en.isIntersecting;
+            if (en.isIntersecting || !below) { show(en.target, false); io.unobserve(en.target); }
+          });
+        }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
+        rest.forEach((e) => io.observe(e));
+        // مجموعة <details> مطويّة: ما فيها يظهر فور فتحها (المراقب لا يرى محتوى مطويّاً)
+        new Set(rest.map((e) => e.closest('details'))).forEach((d) => {
+          if (d) d.addEventListener('toggle', () => { if (d.open) d.querySelectorAll('[data-reveal]:not(.in)').forEach((e) => show(e, true)); });
+        });
+        // شبكة أمان: إن لم يُطلق المراقب شيئاً خلال 1.5 ث يُظهَر كل ما تبقّى
+        setTimeout(() => { if (!fired) { rest.forEach((e) => { if (!e.classList.contains('in')) show(e, true); }); io.disconnect(); } }, 1500);
       }
       document.addEventListener('astro:page-load', initReveal);
       if (document.readyState !== 'loading') initReveal();
