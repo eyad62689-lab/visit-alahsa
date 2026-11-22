@@ -169,6 +169,7 @@ const jsonLd = [
   {/* تجميع الدبابيس المتقاربة (marker clustering) — مستضاف ذاتياً؛ يمنع تراكب الدبابيس
       عند التكبير الشامل (يعالج target-size) ويوضّح المناطق المزدحمة. */}
   <link rel="stylesheet" href="/vendor/leaflet.markercluster-1.5.3/MarkerCluster.css" />
+  <link rel="preload" as="script" href="/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js" />
   {/* سكربت markercluster يُحمَّل من السكربت المضمّن أدناه بعد توفّر Leaflet (ترتيب التنفيذ بعد التنقّل غير مضمون) */}
 
   <script is:inline define:vars={{ points, labels, isAr: ar, viewBounds }}>
@@ -183,6 +184,8 @@ const jsonLd = [
       if (typeof L === 'undefined' || typeof L.markerClusterGroup === 'function' || document.querySelector('script[data-va-mc]')) return;
       const s = document.createElement('script');
       s.src = MC_SRC; s.dataset.vaMc = '1';
+      // وصول متأخر عن نافذة الاستطلاع (10 ثوانٍ) يبني الخريطة أيضاً بدل أن تبقى فارغة
+      s.onload = initMap;
       document.head.appendChild(s);
     }
     function initMap() {
@@ -203,6 +206,8 @@ const jsonLd = [
       // prefix صريح: بادئة Leaflet الافتراضية تحمل علماً سياسياً لا محلّ له على
       // موقع سياحي — الإسناد نفسه يبقى كاملاً.
       const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
+      // تُزال الخريطة عند مغادرة الصفحة: وإلا تسرّب كل زيارة خريطة ومستمع resize
+      document.addEventListener('astro:before-swap', () => map.remove(), { once: true });
       // العرض النهائي يُضبط قبل إضافة طبقة البلاطات: كان setView على التكبير 11 ثم fitBounds يغيّره إلى 9
       // فتُطلب بلاطات التكبير 11 ثم تُهمَل وتُطلب بلاطات التكبير 9، وتزاحم الأولى بلاطة LCP.
       // viewBounds = مئينات 5–95 المحسوبة وقت البناء (انظر التعليق في الترويسة)
