@@ -47,8 +47,23 @@ export function composeFacilityDescription(blurb: string, place: string | undefi
   return forms.find((f) => descLen(f) <= SEO_LIMITS.descMax) ?? blurb;
 }
 
-/** عنوان المنشأة: «الاسم — الفهرس»، ويسقط الفهرس إن جاوزت النواة حد العنوان. */
-export function facilityTitleCore(name: string, indexName: string, sep: string): string {
+/**
+ * عنوان المنشأة: «الاسم — الفهرس»، ويسقط الفهرس إن جاوزت النواة حد العنوان.
+ * وحين تقصر النواة عن حد العنوان الأدنى (اسم قصير) وتتوفّر بيانات المنشأة، يُركَّب «الاسم: النوع، الموقع»
+ * من تسمية النوع المعروضة في الشارة وحقل الموقع (area) كما يُعرض — وإلا اسم الحيّ — أول صيغة
+ * ضمن الحدّين. بلا بيانات أو بلا صيغة مناسبة تبقى «الاسم — الفهرس».
+ */
+export function facilityTitleCore(
+  name: string, indexName: string, sep: string,
+  detail?: { kindLabel: string; place?: string; district?: string; comma: string },
+): string {
   const full = `${name} ${sep} ${indexName}`;
-  return titleLen(full) <= SEO_LIMITS.titleMax ? full : name;
+  if (titleLen(full) > SEO_LIMITS.titleMax) return name;
+  if (titleLen(full) >= SEO_LIMITS.titleMin || !detail) return full;
+  // سطر الموقع يفصل أجزاءه بشرطة طويلة؛ في العنوان تصير فاصلة
+  const flat = detail.place?.replace(/\s+[—–]\s+/g, detail.comma);
+  const forms = [flat, detail.district].filter((p): p is string => Boolean(p))
+    // اسم يحمل تسمية النوع («مطعم سنيار») لا يُكرَّر نوعه
+    .map((p) => (name.includes(detail.kindLabel) ? `${name}: ${p}` : `${name}: ${detail.kindLabel}${detail.comma}${p}`));
+  return forms.find((f) => titleLen(f) >= SEO_LIMITS.titleMin && titleLen(f) <= SEO_LIMITS.titleMax) ?? full;
 }

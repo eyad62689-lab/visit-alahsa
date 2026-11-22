@@ -205,7 +205,13 @@ const sightsH = near.length ? t('det.nearby.h') : d.district ? C.sightsH.replace
 // العنوان والوصف لـSEO (ar/en فقط؛ بقية اللغات كما هي): الفهرس يسقط من العنوان إن جاوزت النواة 60،
 // والوصف description المخصّص أو تركيب حتمي «النبذة الموقع · النوع» من بيانات الصفحة المنشورة نفسها.
 const seoLang = ar || lang === 'en';
-const seoTitleCore = seoLang ? facilityTitleCore(name, C.indexName, titleSep(lang)) : `${name} ${titleSep(lang)} ${C.indexName}`;
+const seoTitleCore = seoLang
+  ? facilityTitleCore(name, C.indexName, titleSep(lang), {
+      kindLabel: C.kindLabel, place: area, district: d.district ? DISTRICT_NAMES[ar ? 'ar' : 'en'][d.district] : undefined, comma: ar ? '، ' : ', ',
+    })
+  : `${name} ${titleSep(lang)} ${C.indexName}`;
+// عنوان المشاركة يبقى «الاسم — الفهرس» كما كان
+const shareTitle = `${facilityTitleCore(name, C.indexName, titleSep(lang))} ${titleSep(lang)} ${t('site.brand')}`;
 const seoDescription = (ar ? d.description : lang === 'en' ? d.description_en : undefined)
   ?? (seoLang ? composeFacilityDescription(blurb, area || (d.district ? DISTRICT_NAMES[ar ? 'ar' : 'en'][d.district] : undefined), C.kindLabel) : blurb);
 
@@ -230,7 +236,7 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`${seoTitleCore} ${titleSep(lang)} ${t('site.brand')}`} description={seoDescription} image={`${d.img}.jpg`}
+<Base title={`${seoTitleCore} ${titleSep(lang)} ${t('site.brand')}`} ogTitle={shareTitle} description={seoDescription} image={`${d.img}.jpg`}
   lang={lang} alt={alt} jsonLd={jsonLd}
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />

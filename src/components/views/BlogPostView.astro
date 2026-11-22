@@ -59,7 +59,7 @@ if (p.faq.length > 0) {
   });
 }
 ---
-<Base title={`${p.title} ${titleSep(lang)} ${t('site.brand')}`} description={p.description} lang={lang} alt={alt} type="article" image={ogImage} publishedTime={p.pubDate.toISOString().slice(0, 10)} modifiedTime={p.updatedDate?.toISOString().slice(0, 10)} jsonLd={jsonLd} preloadImage={p.heroImage}>
+<Base title={`${p.seoTitle ?? p.title} ${titleSep(lang)} ${t('site.brand')}`} description={p.seoDescription ?? p.description} lang={lang} alt={alt} type="article" image={ogImage} publishedTime={p.pubDate.toISOString().slice(0, 10)} modifiedTime={p.updatedDate?.toISOString().slice(0, 10)} jsonLd={jsonLd} preloadImage={p.heroImage}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class={`post-hero ${p.heroImage ? 'photo' : 'post-hero--plain'}`}>

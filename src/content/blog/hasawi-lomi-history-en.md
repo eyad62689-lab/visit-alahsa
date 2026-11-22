@@ -1,6 +1,8 @@
 ---
 title: "A History of the Hasawi Lime: From Southeast Asia to the Groves of Al-Ahsa"
+seoTitle: "History of the Hasawi Lime: From Southeast Asia to Al-Ahsa"
 description: "The Hasawi lomi's journey through history, with sources: its botanical identity, its first homeland, how it reached eastern Arabia, what its name Bin Zuhairi means, and the truth behind the Al-Ahsa versus Qatif question."
+seoDescription: "The Hasawi lomi's journey through history, with sources: its botanical identity, first homeland, how it reached eastern Arabia, and what Bin Zuhairi means."
 lang: en
 key: hasawi-lomi-history
 slug: "hasawi-lime-history"

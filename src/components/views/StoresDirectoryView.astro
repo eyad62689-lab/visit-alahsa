@@ -60,7 +60,9 @@ const jsonLd = [
     { name: seo.h1, path: altHref(alt, lang) },
   ]),
 ];
-const pageTitle = `${seo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
+// عنوان التبويب العربي والإنجليزي يضيف أصناف الدليل المذكورة في وصفه إلى title_tag (وهو تسمية رابط التذييل فلا يُمسّ)
+const seoCore = lang === 'ar' ? `${seo.title_tag}: تمور وحرف وقهوة` : lang === 'en' ? `${seo.title_tag}: dates, crafts and coffee` : seo.title_tag;
+const pageTitle = `${seoCore} ${titleSep(lang)} ${t('site.brand')}`;
 ---
 <Base title={pageTitle} description={seo.meta_description} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />

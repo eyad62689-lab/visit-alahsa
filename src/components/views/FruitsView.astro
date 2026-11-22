@@ -281,7 +281,9 @@ const C = localize(lang, {
   tr: TR,
 });
 
-const pageTitle = `${C.title} ${titleSep(lang)} ${t('site.brand')}`;
+// عنوان التبويب العربي والإنجليزي أطول من H1 (أسماء الثمار المعروضة في الصفحة نفسها)؛ اللغات الأخرى: العنوان نفسه.
+const seoCore = ar ? 'ثمار الأحساء الموسمية: التمور واللومي والبطيخ والتين' : lang === 'en' ? 'Seasonal Fruits of Al-Ahsa: Dates, Lime, Melon and Figs' : C.title;
+const pageTitle = `${seoCore} ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
   ? 'جولة على ثمار واحة الأحساء بمواسمها: التمور والرطب، اللومي الأحسائي، البطيخ الأصفر، التين، الكنار وغيرها — بمعلومات موثقة من مصادر رسمية.'
   : zh

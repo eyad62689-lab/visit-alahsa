@@ -277,6 +277,9 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),                   // وصف الميتا وبطاقة الفهرس
+    // عنوان ووصف `<title>`/og والميتا وحدهما حين يجاوز الأصل حدّ C72؛ H1 والبطاقة والفتات تبقى على title/description
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
     // zh/de/ru منذ الخطوة 10 من خطة التفاعل العالمي — لا يُكتب مقال بها إلا عبر خط ترجمتها (حاكم ≥ 90).
     // وur مقبولة في المخطط بلا مسار /ur/blog/ بعد: مقال أوردي قبل بناء مساره يُفشل C29 (غير منشور).
     lang: z.enum(['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr']),
