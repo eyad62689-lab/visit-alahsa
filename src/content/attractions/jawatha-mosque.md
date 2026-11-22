@@ -46,6 +46,9 @@ answer: "مسجد جواثا في الكلابية شمال شرق الهفوف 
 answer_en: "Jawatha Mosque in Al-Kilabiyah, northeast of Hofuf, is among the oldest mosques in Islam, said to be the first place Friday prayer was held after the Prophet's Mosque. Entry is free; the park beside it opens 8 am to midnight for SAR 10–15 per person."
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان «الأحساء»، والفائدة fee مجاني وبند الرسوم/الدخول موثّق بترجمته.
 # الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+# <title> يدوي (ar/en): «من أقدم مساجد الإسلام» في الإجابة، والدخول المجاني في بند الرسوم والإجابة.
+seoTitle: "مسجد جواثا في الأحساء: من أقدم مساجد الإسلام والدخول مجاني"
+seoTitle_en: "Jawatha Mosque in Al-Ahsa: One of Islam's Oldest, Free Entry"
 seo:
   place: "الأحساء"
   place_en: "Al-Ahsa"

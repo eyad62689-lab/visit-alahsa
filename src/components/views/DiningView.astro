@@ -13,6 +13,7 @@ import OpenNowBadge from '../OpenNowBadge.astro';
 import { getCollection } from 'astro:content';
 import { diningHref } from '../../lib/routes';
 import { DISTRICT_NAMES } from '../../data/districts';
+import { diningIndexTitle } from '../../lib/seo-title';
 import { loadLive, liveFor, hoursData, hoursFor, fetchedLabel as fetchedLabelFor } from '../../lib/places-live';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 import { SOCIAL_ICON } from '../../lib/social-icons';
@@ -587,9 +588,9 @@ const anyHours = ALL_PLACES.some((p) => hoursData(liveFor(p.img)));
 // الإنجليزية: كان <title> الصفحة الصينية نسخة حرفية من الإنجليزية (الخطوة 5 من خطة التفاعل العالمي).
 // ar/en: الكلمات المفتاحية ثم اسم العلامة كبقية القوالب (كانت العلامة غائبة عن هذا العنوان).
 const pageTitle = ar
-  ? `مطاعم ومقاهي الأحساء في الهفوف ${titleSep(lang)} ${t('site.brand')}`
+  ? `${diningIndexTitle(ALL_PLACES.length, 'ar')} ${titleSep(lang)} ${t('site.brand')}`
   : zh || de || ru || ur || tr ? `${C.title} ${titleSep(lang)} ${t('site.brand')}`
-  : `Al Ahsa Restaurants & Cafés in Hofuf ${titleSep(lang)} ${t('site.brand')}`;
+  : `${diningIndexTitle(ALL_PLACES.length, 'en')} ${titleSep(lang)} ${t('site.brand')}`;
 const description = ar
   ? 'اكتشف أفضل مطاعم ومقاهي الأحساء في الهفوف والمبرز — من الأكل الشعبي والأجواء التراثية إلى القهوة المختصة، بالصور ومواقع خرائط قوقل المباشرة.'
   : zh || de || ru || ur || tr ? C.heroSum

@@ -14,12 +14,17 @@ interface TitleSource {
     title: string;
     title_en?: string;
     seo?: { place?: string; place_en?: string; benefit?: SeoBenefitKey };
+    seoTitle?: string;
+    seoTitle_en?: string;
   };
 }
 
 export function attractionTitle(entry: TitleSource, lang: SeoLang): string {
   const a = entry.data;
   const title = lang === 'ar' ? a.title : (a.title_en ?? a.title);
+  // عنوان مكتوب يدوياً (للعنوان <title> وحده): يسبق التركيب من seo
+  const override = lang === 'ar' ? a.seoTitle : a.seoTitle_en;
+  if (override) return override;
   const seo = a.seo;
   if (!seo) return title;
   const place = lang === 'ar' ? seo.place : seo.place_en;
@@ -32,6 +37,26 @@ export function attractionTitle(entry: TitleSource, lang: SeoLang): string {
     `${title}: ${benefit}`,
   ];
   return forms.find((f) => titleLen(f) <= SEO_LIMITS.titleMax) ?? title;
+}
+
+/** تمييز «مكان» بعد العدد في العربية: 1 «مكان واحد»، 2 «مكانان»، 3–10 جمع «أماكن»، 11–99 مفرد منصوب «مكاناً»، والمئات والآحاد بعدها بحسب آخر خانتين. */
+export function arPlaces(n: number): string {
+  if (n === 1) return 'مكان واحد';
+  if (n === 2) return 'مكانان';
+  const r = n % 100;
+  if (r >= 3 && r <= 10) return `${n} أماكن`;
+  if (r >= 11) return `${n} مكاناً`;
+  return `${n} مكان`; // 100 و200… و101 و102: المفرد المجرور
+}
+
+/**
+ * نواة عنوان فهرس المطاعم والمقاهي: العدد من القائمة المعروضة نفسها (شارة «الكل»)، والمكان من توزّعها
+ * على الهفوف والمبرز (بيانات حيّ كل منشأة في فهرسها). الإنجليزية «Spots» لا «Places» كي تبقى النواة ≤ 60 مع عددين.
+ */
+export function diningIndexTitle(n: number, lang: SeoLang): string {
+  return lang === 'ar'
+    ? `مطاعم ومقاهي الأحساء: ${arPlaces(n)} في الهفوف والمبرز`
+    : `Al Ahsa Restaurants & Cafés: ${n} ${n === 1 ? 'Spot' : 'Spots'} in Hofuf & Al-Mubarraz`;
 }
 
 /**
