@@ -404,7 +404,6 @@ if (ev.faq?.length) {
       <span class="eyebrow gold-on-dark">{ev.oneOff ? O.eyebrow : C.eyebrow}</span>
       <span class="saqiya saqiya--dark dh-sq" aria-hidden="true"></span>
       <h1 class="dh-title">{ev.name}</h1>
-      <div class="dh-act evd-share-row"><ShareButton lang={lang} contentType="event" itemId={ev.id} dark class="evd-share" /></div>
       <p class="evd-when">
         <svg class="evd-cal" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="3" y="4.5" width="18" height="17" rx="2" /><path d="M3 9h18M8 2.5v4M16 2.5v4" />
@@ -416,6 +415,7 @@ if (ev.faq?.length) {
         {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
         {raw.endISO && <span class="evd-cd" data-ev-cd hidden></span>}
       </p>
+      <div class="dh-act evd-share-row"><ShareButton lang={lang} contentType="event" itemId={ev.id} dark class="evd-share" /></div>
     </DetailHero>
 
     <div class:list={['container evd-layout', { 'evd-layout--poster': ev.poster }]}>
@@ -612,8 +612,6 @@ if (ev.faq?.length) {
 <EventEdition cd={C.cd} />
 
 <style>
-  /* الهيرو من DetailHero؛ هنا ما يخصّ الفعالية: صفّ المشاركة يتأخّر بصرياً بعد التاريخ والحالة دون تغيير ترتيب DOM */
-  .evd-share-row { order: 10; }
   .evd-when { display: inline-flex; align-items: center; gap: 8px; font-size: var(--t-lg);
     color: rgba(247,243,234,.94); }
   .evd-cal { flex-shrink: 0; color: var(--c-gold); }
