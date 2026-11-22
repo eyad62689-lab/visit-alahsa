@@ -10,6 +10,8 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
+import '../../styles/detail.css';
 import Photo from '../Photo.astro';
 import OpenNowBadge from '../OpenNowBadge.astro';
 import { attractionHref, diningHref } from '../../lib/routes';
@@ -315,6 +317,7 @@ const jsonLd = [
         <p>{C.noteP}</p>
       </aside>
     </article>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
@@ -325,7 +328,7 @@ const jsonLd = [
 <style>
   .dd { padding-block: var(--s-6) var(--s-8); max-inline-size: 900px; }
   .dd-crumbs { margin-block-end: var(--s-4); font-size: var(--t-sm); }
-  .dd-crumbs a { color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
+  .dd-crumbs a { display: inline-flex; align-items: center; min-block-size: 44px; color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
   .dd-crumbs a:hover { color: var(--c-turq); }
   .dd-head h1 { font-size: var(--t-3xl); margin-block-start: var(--s-2); }
   .dd-area { margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-deep); font-weight: 600; }
@@ -338,7 +341,8 @@ const jsonLd = [
   .dd-open::before { content: ''; inline-size: 8px; block-size: 8px; border-radius: 50%; background: currentColor; }
   .dd-open.is-open { color: var(--c-turq); }
 
-  :global(.dd-photo) { margin-block: var(--s-5); border-radius: var(--radius); aspect-ratio: 3 / 2; }
+  /* إطار قوس خفيض: زاويتا الأعلى بنصف قطر إهليلجي (قبّة ضحلة) تبقي الصورة مقروءة */
+  :global(.dd-photo) { margin-block: var(--s-5); border-radius: var(--radius); border-start-start-radius: 50% 22%; border-start-end-radius: 50% 22%; aspect-ratio: 3 / 2; }
   :global(.dd-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
 
   .dd-body { font-size: var(--t-base); line-height: 1.9; color: var(--c-ink); }

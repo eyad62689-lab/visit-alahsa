@@ -4,8 +4,9 @@ import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import PalmMotif from '../PalmMotif.astro';
-import HeroPoster from '../HeroPoster.astro';
+import NextStep from '../NextStep.astro';
+import DetailHero from '../DetailHero.astro';
+import '../../styles/detail.css';
 import { formatDate } from '../../lib/dates';
 import { SITE, orgNode, absUrl, breadcrumb } from '../../lib/schema';
 import { htmlLang, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
@@ -61,28 +62,26 @@ if (p.faq.length > 0) {
 ---
 <Base title={`${p.seoTitle ?? p.title} ${titleSep(lang)} ${t('site.brand')}`} description={p.seoDescription ?? p.description} lang={lang} alt={alt} type="article" image={ogImage} publishedTime={p.pubDate.toISOString().slice(0, 10)} modifiedTime={p.updatedDate?.toISOString().slice(0, 10)} jsonLd={jsonLd} preloadImage={p.heroImage}>
   <Header lang={lang} alt={alt} />
+  <div class="rbar" aria-hidden="true"></div>
   <main id="main">
-    <section class={`post-hero ${p.heroImage ? 'photo' : 'post-hero--plain'}`}>
-      {p.heroImage && <HeroPoster src={p.heroImage} />}
-      <PalmMotif size={320} class="ph-wm" />
-      <div class="container ph-in">
-        <nav class="crumbs" aria-label={t('a11y.crumbs')}>
-          <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
-          <a href={blogHref}>{t('crumb.blog')}</a><span>/</span>
-          <span aria-current="page">{p.title}</span>
-        </nav>
-        <span class="eyebrow gold-on-dark">{p.topic}</span>
-        <h1 class="ph-title">{p.title}</h1>
-        <p class="ph-desc">{p.description}</p>
-        <p class="ph-meta">
-          <time datetime={p.pubDate.toISOString().slice(0, 10)}>{t('blog.published')} {formatDate(p.pubDate, lang)}</time>
-          {p.updatedDate && (
-            <> · <time datetime={p.updatedDate.toISOString().slice(0, 10)}>{t('blog.updated')} {formatDate(p.updatedDate, lang)}</time></>
-          )}
-        </p>
-        <ShareButton lang={lang} contentType="blog" itemId={p.slug} dark class="ph-share" />
-      </div>
-    </section>
+    <DetailHero image={p.heroImage}>
+      <nav class="dh-crumbs" aria-label={t('a11y.crumbs')}>
+        <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
+        <a href={blogHref}>{t('crumb.blog')}</a><span>/</span>
+        <span aria-current="page">{p.title}</span>
+      </nav>
+      <span class="eyebrow gold-on-dark">{p.topic}</span>
+      <span class="saqiya saqiya--dark dh-sq" aria-hidden="true"></span>
+      <h1 class="dh-title">{p.title}</h1>
+      <p class="ph-desc">{p.description}</p>
+      <p class="dh-meta">
+        <time datetime={p.pubDate.toISOString().slice(0, 10)}>{t('blog.published')} {formatDate(p.pubDate, lang)}</time>
+        {p.updatedDate && (
+          <> · <time datetime={p.updatedDate.toISOString().slice(0, 10)}>{t('blog.updated')} {formatDate(p.updatedDate, lang)}</time></>
+        )}
+      </p>
+      <div class="dh-act"><ShareButton lang={lang} contentType="blog" itemId={p.slug} dark class="ph-share" /></div>
+    </DetailHero>
 
     <div class="container post-wrap">
       <article class="post-prose" data-reveal>
@@ -107,25 +106,12 @@ if (p.faq.length > 0) {
         <a href={blogHref} class="btn btn--turq">{t('blog.back')}</a>
       </div>
     </div>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
 
 <style>
-  .post-hero { position: relative; overflow: hidden; color: var(--c-sand); min-block-size: 40vh; display: flex; align-items: flex-end; }
-  .post-hero--plain { background: var(--c-turq-deep); min-block-size: 0; }
-  .post-hero.photo::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--hero-scrim-soft); }
-  :global(.ph-wm) { position: absolute; inset-block-start: -8%; inset-inline-end: -3%; color: var(--c-gold); opacity: .13; z-index: 0; }
-  .ph-in { position: relative; z-index: 2; padding-block: var(--s-6); }
-  .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
-  /* هدف لمس ≥36px: الحشو يزيد 3px من كل جهة والهامش السالب يعيد مساحة الصندوق فلا يتحرك شيء */
-  .crumbs a { display: inline-block; padding-block: calc(var(--s-1) + 3px); margin-block: -3px; color: rgba(247,243,234,.92); text-decoration: none; }
-  .crumbs a:hover { color: var(--c-gold-bright); }
-  .crumbs span { color: rgba(247,243,234,.62); }
-  .ph-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.12; margin-block: var(--s-2) var(--s-3); max-inline-size: 26ch; }
-  .ph-desc { font-size: var(--t-lg); color: rgba(247,243,234,.92); max-inline-size: 56ch; }
-  .ph-meta { margin-block-start: var(--s-3); font-size: var(--t-xs); color: rgba(247,243,234,.75); }
-
   .post-wrap { padding-block: var(--s-7) var(--s-8); }
   /* عمود قراءة واحد مريح — المقال طويل ولا شريط جانبي يزاحمه */
   .post-prose { max-inline-size: 68ch; font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); }
@@ -147,14 +133,10 @@ if (p.faq.length > 0) {
 
   .post-faq { max-inline-size: 68ch; margin-block-start: var(--s-6); }
   .faq-h { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); margin-block-end: var(--s-3); }
-  .faq-item { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); }
-  .faq-item summary { cursor: pointer; padding: var(--s-3) var(--s-4); font-weight: 600; color: var(--c-ink); }
-  .faq-item summary:hover { color: var(--c-turq); }
   .faq-item p { padding: 0 var(--s-4) var(--s-3); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
 
   .report-link { display: inline-block; padding-block: calc(var(--s-1) + 3px); margin-block: calc(var(--s-2) - 3px) -3px; /* هدف لمس ≥36px بلا إزاحة بصرية */ font-size: var(--t-xs); color: var(--c-ink-60);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
   .post-back { margin-block-start: var(--s-5); }
-  @media (max-width: 760px) { .ph-title { font-size: var(--t-2xl); } }
 </style>

@@ -9,6 +9,8 @@ import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
+import '../../styles/detail.css';
 import Photo from '../Photo.astro';
 import { stayHref } from '../../lib/routes';
 import { liveFor } from '../../lib/places-live';
@@ -213,6 +215,7 @@ const jsonLd = [
         <p>{C.noteP}</p>
       </aside>
     </article>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
@@ -220,7 +223,7 @@ const jsonLd = [
 <style>
   .sd { padding-block: var(--s-6) var(--s-8); max-inline-size: 900px; }
   .sd-crumbs { margin-block-end: var(--s-4); font-size: var(--t-sm); }
-  .sd-crumbs a { color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
+  .sd-crumbs a { display: inline-flex; align-items: center; min-block-size: 44px; color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
   .sd-crumbs a:hover { color: var(--c-turq); }
   .sd-head h1 { font-size: var(--t-3xl); margin-block-start: var(--s-2); }
   .sd-area { margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-deep); font-weight: 600; }
@@ -229,7 +232,8 @@ const jsonLd = [
   .sd-star { color: var(--c-gold-deep); }
   .sd-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
 
-  :global(.sd-photo) { margin-block: var(--s-5); border-radius: var(--radius); aspect-ratio: 3 / 2; }
+  /* إطار قوس خفيض: زاويتا الأعلى بنصف قطر إهليلجي (قبّة ضحلة) تبقي الصورة مقروءة */
+  :global(.sd-photo) { margin-block: var(--s-5); border-radius: var(--radius); border-start-start-radius: 50% 22%; border-start-end-radius: 50% 22%; aspect-ratio: 3 / 2; }
   :global(.sd-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
 
   .sd-body { font-size: var(--t-base); line-height: 1.9; color: var(--c-ink); }

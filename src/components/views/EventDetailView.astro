@@ -11,8 +11,9 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import PalmMotif from '../PalmMotif.astro';
-import HeroPoster from '../HeroPoster.astro';
+import NextStep from '../NextStep.astro';
+import DetailHero from '../DetailHero.astro';
+import '../../styles/detail.css';
 import Photo from '../Photo.astro';
 import EventEdition from '../EventEdition.astro';
 import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
@@ -386,6 +387,7 @@ if (ev.faq?.length) {
 ---
 <Base title={`${ev.seoTitle ?? ev.name} ${titleSep(lang)} ${t('site.brand')}`} description={desc} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={(!ev.poster && ev.img) || undefined}>
   <Header lang={lang} alt={alt} />
+  <div class="rbar" aria-hidden="true"></div>
   <main id="main"
     data-ev-edition={edition ? '' : undefined}
     data-ev-start={edition && raw.startISO ? raw.startISO : undefined}
@@ -393,31 +395,28 @@ if (ev.faq?.length) {
     data-ev-after={edition ? afterJson : undefined}>
     {/* بإعلان رسمي (poster) يبقى الهيرو سادة: نصوص الإعلان تحت العنوان تتزاحم معه، والإعلان
         يُعرض كاملاً بجانب المتن */}
-    <section class={`evd-hero on-dark ${ev.img && !ev.poster ? '' : 'evd-hero--plain'}`}>
-      {ev.img && !ev.poster && <HeroPoster src={ev.img} class="evd-poster" />}
-      <PalmMotif size={320} class="evd-wm" />
-      <div class="container evd-in">
-        <nav class="crumbs" aria-label={t('a11y.crumbs')}>
-          <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
-          <a href={listHref}>{C.crumb}</a><span>/</span>
-          <span aria-current="page">{ev.name}</span>
-        </nav>
-        <span class="eyebrow gold-on-dark">{ev.oneOff ? O.eyebrow : C.eyebrow}</span>
-        <h1 class="evd-title">{ev.name}</h1>
-        <ShareButton lang={lang} contentType="event" itemId={ev.id} dark class="evd-share" />
-        <p class="evd-when">
-          <svg class="evd-cal" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="4.5" width="18" height="17" rx="2" /><path d="M3 9h18M8 2.5v4M16 2.5v4" />
-          </svg>
-          <span data-ev-field="time">{ev.time}</span>
-        </p>
-        <p class="evd-badges">
-          <span class={`evd-status evd-status--${ev.status ?? 'expected'}`} data-ev-status>{C.statusL[ev.status ?? 'expected']}</span>
-          {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
-          {raw.endISO && <span class="evd-cd" data-ev-cd hidden></span>}
-        </p>
-      </div>
-    </section>
+    <DetailHero image={ev.img && !ev.poster ? ev.img : undefined} wm="start">
+      <nav class="dh-crumbs" aria-label={t('a11y.crumbs')}>
+        <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
+        <a href={listHref}>{C.crumb}</a><span>/</span>
+        <span aria-current="page">{ev.name}</span>
+      </nav>
+      <span class="eyebrow gold-on-dark">{ev.oneOff ? O.eyebrow : C.eyebrow}</span>
+      <span class="saqiya saqiya--dark dh-sq" aria-hidden="true"></span>
+      <h1 class="dh-title">{ev.name}</h1>
+      <div class="dh-act evd-share-row"><ShareButton lang={lang} contentType="event" itemId={ev.id} dark class="evd-share" /></div>
+      <p class="evd-when">
+        <svg class="evd-cal" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4.5" width="18" height="17" rx="2" /><path d="M3 9h18M8 2.5v4M16 2.5v4" />
+        </svg>
+        <span data-ev-field="time">{ev.time}</span>
+      </p>
+      <p class="evd-badges">
+        <span class={`evd-status evd-status--${ev.status ?? 'expected'}`} data-ev-status>{C.statusL[ev.status ?? 'expected']}</span>
+        {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
+        {raw.endISO && <span class="evd-cd" data-ev-cd hidden></span>}
+      </p>
+    </DetailHero>
 
     <div class:list={['container evd-layout', { 'evd-layout--poster': ev.poster }]}>
       <article class="evd-main" data-reveal>
@@ -605,6 +604,7 @@ if (ev.faq?.length) {
         </div>
       </div>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
@@ -612,22 +612,8 @@ if (ev.faq?.length) {
 <EventEdition cd={C.cd} />
 
 <style>
-  /* الهيرو */
-  .evd-hero { position: relative; overflow: hidden; display: flex; align-items: flex-end;
-    min-block-size: 58vh; color: var(--c-sand); background: var(--c-turq-deep); }
-  .evd-hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(180deg, rgba(21,33,30,.28) 0%, rgba(21,33,30,.62) 55%, rgba(21,33,30,.82) 100%); }
-  .evd-hero--plain { min-block-size: 42vh; }
-  :global(.evd-wm) { position: absolute; inset-block-end: -12%; inset-inline-start: -8%; color: var(--c-gold); opacity: .12; z-index: 0; }
-  .evd-in { position: relative; z-index: 2; padding-block: var(--s-7) var(--s-6); }
-  .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
-  /* هدف لمس ≥36px: الحشو يزيد 3px من كل جهة والهامش السالب يعيد مساحة الصندوق فلا يتحرك شيء */
-  .crumbs a { display: inline-block; padding-block: calc(var(--s-1) + 3px); margin-block: -3px; color: rgba(247,243,234,.92); text-decoration: none; }
-  .crumbs a:hover { color: var(--c-gold-bright); }
-  .crumbs span { color: rgba(247,243,234,.62); }
-  /* العنوان: --font-heading = Playfair + Cairo (اصطلاح الموقع الفاخر) */
-  .evd-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand);
-    font-size: var(--t-3xl); line-height: 1.12; margin-block: var(--s-2) var(--s-3); }
+  /* الهيرو من DetailHero؛ هنا ما يخصّ الفعالية: صفّ المشاركة يتأخّر بصرياً بعد التاريخ والحالة دون تغيير ترتيب DOM */
+  .evd-share-row { order: 10; }
   .evd-when { display: inline-flex; align-items: center; gap: 8px; font-size: var(--t-lg);
     color: rgba(247,243,234,.94); }
   .evd-cal { flex-shrink: 0; color: var(--c-gold); }
@@ -714,7 +700,7 @@ if (ev.faq?.length) {
   .evd-more-d { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block-start: var(--s-1); }
 
   /* المحتوى التحريري */
-  .evd-intro { font-size: var(--t-lg); line-height: 1.8; color: var(--c-ink); margin-block-end: var(--s-5); }
+  .evd-intro { color: var(--c-ink); }
   .evd-p { font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); margin-block-end: var(--s-3); }
   .evd-faq-item { margin-block-end: var(--s-4); }
   .evd-faq-q { font-family: var(--font-body); font-weight: 600; font-size: var(--t-base); color: var(--c-turq-deep); margin-block-end: var(--s-1); }
@@ -724,9 +710,6 @@ if (ev.faq?.length) {
   .evd-related a:hover { color: var(--c-gold-deep); }
 
   @media (max-width: 760px) {
-    .evd-hero { min-block-size: 46vh; }
-    .evd-hero--plain { min-block-size: 34vh; }
-    .evd-title { font-size: var(--t-2xl); }
     .evd-when { font-size: var(--t-base); }
     .evd-facts { grid-template-columns: 1fr; gap: var(--s-1) 0; }
     .evd-facts dd { margin-block-end: var(--s-3); }

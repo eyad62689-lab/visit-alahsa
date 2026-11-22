@@ -1,0 +1,60 @@
+/* =========================================================================
+   مشترك صفحات التفاصيل (معلم / فعالية / مقال): عناوين الأقسام بقطعة سواقٍ ذهبية، الأسئلة الشائعة،
+   وشريط تقدّم القراءة. يُستورد من الواجهات الثلاث فلا يدخل CSS الصفحات الأخرى.
+   ========================================================================= */
+
+/* عنوان قسم: قطعة ذهبية قصيرة بمعيّنها تحته (مفردات .saqiya). القناع يأخذ لونه من background فلا لون صريح هنا.
+   في اتجاه RTL تُقلب أفقياً فيبقى المعيّن عند نهاية القطعة بعيداً عن حافة البداية. */
+:is(.faq-h, .gal-h, .mn-h, .nb-h, .prose h2, .post-prose h2, .evd-h, .evd-more-h, .dd-panel h2, .sd-panel h2)::after {
+  content: ''; display: block; inline-size: 52px; block-size: 9px; margin-block-start: var(--s-2);
+  background: var(--c-gold);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 9'%3E%3Crect y='3.5' width='44' height='2'/%3E%3Cpath d='M47.5 1 52 4.5 47.5 8 43 4.5Z' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 / 52px 9px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 9'%3E%3Crect y='3.5' width='44' height='2'/%3E%3Cpath d='M47.5 1 52 4.5 47.5 8 43 4.5Z' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 / 52px 9px no-repeat;
+}
+[dir='rtl'] :is(.faq-h, .gal-h, .mn-h, .nb-h, .prose h2, .post-prose h2, .evd-h, .evd-more-h, .dd-panel h2, .sd-panel h2)::after { transform: scaleX(-1); }
+
+/* المقدمة التحريرية (فقرة الإجابة في المعلم، ومقدمة الفعالية): ساقية عمودية بمعيّن عند حافة البداية */
+.prose .answer, .evd-intro {
+  position: relative; font-size: clamp(1.1875rem, 1rem + 1vw, var(--t-lg)); line-height: 1.8; text-wrap: pretty;
+  padding-inline-start: var(--s-4); border-inline-start: 1px solid var(--c-line); margin-block-end: var(--s-6);
+}
+:is(.prose .answer, .evd-intro)::before { content: ''; position: absolute; inset-inline-start: -1.5px; inset-block-start: 0; inline-size: 3px; block-size: 56px; background: var(--c-gold); }
+:is(.prose .answer, .evd-intro)::after { content: ''; position: absolute; inset-inline-start: -4.5px; inset-block-start: 58px; inline-size: 8px; block-size: 8px; border: 1.5px solid var(--c-gold); transform: rotate(45deg); }
+
+/* الأسئلة الشائعة: صفّ ≥48px، شيفرون يدور عند الفتح، وحالة مفتوحة بتدرّج ذهبي خفيف. المحتوى كما هو (يطابق FAQPage) */
+.faq-item {
+  background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2);
+  transition: background var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.faq-item[open] { background: color-mix(in srgb, var(--c-gold) 10%, var(--c-surface)); border-color: color-mix(in srgb, var(--c-gold) 50%, var(--c-line)); }
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+  min-block-size: 48px; padding: var(--s-3) var(--s-4); cursor: pointer; list-style: none;
+  font-weight: 600; color: var(--c-ink); border-radius: var(--radius);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--c-turq); }
+.faq-item summary:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+/* الشيفرون متماثل: حدّان فيزيائيان لا منطقيان كي يشير للأسفل في الاتجاهين */
+.faq-item summary::after {
+  content: ''; flex: 0 0 auto; inline-size: 9px; block-size: 9px; margin-block-end: 4px;
+  border-right: 2px solid var(--c-turq-deep); border-bottom: 2px solid var(--c-turq-deep);
+  transform: rotate(45deg); transition: transform var(--dur-2) var(--ease-out);
+}
+.faq-item[open] summary::after { transform: rotate(-135deg); margin-block: 4px 0; }
+@media (prefers-reduced-motion: reduce) { .faq-item, .faq-item summary::after { transition: none; } }
+
+/* شريط تقدّم القراءة (صفحات طويلة): خطّ ذهبي 2px تحت الترويسة، CSS صرف بخط زمني للتمرير.
+   لا يظهر شيء حيث لا يُدعم animation-timeline أو مع تقليل الحركة. خارج التدفق فلا يمسّ قياس الترويسة (68px). */
+.rbar { display: none; }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rbar {
+      display: block; position: fixed; z-index: 49; inset-block-start: 69px; inset-inline: 0; block-size: 2px; pointer-events: none;
+      background: var(--c-gold); transform-origin: 0 50%; transform: scaleX(0);
+      animation: rbar-grow linear both; animation-timeline: scroll(root block);
+    }
+    [dir='rtl'] .rbar { transform-origin: 100% 50%; }
+    @keyframes rbar-grow { to { transform: scaleX(1); } }
+  }
+}
