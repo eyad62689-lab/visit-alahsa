@@ -49,6 +49,9 @@ interface Props {
   image?: string;
   noindex?: boolean;
   jsonLd?: object | object[];
+  /* تاريخا المقال (ISO 8601) لوسمي article:published_time وarticle:modified_time */
+  publishedTime?: string;
+  modifiedTime?: string;
   /* المسار الأساسي لصورة الهيرو (بلا امتداد) — تُحمَّل مسبقاً لتحسين LCP */
   preloadImage?: string;
   /* sizes الصورة المحمَّلة مسبقاً — يجب أن تطابق sizes العنصر الفعلي وإلا اختار
@@ -68,7 +71,7 @@ interface Props {
 const {
   title, ogTitle,
   description = 'الأحساء — أكبر واحة في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
-  lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
+  lang = 'ar', alt, type, image, noindex, jsonLd, publishedTime, modifiedTime, preloadImage, preloadSizes = '100vw', preconnect,
   langSuggest = true, manifest, notFound = false,
 } = Astro.props;
 
@@ -133,7 +136,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* بيان التطبيق بلغة الصفحة: العربي ملف ثابت، والبقية من src/pages/[lang]/site.webmanifest.ts */}
     <link rel="manifest" href={manifest ?? (lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`)} />
-    <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} notFound={notFound} jsonLd={jsonLdAll} />
+    <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} notFound={notFound} jsonLd={jsonLdAll} publishedTime={publishedTime} modifiedTime={modifiedTime} />
     <meta name="copyright" content={copyrightNotice} />
     <meta name="rights" content={copyrightNotice} />
     <Fragment set:html={ownershipComment} />
