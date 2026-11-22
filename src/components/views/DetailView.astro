@@ -214,6 +214,9 @@ const galRest = galN - 1;
 const galTailD = !galArch ? 0 : galRest >= 4 ? ([0, 3, 2][(galRest - 4) % 3]) : galRest === 3 ? 2 : 0;
 const galTallD = galArch && galRest <= 2;
 const galTailM = galN % 2 === 1 ? 2 : 0;
+// The last item's sizes follow the span the rules below give it: whole row, two of three columns, or one cell.
+const galFrame = 'min(100vw - 2rem, 1120px)';
+const galTailSizes = `(max-width: 760px) ${galTailM ? '100vw' : '50vw'}, ${galTailD === 3 ? galFrame : galTailD === 2 ? `calc(${galFrame} * .67)` : '33vw'}`;
 ---
 <Base title={`${seoTitle} ${titleSep(lang)} ${t('site.brand')}`} ogTitle={ar || lang === 'en' ? title : undefined} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
@@ -329,7 +332,7 @@ const galTailM = galN % 2 === 1 ? 2 : 0;
         <h2 class="gal-h">{galleryH}</h2>
         <div class:list={['gal-grid', { 'gal-grid--arch': galArch }]} data-tail-d={galTailD || undefined} data-tail-m={galTailM || undefined} data-tall-d={galTallD || undefined}>
           {a.gallery.map((g, i) => (
-            <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class={i === 0 && galArch ? 'gal-item gal-item--arch' : 'gal-item'} sizes={i === 0 && galArch ? '(max-width: 760px) 50vw, calc(min(100vw - 2rem, 1120px) * .84)' : '(max-width: 760px) 50vw, 33vw'} />
+            <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class={i === 0 && galArch ? 'gal-item gal-item--arch' : 'gal-item'} sizes={i === 0 && galArch ? '(max-width: 760px) 50vw, calc(min(100vw - 2rem, 1120px) * .84)' : i === galN - 1 && galN > 1 ? galTailSizes : '(max-width: 760px) 50vw, 33vw'} />
           ))}
         </div>
       </section>
