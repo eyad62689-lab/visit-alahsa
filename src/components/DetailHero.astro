@@ -16,8 +16,10 @@ interface Props {
   title?: string;       // the h1 text, used only to pick the title size step by length at build time
 }
 const { image, class: cls = '', wm = 'end', vt = false, title = '' } = Astro.props;
-// Long titles (more than 48 code points) get a smaller step so a very long title does not fill the whole fold on a phone
-const long = [...title].length > 48;
+// Long titles (weighted length above 48) get a smaller step so a very long title does not fill the whole fold on a phone.
+// East Asian wide and fullwidth code points count as 2, since they occupy twice the width of a Latin letter.
+const wide = /[\u1100-\u115F\u2E80-\uA4CF\uAC00-\uD7A3\uF900-\uFAFF\uFE30-\uFE6F\uFF00-\uFF60\uFFE0-\uFFE6\u{20000}-\u{3FFFD}]/u;
+const long = [...title].reduce((n, ch) => n + (wide.test(ch) ? 2 : 1), 0) > 48;
 ---
 <section class:list={['dhero', 'on-dark', image ? 'dhero--img' : 'dhero--plain', { 'dhero--vt': vt && !!image, 'dhero--long': long }, cls]}>
   {image && <HeroPoster src={image} />}
