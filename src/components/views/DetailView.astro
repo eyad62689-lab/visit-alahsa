@@ -418,6 +418,29 @@ const galTailM = galN % 2 === 1 ? 2 : 0;
   <Footer lang={lang} />
 </Base>
 
+<script>
+  // Sticky only while the card fits below the header (84px offset) with 24px to spare; class toggle does not change layout
+  const STICKY_TOP = 84, STICKY_GAP = 24;
+  const syncSticky = (): void => {
+    const aside = document.querySelector<HTMLElement>('.att-aside');
+    if (aside) aside.classList.toggle('is-sticky', aside.offsetHeight <= window.innerHeight - STICKY_TOP - STICKY_GAP);
+  };
+  let stickyRaf = 0;
+  const queueSticky = (): void => { cancelAnimationFrame(stickyRaf); stickyRaf = requestAnimationFrame(syncSticky); };
+  let stickyRo: ResizeObserver | undefined;
+  const w = window as Window & { __vaStickyBound?: boolean };
+  if (!w.__vaStickyBound) {
+    w.__vaStickyBound = true;
+    window.addEventListener('resize', queueSticky);
+  }
+  document.addEventListener('astro:page-load', () => {
+    syncSticky();
+    stickyRo?.disconnect();
+    const aside = document.querySelector<HTMLElement>('.att-aside');
+    if (aside && 'ResizeObserver' in window) { stickyRo = new ResizeObserver(queueSticky); stickyRo.observe(aside); }
+  });
+</script>
+
 <script is:inline>
   // «كم يبعد عني» — مستمع واحد على document (يصمد عبر ClientRouter)، الموقع بطلب صريح ولا يُخزَّن
   (function () {
@@ -480,10 +503,10 @@ const galTailM = galN % 2 === 1 ? 2 : 0;
   /* العناوين الفرعية في المتن: h2/h3 المصيَّران من الماركداون العربي و.prose-h2/.prose-h3 في المتون غير العربية بشكل واحد */
   .prose :global(h2) { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-7) var(--s-3); }
   .prose :global(h3) { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-5) var(--s-2); }
-  /* بطاقة الزيارة: ثابتة عند التمرير حيث تتّسع للشاشة، وإلا تتمرّر معها (لا يُقصّ طرفها السفلي) */
+  /* Visit card: sticky only when it fits the viewport (the script toggles .is-sticky), otherwise it scrolls with the page and is never clipped */
   .att-aside { display: flex; flex-direction: column; gap: var(--s-3); }
-  @media (min-width: 761px) and (min-height: 700px) {
-    .att-aside { position: sticky; inset-block-start: 84px; max-block-size: calc(100svh - 100px); overflow-y: auto; overscroll-behavior: contain; padding: 2px; margin: -2px; scrollbar-width: thin; }
+  @media (min-width: 761px) {
+    .att-aside.is-sticky { position: sticky; inset-block-start: 84px; }
   }
   .info-card { background: var(--c-surface); border: 1px solid var(--c-line); border-block-start: 3px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4); }
   .info-h { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
