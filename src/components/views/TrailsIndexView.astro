@@ -6,6 +6,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
 import PageHero from '../PageHero.astro';
 import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import { TRAILS, trailAttribution, trailText, trailUnescoNote, trailsSeoDesc } from '../../data/trails';
@@ -77,6 +78,7 @@ const jsonLd = [
       </ol>
       <p class="tr-note" data-unesco-note>{trailUnescoNote(lang)}</p>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>

@@ -437,6 +437,10 @@ const jsonLd = [
   /* الخريطة + القائمة الجانبية المتزامنة */
   .map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: var(--s-4); align-items: stretch; padding-block-end: var(--s-6); }
   #map { block-size: clamp(420px, 66vh, 720px); inline-size: 100%; background: var(--c-sand-2); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+  /* هيكل تحميل هادئ (بلا نص) إلى أن تُبنى الخريطة؛ الحجم ثابت فلا إزاحة */
+  #map:not(.leaflet-container) { background: linear-gradient(100deg, var(--c-sand-2) 30%, color-mix(in srgb, var(--c-sand) 75%, var(--c-surface)) 50%, var(--c-sand-2) 70%) 0 0 / 300% 100%; animation: map-sk 1.6s linear infinite; }
+  @keyframes map-sk { to { background-position: -300% 0; } }
+  @media (prefers-reduced-motion: reduce) { #map:not(.leaflet-container) { animation: none; } }
   .map-side { display: flex; flex-direction: column; block-size: clamp(420px, 66vh, 720px); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); overflow: hidden; }
   .ms-count { margin: 0; padding: var(--s-3); font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); border-block-end: 1px solid var(--c-line); }
   .ms-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; overscroll-behavior: contain; }

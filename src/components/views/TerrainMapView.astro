@@ -188,6 +188,10 @@ const jsonLd = [
 
   /* الحاوية بارتفاع محجوز ثابت — CLS صفر */
   .tmap { position: relative; block-size: clamp(420px, 66vh, 720px); inline-size: 100%; background: var(--c-sand-2); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
+  /* هيكل تحميل هادئ (بلا نص) إلى أن تُبنى الخريطة؛ الحجم ثابت فلا إزاحة */
+  .tmap:not(.maplibregl-map) { background: linear-gradient(100deg, var(--c-sand-2) 30%, color-mix(in srgb, var(--c-sand) 75%, var(--c-surface)) 50%, var(--c-sand-2) 70%) 0 0 / 300% 100%; animation: map-sk 1.6s linear infinite; }
+  @keyframes map-sk { to { background-position: -300% 0; } }
+  @media (prefers-reduced-motion: reduce) { .tmap:not(.maplibregl-map) { animation: none; } }
   .tmap-canvas { position: absolute; inset: 0; }
 
   /* الملصق: يغطي الحاوية قبل التحميل، ويختفي عند الجاهزية */

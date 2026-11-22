@@ -21,6 +21,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import ShareButton from '../ShareButton.astro';
@@ -216,6 +217,7 @@ const jsonLd = [
       <p class="trd-attr" data-trail-attribution>{trailAttribution(lang)}</p>
       <a href={idxHref} class="btn btn--turq">{t('trails.all')}</a>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 
@@ -384,7 +386,7 @@ const jsonLd = [
   .trd-quote { quotes: none; color: var(--c-ink-soft); border-inline-start: 3px solid var(--c-gold); padding-inline-start: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .trd-quote::before, .trd-quote::after { content: none; }
   .trd-land { margin: var(--s-2) 0 0; }
-  .trd-land a { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: underline; text-underline-offset: 3px; }
+  .trd-land a { display: inline-flex; align-items: center; min-block-size: 44px; font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: underline; text-underline-offset: 3px; }
   .trd-land a:hover { color: var(--c-turq-deep); }
   .trd-src { margin-block-start: var(--s-3); padding: var(--s-2) var(--s-3); background: var(--c-sand-2); border-radius: var(--radius-sm); }
   .trd-src-h { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); margin: 0 0 4px; }
