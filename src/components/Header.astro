@@ -282,7 +282,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
   .nav { display: flex; gap: 16px; margin-inline: auto; min-inline-size: 0; }
   /* مخفيّ حيث يظهر الزرّ الذهبي (وجهتهما واحدة)، ويظهر داخل القائمة المطويّة */
   .nav .nav-plan { display: none; }
-  .nav a { font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); text-decoration: none; padding-block: var(--s-2); position: relative; white-space: nowrap; transition: color var(--dur) var(--ease); }
+  .nav a { font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); color: var(--c-ink); text-decoration: none; padding-block: var(--s-2); position: relative; white-space: nowrap; transition: color var(--dur) var(--ease); }
   .nav a::after { content: ''; position: absolute; inset-block-end: 0; inset-inline: 0; block-size: 2px; background: var(--c-gold); transform: scaleX(0); transform-origin: inline-end; transition: transform var(--dur) var(--ease); }
   .nav a:hover { color: var(--c-turq); }
   .nav a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
@@ -303,7 +303,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
   a.lang-item:hover { background: var(--c-sand-2); color: var(--c-turq); }
   .lang-item.is-current { font-weight: 700; color: var(--c-turq-deep); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .lang-item.is-current::after { content: '✓'; color: var(--c-gold-deep); }
-  .btn-gold { white-space: nowrap; font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem); background: var(--c-gold); color: var(--c-ink); text-decoration: none; padding: 10px 20px; border-radius: var(--radius-pill); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .btn-gold { white-space: nowrap; font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); background: var(--c-gold); color: var(--c-ink); text-decoration: none; padding: 10px 20px; border-radius: var(--radius-pill); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(201,154,74,.35); }
   /* هدف لمس 44×44: كان 40×32 وهو مفتاح التنقّل كلّه على الهاتف */
   .nav-toggle { display: none; }
@@ -341,7 +341,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
        فيها (Русский، 中文) تُخطَّط وتطلب وجوهها السيريلية والصينية في كل صفحة على الجوال —
        كسرت ميزانية «لا سيريلي خارج /ru/» في بوابة الأداء. */
     .nav-toggle:checked ~ .nav .nav-tools { display: grid; gap: var(--s-3); padding: var(--s-3) var(--s-4); }
-    .nav-search { display: flex; align-items: center; gap: 10px; inline-size: 100%; min-block-size: 46px; padding: 0 16px; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); font-family: var(--font-body); font-size: var(--t-ui, .9375rem); color: var(--c-ink-soft); text-align: start; cursor: pointer; }
+    .nav-search { display: flex; align-items: center; gap: 10px; inline-size: 100%; min-block-size: 46px; padding: 0 16px; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink-soft); text-align: start; cursor: pointer; }
     .nav-search:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
     .nav-langs { display: flex; flex-wrap: wrap; gap: var(--s-2); }
     .nav .nav-langs .lang-item { display: inline-flex; align-items: center; min-block-size: 40px; padding: 0 14px; border: 1px solid var(--c-line); border-radius: var(--radius-pill); background: #fff; }
@@ -388,7 +388,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
   .ng { position: relative; }
   .ng-title, .only-drawer, .nav-lang { display: none; }
   .ng-list { list-style: none; margin: 0; padding: 0; }
-  .ng-btn { display: inline-flex; align-items: center; gap: 8px; min-block-size: 44px; padding: 0; background: none; border: 0; cursor: pointer; white-space: nowrap; font-family: var(--font-body); font-weight: 500; font-size: var(--t-ui, .9375rem); color: var(--c-ink); transition: color var(--dur) var(--ease); }
+  .ng-btn { display: inline-flex; align-items: center; gap: 8px; min-block-size: 44px; padding: 0; background: none; border: 0; cursor: pointer; white-space: nowrap; font-family: var(--font-body); font-weight: 500; font-size: var(--t-sm); color: var(--c-ink); transition: color var(--dur) var(--ease); }
   .ng-btn:hover, .ng.is-open .ng-btn { color: var(--c-turq); }
   .ng-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 4px; border-radius: 4px; }
   /* حدّان فيزيائيان لا منطقيان: السهم يشير إلى الأسفل في الاتجاهين، لا إلى البداية في العربية */
@@ -442,7 +442,7 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
   /* الجوال: اللغة سطر واحد مطويّ أسفل القائمة بدل سبع حبّات أعلاها */
   @media (max-width: 760px) {
     .hd-grouped .nav-lang { display: block; border-block-start: 1px solid var(--c-line); padding: 6px var(--s-4) var(--s-4); }
-    .nav-lang > summary { display: flex; align-items: center; gap: 8px; min-block-size: 48px; list-style: none; cursor: pointer; font-family: var(--font-body); font-size: var(--t-ui, .9375rem); color: var(--c-ink-soft); }
+    .nav-lang > summary { display: flex; align-items: center; gap: 8px; min-block-size: 48px; list-style: none; cursor: pointer; font-family: var(--font-body); font-size: var(--t-sm); color: var(--c-ink-soft); }
     .nav-lang > summary::-webkit-details-marker { display: none; }
     .nav-lang > summary:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; border-radius: 6px; }
     .nav-lang summary b { font-weight: 600; color: var(--c-turq-deep); }
