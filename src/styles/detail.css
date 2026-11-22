@@ -44,17 +44,18 @@
 .faq-item[open] summary::after { transform: rotate(-135deg); margin-block: 4px 0; }
 @media (prefers-reduced-motion: reduce) { .faq-item, .faq-item summary::after { transition: none; } }
 
-/* شريط تقدّم القراءة (صفحات طويلة): خطّ ذهبي 2px تحت الترويسة، CSS صرف بخط زمني للتمرير.
-   لا يظهر شيء حيث لا يُدعم animation-timeline أو مع تقليل الحركة. خارج التدفق فلا يمسّ قياس الترويسة (68px). */
+/* Reading progress bar (long pages): 2px gold line under the header, pure CSS with a scroll timeline.
+   Nothing shows where animation-timeline is unsupported. It stays under reduced motion: it is progress feedback, not decoration, and it has no easing (linear).
+   Animation properties are all written as longhands (no `animation` shorthand): the CSS minifier used to fold animation-timeline into the shorthand and the browser rejects that.
+   Out of flow, so it does not affect the header measurement (68px). */
 .rbar { display: none; }
 @supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .rbar {
-      display: block; position: fixed; z-index: 49; inset-block-start: 69px; inset-inline: 0; block-size: 2px; pointer-events: none;
-      background: var(--c-gold); transform-origin: 0 50%; transform: scaleX(0);
-      animation: rbar-grow linear both; animation-timeline: scroll(root block);
-    }
-    [dir='rtl'] .rbar { transform-origin: 100% 50%; }
-    @keyframes rbar-grow { to { transform: scaleX(1); } }
+  .rbar {
+    display: block; position: fixed; z-index: 49; inset-block-start: 69px; inset-inline: 0; block-size: 2px; pointer-events: none;
+    background: var(--c-gold); transform-origin: 0 50%; transform: scaleX(0);
+    animation-name: rbar-grow; animation-duration: auto; animation-timing-function: linear; animation-fill-mode: both;
+    animation-timeline: scroll(root block);
   }
+  [dir='rtl'] .rbar { transform-origin: 100% 50%; }
+  @keyframes rbar-grow { to { transform: scaleX(1); } }
 }
