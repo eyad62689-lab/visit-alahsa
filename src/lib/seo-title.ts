@@ -50,13 +50,12 @@ export function arPlaces(n: number): string {
 }
 
 /**
- * نواة عنوان فهرس المطاعم والمقاهي: العدد من القائمة المعروضة نفسها (شارة «الكل»)، والمكان من توزّعها
- * على الهفوف والمبرز (بيانات حيّ كل منشأة في فهرسها). الإنجليزية «Spots» لا «Places» كي تبقى النواة ≤ 60 مع عددين.
+ * نواة عنوان فهرس المطاعم والمقاهي: العدد من القائمة المعروضة نفسها (شارة «الكل»)، والمكان «الهفوف وما حولها» لأن بعض المنشآت في القارة أو بلا حيّ.
  */
 export function diningIndexTitle(n: number, lang: SeoLang): string {
   return lang === 'ar'
-    ? `مطاعم ومقاهي الأحساء: ${arPlaces(n)} في الهفوف والمبرز`
-    : `Al Ahsa Restaurants & Cafés: ${n} ${n === 1 ? 'Spot' : 'Spots'} in Hofuf & Al-Mubarraz`;
+    ? `مطاعم ومقاهي الأحساء: ${arPlaces(n)} في الهفوف وما حولها`
+    : `Al Ahsa Restaurants & Cafés: ${n} ${n === 1 ? 'Place' : 'Places'} in and around Hofuf`;
 }
 
 /**
