@@ -7,10 +7,11 @@ import { isUnlisted, listedAlt, unlistedNoindex } from '../i18n/unlisted';
 interface Props {
   title: string; ogTitle?: string; description: string; lang?: Lang; alt?: AltLinks;
   type?: 'website' | 'article'; image?: string; noindex?: boolean; jsonLd?: object | object[];
+  notFound?: boolean;
 }
 const {
   title, ogTitle = title, description, lang = 'ar', alt,
-  type = 'website', image, noindex = false, jsonLd,
+  type = 'website', image, noindex = false, jsonLd, notFound = false,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -43,7 +44,7 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as const)
   .filter((l) => l !== lang && (l !== 'zh' || zhHref) && (l !== 'de' || deHref) && (l !== 'ru' || ruHref) && (l !== 'ur' || urHref) && (l !== 'tr' || trHref))
   .map((l) => OG_LOCALE[l]);
 ---
-<link rel="canonical" href={canonical} />
+{!notFound && <link rel="canonical" href={canonical} />}
 {noindexEff ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow" />}
 
 {arHref && <link rel="alternate" hreflang="ar" href={arHref} />}
@@ -61,7 +62,7 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as const)
 {alt && ogLocaleAlts.map((l) => <meta property="og:locale:alternate" content={l} />)}
 <meta property="og:title" content={ogTitle} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={canonical} />
+{!notFound && <meta property="og:url" content={canonical} />}
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />

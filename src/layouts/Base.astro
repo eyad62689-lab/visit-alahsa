@@ -62,12 +62,14 @@ interface Props {
      لغتها بنفسها (404 تستنتج اللغة من المسار). الافتراضي: يعمل متى وُجد alt. */
   langSuggest?: boolean;
   manifest?: string;
+  /* صفحة 404: لا عنوان مرجعياً لها — لا canonical ولا og:url ولا url في JSON-LD ولا في تعليق البصمة */
+  notFound?: boolean;
 }
 const {
   title, ogTitle,
   description = 'الأحساء — أكبر واحة في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
   lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
-  langSuggest = true, manifest,
+  langSuggest = true, manifest, notFound = false,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -93,7 +95,7 @@ const copyrightNotice = `© ${copyrightYear} ${brandName(lang)} ${titleSep(lang)
 const ownershipLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  url: pageUrl,
+  ...(notFound ? {} : { url: pageUrl }),
   name: title,
   inLanguage: htmlLang(lang),
   // العقدتان من lib/schema.ts بمعرّفَي @id ثابتين — هما نفس Organization/WebSite
@@ -105,7 +107,7 @@ const ownershipLd = {
   license: new URL(staticHref('legal', lang), site).href,
 };
 const jsonLdAll = [...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []), ownershipLd];
-const ownershipComment = `<!-- va-page:${pageId} lang:${lang} generated:${new Date().toISOString().slice(0, 10)} ${copyrightNotice} — original content: ${pageUrl} -->`;
+const ownershipComment = `<!-- va-page:${pageId} lang:${lang} generated:${new Date().toISOString().slice(0, 10)} ${copyrightNotice}${notFound ? '' : ` — original content: ${pageUrl}`} -->`;
 
 // وصفة التحميل المسبق لصورة الهيرو بنفس srcset الذي يستعمله HeroPoster.
 // بدونها كان preload يشير إلى الصورة الكاملة فينزّل الجوال نسختين: الكاملة
@@ -131,7 +133,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* بيان التطبيق بلغة الصفحة: العربي ملف ثابت، والبقية من src/pages/[lang]/site.webmanifest.ts */}
     <link rel="manifest" href={manifest ?? (lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`)} />
-    <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
+    <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} notFound={notFound} jsonLd={jsonLdAll} />
     <meta name="copyright" content={copyrightNotice} />
     <meta name="rights" content={copyrightNotice} />
     <Fragment set:html={ownershipComment} />
