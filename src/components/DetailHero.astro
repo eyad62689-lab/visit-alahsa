@@ -13,10 +13,13 @@ interface Props {
   class?: string;
   wm?: 'start' | 'end'; // جهة زخرفة السعفة
   vt?: boolean;         // صورة الهيرو تحمل اسم انتقال العنصر المشترك va-hero (صفحات المعالم)
+  title?: string;       // the h1 text, used only to pick the title size step by length at build time
 }
-const { image, class: cls = '', wm = 'end', vt = false } = Astro.props;
+const { image, class: cls = '', wm = 'end', vt = false, title = '' } = Astro.props;
+// Long titles (more than 48 code points) get a smaller step so a very long title does not fill the whole fold on a phone
+const long = [...title].length > 48;
 ---
-<section class:list={['dhero', 'on-dark', image ? 'dhero--img' : 'dhero--plain', { 'dhero--vt': vt && !!image }, cls]}>
+<section class:list={['dhero', 'on-dark', image ? 'dhero--img' : 'dhero--plain', { 'dhero--vt': vt && !!image, 'dhero--long': long }, cls]}>
   {image && <HeroPoster src={image} />}
   <PalmMotif size={340} class={`dh-wm dh-wm--${wm}`} />
   <div class="container dh-in"><slot /></div>
@@ -71,7 +74,12 @@ const { image, class: cls = '', wm = 'end', vt = false } = Astro.props;
   /* الأوردو: حبر النستعليق يعلو صندوق الخط — القياس في DetailView */
   :global([lang='ur'] .dhero .dh-title) { line-height: 1.6; }
   :global([lang='ur'] .dhero :is(.dh-sum, .ah-sum, .ph-desc)) { line-height: 2.2; }
-  :global(:is([lang='de'], [lang='ru']) .dhero .dh-title) { hyphens: auto; }
+  :global(:is([lang='de'], [lang='ru'], [lang='tr']) .dhero .dh-title) { hyphens: auto; }
+  /* long title: the current-page crumb repeats it, so it is cut to one line (visually only; assistive tech reads it whole) */
+  :global(.dhero--long .dh-crumbs) { max-inline-size: 100%; }
+  :global(.dhero--long .dh-crumbs [aria-current]) { flex: 1 1 100%; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  :global(.dhero--long .dh-title) { font-size: clamp(1.5rem, 1rem + 2.4vw, 2.75rem); line-height: 1.15; max-inline-size: 30ch; }
+  :global([lang='ur'] .dhero--long .dh-title) { line-height: 1.6; }
   /* انتقال العنصر المشترك من صورة البطاقة إلى الهيرو: يُقصّ بالتغطية فلا تُشوَّه النسبة أثناء التحريك */
   .dhero--vt :global(picture.photo-bg) { view-transition-name: va-hero; }
   :global(::view-transition-old(va-hero)), :global(::view-transition-new(va-hero)) { block-size: 100%; inline-size: 100%; object-fit: cover; overflow: clip; }
@@ -79,5 +87,7 @@ const { image, class: cls = '', wm = 'end', vt = false } = Astro.props;
   @media (max-width: 760px) {
     :global(.dhero :is(.dh-sum, .ah-sum, .ph-desc)) { font-size: var(--t-base); }
     .dhero { padding-block-start: var(--s-6); }
+    /* the hero follows its content on phones: short titles no longer leave a large empty band above the text */
+    .dhero:not(.dhero--plain) { min-block-size: clamp(320px, 46svh, 480px); }
   }
 </style>

@@ -395,7 +395,7 @@ if (ev.faq?.length) {
     data-ev-after={edition ? afterJson : undefined}>
     {/* بإعلان رسمي (poster) يبقى الهيرو سادة: نصوص الإعلان تحت العنوان تتزاحم معه، والإعلان
         يُعرض كاملاً بجانب المتن */}
-    <DetailHero image={ev.img && !ev.poster ? ev.img : undefined} wm="start">
+    <DetailHero image={ev.img && !ev.poster ? ev.img : undefined} wm="start" title={ev.name}>
       <nav class="dh-crumbs" aria-label={t('a11y.crumbs')}>
         <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
         <a href={listHref}>{C.crumb}</a><span>/</span>
