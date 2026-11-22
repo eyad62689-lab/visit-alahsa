@@ -203,6 +203,17 @@ const nearDining = Object.hasOwn(ui[lang], 'det.nearDining.h') ? await diningNea
 const trailLang: TrailLang = lang;
 const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
   .map((tr) => ({ href: trailHref(tr, trailLang), title: trailText(tr, trailLang).title, tagline: trailText(tr, trailLang).tagline, slug: tr.slug }));
+// Gallery rows: empty cells left in the last row are filled by stretching the last item over the free columns.
+// Desktop: the arch takes one column and two rows, the rest fill the other two columns (four cells in the first two rows, then three columns).
+// Mobile: two columns, no arch.
+// Arch sizes: the 363x560 arch frame covers its image with object-fit: cover, so the source must be about frame height x source ratio
+// (roughly 2.5 times the column width); sizes declares that, not the frame width.
+const galN = a.gallery.length;
+const galArch = galN >= 3;
+const galRest = galN - 1;
+const galTailD = !galArch ? 0 : galRest >= 4 ? ([0, 3, 2][(galRest - 4) % 3]) : galRest === 3 ? 2 : 0;
+const galTallD = galArch && galRest <= 2;
+const galTailM = galN % 2 === 1 ? 2 : 0;
 ---
 <Base title={`${seoTitle} ${titleSep(lang)} ${t('site.brand')}`} ogTitle={ar || lang === 'en' ? title : undefined} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
@@ -316,9 +327,9 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
     {a.gallery.length > 0 && (
       <section class="container gallery-sec" data-reveal>
         <h2 class="gal-h">{galleryH}</h2>
-        <div class:list={['gal-grid', { 'gal-grid--arch': a.gallery.length >= 3 }]}>
+        <div class:list={['gal-grid', { 'gal-grid--arch': galArch }]} data-tail-d={galTailD || undefined} data-tail-m={galTailM || undefined} data-tall-d={galTallD || undefined}>
           {a.gallery.map((g, i) => (
-            <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class={i === 0 && a.gallery.length >= 3 ? 'gal-item gal-item--arch' : 'gal-item'} sizes={i === 0 && a.gallery.length >= 3 ? '(max-width: 760px) 50vw, 360px' : '(max-width: 760px) 50vw, 33vw'} />
+            <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class={i === 0 && galArch ? 'gal-item gal-item--arch' : 'gal-item'} sizes={i === 0 && galArch ? '(max-width: 760px) 50vw, calc(min(100vw - 2rem, 1120px) * .84)' : '(max-width: 760px) 50vw, 33vw'} />
           ))}
         </div>
       </section>
@@ -536,6 +547,14 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
       grid-row: span 2; aspect-ratio: auto; min-block-size: 100%;
       border-start-start-radius: 999px; border-start-end-radius: 999px; border-end-start-radius: var(--radius); border-end-end-radius: var(--radius);
     }
+  }
+  /* The last item fills what is left of the last row (all columns, or two), with a wider ratio so the frame does not grow tall */
+  .gal-grid[data-tail-m] :global(.gal-item:last-child) { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+  @media (min-width: 761px) {
+    .gal-grid[data-tail-m] :global(.gal-item:last-child) { grid-column: auto; aspect-ratio: 4 / 3; }
+    .gal-grid[data-tail-d='3'] :global(.gal-item:last-child) { grid-column: 1 / -1; aspect-ratio: 16 / 6; }
+    .gal-grid[data-tail-d='2'] :global(.gal-item:last-child) { grid-column: span 2; aspect-ratio: auto; }
+    .gal-grid[data-tall-d] :global(.gal-item:not(.gal-item--arch)) { grid-row: span 2; aspect-ratio: auto; min-block-size: 100%; }
   }
   /* مقالات تذكر هذا المعلم (الخطوة 9) */
   .mentions-sec { padding-block: var(--s-2) var(--s-7); }
