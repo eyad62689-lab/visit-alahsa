@@ -88,12 +88,12 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
   /* .page-hero.page-hero-- لتغلب قاعدة «بلا ملصق» أعلاه (نوعيتها 0,2,0) فتنال الأبطال المدمجة ارتفاعها */
   .page-hero.page-hero--compact { min-block-size: clamp(260px, 34svh, 380px); padding-block: var(--s-7) var(--s-6); }
   .page-hero.page-hero--compact.page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-5)); }
-  /* طبقة التعتيم فوق الملصق/الفيديو لضمان وضوح النصّ — للأبطال المصوّرة فقط. الثلث السفلي أقوى
-     لأن النصّ مرساه هناك: الطبقة السفلية تضمن 4.5:1 للنصّ الصغير فوق أفتح ملصق. */
+  /* Scrim over the poster/video, for media heroes only. It is stronger toward the bottom because the text is anchored there,
+     and it reaches up to the upper third so the large hero title keeps 3:1 over any video frame while the top of the image stays visible. */
   .page-hero--media::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background:
-      linear-gradient(0deg, rgba(0,34,30,.88) 0%, rgba(0,36,32,.66) 36%, rgba(0,36,32,0) 72%),
+      linear-gradient(0deg, rgba(0,34,30,.9) 0%, rgba(0,36,32,.8) 38%, rgba(0,36,32,.58) 58%, rgba(0,36,32,.2) 82%, rgba(0,36,32,0) 100%),
       var(--hero-scrim);
   }
   /* هيرو بشريط سفلي (after): النصّ يقع فوق الشريط حيث يكاد التدرّج السفلي يتلاشى، فيبدأ التعتيم من أعلى */
@@ -104,7 +104,7 @@ const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--
   }
   .page-hero--scrim-strong::after {
     background:
-      linear-gradient(0deg, rgba(0,34,30,.88) 0%, rgba(0,36,32,.66) 36%, rgba(0,36,32,0) 72%),
+      linear-gradient(0deg, rgba(0,34,30,.9) 0%, rgba(0,36,32,.8) 38%, rgba(0,36,32,.58) 58%, rgba(0,36,32,.2) 82%, rgba(0,36,32,0) 100%),
       linear-gradient(var(--hero-scrim-dir), rgba(0,42,38,.34) 0%, rgba(0,45,40,.20) 55%, transparent 100%),
       var(--hero-scrim);
   }
