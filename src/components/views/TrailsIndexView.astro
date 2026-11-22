@@ -88,22 +88,18 @@ const jsonLd = [
   .tr-list { padding-block: var(--s-6) var(--s-8); }
   .tr-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
   @media (max-width: 1000px) { .tr-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 760px) {
-    .tr-grid { grid-template-columns: 1fr; }
-    .tr-grid > li:first-child { grid-column: auto; }
-    .tr-grid > li:first-child .tr-card { padding: var(--s-5) var(--s-4); }
-  }
+  @media (max-width: 760px) { .tr-grid { grid-template-columns: 1fr; } }
   .tr-grid > li { display: flex; }
-  /* أول مسار مميّز: عمودان على سطح الفيروزي الداكن */
-  .tr-grid > li:first-child { grid-column: span 2; }
-  .tr-grid > li:first-child .tr-card { background: var(--c-turq-deep); color: var(--c-sand); padding: var(--s-6) var(--s-6) var(--s-5); gap: var(--s-3); }
-  .tr-grid > li:first-child .tr-num { font-size: clamp(3rem, 7vw, 5rem); color: var(--c-gold-bright); }
-  .tr-grid > li:first-child .tr-t { font-size: clamp(1.5rem, 2.6vw, 2.125rem); color: var(--c-sand); }
-  .tr-grid > li:first-child .tr-d { font-size: var(--t-base); color: rgba(247,243,234,.92); max-inline-size: 60ch; }
-  .tr-grid > li:first-child .tr-meta { border-block-start-color: rgba(247,243,234,.22); }
-  .tr-grid > li:first-child .tr-meta dt { color: var(--c-gold-bright); }
-  .tr-grid > li:first-child .tr-meta dd { color: var(--c-sand); }
-  .tr-grid > li:first-child .tr-go { color: var(--c-gold-bright); }
+  /* أول مسار مميّز: سطح فاتح بخطّ ذهبي عند حافة البداية ورقم فيروزي كبير (لا شريحة داكنة ثانية تحت الهيرو الداكن).
+     عمودان على الشاشات العريضة فقط؛ على الجوال عمود واحد بالحشوة الأرحب نفسها */
+  .tr-grid > li:first-child .tr-card { border-inline-start: 4px solid var(--c-gold); padding: var(--s-5) var(--s-4); gap: var(--s-3); }
+  .tr-grid > li:first-child .tr-num { font-size: clamp(3rem, 7vw, 5rem); }
+  .tr-grid > li:first-child .tr-t { font-size: clamp(1.5rem, 2.6vw, 2.125rem); }
+  .tr-grid > li:first-child .tr-d { font-size: var(--t-base); max-inline-size: 60ch; }
+  @media (min-width: 761px) {
+    .tr-grid > li:first-child { grid-column: span 2; }
+    .tr-grid > li:first-child .tr-card { padding: var(--s-6) var(--s-6) var(--s-5); }
+  }
   .tr-card { flex: 1; padding: var(--s-4) var(--s-4) var(--s-5); gap: var(--s-2); }
   .tr-num { font-family: var(--font-latin); font-weight: 600; font-size: var(--t-xl); line-height: 1; color: var(--c-turq); }
   .tr-t { font-size: var(--t-lg); line-height: 1.35; color: var(--c-turq-deep); margin: 0; }
