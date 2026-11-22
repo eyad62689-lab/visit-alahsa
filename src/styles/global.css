@@ -328,6 +328,22 @@ picture.photo { display: block; }
    و3.5 ث «Style & Layout» من أصل 4.4 ث عمل الخيط الرئيسي، فتجاوز LCP حارس البوابة
    على عدّاء GitHub (4.3 ث). content-visibility: auto يُعفي الأقسام خارج الشاشة من
    التخطيط حتى تقترب، وcontain-intrinsic-size يحفظ ارتفاعاً تقديرياً لشريط التمرير
-   فلا يقفز. لا يُطبَّق على قسم الهيرو (LCP) ولا على ما يحمل مرساة الفتات الأولى، ولا على فصلَي القارة والخريطة:
-   ارتفاعاهما الفعليان يزيدان على التقدير فتُزاح المواضع أثناء قياس axe فيُقرأ تباين الرابط على خلفية القسم المجاور. */
-.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 720px; }
+   فلا يقفز. لا يُطبَّق على قسم الهيرو (LCP) ولا على ما يحمل مرساة الفتات الأولى.
+   التقدير قريب من الارتفاع المرسوم فعلاً (--cv-h لكل قسم من أقسام الرئيسية: قياس عند 390 و1280 بالعربية
+   والإنجليزية؛ الجوال حتى 760px) فلا تُزاح المواضع حين يُرسَم القسم؛ والكلمة auto تحفظ آخر ارتفاع مرسوم. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto var(--cv-h, 720px); }
+#home-paths { --cv-h: 930px; }
+#ch-water { --cv-h: 710px; }
+#ch-qarah { --cv-h: 940px; }
+#ch-map { --cv-h: 1000px; }
+#ch-memory { --cv-h: 820px; }
+#home-taste { --cv-h: 780px; }
+#ch-finale { --cv-h: 690px; }
+@media (min-width: 761px) {
+  #home-paths { --cv-h: 875px; }
+  #ch-water { --cv-h: 685px; }
+  #ch-qarah { --cv-h: 1260px; }
+  #ch-map { --cv-h: 980px; }
+  #ch-memory { --cv-h: 1025px; }
+  #home-taste { --cv-h: 616px; }
+}
