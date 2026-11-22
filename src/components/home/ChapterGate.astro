@@ -51,17 +51,30 @@ const H = HOME_COPY[lang];
   // مؤثّر الطقس: يبدأ حين يصل الطقس (va:weather)، أو فوراً إن وصل قبل هذا السكربت. وحدة المؤثّر
   // تُحمَّل كسولاً فلا تدخل حزمة الصفحة. الرئيسيات بلغات أخرى لا تحمل شارة الطقس فلا يصلها الحدث.
   let stopFx: (() => void) | null = null;
+  let swaps = 0; // يزداد عند كل before-swap: ما بدأ قبله ولم يكتمل يُهمَل
   async function runFx(wx: { state?: string } | undefined) {
     const gate = document.getElementById('ch-gate');
     const cv = gate?.querySelector<HTMLCanvasElement>('[data-gate-fx]');
     if (!gate || !cv || !wx?.state || gate.dataset.wx) return;
     gate.dataset.wx = wx.state;
+    const epoch = swaps;
+    // يُعتدّ بالبدء ما دام القسم متصلاً ولم يقع تنقّل منذ الطلب؛ وإن أُهمل والقسم متصل يُفكّ القفل ليبدأ لاحقاً
+    const live = () => {
+      if (gate.isConnected && epoch === swaps) return true;
+      if (gate.isConnected) delete gate.dataset.wx;
+      return false;
+    };
+    // يبدأ المؤثّر في وقت خمول لا أثناء التحميل
+    await new Promise<void>((ok) => ('requestIdleCallback' in window ? requestIdleCallback(() => ok(), { timeout: 2500 }) : setTimeout(ok, 800)));
+    if (!live()) return;
     const { startWeatherFx } = await import('../../scripts/weather-fx');
+    if (!live()) return; // التنقّل قد يقع أثناء تحميل الوحدة: لا مؤثّر بلا مقبض إيقاف
+    stopFx?.();
     stopFx = startWeatherFx(cv, gate, wx.state);
   }
   document.addEventListener('va:weather', (e) => runFx((e as CustomEvent).detail));
   document.addEventListener('astro:page-load', () => runFx((window as any).__vaWeather));
-  document.addEventListener('astro:before-swap', () => { stopFx?.(); stopFx = null; });
+  document.addEventListener('astro:before-swap', () => { swaps++; stopFx?.(); stopFx = null; });
 </script>
 
 <style>
@@ -76,7 +89,7 @@ const H = HOME_COPY[lang];
   .gate-go { display: inline-flex; align-items: center; gap: 10px; }
   .gate-go-ic { inline-size: 18px; block-size: 18px; flex: none; }
   .gate-go-ar { transition: transform .25s; }
-  .gate-go:hover .gate-go-ar { transform: translateX(calc(4px * var(--dir, 1))); }
+  .gate-go:hover .gate-go-ar { transform: translateX(4px); }
   :global([dir='rtl']) .gate-go:hover .gate-go-ar { transform: translateX(-4px); }
   /* طبقتا الطقس فوق التظليل وتحت النص؛ ومعهما مرشّح لوني على الصورة لكل حالة (يتلاشى في 1.4 ثانية) */
   .gate-tint, .gate-fx { position: absolute; inset: 0; z-index: -1; pointer-events: none; inline-size: 100%; block-size: 100%; }

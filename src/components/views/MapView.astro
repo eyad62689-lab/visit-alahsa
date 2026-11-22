@@ -96,9 +96,9 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={`${headTitle} ${titleSep(lang)} ${t('site.brand')}`} description={headDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
-  {/* preconnect لكارتو في أسفل الصفحة بلا crossorigin عمداً: البلاطات تُطلب كـ<img> بلا CORS،
-      فاتصال crossorigin (الذي يضيفه Base) لا يُعاد استعماله ويُهدر */}
+<Base title={`${headTitle} ${titleSep(lang)} ${t('site.brand')}`} description={headDesc} lang={lang} alt={alt} jsonLd={jsonLd} preconnectAnon={['https://tile.openstreetmap.org']}>
+  {/* preconnect لبلاطات OpenStreetMap في <head> (Base.preconnectAnon) بلا crossorigin عمداً: البلاطات تُطلب
+      كـ<img> بلا CORS، فاتصال crossorigin (الذي يضيفه preconnect) لا يُعاد استعماله ويُهدر */}
   <Header lang={lang} alt={alt} />
   <main class="map-page" id="main">
     <div class="container map-head">
@@ -163,22 +163,55 @@ const jsonLd = [
   {/* Leaflet مستضاف ذاتياً (كان يُحمَّل من unpkg.com وقت التشغيل) — يزيل تبعية خارجية
       ونقطة فشل، ويُسرّع أول ظهور للخريطة. المسار مُصدَّر بالإصدار فيُكسر الكاش تلقائياً
       عند أي ترقية. بلاطات الخريطة من OpenStreetMap القياسية بلا مفتاح — CARTO صارت تشترط مفتاحاً منذ
-      23 سبتمبر 2026 وتعيد لكل طلب بلا مفتاح بلاطة «API KEY REQUIRED». نُهيّئ اتصالها مبكراً. */}
-  <link rel="preconnect" href="https://tile.openstreetmap.org" />
+      23 سبتمبر 2026 وتعيد لكل طلب بلا مفتاح بلاطة «API KEY REQUIRED». اتصالها يُهيَّأ مبكراً في <head>. */}
   <link rel="stylesheet" href="/vendor/leaflet-1.9.4/leaflet.css" />
   <script is:inline src="/vendor/leaflet-1.9.4/leaflet.js"></script>
   {/* تجميع الدبابيس المتقاربة (marker clustering) — مستضاف ذاتياً؛ يمنع تراكب الدبابيس
       عند التكبير الشامل (يعالج target-size) ويوضّح المناطق المزدحمة. */}
   <link rel="stylesheet" href="/vendor/leaflet.markercluster-1.5.3/MarkerCluster.css" />
-  <script is:inline src="/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js"></script>
+  <link rel="preload" as="script" href="/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js" />
+  {/* سكربت markercluster يُحمَّل من السكربت المضمّن أدناه بعد توفّر Leaflet (ترتيب التنفيذ بعد التنقّل غير مضمون) */}
 
   <script is:inline define:vars={{ points, labels, isAr: ar, viewBounds }}>
+    // عند التنقّل بـClientRouter تُحمَّل السكربتات الخارجية المُدرَجة بلا ترتيب مضمون: لو وُسم markercluster بجانب Leaflet
+    // لنُفِّذ قبله أحياناً فيفشل (L is not defined) ولا يعرّف L.markerClusterGroup. لذا يُحمَّل markercluster من هنا بعد أن
+    // يتوفّر L (فوراً عند التحميل المباشر)، والانتظار كل 50ms حتى 10 ثوانٍ حتى يتوفّر الاثنان. التشغيل مرة واحدة لكل عنصر
+    // #map (el._leaflet_id) مهما تكرّر النداء من page-load وقراءة المستند.
+    const MC_SRC = '/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js';
+    const leafletReady = () => typeof L !== 'undefined' && typeof L.markerClusterGroup === 'function';
+    let waiting = false;
+    function loadCluster() {
+      if (typeof L === 'undefined' || typeof L.markerClusterGroup === 'function' || document.querySelector('script[data-va-mc]')) return;
+      const s = document.createElement('script');
+      s.src = MC_SRC; s.dataset.vaMc = '1';
+      // وصول متأخر عن نافذة الاستطلاع (10 ثوانٍ) يبني الخريطة أيضاً بدل أن تبقى فارغة
+      s.onload = initMap;
+      document.head.appendChild(s);
+    }
     function initMap() {
+      if (!document.getElementById('map') || waiting) return;
+      loadCluster();
+      if (leafletReady()) { buildMap(); return; }
+      waiting = true;
+      let tries = 0;
+      const timer = setInterval(() => {
+        loadCluster();
+        if (leafletReady()) { clearInterval(timer); waiting = false; buildMap(); return; }
+        if (++tries >= 200 || !document.getElementById('map')) { clearInterval(timer); waiting = false; }
+      }, 50);
+    }
+    function buildMap() {
       const el = document.getElementById('map');
-      if (!el || typeof L === 'undefined' || el._leaflet_id) return;
+      if (!el || el._leaflet_id) return;
       // prefix صريح: بادئة Leaflet الافتراضية تحمل علماً سياسياً لا محلّ له على
       // موقع سياحي — الإسناد نفسه يبقى كاملاً.
-      const map = L.map(el, { scrollWheelZoom: false, attributionControl: false }).setView([25.42, 49.62], 11);
+      const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
+      // تُزال الخريطة عند مغادرة الصفحة: وإلا تسرّب كل زيارة خريطة ومستمع resize
+      document.addEventListener('astro:before-swap', () => map.remove(), { once: true });
+      // العرض النهائي يُضبط قبل إضافة طبقة البلاطات: كان setView على التكبير 11 ثم fitBounds يغيّره إلى 9
+      // فتُطلب بلاطات التكبير 11 ثم تُهمَل وتُطلب بلاطات التكبير 9، وتزاحم الأولى بلاطة LCP.
+      // viewBounds = مئينات 5–95 المحسوبة وقت البناء (انظر التعليق في الترويسة)
+      map.fitBounds(viewBounds, { padding: [24, 24], maxZoom: 13, animate: false });
       L.control.attribution({ prefix: '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>' }).addTo(map);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors', maxZoom: 19 }).addTo(map);
       // مساحة اللمس 24×24 (حدّ WCAG الأدنى) والنقطة المرئية تبقى 16px متمركزة
@@ -236,8 +269,6 @@ const jsonLd = [
       });
 
       map.on('popupopen', () => window.VAPlan && window.VAPlan.sync());
-      // viewBounds = مئينات 5–95 المحسوبة وقت البناء (انظر التعليق في الترويسة)
-      map.fitBounds(viewBounds, { padding: [24, 24], maxZoom: 13 });
 
       const chips = document.querySelectorAll('#map-chips .chip');
       const search = document.getElementById('map-search');
@@ -406,6 +437,10 @@ const jsonLd = [
   /* الخريطة + القائمة الجانبية المتزامنة */
   .map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: var(--s-4); align-items: stretch; padding-block-end: var(--s-6); }
   #map { block-size: clamp(420px, 66vh, 720px); inline-size: 100%; background: var(--c-sand-2); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+  /* هيكل تحميل هادئ (بلا نص) إلى أن تُبنى الخريطة؛ الحجم ثابت فلا إزاحة */
+  #map:not(.leaflet-container) { background: linear-gradient(100deg, var(--c-sand-2) 30%, color-mix(in srgb, var(--c-sand) 75%, var(--c-surface)) 50%, var(--c-sand-2) 70%) 0 0 / 300% 100%; animation: map-sk 1.6s linear infinite; }
+  @keyframes map-sk { to { background-position: -300% 0; } }
+  @media (prefers-reduced-motion: reduce) { #map:not(.leaflet-container) { animation: none; } }
   .map-side { display: flex; flex-direction: column; block-size: clamp(420px, 66vh, 720px); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-lg); overflow: hidden; }
   .ms-count { margin: 0; padding: var(--s-3); font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); border-block-end: 1px solid var(--c-line); }
   .ms-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; overscroll-behavior: contain; }

@@ -194,6 +194,11 @@ const straws = Array.from({ length: 7 }, () => {
       let fl: Flight | null = null;
       let raf = 0, last = 0, beat = 0;
       let intro: ReturnType<typeof setTimeout> | undefined;
+      let idle: ReturnType<typeof setTimeout> | undefined;
+      let idleCb = 0;
+      let flownMem = false;
+      let tries = 0;
+      let noRoom = false; // آخر محاولة فشلت لأن لا مساحة تكفي الطيران (لا لحالة عابرة)
 
       const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(`#advisor ${sel}`);
       const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
@@ -237,7 +242,7 @@ const straws = Array.from({ length: 7 }, () => {
 
       function stop(silent = false) {
         cancelAnimationFrame(raf); raf = 0; fl = null;
-        if (silent && intro) { clearTimeout(intro); intro = undefined; }
+        if (silent) clearPending(); // التنقّل يلغي البدء المعلّق؛ astro:page-load يعيد تسلّحه
         const fly = $('.adv-fly'); if (fly) fly.hidden = true;
         const img = $('.adv-bird-img'); if (img) img.style.opacity = '';
       }
@@ -288,10 +293,11 @@ const straws = Array.from({ length: 7 }, () => {
       const canFly = () => Boolean(art) && !reduced.matches && !document.hidden;
 
       // الطيران الافتتاحي: حدود الثمانية من موضع العش وحدود الشاشة وأسفل الترويسة
-      function eight() {
+      function eight(): boolean {
         const root = document.getElementById('advisor');
-        if (!canFly() || !root || root.classList.contains('is-open') || $('.adv-fab.is-away')) return;
-        const from = perchPoint(); if (!from) return;
+        noRoom = false;
+        if (!canFly() || !root || root.classList.contains('is-open') || $('.adv-fab.is-away')) return false;
+        const from = perchPoint(); if (!from) return false;
         const mobile = window.innerWidth <= 640;
         const capX = mobile ? 85 : 220, capH = mobile ? 85 : 160;
         const half = FW * from.s * 0.55, gap = 10;
@@ -300,10 +306,11 @@ const straws = Array.from({ length: 7 }, () => {
         const top = (header ? Math.max(0, header.getBoundingClientRect().bottom) : 0) + gap + EY * from.s;
         const h = clamp(from.y - top, 0, capH);
         const ax: [number, number] = from.dir < 0 ? [clamp(left, 0, capX), clamp(right, 0, capX)] : [clamp(right, 0, capX), clamp(left, 0, capX)];
-        if (h < 30 || ax[0] + ax[1] < 60) return; // لا مساحة تكفي: يبقى في عشه
-        if (start({ kind: 'eight', t0: performance.now(), dur: 4000, from, ax, h })) {
-          try { sessionStorage.setItem(FLOWN, '1'); } catch { /* تخزين معطَّل */ }
-        }
+        if (h < 30 || ax[0] + ax[1] < 60) { noRoom = true; return false; } // لا مساحة تكفي الآن
+        if (!start({ kind: 'eight', t0: performance.now(), dur: 4000, from, ax, h })) return false;
+        flownMem = true;
+        try { sessionStorage.setItem(FLOWN, '1'); } catch { /* تخزين معطَّل */ }
+        return true;
       }
 
       function toPanel(from: Pt) {
@@ -315,19 +322,61 @@ const straws = Array.from({ length: 7 }, () => {
         start({ kind: 'panel', t0: performance.now(), dur: 2000, from, ax: [0, 0], h: 0, to: { x: r.left + r.width * 0.42, y: r.top + r.height * 0.4 } });
       }
 
-      // الأصول بعد load فقط، ثم الطيران الافتتاحي بعد 1.5 ثانية مرة في الجلسة
+      // الطيران الافتتاحي مرة واحدة في الجلسة، يبدأ بأيّ الأمرين أسبق: 1.5 ثانية بعد أول تفاعل، أو 6 ثوانٍ بعد تحميل
+      // الصفحة حين يكون الخيط الرئيسي خاملاً. إن تعذّر البدء لحالة عابرة (الزر مخفيّ أثناء التمرير، اللوحة مفتوحة، التبويب
+      // مخفيّ) يُعاد التسلّح بلا احتساب فتُجرَّب اللحظة المناسبة التالية؛ ولا يُحتسب من سقف المحاولات (MAX_TRIES) إلا فشلٌ
+      // لانعدام المساحة فعلاً. فتح اللوحة يعدّ الافتتاح قد تمّ. يُصفَّر العدّاد عند كل astro:page-load، والتنقّل الذي يلغي
+      // بدءاً معلّقاً يُعيد تسلّحه هناك. المستمعون على window بمجموعة واحدة بمراجع ثابتة فلا تتراكم عبر التنقّلات.
+      const EV = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'] as const;
+      const MAX_TRIES = 10;
+      const hasFlown = () => {
+        if (flownMem) return true;
+        try { return sessionStorage.getItem(FLOWN) === '1'; } catch { return false; }
+      };
+      const unlisten = () => EV.forEach((e) => window.removeEventListener(e, onInteract));
+      const clearPending = () => {
+        if (intro) { clearTimeout(intro); intro = undefined; }
+        if (idle) { clearTimeout(idle); idle = undefined; }
+        if (idleCb && 'cancelIdleCallback' in window) { cancelIdleCallback(idleCb); }
+        idleCb = 0;
+      };
+      function disarm() { clearPending(); unlisten(); }
+      function attempt() {
+        intro = undefined;
+        if (hasFlown() || reduced.matches) { disarm(); return; }
+        if (eight()) { disarm(); return; }
+        if (noRoom && ++tries >= MAX_TRIES) { disarm(); return; }
+        arm(); // لم يُبدأ: تسلّح من جديد للّحظة المناسبة التالية
+      }
+      function onInteract() {
+        if (intro || hasFlown()) return; // بدء معلّق: لا يُمدَّد
+        intro = setTimeout(attempt, 1500);
+      }
+      function arm() {
+        if (!art || hasFlown() || reduced.matches) { disarm(); return; }
+        EV.forEach((e) => window.addEventListener(e, onInteract, { passive: true })); // نفس المرجع: لا تكرار
+        if (idle || idleCb) return;
+        idle = setTimeout(() => {
+          idle = undefined;
+          const go = () => { idleCb = 0; if (!intro) { intro = setTimeout(attempt, 0); } };
+          if ('requestIdleCallback' in window) idleCb = requestIdleCallback(go, { timeout: 2000 }); else go();
+        }, 6000);
+      }
+      // الأصول بعد load فقط (لا حركة rAF أثناء التحميل)
       const boot = () => {
         Promise.all([one('bulbul-perch'), one('bulbul-fly')]).then(([perch, fly]) => {
           art = { perch, fly }; paint();
-          let flown = false; try { flown = sessionStorage.getItem(FLOWN) === '1'; } catch { /* */ }
-          if (!flown && !reduced.matches) intro = setTimeout(eight, 1500);
+          arm();
         }).catch(() => { /* يبقى العش وحده */ });
       };
       if (document.readyState === 'complete') boot(); else window.addEventListener('load', boot, { once: true });
-      document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+      document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else arm(); });
       window.addEventListener('resize', () => { if (fl) stop(); }, { passive: true });
-      reduced.addEventListener('change', () => stop());
-      return { paint, perchPoint, toPanel, stop };
+      reduced.addEventListener('change', () => { stop(); if (reduced.matches) disarm(); else arm(); });
+      // فتح اللوحة = تمّ الافتتاح: لا طيران لاحق في الجلسة
+      const markFlown = () => { flownMem = true; try { sessionStorage.setItem(FLOWN, '1'); } catch { /* تخزين معطَّل */ } disarm(); };
+      const rearm = () => { tries = 0; arm(); };
+      return { paint, perchPoint, toPanel, stop, arm: rearm, markFlown };
     })();
 
     function wire() {
@@ -361,8 +410,28 @@ const straws = Array.from({ length: 7 }, () => {
       for (const m of history) bubble(m.role, m.content);
       if (history.length && chipsEl()) chipsEl()!.hidden = true;
 
+      // Modal only where the open panel is a full-width sheet (<= 480px, see the .adv-root.is-open rule):
+      // aria-modal, a Tab loop and inert on everything else. As a floating corner box it is a plain non-modal dialog.
+      const sheetMq = window.matchMedia('(max-width: 480px)');
+      let inerted: HTMLElement[] = [];
+      const releaseInert = () => { for (const n of inerted) n.inert = false; inerted = []; };
+      const syncModal = () => {
+        const modal = !panel.hidden && sheetMq.matches;
+        if (modal) panel.setAttribute('aria-modal', 'true'); else panel.removeAttribute('aria-modal');
+        releaseInert();
+        if (!modal) return;
+        // every sibling along the path from the advisor root up to <body>
+        for (let node: HTMLElement = host; node !== document.body && node.parentElement; node = node.parentElement) {
+          for (const sib of Array.from(node.parentElement.children) as HTMLElement[]) {
+            if (sib !== node && !sib.inert) { sib.inert = true; inerted.push(sib); }
+          }
+        }
+      };
+      sheetMq.addEventListener('change', syncModal);
+      document.addEventListener('astro:before-swap', () => { releaseInert(); sheetMq.removeEventListener('change', syncModal); }, { once: true });
       const open = (v: boolean) => {
         panel.hidden = !v;
+        syncModal();
         fab.setAttribute('aria-expanded', String(v));
         fab.classList.remove('is-away');
         root.classList.toggle('is-open', v);
@@ -373,6 +442,7 @@ const straws = Array.from({ length: 7 }, () => {
         const opening = panel.hasAttribute('hidden');
         // نقطة الجثوم تُقرأ قبل الفتح (الزر يختفي معه)، واللوحة تُفتح فوراً والبلبل يطير إليها أثناءها
         bulbul.stop();
+        if (opening) bulbul.markFlown();
         const from = opening ? bulbul.perchPoint() : null;
         open(opening);
         if (from) bulbul.toPanel(from);
@@ -386,7 +456,16 @@ const straws = Array.from({ length: 7 }, () => {
         if (chipsEl()) chipsEl()!.hidden = false;
         form.hidden = false; input.focus();
       });
-      panel.addEventListener('keydown', (e) => { if (e.key === 'Escape') open(false); });
+      // Escape closes the panel and returns focus to the launcher in both modes; the Tab loop applies in the modal sheet only
+      panel.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { open(false); return; }
+        if (e.key !== 'Tab' || !sheetMq.matches) return;
+        const items = Array.from(panel.querySelectorAll<HTMLElement>('button:not([hidden]):not([disabled]), a[href], textarea:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((n) => n.offsetParent !== null);
+        if (!items.length) return;
+        const first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      });
       if (isOpen()) open(true);
 
       root.querySelectorAll<HTMLButtonElement>('.adv-chip').forEach((b) => b.addEventListener('click', () => { input.value = b.textContent || ''; form.requestSubmit(); }));
@@ -502,7 +581,7 @@ const straws = Array.from({ length: 7 }, () => {
     }, { passive: true });
     document.addEventListener('astro:page-load', () => { lastY = Math.max(0, window.scrollY); });
 
-    document.addEventListener('astro:page-load', () => { wire(); bulbul.paint(); });
+    document.addEventListener('astro:page-load', () => { wire(); bulbul.paint(); bulbul.arm(); });
     document.addEventListener('astro:before-swap', () => bulbul.stop(true));
     if (document.readyState !== 'loading') wire(); else document.addEventListener('DOMContentLoaded', wire);
   }

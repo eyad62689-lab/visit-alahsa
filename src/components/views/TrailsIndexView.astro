@@ -6,6 +6,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
 import PageHero from '../PageHero.astro';
 import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import { TRAILS, trailAttribution, trailText, trailUnescoNote, trailsSeoDesc } from '../../data/trails';
@@ -77,6 +78,7 @@ const jsonLd = [
       </ol>
       <p class="tr-note" data-unesco-note>{trailUnescoNote(lang)}</p>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
@@ -88,8 +90,20 @@ const jsonLd = [
   @media (max-width: 1000px) { .tr-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 760px) { .tr-grid { grid-template-columns: 1fr; } }
   .tr-grid > li { display: flex; }
+  /* أول مسار مميّز: سطح فاتح بخطّ ذهبي عند حافة البداية ورقم فيروزي كبير (لا شريحة داكنة ثانية تحت الهيرو الداكن).
+     عمودان على الشاشات العريضة فقط؛ على الجوال عمود واحد بالحشوة الأرحب نفسها */
+  .tr-grid > li:first-child .tr-card { position: relative; padding: var(--s-5) var(--s-4); gap: var(--s-3); }
+  /* gold marker as an inset bar on the straight part of the edge: a border here wraps around the rounded corners into a hook */
+  .tr-grid > li:first-child .tr-card::before { content: ''; position: absolute; inset-block: var(--s-4); inset-inline-start: 0; inline-size: 4px; background: var(--c-gold); border-start-end-radius: 2px; border-end-end-radius: 2px; }
+  .tr-grid > li:first-child .tr-num { font-size: clamp(3rem, 7vw, 5rem); }
+  .tr-grid > li:first-child .tr-t { font-size: clamp(1.5rem, 2.6vw, 2.125rem); }
+  .tr-grid > li:first-child .tr-d { font-size: var(--t-base); max-inline-size: 60ch; }
+  @media (min-width: 761px) {
+    .tr-grid > li:first-child { grid-column: span 2; }
+    .tr-grid > li:first-child .tr-card { padding: var(--s-6) var(--s-6) var(--s-5); }
+  }
   .tr-card { flex: 1; padding: var(--s-4) var(--s-4) var(--s-5); gap: var(--s-2); }
-  .tr-num { font-family: var(--font-latin); font-weight: 600; font-size: var(--t-xl); line-height: 1; color: var(--c-turq); }
+  .tr-num { font-family: var(--font-latin); font-weight: 600; font-variant-numeric: lining-nums; font-size: var(--t-xl); line-height: 1; color: var(--c-turq); }
   .tr-t { font-size: var(--t-lg); line-height: 1.35; color: var(--c-turq-deep); margin: 0; }
   .tr-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; margin: 0; }
   .tr-meta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-3); margin: var(--s-2) 0 0; padding-block-start: var(--s-3); border-block-start: 1px solid var(--c-line); }

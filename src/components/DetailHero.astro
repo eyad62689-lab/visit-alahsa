@@ -1,0 +1,95 @@
+---
+// هيرو صفحات التفاصيل (معلم / فعالية / مقال) — اللغة البصرية نفسها لهيرو الفهارس (PageHero):
+// طويل، المحتوى مرساه حافة النهاية السفلية عند البداية، تعتيم سفلي مشدَّد، انجراف بطيء للملصق،
+// وحافة القوس المدبّب (ArchEdge). المحتوى (الفتات أولاً ثم التسمية والعنوان والنبذة والأزرار) يُمرَّر
+// في الفتحة الافتراضية بأصناف dh-* (القواعد هنا عامّة لأن محتوى الفتحة يحمل نطاق الواجهة المستدعية).
+// بلا صورة: نسخة مدمجة مقصودة على سطح فيروزي. الصورة تبقى عبر HeroPoster (المرشَّحة للـLCP، fetchpriority=high).
+import HeroPoster from './HeroPoster.astro';
+import PalmMotif from './PalmMotif.astro';
+import ArchEdge from './ArchEdge.astro';
+
+interface Props {
+  image?: string;       // المسار الأساسي بلا امتداد (HeroPoster)
+  class?: string;
+  wm?: 'start' | 'end'; // جهة زخرفة السعفة
+  vt?: boolean;         // صورة الهيرو تحمل اسم انتقال العنصر المشترك va-hero (صفحات المعالم)
+  title?: string;       // the h1 text, used only to pick the title size step by length at build time
+}
+const { image, class: cls = '', wm = 'end', vt = false, title = '' } = Astro.props;
+// Long titles (weighted length above 48) get a smaller step so a very long title does not fill the whole fold on a phone.
+// East Asian wide and fullwidth code points count as 2, since they occupy twice the width of a Latin letter.
+const wide = /[\u1100-\u115F\u2E80-\uA4CF\uAC00-\uD7A3\uF900-\uFAFF\uFE30-\uFE6F\uFF00-\uFF60\uFFE0-\uFFE6\u{20000}-\u{3FFFD}]/u;
+const long = [...title].reduce((n, ch) => n + (wide.test(ch) ? 2 : 1), 0) > 48;
+---
+<section class:list={['dhero', 'on-dark', image ? 'dhero--img' : 'dhero--plain', { 'dhero--vt': vt && !!image, 'dhero--long': long }, cls]}>
+  {image && <HeroPoster src={image} />}
+  <PalmMotif size={340} class={`dh-wm dh-wm--${wm}`} />
+  <div class="container dh-in"><slot /></div>
+  <ArchEdge />
+</section>
+
+<style>
+  .dhero {
+    --arch-h: clamp(22px, 4.5vw, 56px);
+    position: relative; overflow: hidden; isolation: isolate; color: var(--c-sand); background: var(--c-turq-deep);
+    min-block-size: clamp(400px, 58svh, 620px);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-block: var(--s-7) calc(var(--arch-h) + var(--s-5));
+  }
+  .dhero--plain { min-block-size: clamp(300px, 40svh, 440px); }
+  /* التعتيم فوق الملصق: الثلث السفلي أقوى لأن النص مرساه هناك (4.5:1 للنصّ الصغير فوق أفتح ملصق) */
+  .dhero--img::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(0deg, rgba(0,34,30,.88) 0%, rgba(0,36,32,.66) 36%, rgba(0,36,32,0) 72%),
+      var(--hero-scrim);
+  }
+  /* انجراف بطيء (تكبير 1 ← 1.06): transform وحده فلا أثر على LCP ولا على التخطيط */
+  .dhero--img :global(picture.photo-bg > img) { transform-origin: 62% 42%; animation: dh-drift 20s var(--ease-inout) infinite alternate; }
+  @keyframes dh-drift { to { transform: scale(1.06); } }
+  @media (prefers-reduced-motion: reduce) { .dhero--img :global(picture.photo-bg > img) { animation: none; } }
+  :global(.dh-wm) { position: absolute; inset-block-start: -8%; color: var(--c-gold); opacity: .11; z-index: 0; }
+  :global(.dh-wm--end) { inset-inline-end: -4%; }
+  :global(.dh-wm--start) { inset-inline-start: -6%; }
+  /* عمود مرن: يسمح بإعادة ترتيب بصري (order) دون المساس بترتيب DOM */
+  .dh-in { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; }
+
+  /* ===== أصناف المحتوى (تُستعمل في فتحة الواجهات) ===== */
+  :global(.dhero .dh-crumbs) { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-4); flex-wrap: wrap; }
+  /* هدف لمس ≥36px: الحشو يزيد 3px من كل جهة والهامش السالب يعيد مساحة الصندوق فلا يتحرك شيء */
+  :global(.dhero .dh-crumbs a) { display: inline-block; padding-block: calc(var(--s-1) + 3px); margin-block: -3px; color: rgba(247,243,234,.94); text-decoration: none; }
+  :global(.dhero .dh-crumbs a:hover) { color: var(--c-gold-bright); }
+  :global(.dhero .dh-crumbs span) { color: rgba(247,243,234,.7); }
+  /* زخرفة السواقي تحت التسمية تغني عن خطّها ومعيّنها */
+  :global(.dhero .eyebrow::before), :global(.dhero .eyebrow::after) { display: none; }
+  :global(.dhero .dh-sq) { inline-size: 168px; max-inline-size: 60%; margin-block: var(--s-3) var(--s-2); }
+  :global(.dhero .dh-title) {
+    font-family: var(--font-heading); font-weight: 700; color: var(--c-sand);
+    font-size: clamp(2.2rem, 1.2rem + 4.6vw, 4.25rem); line-height: 1.1;
+    margin-block: var(--s-2) var(--s-3); max-inline-size: 22ch; text-wrap: balance; overflow-wrap: break-word;
+  }
+  :global(.dhero :is(.dh-sum, .ah-sum, .ph-desc)) { font-size: var(--t-lg); line-height: 1.7; color: rgba(247,243,234,.95); max-inline-size: min(100%, 56ch); }
+  :global(.dhero .dh-meta) { margin-block-start: var(--s-3); font-size: var(--t-xs); color: rgba(247,243,234,.82); }
+  :global(.dhero .dh-act) { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-start: var(--s-4); }
+  :global(.dhero :is(.fav-btn, .share-btn, .btn)) { min-block-size: 44px; }
+  :global(.dhero :is(a, button):focus-visible) { outline: 2px solid var(--c-gold-bright); outline-offset: 3px; }
+  /* الأوردو: حبر النستعليق يعلو صندوق الخط — القياس في DetailView */
+  :global([lang='ur'] .dhero .dh-title) { line-height: 1.6; }
+  :global([lang='ur'] .dhero :is(.dh-sum, .ah-sum, .ph-desc)) { line-height: 2.2; }
+  :global(:is([lang='de'], [lang='ru'], [lang='tr']) .dhero .dh-title) { hyphens: auto; }
+  /* long title: the current-page crumb repeats it, so it is cut to one line (visually only; assistive tech reads it whole) */
+  :global(.dhero--long .dh-crumbs) { max-inline-size: 100%; }
+  :global(.dhero--long .dh-crumbs [aria-current]) { flex: 1 1 100%; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  :global(.dhero--long .dh-title) { font-size: clamp(1.5rem, 1rem + 2.4vw, 2.75rem); line-height: 1.15; max-inline-size: 30ch; }
+  :global([lang='ur'] .dhero--long .dh-title) { line-height: 1.6; }
+  /* انتقال العنصر المشترك من صورة البطاقة إلى الهيرو: يُقصّ بالتغطية فلا تُشوَّه النسبة أثناء التحريك */
+  .dhero--vt :global(picture.photo-bg) { view-transition-name: va-hero; }
+  :global(::view-transition-old(va-hero)), :global(::view-transition-new(va-hero)) { block-size: 100%; inline-size: 100%; object-fit: cover; overflow: clip; }
+  @media (prefers-reduced-motion: reduce) { :global(::view-transition-group(va-hero)) { animation: none; } }
+  @media (max-width: 760px) {
+    :global(.dhero :is(.dh-sum, .ah-sum, .ph-desc)) { font-size: var(--t-base); }
+    .dhero { padding-block-start: var(--s-6); }
+    /* the hero follows its content on phones: short titles no longer leave a large empty band above the text */
+    .dhero:not(.dhero--plain) { min-block-size: clamp(320px, 46svh, 480px); }
+  }
+</style>

@@ -1,6 +1,8 @@
 ---
 title: "Tarafa ibn al-Abd and Al-Ahsa: What the Classical Arabic Sources Say About the Mu'allaqa Poet and Hajar"
+seoTitle: "Tarafa ibn al-Abd and Al-Ahsa: What Classical Sources Say"
 description: "What links Tarafa ibn al-Abd to Hajar and Al-Ahsa? His end and his grave as told by Ibn Qutaybah and Ibn al-Anbari, what Hajar and al-Bahrayn mean in Yaqut al-Hamawi, and what a visitor finds today."
+seoDescription: "What links Tarafa ibn al-Abd to Hajar and Al-Ahsa? His end and grave as told by Ibn Qutaybah and Ibn al-Anbari, and what a visitor finds today."
 lang: en
 key: tarafa-ibn-al-abd
 slug: "tarafa-ibn-al-abd-and-al-ahsa"

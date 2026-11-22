@@ -3,9 +3,10 @@ import { render, getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
-import PalmMotif from '../PalmMotif.astro';
+import NextStep from '../NextStep.astro';
 import Photo from '../Photo.astro';
-import HeroPoster from '../HeroPoster.astro';
+import DetailHero from '../DetailHero.astro';
+import '../../styles/detail.css';
 import { catLabel } from '../../lib/categories';
 import { staticHref } from '../../lib/routes';
 import { unescoOasisNode } from '../../lib/schema';
@@ -202,33 +203,43 @@ const nearDining = Object.hasOwn(ui[lang], 'det.nearDining.h') ? await diningNea
 const trailLang: TrailLang = lang;
 const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions'))
   .map((tr) => ({ href: trailHref(tr, trailLang), title: trailText(tr, trailLang).title, tagline: trailText(tr, trailLang).tagline, slug: tr.slug }));
+// Gallery rows: empty cells left in the last row are filled by stretching the last item over the free columns.
+// Desktop: the arch takes one column and two rows, the rest fill the other two columns (four cells in the first two rows, then three columns).
+// Mobile: two columns, no arch.
+// Arch sizes: the 363x560 arch frame covers its image with object-fit: cover, so the source must be about frame height x source ratio
+// (roughly 2.5 times the column width); sizes declares that, not the frame width.
+const galN = a.gallery.length;
+const galArch = galN >= 3;
+const galRest = galN - 1;
+const galTailD = !galArch ? 0 : galRest >= 4 ? ([0, 3, 2][(galRest - 4) % 3]) : galRest === 3 ? 2 : 0;
+const galTallD = galArch && galRest <= 2;
+const galTailM = galN % 2 === 1 ? 2 : 0;
+// The last item's sizes follow the span the rules below give it: whole row, two of three columns, or one cell.
+const galFrame = 'min(100vw - 2rem, 1120px)';
+const galTailSizes = `(max-width: 760px) ${galTailM ? '100vw' : '50vw'}, ${galTailD === 3 ? galFrame : galTailD === 2 ? `calc(${galFrame} * .67)` : '33vw'}`;
 ---
 <Base title={`${seoTitle} ${titleSep(lang)} ${t('site.brand')}`} ogTitle={ar || lang === 'en' ? title : undefined} description={description} lang={lang} alt={alt} type="article" image={ogImage} jsonLd={jsonLd} preloadImage={a.heroImage} noindex={thin}>
   <Header lang={lang} alt={alt} />
+  <div class="rbar" aria-hidden="true"></div>
   <main id="main">
-    <section class={`att-hero photo ${a.heroImage ? '' : 'photo--placeholder'}`}>
-      {a.heroImage && (
-        <HeroPoster src={a.heroImage} />
-      )}
-      <PalmMotif size={360} class="ah-wm" />
-      <div class="container ah-in">
-        <nav class="crumbs" aria-label={t('a11y.crumbs')}>
-          <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
-          <a href={attractionsHref}>{crumbLabel}</a><span>/</span>
-          <span aria-current="page">{title}</span>
-        </nav>
-        <span class="eyebrow gold-on-dark ah-k">{catLabel(a.category, lang)}</span>
-        <h1 class="ah-title">{title}</h1>
-        <p class="ah-sum">{summary}</p>
-        {unescoHref && <a class="ah-unesco" href={unescoHref}>{unescoPre}<bdi dir="ltr">{a.unesco}</bdi>{unescoPost}</a>}
-        <div class="ah-actions">
-          <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
-            <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
-          </button>
-          <ShareButton lang={lang} contentType="attraction" itemId={a.slug_en} dark />
-        </div>
+    <DetailHero image={a.heroImage} vt title={title}>
+      <nav class="dh-crumbs" aria-label={t('a11y.crumbs')}>
+        <a href={homeHref}>{t('crumb.home')}</a><span>/</span>
+        <a href={attractionsHref}>{crumbLabel}</a><span>/</span>
+        <span aria-current="page">{title}</span>
+      </nav>
+      <span class="eyebrow gold-on-dark">{catLabel(a.category, lang)}</span>
+      <span class="saqiya saqiya--dark dh-sq" aria-hidden="true"></span>
+      <h1 class="dh-title">{title}</h1>
+      <p class="ah-sum">{summary}</p>
+      {unescoHref && <a class="ah-unesco" href={unescoHref}>{unescoPre}<bdi dir="ltr">{a.unesco}</bdi>{unescoPost}</a>}
+      <div class="dh-act">
+        <button class="fav-btn ah-fav" type="button" data-fav={a.slug_ar} data-tx-on={t('fav.added')} data-tx-off={t('fav.add')} aria-pressed="false">
+          <span class="fav-ic">+</span><span data-fav-tx>{t('fav.add')}</span>
+        </button>
+        <ShareButton lang={lang} contentType="attraction" itemId={a.slug_en} dark />
       </div>
-    </section>
+    </DetailHero>
 
     <div class="container att-layout">
       <article class="prose" data-reveal>
@@ -319,9 +330,9 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
     {a.gallery.length > 0 && (
       <section class="container gallery-sec" data-reveal>
         <h2 class="gal-h">{galleryH}</h2>
-        <div class="gal-grid">
+        <div class:list={['gal-grid', { 'gal-grid--arch': galArch }]} data-tail-d={galTailD || undefined} data-tail-m={galTailM || undefined} data-tall-d={galTallD || undefined}>
           {a.gallery.map((g, i) => (
-            <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class="gal-item" sizes="(max-width: 760px) 50vw, 33vw" />
+            <Photo src={g} label={`${title} — ${t('det.photo')} ${i + 1}`} class={i === 0 && galArch ? 'gal-item gal-item--arch' : 'gal-item'} sizes={i === 0 && galArch ? '(max-width: 760px) 50vw, calc(min(100vw - 2rem, 1120px) * .84)' : i === galN - 1 && galN > 1 ? galTailSizes : '(max-width: 760px) 50vw, 33vw'} />
           ))}
         </div>
       </section>
@@ -405,13 +416,50 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
     <section class="container back-sec">
       <a href={attractionsHref} class="btn btn--turq back-btn">{backLabel}</a>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
 
+<script>
+  // Sticky only while the card fits below the header (84px offset) with 24px to spare; class toggle does not change layout
+  const STICKY_TOP = 84, STICKY_GAP = 24;
+  const syncSticky = (): void => {
+    const aside = document.querySelector<HTMLElement>('.att-aside');
+    if (aside) aside.classList.toggle('is-sticky', aside.offsetHeight <= window.innerHeight - STICKY_TOP - STICKY_GAP);
+  };
+  let stickyRaf = 0;
+  const queueSticky = (): void => { cancelAnimationFrame(stickyRaf); stickyRaf = requestAnimationFrame(syncSticky); };
+  let stickyRo: ResizeObserver | undefined;
+  const w = window as Window & { __vaStickyBound?: boolean };
+  if (!w.__vaStickyBound) {
+    w.__vaStickyBound = true;
+    window.addEventListener('resize', queueSticky);
+  }
+  document.addEventListener('astro:page-load', () => {
+    syncSticky();
+    stickyRo?.disconnect();
+    const aside = document.querySelector<HTMLElement>('.att-aside');
+    if (aside && 'ResizeObserver' in window) { stickyRo = new ResizeObserver(queueSticky); stickyRo.observe(aside); }
+  });
+</script>
+
 <script is:inline>
   // «كم يبعد عني» — مستمع واحد على document (يصمد عبر ClientRouter)، الموقع بطلب صريح ولا يُخزَّن
   (function () {
+    // انتقال العنصر المشترك: صورة البطاقة المنقورة تحمل الاسم va-hero لحظة النقر فقط (اسم واحد فريد في المستند أبداً)
+    // فتلتقي بصورة هيرو صفحة المعلم التي تحمله. الهيرو يُجرَّد من اسمه هنا كي لا يتكرّر الاسم عند الانتقال من معلم إلى معلم.
+    if (!window.__vaVtNear) {
+      window.__vaVtNear = true;
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('.nb-card[data-track-kind="attraction"]');
+        if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        document.querySelectorAll('[data-vt]').forEach(function (x) { x.style.viewTransitionName = ''; x.removeAttribute('data-vt'); });
+        document.querySelectorAll('.dhero--vt picture.photo-bg').forEach(function (x) { x.style.viewTransitionName = 'none'; });
+        var p = a.querySelector('picture.photo');
+        if (p) { p.style.viewTransitionName = 'va-hero'; p.setAttribute('data-vt', ''); }
+      });
+    }
     if (window.__vaDistMe) return;
     window.__vaDistMe = true;
     function km(la1, lo1, la2, lo2) {
@@ -441,54 +489,35 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
 </script>
 
 <style>
-  .att-hero { position: relative; overflow: hidden; color: var(--c-sand); min-block-size: 46vh; display: flex; align-items: flex-end; }
-  /* تعتيم اتجاهي تحت كتلة النصّ — تدرّج .photo العامّ شفافٌ في أعلى 40% من
-     الحاوية، وهناك تقع الفتات والتسمية، فكانتا تختفيان فوق الصور الساطعة. */
-  .att-hero::before {
-    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: var(--hero-scrim-soft);
-  }
-  /* :global لأن PalmMotif مكوّن منفصل والـ scoped CSS لا تصله — بدونها تبقى
-     السعفة عنصراً في التدفق يدفع نصّ الهيرو عن حافة البداية (سبب انعكاس الاتجاه) */
-  :global(.ah-wm) { position: absolute; inset-block-start: -6%; inset-inline-end: -4%; color: var(--c-gold); opacity: .12; z-index: 0; }
-  /* لا max-inline-size على الحاوية نفسها: مع margin-inline:auto كانت الكتلة
-     تنكمش وتنزاح عن حافة البداية (العربي يظهر يسار الشاشة والإنجليزي يمينها).
-     التحديد على الفقرات الداخلية فقط. */
-  .ah-in { position: relative; z-index: 2; padding-block: var(--s-6); }
-  .crumbs { display: flex; gap: var(--s-2); align-items: center; font-size: var(--t-xs); margin-block-end: var(--s-3); flex-wrap: wrap; }
-  /* هدف لمس ≥36px: الحشو يزيد 3px من كل جهة والهامش السالب يعيد مساحة الصندوق فلا يتحرك شيء */
-  .crumbs a { display: inline-block; padding-block: calc(var(--s-1) + 3px); margin-block: -3px; color: rgba(247,243,234,.92); text-decoration: none; }
-  .crumbs a:hover { color: var(--c-gold-bright); }
-  .crumbs span { color: rgba(247,243,234,.62); }
-  /* تسمية الفئة صارت eyebrow مثل بقيّة أبطال الموقع: نصٌّ رملي وزخرفة ذهبية.
-     كانت نصّاً ذهبياً صغيراً فوق صورة — دون 4.5:1 المطلوبة للنصّ الصغير. */
-  .ah-k { margin-block-end: var(--s-1); }
-  .ah-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .ah-sum { font-size: var(--t-lg); color: rgba(247,243,234,.92); max-inline-size: 52ch; }
-  .ah-unesco { display: inline-block; margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-bright); text-decoration: underline; text-underline-offset: 3px; }
+  /* الهيرو من DetailHero؛ هنا ما يخصّ المعلم وحده */
+  .ah-unesco { display: inline-block; margin-block-start: var(--s-3); font-size: var(--t-sm); color: var(--c-gold-bright); text-decoration: underline; text-underline-offset: 3px; }
   .ah-unesco:hover { color: var(--c-sand); }
-  /* فقرة الإجابة: أول ما يقرأه الزائر ومحرك الإجابة — بارزة بلا أن تنافس العنوان */
-  .prose .answer { font-size: var(--t-lg); line-height: 1.8; padding-inline-start: var(--s-3); border-inline-start: 3px solid var(--c-gold); margin-block-end: var(--s-4); }
   /* min-inline-size لا تقصيرُ نصّ: الزرّ يبدّل تسميته بين «أضف» و«في رحلتي ✓»
      (‏data-tx-on/off)، والفارق بالألمانية تسعة محارف مقابل اثنين بالإنجليزية —
      فيقفز عرض الزرّ تحت إصبع الزائر لحظة الضغط. */
-  .ah-actions { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-block-start: var(--s-4); }
   .ah-fav { min-inline-size: 15ch; background: transparent; color: var(--c-sand); border-color: rgba(247,243,234,.5); }
   .ah-fav:hover { border-color: var(--c-sand); }
   .ah-fav.is-saved { background: var(--c-gold); color: var(--c-ink); border-color: var(--c-gold); }
-  .att-layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--s-6); padding-block: var(--s-7); align-items: start; }
+
+  .att-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: var(--s-7); padding-block: var(--s-7); align-items: start; }
   .prose { font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); max-inline-size: 68ch; }
   .prose :global(p) { margin-block-end: var(--s-4); }
   .prose :global(strong) { color: var(--c-turq-deep); font-weight: 600; }
   /* العناوين الفرعية في المتن: h2/h3 المصيَّران من الماركداون العربي و.prose-h2/.prose-h3 في المتون غير العربية بشكل واحد */
-  .prose :global(h2) { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-6) var(--s-3); }
+  .prose :global(h2) { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block: var(--s-7) var(--s-3); }
   .prose :global(h3) { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block: var(--s-5) var(--s-2); }
-  .att-aside { position: sticky; inset-block-start: 88px; display: flex; flex-direction: column; gap: var(--s-3); }
-  .info-card { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--s-4); }
+  /* Visit card: sticky only when it fits the viewport (the script toggles .is-sticky), otherwise it scrolls with the page and is never clipped */
+  .att-aside { display: flex; flex-direction: column; gap: var(--s-3); }
+  @media (min-width: 761px) {
+    .att-aside.is-sticky { position: sticky; inset-block-start: 84px; }
+  }
+  .info-card { background: var(--c-surface); border: 1px solid var(--c-line); border-block-start: 3px solid var(--c-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4); }
   .info-h { font-size: var(--t-lg); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
-  .info-list { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-3); margin: 0; }
-  .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; white-space: nowrap; }
-  .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; }
+  /* عمود التسميات يتّسع لأطول تسمية حتى 45% من البطاقة ثم تلتفّ التسمية؛ والقيمة تنكمش (minmax(0, 1fr)) وتكسر أطول كلمة
+     بدل أن تُوسّع الشبكة فيفيض العرض على الجوال (تسمية ألمانية طويلة بلا التفاف كانت تدفع الصفحة إلى 418px عند 390px) */
+  .info-list { display: grid; grid-template-columns: fit-content(45%) minmax(0, 1fr); gap: var(--s-2) var(--s-3); margin: 0; }
+  .info-list dt { font-size: var(--t-xs); color: var(--c-ink-soft); font-weight: 600; overflow-wrap: anywhere; hyphens: auto; }
+  .info-list dd { font-size: var(--t-sm); color: var(--c-ink); margin: 0; overflow-wrap: anywhere; hyphens: auto; }
   /* الأوردو: عمود التسميات (auto وبلا التفاف) يأخذ عرض أطول تسمية، فيبقى للقيمة نحو نصف البطاقة
      وتنكسر قيمتا المواعيد والرسوم أربعة أسطر إلى ستة بسطر النستعليق العالي. التسمية فوق قيمتها
      فتأخذ القيمة عرض البطاقة كله — في العمود الجانبي وعلى الجوال سواء. */
@@ -498,19 +527,19 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .info-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
   .info-note a:hover { color: var(--c-turq); }
   /* سطر الإسناد: يُفصل بخطٍّ ويصغر حجمه، لكن لونه --c-ink-soft لا --c-ink-60.
-     قيس فعلياً على خلفية البطاقة #EFE8D6 (2026-08-31): ink-60 يعطي 4.36:1
+     قيس فعلياً على خلفية البطاقة (2026-08-31): ink-60 يعطي 4.36:1
      ودون AA، وink-soft يعطي 8:1. الإسناد بيان مصداقية يُقرأ لا زخرفة تُلمح. */
   /* رابط الخريطة — سطر صغير بأيقونة دبوس، لا لوحة صورة */
   .map-link { display: inline-flex; align-items: center; gap: 6px; margin-block-start: var(--s-3);
     font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm); color: var(--c-turq-deep);
-    text-decoration: none; background: #fff; border: 1px solid var(--c-line); border-radius: 999px;
-    padding: 6px 14px; transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+    text-decoration: none; background: var(--c-sand); border: 1px solid var(--c-line); border-radius: 999px;
+    min-block-size: 44px; padding: 6px 14px; transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease); }
   .map-link:hover { border-color: var(--c-gold); color: var(--c-gold-deep); }
   .map-ic { color: var(--c-gold-deep); flex-shrink: 0; }
   .map-link:hover .map-ic { color: inherit; }
   /* الإبلاغ يبقى سطراً منفصلاً تحت رابط الخريطة */
   .dist-me { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; margin-block: var(--s-3) 0; }
-  .dist-btn { display: inline-flex; align-items: center; gap: 7px; min-block-size: 40px; padding: 0 12px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }
+  .dist-btn { display: inline-flex; align-items: center; gap: 7px; min-block-size: 44px; padding: 0 12px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: var(--c-sand); border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }
   .dist-btn:hover { border-color: var(--c-turq); color: var(--c-turq); }
   .dist-btn:disabled { opacity: .6; cursor: progress; }
   .dist-btn:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
@@ -519,45 +548,59 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .report-link { display: block; padding-block: calc(var(--s-1) + 3px); margin-block: calc(var(--s-3) - 3px) -3px; /* هدف لمس ≥36px بلا إزاحة بصرية */ font-size: var(--t-xs); color: var(--c-ink-soft);
     text-decoration: underline; text-underline-offset: 3px; }
   .report-link:hover { color: var(--c-turq); }
-  /* الأسئلة الشائعة — الأنماط نفسها في BlogPostView (post-faq) حرفياً؛ تحت
-     الشبكة ثنائية الأعمدة وبعرض المتن 68ch كي تُقرأ امتداداً له لا عموداً ثالثاً */
-  .att-faq { max-inline-size: 68ch; padding-block: 0 var(--s-6); }
-  .faq-h { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); margin-block-end: var(--s-3); }
-  .faq-item { background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); margin-block-end: var(--s-2); }
-  .faq-item summary { cursor: pointer; padding: var(--s-3) var(--s-4); font-weight: 600; color: var(--c-ink); }
-  .faq-item summary:hover { color: var(--c-turq); }
+  /* الأسئلة الشائعة — القواعد المشتركة في styles/detail.css؛ تحت الشبكة ثنائية الأعمدة وبعرض المتن 68ch
+     كي تُقرأ امتداداً له لا عموداً ثالثاً */
+  .att-faq { max-inline-size: 68ch; padding-block: 0 var(--s-7); }
+  .faq-h { font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); font-size: var(--t-xl); margin-block-end: var(--s-4); }
   .faq-item p { padding: 0 var(--s-4) var(--s-3); line-height: 1.8; color: var(--c-ink-soft); margin: 0; }
   /* الأوردو (نستعليق): حبر السطر يعلو صندوق المحرف ويهبط عنه أكثر من النسخ، فارتفاعات السطر أعلاه
-     تُلاصق الأسطر وتُركِب العنوان على ما حوله. المقيس على النص المعتمد بالخط نفسه (حبر كل سطر
-     كما يُصيَّر، نسبةً إلى حجم الخط): سطر العنوان 1.51، وتتابُع سطرين حتى 2.43 في المتن و2.25
-     في النبذة و2.15 في الأجوبة. يسري على النص الإنجليزي المتراجَع إليه في العناصر نفسها. */
-  :global([lang='ur']) .ah-title { line-height: 1.6; }
-  :global([lang='ur']) .ah-sum, :global([lang='ur']) .prose, :global([lang='ur']) .faq-item p { line-height: 2.45; }
+     تُلاصق الأسطر. المقيس على النص المعتمد بالخط نفسه (حبر كل سطر كما يُصيَّر، نسبةً إلى حجم الخط):
+     تتابُع سطرين حتى 2.43 في المتن و2.15 في الأجوبة. يسري على النص الإنجليزي المتراجَع إليه في العناصر نفسها. */
+  :global([lang='ur']) .prose, :global([lang='ur']) .faq-item p { line-height: 2.45; }
   :global([lang='ur']) .info-list dt, :global([lang='ur']) .info-list dd, :global([lang='ur']) .faq-item summary { line-height: 2.3; }
-  .gallery-sec { padding-block: 0 var(--s-6); }
-  .cta-sec { padding-block: 0 var(--s-6); }
+  .gallery-sec { padding-block: 0 var(--s-7); }
+  .cta-sec { padding-block: 0 var(--s-7); }
   .cta-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3) var(--s-5); padding: var(--s-4) var(--s-5); background: var(--c-sand-2); border: 1px solid var(--c-line); border-radius: var(--radius); }
   .cta-note { flex: 1 1 280px; font-size: var(--t-base); color: var(--c-ink); line-height: 1.7; margin: 0; }
   .cta-btn { flex: 0 0 auto; text-align: center; }
   .gal-h { font-size: var(--t-xl); color: var(--c-ink); margin-block-end: var(--s-4); }
   .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
   .gal-item { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  /* الصورة الأولى في إطار قوس على الشاشات العريضة (حين يوجد ثلاث صور فأكثر): تمتدّ صفّين.
+     الصنف على <picture> الذي لا يحمل نطاق الواجهة، لذا :global */
+  @media (min-width: 761px) {
+    .gal-grid--arch :global(.gal-item--arch) {
+      grid-row: span 2; aspect-ratio: auto; min-block-size: 100%;
+      border-start-start-radius: 999px; border-start-end-radius: 999px; border-end-start-radius: var(--radius); border-end-end-radius: var(--radius);
+    }
+  }
+  /* The last item fills what is left of the last row (all columns, or two), with a wider ratio so the frame does not grow tall */
+  .gal-grid[data-tail-m] :global(.gal-item:last-child) { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+  @media (min-width: 761px) {
+    .gal-grid[data-tail-m] :global(.gal-item:last-child) { grid-column: auto; aspect-ratio: 4 / 3; }
+    .gal-grid[data-tail-d='3'] :global(.gal-item:last-child) { grid-column: 1 / -1; aspect-ratio: 16 / 6; }
+    .gal-grid[data-tail-d='2'] :global(.gal-item:last-child) { grid-column: span 2; aspect-ratio: auto; }
+    .gal-grid[data-tall-d] :global(.gal-item:not(.gal-item--arch)) { grid-row: span 2; aspect-ratio: auto; min-block-size: 100%; }
+  }
   /* مقالات تذكر هذا المعلم (الخطوة 9) */
-  .mentions-sec { padding-block: var(--s-2) var(--s-6); }
-  .mn-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-3); }
+  .mentions-sec { padding-block: var(--s-2) var(--s-7); }
+  .mn-h { font-size: var(--t-xl); color: var(--c-turq-deep); margin-block-end: var(--s-4); }
   .mn-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s-3); }
-  .mn-link { display: flex; flex-direction: column; gap: 4px; padding: var(--s-3) var(--s-4); background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius); text-decoration: none; color: var(--c-ink); transition: border-color var(--dur) var(--ease); }
-  .mn-link:hover { border-color: var(--c-turq); }
+  .mn-link { display: flex; flex-direction: column; gap: 4px; padding: var(--s-3) var(--s-4); background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--radius); text-decoration: none; color: var(--c-ink); transition: border-color var(--dur) var(--ease), box-shadow var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out); }
+  .mn-link:hover, .mn-link:focus-visible { border-color: var(--c-gold); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .mn-link:focus-visible { outline: 2px solid var(--c-turq); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .mn-link:hover, .mn-link:focus-visible { transform: none; } }
   .mn-k { color: var(--c-gold-deep); }
   .mn-t { font-weight: 600; color: var(--c-turq-deep); line-height: 1.5; }
   /* ضمن المسارات (2026-09-26) — القشرة نفسها لقسم المقالات */
   .trails-sec { padding-block: var(--s-6) 0; }
   .trl-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.6; }
-  .nearby-sec { background: var(--c-sand-2); padding-block: var(--s-6); }
+  .nearby-sec { background: var(--c-sand-2); padding-block: var(--s-7); }
   /* قسم المطاعم يلي «معالم قريبة» مباشرةً: يتصل بها بلا حشوة علوية مضاعفة */
   .nearby-sec + .near-dining { padding-block-start: 0; }
   .nb-h { font-size: var(--t-xl); color: var(--c-turq-deep); }
-  .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-1) var(--s-4); }
+  .nb-lead { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: var(--s-3) var(--s-4); }
+  .nb-h + .nb-grid { margin-block-start: var(--s-4); }
   .nb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
   /* قاعدة الشبكات الثلاثية الموحّدة: كانت الأعمدة الثلاثة تنضغط حتى 760 (تدقيق 2026-08-28) */
   @media (max-width: 1000px) { .nb-grid { grid-template-columns: 1fr 1fr; } }
@@ -567,10 +610,23 @@ const inTrails = trailsForAttraction(a.slug_en, await getCollection('attractions
   .nb-k { color: var(--c-gold-deep); }
   .nb-t { font-size: var(--t-lg); color: var(--c-turq-deep); }
   .nb-dist { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block-start: var(--s-1); }
-  .nb-note { margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-60); }
+  .nb-note { margin-block-start: var(--s-3); font-size: var(--t-xs); color: var(--c-ink-soft); }
   .back-sec { padding-block: 0 var(--s-8); }
   .back-btn { margin-block-start: var(--s-5); }
   /* 760px هي نقطة كسر الموقع الموحّدة؛ كانت هنا 860px شاذّة فتصير بطاقات
      «أكمل يومك» عموداً واحداً عملاقاً على التابلت، وتخالف sizes أعلاه */
-  @media (max-width: 760px) { .att-layout { grid-template-columns: 1fr; } .att-aside { position: static; } .ah-title { font-size: var(--t-2xl); } .gal-grid { grid-template-columns: 1fr 1fr; } .nb-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) {
+    .att-layout { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); padding-block: var(--s-6); }
+    .gal-grid { grid-template-columns: 1fr 1fr; }
+    /* سكّة أفقية: بطاقات بعرض ~82% فتظهر حافة التالية، والالتقاط عند حافة البداية (يعمل بالاتجاهين).
+       شريط التمرير يبقى ظاهراً رفيعاً لا مخفياً، والبطاقة المركَّزة بلوحة المفاتيح تُمرَّر إلى الرؤية */
+    .nb-grid {
+      display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%;
+      gap: var(--s-3); overflow-x: auto; overscroll-behavior-x: contain;
+      scroll-snap-type: inline mandatory; scroll-padding-inline: var(--s-3);
+      margin-inline: calc(var(--s-3) * -1); padding: var(--s-2) var(--s-3) var(--s-3); scrollbar-width: thin;
+    }
+    .nb-grid > .nb-card { scroll-snap-align: start; }
+    .nb-note { margin-block-start: var(--s-2); }
+  }
 </style>

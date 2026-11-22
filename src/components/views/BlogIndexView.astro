@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
 import PageHero from '../PageHero.astro';
 import PalmMotif from '../PalmMotif.astro';
 import Photo from '../Photo.astro';
@@ -80,6 +81,7 @@ const jsonLd = [
         </div>
       )}
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
@@ -95,10 +97,25 @@ const jsonLd = [
   .bl-body { padding: var(--s-3) var(--s-4) var(--s-4); display: flex; flex-direction: column; gap: var(--s-1); flex: 1; }
   .bl-k { color: var(--c-gold-deep); }
   .bl-t { font-size: var(--t-lg); color: var(--c-turq-deep); line-height: 1.35; }
+  /* أول مقال مميّز: عمودان وصورة 16/9 وعنوان أكبر */
+  .bl-card:first-child { grid-column: span 2; }
+  .bl-card:first-child :global(.bl-photo) { aspect-ratio: 16 / 9; }
+  .bl-card:first-child .bl-ph { aspect-ratio: 16 / 9; }
+  .bl-card:first-child .bl-t { font-size: clamp(1.5rem, 2.6vw, 2.125rem); }
+  .bl-card:first-child .bl-d { font-size: var(--t-base); }
+  /* جارة المميّز تملأ الارتفاع الذي تمدّه بدل فراغ أسفل بطاقتها */
+  @media (min-width: 1001px) {
+    .bl-card:nth-child(2) :global(.bl-photo) { aspect-ratio: auto; flex: 1 1 auto; min-block-size: 200px; }
+    .bl-card:nth-child(2) .bl-body { flex: 0 0 auto; }
+  }
   .bl-d { font-size: var(--t-sm); color: var(--c-ink-soft); line-height: 1.7; }
   .bl-date { margin-block-start: auto; padding-block-start: var(--s-2); font-size: var(--t-xs); color: var(--c-ink-60); }
   /* قاعدة الشبكات الثلاثية الموحّدة (دفعة 3): عمودان ≤1000، عمود ≤760 —
      كانت هنا 980/640 وحدها بين شبكات الموقع (تدقيق 2026-08-28) */
   @media (max-width: 1000px) { .bl-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 760px) { .bl-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) {
+    .bl-grid { grid-template-columns: 1fr; }
+    .bl-card:first-child { grid-column: auto; }
+    :global(.bl-photo), .bl-card:first-child :global(.bl-photo) { aspect-ratio: 3 / 2; }
+  }
 </style>

@@ -49,6 +49,9 @@ interface Props {
   image?: string;
   noindex?: boolean;
   jsonLd?: object | object[];
+  /* تاريخا المقال (ISO 8601) لوسمي article:published_time وarticle:modified_time */
+  publishedTime?: string;
+  modifiedTime?: string;
   /* المسار الأساسي لصورة الهيرو (بلا امتداد) — تُحمَّل مسبقاً لتحسين LCP */
   preloadImage?: string;
   /* sizes الصورة المحمَّلة مسبقاً — يجب أن تطابق sizes العنصر الفعلي وإلا اختار
@@ -58,16 +61,21 @@ interface Props {
   /* أصول خارجية تفتح اتصالها مبكراً — لصفحات تعتمد LCP فيها على مضيف خارجي
      (بلاطات خريطة كارتو مثلاً — لايتهاوس 2026-08-29: prioritize-lcp-image) */
   preconnect?: string[];
+  /* مثل preconnect لكن بلا crossorigin: لأصول تُطلب بلا CORS (صور <img> كبلاطات الخريطة)؛ اتصال
+     crossorigin لا يُعاد استعماله لطلبٍ بلا CORS فيُهدر */
+  preconnectAnon?: string[];
   /* شريط اقتراح اللغة (الخطوة 2 من خطة التفاعل العالمي) — يُعطَّل حيث تتولى الصفحة
      لغتها بنفسها (404 تستنتج اللغة من المسار). الافتراضي: يعمل متى وُجد alt. */
   langSuggest?: boolean;
   manifest?: string;
+  /* صفحة 404: لا عنوان مرجعياً لها — لا canonical ولا og:url ولا url في JSON-LD ولا في تعليق البصمة */
+  notFound?: boolean;
 }
 const {
   title, ogTitle,
   description = 'الأحساء — أكبر واحة في العالم وموقع تراث عالمي مسجّل في اليونسكو.',
-  lang = 'ar', alt, type, image, noindex, jsonLd, preloadImage, preloadSizes = '100vw', preconnect,
-  langSuggest = true, manifest,
+  lang = 'ar', alt, type, image, noindex, jsonLd, publishedTime, modifiedTime, preloadImage, preloadSizes = '100vw', preconnect, preconnectAnon,
+  langSuggest = true, manifest, notFound = false,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -93,7 +101,7 @@ const copyrightNotice = `© ${copyrightYear} ${brandName(lang)} ${titleSep(lang)
 const ownershipLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  url: pageUrl,
+  ...(notFound ? {} : { url: pageUrl }),
   name: title,
   inLanguage: htmlLang(lang),
   // العقدتان من lib/schema.ts بمعرّفَي @id ثابتين — هما نفس Organization/WebSite
@@ -105,7 +113,7 @@ const ownershipLd = {
   license: new URL(staticHref('legal', lang), site).href,
 };
 const jsonLdAll = [...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []), ownershipLd];
-const ownershipComment = `<!-- va-page:${pageId} lang:${lang} generated:${new Date().toISOString().slice(0, 10)} ${copyrightNotice} — original content: ${pageUrl} -->`;
+const ownershipComment = `<!-- va-page:${pageId} lang:${lang} generated:${new Date().toISOString().slice(0, 10)} ${copyrightNotice}${notFound ? '' : ` — original content: ${pageUrl}`} -->`;
 
 // وصفة التحميل المسبق لصورة الهيرو بنفس srcset الذي يستعمله HeroPoster.
 // بدونها كان preload يشير إلى الصورة الكاملة فينزّل الجوال نسختين: الكاملة
@@ -131,7 +139,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* بيان التطبيق بلغة الصفحة: العربي ملف ثابت، والبقية من src/pages/[lang]/site.webmanifest.ts */}
     <link rel="manifest" href={manifest ?? (lang === 'ar' ? '/site.webmanifest' : `/${lang}/site.webmanifest`)} />
-    <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} jsonLd={jsonLdAll} />
+    <Seo title={title} ogTitle={ogTitle} description={description} lang={lang} alt={alt} type={type} image={image} noindex={noindex} notFound={notFound} jsonLd={jsonLdAll} publishedTime={publishedTime} modifiedTime={modifiedTime} />
     <meta name="copyright" content={copyrightNotice} />
     <meta name="rights" content={copyrightNotice} />
     <Fragment set:html={ownershipComment} />
@@ -156,6 +164,7 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
     ) : null}
 
     {preconnect?.map((href) => <link rel="preconnect" href={href} crossorigin />)}
+    {preconnectAnon?.map((href) => <link rel="preconnect" href={href} />)}
 
     {/* التحميل المسبق لصورة الهيرو (أكبر عنصر مرئي LCP) في الصفحات ذات الهيرو المصوّر */}
     {preloadImage && (
@@ -306,17 +315,57 @@ const preloadSet = preloadImage ? srcsetFor(preloadImage) : undefined;
   <body>
     <a class="skip-link" href="#main" data-pagefind-ignore>{t('a11y.skip')}</a>
     <slot />
+    {/* ظهور بالتمرير (القواعد في global.css). تأخير التتابع الموسوم على العنصر (transition-delay بالمللي ثانية) يصير --rv-d بسقف 180ms.
+        ما في الشاشة أو فوقها عند التحميل يظهر فوراً بلا حركة (rv-now) والباقي يراقبه IntersectionObserver بهامش سفلي 15% وthreshold: 0
+        (نسبة الظهور تُقاس من ارتفاع العنصر نفسه فمتنٌ طويل لا يبلغ 0.12 أبداً). القفز بين إطارين (مفتاح End، مرساة، تمرير برمجي) قد يُفلت
+        من المراقب، فكنسة rAF خفيفة على scroll تُظهر كل معلَّق في الشاشة أو فوقها وتتوقف حين لا يبقى شيء. القراءات تسبق الكتابات كلها.
+        مجموعة <details> مطويّة: ما فيها يظهر فور فتحها. شبكة أمان: إن لم يُطلق المراقب شيئاً خلال 1.5 ث يُظهَر كل ما تبقّى. */}
     <script is:inline>
       function initReveal() {
-        const els = document.querySelectorAll('[data-reveal]:not(.in)');
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach((e) => e.classList.add('in')); return; }
-        const io = new IntersectionObserver((ents) => {
-          ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-        // threshold: 0 لا 0.12 — النسبة تُقاس من ارتفاع العنصر نفسه، فمتنُ مقالٍ
-        // طويل (6000px+) يلزمه 700px+ ظاهرة دفعةً واحدة فلا تتحقق أبداً على شاشة
-        // أقصر، فتبقى الصفحة فارغة. الآن يكفي أن تعبر حافته العليا خط الكشف.
-        }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
-        els.forEach((e) => io.observe(e));
+        if (window.__vaRv) window.__vaRv();
+        var els = document.querySelectorAll('[data-reveal]:not(.in)');
+        if (!els.length) return;
+        var show = function (e, now) {
+          var d = Math.min(parseFloat(e.style.transitionDelay) || 0, 180);
+          e.style.transitionDelay = '';
+          if (d) e.style.setProperty('--rv-d', d + 'ms');
+          e.classList.add('in');
+          if (now) e.classList.add('rv-now');
+        };
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var vh = window.innerHeight, rest = [];
+        var tops = Array.prototype.map.call(els, function (e) { return e.getBoundingClientRect().top; });
+        els.forEach(function (e, i) { if (reduce || tops[i] < vh * 1.15) show(e, true); else rest.push(e); });
+        if (!rest.length) return;
+        if (!('IntersectionObserver' in window)) { rest.forEach(function (e) { show(e, true); }); return; }
+        var fired = false, tick = 0, timer = 0, io;
+        var pending = function () { return rest.filter(function (e) { return !e.classList.contains('in'); }); };
+        var stop = function () { io.disconnect(); clearTimeout(timer); window.removeEventListener('scroll', onScroll); window.__vaRv = null; };
+        var sweep = function () {
+          tick = 0;
+          var left = pending();
+          if (!left.length) { stop(); return; }
+          var lim = window.innerHeight;
+          var t = left.map(function (e) { return e.getBoundingClientRect().top; });
+          left.forEach(function (e, i) { if (t[i] < lim) { show(e, false); io.unobserve(e); } });
+          if (!pending().length) stop();
+        };
+        var onScroll = function () { if (!tick) tick = requestAnimationFrame(sweep); };
+        io = new IntersectionObserver(function (ents) {
+          fired = true;
+          ents.forEach(function (en) {
+            var below = en.rootBounds ? en.boundingClientRect.top >= en.rootBounds.bottom : !en.isIntersecting;
+            if (en.isIntersecting || !below) { show(en.target, false); io.unobserve(en.target); }
+          });
+          if (!pending().length) stop();
+        }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
+        rest.forEach(function (e) { io.observe(e); });
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.__vaRv = stop;
+        new Set(rest.map(function (e) { return e.closest('details'); })).forEach(function (d) {
+          if (d) d.addEventListener('toggle', function () { if (d.open) d.querySelectorAll('[data-reveal]:not(.in)').forEach(function (e) { show(e, true); }); });
+        });
+        timer = setTimeout(function () { if (!fired) { pending().forEach(function (e) { show(e, true); }); stop(); } }, 1500);
       }
       document.addEventListener('astro:page-load', initReveal);
       if (document.readyState !== 'loading') initReveal();

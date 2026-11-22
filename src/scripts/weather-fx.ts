@@ -1,7 +1,9 @@
 // مؤثّر الطقس على الفصل الأول من الرئيسية — يُحمَّل كسولاً من ChapterGate.astro بعد وصول الطقس
 // (حدث va:weather من HeaderWeather.astro)، فلا يدخل حزمة الصفحة ولا يؤخّر الصورة الأولى.
 // لوحة canvas واحدة تحت النص، بشدّة «ناعمة» (0.6) كما اعتُمدت في المعاينة 2026-11-14.
-// تتوقف حين يخرج البطل من الشاشة أو تُخفى النافذة؛ ومع تقليل الحركة يُرسم إطار واحد ساكن.
+// تتوقف حين يخرج البطل من الشاشة أو تُخفى النافذة؛ ومع تقليل الحركة أو على الجهاز المقيَّد يُرسم إطار واحد ساكن.
+// على الشاشات الصغيرة/اللمس يُرسم إطار ساكن أولاً ولا تبدأ الحركة إلا عند أول تفاعل (لا مهام طويلة أثناء التحميل)،
+// والإيقاع محدود بـ30 إطاراً في الثانية على كل الأجهزة.
 
 type P = Record<string, number>;
 const LEVEL = 0.6;
@@ -9,7 +11,12 @@ const LEVEL = 0.6;
 export function startWeatherFx(cv: HTMLCanvasElement, host: HTMLElement, state: string): () => void {
   const ctx = cv.getContext('2d');
   if (!ctx) return () => {};
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+  const constrained = !!nav.connection?.saveData || (nav.deviceMemory ?? 8) <= 2 || (navigator.hardwareConcurrency || 8) <= 2;
+  const small = matchMedia('(max-width: 768px), (pointer: coarse)').matches;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || constrained;
+  const FRAME = 1000 / 30;
+  let lastDraw = 0, armed = !small;
   let W = 0, H = 0, parts: P[] = [], raf = 0, last = performance.now(), visible = true;
   let shoot: P | null = null, nextShoot = performance.now() + 2500;
   const R = (a: number, b: number) => a + Math.random() * (b - a);
@@ -34,7 +41,7 @@ export function startWeatherFx(cv: HTMLCanvasElement, host: HTMLElement, state: 
 
   function resize() {
     const r = host.getBoundingClientRect();
-    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(devicePixelRatio || 1, small ? 1 : 1.5);
     W = r.width; H = r.height;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -138,13 +145,19 @@ export function startWeatherFx(cv: HTMLCanvasElement, host: HTMLElement, state: 
   function loop() {
     cancelAnimationFrame(raf); raf = 0; last = performance.now();
     if (reduced) { draw(performance.now()); return; }
+    if (!armed) { draw(performance.now()); return; }
     const step = (now: number) => {
       if (!visible || document.hidden) { raf = 0; return; }
-      draw(now); raf = requestAnimationFrame(step);
+      if (now - lastDraw >= FRAME - 2) { lastDraw = now; draw(now); }
+      raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
   }
 
+  const EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'] as const;
+  const arm = () => { if (armed) return; armed = true; off(); loop(); };
+  const off = () => EVENTS.forEach((e) => removeEventListener(e, arm));
+  if (!armed && !reduced) EVENTS.forEach((e) => addEventListener(e, arm, { passive: true, once: true }));
   const io = new IntersectionObserver((es) => { visible = es[0].isIntersecting; if (visible && !raf) loop(); });
   io.observe(host);
   const onVis = () => { if (!document.hidden && !raf) loop(); };
@@ -156,7 +169,7 @@ export function startWeatherFx(cv: HTMLCanvasElement, host: HTMLElement, state: 
   cv.classList.add('is-on');
 
   return () => {
-    cancelAnimationFrame(raf); io.disconnect();
+    cancelAnimationFrame(raf); io.disconnect(); off();
     document.removeEventListener('visibilitychange', onVis); removeEventListener('resize', onResize);
   };
 }

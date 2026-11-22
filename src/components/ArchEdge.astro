@@ -1,0 +1,15 @@
+---
+// حافة القوس المدبّب الخفيض في أسفل الهيرو (توقيع «السواقي والأقواس»): شكلٌ زخرفي aria-hidden يملؤه سطح القسم التالي
+// (--arch-next على الهيرو، الرملي افتراضياً) وخطٌّ ذهبي رفيع على الحافة. يُوضع داخل هيرو موضعه relative/absolute.
+// الطول من --arch-h (يضبطه الهيرو ليحجز حشوة أسفله أيضاً). المسار يتجاوز الحافة بوحدة واحدة فلا يظهر خطّ فاصل بعروض كسرية.
+---
+<svg class="arch-edge" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path class="arch-edge-fill" d="M0,61 L0,50 Q520,46 720,8 Q920,46 1440,50 L1440,61 Z" />
+  <path class="arch-edge-line" d="M0,50 Q520,46 720,8 Q920,46 1440,50" fill="none" vector-effect="non-scaling-stroke" />
+</svg>
+
+<style>
+  .arch-edge { position: absolute; z-index: 3; inset-inline: 0; inset-block-end: -1px; inline-size: 100%; block-size: var(--arch-h, clamp(22px, 4.5vw, 56px)); pointer-events: none; }
+  .arch-edge-fill { fill: var(--arch-next, var(--c-sand)); }
+  .arch-edge-line { stroke: var(--c-gold); stroke-width: 1.5; opacity: 1; }
+</style>

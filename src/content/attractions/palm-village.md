@@ -87,6 +87,10 @@ answer: "قرية النخيل وجهة موسمية تنظّمها هيئة ت�
 answer_en: "Palm Village is a seasonal destination organised by the Al-Ahsa Development Authority and Al-Ahsa Municipality amid the oasis palms, with date shops, restaurants, cafés, craft pavilions and a Palm Museum. Its new edition runs 11 November 2026 – 28 February 2027, with advance tickets."
 # عنوان ووصف الصفحة لـSEO (ar/en): المكان وارد حرفياً في area، والفائدة دليل الزيارة (لا بند مواعيد أو رسوم يصلح دليلاً للفائدة).
 # الوصف جمل حرفية من answer أعلاه؛ يفرضه المخطط ويحرسه C24 على dist.
+# <title> يدوي (ar/en): أبرز استعلام عضوي «قرية النخيل الأحساء» وأسئلة التذاكر والمواعيد والموقع، وكلها في الصفحة: زر الحجز وبند الرسوم، وبند المواعيد، ورابط الموقع؛
+# والصفحة تسمّي الدورة «النسخة» / "edition". بلا أسعار في العنوان.
+seoTitle: "قرية النخيل في الأحساء: التذاكر ومواعيد النسخة والموقع"
+seoTitle_en: "Palm Village in Al-Ahsa: Tickets, Edition Dates & Location"
 seo:
   place: "المبرز"
   place_en: "Al-Mubarraz"

@@ -21,13 +21,14 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
 import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import ShareButton from '../ShareButton.astro';
 import { altHref, titleSep, useTranslations, type AltLinks, isRtl } from '../../i18n/utils';
 import { ui } from '../../i18n/ui';
 import { TRAIL_SOURCES, sourceTitle, stopText, trailAttribution, trailText, trailUnescoNote, type Trail } from '../../data/trails';
-import { stopAttraction, trailsIndexHref, type TrailLang } from '../../lib/trails';
+import { stopAttraction, trailsIndexHref, trailSeo, type TrailLang } from '../../lib/trails';
 import { attractionHref } from '../../lib/routes';
 import { absUrl, breadcrumb } from '../../lib/schema';
 
@@ -98,6 +99,9 @@ const tourText = tools ? {
 } : undefined;
 
 const pageUrl = absUrl(altHref(alt, lang));
+// عنوان ووصف SEO بالعربية والإنجليزية من حقول المسار (lib/trails.ts)؛ بقية اللغات كما هي
+const seo = trailSeo(trail, lang);
+const shareTitle = `${tx.title} ${titleSep(lang)} ${t('site.brand')}`;
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -127,7 +131,7 @@ const jsonLd = [
   ]),
 ];
 ---
-<Base title={`${tx.title} ${titleSep(lang)} ${t('site.brand')}`} description={tx.tagline} lang={lang} alt={alt} jsonLd={jsonLd}>
+<Base title={seo ? `${seo.title} ${titleSep(lang)} ${t('site.brand')}` : shareTitle} ogTitle={shareTitle} description={seo?.description ?? tx.tagline} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <PageHero eyebrow={t('trails.title')} title={tx.title} lead={tx.tagline} leadWidth={56} motif="center" lang={lang}>
@@ -213,6 +217,7 @@ const jsonLd = [
       <p class="trd-attr" data-trail-attribution>{trailAttribution(lang)}</p>
       <a href={idxHref} class="btn btn--turq">{t('trails.all')}</a>
     </section>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 
@@ -381,10 +386,10 @@ const jsonLd = [
   .trd-quote { quotes: none; color: var(--c-ink-soft); border-inline-start: 3px solid var(--c-gold); padding-inline-start: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .trd-quote::before, .trd-quote::after { content: none; }
   .trd-land { margin: var(--s-2) 0 0; }
-  .trd-land a { font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: underline; text-underline-offset: 3px; }
+  .trd-land a { display: inline-flex; align-items: center; min-block-size: 44px; font-weight: 600; font-size: var(--t-sm); color: var(--c-turq); text-decoration: underline; text-underline-offset: 3px; }
   .trd-land a:hover { color: var(--c-turq-deep); }
   .trd-src { margin-block-start: var(--s-3); padding: var(--s-2) var(--s-3); background: var(--c-sand-2); border-radius: var(--radius-sm); }
-  .trd-src-h { font-size: var(--t-xs); font-weight: 600; color: var(--c-gold-deep); margin: 0 0 4px; }
+  .trd-src-h { font-size: var(--t-xs); font-weight: 600; color: var(--c-ink-soft); margin: 0 0 4px; }
   .trd-src ul { margin: 0; padding-inline-start: var(--s-4); }
   .trd-src li { font-size: var(--t-sm); line-height: 1.7; }
   .trd-src a { color: var(--c-ink-soft); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }

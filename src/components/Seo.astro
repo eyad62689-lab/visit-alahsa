@@ -4,13 +4,18 @@ import type { Lang } from '../i18n/ui';
 import { useTranslations, type AltLinks } from '../i18n/utils';
 import { ogDefault } from '../lib/og';
 import { isUnlisted, listedAlt, unlistedNoindex } from '../i18n/unlisted';
+import { ORG_SOCIAL } from '../lib/schema';
 interface Props {
   title: string; ogTitle?: string; description: string; lang?: Lang; alt?: AltLinks;
   type?: 'website' | 'article'; image?: string; noindex?: boolean; jsonLd?: object | object[];
+  notFound?: boolean;
+  /* تواريخ المقال (ISO 8601) — تُصدَر مع type="article" فقط */
+  publishedTime?: string; modifiedTime?: string;
 }
 const {
   title, ogTitle = title, description, lang = 'ar', alt,
-  type = 'website', image, noindex = false, jsonLd,
+  type = 'website', image, noindex = false, jsonLd, notFound = false,
+  publishedTime, modifiedTime,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -25,6 +30,11 @@ const listed = alt && !selfUnlisted && !noindexEff ? listedAlt(alt) : undefined;
 // العربية النص تخدم 96 صفحة منها كل فهارس EN وzh — فتظهر مشاركة صفحة إنجليزية ببطاقة
 // عربية. النسخ الأربع تولّدها tools/gen-og-images.mjs من نصوص القواميس المعتمدة.
 const ogImage = new URL(image ?? ogDefault(lang), site).href;
+// النص البديل للصورة: عنوان المشاركة للصورة الخاصة بالصفحة، واسم العلامة لبطاقة الموقع الافتراضية.
+const ogImageAlt = image ? ogTitle : t('site.brand');
+// معرّف الموقع على X من ORG_SOCIAL (آخر مقطع من الرابط)؛ لا وسم حين لا يوجد.
+const xUrl = ORG_SOCIAL.find((p) => p.id === 'x')?.url.trim();
+const twitterSite = xUrl ? '@' + xUrl.replace(/\/+$/, '').split('/').pop() : undefined;
 const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 // صفحة noindex لا تُعلن hreflang: المحركات تتجاهلها على صفحة محجوبة، وإعلانها يربط
 // النسخ المفهرسة بنسخة محجوبة بلا فائدة (مبدّل اللغة يبقى يعمل من alt نفسه).
@@ -43,8 +53,8 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as const)
   .filter((l) => l !== lang && (l !== 'zh' || zhHref) && (l !== 'de' || deHref) && (l !== 'ru' || ruHref) && (l !== 'ur' || urHref) && (l !== 'tr' || trHref))
   .map((l) => OG_LOCALE[l]);
 ---
-<link rel="canonical" href={canonical} />
-{noindexEff ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow" />}
+{!notFound && <link rel="canonical" href={canonical} />}
+{noindexEff ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
 
 {arHref && <link rel="alternate" hreflang="ar" href={arHref} />}
 {enHref && <link rel="alternate" hreflang="en" href={enHref} />}
@@ -61,15 +71,20 @@ const ogLocaleAlts = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as const)
 {alt && ogLocaleAlts.map((l) => <meta property="og:locale:alternate" content={l} />)}
 <meta property="og:title" content={ogTitle} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={canonical} />
+{!notFound && <meta property="og:url" content={canonical} />}
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={ogImageAlt} />
+{type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{type === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={ogTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
+{twitterSite && <meta name="twitter:site" content={twitterSite} />}
 
 {/* «<» تُهرَّب إلى < (JSON مكافئ) كي لا يُغلق نصٌّ يحوي «</script» الكتلةَ مبكراً — النمط نفسه في TerrainMapView */}
 {blocks.map((obj) => (<script type="application/ld+json" set:html={JSON.stringify(obj).replace(/</g, '\\u003c')} />))}

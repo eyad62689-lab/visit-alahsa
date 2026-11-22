@@ -65,6 +65,8 @@ main#main { scroll-margin-block-start: 69px; }
     transition-duration: .001ms !important;
     scroll-behavior: auto !important;
   }
+  /* no view-transition animation at all: the root cross-fade and every named group are cut */
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
 /* حاوية محتوى منضبطة */
@@ -123,15 +125,46 @@ main#main { scroll-margin-block-start: 69px; }
    position) تبقى في صنفها المحصور وتغلب هذه القاعدة تخصيصاً. */
 .card {
   display: flex; flex-direction: column;
-  background: #fff; border-radius: var(--radius); overflow: hidden;
+  background: var(--c-surface); border-radius: var(--radius); overflow: hidden;
   box-shadow: var(--shadow);
 }
+/* بطاقة الرابط: عند التحويم أو تركيز لوحة المفاتيح ترتفع البطاقة، وتتكبّر الصورة داخل إطارها
+   (.photo يقصّها)، ويمتدّ خطّ ذهبي تحت العنوان من حافة البداية. */
 .card--lift {
   text-decoration: none; color: inherit;
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out);
 }
-.card--lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-@media (prefers-reduced-motion: reduce) { .card--lift:hover { transform: none; } }
+.card--lift .photo > img { transition: transform var(--dur-3) var(--ease-out); }
+.card--lift :is(h2, h3)::after {
+  content: ''; display: block; inline-size: 0; block-size: 2px; margin-block-start: var(--s-2);
+  background: var(--c-gold); transition: inline-size var(--dur-3) var(--ease-out);
+}
+/* الحالة المرتفعة: تحويم، أو تركيز لوحة المفاتيح على البطاقة نفسها (حين تكون هي الرابط) أو على رابطٍ داخلها —
+   لا على زرّ المفضلة وحده (له حلقته الخاصة فلا تُضاعف) */
+.card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.card--lift:is(:focus-visible, :has(:focus-visible:not(.fav-btn))) { outline: 2px solid var(--c-turq); outline-offset: 3px; } /* الحلقة على البطاقة: الرابط يملؤها و.card يقصّ ما خرج عنها */
+.card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) .photo > img { transform: scale(1.05); }
+.card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) :is(h2, h3)::after { inline-size: 44px; }
+@media (prefers-reduced-motion: reduce) {
+  .card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) { transform: none; }
+  .card--lift:is(:hover, :focus-visible, :has(:focus-visible:not(.fav-btn))) .photo > img { transform: none; }
+}
+
+/* --- السواقي والأقواس: أدوات الإيقاع البصري ---
+   .saqiya فاصل: خطّ رفيع بقطعة ذهبية ومعيّن عند حافة البداية (مفردات .eyebrow نفسها).
+   .band أسطح بعرض الصفحة للتناوب. .arch إطار صورة بقمّة مقوّسة — عنصر توقيع، واحد على الأكثر في الشاشة. */
+.saqiya {
+  --sq: var(--c-line); position: relative; display: block; block-size: 9px; margin-block: var(--s-5);
+  background: linear-gradient(var(--sq), var(--sq)) 0 4px / 100% 1px no-repeat;
+}
+.saqiya::before, .saqiya::after { content: ''; position: absolute; inset-inline-start: 0; background: var(--c-gold); }
+.saqiya::before { inset-block-start: 3.5px; inline-size: 44px; block-size: 2px; }
+.saqiya::after { inset-block-start: 1px; inset-inline-start: 43px; inline-size: 7px; block-size: 7px; background: none; border: 1.5px solid var(--c-gold); transform: rotate(45deg); }
+.saqiya--dark { --sq: rgba(247, 243, 234, .22); }
+.band { padding-block: var(--s-8); }
+.band--sand2 { background: var(--c-sand-2); }
+.band--deep { background: var(--c-turq-deep); color: var(--c-sand); }
+.arch { border-start-start-radius: 999px; border-start-end-radius: 999px; overflow: hidden; }
 
 /* --- نظام الصور الموحّد --- */
 .photo {
@@ -212,10 +245,18 @@ picture.photo { display: block; }
 
 /* --- ظهور بالتمرير (يحترم تقليل الحركة) ---
    الإخفاء مشروط بـ`.js` على <html> (تُضاف في رأس Base.astro): بلا جافاسكربت
-   يبقى المحتوى ظاهراً بدل أن تبدو الصفحة فارغة. */
-.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
-.js [data-reveal].in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .js [data-reveal] { opacity: 1 !important; transform: none !important; } }
+   يبقى المحتوى ظاهراً بدل أن تبدو الصفحة فارغة. الظهور حركةٌ (animation) لا انتقال: انتقال
+   transform كان يتعارض مع ارتفاع التحويم للبطاقة. المراقب في Base.astro يضع `.in` ويحوّل تأخير
+   التتابع الموسوم على العنصر إلى --rv-d (بسقف 180ms)، ويضيف `.rv-now` لما كان في الشاشة عند التحميل. */
+.js [data-reveal]:not(.in) { opacity: 0; transform: translateY(12px); }
+.js [data-reveal].in { animation: va-rise var(--dur-3) var(--ease-out) var(--rv-d, 0ms) backwards; }
+.js [data-reveal].rv-now { animation: none; }
+@keyframes va-rise { from { opacity: 0; transform: translateY(12px); } }
+@media print { [data-reveal] { opacity: 1 !important; transform: none !important; animation: none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal]:not(.in) { opacity: 1; transform: none; }
+  .js [data-reveal].in { animation: none; }
+}
 
 /* ========================================================================
    أزرار «أضف إلى رحلتي» + شارة المخطّط
@@ -276,7 +317,7 @@ picture.photo { display: block; }
 
 /* رابط «رحلتي» + شارة العدّاد */
 .plan-link {
-  position: relative; font-family: var(--font-body); font-weight: 600; font-size: var(--t-ui, .9375rem);
+  position: relative; font-family: var(--font-body); font-weight: 600; font-size: var(--t-sm);
   color: var(--c-turq-deep); text-decoration: none; padding: 8px 14px; border-radius: var(--radius-pill);
   display: inline-flex; align-items: center; gap: var(--s-2);
 }
@@ -328,5 +369,28 @@ picture.photo { display: block; }
    و3.5 ث «Style & Layout» من أصل 4.4 ث عمل الخيط الرئيسي، فتجاوز LCP حارس البوابة
    على عدّاء GitHub (4.3 ث). content-visibility: auto يُعفي الأقسام خارج الشاشة من
    التخطيط حتى تقترب، وcontain-intrinsic-size يحفظ ارتفاعاً تقديرياً لشريط التمرير
-   فلا يقفز. لا يُطبَّق على قسم الهيرو (LCP) ولا على ما يحمل مرساة الفتات الأولى. */
-.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 720px; }
+   فلا يقفز. لا يُطبَّق على قسم الهيرو (LCP) ولا على ما يحمل مرساة الفتات الأولى.
+   التقدير قريب من الارتفاع المرسوم فعلاً (--cv-h لكل قسم من أقسام الرئيسية: قياس عند 390 و1280 بالعربية
+   والإنجليزية؛ الجوال حتى 760px) فلا تُزاح المواضع حين يُرسَم القسم؛ والكلمة auto تحفظ آخر ارتفاع مرسوم. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto var(--cv-h, 720px); }
+#home-paths { --cv-h: 930px; }
+#ch-water { --cv-h: 710px; }
+#ch-qarah { --cv-h: 940px; }
+#ch-map { --cv-h: 1000px; }
+#ch-memory { --cv-h: 820px; }
+#home-taste { --cv-h: 780px; }
+#ch-finale { --cv-h: 690px; }
+/* تقديرات الجوال (390px) للألمانية والروسية والتركية: مقيسة 2026-11 بعد أن كانت أقصر بـ85–250px فتقفز الصفحة عند الوصول إلى القسم */
+@media (max-width: 760px) {
+  :lang(de) #ch-water { --cv-h: 830px; } :lang(de) #ch-qarah { --cv-h: 1030px; } :lang(de) #ch-map { --cv-h: 1140px; } :lang(de) #ch-memory { --cv-h: 975px; }
+  :lang(ru) #ch-water { --cv-h: 820px; } :lang(ru) #ch-qarah { --cv-h: 1000px; } :lang(ru) #ch-map { --cv-h: 1250px; } :lang(ru) #ch-memory { --cv-h: 950px; }
+  :lang(tr) #ch-water { --cv-h: 850px; } :lang(tr) #ch-qarah { --cv-h: 965px; } :lang(tr) #ch-map { --cv-h: 1050px; } :lang(tr) #ch-memory { --cv-h: 920px; }
+}
+@media (min-width: 761px) {
+  #home-paths { --cv-h: 875px; }
+  #ch-water { --cv-h: 685px; }
+  #ch-qarah { --cv-h: 1260px; }
+  #ch-map { --cv-h: 980px; }
+  #ch-memory { --cv-h: 1025px; }
+  #home-taste { --cv-h: 616px; }
+}

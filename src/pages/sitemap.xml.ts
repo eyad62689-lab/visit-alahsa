@@ -18,7 +18,8 @@ import { isUnlisted } from '../i18n/unlisted';
 import { TRAILS } from '../data/trails';
 import { trailAlt, trailsIndexAlt } from '../lib/trails';
 
-type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string; lastmod?: string };
+// image: مسار صورة الهيرو الأساسي بلا امتداد (نمط /img/اسم) — يصير إدخال image:image في كل صفّ لغة للصفحة
+type Pair = { ar: string; en?: string; zh?: string; de?: string; ru?: string; ur?: string; tr?: string; lastmod?: string; image?: string };
 
 export const GET: APIRoute = async ({ site }) => {
   const base = site ?? new URL('https://visit-alahsa.com');
@@ -109,13 +110,14 @@ export const GET: APIRoute = async ({ site }) => {
       const by = new Map(posts.filter((p) => p.data.key === key).map((p) => [p.data.lang, p]));
       const lastmod = [...by.values()].map((p) => (p.data.updatedDate ?? p.data.pubDate).toISOString().slice(0, 10)).sort((a, b) => a.localeCompare(b)).at(-1);
       const href = (l: 'ar' | 'en' | 'zh' | 'de' | 'ru' | 'ur' | 'tr') => { const p = by.get(l); return p ? blogHref(p.data) : undefined; };
+      const image = [...by.values()].map((p) => p.data.heroImage).find(Boolean);
       // مقال بلا نسخة عربية يدخل بحقل ar (الحقل الإلزامي للرابط) بنسخته الإنجليزية بلا hreflang
       return by.has('ar')
-        ? { ar: href('ar')!, en: href('en'), zh: href('zh'), de: href('de'), ru: href('ru'), ur: href('ur'), tr: href('tr'), lastmod }
-        : { ar: href('en')!, lastmod };
+        ? { ar: href('ar')!, en: href('en'), zh: href('zh'), de: href('de'), ru: href('ru'), ur: href('ur'), tr: href('tr'), lastmod, image }
+        : { ar: href('en')!, lastmod, image };
     }),
     // المعالم الرقيقة (lib/publish.ts) noindex فلا تدخل الخريطة بأي لغة
-    ...items.filter((e) => !isThinAttraction(e)).map((e) => ({ ...attractionAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath) : undefined })),
+    ...items.filter((e) => !isThinAttraction(e)).map((e) => ({ ...attractionAlt(e.data), lastmod: e.filePath ? dateOf(e.filePath) : undefined, image: e.data.heroImage })),
     // صفحات المنشآت المفردة وأماكن الإقامة — تدخل الخريطة فقط متى عبر متنُها العتبة، تطابقاً
     // مع حارس getStaticPaths. وإن عبرت لغةٌ دون الأخرى دخلت وحدها بلا hreflang،
     // فلا يُعلَن زوجٌ لصفحة غير مولَّدة (docs/قرار-بنية-صفحات-المنشآت.md).
@@ -132,6 +134,7 @@ export const GET: APIRoute = async ({ site }) => {
       ur: eventsFor('ur').find((x) => x.id === e.id && !x.oneOff) ? '/ur/events/' + eventsFor('ur').find((x) => x.id === e.id)!.slug + '/' : undefined,
       tr: eventsFor('tr').find((x) => x.id === e.id && !x.oneOff) ? '/tr/events/' + eventsFor('tr').find((x) => x.id === e.id)!.slug + '/' : undefined,
       lastmod: dateOf('src/data/events.ts', `${V}EventDetailView.astro`),
+      image: e.img,
     })),
   ];
 
@@ -141,6 +144,8 @@ export const GET: APIRoute = async ({ site }) => {
     for (const k of ['zh', 'de', 'ru', 'ur', 'tr'] as const) if (p[k] && isUnlisted(p[k]!)) delete p[k];
   }
   const lm = (p: Pair) => (p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : '');
+  // صورة الهيرو (jpg بجوار webp في public/img) بإدخال image:image — صفحات المعالم والفعاليات والمقالات
+  const img = (p: Pair) => (p.image ? `\n    <image:image><image:loc>${abs(`${p.image}.jpg`)}</image:loc></image:image>` : '');
   const alts = (p: Pair) => {
     if (!p.en) return '';
     return (
@@ -157,18 +162,18 @@ export const GET: APIRoute = async ({ site }) => {
 
   const urls: string[] = [];
   for (const p of pairs) {
-    urls.push(`  <url><loc>${abs(p.ar)}</loc>${lm(p)}${alts(p)}</url>`);
-    if (p.en) urls.push(`  <url><loc>${abs(p.en)}</loc>${lm(p)}${alts(p)}</url>`);
-    if (p.zh) urls.push(`  <url><loc>${abs(p.zh)}</loc>${lm(p)}${alts(p)}</url>`);
-    if (p.de) urls.push(`  <url><loc>${abs(p.de)}</loc>${lm(p)}${alts(p)}</url>`);
-    if (p.ru) urls.push(`  <url><loc>${abs(p.ru)}</loc>${lm(p)}${alts(p)}</url>`);
-    if (p.ur) urls.push(`  <url><loc>${abs(p.ur)}</loc>${lm(p)}${alts(p)}</url>`);
-    if (p.tr) urls.push(`  <url><loc>${abs(p.tr)}</loc>${lm(p)}${alts(p)}</url>`);
+    urls.push(`  <url><loc>${abs(p.ar)}</loc>${lm(p)}${alts(p)}${img(p)}</url>`);
+    if (p.en) urls.push(`  <url><loc>${abs(p.en)}</loc>${lm(p)}${alts(p)}${img(p)}</url>`);
+    if (p.zh) urls.push(`  <url><loc>${abs(p.zh)}</loc>${lm(p)}${alts(p)}${img(p)}</url>`);
+    if (p.de) urls.push(`  <url><loc>${abs(p.de)}</loc>${lm(p)}${alts(p)}${img(p)}</url>`);
+    if (p.ru) urls.push(`  <url><loc>${abs(p.ru)}</loc>${lm(p)}${alts(p)}${img(p)}</url>`);
+    if (p.ur) urls.push(`  <url><loc>${abs(p.ur)}</loc>${lm(p)}${alts(p)}${img(p)}</url>`);
+    if (p.tr) urls.push(`  <url><loc>${abs(p.tr)}</loc>${lm(p)}${alts(p)}${img(p)}</url>`);
   }
 
   const xml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' +
     urls.join('\n') +
     '\n</urlset>\n';
   return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });

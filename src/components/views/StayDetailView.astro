@@ -9,6 +9,9 @@ import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
+import NextStep from '../NextStep.astro';
+import DetailHero from '../DetailHero.astro';
+import '../../styles/detail.css';
 import Photo from '../Photo.astro';
 import { stayHref } from '../../lib/routes';
 import { liveFor } from '../../lib/places-live';
@@ -170,26 +173,26 @@ const jsonLd = [
   preloadImage={d.img} preloadSizes="(max-width: 900px) 100vw, 900px">
   <Header lang={lang} alt={alt} />
   <main id="main">
-    <article class="container sd">
-      <nav class="sd-crumbs" aria-label={t('a11y.crumbs')}>
-        <a href={indexHref}>{C.backLabel}</a>
+    <DetailHero wm="start" title={name}>
+      <nav class="dh-crumbs" aria-label={t('a11y.crumbs')}>
+        <a class="sd-back" href={indexHref}>{C.backLabel}</a>
       </nav>
+      <span class="eyebrow gold-on-dark">{C.kindLabel}</span>
+      <span class="saqiya saqiya--dark dh-sq" aria-hidden="true"></span>
+      <h1 class="dh-title">{name}</h1>
+      {area && <p class="sd-area">{area}</p>}
+      {closed && <p class="sd-closed">{closed}</p>}
+      {lv?.rating && (
+        <p class="sd-rating"><span class="sd-star" aria-hidden="true">★</span>
+          <strong>{lv.rating.toFixed(1)}</strong>
+          {lv.count && <span class="sd-count">({lv.count.toLocaleString('en-US')})</span>}
+          <span class="sr-only">{C.ratingLabel}</span>
+        </p>
+      )}
+      <div class="dh-act"><ShareButton lang={lang} contentType="stay" itemId={d.slug_en} dark /></div>
+    </DetailHero>
 
-      <header class="sd-head">
-        <span class="eyebrow">{C.kindLabel}</span>
-        <h1>{name}</h1>
-        <ShareButton lang={lang} contentType="stay" itemId={d.slug_en} class="sd-share" />
-        {area && <p class="sd-area">{area}</p>}
-        {closed && <p class="sd-closed">{closed}</p>}
-        {lv?.rating && (
-          <p class="sd-rating"><span class="sd-star" aria-hidden="true">★</span>
-            <strong>{lv.rating.toFixed(1)}</strong>
-            {lv.count && <span class="sd-count">({lv.count.toLocaleString('en-US')})</span>}
-            <span class="sr-only">{C.ratingLabel}</span>
-          </p>
-        )}
-      </header>
-
+    <article class="container sd">
       <Photo src={d.img} label={alTxt} class="sd-photo" eager sizes="(max-width: 900px) 100vw, 900px" />
 
       <div class="sd-body prose">
@@ -213,23 +216,25 @@ const jsonLd = [
         <p>{C.noteP}</p>
       </aside>
     </article>
+    <NextStep lang={lang} />
   </main>
   <Footer lang={lang} />
 </Base>
 
 <style>
-  .sd { padding-block: var(--s-6) var(--s-8); max-inline-size: 900px; }
-  .sd-crumbs { margin-block-end: var(--s-4); font-size: var(--t-sm); }
-  .sd-crumbs a { color: var(--c-turq-deep); font-weight: 600; text-decoration: none; }
-  .sd-crumbs a:hover { color: var(--c-turq); }
-  .sd-head h1 { font-size: var(--t-3xl); margin-block-start: var(--s-2); }
-  .sd-area { margin-block-start: var(--s-2); font-size: var(--t-sm); color: var(--c-gold-deep); font-weight: 600; }
+  /* content column keeps the 900px reading width but starts at the same edge as the hero text */
+  .sd { padding-block: var(--s-4) var(--s-8); }
+  .sd > :global(*) { max-inline-size: 900px; }
+  /* header block lives in DetailHero (dark band): text colours below are for the dark surface */
+  .dh-crumbs .sd-back { display: inline-flex; align-items: center; min-block-size: 44px; margin-block: -6px; }
+  .sd-area { margin-block-start: var(--s-1); font-size: var(--t-base); color: var(--c-gold-bright); font-weight: 600; }
   .sd-closed { margin-block-start: var(--s-3); font-size: var(--t-sm); font-weight: 700; color: var(--c-gold-deep); background: var(--c-sand-2); border-inline-start: 3px solid var(--c-gold); border-radius: var(--radius-sm); padding: 8px 12px; }
-  .sd-rating { display: flex; align-items: center; gap: 6px; margin-block-start: var(--s-3); font-size: var(--t-sm); }
-  .sd-star { color: var(--c-gold-deep); }
-  .sd-count { color: var(--c-ink-soft); font-size: var(--t-xs); }
+  .sd-rating { display: flex; align-items: center; gap: 6px; margin-block-start: var(--s-3); font-size: var(--t-sm); color: var(--c-sand); }
+  .sd-star { color: var(--c-gold-bright); }
+  .sd-count { color: rgba(247,243,234,.82); font-size: var(--t-xs); }
 
-  :global(.sd-photo) { margin-block: var(--s-5); border-radius: var(--radius); aspect-ratio: 3 / 2; }
+  /* إطار قوس خفيض: زاويتا الأعلى بنصف قطر إهليلجي (قبّة ضحلة) تبقي الصورة مقروءة */
+  :global(.sd-photo) { margin-block: var(--s-5); border-radius: var(--radius); border-start-start-radius: 50% 22%; border-start-end-radius: 50% 22%; aspect-ratio: 3 / 2; }
   :global(.sd-photo img) { inline-size: 100%; block-size: 100%; object-fit: cover; }
 
   .sd-body { font-size: var(--t-base); line-height: 1.9; color: var(--c-ink); }

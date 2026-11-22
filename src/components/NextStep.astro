@@ -1,0 +1,41 @@
+---
+// شريط «الخطوة التالية» قبل التذييل في الصفحات الداخلية: يعيد نصّ ختام الرئيسية (HOME_COPY[lang].finale — العنوان والنبذة وزرّ
+// التخطيط) بسبع لغات، بلا نصوص جديدة. الزرّ إلى صفحة «خطّط لرحلتك» بلغة الصفحة، ويتبدّل إلى «افتح رحلتي (n)» متى وُجد
+// محفوظ (السكربت المشترك scripts/finale-cta.ts). لا يُصيَّر في لغة بلا مدخل في HOME_COPY. عنوانه h2 فيلائم مخطط أي صفحة.
+// لا يوضع في الرئيسية (لها ختامها) ولا في صفحات التخطيط و«رحلتي» والسياسات والإبلاغ و404 والطوارئ والألعاب.
+import { HOME_COPY, type HomeLang } from '../data/home-copy';
+import ArchEdge from './ArchEdge.astro';
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const copy = Object.hasOwn(HOME_COPY, lang) ? HOME_COPY[lang as HomeLang] : undefined;
+const C = copy?.finale;
+---
+{copy && C && (
+  <section class="band band--deep on-dark nxs" aria-labelledby="nxs-h">
+    <div class="nxs-top" aria-hidden="true"><ArchEdge /></div>
+    <div class="container nxs-in">
+      <span class="saqiya saqiya--dark nxs-sq" aria-hidden="true"></span>
+      <h2 class="nxs-title" id="nxs-h">{C.title}</h2>
+      <p class="nxs-lead">{C.lead}</p>
+      <a class="btn btn--gold nxs-btn" href={copy.paths.plan} data-finale-cta data-plan-href={copy.paths.plan} data-trip-href={copy.paths.myTrip} data-tx-plan={C.plan} data-tx-open={C.open} data-track="next_step_cta" data-track-kind="plan">{C.plan}</a>
+    </div>
+  </section>
+)}
+
+<script>import '../scripts/finale-cta';</script>
+
+<style>
+  .nxs { position: relative; padding-block: var(--s-8); }
+  /* قوس يرتفع من أعلى الشريط فوق القسم السابق: الملء بلون الشريط نفسه */
+  .nxs-top { --arch-h: clamp(22px, 4.5vw, 56px); --arch-next: var(--c-turq-deep); position: absolute; inset-inline: 0; inset-block-end: 100%; block-size: var(--arch-h); pointer-events: none; }
+  .nxs-top :global(.arch-edge) { inset-block-end: -1px; }
+  .nxs-in { display: flex; flex-direction: column; align-items: flex-start; }
+  .nxs-sq { inline-size: 168px; max-inline-size: 60%; margin-block: 0 var(--s-3); }
+  .nxs-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-2xl); max-inline-size: 22ch; text-wrap: balance; }
+  .nxs-lead { margin-block: var(--s-3) var(--s-5); font-size: var(--t-lg); line-height: 1.7; color: rgba(247,243,234,.92); max-inline-size: 52ch; }
+  .nxs-btn { min-block-size: 48px; }
+  .nxs-btn:focus-visible { outline: 2px solid var(--c-gold-bright); outline-offset: 3px; }
+  :global([lang='ur']) .nxs-lead { line-height: 2.2; }
+  @media (max-width: 760px) { .nxs { padding-block: var(--s-7); } .nxs-lead { font-size: var(--t-base); } }
+</style>

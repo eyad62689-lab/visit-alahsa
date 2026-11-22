@@ -7,7 +7,8 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN, LEGAL_SECTIONS_RU, LEGAL_SECTIONS_DE, LEGAL_SECTIONS_ZH, LEGAL_SECTIONS_UR, LEGAL_SECTIONS_TR } from '../../data/legal';
-import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, altHref, type AltLinks } from '../../i18n/utils';
+import { breadcrumb } from '../../lib/schema';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -152,8 +153,16 @@ const SEO_DESC: Partial<Record<Lang, string>> = {
   tr: "Visit Al-Ahsa'nın politikaları ve yasal koşulları: gizlilik politikası, kullanım koşulları, sorumluluk reddi, çerezler, fikrî mülkiyet ve dış bağlantılar.",
 };
 const seoDesc = SEO_DESC[lang] ?? SEO_DESC.en!;
+// عنوان التبويب العربي والإنجليزي بعناوين أقسامه المعروضة (العربي: الخصوصية وشروط الاستخدام؛ الإنجليزي: الخصوصية وشروط الاستخدام وملفات الارتباط)؛ اللغات الأخرى: العنوان نفسه.
+const seoCore = lang === 'ar' ? 'السياسات والشروط القانونية: الخصوصية وشروط الاستخدام' : lang === 'en' ? 'Policies & Legal Terms: Privacy, Terms of Use and Cookies' : C.title;
+const jsonLd = [
+  breadcrumb([
+    { name: t('crumb.home'), path: lang === 'ar' ? '/' : `/${lang}/` },
+    { name: C.title, path: altHref(alt, lang) },
+  ]),
+];
 ---
-<Base title={`${C.title} ${titleSep(lang)} ${t('site.brand')}`} description={seoDesc} lang={lang} alt={alt}>
+<Base title={`${seoCore} ${titleSep(lang)} ${t('site.brand')}`} description={seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="container lg-body">
@@ -222,6 +231,6 @@ const seoDesc = SEO_DESC[lang] ?? SEO_DESC.en!;
   .lg-list li::before { content: ''; position: absolute; inset-inline-start: calc(-1 * var(--s-3)); inset-block-start: .7em; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--c-gold); }
 
   .lg-closing { border-block-start: 1px solid var(--c-line); padding-block-start: var(--s-5); }
-  .lg-mail { font-family: var(--font-latin); letter-spacing: .02em; color: var(--c-turq-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .lg-mail { display: inline-flex; align-items: center; min-block-size: 44px; font-family: var(--font-latin); letter-spacing: .02em; color: var(--c-turq-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
   .lg-copy { margin-block-start: var(--s-6); padding-block-start: var(--s-4); border-block-start: 1px solid var(--c-line); font-size: var(--t-sm); color: var(--c-ink-soft); text-align: center; }
 </style>

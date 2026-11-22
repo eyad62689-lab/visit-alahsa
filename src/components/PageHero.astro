@@ -13,6 +13,7 @@
 import HeroPoster from './HeroPoster.astro';
 import HeroVideo from './HeroVideo.astro';
 import PalmMotif from './PalmMotif.astro';
+import ArchEdge from './ArchEdge.astro';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -34,54 +35,94 @@ interface Props {
   /** strong: طبقة تعتيم إضافية — لملصقٍ مبقّع بفجوات ساطعة يهبط معها تباين
    *  العنوان دون 3:1 بالتعتيم القياسي (مقيس على هيرو الثمار). */
   scrim?: 'default' | 'strong';
+  /** سطح القسم الذي يلي الهيرو — يملأ به حافة القوس السفلية (الرملي افتراضياً) */
+  next?: 'sand' | 'sand2' | 'deep';
+  /** false: بلا حافة القوس (هيرو يحمل شريطاً سفلياً في الفتحة after) */
+  arch?: boolean;
   class?: string;
 }
 const {
   eyebrow, title, lead, leadWidth,
   poster, video, videoMobile,
   motif = 'top', motifSize = 320, size = 'standard', scrim = 'default',
+  next = 'sand', arch = true,
   class: cls = '',
 } = Astro.props;
 const hasMedia = !!(poster || video);
+const NEXT_BG = { sand: 'var(--c-sand)', sand2: 'var(--c-sand-2)', deep: 'var(--c-turq-deep)' } as const;
 ---
 <section
   class:list={[
     'page-hero', 'on-dark', cls,
-    { 'page-hero--compact': size === 'compact', 'page-hero--media': hasMedia, 'page-hero--scrim-strong': scrim === 'strong' },
+    { 'page-hero--compact': size === 'compact', 'page-hero--media': hasMedia, 'page-hero--scrim-strong': scrim === 'strong', 'page-hero--arch': arch, 'page-hero--after': Astro.slots.has('after') },
   ]}
+  style={`--arch-next: ${NEXT_BG[next]}`}
 >
   {poster && <HeroPoster src={poster} />}
   {video && <HeroVideo src={video} srcMobile={videoMobile} />}
   <PalmMotif size={motifSize} class={motif === 'center' ? 'pgh-wm pgh-wm--center' : 'pgh-wm'} />
   <div class="container pgh-in">
     {eyebrow && <span class="eyebrow gold-on-dark">{eyebrow}</span>}
+    {eyebrow && <span class="saqiya saqiya--dark pgh-sq" aria-hidden="true"></span>}
     <h1 class="pgh-title">{title}</h1>
     {lead && <p class="pgh-lead" style={leadWidth ? `max-inline-size: ${leadWidth}ch` : undefined}>{lead}</p>}
     <slot />
   </div>
   {/* إضافات خارج حاوية النص (شريط أرقام الثمار مثلاً) */}
   <slot name="after" />
+  {arch && <ArchEdge />}
 </section>
 
 <style>
-  .page-hero { position: relative; overflow: hidden; background: var(--c-turq-deep); padding-block: var(--s-8) var(--s-7); }
-  .page-hero--compact { padding-block: var(--s-7) var(--s-6); }
-  /* طبقة التعتيم فوق الملصق/الفيديو لضمان وضوح النصّ — للأبطال المصوّرة فقط */
+  /* الهيرو السينمائي: طويل، والنصّ مرساه حافة النهاية السفلية عند البداية، وينتهي بقوس مدبّب خفيض يملؤه سطح القسم التالي */
+  .page-hero {
+    --arch-h: clamp(22px, 4.5vw, 56px);
+    position: relative; overflow: hidden; background: var(--c-turq-deep);
+    min-block-size: clamp(420px, 62svh, 660px);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-block: var(--s-8) var(--s-7);
+  }
+  /* هيرو بلا ملصق (سطح فيروزي مسطّح): أقصر كي لا يبدو فراغاً */
+  .page-hero:not(.page-hero--media) { min-block-size: clamp(320px, 44svh, 480px); }
+  .page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-6)); }
+  /* .page-hero.page-hero-- لتغلب قاعدة «بلا ملصق» أعلاه (نوعيتها 0,2,0) فتنال الأبطال المدمجة ارتفاعها */
+  .page-hero.page-hero--compact { min-block-size: clamp(260px, 34svh, 380px); padding-block: var(--s-7) var(--s-6); }
+  .page-hero.page-hero--compact.page-hero--arch { padding-block-end: calc(var(--arch-h) + var(--s-5)); }
+  /* Scrim over the poster/video, for media heroes only. It is stronger toward the bottom because the text is anchored there,
+     and it reaches up to the upper third so the large hero title keeps 3:1 over any video frame while the top of the image stays visible. */
   .page-hero--media::after {
     content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: var(--hero-scrim);
+    background:
+      linear-gradient(0deg, rgba(0,34,30,.9) 0%, rgba(0,36,32,.8) 38%, rgba(0,36,32,.58) 58%, rgba(0,36,32,.2) 82%, rgba(0,36,32,0) 100%),
+      var(--hero-scrim);
+  }
+  /* هيرو بشريط سفلي (after): النصّ يقع فوق الشريط حيث يكاد التدرّج السفلي يتلاشى، فيبدأ التعتيم من أعلى */
+  .page-hero--after.page-hero--media::after {
+    background:
+      linear-gradient(0deg, rgba(0,34,30,.9) 0%, rgba(0,36,32,.82) 45%, rgba(0,36,32,.5) 75%, rgba(0,36,32,.12) 100%),
+      var(--hero-scrim);
   }
   .page-hero--scrim-strong::after {
     background:
+      linear-gradient(0deg, rgba(0,34,30,.9) 0%, rgba(0,36,32,.8) 38%, rgba(0,36,32,.58) 58%, rgba(0,36,32,.2) 82%, rgba(0,36,32,0) 100%),
       linear-gradient(var(--hero-scrim-dir), rgba(0,42,38,.34) 0%, rgba(0,45,40,.20) 55%, transparent 100%),
       var(--hero-scrim);
   }
+  /* انجراف بطيء للملصق (تكبير 1 ← 1.06) ما لم يعمل الفيديو فوقه — transform وحده فلا أثر على LCP */
+  .page-hero--media :global(picture.photo-bg > img) { transform-origin: 62% 42%; animation: pgh-drift 20s var(--ease-inout) infinite alternate; }
+  .page-hero:has(.hero-vid--on) :global(picture.photo-bg > img) { animation: none; }
+  @keyframes pgh-drift { to { transform: scale(1.06); } }
+  @media (prefers-reduced-motion: reduce) { .page-hero--media :global(picture.photo-bg > img) { animation: none; } }
   :global(.pgh-wm) { position: absolute; inset-block-start: -10%; inset-inline-end: -5%; z-index: 0; color: var(--c-gold); opacity: .1; }
   :global(.pgh-wm--center) { inset-block-start: 50%; transform: translateY(-50%); inset-inline-end: -7%; }
   /* التحديد على العناصر لا على الحاوية — وإلا انزاحت الكتلة عن حافة البداية */
   .pgh-in { position: relative; z-index: 2; }
-  .pgh-title { font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-3xl); line-height: 1.1; margin-block: var(--s-2) var(--s-3); }
-  .pgh-lead { font-size: var(--t-lg); color: rgba(247,243,234,.9); }
+  /* زخرفة السواقي تحت التسمية تغني عن خطّها ومعيّنها */
+  .pgh-in :global(.eyebrow::before), .pgh-in :global(.eyebrow::after) { display: none; }
+  .pgh-sq { inline-size: 168px; max-inline-size: 60%; margin-block: var(--s-3) var(--s-2); }
+  .pgh-title { hyphens: auto; font-family: var(--font-heading); font-weight: 700; color: var(--c-sand); font-size: var(--t-display); line-height: 1.1; margin-block: var(--s-2) var(--s-3); text-wrap: balance; overflow-wrap: break-word; }
+  .page-hero--compact .pgh-title { font-size: var(--t-3xl); }
+  .pgh-lead { font-size: var(--t-lg); line-height: 1.7; color: rgba(247,243,234,.94); max-inline-size: min(100%, 56ch); }
   @media (max-width: 760px) {
     .pgh-lead { font-size: var(--t-base); }
   }

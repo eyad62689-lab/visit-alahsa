@@ -4,6 +4,7 @@ import { defineCollection } from 'astro:content';
 import { DISTRICTS, DISTRICT_MENTION } from './data/districts';
 import { GUIDE_SPECIALTIES, GUIDE_LANGUAGES } from './data/guides';
 import { SEO_BENEFIT_KEYS, SEO_BENEFITS } from './data/seo-benefits';
+import { titleLen, SEO_LIMITS } from './lib/seo-len.mjs';
 // z من astro/zod لا astro:content: التصدير القديم مهمل في Astro 7 (38 تحذيراً في astro check)
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
@@ -165,7 +166,7 @@ const attractions = defineCollection({
       source_zh: z.string().optional(),
       source_de: z.string().optional(),
       source_ru: z.string().optional(),
-      sourceUrl: z.string().url().optional(),                          // رابطه إن وُجد
+      sourceUrl: z.url().optional(),                                     // رابطه إن وُجد
       verifiedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تاريخ التحقق YYYY-MM-DD
       nextReview: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),  // تجاوز دورة المراجعة الافتراضية
     }).refine((p) => !p.verified || (p.source && p.source_en && p.verifiedAt), {
@@ -173,7 +174,7 @@ const attractions = defineCollection({
     })).default([]),
     // رابط الجهة المشغّلة للموقع (حسابها أو صفحتها): حين يوجد تصير كلمة «المشغّل» في سطر
     // المواعيد والرسوم تحت بطاقة الزيارة رابطاً إليه، وتبقى نصاً عادياً في غيره.
-    operatorUrl: z.string().url().optional(),
+    operatorUrl: z.url().optional(),
     // موقع مفتوح للعموم بلا رسوم دخول أو مفتوح على مدار الساعة: لا يُعرض تحت بطاقته سطر
     // المواعيد والرسوم (لا مشغّل يُراجَع ولا تذكرة). لا يجتمع مع operatorUrl.
     openSite: z.boolean().default(false),
@@ -223,6 +224,11 @@ const attractions = defineCollection({
       place_en: z.string().optional(),
       benefit: z.enum(SEO_BENEFIT_KEYS).optional(),
     }).optional(),
+    // seoTitle/seoTitle_en: نواة <title> مكتوبة يدوياً (ar/en فقط) تحلّ محل المركَّب أعلاه حين يلزم الجمع بين أكثر من فائدة
+    // أو صياغة يبحث بها الزائر؛ لا يمسّ H1 ولا الفتات ولا og:title. كل ما فيها وارد في الصفحة نفسها (يراجَع عند الكتابة)،
+    // وطولها بين حدّي العنوان (30–60 نقطة ترميز).
+    seoTitle: z.string().optional(),
+    seoTitle_en: z.string().optional(),
     // description: وصف الصفحة (120–158 نقطة ترميز)، جمل حرفية من answer إن وُجد وإلا من summary ومتن الصفحة
     // (descriptionSourceOk أدناه؛ المتن العربي يحرسه C24 على dist). عربي وإنجليزي معاً أو لا شيء.
     // بدونه يبقى الوصف = answer ثم summary كما كان.
@@ -254,6 +260,8 @@ const attractions = defineCollection({
     message: 'seo.place يرد حرفياً في area أو العنوان أو يساوي «الأحساء» — لا مكان بالتقدير',
   }).refine((a) => !a.seo?.place_en || a.seo.place_en === 'Al-Ahsa' || `${a.area_en ?? ''} ${a.title_en ?? ''}`.includes(a.seo.place_en), {
     message: 'seo.place_en يرد حرفياً في area_en أو title_en أو يساوي "Al-Ahsa"',
+  }).refine((a) => [a.seoTitle, a.seoTitle_en].every((s) => !s || (titleLen(s) >= SEO_LIMITS.titleMin && titleLen(s) <= SEO_LIMITS.titleMax)), {
+    message: 'seoTitle/seoTitle_en بين 30 و60 نقطة ترميز (حدّا C72)',
   }).refine((a) => !a.seo || Boolean(a.seo.benefit), {
     message: 'seo يلزمه benefit — المكان وحده لا يبني عنواناً',
   }).refine((a) => !a.seo?.benefit || (['ar', 'en'] as const).every((l) => SEO_BENEFITS[a.seo!.benefit!].requires(a, l)), {
@@ -277,6 +285,9 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),                   // وصف الميتا وبطاقة الفهرس
+    // عنوان ووصف `<title>`/og والميتا وحدهما حين يجاوز الأصل حدّ C72؛ H1 والبطاقة والفتات تبقى على title/description
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
     // zh/de/ru منذ الخطوة 10 من خطة التفاعل العالمي — لا يُكتب مقال بها إلا عبر خط ترجمتها (حاكم ≥ 90).
     // وur مقبولة في المخطط بلا مسار /ur/blog/ بعد: مقال أوردي قبل بناء مساره يُفشل C29 (غير منشور).
     lang: z.enum(['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr']),

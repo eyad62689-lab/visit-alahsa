@@ -1,6 +1,8 @@
 ---
 title: "One Day in Al-Ahsa: A 24-Hour Itinerary for the Passing Visitor"
+seoTitle: "One Day in Al-Ahsa: A 24-Hour Itinerary"
 description: "A concentrated one-day plan for Al-Ahsa — the caves of Jabal Al-Qarah in the morning, then Qasr Ibrahim and the Al-Koot district in the mid-morning, and Qaisariyah Souq in the evening."
+seoDescription: "A concentrated one-day plan for Al-Ahsa — the caves of Jabal Al-Qarah in the morning, then Qasr Ibrahim and Al-Koot, and Qaisariyah Souq in the evening."
 lang: en
 key: 24-hours-itinerary
 slug: "one-day-in-al-ahsa"

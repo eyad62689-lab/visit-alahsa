@@ -1,5 +1,6 @@
 ---
 title: "The Living Crafts of Al-Ahsa: Bisht, Pottery and Where to See Them Made"
+seoTitle: "The Living Crafts of Al-Ahsa: Bisht and Pottery"
 description: "A tour of Al-Ahsa's living crafts — the Hasawi bisht embroidered in zari thread, the Al-Gharash pottery house, and the Craftsmen Souq in the heart of Hofuf."
 lang: en
 key: crafts-tour
