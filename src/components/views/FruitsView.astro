@@ -299,6 +299,14 @@ const jsonLd = [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : lang === 'tr' ? '/tr/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
+  // الثمار كما تُعرض في البطاقات: الاسم بلغة الصفحة، بلا url لأن البطاقة لا صفحة لها ولا مرساة
+  (() => {
+    const fruits = C.groups.flatMap((g) => g.fruits);
+    return {
+      '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, numberOfItems: fruits.length,
+      itemListElement: fruits.map((f, i) => ({ '@type': 'ListItem', position: i + 1, name: f.name })),
+    };
+  })(),
 ];
 ---
 <Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-fruits">

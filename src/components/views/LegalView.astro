@@ -7,7 +7,8 @@ import Base from '../../layouts/Base.astro';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import { LEGAL_SECTIONS_AR, LEGAL_SECTIONS_EN, LEGAL_SECTIONS_RU, LEGAL_SECTIONS_DE, LEGAL_SECTIONS_ZH, LEGAL_SECTIONS_UR, LEGAL_SECTIONS_TR } from '../../data/legal';
-import { localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
+import { localize, titleSep, useTranslations, altHref, type AltLinks } from '../../i18n/utils';
+import { breadcrumb } from '../../lib/schema';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -152,8 +153,14 @@ const SEO_DESC: Partial<Record<Lang, string>> = {
   tr: "Visit Al-Ahsa'nın politikaları ve yasal koşulları: gizlilik politikası, kullanım koşulları, sorumluluk reddi, çerezler, fikrî mülkiyet ve dış bağlantılar.",
 };
 const seoDesc = SEO_DESC[lang] ?? SEO_DESC.en!;
+const jsonLd = [
+  breadcrumb([
+    { name: t('crumb.home'), path: lang === 'ar' ? '/' : `/${lang}/` },
+    { name: C.title, path: altHref(alt, lang) },
+  ]),
+];
 ---
-<Base title={`${C.title} ${titleSep(lang)} ${t('site.brand')}`} description={seoDesc} lang={lang} alt={alt}>
+<Base title={`${C.title} ${titleSep(lang)} ${t('site.brand')}`} description={seoDesc} lang={lang} alt={alt} jsonLd={jsonLd}>
   <Header lang={lang} alt={alt} />
   <main id="main">
     <section class="container lg-body">

@@ -13,7 +13,8 @@ import PageHero from '../PageHero.astro';
 import Photo from '../Photo.astro';
 import { storesPage, storesLangs, countsBySection } from '../../lib/stores';
 import { STORES_ALT } from '../../lib/routes';
-import { titleSep, useTranslations, type AltLinks, htmlLang } from '../../i18n/utils';
+import { titleSep, useTranslations, altHref, type AltLinks, htmlLang } from '../../i18n/utils';
+import { breadcrumb } from '../../lib/schema';
 import type { Lang } from '../../i18n/ui';
 
 interface Props { lang: Lang; }
@@ -54,6 +55,10 @@ const jsonLd = [
     name: seo.h1, numberOfItems: total,
     itemListElement: stores.map((s, n) => ({ '@type': 'ListItem', position: n + 1, name: s.name, url: s.url })),
   },
+  breadcrumb([
+    { name: t('crumb.home'), path: lang === 'ar' ? '/' : `/${lang}/` },
+    { name: seo.h1, path: altHref(alt, lang) },
+  ]),
 ];
 const pageTitle = `${seo.title_tag} ${titleSep(lang)} ${t('site.brand')}`;
 ---

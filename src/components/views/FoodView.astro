@@ -171,6 +171,14 @@ const jsonLd = [
     { '@type': 'ListItem', position: 1, name: t('crumb.home'), item: new URL(ar ? '/' : zh ? '/zh/' : de ? '/de/' : ru ? '/ru/' : ur ? '/ur/' : tr ? '/tr/' : '/en/', siteUrl).href },
     { '@type': 'ListItem', position: 2, name: C.title, item: new URL(selfPath, siteUrl).href },
   ] },
+  // الأطباق كما تُعرض في البطاقات: الاسم بلغة الصفحة، بلا url لأن البطاقة لا صفحة لها ولا مرساة
+  (() => {
+    const dishes = C.groups.flatMap((g) => g.dishes);
+    return {
+      '@context': 'https://schema.org', '@type': 'ItemList', name: C.title, numberOfItems: dishes.length,
+      itemListElement: dishes.map((d, i) => ({ '@type': 'ListItem', position: i + 1, name: d.name })),
+    };
+  })(),
 ];
 ---
 <Base title={pageTitle} description={description} lang={lang} alt={alt} jsonLd={jsonLd} preloadImage="/img/hero-food">
