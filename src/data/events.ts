@@ -204,15 +204,19 @@ const EVENT_META = {
   // وحتى 5 ديسمبر»، والمنظّم غرفة الأحساء، ومسارات المشاركة وأحجام الأركان وأسعارها، وأن التسجيل
   // لا يُعدّ موافقة نهائية. ومن خبر واحة نيوز (2026-10-13، wahhnews.com/?p=110643): المكان مركز
   // الأحساء للمعارض، ورعاية محافظ الأحساء، والتعاون مع هيئة تطوير الأحساء، والشعار. المكان نفسه
-  // مكان معرض اللومي، فالخريطة والإحداثيات منه. لا ساعات ولا رسوم دخول (لم تُعلن)، ولا رقم نسخة
+  // مكان معرض اللومي، فالخريطة والإحداثيات منه. والساعات ورسوم الدخول وشروط التذكرة ورابط الحجز
+  // من صفحة الحجز الرسمية على إيفينتو (مقروءة 2026-11-23)، ويحيل إليها الرابط المختصر في منشور
+  // الغرفة على X في اليوم نفسه. المكان بلا اسم مدينة: إيفينتو وعنوان خرائط قوقل يكتبان المبرز،
+  // والنص السابق كان يكتب الهفوف. ولا رقم نسخة
   // (تعارضت المصادر: «العاشرة» في واس بلا تاريخ، و«الـ14» لنسخة 2020 في عكاظ). والإعلان الرسمي
-  // «قريباً» من إياد (2026-11-06) — ومنه الاسم الإنجليزي «Asalat Al-Sharq Exhibition»؛ والساعات لم
-  // تُعلن بعد (من إياد في اليوم نفسه).
+  // «قريباً» من إياد (2026-11-06) — ومنه الاسم الإنجليزي «Asalat Al-Sharq Exhibition».
   'asala-alsharq-2026': {
     img: '/img/event-posters/asala-alsharq-2026', poster: '/img/event-posters/asala-alsharq-2026-poster',
     start: 11, end: 12,
     status: 'confirmed', oneOff: true,
     startISO: '2026-11-26', endISO: '2026-12-05',
+    ticket: 'https://evento.sa/event-details/c7214942-653b-4d67-b1a3-2520f1144c96',
+    priceRange: { low: 25, high: 30, currency: 'SAR' },
     map: 'https://maps.app.goo.gl/uY5gEBdUJ43pMEFV7',
     coords: { lat: 25.3903836, lng: 49.5619631 },
     social: 'https://x.com/ahsachamber',
@@ -453,22 +457,29 @@ const TEXT_AR: EventTexts = {
   },
   'asala-alsharq-2026': {
     slug: 'معرض-أصالة-الشرق-2026',
-    name: 'معرض أصالة الشرق', place: 'مركز الأحساء للمعارض، شارع السلام (طريق عين النجم)، الهفوف',
+    name: 'معرض أصالة الشرق', place: 'مركز الأحساء للمعارض، طريق عين النجم',
     season: 'الشتاء', time: '26 نوفمبر – 5 ديسمبر 2026م', span: '10 أيام',
     org: 'غرفة الأحساء',
+    hours: '4:00 م – 11:00 م',
     acts: ['الأزياء النسائية', 'العبايات', 'المجوهرات والإكسسوارات', 'الأزياء الرجالية', 'العود والعطور', 'التحف والمنتجات الفاخرة'],
-    intro: 'معرض أصالة الشرق منصّة سنوية تنظّمها غرفة الأحساء للأزياء والمنتجات الفاخرة، وتُقام نسخة 2026 في مركز الأحساء للمعارض بالهفوف من 26 نوفمبر إلى 5 ديسمبر 2026م، تحت رعاية صاحب السمو الملكي الأمير سعود بن طلال بن بدر محافظ الأحساء، وبالتعاون مع هيئة تطوير الأحساء، وشعارها «أصالة تُلهم، وفرص تتجدد».',
+    intro: 'معرض أصالة الشرق منصّة سنوية تنظّمها غرفة الأحساء للأزياء والمنتجات الفاخرة، وتُقام نسخة 2026 في مركز الأحساء للمعارض من 26 نوفمبر إلى 5 ديسمبر 2026م، تحت رعاية صاحب السمو الملكي الأمير سعود بن طلال بن بدر محافظ الأحساء، وبالتعاون مع هيئة تطوير الأحساء، وشعارها «أصالة تُلهم، وفرص تتجدد».',
     sections: [
       { h: 'ماذا تجد في المعرض', ps: ['يجمع المعرض علامات تجارية سعودية وخليجية، وعلامات متخصصة في الأزياء والمجوهرات والإكسسوارات والعطور والمنتجات الفاخرة. ومسارات المشاركة المعلنة: الأزياء النسائية من فساتين وعبايات وجلابيات، والعبايات النسائية، والمجوهرات، والأزياء الرجالية، والعود والعطور، والتحف.'] },
       { h: 'المشاركة عارضاً', dated: true, ps: [
         'تستقبل غرفة الأحساء طلبات المشاركة عبر بوابتها الإلكترونية من الشركات وأصحاب السجلات التجارية وأصحاب العمل الحر والأسر المنتجة. ويطلب النموذج اسم المنشأة أو المشروع، واسم الممثل، والبريد الإلكتروني ورقم الجوال، ووصفاً مختصراً للمنتجات مع صورة لها أو ملف PDF، ثم اختيار مسار المشاركة ونوع الركن.',
         'أحجام الأركان المعلنة في البوابة من 3×3 م إلى 6×6 م، وأسعارها من 7,000 إلى 15,000 ريال بحسب المساحة. وتنصّ البوابة على أن تسجيل البيانات لا يُعدّ موافقة نهائية على المشاركة، بل يخضع لعملية الفرز والاعتماد.',
       ] },
-      { h: 'قبل الزيارة', dated: true, ps: ['لم تُعلن بعدُ ساعات الزيارة ولا رسوم الدخول، وتنشرها غرفة الأحساء على حسابها في X ورابطه في هذه الصفحة. والمعرض في المكان نفسه الذي يُقام فيه معرض اللومي الحساوي كل صيف.'] },
+      { h: 'قبل الزيارة', dated: true, ps: [
+        'يفتح المعرض من 4:00 م إلى 11:00 م بحسب صفحة الحجز الرسمية على منصة إيفينتو. تذكرة الدخول بـ25 ريالاً من الأحد إلى الأربعاء، و30 ريالاً من الخميس إلى السبت عند الشراء الإلكتروني، وتُضاف رسوم خدمة وتشغيل قدرها 5 ريالات على كل تذكرة تُشترى من شباك التذاكر.',
+        'الدخول مجاني للأطفال دون 5 سنوات، ولا دخول بلا تذكرة. والتذكرة مخصصة لزيارة المعرض فقط وصالحة لليوم المحدد فيها وحده، وتُباع عبر منصة إيفينتو وحدها، ولا تُسترد إلا في ظروف استثنائية يحددها المنظّمون، ولا تُحوَّل إلى شخص آخر.',
+        'والمعرض في المكان نفسه الذي يُقام فيه معرض اللومي الحساوي كل صيف.',
+      ] },
     ],
     faq: [
       { q: 'متى يُقام المعرض؟', a: 'من 26 نوفمبر إلى 5 ديسمبر 2026م بحسب بوابة غرفة الأحساء.' },
-      { q: 'أين يُقام المعرض؟', a: 'في مركز الأحساء للمعارض على شارع السلام (طريق عين النجم) بالهفوف، وتجد الخريطة في هذه الصفحة.' },
+      { q: 'أين يُقام المعرض؟', a: 'في مركز الأحساء للمعارض على طريق عين النجم، وتجد الخريطة في هذه الصفحة.' },
+      { q: 'هل الدخول مجاني؟', a: 'الدخول مجاني للأطفال دون 5 سنوات فقط. التذكرة 25 ريالاً من الأحد إلى الأربعاء و30 ريالاً من الخميس إلى السبت عند الشراء الإلكتروني، وتُضاف 5 ريالات على تذاكر الشباك.', dated: true },
+      { q: 'كيف أحجز تذكرة الزيارة؟', a: 'عبر منصة إيفينتو وحدها، وزرّ «احجز تذكرتك» في هذه الصفحة يوصلك إلى صفحة الحجز الرسمية.', dated: true },
       { q: 'من ينظّم المعرض؟', a: 'غرفة الأحساء، تحت رعاية محافظ الأحساء وبالتعاون مع هيئة تطوير الأحساء.' },
       { q: 'كيف أشارك عارضاً؟', a: 'عبر بوابة التسجيل الرسمية لغرفة الأحساء من زرّ «سجّل للمشاركة عارضاً» في هذه الصفحة، والتسجيل يخضع للفرز والاعتماد.', dated: true },
     ],
@@ -478,7 +489,7 @@ const TEXT_AR: EventTexts = {
       { label: 'خطّط لرحلتك إلى الأحساء', href: '/خطط/' },
     ],
     seoTitle: 'معرض أصالة الشرق 2026 في الأحساء: 26 نوفمبر – 5 ديسمبر',
-    seoDesc: 'معرض أصالة الشرق 2026 من غرفة الأحساء في مركز الأحساء للمعارض، 26 نوفمبر – 5 ديسمبر: الأزياء والمجوهرات والعطور والمنتجات الفاخرة، وتسجيل العارضين.',
+    seoDesc: 'معرض أصالة الشرق 2026 من غرفة الأحساء في مركز الأحساء للمعارض، 26 نوفمبر – 5 ديسمبر، 4:00 م – 11:00 م: أزياء ومجوهرات وعطور، والتذاكر من 25 ريالاً عبر إيفينتو.',
   },
   'hasawi-aish-festival-2026': {
     slug: 'مهرجان-العيش-الحساوي-2026',
@@ -706,22 +717,29 @@ const TEXT_EN: EventTexts = {
   },
   'asala-alsharq-2026': {
     slug: 'asalat-al-sharq-exhibition-2026',
-    name: 'Asalat Al-Sharq Exhibition', place: 'Al-Ahsa Expo Center, Al-Salam St (Ain Najm Rd), Hofuf',
+    name: 'Asalat Al-Sharq Exhibition', place: 'Al-Ahsa Expo Center, Ain Najm Rd',
     season: 'Winter', time: '26 November – 5 December 2026', span: '10 days',
     org: 'Al-Ahsa Chamber',
+    hours: '4:00–11:00 pm',
     acts: ['Women’s fashion', 'Abayas', 'Jewellery & accessories', 'Men’s fashion', 'Oud & perfumes', 'Antiques & luxury goods'],
-    intro: 'Asalat Al-Sharq (“Authenticity of the East”) is an annual fashion and luxury-goods exhibition organised by the Al-Ahsa Chamber. The 2026 edition runs from 26 November to 5 December 2026 at the Al-Ahsa Expo Center in Hofuf, under the patronage of HRH Prince Saud bin Talal bin Badr, Governor of Al-Ahsa, in cooperation with the Al-Ahsa Development Authority.',
+    intro: 'Asalat Al-Sharq (“Authenticity of the East”) is an annual fashion and luxury-goods exhibition organised by the Al-Ahsa Chamber. The 2026 edition runs from 26 November to 5 December 2026 at the Al-Ahsa Expo Center, under the patronage of HRH Prince Saud bin Talal bin Badr, Governor of Al-Ahsa, in cooperation with the Al-Ahsa Development Authority.',
     sections: [
       { h: 'What you’ll find', ps: ['The exhibition brings together Saudi and GCC brands, along with specialist brands in fashion, jewellery, accessories, perfumes and luxury goods. The announced participation tracks are women’s fashion (dresses, abayas and jalabiyas), women’s abayas, jewellery, men’s fashion, oud and perfumes, and antiques.'] },
       { h: 'Taking part as an exhibitor', dated: true, ps: [
         'The Al-Ahsa Chamber accepts applications through its online portal from companies, commercial-register holders, freelancers and productive families. The form asks for the business or project name, the representative’s name, email and mobile number, and a short description of the products with a photo or PDF file, then the participation track and booth type.',
         'Booth sizes listed on the portal range from 3×3 m to 6×6 m, priced from SAR 7,000 to SAR 15,000 depending on size. The portal states that submitting your details is not final approval to take part: every application goes through screening and approval.',
       ] },
-      { h: 'Before you visit', dated: true, ps: ['Opening hours and entry fees have not been announced yet; the Al-Ahsa Chamber publishes them on its X account, linked on this page. The exhibition is held at the same venue as the Hasawi Lomi Exhibition each summer.'] },
+      { h: 'Before you visit', dated: true, ps: [
+        'The exhibition is open from 4:00 to 11:00 pm, according to the official booking page on Evento. Entry is SAR 25 from Sunday to Wednesday and SAR 30 from Thursday to Saturday when bought online, and a SAR 5 service fee is added to every ticket bought at the box office.',
+        'Entry is free for children under 5, and there is no entry without a ticket. A ticket covers the exhibition visit only, is valid solely for the day stated on it, and is sold only through Evento. Tickets are refunded only in exceptional circumstances decided by the organisers and cannot be transferred to another person.',
+        'The exhibition is held at the same venue as the Hasawi Lomi Exhibition each summer.',
+      ] },
     ],
     faq: [
       { q: 'When is the exhibition held?', a: 'From 26 November to 5 December 2026, according to the Al-Ahsa Chamber’s portal.' },
-      { q: 'Where is the exhibition held?', a: 'At the Al-Ahsa Expo Center on Al-Salam Street (Ain Najm Road) in Hofuf; the map is on this page.' },
+      { q: 'Where is the exhibition held?', a: 'At the Al-Ahsa Expo Center on Ain Najm Road; the map is on this page.' },
+      { q: 'Is entry free?', a: 'Entry is free only for children under 5. Tickets are SAR 25 from Sunday to Wednesday and SAR 30 from Thursday to Saturday online, with SAR 5 added at the box office.', dated: true },
+      { q: 'How do I book a visitor ticket?', a: 'Only through the Evento platform; the “Book your ticket” button on this page takes you to the official booking page.', dated: true },
       { q: 'Who organises the exhibition?', a: 'The Al-Ahsa Chamber, under the patronage of the Governor of Al-Ahsa and in cooperation with the Al-Ahsa Development Authority.' },
       { q: 'How do I take part as an exhibitor?', a: 'Through the Al-Ahsa Chamber’s official registration portal, using the “Register as an exhibitor” button on this page; applications are subject to screening and approval.', dated: true },
     ],
@@ -731,7 +749,7 @@ const TEXT_EN: EventTexts = {
       { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
     ],
     seoTitle: 'Asalat Al-Sharq Exhibition 2026 in Al-Ahsa: 26 Nov – 5 Dec',
-    seoDesc: 'Asalat Al-Sharq 2026 at the Al-Ahsa Expo Center, Hofuf, 26 Nov – 5 Dec: fashion, jewellery, perfumes and luxury goods, plus exhibitor registration.',
+    seoDesc: 'Asalat Al-Sharq 2026 at the Al-Ahsa Expo Center, 26 Nov – 5 Dec, 4:00–11:00 pm: fashion, jewellery and perfumes. Tickets from SAR 25 via Evento.',
   },
   'hasawi-aish-festival-2026': {
     slug: 'hasawi-rice-festival-2026',
