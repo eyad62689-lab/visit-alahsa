@@ -23,7 +23,7 @@ In the world's largest oasis, dates are the first gift without rival. **Khalas**
 
 ## Hasawi Lime and the Oasis Pantry
 
-The **Hasawi lime** (Bin Zuhairi) is among the most celebrated produce of Al-Ahsa's groves — fresh in its summer season, or dried to perfume Hasawi cooking all year round. From the same pantry come **date syrup**, which sweetens the local dishes, and **date bread** sprinkled with nigella seed. The [Hasawi cuisine](/en/food/) page shows the place each one holds at the table.
+The **Hasawi lime** (Bin Zuhairi) is among the most celebrated produce of Al-Ahsa's groves — fresh in its summer season, or dried to perfume Hasawi cooking all year round. From the same pantry come **date syrup**, which sweetens the local dishes, and **date bread** sprinkled with nigella seed. The [Al-Ahsa cuisine](/en/food/) page shows the place each one holds at the table.
 
 ## Handicrafts: What Outlasts the Trip
 

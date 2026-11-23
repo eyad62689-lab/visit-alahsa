@@ -41,7 +41,7 @@ Al-Ahsa doesn't compete with Riyadh's skyline or AlUla's rock-cut monuments — 
 - **Getting around:** a car is the practical choice; plan stops with the [attractions map](/en/map/) and the [My saved places](/en/plan/) tool.
 - **Heat strategy:** summers are hot, but the Al-Qarah caves stay cool inside — keep open-air stops for morning and sunset, and the souq for evening.
 - **Hours and fees:** they change with seasons and holidays; verified details live on each landmark's page, and official channels have the final word.
-- **Where to eat:** the [Restaurants & Cafés](/en/restaurants-cafes/) guide and the [Hasawi cuisine](/en/food/) page cover the table — from the oasis's dates and famous Hasawi lime (lomi) to its traditional dishes.
+- **Where to eat:** the [Restaurants & Cafés](/en/restaurants-cafes/) guide and the [Al-Ahsa cuisine](/en/food/) page cover the table — from the oasis's dates and famous Hasawi lime (lomi) to its traditional dishes.
 
 ## The Verdict
 

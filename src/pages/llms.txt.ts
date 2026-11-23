@@ -62,7 +62,7 @@ export const GET: APIRoute = async () => {
 - [الأسواق والمنتزهات والمزارع](${SITE}/أسواق-ومنتزهات-ومزارع/) | [Souqs, Parks & Farms](${SITE}/en/souqs-parks-farms/): سوق القيصرية، الحدائق، مزارع النخيل والليمون الحساوي.
 - [الفعاليات والمواسم (${eventCount} فعاليات)](${SITE}/فعاليات/) | [Events](${SITE}/en/events/): مهرجانات الواحة على مدار السنة — مواعيد النسخ تُنشر عند تأكيدها رسمياً فقط.
 - [ثمار الواحة](${SITE}/ثمار/) | [Oasis Fruits](${SITE}/en/fruits/): تمور الخلاص، الليمون الأحسائي، ومواسم القطاف.
-- [المطبخ الأحسائي](${SITE}/أكلات/) | [Hasawi Cuisine](${SITE}/en/food/): الأرز الأحسائي، المندي، الهريس، خبز التمر وحلويات الواحة.
+- [المطبخ الأحسائي](${SITE}/أكلات/) | [Al-Ahsa Cuisine](${SITE}/en/food/): الأرز الأحسائي، المندي، الهريس، خبز التمر وحلويات الواحة.
 - [المطاعم والمقاهي (${diningCount} منشأة بمواقع خرائط قوقل)](${SITE}/مطاعم-ومقاهي/) | [Restaurants & Cafés](${SITE}/en/restaurants-cafes/)
 - [إقامتك في الأحساء (${stayCount} أماكن بمواقع خرائط قوقل)](${SITE}/إقامة/) | [Places to Stay](${SITE}/en/stay/): نُزلٌ تراثي في حي الكوت، وفندقٌ على ساحل العقير، وشاليهات بمسابح خاصة في الهفوف — بطاقات وصفية لا ترشيحات.
 - [المدونة (${topicCount} مقالات بالعربية والإنجليزية)](${SITE}/مدونة/) | [Blog](${SITE}/en/blog/): مسارات 24 و48 ساعة، الحرف اليدوية، الهدايا، وهل تستحق الأحساء الزيارة.
@@ -78,7 +78,7 @@ export const GET: APIRoute = async () => {
 - [Souqs, Parks & Farms](${SITE}/en/souqs-parks-farms/) — Al-Qaisariyah Souq, gardens, date-palm and Hasawi-lime farms.
 - [Events](${SITE}/en/events/) — ${eventCount} recurring seasons; dates of an edition are published only once officially confirmed.
 - [Oasis Fruits](${SITE}/en/fruits/) — Khalas dates, the Hasawi lime and harvest seasons, with a season table.
-- [Hasawi Cuisine](${SITE}/en/food/) — Hasawi rice, mandi, harees, date bread and oasis sweets.
+- [Al-Ahsa Cuisine](${SITE}/en/food/) — Hasawi rice, mandi, harees, date bread and oasis sweets.
 - [Restaurants & Cafés](${SITE}/en/restaurants-cafes/) — ${diningCount} places with Google Maps locations; no prices, no rankings.
 - [Places to Stay](${SITE}/en/stay/) — ${stayCount} places with Google Maps locations; descriptive cards, not recommendations.
 - [Blog](${SITE}/en/blog/) — ${topicCount} topics in Arabic and English: 24- and 48-hour itineraries, handicrafts, gifts, and whether Al-Ahsa is worth the visit.

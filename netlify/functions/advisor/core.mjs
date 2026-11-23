@@ -87,7 +87,7 @@ const inLang = (x, lang) => Boolean(x?.[lang])
 const KINDS = [
   ['attraction', 'ATTRACTIONS'], ['dining', 'RESTAURANTS AND CAFES'], ['stay', 'PLACES TO STAY'],
   ['trail', 'SUGGESTED TRAILS'], ['event', 'EVENTS AND SEASONS'], ['post', 'BLOG ARTICLES'],
-  ['dish', 'HASAWI CUISINE (dishes page)'], ['fruit', 'OASIS FRUITS (fruits page)'],
+  ['dish', 'AL-AHSA CUISINE (dishes page)'], ['fruit', 'OASIS FRUITS (fruits page)'],
   ['store', 'ONLINE STORES (Al-Ahsa shops listed on the stores page; each link opens that page at its section)'], ['page', 'SITE SECTIONS'],
 ]
 
