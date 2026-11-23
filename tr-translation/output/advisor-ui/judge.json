@@ -1,0 +1,117 @@
+{
+  "batch": "advisor-ui",
+  "lang": "tr",
+  "stage": "7",
+  "score": 92,
+  "breakdown": {
+    "accuracy_30": 28,
+    "nativeness_30": 27,
+    "termbase_orthography_style_20": 18,
+    "traveller_fit_10": 9,
+    "structure_10": 10
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "text": "stage 5 verbatim (tr-05.json)",
+      "score": 87,
+      "breakdown": {
+        "accuracy_30": 28,
+        "nativeness_30": 25,
+        "termbase_orthography_style_20": 15,
+        "traveller_fit_10": 9,
+        "structure_10": 10
+      },
+      "findings": [
+        "Binding batch ruling UI1-controls (judge tr-ui-1) broken three times: buttons and action aria-labels are polite-plural imperatives. 'Gönder' and 'Kapat' are bare imperatives, i.e. the sen form the config bans; the published tr forms are 'Kapatın' (lang.suggest.close), 'Aramayı kapatın' (search.close), 'Turu kapatın', 'Bildirimi gönderin' (ReportView submit). 'Yeni sohbet' is a noun phrase on an action button.",
+        "Binding batch ruling UI1-gezinmek broken: intro line 3 has 'gezinmeye' (navigate) in the same bubble as 'gezi'. The blind reader stumbled on exactly this (item 3: 'internette gezinmek').",
+        "Intro line 3 first question is a long participial chain before the verb (reader item 3).",
+        "advisor.rate 'emrinizde' is servile/old-fashioned against the persona's warm voice (reader item 15).",
+        "advisor.chip2 is a 59-character formal question on a wrapping pill button whose role says short (reader item 5).",
+        "advisor.notice sentence 1 has no subject in a standalone note (reader item 8): 'yanıt verir' — who?"
+      ],
+      "decision_in_cycle": "below threshold 90: no APPROVE; judge fix loop run (cycle 2)",
+      "edits": []
+    },
+    {
+      "cycle": 2,
+      "score": 92,
+      "breakdown": {
+        "accuracy_30": 28,
+        "nativeness_30": 27,
+        "termbase_orthography_style_20": 18,
+        "traveller_fit_10": 9,
+        "structure_10": 10
+      },
+      "edits": [
+        { "id": "E1", "key": "advisor.send", "from": "Gönder", "to": "Gönderin", "why": "UI1-controls polite imperative; siz; published 'Bildirimi gönderin'." },
+        { "id": "E2", "key": "advisor.close", "from": "Kapat", "to": "Kapatın", "why": "UI1-controls; published 'Kapatın' (lang.suggest.close) for a bare × button; reader item 10 (polite form applied, object not added)." },
+        { "id": "E3", "key": "advisor.reset", "from": "Yeni sohbet", "to": "Yeni sohbet başlatın", "why": "UI1-controls (action aria-label = polite imperative); reader item 11 (the button now says what it does). 'temizleyin' not added: the source says new conversation, not clear." },
+        { "id": "E4", "key": "advisor.intro", "part": "line 3, first sentence", "from": "Sadece gezinmeye mi geldiniz, yoksa buralılardan başkasının bilmediği yerlerin peşinde misiniz?", "to": "Şöyle bir dolaşmaya mı geldiniz, yoksa yalnızca buralıların bildiği yerlerin peşinde misiniz?", "why": "UI1-gezinmek (no gezinmek beside gezi); 'dolaşmak' = tm 'Wander … dolaşın' (foot.tagline) and ar 'تتمشى'; 'şöyle bir' carries en 'Just strolling' in the persona's colloquial voice, so the s4 'Sadece … yalnızca' echo does not return; 'yalnızca buralıların bildiği' = ar 'ما يعرفها إلا أهل الديرة' (the 'only locals' fact kept exactly) and is the reader's own shorter chain." },
+        { "id": "E5", "key": "advisor.rate", "from": "bu arada gezilecek yerlerin sayfaları emrinizde.", "to": "bu arada gezilecek yerlerin sayfaları sizi bekliyor.", "why": "Reader item 15: 'emrinizde' (at your command) is servile and dated beside the helper's warm voice; 'sizi bekliyor' renders ar 'بين يديك' / en 'all yours' (available to you) with no added fact." },
+        { "id": "E6", "key": "advisor.chip2", "from": "Cebel el-Kare'nin ziyaret saatleri ve giriş ücretleri nedir?", "to": "Cebel el-Kare ne zaman açık, giriş ücreti ne kadar?", "why": "Reader item 5: shorter (50 vs 59 chars) and phrased as a visitor types it; keeps both asks of ar 'ما مواعيد جبل القارة ورسومه؟' (hours = ne zaman açık, fees = giriş ücreti; 'giriş ücreti' as tm '… giriş ücretleri'); name exactly the termbase/tm form. De precedent judge-r1 #8 made the same reshaping ('Wann ist … geöffnet und was kostet der Eintritt?'). No tm pair broken: the tm question pair belongs to a different English source (the FAQ)." },
+        { "id": "E7", "key": "advisor.notice", "part": "sentence 1", "from": "Yalnızca sitenin içeriğinden yanıt verir.", "to": "Bulbul yalnızca sitenin içeriğine dayanarak yanıt verir.", "why": "Reader item 8: the subject the Arabic verb 'يجيب' carries implicitly is made explicit (Bulbul is the one who answers in the same panel; no new fact). 'içeriğine dayanarak' is the natural Turkish government of 'answer from'; scope unchanged ('yalnızca' = 'فقط' / 'only'). Sentence 2 untouched." }
+      ],
+      "rationale": "All three binding-ruling breaches removed; the four naturalness stumbles the reader named on the merits fixed without any fact added, dropped or softened. Remaining deductions: the 'sorun' homograph on the floating button (kept, see reader item 1), the Kare collision in the chip (closed ruling, inherent), the 'Bulbul' spelling stumble (binding brand), and the KVKK register of the notice's second sentence (correct for its function)."
+    }
+  ],
+  "blind_reader_rulings": [
+    { "item": 1, "ruling": "rejected", "reason": "(a) 'sorun' as noun 'problem': the dative 'Bulbul'a' governs a verb, so the noun reading is ungrammatical and is cleared within the word group; 'X'a sorun' is the stock Turkish formula ('Eczacınıza sorun'). The reader's 'Bulbul'a sor' is the sen form, banned by config.address_form and UI1-controls; 'Bulbul'a danışın' runs to 16 characters against the role's ≤14 pill target, and 'Bulbul'a soru sorun' to 19. (b) 'Bulbul' vs 'bülbül': binding termbase entry 'Bulbul' (Latin brand, not 'Bülbül' = nightingale, entry arapbülbülü); not reopened on a reader remark alone; adding what Bulbul is would add a fact the button does not carry (the bird icon carries it).", "new_wording": null },
+    { "item": 2, "ruling": "rejected", "reason": "Brand 'Visit Al-Ahsa' stays Latin (P2, binding, og:site_name in every language); 'El-Ahsa' is the place name, the Latin brand is the site's name, so the two spellings are a brand-vs-name distinction, not an inconsistency. 'Visit Al-Ahsa danışmanı' already answers 'whose advisor'; 'El-Ahsa gezi danışmanı' drops the brand and adds 'gezi' (ar 'مستشار زوروا الأحساء'). 'danışman' = 'مستشار', not bureaucratic. Same as de judge-r1 #2.", "new_wording": null },
+    { "item": 3, "ruling": "applied (partly)", "reason": "Applied: 'gezinmeye' → 'dolaşmaya' (also binding UI1-gezinmek) and the shorter chain 'yalnızca buralıların bildiği yerlerin peşinde misiniz' (E4). Rejected: the 'Ben Bulbul' name stumble (binding termbase brand); emoji are binding (brief); 'her hurma ağacını tanırım' the reader itself passed ('hoş … sorun değil'), kept as the source's palm image.", "new_wording": "Şöyle bir dolaşmaya mı geldiniz, yoksa yalnızca buralıların bildiği yerlerin peşinde misiniz? Nelerden hoşlandığınızı söyleyin, keyfinize göre bir gezi ayarlayayım." },
+    { "item": 4, "ruling": "no remark (passed)", "reason": "Reader: natural, the question it would type. Kept.", "new_wording": null },
+    { "item": 5, "ruling": "applied (partly)", "reason": "Applied: length and formal 'nedir' (E6), on the de precedent. Rejected: the 'Kare' collision is a CLOSED calibration ruling ('Kare (collision)', three readers) and a gloss in a question the visitor sends would add an unsourced fact; the reader's 'giriş ücretli mi?' turns 'what are its fees' (ar 'رسومه') into a yes/no question; whether the site holds the answer is not a translation matter (the hours are on the published page).", "new_wording": "Cebel el-Kare ne zaman açık, giriş ücreti ne kadar?" },
+    { "item": 6, "ruling": "no remark (passed)", "reason": "'El-Ahsa mutfağı' is the published nav.food label and the Arabic's term ('المطبخ الأحسائي'). Kept.", "new_wording": null },
+    { "item": 7, "ruling": "no remark (passed)", "reason": "Kept.", "new_wording": null },
+    { "item": 8, "ruling": "applied (partly)", "reason": "Applied: explicit subject (E7), the one the Arabic verb carries; reader's 'sitedeki bilgilere dayanarak' shape adopted as 'sitenin içeriğine dayanarak' (keeps 'content'). Rejected: explaining what Anthropic is would add a fact (brief: notice adds nothing; 'Anthropic' Latin); 'işlenir' is the right register for a privacy notice, not a defect (de judge-r1 #11); the reader's own second sentence 'Soruların … işlenir' is ungrammatical; the truth of 'saklanmaz' is the owner's legal statement, rendered as given.", "new_wording": "Bulbul yalnızca sitenin içeriğine dayanarak yanıt verir. Sorular Anthropic'in hizmeti üzerinden işlenir ve saklanmaz." },
+    { "item": 9, "ruling": "applied (form only, on UI1-controls)", "reason": "Reader passed 'Gönder'; changed anyway to the binding polite imperative (E1), not on the reader's remark.", "new_wording": "Gönderin" },
+    { "item": 10, "ruling": "applied (partly)", "reason": "Polite form 'Kapatın' (UI1-controls; published lang.suggest.close). The object 'Sohbeti' is not added: the × closes the panel while the conversation is kept (sessionStorage in Advisor.astro), so 'Sohbeti kapatın' would read as ending the chat; the screen reader announces the button inside the named dialog.", "new_wording": "Kapatın" },
+    { "item": 11, "ruling": "applied (partly)", "reason": "'Yeni sohbet başlatın' says what the button does and follows UI1-controls. 'Sohbeti temizle' rejected: sen form, and 'clear' is not the source's word ('محادثة جديدة' / 'New conversation').", "new_wording": "Yeni sohbet başlatın" },
+    { "item": 12, "ruling": "no remark (passed)", "reason": "Status line, participial as UI1-controls requires. Kept.", "new_wording": null },
+    { "item": 13, "ruling": "no remark (passed)", "reason": "Kept; sentence case (P9).", "new_wording": null },
+    { "item": 14, "ruling": "rejected", "reason": "'dinleniyor' is the source's persona line ('بلبل يستريح الآن' / 'Bulbul is resting'); spelling out 'service unavailable' would replace the owner's voice with a fact the line does not state. 'Gezinizi planlayın' is the exact published nav.plan label, binding by the brief and BL1-features (page named by its label); 'Gezini planla' is sen. 'Gezilecek yerlere … göz atın' is the published plan.empty.browse phrasing for the attractions pages.", "new_wording": null },
+    { "item": 15, "ruling": "applied (partly)", "reason": "Applied: 'emrinizde' → 'sizi bekliyor' (E5), a real register clash with the helper's warm voice. Rejected: 'Yarın tekrar sorabilirsiniz' rewrites 'see you tomorrow' ('نلتقي غداً') into a permission the source does not state; the reader itself rated 'Yarın görüşmek üzere' good.", "new_wording": "Bugünkü soru sınırına ulaştınız. Yarın görüşmek üzere; bu arada gezilecek yerlerin sayfaları sizi bekliyor." },
+    { "item": 16, "ruling": "rejected", "reason": "Considered on the merits: the contrast between the playful 'resting' line and the plain error is in the source (ar 'تعذّر الوصول إلى بلبل' is impersonal too); an error state is where the visitor needs plain instruction. Reader: 'Sorun yok'. Kept.", "new_wording": null },
+    { "item": "general", "ruling": "rejected", "reason": "'Bulbul' spelling: binding termbase brand (not reopened on taste; already raised to the owner by the emergency batch). Al-Ahsa/El-Ahsa: brand vs place name (P2); 'Cebel el-Kare' lower-case article inside a compound is P1, not an inconsistency.", "new_wording": null }
+  ],
+  "raised_by_stage4_rulings": [
+    { "item": "advisor.intro greeting «Hoş geldiniz, sefalar getirdiniz!»", "ruling": "kept", "reason": "Stock Turkish hosting welcome, the closest register to the hearty Gulf 'يا هلا والله!'; one '!', siz, no fact. The blind reader called it 'doğal ve sıcak'. Bare 'Hoş geldiniz!' is flatter than the Arabic." },
+    { "item": "advisor.intro «her hurma ağacını tanırım»", "ruling": "kept", "reason": "Keeps the palm image of 'نخلة نخلة' / 'palm by palm' (de judge r1 #3 and r2 #4 kept the literal image for the same reason); 'karış karış bilirim' would erase it. Reader read it as playful hyperbole, 'sorun değil'." },
+    { "item": "advisor.notice «saklanmaz» vs «kaydedilmez»", "ruling": "kept 'saklanmaz'", "reason": "'تُحفظ' / 'stored' = retained; 'saklanmaz' is that sense exactly. 'kaydedilmez' (not recorded) would claim the questions are never written down at all, stronger than the source. No published tr legal text mentions the advisor, so there is no wording to align with." }
+  ],
+  "decision": "APPROVE",
+  "return_to_stage": null,
+  "notes": [
+    "[s7] Threshold 90 (config.pass_threshold). Cycle 1 = 87 < 90 (binding rulings UI1-controls and UI1-gezinmek broken): no APPROVE; judge fix loop, cycle 2 = 92 ≥ 90 → APPROVE. One page in the batch, so batch score = 92. Loops used: 1 of 3.",
+    "[s7] Stage-5 report lists no ASCII-stripped letter, no i/İ error, no non-Latin digit; re-checked on the final strings (structural gate passes).",
+    "[s7] Owed by the role file before merge: an independent proofread and a FRESH blind reader on the edited spots E1–E7 (advisor.send, advisor.close, advisor.reset, advisor.intro line 3, advisor.rate, advisor.chip2, advisor.notice sentence 1). Checklist for the fresh reader: does 'Şöyle bir dolaşmaya mı geldiniz' read as 'just for a stroll'; does 'sizi bekliyor' read naturally for pages; does the chip2 question read as one a visitor types; is the notice's subject clear. A medium remark landing on an edited spot is ruled by this judge in an addendum without further edits.",
+    "[s7] Unchanged from stage 5: advisor.open, advisor.title, advisor.intro lines 1–2, advisor.placeholder, advisor.error, advisor.cards, advisor.chip1, advisor.chip3, advisor.thinking, advisor.resting, advisor.notice sentence 2.",
+    "[s7] Proposed batch ruling for the coordinator (ADV-1): the advisor's action labels follow UI1-controls (Gönderin · Kapatın · Yeni sohbet başlatın); the floating button stays 'Bulbul'a sorun' (≤14 chars; 'sor' is sen, 'danışın' over length); the notice names Bulbul as the subject of sentence 1 and keeps 'saklanmaz'.",
+    "[s7] No open_items (P6/P7/P11/P12) touched. No new proper name; termbase_additions empty. Persona name 'Bulbul' used exactly as the termbase entry.",
+    "[s7] advisor.intro keeps exactly two \\n and '🐦🌴' at the end of line 1; all apostrophes U+0027 (P8); ellipsis U+2026; curly quotes “…”."
+  ],
+  "source_defects": [
+    "advisor.chip3: en 'Hasawi food' deviates from ar 'المطبخ الأحسائي' (and from the site rule «الأحسائي» not «الحساوي»); en should read 'Al-Ahsa cuisine'. tr follows ar + nav.food 'El-Ahsa mutfağı'.",
+    "advisor.intro: en 'Hala!' is weaker than ar 'يا هلا والله!' (hearty welcome); tr follows ar.",
+    "Owner, for confirmation only (no change made): the Turkish reader again stumbled on the Latin 'Bulbul' against Turkish 'bülbül' (nightingale). The termbase ruling stands (Latin brand, as en/de, already raised by the emergency batch 2026-11-15); listed so the owner sees a second reader on it."
+  ],
+  "termbase_additions": [],
+  "final_strings": {
+    "advisor.open": "Bulbul'a sorun",
+    "advisor.title": "Bulbul, Visit Al-Ahsa danışmanı",
+    "advisor.intro": "Hoş geldiniz, sefalar getirdiniz! 🐦🌴\nBen Bulbul, El-Ahsa'nın her hurma ağacını tanırım.\nŞöyle bir dolaşmaya mı geldiniz, yoksa yalnızca buralıların bildiği yerlerin peşinde misiniz? Nelerden hoşlandığınızı söyleyin, keyfinize göre bir gezi ayarlayayım.",
+    "advisor.placeholder": "Sorunuzu yazın…",
+    "advisor.send": "Gönderin",
+    "advisor.close": "Kapatın",
+    "advisor.notice": "Bulbul yalnızca sitenin içeriğine dayanarak yanıt verir. Sorular Anthropic'in hizmeti üzerinden işlenir ve saklanmaz.",
+    "advisor.resting": "Bulbul şu an dinleniyor. Gezilecek yerlere ya da “Gezinizi planlayın” sayfasına göz atabilirsiniz.",
+    "advisor.rate": "Bugünkü soru sınırına ulaştınız. Yarın görüşmek üzere; bu arada gezilecek yerlerin sayfaları sizi bekliyor.",
+    "advisor.error": "Bulbul'a ulaşılamadı. Lütfen birazdan yeniden deneyin.",
+    "advisor.cards": "İlgili sayfalar",
+    "advisor.chip1": "Bir günde nereleri görmeliyim?",
+    "advisor.chip2": "Cebel el-Kare ne zaman açık, giriş ücreti ne kadar?",
+    "advisor.chip3": "El-Ahsa mutfağını nerede deneyebilirim?",
+    "advisor.thinking": "Bulbul yazıyor…",
+    "advisor.reset": "Yeni sohbet başlatın"
+  }
+}
