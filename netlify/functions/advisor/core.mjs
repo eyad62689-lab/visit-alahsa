@@ -6,11 +6,11 @@
 
 import { isIP } from 'node:net'
 
-/** اللغات الست — بالترتيب نفسه في src/i18n/langs.ts */
+/** اللغات السبع — بالترتيب نفسه في src/i18n/langs.ts */
 import { randomInt } from 'node:crypto'
 
-export const LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur']
-const LANG_NAME = { ar: 'Arabic', en: 'English', zh: 'Simplified Chinese', de: 'German', ru: 'Russian', ur: 'Urdu' }
+export const LANGS = ['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr']
+const LANG_NAME = { ar: 'Arabic', en: 'English', zh: 'Simplified Chinese', de: 'German', ru: 'Russian', ur: 'Urdu', tr: 'Turkish' }
 
 /** الأسعار بالدولار لكل مليون رمز (Claude API، 2026-10) — لتقدير الإنفاق الشهري من حقول usage.
  *  التقدير محافظ: ما يغيب نموذجه هنا يُحسب بسعر Sonnet. */
@@ -171,7 +171,7 @@ SHOPPING
 - When the visitor asks where to buy dates, handicrafts, sweets, gifts or local products, answer from the ONLINE STORES section: name 2 or 3 stores with what they sell, and link the stores page [page/stores] first, then the store ids. A rotating selection of stores is attached to the visitor's message: choose from it (matched to what the visitor wants) rather than always the first stores of the list, so different visitors hear about different stores. A heritage souq is a place to visit, not the answer to "where do I buy"; mention it only if the visitor asks about visiting a market.
 
 LANGUAGE AND STYLE
-- Reply in {LANG_NAME}. If the visitor clearly writes in another of these languages (Arabic, English, Chinese, German, Russian, Urdu), reply in the visitor's language instead.
+- Reply in {LANG_NAME}. If the visitor clearly writes in another of these languages (Arabic, English, Chinese, German, Russian, Urdu, Turkish), reply in the visitor's language instead.
 - Be warm, concise and concrete: usually 2-5 short sentences, at most about 120 words. In Arabic a light, friendly Gulf touch in greetings (يا هلا، حيّاك) is welcome, but the information itself stays in clear standard Arabic; no emoji. A day plan may be longer, organised as morning / afternoon / evening using only card entries.
 - Plain text only: no markdown, no bullet symbols, no URLs, no headings. Links are added by the interface from your [[links]] line.
 - Arabic terminology: the adjective is «الأحسائي» not «الحساوي» except in proper names (البشت الحساوي, اللومي الحساوي); Al-Ahsa is «أكبر واحة في العالم» without adding "نخيل" or "طبيعية"; the caves of Jabal Al-Qarah are warm in winter (not "at night"); dried lime is never called black.

@@ -6,7 +6,7 @@
 // من الدالة (معرّفات البطاقة ← صفحات مبنية)؛ المحادثة في sessionStorage داخل try/catch
 // فتنجو من تنقّلات ClientRouter وتُنسى بإغلاق التبويب؛ لا شيء يُحفظ في الخادم.
 //
-// النصوص: advisor.* في ui.ts باللغات الست (zh/de/ru/ur عبر خطوط ترجمتها، دفعة advisor-ui).
+// النصوص: advisor.* في ui.ts باللغات السبع (zh/de/ru/ur/tr عبر خطوط ترجمتها، دفعة advisor-ui).
 // لغة جديدة بلا مفاتيحها تُعرض بلا نصّ ولا اقتراحات جاهزة (chips) لا إنجليزية.
 // الجواب نفسه بلغة الصفحة من النموذج. القياس: data-track (advisor_open / advisor_card_click)
 // وVATrack('advisor_send')، وVATrack('advisor_answer') بتسميات المواضيع وأنواع البطاقات بعد كل جواب.
@@ -24,8 +24,6 @@ import { useTranslations, isRtl } from '../i18n/utils';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-// التركية: المستشار لا يخدمها بعد (LANGS في netlify/functions/advisor/core.mjs)، فيحاور على /tr/
-// بالإنجليزية — data-lang أدناه — حتى تمرّ دفعة المستشار بخطها.
 const t = useTranslations(lang);
 const own = (key: string): string | undefined => (ui[lang] as Record<string, string>)[key];
 // الصفحة «مترجمة» حين تحمل كتلة لغتها مفاتيح advisor.* نفسها؛ وإلا تُعرض الواجهة بلا أي نصّ إنجليزي من كلمتين
@@ -74,7 +72,7 @@ const straws = Array.from({ length: 7 }, () => {
   return { d: `M${r1(x)},${r1(y)}L${r1(x + Math.sin(ang) * len)},${r1(y - Math.cos(ang) * len * 0.6)}`, c: pick() };
 });
 ---
-<div class="adv-root" id="advisor" data-lang={lang === 'tr' ? 'en' : lang} data-endpoint={endpoint} dir={dir} data-pagefind-ignore
+<div class="adv-root" id="advisor" data-lang={lang} data-endpoint={endpoint} dir={dir} data-pagefind-ignore
   data-s-resting={s('advisor.resting')} data-s-rate={s('advisor.rate')} data-s-error={s('advisor.error')}
   data-s-cards={s('advisor.cards')} data-s-thinking={s('advisor.thinking')}>
   <button type="button" class="adv-fab" aria-expanded="false" aria-controls="advisor-panel" aria-label={translated ? t('advisor.open') : brand} data-track="advisor_open">

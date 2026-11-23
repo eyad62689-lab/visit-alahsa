@@ -27,7 +27,8 @@ console.log(existsSync(KB_PATH) ? `· البطاقة الفعلية: ${kb.entrie
 console.log('\n[1] validateRequest');
 const good = { lang: 'ar', page: '/معالم/جبل-القارة/', messages: [{ role: 'user', content: 'متى يفتح؟' }] };
 ok(validateRequest(good).ok, 'طلب سليم يُقبل');
-ok(!validateRequest({ ...good, lang: 'fr' }).ok, 'لغة خارج الست تُرفض');
+ok(!validateRequest({ ...good, lang: 'fr' }).ok, 'لغة خارج السبع تُرفض');
+ok(LANGS.length === 7 && validateRequest({ ...good, lang: 'tr', page: '/tr/attractions/jabal-al-qarah/' }).lang === 'tr', 'التركية لغة سابعة مقبولة');
 ok(!validateRequest({ ...good, messages: [] }).ok, 'بلا رسائل يُرفض');
 ok(!validateRequest({ ...good, messages: [{ role: 'assistant', content: 'x' }] }).ok, 'أول دور ليس الزائر يُرفض');
 ok(!validateRequest({ ...good, messages: [{ role: 'user', content: 'a' }, { role: 'user', content: 'b' }] }).ok, 'دوران متتاليان للزائر يُرفضان');
@@ -54,6 +55,11 @@ const sys = buildSystem('ur', 'KB');
 ok(sys.length === 2 && sys.every((b) => b.cache_control?.type === 'ephemeral'), 'كتلتا نظام مخزَّنتان');
 ok(sys[0].text.includes('Reply in Urdu') && sys[0].text.includes('Latin digits'), 'القواعد تسمّي اللغة وتُلزم بالأرقام اللاتينية');
 ok(sys[0].text.includes('Never invent') && sys[0].text.includes('[[links:'), 'القواعد تمنع الاختلاق وتطلب سطر الروابط');
+const sysTr = buildSystem('tr', 'KB');
+ok(sysTr[0].text.includes('Reply in Turkish') && sysTr[1].text.includes('language: Turkish'), 'التركية تُسمّى في القواعد وفي رأس البطاقة');
+const trCard = renderKb(kb, 'tr');
+ok(trCard.includes('/tr/attractions/') && !/\/en\/(attractions|events|plan-your-trip|souqs-parks-farms)\/(?=[\s)\]]|$)/m.test(trCard), 'بطاقة التركية تحيل إلى فهارسها لا إلى الإنجليزية');
+ok(pageContext(kb, 'tr', '/tr/attractions/jabal-al-qarah/').includes('[jabal-al-qarah]'), 'سياق الصفحة التركية يطابق معلمها');
 ok(pageContext(kb, 'ar', '/معالم/جبل-القارة/?x=1#y').includes('[jabal-al-qarah]'), 'سياق الصفحة يطابق الرابط بلا استعلام أو علامة');
 ok(pageContext(kb, 'ar', '/لا-شيء/') === '', 'صفحة بلا مدخل → بلا سياق');
 

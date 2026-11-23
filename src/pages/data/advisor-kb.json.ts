@@ -8,7 +8,7 @@
 // المعلم بلا بند موثّق للمواعيد أو الرسوم يُوسم pending فيقول المستشار «بانتظار التأكيد».
 // لا متن كامل: الحجم بالرموز هو كلفة كل محادثة (الخزن المؤقت للبرومبت يقرأها بخُمس السعر).
 //
-// النصوص لكل لغة من حقولها المعتمدة وحدها (title_zh/_de/_ru/_ur من خطوط الترجمة)؛ ما يغيب
+// النصوص لكل لغة من حقولها المعتمدة وحدها (title_zh/_de/_ru/_ur/_tr من خطوط الترجمة)؛ ما يغيب
 // بلغة تتركه الدالة للإنجليزية مع رابط الصفحة الإنجليزية — السابقة نفسها في بقية الموقع.
 import type { APIRoute } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
@@ -54,9 +54,8 @@ export type KbEntry = {
   stops?: L[];
 };
 
-// التركية خارج قاعدة المعرفة حتى تمرّ دفعة المستشار بخطها: المستشار على /tr/ يحاور بالإنجليزية
-// (Advisor.astro)، ولا تُكتب له مداخل تركية قبل ذلك.
-const L_ALL = LANGS.filter((l) => l !== 'tr');
+// اللغات السبع كلها في قاعدة المعرفة (التركية منذ دفعة advisor-ui بخطها).
+const L_ALL: readonly Lang[] = LANGS;
 const SUF: Record<Lang, string> = { ar: '', en: '_en', zh: '_zh', de: '_de', ru: '_ru', ur: '_ur', tr: '_tr' };
 
 /** يجمع حقل `base` بلواحق اللغات من كائن بيانات (title, title_en, title_zh …) */
@@ -96,7 +95,7 @@ function attractionEntry(e: Att): KbEntry {
   // الصفحة الرقيقة (publish.ts) تُبنى للزائر وإن كانت noindex — فرابطها صالح للإحالة؛ وجود الصفحة
   // بكل لغة يتحقق منه gen-advisor-kb.mjs على dist.
   const href: L = { ar: attractionHref(e.data, 'ar'), en: attractionHref(e.data, 'en') };
-  for (const l of ['zh', 'de', 'ru', 'ur'] as const) {
+  for (const l of ['zh', 'de', 'ru', 'ur', 'tr'] as const) {
     if (d[`title_${l}`]) {
       const h = attractionHref(e.data, l);
       if (!isUnlisted(h)) href[l] = h;
@@ -139,7 +138,7 @@ function diningEntry(e: CollectionEntry<'dining'>): KbEntry {
   const href: L = {};
   // الصفحة المفردة تُبنى فوق عتبة الكلمات فقط (publish.ts)؛ دونها يُحال إلى الفهرس
   for (const l of ['ar', 'en'] as const) href[l] = hasDiningPage(e, l) ? diningHref(e.data, l) : DINE_INDEX[l];
-  for (const l of ['zh', 'de', 'ru', 'ur'] as const) {
+  for (const l of ['zh', 'de', 'ru', 'ur', 'tr'] as const) {
     const body = d[`body_${l}`];
     href[l] = typeof body === 'string' && body.trim() && hasDiningPage(e, 'en') ? diningHref(e.data, l) : DINE_INDEX[l];
   }
@@ -303,12 +302,12 @@ function storesPageSummary(n: number): L {
 
 // ── صفحات الأقسام: الروابط كما يبنيها الشريط العلوي (Header.astro) ────────────
 const SECTION = (ar: string, latin: string): Record<Lang, string> => ({
-  ar, en: `/en/${latin}`, zh: `/zh/${latin}`, de: `/de/${latin}`, ru: `/ru/${latin}`, ur: `/ur/${latin}`, tr: `/en/${latin}`,
+  ar, en: `/en/${latin}`, zh: `/zh/${latin}`, de: `/de/${latin}`, ru: `/ru/${latin}`, ur: `/ur/${latin}`, tr: `/tr/${latin}`,
 });
 function pageEntries(): KbEntry[] {
   // الاسم من مفتاح ui.ts بكل لغة له فيها نصّ معتمد (zh/de/ru/ur مرّت بخطوطها)، والإنجليزية احتياط الدالة
   const pages: { id: string; key: string; href: Partial<Record<Lang, string>> }[] = [
-    { id: 'page/home', key: 'site.brand', href: { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/' } },
+    { id: 'page/home', key: 'site.brand', href: { ar: '/', en: '/en/', zh: '/zh/', de: '/de/', ru: '/ru/', ur: '/ur/', tr: '/tr/' } },
     { id: 'page/attractions', key: 'nav.attractions', href: SECTION('/معالم/', 'attractions/') },
     { id: 'page/leisure', key: 'nav.leisure', href: SECTION('/أسواق-ومنتزهات-ومزارع/', 'souqs-parks-farms/') },
     { id: 'page/map', key: 'nav.map', href: Object.fromEntries(L_ALL.map((l) => [l, staticHref('map', l)])) },
@@ -318,11 +317,11 @@ function pageEntries(): KbEntry[] {
     { id: 'page/dining', key: 'nav.dining', href: DINE_INDEX },
     { id: 'page/stay', key: 'nav.stay', href: STAY_INDEX },
     { id: 'page/plan', key: 'nav.plan', href: SECTION('/خطط/', 'plan-your-trip/') },
-    { id: 'page/my-trip', key: 'nav.myTrip', href: { ar: '/رحلتي/', en: '/en/plan/', zh: '/zh/plan/', de: '/de/plan/', ru: '/ru/plan/' } },
+    { id: 'page/my-trip', key: 'nav.myTrip', href: { ar: '/رحلتي/', en: '/en/plan/', zh: '/zh/plan/', de: '/de/plan/', ru: '/ru/plan/', tr: '/tr/plan/' } },
     { id: 'page/visa', key: 'foot.l.visa', href: Object.fromEntries(L_ALL.map((l) => [l, visaHref(l)])) },
     { id: 'page/unesco', key: 'foot.l.unesco', href: Object.fromEntries(L_ALL.map((l) => [l, staticHref('unesco', l)])) },
     { id: 'page/trails', key: 'nav.trails', href: Object.fromEntries((['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as TrailLang[]).map((l) => [l, trailsIndexHref(l)])) },
-    { id: 'page/blog', key: 'nav.blog', href: { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/' } },
+    { id: 'page/blog', key: 'nav.blog', href: { ar: '/مدونة/', en: '/en/blog/', zh: '/zh/blog/', de: '/de/blog/', ru: '/ru/blog/', tr: '/tr/blog/' } },
     { id: 'page/stores', key: 'nav.stores', href: Object.fromEntries(L_ALL.map((l) => [l, storesHref(l)])) },
     { id: 'page/guides', key: 'guides.nav', href: { ar: guidesHref('ar'), en: guidesHref('en') } },
     { id: 'page/about', key: 'foot.l.about', href: { ar: aboutHref('ar'), en: aboutHref('en') } },
