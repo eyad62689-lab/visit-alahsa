@@ -222,14 +222,14 @@ export const WILDLIFE_BIRDS: WildlifeBird[] = [
     credit: { holder: 'Hans Hillewaert', license: 'CC BY-SA 3.0', licenseUrl: BY_SA_3, file: commons('Ceryle_rudis_(male).jpg') },
   },
   {
-    img: '/img/wildlife/european-turtle-dove', group: 'other', sci: 'Streptopelia turtur', pos: 'center 30%',
+    img: '/img/wildlife/european-turtle-dove', group: 'other', sci: 'Streptopelia turtur', pos: 'center 8%',
     name: { ar: 'القمري الأوروبي', en: 'European Turtle Dove' },
     note: { ar: 'تذكر وكالة الأنباء السعودية «القمري» ضمن الطيور المهاجرة إلى البحيرة.', en: 'The Saudi Press Agency names the turtle dove among the lake’s migratory birds.' },
     source: 'spa',
     credit: { holder: 'Yuvalr', license: 'CC BY-SA 3.0', licenseUrl: BY_SA_3, file: commons('European_Turtle_Dove_(Streptopelia_turtur).jpg') },
   },
   {
-    img: '/img/wildlife/barn-swallow', group: 'other', sci: 'Hirundo rustica',
+    img: '/img/wildlife/barn-swallow', group: 'other', sci: 'Hirundo rustica', pos: 'center 15%',
     name: { ar: 'سنونو المخازن', en: 'Barn Swallow' },
     note: { ar: 'يرد باسم «خطّاف المخازن» في تقرير وكالة الأنباء السعودية ضمن الطيور المهاجرة إلى البحيرة.', en: 'Listed in the Saudi Press Agency report among the lake’s migratory birds.' },
     source: 'spa',

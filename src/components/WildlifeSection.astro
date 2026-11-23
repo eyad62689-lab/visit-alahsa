@@ -62,7 +62,7 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
             </div>
             <figcaption class="wl-cap">
               {x(T.photoBy)}: <bdi lang="en" dir="ltr">{b.credit.holder} · <a href={b.credit.licenseUrl} rel="license noopener" target="_blank">{b.credit.license}</a></bdi>
-              {' · '}<a href={b.credit.file} rel="noopener" target="_blank">{x(T.via)}</a>
+              {' '}<span class="wl-via">(<a href={b.credit.file} rel="noopener" target="_blank">{x(T.via)}</a>)</span>
             </figcaption>
           </figure>
           <div class="wl-body">
@@ -99,7 +99,6 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
         {WILDLIFE_REFS.map((r) => (
           <li>
             {r.cite && <bdi class="wl-cite" lang="en" dir="ltr">{r.cite}</bdi>}
-            {r.cite && r.note && ' — '}
             {r.note && <span>{x(r.note)}</span>}
             {' '}
             {r.links.map((l, i) => (
@@ -122,6 +121,7 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
   .photo.wl-photo > img { filter: none; object-position: var(--wl-pos, center); }
   .photo.wl-photo::after { content: none; }
   .wl-head { max-inline-size: 68ch; }
+  .wl-head .eyebrow { letter-spacing: 0; }
   .wl-title { font-size: var(--t-2xl); color: var(--c-turq-deep); margin-block: var(--s-2) var(--s-3); line-height: 1.25; }
   .wl-lead { font-size: var(--t-lg); line-height: 1.7; color: var(--c-ink-soft); }
 
@@ -149,7 +149,7 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
   .wl-fig { margin: 0; }
   .wl-cap { font-size: .75rem; line-height: 1.5; color: var(--c-ink-soft); padding: var(--s-1) var(--s-3) 0; }
   .wl-cap a, .wl-src a, .wl-refs a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 2px; }
-  .wl-cap a[rel~='license'] { white-space: nowrap; }
+  .wl-cap a[rel~='license'], .wl-via { white-space: nowrap; }
   .wl-body { padding: var(--s-2) var(--s-3) var(--s-4); display: flex; flex-direction: column; flex: 1; }
   .wl-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.1875rem; line-height: 1.35; color: var(--c-turq-deep); margin-block-start: 2px; }
   .wl-latin { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: 2px var(--s-2); text-align: start; }
@@ -167,5 +167,15 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
   .wl-refs summary { cursor: pointer; font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); }
   .wl-refs ol { margin: var(--s-3) 0 0; padding-inline-start: var(--s-4); font-size: var(--t-sm); line-height: 1.7; color: var(--c-ink-soft); }
   .wl-refs li { margin-block-end: var(--s-2); }
-  .wl-cite { unicode-bidi: isolate; }
+  .wl-cite { display: block; }
+  [dir='rtl'] .wl-cite { text-align: right; }
+
+  /* Phones: photo beside the text, credit line under both, so fifteen cards stay a short scroll */
+  @media (max-width: 560px) {
+    .wl-bird { display: grid; grid-template-columns: 112px minmax(0, 1fr); align-items: start; }
+    .wl-fig { display: contents; }
+    .wl-ph { grid-column: 1; grid-row: 1; margin-block-start: var(--s-3); margin-inline-start: var(--s-3); border-radius: var(--radius-sm); overflow: hidden; }
+    .wl-body { grid-column: 2; grid-row: 1; padding-block: var(--s-3) var(--s-2); }
+    .wl-cap { grid-column: 1 / -1; grid-row: 2; padding: 0 var(--s-3) var(--s-3); }
+  }
 </style>
