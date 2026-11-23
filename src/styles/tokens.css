@@ -145,7 +145,10 @@ html[dir='ltr'] { --hero-scrim-dir: 105deg; } /* إنجليزي LTR — الظل
 :root:lang(ar) main :is(h1, h2, h3, h4) { line-height: 1.35; }
 /* ما وُسم عربياً داخل صفحة أوردية (سطر العلامة، و«العربية» في مبدّل اللغة وشريط الاقتراح)
    نصٌّ عربي لا أوردي: يعود إلى سلسلتَي :root — وهما منسوختان هنا حرفياً، فأي تعديل هناك يُكرَّر هنا. */
-:root:lang(ur) :lang(ar) {
+/* والصينية كذلك: سلسلتاها خطوط نظام صينية بلا وجه عربي، فكلمة «الأحساء» في سطر العلامة (lang="ar")
+   كانت تُرسم بخط النظام العربي لا بـCairo. */
+:root:lang(ur) :lang(ar),
+:root:lang(zh-CN) :lang(ar) {
   --font-heading: 'Playfair Display', 'Cairo', 'Cairo AR Fallback', 'Amiri', 'Marcellus', Georgia, serif;
   --font-body:    'Lora', 'Lora Fallback', 'IBM Plex Sans Arabic', 'Plex AR Fallback', system-ui, sans-serif;
 }
