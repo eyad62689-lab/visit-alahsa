@@ -585,11 +585,10 @@ export const HOME_COPY: Record<HomeLang, HomeCopy> = {
 
 export const isHomeLang = (l: Lang): l is HomeLang => (HOME_LANGS as readonly string[]).includes(l);
 
-/** العنوان الصغير فوق الفصل («01 · The Gate»): لاتيني في العربية والإنجليزية كما اعتُمد التصميم
- *  (وموسوم lang="en" في العربية)، وفي غيرهما اسم الفصل المترجم من شريط الفصول — نصّ لاتيني في
- *  صفحة صينية يحسبه فحص سلامة اللغة C22 غير مترجم. */
+/** العنوان الصغير فوق الفصل: «01 · The Gate» في الإنجليزية، وفي كل لغة أخرى — ومنها العربية — اسم الفصل
+ *  كما في شريط الفصول (rail.items)، فلا يظهر نصّ لاتيني في صفحة غير لاتينية (يحسبه فحص سلامة اللغة C22
+ *  غير مترجم في الصينية). */
 export const chapterEyebrow = (lang: HomeLang, i: number, latin: string) => {
   const no = String(CHAPTER_NO[i]).padStart(2, '0');
-  if (lang === 'ar' || lang === 'en') return { text: `${no} · ${latin}`, lang: lang === 'en' ? undefined : 'en' };
-  return { text: `${no} · ${HOME_COPY[lang].rail.items[i][1]}`, lang: undefined };
+  return { text: `${no} · ${lang === 'en' ? latin : HOME_COPY[lang].rail.items[i][1]}` };
 };
