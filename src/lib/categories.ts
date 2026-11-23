@@ -27,7 +27,7 @@ export const CATEGORY_LABELS: Partial<Record<Lang, Record<string, string>>> & { 
     market: 'Heritage souqs',
     farm: 'Farms',
     experience: 'Experiences & crafts',
-    taste: 'Hasawi Cuisine',
+    taste: 'Al-Ahsa Cuisine',
     events: 'Events',
   },
   zh: {

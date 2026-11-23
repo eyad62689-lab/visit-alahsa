@@ -19,7 +19,7 @@ export const GUIDE_SPECIALTY_NAMES: Record<'ar' | 'en', Record<GuideSpecialty, s
   en: {
     heritage: 'Heritage & history', unesco: 'UNESCO sites', farms: 'Farms & palm groves',
     souqs: 'Souqs & crafts', desert: 'Desert', families: 'Families',
-    food: 'Hasawi cuisine', mosques: 'Historic mosques', nature: 'Nature',
+    food: 'Al-Ahsa cuisine', mosques: 'Historic mosques', nature: 'Nature',
   },
 };
 

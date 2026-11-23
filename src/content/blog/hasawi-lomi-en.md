@@ -41,7 +41,7 @@ A cherished Hasawi summer custom surrounds the lomi: in its season, families gat
 
 ## In the Hasawi Kitchen
 
-Lift the lid of a Hasawi pot and the lomi is there: [Hasawi rice](/en/food/) — one of Al-Ahsa’s best-known dishes — simmers with its spices of lomi, cinnamon and cardamom until it takes on its red-brown colour, while the heritage dish **mufallaq** is cracked wheat flavoured with lomi and crowned with dates and boiled eggs. The full tour of the dishes is on the [Hasawi cuisine page](/en/food/).
+Lift the lid of a Hasawi pot and the lomi is there: [Hasawi rice](/en/food/) — one of Al-Ahsa’s best-known dishes — simmers with its spices of lomi, cinnamon and cardamom until it takes on its red-brown colour, while the heritage dish **mufallaq** is cracked wheat flavoured with lomi and crowned with dates and boiled eggs. The full tour of the dishes is on the [Al-Ahsa cuisine page](/en/food/).
 
 ## The Hasawi Lomi Exhibition: An Annual Celebration
 
