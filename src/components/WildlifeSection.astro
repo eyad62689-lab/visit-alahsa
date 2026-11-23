@@ -1,0 +1,171 @@
+---
+// Wildlife section of the Al-Asfar Lake page: facts, plant belts, birds, other life, visitor tips and
+// the reference list, all from src/data/asfar-wildlife.ts. Arabic and English only; the caller does not
+// render it for languages whose text has not been through their translation pipeline.
+import Photo from './Photo.astro';
+import { WILDLIFE_BELTS, WILDLIFE_BIRDS, WILDLIFE_GROUPS, WILDLIFE_REFS, WILDLIFE_SOURCES, WILDLIFE_TEXT as T } from '../data/asfar-wildlife';
+
+interface Props { lang: 'ar' | 'en'; }
+const { lang } = Astro.props;
+const ar = lang === 'ar';
+const x = (v: { ar: string; en: string }) => v[lang];
+// A reference link without a label of its own shows where it leads: the DOI, or the publisher's host name.
+const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' + url.slice(16) : new URL(url).hostname.replace(/^www\./, ''));
+---
+<section class="wl" data-wildlife aria-labelledby="wl-title">
+  <div class="container">
+    <header class="wl-head" data-reveal>
+      <span class="eyebrow">{x(T.kicker)}</span>
+      <h2 class="wl-title" id="wl-title">{x(T.title)}</h2>
+      <p class="wl-lead">{x(T.lead)}</p>
+    </header>
+
+    <ul class="wl-facts" role="list" data-reveal>
+      {T.facts.map((f) => (
+        <li class="wl-fact"><b class="wl-fact-n"><bdi>{x(f.n)}</bdi></b><span class="wl-fact-t">{x(f.t)}</span></li>
+      ))}
+    </ul>
+
+    <div class="wl-block" data-reveal>
+      <span class="t-caption wl-k">{x(T.aboutK)}</span>
+      <h3 class="wl-h">{x(T.aboutH)}</h3>
+      <p class="wl-p">{x(T.about)}</p>
+    </div>
+
+    <div class="wl-block" data-reveal>
+      <span class="t-caption wl-k">{x(T.plantsK)}</span>
+      <h3 class="wl-h">{x(T.plantsH)}</h3>
+      <p class="wl-p">{x(T.plants)}</p>
+      <ol class="wl-belts" role="list">
+        {WILDLIFE_BELTS.map((b) => (
+          <li class="wl-belt">
+            <h4 class="wl-belt-h">{x(b.h)}</h4>
+            <p>{x(b.before)} <i class="wl-sci" lang="la" dir="ltr">{b.sci}</i>{x(b.after)}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="wl-block" data-reveal>
+      <span class="t-caption wl-k">{x(T.birdsK)}</span>
+      <h3 class="wl-h">{x(T.birdsH)}</h3>
+      {T.birds.map((p) => <p class="wl-p">{x(p)}</p>)}
+      <p class="wl-note" data-wl-photos-note>{x(T.photosNote)}</p>
+    </div>
+
+    <ul class="wl-grid" role="list">
+      {WILDLIFE_BIRDS.map((b) => (
+        <li class="card wl-bird" data-wl-bird data-reveal>
+          <figure class="wl-fig">
+            <div class="wl-ph" style={b.pos ? `--wl-pos:${b.pos}` : undefined}>
+              <Photo src={b.img} label={x(b.name)} class="wl-photo" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 360px" />
+            </div>
+            <figcaption class="wl-cap">
+              {x(T.photoBy)}: <bdi lang="en" dir="ltr">{b.credit.holder} · <a href={b.credit.licenseUrl} rel="license noopener" target="_blank">{b.credit.license}</a></bdi>
+              {' · '}<a href={b.credit.file} rel="noopener" target="_blank">{x(T.via)}</a>
+            </figcaption>
+          </figure>
+          <div class="wl-body">
+            <span class="t-caption wl-k">{x(WILDLIFE_GROUPS[b.group])}</span>
+            <h4 class="wl-name">{x(b.name)}</h4>
+            <p class="wl-latin" lang={ar ? 'en' : 'la'} dir="ltr">{ar && <>{b.name.en} · </>}<i>{b.sci}</i></p>
+            <p class="wl-d">{x(b.note)}</p>
+            <p class="wl-src">{x(T.source)}: <a href={WILDLIFE_SOURCES[b.source].url} rel="noopener" target="_blank">{x(WILDLIFE_SOURCES[b.source].label)}</a></p>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="wl-note">{x(T.listNote)}</p>
+
+    <div class="wl-block" data-reveal>
+      <span class="t-caption wl-k">{x(T.otherK)}</span>
+      <h3 class="wl-h">{x(T.otherH)}</h3>
+      {T.other.map((p) => <p class="wl-p">{x(p)}</p>)}
+    </div>
+
+    <div class="wl-block" data-reveal>
+      <span class="t-caption wl-k">{x(T.tipsK)}</span>
+      <h3 class="wl-h">{x(T.tipsH)}</h3>
+      <ul class="wl-tips" role="list">
+        {T.tips.map((tip) => (
+          <li><b>{x(tip.h)}</b><span>{x(tip.t)}</span></li>
+        ))}
+      </ul>
+    </div>
+
+    <details class="wl-refs" data-wl-refs>
+      <summary>{x(T.sourcesH)} <bdi>({WILDLIFE_REFS.length})</bdi></summary>
+      <ol>
+        {WILDLIFE_REFS.map((r) => (
+          <li>
+            {r.cite && <bdi class="wl-cite" lang="en" dir="ltr">{r.cite}</bdi>}
+            {r.cite && r.note && ' — '}
+            {r.note && <span>{x(r.note)}</span>}
+            {' '}
+            {r.links.map((l, i) => (
+              <>{i > 0 && (ar ? '، ' : ', ')}<a href={l.url} rel="noopener" target="_blank">{l.label ? x(l.label) : <bdi dir="ltr">{linkText(l.url)}</bdi>}</a></>
+            ))}
+          </li>
+        ))}
+      </ol>
+      <p class="wl-note">{x(T.reviewed)}</p>
+    </details>
+  </div>
+</section>
+
+{/* Inline and unscoped on purpose: the rules ship only with the one page that renders this section,
+    not with every attraction page that shares the view. Every selector is prefixed wl-. */}
+<style is:inline>
+  .wl { background: var(--c-sand-2); padding-block: var(--s-7); margin-block-end: var(--s-7); }
+  /* Identification photos: shown as they are, without the site's tint or shade */
+  .photo.wl-photo { aspect-ratio: 4 / 3; background: var(--c-sand-2); }
+  .photo.wl-photo > img { filter: none; object-position: var(--wl-pos, center); }
+  .photo.wl-photo::after { content: none; }
+  .wl-head { max-inline-size: 68ch; }
+  .wl-title { font-size: var(--t-2xl); color: var(--c-turq-deep); margin-block: var(--s-2) var(--s-3); line-height: 1.25; }
+  .wl-lead { font-size: var(--t-lg); line-height: 1.7; color: var(--c-ink-soft); }
+
+  .wl-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 1px; list-style: none; padding: 0; margin: var(--s-5) 0 0;
+    background: rgba(247, 243, 234, .2); border-radius: var(--radius); overflow: hidden; }
+  .wl-fact { background: var(--c-turq-deep); color: var(--c-sand); padding: var(--s-4); display: flex; flex-direction: column; gap: var(--s-1); }
+  .wl-fact-n { font-family: var(--font-heading); font-weight: 700; font-size: var(--t-lg); color: var(--c-gold-bright); line-height: 1.3; }
+  .wl-fact-t { font-size: var(--t-sm); line-height: 1.6; }
+
+  .wl-block { max-inline-size: 72ch; margin-block-start: var(--s-6); }
+  .wl-k { color: var(--c-gold-deep); }
+  .wl-h { font-size: var(--t-xl); color: var(--c-turq-deep); line-height: 1.3; margin-block: var(--s-1) var(--s-3); }
+  .wl-p { line-height: 1.85; color: var(--c-ink); margin-block-end: var(--s-3); }
+  .wl-note { font-size: var(--t-sm); line-height: 1.7; color: var(--c-ink-soft); max-inline-size: 72ch; margin-block-start: var(--s-3); }
+  .wl-sci, .wl-latin i { font-family: var(--font-body); font-style: italic; unicode-bidi: isolate; }
+
+  .wl-belts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: var(--s-3); list-style: none; padding: 0; margin: var(--s-4) 0 0; max-inline-size: none; }
+  .wl-block:has(.wl-belts) { max-inline-size: none; }
+  .wl-block:has(.wl-belts) > .wl-p { max-inline-size: 72ch; }
+  .wl-belt { background: var(--c-surface); border-radius: var(--radius-sm); border-block-start: 3px solid var(--c-turq); padding: var(--s-4); }
+  .wl-belt-h { font-size: var(--t-base); font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); margin-block-end: var(--s-1); }
+  .wl-belt p { font-size: var(--t-sm); line-height: 1.7; color: var(--c-ink-soft); margin: 0; }
+
+  .wl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 256px), 1fr)); gap: var(--s-4); list-style: none; padding: 0; margin: var(--s-4) 0 0; }
+  .wl-fig { margin: 0; }
+  .wl-cap { font-size: .75rem; line-height: 1.5; color: var(--c-ink-soft); padding: var(--s-1) var(--s-3) 0; }
+  .wl-cap a, .wl-src a, .wl-refs a { color: var(--c-turq-deep); text-decoration: underline; text-underline-offset: 2px; }
+  .wl-cap a[rel~='license'] { white-space: nowrap; }
+  .wl-body { padding: var(--s-2) var(--s-3) var(--s-4); display: flex; flex-direction: column; flex: 1; }
+  .wl-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.1875rem; line-height: 1.35; color: var(--c-turq-deep); margin-block-start: 2px; }
+  .wl-latin { font-size: var(--t-sm); color: var(--c-ink-soft); margin-block: 2px var(--s-2); text-align: start; }
+  [dir='rtl'] .wl-latin { text-align: right; }
+  .wl-d { font-size: var(--t-sm); line-height: 1.7; color: var(--c-ink); margin: 0; }
+  .wl-src { font-size: var(--t-xs); color: var(--c-ink-soft); margin-block-start: auto; padding-block-start: var(--s-2); }
+
+  .wl-tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--s-3) var(--s-5); list-style: none; padding: 0; margin: var(--s-3) 0 0; }
+  .wl-block:has(.wl-tips) { max-inline-size: none; }
+  .wl-tips li { padding-inline-start: var(--s-3); border-inline-start: 3px solid var(--c-gold); display: flex; flex-direction: column; gap: 2px; }
+  .wl-tips b { font-family: var(--font-heading); color: var(--c-turq-deep); }
+  .wl-tips span { font-size: var(--t-sm); line-height: 1.7; color: var(--c-ink-soft); }
+
+  .wl-refs { margin-block-start: var(--s-6); background: var(--c-surface); border-radius: var(--radius); padding: var(--s-3) var(--s-4); max-inline-size: 86ch; }
+  .wl-refs summary { cursor: pointer; font-family: var(--font-heading); font-weight: 700; color: var(--c-turq-deep); }
+  .wl-refs ol { margin: var(--s-3) 0 0; padding-inline-start: var(--s-4); font-size: var(--t-sm); line-height: 1.7; color: var(--c-ink-soft); }
+  .wl-refs li { margin-block-end: var(--s-2); }
+  .wl-cite { unicode-bidi: isolate; }
+</style>
