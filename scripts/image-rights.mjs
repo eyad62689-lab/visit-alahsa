@@ -137,6 +137,8 @@ async function collect(dir, out = []) {
     else if (/[\\/]event-posters[\\/]/.test(p)) continue
     // img/unesco: صور مكوّنات اليونسكو (معرض الموقع 1563 وويكيميديا كومنز) — حقّها لأصحابها بشروطهم
     else if (/[\\/]unesco[\\/]/.test(p)) continue
+    // img/wildlife: identification photos from Wikimedia Commons, each under its author's licence
+    else if (/[\\/]wildlife[\\/]/.test(p)) continue
     else if (/\.(jpe?g|webp)$/i.test(e.name)) out.push(p)
   }
   return out
