@@ -15,7 +15,7 @@ import DataTable from '../DataTable.astro';
 import { eventsTable } from '../../lib/tables';
 import { altHref, localize, titleSep, useTranslations, type AltLinks } from '../../i18n/utils';
 import { ui, type Lang } from '../../i18n/ui';
-import { EVENTS_AR, EVENTS_DE, EVENTS_EN, EVENTS_RU, EVENTS_TR, EVENTS_UR, EVENTS_ZH, evView, type Ev } from '../../data/events';
+import { EVENTS_AR, EVENTS_DE, EVENTS_EN, EVENTS_RU, EVENTS_TR, EVENTS_UR, EVENTS_ZH, evStatus, evView, type Ev } from '../../data/events';
 import { SITE, absUrl, breadcrumb } from '../../lib/schema';
 
 interface Props { lang: Lang; alt: AltLinks; }
@@ -40,10 +40,12 @@ const C = localize(lang, {
     statusL: { confirmed: 'مؤكد هذا العام', expected: 'موسم متوقع', tba: 'بانتظار الإعلان' },
     // نصوص العدّاد — يملؤها JS من تاريخ جهاز الزائر؛ {n} عدد الأيام
     cd: {
-      pre: { one: 'يبدأ غداً', other: 'يبدأ بعد {n} يوماً' },
+      pre: { one: 'يبدأ غداً', two: 'يبدأ بعد يومين', few: 'يبدأ بعد {n} أيام', many: 'يبدأ بعد {n} يوماً', other: 'يبدأ بعد {n} يوم' },
       today: 'يبدأ اليوم',
       last: 'آخر يوم اليوم',
       left: { one: 'يتبقّى يوم واحد', two: 'يتبقّى يومان', few: 'تتبقّى {n} أيام', many: 'يتبقّى {n} يوماً', other: 'يتبقّى {n} يوم' },
+      // العدّاد الحيّ: مقدّمته وتسميات خاناته — غيابه في لغةٍ يُبقيها على العدّاد النصّي
+      live: { pre: 'يبدأ بعد', left: 'يتبقّى', d: 'يوم', h: 'ساعة', m: 'دقيقة', s: 'ثانية' },
     },
     nowBadge: 'نحن الآن هنا',
     orderNote: 'رُتِّبت البطاقات تلقائياً حسب الأقرب إلى تاريخ جهازك — تبدأ بما هو جارٍ الآن.',
@@ -79,6 +81,7 @@ const C = localize(lang, {
       today: 'Starts today',
       last: 'Last day today',
       left: { one: '1 day left', other: '{n} days left' },
+      live: { pre: 'Starts in', left: 'Time left', d: 'days', h: 'hrs', m: 'min', s: 'sec' },
     },
     nowBadge: 'You are here now',
     orderNote: 'The cards are ordered automatically by what is nearest to your device’s date — starting with whatever is under way now.',
@@ -351,6 +354,8 @@ const O = localize(lang, {
   ar: { badge: 'فعالية مؤقتة', ended: 'انتهت الفعالية', whatsapp: 'للحجز والاستفسار عبر واتساب' },
   en: { badge: 'Limited-time event', ended: 'Event has ended', whatsapp: 'Bookings & enquiries on WhatsApp' },
 });
+// شارة «مؤكد» المستمدّة من openUntil وحده — تحمل ما يعيدها به المتصفّح بعد آخر يوم النافذة
+const openOf = (e: Ev) => (e.status ?? 'expected') === 'expected' && evStatus(e) === 'confirmed';
 // العدّاد والتحوّل بعد الختام: للنسخة ذات الموسم (after) وللمؤقتة (تُخفى بطاقتها بعد ختامها)
 const editionOf = (raw: Ev) => !!raw.endISO && (!!raw.after || !!raw.oneOff);
 const afterOf = (raw: Ev) => raw.after
@@ -415,7 +420,10 @@ const jsonLd = [
               <div class="ev-media">
                 <Photo src={e.img} label={e.name} class="ev-photo" eager={eagerIds.has(raw.id)} sizes="(max-width: 760px) 100vw, (max-width: 1120px) 50vw, 360px" />
                 <span class:list={['ev-season', { 'ev-season--once': e.oneOff }]}>{e.oneOff ? O.badge : e.season}</span>
-                <span class={`ev-status ev-status--${e.status ?? 'expected'}`} data-ev-status>{C.statusL[e.status ?? 'expected']}</span>
+                {/* موسم وُثّق انطلاقه بلا ختام معلن (openUntil): «مؤكد» حتى آخر يوم نافذته، ويعيده المتصفّح بعدها */}
+                <span class={`ev-status ev-status--${evStatus(e)}`} data-ev-status
+                  data-ev-open-until={openOf(e) ? e.openUntil : undefined}
+                  data-ev-open-label={openOf(e) ? C.statusL.expected : undefined}>{C.statusL[evStatus(e)]}</span>
                 <span class="ev-now" data-ev-now hidden>{C.nowBadge}</span>
                 {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
                 {raw.endISO && <span class="ev-cd" data-ev-cd hidden></span>}
@@ -652,6 +660,11 @@ const jsonLd = [
     font-family: var(--font-body); font-weight: 700; font-size: var(--t-xs); color: var(--c-sand);
     background: color-mix(in srgb, var(--c-turq-deep) 92%, transparent); backdrop-filter: blur(4px);
     border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); }
+  /* العدّاد الحيّ: شريط بعرض الصورة — المقدّمة في طرف والخانات في الآخر. أجزاؤه الداخلية
+     في EventEdition (ينشئها السكربت). وشارة «نحن الآن هنا» ترتفع فوقه كي لا يتراكبا. */
+  .ev-cd.is-live:not([hidden]) { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    inset-inline: var(--s-3); border-radius: var(--radius); padding: 6px 14px; }
+  .ev-card[data-ev-live] .ev-now { inset-block-end: calc(var(--s-3) + 58px); }
   .ev-media { position: relative; }
   /* .card تفرض display:flex فتغلب سمة hidden — بطاقة الفعالية المؤقتة بعد ختامها */
   .ev-card[hidden] { display: none; }
