@@ -1,0 +1,56 @@
+{
+  "batch": "advisor-ui",
+  "lang": "tr",
+  "stage": "4",
+  "strings": {
+    "advisor.open": "Bulbul'a sorun",
+    "advisor.title": "Bulbul, Visit Al-Ahsa danışmanı",
+    "advisor.intro": "Hoş geldiniz, sefalar getirdiniz! 🐦🌴\nBen Bulbul, El-Ahsa'nın her hurma ağacını tanırım.\nSadece gezinmeye mi geldiniz, yoksa buralılardan başkasının bilmediği yerlerin peşinde misiniz? Nelerden hoşlandığınızı söyleyin, keyfinize göre bir gezi ayarlayayım.",
+    "advisor.placeholder": "Sorunuzu yazın…",
+    "advisor.send": "Gönder",
+    "advisor.close": "Kapat",
+    "advisor.notice": "Yalnızca sitenin içeriğinden yanıt verir. Sorular Anthropic'in hizmeti üzerinden işlenir ve saklanmaz.",
+    "advisor.resting": "Bulbul şu an dinleniyor. Gezilecek yerlere ya da “Gezinizi planlayın” sayfasına göz atabilirsiniz.",
+    "advisor.rate": "Bugünkü soru sınırına ulaştınız. Yarın görüşmek üzere; bu arada gezilecek yerlerin sayfaları emrinizde.",
+    "advisor.error": "Bulbul'a ulaşılamadı. Lütfen birazdan yeniden deneyin.",
+    "advisor.cards": "İlgili sayfalar",
+    "advisor.chip1": "Bir günde nereleri görmeliyim?",
+    "advisor.chip2": "Cebel el-Kare'nin ziyaret saatleri ve giriş ücretleri nedir?",
+    "advisor.chip3": "El-Ahsa mutfağını nerede deneyebilirim?",
+    "advisor.thinking": "Bulbul yazıyor…",
+    "advisor.reset": "Yeni sohbet"
+  },
+  "termbase_additions": [],
+  "source_defects": [
+    "advisor.chip3 en 'Hasawi food' deviates from ar 'المطبخ الأحسائي' (en should be 'Al-Ahsa cuisine'); tr follows ar + nav.food 'El-Ahsa mutfağı'.",
+    "advisor.intro en 'Hala!' is weaker than the ar hearty Gulf welcome 'يا هلا والله!'; tr follows ar."
+  ],
+  "notes": [
+    "[s1] Bulbul'a/Bulbul'un per termbase 'Bulbul' (Latin brand, not Bülbül). 'Bulbul'a sorun' = 14 chars with the apostrophe.",
+    "[s1] Jabal Al-Qarah = 'Cebel el-Kare' (termbase/tm), suffix 'Cebel el-Kare'nin'; 'giriş ücretleri' per tm. Page labels verbatim from ui.tr: 'Gezinizi planlayın' in “…”, 'Gezilecek yerler' (resting says 'Gezilecek yerlere'; rate says 'gezilecek yerler sayfaları').",
+    "[s1] intro line 2 'palm by palm' rendered as 'her hurma ağacını tanırım' (idiom 'karış karış' would lose the palm image). Line 3 'طلعة' rendered 'gezi'. All siz forms. Anthropic'in: last vowel i.",
+    "[s1] Apostrophe is straight ' (as in tm 'Cebel el-Kare'de'); P8 not re-decided.",
+    "[s2] Stage-1 draft was already clean Turkish UI; edits are limited to the intro (warmer greeting, 'buralıların', no double 'size'), resting/rate (smoother phrasing, label forms kept), chip3 (verb).",
+    "[s2] Kept unchanged: open, title, placeholder, send, close, notice, error, cards, chip1, chip2, thinking, reset. 'Bulbul'a sorun' stays at 14 chars. Apostrophes all U+0027 (P8). No bureaucratic -mektedir chains; no sen.",
+    "[s3] Localizer pass: UI labels and a persona greeting carry no heat, season, hours, family or logistics emphasis in the source, and adding any would be a new fact (fence). All 16 strings left exactly as stage 2; no fact touched, nothing glossed (El-Ahsa, Cebel el-Kare and the page labels are already the published forms; Hicri/UNESCO/hours absent).",
+    "[s4] Fact fence against ar (authority) and en, key by key: no fact, number, promise, tip or colour found that the sources lack; nothing deleted (facts_removed empty). notice checked word by word: 'only from site content' = ar 'من محتوى الموقع فقط' / en 'from this site's content only'; 'processed through Anthropic's service' = ar 'عبر خدمة Anthropic' ('üzerinden'); 'not stored' = ar 'ولا تُحفظ' ('saklanmaz', retention sense, not 'recorded'); nothing strengthened, softened or added; Anthropic'in = Latin name read 'Antropik', last vowel i.",
+    "[s4] Translation smell: one fix only, the intro line 3 echo 'Sadece … yalnızca' (two 'only' words in one sentence); the second is now carried by 'buralılardan başkasının bilmediği' = ar 'ما يعرفها إلا أهل الديرة' (no one but the locals knows), so the 'only locals' fact is kept exactly. No -mektedir chain, no stacked olan, no calqued case government found; 'göz atmak' takes the dative on both targets; chip2 'ziyaret saatleri … nedir?' is the tm-attested question shape (Cebel el-Kare'nin ziyaret saatleri nedir?).",
+    "[s4] Assessment, greeting 'Hoş geldiniz, sefalar getirdiniz!' for ar 'يا هلا والله!': kept. It is the stock Turkish hosting welcome and the nearest register match for the hearty Gulf formula (en 'Hala!' and a bare 'Hoş geldiniz!' are both flatter). 'sefa' is the idiom's own warmth, not a fact or a promise; one '!' as in the source; siz. Raised to the judge as a register choice (fallback 'Hoş geldiniz!'), not settled silently.",
+    "[s4] Assessment, 'her hurma ağacını tanırım' for ar 'أعرف الأحساء نخلة نخلة' / en 'palm by palm': kept. It is the same playful hyperbole as the source, not a new claim, and matches the published ru/ur lines (every palm); the Turkish idiom 'karış karış' would drop the palm image the source keeps. Raised to the judge as an alternative ('El-Ahsa'yı karış karış bilirim').",
+    "[s4] open_items P6/P7/P11/P12 not touched by these strings; calibration P1 (El-Ahsa, Cebel el-Kare), P3 (Cebel, no 'Dağı'), P4, P8 (U+0027), P5 respected; no new proper name, termbase_additions empty. Persona name 'Bulbul' used exactly as the termbase entry; no objection to raise, not 'Bülbül', and 'Bulbul'a sorun' = 14 chars, at the brief's limit."
+  ],
+  "stage_specific": {
+    "changes": [
+      {"key": "advisor.intro", "part": "line 3 first question", "from": "Sadece gezinmeye mi geldiniz, yoksa yalnızca buralıların bildiği yerlerin peşinde misiniz?", "to": "Sadece gezinmeye mi geldiniz, yoksa buralılardan başkasının bilmediği yerlerin peşinde misiniz?", "why": "Translation smell: 'Sadece … yalnızca' repeats the same word twice in one sentence. The 'only' of the source (ar 'ما يعرفها إلا أهل الديرة') now lives in 'başkasının bilmediği', so the fact is unchanged and nothing is softened."}
+    ],
+    "facts_removed": [],
+    "checked_unchanged": ["advisor.open", "advisor.title", "advisor.placeholder", "advisor.send", "advisor.close", "advisor.notice", "advisor.resting", "advisor.rate", "advisor.error", "advisor.cards", "advisor.chip1", "advisor.chip2", "advisor.chip3", "advisor.thinking", "advisor.reset"],
+    "raised_for_judge": [
+      {"key": "advisor.intro", "item": "Greeting line 1", "candidates": ["Hoş geldiniz, sefalar getirdiniz! (kept)", "Hoş geldiniz!"], "note": "Register choice for ar 'يا هلا والله!'. Adds no fact."},
+      {"key": "advisor.intro", "item": "Line 2 palm image", "candidates": ["her hurma ağacını tanırım (kept)", "El-Ahsa'yı karış karış bilirim"], "note": "Source keeps the palm image (ar 'نخلة نخلة', en 'palm by palm'); the idiom would lose it."},
+      {"key": "advisor.notice", "item": "Verb of 'not stored'", "candidates": ["saklanmaz (kept)", "kaydedilmez"], "note": "No tm/termbase precedent for the privacy sentence; 'saklanmaz' = not retained, 'kaydedilmez' could read as 'not recorded'. Neither strengthens nor softens; the legal page is the owner's."}
+    ],
+    "open_items_touched": [],
+    "source_defects_confirmed": ["advisor.chip3 en 'Hasawi food' vs ar 'المطبخ الأحسائي'", "advisor.intro en 'Hala!' weaker than ar 'يا هلا والله!'"]
+  }
+}

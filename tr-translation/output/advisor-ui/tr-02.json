@@ -1,0 +1,46 @@
+{
+  "batch": "advisor-ui",
+  "lang": "tr",
+  "stage": "2",
+  "strings": {
+    "advisor.open": "Bulbul'a sorun",
+    "advisor.title": "Bulbul, Visit Al-Ahsa danışmanı",
+    "advisor.intro": "Hoş geldiniz, sefalar getirdiniz! 🐦🌴\nBen Bulbul, El-Ahsa'nın her hurma ağacını tanırım.\nSadece gezinmeye mi geldiniz, yoksa yalnızca buralıların bildiği yerlerin peşinde misiniz? Nelerden hoşlandığınızı söyleyin, keyfinize göre bir gezi ayarlayayım.",
+    "advisor.placeholder": "Sorunuzu yazın…",
+    "advisor.send": "Gönder",
+    "advisor.close": "Kapat",
+    "advisor.notice": "Yalnızca sitenin içeriğinden yanıt verir. Sorular Anthropic'in hizmeti üzerinden işlenir ve saklanmaz.",
+    "advisor.resting": "Bulbul şu an dinleniyor. Gezilecek yerlere ya da “Gezinizi planlayın” sayfasına göz atabilirsiniz.",
+    "advisor.rate": "Bugünkü soru sınırına ulaştınız. Yarın görüşmek üzere; bu arada gezilecek yerlerin sayfaları emrinizde.",
+    "advisor.error": "Bulbul'a ulaşılamadı. Lütfen birazdan yeniden deneyin.",
+    "advisor.cards": "İlgili sayfalar",
+    "advisor.chip1": "Bir günde nereleri görmeliyim?",
+    "advisor.chip2": "Cebel el-Kare'nin ziyaret saatleri ve giriş ücretleri nedir?",
+    "advisor.chip3": "El-Ahsa mutfağını nerede deneyebilirim?",
+    "advisor.thinking": "Bulbul yazıyor…",
+    "advisor.reset": "Yeni sohbet"
+  },
+  "termbase_additions": [],
+  "source_defects": [
+    "advisor.chip3 en 'Hasawi food' deviates from ar 'المطبخ الأحسائي' (en should be 'Al-Ahsa cuisine'); tr follows ar + nav.food 'El-Ahsa mutfağı'.",
+    "advisor.intro en 'Hala!' is weaker than the ar hearty Gulf welcome 'يا هلا والله!'; tr follows ar."
+  ],
+  "notes": [
+    "[s1] Bulbul'a/Bulbul'un per termbase 'Bulbul' (Latin brand, not Bülbül). 'Bulbul'a sorun' = 14 chars with the apostrophe.",
+    "[s1] Jabal Al-Qarah = 'Cebel el-Kare' (termbase/tm), suffix 'Cebel el-Kare'nin'; 'giriş ücretleri' per tm. Page labels verbatim from ui.tr: 'Gezinizi planlayın' in “…”, 'Gezilecek yerler' (resting says 'Gezilecek yerlere'; rate says 'gezilecek yerler sayfaları').",
+    "[s1] intro line 2 'palm by palm' rendered as 'her hurma ağacını tanırım' (idiom 'karış karış' would lose the palm image). Line 3 'طلعة' rendered 'gezi'. All siz forms. Anthropic'in: last vowel i.",
+    "[s1] Apostrophe is straight ' (as in tm 'Cebel el-Kare'de'); P8 not re-decided.",
+    "[s2] Stage-1 draft was already clean Turkish UI; edits are limited to the intro (warmer greeting, 'buralıların', no double 'size'), resting/rate (smoother phrasing, label forms kept), chip3 (verb).",
+    "[s2] Kept unchanged: open, title, placeholder, send, close, notice, error, cards, chip1, chip2, thinking, reset. 'Bulbul'a sorun' stays at 14 chars. Apostrophes all U+0027 (P8). No bureaucratic -mektedir chains; no sen."
+  ],
+  "stage_specific": {
+    "changes": [
+      {"key": "advisor.intro", "part": "line 1", "from": "Hoş geldiniz!", "to": "Hoş geldiniz, sefalar getirdiniz!", "why": "Arabic 'يا هلا والله!' is a hearty Gulf welcome; a bare 'Hoş geldiniz!' is flat, and the idiom 'sefalar getirdiniz' is the stock warm Turkish welcome. No fact added; emoji kept at the end of line 1."},
+      {"key": "advisor.intro", "part": "line 3 first question", "from": "Şöyle bir gezinti mi, yoksa yalnızca yerlilerin bildiği yerler mi?", "to": "Sadece gezinmeye mi geldiniz, yoksa yalnızca buralıların bildiği yerlerin peşinde misiniz?", "why": "Arabic 'جاي تتمشى' = 'coming to stroll' (a visitor's intent); the draft's noun fragment was calqued from English. 'buralı' is the warm colloquial equivalent of 'أهل الديرة' (people of the home town) and 'yerli' read as a flat demographic term."},
+      {"key": "advisor.intro", "part": "line 3 second sentence", "from": "size keyfinize göre bir gezi ayarlayayım", "to": "keyfinize göre bir gezi ayarlayayım", "why": "Dropped the redundant 'size' (Turkish verb already marks the person; avoids 'size ... keyfinize')."},
+      {"key": "advisor.resting", "from": "Gezilecek yerlere göz atın ya da “Gezinizi planlayın” sayfasını ziyaret edin.", "to": "Gezilecek yerlere ya da “Gezinizi planlayın” sayfasına göz atabilirsiniz.", "why": "One verb 'göz atmak' governs both targets; 'sayfasını ziyaret edin' is stiff for a web page. Label 'Gezinizi planlayın' verbatim in “…”; 'Gezilecek yerler' label (dative form) kept."},
+      {"key": "advisor.rate", "from": "bu arada gezilecek yerler sayfaları emrinizde", "to": "bu arada gezilecek yerlerin sayfaları emrinizde", "why": "Stacked bare nouns ('gezilecek yerler sayfaları') lack the genitive-possessive link; fixed to a proper izafet. Label stays inside the sentence in lower case as in resting."},
+      {"key": "advisor.chip3", "from": "El-Ahsa mutfağını nerede tadabilirim?", "to": "El-Ahsa mutfağını nerede deneyebilirim?", "why": "Arabic 'أجرّب' = 'try'; 'deneyebilirim' is the plain everyday verb a visitor types, 'tadabilirim' is more literary. 'El-Ahsa mutfağı' = published nav.food kept."}
+    ]
+  }
+}
