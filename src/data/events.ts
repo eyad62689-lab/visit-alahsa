@@ -66,6 +66,12 @@ export type Ev = {
   // ليالي كفو موسمها هجري متنقل (رمضان) فلا يصلح لها شهر ميلادي ثابت — يُحسب
   // قربها من تقويم جهاز الزائر الهجري. حقل start = 13 يبقى ترتيباً احتياطياً بلا JS.
   ramadan?: true;
+  /** موسم هذا العام انطلق فعلاً (بإعلان الجهة المنظّمة أو تأكيد مالك الموقع) وختامه غير معلن،
+   *  فلا تصلح له status: 'confirmed' (يلزمها تاريخان ISO). القيمة آخر يوم ISO من نافذة الأشهر
+   *  المعروضة في time: حتى ذلك اليوم تعرض شارة الحالة «مؤكد هذا العام» بدل «موسم متوقع»،
+   *  وبعده تعود الشارة تلقائياً في البناء (evStatus) وفي متصفّح الزائر (EventEdition).
+   *  لا يُضاف إلا لموسمٍ يوثّق مصدرُه انطلاقه، ولا يغيّر time ولا يضيف تاريخاً معروضاً. */
+  openUntil?: string;
   /** ما تعود إليه الفعالية تلقائياً بعد انقضاء النسخة المؤكدة (بعد endISO):
    *  موسم تقريبي بلا تواريخ ولا ساعات ولا رسوم ولا رابط حجز. يُطبَّق في البناء
    *  (evView) وفي متصفّح الزائر أيضاً، فلا تبقى نسخة منتهية معروضة كـ«مؤكدة»
@@ -110,9 +116,18 @@ export function evView(ev: Ev, now: Date = new Date()): Ev {
   };
 }
 
+/** الحالة المعروضة في شارة البطاقة والصفحة: حالة الفعالية نفسها، إلا موسماً متوقعاً وُثّق
+ *  انطلاقه (openUntil) فيُعرض «مؤكداً» حتى آخر يوم نافذته بتوقيت السعودية. عرضٌ فقط:
+ *  status نفسها لا تتغيّر، فلا سكيما Event ولا عدّاد بلا تاريخين. */
+export const evStatus = (ev: Ev, now: Date = new Date()): 'confirmed' | 'expected' | 'tba' => {
+  const s = ev.status ?? 'expected';
+  if (s === 'expected' && ev.openUntil && now.getTime() <= Date.parse(`${ev.openUntil}T23:59:59+03:00`)) return 'confirmed';
+  return s;
+};
+
 // ── الحقول البنيوية — مرة واحدة لكل فعالية ──────────────────────────────────
 /** ما يشترك فيه كل الأنواع (انظر Ev لشرح كل حقل). */
-type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'map' | 'ticket' | 'shop' | 'live' | 'social' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp' | 'register'>;
+type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'openUntil' | 'map' | 'ticket' | 'shop' | 'live' | 'social' | 'coords' | 'priceRange' | 'venue' | 'poster' | 'whatsapp' | 'register'>;
 /** النسخة المؤكدة تلزمها تواريخ ISO وحالةُ ما بعد الانقضاء؛ وسواها لا تحمل شيئاً منها.
  *  اتحادٌ مميَّز: لا يمكن كتابة status: 'confirmed' بلا afterStatus، ولا تواريخ ISO بلا تأكيد. */
 type EventMeta = MetaCommon & (
@@ -173,7 +188,8 @@ const EVENT_META = {
   // موسم 2026–2027 انطلق في نوفمبر 2026 (من إياد، 2026-11-11) بلا تاريخ افتتاح ولا ختام معلنين،
   // فلا status: 'confirmed' (يلزمه startISO/endISO) — قسم «موسم 2026–2027» بنصوص ar/en كسابقة سباقات الخيل.
   // الصورة من إياد (2026-11-16).
-  'wafrah-winter': { img: '/img/event-wafrah-winter', start: 11, end: 2, map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8' },
+  // openUntil: الانطلاق موثّق أعلاه، والنافذة تنتهي بفبراير — فالشارة «مؤكد هذا العام» حتى 28 فبراير 2027.
+  'wafrah-winter': { img: '/img/event-wafrah-winter', start: 11, end: 2, openUntil: '2027-02-28', map: 'https://maps.app.goo.gl/7MASkCUkw7JA4Hds8' },
   // موسم 2026–2027 انطلق 31 أكتوبر 2026 (من إياد، 2026-11-01) — يُعرض في قسم «الموسم الحالي»
   // بنصوص ar/en، ونهايته غير معلنة فلا status: 'confirmed' (يلزمه endISO). المنظّم «ميدان
   // الفروسية بالأحساء» (أكّده إياد 2026-11-01)، وحسابه على X وقناته على يوتيوب منه في اليوم
@@ -181,6 +197,8 @@ const EVENT_META = {
   // من بيئة البناء لحجب الشبكة، فهما على عهدة إياد.
   'horse-racing': {
     img: '/img/event-horse-racing', start: 11, end: 2,
+    // الانطلاق موثّق أعلاه، والنافذة المعروضة «نوفمبر – فبراير» — فالشارة «مؤكد هذا العام» حتى 28 فبراير 2027
+    openUntil: '2027-02-28',
     social: 'https://x.com/ecialahsa',
     live: 'https://www.youtube.com/@ecialahsa',
   },

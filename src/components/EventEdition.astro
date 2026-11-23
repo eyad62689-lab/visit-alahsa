@@ -1,5 +1,5 @@
 ---
-// عدّاد أيام النسخة المؤكدة + التحوّل التلقائي إلى الموسم التقريبي بعد انقضائها.
+// عدّاد النسخة المؤكدة + التحوّل التلقائي إلى الموسم التقريبي بعد انقضائها.
 //
 // لماذا في المتصفح أيضاً؟ الموقع ثابت (SSG): البناء يطبّق evView بتاريخ النشر، لكن
 // لو لم يُنشر شيء بعد يوم الختام بقيت الصفحة تعرض نسخةً منتهية كـ«مؤكدة» — وهو
@@ -8,21 +8,39 @@
 // العدّاد نفسه لا يُصيَّر في البناء إطلاقاً (يبقى hidden) — على نمط شارة «نحن الآن
 // هنا» وملاحظة الترتيب: لا نعرض رقماً محسوباً بتاريخ نشرٍ قديم قد يكون تجاوزه الزمن.
 //
+// شكلان للعدّاد:
+//   - حيّ (أيام · ساعات · دقائق · ثوانٍ، يتحدّث كل ثانية) حين تحمل لغة الصفحة cd.live.
+//     قبل الافتتاح يعدّ إلى بداية يوم الافتتاح، وبعده إلى نهاية يوم الختام، كلاهما بتوقيت
+//     السعودية. يوم الافتتاح نفسه يبقى نصّاً («يبدأ اليوم»): ساعة الافتتاح ليست في البيانات.
+//   - نصّي بعدد الأيام (السلوك السابق) للغةٍ بلا cd.live — لا نصّ بلغةٍ خارج خط ترجمتها.
+// والجملة النصّية تبقى في الحالين اسماً مقروءاً لقارئ الشاشة، والأرقام المتحرّكة aria-hidden.
+//
 // العقد مع الواجهات (بالسمات لا بالأصناف):
 //   [data-ev-edition]                جذر النطاق، وعليه:
 //     data-ev-start / data-ev-end    تاريخا النسخة المؤكدة ISO
 //     data-ev-after                  JSON: { time, span, status, label } — أو للفعالية المؤقتة
 //                                    { oneOff: true, status, label } (بطاقتها تُخفى بعد الختام)
+//     data-ev-live                   يضعه السكربت ما دام العدّاد حيّاً (للتنسيق المحيط)
 //   داخله:
-//     [data-ev-cd]                   وعاء العدّاد (hidden ابتداءً)
+//     [data-ev-cd]                   وعاء العدّاد (hidden ابتداءً)؛ يحمل is-live في الشكل الحيّ
 //     [data-ev-field="time"|"span"]  نصّ يُستبدل بقيمة after عند الانقضاء
 //     [data-ev-status]               شارة الحالة — يُستبدل نصّها ويتحوّل صنفها
 //     [data-ev-dated]                عنصر خاص بهذه النسخة (ساعات/حجز/سؤال) يُخفى
+//   وخارج أي نطاق:
+//     [data-ev-open-until]           شارة حالة موسمٍ وُثّق انطلاقه بلا ختام معلن: بعد هذا اليوم
+//                                    ISO يعود نصّها إلى data-ev-open-label وصنفها إلى expected
 interface Props { cd: Record<string, unknown>; }
 const { cd } = Astro.props;
 ---
 <script is:inline define:vars={{ CD: cd }}>
   (function () {
+    var LIVE = CD.live || null;
+    var UNITS = ['d', 'h', 'm', 's'];
+    var timer = null;
+    // تفضيل تقليل الحركة: بلا خانة الثواني، فلا شيء يتبدّل في الصفحة إلا كل دقيقة
+    var calm = false;
+    try { calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
     // رقم اليوم بتوقيت السعودية (UTC+3 ثابت بلا توقيت صيفي) — فيتفق العدّ على
     // يوم الأحساء لا على يوم جهاز الزائر أينما كان.
     function ksaDay(ms) { return Math.floor((ms + 3 * 3600000) / 86400000); }
@@ -54,30 +72,116 @@ const { cd } = Astro.props;
       if (after.oneOff && root.classList.contains('ev-card')) root.hidden = true;
     }
 
-    function tick(root) {
-      var start = isoDay(root.getAttribute('data-ev-start') || '');
-      var end = isoDay(root.getAttribute('data-ev-end') || '');
-      var box = root.querySelector('[data-ev-cd]');
-      if (end === null) return;
-      var today = ksaDay(Date.now());
+    function span(cls) { var el = document.createElement('span'); el.className = cls; return el; }
+    function put(el, v) { if (el.textContent !== v) el.textContent = v; }
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
 
-      if (today > end) { if (box) box.hidden = true; applyOver(root); return; }
-      if (!box) return;
+    // بنية العدّاد الحيّ تُبنى مرة واحدة لكل وعاء، ثم تُحدَّث أرقامها وحدها
+    function build(box) {
+      var parts = { sr: span('sr-only'), lead: span('evcd-lead'), segs: span('evcd-segs'), n: {}, seg: {} };
+      parts.lead.setAttribute('aria-hidden', 'true');
+      parts.segs.setAttribute('aria-hidden', 'true');
+      UNITS.forEach(function (k) {
+        var seg = span('evcd-seg'), n = span('evcd-n'), u = span('evcd-u');
+        u.textContent = LIVE[k] || '';
+        seg.appendChild(n); seg.appendChild(u);
+        parts.segs.appendChild(seg);
+        parts.n[k] = n; parts.seg[k] = seg;
+      });
+      box.textContent = '';
+      box.appendChild(parts.sr); box.appendChild(parts.lead); box.appendChild(parts.segs);
+      box.classList.add('is-live');
+      box._evcd = parts;
+      return parts;
+    }
 
-      var text = '';
-      if (start !== null && today < start) text = plural(CD.pre, start - today);
-      else if (start !== null && today === start && end !== start) text = CD.today;
-      else if (today === end) text = CD.last;
-      else text = plural(CD.left, end - today);
-
-      if (!text) { box.hidden = true; return; }
-      box.textContent = text;
+    function paintLive(root, box, lead, phrase, target) {
+      var c = box._evcd || build(box);
+      var total = Math.max(0, Math.floor((target - Date.now()) / 1000));
+      var d = Math.floor(total / 86400), h = Math.floor((total % 86400) / 3600);
+      var m = Math.floor((total % 3600) / 60), s = total % 60;
+      put(c.sr, phrase); put(c.lead, lead);
+      put(c.n.d, String(d)); put(c.n.h, pad(h)); put(c.n.m, pad(m)); put(c.n.s, pad(s));
+      c.seg.d.hidden = d === 0;
+      c.seg.s.hidden = calm;
+      root.setAttribute('data-ev-live', '');
       box.hidden = false;
     }
 
-    function run() { document.querySelectorAll('[data-ev-edition]').forEach(tick); }
+    function paintText(root, box, text) {
+      if (box._evcd) { box._evcd = null; box.classList.remove('is-live'); box.textContent = ''; }
+      root.removeAttribute('data-ev-live');
+      if (!text) { box.hidden = true; return; }
+      put(box, text);
+      box.hidden = false;
+    }
+
+    // يعيد true ما دام عدّاد هذا النطاق حيّاً (فيبقى المؤقّت يعمل)
+    function tick(root) {
+      var startIso = root.getAttribute('data-ev-start') || '';
+      var endIso = root.getAttribute('data-ev-end') || '';
+      var start = isoDay(startIso), end = isoDay(endIso);
+      var box = root.querySelector('[data-ev-cd]');
+      if (end === null) return false;
+      var today = ksaDay(Date.now());
+
+      if (today > end) {
+        if (box) box.hidden = true;
+        root.removeAttribute('data-ev-live');
+        applyOver(root);
+        return false;
+      }
+      if (!box) return false;
+
+      var text = '', lead = '', target = 0;
+      if (start !== null && today < start) {
+        text = plural(CD.pre, start - today);
+        if (LIVE) { lead = LIVE.pre; target = Date.parse(startIso + 'T00:00:00+03:00'); }
+      } else if (start !== null && today === start && end !== start) {
+        text = CD.today;
+      } else {
+        text = today === end ? CD.last : plural(CD.left, end - today);
+        if (LIVE) { lead = LIVE.left; target = Date.parse(endIso + 'T23:59:59+03:00') + 1000; }
+      }
+
+      if (lead && target) { paintLive(root, box, lead, text, target); return true; }
+      paintText(root, box, text);
+      return false;
+    }
+
+    // موسم وُثّق انطلاقه بلا ختام معلن: شارته «مؤكد» حتى آخر يوم نافذته، ثم تعود «متوقعاً»
+    function openSeasons() {
+      document.querySelectorAll('[data-ev-open-until]').forEach(function (el) {
+        var until = isoDay(el.getAttribute('data-ev-open-until') || '');
+        if (until === null || ksaDay(Date.now()) <= until) return;
+        var label = el.getAttribute('data-ev-open-label');
+        if (label) el.textContent = label;
+        el.className = el.className.replace(/--confirmed\b/g, '--expected');
+        el.removeAttribute('data-ev-open-until');
+      });
+    }
+
+    function run() {
+      var live = false;
+      document.querySelectorAll('[data-ev-edition]').forEach(function (root) { if (tick(root)) live = true; });
+      openSeasons();
+      if (live && !timer) timer = setInterval(function () { if (!document.hidden) run(); }, 1000);
+      else if (!live && timer) { clearInterval(timer); timer = null; }
+    }
     document.addEventListener('astro:page-load', run);
     if (document.readyState !== 'loading') run();
     else document.addEventListener('DOMContentLoaded', run);
   })();
 </script>
+
+<style is:global>
+  /* أجزاء العدّاد الحيّ يُنشئها السكربت، فلا تصلها الأنماط المحصورة في الواجهتين.
+     الوعاء نفسه (موضعه وخلفيته) تنسّقه كل واجهة: بطاقة القائمة وهيرو الصفحة. */
+  .evcd-lead { white-space: nowrap; }
+  .evcd-segs { display: inline-flex; align-items: flex-start; gap: 10px; }
+  .evcd-seg { display: inline-flex; flex-direction: column; align-items: center; min-inline-size: 2.2em; line-height: 1.2; }
+  .evcd-seg[hidden] { display: none; }
+  /* أرقام بعرض ثابت كي لا يهتزّ العدّاد مع كل ثانية */
+  .evcd-n { font-size: var(--t-base); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .evcd-u { font-size: 0.6875rem; font-weight: 500; }
+</style>
