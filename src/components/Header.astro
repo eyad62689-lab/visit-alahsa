@@ -291,6 +291,8 @@ const langItems = (['ar', 'en', 'zh', 'de', 'ru', 'ur', 'tr'] as Lang[])
      والهدف اللمسي 47×38 دون 44px. */
   .lang { display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; font-family: var(--font-latin); letter-spacing: .08em; font-size: .85rem; font-weight: 600; color: var(--c-turq-deep); text-decoration: none; padding: 0 14px; background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius-pill); transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease); }
   .lang:hover { border-color: var(--c-turq); background: var(--c-sand-2); }
+  /* رمز العربية «ع» حرف عربي: خط الحبّة اللاتيني لا يحمله فكان يُرسم بخط النظام — يأخذ خط المتن العربي بلا تباعد حروف. */
+  :global(:root:lang(ar)) .lang-code { font-family: var(--font-body); letter-spacing: 0; }
   /* قائمة اللغات المنسدلة — <details> أصلي فوق حبّة .lang نفسها */
   .lang-menu { position: relative; }
   .lang-menu > summary { list-style: none; cursor: pointer; }
