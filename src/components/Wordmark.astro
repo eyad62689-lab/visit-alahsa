@@ -8,7 +8,8 @@ const { variant = 'turq', align = 'start', size = 'md', pageLang = 'ar' } = Astr
 // في صفحة RTL غير عربية (الأوردو) يُوسم السطر العربي lang="ar": بدونه يُصيَّر بخط الصفحة
 // (نستعليق) ويُقرأ نصّاً بلغتها — والوسم هو ما يُبقيه بخط العلامة (tokens.css) ويعزله
 // عن فحص حروف الصفحة. صيغة سطر العلامة في /ur/ نفسها قرار مؤجَّل لدفعة واجهتها.
-const arLineLang = pageLang !== 'ar' && isRtl(pageLang) ? 'ar' : undefined;
+// والصينية مثلها: سلسلة عناوينها خطوط نظام صينية بلا وجه عربي، فالوسم يعيد السطر إلى Cairo (tokens.css).
+const arLineLang = pageLang === 'zh' || (pageLang !== 'ar' && isRtl(pageLang)) ? 'ar' : undefined;
 const color = variant === 'sand' ? 'var(--c-sand)' : variant === 'ink' ? 'var(--c-ink)' : 'var(--c-turq)';
 // النص اللاتيني الصغير على خلفية فاتحة: ذهبي داكن (4.9:1 على الرملي — WCAG AA)
 // بدل الذهبي الفاتح الذي يفشل التباين للنص الصغير. على الداكن (sand): رملي شفاف.

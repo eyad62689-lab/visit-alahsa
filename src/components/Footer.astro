@@ -146,9 +146,12 @@ const social = orgSocialLinks();
   {/* سطر الاستقلالية: يقود إلى «عن زوروا الأحساء» (ar/en)، وإلى السياسات بلغة الصفحة لبقية اللغات */}
   <p class="container ft-indep"><a href={ar || lang === 'en' ? aboutHref(lang) : staticHref('legal', lang)}>{t('foot.independence')}</a></p>
 
-  <div class="container ft-bar">
+  {/* data-nosnippet: سطر الحقوق والبريد لا يصلح مقتطفاً في نتائج البحث (السمة تُعتمد على div/span/section). */}
+  <div class="container ft-bar" data-nosnippet>
     {/* الفاصل رمزٌ لا محرف: الألمانية U+2013 لا U+2014 — يحرسه C17 */}
     <span>© {year} {t('site.brand')} {titleSep(lang)} visit-alahsa.com</span>
+    {/* مسافة نصية بين العنصرين: ضغط HTML يلصقهما فيقرأ مستخرِج النص النطاق والبريد كلمة واحدة. */}
+    {' '}
     <a href="mailto:info@visit-alahsa.com" class="ft-mail">info@visit-alahsa.com</a>
   </div>
 </footer>

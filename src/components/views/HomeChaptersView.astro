@@ -132,6 +132,9 @@ const pageTitle = title.endsWith(brand) ? title : `${title} ${titleSep(lang)} ${
   .chapters :global(.ch--dark) { background: var(--c-turq-deep); color: var(--c-sand); }
   .chapters :global(.ch-head) { display: grid; gap: var(--s-2); max-inline-size: 660px; margin-block-end: clamp(28px, 5vw, 52px); }
   .chapters :global(.ch-no) { font-family: var(--font-latin); font-weight: 600; font-size: .82rem; letter-spacing: .3em; text-transform: uppercase; color: var(--c-gold-deep); direction: ltr; unicode-bidi: isolate; justify-self: start; }
+  /* الأوردو: التسمية نص أوردي لا لاتيني — خط الصفحة (نستعليق) بدل اللاتيني الذي لا يحمل حروفها، وبلا تباعد
+     حروف (يفكّ اتصال الحروف العربية الرسم) وبوزن الوجه المحمَّل. */
+  :global(:root:lang(ur)) .chapters :global(.ch-no) { font-family: var(--font-body); font-weight: 400; letter-spacing: 0; }
   .chapters :global([data-dark] .ch-no) { color: var(--c-gold-bright); }
   /* على الرملي الثاني (الفصلان 3 و6) يهبط الذهبي الداكن إلى 4.45:1 دون حدّ AA — فالرقم بالتركواز الداكن */
   .chapters :global(.ch--sand .ch-no) { color: var(--c-turq-deep); }
