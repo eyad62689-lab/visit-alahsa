@@ -135,6 +135,8 @@ const pageTitle = title.endsWith(brand) ? title : `${title} ${titleSep(lang)} ${
   /* الأوردو: التسمية نص أوردي لا لاتيني — خط الصفحة (نستعليق) بدل اللاتيني الذي لا يحمل حروفها، وبلا تباعد
      حروف (يفكّ اتصال الحروف العربية الرسم) وبوزن الوجه المحمَّل. */
   :global(:root:lang(ur)) .chapters :global(.ch-no) { font-family: var(--font-body); font-weight: 400; letter-spacing: 0; }
+  /* العربية: التسمية اسم الفصل بالعربية — خط المتن بوزنه المحمَّل 600، بلا تباعد حروف، وباتجاه الصفحة ليبدأ الرقم من حافة البداية. */
+  :global(:root:lang(ar)) .chapters :global(.ch-no) { font-family: var(--font-body); letter-spacing: 0; direction: inherit; }
   .chapters :global([data-dark] .ch-no) { color: var(--c-gold-bright); }
   /* على الرملي الثاني (الفصلان 3 و6) يهبط الذهبي الداكن إلى 4.45:1 دون حدّ AA — فالرقم بالتركواز الداكن */
   .chapters :global(.ch--sand .ch-no) { color: var(--c-turq-deep); }

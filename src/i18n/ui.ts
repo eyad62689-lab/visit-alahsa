@@ -803,7 +803,7 @@ export const ui = {
     'advisor.cards': 'Related pages',
     'advisor.chip1': 'What should I see in one day?',
     'advisor.chip2': 'Jabal Al-Qarah hours and fees?',
-    'advisor.chip3': 'Where can I try Hasawi food?',
+    'advisor.chip3': 'Where can I try Al-Ahsa’s cuisine?',
     'advisor.thinking': 'Bulbul is typing…',
     'advisor.reset': 'New conversation',
   },
