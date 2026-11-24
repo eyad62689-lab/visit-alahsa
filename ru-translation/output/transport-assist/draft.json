@@ -1,0 +1,20 @@
+{
+  "lang": "ru",
+  "batch": "transport-assist",
+  "strings": {
+    "groups.1.sections.6.paras.1": "Если вам нужна помощь на вокзале или при посадке в поезд, приезжайте не менее чем за час до отправления и по прибытии сообщите об этом сотруднику Саудовской железнодорожной компании.",
+    "groups.1.sections.6.src.2.label": "SAR: специальная помощь"
+  },
+  "decisions": [
+    "Operator in the paragraph by its full Russian name «Саудовская железнодорожная компания», as in the published p0 right before it; precedent: termbase entry for the company (ru-plan-3 judge ruling: full Russian name without bracketed (SAR) where the currency code SAR is on the same page, which it is here).",
+    "Operator in the label as «SAR», exactly as the published sibling «SAR: категории билетов»; topic in lowercase.",
+    "«station» → «вокзал» (approved transport batch uses «вокзал» for rail, «станция» for bus); «departure» → «отправление» (approved table head); «when you get there» → «по прибытии» (approved groups.1.sections.4.paras.0).",
+    "«at least one hour» → «не менее чем за час»: «один» dropped as redundant in Russian; the fact and «at least» are kept.",
+    "«сообщите об этом сотруднику»: the verb needs an object; «об этом» = that you need assistance, as in the source."
+  ],
+  "termbase_additions": [],
+  "unverified": [
+    "Stage 4 benchmark: no web check run; neither a Russian version of SAR's special-assistance page nor comparable operators' Russian wording was consulted; the wording rests on the page's own approved vocabulary only.",
+    "«специальная помощь» as the label topic is a direct rendering of the page title «Special Assistance» / «المساعدة الخاصة»; not checked against any Russian rail operator's naming of the same service."
+  ]
+}
