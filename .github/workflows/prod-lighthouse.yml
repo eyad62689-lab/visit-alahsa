@@ -1,0 +1,120 @@
+# ============================================================================
+# Production Lighthouse — monthly performance check of the published site
+# ----------------------------------------------------------------------------
+# The Build workflow runs tools/lighthouse-gate.mjs on every pull request, but
+# against a local preview of dist. Nothing there sees what only the published
+# site has: the CDN, the response headers, compression, and anything a deploy
+# changes without a change in the repository.
+#
+# This workflow runs the same gate, on the same pages, against production once
+# a month and on demand. Same pages means a difference between this run and
+# the pull request gate points at the deployment, not at the code.
+#
+# It also runs on a pull request that changes this file or the gate itself, so
+# a change to the check is exercised by the pull request that makes it. That
+# run is not a required check.
+#
+# On failure (schedule or manual run) it opens an issue, or comments on the
+# open one. The gate output goes to the run's summary page; the Lighthouse
+# JSON reports are kept as an artifact for 30 days.
+#
+# No secrets are used and nothing is committed. The default token gets
+# issues:write for this job only. Actions are pinned to commit SHAs, same rule
+# as build.yml.
+# ============================================================================
+
+name: Production Lighthouse
+
+on:
+  schedule:
+    - cron: "0 4 1 * *" # اليوم الأول من الشهر 07:00 Asia/Riyadh
+  workflow_dispatch: {}
+  pull_request:
+    paths:
+      - .github/workflows/prod-lighthouse.yml
+      - tools/lighthouse-gate.mjs
+
+concurrency:
+  group: prod-lighthouse-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse on the published site
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22" # يطابق NODE_VERSION في netlify.toml
+
+      # lighthouse يُثبَّت خارج المستودع بالإصدار نفسه الذي في build.yml (لا npm ci: البوابة
+      # لا تحتاج تبعيات المشروع).
+      - name: Run the performance gate against production
+        id: gate
+        env:
+          BASE: https://visit-alahsa.com
+          LH_DIR: /tmp/lh
+          LH_OUT: lighthouse-reports
+          RUNS: "5"
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/lh && cd /tmp/lh && npm init -y > /dev/null && npm i lighthouse@12.8.2 --ignore-scripts --no-audit --no-fund > /dev/null && cd -
+          CHROME_PATH="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser)"
+          export CHROME_PATH
+          node tools/lighthouse-gate.mjs 2>&1 | tee lighthouse.log
+
+      - name: Publish the summary
+        if: always()
+        run: |
+          if [ -s lighthouse.log ]; then
+            {
+              echo '```'
+              cat lighthouse.log
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload the reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: production-lighthouse-reports
+          path: |
+            lighthouse.log
+            lighthouse-reports
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Open or update the tracking issue
+        if: failure() && steps.gate.outcome == 'failure' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ISSUE_TITLE: Production Lighthouse check failing
+        run: |
+          {
+            echo "The production Lighthouse check failed."
+            echo
+            echo "Run: $RUN_URL"
+            echo
+            echo '```'
+            grep -E '^(✓|✗)' lighthouse.log || tail -n 20 lighthouse.log
+            echo '```'
+          } > body.md
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body-file body.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$ISSUE_TITLE" --body-file body.md
+          fi
