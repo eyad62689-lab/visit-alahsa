@@ -7,6 +7,7 @@ import NextStep from '../NextStep.astro';
 import Photo from '../Photo.astro';
 import DetailHero from '../DetailHero.astro';
 import WildlifeSection from '../WildlifeSection.astro';
+import { hasWildlife } from '../../data/asfar-wildlife-i18n';
 import '../../styles/detail.css';
 import { catLabel } from '../../lib/categories';
 import { staticHref } from '../../lib/routes';
@@ -35,8 +36,8 @@ const de = lang === 'de';
 const ru = lang === 'ru';
 const ur = lang === 'ur';
 const tr = lang === 'tr';
-// Wildlife section of the Al-Asfar Lake page: Arabic and English only until the other languages' pipelines supply it.
-const wildlifeLang = a.slug_en === 'asfar' && (lang === 'ar' || lang === 'en') ? lang : undefined;
+// Wildlife section of the Al-Asfar Lake page, in the languages that have its text.
+const wildlifeLang = a.slug_en === 'asfar' && hasWildlife(lang) ? lang : undefined;
 
 // اختيار الحقل بلغة الصفحة — zh/de/ru/ur/tr تتراجع للإنجليزية فالعربية عند الغياب
 const pick = <T,>(arV: T, enV: T | undefined, zhV: T | undefined, deV?: T, ruV?: T, urV?: T, trV?: T): T =>

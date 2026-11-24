@@ -1,10 +1,10 @@
-// Wildlife section of the Al-Asfar Lake page (ar/en). Every statement here was matched against the page
-// it cites on 2026-11-24; figures are the sources' own. Other languages get this section only through
-// their translation pipelines, and it is not rendered for them until then.
+// Wildlife section of the Al-Asfar Lake page: the Arabic and English text. Every statement here was matched
+// against the page it cites on 2026-11-24; figures are the sources' own. Other languages come from their
+// translation pipelines through asfar-wildlife-i18n.ts, keyed by the paths listed in WILDLIFE_STRINGS.
 // Photos are identification pictures from Wikimedia Commons (not taken at the lake), resized from the
 // originals; author and licence come from each file's Commons page.
 
-type Bi = { ar: string; en: string };
+export type Bi = { ar: string; en: string };
 
 export const WILDLIFE_SOURCES = {
   spa: { url: 'https://www.spa.gov.sa/2199724', label: { ar: 'واس 2021', en: 'SPA, 2021' } },
@@ -292,3 +292,21 @@ export const WILDLIFE_REFS: { note?: Bi; cite?: string; links: { url: string; la
     links: [{ url: 'https://saudipedia.com/بحيرة-الأصفر2' }],
   },
 ];
+
+// Every translatable string of the section under a stable key (its path in the data above; birds by photo name).
+// The other languages' files carry exactly these keys.
+const isBi = (v: unknown): v is Bi => typeof v === 'object' && v !== null && typeof (v as Bi).ar === 'string' && typeof (v as Bi).en === 'string';
+function collect(node: unknown, path: string, out: { key: string; v: Bi }[]): void {
+  if (isBi(node)) { out.push({ key: path, v: node }); return; }
+  if (typeof node !== 'object' || node === null) return;
+  for (const [k, child] of Object.entries(node)) collect(child, path ? path + '.' + k : k, out);
+}
+export const WILDLIFE_STRINGS: { key: string; v: Bi }[] = [];
+collect({
+  text: WILDLIFE_TEXT,
+  sources: WILDLIFE_SOURCES,
+  belts: WILDLIFE_BELTS,
+  groups: WILDLIFE_GROUPS,
+  birds: Object.fromEntries(WILDLIFE_BIRDS.map((b) => [b.img.slice(b.img.lastIndexOf('/') + 1), { name: b.name, note: b.note }])),
+  refs: WILDLIFE_REFS,
+}, '', WILDLIFE_STRINGS);
