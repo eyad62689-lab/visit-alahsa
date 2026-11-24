@@ -1,0 +1,123 @@
+# ============================================================================
+# Attraction hours — weekly comparison with each attraction's map listing
+# ----------------------------------------------------------------------------
+# Opening hours of an attraction change without any change in the repository,
+# so no pull request check can see them. The site's rule is that hours follow
+# the place's Google Maps listing; that listing cannot be read by fetching the
+# page, so this workflow asks the Places API (New) instead.
+#
+# tools/automation/attraction-hours.mjs requests the weekly table and the
+# business status of every attraction that has a place ID in
+# src/data/attraction-place-ids.json, and compares them with the attraction
+# file: its hoursSpec day by day, or the clock times of its verified hours
+# item, or its "temporarily closed" state. It changes no file.
+#
+# On a conflict it opens an issue, or comments on the open one. The summary
+# names the attraction, the days and the kind of difference, the site's own
+# value and a link to the listing. The listing's hours are never printed:
+# only place IDs may be stored, so whoever handles the issue reads the hours
+# on the listing itself. No artifact is uploaded for the same reason.
+#
+# Manual run with "resolve" checked: for attractions that have no place ID it
+# searches by name near the attraction's coordinates and prints the proposed
+# IDs in the run summary. Nothing is written; the proposal is reviewed by name
+# and distance and committed through a pull request.
+#
+# Secret: GOOGLE_PLACES_API_KEY. Without it the job reports that it is idle
+# and passes. A pull request that touches this workflow or its tool runs the
+# job once with the key forced empty, to prove the wiring on the runner; it
+# never calls the API and never opens an issue.
+#
+# Nothing is committed. The default token gets issues:write for this job only.
+# Actions are pinned to commit SHAs, same rule as build.yml.
+# ============================================================================
+
+name: Attraction hours
+
+on:
+  schedule:
+    - cron: "0 23 * * 6" # Sunday 02:00 Asia/Riyadh
+  workflow_dispatch:
+    inputs:
+      resolve:
+        description: "Propose place IDs for attractions that have none (no comparison)"
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - .github/workflows/attraction-hours.yml
+      - tools/automation/attraction-hours.mjs
+      - src/data/attraction-place-ids.json
+
+concurrency:
+  group: attraction-hours-${{ github.event_name == 'pull_request' && github.ref || 'main' }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    name: Attraction hours check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22" # يطابق NODE_VERSION في netlify.toml
+          cache: npm
+
+      # الأداة تقرأ ترويسات المعالم بمحلل YAML، فتلزمها التبعيات؛ بلا سكربتات تثبيت.
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Compare hours with the map listings
+        id: check
+        env:
+          # طلب الدمج لا يأخذ المفتاح أبداً: تشغيله إثبات توصيل لا مقارنة.
+          GOOGLE_PLACES_API_KEY: ${{ github.event_name != 'pull_request' && secrets.GOOGLE_PLACES_API_KEY || '' }}
+          RESOLVE: ${{ github.event_name == 'workflow_dispatch' && inputs.resolve && '1' || '' }}
+        run: |
+          set -o pipefail
+          if [ -n "$RESOLVE" ]; then
+            node tools/automation/attraction-hours.mjs --resolve | tee hours-summary.md
+          else
+            node tools/automation/attraction-hours.mjs | tee hours-summary.md
+          fi
+
+      - name: Publish the summary
+        if: always()
+        run: |
+          if [ -s hours-summary.md ]; then cat hours-summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: Open or update the tracking issue
+        if: failure() && steps.check.outcome == 'failure' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ISSUE_TITLE: Attraction hours differ from the map listing
+        run: |
+          {
+            echo "The scheduled attraction hours check failed."
+            echo
+            echo "Run: $RUN_URL"
+            echo
+            if [ -s hours-summary.md ]; then
+              cat hours-summary.md
+            else
+              echo "The check stopped before producing a summary; see the run log."
+            fi
+          } > body.md
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body-file body.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$ISSUE_TITLE" --body-file body.md
+          fi
