@@ -1,5 +1,6 @@
 // مولَّد من zh-translation/output/transport/judge.json (92، APPROVE) — لا يُحرَّر يدوياً؛
 // أي تعديل يمرّ بخط zh-translation-pipeline ثم يُعاد التطبيق.
+// الفقرة الثانية والمصدر الثالث في قسم access من zh-translation/output/transport-assist/judge.json.
 import type { TransportPage } from './transport';
 
 export const TRANSPORT_ZH: TransportPage = {
@@ -529,7 +530,8 @@ export const TRANSPORT_ZH: TransportPage = {
           "id": "access",
           "h": "无障碍出行",
           "paras": [
-            "沙特公共交通公司表示，哈萨公交配有方便残障乘客的设施。沙特铁路公司为已登记的残障乘客提供成人经济座车票 50% 的折扣，与其一同预订的一名陪同人员也可享受，具体以沙特铁路公司的规定为准。优步哈萨页面显示，目前在哈萨无法通过优步叫到可供轮椅乘客使用的无障碍车辆。"
+            "沙特公共交通公司表示，哈萨公交配有方便残障乘客的设施。沙特铁路公司为已登记的残障乘客提供成人经济座车票 50% 的折扣，与其一同预订的一名陪同人员也可享受，具体以沙特铁路公司的规定为准。优步哈萨页面显示，目前在哈萨无法通过优步叫到可供轮椅乘客使用的无障碍车辆。",
+            "如果您在车站内或上车时需要协助，请在列车发车前至少 1 小时到达车站，并在到达时告知沙特铁路公司的工作人员。"
           ],
           "src": [
             {
@@ -539,6 +541,10 @@ export const TRANSPORT_ZH: TransportPage = {
             {
               "label": "沙特铁路公司：车票类别",
               "href": "https://www.sar.com.sa/east-train/ticketcategories/"
+            },
+            {
+              "label": "沙特铁路公司：特殊协助",
+              "href": "https://www.sar.com.sa/help/specialhelp/"
             },
             {
               "label": "优步",

@@ -1,0 +1,48 @@
+{
+  "batch": "transport-assist",
+  "lang": "zh",
+  "stage": "judge",
+  "round": 1,
+  "score": 97,
+  "breakdown": {
+    "accuracy": 30,
+    "nativeness": 28,
+    "termbase_style": 20,
+    "cultural_fit": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "blind_reader_rulings": [
+    { "n": 1, "ruling": "out of scope", "reason": "Concerns the published first paragraph of the train section (trainP0): Hufuf/Al-Ahsa link and the missing Latin gloss on 胡富夫." },
+    { "n": 2, "ruling": "out of scope", "reason": "Concerns the published seat-class list (经济优惠座); not part of this batch." },
+    { "n": 3, "ruling": "out of scope", "reason": "Concerns the published ticket-purchase paragraph (groups.0.sections.2.paras.1)." },
+    { "n": 4, "ruling": "rejected", "reason": "Only the nested-colon point touches this batch, via the new label 沙特铁路公司：特殊协助 in the second source line. Rejected: the brief and the published siblings fix the pattern operator + full-width colon + topic (沙特铁路公司：车票类别, 沙特公共交通公司：哈萨公交, 优步：哈萨, …); changing one label would break consistency with every published source line. The spaces after 来源：/日期： and the wording 最近核实日期 belong to published fixed strings (srcLabel/checked) and to the template — out of scope, noted below." },
+    { "n": 5, "ruling": "out of scope", "reason": "Concerns the published first sentence of the accessibility paragraph (p0, SAPTCO facilities)." },
+    { "n": 6, "ruling": "out of scope", "reason": "Concerns the published SAR discount sentence in p0 (repetition of 沙特铁路公司, 已登记 unexplained, phrasing 提供…折扣)." },
+    { "n": 7, "ruling": "out of scope", "reason": "Concerns the published Uber sentence in p0 (优步哈萨页面, redundancy, no alternative offered)." }
+  ],
+  "ruling_counts": { "applied": 0, "rejected": 1, "source": 0, "out_of_scope": 6 },
+  "source_defects": [],
+  "out_of_scope_notes": [
+    "1: trainP0 never ties 胡富夫 to 哈萨 and glosses 布盖格（Abqaiq） but not 胡富夫 — inconsistent Latin glossing.",
+    "2: 经济优惠座 is opaque to the reader; no explanation of how it differs from 经济座.",
+    "3: three purchase channels listed, payment given for two (app not placed under 网上).",
+    "4: source line renders a space after the full-width colons (来源： / 日期：) — likely a template/typesetting slip; 最近核实日期 read as stiff (reader suggests 最后核实：).",
+    "5: 方便残障乘客的设施 too vague to act on; 哈萨公交 arrives without introduction in the excerpt.",
+    "6: p0 repeats 沙特铁路公司 at both ends of one sentence; 已登记 unexplained; 提供…车票 50% 的折扣 reads translated.",
+    "7: 优步哈萨页面 reads oddly; 可供轮椅乘客使用的无障碍车辆 redundant; no alternative for wheelchair users (also a source gap)."
+  ],
+  "termbase_additions": [],
+  "notes": [
+    "The reader passed over the new paragraph without any observation: it read as clear, natural Chinese after the Uber sentence, with 列车 and the operator making the subject change explicit.",
+    "Fact fence verified in the final string: 车站内或上车时 / 发车前 / 至少 / 1 小时 / 到达车站 / 到达时告知 / 沙特铁路公司的工作人员.",
+    "Termbase: 沙特铁路公司 bare at a later mention (（SAR） given at first mention, groups.0.sections.1.src.1.label); label prefix identical to sibling src[1].",
+    "Nativeness -2: 到达车站……到达时 is a slight repetition, kept deliberately because 到站 in rail usage reads as the train arriving.",
+    "Cultural fit -1: label topic 特殊协助 is not attested as a rail page heading (see draft.json unverified)."
+  ],
+  "strings_changed": [],
+  "final_strings": {
+    "groups.1.sections.6.paras.1": "如果您在车站内或上车时需要协助，请在列车发车前至少 1 小时到达车站，并在到达时告知沙特铁路公司的工作人员。",
+    "groups.1.sections.6.src.2.label": "沙特铁路公司：特殊协助"
+  }
+}

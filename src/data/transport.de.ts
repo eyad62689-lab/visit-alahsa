@@ -1,5 +1,6 @@
 // مولَّد من de-translation/output/transport/judge.json (92، APPROVE) — لا يُحرَّر يدوياً؛
 // أي تعديل يمرّ بخط de-translation-pipeline ثم يُعاد التطبيق.
+// الفقرة الثانية والمصدر الثالث في قسم access من de-translation/output/transport-assist/judge.json.
 import type { TransportPage } from './transport';
 
 export const TRANSPORT_DE: TransportPage = {
@@ -529,7 +530,8 @@ export const TRANSPORT_DE: TransportPage = {
           "id": "access",
           "h": "Barrierefrei unterwegs",
           "paras": [
-            "Laut SAPTCO sind die Busse in Al-Ahsa für Fahrgäste mit Behinderung ausgestattet. Die Bahngesellschaft SAR gewährt registrierten Fahrgästen mit Behinderung 50% Ermäßigung auf Economy-Fahrkarten für Erwachsene; das gilt auch für eine Begleitperson, wenn beide gemeinsam buchen. Es gelten die Bedingungen der Bahngesellschaft. Laut der Al-Ahsa-Seite von Uber sind über den Dienst in der Stadt derzeit keine rollstuhlgerechten Fahrzeuge verfügbar."
+            "Laut SAPTCO sind die Busse in Al-Ahsa für Fahrgäste mit Behinderung ausgestattet. Die Bahngesellschaft SAR gewährt registrierten Fahrgästen mit Behinderung 50% Ermäßigung auf Economy-Fahrkarten für Erwachsene; das gilt auch für eine Begleitperson, wenn beide gemeinsam buchen. Es gelten die Bedingungen der Bahngesellschaft. Laut der Al-Ahsa-Seite von Uber sind über den Dienst in der Stadt derzeit keine rollstuhlgerechten Fahrzeuge verfügbar.",
+            "Wenn Sie im Bahnhof oder beim Einsteigen in den Zug Hilfe benötigen, kommen Sie mindestens eine Stunde vor der Abfahrt zum Bahnhof und geben Sie dem Personal der Bahngesellschaft SAR Bescheid, sobald Sie dort ankommen."
           ],
           "src": [
             {
@@ -539,6 +541,10 @@ export const TRANSPORT_DE: TransportPage = {
             {
               "label": "Bahngesellschaft SAR: Fahrkartenklassen",
               "href": "https://www.sar.com.sa/east-train/ticketcategories/"
+            },
+            {
+              "label": "Bahngesellschaft SAR: besondere Unterstützung",
+              "href": "https://www.sar.com.sa/help/specialhelp/"
             },
             {
               "label": "Uber",
