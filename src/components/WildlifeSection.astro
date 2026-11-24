@@ -187,3 +187,13 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
     .wl-cap { grid-column: 1 / -1; grid-row: 2; padding: 0 var(--s-3) var(--s-3); }
   }
 </style>
+
+{/* Nastaliq needs more room between lines than the Naskh and Latin faces, and the Latin name line needs
+    less than the Urdu body value it would inherit. These rules ship with the Urdu page only. */}
+{lang === 'ur' && (
+  <style is:inline>
+    .wl-lead, .wl-p, .wl-note, .wl-belt p, .wl-d, .wl-tips span, .wl-refs ol, .wl-fact-t, .wl-cap { line-height: 2; }
+    .wl-fact-n { line-height: 1.6; }
+    .wl-latin { line-height: 1.4; }
+  </style>
+)}
