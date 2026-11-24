@@ -265,14 +265,17 @@ const EVENT_META = {
   // والاسم هنا اسم الجهة المنظّمة): المكان مدينة أبيكس الرياضية بجامعة الملك فيصل، والجهات الخمس،
   // والألعاب الخمس، والسنّ من ثماني سنوات، والبطولات اليومية 24–28 ونهائي «كأس الأحساء» 29 نوفمبر،
   // والتسجيل اليومي، والسعة (نحو 300 متنافس يومياً، واللعب الحر 3,000–5,000). ومساحة المدينة وسعة
-  // ملعبها من صفحتها لدى شركة وادي الأحساء (alahsavalley.com.sa/apexsports). لا ساعات ولا رسوم ولا
-  // رابط تسجيل (لم تُعلن)، ولا خريطة (لا رابط رسمياً؛ الإحداثيات لا تُقدَّر). الصورة رسمٌ للموقع لا
+  // ملعبها من صفحتها لدى شركة وادي الأحساء (alahsavalley.com.sa/apexsports). و«بوابة 12» ورابط الحجز
+  // على إيفينتو من إعلان جامعة الملك فيصل على X (x.com/KFUniversity/status/2123380268811550766،
+  // 2026-11-19)، وصفحة الحجز قُرئت 2026-11-24 وتطابق الاسم والمكان والموعد. الساعات والرسوم في صفحة
+  // الحجز وحدها ولا تُنقل هنا، ولا خريطة (لا رابط رسمياً؛ الإحداثيات لا تُقدَّر). الصورة رسمٌ للموقع لا
   // إعلان رسمي — يُستبدل بالإعلان متى نُشر وأذن المالك.
   'alahsa-esports-2026': {
     img: '/img/event-alahsa-esports-2026',
     start: 11, end: 11,
     status: 'confirmed', oneOff: true,
     startISO: '2026-11-24', endISO: '2026-11-29',
+    ticket: 'https://evento.sa/event-details/386bf268-d21b-422f-a2b1-18a8ce6cc23e',
     social: 'https://x.com/ahda_alahsa',
   },
 } as const satisfies Record<string, EventMeta>;
@@ -543,7 +546,7 @@ const TEXT_AR: EventTexts = {
   },
   'alahsa-esports-2026': {
     slug: 'بطولة-الأحساء-للرياضات-الإلكترونية-2026',
-    name: 'بطولة الأحساء للرياضات الإلكترونية', place: 'مدينة أبيكس الرياضية، جامعة الملك فيصل',
+    name: 'بطولة الأحساء للرياضات الإلكترونية', place: 'مدينة أبيكس الرياضية، جامعة الملك فيصل، بوابة 12',
     season: 'الشتاء', time: '24 – 29 نوفمبر 2026م', span: '6 أيام',
     org: 'هيئة تطوير الأحساء، والاتحاد السعودي للرياضات الإلكترونية، ونادي الفتح، وغرفة الأحساء، وجامعة الملك فيصل',
     acts: ['بطولات يومية في خمس ألعاب', 'نهائي «كأس الأحساء»', 'مناطق اللعب الحر', 'تجارب الواقع الافتراضي'],
@@ -555,11 +558,12 @@ const TEXT_AR: EventTexts = {
       ] },
       { h: 'اللعب الحر', ps: ['إلى جانب المنافسات التي تستوعب نحو 300 متنافس يومياً، خُصّصت مناطق للعب الحر تتسع لما بين 3,000 و5,000 لاعب يومياً، فيها أجهزة PlayStation 5 وحاسبات ألعاب ومحاكيات سباقات وتجارب واقع افتراضي.'] },
       { h: 'التسجيل', dated: true, ps: ['يُفتح التسجيل في المنافسات يومياً، وتُعتمد جداول المباريات بعد إغلاقه. وتنشر هيئة تطوير الأحساء مستجدات البطولة على حسابها في X.'] },
-      { h: 'المكان', ps: ['مدينة أبيكس الرياضية داخل جامعة الملك فيصل في الأحساء، مساحتها 75 ألف متر مربع، ويتّسع ملعبها لنحو 8,500 متفرج.'] },
+      { h: 'المكان', ps: ['مدينة أبيكس الرياضية داخل جامعة الملك فيصل في الأحساء، ويحدّد إعلان الجامعة موقع البطولة ببوابة 12. مساحة المدينة 75 ألف متر مربع، ويتّسع ملعبها لنحو 8,500 متفرج.'] },
     ],
     faq: [
       { q: 'متى تقام البطولة؟', a: 'من 24 إلى 29 نوفمبر 2026م: بطولات يومية من 24 إلى 28 نوفمبر، ونهائي «كأس الأحساء» يوم 29 نوفمبر.' },
-      { q: 'أين تقام البطولة؟', a: 'في مدينة أبيكس الرياضية بجامعة الملك فيصل في الأحساء.' },
+      { q: 'أين تقام البطولة؟', a: 'في مدينة أبيكس الرياضية بجامعة الملك فيصل في الأحساء، بوابة 12.' },
+      { q: 'كيف أحجز تذكرة الزوار؟', a: 'من صفحة البطولة على منصة إيفينتو، وزرّ «احجز تذكرتك» في هذه الصفحة يوصلك إليها.', dated: true },
       { q: 'من يمكنه المشاركة؟', a: 'الهواة والمحترفون من عمر ثماني سنوات فأكثر، والتسجيل يُفتح يومياً.', dated: true },
       { q: 'ما ألعاب البطولة؟', a: 'Fortnite وRocket League وTekken 8 وEA FC 27 ومحاكاة السباقات (Sim Racing).' },
     ],
@@ -803,7 +807,7 @@ const TEXT_EN: EventTexts = {
   },
   'alahsa-esports-2026': {
     slug: 'al-ahsa-esports-tournament-2026',
-    name: 'Al-Ahsa Esports Tournament', place: 'Apex Sports City, King Faisal University',
+    name: 'Al-Ahsa Esports Tournament', place: 'Apex Sports City, King Faisal University, Gate 12',
     season: 'Winter', time: '24–29 November 2026', span: '6 days',
     org: 'Al-Ahsa Development Authority, Saudi Esports Federation, Al-Fateh Club, Al-Ahsa Chamber and King Faisal University',
     acts: ['Daily tournaments in five games', 'The Al-Ahsa Cup final', 'Free-play zones', 'Virtual reality experiences'],
@@ -815,11 +819,12 @@ const TEXT_EN: EventTexts = {
       ] },
       { h: 'Free play', ps: ['Alongside the competitions, which take about 300 players a day, free-play zones hold between 3,000 and 5,000 players a day, with PlayStation 5 consoles, gaming PCs, racing simulators and virtual reality experiences.'] },
       { h: 'Registration', dated: true, ps: ['Registration for the competitions opens daily, and match schedules are set once it closes. The Al-Ahsa Development Authority posts tournament updates on its X account.'] },
-      { h: 'The venue', ps: ['Apex Sports City is inside King Faisal University in Al-Ahsa. It covers 75,000 square metres, and its stadium holds about 8,500 spectators.'] },
+      { h: 'The venue', ps: ['Apex Sports City is inside King Faisal University in Al-Ahsa, and the university’s announcement gives the tournament’s location as Gate 12. The city covers 75,000 square metres, and its stadium holds about 8,500 spectators.'] },
     ],
     faq: [
       { q: 'When is the tournament?', a: 'From 24 to 29 November 2026: daily tournaments from 24 to 28 November, and the Al-Ahsa Cup final on 29 November.' },
-      { q: 'Where is it held?', a: 'At Apex Sports City at King Faisal University in Al-Ahsa.' },
+      { q: 'Where is it held?', a: 'At Apex Sports City at King Faisal University in Al-Ahsa, Gate 12.' },
+      { q: 'How do I book a visitor ticket?', a: 'On the tournament’s page on the Evento platform; the “Book your ticket” button on this page takes you there.', dated: true },
       { q: 'Who can take part?', a: 'Amateurs and professionals aged eight and over; registration opens daily.', dated: true },
       { q: 'Which games are played?', a: 'Fortnite, Rocket League, Tekken 8, EA FC 27 and Sim Racing.' },
     ],
