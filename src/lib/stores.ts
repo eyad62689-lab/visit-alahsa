@@ -1,7 +1,7 @@
 // دليل المتاجر الإلكترونية الأحسائية — المصدر العربي src/data/stores-directory.ar.json
 // والترجمات src/data/stores-directory.<lang>.json (من خطوط الترجمة حصراً).
 //
-// الحقول evidence_internal وflags وdocx_row وconfirmed_by_owner بيانات تحرير داخلية:
+// الحقول evidence_internal وflags وdocx_row وconfirmed_by_owner وhidden بيانات تحرير داخلية:
 // لا تُعرض في الصفحة ولا تدخل JSON-LD ولا أي سمة data-*. publicStore() يسقطها قبل
 // أي تسلسل، والواجهة لا تقرأ من الكائن الخام إلا عبره.
 //
@@ -26,6 +26,8 @@ export interface StoreRaw {
   logo: string;
   flags: string[];
   confirmed_by_owner?: string;
+  /** سبب الإخفاء وتاريخه. وجوده يُسقط المتجر من الصفحة وJSON-LD ومعرفة المستشار بكل اللغات. */
+  hidden?: string;
 }
 
 export interface Store {
@@ -96,7 +98,8 @@ export function publicStore(s: StoreRaw, tr?: { name: string; platform: string; 
   };
 }
 
-const rawSorted: StoreRaw[] = [...(ar.stores as StoreRaw[])].sort((a, b) => a.order - b.order);
+// المتجر المخفي يبقى في المصدر ووحدات الترجمة (إعادته حذف حقل واحد) ولا يصل أي مخرج
+const rawSorted: StoreRaw[] = (ar.stores as StoreRaw[]).filter((s) => !s.hidden).sort((a, b) => a.order - b.order);
 
 /** صفحة الدليل بلغة — ترتيب order ثابت، والنصوص من وحدة اللغة (العربية من المصدر). */
 export function storesPage(lang: Lang): StoresPage {
