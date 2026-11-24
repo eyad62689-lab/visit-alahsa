@@ -1,14 +1,22 @@
 ---
 // Wildlife section of the Al-Asfar Lake page: facts, plant belts, birds, other life, visitor tips and
-// the reference list, all from src/data/asfar-wildlife.ts. Arabic and English only; the caller does not
-// render it for languages whose text has not been through their translation pipeline.
+// the reference list, all from src/data/asfar-wildlife.ts. The caller renders it only for languages that
+// have its text (see asfar-wildlife-i18n.ts).
 import Photo from './Photo.astro';
 import { WILDLIFE_BELTS, WILDLIFE_BIRDS, WILDLIFE_GROUPS, WILDLIFE_REFS, WILDLIFE_SOURCES, WILDLIFE_TEXT as T } from '../data/asfar-wildlife';
+import { wildlifeText } from '../data/asfar-wildlife-i18n';
+import type { Lang } from '../i18n/ui';
 
-interface Props { lang: 'ar' | 'en'; }
+interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const ar = lang === 'ar';
-const x = (v: { ar: string; en: string }) => v[lang];
+const x = wildlifeText(lang);
+// Arabic and Urdu bird names vary from one source to the next, so those pages print the English name as well.
+const withEnglishName = ar || lang === 'ur';
+// Punctuation the markup puts around the strings, in the form each script uses.
+const P = lang === 'zh'
+  ? { colon: '：', gap: '', open: '（', close: '）', sep: '、' }
+  : { colon: ': ', gap: ' ', open: '(', close: ')', sep: ar || lang === 'ur' ? '، ' : ', ' };
 // A reference link without a label of its own shows where it leads: the DOI, or the publisher's host name.
 const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' + url.slice(16) : new URL(url).hostname.replace(/^www\./, ''));
 ---
@@ -61,16 +69,16 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
               <Photo src={b.img} label={x(b.name)} class="wl-photo" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 360px" />
             </div>
             <figcaption class="wl-cap">
-              {x(T.photoBy)}: <bdi lang="en" dir="ltr">{b.credit.holder} · <a href={b.credit.licenseUrl} rel="license noopener" target="_blank">{b.credit.license}</a></bdi>
-              {' '}<span class="wl-via">(<a href={b.credit.file} rel="noopener" target="_blank">{x(T.via)}</a>)</span>
+              {x(T.photoBy)}{P.colon}<bdi lang="en" dir="ltr">{b.credit.holder} · <a href={b.credit.licenseUrl} rel="license noopener" target="_blank">{b.credit.license}</a></bdi>
+              {P.gap}<span class="wl-via">{P.open}<a href={b.credit.file} rel="noopener" target="_blank">{x(T.via)}</a>{P.close}</span>
             </figcaption>
           </figure>
           <div class="wl-body">
             <span class="t-caption wl-k">{x(WILDLIFE_GROUPS[b.group])}</span>
             <h4 class="wl-name">{x(b.name)}</h4>
-            <p class="wl-latin" lang={ar ? 'en' : 'la'} dir="ltr">{ar && <>{b.name.en} · </>}<i>{b.sci}</i></p>
+            <p class="wl-latin" lang={withEnglishName ? 'en' : 'la'} dir="ltr">{withEnglishName && <>{b.name.en} · </>}<i>{b.sci}</i></p>
             <p class="wl-d">{x(b.note)}</p>
-            <p class="wl-src">{x(T.source)}: <a href={WILDLIFE_SOURCES[b.source].url} rel="noopener" target="_blank">{x(WILDLIFE_SOURCES[b.source].label)}</a></p>
+            <p class="wl-src">{x(T.source)}{P.colon}<a href={WILDLIFE_SOURCES[b.source].url} rel="noopener" target="_blank">{x(WILDLIFE_SOURCES[b.source].label)}</a></p>
           </div>
         </li>
       ))}
@@ -94,15 +102,15 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
     </div>
 
     <details class="wl-refs" data-wl-refs>
-      <summary>{x(T.sourcesH)} <bdi>({WILDLIFE_REFS.length})</bdi></summary>
+      <summary>{x(T.sourcesH)}{P.gap}<bdi>{P.open}{WILDLIFE_REFS.length}{P.close}</bdi></summary>
       <ol>
         {WILDLIFE_REFS.map((r) => (
           <li>
             {r.cite && <bdi class="wl-cite" lang="en" dir="ltr">{r.cite}</bdi>}
             {r.note && <span>{x(r.note)}</span>}
-            {' '}
+            {P.gap}
             {r.links.map((l, i) => (
-              <>{i > 0 && (ar ? '، ' : ', ')}<a href={l.url} rel="noopener" target="_blank">{l.label ? x(l.label) : <bdi dir="ltr">{linkText(l.url)}</bdi>}</a></>
+              <>{i > 0 && P.sep}<a href={l.url} rel="noopener" target="_blank">{l.label ? x(l.label) : <bdi dir="ltr">{linkText(l.url)}</bdi>}</a></>
             ))}
           </li>
         ))}
@@ -179,3 +187,13 @@ const linkText = (url: string) => (url.startsWith('https://doi.org/') ? 'doi:' +
     .wl-cap { grid-column: 1 / -1; grid-row: 2; padding: 0 var(--s-3) var(--s-3); }
   }
 </style>
+
+{/* Nastaliq needs more room between lines than the Naskh and Latin faces, and the Latin name line needs
+    less than the Urdu body value it would inherit. These rules ship with the Urdu page only. */}
+{lang === 'ur' && (
+  <style is:inline>
+    .wl-lead, .wl-p, .wl-note, .wl-belt p, .wl-d, .wl-tips span, .wl-refs ol, .wl-fact-t, .wl-cap { line-height: 2; }
+    .wl-fact-n { line-height: 1.6; }
+    .wl-latin { line-height: 1.4; }
+  </style>
+)}

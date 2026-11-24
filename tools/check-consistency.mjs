@@ -1083,6 +1083,12 @@ async function main() {
     // إسناد صور مكوّنات اليونسكو أعلام لاتينية بالعمد (أصحاب الحقوق والرخص واسم المصدر الفضائي) لا نصّ متراجَع إليه
     for (const m of (await readText(path.join(ROOT, 'src/data/unesco-components.ts'))).matchAll(/\b(?:holder|license): '([^']+)'/g)) names.add(m[1]);
     names.add('EOX Sentinel-2 cloudless ↗');
+    // قسم الحياة الفطرية في صفحة بحيرة الأصفر: الأسماء العلمية وأصحاب الصور والرخص والاستشهادات المرجعية لاتينية
+    // بالعمد في كل اللغات (أعلام واستشهادات لا نصّ متراجَع إليه). صاحب الصورة يُرسم متبوعاً بالفاصل « ·» في العقدة نفسها.
+    for (const m of (await readText(path.join(ROOT, 'src/data/asfar-wildlife.ts'))).matchAll(/\b(sci|holder|license|cite): '([^']+)'/g)) {
+      names.add(m[2]);
+      if (m[1] === 'holder') names.add(`${m[2]} ·`);
+    }
     const chunksOf = (html) => {
       let body = stripUntilStable(html, /<head\b[^>]*>[\s\S]*?<\/head\b[^>]*>/gi);
       body = stripUntilStable(body, /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi);
