@@ -32,7 +32,9 @@ const running = (e: Ev): boolean => {
   return e.start <= end ? gm >= e.start && gm <= end : gm >= e.start || gm <= end;
 };
 // ذات التاريخين المعلنين أولاً (نسخة مؤكدة أو فعالية مؤقتة) ثم المواسم، فلا يحجبها الحدّ الأعلى
+// والموقوفة مؤقتاً لا تدخل القسم أصلاً: تاريخاها قائمان لكنها ليست «في موسمها الآن»
 const items = (ar ? EVENTS_AR : EVENTS_EN)
+  .filter((raw) => !raw.paused)
   .map((raw) => { const e = evView(raw); return { raw, e, now: running(e) }; })
   .sort((x, y) => Number(!!y.e.startISO) - Number(!!x.e.startISO));
 let shown = 0;

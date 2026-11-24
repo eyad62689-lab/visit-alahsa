@@ -83,6 +83,14 @@ export type Ev = {
    *  متصفّح الزائر قبله (EventEdition). عربية وإنجليزية فقط: لا نصّ لها بـzh/de/ru إلا عبر
    *  خطوط الترجمة، ولا تدخل روزنامة المواسم السنوية (tables.ts) ولا عدّها في llms.txt. */
   oneOff?: true;
+  /** الجهة المنظّمة أعلنت إيقاف الفعالية المؤقتة مؤقتاً بلا موعد استئناف — القيمة يوم الإعلان ISO.
+   *  التاريخان يبقيان (هما ما أُعلن، وبهما تخرج الفعالية بعد ختامها)، لكن شارة الحالة تصير
+   *  «متوقف مؤقتاً»، ويغيب العدّاد وشارة «نحن الآن هنا» وقسم «في موسمها الآن»، وتحمل السكيما
+   *  EventPostponed. للفعالية المؤقتة وحدها (نصّها ar/en)، ولا ساعات يومية معها. يُحذف الحقل
+   *  ومعه pausedNote عند إعلان الاستئناف. */
+  paused?: string;
+  /** جملة الإيقاف منقولةً عن إعلان الجهة المنظّمة بتاريخه — نصّ لكل لغة، إلزامي مع paused (C80). */
+  pausedNote?: string;
   /** الإعلان الرسمي كاملاً (مسار بلا امتداد تحت /img/event-posters/ — حقّه لجهته فلا
    *  يُختم بحقوق الموقع) يُعرض بجانب متن الصفحة؛ وimg عندها قصاصة منه للبطاقة. */
   poster?: string;
@@ -103,7 +111,7 @@ export const editionOver = (ev: Ev, now: Date = new Date()): boolean =>
  *  الموسومة dated، فتنتفي سكيما Event تلقائياً (شرطها startISO/endISO). */
 export function evView(ev: Ev, now: Date = new Date()): Ev {
   if (!ev.after || !editionOver(ev, now)) return ev;
-  const { hours: _h, ticket: _t, priceRange: _p, startISO: _s, endISO: _e, ...rest } = ev;
+  const { hours: _h, ticket: _t, priceRange: _p, startISO: _s, endISO: _e, paused: _z, pausedNote: _n, ...rest } = ev;
   return {
     ...rest,
     time: ev.after.time,
@@ -131,10 +139,10 @@ type MetaCommon = Pick<Ev, 'img' | 'start' | 'end' | 'ramadan' | 'openUntil' | '
 /** النسخة المؤكدة تلزمها تواريخ ISO وحالةُ ما بعد الانقضاء؛ وسواها لا تحمل شيئاً منها.
  *  اتحادٌ مميَّز: لا يمكن كتابة status: 'confirmed' بلا afterStatus، ولا تواريخ ISO بلا تأكيد. */
 type EventMeta = MetaCommon & (
-  | { status: 'confirmed'; startISO: string; endISO: string; afterStatus: 'expected' | 'tba'; oneOff?: undefined }
-  // فعالية مؤقتة: مؤكدة بتاريخيها ولا موسم تعود إليه (لا afterStatus ولا نصّ after)
-  | { status: 'confirmed'; startISO: string; endISO: string; oneOff: true; afterStatus?: undefined }
-  | { status?: 'expected' | 'tba'; startISO?: undefined; endISO?: undefined; afterStatus?: undefined; oneOff?: undefined }
+  | { status: 'confirmed'; startISO: string; endISO: string; afterStatus: 'expected' | 'tba'; oneOff?: undefined; paused?: undefined }
+  // فعالية مؤقتة: مؤكدة بتاريخيها ولا موسم تعود إليه (لا afterStatus ولا نصّ after)، ولها وحدها paused
+  | { status: 'confirmed'; startISO: string; endISO: string; oneOff: true; afterStatus?: undefined; paused?: string }
+  | { status?: 'expected' | 'tba'; startISO?: undefined; endISO?: undefined; afterStatus?: undefined; oneOff?: undefined; paused?: undefined }
 );
 
 // ترتيب المفاتيح هنا هو ترتيب القائمة الافتراضي (EVENTS_AR/EN) — لا يُغيَّر عبثاً.
@@ -249,11 +257,15 @@ const EVENT_META = {
   // لا رسوم دخول: المصادر متعارضة (مجاني/25 ريالاً)، وحُذف بند الرسوم من صفحة المعلم أيضاً بقرار المالك 2026-11-20.
   // الصورة والإعلان: الإعلان الرسمي من منشور الجمعية على X (2026-11-18)، أُضيف بإذن المالك 2026-11-20؛
   // حقّه للجمعية المنظّمة، وimg قصاصته العلوية للبطاقة.
+  // paused: منشور الجمعية المنظّمة على X (x.com/hasawiaish/status/2124123716686668044، 2026-11-21) يعلن
+  // «إيقاف فعاليات المهرجان مؤقتًا، على أن يُعلن عن موعد استئنافها لاحقًا عبر القنوات الرسمية» — قُرئ
+  // 2026-11-24 ولا منشور استئناف ظاهراً يومها. الساعات اليومية حُذفت من النصّين مع الإيقاف.
   'hasawi-aish-festival-2026': {
     img: '/img/event-posters/hasawi-aish-2026', poster: '/img/event-posters/hasawi-aish-2026-poster',
     start: 11, end: 12,
     status: 'confirmed', oneOff: true,
     startISO: '2026-11-20', endISO: '2026-12-05',
+    paused: '2026-11-21',
     venue: 'zaki-alsalem-farm',
     social: 'https://x.com/hasawiaish',
     whatsapp: '966562322330',
@@ -296,7 +308,7 @@ const RECURRING_IDS = EVENT_IDS.filter((id): id is RecurringId => !isOneOff(id))
 // ── النصوص — لكل لغة نسخة ────────────────────────────────────────────────────
 type AfterText = { time: string; span: string; seoTitle?: string; seoDesc?: string };
 type EvTextBase = Pick<Ev, 'slug' | 'name' | 'place' | 'season' | 'time' | 'span' | 'org' | 'acts'
-  | 'hours' | 'intro' | 'sections' | 'faq' | 'related' | 'seoTitle' | 'seoDesc'>;
+  | 'hours' | 'pausedNote' | 'intro' | 'sections' | 'faq' | 'related' | 'seoTitle' | 'seoDesc'>;
 /** نصّ after إلزامي لكل فعالية مؤكدة في EVENT_META وممنوع لسواها — يفرضه النوع. */
 type TextFor<K extends EventId> = (typeof EVENT_META)[K] extends { afterStatus: 'expected' | 'tba' }
   ? EvTextBase & { after: AfterText }
@@ -517,9 +529,9 @@ const TEXT_AR: EventTexts = {
     name: 'مهرجان العيش الحساوي', place: 'أرياف زكي السالم، طريق الخليج',
     season: 'الشتاء', time: '20 نوفمبر – 5 ديسمبر 2026م', span: '16 يوماً',
     org: 'الجمعية التعاونية الزراعية للعيش الحساوي',
-    hours: 'يومياً 3:00 م – 11:00 م',
+    pausedNote: 'أعلنت اللجنة المنظّمة في 21 نوفمبر 2026م إيقاف فعاليات المهرجان مؤقتاً، على أن يُعلن موعد استئنافها لاحقاً عبر قنواتها الرسمية.',
     acts: ['سوق الأرز الأحسائي', 'منتجات مبتكرة من الأرز الأحسائي', 'أطباق أحسائية تراثية', 'التعريف بزراعة الأرز الأحسائي'],
-    intro: 'يحتفي مهرجان العيش الحساوي بالأرز الأحسائي، من أشهر محاصيل الأحساء، تحت شعار «عيشنا ذهب». تنظّمه الجمعية التعاونية الزراعية للعيش الحساوي في أرياف زكي السالم وسط المزارع، من 20 نوفمبر إلى 5 ديسمبر 2026م، يومياً من 3:00 عصراً حتى 11:00 مساءً.',
+    intro: 'يحتفي مهرجان العيش الحساوي بالأرز الأحسائي، من أشهر محاصيل الأحساء، تحت شعار «عيشنا ذهب». تنظّمه الجمعية التعاونية الزراعية للعيش الحساوي في أرياف زكي السالم وسط المزارع، وموعده المعلن من 20 نوفمبر إلى 5 ديسمبر 2026م.',
     sections: [
       { h: 'ماذا تجد في المهرجان', ps: [
         'سوق للأرز الأحسائي يعرض فيه المزارعون والمنتجون المحليون أنواع الأرز الأحسائي، ومنها المعتّق، ويبيعونها للزوار مباشرة.',
@@ -528,11 +540,11 @@ const TEXT_AR: EventTexts = {
         'جولة في بيئة المزارع، والتعريف بمراحل زراعة الأرز الأحسائي وقيمته الغذائية وأهمية الحفاظ على أصنافه المحلية.',
       ] },
       { h: 'المكان', ps: ['أرياف زكي السالم وجهة ريفية على طريق الخليج تجمع مزارع النخيل ونبع مياه كبريتية طبيعياً، وفيها مساحات خضراء ومطاعم ومقاهٍ ومتاجر ومنطقة ألعاب للأطفال، إلى جانب الشاليهات الخاصة والعين الكبريتية العامة. وتجد الخريطة في هذه الصفحة.'] },
-      { h: 'قبل الزيارة', dated: true, ps: ['للاستفسار تواصل مع إدارة أرياف زكي السالم عبر واتساب من الزر في هذه الصفحة، من 8:00 صباحاً حتى 10:00 مساءً. وتنشر الجمعية المنظّمة أخبار المهرجان على حسابها في X.'] },
+      { h: 'قبل الزيارة', dated: true, ps: ['تنشر الجمعية المنظّمة أخبار المهرجان على حسابها في X، وفيه نُشر إعلان الإيقاف المؤقت. وللاستفسار تواصل مع إدارة أرياف زكي السالم عبر واتساب من الزر في هذه الصفحة، من 8:00 صباحاً حتى 10:00 مساءً.'] },
       { h: 'قبل هذا المهرجان', ps: ['أُقيم مهرجان الرز الحساوي في قرية النخيل بالأحساء في فبراير 2026م بعشرين ركناً لمزارعي الأرز والأسر المنتجة، وانتقلت هذه النسخة إلى بيئة ريفية مفتوحة وسط المزارع.'] },
     ],
     faq: [
-      { q: 'متى يُقام المهرجان؟', a: 'من 20 نوفمبر إلى 5 ديسمبر 2026م، يومياً من 3:00 عصراً حتى 11:00 مساءً.' },
+      { q: 'متى يُقام المهرجان؟', a: 'أُعلن موعده من 20 نوفمبر إلى 5 ديسمبر 2026م، ثم أعلنت اللجنة المنظّمة في 21 نوفمبر إيقاف فعالياته مؤقتاً، على أن يُعلن موعد الاستئناف لاحقاً.' },
       { q: 'أين يُقام المهرجان؟', a: 'في أرياف زكي السالم على طريق الخليج بالأحساء، وتجد الخريطة في هذه الصفحة.' },
       { q: 'من ينظّم المهرجان؟', a: 'الجمعية التعاونية الزراعية للعيش الحساوي، وهي جمعية متخصصة في تمكين مزارعي الأرز الأحسائي وتطوير زراعته وتسويقه.' },
     ],
@@ -541,8 +553,8 @@ const TEXT_AR: EventTexts = {
       { label: 'أكلات الأحساء', href: '/أكلات/' },
       { label: 'خطّط لرحلتك إلى الأحساء', href: '/خطط/' },
     ],
-    seoTitle: 'مهرجان العيش الحساوي 2026 في الأحساء: 20 نوفمبر – 5 ديسمبر',
-    seoDesc: 'مهرجان العيش الحساوي 2026 «عيشنا ذهب» في أرياف زكي السالم، 20 نوفمبر – 5 ديسمبر، يومياً 3 م – 11 م: سوق الأرز الأحسائي وأطباقه ومنتجاته.',
+    seoTitle: 'مهرجان العيش الحساوي 2026 في الأحساء: متوقف مؤقتاً',
+    seoDesc: 'مهرجان العيش الحساوي 2026 في أرياف زكي السالم: أعلن منظّموه في 21 نوفمبر إيقافه مؤقتاً، وموعد الاستئناف يُعلن لاحقاً. موعده المعلن 20 نوفمبر – 5 ديسمبر.',
   },
   'alahsa-esports-2026': {
     slug: 'بطولة-الأحساء-للرياضات-الإلكترونية-2026',
@@ -778,9 +790,9 @@ const TEXT_EN: EventTexts = {
     name: 'Hasawi Rice Festival', place: 'Aryaf Zaki Al-Salem, Al-Khaleej Road',
     season: 'Winter', time: '20 November – 5 December 2026', span: '16 days',
     org: 'Hasawi Rice Agricultural Cooperative',
-    hours: 'Daily 3:00–11:00 pm',
+    pausedNote: 'On 21 November 2026 the organising committee announced that the festival’s activities are temporarily suspended, with a date for resuming them to be announced later through its official channels.',
     acts: ['Hasawi rice market', 'New products made from Hasawi rice', 'Traditional Al-Ahsa dishes', 'Learning how Hasawi rice is grown'],
-    intro: 'The Hasawi Rice Festival celebrates Hasawi rice, one of Al-Ahsa’s best-known crops, under the slogan “Our Rice Is Gold”. It is organised by the Hasawi Rice Agricultural Cooperative at Aryaf Zaki Al-Salem, among the farms, from 20 November to 5 December 2026, daily from 3:00 to 11:00 pm.',
+    intro: 'The Hasawi Rice Festival celebrates Hasawi rice, one of Al-Ahsa’s best-known crops, under the slogan “Our Rice Is Gold”. It is organised by the Hasawi Rice Agricultural Cooperative at Aryaf Zaki Al-Salem, among the farms, and was announced for 20 November to 5 December 2026.',
     sections: [
       { h: 'What you’ll find', ps: [
         'A Hasawi rice market where local farmers and producers sell varieties of Hasawi rice, including aged rice, directly to visitors.',
@@ -789,11 +801,11 @@ const TEXT_EN: EventTexts = {
         'A walk through the farm setting, with an introduction to the stages of growing Hasawi rice, its nutritional value and why its local varieties matter.',
       ] },
       { h: 'The venue', ps: ['Aryaf Zaki Al-Salem is a rural destination on Al-Khaleej Road with palm farms and a natural sulphur-water spring. It has green open spaces, restaurants and cafés, shops and a children’s play area, as well as private chalets and a public sulphur spring. The map is on this page.'] },
-      { h: 'Before you visit', dated: true, ps: ['For enquiries, contact the Aryaf Zaki Al-Salem management on WhatsApp using the button on this page, from 8:00 am to 10:00 pm. The organising cooperative posts festival news on its X account.'] },
+      { h: 'Before you visit', dated: true, ps: ['The organising cooperative posts festival news on its X account, where the temporary suspension was announced. For enquiries, contact the Aryaf Zaki Al-Salem management on WhatsApp using the button on this page, from 8:00 am to 10:00 pm.'] },
       { h: 'Before this festival', ps: ['A Hasawi rice festival was held at Palm Village in Al-Ahsa in February 2026, with twenty stalls for rice farmers and productive families. This edition moves to an open rural setting among the farms.'] },
     ],
     faq: [
-      { q: 'When is the festival held?', a: 'From 20 November to 5 December 2026, daily from 3:00 to 11:00 pm.' },
+      { q: 'When is the festival held?', a: 'It was announced for 20 November to 5 December 2026. On 21 November the organising committee announced a temporary suspension, with a date for resuming to be announced later.' },
       { q: 'Where is the festival held?', a: 'At Aryaf Zaki Al-Salem on Al-Khaleej Road in Al-Ahsa; the map is on this page.' },
       { q: 'Who organises the festival?', a: 'The Hasawi Rice Agricultural Cooperative, an association that supports Hasawi rice farmers and develops how the crop is grown and marketed.' },
     ],
@@ -802,8 +814,8 @@ const TEXT_EN: EventTexts = {
       { label: 'Food of Al-Ahsa', href: '/en/food/' },
       { label: 'Plan your trip to Al-Ahsa', href: '/en/plan-your-trip/' },
     ],
-    seoTitle: 'Hasawi Rice Festival 2026 in Al-Ahsa: 20 Nov – 5 Dec',
-    seoDesc: 'Hasawi Rice Festival 2026 at Aryaf Zaki Al-Salem, 20 Nov – 5 Dec, daily 3–11 pm: a Hasawi rice market, traditional rice dishes and new rice products.',
+    seoTitle: 'Hasawi Rice Festival 2026 in Al-Ahsa: temporarily suspended',
+    seoDesc: 'Hasawi Rice Festival 2026 at Aryaf Zaki Al-Salem: temporarily suspended by the organisers on 21 Nov; resumption date to follow. Announced for 20 Nov – 5 Dec.',
   },
   'alahsa-esports-2026': {
     slug: 'al-ahsa-esports-tournament-2026',

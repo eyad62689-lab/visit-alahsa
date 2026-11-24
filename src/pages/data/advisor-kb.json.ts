@@ -208,7 +208,8 @@ function eventEntries(): KbEntry[] {
       name[l] = v.name;
       area[l] = v.place;
       // الموسم والمدة والجهة المنظّمة؛ الساعات لا تُذكر إلا منقولةً من مصدر رسمي (hours)
-      summary[l] = [v.season, v.time, v.span, v.org, v.hours].filter(Boolean).join(' · ');
+      // وإعلان الإيقاف المؤقت أولاً إن وُجد، كي لا يُقرأ الموعد المعلن على أنه قائم
+      summary[l] = [v.pausedNote, v.season, v.time, v.span, v.org, v.hours].filter(Boolean).join(' · ');
     }
     return { id: `event/${id}`, kind: 'event' as const, name, href, summary, area };
   }).filter((e) => hasAny(e.href));

@@ -8,7 +8,7 @@
 // قاعدة الموقع: أرقام لاتينية (0-9) في كل النصوص.
 
 import { readFile, readdir } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { checkTrails, EXPECT, L10N_LANGS } from './check-trails.mjs';
 import { checkVisaGuide, VISA_GUIDE_ALT, VISA_LANGS, VISA_PREVIEW_NOTE } from './check-visa-guide.mjs';
@@ -37,7 +37,7 @@ import { checkNastaliqDeferral } from './check-nastaliq-deferral.mjs';
 import { checkGuides, parseGuideSource, mentionsGuidesIndex, riyadhDay, GUIDES_AR_DIR, GUIDES_EN_DIR } from './check-guides.mjs';
 import { auditSeoMeta, checkSeoMeta, loadBaseline as loadSeoBaseline } from './check-seo-meta.mjs';
 import { checkImageDims } from './check-image-dims.mjs';
-import { checkEventsData, parseEventsSource, EXPECT as EVENTS_DATA_EXPECT } from './check-events-data.mjs';
+import { checkEventsData, checkPausedRender, parseEventsSource, EXPECT as EVENTS_DATA_EXPECT } from './check-events-data.mjs';
 import { checkAttractionData, RULINGS as ATTRACTION_RULINGS } from './check-attraction-data.mjs';
 import { checkHoursProse, collectAttractionFiles } from './check-hours-prose.mjs';
 import { checkWorker, readInstalled, readDistWorker, pageWorkerUrl } from './maplibre-worker.mjs';
@@ -1950,8 +1950,14 @@ async function main() {
     {
       const parsed = parseEventsSource(await readText(path.join(ROOT, 'src/data/events.ts')));
       const { problems, stats } = checkEventsData({ ...parsed, attractionSlugs: new Set(files.map((f) => f.slug)) });
+      // الموقوفة مؤقتاً: ما في المصدر يُقابَل بالمبنيّ (صفحتها، بطاقتها، قسم «في موسمها الآن»)
+      const rendered = checkPausedRender({
+        ...parsed, today: riyadhDay(),
+        read: (rel) => { const p = path.join(DIST, rel); return existsSync(p) ? readFileSync(p, 'utf8') : undefined; },
+      });
+      problems.push(...rendered.problems);
       if (problems.length) fail('C80', `بيانات الفعاليات: ${problems.length} مشكلة — ${problems.slice(0, 4).join(' · ')}`);
-      else pass('C80', `${stats.events} فعالية (${stats.confirmed} مؤكدة، الحدّ الأدنى ${EVENTS_DATA_EXPECT.minConfirmed}): تواريخ ISO حقيقية مرتّبة تطابق نافذة الأشهر، و${stats.timeChecks} نص time في ${stats.langs} لغات يذكر يومي النسخة وسنتيها، وما يخص النسخة الجارية في المؤكدة وحدها`);
+      else pass('C80', `${stats.events} فعالية (${stats.confirmed} مؤكدة، الحدّ الأدنى ${EVENTS_DATA_EXPECT.minConfirmed}): تواريخ ISO حقيقية مرتّبة تطابق نافذة الأشهر، و${stats.timeChecks} نص time في ${stats.langs} لغات يذكر يومي النسخة وسنتيها، وما يخص النسخة الجارية في المؤكدة وحدها، و${rendered.stats.paused} موقوفة مؤقتاً تُعرض موقوفةً في ${rendered.stats.pages} صفحة`);
     }
     {
       const { problems, stats } = checkAttractionData(files, { today: riyadhDay() });
