@@ -1,5 +1,6 @@
 // مولَّد من tr-translation/output/transport/judge.json (92، APPROVE) — لا يُحرَّر يدوياً؛
 // أي تعديل يمرّ بخط tr-translation-pipeline ثم يُعاد التطبيق.
+// الفقرة الثانية والمصدر الثالث في قسم access من tr-translation/output/transport-assist/judge.json.
 import type { TransportPage } from './transport';
 
 export const TRANSPORT_TR: TransportPage = {
@@ -529,7 +530,8 @@ export const TRANSPORT_TR: TransportPage = {
           "id": "access",
           "h": "Engelli yolcular için ulaşım",
           "paras": [
-            "SAPTCO, El-Ahsa otobüslerinin engelli yolculara uygun donanıma sahip olduğunu belirtir. Suudi Arabistan Demiryolları, kendi koşulları çerçevesinde kayıtlı engelli yolculara yetişkin ekonomi biletinde %50 indirim uygular; bu indirim birlikte rezervasyon yapılan bir refakatçi için de geçerlidir. Uber'in El-Ahsa sayfasına göre şehirde şu anda Uber üzerinden tekerlekli sandalyeye uygun araç sunulmuyor."
+            "SAPTCO, El-Ahsa otobüslerinin engelli yolculara uygun donanıma sahip olduğunu belirtir. Suudi Arabistan Demiryolları, kendi koşulları çerçevesinde kayıtlı engelli yolculara yetişkin ekonomi biletinde %50 indirim uygular; bu indirim birlikte rezervasyon yapılan bir refakatçi için de geçerlidir. Uber'in El-Ahsa sayfasına göre şehirde şu anda Uber üzerinden tekerlekli sandalyeye uygun araç sunulmuyor.",
+            "İstasyonda ya da trene binerken yardıma ihtiyacınız olursa kalkıştan en az bir saat önce istasyona gelin ve vardığınızda bir Suudi Arabistan Demiryolları görevlisine haber verin."
           ],
           "src": [
             {
@@ -539,6 +541,10 @@ export const TRANSPORT_TR: TransportPage = {
             {
               "label": "Suudi Arabistan Demiryolları: bilet sınıfları",
               "href": "https://www.sar.com.sa/east-train/ticketcategories/"
+            },
+            {
+              "label": "Suudi Arabistan Demiryolları: özel yardım",
+              "href": "https://www.sar.com.sa/help/specialhelp/"
             },
             {
               "label": "Uber",

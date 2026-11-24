@@ -1,0 +1,194 @@
+{
+  "batch": "transport-assist",
+  "lang": "de",
+  "stage": "judge",
+  "round": 2,
+  "score": 95,
+  "breakdown": {
+    "accuracy": 29,
+    "nativeness": 27,
+    "termbase_style": 20,
+    "fit_traveller": 9,
+    "structure": 10
+  },
+  "decision": "APPROVE",
+  "blind_reader_rulings": [
+    {
+      "n": 1,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). train.paras.0, Hofuf vs. Al-Ahsa (also raised by reader 1)."
+    },
+    {
+      "n": 2,
+      "ruling": "rejected",
+      "reason": "In-scope part only (dem Personal der Bahngesellschaft SAR, the new paragraph): termbase #375 forbids bare „SAR“ and „SAR-Personal“ for the operator, because the page uses „SAR“ for the currency (der Saudi-Riyal (SAR)). A new paragraph names the operator in full, as faq.1.a and train.paras.1 do. The other occurrences are published text and out of scope. Reader 1 raised the same point (11c), with the same ruling."
+    },
+    {
+      "n": 3,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). train.paras.1."
+    },
+    {
+      "n": 4,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). train.paras.1; the source does not name a card type."
+    },
+    {
+      "n": 5,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). Shared source-line template („Quelle:“ singular, nested colons, ISO date)."
+    },
+    {
+      "n": 6,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). access paras.0, SAPTCO sentence."
+    },
+    {
+      "n": 7,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). access paras.0, discount sentence."
+    },
+    {
+      "n": 8,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). access paras.0, conditions sentence."
+    },
+    {
+      "n": 9,
+      "ruling": "out of scope",
+      "reason": "Published, approved text (not this batch). access paras.0, Uber sentence."
+    },
+    {
+      "n": 10,
+      "ruling": "rejected",
+      "reason": "The reader says the sentence is clear and reports no misreading, only overlap between „zum Bahnhof“ and „sobald Sie dort ankommen“. Each half has a job. „zum Bahnhof“ fixes reader 1’s missing place (11b). „sobald Sie dort ankommen“ keeps \"on arrival\" (fence) and fixes reader 1’s misreading of arrival as arrival at the destination (11a). Cutting either one brings one of those problems back. The suggested rewording breaks the termbase („SAR-Personal“) and blurs \"on arrival\" with „gleich“ (rejected in round 1, 11d). „melden Sie sich“ turns \"tell\" into a check-in. No real defect is named, so the sentence stays unchanged."
+    }
+  ],
+  "ruling_counts": {
+    "applied": 0,
+    "rejected": 2,
+    "source": 0,
+    "out_of_scope": 8
+  },
+  "source_defects": [],
+  "out_of_scope_notes": [
+    "access paras.0: „50% Ermäßigung“ — Duden/DIN 5008 typography is „50 %“ (space before %); published text, worth a later fix (mind the U+0020 rule in style_rules.einheiten).",
+    "Source line: ISO date „2026-11-18“ after „zuletzt geprüft:“ reads as a database field to a German reader; a template-level question (consistency checks may depend on it).",
+    "access paras.0: „für Fahrgäste mit Behinderung ausgestattet“ was read as missing a complement; worth checking against the source wording.",
+    "access paras.0: „Es gelten die Bedingungen der Bahngesellschaft.“ was read as stiff and empty.",
+    "access paras.0, Uber sentence: three stacked adverbials („über den Dienst in der Stadt derzeit“) needed a second reading.",
+    "train.paras.0: the page never says that Hofuf is Al-Ahsa’s station; faq.1.a („in Hofuf (Al-Ahsa)“) does, but the body paragraph does not.",
+    "Missing information the reader raised in published text (where to register; children; whether Economy includes Economy Saver; card type) — source-level, not this batch.",
+    "Source line: „Quelle:“ in the singular before three sources, and nested colons („Quelle: Bahngesellschaft SAR: …“) — template-level, raised by reader 2."
+  ],
+  "termbase_additions": [],
+  "notes": [
+    "Round 2: no change. Both readers point at the same naming repetition, and a termbase ruling covers it. Reader 2 found no misreading in the new paragraph; the round-1 fixes held.",
+    "Fence check unchanged: inside the station or when boarding · at least · one hour · before departure · tell staff of the operator · on arrival.",
+    "Score kept at 95: the length/redundancy remark was already counted in nativeness (−3) in round 1."
+  ],
+  "strings_changed": [],
+  "final_strings": {
+    "groups.1.sections.6.paras.1": "Wenn Sie im Bahnhof oder beim Einsteigen in den Zug Hilfe benötigen, kommen Sie mindestens eine Stunde vor der Abfahrt zum Bahnhof und geben Sie dem Personal der Bahngesellschaft SAR Bescheid, sobald Sie dort ankommen.",
+    "groups.1.sections.6.src.2.label": "Bahngesellschaft SAR: besondere Unterstützung"
+  },
+  "previous_rounds": [
+    {
+      "round": 1,
+      "score": 95,
+      "breakdown": {
+        "accuracy": 29,
+        "nativeness": 27,
+        "termbase_style": 20,
+        "fit_traveller": 9,
+        "structure": 10
+      },
+      "decision": "APPROVE",
+      "blind_reader_rulings": [
+        {
+          "n": 1,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns train.paras.0 (Hofuf vs. Al-Ahsa)."
+        },
+        {
+          "n": 2,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns train.paras.0 (class list)."
+        },
+        {
+          "n": 3,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns train.paras.1. The repeated „Bahngesellschaft SAR“ is a termbase ruling (#375, Judge ج9), not a defect."
+        },
+        {
+          "n": 4,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns train.paras.1 (card type). Source does not specify the card type either."
+        },
+        {
+          "n": 5,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns published link labels; naming follows termbase #375."
+        },
+        {
+          "n": 6,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns the shared source-line template („zuletzt geprüft“ date format)."
+        },
+        {
+          "n": 7,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns access paras.0, first sentence."
+        },
+        {
+          "n": 8,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns access paras.0, second sentence."
+        },
+        {
+          "n": 9,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns access paras.0, third sentence."
+        },
+        {
+          "n": 10,
+          "ruling": "out of scope",
+          "reason": "Published, approved text (not this batch). Concerns access paras.0, Uber sentence."
+        },
+        {
+          "n": "11a",
+          "ruling": "applied",
+          "reason": "„bei Ihrer Ankunft“ was misread as arrival at the destination. Now „sobald Sie dort ankommen“, which points back to the station. „On arrival“ is kept and the time is now unambiguous."
+        },
+        {
+          "n": "11b",
+          "ruling": "applied",
+          "reason": "„kommen Sie“ had no destination. Added „zum Bahnhof“. This adds no fact: the operator fact is coming to the departure station, AR «احضر», EN \"arrive\". „vor der Abfahrt“ and „mindestens eine Stunde“ are unchanged."
+        },
+        {
+          "n": "11c",
+          "ruling": "rejected",
+          "reason": "„SAR-Personal“ / bare „SAR“ break termbase #375: in running text the operator is always „Bahngesellschaft SAR“, never bare „SAR“, because the same page uses „SAR“ for the currency (der Saudi-Riyal (SAR)). After the Uber sentence a bare „der Bahngesellschaft“ would also break with how the page names the operator at the start of a new paragraph (faq.1.a, train.paras.1). Disliking the repetition does not override a termbase ruling."
+        },
+        {
+          "n": "11d",
+          "ruling": "rejected",
+          "reason": "„brauchen“, „seien Sie … am Bahnhof“, „melden Sie sich gleich“: „gleich“ blurs \"on arrival\", and „sich melden“ turns \"tell\" into a check-in. The other changes are matters of taste, and 11a/11b already fix both problems the reader found. „benötigen“ keeps the register of the published page."
+        }
+      ],
+      "ruling_counts": {
+        "applied": 2,
+        "rejected": 2,
+        "source": 0,
+        "out_of_scope": 10
+      },
+      "strings_changed": [
+        "groups.1.sections.6.paras.1"
+      ],
+      "final_strings": {
+        "groups.1.sections.6.paras.1": "Wenn Sie im Bahnhof oder beim Einsteigen in den Zug Hilfe benötigen, kommen Sie mindestens eine Stunde vor der Abfahrt zum Bahnhof und geben Sie dem Personal der Bahngesellschaft SAR Bescheid, sobald Sie dort ankommen.",
+        "groups.1.sections.6.src.2.label": "Bahngesellschaft SAR: besondere Unterstützung"
+      }
+    }
+  ]
+}
