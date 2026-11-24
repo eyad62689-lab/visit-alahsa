@@ -273,6 +273,7 @@ const O = localize(lang, {
     regBtn: 'سجّل للمشاركة عارضاً',
     regNote: 'التسجيل عبر بوابة الجهة المنظّمة الرسمية، ولا يُعدّ موافقة نهائية على المشاركة.',
     ended: 'انتهت الفعالية',
+    paused: 'متوقف مؤقتاً',
   },
   en: {
     eyebrow: 'Limited-time event',
@@ -283,6 +284,7 @@ const O = localize(lang, {
     regBtn: 'Register as an exhibitor',
     regNote: 'Registration is through the organiser’s official portal and is not final approval to take part.',
     ended: 'Event has ended',
+    paused: 'Temporarily suspended',
   },
 });
 // العدّاد وتحوّل ما بعد الختام: للنسخة المؤكدة ذات الموسم (after) وللفعالية المؤقتة —
@@ -377,7 +379,8 @@ if (ev.startISO && ev.endISO) {
     name: ev.name, description: desc,
     startDate: ev.startISO, endDate: ev.endISO,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-    eventStatus: 'https://schema.org/EventScheduled',
+    // موقوفة مؤقتاً بلا موعد استئناف: التاريخان المعلنان يبقيان والحالة EventPostponed
+    eventStatus: ev.paused ? 'https://schema.org/EventPostponed' : 'https://schema.org/EventScheduled',
     image: new URL(ogImage, siteUrl).href, url: pageUrl,
     location: { '@type': 'Place', name: ev.place,
       address: { '@type': 'PostalAddress', ...(venueArea ? { addressLocality: venueArea } : {}), addressRegion: ar ? 'الأحساء' : 'Al-Ahsa', addressCountry: 'SA' },
@@ -418,17 +421,19 @@ if (ev.faq?.length) {
       </p>
       <p class="evd-badges">
         {/* موسم وُثّق انطلاقه بلا ختام معلن (openUntil): «مؤكد» حتى آخر يوم نافذته، ويعيده المتصفّح بعدها */}
-        <span class={`evd-status evd-status--${shown}`} data-ev-status
+        <span class={`evd-status evd-status--${ev.paused ? 'paused' : shown}`} data-ev-status
           data-ev-open-until={openSeason ? ev.openUntil : undefined}
-          data-ev-open-label={openSeason ? C.statusL.expected : undefined}>{C.statusL[shown]}</span>
-        {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم */}
-        {raw.endISO && <span class="evd-cd" data-ev-cd hidden></span>}
+          data-ev-open-label={openSeason ? C.statusL.expected : undefined}>{ev.paused ? O.paused : C.statusL[shown]}</span>
+        {/* العدّاد يملؤه JS من تاريخ الجهاز — لا رقم مبنيّ بتاريخ نشرٍ قد يتقادم. والموقوفة مؤقتاً بلا عدّاد */}
+        {raw.endISO && !raw.paused && <span class="evd-cd" data-ev-cd hidden></span>}
       </p>
       <div class="dh-act evd-share-row"><ShareButton lang={lang} contentType="event" itemId={ev.id} dark class="evd-share" /></div>
     </DetailHero>
 
     <div class:list={['container evd-layout', { 'evd-layout--poster': ev.poster }]}>
       <article class="evd-main" data-reveal>
+        {/* إعلان الإيقاف المؤقت قبل كل شيء، وخاص بالنسخة فيسقط بانقضائها */}
+        {ev.paused && ev.pausedNote && <p class="evd-paused" role="note" data-ev-dated><strong>{O.paused}.</strong> {ev.pausedNote}</p>}
         {ev.intro && <p class="evd-intro">{ev.intro}</p>}
         <dl class="evd-facts">
           <div class="evd-row"><dt>{C.seasonK}</dt><dd>{ev.season}</dd></div>
@@ -629,6 +634,7 @@ if (ev.faq?.length) {
     padding: 5px 14px; border-radius: var(--radius-pill); background: rgba(247,243,234,.14);
     border: 1px solid rgba(247,243,234,.3); color: var(--c-sand); }
   .evd-status--confirmed { background: var(--c-gold); border-color: var(--c-gold); color: var(--c-ink); }
+  .evd-status--paused { background: var(--c-sand); border-color: var(--c-sand); color: var(--c-ink); }
   /* عدّاد الأيام — يملؤه JS من تاريخ الجهاز (EventEdition)، ويبقى مخفياً بلا JS */
   .evd-cd { display: inline-block; font-size: var(--t-xs); font-weight: 700;
     padding: 5px 14px; border-radius: var(--radius-pill); color: var(--c-sand);
@@ -711,6 +717,10 @@ if (ev.faq?.length) {
 
   /* المحتوى التحريري */
   .evd-intro { color: var(--c-ink); }
+  .evd-paused { margin-block-end: var(--s-4); padding: var(--s-3) var(--s-4); color: var(--c-ink);
+    background: color-mix(in srgb, var(--c-gold) 14%, transparent);
+    border-inline-start: 4px solid var(--c-gold); border-radius: var(--radius); }
+  .evd-paused[hidden] { display: none; }
   .evd-p { font-size: var(--t-base); line-height: 1.85; color: var(--c-ink); margin-block-end: var(--s-3); }
   .evd-faq-item { margin-block-end: var(--s-4); }
   .evd-faq-q { font-family: var(--font-body); font-weight: 600; font-size: var(--t-base); color: var(--c-turq-deep); margin-block-end: var(--s-1); }
