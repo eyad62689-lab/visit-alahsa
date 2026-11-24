@@ -12,13 +12,8 @@
 //       فعالية مؤكدة: evView يُسقطها بانقضاء endISO، وبلا endISO تبقى معروضة بلا نهاية.
 //   (هـ) priceRange: الحد الأدنى موجب ولا يعلو الأعلى.
 //   (و) venue ملف معلم قائم، وcoords داخل نطاق محافظة الأحساء.
-//   (ز) الإيقاف المؤقت (paused): يوم إعلانٍ حقيقي لا يتجاوز الختام، لفعالية مؤقتة مؤكدة وحدها،
-//       ومعه في كل لغة تحمل نصها pausedNote يذكر يوم الإعلان وسنته، وبلا ساعات يومية (hours).
 //
 // لا شرط هنا يتبدّل حكمه بمرور الأيام: البناء اليومي المجدول يجب ألا يسقط بلا تغيير في المصدر.
-//
-// وcheckPausedRender تقابل المصدر بالمبنيّ: الفعالية الموقوفة تُعرض موقوفةً في صفحتها وبطاقتها
-// وخارج قسم «في موسمها الآن». شرطها يسقط بعد ختام الفعالية لأن صفحتها تخرج من البناء يومها.
 //
 // الملف وحدتان: parseEventsSource تقرأ المصدر بمحلل TypeScript (لا تنفيذ ولا تعابير نمطية على
 // كائنات متداخلة)، وcheckEventsData دالة نقية يستدعيها check-consistency.mjs، ويستدعيها اختبار
@@ -123,7 +118,7 @@ const EDITION_ONLY = ['ticket', 'register', 'whatsapp', 'priceRange'];
  */
 export function checkEventsData({ meta, texts, attractionSlugs }) {
   const problems = [];
-  const stats = { events: 0, confirmed: 0, timeChecks: 0, paused: 0, langs: Object.keys(texts ?? {}).length };
+  const stats = { events: 0, confirmed: 0, timeChecks: 0, langs: Object.keys(texts ?? {}).length };
   if (!meta || typeof meta !== 'object') {
     return { problems: ['EVENT_META غير مقروء ثابتاً من src/data/events.ts'], stats };
   }
@@ -171,18 +166,7 @@ export function checkEventsData({ meta, texts, attractionSlugs }) {
       if (!(typeof lat === 'number' && typeof lng === 'number' && lat >= BBOX.latMin && lat <= BBOX.latMax && lng >= BBOX.lngMin && lng <= BBOX.lngMax)) problems.push(`${id}: coords ${JSON.stringify(m.coords)} خارج نطاق الأحساء`);
     }
 
-    // (ز) الإيقاف المؤقت
-    const paused = m.paused !== undefined;
-    let pz;
-    if (paused) {
-      stats.paused++;
-      pz = parseISODay(m.paused);
-      if (!pz) problems.push(`${id}: paused «${String(m.paused)}» ليس تاريخاً YYYY-MM-DD حقيقياً`);
-      if (!(confirmed && m.oneOff === true)) problems.push(`${id}: paused لفعالية مؤقتة مؤكدة وحدها — نصّه عربي وإنجليزي فقط`);
-      if (pz && e && m.paused > m.endISO) problems.push(`${id}: paused ${m.paused} بعد endISO ${m.endISO}`);
-    }
-
-    // (ج) و(د) و(ز) في النصوص
+    // (ج) و(د) في النصوص
     for (const [lang, block] of Object.entries(texts ?? {})) {
       const t = block?.[id];
       if (t === undefined) continue; // الفعالية المؤقتة بلا نص في لغات الخطوط
@@ -196,14 +180,6 @@ export function checkEventsData({ meta, texts, attractionSlugs }) {
           if (missing.length) problems.push(`${id} [${lang}]: time «${t.time}» لا يذكر ${missing.join(' و')} من ${m.startISO} – ${m.endISO}`);
         }
       }
-      if (paused) {
-        if (typeof t.pausedNote !== 'string' || !t.pausedNote.trim()) problems.push(`${id} [${lang}]: paused بلا pausedNote`);
-        else if (pz) {
-          const missing = [String(pz.d), String(pz.y)].filter((n) => !hasNumber(t.pausedNote, n));
-          if (missing.length) problems.push(`${id} [${lang}]: pausedNote لا يذكر ${missing.join(' و')} من يوم الإعلان ${m.paused}`);
-        }
-        if (t.hours !== undefined) problems.push(`${id} [${lang}]: hours في فعالية موقوفة مؤقتاً`);
-      } else if (t.pausedNote !== undefined) problems.push(`${id} [${lang}]: pausedNote بلا paused`);
       if (!confirmed) {
         for (const key of ['sections', 'faq']) {
           const list = t[key];
@@ -216,78 +192,5 @@ export function checkEventsData({ meta, texts, attractionSlugs }) {
   if (stats.events < EXPECT.minEvents) problems.push(`الفعاليات المفحوصة ${stats.events} — الحدّ الأدنى ${EXPECT.minEvents}`);
   if (stats.confirmed < EXPECT.minConfirmed) problems.push(`الفعاليات المؤكدة ${stats.confirmed} — الحدّ الأدنى ${EXPECT.minConfirmed}`);
   if (stats.timeChecks < EXPECT.minTimeChecks) problems.push(`نصوص time المفحوصة ${stats.timeChecks} — الحدّ الأدنى ${EXPECT.minTimeChecks}`);
-  return { problems, stats };
-}
-
-/** مسارات dist للغتين اللتين تحملان الفعالية المؤقتة. */
-const PAUSED_PAGES = {
-  ar: { detail: (slug) => `فعاليات/${slug}/index.html`, list: 'فعاليات/index.html', plan: 'خطط/index.html' },
-  en: { detail: (slug) => `en/events/${slug}/index.html`, list: 'en/events/index.html', plan: 'en/plan-your-trip/index.html' },
-};
-
-/** النص كما يكتبه البناء في HTML. */
-const escapeHtml = (s) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
-
-/** الصفحة بلا كتل <script>: نص السكربت يذكر السمات التي يبحث عنها، والمطلوب العناصر وحدها. */
-function withoutScripts(html) {
-  let out = '';
-  let at = 0;
-  for (let i = html.indexOf('<script', at); i !== -1; i = html.indexOf('<script', at)) {
-    const close = html.indexOf('</script>', i);
-    out += html.slice(at, i);
-    if (close === -1) return out;
-    at = close + '</script>'.length;
-  }
-  return out + html.slice(at);
-}
-
-/** وسوم فتح <article> في الصفحة مع متن كل منها حتى إغلاقه. */
-function articles(html) {
-  const out = [];
-  for (let i = html.indexOf('<article'); i !== -1; i = html.indexOf('<article', i + 1)) {
-    const tagEnd = html.indexOf('>', i);
-    const close = html.indexOf('</article>', i);
-    if (tagEnd === -1 || close === -1) break;
-    out.push({ tag: html.slice(i, tagEnd + 1), body: html.slice(tagEnd + 1, close) });
-  }
-  return out;
-}
-
-/**
- * @param {{ meta: Record<string, any> | undefined, texts: Record<string, Record<string, any>>, today: string,
- *   read: (rel: string) => string | undefined }} input  today: يوم الرياض YYYY-MM-DD؛ read: نص ملف من dist أو undefined
- * @returns {{ problems: string[], stats: { paused: number, pages: number } }}
- */
-export function checkPausedRender({ meta, texts, today, read }) {
-  const problems = [];
-  const stats = { paused: 0, pages: 0 };
-  // بعد ختام الفعالية المؤقتة تخرج صفحتها وبطاقتها من البناء، فلا يبقى ما يُقابَل
-  const live = Object.entries(meta ?? {}).filter(([, m]) => m && typeof m === 'object' && m.paused !== undefined
-    && typeof m.endISO === 'string' && today <= m.endISO);
-  stats.paused = live.length;
-
-  for (const [lang, pages] of Object.entries(PAUSED_PAGES)) {
-    const list = read(pages.list);
-    const plan = read(pages.plan);
-    if (list === undefined) { problems.push(`[${lang}] ${pages.list} غير مبنية`); continue; }
-    if (plan === undefined) { problems.push(`[${lang}] ${pages.plan} غير مبنية`); continue; }
-    const cards = articles(list).filter((a) => a.tag.includes('data-ev-paused'));
-    if (cards.length !== live.length) problems.push(`[${lang}] قائمة الفعاليات: ${cards.length} بطاقة موسومة موقوفة والموقوفة في المصدر ${live.length}`);
-    for (const card of cards) if (card.body.includes('data-ev-cd')) problems.push(`[${lang}] قائمة الفعاليات: بطاقة موقوفة تحمل عدّاداً`);
-
-    for (const [id] of live) {
-      const t = texts?.[lang]?.[id];
-      if (!t || typeof t.slug !== 'string' || typeof t.pausedNote !== 'string') continue; // يبلّغه (ز)
-      const html = read(pages.detail(t.slug));
-      if (html === undefined) { problems.push(`${id} [${lang}]: صفحتها غير مبنية`); continue; }
-      stats.pages++;
-      if (!html.includes('schema.org/EventPostponed')) problems.push(`${id} [${lang}]: السكيما بلا EventPostponed`);
-      if (html.includes('schema.org/EventScheduled')) problems.push(`${id} [${lang}]: السكيما تقول EventScheduled`);
-      if (withoutScripts(html).includes('data-ev-cd')) problems.push(`${id} [${lang}]: الصفحة تحمل عدّاداً`);
-      if (!html.includes(escapeHtml(t.pausedNote))) problems.push(`${id} [${lang}]: الصفحة لا تعرض pausedNote`);
-      if (!cards.some((c) => c.body.includes(`/${t.slug}/`))) problems.push(`${id} [${lang}]: بطاقتها في القائمة غير موسومة موقوفة`);
-      if (plan.includes(`data-track-event="${escapeHtml(t.slug)}"`)) problems.push(`${id} [${lang}]: معروضة في «فعاليات في موسمها الآن»`);
-    }
-  }
   return { problems, stats };
 }
