@@ -70,15 +70,17 @@ function uiStrings(uiSrc, lang) {
 
 /** توقّعات صفحة بلغة: المصدر العربي + وحدة اللغة + نصوص الواجهة */
 export function expectations(master, unit, ui, lang) {
-  const sorted = [...master.stores].sort((a, b) => a.order - b.order);
+  // المتجر المخفي (حقل hidden في المصدر العربي) لا بطاقة له ولا رابط في أي لغة
+  const sorted = master.stores.filter((s) => !s.hidden).sort((a, b) => a.order - b.order);
   const byId = unit ? new Map(unit.stores.map((s) => [s.id, s])) : null;
+  const hidden = master.stores.filter((s) => s.hidden).map((s) => ({ id: s.id, url: s.url, name: byId?.get(s.id)?.name ?? s.name }));
   const stores = sorted.map((s) => {
     const tr = byId?.get(s.id);
     return { id: s.id, order: s.order, section: s.section, url: s.url, instagram: /^https?:\/\/(www\.)?instagram\.com\//i.test(s.url),
       name: tr?.name ?? s.name, platform: tr?.platform ?? s.platform, description: tr?.description ?? s.description, evidence_internal: s.evidence_internal };
   });
   return {
-    lang, stores, counts: master.meta.counts,
+    lang, stores, hidden, counts: master.meta.counts,
     seo: unit?.seo ?? master.seo, sections: unit?.sections ?? master.sections, faq: unit?.faq ?? master.faq,
     ui,
     forbidden: ['evidence_internal', 'docx_row', 'confirmed_by_owner', '"flags"', 'تمور الجبر', 'واحة النخيل', 'تمور ايتان', 'سوافلي', 'الحادي للعود',
@@ -143,6 +145,11 @@ export function verify(html, X) {
 
   for (const bad of X.forbidden) ok(!main.includes(bad), `النص الممنوع «${bad}» موجود`);
   for (const s of stores) ok(!html.includes(s.evidence_internal), `تسرّب evidence_internal لـ${s.id}`);
+  for (const s of X.hidden ?? []) {
+    ok(!html.includes(s.url), `رابط المتجر المخفي ${s.id} ما زال في الصفحة`);
+    ok(!dMain.includes(s.name), `اسم المتجر المخفي ${s.id} ما زال في الصفحة`);
+  }
+  ok(stores.length === X.counts.total, `meta.counts.total ${X.counts.total} ≠ عدد المتاجر الظاهرة ${stores.length}`);
   ok(!/(^|[^\d])84([^\d]|$)/.test(mainText), 'العدد 84 يظهر في النص');
   ok(!/[٠-٩]/.test(mainText), 'أرقام عربية-هندية في النص');
 
