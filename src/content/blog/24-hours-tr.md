@@ -25,7 +25,7 @@ Güne Hüfuf'un doğusunda, [Cebel el-Kare](/tr/attractions/jabal-al-qarah/) ile
 
 ## Öğleye doğru: Kasr İbrahim ve El-Kut mahallesi
 
-Ardından Hüfuf'un merkezine dönün; sıradaki durak [Kasr İbrahim](/tr/attractions/qasr-ibrahim/). Bu kalede cami, kışla ve kuleler aynı surun içinde bir araya gelir. Öğleye doğru ışık kalenin mimarisini ve iç avlusunu en iyi hâliyle gösterir. Kale Cuma günleri kapalıdır. Kalenin hemen yakınındaki tarihî El-Kut mahallesinde [Beyt el-Biat](/tr/attractions/baiah/) bulunur. Burası El-Mulla ailesinin evidir. Evi El-Ahsa kadısı Şeyh Abdurrahman bin Ömer el-Mulla Hicri 1203 (1788) yılında yaptırdı. El-Ahsa halkı 1913'te burada Kral Abdülaziz'e biat edip Suudi devletine katıldı. Ev bugün bir müzedir; ancak şu anda geçici olarak kapalıdır.
+Ardından Hüfuf'un merkezine dönün; sıradaki durak [Kasr İbrahim](/tr/attractions/qasr-ibrahim/). Bu kalede cami, kışla ve kuleler aynı surun içinde bir araya gelir. Öğleye doğru ışık kalenin mimarisini ve iç avlusunu en iyi hâliyle gösterir. Kale Cuma günleri kapalıdır. Kalenin hemen yakınındaki tarihî El-Kut mahallesinde [Beyt el-Biat](/tr/attractions/baiah/) bulunur. Burası El-Mulla ailesinin evidir. Evi El-Ahsa kadısı Şeyh Abdurrahman bin Ömer el-Mulla Hicri 1203 (1788) yılında yaptırdı. El-Ahsa halkı 1913'te burada Kral Abdülaziz'e biat edip Suudi devletine katıldı. Ev bugün bir müzedir.
 
 Öğle yemeği için şehir merkezindeki seçenekleri [Restoranlar ve kafeler](/tr/restaurants-cafes/) rehberinde bir arada bulabilirsiniz.
 

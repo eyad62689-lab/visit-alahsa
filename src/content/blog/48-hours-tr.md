@@ -27,7 +27,7 @@ Hüfuf'un merkezinde [Kasr İbrahim](/tr/attractions/qasr-ibrahim/) ile başlay�
 
 ### Öğleye doğru: El-Kut mahallesi ve şehrin belleği
 
-Kalenin yakınındaki tarihî El-Kut mahallesinde [Beyt el-Biat](/tr/attractions/baiah/) bulunur. Burası El-Mulla ailesinin evidir. Evi El-Ahsa kadısı Şeyh Abdurrahman bin Ömer el-Mulla Hicri 1203 (1788) yılında yaptırdı. El-Ahsa halkı 1913'te burada Kral Abdülaziz'e biat edip Suudi devletine katıldı. Ev bugün bir müzedir; ancak şu anda geçici olarak kapalıdır. Ardından mahalleden doğuya ilerleyin; sıradaki durak [El-Emiriye Okulu](/tr/attractions/ameeriah/). 1937'de açılan bu okul El-Ahsa'da örgün eğitim veren ilk devlet okuludur. Tarihî binası bugün kültür evi olarak hizmet veriyor; ancak burası da şu anda geçici olarak kapalıdır.
+Kalenin yakınındaki tarihî El-Kut mahallesinde [Beyt el-Biat](/tr/attractions/baiah/) bulunur. Burası El-Mulla ailesinin evidir. Evi El-Ahsa kadısı Şeyh Abdurrahman bin Ömer el-Mulla Hicri 1203 (1788) yılında yaptırdı. El-Ahsa halkı 1913'te burada Kral Abdülaziz'e biat edip Suudi devletine katıldı. Ev bugün bir müzedir. Ardından mahalleden doğuya ilerleyin; sıradaki durak [El-Emiriye Okulu](/tr/attractions/ameeriah/). 1937'de açılan bu okul El-Ahsa'da örgün eğitim veren ilk devlet okuludur. Tarihî binası bugün kültür evi olarak hizmet veriyor; ancak burası şu anda geçici olarak kapalıdır.
 
 ### Akşam: El-Kaysariye Çarşısı
 
