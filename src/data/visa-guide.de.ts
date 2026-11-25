@@ -307,7 +307,7 @@ export const VISA_DE: VisaGuideContent = {
     "items": [
       {
         "q": "Wie lange ist das elektronische Touristenvisum für Saudi-Arabien gültig?",
-        "a": "Ein Jahr ab Ausstellungsdatum mit mehrfacher Einreise; jeder Aufenthalt darf bis zu 3 Monate dauern."
+        "a": "Ein Jahr ab Ausstellungsdatum mit mehrfacher Einreise; alle Aufenthalte zusammen dürfen innerhalb der Gültigkeitsdauer höchstens 3 Monate dauern."
       },
       {
         "q": "Lässt sich das elektronische Touristenvisum verlängern?",
