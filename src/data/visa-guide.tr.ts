@@ -306,7 +306,7 @@ export const VISA_TR: VisaGuideContent = {
     "items": [
       {
         "q": "Suudi turist e-vizesi ne kadar süre geçerlidir?",
-        "a": "Suudi turist e-vizesi düzenlendiği tarihten itibaren bir yıl geçerlidir ve çoklu giriş hakkı verir. Her kalış 3 aya kadar sürebilir."
+        "a": "Suudi turist e-vizesi düzenlendiği tarihten itibaren bir yıl geçerlidir ve çoklu giriş hakkı verir. Bu bir yıl içinde tüm ziyaretlerinizdeki toplam kalış süresi 3 ayı geçemez."
       },
       {
         "q": "Turist e-vizesi uzatılabilir mi?",

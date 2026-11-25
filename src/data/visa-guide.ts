@@ -156,7 +156,7 @@ const AR: VisaGuideContent = {
   faq: {
     h: 'الأسئلة الشائعة عن تأشيرة زيارة السعودية',
     items: [
-      { q: 'كم مدة التأشيرة السياحية الإلكترونية للسعودية؟', a: 'صالحة سنة من تاريخ الإصدار بدخول متعدد، ومدة الإقامة في كل زيارة حتى 3 أشهر.' },
+      { q: 'كم مدة التأشيرة السياحية الإلكترونية للسعودية؟', a: 'صالحة سنة من تاريخ الإصدار بدخول متعدد، ولا يتجاوز مجموع مدة الإقامة في كل الزيارات 3 أشهر خلال صلاحيتها.' },
       { q: 'هل يمكن تمديد التأشيرة السياحية الإلكترونية؟', a: 'لا. وإذا انتهت صلاحيتها قبل دخولك المملكة، فيلزم تقديم طلب جديد.' },
       { q: 'هل يحتاج المقيم في دول الخليج إلى تأشيرة لزيارة الأحساء؟', a: 'نعم. يقدّمون عبر مسار المقيمين في دول المجلس في منصة وزارة الخارجية (ksavisa.sa).' },
       { q: 'هل يمكن أداء العمرة بالتأشيرة السياحية؟', a: 'نعم، والعمرة من الأنشطة المسموح بها في التأشيرة السياحية الإلكترونية، باستثناء الحج.' },
@@ -285,7 +285,7 @@ const EN: VisaGuideContent = {
   faq: {
     h: 'Frequently asked questions about the Saudi visit visa',
     items: [
-      { q: 'How long is the Saudi tourist eVisa valid?', a: 'It is valid for one year from the date of issue with multiple entry, and each stay can last up to 3 months.' },
+      { q: 'How long is the Saudi tourist eVisa valid?', a: 'It is valid for one year from the date of issue with multiple entry, and the total stay across all visits cannot exceed 3 months within that year.' },
       { q: 'Can the tourist eVisa be extended?', a: 'No. If it expires before you enter the Kingdom, a new application is required.' },
       { q: 'Do GCC residents need a visa to visit Al-Ahsa?', a: 'Yes. They apply through the GCC residents route on the Ministry of Foreign Affairs platform (ksavisa.sa).' },
       { q: 'Can I perform Umrah on a tourist visa?', a: 'Yes. Umrah is among the activities permitted on the tourist eVisa, with the exception of Hajj.' },
