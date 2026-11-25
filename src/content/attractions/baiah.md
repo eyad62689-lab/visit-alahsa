@@ -52,8 +52,13 @@ featured: false
 order: 15
 district: alkoot
 practical:
-  - { label: "المواعيد", value: "مغلق مؤقتاً", label_en: "Hours", value_en: "Temporarily closed", label_ur: "اوقات", value_ur: "عارضی طور پر بند", label_tr: "Ziyaret saatleri", value_tr: "Geçici olarak kapalı", source: "قائمة المكان في خرائط قوقل", source_en: "Google Maps place listing", sourceUrl: "https://www.google.com/maps?cid=10183689276543104923", verifiedAt: "2026-11-17", verified: true }
+  # المواعيد 2026-11-26: الأحد–الخميس 9–18 بقرار المالك (قائمة قوقل يومها 8–16)، والجمعة 13–17 والسبت 9–13 من قائمة قوقل؛ وطلب المالك ألا يُسند إلى تأكيد الفريق.
+  - { label: "المواعيد", value: "الأحد–الخميس 9 ص–6 م · الجمعة 1–5 م · السبت 9 ص–1 م", label_en: "Hours", value_en: "Sun–Thu 9 am–6 pm · Fri 1–5 pm · Sat 9 am–1 pm", label_ur: "اوقات", value_ur: "اتوار تا جمعرات صبح 9 بجے سے شام 6 بجے تک · جمعہ دوپہر 1 بجے سے شام 5 بجے تک · ہفتہ صبح 9 بجے سے دوپہر 1 بجے تک", label_tr: "Ziyaret saatleri", value_tr: "Pazar–Perşembe 09.00–18.00 · Cuma 13.00–17.00 · Cumartesi 09.00–13.00", label_ru: "Часы работы", value_ru: "Вс–чт 9:00–18:00 · пт 13:00–17:00 · сб 9:00–13:00", label_de: "Öffnungszeiten", value_de: "So.–Do. 9–18 Uhr · Fr. 13–17 Uhr · Sa. 9–13 Uhr", label_zh: "开放时间", value_zh: "周日–周四 9:00–18:00 · 周五 13:00–17:00 · 周六 9:00–13:00", source: "قائمة المكان في خرائط قوقل", source_en: "Google Maps place listing", sourceUrl: "https://www.google.com/maps?cid=10183689276543104923", verifiedAt: "2026-11-26", verified: true }
   - { label: "الرسوم", value: "مجاني", label_en: "Fees", value_en: "Free entry", label_ur: "فیس", value_ur: "داخلہ مفت", label_tr: "Ücretler", value_tr: "Giriş ücretsiz", source: "تحقق مباشر من هيئة التراث", source_en: "Verified directly with the Heritage Commission", sourceUrl: "https://heritage.moc.gov.sa", verifiedAt: "2026-09-08", verified: true }
+hoursSpec:
+  - { days: "Su Mo Tu We Th", opens: "09:00", closes: "18:00" }
+  - { days: "Fr", opens: "13:00", closes: "17:00" }
+  - { days: "Sa", opens: "09:00", closes: "13:00" }
 location: { lat: 25.376665, lng: 49.584965 }
 sameAs:
   - https://www.wikidata.org/wiki/Q99677807
