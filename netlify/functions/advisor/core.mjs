@@ -352,41 +352,168 @@ export function ipBucket(ip) {
 // ── إحصاء مجهول لكل جواب: مواضيع ومعرّفات بطاقات، لا نصّ ولا عنوان ──
 // يُطبع سطراً واحداً «advisor-stat {...}» في سجل الدالة (نتلايفي يحفظه 7 أيام)، فيُعرف ما يهتم به
 // الزوار دون حفظ أسئلتهم: التصنيف يجري في الذاكرة على كلمات مفتاحية ثم يُرمى النص.
+// قواعد المطابقة (classifyTopics):
+// - كلمة لاتينية (en/de/tr) تطابق كلمة كاملة؛ وإن خُتمت بـ* طابقت كل كلمة تبدأ بها (لواحق التركية والألمانية).
+// - ما سواها (العربية والأوردية والروسية والصينية، وكل عبارة فيها مسافة) يطابق بالاحتواء بعد التطبيع.
+// - الكلمات تُطبَّع عند التحميل بالدالة نفسها، فتُكتب بإملائها الطبيعي (أ/ة/ى، ی/ک/ہ الأوردية).
+// تجنّب المقاطع العربية القصيرة التي تحتويها كلمات شائعة: «الجو» في «الجوف»، «عشا» في «عشان»، «الحر» في «الحرف»،
+// و«جو» في «جواثا»، و«еда» الروسية في «среда»؛ وكل إضافة تُختبر بجمل سلبية في tools/test-advisor.mjs [9].
 const TOPIC_WORDS = {
-  plan: ['برنامج', 'جدول', 'خطه', 'خطط', 'يومين', 'رحله', 'طلعه', 'وين اروح', 'itinerary', 'plan', 'schedule', 'trip', 'days'],
-  hours: ['موعد', 'مواعيد', 'متي', 'يفتح', 'تفتح', 'دوام', 'ساعات', 'رسوم', 'سعر', 'اسعار', 'تذكره', 'تذاكر', 'بكم', 'hours', 'open', 'opening', 'fee', 'fees', 'price', 'ticket', 'tickets', 'cost'],
-  food: ['مطعم', 'مطاعم', 'اكل', 'اكلات', 'فطور', 'غداء', 'عشاء', 'قهوه', 'مقهي', 'مقاهي', 'كافيه', 'كوفي', 'طبق', 'restaurant', 'restaurants', 'food', 'eat', 'cafe', 'coffee', 'breakfast', 'lunch', 'dinner', 'dish'],
-  shopping: ['تمر', 'تمور', 'اشتري', 'شراء', 'متجر', 'متاجر', 'هديه', 'هدايا', 'buy', 'shop', 'shopping', 'store', 'stores', 'dates', 'souvenir', 'souvenirs'],
-  events: ['فعاليه', 'فعاليات', 'مهرجان', 'event', 'events', 'festival'],
-  stay: ['فندق', 'فنادق', 'سكن', 'نزل', 'منتجع', 'شاليه', 'hotel', 'hotels', 'stay', 'resort'],
-  transport: ['مطار', 'قطار', 'مواصلات', 'تاكسي', 'كيف اوصل', 'airport', 'train', 'taxi', 'transport'],
-  family: ['اطفال', 'عائله', 'عيال', 'kids', 'children', 'family'],
+  plan: [
+    'برنامج', 'جدول', 'خطة', 'خطط', 'يومين', 'رحلة', 'طلعة', 'وين أروح', 'أيام', 'يوم واحد', 'أسبوع', 'أزور', 'زيارة', 'جولة', 'مسار',
+    'اقترح', 'اقتراح', 'تنصح', 'انصحني', 'أول مرة', 'من وين أبدأ', 'وش أسوي', 'ايش أسوي', 'عطلة', 'ويكند', 'نهاية الأسبوع',
+    'itinerary', 'plan', 'planning', 'schedule', 'trip', 'day', 'days', 'weekend', 'route', 'tour', 'visit', 'visiting', 'suggest', 'recommend',
+    'reiseplan*', 'planen', 'ein tag', 'einen tag', 'tage', 'tagen', 'ausflug*', 'besuch*', 'programm*', 'wochenende',
+    'plan*', 'program*', 'gezi*', 'rota*', 'günlük', 'iki gün', 'bir gün', 'hafta sonu', 'ziyaret*', 'öneri*',
+    'маршрут', 'программ', 'план поездки', 'за день', 'на день', 'два дня', '2 дня', 'выходные', 'посетить', 'поездк',
+    '行程', '攻略', '路线', '计划', '安排', '一日游', '两天', '周末', '参观',
+    'منصوبہ', 'پروگرام', 'سفر', 'دو دن', 'ایک دن',
+  ],
+  hours: [
+    'موعد', 'مواعيد', 'متى', 'يفتح', 'تفتح', 'دوام', 'ساعات', 'رسوم', 'سعر', 'أسعار', 'تذكرة', 'تذاكر', 'بكم',
+    'يقفل', 'يسكر', 'مسكر', 'مفتوح', 'مغلق', 'الدخول', 'مجاني', 'مجانا', 'أوقات', 'وقت الزيارة', 'الساعة', 'كم يكلف', 'تكلفة',
+    'hours', 'open', 'opening', 'opens', 'close', 'closed', 'closing', 'fee', 'fees', 'price', 'prices', 'ticket', 'tickets', 'cost', 'entry', 'admission', 'free',
+    'öffnungszeit*', 'geöffnet', 'offen', 'geschlossen', 'eintritt*', 'preis*', 'kosten', 'kostet', 'ticket*', 'uhrzeit*',
+    'saat*', 'açık', 'kapalı', 'ücret*', 'fiyat*', 'bilet*', 'giriş*', 'kaçta',
+    'часы работы', 'работает', 'открыт', 'закрыт', 'во сколько', 'стоимость', 'цена', 'цены', 'билет', 'вход', 'сколько стоит',
+    '开放时间', '几点', '营业', '门票', '票价', '价格', '多少钱', '收费', '开门', '关门', '免费',
+    'اوقات', 'کب کھلتا', 'ٹکٹ', 'فیس کتنی', 'قیمت', 'کتنے کا', 'کھلا',
+  ],
+  food: [
+    'مطعم', 'مطاعم', 'أكل', 'أكلات', 'فطور', 'غداء', 'عشاء', 'قهوة', 'مقهى', 'مقاهي', 'كافيه', 'كوفي', 'طبق',
+    'وجبة', 'مأكولات', 'مطبخ', 'لذيذ', 'حلويات', 'مشويات', 'جوعان', 'ريوق', 'كافيهات', 'شاي',
+    'restaurant', 'restaurants', 'food', 'eat', 'eating', 'cafe', 'cafes', 'café', 'coffee', 'breakfast', 'lunch', 'dinner', 'dish', 'dishes',
+    'meal', 'meals', 'cuisine', 'dining', 'dessert', 'desserts', 'sweets', 'hungry',
+    'restaurant*', 'essen', 'frühstück*', 'mittagessen', 'abendessen', 'kaffee', 'gericht*', 'küche',
+    'restoran*', 'yemek*', 'kahvaltı*', 'kahve*', 'kafe*', 'lokanta*', 'mutfa*',
+    'ресторан', 'кафе', 'поесть', 'завтрак', 'обед', 'ужин', 'кофе', 'блюд', 'кухн', 'перекус',
+    '餐厅', '吃', '美食', '早餐', '午餐', '晚餐', '咖啡', '菜', '小吃',
+    'کھانا', 'کھانے', 'ریسٹورنٹ', 'ناشتہ', 'چائے',
+  ],
+  shopping: [
+    'تمر', 'تمور', 'اشتري', 'شراء', 'متجر', 'متاجر', 'هدية', 'هدايا', 'سوق', 'أسواق', 'تسوق', 'بشت', 'دبس', 'لومي', 'منتجات', 'محلات',
+    'buy', 'shop', 'shops', 'shopping', 'store', 'stores', 'dates', 'souvenir', 'souvenirs', 'market', 'markets', 'souq', 'souk', 'gift', 'gifts', 'bisht',
+    'kaufen', 'einkaufen', 'einkauf*', 'datteln', 'geschenk*', 'souvenir*', 'markt', 'märkte', 'laden',
+    'alışveriş*', 'satın', 'hurma*', 'hediye*', 'mağaza*', 'çarşı*',
+    'купить', 'покупк', 'магазин', 'финик', 'сувенир', 'подар', 'рынок', 'рынк', 'базар',
+    '买', '购物', '椰枣', '礼物', '纪念品', '商店', '市场', '集市',
+    'خرید', 'تحفہ', 'کھجور', 'دکان', 'بازار',
+  ],
+  events: [
+    'فعالية', 'فعاليات', 'مهرجان', 'موسم', 'معرض', 'بطولة', 'حفل', 'حفلة', 'مسابقة', 'احتفال',
+    'event', 'events', 'festival', 'festivals', 'exhibition', 'concert', 'season', 'tournament',
+    'veranstaltung*', 'festival*', 'ausstellung*', 'konzert*',
+    'etkinlik*', 'festival*', 'sergi*', 'konser*', 'fuar*',
+    'мероприят', 'фестивал', 'выставк', 'концерт', 'событи',
+    '活动', '节日', '展览', '音乐会', '比赛',
+    'میلہ', 'فیسٹیول', 'نمائش',
+  ],
+  stay: [
+    'فندق', 'فنادق', 'سكن', 'نزل', 'منتجع', 'شاليه', 'شاليهات', 'إقامة', 'أسكن', 'أنام', 'غرفة', 'استراحة', 'شقة', 'شقق', 'مخيم',
+    'hotel', 'hotels', 'stay', 'resort', 'resorts', 'accommodation', 'chalet', 'chalets', 'sleep', 'room', 'rooms', 'camp', 'camping',
+    'hotel*', 'unterkunft', 'übernacht*', 'resort*', 'zimmer',
+    'otel*', 'konaklama*', 'kalacak', 'pansiyon*', 'oda*',
+    'отель', 'отеле', 'отелей', 'отелях', 'гостиниц', 'жиль', 'переночевать', 'остановиться', 'курорт', 'шале',
+    '酒店', '住宿', '民宿', '度假村', '宾馆',
+    'ہوٹل', 'رہائش', 'ٹھہر',
+  ],
+  transport: [
+    'مطار', 'قطار', 'مواصلات', 'تاكسي', 'كيف أوصل', 'سيارة', 'إيجار', 'تأجير', 'باص', 'حافلة', 'مسافة', 'يبعد', 'كم كيلو',
+    'مواقف', 'موقف سيارات', 'الطريق', 'من الرياض', 'من الدمام', 'لوكيشن', 'أوبر', 'كيف أروح',
+    'airport', 'train', 'taxi', 'transport', 'transportation', 'car', 'rent', 'rental', 'bus', 'drive', 'driving', 'parking', 'distance', 'far', 'directions', 'uber',
+    'flughafen', 'zug', 'bahn', 'taxi', 'anreise', 'auto', 'mietwagen', 'bus', 'entfernung', 'parkplatz*',
+    'havaalanı*', 'havalimanı*', 'tren*', 'taksi*', 'ulaşım*', 'araba*', 'otobüs*', 'mesafe*', 'otopark*',
+    'аэропорт', 'поезд', 'такси', 'транспорт', 'машин', 'автобус', 'как добраться', 'расстояни', 'парковк',
+    '机场', '火车', '出租车', '交通', '怎么去', '打车', '租车', '公交', '距离', '停车',
+    'ہوائی اڈہ', 'ٹرین', 'ٹیکسی', 'گاڑی', 'کیسے پہنچ', 'فاصلہ',
+  ],
+  family: [
+    'أطفال', 'عائلة', 'عائلات', 'عوائل', 'عيال', 'صغار', 'أولادي', 'بزران',
+    'kids', 'kid', 'children', 'child', 'family', 'families', 'toddler', 'toddlers', 'baby',
+    'kinder*', 'familie*', 'baby',
+    'çocuk*', 'aile*', 'bebek*',
+    'дети', 'детей', 'детьми', 'ребен', 'семья', 'семье', 'семьей', 'семейн',
+    '孩子', '儿童', '家庭', '亲子', '小朋友',
+    'بچے', 'بچوں', 'خاندان', 'فیملی',
+  ],
+  sights: [
+    'معلم', 'معالم', 'متحف', 'متاحف', 'قصر', 'جبل', 'القارة', 'مسجد', 'جواثا', 'تراث', 'آثار', 'أثري', 'تاريخي', 'يونسكو',
+    'القيصرية', 'المشقر', 'بيت البيعة', 'الأميرية', 'كهف', 'كهوف', 'العقير',
+    'attraction', 'attractions', 'museum', 'museums', 'palace', 'mountain', 'cave', 'caves', 'mosque', 'heritage', 'history', 'historic', 'historical',
+    'unesco', 'sights', 'sightseeing', 'landmark', 'landmarks', 'fort',
+    'sehenswürdig*', 'museum*', 'palast', 'berg', 'höhle*', 'moschee', 'kulturerbe', 'geschichte',
+    'müze*', 'saray*', 'dağ*', 'mağara*', 'cami*', 'mirası', 'tarihi', 'tarihî', 'gezilecek',
+    'достопримечательност', 'музе', 'дворец', 'гора', 'пещер', 'мечет', 'наследи', 'истори', 'юнеско',
+    '景点', '博物馆', '宫', '山', '洞', '清真寺', '遗产', '古迹', '历史',
+    'عجائب گھر', 'میوزیم', 'پہاڑ', 'تاریخی', 'ورثہ',
+  ],
+  nature: [
+    'منتزه', 'حديقة', 'حدائق', 'واحة', 'نخيل', 'نخل', 'مزرعة', 'مزارع', 'عيون', 'ينابيع', 'بحيرة', 'الأصفر', 'رمال', 'كثبان', 'صحراء',
+    'كشتة', 'شاطئ', 'شاطي', 'طبيعة', 'طيور',
+    'park', 'parks', 'garden', 'gardens', 'oasis', 'palm', 'palms', 'farm', 'farms', 'spring', 'springs', 'lake', 'desert', 'dunes', 'beach', 'nature', 'birds',
+    'garten', 'oase', 'palme*', 'farm*', 'quelle*', 'wüste', 'düne*', 'strand', 'natur*', 'vögel',
+    'parkı', 'parka', 'parkta', 'parklar*', 'bahçe*', 'vaha*', 'palmiye*', 'hurmalık*', 'çiftlik*', 'kaynak*', 'göl*', 'çöl*', 'kumul*', 'plaj*', 'doğa*',
+    'парке', 'парки', 'парку', 'в парк', 'оазис', 'пальм', 'ферм', 'источник', 'озер', 'пустын', 'дюн', 'пляж', 'природ', 'птиц',
+    '公园', '花园', '绿洲', '棕榈', '农场', '泉', '湖', '沙漠', '沙丘', '海滩', '自然',
+    'پارک', 'باغ', 'نخلستان', 'کھیت', 'چشمہ', 'جھیل', 'صحرا', 'ساحل', 'فطرت',
+  ],
+  weather: [
+    'طقس', 'الجو حار', 'الجو بارد', 'كيف الجو', 'الجو اليوم', 'حرارة', 'البرد', 'مطر', 'أمطار', 'غبار', 'الشتاء', 'الصيف', 'أفضل وقت',
+    'weather', 'temperature', 'hot', 'cold', 'rain', 'winter', 'summer', 'climate', 'dust',
+    'wetter', 'temperatur*', 'heiß', 'kalt', 'regen', 'winter', 'sommer', 'klima',
+    'hava durumu', 'havalar', 'sıcak*', 'soğuk*', 'yağmur*', 'kış*', 'yaz', 'yazın', 'iklim*',
+    'погод', 'температур', 'жарк', 'холод', 'дожд', 'зимой', 'зимы', 'зиму', 'зимн', 'летом', 'климат',
+    '天气', '气温', '下雨', '炎热', '很热', '热不热', '很冷', '寒冷', '冬天', '夏天', '气候',
+    'موسم کیسا', 'گرمی', 'سردی', 'بارش',
+  ],
+  contact: [
+    'تواصل', 'اتصل', 'رقم', 'جوال', 'واتس', 'ايميل', 'إيميل', 'بريد', 'إبلاغ', 'ابلاغ', 'بلاغ', 'شكوى', 'خطأ', 'غلط', 'ملاحظة',
+    'contact', 'phone', 'email', 'whatsapp', 'report', 'complaint', 'number', 'mistake', 'error',
+    'kontakt*', 'telefon*', 'e-mail', 'beschwerde', 'fehler',
+    'iletişim*', 'telefon*', 'şikayet*', 'hata*',
+    'контакт', 'связат', 'телефон', 'почта', 'почту', 'электронн', 'жалоб', 'ошибк',
+    '联系', '电话', '邮箱', '投诉', '错误',
+    'رابطہ', 'فون', 'شکایت', 'غلطی',
+  ],
+  visa: [
+    'تأشيرة', 'تاشيرة', 'فيزا', 'جواز', 'visa', 'visas', 'evisa', 'passport',
+    'visum', 'reisepass', 'vize*', 'pasaport*', 'виза', 'визу', 'паспорт', '签证', '护照', 'ویزا', 'پاسپورٹ',
+  ],
 }
 
-/** تطبيع عربي للمطابقة: حذف التشكيل والتطويل، وتوحيد الألف والتاء المربوطة والألف المقصورة */
+/** تطبيع للمطابقة: حروف صغيرة، وحذف التشكيل والتطويل والنقطة المركّبة (İ التركية)، وتوحيد الألف والتاء
+ *  المربوطة والألف المقصورة، وحروف الأوردية (ی ک ہ ھ ۃ) إلى نظائرها العربية، وё الروسية إلى е */
+const FOLD = { 'أ': 'ا', 'إ': 'ا', 'آ': 'ا', 'ة': 'ه', 'ى': 'ي', 'ی': 'ي', 'ک': 'ك', 'ہ': 'ه', 'ھ': 'ه', 'ۃ': 'ه', 'ё': 'е' }
 function normalizeAr(s) {
   let out = ''
   for (const ch of String(s ?? '').toLowerCase()) {
     const c = ch.codePointAt(0)
-    if ((c >= 0x064B && c <= 0x065F) || c === 0x0670 || c === 0x0640) continue
-    if (ch === 'أ' || ch === 'إ' || ch === 'آ') out += 'ا'
-    else if (ch === 'ة') out += 'ه'
-    else if (ch === 'ى') out += 'ي'
-    else out += ch
+    if ((c >= 0x064B && c <= 0x065F) || c === 0x0670 || c === 0x0640 || c === 0x0307) continue
+    out += FOLD[ch] ?? ch
   }
   return out
 }
 
-/** مواضيع السؤال من كلمات مفتاحية (العربية بالاحتواء لأجل السوابق، اللاتينية بالكلمة الكاملة) */
+const LATIN_WORD = /^[\p{Script=Latin}-]+\*?$/u
+/** كل كلمة مطبَّعة مرة واحدة مع طريقة مطابقتها: كلمة كاملة، أو بادئة، أو احتواء */
+const TOPIC_MATCHERS = Object.entries(TOPIC_WORDS).map(([topic, words]) => [topic, words.map((w) => {
+  const n = normalizeAr(w)
+  if (!LATIN_WORD.test(n)) return { mode: 'sub', w: n }
+  return n.endsWith('*') ? { mode: 'prefix', w: n.slice(0, -1) } : { mode: 'word', w: n }
+})])
+
+function matches(m, norm, tokens) {
+  if (m.mode === 'sub') return norm.includes(m.w)
+  if (m.mode === 'word') return tokens.has(m.w)
+  for (const t of tokens) if (t.startsWith(m.w)) return true
+  return false
+}
+
+/** مواضيع السؤال من كلمات مفتاحية (قواعد المطابقة فوق TOPIC_WORDS) */
 export function classifyTopics(text) {
   const norm = normalizeAr(text)
-  const latin = new Set(norm.split(/[^a-z]+/).filter(Boolean))
-  const topics = []
-  for (const [topic, words] of Object.entries(TOPIC_WORDS)) {
-    const hit = words.some((w) => (/^[a-z]+$/.test(w) ? latin.has(w) : norm.includes(w)))
-    if (hit) topics.push(topic)
-  }
-  return topics
+  const tokens = new Set(norm.split(/[^\p{L}\p{M}-]+/u).filter(Boolean))
+  return TOPIC_MATCHERS.filter(([, ms]) => ms.some((m) => matches(m, norm, tokens))).map(([topic]) => topic)
 }
 
 /** سطر الإحصاء: لا نصّ سؤال ولا جواب ولا عنوان ولا تجزئة عنوان */
