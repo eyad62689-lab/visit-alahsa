@@ -303,6 +303,16 @@ const galTailSizes = `(max-width: 760px) ${galTailM ? '100vw' : '50vw'}, ${galTa
               {t('det.openAmap')}
             </a>
           )}
+          {/* المجسّم بالواقع المعزز: موقع مستقل بالعربية، فالزر في الصفحة العربية فقط */}
+          {ar && a.ar && (
+            <a class="map-link ar-link" href={a.ar} target="_blank" rel="noopener" data-track="outbound_click" data-track-kind="ar" data-track-item-id={a.slug_en}>
+              <svg class="map-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z" />
+                <path d="M4 7.5 12 12l8-4.5M12 12v9" />
+              </svg>
+              {t('det.ar')}<span class="ar-note">{t('det.arNote')}</span>
+            </a>
+          )}
           <a class="report-link" href={`${staticHref('report', lang)}?page=${encodeURIComponent(decodeURI(Astro.url.pathname))}`}>{t('det.report')}</a>
         </div>
       </aside>
@@ -543,6 +553,8 @@ const galTailSizes = `(max-width: 760px) ${galTailM ? '100vw' : '50vw'}, ${galTa
   .map-link:hover { border-color: var(--c-gold); color: var(--c-gold-deep); }
   .map-ic { color: var(--c-gold-deep); flex-shrink: 0; }
   .map-link:hover .map-ic { color: inherit; }
+  .ar-link { flex-wrap: wrap; }
+  .ar-link .ar-note { flex-basis: 100%; font-size: 0.8125rem; font-weight: 400; color: var(--c-ink-soft, #444441); }
   /* الإبلاغ يبقى سطراً منفصلاً تحت رابط الخريطة */
   .dist-me { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; margin-block: var(--s-3) 0; }
   .dist-btn { display: inline-flex; align-items: center; gap: 7px; min-block-size: 44px; padding: 0 12px; font-family: var(--font-body); font-size: var(--t-sm); font-weight: 600; color: var(--c-turq-deep); background: var(--c-sand); border: 1px solid var(--c-line); border-radius: var(--radius-pill); cursor: pointer; }

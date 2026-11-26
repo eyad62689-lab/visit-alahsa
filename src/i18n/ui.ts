@@ -280,6 +280,8 @@ export const ui = {
     'det.nearDining.k.bakery': 'مخبز',
     // الإبلاغ عن خطأ
     'det.report': 'لاحظت معلومة غير دقيقة؟ أبلغنا',
+    'det.ar': 'شاهده على طاولتك',
+    'det.arNote': 'مجسّم تقريبي بالواقع المعزز',
     'det.faq': 'أسئلة شائعة',
     // متجر منتجات الفعالية (صفحة الفعالية) — لغة بلا هذا المفتاح تعرض الأيقونة
     // وحدها كزرّ المشاركة، فلا نصّ بـzh/de/ru خارج خطوط الترجمة.
@@ -667,6 +669,8 @@ export const ui = {
     'det.nearDining.k.cafe': 'Café',
     'det.nearDining.k.bakery': 'Bakery',
     'det.report': 'Spotted something inaccurate? Tell us',
+    'det.ar': 'See it on your table',
+    'det.arNote': 'An approximate AR model',
     'det.faq': 'Frequently asked questions',
     'ev.shop': 'Shop the exhibition’s products — Al-Ahsa Chamber store (external link) ↗',
     'ev.shopNote': 'Lomi products, foods and care items from the establishments taking part in the exhibition.',

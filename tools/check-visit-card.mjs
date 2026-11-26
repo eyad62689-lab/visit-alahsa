@@ -5,7 +5,8 @@
 //   ١. لا سطر إسناد ولا تاريخ تحقق ولا ملاحظة مراجعة: لا .info-src ولا عبارات الإسناد
 //      المعروفة (بأي لغة) ولا أيّ قيمة source/source_* من ملفات المعالم، في النص المرئي
 //      وفي JSON-LD وفي السمات. حقول الإسناد في المصدر بيانات داخلية لا تُصيَّر.
-//   ٢. داخل البطاقة لا رابط خارجي إلا رابط الخريطة ورابط المشغّل (وخرائط 高德 في zh).
+//   ٢. داخل البطاقة لا رابط خارجي إلا رابط الخريطة ورابط المشغّل (وخرائط 高德 في zh)،
+//      ورابط المجسّم بالواقع المعزز (حقل ar) في الصفحة العربية وحدها.
 //   ٣. سطر المواعيد والرسوم الموحَّد يظهر مرة واحدة بالضبط حين تعرض البطاقة بلغة الصفحة
 //      بند مواعيد أو رسوم، ويغيب حين لا تعرضه؛ ونصّه يطابق قاموس اللغة حرفياً.
 //      والمعلم الموسوم openSite: true لا سطر له بأي لغة.
@@ -113,6 +114,7 @@ export function expectFromSource(raw) {
     operatorUrl: val('operatorUrl'),
     openSite,
     mapUrl: val('mapUrl'),
+    arUrl: val('ar'),
     sources,
   };
 }
@@ -156,6 +158,7 @@ export function checkVisitCards(expects, pages, strings) {
         const href = decodeEntities(m[1]);
         if (!/^https?:/i.test(href)) continue;
         if (href === e.mapUrl || href === e.operatorUrl || href.startsWith('https://uri.amap.com/')) continue;
+        if (lang === 'ar' && e.arUrl && href === e.arUrl) continue;
         attr.push(`${key}: رابط خارجي غير متوقَّع في البطاقة ${href}`);
       }
 

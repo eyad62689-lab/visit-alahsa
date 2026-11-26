@@ -42,6 +42,7 @@ category: historic
 heroImage: /img/al-uqair
 kicker: ميناء ورمال
 summary: أوّل ميناء بحري شرق المملكة، حيث تلامس رمالُ الصحراء زرقةَ الخليج.
+ar: https://visit-alahsa-ar.netlify.app/al-uqair
 summary_en: "Saudi Arabia’s first seaport on its eastern coast, where desert sands meet the blue of the Arabian Gulf."
 body_en: "Before the roads were paved, Al-Uqair was Al-Ahsa’s gateway to the world. An ancient port on the Arabian Gulf, where vessels moored laden with dates and goods, and through which news and trade entered the heart of the peninsula. Today two rare scenes meet at Al-Uqair: soft white sands stretching in from the desert, and the clear blue of the Arabian Gulf beginning where the sand ends. The remains of mud buildings and the old fort still guard the place, reminding the visitor that this quiet shore was once the heart of restless movement. A site for history and contemplation alike — you walk in the trace of caravans, and sit on sand that touches the sea."
 area: ساحل الخليج العربي — شرق الأحساء
