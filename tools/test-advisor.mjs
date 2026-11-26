@@ -168,6 +168,37 @@ ok(classifyTopics('سوّ لي برنامج يومين').includes('plan'), 'بر
 ok(classifyTopics('Where can I buy dates?').includes('shopping'), 'buy/dates بالإنجليزية → shopping');
 ok(!classifyTopics('Is it sunday today?').includes('plan'), 'اللاتينية بالكلمة الكاملة: today لا تطابق days');
 ok(classifyTopics('مرحبا').length === 0, 'تحية بلا موضوع → []');
+// سؤال طبيعي لكل موضوع بكل لغة من لغات الموقع السبع
+const TOPIC_CASES = {
+  plan: ['عندي يومين في الأحساء وش تقترح؟', 'Can you suggest a 2 day itinerary?', 'Was soll ich an einem Wochenende machen?', 'İki günlük gezi planı önerir misin?', 'Составьте маршрут на два дня', '两天怎么安排行程？', 'دو دن کا پروگرام بتائیں'],
+  hours: ['متى يقفل سوق القيصرية؟', 'What time does the museum close?', 'Wann sind die Öffnungszeiten?', 'Müze kaçta açılıyor?', 'Во сколько открывается музей?', '门票多少钱？', 'میوزیم کب کھلتا ہے؟'],
+  food: ['أبي مكان لذيذ للعشاء', 'Where can I try local cuisine?', 'Wo kann man gut frühstücken?', 'Nerede yemek yiyebilirim?', 'Где можно вкусно поесть?', '有什么好吃的餐厅？', 'اچھا کھانا کہاں ملے گا؟'],
+  shopping: ['وين أحصل دبس ولومي؟', 'Best souq for gifts?', 'Wo kann ich Datteln kaufen?', 'Hurma nereden alabilirim?', 'Где купить финики?', '哪里买椰枣？', 'کھجور کہاں سے خریدوں؟'],
+  events: ['وش الفعاليات هالأسبوع؟', 'Any festivals this month?', 'Gibt es Veranstaltungen im Dezember?', 'Bu hafta etkinlik var mı?', 'Какие мероприятия в декабре?', '最近有什么活动？', 'کوئی میلہ ہے؟'],
+  stay: ['أبي شاليه للعائلة', 'Where should we stay?', 'Welche Unterkunft empfehlen Sie?', 'Otel tavsiye eder misin?', 'Посоветуйте гостиницу', '推荐住宿', 'ہوٹل بتائیں'],
+  transport: ['كم يبعد جبل القارة من الرياض؟', 'How far is the airport?', 'Wie komme ich vom Flughafen hin?', 'Havalimanından nasıl giderim?', 'Как добраться из аэропорта?', '从机场怎么去？', 'ہوائی اڈہ سے کیسے پہنچوں؟'],
+  family: ['أماكن تناسب الأطفال', 'Is it good for families?', 'Ist das für Kinder geeignet?', 'Çocuklar için uygun mu?', 'Можно ли с детьми?', '适合带孩子吗？', 'بچوں کے لیے مناسب ہے؟'],
+  sights: ['وش أشهر المعالم التراثية؟', 'Is the cave worth visiting?', 'Welche Sehenswürdigkeiten gibt es?', 'Görülecek tarihi yerler neler?', 'Какие достопримечательности посмотреть?', '有哪些景点？', 'تاریخی جگہیں کون سی ہیں؟'],
+  nature: ['أبغى أشوف الواحة والنخيل', 'Are there parks or lakes?', 'Gibt es eine Oase in der Nähe?', 'Vahada yürüyüş yapılır mı?', 'Есть ли пустыня рядом?', '绿洲在哪里？', 'نخلستان دیکھنا ہے'],
+  weather: ['كيف الجو في ديسمبر؟', 'Is it hot in summer?', 'Wie ist das Wetter im Winter?', 'Kışın hava durumu nasıl?', 'Какая погода зимой?', '冬天天气怎么样？', 'سردی میں موسم کیسا ہوتا ہے؟'],
+  contact: ['كيف أتواصل معكم؟', 'What is your WhatsApp number?', 'Wie kann ich Kontakt aufnehmen?', 'Size telefonla ulaşabilir miyim?', 'Как с вами связаться?', '怎么联系你们？', 'آپ سے رابطہ کیسے کروں؟'],
+  visa: ['أحتاج تأشيرة سياحية؟', 'Do I need a visa?', 'Brauche ich ein Visum?', 'Vize gerekiyor mu?', 'Нужна ли виза?', '需要签证吗？', 'کیا ویزا چاہیے؟'],
+};
+const missed = Object.entries(TOPIC_CASES).flatMap(([topic, qs]) => qs.filter((q) => !classifyTopics(q).includes(topic)).map((q) => `${topic}: ${q}`));
+ok(missed.length === 0, `كل موضوع يُلتقط بكل لغة (${Object.keys(TOPIC_CASES).length} موضوعاً × 7 لغات)`, missed.join(' | '));
+// كلمات شائعة تحتوي مقطعاً مفتاحياً يجب ألا تُوسم به
+const FALSE_FRIENDS = [
+  ['عشان أعرف الطريق', 'food'], ['أبي أكل محلي', 'shopping'], ['أبغى أزور جواثا', 'weather'], ['محل الحرف اليدوية', 'weather'],
+  ['عندي صغار', 'sights'], ['أبي مشروب بارد', 'weather'], ['كم تقريبا؟', 'events'],
+  ['Guten Tag!', 'plan'], ['What can I see here?', 'nature'], ['Where is the parking?', 'nature'],
+  ['Pazar günü açık mı?', 'shopping'], ['Bu yazı ne demek?', 'weather'],
+  ['Я хотел бы узнать', 'stay'], ['Вы будете работать в среду?', 'family'], ['Вы будете работать в среду?', 'food'],
+  ['Это почти рядом', 'contact'], ['Плата взимается?', 'weather'], ['Посадка на рейс', 'nature'],
+  ['热门景点', 'weather'],
+];
+const wrong = FALSE_FRIENDS.filter(([q, topic]) => classifyTopics(q).includes(topic)).map(([q, topic]) => `${topic}: ${q}`);
+ok(wrong.length === 0, `لا وسم بمقطع داخل كلمة شائعة (${FALSE_FRIENDS.length} حالة)`, wrong.join(' | '));
+ok(classifyTopics('Merhaba').length === 0 && classifyTopics('Привет').length === 0 && classifyTopics('你好').length === 0, 'تحيات بلا موضوع في tr/ru/zh → []');
 const secret = 'رقمي 0551234567 وأبي مطعم';
 const fakeCards = [{ id: 'jabal-al-qarah', kind: 'attraction', name: 'جبل القارة', href: '/x/' }];
 const statObj = usageStat({ src: 'web', env: 'production', lang: 'ar', page: '/', messages: [{ role: 'user', content: secret }], cards: fakeCards, outcome: 'ok', usage: { output_tokens: 120 } });
