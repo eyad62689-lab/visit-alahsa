@@ -89,6 +89,7 @@ const attractions = defineCollection({
     category: z.enum(CATEGORIES),
     kicker: z.string(),                        // تسمية علوية قصيرة
     summary: z.string(),                       // وصف البطاقة (عربي)
+    ar: z.string().url().optional(),           // صفحة المجسّم بالواقع المعزز (visit-alahsa-ar.netlify.app/<slug>)؛ زرّ في الصفحة العربية
     summary_en: z.string().optional(),         // وصف البطاقة (إنجليزي)
     body_en: z.string().optional(),            // نصّ الصفحة (إنجليزي)
     area: z.string().optional(),               // المنطقة/الموقع (حقيقة)

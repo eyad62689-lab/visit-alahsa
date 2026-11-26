@@ -37,6 +37,7 @@ category: religious
 heroImage: /img/jawatha-mosque
 kicker: إرثٌ نادر
 summary: من أقدم المساجد في الأحساء والإسلام، وأوّل ما أُقيمت فيه جمعةٌ بعد المدينة.
+ar: https://visit-alahsa-ar.netlify.app/jawatha-mosque
 summary_en: "One of the oldest mosques in Al-Ahsa and in Islam, and the first place a Friday prayer was held after Medina."
 body_en: "Jawatha Mosque holds a standing few landmarks can match: it is among the oldest mosques in Islam, and is said to be the first place where Friday prayer was held after the Prophet's Mosque in Medina, by the Banu Abd al-Qais who settled this land. What remains of its humble mud structure carries a dignity beyond its size. Stand before its arches and walls and you summon centuries of prayer and gathering in an oasis whose people were among the earliest to embrace Islam. The historic Jawatha Mosque was restored under the Prince Mohammed bin Salman Project for the Development of Historic Mosques, together with the Jalaniyah, Sheikh Muhammad bin Abi Bakr Al-Mulla and Hubaish mosques in Al-Ahsa. Beside the mosque stands Jawatha Park, a green park and a destination for family outings. To visit it is a journey through time more than a visit to a building — a moment that connects you to a deep root of the place’s history."
 area: قرية الكلابية — شمال شرق الهفوف
