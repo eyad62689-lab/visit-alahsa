@@ -153,7 +153,8 @@ const EVENT_META = {
   'dates-festival': { img: '/img/event-dates-festival', start: 1, end: 2 },
   // نسخة 2026–2027: 11 نوفمبر 2026 – 28 فبراير 2027 — من صفحة حجز التذاكر الرسمية (واحة للفعاليات،
   // مقروءة 2026-11-07؛ رابطها من رمز QR في إعلان قدّمه إياد، والبداية يؤكدها منشور هيئة تطوير الأحساء).
-  // لا ساعات ولا priceRange: الصفحة تعرض «ابتداءً من» لكل يوم بلا حدّ أعلى. النسختان السابقتان:
+  // لا priceRange: الصفحة تعرض «ابتداءً من» لكل يوم بلا حدّ أعلى. الساعات (hours في نصوص كل لغة)
+  // من الصفحة نفسها (مقروءة 2026-11-26: يومياً 4:00 م – 11:59 م، «حتى منتصف الليل») وأكّدها إياد. النسختان السابقتان:
   // أبريل 2025 ويناير–مارس 2026 (صفحة المعلم palm-village.md).
   // الموقع من رابط الخرائط الذي قدّمه إياد (2026-10-17، وأعاد تأكيده 2026-10-20 برابط جديد للنقطة نفسها)؛
   // القرية موسمية في مكان ثابت (قوقل يسمّيها «مغلق نهائياً» خارج موسمها). الإحداثيات من الرابط المفكوك.
@@ -346,6 +347,7 @@ const TEXT_AR: EventTexts = {
       seoDesc: 'قرية النخيل — حي محيرس، المبرز. الشتاء. متاجر التمور، مطاعم ومقاهٍ محلية، أجنحة الحرفيين (الخوصيات)، تسويق المنتجات الريفية.',
     },
     org: 'هيئة تطوير الأحساء، أمانة الأحساء',
+    hours: 'يومياً 4 م – 12 منتصف الليل',
     related: [{ label: 'قرية النخيل', href: '/معالم/قرية-النخيل/' }],
     acts: ['متاجر التمور', 'مطاعم ومقاهٍ محلية', 'أجنحة الحرفيين (الخوصيات)', 'تسويق المنتجات الريفية'],
   },
@@ -583,6 +585,7 @@ const TEXT_EN: EventTexts = {
       seoDesc: 'Palm Village — Muhairis district, Al-Mubarraz. Winter. Date shops, Local restaurants & cafés, Artisan pavilions (palm-frond crafts).',
     },
     org: 'Al-Ahsa Development Authority, Al-Ahsa Municipality',
+    hours: 'Daily 4 pm – 12 midnight',
     related: [{ label: 'Palm Village', href: '/en/attractions/palm-village/' }],
     acts: ['Date shops', 'Local restaurants & cafés', 'Artisan pavilions (palm-frond crafts)', 'Rural products market'],
   },
@@ -803,6 +806,7 @@ const TEXT_ZH: TranslatedTexts = {
     season: '冬季', time: '2026 年 11 月 11 日至 2027 年 2 月 28 日', span: '约四个月',
     after: { time: '11 月至次年 2 月前后', span: '为期数月' },
     org: '哈萨发展管理局、哈萨市政局',
+    hours: '每日 16:00–24:00',
     related: [{ label: '椰枣村', href: '/zh/attractions/palm-village/' }],
     acts: ['椰枣专卖店', '本地餐厅与咖啡馆', '手工艺人展馆（棕榈叶编织）', '乡村产品集市'],
   },
@@ -921,6 +925,7 @@ const TEXT_RU: TranslatedTexts = {
     season: 'Зима', time: '11 ноября 2026 года – 28 февраля 2027 года', span: 'Около четырёх месяцев',
     after: { time: 'Примерно в ноябре–феврале', span: 'Несколько месяцев' },
     org: 'Управление по развитию Аль-Ахсы, муниципалитет Аль-Ахсы',
+    hours: 'Ежедневно 16:00–24:00',
     related: [{ label: 'Пальмовая деревня', href: '/ru/attractions/palm-village/' }],
     acts: ['Финиковые лавки', 'Местные рестораны и кафе', 'Павильоны ремесленников (изделия из пальмовых листьев)', 'Продажа сельской продукции'],
   },
@@ -1027,6 +1032,7 @@ const TEXT_DE: TranslatedTexts = {
     season: 'Winter', time: '11. November 2026 – 28. Februar 2027', span: 'Etwa vier Monate',
     after: { time: 'Etwa November–Februar', span: 'Mehrere Monate' },
     org: 'Al-Ahsa-Entwicklungsbehörde, Kommunalverwaltung von Al-Ahsa',
+    hours: 'Täglich 16:00–24:00 Uhr',
     related: [{ label: 'Palmendorf', href: '/de/attractions/palm-village/' }],
     acts: ['Dattelläden', 'Lokale Restaurants und Cafés', 'Handwerker-Pavillons (Palmwedel-Flechtwaren)', 'Vermarktung ländlicher Erzeugnisse'],
   },
@@ -1147,6 +1153,7 @@ const TEXT_UR: TranslatedTexts = {
     span: 'تقریباً چار مہینے',
     after: { time: 'تقریباً نومبر سے فروری تک', span: 'کئی مہینے' },
     org: 'الاحساء کی ترقی کا ادارہ، الاحساء کی بلدیہ',
+    hours: 'روزانہ شام 4 بجے سے رات 12 بجے تک',
     related: [{ label: 'کھجور کے درختوں کا گاؤں', href: '/ur/attractions/palm-village/' }],
     acts: ['کھجوروں کی دکانیں', 'کھانے پینے کی مقامی جگہیں', 'دستکاروں کے پنڈال (کھجور کے پتوں سے بنی دستکاریاں)', 'دیہی مصنوعات کا بازار'],
   },
@@ -1281,6 +1288,7 @@ const TEXT_TR: TranslatedTexts = {
     span: 'Yaklaşık dört ay',
     after: { time: 'Kasım–şubat civarında', span: 'Birkaç ay' },
     org: 'El-Ahsa Geliştirme Kurumu, El-Ahsa Belediyesi',
+    hours: 'Her gün 16.00–24.00',
     seoTitle: 'El-Ahsa\'da Hurma Köyü etkinliği: mevsim ve konum',
     acts: ['Hurma dükkânları', 'Yerel restoranlar ve kafeler', 'Zanaatkâr stantları (hurma yaprağı işleri)', 'Kırsal ürünler pazarı'],
     related: [
