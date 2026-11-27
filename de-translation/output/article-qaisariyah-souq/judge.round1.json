@@ -1,0 +1,421 @@
+{
+  "round": 1,
+  "date": "2026-11-27",
+  "batch_score": 87,
+  "decision": "RETURN",
+  "return_to_stage": 2,
+  "judged_file": "qaisariyah-souq.stage5.md",
+  "pages": [
+    {
+      "key": "qaisariyah-souq",
+      "score": 87,
+      "breakdown": {
+        "accuracy": 28,
+        "nativeness": 23,
+        "termbase_style": 18,
+        "cultural_fit": 8,
+        "structure": 10
+      }
+    }
+  ],
+  "must_fix": [
+    {
+      "id": "M1",
+      "where": "Frontmatter, title",
+      "problem": "73 Zeichen. Die titel_regel verlangt den Bau des englischen Titels („Its History, Fire and Name“), und die Abnahmeprüfung dieser Charge verlangt einen Titel von höchstens 60 Zeichen. „Herkunft des Namens“ ist gegenüber „Name“ ohne Gewinn länger; die Herkunft des Namens steht in der Beschreibung („woher sein Name kommt“).",
+      "fix": "„Der Qaisariyah-Souk in Al-Ahsa: Geschichte, Brand und Name“ (58 Zeichen). Eigenbefund des Richters, kein Blindleserpunkt. Umkehrbar: C72 (60/160) prüft nur ar/en, veröffentlichte deutsche Titel liegen zwischen 54 und 125 Zeichen.",
+      "reader_obs": [],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "title: \"Der Qaisariyah-Souk in Al-Ahsa: Geschichte, Brand und Herkunft des Namens\"",
+          "after": "title: \"Der Qaisariyah-Souk in Al-Ahsa: Geschichte, Brand und Name\""
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "where": "Frontmatter, description",
+      "problem": "Aufzählung mischt Nebensätze („wann er erbaut …“) mit Substantivgruppen („der Brand von 2001 und die Rückkehr des Souks“, „sein Verhältnis …“, „die Herkunft …“); doppeltes „in Hofuf in Al-Ahsa“; „Rückkehr“ eines Gebäudes ist Lehnübersetzung von «عودته».",
+      "fix": "Gleichartige Nebensätze, „in Hofuf (Al-Ahsa)“, Motiv „wiedererstehen“. Die Zuschreibung „wie die Quellen sie erzählen“ bleibt; die verblose Form ist die der Quelle und bleibt. Nicht kürzen: veröffentlichte deutsche Beschreibungen liegen zwischen 164 und 258 Zeichen, C72 gilt nur für ar/en.",
+      "reader_obs": [6, 16],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "in Hofuf in Al-Ahsa, wie die Quellen sie erzählen: wann er erbaut und wann er erneuert wurde, der Brand von 2001 und die Rückkehr des Souks, sein Verhältnis zur Welterbeliste und die Herkunft seines Namens.\"",
+          "after": "in Hofuf (Al-Ahsa), wie die Quellen sie erzählen: wann er erbaut und wann er erneuert wurde, wie er 2001 brannte und wiedererstand, wie er zur Welterbeliste steht und woher sein Name kommt.\""
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "where": "Einleitung, Absatz 1: „Das ist der Qaisariyah-Souk in der Stadt Hofuf in Al-Ahsa.“",
+      "problem": "Ab dem Abschnitt über die Reisenden steht „die Qaisariyah“ (feminin) neben „der Qaisariyah-Souk“ (maskulin), ohne dass der Leser erfährt, dass beides derselbe Ort ist; er hält die Qaisariyah für einen Teil des Souks. Vereinheitlichen geht nicht: Die bloße Form folgt an den meisten Stellen dem Wortlaut der zitierten Quelle (Palgrave, ICOMOS, Al-Jazirah, Welterbebeschluss), und das Arabische führt «القيصرية» selbst als Kurznamen (Überschrift «ماذا كتب الرحالة عن القيصرية؟», «جُدّدت القيصرية», «اندلع بالقيصرية»).",
+      "fix": "Sprachliche Brücke bei der ersten Nennung, keine neue Angabe: „Das ist der Qaisariyah-Souk – kurz: die Qaisariyah – in der Stadt Hofuf in Al-Ahsa.“ Hinweis im Eintrag „the Qaisariyah (bare short name …)“ in termbase-additions.stage4.json nachziehen (dort steht „Offen für den Blindleser“).",
+      "reader_obs": [11],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Das ist der Qaisariyah-Souk in der Stadt Hofuf in Al-Ahsa.",
+          "after": "Das ist der Qaisariyah-Souk – kurz: die Qaisariyah – in der Stadt Hofuf in Al-Ahsa."
+        }
+      ]
+    },
+    {
+      "id": "M4",
+      "where": "Einleitung, Absatz 2: „Hier erzählen wir … jede beim Namen genannt: … wie er zurückkehrte … – einem Namen, den Souks von Kairo bis Granada trugen.“",
+      "problem": "(a) „jede beim Namen genannt“ ist Lehnübersetzung von «كلٌّ باسمه»; der Bezug von „jede“ muss erraten werden. (b) Überlanger Satz mit sechs Fragegliedern. (c) „wie er zurückkehrte“: Lehnübersetzung. (d) Holzweg „den Souks“ (als Dativ Plural gelesen).",
+      "fix": "In zwei Sätze teilen; die Zusage, jede Quelle zu nennen, als eigener Hauptsatz (kein Doppelpunkt danach, sonst läse man die Aufzählung als die Namen); „wiedererstand“; „den auch Souks“. Kein Glied der Aufzählung entfällt.",
+      "reader_obs": [7, 8, 16],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "so, wie die Quellen sie überliefern, jede beim Namen genannt: wann er erbaut und wann er erneuert wurde, wann er brannte und wie er zurückkehrte, wie er zur Welterbeliste steht und was in ihm verkauft wird. Danach fragen wir nach seinem Namen – einem Namen, den Souks von Kairo bis Granada trugen.",
+          "after": "so, wie die Quellen sie überliefern, und nennen jede Quelle beim Namen. Sie erfahren, wann der Souk erbaut und wann er erneuert wurde, wann er brannte und wie er wiedererstand, wie er zur Welterbeliste steht und was in ihm verkauft wird. Danach fragen wir nach seinem Namen – einem Namen, den auch Souks von Kairo bis Granada trugen."
+        }
+      ]
+    },
+    {
+      "id": "M5",
+      "where": "Abschnitt „Wann wurde der Qaisariyah-Souk erbaut?“, Absatz 1",
+      "problem": "„Der Vorbehalt gehört zur Auskunft“ und der dreigliedrige Doppelpunktsatz („Die Agentur gibt wieder, sie behauptet nicht, und wir nennen …“) lesen sich als Amtsdeutsch und müssen zweimal gelesen werden.",
+      "fix": "Entschärfen, ohne den Vorbehalt zu verlieren: «والقيد جزء من المعلومة: الوكالة تروي ولا تجزم، ونحن نوردها بقيدها» bleibt vollständig (Einschränkung gehört zur Angabe · die Agentur gibt wieder und legt sich nicht fest · wir nennen die Zahl mit der Einschränkung). Der Vorschlag des Blindlesers wird NICHT wörtlich übernommen: Er lässt «الوكالة تروي ولا تجزم» fallen. Kein „nur“ und kein „deshalb“ hinzufügen. Das Zitat der SPA bleibt unverändert.",
+      "reader_obs": [10],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Die offizielle Antwort steht unter einem ausdrücklichen Vorbehalt.",
+          "after": "Die offizielle Antwort kommt mit einer ausdrücklichen Einschränkung."
+        },
+        {
+          "before": "Der Vorbehalt gehört zur Auskunft: Die Agentur gibt wieder, sie behauptet nicht, und wir nennen die Jahreszahl mit ihrem Vorbehalt.",
+          "after": "Die Einschränkung gehört zur Angabe: Die Agentur gibt wieder, sie legt sich nicht fest. Wir nennen die Jahreszahl mit dieser Einschränkung."
+        }
+      ]
+    },
+    {
+      "id": "M6",
+      "where": "Abschnitt „Wann … erbaut?“, Absatz 2: „Ihr Argument: Reisende hätten …“",
+      "problem": "Bezug von „Ihr“ offen (SPA oder Historiker).",
+      "fix": "„Das Argument der Historiker: Reisende hätten …“ – Konjunktiv und Satzbau bleiben.",
+      "reader_obs": [21],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Ihr Argument: Reisende hätten",
+          "after": "Das Argument der Historiker: Reisende hätten"
+        }
+      ]
+    },
+    {
+      "id": "M7",
+      "where": "Abschnitt „Was schrieben Reisende …?“: „Dessen Läden, schreibt er, seien …“",
+      "problem": "„Dessen“ bindet grammatisch an das zuletzt genannte „Portal“; gemeint ist der Markt («دكاكينه»). Genauigkeit und Lesbarkeit.",
+      "fix": "„Die Läden dieses Marktes, schreibt er, seien kostbaren Waren vorbehalten: …“",
+      "reader_obs": [12],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Dessen Läden, schreibt er,",
+          "after": "Die Läden dieses Marktes, schreibt er,"
+        }
+      ]
+    },
+    {
+      "id": "M8",
+      "where": "Abschnitt „Wann … erneuert?“, Cheesman-Absatz: „deren Läden in überdachten Gängen liegen“",
+      "problem": "Präsens nach „beschrieb“ behauptet einen heutigen Zustand, den die Quelle nicht trägt («دكاكينه في ممرات مسقوفة» ist Teil der Beschreibung von 1926); zugleich der vom Blindleser gemeldete Tempussprung.",
+      "fix": "„… deren Läden in überdachten Gängen lagen; für ihn gehört sie zum „neuen Basar“.“ Das Präsens in „gehört“ und „nennt“ bleibt (Aussage über den Text). Der Vorbehaltssatz „Cheesman nennt diese Kolonnade nicht „Qaisariyah“; wir geben seine Beschreibung deshalb so wieder, wie sie bei ihm steht, und fügen ihr nichts hinzu.“ bleibt unverändert.",
+      "reader_obs": [13],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "deren Läden in überdachten Gängen liegen;",
+          "after": "deren Läden in überdachten Gängen lagen;"
+        }
+      ]
+    },
+    {
+      "id": "M9",
+      "where": "Überschrift „Was ist mit „Kabank“ an den Läden des Qaisariyah-Souks gemeint?“",
+      "problem": "Sperrig; „an den Läden“ schief.",
+      "fix": "„Was sind die „Kabank“-Türen der Läden im Qaisariyah-Souk?“ – Souk-Name bleibt in der Überschrift (wie in der Quelle), „„Kabank“-Türen“ wie in Quelle 2 und Tipp 2.",
+      "reader_obs": [15],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "## Was ist mit „Kabank“ an den Läden des Qaisariyah-Souks gemeint?",
+          "after": "## Was sind die „Kabank“-Türen der Läden im Qaisariyah-Souk?"
+        }
+      ]
+    },
+    {
+      "id": "M10",
+      "where": "Kabank-Absatz, Satz 1: „Historiker erwähnen, so berichtet die SPA, ein kleines Detail.“",
+      "problem": "Der Einschub zerreißt den Satz.",
+      "fix": "„Wie die SPA berichtet, erwähnen Historiker ein kleines Detail.“ Die Reihenfolge (erst Aufforderung zum Suchen, dann das Detail) ist die der Quelle und bleibt.",
+      "reader_obs": [14],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Historiker erwähnen, so berichtet die SPA, ein kleines Detail.",
+          "after": "Wie die SPA berichtet, erwähnen Historiker ein kleines Detail."
+        }
+      ]
+    },
+    {
+      "id": "M11",
+      "where": "Kabank-Absatz, Schluss: „das dritte Teil wird nach oben gehoben“",
+      "problem": "„das Teil“ liest der Leser als Einzelstück oder umgangssprachlich; für den Teil eines Ganzen (einer Tür) steht „der Teil“.",
+      "fix": "„der dritte Teil wird nach oben gehoben“. Die Anordnung der drei Teile wird NICHT ergänzt (Quellenmangel, siehe source_defects_for_owner).",
+      "reader_obs": [5],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "das dritte Teil wird nach oben gehoben.",
+          "after": "der dritte Teil wird nach oben gehoben."
+        }
+      ]
+    },
+    {
+      "id": "M12",
+      "where": "Motiv „Rückkehr“: Überschrift „Der Brand im Qaisariyah-Souk 2001 und die Rückkehr des Souks“ · „Dann kehrte der Souk zurück.“ · Schlusssatz „Ein Souk, der brannte, dann zurückkehrte und in dem noch immer verkauft wird.“ (dazu M2 und M4)",
+      "problem": "Ein Gebäude „kehrt zurück“: wörtlich aus «عاد» / „returned“; an fünf Stellen.",
+      "fix": "Verb „wiedererstehen“, Substantiv „Wiederaufbau“; keine Jahreszahl der Wiedereröffnung (die Quelle nennt keine). Überschrift: „Der Brand im Qaisariyah-Souk 2001 und der Wiederaufbau“ · „Dann erstand der Souk wieder.“ · Schlusssatz: „Ein Souk, der brannte, dann wiedererstand und in dem bis heute gehandelt wird.“ (die verblose Form ist die der Quelle und bleibt).",
+      "reader_obs": [16, 36],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "## Der Brand im Qaisariyah-Souk 2001 und die Rückkehr des Souks",
+          "after": "## Der Brand im Qaisariyah-Souk 2001 und der Wiederaufbau"
+        },
+        {
+          "before": "Dann kehrte der Souk zurück.",
+          "after": "Dann erstand der Souk wieder."
+        },
+        {
+          "before": "Ein Souk, der brannte, dann zurückkehrte und in dem noch immer verkauft wird.",
+          "after": "Ein Souk, der brannte, dann wiedererstand und in dem bis heute gehandelt wird."
+        }
+      ]
+    },
+    {
+      "id": "M13",
+      "where": "Abschnitt Brand, Preis-Absatz: „… habe in der 13. Runde [den Preis … (zweiter Platz) der Organisation Arabischer Städte](…) gewonnen, bei einer Feier in Doha.“",
+      "problem": "Überlang; die Klammer „(zweiter Platz)“ trennt „Preis“ vom Genitiv; „bei einer Feier in Doha“ hängt nach; „in der 13. Runde“ ohne Bezug (offene Frage aus Stufe 4).",
+      "fix": "Zwei Sätze, kein Element entfällt (16. Mai 2017, SPA, wiederaufgebaut und saniert, Betreiber, Preis, zweiter Platz, Organisation, 13. Auflage, Feier in Doha), Konjunktiv bleibt. «في دورتها الـ13» = die 13. Auflage des Preises. Eintrag „Architectural Heritage Award (second place) · 13th cycle“ in termbase-additions.stage4.json nachziehen („in der 13. Auflage des Preises“, „den zweiten Platz belegt“).",
+      "reader_obs": [17],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "habe in der 13. Runde [den Preis für architektonisches Erbe (zweiter Platz) der Organisation Arabischer Städte](https://www.spa.gov.sa/w404462?lang=ar&newsid=1630351) gewonnen, bei einer Feier in Doha.",
+          "after": "habe in der 13. Auflage des [Preises für architektonisches Erbe der Organisation Arabischer Städte](https://www.spa.gov.sa/w404462?lang=ar&newsid=1630351) den zweiten Platz belegt. Die Auszeichnung habe der Souk bei einer Feier in Doha erhalten."
+        }
+      ]
+    },
+    {
+      "id": "M14",
+      "where": "Abschnitt Welterbe, Absatz 2: „Der Souk kommt im Beschluss namentlich vor: Wo dieser aufzählt, …“",
+      "problem": "„dieser“ für den Beschluss klingt nach Amtsdeutsch und ist nach „Der Souk“ doppeldeutig.",
+      "fix": "„Der Beschluss erwähnt den Souk namentlich: Wo er aufzählt, worauf die Integrität der Stätte beruht, nennt er die traditionellen historischen Souks und führt als Beispiel die Qaisariyah in Hofuf an.“ „Integrität der Stätte“ bleibt (Fachbegriff der deutschen UNESCO-Texte, Wortlaut des Beschlusses).",
+      "reader_obs": [23],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Der Souk kommt im Beschluss namentlich vor: Wo dieser aufzählt,",
+          "after": "Der Beschluss erwähnt den Souk namentlich: Wo er aufzählt,"
+        }
+      ]
+    },
+    {
+      "id": "M15",
+      "where": "Abschnitt Welterbe, Absatz 3: „Und im Qaisariyah-Souk selbst feierten …“",
+      "problem": "Zwei Absätze beginnen mit „Und“; der erste trägt keine Pointe.",
+      "fix": "„Im Qaisariyah-Souk selbst feierten …“. Das zweite „Und aus einem Laden in der Qaisariyah ging eine Buchhandlung hervor.“ bleibt (dort trägt es die Wendung).",
+      "reader_obs": [25],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Und im Qaisariyah-Souk selbst [feierten",
+          "after": "Im Qaisariyah-Souk selbst [feierten"
+        }
+      ]
+    },
+    {
+      "id": "M16",
+      "where": "Abschnitt „Was wird … verkauft?“, Satz 1: „Im Qaisariyah-Souk wird noch immer verkauft.“ (und Schlusssatz, siehe M12)",
+      "problem": "Objektloses „wird verkauft“ wirkt unvollständig; Lehnübersetzung von «ما زال يبيع».",
+      "fix": "„Im Qaisariyah-Souk wird bis heute gehandelt.“ Nicht „lebendiger Markt“ (Wertung, die die Quelle nicht trägt).",
+      "reader_obs": [19, 36],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Im Qaisariyah-Souk wird noch immer verkauft.",
+          "after": "Im Qaisariyah-Souk wird bis heute gehandelt."
+        }
+      ]
+    },
+    {
+      "id": "M17",
+      "where": "Abschnitt „Was wird … verkauft?“: „das Sadu-Gewebe (Webstoff)“",
+      "problem": "Leere Glosse: „Gewebe“ sagt bereits „Webstoff“. Der Termbase-Eintrag lautet „das Sadu-Gewebe“; die Klammer gehört nicht zur Eintragsform. Vorgang der Linie: Eine Glosse, die nichts erklärt, ist keine Glosse.",
+      "fix": "Klammer streichen: „das Sadu-Gewebe und Kupferwaren“. „Gewürze und Würzmittel“ bleibt (Doppelung der Quelle: «البهارات والتوابل»).",
+      "reader_obs": [26],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "das Sadu-Gewebe (Webstoff) und Kupferwaren",
+          "after": "das Sadu-Gewebe und Kupferwaren"
+        }
+      ]
+    },
+    {
+      "id": "M18",
+      "where": "Abschnitt „Was wird … verkauft?“, Absatz 2: „Nach Angaben der SPA zeichnet den Souk aus, was dort verkauft und ausgestellt wird:“",
+      "problem": "Objekt vor Subjektsatz, zweimal zu lesen.",
+      "fix": "„Nach Angaben der SPA zeichnet sich der Souk durch das aus, was dort verkauft und ausgestellt wird:“ – nicht „ist bekannt für“ (anderes Prädikat als «يمتاز»).",
+      "reader_obs": [20],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Nach Angaben der SPA zeichnet den Souk aus, was dort verkauft und ausgestellt wird:",
+          "after": "Nach Angaben der SPA zeichnet sich der Souk durch das aus, was dort verkauft und ausgestellt wird:"
+        }
+      ]
+    },
+    {
+      "id": "M19",
+      "where": "Abschnitt „Was wird … verkauft?“, Absatz 3: „Wer für die Küche einkauft: Unter den Lebensmitteln des Souks nennt die SPA …“",
+      "problem": "Der Relativsatz bricht am Doppelpunkt ab (offene Frage aus Stufe 4).",
+      "fix": "Vollständiger Satz mit erhaltener Zuschreibung: „Wer für die Küche einkauft, findet laut SPA unter den Lebensmitteln des Souks [Gewürze und Würzmittel sowie roten Hasawi-Reis](…), dazu [getrocknete Limetten (Lomi)](…), Granatapfelsirup, Safran, Kardamom und Rosenwasser.“",
+      "reader_obs": [29],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Wer für die Küche einkauft: Unter den Lebensmitteln des Souks nennt die SPA [Gewürze",
+          "after": "Wer für die Küche einkauft, findet laut SPA unter den Lebensmitteln des Souks [Gewürze"
+        }
+      ]
+    },
+    {
+      "id": "M20",
+      "where": "Abschnitt Name, Absatz 3: „Der Name gehörte auch nicht Hofuf allein.“",
+      "problem": "Klingt fremd (Lehnübersetzung von «لم يكن للهفوف وحدها»).",
+      "fix": "„Der Name war auch nicht auf Hofuf beschränkt.“ Präteritum bleibt (Quelle); der Vorschlag im Präsens wird nicht übernommen.",
+      "reader_obs": [33],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Der Name gehörte auch nicht Hofuf allein.",
+          "after": "Der Name war auch nicht auf Hofuf beschränkt."
+        }
+      ]
+    },
+    {
+      "id": "M21",
+      "where": "Abschnitt Name, Absatz 3: „Das Wort ging auch ins Spanische über: Daraus ist alcaicería entlehnt.“",
+      "problem": "„Daraus“ verdoppelt die Aussage; der zweite Satz stolpert.",
+      "fix": "„Auch das Spanische hat das Wort entlehnt: als alcaicería.“ Das spanische Wort bleibt kleingeschrieben und steht nicht am Satzanfang.",
+      "reader_obs": [34],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "Das Wort ging auch ins Spanische über: Daraus ist alcaicería entlehnt.",
+          "after": "Auch das Spanische hat das Wort entlehnt: als alcaicería."
+        }
+      ]
+    },
+    {
+      "id": "M22",
+      "where": "Tipps, Punkt 3: „Machen Sie den Souk zum Abschluss Ihres Tages. Die Route Ein Tag in Al-Ahsa … die Route 48 Stunden in Al-Ahsa …“",
+      "problem": "(a) Die Routentitel stehen unmarkiert im Satz; in der Blindkopie liest man „Die Route Ein Tag“ als Satzbaufehler und „Route 48“ als Nummer. Der Link hebt sie auf der Seite hervor, ersetzt aber die Anführungszeichen eines Werktitels nicht. (b) „Machen Sie den Souk zum Abschluss Ihres Tages“ ist Lehnübersetzung.",
+      "fix": "Titel in „…“, Anführungszeichen außerhalb des Links, Linktext unverändert (= Hauptteil des veröffentlichten deutschen Titels). Fettzeile: „Lassen Sie Ihren Tag im Souk ausklingen.“",
+      "reader_obs": [1, 35],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "**Machen Sie den Souk zum Abschluss Ihres Tages.** Die Route [Ein Tag in Al-Ahsa](/de/blog/one-day-in-al-ahsa/) legt den Qaisariyah-Souk auf den Abend, und die Route [48 Stunden in Al-Ahsa](/de/blog/48-hours-in-al-ahsa/) beschließt dort ihren ersten Tag.",
+          "after": "**Lassen Sie Ihren Tag im Souk ausklingen.** Die Route „[Ein Tag in Al-Ahsa](/de/blog/one-day-in-al-ahsa/)“ legt den Qaisariyah-Souk auf den Abend, und die Route „[48 Stunden in Al-Ahsa](/de/blog/48-hours-in-al-ahsa/)“ beschließt dort ihren ersten Tag."
+        }
+      ]
+    },
+    {
+      "id": "M23",
+      "where": "Tipps, Punkt 4: „unseren Artikel Was kauft man in Al-Ahsa? und öffnen Sie …“",
+      "problem": "Unmarkierter Titel mit Fragezeichen mitten im Satz.",
+      "fix": "„unseren Artikel „[Was kauft man in Al-Ahsa?](/de/blog/al-ahsa-souvenirs-guide/)“ und öffnen Sie …“",
+      "reader_obs": [2],
+      "return_to": 2,
+      "replace": [
+        {
+          "before": "unseren Artikel [Was kauft man in Al-Ahsa?](/de/blog/al-ahsa-souvenirs-guide/) und öffnen",
+          "after": "unseren Artikel „[Was kauft man in Al-Ahsa?](/de/blog/al-ahsa-souvenirs-guide/)“ und öffnen"
+        }
+      ]
+    }
+  ],
+  "optional": [],
+  "blind_reader_rulings": [
+    { "n": 1, "ruling": "applied", "reason": "M22: Routentitel in „…“, Anführungszeichen außerhalb des Links: Die Route „[Ein Tag in Al-Ahsa](…)“ … die Route „[48 Stunden in Al-Ahsa](…)“." },
+    { "n": 2, "ruling": "applied", "reason": "M23: unseren Artikel „[Was kauft man in Al-Ahsa?](…)“." },
+    { "n": 3, "ruling": "rejected", "reason": "Faktenzaun und Entscheidung des Inhabers: Der Freitagshinweis steht mit seinem Verb („Sehen Sie dort nach … vor allem freitags“), Uhrzeiten trägt die Quelle nicht und der Auftrag verbietet sie. „Seite des Qaisariyah-Souks“ ist auf der Seite ein Link zur Seite der Sehenswürdigkeit; die Blindkopie verliert die Linkauszeichnung." },
+    { "n": 4, "ruling": "source_defect", "reason": "Die Quelle lädt ein, die „Kabank“-Türen mit eigenen Augen zu suchen, und sagt nicht, ob es sie im wiederaufgebauten Souk noch gibt. Die Übersetzung ergänzt das nicht. An den Inhaber." },
+    { "n": 5, "ruling": "source_defect", "reason": "Die Anordnung der drei Teile beschreibt die Quelle nicht («قطعتان يجلس عليهما … ويضع فيهما … وقطعة ثالثة تُرفع إلى أعلى»). An den Inhaber. Sprachlicher Teil angewandt (M11): „der dritte Teil“." },
+    { "n": 6, "ruling": "applied", "reason": "M2: gleichartige Nebensätze, „in Hofuf (Al-Ahsa)“, „wie er 2001 brannte und wiedererstand“. Die Zuschreibung „wie die Quellen sie erzählen“ bleibt; verblos wie die Quelle." },
+    { "n": 7, "ruling": "applied", "reason": "M4: „… und nennen jede Quelle beim Namen. Sie erfahren, wann der Souk erbaut …“ – zwei Sätze, kein Glied entfällt." },
+    { "n": 8, "ruling": "applied", "reason": "M4: „einem Namen, den auch Souks von Kairo bis Granada trugen“." },
+    { "n": 9, "ruling": "rejected", "reason": "„mehr als 422“ ist der Wortlaut der SPA («ما يربو على 422»); runden oder das „mehr als“ streichen hieße die Zahl der Quelle ändern." },
+    { "n": 10, "ruling": "applied", "reason": "M5, entschärft und ohne Verlust des Vorbehalts: „Die Einschränkung gehört zur Angabe: Die Agentur gibt wieder, sie legt sich nicht fest. Wir nennen die Jahreszahl mit dieser Einschränkung.“ Der Wortlaut des Lesers wird nicht übernommen, weil er «الوكالة تروي ولا تجزم» fallen lässt." },
+    { "n": 11, "ruling": "applied", "reason": "M3: Brücke bei der ersten Nennung, „der Qaisariyah-Souk – kurz: die Qaisariyah –“. Das Arabische führt «القيصرية» als Kurznamen desselben Souks; keine neue Angabe. Vereinheitlichen ginge gegen den Wortlaut der zitierten Quellen." },
+    { "n": 12, "ruling": "applied", "reason": "M7: „Die Läden dieses Marktes, schreibt er, …“." },
+    { "n": 13, "ruling": "applied", "reason": "Teilweise. M8: „lagen“ statt „liegen“. Die Frage, ob die Kolonnade die erneuerte Qaisariyah ist, bleibt offen, weil die Quelle sie ausdrücklich offen lässt («وتشيزمان لا يسمّي هذا الرواق القيصرية، فننقل وصفه كما ورد ولا نزيد عليه»); der Vorbehaltssatz bleibt unverändert." },
+    { "n": 14, "ruling": "applied", "reason": "M10: „Wie die SPA berichtet, erwähnen Historiker ein kleines Detail.“ Die Reihenfolge Aufforderung → Detail ist die der Quelle und bleibt." },
+    { "n": 15, "ruling": "applied", "reason": "M9: „Was sind die „Kabank“-Türen der Läden im Qaisariyah-Souk?“ (Souk-Name bleibt wie in der Quelle in der Überschrift)." },
+    { "n": 16, "ruling": "applied", "reason": "Wortlaut angewandt (M2, M4, M12): „wiedererstehen“ / „Wiederaufbau“. Das verlangte Datum der Wiedereröffnung ist abgelehnt: Die Quelle nennt keines." },
+    { "n": 17, "ruling": "applied", "reason": "M13: zwei Sätze, „in der 13. Auflage des Preises … den zweiten Platz belegt. Die Auszeichnung habe der Souk bei einer Feier in Doha erhalten.“ Kein Element entfällt." },
+    { "n": 18, "ruling": "rejected", "reason": "Faktenzaun: Art, Dauer und Wiederkehr des Festivals trägt die Quelle nicht; „Layali“ ist Teil eines Eigennamens ohne Termbase-Eintrag und wird nicht übersetzt." },
+    { "n": 19, "ruling": "applied", "reason": "M16: „Im Qaisariyah-Souk wird bis heute gehandelt.“ – nicht „lebendiger Markt“ (Wertung)." },
+    { "n": 20, "ruling": "applied", "reason": "M18: „zeichnet sich der Souk durch das aus, was dort verkauft und ausgestellt wird“ – nicht „ist bekannt für“ (anderes Prädikat)." },
+    { "n": 21, "ruling": "applied", "reason": "M6: „Das Argument der Historiker: …“." },
+    { "n": 22, "ruling": "rejected", "reason": "Die Quelle sagt nicht, was sich änderte («لم تبقَ على حالها»); der Leser räumt das selbst ein." },
+    { "n": 23, "ruling": "applied", "reason": "Teilweise. M14: „dieser“ entfällt („Der Beschluss erwähnt den Souk namentlich: Wo er aufzählt …“). „Integrität der Stätte“ bleibt: Fachbegriff des Beschlusses («سلامة الموقع»), in den deutschen UNESCO-Texten belegt." },
+    { "n": 24, "ruling": "rejected", "reason": "Termbase und veröffentlichter Bestand führen „Bayt Al-Bay'ah“ ohne Übersetzung; „Qasr Ibrahim (dem Ibrahim-Palast)“ ist die freigegebene Glosse. Eine Erläuterung zu Bayt Al-Bay'ah wäre eine Angabe aus der Quelle einer anderen Seite." },
+    { "n": 25, "ruling": "applied", "reason": "Teilweise. M15: das erste „Und“ entfällt; „Und aus einem Laden in der Qaisariyah ging eine Buchhandlung hervor.“ bleibt." },
+    { "n": 26, "ruling": "applied", "reason": "Teilweise. M17: „(Webstoff)“ gestrichen. „Gewürze und Würzmittel“ bleibt (Doppelung der Quelle)." },
+    { "n": 27, "ruling": "rejected", "reason": "Faktenzaun: Die Quelle sagt «منطقة للأكلات الشعبية» und nicht, ob dort gegessen oder verkauft wird." },
+    { "n": 28, "ruling": "rejected", "reason": "Der Linktext folgt dem veröffentlichten deutschen Titel des Zielartikels („Die Handwerke Al-Ahsas: …“); Regel der Linie und Vorgang der Charge tarafa-ibn-al-abd." },
+    { "n": 29, "ruling": "applied", "reason": "M19: „Wer für die Küche einkauft, findet laut SPA unter den Lebensmitteln des Souks …“." },
+    { "n": 30, "ruling": "rejected", "reason": "Ob die Buchhandlung noch besteht und wo, trägt die Quelle nicht. „nach der Hidschra“ / „n. H.“ ist keine Uneinheitlichkeit, sondern die Hausregel (erste Nennung ausgeschrieben, danach abgekürzt); die Klammer „(n. H.; …)“ fehlt bei der ersten Nennung nur, weil sie im Zitat der SPA steht (Entscheidung der Leitung). Der Leser hat die Abkürzung verstanden." },
+    { "n": 31, "ruling": "rejected", "reason": "Faktenzaun: Die Wendung selbst steht nicht in der Quelle («اختصار لعبارة معناها»)." },
+    { "n": 32, "ruling": "rejected", "reason": "Die Quelle stellt beide Angaben nebeneinander und entscheidet nicht («فاللفظة لاتينية عند بلجريف، يونانية الأصل بحسب دائرة المعارف»); eine Entscheidung wäre eine neue Behauptung." },
+    { "n": 33, "ruling": "applied", "reason": "Teilweise. M20: „Der Name war auch nicht auf Hofuf beschränkt.“ Die Tempora (Präteritum für al-Maqrizi und das Fazit, Präsens für Fès) sind die der Quelle und bleiben; welcher Souk den Namen heute noch trägt, sagt sie nur für Fès." },
+    { "n": 34, "ruling": "applied", "reason": "M21: „Auch das Spanische hat das Wort entlehnt: als alcaicería.“" },
+    { "n": 35, "ruling": "applied", "reason": "M22: „Lassen Sie Ihren Tag im Souk ausklingen.“" },
+    { "n": 36, "ruling": "applied", "reason": "M12: „Ein Souk, der brannte, dann wiedererstand und in dem bis heute gehandelt wird.“ Die verblose Form ist die Schlussformel der Quelle («سوق احترق ثم عاد، وما زال يبيع») und bleibt." },
+    { "n": 37, "ruling": "rejected", "reason": "Wortlaut der Quelle (Ausgabe vom Freitag, Brand am Donnerstagmorgen); ein errechnetes Datum „18. Oktober“ steht in keiner Quelle des Artikels." }
+  ],
+  "rejected_reader_notes": [3, 9, 18, 22, 24, 27, 28, 30, 31, 32, 37],
+  "source_defects_for_owner": [
+    "علّة مصدر (ar + en)، ملاحظة القارئ 4: قسم «الكبنك» ونصيحة «ابحث عن الكبنك» يدعوان القارئ إلى البحث عن أبواب الكبنك بعينه في السوق، والمقال نفسه يقول إن السوق بُني من جديد بعد حريق 2001 أتى على أكثر محاله، ولا يذكر هل بقيت هذه الأبواب في السوق المعاد بناؤه (في كل الدكاكين أم في بعضها). واس تنقل الوصف عن مؤرخين. المطلوب من المالك: تأكيد أن الأبواب تُرى اليوم، أو تعديل الدعوة في المصدر.",
+    "علّة مصدر (ar + en)، ملاحظة القارئ 5: وصف قطع الباب الثلاث («قطعتان يجلس عليهما صاحب الدكان، ويضع فيهما القفة … وقطعة ثالثة تُرفع إلى أعلى») لا يتصوّره القارئ: كيف يُجلس على قطعتين من الباب وتوضع فيهما سلة، وكيف تترتب القطع الثلاث؟ ترتيب القطع غير موصوف في المصدر، والترجمة لم تزد عليه."
+  ],
+  "owner_flags": [
+    "ثغرات يطلبها القارئ ولا يحملها المصدر (رُفضت بسياج الوقائع، تُعرض للعلم لا للترجمة): سنة إعادة افتتاح السوق بعد الحريق (16)، طبيعة مهرجان «ليالي القيصرية» ومدته وتكراره (18)، هل مكتبة التعاون الثقافي قائمة اليوم وأين (30)، العبارة الأصلية التي اختُصر منها لفظ «قيصرية» (31)، هل «منطقة الأكلات الشعبية» للأكل أم للبيع (27).",
+    "العنوان الألماني قُصّر إلى 58 حرفاً («… Geschichte, Brand und Name») على بناء العنوان الإنجليزي؛ العنوان السابق («… und Herkunft des Namens»، 73 حرفاً) يُستعاد بتبديل سطر واحد إن رأى القائد ذلك.",
+    "للمرور الجماعي (U1): الگلوس الفارغ «Sadu-Gewebe (Webstoff)» منشور في موضع واحد خارج هذه الدفعة: src/content/stay/alkoot-heritage.md السطر 41 (body_de). لم يُمسّ."
+  ],
+  "open_questions_stage4": {
+    "in der 13. Runde": "Entschieden mit M13: „in der 13. Auflage des Preises“ («دورتها» = die Auflage des Preises).",
+    "laut der Encyclopaedia of Islam": "Bleibt im Fließtext (dreimal); der wörtliche Titel „The Encyclopaedia of Islam“ steht in Quelle 17.",
+    "n. H.": "Bleibt: erste Nennung ausgeschrieben (FAQ 1 und Zitat der SPA), danach „n. H.“ (Buchhandlung, Fazit, Quelle 9). Keine Abkürzungserklärung im Zitat der Agentur (Entscheidung der Leitung).",
+    "(SPA) in den FAQ-Antworten": "Bleibt: Die FAQ-Felder stehen für sich, die Termbase-Form „die Saudi Press Agency (SPA)“ bindet bei der ersten Nennung je Feld.",
+    "Wer für die Küche einkauft:": "Entschieden mit M19.",
+    "C22": "Keine Änderung verlangt (14 gleichlautende Blöcke, simuliert 9,7 % bei einer Schwelle von 20 %). Am Build zu bestätigen."
+  },
+  "after_correction": [
+    "Stufe 2 schreibt qaisariyah-souq.loop1.md (ganzer Artikel mit Frontmatter) und loop1-changes.md. Die 26 Ersetzungen unter must_fix[].replace sind wortgenau; jede „before“-Zeichenfolge kommt in qaisariyah-souq.stage5.md genau einmal vor.",
+    "Stufe 4 zieht drei Hinweise in termbase-additions.stage4.json nach: „the Qaisariyah (bare short name …)“ (Brücke M3), „Architectural Heritage Award (second place) · 13th cycle“ (M13), und beim Bestandseintrag „sadu weaving“ nichts (die Klammer war nie Eintragsform).",
+    "Stufe 5: check-stage5.mjs nach check-final.mjs kopieren und nur den Dateinamen ändern. Vom Richter im Speicher nachgemessen (stage5.md + die 26 Ersetzungen, nichts auf die Platte geschrieben): 41/41 Prüfungen bestanden, mit --break 16/16 Mutationen gefangen, ohne dass ein Anker oder ein Sollwert geändert werden musste."
+  ],
+  "notes": "Score 87 < 90 (pass_threshold in de-translation/config.json): RETURN an Stufe 2 (Editor) mit 23 must_fix (26 wortgenaue Ersetzungen). Verfahren: 07-judge.md schreibt bei einer Wertung unter der Schwelle „RETURN to the stage responsible (1–6)“ vor, und im Vorgang article-tarafa-ibn-al-abd hat eine eigene Korrekturschleife (nicht der Richter) loop1.md geschrieben und Runde 2 neu geurteilt. Der Richter hat deshalb keine loop1.md, keine final.md, keine tm-additions.json, keine scores-row.txt und keine posts.json geschrieben und termbase-additions.stage4.json nicht angefasst. Genauigkeit 28/30: jeder Satz gegen EN gelesen, AR als Schiedsinstanz; keine Angabe hinzugefügt oder weggelassen, alle Vorbehalte und Zuschreibungen erhalten („nach dem, was einige Quellen überliefern“, „die Agentur gibt wieder, sie behauptet nicht“, „die älteste Beschreibung, die wir gefunden haben“, „Cheesman nennt diese Kolonnade nicht …“, „beantwortet keine Quelle, die wir gefunden haben“, „eine Quelle … haben wir nicht gefunden“), aufgenommen ist die Oase und nicht der Souk, keine Brandursache, keine Schadenszahl über die 80 % der Zeitung hinaus, kein osmanischer Bezug, Lomi ohne Farbe. Zwei Punkte Abzug: „Dessen Läden“ bindet an „Portal“ (M7), „liegen“ behauptet einen heutigen Zustand (M8). Natürlichkeit 23/30: Lesbarkeit des Blindlesers 72; unmarkierte Titel im praktischen Teil (M22, M23), Lehnübersetzungen an etwa zehn Stellen („jede beim Namen genannt“, „kehrte zurück“ fünfmal mit Beschreibung und Überschrift, „wird noch immer verkauft“ zweimal, „Machen Sie den Souk zum Abschluss“, „gehörte nicht Hofuf allein“), Holzwege („den Souks“, „zeichnet den Souk aus“, „Ihr Argument“, „dieser“), der überlange Preis-Satz, der abgebrochene Satz „Wer für die Küche einkauft:“. Termbase und Stil 18/20: alle Termbase-Formen und beide Vorgaben der Leitung (die Saudi Press Agency (SPA); die Zeitung Al-Jazirah ohne „saudische“/„Tages-“) eingehalten, Hidschra-Form regelgerecht; Abzug für den Titel (73 Zeichen, weicht vom Bau des englischen Titels ab) und die leere Glosse „(Webstoff)“. Eignung für Reisende 8/10: Kurzname „die Qaisariyah“ ohne Brücke, Routenhinweise schwer lesbar. Struktur 10/10, selbst nachgemessen an stage5.md mit check-stage5.mjs: 41/41, --break 16/16; 13 Überschriften, 34 externe Links wortgleich und in Reihenfolge, 13 interne Links alle /de/…/, 18 Quellenzeilen, 4 FAQ, U+00A0 = 0. Nachmessung des Solltextes (stage5.md + 26 Ersetzungen, nur im Speicher): Titel 58 Zeichen, Beschreibung 225 Zeichen, „ 37 = “ 37, 13 / 34 / 13 unverändert, 41/41 und 16/16. Nicht geprüft: Build, C22 auf dist, Erreichbarkeit der Links (kein Build, kein Netz, kein git in dieser Stufe)."
+}

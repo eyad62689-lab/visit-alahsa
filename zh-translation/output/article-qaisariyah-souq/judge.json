@@ -1,0 +1,163 @@
+{
+ "round": 2,
+ "date": "2026-11-27",
+ "batch_score": 92,
+ "decision": "APPROVE",
+ "return_to_stage": null,
+ "pages": [
+  {
+   "key": "qaisariyah-souq",
+   "score": 92,
+   "breakdown": {
+    "accuracy": 29,
+    "nativeness": 26,
+    "termbase_style": 19,
+    "cultural_fit": 8,
+    "structure": 10
+   }
+  }
+ ],
+ "must_fix": [],
+ "optional": [
+  {
+   "where": "## 归根结底",
+   "problem": "The English heading of this article is 'In Brief' (Arabic الخلاصة); 归根结底 reads as the start of a verdict. Kept because the two published history articles (lomi history, Tarafa) carry the same heading and the owner flag '归根结底 vs 小结' is still open.",
+   "fix": "## 小结 (owner decision, to be applied to the three articles together)"
+  },
+  {
+   "where": "沙特百科列举的集市手工艺中有传统萨杜编织和铜器",
+   "problem": "传统 comes from the bound UNESCO element name, not from the source sentence ('sadu weaving'); 传统 then returns in 传统菜肴 in the same sentence.",
+   "fix": "萨杜编织 (only if the termbase owner allows the bare form for the craft)"
+  },
+  {
+   "where": "马克里齐（al-Maqrizi）",
+   "problem": "Older Chinese scholarship is believed to write 麦格里齐; no such source could be opened in this batch.",
+   "fix": "swap the one string if a Chinese scholarly source is opened later; the Latin gloss stays either way"
+  },
+  {
+   "where": "绿洲成为沙特第五处列入名录的遗产地。按世界遗产委员会的决定，列入名录的是…",
+   "problem": "列入名录 three times in three sentences; the source repeats 'inscribed' the same way.",
+   "fix": "no change required"
+  }
+ ],
+ "round1": {
+  "on": "qaisariyah-souq.stage5.md",
+  "score": 90,
+  "breakdown": {
+   "accuracy": 29,
+   "nativeness": 24,
+   "termbase_style": 19,
+   "cultural_fit": 8,
+   "structure": 10
+  },
+  "judge_edits": 19,
+  "note": "At the threshold, not above it. The stage-5 text had no meaning error, no added or dropped fact and no termbase breach; what it lacked was nativeness: about fourteen fixable wordings, six of them plainly awkward (the award sentence, 决定在列举…有赖于哪些方面时, 决定列入的是, 特色在于…东西, 有…还有…以及, 讲…的文章会讲给您听) and three article references without title marks that the blind reader misread on first pass. The edits were applied by the judge in loop 1 (apply-loop1.mjs, loop1-changes.md), as the orchestrator's instruction and the practice of this line allow when the text is not below the threshold (precedent: palm-village-page, 9 judge edits). 06-judge.md orders a RETURN to stages 1-5 only for a score below the threshold. The judge's edits have not been read by a fresh blind reader."
+ },
+ "blind_reader_rulings": [
+  {"note": 1, "ruling": "applied", "text": "读一读本站的[《在哈萨买什么》](…) — published title of souvenirs-zh.md in 《》 (E18)."},
+  {"note": 2, "ruling": "applied", "text": "[《哈萨一日》](…)的行程把凯撒利亚集市排在傍晚，[《哈萨 48 小时》](…)的行程第一天也在这里结束 — published titles in 《》 (E17)."},
+  {"note": 3, "ruling": "applied", "partial": true, "text": "本站的[《哈萨活着的手艺》](…)一文里有它的介绍 (E13). The phrase 活着的手艺 itself is the published title of the linked article (crafts-zh.md) and is not rewritten here; inside 《》 it now reads as a title."},
+  {"note": 4, "ruling": "rejected", "partial": true, "text": "Fact fence and brief: the Friday notice carries its verb and no hours; what differs on Fridays is on the landmark page, by design. Only 本站的 was added before the page link (E15), because the blind copy had no link targets and the reader could not tell which page was meant."},
+  {"note": 5, "ruling": "source_defect", "partial": true, "text": "The shape of the door (where the three pieces sit, what 'in which he places' means, what the lifted piece does) is not in the Arabic or the English; nothing may be made more concrete (ZH-W10), and 里 stays because 上 would be a new fact. Translation part applied: the definition now precedes the Latin word, 他还把用椰枣树枝叶做成的篮子“quffa”放在这两块里，用来存放大米和咖啡 (E7)."},
+  {"note": 6, "ruling": "applied", "text": "细看门上的三块；要知道，其中两块就是店主的座位 (E16): information for the eye, not a rule of conduct. Why the visitor should remember it is not said in the source."},
+  {"note": 7, "ruling": "rejected", "text": "Binding constraint from the Arabic review: Cheesman does not call the colonnade the Qaisariyah, and the article must not decide it for him. The sentence with 不添一字 is the source's own ('and add nothing to it') and carries the caution; it is neither cut nor shortened."},
+  {"note": 8, "ruling": "rejected", "text": "《半岛报》 is the bound termbase entry and already carries (Al-Jazirah) at its first mention; 沙特 or 日报 would be facts the source does not state. Passed to the owner as a source-level option."},
+  {"note": 9, "ruling": "applied", "partial": true, "text": "Description reworded so that it no longer repeats the body sentence and the three names are segmented: 本文依据各家来源，讲述哈萨胡富夫的凯撒利亚集市的历史：… (E1). Nothing deleted: description and body paragraph 2 are two source units, and the body sentence carries 'each by name'."},
+  {"note": 10, "ruling": "applied", "partial": true, "text": "官方的回答附有一句明确的限定 (E3). The explanation that follows (通讯社是转述，不是断言；…) is the source's statement of its own caution and stays whole."},
+  {"note": 11, "ruling": "applied", "text": "也就是说，帕尔格雷夫描述过的那座凯撒利亚集市，并没有一直保持原貌 (E6): restatement instead of deduction; the sentence is the source's."},
+  {"note": 12, "ruling": "source_defect", "text": "The year in which the rebuilding was completed is not in the source; it is not added. 回来了 / 归来 is the source's own motif ('returned') and is kept."},
+  {"note": 13, "ruling": "applied", "text": "这座集市经过重建与整修，由哈萨市政局管理；在多哈举行的一场典礼上，它获得了第 13 届[阿拉伯城市组织建筑遗产奖（第二名）](…) (E8)."},
+  {"note": 14, "ruling": "rejected", "text": "Whether the festival recurs, and in which month, is not in the source (fact fence). The three organisers are the source's list and each name is bound (哈萨市政局, 哈萨县, 哈萨发展管理局)."},
+  {"note": 15, "ruling": "applied", "text": "决定列出了遗产地的完整性所依托的各个方面，其中提到传统历史集市，并以胡富夫的凯撒利亚集市为例 (E10)."},
+  {"note": 16, "ruling": "applied", "text": "按[世界遗产委员会的决定](…)，列入名录的是“哈萨绿洲，变迁的文化景观”；决定还写明，它共有十二处组成部分 (E9)."},
+  {"note": 17, "ruling": "applied", "partial": true, "text": "而 removed (E11). The date of the celebration is not in the source and is not added; 正是 stays ('in Qaisariyah Souq itself')."},
+  {"note": 18, "ruling": "applied", "text": "这座集市以售卖和陈列的货品见长： (E12). The reader's own wording would have dropped SPA's claim that the souq is distinguished by its goods."},
+  {"note": 19, "ruling": "applied", "text": "有[香料与调味料、哈萨红米](…)，还有[干青柠](…)、石榴糖浆、藏红花、小豆蔻和玫瑰水 (E14)."},
+  {"note": 20, "ruling": "source_defect", "text": "'more than 422' is SPA's wording, carried as such by the Arabic (ما يربو على 422) and the English; the Chinese is faithful. Minor."},
+  {"note": 21, "ruling": "rejected", "text": "Termbase style_rules_additions.calendar is binding: 伊斯兰历 at the first mention of the page (and in FAQ answer 1, which stands alone in FAQPage), 伊历 afterwards."},
+  {"note": 22, "ruling": "rejected", "text": "Termbase numeral rule is binding and names this very phrase: closed counted sets in Chinese numerals (十二处组成部分), statistics in digits (14 座, 422 家, 第 13 届)."},
+  {"note": 23, "ruling": "rejected", "text": "凯撒利亚集市 is the bound name (VisitSaudi zh), published across the site; the name section explains the word."},
+  {"note": 24, "ruling": "rejected", "text": "比什特长袍 is bound; 长袍 is the gloss, and ZH-W2 allows no explanatory tail."},
+  {"note": 25, "ruling": "rejected", "text": "Shop names are transliterated by the stores rule; the Latin name stands beside it once."},
+  {"note": 26, "ruling": "rejected", "text": "The sentence is the source's and sets the two attributions side by side (Latin for Palgrave, Greek for the encyclopaedia); it is not a repetition to be cut."},
+  {"note": 27, "ruling": "applied", "partial": true, "text": "这座集市遭过火灾，又回来了，至今仍在做买卖 (E19): plain sentence instead of the colon fragment. The closing line itself is the source's and stays."},
+  {"note": 28, "ruling": "applied", "text": "覆着筒形拱顶 (E4)."}
+ ],
+ "open_questions_ruled": [
+  {"question": "quffa: Latin only, “库法”（quffa）, or description first", "ruling": "Latin only, once, in Chinese quotation marks, after the source's own definition: 用椰枣树枝叶做成的篮子“quffa”. “库法” is rejected for good: 库法 is the city of Kufa, and ZH-W2 forbids coining a transliteration for a foreign generic noun with no Chinese attestation. This overrules the brief's 'quffa likewise' for this one word; “卡班克”（kabank） stays as the brief orders."},
+  {"question": "马克里齐 or 麦格里齐", "ruling": "马克里齐（al-Maqrizi）. It is the only form that was opened and read (zh.wikipedia, four articles); a form is not adopted on recollection."},
+  {"question": "传统萨杜编织 or 萨杜编织", "ruling": "传统萨杜编织: the craft entry is binding and is the UNESCO element name. The batch-14 ruling against an added 传统 concerns the derived object 萨杜织物."},
+  {"question": "咨询机构", "ruling": "Kept; it is the standing Chinese term for the Advisory Bodies of the World Heritage Committee. Not re-opened on the web here, so the entry stays house-derived. Classifier 这家 → 这一."},
+  {"question": "哈萨 repeated in 哈萨比什特长袍与哈萨阿巴雅长袍", "ruling": "Kept: in the Arabic the adjective governs both nouns, and the bound string 哈萨比什特长袍 cannot be opened."},
+  {"question": "三块 / 放在这两块里", "ruling": "Kept as the source has it (ZH-W10); raised to the owner as a source defect."},
+  {"question": "《半岛报》", "ruling": "Bound entry with (Al-Jazirah) at the first body mention; no 沙特, no 日报."},
+  {"question": "星期五 / 星期四 beside 周五; quotation boundary of the SPA hedge; “皇帝的市场”; 翻新; Zwemer gloss", "ruling": "All confirmed as stage 4 left them."}
+ ],
+ "source_defects_for_owner": [
+  "The 'kabank' passage (body and visiting tip), in Arabic and English: the text does not say where the three pieces of the door sit or what each does when the shop is open; 'two pieces on which the shopkeeper sits, and in which he places the quffa' cannot be pictured, and the tip then asks the visitor to look for it and to 'remember that two of them are the shopkeeper's seat' without saying why. The blind reader read the passage twice and could not see the door. It affects every language.",
+  "'Then the souq returned … built anew': the article gives no year for the rebuilding after the 2001 fire. The reader asked when; nothing was added.",
+  "'more than 422 shops' (SPA's wording): 'more than' in front of a number exact to the unit reads oddly in every language.",
+  "Cross-page (carried from stage 4): src/data/unesco-components-i18n.ts lists Qaisariyah Souq as component 1563-005 of the inscribed property, while this article says that what is inscribed is the oasis, that it has twelve component parts, and that the souq is 'one of its landmarks', without saying that the souq is one of the twelve. A reader of both pages may ask."
+ ],
+ "owner_observations": [
+  "Al-Jazirah: a Chinese reader takes 半岛 for Qatar's Al Jazeera television; the blind reader did so on first pass in spite of 报 and the Latin gloss. If the Arabic and English sources named the paper as Saudi, the Chinese could write 沙特《半岛报》; without that it stays as it is.",
+  "Cheesman's colonnade sits in the section on the renewal while the article declines to say whether it is the Qaisariyah. The hedge is binding and was kept; the reader was left unsure why the passage is there.",
+  "Friday: the reader's first practical question (how Friday differs) is answered only on the landmark page, by design.",
+  "Heading 归根结底 against 'In Brief' / الخلاصة: third article with this heading; the flag '归根结底 vs 小结' is open since the Tarafa batch.",
+  "Manama and Doha carry no country, as in the source."
+ ],
+ "post_judgement_reader": {
+  "report": "blind-reader.round2.md",
+  "read": "qaisariyah-souq.final.md as approved (= loop1.md)",
+  "readability": 70,
+  "notes": 30,
+  "edits": 4,
+  "result": "qaisariyah-souq.loop2.md, copied byte for byte to qaisariyah-souq.final.md; changes in loop2-changes.md",
+  "score_after_addendum": 92,
+  "breakdown_after_addendum": {"accuracy": 29, "nativeness": 26, "termbase_style": 19, "cultural_fit": 8, "structure": 10},
+  "decision_after_addendum": "APPROVE (unchanged)",
+  "counts": {"applied": 4, "rejected": 20, "source_defect": 6},
+  "caught_from_judge_edits": "Two of the four edits repair what the judge's own loop-1 edits introduced or exposed: E22 (它 after 消息, from E2) and E23 (也 left hanging once 而 was removed, from E11). E12 (以…见长) and E10 (完整性所依托的各个方面) were questioned again and stand: the reader named no cause the first reader had not named, and in both the weakness is the source's.",
+  "rulings": [
+   {"note": 1, "ruling": "source_defect", "text": "Same passage and same cause as round-1 note 5 (the door cannot be pictured from the Arabic or the English); already with the owner. No Chinese name for quffa: ruled (ZH-W2, 库法 is Kufa)."},
+   {"note": 2, "ruling": "source_defect", "text": "New for the owner: Cheesman's colonnade of white masonry arches (1926) stands in the article beside Al-Jazirah's building of mud with palm-trunk roofs (2001), and the article does not say how the two relate. Not reconciled and not decided here: the Cheesman hedge and the separate mud paragraph are both binding."},
+   {"note": 3, "ruling": "source_defect", "text": "回来了 / 归来 is the source's motif (ruled, round-1 notes 12 and 27). What is new is the named ambiguity: 'returned' does not say whether the souq was rebuilt or reopened, nor when. It is the source's; joined to the owner item on the missing year."},
+   {"note": 4, "ruling": "rejected", "text": "Request for information (how Friday differs, tickets, access, length of a visit): fact fence, as in round-1 note 4."},
+   {"note": 5, "ruling": "rejected", "text": "The three sentences are the source's statements of its own caution; binding (round-1 notes 7, 9, 10)."},
+   {"note": 6, "ruling": "rejected", "text": "哈萨 is the bound UNESCO form; 艾赫萨 and its variants were checked and excluded in the termbase."},
+   {"note": 7, "ruling": "rejected", "text": "哈萨县 / 哈萨县县长 / 哈萨市政局 / 哈萨发展管理局 are bound; the source says 'Hofuf, Al-Ahsa' without explaining the relation, and none is added."},
+   {"note": 8, "ruling": "rejected", "text": "As round-1 note 8: bound 《半岛报》 with (Al-Jazirah); no country added. Two readers have now misread it; kept in the owner observations."},
+   {"note": 9, "ruling": "rejected", "text": "The source dates the issue (Friday 19 October 2001) and says 'Thursday morning'; the date of the fire is not computed for the reader. 5:40 前后: no termbase rule for clock times, and the published Chinese pages write them as digits with a colon throughout; 清晨 would add to the source."},
+   {"note": 10, "ruling": "source_defect", "text": "As round-1 note 20: 'more than 422' is SPA's wording; already with the owner."},
+   {"note": 11, "ruling": "applied", "text": "位于里法阿区西侧 (E20)."},
+   {"note": 12, "ruling": "source_defect", "text": "Whether the souq is one of the twelve component parts is not said in the article, in any language; neither decided nor harmonised here. The wording 完整性所依托的各个方面 is not reopened: same complaint as round-1 note 15, bound term, source content."},
+   {"note": 13, "ruling": "rejected", "text": "Why the inscription was announced in Manama is not in the source (fact fence)."},
+   {"note": 14, "ruling": "rejected", "text": "As round-1 note 14."},
+   {"note": 15, "ruling": "applied", "text": "所以 dropped: 这个词在帕尔格雷夫看来是拉丁语，按这部百科全书的说法则源出希腊语 (E21). Reopened because the second reader named the cause (a conclusion marker with nothing to conclude from)."},
+   {"note": 16, "ruling": "rejected", "text": "比什特长袍, 阿巴雅长袍 and 传统萨杜编织 are bound; the head noun is the gloss (ZH-W2), and the source explains none of them."},
+   {"note": 17, "ruling": "applied", "text": "…于 2018 年 6 月 29 日宣布；这片绿洲共有十二处组成部分 (E22). Introduced by judge edit E2."},
+   {"note": 18, "ruling": "rejected", "text": "归根结底 is kept on the two published articles. A reader has now named it independently as the wrong word for a summary; the owner flag is strengthened, see optional."},
+   {"note": 19, "ruling": "rejected", "text": "Published title of crafts-zh.md (round-1 note 3)."},
+   {"note": 20, "ruling": "source_defect", "text": "The claim that the souq 'is distinguished by what is sold and displayed in it' is SPA's and is empty in every language; both readers said so about two different Chinese wordings. 以…见长 is kept so that the claim is not dropped."},
+   {"note": 21, "ruling": "rejected", "text": "The brief orders the travellers' spellings in Latin inside quotation marks; the gloss keeps Kaisariyeh because the spelling is what the passage shows."},
+   {"note": 22, "ruling": "rejected", "text": "Termbase calendar and numeral rules (round-1 notes 21 and 22)."},
+   {"note": 23, "ruling": "rejected", "text": "非斯 is the form verified at stage 4 (zh.wikipedia article title)."},
+   {"note": 24, "ruling": "rejected", "text": "As round-1 note 25; whether the bookshop still exists is not in the source."},
+   {"note": 25, "ruling": "rejected", "text": "The turn from the scene to the agency's statement inside one sentence is the source's ('This is Qaisariyah Souq …, and the Saudi Press Agency has quoted …')."},
+   {"note": 26, "ruling": "applied", "text": "也 dropped: [哈萨居民庆祝自己的绿洲列入名录](…)，正是在凯撒利亚集市里 (E23). Exposed by judge edit E11."},
+   {"note": 27, "ruling": "rejected", "text": "(第二名) is the source's parenthesis and part of the link text; the management clause is the source's content."},
+   {"note": 28, "ruling": "rejected", "text": "Description and body paragraph 2 are two source units with two different lists (round-1 note 9)."},
+   {"note": 29, "ruling": "rejected", "text": "Why the evening is not in this article (fact fence); the linked itinerary says it."},
+   {"note": 30, "ruling": "rejected", "text": "Source line 17 is a printed work and has no link by rule; the names at the end of the other lines are link texts, which the blind copy shows without their targets."}
+  ],
+  "added_for_owner": [
+   "Stone and mud (reader-2 note 2): the article sets Cheesman's 'long new colonnade of white masonry arches' (1926) in the section on the renewal and, three sections later, Al-Jazirah's description of the burned Qaisariyah as 'built of mud, with roofs of palm trunks'. The reader took them for one building and found a contradiction. All languages.",
+   "'Returned' (reader-2 note 3): besides the missing year, the word does not say whether the souq was rebuilt or reopened.",
+   "The twelve component parts (reader-2 note 12): the question whether the souq is one of them now arises inside the article itself, not only across pages.",
+   "'distinguished by what is sold and displayed in it' (reader-1 note 18, reader-2 note 20): two readers found SPA's claim empty.",
+   "归根结底: named as the wrong word by the second reader on his own; 小结 or 要点回顾 for the three history articles together.",
+   "Manama (reader-2 note 13): the reader stopped at a Saudi inscription announced in Manama; the source gives no reason."
+  ]
+ },
+ "notes": "ADDENDUM: after approval a second blind reader read the final; 4 further edits were applied (loop2.md, see post_judgement_reader) and the final is now a byte copy of loop2.md; score and decision unchanged at 92, APPROVE. The text below is the round-2 note as written on loop1. Round 2 on qaisariyah-souq.loop1.md: 92 >= 90, APPROVE, no must_fix. qaisariyah-souq.final.md was at that point a byte copy of loop1.md. Round 1 on the stage-5 text was 90 (29/24/19/8/10), exactly at the threshold, with 19 judge edits; see round1. Accuracy 29/30: title, description, the 4 FAQ answers, the 29 paragraphs, the 9 bullets and the 18 source lines were read against the English with the Arabic as arbiter. No fact, year, identification, hour or tip is added or dropped; every report stands under its narrator (沙特通讯社, 沙特百科, 帕尔格雷夫, 兹韦默, 奇斯曼, 国际古迹遗址理事会, 《半岛报》, 《伊斯兰百科全书》, the Alhambra body); the hedges are whole (“据部分来源所述” four times in one wording, 我们找到的最早描述 three times, 我们没有找到…来源 twice, the Cheesman sentence). The inscribed property is the oasis in every sentence; no cause, loss or injury for the fire; the mud-and-palm-trunk sentence is its own paragraph, byte-identical to stage 5, with no connector; Granada shares the name and the type of market only; no 奥斯曼, no colour on the dried lomi. One point for two nuances: 传统 in 传统萨杜编织 comes from the bound name and not from the sentence, and the heading 归根结底 says more than 'In Brief'. Nativeness 26/30: after loop 1 the text reads as sober Chinese cultural prose at the level of the two published history articles; what remains is stiffness that the mirrored structure and the fact fence impose (the paragraph that explains the hedge, the kabank passage, attribution chains, 列入名录 three times in one paragraph). Termbase and style 19/20: every bound form respected (凯撒利亚集市, 胡富夫, 里法阿区, 哈萨县县长, 哈萨市政局, 哈萨发展管理局, 沙特遗产委员会, 沙特通讯社（SPA）, 沙特百科（Saudipedia）, 《半岛报》, 效忠之家（拜特·拜阿）, 干青柠, 哈萨红米, 十二处组成部分, calendar rule, numeral rule); one point because “quffa” departs from the brief's instruction (ruled above) and the heading follows a precedent that is itself under an open flag. Cultural fit 8/10: 您, no marketing, no forbidden topic; what a Chinese traveller still misses (Friday hours, the look of the door, 半岛 and 凯撒利亚 collisions) comes from the source or from bound names. Structure 10/10 (own count, check-parity.mjs): 135 lines = English minus seoDescription; 13 headings; 34 external links identical in order; 13 internal links under /zh/ with trailing slash, same targets as the English; 18 source lines, line 17 without a link, all unchanged since stage 5; 4 FAQ pairs; digit runs identical to stage 5; no U+00A0, no CR, no non-Latin digit; no line identical to its English counterpart. check-final.mjs 49/49, check-parity.mjs 41/41, break-tested on a copy corrupted in memory. Blind reader (72 on the stage-5 text, 28 notes): 15 applied (5 of them in part), 10 rejected (one with a small wording gain, 本站的), 3 source defects (one with its translation part applied, the quffa word order). termbase-additions.stage4.json: 7 entries carry a judge field (quffa, 咨询机构, 《半岛报》, the award, 马克里齐, the abaya string, 传统萨杜编织), 3 notes follow the new wording, 1 entry added (article titles in 《》); 53 entries. tm-additions.json: 61 pairs (title, description, 4 FAQ pairs, 13 headings, 29 paragraphs, 9 bullets; the 18 bibliographic lines are left out)."
+}
