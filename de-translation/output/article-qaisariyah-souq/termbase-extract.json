@@ -1,0 +1,498 @@
+{
+ "_meta": {
+  "project": "Visit Al-Ahsa EN→DE-DE",
+  "created": "2026-09-03",
+  "rule": "هذه التسميات إلزامية في كل المراحل. أي اسم علم جديد يُضاف هنا أولاً مع مصدره وجنسه النحوي (der/die/das) ثم يُستخدم. الجنس جزء من المدخل لا اجتهاد للمترجم — بدونه يتذبذب النص بين الصفحات.",
+  "sources_priority": [
+   "Deutsche UNESCO-Kommission / Österreichische UNESCO-Kommission (unesco.de, unesco.at)",
+   "visitsaudi.com/de (الموقع الرسمي للهيئة السعودية للسياحة بالألمانية)",
+   "de.wikipedia.org",
+   "Duden + قواعد النقحرة الألمانية المعتادة (DMG مبسّطة)"
+  ],
+  "source_caveat": "visitsaudi.com/de تطبيق SPA خلف نافذة موافقة على الكوكيز، فلا يقرؤه WebFetch — يُستشهد به عبر مقتطفات فهرس البحث أو بفتح يدوي. وvisitsaudi.com/de نفسه يتذبذب بين «Al Ahsa» و«Al-Hasa»، لذلك المرجّح هو صيغة اليونسكو الألمانية.",
+  "naming_policy": {
+   "default": "أسماء الأعلام العربية تبقى بالحروف اللاتينية كما في النسخة الإنجليزية للموقع (هي النقحرة الرسمية المستعملة على اللوحات وخرائط قوقل) — بخلاف الصينية التي وجب فيها نقحرة كل اسم.",
+   "exception": "يُستعمل الاسم الألماني المستقر حين يوجد: Riad، Dschidda، Mekka، Medina، Saudi-Arabien، Arabische Halbinsel، Ostprovinz.",
+   "durchkopplung": "الاسم العلم + اسم الجنس يُوصلان بشرطة: Al-Ahsa-Oase، Jawatha-Moschee، Qaisariyah-Souk، Ibrahim-Palast، Al-Asfar-See. الكتابة بمسافة بلا شرطة خطأ إملائي ألماني، لا خيار أسلوبي.",
+   "no_pleonasm": "لا يُجمع اسم الجنس مرتين: «Qarah-Berg» أو «Jabal al-Qarah» — لا «Jabal-al-Qarah-Berg»؛ «Souk» — لا «Souk-Markt»."
+  },
+  "style_rules": {
+   "anrede": "Sie (صيغة التأدب) في كل الموقع — لا «du» ولا خلط. قرار الجلسة 2026-09-03: السجل الفاخر للموقع ووجهته العائلية والثقافية يرجّحان Sie، وهو عرف بوابات الوجهات الألمانية.",
+   "orthographie": "Duden de-DE مع ß بعد حرف العلة الطويل والمزدوج (Straße, größte, heiß) — لا الصيغة السويسرية ss.",
+   "anfuehrungszeichen": "„…“ للاقتباس و‚…‘ للداخلي — لا \"…\" المستقيمة.",
+   "gedankenstrich": "شرطة الاعتراض الألمانية هي **U+2013** (Halbgeviertstrich) بمسافتين حولها — لا U+2014 التي يقرؤها القارئ الألماني خللاً طباعياً وإن كانت الصواب في العربية والإنجليزية. تنبيه: إن استُخرجت الشرطة يوماً إلى ثابت مشترك في القالب فستدخل صفحات /de/ علامةً خاطئة.",
+   "zahlen": "أرقام لاتينية 0–9 (قاعدة الموقع)، فاصلة عشرية ونقطة للآلاف: 16.000 Hektar، 2,5 Millionen.",
+   "datum": "21. Juni 2026 في المتن، و21.06.2026 في الجداول. الأوقات: 10:00–17:00 Uhr.",
+   "waehrung": "«50 SAR»؛ وأول ذكر في الصفحة: «50 Saudi-Riyal (SAR)».",
+   "hidschra": "«962 n. H. (1555 n. Chr.)» — أول ذكر في الصفحة يُكتب «nach der Hidschra (n. H.)» كاملاً ثم يُختصر. نظير الاصطلاح الصيني 伊斯兰历 X 年（公元 Y 年）.",
+   "gloss_regel": "الكلمة العربية الدخيلة تُشرح مرة واحدة لكل مصطلح في الصفحة عند أول ورود في المتن — لا في العنوان، ولا مرة واحدة للصفحة كلها. **وترتيب الگلوس محكوم بالعنوان** (حكم المعايرة 2026-09-03، من تعثّر قارئ أصلي): الصيغة التي يحملها عنوان الصفحة تتصدّر أول ورود في المتن والأخرى تقع في القوس — «Jabal al-Qarah (der Qarah-Berg) …» حيث أبقى العنوان النقحرة، و«Die Jawatha-Moschee …» حيث ترجم اسم الجنس. العنوان والسطر الأول متجاوران بصرياً، فبدء المتن بصيغة مغايرة يُقرأ مكاناً ثانياً.",
+   "titel_regel": "عنوان الصفحة الألمانية يوازي **بنية `title_en`** لا معناه: أبقى الإنجليزي النقحرة ⇐ تُبقيها الألمانية (`Jabal al-Qarah`، `Qasr Ibrahim`، `Al-Uqair`، `Bayt Al-Bay'ah`)؛ ترجم الإنجليزي اسم الجنس ⇐ تترجمه الألمانية بالشرطة الواصلة (`Jawatha-Moschee`، `Al-Asfar-See`). الأداة كبيرة في أول الاسم وصغيرة في وسطه (`Al-Ahsa`، `al-Qarah`). القاعدة تُطبَّق بالنظر إلى `title_en` وحده بلا اجتهاد. تنبيه: `title_en` لقصر إبراهيم هو «Qasr Ibrahim» لا «Ibrahim Palace» — فالعنوان `Qasr Ibrahim` ومدخل `der Ibrahim-Palast` يقع في المتن.",
+   "denglisch_verboten": "Spot، Location، Must-see، Hotspot، Guide (استعمل Reiseführer)، Highlight بإفراط، Feeling، Vibe.",
+   "ton": "لا تضخيم بعلامات التعجب، ولا «Erleben Sie …» أمراً متكرراً في كل فقرة، ولا صفات مطلقة بلا سند.",
+   "einheiten": "متري كما هو (km، m، °C، Hektar) **بمسافة عادية U+0020**؛ ومنع الكسر — إن ظهر فعلياً — يكون من طبقة العرض لا من ملف المحتوى. علّة الحكم (المعايرة 2026-09-03): `tools/check-consistency.mjs` يطابق نصاً حرفياً على dist، ومحرف U+00A0 غير مرئي داخل «50 SAR» يُفشل الأنماط **بصمت** — وهو أسوأ فشل ممكن في هذا المشروع؛ يضاف إليه تطبيعه الصامت في المحررات وجولات YAML، وكسر التوحيد مع ar/en/zh.",
+   "geltungsbereich": "القواعد نفسها تسري على النصوص البديلة للصور وعناوين ووصف الميتا.",
+   "oasen_anspruch": "دعوى الحجم دعوى وقائعية لا اختيار أسلوب: **`die größte Oase der Welt`** بلا `Palmen-`. السجل الرسمي عند غينيس عنوانه «Largest oasis» ونصّه «the largest self-contained oasis in the world» — فلا «نخيل» فيه ولا «طبيعية»، وقرار إياد (2026-09-03) وحّد النسخ الأربع عليه. `Palmenoase` و`Dattelpalmenoase` مرفوضتان في كل صيغة (die größte / zur größten). يحرسها الفحص C15 في check-consistency.",
+   "anrede_sie": "صيغة المخاطبة **Sie** حصراً — لم تعد اختياراً بل مسنَدة: منصة Visit Saudi الألمانية الرسمية (visitsaudi.com/de، الرئيسية وصفحة Al Ahsa) تستعملها في كل موضع: «Machen Sie das Beste aus Ihrer Reise»، «Reisen Sie bequem nach Saudi-Arabien»، «Laden Sie die Visit Saudi App herunter»، «Planen Sie Ihre Reise». فُحصت 2026-09-03 بطلب إياد. تحذير: تلك المنصة **ليست مرجعاً أسلوبياً ولا مصطلحياً** — نصّها آليّ الترجمة («Dinge zu tun»، «Angetrieben von»، «nhaltszentrum»، و«Kontaktiere uns» بصيغة du في التذييل). يُؤخذ منها الـAnrede وحدها.",
+   "hoehlen_waerme": "دفء كهوف جبل القارة يُنسب إلى **الشتاء** لا إلى الليل: `im tiefsten Winter` مقابل `Im Hochsommer` (الكهوف تحافظ على اعتدال يقارب 20°م طوال العام، فالمقابلة فصلية لا يومية). حكم إياد 2026-09-03، صُحّح في اللغات الأربع ويحرسه الفحص C16 في check-consistency. `wenn die Nacht hereinbricht` مرفوضة."
+  },
+  "batch_rulings": {
+   "de-blog-5+6": [
+    "‏**`environment` ≠ `Umgebung`.** ‏`die Umgebung` بالألمانية هي **الجوارُ المكاني** (وهو معناها في المنشور: «in Hofuf, Al-Mubarraz und Umgebung»)، ولا تصلح مقابلاً لـ`environment` بمعنى البيئة أو الموطن. المقابلاتُ المجازة: `die Tropen` · `der Lebensraum` · `die Umwelt` · `der Naturraum` (وهذا الأخير منشورٌ في هذه الصفحة نفسها: «aus ihrem gemeinsamen Naturraum und Handelsnetz»). صدرت في de-blog-6 (تصحيح 2).",
+    "‏**المدى العدديّ في النثر يُعطَف بـ`bis`، والشرطةُ للجداول.** فرعٌ مُلزِم من `zahlen_ruling`: ما دامت الصفحةُ تكتب `7 bis 8 Millionen` و`700 bis 1100`، فلا يجوز فيها `25–30`. والوحدةُ تُكتب كاملةً (‏`Kilogramm`) حيث يكتبها المصدر كاملاً (`kilograms` · «كيلوغراماً»)، والاختصارُ للجداول. صدرت في de-blog-6 (تصحيح 12).",
+    "‏**نصُّ الرابط الداخليّ يُطابق عنوانَ الصفحة الهدف المنشور، أو التسميةَ التي استعملتها الصفحةُ نفسها للهدف نفسه.** فهدفٌ واحدٌ بتسميتين على صفحةٍ واحدة يجعل القارئ يظنّ الصفحةَ تُحيل إلى نفسها. وهي امتدادٌ لقاعدة «الجار يُلزم بالصياغة»: التسميةُ تُؤخذ من `title_de`/`title` المنشور لا من ذوق الدفعة. صدرت في de-blog-6 (تصحيح 15، والسابقة `Hasawi-Limettenfarm`).",
+    "‏**عنوانُ قسمٍ لا يحمل ضميراً عارياً فاعلاً بالألمانية.** العنوان يُقرأ بلا ما قبله (وفي الفهارس ونتائج البحث بلا الصفحة كلها)، و`sie` الألمانية تحتمل المؤنّث والجمع معاً — بخلاف `it` الإنجليزية. تسميةُ الفاعل من الصفحة نفسها ليست إضافةَ واقعة. صدرت في de-blog-5 (تصحيح 4).",
+    "‏**`banzahir` و`Bin Zuhairi`: لا تُعلَن هويّتهما ولا تُنفى.** المصدران (الإنجليزي والعربية الفيصل) يقفزان بينهما بلا جملةٍ تربط، و§1 تُسند `banzahir` إلى مصر. فكلُّ صيغةٍ تقول «الاسمان واحد» أو «الأول أصلُ الثاني» **دعوى اشتقاقية** يحذفها السياج. تُنقل الفجوةُ كما هي وتُرفع علّةَ مصدر، ويُبقى `faq[3]` على تحديده (`Der Name Bin Zuhairi …`) لأن مرجعَ الضمير في الفيصل يرخّصه. صدرت في de-blog-6.",
+    "‏**الگلوس بين قوسين يجوز في حالة الرفع** (‏Duden: Klammerzusatz/Apposition im Nominativ) ولو كان المُفسَّر مجروراً؛ فلا يُثقَّل الگلوسُ بمطابقة الحالة. **والتعدادُ ذو الأطراف الخمسة الذي تتخلّله جملةٌ موصولة يُقسَّم بفواصل منقوطة** — علاجُ ترقيمٍ لا يمسّ واقعةً، وهو المقدَّم على إعادة الصوغ. صدرت في de-blog-6 (تصحيح 9)."
+   ],
+   "de-blog-7": [
+    "**Bestätigt aus Stufe 4** — Ein rhetorisches Bild wird übertragen, nicht buchstabiert: Weichen EN-Quelle und AR-Autorität nur im BILD einer Aussage ab und hängt das arabische Bild an der Bedeutung eines Wortes, das der deutsche Text nur in Umschrift führt, so wird das englische Bild übernommen (B4-1, „silhouette“ gegen «اسمه»).",
+    "**Bestätigt aus Stufe 4** — Eine FUNKTIONSbezeichnung als interner Linktext ist zulässig, ein zweiter NAME nicht; Voraussetzung ist, dass das Ziel auf derselben Seite mindestens einmal beim Namen verlinkt ist.",
+    "**Bestätigt und erweitert (Stufe 4 → 7)** — Ein losgelöst ausgespieltes Feld trägt seinen eigenen Bezug. Die `gloss_regel` zählt den Fließtext; ein FAQ-Eintrag darf den Gloss wiederholen. NEU: Dieselbe Begründung greift für JEDE Referenz in einem losgelösten Feld — Seitenverweise tragen dort den Website-Anker und benennen ihren Gegenstand (`unsere Seite zu X`, `die Seite „X“ dieser Website`), und der Gegenstand der Antwort (Berg, Oase) wird beim Namen genannt, nicht mit bestimmtem Artikel vorausgesetzt. Im verlinkten Fließtext bleibt die Funktionsbezeichnung. Belegt durch `hasawi-lomi-lime` faq[3]/faq[4] und `souvenirs-guide` faq[0] (2026-09-24).",
+    "**Bestätigt aus Stufe 4** — Ein Eigenname, der als deutsches Wort gelesen werden kann, wird nicht durchgekoppelt, sondern hinter sein Gattungswort in eine Aufzählung gestellt (`die Höhlen Naqah, Eid und Mahyoub`).",
+    "**NEU (Stufe 7)** — Der veröffentlichte Nachbar bindet auch dort, wo der Blindleser mit Recht stolpert. Ist eine Formulierung wörtlich auf einer veröffentlichten Seite über denselben Gegenstand verbaut (`verfolgen Sie die Schritte des Handwerks`, `besteht … fort`, `ein Anblick, der begreiflich macht`), so wird sie in der neuen Seite NICHT allein geändert: Sonst führt dieselbe Aussage zwei deutsche Fassungen, und die zweite Seite widerlegt die erste. Solche Befunde werden gesammelt und in einem Durchgang erledigt, der beide Seiten anfasst. (de-blog-7: 37, 38, 39, 5.)",
+    "**NEU (Stufe 7)** — Der Blindschnitt aus `dist` verliert die Linkauszeichnung. Jeder interne Querverweis liest sich dann als unerreichbarer Name, und der Bericht meldet Sackgassen, die im gerenderten Zustand anklickbar sind. Solche Beobachtungen werden gegen die gerenderte Seite gewogen: Nur wo tatsächlich kein Link steht — losgelöste FAQ-Antworten, `description`, Schema-Felder — ist die Sackgasse echt. Für die Werkzeugkette: Der Schnitt sollte Linktexte markieren (wie er seit 41/42 Blockgrenzen respektiert).",
+    "**NEU (Stufe 7)** — Ein Demonstrativum am Abschnittsanfang braucht seinen Bezug im selben Satz. Die bestehende Regel („ein Abschnittstitel trägt kein nacktes Subjektpronomen“) gilt ebenso für den ersten SATZ eines Abschnitts: `dieses Gestein` nach einer Überschrift zeigt auf nichts. Wo die Quelle den Bezug führt (hier die arabische Autorität: «صخور الجبل»), wird er eingesetzt; wo nicht, wird umgebaut.",
+    "**NEU (Stufe 7)** — Eine Aufzählung nach Doppelpunkt, die ein Verb regiert, steht im Kasus dieses Verbs. Sind die meisten Glieder kasusgleich (`die Kühle`, `das Meer`) und eines nicht (`der Gang`), so bricht genau dort die Kette, und der Leser meldet es als Verlust des Bezugs, nicht als Grammatikfehler. Kasusprüfung gehört in die Stufe-5-Checkliste für jede Aufzählung hinter Doppelpunkt."
+   ],
+   "de-blog-8": {
+    "runde_1": [
+     "**NEU (Stufe 7)** — Gattungswort und Gloss dürfen einander nicht widersprechen. Zeigen beide auf denselben Bau und behaupten Verschiedenes (`die Festung … (der Ibrahim-Palast)`), so wird WEDER der Gloss gestrichen NOCH das Gattungswort gedreht: Es gilt die im Bestand veröffentlichte oder in der termbase gedeckte KOMPOSITFORM, die beide Aussagen in einem Wort hält — für Qasr Ibrahim `die Palastfestung` (termbase-Eintrag `Ibrahim Palace` wörtlich, plus drei tm-Paare mit demselben Quellsatz). Fehlt eine solche Form, folgt das Gattungswort der Quelle und der Gloss rückt an die erste Nennung in einen eigenen Satzteil: Der Gloss erklärt den NAMEN, er fällt kein Sachurteil über den Bau.",
+     "**NEU (Stufe 7)** — `Sie` steht in einem Sie-Anrede-Text nie satzinitial als Pronomen der 3. Person. Der Leser greift zuerst zur Anrede und muss zurück. Entweder den Bezug ausschreiben oder — besser — die Sätze verbinden, damit das Pronomen klein und eindeutig wird.",
+     "**NEU (Stufe 7)** — Zeitliche Reihenfolge wird über das Bezugswort geführt, nicht über den bloßen Ortsnamen: `nach Medina` liest der Deutsche als Richtung, `nach dem von Medina` (Gebet) nicht. Die Regel gilt für jede Fügung `nach + Ortsname`, in der eine Abfolge gemeint ist.",
+     "**Erweitert (de-blog-7 Nr. 3 → Stufe 7)** — Ein losgelöst ausgespieltes Feld trägt nicht nur seine Seitenreferenz, sondern auch seine GEOGRAFIE und seinen ARTIKELGEBRAUCH: Ortsnamen bekommen ihr Gattungswort (`die Stadt Hofuf`), Küsten und Regionen ihr Land (`die Golfküste Saudi-Arabiens`), und der bestimmte Artikel vor nie eingeführten Größen (`die Museen`) fällt weg, weil er eine Einführung behauptet, die es im losgelösten Feld nicht gibt.",
+     "**NEU (Stufe 7)** — Ein Gloss, der nichts erklärt, ist kein Gloss: Steht neben einem unbekannten Wort ein zweites unbekanntes (`Hasawi-Limette (Lomi)`), so tritt die im Bestand veröffentlichte SACHERKLÄRUNG hinzu (`die Limette aus Al-Ahsa`) und der lokale Name rückt dahinter. Der Ortsname in der Klammer erklärt zugleich die Vorsilbe `Hasawi-` für die ganze Seite — eine Vorsilbe, die auf dieser Seite dreimal stand und nie aufgelöst wurde.",
+     "**Bestätigt und geschärft (de-blog-7 Nr. 5 → Stufe 7)** — Bevor der Richter eine Blind-Beobachtung anwendet, misst er sie gegen `tm.json` UND die termbase, und er belegt die Bindung mit SEITE und FELD, nicht aus dem Gedächtnis. In dieser Charge hat die Messung vier berechtigte Beobachtungen zu Bestandsmängeln umgewidmet (`von der Zeit gemeißelt` = jabal-al-qarah/summary; `von einheimischen Händen bestickt` = zwei Paare; `Stationen … auf den Morgen legen` = jabal-al-qarah-guide/body; `das letzte Wort haben die offiziellen Kanäle` = zwei Paare) — und in derselben Messung den Beleg geliefert, der Beobachtung 13 entschied. Die Sammelliste wächst und wird in EINEM Durchgang erledigt, der alle Stellen anfasst.",
+     "**NEU (Stufe 7)** — Der Blindschnitt trennt Artikeltext nicht von Vorlagentext. `plan.printNote`, Fußzeilen-Tagline, Navigation und Fußzeilenliste erscheinen im `dist`-Schnitt wie Artikelsätze (hier die Beobachtungen 5, 11b, 14, 15, 16, 20, 21, 22 — acht von zweiundfünfzig). Bis das Werkzeug Vorlagenblöcke markiert (wie es seit 41/42 Blockgrenzen respektiert), prüft der Richter jede solche Beobachtung gegen `src/i18n/ui.ts`, bevor er sie der Charge anlastet.",
+     "**NEU (Stufe 7)** — Bei auseinandergehenden GATTUNGSbezeichnungen im Titel gilt die arabische Autorität, nicht das Englische (`An Honest Guide` gegen «إجابة صريحة» ⇒ `Eine ehrliche Antwort`). Und ein Titel, der Ehrlichkeit verspricht, wird durch die VORBEHALTE eingelöst, die der Text trägt — nicht durch einen Negativbefund, den keine Sprachfassung trägt. Ein erfundenes Nein ist so teuer wie ein erfundenes Ja.",
+     "**Bestätigt aus Stufe 4** — «أفلاج» wird im Deutschen durchgehend `die Falaj-Kanäle`, ohne Gloss (das Grundwort trägt den Sinn; `traditionell`/`überliefert` aus der termbase-Beschreibung in den Text zu ziehen wäre ein Tatsachenzusatz). Die abweichende Stelle in `i18n/ui.ts` wird gesammelt, nicht in dieser Charge geheilt.",
+     "**Bestätigt aus Stufe 4** — Eine in die termbase geschriebene BESTANDSZAHL veraltet, sobald eine Charge sie verändert. Solche Zahlen gehören mit Datum UND Fundstelle notiert, und die Stufe, die sich auf sie stützt, misst sie neu (Fall `souq (generic)`: „null mal“ vom 2026-09-11 stimmt nicht mehr, `mushaqar.md → body_de` führt eine Fundstelle)."
+    ],
+    "runde_2": [
+     "**U1 — NEU (Stufe 7, der Fall K4): Was der Richter tut, wenn seine Korrektur RICHTIGER ist als der veröffentlichte Bestand.** Die Korrektur bleibt stehen; der Bestand wird gefegt, nicht die Korrektur zurückgebaut. Aber sie bleibt nur unter drei Auflagen, die im selben Lauf zu erfüllen sind: (a) der Richter misst den VOLLEN Umfang der Divergenz, bevor er entscheidet — in `src/content/` und nicht nur in `tm.json`; (b) er nennt jede betroffene Fundstelle mit Datei und Feld im eigenen Output, damit die Divergenz nie unprotokolliert weiterläuft; (c) er schreibt die ENTSCHEIDUNGSREGEL des Sammel-Durchgangs auf, damit der Durchgang keine zweite freihändige Umschreibung wird. Ohne diese drei ist die Korrektur nicht erlaubt und muss zurückgenommen werden. Und umgekehrt gilt: eine richtige Korrektur wird NICHT zurückgenommen, um eine fehlerhafte Einheitlichkeit zu bewahren — Einheitlichkeit dient der Aussage, sie regiert sie nicht. Der Preis der wissentlichen Abweichung wird EINMAL bezahlt, auf der Achse `Termbase/Stil`, und nicht zusätzlich auf `Bedeutungstreue`.",
+     "**U2 — NEU (Stufe 7): `tm.json` ist nicht der Bestand.** Der nächste Nachbar eines Blogsatzes ist die Landmarkenseite, auf die er verlinkt — und deren deutsche Felder (`summary_de`, `body_de`, `faq.a_de`) stehen NICHT in `tm.json`. Gemessen an diesem Fall: `Freitagsgebet` gibt in `tm.json` 4 Treffer auf 2 Seiten, in `src/content/` 7 Treffer in 5 Dateien — und die beiden Fundstellen, die den Fall entschieden hätten, standen nur in `src`. Jede Stufe, die eine Wendung binden oder brechen will, durchsucht deshalb BEIDE: `tm.json` für die Formulierungsbindung und `src/content/` für den tatsächlichen Bestand. Eine Bindungsprüfung, die nur `tm.json` gesehen hat, darf nicht `geprüft` heißen.",
+     "**U3 — Geschärft (Runde-1-Urteil 3 → Stufe 7): Den Bezug nennen, nicht die Präposition tauschen.** Für jedes `nach + Ortsname`, in dem eine Abfolge gemeint ist, nennt das Deutsche die Größe, über die die Abfolge läuft (`nach dem von Medina`, `nach der Moschee in Medina`), niemals den bloßen Ortsnamen. Der Bestand hat diese Lösung selbst schon zweimal gefunden (`jawatha-mosque.md`), bevor eine Charge sie neu erfand — was U2 noch einmal beweist.",
+     "**U4 — NEU (Stufe 7): Eine Reparatur hat einen Preis, und der Richter zahlt ihn auf derselben Achse, auf der er gekauft hat.** Runde 2 hat richtig geprüft, DASS die neun Stolperstellen geschlossen sind — aber nicht, WAS die Schließungen kosten. K8 kaufte die Pronomenklarheit mit einem Kettensatz von rund fünfzig Wörtern, K11 den Gloss mit `Al-Ahsa … Al-Ahsas` in zehn Wörtern. Die Achse `Natürlichkeit` misst den AUSGELIEFERTEN Satz, nicht die Zahl der geschlossenen Befunde; ein reparierter Text erreicht deshalb nicht dieselbe Note wie ein Text, der so gewachsen ist. Praktisch: die Rückgabestufe liefert Korrekturen, der Richter der Folgerunde liest den REPARIERTEN Satz als wäre er neu.",
+     "**U5 — NEU (Stufe 7): Der Richter der Folgerunde misst nach, er liest keine Bilanz.** Die Tabelle einer Korrekturrunde ist eine Behauptung über die Datei, kein Befund an ihr. In dieser Runde ist jede der 16 Korrekturen einzeln gegen den Dateitext geschlagen worden (`vorher` = 0, `nachher` = 1), jeder Wächter neu gezählt, die gebaute Seite geöffnet und die englische wie die arabische Quelle Satz für Satz gegengelesen — und genau dieser Satz-für-Satz-Gang hat den einzigen neuen Befund der Runde gebracht (`slow` ⇒ `ruhig`), den keine der beiden Runden zuvor gesehen hatte, weil beide nur die Stellen ansahen, an denen schon abgezogen worden war.",
+     "**U6 — NEU (Stufe 7): Ein in der Freigabe-Minute gefundener Mangel wird bezahlt, nicht schnell geschrieben.** Findet der Richter beim letzten Gegenlesen eine Stelle, die über der Schwelle liegt und keinen Wächter berührt, so hat er zwei Wege: sie korrigieren und danach ALLE Wächter neu messen, oder sie als Punktabzug verbuchen und für den Sammel-Durchgang vermerken. Verboten ist der dritte: sie ungemessen in die Datei schreiben und die volle Punktzahl behalten."
+    ]
+   },
+   "jameed-fix": {
+    "J1": "«Jameed» = العصيرُ المشمّس المعتّق، لا الثمرةُ المشمّسة (قرار إياد 2026-09-25؛ الجارُ المنشور `hasawi-lomi-history-de.md:86` بمصدره أخبار 24).",
+    "J2": "توزيعُ المقابل محكومٌ بالصفحة لا بالذوق: **المركّبُ يتبع الاسمَ الذي تستعمله صفحتُه للثمرة** (سابقةٌ منشورة: `Limettenbäume` في `fruits.ts:538` مقابل `Lomi-Bäume` في `events.ts:657`)؛ **وكلُّ حقلٍ يُصيَّر منفصلاً عن صفحته** (أجوبةُ `FAQPage` · `description`) يتبع الصيغةَ الشفّافة `Limettensaft`.",
+    "J3": "**اختبارُ مصدرِ الموضع، في الاتجاهين:** واقعةٌ يحملها مصدرُ الموضع نفسِه **تُكتب** — وكونُ النصِّ المنشور السابق لا يحملها ليس عذراً، فالمنشورُ في دفعةِ تصحيحٍ هو محلُّ التصحيح لا مقياسُه؛ وواقعةٌ **لا** يحملها مصدرُ الموضع **لا تُكتب** ولو حملها جارٌ منشورٌ بمصدره، فالجارُ يُلزم بالصياغة لا بالمضمون. تطبيقُه في هذه الدفعة: `in Glasgefäßen` تُكتب في موضعَي المدونة (مصدرُهما يقولها) وتُترك في `events.ts` و`fruits.ts` (مصدرُهما يقول «المعتّق»/«aged» مجرّداً).",
+    "J4": "«Jameed» **لا تُترك عاريةً في نصٍّ جديد**: كلُّ ورودٍ يجاوره `Saft` في جملته. والعلّةُ مقيسةٌ لا محترزةٌ: الألمانيةُ تعرف «Jameed» اسماً للّبن المجفّف الأردني (المدخل 98)، **والمصادرُ الألمانية تفرّق هناك بين «weißem» و«gelbem» Jameed المجفَّفِ في الشمس** — أي أن «sonnengetrocknet» وحدها **لا تفصل** بين المنتَجين. ولا تُستعمل «Jameed» مقابلاً للإقط بحال.",
+    "J5": "**لا أداةَ صريحةٌ (der/das) قبل «Jameed»** حتى يُثبَّت جنسُه بشاهدٍ للمرجع الصحيح. الحالةُ اليوم `ungeklärt`، وكلُّ ورودٍ في الطبقة الألمانية إمّا بلا أداةٍ أو بـ`des`/`beim` التي لا تفرّق.",
+    "J6": "owner ruling 2026-11-06: jameed is a liquid (sun-set, aged lime juice), not dried. SUPERSEDES every «sonnengetrocknet» / «trocknet in der Sonne» for the juice quoted in J1-J4 sources and in the Jameed and Lomi-Saft term entries. Forms (batch owner-rulings-1106e): «in der Sonne gereift(er)» and «kommt in die Sonne (und reift in Glasgefäßen)». The dried fruit stays."
+   },
+   "jawatha-adjacent": {
+    "A1": "«المجاور» / „adjacent“ bei Jawatha ⇒ „benachbart“ / „neben“; nicht „umliegend“, nicht „angrenzend“, nicht „auf dem Gelände“."
+   },
+   "gulf-unify-1027": {
+    "ruling": "O-GULF (إياد 2026-10-27، دفعة gulf-unify-1027): الخليج «الخليج العربي» في كل لغة، وينقض القرار المؤسِّس «الخليج بلا وصف». المستثنى: علم الشارع «طريق الخليج» والاسم الرسمي لمجلس التعاون. الحارس C76 (zh/de/ru/tr) وC59 (ur).",
+    "score": 92,
+    "decision": "APPROVE",
+    "rulings": [
+     {
+      "id": "R1",
+      "title": "Lokator bei Erstnennung",
+      "ruling": "Keine Lokator-Ergänzung. Die Fremdheit von „Arabischer Golf“ ist der inhärente Preis von O-GULF; die Präzedenz verlangt eine Abmilderung an der Erstnennung, und die steht bereits im Bestand: Jede Erstnennung des Meeres auf einer Seite steht im selben Satz mit einem Anker (de-1 und de-14/16/18/25 „Ostküste Saudi-Arabiens“, de-2/15/17 und de-13 per area „östlich von Al-Ahsa“, de-10 „Katar“, de-21 „Oman“, de-39 „nach Osten“) oder folgt ihm auf der Seite (Startseite: „In der Ostprovinz Saudi-Arabiens“ vor de-42/de-29). Die übrigen Seiten nennen nur die Region, in der Al-Ahsa selbst liegt; dort ist eine Lesart Aden/Arabisches Meer durch das Seitenthema ausgeschlossen. Ein zusätzlicher Lokator wäre Text außerhalb der Golf-Bezeichnung und verstärkte die vom Leser bemängelte Wiederholung. Für künftige neue Seiten: Termbase-Regel (siehe termbase_notes).",
+      "precedent": "ru P8; tr Kare/Busalih (Abmilderung durch einen bestehenden Ortssatz an der Erstnennung, kein neuer Fakt)"
+     },
+     {
+      "id": "R2",
+      "title": "Arabische Golfstaaten",
+      "ruling": "„Arab Gulf states“ / «دول الخليج (العربي)» ⇒ „die Länder am Arabischen Golf“, nie „die arabischen Länder am Arabischen Golf“. Das frühere „arabische Länder der Golfregion“ trug das «العربي» des Namens als Länder-Attribut, weil der Name neutral war; mit O-GULF wandert es in den Namen zurück. Angewandt auf de-27, de-35.",
+      "precedent": "Arabische Autorität vor Englisch, wo sie divergieren (07-judge.md, Achse 1)"
+     },
+     {
+      "id": "R3",
+      "title": "Golfregion",
+      "ruling": "„die Region am Arabischen Golf“ bleibt (Form des Briefs) für den Raum (Souks, Bauweise, Küche, Gewässer, maritimes Erbe, Wirtschaftsabkommen). „der Raum um den Arabischen Golf“ verworfen: amtsdeutsch, nicht natürlicher. „die Anrainerstaaten des Arabischen Golfs“ verworfen: ersetzt das Wort „Länder“ (außerhalb des Mandats), zählt ausdrücklich Iran ein und passt nicht für Raumaussagen. Für Staaten gilt R2 „die Länder am Arabischen Golf“.",
+      "precedent": "BRIEF O-GULF Formentabelle; Mandat „nur die Golf-Bezeichnung“"
+     },
+     {
+      "id": "R4",
+      "title": "Aufgelöstes Ellipsenkompositum",
+      "ruling": "Wo der Golf-Name ein Koordinationskompositum („Hasawi- und Golfküche“) auflöst, nimmt das frei werdende Glied seine Termbase-Form an: „die Küche Al-Ahsas und der Region am Arabischen Golf“ (de-28), nicht „Hasawi-Küche“.",
+      "precedent": "Termbase „Hasawi cuisine“ copper-hasawi (Eyad 2026-10-04); hasawi-lomi-de „Gerichte Al-Ahsas und der …“"
+     },
+     {
+      "id": "R5",
+      "title": "Ausnahmen",
+      "ruling": "de-41 „Golf-Kooperationsrat (GCC)“ unverändert (offizieller Organisationsname). Al-Khaleej-Straße nicht im Pack, bleibt.",
+      "precedent": "BRIEF, Ausnahmen"
+     },
+     {
+      "id": "R6",
+      "title": "Wiederholung mit Attribut",
+      "ruling": "Zweitnennungen im selben Abschnitt behalten „Arabisch-“ (de-9, de-13, de-18); die Schwere ist vom Brief vorgeschrieben und wird nicht durch Pronomen oder bloßes „Golf“ umgangen.",
+      "precedent": "BRIEF: إحالة مكرّرة في المقطع نفسه تحمل الوصف"
+     },
+     {
+      "id": "R7",
+      "title": "Saudi-arabische Golfküste",
+      "ruling": "de-24 „an der Küste Saudi-Arabiens am Arabischen Golf“ angenommen: hält Besitzer und Meer ohne Genitivkette „der Küste des Arabischen Golfs Saudi-Arabiens“.",
+      "precedent": "forms 05 „Golfküste (mit Land)“"
+     }
+    ],
+    "unplaced_notes": [
+     {
+      "key": "the Arabian Gulf coast (ساحل الخليج العربي)",
+      "append": "O-GULF: „die Küste des Arabischen Golfs“ (an der / an die Küste des Arabischen Golfs); mit Land „an der Küste Saudi-Arabiens am Arabischen Golf“. „die Golfküste“ abgelöst."
+     },
+     {
+      "key": "one of the largest bodies of water in the Gulf region",
+      "append": "O-GULF: „eines der größten Gewässer der Region am Arabischen Golf“."
+     },
+     {
+      "key": "Gulf states / Arab Gulf states",
+      "append": "O-GULF: „die Länder am Arabischen Golf“ (in den Ländern / in die Länder am Arabischen Golf). Auch für „Arab Gulf states“ / «دول الخليج العربي» KEIN „arabische Länder am Arabischen Golf“ (Tautologie; das Attribut gehört zum Namen) — Stufe 7, de-27/de-35."
+     },
+     {
+      "key": "the Gulf economic agreement",
+      "append": "O-GULF: „das Wirtschaftsabkommen der Region am Arabischen Golf“; weiterhin kein erfundener Vertragsname."
+     }
+    ]
+   }
+  }
+ },
+ "terms_matching_this_batch": [
+  {
+   "en": "Al-Ahsa",
+   "de": "Al-Ahsa",
+   "artikel": "—",
+   "source": "Deutsche UNESCO-Kommission (عنوان «UNESCO-Welterbe Oase Al-Ahsa …») + Österreichische UNESCO-Kommission («Oase Al-Ahsa, Saudi-Arabien»)",
+   "note": "الصيغة المعتمدة رأساً في كل الموقع. de.wikipedia يعنون المقالة «Al-Hasa (auch al-Ahsa oder Lahsa)» وvisitsaudi.com/de يتذبذب بين «Al Ahsa» و«Al-Hasa» — نرجّح صيغة اليونسكو لأنها الرسمية ولأنها اسم العلامة نفسها (visit-alahsa.com). يجوز گلوس واحد في الصفحة الرئيسية: «Al-Ahsa (auch al-Hasa)»."
+  },
+  {
+   "en": "Al-Ahsa Oasis",
+   "de": "die Al-Ahsa-Oase",
+   "artikel": "die",
+   "source": "unesco.at («Die Oase Al-Ahsa …») + visitsaudi.com/de (مقتطف فهرس البحث: «Die etwa 16.000 Hektar große Al-Hasa-Oase …»)",
+   "note": "الصيغة الوصفية «die Oase Al-Ahsa» جائزة حين تُقتبس اليونسكو؛ وفي المتن الجاري «die Al-Ahsa-Oase» بالشرطة الواصلة."
+  },
+  {
+   "en": "Al-Ahsa Oasis, an Evolving Cultural Landscape",
+   "de": "Oase Al-Ahsa, eine sich entwickelnde Kulturlandschaft",
+   "artikel": "die",
+   "source": "Deutsche UNESCO-Kommission (العنوان الرسمي للموقع في القائمة الألمانية)",
+   "note": "الاسم الرسمي للموقع المدرج في قائمة التراث العالمي — يُنقل حرفياً ولا يُعاد صوغه. لا تُستعمل «sich wandelnde»."
+  },
+  {
+   "en": "Al-Ahsa Governorate",
+   "de": "das Gouvernorat Al-Ahsa",
+   "artikel": "das",
+   "source": "de.wikipedia («Gouvernorat al-Hasa»)",
+   "note": "«Gouvernorat» لا «Provinz» (الأخيرة للمنطقة الشرقية). Korrektur 2026-10-09 (Judge de-estores): Kopf des Namens ist „Al-Ahsa“ (SKILL: رأس الاسم = Al-Ahsa; Eigenname großgeschrieben), daher „Gouvernorat Al-Ahsa“, nicht „al-ahsa“. Ältere Seiten mit „Gouvernorat al-Ahsa“ (z. B. salwa-beach) sind bei Gelegenheit nachzuziehen."
+  },
+  {
+   "en": "Eastern Province",
+   "de": "die Ostprovinz (asch-Scharqiyya)",
+   "artikel": "die",
+   "source": "unesco.de / unesco.at («Provinz Asch-Scharqiyya»)",
+   "note": "أول ذكر في الصفحة بالگلوس، وما بعده «die Ostprovinz» وحدها."
+  },
+  {
+   "en": "Qaisariyah Souq",
+   "de": "der Qaisariyah-Souk",
+   "artikel": "der",
+   "source": "تهجئة النسخة الإنجليزية للموقع (`title_en` و`slug_en` في `qaisariyah.md` وستة متون أخرى) + durchkopplung",
+   "note": "قائم في المعجم بعد تصحيح التهجئة 2026-09-03. الجمع «die Souks»."
+  },
+  {
+   "en": "souq (generic)",
+   "de": "der Souk",
+   "artikel": "der",
+   "source": "convention",
+   "note": "حسم إياد 2026-09-04: التهجئة الألمانية «Souk» (صيغة Duden) لا «Souq» (تهجئة النسخة الإنجليزية، تبقى فيها) ولا «Suk». يحرسها الفحص `C18`. ممنوع «Souk-Markt». **قاعدة الگلوس — أعاد الحاكم صوغها في ج9 (2026-09-23):** المعنى يحمله نعتُ «traditionell» في جوار أول ورود (سابقة منشورة: `qaisariyah.md` → `kicker_de` «Traditioneller Souk»). فالگلوس القوسي «(traditioneller Markt)» **جائزٌ وحده حين تخلو الصفحة من هذا النعت**؛ وحيث وُجد فالگلوس تحريرٌ بلا سند. العلّة مقيسة: النمط «Souk (…)» يرد **صفر مرة** في إحدى عشرة صفحة ألمانية منشورة، وحكمُ حاكمٍ سابق (batch-de-1) ردّ اتّباعَه مرةً. وبهذا يسقط الاقتراحُ المعلَّق في المدخل «souq (generic) — Nachtrag zur Glossenvorschrift»: **لا تُحذف القاعدة بل تصير مشروطة.**",
+   "judge_correction": "ج9 / de-plan (2026-09-23)"
+  },
+  {
+   "en": "Jawatha Mosque",
+   "de": "die Jawatha-Moschee",
+   "artikel": "die",
+   "source": "convention (durchkopplung)",
+   "note": "«die Ruinen der Jawatha-Moschee» عند الحديث عن البقايا."
+  },
+  {
+   "en": "lime (lomi / Hasawi lime)",
+   "de": "die Hasawi-Limette",
+   "artikel": "die",
+   "source": "تحقيق إياد الميداني 2026-08-29 (اللون الأخضر + الاسم المحلي بن زهير = Citrus aurantiifolia) + دفعة الواجهة 2026-09-03 (توحيد الصيغة)",
+   "note": "**صيغة واحدة في الألمانية: Hasawi-** في الاسم الرسمي (die Hasawi-Limettenfarm) وفي الثمرة معاً — تُقاعَد «Ahsa-Limette». العلة (حكم القارئ الأعمى في دفعة الواجهة): تفريق «الحساوي/الأحسائي» صرفيٌّ داخل العربية بلا مقابل ألماني، والإنجليزية (مصدر الترجمة) صيغةٌ واحدة في الموضعين — فقرأها الألماني ثمرتين. وليست «Zitrone» أبداً (تحقيق إياد الميداني 2026-08-29: اللون الأخضر + الاسم المحلي بن زهير = Citrus aurantiifolia)، نظير قرار 青柠 لا 柠檬 في الخط الصيني. المجفف «getrocknete Limetten (Loomi)»، ولا يوصف المجفف بالأسود. و«Jameed» **ليست الثمرةَ المشمّسة** بل عصيرُ اللومي المشمّسُ المعتّق — انظر مدخلَه المستقل (قرار إياد 2026-09-25، والجار المنشور `hasawi-lomi-history-de.md:86` بمصدره أخبار 24)."
+  },
+  {
+   "en": "bisht (cloak)",
+   "de": "der Bischt (traditioneller Umhang)",
+   "artikel": "der",
+   "source": "دفعة نصوص الواجهة 2026-09-03 (اعتماد الحاكم 90/100)",
+   "note": "غير مستعمل في هذه الدفعة: كل ورودات البشت بطاقاتٌ 40–46ch لا تحتمل گلوساً، والمعتمد فيها «die Umhänge». يُبتّ عند متون القيصرية والحرف والمدونة — وحينها يُذكر أن العربية توثّق **النسج والتطريز معاً** (`qaisariyah.md:37`). ‖ 2026-10-23: Batch owner-rulings-1023: UNESCO inscription of the bisht in general (2025) renders as \"der Bischt als solcher steht seit 2025 auf der UNESCO-Liste des immateriellen Kulturerbes\" (stores faq[2].a). The inscribed element is the Bischt, not the Hasawi Bischt: do not attach \"Hasawi\" to the inscription. \"UNESCO-Liste des immateriellen Kulturerbes\" is the German rendering of UNESCO’s Intangible Cultural Heritage list (Deutsche UNESCO-Kommission: Liste des immateriellen Kulturerbes); it was NOT attested in the termbase before this batch (the stage-5 claim of a Harissa-entry attestation was wrong). Barred: \"im Allgemeinen\" for ar «عموماً» (reads as \"usually\")."
+  },
+  {
+   "en": "Attractions (nav label = breadcrumb = index)",
+   "de": "Sehenswürdigkeiten",
+   "artikel": "die (Pl.)",
+   "source": "دفعة تقصير شريط التنقّل 2026-09-04 (اعتماد الحاكم 91/100، سبع مراحل، دورة واحدة)",
+   "note": "**سلسلة واحدة في كل مكان** (قرار إياد 2026-10-04، دفعة footer-names، اعتماد الحاكم 95/100): `nav.attractions` = الفتات والفهرس و`det.allSights` والمتون = «Sehenswürdigkeiten». أُلغي انقسام 2026-09-04 («Sehenswertes» في الشريط وحده لميزانية عرض 90.8px مقابل 133.1px): العرض يُحلّ بقياس الشريط (`tools/measure-header-fit.mjs`) وعتباته في الكود (28de9e8: de 12.5/8، الشريط باقٍ عند 1440px) لا بتقصير الاسم. ممنوع: Highlights (denglisch_verboten) · Attraktionen (سجل مدن الملاهي) · أي اختصار بنقطة · العودة إلى «Sehenswertes» بلا قرار من إياد."
+  },
+  {
+   "en": "Bayt Al-Bay'ah",
+   "de": "Bayt Al-Bay'ah",
+   "artikel": "das",
+   "source": "`src/content/attractions/baiah.md` → `title_en: \"Bayt Al-Bay'ah\"`; termbase.json `_meta.style_rules.titel_regel` nennt „Bayt Al-Bay'ah“ ausdrücklich als Namen, der die Umschrift behält. Genus nach Duden über den Gattungsbegriff „das Haus“.",
+   "note": "Von Stage 4 bestätigt. Apostroph ist U+0027 – geprüft in `baiah.md`, `24-hours-en.md`, `48-hours-en.md` und beiden deutschen Fassungen: überall U+0027, kein typografisches ’. Im Fließtext ohne Artikel geführt („mit Bayt Al-Bay'ah, dem Haus der Familie Al-Mulla“), das Genus steht trotzdem im Eintrag, weil eine spätere Seite es braucht. Der zweite englische Name „the House of Allegiance / Bayt Al-Mulla“ (`baiah.md` body_en) kommt in den Blogtexten nicht vor und wird hier nicht eingedeutscht."
+  },
+  {
+   "en": "Al-Mulla (family)",
+   "de": "Al-Mulla",
+   "artikel": "die",
+   "source": "`src/content/attractions/baiah.md` → `summary_en: \"The historic Al-Mulla house …\"`, `body_en: \"… Sheikh Abdulrahman bin Omar Al-Mulla\"`. Die Schreibung ist in freigegebenem Deutsch belegt: `src/content/attractions/jawatha-mosque.md` → `body_de: \"… Scheich Muhammad bin Abi Bakr Al-Mulla …\"`. Genus vom deutschen Gattungsnamen „die Familie“.",
+   "note": "Gebrauch (Familienname, feminin als Familie): die Familie Al-Mulla / die Al-Mulla. Von Stage 4 bestätigt. Englisch „the Al-Mulla house“ → deutsch „das Haus der Familie Al-Mulla“; kein Durchkopplungs-Kompositum, weil der Gattungsname mit nachgestelltem Genitiv steht."
+  },
+  {
+   "en": "Amiriah School",
+   "de": "Amiriah-Schule",
+   "artikel": "die",
+   "source": "**Bereits freigegebenes Deutsch auf der Website**: `src/content/attractions/ameeriah.md` → `title_de: \"Amiriah-Schule\"`, `summary_de: \"Die erste reguläre staatliche Schule Al-Ahsas, eröffnet 1937 …\"`, `body_de: \"… steht die Amiriah-Schule …\"` (zu `title_en: \"Amiriah School\"`). Genus nach Duden: „die Schule“.",
+   "note": "Gebrauch: die Amiriah-Schule. Stage 4 stuft diesen Punkt von „Vorschlag“ auf „Bestätigung“ hoch: Die Form stammt nicht aus einer Ableitung, sondern aus einem bereits durch diese Pipeline freigegebenen Feld. Der Blogsatz „der ersten regulären staatlichen Schule Al-Ahsas (1937)“ ist damit wortgleich mit `summary_de`. Analog zu „die Jawatha-Moschee“. Attraktions-Slug: `ameeriah`."
+  },
+  {
+   "en": "Al-Ahsa Municipality (أمانة الأحساء)",
+   "de": "die Kommunalverwaltung von Al-Ahsa",
+   "artikel": "die",
+   "source": "Web-Verifikation Stage 4 (2026-09-11, WebSearch): Saudipedia führt die Behörde als „Municipality of Al-Ahsa Governorate“ — zuständig für das **Gouvernement** Al-Ahsa, dem Ministerium für Munizipalitäten und Wohnungswesen unterstellt, mit **neun nachgeordneten Munizipalitäten**, darunter „Al-Hufuf Municipality“ und „Historical Center of Al-Hufuf Municipality“; Eigenbezeichnung auf alhasa.gov.sa und im LinkedIn-Auftritt „Al-Ahsa Municipality | أمانة الأحساء“; Wikidata Q20390237 „Amanate of Al-Ahsa“. Eine **deutsche** Eigenbezeichnung führt die Behörde nicht. Quellenbeleg der Charge: `craftsmen-souq.md` → `summary_en`/`body_en`/`answer_en`, arabische Autorität «بإشراف أمانة الأحساء». Genus nach Duden: „die Verwaltung“.",
+   "note": "**Ersetzt den Stage-1-Eintrag „die Stadtverwaltung von Al-Ahsa“** (Quelle dort: „بانتظار تحقق الويب — المرحلة 4“, mit ausdrücklicher Frage an Stage 4, ob „Stadtverwaltung“ dem Rang einer أمانة entspricht). Die Prüfung beantwortet das mit Nein, und zwar **als Sachfrage, nicht als Stilfrage**: „Stadtverwaltung“ behauptet im Deutschen eine Behörde **einer Stadt**; belegt ist eine Behörde des Gouvernements, der Hofuf als eine von neun Untergliederungen nachgeordnet ist. Da der Souk selbst in Hofuf liegt, würde „Stadtverwaltung von Al-Ahsa“ den deutschen Leser zusätzlich die Gleichung Al-Ahsa = Stadt ziehen lassen, die dem Welterbe-Namen „Oase Al-Ahsa“ widerspricht. „Kommunalverwaltung“ ist im Deutschen ebenenneutral und deckt Gemeinde- wie Kreisebene ab. Präpositionale Fügung beibehalten (Muster „Zentrum von Hofuf“, „die Altstadt von Hofuf“); attributiv wäre „die Al-Ahsa-Kommunalverwaltung“ durchzukoppeln. Betroffen sind drei Stellen in `craftsmen-souq`: `summary_de`, `body_de`, `faq[2].a_de`.",
+   "stage": "4 (الدورة 1)",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Al-Rifaa District",
+   "de": "das Al-Rifaa-Viertel",
+   "artikel": "das",
+   "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/qaisariyah.md` → `area_en: \"Hofuf, Al-Rifaa district\"`, arabische Autorität `area: \"الهفوف، حي الرفعة\"`. Deutsche Form nach `_meta.naming_policy.default` (lateinische Umschrift wie im Englischen) + `_meta.naming_policy.durchkopplung`, genau nach dem Muster des vom Judge bestätigten Eintrags „Al-Koot District → das Al-Koot-Viertel\" (2026-09-10). Genus nach Duden: „das Viertel\".",
+   "note": "Gebrauch: das Al-Rifaa-Viertel; in `area_de` ohne Artikel als Ortsangabe („Hofuf, Al-Rifaa-Viertel\"). `qaisariyah.md` trägt keinen `district:`-Schlüssel, ein Eintrag in `src/data/districts.ts` ist also nicht nötig. **Hinweis für Stage 4/7 — Bestandsinkonsistenz:** `src/content/attractions/ameeriah.md` → `area_de: \"Viertel Al-Na'athil – östlich der Altstadt von Hofuf\"` (freigegeben 2026-09-03) verwendet die Apposition statt der Durchkopplung. Ich folge der jüngeren, ausdrücklich vom Judge bestätigten Durchkopplungsform; ob `ameeriah.md` nachgezogen wird, ist eine Entscheidung außerhalb dieser Charge. Web-Verifikation nicht möglich (unesco.de, unesco.at, de.wikipedia.org, duden.de in dieser Umgebung gesperrt) und für einen Viertelnamen nach `naming_policy.default` auch nicht erforderlich.",
+   "stage": "1 (الدورة 1)",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Hasawi bisht",
+   "de": "der Hasawi-Bischt",
+   "artikel": "der",
+   "source": "Schreibung der englischen Website-Fassung: `src/content/attractions/qaisariyah.md` → `body_en` („the famous Hasawi bisht\") und `answer_en` („the Hasawi bisht\"); arabische Autorität `body`/متن («البشت الحساوي»). Deutsche Form aus dem bestehenden termbase-Eintrag „bisht (cloak) → der Bischt (traditioneller Umhang)\" plus dem in derselben termbase belegten Bildungsmuster „die Hasawi-Limette\", „die Hasawi-Küche\" (Durchkopplung mit dem Herkunftsadjektiv).",
+   "note": "Genus vom Grundwort: „der Bischt\" ⇒ „der Hasawi-Bischt\". Glossierung auf der Seite `qaisariyah`: Die Erklärung liefert die Apposition der Quelle selbst („den Umhang für Ansehen und große Anlässe\" ← „the cloak of standing and of great occasions\" / «عباءة الوجاهة والمناسبات»), deshalb steht dort **keine** zusätzliche Klammerglosse „(traditioneller Umhang)\" — und nach `gloss_regel` („einmal pro Begriff pro Seite\") auch keine zweite Glosse in der FAQ. Freigegebene Präzedenz für die Kurzform ohne Glosse im Fließtext: `src/content/blog/24-hours-de.md` → „besticken den Bischt (den traditionellen Umhang) von Hand\".",
+   "stage": "1 (الدورة 1)",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "lomi (local name of the Hasawi lime) — اللومي",
+   "de": "die Lomi",
+   "artikel": "die",
+   "source": "Bestehender termbase-Eintrag „lime (lomi / Hasawi lime) → die Hasawi-Limette (die)“, dessen englische Seite die Form „lomi“ bereits führt, dessen deutsche Seite sie aber nicht ausweist. Quellenbeleg der Charge: `src/content/attractions/lemon-farm.md` → `summary_en`/`body_en` („the famous Hasawi lime (lomi)“); Sacherläuterung im Kopf derselben Datei (Feldprüfung Iyad 2026-08-29): der Lomi ist grün und bleibt es, lokal «بن زهير» = Citrus aurantiifolia, also eine **Limette**, keine Zitrone. Genus nach dem deutschen Oberbegriff des bestehenden Eintrags: „die Limette“.",
+   "note": "Von Stage 5 beim maschinellen Lexikonabgleich gefunden: „Lomi“ war das einzige Eigennamen-Token der Charge ohne eigenen termbase-Eintrag (Messung im Abschnitt 10 der Checkliste — 44 Kandidaten, 1 ohne Eintrag). **Kein Textänderungsbedarf:** Das Wort steht auf der Seite `lemon-farm` nur in der Klammer hinter dem Leitnamen — „die berühmte Hasawi-Limette (Lomi)“ in `summary_de` und `body_de`, genau wie die Quelle es führt, und ohne Artikel. Im Deutschen wird es als Substantiv großgeschrieben. Das Genus steht im Eintrag, weil eine spätere Seite (Oasenfrüchte, Küche und Datteln) es artikelhaltig brauchen kann. Die Reihenfolge der Doppelnennung ist durch `gloss_regel` bestimmt: `title_de` lautet „Hasawi-Limettenfarm“, deshalb führt „Hasawi-Limette“ und „Lomi“ steht in der Klammer — nicht umgekehrt.",
+   "stage": "4 (الدورة 1)",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "Qasr Ibrahim (Ibrahim Palace)",
+   "de": "Qasr Ibrahim",
+   "artikel": "der",
+   "source": "زوج معتمد في `de-translation/memory/tm.json` بتاريخ 2026-09-10 («Kehren Sie ins Zentrum von Hofuf zurück, zu Qasr Ibrahim (dem Ibrahim-Palast)» و«etwa einen halben Kilometer von Qasr Ibrahim entfernt»، صفحة `24-hours-itinerary`)؛ ويسمّيه `_meta.style_rules.titel_regel` نصّاً: «`title_en` لقصر إبراهيم هو «Qasr Ibrahim» لا «Ibrahim Palace»».",
+   "note": "ثغرة كشفها الفحص الآلي للمرحلة 5 لا النظر: الاسم مستعمل في `baiah.body_de` منذ الدورة 1 ومُقرّ من الحاكم، ولم يكن له مدخل في `terms` — كان مذكوراً في `_meta` وحده. الجنس `der` من `der Ibrahim-Palast` المعتمد (قصر = Palast مذكّر)، ويظهر مصرَّفاً في الگلوس `(dem Ibrahim-Palast)`. الاسم نفسه يُستعمل بلا أداة بعد حروف الجرّ («zu Qasr Ibrahim») على نمط أسماء المباني المنقحرة، كما في الزوج المعتمد حرفاً. مطابق لـ`naming_policy.default` (النقحرة اللاتينية تبقى كما في `title_en`).",
+   "stage": "4 (الدورة 2)",
+   "added": "2026-09-11"
+  },
+  {
+   "en": "souq (generic) — Nachtrag zur Glossenvorschrift",
+   "de": "der Souk",
+   "artikel": "der",
+   "source": "Mechanischer Bestandsbefund Stage 4 (2026-09-11) über alle elf freigegebenen deutschen Attraktionsseiten in `src/content/attractions/*.md`: Das Muster „Souk (…)“ kommt **null mal** vor — auch nicht in den beiden Souk-Seiten `qaisariyah.md` (Freigabe 93/100) und `craftsmen-souq.md` (Freigabe 94/100), die „Souk“ durchgehend unglossiert führen. Die Schreibung „Souk“ selbst bleibt unverändert bindend (Entscheid Ayad 2026-09-04, Prüfung C18).",
+   "note": "**Änderungsvorschlag an die bestehende `note` dieses Eintrags, zur Entscheidung durch den Judge / den Eigentümer — keine einseitige Änderung durch diese Charge.** Die geltende Note verlangt „أول ذكر في الصفحة يُگلَس: «Souk (traditioneller Markt)»“. Diese Vorschrift ist von der freigegebenen Praxis ausnahmslos NICHT befolgt worden (0 von 11 Seiten). In `hamidiyah-souq` kommt ein sachlicher Grund hinzu, der in `stage4-changes.md` د.4 entschieden wurde: Die Seite sagt durchgehend, das Gebäude sei KEIN Souk mehr — eine Glosse „(traditioneller Markt)“ bei der Erstnennung schriebe ihm genau die Eigenschaft zu, die die Seite bestreitet; und der Sinn wird zwei Sätze später mit dem Wortlaut der Quelle selbst geliefert („Der Betrieb als traditioneller Markt ist eingestellt“), was der Judge-Präzedenz im Eintrag „Hasawi bisht“ entspricht („keine zweite Klammer, wenn die Apposition der Quelle die Erklärung schon liefert“). Vorschlag: die Glossenpflicht für „Souk“ aus der Note streichen oder auf „bei Bedarf“ herabstufen. Solange das nicht geschieht, steht im Glossar eine Vorschrift, gegen die jede freigegebene Seite verstößt, ohne dass ein Build oder eine Prüfung fällt.",
+   "stage": "4 (الدورة 1)",
+   "added": "2026-09-11",
+   "origin": "المرحلة 4 (الدورة 1)"
+  },
+  {
+   "en": "the Heritage Commission (هيئة التراث)",
+   "de": "die Kommission für Kulturerbe",
+   "artikel": "die",
+   "source": "`src/content/attractions/uqair-mosque.md` → `body_en` („a site the Heritage Commission is comprehensively rehabilitating“), arabische Autorität «هيئة التراث». Direkt nach dem freigegebenen Termbase-Eintrag „the tourism and heritage authority → die Kommission für Tourismus und Kulturerbe“ gebildet (dort steht `heritage` = `Kulturerbe` im Behördennamen bereits fest).",
+   "note": "POL-DE-11-konform: `Kulturerbe` steht hier für `heritage` im Namen einer Institution – auf derselben Seite steht `historic` fünfmal und wird durchgängig `historisch`. Keine zwei Quellwörter auf ein deutsches Wort. **Stage 4: geprüft, unverändert.** Web-Verifikation Stage 4 (2026-09-11, WebSearch; unesco.de, de.wikipedia.org, duden.de und dwds.de sind in dieser Umgebung gesperrt, die Suchindex-Auszüge sind die Belegform). Die Behörde ist bestätigt (heritage.moc.gov.sa, Saudipedia: 2020 als eine von elf Kulturkommissionen beim Kulturministerium errichtet), führt aber keinen deutschen Namen. `die Kommission für Kulturerbe` bleibt und hält die Linie der freigegebenen Einträge `die Kommission für Tourismus und Kulturerbe` / `die Museumskommission`. Gründungsjahr und Zuständigkeiten gehören nicht in den Seitentext.",
+   "stage": "1 (batch-de-4)",
+   "added": "2026-09-11",
+   "origin": "المرحلة 1 (دفعة batch-de-4)"
+  },
+  {
+   "en": "mosque (مسجد · جامع)",
+   "de": "die Moschee",
+   "artikel": "die",
+   "source": "Freigegebenes Deutsch: `jawatha-mosque.md` → `title_de` „Jawatha-Moschee“, `body_de`; TM-Paar „one of the oldest mosques in Islam“ → „eine der ältesten Moscheen des Islams“ (2026-09-10); `src/lib/categories.ts` → `religious: 'Moscheen und religiöse Stätten'`.",
+   "note": "Nachtrag zum Cluster: Der Gattungsname war nur über Einzelnamen belegt. Durchkopplung bei Eigenname + Moschee (`Al-Dibs-Moschee`), Genitiv bei mehrgliedrigen Personennamen (siehe Al-Mulla-Einträge). Arabisch «جامع» (Freitagsmoschee) und «مسجد» werden in EN/AR beide als `mosque`/Moschee geführt – keine deutsche Unterscheidung erfinden.",
+   "stage": "1 (batch-de-4)",
+   "added": "2026-09-11",
+   "origin": "المرحلة 1 (دفعة batch-de-4)"
+  },
+  {
+   "en": "the people of Al-Ahsa (أهالي الأحساء) — bei der Treueid-Aussage",
+   "de": "die Bewohner von Al-Ahsa",
+   "artikel": "die (Pl.)",
+   "source": "**Freigegebenes Deutsch:** `src/content/attractions/baiah.md` → `summary_de`/`body_de` „Hier leisteten die **Bewohner von Al-Ahsa** … den Treueid“ und `src/content/blog/24-hours-de.md` / `48-hours-de.md` ebenso; vom Judge der Blog-Revisionscharge (2026-09-10) ausdrücklich bestätigt.",
+   "note": "**Reichweiten-Nachtrag zum bestehenden Eintrag „locals / أهل الأحساء ⇒ die Einheimischen“.** Dieser gilt dem Gattungsbegriff „locals“ (die Einheimischen als Menschenschlag); **„the people of Al-Ahsa“ als handelndes Kollektiv** einer historischen Aussage ist `die Bewohner von Al-Ahsa` — so freigegeben und so hier in `najm-park.body_de` („An ihr leisteten die Bewohner von Al-Ahsa im Jahr 1799 den Treueid auf Saud bin Abdulaziz“). Kein Widerspruch, sondern zwei Verwendungen.",
+   "stage": "4 (batch-de-5)",
+   "added": "2026-09-12"
+  },
+  {
+   "en": "Hasawi rice (الأرز الأحسائي)",
+   "de": "der Hasawi-Reis · Glosse: „der Reis aus Al-Ahsa“",
+   "artikel": "der",
+   "source": "Belegstelle der Charge: `src/content/attractions/zaki-alsalem-farm.md` → `summary_en` („Hasawi rice farms“), `body_en`; arabische Autorität in derselben Datei: `summary` «من أكبر مزارع الأرز الأحسائي». Form nach den freigegebenen Einträgen `die Hasawi-Limette`, `die Hasawi-Küche`, `der Hasawi-Bischt`, `die „Hasawi-Weberei“` (Durchkopplung Nisba + Gattungswort). Glossenform aus dem **veröffentlichten** Deutsch, dreifach belegt und nicht neu erfunden: `src/content/blog/48-hours-de.md` „Die Hasawi-Limette (die Limette aus Al-Ahsa)“, `lemon-farm.md` → `body_de` „… pflücken – die Limette aus Al-Ahsa“, `qaisariyah.md` → `body_de` „den berühmten Hasawi-Bischt zu erwerben – den Umhang aus Al-Ahsa“. Genus nach Duden: „der Reis“. **Web-Verifikation in dieser Umgebung gesperrt** (de.wikipedia.org und unesco.de antworten mit 403 an der Ausgangsschleuse) – der Beleg ist repositoriumsintern nach Datei und Feld, die Web-Prüfung ist **aufgeschoben und hiermit erklärt** (Präzedenz: die veröffentlichten Einträge `König Abdulaziz` 2026-09-10 und `Al-Omran` 2026-09-11).",
+   "note": "**Stage 4: geprüft, bestätigt, nicht verworfen** – und ausdrücklich **nicht** als Tatsachenzusatz gewertet: eine Nisba-Glosse übersetzt das Namensglied, sie fügt nichts hinzu; das veröffentlichte `lemon-farm.md` trägt sie, obwohl weder `body_en` noch das arabische Original sie hat. Einmal pro Seite, bei der ersten Nennung im Fließtext (`gloss_regel`), nie im Titel und nie in der Zusammenfassung – `summary_de` behält „Hasawi-Reis“ bloß, die zweite Nennung im Fließtext („zur Ernte des Hasawi-Reises“) bleibt ungeglost. Genitiv `des Hasawi-Reises`. **Farbsperre — Geltungsbereich vom Judge ج9 (2026-09-23) ausdrücklich auf `zaki-alsalem-farm.md` beschränkt.** Dort gilt: kein `Hasawi-Rotreis`, kein `roter Hasawi-Reis`: die Farbangabe steht nur in `body_en`, widerspricht dem `summary_en` derselben Datei wie der arabischen Autorität, und die freigegebenen Nachbarfassungen sind darüber gespalten (zh 哈萨红米 folgt dem Englischen, ru «рис Аль-Ахсы» folgt dem Arabischen) – gemeldet in `source_defects`. Ergänzt die Lücke, die der Eigennamen-Scan nicht findet, weil `Hasawi rice` ein Produkt- und kein Ortsname ist. **Judge ج9 (2026-09-23):** Wo die englische UND die arabische Quelle die Farbe übereinstimmend tragen — so in der FAQ von `plan-your-trip` («الأرز الأحسائي الأحمر» / „Hasawi red rice“) — bleibt „roter Hasawi-Reis“ zulässig und ist dort angewandt (`faq.10.a`, `faq.12.a`). Ohne diesen Geltungsbereich liest die nächste Charge die Sperre als projektweit und streicht eine doppelt belegte Tatsache; eine Streichung wiegt nach Projektregel wie eine Erfindung.",
+   "stage": "4 (batch-de-8) — Vorschlag Stage 3, in Stage 4 geprüft und bestätigt",
+   "added": "2026-09-13",
+   "origin": "المرحلة 1 (ثغرة في `notes`) · أفردَتْها المرحلة 3 · أثبتَتْها المرحلة 4"
+  },
+  {
+   "en": "Saudi Press Agency (SPA)",
+   "de": "die Saudi Press Agency (SPA)",
+   "artikel": "die",
+   "source": "de.wikipedia.org/wiki/Saudi_Press_Agency — wörtliches Zitat: „Die Saudi Press Agency (SPA; ...) ist die offizielle Nachrichtenagentur des Königreichs Saudi-Arabien.“",
+   "status": "verified",
+   "added": "2026-09-19",
+   "batch": "de-fruits-2"
+  },
+  {
+   "en": "Al-Ahsa Development Authority",
+   "de": "die Al-Ahsa-Entwicklungsbehörde",
+   "artikel": "die",
+   "source": "In-repo published German source, `src/data/fruits.ts` line 538 (German block of the live page /de/fruits/), verbatim: „Alljährlich feiert das Gouvernorat sie mit der Hasawi-Lomi-Ausstellung, veranstaltet von der Al-Ahsa-Handelskammer in Partnerschaft mit der Al-Ahsa-Entwicklungsbehörde.“ — dative article „der“ before the feminine noun phrase confirms gender die.",
+   "note": "Confirmed by stage 4 with a direct repo quote and re-verified by the judge; consistent with the already-verified sibling entry „die Kommunalverwaltung von Al-Ahsa“ (both bodies named together in ar «أمانة الأحساء وهيئة تطوير الأحساء» and in this batch's ix.srcNote). To be merged into termbase.json by the coordinator.",
+   "status": "verified",
+   "added": "2026-09-19",
+   "batch": "de-ev-1"
+  },
+  {
+   "en": "sadu weaving",
+   "de": "das Sadu-Gewebe",
+   "artikel": "das",
+   "source": "No existing termbase entry (BRIEF.md: no German form yet). Literal generic meaning per gloss_regel: 'weaving' = the hung textile object => Gewebe (Duden, saechlich), hyphenated with the untranslated craft name 'Sadu'. Genus verified: Duden, https://www.duden.de/rechtschreibung/Gewebe - headword 'Ge.we.be, das' (WebFetch, 2026-09-19). Bracket-gloss '(Webstoff)' at first mention follows the published in-repo pattern (craftsmen-souq.md:14 'Tanur (Lehmofen)'; khalifa-museum.md:14 et al. 'Madschlis (Empfangsraum)'), applied once in koot.body only, not in the short koot.alt per the brief.",
+   "status": "verified",
+   "added": "2026-09-19",
+   "batch": "de-stay"
+  },
+  {
+   "en": "SAR (Riyadh–Dammam railway operator, «شركة سار»)",
+   "de": "die Bahngesellschaft SAR (Saudi Arabia Railways)",
+   "artikel": "die",
+   "source": "sar.com.sa (offizieller Markenname „Saudi Arabia Railways“ / „SAR“); Stage-4-Gegenprüfung per WebSearch (2026-09-23) bestätigt: 2021 durch Kabinettsbeschluss aus der „Saudi Railways Organization“ als „Saudi Arabia Railways – SAR“ hervorgegangen, betreibt u. a. die Strecke Riad–Dammam. ZURÜCKGENOMMEN (Judge ج9, 2026-09-23): Der frühere Vermerk „kein eigener deutscher Wikipedia-Artikel auffindbar“ war ein gescheiterter Suchversuch unter einem geratenen Lemma; die Parallelcharge de-plan-3 fand den Artikel und zitierte ihn wörtlich — siehe den Eintrag „Saudi Arabia Railways (SAR)“ (de.wikipedia.org/wiki/Saudi_Arabia_Railways, Eröffnungssatz „Die Saudi Arabia Railways …“). Das Genus wird damit nicht mehr nur nach Kopfwort hergeleitet, sondern ist literal belegt. Genus vom deutschen Kopfwort «die Gesellschaft» — duden.de/rechtschreibung/Gesellschaft: „Wortart: Substantiv, feminin“ (Stage-3-Beleg, von Stage 4 übernommen).",
+   "status": "verified",
+   "note": "Genus nach Kopfwort-Regel, nicht nach einem deutschsprachigen Beleg für die Gesellschaft selbst — dieselbe Methode wie bei den bereits im Bestand freigegebenen Einträgen «der Salwa-Strand» (Genus vom Kopf «der Strand») und «die Al-Khaleej-Straße» (Genus vom Kopf «die Straße»), beide ohne dedizierten deutschsprachigen Beleg für den zusammengesetzten Namen selbst. Bewusst von «der Saudi-Riyal (SAR)» (Währung, bereits im Bestand) unterschieden — die Kollision derselben drei Buchstaben auf derselben Seite verlangt, dass der Bahnbetreiber im Fließtext ausdrücklich als «Bahngesellschaft SAR» benannt wird, nie als bloßes «SAR» (im Text so umgesetzt: „die von der Bahngesellschaft SAR betrieben wird“). **Judge ج9 (2026-09-23):** Kurzform im Fließtext bleibt „die Bahngesellschaft SAR“ (Kollision mit „der Saudi-Riyal (SAR)“ auf derselben Seite); Vollform siehe Eintrag „Saudi Arabia Railways (SAR)“. Eine widerlegte Negativaussage darf nicht in der Termbase stehen bleiben — sonst leitet sie die nächste Charge in dieselbe Herleitung.",
+   "added": "2026-09-23",
+   "batch": "de-plan-2"
+  },
+  {
+   "en": "pottery (craft sense) — الفخار",
+   "de": "die Töpferei",
+   "artikel": "die",
+   "source": "Duden: „die Töpferei\" ist ein Standardwort für das Handwerk (feminin, eindeutig).",
+   "status": "confirmed",
+   "note": "Zu unterscheiden vom bestehenden Eintrag „pottery house → das Dougha Al-Gharash (das Töpferhaus)\" (termbase.json, anderer Sinn: ein konkretes Gebäude, dessen Genus von „das Haus\" abgeleitet ist). Die dortige Anmerkung, der Hüter habe „Töpferei\" als ERSATZ für „Töpferhaus\" an jener Stelle zurückgewiesen, betrifft nur jene Ersetzung (sie hätte den Genus-Beleg von „das Dougha Al-Gharash\" gekappt) — sie ist kein allgemeines Verbot des Wortes „Töpferei\" für das Handwerk selbst, wie es hier (faq.10.a, „Handwerk\"-Aufzählung) verwendet wird.",
+   "added": "2026-09-23",
+   "batch": "de-plan-3"
+  },
+  {
+   "en": "Oman",
+   "de": "Oman",
+   "artikel": "— (Ortsname, artikellos; „der Oman\" bleibt ungenutzt)",
+   "source": "Stufe 4, de-blog-5/de-04.json Nr. 18; bestätigt — nach der Korrektur lautet die Genitivstelle „die zweitwichtigste Obstkultur Omans\".",
+   "stage": "7 (de-blog-5+6)",
+   "added": "2026-09-24",
+   "batch": "de-blog-5+6"
+  },
+  {
+   "en": "Saudipedia (the national encyclopedia platform) — سعوديبيديا",
+   "de": "Saudipedia",
+   "artikel": "— (artikellos)",
+   "source": "Stufe 4, de-blog-6/de-04.json Nr. 14; bestätigt.",
+   "stage": "7 (de-blog-5+6)",
+   "added": "2026-09-24",
+   "batch": "de-blog-5+6"
+  },
+  {
+   "en": "incense (بخور)",
+   "de": "der Weihrauch",
+   "artikel": "der",
+   "source": "Freigegebenes TM-Paar (plan-your-trip: „incense and perfumes from Qaisariyah Souq“ ⇒ „Weihrauch und Düfte aus dem Qaisariyah-Souk“).",
+   "note": "Stufe 7: aus Konsistenz behalten. „Räucherwerk“ wäre sachlich genauer («بخور» ist nicht nur Olibanum); Umstellung nur websiteweit und nach Besitzerentscheid."
+  },
+  {
+   "en": "X (social network)",
+   "de": "X",
+   "artikel": "— (Markenname, artikellos)",
+   "source": "source.ar.json stores[3,11].description «إكس»; Präzedenz im termbase: „Instagram“, „WhatsApp“ (Markennamen bleiben unübersetzt).",
+   "note": "Nur in Aufzählungen von Accounts: „Accounts auf X, Instagram und Snapchat“.",
+   "status": "confirmed",
+   "added": "2026-10-09",
+   "batch": "de-estores"
+  },
+  {
+   "en": "Hasawi (الحساوي — Nisba, as in Hasawi dates/rice/iqal)",
+   "de": "Hasawi- (Herkunftsadjektiv, durchgekoppelt)",
+   "artikel": "— (Bestimmungswort)",
+   "source": "Bestehende Muster im termbase: Hasawi-Reis (282), Hasawi-Bischt (72), Hasawi-Limette (31), Hasawi-Majboos (344). Glosse „aus Al-Ahsa“ gemäß Eintrag 282 / tm („Razeez-Datteln aus Al-Ahsa“ analog).",
+   "note": "Glosse einmal je Seite beim ersten Vorkommen im Verzeichnis-Text (Karte 3, „Hasawi-Razeez-Datteln (Razeez-Datteln aus Al-Ahsa; „Hasawi“ heißt „aus Al-Ahsa“)“), nicht in Überschrift und nicht in der Meta-Beschreibung. Die Glosse übersetzt nur das Namensglied (Nisba), sie fügt keine Tatsache hinzu; sie deckt Hasawi-Reis, Hasawi-Bischt, Hasawi-Iqal, Hasawi-Lomi der Seite mit ab.",
+   "status": "confirmed",
+   "added": "2026-10-09",
+   "batch": "de-estores"
+  },
+  {
+   "en": "Jawatha (bare name in Yaqut)",
+   "de": "Jawatha",
+   "artikel": "— (Ortsname, artikellos)",
+   "source": "termbase: „Jawatha Mosque“",
+   "note": "Bloßer Name als Linktext auf /de/attractions/jawatha-mosque/. Stufe 4: kein deutschsprachiger Beleg auf unesco.de/unesco.at oder de.wikipedia gefunden; Umschrift der englischen Fassung nach der Regel der Charge. [house-derived]",
+   "ar": "جواثا",
+   "stage": 4,
+   "batch": "article-tarafa-ibn-al-abd",
+   "added": "2026-10-11"
+  },
+  {
+   "en": "governor (عامل) of the king over al-Bahrayn",
+   "de": "der Statthalter",
+   "artikel": "der",
+   "source": "https://de.wikipedia.org/wiki/%CA%BFUqba_ibn_N%C4%81fi%CA%BF",
+   "note": "„Statthalter“ ist auf de.wikipedia für arabische Amtsträger belegt („arabischer Statthalter“, Artikel „ʿUqba ibn Nāfiʿ“). de.wikipedia „Al-Mutalammis“ und „Ridda-Kriege“ sagen „Gouverneur“; das bleibt hier ausgeschlossen (Verwechslung mit „Gouvernorat Al-Ahsa“, brief.md). Einziges Wort im ganzen Artikel für «عامل». Anschluss (Runde 1 des Richters, M1): „Statthalter von al-Bahrain und Hajar“, nie „Statthalter über …“ (nach „Brief an …“ bindet der Leser „über“ an den Brief); mit „schicken“: „einen anderen Statthalter nach al-Bahrain“; nicht „in“ (verschwimmt mit „der sich in Hajar aufhielt“). Genitiv des Königs mit Artikel: „ein Statthalter des Amr ibn Hind“. [verified]",
+   "ar": "عامل",
+   "stage": 4,
+   "batch": "article-tarafa-ibn-al-abd",
+   "added": "2026-10-11"
+  },
+  {
+   "en": "district (ناحية) in Yaqut",
+   "de": "die Gegend",
+   "artikel": "die",
+   "source": "src/content/blog/tarafa-ibn-al-abd-en.md (Umschrift der englischen Fassung, naming_policy.default)",
+   "note": "Einheitlich an allen drei Stellen (Zitat Hajar, Zitat al-Azhari, Schlusssatz). Stufe 4: kein deutschsprachiger Beleg auf unesco.de/unesco.at oder de.wikipedia gefunden; Umschrift der englischen Fassung nach der Regel der Charge. [house-derived]",
+   "ar": "ناحية",
+   "stage": 4,
+   "batch": "article-tarafa-ibn-al-abd",
+   "added": "2026-10-11"
+  },
+  {
+   "en": "Before you go (trails.tip heading)",
+   "de": "Bevor Sie aufbrechen",
+   "source": "trail-guide-de",
+   "note": "Überschrift des Hinweiskastens, Sie-Form.",
+   "date": "2026-11-09"
+  },
+  {
+   "en": "Saudipedia",
+   "ar": "سعوديبيديا",
+   "de": "Saudipedia",
+   "artikel": "— (artikellos)",
+   "source": "bestehender Termbase-Eintrag (de-blog-5+6); tm trails sources.saudipedia-*; de.wikipedia: kein Artikel (API: missing)",
+   "status": "verified",
+   "note": "Glosse „die saudische Online-Enzyklopädie Saudipedia“ einmal bei Erstnennung im Fließtext (belts.3.after); sonst artikellos „Saudipedia“.",
+   "batch": "asfar-wildlife",
+   "added": "2026-11-24"
+  }
+ ]
+}
