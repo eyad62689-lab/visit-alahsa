@@ -98,7 +98,16 @@ const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : ru ? '/ru/map/' : de ? '
   </main>
   <Footer lang={lang} />
 
-  <script is:inline define:vars={{ allPoints, L }}>
+  {/* بيانات الصفحة في DOM لا في define:vars: نصّ سكربت لكل لغة كان يجعل ClientRouter يتخطّى سكربت لغة
+      رآها، فيبقى سياق اللغة الأخرى ويُرسم «رحلتي» بعناوينها وروابطها. السكربت الآن ثابت ويقرأ بيانات الصفحة الحالية. */}
+  <script is:inline type="application/json" data-plan-points set:html={JSON.stringify({ allPoints, L }).replace(/</g, '\\u003c')}></script>
+  <script is:inline>
+    /** بيانات صفحة «رحلتي» الحالية، أو null خارجها (فلا يعمل مستمع النقر العام في صفحات أخرى) */
+    function planData() {
+      const el = document.querySelector('[data-plan-points]');
+      if (!el) return null;
+      try { return JSON.parse(el.textContent || ''); } catch (e) { return null; }
+    }
     // قياس استخدام الميزات (GA4) — يتجاهل بصمت إن لم يتوفر gtag
     // وصفة أحجام مطابقة لشبكة البطاقات (auto-fill بحدّ أدنى 280px)
     var PC_SIZES = '(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw';
@@ -111,6 +120,9 @@ const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : ru ? '/ru/map/' : de ? '
       return valid.length ? valid : null;
     }
     function renderPlan() {
+      const D = planData();
+      if (!D) return;
+      const { allPoints, L } = D;
       const map = {}; allPoints.forEach((p) => (map[p.slug] = p));
       const shared = sharedList(map);
       const favs = shared || (window.VAPlan ? window.VAPlan.get() : []).filter((s) => map[s]);
@@ -171,6 +183,9 @@ const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : ru ? '/ru/map/' : de ? '
     function onPlanClick(e) {
       const t = e.target.closest ? e.target.closest('button, a') : null;
       if (!t) return;
+      const D = planData();
+      if (!D) return;
+      const { allPoints, L } = D;
       if (t.id === 'clear-btn') { if (window.VAPlan && window.confirm(L.clearConfirm)) window.VAPlan.save([]); }
       if (t.id === 'print-btn') { planEvent('plan_print'); window.print(); }
       if (t.id === 'wa-btn') planEvent('plan_share_whatsapp');
@@ -194,15 +209,13 @@ const mapHref = ar ? '/خريطة/' : zh ? '/zh/map/' : ru ? '/ru/map/' : de ? '
       }
       if (t.id === 'mine-btn') { history.replaceState({}, '', location.pathname); renderPlan(); }
     }
-    // هذا السكربت يُعاد تنفيذه مع كل زيارة للصفحة عبر ClientRouter بينما document
-    // يبقى، فكانت مستمعاته تتراكم (print وأحداث GA تتضاعف بعدد الزيارات).
-    // المستمعات تُسجَّل مرة واحدة وتفوّض إلى سياق آخر تنفيذ (لغة الصفحة الحالية).
-    window.__vaPlanCtx = { renderPlan, onPlanClick };
+    // document يبقى عبر تنقّلات ClientRouter، فالمستمعات تُسجَّل مرة واحدة (وإلا تضاعفت print وأحداث GA)،
+    // وكل استدعاء يقرأ بيانات الصفحة الحالية من DOM.
     if (!window.__vaPlanWired) {
       window.__vaPlanWired = true;
-      document.addEventListener('va-plan-change', () => window.__vaPlanCtx.renderPlan());
-      document.addEventListener('astro:page-load', () => window.__vaPlanCtx.renderPlan());
-      document.addEventListener('click', (e) => window.__vaPlanCtx.onPlanClick(e));
+      document.addEventListener('va-plan-change', renderPlan);
+      document.addEventListener('astro:page-load', renderPlan);
+      document.addEventListener('click', onPlanClick);
     }
     if (document.readyState !== 'loading') renderPlan(); else document.addEventListener('DOMContentLoaded', renderPlan);
   </script>

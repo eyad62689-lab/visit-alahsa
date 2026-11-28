@@ -234,11 +234,19 @@ const jsonLd = [
         <button type="button" class="btn btn--turq" data-tour-next>{t('trails.tour.next')}</button>
       </div>
     </dialog>
-    <script is:inline define:vars={{ slug: trail.slug, tourText }}>
+    <script is:inline type="application/json" data-trail-tools-data set:html={JSON.stringify({ slug: trail.slug, tourText }).replace(/</g, '\\u003c')}></script>
+    <script is:inline>
+      // بيانات الصفحة في DOM لا في define:vars: ClientRouter يعرّف السكربت بنصّه ولا يعيد تشغيل ما رآه،
+      // فسكربت يحمل بيانات مسار بعينه كان يبقى مستمعه حياً ويعالج مساراً آخر (يكتب تقدّمه تحت مفتاح غيره).
+      // نصّ السكربت ثابت في كل المسارات فيُشغَّل مرة، ويقرأ بيانات الصفحة الحالية عند كل تحميل.
       function initTrailTools() {
         const root = document.querySelector('[data-trail-tools]');
-        if (!root || root.dataset.ready) return;
+        const data = document.querySelector('[data-trail-tools-data]');
+        if (!root || !data || root.dataset.ready) return;
+        let cfg;
+        try { cfg = JSON.parse(data.textContent || ''); } catch { return; }
         root.dataset.ready = '1';
+        const { slug, tourText } = cfg;
         const items = [...document.querySelectorAll('.trd-stop')];
         const keys = items.map((li) => li.dataset.stop);
         const store = 'va-trail-visited:' + slug;
@@ -328,7 +336,10 @@ const jsonLd = [
         pr.addEventListener('click', () => window.print());
         paint();
       }
-      document.addEventListener('astro:page-load', initTrailTools);
+      if (!window.__vaTrailTools) {
+        window.__vaTrailTools = true;
+        document.addEventListener('astro:page-load', initTrailTools);
+      }
       if (document.readyState !== 'loading') initTrailTools(); else document.addEventListener('DOMContentLoaded', initTrailTools);
     </script>
   )}
@@ -338,11 +349,18 @@ const jsonLd = [
       <link rel="preconnect" href="https://tile.openstreetmap.org" />
       <link rel="stylesheet" href="/vendor/leaflet-1.9.4/leaflet.css" />
       <script is:inline src="/vendor/leaflet-1.9.4/leaflet.js"></script>
-      <script is:inline define:vars={{ pins, labels }}>
+      <script is:inline type="application/json" data-trail-map-data set:html={JSON.stringify({ pins, labels }).replace(/</g, '\\u003c')}></script>
+      <script is:inline>
         function initTrailMap() {
           const el = document.getElementById('trail-map');
-          if (!el || typeof L === 'undefined' || el._leaflet_id) return;
+          const data = document.querySelector('[data-trail-map-data]');
+          if (!el || !data || typeof L === 'undefined' || el._leaflet_id) return;
+          let cfg;
+          try { cfg = JSON.parse(data.textContent || ''); } catch { return; }
+          const { pins, labels } = cfg;
           const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
+          // تُهدم الخريطة قبل استبدال الصفحة، فلا تبقى طبقاتها ومستمعاتها حيّة بعد مغادرة المسار
+          document.addEventListener('astro:before-swap', () => map.remove(), { once: true });
           L.control.attribution({ prefix: '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>' }).addTo(map);
           L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors', maxZoom: 19 }).addTo(map);
           const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -354,7 +372,10 @@ const jsonLd = [
           if (ms.length === 1) map.setView(ms[0].getLatLng(), 14);
           else map.fitBounds(L.latLngBounds(ms.map((m) => m.getLatLng())).pad(0.2), { maxZoom: 15 });
         }
-        document.addEventListener('astro:page-load', initTrailMap);
+        if (!window.__vaTrailMap) {
+          window.__vaTrailMap = true;
+          document.addEventListener('astro:page-load', initTrailMap);
+        }
         if (document.readyState !== 'loading') initTrailMap(); else document.addEventListener('DOMContentLoaded', initTrailMap);
       </script>
     </>
