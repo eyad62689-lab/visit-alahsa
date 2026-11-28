@@ -32,9 +32,15 @@
 interface Props { cd: Record<string, unknown>; }
 const { cd } = Astro.props;
 ---
-<script is:inline define:vars={{ CD: cd }}>
+{/* نصوص العدّاد في DOM لا في define:vars: سكربت لكل لغة كان يُبقي مستمع لغة سابقة حياً ومؤقّته، فيكتب
+    نصّ العدّاد بلغتين تتبادلان كل ثانية بعد التنقّل (ClientRouter لا يعيد سكربتاً رأى نصّه). السكربت ثابت
+    ويُشغَّل مرة، ويقرأ نصوص الصفحة الحالية عند كل تحديث. */}
+<script is:inline type="application/json" data-ev-cd-strings set:html={JSON.stringify(cd).replace(/</g, '\\u003c')}></script>
+<script is:inline>
   (function () {
-    var LIVE = CD.live || null;
+    if (window.__vaEvEdition) return;
+    window.__vaEvEdition = true;
+    var CD = null, LIVE = null;
     var UNITS = ['d', 'h', 'm', 's'];
     var timer = null;
     // تفضيل تقليل الحركة: بلا خانة الثواني، فلا شيء يتبدّل في الصفحة إلا كل دقيقة
@@ -161,9 +167,17 @@ const { cd } = Astro.props;
       });
     }
 
+    function strings() {
+      var el = document.querySelector('[data-ev-cd-strings]');
+      if (!el) return null;
+      try { return JSON.parse(el.textContent || ''); } catch (e) { return null; }
+    }
+
     function run() {
       var live = false;
-      document.querySelectorAll('[data-ev-edition]').forEach(function (root) { if (tick(root)) live = true; });
+      CD = strings();
+      LIVE = (CD && CD.live) || null;
+      if (CD) document.querySelectorAll('[data-ev-edition]').forEach(function (root) { if (tick(root)) live = true; });
       openSeasons();
       if (live && !timer) timer = setInterval(function () { if (!document.hidden) run(); }, 1000);
       else if (!live && timer) { clearInterval(timer); timer = null; }

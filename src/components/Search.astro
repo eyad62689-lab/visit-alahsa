@@ -16,7 +16,8 @@ const t = useTranslations(lang);
   </svg>
 </button>
 
-<dialog class="search-modal" id="site-search" aria-label={t('search.label')}>
+<dialog class="search-modal" id="site-search" aria-label={t('search.label')}
+  data-l-empty={t('search.empty')} data-l-searching={t('search.searching')} data-l-idle={t('search.idle')} data-l-results={t('search.results')}>
   <div class="sm-inner">
     <form class="sm-bar" role="search" id="sm-form">
       <svg class="sm-ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -37,12 +38,16 @@ const t = useTranslations(lang);
   </div>
 </dialog>
 
-<script is:inline define:vars={{ labels: { empty: t('search.empty'), searching: t('search.searching'), idle: t('search.idle'), results: t('search.results') } }}>
+{/* نصوص الواجهة من وسوم النافذة لا من define:vars: نصّ سكربت لكل لغة كان يُبقي مستمع اللغة الأولى حياً،
+    وClientRouter لا يعيد سكربتاً رآه، فتظهر رسائل البحث بلغة الصفحة السابقة. النصّ هنا ثابت في كل اللغات. */}
+<script is:inline>
   function initSearch() {
     const openBtn = document.getElementById('search-open');
     const dialog = document.getElementById('site-search');
     if (!openBtn || !dialog || openBtn.dataset.wired) return;
     openBtn.dataset.wired = '1';
+    const d = dialog.dataset;
+    const labels = { empty: d.lEmpty || '', searching: d.lSearching || '', idle: d.lIdle || '', results: d.lResults || '' };
 
     const input = dialog.querySelector('#sm-input');
     const results = dialog.querySelector('#sm-results');
@@ -139,7 +144,10 @@ const t = useTranslations(lang);
       });
     }
   }
-  document.addEventListener('astro:page-load', initSearch);
+  if (!window.__vaSearchWired) {
+    window.__vaSearchWired = true;
+    document.addEventListener('astro:page-load', initSearch);
+  }
   if (document.readyState !== 'loading') initSearch(); else document.addEventListener('DOMContentLoaded', initSearch);
 </script>
 

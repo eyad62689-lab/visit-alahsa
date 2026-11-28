@@ -172,7 +172,10 @@ const jsonLd = [
   <link rel="preload" as="script" href="/vendor/leaflet.markercluster-1.5.3/leaflet.markercluster.js" />
   {/* سكربت markercluster يُحمَّل من السكربت المضمّن أدناه بعد توفّر Leaflet (ترتيب التنفيذ بعد التنقّل غير مضمون) */}
 
-  <script is:inline define:vars={{ points, labels, isAr: ar, viewBounds }}>
+  {/* بيانات الخريطة في DOM لا في define:vars: سكربت لكل لغة كان يُبقي مستمع لغة سابقة حياً، فيبني خريطة
+      هذه الصفحة بنوافذ لغة أخرى (ClientRouter لا يعيد سكربتاً رأى نصّه). السكربت ثابت ويقرأ بيانات الصفحة الحالية. */}
+  <script is:inline type="application/json" data-map-data set:html={JSON.stringify({ points, labels, viewBounds }).replace(/</g, '\\u003c')}></script>
+  <script is:inline>
     // عند التنقّل بـClientRouter تُحمَّل السكربتات الخارجية المُدرَجة بلا ترتيب مضمون: لو وُسم markercluster بجانب Leaflet
     // لنُفِّذ قبله أحياناً فيفشل (L is not defined) ولا يعرّف L.markerClusterGroup. لذا يُحمَّل markercluster من هنا بعد أن
     // يتوفّر L (فوراً عند التحميل المباشر)، والانتظار كل 50ms حتى 10 ثوانٍ حتى يتوفّر الاثنان. التشغيل مرة واحدة لكل عنصر
@@ -202,7 +205,11 @@ const jsonLd = [
     }
     function buildMap() {
       const el = document.getElementById('map');
-      if (!el || el._leaflet_id) return;
+      const dataEl = document.querySelector('[data-map-data]');
+      if (!el || !dataEl || el._leaflet_id) return;
+      let cfg;
+      try { cfg = JSON.parse(dataEl.textContent || ''); } catch (e) { return; }
+      const { points, labels, viewBounds } = cfg;
       // prefix صريح: بادئة Leaflet الافتراضية تحمل علماً سياسياً لا محلّ له على
       // موقع سياحي — الإسناد نفسه يبقى كاملاً.
       const map = L.map(el, { scrollWheelZoom: false, attributionControl: false });
@@ -380,7 +387,10 @@ const jsonLd = [
         try { if (window.VATrack) window.VATrack('map_deeplink', { cat: state.cat, q_len: initQ.length, item_id: target ? initId : '' }); } catch (e) {}
       }
     }
-    document.addEventListener('astro:page-load', initMap);
+    if (!window.__vaMapWired) {
+      window.__vaMapWired = true;
+      document.addEventListener('astro:page-load', initMap);
+    }
     if (document.readyState !== 'loading') initMap(); else document.addEventListener('DOMContentLoaded', initMap);
   </script>
 </Base>
